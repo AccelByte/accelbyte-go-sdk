@@ -10,6 +10,7 @@ package o_auth
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -71,7 +72,16 @@ type PlatformTokenRequestHandlerOK struct {
 }
 
 func (o *PlatformTokenRequestHandlerOK) Error() string {
-	return fmt.Sprintf("[POST /iam/oauth/namespaces/{namespace}/platforms/{platformId}/token][%d] platformTokenRequestHandlerOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[POST /iam/oauth/namespaces/{namespace}/platforms/{platformId}/token][%d] platformTokenRequestHandlerOK  %+v", 200, o.ToString())
+}
+
+func (o *PlatformTokenRequestHandlerOK) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *PlatformTokenRequestHandlerOK) GetPayload() *iamclientmodels.OauthmodelTokenResponse {
@@ -104,7 +114,16 @@ type PlatformTokenRequestHandlerBadRequest struct {
 }
 
 func (o *PlatformTokenRequestHandlerBadRequest) Error() string {
-	return fmt.Sprintf("[POST /iam/oauth/namespaces/{namespace}/platforms/{platformId}/token][%d] platformTokenRequestHandlerBadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[POST /iam/oauth/namespaces/{namespace}/platforms/{platformId}/token][%d] platformTokenRequestHandlerBadRequest  %+v", 400, o.ToString())
+}
+
+func (o *PlatformTokenRequestHandlerBadRequest) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *PlatformTokenRequestHandlerBadRequest) GetPayload() *iamclientmodels.OauthmodelErrorResponse {
@@ -137,7 +156,16 @@ type PlatformTokenRequestHandlerUnauthorized struct {
 }
 
 func (o *PlatformTokenRequestHandlerUnauthorized) Error() string {
-	return fmt.Sprintf("[POST /iam/oauth/namespaces/{namespace}/platforms/{platformId}/token][%d] platformTokenRequestHandlerUnauthorized  %+v", 401, o.Payload)
+	return fmt.Sprintf("[POST /iam/oauth/namespaces/{namespace}/platforms/{platformId}/token][%d] platformTokenRequestHandlerUnauthorized  %+v", 401, o.ToString())
+}
+
+func (o *PlatformTokenRequestHandlerUnauthorized) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *PlatformTokenRequestHandlerUnauthorized) GetPayload() *iamclientmodels.OauthmodelErrorResponse {

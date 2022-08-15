@@ -10,6 +10,7 @@ package matchmaking
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -89,7 +90,16 @@ type GetAllChannelsHandlerOK struct {
 }
 
 func (o *GetAllChannelsHandlerOK) Error() string {
-	return fmt.Sprintf("[GET /matchmaking/namespaces/{namespace}/channels][%d] getAllChannelsHandlerOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /matchmaking/namespaces/{namespace}/channels][%d] getAllChannelsHandlerOK  %+v", 200, o.ToString())
+}
+
+func (o *GetAllChannelsHandlerOK) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *GetAllChannelsHandlerOK) GetPayload() *matchmakingclientmodels.ModelsGetChannelsResponse {
@@ -122,7 +132,16 @@ type GetAllChannelsHandlerBadRequest struct {
 }
 
 func (o *GetAllChannelsHandlerBadRequest) Error() string {
-	return fmt.Sprintf("[GET /matchmaking/namespaces/{namespace}/channels][%d] getAllChannelsHandlerBadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[GET /matchmaking/namespaces/{namespace}/channels][%d] getAllChannelsHandlerBadRequest  %+v", 400, o.ToString())
+}
+
+func (o *GetAllChannelsHandlerBadRequest) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *GetAllChannelsHandlerBadRequest) GetPayload() *matchmakingclientmodels.ResponseError {
@@ -155,7 +174,16 @@ type GetAllChannelsHandlerUnauthorized struct {
 }
 
 func (o *GetAllChannelsHandlerUnauthorized) Error() string {
-	return fmt.Sprintf("[GET /matchmaking/namespaces/{namespace}/channels][%d] getAllChannelsHandlerUnauthorized  %+v", 401, o.Payload)
+	return fmt.Sprintf("[GET /matchmaking/namespaces/{namespace}/channels][%d] getAllChannelsHandlerUnauthorized  %+v", 401, o.ToString())
+}
+
+func (o *GetAllChannelsHandlerUnauthorized) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *GetAllChannelsHandlerUnauthorized) GetPayload() *matchmakingclientmodels.ResponseError {
@@ -188,7 +216,16 @@ type GetAllChannelsHandlerForbidden struct {
 }
 
 func (o *GetAllChannelsHandlerForbidden) Error() string {
-	return fmt.Sprintf("[GET /matchmaking/namespaces/{namespace}/channels][%d] getAllChannelsHandlerForbidden  %+v", 403, o.Payload)
+	return fmt.Sprintf("[GET /matchmaking/namespaces/{namespace}/channels][%d] getAllChannelsHandlerForbidden  %+v", 403, o.ToString())
+}
+
+func (o *GetAllChannelsHandlerForbidden) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *GetAllChannelsHandlerForbidden) GetPayload() *matchmakingclientmodels.ResponseError {
@@ -221,7 +258,16 @@ type GetAllChannelsHandlerConflict struct {
 }
 
 func (o *GetAllChannelsHandlerConflict) Error() string {
-	return fmt.Sprintf("[GET /matchmaking/namespaces/{namespace}/channels][%d] getAllChannelsHandlerConflict  %+v", 409, o.Payload)
+	return fmt.Sprintf("[GET /matchmaking/namespaces/{namespace}/channels][%d] getAllChannelsHandlerConflict  %+v", 409, o.ToString())
+}
+
+func (o *GetAllChannelsHandlerConflict) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *GetAllChannelsHandlerConflict) GetPayload() *matchmakingclientmodels.ResponseError {
@@ -254,7 +300,16 @@ type GetAllChannelsHandlerInternalServerError struct {
 }
 
 func (o *GetAllChannelsHandlerInternalServerError) Error() string {
-	return fmt.Sprintf("[GET /matchmaking/namespaces/{namespace}/channels][%d] getAllChannelsHandlerInternalServerError  %+v", 500, o.Payload)
+	return fmt.Sprintf("[GET /matchmaking/namespaces/{namespace}/channels][%d] getAllChannelsHandlerInternalServerError  %+v", 500, o.ToString())
+}
+
+func (o *GetAllChannelsHandlerInternalServerError) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *GetAllChannelsHandlerInternalServerError) GetPayload() *matchmakingclientmodels.ResponseError {

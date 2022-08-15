@@ -10,6 +10,7 @@ package session
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -116,7 +117,16 @@ type ClaimServerUnauthorized struct {
 }
 
 func (o *ClaimServerUnauthorized) Error() string {
-	return fmt.Sprintf("[POST /dsmcontroller/namespaces/{namespace}/sessions/claim][%d] claimServerUnauthorized  %+v", 401, o.Payload)
+	return fmt.Sprintf("[POST /dsmcontroller/namespaces/{namespace}/sessions/claim][%d] claimServerUnauthorized  %+v", 401, o.ToString())
+}
+
+func (o *ClaimServerUnauthorized) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *ClaimServerUnauthorized) GetPayload() *dsmcclientmodels.ResponseError {
@@ -149,7 +159,16 @@ type ClaimServerNotFound struct {
 }
 
 func (o *ClaimServerNotFound) Error() string {
-	return fmt.Sprintf("[POST /dsmcontroller/namespaces/{namespace}/sessions/claim][%d] claimServerNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[POST /dsmcontroller/namespaces/{namespace}/sessions/claim][%d] claimServerNotFound  %+v", 404, o.ToString())
+}
+
+func (o *ClaimServerNotFound) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *ClaimServerNotFound) GetPayload() *dsmcclientmodels.ResponseError {
@@ -182,7 +201,16 @@ type ClaimServerConflict struct {
 }
 
 func (o *ClaimServerConflict) Error() string {
-	return fmt.Sprintf("[POST /dsmcontroller/namespaces/{namespace}/sessions/claim][%d] claimServerConflict  %+v", 409, o.Payload)
+	return fmt.Sprintf("[POST /dsmcontroller/namespaces/{namespace}/sessions/claim][%d] claimServerConflict  %+v", 409, o.ToString())
+}
+
+func (o *ClaimServerConflict) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *ClaimServerConflict) GetPayload() *dsmcclientmodels.ResponseError {
@@ -215,7 +243,16 @@ type ClaimServerStatus425 struct {
 }
 
 func (o *ClaimServerStatus425) Error() string {
-	return fmt.Sprintf("[POST /dsmcontroller/namespaces/{namespace}/sessions/claim][%d] claimServerStatus425  %+v", 425, o.Payload)
+	return fmt.Sprintf("[POST /dsmcontroller/namespaces/{namespace}/sessions/claim][%d] claimServerStatus425  %+v", 425, o.ToString())
+}
+
+func (o *ClaimServerStatus425) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *ClaimServerStatus425) GetPayload() *dsmcclientmodels.ResponseError {
@@ -248,7 +285,16 @@ type ClaimServerInternalServerError struct {
 }
 
 func (o *ClaimServerInternalServerError) Error() string {
-	return fmt.Sprintf("[POST /dsmcontroller/namespaces/{namespace}/sessions/claim][%d] claimServerInternalServerError  %+v", 500, o.Payload)
+	return fmt.Sprintf("[POST /dsmcontroller/namespaces/{namespace}/sessions/claim][%d] claimServerInternalServerError  %+v", 500, o.ToString())
+}
+
+func (o *ClaimServerInternalServerError) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *ClaimServerInternalServerError) GetPayload() *dsmcclientmodels.ResponseError {
@@ -281,7 +327,16 @@ type ClaimServerServiceUnavailable struct {
 }
 
 func (o *ClaimServerServiceUnavailable) Error() string {
-	return fmt.Sprintf("[POST /dsmcontroller/namespaces/{namespace}/sessions/claim][%d] claimServerServiceUnavailable  %+v", 503, o.Payload)
+	return fmt.Sprintf("[POST /dsmcontroller/namespaces/{namespace}/sessions/claim][%d] claimServerServiceUnavailable  %+v", 503, o.ToString())
+}
+
+func (o *ClaimServerServiceUnavailable) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *ClaimServerServiceUnavailable) GetPayload() *dsmcclientmodels.ResponseError {

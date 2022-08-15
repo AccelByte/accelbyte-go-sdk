@@ -10,6 +10,7 @@ package tier
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -71,7 +72,16 @@ type GrantUserTierOK struct {
 }
 
 func (o *GrantUserTierOK) Error() string {
-	return fmt.Sprintf("[POST /seasonpass/admin/namespaces/{namespace}/users/{userId}/seasons/current/tiers][%d] grantUserTierOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[POST /seasonpass/admin/namespaces/{namespace}/users/{userId}/seasons/current/tiers][%d] grantUserTierOK  %+v", 200, o.ToString())
+}
+
+func (o *GrantUserTierOK) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *GrantUserTierOK) GetPayload() *seasonpassclientmodels.UserSeasonSummary {
@@ -104,7 +114,16 @@ type GrantUserTierBadRequest struct {
 }
 
 func (o *GrantUserTierBadRequest) Error() string {
-	return fmt.Sprintf("[POST /seasonpass/admin/namespaces/{namespace}/users/{userId}/seasons/current/tiers][%d] grantUserTierBadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[POST /seasonpass/admin/namespaces/{namespace}/users/{userId}/seasons/current/tiers][%d] grantUserTierBadRequest  %+v", 400, o.ToString())
+}
+
+func (o *GrantUserTierBadRequest) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *GrantUserTierBadRequest) GetPayload() *seasonpassclientmodels.ErrorEntity {
@@ -137,7 +156,16 @@ type GrantUserTierNotFound struct {
 }
 
 func (o *GrantUserTierNotFound) Error() string {
-	return fmt.Sprintf("[POST /seasonpass/admin/namespaces/{namespace}/users/{userId}/seasons/current/tiers][%d] grantUserTierNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[POST /seasonpass/admin/namespaces/{namespace}/users/{userId}/seasons/current/tiers][%d] grantUserTierNotFound  %+v", 404, o.ToString())
+}
+
+func (o *GrantUserTierNotFound) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *GrantUserTierNotFound) GetPayload() *seasonpassclientmodels.ErrorEntity {

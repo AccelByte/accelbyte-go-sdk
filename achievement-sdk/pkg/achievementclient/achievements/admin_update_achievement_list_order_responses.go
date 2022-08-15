@@ -10,6 +10,7 @@ package achievements
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -104,7 +105,16 @@ type AdminUpdateAchievementListOrderBadRequest struct {
 }
 
 func (o *AdminUpdateAchievementListOrderBadRequest) Error() string {
-	return fmt.Sprintf("[PATCH /achievement/v1/admin/namespaces/{namespace}/achievements/{achievementCode}][%d] adminUpdateAchievementListOrderBadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[PATCH /achievement/v1/admin/namespaces/{namespace}/achievements/{achievementCode}][%d] adminUpdateAchievementListOrderBadRequest  %+v", 400, o.ToString())
+}
+
+func (o *AdminUpdateAchievementListOrderBadRequest) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *AdminUpdateAchievementListOrderBadRequest) GetPayload() *achievementclientmodels.ResponseError {
@@ -137,7 +147,16 @@ type AdminUpdateAchievementListOrderUnauthorized struct {
 }
 
 func (o *AdminUpdateAchievementListOrderUnauthorized) Error() string {
-	return fmt.Sprintf("[PATCH /achievement/v1/admin/namespaces/{namespace}/achievements/{achievementCode}][%d] adminUpdateAchievementListOrderUnauthorized  %+v", 401, o.Payload)
+	return fmt.Sprintf("[PATCH /achievement/v1/admin/namespaces/{namespace}/achievements/{achievementCode}][%d] adminUpdateAchievementListOrderUnauthorized  %+v", 401, o.ToString())
+}
+
+func (o *AdminUpdateAchievementListOrderUnauthorized) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *AdminUpdateAchievementListOrderUnauthorized) GetPayload() *achievementclientmodels.ResponseError {
@@ -170,7 +189,16 @@ type AdminUpdateAchievementListOrderNotFound struct {
 }
 
 func (o *AdminUpdateAchievementListOrderNotFound) Error() string {
-	return fmt.Sprintf("[PATCH /achievement/v1/admin/namespaces/{namespace}/achievements/{achievementCode}][%d] adminUpdateAchievementListOrderNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[PATCH /achievement/v1/admin/namespaces/{namespace}/achievements/{achievementCode}][%d] adminUpdateAchievementListOrderNotFound  %+v", 404, o.ToString())
+}
+
+func (o *AdminUpdateAchievementListOrderNotFound) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *AdminUpdateAchievementListOrderNotFound) GetPayload() *achievementclientmodels.ResponseError {
@@ -203,7 +231,16 @@ type AdminUpdateAchievementListOrderInternalServerError struct {
 }
 
 func (o *AdminUpdateAchievementListOrderInternalServerError) Error() string {
-	return fmt.Sprintf("[PATCH /achievement/v1/admin/namespaces/{namespace}/achievements/{achievementCode}][%d] adminUpdateAchievementListOrderInternalServerError  %+v", 500, o.Payload)
+	return fmt.Sprintf("[PATCH /achievement/v1/admin/namespaces/{namespace}/achievements/{achievementCode}][%d] adminUpdateAchievementListOrderInternalServerError  %+v", 500, o.ToString())
+}
+
+func (o *AdminUpdateAchievementListOrderInternalServerError) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *AdminUpdateAchievementListOrderInternalServerError) GetPayload() *achievementclientmodels.ResponseError {

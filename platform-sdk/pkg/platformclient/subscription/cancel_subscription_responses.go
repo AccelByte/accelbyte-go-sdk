@@ -10,6 +10,7 @@ package subscription
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -71,7 +72,16 @@ type CancelSubscriptionOK struct {
 }
 
 func (o *CancelSubscriptionOK) Error() string {
-	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/users/{userId}/subscriptions/{subscriptionId}/cancel][%d] cancelSubscriptionOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/users/{userId}/subscriptions/{subscriptionId}/cancel][%d] cancelSubscriptionOK  %+v", 200, o.ToString())
+}
+
+func (o *CancelSubscriptionOK) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *CancelSubscriptionOK) GetPayload() *platformclientmodels.SubscriptionInfo {
@@ -104,7 +114,16 @@ type CancelSubscriptionNotFound struct {
 }
 
 func (o *CancelSubscriptionNotFound) Error() string {
-	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/users/{userId}/subscriptions/{subscriptionId}/cancel][%d] cancelSubscriptionNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/users/{userId}/subscriptions/{subscriptionId}/cancel][%d] cancelSubscriptionNotFound  %+v", 404, o.ToString())
+}
+
+func (o *CancelSubscriptionNotFound) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *CancelSubscriptionNotFound) GetPayload() *platformclientmodels.ErrorEntity {
@@ -137,7 +156,16 @@ type CancelSubscriptionConflict struct {
 }
 
 func (o *CancelSubscriptionConflict) Error() string {
-	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/users/{userId}/subscriptions/{subscriptionId}/cancel][%d] cancelSubscriptionConflict  %+v", 409, o.Payload)
+	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/users/{userId}/subscriptions/{subscriptionId}/cancel][%d] cancelSubscriptionConflict  %+v", 409, o.ToString())
+}
+
+func (o *CancelSubscriptionConflict) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *CancelSubscriptionConflict) GetPayload() *platformclientmodels.ErrorEntity {

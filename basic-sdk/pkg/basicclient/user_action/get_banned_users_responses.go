@@ -10,6 +10,7 @@ package user_action
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -83,7 +84,16 @@ type GetBannedUsersOK struct {
 }
 
 func (o *GetBannedUsersOK) Error() string {
-	return fmt.Sprintf("[GET /basic/v1/admin/namespaces/{namespace}/actions/banned][%d] getBannedUsersOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /basic/v1/admin/namespaces/{namespace}/actions/banned][%d] getBannedUsersOK  %+v", 200, o.ToString())
+}
+
+func (o *GetBannedUsersOK) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *GetBannedUsersOK) GetPayload() []*basicclientmodels.ADTOObjectForEqu8UserBanStatus {
@@ -114,7 +124,16 @@ type GetBannedUsersBadRequest struct {
 }
 
 func (o *GetBannedUsersBadRequest) Error() string {
-	return fmt.Sprintf("[GET /basic/v1/admin/namespaces/{namespace}/actions/banned][%d] getBannedUsersBadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[GET /basic/v1/admin/namespaces/{namespace}/actions/banned][%d] getBannedUsersBadRequest  %+v", 400, o.ToString())
+}
+
+func (o *GetBannedUsersBadRequest) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *GetBannedUsersBadRequest) GetPayload() *basicclientmodels.ErrorEntity {
@@ -147,7 +166,16 @@ type GetBannedUsersNotFound struct {
 }
 
 func (o *GetBannedUsersNotFound) Error() string {
-	return fmt.Sprintf("[GET /basic/v1/admin/namespaces/{namespace}/actions/banned][%d] getBannedUsersNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[GET /basic/v1/admin/namespaces/{namespace}/actions/banned][%d] getBannedUsersNotFound  %+v", 404, o.ToString())
+}
+
+func (o *GetBannedUsersNotFound) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *GetBannedUsersNotFound) GetPayload() *basicclientmodels.ErrorEntity {
@@ -180,7 +208,16 @@ type GetBannedUsersUnprocessableEntity struct {
 }
 
 func (o *GetBannedUsersUnprocessableEntity) Error() string {
-	return fmt.Sprintf("[GET /basic/v1/admin/namespaces/{namespace}/actions/banned][%d] getBannedUsersUnprocessableEntity  %+v", 422, o.Payload)
+	return fmt.Sprintf("[GET /basic/v1/admin/namespaces/{namespace}/actions/banned][%d] getBannedUsersUnprocessableEntity  %+v", 422, o.ToString())
+}
+
+func (o *GetBannedUsersUnprocessableEntity) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *GetBannedUsersUnprocessableEntity) GetPayload() *basicclientmodels.ValidationErrorEntity {
@@ -213,7 +250,16 @@ type GetBannedUsersInternalServerError struct {
 }
 
 func (o *GetBannedUsersInternalServerError) Error() string {
-	return fmt.Sprintf("[GET /basic/v1/admin/namespaces/{namespace}/actions/banned][%d] getBannedUsersInternalServerError  %+v", 500, o.Payload)
+	return fmt.Sprintf("[GET /basic/v1/admin/namespaces/{namespace}/actions/banned][%d] getBannedUsersInternalServerError  %+v", 500, o.ToString())
+}
+
+func (o *GetBannedUsersInternalServerError) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *GetBannedUsersInternalServerError) GetPayload() *basicclientmodels.ErrorEntity {

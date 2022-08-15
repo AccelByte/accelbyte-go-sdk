@@ -10,6 +10,7 @@ package users
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -83,7 +84,16 @@ type PublicCreateUserV2Created struct {
 }
 
 func (o *PublicCreateUserV2Created) Error() string {
-	return fmt.Sprintf("[POST /iam/v2/public/namespaces/{namespace}/users][%d] publicCreateUserV2Created  %+v", 201, o.Payload)
+	return fmt.Sprintf("[POST /iam/v2/public/namespaces/{namespace}/users][%d] publicCreateUserV2Created  %+v", 201, o.ToString())
+}
+
+func (o *PublicCreateUserV2Created) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *PublicCreateUserV2Created) GetPayload() *iamclientmodels.ModelUserCreateResponse {

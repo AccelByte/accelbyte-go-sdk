@@ -10,6 +10,7 @@ package reward
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -77,7 +78,16 @@ type CreateRewardOK struct {
 }
 
 func (o *CreateRewardOK) Error() string {
-	return fmt.Sprintf("[POST /platform/admin/namespaces/{namespace}/rewards][%d] createRewardOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[POST /platform/admin/namespaces/{namespace}/rewards][%d] createRewardOK  %+v", 200, o.ToString())
+}
+
+func (o *CreateRewardOK) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *CreateRewardOK) GetPayload() *platformclientmodels.RewardInfo {
@@ -110,7 +120,16 @@ type CreateRewardNotFound struct {
 }
 
 func (o *CreateRewardNotFound) Error() string {
-	return fmt.Sprintf("[POST /platform/admin/namespaces/{namespace}/rewards][%d] createRewardNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[POST /platform/admin/namespaces/{namespace}/rewards][%d] createRewardNotFound  %+v", 404, o.ToString())
+}
+
+func (o *CreateRewardNotFound) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *CreateRewardNotFound) GetPayload() *platformclientmodels.ErrorEntity {
@@ -143,7 +162,16 @@ type CreateRewardConflict struct {
 }
 
 func (o *CreateRewardConflict) Error() string {
-	return fmt.Sprintf("[POST /platform/admin/namespaces/{namespace}/rewards][%d] createRewardConflict  %+v", 409, o.Payload)
+	return fmt.Sprintf("[POST /platform/admin/namespaces/{namespace}/rewards][%d] createRewardConflict  %+v", 409, o.ToString())
+}
+
+func (o *CreateRewardConflict) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *CreateRewardConflict) GetPayload() *platformclientmodels.ErrorEntity {
@@ -176,7 +204,16 @@ type CreateRewardUnprocessableEntity struct {
 }
 
 func (o *CreateRewardUnprocessableEntity) Error() string {
-	return fmt.Sprintf("[POST /platform/admin/namespaces/{namespace}/rewards][%d] createRewardUnprocessableEntity  %+v", 422, o.Payload)
+	return fmt.Sprintf("[POST /platform/admin/namespaces/{namespace}/rewards][%d] createRewardUnprocessableEntity  %+v", 422, o.ToString())
+}
+
+func (o *CreateRewardUnprocessableEntity) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *CreateRewardUnprocessableEntity) GetPayload() *platformclientmodels.ValidationErrorEntity {

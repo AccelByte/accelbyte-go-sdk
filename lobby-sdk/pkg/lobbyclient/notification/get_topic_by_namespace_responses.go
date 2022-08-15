@@ -10,6 +10,7 @@ package notification
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -83,7 +84,16 @@ type GetTopicByNamespaceOK struct {
 }
 
 func (o *GetTopicByNamespaceOK) Error() string {
-	return fmt.Sprintf("[GET /notification/namespaces/{namespace}/topics][%d] getTopicByNamespaceOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /notification/namespaces/{namespace}/topics][%d] getTopicByNamespaceOK  %+v", 200, o.ToString())
+}
+
+func (o *GetTopicByNamespaceOK) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *GetTopicByNamespaceOK) GetPayload() *lobbyclientmodels.ModelTopicByNamespacesResponse {
@@ -116,7 +126,16 @@ type GetTopicByNamespaceUnauthorized struct {
 }
 
 func (o *GetTopicByNamespaceUnauthorized) Error() string {
-	return fmt.Sprintf("[GET /notification/namespaces/{namespace}/topics][%d] getTopicByNamespaceUnauthorized  %+v", 401, o.Payload)
+	return fmt.Sprintf("[GET /notification/namespaces/{namespace}/topics][%d] getTopicByNamespaceUnauthorized  %+v", 401, o.ToString())
+}
+
+func (o *GetTopicByNamespaceUnauthorized) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *GetTopicByNamespaceUnauthorized) GetPayload() *lobbyclientmodels.RestapiErrorResponseBody {
@@ -149,7 +168,16 @@ type GetTopicByNamespaceForbidden struct {
 }
 
 func (o *GetTopicByNamespaceForbidden) Error() string {
-	return fmt.Sprintf("[GET /notification/namespaces/{namespace}/topics][%d] getTopicByNamespaceForbidden  %+v", 403, o.Payload)
+	return fmt.Sprintf("[GET /notification/namespaces/{namespace}/topics][%d] getTopicByNamespaceForbidden  %+v", 403, o.ToString())
+}
+
+func (o *GetTopicByNamespaceForbidden) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *GetTopicByNamespaceForbidden) GetPayload() *lobbyclientmodels.RestapiErrorResponseBody {
@@ -182,7 +210,16 @@ type GetTopicByNamespaceNotFound struct {
 }
 
 func (o *GetTopicByNamespaceNotFound) Error() string {
-	return fmt.Sprintf("[GET /notification/namespaces/{namespace}/topics][%d] getTopicByNamespaceNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[GET /notification/namespaces/{namespace}/topics][%d] getTopicByNamespaceNotFound  %+v", 404, o.ToString())
+}
+
+func (o *GetTopicByNamespaceNotFound) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *GetTopicByNamespaceNotFound) GetPayload() *lobbyclientmodels.RestapiErrorResponseBody {
@@ -215,7 +252,16 @@ type GetTopicByNamespaceInternalServerError struct {
 }
 
 func (o *GetTopicByNamespaceInternalServerError) Error() string {
-	return fmt.Sprintf("[GET /notification/namespaces/{namespace}/topics][%d] getTopicByNamespaceInternalServerError  %+v", 500, o.Payload)
+	return fmt.Sprintf("[GET /notification/namespaces/{namespace}/topics][%d] getTopicByNamespaceInternalServerError  %+v", 500, o.ToString())
+}
+
+func (o *GetTopicByNamespaceInternalServerError) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *GetTopicByNamespaceInternalServerError) GetPayload() *lobbyclientmodels.RestapiErrorResponseBody {

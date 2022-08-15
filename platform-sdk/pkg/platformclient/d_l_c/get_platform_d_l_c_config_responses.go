@@ -10,6 +10,7 @@ package d_l_c
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -65,7 +66,16 @@ type GetPlatformDLCConfigOK struct {
 }
 
 func (o *GetPlatformDLCConfigOK) Error() string {
-	return fmt.Sprintf("[GET /platform/admin/namespaces/{namespace}/dlc/config/platformMap][%d] getPlatformDLCConfigOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /platform/admin/namespaces/{namespace}/dlc/config/platformMap][%d] getPlatformDLCConfigOK  %+v", 200, o.ToString())
+}
+
+func (o *GetPlatformDLCConfigOK) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *GetPlatformDLCConfigOK) GetPayload() *platformclientmodels.PlatformDLCConfigInfo {
@@ -98,7 +108,16 @@ type GetPlatformDLCConfigNotFound struct {
 }
 
 func (o *GetPlatformDLCConfigNotFound) Error() string {
-	return fmt.Sprintf("[GET /platform/admin/namespaces/{namespace}/dlc/config/platformMap][%d] getPlatformDLCConfigNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[GET /platform/admin/namespaces/{namespace}/dlc/config/platformMap][%d] getPlatformDLCConfigNotFound  %+v", 404, o.ToString())
+}
+
+func (o *GetPlatformDLCConfigNotFound) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *GetPlatformDLCConfigNotFound) GetPayload() *platformclientmodels.ErrorEntity {

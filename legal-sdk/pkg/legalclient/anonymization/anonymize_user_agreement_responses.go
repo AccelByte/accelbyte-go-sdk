@@ -10,6 +10,7 @@ package anonymization
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -86,7 +87,16 @@ type AnonymizeUserAgreementNotFound struct {
 }
 
 func (o *AnonymizeUserAgreementNotFound) Error() string {
-	return fmt.Sprintf("[DELETE /agreement/admin/users/{userId}/anonymization/agreements][%d] anonymizeUserAgreementNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[DELETE /agreement/admin/users/{userId}/anonymization/agreements][%d] anonymizeUserAgreementNotFound  %+v", 404, o.ToString())
+}
+
+func (o *AnonymizeUserAgreementNotFound) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *AnonymizeUserAgreementNotFound) GetPayload() *legalclientmodels.ErrorEntity {

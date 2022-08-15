@@ -10,6 +10,7 @@ package localized_policy_versions
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -65,7 +66,16 @@ type RetrieveSingleLocalizedPolicyVersion1OK struct {
 }
 
 func (o *RetrieveSingleLocalizedPolicyVersion1OK) Error() string {
-	return fmt.Sprintf("[GET /agreement/public/localized-policy-versions/{localizedPolicyVersionId}][%d] retrieveSingleLocalizedPolicyVersion1OK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /agreement/public/localized-policy-versions/{localizedPolicyVersionId}][%d] retrieveSingleLocalizedPolicyVersion1OK  %+v", 200, o.ToString())
+}
+
+func (o *RetrieveSingleLocalizedPolicyVersion1OK) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *RetrieveSingleLocalizedPolicyVersion1OK) GetPayload() *legalclientmodels.RetrieveLocalizedPolicyVersionPublicResponse {
@@ -98,7 +108,16 @@ type RetrieveSingleLocalizedPolicyVersion1NotFound struct {
 }
 
 func (o *RetrieveSingleLocalizedPolicyVersion1NotFound) Error() string {
-	return fmt.Sprintf("[GET /agreement/public/localized-policy-versions/{localizedPolicyVersionId}][%d] retrieveSingleLocalizedPolicyVersion1NotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[GET /agreement/public/localized-policy-versions/{localizedPolicyVersionId}][%d] retrieveSingleLocalizedPolicyVersion1NotFound  %+v", 404, o.ToString())
+}
+
+func (o *RetrieveSingleLocalizedPolicyVersion1NotFound) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *RetrieveSingleLocalizedPolicyVersion1NotFound) GetPayload() *legalclientmodels.ErrorEntity {

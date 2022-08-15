@@ -10,6 +10,7 @@ package e_q_u8_config
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -71,7 +72,16 @@ type GetConfigOK struct {
 }
 
 func (o *GetConfigOK) Error() string {
-	return fmt.Sprintf("[GET /basic/v1/admin/namespaces/{namespace}/equ8/config][%d] getConfigOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /basic/v1/admin/namespaces/{namespace}/equ8/config][%d] getConfigOK  %+v", 200, o.ToString())
+}
+
+func (o *GetConfigOK) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *GetConfigOK) GetPayload() *basicclientmodels.Equ8Config {
@@ -104,7 +114,16 @@ type GetConfigNotFound struct {
 }
 
 func (o *GetConfigNotFound) Error() string {
-	return fmt.Sprintf("[GET /basic/v1/admin/namespaces/{namespace}/equ8/config][%d] getConfigNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[GET /basic/v1/admin/namespaces/{namespace}/equ8/config][%d] getConfigNotFound  %+v", 404, o.ToString())
+}
+
+func (o *GetConfigNotFound) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *GetConfigNotFound) GetPayload() *basicclientmodels.ErrorEntity {
@@ -137,7 +156,16 @@ type GetConfigInternalServerError struct {
 }
 
 func (o *GetConfigInternalServerError) Error() string {
-	return fmt.Sprintf("[GET /basic/v1/admin/namespaces/{namespace}/equ8/config][%d] getConfigInternalServerError  %+v", 500, o.Payload)
+	return fmt.Sprintf("[GET /basic/v1/admin/namespaces/{namespace}/equ8/config][%d] getConfigInternalServerError  %+v", 500, o.ToString())
+}
+
+func (o *GetConfigInternalServerError) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *GetConfigInternalServerError) GetPayload() *basicclientmodels.ErrorEntity {

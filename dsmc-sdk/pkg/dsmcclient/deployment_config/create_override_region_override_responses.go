@@ -10,6 +10,7 @@ package deployment_config
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -89,7 +90,16 @@ type CreateOverrideRegionOverrideCreated struct {
 }
 
 func (o *CreateOverrideRegionOverrideCreated) Error() string {
-	return fmt.Sprintf("[POST /dsmcontroller/admin/namespaces/{namespace}/configs/deployments/{deployment}/overrides/versions/{version}/regions/{region}][%d] createOverrideRegionOverrideCreated  %+v", 201, o.Payload)
+	return fmt.Sprintf("[POST /dsmcontroller/admin/namespaces/{namespace}/configs/deployments/{deployment}/overrides/versions/{version}/regions/{region}][%d] createOverrideRegionOverrideCreated  %+v", 201, o.ToString())
+}
+
+func (o *CreateOverrideRegionOverrideCreated) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *CreateOverrideRegionOverrideCreated) GetPayload() *dsmcclientmodels.ModelsDeploymentWithOverride {
@@ -122,7 +132,16 @@ type CreateOverrideRegionOverrideBadRequest struct {
 }
 
 func (o *CreateOverrideRegionOverrideBadRequest) Error() string {
-	return fmt.Sprintf("[POST /dsmcontroller/admin/namespaces/{namespace}/configs/deployments/{deployment}/overrides/versions/{version}/regions/{region}][%d] createOverrideRegionOverrideBadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[POST /dsmcontroller/admin/namespaces/{namespace}/configs/deployments/{deployment}/overrides/versions/{version}/regions/{region}][%d] createOverrideRegionOverrideBadRequest  %+v", 400, o.ToString())
+}
+
+func (o *CreateOverrideRegionOverrideBadRequest) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *CreateOverrideRegionOverrideBadRequest) GetPayload() *dsmcclientmodels.ResponseError {
@@ -155,7 +174,16 @@ type CreateOverrideRegionOverrideUnauthorized struct {
 }
 
 func (o *CreateOverrideRegionOverrideUnauthorized) Error() string {
-	return fmt.Sprintf("[POST /dsmcontroller/admin/namespaces/{namespace}/configs/deployments/{deployment}/overrides/versions/{version}/regions/{region}][%d] createOverrideRegionOverrideUnauthorized  %+v", 401, o.Payload)
+	return fmt.Sprintf("[POST /dsmcontroller/admin/namespaces/{namespace}/configs/deployments/{deployment}/overrides/versions/{version}/regions/{region}][%d] createOverrideRegionOverrideUnauthorized  %+v", 401, o.ToString())
+}
+
+func (o *CreateOverrideRegionOverrideUnauthorized) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *CreateOverrideRegionOverrideUnauthorized) GetPayload() *dsmcclientmodels.ResponseError {
@@ -188,7 +216,16 @@ type CreateOverrideRegionOverrideNotFound struct {
 }
 
 func (o *CreateOverrideRegionOverrideNotFound) Error() string {
-	return fmt.Sprintf("[POST /dsmcontroller/admin/namespaces/{namespace}/configs/deployments/{deployment}/overrides/versions/{version}/regions/{region}][%d] createOverrideRegionOverrideNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[POST /dsmcontroller/admin/namespaces/{namespace}/configs/deployments/{deployment}/overrides/versions/{version}/regions/{region}][%d] createOverrideRegionOverrideNotFound  %+v", 404, o.ToString())
+}
+
+func (o *CreateOverrideRegionOverrideNotFound) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *CreateOverrideRegionOverrideNotFound) GetPayload() *dsmcclientmodels.ResponseError {
@@ -221,7 +258,16 @@ type CreateOverrideRegionOverrideConflict struct {
 }
 
 func (o *CreateOverrideRegionOverrideConflict) Error() string {
-	return fmt.Sprintf("[POST /dsmcontroller/admin/namespaces/{namespace}/configs/deployments/{deployment}/overrides/versions/{version}/regions/{region}][%d] createOverrideRegionOverrideConflict  %+v", 409, o.Payload)
+	return fmt.Sprintf("[POST /dsmcontroller/admin/namespaces/{namespace}/configs/deployments/{deployment}/overrides/versions/{version}/regions/{region}][%d] createOverrideRegionOverrideConflict  %+v", 409, o.ToString())
+}
+
+func (o *CreateOverrideRegionOverrideConflict) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *CreateOverrideRegionOverrideConflict) GetPayload() *dsmcclientmodels.ResponseError {
@@ -254,7 +300,16 @@ type CreateOverrideRegionOverrideInternalServerError struct {
 }
 
 func (o *CreateOverrideRegionOverrideInternalServerError) Error() string {
-	return fmt.Sprintf("[POST /dsmcontroller/admin/namespaces/{namespace}/configs/deployments/{deployment}/overrides/versions/{version}/regions/{region}][%d] createOverrideRegionOverrideInternalServerError  %+v", 500, o.Payload)
+	return fmt.Sprintf("[POST /dsmcontroller/admin/namespaces/{namespace}/configs/deployments/{deployment}/overrides/versions/{version}/regions/{region}][%d] createOverrideRegionOverrideInternalServerError  %+v", 500, o.ToString())
+}
+
+func (o *CreateOverrideRegionOverrideInternalServerError) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *CreateOverrideRegionOverrideInternalServerError) GetPayload() *dsmcclientmodels.ResponseError {

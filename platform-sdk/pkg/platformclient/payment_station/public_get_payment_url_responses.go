@@ -10,6 +10,7 @@ package payment_station
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -77,7 +78,16 @@ type PublicGetPaymentURLOK struct {
 }
 
 func (o *PublicGetPaymentURLOK) Error() string {
-	return fmt.Sprintf("[POST /platform/public/namespaces/{namespace}/payment/link][%d] publicGetPaymentUrlOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[POST /platform/public/namespaces/{namespace}/payment/link][%d] publicGetPaymentUrlOK  %+v", 200, o.ToString())
+}
+
+func (o *PublicGetPaymentURLOK) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *PublicGetPaymentURLOK) GetPayload() *platformclientmodels.PaymentURL {
@@ -110,7 +120,16 @@ type PublicGetPaymentURLBadRequest struct {
 }
 
 func (o *PublicGetPaymentURLBadRequest) Error() string {
-	return fmt.Sprintf("[POST /platform/public/namespaces/{namespace}/payment/link][%d] publicGetPaymentUrlBadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[POST /platform/public/namespaces/{namespace}/payment/link][%d] publicGetPaymentUrlBadRequest  %+v", 400, o.ToString())
+}
+
+func (o *PublicGetPaymentURLBadRequest) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *PublicGetPaymentURLBadRequest) GetPayload() *platformclientmodels.ErrorEntity {
@@ -143,7 +162,16 @@ type PublicGetPaymentURLForbidden struct {
 }
 
 func (o *PublicGetPaymentURLForbidden) Error() string {
-	return fmt.Sprintf("[POST /platform/public/namespaces/{namespace}/payment/link][%d] publicGetPaymentUrlForbidden  %+v", 403, o.Payload)
+	return fmt.Sprintf("[POST /platform/public/namespaces/{namespace}/payment/link][%d] publicGetPaymentUrlForbidden  %+v", 403, o.ToString())
+}
+
+func (o *PublicGetPaymentURLForbidden) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *PublicGetPaymentURLForbidden) GetPayload() *platformclientmodels.ErrorEntity {
@@ -176,7 +204,16 @@ type PublicGetPaymentURLNotFound struct {
 }
 
 func (o *PublicGetPaymentURLNotFound) Error() string {
-	return fmt.Sprintf("[POST /platform/public/namespaces/{namespace}/payment/link][%d] publicGetPaymentUrlNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[POST /platform/public/namespaces/{namespace}/payment/link][%d] publicGetPaymentUrlNotFound  %+v", 404, o.ToString())
+}
+
+func (o *PublicGetPaymentURLNotFound) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *PublicGetPaymentURLNotFound) GetPayload() *platformclientmodels.ErrorEntity {

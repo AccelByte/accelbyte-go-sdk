@@ -10,6 +10,7 @@ package users
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -77,7 +78,16 @@ type GetUserInformationOK struct {
 }
 
 func (o *GetUserInformationOK) Error() string {
-	return fmt.Sprintf("[GET /iam/namespaces/{namespace}/users/{userId}/information][%d] getUserInformationOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /iam/namespaces/{namespace}/users/{userId}/information][%d] getUserInformationOK  %+v", 200, o.ToString())
+}
+
+func (o *GetUserInformationOK) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *GetUserInformationOK) GetPayload() *iamclientmodels.ModelUserInformation {

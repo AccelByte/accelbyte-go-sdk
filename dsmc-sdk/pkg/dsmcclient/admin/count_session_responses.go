@@ -10,6 +10,7 @@ package admin
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -71,7 +72,16 @@ type CountSessionOK struct {
 }
 
 func (o *CountSessionOK) Error() string {
-	return fmt.Sprintf("[GET /dsmcontroller/admin/namespaces/{namespace}/sessions/count][%d] countSessionOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /dsmcontroller/admin/namespaces/{namespace}/sessions/count][%d] countSessionOK  %+v", 200, o.ToString())
+}
+
+func (o *CountSessionOK) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *CountSessionOK) GetPayload() *dsmcclientmodels.ModelsCountSessionResponse {
@@ -104,7 +114,16 @@ type CountSessionUnauthorized struct {
 }
 
 func (o *CountSessionUnauthorized) Error() string {
-	return fmt.Sprintf("[GET /dsmcontroller/admin/namespaces/{namespace}/sessions/count][%d] countSessionUnauthorized  %+v", 401, o.Payload)
+	return fmt.Sprintf("[GET /dsmcontroller/admin/namespaces/{namespace}/sessions/count][%d] countSessionUnauthorized  %+v", 401, o.ToString())
+}
+
+func (o *CountSessionUnauthorized) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *CountSessionUnauthorized) GetPayload() *dsmcclientmodels.ResponseError {
@@ -137,7 +156,16 @@ type CountSessionInternalServerError struct {
 }
 
 func (o *CountSessionInternalServerError) Error() string {
-	return fmt.Sprintf("[GET /dsmcontroller/admin/namespaces/{namespace}/sessions/count][%d] countSessionInternalServerError  %+v", 500, o.Payload)
+	return fmt.Sprintf("[GET /dsmcontroller/admin/namespaces/{namespace}/sessions/count][%d] countSessionInternalServerError  %+v", 500, o.ToString())
+}
+
+func (o *CountSessionInternalServerError) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *CountSessionInternalServerError) GetPayload() *dsmcclientmodels.ResponseError {

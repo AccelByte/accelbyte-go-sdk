@@ -10,6 +10,7 @@ package stat_configuration
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -65,7 +66,16 @@ type UpdateStatOK struct {
 }
 
 func (o *UpdateStatOK) Error() string {
-	return fmt.Sprintf("[PATCH /social/v1/admin/namespaces/{namespace}/stats/{statCode}][%d] updateStatOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[PATCH /social/v1/admin/namespaces/{namespace}/stats/{statCode}][%d] updateStatOK  %+v", 200, o.ToString())
+}
+
+func (o *UpdateStatOK) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *UpdateStatOK) GetPayload() *socialclientmodels.StatInfo {
@@ -98,7 +108,16 @@ type UpdateStatNotFound struct {
 }
 
 func (o *UpdateStatNotFound) Error() string {
-	return fmt.Sprintf("[PATCH /social/v1/admin/namespaces/{namespace}/stats/{statCode}][%d] updateStatNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[PATCH /social/v1/admin/namespaces/{namespace}/stats/{statCode}][%d] updateStatNotFound  %+v", 404, o.ToString())
+}
+
+func (o *UpdateStatNotFound) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *UpdateStatNotFound) GetPayload() *socialclientmodels.ErrorEntity {

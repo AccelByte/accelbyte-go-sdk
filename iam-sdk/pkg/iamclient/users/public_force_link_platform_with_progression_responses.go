@@ -10,6 +10,7 @@ package users
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -104,7 +105,16 @@ type PublicForceLinkPlatformWithProgressionBadRequest struct {
 }
 
 func (o *PublicForceLinkPlatformWithProgressionBadRequest) Error() string {
-	return fmt.Sprintf("[POST /iam/v3/public/namespaces/{namespace}/users/{userId}/platforms/linkWithProgression][%d] publicForceLinkPlatformWithProgressionBadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[POST /iam/v3/public/namespaces/{namespace}/users/{userId}/platforms/linkWithProgression][%d] publicForceLinkPlatformWithProgressionBadRequest  %+v", 400, o.ToString())
+}
+
+func (o *PublicForceLinkPlatformWithProgressionBadRequest) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *PublicForceLinkPlatformWithProgressionBadRequest) GetPayload() *iamclientmodels.RestErrorResponse {
@@ -137,7 +147,16 @@ type PublicForceLinkPlatformWithProgressionUnauthorized struct {
 }
 
 func (o *PublicForceLinkPlatformWithProgressionUnauthorized) Error() string {
-	return fmt.Sprintf("[POST /iam/v3/public/namespaces/{namespace}/users/{userId}/platforms/linkWithProgression][%d] publicForceLinkPlatformWithProgressionUnauthorized  %+v", 401, o.Payload)
+	return fmt.Sprintf("[POST /iam/v3/public/namespaces/{namespace}/users/{userId}/platforms/linkWithProgression][%d] publicForceLinkPlatformWithProgressionUnauthorized  %+v", 401, o.ToString())
+}
+
+func (o *PublicForceLinkPlatformWithProgressionUnauthorized) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *PublicForceLinkPlatformWithProgressionUnauthorized) GetPayload() *iamclientmodels.RestErrorResponse {
@@ -170,7 +189,16 @@ type PublicForceLinkPlatformWithProgressionForbidden struct {
 }
 
 func (o *PublicForceLinkPlatformWithProgressionForbidden) Error() string {
-	return fmt.Sprintf("[POST /iam/v3/public/namespaces/{namespace}/users/{userId}/platforms/linkWithProgression][%d] publicForceLinkPlatformWithProgressionForbidden  %+v", 403, o.Payload)
+	return fmt.Sprintf("[POST /iam/v3/public/namespaces/{namespace}/users/{userId}/platforms/linkWithProgression][%d] publicForceLinkPlatformWithProgressionForbidden  %+v", 403, o.ToString())
+}
+
+func (o *PublicForceLinkPlatformWithProgressionForbidden) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *PublicForceLinkPlatformWithProgressionForbidden) GetPayload() *iamclientmodels.RestErrorResponse {
@@ -203,7 +231,16 @@ type PublicForceLinkPlatformWithProgressionInternalServerError struct {
 }
 
 func (o *PublicForceLinkPlatformWithProgressionInternalServerError) Error() string {
-	return fmt.Sprintf("[POST /iam/v3/public/namespaces/{namespace}/users/{userId}/platforms/linkWithProgression][%d] publicForceLinkPlatformWithProgressionInternalServerError  %+v", 500, o.Payload)
+	return fmt.Sprintf("[POST /iam/v3/public/namespaces/{namespace}/users/{userId}/platforms/linkWithProgression][%d] publicForceLinkPlatformWithProgressionInternalServerError  %+v", 500, o.ToString())
+}
+
+func (o *PublicForceLinkPlatformWithProgressionInternalServerError) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *PublicForceLinkPlatformWithProgressionInternalServerError) GetPayload() *iamclientmodels.RestErrorResponse {

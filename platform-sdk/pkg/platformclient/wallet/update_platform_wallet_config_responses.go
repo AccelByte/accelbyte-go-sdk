@@ -10,6 +10,7 @@ package wallet
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -59,7 +60,16 @@ type UpdatePlatformWalletConfigOK struct {
 }
 
 func (o *UpdatePlatformWalletConfigOK) Error() string {
-	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/platforms/{platform}/wallet/config][%d] updatePlatformWalletConfigOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/platforms/{platform}/wallet/config][%d] updatePlatformWalletConfigOK  %+v", 200, o.ToString())
+}
+
+func (o *UpdatePlatformWalletConfigOK) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *UpdatePlatformWalletConfigOK) GetPayload() *platformclientmodels.PlatformWalletConfigInfo {

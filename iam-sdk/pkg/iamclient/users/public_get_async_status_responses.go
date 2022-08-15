@@ -10,6 +10,7 @@ package users
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -77,7 +78,16 @@ type PublicGetAsyncStatusOK struct {
 }
 
 func (o *PublicGetAsyncStatusOK) Error() string {
-	return fmt.Sprintf("[GET /iam/v3/public/namespaces/{namespace}/requests/{requestId}/async/status][%d] publicGetAsyncStatusOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /iam/v3/public/namespaces/{namespace}/requests/{requestId}/async/status][%d] publicGetAsyncStatusOK  %+v", 200, o.ToString())
+}
+
+func (o *PublicGetAsyncStatusOK) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *PublicGetAsyncStatusOK) GetPayload() *iamclientmodels.ModelLinkRequest {
@@ -110,7 +120,16 @@ type PublicGetAsyncStatusUnauthorized struct {
 }
 
 func (o *PublicGetAsyncStatusUnauthorized) Error() string {
-	return fmt.Sprintf("[GET /iam/v3/public/namespaces/{namespace}/requests/{requestId}/async/status][%d] publicGetAsyncStatusUnauthorized  %+v", 401, o.Payload)
+	return fmt.Sprintf("[GET /iam/v3/public/namespaces/{namespace}/requests/{requestId}/async/status][%d] publicGetAsyncStatusUnauthorized  %+v", 401, o.ToString())
+}
+
+func (o *PublicGetAsyncStatusUnauthorized) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *PublicGetAsyncStatusUnauthorized) GetPayload() *iamclientmodels.RestErrorResponse {
@@ -143,7 +162,16 @@ type PublicGetAsyncStatusForbidden struct {
 }
 
 func (o *PublicGetAsyncStatusForbidden) Error() string {
-	return fmt.Sprintf("[GET /iam/v3/public/namespaces/{namespace}/requests/{requestId}/async/status][%d] publicGetAsyncStatusForbidden  %+v", 403, o.Payload)
+	return fmt.Sprintf("[GET /iam/v3/public/namespaces/{namespace}/requests/{requestId}/async/status][%d] publicGetAsyncStatusForbidden  %+v", 403, o.ToString())
+}
+
+func (o *PublicGetAsyncStatusForbidden) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *PublicGetAsyncStatusForbidden) GetPayload() *iamclientmodels.RestErrorResponse {
@@ -176,7 +204,16 @@ type PublicGetAsyncStatusInternalServerError struct {
 }
 
 func (o *PublicGetAsyncStatusInternalServerError) Error() string {
-	return fmt.Sprintf("[GET /iam/v3/public/namespaces/{namespace}/requests/{requestId}/async/status][%d] publicGetAsyncStatusInternalServerError  %+v", 500, o.Payload)
+	return fmt.Sprintf("[GET /iam/v3/public/namespaces/{namespace}/requests/{requestId}/async/status][%d] publicGetAsyncStatusInternalServerError  %+v", 500, o.ToString())
+}
+
+func (o *PublicGetAsyncStatusInternalServerError) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *PublicGetAsyncStatusInternalServerError) GetPayload() *iamclientmodels.RestErrorResponse {

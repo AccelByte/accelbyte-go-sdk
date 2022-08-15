@@ -10,6 +10,7 @@ package input_validations
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -140,7 +141,16 @@ type AdminUpdateInputValidationsNotFound struct {
 }
 
 func (o *AdminUpdateInputValidationsNotFound) Error() string {
-	return fmt.Sprintf("[PUT /iam/v3/admin/inputValidations][%d] adminUpdateInputValidationsNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[PUT /iam/v3/admin/inputValidations][%d] adminUpdateInputValidationsNotFound  %+v", 404, o.ToString())
+}
+
+func (o *AdminUpdateInputValidationsNotFound) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *AdminUpdateInputValidationsNotFound) GetPayload() *iamclientmodels.RestErrorResponse {

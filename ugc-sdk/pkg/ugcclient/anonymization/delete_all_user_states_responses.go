@@ -10,6 +10,7 @@ package anonymization
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -98,7 +99,16 @@ type DeleteAllUserStatesBadRequest struct {
 }
 
 func (o *DeleteAllUserStatesBadRequest) Error() string {
-	return fmt.Sprintf("[DELETE /ugc/v1/public/namespaces/{namespace}/users/{userId}/states][%d] deleteAllUserStatesBadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[DELETE /ugc/v1/public/namespaces/{namespace}/users/{userId}/states][%d] deleteAllUserStatesBadRequest  %+v", 400, o.ToString())
+}
+
+func (o *DeleteAllUserStatesBadRequest) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *DeleteAllUserStatesBadRequest) GetPayload() *ugcclientmodels.ResponseError {
@@ -131,7 +141,16 @@ type DeleteAllUserStatesUnauthorized struct {
 }
 
 func (o *DeleteAllUserStatesUnauthorized) Error() string {
-	return fmt.Sprintf("[DELETE /ugc/v1/public/namespaces/{namespace}/users/{userId}/states][%d] deleteAllUserStatesUnauthorized  %+v", 401, o.Payload)
+	return fmt.Sprintf("[DELETE /ugc/v1/public/namespaces/{namespace}/users/{userId}/states][%d] deleteAllUserStatesUnauthorized  %+v", 401, o.ToString())
+}
+
+func (o *DeleteAllUserStatesUnauthorized) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *DeleteAllUserStatesUnauthorized) GetPayload() *ugcclientmodels.ResponseError {
@@ -164,7 +183,16 @@ type DeleteAllUserStatesInternalServerError struct {
 }
 
 func (o *DeleteAllUserStatesInternalServerError) Error() string {
-	return fmt.Sprintf("[DELETE /ugc/v1/public/namespaces/{namespace}/users/{userId}/states][%d] deleteAllUserStatesInternalServerError  %+v", 500, o.Payload)
+	return fmt.Sprintf("[DELETE /ugc/v1/public/namespaces/{namespace}/users/{userId}/states][%d] deleteAllUserStatesInternalServerError  %+v", 500, o.ToString())
+}
+
+func (o *DeleteAllUserStatesInternalServerError) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *DeleteAllUserStatesInternalServerError) GetPayload() *ugcclientmodels.ResponseError {

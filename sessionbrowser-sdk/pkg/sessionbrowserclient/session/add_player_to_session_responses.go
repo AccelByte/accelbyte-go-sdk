@@ -10,6 +10,7 @@ package session
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -77,7 +78,16 @@ type AddPlayerToSessionOK struct {
 }
 
 func (o *AddPlayerToSessionOK) Error() string {
-	return fmt.Sprintf("[POST /sessionbrowser/namespaces/{namespace}/gamesession/{sessionID}/player][%d] addPlayerToSessionOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[POST /sessionbrowser/namespaces/{namespace}/gamesession/{sessionID}/player][%d] addPlayerToSessionOK  %+v", 200, o.ToString())
+}
+
+func (o *AddPlayerToSessionOK) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *AddPlayerToSessionOK) GetPayload() *sessionbrowserclientmodels.ModelsAddPlayerResponse {
@@ -110,7 +120,16 @@ type AddPlayerToSessionBadRequest struct {
 }
 
 func (o *AddPlayerToSessionBadRequest) Error() string {
-	return fmt.Sprintf("[POST /sessionbrowser/namespaces/{namespace}/gamesession/{sessionID}/player][%d] addPlayerToSessionBadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[POST /sessionbrowser/namespaces/{namespace}/gamesession/{sessionID}/player][%d] addPlayerToSessionBadRequest  %+v", 400, o.ToString())
+}
+
+func (o *AddPlayerToSessionBadRequest) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *AddPlayerToSessionBadRequest) GetPayload() *sessionbrowserclientmodels.RestapiErrorResponseV2 {
@@ -143,7 +162,16 @@ type AddPlayerToSessionNotFound struct {
 }
 
 func (o *AddPlayerToSessionNotFound) Error() string {
-	return fmt.Sprintf("[POST /sessionbrowser/namespaces/{namespace}/gamesession/{sessionID}/player][%d] addPlayerToSessionNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[POST /sessionbrowser/namespaces/{namespace}/gamesession/{sessionID}/player][%d] addPlayerToSessionNotFound  %+v", 404, o.ToString())
+}
+
+func (o *AddPlayerToSessionNotFound) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *AddPlayerToSessionNotFound) GetPayload() *sessionbrowserclientmodels.RestapiErrorResponseV2 {
@@ -176,7 +204,16 @@ type AddPlayerToSessionInternalServerError struct {
 }
 
 func (o *AddPlayerToSessionInternalServerError) Error() string {
-	return fmt.Sprintf("[POST /sessionbrowser/namespaces/{namespace}/gamesession/{sessionID}/player][%d] addPlayerToSessionInternalServerError  %+v", 500, o.Payload)
+	return fmt.Sprintf("[POST /sessionbrowser/namespaces/{namespace}/gamesession/{sessionID}/player][%d] addPlayerToSessionInternalServerError  %+v", 500, o.ToString())
+}
+
+func (o *AddPlayerToSessionInternalServerError) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *AddPlayerToSessionInternalServerError) GetPayload() *sessionbrowserclientmodels.RestapiErrorResponseV2 {

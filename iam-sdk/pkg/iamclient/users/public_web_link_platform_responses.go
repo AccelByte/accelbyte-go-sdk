@@ -10,6 +10,7 @@ package users
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -77,7 +78,16 @@ type PublicWebLinkPlatformOK struct {
 }
 
 func (o *PublicWebLinkPlatformOK) Error() string {
-	return fmt.Sprintf("[GET /iam/v3/public/namespaces/{namespace}/users/me/platforms/{platformId}/web/link][%d] publicWebLinkPlatformOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /iam/v3/public/namespaces/{namespace}/users/me/platforms/{platformId}/web/link][%d] publicWebLinkPlatformOK  %+v", 200, o.ToString())
+}
+
+func (o *PublicWebLinkPlatformOK) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *PublicWebLinkPlatformOK) GetPayload() *iamclientmodels.ModelWebLinkingResponse {
@@ -110,7 +120,16 @@ type PublicWebLinkPlatformBadRequest struct {
 }
 
 func (o *PublicWebLinkPlatformBadRequest) Error() string {
-	return fmt.Sprintf("[GET /iam/v3/public/namespaces/{namespace}/users/me/platforms/{platformId}/web/link][%d] publicWebLinkPlatformBadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[GET /iam/v3/public/namespaces/{namespace}/users/me/platforms/{platformId}/web/link][%d] publicWebLinkPlatformBadRequest  %+v", 400, o.ToString())
+}
+
+func (o *PublicWebLinkPlatformBadRequest) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *PublicWebLinkPlatformBadRequest) GetPayload() *iamclientmodels.RestErrorResponse {
@@ -143,7 +162,16 @@ type PublicWebLinkPlatformUnauthorized struct {
 }
 
 func (o *PublicWebLinkPlatformUnauthorized) Error() string {
-	return fmt.Sprintf("[GET /iam/v3/public/namespaces/{namespace}/users/me/platforms/{platformId}/web/link][%d] publicWebLinkPlatformUnauthorized  %+v", 401, o.Payload)
+	return fmt.Sprintf("[GET /iam/v3/public/namespaces/{namespace}/users/me/platforms/{platformId}/web/link][%d] publicWebLinkPlatformUnauthorized  %+v", 401, o.ToString())
+}
+
+func (o *PublicWebLinkPlatformUnauthorized) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *PublicWebLinkPlatformUnauthorized) GetPayload() *iamclientmodels.RestErrorResponse {
@@ -176,7 +204,16 @@ type PublicWebLinkPlatformNotFound struct {
 }
 
 func (o *PublicWebLinkPlatformNotFound) Error() string {
-	return fmt.Sprintf("[GET /iam/v3/public/namespaces/{namespace}/users/me/platforms/{platformId}/web/link][%d] publicWebLinkPlatformNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[GET /iam/v3/public/namespaces/{namespace}/users/me/platforms/{platformId}/web/link][%d] publicWebLinkPlatformNotFound  %+v", 404, o.ToString())
+}
+
+func (o *PublicWebLinkPlatformNotFound) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *PublicWebLinkPlatformNotFound) GetPayload() *iamclientmodels.RestErrorResponse {

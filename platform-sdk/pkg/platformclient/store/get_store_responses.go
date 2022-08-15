@@ -10,6 +10,7 @@ package store
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -65,7 +66,16 @@ type GetStoreOK struct {
 }
 
 func (o *GetStoreOK) Error() string {
-	return fmt.Sprintf("[GET /platform/admin/namespaces/{namespace}/stores/{storeId}][%d] getStoreOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /platform/admin/namespaces/{namespace}/stores/{storeId}][%d] getStoreOK  %+v", 200, o.ToString())
+}
+
+func (o *GetStoreOK) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *GetStoreOK) GetPayload() *platformclientmodels.StoreInfo {
@@ -98,7 +108,16 @@ type GetStoreNotFound struct {
 }
 
 func (o *GetStoreNotFound) Error() string {
-	return fmt.Sprintf("[GET /platform/admin/namespaces/{namespace}/stores/{storeId}][%d] getStoreNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[GET /platform/admin/namespaces/{namespace}/stores/{storeId}][%d] getStoreNotFound  %+v", 404, o.ToString())
+}
+
+func (o *GetStoreNotFound) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *GetStoreNotFound) GetPayload() *platformclientmodels.ErrorEntity {

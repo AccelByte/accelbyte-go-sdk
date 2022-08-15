@@ -10,6 +10,7 @@ package notification
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -83,7 +84,16 @@ type GetGameTemplateOK struct {
 }
 
 func (o *GetGameTemplateOK) Error() string {
-	return fmt.Sprintf("[GET /notification/namespaces/{namespace}/templates][%d] getGameTemplateOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /notification/namespaces/{namespace}/templates][%d] getGameTemplateOK  %+v", 200, o.ToString())
+}
+
+func (o *GetGameTemplateOK) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *GetGameTemplateOK) GetPayload() []*lobbyclientmodels.ModelTemplateResponse {
@@ -114,7 +124,16 @@ type GetGameTemplateBadRequest struct {
 }
 
 func (o *GetGameTemplateBadRequest) Error() string {
-	return fmt.Sprintf("[GET /notification/namespaces/{namespace}/templates][%d] getGameTemplateBadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[GET /notification/namespaces/{namespace}/templates][%d] getGameTemplateBadRequest  %+v", 400, o.ToString())
+}
+
+func (o *GetGameTemplateBadRequest) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *GetGameTemplateBadRequest) GetPayload() *lobbyclientmodels.RestapiErrorResponseBody {
@@ -147,7 +166,16 @@ type GetGameTemplateUnauthorized struct {
 }
 
 func (o *GetGameTemplateUnauthorized) Error() string {
-	return fmt.Sprintf("[GET /notification/namespaces/{namespace}/templates][%d] getGameTemplateUnauthorized  %+v", 401, o.Payload)
+	return fmt.Sprintf("[GET /notification/namespaces/{namespace}/templates][%d] getGameTemplateUnauthorized  %+v", 401, o.ToString())
+}
+
+func (o *GetGameTemplateUnauthorized) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *GetGameTemplateUnauthorized) GetPayload() *lobbyclientmodels.RestapiErrorResponseBody {
@@ -180,7 +208,16 @@ type GetGameTemplateForbidden struct {
 }
 
 func (o *GetGameTemplateForbidden) Error() string {
-	return fmt.Sprintf("[GET /notification/namespaces/{namespace}/templates][%d] getGameTemplateForbidden  %+v", 403, o.Payload)
+	return fmt.Sprintf("[GET /notification/namespaces/{namespace}/templates][%d] getGameTemplateForbidden  %+v", 403, o.ToString())
+}
+
+func (o *GetGameTemplateForbidden) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *GetGameTemplateForbidden) GetPayload() *lobbyclientmodels.RestapiErrorResponseBody {
@@ -213,7 +250,16 @@ type GetGameTemplateNotFound struct {
 }
 
 func (o *GetGameTemplateNotFound) Error() string {
-	return fmt.Sprintf("[GET /notification/namespaces/{namespace}/templates][%d] getGameTemplateNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[GET /notification/namespaces/{namespace}/templates][%d] getGameTemplateNotFound  %+v", 404, o.ToString())
+}
+
+func (o *GetGameTemplateNotFound) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *GetGameTemplateNotFound) GetPayload() *lobbyclientmodels.RestapiErrorResponseBody {

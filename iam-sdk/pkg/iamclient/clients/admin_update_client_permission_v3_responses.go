@@ -10,6 +10,7 @@ package clients
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -104,7 +105,16 @@ type AdminUpdateClientPermissionV3BadRequest struct {
 }
 
 func (o *AdminUpdateClientPermissionV3BadRequest) Error() string {
-	return fmt.Sprintf("[PUT /iam/v3/admin/namespaces/{namespace}/clients/{clientId}/permissions][%d] adminUpdateClientPermissionV3BadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[PUT /iam/v3/admin/namespaces/{namespace}/clients/{clientId}/permissions][%d] adminUpdateClientPermissionV3BadRequest  %+v", 400, o.ToString())
+}
+
+func (o *AdminUpdateClientPermissionV3BadRequest) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *AdminUpdateClientPermissionV3BadRequest) GetPayload() *iamclientmodels.RestapiErrorResponse {
@@ -137,7 +147,16 @@ type AdminUpdateClientPermissionV3Unauthorized struct {
 }
 
 func (o *AdminUpdateClientPermissionV3Unauthorized) Error() string {
-	return fmt.Sprintf("[PUT /iam/v3/admin/namespaces/{namespace}/clients/{clientId}/permissions][%d] adminUpdateClientPermissionV3Unauthorized  %+v", 401, o.Payload)
+	return fmt.Sprintf("[PUT /iam/v3/admin/namespaces/{namespace}/clients/{clientId}/permissions][%d] adminUpdateClientPermissionV3Unauthorized  %+v", 401, o.ToString())
+}
+
+func (o *AdminUpdateClientPermissionV3Unauthorized) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *AdminUpdateClientPermissionV3Unauthorized) GetPayload() *iamclientmodels.RestapiErrorResponse {
@@ -170,7 +189,16 @@ type AdminUpdateClientPermissionV3Forbidden struct {
 }
 
 func (o *AdminUpdateClientPermissionV3Forbidden) Error() string {
-	return fmt.Sprintf("[PUT /iam/v3/admin/namespaces/{namespace}/clients/{clientId}/permissions][%d] adminUpdateClientPermissionV3Forbidden  %+v", 403, o.Payload)
+	return fmt.Sprintf("[PUT /iam/v3/admin/namespaces/{namespace}/clients/{clientId}/permissions][%d] adminUpdateClientPermissionV3Forbidden  %+v", 403, o.ToString())
+}
+
+func (o *AdminUpdateClientPermissionV3Forbidden) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *AdminUpdateClientPermissionV3Forbidden) GetPayload() *iamclientmodels.RestapiErrorResponse {
@@ -203,7 +231,16 @@ type AdminUpdateClientPermissionV3NotFound struct {
 }
 
 func (o *AdminUpdateClientPermissionV3NotFound) Error() string {
-	return fmt.Sprintf("[PUT /iam/v3/admin/namespaces/{namespace}/clients/{clientId}/permissions][%d] adminUpdateClientPermissionV3NotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[PUT /iam/v3/admin/namespaces/{namespace}/clients/{clientId}/permissions][%d] adminUpdateClientPermissionV3NotFound  %+v", 404, o.ToString())
+}
+
+func (o *AdminUpdateClientPermissionV3NotFound) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *AdminUpdateClientPermissionV3NotFound) GetPayload() *iamclientmodels.RestapiErrorResponse {

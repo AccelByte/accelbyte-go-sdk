@@ -10,6 +10,7 @@ package users_v4
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -89,7 +90,16 @@ type PublicGetMyEnabledFactorsV4OK struct {
 }
 
 func (o *PublicGetMyEnabledFactorsV4OK) Error() string {
-	return fmt.Sprintf("[GET /iam/v4/public/namespaces/{namespace}/users/me/mfa/factor][%d] publicGetMyEnabledFactorsV4OK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /iam/v4/public/namespaces/{namespace}/users/me/mfa/factor][%d] publicGetMyEnabledFactorsV4OK  %+v", 200, o.ToString())
+}
+
+func (o *PublicGetMyEnabledFactorsV4OK) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *PublicGetMyEnabledFactorsV4OK) GetPayload() *iamclientmodels.ModelEnabledFactorsResponseV4 {
@@ -122,7 +132,16 @@ type PublicGetMyEnabledFactorsV4BadRequest struct {
 }
 
 func (o *PublicGetMyEnabledFactorsV4BadRequest) Error() string {
-	return fmt.Sprintf("[GET /iam/v4/public/namespaces/{namespace}/users/me/mfa/factor][%d] publicGetMyEnabledFactorsV4BadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[GET /iam/v4/public/namespaces/{namespace}/users/me/mfa/factor][%d] publicGetMyEnabledFactorsV4BadRequest  %+v", 400, o.ToString())
+}
+
+func (o *PublicGetMyEnabledFactorsV4BadRequest) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *PublicGetMyEnabledFactorsV4BadRequest) GetPayload() *iamclientmodels.RestErrorResponse {
@@ -155,7 +174,16 @@ type PublicGetMyEnabledFactorsV4Unauthorized struct {
 }
 
 func (o *PublicGetMyEnabledFactorsV4Unauthorized) Error() string {
-	return fmt.Sprintf("[GET /iam/v4/public/namespaces/{namespace}/users/me/mfa/factor][%d] publicGetMyEnabledFactorsV4Unauthorized  %+v", 401, o.Payload)
+	return fmt.Sprintf("[GET /iam/v4/public/namespaces/{namespace}/users/me/mfa/factor][%d] publicGetMyEnabledFactorsV4Unauthorized  %+v", 401, o.ToString())
+}
+
+func (o *PublicGetMyEnabledFactorsV4Unauthorized) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *PublicGetMyEnabledFactorsV4Unauthorized) GetPayload() *iamclientmodels.RestErrorResponse {
@@ -188,7 +216,16 @@ type PublicGetMyEnabledFactorsV4Forbidden struct {
 }
 
 func (o *PublicGetMyEnabledFactorsV4Forbidden) Error() string {
-	return fmt.Sprintf("[GET /iam/v4/public/namespaces/{namespace}/users/me/mfa/factor][%d] publicGetMyEnabledFactorsV4Forbidden  %+v", 403, o.Payload)
+	return fmt.Sprintf("[GET /iam/v4/public/namespaces/{namespace}/users/me/mfa/factor][%d] publicGetMyEnabledFactorsV4Forbidden  %+v", 403, o.ToString())
+}
+
+func (o *PublicGetMyEnabledFactorsV4Forbidden) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *PublicGetMyEnabledFactorsV4Forbidden) GetPayload() *iamclientmodels.RestErrorResponse {
@@ -221,7 +258,16 @@ type PublicGetMyEnabledFactorsV4NotFound struct {
 }
 
 func (o *PublicGetMyEnabledFactorsV4NotFound) Error() string {
-	return fmt.Sprintf("[GET /iam/v4/public/namespaces/{namespace}/users/me/mfa/factor][%d] publicGetMyEnabledFactorsV4NotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[GET /iam/v4/public/namespaces/{namespace}/users/me/mfa/factor][%d] publicGetMyEnabledFactorsV4NotFound  %+v", 404, o.ToString())
+}
+
+func (o *PublicGetMyEnabledFactorsV4NotFound) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *PublicGetMyEnabledFactorsV4NotFound) GetPayload() *iamclientmodels.RestErrorResponse {
@@ -254,7 +300,16 @@ type PublicGetMyEnabledFactorsV4InternalServerError struct {
 }
 
 func (o *PublicGetMyEnabledFactorsV4InternalServerError) Error() string {
-	return fmt.Sprintf("[GET /iam/v4/public/namespaces/{namespace}/users/me/mfa/factor][%d] publicGetMyEnabledFactorsV4InternalServerError  %+v", 500, o.Payload)
+	return fmt.Sprintf("[GET /iam/v4/public/namespaces/{namespace}/users/me/mfa/factor][%d] publicGetMyEnabledFactorsV4InternalServerError  %+v", 500, o.ToString())
+}
+
+func (o *PublicGetMyEnabledFactorsV4InternalServerError) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *PublicGetMyEnabledFactorsV4InternalServerError) GetPayload() *iamclientmodels.RestErrorResponse {

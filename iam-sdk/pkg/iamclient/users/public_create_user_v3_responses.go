@@ -10,6 +10,7 @@ package users
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -83,7 +84,16 @@ type PublicCreateUserV3Created struct {
 }
 
 func (o *PublicCreateUserV3Created) Error() string {
-	return fmt.Sprintf("[POST /iam/v3/public/namespaces/{namespace}/users][%d] publicCreateUserV3Created  %+v", 201, o.Payload)
+	return fmt.Sprintf("[POST /iam/v3/public/namespaces/{namespace}/users][%d] publicCreateUserV3Created  %+v", 201, o.ToString())
+}
+
+func (o *PublicCreateUserV3Created) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *PublicCreateUserV3Created) GetPayload() *iamclientmodels.ModelUserCreateResponseV3 {
@@ -120,12 +130,12 @@ func (o *PublicCreateUserV3BadRequest) Error() string {
 }
 
 func (o *PublicCreateUserV3BadRequest) ToString() string {
-	bytes, err := o.Payload.MarshalBinary()
+	b, err := json.Marshal(o.Payload)
 	if err != nil {
-		return fmt.Sprintf("Failed to marshal the error response's binary. Error: %s", err.Error())
+		fmt.Println(err)
 	}
 
-	return string(bytes)
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *PublicCreateUserV3BadRequest) GetPayload() *iamclientmodels.RestErrorResponse {
@@ -158,7 +168,16 @@ type PublicCreateUserV3NotFound struct {
 }
 
 func (o *PublicCreateUserV3NotFound) Error() string {
-	return fmt.Sprintf("[POST /iam/v3/public/namespaces/{namespace}/users][%d] publicCreateUserV3NotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[POST /iam/v3/public/namespaces/{namespace}/users][%d] publicCreateUserV3NotFound  %+v", 404, o.ToString())
+}
+
+func (o *PublicCreateUserV3NotFound) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *PublicCreateUserV3NotFound) GetPayload() *iamclientmodels.RestErrorResponse {
@@ -191,7 +210,16 @@ type PublicCreateUserV3Conflict struct {
 }
 
 func (o *PublicCreateUserV3Conflict) Error() string {
-	return fmt.Sprintf("[POST /iam/v3/public/namespaces/{namespace}/users][%d] publicCreateUserV3Conflict  %+v", 409, o.Payload)
+	return fmt.Sprintf("[POST /iam/v3/public/namespaces/{namespace}/users][%d] publicCreateUserV3Conflict  %+v", 409, o.ToString())
+}
+
+func (o *PublicCreateUserV3Conflict) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *PublicCreateUserV3Conflict) GetPayload() *iamclientmodels.RestErrorResponse {
@@ -224,7 +252,16 @@ type PublicCreateUserV3InternalServerError struct {
 }
 
 func (o *PublicCreateUserV3InternalServerError) Error() string {
-	return fmt.Sprintf("[POST /iam/v3/public/namespaces/{namespace}/users][%d] publicCreateUserV3InternalServerError  %+v", 500, o.Payload)
+	return fmt.Sprintf("[POST /iam/v3/public/namespaces/{namespace}/users][%d] publicCreateUserV3InternalServerError  %+v", 500, o.ToString())
+}
+
+func (o *PublicCreateUserV3InternalServerError) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *PublicCreateUserV3InternalServerError) GetPayload() *iamclientmodels.RestErrorResponse {

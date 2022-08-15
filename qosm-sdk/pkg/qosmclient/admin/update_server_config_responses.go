@@ -10,6 +10,7 @@ package admin
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -98,7 +99,16 @@ type UpdateServerConfigBadRequest struct {
 }
 
 func (o *UpdateServerConfigBadRequest) Error() string {
-	return fmt.Sprintf("[PATCH /qosm/admin/namespaces/{namespace}/servers/{region}][%d] updateServerConfigBadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[PATCH /qosm/admin/namespaces/{namespace}/servers/{region}][%d] updateServerConfigBadRequest  %+v", 400, o.ToString())
+}
+
+func (o *UpdateServerConfigBadRequest) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *UpdateServerConfigBadRequest) GetPayload() *qosmclientmodels.ResponseError {
@@ -131,7 +141,16 @@ type UpdateServerConfigNotFound struct {
 }
 
 func (o *UpdateServerConfigNotFound) Error() string {
-	return fmt.Sprintf("[PATCH /qosm/admin/namespaces/{namespace}/servers/{region}][%d] updateServerConfigNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[PATCH /qosm/admin/namespaces/{namespace}/servers/{region}][%d] updateServerConfigNotFound  %+v", 404, o.ToString())
+}
+
+func (o *UpdateServerConfigNotFound) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *UpdateServerConfigNotFound) GetPayload() *qosmclientmodels.ResponseError {
@@ -164,7 +183,16 @@ type UpdateServerConfigInternalServerError struct {
 }
 
 func (o *UpdateServerConfigInternalServerError) Error() string {
-	return fmt.Sprintf("[PATCH /qosm/admin/namespaces/{namespace}/servers/{region}][%d] updateServerConfigInternalServerError  %+v", 500, o.Payload)
+	return fmt.Sprintf("[PATCH /qosm/admin/namespaces/{namespace}/servers/{region}][%d] updateServerConfigInternalServerError  %+v", 500, o.ToString())
+}
+
+func (o *UpdateServerConfigInternalServerError) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *UpdateServerConfigInternalServerError) GetPayload() *qosmclientmodels.ResponseError {

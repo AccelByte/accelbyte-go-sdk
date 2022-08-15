@@ -10,6 +10,7 @@ package operations
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -65,7 +66,16 @@ type GetEventsGameTelemetryV1AdminNamespacesNamespaceEventsGetOK struct {
 }
 
 func (o *GetEventsGameTelemetryV1AdminNamespacesNamespaceEventsGetOK) Error() string {
-	return fmt.Sprintf("[GET /game-telemetry/v1/admin/namespaces/{namespace}/events][%d] getEventsGameTelemetryV1AdminNamespacesNamespaceEventsGetOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /game-telemetry/v1/admin/namespaces/{namespace}/events][%d] getEventsGameTelemetryV1AdminNamespacesNamespaceEventsGetOK  %+v", 200, o.ToString())
+}
+
+func (o *GetEventsGameTelemetryV1AdminNamespacesNamespaceEventsGetOK) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *GetEventsGameTelemetryV1AdminNamespacesNamespaceEventsGetOK) GetPayload() interface{} {
@@ -96,7 +106,16 @@ type GetEventsGameTelemetryV1AdminNamespacesNamespaceEventsGetUnprocessableEntit
 }
 
 func (o *GetEventsGameTelemetryV1AdminNamespacesNamespaceEventsGetUnprocessableEntity) Error() string {
-	return fmt.Sprintf("[GET /game-telemetry/v1/admin/namespaces/{namespace}/events][%d] getEventsGameTelemetryV1AdminNamespacesNamespaceEventsGetUnprocessableEntity  %+v", 422, o.Payload)
+	return fmt.Sprintf("[GET /game-telemetry/v1/admin/namespaces/{namespace}/events][%d] getEventsGameTelemetryV1AdminNamespacesNamespaceEventsGetUnprocessableEntity  %+v", 422, o.ToString())
+}
+
+func (o *GetEventsGameTelemetryV1AdminNamespacesNamespaceEventsGetUnprocessableEntity) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *GetEventsGameTelemetryV1AdminNamespacesNamespaceEventsGetUnprocessableEntity) GetPayload() *gametelemetryclientmodels.HTTPValidationError {

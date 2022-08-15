@@ -10,6 +10,7 @@ package campaign
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -77,7 +78,16 @@ type ApplyUserRedemptionOK struct {
 }
 
 func (o *ApplyUserRedemptionOK) Error() string {
-	return fmt.Sprintf("[POST /platform/admin/namespaces/{namespace}/users/{userId}/redemption][%d] applyUserRedemptionOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[POST /platform/admin/namespaces/{namespace}/users/{userId}/redemption][%d] applyUserRedemptionOK  %+v", 200, o.ToString())
+}
+
+func (o *ApplyUserRedemptionOK) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *ApplyUserRedemptionOK) GetPayload() *platformclientmodels.RedeemResult {
@@ -110,7 +120,16 @@ type ApplyUserRedemptionNotFound struct {
 }
 
 func (o *ApplyUserRedemptionNotFound) Error() string {
-	return fmt.Sprintf("[POST /platform/admin/namespaces/{namespace}/users/{userId}/redemption][%d] applyUserRedemptionNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[POST /platform/admin/namespaces/{namespace}/users/{userId}/redemption][%d] applyUserRedemptionNotFound  %+v", 404, o.ToString())
+}
+
+func (o *ApplyUserRedemptionNotFound) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *ApplyUserRedemptionNotFound) GetPayload() *platformclientmodels.ErrorEntity {
@@ -143,7 +162,16 @@ type ApplyUserRedemptionConflict struct {
 }
 
 func (o *ApplyUserRedemptionConflict) Error() string {
-	return fmt.Sprintf("[POST /platform/admin/namespaces/{namespace}/users/{userId}/redemption][%d] applyUserRedemptionConflict  %+v", 409, o.Payload)
+	return fmt.Sprintf("[POST /platform/admin/namespaces/{namespace}/users/{userId}/redemption][%d] applyUserRedemptionConflict  %+v", 409, o.ToString())
+}
+
+func (o *ApplyUserRedemptionConflict) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *ApplyUserRedemptionConflict) GetPayload() *platformclientmodels.ErrorEntity {
@@ -176,7 +204,16 @@ type ApplyUserRedemptionUnprocessableEntity struct {
 }
 
 func (o *ApplyUserRedemptionUnprocessableEntity) Error() string {
-	return fmt.Sprintf("[POST /platform/admin/namespaces/{namespace}/users/{userId}/redemption][%d] applyUserRedemptionUnprocessableEntity  %+v", 422, o.Payload)
+	return fmt.Sprintf("[POST /platform/admin/namespaces/{namespace}/users/{userId}/redemption][%d] applyUserRedemptionUnprocessableEntity  %+v", 422, o.ToString())
+}
+
+func (o *ApplyUserRedemptionUnprocessableEntity) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *ApplyUserRedemptionUnprocessableEntity) GetPayload() *platformclientmodels.ValidationErrorEntity {

@@ -10,6 +10,7 @@ package leaderboard_data
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -89,7 +90,16 @@ type GetTodayLeaderboardRankingAdminV1OK struct {
 }
 
 func (o *GetTodayLeaderboardRankingAdminV1OK) Error() string {
-	return fmt.Sprintf("[GET /leaderboard/v1/admin/namespaces/{namespace}/leaderboards/{leaderboardCode}/today][%d] getTodayLeaderboardRankingAdminV1OK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /leaderboard/v1/admin/namespaces/{namespace}/leaderboards/{leaderboardCode}/today][%d] getTodayLeaderboardRankingAdminV1OK  %+v", 200, o.ToString())
+}
+
+func (o *GetTodayLeaderboardRankingAdminV1OK) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *GetTodayLeaderboardRankingAdminV1OK) GetPayload() *leaderboardclientmodels.ModelsGetLeaderboardRankingResp {
@@ -122,7 +132,16 @@ type GetTodayLeaderboardRankingAdminV1BadRequest struct {
 }
 
 func (o *GetTodayLeaderboardRankingAdminV1BadRequest) Error() string {
-	return fmt.Sprintf("[GET /leaderboard/v1/admin/namespaces/{namespace}/leaderboards/{leaderboardCode}/today][%d] getTodayLeaderboardRankingAdminV1BadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[GET /leaderboard/v1/admin/namespaces/{namespace}/leaderboards/{leaderboardCode}/today][%d] getTodayLeaderboardRankingAdminV1BadRequest  %+v", 400, o.ToString())
+}
+
+func (o *GetTodayLeaderboardRankingAdminV1BadRequest) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *GetTodayLeaderboardRankingAdminV1BadRequest) GetPayload() *leaderboardclientmodels.ResponseErrorResponse {
@@ -155,7 +174,16 @@ type GetTodayLeaderboardRankingAdminV1Unauthorized struct {
 }
 
 func (o *GetTodayLeaderboardRankingAdminV1Unauthorized) Error() string {
-	return fmt.Sprintf("[GET /leaderboard/v1/admin/namespaces/{namespace}/leaderboards/{leaderboardCode}/today][%d] getTodayLeaderboardRankingAdminV1Unauthorized  %+v", 401, o.Payload)
+	return fmt.Sprintf("[GET /leaderboard/v1/admin/namespaces/{namespace}/leaderboards/{leaderboardCode}/today][%d] getTodayLeaderboardRankingAdminV1Unauthorized  %+v", 401, o.ToString())
+}
+
+func (o *GetTodayLeaderboardRankingAdminV1Unauthorized) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *GetTodayLeaderboardRankingAdminV1Unauthorized) GetPayload() *leaderboardclientmodels.ResponseErrorResponse {
@@ -188,7 +216,16 @@ type GetTodayLeaderboardRankingAdminV1Forbidden struct {
 }
 
 func (o *GetTodayLeaderboardRankingAdminV1Forbidden) Error() string {
-	return fmt.Sprintf("[GET /leaderboard/v1/admin/namespaces/{namespace}/leaderboards/{leaderboardCode}/today][%d] getTodayLeaderboardRankingAdminV1Forbidden  %+v", 403, o.Payload)
+	return fmt.Sprintf("[GET /leaderboard/v1/admin/namespaces/{namespace}/leaderboards/{leaderboardCode}/today][%d] getTodayLeaderboardRankingAdminV1Forbidden  %+v", 403, o.ToString())
+}
+
+func (o *GetTodayLeaderboardRankingAdminV1Forbidden) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *GetTodayLeaderboardRankingAdminV1Forbidden) GetPayload() *leaderboardclientmodels.ResponseErrorResponse {
@@ -221,7 +258,16 @@ type GetTodayLeaderboardRankingAdminV1NotFound struct {
 }
 
 func (o *GetTodayLeaderboardRankingAdminV1NotFound) Error() string {
-	return fmt.Sprintf("[GET /leaderboard/v1/admin/namespaces/{namespace}/leaderboards/{leaderboardCode}/today][%d] getTodayLeaderboardRankingAdminV1NotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[GET /leaderboard/v1/admin/namespaces/{namespace}/leaderboards/{leaderboardCode}/today][%d] getTodayLeaderboardRankingAdminV1NotFound  %+v", 404, o.ToString())
+}
+
+func (o *GetTodayLeaderboardRankingAdminV1NotFound) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *GetTodayLeaderboardRankingAdminV1NotFound) GetPayload() *leaderboardclientmodels.ResponseErrorResponse {
@@ -254,7 +300,16 @@ type GetTodayLeaderboardRankingAdminV1InternalServerError struct {
 }
 
 func (o *GetTodayLeaderboardRankingAdminV1InternalServerError) Error() string {
-	return fmt.Sprintf("[GET /leaderboard/v1/admin/namespaces/{namespace}/leaderboards/{leaderboardCode}/today][%d] getTodayLeaderboardRankingAdminV1InternalServerError  %+v", 500, o.Payload)
+	return fmt.Sprintf("[GET /leaderboard/v1/admin/namespaces/{namespace}/leaderboards/{leaderboardCode}/today][%d] getTodayLeaderboardRankingAdminV1InternalServerError  %+v", 500, o.ToString())
+}
+
+func (o *GetTodayLeaderboardRankingAdminV1InternalServerError) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *GetTodayLeaderboardRankingAdminV1InternalServerError) GetPayload() *leaderboardclientmodels.ResponseErrorResponse {

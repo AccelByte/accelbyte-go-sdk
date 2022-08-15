@@ -10,6 +10,7 @@ package config
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -83,7 +84,16 @@ type ExportConfigV1OK struct {
 }
 
 func (o *ExportConfigV1OK) Error() string {
-	return fmt.Sprintf("[GET /dsmcontroller/admin/v1/namespaces/{namespace}/configs/export][%d] exportConfigV1OK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /dsmcontroller/admin/v1/namespaces/{namespace}/configs/export][%d] exportConfigV1OK  %+v", 200, o.ToString())
+}
+
+func (o *ExportConfigV1OK) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *ExportConfigV1OK) GetPayload() *dsmcclientmodels.ModelsDSMConfigExport {
@@ -116,7 +126,16 @@ type ExportConfigV1Unauthorized struct {
 }
 
 func (o *ExportConfigV1Unauthorized) Error() string {
-	return fmt.Sprintf("[GET /dsmcontroller/admin/v1/namespaces/{namespace}/configs/export][%d] exportConfigV1Unauthorized  %+v", 401, o.Payload)
+	return fmt.Sprintf("[GET /dsmcontroller/admin/v1/namespaces/{namespace}/configs/export][%d] exportConfigV1Unauthorized  %+v", 401, o.ToString())
+}
+
+func (o *ExportConfigV1Unauthorized) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *ExportConfigV1Unauthorized) GetPayload() *dsmcclientmodels.ResponseError {
@@ -149,7 +168,16 @@ type ExportConfigV1Forbidden struct {
 }
 
 func (o *ExportConfigV1Forbidden) Error() string {
-	return fmt.Sprintf("[GET /dsmcontroller/admin/v1/namespaces/{namespace}/configs/export][%d] exportConfigV1Forbidden  %+v", 403, o.Payload)
+	return fmt.Sprintf("[GET /dsmcontroller/admin/v1/namespaces/{namespace}/configs/export][%d] exportConfigV1Forbidden  %+v", 403, o.ToString())
+}
+
+func (o *ExportConfigV1Forbidden) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *ExportConfigV1Forbidden) GetPayload() *dsmcclientmodels.ResponseError {
@@ -182,7 +210,16 @@ type ExportConfigV1NotFound struct {
 }
 
 func (o *ExportConfigV1NotFound) Error() string {
-	return fmt.Sprintf("[GET /dsmcontroller/admin/v1/namespaces/{namespace}/configs/export][%d] exportConfigV1NotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[GET /dsmcontroller/admin/v1/namespaces/{namespace}/configs/export][%d] exportConfigV1NotFound  %+v", 404, o.ToString())
+}
+
+func (o *ExportConfigV1NotFound) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *ExportConfigV1NotFound) GetPayload() *dsmcclientmodels.ResponseError {
@@ -215,7 +252,16 @@ type ExportConfigV1InternalServerError struct {
 }
 
 func (o *ExportConfigV1InternalServerError) Error() string {
-	return fmt.Sprintf("[GET /dsmcontroller/admin/v1/namespaces/{namespace}/configs/export][%d] exportConfigV1InternalServerError  %+v", 500, o.Payload)
+	return fmt.Sprintf("[GET /dsmcontroller/admin/v1/namespaces/{namespace}/configs/export][%d] exportConfigV1InternalServerError  %+v", 500, o.ToString())
+}
+
+func (o *ExportConfigV1InternalServerError) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *ExportConfigV1InternalServerError) GetPayload() *dsmcclientmodels.ResponseError {

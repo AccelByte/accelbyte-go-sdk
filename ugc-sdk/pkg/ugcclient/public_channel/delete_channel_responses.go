@@ -10,6 +10,7 @@ package public_channel
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -98,7 +99,16 @@ type DeleteChannelUnauthorized struct {
 }
 
 func (o *DeleteChannelUnauthorized) Error() string {
-	return fmt.Sprintf("[DELETE /ugc/v1/public/namespaces/{namespace}/users/{userId}/channels/{channelId}][%d] deleteChannelUnauthorized  %+v", 401, o.Payload)
+	return fmt.Sprintf("[DELETE /ugc/v1/public/namespaces/{namespace}/users/{userId}/channels/{channelId}][%d] deleteChannelUnauthorized  %+v", 401, o.ToString())
+}
+
+func (o *DeleteChannelUnauthorized) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *DeleteChannelUnauthorized) GetPayload() *ugcclientmodels.ResponseError {
@@ -131,7 +141,16 @@ type DeleteChannelNotFound struct {
 }
 
 func (o *DeleteChannelNotFound) Error() string {
-	return fmt.Sprintf("[DELETE /ugc/v1/public/namespaces/{namespace}/users/{userId}/channels/{channelId}][%d] deleteChannelNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[DELETE /ugc/v1/public/namespaces/{namespace}/users/{userId}/channels/{channelId}][%d] deleteChannelNotFound  %+v", 404, o.ToString())
+}
+
+func (o *DeleteChannelNotFound) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *DeleteChannelNotFound) GetPayload() *ugcclientmodels.ResponseError {
@@ -164,7 +183,16 @@ type DeleteChannelInternalServerError struct {
 }
 
 func (o *DeleteChannelInternalServerError) Error() string {
-	return fmt.Sprintf("[DELETE /ugc/v1/public/namespaces/{namespace}/users/{userId}/channels/{channelId}][%d] deleteChannelInternalServerError  %+v", 500, o.Payload)
+	return fmt.Sprintf("[DELETE /ugc/v1/public/namespaces/{namespace}/users/{userId}/channels/{channelId}][%d] deleteChannelInternalServerError  %+v", 500, o.ToString())
+}
+
+func (o *DeleteChannelInternalServerError) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *DeleteChannelInternalServerError) GetPayload() *ugcclientmodels.ResponseError {

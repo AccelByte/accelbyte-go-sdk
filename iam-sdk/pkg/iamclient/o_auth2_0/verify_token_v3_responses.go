@@ -10,6 +10,7 @@ package o_auth2_0
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -65,7 +66,16 @@ type VerifyTokenV3OK struct {
 }
 
 func (o *VerifyTokenV3OK) Error() string {
-	return fmt.Sprintf("[POST /iam/v3/oauth/verify][%d] verifyTokenV3OK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[POST /iam/v3/oauth/verify][%d] verifyTokenV3OK  %+v", 200, o.ToString())
+}
+
+func (o *VerifyTokenV3OK) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *VerifyTokenV3OK) GetPayload() *iamclientmodels.OauthmodelTokenResponseV3 {

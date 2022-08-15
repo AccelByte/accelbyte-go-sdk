@@ -10,6 +10,7 @@ package o_auth2_0
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -98,7 +99,16 @@ type RevokeUserV3BadRequest struct {
 }
 
 func (o *RevokeUserV3BadRequest) Error() string {
-	return fmt.Sprintf("[POST /iam/v3/oauth/admin/namespaces/{namespace}/users/{userId}/revoke][%d] revokeUserV3BadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[POST /iam/v3/oauth/admin/namespaces/{namespace}/users/{userId}/revoke][%d] revokeUserV3BadRequest  %+v", 400, o.ToString())
+}
+
+func (o *RevokeUserV3BadRequest) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *RevokeUserV3BadRequest) GetPayload() *iamclientmodels.OauthmodelErrorResponse {
@@ -131,7 +141,16 @@ type RevokeUserV3Unauthorized struct {
 }
 
 func (o *RevokeUserV3Unauthorized) Error() string {
-	return fmt.Sprintf("[POST /iam/v3/oauth/admin/namespaces/{namespace}/users/{userId}/revoke][%d] revokeUserV3Unauthorized  %+v", 401, o.Payload)
+	return fmt.Sprintf("[POST /iam/v3/oauth/admin/namespaces/{namespace}/users/{userId}/revoke][%d] revokeUserV3Unauthorized  %+v", 401, o.ToString())
+}
+
+func (o *RevokeUserV3Unauthorized) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *RevokeUserV3Unauthorized) GetPayload() *iamclientmodels.OauthmodelErrorResponse {
@@ -164,7 +183,16 @@ type RevokeUserV3Forbidden struct {
 }
 
 func (o *RevokeUserV3Forbidden) Error() string {
-	return fmt.Sprintf("[POST /iam/v3/oauth/admin/namespaces/{namespace}/users/{userId}/revoke][%d] revokeUserV3Forbidden  %+v", 403, o.Payload)
+	return fmt.Sprintf("[POST /iam/v3/oauth/admin/namespaces/{namespace}/users/{userId}/revoke][%d] revokeUserV3Forbidden  %+v", 403, o.ToString())
+}
+
+func (o *RevokeUserV3Forbidden) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *RevokeUserV3Forbidden) GetPayload() *iamclientmodels.OauthmodelErrorResponse {

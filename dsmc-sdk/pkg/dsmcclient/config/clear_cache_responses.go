@@ -10,6 +10,7 @@ package config
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -92,7 +93,16 @@ type ClearCacheUnauthorized struct {
 }
 
 func (o *ClearCacheUnauthorized) Error() string {
-	return fmt.Sprintf("[DELETE /dsmcontroller/admin/namespaces/{namespace}/configs/cache][%d] clearCacheUnauthorized  %+v", 401, o.Payload)
+	return fmt.Sprintf("[DELETE /dsmcontroller/admin/namespaces/{namespace}/configs/cache][%d] clearCacheUnauthorized  %+v", 401, o.ToString())
+}
+
+func (o *ClearCacheUnauthorized) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *ClearCacheUnauthorized) GetPayload() *dsmcclientmodels.ResponseError {
@@ -125,7 +135,16 @@ type ClearCacheInternalServerError struct {
 }
 
 func (o *ClearCacheInternalServerError) Error() string {
-	return fmt.Sprintf("[DELETE /dsmcontroller/admin/namespaces/{namespace}/configs/cache][%d] clearCacheInternalServerError  %+v", 500, o.Payload)
+	return fmt.Sprintf("[DELETE /dsmcontroller/admin/namespaces/{namespace}/configs/cache][%d] clearCacheInternalServerError  %+v", 500, o.ToString())
+}
+
+func (o *ClearCacheInternalServerError) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *ClearCacheInternalServerError) GetPayload() *dsmcclientmodels.ResponseError {

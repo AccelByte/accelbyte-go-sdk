@@ -10,6 +10,7 @@ package public_content
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -77,7 +78,16 @@ type PublicDownloadContentPreviewOK struct {
 }
 
 func (o *PublicDownloadContentPreviewOK) Error() string {
-	return fmt.Sprintf("[GET /ugc/v1/public/namespaces/{namespace}/contents/{contentId}/preview][%d] publicDownloadContentPreviewOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /ugc/v1/public/namespaces/{namespace}/contents/{contentId}/preview][%d] publicDownloadContentPreviewOK  %+v", 200, o.ToString())
+}
+
+func (o *PublicDownloadContentPreviewOK) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *PublicDownloadContentPreviewOK) GetPayload() *ugcclientmodels.ModelsGetContentPreviewResponse {
@@ -110,7 +120,16 @@ type PublicDownloadContentPreviewUnauthorized struct {
 }
 
 func (o *PublicDownloadContentPreviewUnauthorized) Error() string {
-	return fmt.Sprintf("[GET /ugc/v1/public/namespaces/{namespace}/contents/{contentId}/preview][%d] publicDownloadContentPreviewUnauthorized  %+v", 401, o.Payload)
+	return fmt.Sprintf("[GET /ugc/v1/public/namespaces/{namespace}/contents/{contentId}/preview][%d] publicDownloadContentPreviewUnauthorized  %+v", 401, o.ToString())
+}
+
+func (o *PublicDownloadContentPreviewUnauthorized) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *PublicDownloadContentPreviewUnauthorized) GetPayload() *ugcclientmodels.ResponseError {
@@ -143,7 +162,16 @@ type PublicDownloadContentPreviewNotFound struct {
 }
 
 func (o *PublicDownloadContentPreviewNotFound) Error() string {
-	return fmt.Sprintf("[GET /ugc/v1/public/namespaces/{namespace}/contents/{contentId}/preview][%d] publicDownloadContentPreviewNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[GET /ugc/v1/public/namespaces/{namespace}/contents/{contentId}/preview][%d] publicDownloadContentPreviewNotFound  %+v", 404, o.ToString())
+}
+
+func (o *PublicDownloadContentPreviewNotFound) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *PublicDownloadContentPreviewNotFound) GetPayload() *ugcclientmodels.ResponseError {
@@ -176,7 +204,16 @@ type PublicDownloadContentPreviewInternalServerError struct {
 }
 
 func (o *PublicDownloadContentPreviewInternalServerError) Error() string {
-	return fmt.Sprintf("[GET /ugc/v1/public/namespaces/{namespace}/contents/{contentId}/preview][%d] publicDownloadContentPreviewInternalServerError  %+v", 500, o.Payload)
+	return fmt.Sprintf("[GET /ugc/v1/public/namespaces/{namespace}/contents/{contentId}/preview][%d] publicDownloadContentPreviewInternalServerError  %+v", 500, o.ToString())
+}
+
+func (o *PublicDownloadContentPreviewInternalServerError) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *PublicDownloadContentPreviewInternalServerError) GetPayload() *ugcclientmodels.ResponseError {

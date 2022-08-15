@@ -10,6 +10,7 @@ package entitlement
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -65,7 +66,16 @@ type RevokeUserEntitlementOK struct {
 }
 
 func (o *RevokeUserEntitlementOK) Error() string {
-	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/users/{userId}/entitlements/{entitlementId}/revoke][%d] revokeUserEntitlementOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/users/{userId}/entitlements/{entitlementId}/revoke][%d] revokeUserEntitlementOK  %+v", 200, o.ToString())
+}
+
+func (o *RevokeUserEntitlementOK) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *RevokeUserEntitlementOK) GetPayload() *platformclientmodels.EntitlementInfo {
@@ -98,7 +108,16 @@ type RevokeUserEntitlementNotFound struct {
 }
 
 func (o *RevokeUserEntitlementNotFound) Error() string {
-	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/users/{userId}/entitlements/{entitlementId}/revoke][%d] revokeUserEntitlementNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/users/{userId}/entitlements/{entitlementId}/revoke][%d] revokeUserEntitlementNotFound  %+v", 404, o.ToString())
+}
+
+func (o *RevokeUserEntitlementNotFound) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *RevokeUserEntitlementNotFound) GetPayload() *platformclientmodels.ErrorEntity {

@@ -10,6 +10,7 @@ package catalog_changes
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -92,7 +93,16 @@ type UnselectRecordNotFound struct {
 }
 
 func (o *UnselectRecordNotFound) Error() string {
-	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/stores/{storeId}/catalogChanges/{changeId}/unselect][%d] unselectRecordNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/stores/{storeId}/catalogChanges/{changeId}/unselect][%d] unselectRecordNotFound  %+v", 404, o.ToString())
+}
+
+func (o *UnselectRecordNotFound) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *UnselectRecordNotFound) GetPayload() *platformclientmodels.ErrorEntity {
@@ -125,7 +135,16 @@ type UnselectRecordConflict struct {
 }
 
 func (o *UnselectRecordConflict) Error() string {
-	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/stores/{storeId}/catalogChanges/{changeId}/unselect][%d] unselectRecordConflict  %+v", 409, o.Payload)
+	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/stores/{storeId}/catalogChanges/{changeId}/unselect][%d] unselectRecordConflict  %+v", 409, o.ToString())
+}
+
+func (o *UnselectRecordConflict) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *UnselectRecordConflict) GetPayload() *platformclientmodels.ErrorEntity {

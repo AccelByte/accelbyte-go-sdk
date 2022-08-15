@@ -10,6 +10,7 @@ package item
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -71,7 +72,16 @@ type QueryUncategorizedItemsOK struct {
 }
 
 func (o *QueryUncategorizedItemsOK) Error() string {
-	return fmt.Sprintf("[GET /platform/admin/namespaces/{namespace}/items/uncategorized][%d] queryUncategorizedItemsOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /platform/admin/namespaces/{namespace}/items/uncategorized][%d] queryUncategorizedItemsOK  %+v", 200, o.ToString())
+}
+
+func (o *QueryUncategorizedItemsOK) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *QueryUncategorizedItemsOK) GetPayload() *platformclientmodels.FullItemPagingSlicedResult {
@@ -104,7 +114,16 @@ type QueryUncategorizedItemsNotFound struct {
 }
 
 func (o *QueryUncategorizedItemsNotFound) Error() string {
-	return fmt.Sprintf("[GET /platform/admin/namespaces/{namespace}/items/uncategorized][%d] queryUncategorizedItemsNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[GET /platform/admin/namespaces/{namespace}/items/uncategorized][%d] queryUncategorizedItemsNotFound  %+v", 404, o.ToString())
+}
+
+func (o *QueryUncategorizedItemsNotFound) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *QueryUncategorizedItemsNotFound) GetPayload() *platformclientmodels.ErrorEntity {
@@ -137,7 +156,16 @@ type QueryUncategorizedItemsUnprocessableEntity struct {
 }
 
 func (o *QueryUncategorizedItemsUnprocessableEntity) Error() string {
-	return fmt.Sprintf("[GET /platform/admin/namespaces/{namespace}/items/uncategorized][%d] queryUncategorizedItemsUnprocessableEntity  %+v", 422, o.Payload)
+	return fmt.Sprintf("[GET /platform/admin/namespaces/{namespace}/items/uncategorized][%d] queryUncategorizedItemsUnprocessableEntity  %+v", 422, o.ToString())
+}
+
+func (o *QueryUncategorizedItemsUnprocessableEntity) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *QueryUncategorizedItemsUnprocessableEntity) GetPayload() *platformclientmodels.ValidationErrorEntity {

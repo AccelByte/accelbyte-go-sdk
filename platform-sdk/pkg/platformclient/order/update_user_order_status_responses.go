@@ -10,6 +10,7 @@ package order
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -77,7 +78,16 @@ type UpdateUserOrderStatusOK struct {
 }
 
 func (o *UpdateUserOrderStatusOK) Error() string {
-	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/users/{userId}/orders/{orderNo}][%d] updateUserOrderStatusOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/users/{userId}/orders/{orderNo}][%d] updateUserOrderStatusOK  %+v", 200, o.ToString())
+}
+
+func (o *UpdateUserOrderStatusOK) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *UpdateUserOrderStatusOK) GetPayload() *platformclientmodels.OrderInfo {
@@ -110,7 +120,16 @@ type UpdateUserOrderStatusNotFound struct {
 }
 
 func (o *UpdateUserOrderStatusNotFound) Error() string {
-	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/users/{userId}/orders/{orderNo}][%d] updateUserOrderStatusNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/users/{userId}/orders/{orderNo}][%d] updateUserOrderStatusNotFound  %+v", 404, o.ToString())
+}
+
+func (o *UpdateUserOrderStatusNotFound) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *UpdateUserOrderStatusNotFound) GetPayload() *platformclientmodels.ErrorEntity {
@@ -143,7 +162,16 @@ type UpdateUserOrderStatusConflict struct {
 }
 
 func (o *UpdateUserOrderStatusConflict) Error() string {
-	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/users/{userId}/orders/{orderNo}][%d] updateUserOrderStatusConflict  %+v", 409, o.Payload)
+	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/users/{userId}/orders/{orderNo}][%d] updateUserOrderStatusConflict  %+v", 409, o.ToString())
+}
+
+func (o *UpdateUserOrderStatusConflict) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *UpdateUserOrderStatusConflict) GetPayload() *platformclientmodels.ErrorEntity {
@@ -176,7 +204,16 @@ type UpdateUserOrderStatusUnprocessableEntity struct {
 }
 
 func (o *UpdateUserOrderStatusUnprocessableEntity) Error() string {
-	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/users/{userId}/orders/{orderNo}][%d] updateUserOrderStatusUnprocessableEntity  %+v", 422, o.Payload)
+	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/users/{userId}/orders/{orderNo}][%d] updateUserOrderStatusUnprocessableEntity  %+v", 422, o.ToString())
+}
+
+func (o *UpdateUserOrderStatusUnprocessableEntity) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *UpdateUserOrderStatusUnprocessableEntity) GetPayload() *platformclientmodels.ValidationErrorEntity {

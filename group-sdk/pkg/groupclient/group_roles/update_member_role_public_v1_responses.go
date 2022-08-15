@@ -10,6 +10,7 @@ package group_roles
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -89,7 +90,16 @@ type UpdateMemberRolePublicV1OK struct {
 }
 
 func (o *UpdateMemberRolePublicV1OK) Error() string {
-	return fmt.Sprintf("[POST /group/v1/public/namespaces/{namespace}/roles/{memberRoleId}/members][%d] updateMemberRolePublicV1OK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[POST /group/v1/public/namespaces/{namespace}/roles/{memberRoleId}/members][%d] updateMemberRolePublicV1OK  %+v", 200, o.ToString())
+}
+
+func (o *UpdateMemberRolePublicV1OK) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *UpdateMemberRolePublicV1OK) GetPayload() *groupclientmodels.ModelsGetUserGroupInformationResponseV1 {
@@ -122,7 +132,16 @@ type UpdateMemberRolePublicV1BadRequest struct {
 }
 
 func (o *UpdateMemberRolePublicV1BadRequest) Error() string {
-	return fmt.Sprintf("[POST /group/v1/public/namespaces/{namespace}/roles/{memberRoleId}/members][%d] updateMemberRolePublicV1BadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[POST /group/v1/public/namespaces/{namespace}/roles/{memberRoleId}/members][%d] updateMemberRolePublicV1BadRequest  %+v", 400, o.ToString())
+}
+
+func (o *UpdateMemberRolePublicV1BadRequest) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *UpdateMemberRolePublicV1BadRequest) GetPayload() *groupclientmodels.ResponseErrorResponse {
@@ -155,7 +174,16 @@ type UpdateMemberRolePublicV1Unauthorized struct {
 }
 
 func (o *UpdateMemberRolePublicV1Unauthorized) Error() string {
-	return fmt.Sprintf("[POST /group/v1/public/namespaces/{namespace}/roles/{memberRoleId}/members][%d] updateMemberRolePublicV1Unauthorized  %+v", 401, o.Payload)
+	return fmt.Sprintf("[POST /group/v1/public/namespaces/{namespace}/roles/{memberRoleId}/members][%d] updateMemberRolePublicV1Unauthorized  %+v", 401, o.ToString())
+}
+
+func (o *UpdateMemberRolePublicV1Unauthorized) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *UpdateMemberRolePublicV1Unauthorized) GetPayload() *groupclientmodels.ResponseErrorResponse {
@@ -188,7 +216,16 @@ type UpdateMemberRolePublicV1Forbidden struct {
 }
 
 func (o *UpdateMemberRolePublicV1Forbidden) Error() string {
-	return fmt.Sprintf("[POST /group/v1/public/namespaces/{namespace}/roles/{memberRoleId}/members][%d] updateMemberRolePublicV1Forbidden  %+v", 403, o.Payload)
+	return fmt.Sprintf("[POST /group/v1/public/namespaces/{namespace}/roles/{memberRoleId}/members][%d] updateMemberRolePublicV1Forbidden  %+v", 403, o.ToString())
+}
+
+func (o *UpdateMemberRolePublicV1Forbidden) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *UpdateMemberRolePublicV1Forbidden) GetPayload() *groupclientmodels.ResponseErrorResponse {
@@ -221,7 +258,16 @@ type UpdateMemberRolePublicV1NotFound struct {
 }
 
 func (o *UpdateMemberRolePublicV1NotFound) Error() string {
-	return fmt.Sprintf("[POST /group/v1/public/namespaces/{namespace}/roles/{memberRoleId}/members][%d] updateMemberRolePublicV1NotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[POST /group/v1/public/namespaces/{namespace}/roles/{memberRoleId}/members][%d] updateMemberRolePublicV1NotFound  %+v", 404, o.ToString())
+}
+
+func (o *UpdateMemberRolePublicV1NotFound) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *UpdateMemberRolePublicV1NotFound) GetPayload() *groupclientmodels.ResponseErrorResponse {
@@ -254,7 +300,16 @@ type UpdateMemberRolePublicV1InternalServerError struct {
 }
 
 func (o *UpdateMemberRolePublicV1InternalServerError) Error() string {
-	return fmt.Sprintf("[POST /group/v1/public/namespaces/{namespace}/roles/{memberRoleId}/members][%d] updateMemberRolePublicV1InternalServerError  %+v", 500, o.Payload)
+	return fmt.Sprintf("[POST /group/v1/public/namespaces/{namespace}/roles/{memberRoleId}/members][%d] updateMemberRolePublicV1InternalServerError  %+v", 500, o.ToString())
+}
+
+func (o *UpdateMemberRolePublicV1InternalServerError) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *UpdateMemberRolePublicV1InternalServerError) GetPayload() *groupclientmodels.ResponseErrorResponse {

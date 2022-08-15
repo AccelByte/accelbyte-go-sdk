@@ -10,6 +10,7 @@ package users
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -83,7 +84,16 @@ type EnableUserBanOK struct {
 }
 
 func (o *EnableUserBanOK) Error() string {
-	return fmt.Sprintf("[PUT /iam/namespaces/{namespace}/users/{userId}/bans/{banId}/enable][%d] enableUserBanOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[PUT /iam/namespaces/{namespace}/users/{userId}/bans/{banId}/enable][%d] enableUserBanOK  %+v", 200, o.ToString())
+}
+
+func (o *EnableUserBanOK) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *EnableUserBanOK) GetPayload() *iamclientmodels.ModelUserBanResponse {

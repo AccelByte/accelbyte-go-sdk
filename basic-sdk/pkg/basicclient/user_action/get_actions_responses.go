@@ -10,6 +10,7 @@ package user_action
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -77,7 +78,16 @@ type GetActionsOK struct {
 }
 
 func (o *GetActionsOK) Error() string {
-	return fmt.Sprintf("[GET /basic/v1/admin/namespaces/{namespace}/actions][%d] getActionsOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /basic/v1/admin/namespaces/{namespace}/actions][%d] getActionsOK  %+v", 200, o.ToString())
+}
+
+func (o *GetActionsOK) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *GetActionsOK) GetPayload() []*basicclientmodels.Action {
@@ -108,7 +118,16 @@ type GetActionsBadRequest struct {
 }
 
 func (o *GetActionsBadRequest) Error() string {
-	return fmt.Sprintf("[GET /basic/v1/admin/namespaces/{namespace}/actions][%d] getActionsBadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[GET /basic/v1/admin/namespaces/{namespace}/actions][%d] getActionsBadRequest  %+v", 400, o.ToString())
+}
+
+func (o *GetActionsBadRequest) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *GetActionsBadRequest) GetPayload() *basicclientmodels.ErrorEntity {
@@ -141,7 +160,16 @@ type GetActionsNotFound struct {
 }
 
 func (o *GetActionsNotFound) Error() string {
-	return fmt.Sprintf("[GET /basic/v1/admin/namespaces/{namespace}/actions][%d] getActionsNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[GET /basic/v1/admin/namespaces/{namespace}/actions][%d] getActionsNotFound  %+v", 404, o.ToString())
+}
+
+func (o *GetActionsNotFound) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *GetActionsNotFound) GetPayload() *basicclientmodels.ErrorEntity {
@@ -174,7 +202,16 @@ type GetActionsInternalServerError struct {
 }
 
 func (o *GetActionsInternalServerError) Error() string {
-	return fmt.Sprintf("[GET /basic/v1/admin/namespaces/{namespace}/actions][%d] getActionsInternalServerError  %+v", 500, o.Payload)
+	return fmt.Sprintf("[GET /basic/v1/admin/namespaces/{namespace}/actions][%d] getActionsInternalServerError  %+v", 500, o.ToString())
+}
+
+func (o *GetActionsInternalServerError) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *GetActionsInternalServerError) GetPayload() *basicclientmodels.ErrorEntity {

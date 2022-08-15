@@ -10,6 +10,7 @@ package notification
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -104,7 +105,16 @@ type NotificationWithTemplateByUserIDBadRequest struct {
 }
 
 func (o *NotificationWithTemplateByUserIDBadRequest) Error() string {
-	return fmt.Sprintf("[POST /notification/namespaces/{namespace}/users/{userId}/templated][%d] notificationWithTemplateByUserIdBadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[POST /notification/namespaces/{namespace}/users/{userId}/templated][%d] notificationWithTemplateByUserIdBadRequest  %+v", 400, o.ToString())
+}
+
+func (o *NotificationWithTemplateByUserIDBadRequest) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *NotificationWithTemplateByUserIDBadRequest) GetPayload() *lobbyclientmodels.RestapiErrorResponseBody {
@@ -137,7 +147,16 @@ type NotificationWithTemplateByUserIDUnauthorized struct {
 }
 
 func (o *NotificationWithTemplateByUserIDUnauthorized) Error() string {
-	return fmt.Sprintf("[POST /notification/namespaces/{namespace}/users/{userId}/templated][%d] notificationWithTemplateByUserIdUnauthorized  %+v", 401, o.Payload)
+	return fmt.Sprintf("[POST /notification/namespaces/{namespace}/users/{userId}/templated][%d] notificationWithTemplateByUserIdUnauthorized  %+v", 401, o.ToString())
+}
+
+func (o *NotificationWithTemplateByUserIDUnauthorized) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *NotificationWithTemplateByUserIDUnauthorized) GetPayload() *lobbyclientmodels.RestapiErrorResponseBody {
@@ -170,7 +189,16 @@ type NotificationWithTemplateByUserIDForbidden struct {
 }
 
 func (o *NotificationWithTemplateByUserIDForbidden) Error() string {
-	return fmt.Sprintf("[POST /notification/namespaces/{namespace}/users/{userId}/templated][%d] notificationWithTemplateByUserIdForbidden  %+v", 403, o.Payload)
+	return fmt.Sprintf("[POST /notification/namespaces/{namespace}/users/{userId}/templated][%d] notificationWithTemplateByUserIdForbidden  %+v", 403, o.ToString())
+}
+
+func (o *NotificationWithTemplateByUserIDForbidden) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *NotificationWithTemplateByUserIDForbidden) GetPayload() *lobbyclientmodels.RestapiErrorResponseBody {
@@ -203,7 +231,16 @@ type NotificationWithTemplateByUserIDNotFound struct {
 }
 
 func (o *NotificationWithTemplateByUserIDNotFound) Error() string {
-	return fmt.Sprintf("[POST /notification/namespaces/{namespace}/users/{userId}/templated][%d] notificationWithTemplateByUserIdNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[POST /notification/namespaces/{namespace}/users/{userId}/templated][%d] notificationWithTemplateByUserIdNotFound  %+v", 404, o.ToString())
+}
+
+func (o *NotificationWithTemplateByUserIDNotFound) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *NotificationWithTemplateByUserIDNotFound) GetPayload() *lobbyclientmodels.RestapiErrorResponseBody {

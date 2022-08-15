@@ -10,6 +10,7 @@ package admin
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -71,7 +72,16 @@ type CountServerDetailedOK struct {
 }
 
 func (o *CountServerDetailedOK) Error() string {
-	return fmt.Sprintf("[GET /dsmcontroller/admin/namespaces/{namespace}/servers/count/detailed][%d] countServerDetailedOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /dsmcontroller/admin/namespaces/{namespace}/servers/count/detailed][%d] countServerDetailedOK  %+v", 200, o.ToString())
+}
+
+func (o *CountServerDetailedOK) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *CountServerDetailedOK) GetPayload() *dsmcclientmodels.ModelsDetailedCountServerResponse {
@@ -104,7 +114,16 @@ type CountServerDetailedUnauthorized struct {
 }
 
 func (o *CountServerDetailedUnauthorized) Error() string {
-	return fmt.Sprintf("[GET /dsmcontroller/admin/namespaces/{namespace}/servers/count/detailed][%d] countServerDetailedUnauthorized  %+v", 401, o.Payload)
+	return fmt.Sprintf("[GET /dsmcontroller/admin/namespaces/{namespace}/servers/count/detailed][%d] countServerDetailedUnauthorized  %+v", 401, o.ToString())
+}
+
+func (o *CountServerDetailedUnauthorized) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *CountServerDetailedUnauthorized) GetPayload() *dsmcclientmodels.ResponseError {
@@ -137,7 +156,16 @@ type CountServerDetailedInternalServerError struct {
 }
 
 func (o *CountServerDetailedInternalServerError) Error() string {
-	return fmt.Sprintf("[GET /dsmcontroller/admin/namespaces/{namespace}/servers/count/detailed][%d] countServerDetailedInternalServerError  %+v", 500, o.Payload)
+	return fmt.Sprintf("[GET /dsmcontroller/admin/namespaces/{namespace}/servers/count/detailed][%d] countServerDetailedInternalServerError  %+v", 500, o.ToString())
+}
+
+func (o *CountServerDetailedInternalServerError) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *CountServerDetailedInternalServerError) GetPayload() *dsmcclientmodels.ResponseError {

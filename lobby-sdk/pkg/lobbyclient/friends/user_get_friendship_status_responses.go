@@ -10,6 +10,7 @@ package friends
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -83,7 +84,16 @@ type UserGetFriendshipStatusOK struct {
 }
 
 func (o *UserGetFriendshipStatusOK) Error() string {
-	return fmt.Sprintf("[GET /friends/namespaces/{namespace}/me/status/{friendId}][%d] userGetFriendshipStatusOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /friends/namespaces/{namespace}/me/status/{friendId}][%d] userGetFriendshipStatusOK  %+v", 200, o.ToString())
+}
+
+func (o *UserGetFriendshipStatusOK) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *UserGetFriendshipStatusOK) GetPayload() *lobbyclientmodels.ModelUserGetFriendshipStatusResponse {
@@ -116,7 +126,16 @@ type UserGetFriendshipStatusBadRequest struct {
 }
 
 func (o *UserGetFriendshipStatusBadRequest) Error() string {
-	return fmt.Sprintf("[GET /friends/namespaces/{namespace}/me/status/{friendId}][%d] userGetFriendshipStatusBadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[GET /friends/namespaces/{namespace}/me/status/{friendId}][%d] userGetFriendshipStatusBadRequest  %+v", 400, o.ToString())
+}
+
+func (o *UserGetFriendshipStatusBadRequest) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *UserGetFriendshipStatusBadRequest) GetPayload() *lobbyclientmodels.RestapiErrorResponseV1 {
@@ -149,7 +168,16 @@ type UserGetFriendshipStatusUnauthorized struct {
 }
 
 func (o *UserGetFriendshipStatusUnauthorized) Error() string {
-	return fmt.Sprintf("[GET /friends/namespaces/{namespace}/me/status/{friendId}][%d] userGetFriendshipStatusUnauthorized  %+v", 401, o.Payload)
+	return fmt.Sprintf("[GET /friends/namespaces/{namespace}/me/status/{friendId}][%d] userGetFriendshipStatusUnauthorized  %+v", 401, o.ToString())
+}
+
+func (o *UserGetFriendshipStatusUnauthorized) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *UserGetFriendshipStatusUnauthorized) GetPayload() *lobbyclientmodels.RestapiErrorResponseV1 {
@@ -182,7 +210,16 @@ type UserGetFriendshipStatusForbidden struct {
 }
 
 func (o *UserGetFriendshipStatusForbidden) Error() string {
-	return fmt.Sprintf("[GET /friends/namespaces/{namespace}/me/status/{friendId}][%d] userGetFriendshipStatusForbidden  %+v", 403, o.Payload)
+	return fmt.Sprintf("[GET /friends/namespaces/{namespace}/me/status/{friendId}][%d] userGetFriendshipStatusForbidden  %+v", 403, o.ToString())
+}
+
+func (o *UserGetFriendshipStatusForbidden) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *UserGetFriendshipStatusForbidden) GetPayload() *lobbyclientmodels.RestapiErrorResponseV1 {
@@ -215,7 +252,16 @@ type UserGetFriendshipStatusInternalServerError struct {
 }
 
 func (o *UserGetFriendshipStatusInternalServerError) Error() string {
-	return fmt.Sprintf("[GET /friends/namespaces/{namespace}/me/status/{friendId}][%d] userGetFriendshipStatusInternalServerError  %+v", 500, o.Payload)
+	return fmt.Sprintf("[GET /friends/namespaces/{namespace}/me/status/{friendId}][%d] userGetFriendshipStatusInternalServerError  %+v", 500, o.ToString())
+}
+
+func (o *UserGetFriendshipStatusInternalServerError) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *UserGetFriendshipStatusInternalServerError) GetPayload() *lobbyclientmodels.RestapiErrorResponseV1 {

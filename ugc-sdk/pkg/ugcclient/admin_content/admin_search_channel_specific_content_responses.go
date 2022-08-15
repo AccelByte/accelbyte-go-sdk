@@ -10,6 +10,7 @@ package admin_content
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -77,7 +78,16 @@ type AdminSearchChannelSpecificContentOK struct {
 }
 
 func (o *AdminSearchChannelSpecificContentOK) Error() string {
-	return fmt.Sprintf("[GET /ugc/v1/admin/namespaces/{namespace}/channels/{channelId}/contents/search][%d] adminSearchChannelSpecificContentOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /ugc/v1/admin/namespaces/{namespace}/channels/{channelId}/contents/search][%d] adminSearchChannelSpecificContentOK  %+v", 200, o.ToString())
+}
+
+func (o *AdminSearchChannelSpecificContentOK) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *AdminSearchChannelSpecificContentOK) GetPayload() *ugcclientmodels.ModelsPaginatedContentDownloadResponse {
@@ -110,7 +120,16 @@ type AdminSearchChannelSpecificContentUnauthorized struct {
 }
 
 func (o *AdminSearchChannelSpecificContentUnauthorized) Error() string {
-	return fmt.Sprintf("[GET /ugc/v1/admin/namespaces/{namespace}/channels/{channelId}/contents/search][%d] adminSearchChannelSpecificContentUnauthorized  %+v", 401, o.Payload)
+	return fmt.Sprintf("[GET /ugc/v1/admin/namespaces/{namespace}/channels/{channelId}/contents/search][%d] adminSearchChannelSpecificContentUnauthorized  %+v", 401, o.ToString())
+}
+
+func (o *AdminSearchChannelSpecificContentUnauthorized) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *AdminSearchChannelSpecificContentUnauthorized) GetPayload() *ugcclientmodels.ResponseError {
@@ -143,7 +162,16 @@ type AdminSearchChannelSpecificContentNotFound struct {
 }
 
 func (o *AdminSearchChannelSpecificContentNotFound) Error() string {
-	return fmt.Sprintf("[GET /ugc/v1/admin/namespaces/{namespace}/channels/{channelId}/contents/search][%d] adminSearchChannelSpecificContentNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[GET /ugc/v1/admin/namespaces/{namespace}/channels/{channelId}/contents/search][%d] adminSearchChannelSpecificContentNotFound  %+v", 404, o.ToString())
+}
+
+func (o *AdminSearchChannelSpecificContentNotFound) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *AdminSearchChannelSpecificContentNotFound) GetPayload() *ugcclientmodels.ResponseError {
@@ -176,7 +204,16 @@ type AdminSearchChannelSpecificContentInternalServerError struct {
 }
 
 func (o *AdminSearchChannelSpecificContentInternalServerError) Error() string {
-	return fmt.Sprintf("[GET /ugc/v1/admin/namespaces/{namespace}/channels/{channelId}/contents/search][%d] adminSearchChannelSpecificContentInternalServerError  %+v", 500, o.Payload)
+	return fmt.Sprintf("[GET /ugc/v1/admin/namespaces/{namespace}/channels/{channelId}/contents/search][%d] adminSearchChannelSpecificContentInternalServerError  %+v", 500, o.ToString())
+}
+
+func (o *AdminSearchChannelSpecificContentInternalServerError) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *AdminSearchChannelSpecificContentInternalServerError) GetPayload() *ugcclientmodels.ResponseError {

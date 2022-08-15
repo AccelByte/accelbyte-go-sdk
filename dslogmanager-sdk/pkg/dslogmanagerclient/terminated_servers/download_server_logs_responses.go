@@ -10,6 +10,7 @@ package terminated_servers
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -92,7 +93,16 @@ type DownloadServerLogsNotFound struct {
 }
 
 func (o *DownloadServerLogsNotFound) Error() string {
-	return fmt.Sprintf("[GET /dslogmanager/namespaces/{namespace}/servers/{podName}/logs/download][%d] downloadServerLogsNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[GET /dslogmanager/namespaces/{namespace}/servers/{podName}/logs/download][%d] downloadServerLogsNotFound  %+v", 404, o.ToString())
+}
+
+func (o *DownloadServerLogsNotFound) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *DownloadServerLogsNotFound) GetPayload() *dslogmanagerclientmodels.ResponseError {
@@ -125,7 +135,16 @@ type DownloadServerLogsInternalServerError struct {
 }
 
 func (o *DownloadServerLogsInternalServerError) Error() string {
-	return fmt.Sprintf("[GET /dslogmanager/namespaces/{namespace}/servers/{podName}/logs/download][%d] downloadServerLogsInternalServerError  %+v", 500, o.Payload)
+	return fmt.Sprintf("[GET /dslogmanager/namespaces/{namespace}/servers/{podName}/logs/download][%d] downloadServerLogsInternalServerError  %+v", 500, o.ToString())
+}
+
+func (o *DownloadServerLogsInternalServerError) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *DownloadServerLogsInternalServerError) GetPayload() *dslogmanagerclientmodels.ResponseError {

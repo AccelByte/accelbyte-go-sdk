@@ -10,6 +10,7 @@ package profanity
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -110,7 +111,16 @@ type AdminAddProfanityFiltersBadRequest struct {
 }
 
 func (o *AdminAddProfanityFiltersBadRequest) Error() string {
-	return fmt.Sprintf("[POST /lobby/v1/admin/profanity/namespaces/{namespace}/list/{list}/filters/bulk][%d] adminAddProfanityFiltersBadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[POST /lobby/v1/admin/profanity/namespaces/{namespace}/list/{list}/filters/bulk][%d] adminAddProfanityFiltersBadRequest  %+v", 400, o.ToString())
+}
+
+func (o *AdminAddProfanityFiltersBadRequest) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *AdminAddProfanityFiltersBadRequest) GetPayload() *lobbyclientmodels.RestapiErrorResponseBody {
@@ -143,7 +153,16 @@ type AdminAddProfanityFiltersUnauthorized struct {
 }
 
 func (o *AdminAddProfanityFiltersUnauthorized) Error() string {
-	return fmt.Sprintf("[POST /lobby/v1/admin/profanity/namespaces/{namespace}/list/{list}/filters/bulk][%d] adminAddProfanityFiltersUnauthorized  %+v", 401, o.Payload)
+	return fmt.Sprintf("[POST /lobby/v1/admin/profanity/namespaces/{namespace}/list/{list}/filters/bulk][%d] adminAddProfanityFiltersUnauthorized  %+v", 401, o.ToString())
+}
+
+func (o *AdminAddProfanityFiltersUnauthorized) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *AdminAddProfanityFiltersUnauthorized) GetPayload() *lobbyclientmodels.RestapiErrorResponseBody {
@@ -176,7 +195,16 @@ type AdminAddProfanityFiltersForbidden struct {
 }
 
 func (o *AdminAddProfanityFiltersForbidden) Error() string {
-	return fmt.Sprintf("[POST /lobby/v1/admin/profanity/namespaces/{namespace}/list/{list}/filters/bulk][%d] adminAddProfanityFiltersForbidden  %+v", 403, o.Payload)
+	return fmt.Sprintf("[POST /lobby/v1/admin/profanity/namespaces/{namespace}/list/{list}/filters/bulk][%d] adminAddProfanityFiltersForbidden  %+v", 403, o.ToString())
+}
+
+func (o *AdminAddProfanityFiltersForbidden) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *AdminAddProfanityFiltersForbidden) GetPayload() *lobbyclientmodels.RestapiErrorResponseBody {
@@ -209,7 +237,16 @@ type AdminAddProfanityFiltersNotFound struct {
 }
 
 func (o *AdminAddProfanityFiltersNotFound) Error() string {
-	return fmt.Sprintf("[POST /lobby/v1/admin/profanity/namespaces/{namespace}/list/{list}/filters/bulk][%d] adminAddProfanityFiltersNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[POST /lobby/v1/admin/profanity/namespaces/{namespace}/list/{list}/filters/bulk][%d] adminAddProfanityFiltersNotFound  %+v", 404, o.ToString())
+}
+
+func (o *AdminAddProfanityFiltersNotFound) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *AdminAddProfanityFiltersNotFound) GetPayload() *lobbyclientmodels.RestapiErrorResponseBody {
@@ -242,7 +279,16 @@ type AdminAddProfanityFiltersInternalServerError struct {
 }
 
 func (o *AdminAddProfanityFiltersInternalServerError) Error() string {
-	return fmt.Sprintf("[POST /lobby/v1/admin/profanity/namespaces/{namespace}/list/{list}/filters/bulk][%d] adminAddProfanityFiltersInternalServerError  %+v", 500, o.Payload)
+	return fmt.Sprintf("[POST /lobby/v1/admin/profanity/namespaces/{namespace}/list/{list}/filters/bulk][%d] adminAddProfanityFiltersInternalServerError  %+v", 500, o.ToString())
+}
+
+func (o *AdminAddProfanityFiltersInternalServerError) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *AdminAddProfanityFiltersInternalServerError) GetPayload() *lobbyclientmodels.RestapiErrorResponseBody {

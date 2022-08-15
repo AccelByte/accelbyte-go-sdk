@@ -10,6 +10,7 @@ package wallet
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -98,7 +99,16 @@ type CheckWalletBadRequest struct {
 }
 
 func (o *CheckWalletBadRequest) Error() string {
-	return fmt.Sprintf("[GET /platform/admin/namespaces/{namespace}/users/{userId}/wallets/{currencyCode}/check][%d] checkWalletBadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[GET /platform/admin/namespaces/{namespace}/users/{userId}/wallets/{currencyCode}/check][%d] checkWalletBadRequest  %+v", 400, o.ToString())
+}
+
+func (o *CheckWalletBadRequest) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *CheckWalletBadRequest) GetPayload() *platformclientmodels.ErrorEntity {
@@ -131,7 +141,16 @@ type CheckWalletConflict struct {
 }
 
 func (o *CheckWalletConflict) Error() string {
-	return fmt.Sprintf("[GET /platform/admin/namespaces/{namespace}/users/{userId}/wallets/{currencyCode}/check][%d] checkWalletConflict  %+v", 409, o.Payload)
+	return fmt.Sprintf("[GET /platform/admin/namespaces/{namespace}/users/{userId}/wallets/{currencyCode}/check][%d] checkWalletConflict  %+v", 409, o.ToString())
+}
+
+func (o *CheckWalletConflict) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *CheckWalletConflict) GetPayload() *platformclientmodels.ErrorEntity {
@@ -164,7 +183,16 @@ type CheckWalletUnprocessableEntity struct {
 }
 
 func (o *CheckWalletUnprocessableEntity) Error() string {
-	return fmt.Sprintf("[GET /platform/admin/namespaces/{namespace}/users/{userId}/wallets/{currencyCode}/check][%d] checkWalletUnprocessableEntity  %+v", 422, o.Payload)
+	return fmt.Sprintf("[GET /platform/admin/namespaces/{namespace}/users/{userId}/wallets/{currencyCode}/check][%d] checkWalletUnprocessableEntity  %+v", 422, o.ToString())
+}
+
+func (o *CheckWalletUnprocessableEntity) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *CheckWalletUnprocessableEntity) GetPayload() *platformclientmodels.ValidationErrorEntity {

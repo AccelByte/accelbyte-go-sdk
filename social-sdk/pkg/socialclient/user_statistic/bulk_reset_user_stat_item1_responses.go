@@ -10,6 +10,7 @@ package user_statistic
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -65,7 +66,16 @@ type BulkResetUserStatItem1OK struct {
 }
 
 func (o *BulkResetUserStatItem1OK) Error() string {
-	return fmt.Sprintf("[PUT /social/v1/admin/namespaces/{namespace}/users/{userId}/statitems/value/reset/bulk][%d] bulkResetUserStatItem1OK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[PUT /social/v1/admin/namespaces/{namespace}/users/{userId}/statitems/value/reset/bulk][%d] bulkResetUserStatItem1OK  %+v", 200, o.ToString())
+}
+
+func (o *BulkResetUserStatItem1OK) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *BulkResetUserStatItem1OK) GetPayload() []*socialclientmodels.BulkStatItemOperationResult {
@@ -96,7 +106,16 @@ type BulkResetUserStatItem1UnprocessableEntity struct {
 }
 
 func (o *BulkResetUserStatItem1UnprocessableEntity) Error() string {
-	return fmt.Sprintf("[PUT /social/v1/admin/namespaces/{namespace}/users/{userId}/statitems/value/reset/bulk][%d] bulkResetUserStatItem1UnprocessableEntity  %+v", 422, o.Payload)
+	return fmt.Sprintf("[PUT /social/v1/admin/namespaces/{namespace}/users/{userId}/statitems/value/reset/bulk][%d] bulkResetUserStatItem1UnprocessableEntity  %+v", 422, o.ToString())
+}
+
+func (o *BulkResetUserStatItem1UnprocessableEntity) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *BulkResetUserStatItem1UnprocessableEntity) GetPayload() *socialclientmodels.ValidationErrorEntity {

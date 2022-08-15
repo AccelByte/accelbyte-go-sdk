@@ -10,6 +10,7 @@ package season
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -65,7 +66,16 @@ type QuerySeasonsOK struct {
 }
 
 func (o *QuerySeasonsOK) Error() string {
-	return fmt.Sprintf("[GET /seasonpass/admin/namespaces/{namespace}/seasons][%d] querySeasonsOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /seasonpass/admin/namespaces/{namespace}/seasons][%d] querySeasonsOK  %+v", 200, o.ToString())
+}
+
+func (o *QuerySeasonsOK) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *QuerySeasonsOK) GetPayload() *seasonpassclientmodels.ListSeasonInfoPagingSlicedResult {
@@ -98,7 +108,16 @@ type QuerySeasonsBadRequest struct {
 }
 
 func (o *QuerySeasonsBadRequest) Error() string {
-	return fmt.Sprintf("[GET /seasonpass/admin/namespaces/{namespace}/seasons][%d] querySeasonsBadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[GET /seasonpass/admin/namespaces/{namespace}/seasons][%d] querySeasonsBadRequest  %+v", 400, o.ToString())
+}
+
+func (o *QuerySeasonsBadRequest) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *QuerySeasonsBadRequest) GetPayload() *seasonpassclientmodels.ErrorEntity {

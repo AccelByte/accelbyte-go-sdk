@@ -10,6 +10,7 @@ package i_a_p
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -59,7 +60,16 @@ type QueryAllUserIAPOrdersOK struct {
 }
 
 func (o *QueryAllUserIAPOrdersOK) Error() string {
-	return fmt.Sprintf("[GET /platform/admin/namespaces/{namespace}/users/{userId}/iap/all][%d] queryAllUserIAPOrdersOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /platform/admin/namespaces/{namespace}/users/{userId}/iap/all][%d] queryAllUserIAPOrdersOK  %+v", 200, o.ToString())
+}
+
+func (o *QueryAllUserIAPOrdersOK) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *QueryAllUserIAPOrdersOK) GetPayload() *platformclientmodels.IAPOrderPagingSlicedResult {

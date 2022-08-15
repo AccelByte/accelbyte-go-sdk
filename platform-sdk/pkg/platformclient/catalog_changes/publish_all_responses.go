@@ -10,6 +10,7 @@ package catalog_changes
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -71,7 +72,16 @@ type PublishAllOK struct {
 }
 
 func (o *PublishAllOK) Error() string {
-	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/stores/{storeId}/catalogChanges/publishAll][%d] publishAllOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/stores/{storeId}/catalogChanges/publishAll][%d] publishAllOK  %+v", 200, o.ToString())
+}
+
+func (o *PublishAllOK) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *PublishAllOK) GetPayload() *platformclientmodels.StoreInfo {
@@ -104,7 +114,16 @@ type PublishAllBadRequest struct {
 }
 
 func (o *PublishAllBadRequest) Error() string {
-	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/stores/{storeId}/catalogChanges/publishAll][%d] publishAllBadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/stores/{storeId}/catalogChanges/publishAll][%d] publishAllBadRequest  %+v", 400, o.ToString())
+}
+
+func (o *PublishAllBadRequest) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *PublishAllBadRequest) GetPayload() *platformclientmodels.ErrorEntity {
@@ -137,7 +156,16 @@ type PublishAllNotFound struct {
 }
 
 func (o *PublishAllNotFound) Error() string {
-	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/stores/{storeId}/catalogChanges/publishAll][%d] publishAllNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/stores/{storeId}/catalogChanges/publishAll][%d] publishAllNotFound  %+v", 404, o.ToString())
+}
+
+func (o *PublishAllNotFound) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *PublishAllNotFound) GetPayload() *platformclientmodels.ErrorEntity {

@@ -10,6 +10,7 @@ package configuration
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -89,7 +90,16 @@ type ListGroupConfigurationAdminV1OK struct {
 }
 
 func (o *ListGroupConfigurationAdminV1OK) Error() string {
-	return fmt.Sprintf("[GET /group/v1/admin/namespaces/{namespace}/configuration][%d] listGroupConfigurationAdminV1OK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /group/v1/admin/namespaces/{namespace}/configuration][%d] listGroupConfigurationAdminV1OK  %+v", 200, o.ToString())
+}
+
+func (o *ListGroupConfigurationAdminV1OK) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *ListGroupConfigurationAdminV1OK) GetPayload() *groupclientmodels.ModelsListConfigurationResponseV1 {
@@ -122,7 +132,16 @@ type ListGroupConfigurationAdminV1BadRequest struct {
 }
 
 func (o *ListGroupConfigurationAdminV1BadRequest) Error() string {
-	return fmt.Sprintf("[GET /group/v1/admin/namespaces/{namespace}/configuration][%d] listGroupConfigurationAdminV1BadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[GET /group/v1/admin/namespaces/{namespace}/configuration][%d] listGroupConfigurationAdminV1BadRequest  %+v", 400, o.ToString())
+}
+
+func (o *ListGroupConfigurationAdminV1BadRequest) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *ListGroupConfigurationAdminV1BadRequest) GetPayload() *groupclientmodels.ResponseErrorResponse {
@@ -155,7 +174,16 @@ type ListGroupConfigurationAdminV1Unauthorized struct {
 }
 
 func (o *ListGroupConfigurationAdminV1Unauthorized) Error() string {
-	return fmt.Sprintf("[GET /group/v1/admin/namespaces/{namespace}/configuration][%d] listGroupConfigurationAdminV1Unauthorized  %+v", 401, o.Payload)
+	return fmt.Sprintf("[GET /group/v1/admin/namespaces/{namespace}/configuration][%d] listGroupConfigurationAdminV1Unauthorized  %+v", 401, o.ToString())
+}
+
+func (o *ListGroupConfigurationAdminV1Unauthorized) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *ListGroupConfigurationAdminV1Unauthorized) GetPayload() *groupclientmodels.ResponseErrorResponse {
@@ -188,7 +216,16 @@ type ListGroupConfigurationAdminV1Forbidden struct {
 }
 
 func (o *ListGroupConfigurationAdminV1Forbidden) Error() string {
-	return fmt.Sprintf("[GET /group/v1/admin/namespaces/{namespace}/configuration][%d] listGroupConfigurationAdminV1Forbidden  %+v", 403, o.Payload)
+	return fmt.Sprintf("[GET /group/v1/admin/namespaces/{namespace}/configuration][%d] listGroupConfigurationAdminV1Forbidden  %+v", 403, o.ToString())
+}
+
+func (o *ListGroupConfigurationAdminV1Forbidden) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *ListGroupConfigurationAdminV1Forbidden) GetPayload() *groupclientmodels.ResponseErrorResponse {
@@ -221,7 +258,16 @@ type ListGroupConfigurationAdminV1NotFound struct {
 }
 
 func (o *ListGroupConfigurationAdminV1NotFound) Error() string {
-	return fmt.Sprintf("[GET /group/v1/admin/namespaces/{namespace}/configuration][%d] listGroupConfigurationAdminV1NotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[GET /group/v1/admin/namespaces/{namespace}/configuration][%d] listGroupConfigurationAdminV1NotFound  %+v", 404, o.ToString())
+}
+
+func (o *ListGroupConfigurationAdminV1NotFound) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *ListGroupConfigurationAdminV1NotFound) GetPayload() *groupclientmodels.ResponseErrorResponse {
@@ -254,7 +300,16 @@ type ListGroupConfigurationAdminV1InternalServerError struct {
 }
 
 func (o *ListGroupConfigurationAdminV1InternalServerError) Error() string {
-	return fmt.Sprintf("[GET /group/v1/admin/namespaces/{namespace}/configuration][%d] listGroupConfigurationAdminV1InternalServerError  %+v", 500, o.Payload)
+	return fmt.Sprintf("[GET /group/v1/admin/namespaces/{namespace}/configuration][%d] listGroupConfigurationAdminV1InternalServerError  %+v", 500, o.ToString())
+}
+
+func (o *ListGroupConfigurationAdminV1InternalServerError) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *ListGroupConfigurationAdminV1InternalServerError) GetPayload() *groupclientmodels.ResponseErrorResponse {

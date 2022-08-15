@@ -10,6 +10,7 @@ package user_visibility
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -89,7 +90,16 @@ type SetUserVisibilityStatusV2OK struct {
 }
 
 func (o *SetUserVisibilityStatusV2OK) Error() string {
-	return fmt.Sprintf("[PUT /leaderboard/v2/admin/namespaces/{namespace}/users/{userId}/visibility][%d] setUserVisibilityStatusV2OK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[PUT /leaderboard/v2/admin/namespaces/{namespace}/users/{userId}/visibility][%d] setUserVisibilityStatusV2OK  %+v", 200, o.ToString())
+}
+
+func (o *SetUserVisibilityStatusV2OK) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *SetUserVisibilityStatusV2OK) GetPayload() *leaderboardclientmodels.ModelsGetUserVisibilityResponse {
@@ -122,7 +132,16 @@ type SetUserVisibilityStatusV2BadRequest struct {
 }
 
 func (o *SetUserVisibilityStatusV2BadRequest) Error() string {
-	return fmt.Sprintf("[PUT /leaderboard/v2/admin/namespaces/{namespace}/users/{userId}/visibility][%d] setUserVisibilityStatusV2BadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[PUT /leaderboard/v2/admin/namespaces/{namespace}/users/{userId}/visibility][%d] setUserVisibilityStatusV2BadRequest  %+v", 400, o.ToString())
+}
+
+func (o *SetUserVisibilityStatusV2BadRequest) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *SetUserVisibilityStatusV2BadRequest) GetPayload() *leaderboardclientmodels.ResponseErrorResponse {
@@ -155,7 +174,16 @@ type SetUserVisibilityStatusV2Unauthorized struct {
 }
 
 func (o *SetUserVisibilityStatusV2Unauthorized) Error() string {
-	return fmt.Sprintf("[PUT /leaderboard/v2/admin/namespaces/{namespace}/users/{userId}/visibility][%d] setUserVisibilityStatusV2Unauthorized  %+v", 401, o.Payload)
+	return fmt.Sprintf("[PUT /leaderboard/v2/admin/namespaces/{namespace}/users/{userId}/visibility][%d] setUserVisibilityStatusV2Unauthorized  %+v", 401, o.ToString())
+}
+
+func (o *SetUserVisibilityStatusV2Unauthorized) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *SetUserVisibilityStatusV2Unauthorized) GetPayload() *leaderboardclientmodels.ResponseErrorResponse {
@@ -188,7 +216,16 @@ type SetUserVisibilityStatusV2Forbidden struct {
 }
 
 func (o *SetUserVisibilityStatusV2Forbidden) Error() string {
-	return fmt.Sprintf("[PUT /leaderboard/v2/admin/namespaces/{namespace}/users/{userId}/visibility][%d] setUserVisibilityStatusV2Forbidden  %+v", 403, o.Payload)
+	return fmt.Sprintf("[PUT /leaderboard/v2/admin/namespaces/{namespace}/users/{userId}/visibility][%d] setUserVisibilityStatusV2Forbidden  %+v", 403, o.ToString())
+}
+
+func (o *SetUserVisibilityStatusV2Forbidden) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *SetUserVisibilityStatusV2Forbidden) GetPayload() *leaderboardclientmodels.ResponseErrorResponse {
@@ -221,7 +258,16 @@ type SetUserVisibilityStatusV2NotFound struct {
 }
 
 func (o *SetUserVisibilityStatusV2NotFound) Error() string {
-	return fmt.Sprintf("[PUT /leaderboard/v2/admin/namespaces/{namespace}/users/{userId}/visibility][%d] setUserVisibilityStatusV2NotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[PUT /leaderboard/v2/admin/namespaces/{namespace}/users/{userId}/visibility][%d] setUserVisibilityStatusV2NotFound  %+v", 404, o.ToString())
+}
+
+func (o *SetUserVisibilityStatusV2NotFound) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *SetUserVisibilityStatusV2NotFound) GetPayload() *leaderboardclientmodels.ResponseErrorResponse {
@@ -254,7 +300,16 @@ type SetUserVisibilityStatusV2InternalServerError struct {
 }
 
 func (o *SetUserVisibilityStatusV2InternalServerError) Error() string {
-	return fmt.Sprintf("[PUT /leaderboard/v2/admin/namespaces/{namespace}/users/{userId}/visibility][%d] setUserVisibilityStatusV2InternalServerError  %+v", 500, o.Payload)
+	return fmt.Sprintf("[PUT /leaderboard/v2/admin/namespaces/{namespace}/users/{userId}/visibility][%d] setUserVisibilityStatusV2InternalServerError  %+v", 500, o.ToString())
+}
+
+func (o *SetUserVisibilityStatusV2InternalServerError) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *SetUserVisibilityStatusV2InternalServerError) GetPayload() *leaderboardclientmodels.ResponseErrorResponse {

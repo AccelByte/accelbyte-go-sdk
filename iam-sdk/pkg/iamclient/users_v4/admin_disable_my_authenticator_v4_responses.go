@@ -10,6 +10,7 @@ package users_v4
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -110,7 +111,16 @@ type AdminDisableMyAuthenticatorV4BadRequest struct {
 }
 
 func (o *AdminDisableMyAuthenticatorV4BadRequest) Error() string {
-	return fmt.Sprintf("[DELETE /iam/v4/admin/users/me/mfa/authenticator/disable][%d] adminDisableMyAuthenticatorV4BadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[DELETE /iam/v4/admin/users/me/mfa/authenticator/disable][%d] adminDisableMyAuthenticatorV4BadRequest  %+v", 400, o.ToString())
+}
+
+func (o *AdminDisableMyAuthenticatorV4BadRequest) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *AdminDisableMyAuthenticatorV4BadRequest) GetPayload() *iamclientmodels.RestErrorResponse {
@@ -143,7 +153,16 @@ type AdminDisableMyAuthenticatorV4Unauthorized struct {
 }
 
 func (o *AdminDisableMyAuthenticatorV4Unauthorized) Error() string {
-	return fmt.Sprintf("[DELETE /iam/v4/admin/users/me/mfa/authenticator/disable][%d] adminDisableMyAuthenticatorV4Unauthorized  %+v", 401, o.Payload)
+	return fmt.Sprintf("[DELETE /iam/v4/admin/users/me/mfa/authenticator/disable][%d] adminDisableMyAuthenticatorV4Unauthorized  %+v", 401, o.ToString())
+}
+
+func (o *AdminDisableMyAuthenticatorV4Unauthorized) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *AdminDisableMyAuthenticatorV4Unauthorized) GetPayload() *iamclientmodels.RestErrorResponse {
@@ -176,7 +195,16 @@ type AdminDisableMyAuthenticatorV4Forbidden struct {
 }
 
 func (o *AdminDisableMyAuthenticatorV4Forbidden) Error() string {
-	return fmt.Sprintf("[DELETE /iam/v4/admin/users/me/mfa/authenticator/disable][%d] adminDisableMyAuthenticatorV4Forbidden  %+v", 403, o.Payload)
+	return fmt.Sprintf("[DELETE /iam/v4/admin/users/me/mfa/authenticator/disable][%d] adminDisableMyAuthenticatorV4Forbidden  %+v", 403, o.ToString())
+}
+
+func (o *AdminDisableMyAuthenticatorV4Forbidden) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *AdminDisableMyAuthenticatorV4Forbidden) GetPayload() *iamclientmodels.RestErrorResponse {
@@ -209,7 +237,16 @@ type AdminDisableMyAuthenticatorV4NotFound struct {
 }
 
 func (o *AdminDisableMyAuthenticatorV4NotFound) Error() string {
-	return fmt.Sprintf("[DELETE /iam/v4/admin/users/me/mfa/authenticator/disable][%d] adminDisableMyAuthenticatorV4NotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[DELETE /iam/v4/admin/users/me/mfa/authenticator/disable][%d] adminDisableMyAuthenticatorV4NotFound  %+v", 404, o.ToString())
+}
+
+func (o *AdminDisableMyAuthenticatorV4NotFound) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *AdminDisableMyAuthenticatorV4NotFound) GetPayload() *iamclientmodels.RestErrorResponse {
@@ -242,7 +279,16 @@ type AdminDisableMyAuthenticatorV4InternalServerError struct {
 }
 
 func (o *AdminDisableMyAuthenticatorV4InternalServerError) Error() string {
-	return fmt.Sprintf("[DELETE /iam/v4/admin/users/me/mfa/authenticator/disable][%d] adminDisableMyAuthenticatorV4InternalServerError  %+v", 500, o.Payload)
+	return fmt.Sprintf("[DELETE /iam/v4/admin/users/me/mfa/authenticator/disable][%d] adminDisableMyAuthenticatorV4InternalServerError  %+v", 500, o.ToString())
+}
+
+func (o *AdminDisableMyAuthenticatorV4InternalServerError) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *AdminDisableMyAuthenticatorV4InternalServerError) GetPayload() *iamclientmodels.RestErrorResponse {

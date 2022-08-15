@@ -10,6 +10,7 @@ package admin
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -77,7 +78,16 @@ type GetServerOK struct {
 }
 
 func (o *GetServerOK) Error() string {
-	return fmt.Sprintf("[GET /dsmcontroller/admin/namespaces/{namespace}/servers/{podName}][%d] getServerOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /dsmcontroller/admin/namespaces/{namespace}/servers/{podName}][%d] getServerOK  %+v", 200, o.ToString())
+}
+
+func (o *GetServerOK) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *GetServerOK) GetPayload() *dsmcclientmodels.ModelsServer {
@@ -110,7 +120,16 @@ type GetServerUnauthorized struct {
 }
 
 func (o *GetServerUnauthorized) Error() string {
-	return fmt.Sprintf("[GET /dsmcontroller/admin/namespaces/{namespace}/servers/{podName}][%d] getServerUnauthorized  %+v", 401, o.Payload)
+	return fmt.Sprintf("[GET /dsmcontroller/admin/namespaces/{namespace}/servers/{podName}][%d] getServerUnauthorized  %+v", 401, o.ToString())
+}
+
+func (o *GetServerUnauthorized) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *GetServerUnauthorized) GetPayload() *dsmcclientmodels.ResponseError {
@@ -143,7 +162,16 @@ type GetServerNotFound struct {
 }
 
 func (o *GetServerNotFound) Error() string {
-	return fmt.Sprintf("[GET /dsmcontroller/admin/namespaces/{namespace}/servers/{podName}][%d] getServerNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[GET /dsmcontroller/admin/namespaces/{namespace}/servers/{podName}][%d] getServerNotFound  %+v", 404, o.ToString())
+}
+
+func (o *GetServerNotFound) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *GetServerNotFound) GetPayload() *dsmcclientmodels.ResponseError {
@@ -176,7 +204,16 @@ type GetServerInternalServerError struct {
 }
 
 func (o *GetServerInternalServerError) Error() string {
-	return fmt.Sprintf("[GET /dsmcontroller/admin/namespaces/{namespace}/servers/{podName}][%d] getServerInternalServerError  %+v", 500, o.Payload)
+	return fmt.Sprintf("[GET /dsmcontroller/admin/namespaces/{namespace}/servers/{podName}][%d] getServerInternalServerError  %+v", 500, o.ToString())
+}
+
+func (o *GetServerInternalServerError) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *GetServerInternalServerError) GetPayload() *dsmcclientmodels.ResponseError {

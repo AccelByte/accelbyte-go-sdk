@@ -10,6 +10,7 @@ package public_content
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -104,7 +105,16 @@ type DeleteContentScreenshotBadRequest struct {
 }
 
 func (o *DeleteContentScreenshotBadRequest) Error() string {
-	return fmt.Sprintf("[DELETE /ugc/v1/public/namespaces/{namespace}/users/{userId}/contents/{contentId}/screenshots/{screenshotId}][%d] deleteContentScreenshotBadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[DELETE /ugc/v1/public/namespaces/{namespace}/users/{userId}/contents/{contentId}/screenshots/{screenshotId}][%d] deleteContentScreenshotBadRequest  %+v", 400, o.ToString())
+}
+
+func (o *DeleteContentScreenshotBadRequest) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *DeleteContentScreenshotBadRequest) GetPayload() *ugcclientmodels.ResponseError {
@@ -137,7 +147,16 @@ type DeleteContentScreenshotUnauthorized struct {
 }
 
 func (o *DeleteContentScreenshotUnauthorized) Error() string {
-	return fmt.Sprintf("[DELETE /ugc/v1/public/namespaces/{namespace}/users/{userId}/contents/{contentId}/screenshots/{screenshotId}][%d] deleteContentScreenshotUnauthorized  %+v", 401, o.Payload)
+	return fmt.Sprintf("[DELETE /ugc/v1/public/namespaces/{namespace}/users/{userId}/contents/{contentId}/screenshots/{screenshotId}][%d] deleteContentScreenshotUnauthorized  %+v", 401, o.ToString())
+}
+
+func (o *DeleteContentScreenshotUnauthorized) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *DeleteContentScreenshotUnauthorized) GetPayload() *ugcclientmodels.ResponseError {
@@ -170,7 +189,16 @@ type DeleteContentScreenshotNotFound struct {
 }
 
 func (o *DeleteContentScreenshotNotFound) Error() string {
-	return fmt.Sprintf("[DELETE /ugc/v1/public/namespaces/{namespace}/users/{userId}/contents/{contentId}/screenshots/{screenshotId}][%d] deleteContentScreenshotNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[DELETE /ugc/v1/public/namespaces/{namespace}/users/{userId}/contents/{contentId}/screenshots/{screenshotId}][%d] deleteContentScreenshotNotFound  %+v", 404, o.ToString())
+}
+
+func (o *DeleteContentScreenshotNotFound) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *DeleteContentScreenshotNotFound) GetPayload() *ugcclientmodels.ResponseError {
@@ -203,7 +231,16 @@ type DeleteContentScreenshotInternalServerError struct {
 }
 
 func (o *DeleteContentScreenshotInternalServerError) Error() string {
-	return fmt.Sprintf("[DELETE /ugc/v1/public/namespaces/{namespace}/users/{userId}/contents/{contentId}/screenshots/{screenshotId}][%d] deleteContentScreenshotInternalServerError  %+v", 500, o.Payload)
+	return fmt.Sprintf("[DELETE /ugc/v1/public/namespaces/{namespace}/users/{userId}/contents/{contentId}/screenshots/{screenshotId}][%d] deleteContentScreenshotInternalServerError  %+v", 500, o.ToString())
+}
+
+func (o *DeleteContentScreenshotInternalServerError) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *DeleteContentScreenshotInternalServerError) GetPayload() *ugcclientmodels.ResponseError {

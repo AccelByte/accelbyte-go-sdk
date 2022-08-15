@@ -10,6 +10,7 @@ package user_profile
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -71,7 +72,16 @@ type PublicGetCustomAttributesInfoOK struct {
 }
 
 func (o *PublicGetCustomAttributesInfoOK) Error() string {
-	return fmt.Sprintf("[GET /basic/v1/public/namespaces/{namespace}/users/{userId}/profiles/customAttributes][%d] publicGetCustomAttributesInfoOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /basic/v1/public/namespaces/{namespace}/users/{userId}/profiles/customAttributes][%d] publicGetCustomAttributesInfoOK  %+v", 200, o.ToString())
+}
+
+func (o *PublicGetCustomAttributesInfoOK) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *PublicGetCustomAttributesInfoOK) GetPayload() map[string]interface{} {
@@ -102,7 +112,16 @@ type PublicGetCustomAttributesInfoUnauthorized struct {
 }
 
 func (o *PublicGetCustomAttributesInfoUnauthorized) Error() string {
-	return fmt.Sprintf("[GET /basic/v1/public/namespaces/{namespace}/users/{userId}/profiles/customAttributes][%d] publicGetCustomAttributesInfoUnauthorized  %+v", 401, o.Payload)
+	return fmt.Sprintf("[GET /basic/v1/public/namespaces/{namespace}/users/{userId}/profiles/customAttributes][%d] publicGetCustomAttributesInfoUnauthorized  %+v", 401, o.ToString())
+}
+
+func (o *PublicGetCustomAttributesInfoUnauthorized) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *PublicGetCustomAttributesInfoUnauthorized) GetPayload() *basicclientmodels.ErrorEntity {
@@ -135,7 +154,16 @@ type PublicGetCustomAttributesInfoNotFound struct {
 }
 
 func (o *PublicGetCustomAttributesInfoNotFound) Error() string {
-	return fmt.Sprintf("[GET /basic/v1/public/namespaces/{namespace}/users/{userId}/profiles/customAttributes][%d] publicGetCustomAttributesInfoNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[GET /basic/v1/public/namespaces/{namespace}/users/{userId}/profiles/customAttributes][%d] publicGetCustomAttributesInfoNotFound  %+v", 404, o.ToString())
+}
+
+func (o *PublicGetCustomAttributesInfoNotFound) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *PublicGetCustomAttributesInfoNotFound) GetPayload() *basicclientmodels.ErrorEntity {

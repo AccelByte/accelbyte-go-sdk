@@ -10,6 +10,7 @@ package user_statistic
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -71,7 +72,16 @@ type BulkFetchOrDefaultStatItems1OK struct {
 }
 
 func (o *BulkFetchOrDefaultStatItems1OK) Error() string {
-	return fmt.Sprintf("[GET /social/v2/admin/namespaces/{namespace}/statitems/value/bulk/getOrDefault][%d] bulkFetchOrDefaultStatItems1OK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /social/v2/admin/namespaces/{namespace}/statitems/value/bulk/getOrDefault][%d] bulkFetchOrDefaultStatItems1OK  %+v", 200, o.ToString())
+}
+
+func (o *BulkFetchOrDefaultStatItems1OK) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *BulkFetchOrDefaultStatItems1OK) GetPayload() []*socialclientmodels.ADTOObjectForUserStatItemValue {
@@ -102,7 +112,16 @@ type BulkFetchOrDefaultStatItems1NotFound struct {
 }
 
 func (o *BulkFetchOrDefaultStatItems1NotFound) Error() string {
-	return fmt.Sprintf("[GET /social/v2/admin/namespaces/{namespace}/statitems/value/bulk/getOrDefault][%d] bulkFetchOrDefaultStatItems1NotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[GET /social/v2/admin/namespaces/{namespace}/statitems/value/bulk/getOrDefault][%d] bulkFetchOrDefaultStatItems1NotFound  %+v", 404, o.ToString())
+}
+
+func (o *BulkFetchOrDefaultStatItems1NotFound) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *BulkFetchOrDefaultStatItems1NotFound) GetPayload() *socialclientmodels.ErrorEntity {
@@ -135,7 +154,16 @@ type BulkFetchOrDefaultStatItems1UnprocessableEntity struct {
 }
 
 func (o *BulkFetchOrDefaultStatItems1UnprocessableEntity) Error() string {
-	return fmt.Sprintf("[GET /social/v2/admin/namespaces/{namespace}/statitems/value/bulk/getOrDefault][%d] bulkFetchOrDefaultStatItems1UnprocessableEntity  %+v", 422, o.Payload)
+	return fmt.Sprintf("[GET /social/v2/admin/namespaces/{namespace}/statitems/value/bulk/getOrDefault][%d] bulkFetchOrDefaultStatItems1UnprocessableEntity  %+v", 422, o.ToString())
+}
+
+func (o *BulkFetchOrDefaultStatItems1UnprocessableEntity) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *BulkFetchOrDefaultStatItems1UnprocessableEntity) GetPayload() *socialclientmodels.ValidationErrorEntity {

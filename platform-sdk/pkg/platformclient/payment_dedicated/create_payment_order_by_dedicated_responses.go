@@ -10,6 +10,7 @@ package payment_dedicated
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -89,7 +90,16 @@ type CreatePaymentOrderByDedicatedCreated struct {
 }
 
 func (o *CreatePaymentOrderByDedicatedCreated) Error() string {
-	return fmt.Sprintf("[POST /platform/admin/namespaces/{namespace}/payment/orders][%d] createPaymentOrderByDedicatedCreated  %+v", 201, o.Payload)
+	return fmt.Sprintf("[POST /platform/admin/namespaces/{namespace}/payment/orders][%d] createPaymentOrderByDedicatedCreated  %+v", 201, o.ToString())
+}
+
+func (o *CreatePaymentOrderByDedicatedCreated) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *CreatePaymentOrderByDedicatedCreated) GetPayload() *platformclientmodels.PaymentOrderCreateResult {
@@ -122,7 +132,16 @@ type CreatePaymentOrderByDedicatedBadRequest struct {
 }
 
 func (o *CreatePaymentOrderByDedicatedBadRequest) Error() string {
-	return fmt.Sprintf("[POST /platform/admin/namespaces/{namespace}/payment/orders][%d] createPaymentOrderByDedicatedBadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[POST /platform/admin/namespaces/{namespace}/payment/orders][%d] createPaymentOrderByDedicatedBadRequest  %+v", 400, o.ToString())
+}
+
+func (o *CreatePaymentOrderByDedicatedBadRequest) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *CreatePaymentOrderByDedicatedBadRequest) GetPayload() *platformclientmodels.ErrorEntity {
@@ -155,7 +174,16 @@ type CreatePaymentOrderByDedicatedForbidden struct {
 }
 
 func (o *CreatePaymentOrderByDedicatedForbidden) Error() string {
-	return fmt.Sprintf("[POST /platform/admin/namespaces/{namespace}/payment/orders][%d] createPaymentOrderByDedicatedForbidden  %+v", 403, o.Payload)
+	return fmt.Sprintf("[POST /platform/admin/namespaces/{namespace}/payment/orders][%d] createPaymentOrderByDedicatedForbidden  %+v", 403, o.ToString())
+}
+
+func (o *CreatePaymentOrderByDedicatedForbidden) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *CreatePaymentOrderByDedicatedForbidden) GetPayload() *platformclientmodels.ErrorEntity {
@@ -188,7 +216,16 @@ type CreatePaymentOrderByDedicatedNotFound struct {
 }
 
 func (o *CreatePaymentOrderByDedicatedNotFound) Error() string {
-	return fmt.Sprintf("[POST /platform/admin/namespaces/{namespace}/payment/orders][%d] createPaymentOrderByDedicatedNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[POST /platform/admin/namespaces/{namespace}/payment/orders][%d] createPaymentOrderByDedicatedNotFound  %+v", 404, o.ToString())
+}
+
+func (o *CreatePaymentOrderByDedicatedNotFound) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *CreatePaymentOrderByDedicatedNotFound) GetPayload() *platformclientmodels.ErrorEntity {
@@ -221,7 +258,16 @@ type CreatePaymentOrderByDedicatedConflict struct {
 }
 
 func (o *CreatePaymentOrderByDedicatedConflict) Error() string {
-	return fmt.Sprintf("[POST /platform/admin/namespaces/{namespace}/payment/orders][%d] createPaymentOrderByDedicatedConflict  %+v", 409, o.Payload)
+	return fmt.Sprintf("[POST /platform/admin/namespaces/{namespace}/payment/orders][%d] createPaymentOrderByDedicatedConflict  %+v", 409, o.ToString())
+}
+
+func (o *CreatePaymentOrderByDedicatedConflict) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *CreatePaymentOrderByDedicatedConflict) GetPayload() *platformclientmodels.ErrorEntity {
@@ -254,7 +300,16 @@ type CreatePaymentOrderByDedicatedUnprocessableEntity struct {
 }
 
 func (o *CreatePaymentOrderByDedicatedUnprocessableEntity) Error() string {
-	return fmt.Sprintf("[POST /platform/admin/namespaces/{namespace}/payment/orders][%d] createPaymentOrderByDedicatedUnprocessableEntity  %+v", 422, o.Payload)
+	return fmt.Sprintf("[POST /platform/admin/namespaces/{namespace}/payment/orders][%d] createPaymentOrderByDedicatedUnprocessableEntity  %+v", 422, o.ToString())
+}
+
+func (o *CreatePaymentOrderByDedicatedUnprocessableEntity) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *CreatePaymentOrderByDedicatedUnprocessableEntity) GetPayload() *platformclientmodels.ValidationErrorEntity {

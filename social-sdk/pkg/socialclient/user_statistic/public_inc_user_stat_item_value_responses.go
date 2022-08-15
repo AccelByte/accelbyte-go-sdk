@@ -10,6 +10,7 @@ package user_statistic
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -77,7 +78,16 @@ type PublicIncUserStatItemValueOK struct {
 }
 
 func (o *PublicIncUserStatItemValueOK) Error() string {
-	return fmt.Sprintf("[PATCH /social/v1/public/namespaces/{namespace}/users/{userId}/stats/{statCode}/statitems/value][%d] publicIncUserStatItemValueOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[PATCH /social/v1/public/namespaces/{namespace}/users/{userId}/stats/{statCode}/statitems/value][%d] publicIncUserStatItemValueOK  %+v", 200, o.ToString())
+}
+
+func (o *PublicIncUserStatItemValueOK) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *PublicIncUserStatItemValueOK) GetPayload() *socialclientmodels.StatItemIncResult {
@@ -110,7 +120,16 @@ type PublicIncUserStatItemValueBadRequest struct {
 }
 
 func (o *PublicIncUserStatItemValueBadRequest) Error() string {
-	return fmt.Sprintf("[PATCH /social/v1/public/namespaces/{namespace}/users/{userId}/stats/{statCode}/statitems/value][%d] publicIncUserStatItemValueBadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[PATCH /social/v1/public/namespaces/{namespace}/users/{userId}/stats/{statCode}/statitems/value][%d] publicIncUserStatItemValueBadRequest  %+v", 400, o.ToString())
+}
+
+func (o *PublicIncUserStatItemValueBadRequest) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *PublicIncUserStatItemValueBadRequest) GetPayload() *socialclientmodels.ErrorEntity {
@@ -143,7 +162,16 @@ type PublicIncUserStatItemValueNotFound struct {
 }
 
 func (o *PublicIncUserStatItemValueNotFound) Error() string {
-	return fmt.Sprintf("[PATCH /social/v1/public/namespaces/{namespace}/users/{userId}/stats/{statCode}/statitems/value][%d] publicIncUserStatItemValueNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[PATCH /social/v1/public/namespaces/{namespace}/users/{userId}/stats/{statCode}/statitems/value][%d] publicIncUserStatItemValueNotFound  %+v", 404, o.ToString())
+}
+
+func (o *PublicIncUserStatItemValueNotFound) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *PublicIncUserStatItemValueNotFound) GetPayload() *socialclientmodels.ErrorEntity {
@@ -176,7 +204,16 @@ type PublicIncUserStatItemValueConflict struct {
 }
 
 func (o *PublicIncUserStatItemValueConflict) Error() string {
-	return fmt.Sprintf("[PATCH /social/v1/public/namespaces/{namespace}/users/{userId}/stats/{statCode}/statitems/value][%d] publicIncUserStatItemValueConflict  %+v", 409, o.Payload)
+	return fmt.Sprintf("[PATCH /social/v1/public/namespaces/{namespace}/users/{userId}/stats/{statCode}/statitems/value][%d] publicIncUserStatItemValueConflict  %+v", 409, o.ToString())
+}
+
+func (o *PublicIncUserStatItemValueConflict) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *PublicIncUserStatItemValueConflict) GetPayload() *socialclientmodels.ErrorEntity {

@@ -10,6 +10,7 @@ package o_auth2_0
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -71,7 +72,16 @@ type PlatformTokenGrantV3OK struct {
 }
 
 func (o *PlatformTokenGrantV3OK) Error() string {
-	return fmt.Sprintf("[POST /iam/v3/oauth/platforms/{platformId}/token][%d] platformTokenGrantV3OK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[POST /iam/v3/oauth/platforms/{platformId}/token][%d] platformTokenGrantV3OK  %+v", 200, o.ToString())
+}
+
+func (o *PlatformTokenGrantV3OK) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *PlatformTokenGrantV3OK) GetPayload() *iamclientmodels.OauthmodelTokenResponse {
@@ -104,7 +114,16 @@ type PlatformTokenGrantV3BadRequest struct {
 }
 
 func (o *PlatformTokenGrantV3BadRequest) Error() string {
-	return fmt.Sprintf("[POST /iam/v3/oauth/platforms/{platformId}/token][%d] platformTokenGrantV3BadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[POST /iam/v3/oauth/platforms/{platformId}/token][%d] platformTokenGrantV3BadRequest  %+v", 400, o.ToString())
+}
+
+func (o *PlatformTokenGrantV3BadRequest) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *PlatformTokenGrantV3BadRequest) GetPayload() *iamclientmodels.OauthmodelErrorResponse {
@@ -137,7 +156,16 @@ type PlatformTokenGrantV3Unauthorized struct {
 }
 
 func (o *PlatformTokenGrantV3Unauthorized) Error() string {
-	return fmt.Sprintf("[POST /iam/v3/oauth/platforms/{platformId}/token][%d] platformTokenGrantV3Unauthorized  %+v", 401, o.Payload)
+	return fmt.Sprintf("[POST /iam/v3/oauth/platforms/{platformId}/token][%d] platformTokenGrantV3Unauthorized  %+v", 401, o.ToString())
+}
+
+func (o *PlatformTokenGrantV3Unauthorized) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *PlatformTokenGrantV3Unauthorized) GetPayload() *iamclientmodels.OauthmodelErrorResponse {

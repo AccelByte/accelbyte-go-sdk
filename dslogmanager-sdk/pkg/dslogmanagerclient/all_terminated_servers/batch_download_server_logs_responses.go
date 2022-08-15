@@ -10,6 +10,7 @@ package all_terminated_servers
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -92,7 +93,16 @@ type BatchDownloadServerLogsBadRequest struct {
 }
 
 func (o *BatchDownloadServerLogsBadRequest) Error() string {
-	return fmt.Sprintf("[POST /dslogmanager/servers/logs/download][%d] batchDownloadServerLogsBadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[POST /dslogmanager/servers/logs/download][%d] batchDownloadServerLogsBadRequest  %+v", 400, o.ToString())
+}
+
+func (o *BatchDownloadServerLogsBadRequest) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *BatchDownloadServerLogsBadRequest) GetPayload() *dslogmanagerclientmodels.ResponseError {
@@ -125,7 +135,16 @@ type BatchDownloadServerLogsInternalServerError struct {
 }
 
 func (o *BatchDownloadServerLogsInternalServerError) Error() string {
-	return fmt.Sprintf("[POST /dslogmanager/servers/logs/download][%d] batchDownloadServerLogsInternalServerError  %+v", 500, o.Payload)
+	return fmt.Sprintf("[POST /dslogmanager/servers/logs/download][%d] batchDownloadServerLogsInternalServerError  %+v", 500, o.ToString())
+}
+
+func (o *BatchDownloadServerLogsInternalServerError) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *BatchDownloadServerLogsInternalServerError) GetPayload() *dslogmanagerclientmodels.ResponseError {

@@ -10,6 +10,7 @@ package member_request
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -83,7 +84,16 @@ type GetGroupInvitationRequestPublicV1OK struct {
 }
 
 func (o *GetGroupInvitationRequestPublicV1OK) Error() string {
-	return fmt.Sprintf("[GET /group/v1/public/namespaces/{namespace}/users/me/invite/request][%d] getGroupInvitationRequestPublicV1OK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /group/v1/public/namespaces/{namespace}/users/me/invite/request][%d] getGroupInvitationRequestPublicV1OK  %+v", 200, o.ToString())
+}
+
+func (o *GetGroupInvitationRequestPublicV1OK) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *GetGroupInvitationRequestPublicV1OK) GetPayload() *groupclientmodels.ModelsGetMemberRequestsListResponseV1 {
@@ -116,7 +126,16 @@ type GetGroupInvitationRequestPublicV1BadRequest struct {
 }
 
 func (o *GetGroupInvitationRequestPublicV1BadRequest) Error() string {
-	return fmt.Sprintf("[GET /group/v1/public/namespaces/{namespace}/users/me/invite/request][%d] getGroupInvitationRequestPublicV1BadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[GET /group/v1/public/namespaces/{namespace}/users/me/invite/request][%d] getGroupInvitationRequestPublicV1BadRequest  %+v", 400, o.ToString())
+}
+
+func (o *GetGroupInvitationRequestPublicV1BadRequest) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *GetGroupInvitationRequestPublicV1BadRequest) GetPayload() *groupclientmodels.ResponseErrorResponse {
@@ -149,7 +168,16 @@ type GetGroupInvitationRequestPublicV1Unauthorized struct {
 }
 
 func (o *GetGroupInvitationRequestPublicV1Unauthorized) Error() string {
-	return fmt.Sprintf("[GET /group/v1/public/namespaces/{namespace}/users/me/invite/request][%d] getGroupInvitationRequestPublicV1Unauthorized  %+v", 401, o.Payload)
+	return fmt.Sprintf("[GET /group/v1/public/namespaces/{namespace}/users/me/invite/request][%d] getGroupInvitationRequestPublicV1Unauthorized  %+v", 401, o.ToString())
+}
+
+func (o *GetGroupInvitationRequestPublicV1Unauthorized) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *GetGroupInvitationRequestPublicV1Unauthorized) GetPayload() *groupclientmodels.ResponseErrorResponse {
@@ -182,7 +210,16 @@ type GetGroupInvitationRequestPublicV1Forbidden struct {
 }
 
 func (o *GetGroupInvitationRequestPublicV1Forbidden) Error() string {
-	return fmt.Sprintf("[GET /group/v1/public/namespaces/{namespace}/users/me/invite/request][%d] getGroupInvitationRequestPublicV1Forbidden  %+v", 403, o.Payload)
+	return fmt.Sprintf("[GET /group/v1/public/namespaces/{namespace}/users/me/invite/request][%d] getGroupInvitationRequestPublicV1Forbidden  %+v", 403, o.ToString())
+}
+
+func (o *GetGroupInvitationRequestPublicV1Forbidden) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *GetGroupInvitationRequestPublicV1Forbidden) GetPayload() *groupclientmodels.ResponseErrorResponse {
@@ -215,7 +252,16 @@ type GetGroupInvitationRequestPublicV1InternalServerError struct {
 }
 
 func (o *GetGroupInvitationRequestPublicV1InternalServerError) Error() string {
-	return fmt.Sprintf("[GET /group/v1/public/namespaces/{namespace}/users/me/invite/request][%d] getGroupInvitationRequestPublicV1InternalServerError  %+v", 500, o.Payload)
+	return fmt.Sprintf("[GET /group/v1/public/namespaces/{namespace}/users/me/invite/request][%d] getGroupInvitationRequestPublicV1InternalServerError  %+v", 500, o.ToString())
+}
+
+func (o *GetGroupInvitationRequestPublicV1InternalServerError) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *GetGroupInvitationRequestPublicV1InternalServerError) GetPayload() *groupclientmodels.ResponseErrorResponse {

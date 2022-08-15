@@ -10,6 +10,7 @@ package users_v4
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -83,7 +84,16 @@ type PublicCreateUserV4Created struct {
 }
 
 func (o *PublicCreateUserV4Created) Error() string {
-	return fmt.Sprintf("[POST /iam/v4/public/namespaces/{namespace}/users][%d] publicCreateUserV4Created  %+v", 201, o.Payload)
+	return fmt.Sprintf("[POST /iam/v4/public/namespaces/{namespace}/users][%d] publicCreateUserV4Created  %+v", 201, o.ToString())
+}
+
+func (o *PublicCreateUserV4Created) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *PublicCreateUserV4Created) GetPayload() *iamclientmodels.AccountCreateUserResponseV4 {
@@ -116,7 +126,16 @@ type PublicCreateUserV4BadRequest struct {
 }
 
 func (o *PublicCreateUserV4BadRequest) Error() string {
-	return fmt.Sprintf("[POST /iam/v4/public/namespaces/{namespace}/users][%d] publicCreateUserV4BadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[POST /iam/v4/public/namespaces/{namespace}/users][%d] publicCreateUserV4BadRequest  %+v", 400, o.ToString())
+}
+
+func (o *PublicCreateUserV4BadRequest) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *PublicCreateUserV4BadRequest) GetPayload() *iamclientmodels.RestErrorResponse {
@@ -149,7 +168,16 @@ type PublicCreateUserV4NotFound struct {
 }
 
 func (o *PublicCreateUserV4NotFound) Error() string {
-	return fmt.Sprintf("[POST /iam/v4/public/namespaces/{namespace}/users][%d] publicCreateUserV4NotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[POST /iam/v4/public/namespaces/{namespace}/users][%d] publicCreateUserV4NotFound  %+v", 404, o.ToString())
+}
+
+func (o *PublicCreateUserV4NotFound) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *PublicCreateUserV4NotFound) GetPayload() *iamclientmodels.RestErrorResponse {
@@ -182,7 +210,16 @@ type PublicCreateUserV4Conflict struct {
 }
 
 func (o *PublicCreateUserV4Conflict) Error() string {
-	return fmt.Sprintf("[POST /iam/v4/public/namespaces/{namespace}/users][%d] publicCreateUserV4Conflict  %+v", 409, o.Payload)
+	return fmt.Sprintf("[POST /iam/v4/public/namespaces/{namespace}/users][%d] publicCreateUserV4Conflict  %+v", 409, o.ToString())
+}
+
+func (o *PublicCreateUserV4Conflict) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *PublicCreateUserV4Conflict) GetPayload() *iamclientmodels.RestErrorResponse {
@@ -215,7 +252,16 @@ type PublicCreateUserV4InternalServerError struct {
 }
 
 func (o *PublicCreateUserV4InternalServerError) Error() string {
-	return fmt.Sprintf("[POST /iam/v4/public/namespaces/{namespace}/users][%d] publicCreateUserV4InternalServerError  %+v", 500, o.Payload)
+	return fmt.Sprintf("[POST /iam/v4/public/namespaces/{namespace}/users][%d] publicCreateUserV4InternalServerError  %+v", 500, o.ToString())
+}
+
+func (o *PublicCreateUserV4InternalServerError) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *PublicCreateUserV4InternalServerError) GetPayload() *iamclientmodels.RestErrorResponse {

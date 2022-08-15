@@ -10,6 +10,7 @@ package fulfillment
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -77,7 +78,16 @@ type PublicRedeemCodeOK struct {
 }
 
 func (o *PublicRedeemCodeOK) Error() string {
-	return fmt.Sprintf("[POST /platform/public/namespaces/{namespace}/users/{userId}/fulfillment/code][%d] publicRedeemCodeOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[POST /platform/public/namespaces/{namespace}/users/{userId}/fulfillment/code][%d] publicRedeemCodeOK  %+v", 200, o.ToString())
+}
+
+func (o *PublicRedeemCodeOK) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *PublicRedeemCodeOK) GetPayload() *platformclientmodels.FulfillmentResult {
@@ -110,7 +120,16 @@ type PublicRedeemCodeBadRequest struct {
 }
 
 func (o *PublicRedeemCodeBadRequest) Error() string {
-	return fmt.Sprintf("[POST /platform/public/namespaces/{namespace}/users/{userId}/fulfillment/code][%d] publicRedeemCodeBadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[POST /platform/public/namespaces/{namespace}/users/{userId}/fulfillment/code][%d] publicRedeemCodeBadRequest  %+v", 400, o.ToString())
+}
+
+func (o *PublicRedeemCodeBadRequest) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *PublicRedeemCodeBadRequest) GetPayload() *platformclientmodels.ErrorEntity {
@@ -143,7 +162,16 @@ type PublicRedeemCodeNotFound struct {
 }
 
 func (o *PublicRedeemCodeNotFound) Error() string {
-	return fmt.Sprintf("[POST /platform/public/namespaces/{namespace}/users/{userId}/fulfillment/code][%d] publicRedeemCodeNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[POST /platform/public/namespaces/{namespace}/users/{userId}/fulfillment/code][%d] publicRedeemCodeNotFound  %+v", 404, o.ToString())
+}
+
+func (o *PublicRedeemCodeNotFound) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *PublicRedeemCodeNotFound) GetPayload() *platformclientmodels.ErrorEntity {
@@ -176,7 +204,16 @@ type PublicRedeemCodeConflict struct {
 }
 
 func (o *PublicRedeemCodeConflict) Error() string {
-	return fmt.Sprintf("[POST /platform/public/namespaces/{namespace}/users/{userId}/fulfillment/code][%d] publicRedeemCodeConflict  %+v", 409, o.Payload)
+	return fmt.Sprintf("[POST /platform/public/namespaces/{namespace}/users/{userId}/fulfillment/code][%d] publicRedeemCodeConflict  %+v", 409, o.ToString())
+}
+
+func (o *PublicRedeemCodeConflict) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *PublicRedeemCodeConflict) GetPayload() *platformclientmodels.ErrorEntity {

@@ -10,6 +10,7 @@ package store
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -86,7 +87,16 @@ type ExportStoreNotFound struct {
 }
 
 func (o *ExportStoreNotFound) Error() string {
-	return fmt.Sprintf("[GET /platform/admin/namespaces/{namespace}/stores/{storeId}/export][%d] exportStoreNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[GET /platform/admin/namespaces/{namespace}/stores/{storeId}/export][%d] exportStoreNotFound  %+v", 404, o.ToString())
+}
+
+func (o *ExportStoreNotFound) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *ExportStoreNotFound) GetPayload() *platformclientmodels.ErrorEntity {

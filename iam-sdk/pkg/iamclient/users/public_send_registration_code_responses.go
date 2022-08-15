@@ -10,6 +10,7 @@ package users
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -92,7 +93,16 @@ type PublicSendRegistrationCodeBadRequest struct {
 }
 
 func (o *PublicSendRegistrationCodeBadRequest) Error() string {
-	return fmt.Sprintf("[POST /iam/v3/public/namespaces/{namespace}/users/code/request][%d] publicSendRegistrationCodeBadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[POST /iam/v3/public/namespaces/{namespace}/users/code/request][%d] publicSendRegistrationCodeBadRequest  %+v", 400, o.ToString())
+}
+
+func (o *PublicSendRegistrationCodeBadRequest) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *PublicSendRegistrationCodeBadRequest) GetPayload() *iamclientmodels.RestErrorResponse {
@@ -125,7 +135,16 @@ type PublicSendRegistrationCodeConflict struct {
 }
 
 func (o *PublicSendRegistrationCodeConflict) Error() string {
-	return fmt.Sprintf("[POST /iam/v3/public/namespaces/{namespace}/users/code/request][%d] publicSendRegistrationCodeConflict  %+v", 409, o.Payload)
+	return fmt.Sprintf("[POST /iam/v3/public/namespaces/{namespace}/users/code/request][%d] publicSendRegistrationCodeConflict  %+v", 409, o.ToString())
+}
+
+func (o *PublicSendRegistrationCodeConflict) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *PublicSendRegistrationCodeConflict) GetPayload() *iamclientmodels.RestErrorResponse {

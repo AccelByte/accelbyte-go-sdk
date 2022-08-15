@@ -10,6 +10,7 @@ package public
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -59,7 +60,16 @@ type ListProvidersByRegionOK struct {
 }
 
 func (o *ListProvidersByRegionOK) Error() string {
-	return fmt.Sprintf("[GET /dsmcontroller/public/providers/regions/{region}][%d] listProvidersByRegionOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /dsmcontroller/public/providers/regions/{region}][%d] listProvidersByRegionOK  %+v", 200, o.ToString())
+}
+
+func (o *ListProvidersByRegionOK) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *ListProvidersByRegionOK) GetPayload() *dsmcclientmodels.ModelsDefaultProvider {

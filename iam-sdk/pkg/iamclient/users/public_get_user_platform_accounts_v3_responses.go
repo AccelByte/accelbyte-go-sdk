@@ -10,6 +10,7 @@ package users
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -83,7 +84,16 @@ type PublicGetUserPlatformAccountsV3OK struct {
 }
 
 func (o *PublicGetUserPlatformAccountsV3OK) Error() string {
-	return fmt.Sprintf("[GET /iam/v3/public/namespaces/{namespace}/users/{userId}/platforms][%d] publicGetUserPlatformAccountsV3OK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /iam/v3/public/namespaces/{namespace}/users/{userId}/platforms][%d] publicGetUserPlatformAccountsV3OK  %+v", 200, o.ToString())
+}
+
+func (o *PublicGetUserPlatformAccountsV3OK) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *PublicGetUserPlatformAccountsV3OK) GetPayload() *iamclientmodels.AccountcommonUserLinkedPlatformsResponseV3 {
@@ -116,7 +126,16 @@ type PublicGetUserPlatformAccountsV3BadRequest struct {
 }
 
 func (o *PublicGetUserPlatformAccountsV3BadRequest) Error() string {
-	return fmt.Sprintf("[GET /iam/v3/public/namespaces/{namespace}/users/{userId}/platforms][%d] publicGetUserPlatformAccountsV3BadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[GET /iam/v3/public/namespaces/{namespace}/users/{userId}/platforms][%d] publicGetUserPlatformAccountsV3BadRequest  %+v", 400, o.ToString())
+}
+
+func (o *PublicGetUserPlatformAccountsV3BadRequest) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *PublicGetUserPlatformAccountsV3BadRequest) GetPayload() *iamclientmodels.RestErrorResponse {
@@ -149,7 +168,16 @@ type PublicGetUserPlatformAccountsV3Unauthorized struct {
 }
 
 func (o *PublicGetUserPlatformAccountsV3Unauthorized) Error() string {
-	return fmt.Sprintf("[GET /iam/v3/public/namespaces/{namespace}/users/{userId}/platforms][%d] publicGetUserPlatformAccountsV3Unauthorized  %+v", 401, o.Payload)
+	return fmt.Sprintf("[GET /iam/v3/public/namespaces/{namespace}/users/{userId}/platforms][%d] publicGetUserPlatformAccountsV3Unauthorized  %+v", 401, o.ToString())
+}
+
+func (o *PublicGetUserPlatformAccountsV3Unauthorized) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *PublicGetUserPlatformAccountsV3Unauthorized) GetPayload() *iamclientmodels.RestErrorResponse {
@@ -182,7 +210,16 @@ type PublicGetUserPlatformAccountsV3Forbidden struct {
 }
 
 func (o *PublicGetUserPlatformAccountsV3Forbidden) Error() string {
-	return fmt.Sprintf("[GET /iam/v3/public/namespaces/{namespace}/users/{userId}/platforms][%d] publicGetUserPlatformAccountsV3Forbidden  %+v", 403, o.Payload)
+	return fmt.Sprintf("[GET /iam/v3/public/namespaces/{namespace}/users/{userId}/platforms][%d] publicGetUserPlatformAccountsV3Forbidden  %+v", 403, o.ToString())
+}
+
+func (o *PublicGetUserPlatformAccountsV3Forbidden) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *PublicGetUserPlatformAccountsV3Forbidden) GetPayload() *iamclientmodels.RestErrorResponse {
@@ -215,7 +252,16 @@ type PublicGetUserPlatformAccountsV3NotFound struct {
 }
 
 func (o *PublicGetUserPlatformAccountsV3NotFound) Error() string {
-	return fmt.Sprintf("[GET /iam/v3/public/namespaces/{namespace}/users/{userId}/platforms][%d] publicGetUserPlatformAccountsV3NotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[GET /iam/v3/public/namespaces/{namespace}/users/{userId}/platforms][%d] publicGetUserPlatformAccountsV3NotFound  %+v", 404, o.ToString())
+}
+
+func (o *PublicGetUserPlatformAccountsV3NotFound) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *PublicGetUserPlatformAccountsV3NotFound) GetPayload() *iamclientmodels.RestErrorResponse {

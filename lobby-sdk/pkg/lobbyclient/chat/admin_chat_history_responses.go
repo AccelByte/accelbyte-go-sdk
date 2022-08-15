@@ -10,6 +10,7 @@ package chat
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -89,7 +90,16 @@ type AdminChatHistoryOK struct {
 }
 
 func (o *AdminChatHistoryOK) Error() string {
-	return fmt.Sprintf("[GET /lobby/v1/admin/chat/namespaces/{namespace}/users/{userId}/friends/{friendId}][%d] adminChatHistoryOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /lobby/v1/admin/chat/namespaces/{namespace}/users/{userId}/friends/{friendId}][%d] adminChatHistoryOK  %+v", 200, o.ToString())
+}
+
+func (o *AdminChatHistoryOK) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *AdminChatHistoryOK) GetPayload() []*lobbyclientmodels.ModelChatMessageResponse {
@@ -120,7 +130,16 @@ type AdminChatHistoryBadRequest struct {
 }
 
 func (o *AdminChatHistoryBadRequest) Error() string {
-	return fmt.Sprintf("[GET /lobby/v1/admin/chat/namespaces/{namespace}/users/{userId}/friends/{friendId}][%d] adminChatHistoryBadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[GET /lobby/v1/admin/chat/namespaces/{namespace}/users/{userId}/friends/{friendId}][%d] adminChatHistoryBadRequest  %+v", 400, o.ToString())
+}
+
+func (o *AdminChatHistoryBadRequest) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *AdminChatHistoryBadRequest) GetPayload() *lobbyclientmodels.RestapiErrorResponseBody {
@@ -153,7 +172,16 @@ type AdminChatHistoryUnauthorized struct {
 }
 
 func (o *AdminChatHistoryUnauthorized) Error() string {
-	return fmt.Sprintf("[GET /lobby/v1/admin/chat/namespaces/{namespace}/users/{userId}/friends/{friendId}][%d] adminChatHistoryUnauthorized  %+v", 401, o.Payload)
+	return fmt.Sprintf("[GET /lobby/v1/admin/chat/namespaces/{namespace}/users/{userId}/friends/{friendId}][%d] adminChatHistoryUnauthorized  %+v", 401, o.ToString())
+}
+
+func (o *AdminChatHistoryUnauthorized) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *AdminChatHistoryUnauthorized) GetPayload() *lobbyclientmodels.RestapiErrorResponseBody {
@@ -186,7 +214,16 @@ type AdminChatHistoryForbidden struct {
 }
 
 func (o *AdminChatHistoryForbidden) Error() string {
-	return fmt.Sprintf("[GET /lobby/v1/admin/chat/namespaces/{namespace}/users/{userId}/friends/{friendId}][%d] adminChatHistoryForbidden  %+v", 403, o.Payload)
+	return fmt.Sprintf("[GET /lobby/v1/admin/chat/namespaces/{namespace}/users/{userId}/friends/{friendId}][%d] adminChatHistoryForbidden  %+v", 403, o.ToString())
+}
+
+func (o *AdminChatHistoryForbidden) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *AdminChatHistoryForbidden) GetPayload() *lobbyclientmodels.RestapiErrorResponseBody {
@@ -219,7 +256,16 @@ type AdminChatHistoryNotFound struct {
 }
 
 func (o *AdminChatHistoryNotFound) Error() string {
-	return fmt.Sprintf("[GET /lobby/v1/admin/chat/namespaces/{namespace}/users/{userId}/friends/{friendId}][%d] adminChatHistoryNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[GET /lobby/v1/admin/chat/namespaces/{namespace}/users/{userId}/friends/{friendId}][%d] adminChatHistoryNotFound  %+v", 404, o.ToString())
+}
+
+func (o *AdminChatHistoryNotFound) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *AdminChatHistoryNotFound) GetPayload() *lobbyclientmodels.RestapiErrorResponseBody {
@@ -252,7 +298,16 @@ type AdminChatHistoryInternalServerError struct {
 }
 
 func (o *AdminChatHistoryInternalServerError) Error() string {
-	return fmt.Sprintf("[GET /lobby/v1/admin/chat/namespaces/{namespace}/users/{userId}/friends/{friendId}][%d] adminChatHistoryInternalServerError  %+v", 500, o.Payload)
+	return fmt.Sprintf("[GET /lobby/v1/admin/chat/namespaces/{namespace}/users/{userId}/friends/{friendId}][%d] adminChatHistoryInternalServerError  %+v", 500, o.ToString())
+}
+
+func (o *AdminChatHistoryInternalServerError) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *AdminChatHistoryInternalServerError) GetPayload() *lobbyclientmodels.RestapiErrorResponseBody {

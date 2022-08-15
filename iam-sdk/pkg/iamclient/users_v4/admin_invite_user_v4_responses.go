@@ -10,6 +10,7 @@ package users_v4
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -89,7 +90,16 @@ type AdminInviteUserV4Created struct {
 }
 
 func (o *AdminInviteUserV4Created) Error() string {
-	return fmt.Sprintf("[POST /iam/v4/admin/users/users/invite][%d] adminInviteUserV4Created  %+v", 201, o.Payload)
+	return fmt.Sprintf("[POST /iam/v4/admin/users/users/invite][%d] adminInviteUserV4Created  %+v", 201, o.ToString())
+}
+
+func (o *AdminInviteUserV4Created) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *AdminInviteUserV4Created) GetPayload() *iamclientmodels.ModelInviteUserResponseV3 {
@@ -122,7 +132,16 @@ type AdminInviteUserV4BadRequest struct {
 }
 
 func (o *AdminInviteUserV4BadRequest) Error() string {
-	return fmt.Sprintf("[POST /iam/v4/admin/users/users/invite][%d] adminInviteUserV4BadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[POST /iam/v4/admin/users/users/invite][%d] adminInviteUserV4BadRequest  %+v", 400, o.ToString())
+}
+
+func (o *AdminInviteUserV4BadRequest) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *AdminInviteUserV4BadRequest) GetPayload() *iamclientmodels.RestErrorResponse {
@@ -155,7 +174,16 @@ type AdminInviteUserV4NotFound struct {
 }
 
 func (o *AdminInviteUserV4NotFound) Error() string {
-	return fmt.Sprintf("[POST /iam/v4/admin/users/users/invite][%d] adminInviteUserV4NotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[POST /iam/v4/admin/users/users/invite][%d] adminInviteUserV4NotFound  %+v", 404, o.ToString())
+}
+
+func (o *AdminInviteUserV4NotFound) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *AdminInviteUserV4NotFound) GetPayload() *iamclientmodels.RestErrorResponse {
@@ -188,7 +216,16 @@ type AdminInviteUserV4Conflict struct {
 }
 
 func (o *AdminInviteUserV4Conflict) Error() string {
-	return fmt.Sprintf("[POST /iam/v4/admin/users/users/invite][%d] adminInviteUserV4Conflict  %+v", 409, o.Payload)
+	return fmt.Sprintf("[POST /iam/v4/admin/users/users/invite][%d] adminInviteUserV4Conflict  %+v", 409, o.ToString())
+}
+
+func (o *AdminInviteUserV4Conflict) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *AdminInviteUserV4Conflict) GetPayload() *iamclientmodels.RestErrorResponse {
@@ -221,7 +258,16 @@ type AdminInviteUserV4UnprocessableEntity struct {
 }
 
 func (o *AdminInviteUserV4UnprocessableEntity) Error() string {
-	return fmt.Sprintf("[POST /iam/v4/admin/users/users/invite][%d] adminInviteUserV4UnprocessableEntity  %+v", 422, o.Payload)
+	return fmt.Sprintf("[POST /iam/v4/admin/users/users/invite][%d] adminInviteUserV4UnprocessableEntity  %+v", 422, o.ToString())
+}
+
+func (o *AdminInviteUserV4UnprocessableEntity) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *AdminInviteUserV4UnprocessableEntity) GetPayload() *iamclientmodels.RestErrorResponse {
@@ -254,7 +300,16 @@ type AdminInviteUserV4InternalServerError struct {
 }
 
 func (o *AdminInviteUserV4InternalServerError) Error() string {
-	return fmt.Sprintf("[POST /iam/v4/admin/users/users/invite][%d] adminInviteUserV4InternalServerError  %+v", 500, o.Payload)
+	return fmt.Sprintf("[POST /iam/v4/admin/users/users/invite][%d] adminInviteUserV4InternalServerError  %+v", 500, o.ToString())
+}
+
+func (o *AdminInviteUserV4InternalServerError) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *AdminInviteUserV4InternalServerError) GetPayload() *iamclientmodels.RestErrorResponse {

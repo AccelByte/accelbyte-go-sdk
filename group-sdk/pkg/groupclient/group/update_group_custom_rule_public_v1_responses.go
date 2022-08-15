@@ -10,6 +10,7 @@ package group
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -89,7 +90,16 @@ type UpdateGroupCustomRulePublicV1OK struct {
 }
 
 func (o *UpdateGroupCustomRulePublicV1OK) Error() string {
-	return fmt.Sprintf("[PUT /group/v1/public/namespaces/{namespace}/groups/{groupId}/rules/custom][%d] updateGroupCustomRulePublicV1OK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[PUT /group/v1/public/namespaces/{namespace}/groups/{groupId}/rules/custom][%d] updateGroupCustomRulePublicV1OK  %+v", 200, o.ToString())
+}
+
+func (o *UpdateGroupCustomRulePublicV1OK) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *UpdateGroupCustomRulePublicV1OK) GetPayload() *groupclientmodels.ModelsGroupResponseV1 {
@@ -122,7 +132,16 @@ type UpdateGroupCustomRulePublicV1BadRequest struct {
 }
 
 func (o *UpdateGroupCustomRulePublicV1BadRequest) Error() string {
-	return fmt.Sprintf("[PUT /group/v1/public/namespaces/{namespace}/groups/{groupId}/rules/custom][%d] updateGroupCustomRulePublicV1BadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[PUT /group/v1/public/namespaces/{namespace}/groups/{groupId}/rules/custom][%d] updateGroupCustomRulePublicV1BadRequest  %+v", 400, o.ToString())
+}
+
+func (o *UpdateGroupCustomRulePublicV1BadRequest) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *UpdateGroupCustomRulePublicV1BadRequest) GetPayload() *groupclientmodels.ResponseErrorResponse {
@@ -155,7 +174,16 @@ type UpdateGroupCustomRulePublicV1Unauthorized struct {
 }
 
 func (o *UpdateGroupCustomRulePublicV1Unauthorized) Error() string {
-	return fmt.Sprintf("[PUT /group/v1/public/namespaces/{namespace}/groups/{groupId}/rules/custom][%d] updateGroupCustomRulePublicV1Unauthorized  %+v", 401, o.Payload)
+	return fmt.Sprintf("[PUT /group/v1/public/namespaces/{namespace}/groups/{groupId}/rules/custom][%d] updateGroupCustomRulePublicV1Unauthorized  %+v", 401, o.ToString())
+}
+
+func (o *UpdateGroupCustomRulePublicV1Unauthorized) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *UpdateGroupCustomRulePublicV1Unauthorized) GetPayload() *groupclientmodels.ResponseErrorResponse {
@@ -188,7 +216,16 @@ type UpdateGroupCustomRulePublicV1Forbidden struct {
 }
 
 func (o *UpdateGroupCustomRulePublicV1Forbidden) Error() string {
-	return fmt.Sprintf("[PUT /group/v1/public/namespaces/{namespace}/groups/{groupId}/rules/custom][%d] updateGroupCustomRulePublicV1Forbidden  %+v", 403, o.Payload)
+	return fmt.Sprintf("[PUT /group/v1/public/namespaces/{namespace}/groups/{groupId}/rules/custom][%d] updateGroupCustomRulePublicV1Forbidden  %+v", 403, o.ToString())
+}
+
+func (o *UpdateGroupCustomRulePublicV1Forbidden) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *UpdateGroupCustomRulePublicV1Forbidden) GetPayload() *groupclientmodels.ResponseErrorResponse {
@@ -221,7 +258,16 @@ type UpdateGroupCustomRulePublicV1NotFound struct {
 }
 
 func (o *UpdateGroupCustomRulePublicV1NotFound) Error() string {
-	return fmt.Sprintf("[PUT /group/v1/public/namespaces/{namespace}/groups/{groupId}/rules/custom][%d] updateGroupCustomRulePublicV1NotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[PUT /group/v1/public/namespaces/{namespace}/groups/{groupId}/rules/custom][%d] updateGroupCustomRulePublicV1NotFound  %+v", 404, o.ToString())
+}
+
+func (o *UpdateGroupCustomRulePublicV1NotFound) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *UpdateGroupCustomRulePublicV1NotFound) GetPayload() *groupclientmodels.ResponseErrorResponse {
@@ -254,7 +300,16 @@ type UpdateGroupCustomRulePublicV1InternalServerError struct {
 }
 
 func (o *UpdateGroupCustomRulePublicV1InternalServerError) Error() string {
-	return fmt.Sprintf("[PUT /group/v1/public/namespaces/{namespace}/groups/{groupId}/rules/custom][%d] updateGroupCustomRulePublicV1InternalServerError  %+v", 500, o.Payload)
+	return fmt.Sprintf("[PUT /group/v1/public/namespaces/{namespace}/groups/{groupId}/rules/custom][%d] updateGroupCustomRulePublicV1InternalServerError  %+v", 500, o.ToString())
+}
+
+func (o *UpdateGroupCustomRulePublicV1InternalServerError) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *UpdateGroupCustomRulePublicV1InternalServerError) GetPayload() *groupclientmodels.ResponseErrorResponse {

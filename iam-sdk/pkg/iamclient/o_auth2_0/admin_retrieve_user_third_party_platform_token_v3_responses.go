@@ -10,6 +10,7 @@ package o_auth2_0
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -77,7 +78,16 @@ type AdminRetrieveUserThirdPartyPlatformTokenV3OK struct {
 }
 
 func (o *AdminRetrieveUserThirdPartyPlatformTokenV3OK) Error() string {
-	return fmt.Sprintf("[GET /iam/v3/oauth/admin/namespaces/{namespace}/users/{userId}/platforms/{platformId}/platformToken][%d] adminRetrieveUserThirdPartyPlatformTokenV3OK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /iam/v3/oauth/admin/namespaces/{namespace}/users/{userId}/platforms/{platformId}/platformToken][%d] adminRetrieveUserThirdPartyPlatformTokenV3OK  %+v", 200, o.ToString())
+}
+
+func (o *AdminRetrieveUserThirdPartyPlatformTokenV3OK) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *AdminRetrieveUserThirdPartyPlatformTokenV3OK) GetPayload() *iamclientmodels.OauthmodelTokenThirdPartyResponse {
@@ -110,7 +120,16 @@ type AdminRetrieveUserThirdPartyPlatformTokenV3Unauthorized struct {
 }
 
 func (o *AdminRetrieveUserThirdPartyPlatformTokenV3Unauthorized) Error() string {
-	return fmt.Sprintf("[GET /iam/v3/oauth/admin/namespaces/{namespace}/users/{userId}/platforms/{platformId}/platformToken][%d] adminRetrieveUserThirdPartyPlatformTokenV3Unauthorized  %+v", 401, o.Payload)
+	return fmt.Sprintf("[GET /iam/v3/oauth/admin/namespaces/{namespace}/users/{userId}/platforms/{platformId}/platformToken][%d] adminRetrieveUserThirdPartyPlatformTokenV3Unauthorized  %+v", 401, o.ToString())
+}
+
+func (o *AdminRetrieveUserThirdPartyPlatformTokenV3Unauthorized) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *AdminRetrieveUserThirdPartyPlatformTokenV3Unauthorized) GetPayload() *iamclientmodels.OauthmodelErrorResponse {
@@ -143,7 +162,16 @@ type AdminRetrieveUserThirdPartyPlatformTokenV3Forbidden struct {
 }
 
 func (o *AdminRetrieveUserThirdPartyPlatformTokenV3Forbidden) Error() string {
-	return fmt.Sprintf("[GET /iam/v3/oauth/admin/namespaces/{namespace}/users/{userId}/platforms/{platformId}/platformToken][%d] adminRetrieveUserThirdPartyPlatformTokenV3Forbidden  %+v", 403, o.Payload)
+	return fmt.Sprintf("[GET /iam/v3/oauth/admin/namespaces/{namespace}/users/{userId}/platforms/{platformId}/platformToken][%d] adminRetrieveUserThirdPartyPlatformTokenV3Forbidden  %+v", 403, o.ToString())
+}
+
+func (o *AdminRetrieveUserThirdPartyPlatformTokenV3Forbidden) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *AdminRetrieveUserThirdPartyPlatformTokenV3Forbidden) GetPayload() *iamclientmodels.OauthmodelErrorResponse {
@@ -176,7 +204,16 @@ type AdminRetrieveUserThirdPartyPlatformTokenV3NotFound struct {
 }
 
 func (o *AdminRetrieveUserThirdPartyPlatformTokenV3NotFound) Error() string {
-	return fmt.Sprintf("[GET /iam/v3/oauth/admin/namespaces/{namespace}/users/{userId}/platforms/{platformId}/platformToken][%d] adminRetrieveUserThirdPartyPlatformTokenV3NotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[GET /iam/v3/oauth/admin/namespaces/{namespace}/users/{userId}/platforms/{platformId}/platformToken][%d] adminRetrieveUserThirdPartyPlatformTokenV3NotFound  %+v", 404, o.ToString())
+}
+
+func (o *AdminRetrieveUserThirdPartyPlatformTokenV3NotFound) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *AdminRetrieveUserThirdPartyPlatformTokenV3NotFound) GetPayload() *iamclientmodels.OauthmodelErrorResponse {

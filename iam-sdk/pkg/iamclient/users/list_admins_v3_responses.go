@@ -10,6 +10,7 @@ package users
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -77,7 +78,16 @@ type ListAdminsV3OK struct {
 }
 
 func (o *ListAdminsV3OK) Error() string {
-	return fmt.Sprintf("[GET /iam/v3/admin/namespaces/{namespace}/admins][%d] listAdminsV3OK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /iam/v3/admin/namespaces/{namespace}/admins][%d] listAdminsV3OK  %+v", 200, o.ToString())
+}
+
+func (o *ListAdminsV3OK) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *ListAdminsV3OK) GetPayload() *iamclientmodels.ModelGetUsersResponseWithPaginationV3 {
@@ -110,7 +120,16 @@ type ListAdminsV3Unauthorized struct {
 }
 
 func (o *ListAdminsV3Unauthorized) Error() string {
-	return fmt.Sprintf("[GET /iam/v3/admin/namespaces/{namespace}/admins][%d] listAdminsV3Unauthorized  %+v", 401, o.Payload)
+	return fmt.Sprintf("[GET /iam/v3/admin/namespaces/{namespace}/admins][%d] listAdminsV3Unauthorized  %+v", 401, o.ToString())
+}
+
+func (o *ListAdminsV3Unauthorized) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *ListAdminsV3Unauthorized) GetPayload() *iamclientmodels.RestErrorResponse {
@@ -143,7 +162,16 @@ type ListAdminsV3Forbidden struct {
 }
 
 func (o *ListAdminsV3Forbidden) Error() string {
-	return fmt.Sprintf("[GET /iam/v3/admin/namespaces/{namespace}/admins][%d] listAdminsV3Forbidden  %+v", 403, o.Payload)
+	return fmt.Sprintf("[GET /iam/v3/admin/namespaces/{namespace}/admins][%d] listAdminsV3Forbidden  %+v", 403, o.ToString())
+}
+
+func (o *ListAdminsV3Forbidden) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *ListAdminsV3Forbidden) GetPayload() *iamclientmodels.RestErrorResponse {
@@ -176,7 +204,16 @@ type ListAdminsV3InternalServerError struct {
 }
 
 func (o *ListAdminsV3InternalServerError) Error() string {
-	return fmt.Sprintf("[GET /iam/v3/admin/namespaces/{namespace}/admins][%d] listAdminsV3InternalServerError  %+v", 500, o.Payload)
+	return fmt.Sprintf("[GET /iam/v3/admin/namespaces/{namespace}/admins][%d] listAdminsV3InternalServerError  %+v", 500, o.ToString())
+}
+
+func (o *ListAdminsV3InternalServerError) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *ListAdminsV3InternalServerError) GetPayload() *iamclientmodels.RestErrorResponse {

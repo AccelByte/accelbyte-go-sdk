@@ -10,6 +10,7 @@ package users
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -83,7 +84,16 @@ type AdminSearchUserV3OK struct {
 }
 
 func (o *AdminSearchUserV3OK) Error() string {
-	return fmt.Sprintf("[GET /iam/v3/admin/namespaces/{namespace}/users/search][%d] adminSearchUserV3OK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /iam/v3/admin/namespaces/{namespace}/users/search][%d] adminSearchUserV3OK  %+v", 200, o.ToString())
+}
+
+func (o *AdminSearchUserV3OK) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *AdminSearchUserV3OK) GetPayload() *iamclientmodels.ModelSearchUsersResponseWithPaginationV3 {
@@ -116,7 +126,16 @@ type AdminSearchUserV3BadRequest struct {
 }
 
 func (o *AdminSearchUserV3BadRequest) Error() string {
-	return fmt.Sprintf("[GET /iam/v3/admin/namespaces/{namespace}/users/search][%d] adminSearchUserV3BadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[GET /iam/v3/admin/namespaces/{namespace}/users/search][%d] adminSearchUserV3BadRequest  %+v", 400, o.ToString())
+}
+
+func (o *AdminSearchUserV3BadRequest) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *AdminSearchUserV3BadRequest) GetPayload() *iamclientmodels.RestErrorResponse {
@@ -149,7 +168,16 @@ type AdminSearchUserV3Unauthorized struct {
 }
 
 func (o *AdminSearchUserV3Unauthorized) Error() string {
-	return fmt.Sprintf("[GET /iam/v3/admin/namespaces/{namespace}/users/search][%d] adminSearchUserV3Unauthorized  %+v", 401, o.Payload)
+	return fmt.Sprintf("[GET /iam/v3/admin/namespaces/{namespace}/users/search][%d] adminSearchUserV3Unauthorized  %+v", 401, o.ToString())
+}
+
+func (o *AdminSearchUserV3Unauthorized) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *AdminSearchUserV3Unauthorized) GetPayload() *iamclientmodels.RestErrorResponse {
@@ -182,7 +210,16 @@ type AdminSearchUserV3Forbidden struct {
 }
 
 func (o *AdminSearchUserV3Forbidden) Error() string {
-	return fmt.Sprintf("[GET /iam/v3/admin/namespaces/{namespace}/users/search][%d] adminSearchUserV3Forbidden  %+v", 403, o.Payload)
+	return fmt.Sprintf("[GET /iam/v3/admin/namespaces/{namespace}/users/search][%d] adminSearchUserV3Forbidden  %+v", 403, o.ToString())
+}
+
+func (o *AdminSearchUserV3Forbidden) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *AdminSearchUserV3Forbidden) GetPayload() *iamclientmodels.RestErrorResponse {

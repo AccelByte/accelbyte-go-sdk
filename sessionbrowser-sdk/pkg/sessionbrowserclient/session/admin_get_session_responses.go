@@ -10,6 +10,7 @@ package session
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -71,7 +72,16 @@ type AdminGetSessionOK struct {
 }
 
 func (o *AdminGetSessionOK) Error() string {
-	return fmt.Sprintf("[GET /sessionbrowser/admin/namespaces/{namespace}/gamesession/{sessionID}][%d] adminGetSessionOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /sessionbrowser/admin/namespaces/{namespace}/gamesession/{sessionID}][%d] adminGetSessionOK  %+v", 200, o.ToString())
+}
+
+func (o *AdminGetSessionOK) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *AdminGetSessionOK) GetPayload() *sessionbrowserclientmodels.ModelsAdminSessionResponse {
@@ -104,7 +114,16 @@ type AdminGetSessionNotFound struct {
 }
 
 func (o *AdminGetSessionNotFound) Error() string {
-	return fmt.Sprintf("[GET /sessionbrowser/admin/namespaces/{namespace}/gamesession/{sessionID}][%d] adminGetSessionNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[GET /sessionbrowser/admin/namespaces/{namespace}/gamesession/{sessionID}][%d] adminGetSessionNotFound  %+v", 404, o.ToString())
+}
+
+func (o *AdminGetSessionNotFound) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *AdminGetSessionNotFound) GetPayload() *sessionbrowserclientmodels.RestapiErrorResponseV2 {
@@ -137,7 +156,16 @@ type AdminGetSessionInternalServerError struct {
 }
 
 func (o *AdminGetSessionInternalServerError) Error() string {
-	return fmt.Sprintf("[GET /sessionbrowser/admin/namespaces/{namespace}/gamesession/{sessionID}][%d] adminGetSessionInternalServerError  %+v", 500, o.Payload)
+	return fmt.Sprintf("[GET /sessionbrowser/admin/namespaces/{namespace}/gamesession/{sessionID}][%d] adminGetSessionInternalServerError  %+v", 500, o.ToString())
+}
+
+func (o *AdminGetSessionInternalServerError) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *AdminGetSessionInternalServerError) GetPayload() *sessionbrowserclientmodels.RestapiErrorResponseV2 {

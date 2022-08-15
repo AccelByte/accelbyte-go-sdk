@@ -10,6 +10,7 @@ package users
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -89,7 +90,16 @@ type AdminGetListJusticePlatformAccountsOK struct {
 }
 
 func (o *AdminGetListJusticePlatformAccountsOK) Error() string {
-	return fmt.Sprintf("[GET /iam/v3/admin/namespaces/{namespace}/users/{userId}/platforms/justice][%d] adminGetListJusticePlatformAccountsOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /iam/v3/admin/namespaces/{namespace}/users/{userId}/platforms/justice][%d] adminGetListJusticePlatformAccountsOK  %+v", 200, o.ToString())
+}
+
+func (o *AdminGetListJusticePlatformAccountsOK) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *AdminGetListJusticePlatformAccountsOK) GetPayload() []*iamclientmodels.ModelGetUserMapping {
@@ -120,7 +130,16 @@ type AdminGetListJusticePlatformAccountsBadRequest struct {
 }
 
 func (o *AdminGetListJusticePlatformAccountsBadRequest) Error() string {
-	return fmt.Sprintf("[GET /iam/v3/admin/namespaces/{namespace}/users/{userId}/platforms/justice][%d] adminGetListJusticePlatformAccountsBadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[GET /iam/v3/admin/namespaces/{namespace}/users/{userId}/platforms/justice][%d] adminGetListJusticePlatformAccountsBadRequest  %+v", 400, o.ToString())
+}
+
+func (o *AdminGetListJusticePlatformAccountsBadRequest) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *AdminGetListJusticePlatformAccountsBadRequest) GetPayload() *iamclientmodels.RestErrorResponse {
@@ -153,7 +172,16 @@ type AdminGetListJusticePlatformAccountsUnauthorized struct {
 }
 
 func (o *AdminGetListJusticePlatformAccountsUnauthorized) Error() string {
-	return fmt.Sprintf("[GET /iam/v3/admin/namespaces/{namespace}/users/{userId}/platforms/justice][%d] adminGetListJusticePlatformAccountsUnauthorized  %+v", 401, o.Payload)
+	return fmt.Sprintf("[GET /iam/v3/admin/namespaces/{namespace}/users/{userId}/platforms/justice][%d] adminGetListJusticePlatformAccountsUnauthorized  %+v", 401, o.ToString())
+}
+
+func (o *AdminGetListJusticePlatformAccountsUnauthorized) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *AdminGetListJusticePlatformAccountsUnauthorized) GetPayload() *iamclientmodels.RestErrorResponse {
@@ -186,7 +214,16 @@ type AdminGetListJusticePlatformAccountsForbidden struct {
 }
 
 func (o *AdminGetListJusticePlatformAccountsForbidden) Error() string {
-	return fmt.Sprintf("[GET /iam/v3/admin/namespaces/{namespace}/users/{userId}/platforms/justice][%d] adminGetListJusticePlatformAccountsForbidden  %+v", 403, o.Payload)
+	return fmt.Sprintf("[GET /iam/v3/admin/namespaces/{namespace}/users/{userId}/platforms/justice][%d] adminGetListJusticePlatformAccountsForbidden  %+v", 403, o.ToString())
+}
+
+func (o *AdminGetListJusticePlatformAccountsForbidden) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *AdminGetListJusticePlatformAccountsForbidden) GetPayload() *iamclientmodels.RestErrorResponse {
@@ -219,7 +256,16 @@ type AdminGetListJusticePlatformAccountsNotFound struct {
 }
 
 func (o *AdminGetListJusticePlatformAccountsNotFound) Error() string {
-	return fmt.Sprintf("[GET /iam/v3/admin/namespaces/{namespace}/users/{userId}/platforms/justice][%d] adminGetListJusticePlatformAccountsNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[GET /iam/v3/admin/namespaces/{namespace}/users/{userId}/platforms/justice][%d] adminGetListJusticePlatformAccountsNotFound  %+v", 404, o.ToString())
+}
+
+func (o *AdminGetListJusticePlatformAccountsNotFound) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *AdminGetListJusticePlatformAccountsNotFound) GetPayload() *iamclientmodels.RestErrorResponse {
@@ -252,7 +298,16 @@ type AdminGetListJusticePlatformAccountsInternalServerError struct {
 }
 
 func (o *AdminGetListJusticePlatformAccountsInternalServerError) Error() string {
-	return fmt.Sprintf("[GET /iam/v3/admin/namespaces/{namespace}/users/{userId}/platforms/justice][%d] adminGetListJusticePlatformAccountsInternalServerError  %+v", 500, o.Payload)
+	return fmt.Sprintf("[GET /iam/v3/admin/namespaces/{namespace}/users/{userId}/platforms/justice][%d] adminGetListJusticePlatformAccountsInternalServerError  %+v", 500, o.ToString())
+}
+
+func (o *AdminGetListJusticePlatformAccountsInternalServerError) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *AdminGetListJusticePlatformAccountsInternalServerError) GetPayload() *iamclientmodels.RestErrorResponse {

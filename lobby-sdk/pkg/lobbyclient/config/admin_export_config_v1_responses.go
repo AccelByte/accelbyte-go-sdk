@@ -10,6 +10,7 @@ package config
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -77,7 +78,16 @@ type AdminExportConfigV1OK struct {
 }
 
 func (o *AdminExportConfigV1OK) Error() string {
-	return fmt.Sprintf("[GET /lobby/v1/admin/config/namespaces/{namespace}/export][%d] adminExportConfigV1OK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /lobby/v1/admin/config/namespaces/{namespace}/export][%d] adminExportConfigV1OK  %+v", 200, o.ToString())
+}
+
+func (o *AdminExportConfigV1OK) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *AdminExportConfigV1OK) GetPayload() *lobbyclientmodels.ModelsConfigExport {
@@ -110,7 +120,16 @@ type AdminExportConfigV1Unauthorized struct {
 }
 
 func (o *AdminExportConfigV1Unauthorized) Error() string {
-	return fmt.Sprintf("[GET /lobby/v1/admin/config/namespaces/{namespace}/export][%d] adminExportConfigV1Unauthorized  %+v", 401, o.Payload)
+	return fmt.Sprintf("[GET /lobby/v1/admin/config/namespaces/{namespace}/export][%d] adminExportConfigV1Unauthorized  %+v", 401, o.ToString())
+}
+
+func (o *AdminExportConfigV1Unauthorized) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *AdminExportConfigV1Unauthorized) GetPayload() *lobbyclientmodels.ResponseError {
@@ -143,7 +162,16 @@ type AdminExportConfigV1Forbidden struct {
 }
 
 func (o *AdminExportConfigV1Forbidden) Error() string {
-	return fmt.Sprintf("[GET /lobby/v1/admin/config/namespaces/{namespace}/export][%d] adminExportConfigV1Forbidden  %+v", 403, o.Payload)
+	return fmt.Sprintf("[GET /lobby/v1/admin/config/namespaces/{namespace}/export][%d] adminExportConfigV1Forbidden  %+v", 403, o.ToString())
+}
+
+func (o *AdminExportConfigV1Forbidden) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *AdminExportConfigV1Forbidden) GetPayload() *lobbyclientmodels.ResponseError {
@@ -176,7 +204,16 @@ type AdminExportConfigV1InternalServerError struct {
 }
 
 func (o *AdminExportConfigV1InternalServerError) Error() string {
-	return fmt.Sprintf("[GET /lobby/v1/admin/config/namespaces/{namespace}/export][%d] adminExportConfigV1InternalServerError  %+v", 500, o.Payload)
+	return fmt.Sprintf("[GET /lobby/v1/admin/config/namespaces/{namespace}/export][%d] adminExportConfigV1InternalServerError  %+v", 500, o.ToString())
+}
+
+func (o *AdminExportConfigV1InternalServerError) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *AdminExportConfigV1InternalServerError) GetPayload() *lobbyclientmodels.ResponseError {

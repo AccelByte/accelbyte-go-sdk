@@ -10,6 +10,7 @@ package wallet
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -92,7 +93,16 @@ type EnableUserWalletNotFound struct {
 }
 
 func (o *EnableUserWalletNotFound) Error() string {
-	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/users/{userId}/wallets/{walletId}/enable][%d] enableUserWalletNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/users/{userId}/wallets/{walletId}/enable][%d] enableUserWalletNotFound  %+v", 404, o.ToString())
+}
+
+func (o *EnableUserWalletNotFound) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *EnableUserWalletNotFound) GetPayload() *platformclientmodels.ErrorEntity {
@@ -125,7 +135,16 @@ type EnableUserWalletConflict struct {
 }
 
 func (o *EnableUserWalletConflict) Error() string {
-	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/users/{userId}/wallets/{walletId}/enable][%d] enableUserWalletConflict  %+v", 409, o.Payload)
+	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/users/{userId}/wallets/{walletId}/enable][%d] enableUserWalletConflict  %+v", 409, o.ToString())
+}
+
+func (o *EnableUserWalletConflict) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *EnableUserWalletConflict) GetPayload() *platformclientmodels.ErrorEntity {

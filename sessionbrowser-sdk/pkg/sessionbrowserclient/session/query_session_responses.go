@@ -10,6 +10,7 @@ package session
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -71,7 +72,16 @@ type QuerySessionOK struct {
 }
 
 func (o *QuerySessionOK) Error() string {
-	return fmt.Sprintf("[GET /sessionbrowser/namespaces/{namespace}/gamesession][%d] querySessionOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /sessionbrowser/namespaces/{namespace}/gamesession][%d] querySessionOK  %+v", 200, o.ToString())
+}
+
+func (o *QuerySessionOK) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *QuerySessionOK) GetPayload() *sessionbrowserclientmodels.ModelsSessionQueryResponse {
@@ -104,7 +114,16 @@ type QuerySessionBadRequest struct {
 }
 
 func (o *QuerySessionBadRequest) Error() string {
-	return fmt.Sprintf("[GET /sessionbrowser/namespaces/{namespace}/gamesession][%d] querySessionBadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[GET /sessionbrowser/namespaces/{namespace}/gamesession][%d] querySessionBadRequest  %+v", 400, o.ToString())
+}
+
+func (o *QuerySessionBadRequest) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *QuerySessionBadRequest) GetPayload() *sessionbrowserclientmodels.ResponseError {
@@ -137,7 +156,16 @@ type QuerySessionInternalServerError struct {
 }
 
 func (o *QuerySessionInternalServerError) Error() string {
-	return fmt.Sprintf("[GET /sessionbrowser/namespaces/{namespace}/gamesession][%d] querySessionInternalServerError  %+v", 500, o.Payload)
+	return fmt.Sprintf("[GET /sessionbrowser/namespaces/{namespace}/gamesession][%d] querySessionInternalServerError  %+v", 500, o.ToString())
+}
+
+func (o *QuerySessionInternalServerError) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *QuerySessionInternalServerError) GetPayload() *sessionbrowserclientmodels.ResponseError {

@@ -10,6 +10,7 @@ package bans
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -71,7 +72,16 @@ type AdminGetBansTypeV3OK struct {
 }
 
 func (o *AdminGetBansTypeV3OK) Error() string {
-	return fmt.Sprintf("[GET /iam/v3/admin/bans][%d] adminGetBansTypeV3OK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /iam/v3/admin/bans][%d] adminGetBansTypeV3OK  %+v", 200, o.ToString())
+}
+
+func (o *AdminGetBansTypeV3OK) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *AdminGetBansTypeV3OK) GetPayload() *iamclientmodels.AccountcommonBansV3 {
@@ -104,7 +114,16 @@ type AdminGetBansTypeV3Unauthorized struct {
 }
 
 func (o *AdminGetBansTypeV3Unauthorized) Error() string {
-	return fmt.Sprintf("[GET /iam/v3/admin/bans][%d] adminGetBansTypeV3Unauthorized  %+v", 401, o.Payload)
+	return fmt.Sprintf("[GET /iam/v3/admin/bans][%d] adminGetBansTypeV3Unauthorized  %+v", 401, o.ToString())
+}
+
+func (o *AdminGetBansTypeV3Unauthorized) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *AdminGetBansTypeV3Unauthorized) GetPayload() *iamclientmodels.RestapiErrorResponse {
@@ -137,7 +156,16 @@ type AdminGetBansTypeV3Forbidden struct {
 }
 
 func (o *AdminGetBansTypeV3Forbidden) Error() string {
-	return fmt.Sprintf("[GET /iam/v3/admin/bans][%d] adminGetBansTypeV3Forbidden  %+v", 403, o.Payload)
+	return fmt.Sprintf("[GET /iam/v3/admin/bans][%d] adminGetBansTypeV3Forbidden  %+v", 403, o.ToString())
+}
+
+func (o *AdminGetBansTypeV3Forbidden) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *AdminGetBansTypeV3Forbidden) GetPayload() *iamclientmodels.RestapiErrorResponse {

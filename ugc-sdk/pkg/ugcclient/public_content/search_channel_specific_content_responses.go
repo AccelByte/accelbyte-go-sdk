@@ -10,6 +10,7 @@ package public_content
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -77,7 +78,16 @@ type SearchChannelSpecificContentOK struct {
 }
 
 func (o *SearchChannelSpecificContentOK) Error() string {
-	return fmt.Sprintf("[GET /ugc/v1/public/namespaces/{namespace}/channels/{channelId}/contents][%d] searchChannelSpecificContentOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /ugc/v1/public/namespaces/{namespace}/channels/{channelId}/contents][%d] searchChannelSpecificContentOK  %+v", 200, o.ToString())
+}
+
+func (o *SearchChannelSpecificContentOK) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *SearchChannelSpecificContentOK) GetPayload() *ugcclientmodels.ModelsPaginatedContentDownloadResponse {
@@ -110,7 +120,16 @@ type SearchChannelSpecificContentUnauthorized struct {
 }
 
 func (o *SearchChannelSpecificContentUnauthorized) Error() string {
-	return fmt.Sprintf("[GET /ugc/v1/public/namespaces/{namespace}/channels/{channelId}/contents][%d] searchChannelSpecificContentUnauthorized  %+v", 401, o.Payload)
+	return fmt.Sprintf("[GET /ugc/v1/public/namespaces/{namespace}/channels/{channelId}/contents][%d] searchChannelSpecificContentUnauthorized  %+v", 401, o.ToString())
+}
+
+func (o *SearchChannelSpecificContentUnauthorized) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *SearchChannelSpecificContentUnauthorized) GetPayload() *ugcclientmodels.ResponseError {
@@ -143,7 +162,16 @@ type SearchChannelSpecificContentNotFound struct {
 }
 
 func (o *SearchChannelSpecificContentNotFound) Error() string {
-	return fmt.Sprintf("[GET /ugc/v1/public/namespaces/{namespace}/channels/{channelId}/contents][%d] searchChannelSpecificContentNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[GET /ugc/v1/public/namespaces/{namespace}/channels/{channelId}/contents][%d] searchChannelSpecificContentNotFound  %+v", 404, o.ToString())
+}
+
+func (o *SearchChannelSpecificContentNotFound) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *SearchChannelSpecificContentNotFound) GetPayload() *ugcclientmodels.ResponseError {
@@ -176,7 +204,16 @@ type SearchChannelSpecificContentInternalServerError struct {
 }
 
 func (o *SearchChannelSpecificContentInternalServerError) Error() string {
-	return fmt.Sprintf("[GET /ugc/v1/public/namespaces/{namespace}/channels/{channelId}/contents][%d] searchChannelSpecificContentInternalServerError  %+v", 500, o.Payload)
+	return fmt.Sprintf("[GET /ugc/v1/public/namespaces/{namespace}/channels/{channelId}/contents][%d] searchChannelSpecificContentInternalServerError  %+v", 500, o.ToString())
+}
+
+func (o *SearchChannelSpecificContentInternalServerError) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *SearchChannelSpecificContentInternalServerError) GetPayload() *ugcclientmodels.ResponseError {

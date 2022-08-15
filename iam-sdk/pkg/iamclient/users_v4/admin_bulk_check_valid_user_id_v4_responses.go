@@ -10,6 +10,7 @@ package users_v4
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -83,7 +84,16 @@ type AdminBulkCheckValidUserIDV4OK struct {
 }
 
 func (o *AdminBulkCheckValidUserIDV4OK) Error() string {
-	return fmt.Sprintf("[POST /iam/v4/admin/namespaces/{namespace}/users/bulk/validate][%d] adminBulkCheckValidUserIdV4OK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[POST /iam/v4/admin/namespaces/{namespace}/users/bulk/validate][%d] adminBulkCheckValidUserIdV4OK  %+v", 200, o.ToString())
+}
+
+func (o *AdminBulkCheckValidUserIDV4OK) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *AdminBulkCheckValidUserIDV4OK) GetPayload() *iamclientmodels.ModelListValidUserIDResponseV4 {
@@ -116,7 +126,16 @@ type AdminBulkCheckValidUserIDV4BadRequest struct {
 }
 
 func (o *AdminBulkCheckValidUserIDV4BadRequest) Error() string {
-	return fmt.Sprintf("[POST /iam/v4/admin/namespaces/{namespace}/users/bulk/validate][%d] adminBulkCheckValidUserIdV4BadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[POST /iam/v4/admin/namespaces/{namespace}/users/bulk/validate][%d] adminBulkCheckValidUserIdV4BadRequest  %+v", 400, o.ToString())
+}
+
+func (o *AdminBulkCheckValidUserIDV4BadRequest) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *AdminBulkCheckValidUserIDV4BadRequest) GetPayload() *iamclientmodels.RestErrorResponse {
@@ -149,7 +168,16 @@ type AdminBulkCheckValidUserIDV4Unauthorized struct {
 }
 
 func (o *AdminBulkCheckValidUserIDV4Unauthorized) Error() string {
-	return fmt.Sprintf("[POST /iam/v4/admin/namespaces/{namespace}/users/bulk/validate][%d] adminBulkCheckValidUserIdV4Unauthorized  %+v", 401, o.Payload)
+	return fmt.Sprintf("[POST /iam/v4/admin/namespaces/{namespace}/users/bulk/validate][%d] adminBulkCheckValidUserIdV4Unauthorized  %+v", 401, o.ToString())
+}
+
+func (o *AdminBulkCheckValidUserIDV4Unauthorized) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *AdminBulkCheckValidUserIDV4Unauthorized) GetPayload() *iamclientmodels.RestErrorResponse {
@@ -182,7 +210,16 @@ type AdminBulkCheckValidUserIDV4Forbidden struct {
 }
 
 func (o *AdminBulkCheckValidUserIDV4Forbidden) Error() string {
-	return fmt.Sprintf("[POST /iam/v4/admin/namespaces/{namespace}/users/bulk/validate][%d] adminBulkCheckValidUserIdV4Forbidden  %+v", 403, o.Payload)
+	return fmt.Sprintf("[POST /iam/v4/admin/namespaces/{namespace}/users/bulk/validate][%d] adminBulkCheckValidUserIdV4Forbidden  %+v", 403, o.ToString())
+}
+
+func (o *AdminBulkCheckValidUserIDV4Forbidden) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *AdminBulkCheckValidUserIDV4Forbidden) GetPayload() *iamclientmodels.RestErrorResponse {
@@ -215,7 +252,16 @@ type AdminBulkCheckValidUserIDV4InternalServerError struct {
 }
 
 func (o *AdminBulkCheckValidUserIDV4InternalServerError) Error() string {
-	return fmt.Sprintf("[POST /iam/v4/admin/namespaces/{namespace}/users/bulk/validate][%d] adminBulkCheckValidUserIdV4InternalServerError  %+v", 500, o.Payload)
+	return fmt.Sprintf("[POST /iam/v4/admin/namespaces/{namespace}/users/bulk/validate][%d] adminBulkCheckValidUserIdV4InternalServerError  %+v", 500, o.ToString())
+}
+
+func (o *AdminBulkCheckValidUserIDV4InternalServerError) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *AdminBulkCheckValidUserIDV4InternalServerError) GetPayload() *iamclientmodels.RestErrorResponse {

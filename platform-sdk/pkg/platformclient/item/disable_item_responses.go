@@ -10,6 +10,7 @@ package item
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -71,7 +72,16 @@ type DisableItemOK struct {
 }
 
 func (o *DisableItemOK) Error() string {
-	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/items/{itemId}/disable][%d] disableItemOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/items/{itemId}/disable][%d] disableItemOK  %+v", 200, o.ToString())
+}
+
+func (o *DisableItemOK) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *DisableItemOK) GetPayload() *platformclientmodels.FullItemInfo {
@@ -104,7 +114,16 @@ type DisableItemNotFound struct {
 }
 
 func (o *DisableItemNotFound) Error() string {
-	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/items/{itemId}/disable][%d] disableItemNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/items/{itemId}/disable][%d] disableItemNotFound  %+v", 404, o.ToString())
+}
+
+func (o *DisableItemNotFound) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *DisableItemNotFound) GetPayload() *platformclientmodels.ErrorEntity {
@@ -137,7 +156,16 @@ type DisableItemConflict struct {
 }
 
 func (o *DisableItemConflict) Error() string {
-	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/items/{itemId}/disable][%d] disableItemConflict  %+v", 409, o.Payload)
+	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/items/{itemId}/disable][%d] disableItemConflict  %+v", 409, o.ToString())
+}
+
+func (o *DisableItemConflict) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *DisableItemConflict) GetPayload() *platformclientmodels.ErrorEntity {

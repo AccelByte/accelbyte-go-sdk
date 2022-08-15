@@ -10,6 +10,7 @@ package key_group
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -71,7 +72,16 @@ type CreateKeyGroupCreated struct {
 }
 
 func (o *CreateKeyGroupCreated) Error() string {
-	return fmt.Sprintf("[POST /platform/admin/namespaces/{namespace}/keygroups][%d] createKeyGroupCreated  %+v", 201, o.Payload)
+	return fmt.Sprintf("[POST /platform/admin/namespaces/{namespace}/keygroups][%d] createKeyGroupCreated  %+v", 201, o.ToString())
+}
+
+func (o *CreateKeyGroupCreated) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *CreateKeyGroupCreated) GetPayload() *platformclientmodels.KeyGroupInfo {
@@ -104,7 +114,16 @@ type CreateKeyGroupConflict struct {
 }
 
 func (o *CreateKeyGroupConflict) Error() string {
-	return fmt.Sprintf("[POST /platform/admin/namespaces/{namespace}/keygroups][%d] createKeyGroupConflict  %+v", 409, o.Payload)
+	return fmt.Sprintf("[POST /platform/admin/namespaces/{namespace}/keygroups][%d] createKeyGroupConflict  %+v", 409, o.ToString())
+}
+
+func (o *CreateKeyGroupConflict) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *CreateKeyGroupConflict) GetPayload() *platformclientmodels.ErrorEntity {
@@ -137,7 +156,16 @@ type CreateKeyGroupUnprocessableEntity struct {
 }
 
 func (o *CreateKeyGroupUnprocessableEntity) Error() string {
-	return fmt.Sprintf("[POST /platform/admin/namespaces/{namespace}/keygroups][%d] createKeyGroupUnprocessableEntity  %+v", 422, o.Payload)
+	return fmt.Sprintf("[POST /platform/admin/namespaces/{namespace}/keygroups][%d] createKeyGroupUnprocessableEntity  %+v", 422, o.ToString())
+}
+
+func (o *CreateKeyGroupUnprocessableEntity) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *CreateKeyGroupUnprocessableEntity) GetPayload() *platformclientmodels.ValidationErrorEntity {

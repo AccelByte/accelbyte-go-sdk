@@ -10,6 +10,7 @@ package player
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -89,7 +90,16 @@ type PublicGetPlayerBlockedByPlayersV1OK struct {
 }
 
 func (o *PublicGetPlayerBlockedByPlayersV1OK) Error() string {
-	return fmt.Sprintf("[GET /lobby/v1/public/player/namespaces/{namespace}/users/me/blocked-by][%d] publicGetPlayerBlockedByPlayersV1OK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /lobby/v1/public/player/namespaces/{namespace}/users/me/blocked-by][%d] publicGetPlayerBlockedByPlayersV1OK  %+v", 200, o.ToString())
+}
+
+func (o *PublicGetPlayerBlockedByPlayersV1OK) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *PublicGetPlayerBlockedByPlayersV1OK) GetPayload() *lobbyclientmodels.ModelsGetAllPlayerBlockedByUsersResponse {
@@ -122,7 +132,16 @@ type PublicGetPlayerBlockedByPlayersV1BadRequest struct {
 }
 
 func (o *PublicGetPlayerBlockedByPlayersV1BadRequest) Error() string {
-	return fmt.Sprintf("[GET /lobby/v1/public/player/namespaces/{namespace}/users/me/blocked-by][%d] publicGetPlayerBlockedByPlayersV1BadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[GET /lobby/v1/public/player/namespaces/{namespace}/users/me/blocked-by][%d] publicGetPlayerBlockedByPlayersV1BadRequest  %+v", 400, o.ToString())
+}
+
+func (o *PublicGetPlayerBlockedByPlayersV1BadRequest) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *PublicGetPlayerBlockedByPlayersV1BadRequest) GetPayload() *lobbyclientmodels.RestapiErrorResponseBody {
@@ -155,7 +174,16 @@ type PublicGetPlayerBlockedByPlayersV1Unauthorized struct {
 }
 
 func (o *PublicGetPlayerBlockedByPlayersV1Unauthorized) Error() string {
-	return fmt.Sprintf("[GET /lobby/v1/public/player/namespaces/{namespace}/users/me/blocked-by][%d] publicGetPlayerBlockedByPlayersV1Unauthorized  %+v", 401, o.Payload)
+	return fmt.Sprintf("[GET /lobby/v1/public/player/namespaces/{namespace}/users/me/blocked-by][%d] publicGetPlayerBlockedByPlayersV1Unauthorized  %+v", 401, o.ToString())
+}
+
+func (o *PublicGetPlayerBlockedByPlayersV1Unauthorized) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *PublicGetPlayerBlockedByPlayersV1Unauthorized) GetPayload() *lobbyclientmodels.RestapiErrorResponseBody {
@@ -188,7 +216,16 @@ type PublicGetPlayerBlockedByPlayersV1Forbidden struct {
 }
 
 func (o *PublicGetPlayerBlockedByPlayersV1Forbidden) Error() string {
-	return fmt.Sprintf("[GET /lobby/v1/public/player/namespaces/{namespace}/users/me/blocked-by][%d] publicGetPlayerBlockedByPlayersV1Forbidden  %+v", 403, o.Payload)
+	return fmt.Sprintf("[GET /lobby/v1/public/player/namespaces/{namespace}/users/me/blocked-by][%d] publicGetPlayerBlockedByPlayersV1Forbidden  %+v", 403, o.ToString())
+}
+
+func (o *PublicGetPlayerBlockedByPlayersV1Forbidden) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *PublicGetPlayerBlockedByPlayersV1Forbidden) GetPayload() *lobbyclientmodels.RestapiErrorResponseBody {
@@ -221,7 +258,16 @@ type PublicGetPlayerBlockedByPlayersV1NotFound struct {
 }
 
 func (o *PublicGetPlayerBlockedByPlayersV1NotFound) Error() string {
-	return fmt.Sprintf("[GET /lobby/v1/public/player/namespaces/{namespace}/users/me/blocked-by][%d] publicGetPlayerBlockedByPlayersV1NotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[GET /lobby/v1/public/player/namespaces/{namespace}/users/me/blocked-by][%d] publicGetPlayerBlockedByPlayersV1NotFound  %+v", 404, o.ToString())
+}
+
+func (o *PublicGetPlayerBlockedByPlayersV1NotFound) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *PublicGetPlayerBlockedByPlayersV1NotFound) GetPayload() *lobbyclientmodels.RestapiErrorResponseBody {
@@ -254,7 +300,16 @@ type PublicGetPlayerBlockedByPlayersV1InternalServerError struct {
 }
 
 func (o *PublicGetPlayerBlockedByPlayersV1InternalServerError) Error() string {
-	return fmt.Sprintf("[GET /lobby/v1/public/player/namespaces/{namespace}/users/me/blocked-by][%d] publicGetPlayerBlockedByPlayersV1InternalServerError  %+v", 500, o.Payload)
+	return fmt.Sprintf("[GET /lobby/v1/public/player/namespaces/{namespace}/users/me/blocked-by][%d] publicGetPlayerBlockedByPlayersV1InternalServerError  %+v", 500, o.ToString())
+}
+
+func (o *PublicGetPlayerBlockedByPlayersV1InternalServerError) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *PublicGetPlayerBlockedByPlayersV1InternalServerError) GetPayload() *lobbyclientmodels.RestapiErrorResponseBody {

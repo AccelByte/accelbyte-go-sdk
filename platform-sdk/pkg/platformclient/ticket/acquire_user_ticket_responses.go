@@ -10,6 +10,7 @@ package ticket
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -77,7 +78,16 @@ type AcquireUserTicketOK struct {
 }
 
 func (o *AcquireUserTicketOK) Error() string {
-	return fmt.Sprintf("[POST /platform/admin/namespaces/{namespace}/users/{userId}/tickets/{boothName}][%d] acquireUserTicketOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[POST /platform/admin/namespaces/{namespace}/users/{userId}/tickets/{boothName}][%d] acquireUserTicketOK  %+v", 200, o.ToString())
+}
+
+func (o *AcquireUserTicketOK) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *AcquireUserTicketOK) GetPayload() *platformclientmodels.TicketAcquireResult {
@@ -110,7 +120,16 @@ type AcquireUserTicketNotFound struct {
 }
 
 func (o *AcquireUserTicketNotFound) Error() string {
-	return fmt.Sprintf("[POST /platform/admin/namespaces/{namespace}/users/{userId}/tickets/{boothName}][%d] acquireUserTicketNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[POST /platform/admin/namespaces/{namespace}/users/{userId}/tickets/{boothName}][%d] acquireUserTicketNotFound  %+v", 404, o.ToString())
+}
+
+func (o *AcquireUserTicketNotFound) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *AcquireUserTicketNotFound) GetPayload() *platformclientmodels.ErrorEntity {
@@ -143,7 +162,16 @@ type AcquireUserTicketConflict struct {
 }
 
 func (o *AcquireUserTicketConflict) Error() string {
-	return fmt.Sprintf("[POST /platform/admin/namespaces/{namespace}/users/{userId}/tickets/{boothName}][%d] acquireUserTicketConflict  %+v", 409, o.Payload)
+	return fmt.Sprintf("[POST /platform/admin/namespaces/{namespace}/users/{userId}/tickets/{boothName}][%d] acquireUserTicketConflict  %+v", 409, o.ToString())
+}
+
+func (o *AcquireUserTicketConflict) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *AcquireUserTicketConflict) GetPayload() *platformclientmodels.ErrorEntity {
@@ -176,7 +204,16 @@ type AcquireUserTicketUnprocessableEntity struct {
 }
 
 func (o *AcquireUserTicketUnprocessableEntity) Error() string {
-	return fmt.Sprintf("[POST /platform/admin/namespaces/{namespace}/users/{userId}/tickets/{boothName}][%d] acquireUserTicketUnprocessableEntity  %+v", 422, o.Payload)
+	return fmt.Sprintf("[POST /platform/admin/namespaces/{namespace}/users/{userId}/tickets/{boothName}][%d] acquireUserTicketUnprocessableEntity  %+v", 422, o.ToString())
+}
+
+func (o *AcquireUserTicketUnprocessableEntity) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *AcquireUserTicketUnprocessableEntity) GetPayload() *platformclientmodels.ValidationErrorEntity {

@@ -10,6 +10,7 @@ package config
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -77,7 +78,16 @@ type AdminImportConfigV1OK struct {
 }
 
 func (o *AdminImportConfigV1OK) Error() string {
-	return fmt.Sprintf("[POST /lobby/v1/admin/config/namespaces/{namespace}/import][%d] adminImportConfigV1OK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[POST /lobby/v1/admin/config/namespaces/{namespace}/import][%d] adminImportConfigV1OK  %+v", 200, o.ToString())
+}
+
+func (o *AdminImportConfigV1OK) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *AdminImportConfigV1OK) GetPayload() *lobbyclientmodels.ModelsImportConfigResponse {
@@ -110,7 +120,16 @@ type AdminImportConfigV1Unauthorized struct {
 }
 
 func (o *AdminImportConfigV1Unauthorized) Error() string {
-	return fmt.Sprintf("[POST /lobby/v1/admin/config/namespaces/{namespace}/import][%d] adminImportConfigV1Unauthorized  %+v", 401, o.Payload)
+	return fmt.Sprintf("[POST /lobby/v1/admin/config/namespaces/{namespace}/import][%d] adminImportConfigV1Unauthorized  %+v", 401, o.ToString())
+}
+
+func (o *AdminImportConfigV1Unauthorized) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *AdminImportConfigV1Unauthorized) GetPayload() *lobbyclientmodels.ResponseError {
@@ -143,7 +162,16 @@ type AdminImportConfigV1Forbidden struct {
 }
 
 func (o *AdminImportConfigV1Forbidden) Error() string {
-	return fmt.Sprintf("[POST /lobby/v1/admin/config/namespaces/{namespace}/import][%d] adminImportConfigV1Forbidden  %+v", 403, o.Payload)
+	return fmt.Sprintf("[POST /lobby/v1/admin/config/namespaces/{namespace}/import][%d] adminImportConfigV1Forbidden  %+v", 403, o.ToString())
+}
+
+func (o *AdminImportConfigV1Forbidden) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *AdminImportConfigV1Forbidden) GetPayload() *lobbyclientmodels.ResponseError {
@@ -176,7 +204,16 @@ type AdminImportConfigV1InternalServerError struct {
 }
 
 func (o *AdminImportConfigV1InternalServerError) Error() string {
-	return fmt.Sprintf("[POST /lobby/v1/admin/config/namespaces/{namespace}/import][%d] adminImportConfigV1InternalServerError  %+v", 500, o.Payload)
+	return fmt.Sprintf("[POST /lobby/v1/admin/config/namespaces/{namespace}/import][%d] adminImportConfigV1InternalServerError  %+v", 500, o.ToString())
+}
+
+func (o *AdminImportConfigV1InternalServerError) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *AdminImportConfigV1InternalServerError) GetPayload() *lobbyclientmodels.ResponseError {

@@ -10,6 +10,7 @@ package user_profile
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -89,7 +90,16 @@ type CreateMyProfileCreated struct {
 }
 
 func (o *CreateMyProfileCreated) Error() string {
-	return fmt.Sprintf("[POST /basic/v1/public/namespaces/{namespace}/users/me/profiles][%d] createMyProfileCreated  %+v", 201, o.Payload)
+	return fmt.Sprintf("[POST /basic/v1/public/namespaces/{namespace}/users/me/profiles][%d] createMyProfileCreated  %+v", 201, o.ToString())
+}
+
+func (o *CreateMyProfileCreated) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *CreateMyProfileCreated) GetPayload() *basicclientmodels.UserProfilePrivateInfo {
@@ -122,7 +132,16 @@ type CreateMyProfileBadRequest struct {
 }
 
 func (o *CreateMyProfileBadRequest) Error() string {
-	return fmt.Sprintf("[POST /basic/v1/public/namespaces/{namespace}/users/me/profiles][%d] createMyProfileBadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[POST /basic/v1/public/namespaces/{namespace}/users/me/profiles][%d] createMyProfileBadRequest  %+v", 400, o.ToString())
+}
+
+func (o *CreateMyProfileBadRequest) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *CreateMyProfileBadRequest) GetPayload() *basicclientmodels.ValidationErrorEntity {
@@ -155,7 +174,16 @@ type CreateMyProfileUnauthorized struct {
 }
 
 func (o *CreateMyProfileUnauthorized) Error() string {
-	return fmt.Sprintf("[POST /basic/v1/public/namespaces/{namespace}/users/me/profiles][%d] createMyProfileUnauthorized  %+v", 401, o.Payload)
+	return fmt.Sprintf("[POST /basic/v1/public/namespaces/{namespace}/users/me/profiles][%d] createMyProfileUnauthorized  %+v", 401, o.ToString())
+}
+
+func (o *CreateMyProfileUnauthorized) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *CreateMyProfileUnauthorized) GetPayload() *basicclientmodels.ErrorEntity {
@@ -188,7 +216,16 @@ type CreateMyProfileForbidden struct {
 }
 
 func (o *CreateMyProfileForbidden) Error() string {
-	return fmt.Sprintf("[POST /basic/v1/public/namespaces/{namespace}/users/me/profiles][%d] createMyProfileForbidden  %+v", 403, o.Payload)
+	return fmt.Sprintf("[POST /basic/v1/public/namespaces/{namespace}/users/me/profiles][%d] createMyProfileForbidden  %+v", 403, o.ToString())
+}
+
+func (o *CreateMyProfileForbidden) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *CreateMyProfileForbidden) GetPayload() *basicclientmodels.ErrorEntity {
@@ -221,7 +258,16 @@ type CreateMyProfileNotFound struct {
 }
 
 func (o *CreateMyProfileNotFound) Error() string {
-	return fmt.Sprintf("[POST /basic/v1/public/namespaces/{namespace}/users/me/profiles][%d] createMyProfileNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[POST /basic/v1/public/namespaces/{namespace}/users/me/profiles][%d] createMyProfileNotFound  %+v", 404, o.ToString())
+}
+
+func (o *CreateMyProfileNotFound) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *CreateMyProfileNotFound) GetPayload() *basicclientmodels.ErrorEntity {
@@ -254,7 +300,16 @@ type CreateMyProfileConflict struct {
 }
 
 func (o *CreateMyProfileConflict) Error() string {
-	return fmt.Sprintf("[POST /basic/v1/public/namespaces/{namespace}/users/me/profiles][%d] createMyProfileConflict  %+v", 409, o.Payload)
+	return fmt.Sprintf("[POST /basic/v1/public/namespaces/{namespace}/users/me/profiles][%d] createMyProfileConflict  %+v", 409, o.ToString())
+}
+
+func (o *CreateMyProfileConflict) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *CreateMyProfileConflict) GetPayload() *basicclientmodels.ErrorEntity {

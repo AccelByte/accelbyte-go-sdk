@@ -10,6 +10,7 @@ package group_member
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -89,7 +90,16 @@ type CancelGroupJoinRequestV1OK struct {
 }
 
 func (o *CancelGroupJoinRequestV1OK) Error() string {
-	return fmt.Sprintf("[POST /group/v1/public/namespaces/{namespace}/groups/{groupId}/join/cancel][%d] cancelGroupJoinRequestV1OK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[POST /group/v1/public/namespaces/{namespace}/groups/{groupId}/join/cancel][%d] cancelGroupJoinRequestV1OK  %+v", 200, o.ToString())
+}
+
+func (o *CancelGroupJoinRequestV1OK) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *CancelGroupJoinRequestV1OK) GetPayload() *groupclientmodels.ModelsMemberRequestGroupResponseV1 {
@@ -122,7 +132,16 @@ type CancelGroupJoinRequestV1BadRequest struct {
 }
 
 func (o *CancelGroupJoinRequestV1BadRequest) Error() string {
-	return fmt.Sprintf("[POST /group/v1/public/namespaces/{namespace}/groups/{groupId}/join/cancel][%d] cancelGroupJoinRequestV1BadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[POST /group/v1/public/namespaces/{namespace}/groups/{groupId}/join/cancel][%d] cancelGroupJoinRequestV1BadRequest  %+v", 400, o.ToString())
+}
+
+func (o *CancelGroupJoinRequestV1BadRequest) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *CancelGroupJoinRequestV1BadRequest) GetPayload() *groupclientmodels.ResponseErrorResponse {
@@ -155,7 +174,16 @@ type CancelGroupJoinRequestV1Unauthorized struct {
 }
 
 func (o *CancelGroupJoinRequestV1Unauthorized) Error() string {
-	return fmt.Sprintf("[POST /group/v1/public/namespaces/{namespace}/groups/{groupId}/join/cancel][%d] cancelGroupJoinRequestV1Unauthorized  %+v", 401, o.Payload)
+	return fmt.Sprintf("[POST /group/v1/public/namespaces/{namespace}/groups/{groupId}/join/cancel][%d] cancelGroupJoinRequestV1Unauthorized  %+v", 401, o.ToString())
+}
+
+func (o *CancelGroupJoinRequestV1Unauthorized) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *CancelGroupJoinRequestV1Unauthorized) GetPayload() *groupclientmodels.ResponseErrorResponse {
@@ -188,7 +216,16 @@ type CancelGroupJoinRequestV1Forbidden struct {
 }
 
 func (o *CancelGroupJoinRequestV1Forbidden) Error() string {
-	return fmt.Sprintf("[POST /group/v1/public/namespaces/{namespace}/groups/{groupId}/join/cancel][%d] cancelGroupJoinRequestV1Forbidden  %+v", 403, o.Payload)
+	return fmt.Sprintf("[POST /group/v1/public/namespaces/{namespace}/groups/{groupId}/join/cancel][%d] cancelGroupJoinRequestV1Forbidden  %+v", 403, o.ToString())
+}
+
+func (o *CancelGroupJoinRequestV1Forbidden) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *CancelGroupJoinRequestV1Forbidden) GetPayload() *groupclientmodels.ResponseErrorResponse {
@@ -221,7 +258,16 @@ type CancelGroupJoinRequestV1NotFound struct {
 }
 
 func (o *CancelGroupJoinRequestV1NotFound) Error() string {
-	return fmt.Sprintf("[POST /group/v1/public/namespaces/{namespace}/groups/{groupId}/join/cancel][%d] cancelGroupJoinRequestV1NotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[POST /group/v1/public/namespaces/{namespace}/groups/{groupId}/join/cancel][%d] cancelGroupJoinRequestV1NotFound  %+v", 404, o.ToString())
+}
+
+func (o *CancelGroupJoinRequestV1NotFound) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *CancelGroupJoinRequestV1NotFound) GetPayload() *groupclientmodels.ResponseErrorResponse {
@@ -254,7 +300,16 @@ type CancelGroupJoinRequestV1InternalServerError struct {
 }
 
 func (o *CancelGroupJoinRequestV1InternalServerError) Error() string {
-	return fmt.Sprintf("[POST /group/v1/public/namespaces/{namespace}/groups/{groupId}/join/cancel][%d] cancelGroupJoinRequestV1InternalServerError  %+v", 500, o.Payload)
+	return fmt.Sprintf("[POST /group/v1/public/namespaces/{namespace}/groups/{groupId}/join/cancel][%d] cancelGroupJoinRequestV1InternalServerError  %+v", 500, o.ToString())
+}
+
+func (o *CancelGroupJoinRequestV1InternalServerError) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *CancelGroupJoinRequestV1InternalServerError) GetPayload() *groupclientmodels.ResponseErrorResponse {

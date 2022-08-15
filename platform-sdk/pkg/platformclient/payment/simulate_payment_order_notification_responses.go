@@ -10,6 +10,7 @@ package payment
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -71,7 +72,16 @@ type SimulatePaymentOrderNotificationOK struct {
 }
 
 func (o *SimulatePaymentOrderNotificationOK) Error() string {
-	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/payment/orders/{paymentOrderNo}/simulate-notification][%d] simulatePaymentOrderNotificationOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/payment/orders/{paymentOrderNo}/simulate-notification][%d] simulatePaymentOrderNotificationOK  %+v", 200, o.ToString())
+}
+
+func (o *SimulatePaymentOrderNotificationOK) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *SimulatePaymentOrderNotificationOK) GetPayload() *platformclientmodels.NotificationProcessResult {
@@ -104,7 +114,16 @@ type SimulatePaymentOrderNotificationBadRequest struct {
 }
 
 func (o *SimulatePaymentOrderNotificationBadRequest) Error() string {
-	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/payment/orders/{paymentOrderNo}/simulate-notification][%d] simulatePaymentOrderNotificationBadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/payment/orders/{paymentOrderNo}/simulate-notification][%d] simulatePaymentOrderNotificationBadRequest  %+v", 400, o.ToString())
+}
+
+func (o *SimulatePaymentOrderNotificationBadRequest) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *SimulatePaymentOrderNotificationBadRequest) GetPayload() *platformclientmodels.ErrorEntity {
@@ -137,7 +156,16 @@ type SimulatePaymentOrderNotificationNotFound struct {
 }
 
 func (o *SimulatePaymentOrderNotificationNotFound) Error() string {
-	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/payment/orders/{paymentOrderNo}/simulate-notification][%d] simulatePaymentOrderNotificationNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/payment/orders/{paymentOrderNo}/simulate-notification][%d] simulatePaymentOrderNotificationNotFound  %+v", 404, o.ToString())
+}
+
+func (o *SimulatePaymentOrderNotificationNotFound) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *SimulatePaymentOrderNotificationNotFound) GetPayload() *platformclientmodels.ErrorEntity {

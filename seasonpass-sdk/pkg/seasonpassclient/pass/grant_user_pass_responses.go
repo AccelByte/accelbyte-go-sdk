@@ -10,6 +10,7 @@ package pass
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -65,7 +66,16 @@ type GrantUserPassOK struct {
 }
 
 func (o *GrantUserPassOK) Error() string {
-	return fmt.Sprintf("[POST /seasonpass/admin/namespaces/{namespace}/users/{userId}/seasons/current/passes][%d] grantUserPassOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[POST /seasonpass/admin/namespaces/{namespace}/users/{userId}/seasons/current/passes][%d] grantUserPassOK  %+v", 200, o.ToString())
+}
+
+func (o *GrantUserPassOK) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *GrantUserPassOK) GetPayload() *seasonpassclientmodels.UserSeasonSummary {
@@ -98,7 +108,16 @@ type GrantUserPassBadRequest struct {
 }
 
 func (o *GrantUserPassBadRequest) Error() string {
-	return fmt.Sprintf("[POST /seasonpass/admin/namespaces/{namespace}/users/{userId}/seasons/current/passes][%d] grantUserPassBadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[POST /seasonpass/admin/namespaces/{namespace}/users/{userId}/seasons/current/passes][%d] grantUserPassBadRequest  %+v", 400, o.ToString())
+}
+
+func (o *GrantUserPassBadRequest) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *GrantUserPassBadRequest) GetPayload() *seasonpassclientmodels.ErrorEntity {

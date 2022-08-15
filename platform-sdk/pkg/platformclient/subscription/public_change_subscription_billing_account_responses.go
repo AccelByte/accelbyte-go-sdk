@@ -10,6 +10,7 @@ package subscription
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -77,7 +78,16 @@ type PublicChangeSubscriptionBillingAccountOK struct {
 }
 
 func (o *PublicChangeSubscriptionBillingAccountOK) Error() string {
-	return fmt.Sprintf("[PUT /platform/public/namespaces/{namespace}/users/{userId}/subscriptions/{subscriptionId}/billingAccount][%d] publicChangeSubscriptionBillingAccountOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[PUT /platform/public/namespaces/{namespace}/users/{userId}/subscriptions/{subscriptionId}/billingAccount][%d] publicChangeSubscriptionBillingAccountOK  %+v", 200, o.ToString())
+}
+
+func (o *PublicChangeSubscriptionBillingAccountOK) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *PublicChangeSubscriptionBillingAccountOK) GetPayload() *platformclientmodels.SubscriptionInfo {
@@ -110,7 +120,16 @@ type PublicChangeSubscriptionBillingAccountBadRequest struct {
 }
 
 func (o *PublicChangeSubscriptionBillingAccountBadRequest) Error() string {
-	return fmt.Sprintf("[PUT /platform/public/namespaces/{namespace}/users/{userId}/subscriptions/{subscriptionId}/billingAccount][%d] publicChangeSubscriptionBillingAccountBadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[PUT /platform/public/namespaces/{namespace}/users/{userId}/subscriptions/{subscriptionId}/billingAccount][%d] publicChangeSubscriptionBillingAccountBadRequest  %+v", 400, o.ToString())
+}
+
+func (o *PublicChangeSubscriptionBillingAccountBadRequest) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *PublicChangeSubscriptionBillingAccountBadRequest) GetPayload() *platformclientmodels.ErrorEntity {
@@ -143,7 +162,16 @@ type PublicChangeSubscriptionBillingAccountNotFound struct {
 }
 
 func (o *PublicChangeSubscriptionBillingAccountNotFound) Error() string {
-	return fmt.Sprintf("[PUT /platform/public/namespaces/{namespace}/users/{userId}/subscriptions/{subscriptionId}/billingAccount][%d] publicChangeSubscriptionBillingAccountNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[PUT /platform/public/namespaces/{namespace}/users/{userId}/subscriptions/{subscriptionId}/billingAccount][%d] publicChangeSubscriptionBillingAccountNotFound  %+v", 404, o.ToString())
+}
+
+func (o *PublicChangeSubscriptionBillingAccountNotFound) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *PublicChangeSubscriptionBillingAccountNotFound) GetPayload() *platformclientmodels.ErrorEntity {
@@ -176,7 +204,16 @@ type PublicChangeSubscriptionBillingAccountConflict struct {
 }
 
 func (o *PublicChangeSubscriptionBillingAccountConflict) Error() string {
-	return fmt.Sprintf("[PUT /platform/public/namespaces/{namespace}/users/{userId}/subscriptions/{subscriptionId}/billingAccount][%d] publicChangeSubscriptionBillingAccountConflict  %+v", 409, o.Payload)
+	return fmt.Sprintf("[PUT /platform/public/namespaces/{namespace}/users/{userId}/subscriptions/{subscriptionId}/billingAccount][%d] publicChangeSubscriptionBillingAccountConflict  %+v", 409, o.ToString())
+}
+
+func (o *PublicChangeSubscriptionBillingAccountConflict) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *PublicChangeSubscriptionBillingAccountConflict) GetPayload() *platformclientmodels.ErrorEntity {

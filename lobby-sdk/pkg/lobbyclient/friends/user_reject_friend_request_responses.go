@@ -10,6 +10,7 @@ package friends
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -110,7 +111,16 @@ type UserRejectFriendRequestBadRequest struct {
 }
 
 func (o *UserRejectFriendRequestBadRequest) Error() string {
-	return fmt.Sprintf("[POST /friends/namespaces/{namespace}/me/request/reject][%d] userRejectFriendRequestBadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[POST /friends/namespaces/{namespace}/me/request/reject][%d] userRejectFriendRequestBadRequest  %+v", 400, o.ToString())
+}
+
+func (o *UserRejectFriendRequestBadRequest) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *UserRejectFriendRequestBadRequest) GetPayload() *lobbyclientmodels.RestapiErrorResponseV1 {
@@ -143,7 +153,16 @@ type UserRejectFriendRequestUnauthorized struct {
 }
 
 func (o *UserRejectFriendRequestUnauthorized) Error() string {
-	return fmt.Sprintf("[POST /friends/namespaces/{namespace}/me/request/reject][%d] userRejectFriendRequestUnauthorized  %+v", 401, o.Payload)
+	return fmt.Sprintf("[POST /friends/namespaces/{namespace}/me/request/reject][%d] userRejectFriendRequestUnauthorized  %+v", 401, o.ToString())
+}
+
+func (o *UserRejectFriendRequestUnauthorized) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *UserRejectFriendRequestUnauthorized) GetPayload() *lobbyclientmodels.RestapiErrorResponseV1 {
@@ -176,7 +195,16 @@ type UserRejectFriendRequestForbidden struct {
 }
 
 func (o *UserRejectFriendRequestForbidden) Error() string {
-	return fmt.Sprintf("[POST /friends/namespaces/{namespace}/me/request/reject][%d] userRejectFriendRequestForbidden  %+v", 403, o.Payload)
+	return fmt.Sprintf("[POST /friends/namespaces/{namespace}/me/request/reject][%d] userRejectFriendRequestForbidden  %+v", 403, o.ToString())
+}
+
+func (o *UserRejectFriendRequestForbidden) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *UserRejectFriendRequestForbidden) GetPayload() *lobbyclientmodels.RestapiErrorResponseV1 {
@@ -209,7 +237,16 @@ type UserRejectFriendRequestNotFound struct {
 }
 
 func (o *UserRejectFriendRequestNotFound) Error() string {
-	return fmt.Sprintf("[POST /friends/namespaces/{namespace}/me/request/reject][%d] userRejectFriendRequestNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[POST /friends/namespaces/{namespace}/me/request/reject][%d] userRejectFriendRequestNotFound  %+v", 404, o.ToString())
+}
+
+func (o *UserRejectFriendRequestNotFound) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *UserRejectFriendRequestNotFound) GetPayload() *lobbyclientmodels.RestapiErrorResponseV1 {
@@ -242,7 +279,16 @@ type UserRejectFriendRequestInternalServerError struct {
 }
 
 func (o *UserRejectFriendRequestInternalServerError) Error() string {
-	return fmt.Sprintf("[POST /friends/namespaces/{namespace}/me/request/reject][%d] userRejectFriendRequestInternalServerError  %+v", 500, o.Payload)
+	return fmt.Sprintf("[POST /friends/namespaces/{namespace}/me/request/reject][%d] userRejectFriendRequestInternalServerError  %+v", 500, o.ToString())
+}
+
+func (o *UserRejectFriendRequestInternalServerError) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *UserRejectFriendRequestInternalServerError) GetPayload() *lobbyclientmodels.RestapiErrorResponseV1 {

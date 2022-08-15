@@ -10,6 +10,7 @@ package users
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -83,7 +84,16 @@ type AdminListUserIDByUserIDsV3OK struct {
 }
 
 func (o *AdminListUserIDByUserIDsV3OK) Error() string {
-	return fmt.Sprintf("[POST /iam/v3/admin/namespaces/{namespace}/users/bulk][%d] adminListUserIdByUserIDsV3OK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[POST /iam/v3/admin/namespaces/{namespace}/users/bulk][%d] adminListUserIdByUserIDsV3OK  %+v", 200, o.ToString())
+}
+
+func (o *AdminListUserIDByUserIDsV3OK) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *AdminListUserIDByUserIDsV3OK) GetPayload() *iamclientmodels.ModelListUserInformationResult {
@@ -116,7 +126,16 @@ type AdminListUserIDByUserIDsV3BadRequest struct {
 }
 
 func (o *AdminListUserIDByUserIDsV3BadRequest) Error() string {
-	return fmt.Sprintf("[POST /iam/v3/admin/namespaces/{namespace}/users/bulk][%d] adminListUserIdByUserIDsV3BadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[POST /iam/v3/admin/namespaces/{namespace}/users/bulk][%d] adminListUserIdByUserIDsV3BadRequest  %+v", 400, o.ToString())
+}
+
+func (o *AdminListUserIDByUserIDsV3BadRequest) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *AdminListUserIDByUserIDsV3BadRequest) GetPayload() *iamclientmodels.RestErrorResponse {
@@ -149,7 +168,16 @@ type AdminListUserIDByUserIDsV3Unauthorized struct {
 }
 
 func (o *AdminListUserIDByUserIDsV3Unauthorized) Error() string {
-	return fmt.Sprintf("[POST /iam/v3/admin/namespaces/{namespace}/users/bulk][%d] adminListUserIdByUserIDsV3Unauthorized  %+v", 401, o.Payload)
+	return fmt.Sprintf("[POST /iam/v3/admin/namespaces/{namespace}/users/bulk][%d] adminListUserIdByUserIDsV3Unauthorized  %+v", 401, o.ToString())
+}
+
+func (o *AdminListUserIDByUserIDsV3Unauthorized) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *AdminListUserIDByUserIDsV3Unauthorized) GetPayload() *iamclientmodels.RestErrorResponse {
@@ -182,7 +210,16 @@ type AdminListUserIDByUserIDsV3Forbidden struct {
 }
 
 func (o *AdminListUserIDByUserIDsV3Forbidden) Error() string {
-	return fmt.Sprintf("[POST /iam/v3/admin/namespaces/{namespace}/users/bulk][%d] adminListUserIdByUserIDsV3Forbidden  %+v", 403, o.Payload)
+	return fmt.Sprintf("[POST /iam/v3/admin/namespaces/{namespace}/users/bulk][%d] adminListUserIdByUserIDsV3Forbidden  %+v", 403, o.ToString())
+}
+
+func (o *AdminListUserIDByUserIDsV3Forbidden) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *AdminListUserIDByUserIDsV3Forbidden) GetPayload() *iamclientmodels.RestErrorResponse {
@@ -215,7 +252,16 @@ type AdminListUserIDByUserIDsV3InternalServerError struct {
 }
 
 func (o *AdminListUserIDByUserIDsV3InternalServerError) Error() string {
-	return fmt.Sprintf("[POST /iam/v3/admin/namespaces/{namespace}/users/bulk][%d] adminListUserIdByUserIDsV3InternalServerError  %+v", 500, o.Payload)
+	return fmt.Sprintf("[POST /iam/v3/admin/namespaces/{namespace}/users/bulk][%d] adminListUserIdByUserIDsV3InternalServerError  %+v", 500, o.ToString())
+}
+
+func (o *AdminListUserIDByUserIDsV3InternalServerError) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *AdminListUserIDByUserIDsV3InternalServerError) GetPayload() *iamclientmodels.RestErrorResponse {

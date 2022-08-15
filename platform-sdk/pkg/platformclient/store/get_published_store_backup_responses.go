@@ -10,6 +10,7 @@ package store
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -65,7 +66,16 @@ type GetPublishedStoreBackupOK struct {
 }
 
 func (o *GetPublishedStoreBackupOK) Error() string {
-	return fmt.Sprintf("[GET /platform/admin/namespaces/{namespace}/stores/published/backup][%d] getPublishedStoreBackupOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /platform/admin/namespaces/{namespace}/stores/published/backup][%d] getPublishedStoreBackupOK  %+v", 200, o.ToString())
+}
+
+func (o *GetPublishedStoreBackupOK) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *GetPublishedStoreBackupOK) GetPayload() *platformclientmodels.StoreBackupInfo {
@@ -98,7 +108,16 @@ type GetPublishedStoreBackupNotFound struct {
 }
 
 func (o *GetPublishedStoreBackupNotFound) Error() string {
-	return fmt.Sprintf("[GET /platform/admin/namespaces/{namespace}/stores/published/backup][%d] getPublishedStoreBackupNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[GET /platform/admin/namespaces/{namespace}/stores/published/backup][%d] getPublishedStoreBackupNotFound  %+v", 404, o.ToString())
+}
+
+func (o *GetPublishedStoreBackupNotFound) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *GetPublishedStoreBackupNotFound) GetPayload() *platformclientmodels.ErrorEntity {

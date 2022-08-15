@@ -10,6 +10,7 @@ package user_profile
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -83,7 +84,16 @@ type PublicUpdateCustomAttributesPartiallyOK struct {
 }
 
 func (o *PublicUpdateCustomAttributesPartiallyOK) Error() string {
-	return fmt.Sprintf("[PUT /basic/v1/public/namespaces/{namespace}/users/{userId}/profiles/customAttributes][%d] publicUpdateCustomAttributesPartiallyOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[PUT /basic/v1/public/namespaces/{namespace}/users/{userId}/profiles/customAttributes][%d] publicUpdateCustomAttributesPartiallyOK  %+v", 200, o.ToString())
+}
+
+func (o *PublicUpdateCustomAttributesPartiallyOK) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *PublicUpdateCustomAttributesPartiallyOK) GetPayload() map[string]interface{} {
@@ -114,7 +124,16 @@ type PublicUpdateCustomAttributesPartiallyBadRequest struct {
 }
 
 func (o *PublicUpdateCustomAttributesPartiallyBadRequest) Error() string {
-	return fmt.Sprintf("[PUT /basic/v1/public/namespaces/{namespace}/users/{userId}/profiles/customAttributes][%d] publicUpdateCustomAttributesPartiallyBadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[PUT /basic/v1/public/namespaces/{namespace}/users/{userId}/profiles/customAttributes][%d] publicUpdateCustomAttributesPartiallyBadRequest  %+v", 400, o.ToString())
+}
+
+func (o *PublicUpdateCustomAttributesPartiallyBadRequest) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *PublicUpdateCustomAttributesPartiallyBadRequest) GetPayload() *basicclientmodels.ValidationErrorEntity {
@@ -147,7 +166,16 @@ type PublicUpdateCustomAttributesPartiallyUnauthorized struct {
 }
 
 func (o *PublicUpdateCustomAttributesPartiallyUnauthorized) Error() string {
-	return fmt.Sprintf("[PUT /basic/v1/public/namespaces/{namespace}/users/{userId}/profiles/customAttributes][%d] publicUpdateCustomAttributesPartiallyUnauthorized  %+v", 401, o.Payload)
+	return fmt.Sprintf("[PUT /basic/v1/public/namespaces/{namespace}/users/{userId}/profiles/customAttributes][%d] publicUpdateCustomAttributesPartiallyUnauthorized  %+v", 401, o.ToString())
+}
+
+func (o *PublicUpdateCustomAttributesPartiallyUnauthorized) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *PublicUpdateCustomAttributesPartiallyUnauthorized) GetPayload() *basicclientmodels.ErrorEntity {
@@ -180,7 +208,16 @@ type PublicUpdateCustomAttributesPartiallyForbidden struct {
 }
 
 func (o *PublicUpdateCustomAttributesPartiallyForbidden) Error() string {
-	return fmt.Sprintf("[PUT /basic/v1/public/namespaces/{namespace}/users/{userId}/profiles/customAttributes][%d] publicUpdateCustomAttributesPartiallyForbidden  %+v", 403, o.Payload)
+	return fmt.Sprintf("[PUT /basic/v1/public/namespaces/{namespace}/users/{userId}/profiles/customAttributes][%d] publicUpdateCustomAttributesPartiallyForbidden  %+v", 403, o.ToString())
+}
+
+func (o *PublicUpdateCustomAttributesPartiallyForbidden) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *PublicUpdateCustomAttributesPartiallyForbidden) GetPayload() *basicclientmodels.ErrorEntity {
@@ -213,7 +250,16 @@ type PublicUpdateCustomAttributesPartiallyNotFound struct {
 }
 
 func (o *PublicUpdateCustomAttributesPartiallyNotFound) Error() string {
-	return fmt.Sprintf("[PUT /basic/v1/public/namespaces/{namespace}/users/{userId}/profiles/customAttributes][%d] publicUpdateCustomAttributesPartiallyNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[PUT /basic/v1/public/namespaces/{namespace}/users/{userId}/profiles/customAttributes][%d] publicUpdateCustomAttributesPartiallyNotFound  %+v", 404, o.ToString())
+}
+
+func (o *PublicUpdateCustomAttributesPartiallyNotFound) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *PublicUpdateCustomAttributesPartiallyNotFound) GetPayload() *basicclientmodels.ErrorEntity {

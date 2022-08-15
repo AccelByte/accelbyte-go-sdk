@@ -10,6 +10,7 @@ package subscription
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -83,7 +84,16 @@ type PlatformSubscribeSubscriptionOK struct {
 }
 
 func (o *PlatformSubscribeSubscriptionOK) Error() string {
-	return fmt.Sprintf("[POST /platform/admin/namespaces/{namespace}/users/{userId}/subscriptions/platformSubscribe][%d] platformSubscribeSubscriptionOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[POST /platform/admin/namespaces/{namespace}/users/{userId}/subscriptions/platformSubscribe][%d] platformSubscribeSubscriptionOK  %+v", 200, o.ToString())
+}
+
+func (o *PlatformSubscribeSubscriptionOK) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *PlatformSubscribeSubscriptionOK) GetPayload() *platformclientmodels.SubscriptionInfo {
@@ -137,7 +147,16 @@ type PlatformSubscribeSubscriptionBadRequest struct {
 }
 
 func (o *PlatformSubscribeSubscriptionBadRequest) Error() string {
-	return fmt.Sprintf("[POST /platform/admin/namespaces/{namespace}/users/{userId}/subscriptions/platformSubscribe][%d] platformSubscribeSubscriptionBadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[POST /platform/admin/namespaces/{namespace}/users/{userId}/subscriptions/platformSubscribe][%d] platformSubscribeSubscriptionBadRequest  %+v", 400, o.ToString())
+}
+
+func (o *PlatformSubscribeSubscriptionBadRequest) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *PlatformSubscribeSubscriptionBadRequest) GetPayload() *platformclientmodels.ErrorEntity {
@@ -170,7 +189,16 @@ type PlatformSubscribeSubscriptionNotFound struct {
 }
 
 func (o *PlatformSubscribeSubscriptionNotFound) Error() string {
-	return fmt.Sprintf("[POST /platform/admin/namespaces/{namespace}/users/{userId}/subscriptions/platformSubscribe][%d] platformSubscribeSubscriptionNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[POST /platform/admin/namespaces/{namespace}/users/{userId}/subscriptions/platformSubscribe][%d] platformSubscribeSubscriptionNotFound  %+v", 404, o.ToString())
+}
+
+func (o *PlatformSubscribeSubscriptionNotFound) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *PlatformSubscribeSubscriptionNotFound) GetPayload() *platformclientmodels.ErrorEntity {
@@ -203,7 +231,16 @@ type PlatformSubscribeSubscriptionUnprocessableEntity struct {
 }
 
 func (o *PlatformSubscribeSubscriptionUnprocessableEntity) Error() string {
-	return fmt.Sprintf("[POST /platform/admin/namespaces/{namespace}/users/{userId}/subscriptions/platformSubscribe][%d] platformSubscribeSubscriptionUnprocessableEntity  %+v", 422, o.Payload)
+	return fmt.Sprintf("[POST /platform/admin/namespaces/{namespace}/users/{userId}/subscriptions/platformSubscribe][%d] platformSubscribeSubscriptionUnprocessableEntity  %+v", 422, o.ToString())
+}
+
+func (o *PlatformSubscribeSubscriptionUnprocessableEntity) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *PlatformSubscribeSubscriptionUnprocessableEntity) GetPayload() *platformclientmodels.ValidationErrorEntity {

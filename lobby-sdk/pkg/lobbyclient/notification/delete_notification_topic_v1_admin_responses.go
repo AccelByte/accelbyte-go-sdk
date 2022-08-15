@@ -10,6 +10,7 @@ package notification
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -104,7 +105,16 @@ type DeleteNotificationTopicV1AdminUnauthorized struct {
 }
 
 func (o *DeleteNotificationTopicV1AdminUnauthorized) Error() string {
-	return fmt.Sprintf("[DELETE /lobby/v1/admin/notification/namespaces/{namespace}/topics/{topicName}][%d] deleteNotificationTopicV1AdminUnauthorized  %+v", 401, o.Payload)
+	return fmt.Sprintf("[DELETE /lobby/v1/admin/notification/namespaces/{namespace}/topics/{topicName}][%d] deleteNotificationTopicV1AdminUnauthorized  %+v", 401, o.ToString())
+}
+
+func (o *DeleteNotificationTopicV1AdminUnauthorized) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *DeleteNotificationTopicV1AdminUnauthorized) GetPayload() *lobbyclientmodels.RestapiErrorResponseV1 {
@@ -137,7 +147,16 @@ type DeleteNotificationTopicV1AdminForbidden struct {
 }
 
 func (o *DeleteNotificationTopicV1AdminForbidden) Error() string {
-	return fmt.Sprintf("[DELETE /lobby/v1/admin/notification/namespaces/{namespace}/topics/{topicName}][%d] deleteNotificationTopicV1AdminForbidden  %+v", 403, o.Payload)
+	return fmt.Sprintf("[DELETE /lobby/v1/admin/notification/namespaces/{namespace}/topics/{topicName}][%d] deleteNotificationTopicV1AdminForbidden  %+v", 403, o.ToString())
+}
+
+func (o *DeleteNotificationTopicV1AdminForbidden) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *DeleteNotificationTopicV1AdminForbidden) GetPayload() *lobbyclientmodels.RestapiErrorResponseV1 {
@@ -170,7 +189,16 @@ type DeleteNotificationTopicV1AdminNotFound struct {
 }
 
 func (o *DeleteNotificationTopicV1AdminNotFound) Error() string {
-	return fmt.Sprintf("[DELETE /lobby/v1/admin/notification/namespaces/{namespace}/topics/{topicName}][%d] deleteNotificationTopicV1AdminNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[DELETE /lobby/v1/admin/notification/namespaces/{namespace}/topics/{topicName}][%d] deleteNotificationTopicV1AdminNotFound  %+v", 404, o.ToString())
+}
+
+func (o *DeleteNotificationTopicV1AdminNotFound) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *DeleteNotificationTopicV1AdminNotFound) GetPayload() *lobbyclientmodels.RestapiErrorResponseV1 {
@@ -203,7 +231,16 @@ type DeleteNotificationTopicV1AdminInternalServerError struct {
 }
 
 func (o *DeleteNotificationTopicV1AdminInternalServerError) Error() string {
-	return fmt.Sprintf("[DELETE /lobby/v1/admin/notification/namespaces/{namespace}/topics/{topicName}][%d] deleteNotificationTopicV1AdminInternalServerError  %+v", 500, o.Payload)
+	return fmt.Sprintf("[DELETE /lobby/v1/admin/notification/namespaces/{namespace}/topics/{topicName}][%d] deleteNotificationTopicV1AdminInternalServerError  %+v", 500, o.ToString())
+}
+
+func (o *DeleteNotificationTopicV1AdminInternalServerError) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *DeleteNotificationTopicV1AdminInternalServerError) GetPayload() *lobbyclientmodels.RestapiErrorResponseV1 {

@@ -10,6 +10,7 @@ package admin_channel
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -77,7 +78,16 @@ type SingleAdminGetChannelOK struct {
 }
 
 func (o *SingleAdminGetChannelOK) Error() string {
-	return fmt.Sprintf("[GET /ugc/v1/admin/namespaces/{namespace}/channels][%d] singleAdminGetChannelOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /ugc/v1/admin/namespaces/{namespace}/channels][%d] singleAdminGetChannelOK  %+v", 200, o.ToString())
+}
+
+func (o *SingleAdminGetChannelOK) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *SingleAdminGetChannelOK) GetPayload() *ugcclientmodels.ModelsPaginatedGetChannelResponse {
@@ -110,7 +120,16 @@ type SingleAdminGetChannelUnauthorized struct {
 }
 
 func (o *SingleAdminGetChannelUnauthorized) Error() string {
-	return fmt.Sprintf("[GET /ugc/v1/admin/namespaces/{namespace}/channels][%d] singleAdminGetChannelUnauthorized  %+v", 401, o.Payload)
+	return fmt.Sprintf("[GET /ugc/v1/admin/namespaces/{namespace}/channels][%d] singleAdminGetChannelUnauthorized  %+v", 401, o.ToString())
+}
+
+func (o *SingleAdminGetChannelUnauthorized) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *SingleAdminGetChannelUnauthorized) GetPayload() *ugcclientmodels.ResponseError {
@@ -143,7 +162,16 @@ type SingleAdminGetChannelNotFound struct {
 }
 
 func (o *SingleAdminGetChannelNotFound) Error() string {
-	return fmt.Sprintf("[GET /ugc/v1/admin/namespaces/{namespace}/channels][%d] singleAdminGetChannelNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[GET /ugc/v1/admin/namespaces/{namespace}/channels][%d] singleAdminGetChannelNotFound  %+v", 404, o.ToString())
+}
+
+func (o *SingleAdminGetChannelNotFound) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *SingleAdminGetChannelNotFound) GetPayload() *ugcclientmodels.ResponseError {
@@ -176,7 +204,16 @@ type SingleAdminGetChannelInternalServerError struct {
 }
 
 func (o *SingleAdminGetChannelInternalServerError) Error() string {
-	return fmt.Sprintf("[GET /ugc/v1/admin/namespaces/{namespace}/channels][%d] singleAdminGetChannelInternalServerError  %+v", 500, o.Payload)
+	return fmt.Sprintf("[GET /ugc/v1/admin/namespaces/{namespace}/channels][%d] singleAdminGetChannelInternalServerError  %+v", 500, o.ToString())
+}
+
+func (o *SingleAdminGetChannelInternalServerError) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *SingleAdminGetChannelInternalServerError) GetPayload() *ugcclientmodels.ResponseError {

@@ -10,6 +10,7 @@ package admin_content
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -83,7 +84,16 @@ type AdminUploadContentScreenshotCreated struct {
 }
 
 func (o *AdminUploadContentScreenshotCreated) Error() string {
-	return fmt.Sprintf("[POST /ugc/v1/admin/namespaces/{namespace}/contents/{contentId}/screenshots][%d] adminUploadContentScreenshotCreated  %+v", 201, o.Payload)
+	return fmt.Sprintf("[POST /ugc/v1/admin/namespaces/{namespace}/contents/{contentId}/screenshots][%d] adminUploadContentScreenshotCreated  %+v", 201, o.ToString())
+}
+
+func (o *AdminUploadContentScreenshotCreated) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *AdminUploadContentScreenshotCreated) GetPayload() *ugcclientmodels.ModelsCreateScreenshotResponse {
@@ -116,7 +126,16 @@ type AdminUploadContentScreenshotBadRequest struct {
 }
 
 func (o *AdminUploadContentScreenshotBadRequest) Error() string {
-	return fmt.Sprintf("[POST /ugc/v1/admin/namespaces/{namespace}/contents/{contentId}/screenshots][%d] adminUploadContentScreenshotBadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[POST /ugc/v1/admin/namespaces/{namespace}/contents/{contentId}/screenshots][%d] adminUploadContentScreenshotBadRequest  %+v", 400, o.ToString())
+}
+
+func (o *AdminUploadContentScreenshotBadRequest) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *AdminUploadContentScreenshotBadRequest) GetPayload() *ugcclientmodels.ResponseError {
@@ -149,7 +168,16 @@ type AdminUploadContentScreenshotUnauthorized struct {
 }
 
 func (o *AdminUploadContentScreenshotUnauthorized) Error() string {
-	return fmt.Sprintf("[POST /ugc/v1/admin/namespaces/{namespace}/contents/{contentId}/screenshots][%d] adminUploadContentScreenshotUnauthorized  %+v", 401, o.Payload)
+	return fmt.Sprintf("[POST /ugc/v1/admin/namespaces/{namespace}/contents/{contentId}/screenshots][%d] adminUploadContentScreenshotUnauthorized  %+v", 401, o.ToString())
+}
+
+func (o *AdminUploadContentScreenshotUnauthorized) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *AdminUploadContentScreenshotUnauthorized) GetPayload() *ugcclientmodels.ResponseError {
@@ -182,7 +210,16 @@ type AdminUploadContentScreenshotNotFound struct {
 }
 
 func (o *AdminUploadContentScreenshotNotFound) Error() string {
-	return fmt.Sprintf("[POST /ugc/v1/admin/namespaces/{namespace}/contents/{contentId}/screenshots][%d] adminUploadContentScreenshotNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[POST /ugc/v1/admin/namespaces/{namespace}/contents/{contentId}/screenshots][%d] adminUploadContentScreenshotNotFound  %+v", 404, o.ToString())
+}
+
+func (o *AdminUploadContentScreenshotNotFound) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *AdminUploadContentScreenshotNotFound) GetPayload() *ugcclientmodels.ResponseError {
@@ -215,7 +252,16 @@ type AdminUploadContentScreenshotInternalServerError struct {
 }
 
 func (o *AdminUploadContentScreenshotInternalServerError) Error() string {
-	return fmt.Sprintf("[POST /ugc/v1/admin/namespaces/{namespace}/contents/{contentId}/screenshots][%d] adminUploadContentScreenshotInternalServerError  %+v", 500, o.Payload)
+	return fmt.Sprintf("[POST /ugc/v1/admin/namespaces/{namespace}/contents/{contentId}/screenshots][%d] adminUploadContentScreenshotInternalServerError  %+v", 500, o.ToString())
+}
+
+func (o *AdminUploadContentScreenshotInternalServerError) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *AdminUploadContentScreenshotInternalServerError) GetPayload() *ugcclientmodels.ResponseError {

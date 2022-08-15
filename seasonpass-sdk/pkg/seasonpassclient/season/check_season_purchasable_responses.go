@@ -10,6 +10,7 @@ package season
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -98,7 +99,16 @@ type CheckSeasonPurchasableBadRequest struct {
 }
 
 func (o *CheckSeasonPurchasableBadRequest) Error() string {
-	return fmt.Sprintf("[POST /seasonpass/admin/namespaces/{namespace}/users/{userId}/seasons/current/purchasable][%d] checkSeasonPurchasableBadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[POST /seasonpass/admin/namespaces/{namespace}/users/{userId}/seasons/current/purchasable][%d] checkSeasonPurchasableBadRequest  %+v", 400, o.ToString())
+}
+
+func (o *CheckSeasonPurchasableBadRequest) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *CheckSeasonPurchasableBadRequest) GetPayload() *seasonpassclientmodels.ErrorEntity {
@@ -131,7 +141,16 @@ type CheckSeasonPurchasableNotFound struct {
 }
 
 func (o *CheckSeasonPurchasableNotFound) Error() string {
-	return fmt.Sprintf("[POST /seasonpass/admin/namespaces/{namespace}/users/{userId}/seasons/current/purchasable][%d] checkSeasonPurchasableNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[POST /seasonpass/admin/namespaces/{namespace}/users/{userId}/seasons/current/purchasable][%d] checkSeasonPurchasableNotFound  %+v", 404, o.ToString())
+}
+
+func (o *CheckSeasonPurchasableNotFound) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *CheckSeasonPurchasableNotFound) GetPayload() *seasonpassclientmodels.ErrorEntity {
@@ -164,7 +183,16 @@ type CheckSeasonPurchasableConflict struct {
 }
 
 func (o *CheckSeasonPurchasableConflict) Error() string {
-	return fmt.Sprintf("[POST /seasonpass/admin/namespaces/{namespace}/users/{userId}/seasons/current/purchasable][%d] checkSeasonPurchasableConflict  %+v", 409, o.Payload)
+	return fmt.Sprintf("[POST /seasonpass/admin/namespaces/{namespace}/users/{userId}/seasons/current/purchasable][%d] checkSeasonPurchasableConflict  %+v", 409, o.ToString())
+}
+
+func (o *CheckSeasonPurchasableConflict) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *CheckSeasonPurchasableConflict) GetPayload() *seasonpassclientmodels.ErrorEntity {

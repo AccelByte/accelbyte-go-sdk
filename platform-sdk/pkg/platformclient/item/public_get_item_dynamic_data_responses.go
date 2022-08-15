@@ -10,6 +10,7 @@ package item
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -65,7 +66,16 @@ type PublicGetItemDynamicDataOK struct {
 }
 
 func (o *PublicGetItemDynamicDataOK) Error() string {
-	return fmt.Sprintf("[GET /platform/public/namespaces/{namespace}/items/{itemId}/dynamic][%d] publicGetItemDynamicDataOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /platform/public/namespaces/{namespace}/items/{itemId}/dynamic][%d] publicGetItemDynamicDataOK  %+v", 200, o.ToString())
+}
+
+func (o *PublicGetItemDynamicDataOK) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *PublicGetItemDynamicDataOK) GetPayload() *platformclientmodels.ItemDynamicDataInfo {
@@ -98,7 +108,16 @@ type PublicGetItemDynamicDataNotFound struct {
 }
 
 func (o *PublicGetItemDynamicDataNotFound) Error() string {
-	return fmt.Sprintf("[GET /platform/public/namespaces/{namespace}/items/{itemId}/dynamic][%d] publicGetItemDynamicDataNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[GET /platform/public/namespaces/{namespace}/items/{itemId}/dynamic][%d] publicGetItemDynamicDataNotFound  %+v", 404, o.ToString())
+}
+
+func (o *PublicGetItemDynamicDataNotFound) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *PublicGetItemDynamicDataNotFound) GetPayload() *platformclientmodels.ErrorEntity {

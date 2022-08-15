@@ -10,6 +10,7 @@ package users_v4
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -110,7 +111,16 @@ type PublicDownloadMyBackupCodesV4BadRequest struct {
 }
 
 func (o *PublicDownloadMyBackupCodesV4BadRequest) Error() string {
-	return fmt.Sprintf("[GET /iam/v4/public/namespaces/{namespace}/users/me/mfa/backupCode/download][%d] publicDownloadMyBackupCodesV4BadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[GET /iam/v4/public/namespaces/{namespace}/users/me/mfa/backupCode/download][%d] publicDownloadMyBackupCodesV4BadRequest  %+v", 400, o.ToString())
+}
+
+func (o *PublicDownloadMyBackupCodesV4BadRequest) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *PublicDownloadMyBackupCodesV4BadRequest) GetPayload() *iamclientmodels.RestErrorResponse {
@@ -143,7 +153,16 @@ type PublicDownloadMyBackupCodesV4Unauthorized struct {
 }
 
 func (o *PublicDownloadMyBackupCodesV4Unauthorized) Error() string {
-	return fmt.Sprintf("[GET /iam/v4/public/namespaces/{namespace}/users/me/mfa/backupCode/download][%d] publicDownloadMyBackupCodesV4Unauthorized  %+v", 401, o.Payload)
+	return fmt.Sprintf("[GET /iam/v4/public/namespaces/{namespace}/users/me/mfa/backupCode/download][%d] publicDownloadMyBackupCodesV4Unauthorized  %+v", 401, o.ToString())
+}
+
+func (o *PublicDownloadMyBackupCodesV4Unauthorized) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *PublicDownloadMyBackupCodesV4Unauthorized) GetPayload() *iamclientmodels.RestErrorResponse {
@@ -176,7 +195,16 @@ type PublicDownloadMyBackupCodesV4Forbidden struct {
 }
 
 func (o *PublicDownloadMyBackupCodesV4Forbidden) Error() string {
-	return fmt.Sprintf("[GET /iam/v4/public/namespaces/{namespace}/users/me/mfa/backupCode/download][%d] publicDownloadMyBackupCodesV4Forbidden  %+v", 403, o.Payload)
+	return fmt.Sprintf("[GET /iam/v4/public/namespaces/{namespace}/users/me/mfa/backupCode/download][%d] publicDownloadMyBackupCodesV4Forbidden  %+v", 403, o.ToString())
+}
+
+func (o *PublicDownloadMyBackupCodesV4Forbidden) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *PublicDownloadMyBackupCodesV4Forbidden) GetPayload() *iamclientmodels.RestErrorResponse {
@@ -209,7 +237,16 @@ type PublicDownloadMyBackupCodesV4NotFound struct {
 }
 
 func (o *PublicDownloadMyBackupCodesV4NotFound) Error() string {
-	return fmt.Sprintf("[GET /iam/v4/public/namespaces/{namespace}/users/me/mfa/backupCode/download][%d] publicDownloadMyBackupCodesV4NotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[GET /iam/v4/public/namespaces/{namespace}/users/me/mfa/backupCode/download][%d] publicDownloadMyBackupCodesV4NotFound  %+v", 404, o.ToString())
+}
+
+func (o *PublicDownloadMyBackupCodesV4NotFound) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *PublicDownloadMyBackupCodesV4NotFound) GetPayload() *iamclientmodels.RestErrorResponse {
@@ -242,7 +279,16 @@ type PublicDownloadMyBackupCodesV4InternalServerError struct {
 }
 
 func (o *PublicDownloadMyBackupCodesV4InternalServerError) Error() string {
-	return fmt.Sprintf("[GET /iam/v4/public/namespaces/{namespace}/users/me/mfa/backupCode/download][%d] publicDownloadMyBackupCodesV4InternalServerError  %+v", 500, o.Payload)
+	return fmt.Sprintf("[GET /iam/v4/public/namespaces/{namespace}/users/me/mfa/backupCode/download][%d] publicDownloadMyBackupCodesV4InternalServerError  %+v", 500, o.ToString())
+}
+
+func (o *PublicDownloadMyBackupCodesV4InternalServerError) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *PublicDownloadMyBackupCodesV4InternalServerError) GetPayload() *iamclientmodels.RestErrorResponse {

@@ -10,6 +10,7 @@ package admin_player_record
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -77,7 +78,16 @@ type AdminRetrievePlayerRecordsOK struct {
 }
 
 func (o *AdminRetrievePlayerRecordsOK) Error() string {
-	return fmt.Sprintf("[GET /cloudsave/v1/admin/namespaces/{namespace}/users/{userId}/records][%d] adminRetrievePlayerRecordsOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /cloudsave/v1/admin/namespaces/{namespace}/users/{userId}/records][%d] adminRetrievePlayerRecordsOK  %+v", 200, o.ToString())
+}
+
+func (o *AdminRetrievePlayerRecordsOK) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *AdminRetrievePlayerRecordsOK) GetPayload() *cloudsaveclientmodels.ModelsListPlayerRecordKeysResponse {
@@ -110,7 +120,16 @@ type AdminRetrievePlayerRecordsBadRequest struct {
 }
 
 func (o *AdminRetrievePlayerRecordsBadRequest) Error() string {
-	return fmt.Sprintf("[GET /cloudsave/v1/admin/namespaces/{namespace}/users/{userId}/records][%d] adminRetrievePlayerRecordsBadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[GET /cloudsave/v1/admin/namespaces/{namespace}/users/{userId}/records][%d] adminRetrievePlayerRecordsBadRequest  %+v", 400, o.ToString())
+}
+
+func (o *AdminRetrievePlayerRecordsBadRequest) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *AdminRetrievePlayerRecordsBadRequest) GetPayload() *cloudsaveclientmodels.ModelsResponseError {
@@ -143,7 +162,16 @@ type AdminRetrievePlayerRecordsUnauthorized struct {
 }
 
 func (o *AdminRetrievePlayerRecordsUnauthorized) Error() string {
-	return fmt.Sprintf("[GET /cloudsave/v1/admin/namespaces/{namespace}/users/{userId}/records][%d] adminRetrievePlayerRecordsUnauthorized  %+v", 401, o.Payload)
+	return fmt.Sprintf("[GET /cloudsave/v1/admin/namespaces/{namespace}/users/{userId}/records][%d] adminRetrievePlayerRecordsUnauthorized  %+v", 401, o.ToString())
+}
+
+func (o *AdminRetrievePlayerRecordsUnauthorized) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *AdminRetrievePlayerRecordsUnauthorized) GetPayload() *cloudsaveclientmodels.ModelsResponseError {
@@ -176,7 +204,16 @@ type AdminRetrievePlayerRecordsInternalServerError struct {
 }
 
 func (o *AdminRetrievePlayerRecordsInternalServerError) Error() string {
-	return fmt.Sprintf("[GET /cloudsave/v1/admin/namespaces/{namespace}/users/{userId}/records][%d] adminRetrievePlayerRecordsInternalServerError  %+v", 500, o.Payload)
+	return fmt.Sprintf("[GET /cloudsave/v1/admin/namespaces/{namespace}/users/{userId}/records][%d] adminRetrievePlayerRecordsInternalServerError  %+v", 500, o.ToString())
+}
+
+func (o *AdminRetrievePlayerRecordsInternalServerError) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *AdminRetrievePlayerRecordsInternalServerError) GetPayload() *cloudsaveclientmodels.ModelsResponseError {

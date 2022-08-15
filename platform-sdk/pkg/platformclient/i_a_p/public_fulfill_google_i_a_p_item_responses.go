@@ -10,6 +10,7 @@ package i_a_p
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -77,7 +78,16 @@ type PublicFulfillGoogleIAPItemOK struct {
 }
 
 func (o *PublicFulfillGoogleIAPItemOK) Error() string {
-	return fmt.Sprintf("[PUT /platform/public/namespaces/{namespace}/users/{userId}/iap/google/receipt][%d] publicFulfillGoogleIAPItemOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[PUT /platform/public/namespaces/{namespace}/users/{userId}/iap/google/receipt][%d] publicFulfillGoogleIAPItemOK  %+v", 200, o.ToString())
+}
+
+func (o *PublicFulfillGoogleIAPItemOK) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *PublicFulfillGoogleIAPItemOK) GetPayload() *platformclientmodels.GoogleReceiptResolveResult {
@@ -110,7 +120,16 @@ type PublicFulfillGoogleIAPItemBadRequest struct {
 }
 
 func (o *PublicFulfillGoogleIAPItemBadRequest) Error() string {
-	return fmt.Sprintf("[PUT /platform/public/namespaces/{namespace}/users/{userId}/iap/google/receipt][%d] publicFulfillGoogleIAPItemBadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[PUT /platform/public/namespaces/{namespace}/users/{userId}/iap/google/receipt][%d] publicFulfillGoogleIAPItemBadRequest  %+v", 400, o.ToString())
+}
+
+func (o *PublicFulfillGoogleIAPItemBadRequest) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *PublicFulfillGoogleIAPItemBadRequest) GetPayload() *platformclientmodels.ErrorEntity {
@@ -143,7 +162,16 @@ type PublicFulfillGoogleIAPItemNotFound struct {
 }
 
 func (o *PublicFulfillGoogleIAPItemNotFound) Error() string {
-	return fmt.Sprintf("[PUT /platform/public/namespaces/{namespace}/users/{userId}/iap/google/receipt][%d] publicFulfillGoogleIAPItemNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[PUT /platform/public/namespaces/{namespace}/users/{userId}/iap/google/receipt][%d] publicFulfillGoogleIAPItemNotFound  %+v", 404, o.ToString())
+}
+
+func (o *PublicFulfillGoogleIAPItemNotFound) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *PublicFulfillGoogleIAPItemNotFound) GetPayload() *platformclientmodels.ErrorEntity {
@@ -176,7 +204,16 @@ type PublicFulfillGoogleIAPItemConflict struct {
 }
 
 func (o *PublicFulfillGoogleIAPItemConflict) Error() string {
-	return fmt.Sprintf("[PUT /platform/public/namespaces/{namespace}/users/{userId}/iap/google/receipt][%d] publicFulfillGoogleIAPItemConflict  %+v", 409, o.Payload)
+	return fmt.Sprintf("[PUT /platform/public/namespaces/{namespace}/users/{userId}/iap/google/receipt][%d] publicFulfillGoogleIAPItemConflict  %+v", 409, o.ToString())
+}
+
+func (o *PublicFulfillGoogleIAPItemConflict) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *PublicFulfillGoogleIAPItemConflict) GetPayload() *platformclientmodels.ErrorEntity {

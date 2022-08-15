@@ -10,6 +10,7 @@ package friends
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -110,7 +111,16 @@ type UserUnfriendRequestBadRequest struct {
 }
 
 func (o *UserUnfriendRequestBadRequest) Error() string {
-	return fmt.Sprintf("[POST /friends/namespaces/{namespace}/me/unfriend][%d] userUnfriendRequestBadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[POST /friends/namespaces/{namespace}/me/unfriend][%d] userUnfriendRequestBadRequest  %+v", 400, o.ToString())
+}
+
+func (o *UserUnfriendRequestBadRequest) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *UserUnfriendRequestBadRequest) GetPayload() *lobbyclientmodels.RestapiErrorResponseV1 {
@@ -143,7 +153,16 @@ type UserUnfriendRequestUnauthorized struct {
 }
 
 func (o *UserUnfriendRequestUnauthorized) Error() string {
-	return fmt.Sprintf("[POST /friends/namespaces/{namespace}/me/unfriend][%d] userUnfriendRequestUnauthorized  %+v", 401, o.Payload)
+	return fmt.Sprintf("[POST /friends/namespaces/{namespace}/me/unfriend][%d] userUnfriendRequestUnauthorized  %+v", 401, o.ToString())
+}
+
+func (o *UserUnfriendRequestUnauthorized) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *UserUnfriendRequestUnauthorized) GetPayload() *lobbyclientmodels.RestapiErrorResponseV1 {
@@ -176,7 +195,16 @@ type UserUnfriendRequestForbidden struct {
 }
 
 func (o *UserUnfriendRequestForbidden) Error() string {
-	return fmt.Sprintf("[POST /friends/namespaces/{namespace}/me/unfriend][%d] userUnfriendRequestForbidden  %+v", 403, o.Payload)
+	return fmt.Sprintf("[POST /friends/namespaces/{namespace}/me/unfriend][%d] userUnfriendRequestForbidden  %+v", 403, o.ToString())
+}
+
+func (o *UserUnfriendRequestForbidden) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *UserUnfriendRequestForbidden) GetPayload() *lobbyclientmodels.RestapiErrorResponseV1 {
@@ -209,7 +237,16 @@ type UserUnfriendRequestNotFound struct {
 }
 
 func (o *UserUnfriendRequestNotFound) Error() string {
-	return fmt.Sprintf("[POST /friends/namespaces/{namespace}/me/unfriend][%d] userUnfriendRequestNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[POST /friends/namespaces/{namespace}/me/unfriend][%d] userUnfriendRequestNotFound  %+v", 404, o.ToString())
+}
+
+func (o *UserUnfriendRequestNotFound) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *UserUnfriendRequestNotFound) GetPayload() *lobbyclientmodels.RestapiErrorResponseV1 {
@@ -242,7 +279,16 @@ type UserUnfriendRequestInternalServerError struct {
 }
 
 func (o *UserUnfriendRequestInternalServerError) Error() string {
-	return fmt.Sprintf("[POST /friends/namespaces/{namespace}/me/unfriend][%d] userUnfriendRequestInternalServerError  %+v", 500, o.Payload)
+	return fmt.Sprintf("[POST /friends/namespaces/{namespace}/me/unfriend][%d] userUnfriendRequestInternalServerError  %+v", 500, o.ToString())
+}
+
+func (o *UserUnfriendRequestInternalServerError) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *UserUnfriendRequestInternalServerError) GetPayload() *lobbyclientmodels.RestapiErrorResponseV1 {

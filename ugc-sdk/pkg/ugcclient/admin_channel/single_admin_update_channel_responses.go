@@ -10,6 +10,7 @@ package admin_channel
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -83,7 +84,16 @@ type SingleAdminUpdateChannelOK struct {
 }
 
 func (o *SingleAdminUpdateChannelOK) Error() string {
-	return fmt.Sprintf("[PUT /ugc/v1/admin/namespaces/{namespace}/channels/{channelId}][%d] singleAdminUpdateChannelOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[PUT /ugc/v1/admin/namespaces/{namespace}/channels/{channelId}][%d] singleAdminUpdateChannelOK  %+v", 200, o.ToString())
+}
+
+func (o *SingleAdminUpdateChannelOK) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *SingleAdminUpdateChannelOK) GetPayload() *ugcclientmodels.ModelsChannelResponse {
@@ -116,7 +126,16 @@ type SingleAdminUpdateChannelBadRequest struct {
 }
 
 func (o *SingleAdminUpdateChannelBadRequest) Error() string {
-	return fmt.Sprintf("[PUT /ugc/v1/admin/namespaces/{namespace}/channels/{channelId}][%d] singleAdminUpdateChannelBadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[PUT /ugc/v1/admin/namespaces/{namespace}/channels/{channelId}][%d] singleAdminUpdateChannelBadRequest  %+v", 400, o.ToString())
+}
+
+func (o *SingleAdminUpdateChannelBadRequest) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *SingleAdminUpdateChannelBadRequest) GetPayload() *ugcclientmodels.ResponseError {
@@ -149,7 +168,16 @@ type SingleAdminUpdateChannelUnauthorized struct {
 }
 
 func (o *SingleAdminUpdateChannelUnauthorized) Error() string {
-	return fmt.Sprintf("[PUT /ugc/v1/admin/namespaces/{namespace}/channels/{channelId}][%d] singleAdminUpdateChannelUnauthorized  %+v", 401, o.Payload)
+	return fmt.Sprintf("[PUT /ugc/v1/admin/namespaces/{namespace}/channels/{channelId}][%d] singleAdminUpdateChannelUnauthorized  %+v", 401, o.ToString())
+}
+
+func (o *SingleAdminUpdateChannelUnauthorized) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *SingleAdminUpdateChannelUnauthorized) GetPayload() *ugcclientmodels.ResponseError {
@@ -182,7 +210,16 @@ type SingleAdminUpdateChannelNotFound struct {
 }
 
 func (o *SingleAdminUpdateChannelNotFound) Error() string {
-	return fmt.Sprintf("[PUT /ugc/v1/admin/namespaces/{namespace}/channels/{channelId}][%d] singleAdminUpdateChannelNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[PUT /ugc/v1/admin/namespaces/{namespace}/channels/{channelId}][%d] singleAdminUpdateChannelNotFound  %+v", 404, o.ToString())
+}
+
+func (o *SingleAdminUpdateChannelNotFound) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *SingleAdminUpdateChannelNotFound) GetPayload() *ugcclientmodels.ResponseError {
@@ -215,7 +252,16 @@ type SingleAdminUpdateChannelInternalServerError struct {
 }
 
 func (o *SingleAdminUpdateChannelInternalServerError) Error() string {
-	return fmt.Sprintf("[PUT /ugc/v1/admin/namespaces/{namespace}/channels/{channelId}][%d] singleAdminUpdateChannelInternalServerError  %+v", 500, o.Payload)
+	return fmt.Sprintf("[PUT /ugc/v1/admin/namespaces/{namespace}/channels/{channelId}][%d] singleAdminUpdateChannelInternalServerError  %+v", 500, o.ToString())
+}
+
+func (o *SingleAdminUpdateChannelInternalServerError) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *SingleAdminUpdateChannelInternalServerError) GetPayload() *ugcclientmodels.ResponseError {

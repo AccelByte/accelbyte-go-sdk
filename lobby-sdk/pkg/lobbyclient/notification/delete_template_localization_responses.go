@@ -10,6 +10,7 @@ package notification
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -104,7 +105,16 @@ type DeleteTemplateLocalizationBadRequest struct {
 }
 
 func (o *DeleteTemplateLocalizationBadRequest) Error() string {
-	return fmt.Sprintf("[DELETE /notification/namespaces/{namespace}/templates/{templateSlug}/languages/{templateLanguage}][%d] deleteTemplateLocalizationBadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[DELETE /notification/namespaces/{namespace}/templates/{templateSlug}/languages/{templateLanguage}][%d] deleteTemplateLocalizationBadRequest  %+v", 400, o.ToString())
+}
+
+func (o *DeleteTemplateLocalizationBadRequest) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *DeleteTemplateLocalizationBadRequest) GetPayload() *lobbyclientmodels.RestapiErrorResponseBody {
@@ -137,7 +147,16 @@ type DeleteTemplateLocalizationUnauthorized struct {
 }
 
 func (o *DeleteTemplateLocalizationUnauthorized) Error() string {
-	return fmt.Sprintf("[DELETE /notification/namespaces/{namespace}/templates/{templateSlug}/languages/{templateLanguage}][%d] deleteTemplateLocalizationUnauthorized  %+v", 401, o.Payload)
+	return fmt.Sprintf("[DELETE /notification/namespaces/{namespace}/templates/{templateSlug}/languages/{templateLanguage}][%d] deleteTemplateLocalizationUnauthorized  %+v", 401, o.ToString())
+}
+
+func (o *DeleteTemplateLocalizationUnauthorized) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *DeleteTemplateLocalizationUnauthorized) GetPayload() *lobbyclientmodels.RestapiErrorResponseBody {
@@ -170,7 +189,16 @@ type DeleteTemplateLocalizationForbidden struct {
 }
 
 func (o *DeleteTemplateLocalizationForbidden) Error() string {
-	return fmt.Sprintf("[DELETE /notification/namespaces/{namespace}/templates/{templateSlug}/languages/{templateLanguage}][%d] deleteTemplateLocalizationForbidden  %+v", 403, o.Payload)
+	return fmt.Sprintf("[DELETE /notification/namespaces/{namespace}/templates/{templateSlug}/languages/{templateLanguage}][%d] deleteTemplateLocalizationForbidden  %+v", 403, o.ToString())
+}
+
+func (o *DeleteTemplateLocalizationForbidden) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *DeleteTemplateLocalizationForbidden) GetPayload() *lobbyclientmodels.RestapiErrorResponseBody {
@@ -203,7 +231,16 @@ type DeleteTemplateLocalizationNotFound struct {
 }
 
 func (o *DeleteTemplateLocalizationNotFound) Error() string {
-	return fmt.Sprintf("[DELETE /notification/namespaces/{namespace}/templates/{templateSlug}/languages/{templateLanguage}][%d] deleteTemplateLocalizationNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[DELETE /notification/namespaces/{namespace}/templates/{templateSlug}/languages/{templateLanguage}][%d] deleteTemplateLocalizationNotFound  %+v", 404, o.ToString())
+}
+
+func (o *DeleteTemplateLocalizationNotFound) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *DeleteTemplateLocalizationNotFound) GetPayload() *lobbyclientmodels.RestapiErrorResponseBody {

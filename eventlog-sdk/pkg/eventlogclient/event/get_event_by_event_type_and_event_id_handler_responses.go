@@ -10,6 +10,7 @@ package event
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -89,7 +90,16 @@ type GetEventByEventTypeAndEventIDHandlerOK struct {
 }
 
 func (o *GetEventByEventTypeAndEventIDHandlerOK) Error() string {
-	return fmt.Sprintf("[GET /event/namespaces/{namespace}/eventType/{eventType}/eventId/{eventId}][%d] getEventByEventTypeAndEventIdHandlerOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /event/namespaces/{namespace}/eventType/{eventType}/eventId/{eventId}][%d] getEventByEventTypeAndEventIdHandlerOK  %+v", 200, o.ToString())
+}
+
+func (o *GetEventByEventTypeAndEventIDHandlerOK) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *GetEventByEventTypeAndEventIDHandlerOK) GetPayload() *eventlogclientmodels.ModelsEventResponse {

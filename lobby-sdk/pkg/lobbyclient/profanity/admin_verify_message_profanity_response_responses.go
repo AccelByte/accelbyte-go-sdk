@@ -10,6 +10,7 @@ package profanity
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -89,7 +90,16 @@ type AdminVerifyMessageProfanityResponseOK struct {
 }
 
 func (o *AdminVerifyMessageProfanityResponseOK) Error() string {
-	return fmt.Sprintf("[POST /lobby/v1/admin/profanity/namespaces/{namespace}/verify][%d] adminVerifyMessageProfanityResponseOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[POST /lobby/v1/admin/profanity/namespaces/{namespace}/verify][%d] adminVerifyMessageProfanityResponseOK  %+v", 200, o.ToString())
+}
+
+func (o *AdminVerifyMessageProfanityResponseOK) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *AdminVerifyMessageProfanityResponseOK) GetPayload() *lobbyclientmodels.ModelsAdminVerifyMessageProfanityResponse {
@@ -122,7 +132,16 @@ type AdminVerifyMessageProfanityResponseBadRequest struct {
 }
 
 func (o *AdminVerifyMessageProfanityResponseBadRequest) Error() string {
-	return fmt.Sprintf("[POST /lobby/v1/admin/profanity/namespaces/{namespace}/verify][%d] adminVerifyMessageProfanityResponseBadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[POST /lobby/v1/admin/profanity/namespaces/{namespace}/verify][%d] adminVerifyMessageProfanityResponseBadRequest  %+v", 400, o.ToString())
+}
+
+func (o *AdminVerifyMessageProfanityResponseBadRequest) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *AdminVerifyMessageProfanityResponseBadRequest) GetPayload() *lobbyclientmodels.RestapiErrorResponseBody {
@@ -155,7 +174,16 @@ type AdminVerifyMessageProfanityResponseUnauthorized struct {
 }
 
 func (o *AdminVerifyMessageProfanityResponseUnauthorized) Error() string {
-	return fmt.Sprintf("[POST /lobby/v1/admin/profanity/namespaces/{namespace}/verify][%d] adminVerifyMessageProfanityResponseUnauthorized  %+v", 401, o.Payload)
+	return fmt.Sprintf("[POST /lobby/v1/admin/profanity/namespaces/{namespace}/verify][%d] adminVerifyMessageProfanityResponseUnauthorized  %+v", 401, o.ToString())
+}
+
+func (o *AdminVerifyMessageProfanityResponseUnauthorized) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *AdminVerifyMessageProfanityResponseUnauthorized) GetPayload() *lobbyclientmodels.RestapiErrorResponseBody {
@@ -188,7 +216,16 @@ type AdminVerifyMessageProfanityResponseForbidden struct {
 }
 
 func (o *AdminVerifyMessageProfanityResponseForbidden) Error() string {
-	return fmt.Sprintf("[POST /lobby/v1/admin/profanity/namespaces/{namespace}/verify][%d] adminVerifyMessageProfanityResponseForbidden  %+v", 403, o.Payload)
+	return fmt.Sprintf("[POST /lobby/v1/admin/profanity/namespaces/{namespace}/verify][%d] adminVerifyMessageProfanityResponseForbidden  %+v", 403, o.ToString())
+}
+
+func (o *AdminVerifyMessageProfanityResponseForbidden) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *AdminVerifyMessageProfanityResponseForbidden) GetPayload() *lobbyclientmodels.RestapiErrorResponseBody {
@@ -221,7 +258,16 @@ type AdminVerifyMessageProfanityResponseNotFound struct {
 }
 
 func (o *AdminVerifyMessageProfanityResponseNotFound) Error() string {
-	return fmt.Sprintf("[POST /lobby/v1/admin/profanity/namespaces/{namespace}/verify][%d] adminVerifyMessageProfanityResponseNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[POST /lobby/v1/admin/profanity/namespaces/{namespace}/verify][%d] adminVerifyMessageProfanityResponseNotFound  %+v", 404, o.ToString())
+}
+
+func (o *AdminVerifyMessageProfanityResponseNotFound) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *AdminVerifyMessageProfanityResponseNotFound) GetPayload() *lobbyclientmodels.RestapiErrorResponseBody {
@@ -254,7 +300,16 @@ type AdminVerifyMessageProfanityResponseInternalServerError struct {
 }
 
 func (o *AdminVerifyMessageProfanityResponseInternalServerError) Error() string {
-	return fmt.Sprintf("[POST /lobby/v1/admin/profanity/namespaces/{namespace}/verify][%d] adminVerifyMessageProfanityResponseInternalServerError  %+v", 500, o.Payload)
+	return fmt.Sprintf("[POST /lobby/v1/admin/profanity/namespaces/{namespace}/verify][%d] adminVerifyMessageProfanityResponseInternalServerError  %+v", 500, o.ToString())
+}
+
+func (o *AdminVerifyMessageProfanityResponseInternalServerError) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *AdminVerifyMessageProfanityResponseInternalServerError) GetPayload() *lobbyclientmodels.RestapiErrorResponseBody {

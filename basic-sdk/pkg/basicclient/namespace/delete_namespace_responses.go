@@ -10,6 +10,7 @@ package namespace
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -89,7 +90,16 @@ type DeleteNamespaceOK struct {
 }
 
 func (o *DeleteNamespaceOK) Error() string {
-	return fmt.Sprintf("[DELETE /basic/v1/admin/namespaces/{namespace}][%d] deleteNamespaceOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[DELETE /basic/v1/admin/namespaces/{namespace}][%d] deleteNamespaceOK  %+v", 200, o.ToString())
+}
+
+func (o *DeleteNamespaceOK) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *DeleteNamespaceOK) GetPayload() *basicclientmodels.NamespaceInfo {
@@ -122,7 +132,16 @@ type DeleteNamespaceBadRequest struct {
 }
 
 func (o *DeleteNamespaceBadRequest) Error() string {
-	return fmt.Sprintf("[DELETE /basic/v1/admin/namespaces/{namespace}][%d] deleteNamespaceBadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[DELETE /basic/v1/admin/namespaces/{namespace}][%d] deleteNamespaceBadRequest  %+v", 400, o.ToString())
+}
+
+func (o *DeleteNamespaceBadRequest) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *DeleteNamespaceBadRequest) GetPayload() *basicclientmodels.ValidationErrorEntity {
@@ -155,7 +174,16 @@ type DeleteNamespaceUnauthorized struct {
 }
 
 func (o *DeleteNamespaceUnauthorized) Error() string {
-	return fmt.Sprintf("[DELETE /basic/v1/admin/namespaces/{namespace}][%d] deleteNamespaceUnauthorized  %+v", 401, o.Payload)
+	return fmt.Sprintf("[DELETE /basic/v1/admin/namespaces/{namespace}][%d] deleteNamespaceUnauthorized  %+v", 401, o.ToString())
+}
+
+func (o *DeleteNamespaceUnauthorized) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *DeleteNamespaceUnauthorized) GetPayload() *basicclientmodels.ErrorEntity {
@@ -188,7 +216,16 @@ type DeleteNamespaceForbidden struct {
 }
 
 func (o *DeleteNamespaceForbidden) Error() string {
-	return fmt.Sprintf("[DELETE /basic/v1/admin/namespaces/{namespace}][%d] deleteNamespaceForbidden  %+v", 403, o.Payload)
+	return fmt.Sprintf("[DELETE /basic/v1/admin/namespaces/{namespace}][%d] deleteNamespaceForbidden  %+v", 403, o.ToString())
+}
+
+func (o *DeleteNamespaceForbidden) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *DeleteNamespaceForbidden) GetPayload() *basicclientmodels.ErrorEntity {
@@ -221,7 +258,16 @@ type DeleteNamespaceNotFound struct {
 }
 
 func (o *DeleteNamespaceNotFound) Error() string {
-	return fmt.Sprintf("[DELETE /basic/v1/admin/namespaces/{namespace}][%d] deleteNamespaceNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[DELETE /basic/v1/admin/namespaces/{namespace}][%d] deleteNamespaceNotFound  %+v", 404, o.ToString())
+}
+
+func (o *DeleteNamespaceNotFound) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *DeleteNamespaceNotFound) GetPayload() *basicclientmodels.ErrorEntity {
@@ -254,7 +300,16 @@ type DeleteNamespaceConflict struct {
 }
 
 func (o *DeleteNamespaceConflict) Error() string {
-	return fmt.Sprintf("[DELETE /basic/v1/admin/namespaces/{namespace}][%d] deleteNamespaceConflict  %+v", 409, o.Payload)
+	return fmt.Sprintf("[DELETE /basic/v1/admin/namespaces/{namespace}][%d] deleteNamespaceConflict  %+v", 409, o.ToString())
+}
+
+func (o *DeleteNamespaceConflict) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *DeleteNamespaceConflict) GetPayload() *basicclientmodels.ErrorEntity {

@@ -10,6 +10,7 @@ package base_legal_policies
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -71,7 +72,16 @@ type CreatePolicyCreated struct {
 }
 
 func (o *CreatePolicyCreated) Error() string {
-	return fmt.Sprintf("[POST /agreement/admin/base-policies][%d] createPolicyCreated  %+v", 201, o.Payload)
+	return fmt.Sprintf("[POST /agreement/admin/base-policies][%d] createPolicyCreated  %+v", 201, o.ToString())
+}
+
+func (o *CreatePolicyCreated) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *CreatePolicyCreated) GetPayload() *legalclientmodels.CreateBasePolicyResponse {
@@ -104,7 +114,16 @@ type CreatePolicyConflict struct {
 }
 
 func (o *CreatePolicyConflict) Error() string {
-	return fmt.Sprintf("[POST /agreement/admin/base-policies][%d] createPolicyConflict  %+v", 409, o.Payload)
+	return fmt.Sprintf("[POST /agreement/admin/base-policies][%d] createPolicyConflict  %+v", 409, o.ToString())
+}
+
+func (o *CreatePolicyConflict) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *CreatePolicyConflict) GetPayload() *legalclientmodels.ErrorEntity {
@@ -137,7 +156,16 @@ type CreatePolicyUnprocessableEntity struct {
 }
 
 func (o *CreatePolicyUnprocessableEntity) Error() string {
-	return fmt.Sprintf("[POST /agreement/admin/base-policies][%d] createPolicyUnprocessableEntity  %+v", 422, o.Payload)
+	return fmt.Sprintf("[POST /agreement/admin/base-policies][%d] createPolicyUnprocessableEntity  %+v", 422, o.ToString())
+}
+
+func (o *CreatePolicyUnprocessableEntity) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *CreatePolicyUnprocessableEntity) GetPayload() *legalclientmodels.ValidationErrorEntity {

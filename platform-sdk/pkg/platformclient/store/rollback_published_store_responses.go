@@ -10,6 +10,7 @@ package store
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -65,7 +66,16 @@ type RollbackPublishedStoreOK struct {
 }
 
 func (o *RollbackPublishedStoreOK) Error() string {
-	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/stores/published/rollback][%d] rollbackPublishedStoreOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/stores/published/rollback][%d] rollbackPublishedStoreOK  %+v", 200, o.ToString())
+}
+
+func (o *RollbackPublishedStoreOK) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *RollbackPublishedStoreOK) GetPayload() *platformclientmodels.StoreInfo {
@@ -98,7 +108,16 @@ type RollbackPublishedStoreNotFound struct {
 }
 
 func (o *RollbackPublishedStoreNotFound) Error() string {
-	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/stores/published/rollback][%d] rollbackPublishedStoreNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/stores/published/rollback][%d] rollbackPublishedStoreNotFound  %+v", 404, o.ToString())
+}
+
+func (o *RollbackPublishedStoreNotFound) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *RollbackPublishedStoreNotFound) GetPayload() *platformclientmodels.ErrorEntity {

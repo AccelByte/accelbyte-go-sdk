@@ -10,6 +10,7 @@ package o_auth2_0
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -65,7 +66,16 @@ type GetRevocationListV3OK struct {
 }
 
 func (o *GetRevocationListV3OK) Error() string {
-	return fmt.Sprintf("[GET /iam/v3/oauth/revocationlist][%d] getRevocationListV3OK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /iam/v3/oauth/revocationlist][%d] getRevocationListV3OK  %+v", 200, o.ToString())
+}
+
+func (o *GetRevocationListV3OK) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *GetRevocationListV3OK) GetPayload() *iamclientmodels.OauthapiRevocationList {
@@ -98,7 +108,16 @@ type GetRevocationListV3Unauthorized struct {
 }
 
 func (o *GetRevocationListV3Unauthorized) Error() string {
-	return fmt.Sprintf("[GET /iam/v3/oauth/revocationlist][%d] getRevocationListV3Unauthorized  %+v", 401, o.Payload)
+	return fmt.Sprintf("[GET /iam/v3/oauth/revocationlist][%d] getRevocationListV3Unauthorized  %+v", 401, o.ToString())
+}
+
+func (o *GetRevocationListV3Unauthorized) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *GetRevocationListV3Unauthorized) GetPayload() *iamclientmodels.RestErrorResponse {

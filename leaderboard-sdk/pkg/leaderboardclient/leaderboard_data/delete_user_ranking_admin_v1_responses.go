@@ -10,6 +10,7 @@ package leaderboard_data
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -104,7 +105,16 @@ type DeleteUserRankingAdminV1Unauthorized struct {
 }
 
 func (o *DeleteUserRankingAdminV1Unauthorized) Error() string {
-	return fmt.Sprintf("[DELETE /leaderboard/v1/admin/namespaces/{namespace}/leaderboards/{leaderboardCode}/users/{userId}][%d] deleteUserRankingAdminV1Unauthorized  %+v", 401, o.Payload)
+	return fmt.Sprintf("[DELETE /leaderboard/v1/admin/namespaces/{namespace}/leaderboards/{leaderboardCode}/users/{userId}][%d] deleteUserRankingAdminV1Unauthorized  %+v", 401, o.ToString())
+}
+
+func (o *DeleteUserRankingAdminV1Unauthorized) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *DeleteUserRankingAdminV1Unauthorized) GetPayload() *leaderboardclientmodels.ResponseErrorResponse {
@@ -137,7 +147,16 @@ type DeleteUserRankingAdminV1Forbidden struct {
 }
 
 func (o *DeleteUserRankingAdminV1Forbidden) Error() string {
-	return fmt.Sprintf("[DELETE /leaderboard/v1/admin/namespaces/{namespace}/leaderboards/{leaderboardCode}/users/{userId}][%d] deleteUserRankingAdminV1Forbidden  %+v", 403, o.Payload)
+	return fmt.Sprintf("[DELETE /leaderboard/v1/admin/namespaces/{namespace}/leaderboards/{leaderboardCode}/users/{userId}][%d] deleteUserRankingAdminV1Forbidden  %+v", 403, o.ToString())
+}
+
+func (o *DeleteUserRankingAdminV1Forbidden) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *DeleteUserRankingAdminV1Forbidden) GetPayload() *leaderboardclientmodels.ResponseErrorResponse {
@@ -170,7 +189,16 @@ type DeleteUserRankingAdminV1NotFound struct {
 }
 
 func (o *DeleteUserRankingAdminV1NotFound) Error() string {
-	return fmt.Sprintf("[DELETE /leaderboard/v1/admin/namespaces/{namespace}/leaderboards/{leaderboardCode}/users/{userId}][%d] deleteUserRankingAdminV1NotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[DELETE /leaderboard/v1/admin/namespaces/{namespace}/leaderboards/{leaderboardCode}/users/{userId}][%d] deleteUserRankingAdminV1NotFound  %+v", 404, o.ToString())
+}
+
+func (o *DeleteUserRankingAdminV1NotFound) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *DeleteUserRankingAdminV1NotFound) GetPayload() *leaderboardclientmodels.ResponseErrorResponse {
@@ -203,7 +231,16 @@ type DeleteUserRankingAdminV1InternalServerError struct {
 }
 
 func (o *DeleteUserRankingAdminV1InternalServerError) Error() string {
-	return fmt.Sprintf("[DELETE /leaderboard/v1/admin/namespaces/{namespace}/leaderboards/{leaderboardCode}/users/{userId}][%d] deleteUserRankingAdminV1InternalServerError  %+v", 500, o.Payload)
+	return fmt.Sprintf("[DELETE /leaderboard/v1/admin/namespaces/{namespace}/leaderboards/{leaderboardCode}/users/{userId}][%d] deleteUserRankingAdminV1InternalServerError  %+v", 500, o.ToString())
+}
+
+func (o *DeleteUserRankingAdminV1InternalServerError) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *DeleteUserRankingAdminV1InternalServerError) GetPayload() *leaderboardclientmodels.ResponseErrorResponse {

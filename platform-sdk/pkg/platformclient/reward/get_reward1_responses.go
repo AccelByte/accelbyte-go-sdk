@@ -10,6 +10,7 @@ package reward
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -65,7 +66,16 @@ type GetReward1OK struct {
 }
 
 func (o *GetReward1OK) Error() string {
-	return fmt.Sprintf("[GET /platform/public/namespaces/{namespace}/rewards/{rewardId}][%d] getReward1OK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /platform/public/namespaces/{namespace}/rewards/{rewardId}][%d] getReward1OK  %+v", 200, o.ToString())
+}
+
+func (o *GetReward1OK) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *GetReward1OK) GetPayload() *platformclientmodels.RewardInfo {
@@ -98,7 +108,16 @@ type GetReward1NotFound struct {
 }
 
 func (o *GetReward1NotFound) Error() string {
-	return fmt.Sprintf("[GET /platform/public/namespaces/{namespace}/rewards/{rewardId}][%d] getReward1NotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[GET /platform/public/namespaces/{namespace}/rewards/{rewardId}][%d] getReward1NotFound  %+v", 404, o.ToString())
+}
+
+func (o *GetReward1NotFound) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *GetReward1NotFound) GetPayload() *platformclientmodels.ErrorEntity {

@@ -10,6 +10,7 @@ package s_s_o_credential
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -89,7 +90,16 @@ type UpdateSSOPlatformCredentialOK struct {
 }
 
 func (o *UpdateSSOPlatformCredentialOK) Error() string {
-	return fmt.Sprintf("[PATCH /iam/v3/admin/namespaces/{namespace}/platforms/{platformId}/sso][%d] updateSSOPlatformCredentialOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[PATCH /iam/v3/admin/namespaces/{namespace}/platforms/{platformId}/sso][%d] updateSSOPlatformCredentialOK  %+v", 200, o.ToString())
+}
+
+func (o *UpdateSSOPlatformCredentialOK) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *UpdateSSOPlatformCredentialOK) GetPayload() *iamclientmodels.ModelSSOPlatformCredentialResponse {
@@ -122,7 +132,16 @@ type UpdateSSOPlatformCredentialBadRequest struct {
 }
 
 func (o *UpdateSSOPlatformCredentialBadRequest) Error() string {
-	return fmt.Sprintf("[PATCH /iam/v3/admin/namespaces/{namespace}/platforms/{platformId}/sso][%d] updateSSOPlatformCredentialBadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[PATCH /iam/v3/admin/namespaces/{namespace}/platforms/{platformId}/sso][%d] updateSSOPlatformCredentialBadRequest  %+v", 400, o.ToString())
+}
+
+func (o *UpdateSSOPlatformCredentialBadRequest) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *UpdateSSOPlatformCredentialBadRequest) GetPayload() *iamclientmodels.RestErrorResponse {
@@ -197,7 +216,16 @@ type UpdateSSOPlatformCredentialNotFound struct {
 }
 
 func (o *UpdateSSOPlatformCredentialNotFound) Error() string {
-	return fmt.Sprintf("[PATCH /iam/v3/admin/namespaces/{namespace}/platforms/{platformId}/sso][%d] updateSSOPlatformCredentialNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[PATCH /iam/v3/admin/namespaces/{namespace}/platforms/{platformId}/sso][%d] updateSSOPlatformCredentialNotFound  %+v", 404, o.ToString())
+}
+
+func (o *UpdateSSOPlatformCredentialNotFound) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *UpdateSSOPlatformCredentialNotFound) GetPayload() *iamclientmodels.RestErrorResponse {
@@ -230,7 +258,16 @@ type UpdateSSOPlatformCredentialInternalServerError struct {
 }
 
 func (o *UpdateSSOPlatformCredentialInternalServerError) Error() string {
-	return fmt.Sprintf("[PATCH /iam/v3/admin/namespaces/{namespace}/platforms/{platformId}/sso][%d] updateSSOPlatformCredentialInternalServerError  %+v", 500, o.Payload)
+	return fmt.Sprintf("[PATCH /iam/v3/admin/namespaces/{namespace}/platforms/{platformId}/sso][%d] updateSSOPlatformCredentialInternalServerError  %+v", 500, o.ToString())
+}
+
+func (o *UpdateSSOPlatformCredentialInternalServerError) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *UpdateSSOPlatformCredentialInternalServerError) GetPayload() *iamclientmodels.RestErrorResponse {

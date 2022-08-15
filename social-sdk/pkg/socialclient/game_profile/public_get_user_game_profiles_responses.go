@@ -10,6 +10,7 @@ package game_profile
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -65,7 +66,16 @@ type PublicGetUserGameProfilesOK struct {
 }
 
 func (o *PublicGetUserGameProfilesOK) Error() string {
-	return fmt.Sprintf("[GET /social/public/namespaces/{namespace}/profiles][%d] publicGetUserGameProfilesOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /social/public/namespaces/{namespace}/profiles][%d] publicGetUserGameProfilesOK  %+v", 200, o.ToString())
+}
+
+func (o *PublicGetUserGameProfilesOK) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *PublicGetUserGameProfilesOK) GetPayload() []*socialclientmodels.UserGameProfiles {
@@ -96,7 +106,16 @@ type PublicGetUserGameProfilesBadRequest struct {
 }
 
 func (o *PublicGetUserGameProfilesBadRequest) Error() string {
-	return fmt.Sprintf("[GET /social/public/namespaces/{namespace}/profiles][%d] publicGetUserGameProfilesBadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[GET /social/public/namespaces/{namespace}/profiles][%d] publicGetUserGameProfilesBadRequest  %+v", 400, o.ToString())
+}
+
+func (o *PublicGetUserGameProfilesBadRequest) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *PublicGetUserGameProfilesBadRequest) GetPayload() *socialclientmodels.ErrorEntity {

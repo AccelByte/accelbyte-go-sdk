@@ -10,6 +10,7 @@ package users
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -89,7 +90,16 @@ type AdminUpdateUserBanV3OK struct {
 }
 
 func (o *AdminUpdateUserBanV3OK) Error() string {
-	return fmt.Sprintf("[PATCH /iam/v3/admin/namespaces/{namespace}/users/{userId}/bans/{banId}][%d] adminUpdateUserBanV3OK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[PATCH /iam/v3/admin/namespaces/{namespace}/users/{userId}/bans/{banId}][%d] adminUpdateUserBanV3OK  %+v", 200, o.ToString())
+}
+
+func (o *AdminUpdateUserBanV3OK) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *AdminUpdateUserBanV3OK) GetPayload() *iamclientmodels.ModelUserBanResponseV3 {
@@ -122,7 +132,16 @@ type AdminUpdateUserBanV3BadRequest struct {
 }
 
 func (o *AdminUpdateUserBanV3BadRequest) Error() string {
-	return fmt.Sprintf("[PATCH /iam/v3/admin/namespaces/{namespace}/users/{userId}/bans/{banId}][%d] adminUpdateUserBanV3BadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[PATCH /iam/v3/admin/namespaces/{namespace}/users/{userId}/bans/{banId}][%d] adminUpdateUserBanV3BadRequest  %+v", 400, o.ToString())
+}
+
+func (o *AdminUpdateUserBanV3BadRequest) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *AdminUpdateUserBanV3BadRequest) GetPayload() *iamclientmodels.RestErrorResponse {
@@ -155,7 +174,16 @@ type AdminUpdateUserBanV3Unauthorized struct {
 }
 
 func (o *AdminUpdateUserBanV3Unauthorized) Error() string {
-	return fmt.Sprintf("[PATCH /iam/v3/admin/namespaces/{namespace}/users/{userId}/bans/{banId}][%d] adminUpdateUserBanV3Unauthorized  %+v", 401, o.Payload)
+	return fmt.Sprintf("[PATCH /iam/v3/admin/namespaces/{namespace}/users/{userId}/bans/{banId}][%d] adminUpdateUserBanV3Unauthorized  %+v", 401, o.ToString())
+}
+
+func (o *AdminUpdateUserBanV3Unauthorized) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *AdminUpdateUserBanV3Unauthorized) GetPayload() *iamclientmodels.RestErrorResponse {
@@ -188,7 +216,16 @@ type AdminUpdateUserBanV3Forbidden struct {
 }
 
 func (o *AdminUpdateUserBanV3Forbidden) Error() string {
-	return fmt.Sprintf("[PATCH /iam/v3/admin/namespaces/{namespace}/users/{userId}/bans/{banId}][%d] adminUpdateUserBanV3Forbidden  %+v", 403, o.Payload)
+	return fmt.Sprintf("[PATCH /iam/v3/admin/namespaces/{namespace}/users/{userId}/bans/{banId}][%d] adminUpdateUserBanV3Forbidden  %+v", 403, o.ToString())
+}
+
+func (o *AdminUpdateUserBanV3Forbidden) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *AdminUpdateUserBanV3Forbidden) GetPayload() *iamclientmodels.RestErrorResponse {
@@ -221,7 +258,16 @@ type AdminUpdateUserBanV3NotFound struct {
 }
 
 func (o *AdminUpdateUserBanV3NotFound) Error() string {
-	return fmt.Sprintf("[PATCH /iam/v3/admin/namespaces/{namespace}/users/{userId}/bans/{banId}][%d] adminUpdateUserBanV3NotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[PATCH /iam/v3/admin/namespaces/{namespace}/users/{userId}/bans/{banId}][%d] adminUpdateUserBanV3NotFound  %+v", 404, o.ToString())
+}
+
+func (o *AdminUpdateUserBanV3NotFound) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *AdminUpdateUserBanV3NotFound) GetPayload() *iamclientmodels.RestErrorResponse {
@@ -254,7 +300,16 @@ type AdminUpdateUserBanV3InternalServerError struct {
 }
 
 func (o *AdminUpdateUserBanV3InternalServerError) Error() string {
-	return fmt.Sprintf("[PATCH /iam/v3/admin/namespaces/{namespace}/users/{userId}/bans/{banId}][%d] adminUpdateUserBanV3InternalServerError  %+v", 500, o.Payload)
+	return fmt.Sprintf("[PATCH /iam/v3/admin/namespaces/{namespace}/users/{userId}/bans/{banId}][%d] adminUpdateUserBanV3InternalServerError  %+v", 500, o.ToString())
+}
+
+func (o *AdminUpdateUserBanV3InternalServerError) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *AdminUpdateUserBanV3InternalServerError) GetPayload() *iamclientmodels.RestErrorResponse {

@@ -10,6 +10,7 @@ package leaderboard_data
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -89,7 +90,16 @@ type UpdateUserPointAdminV1OK struct {
 }
 
 func (o *UpdateUserPointAdminV1OK) Error() string {
-	return fmt.Sprintf("[PUT /leaderboard/v1/admin/namespaces/{namespace}/leaderboards/{leaderboardCode}/users/{userId}][%d] updateUserPointAdminV1OK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[PUT /leaderboard/v1/admin/namespaces/{namespace}/leaderboards/{leaderboardCode}/users/{userId}][%d] updateUserPointAdminV1OK  %+v", 200, o.ToString())
+}
+
+func (o *UpdateUserPointAdminV1OK) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *UpdateUserPointAdminV1OK) GetPayload() *leaderboardclientmodels.ModelsUpdateUserPointAdminV1Response {
@@ -122,7 +132,16 @@ type UpdateUserPointAdminV1BadRequest struct {
 }
 
 func (o *UpdateUserPointAdminV1BadRequest) Error() string {
-	return fmt.Sprintf("[PUT /leaderboard/v1/admin/namespaces/{namespace}/leaderboards/{leaderboardCode}/users/{userId}][%d] updateUserPointAdminV1BadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[PUT /leaderboard/v1/admin/namespaces/{namespace}/leaderboards/{leaderboardCode}/users/{userId}][%d] updateUserPointAdminV1BadRequest  %+v", 400, o.ToString())
+}
+
+func (o *UpdateUserPointAdminV1BadRequest) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *UpdateUserPointAdminV1BadRequest) GetPayload() *leaderboardclientmodels.ResponseErrorResponse {
@@ -155,7 +174,16 @@ type UpdateUserPointAdminV1Unauthorized struct {
 }
 
 func (o *UpdateUserPointAdminV1Unauthorized) Error() string {
-	return fmt.Sprintf("[PUT /leaderboard/v1/admin/namespaces/{namespace}/leaderboards/{leaderboardCode}/users/{userId}][%d] updateUserPointAdminV1Unauthorized  %+v", 401, o.Payload)
+	return fmt.Sprintf("[PUT /leaderboard/v1/admin/namespaces/{namespace}/leaderboards/{leaderboardCode}/users/{userId}][%d] updateUserPointAdminV1Unauthorized  %+v", 401, o.ToString())
+}
+
+func (o *UpdateUserPointAdminV1Unauthorized) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *UpdateUserPointAdminV1Unauthorized) GetPayload() *leaderboardclientmodels.ResponseErrorResponse {
@@ -188,7 +216,16 @@ type UpdateUserPointAdminV1Forbidden struct {
 }
 
 func (o *UpdateUserPointAdminV1Forbidden) Error() string {
-	return fmt.Sprintf("[PUT /leaderboard/v1/admin/namespaces/{namespace}/leaderboards/{leaderboardCode}/users/{userId}][%d] updateUserPointAdminV1Forbidden  %+v", 403, o.Payload)
+	return fmt.Sprintf("[PUT /leaderboard/v1/admin/namespaces/{namespace}/leaderboards/{leaderboardCode}/users/{userId}][%d] updateUserPointAdminV1Forbidden  %+v", 403, o.ToString())
+}
+
+func (o *UpdateUserPointAdminV1Forbidden) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *UpdateUserPointAdminV1Forbidden) GetPayload() *leaderboardclientmodels.ResponseErrorResponse {
@@ -221,7 +258,16 @@ type UpdateUserPointAdminV1NotFound struct {
 }
 
 func (o *UpdateUserPointAdminV1NotFound) Error() string {
-	return fmt.Sprintf("[PUT /leaderboard/v1/admin/namespaces/{namespace}/leaderboards/{leaderboardCode}/users/{userId}][%d] updateUserPointAdminV1NotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[PUT /leaderboard/v1/admin/namespaces/{namespace}/leaderboards/{leaderboardCode}/users/{userId}][%d] updateUserPointAdminV1NotFound  %+v", 404, o.ToString())
+}
+
+func (o *UpdateUserPointAdminV1NotFound) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *UpdateUserPointAdminV1NotFound) GetPayload() *leaderboardclientmodels.ResponseErrorResponse {
@@ -254,7 +300,16 @@ type UpdateUserPointAdminV1InternalServerError struct {
 }
 
 func (o *UpdateUserPointAdminV1InternalServerError) Error() string {
-	return fmt.Sprintf("[PUT /leaderboard/v1/admin/namespaces/{namespace}/leaderboards/{leaderboardCode}/users/{userId}][%d] updateUserPointAdminV1InternalServerError  %+v", 500, o.Payload)
+	return fmt.Sprintf("[PUT /leaderboard/v1/admin/namespaces/{namespace}/leaderboards/{leaderboardCode}/users/{userId}][%d] updateUserPointAdminV1InternalServerError  %+v", 500, o.ToString())
+}
+
+func (o *UpdateUserPointAdminV1InternalServerError) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *UpdateUserPointAdminV1InternalServerError) GetPayload() *leaderboardclientmodels.ResponseErrorResponse {

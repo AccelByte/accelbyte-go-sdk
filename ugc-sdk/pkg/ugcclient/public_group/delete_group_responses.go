@@ -10,6 +10,7 @@ package public_group
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -98,7 +99,16 @@ type DeleteGroupUnauthorized struct {
 }
 
 func (o *DeleteGroupUnauthorized) Error() string {
-	return fmt.Sprintf("[DELETE /ugc/v1/public/namespaces/{namespace}/users/{userId}/groups/{groupId}][%d] deleteGroupUnauthorized  %+v", 401, o.Payload)
+	return fmt.Sprintf("[DELETE /ugc/v1/public/namespaces/{namespace}/users/{userId}/groups/{groupId}][%d] deleteGroupUnauthorized  %+v", 401, o.ToString())
+}
+
+func (o *DeleteGroupUnauthorized) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *DeleteGroupUnauthorized) GetPayload() *ugcclientmodels.ResponseError {
@@ -131,7 +141,16 @@ type DeleteGroupNotFound struct {
 }
 
 func (o *DeleteGroupNotFound) Error() string {
-	return fmt.Sprintf("[DELETE /ugc/v1/public/namespaces/{namespace}/users/{userId}/groups/{groupId}][%d] deleteGroupNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[DELETE /ugc/v1/public/namespaces/{namespace}/users/{userId}/groups/{groupId}][%d] deleteGroupNotFound  %+v", 404, o.ToString())
+}
+
+func (o *DeleteGroupNotFound) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *DeleteGroupNotFound) GetPayload() *ugcclientmodels.ResponseError {
@@ -164,7 +183,16 @@ type DeleteGroupInternalServerError struct {
 }
 
 func (o *DeleteGroupInternalServerError) Error() string {
-	return fmt.Sprintf("[DELETE /ugc/v1/public/namespaces/{namespace}/users/{userId}/groups/{groupId}][%d] deleteGroupInternalServerError  %+v", 500, o.Payload)
+	return fmt.Sprintf("[DELETE /ugc/v1/public/namespaces/{namespace}/users/{userId}/groups/{groupId}][%d] deleteGroupInternalServerError  %+v", 500, o.ToString())
+}
+
+func (o *DeleteGroupInternalServerError) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *DeleteGroupInternalServerError) GetPayload() *ugcclientmodels.ResponseError {

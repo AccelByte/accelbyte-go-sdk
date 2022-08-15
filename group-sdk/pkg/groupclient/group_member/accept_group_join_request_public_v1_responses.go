@@ -10,6 +10,7 @@ package group_member
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -95,7 +96,16 @@ type AcceptGroupJoinRequestPublicV1OK struct {
 }
 
 func (o *AcceptGroupJoinRequestPublicV1OK) Error() string {
-	return fmt.Sprintf("[POST /group/v1/public/namespaces/{namespace}/users/{userId}/join/accept][%d] acceptGroupJoinRequestPublicV1OK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[POST /group/v1/public/namespaces/{namespace}/users/{userId}/join/accept][%d] acceptGroupJoinRequestPublicV1OK  %+v", 200, o.ToString())
+}
+
+func (o *AcceptGroupJoinRequestPublicV1OK) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *AcceptGroupJoinRequestPublicV1OK) GetPayload() *groupclientmodels.ModelsMemberRequestGroupResponseV1 {
@@ -128,7 +138,16 @@ type AcceptGroupJoinRequestPublicV1BadRequest struct {
 }
 
 func (o *AcceptGroupJoinRequestPublicV1BadRequest) Error() string {
-	return fmt.Sprintf("[POST /group/v1/public/namespaces/{namespace}/users/{userId}/join/accept][%d] acceptGroupJoinRequestPublicV1BadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[POST /group/v1/public/namespaces/{namespace}/users/{userId}/join/accept][%d] acceptGroupJoinRequestPublicV1BadRequest  %+v", 400, o.ToString())
+}
+
+func (o *AcceptGroupJoinRequestPublicV1BadRequest) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *AcceptGroupJoinRequestPublicV1BadRequest) GetPayload() *groupclientmodels.ResponseErrorResponse {
@@ -161,7 +180,16 @@ type AcceptGroupJoinRequestPublicV1Unauthorized struct {
 }
 
 func (o *AcceptGroupJoinRequestPublicV1Unauthorized) Error() string {
-	return fmt.Sprintf("[POST /group/v1/public/namespaces/{namespace}/users/{userId}/join/accept][%d] acceptGroupJoinRequestPublicV1Unauthorized  %+v", 401, o.Payload)
+	return fmt.Sprintf("[POST /group/v1/public/namespaces/{namespace}/users/{userId}/join/accept][%d] acceptGroupJoinRequestPublicV1Unauthorized  %+v", 401, o.ToString())
+}
+
+func (o *AcceptGroupJoinRequestPublicV1Unauthorized) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *AcceptGroupJoinRequestPublicV1Unauthorized) GetPayload() *groupclientmodels.ResponseErrorResponse {
@@ -194,7 +222,16 @@ type AcceptGroupJoinRequestPublicV1Forbidden struct {
 }
 
 func (o *AcceptGroupJoinRequestPublicV1Forbidden) Error() string {
-	return fmt.Sprintf("[POST /group/v1/public/namespaces/{namespace}/users/{userId}/join/accept][%d] acceptGroupJoinRequestPublicV1Forbidden  %+v", 403, o.Payload)
+	return fmt.Sprintf("[POST /group/v1/public/namespaces/{namespace}/users/{userId}/join/accept][%d] acceptGroupJoinRequestPublicV1Forbidden  %+v", 403, o.ToString())
+}
+
+func (o *AcceptGroupJoinRequestPublicV1Forbidden) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *AcceptGroupJoinRequestPublicV1Forbidden) GetPayload() *groupclientmodels.ResponseErrorResponse {
@@ -227,7 +264,16 @@ type AcceptGroupJoinRequestPublicV1NotFound struct {
 }
 
 func (o *AcceptGroupJoinRequestPublicV1NotFound) Error() string {
-	return fmt.Sprintf("[POST /group/v1/public/namespaces/{namespace}/users/{userId}/join/accept][%d] acceptGroupJoinRequestPublicV1NotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[POST /group/v1/public/namespaces/{namespace}/users/{userId}/join/accept][%d] acceptGroupJoinRequestPublicV1NotFound  %+v", 404, o.ToString())
+}
+
+func (o *AcceptGroupJoinRequestPublicV1NotFound) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *AcceptGroupJoinRequestPublicV1NotFound) GetPayload() *groupclientmodels.ResponseErrorResponse {
@@ -260,7 +306,16 @@ type AcceptGroupJoinRequestPublicV1Conflict struct {
 }
 
 func (o *AcceptGroupJoinRequestPublicV1Conflict) Error() string {
-	return fmt.Sprintf("[POST /group/v1/public/namespaces/{namespace}/users/{userId}/join/accept][%d] acceptGroupJoinRequestPublicV1Conflict  %+v", 409, o.Payload)
+	return fmt.Sprintf("[POST /group/v1/public/namespaces/{namespace}/users/{userId}/join/accept][%d] acceptGroupJoinRequestPublicV1Conflict  %+v", 409, o.ToString())
+}
+
+func (o *AcceptGroupJoinRequestPublicV1Conflict) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *AcceptGroupJoinRequestPublicV1Conflict) GetPayload() *groupclientmodels.ResponseErrorResponse {
@@ -293,7 +348,16 @@ type AcceptGroupJoinRequestPublicV1InternalServerError struct {
 }
 
 func (o *AcceptGroupJoinRequestPublicV1InternalServerError) Error() string {
-	return fmt.Sprintf("[POST /group/v1/public/namespaces/{namespace}/users/{userId}/join/accept][%d] acceptGroupJoinRequestPublicV1InternalServerError  %+v", 500, o.Payload)
+	return fmt.Sprintf("[POST /group/v1/public/namespaces/{namespace}/users/{userId}/join/accept][%d] acceptGroupJoinRequestPublicV1InternalServerError  %+v", 500, o.ToString())
+}
+
+func (o *AcceptGroupJoinRequestPublicV1InternalServerError) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *AcceptGroupJoinRequestPublicV1InternalServerError) GetPayload() *groupclientmodels.ResponseErrorResponse {

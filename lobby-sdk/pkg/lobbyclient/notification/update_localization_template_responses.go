@@ -10,6 +10,7 @@ package notification
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -104,7 +105,16 @@ type UpdateLocalizationTemplateBadRequest struct {
 }
 
 func (o *UpdateLocalizationTemplateBadRequest) Error() string {
-	return fmt.Sprintf("[PUT /notification/namespaces/{namespace}/templates/{templateSlug}/languages/{templateLanguage}][%d] updateLocalizationTemplateBadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[PUT /notification/namespaces/{namespace}/templates/{templateSlug}/languages/{templateLanguage}][%d] updateLocalizationTemplateBadRequest  %+v", 400, o.ToString())
+}
+
+func (o *UpdateLocalizationTemplateBadRequest) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *UpdateLocalizationTemplateBadRequest) GetPayload() *lobbyclientmodels.RestapiErrorResponseBody {
@@ -137,7 +147,16 @@ type UpdateLocalizationTemplateUnauthorized struct {
 }
 
 func (o *UpdateLocalizationTemplateUnauthorized) Error() string {
-	return fmt.Sprintf("[PUT /notification/namespaces/{namespace}/templates/{templateSlug}/languages/{templateLanguage}][%d] updateLocalizationTemplateUnauthorized  %+v", 401, o.Payload)
+	return fmt.Sprintf("[PUT /notification/namespaces/{namespace}/templates/{templateSlug}/languages/{templateLanguage}][%d] updateLocalizationTemplateUnauthorized  %+v", 401, o.ToString())
+}
+
+func (o *UpdateLocalizationTemplateUnauthorized) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *UpdateLocalizationTemplateUnauthorized) GetPayload() *lobbyclientmodels.RestapiErrorResponseBody {
@@ -170,7 +189,16 @@ type UpdateLocalizationTemplateForbidden struct {
 }
 
 func (o *UpdateLocalizationTemplateForbidden) Error() string {
-	return fmt.Sprintf("[PUT /notification/namespaces/{namespace}/templates/{templateSlug}/languages/{templateLanguage}][%d] updateLocalizationTemplateForbidden  %+v", 403, o.Payload)
+	return fmt.Sprintf("[PUT /notification/namespaces/{namespace}/templates/{templateSlug}/languages/{templateLanguage}][%d] updateLocalizationTemplateForbidden  %+v", 403, o.ToString())
+}
+
+func (o *UpdateLocalizationTemplateForbidden) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *UpdateLocalizationTemplateForbidden) GetPayload() *lobbyclientmodels.RestapiErrorResponseBody {
@@ -203,7 +231,16 @@ type UpdateLocalizationTemplateNotFound struct {
 }
 
 func (o *UpdateLocalizationTemplateNotFound) Error() string {
-	return fmt.Sprintf("[PUT /notification/namespaces/{namespace}/templates/{templateSlug}/languages/{templateLanguage}][%d] updateLocalizationTemplateNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[PUT /notification/namespaces/{namespace}/templates/{templateSlug}/languages/{templateLanguage}][%d] updateLocalizationTemplateNotFound  %+v", 404, o.ToString())
+}
+
+func (o *UpdateLocalizationTemplateNotFound) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *UpdateLocalizationTemplateNotFound) GetPayload() *lobbyclientmodels.RestapiErrorResponseBody {

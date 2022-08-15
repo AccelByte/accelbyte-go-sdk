@@ -10,6 +10,7 @@ package item
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -71,7 +72,16 @@ type QueryItemsOK struct {
 }
 
 func (o *QueryItemsOK) Error() string {
-	return fmt.Sprintf("[GET /platform/admin/namespaces/{namespace}/items/byCriteria][%d] queryItemsOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /platform/admin/namespaces/{namespace}/items/byCriteria][%d] queryItemsOK  %+v", 200, o.ToString())
+}
+
+func (o *QueryItemsOK) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *QueryItemsOK) GetPayload() *platformclientmodels.FullItemPagingSlicedResult {
@@ -104,7 +114,16 @@ type QueryItemsNotFound struct {
 }
 
 func (o *QueryItemsNotFound) Error() string {
-	return fmt.Sprintf("[GET /platform/admin/namespaces/{namespace}/items/byCriteria][%d] queryItemsNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[GET /platform/admin/namespaces/{namespace}/items/byCriteria][%d] queryItemsNotFound  %+v", 404, o.ToString())
+}
+
+func (o *QueryItemsNotFound) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *QueryItemsNotFound) GetPayload() *platformclientmodels.ErrorEntity {
@@ -137,7 +156,16 @@ type QueryItemsUnprocessableEntity struct {
 }
 
 func (o *QueryItemsUnprocessableEntity) Error() string {
-	return fmt.Sprintf("[GET /platform/admin/namespaces/{namespace}/items/byCriteria][%d] queryItemsUnprocessableEntity  %+v", 422, o.Payload)
+	return fmt.Sprintf("[GET /platform/admin/namespaces/{namespace}/items/byCriteria][%d] queryItemsUnprocessableEntity  %+v", 422, o.ToString())
+}
+
+func (o *QueryItemsUnprocessableEntity) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *QueryItemsUnprocessableEntity) GetPayload() *platformclientmodels.ValidationErrorEntity {

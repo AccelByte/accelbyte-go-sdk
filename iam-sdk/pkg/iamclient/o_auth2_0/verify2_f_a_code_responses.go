@@ -10,6 +10,7 @@ package o_auth2_0
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -65,7 +66,16 @@ type Verify2FACodeOK struct {
 }
 
 func (o *Verify2FACodeOK) Error() string {
-	return fmt.Sprintf("[POST /iam/v3/oauth/mfa/verify][%d] verify2FACodeOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[POST /iam/v3/oauth/mfa/verify][%d] verify2FACodeOK  %+v", 200, o.ToString())
+}
+
+func (o *Verify2FACodeOK) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *Verify2FACodeOK) GetPayload() *iamclientmodels.OauthmodelTokenResponseV3 {
@@ -98,7 +108,16 @@ type Verify2FACodeUnauthorized struct {
 }
 
 func (o *Verify2FACodeUnauthorized) Error() string {
-	return fmt.Sprintf("[POST /iam/v3/oauth/mfa/verify][%d] verify2FACodeUnauthorized  %+v", 401, o.Payload)
+	return fmt.Sprintf("[POST /iam/v3/oauth/mfa/verify][%d] verify2FACodeUnauthorized  %+v", 401, o.ToString())
+}
+
+func (o *Verify2FACodeUnauthorized) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *Verify2FACodeUnauthorized) GetPayload() *iamclientmodels.OauthmodelErrorResponse {

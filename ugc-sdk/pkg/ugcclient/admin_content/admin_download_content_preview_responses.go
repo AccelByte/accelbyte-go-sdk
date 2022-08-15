@@ -10,6 +10,7 @@ package admin_content
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -77,7 +78,16 @@ type AdminDownloadContentPreviewOK struct {
 }
 
 func (o *AdminDownloadContentPreviewOK) Error() string {
-	return fmt.Sprintf("[GET /ugc/v1/admin/namespaces/{namespace}/contents/{contentId}/preview][%d] adminDownloadContentPreviewOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /ugc/v1/admin/namespaces/{namespace}/contents/{contentId}/preview][%d] adminDownloadContentPreviewOK  %+v", 200, o.ToString())
+}
+
+func (o *AdminDownloadContentPreviewOK) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *AdminDownloadContentPreviewOK) GetPayload() *ugcclientmodels.ModelsGetContentPreviewResponse {
@@ -110,7 +120,16 @@ type AdminDownloadContentPreviewUnauthorized struct {
 }
 
 func (o *AdminDownloadContentPreviewUnauthorized) Error() string {
-	return fmt.Sprintf("[GET /ugc/v1/admin/namespaces/{namespace}/contents/{contentId}/preview][%d] adminDownloadContentPreviewUnauthorized  %+v", 401, o.Payload)
+	return fmt.Sprintf("[GET /ugc/v1/admin/namespaces/{namespace}/contents/{contentId}/preview][%d] adminDownloadContentPreviewUnauthorized  %+v", 401, o.ToString())
+}
+
+func (o *AdminDownloadContentPreviewUnauthorized) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *AdminDownloadContentPreviewUnauthorized) GetPayload() *ugcclientmodels.ResponseError {
@@ -143,7 +162,16 @@ type AdminDownloadContentPreviewNotFound struct {
 }
 
 func (o *AdminDownloadContentPreviewNotFound) Error() string {
-	return fmt.Sprintf("[GET /ugc/v1/admin/namespaces/{namespace}/contents/{contentId}/preview][%d] adminDownloadContentPreviewNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[GET /ugc/v1/admin/namespaces/{namespace}/contents/{contentId}/preview][%d] adminDownloadContentPreviewNotFound  %+v", 404, o.ToString())
+}
+
+func (o *AdminDownloadContentPreviewNotFound) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *AdminDownloadContentPreviewNotFound) GetPayload() *ugcclientmodels.ResponseError {
@@ -176,7 +204,16 @@ type AdminDownloadContentPreviewInternalServerError struct {
 }
 
 func (o *AdminDownloadContentPreviewInternalServerError) Error() string {
-	return fmt.Sprintf("[GET /ugc/v1/admin/namespaces/{namespace}/contents/{contentId}/preview][%d] adminDownloadContentPreviewInternalServerError  %+v", 500, o.Payload)
+	return fmt.Sprintf("[GET /ugc/v1/admin/namespaces/{namespace}/contents/{contentId}/preview][%d] adminDownloadContentPreviewInternalServerError  %+v", 500, o.ToString())
+}
+
+func (o *AdminDownloadContentPreviewInternalServerError) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *AdminDownloadContentPreviewInternalServerError) GetPayload() *ugcclientmodels.ResponseError {

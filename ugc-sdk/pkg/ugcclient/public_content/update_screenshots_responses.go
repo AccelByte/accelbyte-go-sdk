@@ -10,6 +10,7 @@ package public_content
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -83,7 +84,16 @@ type UpdateScreenshotsOK struct {
 }
 
 func (o *UpdateScreenshotsOK) Error() string {
-	return fmt.Sprintf("[PUT /ugc/v1/public/namespaces/{namespace}/users/{userId}/contents/{contentId}/screenshots][%d] updateScreenshotsOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[PUT /ugc/v1/public/namespaces/{namespace}/users/{userId}/contents/{contentId}/screenshots][%d] updateScreenshotsOK  %+v", 200, o.ToString())
+}
+
+func (o *UpdateScreenshotsOK) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *UpdateScreenshotsOK) GetPayload() *ugcclientmodels.ModelsUpdateScreenshotResponse {
@@ -116,7 +126,16 @@ type UpdateScreenshotsBadRequest struct {
 }
 
 func (o *UpdateScreenshotsBadRequest) Error() string {
-	return fmt.Sprintf("[PUT /ugc/v1/public/namespaces/{namespace}/users/{userId}/contents/{contentId}/screenshots][%d] updateScreenshotsBadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[PUT /ugc/v1/public/namespaces/{namespace}/users/{userId}/contents/{contentId}/screenshots][%d] updateScreenshotsBadRequest  %+v", 400, o.ToString())
+}
+
+func (o *UpdateScreenshotsBadRequest) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *UpdateScreenshotsBadRequest) GetPayload() *ugcclientmodels.ResponseError {
@@ -149,7 +168,16 @@ type UpdateScreenshotsUnauthorized struct {
 }
 
 func (o *UpdateScreenshotsUnauthorized) Error() string {
-	return fmt.Sprintf("[PUT /ugc/v1/public/namespaces/{namespace}/users/{userId}/contents/{contentId}/screenshots][%d] updateScreenshotsUnauthorized  %+v", 401, o.Payload)
+	return fmt.Sprintf("[PUT /ugc/v1/public/namespaces/{namespace}/users/{userId}/contents/{contentId}/screenshots][%d] updateScreenshotsUnauthorized  %+v", 401, o.ToString())
+}
+
+func (o *UpdateScreenshotsUnauthorized) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *UpdateScreenshotsUnauthorized) GetPayload() *ugcclientmodels.ResponseError {
@@ -182,7 +210,16 @@ type UpdateScreenshotsNotFound struct {
 }
 
 func (o *UpdateScreenshotsNotFound) Error() string {
-	return fmt.Sprintf("[PUT /ugc/v1/public/namespaces/{namespace}/users/{userId}/contents/{contentId}/screenshots][%d] updateScreenshotsNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[PUT /ugc/v1/public/namespaces/{namespace}/users/{userId}/contents/{contentId}/screenshots][%d] updateScreenshotsNotFound  %+v", 404, o.ToString())
+}
+
+func (o *UpdateScreenshotsNotFound) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *UpdateScreenshotsNotFound) GetPayload() *ugcclientmodels.ResponseError {
@@ -215,7 +252,16 @@ type UpdateScreenshotsInternalServerError struct {
 }
 
 func (o *UpdateScreenshotsInternalServerError) Error() string {
-	return fmt.Sprintf("[PUT /ugc/v1/public/namespaces/{namespace}/users/{userId}/contents/{contentId}/screenshots][%d] updateScreenshotsInternalServerError  %+v", 500, o.Payload)
+	return fmt.Sprintf("[PUT /ugc/v1/public/namespaces/{namespace}/users/{userId}/contents/{contentId}/screenshots][%d] updateScreenshotsInternalServerError  %+v", 500, o.ToString())
+}
+
+func (o *UpdateScreenshotsInternalServerError) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *UpdateScreenshotsInternalServerError) GetPayload() *ugcclientmodels.ResponseError {

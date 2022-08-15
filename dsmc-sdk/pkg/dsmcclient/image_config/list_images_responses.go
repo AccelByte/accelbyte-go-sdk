@@ -10,6 +10,7 @@ package image_config
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -77,7 +78,16 @@ type ListImagesOK struct {
 }
 
 func (o *ListImagesOK) Error() string {
-	return fmt.Sprintf("[GET /dsmcontroller/admin/namespaces/{namespace}/images][%d] listImagesOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /dsmcontroller/admin/namespaces/{namespace}/images][%d] listImagesOK  %+v", 200, o.ToString())
+}
+
+func (o *ListImagesOK) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *ListImagesOK) GetPayload() *dsmcclientmodels.ModelsListImageResponse {
@@ -110,7 +120,16 @@ type ListImagesBadRequest struct {
 }
 
 func (o *ListImagesBadRequest) Error() string {
-	return fmt.Sprintf("[GET /dsmcontroller/admin/namespaces/{namespace}/images][%d] listImagesBadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[GET /dsmcontroller/admin/namespaces/{namespace}/images][%d] listImagesBadRequest  %+v", 400, o.ToString())
+}
+
+func (o *ListImagesBadRequest) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *ListImagesBadRequest) GetPayload() *dsmcclientmodels.ResponseError {
@@ -143,7 +162,16 @@ type ListImagesUnauthorized struct {
 }
 
 func (o *ListImagesUnauthorized) Error() string {
-	return fmt.Sprintf("[GET /dsmcontroller/admin/namespaces/{namespace}/images][%d] listImagesUnauthorized  %+v", 401, o.Payload)
+	return fmt.Sprintf("[GET /dsmcontroller/admin/namespaces/{namespace}/images][%d] listImagesUnauthorized  %+v", 401, o.ToString())
+}
+
+func (o *ListImagesUnauthorized) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *ListImagesUnauthorized) GetPayload() *dsmcclientmodels.ResponseError {
@@ -176,7 +204,16 @@ type ListImagesInternalServerError struct {
 }
 
 func (o *ListImagesInternalServerError) Error() string {
-	return fmt.Sprintf("[GET /dsmcontroller/admin/namespaces/{namespace}/images][%d] listImagesInternalServerError  %+v", 500, o.Payload)
+	return fmt.Sprintf("[GET /dsmcontroller/admin/namespaces/{namespace}/images][%d] listImagesInternalServerError  %+v", 500, o.ToString())
+}
+
+func (o *ListImagesInternalServerError) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *ListImagesInternalServerError) GetPayload() *dsmcclientmodels.ResponseError {

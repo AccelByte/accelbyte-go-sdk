@@ -10,6 +10,7 @@ package misc
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -71,7 +72,16 @@ type GetTimeZonesOK struct {
 }
 
 func (o *GetTimeZonesOK) Error() string {
-	return fmt.Sprintf("[GET /basic/v1/admin/namespaces/{namespace}/misc/timezones][%d] getTimeZonesOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /basic/v1/admin/namespaces/{namespace}/misc/timezones][%d] getTimeZonesOK  %+v", 200, o.ToString())
+}
+
+func (o *GetTimeZonesOK) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *GetTimeZonesOK) GetPayload() []string {
@@ -102,7 +112,16 @@ type GetTimeZonesBadRequest struct {
 }
 
 func (o *GetTimeZonesBadRequest) Error() string {
-	return fmt.Sprintf("[GET /basic/v1/admin/namespaces/{namespace}/misc/timezones][%d] getTimeZonesBadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[GET /basic/v1/admin/namespaces/{namespace}/misc/timezones][%d] getTimeZonesBadRequest  %+v", 400, o.ToString())
+}
+
+func (o *GetTimeZonesBadRequest) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *GetTimeZonesBadRequest) GetPayload() *basicclientmodels.ValidationErrorEntity {
@@ -135,7 +154,16 @@ type GetTimeZonesUnauthorized struct {
 }
 
 func (o *GetTimeZonesUnauthorized) Error() string {
-	return fmt.Sprintf("[GET /basic/v1/admin/namespaces/{namespace}/misc/timezones][%d] getTimeZonesUnauthorized  %+v", 401, o.Payload)
+	return fmt.Sprintf("[GET /basic/v1/admin/namespaces/{namespace}/misc/timezones][%d] getTimeZonesUnauthorized  %+v", 401, o.ToString())
+}
+
+func (o *GetTimeZonesUnauthorized) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *GetTimeZonesUnauthorized) GetPayload() *basicclientmodels.ErrorEntity {

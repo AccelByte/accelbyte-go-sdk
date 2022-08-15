@@ -10,6 +10,7 @@ package reward
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -86,7 +87,16 @@ type ImportRewardsBadRequest struct {
 }
 
 func (o *ImportRewardsBadRequest) Error() string {
-	return fmt.Sprintf("[POST /platform/admin/namespaces/{namespace}/rewards/import][%d] importRewardsBadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[POST /platform/admin/namespaces/{namespace}/rewards/import][%d] importRewardsBadRequest  %+v", 400, o.ToString())
+}
+
+func (o *ImportRewardsBadRequest) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *ImportRewardsBadRequest) GetPayload() *platformclientmodels.ErrorEntity {

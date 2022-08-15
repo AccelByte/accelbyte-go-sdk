@@ -10,6 +10,7 @@ package public_content
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -77,7 +78,16 @@ type CreateContentS3Created struct {
 }
 
 func (o *CreateContentS3Created) Error() string {
-	return fmt.Sprintf("[POST /ugc/v1/public/namespaces/{namespace}/users/{userId}/channels/{channelId}/contents/s3][%d] createContentS3Created  %+v", 201, o.Payload)
+	return fmt.Sprintf("[POST /ugc/v1/public/namespaces/{namespace}/users/{userId}/channels/{channelId}/contents/s3][%d] createContentS3Created  %+v", 201, o.ToString())
+}
+
+func (o *CreateContentS3Created) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *CreateContentS3Created) GetPayload() *ugcclientmodels.ModelsCreateContentResponse {
@@ -110,7 +120,16 @@ type CreateContentS3BadRequest struct {
 }
 
 func (o *CreateContentS3BadRequest) Error() string {
-	return fmt.Sprintf("[POST /ugc/v1/public/namespaces/{namespace}/users/{userId}/channels/{channelId}/contents/s3][%d] createContentS3BadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[POST /ugc/v1/public/namespaces/{namespace}/users/{userId}/channels/{channelId}/contents/s3][%d] createContentS3BadRequest  %+v", 400, o.ToString())
+}
+
+func (o *CreateContentS3BadRequest) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *CreateContentS3BadRequest) GetPayload() *ugcclientmodels.ResponseError {
@@ -143,7 +162,16 @@ type CreateContentS3Unauthorized struct {
 }
 
 func (o *CreateContentS3Unauthorized) Error() string {
-	return fmt.Sprintf("[POST /ugc/v1/public/namespaces/{namespace}/users/{userId}/channels/{channelId}/contents/s3][%d] createContentS3Unauthorized  %+v", 401, o.Payload)
+	return fmt.Sprintf("[POST /ugc/v1/public/namespaces/{namespace}/users/{userId}/channels/{channelId}/contents/s3][%d] createContentS3Unauthorized  %+v", 401, o.ToString())
+}
+
+func (o *CreateContentS3Unauthorized) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *CreateContentS3Unauthorized) GetPayload() *ugcclientmodels.ResponseError {
@@ -176,7 +204,16 @@ type CreateContentS3InternalServerError struct {
 }
 
 func (o *CreateContentS3InternalServerError) Error() string {
-	return fmt.Sprintf("[POST /ugc/v1/public/namespaces/{namespace}/users/{userId}/channels/{channelId}/contents/s3][%d] createContentS3InternalServerError  %+v", 500, o.Payload)
+	return fmt.Sprintf("[POST /ugc/v1/public/namespaces/{namespace}/users/{userId}/channels/{channelId}/contents/s3][%d] createContentS3InternalServerError  %+v", 500, o.ToString())
+}
+
+func (o *CreateContentS3InternalServerError) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *CreateContentS3InternalServerError) GetPayload() *ugcclientmodels.ResponseError {

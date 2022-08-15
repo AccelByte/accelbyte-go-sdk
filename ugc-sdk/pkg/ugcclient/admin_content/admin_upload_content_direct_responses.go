@@ -10,6 +10,7 @@ package admin_content
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -77,7 +78,16 @@ type AdminUploadContentDirectCreated struct {
 }
 
 func (o *AdminUploadContentDirectCreated) Error() string {
-	return fmt.Sprintf("[POST /ugc/v1/admin/namespaces/{namespace}/channels/{channelId}/contents][%d] adminUploadContentDirectCreated  %+v", 201, o.Payload)
+	return fmt.Sprintf("[POST /ugc/v1/admin/namespaces/{namespace}/channels/{channelId}/contents][%d] adminUploadContentDirectCreated  %+v", 201, o.ToString())
+}
+
+func (o *AdminUploadContentDirectCreated) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *AdminUploadContentDirectCreated) GetPayload() *ugcclientmodels.ModelsCreateContentResponse {
@@ -110,7 +120,16 @@ type AdminUploadContentDirectBadRequest struct {
 }
 
 func (o *AdminUploadContentDirectBadRequest) Error() string {
-	return fmt.Sprintf("[POST /ugc/v1/admin/namespaces/{namespace}/channels/{channelId}/contents][%d] adminUploadContentDirectBadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[POST /ugc/v1/admin/namespaces/{namespace}/channels/{channelId}/contents][%d] adminUploadContentDirectBadRequest  %+v", 400, o.ToString())
+}
+
+func (o *AdminUploadContentDirectBadRequest) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *AdminUploadContentDirectBadRequest) GetPayload() *ugcclientmodels.ResponseError {
@@ -143,7 +162,16 @@ type AdminUploadContentDirectUnauthorized struct {
 }
 
 func (o *AdminUploadContentDirectUnauthorized) Error() string {
-	return fmt.Sprintf("[POST /ugc/v1/admin/namespaces/{namespace}/channels/{channelId}/contents][%d] adminUploadContentDirectUnauthorized  %+v", 401, o.Payload)
+	return fmt.Sprintf("[POST /ugc/v1/admin/namespaces/{namespace}/channels/{channelId}/contents][%d] adminUploadContentDirectUnauthorized  %+v", 401, o.ToString())
+}
+
+func (o *AdminUploadContentDirectUnauthorized) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *AdminUploadContentDirectUnauthorized) GetPayload() *ugcclientmodels.ResponseError {
@@ -176,7 +204,16 @@ type AdminUploadContentDirectInternalServerError struct {
 }
 
 func (o *AdminUploadContentDirectInternalServerError) Error() string {
-	return fmt.Sprintf("[POST /ugc/v1/admin/namespaces/{namespace}/channels/{channelId}/contents][%d] adminUploadContentDirectInternalServerError  %+v", 500, o.Payload)
+	return fmt.Sprintf("[POST /ugc/v1/admin/namespaces/{namespace}/channels/{channelId}/contents][%d] adminUploadContentDirectInternalServerError  %+v", 500, o.ToString())
+}
+
+func (o *AdminUploadContentDirectInternalServerError) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *AdminUploadContentDirectInternalServerError) GetPayload() *ugcclientmodels.ResponseError {

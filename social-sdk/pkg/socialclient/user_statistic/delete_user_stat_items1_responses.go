@@ -10,6 +10,7 @@ package user_statistic
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -98,7 +99,16 @@ type DeleteUserStatItems1Unauthorized struct {
 }
 
 func (o *DeleteUserStatItems1Unauthorized) Error() string {
-	return fmt.Sprintf("[DELETE /social/v1/public/namespaces/{namespace}/users/{userId}/stats/{statCode}/statitems][%d] deleteUserStatItems1Unauthorized  %+v", 401, o.Payload)
+	return fmt.Sprintf("[DELETE /social/v1/public/namespaces/{namespace}/users/{userId}/stats/{statCode}/statitems][%d] deleteUserStatItems1Unauthorized  %+v", 401, o.ToString())
+}
+
+func (o *DeleteUserStatItems1Unauthorized) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *DeleteUserStatItems1Unauthorized) GetPayload() *socialclientmodels.ErrorEntity {
@@ -131,7 +141,16 @@ type DeleteUserStatItems1Forbidden struct {
 }
 
 func (o *DeleteUserStatItems1Forbidden) Error() string {
-	return fmt.Sprintf("[DELETE /social/v1/public/namespaces/{namespace}/users/{userId}/stats/{statCode}/statitems][%d] deleteUserStatItems1Forbidden  %+v", 403, o.Payload)
+	return fmt.Sprintf("[DELETE /social/v1/public/namespaces/{namespace}/users/{userId}/stats/{statCode}/statitems][%d] deleteUserStatItems1Forbidden  %+v", 403, o.ToString())
+}
+
+func (o *DeleteUserStatItems1Forbidden) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *DeleteUserStatItems1Forbidden) GetPayload() *socialclientmodels.ErrorEntity {
@@ -164,7 +183,16 @@ type DeleteUserStatItems1NotFound struct {
 }
 
 func (o *DeleteUserStatItems1NotFound) Error() string {
-	return fmt.Sprintf("[DELETE /social/v1/public/namespaces/{namespace}/users/{userId}/stats/{statCode}/statitems][%d] deleteUserStatItems1NotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[DELETE /social/v1/public/namespaces/{namespace}/users/{userId}/stats/{statCode}/statitems][%d] deleteUserStatItems1NotFound  %+v", 404, o.ToString())
+}
+
+func (o *DeleteUserStatItems1NotFound) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *DeleteUserStatItems1NotFound) GetPayload() *socialclientmodels.ErrorEntity {

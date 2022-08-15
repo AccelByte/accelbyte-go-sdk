@@ -10,6 +10,7 @@ package admin_channel
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -98,7 +99,16 @@ type SingleAdminDeleteChannelUnauthorized struct {
 }
 
 func (o *SingleAdminDeleteChannelUnauthorized) Error() string {
-	return fmt.Sprintf("[DELETE /ugc/v1/admin/namespaces/{namespace}/channels/{channelId}][%d] singleAdminDeleteChannelUnauthorized  %+v", 401, o.Payload)
+	return fmt.Sprintf("[DELETE /ugc/v1/admin/namespaces/{namespace}/channels/{channelId}][%d] singleAdminDeleteChannelUnauthorized  %+v", 401, o.ToString())
+}
+
+func (o *SingleAdminDeleteChannelUnauthorized) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *SingleAdminDeleteChannelUnauthorized) GetPayload() *ugcclientmodels.ResponseError {
@@ -131,7 +141,16 @@ type SingleAdminDeleteChannelNotFound struct {
 }
 
 func (o *SingleAdminDeleteChannelNotFound) Error() string {
-	return fmt.Sprintf("[DELETE /ugc/v1/admin/namespaces/{namespace}/channels/{channelId}][%d] singleAdminDeleteChannelNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[DELETE /ugc/v1/admin/namespaces/{namespace}/channels/{channelId}][%d] singleAdminDeleteChannelNotFound  %+v", 404, o.ToString())
+}
+
+func (o *SingleAdminDeleteChannelNotFound) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *SingleAdminDeleteChannelNotFound) GetPayload() *ugcclientmodels.ResponseError {
@@ -164,7 +183,16 @@ type SingleAdminDeleteChannelInternalServerError struct {
 }
 
 func (o *SingleAdminDeleteChannelInternalServerError) Error() string {
-	return fmt.Sprintf("[DELETE /ugc/v1/admin/namespaces/{namespace}/channels/{channelId}][%d] singleAdminDeleteChannelInternalServerError  %+v", 500, o.Payload)
+	return fmt.Sprintf("[DELETE /ugc/v1/admin/namespaces/{namespace}/channels/{channelId}][%d] singleAdminDeleteChannelInternalServerError  %+v", 500, o.ToString())
+}
+
+func (o *SingleAdminDeleteChannelInternalServerError) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *SingleAdminDeleteChannelInternalServerError) GetPayload() *ugcclientmodels.ResponseError {

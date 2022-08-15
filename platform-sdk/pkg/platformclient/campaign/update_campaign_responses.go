@@ -10,6 +10,7 @@ package campaign
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -77,7 +78,16 @@ type UpdateCampaignOK struct {
 }
 
 func (o *UpdateCampaignOK) Error() string {
-	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/campaigns/{campaignId}][%d] updateCampaignOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/campaigns/{campaignId}][%d] updateCampaignOK  %+v", 200, o.ToString())
+}
+
+func (o *UpdateCampaignOK) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *UpdateCampaignOK) GetPayload() *platformclientmodels.CampaignInfo {
@@ -110,7 +120,16 @@ type UpdateCampaignNotFound struct {
 }
 
 func (o *UpdateCampaignNotFound) Error() string {
-	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/campaigns/{campaignId}][%d] updateCampaignNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/campaigns/{campaignId}][%d] updateCampaignNotFound  %+v", 404, o.ToString())
+}
+
+func (o *UpdateCampaignNotFound) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *UpdateCampaignNotFound) GetPayload() *platformclientmodels.ErrorEntity {
@@ -143,7 +162,16 @@ type UpdateCampaignConflict struct {
 }
 
 func (o *UpdateCampaignConflict) Error() string {
-	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/campaigns/{campaignId}][%d] updateCampaignConflict  %+v", 409, o.Payload)
+	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/campaigns/{campaignId}][%d] updateCampaignConflict  %+v", 409, o.ToString())
+}
+
+func (o *UpdateCampaignConflict) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *UpdateCampaignConflict) GetPayload() *platformclientmodels.ErrorEntity {
@@ -176,7 +204,16 @@ type UpdateCampaignUnprocessableEntity struct {
 }
 
 func (o *UpdateCampaignUnprocessableEntity) Error() string {
-	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/campaigns/{campaignId}][%d] updateCampaignUnprocessableEntity  %+v", 422, o.Payload)
+	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/campaigns/{campaignId}][%d] updateCampaignUnprocessableEntity  %+v", 422, o.ToString())
+}
+
+func (o *UpdateCampaignUnprocessableEntity) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *UpdateCampaignUnprocessableEntity) GetPayload() *platformclientmodels.ValidationErrorEntity {

@@ -10,6 +10,7 @@ package admin_content
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -77,7 +78,16 @@ type AdminHideUserContentOK struct {
 }
 
 func (o *AdminHideUserContentOK) Error() string {
-	return fmt.Sprintf("[PUT /ugc/v1/admin/namespaces/{namespace}/users/{userId}/contents/{contentId}/hide][%d] adminHideUserContentOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[PUT /ugc/v1/admin/namespaces/{namespace}/users/{userId}/contents/{contentId}/hide][%d] adminHideUserContentOK  %+v", 200, o.ToString())
+}
+
+func (o *AdminHideUserContentOK) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *AdminHideUserContentOK) GetPayload() *ugcclientmodels.ModelsCreateContentResponse {
@@ -110,7 +120,16 @@ type AdminHideUserContentUnauthorized struct {
 }
 
 func (o *AdminHideUserContentUnauthorized) Error() string {
-	return fmt.Sprintf("[PUT /ugc/v1/admin/namespaces/{namespace}/users/{userId}/contents/{contentId}/hide][%d] adminHideUserContentUnauthorized  %+v", 401, o.Payload)
+	return fmt.Sprintf("[PUT /ugc/v1/admin/namespaces/{namespace}/users/{userId}/contents/{contentId}/hide][%d] adminHideUserContentUnauthorized  %+v", 401, o.ToString())
+}
+
+func (o *AdminHideUserContentUnauthorized) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *AdminHideUserContentUnauthorized) GetPayload() *ugcclientmodels.ResponseError {
@@ -143,7 +162,16 @@ type AdminHideUserContentNotFound struct {
 }
 
 func (o *AdminHideUserContentNotFound) Error() string {
-	return fmt.Sprintf("[PUT /ugc/v1/admin/namespaces/{namespace}/users/{userId}/contents/{contentId}/hide][%d] adminHideUserContentNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[PUT /ugc/v1/admin/namespaces/{namespace}/users/{userId}/contents/{contentId}/hide][%d] adminHideUserContentNotFound  %+v", 404, o.ToString())
+}
+
+func (o *AdminHideUserContentNotFound) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *AdminHideUserContentNotFound) GetPayload() *ugcclientmodels.ResponseError {
@@ -176,7 +204,16 @@ type AdminHideUserContentInternalServerError struct {
 }
 
 func (o *AdminHideUserContentInternalServerError) Error() string {
-	return fmt.Sprintf("[PUT /ugc/v1/admin/namespaces/{namespace}/users/{userId}/contents/{contentId}/hide][%d] adminHideUserContentInternalServerError  %+v", 500, o.Payload)
+	return fmt.Sprintf("[PUT /ugc/v1/admin/namespaces/{namespace}/users/{userId}/contents/{contentId}/hide][%d] adminHideUserContentInternalServerError  %+v", 500, o.ToString())
+}
+
+func (o *AdminHideUserContentInternalServerError) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *AdminHideUserContentInternalServerError) GetPayload() *ugcclientmodels.ResponseError {

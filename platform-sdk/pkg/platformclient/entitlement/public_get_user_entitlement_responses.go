@@ -10,6 +10,7 @@ package entitlement
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -65,7 +66,16 @@ type PublicGetUserEntitlementOK struct {
 }
 
 func (o *PublicGetUserEntitlementOK) Error() string {
-	return fmt.Sprintf("[GET /platform/public/namespaces/{namespace}/users/{userId}/entitlements/{entitlementId}][%d] publicGetUserEntitlementOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /platform/public/namespaces/{namespace}/users/{userId}/entitlements/{entitlementId}][%d] publicGetUserEntitlementOK  %+v", 200, o.ToString())
+}
+
+func (o *PublicGetUserEntitlementOK) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *PublicGetUserEntitlementOK) GetPayload() *platformclientmodels.EntitlementInfo {
@@ -98,7 +108,16 @@ type PublicGetUserEntitlementNotFound struct {
 }
 
 func (o *PublicGetUserEntitlementNotFound) Error() string {
-	return fmt.Sprintf("[GET /platform/public/namespaces/{namespace}/users/{userId}/entitlements/{entitlementId}][%d] publicGetUserEntitlementNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[GET /platform/public/namespaces/{namespace}/users/{userId}/entitlements/{entitlementId}][%d] publicGetUserEntitlementNotFound  %+v", 404, o.ToString())
+}
+
+func (o *PublicGetUserEntitlementNotFound) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *PublicGetUserEntitlementNotFound) GetPayload() *platformclientmodels.ErrorEntity {

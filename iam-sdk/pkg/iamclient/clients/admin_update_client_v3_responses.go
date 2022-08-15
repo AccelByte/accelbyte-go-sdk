@@ -10,6 +10,7 @@ package clients
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -83,7 +84,16 @@ type AdminUpdateClientV3OK struct {
 }
 
 func (o *AdminUpdateClientV3OK) Error() string {
-	return fmt.Sprintf("[PATCH /iam/v3/admin/namespaces/{namespace}/clients/{clientId}][%d] adminUpdateClientV3OK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[PATCH /iam/v3/admin/namespaces/{namespace}/clients/{clientId}][%d] adminUpdateClientV3OK  %+v", 200, o.ToString())
+}
+
+func (o *AdminUpdateClientV3OK) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *AdminUpdateClientV3OK) GetPayload() *iamclientmodels.ClientmodelClientV3Response {
@@ -116,7 +126,16 @@ type AdminUpdateClientV3BadRequest struct {
 }
 
 func (o *AdminUpdateClientV3BadRequest) Error() string {
-	return fmt.Sprintf("[PATCH /iam/v3/admin/namespaces/{namespace}/clients/{clientId}][%d] adminUpdateClientV3BadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[PATCH /iam/v3/admin/namespaces/{namespace}/clients/{clientId}][%d] adminUpdateClientV3BadRequest  %+v", 400, o.ToString())
+}
+
+func (o *AdminUpdateClientV3BadRequest) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *AdminUpdateClientV3BadRequest) GetPayload() *iamclientmodels.RestErrorResponse {
@@ -149,7 +168,16 @@ type AdminUpdateClientV3Unauthorized struct {
 }
 
 func (o *AdminUpdateClientV3Unauthorized) Error() string {
-	return fmt.Sprintf("[PATCH /iam/v3/admin/namespaces/{namespace}/clients/{clientId}][%d] adminUpdateClientV3Unauthorized  %+v", 401, o.Payload)
+	return fmt.Sprintf("[PATCH /iam/v3/admin/namespaces/{namespace}/clients/{clientId}][%d] adminUpdateClientV3Unauthorized  %+v", 401, o.ToString())
+}
+
+func (o *AdminUpdateClientV3Unauthorized) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *AdminUpdateClientV3Unauthorized) GetPayload() *iamclientmodels.RestErrorResponse {
@@ -182,7 +210,16 @@ type AdminUpdateClientV3Forbidden struct {
 }
 
 func (o *AdminUpdateClientV3Forbidden) Error() string {
-	return fmt.Sprintf("[PATCH /iam/v3/admin/namespaces/{namespace}/clients/{clientId}][%d] adminUpdateClientV3Forbidden  %+v", 403, o.Payload)
+	return fmt.Sprintf("[PATCH /iam/v3/admin/namespaces/{namespace}/clients/{clientId}][%d] adminUpdateClientV3Forbidden  %+v", 403, o.ToString())
+}
+
+func (o *AdminUpdateClientV3Forbidden) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *AdminUpdateClientV3Forbidden) GetPayload() *iamclientmodels.RestErrorResponse {
@@ -215,7 +252,16 @@ type AdminUpdateClientV3NotFound struct {
 }
 
 func (o *AdminUpdateClientV3NotFound) Error() string {
-	return fmt.Sprintf("[PATCH /iam/v3/admin/namespaces/{namespace}/clients/{clientId}][%d] adminUpdateClientV3NotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[PATCH /iam/v3/admin/namespaces/{namespace}/clients/{clientId}][%d] adminUpdateClientV3NotFound  %+v", 404, o.ToString())
+}
+
+func (o *AdminUpdateClientV3NotFound) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *AdminUpdateClientV3NotFound) GetPayload() *iamclientmodels.RestErrorResponse {

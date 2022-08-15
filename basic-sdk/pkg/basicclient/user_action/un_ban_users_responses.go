@@ -10,6 +10,7 @@ package user_action
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -104,7 +105,16 @@ type UnBanUsersBadRequest struct {
 }
 
 func (o *UnBanUsersBadRequest) Error() string {
-	return fmt.Sprintf("[POST /basic/v1/admin/namespaces/{namespace}/actions/unban][%d] unBanUsersBadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[POST /basic/v1/admin/namespaces/{namespace}/actions/unban][%d] unBanUsersBadRequest  %+v", 400, o.ToString())
+}
+
+func (o *UnBanUsersBadRequest) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *UnBanUsersBadRequest) GetPayload() *basicclientmodels.ErrorEntity {
@@ -137,7 +147,16 @@ type UnBanUsersNotFound struct {
 }
 
 func (o *UnBanUsersNotFound) Error() string {
-	return fmt.Sprintf("[POST /basic/v1/admin/namespaces/{namespace}/actions/unban][%d] unBanUsersNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[POST /basic/v1/admin/namespaces/{namespace}/actions/unban][%d] unBanUsersNotFound  %+v", 404, o.ToString())
+}
+
+func (o *UnBanUsersNotFound) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *UnBanUsersNotFound) GetPayload() *basicclientmodels.ErrorEntity {
@@ -170,7 +189,16 @@ type UnBanUsersUnprocessableEntity struct {
 }
 
 func (o *UnBanUsersUnprocessableEntity) Error() string {
-	return fmt.Sprintf("[POST /basic/v1/admin/namespaces/{namespace}/actions/unban][%d] unBanUsersUnprocessableEntity  %+v", 422, o.Payload)
+	return fmt.Sprintf("[POST /basic/v1/admin/namespaces/{namespace}/actions/unban][%d] unBanUsersUnprocessableEntity  %+v", 422, o.ToString())
+}
+
+func (o *UnBanUsersUnprocessableEntity) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *UnBanUsersUnprocessableEntity) GetPayload() *basicclientmodels.ValidationErrorEntity {
@@ -203,7 +231,16 @@ type UnBanUsersInternalServerError struct {
 }
 
 func (o *UnBanUsersInternalServerError) Error() string {
-	return fmt.Sprintf("[POST /basic/v1/admin/namespaces/{namespace}/actions/unban][%d] unBanUsersInternalServerError  %+v", 500, o.Payload)
+	return fmt.Sprintf("[POST /basic/v1/admin/namespaces/{namespace}/actions/unban][%d] unBanUsersInternalServerError  %+v", 500, o.ToString())
+}
+
+func (o *UnBanUsersInternalServerError) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *UnBanUsersInternalServerError) GetPayload() *basicclientmodels.ErrorEntity {

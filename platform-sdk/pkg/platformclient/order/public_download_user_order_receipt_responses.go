@@ -10,6 +10,7 @@ package order
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -92,7 +93,16 @@ type PublicDownloadUserOrderReceiptNotFound struct {
 }
 
 func (o *PublicDownloadUserOrderReceiptNotFound) Error() string {
-	return fmt.Sprintf("[GET /platform/public/namespaces/{namespace}/users/{userId}/orders/{orderNo}/receipt.pdf][%d] publicDownloadUserOrderReceiptNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[GET /platform/public/namespaces/{namespace}/users/{userId}/orders/{orderNo}/receipt.pdf][%d] publicDownloadUserOrderReceiptNotFound  %+v", 404, o.ToString())
+}
+
+func (o *PublicDownloadUserOrderReceiptNotFound) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *PublicDownloadUserOrderReceiptNotFound) GetPayload() *platformclientmodels.ErrorEntity {
@@ -125,7 +135,16 @@ type PublicDownloadUserOrderReceiptConflict struct {
 }
 
 func (o *PublicDownloadUserOrderReceiptConflict) Error() string {
-	return fmt.Sprintf("[GET /platform/public/namespaces/{namespace}/users/{userId}/orders/{orderNo}/receipt.pdf][%d] publicDownloadUserOrderReceiptConflict  %+v", 409, o.Payload)
+	return fmt.Sprintf("[GET /platform/public/namespaces/{namespace}/users/{userId}/orders/{orderNo}/receipt.pdf][%d] publicDownloadUserOrderReceiptConflict  %+v", 409, o.ToString())
+}
+
+func (o *PublicDownloadUserOrderReceiptConflict) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *PublicDownloadUserOrderReceiptConflict) GetPayload() *platformclientmodels.ErrorEntity {

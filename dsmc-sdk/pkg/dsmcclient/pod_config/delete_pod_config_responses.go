@@ -10,6 +10,7 @@ package pod_config
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -110,7 +111,16 @@ type DeletePodConfigBadRequest struct {
 }
 
 func (o *DeletePodConfigBadRequest) Error() string {
-	return fmt.Sprintf("[DELETE /dsmcontroller/admin/namespaces/{namespace}/configs/pods/{name}][%d] deletePodConfigBadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[DELETE /dsmcontroller/admin/namespaces/{namespace}/configs/pods/{name}][%d] deletePodConfigBadRequest  %+v", 400, o.ToString())
+}
+
+func (o *DeletePodConfigBadRequest) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *DeletePodConfigBadRequest) GetPayload() *dsmcclientmodels.ResponseError {
@@ -143,7 +153,16 @@ type DeletePodConfigUnauthorized struct {
 }
 
 func (o *DeletePodConfigUnauthorized) Error() string {
-	return fmt.Sprintf("[DELETE /dsmcontroller/admin/namespaces/{namespace}/configs/pods/{name}][%d] deletePodConfigUnauthorized  %+v", 401, o.Payload)
+	return fmt.Sprintf("[DELETE /dsmcontroller/admin/namespaces/{namespace}/configs/pods/{name}][%d] deletePodConfigUnauthorized  %+v", 401, o.ToString())
+}
+
+func (o *DeletePodConfigUnauthorized) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *DeletePodConfigUnauthorized) GetPayload() *dsmcclientmodels.ResponseError {
@@ -176,7 +195,16 @@ type DeletePodConfigNotFound struct {
 }
 
 func (o *DeletePodConfigNotFound) Error() string {
-	return fmt.Sprintf("[DELETE /dsmcontroller/admin/namespaces/{namespace}/configs/pods/{name}][%d] deletePodConfigNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[DELETE /dsmcontroller/admin/namespaces/{namespace}/configs/pods/{name}][%d] deletePodConfigNotFound  %+v", 404, o.ToString())
+}
+
+func (o *DeletePodConfigNotFound) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *DeletePodConfigNotFound) GetPayload() *dsmcclientmodels.ResponseError {
@@ -209,7 +237,16 @@ type DeletePodConfigConflict struct {
 }
 
 func (o *DeletePodConfigConflict) Error() string {
-	return fmt.Sprintf("[DELETE /dsmcontroller/admin/namespaces/{namespace}/configs/pods/{name}][%d] deletePodConfigConflict  %+v", 409, o.Payload)
+	return fmt.Sprintf("[DELETE /dsmcontroller/admin/namespaces/{namespace}/configs/pods/{name}][%d] deletePodConfigConflict  %+v", 409, o.ToString())
+}
+
+func (o *DeletePodConfigConflict) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *DeletePodConfigConflict) GetPayload() *dsmcclientmodels.ResponseError {
@@ -242,7 +279,16 @@ type DeletePodConfigInternalServerError struct {
 }
 
 func (o *DeletePodConfigInternalServerError) Error() string {
-	return fmt.Sprintf("[DELETE /dsmcontroller/admin/namespaces/{namespace}/configs/pods/{name}][%d] deletePodConfigInternalServerError  %+v", 500, o.Payload)
+	return fmt.Sprintf("[DELETE /dsmcontroller/admin/namespaces/{namespace}/configs/pods/{name}][%d] deletePodConfigInternalServerError  %+v", 500, o.ToString())
+}
+
+func (o *DeletePodConfigInternalServerError) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *DeletePodConfigInternalServerError) GetPayload() *dsmcclientmodels.ResponseError {

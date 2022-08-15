@@ -10,6 +10,7 @@ package users_v4
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -95,7 +96,16 @@ type PublicUpgradeHeadlessAccountWithVerificationCodeV4OK struct {
 }
 
 func (o *PublicUpgradeHeadlessAccountWithVerificationCodeV4OK) Error() string {
-	return fmt.Sprintf("[POST /iam/v4/public/namespaces/{namespace}/users/me/headless/code/verify][%d] publicUpgradeHeadlessAccountWithVerificationCodeV4OK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[POST /iam/v4/public/namespaces/{namespace}/users/me/headless/code/verify][%d] publicUpgradeHeadlessAccountWithVerificationCodeV4OK  %+v", 200, o.ToString())
+}
+
+func (o *PublicUpgradeHeadlessAccountWithVerificationCodeV4OK) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *PublicUpgradeHeadlessAccountWithVerificationCodeV4OK) GetPayload() *iamclientmodels.AccountUserResponseV4 {
@@ -128,7 +138,16 @@ type PublicUpgradeHeadlessAccountWithVerificationCodeV4BadRequest struct {
 }
 
 func (o *PublicUpgradeHeadlessAccountWithVerificationCodeV4BadRequest) Error() string {
-	return fmt.Sprintf("[POST /iam/v4/public/namespaces/{namespace}/users/me/headless/code/verify][%d] publicUpgradeHeadlessAccountWithVerificationCodeV4BadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[POST /iam/v4/public/namespaces/{namespace}/users/me/headless/code/verify][%d] publicUpgradeHeadlessAccountWithVerificationCodeV4BadRequest  %+v", 400, o.ToString())
+}
+
+func (o *PublicUpgradeHeadlessAccountWithVerificationCodeV4BadRequest) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *PublicUpgradeHeadlessAccountWithVerificationCodeV4BadRequest) GetPayload() *iamclientmodels.RestErrorResponse {
@@ -161,7 +180,16 @@ type PublicUpgradeHeadlessAccountWithVerificationCodeV4Unauthorized struct {
 }
 
 func (o *PublicUpgradeHeadlessAccountWithVerificationCodeV4Unauthorized) Error() string {
-	return fmt.Sprintf("[POST /iam/v4/public/namespaces/{namespace}/users/me/headless/code/verify][%d] publicUpgradeHeadlessAccountWithVerificationCodeV4Unauthorized  %+v", 401, o.Payload)
+	return fmt.Sprintf("[POST /iam/v4/public/namespaces/{namespace}/users/me/headless/code/verify][%d] publicUpgradeHeadlessAccountWithVerificationCodeV4Unauthorized  %+v", 401, o.ToString())
+}
+
+func (o *PublicUpgradeHeadlessAccountWithVerificationCodeV4Unauthorized) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *PublicUpgradeHeadlessAccountWithVerificationCodeV4Unauthorized) GetPayload() *iamclientmodels.RestErrorResponse {
@@ -194,7 +222,16 @@ type PublicUpgradeHeadlessAccountWithVerificationCodeV4Forbidden struct {
 }
 
 func (o *PublicUpgradeHeadlessAccountWithVerificationCodeV4Forbidden) Error() string {
-	return fmt.Sprintf("[POST /iam/v4/public/namespaces/{namespace}/users/me/headless/code/verify][%d] publicUpgradeHeadlessAccountWithVerificationCodeV4Forbidden  %+v", 403, o.Payload)
+	return fmt.Sprintf("[POST /iam/v4/public/namespaces/{namespace}/users/me/headless/code/verify][%d] publicUpgradeHeadlessAccountWithVerificationCodeV4Forbidden  %+v", 403, o.ToString())
+}
+
+func (o *PublicUpgradeHeadlessAccountWithVerificationCodeV4Forbidden) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *PublicUpgradeHeadlessAccountWithVerificationCodeV4Forbidden) GetPayload() *iamclientmodels.RestErrorResponse {
@@ -227,7 +264,16 @@ type PublicUpgradeHeadlessAccountWithVerificationCodeV4NotFound struct {
 }
 
 func (o *PublicUpgradeHeadlessAccountWithVerificationCodeV4NotFound) Error() string {
-	return fmt.Sprintf("[POST /iam/v4/public/namespaces/{namespace}/users/me/headless/code/verify][%d] publicUpgradeHeadlessAccountWithVerificationCodeV4NotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[POST /iam/v4/public/namespaces/{namespace}/users/me/headless/code/verify][%d] publicUpgradeHeadlessAccountWithVerificationCodeV4NotFound  %+v", 404, o.ToString())
+}
+
+func (o *PublicUpgradeHeadlessAccountWithVerificationCodeV4NotFound) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *PublicUpgradeHeadlessAccountWithVerificationCodeV4NotFound) GetPayload() *iamclientmodels.RestErrorResponse {
@@ -260,7 +306,16 @@ type PublicUpgradeHeadlessAccountWithVerificationCodeV4Conflict struct {
 }
 
 func (o *PublicUpgradeHeadlessAccountWithVerificationCodeV4Conflict) Error() string {
-	return fmt.Sprintf("[POST /iam/v4/public/namespaces/{namespace}/users/me/headless/code/verify][%d] publicUpgradeHeadlessAccountWithVerificationCodeV4Conflict  %+v", 409, o.Payload)
+	return fmt.Sprintf("[POST /iam/v4/public/namespaces/{namespace}/users/me/headless/code/verify][%d] publicUpgradeHeadlessAccountWithVerificationCodeV4Conflict  %+v", 409, o.ToString())
+}
+
+func (o *PublicUpgradeHeadlessAccountWithVerificationCodeV4Conflict) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *PublicUpgradeHeadlessAccountWithVerificationCodeV4Conflict) GetPayload() *iamclientmodels.RestErrorResponse {

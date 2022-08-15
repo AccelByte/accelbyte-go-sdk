@@ -10,6 +10,7 @@ package notification
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -104,7 +105,16 @@ type CreateTopicBadRequest struct {
 }
 
 func (o *CreateTopicBadRequest) Error() string {
-	return fmt.Sprintf("[POST /notification/namespaces/{namespace}/topics][%d] createTopicBadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[POST /notification/namespaces/{namespace}/topics][%d] createTopicBadRequest  %+v", 400, o.ToString())
+}
+
+func (o *CreateTopicBadRequest) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *CreateTopicBadRequest) GetPayload() *lobbyclientmodels.RestapiErrorResponseBody {
@@ -137,7 +147,16 @@ type CreateTopicUnauthorized struct {
 }
 
 func (o *CreateTopicUnauthorized) Error() string {
-	return fmt.Sprintf("[POST /notification/namespaces/{namespace}/topics][%d] createTopicUnauthorized  %+v", 401, o.Payload)
+	return fmt.Sprintf("[POST /notification/namespaces/{namespace}/topics][%d] createTopicUnauthorized  %+v", 401, o.ToString())
+}
+
+func (o *CreateTopicUnauthorized) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *CreateTopicUnauthorized) GetPayload() *lobbyclientmodels.RestapiErrorResponseBody {
@@ -170,7 +189,16 @@ type CreateTopicForbidden struct {
 }
 
 func (o *CreateTopicForbidden) Error() string {
-	return fmt.Sprintf("[POST /notification/namespaces/{namespace}/topics][%d] createTopicForbidden  %+v", 403, o.Payload)
+	return fmt.Sprintf("[POST /notification/namespaces/{namespace}/topics][%d] createTopicForbidden  %+v", 403, o.ToString())
+}
+
+func (o *CreateTopicForbidden) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *CreateTopicForbidden) GetPayload() *lobbyclientmodels.RestapiErrorResponseBody {
@@ -203,7 +231,16 @@ type CreateTopicConflict struct {
 }
 
 func (o *CreateTopicConflict) Error() string {
-	return fmt.Sprintf("[POST /notification/namespaces/{namespace}/topics][%d] createTopicConflict  %+v", 409, o.Payload)
+	return fmt.Sprintf("[POST /notification/namespaces/{namespace}/topics][%d] createTopicConflict  %+v", 409, o.ToString())
+}
+
+func (o *CreateTopicConflict) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *CreateTopicConflict) GetPayload() *lobbyclientmodels.RestapiErrorResponseBody {

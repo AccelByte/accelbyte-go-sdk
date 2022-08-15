@@ -10,6 +10,7 @@ package clients
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -83,7 +84,16 @@ type AdminCreateClientV3Created struct {
 }
 
 func (o *AdminCreateClientV3Created) Error() string {
-	return fmt.Sprintf("[POST /iam/v3/admin/namespaces/{namespace}/clients][%d] adminCreateClientV3Created  %+v", 201, o.Payload)
+	return fmt.Sprintf("[POST /iam/v3/admin/namespaces/{namespace}/clients][%d] adminCreateClientV3Created  %+v", 201, o.ToString())
+}
+
+func (o *AdminCreateClientV3Created) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *AdminCreateClientV3Created) GetPayload() *iamclientmodels.ClientmodelClientV3Response {
@@ -116,7 +126,16 @@ type AdminCreateClientV3BadRequest struct {
 }
 
 func (o *AdminCreateClientV3BadRequest) Error() string {
-	return fmt.Sprintf("[POST /iam/v3/admin/namespaces/{namespace}/clients][%d] adminCreateClientV3BadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[POST /iam/v3/admin/namespaces/{namespace}/clients][%d] adminCreateClientV3BadRequest  %+v", 400, o.ToString())
+}
+
+func (o *AdminCreateClientV3BadRequest) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *AdminCreateClientV3BadRequest) GetPayload() *iamclientmodels.RestErrorResponse {
@@ -149,7 +168,16 @@ type AdminCreateClientV3Unauthorized struct {
 }
 
 func (o *AdminCreateClientV3Unauthorized) Error() string {
-	return fmt.Sprintf("[POST /iam/v3/admin/namespaces/{namespace}/clients][%d] adminCreateClientV3Unauthorized  %+v", 401, o.Payload)
+	return fmt.Sprintf("[POST /iam/v3/admin/namespaces/{namespace}/clients][%d] adminCreateClientV3Unauthorized  %+v", 401, o.ToString())
+}
+
+func (o *AdminCreateClientV3Unauthorized) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *AdminCreateClientV3Unauthorized) GetPayload() *iamclientmodels.RestErrorResponse {
@@ -182,7 +210,16 @@ type AdminCreateClientV3Forbidden struct {
 }
 
 func (o *AdminCreateClientV3Forbidden) Error() string {
-	return fmt.Sprintf("[POST /iam/v3/admin/namespaces/{namespace}/clients][%d] adminCreateClientV3Forbidden  %+v", 403, o.Payload)
+	return fmt.Sprintf("[POST /iam/v3/admin/namespaces/{namespace}/clients][%d] adminCreateClientV3Forbidden  %+v", 403, o.ToString())
+}
+
+func (o *AdminCreateClientV3Forbidden) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *AdminCreateClientV3Forbidden) GetPayload() *iamclientmodels.RestErrorResponse {
@@ -215,7 +252,16 @@ type AdminCreateClientV3Conflict struct {
 }
 
 func (o *AdminCreateClientV3Conflict) Error() string {
-	return fmt.Sprintf("[POST /iam/v3/admin/namespaces/{namespace}/clients][%d] adminCreateClientV3Conflict  %+v", 409, o.Payload)
+	return fmt.Sprintf("[POST /iam/v3/admin/namespaces/{namespace}/clients][%d] adminCreateClientV3Conflict  %+v", 409, o.ToString())
+}
+
+func (o *AdminCreateClientV3Conflict) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *AdminCreateClientV3Conflict) GetPayload() *iamclientmodels.RestErrorResponse {

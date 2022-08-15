@@ -10,6 +10,7 @@ package users
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -104,7 +105,16 @@ type AdminLinkPlatformAccountBadRequest struct {
 }
 
 func (o *AdminLinkPlatformAccountBadRequest) Error() string {
-	return fmt.Sprintf("[POST /iam/v3/admin/namespaces/{namespace}/users/{userId}/platforms/link][%d] adminLinkPlatformAccountBadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[POST /iam/v3/admin/namespaces/{namespace}/users/{userId}/platforms/link][%d] adminLinkPlatformAccountBadRequest  %+v", 400, o.ToString())
+}
+
+func (o *AdminLinkPlatformAccountBadRequest) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *AdminLinkPlatformAccountBadRequest) GetPayload() *iamclientmodels.RestErrorResponse {
@@ -137,7 +147,16 @@ type AdminLinkPlatformAccountUnauthorized struct {
 }
 
 func (o *AdminLinkPlatformAccountUnauthorized) Error() string {
-	return fmt.Sprintf("[POST /iam/v3/admin/namespaces/{namespace}/users/{userId}/platforms/link][%d] adminLinkPlatformAccountUnauthorized  %+v", 401, o.Payload)
+	return fmt.Sprintf("[POST /iam/v3/admin/namespaces/{namespace}/users/{userId}/platforms/link][%d] adminLinkPlatformAccountUnauthorized  %+v", 401, o.ToString())
+}
+
+func (o *AdminLinkPlatformAccountUnauthorized) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *AdminLinkPlatformAccountUnauthorized) GetPayload() *iamclientmodels.RestErrorResponse {
@@ -170,7 +189,16 @@ type AdminLinkPlatformAccountForbidden struct {
 }
 
 func (o *AdminLinkPlatformAccountForbidden) Error() string {
-	return fmt.Sprintf("[POST /iam/v3/admin/namespaces/{namespace}/users/{userId}/platforms/link][%d] adminLinkPlatformAccountForbidden  %+v", 403, o.Payload)
+	return fmt.Sprintf("[POST /iam/v3/admin/namespaces/{namespace}/users/{userId}/platforms/link][%d] adminLinkPlatformAccountForbidden  %+v", 403, o.ToString())
+}
+
+func (o *AdminLinkPlatformAccountForbidden) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *AdminLinkPlatformAccountForbidden) GetPayload() *iamclientmodels.RestErrorResponse {
@@ -203,7 +231,16 @@ type AdminLinkPlatformAccountInternalServerError struct {
 }
 
 func (o *AdminLinkPlatformAccountInternalServerError) Error() string {
-	return fmt.Sprintf("[POST /iam/v3/admin/namespaces/{namespace}/users/{userId}/platforms/link][%d] adminLinkPlatformAccountInternalServerError  %+v", 500, o.Payload)
+	return fmt.Sprintf("[POST /iam/v3/admin/namespaces/{namespace}/users/{userId}/platforms/link][%d] adminLinkPlatformAccountInternalServerError  %+v", 500, o.ToString())
+}
+
+func (o *AdminLinkPlatformAccountInternalServerError) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *AdminLinkPlatformAccountInternalServerError) GetPayload() *iamclientmodels.RestErrorResponse {

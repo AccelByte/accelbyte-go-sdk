@@ -10,6 +10,7 @@ package leaderboard_data
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -77,7 +78,16 @@ type GetCurrentSeasonLeaderboardRankingPublicV1OK struct {
 }
 
 func (o *GetCurrentSeasonLeaderboardRankingPublicV1OK) Error() string {
-	return fmt.Sprintf("[GET /leaderboard/v1/public/namespaces/{namespace}/leaderboards/{leaderboardCode}/season][%d] getCurrentSeasonLeaderboardRankingPublicV1OK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /leaderboard/v1/public/namespaces/{namespace}/leaderboards/{leaderboardCode}/season][%d] getCurrentSeasonLeaderboardRankingPublicV1OK  %+v", 200, o.ToString())
+}
+
+func (o *GetCurrentSeasonLeaderboardRankingPublicV1OK) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *GetCurrentSeasonLeaderboardRankingPublicV1OK) GetPayload() *leaderboardclientmodels.ModelsGetLeaderboardRankingResp {
@@ -110,7 +120,16 @@ type GetCurrentSeasonLeaderboardRankingPublicV1BadRequest struct {
 }
 
 func (o *GetCurrentSeasonLeaderboardRankingPublicV1BadRequest) Error() string {
-	return fmt.Sprintf("[GET /leaderboard/v1/public/namespaces/{namespace}/leaderboards/{leaderboardCode}/season][%d] getCurrentSeasonLeaderboardRankingPublicV1BadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[GET /leaderboard/v1/public/namespaces/{namespace}/leaderboards/{leaderboardCode}/season][%d] getCurrentSeasonLeaderboardRankingPublicV1BadRequest  %+v", 400, o.ToString())
+}
+
+func (o *GetCurrentSeasonLeaderboardRankingPublicV1BadRequest) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *GetCurrentSeasonLeaderboardRankingPublicV1BadRequest) GetPayload() *leaderboardclientmodels.ResponseErrorResponse {
@@ -143,7 +162,16 @@ type GetCurrentSeasonLeaderboardRankingPublicV1NotFound struct {
 }
 
 func (o *GetCurrentSeasonLeaderboardRankingPublicV1NotFound) Error() string {
-	return fmt.Sprintf("[GET /leaderboard/v1/public/namespaces/{namespace}/leaderboards/{leaderboardCode}/season][%d] getCurrentSeasonLeaderboardRankingPublicV1NotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[GET /leaderboard/v1/public/namespaces/{namespace}/leaderboards/{leaderboardCode}/season][%d] getCurrentSeasonLeaderboardRankingPublicV1NotFound  %+v", 404, o.ToString())
+}
+
+func (o *GetCurrentSeasonLeaderboardRankingPublicV1NotFound) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *GetCurrentSeasonLeaderboardRankingPublicV1NotFound) GetPayload() *leaderboardclientmodels.ResponseErrorResponse {
@@ -176,7 +204,16 @@ type GetCurrentSeasonLeaderboardRankingPublicV1InternalServerError struct {
 }
 
 func (o *GetCurrentSeasonLeaderboardRankingPublicV1InternalServerError) Error() string {
-	return fmt.Sprintf("[GET /leaderboard/v1/public/namespaces/{namespace}/leaderboards/{leaderboardCode}/season][%d] getCurrentSeasonLeaderboardRankingPublicV1InternalServerError  %+v", 500, o.Payload)
+	return fmt.Sprintf("[GET /leaderboard/v1/public/namespaces/{namespace}/leaderboards/{leaderboardCode}/season][%d] getCurrentSeasonLeaderboardRankingPublicV1InternalServerError  %+v", 500, o.ToString())
+}
+
+func (o *GetCurrentSeasonLeaderboardRankingPublicV1InternalServerError) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *GetCurrentSeasonLeaderboardRankingPublicV1InternalServerError) GetPayload() *leaderboardclientmodels.ResponseErrorResponse {

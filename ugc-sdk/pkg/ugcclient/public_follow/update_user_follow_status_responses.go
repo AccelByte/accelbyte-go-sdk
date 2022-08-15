@@ -10,6 +10,7 @@ package public_follow
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -83,7 +84,16 @@ type UpdateUserFollowStatusOK struct {
 }
 
 func (o *UpdateUserFollowStatusOK) Error() string {
-	return fmt.Sprintf("[PUT /ugc/v1/public/namespaces/{namespace}/users/{userId}/follow][%d] updateUserFollowStatusOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[PUT /ugc/v1/public/namespaces/{namespace}/users/{userId}/follow][%d] updateUserFollowStatusOK  %+v", 200, o.ToString())
+}
+
+func (o *UpdateUserFollowStatusOK) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *UpdateUserFollowStatusOK) GetPayload() *ugcclientmodels.ModelsUserFollowResponse {
@@ -116,7 +126,16 @@ type UpdateUserFollowStatusBadRequest struct {
 }
 
 func (o *UpdateUserFollowStatusBadRequest) Error() string {
-	return fmt.Sprintf("[PUT /ugc/v1/public/namespaces/{namespace}/users/{userId}/follow][%d] updateUserFollowStatusBadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[PUT /ugc/v1/public/namespaces/{namespace}/users/{userId}/follow][%d] updateUserFollowStatusBadRequest  %+v", 400, o.ToString())
+}
+
+func (o *UpdateUserFollowStatusBadRequest) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *UpdateUserFollowStatusBadRequest) GetPayload() *ugcclientmodels.ResponseError {
@@ -149,7 +168,16 @@ type UpdateUserFollowStatusUnauthorized struct {
 }
 
 func (o *UpdateUserFollowStatusUnauthorized) Error() string {
-	return fmt.Sprintf("[PUT /ugc/v1/public/namespaces/{namespace}/users/{userId}/follow][%d] updateUserFollowStatusUnauthorized  %+v", 401, o.Payload)
+	return fmt.Sprintf("[PUT /ugc/v1/public/namespaces/{namespace}/users/{userId}/follow][%d] updateUserFollowStatusUnauthorized  %+v", 401, o.ToString())
+}
+
+func (o *UpdateUserFollowStatusUnauthorized) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *UpdateUserFollowStatusUnauthorized) GetPayload() *ugcclientmodels.ResponseError {
@@ -182,7 +210,16 @@ type UpdateUserFollowStatusNotFound struct {
 }
 
 func (o *UpdateUserFollowStatusNotFound) Error() string {
-	return fmt.Sprintf("[PUT /ugc/v1/public/namespaces/{namespace}/users/{userId}/follow][%d] updateUserFollowStatusNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[PUT /ugc/v1/public/namespaces/{namespace}/users/{userId}/follow][%d] updateUserFollowStatusNotFound  %+v", 404, o.ToString())
+}
+
+func (o *UpdateUserFollowStatusNotFound) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *UpdateUserFollowStatusNotFound) GetPayload() *ugcclientmodels.ResponseError {
@@ -215,7 +252,16 @@ type UpdateUserFollowStatusInternalServerError struct {
 }
 
 func (o *UpdateUserFollowStatusInternalServerError) Error() string {
-	return fmt.Sprintf("[PUT /ugc/v1/public/namespaces/{namespace}/users/{userId}/follow][%d] updateUserFollowStatusInternalServerError  %+v", 500, o.Payload)
+	return fmt.Sprintf("[PUT /ugc/v1/public/namespaces/{namespace}/users/{userId}/follow][%d] updateUserFollowStatusInternalServerError  %+v", 500, o.ToString())
+}
+
+func (o *UpdateUserFollowStatusInternalServerError) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *UpdateUserFollowStatusInternalServerError) GetPayload() *ugcclientmodels.ResponseError {

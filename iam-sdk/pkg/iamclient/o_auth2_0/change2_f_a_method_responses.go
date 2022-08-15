@@ -10,6 +10,7 @@ package o_auth2_0
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -86,7 +87,16 @@ type Change2FAMethodBadRequest struct {
 }
 
 func (o *Change2FAMethodBadRequest) Error() string {
-	return fmt.Sprintf("[POST /iam/v3/oauth/mfa/factor/change][%d] change2FAMethodBadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[POST /iam/v3/oauth/mfa/factor/change][%d] change2FAMethodBadRequest  %+v", 400, o.ToString())
+}
+
+func (o *Change2FAMethodBadRequest) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *Change2FAMethodBadRequest) GetPayload() *iamclientmodels.RestErrorResponse {

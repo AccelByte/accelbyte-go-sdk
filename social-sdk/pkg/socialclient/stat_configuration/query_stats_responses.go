@@ -10,6 +10,7 @@ package stat_configuration
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -59,7 +60,16 @@ type QueryStatsOK struct {
 }
 
 func (o *QueryStatsOK) Error() string {
-	return fmt.Sprintf("[GET /social/v1/admin/namespaces/{namespace}/stats/search][%d] queryStatsOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /social/v1/admin/namespaces/{namespace}/stats/search][%d] queryStatsOK  %+v", 200, o.ToString())
+}
+
+func (o *QueryStatsOK) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *QueryStatsOK) GetPayload() *socialclientmodels.StatPagingSlicedResult {

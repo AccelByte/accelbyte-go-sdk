@@ -10,6 +10,7 @@ package o_auth2_0
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -77,7 +78,16 @@ type TokenGrantV3OK struct {
 }
 
 func (o *TokenGrantV3OK) Error() string {
-	return fmt.Sprintf("[POST /iam/v3/oauth/token][%d] tokenGrantV3OK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[POST /iam/v3/oauth/token][%d] tokenGrantV3OK  %+v", 200, o.ToString())
+}
+
+func (o *TokenGrantV3OK) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *TokenGrantV3OK) GetPayload() *iamclientmodels.OauthmodelTokenResponseV3 {
@@ -110,7 +120,16 @@ type TokenGrantV3BadRequest struct {
 }
 
 func (o *TokenGrantV3BadRequest) Error() string {
-	return fmt.Sprintf("[POST /iam/v3/oauth/token][%d] tokenGrantV3BadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[POST /iam/v3/oauth/token][%d] tokenGrantV3BadRequest  %+v", 400, o.ToString())
+}
+
+func (o *TokenGrantV3BadRequest) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *TokenGrantV3BadRequest) GetPayload() *iamclientmodels.OauthmodelErrorResponse {
@@ -143,7 +162,16 @@ type TokenGrantV3Unauthorized struct {
 }
 
 func (o *TokenGrantV3Unauthorized) Error() string {
-	return fmt.Sprintf("[POST /iam/v3/oauth/token][%d] tokenGrantV3Unauthorized  %+v", 401, o.Payload)
+	return fmt.Sprintf("[POST /iam/v3/oauth/token][%d] tokenGrantV3Unauthorized  %+v", 401, o.ToString())
+}
+
+func (o *TokenGrantV3Unauthorized) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *TokenGrantV3Unauthorized) GetPayload() *iamclientmodels.OauthmodelErrorResponse {
@@ -176,7 +204,16 @@ type TokenGrantV3Forbidden struct {
 }
 
 func (o *TokenGrantV3Forbidden) Error() string {
-	return fmt.Sprintf("[POST /iam/v3/oauth/token][%d] tokenGrantV3Forbidden  %+v", 403, o.Payload)
+	return fmt.Sprintf("[POST /iam/v3/oauth/token][%d] tokenGrantV3Forbidden  %+v", 403, o.ToString())
+}
+
+func (o *TokenGrantV3Forbidden) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *TokenGrantV3Forbidden) GetPayload() *iamclientmodels.OauthmodelErrorResponse {

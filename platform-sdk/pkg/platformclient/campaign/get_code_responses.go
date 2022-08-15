@@ -10,6 +10,7 @@ package campaign
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -71,7 +72,16 @@ type GetCodeOK struct {
 }
 
 func (o *GetCodeOK) Error() string {
-	return fmt.Sprintf("[GET /platform/admin/namespaces/{namespace}/codes/{code}][%d] getCodeOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /platform/admin/namespaces/{namespace}/codes/{code}][%d] getCodeOK  %+v", 200, o.ToString())
+}
+
+func (o *GetCodeOK) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *GetCodeOK) GetPayload() *platformclientmodels.CodeInfo {
@@ -104,7 +114,16 @@ type GetCodeNotFound struct {
 }
 
 func (o *GetCodeNotFound) Error() string {
-	return fmt.Sprintf("[GET /platform/admin/namespaces/{namespace}/codes/{code}][%d] getCodeNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[GET /platform/admin/namespaces/{namespace}/codes/{code}][%d] getCodeNotFound  %+v", 404, o.ToString())
+}
+
+func (o *GetCodeNotFound) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *GetCodeNotFound) GetPayload() *platformclientmodels.ErrorEntity {
@@ -137,7 +156,16 @@ type GetCodeConflict struct {
 }
 
 func (o *GetCodeConflict) Error() string {
-	return fmt.Sprintf("[GET /platform/admin/namespaces/{namespace}/codes/{code}][%d] getCodeConflict  %+v", 409, o.Payload)
+	return fmt.Sprintf("[GET /platform/admin/namespaces/{namespace}/codes/{code}][%d] getCodeConflict  %+v", 409, o.ToString())
+}
+
+func (o *GetCodeConflict) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *GetCodeConflict) GetPayload() *platformclientmodels.ErrorEntity {

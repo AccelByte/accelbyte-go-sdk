@@ -10,6 +10,7 @@ package reward
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -71,7 +72,16 @@ type QueryRewardsOK struct {
 }
 
 func (o *QueryRewardsOK) Error() string {
-	return fmt.Sprintf("[GET /seasonpass/admin/namespaces/{namespace}/seasons/{seasonId}/rewards][%d] queryRewardsOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /seasonpass/admin/namespaces/{namespace}/seasons/{seasonId}/rewards][%d] queryRewardsOK  %+v", 200, o.ToString())
+}
+
+func (o *QueryRewardsOK) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *QueryRewardsOK) GetPayload() []*seasonpassclientmodels.RewardInfo {
@@ -102,7 +112,16 @@ type QueryRewardsBadRequest struct {
 }
 
 func (o *QueryRewardsBadRequest) Error() string {
-	return fmt.Sprintf("[GET /seasonpass/admin/namespaces/{namespace}/seasons/{seasonId}/rewards][%d] queryRewardsBadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[GET /seasonpass/admin/namespaces/{namespace}/seasons/{seasonId}/rewards][%d] queryRewardsBadRequest  %+v", 400, o.ToString())
+}
+
+func (o *QueryRewardsBadRequest) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *QueryRewardsBadRequest) GetPayload() *seasonpassclientmodels.ErrorEntity {
@@ -135,7 +154,16 @@ type QueryRewardsNotFound struct {
 }
 
 func (o *QueryRewardsNotFound) Error() string {
-	return fmt.Sprintf("[GET /seasonpass/admin/namespaces/{namespace}/seasons/{seasonId}/rewards][%d] queryRewardsNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[GET /seasonpass/admin/namespaces/{namespace}/seasons/{seasonId}/rewards][%d] queryRewardsNotFound  %+v", 404, o.ToString())
+}
+
+func (o *QueryRewardsNotFound) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *QueryRewardsNotFound) GetPayload() *seasonpassclientmodels.ErrorEntity {

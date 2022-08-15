@@ -10,6 +10,7 @@ package item
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -65,7 +66,16 @@ type PublicBulkGetItemsOK struct {
 }
 
 func (o *PublicBulkGetItemsOK) Error() string {
-	return fmt.Sprintf("[GET /platform/public/namespaces/{namespace}/items/locale/byIds][%d] publicBulkGetItemsOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /platform/public/namespaces/{namespace}/items/locale/byIds][%d] publicBulkGetItemsOK  %+v", 200, o.ToString())
+}
+
+func (o *PublicBulkGetItemsOK) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *PublicBulkGetItemsOK) GetPayload() []*platformclientmodels.ItemInfo {
@@ -96,7 +106,16 @@ type PublicBulkGetItemsNotFound struct {
 }
 
 func (o *PublicBulkGetItemsNotFound) Error() string {
-	return fmt.Sprintf("[GET /platform/public/namespaces/{namespace}/items/locale/byIds][%d] publicBulkGetItemsNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[GET /platform/public/namespaces/{namespace}/items/locale/byIds][%d] publicBulkGetItemsNotFound  %+v", 404, o.ToString())
+}
+
+func (o *PublicBulkGetItemsNotFound) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *PublicBulkGetItemsNotFound) GetPayload() *platformclientmodels.ErrorEntity {

@@ -10,6 +10,7 @@ package users
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -110,7 +111,16 @@ type PublicSendVerificationCodeV3BadRequest struct {
 }
 
 func (o *PublicSendVerificationCodeV3BadRequest) Error() string {
-	return fmt.Sprintf("[POST /iam/v3/public/namespaces/{namespace}/users/me/code/request][%d] publicSendVerificationCodeV3BadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[POST /iam/v3/public/namespaces/{namespace}/users/me/code/request][%d] publicSendVerificationCodeV3BadRequest  %+v", 400, o.ToString())
+}
+
+func (o *PublicSendVerificationCodeV3BadRequest) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *PublicSendVerificationCodeV3BadRequest) GetPayload() *iamclientmodels.RestErrorResponse {
@@ -143,7 +153,16 @@ type PublicSendVerificationCodeV3Unauthorized struct {
 }
 
 func (o *PublicSendVerificationCodeV3Unauthorized) Error() string {
-	return fmt.Sprintf("[POST /iam/v3/public/namespaces/{namespace}/users/me/code/request][%d] publicSendVerificationCodeV3Unauthorized  %+v", 401, o.Payload)
+	return fmt.Sprintf("[POST /iam/v3/public/namespaces/{namespace}/users/me/code/request][%d] publicSendVerificationCodeV3Unauthorized  %+v", 401, o.ToString())
+}
+
+func (o *PublicSendVerificationCodeV3Unauthorized) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *PublicSendVerificationCodeV3Unauthorized) GetPayload() *iamclientmodels.RestErrorResponse {
@@ -176,7 +195,16 @@ type PublicSendVerificationCodeV3NotFound struct {
 }
 
 func (o *PublicSendVerificationCodeV3NotFound) Error() string {
-	return fmt.Sprintf("[POST /iam/v3/public/namespaces/{namespace}/users/me/code/request][%d] publicSendVerificationCodeV3NotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[POST /iam/v3/public/namespaces/{namespace}/users/me/code/request][%d] publicSendVerificationCodeV3NotFound  %+v", 404, o.ToString())
+}
+
+func (o *PublicSendVerificationCodeV3NotFound) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *PublicSendVerificationCodeV3NotFound) GetPayload() *iamclientmodels.RestErrorResponse {
@@ -209,7 +237,16 @@ type PublicSendVerificationCodeV3Conflict struct {
 }
 
 func (o *PublicSendVerificationCodeV3Conflict) Error() string {
-	return fmt.Sprintf("[POST /iam/v3/public/namespaces/{namespace}/users/me/code/request][%d] publicSendVerificationCodeV3Conflict  %+v", 409, o.Payload)
+	return fmt.Sprintf("[POST /iam/v3/public/namespaces/{namespace}/users/me/code/request][%d] publicSendVerificationCodeV3Conflict  %+v", 409, o.ToString())
+}
+
+func (o *PublicSendVerificationCodeV3Conflict) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *PublicSendVerificationCodeV3Conflict) GetPayload() *iamclientmodels.RestErrorResponse {
@@ -242,7 +279,16 @@ type PublicSendVerificationCodeV3TooManyRequests struct {
 }
 
 func (o *PublicSendVerificationCodeV3TooManyRequests) Error() string {
-	return fmt.Sprintf("[POST /iam/v3/public/namespaces/{namespace}/users/me/code/request][%d] publicSendVerificationCodeV3TooManyRequests  %+v", 429, o.Payload)
+	return fmt.Sprintf("[POST /iam/v3/public/namespaces/{namespace}/users/me/code/request][%d] publicSendVerificationCodeV3TooManyRequests  %+v", 429, o.ToString())
+}
+
+func (o *PublicSendVerificationCodeV3TooManyRequests) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *PublicSendVerificationCodeV3TooManyRequests) GetPayload() *iamclientmodels.RestErrorResponse {

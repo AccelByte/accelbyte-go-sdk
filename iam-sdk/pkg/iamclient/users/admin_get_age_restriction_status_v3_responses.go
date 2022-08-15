@@ -10,6 +10,7 @@ package users
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -89,7 +90,16 @@ type AdminGetAgeRestrictionStatusV3OK struct {
 }
 
 func (o *AdminGetAgeRestrictionStatusV3OK) Error() string {
-	return fmt.Sprintf("[GET /iam/v3/admin/namespaces/{namespace}/agerestrictions][%d] adminGetAgeRestrictionStatusV3OK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /iam/v3/admin/namespaces/{namespace}/agerestrictions][%d] adminGetAgeRestrictionStatusV3OK  %+v", 200, o.ToString())
+}
+
+func (o *AdminGetAgeRestrictionStatusV3OK) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *AdminGetAgeRestrictionStatusV3OK) GetPayload() *iamclientmodels.ModelAgeRestrictionResponseV3 {
@@ -122,7 +132,16 @@ type AdminGetAgeRestrictionStatusV3BadRequest struct {
 }
 
 func (o *AdminGetAgeRestrictionStatusV3BadRequest) Error() string {
-	return fmt.Sprintf("[GET /iam/v3/admin/namespaces/{namespace}/agerestrictions][%d] adminGetAgeRestrictionStatusV3BadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[GET /iam/v3/admin/namespaces/{namespace}/agerestrictions][%d] adminGetAgeRestrictionStatusV3BadRequest  %+v", 400, o.ToString())
+}
+
+func (o *AdminGetAgeRestrictionStatusV3BadRequest) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *AdminGetAgeRestrictionStatusV3BadRequest) GetPayload() *iamclientmodels.RestErrorResponse {
@@ -155,7 +174,16 @@ type AdminGetAgeRestrictionStatusV3Unauthorized struct {
 }
 
 func (o *AdminGetAgeRestrictionStatusV3Unauthorized) Error() string {
-	return fmt.Sprintf("[GET /iam/v3/admin/namespaces/{namespace}/agerestrictions][%d] adminGetAgeRestrictionStatusV3Unauthorized  %+v", 401, o.Payload)
+	return fmt.Sprintf("[GET /iam/v3/admin/namespaces/{namespace}/agerestrictions][%d] adminGetAgeRestrictionStatusV3Unauthorized  %+v", 401, o.ToString())
+}
+
+func (o *AdminGetAgeRestrictionStatusV3Unauthorized) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *AdminGetAgeRestrictionStatusV3Unauthorized) GetPayload() *iamclientmodels.RestErrorResponse {
@@ -188,7 +216,16 @@ type AdminGetAgeRestrictionStatusV3Forbidden struct {
 }
 
 func (o *AdminGetAgeRestrictionStatusV3Forbidden) Error() string {
-	return fmt.Sprintf("[GET /iam/v3/admin/namespaces/{namespace}/agerestrictions][%d] adminGetAgeRestrictionStatusV3Forbidden  %+v", 403, o.Payload)
+	return fmt.Sprintf("[GET /iam/v3/admin/namespaces/{namespace}/agerestrictions][%d] adminGetAgeRestrictionStatusV3Forbidden  %+v", 403, o.ToString())
+}
+
+func (o *AdminGetAgeRestrictionStatusV3Forbidden) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *AdminGetAgeRestrictionStatusV3Forbidden) GetPayload() *iamclientmodels.RestErrorResponse {
@@ -221,7 +258,16 @@ type AdminGetAgeRestrictionStatusV3NotFound struct {
 }
 
 func (o *AdminGetAgeRestrictionStatusV3NotFound) Error() string {
-	return fmt.Sprintf("[GET /iam/v3/admin/namespaces/{namespace}/agerestrictions][%d] adminGetAgeRestrictionStatusV3NotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[GET /iam/v3/admin/namespaces/{namespace}/agerestrictions][%d] adminGetAgeRestrictionStatusV3NotFound  %+v", 404, o.ToString())
+}
+
+func (o *AdminGetAgeRestrictionStatusV3NotFound) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *AdminGetAgeRestrictionStatusV3NotFound) GetPayload() *iamclientmodels.RestErrorResponse {
@@ -254,7 +300,16 @@ type AdminGetAgeRestrictionStatusV3InternalServerError struct {
 }
 
 func (o *AdminGetAgeRestrictionStatusV3InternalServerError) Error() string {
-	return fmt.Sprintf("[GET /iam/v3/admin/namespaces/{namespace}/agerestrictions][%d] adminGetAgeRestrictionStatusV3InternalServerError  %+v", 500, o.Payload)
+	return fmt.Sprintf("[GET /iam/v3/admin/namespaces/{namespace}/agerestrictions][%d] adminGetAgeRestrictionStatusV3InternalServerError  %+v", 500, o.ToString())
+}
+
+func (o *AdminGetAgeRestrictionStatusV3InternalServerError) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *AdminGetAgeRestrictionStatusV3InternalServerError) GetPayload() *iamclientmodels.RestErrorResponse {

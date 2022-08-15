@@ -10,6 +10,7 @@ package leaderboard_configuration
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -83,7 +84,16 @@ type GetLeaderboardConfigurationsPublicV1OK struct {
 }
 
 func (o *GetLeaderboardConfigurationsPublicV1OK) Error() string {
-	return fmt.Sprintf("[GET /leaderboard/v1/public/namespaces/{namespace}/leaderboards][%d] getLeaderboardConfigurationsPublicV1OK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /leaderboard/v1/public/namespaces/{namespace}/leaderboards][%d] getLeaderboardConfigurationsPublicV1OK  %+v", 200, o.ToString())
+}
+
+func (o *GetLeaderboardConfigurationsPublicV1OK) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *GetLeaderboardConfigurationsPublicV1OK) GetPayload() *leaderboardclientmodels.ModelsGetAllLeaderboardConfigsPublicResp {
@@ -116,7 +126,16 @@ type GetLeaderboardConfigurationsPublicV1BadRequest struct {
 }
 
 func (o *GetLeaderboardConfigurationsPublicV1BadRequest) Error() string {
-	return fmt.Sprintf("[GET /leaderboard/v1/public/namespaces/{namespace}/leaderboards][%d] getLeaderboardConfigurationsPublicV1BadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[GET /leaderboard/v1/public/namespaces/{namespace}/leaderboards][%d] getLeaderboardConfigurationsPublicV1BadRequest  %+v", 400, o.ToString())
+}
+
+func (o *GetLeaderboardConfigurationsPublicV1BadRequest) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *GetLeaderboardConfigurationsPublicV1BadRequest) GetPayload() *leaderboardclientmodels.ResponseErrorResponse {
@@ -149,7 +168,16 @@ type GetLeaderboardConfigurationsPublicV1Unauthorized struct {
 }
 
 func (o *GetLeaderboardConfigurationsPublicV1Unauthorized) Error() string {
-	return fmt.Sprintf("[GET /leaderboard/v1/public/namespaces/{namespace}/leaderboards][%d] getLeaderboardConfigurationsPublicV1Unauthorized  %+v", 401, o.Payload)
+	return fmt.Sprintf("[GET /leaderboard/v1/public/namespaces/{namespace}/leaderboards][%d] getLeaderboardConfigurationsPublicV1Unauthorized  %+v", 401, o.ToString())
+}
+
+func (o *GetLeaderboardConfigurationsPublicV1Unauthorized) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *GetLeaderboardConfigurationsPublicV1Unauthorized) GetPayload() *leaderboardclientmodels.ResponseErrorResponse {
@@ -182,7 +210,16 @@ type GetLeaderboardConfigurationsPublicV1Forbidden struct {
 }
 
 func (o *GetLeaderboardConfigurationsPublicV1Forbidden) Error() string {
-	return fmt.Sprintf("[GET /leaderboard/v1/public/namespaces/{namespace}/leaderboards][%d] getLeaderboardConfigurationsPublicV1Forbidden  %+v", 403, o.Payload)
+	return fmt.Sprintf("[GET /leaderboard/v1/public/namespaces/{namespace}/leaderboards][%d] getLeaderboardConfigurationsPublicV1Forbidden  %+v", 403, o.ToString())
+}
+
+func (o *GetLeaderboardConfigurationsPublicV1Forbidden) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *GetLeaderboardConfigurationsPublicV1Forbidden) GetPayload() *leaderboardclientmodels.ResponseErrorResponse {
@@ -215,7 +252,16 @@ type GetLeaderboardConfigurationsPublicV1InternalServerError struct {
 }
 
 func (o *GetLeaderboardConfigurationsPublicV1InternalServerError) Error() string {
-	return fmt.Sprintf("[GET /leaderboard/v1/public/namespaces/{namespace}/leaderboards][%d] getLeaderboardConfigurationsPublicV1InternalServerError  %+v", 500, o.Payload)
+	return fmt.Sprintf("[GET /leaderboard/v1/public/namespaces/{namespace}/leaderboards][%d] getLeaderboardConfigurationsPublicV1InternalServerError  %+v", 500, o.ToString())
+}
+
+func (o *GetLeaderboardConfigurationsPublicV1InternalServerError) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *GetLeaderboardConfigurationsPublicV1InternalServerError) GetPayload() *leaderboardclientmodels.ResponseErrorResponse {

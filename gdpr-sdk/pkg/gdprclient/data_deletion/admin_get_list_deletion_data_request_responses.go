@@ -10,6 +10,7 @@ package data_deletion
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -89,7 +90,16 @@ type AdminGetListDeletionDataRequestOK struct {
 }
 
 func (o *AdminGetListDeletionDataRequestOK) Error() string {
-	return fmt.Sprintf("[GET /gdpr/admin/namespaces/{namespace}/deletions][%d] adminGetListDeletionDataRequestOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /gdpr/admin/namespaces/{namespace}/deletions][%d] adminGetListDeletionDataRequestOK  %+v", 200, o.ToString())
+}
+
+func (o *AdminGetListDeletionDataRequestOK) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *AdminGetListDeletionDataRequestOK) GetPayload() *gdprclientmodels.ModelsListDeletionDataResponse {
@@ -122,7 +132,16 @@ type AdminGetListDeletionDataRequestBadRequest struct {
 }
 
 func (o *AdminGetListDeletionDataRequestBadRequest) Error() string {
-	return fmt.Sprintf("[GET /gdpr/admin/namespaces/{namespace}/deletions][%d] adminGetListDeletionDataRequestBadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[GET /gdpr/admin/namespaces/{namespace}/deletions][%d] adminGetListDeletionDataRequestBadRequest  %+v", 400, o.ToString())
+}
+
+func (o *AdminGetListDeletionDataRequestBadRequest) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *AdminGetListDeletionDataRequestBadRequest) GetPayload() *gdprclientmodels.ResponseError {
@@ -155,7 +174,16 @@ type AdminGetListDeletionDataRequestUnauthorized struct {
 }
 
 func (o *AdminGetListDeletionDataRequestUnauthorized) Error() string {
-	return fmt.Sprintf("[GET /gdpr/admin/namespaces/{namespace}/deletions][%d] adminGetListDeletionDataRequestUnauthorized  %+v", 401, o.Payload)
+	return fmt.Sprintf("[GET /gdpr/admin/namespaces/{namespace}/deletions][%d] adminGetListDeletionDataRequestUnauthorized  %+v", 401, o.ToString())
+}
+
+func (o *AdminGetListDeletionDataRequestUnauthorized) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *AdminGetListDeletionDataRequestUnauthorized) GetPayload() *gdprclientmodels.ResponseError {
@@ -188,7 +216,16 @@ type AdminGetListDeletionDataRequestForbidden struct {
 }
 
 func (o *AdminGetListDeletionDataRequestForbidden) Error() string {
-	return fmt.Sprintf("[GET /gdpr/admin/namespaces/{namespace}/deletions][%d] adminGetListDeletionDataRequestForbidden  %+v", 403, o.Payload)
+	return fmt.Sprintf("[GET /gdpr/admin/namespaces/{namespace}/deletions][%d] adminGetListDeletionDataRequestForbidden  %+v", 403, o.ToString())
+}
+
+func (o *AdminGetListDeletionDataRequestForbidden) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *AdminGetListDeletionDataRequestForbidden) GetPayload() *gdprclientmodels.ResponseError {
@@ -221,7 +258,16 @@ type AdminGetListDeletionDataRequestNotFound struct {
 }
 
 func (o *AdminGetListDeletionDataRequestNotFound) Error() string {
-	return fmt.Sprintf("[GET /gdpr/admin/namespaces/{namespace}/deletions][%d] adminGetListDeletionDataRequestNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[GET /gdpr/admin/namespaces/{namespace}/deletions][%d] adminGetListDeletionDataRequestNotFound  %+v", 404, o.ToString())
+}
+
+func (o *AdminGetListDeletionDataRequestNotFound) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *AdminGetListDeletionDataRequestNotFound) GetPayload() *gdprclientmodels.ResponseError {
@@ -254,7 +300,16 @@ type AdminGetListDeletionDataRequestInternalServerError struct {
 }
 
 func (o *AdminGetListDeletionDataRequestInternalServerError) Error() string {
-	return fmt.Sprintf("[GET /gdpr/admin/namespaces/{namespace}/deletions][%d] adminGetListDeletionDataRequestInternalServerError  %+v", 500, o.Payload)
+	return fmt.Sprintf("[GET /gdpr/admin/namespaces/{namespace}/deletions][%d] adminGetListDeletionDataRequestInternalServerError  %+v", 500, o.ToString())
+}
+
+func (o *AdminGetListDeletionDataRequestInternalServerError) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *AdminGetListDeletionDataRequestInternalServerError) GetPayload() *gdprclientmodels.ResponseError {

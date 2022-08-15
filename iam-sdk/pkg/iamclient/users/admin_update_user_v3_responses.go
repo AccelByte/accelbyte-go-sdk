@@ -10,6 +10,7 @@ package users
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -95,7 +96,16 @@ type AdminUpdateUserV3OK struct {
 }
 
 func (o *AdminUpdateUserV3OK) Error() string {
-	return fmt.Sprintf("[PATCH /iam/v3/admin/namespaces/{namespace}/users/{userId}][%d] adminUpdateUserV3OK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[PATCH /iam/v3/admin/namespaces/{namespace}/users/{userId}][%d] adminUpdateUserV3OK  %+v", 200, o.ToString())
+}
+
+func (o *AdminUpdateUserV3OK) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *AdminUpdateUserV3OK) GetPayload() *iamclientmodels.ModelUserResponseV3 {
@@ -128,7 +138,16 @@ type AdminUpdateUserV3BadRequest struct {
 }
 
 func (o *AdminUpdateUserV3BadRequest) Error() string {
-	return fmt.Sprintf("[PATCH /iam/v3/admin/namespaces/{namespace}/users/{userId}][%d] adminUpdateUserV3BadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[PATCH /iam/v3/admin/namespaces/{namespace}/users/{userId}][%d] adminUpdateUserV3BadRequest  %+v", 400, o.ToString())
+}
+
+func (o *AdminUpdateUserV3BadRequest) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *AdminUpdateUserV3BadRequest) GetPayload() *iamclientmodels.RestErrorResponse {
@@ -161,7 +180,16 @@ type AdminUpdateUserV3Unauthorized struct {
 }
 
 func (o *AdminUpdateUserV3Unauthorized) Error() string {
-	return fmt.Sprintf("[PATCH /iam/v3/admin/namespaces/{namespace}/users/{userId}][%d] adminUpdateUserV3Unauthorized  %+v", 401, o.Payload)
+	return fmt.Sprintf("[PATCH /iam/v3/admin/namespaces/{namespace}/users/{userId}][%d] adminUpdateUserV3Unauthorized  %+v", 401, o.ToString())
+}
+
+func (o *AdminUpdateUserV3Unauthorized) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *AdminUpdateUserV3Unauthorized) GetPayload() *iamclientmodels.RestErrorResponse {
@@ -194,7 +222,16 @@ type AdminUpdateUserV3Forbidden struct {
 }
 
 func (o *AdminUpdateUserV3Forbidden) Error() string {
-	return fmt.Sprintf("[PATCH /iam/v3/admin/namespaces/{namespace}/users/{userId}][%d] adminUpdateUserV3Forbidden  %+v", 403, o.Payload)
+	return fmt.Sprintf("[PATCH /iam/v3/admin/namespaces/{namespace}/users/{userId}][%d] adminUpdateUserV3Forbidden  %+v", 403, o.ToString())
+}
+
+func (o *AdminUpdateUserV3Forbidden) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *AdminUpdateUserV3Forbidden) GetPayload() *iamclientmodels.RestErrorResponse {
@@ -227,7 +264,16 @@ type AdminUpdateUserV3NotFound struct {
 }
 
 func (o *AdminUpdateUserV3NotFound) Error() string {
-	return fmt.Sprintf("[PATCH /iam/v3/admin/namespaces/{namespace}/users/{userId}][%d] adminUpdateUserV3NotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[PATCH /iam/v3/admin/namespaces/{namespace}/users/{userId}][%d] adminUpdateUserV3NotFound  %+v", 404, o.ToString())
+}
+
+func (o *AdminUpdateUserV3NotFound) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *AdminUpdateUserV3NotFound) GetPayload() *iamclientmodels.RestErrorResponse {
@@ -260,7 +306,16 @@ type AdminUpdateUserV3Conflict struct {
 }
 
 func (o *AdminUpdateUserV3Conflict) Error() string {
-	return fmt.Sprintf("[PATCH /iam/v3/admin/namespaces/{namespace}/users/{userId}][%d] adminUpdateUserV3Conflict  %+v", 409, o.Payload)
+	return fmt.Sprintf("[PATCH /iam/v3/admin/namespaces/{namespace}/users/{userId}][%d] adminUpdateUserV3Conflict  %+v", 409, o.ToString())
+}
+
+func (o *AdminUpdateUserV3Conflict) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *AdminUpdateUserV3Conflict) GetPayload() *iamclientmodels.RestErrorResponse {

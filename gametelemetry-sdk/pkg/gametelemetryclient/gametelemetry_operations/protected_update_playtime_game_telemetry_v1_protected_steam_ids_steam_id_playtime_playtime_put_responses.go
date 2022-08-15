@@ -10,6 +10,7 @@ package gametelemetry_operations
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -65,7 +66,16 @@ type ProtectedUpdatePlaytimeGameTelemetryV1ProtectedSteamIdsSteamIDPlaytimePlayt
 }
 
 func (o *ProtectedUpdatePlaytimeGameTelemetryV1ProtectedSteamIdsSteamIDPlaytimePlaytimePutOK) Error() string {
-	return fmt.Sprintf("[PUT /game-telemetry/v1/protected/steamIds/{steamId}/playtime/{playtime}][%d] protectedUpdatePlaytimeGameTelemetryV1ProtectedSteamIdsSteamIdPlaytimePlaytimePutOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[PUT /game-telemetry/v1/protected/steamIds/{steamId}/playtime/{playtime}][%d] protectedUpdatePlaytimeGameTelemetryV1ProtectedSteamIdsSteamIdPlaytimePlaytimePutOK  %+v", 200, o.ToString())
+}
+
+func (o *ProtectedUpdatePlaytimeGameTelemetryV1ProtectedSteamIdsSteamIDPlaytimePlaytimePutOK) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *ProtectedUpdatePlaytimeGameTelemetryV1ProtectedSteamIdsSteamIDPlaytimePlaytimePutOK) GetPayload() interface{} {
@@ -96,7 +106,16 @@ type ProtectedUpdatePlaytimeGameTelemetryV1ProtectedSteamIdsSteamIDPlaytimePlayt
 }
 
 func (o *ProtectedUpdatePlaytimeGameTelemetryV1ProtectedSteamIdsSteamIDPlaytimePlaytimePutUnprocessableEntity) Error() string {
-	return fmt.Sprintf("[PUT /game-telemetry/v1/protected/steamIds/{steamId}/playtime/{playtime}][%d] protectedUpdatePlaytimeGameTelemetryV1ProtectedSteamIdsSteamIdPlaytimePlaytimePutUnprocessableEntity  %+v", 422, o.Payload)
+	return fmt.Sprintf("[PUT /game-telemetry/v1/protected/steamIds/{steamId}/playtime/{playtime}][%d] protectedUpdatePlaytimeGameTelemetryV1ProtectedSteamIdsSteamIdPlaytimePlaytimePutUnprocessableEntity  %+v", 422, o.ToString())
+}
+
+func (o *ProtectedUpdatePlaytimeGameTelemetryV1ProtectedSteamIdsSteamIDPlaytimePlaytimePutUnprocessableEntity) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *ProtectedUpdatePlaytimeGameTelemetryV1ProtectedSteamIdsSteamIDPlaytimePlaytimePutUnprocessableEntity) GetPayload() *gametelemetryclientmodels.HTTPValidationError {

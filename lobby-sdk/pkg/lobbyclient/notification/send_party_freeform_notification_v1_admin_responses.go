@@ -10,6 +10,7 @@ package notification
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -104,7 +105,16 @@ type SendPartyFreeformNotificationV1AdminBadRequest struct {
 }
 
 func (o *SendPartyFreeformNotificationV1AdminBadRequest) Error() string {
-	return fmt.Sprintf("[POST /lobby/v1/admin/notification/namespaces/{namespace}/parties/{partyId}/freeform/notify][%d] sendPartyFreeformNotificationV1AdminBadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[POST /lobby/v1/admin/notification/namespaces/{namespace}/parties/{partyId}/freeform/notify][%d] sendPartyFreeformNotificationV1AdminBadRequest  %+v", 400, o.ToString())
+}
+
+func (o *SendPartyFreeformNotificationV1AdminBadRequest) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *SendPartyFreeformNotificationV1AdminBadRequest) GetPayload() *lobbyclientmodels.RestapiErrorResponseV1 {
@@ -137,7 +147,16 @@ type SendPartyFreeformNotificationV1AdminUnauthorized struct {
 }
 
 func (o *SendPartyFreeformNotificationV1AdminUnauthorized) Error() string {
-	return fmt.Sprintf("[POST /lobby/v1/admin/notification/namespaces/{namespace}/parties/{partyId}/freeform/notify][%d] sendPartyFreeformNotificationV1AdminUnauthorized  %+v", 401, o.Payload)
+	return fmt.Sprintf("[POST /lobby/v1/admin/notification/namespaces/{namespace}/parties/{partyId}/freeform/notify][%d] sendPartyFreeformNotificationV1AdminUnauthorized  %+v", 401, o.ToString())
+}
+
+func (o *SendPartyFreeformNotificationV1AdminUnauthorized) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *SendPartyFreeformNotificationV1AdminUnauthorized) GetPayload() *lobbyclientmodels.RestapiErrorResponseV1 {
@@ -170,7 +189,16 @@ type SendPartyFreeformNotificationV1AdminForbidden struct {
 }
 
 func (o *SendPartyFreeformNotificationV1AdminForbidden) Error() string {
-	return fmt.Sprintf("[POST /lobby/v1/admin/notification/namespaces/{namespace}/parties/{partyId}/freeform/notify][%d] sendPartyFreeformNotificationV1AdminForbidden  %+v", 403, o.Payload)
+	return fmt.Sprintf("[POST /lobby/v1/admin/notification/namespaces/{namespace}/parties/{partyId}/freeform/notify][%d] sendPartyFreeformNotificationV1AdminForbidden  %+v", 403, o.ToString())
+}
+
+func (o *SendPartyFreeformNotificationV1AdminForbidden) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *SendPartyFreeformNotificationV1AdminForbidden) GetPayload() *lobbyclientmodels.RestapiErrorResponseV1 {
@@ -203,7 +231,16 @@ type SendPartyFreeformNotificationV1AdminNotFound struct {
 }
 
 func (o *SendPartyFreeformNotificationV1AdminNotFound) Error() string {
-	return fmt.Sprintf("[POST /lobby/v1/admin/notification/namespaces/{namespace}/parties/{partyId}/freeform/notify][%d] sendPartyFreeformNotificationV1AdminNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[POST /lobby/v1/admin/notification/namespaces/{namespace}/parties/{partyId}/freeform/notify][%d] sendPartyFreeformNotificationV1AdminNotFound  %+v", 404, o.ToString())
+}
+
+func (o *SendPartyFreeformNotificationV1AdminNotFound) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *SendPartyFreeformNotificationV1AdminNotFound) GetPayload() *lobbyclientmodels.RestapiErrorResponseV1 {

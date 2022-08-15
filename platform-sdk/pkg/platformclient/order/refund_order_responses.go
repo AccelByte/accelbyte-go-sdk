@@ -10,6 +10,7 @@ package order
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -77,7 +78,16 @@ type RefundOrderOK struct {
 }
 
 func (o *RefundOrderOK) Error() string {
-	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/orders/{orderNo}/refund][%d] refundOrderOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/orders/{orderNo}/refund][%d] refundOrderOK  %+v", 200, o.ToString())
+}
+
+func (o *RefundOrderOK) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *RefundOrderOK) GetPayload() *platformclientmodels.OrderInfo {
@@ -110,7 +120,16 @@ type RefundOrderNotFound struct {
 }
 
 func (o *RefundOrderNotFound) Error() string {
-	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/orders/{orderNo}/refund][%d] refundOrderNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/orders/{orderNo}/refund][%d] refundOrderNotFound  %+v", 404, o.ToString())
+}
+
+func (o *RefundOrderNotFound) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *RefundOrderNotFound) GetPayload() *platformclientmodels.ErrorEntity {
@@ -143,7 +162,16 @@ type RefundOrderConflict struct {
 }
 
 func (o *RefundOrderConflict) Error() string {
-	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/orders/{orderNo}/refund][%d] refundOrderConflict  %+v", 409, o.Payload)
+	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/orders/{orderNo}/refund][%d] refundOrderConflict  %+v", 409, o.ToString())
+}
+
+func (o *RefundOrderConflict) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *RefundOrderConflict) GetPayload() *platformclientmodels.ErrorEntity {
@@ -176,7 +204,16 @@ type RefundOrderUnprocessableEntity struct {
 }
 
 func (o *RefundOrderUnprocessableEntity) Error() string {
-	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/orders/{orderNo}/refund][%d] refundOrderUnprocessableEntity  %+v", 422, o.Payload)
+	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/orders/{orderNo}/refund][%d] refundOrderUnprocessableEntity  %+v", 422, o.ToString())
+}
+
+func (o *RefundOrderUnprocessableEntity) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *RefundOrderUnprocessableEntity) GetPayload() *platformclientmodels.ValidationErrorEntity {

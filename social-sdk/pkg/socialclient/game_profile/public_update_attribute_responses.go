@@ -10,6 +10,7 @@ package game_profile
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -71,7 +72,16 @@ type PublicUpdateAttributeOK struct {
 }
 
 func (o *PublicUpdateAttributeOK) Error() string {
-	return fmt.Sprintf("[PUT /social/public/namespaces/{namespace}/users/{userId}/profiles/{profileId}/attributes/{attributeName}][%d] publicUpdateAttributeOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[PUT /social/public/namespaces/{namespace}/users/{userId}/profiles/{profileId}/attributes/{attributeName}][%d] publicUpdateAttributeOK  %+v", 200, o.ToString())
+}
+
+func (o *PublicUpdateAttributeOK) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *PublicUpdateAttributeOK) GetPayload() *socialclientmodels.GameProfileInfo {
@@ -104,7 +114,16 @@ type PublicUpdateAttributeBadRequest struct {
 }
 
 func (o *PublicUpdateAttributeBadRequest) Error() string {
-	return fmt.Sprintf("[PUT /social/public/namespaces/{namespace}/users/{userId}/profiles/{profileId}/attributes/{attributeName}][%d] publicUpdateAttributeBadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[PUT /social/public/namespaces/{namespace}/users/{userId}/profiles/{profileId}/attributes/{attributeName}][%d] publicUpdateAttributeBadRequest  %+v", 400, o.ToString())
+}
+
+func (o *PublicUpdateAttributeBadRequest) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *PublicUpdateAttributeBadRequest) GetPayload() *socialclientmodels.ErrorEntity {
@@ -137,7 +156,16 @@ type PublicUpdateAttributeNotFound struct {
 }
 
 func (o *PublicUpdateAttributeNotFound) Error() string {
-	return fmt.Sprintf("[PUT /social/public/namespaces/{namespace}/users/{userId}/profiles/{profileId}/attributes/{attributeName}][%d] publicUpdateAttributeNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[PUT /social/public/namespaces/{namespace}/users/{userId}/profiles/{profileId}/attributes/{attributeName}][%d] publicUpdateAttributeNotFound  %+v", 404, o.ToString())
+}
+
+func (o *PublicUpdateAttributeNotFound) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *PublicUpdateAttributeNotFound) GetPayload() *socialclientmodels.ErrorEntity {

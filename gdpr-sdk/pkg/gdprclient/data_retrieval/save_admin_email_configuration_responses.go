@@ -10,6 +10,7 @@ package data_retrieval
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -98,7 +99,16 @@ type SaveAdminEmailConfigurationBadRequest struct {
 }
 
 func (o *SaveAdminEmailConfigurationBadRequest) Error() string {
-	return fmt.Sprintf("[POST /gdpr/admin/namespaces/{namespace}/emails/configurations][%d] saveAdminEmailConfigurationBadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[POST /gdpr/admin/namespaces/{namespace}/emails/configurations][%d] saveAdminEmailConfigurationBadRequest  %+v", 400, o.ToString())
+}
+
+func (o *SaveAdminEmailConfigurationBadRequest) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *SaveAdminEmailConfigurationBadRequest) GetPayload() *gdprclientmodels.ResponseError {
@@ -131,7 +141,16 @@ type SaveAdminEmailConfigurationUnauthorized struct {
 }
 
 func (o *SaveAdminEmailConfigurationUnauthorized) Error() string {
-	return fmt.Sprintf("[POST /gdpr/admin/namespaces/{namespace}/emails/configurations][%d] saveAdminEmailConfigurationUnauthorized  %+v", 401, o.Payload)
+	return fmt.Sprintf("[POST /gdpr/admin/namespaces/{namespace}/emails/configurations][%d] saveAdminEmailConfigurationUnauthorized  %+v", 401, o.ToString())
+}
+
+func (o *SaveAdminEmailConfigurationUnauthorized) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *SaveAdminEmailConfigurationUnauthorized) GetPayload() *gdprclientmodels.ResponseError {
@@ -164,7 +183,16 @@ type SaveAdminEmailConfigurationInternalServerError struct {
 }
 
 func (o *SaveAdminEmailConfigurationInternalServerError) Error() string {
-	return fmt.Sprintf("[POST /gdpr/admin/namespaces/{namespace}/emails/configurations][%d] saveAdminEmailConfigurationInternalServerError  %+v", 500, o.Payload)
+	return fmt.Sprintf("[POST /gdpr/admin/namespaces/{namespace}/emails/configurations][%d] saveAdminEmailConfigurationInternalServerError  %+v", 500, o.ToString())
+}
+
+func (o *SaveAdminEmailConfigurationInternalServerError) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *SaveAdminEmailConfigurationInternalServerError) GetPayload() *gdprclientmodels.ResponseError {

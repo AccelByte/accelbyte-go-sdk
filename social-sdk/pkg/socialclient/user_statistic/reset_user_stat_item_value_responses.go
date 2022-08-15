@@ -10,6 +10,7 @@ package user_statistic
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -71,7 +72,16 @@ type ResetUserStatItemValueOK struct {
 }
 
 func (o *ResetUserStatItemValueOK) Error() string {
-	return fmt.Sprintf("[PUT /social/v1/admin/namespaces/{namespace}/users/{userId}/stats/{statCode}/statitems/value/reset][%d] resetUserStatItemValueOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[PUT /social/v1/admin/namespaces/{namespace}/users/{userId}/stats/{statCode}/statitems/value/reset][%d] resetUserStatItemValueOK  %+v", 200, o.ToString())
+}
+
+func (o *ResetUserStatItemValueOK) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *ResetUserStatItemValueOK) GetPayload() *socialclientmodels.StatItemIncResult {
@@ -104,7 +114,16 @@ type ResetUserStatItemValueBadRequest struct {
 }
 
 func (o *ResetUserStatItemValueBadRequest) Error() string {
-	return fmt.Sprintf("[PUT /social/v1/admin/namespaces/{namespace}/users/{userId}/stats/{statCode}/statitems/value/reset][%d] resetUserStatItemValueBadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[PUT /social/v1/admin/namespaces/{namespace}/users/{userId}/stats/{statCode}/statitems/value/reset][%d] resetUserStatItemValueBadRequest  %+v", 400, o.ToString())
+}
+
+func (o *ResetUserStatItemValueBadRequest) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *ResetUserStatItemValueBadRequest) GetPayload() *socialclientmodels.ErrorEntity {
@@ -137,7 +156,16 @@ type ResetUserStatItemValueNotFound struct {
 }
 
 func (o *ResetUserStatItemValueNotFound) Error() string {
-	return fmt.Sprintf("[PUT /social/v1/admin/namespaces/{namespace}/users/{userId}/stats/{statCode}/statitems/value/reset][%d] resetUserStatItemValueNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[PUT /social/v1/admin/namespaces/{namespace}/users/{userId}/stats/{statCode}/statitems/value/reset][%d] resetUserStatItemValueNotFound  %+v", 404, o.ToString())
+}
+
+func (o *ResetUserStatItemValueNotFound) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *ResetUserStatItemValueNotFound) GetPayload() *socialclientmodels.ErrorEntity {

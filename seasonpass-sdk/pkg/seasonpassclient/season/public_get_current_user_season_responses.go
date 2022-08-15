@@ -10,6 +10,7 @@ package season
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -71,7 +72,16 @@ type PublicGetCurrentUserSeasonOK struct {
 }
 
 func (o *PublicGetCurrentUserSeasonOK) Error() string {
-	return fmt.Sprintf("[GET /seasonpass/public/namespaces/{namespace}/users/{userId}/seasons/current/data][%d] publicGetCurrentUserSeasonOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /seasonpass/public/namespaces/{namespace}/users/{userId}/seasons/current/data][%d] publicGetCurrentUserSeasonOK  %+v", 200, o.ToString())
+}
+
+func (o *PublicGetCurrentUserSeasonOK) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *PublicGetCurrentUserSeasonOK) GetPayload() *seasonpassclientmodels.ClaimableUserSeasonInfo {
@@ -104,7 +114,16 @@ type PublicGetCurrentUserSeasonBadRequest struct {
 }
 
 func (o *PublicGetCurrentUserSeasonBadRequest) Error() string {
-	return fmt.Sprintf("[GET /seasonpass/public/namespaces/{namespace}/users/{userId}/seasons/current/data][%d] publicGetCurrentUserSeasonBadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[GET /seasonpass/public/namespaces/{namespace}/users/{userId}/seasons/current/data][%d] publicGetCurrentUserSeasonBadRequest  %+v", 400, o.ToString())
+}
+
+func (o *PublicGetCurrentUserSeasonBadRequest) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *PublicGetCurrentUserSeasonBadRequest) GetPayload() *seasonpassclientmodels.ErrorEntity {
@@ -137,7 +156,16 @@ type PublicGetCurrentUserSeasonNotFound struct {
 }
 
 func (o *PublicGetCurrentUserSeasonNotFound) Error() string {
-	return fmt.Sprintf("[GET /seasonpass/public/namespaces/{namespace}/users/{userId}/seasons/current/data][%d] publicGetCurrentUserSeasonNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[GET /seasonpass/public/namespaces/{namespace}/users/{userId}/seasons/current/data][%d] publicGetCurrentUserSeasonNotFound  %+v", 404, o.ToString())
+}
+
+func (o *PublicGetCurrentUserSeasonNotFound) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *PublicGetCurrentUserSeasonNotFound) GetPayload() *seasonpassclientmodels.ErrorEntity {

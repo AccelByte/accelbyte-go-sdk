@@ -10,6 +10,7 @@ package subscription
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -59,7 +60,16 @@ type PublicCheckUserSubscriptionSubscribableByItemIDOK struct {
 }
 
 func (o *PublicCheckUserSubscriptionSubscribableByItemIDOK) Error() string {
-	return fmt.Sprintf("[GET /platform/public/namespaces/{namespace}/users/{userId}/subscriptions/subscribable/byItemId][%d] publicCheckUserSubscriptionSubscribableByItemIdOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /platform/public/namespaces/{namespace}/users/{userId}/subscriptions/subscribable/byItemId][%d] publicCheckUserSubscriptionSubscribableByItemIdOK  %+v", 200, o.ToString())
+}
+
+func (o *PublicCheckUserSubscriptionSubscribableByItemIDOK) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *PublicCheckUserSubscriptionSubscribableByItemIDOK) GetPayload() *platformclientmodels.Subscribable {

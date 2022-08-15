@@ -10,6 +10,7 @@ package admin_group
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -77,7 +78,16 @@ type SingleAdminGetGroupContentsOK struct {
 }
 
 func (o *SingleAdminGetGroupContentsOK) Error() string {
-	return fmt.Sprintf("[GET /ugc/v1/admin/namespaces/{namespace}/groups/{groupId}/contents][%d] singleAdminGetGroupContentsOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /ugc/v1/admin/namespaces/{namespace}/groups/{groupId}/contents][%d] singleAdminGetGroupContentsOK  %+v", 200, o.ToString())
+}
+
+func (o *SingleAdminGetGroupContentsOK) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *SingleAdminGetGroupContentsOK) GetPayload() *ugcclientmodels.ModelsPaginatedContentDownloadResponse {
@@ -110,7 +120,16 @@ type SingleAdminGetGroupContentsUnauthorized struct {
 }
 
 func (o *SingleAdminGetGroupContentsUnauthorized) Error() string {
-	return fmt.Sprintf("[GET /ugc/v1/admin/namespaces/{namespace}/groups/{groupId}/contents][%d] singleAdminGetGroupContentsUnauthorized  %+v", 401, o.Payload)
+	return fmt.Sprintf("[GET /ugc/v1/admin/namespaces/{namespace}/groups/{groupId}/contents][%d] singleAdminGetGroupContentsUnauthorized  %+v", 401, o.ToString())
+}
+
+func (o *SingleAdminGetGroupContentsUnauthorized) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *SingleAdminGetGroupContentsUnauthorized) GetPayload() *ugcclientmodels.ResponseError {
@@ -143,7 +162,16 @@ type SingleAdminGetGroupContentsNotFound struct {
 }
 
 func (o *SingleAdminGetGroupContentsNotFound) Error() string {
-	return fmt.Sprintf("[GET /ugc/v1/admin/namespaces/{namespace}/groups/{groupId}/contents][%d] singleAdminGetGroupContentsNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[GET /ugc/v1/admin/namespaces/{namespace}/groups/{groupId}/contents][%d] singleAdminGetGroupContentsNotFound  %+v", 404, o.ToString())
+}
+
+func (o *SingleAdminGetGroupContentsNotFound) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *SingleAdminGetGroupContentsNotFound) GetPayload() *ugcclientmodels.ResponseError {
@@ -176,7 +204,16 @@ type SingleAdminGetGroupContentsInternalServerError struct {
 }
 
 func (o *SingleAdminGetGroupContentsInternalServerError) Error() string {
-	return fmt.Sprintf("[GET /ugc/v1/admin/namespaces/{namespace}/groups/{groupId}/contents][%d] singleAdminGetGroupContentsInternalServerError  %+v", 500, o.Payload)
+	return fmt.Sprintf("[GET /ugc/v1/admin/namespaces/{namespace}/groups/{groupId}/contents][%d] singleAdminGetGroupContentsInternalServerError  %+v", 500, o.ToString())
+}
+
+func (o *SingleAdminGetGroupContentsInternalServerError) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *SingleAdminGetGroupContentsInternalServerError) GetPayload() *ugcclientmodels.ResponseError {

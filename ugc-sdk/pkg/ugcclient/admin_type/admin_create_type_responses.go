@@ -10,6 +10,7 @@ package admin_type
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -83,7 +84,16 @@ type AdminCreateTypeCreated struct {
 }
 
 func (o *AdminCreateTypeCreated) Error() string {
-	return fmt.Sprintf("[POST /ugc/v1/admin/namespaces/{namespace}/types][%d] adminCreateTypeCreated  %+v", 201, o.Payload)
+	return fmt.Sprintf("[POST /ugc/v1/admin/namespaces/{namespace}/types][%d] adminCreateTypeCreated  %+v", 201, o.ToString())
+}
+
+func (o *AdminCreateTypeCreated) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *AdminCreateTypeCreated) GetPayload() *ugcclientmodels.ModelsCreateTypeResponse {
@@ -116,7 +126,16 @@ type AdminCreateTypeBadRequest struct {
 }
 
 func (o *AdminCreateTypeBadRequest) Error() string {
-	return fmt.Sprintf("[POST /ugc/v1/admin/namespaces/{namespace}/types][%d] adminCreateTypeBadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[POST /ugc/v1/admin/namespaces/{namespace}/types][%d] adminCreateTypeBadRequest  %+v", 400, o.ToString())
+}
+
+func (o *AdminCreateTypeBadRequest) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *AdminCreateTypeBadRequest) GetPayload() *ugcclientmodels.ResponseError {
@@ -149,7 +168,16 @@ type AdminCreateTypeUnauthorized struct {
 }
 
 func (o *AdminCreateTypeUnauthorized) Error() string {
-	return fmt.Sprintf("[POST /ugc/v1/admin/namespaces/{namespace}/types][%d] adminCreateTypeUnauthorized  %+v", 401, o.Payload)
+	return fmt.Sprintf("[POST /ugc/v1/admin/namespaces/{namespace}/types][%d] adminCreateTypeUnauthorized  %+v", 401, o.ToString())
+}
+
+func (o *AdminCreateTypeUnauthorized) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *AdminCreateTypeUnauthorized) GetPayload() *ugcclientmodels.ResponseError {
@@ -182,7 +210,16 @@ type AdminCreateTypeConflict struct {
 }
 
 func (o *AdminCreateTypeConflict) Error() string {
-	return fmt.Sprintf("[POST /ugc/v1/admin/namespaces/{namespace}/types][%d] adminCreateTypeConflict  %+v", 409, o.Payload)
+	return fmt.Sprintf("[POST /ugc/v1/admin/namespaces/{namespace}/types][%d] adminCreateTypeConflict  %+v", 409, o.ToString())
+}
+
+func (o *AdminCreateTypeConflict) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *AdminCreateTypeConflict) GetPayload() *ugcclientmodels.ResponseError {
@@ -215,7 +252,16 @@ type AdminCreateTypeInternalServerError struct {
 }
 
 func (o *AdminCreateTypeInternalServerError) Error() string {
-	return fmt.Sprintf("[POST /ugc/v1/admin/namespaces/{namespace}/types][%d] adminCreateTypeInternalServerError  %+v", 500, o.Payload)
+	return fmt.Sprintf("[POST /ugc/v1/admin/namespaces/{namespace}/types][%d] adminCreateTypeInternalServerError  %+v", 500, o.ToString())
+}
+
+func (o *AdminCreateTypeInternalServerError) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *AdminCreateTypeInternalServerError) GetPayload() *ugcclientmodels.ResponseError {

@@ -10,6 +10,7 @@ package admin
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -98,7 +99,16 @@ type SetServerAliasBadRequest struct {
 }
 
 func (o *SetServerAliasBadRequest) Error() string {
-	return fmt.Sprintf("[POST /qosm/admin/servers/{region}/alias][%d] setServerAliasBadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[POST /qosm/admin/servers/{region}/alias][%d] setServerAliasBadRequest  %+v", 400, o.ToString())
+}
+
+func (o *SetServerAliasBadRequest) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *SetServerAliasBadRequest) GetPayload() *qosmclientmodels.ResponseError {
@@ -131,7 +141,16 @@ type SetServerAliasNotFound struct {
 }
 
 func (o *SetServerAliasNotFound) Error() string {
-	return fmt.Sprintf("[POST /qosm/admin/servers/{region}/alias][%d] setServerAliasNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[POST /qosm/admin/servers/{region}/alias][%d] setServerAliasNotFound  %+v", 404, o.ToString())
+}
+
+func (o *SetServerAliasNotFound) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *SetServerAliasNotFound) GetPayload() *qosmclientmodels.ResponseError {
@@ -164,7 +183,16 @@ type SetServerAliasInternalServerError struct {
 }
 
 func (o *SetServerAliasInternalServerError) Error() string {
-	return fmt.Sprintf("[POST /qosm/admin/servers/{region}/alias][%d] setServerAliasInternalServerError  %+v", 500, o.Payload)
+	return fmt.Sprintf("[POST /qosm/admin/servers/{region}/alias][%d] setServerAliasInternalServerError  %+v", 500, o.ToString())
+}
+
+func (o *SetServerAliasInternalServerError) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *SetServerAliasInternalServerError) GetPayload() *qosmclientmodels.ResponseError {

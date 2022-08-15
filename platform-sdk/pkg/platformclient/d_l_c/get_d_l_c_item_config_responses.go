@@ -10,6 +10,7 @@ package d_l_c
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -65,7 +66,16 @@ type GetDLCItemConfigOK struct {
 }
 
 func (o *GetDLCItemConfigOK) Error() string {
-	return fmt.Sprintf("[GET /platform/admin/namespaces/{namespace}/dlc/config/item][%d] getDLCItemConfigOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /platform/admin/namespaces/{namespace}/dlc/config/item][%d] getDLCItemConfigOK  %+v", 200, o.ToString())
+}
+
+func (o *GetDLCItemConfigOK) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *GetDLCItemConfigOK) GetPayload() *platformclientmodels.DLCItemConfigInfo {
@@ -98,7 +108,16 @@ type GetDLCItemConfigNotFound struct {
 }
 
 func (o *GetDLCItemConfigNotFound) Error() string {
-	return fmt.Sprintf("[GET /platform/admin/namespaces/{namespace}/dlc/config/item][%d] getDLCItemConfigNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[GET /platform/admin/namespaces/{namespace}/dlc/config/item][%d] getDLCItemConfigNotFound  %+v", 404, o.ToString())
+}
+
+func (o *GetDLCItemConfigNotFound) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *GetDLCItemConfigNotFound) GetPayload() *platformclientmodels.ErrorEntity {

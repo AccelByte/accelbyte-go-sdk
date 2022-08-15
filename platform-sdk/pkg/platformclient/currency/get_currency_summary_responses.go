@@ -10,6 +10,7 @@ package currency
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -65,7 +66,16 @@ type GetCurrencySummaryOK struct {
 }
 
 func (o *GetCurrencySummaryOK) Error() string {
-	return fmt.Sprintf("[GET /platform/admin/namespaces/{namespace}/currencies/{currencyCode}/summary][%d] getCurrencySummaryOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /platform/admin/namespaces/{namespace}/currencies/{currencyCode}/summary][%d] getCurrencySummaryOK  %+v", 200, o.ToString())
+}
+
+func (o *GetCurrencySummaryOK) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *GetCurrencySummaryOK) GetPayload() *platformclientmodels.CurrencySummary {
@@ -98,7 +108,16 @@ type GetCurrencySummaryNotFound struct {
 }
 
 func (o *GetCurrencySummaryNotFound) Error() string {
-	return fmt.Sprintf("[GET /platform/admin/namespaces/{namespace}/currencies/{currencyCode}/summary][%d] getCurrencySummaryNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[GET /platform/admin/namespaces/{namespace}/currencies/{currencyCode}/summary][%d] getCurrencySummaryNotFound  %+v", 404, o.ToString())
+}
+
+func (o *GetCurrencySummaryNotFound) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *GetCurrencySummaryNotFound) GetPayload() *platformclientmodels.ErrorEntity {

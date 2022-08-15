@@ -10,6 +10,7 @@ package event_descriptions
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -59,7 +60,16 @@ type EventIDDescriptionHandlerOK struct {
 }
 
 func (o *EventIDDescriptionHandlerOK) Error() string {
-	return fmt.Sprintf("[GET /event/descriptions/eventId][%d] eventIdDescriptionHandlerOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /event/descriptions/eventId][%d] eventIdDescriptionHandlerOK  %+v", 200, o.ToString())
+}
+
+func (o *EventIDDescriptionHandlerOK) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *EventIDDescriptionHandlerOK) GetPayload() *eventlogclientmodels.ModelsMultipleEventID {

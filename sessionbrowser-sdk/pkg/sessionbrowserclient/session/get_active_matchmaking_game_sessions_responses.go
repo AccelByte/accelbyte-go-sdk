@@ -10,6 +10,7 @@ package session
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -71,7 +72,16 @@ type GetActiveMatchmakingGameSessionsOK struct {
 }
 
 func (o *GetActiveMatchmakingGameSessionsOK) Error() string {
-	return fmt.Sprintf("[GET /sessionbrowser/admin/namespaces/{namespace}/gamesession/active/matchmaking-game][%d] getActiveMatchmakingGameSessionsOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /sessionbrowser/admin/namespaces/{namespace}/gamesession/active/matchmaking-game][%d] getActiveMatchmakingGameSessionsOK  %+v", 200, o.ToString())
+}
+
+func (o *GetActiveMatchmakingGameSessionsOK) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *GetActiveMatchmakingGameSessionsOK) GetPayload() *sessionbrowserclientmodels.ModelsActiveMatchmakingGameResponse {
@@ -104,7 +114,16 @@ type GetActiveMatchmakingGameSessionsBadRequest struct {
 }
 
 func (o *GetActiveMatchmakingGameSessionsBadRequest) Error() string {
-	return fmt.Sprintf("[GET /sessionbrowser/admin/namespaces/{namespace}/gamesession/active/matchmaking-game][%d] getActiveMatchmakingGameSessionsBadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[GET /sessionbrowser/admin/namespaces/{namespace}/gamesession/active/matchmaking-game][%d] getActiveMatchmakingGameSessionsBadRequest  %+v", 400, o.ToString())
+}
+
+func (o *GetActiveMatchmakingGameSessionsBadRequest) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *GetActiveMatchmakingGameSessionsBadRequest) GetPayload() *sessionbrowserclientmodels.RestapiErrorResponseV2 {
@@ -137,7 +156,16 @@ type GetActiveMatchmakingGameSessionsInternalServerError struct {
 }
 
 func (o *GetActiveMatchmakingGameSessionsInternalServerError) Error() string {
-	return fmt.Sprintf("[GET /sessionbrowser/admin/namespaces/{namespace}/gamesession/active/matchmaking-game][%d] getActiveMatchmakingGameSessionsInternalServerError  %+v", 500, o.Payload)
+	return fmt.Sprintf("[GET /sessionbrowser/admin/namespaces/{namespace}/gamesession/active/matchmaking-game][%d] getActiveMatchmakingGameSessionsInternalServerError  %+v", 500, o.ToString())
+}
+
+func (o *GetActiveMatchmakingGameSessionsInternalServerError) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *GetActiveMatchmakingGameSessionsInternalServerError) GetPayload() *sessionbrowserclientmodels.RestapiErrorResponseV2 {

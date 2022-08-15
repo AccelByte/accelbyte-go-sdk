@@ -10,6 +10,7 @@ package pass
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -71,7 +72,16 @@ type GetPassOK struct {
 }
 
 func (o *GetPassOK) Error() string {
-	return fmt.Sprintf("[GET /seasonpass/admin/namespaces/{namespace}/seasons/{seasonId}/passes/{code}][%d] getPassOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /seasonpass/admin/namespaces/{namespace}/seasons/{seasonId}/passes/{code}][%d] getPassOK  %+v", 200, o.ToString())
+}
+
+func (o *GetPassOK) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *GetPassOK) GetPayload() *seasonpassclientmodels.PassInfo {
@@ -104,7 +114,16 @@ type GetPassBadRequest struct {
 }
 
 func (o *GetPassBadRequest) Error() string {
-	return fmt.Sprintf("[GET /seasonpass/admin/namespaces/{namespace}/seasons/{seasonId}/passes/{code}][%d] getPassBadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[GET /seasonpass/admin/namespaces/{namespace}/seasons/{seasonId}/passes/{code}][%d] getPassBadRequest  %+v", 400, o.ToString())
+}
+
+func (o *GetPassBadRequest) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *GetPassBadRequest) GetPayload() *seasonpassclientmodels.ErrorEntity {
@@ -137,7 +156,16 @@ type GetPassNotFound struct {
 }
 
 func (o *GetPassNotFound) Error() string {
-	return fmt.Sprintf("[GET /seasonpass/admin/namespaces/{namespace}/seasons/{seasonId}/passes/{code}][%d] getPassNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[GET /seasonpass/admin/namespaces/{namespace}/seasons/{seasonId}/passes/{code}][%d] getPassNotFound  %+v", 404, o.ToString())
+}
+
+func (o *GetPassNotFound) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *GetPassNotFound) GetPayload() *seasonpassclientmodels.ErrorEntity {

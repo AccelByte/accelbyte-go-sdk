@@ -10,6 +10,7 @@ package lobby_operations
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -95,7 +96,16 @@ type AdminUpdatePartyAttributesV1OK struct {
 }
 
 func (o *AdminUpdatePartyAttributesV1OK) Error() string {
-	return fmt.Sprintf("[PUT /lobby/v1/admin/party/namespaces/{namespace}/parties/{partyId}/attributes][%d] adminUpdatePartyAttributesV1OK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[PUT /lobby/v1/admin/party/namespaces/{namespace}/parties/{partyId}/attributes][%d] adminUpdatePartyAttributesV1OK  %+v", 200, o.ToString())
+}
+
+func (o *AdminUpdatePartyAttributesV1OK) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *AdminUpdatePartyAttributesV1OK) GetPayload() *lobbyclientmodels.ModelsPartyData {
@@ -128,7 +138,16 @@ type AdminUpdatePartyAttributesV1BadRequest struct {
 }
 
 func (o *AdminUpdatePartyAttributesV1BadRequest) Error() string {
-	return fmt.Sprintf("[PUT /lobby/v1/admin/party/namespaces/{namespace}/parties/{partyId}/attributes][%d] adminUpdatePartyAttributesV1BadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[PUT /lobby/v1/admin/party/namespaces/{namespace}/parties/{partyId}/attributes][%d] adminUpdatePartyAttributesV1BadRequest  %+v", 400, o.ToString())
+}
+
+func (o *AdminUpdatePartyAttributesV1BadRequest) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *AdminUpdatePartyAttributesV1BadRequest) GetPayload() *lobbyclientmodels.RestapiErrorResponseBody {
@@ -161,7 +180,16 @@ type AdminUpdatePartyAttributesV1Unauthorized struct {
 }
 
 func (o *AdminUpdatePartyAttributesV1Unauthorized) Error() string {
-	return fmt.Sprintf("[PUT /lobby/v1/admin/party/namespaces/{namespace}/parties/{partyId}/attributes][%d] adminUpdatePartyAttributesV1Unauthorized  %+v", 401, o.Payload)
+	return fmt.Sprintf("[PUT /lobby/v1/admin/party/namespaces/{namespace}/parties/{partyId}/attributes][%d] adminUpdatePartyAttributesV1Unauthorized  %+v", 401, o.ToString())
+}
+
+func (o *AdminUpdatePartyAttributesV1Unauthorized) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *AdminUpdatePartyAttributesV1Unauthorized) GetPayload() *lobbyclientmodels.RestapiErrorResponseBody {
@@ -194,7 +222,16 @@ type AdminUpdatePartyAttributesV1Forbidden struct {
 }
 
 func (o *AdminUpdatePartyAttributesV1Forbidden) Error() string {
-	return fmt.Sprintf("[PUT /lobby/v1/admin/party/namespaces/{namespace}/parties/{partyId}/attributes][%d] adminUpdatePartyAttributesV1Forbidden  %+v", 403, o.Payload)
+	return fmt.Sprintf("[PUT /lobby/v1/admin/party/namespaces/{namespace}/parties/{partyId}/attributes][%d] adminUpdatePartyAttributesV1Forbidden  %+v", 403, o.ToString())
+}
+
+func (o *AdminUpdatePartyAttributesV1Forbidden) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *AdminUpdatePartyAttributesV1Forbidden) GetPayload() *lobbyclientmodels.RestapiErrorResponseBody {
@@ -227,7 +264,16 @@ type AdminUpdatePartyAttributesV1NotFound struct {
 }
 
 func (o *AdminUpdatePartyAttributesV1NotFound) Error() string {
-	return fmt.Sprintf("[PUT /lobby/v1/admin/party/namespaces/{namespace}/parties/{partyId}/attributes][%d] adminUpdatePartyAttributesV1NotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[PUT /lobby/v1/admin/party/namespaces/{namespace}/parties/{partyId}/attributes][%d] adminUpdatePartyAttributesV1NotFound  %+v", 404, o.ToString())
+}
+
+func (o *AdminUpdatePartyAttributesV1NotFound) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *AdminUpdatePartyAttributesV1NotFound) GetPayload() *lobbyclientmodels.RestapiErrorResponseBody {
@@ -260,7 +306,16 @@ type AdminUpdatePartyAttributesV1PreconditionFailed struct {
 }
 
 func (o *AdminUpdatePartyAttributesV1PreconditionFailed) Error() string {
-	return fmt.Sprintf("[PUT /lobby/v1/admin/party/namespaces/{namespace}/parties/{partyId}/attributes][%d] adminUpdatePartyAttributesV1PreconditionFailed  %+v", 412, o.Payload)
+	return fmt.Sprintf("[PUT /lobby/v1/admin/party/namespaces/{namespace}/parties/{partyId}/attributes][%d] adminUpdatePartyAttributesV1PreconditionFailed  %+v", 412, o.ToString())
+}
+
+func (o *AdminUpdatePartyAttributesV1PreconditionFailed) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *AdminUpdatePartyAttributesV1PreconditionFailed) GetPayload() *lobbyclientmodels.RestapiErrorResponseBody {
@@ -293,7 +348,16 @@ type AdminUpdatePartyAttributesV1InternalServerError struct {
 }
 
 func (o *AdminUpdatePartyAttributesV1InternalServerError) Error() string {
-	return fmt.Sprintf("[PUT /lobby/v1/admin/party/namespaces/{namespace}/parties/{partyId}/attributes][%d] adminUpdatePartyAttributesV1InternalServerError  %+v", 500, o.Payload)
+	return fmt.Sprintf("[PUT /lobby/v1/admin/party/namespaces/{namespace}/parties/{partyId}/attributes][%d] adminUpdatePartyAttributesV1InternalServerError  %+v", 500, o.ToString())
+}
+
+func (o *AdminUpdatePartyAttributesV1InternalServerError) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *AdminUpdatePartyAttributesV1InternalServerError) GetPayload() *lobbyclientmodels.RestapiErrorResponseBody {

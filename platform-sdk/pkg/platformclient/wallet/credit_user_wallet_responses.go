@@ -10,6 +10,7 @@ package wallet
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -71,7 +72,16 @@ type CreditUserWalletOK struct {
 }
 
 func (o *CreditUserWalletOK) Error() string {
-	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/users/{userId}/wallets/{currencyCode}/credit][%d] creditUserWalletOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/users/{userId}/wallets/{currencyCode}/credit][%d] creditUserWalletOK  %+v", 200, o.ToString())
+}
+
+func (o *CreditUserWalletOK) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *CreditUserWalletOK) GetPayload() *platformclientmodels.WalletInfo {
@@ -104,7 +114,16 @@ type CreditUserWalletBadRequest struct {
 }
 
 func (o *CreditUserWalletBadRequest) Error() string {
-	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/users/{userId}/wallets/{currencyCode}/credit][%d] creditUserWalletBadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/users/{userId}/wallets/{currencyCode}/credit][%d] creditUserWalletBadRequest  %+v", 400, o.ToString())
+}
+
+func (o *CreditUserWalletBadRequest) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *CreditUserWalletBadRequest) GetPayload() *platformclientmodels.ErrorEntity {
@@ -137,7 +156,16 @@ type CreditUserWalletUnprocessableEntity struct {
 }
 
 func (o *CreditUserWalletUnprocessableEntity) Error() string {
-	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/users/{userId}/wallets/{currencyCode}/credit][%d] creditUserWalletUnprocessableEntity  %+v", 422, o.Payload)
+	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/users/{userId}/wallets/{currencyCode}/credit][%d] creditUserWalletUnprocessableEntity  %+v", 422, o.ToString())
+}
+
+func (o *CreditUserWalletUnprocessableEntity) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *CreditUserWalletUnprocessableEntity) GetPayload() *platformclientmodels.ValidationErrorEntity {

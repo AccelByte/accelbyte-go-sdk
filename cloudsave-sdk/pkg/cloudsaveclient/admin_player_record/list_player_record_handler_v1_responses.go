@@ -10,6 +10,7 @@ package admin_player_record
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -77,7 +78,16 @@ type ListPlayerRecordHandlerV1OK struct {
 }
 
 func (o *ListPlayerRecordHandlerV1OK) Error() string {
-	return fmt.Sprintf("[GET /cloudsave/v1/admin/namespaces/{namespace}/users/records][%d] listPlayerRecordHandlerV1OK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /cloudsave/v1/admin/namespaces/{namespace}/users/records][%d] listPlayerRecordHandlerV1OK  %+v", 200, o.ToString())
+}
+
+func (o *ListPlayerRecordHandlerV1OK) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *ListPlayerRecordHandlerV1OK) GetPayload() *cloudsaveclientmodels.ModelsListPlayerRecordKeysResponse {
@@ -110,7 +120,16 @@ type ListPlayerRecordHandlerV1BadRequest struct {
 }
 
 func (o *ListPlayerRecordHandlerV1BadRequest) Error() string {
-	return fmt.Sprintf("[GET /cloudsave/v1/admin/namespaces/{namespace}/users/records][%d] listPlayerRecordHandlerV1BadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[GET /cloudsave/v1/admin/namespaces/{namespace}/users/records][%d] listPlayerRecordHandlerV1BadRequest  %+v", 400, o.ToString())
+}
+
+func (o *ListPlayerRecordHandlerV1BadRequest) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *ListPlayerRecordHandlerV1BadRequest) GetPayload() *cloudsaveclientmodels.ModelsResponseError {
@@ -143,7 +162,16 @@ type ListPlayerRecordHandlerV1Unauthorized struct {
 }
 
 func (o *ListPlayerRecordHandlerV1Unauthorized) Error() string {
-	return fmt.Sprintf("[GET /cloudsave/v1/admin/namespaces/{namespace}/users/records][%d] listPlayerRecordHandlerV1Unauthorized  %+v", 401, o.Payload)
+	return fmt.Sprintf("[GET /cloudsave/v1/admin/namespaces/{namespace}/users/records][%d] listPlayerRecordHandlerV1Unauthorized  %+v", 401, o.ToString())
+}
+
+func (o *ListPlayerRecordHandlerV1Unauthorized) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *ListPlayerRecordHandlerV1Unauthorized) GetPayload() *cloudsaveclientmodels.ModelsResponseError {
@@ -176,7 +204,16 @@ type ListPlayerRecordHandlerV1InternalServerError struct {
 }
 
 func (o *ListPlayerRecordHandlerV1InternalServerError) Error() string {
-	return fmt.Sprintf("[GET /cloudsave/v1/admin/namespaces/{namespace}/users/records][%d] listPlayerRecordHandlerV1InternalServerError  %+v", 500, o.Payload)
+	return fmt.Sprintf("[GET /cloudsave/v1/admin/namespaces/{namespace}/users/records][%d] listPlayerRecordHandlerV1InternalServerError  %+v", 500, o.ToString())
+}
+
+func (o *ListPlayerRecordHandlerV1InternalServerError) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *ListPlayerRecordHandlerV1InternalServerError) GetPayload() *cloudsaveclientmodels.ModelsResponseError {

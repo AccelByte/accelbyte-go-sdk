@@ -10,6 +10,7 @@ package group_member
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -89,7 +90,16 @@ type JoinGroupV1Created struct {
 }
 
 func (o *JoinGroupV1Created) Error() string {
-	return fmt.Sprintf("[POST /group/v1/public/namespaces/{namespace}/groups/{groupId}/join][%d] joinGroupV1Created  %+v", 201, o.Payload)
+	return fmt.Sprintf("[POST /group/v1/public/namespaces/{namespace}/groups/{groupId}/join][%d] joinGroupV1Created  %+v", 201, o.ToString())
+}
+
+func (o *JoinGroupV1Created) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *JoinGroupV1Created) GetPayload() *groupclientmodels.ModelsJoinGroupResponseV1 {
@@ -122,7 +132,16 @@ type JoinGroupV1BadRequest struct {
 }
 
 func (o *JoinGroupV1BadRequest) Error() string {
-	return fmt.Sprintf("[POST /group/v1/public/namespaces/{namespace}/groups/{groupId}/join][%d] joinGroupV1BadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[POST /group/v1/public/namespaces/{namespace}/groups/{groupId}/join][%d] joinGroupV1BadRequest  %+v", 400, o.ToString())
+}
+
+func (o *JoinGroupV1BadRequest) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *JoinGroupV1BadRequest) GetPayload() *groupclientmodels.ResponseErrorResponse {
@@ -155,7 +174,16 @@ type JoinGroupV1Unauthorized struct {
 }
 
 func (o *JoinGroupV1Unauthorized) Error() string {
-	return fmt.Sprintf("[POST /group/v1/public/namespaces/{namespace}/groups/{groupId}/join][%d] joinGroupV1Unauthorized  %+v", 401, o.Payload)
+	return fmt.Sprintf("[POST /group/v1/public/namespaces/{namespace}/groups/{groupId}/join][%d] joinGroupV1Unauthorized  %+v", 401, o.ToString())
+}
+
+func (o *JoinGroupV1Unauthorized) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *JoinGroupV1Unauthorized) GetPayload() *groupclientmodels.ResponseErrorResponse {
@@ -188,7 +216,16 @@ type JoinGroupV1Forbidden struct {
 }
 
 func (o *JoinGroupV1Forbidden) Error() string {
-	return fmt.Sprintf("[POST /group/v1/public/namespaces/{namespace}/groups/{groupId}/join][%d] joinGroupV1Forbidden  %+v", 403, o.Payload)
+	return fmt.Sprintf("[POST /group/v1/public/namespaces/{namespace}/groups/{groupId}/join][%d] joinGroupV1Forbidden  %+v", 403, o.ToString())
+}
+
+func (o *JoinGroupV1Forbidden) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *JoinGroupV1Forbidden) GetPayload() *groupclientmodels.ResponseErrorResponse {
@@ -221,7 +258,16 @@ type JoinGroupV1Conflict struct {
 }
 
 func (o *JoinGroupV1Conflict) Error() string {
-	return fmt.Sprintf("[POST /group/v1/public/namespaces/{namespace}/groups/{groupId}/join][%d] joinGroupV1Conflict  %+v", 409, o.Payload)
+	return fmt.Sprintf("[POST /group/v1/public/namespaces/{namespace}/groups/{groupId}/join][%d] joinGroupV1Conflict  %+v", 409, o.ToString())
+}
+
+func (o *JoinGroupV1Conflict) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *JoinGroupV1Conflict) GetPayload() *groupclientmodels.ResponseErrorResponse {
@@ -254,7 +300,16 @@ type JoinGroupV1InternalServerError struct {
 }
 
 func (o *JoinGroupV1InternalServerError) Error() string {
-	return fmt.Sprintf("[POST /group/v1/public/namespaces/{namespace}/groups/{groupId}/join][%d] joinGroupV1InternalServerError  %+v", 500, o.Payload)
+	return fmt.Sprintf("[POST /group/v1/public/namespaces/{namespace}/groups/{groupId}/join][%d] joinGroupV1InternalServerError  %+v", 500, o.ToString())
+}
+
+func (o *JoinGroupV1InternalServerError) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *JoinGroupV1InternalServerError) GetPayload() *groupclientmodels.ResponseErrorResponse {

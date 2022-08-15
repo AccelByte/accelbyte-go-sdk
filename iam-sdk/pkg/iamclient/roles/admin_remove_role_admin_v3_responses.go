@@ -10,6 +10,7 @@ package roles
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -110,7 +111,16 @@ type AdminRemoveRoleAdminV3BadRequest struct {
 }
 
 func (o *AdminRemoveRoleAdminV3BadRequest) Error() string {
-	return fmt.Sprintf("[DELETE /iam/v3/admin/roles/{roleId}/admin][%d] adminRemoveRoleAdminV3BadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[DELETE /iam/v3/admin/roles/{roleId}/admin][%d] adminRemoveRoleAdminV3BadRequest  %+v", 400, o.ToString())
+}
+
+func (o *AdminRemoveRoleAdminV3BadRequest) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *AdminRemoveRoleAdminV3BadRequest) GetPayload() *iamclientmodels.RestErrorResponse {
@@ -143,7 +153,16 @@ type AdminRemoveRoleAdminV3Unauthorized struct {
 }
 
 func (o *AdminRemoveRoleAdminV3Unauthorized) Error() string {
-	return fmt.Sprintf("[DELETE /iam/v3/admin/roles/{roleId}/admin][%d] adminRemoveRoleAdminV3Unauthorized  %+v", 401, o.Payload)
+	return fmt.Sprintf("[DELETE /iam/v3/admin/roles/{roleId}/admin][%d] adminRemoveRoleAdminV3Unauthorized  %+v", 401, o.ToString())
+}
+
+func (o *AdminRemoveRoleAdminV3Unauthorized) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *AdminRemoveRoleAdminV3Unauthorized) GetPayload() *iamclientmodels.RestErrorResponse {
@@ -176,7 +195,16 @@ type AdminRemoveRoleAdminV3Forbidden struct {
 }
 
 func (o *AdminRemoveRoleAdminV3Forbidden) Error() string {
-	return fmt.Sprintf("[DELETE /iam/v3/admin/roles/{roleId}/admin][%d] adminRemoveRoleAdminV3Forbidden  %+v", 403, o.Payload)
+	return fmt.Sprintf("[DELETE /iam/v3/admin/roles/{roleId}/admin][%d] adminRemoveRoleAdminV3Forbidden  %+v", 403, o.ToString())
+}
+
+func (o *AdminRemoveRoleAdminV3Forbidden) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *AdminRemoveRoleAdminV3Forbidden) GetPayload() *iamclientmodels.RestErrorResponse {
@@ -209,7 +237,16 @@ type AdminRemoveRoleAdminV3NotFound struct {
 }
 
 func (o *AdminRemoveRoleAdminV3NotFound) Error() string {
-	return fmt.Sprintf("[DELETE /iam/v3/admin/roles/{roleId}/admin][%d] adminRemoveRoleAdminV3NotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[DELETE /iam/v3/admin/roles/{roleId}/admin][%d] adminRemoveRoleAdminV3NotFound  %+v", 404, o.ToString())
+}
+
+func (o *AdminRemoveRoleAdminV3NotFound) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *AdminRemoveRoleAdminV3NotFound) GetPayload() *iamclientmodels.RestErrorResponse {

@@ -10,6 +10,7 @@ package public_creator
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -77,7 +78,16 @@ type PublicSearchCreatorOK struct {
 }
 
 func (o *PublicSearchCreatorOK) Error() string {
-	return fmt.Sprintf("[GET /ugc/v1/public/namespaces/{namespace}/users][%d] publicSearchCreatorOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /ugc/v1/public/namespaces/{namespace}/users][%d] publicSearchCreatorOK  %+v", 200, o.ToString())
+}
+
+func (o *PublicSearchCreatorOK) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *PublicSearchCreatorOK) GetPayload() *ugcclientmodels.ModelsPaginatedCreatorOverviewResponse {
@@ -110,7 +120,16 @@ type PublicSearchCreatorBadRequest struct {
 }
 
 func (o *PublicSearchCreatorBadRequest) Error() string {
-	return fmt.Sprintf("[GET /ugc/v1/public/namespaces/{namespace}/users][%d] publicSearchCreatorBadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[GET /ugc/v1/public/namespaces/{namespace}/users][%d] publicSearchCreatorBadRequest  %+v", 400, o.ToString())
+}
+
+func (o *PublicSearchCreatorBadRequest) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *PublicSearchCreatorBadRequest) GetPayload() *ugcclientmodels.ResponseError {
@@ -143,7 +162,16 @@ type PublicSearchCreatorUnauthorized struct {
 }
 
 func (o *PublicSearchCreatorUnauthorized) Error() string {
-	return fmt.Sprintf("[GET /ugc/v1/public/namespaces/{namespace}/users][%d] publicSearchCreatorUnauthorized  %+v", 401, o.Payload)
+	return fmt.Sprintf("[GET /ugc/v1/public/namespaces/{namespace}/users][%d] publicSearchCreatorUnauthorized  %+v", 401, o.ToString())
+}
+
+func (o *PublicSearchCreatorUnauthorized) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *PublicSearchCreatorUnauthorized) GetPayload() *ugcclientmodels.ResponseError {
@@ -176,7 +204,16 @@ type PublicSearchCreatorInternalServerError struct {
 }
 
 func (o *PublicSearchCreatorInternalServerError) Error() string {
-	return fmt.Sprintf("[GET /ugc/v1/public/namespaces/{namespace}/users][%d] publicSearchCreatorInternalServerError  %+v", 500, o.Payload)
+	return fmt.Sprintf("[GET /ugc/v1/public/namespaces/{namespace}/users][%d] publicSearchCreatorInternalServerError  %+v", 500, o.ToString())
+}
+
+func (o *PublicSearchCreatorInternalServerError) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *PublicSearchCreatorInternalServerError) GetPayload() *ugcclientmodels.ResponseError {

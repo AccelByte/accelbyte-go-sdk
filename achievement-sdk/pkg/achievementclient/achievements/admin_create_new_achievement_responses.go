@@ -10,6 +10,7 @@ package achievements
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -77,7 +78,16 @@ type AdminCreateNewAchievementCreated struct {
 }
 
 func (o *AdminCreateNewAchievementCreated) Error() string {
-	return fmt.Sprintf("[POST /achievement/v1/admin/namespaces/{namespace}/achievements][%d] adminCreateNewAchievementCreated  %+v", 201, o.Payload)
+	return fmt.Sprintf("[POST /achievement/v1/admin/namespaces/{namespace}/achievements][%d] adminCreateNewAchievementCreated  %+v", 201, o.ToString())
+}
+
+func (o *AdminCreateNewAchievementCreated) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *AdminCreateNewAchievementCreated) GetPayload() *achievementclientmodels.ModelsAchievementResponse {
@@ -110,7 +120,16 @@ type AdminCreateNewAchievementBadRequest struct {
 }
 
 func (o *AdminCreateNewAchievementBadRequest) Error() string {
-	return fmt.Sprintf("[POST /achievement/v1/admin/namespaces/{namespace}/achievements][%d] adminCreateNewAchievementBadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[POST /achievement/v1/admin/namespaces/{namespace}/achievements][%d] adminCreateNewAchievementBadRequest  %+v", 400, o.ToString())
+}
+
+func (o *AdminCreateNewAchievementBadRequest) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *AdminCreateNewAchievementBadRequest) GetPayload() *achievementclientmodels.ResponseError {
@@ -143,7 +162,16 @@ type AdminCreateNewAchievementUnauthorized struct {
 }
 
 func (o *AdminCreateNewAchievementUnauthorized) Error() string {
-	return fmt.Sprintf("[POST /achievement/v1/admin/namespaces/{namespace}/achievements][%d] adminCreateNewAchievementUnauthorized  %+v", 401, o.Payload)
+	return fmt.Sprintf("[POST /achievement/v1/admin/namespaces/{namespace}/achievements][%d] adminCreateNewAchievementUnauthorized  %+v", 401, o.ToString())
+}
+
+func (o *AdminCreateNewAchievementUnauthorized) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *AdminCreateNewAchievementUnauthorized) GetPayload() *achievementclientmodels.ResponseError {
@@ -176,7 +204,16 @@ type AdminCreateNewAchievementInternalServerError struct {
 }
 
 func (o *AdminCreateNewAchievementInternalServerError) Error() string {
-	return fmt.Sprintf("[POST /achievement/v1/admin/namespaces/{namespace}/achievements][%d] adminCreateNewAchievementInternalServerError  %+v", 500, o.Payload)
+	return fmt.Sprintf("[POST /achievement/v1/admin/namespaces/{namespace}/achievements][%d] adminCreateNewAchievementInternalServerError  %+v", 500, o.ToString())
+}
+
+func (o *AdminCreateNewAchievementInternalServerError) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *AdminCreateNewAchievementInternalServerError) GetPayload() *achievementclientmodels.ResponseError {

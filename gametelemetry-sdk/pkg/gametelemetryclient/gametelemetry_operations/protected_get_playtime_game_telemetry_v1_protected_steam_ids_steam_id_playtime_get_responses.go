@@ -10,6 +10,7 @@ package gametelemetry_operations
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -65,7 +66,16 @@ type ProtectedGetPlaytimeGameTelemetryV1ProtectedSteamIdsSteamIDPlaytimeGetOK st
 }
 
 func (o *ProtectedGetPlaytimeGameTelemetryV1ProtectedSteamIdsSteamIDPlaytimeGetOK) Error() string {
-	return fmt.Sprintf("[GET /game-telemetry/v1/protected/steamIds/{steamId}/playtime][%d] protectedGetPlaytimeGameTelemetryV1ProtectedSteamIdsSteamIdPlaytimeGetOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /game-telemetry/v1/protected/steamIds/{steamId}/playtime][%d] protectedGetPlaytimeGameTelemetryV1ProtectedSteamIdsSteamIdPlaytimeGetOK  %+v", 200, o.ToString())
+}
+
+func (o *ProtectedGetPlaytimeGameTelemetryV1ProtectedSteamIdsSteamIDPlaytimeGetOK) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *ProtectedGetPlaytimeGameTelemetryV1ProtectedSteamIdsSteamIDPlaytimeGetOK) GetPayload() interface{} {
@@ -96,7 +106,16 @@ type ProtectedGetPlaytimeGameTelemetryV1ProtectedSteamIdsSteamIDPlaytimeGetUnpro
 }
 
 func (o *ProtectedGetPlaytimeGameTelemetryV1ProtectedSteamIdsSteamIDPlaytimeGetUnprocessableEntity) Error() string {
-	return fmt.Sprintf("[GET /game-telemetry/v1/protected/steamIds/{steamId}/playtime][%d] protectedGetPlaytimeGameTelemetryV1ProtectedSteamIdsSteamIdPlaytimeGetUnprocessableEntity  %+v", 422, o.Payload)
+	return fmt.Sprintf("[GET /game-telemetry/v1/protected/steamIds/{steamId}/playtime][%d] protectedGetPlaytimeGameTelemetryV1ProtectedSteamIdsSteamIdPlaytimeGetUnprocessableEntity  %+v", 422, o.ToString())
+}
+
+func (o *ProtectedGetPlaytimeGameTelemetryV1ProtectedSteamIdsSteamIDPlaytimeGetUnprocessableEntity) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *ProtectedGetPlaytimeGameTelemetryV1ProtectedSteamIdsSteamIDPlaytimeGetUnprocessableEntity) GetPayload() *gametelemetryclientmodels.HTTPValidationError {

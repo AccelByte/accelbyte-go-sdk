@@ -10,6 +10,7 @@ package users
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -71,7 +72,16 @@ type GetListJusticePlatformAccountsOK struct {
 }
 
 func (o *GetListJusticePlatformAccountsOK) Error() string {
-	return fmt.Sprintf("[GET /iam/v2/public/namespaces/{namespace}/users/{userId}/platforms/justice][%d] getListJusticePlatformAccountsOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /iam/v2/public/namespaces/{namespace}/users/{userId}/platforms/justice][%d] getListJusticePlatformAccountsOK  %+v", 200, o.ToString())
+}
+
+func (o *GetListJusticePlatformAccountsOK) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *GetListJusticePlatformAccountsOK) GetPayload() []*iamclientmodels.ModelGetUserMapping {

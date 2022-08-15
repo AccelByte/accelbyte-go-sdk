@@ -10,6 +10,7 @@ package store
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -65,7 +66,16 @@ type DeletePublishedStoreOK struct {
 }
 
 func (o *DeletePublishedStoreOK) Error() string {
-	return fmt.Sprintf("[DELETE /platform/admin/namespaces/{namespace}/stores/published][%d] deletePublishedStoreOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[DELETE /platform/admin/namespaces/{namespace}/stores/published][%d] deletePublishedStoreOK  %+v", 200, o.ToString())
+}
+
+func (o *DeletePublishedStoreOK) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *DeletePublishedStoreOK) GetPayload() *platformclientmodels.StoreInfo {
@@ -98,7 +108,16 @@ type DeletePublishedStoreNotFound struct {
 }
 
 func (o *DeletePublishedStoreNotFound) Error() string {
-	return fmt.Sprintf("[DELETE /platform/admin/namespaces/{namespace}/stores/published][%d] deletePublishedStoreNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[DELETE /platform/admin/namespaces/{namespace}/stores/published][%d] deletePublishedStoreNotFound  %+v", 404, o.ToString())
+}
+
+func (o *DeletePublishedStoreNotFound) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *DeletePublishedStoreNotFound) GetPayload() *platformclientmodels.ErrorEntity {

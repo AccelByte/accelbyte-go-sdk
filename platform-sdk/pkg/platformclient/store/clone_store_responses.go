@@ -10,6 +10,7 @@ package store
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -71,7 +72,16 @@ type CloneStoreOK struct {
 }
 
 func (o *CloneStoreOK) Error() string {
-	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/stores/{storeId}/clone][%d] cloneStoreOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/stores/{storeId}/clone][%d] cloneStoreOK  %+v", 200, o.ToString())
+}
+
+func (o *CloneStoreOK) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *CloneStoreOK) GetPayload() *platformclientmodels.StoreInfo {
@@ -104,7 +114,16 @@ type CloneStoreBadRequest struct {
 }
 
 func (o *CloneStoreBadRequest) Error() string {
-	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/stores/{storeId}/clone][%d] cloneStoreBadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/stores/{storeId}/clone][%d] cloneStoreBadRequest  %+v", 400, o.ToString())
+}
+
+func (o *CloneStoreBadRequest) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *CloneStoreBadRequest) GetPayload() *platformclientmodels.ErrorEntity {
@@ -137,7 +156,16 @@ type CloneStoreNotFound struct {
 }
 
 func (o *CloneStoreNotFound) Error() string {
-	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/stores/{storeId}/clone][%d] cloneStoreNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/stores/{storeId}/clone][%d] cloneStoreNotFound  %+v", 404, o.ToString())
+}
+
+func (o *CloneStoreNotFound) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *CloneStoreNotFound) GetPayload() *platformclientmodels.ErrorEntity {

@@ -10,6 +10,7 @@ package game_profile
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -71,7 +72,16 @@ type PublicUpdateProfileOK struct {
 }
 
 func (o *PublicUpdateProfileOK) Error() string {
-	return fmt.Sprintf("[PUT /social/public/namespaces/{namespace}/users/{userId}/profiles/{profileId}][%d] publicUpdateProfileOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[PUT /social/public/namespaces/{namespace}/users/{userId}/profiles/{profileId}][%d] publicUpdateProfileOK  %+v", 200, o.ToString())
+}
+
+func (o *PublicUpdateProfileOK) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *PublicUpdateProfileOK) GetPayload() *socialclientmodels.GameProfileInfo {
@@ -104,7 +114,16 @@ type PublicUpdateProfileNotFound struct {
 }
 
 func (o *PublicUpdateProfileNotFound) Error() string {
-	return fmt.Sprintf("[PUT /social/public/namespaces/{namespace}/users/{userId}/profiles/{profileId}][%d] publicUpdateProfileNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[PUT /social/public/namespaces/{namespace}/users/{userId}/profiles/{profileId}][%d] publicUpdateProfileNotFound  %+v", 404, o.ToString())
+}
+
+func (o *PublicUpdateProfileNotFound) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *PublicUpdateProfileNotFound) GetPayload() *socialclientmodels.ErrorEntity {
@@ -137,7 +156,16 @@ type PublicUpdateProfileUnprocessableEntity struct {
 }
 
 func (o *PublicUpdateProfileUnprocessableEntity) Error() string {
-	return fmt.Sprintf("[PUT /social/public/namespaces/{namespace}/users/{userId}/profiles/{profileId}][%d] publicUpdateProfileUnprocessableEntity  %+v", 422, o.Payload)
+	return fmt.Sprintf("[PUT /social/public/namespaces/{namespace}/users/{userId}/profiles/{profileId}][%d] publicUpdateProfileUnprocessableEntity  %+v", 422, o.ToString())
+}
+
+func (o *PublicUpdateProfileUnprocessableEntity) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *PublicUpdateProfileUnprocessableEntity) GetPayload() *socialclientmodels.ValidationErrorEntity {

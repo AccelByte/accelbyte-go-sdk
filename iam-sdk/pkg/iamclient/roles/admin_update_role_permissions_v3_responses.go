@@ -10,6 +10,7 @@ package roles
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -104,7 +105,16 @@ type AdminUpdateRolePermissionsV3BadRequest struct {
 }
 
 func (o *AdminUpdateRolePermissionsV3BadRequest) Error() string {
-	return fmt.Sprintf("[PUT /iam/v3/admin/roles/{roleId}/permissions][%d] adminUpdateRolePermissionsV3BadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[PUT /iam/v3/admin/roles/{roleId}/permissions][%d] adminUpdateRolePermissionsV3BadRequest  %+v", 400, o.ToString())
+}
+
+func (o *AdminUpdateRolePermissionsV3BadRequest) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *AdminUpdateRolePermissionsV3BadRequest) GetPayload() *iamclientmodels.RestErrorResponse {
@@ -137,7 +147,16 @@ type AdminUpdateRolePermissionsV3Unauthorized struct {
 }
 
 func (o *AdminUpdateRolePermissionsV3Unauthorized) Error() string {
-	return fmt.Sprintf("[PUT /iam/v3/admin/roles/{roleId}/permissions][%d] adminUpdateRolePermissionsV3Unauthorized  %+v", 401, o.Payload)
+	return fmt.Sprintf("[PUT /iam/v3/admin/roles/{roleId}/permissions][%d] adminUpdateRolePermissionsV3Unauthorized  %+v", 401, o.ToString())
+}
+
+func (o *AdminUpdateRolePermissionsV3Unauthorized) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *AdminUpdateRolePermissionsV3Unauthorized) GetPayload() *iamclientmodels.RestErrorResponse {
@@ -170,7 +189,16 @@ type AdminUpdateRolePermissionsV3Forbidden struct {
 }
 
 func (o *AdminUpdateRolePermissionsV3Forbidden) Error() string {
-	return fmt.Sprintf("[PUT /iam/v3/admin/roles/{roleId}/permissions][%d] adminUpdateRolePermissionsV3Forbidden  %+v", 403, o.Payload)
+	return fmt.Sprintf("[PUT /iam/v3/admin/roles/{roleId}/permissions][%d] adminUpdateRolePermissionsV3Forbidden  %+v", 403, o.ToString())
+}
+
+func (o *AdminUpdateRolePermissionsV3Forbidden) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *AdminUpdateRolePermissionsV3Forbidden) GetPayload() *iamclientmodels.RestErrorResponse {
@@ -203,7 +231,16 @@ type AdminUpdateRolePermissionsV3NotFound struct {
 }
 
 func (o *AdminUpdateRolePermissionsV3NotFound) Error() string {
-	return fmt.Sprintf("[PUT /iam/v3/admin/roles/{roleId}/permissions][%d] adminUpdateRolePermissionsV3NotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[PUT /iam/v3/admin/roles/{roleId}/permissions][%d] adminUpdateRolePermissionsV3NotFound  %+v", 404, o.ToString())
+}
+
+func (o *AdminUpdateRolePermissionsV3NotFound) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *AdminUpdateRolePermissionsV3NotFound) GetPayload() *iamclientmodels.RestErrorResponse {

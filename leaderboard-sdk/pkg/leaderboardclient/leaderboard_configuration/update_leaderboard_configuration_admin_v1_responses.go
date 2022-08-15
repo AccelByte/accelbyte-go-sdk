@@ -10,6 +10,7 @@ package leaderboard_configuration
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -89,7 +90,16 @@ type UpdateLeaderboardConfigurationAdminV1OK struct {
 }
 
 func (o *UpdateLeaderboardConfigurationAdminV1OK) Error() string {
-	return fmt.Sprintf("[PUT /leaderboard/v1/admin/namespaces/{namespace}/leaderboards/{leaderboardCode}][%d] updateLeaderboardConfigurationAdminV1OK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[PUT /leaderboard/v1/admin/namespaces/{namespace}/leaderboards/{leaderboardCode}][%d] updateLeaderboardConfigurationAdminV1OK  %+v", 200, o.ToString())
+}
+
+func (o *UpdateLeaderboardConfigurationAdminV1OK) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *UpdateLeaderboardConfigurationAdminV1OK) GetPayload() *leaderboardclientmodels.ModelsGetLeaderboardConfigResp {
@@ -122,7 +132,16 @@ type UpdateLeaderboardConfigurationAdminV1BadRequest struct {
 }
 
 func (o *UpdateLeaderboardConfigurationAdminV1BadRequest) Error() string {
-	return fmt.Sprintf("[PUT /leaderboard/v1/admin/namespaces/{namespace}/leaderboards/{leaderboardCode}][%d] updateLeaderboardConfigurationAdminV1BadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[PUT /leaderboard/v1/admin/namespaces/{namespace}/leaderboards/{leaderboardCode}][%d] updateLeaderboardConfigurationAdminV1BadRequest  %+v", 400, o.ToString())
+}
+
+func (o *UpdateLeaderboardConfigurationAdminV1BadRequest) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *UpdateLeaderboardConfigurationAdminV1BadRequest) GetPayload() *leaderboardclientmodels.ResponseErrorResponse {
@@ -155,7 +174,16 @@ type UpdateLeaderboardConfigurationAdminV1Unauthorized struct {
 }
 
 func (o *UpdateLeaderboardConfigurationAdminV1Unauthorized) Error() string {
-	return fmt.Sprintf("[PUT /leaderboard/v1/admin/namespaces/{namespace}/leaderboards/{leaderboardCode}][%d] updateLeaderboardConfigurationAdminV1Unauthorized  %+v", 401, o.Payload)
+	return fmt.Sprintf("[PUT /leaderboard/v1/admin/namespaces/{namespace}/leaderboards/{leaderboardCode}][%d] updateLeaderboardConfigurationAdminV1Unauthorized  %+v", 401, o.ToString())
+}
+
+func (o *UpdateLeaderboardConfigurationAdminV1Unauthorized) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *UpdateLeaderboardConfigurationAdminV1Unauthorized) GetPayload() *leaderboardclientmodels.ResponseErrorResponse {
@@ -188,7 +216,16 @@ type UpdateLeaderboardConfigurationAdminV1Forbidden struct {
 }
 
 func (o *UpdateLeaderboardConfigurationAdminV1Forbidden) Error() string {
-	return fmt.Sprintf("[PUT /leaderboard/v1/admin/namespaces/{namespace}/leaderboards/{leaderboardCode}][%d] updateLeaderboardConfigurationAdminV1Forbidden  %+v", 403, o.Payload)
+	return fmt.Sprintf("[PUT /leaderboard/v1/admin/namespaces/{namespace}/leaderboards/{leaderboardCode}][%d] updateLeaderboardConfigurationAdminV1Forbidden  %+v", 403, o.ToString())
+}
+
+func (o *UpdateLeaderboardConfigurationAdminV1Forbidden) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *UpdateLeaderboardConfigurationAdminV1Forbidden) GetPayload() *leaderboardclientmodels.ResponseErrorResponse {
@@ -221,7 +258,16 @@ type UpdateLeaderboardConfigurationAdminV1NotFound struct {
 }
 
 func (o *UpdateLeaderboardConfigurationAdminV1NotFound) Error() string {
-	return fmt.Sprintf("[PUT /leaderboard/v1/admin/namespaces/{namespace}/leaderboards/{leaderboardCode}][%d] updateLeaderboardConfigurationAdminV1NotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[PUT /leaderboard/v1/admin/namespaces/{namespace}/leaderboards/{leaderboardCode}][%d] updateLeaderboardConfigurationAdminV1NotFound  %+v", 404, o.ToString())
+}
+
+func (o *UpdateLeaderboardConfigurationAdminV1NotFound) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *UpdateLeaderboardConfigurationAdminV1NotFound) GetPayload() *leaderboardclientmodels.ResponseErrorResponse {
@@ -254,7 +300,16 @@ type UpdateLeaderboardConfigurationAdminV1InternalServerError struct {
 }
 
 func (o *UpdateLeaderboardConfigurationAdminV1InternalServerError) Error() string {
-	return fmt.Sprintf("[PUT /leaderboard/v1/admin/namespaces/{namespace}/leaderboards/{leaderboardCode}][%d] updateLeaderboardConfigurationAdminV1InternalServerError  %+v", 500, o.Payload)
+	return fmt.Sprintf("[PUT /leaderboard/v1/admin/namespaces/{namespace}/leaderboards/{leaderboardCode}][%d] updateLeaderboardConfigurationAdminV1InternalServerError  %+v", 500, o.ToString())
+}
+
+func (o *UpdateLeaderboardConfigurationAdminV1InternalServerError) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *UpdateLeaderboardConfigurationAdminV1InternalServerError) GetPayload() *leaderboardclientmodels.ResponseErrorResponse {

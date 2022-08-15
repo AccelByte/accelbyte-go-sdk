@@ -10,6 +10,7 @@ package payment_config
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -71,7 +72,16 @@ type UpdatePaymentTaxConfigOK struct {
 }
 
 func (o *UpdatePaymentTaxConfigOK) Error() string {
-	return fmt.Sprintf("[PUT /platform/admin/payment/config/tax][%d] updatePaymentTaxConfigOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[PUT /platform/admin/payment/config/tax][%d] updatePaymentTaxConfigOK  %+v", 200, o.ToString())
+}
+
+func (o *UpdatePaymentTaxConfigOK) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *UpdatePaymentTaxConfigOK) GetPayload() *platformclientmodels.PaymentTaxConfigInfo {
@@ -104,7 +114,16 @@ type UpdatePaymentTaxConfigBadRequest struct {
 }
 
 func (o *UpdatePaymentTaxConfigBadRequest) Error() string {
-	return fmt.Sprintf("[PUT /platform/admin/payment/config/tax][%d] updatePaymentTaxConfigBadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[PUT /platform/admin/payment/config/tax][%d] updatePaymentTaxConfigBadRequest  %+v", 400, o.ToString())
+}
+
+func (o *UpdatePaymentTaxConfigBadRequest) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *UpdatePaymentTaxConfigBadRequest) GetPayload() *platformclientmodels.ErrorEntity {
@@ -137,7 +156,16 @@ type UpdatePaymentTaxConfigUnprocessableEntity struct {
 }
 
 func (o *UpdatePaymentTaxConfigUnprocessableEntity) Error() string {
-	return fmt.Sprintf("[PUT /platform/admin/payment/config/tax][%d] updatePaymentTaxConfigUnprocessableEntity  %+v", 422, o.Payload)
+	return fmt.Sprintf("[PUT /platform/admin/payment/config/tax][%d] updatePaymentTaxConfigUnprocessableEntity  %+v", 422, o.ToString())
+}
+
+func (o *UpdatePaymentTaxConfigUnprocessableEntity) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *UpdatePaymentTaxConfigUnprocessableEntity) GetPayload() *platformclientmodels.ValidationErrorEntity {

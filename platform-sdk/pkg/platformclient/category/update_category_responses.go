@@ -10,6 +10,7 @@ package category
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -83,7 +84,16 @@ type UpdateCategoryOK struct {
 }
 
 func (o *UpdateCategoryOK) Error() string {
-	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/categories/{categoryPath}][%d] updateCategoryOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/categories/{categoryPath}][%d] updateCategoryOK  %+v", 200, o.ToString())
+}
+
+func (o *UpdateCategoryOK) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *UpdateCategoryOK) GetPayload() *platformclientmodels.FullCategoryInfo {
@@ -116,7 +126,16 @@ type UpdateCategoryBadRequest struct {
 }
 
 func (o *UpdateCategoryBadRequest) Error() string {
-	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/categories/{categoryPath}][%d] updateCategoryBadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/categories/{categoryPath}][%d] updateCategoryBadRequest  %+v", 400, o.ToString())
+}
+
+func (o *UpdateCategoryBadRequest) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *UpdateCategoryBadRequest) GetPayload() *platformclientmodels.ErrorEntity {
@@ -149,7 +168,16 @@ type UpdateCategoryNotFound struct {
 }
 
 func (o *UpdateCategoryNotFound) Error() string {
-	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/categories/{categoryPath}][%d] updateCategoryNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/categories/{categoryPath}][%d] updateCategoryNotFound  %+v", 404, o.ToString())
+}
+
+func (o *UpdateCategoryNotFound) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *UpdateCategoryNotFound) GetPayload() *platformclientmodels.ErrorEntity {
@@ -182,7 +210,16 @@ type UpdateCategoryConflict struct {
 }
 
 func (o *UpdateCategoryConflict) Error() string {
-	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/categories/{categoryPath}][%d] updateCategoryConflict  %+v", 409, o.Payload)
+	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/categories/{categoryPath}][%d] updateCategoryConflict  %+v", 409, o.ToString())
+}
+
+func (o *UpdateCategoryConflict) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *UpdateCategoryConflict) GetPayload() *platformclientmodels.ErrorEntity {
@@ -215,7 +252,16 @@ type UpdateCategoryUnprocessableEntity struct {
 }
 
 func (o *UpdateCategoryUnprocessableEntity) Error() string {
-	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/categories/{categoryPath}][%d] updateCategoryUnprocessableEntity  %+v", 422, o.Payload)
+	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/categories/{categoryPath}][%d] updateCategoryUnprocessableEntity  %+v", 422, o.ToString())
+}
+
+func (o *UpdateCategoryUnprocessableEntity) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *UpdateCategoryUnprocessableEntity) GetPayload() *platformclientmodels.ValidationErrorEntity {

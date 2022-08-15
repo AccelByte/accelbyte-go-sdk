@@ -10,6 +10,7 @@ package admin_tag
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -89,7 +90,16 @@ type AdminUpdateTagOK struct {
 }
 
 func (o *AdminUpdateTagOK) Error() string {
-	return fmt.Sprintf("[PUT /ugc/v1/admin/namespaces/{namespace}/tags/{tagId}][%d] adminUpdateTagOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[PUT /ugc/v1/admin/namespaces/{namespace}/tags/{tagId}][%d] adminUpdateTagOK  %+v", 200, o.ToString())
+}
+
+func (o *AdminUpdateTagOK) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *AdminUpdateTagOK) GetPayload() *ugcclientmodels.ModelsCreateTagResponse {
@@ -122,7 +132,16 @@ type AdminUpdateTagBadRequest struct {
 }
 
 func (o *AdminUpdateTagBadRequest) Error() string {
-	return fmt.Sprintf("[PUT /ugc/v1/admin/namespaces/{namespace}/tags/{tagId}][%d] adminUpdateTagBadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[PUT /ugc/v1/admin/namespaces/{namespace}/tags/{tagId}][%d] adminUpdateTagBadRequest  %+v", 400, o.ToString())
+}
+
+func (o *AdminUpdateTagBadRequest) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *AdminUpdateTagBadRequest) GetPayload() *ugcclientmodels.ResponseError {
@@ -155,7 +174,16 @@ type AdminUpdateTagUnauthorized struct {
 }
 
 func (o *AdminUpdateTagUnauthorized) Error() string {
-	return fmt.Sprintf("[PUT /ugc/v1/admin/namespaces/{namespace}/tags/{tagId}][%d] adminUpdateTagUnauthorized  %+v", 401, o.Payload)
+	return fmt.Sprintf("[PUT /ugc/v1/admin/namespaces/{namespace}/tags/{tagId}][%d] adminUpdateTagUnauthorized  %+v", 401, o.ToString())
+}
+
+func (o *AdminUpdateTagUnauthorized) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *AdminUpdateTagUnauthorized) GetPayload() *ugcclientmodels.ResponseError {
@@ -188,7 +216,16 @@ type AdminUpdateTagNotFound struct {
 }
 
 func (o *AdminUpdateTagNotFound) Error() string {
-	return fmt.Sprintf("[PUT /ugc/v1/admin/namespaces/{namespace}/tags/{tagId}][%d] adminUpdateTagNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[PUT /ugc/v1/admin/namespaces/{namespace}/tags/{tagId}][%d] adminUpdateTagNotFound  %+v", 404, o.ToString())
+}
+
+func (o *AdminUpdateTagNotFound) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *AdminUpdateTagNotFound) GetPayload() *ugcclientmodels.ResponseError {
@@ -221,7 +258,16 @@ type AdminUpdateTagConflict struct {
 }
 
 func (o *AdminUpdateTagConflict) Error() string {
-	return fmt.Sprintf("[PUT /ugc/v1/admin/namespaces/{namespace}/tags/{tagId}][%d] adminUpdateTagConflict  %+v", 409, o.Payload)
+	return fmt.Sprintf("[PUT /ugc/v1/admin/namespaces/{namespace}/tags/{tagId}][%d] adminUpdateTagConflict  %+v", 409, o.ToString())
+}
+
+func (o *AdminUpdateTagConflict) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *AdminUpdateTagConflict) GetPayload() *ugcclientmodels.ResponseError {
@@ -254,7 +300,16 @@ type AdminUpdateTagInternalServerError struct {
 }
 
 func (o *AdminUpdateTagInternalServerError) Error() string {
-	return fmt.Sprintf("[PUT /ugc/v1/admin/namespaces/{namespace}/tags/{tagId}][%d] adminUpdateTagInternalServerError  %+v", 500, o.Payload)
+	return fmt.Sprintf("[PUT /ugc/v1/admin/namespaces/{namespace}/tags/{tagId}][%d] adminUpdateTagInternalServerError  %+v", 500, o.ToString())
+}
+
+func (o *AdminUpdateTagInternalServerError) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *AdminUpdateTagInternalServerError) GetPayload() *ugcclientmodels.ResponseError {

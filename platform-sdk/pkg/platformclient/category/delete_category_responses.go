@@ -10,6 +10,7 @@ package category
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -71,7 +72,16 @@ type DeleteCategoryOK struct {
 }
 
 func (o *DeleteCategoryOK) Error() string {
-	return fmt.Sprintf("[DELETE /platform/admin/namespaces/{namespace}/categories/{categoryPath}][%d] deleteCategoryOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[DELETE /platform/admin/namespaces/{namespace}/categories/{categoryPath}][%d] deleteCategoryOK  %+v", 200, o.ToString())
+}
+
+func (o *DeleteCategoryOK) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *DeleteCategoryOK) GetPayload() *platformclientmodels.FullCategoryInfo {
@@ -104,7 +114,16 @@ type DeleteCategoryNotFound struct {
 }
 
 func (o *DeleteCategoryNotFound) Error() string {
-	return fmt.Sprintf("[DELETE /platform/admin/namespaces/{namespace}/categories/{categoryPath}][%d] deleteCategoryNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[DELETE /platform/admin/namespaces/{namespace}/categories/{categoryPath}][%d] deleteCategoryNotFound  %+v", 404, o.ToString())
+}
+
+func (o *DeleteCategoryNotFound) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *DeleteCategoryNotFound) GetPayload() *platformclientmodels.ErrorEntity {
@@ -137,7 +156,16 @@ type DeleteCategoryConflict struct {
 }
 
 func (o *DeleteCategoryConflict) Error() string {
-	return fmt.Sprintf("[DELETE /platform/admin/namespaces/{namespace}/categories/{categoryPath}][%d] deleteCategoryConflict  %+v", 409, o.Payload)
+	return fmt.Sprintf("[DELETE /platform/admin/namespaces/{namespace}/categories/{categoryPath}][%d] deleteCategoryConflict  %+v", 409, o.ToString())
+}
+
+func (o *DeleteCategoryConflict) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *DeleteCategoryConflict) GetPayload() *platformclientmodels.ErrorEntity {

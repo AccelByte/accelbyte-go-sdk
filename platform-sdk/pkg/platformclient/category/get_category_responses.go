@@ -10,6 +10,7 @@ package category
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -65,7 +66,16 @@ type GetCategoryOK struct {
 }
 
 func (o *GetCategoryOK) Error() string {
-	return fmt.Sprintf("[GET /platform/admin/namespaces/{namespace}/categories/{categoryPath}][%d] getCategoryOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /platform/admin/namespaces/{namespace}/categories/{categoryPath}][%d] getCategoryOK  %+v", 200, o.ToString())
+}
+
+func (o *GetCategoryOK) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *GetCategoryOK) GetPayload() *platformclientmodels.FullCategoryInfo {
@@ -98,7 +108,16 @@ type GetCategoryNotFound struct {
 }
 
 func (o *GetCategoryNotFound) Error() string {
-	return fmt.Sprintf("[GET /platform/admin/namespaces/{namespace}/categories/{categoryPath}][%d] getCategoryNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[GET /platform/admin/namespaces/{namespace}/categories/{categoryPath}][%d] getCategoryNotFound  %+v", 404, o.ToString())
+}
+
+func (o *GetCategoryNotFound) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *GetCategoryNotFound) GetPayload() *platformclientmodels.ErrorEntity {

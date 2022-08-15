@@ -10,6 +10,7 @@ package group
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -89,7 +90,16 @@ type GetSingleGroupAdminV1OK struct {
 }
 
 func (o *GetSingleGroupAdminV1OK) Error() string {
-	return fmt.Sprintf("[GET /group/v1/admin/namespaces/{namespace}/groups/{groupId}][%d] getSingleGroupAdminV1OK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /group/v1/admin/namespaces/{namespace}/groups/{groupId}][%d] getSingleGroupAdminV1OK  %+v", 200, o.ToString())
+}
+
+func (o *GetSingleGroupAdminV1OK) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *GetSingleGroupAdminV1OK) GetPayload() *groupclientmodels.ModelsGroupResponseV1 {
@@ -122,7 +132,16 @@ type GetSingleGroupAdminV1BadRequest struct {
 }
 
 func (o *GetSingleGroupAdminV1BadRequest) Error() string {
-	return fmt.Sprintf("[GET /group/v1/admin/namespaces/{namespace}/groups/{groupId}][%d] getSingleGroupAdminV1BadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[GET /group/v1/admin/namespaces/{namespace}/groups/{groupId}][%d] getSingleGroupAdminV1BadRequest  %+v", 400, o.ToString())
+}
+
+func (o *GetSingleGroupAdminV1BadRequest) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *GetSingleGroupAdminV1BadRequest) GetPayload() *groupclientmodels.ResponseErrorResponse {
@@ -155,7 +174,16 @@ type GetSingleGroupAdminV1Unauthorized struct {
 }
 
 func (o *GetSingleGroupAdminV1Unauthorized) Error() string {
-	return fmt.Sprintf("[GET /group/v1/admin/namespaces/{namespace}/groups/{groupId}][%d] getSingleGroupAdminV1Unauthorized  %+v", 401, o.Payload)
+	return fmt.Sprintf("[GET /group/v1/admin/namespaces/{namespace}/groups/{groupId}][%d] getSingleGroupAdminV1Unauthorized  %+v", 401, o.ToString())
+}
+
+func (o *GetSingleGroupAdminV1Unauthorized) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *GetSingleGroupAdminV1Unauthorized) GetPayload() *groupclientmodels.ResponseErrorResponse {
@@ -188,7 +216,16 @@ type GetSingleGroupAdminV1Forbidden struct {
 }
 
 func (o *GetSingleGroupAdminV1Forbidden) Error() string {
-	return fmt.Sprintf("[GET /group/v1/admin/namespaces/{namespace}/groups/{groupId}][%d] getSingleGroupAdminV1Forbidden  %+v", 403, o.Payload)
+	return fmt.Sprintf("[GET /group/v1/admin/namespaces/{namespace}/groups/{groupId}][%d] getSingleGroupAdminV1Forbidden  %+v", 403, o.ToString())
+}
+
+func (o *GetSingleGroupAdminV1Forbidden) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *GetSingleGroupAdminV1Forbidden) GetPayload() *groupclientmodels.ResponseErrorResponse {
@@ -221,7 +258,16 @@ type GetSingleGroupAdminV1NotFound struct {
 }
 
 func (o *GetSingleGroupAdminV1NotFound) Error() string {
-	return fmt.Sprintf("[GET /group/v1/admin/namespaces/{namespace}/groups/{groupId}][%d] getSingleGroupAdminV1NotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[GET /group/v1/admin/namespaces/{namespace}/groups/{groupId}][%d] getSingleGroupAdminV1NotFound  %+v", 404, o.ToString())
+}
+
+func (o *GetSingleGroupAdminV1NotFound) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *GetSingleGroupAdminV1NotFound) GetPayload() *groupclientmodels.ResponseErrorResponse {
@@ -254,7 +300,16 @@ type GetSingleGroupAdminV1InternalServerError struct {
 }
 
 func (o *GetSingleGroupAdminV1InternalServerError) Error() string {
-	return fmt.Sprintf("[GET /group/v1/admin/namespaces/{namespace}/groups/{groupId}][%d] getSingleGroupAdminV1InternalServerError  %+v", 500, o.Payload)
+	return fmt.Sprintf("[GET /group/v1/admin/namespaces/{namespace}/groups/{groupId}][%d] getSingleGroupAdminV1InternalServerError  %+v", 500, o.ToString())
+}
+
+func (o *GetSingleGroupAdminV1InternalServerError) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *GetSingleGroupAdminV1InternalServerError) GetPayload() *groupclientmodels.ResponseErrorResponse {

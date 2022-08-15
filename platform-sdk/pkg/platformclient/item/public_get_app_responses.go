@@ -10,6 +10,7 @@ package item
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -65,7 +66,16 @@ type PublicGetAppOK struct {
 }
 
 func (o *PublicGetAppOK) Error() string {
-	return fmt.Sprintf("[GET /platform/public/namespaces/{namespace}/items/{itemId}/app/locale][%d] publicGetAppOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /platform/public/namespaces/{namespace}/items/{itemId}/app/locale][%d] publicGetAppOK  %+v", 200, o.ToString())
+}
+
+func (o *PublicGetAppOK) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *PublicGetAppOK) GetPayload() *platformclientmodels.AppInfo {
@@ -98,7 +108,16 @@ type PublicGetAppNotFound struct {
 }
 
 func (o *PublicGetAppNotFound) Error() string {
-	return fmt.Sprintf("[GET /platform/public/namespaces/{namespace}/items/{itemId}/app/locale][%d] publicGetAppNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[GET /platform/public/namespaces/{namespace}/items/{itemId}/app/locale][%d] publicGetAppNotFound  %+v", 404, o.ToString())
+}
+
+func (o *PublicGetAppNotFound) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *PublicGetAppNotFound) GetPayload() *platformclientmodels.ErrorEntity {

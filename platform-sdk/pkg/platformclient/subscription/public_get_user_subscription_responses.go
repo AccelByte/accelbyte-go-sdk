@@ -10,6 +10,7 @@ package subscription
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -65,7 +66,16 @@ type PublicGetUserSubscriptionOK struct {
 }
 
 func (o *PublicGetUserSubscriptionOK) Error() string {
-	return fmt.Sprintf("[GET /platform/public/namespaces/{namespace}/users/{userId}/subscriptions/{subscriptionId}][%d] publicGetUserSubscriptionOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /platform/public/namespaces/{namespace}/users/{userId}/subscriptions/{subscriptionId}][%d] publicGetUserSubscriptionOK  %+v", 200, o.ToString())
+}
+
+func (o *PublicGetUserSubscriptionOK) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *PublicGetUserSubscriptionOK) GetPayload() *platformclientmodels.SubscriptionInfo {
@@ -98,7 +108,16 @@ type PublicGetUserSubscriptionNotFound struct {
 }
 
 func (o *PublicGetUserSubscriptionNotFound) Error() string {
-	return fmt.Sprintf("[GET /platform/public/namespaces/{namespace}/users/{userId}/subscriptions/{subscriptionId}][%d] publicGetUserSubscriptionNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[GET /platform/public/namespaces/{namespace}/users/{userId}/subscriptions/{subscriptionId}][%d] publicGetUserSubscriptionNotFound  %+v", 404, o.ToString())
+}
+
+func (o *PublicGetUserSubscriptionNotFound) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *PublicGetUserSubscriptionNotFound) GetPayload() *platformclientmodels.ErrorEntity {

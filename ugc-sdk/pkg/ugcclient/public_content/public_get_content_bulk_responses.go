@@ -10,6 +10,7 @@ package public_content
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -77,7 +78,16 @@ type PublicGetContentBulkOK struct {
 }
 
 func (o *PublicGetContentBulkOK) Error() string {
-	return fmt.Sprintf("[POST /ugc/v1/public/namespaces/{namespace}/contents/bulk][%d] publicGetContentBulkOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[POST /ugc/v1/public/namespaces/{namespace}/contents/bulk][%d] publicGetContentBulkOK  %+v", 200, o.ToString())
+}
+
+func (o *PublicGetContentBulkOK) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *PublicGetContentBulkOK) GetPayload() []*ugcclientmodels.ModelsContentDownloadResponse {
@@ -108,7 +118,16 @@ type PublicGetContentBulkBadRequest struct {
 }
 
 func (o *PublicGetContentBulkBadRequest) Error() string {
-	return fmt.Sprintf("[POST /ugc/v1/public/namespaces/{namespace}/contents/bulk][%d] publicGetContentBulkBadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[POST /ugc/v1/public/namespaces/{namespace}/contents/bulk][%d] publicGetContentBulkBadRequest  %+v", 400, o.ToString())
+}
+
+func (o *PublicGetContentBulkBadRequest) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *PublicGetContentBulkBadRequest) GetPayload() *ugcclientmodels.ResponseError {
@@ -141,7 +160,16 @@ type PublicGetContentBulkUnauthorized struct {
 }
 
 func (o *PublicGetContentBulkUnauthorized) Error() string {
-	return fmt.Sprintf("[POST /ugc/v1/public/namespaces/{namespace}/contents/bulk][%d] publicGetContentBulkUnauthorized  %+v", 401, o.Payload)
+	return fmt.Sprintf("[POST /ugc/v1/public/namespaces/{namespace}/contents/bulk][%d] publicGetContentBulkUnauthorized  %+v", 401, o.ToString())
+}
+
+func (o *PublicGetContentBulkUnauthorized) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *PublicGetContentBulkUnauthorized) GetPayload() *ugcclientmodels.ResponseError {
@@ -174,7 +202,16 @@ type PublicGetContentBulkInternalServerError struct {
 }
 
 func (o *PublicGetContentBulkInternalServerError) Error() string {
-	return fmt.Sprintf("[POST /ugc/v1/public/namespaces/{namespace}/contents/bulk][%d] publicGetContentBulkInternalServerError  %+v", 500, o.Payload)
+	return fmt.Sprintf("[POST /ugc/v1/public/namespaces/{namespace}/contents/bulk][%d] publicGetContentBulkInternalServerError  %+v", 500, o.ToString())
+}
+
+func (o *PublicGetContentBulkInternalServerError) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *PublicGetContentBulkInternalServerError) GetPayload() *ugcclientmodels.ResponseError {

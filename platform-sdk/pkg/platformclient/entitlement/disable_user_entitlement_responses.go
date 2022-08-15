@@ -10,6 +10,7 @@ package entitlement
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -71,7 +72,16 @@ type DisableUserEntitlementOK struct {
 }
 
 func (o *DisableUserEntitlementOK) Error() string {
-	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/users/{userId}/entitlements/{entitlementId}/disable][%d] disableUserEntitlementOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/users/{userId}/entitlements/{entitlementId}/disable][%d] disableUserEntitlementOK  %+v", 200, o.ToString())
+}
+
+func (o *DisableUserEntitlementOK) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *DisableUserEntitlementOK) GetPayload() *platformclientmodels.EntitlementInfo {
@@ -104,7 +114,16 @@ type DisableUserEntitlementNotFound struct {
 }
 
 func (o *DisableUserEntitlementNotFound) Error() string {
-	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/users/{userId}/entitlements/{entitlementId}/disable][%d] disableUserEntitlementNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/users/{userId}/entitlements/{entitlementId}/disable][%d] disableUserEntitlementNotFound  %+v", 404, o.ToString())
+}
+
+func (o *DisableUserEntitlementNotFound) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *DisableUserEntitlementNotFound) GetPayload() *platformclientmodels.ErrorEntity {
@@ -137,7 +156,16 @@ type DisableUserEntitlementConflict struct {
 }
 
 func (o *DisableUserEntitlementConflict) Error() string {
-	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/users/{userId}/entitlements/{entitlementId}/disable][%d] disableUserEntitlementConflict  %+v", 409, o.Payload)
+	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/users/{userId}/entitlements/{entitlementId}/disable][%d] disableUserEntitlementConflict  %+v", 409, o.ToString())
+}
+
+func (o *DisableUserEntitlementConflict) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *DisableUserEntitlementConflict) GetPayload() *platformclientmodels.ErrorEntity {

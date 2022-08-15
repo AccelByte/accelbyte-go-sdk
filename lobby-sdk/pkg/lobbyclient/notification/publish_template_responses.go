@@ -10,6 +10,7 @@ package notification
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -104,7 +105,16 @@ type PublishTemplateBadRequest struct {
 }
 
 func (o *PublishTemplateBadRequest) Error() string {
-	return fmt.Sprintf("[POST /notification/namespaces/{namespace}/templates/{templateSlug}/languages/{templateLanguage}/publish][%d] publishTemplateBadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[POST /notification/namespaces/{namespace}/templates/{templateSlug}/languages/{templateLanguage}/publish][%d] publishTemplateBadRequest  %+v", 400, o.ToString())
+}
+
+func (o *PublishTemplateBadRequest) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *PublishTemplateBadRequest) GetPayload() *lobbyclientmodels.RestapiErrorResponseBody {
@@ -137,7 +147,16 @@ type PublishTemplateUnauthorized struct {
 }
 
 func (o *PublishTemplateUnauthorized) Error() string {
-	return fmt.Sprintf("[POST /notification/namespaces/{namespace}/templates/{templateSlug}/languages/{templateLanguage}/publish][%d] publishTemplateUnauthorized  %+v", 401, o.Payload)
+	return fmt.Sprintf("[POST /notification/namespaces/{namespace}/templates/{templateSlug}/languages/{templateLanguage}/publish][%d] publishTemplateUnauthorized  %+v", 401, o.ToString())
+}
+
+func (o *PublishTemplateUnauthorized) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *PublishTemplateUnauthorized) GetPayload() *lobbyclientmodels.RestapiErrorResponseBody {
@@ -170,7 +189,16 @@ type PublishTemplateForbidden struct {
 }
 
 func (o *PublishTemplateForbidden) Error() string {
-	return fmt.Sprintf("[POST /notification/namespaces/{namespace}/templates/{templateSlug}/languages/{templateLanguage}/publish][%d] publishTemplateForbidden  %+v", 403, o.Payload)
+	return fmt.Sprintf("[POST /notification/namespaces/{namespace}/templates/{templateSlug}/languages/{templateLanguage}/publish][%d] publishTemplateForbidden  %+v", 403, o.ToString())
+}
+
+func (o *PublishTemplateForbidden) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *PublishTemplateForbidden) GetPayload() *lobbyclientmodels.RestapiErrorResponseBody {
@@ -203,7 +231,16 @@ type PublishTemplateNotFound struct {
 }
 
 func (o *PublishTemplateNotFound) Error() string {
-	return fmt.Sprintf("[POST /notification/namespaces/{namespace}/templates/{templateSlug}/languages/{templateLanguage}/publish][%d] publishTemplateNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[POST /notification/namespaces/{namespace}/templates/{templateSlug}/languages/{templateLanguage}/publish][%d] publishTemplateNotFound  %+v", 404, o.ToString())
+}
+
+func (o *PublishTemplateNotFound) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *PublishTemplateNotFound) GetPayload() *lobbyclientmodels.RestapiErrorResponseBody {

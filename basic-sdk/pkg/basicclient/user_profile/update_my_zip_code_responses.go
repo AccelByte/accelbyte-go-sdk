@@ -10,6 +10,7 @@ package user_profile
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -77,7 +78,16 @@ type UpdateMyZipCodeOK struct {
 }
 
 func (o *UpdateMyZipCodeOK) Error() string {
-	return fmt.Sprintf("[PATCH /basic/v1/public/namespaces/{namespace}/users/me/profiles/zipCode][%d] updateMyZipCodeOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[PATCH /basic/v1/public/namespaces/{namespace}/users/me/profiles/zipCode][%d] updateMyZipCodeOK  %+v", 200, o.ToString())
+}
+
+func (o *UpdateMyZipCodeOK) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *UpdateMyZipCodeOK) GetPayload() *basicclientmodels.UserZipCode {
@@ -110,7 +120,16 @@ type UpdateMyZipCodeBadRequest struct {
 }
 
 func (o *UpdateMyZipCodeBadRequest) Error() string {
-	return fmt.Sprintf("[PATCH /basic/v1/public/namespaces/{namespace}/users/me/profiles/zipCode][%d] updateMyZipCodeBadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[PATCH /basic/v1/public/namespaces/{namespace}/users/me/profiles/zipCode][%d] updateMyZipCodeBadRequest  %+v", 400, o.ToString())
+}
+
+func (o *UpdateMyZipCodeBadRequest) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *UpdateMyZipCodeBadRequest) GetPayload() *basicclientmodels.ValidationErrorEntity {
@@ -143,7 +162,16 @@ type UpdateMyZipCodeUnauthorized struct {
 }
 
 func (o *UpdateMyZipCodeUnauthorized) Error() string {
-	return fmt.Sprintf("[PATCH /basic/v1/public/namespaces/{namespace}/users/me/profiles/zipCode][%d] updateMyZipCodeUnauthorized  %+v", 401, o.Payload)
+	return fmt.Sprintf("[PATCH /basic/v1/public/namespaces/{namespace}/users/me/profiles/zipCode][%d] updateMyZipCodeUnauthorized  %+v", 401, o.ToString())
+}
+
+func (o *UpdateMyZipCodeUnauthorized) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *UpdateMyZipCodeUnauthorized) GetPayload() *basicclientmodels.ErrorEntity {
@@ -176,7 +204,16 @@ type UpdateMyZipCodeForbidden struct {
 }
 
 func (o *UpdateMyZipCodeForbidden) Error() string {
-	return fmt.Sprintf("[PATCH /basic/v1/public/namespaces/{namespace}/users/me/profiles/zipCode][%d] updateMyZipCodeForbidden  %+v", 403, o.Payload)
+	return fmt.Sprintf("[PATCH /basic/v1/public/namespaces/{namespace}/users/me/profiles/zipCode][%d] updateMyZipCodeForbidden  %+v", 403, o.ToString())
+}
+
+func (o *UpdateMyZipCodeForbidden) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *UpdateMyZipCodeForbidden) GetPayload() *basicclientmodels.ErrorEntity {

@@ -10,6 +10,7 @@ package ticket
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -65,7 +66,16 @@ type GetTicketDynamicOK struct {
 }
 
 func (o *GetTicketDynamicOK) Error() string {
-	return fmt.Sprintf("[GET /platform/admin/namespaces/{namespace}/tickets/{boothName}][%d] getTicketDynamicOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /platform/admin/namespaces/{namespace}/tickets/{boothName}][%d] getTicketDynamicOK  %+v", 200, o.ToString())
+}
+
+func (o *GetTicketDynamicOK) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *GetTicketDynamicOK) GetPayload() *platformclientmodels.TicketDynamicInfo {
@@ -98,7 +108,16 @@ type GetTicketDynamicNotFound struct {
 }
 
 func (o *GetTicketDynamicNotFound) Error() string {
-	return fmt.Sprintf("[GET /platform/admin/namespaces/{namespace}/tickets/{boothName}][%d] getTicketDynamicNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[GET /platform/admin/namespaces/{namespace}/tickets/{boothName}][%d] getTicketDynamicNotFound  %+v", 404, o.ToString())
+}
+
+func (o *GetTicketDynamicNotFound) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *GetTicketDynamicNotFound) GetPayload() *platformclientmodels.ErrorEntity {

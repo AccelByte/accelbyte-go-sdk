@@ -10,6 +10,7 @@ package users
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -83,7 +84,16 @@ type GetPublisherUserOK struct {
 }
 
 func (o *GetPublisherUserOK) Error() string {
-	return fmt.Sprintf("[GET /iam/namespaces/{namespace}/users/{userId}/publisher][%d] getPublisherUserOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /iam/namespaces/{namespace}/users/{userId}/publisher][%d] getPublisherUserOK  %+v", 200, o.ToString())
+}
+
+func (o *GetPublisherUserOK) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *GetPublisherUserOK) GetPayload() *iamclientmodels.ModelGetPublisherUserResponse {
@@ -116,7 +126,16 @@ type GetPublisherUserBadRequest struct {
 }
 
 func (o *GetPublisherUserBadRequest) Error() string {
-	return fmt.Sprintf("[GET /iam/namespaces/{namespace}/users/{userId}/publisher][%d] getPublisherUserBadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[GET /iam/namespaces/{namespace}/users/{userId}/publisher][%d] getPublisherUserBadRequest  %+v", 400, o.ToString())
+}
+
+func (o *GetPublisherUserBadRequest) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *GetPublisherUserBadRequest) GetPayload() *iamclientmodels.RestErrorResponse {

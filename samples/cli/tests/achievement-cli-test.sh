@@ -51,16 +51,16 @@ touch "tmp.dat"
 #- 2 AdminListAchievements
 samples/cli/sample-apps Achievement adminListAchievements \
     --namespace $AB_NAMESPACE \
-    --limit '66' \
-    --offset '83' \
-    --sortBy 'listOrder' \
+    --limit '70' \
+    --offset '81' \
+    --sortBy 'updatedAt' \
     > test.out 2>&1
 eval_tap $? 2 'AdminListAchievements' test.out
 
 #- 3 AdminCreateNewAchievement
 samples/cli/sample-apps Achievement adminCreateNewAchievement \
     --namespace $AB_NAMESPACE \
-    --body '{"achievementCode": "S8FzblAi", "defaultLanguage": "xppVYWoW", "description": {"H0b4eGgM": "S8QYm4Xl", "SzCLMiPO": "4HviXcOz", "8HyUdY2a": "2VkJj0dx"}, "goalValue": 0.251809862552956, "hidden": true, "incremental": true, "lockedIcons": [{"slug": "kaF3Wu3T", "url": "aGVWV1UG"}, {"slug": "0JU2ycdv", "url": "lXUDGa2m"}, {"slug": "Ef8W8KRf", "url": "GRs0N4jG"}], "name": {"oQG8FcQr": "3R35wEY2", "KOYaEl7h": "phFiee8C", "BDCrGSs5": "67GEiCCl"}, "statCode": "w39IaHvS", "tags": ["DrOtidkZ", "E8WLeb4s", "UL1zpGzn"], "unlockedIcons": [{"slug": "5tr4DbQh", "url": "kvA4B4Us"}, {"slug": "Jr6vJlUt", "url": "acibc0u0"}, {"slug": "0Z8ti6ha", "url": "aZOzJUbE"}]}' \
+    --body '{"achievementCode": "eM91FJMg", "defaultLanguage": "nokTsZRy", "description": {"KPT56uEJ": "RW9oLLad", "Nn4YdDjT": "Kw8QYGKu", "llLSmrxg": "SIL6GBeU"}, "goalValue": 0.4754888273957426, "hidden": false, "incremental": false, "lockedIcons": [{"slug": "HmBe7NIb", "url": "Y3aOkG91"}, {"slug": "2CaIa2Vn", "url": "8sTIDVaL"}, {"slug": "iQkavJVa", "url": "7sDNCKdc"}], "name": {"nES8BuBZ": "ZBkac1tN", "HRJKK7k8": "tSPm5bOk", "6CIwK6K6": "qbHQEeSb"}, "statCode": "r6YKNozo", "tags": ["gjKeyOrh", "CddalEke", "EbYKAxA2"], "unlockedIcons": [{"slug": "afHai57G", "url": "0L2CxIv1"}, {"slug": "GUDTYVpR", "url": "ZKFaCN88"}, {"slug": "d0Pcd3bf", "url": "dJXxLW9G"}]}' \
     > test.out 2>&1
 eval_tap $? 3 'AdminCreateNewAchievement' test.out
 
@@ -74,91 +74,91 @@ eval_tap $? 4 'ExportAchievements' test.out
 samples/cli/sample-apps Achievement importAchievements \
     --namespace $AB_NAMESPACE \
     --file 'tmp.dat' \
-    --strategy 'kFv3Qzqn' \
+    --strategy 'Mhdmhrr6' \
     > test.out 2>&1
 eval_tap $? 5 'ImportAchievements' test.out
 
 #- 6 AdminGetAchievement
 samples/cli/sample-apps Achievement adminGetAchievement \
-    --achievementCode 'Cj6NFQjX' \
+    --achievementCode 'Ft68VJ2G' \
     --namespace $AB_NAMESPACE \
     > test.out 2>&1
 eval_tap $? 6 'AdminGetAchievement' test.out
 
 #- 7 AdminUpdateAchievement
 samples/cli/sample-apps Achievement adminUpdateAchievement \
-    --achievementCode 'ltgFfdTS' \
+    --achievementCode 'EWzJamfj' \
     --namespace $AB_NAMESPACE \
-    --body '{"defaultLanguage": "GDIm4bpY", "description": {"I6N5t11H": "CpOLBqIf", "spyDcNwC": "AO7PSu5J", "ZGtTk6bg": "MIP9px1B"}, "goalValue": 0.6108961916962181, "hidden": true, "incremental": true, "lockedIcons": [{"slug": "RUHppjRr", "url": "03jpsQXB"}, {"slug": "dkcMUj4a", "url": "p5vVUyYm"}, {"slug": "CjSXe1B2", "url": "u47ZdQNJ"}], "name": {"fJl5JZGU": "ZWy1T1Hh", "CRNpWlPu": "vgLLAaic", "url88Ano": "iHeYSmdY"}, "statCode": "pSxQRjmY", "tags": ["d1Cs8NMZ", "P4B3yRBa", "xTnefxRc"], "unlockedIcons": [{"slug": "4YBGVR4G", "url": "nx9sBKdh"}, {"slug": "LFm6WYRG", "url": "4vSHIOdi"}, {"slug": "80C8wLrQ", "url": "Hhr95ha5"}]}' \
+    --body '{"defaultLanguage": "GIRVBbkV", "description": {"ZhtszxcO": "W8cDYnVu", "6wbRoOpO": "KTkOykuw", "6LPqOzDK": "Puzxakn1"}, "goalValue": 0.5099747685084713, "hidden": false, "incremental": true, "lockedIcons": [{"slug": "aZYesNtc", "url": "4TloglNf"}, {"slug": "ixt78DWT", "url": "qTRIXufY"}, {"slug": "OHm7A7rd", "url": "gz3sMfYb"}], "name": {"yarZ0XXb": "DNbkVuZ7", "l3PAOIqE": "MpEqDIFH", "oyRmCG7S": "0QFO0eXD"}, "statCode": "QeiK4doy", "tags": ["YLssVwFl", "kxyxPqlw", "PbsRhUYW"], "unlockedIcons": [{"slug": "C2wWHaVv", "url": "yChGjjvK"}, {"slug": "r2YX3fhZ", "url": "wCaNtjqF"}, {"slug": "34D9dtP0", "url": "XBQlNO99"}]}' \
     > test.out 2>&1
 eval_tap $? 7 'AdminUpdateAchievement' test.out
 
 #- 8 AdminDeleteAchievement
 samples/cli/sample-apps Achievement adminDeleteAchievement \
-    --achievementCode 'eajXnsEu' \
+    --achievementCode 'wFEGEXYp' \
     --namespace $AB_NAMESPACE \
     > test.out 2>&1
 eval_tap $? 8 'AdminDeleteAchievement' test.out
 
 #- 9 AdminUpdateAchievementListOrder
 samples/cli/sample-apps Achievement adminUpdateAchievementListOrder \
-    --achievementCode 'QMbpVzk6' \
+    --achievementCode 'WxtSWSbp' \
     --namespace $AB_NAMESPACE \
-    --body '{"targetOrder": 94}' \
+    --body '{"targetOrder": 72}' \
     > test.out 2>&1
 eval_tap $? 9 'AdminUpdateAchievementListOrder' test.out
 
 #- 10 AdminListUserAchievements
 samples/cli/sample-apps Achievement adminListUserAchievements \
     --namespace $AB_NAMESPACE \
-    --userId 'OUczdjg6' \
-    --limit '97' \
-    --offset '28' \
-    --preferUnlocked 'true' \
+    --userId 'ma4VAzAk' \
+    --limit '52' \
+    --offset '18' \
+    --preferUnlocked 'false' \
     > test.out 2>&1
 eval_tap $? 10 'AdminListUserAchievements' test.out
 
 #- 11 AdminUnlockAchievement
 samples/cli/sample-apps Achievement adminUnlockAchievement \
-    --achievementCode 'LLbulM18' \
+    --achievementCode 'rDIFWzU7' \
     --namespace $AB_NAMESPACE \
-    --userId 'A4lAP4lM' \
+    --userId 'vv9qUpF3' \
     > test.out 2>&1
 eval_tap $? 11 'AdminUnlockAchievement' test.out
 
 #- 12 PublicListAchievements
 samples/cli/sample-apps Achievement publicListAchievements \
     --namespace $AB_NAMESPACE \
-    --limit '11' \
-    --offset '4' \
-    --sortBy 'createdAt:desc' \
-    --language 'M0lq22hn' \
+    --limit '52' \
+    --offset '73' \
+    --sortBy 'updatedAt:asc' \
+    --language 'dCuZr0Mb' \
     > test.out 2>&1
 eval_tap $? 12 'PublicListAchievements' test.out
 
 #- 13 PublicGetAchievement
 samples/cli/sample-apps Achievement publicGetAchievement \
-    --achievementCode 'lKdVzxKW' \
+    --achievementCode 'EmF45Yqn' \
     --namespace $AB_NAMESPACE \
-    --language 'F1hHuxsu' \
+    --language 'BTCVh1Vu' \
     > test.out 2>&1
 eval_tap $? 13 'PublicGetAchievement' test.out
 
 #- 14 PublicListUserAchievements
 samples/cli/sample-apps Achievement publicListUserAchievements \
     --namespace $AB_NAMESPACE \
-    --userId 'M9jgqaaI' \
-    --limit '23' \
-    --offset '84' \
-    --preferUnlocked 'true' \
+    --userId 'vcwwlj1d' \
+    --limit '90' \
+    --offset '45' \
+    --preferUnlocked 'false' \
     > test.out 2>&1
 eval_tap $? 14 'PublicListUserAchievements' test.out
 
 #- 15 PublicUnlockAchievement
 samples/cli/sample-apps Achievement publicUnlockAchievement \
-    --achievementCode 'q7krBjXc' \
+    --achievementCode 'rtAciNnu' \
     --namespace $AB_NAMESPACE \
-    --userId 'QCQxxPRM' \
+    --userId '7YhSj7tf' \
     > test.out 2>&1
 eval_tap $? 15 'PublicUnlockAchievement' test.out
 

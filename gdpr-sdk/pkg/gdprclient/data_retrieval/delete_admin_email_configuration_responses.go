@@ -10,6 +10,7 @@ package data_retrieval
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -110,7 +111,16 @@ type DeleteAdminEmailConfigurationBadRequest struct {
 }
 
 func (o *DeleteAdminEmailConfigurationBadRequest) Error() string {
-	return fmt.Sprintf("[DELETE /gdpr/admin/namespaces/{namespace}/emails/configurations][%d] deleteAdminEmailConfigurationBadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[DELETE /gdpr/admin/namespaces/{namespace}/emails/configurations][%d] deleteAdminEmailConfigurationBadRequest  %+v", 400, o.ToString())
+}
+
+func (o *DeleteAdminEmailConfigurationBadRequest) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *DeleteAdminEmailConfigurationBadRequest) GetPayload() *gdprclientmodels.ResponseError {
@@ -143,7 +153,16 @@ type DeleteAdminEmailConfigurationUnauthorized struct {
 }
 
 func (o *DeleteAdminEmailConfigurationUnauthorized) Error() string {
-	return fmt.Sprintf("[DELETE /gdpr/admin/namespaces/{namespace}/emails/configurations][%d] deleteAdminEmailConfigurationUnauthorized  %+v", 401, o.Payload)
+	return fmt.Sprintf("[DELETE /gdpr/admin/namespaces/{namespace}/emails/configurations][%d] deleteAdminEmailConfigurationUnauthorized  %+v", 401, o.ToString())
+}
+
+func (o *DeleteAdminEmailConfigurationUnauthorized) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *DeleteAdminEmailConfigurationUnauthorized) GetPayload() *gdprclientmodels.ResponseError {
@@ -176,7 +195,16 @@ type DeleteAdminEmailConfigurationForbidden struct {
 }
 
 func (o *DeleteAdminEmailConfigurationForbidden) Error() string {
-	return fmt.Sprintf("[DELETE /gdpr/admin/namespaces/{namespace}/emails/configurations][%d] deleteAdminEmailConfigurationForbidden  %+v", 403, o.Payload)
+	return fmt.Sprintf("[DELETE /gdpr/admin/namespaces/{namespace}/emails/configurations][%d] deleteAdminEmailConfigurationForbidden  %+v", 403, o.ToString())
+}
+
+func (o *DeleteAdminEmailConfigurationForbidden) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *DeleteAdminEmailConfigurationForbidden) GetPayload() *gdprclientmodels.ResponseError {
@@ -209,7 +237,16 @@ type DeleteAdminEmailConfigurationNotFound struct {
 }
 
 func (o *DeleteAdminEmailConfigurationNotFound) Error() string {
-	return fmt.Sprintf("[DELETE /gdpr/admin/namespaces/{namespace}/emails/configurations][%d] deleteAdminEmailConfigurationNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[DELETE /gdpr/admin/namespaces/{namespace}/emails/configurations][%d] deleteAdminEmailConfigurationNotFound  %+v", 404, o.ToString())
+}
+
+func (o *DeleteAdminEmailConfigurationNotFound) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *DeleteAdminEmailConfigurationNotFound) GetPayload() *gdprclientmodels.ResponseError {
@@ -242,7 +279,16 @@ type DeleteAdminEmailConfigurationInternalServerError struct {
 }
 
 func (o *DeleteAdminEmailConfigurationInternalServerError) Error() string {
-	return fmt.Sprintf("[DELETE /gdpr/admin/namespaces/{namespace}/emails/configurations][%d] deleteAdminEmailConfigurationInternalServerError  %+v", 500, o.Payload)
+	return fmt.Sprintf("[DELETE /gdpr/admin/namespaces/{namespace}/emails/configurations][%d] deleteAdminEmailConfigurationInternalServerError  %+v", 500, o.ToString())
+}
+
+func (o *DeleteAdminEmailConfigurationInternalServerError) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *DeleteAdminEmailConfigurationInternalServerError) GetPayload() *gdprclientmodels.ResponseError {

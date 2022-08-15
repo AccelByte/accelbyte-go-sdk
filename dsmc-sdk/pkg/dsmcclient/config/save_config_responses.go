@@ -10,6 +10,7 @@ package config
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -98,7 +99,16 @@ type SaveConfigBadRequest struct {
 }
 
 func (o *SaveConfigBadRequest) Error() string {
-	return fmt.Sprintf("[POST /dsmcontroller/admin/configs][%d] saveConfigBadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[POST /dsmcontroller/admin/configs][%d] saveConfigBadRequest  %+v", 400, o.ToString())
+}
+
+func (o *SaveConfigBadRequest) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *SaveConfigBadRequest) GetPayload() *dsmcclientmodels.ResponseError {
@@ -131,7 +141,16 @@ type SaveConfigUnauthorized struct {
 }
 
 func (o *SaveConfigUnauthorized) Error() string {
-	return fmt.Sprintf("[POST /dsmcontroller/admin/configs][%d] saveConfigUnauthorized  %+v", 401, o.Payload)
+	return fmt.Sprintf("[POST /dsmcontroller/admin/configs][%d] saveConfigUnauthorized  %+v", 401, o.ToString())
+}
+
+func (o *SaveConfigUnauthorized) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *SaveConfigUnauthorized) GetPayload() *dsmcclientmodels.ResponseError {
@@ -164,7 +183,16 @@ type SaveConfigInternalServerError struct {
 }
 
 func (o *SaveConfigInternalServerError) Error() string {
-	return fmt.Sprintf("[POST /dsmcontroller/admin/configs][%d] saveConfigInternalServerError  %+v", 500, o.Payload)
+	return fmt.Sprintf("[POST /dsmcontroller/admin/configs][%d] saveConfigInternalServerError  %+v", 500, o.ToString())
+}
+
+func (o *SaveConfigInternalServerError) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *SaveConfigInternalServerError) GetPayload() *dsmcclientmodels.ResponseError {

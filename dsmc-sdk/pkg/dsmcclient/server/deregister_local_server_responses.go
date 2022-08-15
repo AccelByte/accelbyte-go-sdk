@@ -10,6 +10,7 @@ package server
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -98,7 +99,16 @@ type DeregisterLocalServerBadRequest struct {
 }
 
 func (o *DeregisterLocalServerBadRequest) Error() string {
-	return fmt.Sprintf("[POST /dsmcontroller/namespaces/{namespace}/servers/local/deregister][%d] deregisterLocalServerBadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[POST /dsmcontroller/namespaces/{namespace}/servers/local/deregister][%d] deregisterLocalServerBadRequest  %+v", 400, o.ToString())
+}
+
+func (o *DeregisterLocalServerBadRequest) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *DeregisterLocalServerBadRequest) GetPayload() *dsmcclientmodels.ResponseError {
@@ -131,7 +141,16 @@ type DeregisterLocalServerUnauthorized struct {
 }
 
 func (o *DeregisterLocalServerUnauthorized) Error() string {
-	return fmt.Sprintf("[POST /dsmcontroller/namespaces/{namespace}/servers/local/deregister][%d] deregisterLocalServerUnauthorized  %+v", 401, o.Payload)
+	return fmt.Sprintf("[POST /dsmcontroller/namespaces/{namespace}/servers/local/deregister][%d] deregisterLocalServerUnauthorized  %+v", 401, o.ToString())
+}
+
+func (o *DeregisterLocalServerUnauthorized) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *DeregisterLocalServerUnauthorized) GetPayload() *dsmcclientmodels.ResponseError {
@@ -164,7 +183,16 @@ type DeregisterLocalServerInternalServerError struct {
 }
 
 func (o *DeregisterLocalServerInternalServerError) Error() string {
-	return fmt.Sprintf("[POST /dsmcontroller/namespaces/{namespace}/servers/local/deregister][%d] deregisterLocalServerInternalServerError  %+v", 500, o.Payload)
+	return fmt.Sprintf("[POST /dsmcontroller/namespaces/{namespace}/servers/local/deregister][%d] deregisterLocalServerInternalServerError  %+v", 500, o.ToString())
+}
+
+func (o *DeregisterLocalServerInternalServerError) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *DeregisterLocalServerInternalServerError) GetPayload() *dsmcclientmodels.ResponseError {

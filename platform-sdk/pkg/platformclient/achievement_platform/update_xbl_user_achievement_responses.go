@@ -10,6 +10,7 @@ package achievement_platform
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -86,7 +87,16 @@ type UpdateXblUserAchievementBadRequest struct {
 }
 
 func (o *UpdateXblUserAchievementBadRequest) Error() string {
-	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/users/{userId}/achievement/xbl][%d] updateXblUserAchievementBadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/users/{userId}/achievement/xbl][%d] updateXblUserAchievementBadRequest  %+v", 400, o.ToString())
+}
+
+func (o *UpdateXblUserAchievementBadRequest) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *UpdateXblUserAchievementBadRequest) GetPayload() *platformclientmodels.ValidationErrorEntity {

@@ -10,6 +10,7 @@ package category
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -59,7 +60,16 @@ type PublicGetDescendantCategoriesOK struct {
 }
 
 func (o *PublicGetDescendantCategoriesOK) Error() string {
-	return fmt.Sprintf("[GET /platform/public/namespaces/{namespace}/categories/{categoryPath}/descendants][%d] publicGetDescendantCategoriesOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /platform/public/namespaces/{namespace}/categories/{categoryPath}/descendants][%d] publicGetDescendantCategoriesOK  %+v", 200, o.ToString())
+}
+
+func (o *PublicGetDescendantCategoriesOK) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *PublicGetDescendantCategoriesOK) GetPayload() []*platformclientmodels.CategoryInfo {

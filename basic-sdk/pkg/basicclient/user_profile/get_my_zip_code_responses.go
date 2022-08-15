@@ -10,6 +10,7 @@ package user_profile
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -71,7 +72,16 @@ type GetMyZipCodeOK struct {
 }
 
 func (o *GetMyZipCodeOK) Error() string {
-	return fmt.Sprintf("[GET /basic/v1/public/namespaces/{namespace}/users/me/profiles/zipCode][%d] getMyZipCodeOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /basic/v1/public/namespaces/{namespace}/users/me/profiles/zipCode][%d] getMyZipCodeOK  %+v", 200, o.ToString())
+}
+
+func (o *GetMyZipCodeOK) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *GetMyZipCodeOK) GetPayload() *basicclientmodels.UserZipCode {
@@ -104,7 +114,16 @@ type GetMyZipCodeUnauthorized struct {
 }
 
 func (o *GetMyZipCodeUnauthorized) Error() string {
-	return fmt.Sprintf("[GET /basic/v1/public/namespaces/{namespace}/users/me/profiles/zipCode][%d] getMyZipCodeUnauthorized  %+v", 401, o.Payload)
+	return fmt.Sprintf("[GET /basic/v1/public/namespaces/{namespace}/users/me/profiles/zipCode][%d] getMyZipCodeUnauthorized  %+v", 401, o.ToString())
+}
+
+func (o *GetMyZipCodeUnauthorized) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *GetMyZipCodeUnauthorized) GetPayload() *basicclientmodels.ErrorEntity {
@@ -137,7 +156,16 @@ type GetMyZipCodeForbidden struct {
 }
 
 func (o *GetMyZipCodeForbidden) Error() string {
-	return fmt.Sprintf("[GET /basic/v1/public/namespaces/{namespace}/users/me/profiles/zipCode][%d] getMyZipCodeForbidden  %+v", 403, o.Payload)
+	return fmt.Sprintf("[GET /basic/v1/public/namespaces/{namespace}/users/me/profiles/zipCode][%d] getMyZipCodeForbidden  %+v", 403, o.ToString())
+}
+
+func (o *GetMyZipCodeForbidden) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *GetMyZipCodeForbidden) GetPayload() *basicclientmodels.ErrorEntity {

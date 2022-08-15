@@ -10,6 +10,7 @@ package event_v2
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -95,7 +96,16 @@ type GetEventSpecificUserV2HandlerOK struct {
 }
 
 func (o *GetEventSpecificUserV2HandlerOK) Error() string {
-	return fmt.Sprintf("[GET /event/v2/admin/namespaces/{namespace}/users/{userId}/event][%d] getEventSpecificUserV2HandlerOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /event/v2/admin/namespaces/{namespace}/users/{userId}/event][%d] getEventSpecificUserV2HandlerOK  %+v", 200, o.ToString())
+}
+
+func (o *GetEventSpecificUserV2HandlerOK) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *GetEventSpecificUserV2HandlerOK) GetPayload() *eventlogclientmodels.ModelsEventResponseV2 {

@@ -10,6 +10,7 @@ package public_channel
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -83,7 +84,16 @@ type UpdateChannelOK struct {
 }
 
 func (o *UpdateChannelOK) Error() string {
-	return fmt.Sprintf("[PUT /ugc/v1/public/namespaces/{namespace}/users/{userId}/channels/{channelId}][%d] updateChannelOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[PUT /ugc/v1/public/namespaces/{namespace}/users/{userId}/channels/{channelId}][%d] updateChannelOK  %+v", 200, o.ToString())
+}
+
+func (o *UpdateChannelOK) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *UpdateChannelOK) GetPayload() *ugcclientmodels.ModelsChannelResponse {
@@ -116,7 +126,16 @@ type UpdateChannelBadRequest struct {
 }
 
 func (o *UpdateChannelBadRequest) Error() string {
-	return fmt.Sprintf("[PUT /ugc/v1/public/namespaces/{namespace}/users/{userId}/channels/{channelId}][%d] updateChannelBadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[PUT /ugc/v1/public/namespaces/{namespace}/users/{userId}/channels/{channelId}][%d] updateChannelBadRequest  %+v", 400, o.ToString())
+}
+
+func (o *UpdateChannelBadRequest) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *UpdateChannelBadRequest) GetPayload() *ugcclientmodels.ResponseError {
@@ -149,7 +168,16 @@ type UpdateChannelUnauthorized struct {
 }
 
 func (o *UpdateChannelUnauthorized) Error() string {
-	return fmt.Sprintf("[PUT /ugc/v1/public/namespaces/{namespace}/users/{userId}/channels/{channelId}][%d] updateChannelUnauthorized  %+v", 401, o.Payload)
+	return fmt.Sprintf("[PUT /ugc/v1/public/namespaces/{namespace}/users/{userId}/channels/{channelId}][%d] updateChannelUnauthorized  %+v", 401, o.ToString())
+}
+
+func (o *UpdateChannelUnauthorized) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *UpdateChannelUnauthorized) GetPayload() *ugcclientmodels.ResponseError {
@@ -182,7 +210,16 @@ type UpdateChannelNotFound struct {
 }
 
 func (o *UpdateChannelNotFound) Error() string {
-	return fmt.Sprintf("[PUT /ugc/v1/public/namespaces/{namespace}/users/{userId}/channels/{channelId}][%d] updateChannelNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[PUT /ugc/v1/public/namespaces/{namespace}/users/{userId}/channels/{channelId}][%d] updateChannelNotFound  %+v", 404, o.ToString())
+}
+
+func (o *UpdateChannelNotFound) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *UpdateChannelNotFound) GetPayload() *ugcclientmodels.ResponseError {
@@ -215,7 +252,16 @@ type UpdateChannelInternalServerError struct {
 }
 
 func (o *UpdateChannelInternalServerError) Error() string {
-	return fmt.Sprintf("[PUT /ugc/v1/public/namespaces/{namespace}/users/{userId}/channels/{channelId}][%d] updateChannelInternalServerError  %+v", 500, o.Payload)
+	return fmt.Sprintf("[PUT /ugc/v1/public/namespaces/{namespace}/users/{userId}/channels/{channelId}][%d] updateChannelInternalServerError  %+v", 500, o.ToString())
+}
+
+func (o *UpdateChannelInternalServerError) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *UpdateChannelInternalServerError) GetPayload() *ugcclientmodels.ResponseError {

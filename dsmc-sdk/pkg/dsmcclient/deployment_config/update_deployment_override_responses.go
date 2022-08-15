@@ -10,6 +10,7 @@ package deployment_config
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -83,7 +84,16 @@ type UpdateDeploymentOverrideOK struct {
 }
 
 func (o *UpdateDeploymentOverrideOK) Error() string {
-	return fmt.Sprintf("[PATCH /dsmcontroller/admin/namespaces/{namespace}/configs/deployments/{deployment}/overrides/versions/{version}][%d] updateDeploymentOverrideOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[PATCH /dsmcontroller/admin/namespaces/{namespace}/configs/deployments/{deployment}/overrides/versions/{version}][%d] updateDeploymentOverrideOK  %+v", 200, o.ToString())
+}
+
+func (o *UpdateDeploymentOverrideOK) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *UpdateDeploymentOverrideOK) GetPayload() *dsmcclientmodels.ModelsDeploymentWithOverride {
@@ -116,7 +126,16 @@ type UpdateDeploymentOverrideBadRequest struct {
 }
 
 func (o *UpdateDeploymentOverrideBadRequest) Error() string {
-	return fmt.Sprintf("[PATCH /dsmcontroller/admin/namespaces/{namespace}/configs/deployments/{deployment}/overrides/versions/{version}][%d] updateDeploymentOverrideBadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[PATCH /dsmcontroller/admin/namespaces/{namespace}/configs/deployments/{deployment}/overrides/versions/{version}][%d] updateDeploymentOverrideBadRequest  %+v", 400, o.ToString())
+}
+
+func (o *UpdateDeploymentOverrideBadRequest) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *UpdateDeploymentOverrideBadRequest) GetPayload() *dsmcclientmodels.ResponseError {
@@ -149,7 +168,16 @@ type UpdateDeploymentOverrideUnauthorized struct {
 }
 
 func (o *UpdateDeploymentOverrideUnauthorized) Error() string {
-	return fmt.Sprintf("[PATCH /dsmcontroller/admin/namespaces/{namespace}/configs/deployments/{deployment}/overrides/versions/{version}][%d] updateDeploymentOverrideUnauthorized  %+v", 401, o.Payload)
+	return fmt.Sprintf("[PATCH /dsmcontroller/admin/namespaces/{namespace}/configs/deployments/{deployment}/overrides/versions/{version}][%d] updateDeploymentOverrideUnauthorized  %+v", 401, o.ToString())
+}
+
+func (o *UpdateDeploymentOverrideUnauthorized) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *UpdateDeploymentOverrideUnauthorized) GetPayload() *dsmcclientmodels.ResponseError {
@@ -182,7 +210,16 @@ type UpdateDeploymentOverrideNotFound struct {
 }
 
 func (o *UpdateDeploymentOverrideNotFound) Error() string {
-	return fmt.Sprintf("[PATCH /dsmcontroller/admin/namespaces/{namespace}/configs/deployments/{deployment}/overrides/versions/{version}][%d] updateDeploymentOverrideNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[PATCH /dsmcontroller/admin/namespaces/{namespace}/configs/deployments/{deployment}/overrides/versions/{version}][%d] updateDeploymentOverrideNotFound  %+v", 404, o.ToString())
+}
+
+func (o *UpdateDeploymentOverrideNotFound) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *UpdateDeploymentOverrideNotFound) GetPayload() *dsmcclientmodels.ResponseError {
@@ -215,7 +252,16 @@ type UpdateDeploymentOverrideInternalServerError struct {
 }
 
 func (o *UpdateDeploymentOverrideInternalServerError) Error() string {
-	return fmt.Sprintf("[PATCH /dsmcontroller/admin/namespaces/{namespace}/configs/deployments/{deployment}/overrides/versions/{version}][%d] updateDeploymentOverrideInternalServerError  %+v", 500, o.Payload)
+	return fmt.Sprintf("[PATCH /dsmcontroller/admin/namespaces/{namespace}/configs/deployments/{deployment}/overrides/versions/{version}][%d] updateDeploymentOverrideInternalServerError  %+v", 500, o.ToString())
+}
+
+func (o *UpdateDeploymentOverrideInternalServerError) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *UpdateDeploymentOverrideInternalServerError) GetPayload() *dsmcclientmodels.ResponseError {

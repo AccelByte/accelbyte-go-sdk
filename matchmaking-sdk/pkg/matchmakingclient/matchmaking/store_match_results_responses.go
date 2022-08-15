@@ -10,6 +10,7 @@ package matchmaking
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -83,7 +84,16 @@ type StoreMatchResultsOK struct {
 }
 
 func (o *StoreMatchResultsOK) Error() string {
-	return fmt.Sprintf("[POST /matchmaking/namespaces/{namespace}/matchresult][%d] storeMatchResultsOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[POST /matchmaking/namespaces/{namespace}/matchresult][%d] storeMatchResultsOK  %+v", 200, o.ToString())
+}
+
+func (o *StoreMatchResultsOK) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *StoreMatchResultsOK) GetPayload() *matchmakingclientmodels.ModelsMatchResultResponse {
@@ -116,7 +126,16 @@ type StoreMatchResultsBadRequest struct {
 }
 
 func (o *StoreMatchResultsBadRequest) Error() string {
-	return fmt.Sprintf("[POST /matchmaking/namespaces/{namespace}/matchresult][%d] storeMatchResultsBadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[POST /matchmaking/namespaces/{namespace}/matchresult][%d] storeMatchResultsBadRequest  %+v", 400, o.ToString())
+}
+
+func (o *StoreMatchResultsBadRequest) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *StoreMatchResultsBadRequest) GetPayload() *matchmakingclientmodels.ResponseError {
@@ -149,7 +168,16 @@ type StoreMatchResultsUnauthorized struct {
 }
 
 func (o *StoreMatchResultsUnauthorized) Error() string {
-	return fmt.Sprintf("[POST /matchmaking/namespaces/{namespace}/matchresult][%d] storeMatchResultsUnauthorized  %+v", 401, o.Payload)
+	return fmt.Sprintf("[POST /matchmaking/namespaces/{namespace}/matchresult][%d] storeMatchResultsUnauthorized  %+v", 401, o.ToString())
+}
+
+func (o *StoreMatchResultsUnauthorized) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *StoreMatchResultsUnauthorized) GetPayload() *matchmakingclientmodels.ResponseError {
@@ -182,7 +210,16 @@ type StoreMatchResultsForbidden struct {
 }
 
 func (o *StoreMatchResultsForbidden) Error() string {
-	return fmt.Sprintf("[POST /matchmaking/namespaces/{namespace}/matchresult][%d] storeMatchResultsForbidden  %+v", 403, o.Payload)
+	return fmt.Sprintf("[POST /matchmaking/namespaces/{namespace}/matchresult][%d] storeMatchResultsForbidden  %+v", 403, o.ToString())
+}
+
+func (o *StoreMatchResultsForbidden) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *StoreMatchResultsForbidden) GetPayload() *matchmakingclientmodels.ResponseError {
@@ -215,7 +252,16 @@ type StoreMatchResultsInternalServerError struct {
 }
 
 func (o *StoreMatchResultsInternalServerError) Error() string {
-	return fmt.Sprintf("[POST /matchmaking/namespaces/{namespace}/matchresult][%d] storeMatchResultsInternalServerError  %+v", 500, o.Payload)
+	return fmt.Sprintf("[POST /matchmaking/namespaces/{namespace}/matchresult][%d] storeMatchResultsInternalServerError  %+v", 500, o.ToString())
+}
+
+func (o *StoreMatchResultsInternalServerError) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *StoreMatchResultsInternalServerError) GetPayload() *matchmakingclientmodels.ResponseError {

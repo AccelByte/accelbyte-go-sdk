@@ -10,6 +10,7 @@ package key_group
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -65,7 +66,16 @@ type GetKeyGroupDynamicOK struct {
 }
 
 func (o *GetKeyGroupDynamicOK) Error() string {
-	return fmt.Sprintf("[GET /platform/admin/namespaces/{namespace}/keygroups/{keyGroupId}/dynamic][%d] getKeyGroupDynamicOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /platform/admin/namespaces/{namespace}/keygroups/{keyGroupId}/dynamic][%d] getKeyGroupDynamicOK  %+v", 200, o.ToString())
+}
+
+func (o *GetKeyGroupDynamicOK) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *GetKeyGroupDynamicOK) GetPayload() *platformclientmodels.KeyGroupDynamicInfo {
@@ -98,7 +108,16 @@ type GetKeyGroupDynamicNotFound struct {
 }
 
 func (o *GetKeyGroupDynamicNotFound) Error() string {
-	return fmt.Sprintf("[GET /platform/admin/namespaces/{namespace}/keygroups/{keyGroupId}/dynamic][%d] getKeyGroupDynamicNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[GET /platform/admin/namespaces/{namespace}/keygroups/{keyGroupId}/dynamic][%d] getKeyGroupDynamicNotFound  %+v", 404, o.ToString())
+}
+
+func (o *GetKeyGroupDynamicNotFound) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *GetKeyGroupDynamicNotFound) GetPayload() *platformclientmodels.ErrorEntity {

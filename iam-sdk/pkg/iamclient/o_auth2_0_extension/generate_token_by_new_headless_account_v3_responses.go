@@ -10,6 +10,7 @@ package o_auth2_0_extension
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -59,7 +60,16 @@ type GenerateTokenByNewHeadlessAccountV3OK struct {
 }
 
 func (o *GenerateTokenByNewHeadlessAccountV3OK) Error() string {
-	return fmt.Sprintf("[POST /iam/v3/headless/token][%d] generateTokenByNewHeadlessAccountV3OK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[POST /iam/v3/headless/token][%d] generateTokenByNewHeadlessAccountV3OK  %+v", 200, o.ToString())
+}
+
+func (o *GenerateTokenByNewHeadlessAccountV3OK) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *GenerateTokenByNewHeadlessAccountV3OK) GetPayload() *iamclientmodels.OauthmodelTokenResponseV3 {

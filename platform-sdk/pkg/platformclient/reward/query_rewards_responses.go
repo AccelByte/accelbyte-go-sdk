@@ -10,6 +10,7 @@ package reward
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -65,7 +66,16 @@ type QueryRewardsOK struct {
 }
 
 func (o *QueryRewardsOK) Error() string {
-	return fmt.Sprintf("[GET /platform/admin/namespaces/{namespace}/rewards/byCriteria][%d] queryRewardsOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /platform/admin/namespaces/{namespace}/rewards/byCriteria][%d] queryRewardsOK  %+v", 200, o.ToString())
+}
+
+func (o *QueryRewardsOK) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *QueryRewardsOK) GetPayload() *platformclientmodels.RewardPagingSlicedResult {
@@ -98,7 +108,16 @@ type QueryRewardsUnprocessableEntity struct {
 }
 
 func (o *QueryRewardsUnprocessableEntity) Error() string {
-	return fmt.Sprintf("[GET /platform/admin/namespaces/{namespace}/rewards/byCriteria][%d] queryRewardsUnprocessableEntity  %+v", 422, o.Payload)
+	return fmt.Sprintf("[GET /platform/admin/namespaces/{namespace}/rewards/byCriteria][%d] queryRewardsUnprocessableEntity  %+v", 422, o.ToString())
+}
+
+func (o *QueryRewardsUnprocessableEntity) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *QueryRewardsUnprocessableEntity) GetPayload() *platformclientmodels.ValidationErrorEntity {

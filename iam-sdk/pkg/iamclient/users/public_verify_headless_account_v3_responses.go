@@ -10,6 +10,7 @@ package users
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -89,7 +90,16 @@ type PublicVerifyHeadlessAccountV3OK struct {
 }
 
 func (o *PublicVerifyHeadlessAccountV3OK) Error() string {
-	return fmt.Sprintf("[POST /iam/v3/public/namespaces/{namespace}/users/me/headless/verify][%d] publicVerifyHeadlessAccountV3OK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[POST /iam/v3/public/namespaces/{namespace}/users/me/headless/verify][%d] publicVerifyHeadlessAccountV3OK  %+v", 200, o.ToString())
+}
+
+func (o *PublicVerifyHeadlessAccountV3OK) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *PublicVerifyHeadlessAccountV3OK) GetPayload() *iamclientmodels.ModelUserResponseV3 {
@@ -122,7 +132,16 @@ type PublicVerifyHeadlessAccountV3BadRequest struct {
 }
 
 func (o *PublicVerifyHeadlessAccountV3BadRequest) Error() string {
-	return fmt.Sprintf("[POST /iam/v3/public/namespaces/{namespace}/users/me/headless/verify][%d] publicVerifyHeadlessAccountV3BadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[POST /iam/v3/public/namespaces/{namespace}/users/me/headless/verify][%d] publicVerifyHeadlessAccountV3BadRequest  %+v", 400, o.ToString())
+}
+
+func (o *PublicVerifyHeadlessAccountV3BadRequest) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *PublicVerifyHeadlessAccountV3BadRequest) GetPayload() *iamclientmodels.RestErrorResponse {
@@ -155,7 +174,16 @@ type PublicVerifyHeadlessAccountV3Unauthorized struct {
 }
 
 func (o *PublicVerifyHeadlessAccountV3Unauthorized) Error() string {
-	return fmt.Sprintf("[POST /iam/v3/public/namespaces/{namespace}/users/me/headless/verify][%d] publicVerifyHeadlessAccountV3Unauthorized  %+v", 401, o.Payload)
+	return fmt.Sprintf("[POST /iam/v3/public/namespaces/{namespace}/users/me/headless/verify][%d] publicVerifyHeadlessAccountV3Unauthorized  %+v", 401, o.ToString())
+}
+
+func (o *PublicVerifyHeadlessAccountV3Unauthorized) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *PublicVerifyHeadlessAccountV3Unauthorized) GetPayload() *iamclientmodels.RestErrorResponse {
@@ -188,7 +216,16 @@ type PublicVerifyHeadlessAccountV3NotFound struct {
 }
 
 func (o *PublicVerifyHeadlessAccountV3NotFound) Error() string {
-	return fmt.Sprintf("[POST /iam/v3/public/namespaces/{namespace}/users/me/headless/verify][%d] publicVerifyHeadlessAccountV3NotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[POST /iam/v3/public/namespaces/{namespace}/users/me/headless/verify][%d] publicVerifyHeadlessAccountV3NotFound  %+v", 404, o.ToString())
+}
+
+func (o *PublicVerifyHeadlessAccountV3NotFound) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *PublicVerifyHeadlessAccountV3NotFound) GetPayload() *iamclientmodels.RestErrorResponse {
@@ -221,7 +258,16 @@ type PublicVerifyHeadlessAccountV3Conflict struct {
 }
 
 func (o *PublicVerifyHeadlessAccountV3Conflict) Error() string {
-	return fmt.Sprintf("[POST /iam/v3/public/namespaces/{namespace}/users/me/headless/verify][%d] publicVerifyHeadlessAccountV3Conflict  %+v", 409, o.Payload)
+	return fmt.Sprintf("[POST /iam/v3/public/namespaces/{namespace}/users/me/headless/verify][%d] publicVerifyHeadlessAccountV3Conflict  %+v", 409, o.ToString())
+}
+
+func (o *PublicVerifyHeadlessAccountV3Conflict) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *PublicVerifyHeadlessAccountV3Conflict) GetPayload() *iamclientmodels.RestErrorResponse {

@@ -10,6 +10,7 @@ package data_retrieval
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -83,7 +84,16 @@ type AdminGeneratePersonalDataURLOK struct {
 }
 
 func (o *AdminGeneratePersonalDataURLOK) Error() string {
-	return fmt.Sprintf("[POST /gdpr/admin/namespaces/{namespace}/users/{userId}/requests/{requestDate}/generate][%d] adminGeneratePersonalDataUrlOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[POST /gdpr/admin/namespaces/{namespace}/users/{userId}/requests/{requestDate}/generate][%d] adminGeneratePersonalDataUrlOK  %+v", 200, o.ToString())
+}
+
+func (o *AdminGeneratePersonalDataURLOK) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *AdminGeneratePersonalDataURLOK) GetPayload() *gdprclientmodels.ModelsUserDataURL {
@@ -116,7 +126,16 @@ type AdminGeneratePersonalDataURLBadRequest struct {
 }
 
 func (o *AdminGeneratePersonalDataURLBadRequest) Error() string {
-	return fmt.Sprintf("[POST /gdpr/admin/namespaces/{namespace}/users/{userId}/requests/{requestDate}/generate][%d] adminGeneratePersonalDataUrlBadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[POST /gdpr/admin/namespaces/{namespace}/users/{userId}/requests/{requestDate}/generate][%d] adminGeneratePersonalDataUrlBadRequest  %+v", 400, o.ToString())
+}
+
+func (o *AdminGeneratePersonalDataURLBadRequest) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *AdminGeneratePersonalDataURLBadRequest) GetPayload() *gdprclientmodels.ResponseError {
@@ -149,7 +168,16 @@ type AdminGeneratePersonalDataURLUnauthorized struct {
 }
 
 func (o *AdminGeneratePersonalDataURLUnauthorized) Error() string {
-	return fmt.Sprintf("[POST /gdpr/admin/namespaces/{namespace}/users/{userId}/requests/{requestDate}/generate][%d] adminGeneratePersonalDataUrlUnauthorized  %+v", 401, o.Payload)
+	return fmt.Sprintf("[POST /gdpr/admin/namespaces/{namespace}/users/{userId}/requests/{requestDate}/generate][%d] adminGeneratePersonalDataUrlUnauthorized  %+v", 401, o.ToString())
+}
+
+func (o *AdminGeneratePersonalDataURLUnauthorized) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *AdminGeneratePersonalDataURLUnauthorized) GetPayload() *gdprclientmodels.ResponseError {
@@ -182,7 +210,16 @@ type AdminGeneratePersonalDataURLNotFound struct {
 }
 
 func (o *AdminGeneratePersonalDataURLNotFound) Error() string {
-	return fmt.Sprintf("[POST /gdpr/admin/namespaces/{namespace}/users/{userId}/requests/{requestDate}/generate][%d] adminGeneratePersonalDataUrlNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[POST /gdpr/admin/namespaces/{namespace}/users/{userId}/requests/{requestDate}/generate][%d] adminGeneratePersonalDataUrlNotFound  %+v", 404, o.ToString())
+}
+
+func (o *AdminGeneratePersonalDataURLNotFound) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *AdminGeneratePersonalDataURLNotFound) GetPayload() *gdprclientmodels.ResponseError {
@@ -215,7 +252,16 @@ type AdminGeneratePersonalDataURLInternalServerError struct {
 }
 
 func (o *AdminGeneratePersonalDataURLInternalServerError) Error() string {
-	return fmt.Sprintf("[POST /gdpr/admin/namespaces/{namespace}/users/{userId}/requests/{requestDate}/generate][%d] adminGeneratePersonalDataUrlInternalServerError  %+v", 500, o.Payload)
+	return fmt.Sprintf("[POST /gdpr/admin/namespaces/{namespace}/users/{userId}/requests/{requestDate}/generate][%d] adminGeneratePersonalDataUrlInternalServerError  %+v", 500, o.ToString())
+}
+
+func (o *AdminGeneratePersonalDataURLInternalServerError) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *AdminGeneratePersonalDataURLInternalServerError) GetPayload() *gdprclientmodels.ResponseError {

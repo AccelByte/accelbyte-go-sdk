@@ -10,6 +10,7 @@ package admin
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -83,7 +84,16 @@ type GetServerLogsOK struct {
 }
 
 func (o *GetServerLogsOK) Error() string {
-	return fmt.Sprintf("[GET /dsmcontroller/admin/namespaces/{namespace}/servers/{podName}/logs][%d] getServerLogsOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /dsmcontroller/admin/namespaces/{namespace}/servers/{podName}/logs][%d] getServerLogsOK  %+v", 200, o.ToString())
+}
+
+func (o *GetServerLogsOK) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *GetServerLogsOK) GetPayload() *dsmcclientmodels.ModelsServerLogs {
@@ -116,7 +126,16 @@ type GetServerLogsBadRequest struct {
 }
 
 func (o *GetServerLogsBadRequest) Error() string {
-	return fmt.Sprintf("[GET /dsmcontroller/admin/namespaces/{namespace}/servers/{podName}/logs][%d] getServerLogsBadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[GET /dsmcontroller/admin/namespaces/{namespace}/servers/{podName}/logs][%d] getServerLogsBadRequest  %+v", 400, o.ToString())
+}
+
+func (o *GetServerLogsBadRequest) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *GetServerLogsBadRequest) GetPayload() *dsmcclientmodels.ResponseError {
@@ -149,7 +168,16 @@ type GetServerLogsUnauthorized struct {
 }
 
 func (o *GetServerLogsUnauthorized) Error() string {
-	return fmt.Sprintf("[GET /dsmcontroller/admin/namespaces/{namespace}/servers/{podName}/logs][%d] getServerLogsUnauthorized  %+v", 401, o.Payload)
+	return fmt.Sprintf("[GET /dsmcontroller/admin/namespaces/{namespace}/servers/{podName}/logs][%d] getServerLogsUnauthorized  %+v", 401, o.ToString())
+}
+
+func (o *GetServerLogsUnauthorized) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *GetServerLogsUnauthorized) GetPayload() *dsmcclientmodels.ResponseError {
@@ -182,7 +210,16 @@ type GetServerLogsNotFound struct {
 }
 
 func (o *GetServerLogsNotFound) Error() string {
-	return fmt.Sprintf("[GET /dsmcontroller/admin/namespaces/{namespace}/servers/{podName}/logs][%d] getServerLogsNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[GET /dsmcontroller/admin/namespaces/{namespace}/servers/{podName}/logs][%d] getServerLogsNotFound  %+v", 404, o.ToString())
+}
+
+func (o *GetServerLogsNotFound) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *GetServerLogsNotFound) GetPayload() *dsmcclientmodels.ResponseError {
@@ -215,7 +252,16 @@ type GetServerLogsInternalServerError struct {
 }
 
 func (o *GetServerLogsInternalServerError) Error() string {
-	return fmt.Sprintf("[GET /dsmcontroller/admin/namespaces/{namespace}/servers/{podName}/logs][%d] getServerLogsInternalServerError  %+v", 500, o.Payload)
+	return fmt.Sprintf("[GET /dsmcontroller/admin/namespaces/{namespace}/servers/{podName}/logs][%d] getServerLogsInternalServerError  %+v", 500, o.ToString())
+}
+
+func (o *GetServerLogsInternalServerError) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *GetServerLogsInternalServerError) GetPayload() *dsmcclientmodels.ResponseError {

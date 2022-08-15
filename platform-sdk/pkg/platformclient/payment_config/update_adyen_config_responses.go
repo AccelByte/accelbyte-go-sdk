@@ -10,6 +10,7 @@ package payment_config
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -65,7 +66,16 @@ type UpdateAdyenConfigOK struct {
 }
 
 func (o *UpdateAdyenConfigOK) Error() string {
-	return fmt.Sprintf("[PUT /platform/admin/payment/config/merchant/{id}/adyenconfig][%d] updateAdyenConfigOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[PUT /platform/admin/payment/config/merchant/{id}/adyenconfig][%d] updateAdyenConfigOK  %+v", 200, o.ToString())
+}
+
+func (o *UpdateAdyenConfigOK) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *UpdateAdyenConfigOK) GetPayload() *platformclientmodels.PaymentMerchantConfigInfo {
@@ -98,7 +108,16 @@ type UpdateAdyenConfigNotFound struct {
 }
 
 func (o *UpdateAdyenConfigNotFound) Error() string {
-	return fmt.Sprintf("[PUT /platform/admin/payment/config/merchant/{id}/adyenconfig][%d] updateAdyenConfigNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[PUT /platform/admin/payment/config/merchant/{id}/adyenconfig][%d] updateAdyenConfigNotFound  %+v", 404, o.ToString())
+}
+
+func (o *UpdateAdyenConfigNotFound) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *UpdateAdyenConfigNotFound) GetPayload() *platformclientmodels.ErrorEntity {

@@ -10,6 +10,7 @@ package session
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -77,7 +78,16 @@ type GetSessionOK struct {
 }
 
 func (o *GetSessionOK) Error() string {
-	return fmt.Sprintf("[GET /dsmcontroller/namespaces/{namespace}/sessions/{sessionID}][%d] getSessionOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /dsmcontroller/namespaces/{namespace}/sessions/{sessionID}][%d] getSessionOK  %+v", 200, o.ToString())
+}
+
+func (o *GetSessionOK) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *GetSessionOK) GetPayload() *dsmcclientmodels.ModelsSessionResponse {
@@ -110,7 +120,16 @@ type GetSessionUnauthorized struct {
 }
 
 func (o *GetSessionUnauthorized) Error() string {
-	return fmt.Sprintf("[GET /dsmcontroller/namespaces/{namespace}/sessions/{sessionID}][%d] getSessionUnauthorized  %+v", 401, o.Payload)
+	return fmt.Sprintf("[GET /dsmcontroller/namespaces/{namespace}/sessions/{sessionID}][%d] getSessionUnauthorized  %+v", 401, o.ToString())
+}
+
+func (o *GetSessionUnauthorized) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *GetSessionUnauthorized) GetPayload() *dsmcclientmodels.ResponseError {
@@ -143,7 +162,16 @@ type GetSessionNotFound struct {
 }
 
 func (o *GetSessionNotFound) Error() string {
-	return fmt.Sprintf("[GET /dsmcontroller/namespaces/{namespace}/sessions/{sessionID}][%d] getSessionNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[GET /dsmcontroller/namespaces/{namespace}/sessions/{sessionID}][%d] getSessionNotFound  %+v", 404, o.ToString())
+}
+
+func (o *GetSessionNotFound) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *GetSessionNotFound) GetPayload() *dsmcclientmodels.ResponseError {
@@ -176,7 +204,16 @@ type GetSessionInternalServerError struct {
 }
 
 func (o *GetSessionInternalServerError) Error() string {
-	return fmt.Sprintf("[GET /dsmcontroller/namespaces/{namespace}/sessions/{sessionID}][%d] getSessionInternalServerError  %+v", 500, o.Payload)
+	return fmt.Sprintf("[GET /dsmcontroller/namespaces/{namespace}/sessions/{sessionID}][%d] getSessionInternalServerError  %+v", 500, o.ToString())
+}
+
+func (o *GetSessionInternalServerError) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *GetSessionInternalServerError) GetPayload() *dsmcclientmodels.ResponseError {

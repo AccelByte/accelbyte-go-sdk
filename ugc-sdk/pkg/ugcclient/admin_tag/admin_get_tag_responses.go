@@ -10,6 +10,7 @@ package admin_tag
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -77,7 +78,16 @@ type AdminGetTagOK struct {
 }
 
 func (o *AdminGetTagOK) Error() string {
-	return fmt.Sprintf("[GET /ugc/v1/admin/namespaces/{namespace}/tags][%d] adminGetTagOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /ugc/v1/admin/namespaces/{namespace}/tags][%d] adminGetTagOK  %+v", 200, o.ToString())
+}
+
+func (o *AdminGetTagOK) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *AdminGetTagOK) GetPayload() *ugcclientmodels.ModelsPaginatedGetTagResponse {
@@ -110,7 +120,16 @@ type AdminGetTagUnauthorized struct {
 }
 
 func (o *AdminGetTagUnauthorized) Error() string {
-	return fmt.Sprintf("[GET /ugc/v1/admin/namespaces/{namespace}/tags][%d] adminGetTagUnauthorized  %+v", 401, o.Payload)
+	return fmt.Sprintf("[GET /ugc/v1/admin/namespaces/{namespace}/tags][%d] adminGetTagUnauthorized  %+v", 401, o.ToString())
+}
+
+func (o *AdminGetTagUnauthorized) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *AdminGetTagUnauthorized) GetPayload() *ugcclientmodels.ResponseError {
@@ -143,7 +162,16 @@ type AdminGetTagNotFound struct {
 }
 
 func (o *AdminGetTagNotFound) Error() string {
-	return fmt.Sprintf("[GET /ugc/v1/admin/namespaces/{namespace}/tags][%d] adminGetTagNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[GET /ugc/v1/admin/namespaces/{namespace}/tags][%d] adminGetTagNotFound  %+v", 404, o.ToString())
+}
+
+func (o *AdminGetTagNotFound) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *AdminGetTagNotFound) GetPayload() *ugcclientmodels.ResponseError {
@@ -176,7 +204,16 @@ type AdminGetTagInternalServerError struct {
 }
 
 func (o *AdminGetTagInternalServerError) Error() string {
-	return fmt.Sprintf("[GET /ugc/v1/admin/namespaces/{namespace}/tags][%d] adminGetTagInternalServerError  %+v", 500, o.Payload)
+	return fmt.Sprintf("[GET /ugc/v1/admin/namespaces/{namespace}/tags][%d] adminGetTagInternalServerError  %+v", 500, o.ToString())
+}
+
+func (o *AdminGetTagInternalServerError) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *AdminGetTagInternalServerError) GetPayload() *ugcclientmodels.ResponseError {

@@ -10,6 +10,7 @@ package social_matchmaking
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -89,7 +90,16 @@ type UpdatePlayTimeWeightOK struct {
 }
 
 func (o *UpdatePlayTimeWeightOK) Error() string {
-	return fmt.Sprintf("[PATCH /matchmaking/social/playtime/namespaces/{namespace}/weight][%d] updatePlayTimeWeightOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[PATCH /matchmaking/social/playtime/namespaces/{namespace}/weight][%d] updatePlayTimeWeightOK  %+v", 200, o.ToString())
+}
+
+func (o *UpdatePlayTimeWeightOK) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *UpdatePlayTimeWeightOK) GetPayload() *matchmakingclientmodels.ModelsUpdatePlayerPlaytimeWeightResponse {
@@ -122,7 +132,16 @@ type UpdatePlayTimeWeightBadRequest struct {
 }
 
 func (o *UpdatePlayTimeWeightBadRequest) Error() string {
-	return fmt.Sprintf("[PATCH /matchmaking/social/playtime/namespaces/{namespace}/weight][%d] updatePlayTimeWeightBadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[PATCH /matchmaking/social/playtime/namespaces/{namespace}/weight][%d] updatePlayTimeWeightBadRequest  %+v", 400, o.ToString())
+}
+
+func (o *UpdatePlayTimeWeightBadRequest) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *UpdatePlayTimeWeightBadRequest) GetPayload() *matchmakingclientmodels.ResponseErrorV1 {
@@ -155,7 +174,16 @@ type UpdatePlayTimeWeightUnauthorized struct {
 }
 
 func (o *UpdatePlayTimeWeightUnauthorized) Error() string {
-	return fmt.Sprintf("[PATCH /matchmaking/social/playtime/namespaces/{namespace}/weight][%d] updatePlayTimeWeightUnauthorized  %+v", 401, o.Payload)
+	return fmt.Sprintf("[PATCH /matchmaking/social/playtime/namespaces/{namespace}/weight][%d] updatePlayTimeWeightUnauthorized  %+v", 401, o.ToString())
+}
+
+func (o *UpdatePlayTimeWeightUnauthorized) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *UpdatePlayTimeWeightUnauthorized) GetPayload() *matchmakingclientmodels.ResponseErrorV1 {
@@ -188,7 +216,16 @@ type UpdatePlayTimeWeightForbidden struct {
 }
 
 func (o *UpdatePlayTimeWeightForbidden) Error() string {
-	return fmt.Sprintf("[PATCH /matchmaking/social/playtime/namespaces/{namespace}/weight][%d] updatePlayTimeWeightForbidden  %+v", 403, o.Payload)
+	return fmt.Sprintf("[PATCH /matchmaking/social/playtime/namespaces/{namespace}/weight][%d] updatePlayTimeWeightForbidden  %+v", 403, o.ToString())
+}
+
+func (o *UpdatePlayTimeWeightForbidden) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *UpdatePlayTimeWeightForbidden) GetPayload() *matchmakingclientmodels.ResponseErrorV1 {
@@ -221,7 +258,16 @@ type UpdatePlayTimeWeightNotFound struct {
 }
 
 func (o *UpdatePlayTimeWeightNotFound) Error() string {
-	return fmt.Sprintf("[PATCH /matchmaking/social/playtime/namespaces/{namespace}/weight][%d] updatePlayTimeWeightNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[PATCH /matchmaking/social/playtime/namespaces/{namespace}/weight][%d] updatePlayTimeWeightNotFound  %+v", 404, o.ToString())
+}
+
+func (o *UpdatePlayTimeWeightNotFound) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *UpdatePlayTimeWeightNotFound) GetPayload() *matchmakingclientmodels.ResponseErrorV1 {
@@ -254,7 +300,16 @@ type UpdatePlayTimeWeightInternalServerError struct {
 }
 
 func (o *UpdatePlayTimeWeightInternalServerError) Error() string {
-	return fmt.Sprintf("[PATCH /matchmaking/social/playtime/namespaces/{namespace}/weight][%d] updatePlayTimeWeightInternalServerError  %+v", 500, o.Payload)
+	return fmt.Sprintf("[PATCH /matchmaking/social/playtime/namespaces/{namespace}/weight][%d] updatePlayTimeWeightInternalServerError  %+v", 500, o.ToString())
+}
+
+func (o *UpdatePlayTimeWeightInternalServerError) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *UpdatePlayTimeWeightInternalServerError) GetPayload() *matchmakingclientmodels.ResponseError {

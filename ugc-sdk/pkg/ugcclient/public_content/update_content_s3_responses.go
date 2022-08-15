@@ -10,6 +10,7 @@ package public_content
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -83,7 +84,16 @@ type UpdateContentS3OK struct {
 }
 
 func (o *UpdateContentS3OK) Error() string {
-	return fmt.Sprintf("[PUT /ugc/v1/public/namespaces/{namespace}/users/{userId}/channels/{channelId}/contents/s3/{contentId}][%d] updateContentS3OK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[PUT /ugc/v1/public/namespaces/{namespace}/users/{userId}/channels/{channelId}/contents/s3/{contentId}][%d] updateContentS3OK  %+v", 200, o.ToString())
+}
+
+func (o *UpdateContentS3OK) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *UpdateContentS3OK) GetPayload() *ugcclientmodels.ModelsCreateContentResponse {
@@ -116,7 +126,16 @@ type UpdateContentS3BadRequest struct {
 }
 
 func (o *UpdateContentS3BadRequest) Error() string {
-	return fmt.Sprintf("[PUT /ugc/v1/public/namespaces/{namespace}/users/{userId}/channels/{channelId}/contents/s3/{contentId}][%d] updateContentS3BadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[PUT /ugc/v1/public/namespaces/{namespace}/users/{userId}/channels/{channelId}/contents/s3/{contentId}][%d] updateContentS3BadRequest  %+v", 400, o.ToString())
+}
+
+func (o *UpdateContentS3BadRequest) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *UpdateContentS3BadRequest) GetPayload() *ugcclientmodels.ResponseError {
@@ -149,7 +168,16 @@ type UpdateContentS3Unauthorized struct {
 }
 
 func (o *UpdateContentS3Unauthorized) Error() string {
-	return fmt.Sprintf("[PUT /ugc/v1/public/namespaces/{namespace}/users/{userId}/channels/{channelId}/contents/s3/{contentId}][%d] updateContentS3Unauthorized  %+v", 401, o.Payload)
+	return fmt.Sprintf("[PUT /ugc/v1/public/namespaces/{namespace}/users/{userId}/channels/{channelId}/contents/s3/{contentId}][%d] updateContentS3Unauthorized  %+v", 401, o.ToString())
+}
+
+func (o *UpdateContentS3Unauthorized) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *UpdateContentS3Unauthorized) GetPayload() *ugcclientmodels.ResponseError {
@@ -182,7 +210,16 @@ type UpdateContentS3NotFound struct {
 }
 
 func (o *UpdateContentS3NotFound) Error() string {
-	return fmt.Sprintf("[PUT /ugc/v1/public/namespaces/{namespace}/users/{userId}/channels/{channelId}/contents/s3/{contentId}][%d] updateContentS3NotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[PUT /ugc/v1/public/namespaces/{namespace}/users/{userId}/channels/{channelId}/contents/s3/{contentId}][%d] updateContentS3NotFound  %+v", 404, o.ToString())
+}
+
+func (o *UpdateContentS3NotFound) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *UpdateContentS3NotFound) GetPayload() *ugcclientmodels.ResponseError {
@@ -215,7 +252,16 @@ type UpdateContentS3InternalServerError struct {
 }
 
 func (o *UpdateContentS3InternalServerError) Error() string {
-	return fmt.Sprintf("[PUT /ugc/v1/public/namespaces/{namespace}/users/{userId}/channels/{channelId}/contents/s3/{contentId}][%d] updateContentS3InternalServerError  %+v", 500, o.Payload)
+	return fmt.Sprintf("[PUT /ugc/v1/public/namespaces/{namespace}/users/{userId}/channels/{channelId}/contents/s3/{contentId}][%d] updateContentS3InternalServerError  %+v", 500, o.ToString())
+}
+
+func (o *UpdateContentS3InternalServerError) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *UpdateContentS3InternalServerError) GetPayload() *ugcclientmodels.ResponseError {

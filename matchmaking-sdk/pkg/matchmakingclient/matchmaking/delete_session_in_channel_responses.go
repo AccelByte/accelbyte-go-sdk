@@ -10,6 +10,7 @@ package matchmaking
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -110,7 +111,16 @@ type DeleteSessionInChannelBadRequest struct {
 }
 
 func (o *DeleteSessionInChannelBadRequest) Error() string {
-	return fmt.Sprintf("[DELETE /matchmaking/v1/admin/namespaces/{namespace}/channels/{channelName}/sessions/{matchID}][%d] deleteSessionInChannelBadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[DELETE /matchmaking/v1/admin/namespaces/{namespace}/channels/{channelName}/sessions/{matchID}][%d] deleteSessionInChannelBadRequest  %+v", 400, o.ToString())
+}
+
+func (o *DeleteSessionInChannelBadRequest) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *DeleteSessionInChannelBadRequest) GetPayload() *matchmakingclientmodels.ResponseErrorV1 {
@@ -143,7 +153,16 @@ type DeleteSessionInChannelUnauthorized struct {
 }
 
 func (o *DeleteSessionInChannelUnauthorized) Error() string {
-	return fmt.Sprintf("[DELETE /matchmaking/v1/admin/namespaces/{namespace}/channels/{channelName}/sessions/{matchID}][%d] deleteSessionInChannelUnauthorized  %+v", 401, o.Payload)
+	return fmt.Sprintf("[DELETE /matchmaking/v1/admin/namespaces/{namespace}/channels/{channelName}/sessions/{matchID}][%d] deleteSessionInChannelUnauthorized  %+v", 401, o.ToString())
+}
+
+func (o *DeleteSessionInChannelUnauthorized) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *DeleteSessionInChannelUnauthorized) GetPayload() *matchmakingclientmodels.ResponseErrorV1 {
@@ -176,7 +195,16 @@ type DeleteSessionInChannelForbidden struct {
 }
 
 func (o *DeleteSessionInChannelForbidden) Error() string {
-	return fmt.Sprintf("[DELETE /matchmaking/v1/admin/namespaces/{namespace}/channels/{channelName}/sessions/{matchID}][%d] deleteSessionInChannelForbidden  %+v", 403, o.Payload)
+	return fmt.Sprintf("[DELETE /matchmaking/v1/admin/namespaces/{namespace}/channels/{channelName}/sessions/{matchID}][%d] deleteSessionInChannelForbidden  %+v", 403, o.ToString())
+}
+
+func (o *DeleteSessionInChannelForbidden) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *DeleteSessionInChannelForbidden) GetPayload() *matchmakingclientmodels.ResponseErrorV1 {
@@ -209,7 +237,16 @@ type DeleteSessionInChannelNotFound struct {
 }
 
 func (o *DeleteSessionInChannelNotFound) Error() string {
-	return fmt.Sprintf("[DELETE /matchmaking/v1/admin/namespaces/{namespace}/channels/{channelName}/sessions/{matchID}][%d] deleteSessionInChannelNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[DELETE /matchmaking/v1/admin/namespaces/{namespace}/channels/{channelName}/sessions/{matchID}][%d] deleteSessionInChannelNotFound  %+v", 404, o.ToString())
+}
+
+func (o *DeleteSessionInChannelNotFound) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *DeleteSessionInChannelNotFound) GetPayload() *matchmakingclientmodels.ResponseErrorV1 {
@@ -242,7 +279,16 @@ type DeleteSessionInChannelInternalServerError struct {
 }
 
 func (o *DeleteSessionInChannelInternalServerError) Error() string {
-	return fmt.Sprintf("[DELETE /matchmaking/v1/admin/namespaces/{namespace}/channels/{channelName}/sessions/{matchID}][%d] deleteSessionInChannelInternalServerError  %+v", 500, o.Payload)
+	return fmt.Sprintf("[DELETE /matchmaking/v1/admin/namespaces/{namespace}/channels/{channelName}/sessions/{matchID}][%d] deleteSessionInChannelInternalServerError  %+v", 500, o.ToString())
+}
+
+func (o *DeleteSessionInChannelInternalServerError) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *DeleteSessionInChannelInternalServerError) GetPayload() *matchmakingclientmodels.ResponseError {

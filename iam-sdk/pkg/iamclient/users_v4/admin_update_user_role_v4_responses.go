@@ -10,6 +10,7 @@ package users_v4
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -89,7 +90,16 @@ type AdminUpdateUserRoleV4OK struct {
 }
 
 func (o *AdminUpdateUserRoleV4OK) Error() string {
-	return fmt.Sprintf("[PUT /iam/v4/admin/namespaces/{namespace}/users/{userId}/roles][%d] adminUpdateUserRoleV4OK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[PUT /iam/v4/admin/namespaces/{namespace}/users/{userId}/roles][%d] adminUpdateUserRoleV4OK  %+v", 200, o.ToString())
+}
+
+func (o *AdminUpdateUserRoleV4OK) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *AdminUpdateUserRoleV4OK) GetPayload() *iamclientmodels.ModelListUserRolesV4Response {
@@ -122,7 +132,16 @@ type AdminUpdateUserRoleV4BadRequest struct {
 }
 
 func (o *AdminUpdateUserRoleV4BadRequest) Error() string {
-	return fmt.Sprintf("[PUT /iam/v4/admin/namespaces/{namespace}/users/{userId}/roles][%d] adminUpdateUserRoleV4BadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[PUT /iam/v4/admin/namespaces/{namespace}/users/{userId}/roles][%d] adminUpdateUserRoleV4BadRequest  %+v", 400, o.ToString())
+}
+
+func (o *AdminUpdateUserRoleV4BadRequest) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *AdminUpdateUserRoleV4BadRequest) GetPayload() *iamclientmodels.RestErrorResponse {
@@ -155,7 +174,16 @@ type AdminUpdateUserRoleV4Forbidden struct {
 }
 
 func (o *AdminUpdateUserRoleV4Forbidden) Error() string {
-	return fmt.Sprintf("[PUT /iam/v4/admin/namespaces/{namespace}/users/{userId}/roles][%d] adminUpdateUserRoleV4Forbidden  %+v", 403, o.Payload)
+	return fmt.Sprintf("[PUT /iam/v4/admin/namespaces/{namespace}/users/{userId}/roles][%d] adminUpdateUserRoleV4Forbidden  %+v", 403, o.ToString())
+}
+
+func (o *AdminUpdateUserRoleV4Forbidden) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *AdminUpdateUserRoleV4Forbidden) GetPayload() *iamclientmodels.RestErrorResponse {
@@ -188,7 +216,16 @@ type AdminUpdateUserRoleV4NotFound struct {
 }
 
 func (o *AdminUpdateUserRoleV4NotFound) Error() string {
-	return fmt.Sprintf("[PUT /iam/v4/admin/namespaces/{namespace}/users/{userId}/roles][%d] adminUpdateUserRoleV4NotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[PUT /iam/v4/admin/namespaces/{namespace}/users/{userId}/roles][%d] adminUpdateUserRoleV4NotFound  %+v", 404, o.ToString())
+}
+
+func (o *AdminUpdateUserRoleV4NotFound) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *AdminUpdateUserRoleV4NotFound) GetPayload() *iamclientmodels.RestErrorResponse {
@@ -221,7 +258,16 @@ type AdminUpdateUserRoleV4UnprocessableEntity struct {
 }
 
 func (o *AdminUpdateUserRoleV4UnprocessableEntity) Error() string {
-	return fmt.Sprintf("[PUT /iam/v4/admin/namespaces/{namespace}/users/{userId}/roles][%d] adminUpdateUserRoleV4UnprocessableEntity  %+v", 422, o.Payload)
+	return fmt.Sprintf("[PUT /iam/v4/admin/namespaces/{namespace}/users/{userId}/roles][%d] adminUpdateUserRoleV4UnprocessableEntity  %+v", 422, o.ToString())
+}
+
+func (o *AdminUpdateUserRoleV4UnprocessableEntity) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *AdminUpdateUserRoleV4UnprocessableEntity) GetPayload() *iamclientmodels.RestErrorResponse {
@@ -254,7 +300,16 @@ type AdminUpdateUserRoleV4InternalServerError struct {
 }
 
 func (o *AdminUpdateUserRoleV4InternalServerError) Error() string {
-	return fmt.Sprintf("[PUT /iam/v4/admin/namespaces/{namespace}/users/{userId}/roles][%d] adminUpdateUserRoleV4InternalServerError  %+v", 500, o.Payload)
+	return fmt.Sprintf("[PUT /iam/v4/admin/namespaces/{namespace}/users/{userId}/roles][%d] adminUpdateUserRoleV4InternalServerError  %+v", 500, o.ToString())
+}
+
+func (o *AdminUpdateUserRoleV4InternalServerError) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *AdminUpdateUserRoleV4InternalServerError) GetPayload() *iamclientmodels.RestErrorResponse {

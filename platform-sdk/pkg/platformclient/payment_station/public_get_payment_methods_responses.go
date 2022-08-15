@@ -10,6 +10,7 @@ package payment_station
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -65,7 +66,16 @@ type PublicGetPaymentMethodsOK struct {
 }
 
 func (o *PublicGetPaymentMethodsOK) Error() string {
-	return fmt.Sprintf("[GET /platform/public/namespaces/{namespace}/payment/methods][%d] publicGetPaymentMethodsOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /platform/public/namespaces/{namespace}/payment/methods][%d] publicGetPaymentMethodsOK  %+v", 200, o.ToString())
+}
+
+func (o *PublicGetPaymentMethodsOK) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *PublicGetPaymentMethodsOK) GetPayload() []*platformclientmodels.PaymentMethod {
@@ -96,7 +106,16 @@ type PublicGetPaymentMethodsNotFound struct {
 }
 
 func (o *PublicGetPaymentMethodsNotFound) Error() string {
-	return fmt.Sprintf("[GET /platform/public/namespaces/{namespace}/payment/methods][%d] publicGetPaymentMethodsNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[GET /platform/public/namespaces/{namespace}/payment/methods][%d] publicGetPaymentMethodsNotFound  %+v", 404, o.ToString())
+}
+
+func (o *PublicGetPaymentMethodsNotFound) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *PublicGetPaymentMethodsNotFound) GetPayload() *platformclientmodels.ErrorEntity {

@@ -10,6 +10,7 @@ package payment_config
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -77,7 +78,16 @@ type CreatePaymentProviderConfigOK struct {
 }
 
 func (o *CreatePaymentProviderConfigOK) Error() string {
-	return fmt.Sprintf("[POST /platform/admin/payment/config/provider][%d] createPaymentProviderConfigOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[POST /platform/admin/payment/config/provider][%d] createPaymentProviderConfigOK  %+v", 200, o.ToString())
+}
+
+func (o *CreatePaymentProviderConfigOK) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *CreatePaymentProviderConfigOK) GetPayload() *platformclientmodels.PaymentProviderConfigInfo {
@@ -110,7 +120,16 @@ type CreatePaymentProviderConfigBadRequest struct {
 }
 
 func (o *CreatePaymentProviderConfigBadRequest) Error() string {
-	return fmt.Sprintf("[POST /platform/admin/payment/config/provider][%d] createPaymentProviderConfigBadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[POST /platform/admin/payment/config/provider][%d] createPaymentProviderConfigBadRequest  %+v", 400, o.ToString())
+}
+
+func (o *CreatePaymentProviderConfigBadRequest) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *CreatePaymentProviderConfigBadRequest) GetPayload() *platformclientmodels.ErrorEntity {
@@ -143,7 +162,16 @@ type CreatePaymentProviderConfigConflict struct {
 }
 
 func (o *CreatePaymentProviderConfigConflict) Error() string {
-	return fmt.Sprintf("[POST /platform/admin/payment/config/provider][%d] createPaymentProviderConfigConflict  %+v", 409, o.Payload)
+	return fmt.Sprintf("[POST /platform/admin/payment/config/provider][%d] createPaymentProviderConfigConflict  %+v", 409, o.ToString())
+}
+
+func (o *CreatePaymentProviderConfigConflict) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *CreatePaymentProviderConfigConflict) GetPayload() *platformclientmodels.ErrorEntity {
@@ -176,7 +204,16 @@ type CreatePaymentProviderConfigUnprocessableEntity struct {
 }
 
 func (o *CreatePaymentProviderConfigUnprocessableEntity) Error() string {
-	return fmt.Sprintf("[POST /platform/admin/payment/config/provider][%d] createPaymentProviderConfigUnprocessableEntity  %+v", 422, o.Payload)
+	return fmt.Sprintf("[POST /platform/admin/payment/config/provider][%d] createPaymentProviderConfigUnprocessableEntity  %+v", 422, o.ToString())
+}
+
+func (o *CreatePaymentProviderConfigUnprocessableEntity) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *CreatePaymentProviderConfigUnprocessableEntity) GetPayload() *platformclientmodels.ValidationErrorEntity {

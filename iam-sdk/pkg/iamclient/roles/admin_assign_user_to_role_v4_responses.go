@@ -10,6 +10,7 @@ package roles
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -95,7 +96,16 @@ type AdminAssignUserToRoleV4Created struct {
 }
 
 func (o *AdminAssignUserToRoleV4Created) Error() string {
-	return fmt.Sprintf("[POST /iam/v4/admin/roles/{roleId}/users][%d] adminAssignUserToRoleV4Created  %+v", 201, o.Payload)
+	return fmt.Sprintf("[POST /iam/v4/admin/roles/{roleId}/users][%d] adminAssignUserToRoleV4Created  %+v", 201, o.ToString())
+}
+
+func (o *AdminAssignUserToRoleV4Created) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *AdminAssignUserToRoleV4Created) GetPayload() *iamclientmodels.ModelAssignedUserV4Response {
@@ -128,7 +138,16 @@ type AdminAssignUserToRoleV4BadRequest struct {
 }
 
 func (o *AdminAssignUserToRoleV4BadRequest) Error() string {
-	return fmt.Sprintf("[POST /iam/v4/admin/roles/{roleId}/users][%d] adminAssignUserToRoleV4BadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[POST /iam/v4/admin/roles/{roleId}/users][%d] adminAssignUserToRoleV4BadRequest  %+v", 400, o.ToString())
+}
+
+func (o *AdminAssignUserToRoleV4BadRequest) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *AdminAssignUserToRoleV4BadRequest) GetPayload() *iamclientmodels.RestErrorResponse {
@@ -161,7 +180,16 @@ type AdminAssignUserToRoleV4Unauthorized struct {
 }
 
 func (o *AdminAssignUserToRoleV4Unauthorized) Error() string {
-	return fmt.Sprintf("[POST /iam/v4/admin/roles/{roleId}/users][%d] adminAssignUserToRoleV4Unauthorized  %+v", 401, o.Payload)
+	return fmt.Sprintf("[POST /iam/v4/admin/roles/{roleId}/users][%d] adminAssignUserToRoleV4Unauthorized  %+v", 401, o.ToString())
+}
+
+func (o *AdminAssignUserToRoleV4Unauthorized) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *AdminAssignUserToRoleV4Unauthorized) GetPayload() *iamclientmodels.RestErrorResponse {
@@ -194,7 +222,16 @@ type AdminAssignUserToRoleV4Forbidden struct {
 }
 
 func (o *AdminAssignUserToRoleV4Forbidden) Error() string {
-	return fmt.Sprintf("[POST /iam/v4/admin/roles/{roleId}/users][%d] adminAssignUserToRoleV4Forbidden  %+v", 403, o.Payload)
+	return fmt.Sprintf("[POST /iam/v4/admin/roles/{roleId}/users][%d] adminAssignUserToRoleV4Forbidden  %+v", 403, o.ToString())
+}
+
+func (o *AdminAssignUserToRoleV4Forbidden) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *AdminAssignUserToRoleV4Forbidden) GetPayload() *iamclientmodels.RestErrorResponse {
@@ -227,7 +264,16 @@ type AdminAssignUserToRoleV4NotFound struct {
 }
 
 func (o *AdminAssignUserToRoleV4NotFound) Error() string {
-	return fmt.Sprintf("[POST /iam/v4/admin/roles/{roleId}/users][%d] adminAssignUserToRoleV4NotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[POST /iam/v4/admin/roles/{roleId}/users][%d] adminAssignUserToRoleV4NotFound  %+v", 404, o.ToString())
+}
+
+func (o *AdminAssignUserToRoleV4NotFound) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *AdminAssignUserToRoleV4NotFound) GetPayload() *iamclientmodels.RestErrorResponse {
@@ -260,7 +306,16 @@ type AdminAssignUserToRoleV4Conflict struct {
 }
 
 func (o *AdminAssignUserToRoleV4Conflict) Error() string {
-	return fmt.Sprintf("[POST /iam/v4/admin/roles/{roleId}/users][%d] adminAssignUserToRoleV4Conflict  %+v", 409, o.Payload)
+	return fmt.Sprintf("[POST /iam/v4/admin/roles/{roleId}/users][%d] adminAssignUserToRoleV4Conflict  %+v", 409, o.ToString())
+}
+
+func (o *AdminAssignUserToRoleV4Conflict) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *AdminAssignUserToRoleV4Conflict) GetPayload() *iamclientmodels.RestErrorResponse {
@@ -293,7 +348,16 @@ type AdminAssignUserToRoleV4UnprocessableEntity struct {
 }
 
 func (o *AdminAssignUserToRoleV4UnprocessableEntity) Error() string {
-	return fmt.Sprintf("[POST /iam/v4/admin/roles/{roleId}/users][%d] adminAssignUserToRoleV4UnprocessableEntity  %+v", 422, o.Payload)
+	return fmt.Sprintf("[POST /iam/v4/admin/roles/{roleId}/users][%d] adminAssignUserToRoleV4UnprocessableEntity  %+v", 422, o.ToString())
+}
+
+func (o *AdminAssignUserToRoleV4UnprocessableEntity) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *AdminAssignUserToRoleV4UnprocessableEntity) GetPayload() *iamclientmodels.RestErrorResponse {

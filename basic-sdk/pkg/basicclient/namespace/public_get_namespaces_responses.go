@@ -10,6 +10,7 @@ package namespace
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -65,7 +66,16 @@ type PublicGetNamespacesOK struct {
 }
 
 func (o *PublicGetNamespacesOK) Error() string {
-	return fmt.Sprintf("[GET /basic/v1/public/namespaces][%d] publicGetNamespacesOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /basic/v1/public/namespaces][%d] publicGetNamespacesOK  %+v", 200, o.ToString())
+}
+
+func (o *PublicGetNamespacesOK) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *PublicGetNamespacesOK) GetPayload() []*basicclientmodels.NamespaceInfo {
@@ -96,7 +106,16 @@ type PublicGetNamespacesUnauthorized struct {
 }
 
 func (o *PublicGetNamespacesUnauthorized) Error() string {
-	return fmt.Sprintf("[GET /basic/v1/public/namespaces][%d] publicGetNamespacesUnauthorized  %+v", 401, o.Payload)
+	return fmt.Sprintf("[GET /basic/v1/public/namespaces][%d] publicGetNamespacesUnauthorized  %+v", 401, o.ToString())
+}
+
+func (o *PublicGetNamespacesUnauthorized) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *PublicGetNamespacesUnauthorized) GetPayload() *basicclientmodels.ErrorEntity {

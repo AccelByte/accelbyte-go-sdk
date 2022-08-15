@@ -10,6 +10,7 @@ package store
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -71,7 +72,16 @@ type CreateStoreCreated struct {
 }
 
 func (o *CreateStoreCreated) Error() string {
-	return fmt.Sprintf("[POST /platform/admin/namespaces/{namespace}/stores][%d] createStoreCreated  %+v", 201, o.Payload)
+	return fmt.Sprintf("[POST /platform/admin/namespaces/{namespace}/stores][%d] createStoreCreated  %+v", 201, o.ToString())
+}
+
+func (o *CreateStoreCreated) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *CreateStoreCreated) GetPayload() *platformclientmodels.StoreInfo {
@@ -104,7 +114,16 @@ type CreateStoreConflict struct {
 }
 
 func (o *CreateStoreConflict) Error() string {
-	return fmt.Sprintf("[POST /platform/admin/namespaces/{namespace}/stores][%d] createStoreConflict  %+v", 409, o.Payload)
+	return fmt.Sprintf("[POST /platform/admin/namespaces/{namespace}/stores][%d] createStoreConflict  %+v", 409, o.ToString())
+}
+
+func (o *CreateStoreConflict) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *CreateStoreConflict) GetPayload() *platformclientmodels.ErrorEntity {
@@ -137,7 +156,16 @@ type CreateStoreUnprocessableEntity struct {
 }
 
 func (o *CreateStoreUnprocessableEntity) Error() string {
-	return fmt.Sprintf("[POST /platform/admin/namespaces/{namespace}/stores][%d] createStoreUnprocessableEntity  %+v", 422, o.Payload)
+	return fmt.Sprintf("[POST /platform/admin/namespaces/{namespace}/stores][%d] createStoreUnprocessableEntity  %+v", 422, o.ToString())
+}
+
+func (o *CreateStoreUnprocessableEntity) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *CreateStoreUnprocessableEntity) GetPayload() *platformclientmodels.ValidationErrorEntity {

@@ -10,6 +10,7 @@ package leaderboard_configuration
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -89,7 +90,16 @@ type GetLeaderboardConfigurationAdminV1OK struct {
 }
 
 func (o *GetLeaderboardConfigurationAdminV1OK) Error() string {
-	return fmt.Sprintf("[GET /leaderboard/v1/admin/namespaces/{namespace}/leaderboards/{leaderboardCode}][%d] getLeaderboardConfigurationAdminV1OK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /leaderboard/v1/admin/namespaces/{namespace}/leaderboards/{leaderboardCode}][%d] getLeaderboardConfigurationAdminV1OK  %+v", 200, o.ToString())
+}
+
+func (o *GetLeaderboardConfigurationAdminV1OK) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *GetLeaderboardConfigurationAdminV1OK) GetPayload() *leaderboardclientmodels.ModelsGetLeaderboardConfigResp {
@@ -122,7 +132,16 @@ type GetLeaderboardConfigurationAdminV1BadRequest struct {
 }
 
 func (o *GetLeaderboardConfigurationAdminV1BadRequest) Error() string {
-	return fmt.Sprintf("[GET /leaderboard/v1/admin/namespaces/{namespace}/leaderboards/{leaderboardCode}][%d] getLeaderboardConfigurationAdminV1BadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[GET /leaderboard/v1/admin/namespaces/{namespace}/leaderboards/{leaderboardCode}][%d] getLeaderboardConfigurationAdminV1BadRequest  %+v", 400, o.ToString())
+}
+
+func (o *GetLeaderboardConfigurationAdminV1BadRequest) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *GetLeaderboardConfigurationAdminV1BadRequest) GetPayload() *leaderboardclientmodels.ResponseErrorResponse {
@@ -155,7 +174,16 @@ type GetLeaderboardConfigurationAdminV1Unauthorized struct {
 }
 
 func (o *GetLeaderboardConfigurationAdminV1Unauthorized) Error() string {
-	return fmt.Sprintf("[GET /leaderboard/v1/admin/namespaces/{namespace}/leaderboards/{leaderboardCode}][%d] getLeaderboardConfigurationAdminV1Unauthorized  %+v", 401, o.Payload)
+	return fmt.Sprintf("[GET /leaderboard/v1/admin/namespaces/{namespace}/leaderboards/{leaderboardCode}][%d] getLeaderboardConfigurationAdminV1Unauthorized  %+v", 401, o.ToString())
+}
+
+func (o *GetLeaderboardConfigurationAdminV1Unauthorized) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *GetLeaderboardConfigurationAdminV1Unauthorized) GetPayload() *leaderboardclientmodels.ResponseErrorResponse {
@@ -188,7 +216,16 @@ type GetLeaderboardConfigurationAdminV1Forbidden struct {
 }
 
 func (o *GetLeaderboardConfigurationAdminV1Forbidden) Error() string {
-	return fmt.Sprintf("[GET /leaderboard/v1/admin/namespaces/{namespace}/leaderboards/{leaderboardCode}][%d] getLeaderboardConfigurationAdminV1Forbidden  %+v", 403, o.Payload)
+	return fmt.Sprintf("[GET /leaderboard/v1/admin/namespaces/{namespace}/leaderboards/{leaderboardCode}][%d] getLeaderboardConfigurationAdminV1Forbidden  %+v", 403, o.ToString())
+}
+
+func (o *GetLeaderboardConfigurationAdminV1Forbidden) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *GetLeaderboardConfigurationAdminV1Forbidden) GetPayload() *leaderboardclientmodels.ResponseErrorResponse {
@@ -221,7 +258,16 @@ type GetLeaderboardConfigurationAdminV1NotFound struct {
 }
 
 func (o *GetLeaderboardConfigurationAdminV1NotFound) Error() string {
-	return fmt.Sprintf("[GET /leaderboard/v1/admin/namespaces/{namespace}/leaderboards/{leaderboardCode}][%d] getLeaderboardConfigurationAdminV1NotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[GET /leaderboard/v1/admin/namespaces/{namespace}/leaderboards/{leaderboardCode}][%d] getLeaderboardConfigurationAdminV1NotFound  %+v", 404, o.ToString())
+}
+
+func (o *GetLeaderboardConfigurationAdminV1NotFound) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *GetLeaderboardConfigurationAdminV1NotFound) GetPayload() *leaderboardclientmodels.ResponseErrorResponse {
@@ -254,7 +300,16 @@ type GetLeaderboardConfigurationAdminV1InternalServerError struct {
 }
 
 func (o *GetLeaderboardConfigurationAdminV1InternalServerError) Error() string {
-	return fmt.Sprintf("[GET /leaderboard/v1/admin/namespaces/{namespace}/leaderboards/{leaderboardCode}][%d] getLeaderboardConfigurationAdminV1InternalServerError  %+v", 500, o.Payload)
+	return fmt.Sprintf("[GET /leaderboard/v1/admin/namespaces/{namespace}/leaderboards/{leaderboardCode}][%d] getLeaderboardConfigurationAdminV1InternalServerError  %+v", 500, o.ToString())
+}
+
+func (o *GetLeaderboardConfigurationAdminV1InternalServerError) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *GetLeaderboardConfigurationAdminV1InternalServerError) GetPayload() *leaderboardclientmodels.ResponseErrorResponse {

@@ -10,6 +10,7 @@ package user_profile
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -83,7 +84,16 @@ type DeleteUserProfileOK struct {
 }
 
 func (o *DeleteUserProfileOK) Error() string {
-	return fmt.Sprintf("[DELETE /basic/v1/admin/namespaces/{namespace}/users/{userId}/profiles][%d] deleteUserProfileOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[DELETE /basic/v1/admin/namespaces/{namespace}/users/{userId}/profiles][%d] deleteUserProfileOK  %+v", 200, o.ToString())
+}
+
+func (o *DeleteUserProfileOK) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *DeleteUserProfileOK) GetPayload() *basicclientmodels.UserProfilePrivateInfo {
@@ -116,7 +126,16 @@ type DeleteUserProfileBadRequest struct {
 }
 
 func (o *DeleteUserProfileBadRequest) Error() string {
-	return fmt.Sprintf("[DELETE /basic/v1/admin/namespaces/{namespace}/users/{userId}/profiles][%d] deleteUserProfileBadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[DELETE /basic/v1/admin/namespaces/{namespace}/users/{userId}/profiles][%d] deleteUserProfileBadRequest  %+v", 400, o.ToString())
+}
+
+func (o *DeleteUserProfileBadRequest) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *DeleteUserProfileBadRequest) GetPayload() *basicclientmodels.ValidationErrorEntity {
@@ -149,7 +168,16 @@ type DeleteUserProfileUnauthorized struct {
 }
 
 func (o *DeleteUserProfileUnauthorized) Error() string {
-	return fmt.Sprintf("[DELETE /basic/v1/admin/namespaces/{namespace}/users/{userId}/profiles][%d] deleteUserProfileUnauthorized  %+v", 401, o.Payload)
+	return fmt.Sprintf("[DELETE /basic/v1/admin/namespaces/{namespace}/users/{userId}/profiles][%d] deleteUserProfileUnauthorized  %+v", 401, o.ToString())
+}
+
+func (o *DeleteUserProfileUnauthorized) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *DeleteUserProfileUnauthorized) GetPayload() *basicclientmodels.ErrorEntity {
@@ -182,7 +210,16 @@ type DeleteUserProfileForbidden struct {
 }
 
 func (o *DeleteUserProfileForbidden) Error() string {
-	return fmt.Sprintf("[DELETE /basic/v1/admin/namespaces/{namespace}/users/{userId}/profiles][%d] deleteUserProfileForbidden  %+v", 403, o.Payload)
+	return fmt.Sprintf("[DELETE /basic/v1/admin/namespaces/{namespace}/users/{userId}/profiles][%d] deleteUserProfileForbidden  %+v", 403, o.ToString())
+}
+
+func (o *DeleteUserProfileForbidden) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *DeleteUserProfileForbidden) GetPayload() *basicclientmodels.ErrorEntity {
@@ -215,7 +252,16 @@ type DeleteUserProfileNotFound struct {
 }
 
 func (o *DeleteUserProfileNotFound) Error() string {
-	return fmt.Sprintf("[DELETE /basic/v1/admin/namespaces/{namespace}/users/{userId}/profiles][%d] deleteUserProfileNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[DELETE /basic/v1/admin/namespaces/{namespace}/users/{userId}/profiles][%d] deleteUserProfileNotFound  %+v", 404, o.ToString())
+}
+
+func (o *DeleteUserProfileNotFound) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *DeleteUserProfileNotFound) GetPayload() *basicclientmodels.ErrorEntity {

@@ -10,6 +10,7 @@ package users
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -110,7 +111,16 @@ type PublicPlatformLinkV3BadRequest struct {
 }
 
 func (o *PublicPlatformLinkV3BadRequest) Error() string {
-	return fmt.Sprintf("[POST /iam/v3/public/namespaces/{namespace}/users/me/platforms/{platformId}][%d] publicPlatformLinkV3BadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[POST /iam/v3/public/namespaces/{namespace}/users/me/platforms/{platformId}][%d] publicPlatformLinkV3BadRequest  %+v", 400, o.ToString())
+}
+
+func (o *PublicPlatformLinkV3BadRequest) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *PublicPlatformLinkV3BadRequest) GetPayload() *iamclientmodels.RestErrorResponse {
@@ -143,7 +153,16 @@ type PublicPlatformLinkV3Unauthorized struct {
 }
 
 func (o *PublicPlatformLinkV3Unauthorized) Error() string {
-	return fmt.Sprintf("[POST /iam/v3/public/namespaces/{namespace}/users/me/platforms/{platformId}][%d] publicPlatformLinkV3Unauthorized  %+v", 401, o.Payload)
+	return fmt.Sprintf("[POST /iam/v3/public/namespaces/{namespace}/users/me/platforms/{platformId}][%d] publicPlatformLinkV3Unauthorized  %+v", 401, o.ToString())
+}
+
+func (o *PublicPlatformLinkV3Unauthorized) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *PublicPlatformLinkV3Unauthorized) GetPayload() *iamclientmodels.RestErrorResponse {
@@ -176,7 +195,16 @@ type PublicPlatformLinkV3NotFound struct {
 }
 
 func (o *PublicPlatformLinkV3NotFound) Error() string {
-	return fmt.Sprintf("[POST /iam/v3/public/namespaces/{namespace}/users/me/platforms/{platformId}][%d] publicPlatformLinkV3NotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[POST /iam/v3/public/namespaces/{namespace}/users/me/platforms/{platformId}][%d] publicPlatformLinkV3NotFound  %+v", 404, o.ToString())
+}
+
+func (o *PublicPlatformLinkV3NotFound) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *PublicPlatformLinkV3NotFound) GetPayload() *iamclientmodels.RestErrorResponse {
@@ -209,7 +237,16 @@ type PublicPlatformLinkV3Conflict struct {
 }
 
 func (o *PublicPlatformLinkV3Conflict) Error() string {
-	return fmt.Sprintf("[POST /iam/v3/public/namespaces/{namespace}/users/me/platforms/{platformId}][%d] publicPlatformLinkV3Conflict  %+v", 409, o.Payload)
+	return fmt.Sprintf("[POST /iam/v3/public/namespaces/{namespace}/users/me/platforms/{platformId}][%d] publicPlatformLinkV3Conflict  %+v", 409, o.ToString())
+}
+
+func (o *PublicPlatformLinkV3Conflict) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *PublicPlatformLinkV3Conflict) GetPayload() *iamclientmodels.RestErrorResponse {

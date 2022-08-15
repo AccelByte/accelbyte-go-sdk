@@ -10,6 +10,7 @@ package season
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -77,7 +78,16 @@ type RetireSeasonOK struct {
 }
 
 func (o *RetireSeasonOK) Error() string {
-	return fmt.Sprintf("[PUT /seasonpass/admin/namespaces/{namespace}/seasons/{seasonId}/retire][%d] retireSeasonOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[PUT /seasonpass/admin/namespaces/{namespace}/seasons/{seasonId}/retire][%d] retireSeasonOK  %+v", 200, o.ToString())
+}
+
+func (o *RetireSeasonOK) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *RetireSeasonOK) GetPayload() *seasonpassclientmodels.SeasonInfo {
@@ -110,7 +120,16 @@ type RetireSeasonBadRequest struct {
 }
 
 func (o *RetireSeasonBadRequest) Error() string {
-	return fmt.Sprintf("[PUT /seasonpass/admin/namespaces/{namespace}/seasons/{seasonId}/retire][%d] retireSeasonBadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[PUT /seasonpass/admin/namespaces/{namespace}/seasons/{seasonId}/retire][%d] retireSeasonBadRequest  %+v", 400, o.ToString())
+}
+
+func (o *RetireSeasonBadRequest) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *RetireSeasonBadRequest) GetPayload() *seasonpassclientmodels.ErrorEntity {
@@ -143,7 +162,16 @@ type RetireSeasonNotFound struct {
 }
 
 func (o *RetireSeasonNotFound) Error() string {
-	return fmt.Sprintf("[PUT /seasonpass/admin/namespaces/{namespace}/seasons/{seasonId}/retire][%d] retireSeasonNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[PUT /seasonpass/admin/namespaces/{namespace}/seasons/{seasonId}/retire][%d] retireSeasonNotFound  %+v", 404, o.ToString())
+}
+
+func (o *RetireSeasonNotFound) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *RetireSeasonNotFound) GetPayload() *seasonpassclientmodels.ErrorEntity {
@@ -176,7 +204,16 @@ type RetireSeasonConflict struct {
 }
 
 func (o *RetireSeasonConflict) Error() string {
-	return fmt.Sprintf("[PUT /seasonpass/admin/namespaces/{namespace}/seasons/{seasonId}/retire][%d] retireSeasonConflict  %+v", 409, o.Payload)
+	return fmt.Sprintf("[PUT /seasonpass/admin/namespaces/{namespace}/seasons/{seasonId}/retire][%d] retireSeasonConflict  %+v", 409, o.ToString())
+}
+
+func (o *RetireSeasonConflict) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *RetireSeasonConflict) GetPayload() *seasonpassclientmodels.ErrorEntity {

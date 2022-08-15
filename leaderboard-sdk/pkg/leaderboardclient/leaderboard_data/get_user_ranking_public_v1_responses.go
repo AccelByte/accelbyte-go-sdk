@@ -10,6 +10,7 @@ package leaderboard_data
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -83,7 +84,16 @@ type GetUserRankingPublicV1OK struct {
 }
 
 func (o *GetUserRankingPublicV1OK) Error() string {
-	return fmt.Sprintf("[GET /leaderboard/v1/public/namespaces/{namespace}/leaderboards/{leaderboardCode}/users/{userId}][%d] getUserRankingPublicV1OK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /leaderboard/v1/public/namespaces/{namespace}/leaderboards/{leaderboardCode}/users/{userId}][%d] getUserRankingPublicV1OK  %+v", 200, o.ToString())
+}
+
+func (o *GetUserRankingPublicV1OK) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *GetUserRankingPublicV1OK) GetPayload() *leaderboardclientmodels.ModelsUserRankingResponse {
@@ -116,7 +126,16 @@ type GetUserRankingPublicV1Unauthorized struct {
 }
 
 func (o *GetUserRankingPublicV1Unauthorized) Error() string {
-	return fmt.Sprintf("[GET /leaderboard/v1/public/namespaces/{namespace}/leaderboards/{leaderboardCode}/users/{userId}][%d] getUserRankingPublicV1Unauthorized  %+v", 401, o.Payload)
+	return fmt.Sprintf("[GET /leaderboard/v1/public/namespaces/{namespace}/leaderboards/{leaderboardCode}/users/{userId}][%d] getUserRankingPublicV1Unauthorized  %+v", 401, o.ToString())
+}
+
+func (o *GetUserRankingPublicV1Unauthorized) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *GetUserRankingPublicV1Unauthorized) GetPayload() *leaderboardclientmodels.ResponseErrorResponse {
@@ -149,7 +168,16 @@ type GetUserRankingPublicV1Forbidden struct {
 }
 
 func (o *GetUserRankingPublicV1Forbidden) Error() string {
-	return fmt.Sprintf("[GET /leaderboard/v1/public/namespaces/{namespace}/leaderboards/{leaderboardCode}/users/{userId}][%d] getUserRankingPublicV1Forbidden  %+v", 403, o.Payload)
+	return fmt.Sprintf("[GET /leaderboard/v1/public/namespaces/{namespace}/leaderboards/{leaderboardCode}/users/{userId}][%d] getUserRankingPublicV1Forbidden  %+v", 403, o.ToString())
+}
+
+func (o *GetUserRankingPublicV1Forbidden) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *GetUserRankingPublicV1Forbidden) GetPayload() *leaderboardclientmodels.ResponseErrorResponse {
@@ -182,7 +210,16 @@ type GetUserRankingPublicV1NotFound struct {
 }
 
 func (o *GetUserRankingPublicV1NotFound) Error() string {
-	return fmt.Sprintf("[GET /leaderboard/v1/public/namespaces/{namespace}/leaderboards/{leaderboardCode}/users/{userId}][%d] getUserRankingPublicV1NotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[GET /leaderboard/v1/public/namespaces/{namespace}/leaderboards/{leaderboardCode}/users/{userId}][%d] getUserRankingPublicV1NotFound  %+v", 404, o.ToString())
+}
+
+func (o *GetUserRankingPublicV1NotFound) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *GetUserRankingPublicV1NotFound) GetPayload() *leaderboardclientmodels.ResponseErrorResponse {
@@ -215,7 +252,16 @@ type GetUserRankingPublicV1InternalServerError struct {
 }
 
 func (o *GetUserRankingPublicV1InternalServerError) Error() string {
-	return fmt.Sprintf("[GET /leaderboard/v1/public/namespaces/{namespace}/leaderboards/{leaderboardCode}/users/{userId}][%d] getUserRankingPublicV1InternalServerError  %+v", 500, o.Payload)
+	return fmt.Sprintf("[GET /leaderboard/v1/public/namespaces/{namespace}/leaderboards/{leaderboardCode}/users/{userId}][%d] getUserRankingPublicV1InternalServerError  %+v", 500, o.ToString())
+}
+
+func (o *GetUserRankingPublicV1InternalServerError) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *GetUserRankingPublicV1InternalServerError) GetPayload() *leaderboardclientmodels.ResponseErrorResponse {

@@ -10,6 +10,7 @@ package matchmaking
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -89,7 +90,16 @@ type GetSessionHistoryDetailedOK struct {
 }
 
 func (o *GetSessionHistoryDetailedOK) Error() string {
-	return fmt.Sprintf("[GET /matchmaking/v1/admin/namespaces/{namespace}/sessions/{matchID}/history/detailed][%d] getSessionHistoryDetailedOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /matchmaking/v1/admin/namespaces/{namespace}/sessions/{matchID}/history/detailed][%d] getSessionHistoryDetailedOK  %+v", 200, o.ToString())
+}
+
+func (o *GetSessionHistoryDetailedOK) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *GetSessionHistoryDetailedOK) GetPayload() []*matchmakingclientmodels.ServiceGetSessionHistoryDetailedResponseItem {
@@ -120,7 +130,16 @@ type GetSessionHistoryDetailedBadRequest struct {
 }
 
 func (o *GetSessionHistoryDetailedBadRequest) Error() string {
-	return fmt.Sprintf("[GET /matchmaking/v1/admin/namespaces/{namespace}/sessions/{matchID}/history/detailed][%d] getSessionHistoryDetailedBadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[GET /matchmaking/v1/admin/namespaces/{namespace}/sessions/{matchID}/history/detailed][%d] getSessionHistoryDetailedBadRequest  %+v", 400, o.ToString())
+}
+
+func (o *GetSessionHistoryDetailedBadRequest) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *GetSessionHistoryDetailedBadRequest) GetPayload() *matchmakingclientmodels.ResponseErrorV1 {
@@ -153,7 +172,16 @@ type GetSessionHistoryDetailedUnauthorized struct {
 }
 
 func (o *GetSessionHistoryDetailedUnauthorized) Error() string {
-	return fmt.Sprintf("[GET /matchmaking/v1/admin/namespaces/{namespace}/sessions/{matchID}/history/detailed][%d] getSessionHistoryDetailedUnauthorized  %+v", 401, o.Payload)
+	return fmt.Sprintf("[GET /matchmaking/v1/admin/namespaces/{namespace}/sessions/{matchID}/history/detailed][%d] getSessionHistoryDetailedUnauthorized  %+v", 401, o.ToString())
+}
+
+func (o *GetSessionHistoryDetailedUnauthorized) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *GetSessionHistoryDetailedUnauthorized) GetPayload() *matchmakingclientmodels.ResponseErrorV1 {
@@ -186,7 +214,16 @@ type GetSessionHistoryDetailedForbidden struct {
 }
 
 func (o *GetSessionHistoryDetailedForbidden) Error() string {
-	return fmt.Sprintf("[GET /matchmaking/v1/admin/namespaces/{namespace}/sessions/{matchID}/history/detailed][%d] getSessionHistoryDetailedForbidden  %+v", 403, o.Payload)
+	return fmt.Sprintf("[GET /matchmaking/v1/admin/namespaces/{namespace}/sessions/{matchID}/history/detailed][%d] getSessionHistoryDetailedForbidden  %+v", 403, o.ToString())
+}
+
+func (o *GetSessionHistoryDetailedForbidden) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *GetSessionHistoryDetailedForbidden) GetPayload() *matchmakingclientmodels.ResponseErrorV1 {
@@ -219,7 +256,16 @@ type GetSessionHistoryDetailedNotFound struct {
 }
 
 func (o *GetSessionHistoryDetailedNotFound) Error() string {
-	return fmt.Sprintf("[GET /matchmaking/v1/admin/namespaces/{namespace}/sessions/{matchID}/history/detailed][%d] getSessionHistoryDetailedNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[GET /matchmaking/v1/admin/namespaces/{namespace}/sessions/{matchID}/history/detailed][%d] getSessionHistoryDetailedNotFound  %+v", 404, o.ToString())
+}
+
+func (o *GetSessionHistoryDetailedNotFound) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *GetSessionHistoryDetailedNotFound) GetPayload() *matchmakingclientmodels.ResponseErrorV1 {
@@ -252,7 +298,16 @@ type GetSessionHistoryDetailedInternalServerError struct {
 }
 
 func (o *GetSessionHistoryDetailedInternalServerError) Error() string {
-	return fmt.Sprintf("[GET /matchmaking/v1/admin/namespaces/{namespace}/sessions/{matchID}/history/detailed][%d] getSessionHistoryDetailedInternalServerError  %+v", 500, o.Payload)
+	return fmt.Sprintf("[GET /matchmaking/v1/admin/namespaces/{namespace}/sessions/{matchID}/history/detailed][%d] getSessionHistoryDetailedInternalServerError  %+v", 500, o.ToString())
+}
+
+func (o *GetSessionHistoryDetailedInternalServerError) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *GetSessionHistoryDetailedInternalServerError) GetPayload() *matchmakingclientmodels.ResponseError {

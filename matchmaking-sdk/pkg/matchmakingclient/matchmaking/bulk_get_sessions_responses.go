@@ -10,6 +10,7 @@ package matchmaking
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -89,7 +90,16 @@ type BulkGetSessionsOK struct {
 }
 
 func (o *BulkGetSessionsOK) Error() string {
-	return fmt.Sprintf("[GET /matchmaking/v1/admin/namespaces/{namespace}/channels/all/sessions/bulk][%d] bulkGetSessionsOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /matchmaking/v1/admin/namespaces/{namespace}/channels/all/sessions/bulk][%d] bulkGetSessionsOK  %+v", 200, o.ToString())
+}
+
+func (o *BulkGetSessionsOK) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *BulkGetSessionsOK) GetPayload() []*matchmakingclientmodels.ModelsMatchmakingResult {
@@ -120,7 +130,16 @@ type BulkGetSessionsBadRequest struct {
 }
 
 func (o *BulkGetSessionsBadRequest) Error() string {
-	return fmt.Sprintf("[GET /matchmaking/v1/admin/namespaces/{namespace}/channels/all/sessions/bulk][%d] bulkGetSessionsBadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[GET /matchmaking/v1/admin/namespaces/{namespace}/channels/all/sessions/bulk][%d] bulkGetSessionsBadRequest  %+v", 400, o.ToString())
+}
+
+func (o *BulkGetSessionsBadRequest) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *BulkGetSessionsBadRequest) GetPayload() *matchmakingclientmodels.ResponseErrorV1 {
@@ -153,7 +172,16 @@ type BulkGetSessionsUnauthorized struct {
 }
 
 func (o *BulkGetSessionsUnauthorized) Error() string {
-	return fmt.Sprintf("[GET /matchmaking/v1/admin/namespaces/{namespace}/channels/all/sessions/bulk][%d] bulkGetSessionsUnauthorized  %+v", 401, o.Payload)
+	return fmt.Sprintf("[GET /matchmaking/v1/admin/namespaces/{namespace}/channels/all/sessions/bulk][%d] bulkGetSessionsUnauthorized  %+v", 401, o.ToString())
+}
+
+func (o *BulkGetSessionsUnauthorized) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *BulkGetSessionsUnauthorized) GetPayload() *matchmakingclientmodels.ResponseErrorV1 {
@@ -186,7 +214,16 @@ type BulkGetSessionsForbidden struct {
 }
 
 func (o *BulkGetSessionsForbidden) Error() string {
-	return fmt.Sprintf("[GET /matchmaking/v1/admin/namespaces/{namespace}/channels/all/sessions/bulk][%d] bulkGetSessionsForbidden  %+v", 403, o.Payload)
+	return fmt.Sprintf("[GET /matchmaking/v1/admin/namespaces/{namespace}/channels/all/sessions/bulk][%d] bulkGetSessionsForbidden  %+v", 403, o.ToString())
+}
+
+func (o *BulkGetSessionsForbidden) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *BulkGetSessionsForbidden) GetPayload() *matchmakingclientmodels.ResponseErrorV1 {
@@ -219,7 +256,16 @@ type BulkGetSessionsNotFound struct {
 }
 
 func (o *BulkGetSessionsNotFound) Error() string {
-	return fmt.Sprintf("[GET /matchmaking/v1/admin/namespaces/{namespace}/channels/all/sessions/bulk][%d] bulkGetSessionsNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[GET /matchmaking/v1/admin/namespaces/{namespace}/channels/all/sessions/bulk][%d] bulkGetSessionsNotFound  %+v", 404, o.ToString())
+}
+
+func (o *BulkGetSessionsNotFound) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *BulkGetSessionsNotFound) GetPayload() *matchmakingclientmodels.ResponseErrorV1 {
@@ -252,7 +298,16 @@ type BulkGetSessionsInternalServerError struct {
 }
 
 func (o *BulkGetSessionsInternalServerError) Error() string {
-	return fmt.Sprintf("[GET /matchmaking/v1/admin/namespaces/{namespace}/channels/all/sessions/bulk][%d] bulkGetSessionsInternalServerError  %+v", 500, o.Payload)
+	return fmt.Sprintf("[GET /matchmaking/v1/admin/namespaces/{namespace}/channels/all/sessions/bulk][%d] bulkGetSessionsInternalServerError  %+v", 500, o.ToString())
+}
+
+func (o *BulkGetSessionsInternalServerError) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *BulkGetSessionsInternalServerError) GetPayload() *matchmakingclientmodels.ResponseError {

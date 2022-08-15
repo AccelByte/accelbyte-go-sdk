@@ -10,6 +10,7 @@ package public_player_record
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -83,7 +84,16 @@ type PutPlayerRecordHandlerV1OK struct {
 }
 
 func (o *PutPlayerRecordHandlerV1OK) Error() string {
-	return fmt.Sprintf("[PUT /cloudsave/v1/namespaces/{namespace}/users/{userId}/records/{key}][%d] putPlayerRecordHandlerV1OK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[PUT /cloudsave/v1/namespaces/{namespace}/users/{userId}/records/{key}][%d] putPlayerRecordHandlerV1OK  %+v", 200, o.ToString())
+}
+
+func (o *PutPlayerRecordHandlerV1OK) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *PutPlayerRecordHandlerV1OK) GetPayload() *cloudsaveclientmodels.ModelsPlayerRecordResponse {
@@ -116,7 +126,16 @@ type PutPlayerRecordHandlerV1BadRequest struct {
 }
 
 func (o *PutPlayerRecordHandlerV1BadRequest) Error() string {
-	return fmt.Sprintf("[PUT /cloudsave/v1/namespaces/{namespace}/users/{userId}/records/{key}][%d] putPlayerRecordHandlerV1BadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[PUT /cloudsave/v1/namespaces/{namespace}/users/{userId}/records/{key}][%d] putPlayerRecordHandlerV1BadRequest  %+v", 400, o.ToString())
+}
+
+func (o *PutPlayerRecordHandlerV1BadRequest) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *PutPlayerRecordHandlerV1BadRequest) GetPayload() *cloudsaveclientmodels.ModelsResponseError {
@@ -149,7 +168,16 @@ type PutPlayerRecordHandlerV1Unauthorized struct {
 }
 
 func (o *PutPlayerRecordHandlerV1Unauthorized) Error() string {
-	return fmt.Sprintf("[PUT /cloudsave/v1/namespaces/{namespace}/users/{userId}/records/{key}][%d] putPlayerRecordHandlerV1Unauthorized  %+v", 401, o.Payload)
+	return fmt.Sprintf("[PUT /cloudsave/v1/namespaces/{namespace}/users/{userId}/records/{key}][%d] putPlayerRecordHandlerV1Unauthorized  %+v", 401, o.ToString())
+}
+
+func (o *PutPlayerRecordHandlerV1Unauthorized) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *PutPlayerRecordHandlerV1Unauthorized) GetPayload() *cloudsaveclientmodels.ModelsResponseError {
@@ -182,7 +210,16 @@ type PutPlayerRecordHandlerV1Forbidden struct {
 }
 
 func (o *PutPlayerRecordHandlerV1Forbidden) Error() string {
-	return fmt.Sprintf("[PUT /cloudsave/v1/namespaces/{namespace}/users/{userId}/records/{key}][%d] putPlayerRecordHandlerV1Forbidden  %+v", 403, o.Payload)
+	return fmt.Sprintf("[PUT /cloudsave/v1/namespaces/{namespace}/users/{userId}/records/{key}][%d] putPlayerRecordHandlerV1Forbidden  %+v", 403, o.ToString())
+}
+
+func (o *PutPlayerRecordHandlerV1Forbidden) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *PutPlayerRecordHandlerV1Forbidden) GetPayload() *cloudsaveclientmodels.ModelsResponseError {
@@ -215,7 +252,16 @@ type PutPlayerRecordHandlerV1InternalServerError struct {
 }
 
 func (o *PutPlayerRecordHandlerV1InternalServerError) Error() string {
-	return fmt.Sprintf("[PUT /cloudsave/v1/namespaces/{namespace}/users/{userId}/records/{key}][%d] putPlayerRecordHandlerV1InternalServerError  %+v", 500, o.Payload)
+	return fmt.Sprintf("[PUT /cloudsave/v1/namespaces/{namespace}/users/{userId}/records/{key}][%d] putPlayerRecordHandlerV1InternalServerError  %+v", 500, o.ToString())
+}
+
+func (o *PutPlayerRecordHandlerV1InternalServerError) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *PutPlayerRecordHandlerV1InternalServerError) GetPayload() *cloudsaveclientmodels.ModelsResponseError {

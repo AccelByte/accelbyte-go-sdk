@@ -10,6 +10,7 @@ package profanity
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -110,7 +111,16 @@ type AdminImportProfanityFiltersFromFileBadRequest struct {
 }
 
 func (o *AdminImportProfanityFiltersFromFileBadRequest) Error() string {
-	return fmt.Sprintf("[POST /lobby/v1/admin/profanity/namespaces/{namespace}/list/{list}/filters/bulk-file][%d] adminImportProfanityFiltersFromFileBadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[POST /lobby/v1/admin/profanity/namespaces/{namespace}/list/{list}/filters/bulk-file][%d] adminImportProfanityFiltersFromFileBadRequest  %+v", 400, o.ToString())
+}
+
+func (o *AdminImportProfanityFiltersFromFileBadRequest) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *AdminImportProfanityFiltersFromFileBadRequest) GetPayload() *lobbyclientmodels.RestapiErrorResponseBody {
@@ -143,7 +153,16 @@ type AdminImportProfanityFiltersFromFileUnauthorized struct {
 }
 
 func (o *AdminImportProfanityFiltersFromFileUnauthorized) Error() string {
-	return fmt.Sprintf("[POST /lobby/v1/admin/profanity/namespaces/{namespace}/list/{list}/filters/bulk-file][%d] adminImportProfanityFiltersFromFileUnauthorized  %+v", 401, o.Payload)
+	return fmt.Sprintf("[POST /lobby/v1/admin/profanity/namespaces/{namespace}/list/{list}/filters/bulk-file][%d] adminImportProfanityFiltersFromFileUnauthorized  %+v", 401, o.ToString())
+}
+
+func (o *AdminImportProfanityFiltersFromFileUnauthorized) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *AdminImportProfanityFiltersFromFileUnauthorized) GetPayload() *lobbyclientmodels.RestapiErrorResponseBody {
@@ -176,7 +195,16 @@ type AdminImportProfanityFiltersFromFileForbidden struct {
 }
 
 func (o *AdminImportProfanityFiltersFromFileForbidden) Error() string {
-	return fmt.Sprintf("[POST /lobby/v1/admin/profanity/namespaces/{namespace}/list/{list}/filters/bulk-file][%d] adminImportProfanityFiltersFromFileForbidden  %+v", 403, o.Payload)
+	return fmt.Sprintf("[POST /lobby/v1/admin/profanity/namespaces/{namespace}/list/{list}/filters/bulk-file][%d] adminImportProfanityFiltersFromFileForbidden  %+v", 403, o.ToString())
+}
+
+func (o *AdminImportProfanityFiltersFromFileForbidden) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *AdminImportProfanityFiltersFromFileForbidden) GetPayload() *lobbyclientmodels.RestapiErrorResponseBody {
@@ -209,7 +237,16 @@ type AdminImportProfanityFiltersFromFileNotFound struct {
 }
 
 func (o *AdminImportProfanityFiltersFromFileNotFound) Error() string {
-	return fmt.Sprintf("[POST /lobby/v1/admin/profanity/namespaces/{namespace}/list/{list}/filters/bulk-file][%d] adminImportProfanityFiltersFromFileNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[POST /lobby/v1/admin/profanity/namespaces/{namespace}/list/{list}/filters/bulk-file][%d] adminImportProfanityFiltersFromFileNotFound  %+v", 404, o.ToString())
+}
+
+func (o *AdminImportProfanityFiltersFromFileNotFound) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *AdminImportProfanityFiltersFromFileNotFound) GetPayload() *lobbyclientmodels.RestapiErrorResponseBody {
@@ -242,7 +279,16 @@ type AdminImportProfanityFiltersFromFileInternalServerError struct {
 }
 
 func (o *AdminImportProfanityFiltersFromFileInternalServerError) Error() string {
-	return fmt.Sprintf("[POST /lobby/v1/admin/profanity/namespaces/{namespace}/list/{list}/filters/bulk-file][%d] adminImportProfanityFiltersFromFileInternalServerError  %+v", 500, o.Payload)
+	return fmt.Sprintf("[POST /lobby/v1/admin/profanity/namespaces/{namespace}/list/{list}/filters/bulk-file][%d] adminImportProfanityFiltersFromFileInternalServerError  %+v", 500, o.ToString())
+}
+
+func (o *AdminImportProfanityFiltersFromFileInternalServerError) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *AdminImportProfanityFiltersFromFileInternalServerError) GetPayload() *lobbyclientmodels.RestapiErrorResponseBody {

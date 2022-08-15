@@ -10,6 +10,7 @@ package catalog_changes
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -71,7 +72,16 @@ type PublishSelectedOK struct {
 }
 
 func (o *PublishSelectedOK) Error() string {
-	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/stores/{storeId}/catalogChanges/publishSelected][%d] publishSelectedOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/stores/{storeId}/catalogChanges/publishSelected][%d] publishSelectedOK  %+v", 200, o.ToString())
+}
+
+func (o *PublishSelectedOK) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *PublishSelectedOK) GetPayload() *platformclientmodels.StoreInfo {
@@ -104,7 +114,16 @@ type PublishSelectedBadRequest struct {
 }
 
 func (o *PublishSelectedBadRequest) Error() string {
-	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/stores/{storeId}/catalogChanges/publishSelected][%d] publishSelectedBadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/stores/{storeId}/catalogChanges/publishSelected][%d] publishSelectedBadRequest  %+v", 400, o.ToString())
+}
+
+func (o *PublishSelectedBadRequest) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *PublishSelectedBadRequest) GetPayload() *platformclientmodels.ErrorEntity {
@@ -137,7 +156,16 @@ type PublishSelectedNotFound struct {
 }
 
 func (o *PublishSelectedNotFound) Error() string {
-	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/stores/{storeId}/catalogChanges/publishSelected][%d] publishSelectedNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/stores/{storeId}/catalogChanges/publishSelected][%d] publishSelectedNotFound  %+v", 404, o.ToString())
+}
+
+func (o *PublishSelectedNotFound) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *PublishSelectedNotFound) GetPayload() *platformclientmodels.ErrorEntity {

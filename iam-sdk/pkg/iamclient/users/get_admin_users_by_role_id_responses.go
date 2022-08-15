@@ -10,6 +10,7 @@ package users
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -89,7 +90,16 @@ type GetAdminUsersByRoleIDOK struct {
 }
 
 func (o *GetAdminUsersByRoleIDOK) Error() string {
-	return fmt.Sprintf("[GET /iam/namespaces/{namespace}/users/admin][%d] getAdminUsersByRoleIdOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /iam/namespaces/{namespace}/users/admin][%d] getAdminUsersByRoleIdOK  %+v", 200, o.ToString())
+}
+
+func (o *GetAdminUsersByRoleIDOK) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *GetAdminUsersByRoleIDOK) GetPayload() *iamclientmodels.ModelGetAdminUsersResponse {
@@ -122,7 +132,16 @@ type GetAdminUsersByRoleIDBadRequest struct {
 }
 
 func (o *GetAdminUsersByRoleIDBadRequest) Error() string {
-	return fmt.Sprintf("[GET /iam/namespaces/{namespace}/users/admin][%d] getAdminUsersByRoleIdBadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[GET /iam/namespaces/{namespace}/users/admin][%d] getAdminUsersByRoleIdBadRequest  %+v", 400, o.ToString())
+}
+
+func (o *GetAdminUsersByRoleIDBadRequest) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *GetAdminUsersByRoleIDBadRequest) GetPayload() *iamclientmodels.RestErrorResponse {

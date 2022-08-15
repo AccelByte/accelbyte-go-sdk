@@ -10,6 +10,7 @@ package users
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -86,7 +87,16 @@ type PublicVerifyRegistrationCodeBadRequest struct {
 }
 
 func (o *PublicVerifyRegistrationCodeBadRequest) Error() string {
-	return fmt.Sprintf("[POST /iam/v3/public/namespaces/{namespace}/users/code/verify][%d] publicVerifyRegistrationCodeBadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[POST /iam/v3/public/namespaces/{namespace}/users/code/verify][%d] publicVerifyRegistrationCodeBadRequest  %+v", 400, o.ToString())
+}
+
+func (o *PublicVerifyRegistrationCodeBadRequest) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *PublicVerifyRegistrationCodeBadRequest) GetPayload() *iamclientmodels.RestErrorResponse {

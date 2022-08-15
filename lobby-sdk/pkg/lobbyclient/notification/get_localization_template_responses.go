@@ -10,6 +10,7 @@ package notification
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -83,7 +84,16 @@ type GetLocalizationTemplateOK struct {
 }
 
 func (o *GetLocalizationTemplateOK) Error() string {
-	return fmt.Sprintf("[GET /notification/namespaces/{namespace}/templates/{templateSlug}/languages/{templateLanguage}][%d] getLocalizationTemplateOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /notification/namespaces/{namespace}/templates/{templateSlug}/languages/{templateLanguage}][%d] getLocalizationTemplateOK  %+v", 200, o.ToString())
+}
+
+func (o *GetLocalizationTemplateOK) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *GetLocalizationTemplateOK) GetPayload() *lobbyclientmodels.ModelTemplateLocalization {
@@ -116,7 +126,16 @@ type GetLocalizationTemplateBadRequest struct {
 }
 
 func (o *GetLocalizationTemplateBadRequest) Error() string {
-	return fmt.Sprintf("[GET /notification/namespaces/{namespace}/templates/{templateSlug}/languages/{templateLanguage}][%d] getLocalizationTemplateBadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[GET /notification/namespaces/{namespace}/templates/{templateSlug}/languages/{templateLanguage}][%d] getLocalizationTemplateBadRequest  %+v", 400, o.ToString())
+}
+
+func (o *GetLocalizationTemplateBadRequest) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *GetLocalizationTemplateBadRequest) GetPayload() *lobbyclientmodels.RestapiErrorResponseBody {
@@ -149,7 +168,16 @@ type GetLocalizationTemplateUnauthorized struct {
 }
 
 func (o *GetLocalizationTemplateUnauthorized) Error() string {
-	return fmt.Sprintf("[GET /notification/namespaces/{namespace}/templates/{templateSlug}/languages/{templateLanguage}][%d] getLocalizationTemplateUnauthorized  %+v", 401, o.Payload)
+	return fmt.Sprintf("[GET /notification/namespaces/{namespace}/templates/{templateSlug}/languages/{templateLanguage}][%d] getLocalizationTemplateUnauthorized  %+v", 401, o.ToString())
+}
+
+func (o *GetLocalizationTemplateUnauthorized) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *GetLocalizationTemplateUnauthorized) GetPayload() *lobbyclientmodels.RestapiErrorResponseBody {
@@ -182,7 +210,16 @@ type GetLocalizationTemplateForbidden struct {
 }
 
 func (o *GetLocalizationTemplateForbidden) Error() string {
-	return fmt.Sprintf("[GET /notification/namespaces/{namespace}/templates/{templateSlug}/languages/{templateLanguage}][%d] getLocalizationTemplateForbidden  %+v", 403, o.Payload)
+	return fmt.Sprintf("[GET /notification/namespaces/{namespace}/templates/{templateSlug}/languages/{templateLanguage}][%d] getLocalizationTemplateForbidden  %+v", 403, o.ToString())
+}
+
+func (o *GetLocalizationTemplateForbidden) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *GetLocalizationTemplateForbidden) GetPayload() *lobbyclientmodels.RestapiErrorResponseBody {
@@ -215,7 +252,16 @@ type GetLocalizationTemplateNotFound struct {
 }
 
 func (o *GetLocalizationTemplateNotFound) Error() string {
-	return fmt.Sprintf("[GET /notification/namespaces/{namespace}/templates/{templateSlug}/languages/{templateLanguage}][%d] getLocalizationTemplateNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[GET /notification/namespaces/{namespace}/templates/{templateSlug}/languages/{templateLanguage}][%d] getLocalizationTemplateNotFound  %+v", 404, o.ToString())
+}
+
+func (o *GetLocalizationTemplateNotFound) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *GetLocalizationTemplateNotFound) GetPayload() *lobbyclientmodels.RestapiErrorResponseBody {

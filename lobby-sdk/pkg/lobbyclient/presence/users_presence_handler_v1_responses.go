@@ -10,6 +10,7 @@ package presence
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -77,7 +78,16 @@ type UsersPresenceHandlerV1OK struct {
 }
 
 func (o *UsersPresenceHandlerV1OK) Error() string {
-	return fmt.Sprintf("[GET /lobby/v1/public/presence/namespaces/{namespace}/users/presence][%d] usersPresenceHandlerV1OK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /lobby/v1/public/presence/namespaces/{namespace}/users/presence][%d] usersPresenceHandlerV1OK  %+v", 200, o.ToString())
+}
+
+func (o *UsersPresenceHandlerV1OK) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *UsersPresenceHandlerV1OK) GetPayload() *lobbyclientmodels.HandlersGetUsersPresenceResponse {
@@ -110,7 +120,16 @@ type UsersPresenceHandlerV1BadRequest struct {
 }
 
 func (o *UsersPresenceHandlerV1BadRequest) Error() string {
-	return fmt.Sprintf("[GET /lobby/v1/public/presence/namespaces/{namespace}/users/presence][%d] usersPresenceHandlerV1BadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[GET /lobby/v1/public/presence/namespaces/{namespace}/users/presence][%d] usersPresenceHandlerV1BadRequest  %+v", 400, o.ToString())
+}
+
+func (o *UsersPresenceHandlerV1BadRequest) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *UsersPresenceHandlerV1BadRequest) GetPayload() *lobbyclientmodels.RestapiErrorResponseBody {
@@ -143,7 +162,16 @@ type UsersPresenceHandlerV1Unauthorized struct {
 }
 
 func (o *UsersPresenceHandlerV1Unauthorized) Error() string {
-	return fmt.Sprintf("[GET /lobby/v1/public/presence/namespaces/{namespace}/users/presence][%d] usersPresenceHandlerV1Unauthorized  %+v", 401, o.Payload)
+	return fmt.Sprintf("[GET /lobby/v1/public/presence/namespaces/{namespace}/users/presence][%d] usersPresenceHandlerV1Unauthorized  %+v", 401, o.ToString())
+}
+
+func (o *UsersPresenceHandlerV1Unauthorized) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *UsersPresenceHandlerV1Unauthorized) GetPayload() *lobbyclientmodels.RestapiErrorResponseBody {
@@ -176,7 +204,16 @@ type UsersPresenceHandlerV1InternalServerError struct {
 }
 
 func (o *UsersPresenceHandlerV1InternalServerError) Error() string {
-	return fmt.Sprintf("[GET /lobby/v1/public/presence/namespaces/{namespace}/users/presence][%d] usersPresenceHandlerV1InternalServerError  %+v", 500, o.Payload)
+	return fmt.Sprintf("[GET /lobby/v1/public/presence/namespaces/{namespace}/users/presence][%d] usersPresenceHandlerV1InternalServerError  %+v", 500, o.ToString())
+}
+
+func (o *UsersPresenceHandlerV1InternalServerError) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *UsersPresenceHandlerV1InternalServerError) GetPayload() *lobbyclientmodels.RestapiErrorResponseBody {

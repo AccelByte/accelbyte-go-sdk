@@ -10,6 +10,7 @@ package payment_config
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -65,7 +66,16 @@ type TestCheckoutConfigByIDOK struct {
 }
 
 func (o *TestCheckoutConfigByIDOK) Error() string {
-	return fmt.Sprintf("[GET /platform/admin/payment/config/merchant/{id}/checkoutconfig/test][%d] testCheckoutConfigByIdOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /platform/admin/payment/config/merchant/{id}/checkoutconfig/test][%d] testCheckoutConfigByIdOK  %+v", 200, o.ToString())
+}
+
+func (o *TestCheckoutConfigByIDOK) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *TestCheckoutConfigByIDOK) GetPayload() *platformclientmodels.TestResult {
@@ -98,7 +108,16 @@ type TestCheckoutConfigByIDNotFound struct {
 }
 
 func (o *TestCheckoutConfigByIDNotFound) Error() string {
-	return fmt.Sprintf("[GET /platform/admin/payment/config/merchant/{id}/checkoutconfig/test][%d] testCheckoutConfigByIdNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[GET /platform/admin/payment/config/merchant/{id}/checkoutconfig/test][%d] testCheckoutConfigByIdNotFound  %+v", 404, o.ToString())
+}
+
+func (o *TestCheckoutConfigByIDNotFound) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *TestCheckoutConfigByIDNotFound) GetPayload() *platformclientmodels.ErrorEntity {

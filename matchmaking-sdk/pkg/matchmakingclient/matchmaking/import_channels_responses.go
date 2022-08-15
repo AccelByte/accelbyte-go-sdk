@@ -10,6 +10,7 @@ package matchmaking
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -83,7 +84,16 @@ type ImportChannelsOK struct {
 }
 
 func (o *ImportChannelsOK) Error() string {
-	return fmt.Sprintf("[POST /matchmaking/v1/admin/namespaces/{namespace}/channels/import][%d] importChannelsOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[POST /matchmaking/v1/admin/namespaces/{namespace}/channels/import][%d] importChannelsOK  %+v", 200, o.ToString())
+}
+
+func (o *ImportChannelsOK) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *ImportChannelsOK) GetPayload() *matchmakingclientmodels.ModelsImportConfigResponse {
@@ -116,7 +126,16 @@ type ImportChannelsBadRequest struct {
 }
 
 func (o *ImportChannelsBadRequest) Error() string {
-	return fmt.Sprintf("[POST /matchmaking/v1/admin/namespaces/{namespace}/channels/import][%d] importChannelsBadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[POST /matchmaking/v1/admin/namespaces/{namespace}/channels/import][%d] importChannelsBadRequest  %+v", 400, o.ToString())
+}
+
+func (o *ImportChannelsBadRequest) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *ImportChannelsBadRequest) GetPayload() *matchmakingclientmodels.ResponseErrorV1 {
@@ -149,7 +168,16 @@ type ImportChannelsUnauthorized struct {
 }
 
 func (o *ImportChannelsUnauthorized) Error() string {
-	return fmt.Sprintf("[POST /matchmaking/v1/admin/namespaces/{namespace}/channels/import][%d] importChannelsUnauthorized  %+v", 401, o.Payload)
+	return fmt.Sprintf("[POST /matchmaking/v1/admin/namespaces/{namespace}/channels/import][%d] importChannelsUnauthorized  %+v", 401, o.ToString())
+}
+
+func (o *ImportChannelsUnauthorized) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *ImportChannelsUnauthorized) GetPayload() *matchmakingclientmodels.ResponseErrorV1 {
@@ -182,7 +210,16 @@ type ImportChannelsForbidden struct {
 }
 
 func (o *ImportChannelsForbidden) Error() string {
-	return fmt.Sprintf("[POST /matchmaking/v1/admin/namespaces/{namespace}/channels/import][%d] importChannelsForbidden  %+v", 403, o.Payload)
+	return fmt.Sprintf("[POST /matchmaking/v1/admin/namespaces/{namespace}/channels/import][%d] importChannelsForbidden  %+v", 403, o.ToString())
+}
+
+func (o *ImportChannelsForbidden) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *ImportChannelsForbidden) GetPayload() *matchmakingclientmodels.ResponseErrorV1 {
@@ -215,7 +252,16 @@ type ImportChannelsInternalServerError struct {
 }
 
 func (o *ImportChannelsInternalServerError) Error() string {
-	return fmt.Sprintf("[POST /matchmaking/v1/admin/namespaces/{namespace}/channels/import][%d] importChannelsInternalServerError  %+v", 500, o.Payload)
+	return fmt.Sprintf("[POST /matchmaking/v1/admin/namespaces/{namespace}/channels/import][%d] importChannelsInternalServerError  %+v", 500, o.ToString())
+}
+
+func (o *ImportChannelsInternalServerError) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *ImportChannelsInternalServerError) GetPayload() *matchmakingclientmodels.ResponseErrorV1 {

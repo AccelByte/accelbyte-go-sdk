@@ -10,6 +10,7 @@ package admin
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -92,7 +93,16 @@ type DeleteSessionUnauthorized struct {
 }
 
 func (o *DeleteSessionUnauthorized) Error() string {
-	return fmt.Sprintf("[DELETE /dsmcontroller/admin/namespaces/{namespace}/sessions/{sessionID}][%d] deleteSessionUnauthorized  %+v", 401, o.Payload)
+	return fmt.Sprintf("[DELETE /dsmcontroller/admin/namespaces/{namespace}/sessions/{sessionID}][%d] deleteSessionUnauthorized  %+v", 401, o.ToString())
+}
+
+func (o *DeleteSessionUnauthorized) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *DeleteSessionUnauthorized) GetPayload() *dsmcclientmodels.ResponseError {
@@ -125,7 +135,16 @@ type DeleteSessionInternalServerError struct {
 }
 
 func (o *DeleteSessionInternalServerError) Error() string {
-	return fmt.Sprintf("[DELETE /dsmcontroller/admin/namespaces/{namespace}/sessions/{sessionID}][%d] deleteSessionInternalServerError  %+v", 500, o.Payload)
+	return fmt.Sprintf("[DELETE /dsmcontroller/admin/namespaces/{namespace}/sessions/{sessionID}][%d] deleteSessionInternalServerError  %+v", 500, o.ToString())
+}
+
+func (o *DeleteSessionInternalServerError) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *DeleteSessionInternalServerError) GetPayload() *dsmcclientmodels.ResponseError {

@@ -10,6 +10,7 @@ package fulfillment
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -77,7 +78,16 @@ type FulfillItemOK struct {
 }
 
 func (o *FulfillItemOK) Error() string {
-	return fmt.Sprintf("[POST /platform/admin/namespaces/{namespace}/users/{userId}/fulfillment][%d] fulfillItemOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[POST /platform/admin/namespaces/{namespace}/users/{userId}/fulfillment][%d] fulfillItemOK  %+v", 200, o.ToString())
+}
+
+func (o *FulfillItemOK) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *FulfillItemOK) GetPayload() *platformclientmodels.FulfillmentResult {
@@ -110,7 +120,16 @@ type FulfillItemBadRequest struct {
 }
 
 func (o *FulfillItemBadRequest) Error() string {
-	return fmt.Sprintf("[POST /platform/admin/namespaces/{namespace}/users/{userId}/fulfillment][%d] fulfillItemBadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[POST /platform/admin/namespaces/{namespace}/users/{userId}/fulfillment][%d] fulfillItemBadRequest  %+v", 400, o.ToString())
+}
+
+func (o *FulfillItemBadRequest) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *FulfillItemBadRequest) GetPayload() *platformclientmodels.ErrorEntity {
@@ -143,7 +162,16 @@ type FulfillItemNotFound struct {
 }
 
 func (o *FulfillItemNotFound) Error() string {
-	return fmt.Sprintf("[POST /platform/admin/namespaces/{namespace}/users/{userId}/fulfillment][%d] fulfillItemNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[POST /platform/admin/namespaces/{namespace}/users/{userId}/fulfillment][%d] fulfillItemNotFound  %+v", 404, o.ToString())
+}
+
+func (o *FulfillItemNotFound) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *FulfillItemNotFound) GetPayload() *platformclientmodels.ErrorEntity {
@@ -176,7 +204,16 @@ type FulfillItemConflict struct {
 }
 
 func (o *FulfillItemConflict) Error() string {
-	return fmt.Sprintf("[POST /platform/admin/namespaces/{namespace}/users/{userId}/fulfillment][%d] fulfillItemConflict  %+v", 409, o.Payload)
+	return fmt.Sprintf("[POST /platform/admin/namespaces/{namespace}/users/{userId}/fulfillment][%d] fulfillItemConflict  %+v", 409, o.ToString())
+}
+
+func (o *FulfillItemConflict) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *FulfillItemConflict) GetPayload() *platformclientmodels.ErrorEntity {

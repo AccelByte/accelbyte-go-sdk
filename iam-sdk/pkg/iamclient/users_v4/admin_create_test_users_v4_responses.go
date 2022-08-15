@@ -10,6 +10,7 @@ package users_v4
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -77,7 +78,16 @@ type AdminCreateTestUsersV4Created struct {
 }
 
 func (o *AdminCreateTestUsersV4Created) Error() string {
-	return fmt.Sprintf("[POST /iam/v4/admin/namespaces/{namespace}/test_users][%d] adminCreateTestUsersV4Created  %+v", 201, o.Payload)
+	return fmt.Sprintf("[POST /iam/v4/admin/namespaces/{namespace}/test_users][%d] adminCreateTestUsersV4Created  %+v", 201, o.ToString())
+}
+
+func (o *AdminCreateTestUsersV4Created) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *AdminCreateTestUsersV4Created) GetPayload() *iamclientmodels.AccountCreateTestUsersResponseV4 {
@@ -110,7 +120,16 @@ type AdminCreateTestUsersV4BadRequest struct {
 }
 
 func (o *AdminCreateTestUsersV4BadRequest) Error() string {
-	return fmt.Sprintf("[POST /iam/v4/admin/namespaces/{namespace}/test_users][%d] adminCreateTestUsersV4BadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[POST /iam/v4/admin/namespaces/{namespace}/test_users][%d] adminCreateTestUsersV4BadRequest  %+v", 400, o.ToString())
+}
+
+func (o *AdminCreateTestUsersV4BadRequest) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *AdminCreateTestUsersV4BadRequest) GetPayload() *iamclientmodels.RestErrorResponse {
@@ -143,7 +162,16 @@ type AdminCreateTestUsersV4InternalServerError struct {
 }
 
 func (o *AdminCreateTestUsersV4InternalServerError) Error() string {
-	return fmt.Sprintf("[POST /iam/v4/admin/namespaces/{namespace}/test_users][%d] adminCreateTestUsersV4InternalServerError  %+v", 500, o.Payload)
+	return fmt.Sprintf("[POST /iam/v4/admin/namespaces/{namespace}/test_users][%d] adminCreateTestUsersV4InternalServerError  %+v", 500, o.ToString())
+}
+
+func (o *AdminCreateTestUsersV4InternalServerError) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *AdminCreateTestUsersV4InternalServerError) GetPayload() *iamclientmodels.RestErrorResponse {
@@ -176,7 +204,16 @@ type AdminCreateTestUsersV4NotImplemented struct {
 }
 
 func (o *AdminCreateTestUsersV4NotImplemented) Error() string {
-	return fmt.Sprintf("[POST /iam/v4/admin/namespaces/{namespace}/test_users][%d] adminCreateTestUsersV4NotImplemented  %+v", 501, o.Payload)
+	return fmt.Sprintf("[POST /iam/v4/admin/namespaces/{namespace}/test_users][%d] adminCreateTestUsersV4NotImplemented  %+v", 501, o.ToString())
+}
+
+func (o *AdminCreateTestUsersV4NotImplemented) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *AdminCreateTestUsersV4NotImplemented) GetPayload() *iamclientmodels.RestErrorResponse {

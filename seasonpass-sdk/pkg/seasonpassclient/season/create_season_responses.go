@@ -10,6 +10,7 @@ package season
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -77,7 +78,16 @@ type CreateSeasonCreated struct {
 }
 
 func (o *CreateSeasonCreated) Error() string {
-	return fmt.Sprintf("[POST /seasonpass/admin/namespaces/{namespace}/seasons][%d] createSeasonCreated  %+v", 201, o.Payload)
+	return fmt.Sprintf("[POST /seasonpass/admin/namespaces/{namespace}/seasons][%d] createSeasonCreated  %+v", 201, o.ToString())
+}
+
+func (o *CreateSeasonCreated) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *CreateSeasonCreated) GetPayload() *seasonpassclientmodels.SeasonInfo {
@@ -110,7 +120,16 @@ type CreateSeasonBadRequest struct {
 }
 
 func (o *CreateSeasonBadRequest) Error() string {
-	return fmt.Sprintf("[POST /seasonpass/admin/namespaces/{namespace}/seasons][%d] createSeasonBadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[POST /seasonpass/admin/namespaces/{namespace}/seasons][%d] createSeasonBadRequest  %+v", 400, o.ToString())
+}
+
+func (o *CreateSeasonBadRequest) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *CreateSeasonBadRequest) GetPayload() *seasonpassclientmodels.ErrorEntity {
@@ -143,7 +162,16 @@ type CreateSeasonNotFound struct {
 }
 
 func (o *CreateSeasonNotFound) Error() string {
-	return fmt.Sprintf("[POST /seasonpass/admin/namespaces/{namespace}/seasons][%d] createSeasonNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[POST /seasonpass/admin/namespaces/{namespace}/seasons][%d] createSeasonNotFound  %+v", 404, o.ToString())
+}
+
+func (o *CreateSeasonNotFound) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *CreateSeasonNotFound) GetPayload() *seasonpassclientmodels.ErrorEntity {
@@ -176,7 +204,16 @@ type CreateSeasonUnprocessableEntity struct {
 }
 
 func (o *CreateSeasonUnprocessableEntity) Error() string {
-	return fmt.Sprintf("[POST /seasonpass/admin/namespaces/{namespace}/seasons][%d] createSeasonUnprocessableEntity  %+v", 422, o.Payload)
+	return fmt.Sprintf("[POST /seasonpass/admin/namespaces/{namespace}/seasons][%d] createSeasonUnprocessableEntity  %+v", 422, o.ToString())
+}
+
+func (o *CreateSeasonUnprocessableEntity) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *CreateSeasonUnprocessableEntity) GetPayload() *seasonpassclientmodels.ValidationErrorEntity {

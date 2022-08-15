@@ -10,6 +10,7 @@ package payment_config
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -59,7 +60,16 @@ type TestPayPalConfigOK struct {
 }
 
 func (o *TestPayPalConfigOK) Error() string {
-	return fmt.Sprintf("[POST /platform/admin/payment/config/merchant/paypalconfig/test][%d] testPayPalConfigOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[POST /platform/admin/payment/config/merchant/paypalconfig/test][%d] testPayPalConfigOK  %+v", 200, o.ToString())
+}
+
+func (o *TestPayPalConfigOK) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *TestPayPalConfigOK) GetPayload() *platformclientmodels.TestResult {

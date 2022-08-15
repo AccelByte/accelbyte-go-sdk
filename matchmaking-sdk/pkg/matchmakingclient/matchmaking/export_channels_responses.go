@@ -10,6 +10,7 @@ package matchmaking
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -77,7 +78,16 @@ type ExportChannelsOK struct {
 }
 
 func (o *ExportChannelsOK) Error() string {
-	return fmt.Sprintf("[GET /matchmaking/v1/admin/namespaces/{namespace}/channels/export][%d] exportChannelsOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /matchmaking/v1/admin/namespaces/{namespace}/channels/export][%d] exportChannelsOK  %+v", 200, o.ToString())
+}
+
+func (o *ExportChannelsOK) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *ExportChannelsOK) GetPayload() []*matchmakingclientmodels.ModelsChannelV1 {
@@ -108,7 +118,16 @@ type ExportChannelsUnauthorized struct {
 }
 
 func (o *ExportChannelsUnauthorized) Error() string {
-	return fmt.Sprintf("[GET /matchmaking/v1/admin/namespaces/{namespace}/channels/export][%d] exportChannelsUnauthorized  %+v", 401, o.Payload)
+	return fmt.Sprintf("[GET /matchmaking/v1/admin/namespaces/{namespace}/channels/export][%d] exportChannelsUnauthorized  %+v", 401, o.ToString())
+}
+
+func (o *ExportChannelsUnauthorized) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *ExportChannelsUnauthorized) GetPayload() *matchmakingclientmodels.ResponseErrorV1 {
@@ -141,7 +160,16 @@ type ExportChannelsForbidden struct {
 }
 
 func (o *ExportChannelsForbidden) Error() string {
-	return fmt.Sprintf("[GET /matchmaking/v1/admin/namespaces/{namespace}/channels/export][%d] exportChannelsForbidden  %+v", 403, o.Payload)
+	return fmt.Sprintf("[GET /matchmaking/v1/admin/namespaces/{namespace}/channels/export][%d] exportChannelsForbidden  %+v", 403, o.ToString())
+}
+
+func (o *ExportChannelsForbidden) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *ExportChannelsForbidden) GetPayload() *matchmakingclientmodels.ResponseErrorV1 {
@@ -174,7 +202,16 @@ type ExportChannelsInternalServerError struct {
 }
 
 func (o *ExportChannelsInternalServerError) Error() string {
-	return fmt.Sprintf("[GET /matchmaking/v1/admin/namespaces/{namespace}/channels/export][%d] exportChannelsInternalServerError  %+v", 500, o.Payload)
+	return fmt.Sprintf("[GET /matchmaking/v1/admin/namespaces/{namespace}/channels/export][%d] exportChannelsInternalServerError  %+v", 500, o.ToString())
+}
+
+func (o *ExportChannelsInternalServerError) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *ExportChannelsInternalServerError) GetPayload() *matchmakingclientmodels.ResponseErrorV1 {

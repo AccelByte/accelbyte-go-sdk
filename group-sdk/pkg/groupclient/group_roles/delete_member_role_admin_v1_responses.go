@@ -10,6 +10,7 @@ package group_roles
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -110,7 +111,16 @@ type DeleteMemberRoleAdminV1BadRequest struct {
 }
 
 func (o *DeleteMemberRoleAdminV1BadRequest) Error() string {
-	return fmt.Sprintf("[DELETE /group/v1/admin/namespaces/{namespace}/roles/{memberRoleId}][%d] deleteMemberRoleAdminV1BadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[DELETE /group/v1/admin/namespaces/{namespace}/roles/{memberRoleId}][%d] deleteMemberRoleAdminV1BadRequest  %+v", 400, o.ToString())
+}
+
+func (o *DeleteMemberRoleAdminV1BadRequest) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *DeleteMemberRoleAdminV1BadRequest) GetPayload() *groupclientmodels.ResponseErrorResponse {
@@ -143,7 +153,16 @@ type DeleteMemberRoleAdminV1Unauthorized struct {
 }
 
 func (o *DeleteMemberRoleAdminV1Unauthorized) Error() string {
-	return fmt.Sprintf("[DELETE /group/v1/admin/namespaces/{namespace}/roles/{memberRoleId}][%d] deleteMemberRoleAdminV1Unauthorized  %+v", 401, o.Payload)
+	return fmt.Sprintf("[DELETE /group/v1/admin/namespaces/{namespace}/roles/{memberRoleId}][%d] deleteMemberRoleAdminV1Unauthorized  %+v", 401, o.ToString())
+}
+
+func (o *DeleteMemberRoleAdminV1Unauthorized) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *DeleteMemberRoleAdminV1Unauthorized) GetPayload() *groupclientmodels.ResponseErrorResponse {
@@ -176,7 +195,16 @@ type DeleteMemberRoleAdminV1Forbidden struct {
 }
 
 func (o *DeleteMemberRoleAdminV1Forbidden) Error() string {
-	return fmt.Sprintf("[DELETE /group/v1/admin/namespaces/{namespace}/roles/{memberRoleId}][%d] deleteMemberRoleAdminV1Forbidden  %+v", 403, o.Payload)
+	return fmt.Sprintf("[DELETE /group/v1/admin/namespaces/{namespace}/roles/{memberRoleId}][%d] deleteMemberRoleAdminV1Forbidden  %+v", 403, o.ToString())
+}
+
+func (o *DeleteMemberRoleAdminV1Forbidden) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *DeleteMemberRoleAdminV1Forbidden) GetPayload() *groupclientmodels.ResponseErrorResponse {
@@ -209,7 +237,16 @@ type DeleteMemberRoleAdminV1NotFound struct {
 }
 
 func (o *DeleteMemberRoleAdminV1NotFound) Error() string {
-	return fmt.Sprintf("[DELETE /group/v1/admin/namespaces/{namespace}/roles/{memberRoleId}][%d] deleteMemberRoleAdminV1NotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[DELETE /group/v1/admin/namespaces/{namespace}/roles/{memberRoleId}][%d] deleteMemberRoleAdminV1NotFound  %+v", 404, o.ToString())
+}
+
+func (o *DeleteMemberRoleAdminV1NotFound) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *DeleteMemberRoleAdminV1NotFound) GetPayload() *groupclientmodels.ResponseErrorResponse {
@@ -242,7 +279,16 @@ type DeleteMemberRoleAdminV1InternalServerError struct {
 }
 
 func (o *DeleteMemberRoleAdminV1InternalServerError) Error() string {
-	return fmt.Sprintf("[DELETE /group/v1/admin/namespaces/{namespace}/roles/{memberRoleId}][%d] deleteMemberRoleAdminV1InternalServerError  %+v", 500, o.Payload)
+	return fmt.Sprintf("[DELETE /group/v1/admin/namespaces/{namespace}/roles/{memberRoleId}][%d] deleteMemberRoleAdminV1InternalServerError  %+v", 500, o.ToString())
+}
+
+func (o *DeleteMemberRoleAdminV1InternalServerError) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *DeleteMemberRoleAdminV1InternalServerError) GetPayload() *groupclientmodels.ResponseErrorResponse {

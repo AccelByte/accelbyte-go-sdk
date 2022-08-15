@@ -10,6 +10,7 @@ package group_roles
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -89,7 +90,16 @@ type UpdateMemberRoleAdminV1OK struct {
 }
 
 func (o *UpdateMemberRoleAdminV1OK) Error() string {
-	return fmt.Sprintf("[PATCH /group/v1/admin/namespaces/{namespace}/roles/{memberRoleId}][%d] updateMemberRoleAdminV1OK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[PATCH /group/v1/admin/namespaces/{namespace}/roles/{memberRoleId}][%d] updateMemberRoleAdminV1OK  %+v", 200, o.ToString())
+}
+
+func (o *UpdateMemberRoleAdminV1OK) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *UpdateMemberRoleAdminV1OK) GetPayload() *groupclientmodels.ModelsUpdateMemberRoleResponseV1 {
@@ -122,7 +132,16 @@ type UpdateMemberRoleAdminV1BadRequest struct {
 }
 
 func (o *UpdateMemberRoleAdminV1BadRequest) Error() string {
-	return fmt.Sprintf("[PATCH /group/v1/admin/namespaces/{namespace}/roles/{memberRoleId}][%d] updateMemberRoleAdminV1BadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[PATCH /group/v1/admin/namespaces/{namespace}/roles/{memberRoleId}][%d] updateMemberRoleAdminV1BadRequest  %+v", 400, o.ToString())
+}
+
+func (o *UpdateMemberRoleAdminV1BadRequest) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *UpdateMemberRoleAdminV1BadRequest) GetPayload() *groupclientmodels.ResponseErrorResponse {
@@ -155,7 +174,16 @@ type UpdateMemberRoleAdminV1Unauthorized struct {
 }
 
 func (o *UpdateMemberRoleAdminV1Unauthorized) Error() string {
-	return fmt.Sprintf("[PATCH /group/v1/admin/namespaces/{namespace}/roles/{memberRoleId}][%d] updateMemberRoleAdminV1Unauthorized  %+v", 401, o.Payload)
+	return fmt.Sprintf("[PATCH /group/v1/admin/namespaces/{namespace}/roles/{memberRoleId}][%d] updateMemberRoleAdminV1Unauthorized  %+v", 401, o.ToString())
+}
+
+func (o *UpdateMemberRoleAdminV1Unauthorized) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *UpdateMemberRoleAdminV1Unauthorized) GetPayload() *groupclientmodels.ResponseErrorResponse {
@@ -188,7 +216,16 @@ type UpdateMemberRoleAdminV1Forbidden struct {
 }
 
 func (o *UpdateMemberRoleAdminV1Forbidden) Error() string {
-	return fmt.Sprintf("[PATCH /group/v1/admin/namespaces/{namespace}/roles/{memberRoleId}][%d] updateMemberRoleAdminV1Forbidden  %+v", 403, o.Payload)
+	return fmt.Sprintf("[PATCH /group/v1/admin/namespaces/{namespace}/roles/{memberRoleId}][%d] updateMemberRoleAdminV1Forbidden  %+v", 403, o.ToString())
+}
+
+func (o *UpdateMemberRoleAdminV1Forbidden) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *UpdateMemberRoleAdminV1Forbidden) GetPayload() *groupclientmodels.ResponseErrorResponse {
@@ -221,7 +258,16 @@ type UpdateMemberRoleAdminV1NotFound struct {
 }
 
 func (o *UpdateMemberRoleAdminV1NotFound) Error() string {
-	return fmt.Sprintf("[PATCH /group/v1/admin/namespaces/{namespace}/roles/{memberRoleId}][%d] updateMemberRoleAdminV1NotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[PATCH /group/v1/admin/namespaces/{namespace}/roles/{memberRoleId}][%d] updateMemberRoleAdminV1NotFound  %+v", 404, o.ToString())
+}
+
+func (o *UpdateMemberRoleAdminV1NotFound) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *UpdateMemberRoleAdminV1NotFound) GetPayload() *groupclientmodels.ResponseErrorResponse {
@@ -254,7 +300,16 @@ type UpdateMemberRoleAdminV1InternalServerError struct {
 }
 
 func (o *UpdateMemberRoleAdminV1InternalServerError) Error() string {
-	return fmt.Sprintf("[PATCH /group/v1/admin/namespaces/{namespace}/roles/{memberRoleId}][%d] updateMemberRoleAdminV1InternalServerError  %+v", 500, o.Payload)
+	return fmt.Sprintf("[PATCH /group/v1/admin/namespaces/{namespace}/roles/{memberRoleId}][%d] updateMemberRoleAdminV1InternalServerError  %+v", 500, o.ToString())
+}
+
+func (o *UpdateMemberRoleAdminV1InternalServerError) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *UpdateMemberRoleAdminV1InternalServerError) GetPayload() *groupclientmodels.ResponseErrorResponse {

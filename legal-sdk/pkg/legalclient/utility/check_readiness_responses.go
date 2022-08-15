@@ -10,6 +10,7 @@ package utility
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -59,7 +60,16 @@ type CheckReadinessOK struct {
 }
 
 func (o *CheckReadinessOK) Error() string {
-	return fmt.Sprintf("[GET /agreement/public/readiness][%d] checkReadinessOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /agreement/public/readiness][%d] checkReadinessOK  %+v", 200, o.ToString())
+}
+
+func (o *CheckReadinessOK) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *CheckReadinessOK) GetPayload() *legalclientmodels.LegalReadinessStatusResponse {

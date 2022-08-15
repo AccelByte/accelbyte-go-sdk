@@ -10,6 +10,7 @@ package leaderboard_data
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -89,7 +90,16 @@ type GetArchivedLeaderboardRankingDataV1HandlerOK struct {
 }
 
 func (o *GetArchivedLeaderboardRankingDataV1HandlerOK) Error() string {
-	return fmt.Sprintf("[GET /leaderboard/v1/public/namespaces/{namespace}/leaderboards/{leaderboardCode}/archived][%d] getArchivedLeaderboardRankingDataV1HandlerOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /leaderboard/v1/public/namespaces/{namespace}/leaderboards/{leaderboardCode}/archived][%d] getArchivedLeaderboardRankingDataV1HandlerOK  %+v", 200, o.ToString())
+}
+
+func (o *GetArchivedLeaderboardRankingDataV1HandlerOK) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *GetArchivedLeaderboardRankingDataV1HandlerOK) GetPayload() []*leaderboardclientmodels.ModelsArchiveLeaderboardSignedURLResponse {
@@ -120,7 +130,16 @@ type GetArchivedLeaderboardRankingDataV1HandlerBadRequest struct {
 }
 
 func (o *GetArchivedLeaderboardRankingDataV1HandlerBadRequest) Error() string {
-	return fmt.Sprintf("[GET /leaderboard/v1/public/namespaces/{namespace}/leaderboards/{leaderboardCode}/archived][%d] getArchivedLeaderboardRankingDataV1HandlerBadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[GET /leaderboard/v1/public/namespaces/{namespace}/leaderboards/{leaderboardCode}/archived][%d] getArchivedLeaderboardRankingDataV1HandlerBadRequest  %+v", 400, o.ToString())
+}
+
+func (o *GetArchivedLeaderboardRankingDataV1HandlerBadRequest) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *GetArchivedLeaderboardRankingDataV1HandlerBadRequest) GetPayload() *leaderboardclientmodels.ResponseErrorResponse {
@@ -153,7 +172,16 @@ type GetArchivedLeaderboardRankingDataV1HandlerUnauthorized struct {
 }
 
 func (o *GetArchivedLeaderboardRankingDataV1HandlerUnauthorized) Error() string {
-	return fmt.Sprintf("[GET /leaderboard/v1/public/namespaces/{namespace}/leaderboards/{leaderboardCode}/archived][%d] getArchivedLeaderboardRankingDataV1HandlerUnauthorized  %+v", 401, o.Payload)
+	return fmt.Sprintf("[GET /leaderboard/v1/public/namespaces/{namespace}/leaderboards/{leaderboardCode}/archived][%d] getArchivedLeaderboardRankingDataV1HandlerUnauthorized  %+v", 401, o.ToString())
+}
+
+func (o *GetArchivedLeaderboardRankingDataV1HandlerUnauthorized) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *GetArchivedLeaderboardRankingDataV1HandlerUnauthorized) GetPayload() *leaderboardclientmodels.ResponseErrorResponse {
@@ -186,7 +214,16 @@ type GetArchivedLeaderboardRankingDataV1HandlerForbidden struct {
 }
 
 func (o *GetArchivedLeaderboardRankingDataV1HandlerForbidden) Error() string {
-	return fmt.Sprintf("[GET /leaderboard/v1/public/namespaces/{namespace}/leaderboards/{leaderboardCode}/archived][%d] getArchivedLeaderboardRankingDataV1HandlerForbidden  %+v", 403, o.Payload)
+	return fmt.Sprintf("[GET /leaderboard/v1/public/namespaces/{namespace}/leaderboards/{leaderboardCode}/archived][%d] getArchivedLeaderboardRankingDataV1HandlerForbidden  %+v", 403, o.ToString())
+}
+
+func (o *GetArchivedLeaderboardRankingDataV1HandlerForbidden) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *GetArchivedLeaderboardRankingDataV1HandlerForbidden) GetPayload() *leaderboardclientmodels.ResponseErrorResponse {
@@ -219,7 +256,16 @@ type GetArchivedLeaderboardRankingDataV1HandlerNotFound struct {
 }
 
 func (o *GetArchivedLeaderboardRankingDataV1HandlerNotFound) Error() string {
-	return fmt.Sprintf("[GET /leaderboard/v1/public/namespaces/{namespace}/leaderboards/{leaderboardCode}/archived][%d] getArchivedLeaderboardRankingDataV1HandlerNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[GET /leaderboard/v1/public/namespaces/{namespace}/leaderboards/{leaderboardCode}/archived][%d] getArchivedLeaderboardRankingDataV1HandlerNotFound  %+v", 404, o.ToString())
+}
+
+func (o *GetArchivedLeaderboardRankingDataV1HandlerNotFound) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *GetArchivedLeaderboardRankingDataV1HandlerNotFound) GetPayload() *leaderboardclientmodels.ResponseErrorResponse {
@@ -252,7 +298,16 @@ type GetArchivedLeaderboardRankingDataV1HandlerInternalServerError struct {
 }
 
 func (o *GetArchivedLeaderboardRankingDataV1HandlerInternalServerError) Error() string {
-	return fmt.Sprintf("[GET /leaderboard/v1/public/namespaces/{namespace}/leaderboards/{leaderboardCode}/archived][%d] getArchivedLeaderboardRankingDataV1HandlerInternalServerError  %+v", 500, o.Payload)
+	return fmt.Sprintf("[GET /leaderboard/v1/public/namespaces/{namespace}/leaderboards/{leaderboardCode}/archived][%d] getArchivedLeaderboardRankingDataV1HandlerInternalServerError  %+v", 500, o.ToString())
+}
+
+func (o *GetArchivedLeaderboardRankingDataV1HandlerInternalServerError) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *GetArchivedLeaderboardRankingDataV1HandlerInternalServerError) GetPayload() *leaderboardclientmodels.ResponseErrorResponse {

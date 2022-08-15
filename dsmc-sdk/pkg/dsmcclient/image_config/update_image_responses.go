@@ -10,6 +10,7 @@ package image_config
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -98,7 +99,16 @@ type UpdateImageBadRequest struct {
 }
 
 func (o *UpdateImageBadRequest) Error() string {
-	return fmt.Sprintf("[PUT /dsmcontroller/admin/images][%d] updateImageBadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[PUT /dsmcontroller/admin/images][%d] updateImageBadRequest  %+v", 400, o.ToString())
+}
+
+func (o *UpdateImageBadRequest) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *UpdateImageBadRequest) GetPayload() *dsmcclientmodels.ResponseError {
@@ -131,7 +141,16 @@ type UpdateImageUnauthorized struct {
 }
 
 func (o *UpdateImageUnauthorized) Error() string {
-	return fmt.Sprintf("[PUT /dsmcontroller/admin/images][%d] updateImageUnauthorized  %+v", 401, o.Payload)
+	return fmt.Sprintf("[PUT /dsmcontroller/admin/images][%d] updateImageUnauthorized  %+v", 401, o.ToString())
+}
+
+func (o *UpdateImageUnauthorized) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *UpdateImageUnauthorized) GetPayload() *dsmcclientmodels.ResponseError {
@@ -164,7 +183,16 @@ type UpdateImageInternalServerError struct {
 }
 
 func (o *UpdateImageInternalServerError) Error() string {
-	return fmt.Sprintf("[PUT /dsmcontroller/admin/images][%d] updateImageInternalServerError  %+v", 500, o.Payload)
+	return fmt.Sprintf("[PUT /dsmcontroller/admin/images][%d] updateImageInternalServerError  %+v", 500, o.ToString())
+}
+
+func (o *UpdateImageInternalServerError) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *UpdateImageInternalServerError) GetPayload() *dsmcclientmodels.ResponseError {

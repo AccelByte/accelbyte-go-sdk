@@ -10,6 +10,7 @@ package admin
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -71,7 +72,16 @@ type CountServerOK struct {
 }
 
 func (o *CountServerOK) Error() string {
-	return fmt.Sprintf("[GET /dsmcontroller/admin/namespaces/{namespace}/servers/count][%d] countServerOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /dsmcontroller/admin/namespaces/{namespace}/servers/count][%d] countServerOK  %+v", 200, o.ToString())
+}
+
+func (o *CountServerOK) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *CountServerOK) GetPayload() *dsmcclientmodels.ModelsCountServerResponse {
@@ -104,7 +114,16 @@ type CountServerUnauthorized struct {
 }
 
 func (o *CountServerUnauthorized) Error() string {
-	return fmt.Sprintf("[GET /dsmcontroller/admin/namespaces/{namespace}/servers/count][%d] countServerUnauthorized  %+v", 401, o.Payload)
+	return fmt.Sprintf("[GET /dsmcontroller/admin/namespaces/{namespace}/servers/count][%d] countServerUnauthorized  %+v", 401, o.ToString())
+}
+
+func (o *CountServerUnauthorized) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *CountServerUnauthorized) GetPayload() *dsmcclientmodels.ResponseError {
@@ -137,7 +156,16 @@ type CountServerInternalServerError struct {
 }
 
 func (o *CountServerInternalServerError) Error() string {
-	return fmt.Sprintf("[GET /dsmcontroller/admin/namespaces/{namespace}/servers/count][%d] countServerInternalServerError  %+v", 500, o.Payload)
+	return fmt.Sprintf("[GET /dsmcontroller/admin/namespaces/{namespace}/servers/count][%d] countServerInternalServerError  %+v", 500, o.ToString())
+}
+
+func (o *CountServerInternalServerError) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *CountServerInternalServerError) GetPayload() *dsmcclientmodels.ResponseError {

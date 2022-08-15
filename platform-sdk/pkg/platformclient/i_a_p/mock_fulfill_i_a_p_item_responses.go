@@ -10,6 +10,7 @@ package i_a_p
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -98,7 +99,16 @@ type MockFulfillIAPItemBadRequest struct {
 }
 
 func (o *MockFulfillIAPItemBadRequest) Error() string {
-	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/users/{userId}/iap/mock/receipt][%d] mockFulfillIAPItemBadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/users/{userId}/iap/mock/receipt][%d] mockFulfillIAPItemBadRequest  %+v", 400, o.ToString())
+}
+
+func (o *MockFulfillIAPItemBadRequest) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *MockFulfillIAPItemBadRequest) GetPayload() *platformclientmodels.ErrorEntity {
@@ -131,7 +141,16 @@ type MockFulfillIAPItemNotFound struct {
 }
 
 func (o *MockFulfillIAPItemNotFound) Error() string {
-	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/users/{userId}/iap/mock/receipt][%d] mockFulfillIAPItemNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/users/{userId}/iap/mock/receipt][%d] mockFulfillIAPItemNotFound  %+v", 404, o.ToString())
+}
+
+func (o *MockFulfillIAPItemNotFound) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *MockFulfillIAPItemNotFound) GetPayload() *platformclientmodels.ErrorEntity {
@@ -164,7 +183,16 @@ type MockFulfillIAPItemConflict struct {
 }
 
 func (o *MockFulfillIAPItemConflict) Error() string {
-	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/users/{userId}/iap/mock/receipt][%d] mockFulfillIAPItemConflict  %+v", 409, o.Payload)
+	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/users/{userId}/iap/mock/receipt][%d] mockFulfillIAPItemConflict  %+v", 409, o.ToString())
+}
+
+func (o *MockFulfillIAPItemConflict) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *MockFulfillIAPItemConflict) GetPayload() *platformclientmodels.ErrorEntity {

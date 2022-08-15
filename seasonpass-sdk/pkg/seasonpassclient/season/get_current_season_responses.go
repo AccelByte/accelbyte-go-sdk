@@ -10,6 +10,7 @@ package season
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -71,7 +72,16 @@ type GetCurrentSeasonOK struct {
 }
 
 func (o *GetCurrentSeasonOK) Error() string {
-	return fmt.Sprintf("[GET /seasonpass/admin/namespaces/{namespace}/seasons/current][%d] getCurrentSeasonOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /seasonpass/admin/namespaces/{namespace}/seasons/current][%d] getCurrentSeasonOK  %+v", 200, o.ToString())
+}
+
+func (o *GetCurrentSeasonOK) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *GetCurrentSeasonOK) GetPayload() *seasonpassclientmodels.SeasonSummary {
@@ -104,7 +114,16 @@ type GetCurrentSeasonBadRequest struct {
 }
 
 func (o *GetCurrentSeasonBadRequest) Error() string {
-	return fmt.Sprintf("[GET /seasonpass/admin/namespaces/{namespace}/seasons/current][%d] getCurrentSeasonBadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[GET /seasonpass/admin/namespaces/{namespace}/seasons/current][%d] getCurrentSeasonBadRequest  %+v", 400, o.ToString())
+}
+
+func (o *GetCurrentSeasonBadRequest) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *GetCurrentSeasonBadRequest) GetPayload() *seasonpassclientmodels.ErrorEntity {
@@ -137,7 +156,16 @@ type GetCurrentSeasonNotFound struct {
 }
 
 func (o *GetCurrentSeasonNotFound) Error() string {
-	return fmt.Sprintf("[GET /seasonpass/admin/namespaces/{namespace}/seasons/current][%d] getCurrentSeasonNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[GET /seasonpass/admin/namespaces/{namespace}/seasons/current][%d] getCurrentSeasonNotFound  %+v", 404, o.ToString())
+}
+
+func (o *GetCurrentSeasonNotFound) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *GetCurrentSeasonNotFound) GetPayload() *seasonpassclientmodels.ErrorEntity {

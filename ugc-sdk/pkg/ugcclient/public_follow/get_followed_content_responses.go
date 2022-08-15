@@ -10,6 +10,7 @@ package public_follow
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -77,7 +78,16 @@ type GetFollowedContentOK struct {
 }
 
 func (o *GetFollowedContentOK) Error() string {
-	return fmt.Sprintf("[GET /ugc/v1/public/namespaces/{namespace}/contents/followed][%d] getFollowedContentOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /ugc/v1/public/namespaces/{namespace}/contents/followed][%d] getFollowedContentOK  %+v", 200, o.ToString())
+}
+
+func (o *GetFollowedContentOK) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *GetFollowedContentOK) GetPayload() *ugcclientmodels.ModelsPaginatedContentDownloadResponse {
@@ -110,7 +120,16 @@ type GetFollowedContentUnauthorized struct {
 }
 
 func (o *GetFollowedContentUnauthorized) Error() string {
-	return fmt.Sprintf("[GET /ugc/v1/public/namespaces/{namespace}/contents/followed][%d] getFollowedContentUnauthorized  %+v", 401, o.Payload)
+	return fmt.Sprintf("[GET /ugc/v1/public/namespaces/{namespace}/contents/followed][%d] getFollowedContentUnauthorized  %+v", 401, o.ToString())
+}
+
+func (o *GetFollowedContentUnauthorized) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *GetFollowedContentUnauthorized) GetPayload() *ugcclientmodels.ResponseError {
@@ -143,7 +162,16 @@ type GetFollowedContentNotFound struct {
 }
 
 func (o *GetFollowedContentNotFound) Error() string {
-	return fmt.Sprintf("[GET /ugc/v1/public/namespaces/{namespace}/contents/followed][%d] getFollowedContentNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[GET /ugc/v1/public/namespaces/{namespace}/contents/followed][%d] getFollowedContentNotFound  %+v", 404, o.ToString())
+}
+
+func (o *GetFollowedContentNotFound) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *GetFollowedContentNotFound) GetPayload() *ugcclientmodels.ResponseError {
@@ -176,7 +204,16 @@ type GetFollowedContentInternalServerError struct {
 }
 
 func (o *GetFollowedContentInternalServerError) Error() string {
-	return fmt.Sprintf("[GET /ugc/v1/public/namespaces/{namespace}/contents/followed][%d] getFollowedContentInternalServerError  %+v", 500, o.Payload)
+	return fmt.Sprintf("[GET /ugc/v1/public/namespaces/{namespace}/contents/followed][%d] getFollowedContentInternalServerError  %+v", 500, o.ToString())
+}
+
+func (o *GetFollowedContentInternalServerError) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *GetFollowedContentInternalServerError) GetPayload() *ugcclientmodels.ResponseError {

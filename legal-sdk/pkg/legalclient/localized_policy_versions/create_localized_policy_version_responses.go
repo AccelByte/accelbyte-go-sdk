@@ -10,6 +10,7 @@ package localized_policy_versions
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -71,7 +72,16 @@ type CreateLocalizedPolicyVersionCreated struct {
 }
 
 func (o *CreateLocalizedPolicyVersionCreated) Error() string {
-	return fmt.Sprintf("[POST /agreement/admin/localized-policy-versions/versions/{policyVersionId}][%d] createLocalizedPolicyVersionCreated  %+v", 201, o.Payload)
+	return fmt.Sprintf("[POST /agreement/admin/localized-policy-versions/versions/{policyVersionId}][%d] createLocalizedPolicyVersionCreated  %+v", 201, o.ToString())
+}
+
+func (o *CreateLocalizedPolicyVersionCreated) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *CreateLocalizedPolicyVersionCreated) GetPayload() *legalclientmodels.CreateLocalizedPolicyVersionResponse {
@@ -104,7 +114,16 @@ type CreateLocalizedPolicyVersionBadRequest struct {
 }
 
 func (o *CreateLocalizedPolicyVersionBadRequest) Error() string {
-	return fmt.Sprintf("[POST /agreement/admin/localized-policy-versions/versions/{policyVersionId}][%d] createLocalizedPolicyVersionBadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[POST /agreement/admin/localized-policy-versions/versions/{policyVersionId}][%d] createLocalizedPolicyVersionBadRequest  %+v", 400, o.ToString())
+}
+
+func (o *CreateLocalizedPolicyVersionBadRequest) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *CreateLocalizedPolicyVersionBadRequest) GetPayload() *legalclientmodels.ErrorEntity {
@@ -137,7 +156,16 @@ type CreateLocalizedPolicyVersionConflict struct {
 }
 
 func (o *CreateLocalizedPolicyVersionConflict) Error() string {
-	return fmt.Sprintf("[POST /agreement/admin/localized-policy-versions/versions/{policyVersionId}][%d] createLocalizedPolicyVersionConflict  %+v", 409, o.Payload)
+	return fmt.Sprintf("[POST /agreement/admin/localized-policy-versions/versions/{policyVersionId}][%d] createLocalizedPolicyVersionConflict  %+v", 409, o.ToString())
+}
+
+func (o *CreateLocalizedPolicyVersionConflict) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *CreateLocalizedPolicyVersionConflict) GetPayload() *legalclientmodels.ErrorEntity {

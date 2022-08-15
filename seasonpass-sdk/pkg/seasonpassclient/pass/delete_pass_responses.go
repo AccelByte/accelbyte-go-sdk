@@ -10,6 +10,7 @@ package pass
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -98,7 +99,16 @@ type DeletePassBadRequest struct {
 }
 
 func (o *DeletePassBadRequest) Error() string {
-	return fmt.Sprintf("[DELETE /seasonpass/admin/namespaces/{namespace}/seasons/{seasonId}/passes/{code}][%d] deletePassBadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[DELETE /seasonpass/admin/namespaces/{namespace}/seasons/{seasonId}/passes/{code}][%d] deletePassBadRequest  %+v", 400, o.ToString())
+}
+
+func (o *DeletePassBadRequest) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *DeletePassBadRequest) GetPayload() *seasonpassclientmodels.ErrorEntity {
@@ -131,7 +141,16 @@ type DeletePassNotFound struct {
 }
 
 func (o *DeletePassNotFound) Error() string {
-	return fmt.Sprintf("[DELETE /seasonpass/admin/namespaces/{namespace}/seasons/{seasonId}/passes/{code}][%d] deletePassNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[DELETE /seasonpass/admin/namespaces/{namespace}/seasons/{seasonId}/passes/{code}][%d] deletePassNotFound  %+v", 404, o.ToString())
+}
+
+func (o *DeletePassNotFound) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *DeletePassNotFound) GetPayload() *seasonpassclientmodels.ErrorEntity {
@@ -164,7 +183,16 @@ type DeletePassConflict struct {
 }
 
 func (o *DeletePassConflict) Error() string {
-	return fmt.Sprintf("[DELETE /seasonpass/admin/namespaces/{namespace}/seasons/{seasonId}/passes/{code}][%d] deletePassConflict  %+v", 409, o.Payload)
+	return fmt.Sprintf("[DELETE /seasonpass/admin/namespaces/{namespace}/seasons/{seasonId}/passes/{code}][%d] deletePassConflict  %+v", 409, o.ToString())
+}
+
+func (o *DeletePassConflict) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *DeletePassConflict) GetPayload() *seasonpassclientmodels.ErrorEntity {

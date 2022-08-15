@@ -10,6 +10,7 @@ package public_follow
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -77,7 +78,16 @@ type GetPublicFollowersOK struct {
 }
 
 func (o *GetPublicFollowersOK) Error() string {
-	return fmt.Sprintf("[GET /ugc/v1/public/namespaces/{namespace}/users/{userId}/followers][%d] getPublicFollowersOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /ugc/v1/public/namespaces/{namespace}/users/{userId}/followers][%d] getPublicFollowersOK  %+v", 200, o.ToString())
+}
+
+func (o *GetPublicFollowersOK) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *GetPublicFollowersOK) GetPayload() *ugcclientmodels.ModelsPaginatedCreatorOverviewResponse {
@@ -110,7 +120,16 @@ type GetPublicFollowersUnauthorized struct {
 }
 
 func (o *GetPublicFollowersUnauthorized) Error() string {
-	return fmt.Sprintf("[GET /ugc/v1/public/namespaces/{namespace}/users/{userId}/followers][%d] getPublicFollowersUnauthorized  %+v", 401, o.Payload)
+	return fmt.Sprintf("[GET /ugc/v1/public/namespaces/{namespace}/users/{userId}/followers][%d] getPublicFollowersUnauthorized  %+v", 401, o.ToString())
+}
+
+func (o *GetPublicFollowersUnauthorized) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *GetPublicFollowersUnauthorized) GetPayload() *ugcclientmodels.ResponseError {
@@ -143,7 +162,16 @@ type GetPublicFollowersNotFound struct {
 }
 
 func (o *GetPublicFollowersNotFound) Error() string {
-	return fmt.Sprintf("[GET /ugc/v1/public/namespaces/{namespace}/users/{userId}/followers][%d] getPublicFollowersNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[GET /ugc/v1/public/namespaces/{namespace}/users/{userId}/followers][%d] getPublicFollowersNotFound  %+v", 404, o.ToString())
+}
+
+func (o *GetPublicFollowersNotFound) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *GetPublicFollowersNotFound) GetPayload() *ugcclientmodels.ResponseError {
@@ -176,7 +204,16 @@ type GetPublicFollowersInternalServerError struct {
 }
 
 func (o *GetPublicFollowersInternalServerError) Error() string {
-	return fmt.Sprintf("[GET /ugc/v1/public/namespaces/{namespace}/users/{userId}/followers][%d] getPublicFollowersInternalServerError  %+v", 500, o.Payload)
+	return fmt.Sprintf("[GET /ugc/v1/public/namespaces/{namespace}/users/{userId}/followers][%d] getPublicFollowersInternalServerError  %+v", 500, o.ToString())
+}
+
+func (o *GetPublicFollowersInternalServerError) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *GetPublicFollowersInternalServerError) GetPayload() *ugcclientmodels.ResponseError {

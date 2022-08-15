@@ -10,6 +10,7 @@ package anonymization
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -98,7 +99,16 @@ type AdminDeleteAllUserContentsUnauthorized struct {
 }
 
 func (o *AdminDeleteAllUserContentsUnauthorized) Error() string {
-	return fmt.Sprintf("[DELETE /ugc/v1/admin/namespaces/{namespace}/users/{userId}/contents][%d] adminDeleteAllUserContentsUnauthorized  %+v", 401, o.Payload)
+	return fmt.Sprintf("[DELETE /ugc/v1/admin/namespaces/{namespace}/users/{userId}/contents][%d] adminDeleteAllUserContentsUnauthorized  %+v", 401, o.ToString())
+}
+
+func (o *AdminDeleteAllUserContentsUnauthorized) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *AdminDeleteAllUserContentsUnauthorized) GetPayload() *ugcclientmodels.ResponseError {
@@ -131,7 +141,16 @@ type AdminDeleteAllUserContentsNotFound struct {
 }
 
 func (o *AdminDeleteAllUserContentsNotFound) Error() string {
-	return fmt.Sprintf("[DELETE /ugc/v1/admin/namespaces/{namespace}/users/{userId}/contents][%d] adminDeleteAllUserContentsNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[DELETE /ugc/v1/admin/namespaces/{namespace}/users/{userId}/contents][%d] adminDeleteAllUserContentsNotFound  %+v", 404, o.ToString())
+}
+
+func (o *AdminDeleteAllUserContentsNotFound) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *AdminDeleteAllUserContentsNotFound) GetPayload() *ugcclientmodels.ResponseError {
@@ -164,7 +183,16 @@ type AdminDeleteAllUserContentsInternalServerError struct {
 }
 
 func (o *AdminDeleteAllUserContentsInternalServerError) Error() string {
-	return fmt.Sprintf("[DELETE /ugc/v1/admin/namespaces/{namespace}/users/{userId}/contents][%d] adminDeleteAllUserContentsInternalServerError  %+v", 500, o.Payload)
+	return fmt.Sprintf("[DELETE /ugc/v1/admin/namespaces/{namespace}/users/{userId}/contents][%d] adminDeleteAllUserContentsInternalServerError  %+v", 500, o.ToString())
+}
+
+func (o *AdminDeleteAllUserContentsInternalServerError) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *AdminDeleteAllUserContentsInternalServerError) GetPayload() *ugcclientmodels.ResponseError {

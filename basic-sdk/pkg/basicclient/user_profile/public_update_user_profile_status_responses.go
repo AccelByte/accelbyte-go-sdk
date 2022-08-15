@@ -10,6 +10,7 @@ package user_profile
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -83,7 +84,16 @@ type PublicUpdateUserProfileStatusOK struct {
 }
 
 func (o *PublicUpdateUserProfileStatusOK) Error() string {
-	return fmt.Sprintf("[PATCH /basic/v1/public/namespaces/{namespace}/users/{userId}/profiles/status][%d] publicUpdateUserProfileStatusOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[PATCH /basic/v1/public/namespaces/{namespace}/users/{userId}/profiles/status][%d] publicUpdateUserProfileStatusOK  %+v", 200, o.ToString())
+}
+
+func (o *PublicUpdateUserProfileStatusOK) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *PublicUpdateUserProfileStatusOK) GetPayload() *basicclientmodels.UserProfileInfo {
@@ -116,7 +126,16 @@ type PublicUpdateUserProfileStatusBadRequest struct {
 }
 
 func (o *PublicUpdateUserProfileStatusBadRequest) Error() string {
-	return fmt.Sprintf("[PATCH /basic/v1/public/namespaces/{namespace}/users/{userId}/profiles/status][%d] publicUpdateUserProfileStatusBadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[PATCH /basic/v1/public/namespaces/{namespace}/users/{userId}/profiles/status][%d] publicUpdateUserProfileStatusBadRequest  %+v", 400, o.ToString())
+}
+
+func (o *PublicUpdateUserProfileStatusBadRequest) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *PublicUpdateUserProfileStatusBadRequest) GetPayload() *basicclientmodels.ValidationErrorEntity {
@@ -149,7 +168,16 @@ type PublicUpdateUserProfileStatusUnauthorized struct {
 }
 
 func (o *PublicUpdateUserProfileStatusUnauthorized) Error() string {
-	return fmt.Sprintf("[PATCH /basic/v1/public/namespaces/{namespace}/users/{userId}/profiles/status][%d] publicUpdateUserProfileStatusUnauthorized  %+v", 401, o.Payload)
+	return fmt.Sprintf("[PATCH /basic/v1/public/namespaces/{namespace}/users/{userId}/profiles/status][%d] publicUpdateUserProfileStatusUnauthorized  %+v", 401, o.ToString())
+}
+
+func (o *PublicUpdateUserProfileStatusUnauthorized) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *PublicUpdateUserProfileStatusUnauthorized) GetPayload() *basicclientmodels.ErrorEntity {
@@ -182,7 +210,16 @@ type PublicUpdateUserProfileStatusForbidden struct {
 }
 
 func (o *PublicUpdateUserProfileStatusForbidden) Error() string {
-	return fmt.Sprintf("[PATCH /basic/v1/public/namespaces/{namespace}/users/{userId}/profiles/status][%d] publicUpdateUserProfileStatusForbidden  %+v", 403, o.Payload)
+	return fmt.Sprintf("[PATCH /basic/v1/public/namespaces/{namespace}/users/{userId}/profiles/status][%d] publicUpdateUserProfileStatusForbidden  %+v", 403, o.ToString())
+}
+
+func (o *PublicUpdateUserProfileStatusForbidden) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *PublicUpdateUserProfileStatusForbidden) GetPayload() *basicclientmodels.ErrorEntity {
@@ -215,7 +252,16 @@ type PublicUpdateUserProfileStatusNotFound struct {
 }
 
 func (o *PublicUpdateUserProfileStatusNotFound) Error() string {
-	return fmt.Sprintf("[PATCH /basic/v1/public/namespaces/{namespace}/users/{userId}/profiles/status][%d] publicUpdateUserProfileStatusNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[PATCH /basic/v1/public/namespaces/{namespace}/users/{userId}/profiles/status][%d] publicUpdateUserProfileStatusNotFound  %+v", 404, o.ToString())
+}
+
+func (o *PublicUpdateUserProfileStatusNotFound) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *PublicUpdateUserProfileStatusNotFound) GetPayload() *basicclientmodels.ErrorEntity {

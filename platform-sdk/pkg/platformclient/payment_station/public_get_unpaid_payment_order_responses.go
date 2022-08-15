@@ -10,6 +10,7 @@ package payment_station
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -71,7 +72,16 @@ type PublicGetUnpaidPaymentOrderOK struct {
 }
 
 func (o *PublicGetUnpaidPaymentOrderOK) Error() string {
-	return fmt.Sprintf("[GET /platform/public/namespaces/{namespace}/payment/orders/{paymentOrderNo}/info][%d] publicGetUnpaidPaymentOrderOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /platform/public/namespaces/{namespace}/payment/orders/{paymentOrderNo}/info][%d] publicGetUnpaidPaymentOrderOK  %+v", 200, o.ToString())
+}
+
+func (o *PublicGetUnpaidPaymentOrderOK) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *PublicGetUnpaidPaymentOrderOK) GetPayload() *platformclientmodels.PaymentOrderDetails {
@@ -104,7 +114,16 @@ type PublicGetUnpaidPaymentOrderNotFound struct {
 }
 
 func (o *PublicGetUnpaidPaymentOrderNotFound) Error() string {
-	return fmt.Sprintf("[GET /platform/public/namespaces/{namespace}/payment/orders/{paymentOrderNo}/info][%d] publicGetUnpaidPaymentOrderNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[GET /platform/public/namespaces/{namespace}/payment/orders/{paymentOrderNo}/info][%d] publicGetUnpaidPaymentOrderNotFound  %+v", 404, o.ToString())
+}
+
+func (o *PublicGetUnpaidPaymentOrderNotFound) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *PublicGetUnpaidPaymentOrderNotFound) GetPayload() *platformclientmodels.ErrorEntity {
@@ -137,7 +156,16 @@ type PublicGetUnpaidPaymentOrderConflict struct {
 }
 
 func (o *PublicGetUnpaidPaymentOrderConflict) Error() string {
-	return fmt.Sprintf("[GET /platform/public/namespaces/{namespace}/payment/orders/{paymentOrderNo}/info][%d] publicGetUnpaidPaymentOrderConflict  %+v", 409, o.Payload)
+	return fmt.Sprintf("[GET /platform/public/namespaces/{namespace}/payment/orders/{paymentOrderNo}/info][%d] publicGetUnpaidPaymentOrderConflict  %+v", 409, o.ToString())
+}
+
+func (o *PublicGetUnpaidPaymentOrderConflict) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *PublicGetUnpaidPaymentOrderConflict) GetPayload() *platformclientmodels.ErrorEntity {

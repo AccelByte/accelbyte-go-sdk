@@ -10,6 +10,7 @@ package users
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -83,7 +84,16 @@ type UpdateCountryAgeRestrictionOK struct {
 }
 
 func (o *UpdateCountryAgeRestrictionOK) Error() string {
-	return fmt.Sprintf("[PATCH /iam/v2/admin/namespaces/{namespace}/countries/{countryCode}][%d] updateCountryAgeRestrictionOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[PATCH /iam/v2/admin/namespaces/{namespace}/countries/{countryCode}][%d] updateCountryAgeRestrictionOK  %+v", 200, o.ToString())
+}
+
+func (o *UpdateCountryAgeRestrictionOK) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *UpdateCountryAgeRestrictionOK) GetPayload() *iamclientmodels.ModelCountry {

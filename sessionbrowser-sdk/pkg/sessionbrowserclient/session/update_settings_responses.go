@@ -10,6 +10,7 @@ package session
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -77,7 +78,16 @@ type UpdateSettingsOK struct {
 }
 
 func (o *UpdateSettingsOK) Error() string {
-	return fmt.Sprintf("[PUT /sessionbrowser/namespaces/{namespace}/gamesession/{sessionID}/settings][%d] updateSettingsOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[PUT /sessionbrowser/namespaces/{namespace}/gamesession/{sessionID}/settings][%d] updateSettingsOK  %+v", 200, o.ToString())
+}
+
+func (o *UpdateSettingsOK) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *UpdateSettingsOK) GetPayload() *sessionbrowserclientmodels.ModelsSessionResponse {
@@ -110,7 +120,16 @@ type UpdateSettingsBadRequest struct {
 }
 
 func (o *UpdateSettingsBadRequest) Error() string {
-	return fmt.Sprintf("[PUT /sessionbrowser/namespaces/{namespace}/gamesession/{sessionID}/settings][%d] updateSettingsBadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[PUT /sessionbrowser/namespaces/{namespace}/gamesession/{sessionID}/settings][%d] updateSettingsBadRequest  %+v", 400, o.ToString())
+}
+
+func (o *UpdateSettingsBadRequest) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *UpdateSettingsBadRequest) GetPayload() *sessionbrowserclientmodels.RestapiErrorResponseV2 {
@@ -143,7 +162,16 @@ type UpdateSettingsNotFound struct {
 }
 
 func (o *UpdateSettingsNotFound) Error() string {
-	return fmt.Sprintf("[PUT /sessionbrowser/namespaces/{namespace}/gamesession/{sessionID}/settings][%d] updateSettingsNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[PUT /sessionbrowser/namespaces/{namespace}/gamesession/{sessionID}/settings][%d] updateSettingsNotFound  %+v", 404, o.ToString())
+}
+
+func (o *UpdateSettingsNotFound) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *UpdateSettingsNotFound) GetPayload() *sessionbrowserclientmodels.RestapiErrorResponseV2 {
@@ -176,7 +204,16 @@ type UpdateSettingsInternalServerError struct {
 }
 
 func (o *UpdateSettingsInternalServerError) Error() string {
-	return fmt.Sprintf("[PUT /sessionbrowser/namespaces/{namespace}/gamesession/{sessionID}/settings][%d] updateSettingsInternalServerError  %+v", 500, o.Payload)
+	return fmt.Sprintf("[PUT /sessionbrowser/namespaces/{namespace}/gamesession/{sessionID}/settings][%d] updateSettingsInternalServerError  %+v", 500, o.ToString())
+}
+
+func (o *UpdateSettingsInternalServerError) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *UpdateSettingsInternalServerError) GetPayload() *sessionbrowserclientmodels.RestapiErrorResponseV2 {

@@ -10,6 +10,7 @@ package configuration
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -89,7 +90,16 @@ type CreateGroupConfigurationAdminV1Created struct {
 }
 
 func (o *CreateGroupConfigurationAdminV1Created) Error() string {
-	return fmt.Sprintf("[POST /group/v1/admin/namespaces/{namespace}/configuration][%d] createGroupConfigurationAdminV1Created  %+v", 201, o.Payload)
+	return fmt.Sprintf("[POST /group/v1/admin/namespaces/{namespace}/configuration][%d] createGroupConfigurationAdminV1Created  %+v", 201, o.ToString())
+}
+
+func (o *CreateGroupConfigurationAdminV1Created) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *CreateGroupConfigurationAdminV1Created) GetPayload() *groupclientmodels.ModelsCreateGroupConfigurationResponseV1 {
@@ -122,7 +132,16 @@ type CreateGroupConfigurationAdminV1BadRequest struct {
 }
 
 func (o *CreateGroupConfigurationAdminV1BadRequest) Error() string {
-	return fmt.Sprintf("[POST /group/v1/admin/namespaces/{namespace}/configuration][%d] createGroupConfigurationAdminV1BadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[POST /group/v1/admin/namespaces/{namespace}/configuration][%d] createGroupConfigurationAdminV1BadRequest  %+v", 400, o.ToString())
+}
+
+func (o *CreateGroupConfigurationAdminV1BadRequest) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *CreateGroupConfigurationAdminV1BadRequest) GetPayload() *groupclientmodels.ResponseErrorResponse {
@@ -155,7 +174,16 @@ type CreateGroupConfigurationAdminV1Unauthorized struct {
 }
 
 func (o *CreateGroupConfigurationAdminV1Unauthorized) Error() string {
-	return fmt.Sprintf("[POST /group/v1/admin/namespaces/{namespace}/configuration][%d] createGroupConfigurationAdminV1Unauthorized  %+v", 401, o.Payload)
+	return fmt.Sprintf("[POST /group/v1/admin/namespaces/{namespace}/configuration][%d] createGroupConfigurationAdminV1Unauthorized  %+v", 401, o.ToString())
+}
+
+func (o *CreateGroupConfigurationAdminV1Unauthorized) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *CreateGroupConfigurationAdminV1Unauthorized) GetPayload() *groupclientmodels.ResponseErrorResponse {
@@ -188,7 +216,16 @@ type CreateGroupConfigurationAdminV1Forbidden struct {
 }
 
 func (o *CreateGroupConfigurationAdminV1Forbidden) Error() string {
-	return fmt.Sprintf("[POST /group/v1/admin/namespaces/{namespace}/configuration][%d] createGroupConfigurationAdminV1Forbidden  %+v", 403, o.Payload)
+	return fmt.Sprintf("[POST /group/v1/admin/namespaces/{namespace}/configuration][%d] createGroupConfigurationAdminV1Forbidden  %+v", 403, o.ToString())
+}
+
+func (o *CreateGroupConfigurationAdminV1Forbidden) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *CreateGroupConfigurationAdminV1Forbidden) GetPayload() *groupclientmodels.ResponseErrorResponse {
@@ -221,7 +258,16 @@ type CreateGroupConfigurationAdminV1Conflict struct {
 }
 
 func (o *CreateGroupConfigurationAdminV1Conflict) Error() string {
-	return fmt.Sprintf("[POST /group/v1/admin/namespaces/{namespace}/configuration][%d] createGroupConfigurationAdminV1Conflict  %+v", 409, o.Payload)
+	return fmt.Sprintf("[POST /group/v1/admin/namespaces/{namespace}/configuration][%d] createGroupConfigurationAdminV1Conflict  %+v", 409, o.ToString())
+}
+
+func (o *CreateGroupConfigurationAdminV1Conflict) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *CreateGroupConfigurationAdminV1Conflict) GetPayload() *groupclientmodels.ResponseErrorResponse {
@@ -254,7 +300,16 @@ type CreateGroupConfigurationAdminV1InternalServerError struct {
 }
 
 func (o *CreateGroupConfigurationAdminV1InternalServerError) Error() string {
-	return fmt.Sprintf("[POST /group/v1/admin/namespaces/{namespace}/configuration][%d] createGroupConfigurationAdminV1InternalServerError  %+v", 500, o.Payload)
+	return fmt.Sprintf("[POST /group/v1/admin/namespaces/{namespace}/configuration][%d] createGroupConfigurationAdminV1InternalServerError  %+v", 500, o.ToString())
+}
+
+func (o *CreateGroupConfigurationAdminV1InternalServerError) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *CreateGroupConfigurationAdminV1InternalServerError) GetPayload() *groupclientmodels.ResponseErrorResponse {

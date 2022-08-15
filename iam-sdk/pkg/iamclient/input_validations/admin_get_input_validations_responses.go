@@ -10,6 +10,7 @@ package input_validations
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -71,7 +72,16 @@ type AdminGetInputValidationsOK struct {
 }
 
 func (o *AdminGetInputValidationsOK) Error() string {
-	return fmt.Sprintf("[GET /iam/v3/admin/inputValidations][%d] adminGetInputValidationsOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /iam/v3/admin/inputValidations][%d] adminGetInputValidationsOK  %+v", 200, o.ToString())
+}
+
+func (o *AdminGetInputValidationsOK) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *AdminGetInputValidationsOK) GetPayload() *iamclientmodels.ModelInputValidationsResponse {

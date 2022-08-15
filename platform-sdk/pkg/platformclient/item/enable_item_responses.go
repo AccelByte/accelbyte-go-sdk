@@ -10,6 +10,7 @@ package item
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -71,7 +72,16 @@ type EnableItemOK struct {
 }
 
 func (o *EnableItemOK) Error() string {
-	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/items/{itemId}/enable][%d] enableItemOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/items/{itemId}/enable][%d] enableItemOK  %+v", 200, o.ToString())
+}
+
+func (o *EnableItemOK) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *EnableItemOK) GetPayload() *platformclientmodels.FullItemInfo {
@@ -104,7 +114,16 @@ type EnableItemNotFound struct {
 }
 
 func (o *EnableItemNotFound) Error() string {
-	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/items/{itemId}/enable][%d] enableItemNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/items/{itemId}/enable][%d] enableItemNotFound  %+v", 404, o.ToString())
+}
+
+func (o *EnableItemNotFound) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *EnableItemNotFound) GetPayload() *platformclientmodels.ErrorEntity {
@@ -137,7 +156,16 @@ type EnableItemConflict struct {
 }
 
 func (o *EnableItemConflict) Error() string {
-	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/items/{itemId}/enable][%d] enableItemConflict  %+v", 409, o.Payload)
+	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/items/{itemId}/enable][%d] enableItemConflict  %+v", 409, o.ToString())
+}
+
+func (o *EnableItemConflict) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *EnableItemConflict) GetPayload() *platformclientmodels.ErrorEntity {

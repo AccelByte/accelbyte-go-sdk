@@ -10,6 +10,7 @@ package achievement_platform
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -65,7 +66,16 @@ type GetXblUserAchievementsOK struct {
 }
 
 func (o *GetXblUserAchievementsOK) Error() string {
-	return fmt.Sprintf("[GET /platform/admin/namespaces/{namespace}/users/{userId}/achievement/xbl][%d] getXblUserAchievementsOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /platform/admin/namespaces/{namespace}/users/{userId}/achievement/xbl][%d] getXblUserAchievementsOK  %+v", 200, o.ToString())
+}
+
+func (o *GetXblUserAchievementsOK) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *GetXblUserAchievementsOK) GetPayload() *platformclientmodels.ADTOObjectForQueryingXboxUserAchievements {
@@ -98,7 +108,16 @@ type GetXblUserAchievementsBadRequest struct {
 }
 
 func (o *GetXblUserAchievementsBadRequest) Error() string {
-	return fmt.Sprintf("[GET /platform/admin/namespaces/{namespace}/users/{userId}/achievement/xbl][%d] getXblUserAchievementsBadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[GET /platform/admin/namespaces/{namespace}/users/{userId}/achievement/xbl][%d] getXblUserAchievementsBadRequest  %+v", 400, o.ToString())
+}
+
+func (o *GetXblUserAchievementsBadRequest) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *GetXblUserAchievementsBadRequest) GetPayload() *platformclientmodels.ValidationErrorEntity {

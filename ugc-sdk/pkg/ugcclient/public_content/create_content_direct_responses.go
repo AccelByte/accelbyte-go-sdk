@@ -10,6 +10,7 @@ package public_content
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -77,7 +78,16 @@ type CreateContentDirectCreated struct {
 }
 
 func (o *CreateContentDirectCreated) Error() string {
-	return fmt.Sprintf("[POST /ugc/v1/public/namespaces/{namespace}/users/{userId}/channels/{channelId}/contents][%d] createContentDirectCreated  %+v", 201, o.Payload)
+	return fmt.Sprintf("[POST /ugc/v1/public/namespaces/{namespace}/users/{userId}/channels/{channelId}/contents][%d] createContentDirectCreated  %+v", 201, o.ToString())
+}
+
+func (o *CreateContentDirectCreated) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *CreateContentDirectCreated) GetPayload() *ugcclientmodels.ModelsCreateContentResponse {
@@ -110,7 +120,16 @@ type CreateContentDirectBadRequest struct {
 }
 
 func (o *CreateContentDirectBadRequest) Error() string {
-	return fmt.Sprintf("[POST /ugc/v1/public/namespaces/{namespace}/users/{userId}/channels/{channelId}/contents][%d] createContentDirectBadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[POST /ugc/v1/public/namespaces/{namespace}/users/{userId}/channels/{channelId}/contents][%d] createContentDirectBadRequest  %+v", 400, o.ToString())
+}
+
+func (o *CreateContentDirectBadRequest) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *CreateContentDirectBadRequest) GetPayload() *ugcclientmodels.ResponseError {
@@ -143,7 +162,16 @@ type CreateContentDirectUnauthorized struct {
 }
 
 func (o *CreateContentDirectUnauthorized) Error() string {
-	return fmt.Sprintf("[POST /ugc/v1/public/namespaces/{namespace}/users/{userId}/channels/{channelId}/contents][%d] createContentDirectUnauthorized  %+v", 401, o.Payload)
+	return fmt.Sprintf("[POST /ugc/v1/public/namespaces/{namespace}/users/{userId}/channels/{channelId}/contents][%d] createContentDirectUnauthorized  %+v", 401, o.ToString())
+}
+
+func (o *CreateContentDirectUnauthorized) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *CreateContentDirectUnauthorized) GetPayload() *ugcclientmodels.ResponseError {
@@ -176,7 +204,16 @@ type CreateContentDirectInternalServerError struct {
 }
 
 func (o *CreateContentDirectInternalServerError) Error() string {
-	return fmt.Sprintf("[POST /ugc/v1/public/namespaces/{namespace}/users/{userId}/channels/{channelId}/contents][%d] createContentDirectInternalServerError  %+v", 500, o.Payload)
+	return fmt.Sprintf("[POST /ugc/v1/public/namespaces/{namespace}/users/{userId}/channels/{channelId}/contents][%d] createContentDirectInternalServerError  %+v", 500, o.ToString())
+}
+
+func (o *CreateContentDirectInternalServerError) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *CreateContentDirectInternalServerError) GetPayload() *ugcclientmodels.ResponseError {

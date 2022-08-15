@@ -10,6 +10,7 @@ package catalog_changes
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -86,7 +87,16 @@ type UnselectAllRecordsNotFound struct {
 }
 
 func (o *UnselectAllRecordsNotFound) Error() string {
-	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/stores/{storeId}/catalogChanges/unselectAll][%d] unselectAllRecordsNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/stores/{storeId}/catalogChanges/unselectAll][%d] unselectAllRecordsNotFound  %+v", 404, o.ToString())
+}
+
+func (o *UnselectAllRecordsNotFound) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *UnselectAllRecordsNotFound) GetPayload() *platformclientmodels.ErrorEntity {

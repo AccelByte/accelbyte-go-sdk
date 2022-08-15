@@ -10,6 +10,7 @@ package notification
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -104,7 +105,16 @@ type UpdateTopicByTopicNameUnauthorized struct {
 }
 
 func (o *UpdateTopicByTopicNameUnauthorized) Error() string {
-	return fmt.Sprintf("[PUT /notification/namespaces/{namespace}/topics/{topic}][%d] updateTopicByTopicNameUnauthorized  %+v", 401, o.Payload)
+	return fmt.Sprintf("[PUT /notification/namespaces/{namespace}/topics/{topic}][%d] updateTopicByTopicNameUnauthorized  %+v", 401, o.ToString())
+}
+
+func (o *UpdateTopicByTopicNameUnauthorized) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *UpdateTopicByTopicNameUnauthorized) GetPayload() *lobbyclientmodels.RestapiErrorResponseBody {
@@ -137,7 +147,16 @@ type UpdateTopicByTopicNameForbidden struct {
 }
 
 func (o *UpdateTopicByTopicNameForbidden) Error() string {
-	return fmt.Sprintf("[PUT /notification/namespaces/{namespace}/topics/{topic}][%d] updateTopicByTopicNameForbidden  %+v", 403, o.Payload)
+	return fmt.Sprintf("[PUT /notification/namespaces/{namespace}/topics/{topic}][%d] updateTopicByTopicNameForbidden  %+v", 403, o.ToString())
+}
+
+func (o *UpdateTopicByTopicNameForbidden) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *UpdateTopicByTopicNameForbidden) GetPayload() *lobbyclientmodels.RestapiErrorResponseBody {
@@ -170,7 +189,16 @@ type UpdateTopicByTopicNameNotFound struct {
 }
 
 func (o *UpdateTopicByTopicNameNotFound) Error() string {
-	return fmt.Sprintf("[PUT /notification/namespaces/{namespace}/topics/{topic}][%d] updateTopicByTopicNameNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[PUT /notification/namespaces/{namespace}/topics/{topic}][%d] updateTopicByTopicNameNotFound  %+v", 404, o.ToString())
+}
+
+func (o *UpdateTopicByTopicNameNotFound) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *UpdateTopicByTopicNameNotFound) GetPayload() *lobbyclientmodels.RestapiErrorResponseBody {
@@ -203,7 +231,16 @@ type UpdateTopicByTopicNameInternalServerError struct {
 }
 
 func (o *UpdateTopicByTopicNameInternalServerError) Error() string {
-	return fmt.Sprintf("[PUT /notification/namespaces/{namespace}/topics/{topic}][%d] updateTopicByTopicNameInternalServerError  %+v", 500, o.Payload)
+	return fmt.Sprintf("[PUT /notification/namespaces/{namespace}/topics/{topic}][%d] updateTopicByTopicNameInternalServerError  %+v", 500, o.ToString())
+}
+
+func (o *UpdateTopicByTopicNameInternalServerError) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *UpdateTopicByTopicNameInternalServerError) GetPayload() *lobbyclientmodels.RestapiErrorResponseBody {

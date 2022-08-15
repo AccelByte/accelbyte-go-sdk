@@ -10,6 +10,7 @@ package users
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -104,7 +105,16 @@ type PublicLinkPlatformAccountBadRequest struct {
 }
 
 func (o *PublicLinkPlatformAccountBadRequest) Error() string {
-	return fmt.Sprintf("[POST /iam/v3/public/namespaces/{namespace}/users/{userId}/platforms/link][%d] publicLinkPlatformAccountBadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[POST /iam/v3/public/namespaces/{namespace}/users/{userId}/platforms/link][%d] publicLinkPlatformAccountBadRequest  %+v", 400, o.ToString())
+}
+
+func (o *PublicLinkPlatformAccountBadRequest) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *PublicLinkPlatformAccountBadRequest) GetPayload() *iamclientmodels.RestErrorResponse {
@@ -137,7 +147,16 @@ type PublicLinkPlatformAccountUnauthorized struct {
 }
 
 func (o *PublicLinkPlatformAccountUnauthorized) Error() string {
-	return fmt.Sprintf("[POST /iam/v3/public/namespaces/{namespace}/users/{userId}/platforms/link][%d] publicLinkPlatformAccountUnauthorized  %+v", 401, o.Payload)
+	return fmt.Sprintf("[POST /iam/v3/public/namespaces/{namespace}/users/{userId}/platforms/link][%d] publicLinkPlatformAccountUnauthorized  %+v", 401, o.ToString())
+}
+
+func (o *PublicLinkPlatformAccountUnauthorized) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *PublicLinkPlatformAccountUnauthorized) GetPayload() *iamclientmodels.RestErrorResponse {
@@ -170,7 +189,16 @@ type PublicLinkPlatformAccountForbidden struct {
 }
 
 func (o *PublicLinkPlatformAccountForbidden) Error() string {
-	return fmt.Sprintf("[POST /iam/v3/public/namespaces/{namespace}/users/{userId}/platforms/link][%d] publicLinkPlatformAccountForbidden  %+v", 403, o.Payload)
+	return fmt.Sprintf("[POST /iam/v3/public/namespaces/{namespace}/users/{userId}/platforms/link][%d] publicLinkPlatformAccountForbidden  %+v", 403, o.ToString())
+}
+
+func (o *PublicLinkPlatformAccountForbidden) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *PublicLinkPlatformAccountForbidden) GetPayload() *iamclientmodels.RestErrorResponse {
@@ -203,7 +231,16 @@ type PublicLinkPlatformAccountInternalServerError struct {
 }
 
 func (o *PublicLinkPlatformAccountInternalServerError) Error() string {
-	return fmt.Sprintf("[POST /iam/v3/public/namespaces/{namespace}/users/{userId}/platforms/link][%d] publicLinkPlatformAccountInternalServerError  %+v", 500, o.Payload)
+	return fmt.Sprintf("[POST /iam/v3/public/namespaces/{namespace}/users/{userId}/platforms/link][%d] publicLinkPlatformAccountInternalServerError  %+v", 500, o.ToString())
+}
+
+func (o *PublicLinkPlatformAccountInternalServerError) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *PublicLinkPlatformAccountInternalServerError) GetPayload() *iamclientmodels.RestErrorResponse {

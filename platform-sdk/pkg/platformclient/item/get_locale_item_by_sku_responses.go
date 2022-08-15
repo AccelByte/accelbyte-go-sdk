@@ -10,6 +10,7 @@ package item
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -65,7 +66,16 @@ type GetLocaleItemBySkuOK struct {
 }
 
 func (o *GetLocaleItemBySkuOK) Error() string {
-	return fmt.Sprintf("[GET /platform/admin/namespaces/{namespace}/items/bySku/locale][%d] getLocaleItemBySkuOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /platform/admin/namespaces/{namespace}/items/bySku/locale][%d] getLocaleItemBySkuOK  %+v", 200, o.ToString())
+}
+
+func (o *GetLocaleItemBySkuOK) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *GetLocaleItemBySkuOK) GetPayload() *platformclientmodels.PopulatedItemInfo {
@@ -98,7 +108,16 @@ type GetLocaleItemBySkuNotFound struct {
 }
 
 func (o *GetLocaleItemBySkuNotFound) Error() string {
-	return fmt.Sprintf("[GET /platform/admin/namespaces/{namespace}/items/bySku/locale][%d] getLocaleItemBySkuNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[GET /platform/admin/namespaces/{namespace}/items/bySku/locale][%d] getLocaleItemBySkuNotFound  %+v", 404, o.ToString())
+}
+
+func (o *GetLocaleItemBySkuNotFound) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *GetLocaleItemBySkuNotFound) GetPayload() *platformclientmodels.ErrorEntity {

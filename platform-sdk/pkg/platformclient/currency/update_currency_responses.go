@@ -10,6 +10,7 @@ package currency
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -71,7 +72,16 @@ type UpdateCurrencyOK struct {
 }
 
 func (o *UpdateCurrencyOK) Error() string {
-	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/currencies/{currencyCode}][%d] updateCurrencyOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/currencies/{currencyCode}][%d] updateCurrencyOK  %+v", 200, o.ToString())
+}
+
+func (o *UpdateCurrencyOK) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *UpdateCurrencyOK) GetPayload() *platformclientmodels.CurrencyInfo {
@@ -104,7 +114,16 @@ type UpdateCurrencyNotFound struct {
 }
 
 func (o *UpdateCurrencyNotFound) Error() string {
-	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/currencies/{currencyCode}][%d] updateCurrencyNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/currencies/{currencyCode}][%d] updateCurrencyNotFound  %+v", 404, o.ToString())
+}
+
+func (o *UpdateCurrencyNotFound) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *UpdateCurrencyNotFound) GetPayload() *platformclientmodels.ErrorEntity {
@@ -137,7 +156,16 @@ type UpdateCurrencyUnprocessableEntity struct {
 }
 
 func (o *UpdateCurrencyUnprocessableEntity) Error() string {
-	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/currencies/{currencyCode}][%d] updateCurrencyUnprocessableEntity  %+v", 422, o.Payload)
+	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/currencies/{currencyCode}][%d] updateCurrencyUnprocessableEntity  %+v", 422, o.ToString())
+}
+
+func (o *UpdateCurrencyUnprocessableEntity) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *UpdateCurrencyUnprocessableEntity) GetPayload() *platformclientmodels.ValidationErrorEntity {

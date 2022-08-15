@@ -10,6 +10,7 @@ package profanity
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -110,7 +111,16 @@ type AdminSetProfanityRuleForNamespaceBadRequest struct {
 }
 
 func (o *AdminSetProfanityRuleForNamespaceBadRequest) Error() string {
-	return fmt.Sprintf("[POST /lobby/v1/admin/profanity/namespaces/{namespace}/rule][%d] adminSetProfanityRuleForNamespaceBadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[POST /lobby/v1/admin/profanity/namespaces/{namespace}/rule][%d] adminSetProfanityRuleForNamespaceBadRequest  %+v", 400, o.ToString())
+}
+
+func (o *AdminSetProfanityRuleForNamespaceBadRequest) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *AdminSetProfanityRuleForNamespaceBadRequest) GetPayload() *lobbyclientmodels.RestapiErrorResponseBody {
@@ -143,7 +153,16 @@ type AdminSetProfanityRuleForNamespaceUnauthorized struct {
 }
 
 func (o *AdminSetProfanityRuleForNamespaceUnauthorized) Error() string {
-	return fmt.Sprintf("[POST /lobby/v1/admin/profanity/namespaces/{namespace}/rule][%d] adminSetProfanityRuleForNamespaceUnauthorized  %+v", 401, o.Payload)
+	return fmt.Sprintf("[POST /lobby/v1/admin/profanity/namespaces/{namespace}/rule][%d] adminSetProfanityRuleForNamespaceUnauthorized  %+v", 401, o.ToString())
+}
+
+func (o *AdminSetProfanityRuleForNamespaceUnauthorized) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *AdminSetProfanityRuleForNamespaceUnauthorized) GetPayload() *lobbyclientmodels.RestapiErrorResponseBody {
@@ -176,7 +195,16 @@ type AdminSetProfanityRuleForNamespaceForbidden struct {
 }
 
 func (o *AdminSetProfanityRuleForNamespaceForbidden) Error() string {
-	return fmt.Sprintf("[POST /lobby/v1/admin/profanity/namespaces/{namespace}/rule][%d] adminSetProfanityRuleForNamespaceForbidden  %+v", 403, o.Payload)
+	return fmt.Sprintf("[POST /lobby/v1/admin/profanity/namespaces/{namespace}/rule][%d] adminSetProfanityRuleForNamespaceForbidden  %+v", 403, o.ToString())
+}
+
+func (o *AdminSetProfanityRuleForNamespaceForbidden) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *AdminSetProfanityRuleForNamespaceForbidden) GetPayload() *lobbyclientmodels.RestapiErrorResponseBody {
@@ -209,7 +237,16 @@ type AdminSetProfanityRuleForNamespaceNotFound struct {
 }
 
 func (o *AdminSetProfanityRuleForNamespaceNotFound) Error() string {
-	return fmt.Sprintf("[POST /lobby/v1/admin/profanity/namespaces/{namespace}/rule][%d] adminSetProfanityRuleForNamespaceNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[POST /lobby/v1/admin/profanity/namespaces/{namespace}/rule][%d] adminSetProfanityRuleForNamespaceNotFound  %+v", 404, o.ToString())
+}
+
+func (o *AdminSetProfanityRuleForNamespaceNotFound) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *AdminSetProfanityRuleForNamespaceNotFound) GetPayload() *lobbyclientmodels.RestapiErrorResponseBody {
@@ -242,7 +279,16 @@ type AdminSetProfanityRuleForNamespaceInternalServerError struct {
 }
 
 func (o *AdminSetProfanityRuleForNamespaceInternalServerError) Error() string {
-	return fmt.Sprintf("[POST /lobby/v1/admin/profanity/namespaces/{namespace}/rule][%d] adminSetProfanityRuleForNamespaceInternalServerError  %+v", 500, o.Payload)
+	return fmt.Sprintf("[POST /lobby/v1/admin/profanity/namespaces/{namespace}/rule][%d] adminSetProfanityRuleForNamespaceInternalServerError  %+v", 500, o.ToString())
+}
+
+func (o *AdminSetProfanityRuleForNamespaceInternalServerError) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *AdminSetProfanityRuleForNamespaceInternalServerError) GetPayload() *lobbyclientmodels.RestapiErrorResponseBody {

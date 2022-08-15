@@ -10,6 +10,7 @@ package public_group
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -83,7 +84,16 @@ type UpdateGroupOK struct {
 }
 
 func (o *UpdateGroupOK) Error() string {
-	return fmt.Sprintf("[PUT /ugc/v1/public/namespaces/{namespace}/users/{userId}/groups/{groupId}][%d] updateGroupOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[PUT /ugc/v1/public/namespaces/{namespace}/users/{userId}/groups/{groupId}][%d] updateGroupOK  %+v", 200, o.ToString())
+}
+
+func (o *UpdateGroupOK) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *UpdateGroupOK) GetPayload() *ugcclientmodels.ModelsCreateGroupResponse {
@@ -116,7 +126,16 @@ type UpdateGroupBadRequest struct {
 }
 
 func (o *UpdateGroupBadRequest) Error() string {
-	return fmt.Sprintf("[PUT /ugc/v1/public/namespaces/{namespace}/users/{userId}/groups/{groupId}][%d] updateGroupBadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[PUT /ugc/v1/public/namespaces/{namespace}/users/{userId}/groups/{groupId}][%d] updateGroupBadRequest  %+v", 400, o.ToString())
+}
+
+func (o *UpdateGroupBadRequest) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *UpdateGroupBadRequest) GetPayload() *ugcclientmodels.ResponseError {
@@ -149,7 +168,16 @@ type UpdateGroupUnauthorized struct {
 }
 
 func (o *UpdateGroupUnauthorized) Error() string {
-	return fmt.Sprintf("[PUT /ugc/v1/public/namespaces/{namespace}/users/{userId}/groups/{groupId}][%d] updateGroupUnauthorized  %+v", 401, o.Payload)
+	return fmt.Sprintf("[PUT /ugc/v1/public/namespaces/{namespace}/users/{userId}/groups/{groupId}][%d] updateGroupUnauthorized  %+v", 401, o.ToString())
+}
+
+func (o *UpdateGroupUnauthorized) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *UpdateGroupUnauthorized) GetPayload() *ugcclientmodels.ResponseError {
@@ -182,7 +210,16 @@ type UpdateGroupNotFound struct {
 }
 
 func (o *UpdateGroupNotFound) Error() string {
-	return fmt.Sprintf("[PUT /ugc/v1/public/namespaces/{namespace}/users/{userId}/groups/{groupId}][%d] updateGroupNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[PUT /ugc/v1/public/namespaces/{namespace}/users/{userId}/groups/{groupId}][%d] updateGroupNotFound  %+v", 404, o.ToString())
+}
+
+func (o *UpdateGroupNotFound) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *UpdateGroupNotFound) GetPayload() *ugcclientmodels.ResponseError {
@@ -215,7 +252,16 @@ type UpdateGroupInternalServerError struct {
 }
 
 func (o *UpdateGroupInternalServerError) Error() string {
-	return fmt.Sprintf("[PUT /ugc/v1/public/namespaces/{namespace}/users/{userId}/groups/{groupId}][%d] updateGroupInternalServerError  %+v", 500, o.Payload)
+	return fmt.Sprintf("[PUT /ugc/v1/public/namespaces/{namespace}/users/{userId}/groups/{groupId}][%d] updateGroupInternalServerError  %+v", 500, o.ToString())
+}
+
+func (o *UpdateGroupInternalServerError) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *UpdateGroupInternalServerError) GetPayload() *ugcclientmodels.ResponseError {

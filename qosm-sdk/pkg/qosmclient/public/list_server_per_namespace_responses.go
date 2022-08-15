@@ -10,6 +10,7 @@ package public
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -65,7 +66,16 @@ type ListServerPerNamespaceOK struct {
 }
 
 func (o *ListServerPerNamespaceOK) Error() string {
-	return fmt.Sprintf("[GET /qosm/public/namespaces/{namespace}/qos][%d] listServerPerNamespaceOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /qosm/public/namespaces/{namespace}/qos][%d] listServerPerNamespaceOK  %+v", 200, o.ToString())
+}
+
+func (o *ListServerPerNamespaceOK) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *ListServerPerNamespaceOK) GetPayload() *qosmclientmodels.ModelsListServerResponse {
@@ -98,7 +108,16 @@ type ListServerPerNamespaceInternalServerError struct {
 }
 
 func (o *ListServerPerNamespaceInternalServerError) Error() string {
-	return fmt.Sprintf("[GET /qosm/public/namespaces/{namespace}/qos][%d] listServerPerNamespaceInternalServerError  %+v", 500, o.Payload)
+	return fmt.Sprintf("[GET /qosm/public/namespaces/{namespace}/qos][%d] listServerPerNamespaceInternalServerError  %+v", 500, o.ToString())
+}
+
+func (o *ListServerPerNamespaceInternalServerError) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *ListServerPerNamespaceInternalServerError) GetPayload() *qosmclientmodels.ResponseError {

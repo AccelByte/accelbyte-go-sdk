@@ -10,6 +10,7 @@ package image_config
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -104,7 +105,16 @@ type CreateImagePatchBadRequest struct {
 }
 
 func (o *CreateImagePatchBadRequest) Error() string {
-	return fmt.Sprintf("[POST /dsmcontroller/admin/images/patches][%d] createImagePatchBadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[POST /dsmcontroller/admin/images/patches][%d] createImagePatchBadRequest  %+v", 400, o.ToString())
+}
+
+func (o *CreateImagePatchBadRequest) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *CreateImagePatchBadRequest) GetPayload() *dsmcclientmodels.ResponseError {
@@ -137,7 +147,16 @@ type CreateImagePatchUnauthorized struct {
 }
 
 func (o *CreateImagePatchUnauthorized) Error() string {
-	return fmt.Sprintf("[POST /dsmcontroller/admin/images/patches][%d] createImagePatchUnauthorized  %+v", 401, o.Payload)
+	return fmt.Sprintf("[POST /dsmcontroller/admin/images/patches][%d] createImagePatchUnauthorized  %+v", 401, o.ToString())
+}
+
+func (o *CreateImagePatchUnauthorized) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *CreateImagePatchUnauthorized) GetPayload() *dsmcclientmodels.ResponseError {
@@ -170,7 +189,16 @@ type CreateImagePatchConflict struct {
 }
 
 func (o *CreateImagePatchConflict) Error() string {
-	return fmt.Sprintf("[POST /dsmcontroller/admin/images/patches][%d] createImagePatchConflict  %+v", 409, o.Payload)
+	return fmt.Sprintf("[POST /dsmcontroller/admin/images/patches][%d] createImagePatchConflict  %+v", 409, o.ToString())
+}
+
+func (o *CreateImagePatchConflict) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *CreateImagePatchConflict) GetPayload() *dsmcclientmodels.ResponseError {
@@ -203,7 +231,16 @@ type CreateImagePatchInternalServerError struct {
 }
 
 func (o *CreateImagePatchInternalServerError) Error() string {
-	return fmt.Sprintf("[POST /dsmcontroller/admin/images/patches][%d] createImagePatchInternalServerError  %+v", 500, o.Payload)
+	return fmt.Sprintf("[POST /dsmcontroller/admin/images/patches][%d] createImagePatchInternalServerError  %+v", 500, o.ToString())
+}
+
+func (o *CreateImagePatchInternalServerError) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *CreateImagePatchInternalServerError) GetPayload() *dsmcclientmodels.ResponseError {

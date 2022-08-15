@@ -10,6 +10,7 @@ package config
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -83,7 +84,16 @@ type DeletePortOK struct {
 }
 
 func (o *DeletePortOK) Error() string {
-	return fmt.Sprintf("[DELETE /dsmcontroller/admin/namespaces/{namespace}/configs/ports/{name}][%d] deletePortOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[DELETE /dsmcontroller/admin/namespaces/{namespace}/configs/ports/{name}][%d] deletePortOK  %+v", 200, o.ToString())
+}
+
+func (o *DeletePortOK) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *DeletePortOK) GetPayload() *dsmcclientmodels.ModelsDSMConfigRecord {
@@ -116,7 +126,16 @@ type DeletePortBadRequest struct {
 }
 
 func (o *DeletePortBadRequest) Error() string {
-	return fmt.Sprintf("[DELETE /dsmcontroller/admin/namespaces/{namespace}/configs/ports/{name}][%d] deletePortBadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[DELETE /dsmcontroller/admin/namespaces/{namespace}/configs/ports/{name}][%d] deletePortBadRequest  %+v", 400, o.ToString())
+}
+
+func (o *DeletePortBadRequest) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *DeletePortBadRequest) GetPayload() *dsmcclientmodels.ResponseError {
@@ -149,7 +168,16 @@ type DeletePortUnauthorized struct {
 }
 
 func (o *DeletePortUnauthorized) Error() string {
-	return fmt.Sprintf("[DELETE /dsmcontroller/admin/namespaces/{namespace}/configs/ports/{name}][%d] deletePortUnauthorized  %+v", 401, o.Payload)
+	return fmt.Sprintf("[DELETE /dsmcontroller/admin/namespaces/{namespace}/configs/ports/{name}][%d] deletePortUnauthorized  %+v", 401, o.ToString())
+}
+
+func (o *DeletePortUnauthorized) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *DeletePortUnauthorized) GetPayload() *dsmcclientmodels.ResponseError {
@@ -182,7 +210,16 @@ type DeletePortNotFound struct {
 }
 
 func (o *DeletePortNotFound) Error() string {
-	return fmt.Sprintf("[DELETE /dsmcontroller/admin/namespaces/{namespace}/configs/ports/{name}][%d] deletePortNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[DELETE /dsmcontroller/admin/namespaces/{namespace}/configs/ports/{name}][%d] deletePortNotFound  %+v", 404, o.ToString())
+}
+
+func (o *DeletePortNotFound) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *DeletePortNotFound) GetPayload() *dsmcclientmodels.ResponseError {
@@ -215,7 +252,16 @@ type DeletePortInternalServerError struct {
 }
 
 func (o *DeletePortInternalServerError) Error() string {
-	return fmt.Sprintf("[DELETE /dsmcontroller/admin/namespaces/{namespace}/configs/ports/{name}][%d] deletePortInternalServerError  %+v", 500, o.Payload)
+	return fmt.Sprintf("[DELETE /dsmcontroller/admin/namespaces/{namespace}/configs/ports/{name}][%d] deletePortInternalServerError  %+v", 500, o.ToString())
+}
+
+func (o *DeletePortInternalServerError) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *DeletePortInternalServerError) GetPayload() *dsmcclientmodels.ResponseError {

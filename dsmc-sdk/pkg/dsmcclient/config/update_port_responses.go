@@ -10,6 +10,7 @@ package config
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -83,7 +84,16 @@ type UpdatePortOK struct {
 }
 
 func (o *UpdatePortOK) Error() string {
-	return fmt.Sprintf("[PATCH /dsmcontroller/admin/namespaces/{namespace}/configs/ports/{name}][%d] updatePortOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[PATCH /dsmcontroller/admin/namespaces/{namespace}/configs/ports/{name}][%d] updatePortOK  %+v", 200, o.ToString())
+}
+
+func (o *UpdatePortOK) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *UpdatePortOK) GetPayload() *dsmcclientmodels.ModelsDSMConfigRecord {
@@ -116,7 +126,16 @@ type UpdatePortBadRequest struct {
 }
 
 func (o *UpdatePortBadRequest) Error() string {
-	return fmt.Sprintf("[PATCH /dsmcontroller/admin/namespaces/{namespace}/configs/ports/{name}][%d] updatePortBadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[PATCH /dsmcontroller/admin/namespaces/{namespace}/configs/ports/{name}][%d] updatePortBadRequest  %+v", 400, o.ToString())
+}
+
+func (o *UpdatePortBadRequest) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *UpdatePortBadRequest) GetPayload() *dsmcclientmodels.ResponseError {
@@ -149,7 +168,16 @@ type UpdatePortUnauthorized struct {
 }
 
 func (o *UpdatePortUnauthorized) Error() string {
-	return fmt.Sprintf("[PATCH /dsmcontroller/admin/namespaces/{namespace}/configs/ports/{name}][%d] updatePortUnauthorized  %+v", 401, o.Payload)
+	return fmt.Sprintf("[PATCH /dsmcontroller/admin/namespaces/{namespace}/configs/ports/{name}][%d] updatePortUnauthorized  %+v", 401, o.ToString())
+}
+
+func (o *UpdatePortUnauthorized) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *UpdatePortUnauthorized) GetPayload() *dsmcclientmodels.ResponseError {
@@ -182,7 +210,16 @@ type UpdatePortNotFound struct {
 }
 
 func (o *UpdatePortNotFound) Error() string {
-	return fmt.Sprintf("[PATCH /dsmcontroller/admin/namespaces/{namespace}/configs/ports/{name}][%d] updatePortNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[PATCH /dsmcontroller/admin/namespaces/{namespace}/configs/ports/{name}][%d] updatePortNotFound  %+v", 404, o.ToString())
+}
+
+func (o *UpdatePortNotFound) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *UpdatePortNotFound) GetPayload() *dsmcclientmodels.ResponseError {
@@ -215,7 +252,16 @@ type UpdatePortInternalServerError struct {
 }
 
 func (o *UpdatePortInternalServerError) Error() string {
-	return fmt.Sprintf("[PATCH /dsmcontroller/admin/namespaces/{namespace}/configs/ports/{name}][%d] updatePortInternalServerError  %+v", 500, o.Payload)
+	return fmt.Sprintf("[PATCH /dsmcontroller/admin/namespaces/{namespace}/configs/ports/{name}][%d] updatePortInternalServerError  %+v", 500, o.ToString())
+}
+
+func (o *UpdatePortInternalServerError) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *UpdatePortInternalServerError) GetPayload() *dsmcclientmodels.ResponseError {

@@ -10,6 +10,7 @@ package roles
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -104,7 +105,16 @@ type AdminRevokeUserFromRoleV4BadRequest struct {
 }
 
 func (o *AdminRevokeUserFromRoleV4BadRequest) Error() string {
-	return fmt.Sprintf("[DELETE /iam/v4/admin/roles/{roleId}/users][%d] adminRevokeUserFromRoleV4BadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[DELETE /iam/v4/admin/roles/{roleId}/users][%d] adminRevokeUserFromRoleV4BadRequest  %+v", 400, o.ToString())
+}
+
+func (o *AdminRevokeUserFromRoleV4BadRequest) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *AdminRevokeUserFromRoleV4BadRequest) GetPayload() *iamclientmodels.RestErrorResponse {
@@ -137,7 +147,16 @@ type AdminRevokeUserFromRoleV4Unauthorized struct {
 }
 
 func (o *AdminRevokeUserFromRoleV4Unauthorized) Error() string {
-	return fmt.Sprintf("[DELETE /iam/v4/admin/roles/{roleId}/users][%d] adminRevokeUserFromRoleV4Unauthorized  %+v", 401, o.Payload)
+	return fmt.Sprintf("[DELETE /iam/v4/admin/roles/{roleId}/users][%d] adminRevokeUserFromRoleV4Unauthorized  %+v", 401, o.ToString())
+}
+
+func (o *AdminRevokeUserFromRoleV4Unauthorized) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *AdminRevokeUserFromRoleV4Unauthorized) GetPayload() *iamclientmodels.RestErrorResponse {
@@ -170,7 +189,16 @@ type AdminRevokeUserFromRoleV4Forbidden struct {
 }
 
 func (o *AdminRevokeUserFromRoleV4Forbidden) Error() string {
-	return fmt.Sprintf("[DELETE /iam/v4/admin/roles/{roleId}/users][%d] adminRevokeUserFromRoleV4Forbidden  %+v", 403, o.Payload)
+	return fmt.Sprintf("[DELETE /iam/v4/admin/roles/{roleId}/users][%d] adminRevokeUserFromRoleV4Forbidden  %+v", 403, o.ToString())
+}
+
+func (o *AdminRevokeUserFromRoleV4Forbidden) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *AdminRevokeUserFromRoleV4Forbidden) GetPayload() *iamclientmodels.RestErrorResponse {
@@ -203,7 +231,16 @@ type AdminRevokeUserFromRoleV4NotFound struct {
 }
 
 func (o *AdminRevokeUserFromRoleV4NotFound) Error() string {
-	return fmt.Sprintf("[DELETE /iam/v4/admin/roles/{roleId}/users][%d] adminRevokeUserFromRoleV4NotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[DELETE /iam/v4/admin/roles/{roleId}/users][%d] adminRevokeUserFromRoleV4NotFound  %+v", 404, o.ToString())
+}
+
+func (o *AdminRevokeUserFromRoleV4NotFound) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *AdminRevokeUserFromRoleV4NotFound) GetPayload() *iamclientmodels.RestErrorResponse {

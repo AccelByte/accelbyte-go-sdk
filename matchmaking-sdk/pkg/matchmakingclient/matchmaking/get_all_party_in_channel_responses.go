@@ -10,6 +10,7 @@ package matchmaking
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -89,7 +90,16 @@ type GetAllPartyInChannelOK struct {
 }
 
 func (o *GetAllPartyInChannelOK) Error() string {
-	return fmt.Sprintf("[GET /matchmaking/v1/admin/namespaces/{namespace}/channels/{channelName}/parties][%d] getAllPartyInChannelOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /matchmaking/v1/admin/namespaces/{namespace}/channels/{channelName}/parties][%d] getAllPartyInChannelOK  %+v", 200, o.ToString())
+}
+
+func (o *GetAllPartyInChannelOK) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *GetAllPartyInChannelOK) GetPayload() []*matchmakingclientmodels.ModelsMatchingParty {
@@ -120,7 +130,16 @@ type GetAllPartyInChannelBadRequest struct {
 }
 
 func (o *GetAllPartyInChannelBadRequest) Error() string {
-	return fmt.Sprintf("[GET /matchmaking/v1/admin/namespaces/{namespace}/channels/{channelName}/parties][%d] getAllPartyInChannelBadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[GET /matchmaking/v1/admin/namespaces/{namespace}/channels/{channelName}/parties][%d] getAllPartyInChannelBadRequest  %+v", 400, o.ToString())
+}
+
+func (o *GetAllPartyInChannelBadRequest) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *GetAllPartyInChannelBadRequest) GetPayload() *matchmakingclientmodels.ResponseErrorV1 {
@@ -153,7 +172,16 @@ type GetAllPartyInChannelUnauthorized struct {
 }
 
 func (o *GetAllPartyInChannelUnauthorized) Error() string {
-	return fmt.Sprintf("[GET /matchmaking/v1/admin/namespaces/{namespace}/channels/{channelName}/parties][%d] getAllPartyInChannelUnauthorized  %+v", 401, o.Payload)
+	return fmt.Sprintf("[GET /matchmaking/v1/admin/namespaces/{namespace}/channels/{channelName}/parties][%d] getAllPartyInChannelUnauthorized  %+v", 401, o.ToString())
+}
+
+func (o *GetAllPartyInChannelUnauthorized) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *GetAllPartyInChannelUnauthorized) GetPayload() *matchmakingclientmodels.ResponseErrorV1 {
@@ -186,7 +214,16 @@ type GetAllPartyInChannelForbidden struct {
 }
 
 func (o *GetAllPartyInChannelForbidden) Error() string {
-	return fmt.Sprintf("[GET /matchmaking/v1/admin/namespaces/{namespace}/channels/{channelName}/parties][%d] getAllPartyInChannelForbidden  %+v", 403, o.Payload)
+	return fmt.Sprintf("[GET /matchmaking/v1/admin/namespaces/{namespace}/channels/{channelName}/parties][%d] getAllPartyInChannelForbidden  %+v", 403, o.ToString())
+}
+
+func (o *GetAllPartyInChannelForbidden) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *GetAllPartyInChannelForbidden) GetPayload() *matchmakingclientmodels.ResponseErrorV1 {
@@ -219,7 +256,16 @@ type GetAllPartyInChannelNotFound struct {
 }
 
 func (o *GetAllPartyInChannelNotFound) Error() string {
-	return fmt.Sprintf("[GET /matchmaking/v1/admin/namespaces/{namespace}/channels/{channelName}/parties][%d] getAllPartyInChannelNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[GET /matchmaking/v1/admin/namespaces/{namespace}/channels/{channelName}/parties][%d] getAllPartyInChannelNotFound  %+v", 404, o.ToString())
+}
+
+func (o *GetAllPartyInChannelNotFound) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *GetAllPartyInChannelNotFound) GetPayload() *matchmakingclientmodels.ResponseErrorV1 {
@@ -252,7 +298,16 @@ type GetAllPartyInChannelInternalServerError struct {
 }
 
 func (o *GetAllPartyInChannelInternalServerError) Error() string {
-	return fmt.Sprintf("[GET /matchmaking/v1/admin/namespaces/{namespace}/channels/{channelName}/parties][%d] getAllPartyInChannelInternalServerError  %+v", 500, o.Payload)
+	return fmt.Sprintf("[GET /matchmaking/v1/admin/namespaces/{namespace}/channels/{channelName}/parties][%d] getAllPartyInChannelInternalServerError  %+v", 500, o.ToString())
+}
+
+func (o *GetAllPartyInChannelInternalServerError) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *GetAllPartyInChannelInternalServerError) GetPayload() *matchmakingclientmodels.ResponseError {

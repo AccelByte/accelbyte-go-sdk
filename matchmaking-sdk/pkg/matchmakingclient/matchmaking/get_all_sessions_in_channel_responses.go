@@ -10,6 +10,7 @@ package matchmaking
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -89,7 +90,16 @@ type GetAllSessionsInChannelOK struct {
 }
 
 func (o *GetAllSessionsInChannelOK) Error() string {
-	return fmt.Sprintf("[GET /matchmaking/v1/admin/namespaces/{namespace}/channels/{channelName}/sessions][%d] getAllSessionsInChannelOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /matchmaking/v1/admin/namespaces/{namespace}/channels/{channelName}/sessions][%d] getAllSessionsInChannelOK  %+v", 200, o.ToString())
+}
+
+func (o *GetAllSessionsInChannelOK) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *GetAllSessionsInChannelOK) GetPayload() []*matchmakingclientmodels.ModelsMatchmakingResult {
@@ -120,7 +130,16 @@ type GetAllSessionsInChannelBadRequest struct {
 }
 
 func (o *GetAllSessionsInChannelBadRequest) Error() string {
-	return fmt.Sprintf("[GET /matchmaking/v1/admin/namespaces/{namespace}/channels/{channelName}/sessions][%d] getAllSessionsInChannelBadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[GET /matchmaking/v1/admin/namespaces/{namespace}/channels/{channelName}/sessions][%d] getAllSessionsInChannelBadRequest  %+v", 400, o.ToString())
+}
+
+func (o *GetAllSessionsInChannelBadRequest) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *GetAllSessionsInChannelBadRequest) GetPayload() *matchmakingclientmodels.ResponseErrorV1 {
@@ -153,7 +172,16 @@ type GetAllSessionsInChannelUnauthorized struct {
 }
 
 func (o *GetAllSessionsInChannelUnauthorized) Error() string {
-	return fmt.Sprintf("[GET /matchmaking/v1/admin/namespaces/{namespace}/channels/{channelName}/sessions][%d] getAllSessionsInChannelUnauthorized  %+v", 401, o.Payload)
+	return fmt.Sprintf("[GET /matchmaking/v1/admin/namespaces/{namespace}/channels/{channelName}/sessions][%d] getAllSessionsInChannelUnauthorized  %+v", 401, o.ToString())
+}
+
+func (o *GetAllSessionsInChannelUnauthorized) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *GetAllSessionsInChannelUnauthorized) GetPayload() *matchmakingclientmodels.ResponseErrorV1 {
@@ -186,7 +214,16 @@ type GetAllSessionsInChannelForbidden struct {
 }
 
 func (o *GetAllSessionsInChannelForbidden) Error() string {
-	return fmt.Sprintf("[GET /matchmaking/v1/admin/namespaces/{namespace}/channels/{channelName}/sessions][%d] getAllSessionsInChannelForbidden  %+v", 403, o.Payload)
+	return fmt.Sprintf("[GET /matchmaking/v1/admin/namespaces/{namespace}/channels/{channelName}/sessions][%d] getAllSessionsInChannelForbidden  %+v", 403, o.ToString())
+}
+
+func (o *GetAllSessionsInChannelForbidden) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *GetAllSessionsInChannelForbidden) GetPayload() *matchmakingclientmodels.ResponseErrorV1 {
@@ -219,7 +256,16 @@ type GetAllSessionsInChannelNotFound struct {
 }
 
 func (o *GetAllSessionsInChannelNotFound) Error() string {
-	return fmt.Sprintf("[GET /matchmaking/v1/admin/namespaces/{namespace}/channels/{channelName}/sessions][%d] getAllSessionsInChannelNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[GET /matchmaking/v1/admin/namespaces/{namespace}/channels/{channelName}/sessions][%d] getAllSessionsInChannelNotFound  %+v", 404, o.ToString())
+}
+
+func (o *GetAllSessionsInChannelNotFound) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *GetAllSessionsInChannelNotFound) GetPayload() *matchmakingclientmodels.ResponseErrorV1 {
@@ -252,7 +298,16 @@ type GetAllSessionsInChannelInternalServerError struct {
 }
 
 func (o *GetAllSessionsInChannelInternalServerError) Error() string {
-	return fmt.Sprintf("[GET /matchmaking/v1/admin/namespaces/{namespace}/channels/{channelName}/sessions][%d] getAllSessionsInChannelInternalServerError  %+v", 500, o.Payload)
+	return fmt.Sprintf("[GET /matchmaking/v1/admin/namespaces/{namespace}/channels/{channelName}/sessions][%d] getAllSessionsInChannelInternalServerError  %+v", 500, o.ToString())
+}
+
+func (o *GetAllSessionsInChannelInternalServerError) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *GetAllSessionsInChannelInternalServerError) GetPayload() *matchmakingclientmodels.ResponseError {

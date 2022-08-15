@@ -10,6 +10,7 @@ package server
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -83,7 +84,16 @@ type RegisterServerOK struct {
 }
 
 func (o *RegisterServerOK) Error() string {
-	return fmt.Sprintf("[POST /dsmcontroller/namespaces/{namespace}/servers/register][%d] registerServerOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[POST /dsmcontroller/namespaces/{namespace}/servers/register][%d] registerServerOK  %+v", 200, o.ToString())
+}
+
+func (o *RegisterServerOK) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *RegisterServerOK) GetPayload() *dsmcclientmodels.ModelsServer {
@@ -116,7 +126,16 @@ type RegisterServerBadRequest struct {
 }
 
 func (o *RegisterServerBadRequest) Error() string {
-	return fmt.Sprintf("[POST /dsmcontroller/namespaces/{namespace}/servers/register][%d] registerServerBadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[POST /dsmcontroller/namespaces/{namespace}/servers/register][%d] registerServerBadRequest  %+v", 400, o.ToString())
+}
+
+func (o *RegisterServerBadRequest) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *RegisterServerBadRequest) GetPayload() *dsmcclientmodels.ResponseError {
@@ -149,7 +168,16 @@ type RegisterServerUnauthorized struct {
 }
 
 func (o *RegisterServerUnauthorized) Error() string {
-	return fmt.Sprintf("[POST /dsmcontroller/namespaces/{namespace}/servers/register][%d] registerServerUnauthorized  %+v", 401, o.Payload)
+	return fmt.Sprintf("[POST /dsmcontroller/namespaces/{namespace}/servers/register][%d] registerServerUnauthorized  %+v", 401, o.ToString())
+}
+
+func (o *RegisterServerUnauthorized) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *RegisterServerUnauthorized) GetPayload() *dsmcclientmodels.ResponseError {
@@ -182,7 +210,16 @@ type RegisterServerConflict struct {
 }
 
 func (o *RegisterServerConflict) Error() string {
-	return fmt.Sprintf("[POST /dsmcontroller/namespaces/{namespace}/servers/register][%d] registerServerConflict  %+v", 409, o.Payload)
+	return fmt.Sprintf("[POST /dsmcontroller/namespaces/{namespace}/servers/register][%d] registerServerConflict  %+v", 409, o.ToString())
+}
+
+func (o *RegisterServerConflict) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *RegisterServerConflict) GetPayload() *dsmcclientmodels.ResponseError {
@@ -215,7 +252,16 @@ type RegisterServerInternalServerError struct {
 }
 
 func (o *RegisterServerInternalServerError) Error() string {
-	return fmt.Sprintf("[POST /dsmcontroller/namespaces/{namespace}/servers/register][%d] registerServerInternalServerError  %+v", 500, o.Payload)
+	return fmt.Sprintf("[POST /dsmcontroller/namespaces/{namespace}/servers/register][%d] registerServerInternalServerError  %+v", 500, o.ToString())
+}
+
+func (o *RegisterServerInternalServerError) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *RegisterServerInternalServerError) GetPayload() *dsmcclientmodels.ResponseError {

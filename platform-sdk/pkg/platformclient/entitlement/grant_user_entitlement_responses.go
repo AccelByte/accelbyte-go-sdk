@@ -10,6 +10,7 @@ package entitlement
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -71,7 +72,16 @@ type GrantUserEntitlementCreated struct {
 }
 
 func (o *GrantUserEntitlementCreated) Error() string {
-	return fmt.Sprintf("[POST /platform/admin/namespaces/{namespace}/users/{userId}/entitlements][%d] grantUserEntitlementCreated  %+v", 201, o.Payload)
+	return fmt.Sprintf("[POST /platform/admin/namespaces/{namespace}/users/{userId}/entitlements][%d] grantUserEntitlementCreated  %+v", 201, o.ToString())
+}
+
+func (o *GrantUserEntitlementCreated) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *GrantUserEntitlementCreated) GetPayload() []*platformclientmodels.StackableEntitlementInfo {
@@ -102,7 +112,16 @@ type GrantUserEntitlementNotFound struct {
 }
 
 func (o *GrantUserEntitlementNotFound) Error() string {
-	return fmt.Sprintf("[POST /platform/admin/namespaces/{namespace}/users/{userId}/entitlements][%d] grantUserEntitlementNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[POST /platform/admin/namespaces/{namespace}/users/{userId}/entitlements][%d] grantUserEntitlementNotFound  %+v", 404, o.ToString())
+}
+
+func (o *GrantUserEntitlementNotFound) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *GrantUserEntitlementNotFound) GetPayload() *platformclientmodels.ErrorEntity {
@@ -135,7 +154,16 @@ type GrantUserEntitlementUnprocessableEntity struct {
 }
 
 func (o *GrantUserEntitlementUnprocessableEntity) Error() string {
-	return fmt.Sprintf("[POST /platform/admin/namespaces/{namespace}/users/{userId}/entitlements][%d] grantUserEntitlementUnprocessableEntity  %+v", 422, o.Payload)
+	return fmt.Sprintf("[POST /platform/admin/namespaces/{namespace}/users/{userId}/entitlements][%d] grantUserEntitlementUnprocessableEntity  %+v", 422, o.ToString())
+}
+
+func (o *GrantUserEntitlementUnprocessableEntity) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *GrantUserEntitlementUnprocessableEntity) GetPayload() *platformclientmodels.ValidationErrorEntity {

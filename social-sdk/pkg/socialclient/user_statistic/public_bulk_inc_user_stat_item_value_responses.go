@@ -10,6 +10,7 @@ package user_statistic
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -65,7 +66,16 @@ type PublicBulkIncUserStatItemValueOK struct {
 }
 
 func (o *PublicBulkIncUserStatItemValueOK) Error() string {
-	return fmt.Sprintf("[PATCH /social/v1/public/namespaces/{namespace}/statitems/value/bulk][%d] publicBulkIncUserStatItemValueOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[PATCH /social/v1/public/namespaces/{namespace}/statitems/value/bulk][%d] publicBulkIncUserStatItemValueOK  %+v", 200, o.ToString())
+}
+
+func (o *PublicBulkIncUserStatItemValueOK) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *PublicBulkIncUserStatItemValueOK) GetPayload() []*socialclientmodels.BulkStatItemOperationResult {
@@ -96,7 +106,16 @@ type PublicBulkIncUserStatItemValueUnprocessableEntity struct {
 }
 
 func (o *PublicBulkIncUserStatItemValueUnprocessableEntity) Error() string {
-	return fmt.Sprintf("[PATCH /social/v1/public/namespaces/{namespace}/statitems/value/bulk][%d] publicBulkIncUserStatItemValueUnprocessableEntity  %+v", 422, o.Payload)
+	return fmt.Sprintf("[PATCH /social/v1/public/namespaces/{namespace}/statitems/value/bulk][%d] publicBulkIncUserStatItemValueUnprocessableEntity  %+v", 422, o.ToString())
+}
+
+func (o *PublicBulkIncUserStatItemValueUnprocessableEntity) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *PublicBulkIncUserStatItemValueUnprocessableEntity) GetPayload() *socialclientmodels.ValidationErrorEntity {

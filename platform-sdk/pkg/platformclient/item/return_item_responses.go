@@ -10,6 +10,7 @@ package item
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -92,7 +93,16 @@ type ReturnItemNotFound struct {
 }
 
 func (o *ReturnItemNotFound) Error() string {
-	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/items/{itemId}/return][%d] returnItemNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/items/{itemId}/return][%d] returnItemNotFound  %+v", 404, o.ToString())
+}
+
+func (o *ReturnItemNotFound) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *ReturnItemNotFound) GetPayload() *platformclientmodels.ErrorEntity {
@@ -125,7 +135,16 @@ type ReturnItemUnprocessableEntity struct {
 }
 
 func (o *ReturnItemUnprocessableEntity) Error() string {
-	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/items/{itemId}/return][%d] returnItemUnprocessableEntity  %+v", 422, o.Payload)
+	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/items/{itemId}/return][%d] returnItemUnprocessableEntity  %+v", 422, o.ToString())
+}
+
+func (o *ReturnItemUnprocessableEntity) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *ReturnItemUnprocessableEntity) GetPayload() *platformclientmodels.ValidationErrorEntity {

@@ -10,6 +10,7 @@ package payment_config
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -65,7 +66,16 @@ type TestAdyenConfigByIDOK struct {
 }
 
 func (o *TestAdyenConfigByIDOK) Error() string {
-	return fmt.Sprintf("[GET /platform/admin/payment/config/merchant/{id}/adyenconfig/test][%d] testAdyenConfigByIdOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /platform/admin/payment/config/merchant/{id}/adyenconfig/test][%d] testAdyenConfigByIdOK  %+v", 200, o.ToString())
+}
+
+func (o *TestAdyenConfigByIDOK) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *TestAdyenConfigByIDOK) GetPayload() *platformclientmodels.TestResult {
@@ -98,7 +108,16 @@ type TestAdyenConfigByIDNotFound struct {
 }
 
 func (o *TestAdyenConfigByIDNotFound) Error() string {
-	return fmt.Sprintf("[GET /platform/admin/payment/config/merchant/{id}/adyenconfig/test][%d] testAdyenConfigByIdNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[GET /platform/admin/payment/config/merchant/{id}/adyenconfig/test][%d] testAdyenConfigByIdNotFound  %+v", 404, o.ToString())
+}
+
+func (o *TestAdyenConfigByIDNotFound) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *TestAdyenConfigByIDNotFound) GetPayload() *platformclientmodels.ErrorEntity {

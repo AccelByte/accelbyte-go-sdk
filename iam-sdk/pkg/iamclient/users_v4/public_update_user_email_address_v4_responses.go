@@ -10,6 +10,7 @@ package users_v4
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -110,7 +111,16 @@ type PublicUpdateUserEmailAddressV4BadRequest struct {
 }
 
 func (o *PublicUpdateUserEmailAddressV4BadRequest) Error() string {
-	return fmt.Sprintf("[PUT /iam/v4/public/namespaces/{namespace}/users/me/email][%d] publicUpdateUserEmailAddressV4BadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[PUT /iam/v4/public/namespaces/{namespace}/users/me/email][%d] publicUpdateUserEmailAddressV4BadRequest  %+v", 400, o.ToString())
+}
+
+func (o *PublicUpdateUserEmailAddressV4BadRequest) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *PublicUpdateUserEmailAddressV4BadRequest) GetPayload() *iamclientmodels.RestErrorResponse {
@@ -143,7 +153,16 @@ type PublicUpdateUserEmailAddressV4Unauthorized struct {
 }
 
 func (o *PublicUpdateUserEmailAddressV4Unauthorized) Error() string {
-	return fmt.Sprintf("[PUT /iam/v4/public/namespaces/{namespace}/users/me/email][%d] publicUpdateUserEmailAddressV4Unauthorized  %+v", 401, o.Payload)
+	return fmt.Sprintf("[PUT /iam/v4/public/namespaces/{namespace}/users/me/email][%d] publicUpdateUserEmailAddressV4Unauthorized  %+v", 401, o.ToString())
+}
+
+func (o *PublicUpdateUserEmailAddressV4Unauthorized) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *PublicUpdateUserEmailAddressV4Unauthorized) GetPayload() *iamclientmodels.RestErrorResponse {
@@ -176,7 +195,16 @@ type PublicUpdateUserEmailAddressV4NotFound struct {
 }
 
 func (o *PublicUpdateUserEmailAddressV4NotFound) Error() string {
-	return fmt.Sprintf("[PUT /iam/v4/public/namespaces/{namespace}/users/me/email][%d] publicUpdateUserEmailAddressV4NotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[PUT /iam/v4/public/namespaces/{namespace}/users/me/email][%d] publicUpdateUserEmailAddressV4NotFound  %+v", 404, o.ToString())
+}
+
+func (o *PublicUpdateUserEmailAddressV4NotFound) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *PublicUpdateUserEmailAddressV4NotFound) GetPayload() *iamclientmodels.RestErrorResponse {
@@ -209,7 +237,16 @@ type PublicUpdateUserEmailAddressV4Conflict struct {
 }
 
 func (o *PublicUpdateUserEmailAddressV4Conflict) Error() string {
-	return fmt.Sprintf("[PUT /iam/v4/public/namespaces/{namespace}/users/me/email][%d] publicUpdateUserEmailAddressV4Conflict  %+v", 409, o.Payload)
+	return fmt.Sprintf("[PUT /iam/v4/public/namespaces/{namespace}/users/me/email][%d] publicUpdateUserEmailAddressV4Conflict  %+v", 409, o.ToString())
+}
+
+func (o *PublicUpdateUserEmailAddressV4Conflict) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *PublicUpdateUserEmailAddressV4Conflict) GetPayload() *iamclientmodels.RestErrorResponse {
@@ -242,7 +279,16 @@ type PublicUpdateUserEmailAddressV4InternalServerError struct {
 }
 
 func (o *PublicUpdateUserEmailAddressV4InternalServerError) Error() string {
-	return fmt.Sprintf("[PUT /iam/v4/public/namespaces/{namespace}/users/me/email][%d] publicUpdateUserEmailAddressV4InternalServerError  %+v", 500, o.Payload)
+	return fmt.Sprintf("[PUT /iam/v4/public/namespaces/{namespace}/users/me/email][%d] publicUpdateUserEmailAddressV4InternalServerError  %+v", 500, o.ToString())
+}
+
+func (o *PublicUpdateUserEmailAddressV4InternalServerError) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *PublicUpdateUserEmailAddressV4InternalServerError) GetPayload() *iamclientmodels.RestErrorResponse {

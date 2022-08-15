@@ -10,6 +10,7 @@ package notification
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -83,7 +84,16 @@ type GetSlugTemplateOK struct {
 }
 
 func (o *GetSlugTemplateOK) Error() string {
-	return fmt.Sprintf("[GET /notification/namespaces/{namespace}/templates/{templateSlug}][%d] getSlugTemplateOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /notification/namespaces/{namespace}/templates/{templateSlug}][%d] getSlugTemplateOK  %+v", 200, o.ToString())
+}
+
+func (o *GetSlugTemplateOK) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *GetSlugTemplateOK) GetPayload() *lobbyclientmodels.ModelTemplateLocalizationResponse {
@@ -116,7 +126,16 @@ type GetSlugTemplateBadRequest struct {
 }
 
 func (o *GetSlugTemplateBadRequest) Error() string {
-	return fmt.Sprintf("[GET /notification/namespaces/{namespace}/templates/{templateSlug}][%d] getSlugTemplateBadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[GET /notification/namespaces/{namespace}/templates/{templateSlug}][%d] getSlugTemplateBadRequest  %+v", 400, o.ToString())
+}
+
+func (o *GetSlugTemplateBadRequest) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *GetSlugTemplateBadRequest) GetPayload() *lobbyclientmodels.RestapiErrorResponseBody {
@@ -149,7 +168,16 @@ type GetSlugTemplateUnauthorized struct {
 }
 
 func (o *GetSlugTemplateUnauthorized) Error() string {
-	return fmt.Sprintf("[GET /notification/namespaces/{namespace}/templates/{templateSlug}][%d] getSlugTemplateUnauthorized  %+v", 401, o.Payload)
+	return fmt.Sprintf("[GET /notification/namespaces/{namespace}/templates/{templateSlug}][%d] getSlugTemplateUnauthorized  %+v", 401, o.ToString())
+}
+
+func (o *GetSlugTemplateUnauthorized) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *GetSlugTemplateUnauthorized) GetPayload() *lobbyclientmodels.RestapiErrorResponseBody {
@@ -182,7 +210,16 @@ type GetSlugTemplateForbidden struct {
 }
 
 func (o *GetSlugTemplateForbidden) Error() string {
-	return fmt.Sprintf("[GET /notification/namespaces/{namespace}/templates/{templateSlug}][%d] getSlugTemplateForbidden  %+v", 403, o.Payload)
+	return fmt.Sprintf("[GET /notification/namespaces/{namespace}/templates/{templateSlug}][%d] getSlugTemplateForbidden  %+v", 403, o.ToString())
+}
+
+func (o *GetSlugTemplateForbidden) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *GetSlugTemplateForbidden) GetPayload() *lobbyclientmodels.RestapiErrorResponseBody {
@@ -215,7 +252,16 @@ type GetSlugTemplateNotFound struct {
 }
 
 func (o *GetSlugTemplateNotFound) Error() string {
-	return fmt.Sprintf("[GET /notification/namespaces/{namespace}/templates/{templateSlug}][%d] getSlugTemplateNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[GET /notification/namespaces/{namespace}/templates/{templateSlug}][%d] getSlugTemplateNotFound  %+v", 404, o.ToString())
+}
+
+func (o *GetSlugTemplateNotFound) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *GetSlugTemplateNotFound) GetPayload() *lobbyclientmodels.RestapiErrorResponseBody {

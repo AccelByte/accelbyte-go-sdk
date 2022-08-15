@@ -10,6 +10,7 @@ package slot
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -92,7 +93,16 @@ type PublicCreateUserNamespaceSlotBadRequest struct {
 }
 
 func (o *PublicCreateUserNamespaceSlotBadRequest) Error() string {
-	return fmt.Sprintf("[POST /social/public/namespaces/{namespace}/users/{userId}/slots][%d] publicCreateUserNamespaceSlotBadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[POST /social/public/namespaces/{namespace}/users/{userId}/slots][%d] publicCreateUserNamespaceSlotBadRequest  %+v", 400, o.ToString())
+}
+
+func (o *PublicCreateUserNamespaceSlotBadRequest) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *PublicCreateUserNamespaceSlotBadRequest) GetPayload() *socialclientmodels.ErrorEntity {
@@ -125,7 +135,16 @@ type PublicCreateUserNamespaceSlotConflict struct {
 }
 
 func (o *PublicCreateUserNamespaceSlotConflict) Error() string {
-	return fmt.Sprintf("[POST /social/public/namespaces/{namespace}/users/{userId}/slots][%d] publicCreateUserNamespaceSlotConflict  %+v", 409, o.Payload)
+	return fmt.Sprintf("[POST /social/public/namespaces/{namespace}/users/{userId}/slots][%d] publicCreateUserNamespaceSlotConflict  %+v", 409, o.ToString())
+}
+
+func (o *PublicCreateUserNamespaceSlotConflict) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *PublicCreateUserNamespaceSlotConflict) GetPayload() *socialclientmodels.ErrorEntity {

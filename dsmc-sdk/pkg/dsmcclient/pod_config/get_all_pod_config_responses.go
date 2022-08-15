@@ -10,6 +10,7 @@ package pod_config
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -77,7 +78,16 @@ type GetAllPodConfigOK struct {
 }
 
 func (o *GetAllPodConfigOK) Error() string {
-	return fmt.Sprintf("[GET /dsmcontroller/admin/namespaces/{namespace}/configs/pods][%d] getAllPodConfigOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /dsmcontroller/admin/namespaces/{namespace}/configs/pods][%d] getAllPodConfigOK  %+v", 200, o.ToString())
+}
+
+func (o *GetAllPodConfigOK) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *GetAllPodConfigOK) GetPayload() *dsmcclientmodels.ModelsListPodConfigResponse {
@@ -110,7 +120,16 @@ type GetAllPodConfigBadRequest struct {
 }
 
 func (o *GetAllPodConfigBadRequest) Error() string {
-	return fmt.Sprintf("[GET /dsmcontroller/admin/namespaces/{namespace}/configs/pods][%d] getAllPodConfigBadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[GET /dsmcontroller/admin/namespaces/{namespace}/configs/pods][%d] getAllPodConfigBadRequest  %+v", 400, o.ToString())
+}
+
+func (o *GetAllPodConfigBadRequest) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *GetAllPodConfigBadRequest) GetPayload() *dsmcclientmodels.ResponseError {
@@ -143,7 +162,16 @@ type GetAllPodConfigUnauthorized struct {
 }
 
 func (o *GetAllPodConfigUnauthorized) Error() string {
-	return fmt.Sprintf("[GET /dsmcontroller/admin/namespaces/{namespace}/configs/pods][%d] getAllPodConfigUnauthorized  %+v", 401, o.Payload)
+	return fmt.Sprintf("[GET /dsmcontroller/admin/namespaces/{namespace}/configs/pods][%d] getAllPodConfigUnauthorized  %+v", 401, o.ToString())
+}
+
+func (o *GetAllPodConfigUnauthorized) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *GetAllPodConfigUnauthorized) GetPayload() *dsmcclientmodels.ResponseError {
@@ -176,7 +204,16 @@ type GetAllPodConfigInternalServerError struct {
 }
 
 func (o *GetAllPodConfigInternalServerError) Error() string {
-	return fmt.Sprintf("[GET /dsmcontroller/admin/namespaces/{namespace}/configs/pods][%d] getAllPodConfigInternalServerError  %+v", 500, o.Payload)
+	return fmt.Sprintf("[GET /dsmcontroller/admin/namespaces/{namespace}/configs/pods][%d] getAllPodConfigInternalServerError  %+v", 500, o.ToString())
+}
+
+func (o *GetAllPodConfigInternalServerError) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *GetAllPodConfigInternalServerError) GetPayload() *dsmcclientmodels.ResponseError {

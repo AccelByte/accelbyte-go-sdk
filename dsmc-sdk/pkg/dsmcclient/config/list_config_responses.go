@@ -10,6 +10,7 @@ package config
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -71,7 +72,16 @@ type ListConfigOK struct {
 }
 
 func (o *ListConfigOK) Error() string {
-	return fmt.Sprintf("[GET /dsmcontroller/admin/configs][%d] listConfigOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /dsmcontroller/admin/configs][%d] listConfigOK  %+v", 200, o.ToString())
+}
+
+func (o *ListConfigOK) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *ListConfigOK) GetPayload() *dsmcclientmodels.ModelsListConfigResponse {
@@ -104,7 +114,16 @@ type ListConfigUnauthorized struct {
 }
 
 func (o *ListConfigUnauthorized) Error() string {
-	return fmt.Sprintf("[GET /dsmcontroller/admin/configs][%d] listConfigUnauthorized  %+v", 401, o.Payload)
+	return fmt.Sprintf("[GET /dsmcontroller/admin/configs][%d] listConfigUnauthorized  %+v", 401, o.ToString())
+}
+
+func (o *ListConfigUnauthorized) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *ListConfigUnauthorized) GetPayload() *dsmcclientmodels.ResponseError {
@@ -137,7 +156,16 @@ type ListConfigInternalServerError struct {
 }
 
 func (o *ListConfigInternalServerError) Error() string {
-	return fmt.Sprintf("[GET /dsmcontroller/admin/configs][%d] listConfigInternalServerError  %+v", 500, o.Payload)
+	return fmt.Sprintf("[GET /dsmcontroller/admin/configs][%d] listConfigInternalServerError  %+v", 500, o.ToString())
+}
+
+func (o *ListConfigInternalServerError) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *ListConfigInternalServerError) GetPayload() *dsmcclientmodels.ResponseError {

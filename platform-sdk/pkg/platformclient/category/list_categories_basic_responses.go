@@ -10,6 +10,7 @@ package category
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -59,7 +60,16 @@ type ListCategoriesBasicOK struct {
 }
 
 func (o *ListCategoriesBasicOK) Error() string {
-	return fmt.Sprintf("[GET /platform/admin/namespaces/{namespace}/categories/basic][%d] listCategoriesBasicOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /platform/admin/namespaces/{namespace}/categories/basic][%d] listCategoriesBasicOK  %+v", 200, o.ToString())
+}
+
+func (o *ListCategoriesBasicOK) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *ListCategoriesBasicOK) GetPayload() []*platformclientmodels.BasicCategoryInfo {

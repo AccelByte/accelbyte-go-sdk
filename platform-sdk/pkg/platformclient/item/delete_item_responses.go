@@ -10,6 +10,7 @@ package item
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -86,7 +87,16 @@ type DeleteItemNotFound struct {
 }
 
 func (o *DeleteItemNotFound) Error() string {
-	return fmt.Sprintf("[DELETE /platform/admin/namespaces/{namespace}/items/{itemId}][%d] deleteItemNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[DELETE /platform/admin/namespaces/{namespace}/items/{itemId}][%d] deleteItemNotFound  %+v", 404, o.ToString())
+}
+
+func (o *DeleteItemNotFound) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *DeleteItemNotFound) GetPayload() *platformclientmodels.ErrorEntity {

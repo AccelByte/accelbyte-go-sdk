@@ -10,6 +10,7 @@ package s_s_o_credential
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -146,7 +147,16 @@ type DeleteSSOLoginPlatformCredentialV3NotFound struct {
 }
 
 func (o *DeleteSSOLoginPlatformCredentialV3NotFound) Error() string {
-	return fmt.Sprintf("[DELETE /iam/v3/admin/namespaces/{namespace}/platforms/{platformId}/sso][%d] deleteSSOLoginPlatformCredentialV3NotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[DELETE /iam/v3/admin/namespaces/{namespace}/platforms/{platformId}/sso][%d] deleteSSOLoginPlatformCredentialV3NotFound  %+v", 404, o.ToString())
+}
+
+func (o *DeleteSSOLoginPlatformCredentialV3NotFound) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *DeleteSSOLoginPlatformCredentialV3NotFound) GetPayload() *iamclientmodels.RestErrorResponse {
@@ -179,7 +189,16 @@ type DeleteSSOLoginPlatformCredentialV3InternalServerError struct {
 }
 
 func (o *DeleteSSOLoginPlatformCredentialV3InternalServerError) Error() string {
-	return fmt.Sprintf("[DELETE /iam/v3/admin/namespaces/{namespace}/platforms/{platformId}/sso][%d] deleteSSOLoginPlatformCredentialV3InternalServerError  %+v", 500, o.Payload)
+	return fmt.Sprintf("[DELETE /iam/v3/admin/namespaces/{namespace}/platforms/{platformId}/sso][%d] deleteSSOLoginPlatformCredentialV3InternalServerError  %+v", 500, o.ToString())
+}
+
+func (o *DeleteSSOLoginPlatformCredentialV3InternalServerError) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *DeleteSSOLoginPlatformCredentialV3InternalServerError) GetPayload() *iamclientmodels.RestErrorResponse {

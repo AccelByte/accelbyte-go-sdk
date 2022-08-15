@@ -10,6 +10,7 @@ package order
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -89,7 +90,16 @@ type AdminCreateUserOrderCreated struct {
 }
 
 func (o *AdminCreateUserOrderCreated) Error() string {
-	return fmt.Sprintf("[POST /platform/admin/namespaces/{namespace}/users/{userId}/orders][%d] adminCreateUserOrderCreated  %+v", 201, o.Payload)
+	return fmt.Sprintf("[POST /platform/admin/namespaces/{namespace}/users/{userId}/orders][%d] adminCreateUserOrderCreated  %+v", 201, o.ToString())
+}
+
+func (o *AdminCreateUserOrderCreated) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *AdminCreateUserOrderCreated) GetPayload() *platformclientmodels.OrderInfo {
@@ -122,7 +132,16 @@ type AdminCreateUserOrderBadRequest struct {
 }
 
 func (o *AdminCreateUserOrderBadRequest) Error() string {
-	return fmt.Sprintf("[POST /platform/admin/namespaces/{namespace}/users/{userId}/orders][%d] adminCreateUserOrderBadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[POST /platform/admin/namespaces/{namespace}/users/{userId}/orders][%d] adminCreateUserOrderBadRequest  %+v", 400, o.ToString())
+}
+
+func (o *AdminCreateUserOrderBadRequest) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *AdminCreateUserOrderBadRequest) GetPayload() *platformclientmodels.ErrorEntity {
@@ -155,7 +174,16 @@ type AdminCreateUserOrderForbidden struct {
 }
 
 func (o *AdminCreateUserOrderForbidden) Error() string {
-	return fmt.Sprintf("[POST /platform/admin/namespaces/{namespace}/users/{userId}/orders][%d] adminCreateUserOrderForbidden  %+v", 403, o.Payload)
+	return fmt.Sprintf("[POST /platform/admin/namespaces/{namespace}/users/{userId}/orders][%d] adminCreateUserOrderForbidden  %+v", 403, o.ToString())
+}
+
+func (o *AdminCreateUserOrderForbidden) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *AdminCreateUserOrderForbidden) GetPayload() *platformclientmodels.ErrorEntity {
@@ -188,7 +216,16 @@ type AdminCreateUserOrderNotFound struct {
 }
 
 func (o *AdminCreateUserOrderNotFound) Error() string {
-	return fmt.Sprintf("[POST /platform/admin/namespaces/{namespace}/users/{userId}/orders][%d] adminCreateUserOrderNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[POST /platform/admin/namespaces/{namespace}/users/{userId}/orders][%d] adminCreateUserOrderNotFound  %+v", 404, o.ToString())
+}
+
+func (o *AdminCreateUserOrderNotFound) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *AdminCreateUserOrderNotFound) GetPayload() *platformclientmodels.ErrorEntity {
@@ -221,7 +258,16 @@ type AdminCreateUserOrderConflict struct {
 }
 
 func (o *AdminCreateUserOrderConflict) Error() string {
-	return fmt.Sprintf("[POST /platform/admin/namespaces/{namespace}/users/{userId}/orders][%d] adminCreateUserOrderConflict  %+v", 409, o.Payload)
+	return fmt.Sprintf("[POST /platform/admin/namespaces/{namespace}/users/{userId}/orders][%d] adminCreateUserOrderConflict  %+v", 409, o.ToString())
+}
+
+func (o *AdminCreateUserOrderConflict) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *AdminCreateUserOrderConflict) GetPayload() *platformclientmodels.ErrorEntity {
@@ -254,7 +300,16 @@ type AdminCreateUserOrderUnprocessableEntity struct {
 }
 
 func (o *AdminCreateUserOrderUnprocessableEntity) Error() string {
-	return fmt.Sprintf("[POST /platform/admin/namespaces/{namespace}/users/{userId}/orders][%d] adminCreateUserOrderUnprocessableEntity  %+v", 422, o.Payload)
+	return fmt.Sprintf("[POST /platform/admin/namespaces/{namespace}/users/{userId}/orders][%d] adminCreateUserOrderUnprocessableEntity  %+v", 422, o.ToString())
+}
+
+func (o *AdminCreateUserOrderUnprocessableEntity) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *AdminCreateUserOrderUnprocessableEntity) GetPayload() *platformclientmodels.ValidationErrorEntity {

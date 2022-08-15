@@ -10,6 +10,7 @@ package group
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -89,7 +90,16 @@ type UpdateGroupCustomAttributesPublicV1OK struct {
 }
 
 func (o *UpdateGroupCustomAttributesPublicV1OK) Error() string {
-	return fmt.Sprintf("[PUT /group/v1/public/namespaces/{namespace}/groups/{groupId}/attributes/custom][%d] updateGroupCustomAttributesPublicV1OK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[PUT /group/v1/public/namespaces/{namespace}/groups/{groupId}/attributes/custom][%d] updateGroupCustomAttributesPublicV1OK  %+v", 200, o.ToString())
+}
+
+func (o *UpdateGroupCustomAttributesPublicV1OK) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *UpdateGroupCustomAttributesPublicV1OK) GetPayload() *groupclientmodels.ModelsGroupResponseV1 {
@@ -122,7 +132,16 @@ type UpdateGroupCustomAttributesPublicV1BadRequest struct {
 }
 
 func (o *UpdateGroupCustomAttributesPublicV1BadRequest) Error() string {
-	return fmt.Sprintf("[PUT /group/v1/public/namespaces/{namespace}/groups/{groupId}/attributes/custom][%d] updateGroupCustomAttributesPublicV1BadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[PUT /group/v1/public/namespaces/{namespace}/groups/{groupId}/attributes/custom][%d] updateGroupCustomAttributesPublicV1BadRequest  %+v", 400, o.ToString())
+}
+
+func (o *UpdateGroupCustomAttributesPublicV1BadRequest) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *UpdateGroupCustomAttributesPublicV1BadRequest) GetPayload() *groupclientmodels.ResponseErrorResponse {
@@ -155,7 +174,16 @@ type UpdateGroupCustomAttributesPublicV1Unauthorized struct {
 }
 
 func (o *UpdateGroupCustomAttributesPublicV1Unauthorized) Error() string {
-	return fmt.Sprintf("[PUT /group/v1/public/namespaces/{namespace}/groups/{groupId}/attributes/custom][%d] updateGroupCustomAttributesPublicV1Unauthorized  %+v", 401, o.Payload)
+	return fmt.Sprintf("[PUT /group/v1/public/namespaces/{namespace}/groups/{groupId}/attributes/custom][%d] updateGroupCustomAttributesPublicV1Unauthorized  %+v", 401, o.ToString())
+}
+
+func (o *UpdateGroupCustomAttributesPublicV1Unauthorized) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *UpdateGroupCustomAttributesPublicV1Unauthorized) GetPayload() *groupclientmodels.ResponseErrorResponse {
@@ -188,7 +216,16 @@ type UpdateGroupCustomAttributesPublicV1Forbidden struct {
 }
 
 func (o *UpdateGroupCustomAttributesPublicV1Forbidden) Error() string {
-	return fmt.Sprintf("[PUT /group/v1/public/namespaces/{namespace}/groups/{groupId}/attributes/custom][%d] updateGroupCustomAttributesPublicV1Forbidden  %+v", 403, o.Payload)
+	return fmt.Sprintf("[PUT /group/v1/public/namespaces/{namespace}/groups/{groupId}/attributes/custom][%d] updateGroupCustomAttributesPublicV1Forbidden  %+v", 403, o.ToString())
+}
+
+func (o *UpdateGroupCustomAttributesPublicV1Forbidden) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *UpdateGroupCustomAttributesPublicV1Forbidden) GetPayload() *groupclientmodels.ResponseErrorResponse {
@@ -221,7 +258,16 @@ type UpdateGroupCustomAttributesPublicV1NotFound struct {
 }
 
 func (o *UpdateGroupCustomAttributesPublicV1NotFound) Error() string {
-	return fmt.Sprintf("[PUT /group/v1/public/namespaces/{namespace}/groups/{groupId}/attributes/custom][%d] updateGroupCustomAttributesPublicV1NotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[PUT /group/v1/public/namespaces/{namespace}/groups/{groupId}/attributes/custom][%d] updateGroupCustomAttributesPublicV1NotFound  %+v", 404, o.ToString())
+}
+
+func (o *UpdateGroupCustomAttributesPublicV1NotFound) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *UpdateGroupCustomAttributesPublicV1NotFound) GetPayload() *groupclientmodels.ResponseErrorResponse {
@@ -254,7 +300,16 @@ type UpdateGroupCustomAttributesPublicV1InternalServerError struct {
 }
 
 func (o *UpdateGroupCustomAttributesPublicV1InternalServerError) Error() string {
-	return fmt.Sprintf("[PUT /group/v1/public/namespaces/{namespace}/groups/{groupId}/attributes/custom][%d] updateGroupCustomAttributesPublicV1InternalServerError  %+v", 500, o.Payload)
+	return fmt.Sprintf("[PUT /group/v1/public/namespaces/{namespace}/groups/{groupId}/attributes/custom][%d] updateGroupCustomAttributesPublicV1InternalServerError  %+v", 500, o.ToString())
+}
+
+func (o *UpdateGroupCustomAttributesPublicV1InternalServerError) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *UpdateGroupCustomAttributesPublicV1InternalServerError) GetPayload() *groupclientmodels.ResponseErrorResponse {

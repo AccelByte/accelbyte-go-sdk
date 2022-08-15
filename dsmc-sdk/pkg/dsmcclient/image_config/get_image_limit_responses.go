@@ -10,6 +10,7 @@ package image_config
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -77,7 +78,16 @@ type GetImageLimitOK struct {
 }
 
 func (o *GetImageLimitOK) Error() string {
-	return fmt.Sprintf("[GET /dsmcontroller/admin/namespaces/{namespace}/images/limit][%d] getImageLimitOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /dsmcontroller/admin/namespaces/{namespace}/images/limit][%d] getImageLimitOK  %+v", 200, o.ToString())
+}
+
+func (o *GetImageLimitOK) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *GetImageLimitOK) GetPayload() *dsmcclientmodels.ModelsGetImageLimitResponse {
@@ -110,7 +120,16 @@ type GetImageLimitBadRequest struct {
 }
 
 func (o *GetImageLimitBadRequest) Error() string {
-	return fmt.Sprintf("[GET /dsmcontroller/admin/namespaces/{namespace}/images/limit][%d] getImageLimitBadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[GET /dsmcontroller/admin/namespaces/{namespace}/images/limit][%d] getImageLimitBadRequest  %+v", 400, o.ToString())
+}
+
+func (o *GetImageLimitBadRequest) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *GetImageLimitBadRequest) GetPayload() *dsmcclientmodels.ResponseError {
@@ -143,7 +162,16 @@ type GetImageLimitUnauthorized struct {
 }
 
 func (o *GetImageLimitUnauthorized) Error() string {
-	return fmt.Sprintf("[GET /dsmcontroller/admin/namespaces/{namespace}/images/limit][%d] getImageLimitUnauthorized  %+v", 401, o.Payload)
+	return fmt.Sprintf("[GET /dsmcontroller/admin/namespaces/{namespace}/images/limit][%d] getImageLimitUnauthorized  %+v", 401, o.ToString())
+}
+
+func (o *GetImageLimitUnauthorized) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *GetImageLimitUnauthorized) GetPayload() *dsmcclientmodels.ResponseError {
@@ -176,7 +204,16 @@ type GetImageLimitInternalServerError struct {
 }
 
 func (o *GetImageLimitInternalServerError) Error() string {
-	return fmt.Sprintf("[GET /dsmcontroller/admin/namespaces/{namespace}/images/limit][%d] getImageLimitInternalServerError  %+v", 500, o.Payload)
+	return fmt.Sprintf("[GET /dsmcontroller/admin/namespaces/{namespace}/images/limit][%d] getImageLimitInternalServerError  %+v", 500, o.ToString())
+}
+
+func (o *GetImageLimitInternalServerError) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *GetImageLimitInternalServerError) GetPayload() *dsmcclientmodels.ResponseError {

@@ -10,6 +10,7 @@ package user_statistic
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -59,7 +60,16 @@ type GetUserStatItemsOK struct {
 }
 
 func (o *GetUserStatItemsOK) Error() string {
-	return fmt.Sprintf("[GET /social/v1/admin/namespaces/{namespace}/users/{userId}/statitems][%d] getUserStatItemsOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /social/v1/admin/namespaces/{namespace}/users/{userId}/statitems][%d] getUserStatItemsOK  %+v", 200, o.ToString())
+}
+
+func (o *GetUserStatItemsOK) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *GetUserStatItemsOK) GetPayload() *socialclientmodels.UserStatItemPagingSlicedResult {

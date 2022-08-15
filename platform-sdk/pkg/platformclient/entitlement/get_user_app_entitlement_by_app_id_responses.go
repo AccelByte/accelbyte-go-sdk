@@ -10,6 +10,7 @@ package entitlement
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -65,7 +66,16 @@ type GetUserAppEntitlementByAppIDOK struct {
 }
 
 func (o *GetUserAppEntitlementByAppIDOK) Error() string {
-	return fmt.Sprintf("[GET /platform/admin/namespaces/{namespace}/users/{userId}/entitlements/byAppId][%d] getUserAppEntitlementByAppIdOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /platform/admin/namespaces/{namespace}/users/{userId}/entitlements/byAppId][%d] getUserAppEntitlementByAppIdOK  %+v", 200, o.ToString())
+}
+
+func (o *GetUserAppEntitlementByAppIDOK) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *GetUserAppEntitlementByAppIDOK) GetPayload() *platformclientmodels.AppEntitlementInfo {
@@ -98,7 +108,16 @@ type GetUserAppEntitlementByAppIDNotFound struct {
 }
 
 func (o *GetUserAppEntitlementByAppIDNotFound) Error() string {
-	return fmt.Sprintf("[GET /platform/admin/namespaces/{namespace}/users/{userId}/entitlements/byAppId][%d] getUserAppEntitlementByAppIdNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[GET /platform/admin/namespaces/{namespace}/users/{userId}/entitlements/byAppId][%d] getUserAppEntitlementByAppIdNotFound  %+v", 404, o.ToString())
+}
+
+func (o *GetUserAppEntitlementByAppIDNotFound) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *GetUserAppEntitlementByAppIDNotFound) GetPayload() *platformclientmodels.ErrorEntity {

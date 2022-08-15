@@ -10,6 +10,7 @@ package users
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -89,7 +90,16 @@ type AdminGetBulkUserByEmailAddressV3OK struct {
 }
 
 func (o *AdminGetBulkUserByEmailAddressV3OK) Error() string {
-	return fmt.Sprintf("[POST /iam/v3/admin/namespaces/{namespace}/users/search/bulk][%d] adminGetBulkUserByEmailAddressV3OK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[POST /iam/v3/admin/namespaces/{namespace}/users/search/bulk][%d] adminGetBulkUserByEmailAddressV3OK  %+v", 200, o.ToString())
+}
+
+func (o *AdminGetBulkUserByEmailAddressV3OK) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *AdminGetBulkUserByEmailAddressV3OK) GetPayload() *iamclientmodels.ModelListUserResponseV3 {
@@ -122,7 +132,16 @@ type AdminGetBulkUserByEmailAddressV3BadRequest struct {
 }
 
 func (o *AdminGetBulkUserByEmailAddressV3BadRequest) Error() string {
-	return fmt.Sprintf("[POST /iam/v3/admin/namespaces/{namespace}/users/search/bulk][%d] adminGetBulkUserByEmailAddressV3BadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[POST /iam/v3/admin/namespaces/{namespace}/users/search/bulk][%d] adminGetBulkUserByEmailAddressV3BadRequest  %+v", 400, o.ToString())
+}
+
+func (o *AdminGetBulkUserByEmailAddressV3BadRequest) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *AdminGetBulkUserByEmailAddressV3BadRequest) GetPayload() *iamclientmodels.RestErrorResponse {
@@ -155,7 +174,16 @@ type AdminGetBulkUserByEmailAddressV3Unauthorized struct {
 }
 
 func (o *AdminGetBulkUserByEmailAddressV3Unauthorized) Error() string {
-	return fmt.Sprintf("[POST /iam/v3/admin/namespaces/{namespace}/users/search/bulk][%d] adminGetBulkUserByEmailAddressV3Unauthorized  %+v", 401, o.Payload)
+	return fmt.Sprintf("[POST /iam/v3/admin/namespaces/{namespace}/users/search/bulk][%d] adminGetBulkUserByEmailAddressV3Unauthorized  %+v", 401, o.ToString())
+}
+
+func (o *AdminGetBulkUserByEmailAddressV3Unauthorized) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *AdminGetBulkUserByEmailAddressV3Unauthorized) GetPayload() *iamclientmodels.RestErrorResponse {
@@ -188,7 +216,16 @@ type AdminGetBulkUserByEmailAddressV3Forbidden struct {
 }
 
 func (o *AdminGetBulkUserByEmailAddressV3Forbidden) Error() string {
-	return fmt.Sprintf("[POST /iam/v3/admin/namespaces/{namespace}/users/search/bulk][%d] adminGetBulkUserByEmailAddressV3Forbidden  %+v", 403, o.Payload)
+	return fmt.Sprintf("[POST /iam/v3/admin/namespaces/{namespace}/users/search/bulk][%d] adminGetBulkUserByEmailAddressV3Forbidden  %+v", 403, o.ToString())
+}
+
+func (o *AdminGetBulkUserByEmailAddressV3Forbidden) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *AdminGetBulkUserByEmailAddressV3Forbidden) GetPayload() *iamclientmodels.RestErrorResponse {
@@ -221,7 +258,16 @@ type AdminGetBulkUserByEmailAddressV3NotFound struct {
 }
 
 func (o *AdminGetBulkUserByEmailAddressV3NotFound) Error() string {
-	return fmt.Sprintf("[POST /iam/v3/admin/namespaces/{namespace}/users/search/bulk][%d] adminGetBulkUserByEmailAddressV3NotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[POST /iam/v3/admin/namespaces/{namespace}/users/search/bulk][%d] adminGetBulkUserByEmailAddressV3NotFound  %+v", 404, o.ToString())
+}
+
+func (o *AdminGetBulkUserByEmailAddressV3NotFound) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *AdminGetBulkUserByEmailAddressV3NotFound) GetPayload() *iamclientmodels.RestErrorResponse {
@@ -254,7 +300,16 @@ type AdminGetBulkUserByEmailAddressV3InternalServerError struct {
 }
 
 func (o *AdminGetBulkUserByEmailAddressV3InternalServerError) Error() string {
-	return fmt.Sprintf("[POST /iam/v3/admin/namespaces/{namespace}/users/search/bulk][%d] adminGetBulkUserByEmailAddressV3InternalServerError  %+v", 500, o.Payload)
+	return fmt.Sprintf("[POST /iam/v3/admin/namespaces/{namespace}/users/search/bulk][%d] adminGetBulkUserByEmailAddressV3InternalServerError  %+v", 500, o.ToString())
+}
+
+func (o *AdminGetBulkUserByEmailAddressV3InternalServerError) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *AdminGetBulkUserByEmailAddressV3InternalServerError) GetPayload() *iamclientmodels.RestErrorResponse {

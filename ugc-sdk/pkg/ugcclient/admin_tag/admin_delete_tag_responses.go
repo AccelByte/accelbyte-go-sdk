@@ -10,6 +10,7 @@ package admin_tag
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -98,7 +99,16 @@ type AdminDeleteTagUnauthorized struct {
 }
 
 func (o *AdminDeleteTagUnauthorized) Error() string {
-	return fmt.Sprintf("[DELETE /ugc/v1/admin/namespaces/{namespace}/tags/{tagId}][%d] adminDeleteTagUnauthorized  %+v", 401, o.Payload)
+	return fmt.Sprintf("[DELETE /ugc/v1/admin/namespaces/{namespace}/tags/{tagId}][%d] adminDeleteTagUnauthorized  %+v", 401, o.ToString())
+}
+
+func (o *AdminDeleteTagUnauthorized) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *AdminDeleteTagUnauthorized) GetPayload() *ugcclientmodels.ResponseError {
@@ -131,7 +141,16 @@ type AdminDeleteTagNotFound struct {
 }
 
 func (o *AdminDeleteTagNotFound) Error() string {
-	return fmt.Sprintf("[DELETE /ugc/v1/admin/namespaces/{namespace}/tags/{tagId}][%d] adminDeleteTagNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[DELETE /ugc/v1/admin/namespaces/{namespace}/tags/{tagId}][%d] adminDeleteTagNotFound  %+v", 404, o.ToString())
+}
+
+func (o *AdminDeleteTagNotFound) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *AdminDeleteTagNotFound) GetPayload() *ugcclientmodels.ResponseError {
@@ -164,7 +183,16 @@ type AdminDeleteTagInternalServerError struct {
 }
 
 func (o *AdminDeleteTagInternalServerError) Error() string {
-	return fmt.Sprintf("[DELETE /ugc/v1/admin/namespaces/{namespace}/tags/{tagId}][%d] adminDeleteTagInternalServerError  %+v", 500, o.Payload)
+	return fmt.Sprintf("[DELETE /ugc/v1/admin/namespaces/{namespace}/tags/{tagId}][%d] adminDeleteTagInternalServerError  %+v", 500, o.ToString())
+}
+
+func (o *AdminDeleteTagInternalServerError) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *AdminDeleteTagInternalServerError) GetPayload() *ugcclientmodels.ResponseError {

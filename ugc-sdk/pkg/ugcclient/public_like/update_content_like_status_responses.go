@@ -10,6 +10,7 @@ package public_like
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -77,7 +78,16 @@ type UpdateContentLikeStatusOK struct {
 }
 
 func (o *UpdateContentLikeStatusOK) Error() string {
-	return fmt.Sprintf("[PUT /ugc/v1/public/namespaces/{namespace}/contents/{contentId}/like][%d] updateContentLikeStatusOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[PUT /ugc/v1/public/namespaces/{namespace}/contents/{contentId}/like][%d] updateContentLikeStatusOK  %+v", 200, o.ToString())
+}
+
+func (o *UpdateContentLikeStatusOK) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *UpdateContentLikeStatusOK) GetPayload() *ugcclientmodels.ModelsContentLikeResponse {
@@ -110,7 +120,16 @@ type UpdateContentLikeStatusBadRequest struct {
 }
 
 func (o *UpdateContentLikeStatusBadRequest) Error() string {
-	return fmt.Sprintf("[PUT /ugc/v1/public/namespaces/{namespace}/contents/{contentId}/like][%d] updateContentLikeStatusBadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[PUT /ugc/v1/public/namespaces/{namespace}/contents/{contentId}/like][%d] updateContentLikeStatusBadRequest  %+v", 400, o.ToString())
+}
+
+func (o *UpdateContentLikeStatusBadRequest) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *UpdateContentLikeStatusBadRequest) GetPayload() *ugcclientmodels.ResponseError {
@@ -143,7 +162,16 @@ type UpdateContentLikeStatusUnauthorized struct {
 }
 
 func (o *UpdateContentLikeStatusUnauthorized) Error() string {
-	return fmt.Sprintf("[PUT /ugc/v1/public/namespaces/{namespace}/contents/{contentId}/like][%d] updateContentLikeStatusUnauthorized  %+v", 401, o.Payload)
+	return fmt.Sprintf("[PUT /ugc/v1/public/namespaces/{namespace}/contents/{contentId}/like][%d] updateContentLikeStatusUnauthorized  %+v", 401, o.ToString())
+}
+
+func (o *UpdateContentLikeStatusUnauthorized) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *UpdateContentLikeStatusUnauthorized) GetPayload() *ugcclientmodels.ResponseError {
@@ -176,7 +204,16 @@ type UpdateContentLikeStatusInternalServerError struct {
 }
 
 func (o *UpdateContentLikeStatusInternalServerError) Error() string {
-	return fmt.Sprintf("[PUT /ugc/v1/public/namespaces/{namespace}/contents/{contentId}/like][%d] updateContentLikeStatusInternalServerError  %+v", 500, o.Payload)
+	return fmt.Sprintf("[PUT /ugc/v1/public/namespaces/{namespace}/contents/{contentId}/like][%d] updateContentLikeStatusInternalServerError  %+v", 500, o.ToString())
+}
+
+func (o *UpdateContentLikeStatusInternalServerError) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *UpdateContentLikeStatusInternalServerError) GetPayload() *ugcclientmodels.ResponseError {

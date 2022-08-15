@@ -10,6 +10,7 @@ package payment
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -57,7 +58,16 @@ type ListExtOrderNoByExtTxIDOK struct {
 }
 
 func (o *ListExtOrderNoByExtTxIDOK) Error() string {
-	return fmt.Sprintf("[GET /platform/admin/namespaces/{namespace}/payment/orders/byExtTxId][%d] listExtOrderNoByExtTxIdOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /platform/admin/namespaces/{namespace}/payment/orders/byExtTxId][%d] listExtOrderNoByExtTxIdOK  %+v", 200, o.ToString())
+}
+
+func (o *ListExtOrderNoByExtTxIDOK) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *ListExtOrderNoByExtTxIDOK) GetPayload() []string {

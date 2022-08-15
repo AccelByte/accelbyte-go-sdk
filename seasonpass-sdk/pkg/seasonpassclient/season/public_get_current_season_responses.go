@@ -10,6 +10,7 @@ package season
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -71,7 +72,16 @@ type PublicGetCurrentSeasonOK struct {
 }
 
 func (o *PublicGetCurrentSeasonOK) Error() string {
-	return fmt.Sprintf("[GET /seasonpass/public/namespaces/{namespace}/seasons/current][%d] publicGetCurrentSeasonOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /seasonpass/public/namespaces/{namespace}/seasons/current][%d] publicGetCurrentSeasonOK  %+v", 200, o.ToString())
+}
+
+func (o *PublicGetCurrentSeasonOK) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *PublicGetCurrentSeasonOK) GetPayload() *seasonpassclientmodels.LocalizedSeasonInfo {
@@ -104,7 +114,16 @@ type PublicGetCurrentSeasonBadRequest struct {
 }
 
 func (o *PublicGetCurrentSeasonBadRequest) Error() string {
-	return fmt.Sprintf("[GET /seasonpass/public/namespaces/{namespace}/seasons/current][%d] publicGetCurrentSeasonBadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[GET /seasonpass/public/namespaces/{namespace}/seasons/current][%d] publicGetCurrentSeasonBadRequest  %+v", 400, o.ToString())
+}
+
+func (o *PublicGetCurrentSeasonBadRequest) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *PublicGetCurrentSeasonBadRequest) GetPayload() *seasonpassclientmodels.ErrorEntity {
@@ -137,7 +156,16 @@ type PublicGetCurrentSeasonNotFound struct {
 }
 
 func (o *PublicGetCurrentSeasonNotFound) Error() string {
-	return fmt.Sprintf("[GET /seasonpass/public/namespaces/{namespace}/seasons/current][%d] publicGetCurrentSeasonNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[GET /seasonpass/public/namespaces/{namespace}/seasons/current][%d] publicGetCurrentSeasonNotFound  %+v", 404, o.ToString())
+}
+
+func (o *PublicGetCurrentSeasonNotFound) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *PublicGetCurrentSeasonNotFound) GetPayload() *seasonpassclientmodels.ErrorEntity {

@@ -10,6 +10,7 @@ package base_legal_policies
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -65,7 +66,16 @@ type RetrieveSinglePolicyOK struct {
 }
 
 func (o *RetrieveSinglePolicyOK) Error() string {
-	return fmt.Sprintf("[GET /agreement/admin/base-policies/{basePolicyId}][%d] retrieveSinglePolicyOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /agreement/admin/base-policies/{basePolicyId}][%d] retrieveSinglePolicyOK  %+v", 200, o.ToString())
+}
+
+func (o *RetrieveSinglePolicyOK) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *RetrieveSinglePolicyOK) GetPayload() *legalclientmodels.RetrieveBasePolicyResponse {
@@ -98,7 +108,16 @@ type RetrieveSinglePolicyNotFound struct {
 }
 
 func (o *RetrieveSinglePolicyNotFound) Error() string {
-	return fmt.Sprintf("[GET /agreement/admin/base-policies/{basePolicyId}][%d] retrieveSinglePolicyNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[GET /agreement/admin/base-policies/{basePolicyId}][%d] retrieveSinglePolicyNotFound  %+v", 404, o.ToString())
+}
+
+func (o *RetrieveSinglePolicyNotFound) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *RetrieveSinglePolicyNotFound) GetPayload() *legalclientmodels.ErrorEntity {

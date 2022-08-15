@@ -10,6 +10,7 @@ package localized_policy_versions
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -65,7 +66,16 @@ type RequestPresignedURLCreated struct {
 }
 
 func (o *RequestPresignedURLCreated) Error() string {
-	return fmt.Sprintf("[POST /agreement/admin/localized-policy-versions/{localizedPolicyVersionId}/attachments][%d] requestPresignedUrlCreated  %+v", 201, o.Payload)
+	return fmt.Sprintf("[POST /agreement/admin/localized-policy-versions/{localizedPolicyVersionId}/attachments][%d] requestPresignedUrlCreated  %+v", 201, o.ToString())
+}
+
+func (o *RequestPresignedURLCreated) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *RequestPresignedURLCreated) GetPayload() *legalclientmodels.UploadLocalizedPolicyVersionAttachmentResponse {
@@ -98,7 +108,16 @@ type RequestPresignedURLBadRequest struct {
 }
 
 func (o *RequestPresignedURLBadRequest) Error() string {
-	return fmt.Sprintf("[POST /agreement/admin/localized-policy-versions/{localizedPolicyVersionId}/attachments][%d] requestPresignedUrlBadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[POST /agreement/admin/localized-policy-versions/{localizedPolicyVersionId}/attachments][%d] requestPresignedUrlBadRequest  %+v", 400, o.ToString())
+}
+
+func (o *RequestPresignedURLBadRequest) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *RequestPresignedURLBadRequest) GetPayload() *legalclientmodels.ErrorEntity {

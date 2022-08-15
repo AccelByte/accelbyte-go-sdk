@@ -10,6 +10,7 @@ package season
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -98,7 +99,16 @@ type DeleteSeasonBadRequest struct {
 }
 
 func (o *DeleteSeasonBadRequest) Error() string {
-	return fmt.Sprintf("[DELETE /seasonpass/admin/namespaces/{namespace}/seasons/{seasonId}][%d] deleteSeasonBadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[DELETE /seasonpass/admin/namespaces/{namespace}/seasons/{seasonId}][%d] deleteSeasonBadRequest  %+v", 400, o.ToString())
+}
+
+func (o *DeleteSeasonBadRequest) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *DeleteSeasonBadRequest) GetPayload() *seasonpassclientmodels.ErrorEntity {
@@ -131,7 +141,16 @@ type DeleteSeasonNotFound struct {
 }
 
 func (o *DeleteSeasonNotFound) Error() string {
-	return fmt.Sprintf("[DELETE /seasonpass/admin/namespaces/{namespace}/seasons/{seasonId}][%d] deleteSeasonNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[DELETE /seasonpass/admin/namespaces/{namespace}/seasons/{seasonId}][%d] deleteSeasonNotFound  %+v", 404, o.ToString())
+}
+
+func (o *DeleteSeasonNotFound) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *DeleteSeasonNotFound) GetPayload() *seasonpassclientmodels.ErrorEntity {
@@ -164,7 +183,16 @@ type DeleteSeasonConflict struct {
 }
 
 func (o *DeleteSeasonConflict) Error() string {
-	return fmt.Sprintf("[DELETE /seasonpass/admin/namespaces/{namespace}/seasons/{seasonId}][%d] deleteSeasonConflict  %+v", 409, o.Payload)
+	return fmt.Sprintf("[DELETE /seasonpass/admin/namespaces/{namespace}/seasons/{seasonId}][%d] deleteSeasonConflict  %+v", 409, o.ToString())
+}
+
+func (o *DeleteSeasonConflict) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *DeleteSeasonConflict) GetPayload() *seasonpassclientmodels.ErrorEntity {

@@ -10,6 +10,7 @@ package roles
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -77,7 +78,16 @@ type GetRoleOK struct {
 }
 
 func (o *GetRoleOK) Error() string {
-	return fmt.Sprintf("[GET /iam/roles/{roleId}][%d] getRoleOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /iam/roles/{roleId}][%d] getRoleOK  %+v", 200, o.ToString())
+}
+
+func (o *GetRoleOK) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *GetRoleOK) GetPayload() *iamclientmodels.ModelRoleResponse {

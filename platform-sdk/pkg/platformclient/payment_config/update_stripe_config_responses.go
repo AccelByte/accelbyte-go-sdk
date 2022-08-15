@@ -10,6 +10,7 @@ package payment_config
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -65,7 +66,16 @@ type UpdateStripeConfigOK struct {
 }
 
 func (o *UpdateStripeConfigOK) Error() string {
-	return fmt.Sprintf("[PUT /platform/admin/payment/config/merchant/{id}/stripeconfig][%d] updateStripeConfigOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[PUT /platform/admin/payment/config/merchant/{id}/stripeconfig][%d] updateStripeConfigOK  %+v", 200, o.ToString())
+}
+
+func (o *UpdateStripeConfigOK) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *UpdateStripeConfigOK) GetPayload() *platformclientmodels.PaymentMerchantConfigInfo {
@@ -98,7 +108,16 @@ type UpdateStripeConfigNotFound struct {
 }
 
 func (o *UpdateStripeConfigNotFound) Error() string {
-	return fmt.Sprintf("[PUT /platform/admin/payment/config/merchant/{id}/stripeconfig][%d] updateStripeConfigNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[PUT /platform/admin/payment/config/merchant/{id}/stripeconfig][%d] updateStripeConfigNotFound  %+v", 404, o.ToString())
+}
+
+func (o *UpdateStripeConfigNotFound) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *UpdateStripeConfigNotFound) GetPayload() *platformclientmodels.ErrorEntity {

@@ -10,6 +10,7 @@ package matchmaking
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -137,7 +138,16 @@ type DeleteUserFromSessionInChannelBadRequest struct {
 }
 
 func (o *DeleteUserFromSessionInChannelBadRequest) Error() string {
-	return fmt.Sprintf("[DELETE /matchmaking/v1/admin/namespaces/{namespace}/channels/{channelName}/sessions/{matchID}/users/{userID}][%d] deleteUserFromSessionInChannelBadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[DELETE /matchmaking/v1/admin/namespaces/{namespace}/channels/{channelName}/sessions/{matchID}/users/{userID}][%d] deleteUserFromSessionInChannelBadRequest  %+v", 400, o.ToString())
+}
+
+func (o *DeleteUserFromSessionInChannelBadRequest) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *DeleteUserFromSessionInChannelBadRequest) GetPayload() *matchmakingclientmodels.ResponseErrorV1 {
@@ -170,7 +180,16 @@ type DeleteUserFromSessionInChannelUnauthorized struct {
 }
 
 func (o *DeleteUserFromSessionInChannelUnauthorized) Error() string {
-	return fmt.Sprintf("[DELETE /matchmaking/v1/admin/namespaces/{namespace}/channels/{channelName}/sessions/{matchID}/users/{userID}][%d] deleteUserFromSessionInChannelUnauthorized  %+v", 401, o.Payload)
+	return fmt.Sprintf("[DELETE /matchmaking/v1/admin/namespaces/{namespace}/channels/{channelName}/sessions/{matchID}/users/{userID}][%d] deleteUserFromSessionInChannelUnauthorized  %+v", 401, o.ToString())
+}
+
+func (o *DeleteUserFromSessionInChannelUnauthorized) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *DeleteUserFromSessionInChannelUnauthorized) GetPayload() *matchmakingclientmodels.ResponseErrorV1 {
@@ -203,7 +222,16 @@ type DeleteUserFromSessionInChannelForbidden struct {
 }
 
 func (o *DeleteUserFromSessionInChannelForbidden) Error() string {
-	return fmt.Sprintf("[DELETE /matchmaking/v1/admin/namespaces/{namespace}/channels/{channelName}/sessions/{matchID}/users/{userID}][%d] deleteUserFromSessionInChannelForbidden  %+v", 403, o.Payload)
+	return fmt.Sprintf("[DELETE /matchmaking/v1/admin/namespaces/{namespace}/channels/{channelName}/sessions/{matchID}/users/{userID}][%d] deleteUserFromSessionInChannelForbidden  %+v", 403, o.ToString())
+}
+
+func (o *DeleteUserFromSessionInChannelForbidden) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *DeleteUserFromSessionInChannelForbidden) GetPayload() *matchmakingclientmodels.ResponseErrorV1 {
@@ -236,7 +264,16 @@ type DeleteUserFromSessionInChannelNotFound struct {
 }
 
 func (o *DeleteUserFromSessionInChannelNotFound) Error() string {
-	return fmt.Sprintf("[DELETE /matchmaking/v1/admin/namespaces/{namespace}/channels/{channelName}/sessions/{matchID}/users/{userID}][%d] deleteUserFromSessionInChannelNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[DELETE /matchmaking/v1/admin/namespaces/{namespace}/channels/{channelName}/sessions/{matchID}/users/{userID}][%d] deleteUserFromSessionInChannelNotFound  %+v", 404, o.ToString())
+}
+
+func (o *DeleteUserFromSessionInChannelNotFound) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *DeleteUserFromSessionInChannelNotFound) GetPayload() *matchmakingclientmodels.ResponseErrorV1 {
@@ -269,7 +306,16 @@ type DeleteUserFromSessionInChannelInternalServerError struct {
 }
 
 func (o *DeleteUserFromSessionInChannelInternalServerError) Error() string {
-	return fmt.Sprintf("[DELETE /matchmaking/v1/admin/namespaces/{namespace}/channels/{channelName}/sessions/{matchID}/users/{userID}][%d] deleteUserFromSessionInChannelInternalServerError  %+v", 500, o.Payload)
+	return fmt.Sprintf("[DELETE /matchmaking/v1/admin/namespaces/{namespace}/channels/{channelName}/sessions/{matchID}/users/{userID}][%d] deleteUserFromSessionInChannelInternalServerError  %+v", 500, o.ToString())
+}
+
+func (o *DeleteUserFromSessionInChannelInternalServerError) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *DeleteUserFromSessionInChannelInternalServerError) GetPayload() *matchmakingclientmodels.ResponseError {

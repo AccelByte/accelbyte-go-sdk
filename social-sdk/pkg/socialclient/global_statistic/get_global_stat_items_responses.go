@@ -10,6 +10,7 @@ package global_statistic
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -59,7 +60,16 @@ type GetGlobalStatItemsOK struct {
 }
 
 func (o *GetGlobalStatItemsOK) Error() string {
-	return fmt.Sprintf("[GET /social/v1/admin/namespaces/{namespace}/globalstatitems][%d] getGlobalStatItemsOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /social/v1/admin/namespaces/{namespace}/globalstatitems][%d] getGlobalStatItemsOK  %+v", 200, o.ToString())
+}
+
+func (o *GetGlobalStatItemsOK) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *GetGlobalStatItemsOK) GetPayload() *socialclientmodels.GlobalStatItemPagingSlicedResult {

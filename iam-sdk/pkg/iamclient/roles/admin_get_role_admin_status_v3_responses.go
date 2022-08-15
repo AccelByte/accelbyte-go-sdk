@@ -10,6 +10,7 @@ package roles
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -83,7 +84,16 @@ type AdminGetRoleAdminStatusV3OK struct {
 }
 
 func (o *AdminGetRoleAdminStatusV3OK) Error() string {
-	return fmt.Sprintf("[GET /iam/v3/admin/roles/{roleId}/admin][%d] adminGetRoleAdminStatusV3OK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /iam/v3/admin/roles/{roleId}/admin][%d] adminGetRoleAdminStatusV3OK  %+v", 200, o.ToString())
+}
+
+func (o *AdminGetRoleAdminStatusV3OK) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *AdminGetRoleAdminStatusV3OK) GetPayload() *iamclientmodels.ModelRoleAdminStatusResponseV3 {
@@ -116,7 +126,16 @@ type AdminGetRoleAdminStatusV3BadRequest struct {
 }
 
 func (o *AdminGetRoleAdminStatusV3BadRequest) Error() string {
-	return fmt.Sprintf("[GET /iam/v3/admin/roles/{roleId}/admin][%d] adminGetRoleAdminStatusV3BadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[GET /iam/v3/admin/roles/{roleId}/admin][%d] adminGetRoleAdminStatusV3BadRequest  %+v", 400, o.ToString())
+}
+
+func (o *AdminGetRoleAdminStatusV3BadRequest) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *AdminGetRoleAdminStatusV3BadRequest) GetPayload() *iamclientmodels.RestErrorResponse {
@@ -149,7 +168,16 @@ type AdminGetRoleAdminStatusV3Unauthorized struct {
 }
 
 func (o *AdminGetRoleAdminStatusV3Unauthorized) Error() string {
-	return fmt.Sprintf("[GET /iam/v3/admin/roles/{roleId}/admin][%d] adminGetRoleAdminStatusV3Unauthorized  %+v", 401, o.Payload)
+	return fmt.Sprintf("[GET /iam/v3/admin/roles/{roleId}/admin][%d] adminGetRoleAdminStatusV3Unauthorized  %+v", 401, o.ToString())
+}
+
+func (o *AdminGetRoleAdminStatusV3Unauthorized) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *AdminGetRoleAdminStatusV3Unauthorized) GetPayload() *iamclientmodels.RestErrorResponse {
@@ -182,7 +210,16 @@ type AdminGetRoleAdminStatusV3Forbidden struct {
 }
 
 func (o *AdminGetRoleAdminStatusV3Forbidden) Error() string {
-	return fmt.Sprintf("[GET /iam/v3/admin/roles/{roleId}/admin][%d] adminGetRoleAdminStatusV3Forbidden  %+v", 403, o.Payload)
+	return fmt.Sprintf("[GET /iam/v3/admin/roles/{roleId}/admin][%d] adminGetRoleAdminStatusV3Forbidden  %+v", 403, o.ToString())
+}
+
+func (o *AdminGetRoleAdminStatusV3Forbidden) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *AdminGetRoleAdminStatusV3Forbidden) GetPayload() *iamclientmodels.RestErrorResponse {
@@ -215,7 +252,16 @@ type AdminGetRoleAdminStatusV3NotFound struct {
 }
 
 func (o *AdminGetRoleAdminStatusV3NotFound) Error() string {
-	return fmt.Sprintf("[GET /iam/v3/admin/roles/{roleId}/admin][%d] adminGetRoleAdminStatusV3NotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[GET /iam/v3/admin/roles/{roleId}/admin][%d] adminGetRoleAdminStatusV3NotFound  %+v", 404, o.ToString())
+}
+
+func (o *AdminGetRoleAdminStatusV3NotFound) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *AdminGetRoleAdminStatusV3NotFound) GetPayload() *iamclientmodels.RestErrorResponse {

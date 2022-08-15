@@ -10,6 +10,7 @@ package i_a_p
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -98,7 +99,16 @@ type PublicFulfillAppleIAPItemBadRequest struct {
 }
 
 func (o *PublicFulfillAppleIAPItemBadRequest) Error() string {
-	return fmt.Sprintf("[PUT /platform/public/namespaces/{namespace}/users/{userId}/iap/apple/receipt][%d] publicFulfillAppleIAPItemBadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[PUT /platform/public/namespaces/{namespace}/users/{userId}/iap/apple/receipt][%d] publicFulfillAppleIAPItemBadRequest  %+v", 400, o.ToString())
+}
+
+func (o *PublicFulfillAppleIAPItemBadRequest) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *PublicFulfillAppleIAPItemBadRequest) GetPayload() *platformclientmodels.ErrorEntity {
@@ -131,7 +141,16 @@ type PublicFulfillAppleIAPItemNotFound struct {
 }
 
 func (o *PublicFulfillAppleIAPItemNotFound) Error() string {
-	return fmt.Sprintf("[PUT /platform/public/namespaces/{namespace}/users/{userId}/iap/apple/receipt][%d] publicFulfillAppleIAPItemNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[PUT /platform/public/namespaces/{namespace}/users/{userId}/iap/apple/receipt][%d] publicFulfillAppleIAPItemNotFound  %+v", 404, o.ToString())
+}
+
+func (o *PublicFulfillAppleIAPItemNotFound) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *PublicFulfillAppleIAPItemNotFound) GetPayload() *platformclientmodels.ErrorEntity {
@@ -164,7 +183,16 @@ type PublicFulfillAppleIAPItemConflict struct {
 }
 
 func (o *PublicFulfillAppleIAPItemConflict) Error() string {
-	return fmt.Sprintf("[PUT /platform/public/namespaces/{namespace}/users/{userId}/iap/apple/receipt][%d] publicFulfillAppleIAPItemConflict  %+v", 409, o.Payload)
+	return fmt.Sprintf("[PUT /platform/public/namespaces/{namespace}/users/{userId}/iap/apple/receipt][%d] publicFulfillAppleIAPItemConflict  %+v", 409, o.ToString())
+}
+
+func (o *PublicFulfillAppleIAPItemConflict) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *PublicFulfillAppleIAPItemConflict) GetPayload() *platformclientmodels.ErrorEntity {

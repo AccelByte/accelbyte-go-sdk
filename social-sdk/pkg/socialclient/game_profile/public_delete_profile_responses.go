@@ -10,6 +10,7 @@ package game_profile
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -86,7 +87,16 @@ type PublicDeleteProfileNotFound struct {
 }
 
 func (o *PublicDeleteProfileNotFound) Error() string {
-	return fmt.Sprintf("[DELETE /social/public/namespaces/{namespace}/users/{userId}/profiles/{profileId}][%d] publicDeleteProfileNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[DELETE /social/public/namespaces/{namespace}/users/{userId}/profiles/{profileId}][%d] publicDeleteProfileNotFound  %+v", 404, o.ToString())
+}
+
+func (o *PublicDeleteProfileNotFound) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *PublicDeleteProfileNotFound) GetPayload() *socialclientmodels.ErrorEntity {

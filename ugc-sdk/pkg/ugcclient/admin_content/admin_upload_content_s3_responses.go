@@ -10,6 +10,7 @@ package admin_content
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -77,7 +78,16 @@ type AdminUploadContentS3Created struct {
 }
 
 func (o *AdminUploadContentS3Created) Error() string {
-	return fmt.Sprintf("[POST /ugc/v1/admin/namespaces/{namespace}/channels/{channelId}/contents/s3][%d] adminUploadContentS3Created  %+v", 201, o.Payload)
+	return fmt.Sprintf("[POST /ugc/v1/admin/namespaces/{namespace}/channels/{channelId}/contents/s3][%d] adminUploadContentS3Created  %+v", 201, o.ToString())
+}
+
+func (o *AdminUploadContentS3Created) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *AdminUploadContentS3Created) GetPayload() *ugcclientmodels.ModelsCreateContentResponse {
@@ -110,7 +120,16 @@ type AdminUploadContentS3BadRequest struct {
 }
 
 func (o *AdminUploadContentS3BadRequest) Error() string {
-	return fmt.Sprintf("[POST /ugc/v1/admin/namespaces/{namespace}/channels/{channelId}/contents/s3][%d] adminUploadContentS3BadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[POST /ugc/v1/admin/namespaces/{namespace}/channels/{channelId}/contents/s3][%d] adminUploadContentS3BadRequest  %+v", 400, o.ToString())
+}
+
+func (o *AdminUploadContentS3BadRequest) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *AdminUploadContentS3BadRequest) GetPayload() *ugcclientmodels.ResponseError {
@@ -143,7 +162,16 @@ type AdminUploadContentS3Unauthorized struct {
 }
 
 func (o *AdminUploadContentS3Unauthorized) Error() string {
-	return fmt.Sprintf("[POST /ugc/v1/admin/namespaces/{namespace}/channels/{channelId}/contents/s3][%d] adminUploadContentS3Unauthorized  %+v", 401, o.Payload)
+	return fmt.Sprintf("[POST /ugc/v1/admin/namespaces/{namespace}/channels/{channelId}/contents/s3][%d] adminUploadContentS3Unauthorized  %+v", 401, o.ToString())
+}
+
+func (o *AdminUploadContentS3Unauthorized) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *AdminUploadContentS3Unauthorized) GetPayload() *ugcclientmodels.ResponseError {
@@ -176,7 +204,16 @@ type AdminUploadContentS3InternalServerError struct {
 }
 
 func (o *AdminUploadContentS3InternalServerError) Error() string {
-	return fmt.Sprintf("[POST /ugc/v1/admin/namespaces/{namespace}/channels/{channelId}/contents/s3][%d] adminUploadContentS3InternalServerError  %+v", 500, o.Payload)
+	return fmt.Sprintf("[POST /ugc/v1/admin/namespaces/{namespace}/channels/{channelId}/contents/s3][%d] adminUploadContentS3InternalServerError  %+v", 500, o.ToString())
+}
+
+func (o *AdminUploadContentS3InternalServerError) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *AdminUploadContentS3InternalServerError) GetPayload() *ugcclientmodels.ResponseError {

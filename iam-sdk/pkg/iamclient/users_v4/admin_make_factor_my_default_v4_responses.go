@@ -10,6 +10,7 @@ package users_v4
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -110,7 +111,16 @@ type AdminMakeFactorMyDefaultV4BadRequest struct {
 }
 
 func (o *AdminMakeFactorMyDefaultV4BadRequest) Error() string {
-	return fmt.Sprintf("[POST /iam/v4/admin/users/me/mfa/factor][%d] adminMakeFactorMyDefaultV4BadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[POST /iam/v4/admin/users/me/mfa/factor][%d] adminMakeFactorMyDefaultV4BadRequest  %+v", 400, o.ToString())
+}
+
+func (o *AdminMakeFactorMyDefaultV4BadRequest) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *AdminMakeFactorMyDefaultV4BadRequest) GetPayload() *iamclientmodels.RestErrorResponse {
@@ -143,7 +153,16 @@ type AdminMakeFactorMyDefaultV4Unauthorized struct {
 }
 
 func (o *AdminMakeFactorMyDefaultV4Unauthorized) Error() string {
-	return fmt.Sprintf("[POST /iam/v4/admin/users/me/mfa/factor][%d] adminMakeFactorMyDefaultV4Unauthorized  %+v", 401, o.Payload)
+	return fmt.Sprintf("[POST /iam/v4/admin/users/me/mfa/factor][%d] adminMakeFactorMyDefaultV4Unauthorized  %+v", 401, o.ToString())
+}
+
+func (o *AdminMakeFactorMyDefaultV4Unauthorized) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *AdminMakeFactorMyDefaultV4Unauthorized) GetPayload() *iamclientmodels.RestErrorResponse {
@@ -176,7 +195,16 @@ type AdminMakeFactorMyDefaultV4Forbidden struct {
 }
 
 func (o *AdminMakeFactorMyDefaultV4Forbidden) Error() string {
-	return fmt.Sprintf("[POST /iam/v4/admin/users/me/mfa/factor][%d] adminMakeFactorMyDefaultV4Forbidden  %+v", 403, o.Payload)
+	return fmt.Sprintf("[POST /iam/v4/admin/users/me/mfa/factor][%d] adminMakeFactorMyDefaultV4Forbidden  %+v", 403, o.ToString())
+}
+
+func (o *AdminMakeFactorMyDefaultV4Forbidden) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *AdminMakeFactorMyDefaultV4Forbidden) GetPayload() *iamclientmodels.RestErrorResponse {
@@ -209,7 +237,16 @@ type AdminMakeFactorMyDefaultV4NotFound struct {
 }
 
 func (o *AdminMakeFactorMyDefaultV4NotFound) Error() string {
-	return fmt.Sprintf("[POST /iam/v4/admin/users/me/mfa/factor][%d] adminMakeFactorMyDefaultV4NotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[POST /iam/v4/admin/users/me/mfa/factor][%d] adminMakeFactorMyDefaultV4NotFound  %+v", 404, o.ToString())
+}
+
+func (o *AdminMakeFactorMyDefaultV4NotFound) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *AdminMakeFactorMyDefaultV4NotFound) GetPayload() *iamclientmodels.RestErrorResponse {
@@ -242,7 +279,16 @@ type AdminMakeFactorMyDefaultV4InternalServerError struct {
 }
 
 func (o *AdminMakeFactorMyDefaultV4InternalServerError) Error() string {
-	return fmt.Sprintf("[POST /iam/v4/admin/users/me/mfa/factor][%d] adminMakeFactorMyDefaultV4InternalServerError  %+v", 500, o.Payload)
+	return fmt.Sprintf("[POST /iam/v4/admin/users/me/mfa/factor][%d] adminMakeFactorMyDefaultV4InternalServerError  %+v", 500, o.ToString())
+}
+
+func (o *AdminMakeFactorMyDefaultV4InternalServerError) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *AdminMakeFactorMyDefaultV4InternalServerError) GetPayload() *iamclientmodels.RestErrorResponse {

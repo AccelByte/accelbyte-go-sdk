@@ -10,6 +10,7 @@ package group
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -89,7 +90,16 @@ type UpdateSingleGroupV1OK struct {
 }
 
 func (o *UpdateSingleGroupV1OK) Error() string {
-	return fmt.Sprintf("[PUT /group/v1/public/namespaces/{namespace}/groups/{groupId}][%d] updateSingleGroupV1OK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[PUT /group/v1/public/namespaces/{namespace}/groups/{groupId}][%d] updateSingleGroupV1OK  %+v", 200, o.ToString())
+}
+
+func (o *UpdateSingleGroupV1OK) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *UpdateSingleGroupV1OK) GetPayload() *groupclientmodels.ModelsGroupResponseV1 {
@@ -122,7 +132,16 @@ type UpdateSingleGroupV1BadRequest struct {
 }
 
 func (o *UpdateSingleGroupV1BadRequest) Error() string {
-	return fmt.Sprintf("[PUT /group/v1/public/namespaces/{namespace}/groups/{groupId}][%d] updateSingleGroupV1BadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[PUT /group/v1/public/namespaces/{namespace}/groups/{groupId}][%d] updateSingleGroupV1BadRequest  %+v", 400, o.ToString())
+}
+
+func (o *UpdateSingleGroupV1BadRequest) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *UpdateSingleGroupV1BadRequest) GetPayload() *groupclientmodels.ResponseErrorResponse {
@@ -155,7 +174,16 @@ type UpdateSingleGroupV1Unauthorized struct {
 }
 
 func (o *UpdateSingleGroupV1Unauthorized) Error() string {
-	return fmt.Sprintf("[PUT /group/v1/public/namespaces/{namespace}/groups/{groupId}][%d] updateSingleGroupV1Unauthorized  %+v", 401, o.Payload)
+	return fmt.Sprintf("[PUT /group/v1/public/namespaces/{namespace}/groups/{groupId}][%d] updateSingleGroupV1Unauthorized  %+v", 401, o.ToString())
+}
+
+func (o *UpdateSingleGroupV1Unauthorized) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *UpdateSingleGroupV1Unauthorized) GetPayload() *groupclientmodels.ResponseErrorResponse {
@@ -188,7 +216,16 @@ type UpdateSingleGroupV1Forbidden struct {
 }
 
 func (o *UpdateSingleGroupV1Forbidden) Error() string {
-	return fmt.Sprintf("[PUT /group/v1/public/namespaces/{namespace}/groups/{groupId}][%d] updateSingleGroupV1Forbidden  %+v", 403, o.Payload)
+	return fmt.Sprintf("[PUT /group/v1/public/namespaces/{namespace}/groups/{groupId}][%d] updateSingleGroupV1Forbidden  %+v", 403, o.ToString())
+}
+
+func (o *UpdateSingleGroupV1Forbidden) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *UpdateSingleGroupV1Forbidden) GetPayload() *groupclientmodels.ResponseErrorResponse {
@@ -221,7 +258,16 @@ type UpdateSingleGroupV1NotFound struct {
 }
 
 func (o *UpdateSingleGroupV1NotFound) Error() string {
-	return fmt.Sprintf("[PUT /group/v1/public/namespaces/{namespace}/groups/{groupId}][%d] updateSingleGroupV1NotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[PUT /group/v1/public/namespaces/{namespace}/groups/{groupId}][%d] updateSingleGroupV1NotFound  %+v", 404, o.ToString())
+}
+
+func (o *UpdateSingleGroupV1NotFound) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *UpdateSingleGroupV1NotFound) GetPayload() *groupclientmodels.ResponseErrorResponse {
@@ -254,7 +300,16 @@ type UpdateSingleGroupV1InternalServerError struct {
 }
 
 func (o *UpdateSingleGroupV1InternalServerError) Error() string {
-	return fmt.Sprintf("[PUT /group/v1/public/namespaces/{namespace}/groups/{groupId}][%d] updateSingleGroupV1InternalServerError  %+v", 500, o.Payload)
+	return fmt.Sprintf("[PUT /group/v1/public/namespaces/{namespace}/groups/{groupId}][%d] updateSingleGroupV1InternalServerError  %+v", 500, o.ToString())
+}
+
+func (o *UpdateSingleGroupV1InternalServerError) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *UpdateSingleGroupV1InternalServerError) GetPayload() *groupclientmodels.ResponseErrorResponse {

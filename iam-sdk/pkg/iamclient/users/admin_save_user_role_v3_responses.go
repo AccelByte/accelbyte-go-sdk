@@ -10,6 +10,7 @@ package users
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -110,7 +111,16 @@ type AdminSaveUserRoleV3BadRequest struct {
 }
 
 func (o *AdminSaveUserRoleV3BadRequest) Error() string {
-	return fmt.Sprintf("[PATCH /iam/v3/admin/namespaces/{namespace}/users/{userId}/roles][%d] adminSaveUserRoleV3BadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[PATCH /iam/v3/admin/namespaces/{namespace}/users/{userId}/roles][%d] adminSaveUserRoleV3BadRequest  %+v", 400, o.ToString())
+}
+
+func (o *AdminSaveUserRoleV3BadRequest) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *AdminSaveUserRoleV3BadRequest) GetPayload() *iamclientmodels.RestErrorResponse {
@@ -143,7 +153,16 @@ type AdminSaveUserRoleV3Forbidden struct {
 }
 
 func (o *AdminSaveUserRoleV3Forbidden) Error() string {
-	return fmt.Sprintf("[PATCH /iam/v3/admin/namespaces/{namespace}/users/{userId}/roles][%d] adminSaveUserRoleV3Forbidden  %+v", 403, o.Payload)
+	return fmt.Sprintf("[PATCH /iam/v3/admin/namespaces/{namespace}/users/{userId}/roles][%d] adminSaveUserRoleV3Forbidden  %+v", 403, o.ToString())
+}
+
+func (o *AdminSaveUserRoleV3Forbidden) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *AdminSaveUserRoleV3Forbidden) GetPayload() *iamclientmodels.RestErrorResponse {
@@ -176,7 +195,16 @@ type AdminSaveUserRoleV3NotFound struct {
 }
 
 func (o *AdminSaveUserRoleV3NotFound) Error() string {
-	return fmt.Sprintf("[PATCH /iam/v3/admin/namespaces/{namespace}/users/{userId}/roles][%d] adminSaveUserRoleV3NotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[PATCH /iam/v3/admin/namespaces/{namespace}/users/{userId}/roles][%d] adminSaveUserRoleV3NotFound  %+v", 404, o.ToString())
+}
+
+func (o *AdminSaveUserRoleV3NotFound) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *AdminSaveUserRoleV3NotFound) GetPayload() *iamclientmodels.RestErrorResponse {
@@ -209,7 +237,16 @@ type AdminSaveUserRoleV3UnprocessableEntity struct {
 }
 
 func (o *AdminSaveUserRoleV3UnprocessableEntity) Error() string {
-	return fmt.Sprintf("[PATCH /iam/v3/admin/namespaces/{namespace}/users/{userId}/roles][%d] adminSaveUserRoleV3UnprocessableEntity  %+v", 422, o.Payload)
+	return fmt.Sprintf("[PATCH /iam/v3/admin/namespaces/{namespace}/users/{userId}/roles][%d] adminSaveUserRoleV3UnprocessableEntity  %+v", 422, o.ToString())
+}
+
+func (o *AdminSaveUserRoleV3UnprocessableEntity) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *AdminSaveUserRoleV3UnprocessableEntity) GetPayload() *iamclientmodels.RestErrorResponse {
@@ -242,7 +279,16 @@ type AdminSaveUserRoleV3InternalServerError struct {
 }
 
 func (o *AdminSaveUserRoleV3InternalServerError) Error() string {
-	return fmt.Sprintf("[PATCH /iam/v3/admin/namespaces/{namespace}/users/{userId}/roles][%d] adminSaveUserRoleV3InternalServerError  %+v", 500, o.Payload)
+	return fmt.Sprintf("[PATCH /iam/v3/admin/namespaces/{namespace}/users/{userId}/roles][%d] adminSaveUserRoleV3InternalServerError  %+v", 500, o.ToString())
+}
+
+func (o *AdminSaveUserRoleV3InternalServerError) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *AdminSaveUserRoleV3InternalServerError) GetPayload() *iamclientmodels.RestErrorResponse {

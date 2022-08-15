@@ -10,6 +10,7 @@ package localized_policy_versions
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -65,7 +66,16 @@ type RetrieveSingleLocalizedPolicyVersionOK struct {
 }
 
 func (o *RetrieveSingleLocalizedPolicyVersionOK) Error() string {
-	return fmt.Sprintf("[GET /agreement/admin/localized-policy-versions/{localizedPolicyVersionId}][%d] retrieveSingleLocalizedPolicyVersionOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /agreement/admin/localized-policy-versions/{localizedPolicyVersionId}][%d] retrieveSingleLocalizedPolicyVersionOK  %+v", 200, o.ToString())
+}
+
+func (o *RetrieveSingleLocalizedPolicyVersionOK) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *RetrieveSingleLocalizedPolicyVersionOK) GetPayload() *legalclientmodels.RetrieveLocalizedPolicyVersionResponse {
@@ -98,7 +108,16 @@ type RetrieveSingleLocalizedPolicyVersionBadRequest struct {
 }
 
 func (o *RetrieveSingleLocalizedPolicyVersionBadRequest) Error() string {
-	return fmt.Sprintf("[GET /agreement/admin/localized-policy-versions/{localizedPolicyVersionId}][%d] retrieveSingleLocalizedPolicyVersionBadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[GET /agreement/admin/localized-policy-versions/{localizedPolicyVersionId}][%d] retrieveSingleLocalizedPolicyVersionBadRequest  %+v", 400, o.ToString())
+}
+
+func (o *RetrieveSingleLocalizedPolicyVersionBadRequest) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *RetrieveSingleLocalizedPolicyVersionBadRequest) GetPayload() *legalclientmodels.ErrorEntity {

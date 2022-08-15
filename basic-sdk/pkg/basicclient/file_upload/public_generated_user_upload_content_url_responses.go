@@ -10,6 +10,7 @@ package file_upload
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -89,7 +90,16 @@ type PublicGeneratedUserUploadContentURLOK struct {
 }
 
 func (o *PublicGeneratedUserUploadContentURLOK) Error() string {
-	return fmt.Sprintf("[POST /basic/v1/public/namespaces/{namespace}/users/{userId}/files][%d] publicGeneratedUserUploadContentUrlOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[POST /basic/v1/public/namespaces/{namespace}/users/{userId}/files][%d] publicGeneratedUserUploadContentUrlOK  %+v", 200, o.ToString())
+}
+
+func (o *PublicGeneratedUserUploadContentURLOK) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *PublicGeneratedUserUploadContentURLOK) GetPayload() *basicclientmodels.FileUploadURLInfo {
@@ -122,7 +132,16 @@ type PublicGeneratedUserUploadContentURLBadRequest struct {
 }
 
 func (o *PublicGeneratedUserUploadContentURLBadRequest) Error() string {
-	return fmt.Sprintf("[POST /basic/v1/public/namespaces/{namespace}/users/{userId}/files][%d] publicGeneratedUserUploadContentUrlBadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[POST /basic/v1/public/namespaces/{namespace}/users/{userId}/files][%d] publicGeneratedUserUploadContentUrlBadRequest  %+v", 400, o.ToString())
+}
+
+func (o *PublicGeneratedUserUploadContentURLBadRequest) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *PublicGeneratedUserUploadContentURLBadRequest) GetPayload() *basicclientmodels.ValidationErrorEntity {
@@ -155,7 +174,16 @@ type PublicGeneratedUserUploadContentURLUnauthorized struct {
 }
 
 func (o *PublicGeneratedUserUploadContentURLUnauthorized) Error() string {
-	return fmt.Sprintf("[POST /basic/v1/public/namespaces/{namespace}/users/{userId}/files][%d] publicGeneratedUserUploadContentUrlUnauthorized  %+v", 401, o.Payload)
+	return fmt.Sprintf("[POST /basic/v1/public/namespaces/{namespace}/users/{userId}/files][%d] publicGeneratedUserUploadContentUrlUnauthorized  %+v", 401, o.ToString())
+}
+
+func (o *PublicGeneratedUserUploadContentURLUnauthorized) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *PublicGeneratedUserUploadContentURLUnauthorized) GetPayload() *basicclientmodels.ErrorEntity {
@@ -188,7 +216,16 @@ type PublicGeneratedUserUploadContentURLForbidden struct {
 }
 
 func (o *PublicGeneratedUserUploadContentURLForbidden) Error() string {
-	return fmt.Sprintf("[POST /basic/v1/public/namespaces/{namespace}/users/{userId}/files][%d] publicGeneratedUserUploadContentUrlForbidden  %+v", 403, o.Payload)
+	return fmt.Sprintf("[POST /basic/v1/public/namespaces/{namespace}/users/{userId}/files][%d] publicGeneratedUserUploadContentUrlForbidden  %+v", 403, o.ToString())
+}
+
+func (o *PublicGeneratedUserUploadContentURLForbidden) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *PublicGeneratedUserUploadContentURLForbidden) GetPayload() *basicclientmodels.ErrorEntity {
@@ -221,7 +258,16 @@ type PublicGeneratedUserUploadContentURLConflict struct {
 }
 
 func (o *PublicGeneratedUserUploadContentURLConflict) Error() string {
-	return fmt.Sprintf("[POST /basic/v1/public/namespaces/{namespace}/users/{userId}/files][%d] publicGeneratedUserUploadContentUrlConflict  %+v", 409, o.Payload)
+	return fmt.Sprintf("[POST /basic/v1/public/namespaces/{namespace}/users/{userId}/files][%d] publicGeneratedUserUploadContentUrlConflict  %+v", 409, o.ToString())
+}
+
+func (o *PublicGeneratedUserUploadContentURLConflict) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *PublicGeneratedUserUploadContentURLConflict) GetPayload() *basicclientmodels.ErrorEntity {
@@ -254,7 +300,16 @@ type PublicGeneratedUserUploadContentURLInternalServerError struct {
 }
 
 func (o *PublicGeneratedUserUploadContentURLInternalServerError) Error() string {
-	return fmt.Sprintf("[POST /basic/v1/public/namespaces/{namespace}/users/{userId}/files][%d] publicGeneratedUserUploadContentUrlInternalServerError  %+v", 500, o.Payload)
+	return fmt.Sprintf("[POST /basic/v1/public/namespaces/{namespace}/users/{userId}/files][%d] publicGeneratedUserUploadContentUrlInternalServerError  %+v", 500, o.ToString())
+}
+
+func (o *PublicGeneratedUserUploadContentURLInternalServerError) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *PublicGeneratedUserUploadContentURLInternalServerError) GetPayload() *basicclientmodels.ErrorEntity {

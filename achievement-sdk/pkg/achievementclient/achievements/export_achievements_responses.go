@@ -10,6 +10,7 @@ package achievements
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -77,7 +78,16 @@ type ExportAchievementsOK struct {
 }
 
 func (o *ExportAchievementsOK) Error() string {
-	return fmt.Sprintf("[GET /achievement/v1/admin/namespaces/{namespace}/achievements/export][%d] exportAchievementsOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /achievement/v1/admin/namespaces/{namespace}/achievements/export][%d] exportAchievementsOK  %+v", 200, o.ToString())
+}
+
+func (o *ExportAchievementsOK) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *ExportAchievementsOK) GetPayload() []*achievementclientmodels.ModelsAchievement {
@@ -108,7 +118,16 @@ type ExportAchievementsUnauthorized struct {
 }
 
 func (o *ExportAchievementsUnauthorized) Error() string {
-	return fmt.Sprintf("[GET /achievement/v1/admin/namespaces/{namespace}/achievements/export][%d] exportAchievementsUnauthorized  %+v", 401, o.Payload)
+	return fmt.Sprintf("[GET /achievement/v1/admin/namespaces/{namespace}/achievements/export][%d] exportAchievementsUnauthorized  %+v", 401, o.ToString())
+}
+
+func (o *ExportAchievementsUnauthorized) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *ExportAchievementsUnauthorized) GetPayload() *achievementclientmodels.ResponseError {
@@ -141,7 +160,16 @@ type ExportAchievementsForbidden struct {
 }
 
 func (o *ExportAchievementsForbidden) Error() string {
-	return fmt.Sprintf("[GET /achievement/v1/admin/namespaces/{namespace}/achievements/export][%d] exportAchievementsForbidden  %+v", 403, o.Payload)
+	return fmt.Sprintf("[GET /achievement/v1/admin/namespaces/{namespace}/achievements/export][%d] exportAchievementsForbidden  %+v", 403, o.ToString())
+}
+
+func (o *ExportAchievementsForbidden) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *ExportAchievementsForbidden) GetPayload() *achievementclientmodels.ResponseError {
@@ -174,7 +202,16 @@ type ExportAchievementsInternalServerError struct {
 }
 
 func (o *ExportAchievementsInternalServerError) Error() string {
-	return fmt.Sprintf("[GET /achievement/v1/admin/namespaces/{namespace}/achievements/export][%d] exportAchievementsInternalServerError  %+v", 500, o.Payload)
+	return fmt.Sprintf("[GET /achievement/v1/admin/namespaces/{namespace}/achievements/export][%d] exportAchievementsInternalServerError  %+v", 500, o.ToString())
+}
+
+func (o *ExportAchievementsInternalServerError) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *ExportAchievementsInternalServerError) GetPayload() *achievementclientmodels.ResponseError {

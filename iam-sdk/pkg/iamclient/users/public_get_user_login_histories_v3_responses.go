@@ -10,6 +10,7 @@ package users
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -77,7 +78,16 @@ type PublicGetUserLoginHistoriesV3OK struct {
 }
 
 func (o *PublicGetUserLoginHistoriesV3OK) Error() string {
-	return fmt.Sprintf("[GET /iam/v3/public/namespaces/{namespace}/users/{userId}/logins/histories][%d] publicGetUserLoginHistoriesV3OK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /iam/v3/public/namespaces/{namespace}/users/{userId}/logins/histories][%d] publicGetUserLoginHistoriesV3OK  %+v", 200, o.ToString())
+}
+
+func (o *PublicGetUserLoginHistoriesV3OK) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *PublicGetUserLoginHistoriesV3OK) GetPayload() *iamclientmodels.ModelLoginHistoriesResponse {

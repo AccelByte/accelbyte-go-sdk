@@ -10,6 +10,7 @@ package admin
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -98,7 +99,16 @@ type DeleteServerUnauthorized struct {
 }
 
 func (o *DeleteServerUnauthorized) Error() string {
-	return fmt.Sprintf("[DELETE /dsmcontroller/admin/namespaces/{namespace}/servers/{podName}][%d] deleteServerUnauthorized  %+v", 401, o.Payload)
+	return fmt.Sprintf("[DELETE /dsmcontroller/admin/namespaces/{namespace}/servers/{podName}][%d] deleteServerUnauthorized  %+v", 401, o.ToString())
+}
+
+func (o *DeleteServerUnauthorized) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *DeleteServerUnauthorized) GetPayload() *dsmcclientmodels.ResponseError {
@@ -131,7 +141,16 @@ type DeleteServerNotFound struct {
 }
 
 func (o *DeleteServerNotFound) Error() string {
-	return fmt.Sprintf("[DELETE /dsmcontroller/admin/namespaces/{namespace}/servers/{podName}][%d] deleteServerNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[DELETE /dsmcontroller/admin/namespaces/{namespace}/servers/{podName}][%d] deleteServerNotFound  %+v", 404, o.ToString())
+}
+
+func (o *DeleteServerNotFound) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *DeleteServerNotFound) GetPayload() *dsmcclientmodels.ResponseError {
@@ -164,7 +183,16 @@ type DeleteServerInternalServerError struct {
 }
 
 func (o *DeleteServerInternalServerError) Error() string {
-	return fmt.Sprintf("[DELETE /dsmcontroller/admin/namespaces/{namespace}/servers/{podName}][%d] deleteServerInternalServerError  %+v", 500, o.Payload)
+	return fmt.Sprintf("[DELETE /dsmcontroller/admin/namespaces/{namespace}/servers/{podName}][%d] deleteServerInternalServerError  %+v", 500, o.ToString())
+}
+
+func (o *DeleteServerInternalServerError) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *DeleteServerInternalServerError) GetPayload() *dsmcclientmodels.ResponseError {

@@ -10,6 +10,7 @@ package third_party_credential
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -89,7 +90,16 @@ type UpdateThirdPartyLoginPlatformCredentialV3OK struct {
 }
 
 func (o *UpdateThirdPartyLoginPlatformCredentialV3OK) Error() string {
-	return fmt.Sprintf("[PATCH /iam/v3/admin/namespaces/{namespace}/platforms/{platformId}/clients][%d] updateThirdPartyLoginPlatformCredentialV3OK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[PATCH /iam/v3/admin/namespaces/{namespace}/platforms/{platformId}/clients][%d] updateThirdPartyLoginPlatformCredentialV3OK  %+v", 200, o.ToString())
+}
+
+func (o *UpdateThirdPartyLoginPlatformCredentialV3OK) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *UpdateThirdPartyLoginPlatformCredentialV3OK) GetPayload() *iamclientmodels.ModelThirdPartyLoginPlatformCredentialResponse {
@@ -122,7 +132,16 @@ type UpdateThirdPartyLoginPlatformCredentialV3BadRequest struct {
 }
 
 func (o *UpdateThirdPartyLoginPlatformCredentialV3BadRequest) Error() string {
-	return fmt.Sprintf("[PATCH /iam/v3/admin/namespaces/{namespace}/platforms/{platformId}/clients][%d] updateThirdPartyLoginPlatformCredentialV3BadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[PATCH /iam/v3/admin/namespaces/{namespace}/platforms/{platformId}/clients][%d] updateThirdPartyLoginPlatformCredentialV3BadRequest  %+v", 400, o.ToString())
+}
+
+func (o *UpdateThirdPartyLoginPlatformCredentialV3BadRequest) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *UpdateThirdPartyLoginPlatformCredentialV3BadRequest) GetPayload() *iamclientmodels.RestErrorResponse {
@@ -197,7 +216,16 @@ type UpdateThirdPartyLoginPlatformCredentialV3NotFound struct {
 }
 
 func (o *UpdateThirdPartyLoginPlatformCredentialV3NotFound) Error() string {
-	return fmt.Sprintf("[PATCH /iam/v3/admin/namespaces/{namespace}/platforms/{platformId}/clients][%d] updateThirdPartyLoginPlatformCredentialV3NotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[PATCH /iam/v3/admin/namespaces/{namespace}/platforms/{platformId}/clients][%d] updateThirdPartyLoginPlatformCredentialV3NotFound  %+v", 404, o.ToString())
+}
+
+func (o *UpdateThirdPartyLoginPlatformCredentialV3NotFound) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *UpdateThirdPartyLoginPlatformCredentialV3NotFound) GetPayload() *iamclientmodels.RestErrorResponse {
@@ -230,7 +258,16 @@ type UpdateThirdPartyLoginPlatformCredentialV3InternalServerError struct {
 }
 
 func (o *UpdateThirdPartyLoginPlatformCredentialV3InternalServerError) Error() string {
-	return fmt.Sprintf("[PATCH /iam/v3/admin/namespaces/{namespace}/platforms/{platformId}/clients][%d] updateThirdPartyLoginPlatformCredentialV3InternalServerError  %+v", 500, o.Payload)
+	return fmt.Sprintf("[PATCH /iam/v3/admin/namespaces/{namespace}/platforms/{platformId}/clients][%d] updateThirdPartyLoginPlatformCredentialV3InternalServerError  %+v", 500, o.ToString())
+}
+
+func (o *UpdateThirdPartyLoginPlatformCredentialV3InternalServerError) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *UpdateThirdPartyLoginPlatformCredentialV3InternalServerError) GetPayload() *iamclientmodels.RestErrorResponse {

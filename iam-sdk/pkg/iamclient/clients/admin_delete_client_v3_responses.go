@@ -10,6 +10,7 @@ package clients
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -110,7 +111,16 @@ type AdminDeleteClientV3BadRequest struct {
 }
 
 func (o *AdminDeleteClientV3BadRequest) Error() string {
-	return fmt.Sprintf("[DELETE /iam/v3/admin/namespaces/{namespace}/clients/{clientId}][%d] adminDeleteClientV3BadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[DELETE /iam/v3/admin/namespaces/{namespace}/clients/{clientId}][%d] adminDeleteClientV3BadRequest  %+v", 400, o.ToString())
+}
+
+func (o *AdminDeleteClientV3BadRequest) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *AdminDeleteClientV3BadRequest) GetPayload() *iamclientmodels.RestapiErrorResponse {
@@ -143,7 +153,16 @@ type AdminDeleteClientV3Unauthorized struct {
 }
 
 func (o *AdminDeleteClientV3Unauthorized) Error() string {
-	return fmt.Sprintf("[DELETE /iam/v3/admin/namespaces/{namespace}/clients/{clientId}][%d] adminDeleteClientV3Unauthorized  %+v", 401, o.Payload)
+	return fmt.Sprintf("[DELETE /iam/v3/admin/namespaces/{namespace}/clients/{clientId}][%d] adminDeleteClientV3Unauthorized  %+v", 401, o.ToString())
+}
+
+func (o *AdminDeleteClientV3Unauthorized) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *AdminDeleteClientV3Unauthorized) GetPayload() *iamclientmodels.RestapiErrorResponse {
@@ -176,7 +195,16 @@ type AdminDeleteClientV3Forbidden struct {
 }
 
 func (o *AdminDeleteClientV3Forbidden) Error() string {
-	return fmt.Sprintf("[DELETE /iam/v3/admin/namespaces/{namespace}/clients/{clientId}][%d] adminDeleteClientV3Forbidden  %+v", 403, o.Payload)
+	return fmt.Sprintf("[DELETE /iam/v3/admin/namespaces/{namespace}/clients/{clientId}][%d] adminDeleteClientV3Forbidden  %+v", 403, o.ToString())
+}
+
+func (o *AdminDeleteClientV3Forbidden) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *AdminDeleteClientV3Forbidden) GetPayload() *iamclientmodels.RestapiErrorResponse {
@@ -209,7 +237,16 @@ type AdminDeleteClientV3NotFound struct {
 }
 
 func (o *AdminDeleteClientV3NotFound) Error() string {
-	return fmt.Sprintf("[DELETE /iam/v3/admin/namespaces/{namespace}/clients/{clientId}][%d] adminDeleteClientV3NotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[DELETE /iam/v3/admin/namespaces/{namespace}/clients/{clientId}][%d] adminDeleteClientV3NotFound  %+v", 404, o.ToString())
+}
+
+func (o *AdminDeleteClientV3NotFound) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *AdminDeleteClientV3NotFound) GetPayload() *iamclientmodels.RestapiErrorResponse {
@@ -242,7 +279,16 @@ type AdminDeleteClientV3Conflict struct {
 }
 
 func (o *AdminDeleteClientV3Conflict) Error() string {
-	return fmt.Sprintf("[DELETE /iam/v3/admin/namespaces/{namespace}/clients/{clientId}][%d] adminDeleteClientV3Conflict  %+v", 409, o.Payload)
+	return fmt.Sprintf("[DELETE /iam/v3/admin/namespaces/{namespace}/clients/{clientId}][%d] adminDeleteClientV3Conflict  %+v", 409, o.ToString())
+}
+
+func (o *AdminDeleteClientV3Conflict) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *AdminDeleteClientV3Conflict) GetPayload() *iamclientmodels.RestapiErrorResponse {

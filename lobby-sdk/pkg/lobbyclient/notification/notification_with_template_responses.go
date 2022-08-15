@@ -10,6 +10,7 @@ package notification
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -104,7 +105,16 @@ type NotificationWithTemplateBadRequest struct {
 }
 
 func (o *NotificationWithTemplateBadRequest) Error() string {
-	return fmt.Sprintf("[POST /notification/namespaces/{namespace}/templated][%d] notificationWithTemplateBadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[POST /notification/namespaces/{namespace}/templated][%d] notificationWithTemplateBadRequest  %+v", 400, o.ToString())
+}
+
+func (o *NotificationWithTemplateBadRequest) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *NotificationWithTemplateBadRequest) GetPayload() *lobbyclientmodels.RestapiErrorResponseBody {
@@ -137,7 +147,16 @@ type NotificationWithTemplateUnauthorized struct {
 }
 
 func (o *NotificationWithTemplateUnauthorized) Error() string {
-	return fmt.Sprintf("[POST /notification/namespaces/{namespace}/templated][%d] notificationWithTemplateUnauthorized  %+v", 401, o.Payload)
+	return fmt.Sprintf("[POST /notification/namespaces/{namespace}/templated][%d] notificationWithTemplateUnauthorized  %+v", 401, o.ToString())
+}
+
+func (o *NotificationWithTemplateUnauthorized) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *NotificationWithTemplateUnauthorized) GetPayload() *lobbyclientmodels.RestapiErrorResponseBody {
@@ -170,7 +189,16 @@ type NotificationWithTemplateForbidden struct {
 }
 
 func (o *NotificationWithTemplateForbidden) Error() string {
-	return fmt.Sprintf("[POST /notification/namespaces/{namespace}/templated][%d] notificationWithTemplateForbidden  %+v", 403, o.Payload)
+	return fmt.Sprintf("[POST /notification/namespaces/{namespace}/templated][%d] notificationWithTemplateForbidden  %+v", 403, o.ToString())
+}
+
+func (o *NotificationWithTemplateForbidden) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *NotificationWithTemplateForbidden) GetPayload() *lobbyclientmodels.RestapiErrorResponseBody {
@@ -203,7 +231,16 @@ type NotificationWithTemplateNotFound struct {
 }
 
 func (o *NotificationWithTemplateNotFound) Error() string {
-	return fmt.Sprintf("[POST /notification/namespaces/{namespace}/templated][%d] notificationWithTemplateNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[POST /notification/namespaces/{namespace}/templated][%d] notificationWithTemplateNotFound  %+v", 404, o.ToString())
+}
+
+func (o *NotificationWithTemplateNotFound) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *NotificationWithTemplateNotFound) GetPayload() *lobbyclientmodels.RestapiErrorResponseBody {

@@ -10,6 +10,7 @@ package category
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -83,7 +84,16 @@ type CreateCategoryCreated struct {
 }
 
 func (o *CreateCategoryCreated) Error() string {
-	return fmt.Sprintf("[POST /platform/admin/namespaces/{namespace}/categories][%d] createCategoryCreated  %+v", 201, o.Payload)
+	return fmt.Sprintf("[POST /platform/admin/namespaces/{namespace}/categories][%d] createCategoryCreated  %+v", 201, o.ToString())
+}
+
+func (o *CreateCategoryCreated) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *CreateCategoryCreated) GetPayload() *platformclientmodels.FullCategoryInfo {
@@ -116,7 +126,16 @@ type CreateCategoryBadRequest struct {
 }
 
 func (o *CreateCategoryBadRequest) Error() string {
-	return fmt.Sprintf("[POST /platform/admin/namespaces/{namespace}/categories][%d] createCategoryBadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[POST /platform/admin/namespaces/{namespace}/categories][%d] createCategoryBadRequest  %+v", 400, o.ToString())
+}
+
+func (o *CreateCategoryBadRequest) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *CreateCategoryBadRequest) GetPayload() *platformclientmodels.ErrorEntity {
@@ -149,7 +168,16 @@ type CreateCategoryNotFound struct {
 }
 
 func (o *CreateCategoryNotFound) Error() string {
-	return fmt.Sprintf("[POST /platform/admin/namespaces/{namespace}/categories][%d] createCategoryNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[POST /platform/admin/namespaces/{namespace}/categories][%d] createCategoryNotFound  %+v", 404, o.ToString())
+}
+
+func (o *CreateCategoryNotFound) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *CreateCategoryNotFound) GetPayload() *platformclientmodels.ErrorEntity {
@@ -182,7 +210,16 @@ type CreateCategoryConflict struct {
 }
 
 func (o *CreateCategoryConflict) Error() string {
-	return fmt.Sprintf("[POST /platform/admin/namespaces/{namespace}/categories][%d] createCategoryConflict  %+v", 409, o.Payload)
+	return fmt.Sprintf("[POST /platform/admin/namespaces/{namespace}/categories][%d] createCategoryConflict  %+v", 409, o.ToString())
+}
+
+func (o *CreateCategoryConflict) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *CreateCategoryConflict) GetPayload() *platformclientmodels.ErrorEntity {
@@ -215,7 +252,16 @@ type CreateCategoryUnprocessableEntity struct {
 }
 
 func (o *CreateCategoryUnprocessableEntity) Error() string {
-	return fmt.Sprintf("[POST /platform/admin/namespaces/{namespace}/categories][%d] createCategoryUnprocessableEntity  %+v", 422, o.Payload)
+	return fmt.Sprintf("[POST /platform/admin/namespaces/{namespace}/categories][%d] createCategoryUnprocessableEntity  %+v", 422, o.ToString())
+}
+
+func (o *CreateCategoryUnprocessableEntity) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *CreateCategoryUnprocessableEntity) GetPayload() *platformclientmodels.ValidationErrorEntity {

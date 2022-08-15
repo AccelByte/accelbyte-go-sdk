@@ -10,6 +10,7 @@ package item
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -71,7 +72,16 @@ type FeatureItemOK struct {
 }
 
 func (o *FeatureItemOK) Error() string {
-	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/items/{itemId}/features/{feature}][%d] featureItemOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/items/{itemId}/features/{feature}][%d] featureItemOK  %+v", 200, o.ToString())
+}
+
+func (o *FeatureItemOK) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *FeatureItemOK) GetPayload() *platformclientmodels.FullItemInfo {
@@ -104,7 +114,16 @@ type FeatureItemNotFound struct {
 }
 
 func (o *FeatureItemNotFound) Error() string {
-	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/items/{itemId}/features/{feature}][%d] featureItemNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/items/{itemId}/features/{feature}][%d] featureItemNotFound  %+v", 404, o.ToString())
+}
+
+func (o *FeatureItemNotFound) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *FeatureItemNotFound) GetPayload() *platformclientmodels.ErrorEntity {
@@ -137,7 +156,16 @@ type FeatureItemConflict struct {
 }
 
 func (o *FeatureItemConflict) Error() string {
-	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/items/{itemId}/features/{feature}][%d] featureItemConflict  %+v", 409, o.Payload)
+	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/items/{itemId}/features/{feature}][%d] featureItemConflict  %+v", 409, o.ToString())
+}
+
+func (o *FeatureItemConflict) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *FeatureItemConflict) GetPayload() *platformclientmodels.ErrorEntity {

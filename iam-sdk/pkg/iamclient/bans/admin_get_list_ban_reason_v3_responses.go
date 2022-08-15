@@ -10,6 +10,7 @@ package bans
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -71,7 +72,16 @@ type AdminGetListBanReasonV3OK struct {
 }
 
 func (o *AdminGetListBanReasonV3OK) Error() string {
-	return fmt.Sprintf("[GET /iam/v3/admin/bans/reasons][%d] adminGetListBanReasonV3OK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /iam/v3/admin/bans/reasons][%d] adminGetListBanReasonV3OK  %+v", 200, o.ToString())
+}
+
+func (o *AdminGetListBanReasonV3OK) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *AdminGetListBanReasonV3OK) GetPayload() *iamclientmodels.AccountcommonBanReasonsV3 {
@@ -104,7 +114,16 @@ type AdminGetListBanReasonV3Unauthorized struct {
 }
 
 func (o *AdminGetListBanReasonV3Unauthorized) Error() string {
-	return fmt.Sprintf("[GET /iam/v3/admin/bans/reasons][%d] adminGetListBanReasonV3Unauthorized  %+v", 401, o.Payload)
+	return fmt.Sprintf("[GET /iam/v3/admin/bans/reasons][%d] adminGetListBanReasonV3Unauthorized  %+v", 401, o.ToString())
+}
+
+func (o *AdminGetListBanReasonV3Unauthorized) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *AdminGetListBanReasonV3Unauthorized) GetPayload() *iamclientmodels.RestapiErrorResponse {
@@ -137,7 +156,16 @@ type AdminGetListBanReasonV3Forbidden struct {
 }
 
 func (o *AdminGetListBanReasonV3Forbidden) Error() string {
-	return fmt.Sprintf("[GET /iam/v3/admin/bans/reasons][%d] adminGetListBanReasonV3Forbidden  %+v", 403, o.Payload)
+	return fmt.Sprintf("[GET /iam/v3/admin/bans/reasons][%d] adminGetListBanReasonV3Forbidden  %+v", 403, o.ToString())
+}
+
+func (o *AdminGetListBanReasonV3Forbidden) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *AdminGetListBanReasonV3Forbidden) GetPayload() *iamclientmodels.RestapiErrorResponse {

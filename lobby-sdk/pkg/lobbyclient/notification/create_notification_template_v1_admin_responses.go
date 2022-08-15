@@ -10,6 +10,7 @@ package notification
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -110,7 +111,16 @@ type CreateNotificationTemplateV1AdminBadRequest struct {
 }
 
 func (o *CreateNotificationTemplateV1AdminBadRequest) Error() string {
-	return fmt.Sprintf("[POST /lobby/v1/admin/notification/namespaces/{namespace}/templates][%d] createNotificationTemplateV1AdminBadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[POST /lobby/v1/admin/notification/namespaces/{namespace}/templates][%d] createNotificationTemplateV1AdminBadRequest  %+v", 400, o.ToString())
+}
+
+func (o *CreateNotificationTemplateV1AdminBadRequest) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *CreateNotificationTemplateV1AdminBadRequest) GetPayload() *lobbyclientmodels.RestapiErrorResponseV1 {
@@ -143,7 +153,16 @@ type CreateNotificationTemplateV1AdminUnauthorized struct {
 }
 
 func (o *CreateNotificationTemplateV1AdminUnauthorized) Error() string {
-	return fmt.Sprintf("[POST /lobby/v1/admin/notification/namespaces/{namespace}/templates][%d] createNotificationTemplateV1AdminUnauthorized  %+v", 401, o.Payload)
+	return fmt.Sprintf("[POST /lobby/v1/admin/notification/namespaces/{namespace}/templates][%d] createNotificationTemplateV1AdminUnauthorized  %+v", 401, o.ToString())
+}
+
+func (o *CreateNotificationTemplateV1AdminUnauthorized) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *CreateNotificationTemplateV1AdminUnauthorized) GetPayload() *lobbyclientmodels.RestapiErrorResponseV1 {
@@ -176,7 +195,16 @@ type CreateNotificationTemplateV1AdminForbidden struct {
 }
 
 func (o *CreateNotificationTemplateV1AdminForbidden) Error() string {
-	return fmt.Sprintf("[POST /lobby/v1/admin/notification/namespaces/{namespace}/templates][%d] createNotificationTemplateV1AdminForbidden  %+v", 403, o.Payload)
+	return fmt.Sprintf("[POST /lobby/v1/admin/notification/namespaces/{namespace}/templates][%d] createNotificationTemplateV1AdminForbidden  %+v", 403, o.ToString())
+}
+
+func (o *CreateNotificationTemplateV1AdminForbidden) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *CreateNotificationTemplateV1AdminForbidden) GetPayload() *lobbyclientmodels.RestapiErrorResponseV1 {
@@ -209,7 +237,16 @@ type CreateNotificationTemplateV1AdminNotFound struct {
 }
 
 func (o *CreateNotificationTemplateV1AdminNotFound) Error() string {
-	return fmt.Sprintf("[POST /lobby/v1/admin/notification/namespaces/{namespace}/templates][%d] createNotificationTemplateV1AdminNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[POST /lobby/v1/admin/notification/namespaces/{namespace}/templates][%d] createNotificationTemplateV1AdminNotFound  %+v", 404, o.ToString())
+}
+
+func (o *CreateNotificationTemplateV1AdminNotFound) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *CreateNotificationTemplateV1AdminNotFound) GetPayload() *lobbyclientmodels.RestapiErrorResponseV1 {
@@ -242,7 +279,16 @@ type CreateNotificationTemplateV1AdminConflict struct {
 }
 
 func (o *CreateNotificationTemplateV1AdminConflict) Error() string {
-	return fmt.Sprintf("[POST /lobby/v1/admin/notification/namespaces/{namespace}/templates][%d] createNotificationTemplateV1AdminConflict  %+v", 409, o.Payload)
+	return fmt.Sprintf("[POST /lobby/v1/admin/notification/namespaces/{namespace}/templates][%d] createNotificationTemplateV1AdminConflict  %+v", 409, o.ToString())
+}
+
+func (o *CreateNotificationTemplateV1AdminConflict) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *CreateNotificationTemplateV1AdminConflict) GetPayload() *lobbyclientmodels.RestapiErrorResponseV1 {

@@ -10,6 +10,7 @@ package users_v4
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -95,7 +96,16 @@ type AdminUpdateUserV4OK struct {
 }
 
 func (o *AdminUpdateUserV4OK) Error() string {
-	return fmt.Sprintf("[PUT /iam/v4/admin/namespaces/{namespace}/users/{userId}][%d] adminUpdateUserV4OK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[PUT /iam/v4/admin/namespaces/{namespace}/users/{userId}][%d] adminUpdateUserV4OK  %+v", 200, o.ToString())
+}
+
+func (o *AdminUpdateUserV4OK) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *AdminUpdateUserV4OK) GetPayload() *iamclientmodels.ModelUserResponseV3 {
@@ -128,7 +138,16 @@ type AdminUpdateUserV4BadRequest struct {
 }
 
 func (o *AdminUpdateUserV4BadRequest) Error() string {
-	return fmt.Sprintf("[PUT /iam/v4/admin/namespaces/{namespace}/users/{userId}][%d] adminUpdateUserV4BadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[PUT /iam/v4/admin/namespaces/{namespace}/users/{userId}][%d] adminUpdateUserV4BadRequest  %+v", 400, o.ToString())
+}
+
+func (o *AdminUpdateUserV4BadRequest) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *AdminUpdateUserV4BadRequest) GetPayload() *iamclientmodels.RestErrorResponse {
@@ -161,7 +180,16 @@ type AdminUpdateUserV4Unauthorized struct {
 }
 
 func (o *AdminUpdateUserV4Unauthorized) Error() string {
-	return fmt.Sprintf("[PUT /iam/v4/admin/namespaces/{namespace}/users/{userId}][%d] adminUpdateUserV4Unauthorized  %+v", 401, o.Payload)
+	return fmt.Sprintf("[PUT /iam/v4/admin/namespaces/{namespace}/users/{userId}][%d] adminUpdateUserV4Unauthorized  %+v", 401, o.ToString())
+}
+
+func (o *AdminUpdateUserV4Unauthorized) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *AdminUpdateUserV4Unauthorized) GetPayload() *iamclientmodels.RestErrorResponse {
@@ -194,7 +222,16 @@ type AdminUpdateUserV4Forbidden struct {
 }
 
 func (o *AdminUpdateUserV4Forbidden) Error() string {
-	return fmt.Sprintf("[PUT /iam/v4/admin/namespaces/{namespace}/users/{userId}][%d] adminUpdateUserV4Forbidden  %+v", 403, o.Payload)
+	return fmt.Sprintf("[PUT /iam/v4/admin/namespaces/{namespace}/users/{userId}][%d] adminUpdateUserV4Forbidden  %+v", 403, o.ToString())
+}
+
+func (o *AdminUpdateUserV4Forbidden) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *AdminUpdateUserV4Forbidden) GetPayload() *iamclientmodels.RestErrorResponse {
@@ -227,7 +264,16 @@ type AdminUpdateUserV4NotFound struct {
 }
 
 func (o *AdminUpdateUserV4NotFound) Error() string {
-	return fmt.Sprintf("[PUT /iam/v4/admin/namespaces/{namespace}/users/{userId}][%d] adminUpdateUserV4NotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[PUT /iam/v4/admin/namespaces/{namespace}/users/{userId}][%d] adminUpdateUserV4NotFound  %+v", 404, o.ToString())
+}
+
+func (o *AdminUpdateUserV4NotFound) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *AdminUpdateUserV4NotFound) GetPayload() *iamclientmodels.RestErrorResponse {
@@ -260,7 +306,16 @@ type AdminUpdateUserV4Conflict struct {
 }
 
 func (o *AdminUpdateUserV4Conflict) Error() string {
-	return fmt.Sprintf("[PUT /iam/v4/admin/namespaces/{namespace}/users/{userId}][%d] adminUpdateUserV4Conflict  %+v", 409, o.Payload)
+	return fmt.Sprintf("[PUT /iam/v4/admin/namespaces/{namespace}/users/{userId}][%d] adminUpdateUserV4Conflict  %+v", 409, o.ToString())
+}
+
+func (o *AdminUpdateUserV4Conflict) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *AdminUpdateUserV4Conflict) GetPayload() *iamclientmodels.RestErrorResponse {

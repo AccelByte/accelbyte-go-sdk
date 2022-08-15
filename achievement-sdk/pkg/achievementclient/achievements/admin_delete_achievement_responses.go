@@ -10,6 +10,7 @@ package achievements
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -104,7 +105,16 @@ type AdminDeleteAchievementBadRequest struct {
 }
 
 func (o *AdminDeleteAchievementBadRequest) Error() string {
-	return fmt.Sprintf("[DELETE /achievement/v1/admin/namespaces/{namespace}/achievements/{achievementCode}][%d] adminDeleteAchievementBadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[DELETE /achievement/v1/admin/namespaces/{namespace}/achievements/{achievementCode}][%d] adminDeleteAchievementBadRequest  %+v", 400, o.ToString())
+}
+
+func (o *AdminDeleteAchievementBadRequest) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *AdminDeleteAchievementBadRequest) GetPayload() *achievementclientmodels.ResponseError {
@@ -137,7 +147,16 @@ type AdminDeleteAchievementUnauthorized struct {
 }
 
 func (o *AdminDeleteAchievementUnauthorized) Error() string {
-	return fmt.Sprintf("[DELETE /achievement/v1/admin/namespaces/{namespace}/achievements/{achievementCode}][%d] adminDeleteAchievementUnauthorized  %+v", 401, o.Payload)
+	return fmt.Sprintf("[DELETE /achievement/v1/admin/namespaces/{namespace}/achievements/{achievementCode}][%d] adminDeleteAchievementUnauthorized  %+v", 401, o.ToString())
+}
+
+func (o *AdminDeleteAchievementUnauthorized) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *AdminDeleteAchievementUnauthorized) GetPayload() *achievementclientmodels.ResponseError {
@@ -170,7 +189,16 @@ type AdminDeleteAchievementNotFound struct {
 }
 
 func (o *AdminDeleteAchievementNotFound) Error() string {
-	return fmt.Sprintf("[DELETE /achievement/v1/admin/namespaces/{namespace}/achievements/{achievementCode}][%d] adminDeleteAchievementNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[DELETE /achievement/v1/admin/namespaces/{namespace}/achievements/{achievementCode}][%d] adminDeleteAchievementNotFound  %+v", 404, o.ToString())
+}
+
+func (o *AdminDeleteAchievementNotFound) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *AdminDeleteAchievementNotFound) GetPayload() *achievementclientmodels.ResponseError {
@@ -203,7 +231,16 @@ type AdminDeleteAchievementInternalServerError struct {
 }
 
 func (o *AdminDeleteAchievementInternalServerError) Error() string {
-	return fmt.Sprintf("[DELETE /achievement/v1/admin/namespaces/{namespace}/achievements/{achievementCode}][%d] adminDeleteAchievementInternalServerError  %+v", 500, o.Payload)
+	return fmt.Sprintf("[DELETE /achievement/v1/admin/namespaces/{namespace}/achievements/{achievementCode}][%d] adminDeleteAchievementInternalServerError  %+v", 500, o.ToString())
+}
+
+func (o *AdminDeleteAchievementInternalServerError) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *AdminDeleteAchievementInternalServerError) GetPayload() *achievementclientmodels.ResponseError {

@@ -10,6 +10,7 @@ package config
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -89,7 +90,16 @@ type AdminGetConfigV1OK struct {
 }
 
 func (o *AdminGetConfigV1OK) Error() string {
-	return fmt.Sprintf("[GET /lobby/v1/admin/config/namespaces/{namespace}][%d] adminGetConfigV1OK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /lobby/v1/admin/config/namespaces/{namespace}][%d] adminGetConfigV1OK  %+v", 200, o.ToString())
+}
+
+func (o *AdminGetConfigV1OK) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *AdminGetConfigV1OK) GetPayload() *lobbyclientmodels.ModelsConfigReq {
@@ -122,7 +132,16 @@ type AdminGetConfigV1BadRequest struct {
 }
 
 func (o *AdminGetConfigV1BadRequest) Error() string {
-	return fmt.Sprintf("[GET /lobby/v1/admin/config/namespaces/{namespace}][%d] adminGetConfigV1BadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[GET /lobby/v1/admin/config/namespaces/{namespace}][%d] adminGetConfigV1BadRequest  %+v", 400, o.ToString())
+}
+
+func (o *AdminGetConfigV1BadRequest) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *AdminGetConfigV1BadRequest) GetPayload() *lobbyclientmodels.RestapiErrorResponseBody {
@@ -155,7 +174,16 @@ type AdminGetConfigV1Unauthorized struct {
 }
 
 func (o *AdminGetConfigV1Unauthorized) Error() string {
-	return fmt.Sprintf("[GET /lobby/v1/admin/config/namespaces/{namespace}][%d] adminGetConfigV1Unauthorized  %+v", 401, o.Payload)
+	return fmt.Sprintf("[GET /lobby/v1/admin/config/namespaces/{namespace}][%d] adminGetConfigV1Unauthorized  %+v", 401, o.ToString())
+}
+
+func (o *AdminGetConfigV1Unauthorized) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *AdminGetConfigV1Unauthorized) GetPayload() *lobbyclientmodels.RestapiErrorResponseBody {
@@ -188,7 +216,16 @@ type AdminGetConfigV1Forbidden struct {
 }
 
 func (o *AdminGetConfigV1Forbidden) Error() string {
-	return fmt.Sprintf("[GET /lobby/v1/admin/config/namespaces/{namespace}][%d] adminGetConfigV1Forbidden  %+v", 403, o.Payload)
+	return fmt.Sprintf("[GET /lobby/v1/admin/config/namespaces/{namespace}][%d] adminGetConfigV1Forbidden  %+v", 403, o.ToString())
+}
+
+func (o *AdminGetConfigV1Forbidden) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *AdminGetConfigV1Forbidden) GetPayload() *lobbyclientmodels.RestapiErrorResponseBody {
@@ -221,7 +258,16 @@ type AdminGetConfigV1NotFound struct {
 }
 
 func (o *AdminGetConfigV1NotFound) Error() string {
-	return fmt.Sprintf("[GET /lobby/v1/admin/config/namespaces/{namespace}][%d] adminGetConfigV1NotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[GET /lobby/v1/admin/config/namespaces/{namespace}][%d] adminGetConfigV1NotFound  %+v", 404, o.ToString())
+}
+
+func (o *AdminGetConfigV1NotFound) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *AdminGetConfigV1NotFound) GetPayload() *lobbyclientmodels.RestapiErrorResponseBody {
@@ -254,7 +300,16 @@ type AdminGetConfigV1InternalServerError struct {
 }
 
 func (o *AdminGetConfigV1InternalServerError) Error() string {
-	return fmt.Sprintf("[GET /lobby/v1/admin/config/namespaces/{namespace}][%d] adminGetConfigV1InternalServerError  %+v", 500, o.Payload)
+	return fmt.Sprintf("[GET /lobby/v1/admin/config/namespaces/{namespace}][%d] adminGetConfigV1InternalServerError  %+v", 500, o.ToString())
+}
+
+func (o *AdminGetConfigV1InternalServerError) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *AdminGetConfigV1InternalServerError) GetPayload() *lobbyclientmodels.RestapiErrorResponseBody {

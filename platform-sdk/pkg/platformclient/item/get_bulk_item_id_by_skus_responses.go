@@ -10,6 +10,7 @@ package item
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -59,7 +60,16 @@ type GetBulkItemIDBySkusOK struct {
 }
 
 func (o *GetBulkItemIDBySkusOK) Error() string {
-	return fmt.Sprintf("[GET /platform/admin/namespaces/{namespace}/items/itemId/bySkus][%d] getBulkItemIdBySkusOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /platform/admin/namespaces/{namespace}/items/itemId/bySkus][%d] getBulkItemIdBySkusOK  %+v", 200, o.ToString())
+}
+
+func (o *GetBulkItemIDBySkusOK) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *GetBulkItemIDBySkusOK) GetPayload() []*platformclientmodels.ItemID {

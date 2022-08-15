@@ -10,6 +10,7 @@ package configuration
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -83,7 +84,16 @@ type InitiateGroupConfigurationAdminV1Created struct {
 }
 
 func (o *InitiateGroupConfigurationAdminV1Created) Error() string {
-	return fmt.Sprintf("[POST /group/v1/admin/namespaces/{namespace}/configuration/initiate][%d] initiateGroupConfigurationAdminV1Created  %+v", 201, o.Payload)
+	return fmt.Sprintf("[POST /group/v1/admin/namespaces/{namespace}/configuration/initiate][%d] initiateGroupConfigurationAdminV1Created  %+v", 201, o.ToString())
+}
+
+func (o *InitiateGroupConfigurationAdminV1Created) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *InitiateGroupConfigurationAdminV1Created) GetPayload() *groupclientmodels.ModelsCreateGroupConfigurationResponseV1 {
@@ -116,7 +126,16 @@ type InitiateGroupConfigurationAdminV1Unauthorized struct {
 }
 
 func (o *InitiateGroupConfigurationAdminV1Unauthorized) Error() string {
-	return fmt.Sprintf("[POST /group/v1/admin/namespaces/{namespace}/configuration/initiate][%d] initiateGroupConfigurationAdminV1Unauthorized  %+v", 401, o.Payload)
+	return fmt.Sprintf("[POST /group/v1/admin/namespaces/{namespace}/configuration/initiate][%d] initiateGroupConfigurationAdminV1Unauthorized  %+v", 401, o.ToString())
+}
+
+func (o *InitiateGroupConfigurationAdminV1Unauthorized) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *InitiateGroupConfigurationAdminV1Unauthorized) GetPayload() *groupclientmodels.ResponseErrorResponse {
@@ -149,7 +168,16 @@ type InitiateGroupConfigurationAdminV1Forbidden struct {
 }
 
 func (o *InitiateGroupConfigurationAdminV1Forbidden) Error() string {
-	return fmt.Sprintf("[POST /group/v1/admin/namespaces/{namespace}/configuration/initiate][%d] initiateGroupConfigurationAdminV1Forbidden  %+v", 403, o.Payload)
+	return fmt.Sprintf("[POST /group/v1/admin/namespaces/{namespace}/configuration/initiate][%d] initiateGroupConfigurationAdminV1Forbidden  %+v", 403, o.ToString())
+}
+
+func (o *InitiateGroupConfigurationAdminV1Forbidden) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *InitiateGroupConfigurationAdminV1Forbidden) GetPayload() *groupclientmodels.ResponseErrorResponse {
@@ -182,7 +210,16 @@ type InitiateGroupConfigurationAdminV1Conflict struct {
 }
 
 func (o *InitiateGroupConfigurationAdminV1Conflict) Error() string {
-	return fmt.Sprintf("[POST /group/v1/admin/namespaces/{namespace}/configuration/initiate][%d] initiateGroupConfigurationAdminV1Conflict  %+v", 409, o.Payload)
+	return fmt.Sprintf("[POST /group/v1/admin/namespaces/{namespace}/configuration/initiate][%d] initiateGroupConfigurationAdminV1Conflict  %+v", 409, o.ToString())
+}
+
+func (o *InitiateGroupConfigurationAdminV1Conflict) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *InitiateGroupConfigurationAdminV1Conflict) GetPayload() *groupclientmodels.ResponseErrorResponse {
@@ -215,7 +252,16 @@ type InitiateGroupConfigurationAdminV1InternalServerError struct {
 }
 
 func (o *InitiateGroupConfigurationAdminV1InternalServerError) Error() string {
-	return fmt.Sprintf("[POST /group/v1/admin/namespaces/{namespace}/configuration/initiate][%d] initiateGroupConfigurationAdminV1InternalServerError  %+v", 500, o.Payload)
+	return fmt.Sprintf("[POST /group/v1/admin/namespaces/{namespace}/configuration/initiate][%d] initiateGroupConfigurationAdminV1InternalServerError  %+v", 500, o.ToString())
+}
+
+func (o *InitiateGroupConfigurationAdminV1InternalServerError) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *InitiateGroupConfigurationAdminV1InternalServerError) GetPayload() *groupclientmodels.ResponseErrorResponse {

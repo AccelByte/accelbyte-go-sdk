@@ -10,6 +10,7 @@ package namespace
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -89,7 +90,16 @@ type ChangeNamespaceStatusOK struct {
 }
 
 func (o *ChangeNamespaceStatusOK) Error() string {
-	return fmt.Sprintf("[PATCH /basic/v1/admin/namespaces/{namespace}/status][%d] changeNamespaceStatusOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[PATCH /basic/v1/admin/namespaces/{namespace}/status][%d] changeNamespaceStatusOK  %+v", 200, o.ToString())
+}
+
+func (o *ChangeNamespaceStatusOK) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *ChangeNamespaceStatusOK) GetPayload() *basicclientmodels.NamespaceInfo {
@@ -122,7 +132,16 @@ type ChangeNamespaceStatusBadRequest struct {
 }
 
 func (o *ChangeNamespaceStatusBadRequest) Error() string {
-	return fmt.Sprintf("[PATCH /basic/v1/admin/namespaces/{namespace}/status][%d] changeNamespaceStatusBadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[PATCH /basic/v1/admin/namespaces/{namespace}/status][%d] changeNamespaceStatusBadRequest  %+v", 400, o.ToString())
+}
+
+func (o *ChangeNamespaceStatusBadRequest) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *ChangeNamespaceStatusBadRequest) GetPayload() *basicclientmodels.ValidationErrorEntity {
@@ -155,7 +174,16 @@ type ChangeNamespaceStatusUnauthorized struct {
 }
 
 func (o *ChangeNamespaceStatusUnauthorized) Error() string {
-	return fmt.Sprintf("[PATCH /basic/v1/admin/namespaces/{namespace}/status][%d] changeNamespaceStatusUnauthorized  %+v", 401, o.Payload)
+	return fmt.Sprintf("[PATCH /basic/v1/admin/namespaces/{namespace}/status][%d] changeNamespaceStatusUnauthorized  %+v", 401, o.ToString())
+}
+
+func (o *ChangeNamespaceStatusUnauthorized) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *ChangeNamespaceStatusUnauthorized) GetPayload() *basicclientmodels.ErrorEntity {
@@ -188,7 +216,16 @@ type ChangeNamespaceStatusForbidden struct {
 }
 
 func (o *ChangeNamespaceStatusForbidden) Error() string {
-	return fmt.Sprintf("[PATCH /basic/v1/admin/namespaces/{namespace}/status][%d] changeNamespaceStatusForbidden  %+v", 403, o.Payload)
+	return fmt.Sprintf("[PATCH /basic/v1/admin/namespaces/{namespace}/status][%d] changeNamespaceStatusForbidden  %+v", 403, o.ToString())
+}
+
+func (o *ChangeNamespaceStatusForbidden) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *ChangeNamespaceStatusForbidden) GetPayload() *basicclientmodels.ErrorEntity {
@@ -221,7 +258,16 @@ type ChangeNamespaceStatusNotFound struct {
 }
 
 func (o *ChangeNamespaceStatusNotFound) Error() string {
-	return fmt.Sprintf("[PATCH /basic/v1/admin/namespaces/{namespace}/status][%d] changeNamespaceStatusNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[PATCH /basic/v1/admin/namespaces/{namespace}/status][%d] changeNamespaceStatusNotFound  %+v", 404, o.ToString())
+}
+
+func (o *ChangeNamespaceStatusNotFound) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *ChangeNamespaceStatusNotFound) GetPayload() *basicclientmodels.ErrorEntity {
@@ -254,7 +300,16 @@ type ChangeNamespaceStatusConflict struct {
 }
 
 func (o *ChangeNamespaceStatusConflict) Error() string {
-	return fmt.Sprintf("[PATCH /basic/v1/admin/namespaces/{namespace}/status][%d] changeNamespaceStatusConflict  %+v", 409, o.Payload)
+	return fmt.Sprintf("[PATCH /basic/v1/admin/namespaces/{namespace}/status][%d] changeNamespaceStatusConflict  %+v", 409, o.ToString())
+}
+
+func (o *ChangeNamespaceStatusConflict) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *ChangeNamespaceStatusConflict) GetPayload() *basicclientmodels.ErrorEntity {

@@ -10,6 +10,7 @@ package notification
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -98,7 +99,16 @@ type SendMultipleUsersFreeformNotificationV1AdminBadRequest struct {
 }
 
 func (o *SendMultipleUsersFreeformNotificationV1AdminBadRequest) Error() string {
-	return fmt.Sprintf("[POST /lobby/v1/admin/notification/namespaces/{namespace}/bulkUsers/freeform/notify][%d] sendMultipleUsersFreeformNotificationV1AdminBadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[POST /lobby/v1/admin/notification/namespaces/{namespace}/bulkUsers/freeform/notify][%d] sendMultipleUsersFreeformNotificationV1AdminBadRequest  %+v", 400, o.ToString())
+}
+
+func (o *SendMultipleUsersFreeformNotificationV1AdminBadRequest) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *SendMultipleUsersFreeformNotificationV1AdminBadRequest) GetPayload() *lobbyclientmodels.RestapiErrorResponseV1 {
@@ -131,7 +141,16 @@ type SendMultipleUsersFreeformNotificationV1AdminUnauthorized struct {
 }
 
 func (o *SendMultipleUsersFreeformNotificationV1AdminUnauthorized) Error() string {
-	return fmt.Sprintf("[POST /lobby/v1/admin/notification/namespaces/{namespace}/bulkUsers/freeform/notify][%d] sendMultipleUsersFreeformNotificationV1AdminUnauthorized  %+v", 401, o.Payload)
+	return fmt.Sprintf("[POST /lobby/v1/admin/notification/namespaces/{namespace}/bulkUsers/freeform/notify][%d] sendMultipleUsersFreeformNotificationV1AdminUnauthorized  %+v", 401, o.ToString())
+}
+
+func (o *SendMultipleUsersFreeformNotificationV1AdminUnauthorized) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *SendMultipleUsersFreeformNotificationV1AdminUnauthorized) GetPayload() *lobbyclientmodels.RestapiErrorResponseV1 {
@@ -164,7 +183,16 @@ type SendMultipleUsersFreeformNotificationV1AdminForbidden struct {
 }
 
 func (o *SendMultipleUsersFreeformNotificationV1AdminForbidden) Error() string {
-	return fmt.Sprintf("[POST /lobby/v1/admin/notification/namespaces/{namespace}/bulkUsers/freeform/notify][%d] sendMultipleUsersFreeformNotificationV1AdminForbidden  %+v", 403, o.Payload)
+	return fmt.Sprintf("[POST /lobby/v1/admin/notification/namespaces/{namespace}/bulkUsers/freeform/notify][%d] sendMultipleUsersFreeformNotificationV1AdminForbidden  %+v", 403, o.ToString())
+}
+
+func (o *SendMultipleUsersFreeformNotificationV1AdminForbidden) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *SendMultipleUsersFreeformNotificationV1AdminForbidden) GetPayload() *lobbyclientmodels.RestapiErrorResponseV1 {

@@ -10,6 +10,7 @@ package item
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -71,7 +72,16 @@ type DefeatureItemOK struct {
 }
 
 func (o *DefeatureItemOK) Error() string {
-	return fmt.Sprintf("[DELETE /platform/admin/namespaces/{namespace}/items/{itemId}/features/{feature}][%d] defeatureItemOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[DELETE /platform/admin/namespaces/{namespace}/items/{itemId}/features/{feature}][%d] defeatureItemOK  %+v", 200, o.ToString())
+}
+
+func (o *DefeatureItemOK) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *DefeatureItemOK) GetPayload() *platformclientmodels.FullItemInfo {
@@ -104,7 +114,16 @@ type DefeatureItemNotFound struct {
 }
 
 func (o *DefeatureItemNotFound) Error() string {
-	return fmt.Sprintf("[DELETE /platform/admin/namespaces/{namespace}/items/{itemId}/features/{feature}][%d] defeatureItemNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[DELETE /platform/admin/namespaces/{namespace}/items/{itemId}/features/{feature}][%d] defeatureItemNotFound  %+v", 404, o.ToString())
+}
+
+func (o *DefeatureItemNotFound) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *DefeatureItemNotFound) GetPayload() *platformclientmodels.ErrorEntity {
@@ -137,7 +156,16 @@ type DefeatureItemConflict struct {
 }
 
 func (o *DefeatureItemConflict) Error() string {
-	return fmt.Sprintf("[DELETE /platform/admin/namespaces/{namespace}/items/{itemId}/features/{feature}][%d] defeatureItemConflict  %+v", 409, o.Payload)
+	return fmt.Sprintf("[DELETE /platform/admin/namespaces/{namespace}/items/{itemId}/features/{feature}][%d] defeatureItemConflict  %+v", 409, o.ToString())
+}
+
+func (o *DefeatureItemConflict) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *DefeatureItemConflict) GetPayload() *platformclientmodels.ErrorEntity {

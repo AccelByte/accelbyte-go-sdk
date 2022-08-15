@@ -10,6 +10,7 @@ package image_config
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -83,7 +84,16 @@ type ImportImagesOK struct {
 }
 
 func (o *ImportImagesOK) Error() string {
-	return fmt.Sprintf("[POST /dsmcontroller/admin/images/import][%d] importImagesOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[POST /dsmcontroller/admin/images/import][%d] importImagesOK  %+v", 200, o.ToString())
+}
+
+func (o *ImportImagesOK) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *ImportImagesOK) GetPayload() *dsmcclientmodels.ModelsImportResponse {
@@ -116,7 +126,16 @@ type ImportImagesBadRequest struct {
 }
 
 func (o *ImportImagesBadRequest) Error() string {
-	return fmt.Sprintf("[POST /dsmcontroller/admin/images/import][%d] importImagesBadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[POST /dsmcontroller/admin/images/import][%d] importImagesBadRequest  %+v", 400, o.ToString())
+}
+
+func (o *ImportImagesBadRequest) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *ImportImagesBadRequest) GetPayload() *dsmcclientmodels.ResponseError {
@@ -149,7 +168,16 @@ type ImportImagesUnauthorized struct {
 }
 
 func (o *ImportImagesUnauthorized) Error() string {
-	return fmt.Sprintf("[POST /dsmcontroller/admin/images/import][%d] importImagesUnauthorized  %+v", 401, o.Payload)
+	return fmt.Sprintf("[POST /dsmcontroller/admin/images/import][%d] importImagesUnauthorized  %+v", 401, o.ToString())
+}
+
+func (o *ImportImagesUnauthorized) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *ImportImagesUnauthorized) GetPayload() *dsmcclientmodels.ResponseError {
@@ -182,7 +210,16 @@ type ImportImagesForbidden struct {
 }
 
 func (o *ImportImagesForbidden) Error() string {
-	return fmt.Sprintf("[POST /dsmcontroller/admin/images/import][%d] importImagesForbidden  %+v", 403, o.Payload)
+	return fmt.Sprintf("[POST /dsmcontroller/admin/images/import][%d] importImagesForbidden  %+v", 403, o.ToString())
+}
+
+func (o *ImportImagesForbidden) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *ImportImagesForbidden) GetPayload() *dsmcclientmodels.ResponseError {
@@ -215,7 +252,16 @@ type ImportImagesInternalServerError struct {
 }
 
 func (o *ImportImagesInternalServerError) Error() string {
-	return fmt.Sprintf("[POST /dsmcontroller/admin/images/import][%d] importImagesInternalServerError  %+v", 500, o.Payload)
+	return fmt.Sprintf("[POST /dsmcontroller/admin/images/import][%d] importImagesInternalServerError  %+v", 500, o.ToString())
+}
+
+func (o *ImportImagesInternalServerError) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *ImportImagesInternalServerError) GetPayload() *dsmcclientmodels.ResponseError {

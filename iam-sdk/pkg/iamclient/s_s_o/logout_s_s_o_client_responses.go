@@ -10,6 +10,7 @@ package s_s_o
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -98,7 +99,16 @@ type LogoutSSOClientNotFound struct {
 }
 
 func (o *LogoutSSOClientNotFound) Error() string {
-	return fmt.Sprintf("[POST /iam/v3/sso/{platformId}/logout][%d] logoutSSOClientNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[POST /iam/v3/sso/{platformId}/logout][%d] logoutSSOClientNotFound  %+v", 404, o.ToString())
+}
+
+func (o *LogoutSSOClientNotFound) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *LogoutSSOClientNotFound) GetPayload() *iamclientmodels.RestErrorResponse {
@@ -131,7 +141,16 @@ type LogoutSSOClientUnprocessableEntity struct {
 }
 
 func (o *LogoutSSOClientUnprocessableEntity) Error() string {
-	return fmt.Sprintf("[POST /iam/v3/sso/{platformId}/logout][%d] logoutSSOClientUnprocessableEntity  %+v", 422, o.Payload)
+	return fmt.Sprintf("[POST /iam/v3/sso/{platformId}/logout][%d] logoutSSOClientUnprocessableEntity  %+v", 422, o.ToString())
+}
+
+func (o *LogoutSSOClientUnprocessableEntity) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *LogoutSSOClientUnprocessableEntity) GetPayload() *iamclientmodels.RestErrorResponse {
@@ -164,7 +183,16 @@ type LogoutSSOClientInternalServerError struct {
 }
 
 func (o *LogoutSSOClientInternalServerError) Error() string {
-	return fmt.Sprintf("[POST /iam/v3/sso/{platformId}/logout][%d] logoutSSOClientInternalServerError  %+v", 500, o.Payload)
+	return fmt.Sprintf("[POST /iam/v3/sso/{platformId}/logout][%d] logoutSSOClientInternalServerError  %+v", 500, o.ToString())
+}
+
+func (o *LogoutSSOClientInternalServerError) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *LogoutSSOClientInternalServerError) GetPayload() *iamclientmodels.RestErrorResponse {

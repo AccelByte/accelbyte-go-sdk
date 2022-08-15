@@ -10,6 +10,7 @@ package party
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -89,7 +90,16 @@ type PublicGetPartyDataV1OK struct {
 }
 
 func (o *PublicGetPartyDataV1OK) Error() string {
-	return fmt.Sprintf("[GET /lobby/v1/public/party/namespaces/{namespace}/parties/{partyId}][%d] publicGetPartyDataV1OK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /lobby/v1/public/party/namespaces/{namespace}/parties/{partyId}][%d] publicGetPartyDataV1OK  %+v", 200, o.ToString())
+}
+
+func (o *PublicGetPartyDataV1OK) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *PublicGetPartyDataV1OK) GetPayload() *lobbyclientmodels.ModelsPartyData {
@@ -122,7 +132,16 @@ type PublicGetPartyDataV1BadRequest struct {
 }
 
 func (o *PublicGetPartyDataV1BadRequest) Error() string {
-	return fmt.Sprintf("[GET /lobby/v1/public/party/namespaces/{namespace}/parties/{partyId}][%d] publicGetPartyDataV1BadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[GET /lobby/v1/public/party/namespaces/{namespace}/parties/{partyId}][%d] publicGetPartyDataV1BadRequest  %+v", 400, o.ToString())
+}
+
+func (o *PublicGetPartyDataV1BadRequest) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *PublicGetPartyDataV1BadRequest) GetPayload() *lobbyclientmodels.RestapiErrorResponseBody {
@@ -155,7 +174,16 @@ type PublicGetPartyDataV1Unauthorized struct {
 }
 
 func (o *PublicGetPartyDataV1Unauthorized) Error() string {
-	return fmt.Sprintf("[GET /lobby/v1/public/party/namespaces/{namespace}/parties/{partyId}][%d] publicGetPartyDataV1Unauthorized  %+v", 401, o.Payload)
+	return fmt.Sprintf("[GET /lobby/v1/public/party/namespaces/{namespace}/parties/{partyId}][%d] publicGetPartyDataV1Unauthorized  %+v", 401, o.ToString())
+}
+
+func (o *PublicGetPartyDataV1Unauthorized) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *PublicGetPartyDataV1Unauthorized) GetPayload() *lobbyclientmodels.RestapiErrorResponseBody {
@@ -188,7 +216,16 @@ type PublicGetPartyDataV1Forbidden struct {
 }
 
 func (o *PublicGetPartyDataV1Forbidden) Error() string {
-	return fmt.Sprintf("[GET /lobby/v1/public/party/namespaces/{namespace}/parties/{partyId}][%d] publicGetPartyDataV1Forbidden  %+v", 403, o.Payload)
+	return fmt.Sprintf("[GET /lobby/v1/public/party/namespaces/{namespace}/parties/{partyId}][%d] publicGetPartyDataV1Forbidden  %+v", 403, o.ToString())
+}
+
+func (o *PublicGetPartyDataV1Forbidden) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *PublicGetPartyDataV1Forbidden) GetPayload() *lobbyclientmodels.RestapiErrorResponseBody {
@@ -221,7 +258,16 @@ type PublicGetPartyDataV1NotFound struct {
 }
 
 func (o *PublicGetPartyDataV1NotFound) Error() string {
-	return fmt.Sprintf("[GET /lobby/v1/public/party/namespaces/{namespace}/parties/{partyId}][%d] publicGetPartyDataV1NotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[GET /lobby/v1/public/party/namespaces/{namespace}/parties/{partyId}][%d] publicGetPartyDataV1NotFound  %+v", 404, o.ToString())
+}
+
+func (o *PublicGetPartyDataV1NotFound) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *PublicGetPartyDataV1NotFound) GetPayload() *lobbyclientmodels.RestapiErrorResponseBody {
@@ -254,7 +300,16 @@ type PublicGetPartyDataV1InternalServerError struct {
 }
 
 func (o *PublicGetPartyDataV1InternalServerError) Error() string {
-	return fmt.Sprintf("[GET /lobby/v1/public/party/namespaces/{namespace}/parties/{partyId}][%d] publicGetPartyDataV1InternalServerError  %+v", 500, o.Payload)
+	return fmt.Sprintf("[GET /lobby/v1/public/party/namespaces/{namespace}/parties/{partyId}][%d] publicGetPartyDataV1InternalServerError  %+v", 500, o.ToString())
+}
+
+func (o *PublicGetPartyDataV1InternalServerError) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *PublicGetPartyDataV1InternalServerError) GetPayload() *lobbyclientmodels.RestapiErrorResponseBody {

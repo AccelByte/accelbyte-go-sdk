@@ -10,6 +10,7 @@ package group_roles
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -89,7 +90,16 @@ type GetSingleMemberRoleAdminV1OK struct {
 }
 
 func (o *GetSingleMemberRoleAdminV1OK) Error() string {
-	return fmt.Sprintf("[GET /group/v1/admin/namespaces/{namespace}/roles/{memberRoleId}][%d] getSingleMemberRoleAdminV1OK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /group/v1/admin/namespaces/{namespace}/roles/{memberRoleId}][%d] getSingleMemberRoleAdminV1OK  %+v", 200, o.ToString())
+}
+
+func (o *GetSingleMemberRoleAdminV1OK) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *GetSingleMemberRoleAdminV1OK) GetPayload() *groupclientmodels.ModelsGetMemberRoleResponseV1 {
@@ -122,7 +132,16 @@ type GetSingleMemberRoleAdminV1BadRequest struct {
 }
 
 func (o *GetSingleMemberRoleAdminV1BadRequest) Error() string {
-	return fmt.Sprintf("[GET /group/v1/admin/namespaces/{namespace}/roles/{memberRoleId}][%d] getSingleMemberRoleAdminV1BadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[GET /group/v1/admin/namespaces/{namespace}/roles/{memberRoleId}][%d] getSingleMemberRoleAdminV1BadRequest  %+v", 400, o.ToString())
+}
+
+func (o *GetSingleMemberRoleAdminV1BadRequest) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *GetSingleMemberRoleAdminV1BadRequest) GetPayload() *groupclientmodels.ResponseErrorResponse {
@@ -155,7 +174,16 @@ type GetSingleMemberRoleAdminV1Unauthorized struct {
 }
 
 func (o *GetSingleMemberRoleAdminV1Unauthorized) Error() string {
-	return fmt.Sprintf("[GET /group/v1/admin/namespaces/{namespace}/roles/{memberRoleId}][%d] getSingleMemberRoleAdminV1Unauthorized  %+v", 401, o.Payload)
+	return fmt.Sprintf("[GET /group/v1/admin/namespaces/{namespace}/roles/{memberRoleId}][%d] getSingleMemberRoleAdminV1Unauthorized  %+v", 401, o.ToString())
+}
+
+func (o *GetSingleMemberRoleAdminV1Unauthorized) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *GetSingleMemberRoleAdminV1Unauthorized) GetPayload() *groupclientmodels.ResponseErrorResponse {
@@ -188,7 +216,16 @@ type GetSingleMemberRoleAdminV1Forbidden struct {
 }
 
 func (o *GetSingleMemberRoleAdminV1Forbidden) Error() string {
-	return fmt.Sprintf("[GET /group/v1/admin/namespaces/{namespace}/roles/{memberRoleId}][%d] getSingleMemberRoleAdminV1Forbidden  %+v", 403, o.Payload)
+	return fmt.Sprintf("[GET /group/v1/admin/namespaces/{namespace}/roles/{memberRoleId}][%d] getSingleMemberRoleAdminV1Forbidden  %+v", 403, o.ToString())
+}
+
+func (o *GetSingleMemberRoleAdminV1Forbidden) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *GetSingleMemberRoleAdminV1Forbidden) GetPayload() *groupclientmodels.ResponseErrorResponse {
@@ -221,7 +258,16 @@ type GetSingleMemberRoleAdminV1NotFound struct {
 }
 
 func (o *GetSingleMemberRoleAdminV1NotFound) Error() string {
-	return fmt.Sprintf("[GET /group/v1/admin/namespaces/{namespace}/roles/{memberRoleId}][%d] getSingleMemberRoleAdminV1NotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[GET /group/v1/admin/namespaces/{namespace}/roles/{memberRoleId}][%d] getSingleMemberRoleAdminV1NotFound  %+v", 404, o.ToString())
+}
+
+func (o *GetSingleMemberRoleAdminV1NotFound) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *GetSingleMemberRoleAdminV1NotFound) GetPayload() *groupclientmodels.ResponseErrorResponse {
@@ -254,7 +300,16 @@ type GetSingleMemberRoleAdminV1InternalServerError struct {
 }
 
 func (o *GetSingleMemberRoleAdminV1InternalServerError) Error() string {
-	return fmt.Sprintf("[GET /group/v1/admin/namespaces/{namespace}/roles/{memberRoleId}][%d] getSingleMemberRoleAdminV1InternalServerError  %+v", 500, o.Payload)
+	return fmt.Sprintf("[GET /group/v1/admin/namespaces/{namespace}/roles/{memberRoleId}][%d] getSingleMemberRoleAdminV1InternalServerError  %+v", 500, o.ToString())
+}
+
+func (o *GetSingleMemberRoleAdminV1InternalServerError) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *GetSingleMemberRoleAdminV1InternalServerError) GetPayload() *groupclientmodels.ResponseErrorResponse {

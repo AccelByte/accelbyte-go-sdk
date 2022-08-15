@@ -10,6 +10,7 @@ package friends
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -83,7 +84,16 @@ type GetListOfFriendsOK struct {
 }
 
 func (o *GetListOfFriendsOK) Error() string {
-	return fmt.Sprintf("[GET /lobby/v1/admin/friend/namespaces/{namespace}/users/{userId}][%d] getListOfFriendsOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /lobby/v1/admin/friend/namespaces/{namespace}/users/{userId}][%d] getListOfFriendsOK  %+v", 200, o.ToString())
+}
+
+func (o *GetListOfFriendsOK) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *GetListOfFriendsOK) GetPayload() *lobbyclientmodels.ModelGetFriendsResponse {
@@ -116,7 +126,16 @@ type GetListOfFriendsBadRequest struct {
 }
 
 func (o *GetListOfFriendsBadRequest) Error() string {
-	return fmt.Sprintf("[GET /lobby/v1/admin/friend/namespaces/{namespace}/users/{userId}][%d] getListOfFriendsBadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[GET /lobby/v1/admin/friend/namespaces/{namespace}/users/{userId}][%d] getListOfFriendsBadRequest  %+v", 400, o.ToString())
+}
+
+func (o *GetListOfFriendsBadRequest) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *GetListOfFriendsBadRequest) GetPayload() *lobbyclientmodels.RestapiErrorResponseBody {
@@ -149,7 +168,16 @@ type GetListOfFriendsUnauthorized struct {
 }
 
 func (o *GetListOfFriendsUnauthorized) Error() string {
-	return fmt.Sprintf("[GET /lobby/v1/admin/friend/namespaces/{namespace}/users/{userId}][%d] getListOfFriendsUnauthorized  %+v", 401, o.Payload)
+	return fmt.Sprintf("[GET /lobby/v1/admin/friend/namespaces/{namespace}/users/{userId}][%d] getListOfFriendsUnauthorized  %+v", 401, o.ToString())
+}
+
+func (o *GetListOfFriendsUnauthorized) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *GetListOfFriendsUnauthorized) GetPayload() *lobbyclientmodels.RestapiErrorResponseBody {
@@ -182,7 +210,16 @@ type GetListOfFriendsForbidden struct {
 }
 
 func (o *GetListOfFriendsForbidden) Error() string {
-	return fmt.Sprintf("[GET /lobby/v1/admin/friend/namespaces/{namespace}/users/{userId}][%d] getListOfFriendsForbidden  %+v", 403, o.Payload)
+	return fmt.Sprintf("[GET /lobby/v1/admin/friend/namespaces/{namespace}/users/{userId}][%d] getListOfFriendsForbidden  %+v", 403, o.ToString())
+}
+
+func (o *GetListOfFriendsForbidden) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *GetListOfFriendsForbidden) GetPayload() *lobbyclientmodels.RestapiErrorResponseBody {
@@ -215,7 +252,16 @@ type GetListOfFriendsInternalServerError struct {
 }
 
 func (o *GetListOfFriendsInternalServerError) Error() string {
-	return fmt.Sprintf("[GET /lobby/v1/admin/friend/namespaces/{namespace}/users/{userId}][%d] getListOfFriendsInternalServerError  %+v", 500, o.Payload)
+	return fmt.Sprintf("[GET /lobby/v1/admin/friend/namespaces/{namespace}/users/{userId}][%d] getListOfFriendsInternalServerError  %+v", 500, o.ToString())
+}
+
+func (o *GetListOfFriendsInternalServerError) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *GetListOfFriendsInternalServerError) GetPayload() *lobbyclientmodels.RestapiErrorResponseBody {

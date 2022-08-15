@@ -10,6 +10,7 @@ package subscription
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -110,7 +111,16 @@ type PublicSubscribeSubscriptionBadRequest struct {
 }
 
 func (o *PublicSubscribeSubscriptionBadRequest) Error() string {
-	return fmt.Sprintf("[POST /platform/public/namespaces/{namespace}/users/{userId}/subscriptions][%d] publicSubscribeSubscriptionBadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[POST /platform/public/namespaces/{namespace}/users/{userId}/subscriptions][%d] publicSubscribeSubscriptionBadRequest  %+v", 400, o.ToString())
+}
+
+func (o *PublicSubscribeSubscriptionBadRequest) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *PublicSubscribeSubscriptionBadRequest) GetPayload() *platformclientmodels.ErrorEntity {
@@ -143,7 +153,16 @@ type PublicSubscribeSubscriptionForbidden struct {
 }
 
 func (o *PublicSubscribeSubscriptionForbidden) Error() string {
-	return fmt.Sprintf("[POST /platform/public/namespaces/{namespace}/users/{userId}/subscriptions][%d] publicSubscribeSubscriptionForbidden  %+v", 403, o.Payload)
+	return fmt.Sprintf("[POST /platform/public/namespaces/{namespace}/users/{userId}/subscriptions][%d] publicSubscribeSubscriptionForbidden  %+v", 403, o.ToString())
+}
+
+func (o *PublicSubscribeSubscriptionForbidden) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *PublicSubscribeSubscriptionForbidden) GetPayload() *platformclientmodels.ErrorEntity {
@@ -176,7 +195,16 @@ type PublicSubscribeSubscriptionNotFound struct {
 }
 
 func (o *PublicSubscribeSubscriptionNotFound) Error() string {
-	return fmt.Sprintf("[POST /platform/public/namespaces/{namespace}/users/{userId}/subscriptions][%d] publicSubscribeSubscriptionNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[POST /platform/public/namespaces/{namespace}/users/{userId}/subscriptions][%d] publicSubscribeSubscriptionNotFound  %+v", 404, o.ToString())
+}
+
+func (o *PublicSubscribeSubscriptionNotFound) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *PublicSubscribeSubscriptionNotFound) GetPayload() *platformclientmodels.ErrorEntity {
@@ -209,7 +237,16 @@ type PublicSubscribeSubscriptionConflict struct {
 }
 
 func (o *PublicSubscribeSubscriptionConflict) Error() string {
-	return fmt.Sprintf("[POST /platform/public/namespaces/{namespace}/users/{userId}/subscriptions][%d] publicSubscribeSubscriptionConflict  %+v", 409, o.Payload)
+	return fmt.Sprintf("[POST /platform/public/namespaces/{namespace}/users/{userId}/subscriptions][%d] publicSubscribeSubscriptionConflict  %+v", 409, o.ToString())
+}
+
+func (o *PublicSubscribeSubscriptionConflict) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *PublicSubscribeSubscriptionConflict) GetPayload() *platformclientmodels.ErrorEntity {
@@ -242,7 +279,16 @@ type PublicSubscribeSubscriptionUnprocessableEntity struct {
 }
 
 func (o *PublicSubscribeSubscriptionUnprocessableEntity) Error() string {
-	return fmt.Sprintf("[POST /platform/public/namespaces/{namespace}/users/{userId}/subscriptions][%d] publicSubscribeSubscriptionUnprocessableEntity  %+v", 422, o.Payload)
+	return fmt.Sprintf("[POST /platform/public/namespaces/{namespace}/users/{userId}/subscriptions][%d] publicSubscribeSubscriptionUnprocessableEntity  %+v", 422, o.ToString())
+}
+
+func (o *PublicSubscribeSubscriptionUnprocessableEntity) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *PublicSubscribeSubscriptionUnprocessableEntity) GetPayload() *platformclientmodels.ValidationErrorEntity {

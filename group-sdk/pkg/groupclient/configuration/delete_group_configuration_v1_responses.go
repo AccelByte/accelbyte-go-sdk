@@ -10,6 +10,7 @@ package configuration
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -110,7 +111,16 @@ type DeleteGroupConfigurationV1BadRequest struct {
 }
 
 func (o *DeleteGroupConfigurationV1BadRequest) Error() string {
-	return fmt.Sprintf("[DELETE /group/v1/admin/namespaces/{namespace}/configuration/{configurationCode}][%d] deleteGroupConfigurationV1BadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[DELETE /group/v1/admin/namespaces/{namespace}/configuration/{configurationCode}][%d] deleteGroupConfigurationV1BadRequest  %+v", 400, o.ToString())
+}
+
+func (o *DeleteGroupConfigurationV1BadRequest) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *DeleteGroupConfigurationV1BadRequest) GetPayload() *groupclientmodels.ResponseErrorResponse {
@@ -143,7 +153,16 @@ type DeleteGroupConfigurationV1Unauthorized struct {
 }
 
 func (o *DeleteGroupConfigurationV1Unauthorized) Error() string {
-	return fmt.Sprintf("[DELETE /group/v1/admin/namespaces/{namespace}/configuration/{configurationCode}][%d] deleteGroupConfigurationV1Unauthorized  %+v", 401, o.Payload)
+	return fmt.Sprintf("[DELETE /group/v1/admin/namespaces/{namespace}/configuration/{configurationCode}][%d] deleteGroupConfigurationV1Unauthorized  %+v", 401, o.ToString())
+}
+
+func (o *DeleteGroupConfigurationV1Unauthorized) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *DeleteGroupConfigurationV1Unauthorized) GetPayload() *groupclientmodels.ResponseErrorResponse {
@@ -176,7 +195,16 @@ type DeleteGroupConfigurationV1Forbidden struct {
 }
 
 func (o *DeleteGroupConfigurationV1Forbidden) Error() string {
-	return fmt.Sprintf("[DELETE /group/v1/admin/namespaces/{namespace}/configuration/{configurationCode}][%d] deleteGroupConfigurationV1Forbidden  %+v", 403, o.Payload)
+	return fmt.Sprintf("[DELETE /group/v1/admin/namespaces/{namespace}/configuration/{configurationCode}][%d] deleteGroupConfigurationV1Forbidden  %+v", 403, o.ToString())
+}
+
+func (o *DeleteGroupConfigurationV1Forbidden) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *DeleteGroupConfigurationV1Forbidden) GetPayload() *groupclientmodels.ResponseErrorResponse {
@@ -209,7 +237,16 @@ type DeleteGroupConfigurationV1NotFound struct {
 }
 
 func (o *DeleteGroupConfigurationV1NotFound) Error() string {
-	return fmt.Sprintf("[DELETE /group/v1/admin/namespaces/{namespace}/configuration/{configurationCode}][%d] deleteGroupConfigurationV1NotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[DELETE /group/v1/admin/namespaces/{namespace}/configuration/{configurationCode}][%d] deleteGroupConfigurationV1NotFound  %+v", 404, o.ToString())
+}
+
+func (o *DeleteGroupConfigurationV1NotFound) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *DeleteGroupConfigurationV1NotFound) GetPayload() *groupclientmodels.ResponseErrorResponse {
@@ -242,7 +279,16 @@ type DeleteGroupConfigurationV1InternalServerError struct {
 }
 
 func (o *DeleteGroupConfigurationV1InternalServerError) Error() string {
-	return fmt.Sprintf("[DELETE /group/v1/admin/namespaces/{namespace}/configuration/{configurationCode}][%d] deleteGroupConfigurationV1InternalServerError  %+v", 500, o.Payload)
+	return fmt.Sprintf("[DELETE /group/v1/admin/namespaces/{namespace}/configuration/{configurationCode}][%d] deleteGroupConfigurationV1InternalServerError  %+v", 500, o.ToString())
+}
+
+func (o *DeleteGroupConfigurationV1InternalServerError) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *DeleteGroupConfigurationV1InternalServerError) GetPayload() *groupclientmodels.ResponseErrorResponse {

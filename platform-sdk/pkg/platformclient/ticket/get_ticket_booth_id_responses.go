@@ -10,6 +10,7 @@ package ticket
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -65,7 +66,16 @@ type GetTicketBoothIDOK struct {
 }
 
 func (o *GetTicketBoothIDOK) Error() string {
-	return fmt.Sprintf("[GET /platform/admin/namespaces/{namespace}/tickets/{boothName}/id][%d] getTicketBoothIdOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /platform/admin/namespaces/{namespace}/tickets/{boothName}/id][%d] getTicketBoothIdOK  %+v", 200, o.ToString())
+}
+
+func (o *GetTicketBoothIDOK) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *GetTicketBoothIDOK) GetPayload() *platformclientmodels.TicketBoothID {
@@ -98,7 +108,16 @@ type GetTicketBoothIDNotFound struct {
 }
 
 func (o *GetTicketBoothIDNotFound) Error() string {
-	return fmt.Sprintf("[GET /platform/admin/namespaces/{namespace}/tickets/{boothName}/id][%d] getTicketBoothIdNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[GET /platform/admin/namespaces/{namespace}/tickets/{boothName}/id][%d] getTicketBoothIdNotFound  %+v", 404, o.ToString())
+}
+
+func (o *GetTicketBoothIDNotFound) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *GetTicketBoothIDNotFound) GetPayload() *platformclientmodels.ErrorEntity {

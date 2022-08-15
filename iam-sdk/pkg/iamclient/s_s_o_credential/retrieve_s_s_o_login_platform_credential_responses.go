@@ -10,6 +10,7 @@ package s_s_o_credential
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -83,7 +84,16 @@ type RetrieveSSOLoginPlatformCredentialOK struct {
 }
 
 func (o *RetrieveSSOLoginPlatformCredentialOK) Error() string {
-	return fmt.Sprintf("[GET /iam/v3/admin/namespaces/{namespace}/platforms/{platformId}/sso][%d] retrieveSSOLoginPlatformCredentialOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /iam/v3/admin/namespaces/{namespace}/platforms/{platformId}/sso][%d] retrieveSSOLoginPlatformCredentialOK  %+v", 200, o.ToString())
+}
+
+func (o *RetrieveSSOLoginPlatformCredentialOK) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *RetrieveSSOLoginPlatformCredentialOK) GetPayload() *iamclientmodels.ModelSSOPlatformCredentialResponse {
@@ -158,7 +168,16 @@ type RetrieveSSOLoginPlatformCredentialNotFound struct {
 }
 
 func (o *RetrieveSSOLoginPlatformCredentialNotFound) Error() string {
-	return fmt.Sprintf("[GET /iam/v3/admin/namespaces/{namespace}/platforms/{platformId}/sso][%d] retrieveSSOLoginPlatformCredentialNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[GET /iam/v3/admin/namespaces/{namespace}/platforms/{platformId}/sso][%d] retrieveSSOLoginPlatformCredentialNotFound  %+v", 404, o.ToString())
+}
+
+func (o *RetrieveSSOLoginPlatformCredentialNotFound) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *RetrieveSSOLoginPlatformCredentialNotFound) GetPayload() *iamclientmodels.RestErrorResponse {
@@ -191,7 +210,16 @@ type RetrieveSSOLoginPlatformCredentialInternalServerError struct {
 }
 
 func (o *RetrieveSSOLoginPlatformCredentialInternalServerError) Error() string {
-	return fmt.Sprintf("[GET /iam/v3/admin/namespaces/{namespace}/platforms/{platformId}/sso][%d] retrieveSSOLoginPlatformCredentialInternalServerError  %+v", 500, o.Payload)
+	return fmt.Sprintf("[GET /iam/v3/admin/namespaces/{namespace}/platforms/{platformId}/sso][%d] retrieveSSOLoginPlatformCredentialInternalServerError  %+v", 500, o.ToString())
+}
+
+func (o *RetrieveSSOLoginPlatformCredentialInternalServerError) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *RetrieveSSOLoginPlatformCredentialInternalServerError) GetPayload() *iamclientmodels.RestErrorResponse {

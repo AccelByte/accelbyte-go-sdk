@@ -10,6 +10,7 @@ package tier
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -83,7 +84,16 @@ type UpdateTierOK struct {
 }
 
 func (o *UpdateTierOK) Error() string {
-	return fmt.Sprintf("[PUT /seasonpass/admin/namespaces/{namespace}/seasons/{seasonId}/tiers/{id}][%d] updateTierOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[PUT /seasonpass/admin/namespaces/{namespace}/seasons/{seasonId}/tiers/{id}][%d] updateTierOK  %+v", 200, o.ToString())
+}
+
+func (o *UpdateTierOK) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *UpdateTierOK) GetPayload() *seasonpassclientmodels.Tier {
@@ -116,7 +126,16 @@ type UpdateTierBadRequest struct {
 }
 
 func (o *UpdateTierBadRequest) Error() string {
-	return fmt.Sprintf("[PUT /seasonpass/admin/namespaces/{namespace}/seasons/{seasonId}/tiers/{id}][%d] updateTierBadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[PUT /seasonpass/admin/namespaces/{namespace}/seasons/{seasonId}/tiers/{id}][%d] updateTierBadRequest  %+v", 400, o.ToString())
+}
+
+func (o *UpdateTierBadRequest) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *UpdateTierBadRequest) GetPayload() *seasonpassclientmodels.ErrorEntity {
@@ -149,7 +168,16 @@ type UpdateTierNotFound struct {
 }
 
 func (o *UpdateTierNotFound) Error() string {
-	return fmt.Sprintf("[PUT /seasonpass/admin/namespaces/{namespace}/seasons/{seasonId}/tiers/{id}][%d] updateTierNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[PUT /seasonpass/admin/namespaces/{namespace}/seasons/{seasonId}/tiers/{id}][%d] updateTierNotFound  %+v", 404, o.ToString())
+}
+
+func (o *UpdateTierNotFound) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *UpdateTierNotFound) GetPayload() *seasonpassclientmodels.ErrorEntity {
@@ -182,7 +210,16 @@ type UpdateTierConflict struct {
 }
 
 func (o *UpdateTierConflict) Error() string {
-	return fmt.Sprintf("[PUT /seasonpass/admin/namespaces/{namespace}/seasons/{seasonId}/tiers/{id}][%d] updateTierConflict  %+v", 409, o.Payload)
+	return fmt.Sprintf("[PUT /seasonpass/admin/namespaces/{namespace}/seasons/{seasonId}/tiers/{id}][%d] updateTierConflict  %+v", 409, o.ToString())
+}
+
+func (o *UpdateTierConflict) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *UpdateTierConflict) GetPayload() *seasonpassclientmodels.ErrorEntity {
@@ -215,7 +252,16 @@ type UpdateTierUnprocessableEntity struct {
 }
 
 func (o *UpdateTierUnprocessableEntity) Error() string {
-	return fmt.Sprintf("[PUT /seasonpass/admin/namespaces/{namespace}/seasons/{seasonId}/tiers/{id}][%d] updateTierUnprocessableEntity  %+v", 422, o.Payload)
+	return fmt.Sprintf("[PUT /seasonpass/admin/namespaces/{namespace}/seasons/{seasonId}/tiers/{id}][%d] updateTierUnprocessableEntity  %+v", 422, o.ToString())
+}
+
+func (o *UpdateTierUnprocessableEntity) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *UpdateTierUnprocessableEntity) GetPayload() *seasonpassclientmodels.ValidationErrorEntity {

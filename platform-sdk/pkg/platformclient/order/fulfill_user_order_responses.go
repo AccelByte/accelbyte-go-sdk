@@ -10,6 +10,7 @@ package order
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -77,7 +78,16 @@ type FulfillUserOrderOK struct {
 }
 
 func (o *FulfillUserOrderOK) Error() string {
-	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/users/{userId}/orders/{orderNo}/fulfill][%d] fulfillUserOrderOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/users/{userId}/orders/{orderNo}/fulfill][%d] fulfillUserOrderOK  %+v", 200, o.ToString())
+}
+
+func (o *FulfillUserOrderOK) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *FulfillUserOrderOK) GetPayload() *platformclientmodels.OrderInfo {
@@ -110,7 +120,16 @@ type FulfillUserOrderBadRequest struct {
 }
 
 func (o *FulfillUserOrderBadRequest) Error() string {
-	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/users/{userId}/orders/{orderNo}/fulfill][%d] fulfillUserOrderBadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/users/{userId}/orders/{orderNo}/fulfill][%d] fulfillUserOrderBadRequest  %+v", 400, o.ToString())
+}
+
+func (o *FulfillUserOrderBadRequest) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *FulfillUserOrderBadRequest) GetPayload() *platformclientmodels.ErrorEntity {
@@ -143,7 +162,16 @@ type FulfillUserOrderNotFound struct {
 }
 
 func (o *FulfillUserOrderNotFound) Error() string {
-	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/users/{userId}/orders/{orderNo}/fulfill][%d] fulfillUserOrderNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/users/{userId}/orders/{orderNo}/fulfill][%d] fulfillUserOrderNotFound  %+v", 404, o.ToString())
+}
+
+func (o *FulfillUserOrderNotFound) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *FulfillUserOrderNotFound) GetPayload() *platformclientmodels.ErrorEntity {
@@ -176,7 +204,16 @@ type FulfillUserOrderConflict struct {
 }
 
 func (o *FulfillUserOrderConflict) Error() string {
-	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/users/{userId}/orders/{orderNo}/fulfill][%d] fulfillUserOrderConflict  %+v", 409, o.Payload)
+	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/users/{userId}/orders/{orderNo}/fulfill][%d] fulfillUserOrderConflict  %+v", 409, o.ToString())
+}
+
+func (o *FulfillUserOrderConflict) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *FulfillUserOrderConflict) GetPayload() *platformclientmodels.ErrorEntity {

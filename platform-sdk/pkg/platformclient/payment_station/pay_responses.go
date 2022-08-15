@@ -10,6 +10,7 @@ package payment_station
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -77,7 +78,16 @@ type PayOK struct {
 }
 
 func (o *PayOK) Error() string {
-	return fmt.Sprintf("[POST /platform/public/namespaces/{namespace}/payment/orders/{paymentOrderNo}/pay][%d] payOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[POST /platform/public/namespaces/{namespace}/payment/orders/{paymentOrderNo}/pay][%d] payOK  %+v", 200, o.ToString())
+}
+
+func (o *PayOK) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *PayOK) GetPayload() *platformclientmodels.PaymentProcessResult {
@@ -110,7 +120,16 @@ type PayBadRequest struct {
 }
 
 func (o *PayBadRequest) Error() string {
-	return fmt.Sprintf("[POST /platform/public/namespaces/{namespace}/payment/orders/{paymentOrderNo}/pay][%d] payBadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[POST /platform/public/namespaces/{namespace}/payment/orders/{paymentOrderNo}/pay][%d] payBadRequest  %+v", 400, o.ToString())
+}
+
+func (o *PayBadRequest) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *PayBadRequest) GetPayload() *platformclientmodels.ErrorEntity {
@@ -143,7 +162,16 @@ type PayNotFound struct {
 }
 
 func (o *PayNotFound) Error() string {
-	return fmt.Sprintf("[POST /platform/public/namespaces/{namespace}/payment/orders/{paymentOrderNo}/pay][%d] payNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[POST /platform/public/namespaces/{namespace}/payment/orders/{paymentOrderNo}/pay][%d] payNotFound  %+v", 404, o.ToString())
+}
+
+func (o *PayNotFound) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *PayNotFound) GetPayload() *platformclientmodels.ErrorEntity {
@@ -176,7 +204,16 @@ type PayConflict struct {
 }
 
 func (o *PayConflict) Error() string {
-	return fmt.Sprintf("[POST /platform/public/namespaces/{namespace}/payment/orders/{paymentOrderNo}/pay][%d] payConflict  %+v", 409, o.Payload)
+	return fmt.Sprintf("[POST /platform/public/namespaces/{namespace}/payment/orders/{paymentOrderNo}/pay][%d] payConflict  %+v", 409, o.ToString())
+}
+
+func (o *PayConflict) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *PayConflict) GetPayload() *platformclientmodels.ErrorEntity {

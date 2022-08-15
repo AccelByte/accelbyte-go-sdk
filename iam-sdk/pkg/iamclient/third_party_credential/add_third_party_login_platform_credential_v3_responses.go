@@ -10,6 +10,7 @@ package third_party_credential
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -83,7 +84,16 @@ type AddThirdPartyLoginPlatformCredentialV3Created struct {
 }
 
 func (o *AddThirdPartyLoginPlatformCredentialV3Created) Error() string {
-	return fmt.Sprintf("[POST /iam/v3/admin/namespaces/{namespace}/platforms/{platformId}/clients][%d] addThirdPartyLoginPlatformCredentialV3Created  %+v", 201, o.Payload)
+	return fmt.Sprintf("[POST /iam/v3/admin/namespaces/{namespace}/platforms/{platformId}/clients][%d] addThirdPartyLoginPlatformCredentialV3Created  %+v", 201, o.ToString())
+}
+
+func (o *AddThirdPartyLoginPlatformCredentialV3Created) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *AddThirdPartyLoginPlatformCredentialV3Created) GetPayload() *iamclientmodels.ModelThirdPartyLoginPlatformCredentialResponse {
@@ -116,7 +126,16 @@ type AddThirdPartyLoginPlatformCredentialV3BadRequest struct {
 }
 
 func (o *AddThirdPartyLoginPlatformCredentialV3BadRequest) Error() string {
-	return fmt.Sprintf("[POST /iam/v3/admin/namespaces/{namespace}/platforms/{platformId}/clients][%d] addThirdPartyLoginPlatformCredentialV3BadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[POST /iam/v3/admin/namespaces/{namespace}/platforms/{platformId}/clients][%d] addThirdPartyLoginPlatformCredentialV3BadRequest  %+v", 400, o.ToString())
+}
+
+func (o *AddThirdPartyLoginPlatformCredentialV3BadRequest) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *AddThirdPartyLoginPlatformCredentialV3BadRequest) GetPayload() *iamclientmodels.RestErrorResponse {
@@ -191,7 +210,16 @@ type AddThirdPartyLoginPlatformCredentialV3InternalServerError struct {
 }
 
 func (o *AddThirdPartyLoginPlatformCredentialV3InternalServerError) Error() string {
-	return fmt.Sprintf("[POST /iam/v3/admin/namespaces/{namespace}/platforms/{platformId}/clients][%d] addThirdPartyLoginPlatformCredentialV3InternalServerError  %+v", 500, o.Payload)
+	return fmt.Sprintf("[POST /iam/v3/admin/namespaces/{namespace}/platforms/{platformId}/clients][%d] addThirdPartyLoginPlatformCredentialV3InternalServerError  %+v", 500, o.ToString())
+}
+
+func (o *AddThirdPartyLoginPlatformCredentialV3InternalServerError) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *AddThirdPartyLoginPlatformCredentialV3InternalServerError) GetPayload() *iamclientmodels.RestErrorResponse {

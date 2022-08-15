@@ -10,6 +10,7 @@ package party
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -110,7 +111,16 @@ type PublicSetPartyLimitV1BadRequest struct {
 }
 
 func (o *PublicSetPartyLimitV1BadRequest) Error() string {
-	return fmt.Sprintf("[PUT /lobby/v1/public/party/namespaces/{namespace}/parties/{partyId}/limit][%d] publicSetPartyLimitV1BadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[PUT /lobby/v1/public/party/namespaces/{namespace}/parties/{partyId}/limit][%d] publicSetPartyLimitV1BadRequest  %+v", 400, o.ToString())
+}
+
+func (o *PublicSetPartyLimitV1BadRequest) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *PublicSetPartyLimitV1BadRequest) GetPayload() *lobbyclientmodels.RestapiErrorResponseBody {
@@ -143,7 +153,16 @@ type PublicSetPartyLimitV1Unauthorized struct {
 }
 
 func (o *PublicSetPartyLimitV1Unauthorized) Error() string {
-	return fmt.Sprintf("[PUT /lobby/v1/public/party/namespaces/{namespace}/parties/{partyId}/limit][%d] publicSetPartyLimitV1Unauthorized  %+v", 401, o.Payload)
+	return fmt.Sprintf("[PUT /lobby/v1/public/party/namespaces/{namespace}/parties/{partyId}/limit][%d] publicSetPartyLimitV1Unauthorized  %+v", 401, o.ToString())
+}
+
+func (o *PublicSetPartyLimitV1Unauthorized) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *PublicSetPartyLimitV1Unauthorized) GetPayload() *lobbyclientmodels.RestapiErrorResponseBody {
@@ -176,7 +195,16 @@ type PublicSetPartyLimitV1Forbidden struct {
 }
 
 func (o *PublicSetPartyLimitV1Forbidden) Error() string {
-	return fmt.Sprintf("[PUT /lobby/v1/public/party/namespaces/{namespace}/parties/{partyId}/limit][%d] publicSetPartyLimitV1Forbidden  %+v", 403, o.Payload)
+	return fmt.Sprintf("[PUT /lobby/v1/public/party/namespaces/{namespace}/parties/{partyId}/limit][%d] publicSetPartyLimitV1Forbidden  %+v", 403, o.ToString())
+}
+
+func (o *PublicSetPartyLimitV1Forbidden) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *PublicSetPartyLimitV1Forbidden) GetPayload() *lobbyclientmodels.RestapiErrorResponseBody {
@@ -209,7 +237,16 @@ type PublicSetPartyLimitV1NotFound struct {
 }
 
 func (o *PublicSetPartyLimitV1NotFound) Error() string {
-	return fmt.Sprintf("[PUT /lobby/v1/public/party/namespaces/{namespace}/parties/{partyId}/limit][%d] publicSetPartyLimitV1NotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[PUT /lobby/v1/public/party/namespaces/{namespace}/parties/{partyId}/limit][%d] publicSetPartyLimitV1NotFound  %+v", 404, o.ToString())
+}
+
+func (o *PublicSetPartyLimitV1NotFound) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *PublicSetPartyLimitV1NotFound) GetPayload() *lobbyclientmodels.RestapiErrorResponseBody {
@@ -242,7 +279,16 @@ type PublicSetPartyLimitV1InternalServerError struct {
 }
 
 func (o *PublicSetPartyLimitV1InternalServerError) Error() string {
-	return fmt.Sprintf("[PUT /lobby/v1/public/party/namespaces/{namespace}/parties/{partyId}/limit][%d] publicSetPartyLimitV1InternalServerError  %+v", 500, o.Payload)
+	return fmt.Sprintf("[PUT /lobby/v1/public/party/namespaces/{namespace}/parties/{partyId}/limit][%d] publicSetPartyLimitV1InternalServerError  %+v", 500, o.ToString())
+}
+
+func (o *PublicSetPartyLimitV1InternalServerError) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *PublicSetPartyLimitV1InternalServerError) GetPayload() *lobbyclientmodels.RestapiErrorResponseBody {

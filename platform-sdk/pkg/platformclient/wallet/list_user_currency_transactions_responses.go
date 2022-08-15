@@ -10,6 +10,7 @@ package wallet
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -65,7 +66,16 @@ type ListUserCurrencyTransactionsOK struct {
 }
 
 func (o *ListUserCurrencyTransactionsOK) Error() string {
-	return fmt.Sprintf("[GET /platform/admin/namespaces/{namespace}/users/{userId}/wallets/currencies/{currencyCode}/transactions][%d] listUserCurrencyTransactionsOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /platform/admin/namespaces/{namespace}/users/{userId}/wallets/currencies/{currencyCode}/transactions][%d] listUserCurrencyTransactionsOK  %+v", 200, o.ToString())
+}
+
+func (o *ListUserCurrencyTransactionsOK) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *ListUserCurrencyTransactionsOK) GetPayload() *platformclientmodels.WalletTransactionPagingSlicedResult {
@@ -98,7 +108,16 @@ type ListUserCurrencyTransactionsNotFound struct {
 }
 
 func (o *ListUserCurrencyTransactionsNotFound) Error() string {
-	return fmt.Sprintf("[GET /platform/admin/namespaces/{namespace}/users/{userId}/wallets/currencies/{currencyCode}/transactions][%d] listUserCurrencyTransactionsNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[GET /platform/admin/namespaces/{namespace}/users/{userId}/wallets/currencies/{currencyCode}/transactions][%d] listUserCurrencyTransactionsNotFound  %+v", 404, o.ToString())
+}
+
+func (o *ListUserCurrencyTransactionsNotFound) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *ListUserCurrencyTransactionsNotFound) GetPayload() *platformclientmodels.ErrorEntity {

@@ -10,6 +10,7 @@ package matchmaking
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -110,7 +111,16 @@ type AddUserIntoSessionInChannelBadRequest struct {
 }
 
 func (o *AddUserIntoSessionInChannelBadRequest) Error() string {
-	return fmt.Sprintf("[POST /matchmaking/v1/admin/namespaces/{namespace}/channels/{channelName}/sessions/{matchID}][%d] addUserIntoSessionInChannelBadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[POST /matchmaking/v1/admin/namespaces/{namespace}/channels/{channelName}/sessions/{matchID}][%d] addUserIntoSessionInChannelBadRequest  %+v", 400, o.ToString())
+}
+
+func (o *AddUserIntoSessionInChannelBadRequest) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *AddUserIntoSessionInChannelBadRequest) GetPayload() *matchmakingclientmodels.ResponseErrorV1 {
@@ -143,7 +153,16 @@ type AddUserIntoSessionInChannelUnauthorized struct {
 }
 
 func (o *AddUserIntoSessionInChannelUnauthorized) Error() string {
-	return fmt.Sprintf("[POST /matchmaking/v1/admin/namespaces/{namespace}/channels/{channelName}/sessions/{matchID}][%d] addUserIntoSessionInChannelUnauthorized  %+v", 401, o.Payload)
+	return fmt.Sprintf("[POST /matchmaking/v1/admin/namespaces/{namespace}/channels/{channelName}/sessions/{matchID}][%d] addUserIntoSessionInChannelUnauthorized  %+v", 401, o.ToString())
+}
+
+func (o *AddUserIntoSessionInChannelUnauthorized) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *AddUserIntoSessionInChannelUnauthorized) GetPayload() *matchmakingclientmodels.ResponseErrorV1 {
@@ -176,7 +195,16 @@ type AddUserIntoSessionInChannelForbidden struct {
 }
 
 func (o *AddUserIntoSessionInChannelForbidden) Error() string {
-	return fmt.Sprintf("[POST /matchmaking/v1/admin/namespaces/{namespace}/channels/{channelName}/sessions/{matchID}][%d] addUserIntoSessionInChannelForbidden  %+v", 403, o.Payload)
+	return fmt.Sprintf("[POST /matchmaking/v1/admin/namespaces/{namespace}/channels/{channelName}/sessions/{matchID}][%d] addUserIntoSessionInChannelForbidden  %+v", 403, o.ToString())
+}
+
+func (o *AddUserIntoSessionInChannelForbidden) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *AddUserIntoSessionInChannelForbidden) GetPayload() *matchmakingclientmodels.ResponseErrorV1 {
@@ -209,7 +237,16 @@ type AddUserIntoSessionInChannelNotFound struct {
 }
 
 func (o *AddUserIntoSessionInChannelNotFound) Error() string {
-	return fmt.Sprintf("[POST /matchmaking/v1/admin/namespaces/{namespace}/channels/{channelName}/sessions/{matchID}][%d] addUserIntoSessionInChannelNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[POST /matchmaking/v1/admin/namespaces/{namespace}/channels/{channelName}/sessions/{matchID}][%d] addUserIntoSessionInChannelNotFound  %+v", 404, o.ToString())
+}
+
+func (o *AddUserIntoSessionInChannelNotFound) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *AddUserIntoSessionInChannelNotFound) GetPayload() *matchmakingclientmodels.ResponseErrorV1 {
@@ -242,7 +279,16 @@ type AddUserIntoSessionInChannelInternalServerError struct {
 }
 
 func (o *AddUserIntoSessionInChannelInternalServerError) Error() string {
-	return fmt.Sprintf("[POST /matchmaking/v1/admin/namespaces/{namespace}/channels/{channelName}/sessions/{matchID}][%d] addUserIntoSessionInChannelInternalServerError  %+v", 500, o.Payload)
+	return fmt.Sprintf("[POST /matchmaking/v1/admin/namespaces/{namespace}/channels/{channelName}/sessions/{matchID}][%d] addUserIntoSessionInChannelInternalServerError  %+v", 500, o.ToString())
+}
+
+func (o *AddUserIntoSessionInChannelInternalServerError) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *AddUserIntoSessionInChannelInternalServerError) GetPayload() *matchmakingclientmodels.ResponseError {

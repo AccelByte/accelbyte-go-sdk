@@ -10,6 +10,7 @@ package event_registry
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -77,7 +78,16 @@ type GetRegisteredEventsHandlerOK struct {
 }
 
 func (o *GetRegisteredEventsHandlerOK) Error() string {
-	return fmt.Sprintf("[GET /event/registry/eventIds][%d] getRegisteredEventsHandlerOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /event/registry/eventIds][%d] getRegisteredEventsHandlerOK  %+v", 200, o.ToString())
+}
+
+func (o *GetRegisteredEventsHandlerOK) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *GetRegisteredEventsHandlerOK) GetPayload() *eventlogclientmodels.ModelsEventRegistry {

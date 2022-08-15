@@ -10,6 +10,7 @@ package admin
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -71,7 +72,16 @@ type ListLocalServerOK struct {
 }
 
 func (o *ListLocalServerOK) Error() string {
-	return fmt.Sprintf("[GET /dsmcontroller/admin/namespaces/{namespace}/servers/local][%d] listLocalServerOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /dsmcontroller/admin/namespaces/{namespace}/servers/local][%d] listLocalServerOK  %+v", 200, o.ToString())
+}
+
+func (o *ListLocalServerOK) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *ListLocalServerOK) GetPayload() *dsmcclientmodels.ModelsListServerResponse {
@@ -104,7 +114,16 @@ type ListLocalServerUnauthorized struct {
 }
 
 func (o *ListLocalServerUnauthorized) Error() string {
-	return fmt.Sprintf("[GET /dsmcontroller/admin/namespaces/{namespace}/servers/local][%d] listLocalServerUnauthorized  %+v", 401, o.Payload)
+	return fmt.Sprintf("[GET /dsmcontroller/admin/namespaces/{namespace}/servers/local][%d] listLocalServerUnauthorized  %+v", 401, o.ToString())
+}
+
+func (o *ListLocalServerUnauthorized) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *ListLocalServerUnauthorized) GetPayload() *dsmcclientmodels.ResponseError {
@@ -137,7 +156,16 @@ type ListLocalServerInternalServerError struct {
 }
 
 func (o *ListLocalServerInternalServerError) Error() string {
-	return fmt.Sprintf("[GET /dsmcontroller/admin/namespaces/{namespace}/servers/local][%d] listLocalServerInternalServerError  %+v", 500, o.Payload)
+	return fmt.Sprintf("[GET /dsmcontroller/admin/namespaces/{namespace}/servers/local][%d] listLocalServerInternalServerError  %+v", 500, o.ToString())
+}
+
+func (o *ListLocalServerInternalServerError) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *ListLocalServerInternalServerError) GetPayload() *dsmcclientmodels.ResponseError {

@@ -10,6 +10,7 @@ package lobby_operations
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -116,7 +117,16 @@ type AdminJoinPartyV1BadRequest struct {
 }
 
 func (o *AdminJoinPartyV1BadRequest) Error() string {
-	return fmt.Sprintf("[POST /lobby/v1/admin/party/namespaces/{namespace}/parties/{partyId}/join/{userId}][%d] adminJoinPartyV1BadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[POST /lobby/v1/admin/party/namespaces/{namespace}/parties/{partyId}/join/{userId}][%d] adminJoinPartyV1BadRequest  %+v", 400, o.ToString())
+}
+
+func (o *AdminJoinPartyV1BadRequest) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *AdminJoinPartyV1BadRequest) GetPayload() *lobbyclientmodels.RestapiErrorResponseBody {
@@ -149,7 +159,16 @@ type AdminJoinPartyV1Unauthorized struct {
 }
 
 func (o *AdminJoinPartyV1Unauthorized) Error() string {
-	return fmt.Sprintf("[POST /lobby/v1/admin/party/namespaces/{namespace}/parties/{partyId}/join/{userId}][%d] adminJoinPartyV1Unauthorized  %+v", 401, o.Payload)
+	return fmt.Sprintf("[POST /lobby/v1/admin/party/namespaces/{namespace}/parties/{partyId}/join/{userId}][%d] adminJoinPartyV1Unauthorized  %+v", 401, o.ToString())
+}
+
+func (o *AdminJoinPartyV1Unauthorized) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *AdminJoinPartyV1Unauthorized) GetPayload() *lobbyclientmodels.RestapiErrorResponseBody {
@@ -182,7 +201,16 @@ type AdminJoinPartyV1Forbidden struct {
 }
 
 func (o *AdminJoinPartyV1Forbidden) Error() string {
-	return fmt.Sprintf("[POST /lobby/v1/admin/party/namespaces/{namespace}/parties/{partyId}/join/{userId}][%d] adminJoinPartyV1Forbidden  %+v", 403, o.Payload)
+	return fmt.Sprintf("[POST /lobby/v1/admin/party/namespaces/{namespace}/parties/{partyId}/join/{userId}][%d] adminJoinPartyV1Forbidden  %+v", 403, o.ToString())
+}
+
+func (o *AdminJoinPartyV1Forbidden) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *AdminJoinPartyV1Forbidden) GetPayload() *lobbyclientmodels.RestapiErrorResponseBody {
@@ -215,7 +243,16 @@ type AdminJoinPartyV1NotFound struct {
 }
 
 func (o *AdminJoinPartyV1NotFound) Error() string {
-	return fmt.Sprintf("[POST /lobby/v1/admin/party/namespaces/{namespace}/parties/{partyId}/join/{userId}][%d] adminJoinPartyV1NotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[POST /lobby/v1/admin/party/namespaces/{namespace}/parties/{partyId}/join/{userId}][%d] adminJoinPartyV1NotFound  %+v", 404, o.ToString())
+}
+
+func (o *AdminJoinPartyV1NotFound) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *AdminJoinPartyV1NotFound) GetPayload() *lobbyclientmodels.RestapiErrorResponseBody {
@@ -248,7 +285,16 @@ type AdminJoinPartyV1PreconditionFailed struct {
 }
 
 func (o *AdminJoinPartyV1PreconditionFailed) Error() string {
-	return fmt.Sprintf("[POST /lobby/v1/admin/party/namespaces/{namespace}/parties/{partyId}/join/{userId}][%d] adminJoinPartyV1PreconditionFailed  %+v", 412, o.Payload)
+	return fmt.Sprintf("[POST /lobby/v1/admin/party/namespaces/{namespace}/parties/{partyId}/join/{userId}][%d] adminJoinPartyV1PreconditionFailed  %+v", 412, o.ToString())
+}
+
+func (o *AdminJoinPartyV1PreconditionFailed) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *AdminJoinPartyV1PreconditionFailed) GetPayload() *lobbyclientmodels.RestapiErrorResponseBody {
@@ -281,7 +327,16 @@ type AdminJoinPartyV1InternalServerError struct {
 }
 
 func (o *AdminJoinPartyV1InternalServerError) Error() string {
-	return fmt.Sprintf("[POST /lobby/v1/admin/party/namespaces/{namespace}/parties/{partyId}/join/{userId}][%d] adminJoinPartyV1InternalServerError  %+v", 500, o.Payload)
+	return fmt.Sprintf("[POST /lobby/v1/admin/party/namespaces/{namespace}/parties/{partyId}/join/{userId}][%d] adminJoinPartyV1InternalServerError  %+v", 500, o.ToString())
+}
+
+func (o *AdminJoinPartyV1InternalServerError) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *AdminJoinPartyV1InternalServerError) GetPayload() *lobbyclientmodels.RestapiErrorResponseBody {

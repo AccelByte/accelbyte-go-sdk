@@ -10,6 +10,7 @@ package public_channel
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -77,7 +78,16 @@ type CreateChannelCreated struct {
 }
 
 func (o *CreateChannelCreated) Error() string {
-	return fmt.Sprintf("[POST /ugc/v1/public/namespaces/{namespace}/users/{userId}/channels][%d] createChannelCreated  %+v", 201, o.Payload)
+	return fmt.Sprintf("[POST /ugc/v1/public/namespaces/{namespace}/users/{userId}/channels][%d] createChannelCreated  %+v", 201, o.ToString())
+}
+
+func (o *CreateChannelCreated) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *CreateChannelCreated) GetPayload() *ugcclientmodels.ModelsChannelResponse {
@@ -110,7 +120,16 @@ type CreateChannelBadRequest struct {
 }
 
 func (o *CreateChannelBadRequest) Error() string {
-	return fmt.Sprintf("[POST /ugc/v1/public/namespaces/{namespace}/users/{userId}/channels][%d] createChannelBadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[POST /ugc/v1/public/namespaces/{namespace}/users/{userId}/channels][%d] createChannelBadRequest  %+v", 400, o.ToString())
+}
+
+func (o *CreateChannelBadRequest) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *CreateChannelBadRequest) GetPayload() *ugcclientmodels.ResponseError {
@@ -143,7 +162,16 @@ type CreateChannelUnauthorized struct {
 }
 
 func (o *CreateChannelUnauthorized) Error() string {
-	return fmt.Sprintf("[POST /ugc/v1/public/namespaces/{namespace}/users/{userId}/channels][%d] createChannelUnauthorized  %+v", 401, o.Payload)
+	return fmt.Sprintf("[POST /ugc/v1/public/namespaces/{namespace}/users/{userId}/channels][%d] createChannelUnauthorized  %+v", 401, o.ToString())
+}
+
+func (o *CreateChannelUnauthorized) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *CreateChannelUnauthorized) GetPayload() *ugcclientmodels.ResponseError {
@@ -176,7 +204,16 @@ type CreateChannelInternalServerError struct {
 }
 
 func (o *CreateChannelInternalServerError) Error() string {
-	return fmt.Sprintf("[POST /ugc/v1/public/namespaces/{namespace}/users/{userId}/channels][%d] createChannelInternalServerError  %+v", 500, o.Payload)
+	return fmt.Sprintf("[POST /ugc/v1/public/namespaces/{namespace}/users/{userId}/channels][%d] createChannelInternalServerError  %+v", 500, o.ToString())
+}
+
+func (o *CreateChannelInternalServerError) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *CreateChannelInternalServerError) GetPayload() *ugcclientmodels.ResponseError {

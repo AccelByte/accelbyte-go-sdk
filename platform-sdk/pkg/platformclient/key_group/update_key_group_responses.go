@@ -10,6 +10,7 @@ package key_group
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -77,7 +78,16 @@ type UpdateKeyGroupOK struct {
 }
 
 func (o *UpdateKeyGroupOK) Error() string {
-	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/keygroups/{keyGroupId}][%d] updateKeyGroupOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/keygroups/{keyGroupId}][%d] updateKeyGroupOK  %+v", 200, o.ToString())
+}
+
+func (o *UpdateKeyGroupOK) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *UpdateKeyGroupOK) GetPayload() *platformclientmodels.KeyGroupInfo {
@@ -110,7 +120,16 @@ type UpdateKeyGroupNotFound struct {
 }
 
 func (o *UpdateKeyGroupNotFound) Error() string {
-	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/keygroups/{keyGroupId}][%d] updateKeyGroupNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/keygroups/{keyGroupId}][%d] updateKeyGroupNotFound  %+v", 404, o.ToString())
+}
+
+func (o *UpdateKeyGroupNotFound) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *UpdateKeyGroupNotFound) GetPayload() *platformclientmodels.ErrorEntity {
@@ -143,7 +162,16 @@ type UpdateKeyGroupConflict struct {
 }
 
 func (o *UpdateKeyGroupConflict) Error() string {
-	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/keygroups/{keyGroupId}][%d] updateKeyGroupConflict  %+v", 409, o.Payload)
+	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/keygroups/{keyGroupId}][%d] updateKeyGroupConflict  %+v", 409, o.ToString())
+}
+
+func (o *UpdateKeyGroupConflict) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *UpdateKeyGroupConflict) GetPayload() *platformclientmodels.ErrorEntity {
@@ -176,7 +204,16 @@ type UpdateKeyGroupUnprocessableEntity struct {
 }
 
 func (o *UpdateKeyGroupUnprocessableEntity) Error() string {
-	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/keygroups/{keyGroupId}][%d] updateKeyGroupUnprocessableEntity  %+v", 422, o.Payload)
+	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/keygroups/{keyGroupId}][%d] updateKeyGroupUnprocessableEntity  %+v", 422, o.ToString())
+}
+
+func (o *UpdateKeyGroupUnprocessableEntity) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *UpdateKeyGroupUnprocessableEntity) GetPayload() *platformclientmodels.ValidationErrorEntity {

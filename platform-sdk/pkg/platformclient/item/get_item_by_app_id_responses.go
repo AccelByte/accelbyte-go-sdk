@@ -10,6 +10,7 @@ package item
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -65,7 +66,16 @@ type GetItemByAppIDOK struct {
 }
 
 func (o *GetItemByAppIDOK) Error() string {
-	return fmt.Sprintf("[GET /platform/admin/namespaces/{namespace}/items/byAppId][%d] getItemByAppIdOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /platform/admin/namespaces/{namespace}/items/byAppId][%d] getItemByAppIdOK  %+v", 200, o.ToString())
+}
+
+func (o *GetItemByAppIDOK) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *GetItemByAppIDOK) GetPayload() *platformclientmodels.FullItemInfo {
@@ -98,7 +108,16 @@ type GetItemByAppIDNotFound struct {
 }
 
 func (o *GetItemByAppIDNotFound) Error() string {
-	return fmt.Sprintf("[GET /platform/admin/namespaces/{namespace}/items/byAppId][%d] getItemByAppIdNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[GET /platform/admin/namespaces/{namespace}/items/byAppId][%d] getItemByAppIdNotFound  %+v", 404, o.ToString())
+}
+
+func (o *GetItemByAppIDNotFound) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *GetItemByAppIDNotFound) GetPayload() *platformclientmodels.ErrorEntity {

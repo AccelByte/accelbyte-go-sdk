@@ -10,6 +10,7 @@ package slot_config
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -59,7 +60,16 @@ type GetNamespaceSlotConfigOK struct {
 }
 
 func (o *GetNamespaceSlotConfigOK) Error() string {
-	return fmt.Sprintf("[GET /social/admin/namespaces/{namespace}/config][%d] getNamespaceSlotConfigOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /social/admin/namespaces/{namespace}/config][%d] getNamespaceSlotConfigOK  %+v", 200, o.ToString())
+}
+
+func (o *GetNamespaceSlotConfigOK) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *GetNamespaceSlotConfigOK) GetPayload() *socialclientmodels.NamespaceSlotConfigInfo {

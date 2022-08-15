@@ -10,6 +10,7 @@ package user_profile
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -83,7 +84,16 @@ type PublicCreateUserProfileCreated struct {
 }
 
 func (o *PublicCreateUserProfileCreated) Error() string {
-	return fmt.Sprintf("[POST /basic/v1/public/namespaces/{namespace}/users/{userId}/profiles][%d] publicCreateUserProfileCreated  %+v", 201, o.Payload)
+	return fmt.Sprintf("[POST /basic/v1/public/namespaces/{namespace}/users/{userId}/profiles][%d] publicCreateUserProfileCreated  %+v", 201, o.ToString())
+}
+
+func (o *PublicCreateUserProfileCreated) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *PublicCreateUserProfileCreated) GetPayload() *basicclientmodels.UserProfileInfo {
@@ -116,7 +126,16 @@ type PublicCreateUserProfileBadRequest struct {
 }
 
 func (o *PublicCreateUserProfileBadRequest) Error() string {
-	return fmt.Sprintf("[POST /basic/v1/public/namespaces/{namespace}/users/{userId}/profiles][%d] publicCreateUserProfileBadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[POST /basic/v1/public/namespaces/{namespace}/users/{userId}/profiles][%d] publicCreateUserProfileBadRequest  %+v", 400, o.ToString())
+}
+
+func (o *PublicCreateUserProfileBadRequest) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *PublicCreateUserProfileBadRequest) GetPayload() *basicclientmodels.ValidationErrorEntity {
@@ -149,7 +168,16 @@ type PublicCreateUserProfileUnauthorized struct {
 }
 
 func (o *PublicCreateUserProfileUnauthorized) Error() string {
-	return fmt.Sprintf("[POST /basic/v1/public/namespaces/{namespace}/users/{userId}/profiles][%d] publicCreateUserProfileUnauthorized  %+v", 401, o.Payload)
+	return fmt.Sprintf("[POST /basic/v1/public/namespaces/{namespace}/users/{userId}/profiles][%d] publicCreateUserProfileUnauthorized  %+v", 401, o.ToString())
+}
+
+func (o *PublicCreateUserProfileUnauthorized) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *PublicCreateUserProfileUnauthorized) GetPayload() *basicclientmodels.ErrorEntity {
@@ -182,7 +210,16 @@ type PublicCreateUserProfileForbidden struct {
 }
 
 func (o *PublicCreateUserProfileForbidden) Error() string {
-	return fmt.Sprintf("[POST /basic/v1/public/namespaces/{namespace}/users/{userId}/profiles][%d] publicCreateUserProfileForbidden  %+v", 403, o.Payload)
+	return fmt.Sprintf("[POST /basic/v1/public/namespaces/{namespace}/users/{userId}/profiles][%d] publicCreateUserProfileForbidden  %+v", 403, o.ToString())
+}
+
+func (o *PublicCreateUserProfileForbidden) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *PublicCreateUserProfileForbidden) GetPayload() *basicclientmodels.ErrorEntity {
@@ -215,7 +252,16 @@ type PublicCreateUserProfileConflict struct {
 }
 
 func (o *PublicCreateUserProfileConflict) Error() string {
-	return fmt.Sprintf("[POST /basic/v1/public/namespaces/{namespace}/users/{userId}/profiles][%d] publicCreateUserProfileConflict  %+v", 409, o.Payload)
+	return fmt.Sprintf("[POST /basic/v1/public/namespaces/{namespace}/users/{userId}/profiles][%d] publicCreateUserProfileConflict  %+v", 409, o.ToString())
+}
+
+func (o *PublicCreateUserProfileConflict) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *PublicCreateUserProfileConflict) GetPayload() *basicclientmodels.ErrorEntity {

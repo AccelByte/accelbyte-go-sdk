@@ -10,6 +10,7 @@ package entitlement
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -77,7 +78,16 @@ type PublicConsumeUserEntitlementOK struct {
 }
 
 func (o *PublicConsumeUserEntitlementOK) Error() string {
-	return fmt.Sprintf("[PUT /platform/public/namespaces/{namespace}/users/{userId}/entitlements/{entitlementId}/decrement][%d] publicConsumeUserEntitlementOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[PUT /platform/public/namespaces/{namespace}/users/{userId}/entitlements/{entitlementId}/decrement][%d] publicConsumeUserEntitlementOK  %+v", 200, o.ToString())
+}
+
+func (o *PublicConsumeUserEntitlementOK) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *PublicConsumeUserEntitlementOK) GetPayload() *platformclientmodels.EntitlementInfo {
@@ -110,7 +120,16 @@ type PublicConsumeUserEntitlementBadRequest struct {
 }
 
 func (o *PublicConsumeUserEntitlementBadRequest) Error() string {
-	return fmt.Sprintf("[PUT /platform/public/namespaces/{namespace}/users/{userId}/entitlements/{entitlementId}/decrement][%d] publicConsumeUserEntitlementBadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[PUT /platform/public/namespaces/{namespace}/users/{userId}/entitlements/{entitlementId}/decrement][%d] publicConsumeUserEntitlementBadRequest  %+v", 400, o.ToString())
+}
+
+func (o *PublicConsumeUserEntitlementBadRequest) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *PublicConsumeUserEntitlementBadRequest) GetPayload() *platformclientmodels.ErrorEntity {
@@ -143,7 +162,16 @@ type PublicConsumeUserEntitlementNotFound struct {
 }
 
 func (o *PublicConsumeUserEntitlementNotFound) Error() string {
-	return fmt.Sprintf("[PUT /platform/public/namespaces/{namespace}/users/{userId}/entitlements/{entitlementId}/decrement][%d] publicConsumeUserEntitlementNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[PUT /platform/public/namespaces/{namespace}/users/{userId}/entitlements/{entitlementId}/decrement][%d] publicConsumeUserEntitlementNotFound  %+v", 404, o.ToString())
+}
+
+func (o *PublicConsumeUserEntitlementNotFound) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *PublicConsumeUserEntitlementNotFound) GetPayload() *platformclientmodels.ErrorEntity {
@@ -176,7 +204,16 @@ type PublicConsumeUserEntitlementConflict struct {
 }
 
 func (o *PublicConsumeUserEntitlementConflict) Error() string {
-	return fmt.Sprintf("[PUT /platform/public/namespaces/{namespace}/users/{userId}/entitlements/{entitlementId}/decrement][%d] publicConsumeUserEntitlementConflict  %+v", 409, o.Payload)
+	return fmt.Sprintf("[PUT /platform/public/namespaces/{namespace}/users/{userId}/entitlements/{entitlementId}/decrement][%d] publicConsumeUserEntitlementConflict  %+v", 409, o.ToString())
+}
+
+func (o *PublicConsumeUserEntitlementConflict) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *PublicConsumeUserEntitlementConflict) GetPayload() *platformclientmodels.ErrorEntity {

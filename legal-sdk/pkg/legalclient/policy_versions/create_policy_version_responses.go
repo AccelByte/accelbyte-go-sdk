@@ -10,6 +10,7 @@ package policy_versions
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -65,7 +66,16 @@ type CreatePolicyVersionCreated struct {
 }
 
 func (o *CreatePolicyVersionCreated) Error() string {
-	return fmt.Sprintf("[POST /agreement/admin/policies/{policyId}/versions][%d] createPolicyVersionCreated  %+v", 201, o.Payload)
+	return fmt.Sprintf("[POST /agreement/admin/policies/{policyId}/versions][%d] createPolicyVersionCreated  %+v", 201, o.ToString())
+}
+
+func (o *CreatePolicyVersionCreated) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *CreatePolicyVersionCreated) GetPayload() *legalclientmodels.CreatePolicyVersionResponse {
@@ -98,7 +108,16 @@ type CreatePolicyVersionBadRequest struct {
 }
 
 func (o *CreatePolicyVersionBadRequest) Error() string {
-	return fmt.Sprintf("[POST /agreement/admin/policies/{policyId}/versions][%d] createPolicyVersionBadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[POST /agreement/admin/policies/{policyId}/versions][%d] createPolicyVersionBadRequest  %+v", 400, o.ToString())
+}
+
+func (o *CreatePolicyVersionBadRequest) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *CreatePolicyVersionBadRequest) GetPayload() *legalclientmodels.ErrorEntity {

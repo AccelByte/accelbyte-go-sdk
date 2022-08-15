@@ -10,6 +10,7 @@ package payment_config
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -65,7 +66,16 @@ type TestPayPalConfigByIDOK struct {
 }
 
 func (o *TestPayPalConfigByIDOK) Error() string {
-	return fmt.Sprintf("[GET /platform/admin/payment/config/merchant/{id}/paypalconfig/test][%d] testPayPalConfigByIdOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /platform/admin/payment/config/merchant/{id}/paypalconfig/test][%d] testPayPalConfigByIdOK  %+v", 200, o.ToString())
+}
+
+func (o *TestPayPalConfigByIDOK) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *TestPayPalConfigByIDOK) GetPayload() *platformclientmodels.TestResult {
@@ -98,7 +108,16 @@ type TestPayPalConfigByIDNotFound struct {
 }
 
 func (o *TestPayPalConfigByIDNotFound) Error() string {
-	return fmt.Sprintf("[GET /platform/admin/payment/config/merchant/{id}/paypalconfig/test][%d] testPayPalConfigByIdNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[GET /platform/admin/payment/config/merchant/{id}/paypalconfig/test][%d] testPayPalConfigByIdNotFound  %+v", 404, o.ToString())
+}
+
+func (o *TestPayPalConfigByIDNotFound) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *TestPayPalConfigByIDNotFound) GetPayload() *platformclientmodels.ErrorEntity {

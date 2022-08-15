@@ -10,6 +10,7 @@ package subscription
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -65,7 +66,16 @@ type GrantDaysToSubscriptionOK struct {
 }
 
 func (o *GrantDaysToSubscriptionOK) Error() string {
-	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/users/{userId}/subscriptions/{subscriptionId}/grant][%d] grantDaysToSubscriptionOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/users/{userId}/subscriptions/{subscriptionId}/grant][%d] grantDaysToSubscriptionOK  %+v", 200, o.ToString())
+}
+
+func (o *GrantDaysToSubscriptionOK) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *GrantDaysToSubscriptionOK) GetPayload() *platformclientmodels.SubscriptionInfo {
@@ -98,7 +108,16 @@ type GrantDaysToSubscriptionNotFound struct {
 }
 
 func (o *GrantDaysToSubscriptionNotFound) Error() string {
-	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/users/{userId}/subscriptions/{subscriptionId}/grant][%d] grantDaysToSubscriptionNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/users/{userId}/subscriptions/{subscriptionId}/grant][%d] grantDaysToSubscriptionNotFound  %+v", 404, o.ToString())
+}
+
+func (o *GrantDaysToSubscriptionNotFound) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *GrantDaysToSubscriptionNotFound) GetPayload() *platformclientmodels.ErrorEntity {

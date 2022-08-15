@@ -10,6 +10,7 @@ package matchmaking
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -89,7 +90,16 @@ type RebalanceOK struct {
 }
 
 func (o *RebalanceOK) Error() string {
-	return fmt.Sprintf("[POST /matchmaking/namespaces/{namespace}/rebalance][%d] rebalanceOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[POST /matchmaking/namespaces/{namespace}/rebalance][%d] rebalanceOK  %+v", 200, o.ToString())
+}
+
+func (o *RebalanceOK) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *RebalanceOK) GetPayload() *matchmakingclientmodels.ModelsRebalanceResponse {
@@ -122,7 +132,16 @@ type RebalanceBadRequest struct {
 }
 
 func (o *RebalanceBadRequest) Error() string {
-	return fmt.Sprintf("[POST /matchmaking/namespaces/{namespace}/rebalance][%d] rebalanceBadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[POST /matchmaking/namespaces/{namespace}/rebalance][%d] rebalanceBadRequest  %+v", 400, o.ToString())
+}
+
+func (o *RebalanceBadRequest) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *RebalanceBadRequest) GetPayload() *matchmakingclientmodels.ResponseError {
@@ -155,7 +174,16 @@ type RebalanceUnauthorized struct {
 }
 
 func (o *RebalanceUnauthorized) Error() string {
-	return fmt.Sprintf("[POST /matchmaking/namespaces/{namespace}/rebalance][%d] rebalanceUnauthorized  %+v", 401, o.Payload)
+	return fmt.Sprintf("[POST /matchmaking/namespaces/{namespace}/rebalance][%d] rebalanceUnauthorized  %+v", 401, o.ToString())
+}
+
+func (o *RebalanceUnauthorized) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *RebalanceUnauthorized) GetPayload() *matchmakingclientmodels.ResponseError {
@@ -188,7 +216,16 @@ type RebalanceForbidden struct {
 }
 
 func (o *RebalanceForbidden) Error() string {
-	return fmt.Sprintf("[POST /matchmaking/namespaces/{namespace}/rebalance][%d] rebalanceForbidden  %+v", 403, o.Payload)
+	return fmt.Sprintf("[POST /matchmaking/namespaces/{namespace}/rebalance][%d] rebalanceForbidden  %+v", 403, o.ToString())
+}
+
+func (o *RebalanceForbidden) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *RebalanceForbidden) GetPayload() *matchmakingclientmodels.ResponseError {
@@ -221,7 +258,16 @@ type RebalanceNotFound struct {
 }
 
 func (o *RebalanceNotFound) Error() string {
-	return fmt.Sprintf("[POST /matchmaking/namespaces/{namespace}/rebalance][%d] rebalanceNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[POST /matchmaking/namespaces/{namespace}/rebalance][%d] rebalanceNotFound  %+v", 404, o.ToString())
+}
+
+func (o *RebalanceNotFound) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *RebalanceNotFound) GetPayload() *matchmakingclientmodels.ResponseError {
@@ -254,7 +300,16 @@ type RebalanceInternalServerError struct {
 }
 
 func (o *RebalanceInternalServerError) Error() string {
-	return fmt.Sprintf("[POST /matchmaking/namespaces/{namespace}/rebalance][%d] rebalanceInternalServerError  %+v", 500, o.Payload)
+	return fmt.Sprintf("[POST /matchmaking/namespaces/{namespace}/rebalance][%d] rebalanceInternalServerError  %+v", 500, o.ToString())
+}
+
+func (o *RebalanceInternalServerError) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *RebalanceInternalServerError) GetPayload() *matchmakingclientmodels.ResponseError {

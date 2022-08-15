@@ -10,6 +10,7 @@ package configuration
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -89,7 +90,16 @@ type DeleteGroupConfigurationGlobalRuleAdminV1OK struct {
 }
 
 func (o *DeleteGroupConfigurationGlobalRuleAdminV1OK) Error() string {
-	return fmt.Sprintf("[DELETE /group/v1/admin/namespaces/{namespace}/configuration/{configurationCode}/rules/{allowedAction}][%d] deleteGroupConfigurationGlobalRuleAdminV1OK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[DELETE /group/v1/admin/namespaces/{namespace}/configuration/{configurationCode}/rules/{allowedAction}][%d] deleteGroupConfigurationGlobalRuleAdminV1OK  %+v", 200, o.ToString())
+}
+
+func (o *DeleteGroupConfigurationGlobalRuleAdminV1OK) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *DeleteGroupConfigurationGlobalRuleAdminV1OK) GetPayload() *groupclientmodels.ModelsUpdateGroupConfigurationResponseV1 {
@@ -122,7 +132,16 @@ type DeleteGroupConfigurationGlobalRuleAdminV1BadRequest struct {
 }
 
 func (o *DeleteGroupConfigurationGlobalRuleAdminV1BadRequest) Error() string {
-	return fmt.Sprintf("[DELETE /group/v1/admin/namespaces/{namespace}/configuration/{configurationCode}/rules/{allowedAction}][%d] deleteGroupConfigurationGlobalRuleAdminV1BadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[DELETE /group/v1/admin/namespaces/{namespace}/configuration/{configurationCode}/rules/{allowedAction}][%d] deleteGroupConfigurationGlobalRuleAdminV1BadRequest  %+v", 400, o.ToString())
+}
+
+func (o *DeleteGroupConfigurationGlobalRuleAdminV1BadRequest) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *DeleteGroupConfigurationGlobalRuleAdminV1BadRequest) GetPayload() *groupclientmodels.ResponseErrorResponse {
@@ -155,7 +174,16 @@ type DeleteGroupConfigurationGlobalRuleAdminV1Unauthorized struct {
 }
 
 func (o *DeleteGroupConfigurationGlobalRuleAdminV1Unauthorized) Error() string {
-	return fmt.Sprintf("[DELETE /group/v1/admin/namespaces/{namespace}/configuration/{configurationCode}/rules/{allowedAction}][%d] deleteGroupConfigurationGlobalRuleAdminV1Unauthorized  %+v", 401, o.Payload)
+	return fmt.Sprintf("[DELETE /group/v1/admin/namespaces/{namespace}/configuration/{configurationCode}/rules/{allowedAction}][%d] deleteGroupConfigurationGlobalRuleAdminV1Unauthorized  %+v", 401, o.ToString())
+}
+
+func (o *DeleteGroupConfigurationGlobalRuleAdminV1Unauthorized) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *DeleteGroupConfigurationGlobalRuleAdminV1Unauthorized) GetPayload() *groupclientmodels.ResponseErrorResponse {
@@ -188,7 +216,16 @@ type DeleteGroupConfigurationGlobalRuleAdminV1Forbidden struct {
 }
 
 func (o *DeleteGroupConfigurationGlobalRuleAdminV1Forbidden) Error() string {
-	return fmt.Sprintf("[DELETE /group/v1/admin/namespaces/{namespace}/configuration/{configurationCode}/rules/{allowedAction}][%d] deleteGroupConfigurationGlobalRuleAdminV1Forbidden  %+v", 403, o.Payload)
+	return fmt.Sprintf("[DELETE /group/v1/admin/namespaces/{namespace}/configuration/{configurationCode}/rules/{allowedAction}][%d] deleteGroupConfigurationGlobalRuleAdminV1Forbidden  %+v", 403, o.ToString())
+}
+
+func (o *DeleteGroupConfigurationGlobalRuleAdminV1Forbidden) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *DeleteGroupConfigurationGlobalRuleAdminV1Forbidden) GetPayload() *groupclientmodels.ResponseErrorResponse {
@@ -221,7 +258,16 @@ type DeleteGroupConfigurationGlobalRuleAdminV1NotFound struct {
 }
 
 func (o *DeleteGroupConfigurationGlobalRuleAdminV1NotFound) Error() string {
-	return fmt.Sprintf("[DELETE /group/v1/admin/namespaces/{namespace}/configuration/{configurationCode}/rules/{allowedAction}][%d] deleteGroupConfigurationGlobalRuleAdminV1NotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[DELETE /group/v1/admin/namespaces/{namespace}/configuration/{configurationCode}/rules/{allowedAction}][%d] deleteGroupConfigurationGlobalRuleAdminV1NotFound  %+v", 404, o.ToString())
+}
+
+func (o *DeleteGroupConfigurationGlobalRuleAdminV1NotFound) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *DeleteGroupConfigurationGlobalRuleAdminV1NotFound) GetPayload() *groupclientmodels.ResponseErrorResponse {
@@ -254,7 +300,16 @@ type DeleteGroupConfigurationGlobalRuleAdminV1InternalServerError struct {
 }
 
 func (o *DeleteGroupConfigurationGlobalRuleAdminV1InternalServerError) Error() string {
-	return fmt.Sprintf("[DELETE /group/v1/admin/namespaces/{namespace}/configuration/{configurationCode}/rules/{allowedAction}][%d] deleteGroupConfigurationGlobalRuleAdminV1InternalServerError  %+v", 500, o.Payload)
+	return fmt.Sprintf("[DELETE /group/v1/admin/namespaces/{namespace}/configuration/{configurationCode}/rules/{allowedAction}][%d] deleteGroupConfigurationGlobalRuleAdminV1InternalServerError  %+v", 500, o.ToString())
+}
+
+func (o *DeleteGroupConfigurationGlobalRuleAdminV1InternalServerError) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *DeleteGroupConfigurationGlobalRuleAdminV1InternalServerError) GetPayload() *groupclientmodels.ResponseErrorResponse {

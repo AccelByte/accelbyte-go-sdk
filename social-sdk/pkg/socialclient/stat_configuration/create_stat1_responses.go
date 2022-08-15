@@ -10,6 +10,7 @@ package stat_configuration
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -65,7 +66,16 @@ type CreateStat1Created struct {
 }
 
 func (o *CreateStat1Created) Error() string {
-	return fmt.Sprintf("[POST /social/v1/public/namespaces/{namespace}/stats][%d] createStat1Created  %+v", 201, o.Payload)
+	return fmt.Sprintf("[POST /social/v1/public/namespaces/{namespace}/stats][%d] createStat1Created  %+v", 201, o.ToString())
+}
+
+func (o *CreateStat1Created) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *CreateStat1Created) GetPayload() *socialclientmodels.StatInfo {
@@ -98,7 +108,16 @@ type CreateStat1Conflict struct {
 }
 
 func (o *CreateStat1Conflict) Error() string {
-	return fmt.Sprintf("[POST /social/v1/public/namespaces/{namespace}/stats][%d] createStat1Conflict  %+v", 409, o.Payload)
+	return fmt.Sprintf("[POST /social/v1/public/namespaces/{namespace}/stats][%d] createStat1Conflict  %+v", 409, o.ToString())
+}
+
+func (o *CreateStat1Conflict) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *CreateStat1Conflict) GetPayload() *socialclientmodels.ErrorEntity {

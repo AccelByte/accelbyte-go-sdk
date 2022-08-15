@@ -10,6 +10,7 @@ package payment_config
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -65,7 +66,16 @@ type UpdateWxPayConfigOK struct {
 }
 
 func (o *UpdateWxPayConfigOK) Error() string {
-	return fmt.Sprintf("[PUT /platform/admin/payment/config/merchant/{id}/wxpayconfig][%d] updateWxPayConfigOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[PUT /platform/admin/payment/config/merchant/{id}/wxpayconfig][%d] updateWxPayConfigOK  %+v", 200, o.ToString())
+}
+
+func (o *UpdateWxPayConfigOK) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *UpdateWxPayConfigOK) GetPayload() *platformclientmodels.PaymentMerchantConfigInfo {
@@ -98,7 +108,16 @@ type UpdateWxPayConfigNotFound struct {
 }
 
 func (o *UpdateWxPayConfigNotFound) Error() string {
-	return fmt.Sprintf("[PUT /platform/admin/payment/config/merchant/{id}/wxpayconfig][%d] updateWxPayConfigNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[PUT /platform/admin/payment/config/merchant/{id}/wxpayconfig][%d] updateWxPayConfigNotFound  %+v", 404, o.ToString())
+}
+
+func (o *UpdateWxPayConfigNotFound) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *UpdateWxPayConfigNotFound) GetPayload() *platformclientmodels.ErrorEntity {

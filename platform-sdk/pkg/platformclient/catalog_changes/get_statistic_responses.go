@@ -10,6 +10,7 @@ package catalog_changes
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -59,7 +60,16 @@ type GetStatisticOK struct {
 }
 
 func (o *GetStatisticOK) Error() string {
-	return fmt.Sprintf("[GET /platform/admin/namespaces/{namespace}/stores/{storeId}/catalogChanges/statistics][%d] getStatisticOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /platform/admin/namespaces/{namespace}/stores/{storeId}/catalogChanges/statistics][%d] getStatisticOK  %+v", 200, o.ToString())
+}
+
+func (o *GetStatisticOK) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *GetStatisticOK) GetPayload() *platformclientmodels.CatalogChangeStatistics {

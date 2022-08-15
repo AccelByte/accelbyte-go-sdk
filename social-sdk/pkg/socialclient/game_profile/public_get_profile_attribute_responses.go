@@ -10,6 +10,7 @@ package game_profile
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -65,7 +66,16 @@ type PublicGetProfileAttributeOK struct {
 }
 
 func (o *PublicGetProfileAttributeOK) Error() string {
-	return fmt.Sprintf("[GET /social/public/namespaces/{namespace}/users/{userId}/profiles/{profileId}/attributes/{attributeName}][%d] publicGetProfileAttributeOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /social/public/namespaces/{namespace}/users/{userId}/profiles/{profileId}/attributes/{attributeName}][%d] publicGetProfileAttributeOK  %+v", 200, o.ToString())
+}
+
+func (o *PublicGetProfileAttributeOK) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *PublicGetProfileAttributeOK) GetPayload() *socialclientmodels.Attribute {
@@ -98,7 +108,16 @@ type PublicGetProfileAttributeNotFound struct {
 }
 
 func (o *PublicGetProfileAttributeNotFound) Error() string {
-	return fmt.Sprintf("[GET /social/public/namespaces/{namespace}/users/{userId}/profiles/{profileId}/attributes/{attributeName}][%d] publicGetProfileAttributeNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[GET /social/public/namespaces/{namespace}/users/{userId}/profiles/{profileId}/attributes/{attributeName}][%d] publicGetProfileAttributeNotFound  %+v", 404, o.ToString())
+}
+
+func (o *PublicGetProfileAttributeNotFound) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *PublicGetProfileAttributeNotFound) GetPayload() *socialclientmodels.ErrorEntity {

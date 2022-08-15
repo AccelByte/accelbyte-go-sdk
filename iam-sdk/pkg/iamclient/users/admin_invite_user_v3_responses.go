@@ -10,6 +10,7 @@ package users
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -89,7 +90,16 @@ type AdminInviteUserV3Created struct {
 }
 
 func (o *AdminInviteUserV3Created) Error() string {
-	return fmt.Sprintf("[POST /iam/v3/admin/namespaces/{namespace}/users/invite][%d] adminInviteUserV3Created  %+v", 201, o.Payload)
+	return fmt.Sprintf("[POST /iam/v3/admin/namespaces/{namespace}/users/invite][%d] adminInviteUserV3Created  %+v", 201, o.ToString())
+}
+
+func (o *AdminInviteUserV3Created) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *AdminInviteUserV3Created) GetPayload() *iamclientmodels.ModelInviteUserResponseV3 {
@@ -122,7 +132,16 @@ type AdminInviteUserV3BadRequest struct {
 }
 
 func (o *AdminInviteUserV3BadRequest) Error() string {
-	return fmt.Sprintf("[POST /iam/v3/admin/namespaces/{namespace}/users/invite][%d] adminInviteUserV3BadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[POST /iam/v3/admin/namespaces/{namespace}/users/invite][%d] adminInviteUserV3BadRequest  %+v", 400, o.ToString())
+}
+
+func (o *AdminInviteUserV3BadRequest) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *AdminInviteUserV3BadRequest) GetPayload() *iamclientmodels.RestErrorResponse {
@@ -155,7 +174,16 @@ type AdminInviteUserV3NotFound struct {
 }
 
 func (o *AdminInviteUserV3NotFound) Error() string {
-	return fmt.Sprintf("[POST /iam/v3/admin/namespaces/{namespace}/users/invite][%d] adminInviteUserV3NotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[POST /iam/v3/admin/namespaces/{namespace}/users/invite][%d] adminInviteUserV3NotFound  %+v", 404, o.ToString())
+}
+
+func (o *AdminInviteUserV3NotFound) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *AdminInviteUserV3NotFound) GetPayload() *iamclientmodels.RestErrorResponse {
@@ -188,7 +216,16 @@ type AdminInviteUserV3Conflict struct {
 }
 
 func (o *AdminInviteUserV3Conflict) Error() string {
-	return fmt.Sprintf("[POST /iam/v3/admin/namespaces/{namespace}/users/invite][%d] adminInviteUserV3Conflict  %+v", 409, o.Payload)
+	return fmt.Sprintf("[POST /iam/v3/admin/namespaces/{namespace}/users/invite][%d] adminInviteUserV3Conflict  %+v", 409, o.ToString())
+}
+
+func (o *AdminInviteUserV3Conflict) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *AdminInviteUserV3Conflict) GetPayload() *iamclientmodels.RestErrorResponse {
@@ -221,7 +258,16 @@ type AdminInviteUserV3UnprocessableEntity struct {
 }
 
 func (o *AdminInviteUserV3UnprocessableEntity) Error() string {
-	return fmt.Sprintf("[POST /iam/v3/admin/namespaces/{namespace}/users/invite][%d] adminInviteUserV3UnprocessableEntity  %+v", 422, o.Payload)
+	return fmt.Sprintf("[POST /iam/v3/admin/namespaces/{namespace}/users/invite][%d] adminInviteUserV3UnprocessableEntity  %+v", 422, o.ToString())
+}
+
+func (o *AdminInviteUserV3UnprocessableEntity) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *AdminInviteUserV3UnprocessableEntity) GetPayload() *iamclientmodels.RestErrorResponse {
@@ -254,7 +300,16 @@ type AdminInviteUserV3InternalServerError struct {
 }
 
 func (o *AdminInviteUserV3InternalServerError) Error() string {
-	return fmt.Sprintf("[POST /iam/v3/admin/namespaces/{namespace}/users/invite][%d] adminInviteUserV3InternalServerError  %+v", 500, o.Payload)
+	return fmt.Sprintf("[POST /iam/v3/admin/namespaces/{namespace}/users/invite][%d] adminInviteUserV3InternalServerError  %+v", 500, o.ToString())
+}
+
+func (o *AdminInviteUserV3InternalServerError) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *AdminInviteUserV3InternalServerError) GetPayload() *iamclientmodels.RestErrorResponse {

@@ -10,6 +10,7 @@ package session
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -83,7 +84,16 @@ type CreateSessionOK struct {
 }
 
 func (o *CreateSessionOK) Error() string {
-	return fmt.Sprintf("[POST /sessionbrowser/namespaces/{namespace}/gamesession][%d] createSessionOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[POST /sessionbrowser/namespaces/{namespace}/gamesession][%d] createSessionOK  %+v", 200, o.ToString())
+}
+
+func (o *CreateSessionOK) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *CreateSessionOK) GetPayload() *sessionbrowserclientmodels.ModelsSessionResponse {
@@ -116,7 +126,16 @@ type CreateSessionBadRequest struct {
 }
 
 func (o *CreateSessionBadRequest) Error() string {
-	return fmt.Sprintf("[POST /sessionbrowser/namespaces/{namespace}/gamesession][%d] createSessionBadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[POST /sessionbrowser/namespaces/{namespace}/gamesession][%d] createSessionBadRequest  %+v", 400, o.ToString())
+}
+
+func (o *CreateSessionBadRequest) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *CreateSessionBadRequest) GetPayload() *sessionbrowserclientmodels.RestapiErrorResponseV2 {
@@ -149,7 +168,16 @@ type CreateSessionForbidden struct {
 }
 
 func (o *CreateSessionForbidden) Error() string {
-	return fmt.Sprintf("[POST /sessionbrowser/namespaces/{namespace}/gamesession][%d] createSessionForbidden  %+v", 403, o.Payload)
+	return fmt.Sprintf("[POST /sessionbrowser/namespaces/{namespace}/gamesession][%d] createSessionForbidden  %+v", 403, o.ToString())
+}
+
+func (o *CreateSessionForbidden) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *CreateSessionForbidden) GetPayload() *sessionbrowserclientmodels.RestapiErrorResponseV2 {
@@ -182,7 +210,16 @@ type CreateSessionConflict struct {
 }
 
 func (o *CreateSessionConflict) Error() string {
-	return fmt.Sprintf("[POST /sessionbrowser/namespaces/{namespace}/gamesession][%d] createSessionConflict  %+v", 409, o.Payload)
+	return fmt.Sprintf("[POST /sessionbrowser/namespaces/{namespace}/gamesession][%d] createSessionConflict  %+v", 409, o.ToString())
+}
+
+func (o *CreateSessionConflict) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *CreateSessionConflict) GetPayload() *sessionbrowserclientmodels.RestapiErrorResponseV2 {
@@ -215,7 +252,16 @@ type CreateSessionInternalServerError struct {
 }
 
 func (o *CreateSessionInternalServerError) Error() string {
-	return fmt.Sprintf("[POST /sessionbrowser/namespaces/{namespace}/gamesession][%d] createSessionInternalServerError  %+v", 500, o.Payload)
+	return fmt.Sprintf("[POST /sessionbrowser/namespaces/{namespace}/gamesession][%d] createSessionInternalServerError  %+v", 500, o.ToString())
+}
+
+func (o *CreateSessionInternalServerError) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *CreateSessionInternalServerError) GetPayload() *sessionbrowserclientmodels.ResponseError {

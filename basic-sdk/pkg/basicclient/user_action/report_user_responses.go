@@ -10,6 +10,7 @@ package user_action
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -86,7 +87,16 @@ type ReportUserUnprocessableEntity struct {
 }
 
 func (o *ReportUserUnprocessableEntity) Error() string {
-	return fmt.Sprintf("[POST /basic/v1/admin/namespaces/{namespace}/actions/report][%d] reportUserUnprocessableEntity  %+v", 422, o.Payload)
+	return fmt.Sprintf("[POST /basic/v1/admin/namespaces/{namespace}/actions/report][%d] reportUserUnprocessableEntity  %+v", 422, o.ToString())
+}
+
+func (o *ReportUserUnprocessableEntity) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *ReportUserUnprocessableEntity) GetPayload() *basicclientmodels.ValidationErrorEntity {

@@ -10,6 +10,7 @@ package admin_group
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -98,7 +99,16 @@ type AdminDeleteGroupUnauthorized struct {
 }
 
 func (o *AdminDeleteGroupUnauthorized) Error() string {
-	return fmt.Sprintf("[DELETE /ugc/v1/admin/namespaces/{namespace}/users/{userId}/groups/{groupId}][%d] adminDeleteGroupUnauthorized  %+v", 401, o.Payload)
+	return fmt.Sprintf("[DELETE /ugc/v1/admin/namespaces/{namespace}/users/{userId}/groups/{groupId}][%d] adminDeleteGroupUnauthorized  %+v", 401, o.ToString())
+}
+
+func (o *AdminDeleteGroupUnauthorized) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *AdminDeleteGroupUnauthorized) GetPayload() *ugcclientmodels.ResponseError {
@@ -131,7 +141,16 @@ type AdminDeleteGroupNotFound struct {
 }
 
 func (o *AdminDeleteGroupNotFound) Error() string {
-	return fmt.Sprintf("[DELETE /ugc/v1/admin/namespaces/{namespace}/users/{userId}/groups/{groupId}][%d] adminDeleteGroupNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[DELETE /ugc/v1/admin/namespaces/{namespace}/users/{userId}/groups/{groupId}][%d] adminDeleteGroupNotFound  %+v", 404, o.ToString())
+}
+
+func (o *AdminDeleteGroupNotFound) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *AdminDeleteGroupNotFound) GetPayload() *ugcclientmodels.ResponseError {
@@ -164,7 +183,16 @@ type AdminDeleteGroupInternalServerError struct {
 }
 
 func (o *AdminDeleteGroupInternalServerError) Error() string {
-	return fmt.Sprintf("[DELETE /ugc/v1/admin/namespaces/{namespace}/users/{userId}/groups/{groupId}][%d] adminDeleteGroupInternalServerError  %+v", 500, o.Payload)
+	return fmt.Sprintf("[DELETE /ugc/v1/admin/namespaces/{namespace}/users/{userId}/groups/{groupId}][%d] adminDeleteGroupInternalServerError  %+v", 500, o.ToString())
+}
+
+func (o *AdminDeleteGroupInternalServerError) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *AdminDeleteGroupInternalServerError) GetPayload() *ugcclientmodels.ResponseError {

@@ -10,6 +10,7 @@ package public_player_record
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -83,7 +84,16 @@ type PostPlayerRecordHandlerV1Created struct {
 }
 
 func (o *PostPlayerRecordHandlerV1Created) Error() string {
-	return fmt.Sprintf("[POST /cloudsave/v1/namespaces/{namespace}/users/{userId}/records/{key}][%d] postPlayerRecordHandlerV1Created  %+v", 201, o.Payload)
+	return fmt.Sprintf("[POST /cloudsave/v1/namespaces/{namespace}/users/{userId}/records/{key}][%d] postPlayerRecordHandlerV1Created  %+v", 201, o.ToString())
+}
+
+func (o *PostPlayerRecordHandlerV1Created) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *PostPlayerRecordHandlerV1Created) GetPayload() *cloudsaveclientmodels.ModelsPlayerRecordResponse {
@@ -116,7 +126,16 @@ type PostPlayerRecordHandlerV1BadRequest struct {
 }
 
 func (o *PostPlayerRecordHandlerV1BadRequest) Error() string {
-	return fmt.Sprintf("[POST /cloudsave/v1/namespaces/{namespace}/users/{userId}/records/{key}][%d] postPlayerRecordHandlerV1BadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[POST /cloudsave/v1/namespaces/{namespace}/users/{userId}/records/{key}][%d] postPlayerRecordHandlerV1BadRequest  %+v", 400, o.ToString())
+}
+
+func (o *PostPlayerRecordHandlerV1BadRequest) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *PostPlayerRecordHandlerV1BadRequest) GetPayload() *cloudsaveclientmodels.ModelsResponseError {
@@ -149,7 +168,16 @@ type PostPlayerRecordHandlerV1Unauthorized struct {
 }
 
 func (o *PostPlayerRecordHandlerV1Unauthorized) Error() string {
-	return fmt.Sprintf("[POST /cloudsave/v1/namespaces/{namespace}/users/{userId}/records/{key}][%d] postPlayerRecordHandlerV1Unauthorized  %+v", 401, o.Payload)
+	return fmt.Sprintf("[POST /cloudsave/v1/namespaces/{namespace}/users/{userId}/records/{key}][%d] postPlayerRecordHandlerV1Unauthorized  %+v", 401, o.ToString())
+}
+
+func (o *PostPlayerRecordHandlerV1Unauthorized) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *PostPlayerRecordHandlerV1Unauthorized) GetPayload() *cloudsaveclientmodels.ModelsResponseError {
@@ -182,7 +210,16 @@ type PostPlayerRecordHandlerV1Forbidden struct {
 }
 
 func (o *PostPlayerRecordHandlerV1Forbidden) Error() string {
-	return fmt.Sprintf("[POST /cloudsave/v1/namespaces/{namespace}/users/{userId}/records/{key}][%d] postPlayerRecordHandlerV1Forbidden  %+v", 403, o.Payload)
+	return fmt.Sprintf("[POST /cloudsave/v1/namespaces/{namespace}/users/{userId}/records/{key}][%d] postPlayerRecordHandlerV1Forbidden  %+v", 403, o.ToString())
+}
+
+func (o *PostPlayerRecordHandlerV1Forbidden) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *PostPlayerRecordHandlerV1Forbidden) GetPayload() *cloudsaveclientmodels.ModelsResponseError {
@@ -215,7 +252,16 @@ type PostPlayerRecordHandlerV1InternalServerError struct {
 }
 
 func (o *PostPlayerRecordHandlerV1InternalServerError) Error() string {
-	return fmt.Sprintf("[POST /cloudsave/v1/namespaces/{namespace}/users/{userId}/records/{key}][%d] postPlayerRecordHandlerV1InternalServerError  %+v", 500, o.Payload)
+	return fmt.Sprintf("[POST /cloudsave/v1/namespaces/{namespace}/users/{userId}/records/{key}][%d] postPlayerRecordHandlerV1InternalServerError  %+v", 500, o.ToString())
+}
+
+func (o *PostPlayerRecordHandlerV1InternalServerError) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *PostPlayerRecordHandlerV1InternalServerError) GetPayload() *cloudsaveclientmodels.ModelsResponseError {

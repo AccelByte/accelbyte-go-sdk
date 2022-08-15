@@ -10,6 +10,7 @@ package payment_callback_config
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -65,7 +66,16 @@ type GetPaymentCallbackConfigOK struct {
 }
 
 func (o *GetPaymentCallbackConfigOK) Error() string {
-	return fmt.Sprintf("[GET /platform/admin/namespaces/{namespace}/payment/config/callback][%d] getPaymentCallbackConfigOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /platform/admin/namespaces/{namespace}/payment/config/callback][%d] getPaymentCallbackConfigOK  %+v", 200, o.ToString())
+}
+
+func (o *GetPaymentCallbackConfigOK) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *GetPaymentCallbackConfigOK) GetPayload() *platformclientmodels.PaymentCallbackConfigInfo {
@@ -98,7 +108,16 @@ type GetPaymentCallbackConfigNotFound struct {
 }
 
 func (o *GetPaymentCallbackConfigNotFound) Error() string {
-	return fmt.Sprintf("[GET /platform/admin/namespaces/{namespace}/payment/config/callback][%d] getPaymentCallbackConfigNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[GET /platform/admin/namespaces/{namespace}/payment/config/callback][%d] getPaymentCallbackConfigNotFound  %+v", 404, o.ToString())
+}
+
+func (o *GetPaymentCallbackConfigNotFound) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *GetPaymentCallbackConfigNotFound) GetPayload() *platformclientmodels.ErrorEntity {

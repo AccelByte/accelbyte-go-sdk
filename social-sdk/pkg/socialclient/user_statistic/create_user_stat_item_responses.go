@@ -10,6 +10,7 @@ package user_statistic
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -92,7 +93,16 @@ type CreateUserStatItemNotFound struct {
 }
 
 func (o *CreateUserStatItemNotFound) Error() string {
-	return fmt.Sprintf("[POST /social/v1/admin/namespaces/{namespace}/users/{userId}/stats/{statCode}/statitems][%d] createUserStatItemNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[POST /social/v1/admin/namespaces/{namespace}/users/{userId}/stats/{statCode}/statitems][%d] createUserStatItemNotFound  %+v", 404, o.ToString())
+}
+
+func (o *CreateUserStatItemNotFound) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *CreateUserStatItemNotFound) GetPayload() *socialclientmodels.ErrorEntity {
@@ -125,7 +135,16 @@ type CreateUserStatItemConflict struct {
 }
 
 func (o *CreateUserStatItemConflict) Error() string {
-	return fmt.Sprintf("[POST /social/v1/admin/namespaces/{namespace}/users/{userId}/stats/{statCode}/statitems][%d] createUserStatItemConflict  %+v", 409, o.Payload)
+	return fmt.Sprintf("[POST /social/v1/admin/namespaces/{namespace}/users/{userId}/stats/{statCode}/statitems][%d] createUserStatItemConflict  %+v", 409, o.ToString())
+}
+
+func (o *CreateUserStatItemConflict) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *CreateUserStatItemConflict) GetPayload() *socialclientmodels.ErrorEntity {

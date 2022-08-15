@@ -10,6 +10,7 @@ package data_retrieval
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -71,7 +72,16 @@ type GetAdminEmailConfigurationOK struct {
 }
 
 func (o *GetAdminEmailConfigurationOK) Error() string {
-	return fmt.Sprintf("[GET /gdpr/admin/namespaces/{namespace}/emails/configurations][%d] getAdminEmailConfigurationOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /gdpr/admin/namespaces/{namespace}/emails/configurations][%d] getAdminEmailConfigurationOK  %+v", 200, o.ToString())
+}
+
+func (o *GetAdminEmailConfigurationOK) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *GetAdminEmailConfigurationOK) GetPayload() []string {
@@ -102,7 +112,16 @@ type GetAdminEmailConfigurationUnauthorized struct {
 }
 
 func (o *GetAdminEmailConfigurationUnauthorized) Error() string {
-	return fmt.Sprintf("[GET /gdpr/admin/namespaces/{namespace}/emails/configurations][%d] getAdminEmailConfigurationUnauthorized  %+v", 401, o.Payload)
+	return fmt.Sprintf("[GET /gdpr/admin/namespaces/{namespace}/emails/configurations][%d] getAdminEmailConfigurationUnauthorized  %+v", 401, o.ToString())
+}
+
+func (o *GetAdminEmailConfigurationUnauthorized) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *GetAdminEmailConfigurationUnauthorized) GetPayload() *gdprclientmodels.ResponseError {
@@ -135,7 +154,16 @@ type GetAdminEmailConfigurationInternalServerError struct {
 }
 
 func (o *GetAdminEmailConfigurationInternalServerError) Error() string {
-	return fmt.Sprintf("[GET /gdpr/admin/namespaces/{namespace}/emails/configurations][%d] getAdminEmailConfigurationInternalServerError  %+v", 500, o.Payload)
+	return fmt.Sprintf("[GET /gdpr/admin/namespaces/{namespace}/emails/configurations][%d] getAdminEmailConfigurationInternalServerError  %+v", 500, o.ToString())
+}
+
+func (o *GetAdminEmailConfigurationInternalServerError) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *GetAdminEmailConfigurationInternalServerError) GetPayload() *gdprclientmodels.ResponseError {

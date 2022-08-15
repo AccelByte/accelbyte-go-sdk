@@ -10,6 +10,7 @@ package tier
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -71,7 +72,16 @@ type QueryTiersOK struct {
 }
 
 func (o *QueryTiersOK) Error() string {
-	return fmt.Sprintf("[GET /seasonpass/admin/namespaces/{namespace}/seasons/{seasonId}/tiers][%d] queryTiersOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /seasonpass/admin/namespaces/{namespace}/seasons/{seasonId}/tiers][%d] queryTiersOK  %+v", 200, o.ToString())
+}
+
+func (o *QueryTiersOK) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *QueryTiersOK) GetPayload() *seasonpassclientmodels.TierPagingSlicedResult {
@@ -104,7 +114,16 @@ type QueryTiersBadRequest struct {
 }
 
 func (o *QueryTiersBadRequest) Error() string {
-	return fmt.Sprintf("[GET /seasonpass/admin/namespaces/{namespace}/seasons/{seasonId}/tiers][%d] queryTiersBadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[GET /seasonpass/admin/namespaces/{namespace}/seasons/{seasonId}/tiers][%d] queryTiersBadRequest  %+v", 400, o.ToString())
+}
+
+func (o *QueryTiersBadRequest) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *QueryTiersBadRequest) GetPayload() *seasonpassclientmodels.ErrorEntity {
@@ -137,7 +156,16 @@ type QueryTiersNotFound struct {
 }
 
 func (o *QueryTiersNotFound) Error() string {
-	return fmt.Sprintf("[GET /seasonpass/admin/namespaces/{namespace}/seasons/{seasonId}/tiers][%d] queryTiersNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[GET /seasonpass/admin/namespaces/{namespace}/seasons/{seasonId}/tiers][%d] queryTiersNotFound  %+v", 404, o.ToString())
+}
+
+func (o *QueryTiersNotFound) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *QueryTiersNotFound) GetPayload() *seasonpassclientmodels.ErrorEntity {

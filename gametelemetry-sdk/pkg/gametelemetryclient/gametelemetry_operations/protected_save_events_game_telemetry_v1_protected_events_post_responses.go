@@ -10,6 +10,7 @@ package gametelemetry_operations
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -86,7 +87,16 @@ type ProtectedSaveEventsGameTelemetryV1ProtectedEventsPostUnprocessableEntity st
 }
 
 func (o *ProtectedSaveEventsGameTelemetryV1ProtectedEventsPostUnprocessableEntity) Error() string {
-	return fmt.Sprintf("[POST /game-telemetry/v1/protected/events][%d] protectedSaveEventsGameTelemetryV1ProtectedEventsPostUnprocessableEntity  %+v", 422, o.Payload)
+	return fmt.Sprintf("[POST /game-telemetry/v1/protected/events][%d] protectedSaveEventsGameTelemetryV1ProtectedEventsPostUnprocessableEntity  %+v", 422, o.ToString())
+}
+
+func (o *ProtectedSaveEventsGameTelemetryV1ProtectedEventsPostUnprocessableEntity) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *ProtectedSaveEventsGameTelemetryV1ProtectedEventsPostUnprocessableEntity) GetPayload() *gametelemetryclientmodels.HTTPValidationError {

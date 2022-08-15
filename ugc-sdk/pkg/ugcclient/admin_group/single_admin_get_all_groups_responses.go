@@ -10,6 +10,7 @@ package admin_group
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -77,7 +78,16 @@ type SingleAdminGetAllGroupsOK struct {
 }
 
 func (o *SingleAdminGetAllGroupsOK) Error() string {
-	return fmt.Sprintf("[GET /ugc/v1/admin/namespaces/{namespace}/groups][%d] singleAdminGetAllGroupsOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /ugc/v1/admin/namespaces/{namespace}/groups][%d] singleAdminGetAllGroupsOK  %+v", 200, o.ToString())
+}
+
+func (o *SingleAdminGetAllGroupsOK) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *SingleAdminGetAllGroupsOK) GetPayload() *ugcclientmodels.ModelsPaginatedGroupResponse {
@@ -110,7 +120,16 @@ type SingleAdminGetAllGroupsUnauthorized struct {
 }
 
 func (o *SingleAdminGetAllGroupsUnauthorized) Error() string {
-	return fmt.Sprintf("[GET /ugc/v1/admin/namespaces/{namespace}/groups][%d] singleAdminGetAllGroupsUnauthorized  %+v", 401, o.Payload)
+	return fmt.Sprintf("[GET /ugc/v1/admin/namespaces/{namespace}/groups][%d] singleAdminGetAllGroupsUnauthorized  %+v", 401, o.ToString())
+}
+
+func (o *SingleAdminGetAllGroupsUnauthorized) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *SingleAdminGetAllGroupsUnauthorized) GetPayload() *ugcclientmodels.ResponseError {
@@ -143,7 +162,16 @@ type SingleAdminGetAllGroupsNotFound struct {
 }
 
 func (o *SingleAdminGetAllGroupsNotFound) Error() string {
-	return fmt.Sprintf("[GET /ugc/v1/admin/namespaces/{namespace}/groups][%d] singleAdminGetAllGroupsNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[GET /ugc/v1/admin/namespaces/{namespace}/groups][%d] singleAdminGetAllGroupsNotFound  %+v", 404, o.ToString())
+}
+
+func (o *SingleAdminGetAllGroupsNotFound) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *SingleAdminGetAllGroupsNotFound) GetPayload() *ugcclientmodels.ResponseError {
@@ -176,7 +204,16 @@ type SingleAdminGetAllGroupsInternalServerError struct {
 }
 
 func (o *SingleAdminGetAllGroupsInternalServerError) Error() string {
-	return fmt.Sprintf("[GET /ugc/v1/admin/namespaces/{namespace}/groups][%d] singleAdminGetAllGroupsInternalServerError  %+v", 500, o.Payload)
+	return fmt.Sprintf("[GET /ugc/v1/admin/namespaces/{namespace}/groups][%d] singleAdminGetAllGroupsInternalServerError  %+v", 500, o.ToString())
+}
+
+func (o *SingleAdminGetAllGroupsInternalServerError) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *SingleAdminGetAllGroupsInternalServerError) GetPayload() *ugcclientmodels.ResponseError {

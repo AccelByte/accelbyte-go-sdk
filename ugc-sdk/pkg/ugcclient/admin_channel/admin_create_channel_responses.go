@@ -10,6 +10,7 @@ package admin_channel
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -77,7 +78,16 @@ type AdminCreateChannelCreated struct {
 }
 
 func (o *AdminCreateChannelCreated) Error() string {
-	return fmt.Sprintf("[POST /ugc/v1/admin/namespaces/{namespace}/channels][%d] adminCreateChannelCreated  %+v", 201, o.Payload)
+	return fmt.Sprintf("[POST /ugc/v1/admin/namespaces/{namespace}/channels][%d] adminCreateChannelCreated  %+v", 201, o.ToString())
+}
+
+func (o *AdminCreateChannelCreated) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *AdminCreateChannelCreated) GetPayload() *ugcclientmodels.ModelsChannelResponse {
@@ -110,7 +120,16 @@ type AdminCreateChannelBadRequest struct {
 }
 
 func (o *AdminCreateChannelBadRequest) Error() string {
-	return fmt.Sprintf("[POST /ugc/v1/admin/namespaces/{namespace}/channels][%d] adminCreateChannelBadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[POST /ugc/v1/admin/namespaces/{namespace}/channels][%d] adminCreateChannelBadRequest  %+v", 400, o.ToString())
+}
+
+func (o *AdminCreateChannelBadRequest) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *AdminCreateChannelBadRequest) GetPayload() *ugcclientmodels.ResponseError {
@@ -143,7 +162,16 @@ type AdminCreateChannelUnauthorized struct {
 }
 
 func (o *AdminCreateChannelUnauthorized) Error() string {
-	return fmt.Sprintf("[POST /ugc/v1/admin/namespaces/{namespace}/channels][%d] adminCreateChannelUnauthorized  %+v", 401, o.Payload)
+	return fmt.Sprintf("[POST /ugc/v1/admin/namespaces/{namespace}/channels][%d] adminCreateChannelUnauthorized  %+v", 401, o.ToString())
+}
+
+func (o *AdminCreateChannelUnauthorized) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *AdminCreateChannelUnauthorized) GetPayload() *ugcclientmodels.ResponseError {
@@ -176,7 +204,16 @@ type AdminCreateChannelInternalServerError struct {
 }
 
 func (o *AdminCreateChannelInternalServerError) Error() string {
-	return fmt.Sprintf("[POST /ugc/v1/admin/namespaces/{namespace}/channels][%d] adminCreateChannelInternalServerError  %+v", 500, o.Payload)
+	return fmt.Sprintf("[POST /ugc/v1/admin/namespaces/{namespace}/channels][%d] adminCreateChannelInternalServerError  %+v", 500, o.ToString())
+}
+
+func (o *AdminCreateChannelInternalServerError) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *AdminCreateChannelInternalServerError) GetPayload() *ugcclientmodels.ResponseError {

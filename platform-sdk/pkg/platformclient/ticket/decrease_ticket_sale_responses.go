@@ -10,6 +10,7 @@ package ticket
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -92,7 +93,16 @@ type DecreaseTicketSaleNotFound struct {
 }
 
 func (o *DecreaseTicketSaleNotFound) Error() string {
-	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/tickets/{boothName}/decrement][%d] decreaseTicketSaleNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/tickets/{boothName}/decrement][%d] decreaseTicketSaleNotFound  %+v", 404, o.ToString())
+}
+
+func (o *DecreaseTicketSaleNotFound) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *DecreaseTicketSaleNotFound) GetPayload() *platformclientmodels.ErrorEntity {
@@ -125,7 +135,16 @@ type DecreaseTicketSaleUnprocessableEntity struct {
 }
 
 func (o *DecreaseTicketSaleUnprocessableEntity) Error() string {
-	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/tickets/{boothName}/decrement][%d] decreaseTicketSaleUnprocessableEntity  %+v", 422, o.Payload)
+	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/tickets/{boothName}/decrement][%d] decreaseTicketSaleUnprocessableEntity  %+v", 422, o.ToString())
+}
+
+func (o *DecreaseTicketSaleUnprocessableEntity) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *DecreaseTicketSaleUnprocessableEntity) GetPayload() *platformclientmodels.ValidationErrorEntity {

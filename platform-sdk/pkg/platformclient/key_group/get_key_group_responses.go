@@ -10,6 +10,7 @@ package key_group
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -65,7 +66,16 @@ type GetKeyGroupOK struct {
 }
 
 func (o *GetKeyGroupOK) Error() string {
-	return fmt.Sprintf("[GET /platform/admin/namespaces/{namespace}/keygroups/{keyGroupId}][%d] getKeyGroupOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /platform/admin/namespaces/{namespace}/keygroups/{keyGroupId}][%d] getKeyGroupOK  %+v", 200, o.ToString())
+}
+
+func (o *GetKeyGroupOK) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *GetKeyGroupOK) GetPayload() *platformclientmodels.KeyGroupInfo {
@@ -98,7 +108,16 @@ type GetKeyGroupNotFound struct {
 }
 
 func (o *GetKeyGroupNotFound) Error() string {
-	return fmt.Sprintf("[GET /platform/admin/namespaces/{namespace}/keygroups/{keyGroupId}][%d] getKeyGroupNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[GET /platform/admin/namespaces/{namespace}/keygroups/{keyGroupId}][%d] getKeyGroupNotFound  %+v", 404, o.ToString())
+}
+
+func (o *GetKeyGroupNotFound) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *GetKeyGroupNotFound) GetPayload() *platformclientmodels.ErrorEntity {

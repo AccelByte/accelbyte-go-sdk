@@ -10,6 +10,7 @@ package users_v4
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -110,7 +111,16 @@ type AdminDisableMyBackupCodesV4BadRequest struct {
 }
 
 func (o *AdminDisableMyBackupCodesV4BadRequest) Error() string {
-	return fmt.Sprintf("[DELETE /iam/v4/admin/users/me/mfa/backupCode/disable][%d] adminDisableMyBackupCodesV4BadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[DELETE /iam/v4/admin/users/me/mfa/backupCode/disable][%d] adminDisableMyBackupCodesV4BadRequest  %+v", 400, o.ToString())
+}
+
+func (o *AdminDisableMyBackupCodesV4BadRequest) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *AdminDisableMyBackupCodesV4BadRequest) GetPayload() *iamclientmodels.RestErrorResponse {
@@ -143,7 +153,16 @@ type AdminDisableMyBackupCodesV4Unauthorized struct {
 }
 
 func (o *AdminDisableMyBackupCodesV4Unauthorized) Error() string {
-	return fmt.Sprintf("[DELETE /iam/v4/admin/users/me/mfa/backupCode/disable][%d] adminDisableMyBackupCodesV4Unauthorized  %+v", 401, o.Payload)
+	return fmt.Sprintf("[DELETE /iam/v4/admin/users/me/mfa/backupCode/disable][%d] adminDisableMyBackupCodesV4Unauthorized  %+v", 401, o.ToString())
+}
+
+func (o *AdminDisableMyBackupCodesV4Unauthorized) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *AdminDisableMyBackupCodesV4Unauthorized) GetPayload() *iamclientmodels.RestErrorResponse {
@@ -176,7 +195,16 @@ type AdminDisableMyBackupCodesV4Forbidden struct {
 }
 
 func (o *AdminDisableMyBackupCodesV4Forbidden) Error() string {
-	return fmt.Sprintf("[DELETE /iam/v4/admin/users/me/mfa/backupCode/disable][%d] adminDisableMyBackupCodesV4Forbidden  %+v", 403, o.Payload)
+	return fmt.Sprintf("[DELETE /iam/v4/admin/users/me/mfa/backupCode/disable][%d] adminDisableMyBackupCodesV4Forbidden  %+v", 403, o.ToString())
+}
+
+func (o *AdminDisableMyBackupCodesV4Forbidden) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *AdminDisableMyBackupCodesV4Forbidden) GetPayload() *iamclientmodels.RestErrorResponse {
@@ -209,7 +237,16 @@ type AdminDisableMyBackupCodesV4NotFound struct {
 }
 
 func (o *AdminDisableMyBackupCodesV4NotFound) Error() string {
-	return fmt.Sprintf("[DELETE /iam/v4/admin/users/me/mfa/backupCode/disable][%d] adminDisableMyBackupCodesV4NotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[DELETE /iam/v4/admin/users/me/mfa/backupCode/disable][%d] adminDisableMyBackupCodesV4NotFound  %+v", 404, o.ToString())
+}
+
+func (o *AdminDisableMyBackupCodesV4NotFound) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *AdminDisableMyBackupCodesV4NotFound) GetPayload() *iamclientmodels.RestErrorResponse {
@@ -242,7 +279,16 @@ type AdminDisableMyBackupCodesV4InternalServerError struct {
 }
 
 func (o *AdminDisableMyBackupCodesV4InternalServerError) Error() string {
-	return fmt.Sprintf("[DELETE /iam/v4/admin/users/me/mfa/backupCode/disable][%d] adminDisableMyBackupCodesV4InternalServerError  %+v", 500, o.Payload)
+	return fmt.Sprintf("[DELETE /iam/v4/admin/users/me/mfa/backupCode/disable][%d] adminDisableMyBackupCodesV4InternalServerError  %+v", 500, o.ToString())
+}
+
+func (o *AdminDisableMyBackupCodesV4InternalServerError) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *AdminDisableMyBackupCodesV4InternalServerError) GetPayload() *iamclientmodels.RestErrorResponse {

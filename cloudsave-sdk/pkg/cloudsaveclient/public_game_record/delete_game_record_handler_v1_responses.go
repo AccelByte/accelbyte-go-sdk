@@ -10,6 +10,7 @@ package public_game_record
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -98,7 +99,16 @@ type DeleteGameRecordHandlerV1BadRequest struct {
 }
 
 func (o *DeleteGameRecordHandlerV1BadRequest) Error() string {
-	return fmt.Sprintf("[DELETE /cloudsave/v1/namespaces/{namespace}/records/{key}][%d] deleteGameRecordHandlerV1BadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[DELETE /cloudsave/v1/namespaces/{namespace}/records/{key}][%d] deleteGameRecordHandlerV1BadRequest  %+v", 400, o.ToString())
+}
+
+func (o *DeleteGameRecordHandlerV1BadRequest) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *DeleteGameRecordHandlerV1BadRequest) GetPayload() *cloudsaveclientmodels.ModelsResponseError {
@@ -131,7 +141,16 @@ type DeleteGameRecordHandlerV1Unauthorized struct {
 }
 
 func (o *DeleteGameRecordHandlerV1Unauthorized) Error() string {
-	return fmt.Sprintf("[DELETE /cloudsave/v1/namespaces/{namespace}/records/{key}][%d] deleteGameRecordHandlerV1Unauthorized  %+v", 401, o.Payload)
+	return fmt.Sprintf("[DELETE /cloudsave/v1/namespaces/{namespace}/records/{key}][%d] deleteGameRecordHandlerV1Unauthorized  %+v", 401, o.ToString())
+}
+
+func (o *DeleteGameRecordHandlerV1Unauthorized) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *DeleteGameRecordHandlerV1Unauthorized) GetPayload() *cloudsaveclientmodels.ModelsResponseError {
@@ -164,7 +183,16 @@ type DeleteGameRecordHandlerV1InternalServerError struct {
 }
 
 func (o *DeleteGameRecordHandlerV1InternalServerError) Error() string {
-	return fmt.Sprintf("[DELETE /cloudsave/v1/namespaces/{namespace}/records/{key}][%d] deleteGameRecordHandlerV1InternalServerError  %+v", 500, o.Payload)
+	return fmt.Sprintf("[DELETE /cloudsave/v1/namespaces/{namespace}/records/{key}][%d] deleteGameRecordHandlerV1InternalServerError  %+v", 500, o.ToString())
+}
+
+func (o *DeleteGameRecordHandlerV1InternalServerError) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *DeleteGameRecordHandlerV1InternalServerError) GetPayload() *cloudsaveclientmodels.ModelsResponseError {

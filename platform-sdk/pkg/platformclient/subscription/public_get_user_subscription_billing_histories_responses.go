@@ -10,6 +10,7 @@ package subscription
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -59,7 +60,16 @@ type PublicGetUserSubscriptionBillingHistoriesOK struct {
 }
 
 func (o *PublicGetUserSubscriptionBillingHistoriesOK) Error() string {
-	return fmt.Sprintf("[GET /platform/public/namespaces/{namespace}/users/{userId}/subscriptions/{subscriptionId}/history][%d] publicGetUserSubscriptionBillingHistoriesOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /platform/public/namespaces/{namespace}/users/{userId}/subscriptions/{subscriptionId}/history][%d] publicGetUserSubscriptionBillingHistoriesOK  %+v", 200, o.ToString())
+}
+
+func (o *PublicGetUserSubscriptionBillingHistoriesOK) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *PublicGetUserSubscriptionBillingHistoriesOK) GetPayload() *platformclientmodels.BillingHistoryPagingSlicedResult {

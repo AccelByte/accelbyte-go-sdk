@@ -10,6 +10,7 @@ package payment
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -77,7 +78,16 @@ type ChargePaymentOrderOK struct {
 }
 
 func (o *ChargePaymentOrderOK) Error() string {
-	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/payment/orders/{paymentOrderNo}][%d] chargePaymentOrderOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/payment/orders/{paymentOrderNo}][%d] chargePaymentOrderOK  %+v", 200, o.ToString())
+}
+
+func (o *ChargePaymentOrderOK) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *ChargePaymentOrderOK) GetPayload() *platformclientmodels.PaymentOrderInfo {
@@ -110,7 +120,16 @@ type ChargePaymentOrderBadRequest struct {
 }
 
 func (o *ChargePaymentOrderBadRequest) Error() string {
-	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/payment/orders/{paymentOrderNo}][%d] chargePaymentOrderBadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/payment/orders/{paymentOrderNo}][%d] chargePaymentOrderBadRequest  %+v", 400, o.ToString())
+}
+
+func (o *ChargePaymentOrderBadRequest) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *ChargePaymentOrderBadRequest) GetPayload() *platformclientmodels.ErrorEntity {
@@ -143,7 +162,16 @@ type ChargePaymentOrderNotFound struct {
 }
 
 func (o *ChargePaymentOrderNotFound) Error() string {
-	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/payment/orders/{paymentOrderNo}][%d] chargePaymentOrderNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/payment/orders/{paymentOrderNo}][%d] chargePaymentOrderNotFound  %+v", 404, o.ToString())
+}
+
+func (o *ChargePaymentOrderNotFound) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *ChargePaymentOrderNotFound) GetPayload() *platformclientmodels.ErrorEntity {
@@ -176,7 +204,16 @@ type ChargePaymentOrderConflict struct {
 }
 
 func (o *ChargePaymentOrderConflict) Error() string {
-	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/payment/orders/{paymentOrderNo}][%d] chargePaymentOrderConflict  %+v", 409, o.Payload)
+	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/payment/orders/{paymentOrderNo}][%d] chargePaymentOrderConflict  %+v", 409, o.ToString())
+}
+
+func (o *ChargePaymentOrderConflict) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *ChargePaymentOrderConflict) GetPayload() *platformclientmodels.ErrorEntity {

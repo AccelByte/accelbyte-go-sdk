@@ -10,6 +10,7 @@ package profanity
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -89,7 +90,16 @@ type AdminGetProfanityListsOK struct {
 }
 
 func (o *AdminGetProfanityListsOK) Error() string {
-	return fmt.Sprintf("[GET /lobby/v1/admin/profanity/namespaces/{namespace}/lists][%d] adminGetProfanityListsOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /lobby/v1/admin/profanity/namespaces/{namespace}/lists][%d] adminGetProfanityListsOK  %+v", 200, o.ToString())
+}
+
+func (o *AdminGetProfanityListsOK) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *AdminGetProfanityListsOK) GetPayload() []*lobbyclientmodels.ModelsAdminGetProfanityListsListResponse {
@@ -120,7 +130,16 @@ type AdminGetProfanityListsBadRequest struct {
 }
 
 func (o *AdminGetProfanityListsBadRequest) Error() string {
-	return fmt.Sprintf("[GET /lobby/v1/admin/profanity/namespaces/{namespace}/lists][%d] adminGetProfanityListsBadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[GET /lobby/v1/admin/profanity/namespaces/{namespace}/lists][%d] adminGetProfanityListsBadRequest  %+v", 400, o.ToString())
+}
+
+func (o *AdminGetProfanityListsBadRequest) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *AdminGetProfanityListsBadRequest) GetPayload() *lobbyclientmodels.RestapiErrorResponseBody {
@@ -153,7 +172,16 @@ type AdminGetProfanityListsUnauthorized struct {
 }
 
 func (o *AdminGetProfanityListsUnauthorized) Error() string {
-	return fmt.Sprintf("[GET /lobby/v1/admin/profanity/namespaces/{namespace}/lists][%d] adminGetProfanityListsUnauthorized  %+v", 401, o.Payload)
+	return fmt.Sprintf("[GET /lobby/v1/admin/profanity/namespaces/{namespace}/lists][%d] adminGetProfanityListsUnauthorized  %+v", 401, o.ToString())
+}
+
+func (o *AdminGetProfanityListsUnauthorized) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *AdminGetProfanityListsUnauthorized) GetPayload() *lobbyclientmodels.RestapiErrorResponseBody {
@@ -186,7 +214,16 @@ type AdminGetProfanityListsForbidden struct {
 }
 
 func (o *AdminGetProfanityListsForbidden) Error() string {
-	return fmt.Sprintf("[GET /lobby/v1/admin/profanity/namespaces/{namespace}/lists][%d] adminGetProfanityListsForbidden  %+v", 403, o.Payload)
+	return fmt.Sprintf("[GET /lobby/v1/admin/profanity/namespaces/{namespace}/lists][%d] adminGetProfanityListsForbidden  %+v", 403, o.ToString())
+}
+
+func (o *AdminGetProfanityListsForbidden) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *AdminGetProfanityListsForbidden) GetPayload() *lobbyclientmodels.RestapiErrorResponseBody {
@@ -219,7 +256,16 @@ type AdminGetProfanityListsNotFound struct {
 }
 
 func (o *AdminGetProfanityListsNotFound) Error() string {
-	return fmt.Sprintf("[GET /lobby/v1/admin/profanity/namespaces/{namespace}/lists][%d] adminGetProfanityListsNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[GET /lobby/v1/admin/profanity/namespaces/{namespace}/lists][%d] adminGetProfanityListsNotFound  %+v", 404, o.ToString())
+}
+
+func (o *AdminGetProfanityListsNotFound) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *AdminGetProfanityListsNotFound) GetPayload() *lobbyclientmodels.RestapiErrorResponseBody {
@@ -252,7 +298,16 @@ type AdminGetProfanityListsInternalServerError struct {
 }
 
 func (o *AdminGetProfanityListsInternalServerError) Error() string {
-	return fmt.Sprintf("[GET /lobby/v1/admin/profanity/namespaces/{namespace}/lists][%d] adminGetProfanityListsInternalServerError  %+v", 500, o.Payload)
+	return fmt.Sprintf("[GET /lobby/v1/admin/profanity/namespaces/{namespace}/lists][%d] adminGetProfanityListsInternalServerError  %+v", 500, o.ToString())
+}
+
+func (o *AdminGetProfanityListsInternalServerError) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *AdminGetProfanityListsInternalServerError) GetPayload() *lobbyclientmodels.RestapiErrorResponseBody {

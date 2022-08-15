@@ -10,6 +10,7 @@ package public_group
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -77,7 +78,16 @@ type CreateGroupCreated struct {
 }
 
 func (o *CreateGroupCreated) Error() string {
-	return fmt.Sprintf("[POST /ugc/v1/public/namespaces/{namespace}/users/{userId}/groups][%d] createGroupCreated  %+v", 201, o.Payload)
+	return fmt.Sprintf("[POST /ugc/v1/public/namespaces/{namespace}/users/{userId}/groups][%d] createGroupCreated  %+v", 201, o.ToString())
+}
+
+func (o *CreateGroupCreated) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *CreateGroupCreated) GetPayload() *ugcclientmodels.ModelsCreateGroupResponse {
@@ -110,7 +120,16 @@ type CreateGroupBadRequest struct {
 }
 
 func (o *CreateGroupBadRequest) Error() string {
-	return fmt.Sprintf("[POST /ugc/v1/public/namespaces/{namespace}/users/{userId}/groups][%d] createGroupBadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[POST /ugc/v1/public/namespaces/{namespace}/users/{userId}/groups][%d] createGroupBadRequest  %+v", 400, o.ToString())
+}
+
+func (o *CreateGroupBadRequest) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *CreateGroupBadRequest) GetPayload() *ugcclientmodels.ResponseError {
@@ -143,7 +162,16 @@ type CreateGroupUnauthorized struct {
 }
 
 func (o *CreateGroupUnauthorized) Error() string {
-	return fmt.Sprintf("[POST /ugc/v1/public/namespaces/{namespace}/users/{userId}/groups][%d] createGroupUnauthorized  %+v", 401, o.Payload)
+	return fmt.Sprintf("[POST /ugc/v1/public/namespaces/{namespace}/users/{userId}/groups][%d] createGroupUnauthorized  %+v", 401, o.ToString())
+}
+
+func (o *CreateGroupUnauthorized) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *CreateGroupUnauthorized) GetPayload() *ugcclientmodels.ResponseError {
@@ -176,7 +204,16 @@ type CreateGroupInternalServerError struct {
 }
 
 func (o *CreateGroupInternalServerError) Error() string {
-	return fmt.Sprintf("[POST /ugc/v1/public/namespaces/{namespace}/users/{userId}/groups][%d] createGroupInternalServerError  %+v", 500, o.Payload)
+	return fmt.Sprintf("[POST /ugc/v1/public/namespaces/{namespace}/users/{userId}/groups][%d] createGroupInternalServerError  %+v", 500, o.ToString())
+}
+
+func (o *CreateGroupInternalServerError) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *CreateGroupInternalServerError) GetPayload() *ugcclientmodels.ResponseError {

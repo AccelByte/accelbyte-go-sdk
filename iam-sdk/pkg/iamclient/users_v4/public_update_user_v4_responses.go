@@ -10,6 +10,7 @@ package users_v4
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -83,7 +84,16 @@ type PublicUpdateUserV4OK struct {
 }
 
 func (o *PublicUpdateUserV4OK) Error() string {
-	return fmt.Sprintf("[PATCH /iam/v4/public/namespaces/{namespace}/users/me][%d] publicUpdateUserV4OK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[PATCH /iam/v4/public/namespaces/{namespace}/users/me][%d] publicUpdateUserV4OK  %+v", 200, o.ToString())
+}
+
+func (o *PublicUpdateUserV4OK) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *PublicUpdateUserV4OK) GetPayload() *iamclientmodels.ModelUserResponseV3 {
@@ -116,7 +126,16 @@ type PublicUpdateUserV4BadRequest struct {
 }
 
 func (o *PublicUpdateUserV4BadRequest) Error() string {
-	return fmt.Sprintf("[PATCH /iam/v4/public/namespaces/{namespace}/users/me][%d] publicUpdateUserV4BadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[PATCH /iam/v4/public/namespaces/{namespace}/users/me][%d] publicUpdateUserV4BadRequest  %+v", 400, o.ToString())
+}
+
+func (o *PublicUpdateUserV4BadRequest) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *PublicUpdateUserV4BadRequest) GetPayload() *iamclientmodels.RestErrorResponse {
@@ -149,7 +168,16 @@ type PublicUpdateUserV4Unauthorized struct {
 }
 
 func (o *PublicUpdateUserV4Unauthorized) Error() string {
-	return fmt.Sprintf("[PATCH /iam/v4/public/namespaces/{namespace}/users/me][%d] publicUpdateUserV4Unauthorized  %+v", 401, o.Payload)
+	return fmt.Sprintf("[PATCH /iam/v4/public/namespaces/{namespace}/users/me][%d] publicUpdateUserV4Unauthorized  %+v", 401, o.ToString())
+}
+
+func (o *PublicUpdateUserV4Unauthorized) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *PublicUpdateUserV4Unauthorized) GetPayload() *iamclientmodels.RestErrorResponse {
@@ -182,7 +210,16 @@ type PublicUpdateUserV4Conflict struct {
 }
 
 func (o *PublicUpdateUserV4Conflict) Error() string {
-	return fmt.Sprintf("[PATCH /iam/v4/public/namespaces/{namespace}/users/me][%d] publicUpdateUserV4Conflict  %+v", 409, o.Payload)
+	return fmt.Sprintf("[PATCH /iam/v4/public/namespaces/{namespace}/users/me][%d] publicUpdateUserV4Conflict  %+v", 409, o.ToString())
+}
+
+func (o *PublicUpdateUserV4Conflict) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *PublicUpdateUserV4Conflict) GetPayload() *iamclientmodels.RestErrorResponse {

@@ -10,6 +10,7 @@ package reward
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -65,7 +66,16 @@ type CheckEventConditionOK struct {
 }
 
 func (o *CheckEventConditionOK) Error() string {
-	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/rewards/{rewardId}/match][%d] checkEventConditionOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/rewards/{rewardId}/match][%d] checkEventConditionOK  %+v", 200, o.ToString())
+}
+
+func (o *CheckEventConditionOK) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *CheckEventConditionOK) GetPayload() *platformclientmodels.ConditionMatchResult {
@@ -98,7 +108,16 @@ type CheckEventConditionNotFound struct {
 }
 
 func (o *CheckEventConditionNotFound) Error() string {
-	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/rewards/{rewardId}/match][%d] checkEventConditionNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/rewards/{rewardId}/match][%d] checkEventConditionNotFound  %+v", 404, o.ToString())
+}
+
+func (o *CheckEventConditionNotFound) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *CheckEventConditionNotFound) GetPayload() *platformclientmodels.ErrorEntity {

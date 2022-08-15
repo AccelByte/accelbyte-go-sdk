@@ -10,6 +10,7 @@ package config
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -104,7 +105,16 @@ type DeleteConfigBadRequest struct {
 }
 
 func (o *DeleteConfigBadRequest) Error() string {
-	return fmt.Sprintf("[DELETE /dsmcontroller/admin/namespaces/{namespace}/configs][%d] deleteConfigBadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[DELETE /dsmcontroller/admin/namespaces/{namespace}/configs][%d] deleteConfigBadRequest  %+v", 400, o.ToString())
+}
+
+func (o *DeleteConfigBadRequest) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *DeleteConfigBadRequest) GetPayload() *dsmcclientmodels.ResponseError {
@@ -137,7 +147,16 @@ type DeleteConfigUnauthorized struct {
 }
 
 func (o *DeleteConfigUnauthorized) Error() string {
-	return fmt.Sprintf("[DELETE /dsmcontroller/admin/namespaces/{namespace}/configs][%d] deleteConfigUnauthorized  %+v", 401, o.Payload)
+	return fmt.Sprintf("[DELETE /dsmcontroller/admin/namespaces/{namespace}/configs][%d] deleteConfigUnauthorized  %+v", 401, o.ToString())
+}
+
+func (o *DeleteConfigUnauthorized) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *DeleteConfigUnauthorized) GetPayload() *dsmcclientmodels.ResponseError {
@@ -170,7 +189,16 @@ type DeleteConfigNotFound struct {
 }
 
 func (o *DeleteConfigNotFound) Error() string {
-	return fmt.Sprintf("[DELETE /dsmcontroller/admin/namespaces/{namespace}/configs][%d] deleteConfigNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[DELETE /dsmcontroller/admin/namespaces/{namespace}/configs][%d] deleteConfigNotFound  %+v", 404, o.ToString())
+}
+
+func (o *DeleteConfigNotFound) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *DeleteConfigNotFound) GetPayload() *dsmcclientmodels.ResponseError {
@@ -203,7 +231,16 @@ type DeleteConfigInternalServerError struct {
 }
 
 func (o *DeleteConfigInternalServerError) Error() string {
-	return fmt.Sprintf("[DELETE /dsmcontroller/admin/namespaces/{namespace}/configs][%d] deleteConfigInternalServerError  %+v", 500, o.Payload)
+	return fmt.Sprintf("[DELETE /dsmcontroller/admin/namespaces/{namespace}/configs][%d] deleteConfigInternalServerError  %+v", 500, o.ToString())
+}
+
+func (o *DeleteConfigInternalServerError) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *DeleteConfigInternalServerError) GetPayload() *dsmcclientmodels.ResponseError {

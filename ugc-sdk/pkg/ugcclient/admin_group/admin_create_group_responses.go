@@ -10,6 +10,7 @@ package admin_group
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -77,7 +78,16 @@ type AdminCreateGroupCreated struct {
 }
 
 func (o *AdminCreateGroupCreated) Error() string {
-	return fmt.Sprintf("[POST /ugc/v1/admin/namespaces/{namespace}/groups][%d] adminCreateGroupCreated  %+v", 201, o.Payload)
+	return fmt.Sprintf("[POST /ugc/v1/admin/namespaces/{namespace}/groups][%d] adminCreateGroupCreated  %+v", 201, o.ToString())
+}
+
+func (o *AdminCreateGroupCreated) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *AdminCreateGroupCreated) GetPayload() *ugcclientmodels.ModelsCreateGroupResponse {
@@ -110,7 +120,16 @@ type AdminCreateGroupBadRequest struct {
 }
 
 func (o *AdminCreateGroupBadRequest) Error() string {
-	return fmt.Sprintf("[POST /ugc/v1/admin/namespaces/{namespace}/groups][%d] adminCreateGroupBadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[POST /ugc/v1/admin/namespaces/{namespace}/groups][%d] adminCreateGroupBadRequest  %+v", 400, o.ToString())
+}
+
+func (o *AdminCreateGroupBadRequest) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *AdminCreateGroupBadRequest) GetPayload() *ugcclientmodels.ResponseError {
@@ -143,7 +162,16 @@ type AdminCreateGroupUnauthorized struct {
 }
 
 func (o *AdminCreateGroupUnauthorized) Error() string {
-	return fmt.Sprintf("[POST /ugc/v1/admin/namespaces/{namespace}/groups][%d] adminCreateGroupUnauthorized  %+v", 401, o.Payload)
+	return fmt.Sprintf("[POST /ugc/v1/admin/namespaces/{namespace}/groups][%d] adminCreateGroupUnauthorized  %+v", 401, o.ToString())
+}
+
+func (o *AdminCreateGroupUnauthorized) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *AdminCreateGroupUnauthorized) GetPayload() *ugcclientmodels.ResponseError {
@@ -176,7 +204,16 @@ type AdminCreateGroupInternalServerError struct {
 }
 
 func (o *AdminCreateGroupInternalServerError) Error() string {
-	return fmt.Sprintf("[POST /ugc/v1/admin/namespaces/{namespace}/groups][%d] adminCreateGroupInternalServerError  %+v", 500, o.Payload)
+	return fmt.Sprintf("[POST /ugc/v1/admin/namespaces/{namespace}/groups][%d] adminCreateGroupInternalServerError  %+v", 500, o.ToString())
+}
+
+func (o *AdminCreateGroupInternalServerError) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *AdminCreateGroupInternalServerError) GetPayload() *ugcclientmodels.ResponseError {

@@ -10,6 +10,7 @@ package session
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -95,7 +96,16 @@ type CreateSessionOK struct {
 }
 
 func (o *CreateSessionOK) Error() string {
-	return fmt.Sprintf("[POST /dsmcontroller/namespaces/{namespace}/sessions][%d] createSessionOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[POST /dsmcontroller/namespaces/{namespace}/sessions][%d] createSessionOK  %+v", 200, o.ToString())
+}
+
+func (o *CreateSessionOK) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *CreateSessionOK) GetPayload() *dsmcclientmodels.ModelsSessionResponse {
@@ -128,7 +138,16 @@ type CreateSessionBadRequest struct {
 }
 
 func (o *CreateSessionBadRequest) Error() string {
-	return fmt.Sprintf("[POST /dsmcontroller/namespaces/{namespace}/sessions][%d] createSessionBadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[POST /dsmcontroller/namespaces/{namespace}/sessions][%d] createSessionBadRequest  %+v", 400, o.ToString())
+}
+
+func (o *CreateSessionBadRequest) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *CreateSessionBadRequest) GetPayload() *dsmcclientmodels.ResponseError {
@@ -161,7 +180,16 @@ type CreateSessionUnauthorized struct {
 }
 
 func (o *CreateSessionUnauthorized) Error() string {
-	return fmt.Sprintf("[POST /dsmcontroller/namespaces/{namespace}/sessions][%d] createSessionUnauthorized  %+v", 401, o.Payload)
+	return fmt.Sprintf("[POST /dsmcontroller/namespaces/{namespace}/sessions][%d] createSessionUnauthorized  %+v", 401, o.ToString())
+}
+
+func (o *CreateSessionUnauthorized) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *CreateSessionUnauthorized) GetPayload() *dsmcclientmodels.ResponseError {
@@ -194,7 +222,16 @@ type CreateSessionNotFound struct {
 }
 
 func (o *CreateSessionNotFound) Error() string {
-	return fmt.Sprintf("[POST /dsmcontroller/namespaces/{namespace}/sessions][%d] createSessionNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[POST /dsmcontroller/namespaces/{namespace}/sessions][%d] createSessionNotFound  %+v", 404, o.ToString())
+}
+
+func (o *CreateSessionNotFound) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *CreateSessionNotFound) GetPayload() *dsmcclientmodels.ResponseError {
@@ -227,7 +264,16 @@ type CreateSessionConflict struct {
 }
 
 func (o *CreateSessionConflict) Error() string {
-	return fmt.Sprintf("[POST /dsmcontroller/namespaces/{namespace}/sessions][%d] createSessionConflict  %+v", 409, o.Payload)
+	return fmt.Sprintf("[POST /dsmcontroller/namespaces/{namespace}/sessions][%d] createSessionConflict  %+v", 409, o.ToString())
+}
+
+func (o *CreateSessionConflict) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *CreateSessionConflict) GetPayload() *dsmcclientmodels.ResponseError {
@@ -260,7 +306,16 @@ type CreateSessionInternalServerError struct {
 }
 
 func (o *CreateSessionInternalServerError) Error() string {
-	return fmt.Sprintf("[POST /dsmcontroller/namespaces/{namespace}/sessions][%d] createSessionInternalServerError  %+v", 500, o.Payload)
+	return fmt.Sprintf("[POST /dsmcontroller/namespaces/{namespace}/sessions][%d] createSessionInternalServerError  %+v", 500, o.ToString())
+}
+
+func (o *CreateSessionInternalServerError) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *CreateSessionInternalServerError) GetPayload() *dsmcclientmodels.ResponseError {
@@ -293,7 +348,16 @@ type CreateSessionServiceUnavailable struct {
 }
 
 func (o *CreateSessionServiceUnavailable) Error() string {
-	return fmt.Sprintf("[POST /dsmcontroller/namespaces/{namespace}/sessions][%d] createSessionServiceUnavailable  %+v", 503, o.Payload)
+	return fmt.Sprintf("[POST /dsmcontroller/namespaces/{namespace}/sessions][%d] createSessionServiceUnavailable  %+v", 503, o.ToString())
+}
+
+func (o *CreateSessionServiceUnavailable) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *CreateSessionServiceUnavailable) GetPayload() *dsmcclientmodels.ResponseError {

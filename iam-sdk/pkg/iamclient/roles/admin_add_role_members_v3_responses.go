@@ -10,6 +10,7 @@ package roles
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -110,7 +111,16 @@ type AdminAddRoleMembersV3BadRequest struct {
 }
 
 func (o *AdminAddRoleMembersV3BadRequest) Error() string {
-	return fmt.Sprintf("[POST /iam/v3/admin/roles/{roleId}/members][%d] adminAddRoleMembersV3BadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[POST /iam/v3/admin/roles/{roleId}/members][%d] adminAddRoleMembersV3BadRequest  %+v", 400, o.ToString())
+}
+
+func (o *AdminAddRoleMembersV3BadRequest) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *AdminAddRoleMembersV3BadRequest) GetPayload() *iamclientmodels.RestErrorResponse {
@@ -143,7 +153,16 @@ type AdminAddRoleMembersV3Unauthorized struct {
 }
 
 func (o *AdminAddRoleMembersV3Unauthorized) Error() string {
-	return fmt.Sprintf("[POST /iam/v3/admin/roles/{roleId}/members][%d] adminAddRoleMembersV3Unauthorized  %+v", 401, o.Payload)
+	return fmt.Sprintf("[POST /iam/v3/admin/roles/{roleId}/members][%d] adminAddRoleMembersV3Unauthorized  %+v", 401, o.ToString())
+}
+
+func (o *AdminAddRoleMembersV3Unauthorized) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *AdminAddRoleMembersV3Unauthorized) GetPayload() *iamclientmodels.RestErrorResponse {
@@ -176,7 +195,16 @@ type AdminAddRoleMembersV3Forbidden struct {
 }
 
 func (o *AdminAddRoleMembersV3Forbidden) Error() string {
-	return fmt.Sprintf("[POST /iam/v3/admin/roles/{roleId}/members][%d] adminAddRoleMembersV3Forbidden  %+v", 403, o.Payload)
+	return fmt.Sprintf("[POST /iam/v3/admin/roles/{roleId}/members][%d] adminAddRoleMembersV3Forbidden  %+v", 403, o.ToString())
+}
+
+func (o *AdminAddRoleMembersV3Forbidden) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *AdminAddRoleMembersV3Forbidden) GetPayload() *iamclientmodels.RestErrorResponse {
@@ -209,7 +237,16 @@ type AdminAddRoleMembersV3NotFound struct {
 }
 
 func (o *AdminAddRoleMembersV3NotFound) Error() string {
-	return fmt.Sprintf("[POST /iam/v3/admin/roles/{roleId}/members][%d] adminAddRoleMembersV3NotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[POST /iam/v3/admin/roles/{roleId}/members][%d] adminAddRoleMembersV3NotFound  %+v", 404, o.ToString())
+}
+
+func (o *AdminAddRoleMembersV3NotFound) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *AdminAddRoleMembersV3NotFound) GetPayload() *iamclientmodels.RestErrorResponse {
@@ -242,7 +279,16 @@ type AdminAddRoleMembersV3Conflict struct {
 }
 
 func (o *AdminAddRoleMembersV3Conflict) Error() string {
-	return fmt.Sprintf("[POST /iam/v3/admin/roles/{roleId}/members][%d] adminAddRoleMembersV3Conflict  %+v", 409, o.Payload)
+	return fmt.Sprintf("[POST /iam/v3/admin/roles/{roleId}/members][%d] adminAddRoleMembersV3Conflict  %+v", 409, o.ToString())
+}
+
+func (o *AdminAddRoleMembersV3Conflict) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *AdminAddRoleMembersV3Conflict) GetPayload() *iamclientmodels.RestErrorResponse {

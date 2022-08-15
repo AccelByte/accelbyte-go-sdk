@@ -10,6 +10,7 @@ package public_player_record
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -83,7 +84,16 @@ type BulkGetPlayerPublicRecordHandlerV1OK struct {
 }
 
 func (o *BulkGetPlayerPublicRecordHandlerV1OK) Error() string {
-	return fmt.Sprintf("[POST /cloudsave/v1/namespaces/{namespace}/users/bulk/records/{key}/public][%d] bulkGetPlayerPublicRecordHandlerV1OK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[POST /cloudsave/v1/namespaces/{namespace}/users/bulk/records/{key}/public][%d] bulkGetPlayerPublicRecordHandlerV1OK  %+v", 200, o.ToString())
+}
+
+func (o *BulkGetPlayerPublicRecordHandlerV1OK) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *BulkGetPlayerPublicRecordHandlerV1OK) GetPayload() *cloudsaveclientmodels.ModelsBulkGetPlayerRecordResponse {
@@ -116,7 +126,16 @@ type BulkGetPlayerPublicRecordHandlerV1BadRequest struct {
 }
 
 func (o *BulkGetPlayerPublicRecordHandlerV1BadRequest) Error() string {
-	return fmt.Sprintf("[POST /cloudsave/v1/namespaces/{namespace}/users/bulk/records/{key}/public][%d] bulkGetPlayerPublicRecordHandlerV1BadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[POST /cloudsave/v1/namespaces/{namespace}/users/bulk/records/{key}/public][%d] bulkGetPlayerPublicRecordHandlerV1BadRequest  %+v", 400, o.ToString())
+}
+
+func (o *BulkGetPlayerPublicRecordHandlerV1BadRequest) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *BulkGetPlayerPublicRecordHandlerV1BadRequest) GetPayload() *cloudsaveclientmodels.ModelsResponseError {
@@ -149,7 +168,16 @@ type BulkGetPlayerPublicRecordHandlerV1Unauthorized struct {
 }
 
 func (o *BulkGetPlayerPublicRecordHandlerV1Unauthorized) Error() string {
-	return fmt.Sprintf("[POST /cloudsave/v1/namespaces/{namespace}/users/bulk/records/{key}/public][%d] bulkGetPlayerPublicRecordHandlerV1Unauthorized  %+v", 401, o.Payload)
+	return fmt.Sprintf("[POST /cloudsave/v1/namespaces/{namespace}/users/bulk/records/{key}/public][%d] bulkGetPlayerPublicRecordHandlerV1Unauthorized  %+v", 401, o.ToString())
+}
+
+func (o *BulkGetPlayerPublicRecordHandlerV1Unauthorized) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *BulkGetPlayerPublicRecordHandlerV1Unauthorized) GetPayload() *cloudsaveclientmodels.ModelsResponseError {
@@ -182,7 +210,16 @@ type BulkGetPlayerPublicRecordHandlerV1Forbidden struct {
 }
 
 func (o *BulkGetPlayerPublicRecordHandlerV1Forbidden) Error() string {
-	return fmt.Sprintf("[POST /cloudsave/v1/namespaces/{namespace}/users/bulk/records/{key}/public][%d] bulkGetPlayerPublicRecordHandlerV1Forbidden  %+v", 403, o.Payload)
+	return fmt.Sprintf("[POST /cloudsave/v1/namespaces/{namespace}/users/bulk/records/{key}/public][%d] bulkGetPlayerPublicRecordHandlerV1Forbidden  %+v", 403, o.ToString())
+}
+
+func (o *BulkGetPlayerPublicRecordHandlerV1Forbidden) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *BulkGetPlayerPublicRecordHandlerV1Forbidden) GetPayload() *cloudsaveclientmodels.ModelsResponseError {
@@ -215,7 +252,16 @@ type BulkGetPlayerPublicRecordHandlerV1InternalServerError struct {
 }
 
 func (o *BulkGetPlayerPublicRecordHandlerV1InternalServerError) Error() string {
-	return fmt.Sprintf("[POST /cloudsave/v1/namespaces/{namespace}/users/bulk/records/{key}/public][%d] bulkGetPlayerPublicRecordHandlerV1InternalServerError  %+v", 500, o.Payload)
+	return fmt.Sprintf("[POST /cloudsave/v1/namespaces/{namespace}/users/bulk/records/{key}/public][%d] bulkGetPlayerPublicRecordHandlerV1InternalServerError  %+v", 500, o.ToString())
+}
+
+func (o *BulkGetPlayerPublicRecordHandlerV1InternalServerError) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *BulkGetPlayerPublicRecordHandlerV1InternalServerError) GetPayload() *cloudsaveclientmodels.ModelsResponseError {

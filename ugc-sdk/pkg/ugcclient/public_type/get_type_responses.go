@@ -10,6 +10,7 @@ package public_type
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -77,7 +78,16 @@ type GetTypeOK struct {
 }
 
 func (o *GetTypeOK) Error() string {
-	return fmt.Sprintf("[GET /ugc/v1/public/namespaces/{namespace}/types][%d] getTypeOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /ugc/v1/public/namespaces/{namespace}/types][%d] getTypeOK  %+v", 200, o.ToString())
+}
+
+func (o *GetTypeOK) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *GetTypeOK) GetPayload() *ugcclientmodels.ModelsPaginatedGetTypeResponse {
@@ -110,7 +120,16 @@ type GetTypeUnauthorized struct {
 }
 
 func (o *GetTypeUnauthorized) Error() string {
-	return fmt.Sprintf("[GET /ugc/v1/public/namespaces/{namespace}/types][%d] getTypeUnauthorized  %+v", 401, o.Payload)
+	return fmt.Sprintf("[GET /ugc/v1/public/namespaces/{namespace}/types][%d] getTypeUnauthorized  %+v", 401, o.ToString())
+}
+
+func (o *GetTypeUnauthorized) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *GetTypeUnauthorized) GetPayload() *ugcclientmodels.ResponseError {
@@ -143,7 +162,16 @@ type GetTypeNotFound struct {
 }
 
 func (o *GetTypeNotFound) Error() string {
-	return fmt.Sprintf("[GET /ugc/v1/public/namespaces/{namespace}/types][%d] getTypeNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[GET /ugc/v1/public/namespaces/{namespace}/types][%d] getTypeNotFound  %+v", 404, o.ToString())
+}
+
+func (o *GetTypeNotFound) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *GetTypeNotFound) GetPayload() *ugcclientmodels.ResponseError {
@@ -176,7 +204,16 @@ type GetTypeInternalServerError struct {
 }
 
 func (o *GetTypeInternalServerError) Error() string {
-	return fmt.Sprintf("[GET /ugc/v1/public/namespaces/{namespace}/types][%d] getTypeInternalServerError  %+v", 500, o.Payload)
+	return fmt.Sprintf("[GET /ugc/v1/public/namespaces/{namespace}/types][%d] getTypeInternalServerError  %+v", 500, o.ToString())
+}
+
+func (o *GetTypeInternalServerError) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *GetTypeInternalServerError) GetPayload() *ugcclientmodels.ResponseError {

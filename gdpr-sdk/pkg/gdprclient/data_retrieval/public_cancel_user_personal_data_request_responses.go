@@ -10,6 +10,7 @@ package data_retrieval
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -104,7 +105,16 @@ type PublicCancelUserPersonalDataRequestUnauthorized struct {
 }
 
 func (o *PublicCancelUserPersonalDataRequestUnauthorized) Error() string {
-	return fmt.Sprintf("[DELETE /gdpr/public/namespaces/{namespace}/users/{userId}/requests/{requestDate}][%d] publicCancelUserPersonalDataRequestUnauthorized  %+v", 401, o.Payload)
+	return fmt.Sprintf("[DELETE /gdpr/public/namespaces/{namespace}/users/{userId}/requests/{requestDate}][%d] publicCancelUserPersonalDataRequestUnauthorized  %+v", 401, o.ToString())
+}
+
+func (o *PublicCancelUserPersonalDataRequestUnauthorized) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *PublicCancelUserPersonalDataRequestUnauthorized) GetPayload() *gdprclientmodels.ResponseError {
@@ -137,7 +147,16 @@ type PublicCancelUserPersonalDataRequestNotFound struct {
 }
 
 func (o *PublicCancelUserPersonalDataRequestNotFound) Error() string {
-	return fmt.Sprintf("[DELETE /gdpr/public/namespaces/{namespace}/users/{userId}/requests/{requestDate}][%d] publicCancelUserPersonalDataRequestNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[DELETE /gdpr/public/namespaces/{namespace}/users/{userId}/requests/{requestDate}][%d] publicCancelUserPersonalDataRequestNotFound  %+v", 404, o.ToString())
+}
+
+func (o *PublicCancelUserPersonalDataRequestNotFound) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *PublicCancelUserPersonalDataRequestNotFound) GetPayload() *gdprclientmodels.ResponseError {
@@ -170,7 +189,16 @@ type PublicCancelUserPersonalDataRequestConflict struct {
 }
 
 func (o *PublicCancelUserPersonalDataRequestConflict) Error() string {
-	return fmt.Sprintf("[DELETE /gdpr/public/namespaces/{namespace}/users/{userId}/requests/{requestDate}][%d] publicCancelUserPersonalDataRequestConflict  %+v", 409, o.Payload)
+	return fmt.Sprintf("[DELETE /gdpr/public/namespaces/{namespace}/users/{userId}/requests/{requestDate}][%d] publicCancelUserPersonalDataRequestConflict  %+v", 409, o.ToString())
+}
+
+func (o *PublicCancelUserPersonalDataRequestConflict) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *PublicCancelUserPersonalDataRequestConflict) GetPayload() *gdprclientmodels.ResponseError {
@@ -203,7 +231,16 @@ type PublicCancelUserPersonalDataRequestInternalServerError struct {
 }
 
 func (o *PublicCancelUserPersonalDataRequestInternalServerError) Error() string {
-	return fmt.Sprintf("[DELETE /gdpr/public/namespaces/{namespace}/users/{userId}/requests/{requestDate}][%d] publicCancelUserPersonalDataRequestInternalServerError  %+v", 500, o.Payload)
+	return fmt.Sprintf("[DELETE /gdpr/public/namespaces/{namespace}/users/{userId}/requests/{requestDate}][%d] publicCancelUserPersonalDataRequestInternalServerError  %+v", 500, o.ToString())
+}
+
+func (o *PublicCancelUserPersonalDataRequestInternalServerError) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *PublicCancelUserPersonalDataRequestInternalServerError) GetPayload() *gdprclientmodels.ResponseError {

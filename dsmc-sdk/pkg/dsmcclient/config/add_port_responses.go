@@ -10,6 +10,7 @@ package config
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -89,7 +90,16 @@ type AddPortCreated struct {
 }
 
 func (o *AddPortCreated) Error() string {
-	return fmt.Sprintf("[POST /dsmcontroller/admin/namespaces/{namespace}/configs/ports/{name}][%d] addPortCreated  %+v", 201, o.Payload)
+	return fmt.Sprintf("[POST /dsmcontroller/admin/namespaces/{namespace}/configs/ports/{name}][%d] addPortCreated  %+v", 201, o.ToString())
+}
+
+func (o *AddPortCreated) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *AddPortCreated) GetPayload() *dsmcclientmodels.ModelsDSMConfigRecord {
@@ -122,7 +132,16 @@ type AddPortBadRequest struct {
 }
 
 func (o *AddPortBadRequest) Error() string {
-	return fmt.Sprintf("[POST /dsmcontroller/admin/namespaces/{namespace}/configs/ports/{name}][%d] addPortBadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[POST /dsmcontroller/admin/namespaces/{namespace}/configs/ports/{name}][%d] addPortBadRequest  %+v", 400, o.ToString())
+}
+
+func (o *AddPortBadRequest) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *AddPortBadRequest) GetPayload() *dsmcclientmodels.ResponseError {
@@ -155,7 +174,16 @@ type AddPortUnauthorized struct {
 }
 
 func (o *AddPortUnauthorized) Error() string {
-	return fmt.Sprintf("[POST /dsmcontroller/admin/namespaces/{namespace}/configs/ports/{name}][%d] addPortUnauthorized  %+v", 401, o.Payload)
+	return fmt.Sprintf("[POST /dsmcontroller/admin/namespaces/{namespace}/configs/ports/{name}][%d] addPortUnauthorized  %+v", 401, o.ToString())
+}
+
+func (o *AddPortUnauthorized) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *AddPortUnauthorized) GetPayload() *dsmcclientmodels.ResponseError {
@@ -188,7 +216,16 @@ type AddPortNotFound struct {
 }
 
 func (o *AddPortNotFound) Error() string {
-	return fmt.Sprintf("[POST /dsmcontroller/admin/namespaces/{namespace}/configs/ports/{name}][%d] addPortNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[POST /dsmcontroller/admin/namespaces/{namespace}/configs/ports/{name}][%d] addPortNotFound  %+v", 404, o.ToString())
+}
+
+func (o *AddPortNotFound) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *AddPortNotFound) GetPayload() *dsmcclientmodels.ResponseError {
@@ -221,7 +258,16 @@ type AddPortConflict struct {
 }
 
 func (o *AddPortConflict) Error() string {
-	return fmt.Sprintf("[POST /dsmcontroller/admin/namespaces/{namespace}/configs/ports/{name}][%d] addPortConflict  %+v", 409, o.Payload)
+	return fmt.Sprintf("[POST /dsmcontroller/admin/namespaces/{namespace}/configs/ports/{name}][%d] addPortConflict  %+v", 409, o.ToString())
+}
+
+func (o *AddPortConflict) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *AddPortConflict) GetPayload() *dsmcclientmodels.ResponseError {
@@ -254,7 +300,16 @@ type AddPortInternalServerError struct {
 }
 
 func (o *AddPortInternalServerError) Error() string {
-	return fmt.Sprintf("[POST /dsmcontroller/admin/namespaces/{namespace}/configs/ports/{name}][%d] addPortInternalServerError  %+v", 500, o.Payload)
+	return fmt.Sprintf("[POST /dsmcontroller/admin/namespaces/{namespace}/configs/ports/{name}][%d] addPortInternalServerError  %+v", 500, o.ToString())
+}
+
+func (o *AddPortInternalServerError) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *AddPortInternalServerError) GetPayload() *dsmcclientmodels.ResponseError {

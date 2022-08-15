@@ -10,6 +10,7 @@ package data_deletion
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -83,7 +84,16 @@ type AdminGetUserAccountDeletionRequestOK struct {
 }
 
 func (o *AdminGetUserAccountDeletionRequestOK) Error() string {
-	return fmt.Sprintf("[GET /gdpr/admin/namespaces/{namespace}/users/{userId}/deletions][%d] adminGetUserAccountDeletionRequestOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /gdpr/admin/namespaces/{namespace}/users/{userId}/deletions][%d] adminGetUserAccountDeletionRequestOK  %+v", 200, o.ToString())
+}
+
+func (o *AdminGetUserAccountDeletionRequestOK) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *AdminGetUserAccountDeletionRequestOK) GetPayload() *gdprclientmodels.ModelsDeletionData {
@@ -116,7 +126,16 @@ type AdminGetUserAccountDeletionRequestUnauthorized struct {
 }
 
 func (o *AdminGetUserAccountDeletionRequestUnauthorized) Error() string {
-	return fmt.Sprintf("[GET /gdpr/admin/namespaces/{namespace}/users/{userId}/deletions][%d] adminGetUserAccountDeletionRequestUnauthorized  %+v", 401, o.Payload)
+	return fmt.Sprintf("[GET /gdpr/admin/namespaces/{namespace}/users/{userId}/deletions][%d] adminGetUserAccountDeletionRequestUnauthorized  %+v", 401, o.ToString())
+}
+
+func (o *AdminGetUserAccountDeletionRequestUnauthorized) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *AdminGetUserAccountDeletionRequestUnauthorized) GetPayload() *gdprclientmodels.ResponseError {
@@ -149,7 +168,16 @@ type AdminGetUserAccountDeletionRequestForbidden struct {
 }
 
 func (o *AdminGetUserAccountDeletionRequestForbidden) Error() string {
-	return fmt.Sprintf("[GET /gdpr/admin/namespaces/{namespace}/users/{userId}/deletions][%d] adminGetUserAccountDeletionRequestForbidden  %+v", 403, o.Payload)
+	return fmt.Sprintf("[GET /gdpr/admin/namespaces/{namespace}/users/{userId}/deletions][%d] adminGetUserAccountDeletionRequestForbidden  %+v", 403, o.ToString())
+}
+
+func (o *AdminGetUserAccountDeletionRequestForbidden) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *AdminGetUserAccountDeletionRequestForbidden) GetPayload() *gdprclientmodels.ResponseError {
@@ -182,7 +210,16 @@ type AdminGetUserAccountDeletionRequestNotFound struct {
 }
 
 func (o *AdminGetUserAccountDeletionRequestNotFound) Error() string {
-	return fmt.Sprintf("[GET /gdpr/admin/namespaces/{namespace}/users/{userId}/deletions][%d] adminGetUserAccountDeletionRequestNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[GET /gdpr/admin/namespaces/{namespace}/users/{userId}/deletions][%d] adminGetUserAccountDeletionRequestNotFound  %+v", 404, o.ToString())
+}
+
+func (o *AdminGetUserAccountDeletionRequestNotFound) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *AdminGetUserAccountDeletionRequestNotFound) GetPayload() *gdprclientmodels.ResponseError {
@@ -215,7 +252,16 @@ type AdminGetUserAccountDeletionRequestInternalServerError struct {
 }
 
 func (o *AdminGetUserAccountDeletionRequestInternalServerError) Error() string {
-	return fmt.Sprintf("[GET /gdpr/admin/namespaces/{namespace}/users/{userId}/deletions][%d] adminGetUserAccountDeletionRequestInternalServerError  %+v", 500, o.Payload)
+	return fmt.Sprintf("[GET /gdpr/admin/namespaces/{namespace}/users/{userId}/deletions][%d] adminGetUserAccountDeletionRequestInternalServerError  %+v", 500, o.ToString())
+}
+
+func (o *AdminGetUserAccountDeletionRequestInternalServerError) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *AdminGetUserAccountDeletionRequestInternalServerError) GetPayload() *gdprclientmodels.ResponseError {

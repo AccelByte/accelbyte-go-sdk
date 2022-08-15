@@ -10,6 +10,7 @@ package users
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -83,7 +84,16 @@ type AdminGetUserByPlatformUserIDV3OK struct {
 }
 
 func (o *AdminGetUserByPlatformUserIDV3OK) Error() string {
-	return fmt.Sprintf("[GET /iam/v3/admin/namespaces/{namespace}/platforms/{platformId}/users/{platformUserId}][%d] adminGetUserByPlatformUserIdV3OK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /iam/v3/admin/namespaces/{namespace}/platforms/{platformId}/users/{platformUserId}][%d] adminGetUserByPlatformUserIdV3OK  %+v", 200, o.ToString())
+}
+
+func (o *AdminGetUserByPlatformUserIDV3OK) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *AdminGetUserByPlatformUserIDV3OK) GetPayload() *iamclientmodels.ModelUserResponseV3 {
@@ -116,7 +126,16 @@ type AdminGetUserByPlatformUserIDV3Unauthorized struct {
 }
 
 func (o *AdminGetUserByPlatformUserIDV3Unauthorized) Error() string {
-	return fmt.Sprintf("[GET /iam/v3/admin/namespaces/{namespace}/platforms/{platformId}/users/{platformUserId}][%d] adminGetUserByPlatformUserIdV3Unauthorized  %+v", 401, o.Payload)
+	return fmt.Sprintf("[GET /iam/v3/admin/namespaces/{namespace}/platforms/{platformId}/users/{platformUserId}][%d] adminGetUserByPlatformUserIdV3Unauthorized  %+v", 401, o.ToString())
+}
+
+func (o *AdminGetUserByPlatformUserIDV3Unauthorized) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *AdminGetUserByPlatformUserIDV3Unauthorized) GetPayload() *iamclientmodels.RestErrorResponse {
@@ -149,7 +168,16 @@ type AdminGetUserByPlatformUserIDV3Forbidden struct {
 }
 
 func (o *AdminGetUserByPlatformUserIDV3Forbidden) Error() string {
-	return fmt.Sprintf("[GET /iam/v3/admin/namespaces/{namespace}/platforms/{platformId}/users/{platformUserId}][%d] adminGetUserByPlatformUserIdV3Forbidden  %+v", 403, o.Payload)
+	return fmt.Sprintf("[GET /iam/v3/admin/namespaces/{namespace}/platforms/{platformId}/users/{platformUserId}][%d] adminGetUserByPlatformUserIdV3Forbidden  %+v", 403, o.ToString())
+}
+
+func (o *AdminGetUserByPlatformUserIDV3Forbidden) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *AdminGetUserByPlatformUserIDV3Forbidden) GetPayload() *iamclientmodels.RestErrorResponse {
@@ -182,7 +210,16 @@ type AdminGetUserByPlatformUserIDV3NotFound struct {
 }
 
 func (o *AdminGetUserByPlatformUserIDV3NotFound) Error() string {
-	return fmt.Sprintf("[GET /iam/v3/admin/namespaces/{namespace}/platforms/{platformId}/users/{platformUserId}][%d] adminGetUserByPlatformUserIdV3NotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[GET /iam/v3/admin/namespaces/{namespace}/platforms/{platformId}/users/{platformUserId}][%d] adminGetUserByPlatformUserIdV3NotFound  %+v", 404, o.ToString())
+}
+
+func (o *AdminGetUserByPlatformUserIDV3NotFound) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *AdminGetUserByPlatformUserIDV3NotFound) GetPayload() *iamclientmodels.RestErrorResponse {
@@ -215,7 +252,16 @@ type AdminGetUserByPlatformUserIDV3InternalServerError struct {
 }
 
 func (o *AdminGetUserByPlatformUserIDV3InternalServerError) Error() string {
-	return fmt.Sprintf("[GET /iam/v3/admin/namespaces/{namespace}/platforms/{platformId}/users/{platformUserId}][%d] adminGetUserByPlatformUserIdV3InternalServerError  %+v", 500, o.Payload)
+	return fmt.Sprintf("[GET /iam/v3/admin/namespaces/{namespace}/platforms/{platformId}/users/{platformUserId}][%d] adminGetUserByPlatformUserIdV3InternalServerError  %+v", 500, o.ToString())
+}
+
+func (o *AdminGetUserByPlatformUserIDV3InternalServerError) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *AdminGetUserByPlatformUserIDV3InternalServerError) GetPayload() *iamclientmodels.RestErrorResponse {

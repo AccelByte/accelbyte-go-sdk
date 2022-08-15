@@ -10,6 +10,7 @@ package data_deletion
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -77,7 +78,16 @@ type PublicGetUserAccountDeletionStatusOK struct {
 }
 
 func (o *PublicGetUserAccountDeletionStatusOK) Error() string {
-	return fmt.Sprintf("[GET /gdpr/public/namespaces/{namespace}/users/{userId}/deletions/status][%d] publicGetUserAccountDeletionStatusOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /gdpr/public/namespaces/{namespace}/users/{userId}/deletions/status][%d] publicGetUserAccountDeletionStatusOK  %+v", 200, o.ToString())
+}
+
+func (o *PublicGetUserAccountDeletionStatusOK) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *PublicGetUserAccountDeletionStatusOK) GetPayload() *gdprclientmodels.ModelsDeletionStatus {
@@ -110,7 +120,16 @@ type PublicGetUserAccountDeletionStatusUnauthorized struct {
 }
 
 func (o *PublicGetUserAccountDeletionStatusUnauthorized) Error() string {
-	return fmt.Sprintf("[GET /gdpr/public/namespaces/{namespace}/users/{userId}/deletions/status][%d] publicGetUserAccountDeletionStatusUnauthorized  %+v", 401, o.Payload)
+	return fmt.Sprintf("[GET /gdpr/public/namespaces/{namespace}/users/{userId}/deletions/status][%d] publicGetUserAccountDeletionStatusUnauthorized  %+v", 401, o.ToString())
+}
+
+func (o *PublicGetUserAccountDeletionStatusUnauthorized) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *PublicGetUserAccountDeletionStatusUnauthorized) GetPayload() *gdprclientmodels.ResponseError {
@@ -143,7 +162,16 @@ type PublicGetUserAccountDeletionStatusForbidden struct {
 }
 
 func (o *PublicGetUserAccountDeletionStatusForbidden) Error() string {
-	return fmt.Sprintf("[GET /gdpr/public/namespaces/{namespace}/users/{userId}/deletions/status][%d] publicGetUserAccountDeletionStatusForbidden  %+v", 403, o.Payload)
+	return fmt.Sprintf("[GET /gdpr/public/namespaces/{namespace}/users/{userId}/deletions/status][%d] publicGetUserAccountDeletionStatusForbidden  %+v", 403, o.ToString())
+}
+
+func (o *PublicGetUserAccountDeletionStatusForbidden) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *PublicGetUserAccountDeletionStatusForbidden) GetPayload() *gdprclientmodels.ResponseError {
@@ -176,7 +204,16 @@ type PublicGetUserAccountDeletionStatusInternalServerError struct {
 }
 
 func (o *PublicGetUserAccountDeletionStatusInternalServerError) Error() string {
-	return fmt.Sprintf("[GET /gdpr/public/namespaces/{namespace}/users/{userId}/deletions/status][%d] publicGetUserAccountDeletionStatusInternalServerError  %+v", 500, o.Payload)
+	return fmt.Sprintf("[GET /gdpr/public/namespaces/{namespace}/users/{userId}/deletions/status][%d] publicGetUserAccountDeletionStatusInternalServerError  %+v", 500, o.ToString())
+}
+
+func (o *PublicGetUserAccountDeletionStatusInternalServerError) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *PublicGetUserAccountDeletionStatusInternalServerError) GetPayload() *gdprclientmodels.ResponseError {

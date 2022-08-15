@@ -10,6 +10,7 @@ package d_l_c
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -65,7 +66,16 @@ type UpdateDLCItemConfigOK struct {
 }
 
 func (o *UpdateDLCItemConfigOK) Error() string {
-	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/dlc/config/item][%d] updateDLCItemConfigOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/dlc/config/item][%d] updateDLCItemConfigOK  %+v", 200, o.ToString())
+}
+
+func (o *UpdateDLCItemConfigOK) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *UpdateDLCItemConfigOK) GetPayload() *platformclientmodels.DLCItemConfigInfo {
@@ -98,7 +108,16 @@ type UpdateDLCItemConfigUnprocessableEntity struct {
 }
 
 func (o *UpdateDLCItemConfigUnprocessableEntity) Error() string {
-	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/dlc/config/item][%d] updateDLCItemConfigUnprocessableEntity  %+v", 422, o.Payload)
+	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/dlc/config/item][%d] updateDLCItemConfigUnprocessableEntity  %+v", 422, o.ToString())
+}
+
+func (o *UpdateDLCItemConfigUnprocessableEntity) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *UpdateDLCItemConfigUnprocessableEntity) GetPayload() *platformclientmodels.ValidationErrorEntity {

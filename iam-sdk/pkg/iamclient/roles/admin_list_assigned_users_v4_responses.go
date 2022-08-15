@@ -10,6 +10,7 @@ package roles
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -83,7 +84,16 @@ type AdminListAssignedUsersV4OK struct {
 }
 
 func (o *AdminListAssignedUsersV4OK) Error() string {
-	return fmt.Sprintf("[GET /iam/v4/admin/roles/{roleId}/users][%d] adminListAssignedUsersV4OK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /iam/v4/admin/roles/{roleId}/users][%d] adminListAssignedUsersV4OK  %+v", 200, o.ToString())
+}
+
+func (o *AdminListAssignedUsersV4OK) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *AdminListAssignedUsersV4OK) GetPayload() *iamclientmodels.ModelListAssignedUsersV4Response {
@@ -116,7 +126,16 @@ type AdminListAssignedUsersV4BadRequest struct {
 }
 
 func (o *AdminListAssignedUsersV4BadRequest) Error() string {
-	return fmt.Sprintf("[GET /iam/v4/admin/roles/{roleId}/users][%d] adminListAssignedUsersV4BadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[GET /iam/v4/admin/roles/{roleId}/users][%d] adminListAssignedUsersV4BadRequest  %+v", 400, o.ToString())
+}
+
+func (o *AdminListAssignedUsersV4BadRequest) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *AdminListAssignedUsersV4BadRequest) GetPayload() *iamclientmodels.RestErrorResponse {
@@ -149,7 +168,16 @@ type AdminListAssignedUsersV4Unauthorized struct {
 }
 
 func (o *AdminListAssignedUsersV4Unauthorized) Error() string {
-	return fmt.Sprintf("[GET /iam/v4/admin/roles/{roleId}/users][%d] adminListAssignedUsersV4Unauthorized  %+v", 401, o.Payload)
+	return fmt.Sprintf("[GET /iam/v4/admin/roles/{roleId}/users][%d] adminListAssignedUsersV4Unauthorized  %+v", 401, o.ToString())
+}
+
+func (o *AdminListAssignedUsersV4Unauthorized) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *AdminListAssignedUsersV4Unauthorized) GetPayload() *iamclientmodels.RestErrorResponse {
@@ -182,7 +210,16 @@ type AdminListAssignedUsersV4Forbidden struct {
 }
 
 func (o *AdminListAssignedUsersV4Forbidden) Error() string {
-	return fmt.Sprintf("[GET /iam/v4/admin/roles/{roleId}/users][%d] adminListAssignedUsersV4Forbidden  %+v", 403, o.Payload)
+	return fmt.Sprintf("[GET /iam/v4/admin/roles/{roleId}/users][%d] adminListAssignedUsersV4Forbidden  %+v", 403, o.ToString())
+}
+
+func (o *AdminListAssignedUsersV4Forbidden) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *AdminListAssignedUsersV4Forbidden) GetPayload() *iamclientmodels.RestErrorResponse {
@@ -215,7 +252,16 @@ type AdminListAssignedUsersV4NotFound struct {
 }
 
 func (o *AdminListAssignedUsersV4NotFound) Error() string {
-	return fmt.Sprintf("[GET /iam/v4/admin/roles/{roleId}/users][%d] adminListAssignedUsersV4NotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[GET /iam/v4/admin/roles/{roleId}/users][%d] adminListAssignedUsersV4NotFound  %+v", 404, o.ToString())
+}
+
+func (o *AdminListAssignedUsersV4NotFound) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *AdminListAssignedUsersV4NotFound) GetPayload() *iamclientmodels.RestErrorResponse {

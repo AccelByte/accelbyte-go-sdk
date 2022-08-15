@@ -10,6 +10,7 @@ package agreement
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -59,7 +60,16 @@ type RetrieveAgreementsPublicOK struct {
 }
 
 func (o *RetrieveAgreementsPublicOK) Error() string {
-	return fmt.Sprintf("[GET /agreement/public/agreements/policies][%d] retrieveAgreementsPublicOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /agreement/public/agreements/policies][%d] retrieveAgreementsPublicOK  %+v", 200, o.ToString())
+}
+
+func (o *RetrieveAgreementsPublicOK) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *RetrieveAgreementsPublicOK) GetPayload() []*legalclientmodels.RetrieveAcceptedAgreementResponse {

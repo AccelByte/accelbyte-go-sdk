@@ -10,6 +10,7 @@ package group_member
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -89,7 +90,16 @@ type GetUserGroupInformationPublicV1OK struct {
 }
 
 func (o *GetUserGroupInformationPublicV1OK) Error() string {
-	return fmt.Sprintf("[GET /group/v1/public/namespaces/{namespace}/users/{userId}][%d] getUserGroupInformationPublicV1OK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /group/v1/public/namespaces/{namespace}/users/{userId}][%d] getUserGroupInformationPublicV1OK  %+v", 200, o.ToString())
+}
+
+func (o *GetUserGroupInformationPublicV1OK) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *GetUserGroupInformationPublicV1OK) GetPayload() *groupclientmodels.ModelsGetUserGroupInformationResponseV1 {
@@ -122,7 +132,16 @@ type GetUserGroupInformationPublicV1BadRequest struct {
 }
 
 func (o *GetUserGroupInformationPublicV1BadRequest) Error() string {
-	return fmt.Sprintf("[GET /group/v1/public/namespaces/{namespace}/users/{userId}][%d] getUserGroupInformationPublicV1BadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[GET /group/v1/public/namespaces/{namespace}/users/{userId}][%d] getUserGroupInformationPublicV1BadRequest  %+v", 400, o.ToString())
+}
+
+func (o *GetUserGroupInformationPublicV1BadRequest) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *GetUserGroupInformationPublicV1BadRequest) GetPayload() *groupclientmodels.ResponseErrorResponse {
@@ -155,7 +174,16 @@ type GetUserGroupInformationPublicV1Unauthorized struct {
 }
 
 func (o *GetUserGroupInformationPublicV1Unauthorized) Error() string {
-	return fmt.Sprintf("[GET /group/v1/public/namespaces/{namespace}/users/{userId}][%d] getUserGroupInformationPublicV1Unauthorized  %+v", 401, o.Payload)
+	return fmt.Sprintf("[GET /group/v1/public/namespaces/{namespace}/users/{userId}][%d] getUserGroupInformationPublicV1Unauthorized  %+v", 401, o.ToString())
+}
+
+func (o *GetUserGroupInformationPublicV1Unauthorized) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *GetUserGroupInformationPublicV1Unauthorized) GetPayload() *groupclientmodels.ResponseErrorResponse {
@@ -188,7 +216,16 @@ type GetUserGroupInformationPublicV1Forbidden struct {
 }
 
 func (o *GetUserGroupInformationPublicV1Forbidden) Error() string {
-	return fmt.Sprintf("[GET /group/v1/public/namespaces/{namespace}/users/{userId}][%d] getUserGroupInformationPublicV1Forbidden  %+v", 403, o.Payload)
+	return fmt.Sprintf("[GET /group/v1/public/namespaces/{namespace}/users/{userId}][%d] getUserGroupInformationPublicV1Forbidden  %+v", 403, o.ToString())
+}
+
+func (o *GetUserGroupInformationPublicV1Forbidden) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *GetUserGroupInformationPublicV1Forbidden) GetPayload() *groupclientmodels.ResponseErrorResponse {
@@ -221,7 +258,16 @@ type GetUserGroupInformationPublicV1NotFound struct {
 }
 
 func (o *GetUserGroupInformationPublicV1NotFound) Error() string {
-	return fmt.Sprintf("[GET /group/v1/public/namespaces/{namespace}/users/{userId}][%d] getUserGroupInformationPublicV1NotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[GET /group/v1/public/namespaces/{namespace}/users/{userId}][%d] getUserGroupInformationPublicV1NotFound  %+v", 404, o.ToString())
+}
+
+func (o *GetUserGroupInformationPublicV1NotFound) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *GetUserGroupInformationPublicV1NotFound) GetPayload() *groupclientmodels.ResponseErrorResponse {
@@ -254,7 +300,16 @@ type GetUserGroupInformationPublicV1InternalServerError struct {
 }
 
 func (o *GetUserGroupInformationPublicV1InternalServerError) Error() string {
-	return fmt.Sprintf("[GET /group/v1/public/namespaces/{namespace}/users/{userId}][%d] getUserGroupInformationPublicV1InternalServerError  %+v", 500, o.Payload)
+	return fmt.Sprintf("[GET /group/v1/public/namespaces/{namespace}/users/{userId}][%d] getUserGroupInformationPublicV1InternalServerError  %+v", 500, o.ToString())
+}
+
+func (o *GetUserGroupInformationPublicV1InternalServerError) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *GetUserGroupInformationPublicV1InternalServerError) GetPayload() *groupclientmodels.ResponseErrorResponse {

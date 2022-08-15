@@ -10,6 +10,7 @@ package third_party_credential
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -146,7 +147,16 @@ type DeleteThirdPartyLoginPlatformCredentialV3NotFound struct {
 }
 
 func (o *DeleteThirdPartyLoginPlatformCredentialV3NotFound) Error() string {
-	return fmt.Sprintf("[DELETE /iam/v3/admin/namespaces/{namespace}/platforms/{platformId}/clients][%d] deleteThirdPartyLoginPlatformCredentialV3NotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[DELETE /iam/v3/admin/namespaces/{namespace}/platforms/{platformId}/clients][%d] deleteThirdPartyLoginPlatformCredentialV3NotFound  %+v", 404, o.ToString())
+}
+
+func (o *DeleteThirdPartyLoginPlatformCredentialV3NotFound) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *DeleteThirdPartyLoginPlatformCredentialV3NotFound) GetPayload() *iamclientmodels.RestErrorResponse {
@@ -179,7 +189,16 @@ type DeleteThirdPartyLoginPlatformCredentialV3InternalServerError struct {
 }
 
 func (o *DeleteThirdPartyLoginPlatformCredentialV3InternalServerError) Error() string {
-	return fmt.Sprintf("[DELETE /iam/v3/admin/namespaces/{namespace}/platforms/{platformId}/clients][%d] deleteThirdPartyLoginPlatformCredentialV3InternalServerError  %+v", 500, o.Payload)
+	return fmt.Sprintf("[DELETE /iam/v3/admin/namespaces/{namespace}/platforms/{platformId}/clients][%d] deleteThirdPartyLoginPlatformCredentialV3InternalServerError  %+v", 500, o.ToString())
+}
+
+func (o *DeleteThirdPartyLoginPlatformCredentialV3InternalServerError) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *DeleteThirdPartyLoginPlatformCredentialV3InternalServerError) GetPayload() *iamclientmodels.RestErrorResponse {

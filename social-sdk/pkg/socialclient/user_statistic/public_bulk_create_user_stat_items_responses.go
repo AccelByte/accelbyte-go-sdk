@@ -10,6 +10,7 @@ package user_statistic
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -65,7 +66,16 @@ type PublicBulkCreateUserStatItemsOK struct {
 }
 
 func (o *PublicBulkCreateUserStatItemsOK) Error() string {
-	return fmt.Sprintf("[POST /social/v1/public/namespaces/{namespace}/users/{userId}/statitems/bulk][%d] publicBulkCreateUserStatItemsOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[POST /social/v1/public/namespaces/{namespace}/users/{userId}/statitems/bulk][%d] publicBulkCreateUserStatItemsOK  %+v", 200, o.ToString())
+}
+
+func (o *PublicBulkCreateUserStatItemsOK) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *PublicBulkCreateUserStatItemsOK) GetPayload() []*socialclientmodels.BulkStatItemOperationResult {
@@ -96,7 +106,16 @@ type PublicBulkCreateUserStatItemsUnprocessableEntity struct {
 }
 
 func (o *PublicBulkCreateUserStatItemsUnprocessableEntity) Error() string {
-	return fmt.Sprintf("[POST /social/v1/public/namespaces/{namespace}/users/{userId}/statitems/bulk][%d] publicBulkCreateUserStatItemsUnprocessableEntity  %+v", 422, o.Payload)
+	return fmt.Sprintf("[POST /social/v1/public/namespaces/{namespace}/users/{userId}/statitems/bulk][%d] publicBulkCreateUserStatItemsUnprocessableEntity  %+v", 422, o.ToString())
+}
+
+func (o *PublicBulkCreateUserStatItemsUnprocessableEntity) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *PublicBulkCreateUserStatItemsUnprocessableEntity) GetPayload() *socialclientmodels.ValidationErrorEntity {

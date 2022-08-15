@@ -10,6 +10,7 @@ package item
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -83,7 +84,16 @@ type SyncInGameItemOK struct {
 }
 
 func (o *SyncInGameItemOK) Error() string {
-	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/items][%d] syncInGameItemOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/items][%d] syncInGameItemOK  %+v", 200, o.ToString())
+}
+
+func (o *SyncInGameItemOK) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *SyncInGameItemOK) GetPayload() *platformclientmodels.FullItemInfo {
@@ -116,7 +126,16 @@ type SyncInGameItemBadRequest struct {
 }
 
 func (o *SyncInGameItemBadRequest) Error() string {
-	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/items][%d] syncInGameItemBadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/items][%d] syncInGameItemBadRequest  %+v", 400, o.ToString())
+}
+
+func (o *SyncInGameItemBadRequest) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *SyncInGameItemBadRequest) GetPayload() *platformclientmodels.ErrorEntity {
@@ -149,7 +168,16 @@ type SyncInGameItemNotFound struct {
 }
 
 func (o *SyncInGameItemNotFound) Error() string {
-	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/items][%d] syncInGameItemNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/items][%d] syncInGameItemNotFound  %+v", 404, o.ToString())
+}
+
+func (o *SyncInGameItemNotFound) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *SyncInGameItemNotFound) GetPayload() *platformclientmodels.ErrorEntity {
@@ -182,7 +210,16 @@ type SyncInGameItemConflict struct {
 }
 
 func (o *SyncInGameItemConflict) Error() string {
-	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/items][%d] syncInGameItemConflict  %+v", 409, o.Payload)
+	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/items][%d] syncInGameItemConflict  %+v", 409, o.ToString())
+}
+
+func (o *SyncInGameItemConflict) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *SyncInGameItemConflict) GetPayload() *platformclientmodels.ErrorEntity {
@@ -215,7 +252,16 @@ type SyncInGameItemUnprocessableEntity struct {
 }
 
 func (o *SyncInGameItemUnprocessableEntity) Error() string {
-	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/items][%d] syncInGameItemUnprocessableEntity  %+v", 422, o.Payload)
+	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/items][%d] syncInGameItemUnprocessableEntity  %+v", 422, o.ToString())
+}
+
+func (o *SyncInGameItemUnprocessableEntity) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *SyncInGameItemUnprocessableEntity) GetPayload() *platformclientmodels.ValidationErrorEntity {

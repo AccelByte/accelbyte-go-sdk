@@ -10,6 +10,7 @@ package i_a_p
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -65,7 +66,16 @@ type GetIAPItemConfigOK struct {
 }
 
 func (o *GetIAPItemConfigOK) Error() string {
-	return fmt.Sprintf("[GET /platform/admin/namespaces/{namespace}/iap/config/item][%d] getIAPItemConfigOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /platform/admin/namespaces/{namespace}/iap/config/item][%d] getIAPItemConfigOK  %+v", 200, o.ToString())
+}
+
+func (o *GetIAPItemConfigOK) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *GetIAPItemConfigOK) GetPayload() *platformclientmodels.IAPItemConfigInfo {
@@ -98,7 +108,16 @@ type GetIAPItemConfigNotFound struct {
 }
 
 func (o *GetIAPItemConfigNotFound) Error() string {
-	return fmt.Sprintf("[GET /platform/admin/namespaces/{namespace}/iap/config/item][%d] getIAPItemConfigNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[GET /platform/admin/namespaces/{namespace}/iap/config/item][%d] getIAPItemConfigNotFound  %+v", 404, o.ToString())
+}
+
+func (o *GetIAPItemConfigNotFound) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *GetIAPItemConfigNotFound) GetPayload() *platformclientmodels.ErrorEntity {

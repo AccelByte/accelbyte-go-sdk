@@ -10,6 +10,7 @@ package campaign
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -65,7 +66,16 @@ type GetCampaignOK struct {
 }
 
 func (o *GetCampaignOK) Error() string {
-	return fmt.Sprintf("[GET /platform/admin/namespaces/{namespace}/campaigns/{campaignId}][%d] getCampaignOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /platform/admin/namespaces/{namespace}/campaigns/{campaignId}][%d] getCampaignOK  %+v", 200, o.ToString())
+}
+
+func (o *GetCampaignOK) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *GetCampaignOK) GetPayload() *platformclientmodels.CampaignInfo {
@@ -98,7 +108,16 @@ type GetCampaignNotFound struct {
 }
 
 func (o *GetCampaignNotFound) Error() string {
-	return fmt.Sprintf("[GET /platform/admin/namespaces/{namespace}/campaigns/{campaignId}][%d] getCampaignNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[GET /platform/admin/namespaces/{namespace}/campaigns/{campaignId}][%d] getCampaignNotFound  %+v", 404, o.ToString())
+}
+
+func (o *GetCampaignNotFound) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *GetCampaignNotFound) GetPayload() *platformclientmodels.ErrorEntity {

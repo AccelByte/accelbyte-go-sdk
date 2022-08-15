@@ -10,6 +10,7 @@ package image_config
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -104,7 +105,16 @@ type CreateImageBadRequest struct {
 }
 
 func (o *CreateImageBadRequest) Error() string {
-	return fmt.Sprintf("[POST /dsmcontroller/admin/images][%d] createImageBadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[POST /dsmcontroller/admin/images][%d] createImageBadRequest  %+v", 400, o.ToString())
+}
+
+func (o *CreateImageBadRequest) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *CreateImageBadRequest) GetPayload() *dsmcclientmodels.ResponseError {
@@ -137,7 +147,16 @@ type CreateImageUnauthorized struct {
 }
 
 func (o *CreateImageUnauthorized) Error() string {
-	return fmt.Sprintf("[POST /dsmcontroller/admin/images][%d] createImageUnauthorized  %+v", 401, o.Payload)
+	return fmt.Sprintf("[POST /dsmcontroller/admin/images][%d] createImageUnauthorized  %+v", 401, o.ToString())
+}
+
+func (o *CreateImageUnauthorized) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *CreateImageUnauthorized) GetPayload() *dsmcclientmodels.ResponseError {
@@ -170,7 +189,16 @@ type CreateImageConflict struct {
 }
 
 func (o *CreateImageConflict) Error() string {
-	return fmt.Sprintf("[POST /dsmcontroller/admin/images][%d] createImageConflict  %+v", 409, o.Payload)
+	return fmt.Sprintf("[POST /dsmcontroller/admin/images][%d] createImageConflict  %+v", 409, o.ToString())
+}
+
+func (o *CreateImageConflict) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *CreateImageConflict) GetPayload() *dsmcclientmodels.ResponseError {
@@ -203,7 +231,16 @@ type CreateImageInternalServerError struct {
 }
 
 func (o *CreateImageInternalServerError) Error() string {
-	return fmt.Sprintf("[POST /dsmcontroller/admin/images][%d] createImageInternalServerError  %+v", 500, o.Payload)
+	return fmt.Sprintf("[POST /dsmcontroller/admin/images][%d] createImageInternalServerError  %+v", 500, o.ToString())
+}
+
+func (o *CreateImageInternalServerError) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *CreateImageInternalServerError) GetPayload() *dsmcclientmodels.ResponseError {

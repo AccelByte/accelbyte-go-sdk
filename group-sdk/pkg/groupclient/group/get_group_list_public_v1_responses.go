@@ -10,6 +10,7 @@ package group
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -83,7 +84,16 @@ type GetGroupListPublicV1OK struct {
 }
 
 func (o *GetGroupListPublicV1OK) Error() string {
-	return fmt.Sprintf("[GET /group/v1/public/namespaces/{namespace}/groups][%d] getGroupListPublicV1OK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /group/v1/public/namespaces/{namespace}/groups][%d] getGroupListPublicV1OK  %+v", 200, o.ToString())
+}
+
+func (o *GetGroupListPublicV1OK) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *GetGroupListPublicV1OK) GetPayload() *groupclientmodels.ModelsGetGroupsListResponseV1 {
@@ -116,7 +126,16 @@ type GetGroupListPublicV1BadRequest struct {
 }
 
 func (o *GetGroupListPublicV1BadRequest) Error() string {
-	return fmt.Sprintf("[GET /group/v1/public/namespaces/{namespace}/groups][%d] getGroupListPublicV1BadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[GET /group/v1/public/namespaces/{namespace}/groups][%d] getGroupListPublicV1BadRequest  %+v", 400, o.ToString())
+}
+
+func (o *GetGroupListPublicV1BadRequest) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *GetGroupListPublicV1BadRequest) GetPayload() *groupclientmodels.ResponseErrorResponse {
@@ -149,7 +168,16 @@ type GetGroupListPublicV1Unauthorized struct {
 }
 
 func (o *GetGroupListPublicV1Unauthorized) Error() string {
-	return fmt.Sprintf("[GET /group/v1/public/namespaces/{namespace}/groups][%d] getGroupListPublicV1Unauthorized  %+v", 401, o.Payload)
+	return fmt.Sprintf("[GET /group/v1/public/namespaces/{namespace}/groups][%d] getGroupListPublicV1Unauthorized  %+v", 401, o.ToString())
+}
+
+func (o *GetGroupListPublicV1Unauthorized) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *GetGroupListPublicV1Unauthorized) GetPayload() *groupclientmodels.ResponseErrorResponse {
@@ -182,7 +210,16 @@ type GetGroupListPublicV1Forbidden struct {
 }
 
 func (o *GetGroupListPublicV1Forbidden) Error() string {
-	return fmt.Sprintf("[GET /group/v1/public/namespaces/{namespace}/groups][%d] getGroupListPublicV1Forbidden  %+v", 403, o.Payload)
+	return fmt.Sprintf("[GET /group/v1/public/namespaces/{namespace}/groups][%d] getGroupListPublicV1Forbidden  %+v", 403, o.ToString())
+}
+
+func (o *GetGroupListPublicV1Forbidden) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *GetGroupListPublicV1Forbidden) GetPayload() *groupclientmodels.ResponseErrorResponse {
@@ -215,7 +252,16 @@ type GetGroupListPublicV1InternalServerError struct {
 }
 
 func (o *GetGroupListPublicV1InternalServerError) Error() string {
-	return fmt.Sprintf("[GET /group/v1/public/namespaces/{namespace}/groups][%d] getGroupListPublicV1InternalServerError  %+v", 500, o.Payload)
+	return fmt.Sprintf("[GET /group/v1/public/namespaces/{namespace}/groups][%d] getGroupListPublicV1InternalServerError  %+v", 500, o.ToString())
+}
+
+func (o *GetGroupListPublicV1InternalServerError) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *GetGroupListPublicV1InternalServerError) GetPayload() *groupclientmodels.ResponseErrorResponse {

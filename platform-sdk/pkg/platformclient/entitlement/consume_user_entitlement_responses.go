@@ -10,6 +10,7 @@ package entitlement
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -71,7 +72,16 @@ type ConsumeUserEntitlementOK struct {
 }
 
 func (o *ConsumeUserEntitlementOK) Error() string {
-	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/users/{userId}/entitlements/{entitlementId}/decrement][%d] consumeUserEntitlementOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/users/{userId}/entitlements/{entitlementId}/decrement][%d] consumeUserEntitlementOK  %+v", 200, o.ToString())
+}
+
+func (o *ConsumeUserEntitlementOK) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *ConsumeUserEntitlementOK) GetPayload() *platformclientmodels.EntitlementInfo {
@@ -104,7 +114,16 @@ type ConsumeUserEntitlementNotFound struct {
 }
 
 func (o *ConsumeUserEntitlementNotFound) Error() string {
-	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/users/{userId}/entitlements/{entitlementId}/decrement][%d] consumeUserEntitlementNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/users/{userId}/entitlements/{entitlementId}/decrement][%d] consumeUserEntitlementNotFound  %+v", 404, o.ToString())
+}
+
+func (o *ConsumeUserEntitlementNotFound) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *ConsumeUserEntitlementNotFound) GetPayload() *platformclientmodels.ErrorEntity {
@@ -137,7 +156,16 @@ type ConsumeUserEntitlementConflict struct {
 }
 
 func (o *ConsumeUserEntitlementConflict) Error() string {
-	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/users/{userId}/entitlements/{entitlementId}/decrement][%d] consumeUserEntitlementConflict  %+v", 409, o.Payload)
+	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/users/{userId}/entitlements/{entitlementId}/decrement][%d] consumeUserEntitlementConflict  %+v", 409, o.ToString())
+}
+
+func (o *ConsumeUserEntitlementConflict) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *ConsumeUserEntitlementConflict) GetPayload() *platformclientmodels.ErrorEntity {

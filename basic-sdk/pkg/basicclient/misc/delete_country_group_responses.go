@@ -10,6 +10,7 @@ package misc
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -104,7 +105,16 @@ type DeleteCountryGroupBadRequest struct {
 }
 
 func (o *DeleteCountryGroupBadRequest) Error() string {
-	return fmt.Sprintf("[DELETE /basic/v1/admin/namespaces/{namespace}/misc/countrygroups/{countryGroupCode}][%d] deleteCountryGroupBadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[DELETE /basic/v1/admin/namespaces/{namespace}/misc/countrygroups/{countryGroupCode}][%d] deleteCountryGroupBadRequest  %+v", 400, o.ToString())
+}
+
+func (o *DeleteCountryGroupBadRequest) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *DeleteCountryGroupBadRequest) GetPayload() *basicclientmodels.ValidationErrorEntity {
@@ -137,7 +147,16 @@ type DeleteCountryGroupUnauthorized struct {
 }
 
 func (o *DeleteCountryGroupUnauthorized) Error() string {
-	return fmt.Sprintf("[DELETE /basic/v1/admin/namespaces/{namespace}/misc/countrygroups/{countryGroupCode}][%d] deleteCountryGroupUnauthorized  %+v", 401, o.Payload)
+	return fmt.Sprintf("[DELETE /basic/v1/admin/namespaces/{namespace}/misc/countrygroups/{countryGroupCode}][%d] deleteCountryGroupUnauthorized  %+v", 401, o.ToString())
+}
+
+func (o *DeleteCountryGroupUnauthorized) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *DeleteCountryGroupUnauthorized) GetPayload() *basicclientmodels.ErrorEntity {
@@ -170,7 +189,16 @@ type DeleteCountryGroupForbidden struct {
 }
 
 func (o *DeleteCountryGroupForbidden) Error() string {
-	return fmt.Sprintf("[DELETE /basic/v1/admin/namespaces/{namespace}/misc/countrygroups/{countryGroupCode}][%d] deleteCountryGroupForbidden  %+v", 403, o.Payload)
+	return fmt.Sprintf("[DELETE /basic/v1/admin/namespaces/{namespace}/misc/countrygroups/{countryGroupCode}][%d] deleteCountryGroupForbidden  %+v", 403, o.ToString())
+}
+
+func (o *DeleteCountryGroupForbidden) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *DeleteCountryGroupForbidden) GetPayload() *basicclientmodels.ErrorEntity {
@@ -203,7 +231,16 @@ type DeleteCountryGroupNotFound struct {
 }
 
 func (o *DeleteCountryGroupNotFound) Error() string {
-	return fmt.Sprintf("[DELETE /basic/v1/admin/namespaces/{namespace}/misc/countrygroups/{countryGroupCode}][%d] deleteCountryGroupNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[DELETE /basic/v1/admin/namespaces/{namespace}/misc/countrygroups/{countryGroupCode}][%d] deleteCountryGroupNotFound  %+v", 404, o.ToString())
+}
+
+func (o *DeleteCountryGroupNotFound) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *DeleteCountryGroupNotFound) GetPayload() *basicclientmodels.ErrorEntity {

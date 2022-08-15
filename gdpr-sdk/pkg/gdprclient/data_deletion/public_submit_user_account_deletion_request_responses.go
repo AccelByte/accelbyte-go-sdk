@@ -10,6 +10,7 @@ package data_deletion
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -89,7 +90,16 @@ type PublicSubmitUserAccountDeletionRequestCreated struct {
 }
 
 func (o *PublicSubmitUserAccountDeletionRequestCreated) Error() string {
-	return fmt.Sprintf("[POST /gdpr/public/namespaces/{namespace}/users/{userId}/deletions][%d] publicSubmitUserAccountDeletionRequestCreated  %+v", 201, o.Payload)
+	return fmt.Sprintf("[POST /gdpr/public/namespaces/{namespace}/users/{userId}/deletions][%d] publicSubmitUserAccountDeletionRequestCreated  %+v", 201, o.ToString())
+}
+
+func (o *PublicSubmitUserAccountDeletionRequestCreated) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *PublicSubmitUserAccountDeletionRequestCreated) GetPayload() *gdprclientmodels.ModelsRequestDeleteResponse {
@@ -122,7 +132,16 @@ type PublicSubmitUserAccountDeletionRequestBadRequest struct {
 }
 
 func (o *PublicSubmitUserAccountDeletionRequestBadRequest) Error() string {
-	return fmt.Sprintf("[POST /gdpr/public/namespaces/{namespace}/users/{userId}/deletions][%d] publicSubmitUserAccountDeletionRequestBadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[POST /gdpr/public/namespaces/{namespace}/users/{userId}/deletions][%d] publicSubmitUserAccountDeletionRequestBadRequest  %+v", 400, o.ToString())
+}
+
+func (o *PublicSubmitUserAccountDeletionRequestBadRequest) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *PublicSubmitUserAccountDeletionRequestBadRequest) GetPayload() *gdprclientmodels.ResponseError {
@@ -155,7 +174,16 @@ type PublicSubmitUserAccountDeletionRequestUnauthorized struct {
 }
 
 func (o *PublicSubmitUserAccountDeletionRequestUnauthorized) Error() string {
-	return fmt.Sprintf("[POST /gdpr/public/namespaces/{namespace}/users/{userId}/deletions][%d] publicSubmitUserAccountDeletionRequestUnauthorized  %+v", 401, o.Payload)
+	return fmt.Sprintf("[POST /gdpr/public/namespaces/{namespace}/users/{userId}/deletions][%d] publicSubmitUserAccountDeletionRequestUnauthorized  %+v", 401, o.ToString())
+}
+
+func (o *PublicSubmitUserAccountDeletionRequestUnauthorized) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *PublicSubmitUserAccountDeletionRequestUnauthorized) GetPayload() *gdprclientmodels.ResponseError {
@@ -188,7 +216,16 @@ type PublicSubmitUserAccountDeletionRequestForbidden struct {
 }
 
 func (o *PublicSubmitUserAccountDeletionRequestForbidden) Error() string {
-	return fmt.Sprintf("[POST /gdpr/public/namespaces/{namespace}/users/{userId}/deletions][%d] publicSubmitUserAccountDeletionRequestForbidden  %+v", 403, o.Payload)
+	return fmt.Sprintf("[POST /gdpr/public/namespaces/{namespace}/users/{userId}/deletions][%d] publicSubmitUserAccountDeletionRequestForbidden  %+v", 403, o.ToString())
+}
+
+func (o *PublicSubmitUserAccountDeletionRequestForbidden) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *PublicSubmitUserAccountDeletionRequestForbidden) GetPayload() *gdprclientmodels.ResponseError {
@@ -221,7 +258,16 @@ type PublicSubmitUserAccountDeletionRequestNotFound struct {
 }
 
 func (o *PublicSubmitUserAccountDeletionRequestNotFound) Error() string {
-	return fmt.Sprintf("[POST /gdpr/public/namespaces/{namespace}/users/{userId}/deletions][%d] publicSubmitUserAccountDeletionRequestNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[POST /gdpr/public/namespaces/{namespace}/users/{userId}/deletions][%d] publicSubmitUserAccountDeletionRequestNotFound  %+v", 404, o.ToString())
+}
+
+func (o *PublicSubmitUserAccountDeletionRequestNotFound) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *PublicSubmitUserAccountDeletionRequestNotFound) GetPayload() *gdprclientmodels.ResponseError {
@@ -254,7 +300,16 @@ type PublicSubmitUserAccountDeletionRequestInternalServerError struct {
 }
 
 func (o *PublicSubmitUserAccountDeletionRequestInternalServerError) Error() string {
-	return fmt.Sprintf("[POST /gdpr/public/namespaces/{namespace}/users/{userId}/deletions][%d] publicSubmitUserAccountDeletionRequestInternalServerError  %+v", 500, o.Payload)
+	return fmt.Sprintf("[POST /gdpr/public/namespaces/{namespace}/users/{userId}/deletions][%d] publicSubmitUserAccountDeletionRequestInternalServerError  %+v", 500, o.ToString())
+}
+
+func (o *PublicSubmitUserAccountDeletionRequestInternalServerError) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *PublicSubmitUserAccountDeletionRequestInternalServerError) GetPayload() *gdprclientmodels.ResponseError {

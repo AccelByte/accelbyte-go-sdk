@@ -10,6 +10,7 @@ package player
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -89,7 +90,16 @@ type AdminGetLobbyCCUOK struct {
 }
 
 func (o *AdminGetLobbyCCUOK) Error() string {
-	return fmt.Sprintf("[GET /lobby/v1/admin/player/namespaces/{namespace}/ccu][%d] adminGetLobbyCCUOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /lobby/v1/admin/player/namespaces/{namespace}/ccu][%d] adminGetLobbyCCUOK  %+v", 200, o.ToString())
+}
+
+func (o *AdminGetLobbyCCUOK) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *AdminGetLobbyCCUOK) GetPayload() *lobbyclientmodels.ModelsGetLobbyCcuResponse {
@@ -122,7 +132,16 @@ type AdminGetLobbyCCUBadRequest struct {
 }
 
 func (o *AdminGetLobbyCCUBadRequest) Error() string {
-	return fmt.Sprintf("[GET /lobby/v1/admin/player/namespaces/{namespace}/ccu][%d] adminGetLobbyCCUBadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[GET /lobby/v1/admin/player/namespaces/{namespace}/ccu][%d] adminGetLobbyCCUBadRequest  %+v", 400, o.ToString())
+}
+
+func (o *AdminGetLobbyCCUBadRequest) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *AdminGetLobbyCCUBadRequest) GetPayload() *lobbyclientmodels.RestapiErrorResponseBody {
@@ -155,7 +174,16 @@ type AdminGetLobbyCCUUnauthorized struct {
 }
 
 func (o *AdminGetLobbyCCUUnauthorized) Error() string {
-	return fmt.Sprintf("[GET /lobby/v1/admin/player/namespaces/{namespace}/ccu][%d] adminGetLobbyCCUUnauthorized  %+v", 401, o.Payload)
+	return fmt.Sprintf("[GET /lobby/v1/admin/player/namespaces/{namespace}/ccu][%d] adminGetLobbyCCUUnauthorized  %+v", 401, o.ToString())
+}
+
+func (o *AdminGetLobbyCCUUnauthorized) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *AdminGetLobbyCCUUnauthorized) GetPayload() *lobbyclientmodels.RestapiErrorResponseBody {
@@ -188,7 +216,16 @@ type AdminGetLobbyCCUForbidden struct {
 }
 
 func (o *AdminGetLobbyCCUForbidden) Error() string {
-	return fmt.Sprintf("[GET /lobby/v1/admin/player/namespaces/{namespace}/ccu][%d] adminGetLobbyCCUForbidden  %+v", 403, o.Payload)
+	return fmt.Sprintf("[GET /lobby/v1/admin/player/namespaces/{namespace}/ccu][%d] adminGetLobbyCCUForbidden  %+v", 403, o.ToString())
+}
+
+func (o *AdminGetLobbyCCUForbidden) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *AdminGetLobbyCCUForbidden) GetPayload() *lobbyclientmodels.RestapiErrorResponseBody {
@@ -221,7 +258,16 @@ type AdminGetLobbyCCUNotFound struct {
 }
 
 func (o *AdminGetLobbyCCUNotFound) Error() string {
-	return fmt.Sprintf("[GET /lobby/v1/admin/player/namespaces/{namespace}/ccu][%d] adminGetLobbyCCUNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[GET /lobby/v1/admin/player/namespaces/{namespace}/ccu][%d] adminGetLobbyCCUNotFound  %+v", 404, o.ToString())
+}
+
+func (o *AdminGetLobbyCCUNotFound) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *AdminGetLobbyCCUNotFound) GetPayload() *lobbyclientmodels.RestapiErrorResponseBody {
@@ -254,7 +300,16 @@ type AdminGetLobbyCCUInternalServerError struct {
 }
 
 func (o *AdminGetLobbyCCUInternalServerError) Error() string {
-	return fmt.Sprintf("[GET /lobby/v1/admin/player/namespaces/{namespace}/ccu][%d] adminGetLobbyCCUInternalServerError  %+v", 500, o.Payload)
+	return fmt.Sprintf("[GET /lobby/v1/admin/player/namespaces/{namespace}/ccu][%d] adminGetLobbyCCUInternalServerError  %+v", 500, o.ToString())
+}
+
+func (o *AdminGetLobbyCCUInternalServerError) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *AdminGetLobbyCCUInternalServerError) GetPayload() *lobbyclientmodels.RestapiErrorResponseBody {

@@ -10,6 +10,7 @@ package user_info
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -59,7 +60,16 @@ type GetUserInfoStatusOK struct {
 }
 
 func (o *GetUserInfoStatusOK) Error() string {
-	return fmt.Sprintf("[GET /agreement/admin/userInfo][%d] getUserInfoStatusOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /agreement/admin/userInfo][%d] getUserInfoStatusOK  %+v", 200, o.ToString())
+}
+
+func (o *GetUserInfoStatusOK) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *GetUserInfoStatusOK) GetPayload() []*legalclientmodels.RetrieveUserInfoCacheStatusResponse {

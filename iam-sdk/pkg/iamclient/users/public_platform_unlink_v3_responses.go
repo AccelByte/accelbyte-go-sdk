@@ -10,6 +10,7 @@ package users
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -104,7 +105,16 @@ type PublicPlatformUnlinkV3BadRequest struct {
 }
 
 func (o *PublicPlatformUnlinkV3BadRequest) Error() string {
-	return fmt.Sprintf("[DELETE /iam/v3/public/namespaces/{namespace}/users/me/platforms/{platformId}][%d] publicPlatformUnlinkV3BadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[DELETE /iam/v3/public/namespaces/{namespace}/users/me/platforms/{platformId}][%d] publicPlatformUnlinkV3BadRequest  %+v", 400, o.ToString())
+}
+
+func (o *PublicPlatformUnlinkV3BadRequest) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *PublicPlatformUnlinkV3BadRequest) GetPayload() *iamclientmodels.RestErrorResponse {
@@ -137,7 +147,16 @@ type PublicPlatformUnlinkV3Unauthorized struct {
 }
 
 func (o *PublicPlatformUnlinkV3Unauthorized) Error() string {
-	return fmt.Sprintf("[DELETE /iam/v3/public/namespaces/{namespace}/users/me/platforms/{platformId}][%d] publicPlatformUnlinkV3Unauthorized  %+v", 401, o.Payload)
+	return fmt.Sprintf("[DELETE /iam/v3/public/namespaces/{namespace}/users/me/platforms/{platformId}][%d] publicPlatformUnlinkV3Unauthorized  %+v", 401, o.ToString())
+}
+
+func (o *PublicPlatformUnlinkV3Unauthorized) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *PublicPlatformUnlinkV3Unauthorized) GetPayload() *iamclientmodels.RestErrorResponse {
@@ -170,7 +189,16 @@ type PublicPlatformUnlinkV3NotFound struct {
 }
 
 func (o *PublicPlatformUnlinkV3NotFound) Error() string {
-	return fmt.Sprintf("[DELETE /iam/v3/public/namespaces/{namespace}/users/me/platforms/{platformId}][%d] publicPlatformUnlinkV3NotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[DELETE /iam/v3/public/namespaces/{namespace}/users/me/platforms/{platformId}][%d] publicPlatformUnlinkV3NotFound  %+v", 404, o.ToString())
+}
+
+func (o *PublicPlatformUnlinkV3NotFound) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *PublicPlatformUnlinkV3NotFound) GetPayload() *iamclientmodels.RestErrorResponse {
@@ -203,7 +231,16 @@ type PublicPlatformUnlinkV3InternalServerError struct {
 }
 
 func (o *PublicPlatformUnlinkV3InternalServerError) Error() string {
-	return fmt.Sprintf("[DELETE /iam/v3/public/namespaces/{namespace}/users/me/platforms/{platformId}][%d] publicPlatformUnlinkV3InternalServerError  %+v", 500, o.Payload)
+	return fmt.Sprintf("[DELETE /iam/v3/public/namespaces/{namespace}/users/me/platforms/{platformId}][%d] publicPlatformUnlinkV3InternalServerError  %+v", 500, o.ToString())
+}
+
+func (o *PublicPlatformUnlinkV3InternalServerError) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *PublicPlatformUnlinkV3InternalServerError) GetPayload() *iamclientmodels.RestErrorResponse {

@@ -10,6 +10,7 @@ package data_retrieval
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -77,7 +78,16 @@ type AdminRequestDataRetrievalCreated struct {
 }
 
 func (o *AdminRequestDataRetrievalCreated) Error() string {
-	return fmt.Sprintf("[POST /gdpr/admin/namespaces/{namespace}/users/{userId}/requests][%d] adminRequestDataRetrievalCreated  %+v", 201, o.Payload)
+	return fmt.Sprintf("[POST /gdpr/admin/namespaces/{namespace}/users/{userId}/requests][%d] adminRequestDataRetrievalCreated  %+v", 201, o.ToString())
+}
+
+func (o *AdminRequestDataRetrievalCreated) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *AdminRequestDataRetrievalCreated) GetPayload() *gdprclientmodels.ModelsDataRetrievalResponse {
@@ -110,7 +120,16 @@ type AdminRequestDataRetrievalBadRequest struct {
 }
 
 func (o *AdminRequestDataRetrievalBadRequest) Error() string {
-	return fmt.Sprintf("[POST /gdpr/admin/namespaces/{namespace}/users/{userId}/requests][%d] adminRequestDataRetrievalBadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[POST /gdpr/admin/namespaces/{namespace}/users/{userId}/requests][%d] adminRequestDataRetrievalBadRequest  %+v", 400, o.ToString())
+}
+
+func (o *AdminRequestDataRetrievalBadRequest) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *AdminRequestDataRetrievalBadRequest) GetPayload() *gdprclientmodels.ResponseError {
@@ -143,7 +162,16 @@ type AdminRequestDataRetrievalUnauthorized struct {
 }
 
 func (o *AdminRequestDataRetrievalUnauthorized) Error() string {
-	return fmt.Sprintf("[POST /gdpr/admin/namespaces/{namespace}/users/{userId}/requests][%d] adminRequestDataRetrievalUnauthorized  %+v", 401, o.Payload)
+	return fmt.Sprintf("[POST /gdpr/admin/namespaces/{namespace}/users/{userId}/requests][%d] adminRequestDataRetrievalUnauthorized  %+v", 401, o.ToString())
+}
+
+func (o *AdminRequestDataRetrievalUnauthorized) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *AdminRequestDataRetrievalUnauthorized) GetPayload() *gdprclientmodels.ResponseError {
@@ -176,7 +204,16 @@ type AdminRequestDataRetrievalInternalServerError struct {
 }
 
 func (o *AdminRequestDataRetrievalInternalServerError) Error() string {
-	return fmt.Sprintf("[POST /gdpr/admin/namespaces/{namespace}/users/{userId}/requests][%d] adminRequestDataRetrievalInternalServerError  %+v", 500, o.Payload)
+	return fmt.Sprintf("[POST /gdpr/admin/namespaces/{namespace}/users/{userId}/requests][%d] adminRequestDataRetrievalInternalServerError  %+v", 500, o.ToString())
+}
+
+func (o *AdminRequestDataRetrievalInternalServerError) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *AdminRequestDataRetrievalInternalServerError) GetPayload() *gdprclientmodels.ResponseError {

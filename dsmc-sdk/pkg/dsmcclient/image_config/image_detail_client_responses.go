@@ -10,6 +10,7 @@ package image_config
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -77,7 +78,16 @@ type ImageDetailClientOK struct {
 }
 
 func (o *ImageDetailClientOK) Error() string {
-	return fmt.Sprintf("[GET /dsmcontroller/namespaces/{namespace}/images/versions/{version}][%d] imageDetailClientOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /dsmcontroller/namespaces/{namespace}/images/versions/{version}][%d] imageDetailClientOK  %+v", 200, o.ToString())
+}
+
+func (o *ImageDetailClientOK) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *ImageDetailClientOK) GetPayload() *dsmcclientmodels.ModelsGetImageDetailResponse {
@@ -110,7 +120,16 @@ type ImageDetailClientUnauthorized struct {
 }
 
 func (o *ImageDetailClientUnauthorized) Error() string {
-	return fmt.Sprintf("[GET /dsmcontroller/namespaces/{namespace}/images/versions/{version}][%d] imageDetailClientUnauthorized  %+v", 401, o.Payload)
+	return fmt.Sprintf("[GET /dsmcontroller/namespaces/{namespace}/images/versions/{version}][%d] imageDetailClientUnauthorized  %+v", 401, o.ToString())
+}
+
+func (o *ImageDetailClientUnauthorized) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *ImageDetailClientUnauthorized) GetPayload() *dsmcclientmodels.ResponseError {
@@ -143,7 +162,16 @@ type ImageDetailClientNotFound struct {
 }
 
 func (o *ImageDetailClientNotFound) Error() string {
-	return fmt.Sprintf("[GET /dsmcontroller/namespaces/{namespace}/images/versions/{version}][%d] imageDetailClientNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[GET /dsmcontroller/namespaces/{namespace}/images/versions/{version}][%d] imageDetailClientNotFound  %+v", 404, o.ToString())
+}
+
+func (o *ImageDetailClientNotFound) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *ImageDetailClientNotFound) GetPayload() *dsmcclientmodels.ResponseError {
@@ -176,7 +204,16 @@ type ImageDetailClientInternalServerError struct {
 }
 
 func (o *ImageDetailClientInternalServerError) Error() string {
-	return fmt.Sprintf("[GET /dsmcontroller/namespaces/{namespace}/images/versions/{version}][%d] imageDetailClientInternalServerError  %+v", 500, o.Payload)
+	return fmt.Sprintf("[GET /dsmcontroller/namespaces/{namespace}/images/versions/{version}][%d] imageDetailClientInternalServerError  %+v", 500, o.ToString())
+}
+
+func (o *ImageDetailClientInternalServerError) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *ImageDetailClientInternalServerError) GetPayload() *dsmcclientmodels.ResponseError {

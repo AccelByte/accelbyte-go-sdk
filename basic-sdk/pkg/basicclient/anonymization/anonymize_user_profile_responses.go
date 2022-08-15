@@ -10,6 +10,7 @@ package anonymization
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -98,7 +99,16 @@ type AnonymizeUserProfileBadRequest struct {
 }
 
 func (o *AnonymizeUserProfileBadRequest) Error() string {
-	return fmt.Sprintf("[DELETE /basic/v1/admin/namespaces/{namespace}/users/{userId}/anonymization/profiles][%d] anonymizeUserProfileBadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[DELETE /basic/v1/admin/namespaces/{namespace}/users/{userId}/anonymization/profiles][%d] anonymizeUserProfileBadRequest  %+v", 400, o.ToString())
+}
+
+func (o *AnonymizeUserProfileBadRequest) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *AnonymizeUserProfileBadRequest) GetPayload() *basicclientmodels.ValidationErrorEntity {
@@ -131,7 +141,16 @@ type AnonymizeUserProfileUnauthorized struct {
 }
 
 func (o *AnonymizeUserProfileUnauthorized) Error() string {
-	return fmt.Sprintf("[DELETE /basic/v1/admin/namespaces/{namespace}/users/{userId}/anonymization/profiles][%d] anonymizeUserProfileUnauthorized  %+v", 401, o.Payload)
+	return fmt.Sprintf("[DELETE /basic/v1/admin/namespaces/{namespace}/users/{userId}/anonymization/profiles][%d] anonymizeUserProfileUnauthorized  %+v", 401, o.ToString())
+}
+
+func (o *AnonymizeUserProfileUnauthorized) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *AnonymizeUserProfileUnauthorized) GetPayload() *basicclientmodels.ErrorEntity {
@@ -164,7 +183,16 @@ type AnonymizeUserProfileForbidden struct {
 }
 
 func (o *AnonymizeUserProfileForbidden) Error() string {
-	return fmt.Sprintf("[DELETE /basic/v1/admin/namespaces/{namespace}/users/{userId}/anonymization/profiles][%d] anonymizeUserProfileForbidden  %+v", 403, o.Payload)
+	return fmt.Sprintf("[DELETE /basic/v1/admin/namespaces/{namespace}/users/{userId}/anonymization/profiles][%d] anonymizeUserProfileForbidden  %+v", 403, o.ToString())
+}
+
+func (o *AnonymizeUserProfileForbidden) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *AnonymizeUserProfileForbidden) GetPayload() *basicclientmodels.ErrorEntity {

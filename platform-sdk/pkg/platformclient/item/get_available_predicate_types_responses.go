@@ -10,6 +10,7 @@ package item
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -65,7 +66,16 @@ type GetAvailablePredicateTypesOK struct {
 }
 
 func (o *GetAvailablePredicateTypesOK) Error() string {
-	return fmt.Sprintf("[GET /platform/admin/namespaces/{namespace}/items/predicate/types][%d] getAvailablePredicateTypesOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /platform/admin/namespaces/{namespace}/items/predicate/types][%d] getAvailablePredicateTypesOK  %+v", 200, o.ToString())
+}
+
+func (o *GetAvailablePredicateTypesOK) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *GetAvailablePredicateTypesOK) GetPayload() []*platformclientmodels.AvailablePredicateObject {
@@ -96,7 +106,16 @@ type GetAvailablePredicateTypesNotFound struct {
 }
 
 func (o *GetAvailablePredicateTypesNotFound) Error() string {
-	return fmt.Sprintf("[GET /platform/admin/namespaces/{namespace}/items/predicate/types][%d] getAvailablePredicateTypesNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[GET /platform/admin/namespaces/{namespace}/items/predicate/types][%d] getAvailablePredicateTypesNotFound  %+v", 404, o.ToString())
+}
+
+func (o *GetAvailablePredicateTypesNotFound) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *GetAvailablePredicateTypesNotFound) GetPayload() *platformclientmodels.ErrorEntity {

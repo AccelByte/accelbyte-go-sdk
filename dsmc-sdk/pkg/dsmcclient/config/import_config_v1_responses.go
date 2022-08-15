@@ -10,6 +10,7 @@ package config
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -89,7 +90,16 @@ type ImportConfigV1OK struct {
 }
 
 func (o *ImportConfigV1OK) Error() string {
-	return fmt.Sprintf("[POST /dsmcontroller/admin/v1/namespaces/{namespace}/configs/import][%d] importConfigV1OK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[POST /dsmcontroller/admin/v1/namespaces/{namespace}/configs/import][%d] importConfigV1OK  %+v", 200, o.ToString())
+}
+
+func (o *ImportConfigV1OK) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *ImportConfigV1OK) GetPayload() *dsmcclientmodels.ModelsImportResponse {
@@ -122,7 +132,16 @@ type ImportConfigV1BadRequest struct {
 }
 
 func (o *ImportConfigV1BadRequest) Error() string {
-	return fmt.Sprintf("[POST /dsmcontroller/admin/v1/namespaces/{namespace}/configs/import][%d] importConfigV1BadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[POST /dsmcontroller/admin/v1/namespaces/{namespace}/configs/import][%d] importConfigV1BadRequest  %+v", 400, o.ToString())
+}
+
+func (o *ImportConfigV1BadRequest) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *ImportConfigV1BadRequest) GetPayload() *dsmcclientmodels.ResponseError {
@@ -155,7 +174,16 @@ type ImportConfigV1Unauthorized struct {
 }
 
 func (o *ImportConfigV1Unauthorized) Error() string {
-	return fmt.Sprintf("[POST /dsmcontroller/admin/v1/namespaces/{namespace}/configs/import][%d] importConfigV1Unauthorized  %+v", 401, o.Payload)
+	return fmt.Sprintf("[POST /dsmcontroller/admin/v1/namespaces/{namespace}/configs/import][%d] importConfigV1Unauthorized  %+v", 401, o.ToString())
+}
+
+func (o *ImportConfigV1Unauthorized) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *ImportConfigV1Unauthorized) GetPayload() *dsmcclientmodels.ResponseError {
@@ -188,7 +216,16 @@ type ImportConfigV1Forbidden struct {
 }
 
 func (o *ImportConfigV1Forbidden) Error() string {
-	return fmt.Sprintf("[POST /dsmcontroller/admin/v1/namespaces/{namespace}/configs/import][%d] importConfigV1Forbidden  %+v", 403, o.Payload)
+	return fmt.Sprintf("[POST /dsmcontroller/admin/v1/namespaces/{namespace}/configs/import][%d] importConfigV1Forbidden  %+v", 403, o.ToString())
+}
+
+func (o *ImportConfigV1Forbidden) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *ImportConfigV1Forbidden) GetPayload() *dsmcclientmodels.ResponseError {
@@ -221,7 +258,16 @@ type ImportConfigV1NotFound struct {
 }
 
 func (o *ImportConfigV1NotFound) Error() string {
-	return fmt.Sprintf("[POST /dsmcontroller/admin/v1/namespaces/{namespace}/configs/import][%d] importConfigV1NotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[POST /dsmcontroller/admin/v1/namespaces/{namespace}/configs/import][%d] importConfigV1NotFound  %+v", 404, o.ToString())
+}
+
+func (o *ImportConfigV1NotFound) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *ImportConfigV1NotFound) GetPayload() *dsmcclientmodels.ResponseError {
@@ -254,7 +300,16 @@ type ImportConfigV1InternalServerError struct {
 }
 
 func (o *ImportConfigV1InternalServerError) Error() string {
-	return fmt.Sprintf("[POST /dsmcontroller/admin/v1/namespaces/{namespace}/configs/import][%d] importConfigV1InternalServerError  %+v", 500, o.Payload)
+	return fmt.Sprintf("[POST /dsmcontroller/admin/v1/namespaces/{namespace}/configs/import][%d] importConfigV1InternalServerError  %+v", 500, o.ToString())
+}
+
+func (o *ImportConfigV1InternalServerError) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *ImportConfigV1InternalServerError) GetPayload() *dsmcclientmodels.ResponseError {

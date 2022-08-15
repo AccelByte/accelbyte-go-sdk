@@ -10,6 +10,7 @@ package item
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -65,7 +66,16 @@ type PublicSearchItemsOK struct {
 }
 
 func (o *PublicSearchItemsOK) Error() string {
-	return fmt.Sprintf("[GET /platform/public/namespaces/{namespace}/items/search][%d] publicSearchItemsOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /platform/public/namespaces/{namespace}/items/search][%d] publicSearchItemsOK  %+v", 200, o.ToString())
+}
+
+func (o *PublicSearchItemsOK) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *PublicSearchItemsOK) GetPayload() *platformclientmodels.ItemPagingSlicedResult {
@@ -98,7 +108,16 @@ type PublicSearchItemsNotFound struct {
 }
 
 func (o *PublicSearchItemsNotFound) Error() string {
-	return fmt.Sprintf("[GET /platform/public/namespaces/{namespace}/items/search][%d] publicSearchItemsNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[GET /platform/public/namespaces/{namespace}/items/search][%d] publicSearchItemsNotFound  %+v", 404, o.ToString())
+}
+
+func (o *PublicSearchItemsNotFound) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *PublicSearchItemsNotFound) GetPayload() *platformclientmodels.ErrorEntity {

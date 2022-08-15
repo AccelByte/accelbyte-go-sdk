@@ -10,6 +10,7 @@ package friends
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -104,7 +105,16 @@ type AddFriendsWithoutConfirmationBadRequest struct {
 }
 
 func (o *AddFriendsWithoutConfirmationBadRequest) Error() string {
-	return fmt.Sprintf("[POST /friends/namespaces/{namespace}/users/{userId}/add/bulk][%d] addFriendsWithoutConfirmationBadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[POST /friends/namespaces/{namespace}/users/{userId}/add/bulk][%d] addFriendsWithoutConfirmationBadRequest  %+v", 400, o.ToString())
+}
+
+func (o *AddFriendsWithoutConfirmationBadRequest) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *AddFriendsWithoutConfirmationBadRequest) GetPayload() *lobbyclientmodels.RestapiErrorResponseV1 {
@@ -137,7 +147,16 @@ type AddFriendsWithoutConfirmationUnauthorized struct {
 }
 
 func (o *AddFriendsWithoutConfirmationUnauthorized) Error() string {
-	return fmt.Sprintf("[POST /friends/namespaces/{namespace}/users/{userId}/add/bulk][%d] addFriendsWithoutConfirmationUnauthorized  %+v", 401, o.Payload)
+	return fmt.Sprintf("[POST /friends/namespaces/{namespace}/users/{userId}/add/bulk][%d] addFriendsWithoutConfirmationUnauthorized  %+v", 401, o.ToString())
+}
+
+func (o *AddFriendsWithoutConfirmationUnauthorized) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *AddFriendsWithoutConfirmationUnauthorized) GetPayload() *lobbyclientmodels.RestapiErrorResponseV1 {
@@ -170,7 +189,16 @@ type AddFriendsWithoutConfirmationForbidden struct {
 }
 
 func (o *AddFriendsWithoutConfirmationForbidden) Error() string {
-	return fmt.Sprintf("[POST /friends/namespaces/{namespace}/users/{userId}/add/bulk][%d] addFriendsWithoutConfirmationForbidden  %+v", 403, o.Payload)
+	return fmt.Sprintf("[POST /friends/namespaces/{namespace}/users/{userId}/add/bulk][%d] addFriendsWithoutConfirmationForbidden  %+v", 403, o.ToString())
+}
+
+func (o *AddFriendsWithoutConfirmationForbidden) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *AddFriendsWithoutConfirmationForbidden) GetPayload() *lobbyclientmodels.RestapiErrorResponseV1 {
@@ -203,7 +231,16 @@ type AddFriendsWithoutConfirmationInternalServerError struct {
 }
 
 func (o *AddFriendsWithoutConfirmationInternalServerError) Error() string {
-	return fmt.Sprintf("[POST /friends/namespaces/{namespace}/users/{userId}/add/bulk][%d] addFriendsWithoutConfirmationInternalServerError  %+v", 500, o.Payload)
+	return fmt.Sprintf("[POST /friends/namespaces/{namespace}/users/{userId}/add/bulk][%d] addFriendsWithoutConfirmationInternalServerError  %+v", 500, o.ToString())
+}
+
+func (o *AddFriendsWithoutConfirmationInternalServerError) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *AddFriendsWithoutConfirmationInternalServerError) GetPayload() *lobbyclientmodels.RestapiErrorResponseV1 {

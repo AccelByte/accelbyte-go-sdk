@@ -10,6 +10,7 @@ package slot
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -68,7 +69,16 @@ type PublicGetSlotDataOK struct {
 }
 
 func (o *PublicGetSlotDataOK) Error() string {
-	return fmt.Sprintf("[GET /social/public/namespaces/{namespace}/users/{userId}/slots/{slotId}][%d] publicGetSlotDataOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /social/public/namespaces/{namespace}/users/{userId}/slots/{slotId}][%d] publicGetSlotDataOK  %+v", 200, o.ToString())
+}
+
+func (o *PublicGetSlotDataOK) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *PublicGetSlotDataOK) GetPayload() io.Writer {
@@ -99,7 +109,16 @@ type PublicGetSlotDataNotFound struct {
 }
 
 func (o *PublicGetSlotDataNotFound) Error() string {
-	return fmt.Sprintf("[GET /social/public/namespaces/{namespace}/users/{userId}/slots/{slotId}][%d] publicGetSlotDataNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[GET /social/public/namespaces/{namespace}/users/{userId}/slots/{slotId}][%d] publicGetSlotDataNotFound  %+v", 404, o.ToString())
+}
+
+func (o *PublicGetSlotDataNotFound) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *PublicGetSlotDataNotFound) GetPayload() *socialclientmodels.ErrorEntity {

@@ -10,6 +10,7 @@ package agreement
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -65,7 +66,16 @@ type RetrieveAllUsersByPolicyVersionOK struct {
 }
 
 func (o *RetrieveAllUsersByPolicyVersionOK) Error() string {
-	return fmt.Sprintf("[GET /agreement/admin/agreements/policy-versions/users][%d] retrieveAllUsersByPolicyVersionOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /agreement/admin/agreements/policy-versions/users][%d] retrieveAllUsersByPolicyVersionOK  %+v", 200, o.ToString())
+}
+
+func (o *RetrieveAllUsersByPolicyVersionOK) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *RetrieveAllUsersByPolicyVersionOK) GetPayload() []*legalclientmodels.PagedRetrieveUserAcceptedAgreementResponse {
@@ -96,7 +106,16 @@ type RetrieveAllUsersByPolicyVersionNotFound struct {
 }
 
 func (o *RetrieveAllUsersByPolicyVersionNotFound) Error() string {
-	return fmt.Sprintf("[GET /agreement/admin/agreements/policy-versions/users][%d] retrieveAllUsersByPolicyVersionNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[GET /agreement/admin/agreements/policy-versions/users][%d] retrieveAllUsersByPolicyVersionNotFound  %+v", 404, o.ToString())
+}
+
+func (o *RetrieveAllUsersByPolicyVersionNotFound) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *RetrieveAllUsersByPolicyVersionNotFound) GetPayload() *legalclientmodels.ErrorEntity {

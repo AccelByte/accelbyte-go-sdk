@@ -10,6 +10,7 @@ package clients
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -77,7 +78,16 @@ type GetClientOK struct {
 }
 
 func (o *GetClientOK) Error() string {
-	return fmt.Sprintf("[GET /iam/clients/{clientId}][%d] getClientOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /iam/clients/{clientId}][%d] getClientOK  %+v", 200, o.ToString())
+}
+
+func (o *GetClientOK) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *GetClientOK) GetPayload() *iamclientmodels.ClientmodelClientResponse {

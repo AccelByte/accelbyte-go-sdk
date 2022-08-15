@@ -10,6 +10,7 @@ package i_a_p
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -59,7 +60,16 @@ type UpdateStadiaJSONConfigFileOK struct {
 }
 
 func (o *UpdateStadiaJSONConfigFileOK) Error() string {
-	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/iap/config/stadia/cert][%d] updateStadiaJsonConfigFileOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/iap/config/stadia/cert][%d] updateStadiaJsonConfigFileOK  %+v", 200, o.ToString())
+}
+
+func (o *UpdateStadiaJSONConfigFileOK) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *UpdateStadiaJSONConfigFileOK) GetPayload() *platformclientmodels.StadiaIAPConfigInfo {

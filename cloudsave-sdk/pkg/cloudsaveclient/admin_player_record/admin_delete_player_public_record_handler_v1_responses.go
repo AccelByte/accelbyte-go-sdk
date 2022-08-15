@@ -10,6 +10,7 @@ package admin_player_record
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -98,7 +99,16 @@ type AdminDeletePlayerPublicRecordHandlerV1Unauthorized struct {
 }
 
 func (o *AdminDeletePlayerPublicRecordHandlerV1Unauthorized) Error() string {
-	return fmt.Sprintf("[DELETE /cloudsave/v1/admin/namespaces/{namespace}/users/{userId}/records/{key}/public][%d] adminDeletePlayerPublicRecordHandlerV1Unauthorized  %+v", 401, o.Payload)
+	return fmt.Sprintf("[DELETE /cloudsave/v1/admin/namespaces/{namespace}/users/{userId}/records/{key}/public][%d] adminDeletePlayerPublicRecordHandlerV1Unauthorized  %+v", 401, o.ToString())
+}
+
+func (o *AdminDeletePlayerPublicRecordHandlerV1Unauthorized) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *AdminDeletePlayerPublicRecordHandlerV1Unauthorized) GetPayload() *cloudsaveclientmodels.ModelsResponseError {
@@ -131,7 +141,16 @@ type AdminDeletePlayerPublicRecordHandlerV1NotFound struct {
 }
 
 func (o *AdminDeletePlayerPublicRecordHandlerV1NotFound) Error() string {
-	return fmt.Sprintf("[DELETE /cloudsave/v1/admin/namespaces/{namespace}/users/{userId}/records/{key}/public][%d] adminDeletePlayerPublicRecordHandlerV1NotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[DELETE /cloudsave/v1/admin/namespaces/{namespace}/users/{userId}/records/{key}/public][%d] adminDeletePlayerPublicRecordHandlerV1NotFound  %+v", 404, o.ToString())
+}
+
+func (o *AdminDeletePlayerPublicRecordHandlerV1NotFound) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *AdminDeletePlayerPublicRecordHandlerV1NotFound) GetPayload() *cloudsaveclientmodels.ModelsResponseError {
@@ -164,7 +183,16 @@ type AdminDeletePlayerPublicRecordHandlerV1InternalServerError struct {
 }
 
 func (o *AdminDeletePlayerPublicRecordHandlerV1InternalServerError) Error() string {
-	return fmt.Sprintf("[DELETE /cloudsave/v1/admin/namespaces/{namespace}/users/{userId}/records/{key}/public][%d] adminDeletePlayerPublicRecordHandlerV1InternalServerError  %+v", 500, o.Payload)
+	return fmt.Sprintf("[DELETE /cloudsave/v1/admin/namespaces/{namespace}/users/{userId}/records/{key}/public][%d] adminDeletePlayerPublicRecordHandlerV1InternalServerError  %+v", 500, o.ToString())
+}
+
+func (o *AdminDeletePlayerPublicRecordHandlerV1InternalServerError) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *AdminDeletePlayerPublicRecordHandlerV1InternalServerError) GetPayload() *cloudsaveclientmodels.ModelsResponseError {

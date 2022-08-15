@@ -10,6 +10,7 @@ package season
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -71,7 +72,16 @@ type GetCurrentUserSeasonProgressionOK struct {
 }
 
 func (o *GetCurrentUserSeasonProgressionOK) Error() string {
-	return fmt.Sprintf("[GET /seasonpass/admin/namespaces/{namespace}/users/{userId}/seasons/current/progression][%d] getCurrentUserSeasonProgressionOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /seasonpass/admin/namespaces/{namespace}/users/{userId}/seasons/current/progression][%d] getCurrentUserSeasonProgressionOK  %+v", 200, o.ToString())
+}
+
+func (o *GetCurrentUserSeasonProgressionOK) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *GetCurrentUserSeasonProgressionOK) GetPayload() *seasonpassclientmodels.UserSeasonSummary {
@@ -104,7 +114,16 @@ type GetCurrentUserSeasonProgressionBadRequest struct {
 }
 
 func (o *GetCurrentUserSeasonProgressionBadRequest) Error() string {
-	return fmt.Sprintf("[GET /seasonpass/admin/namespaces/{namespace}/users/{userId}/seasons/current/progression][%d] getCurrentUserSeasonProgressionBadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[GET /seasonpass/admin/namespaces/{namespace}/users/{userId}/seasons/current/progression][%d] getCurrentUserSeasonProgressionBadRequest  %+v", 400, o.ToString())
+}
+
+func (o *GetCurrentUserSeasonProgressionBadRequest) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *GetCurrentUserSeasonProgressionBadRequest) GetPayload() *seasonpassclientmodels.ErrorEntity {
@@ -137,7 +156,16 @@ type GetCurrentUserSeasonProgressionNotFound struct {
 }
 
 func (o *GetCurrentUserSeasonProgressionNotFound) Error() string {
-	return fmt.Sprintf("[GET /seasonpass/admin/namespaces/{namespace}/users/{userId}/seasons/current/progression][%d] getCurrentUserSeasonProgressionNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[GET /seasonpass/admin/namespaces/{namespace}/users/{userId}/seasons/current/progression][%d] getCurrentUserSeasonProgressionNotFound  %+v", 404, o.ToString())
+}
+
+func (o *GetCurrentUserSeasonProgressionNotFound) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *GetCurrentUserSeasonProgressionNotFound) GetPayload() *seasonpassclientmodels.ErrorEntity {

@@ -10,6 +10,7 @@ package season
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -77,7 +78,16 @@ type CloneSeasonOK struct {
 }
 
 func (o *CloneSeasonOK) Error() string {
-	return fmt.Sprintf("[POST /seasonpass/admin/namespaces/{namespace}/seasons/{seasonId}/clone][%d] cloneSeasonOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[POST /seasonpass/admin/namespaces/{namespace}/seasons/{seasonId}/clone][%d] cloneSeasonOK  %+v", 200, o.ToString())
+}
+
+func (o *CloneSeasonOK) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *CloneSeasonOK) GetPayload() *seasonpassclientmodels.SeasonInfo {
@@ -110,7 +120,16 @@ type CloneSeasonBadRequest struct {
 }
 
 func (o *CloneSeasonBadRequest) Error() string {
-	return fmt.Sprintf("[POST /seasonpass/admin/namespaces/{namespace}/seasons/{seasonId}/clone][%d] cloneSeasonBadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[POST /seasonpass/admin/namespaces/{namespace}/seasons/{seasonId}/clone][%d] cloneSeasonBadRequest  %+v", 400, o.ToString())
+}
+
+func (o *CloneSeasonBadRequest) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *CloneSeasonBadRequest) GetPayload() *seasonpassclientmodels.ErrorEntity {
@@ -143,7 +162,16 @@ type CloneSeasonNotFound struct {
 }
 
 func (o *CloneSeasonNotFound) Error() string {
-	return fmt.Sprintf("[POST /seasonpass/admin/namespaces/{namespace}/seasons/{seasonId}/clone][%d] cloneSeasonNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[POST /seasonpass/admin/namespaces/{namespace}/seasons/{seasonId}/clone][%d] cloneSeasonNotFound  %+v", 404, o.ToString())
+}
+
+func (o *CloneSeasonNotFound) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *CloneSeasonNotFound) GetPayload() *seasonpassclientmodels.ErrorEntity {
@@ -176,7 +204,16 @@ type CloneSeasonUnprocessableEntity struct {
 }
 
 func (o *CloneSeasonUnprocessableEntity) Error() string {
-	return fmt.Sprintf("[POST /seasonpass/admin/namespaces/{namespace}/seasons/{seasonId}/clone][%d] cloneSeasonUnprocessableEntity  %+v", 422, o.Payload)
+	return fmt.Sprintf("[POST /seasonpass/admin/namespaces/{namespace}/seasons/{seasonId}/clone][%d] cloneSeasonUnprocessableEntity  %+v", 422, o.ToString())
+}
+
+func (o *CloneSeasonUnprocessableEntity) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *CloneSeasonUnprocessableEntity) GetPayload() *seasonpassclientmodels.ValidationErrorEntity {

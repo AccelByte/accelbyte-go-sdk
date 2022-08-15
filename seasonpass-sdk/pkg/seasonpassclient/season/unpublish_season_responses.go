@@ -10,6 +10,7 @@ package season
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -77,7 +78,16 @@ type UnpublishSeasonOK struct {
 }
 
 func (o *UnpublishSeasonOK) Error() string {
-	return fmt.Sprintf("[PUT /seasonpass/admin/namespaces/{namespace}/seasons/{seasonId}/unpublish][%d] unpublishSeasonOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[PUT /seasonpass/admin/namespaces/{namespace}/seasons/{seasonId}/unpublish][%d] unpublishSeasonOK  %+v", 200, o.ToString())
+}
+
+func (o *UnpublishSeasonOK) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *UnpublishSeasonOK) GetPayload() *seasonpassclientmodels.SeasonInfo {
@@ -110,7 +120,16 @@ type UnpublishSeasonBadRequest struct {
 }
 
 func (o *UnpublishSeasonBadRequest) Error() string {
-	return fmt.Sprintf("[PUT /seasonpass/admin/namespaces/{namespace}/seasons/{seasonId}/unpublish][%d] unpublishSeasonBadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[PUT /seasonpass/admin/namespaces/{namespace}/seasons/{seasonId}/unpublish][%d] unpublishSeasonBadRequest  %+v", 400, o.ToString())
+}
+
+func (o *UnpublishSeasonBadRequest) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *UnpublishSeasonBadRequest) GetPayload() *seasonpassclientmodels.ErrorEntity {
@@ -143,7 +162,16 @@ type UnpublishSeasonNotFound struct {
 }
 
 func (o *UnpublishSeasonNotFound) Error() string {
-	return fmt.Sprintf("[PUT /seasonpass/admin/namespaces/{namespace}/seasons/{seasonId}/unpublish][%d] unpublishSeasonNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[PUT /seasonpass/admin/namespaces/{namespace}/seasons/{seasonId}/unpublish][%d] unpublishSeasonNotFound  %+v", 404, o.ToString())
+}
+
+func (o *UnpublishSeasonNotFound) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *UnpublishSeasonNotFound) GetPayload() *seasonpassclientmodels.ErrorEntity {
@@ -176,7 +204,16 @@ type UnpublishSeasonConflict struct {
 }
 
 func (o *UnpublishSeasonConflict) Error() string {
-	return fmt.Sprintf("[PUT /seasonpass/admin/namespaces/{namespace}/seasons/{seasonId}/unpublish][%d] unpublishSeasonConflict  %+v", 409, o.Payload)
+	return fmt.Sprintf("[PUT /seasonpass/admin/namespaces/{namespace}/seasons/{seasonId}/unpublish][%d] unpublishSeasonConflict  %+v", 409, o.ToString())
+}
+
+func (o *UnpublishSeasonConflict) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *UnpublishSeasonConflict) GetPayload() *seasonpassclientmodels.ErrorEntity {

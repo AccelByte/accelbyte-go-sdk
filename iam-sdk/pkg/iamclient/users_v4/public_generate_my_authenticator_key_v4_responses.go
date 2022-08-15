@@ -10,6 +10,7 @@ package users_v4
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -89,7 +90,16 @@ type PublicGenerateMyAuthenticatorKeyV4OK struct {
 }
 
 func (o *PublicGenerateMyAuthenticatorKeyV4OK) Error() string {
-	return fmt.Sprintf("[POST /iam/v4/public/namespaces/{namespace}/users/me/mfa/authenticator/key][%d] publicGenerateMyAuthenticatorKeyV4OK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[POST /iam/v4/public/namespaces/{namespace}/users/me/mfa/authenticator/key][%d] publicGenerateMyAuthenticatorKeyV4OK  %+v", 200, o.ToString())
+}
+
+func (o *PublicGenerateMyAuthenticatorKeyV4OK) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *PublicGenerateMyAuthenticatorKeyV4OK) GetPayload() *iamclientmodels.ModelAuthenticatorKeyResponseV4 {
@@ -122,7 +132,16 @@ type PublicGenerateMyAuthenticatorKeyV4BadRequest struct {
 }
 
 func (o *PublicGenerateMyAuthenticatorKeyV4BadRequest) Error() string {
-	return fmt.Sprintf("[POST /iam/v4/public/namespaces/{namespace}/users/me/mfa/authenticator/key][%d] publicGenerateMyAuthenticatorKeyV4BadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[POST /iam/v4/public/namespaces/{namespace}/users/me/mfa/authenticator/key][%d] publicGenerateMyAuthenticatorKeyV4BadRequest  %+v", 400, o.ToString())
+}
+
+func (o *PublicGenerateMyAuthenticatorKeyV4BadRequest) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *PublicGenerateMyAuthenticatorKeyV4BadRequest) GetPayload() *iamclientmodels.RestErrorResponse {
@@ -155,7 +174,16 @@ type PublicGenerateMyAuthenticatorKeyV4Unauthorized struct {
 }
 
 func (o *PublicGenerateMyAuthenticatorKeyV4Unauthorized) Error() string {
-	return fmt.Sprintf("[POST /iam/v4/public/namespaces/{namespace}/users/me/mfa/authenticator/key][%d] publicGenerateMyAuthenticatorKeyV4Unauthorized  %+v", 401, o.Payload)
+	return fmt.Sprintf("[POST /iam/v4/public/namespaces/{namespace}/users/me/mfa/authenticator/key][%d] publicGenerateMyAuthenticatorKeyV4Unauthorized  %+v", 401, o.ToString())
+}
+
+func (o *PublicGenerateMyAuthenticatorKeyV4Unauthorized) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *PublicGenerateMyAuthenticatorKeyV4Unauthorized) GetPayload() *iamclientmodels.RestErrorResponse {
@@ -188,7 +216,16 @@ type PublicGenerateMyAuthenticatorKeyV4Forbidden struct {
 }
 
 func (o *PublicGenerateMyAuthenticatorKeyV4Forbidden) Error() string {
-	return fmt.Sprintf("[POST /iam/v4/public/namespaces/{namespace}/users/me/mfa/authenticator/key][%d] publicGenerateMyAuthenticatorKeyV4Forbidden  %+v", 403, o.Payload)
+	return fmt.Sprintf("[POST /iam/v4/public/namespaces/{namespace}/users/me/mfa/authenticator/key][%d] publicGenerateMyAuthenticatorKeyV4Forbidden  %+v", 403, o.ToString())
+}
+
+func (o *PublicGenerateMyAuthenticatorKeyV4Forbidden) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *PublicGenerateMyAuthenticatorKeyV4Forbidden) GetPayload() *iamclientmodels.RestErrorResponse {
@@ -221,7 +258,16 @@ type PublicGenerateMyAuthenticatorKeyV4NotFound struct {
 }
 
 func (o *PublicGenerateMyAuthenticatorKeyV4NotFound) Error() string {
-	return fmt.Sprintf("[POST /iam/v4/public/namespaces/{namespace}/users/me/mfa/authenticator/key][%d] publicGenerateMyAuthenticatorKeyV4NotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[POST /iam/v4/public/namespaces/{namespace}/users/me/mfa/authenticator/key][%d] publicGenerateMyAuthenticatorKeyV4NotFound  %+v", 404, o.ToString())
+}
+
+func (o *PublicGenerateMyAuthenticatorKeyV4NotFound) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *PublicGenerateMyAuthenticatorKeyV4NotFound) GetPayload() *iamclientmodels.RestErrorResponse {
@@ -254,7 +300,16 @@ type PublicGenerateMyAuthenticatorKeyV4InternalServerError struct {
 }
 
 func (o *PublicGenerateMyAuthenticatorKeyV4InternalServerError) Error() string {
-	return fmt.Sprintf("[POST /iam/v4/public/namespaces/{namespace}/users/me/mfa/authenticator/key][%d] publicGenerateMyAuthenticatorKeyV4InternalServerError  %+v", 500, o.Payload)
+	return fmt.Sprintf("[POST /iam/v4/public/namespaces/{namespace}/users/me/mfa/authenticator/key][%d] publicGenerateMyAuthenticatorKeyV4InternalServerError  %+v", 500, o.ToString())
+}
+
+func (o *PublicGenerateMyAuthenticatorKeyV4InternalServerError) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *PublicGenerateMyAuthenticatorKeyV4InternalServerError) GetPayload() *iamclientmodels.RestErrorResponse {

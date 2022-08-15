@@ -10,6 +10,7 @@ package group
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -110,7 +111,16 @@ type DeleteGroupPredefinedRulePublicV1BadRequest struct {
 }
 
 func (o *DeleteGroupPredefinedRulePublicV1BadRequest) Error() string {
-	return fmt.Sprintf("[DELETE /group/v1/public/namespaces/{namespace}/groups/{groupId}/rules/defined/{allowedAction}][%d] deleteGroupPredefinedRulePublicV1BadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[DELETE /group/v1/public/namespaces/{namespace}/groups/{groupId}/rules/defined/{allowedAction}][%d] deleteGroupPredefinedRulePublicV1BadRequest  %+v", 400, o.ToString())
+}
+
+func (o *DeleteGroupPredefinedRulePublicV1BadRequest) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *DeleteGroupPredefinedRulePublicV1BadRequest) GetPayload() *groupclientmodels.ResponseErrorResponse {
@@ -143,7 +153,16 @@ type DeleteGroupPredefinedRulePublicV1Unauthorized struct {
 }
 
 func (o *DeleteGroupPredefinedRulePublicV1Unauthorized) Error() string {
-	return fmt.Sprintf("[DELETE /group/v1/public/namespaces/{namespace}/groups/{groupId}/rules/defined/{allowedAction}][%d] deleteGroupPredefinedRulePublicV1Unauthorized  %+v", 401, o.Payload)
+	return fmt.Sprintf("[DELETE /group/v1/public/namespaces/{namespace}/groups/{groupId}/rules/defined/{allowedAction}][%d] deleteGroupPredefinedRulePublicV1Unauthorized  %+v", 401, o.ToString())
+}
+
+func (o *DeleteGroupPredefinedRulePublicV1Unauthorized) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *DeleteGroupPredefinedRulePublicV1Unauthorized) GetPayload() *groupclientmodels.ResponseErrorResponse {
@@ -176,7 +195,16 @@ type DeleteGroupPredefinedRulePublicV1Forbidden struct {
 }
 
 func (o *DeleteGroupPredefinedRulePublicV1Forbidden) Error() string {
-	return fmt.Sprintf("[DELETE /group/v1/public/namespaces/{namespace}/groups/{groupId}/rules/defined/{allowedAction}][%d] deleteGroupPredefinedRulePublicV1Forbidden  %+v", 403, o.Payload)
+	return fmt.Sprintf("[DELETE /group/v1/public/namespaces/{namespace}/groups/{groupId}/rules/defined/{allowedAction}][%d] deleteGroupPredefinedRulePublicV1Forbidden  %+v", 403, o.ToString())
+}
+
+func (o *DeleteGroupPredefinedRulePublicV1Forbidden) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *DeleteGroupPredefinedRulePublicV1Forbidden) GetPayload() *groupclientmodels.ResponseErrorResponse {
@@ -209,7 +237,16 @@ type DeleteGroupPredefinedRulePublicV1NotFound struct {
 }
 
 func (o *DeleteGroupPredefinedRulePublicV1NotFound) Error() string {
-	return fmt.Sprintf("[DELETE /group/v1/public/namespaces/{namespace}/groups/{groupId}/rules/defined/{allowedAction}][%d] deleteGroupPredefinedRulePublicV1NotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[DELETE /group/v1/public/namespaces/{namespace}/groups/{groupId}/rules/defined/{allowedAction}][%d] deleteGroupPredefinedRulePublicV1NotFound  %+v", 404, o.ToString())
+}
+
+func (o *DeleteGroupPredefinedRulePublicV1NotFound) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *DeleteGroupPredefinedRulePublicV1NotFound) GetPayload() *groupclientmodels.ResponseErrorResponse {
@@ -242,7 +279,16 @@ type DeleteGroupPredefinedRulePublicV1InternalServerError struct {
 }
 
 func (o *DeleteGroupPredefinedRulePublicV1InternalServerError) Error() string {
-	return fmt.Sprintf("[DELETE /group/v1/public/namespaces/{namespace}/groups/{groupId}/rules/defined/{allowedAction}][%d] deleteGroupPredefinedRulePublicV1InternalServerError  %+v", 500, o.Payload)
+	return fmt.Sprintf("[DELETE /group/v1/public/namespaces/{namespace}/groups/{groupId}/rules/defined/{allowedAction}][%d] deleteGroupPredefinedRulePublicV1InternalServerError  %+v", 500, o.ToString())
+}
+
+func (o *DeleteGroupPredefinedRulePublicV1InternalServerError) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *DeleteGroupPredefinedRulePublicV1InternalServerError) GetPayload() *groupclientmodels.ResponseErrorResponse {

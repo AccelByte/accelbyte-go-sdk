@@ -10,6 +10,7 @@ package matchmaking
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -89,7 +90,16 @@ type GetSingleMatchmakingChannelOK struct {
 }
 
 func (o *GetSingleMatchmakingChannelOK) Error() string {
-	return fmt.Sprintf("[GET /matchmaking/v1/admin/namespaces/{namespace}/channels/{channelName}][%d] getSingleMatchmakingChannelOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /matchmaking/v1/admin/namespaces/{namespace}/channels/{channelName}][%d] getSingleMatchmakingChannelOK  %+v", 200, o.ToString())
+}
+
+func (o *GetSingleMatchmakingChannelOK) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *GetSingleMatchmakingChannelOK) GetPayload() *matchmakingclientmodels.ModelsChannelV1 {
@@ -122,7 +132,16 @@ type GetSingleMatchmakingChannelBadRequest struct {
 }
 
 func (o *GetSingleMatchmakingChannelBadRequest) Error() string {
-	return fmt.Sprintf("[GET /matchmaking/v1/admin/namespaces/{namespace}/channels/{channelName}][%d] getSingleMatchmakingChannelBadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[GET /matchmaking/v1/admin/namespaces/{namespace}/channels/{channelName}][%d] getSingleMatchmakingChannelBadRequest  %+v", 400, o.ToString())
+}
+
+func (o *GetSingleMatchmakingChannelBadRequest) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *GetSingleMatchmakingChannelBadRequest) GetPayload() *matchmakingclientmodels.ResponseErrorV1 {
@@ -155,7 +174,16 @@ type GetSingleMatchmakingChannelUnauthorized struct {
 }
 
 func (o *GetSingleMatchmakingChannelUnauthorized) Error() string {
-	return fmt.Sprintf("[GET /matchmaking/v1/admin/namespaces/{namespace}/channels/{channelName}][%d] getSingleMatchmakingChannelUnauthorized  %+v", 401, o.Payload)
+	return fmt.Sprintf("[GET /matchmaking/v1/admin/namespaces/{namespace}/channels/{channelName}][%d] getSingleMatchmakingChannelUnauthorized  %+v", 401, o.ToString())
+}
+
+func (o *GetSingleMatchmakingChannelUnauthorized) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *GetSingleMatchmakingChannelUnauthorized) GetPayload() *matchmakingclientmodels.ResponseErrorV1 {
@@ -188,7 +216,16 @@ type GetSingleMatchmakingChannelForbidden struct {
 }
 
 func (o *GetSingleMatchmakingChannelForbidden) Error() string {
-	return fmt.Sprintf("[GET /matchmaking/v1/admin/namespaces/{namespace}/channels/{channelName}][%d] getSingleMatchmakingChannelForbidden  %+v", 403, o.Payload)
+	return fmt.Sprintf("[GET /matchmaking/v1/admin/namespaces/{namespace}/channels/{channelName}][%d] getSingleMatchmakingChannelForbidden  %+v", 403, o.ToString())
+}
+
+func (o *GetSingleMatchmakingChannelForbidden) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *GetSingleMatchmakingChannelForbidden) GetPayload() *matchmakingclientmodels.ResponseErrorV1 {
@@ -221,7 +258,16 @@ type GetSingleMatchmakingChannelNotFound struct {
 }
 
 func (o *GetSingleMatchmakingChannelNotFound) Error() string {
-	return fmt.Sprintf("[GET /matchmaking/v1/admin/namespaces/{namespace}/channels/{channelName}][%d] getSingleMatchmakingChannelNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[GET /matchmaking/v1/admin/namespaces/{namespace}/channels/{channelName}][%d] getSingleMatchmakingChannelNotFound  %+v", 404, o.ToString())
+}
+
+func (o *GetSingleMatchmakingChannelNotFound) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *GetSingleMatchmakingChannelNotFound) GetPayload() *matchmakingclientmodels.ResponseErrorV1 {
@@ -254,7 +300,16 @@ type GetSingleMatchmakingChannelInternalServerError struct {
 }
 
 func (o *GetSingleMatchmakingChannelInternalServerError) Error() string {
-	return fmt.Sprintf("[GET /matchmaking/v1/admin/namespaces/{namespace}/channels/{channelName}][%d] getSingleMatchmakingChannelInternalServerError  %+v", 500, o.Payload)
+	return fmt.Sprintf("[GET /matchmaking/v1/admin/namespaces/{namespace}/channels/{channelName}][%d] getSingleMatchmakingChannelInternalServerError  %+v", 500, o.ToString())
+}
+
+func (o *GetSingleMatchmakingChannelInternalServerError) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *GetSingleMatchmakingChannelInternalServerError) GetPayload() *matchmakingclientmodels.ResponseErrorV1 {

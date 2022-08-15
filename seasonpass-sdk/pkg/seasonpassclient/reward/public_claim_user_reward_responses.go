@@ -10,6 +10,7 @@ package reward
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -77,7 +78,16 @@ type PublicClaimUserRewardOK struct {
 }
 
 func (o *PublicClaimUserRewardOK) Error() string {
-	return fmt.Sprintf("[POST /seasonpass/public/namespaces/{namespace}/users/{userId}/seasons/current/rewards][%d] publicClaimUserRewardOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[POST /seasonpass/public/namespaces/{namespace}/users/{userId}/seasons/current/rewards][%d] publicClaimUserRewardOK  %+v", 200, o.ToString())
+}
+
+func (o *PublicClaimUserRewardOK) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *PublicClaimUserRewardOK) GetPayload() *seasonpassclientmodels.ClaimableRewards {
@@ -110,7 +120,16 @@ type PublicClaimUserRewardBadRequest struct {
 }
 
 func (o *PublicClaimUserRewardBadRequest) Error() string {
-	return fmt.Sprintf("[POST /seasonpass/public/namespaces/{namespace}/users/{userId}/seasons/current/rewards][%d] publicClaimUserRewardBadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[POST /seasonpass/public/namespaces/{namespace}/users/{userId}/seasons/current/rewards][%d] publicClaimUserRewardBadRequest  %+v", 400, o.ToString())
+}
+
+func (o *PublicClaimUserRewardBadRequest) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *PublicClaimUserRewardBadRequest) GetPayload() *seasonpassclientmodels.ErrorEntity {
@@ -143,7 +162,16 @@ type PublicClaimUserRewardNotFound struct {
 }
 
 func (o *PublicClaimUserRewardNotFound) Error() string {
-	return fmt.Sprintf("[POST /seasonpass/public/namespaces/{namespace}/users/{userId}/seasons/current/rewards][%d] publicClaimUserRewardNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[POST /seasonpass/public/namespaces/{namespace}/users/{userId}/seasons/current/rewards][%d] publicClaimUserRewardNotFound  %+v", 404, o.ToString())
+}
+
+func (o *PublicClaimUserRewardNotFound) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *PublicClaimUserRewardNotFound) GetPayload() *seasonpassclientmodels.ErrorEntity {
@@ -176,7 +204,16 @@ type PublicClaimUserRewardConflict struct {
 }
 
 func (o *PublicClaimUserRewardConflict) Error() string {
-	return fmt.Sprintf("[POST /seasonpass/public/namespaces/{namespace}/users/{userId}/seasons/current/rewards][%d] publicClaimUserRewardConflict  %+v", 409, o.Payload)
+	return fmt.Sprintf("[POST /seasonpass/public/namespaces/{namespace}/users/{userId}/seasons/current/rewards][%d] publicClaimUserRewardConflict  %+v", 409, o.ToString())
+}
+
+func (o *PublicClaimUserRewardConflict) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *PublicClaimUserRewardConflict) GetPayload() *seasonpassclientmodels.ErrorEntity {

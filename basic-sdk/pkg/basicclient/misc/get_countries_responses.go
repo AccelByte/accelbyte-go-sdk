@@ -10,6 +10,7 @@ package misc
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -71,7 +72,16 @@ type GetCountriesOK struct {
 }
 
 func (o *GetCountriesOK) Error() string {
-	return fmt.Sprintf("[GET /basic/v1/admin/namespaces/{namespace}/misc/countries][%d] getCountriesOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /basic/v1/admin/namespaces/{namespace}/misc/countries][%d] getCountriesOK  %+v", 200, o.ToString())
+}
+
+func (o *GetCountriesOK) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *GetCountriesOK) GetPayload() []*basicclientmodels.CountryObject {
@@ -102,7 +112,16 @@ type GetCountriesBadRequest struct {
 }
 
 func (o *GetCountriesBadRequest) Error() string {
-	return fmt.Sprintf("[GET /basic/v1/admin/namespaces/{namespace}/misc/countries][%d] getCountriesBadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[GET /basic/v1/admin/namespaces/{namespace}/misc/countries][%d] getCountriesBadRequest  %+v", 400, o.ToString())
+}
+
+func (o *GetCountriesBadRequest) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *GetCountriesBadRequest) GetPayload() *basicclientmodels.ValidationErrorEntity {
@@ -135,7 +154,16 @@ type GetCountriesUnauthorized struct {
 }
 
 func (o *GetCountriesUnauthorized) Error() string {
-	return fmt.Sprintf("[GET /basic/v1/admin/namespaces/{namespace}/misc/countries][%d] getCountriesUnauthorized  %+v", 401, o.Payload)
+	return fmt.Sprintf("[GET /basic/v1/admin/namespaces/{namespace}/misc/countries][%d] getCountriesUnauthorized  %+v", 401, o.ToString())
+}
+
+func (o *GetCountriesUnauthorized) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *GetCountriesUnauthorized) GetPayload() *basicclientmodels.ErrorEntity {

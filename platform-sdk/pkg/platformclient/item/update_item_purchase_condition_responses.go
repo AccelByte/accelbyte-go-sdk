@@ -10,6 +10,7 @@ package item
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -83,7 +84,16 @@ type UpdateItemPurchaseConditionOK struct {
 }
 
 func (o *UpdateItemPurchaseConditionOK) Error() string {
-	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/items/{itemId}/purchase/condition][%d] updateItemPurchaseConditionOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/items/{itemId}/purchase/condition][%d] updateItemPurchaseConditionOK  %+v", 200, o.ToString())
+}
+
+func (o *UpdateItemPurchaseConditionOK) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *UpdateItemPurchaseConditionOK) GetPayload() *platformclientmodels.FullItemInfo {
@@ -116,7 +126,16 @@ type UpdateItemPurchaseConditionBadRequest struct {
 }
 
 func (o *UpdateItemPurchaseConditionBadRequest) Error() string {
-	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/items/{itemId}/purchase/condition][%d] updateItemPurchaseConditionBadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/items/{itemId}/purchase/condition][%d] updateItemPurchaseConditionBadRequest  %+v", 400, o.ToString())
+}
+
+func (o *UpdateItemPurchaseConditionBadRequest) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *UpdateItemPurchaseConditionBadRequest) GetPayload() *platformclientmodels.ErrorEntity {
@@ -149,7 +168,16 @@ type UpdateItemPurchaseConditionNotFound struct {
 }
 
 func (o *UpdateItemPurchaseConditionNotFound) Error() string {
-	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/items/{itemId}/purchase/condition][%d] updateItemPurchaseConditionNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/items/{itemId}/purchase/condition][%d] updateItemPurchaseConditionNotFound  %+v", 404, o.ToString())
+}
+
+func (o *UpdateItemPurchaseConditionNotFound) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *UpdateItemPurchaseConditionNotFound) GetPayload() *platformclientmodels.ErrorEntity {
@@ -182,7 +210,16 @@ type UpdateItemPurchaseConditionConflict struct {
 }
 
 func (o *UpdateItemPurchaseConditionConflict) Error() string {
-	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/items/{itemId}/purchase/condition][%d] updateItemPurchaseConditionConflict  %+v", 409, o.Payload)
+	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/items/{itemId}/purchase/condition][%d] updateItemPurchaseConditionConflict  %+v", 409, o.ToString())
+}
+
+func (o *UpdateItemPurchaseConditionConflict) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *UpdateItemPurchaseConditionConflict) GetPayload() *platformclientmodels.ErrorEntity {
@@ -215,7 +252,16 @@ type UpdateItemPurchaseConditionUnprocessableEntity struct {
 }
 
 func (o *UpdateItemPurchaseConditionUnprocessableEntity) Error() string {
-	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/items/{itemId}/purchase/condition][%d] updateItemPurchaseConditionUnprocessableEntity  %+v", 422, o.Payload)
+	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/items/{itemId}/purchase/condition][%d] updateItemPurchaseConditionUnprocessableEntity  %+v", 422, o.ToString())
+}
+
+func (o *UpdateItemPurchaseConditionUnprocessableEntity) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *UpdateItemPurchaseConditionUnprocessableEntity) GetPayload() *platformclientmodels.ValidationErrorEntity {

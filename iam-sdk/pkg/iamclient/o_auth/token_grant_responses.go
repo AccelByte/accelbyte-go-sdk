@@ -10,6 +10,7 @@ package o_auth
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -71,7 +72,16 @@ type TokenGrantOK struct {
 }
 
 func (o *TokenGrantOK) Error() string {
-	return fmt.Sprintf("[POST /iam/oauth/token][%d] tokenGrantOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[POST /iam/oauth/token][%d] tokenGrantOK  %+v", 200, o.ToString())
+}
+
+func (o *TokenGrantOK) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *TokenGrantOK) GetPayload() *iamclientmodels.OauthmodelTokenResponse {
@@ -104,7 +114,16 @@ type TokenGrantBadRequest struct {
 }
 
 func (o *TokenGrantBadRequest) Error() string {
-	return fmt.Sprintf("[POST /iam/oauth/token][%d] tokenGrantBadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[POST /iam/oauth/token][%d] tokenGrantBadRequest  %+v", 400, o.ToString())
+}
+
+func (o *TokenGrantBadRequest) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *TokenGrantBadRequest) GetPayload() *iamclientmodels.OauthmodelErrorResponse {
@@ -137,7 +156,16 @@ type TokenGrantUnauthorized struct {
 }
 
 func (o *TokenGrantUnauthorized) Error() string {
-	return fmt.Sprintf("[POST /iam/oauth/token][%d] tokenGrantUnauthorized  %+v", 401, o.Payload)
+	return fmt.Sprintf("[POST /iam/oauth/token][%d] tokenGrantUnauthorized  %+v", 401, o.ToString())
+}
+
+func (o *TokenGrantUnauthorized) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *TokenGrantUnauthorized) GetPayload() *iamclientmodels.OauthmodelErrorResponse {

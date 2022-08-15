@@ -10,6 +10,7 @@ package users_v4
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -95,7 +96,16 @@ type PublicEnableMyBackupCodesV4OK struct {
 }
 
 func (o *PublicEnableMyBackupCodesV4OK) Error() string {
-	return fmt.Sprintf("[POST /iam/v4/public/namespaces/{namespace}/users/me/mfa/backupCode/enable][%d] publicEnableMyBackupCodesV4OK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[POST /iam/v4/public/namespaces/{namespace}/users/me/mfa/backupCode/enable][%d] publicEnableMyBackupCodesV4OK  %+v", 200, o.ToString())
+}
+
+func (o *PublicEnableMyBackupCodesV4OK) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *PublicEnableMyBackupCodesV4OK) GetPayload() *iamclientmodels.ModelBackupCodesResponseV4 {
@@ -128,7 +138,16 @@ type PublicEnableMyBackupCodesV4BadRequest struct {
 }
 
 func (o *PublicEnableMyBackupCodesV4BadRequest) Error() string {
-	return fmt.Sprintf("[POST /iam/v4/public/namespaces/{namespace}/users/me/mfa/backupCode/enable][%d] publicEnableMyBackupCodesV4BadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[POST /iam/v4/public/namespaces/{namespace}/users/me/mfa/backupCode/enable][%d] publicEnableMyBackupCodesV4BadRequest  %+v", 400, o.ToString())
+}
+
+func (o *PublicEnableMyBackupCodesV4BadRequest) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *PublicEnableMyBackupCodesV4BadRequest) GetPayload() *iamclientmodels.RestErrorResponse {
@@ -161,7 +180,16 @@ type PublicEnableMyBackupCodesV4Unauthorized struct {
 }
 
 func (o *PublicEnableMyBackupCodesV4Unauthorized) Error() string {
-	return fmt.Sprintf("[POST /iam/v4/public/namespaces/{namespace}/users/me/mfa/backupCode/enable][%d] publicEnableMyBackupCodesV4Unauthorized  %+v", 401, o.Payload)
+	return fmt.Sprintf("[POST /iam/v4/public/namespaces/{namespace}/users/me/mfa/backupCode/enable][%d] publicEnableMyBackupCodesV4Unauthorized  %+v", 401, o.ToString())
+}
+
+func (o *PublicEnableMyBackupCodesV4Unauthorized) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *PublicEnableMyBackupCodesV4Unauthorized) GetPayload() *iamclientmodels.RestErrorResponse {
@@ -194,7 +222,16 @@ type PublicEnableMyBackupCodesV4Forbidden struct {
 }
 
 func (o *PublicEnableMyBackupCodesV4Forbidden) Error() string {
-	return fmt.Sprintf("[POST /iam/v4/public/namespaces/{namespace}/users/me/mfa/backupCode/enable][%d] publicEnableMyBackupCodesV4Forbidden  %+v", 403, o.Payload)
+	return fmt.Sprintf("[POST /iam/v4/public/namespaces/{namespace}/users/me/mfa/backupCode/enable][%d] publicEnableMyBackupCodesV4Forbidden  %+v", 403, o.ToString())
+}
+
+func (o *PublicEnableMyBackupCodesV4Forbidden) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *PublicEnableMyBackupCodesV4Forbidden) GetPayload() *iamclientmodels.RestErrorResponse {
@@ -227,7 +264,16 @@ type PublicEnableMyBackupCodesV4NotFound struct {
 }
 
 func (o *PublicEnableMyBackupCodesV4NotFound) Error() string {
-	return fmt.Sprintf("[POST /iam/v4/public/namespaces/{namespace}/users/me/mfa/backupCode/enable][%d] publicEnableMyBackupCodesV4NotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[POST /iam/v4/public/namespaces/{namespace}/users/me/mfa/backupCode/enable][%d] publicEnableMyBackupCodesV4NotFound  %+v", 404, o.ToString())
+}
+
+func (o *PublicEnableMyBackupCodesV4NotFound) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *PublicEnableMyBackupCodesV4NotFound) GetPayload() *iamclientmodels.RestErrorResponse {
@@ -260,7 +306,16 @@ type PublicEnableMyBackupCodesV4Conflict struct {
 }
 
 func (o *PublicEnableMyBackupCodesV4Conflict) Error() string {
-	return fmt.Sprintf("[POST /iam/v4/public/namespaces/{namespace}/users/me/mfa/backupCode/enable][%d] publicEnableMyBackupCodesV4Conflict  %+v", 409, o.Payload)
+	return fmt.Sprintf("[POST /iam/v4/public/namespaces/{namespace}/users/me/mfa/backupCode/enable][%d] publicEnableMyBackupCodesV4Conflict  %+v", 409, o.ToString())
+}
+
+func (o *PublicEnableMyBackupCodesV4Conflict) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *PublicEnableMyBackupCodesV4Conflict) GetPayload() *iamclientmodels.RestErrorResponse {
@@ -293,7 +348,16 @@ type PublicEnableMyBackupCodesV4InternalServerError struct {
 }
 
 func (o *PublicEnableMyBackupCodesV4InternalServerError) Error() string {
-	return fmt.Sprintf("[POST /iam/v4/public/namespaces/{namespace}/users/me/mfa/backupCode/enable][%d] publicEnableMyBackupCodesV4InternalServerError  %+v", 500, o.Payload)
+	return fmt.Sprintf("[POST /iam/v4/public/namespaces/{namespace}/users/me/mfa/backupCode/enable][%d] publicEnableMyBackupCodesV4InternalServerError  %+v", 500, o.ToString())
+}
+
+func (o *PublicEnableMyBackupCodesV4InternalServerError) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *PublicEnableMyBackupCodesV4InternalServerError) GetPayload() *iamclientmodels.RestErrorResponse {

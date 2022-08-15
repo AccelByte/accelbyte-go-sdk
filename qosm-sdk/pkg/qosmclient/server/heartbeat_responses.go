@@ -10,6 +10,7 @@ package server
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -92,7 +93,16 @@ type HeartbeatBadRequest struct {
 }
 
 func (o *HeartbeatBadRequest) Error() string {
-	return fmt.Sprintf("[POST /qosm/servers/heartbeat][%d] heartbeatBadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[POST /qosm/servers/heartbeat][%d] heartbeatBadRequest  %+v", 400, o.ToString())
+}
+
+func (o *HeartbeatBadRequest) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *HeartbeatBadRequest) GetPayload() *qosmclientmodels.ResponseError {
@@ -125,7 +135,16 @@ type HeartbeatInternalServerError struct {
 }
 
 func (o *HeartbeatInternalServerError) Error() string {
-	return fmt.Sprintf("[POST /qosm/servers/heartbeat][%d] heartbeatInternalServerError  %+v", 500, o.Payload)
+	return fmt.Sprintf("[POST /qosm/servers/heartbeat][%d] heartbeatInternalServerError  %+v", 500, o.ToString())
+}
+
+func (o *HeartbeatInternalServerError) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *HeartbeatInternalServerError) GetPayload() *qosmclientmodels.ResponseError {

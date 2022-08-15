@@ -10,6 +10,7 @@ package reward
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -71,7 +72,16 @@ type PublicBulkClaimUserRewardsOK struct {
 }
 
 func (o *PublicBulkClaimUserRewardsOK) Error() string {
-	return fmt.Sprintf("[POST /seasonpass/public/namespaces/{namespace}/users/{userId}/seasons/current/rewards/bulk][%d] publicBulkClaimUserRewardsOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[POST /seasonpass/public/namespaces/{namespace}/users/{userId}/seasons/current/rewards/bulk][%d] publicBulkClaimUserRewardsOK  %+v", 200, o.ToString())
+}
+
+func (o *PublicBulkClaimUserRewardsOK) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *PublicBulkClaimUserRewardsOK) GetPayload() *seasonpassclientmodels.ClaimableRewards {
@@ -104,7 +114,16 @@ type PublicBulkClaimUserRewardsBadRequest struct {
 }
 
 func (o *PublicBulkClaimUserRewardsBadRequest) Error() string {
-	return fmt.Sprintf("[POST /seasonpass/public/namespaces/{namespace}/users/{userId}/seasons/current/rewards/bulk][%d] publicBulkClaimUserRewardsBadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[POST /seasonpass/public/namespaces/{namespace}/users/{userId}/seasons/current/rewards/bulk][%d] publicBulkClaimUserRewardsBadRequest  %+v", 400, o.ToString())
+}
+
+func (o *PublicBulkClaimUserRewardsBadRequest) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *PublicBulkClaimUserRewardsBadRequest) GetPayload() *seasonpassclientmodels.ErrorEntity {
@@ -137,7 +156,16 @@ type PublicBulkClaimUserRewardsNotFound struct {
 }
 
 func (o *PublicBulkClaimUserRewardsNotFound) Error() string {
-	return fmt.Sprintf("[POST /seasonpass/public/namespaces/{namespace}/users/{userId}/seasons/current/rewards/bulk][%d] publicBulkClaimUserRewardsNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[POST /seasonpass/public/namespaces/{namespace}/users/{userId}/seasons/current/rewards/bulk][%d] publicBulkClaimUserRewardsNotFound  %+v", 404, o.ToString())
+}
+
+func (o *PublicBulkClaimUserRewardsNotFound) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *PublicBulkClaimUserRewardsNotFound) GetPayload() *seasonpassclientmodels.ErrorEntity {

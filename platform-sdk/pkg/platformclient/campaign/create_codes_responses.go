@@ -10,6 +10,7 @@ package campaign
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -71,7 +72,16 @@ type CreateCodesCreated struct {
 }
 
 func (o *CreateCodesCreated) Error() string {
-	return fmt.Sprintf("[POST /platform/admin/namespaces/{namespace}/codes/campaigns/{campaignId}][%d] createCodesCreated  %+v", 201, o.Payload)
+	return fmt.Sprintf("[POST /platform/admin/namespaces/{namespace}/codes/campaigns/{campaignId}][%d] createCodesCreated  %+v", 201, o.ToString())
+}
+
+func (o *CreateCodesCreated) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *CreateCodesCreated) GetPayload() *platformclientmodels.CodeCreateResult {
@@ -104,7 +114,16 @@ type CreateCodesNotFound struct {
 }
 
 func (o *CreateCodesNotFound) Error() string {
-	return fmt.Sprintf("[POST /platform/admin/namespaces/{namespace}/codes/campaigns/{campaignId}][%d] createCodesNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[POST /platform/admin/namespaces/{namespace}/codes/campaigns/{campaignId}][%d] createCodesNotFound  %+v", 404, o.ToString())
+}
+
+func (o *CreateCodesNotFound) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *CreateCodesNotFound) GetPayload() *platformclientmodels.ErrorEntity {
@@ -137,7 +156,16 @@ type CreateCodesUnprocessableEntity struct {
 }
 
 func (o *CreateCodesUnprocessableEntity) Error() string {
-	return fmt.Sprintf("[POST /platform/admin/namespaces/{namespace}/codes/campaigns/{campaignId}][%d] createCodesUnprocessableEntity  %+v", 422, o.Payload)
+	return fmt.Sprintf("[POST /platform/admin/namespaces/{namespace}/codes/campaigns/{campaignId}][%d] createCodesUnprocessableEntity  %+v", 422, o.ToString())
+}
+
+func (o *CreateCodesUnprocessableEntity) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *CreateCodesUnprocessableEntity) GetPayload() *platformclientmodels.ValidationErrorEntity {

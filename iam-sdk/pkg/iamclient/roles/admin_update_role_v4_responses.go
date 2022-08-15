@@ -10,6 +10,7 @@ package roles
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -83,7 +84,16 @@ type AdminUpdateRoleV4OK struct {
 }
 
 func (o *AdminUpdateRoleV4OK) Error() string {
-	return fmt.Sprintf("[PATCH /iam/v4/admin/roles/{roleId}][%d] adminUpdateRoleV4OK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[PATCH /iam/v4/admin/roles/{roleId}][%d] adminUpdateRoleV4OK  %+v", 200, o.ToString())
+}
+
+func (o *AdminUpdateRoleV4OK) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *AdminUpdateRoleV4OK) GetPayload() *iamclientmodels.ModelRoleV4Response {
@@ -116,7 +126,16 @@ type AdminUpdateRoleV4BadRequest struct {
 }
 
 func (o *AdminUpdateRoleV4BadRequest) Error() string {
-	return fmt.Sprintf("[PATCH /iam/v4/admin/roles/{roleId}][%d] adminUpdateRoleV4BadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[PATCH /iam/v4/admin/roles/{roleId}][%d] adminUpdateRoleV4BadRequest  %+v", 400, o.ToString())
+}
+
+func (o *AdminUpdateRoleV4BadRequest) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *AdminUpdateRoleV4BadRequest) GetPayload() *iamclientmodels.RestapiErrorResponse {
@@ -149,7 +168,16 @@ type AdminUpdateRoleV4Unauthorized struct {
 }
 
 func (o *AdminUpdateRoleV4Unauthorized) Error() string {
-	return fmt.Sprintf("[PATCH /iam/v4/admin/roles/{roleId}][%d] adminUpdateRoleV4Unauthorized  %+v", 401, o.Payload)
+	return fmt.Sprintf("[PATCH /iam/v4/admin/roles/{roleId}][%d] adminUpdateRoleV4Unauthorized  %+v", 401, o.ToString())
+}
+
+func (o *AdminUpdateRoleV4Unauthorized) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *AdminUpdateRoleV4Unauthorized) GetPayload() *iamclientmodels.RestapiErrorResponse {
@@ -182,7 +210,16 @@ type AdminUpdateRoleV4Forbidden struct {
 }
 
 func (o *AdminUpdateRoleV4Forbidden) Error() string {
-	return fmt.Sprintf("[PATCH /iam/v4/admin/roles/{roleId}][%d] adminUpdateRoleV4Forbidden  %+v", 403, o.Payload)
+	return fmt.Sprintf("[PATCH /iam/v4/admin/roles/{roleId}][%d] adminUpdateRoleV4Forbidden  %+v", 403, o.ToString())
+}
+
+func (o *AdminUpdateRoleV4Forbidden) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *AdminUpdateRoleV4Forbidden) GetPayload() *iamclientmodels.RestapiErrorResponse {
@@ -215,7 +252,16 @@ type AdminUpdateRoleV4NotFound struct {
 }
 
 func (o *AdminUpdateRoleV4NotFound) Error() string {
-	return fmt.Sprintf("[PATCH /iam/v4/admin/roles/{roleId}][%d] adminUpdateRoleV4NotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[PATCH /iam/v4/admin/roles/{roleId}][%d] adminUpdateRoleV4NotFound  %+v", 404, o.ToString())
+}
+
+func (o *AdminUpdateRoleV4NotFound) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *AdminUpdateRoleV4NotFound) GetPayload() *iamclientmodels.RestapiErrorResponse {

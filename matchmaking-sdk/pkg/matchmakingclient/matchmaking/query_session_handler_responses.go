@@ -10,6 +10,7 @@ package matchmaking
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -89,7 +90,16 @@ type QuerySessionHandlerOK struct {
 }
 
 func (o *QuerySessionHandlerOK) Error() string {
-	return fmt.Sprintf("[GET /matchmaking/namespaces/{namespace}/sessions/{matchID}/status][%d] querySessionHandlerOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /matchmaking/namespaces/{namespace}/sessions/{matchID}/status][%d] querySessionHandlerOK  %+v", 200, o.ToString())
+}
+
+func (o *QuerySessionHandlerOK) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *QuerySessionHandlerOK) GetPayload() *matchmakingclientmodels.ModelsMatchmakingResult {
@@ -122,7 +132,16 @@ type QuerySessionHandlerBadRequest struct {
 }
 
 func (o *QuerySessionHandlerBadRequest) Error() string {
-	return fmt.Sprintf("[GET /matchmaking/namespaces/{namespace}/sessions/{matchID}/status][%d] querySessionHandlerBadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[GET /matchmaking/namespaces/{namespace}/sessions/{matchID}/status][%d] querySessionHandlerBadRequest  %+v", 400, o.ToString())
+}
+
+func (o *QuerySessionHandlerBadRequest) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *QuerySessionHandlerBadRequest) GetPayload() *matchmakingclientmodels.ResponseError {
@@ -155,7 +174,16 @@ type QuerySessionHandlerUnauthorized struct {
 }
 
 func (o *QuerySessionHandlerUnauthorized) Error() string {
-	return fmt.Sprintf("[GET /matchmaking/namespaces/{namespace}/sessions/{matchID}/status][%d] querySessionHandlerUnauthorized  %+v", 401, o.Payload)
+	return fmt.Sprintf("[GET /matchmaking/namespaces/{namespace}/sessions/{matchID}/status][%d] querySessionHandlerUnauthorized  %+v", 401, o.ToString())
+}
+
+func (o *QuerySessionHandlerUnauthorized) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *QuerySessionHandlerUnauthorized) GetPayload() *matchmakingclientmodels.ResponseError {
@@ -188,7 +216,16 @@ type QuerySessionHandlerForbidden struct {
 }
 
 func (o *QuerySessionHandlerForbidden) Error() string {
-	return fmt.Sprintf("[GET /matchmaking/namespaces/{namespace}/sessions/{matchID}/status][%d] querySessionHandlerForbidden  %+v", 403, o.Payload)
+	return fmt.Sprintf("[GET /matchmaking/namespaces/{namespace}/sessions/{matchID}/status][%d] querySessionHandlerForbidden  %+v", 403, o.ToString())
+}
+
+func (o *QuerySessionHandlerForbidden) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *QuerySessionHandlerForbidden) GetPayload() *matchmakingclientmodels.ResponseError {
@@ -221,7 +258,16 @@ type QuerySessionHandlerNotFound struct {
 }
 
 func (o *QuerySessionHandlerNotFound) Error() string {
-	return fmt.Sprintf("[GET /matchmaking/namespaces/{namespace}/sessions/{matchID}/status][%d] querySessionHandlerNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[GET /matchmaking/namespaces/{namespace}/sessions/{matchID}/status][%d] querySessionHandlerNotFound  %+v", 404, o.ToString())
+}
+
+func (o *QuerySessionHandlerNotFound) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *QuerySessionHandlerNotFound) GetPayload() *matchmakingclientmodels.ResponseError {
@@ -254,7 +300,16 @@ type QuerySessionHandlerInternalServerError struct {
 }
 
 func (o *QuerySessionHandlerInternalServerError) Error() string {
-	return fmt.Sprintf("[GET /matchmaking/namespaces/{namespace}/sessions/{matchID}/status][%d] querySessionHandlerInternalServerError  %+v", 500, o.Payload)
+	return fmt.Sprintf("[GET /matchmaking/namespaces/{namespace}/sessions/{matchID}/status][%d] querySessionHandlerInternalServerError  %+v", 500, o.ToString())
+}
+
+func (o *QuerySessionHandlerInternalServerError) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *QuerySessionHandlerInternalServerError) GetPayload() *matchmakingclientmodels.ResponseError {

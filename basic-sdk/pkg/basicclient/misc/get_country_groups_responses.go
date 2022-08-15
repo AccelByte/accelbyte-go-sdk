@@ -10,6 +10,7 @@ package misc
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -83,7 +84,16 @@ type GetCountryGroupsOK struct {
 }
 
 func (o *GetCountryGroupsOK) Error() string {
-	return fmt.Sprintf("[GET /basic/v1/admin/namespaces/{namespace}/misc/countrygroups][%d] getCountryGroupsOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /basic/v1/admin/namespaces/{namespace}/misc/countrygroups][%d] getCountryGroupsOK  %+v", 200, o.ToString())
+}
+
+func (o *GetCountryGroupsOK) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *GetCountryGroupsOK) GetPayload() []*basicclientmodels.RetrieveCountryGroupResponse {
@@ -114,7 +124,16 @@ type GetCountryGroupsBadRequest struct {
 }
 
 func (o *GetCountryGroupsBadRequest) Error() string {
-	return fmt.Sprintf("[GET /basic/v1/admin/namespaces/{namespace}/misc/countrygroups][%d] getCountryGroupsBadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[GET /basic/v1/admin/namespaces/{namespace}/misc/countrygroups][%d] getCountryGroupsBadRequest  %+v", 400, o.ToString())
+}
+
+func (o *GetCountryGroupsBadRequest) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *GetCountryGroupsBadRequest) GetPayload() *basicclientmodels.ValidationErrorEntity {
@@ -147,7 +166,16 @@ type GetCountryGroupsUnauthorized struct {
 }
 
 func (o *GetCountryGroupsUnauthorized) Error() string {
-	return fmt.Sprintf("[GET /basic/v1/admin/namespaces/{namespace}/misc/countrygroups][%d] getCountryGroupsUnauthorized  %+v", 401, o.Payload)
+	return fmt.Sprintf("[GET /basic/v1/admin/namespaces/{namespace}/misc/countrygroups][%d] getCountryGroupsUnauthorized  %+v", 401, o.ToString())
+}
+
+func (o *GetCountryGroupsUnauthorized) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *GetCountryGroupsUnauthorized) GetPayload() *basicclientmodels.ErrorEntity {
@@ -180,7 +208,16 @@ type GetCountryGroupsForbidden struct {
 }
 
 func (o *GetCountryGroupsForbidden) Error() string {
-	return fmt.Sprintf("[GET /basic/v1/admin/namespaces/{namespace}/misc/countrygroups][%d] getCountryGroupsForbidden  %+v", 403, o.Payload)
+	return fmt.Sprintf("[GET /basic/v1/admin/namespaces/{namespace}/misc/countrygroups][%d] getCountryGroupsForbidden  %+v", 403, o.ToString())
+}
+
+func (o *GetCountryGroupsForbidden) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *GetCountryGroupsForbidden) GetPayload() *basicclientmodels.ErrorEntity {
@@ -213,7 +250,16 @@ type GetCountryGroupsNotFound struct {
 }
 
 func (o *GetCountryGroupsNotFound) Error() string {
-	return fmt.Sprintf("[GET /basic/v1/admin/namespaces/{namespace}/misc/countrygroups][%d] getCountryGroupsNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[GET /basic/v1/admin/namespaces/{namespace}/misc/countrygroups][%d] getCountryGroupsNotFound  %+v", 404, o.ToString())
+}
+
+func (o *GetCountryGroupsNotFound) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *GetCountryGroupsNotFound) GetPayload() *basicclientmodels.ErrorEntity {

@@ -10,6 +10,7 @@ package catalog_changes
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -59,7 +60,16 @@ type QueryChangesOK struct {
 }
 
 func (o *QueryChangesOK) Error() string {
-	return fmt.Sprintf("[GET /platform/admin/namespaces/{namespace}/stores/{storeId}/catalogChanges/byCriteria][%d] queryChangesOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /platform/admin/namespaces/{namespace}/stores/{storeId}/catalogChanges/byCriteria][%d] queryChangesOK  %+v", 200, o.ToString())
+}
+
+func (o *QueryChangesOK) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *QueryChangesOK) GetPayload() []*platformclientmodels.CatalogChangePagingSlicedResult {

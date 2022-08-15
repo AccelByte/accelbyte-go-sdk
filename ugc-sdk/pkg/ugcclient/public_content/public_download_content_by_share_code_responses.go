@@ -10,6 +10,7 @@ package public_content
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -77,7 +78,16 @@ type PublicDownloadContentByShareCodeOK struct {
 }
 
 func (o *PublicDownloadContentByShareCodeOK) Error() string {
-	return fmt.Sprintf("[GET /ugc/v1/public/namespaces/{namespace}/contents/sharecodes/{shareCode}][%d] publicDownloadContentByShareCodeOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /ugc/v1/public/namespaces/{namespace}/contents/sharecodes/{shareCode}][%d] publicDownloadContentByShareCodeOK  %+v", 200, o.ToString())
+}
+
+func (o *PublicDownloadContentByShareCodeOK) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *PublicDownloadContentByShareCodeOK) GetPayload() *ugcclientmodels.ModelsContentDownloadResponse {
@@ -110,7 +120,16 @@ type PublicDownloadContentByShareCodeUnauthorized struct {
 }
 
 func (o *PublicDownloadContentByShareCodeUnauthorized) Error() string {
-	return fmt.Sprintf("[GET /ugc/v1/public/namespaces/{namespace}/contents/sharecodes/{shareCode}][%d] publicDownloadContentByShareCodeUnauthorized  %+v", 401, o.Payload)
+	return fmt.Sprintf("[GET /ugc/v1/public/namespaces/{namespace}/contents/sharecodes/{shareCode}][%d] publicDownloadContentByShareCodeUnauthorized  %+v", 401, o.ToString())
+}
+
+func (o *PublicDownloadContentByShareCodeUnauthorized) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *PublicDownloadContentByShareCodeUnauthorized) GetPayload() *ugcclientmodels.ResponseError {
@@ -143,7 +162,16 @@ type PublicDownloadContentByShareCodeNotFound struct {
 }
 
 func (o *PublicDownloadContentByShareCodeNotFound) Error() string {
-	return fmt.Sprintf("[GET /ugc/v1/public/namespaces/{namespace}/contents/sharecodes/{shareCode}][%d] publicDownloadContentByShareCodeNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[GET /ugc/v1/public/namespaces/{namespace}/contents/sharecodes/{shareCode}][%d] publicDownloadContentByShareCodeNotFound  %+v", 404, o.ToString())
+}
+
+func (o *PublicDownloadContentByShareCodeNotFound) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *PublicDownloadContentByShareCodeNotFound) GetPayload() *ugcclientmodels.ResponseError {
@@ -176,7 +204,16 @@ type PublicDownloadContentByShareCodeInternalServerError struct {
 }
 
 func (o *PublicDownloadContentByShareCodeInternalServerError) Error() string {
-	return fmt.Sprintf("[GET /ugc/v1/public/namespaces/{namespace}/contents/sharecodes/{shareCode}][%d] publicDownloadContentByShareCodeInternalServerError  %+v", 500, o.Payload)
+	return fmt.Sprintf("[GET /ugc/v1/public/namespaces/{namespace}/contents/sharecodes/{shareCode}][%d] publicDownloadContentByShareCodeInternalServerError  %+v", 500, o.ToString())
+}
+
+func (o *PublicDownloadContentByShareCodeInternalServerError) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *PublicDownloadContentByShareCodeInternalServerError) GetPayload() *ugcclientmodels.ResponseError {

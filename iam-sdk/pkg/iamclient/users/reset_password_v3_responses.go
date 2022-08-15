@@ -10,6 +10,7 @@ package users
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -98,7 +99,16 @@ type ResetPasswordV3BadRequest struct {
 }
 
 func (o *ResetPasswordV3BadRequest) Error() string {
-	return fmt.Sprintf("[POST /iam/v3/public/namespaces/{namespace}/users/reset][%d] resetPasswordV3BadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[POST /iam/v3/public/namespaces/{namespace}/users/reset][%d] resetPasswordV3BadRequest  %+v", 400, o.ToString())
+}
+
+func (o *ResetPasswordV3BadRequest) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *ResetPasswordV3BadRequest) GetPayload() *iamclientmodels.RestErrorResponse {
@@ -131,7 +141,16 @@ type ResetPasswordV3Forbidden struct {
 }
 
 func (o *ResetPasswordV3Forbidden) Error() string {
-	return fmt.Sprintf("[POST /iam/v3/public/namespaces/{namespace}/users/reset][%d] resetPasswordV3Forbidden  %+v", 403, o.Payload)
+	return fmt.Sprintf("[POST /iam/v3/public/namespaces/{namespace}/users/reset][%d] resetPasswordV3Forbidden  %+v", 403, o.ToString())
+}
+
+func (o *ResetPasswordV3Forbidden) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *ResetPasswordV3Forbidden) GetPayload() *iamclientmodels.RestErrorResponse {
@@ -164,7 +183,16 @@ type ResetPasswordV3NotFound struct {
 }
 
 func (o *ResetPasswordV3NotFound) Error() string {
-	return fmt.Sprintf("[POST /iam/v3/public/namespaces/{namespace}/users/reset][%d] resetPasswordV3NotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[POST /iam/v3/public/namespaces/{namespace}/users/reset][%d] resetPasswordV3NotFound  %+v", 404, o.ToString())
+}
+
+func (o *ResetPasswordV3NotFound) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *ResetPasswordV3NotFound) GetPayload() *iamclientmodels.RestErrorResponse {

@@ -10,6 +10,7 @@ package image_config
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -83,7 +84,16 @@ type ExportImagesOK struct {
 }
 
 func (o *ExportImagesOK) Error() string {
-	return fmt.Sprintf("[GET /dsmcontroller/admin/namespaces/{namespace}/images/export][%d] exportImagesOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /dsmcontroller/admin/namespaces/{namespace}/images/export][%d] exportImagesOK  %+v", 200, o.ToString())
+}
+
+func (o *ExportImagesOK) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *ExportImagesOK) GetPayload() []*dsmcclientmodels.ModelsImageRecord {
@@ -114,7 +124,16 @@ type ExportImagesUnauthorized struct {
 }
 
 func (o *ExportImagesUnauthorized) Error() string {
-	return fmt.Sprintf("[GET /dsmcontroller/admin/namespaces/{namespace}/images/export][%d] exportImagesUnauthorized  %+v", 401, o.Payload)
+	return fmt.Sprintf("[GET /dsmcontroller/admin/namespaces/{namespace}/images/export][%d] exportImagesUnauthorized  %+v", 401, o.ToString())
+}
+
+func (o *ExportImagesUnauthorized) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *ExportImagesUnauthorized) GetPayload() *dsmcclientmodels.ResponseError {
@@ -147,7 +166,16 @@ type ExportImagesForbidden struct {
 }
 
 func (o *ExportImagesForbidden) Error() string {
-	return fmt.Sprintf("[GET /dsmcontroller/admin/namespaces/{namespace}/images/export][%d] exportImagesForbidden  %+v", 403, o.Payload)
+	return fmt.Sprintf("[GET /dsmcontroller/admin/namespaces/{namespace}/images/export][%d] exportImagesForbidden  %+v", 403, o.ToString())
+}
+
+func (o *ExportImagesForbidden) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *ExportImagesForbidden) GetPayload() *dsmcclientmodels.ResponseError {
@@ -180,7 +208,16 @@ type ExportImagesNotFound struct {
 }
 
 func (o *ExportImagesNotFound) Error() string {
-	return fmt.Sprintf("[GET /dsmcontroller/admin/namespaces/{namespace}/images/export][%d] exportImagesNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[GET /dsmcontroller/admin/namespaces/{namespace}/images/export][%d] exportImagesNotFound  %+v", 404, o.ToString())
+}
+
+func (o *ExportImagesNotFound) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *ExportImagesNotFound) GetPayload() *dsmcclientmodels.ResponseError {
@@ -213,7 +250,16 @@ type ExportImagesInternalServerError struct {
 }
 
 func (o *ExportImagesInternalServerError) Error() string {
-	return fmt.Sprintf("[GET /dsmcontroller/admin/namespaces/{namespace}/images/export][%d] exportImagesInternalServerError  %+v", 500, o.Payload)
+	return fmt.Sprintf("[GET /dsmcontroller/admin/namespaces/{namespace}/images/export][%d] exportImagesInternalServerError  %+v", 500, o.ToString())
+}
+
+func (o *ExportImagesInternalServerError) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *ExportImagesInternalServerError) GetPayload() *dsmcclientmodels.ResponseError {

@@ -10,6 +10,7 @@ package entitlement
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -59,7 +60,16 @@ type PublicGetUserEntitlementOwnershipBySkuOK struct {
 }
 
 func (o *PublicGetUserEntitlementOwnershipBySkuOK) Error() string {
-	return fmt.Sprintf("[GET /platform/public/namespaces/{namespace}/users/{userId}/entitlements/ownership/bySku][%d] publicGetUserEntitlementOwnershipBySkuOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /platform/public/namespaces/{namespace}/users/{userId}/entitlements/ownership/bySku][%d] publicGetUserEntitlementOwnershipBySkuOK  %+v", 200, o.ToString())
+}
+
+func (o *PublicGetUserEntitlementOwnershipBySkuOK) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *PublicGetUserEntitlementOwnershipBySkuOK) GetPayload() *platformclientmodels.TimedOwnership {

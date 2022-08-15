@@ -10,6 +10,7 @@ package image_config
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -77,7 +78,16 @@ type GetImagePatchDetailOK struct {
 }
 
 func (o *GetImagePatchDetailOK) Error() string {
-	return fmt.Sprintf("[GET /dsmcontroller/admin/namespaces/{namespace}/images/versions/{version}/patches/{versionPatch}][%d] getImagePatchDetailOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /dsmcontroller/admin/namespaces/{namespace}/images/versions/{version}/patches/{versionPatch}][%d] getImagePatchDetailOK  %+v", 200, o.ToString())
+}
+
+func (o *GetImagePatchDetailOK) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *GetImagePatchDetailOK) GetPayload() *dsmcclientmodels.ModelsGetImagePatchDetailResponse {
@@ -110,7 +120,16 @@ type GetImagePatchDetailUnauthorized struct {
 }
 
 func (o *GetImagePatchDetailUnauthorized) Error() string {
-	return fmt.Sprintf("[GET /dsmcontroller/admin/namespaces/{namespace}/images/versions/{version}/patches/{versionPatch}][%d] getImagePatchDetailUnauthorized  %+v", 401, o.Payload)
+	return fmt.Sprintf("[GET /dsmcontroller/admin/namespaces/{namespace}/images/versions/{version}/patches/{versionPatch}][%d] getImagePatchDetailUnauthorized  %+v", 401, o.ToString())
+}
+
+func (o *GetImagePatchDetailUnauthorized) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *GetImagePatchDetailUnauthorized) GetPayload() *dsmcclientmodels.ResponseError {
@@ -143,7 +162,16 @@ type GetImagePatchDetailNotFound struct {
 }
 
 func (o *GetImagePatchDetailNotFound) Error() string {
-	return fmt.Sprintf("[GET /dsmcontroller/admin/namespaces/{namespace}/images/versions/{version}/patches/{versionPatch}][%d] getImagePatchDetailNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[GET /dsmcontroller/admin/namespaces/{namespace}/images/versions/{version}/patches/{versionPatch}][%d] getImagePatchDetailNotFound  %+v", 404, o.ToString())
+}
+
+func (o *GetImagePatchDetailNotFound) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *GetImagePatchDetailNotFound) GetPayload() *dsmcclientmodels.ResponseError {
@@ -176,7 +204,16 @@ type GetImagePatchDetailInternalServerError struct {
 }
 
 func (o *GetImagePatchDetailInternalServerError) Error() string {
-	return fmt.Sprintf("[GET /dsmcontroller/admin/namespaces/{namespace}/images/versions/{version}/patches/{versionPatch}][%d] getImagePatchDetailInternalServerError  %+v", 500, o.Payload)
+	return fmt.Sprintf("[GET /dsmcontroller/admin/namespaces/{namespace}/images/versions/{version}/patches/{versionPatch}][%d] getImagePatchDetailInternalServerError  %+v", 500, o.ToString())
+}
+
+func (o *GetImagePatchDetailInternalServerError) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *GetImagePatchDetailInternalServerError) GetPayload() *dsmcclientmodels.ResponseError {

@@ -10,6 +10,7 @@ package misc
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -83,7 +84,16 @@ type AddCountryGroupCreated struct {
 }
 
 func (o *AddCountryGroupCreated) Error() string {
-	return fmt.Sprintf("[POST /basic/v1/admin/namespaces/{namespace}/misc/countrygroups][%d] addCountryGroupCreated  %+v", 201, o.Payload)
+	return fmt.Sprintf("[POST /basic/v1/admin/namespaces/{namespace}/misc/countrygroups][%d] addCountryGroupCreated  %+v", 201, o.ToString())
+}
+
+func (o *AddCountryGroupCreated) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *AddCountryGroupCreated) GetPayload() *basicclientmodels.AddCountryGroupResponse {
@@ -116,7 +126,16 @@ type AddCountryGroupBadRequest struct {
 }
 
 func (o *AddCountryGroupBadRequest) Error() string {
-	return fmt.Sprintf("[POST /basic/v1/admin/namespaces/{namespace}/misc/countrygroups][%d] addCountryGroupBadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[POST /basic/v1/admin/namespaces/{namespace}/misc/countrygroups][%d] addCountryGroupBadRequest  %+v", 400, o.ToString())
+}
+
+func (o *AddCountryGroupBadRequest) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *AddCountryGroupBadRequest) GetPayload() *basicclientmodels.ErrorEntity {
@@ -149,7 +168,16 @@ type AddCountryGroupUnauthorized struct {
 }
 
 func (o *AddCountryGroupUnauthorized) Error() string {
-	return fmt.Sprintf("[POST /basic/v1/admin/namespaces/{namespace}/misc/countrygroups][%d] addCountryGroupUnauthorized  %+v", 401, o.Payload)
+	return fmt.Sprintf("[POST /basic/v1/admin/namespaces/{namespace}/misc/countrygroups][%d] addCountryGroupUnauthorized  %+v", 401, o.ToString())
+}
+
+func (o *AddCountryGroupUnauthorized) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *AddCountryGroupUnauthorized) GetPayload() *basicclientmodels.ErrorEntity {
@@ -182,7 +210,16 @@ type AddCountryGroupForbidden struct {
 }
 
 func (o *AddCountryGroupForbidden) Error() string {
-	return fmt.Sprintf("[POST /basic/v1/admin/namespaces/{namespace}/misc/countrygroups][%d] addCountryGroupForbidden  %+v", 403, o.Payload)
+	return fmt.Sprintf("[POST /basic/v1/admin/namespaces/{namespace}/misc/countrygroups][%d] addCountryGroupForbidden  %+v", 403, o.ToString())
+}
+
+func (o *AddCountryGroupForbidden) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *AddCountryGroupForbidden) GetPayload() *basicclientmodels.ErrorEntity {
@@ -215,7 +252,16 @@ type AddCountryGroupConflict struct {
 }
 
 func (o *AddCountryGroupConflict) Error() string {
-	return fmt.Sprintf("[POST /basic/v1/admin/namespaces/{namespace}/misc/countrygroups][%d] addCountryGroupConflict  %+v", 409, o.Payload)
+	return fmt.Sprintf("[POST /basic/v1/admin/namespaces/{namespace}/misc/countrygroups][%d] addCountryGroupConflict  %+v", 409, o.ToString())
+}
+
+func (o *AddCountryGroupConflict) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *AddCountryGroupConflict) GetPayload() *basicclientmodels.ErrorEntity {

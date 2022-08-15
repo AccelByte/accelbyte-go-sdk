@@ -10,6 +10,7 @@ package reward
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -83,7 +84,16 @@ type CreateRewardCreated struct {
 }
 
 func (o *CreateRewardCreated) Error() string {
-	return fmt.Sprintf("[POST /seasonpass/admin/namespaces/{namespace}/seasons/{seasonId}/rewards][%d] createRewardCreated  %+v", 201, o.Payload)
+	return fmt.Sprintf("[POST /seasonpass/admin/namespaces/{namespace}/seasons/{seasonId}/rewards][%d] createRewardCreated  %+v", 201, o.ToString())
+}
+
+func (o *CreateRewardCreated) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *CreateRewardCreated) GetPayload() *seasonpassclientmodels.RewardInfo {
@@ -116,7 +126,16 @@ type CreateRewardBadRequest struct {
 }
 
 func (o *CreateRewardBadRequest) Error() string {
-	return fmt.Sprintf("[POST /seasonpass/admin/namespaces/{namespace}/seasons/{seasonId}/rewards][%d] createRewardBadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[POST /seasonpass/admin/namespaces/{namespace}/seasons/{seasonId}/rewards][%d] createRewardBadRequest  %+v", 400, o.ToString())
+}
+
+func (o *CreateRewardBadRequest) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *CreateRewardBadRequest) GetPayload() *seasonpassclientmodels.ErrorEntity {
@@ -149,7 +168,16 @@ type CreateRewardNotFound struct {
 }
 
 func (o *CreateRewardNotFound) Error() string {
-	return fmt.Sprintf("[POST /seasonpass/admin/namespaces/{namespace}/seasons/{seasonId}/rewards][%d] createRewardNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[POST /seasonpass/admin/namespaces/{namespace}/seasons/{seasonId}/rewards][%d] createRewardNotFound  %+v", 404, o.ToString())
+}
+
+func (o *CreateRewardNotFound) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *CreateRewardNotFound) GetPayload() *seasonpassclientmodels.ErrorEntity {
@@ -182,7 +210,16 @@ type CreateRewardConflict struct {
 }
 
 func (o *CreateRewardConflict) Error() string {
-	return fmt.Sprintf("[POST /seasonpass/admin/namespaces/{namespace}/seasons/{seasonId}/rewards][%d] createRewardConflict  %+v", 409, o.Payload)
+	return fmt.Sprintf("[POST /seasonpass/admin/namespaces/{namespace}/seasons/{seasonId}/rewards][%d] createRewardConflict  %+v", 409, o.ToString())
+}
+
+func (o *CreateRewardConflict) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *CreateRewardConflict) GetPayload() *seasonpassclientmodels.ErrorEntity {
@@ -215,7 +252,16 @@ type CreateRewardUnprocessableEntity struct {
 }
 
 func (o *CreateRewardUnprocessableEntity) Error() string {
-	return fmt.Sprintf("[POST /seasonpass/admin/namespaces/{namespace}/seasons/{seasonId}/rewards][%d] createRewardUnprocessableEntity  %+v", 422, o.Payload)
+	return fmt.Sprintf("[POST /seasonpass/admin/namespaces/{namespace}/seasons/{seasonId}/rewards][%d] createRewardUnprocessableEntity  %+v", 422, o.ToString())
+}
+
+func (o *CreateRewardUnprocessableEntity) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *CreateRewardUnprocessableEntity) GetPayload() *seasonpassclientmodels.ValidationErrorEntity {

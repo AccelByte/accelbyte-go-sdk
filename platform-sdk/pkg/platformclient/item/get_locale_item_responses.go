@@ -10,6 +10,7 @@ package item
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -65,7 +66,16 @@ type GetLocaleItemOK struct {
 }
 
 func (o *GetLocaleItemOK) Error() string {
-	return fmt.Sprintf("[GET /platform/admin/namespaces/{namespace}/items/{itemId}/locale][%d] getLocaleItemOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /platform/admin/namespaces/{namespace}/items/{itemId}/locale][%d] getLocaleItemOK  %+v", 200, o.ToString())
+}
+
+func (o *GetLocaleItemOK) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *GetLocaleItemOK) GetPayload() *platformclientmodels.PopulatedItemInfo {
@@ -98,7 +108,16 @@ type GetLocaleItemNotFound struct {
 }
 
 func (o *GetLocaleItemNotFound) Error() string {
-	return fmt.Sprintf("[GET /platform/admin/namespaces/{namespace}/items/{itemId}/locale][%d] getLocaleItemNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[GET /platform/admin/namespaces/{namespace}/items/{itemId}/locale][%d] getLocaleItemNotFound  %+v", 404, o.ToString())
+}
+
+func (o *GetLocaleItemNotFound) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *GetLocaleItemNotFound) GetPayload() *platformclientmodels.ErrorEntity {

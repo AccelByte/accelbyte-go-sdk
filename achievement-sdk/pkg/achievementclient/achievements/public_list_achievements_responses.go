@@ -10,6 +10,7 @@ package achievements
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -83,7 +84,16 @@ type PublicListAchievementsOK struct {
 }
 
 func (o *PublicListAchievementsOK) Error() string {
-	return fmt.Sprintf("[GET /achievement/v1/public/namespaces/{namespace}/achievements][%d] publicListAchievementsOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /achievement/v1/public/namespaces/{namespace}/achievements][%d] publicListAchievementsOK  %+v", 200, o.ToString())
+}
+
+func (o *PublicListAchievementsOK) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *PublicListAchievementsOK) GetPayload() *achievementclientmodels.ModelsPublicAchievementsResponse {
@@ -116,7 +126,16 @@ type PublicListAchievementsBadRequest struct {
 }
 
 func (o *PublicListAchievementsBadRequest) Error() string {
-	return fmt.Sprintf("[GET /achievement/v1/public/namespaces/{namespace}/achievements][%d] publicListAchievementsBadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[GET /achievement/v1/public/namespaces/{namespace}/achievements][%d] publicListAchievementsBadRequest  %+v", 400, o.ToString())
+}
+
+func (o *PublicListAchievementsBadRequest) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *PublicListAchievementsBadRequest) GetPayload() *achievementclientmodels.ResponseError {
@@ -149,7 +168,16 @@ type PublicListAchievementsUnauthorized struct {
 }
 
 func (o *PublicListAchievementsUnauthorized) Error() string {
-	return fmt.Sprintf("[GET /achievement/v1/public/namespaces/{namespace}/achievements][%d] publicListAchievementsUnauthorized  %+v", 401, o.Payload)
+	return fmt.Sprintf("[GET /achievement/v1/public/namespaces/{namespace}/achievements][%d] publicListAchievementsUnauthorized  %+v", 401, o.ToString())
+}
+
+func (o *PublicListAchievementsUnauthorized) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *PublicListAchievementsUnauthorized) GetPayload() *achievementclientmodels.ResponseError {
@@ -182,7 +210,16 @@ type PublicListAchievementsNotFound struct {
 }
 
 func (o *PublicListAchievementsNotFound) Error() string {
-	return fmt.Sprintf("[GET /achievement/v1/public/namespaces/{namespace}/achievements][%d] publicListAchievementsNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[GET /achievement/v1/public/namespaces/{namespace}/achievements][%d] publicListAchievementsNotFound  %+v", 404, o.ToString())
+}
+
+func (o *PublicListAchievementsNotFound) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *PublicListAchievementsNotFound) GetPayload() *achievementclientmodels.ResponseError {
@@ -215,7 +252,16 @@ type PublicListAchievementsInternalServerError struct {
 }
 
 func (o *PublicListAchievementsInternalServerError) Error() string {
-	return fmt.Sprintf("[GET /achievement/v1/public/namespaces/{namespace}/achievements][%d] publicListAchievementsInternalServerError  %+v", 500, o.Payload)
+	return fmt.Sprintf("[GET /achievement/v1/public/namespaces/{namespace}/achievements][%d] publicListAchievementsInternalServerError  %+v", 500, o.ToString())
+}
+
+func (o *PublicListAchievementsInternalServerError) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *PublicListAchievementsInternalServerError) GetPayload() *achievementclientmodels.ResponseError {

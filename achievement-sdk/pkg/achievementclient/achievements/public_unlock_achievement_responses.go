@@ -10,6 +10,7 @@ package achievements
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -98,7 +99,16 @@ type PublicUnlockAchievementBadRequest struct {
 }
 
 func (o *PublicUnlockAchievementBadRequest) Error() string {
-	return fmt.Sprintf("[PUT /achievement/v1/public/namespaces/{namespace}/users/{userId}/achievements/{achievementCode}/unlock][%d] publicUnlockAchievementBadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[PUT /achievement/v1/public/namespaces/{namespace}/users/{userId}/achievements/{achievementCode}/unlock][%d] publicUnlockAchievementBadRequest  %+v", 400, o.ToString())
+}
+
+func (o *PublicUnlockAchievementBadRequest) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *PublicUnlockAchievementBadRequest) GetPayload() *achievementclientmodels.ResponseError {
@@ -131,7 +141,16 @@ type PublicUnlockAchievementUnauthorized struct {
 }
 
 func (o *PublicUnlockAchievementUnauthorized) Error() string {
-	return fmt.Sprintf("[PUT /achievement/v1/public/namespaces/{namespace}/users/{userId}/achievements/{achievementCode}/unlock][%d] publicUnlockAchievementUnauthorized  %+v", 401, o.Payload)
+	return fmt.Sprintf("[PUT /achievement/v1/public/namespaces/{namespace}/users/{userId}/achievements/{achievementCode}/unlock][%d] publicUnlockAchievementUnauthorized  %+v", 401, o.ToString())
+}
+
+func (o *PublicUnlockAchievementUnauthorized) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *PublicUnlockAchievementUnauthorized) GetPayload() *achievementclientmodels.ResponseError {
@@ -164,7 +183,16 @@ type PublicUnlockAchievementInternalServerError struct {
 }
 
 func (o *PublicUnlockAchievementInternalServerError) Error() string {
-	return fmt.Sprintf("[PUT /achievement/v1/public/namespaces/{namespace}/users/{userId}/achievements/{achievementCode}/unlock][%d] publicUnlockAchievementInternalServerError  %+v", 500, o.Payload)
+	return fmt.Sprintf("[PUT /achievement/v1/public/namespaces/{namespace}/users/{userId}/achievements/{achievementCode}/unlock][%d] publicUnlockAchievementInternalServerError  %+v", 500, o.ToString())
+}
+
+func (o *PublicUnlockAchievementInternalServerError) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *PublicUnlockAchievementInternalServerError) GetPayload() *achievementclientmodels.ResponseError {

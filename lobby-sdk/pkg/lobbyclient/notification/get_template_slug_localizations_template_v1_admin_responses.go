@@ -10,6 +10,7 @@ package notification
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -83,7 +84,16 @@ type GetTemplateSlugLocalizationsTemplateV1AdminOK struct {
 }
 
 func (o *GetTemplateSlugLocalizationsTemplateV1AdminOK) Error() string {
-	return fmt.Sprintf("[GET /lobby/v1/admin/notification/namespaces/{namespace}/templates/{templateSlug}][%d] getTemplateSlugLocalizationsTemplateV1AdminOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /lobby/v1/admin/notification/namespaces/{namespace}/templates/{templateSlug}][%d] getTemplateSlugLocalizationsTemplateV1AdminOK  %+v", 200, o.ToString())
+}
+
+func (o *GetTemplateSlugLocalizationsTemplateV1AdminOK) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *GetTemplateSlugLocalizationsTemplateV1AdminOK) GetPayload() *lobbyclientmodels.ModelGetAllNotificationTemplateSlugResp {
@@ -116,7 +126,16 @@ type GetTemplateSlugLocalizationsTemplateV1AdminBadRequest struct {
 }
 
 func (o *GetTemplateSlugLocalizationsTemplateV1AdminBadRequest) Error() string {
-	return fmt.Sprintf("[GET /lobby/v1/admin/notification/namespaces/{namespace}/templates/{templateSlug}][%d] getTemplateSlugLocalizationsTemplateV1AdminBadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[GET /lobby/v1/admin/notification/namespaces/{namespace}/templates/{templateSlug}][%d] getTemplateSlugLocalizationsTemplateV1AdminBadRequest  %+v", 400, o.ToString())
+}
+
+func (o *GetTemplateSlugLocalizationsTemplateV1AdminBadRequest) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *GetTemplateSlugLocalizationsTemplateV1AdminBadRequest) GetPayload() *lobbyclientmodels.RestapiErrorResponseV1 {
@@ -149,7 +168,16 @@ type GetTemplateSlugLocalizationsTemplateV1AdminUnauthorized struct {
 }
 
 func (o *GetTemplateSlugLocalizationsTemplateV1AdminUnauthorized) Error() string {
-	return fmt.Sprintf("[GET /lobby/v1/admin/notification/namespaces/{namespace}/templates/{templateSlug}][%d] getTemplateSlugLocalizationsTemplateV1AdminUnauthorized  %+v", 401, o.Payload)
+	return fmt.Sprintf("[GET /lobby/v1/admin/notification/namespaces/{namespace}/templates/{templateSlug}][%d] getTemplateSlugLocalizationsTemplateV1AdminUnauthorized  %+v", 401, o.ToString())
+}
+
+func (o *GetTemplateSlugLocalizationsTemplateV1AdminUnauthorized) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *GetTemplateSlugLocalizationsTemplateV1AdminUnauthorized) GetPayload() *lobbyclientmodels.RestapiErrorResponseV1 {
@@ -182,7 +210,16 @@ type GetTemplateSlugLocalizationsTemplateV1AdminForbidden struct {
 }
 
 func (o *GetTemplateSlugLocalizationsTemplateV1AdminForbidden) Error() string {
-	return fmt.Sprintf("[GET /lobby/v1/admin/notification/namespaces/{namespace}/templates/{templateSlug}][%d] getTemplateSlugLocalizationsTemplateV1AdminForbidden  %+v", 403, o.Payload)
+	return fmt.Sprintf("[GET /lobby/v1/admin/notification/namespaces/{namespace}/templates/{templateSlug}][%d] getTemplateSlugLocalizationsTemplateV1AdminForbidden  %+v", 403, o.ToString())
+}
+
+func (o *GetTemplateSlugLocalizationsTemplateV1AdminForbidden) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *GetTemplateSlugLocalizationsTemplateV1AdminForbidden) GetPayload() *lobbyclientmodels.RestapiErrorResponseV1 {
@@ -215,7 +252,16 @@ type GetTemplateSlugLocalizationsTemplateV1AdminNotFound struct {
 }
 
 func (o *GetTemplateSlugLocalizationsTemplateV1AdminNotFound) Error() string {
-	return fmt.Sprintf("[GET /lobby/v1/admin/notification/namespaces/{namespace}/templates/{templateSlug}][%d] getTemplateSlugLocalizationsTemplateV1AdminNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[GET /lobby/v1/admin/notification/namespaces/{namespace}/templates/{templateSlug}][%d] getTemplateSlugLocalizationsTemplateV1AdminNotFound  %+v", 404, o.ToString())
+}
+
+func (o *GetTemplateSlugLocalizationsTemplateV1AdminNotFound) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *GetTemplateSlugLocalizationsTemplateV1AdminNotFound) GetPayload() *lobbyclientmodels.RestapiErrorResponseV1 {

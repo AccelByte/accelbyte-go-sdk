@@ -10,6 +10,7 @@ package reward
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -71,7 +72,16 @@ type UpdateRewardOK struct {
 }
 
 func (o *UpdateRewardOK) Error() string {
-	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/rewards/{rewardId}][%d] updateRewardOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/rewards/{rewardId}][%d] updateRewardOK  %+v", 200, o.ToString())
+}
+
+func (o *UpdateRewardOK) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *UpdateRewardOK) GetPayload() *platformclientmodels.RewardInfo {
@@ -104,7 +114,16 @@ type UpdateRewardNotFound struct {
 }
 
 func (o *UpdateRewardNotFound) Error() string {
-	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/rewards/{rewardId}][%d] updateRewardNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/rewards/{rewardId}][%d] updateRewardNotFound  %+v", 404, o.ToString())
+}
+
+func (o *UpdateRewardNotFound) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *UpdateRewardNotFound) GetPayload() *platformclientmodels.ErrorEntity {
@@ -137,7 +156,16 @@ type UpdateRewardConflict struct {
 }
 
 func (o *UpdateRewardConflict) Error() string {
-	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/rewards/{rewardId}][%d] updateRewardConflict  %+v", 409, o.Payload)
+	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/rewards/{rewardId}][%d] updateRewardConflict  %+v", 409, o.ToString())
+}
+
+func (o *UpdateRewardConflict) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *UpdateRewardConflict) GetPayload() *platformclientmodels.ErrorEntity {

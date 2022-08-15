@@ -10,6 +10,7 @@ package users
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -83,7 +84,16 @@ type AdminListUsersV3OK struct {
 }
 
 func (o *AdminListUsersV3OK) Error() string {
-	return fmt.Sprintf("[GET /iam/v3/admin/namespaces/{namespace}/users/platforms/justice][%d] adminListUsersV3OK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /iam/v3/admin/namespaces/{namespace}/users/platforms/justice][%d] adminListUsersV3OK  %+v", 200, o.ToString())
+}
+
+func (o *AdminListUsersV3OK) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *AdminListUsersV3OK) GetPayload() *iamclientmodels.AccountcommonListUsersWithPlatformAccountsResponse {
@@ -116,7 +126,16 @@ type AdminListUsersV3BadRequest struct {
 }
 
 func (o *AdminListUsersV3BadRequest) Error() string {
-	return fmt.Sprintf("[GET /iam/v3/admin/namespaces/{namespace}/users/platforms/justice][%d] adminListUsersV3BadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[GET /iam/v3/admin/namespaces/{namespace}/users/platforms/justice][%d] adminListUsersV3BadRequest  %+v", 400, o.ToString())
+}
+
+func (o *AdminListUsersV3BadRequest) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *AdminListUsersV3BadRequest) GetPayload() *iamclientmodels.RestErrorResponse {
@@ -149,7 +168,16 @@ type AdminListUsersV3Unauthorized struct {
 }
 
 func (o *AdminListUsersV3Unauthorized) Error() string {
-	return fmt.Sprintf("[GET /iam/v3/admin/namespaces/{namespace}/users/platforms/justice][%d] adminListUsersV3Unauthorized  %+v", 401, o.Payload)
+	return fmt.Sprintf("[GET /iam/v3/admin/namespaces/{namespace}/users/platforms/justice][%d] adminListUsersV3Unauthorized  %+v", 401, o.ToString())
+}
+
+func (o *AdminListUsersV3Unauthorized) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *AdminListUsersV3Unauthorized) GetPayload() *iamclientmodels.RestErrorResponse {
@@ -182,7 +210,16 @@ type AdminListUsersV3Forbidden struct {
 }
 
 func (o *AdminListUsersV3Forbidden) Error() string {
-	return fmt.Sprintf("[GET /iam/v3/admin/namespaces/{namespace}/users/platforms/justice][%d] adminListUsersV3Forbidden  %+v", 403, o.Payload)
+	return fmt.Sprintf("[GET /iam/v3/admin/namespaces/{namespace}/users/platforms/justice][%d] adminListUsersV3Forbidden  %+v", 403, o.ToString())
+}
+
+func (o *AdminListUsersV3Forbidden) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *AdminListUsersV3Forbidden) GetPayload() *iamclientmodels.RestErrorResponse {
@@ -215,7 +252,16 @@ type AdminListUsersV3InternalServerError struct {
 }
 
 func (o *AdminListUsersV3InternalServerError) Error() string {
-	return fmt.Sprintf("[GET /iam/v3/admin/namespaces/{namespace}/users/platforms/justice][%d] adminListUsersV3InternalServerError  %+v", 500, o.Payload)
+	return fmt.Sprintf("[GET /iam/v3/admin/namespaces/{namespace}/users/platforms/justice][%d] adminListUsersV3InternalServerError  %+v", 500, o.ToString())
+}
+
+func (o *AdminListUsersV3InternalServerError) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *AdminListUsersV3InternalServerError) GetPayload() *iamclientmodels.RestErrorResponse {

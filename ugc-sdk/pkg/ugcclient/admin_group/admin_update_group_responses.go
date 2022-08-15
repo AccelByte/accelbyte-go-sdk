@@ -10,6 +10,7 @@ package admin_group
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -83,7 +84,16 @@ type AdminUpdateGroupOK struct {
 }
 
 func (o *AdminUpdateGroupOK) Error() string {
-	return fmt.Sprintf("[PUT /ugc/v1/admin/namespaces/{namespace}/users/{userId}/groups/{groupId}][%d] adminUpdateGroupOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[PUT /ugc/v1/admin/namespaces/{namespace}/users/{userId}/groups/{groupId}][%d] adminUpdateGroupOK  %+v", 200, o.ToString())
+}
+
+func (o *AdminUpdateGroupOK) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *AdminUpdateGroupOK) GetPayload() *ugcclientmodels.ModelsCreateGroupResponse {
@@ -116,7 +126,16 @@ type AdminUpdateGroupBadRequest struct {
 }
 
 func (o *AdminUpdateGroupBadRequest) Error() string {
-	return fmt.Sprintf("[PUT /ugc/v1/admin/namespaces/{namespace}/users/{userId}/groups/{groupId}][%d] adminUpdateGroupBadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[PUT /ugc/v1/admin/namespaces/{namespace}/users/{userId}/groups/{groupId}][%d] adminUpdateGroupBadRequest  %+v", 400, o.ToString())
+}
+
+func (o *AdminUpdateGroupBadRequest) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *AdminUpdateGroupBadRequest) GetPayload() *ugcclientmodels.ResponseError {
@@ -149,7 +168,16 @@ type AdminUpdateGroupUnauthorized struct {
 }
 
 func (o *AdminUpdateGroupUnauthorized) Error() string {
-	return fmt.Sprintf("[PUT /ugc/v1/admin/namespaces/{namespace}/users/{userId}/groups/{groupId}][%d] adminUpdateGroupUnauthorized  %+v", 401, o.Payload)
+	return fmt.Sprintf("[PUT /ugc/v1/admin/namespaces/{namespace}/users/{userId}/groups/{groupId}][%d] adminUpdateGroupUnauthorized  %+v", 401, o.ToString())
+}
+
+func (o *AdminUpdateGroupUnauthorized) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *AdminUpdateGroupUnauthorized) GetPayload() *ugcclientmodels.ResponseError {
@@ -182,7 +210,16 @@ type AdminUpdateGroupNotFound struct {
 }
 
 func (o *AdminUpdateGroupNotFound) Error() string {
-	return fmt.Sprintf("[PUT /ugc/v1/admin/namespaces/{namespace}/users/{userId}/groups/{groupId}][%d] adminUpdateGroupNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[PUT /ugc/v1/admin/namespaces/{namespace}/users/{userId}/groups/{groupId}][%d] adminUpdateGroupNotFound  %+v", 404, o.ToString())
+}
+
+func (o *AdminUpdateGroupNotFound) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *AdminUpdateGroupNotFound) GetPayload() *ugcclientmodels.ResponseError {
@@ -215,7 +252,16 @@ type AdminUpdateGroupInternalServerError struct {
 }
 
 func (o *AdminUpdateGroupInternalServerError) Error() string {
-	return fmt.Sprintf("[PUT /ugc/v1/admin/namespaces/{namespace}/users/{userId}/groups/{groupId}][%d] adminUpdateGroupInternalServerError  %+v", 500, o.Payload)
+	return fmt.Sprintf("[PUT /ugc/v1/admin/namespaces/{namespace}/users/{userId}/groups/{groupId}][%d] adminUpdateGroupInternalServerError  %+v", 500, o.ToString())
+}
+
+func (o *AdminUpdateGroupInternalServerError) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *AdminUpdateGroupInternalServerError) GetPayload() *ugcclientmodels.ResponseError {

@@ -10,6 +10,7 @@ package user_data
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -83,7 +84,16 @@ type GetUserLeaderboardRankingsAdminV1OK struct {
 }
 
 func (o *GetUserLeaderboardRankingsAdminV1OK) Error() string {
-	return fmt.Sprintf("[GET /leaderboard/v1/admin/namespaces/{namespace}/users/{userId}/leaderboards][%d] getUserLeaderboardRankingsAdminV1OK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /leaderboard/v1/admin/namespaces/{namespace}/users/{userId}/leaderboards][%d] getUserLeaderboardRankingsAdminV1OK  %+v", 200, o.ToString())
+}
+
+func (o *GetUserLeaderboardRankingsAdminV1OK) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *GetUserLeaderboardRankingsAdminV1OK) GetPayload() *leaderboardclientmodels.ModelsGetAllUserLeaderboardsResp {
@@ -116,7 +126,16 @@ type GetUserLeaderboardRankingsAdminV1Unauthorized struct {
 }
 
 func (o *GetUserLeaderboardRankingsAdminV1Unauthorized) Error() string {
-	return fmt.Sprintf("[GET /leaderboard/v1/admin/namespaces/{namespace}/users/{userId}/leaderboards][%d] getUserLeaderboardRankingsAdminV1Unauthorized  %+v", 401, o.Payload)
+	return fmt.Sprintf("[GET /leaderboard/v1/admin/namespaces/{namespace}/users/{userId}/leaderboards][%d] getUserLeaderboardRankingsAdminV1Unauthorized  %+v", 401, o.ToString())
+}
+
+func (o *GetUserLeaderboardRankingsAdminV1Unauthorized) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *GetUserLeaderboardRankingsAdminV1Unauthorized) GetPayload() *leaderboardclientmodels.ResponseErrorResponse {
@@ -149,7 +168,16 @@ type GetUserLeaderboardRankingsAdminV1Forbidden struct {
 }
 
 func (o *GetUserLeaderboardRankingsAdminV1Forbidden) Error() string {
-	return fmt.Sprintf("[GET /leaderboard/v1/admin/namespaces/{namespace}/users/{userId}/leaderboards][%d] getUserLeaderboardRankingsAdminV1Forbidden  %+v", 403, o.Payload)
+	return fmt.Sprintf("[GET /leaderboard/v1/admin/namespaces/{namespace}/users/{userId}/leaderboards][%d] getUserLeaderboardRankingsAdminV1Forbidden  %+v", 403, o.ToString())
+}
+
+func (o *GetUserLeaderboardRankingsAdminV1Forbidden) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *GetUserLeaderboardRankingsAdminV1Forbidden) GetPayload() *leaderboardclientmodels.ResponseErrorResponse {
@@ -182,7 +210,16 @@ type GetUserLeaderboardRankingsAdminV1NotFound struct {
 }
 
 func (o *GetUserLeaderboardRankingsAdminV1NotFound) Error() string {
-	return fmt.Sprintf("[GET /leaderboard/v1/admin/namespaces/{namespace}/users/{userId}/leaderboards][%d] getUserLeaderboardRankingsAdminV1NotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[GET /leaderboard/v1/admin/namespaces/{namespace}/users/{userId}/leaderboards][%d] getUserLeaderboardRankingsAdminV1NotFound  %+v", 404, o.ToString())
+}
+
+func (o *GetUserLeaderboardRankingsAdminV1NotFound) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *GetUserLeaderboardRankingsAdminV1NotFound) GetPayload() *leaderboardclientmodels.ResponseErrorResponse {
@@ -215,7 +252,16 @@ type GetUserLeaderboardRankingsAdminV1InternalServerError struct {
 }
 
 func (o *GetUserLeaderboardRankingsAdminV1InternalServerError) Error() string {
-	return fmt.Sprintf("[GET /leaderboard/v1/admin/namespaces/{namespace}/users/{userId}/leaderboards][%d] getUserLeaderboardRankingsAdminV1InternalServerError  %+v", 500, o.Payload)
+	return fmt.Sprintf("[GET /leaderboard/v1/admin/namespaces/{namespace}/users/{userId}/leaderboards][%d] getUserLeaderboardRankingsAdminV1InternalServerError  %+v", 500, o.ToString())
+}
+
+func (o *GetUserLeaderboardRankingsAdminV1InternalServerError) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *GetUserLeaderboardRankingsAdminV1InternalServerError) GetPayload() *leaderboardclientmodels.ResponseErrorResponse {

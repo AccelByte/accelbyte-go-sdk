@@ -10,6 +10,7 @@ package matchmaking
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -98,7 +99,16 @@ type DeleteChannelHandlerUnauthorized struct {
 }
 
 func (o *DeleteChannelHandlerUnauthorized) Error() string {
-	return fmt.Sprintf("[DELETE /matchmaking/namespaces/{namespace}/channels/{channel}][%d] deleteChannelHandlerUnauthorized  %+v", 401, o.Payload)
+	return fmt.Sprintf("[DELETE /matchmaking/namespaces/{namespace}/channels/{channel}][%d] deleteChannelHandlerUnauthorized  %+v", 401, o.ToString())
+}
+
+func (o *DeleteChannelHandlerUnauthorized) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *DeleteChannelHandlerUnauthorized) GetPayload() *matchmakingclientmodels.ResponseError {
@@ -131,7 +141,16 @@ type DeleteChannelHandlerForbidden struct {
 }
 
 func (o *DeleteChannelHandlerForbidden) Error() string {
-	return fmt.Sprintf("[DELETE /matchmaking/namespaces/{namespace}/channels/{channel}][%d] deleteChannelHandlerForbidden  %+v", 403, o.Payload)
+	return fmt.Sprintf("[DELETE /matchmaking/namespaces/{namespace}/channels/{channel}][%d] deleteChannelHandlerForbidden  %+v", 403, o.ToString())
+}
+
+func (o *DeleteChannelHandlerForbidden) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *DeleteChannelHandlerForbidden) GetPayload() *matchmakingclientmodels.ResponseError {
@@ -164,7 +183,16 @@ type DeleteChannelHandlerInternalServerError struct {
 }
 
 func (o *DeleteChannelHandlerInternalServerError) Error() string {
-	return fmt.Sprintf("[DELETE /matchmaking/namespaces/{namespace}/channels/{channel}][%d] deleteChannelHandlerInternalServerError  %+v", 500, o.Payload)
+	return fmt.Sprintf("[DELETE /matchmaking/namespaces/{namespace}/channels/{channel}][%d] deleteChannelHandlerInternalServerError  %+v", 500, o.ToString())
+}
+
+func (o *DeleteChannelHandlerInternalServerError) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *DeleteChannelHandlerInternalServerError) GetPayload() *matchmakingclientmodels.ResponseError {

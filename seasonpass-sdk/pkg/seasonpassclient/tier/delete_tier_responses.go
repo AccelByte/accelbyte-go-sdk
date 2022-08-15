@@ -10,6 +10,7 @@ package tier
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -98,7 +99,16 @@ type DeleteTierBadRequest struct {
 }
 
 func (o *DeleteTierBadRequest) Error() string {
-	return fmt.Sprintf("[DELETE /seasonpass/admin/namespaces/{namespace}/seasons/{seasonId}/tiers/{id}][%d] deleteTierBadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[DELETE /seasonpass/admin/namespaces/{namespace}/seasons/{seasonId}/tiers/{id}][%d] deleteTierBadRequest  %+v", 400, o.ToString())
+}
+
+func (o *DeleteTierBadRequest) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *DeleteTierBadRequest) GetPayload() *seasonpassclientmodels.ErrorEntity {
@@ -131,7 +141,16 @@ type DeleteTierNotFound struct {
 }
 
 func (o *DeleteTierNotFound) Error() string {
-	return fmt.Sprintf("[DELETE /seasonpass/admin/namespaces/{namespace}/seasons/{seasonId}/tiers/{id}][%d] deleteTierNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[DELETE /seasonpass/admin/namespaces/{namespace}/seasons/{seasonId}/tiers/{id}][%d] deleteTierNotFound  %+v", 404, o.ToString())
+}
+
+func (o *DeleteTierNotFound) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *DeleteTierNotFound) GetPayload() *seasonpassclientmodels.ErrorEntity {
@@ -164,7 +183,16 @@ type DeleteTierConflict struct {
 }
 
 func (o *DeleteTierConflict) Error() string {
-	return fmt.Sprintf("[DELETE /seasonpass/admin/namespaces/{namespace}/seasons/{seasonId}/tiers/{id}][%d] deleteTierConflict  %+v", 409, o.Payload)
+	return fmt.Sprintf("[DELETE /seasonpass/admin/namespaces/{namespace}/seasons/{seasonId}/tiers/{id}][%d] deleteTierConflict  %+v", 409, o.ToString())
+}
+
+func (o *DeleteTierConflict) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *DeleteTierConflict) GetPayload() *seasonpassclientmodels.ErrorEntity {

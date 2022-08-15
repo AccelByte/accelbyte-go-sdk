@@ -10,6 +10,7 @@ package roles
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -65,7 +66,16 @@ type PublicGetRolesV3OK struct {
 }
 
 func (o *PublicGetRolesV3OK) Error() string {
-	return fmt.Sprintf("[GET /iam/v3/public/roles][%d] publicGetRolesV3OK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /iam/v3/public/roles][%d] publicGetRolesV3OK  %+v", 200, o.ToString())
+}
+
+func (o *PublicGetRolesV3OK) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *PublicGetRolesV3OK) GetPayload() *iamclientmodels.ModelRoleNamesResponseV3 {
@@ -98,7 +108,16 @@ type PublicGetRolesV3BadRequest struct {
 }
 
 func (o *PublicGetRolesV3BadRequest) Error() string {
-	return fmt.Sprintf("[GET /iam/v3/public/roles][%d] publicGetRolesV3BadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[GET /iam/v3/public/roles][%d] publicGetRolesV3BadRequest  %+v", 400, o.ToString())
+}
+
+func (o *PublicGetRolesV3BadRequest) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *PublicGetRolesV3BadRequest) GetPayload() *iamclientmodels.RestErrorResponse {

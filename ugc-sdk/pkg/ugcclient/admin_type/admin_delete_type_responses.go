@@ -10,6 +10,7 @@ package admin_type
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -98,7 +99,16 @@ type AdminDeleteTypeUnauthorized struct {
 }
 
 func (o *AdminDeleteTypeUnauthorized) Error() string {
-	return fmt.Sprintf("[DELETE /ugc/v1/admin/namespaces/{namespace}/types/{typeId}][%d] adminDeleteTypeUnauthorized  %+v", 401, o.Payload)
+	return fmt.Sprintf("[DELETE /ugc/v1/admin/namespaces/{namespace}/types/{typeId}][%d] adminDeleteTypeUnauthorized  %+v", 401, o.ToString())
+}
+
+func (o *AdminDeleteTypeUnauthorized) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *AdminDeleteTypeUnauthorized) GetPayload() *ugcclientmodels.ResponseError {
@@ -131,7 +141,16 @@ type AdminDeleteTypeNotFound struct {
 }
 
 func (o *AdminDeleteTypeNotFound) Error() string {
-	return fmt.Sprintf("[DELETE /ugc/v1/admin/namespaces/{namespace}/types/{typeId}][%d] adminDeleteTypeNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[DELETE /ugc/v1/admin/namespaces/{namespace}/types/{typeId}][%d] adminDeleteTypeNotFound  %+v", 404, o.ToString())
+}
+
+func (o *AdminDeleteTypeNotFound) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *AdminDeleteTypeNotFound) GetPayload() *ugcclientmodels.ResponseError {
@@ -164,7 +183,16 @@ type AdminDeleteTypeInternalServerError struct {
 }
 
 func (o *AdminDeleteTypeInternalServerError) Error() string {
-	return fmt.Sprintf("[DELETE /ugc/v1/admin/namespaces/{namespace}/types/{typeId}][%d] adminDeleteTypeInternalServerError  %+v", 500, o.Payload)
+	return fmt.Sprintf("[DELETE /ugc/v1/admin/namespaces/{namespace}/types/{typeId}][%d] adminDeleteTypeInternalServerError  %+v", 500, o.ToString())
+}
+
+func (o *AdminDeleteTypeInternalServerError) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *AdminDeleteTypeInternalServerError) GetPayload() *ugcclientmodels.ResponseError {

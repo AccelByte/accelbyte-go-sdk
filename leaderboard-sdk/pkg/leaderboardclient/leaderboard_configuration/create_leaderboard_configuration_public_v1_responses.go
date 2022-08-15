@@ -10,6 +10,7 @@ package leaderboard_configuration
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -89,7 +90,16 @@ type CreateLeaderboardConfigurationPublicV1Created struct {
 }
 
 func (o *CreateLeaderboardConfigurationPublicV1Created) Error() string {
-	return fmt.Sprintf("[POST /leaderboard/v1/public/namespaces/{namespace}/leaderboards][%d] createLeaderboardConfigurationPublicV1Created  %+v", 201, o.Payload)
+	return fmt.Sprintf("[POST /leaderboard/v1/public/namespaces/{namespace}/leaderboards][%d] createLeaderboardConfigurationPublicV1Created  %+v", 201, o.ToString())
+}
+
+func (o *CreateLeaderboardConfigurationPublicV1Created) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *CreateLeaderboardConfigurationPublicV1Created) GetPayload() *leaderboardclientmodels.ModelsLeaderboardConfigReq {
@@ -122,7 +132,16 @@ type CreateLeaderboardConfigurationPublicV1BadRequest struct {
 }
 
 func (o *CreateLeaderboardConfigurationPublicV1BadRequest) Error() string {
-	return fmt.Sprintf("[POST /leaderboard/v1/public/namespaces/{namespace}/leaderboards][%d] createLeaderboardConfigurationPublicV1BadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[POST /leaderboard/v1/public/namespaces/{namespace}/leaderboards][%d] createLeaderboardConfigurationPublicV1BadRequest  %+v", 400, o.ToString())
+}
+
+func (o *CreateLeaderboardConfigurationPublicV1BadRequest) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *CreateLeaderboardConfigurationPublicV1BadRequest) GetPayload() *leaderboardclientmodels.ResponseErrorResponse {
@@ -155,7 +174,16 @@ type CreateLeaderboardConfigurationPublicV1Unauthorized struct {
 }
 
 func (o *CreateLeaderboardConfigurationPublicV1Unauthorized) Error() string {
-	return fmt.Sprintf("[POST /leaderboard/v1/public/namespaces/{namespace}/leaderboards][%d] createLeaderboardConfigurationPublicV1Unauthorized  %+v", 401, o.Payload)
+	return fmt.Sprintf("[POST /leaderboard/v1/public/namespaces/{namespace}/leaderboards][%d] createLeaderboardConfigurationPublicV1Unauthorized  %+v", 401, o.ToString())
+}
+
+func (o *CreateLeaderboardConfigurationPublicV1Unauthorized) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *CreateLeaderboardConfigurationPublicV1Unauthorized) GetPayload() *leaderboardclientmodels.ResponseErrorResponse {
@@ -188,7 +216,16 @@ type CreateLeaderboardConfigurationPublicV1Forbidden struct {
 }
 
 func (o *CreateLeaderboardConfigurationPublicV1Forbidden) Error() string {
-	return fmt.Sprintf("[POST /leaderboard/v1/public/namespaces/{namespace}/leaderboards][%d] createLeaderboardConfigurationPublicV1Forbidden  %+v", 403, o.Payload)
+	return fmt.Sprintf("[POST /leaderboard/v1/public/namespaces/{namespace}/leaderboards][%d] createLeaderboardConfigurationPublicV1Forbidden  %+v", 403, o.ToString())
+}
+
+func (o *CreateLeaderboardConfigurationPublicV1Forbidden) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *CreateLeaderboardConfigurationPublicV1Forbidden) GetPayload() *leaderboardclientmodels.ResponseErrorResponse {
@@ -221,7 +258,16 @@ type CreateLeaderboardConfigurationPublicV1Conflict struct {
 }
 
 func (o *CreateLeaderboardConfigurationPublicV1Conflict) Error() string {
-	return fmt.Sprintf("[POST /leaderboard/v1/public/namespaces/{namespace}/leaderboards][%d] createLeaderboardConfigurationPublicV1Conflict  %+v", 409, o.Payload)
+	return fmt.Sprintf("[POST /leaderboard/v1/public/namespaces/{namespace}/leaderboards][%d] createLeaderboardConfigurationPublicV1Conflict  %+v", 409, o.ToString())
+}
+
+func (o *CreateLeaderboardConfigurationPublicV1Conflict) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *CreateLeaderboardConfigurationPublicV1Conflict) GetPayload() *leaderboardclientmodels.ResponseErrorResponse {
@@ -254,7 +300,16 @@ type CreateLeaderboardConfigurationPublicV1InternalServerError struct {
 }
 
 func (o *CreateLeaderboardConfigurationPublicV1InternalServerError) Error() string {
-	return fmt.Sprintf("[POST /leaderboard/v1/public/namespaces/{namespace}/leaderboards][%d] createLeaderboardConfigurationPublicV1InternalServerError  %+v", 500, o.Payload)
+	return fmt.Sprintf("[POST /leaderboard/v1/public/namespaces/{namespace}/leaderboards][%d] createLeaderboardConfigurationPublicV1InternalServerError  %+v", 500, o.ToString())
+}
+
+func (o *CreateLeaderboardConfigurationPublicV1InternalServerError) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *CreateLeaderboardConfigurationPublicV1InternalServerError) GetPayload() *leaderboardclientmodels.ResponseErrorResponse {

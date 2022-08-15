@@ -10,6 +10,7 @@ package admin_user_agreement
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -59,7 +60,16 @@ type IndirectBulkAcceptVersionedPolicyCreated struct {
 }
 
 func (o *IndirectBulkAcceptVersionedPolicyCreated) Error() string {
-	return fmt.Sprintf("[POST /agreement/admin/namespaces/{namespace}/users/{userId}/agreements/policies][%d] indirectBulkAcceptVersionedPolicyCreated  %+v", 201, o.Payload)
+	return fmt.Sprintf("[POST /agreement/admin/namespaces/{namespace}/users/{userId}/agreements/policies][%d] indirectBulkAcceptVersionedPolicyCreated  %+v", 201, o.ToString())
+}
+
+func (o *IndirectBulkAcceptVersionedPolicyCreated) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *IndirectBulkAcceptVersionedPolicyCreated) GetPayload() *legalclientmodels.AcceptAgreementResponse {

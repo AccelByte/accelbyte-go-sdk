@@ -10,6 +10,7 @@ package item
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -65,7 +66,16 @@ type GetItemOK struct {
 }
 
 func (o *GetItemOK) Error() string {
-	return fmt.Sprintf("[GET /platform/admin/namespaces/{namespace}/items/{itemId}][%d] getItemOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /platform/admin/namespaces/{namespace}/items/{itemId}][%d] getItemOK  %+v", 200, o.ToString())
+}
+
+func (o *GetItemOK) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *GetItemOK) GetPayload() *platformclientmodels.FullItemInfo {
@@ -98,7 +108,16 @@ type GetItemNotFound struct {
 }
 
 func (o *GetItemNotFound) Error() string {
-	return fmt.Sprintf("[GET /platform/admin/namespaces/{namespace}/items/{itemId}][%d] getItemNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[GET /platform/admin/namespaces/{namespace}/items/{itemId}][%d] getItemNotFound  %+v", 404, o.ToString())
+}
+
+func (o *GetItemNotFound) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *GetItemNotFound) GetPayload() *platformclientmodels.ErrorEntity {

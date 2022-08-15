@@ -10,6 +10,7 @@ package event_v2
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -95,7 +96,16 @@ type QueryEventStreamHandlerOK struct {
 }
 
 func (o *QueryEventStreamHandlerOK) Error() string {
-	return fmt.Sprintf("[POST /event/v2/admin/namespaces/{namespace}/query][%d] queryEventStreamHandlerOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[POST /event/v2/admin/namespaces/{namespace}/query][%d] queryEventStreamHandlerOK  %+v", 200, o.ToString())
+}
+
+func (o *QueryEventStreamHandlerOK) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *QueryEventStreamHandlerOK) GetPayload() *eventlogclientmodels.ModelsEventResponseV2 {

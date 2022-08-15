@@ -10,6 +10,7 @@ package misc
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -65,7 +66,16 @@ type PublicGetCountriesOK struct {
 }
 
 func (o *PublicGetCountriesOK) Error() string {
-	return fmt.Sprintf("[GET /basic/v1/public/namespaces/{namespace}/misc/countries][%d] publicGetCountriesOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /basic/v1/public/namespaces/{namespace}/misc/countries][%d] publicGetCountriesOK  %+v", 200, o.ToString())
+}
+
+func (o *PublicGetCountriesOK) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *PublicGetCountriesOK) GetPayload() []*basicclientmodels.CountryObject {
@@ -96,7 +106,16 @@ type PublicGetCountriesBadRequest struct {
 }
 
 func (o *PublicGetCountriesBadRequest) Error() string {
-	return fmt.Sprintf("[GET /basic/v1/public/namespaces/{namespace}/misc/countries][%d] publicGetCountriesBadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[GET /basic/v1/public/namespaces/{namespace}/misc/countries][%d] publicGetCountriesBadRequest  %+v", 400, o.ToString())
+}
+
+func (o *PublicGetCountriesBadRequest) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *PublicGetCountriesBadRequest) GetPayload() *basicclientmodels.ValidationErrorEntity {

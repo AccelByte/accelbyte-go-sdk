@@ -51,121 +51,121 @@ touch "tmp.dat"
 #- 2 GetTotalActiveSession
 samples/cli/sample-apps Sessionbrowser getTotalActiveSession \
     --namespace $AB_NAMESPACE \
-    --sessionType 'TS5CZgUe' \
+    --sessionType 'lbOoHuJW' \
     > test.out 2>&1
 eval_tap $? 2 'GetTotalActiveSession' test.out
 
 #- 3 GetActiveCustomGameSessions
 samples/cli/sample-apps Sessionbrowser getActiveCustomGameSessions \
     --namespace $AB_NAMESPACE \
-    --serverRegion 'swZfCvCh' \
-    --sessionId 'RyFgJLOh' \
+    --serverRegion '2yWmQBVc' \
+    --sessionId 'nI6IXkti' \
     > test.out 2>&1
 eval_tap $? 3 'GetActiveCustomGameSessions' test.out
 
 #- 4 GetActiveMatchmakingGameSessions
 samples/cli/sample-apps Sessionbrowser getActiveMatchmakingGameSessions \
     --namespace $AB_NAMESPACE \
-    --matchId 'XMQBPN02' \
-    --serverRegion '3XV1DjQF' \
-    --sessionId 'j5PnOpmj' \
+    --matchId 'HZAfqHWM' \
+    --serverRegion 'BFhmWJHj' \
+    --sessionId '2pa7jwiq' \
     > test.out 2>&1
 eval_tap $? 4 'GetActiveMatchmakingGameSessions' test.out
 
 #- 5 AdminGetSession
 samples/cli/sample-apps Sessionbrowser adminGetSession \
     --namespace $AB_NAMESPACE \
-    --sessionID '8tWlQFp7' \
+    --sessionID 'tT3uv5uY' \
     > test.out 2>&1
 eval_tap $? 5 'AdminGetSession' test.out
 
 #- 6 QuerySession
 samples/cli/sample-apps Sessionbrowser querySession \
     --namespace $AB_NAMESPACE \
-    --gameMode 'Zb7HuiVd' \
-    --gameVersion 'CCJzJ1nR' \
-    --joinable '6TUrc9HZ' \
-    --limit '69' \
-    --matchExist 'XyIYfoAP' \
-    --matchId 'obmljmrg' \
-    --offset '6' \
-    --serverStatus 'HggSxhzF' \
-    --userId 'nrlcF611' \
-    --sessionType 'D2HlQZkI' \
+    --gameMode 'Nj9xZqt6' \
+    --gameVersion 'RPVYxNLd' \
+    --joinable 'UYbKgGsn' \
+    --limit '64' \
+    --matchExist 'tryWGFaq' \
+    --matchId 'NMCR3hou' \
+    --offset '28' \
+    --serverStatus 'FtErNpo0' \
+    --userId 'Ya2LDerY' \
+    --sessionType 'eDobv27d' \
     > test.out 2>&1
 eval_tap $? 6 'QuerySession' test.out
 
 #- 7 CreateSession
 samples/cli/sample-apps Sessionbrowser createSession \
     --namespace $AB_NAMESPACE \
-    --body '{"game_session_setting": {"allow_join_in_progress": false, "current_internal_player": 14, "current_player": 88, "map_name": "P0OI9QAU", "max_internal_player": 35, "max_player": 78, "mode": "X18uWGlv", "num_bot": 7, "password": "nAwdb8qa", "settings": {"aTwLI5mm": {}, "A8a0C8sl": {}, "O5KLF4Qt": {}}}, "game_version": "ERMDLMJ5", "namespace": "ALEzpPXZ", "session_type": "z8QQcLpn", "username": "Z1PBWxWq"}' \
+    --body '{"game_session_setting": {"allow_join_in_progress": false, "current_internal_player": 8, "current_player": 19, "map_name": "oMawkRok", "max_internal_player": 24, "max_player": 52, "mode": "2yc8aED1", "num_bot": 21, "password": "3D2rruLF", "settings": {"L1bh3SFY": {}, "USfXAw8B": {}, "oSbBAHUg": {}}}, "game_version": "BMH976S2", "namespace": "fDozLxJD", "session_type": "gX4IwVYC", "username": "cm1padsv"}' \
     > test.out 2>&1
 eval_tap $? 7 'CreateSession' test.out
 
 #- 8 GetSessionByUserIDs
 samples/cli/sample-apps Sessionbrowser getSessionByUserIDs \
     --namespace $AB_NAMESPACE \
-    --userIds 'NQzOaPUt' \
+    --userIds '5CG8PbjG' \
     > test.out 2>&1
 eval_tap $? 8 'GetSessionByUserIDs' test.out
 
 #- 9 GetSession
 samples/cli/sample-apps Sessionbrowser getSession \
     --namespace $AB_NAMESPACE \
-    --sessionID 'K7C6RipT' \
+    --sessionID 'SUAEu0Zo' \
     > test.out 2>&1
 eval_tap $? 9 'GetSession' test.out
 
 #- 10 UpdateSession
 samples/cli/sample-apps Sessionbrowser updateSession \
     --namespace $AB_NAMESPACE \
-    --sessionID 'CvG4qhKe' \
-    --body '{"game_current_player": 73, "game_max_player": 34}' \
+    --sessionID 'n6ZBvcp2' \
+    --body '{"game_current_player": 61, "game_max_player": 17}' \
     > test.out 2>&1
 eval_tap $? 10 'UpdateSession' test.out
 
 #- 11 DeleteSession
 samples/cli/sample-apps Sessionbrowser deleteSession \
     --namespace $AB_NAMESPACE \
-    --sessionID 'V40RLCB9' \
+    --sessionID '8wKsJMCF' \
     > test.out 2>&1
 eval_tap $? 11 'DeleteSession' test.out
 
 #- 12 JoinSession
 samples/cli/sample-apps Sessionbrowser joinSession \
     --namespace $AB_NAMESPACE \
-    --sessionID '5vDowe2W' \
-    --body '{"password": "NQ76Dj1e"}' \
+    --sessionID '0JtyWFVh' \
+    --body '{"password": "BKjlB9Ow"}' \
     > test.out 2>&1
 eval_tap $? 12 'JoinSession' test.out
 
 #- 13 DeleteSessionLocalDS
 samples/cli/sample-apps Sessionbrowser deleteSessionLocalDS \
     --namespace $AB_NAMESPACE \
-    --sessionID 'RDNg9wNU' \
+    --sessionID 'CxqFMp3A' \
     > test.out 2>&1
 eval_tap $? 13 'DeleteSessionLocalDS' test.out
 
 #- 14 AddPlayerToSession
 samples/cli/sample-apps Sessionbrowser addPlayerToSession \
     --namespace $AB_NAMESPACE \
-    --sessionID '7lRfhE9v' \
-    --body '{"as_spectator": true, "user_id": "VvhMAoPq"}' \
+    --sessionID 'vTANorSo' \
+    --body '{"as_spectator": false, "user_id": "UvB6RS0L"}' \
     > test.out 2>&1
 eval_tap $? 14 'AddPlayerToSession' test.out
 
 #- 15 RemovePlayerFromSession
 samples/cli/sample-apps Sessionbrowser removePlayerFromSession \
     --namespace $AB_NAMESPACE \
-    --sessionID 'uUu23vQc' \
-    --userID 's2YO83tB' \
+    --sessionID 'pgLgsRYV' \
+    --userID '9FeyN5kP' \
     > test.out 2>&1
 eval_tap $? 15 'RemovePlayerFromSession' test.out
 
 #- 16 UpdateSettings
 samples/cli/sample-apps Sessionbrowser updateSettings \
     --namespace $AB_NAMESPACE \
-    --sessionID 'yMqLc742' \
+    --sessionID 'FuYyjaln' \
     --body '{}' \
     > test.out 2>&1
 eval_tap $? 16 'UpdateSettings' test.out
@@ -173,7 +173,7 @@ eval_tap $? 16 'UpdateSettings' test.out
 #- 17 GetRecentPlayer
 samples/cli/sample-apps Sessionbrowser getRecentPlayer \
     --namespace $AB_NAMESPACE \
-    --userID '3FEoWV7l' \
+    --userID 'teHY658r' \
     > test.out 2>&1
 eval_tap $? 17 'GetRecentPlayer' test.out
 

@@ -10,6 +10,7 @@ package category
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -65,7 +66,16 @@ type DownloadCategoriesOK struct {
 }
 
 func (o *DownloadCategoriesOK) Error() string {
-	return fmt.Sprintf("[GET /platform/public/namespaces/{namespace}/categories/download][%d] downloadCategoriesOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /platform/public/namespaces/{namespace}/categories/download][%d] downloadCategoriesOK  %+v", 200, o.ToString())
+}
+
+func (o *DownloadCategoriesOK) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *DownloadCategoriesOK) GetPayload() []*platformclientmodels.HierarchicalCategoryInfo {
@@ -96,7 +106,16 @@ type DownloadCategoriesNotFound struct {
 }
 
 func (o *DownloadCategoriesNotFound) Error() string {
-	return fmt.Sprintf("[GET /platform/public/namespaces/{namespace}/categories/download][%d] downloadCategoriesNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[GET /platform/public/namespaces/{namespace}/categories/download][%d] downloadCategoriesNotFound  %+v", 404, o.ToString())
+}
+
+func (o *DownloadCategoriesNotFound) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *DownloadCategoriesNotFound) GetPayload() *platformclientmodels.ErrorEntity {

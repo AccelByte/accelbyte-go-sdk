@@ -10,6 +10,7 @@ package policy_versions
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -86,7 +87,16 @@ type PublishPolicyVersionBadRequest struct {
 }
 
 func (o *PublishPolicyVersionBadRequest) Error() string {
-	return fmt.Sprintf("[PATCH /agreement/admin/policies/versions/{policyVersionId}/latest][%d] publishPolicyVersionBadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[PATCH /agreement/admin/policies/versions/{policyVersionId}/latest][%d] publishPolicyVersionBadRequest  %+v", 400, o.ToString())
+}
+
+func (o *PublishPolicyVersionBadRequest) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *PublishPolicyVersionBadRequest) GetPayload() *legalclientmodels.ErrorEntity {

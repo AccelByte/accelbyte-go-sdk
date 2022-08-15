@@ -10,6 +10,7 @@ package e_q_u8_config
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -71,7 +72,16 @@ type UpdateConfigOK struct {
 }
 
 func (o *UpdateConfigOK) Error() string {
-	return fmt.Sprintf("[PATCH /basic/v1/admin/namespaces/{namespace}/equ8/config][%d] updateConfigOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[PATCH /basic/v1/admin/namespaces/{namespace}/equ8/config][%d] updateConfigOK  %+v", 200, o.ToString())
+}
+
+func (o *UpdateConfigOK) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *UpdateConfigOK) GetPayload() *basicclientmodels.Equ8Config {
@@ -104,7 +114,16 @@ type UpdateConfigBadRequest struct {
 }
 
 func (o *UpdateConfigBadRequest) Error() string {
-	return fmt.Sprintf("[PATCH /basic/v1/admin/namespaces/{namespace}/equ8/config][%d] updateConfigBadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[PATCH /basic/v1/admin/namespaces/{namespace}/equ8/config][%d] updateConfigBadRequest  %+v", 400, o.ToString())
+}
+
+func (o *UpdateConfigBadRequest) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *UpdateConfigBadRequest) GetPayload() *basicclientmodels.ErrorEntity {
@@ -137,7 +156,16 @@ type UpdateConfigInternalServerError struct {
 }
 
 func (o *UpdateConfigInternalServerError) Error() string {
-	return fmt.Sprintf("[PATCH /basic/v1/admin/namespaces/{namespace}/equ8/config][%d] updateConfigInternalServerError  %+v", 500, o.Payload)
+	return fmt.Sprintf("[PATCH /basic/v1/admin/namespaces/{namespace}/equ8/config][%d] updateConfigInternalServerError  %+v", 500, o.ToString())
+}
+
+func (o *UpdateConfigInternalServerError) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *UpdateConfigInternalServerError) GetPayload() *basicclientmodels.ErrorEntity {

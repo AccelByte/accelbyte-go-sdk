@@ -10,6 +10,7 @@ package user_profile
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -71,7 +72,16 @@ type PublicGetUserProfilePublicInfoOK struct {
 }
 
 func (o *PublicGetUserProfilePublicInfoOK) Error() string {
-	return fmt.Sprintf("[GET /basic/v1/public/namespaces/{namespace}/users/{userId}/profiles/public][%d] publicGetUserProfilePublicInfoOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /basic/v1/public/namespaces/{namespace}/users/{userId}/profiles/public][%d] publicGetUserProfilePublicInfoOK  %+v", 200, o.ToString())
+}
+
+func (o *PublicGetUserProfilePublicInfoOK) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *PublicGetUserProfilePublicInfoOK) GetPayload() *basicclientmodels.UserProfilePublicInfo {
@@ -104,7 +114,16 @@ type PublicGetUserProfilePublicInfoBadRequest struct {
 }
 
 func (o *PublicGetUserProfilePublicInfoBadRequest) Error() string {
-	return fmt.Sprintf("[GET /basic/v1/public/namespaces/{namespace}/users/{userId}/profiles/public][%d] publicGetUserProfilePublicInfoBadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[GET /basic/v1/public/namespaces/{namespace}/users/{userId}/profiles/public][%d] publicGetUserProfilePublicInfoBadRequest  %+v", 400, o.ToString())
+}
+
+func (o *PublicGetUserProfilePublicInfoBadRequest) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *PublicGetUserProfilePublicInfoBadRequest) GetPayload() *basicclientmodels.ValidationErrorEntity {
@@ -137,7 +156,16 @@ type PublicGetUserProfilePublicInfoNotFound struct {
 }
 
 func (o *PublicGetUserProfilePublicInfoNotFound) Error() string {
-	return fmt.Sprintf("[GET /basic/v1/public/namespaces/{namespace}/users/{userId}/profiles/public][%d] publicGetUserProfilePublicInfoNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[GET /basic/v1/public/namespaces/{namespace}/users/{userId}/profiles/public][%d] publicGetUserProfilePublicInfoNotFound  %+v", 404, o.ToString())
+}
+
+func (o *PublicGetUserProfilePublicInfoNotFound) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *PublicGetUserProfilePublicInfoNotFound) GetPayload() *basicclientmodels.ErrorEntity {

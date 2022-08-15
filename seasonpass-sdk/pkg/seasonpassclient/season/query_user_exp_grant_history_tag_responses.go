@@ -10,6 +10,7 @@ package season
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -65,7 +66,16 @@ type QueryUserExpGrantHistoryTagOK struct {
 }
 
 func (o *QueryUserExpGrantHistoryTagOK) Error() string {
-	return fmt.Sprintf("[GET /seasonpass/admin/namespaces/{namespace}/users/{userId}/seasons/exp/history/tags][%d] queryUserExpGrantHistoryTagOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /seasonpass/admin/namespaces/{namespace}/users/{userId}/seasons/exp/history/tags][%d] queryUserExpGrantHistoryTagOK  %+v", 200, o.ToString())
+}
+
+func (o *QueryUserExpGrantHistoryTagOK) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *QueryUserExpGrantHistoryTagOK) GetPayload() *seasonpassclientmodels.ReasonTagsResult {
@@ -98,7 +108,16 @@ type QueryUserExpGrantHistoryTagBadRequest struct {
 }
 
 func (o *QueryUserExpGrantHistoryTagBadRequest) Error() string {
-	return fmt.Sprintf("[GET /seasonpass/admin/namespaces/{namespace}/users/{userId}/seasons/exp/history/tags][%d] queryUserExpGrantHistoryTagBadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[GET /seasonpass/admin/namespaces/{namespace}/users/{userId}/seasons/exp/history/tags][%d] queryUserExpGrantHistoryTagBadRequest  %+v", 400, o.ToString())
+}
+
+func (o *QueryUserExpGrantHistoryTagBadRequest) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *QueryUserExpGrantHistoryTagBadRequest) GetPayload() *seasonpassclientmodels.ErrorEntity {

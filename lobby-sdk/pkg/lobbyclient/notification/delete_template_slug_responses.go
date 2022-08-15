@@ -10,6 +10,7 @@ package notification
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -104,7 +105,16 @@ type DeleteTemplateSlugBadRequest struct {
 }
 
 func (o *DeleteTemplateSlugBadRequest) Error() string {
-	return fmt.Sprintf("[DELETE /notification/namespaces/{namespace}/templates/{templateSlug}][%d] deleteTemplateSlugBadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[DELETE /notification/namespaces/{namespace}/templates/{templateSlug}][%d] deleteTemplateSlugBadRequest  %+v", 400, o.ToString())
+}
+
+func (o *DeleteTemplateSlugBadRequest) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *DeleteTemplateSlugBadRequest) GetPayload() *lobbyclientmodels.RestapiErrorResponseBody {
@@ -137,7 +147,16 @@ type DeleteTemplateSlugUnauthorized struct {
 }
 
 func (o *DeleteTemplateSlugUnauthorized) Error() string {
-	return fmt.Sprintf("[DELETE /notification/namespaces/{namespace}/templates/{templateSlug}][%d] deleteTemplateSlugUnauthorized  %+v", 401, o.Payload)
+	return fmt.Sprintf("[DELETE /notification/namespaces/{namespace}/templates/{templateSlug}][%d] deleteTemplateSlugUnauthorized  %+v", 401, o.ToString())
+}
+
+func (o *DeleteTemplateSlugUnauthorized) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *DeleteTemplateSlugUnauthorized) GetPayload() *lobbyclientmodels.RestapiErrorResponseBody {
@@ -170,7 +189,16 @@ type DeleteTemplateSlugForbidden struct {
 }
 
 func (o *DeleteTemplateSlugForbidden) Error() string {
-	return fmt.Sprintf("[DELETE /notification/namespaces/{namespace}/templates/{templateSlug}][%d] deleteTemplateSlugForbidden  %+v", 403, o.Payload)
+	return fmt.Sprintf("[DELETE /notification/namespaces/{namespace}/templates/{templateSlug}][%d] deleteTemplateSlugForbidden  %+v", 403, o.ToString())
+}
+
+func (o *DeleteTemplateSlugForbidden) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *DeleteTemplateSlugForbidden) GetPayload() *lobbyclientmodels.RestapiErrorResponseBody {
@@ -203,7 +231,16 @@ type DeleteTemplateSlugNotFound struct {
 }
 
 func (o *DeleteTemplateSlugNotFound) Error() string {
-	return fmt.Sprintf("[DELETE /notification/namespaces/{namespace}/templates/{templateSlug}][%d] deleteTemplateSlugNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[DELETE /notification/namespaces/{namespace}/templates/{templateSlug}][%d] deleteTemplateSlugNotFound  %+v", 404, o.ToString())
+}
+
+func (o *DeleteTemplateSlugNotFound) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *DeleteTemplateSlugNotFound) GetPayload() *lobbyclientmodels.RestapiErrorResponseBody {

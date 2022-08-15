@@ -10,6 +10,7 @@ package data_retrieval
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -98,7 +99,16 @@ type UpdateAdminEmailConfigurationBadRequest struct {
 }
 
 func (o *UpdateAdminEmailConfigurationBadRequest) Error() string {
-	return fmt.Sprintf("[PUT /gdpr/admin/namespaces/{namespace}/emails/configurations][%d] updateAdminEmailConfigurationBadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[PUT /gdpr/admin/namespaces/{namespace}/emails/configurations][%d] updateAdminEmailConfigurationBadRequest  %+v", 400, o.ToString())
+}
+
+func (o *UpdateAdminEmailConfigurationBadRequest) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *UpdateAdminEmailConfigurationBadRequest) GetPayload() *gdprclientmodels.ResponseError {
@@ -131,7 +141,16 @@ type UpdateAdminEmailConfigurationUnauthorized struct {
 }
 
 func (o *UpdateAdminEmailConfigurationUnauthorized) Error() string {
-	return fmt.Sprintf("[PUT /gdpr/admin/namespaces/{namespace}/emails/configurations][%d] updateAdminEmailConfigurationUnauthorized  %+v", 401, o.Payload)
+	return fmt.Sprintf("[PUT /gdpr/admin/namespaces/{namespace}/emails/configurations][%d] updateAdminEmailConfigurationUnauthorized  %+v", 401, o.ToString())
+}
+
+func (o *UpdateAdminEmailConfigurationUnauthorized) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *UpdateAdminEmailConfigurationUnauthorized) GetPayload() *gdprclientmodels.ResponseError {
@@ -164,7 +183,16 @@ type UpdateAdminEmailConfigurationInternalServerError struct {
 }
 
 func (o *UpdateAdminEmailConfigurationInternalServerError) Error() string {
-	return fmt.Sprintf("[PUT /gdpr/admin/namespaces/{namespace}/emails/configurations][%d] updateAdminEmailConfigurationInternalServerError  %+v", 500, o.Payload)
+	return fmt.Sprintf("[PUT /gdpr/admin/namespaces/{namespace}/emails/configurations][%d] updateAdminEmailConfigurationInternalServerError  %+v", 500, o.ToString())
+}
+
+func (o *UpdateAdminEmailConfigurationInternalServerError) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *UpdateAdminEmailConfigurationInternalServerError) GetPayload() *gdprclientmodels.ResponseError {

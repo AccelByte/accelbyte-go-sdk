@@ -10,6 +10,7 @@ package user_profile
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -77,7 +78,16 @@ type GetCustomAttributesInfoOK struct {
 }
 
 func (o *GetCustomAttributesInfoOK) Error() string {
-	return fmt.Sprintf("[GET /basic/v1/admin/namespaces/{namespace}/users/{userId}/profiles/customAttributes][%d] getCustomAttributesInfoOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /basic/v1/admin/namespaces/{namespace}/users/{userId}/profiles/customAttributes][%d] getCustomAttributesInfoOK  %+v", 200, o.ToString())
+}
+
+func (o *GetCustomAttributesInfoOK) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *GetCustomAttributesInfoOK) GetPayload() map[string]interface{} {
@@ -108,7 +118,16 @@ type GetCustomAttributesInfoUnauthorized struct {
 }
 
 func (o *GetCustomAttributesInfoUnauthorized) Error() string {
-	return fmt.Sprintf("[GET /basic/v1/admin/namespaces/{namespace}/users/{userId}/profiles/customAttributes][%d] getCustomAttributesInfoUnauthorized  %+v", 401, o.Payload)
+	return fmt.Sprintf("[GET /basic/v1/admin/namespaces/{namespace}/users/{userId}/profiles/customAttributes][%d] getCustomAttributesInfoUnauthorized  %+v", 401, o.ToString())
+}
+
+func (o *GetCustomAttributesInfoUnauthorized) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *GetCustomAttributesInfoUnauthorized) GetPayload() *basicclientmodels.ErrorEntity {
@@ -141,7 +160,16 @@ type GetCustomAttributesInfoForbidden struct {
 }
 
 func (o *GetCustomAttributesInfoForbidden) Error() string {
-	return fmt.Sprintf("[GET /basic/v1/admin/namespaces/{namespace}/users/{userId}/profiles/customAttributes][%d] getCustomAttributesInfoForbidden  %+v", 403, o.Payload)
+	return fmt.Sprintf("[GET /basic/v1/admin/namespaces/{namespace}/users/{userId}/profiles/customAttributes][%d] getCustomAttributesInfoForbidden  %+v", 403, o.ToString())
+}
+
+func (o *GetCustomAttributesInfoForbidden) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *GetCustomAttributesInfoForbidden) GetPayload() *basicclientmodels.ErrorEntity {
@@ -174,7 +202,16 @@ type GetCustomAttributesInfoNotFound struct {
 }
 
 func (o *GetCustomAttributesInfoNotFound) Error() string {
-	return fmt.Sprintf("[GET /basic/v1/admin/namespaces/{namespace}/users/{userId}/profiles/customAttributes][%d] getCustomAttributesInfoNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[GET /basic/v1/admin/namespaces/{namespace}/users/{userId}/profiles/customAttributes][%d] getCustomAttributesInfoNotFound  %+v", 404, o.ToString())
+}
+
+func (o *GetCustomAttributesInfoNotFound) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *GetCustomAttributesInfoNotFound) GetPayload() *basicclientmodels.ErrorEntity {

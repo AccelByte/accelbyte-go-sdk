@@ -10,6 +10,7 @@ package admin_game_record
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -71,7 +72,16 @@ type AdminPostGameRecordHandlerV1Created struct {
 }
 
 func (o *AdminPostGameRecordHandlerV1Created) Error() string {
-	return fmt.Sprintf("[POST /cloudsave/v1/admin/namespaces/{namespace}/records/{key}][%d] adminPostGameRecordHandlerV1Created  %+v", 201, o.Payload)
+	return fmt.Sprintf("[POST /cloudsave/v1/admin/namespaces/{namespace}/records/{key}][%d] adminPostGameRecordHandlerV1Created  %+v", 201, o.ToString())
+}
+
+func (o *AdminPostGameRecordHandlerV1Created) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *AdminPostGameRecordHandlerV1Created) GetPayload() *cloudsaveclientmodels.ModelsGameRecordResponse {
@@ -104,7 +114,16 @@ type AdminPostGameRecordHandlerV1Unauthorized struct {
 }
 
 func (o *AdminPostGameRecordHandlerV1Unauthorized) Error() string {
-	return fmt.Sprintf("[POST /cloudsave/v1/admin/namespaces/{namespace}/records/{key}][%d] adminPostGameRecordHandlerV1Unauthorized  %+v", 401, o.Payload)
+	return fmt.Sprintf("[POST /cloudsave/v1/admin/namespaces/{namespace}/records/{key}][%d] adminPostGameRecordHandlerV1Unauthorized  %+v", 401, o.ToString())
+}
+
+func (o *AdminPostGameRecordHandlerV1Unauthorized) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *AdminPostGameRecordHandlerV1Unauthorized) GetPayload() *cloudsaveclientmodels.ModelsResponseError {
@@ -137,7 +156,16 @@ type AdminPostGameRecordHandlerV1InternalServerError struct {
 }
 
 func (o *AdminPostGameRecordHandlerV1InternalServerError) Error() string {
-	return fmt.Sprintf("[POST /cloudsave/v1/admin/namespaces/{namespace}/records/{key}][%d] adminPostGameRecordHandlerV1InternalServerError  %+v", 500, o.Payload)
+	return fmt.Sprintf("[POST /cloudsave/v1/admin/namespaces/{namespace}/records/{key}][%d] adminPostGameRecordHandlerV1InternalServerError  %+v", 500, o.ToString())
+}
+
+func (o *AdminPostGameRecordHandlerV1InternalServerError) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *AdminPostGameRecordHandlerV1InternalServerError) GetPayload() *cloudsaveclientmodels.ModelsResponseError {

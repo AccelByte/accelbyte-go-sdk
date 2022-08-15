@@ -10,6 +10,7 @@ package deployment_config
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -83,7 +84,16 @@ type GetDeploymentOK struct {
 }
 
 func (o *GetDeploymentOK) Error() string {
-	return fmt.Sprintf("[GET /dsmcontroller/admin/namespaces/{namespace}/configs/deployments/{deployment}][%d] getDeploymentOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /dsmcontroller/admin/namespaces/{namespace}/configs/deployments/{deployment}][%d] getDeploymentOK  %+v", 200, o.ToString())
+}
+
+func (o *GetDeploymentOK) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *GetDeploymentOK) GetPayload() *dsmcclientmodels.ModelsDeploymentWithOverride {
@@ -116,7 +126,16 @@ type GetDeploymentBadRequest struct {
 }
 
 func (o *GetDeploymentBadRequest) Error() string {
-	return fmt.Sprintf("[GET /dsmcontroller/admin/namespaces/{namespace}/configs/deployments/{deployment}][%d] getDeploymentBadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[GET /dsmcontroller/admin/namespaces/{namespace}/configs/deployments/{deployment}][%d] getDeploymentBadRequest  %+v", 400, o.ToString())
+}
+
+func (o *GetDeploymentBadRequest) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *GetDeploymentBadRequest) GetPayload() *dsmcclientmodels.ResponseError {
@@ -149,7 +168,16 @@ type GetDeploymentUnauthorized struct {
 }
 
 func (o *GetDeploymentUnauthorized) Error() string {
-	return fmt.Sprintf("[GET /dsmcontroller/admin/namespaces/{namespace}/configs/deployments/{deployment}][%d] getDeploymentUnauthorized  %+v", 401, o.Payload)
+	return fmt.Sprintf("[GET /dsmcontroller/admin/namespaces/{namespace}/configs/deployments/{deployment}][%d] getDeploymentUnauthorized  %+v", 401, o.ToString())
+}
+
+func (o *GetDeploymentUnauthorized) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *GetDeploymentUnauthorized) GetPayload() *dsmcclientmodels.ResponseError {
@@ -182,7 +210,16 @@ type GetDeploymentNotFound struct {
 }
 
 func (o *GetDeploymentNotFound) Error() string {
-	return fmt.Sprintf("[GET /dsmcontroller/admin/namespaces/{namespace}/configs/deployments/{deployment}][%d] getDeploymentNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[GET /dsmcontroller/admin/namespaces/{namespace}/configs/deployments/{deployment}][%d] getDeploymentNotFound  %+v", 404, o.ToString())
+}
+
+func (o *GetDeploymentNotFound) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *GetDeploymentNotFound) GetPayload() *dsmcclientmodels.ResponseError {
@@ -215,7 +252,16 @@ type GetDeploymentInternalServerError struct {
 }
 
 func (o *GetDeploymentInternalServerError) Error() string {
-	return fmt.Sprintf("[GET /dsmcontroller/admin/namespaces/{namespace}/configs/deployments/{deployment}][%d] getDeploymentInternalServerError  %+v", 500, o.Payload)
+	return fmt.Sprintf("[GET /dsmcontroller/admin/namespaces/{namespace}/configs/deployments/{deployment}][%d] getDeploymentInternalServerError  %+v", 500, o.ToString())
+}
+
+func (o *GetDeploymentInternalServerError) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *GetDeploymentInternalServerError) GetPayload() *dsmcclientmodels.ResponseError {

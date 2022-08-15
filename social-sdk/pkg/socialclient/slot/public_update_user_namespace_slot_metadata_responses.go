@@ -10,6 +10,7 @@ package slot
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -65,7 +66,16 @@ type PublicUpdateUserNamespaceSlotMetadataOK struct {
 }
 
 func (o *PublicUpdateUserNamespaceSlotMetadataOK) Error() string {
-	return fmt.Sprintf("[PUT /social/public/namespaces/{namespace}/users/{userId}/slots/{slotId}/metadata][%d] publicUpdateUserNamespaceSlotMetadataOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[PUT /social/public/namespaces/{namespace}/users/{userId}/slots/{slotId}/metadata][%d] publicUpdateUserNamespaceSlotMetadataOK  %+v", 200, o.ToString())
+}
+
+func (o *PublicUpdateUserNamespaceSlotMetadataOK) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *PublicUpdateUserNamespaceSlotMetadataOK) GetPayload() *socialclientmodels.SlotInfo {
@@ -98,7 +108,16 @@ type PublicUpdateUserNamespaceSlotMetadataNotFound struct {
 }
 
 func (o *PublicUpdateUserNamespaceSlotMetadataNotFound) Error() string {
-	return fmt.Sprintf("[PUT /social/public/namespaces/{namespace}/users/{userId}/slots/{slotId}/metadata][%d] publicUpdateUserNamespaceSlotMetadataNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[PUT /social/public/namespaces/{namespace}/users/{userId}/slots/{slotId}/metadata][%d] publicUpdateUserNamespaceSlotMetadataNotFound  %+v", 404, o.ToString())
+}
+
+func (o *PublicUpdateUserNamespaceSlotMetadataNotFound) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *PublicUpdateUserNamespaceSlotMetadataNotFound) GetPayload() *socialclientmodels.ErrorEntity {

@@ -10,6 +10,7 @@ package session
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -83,7 +84,16 @@ type JoinSessionOK struct {
 }
 
 func (o *JoinSessionOK) Error() string {
-	return fmt.Sprintf("[POST /sessionbrowser/namespaces/{namespace}/gamesession/{sessionID}/join][%d] joinSessionOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[POST /sessionbrowser/namespaces/{namespace}/gamesession/{sessionID}/join][%d] joinSessionOK  %+v", 200, o.ToString())
+}
+
+func (o *JoinSessionOK) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *JoinSessionOK) GetPayload() *sessionbrowserclientmodels.ModelsSessionResponse {
@@ -116,7 +126,16 @@ type JoinSessionBadRequest struct {
 }
 
 func (o *JoinSessionBadRequest) Error() string {
-	return fmt.Sprintf("[POST /sessionbrowser/namespaces/{namespace}/gamesession/{sessionID}/join][%d] joinSessionBadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[POST /sessionbrowser/namespaces/{namespace}/gamesession/{sessionID}/join][%d] joinSessionBadRequest  %+v", 400, o.ToString())
+}
+
+func (o *JoinSessionBadRequest) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *JoinSessionBadRequest) GetPayload() *sessionbrowserclientmodels.RestapiErrorResponseV2 {
@@ -149,7 +168,16 @@ type JoinSessionForbidden struct {
 }
 
 func (o *JoinSessionForbidden) Error() string {
-	return fmt.Sprintf("[POST /sessionbrowser/namespaces/{namespace}/gamesession/{sessionID}/join][%d] joinSessionForbidden  %+v", 403, o.Payload)
+	return fmt.Sprintf("[POST /sessionbrowser/namespaces/{namespace}/gamesession/{sessionID}/join][%d] joinSessionForbidden  %+v", 403, o.ToString())
+}
+
+func (o *JoinSessionForbidden) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *JoinSessionForbidden) GetPayload() *sessionbrowserclientmodels.RestapiErrorResponseV2 {
@@ -182,7 +210,16 @@ type JoinSessionNotFound struct {
 }
 
 func (o *JoinSessionNotFound) Error() string {
-	return fmt.Sprintf("[POST /sessionbrowser/namespaces/{namespace}/gamesession/{sessionID}/join][%d] joinSessionNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[POST /sessionbrowser/namespaces/{namespace}/gamesession/{sessionID}/join][%d] joinSessionNotFound  %+v", 404, o.ToString())
+}
+
+func (o *JoinSessionNotFound) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *JoinSessionNotFound) GetPayload() *sessionbrowserclientmodels.RestapiErrorResponseV2 {
@@ -215,7 +252,16 @@ type JoinSessionInternalServerError struct {
 }
 
 func (o *JoinSessionInternalServerError) Error() string {
-	return fmt.Sprintf("[POST /sessionbrowser/namespaces/{namespace}/gamesession/{sessionID}/join][%d] joinSessionInternalServerError  %+v", 500, o.Payload)
+	return fmt.Sprintf("[POST /sessionbrowser/namespaces/{namespace}/gamesession/{sessionID}/join][%d] joinSessionInternalServerError  %+v", 500, o.ToString())
+}
+
+func (o *JoinSessionInternalServerError) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *JoinSessionInternalServerError) GetPayload() *sessionbrowserclientmodels.RestapiErrorResponseV2 {

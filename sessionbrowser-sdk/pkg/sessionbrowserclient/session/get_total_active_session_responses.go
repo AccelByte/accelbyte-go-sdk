@@ -10,6 +10,7 @@ package session
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -71,7 +72,16 @@ type GetTotalActiveSessionOK struct {
 }
 
 func (o *GetTotalActiveSessionOK) Error() string {
-	return fmt.Sprintf("[GET /sessionbrowser/admin/namespaces/{namespace}/gamesession/active/count][%d] getTotalActiveSessionOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /sessionbrowser/admin/namespaces/{namespace}/gamesession/active/count][%d] getTotalActiveSessionOK  %+v", 200, o.ToString())
+}
+
+func (o *GetTotalActiveSessionOK) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *GetTotalActiveSessionOK) GetPayload() *sessionbrowserclientmodels.ModelsCountActiveSessionResponse {
@@ -104,7 +114,16 @@ type GetTotalActiveSessionBadRequest struct {
 }
 
 func (o *GetTotalActiveSessionBadRequest) Error() string {
-	return fmt.Sprintf("[GET /sessionbrowser/admin/namespaces/{namespace}/gamesession/active/count][%d] getTotalActiveSessionBadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[GET /sessionbrowser/admin/namespaces/{namespace}/gamesession/active/count][%d] getTotalActiveSessionBadRequest  %+v", 400, o.ToString())
+}
+
+func (o *GetTotalActiveSessionBadRequest) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *GetTotalActiveSessionBadRequest) GetPayload() *sessionbrowserclientmodels.RestapiErrorResponseV2 {
@@ -137,7 +156,16 @@ type GetTotalActiveSessionInternalServerError struct {
 }
 
 func (o *GetTotalActiveSessionInternalServerError) Error() string {
-	return fmt.Sprintf("[GET /sessionbrowser/admin/namespaces/{namespace}/gamesession/active/count][%d] getTotalActiveSessionInternalServerError  %+v", 500, o.Payload)
+	return fmt.Sprintf("[GET /sessionbrowser/admin/namespaces/{namespace}/gamesession/active/count][%d] getTotalActiveSessionInternalServerError  %+v", 500, o.ToString())
+}
+
+func (o *GetTotalActiveSessionInternalServerError) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *GetTotalActiveSessionInternalServerError) GetPayload() *sessionbrowserclientmodels.RestapiErrorResponseV2 {

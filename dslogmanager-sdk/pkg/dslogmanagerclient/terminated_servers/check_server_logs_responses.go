@@ -10,6 +10,7 @@ package terminated_servers
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -71,7 +72,16 @@ type CheckServerLogsOK struct {
 }
 
 func (o *CheckServerLogsOK) Error() string {
-	return fmt.Sprintf("[GET /dslogmanager/namespaces/{namespace}/servers/{podName}/logs/exists][%d] checkServerLogsOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /dslogmanager/namespaces/{namespace}/servers/{podName}/logs/exists][%d] checkServerLogsOK  %+v", 200, o.ToString())
+}
+
+func (o *CheckServerLogsOK) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *CheckServerLogsOK) GetPayload() *dslogmanagerclientmodels.ModelsLogFileStatus {
@@ -104,7 +114,16 @@ type CheckServerLogsNotFound struct {
 }
 
 func (o *CheckServerLogsNotFound) Error() string {
-	return fmt.Sprintf("[GET /dslogmanager/namespaces/{namespace}/servers/{podName}/logs/exists][%d] checkServerLogsNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[GET /dslogmanager/namespaces/{namespace}/servers/{podName}/logs/exists][%d] checkServerLogsNotFound  %+v", 404, o.ToString())
+}
+
+func (o *CheckServerLogsNotFound) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *CheckServerLogsNotFound) GetPayload() *dslogmanagerclientmodels.ResponseError {
@@ -137,7 +156,16 @@ type CheckServerLogsInternalServerError struct {
 }
 
 func (o *CheckServerLogsInternalServerError) Error() string {
-	return fmt.Sprintf("[GET /dslogmanager/namespaces/{namespace}/servers/{podName}/logs/exists][%d] checkServerLogsInternalServerError  %+v", 500, o.Payload)
+	return fmt.Sprintf("[GET /dslogmanager/namespaces/{namespace}/servers/{podName}/logs/exists][%d] checkServerLogsInternalServerError  %+v", 500, o.ToString())
+}
+
+func (o *CheckServerLogsInternalServerError) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *CheckServerLogsInternalServerError) GetPayload() *dslogmanagerclientmodels.ResponseError {

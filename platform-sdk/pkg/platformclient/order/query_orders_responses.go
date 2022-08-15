@@ -10,6 +10,7 @@ package order
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -65,7 +66,16 @@ type QueryOrdersOK struct {
 }
 
 func (o *QueryOrdersOK) Error() string {
-	return fmt.Sprintf("[GET /platform/admin/namespaces/{namespace}/orders][%d] queryOrdersOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /platform/admin/namespaces/{namespace}/orders][%d] queryOrdersOK  %+v", 200, o.ToString())
+}
+
+func (o *QueryOrdersOK) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *QueryOrdersOK) GetPayload() *platformclientmodels.OrderPagingResult {
@@ -98,7 +108,16 @@ type QueryOrdersUnprocessableEntity struct {
 }
 
 func (o *QueryOrdersUnprocessableEntity) Error() string {
-	return fmt.Sprintf("[GET /platform/admin/namespaces/{namespace}/orders][%d] queryOrdersUnprocessableEntity  %+v", 422, o.Payload)
+	return fmt.Sprintf("[GET /platform/admin/namespaces/{namespace}/orders][%d] queryOrdersUnprocessableEntity  %+v", 422, o.ToString())
+}
+
+func (o *QueryOrdersUnprocessableEntity) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *QueryOrdersUnprocessableEntity) GetPayload() *platformclientmodels.ValidationErrorEntity {

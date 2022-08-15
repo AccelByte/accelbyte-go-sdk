@@ -10,6 +10,7 @@ package i_a_p
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -86,7 +87,16 @@ type SyncSteamInventoryBadRequest struct {
 }
 
 func (o *SyncSteamInventoryBadRequest) Error() string {
-	return fmt.Sprintf("[PUT /platform/public/namespaces/{namespace}/users/{userId}/iap/steam/sync][%d] syncSteamInventoryBadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[PUT /platform/public/namespaces/{namespace}/users/{userId}/iap/steam/sync][%d] syncSteamInventoryBadRequest  %+v", 400, o.ToString())
+}
+
+func (o *SyncSteamInventoryBadRequest) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *SyncSteamInventoryBadRequest) GetPayload() *platformclientmodels.ErrorEntity {

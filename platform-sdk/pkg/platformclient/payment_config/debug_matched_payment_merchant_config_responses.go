@@ -10,6 +10,7 @@ package payment_config
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -65,7 +66,16 @@ type DebugMatchedPaymentMerchantConfigOK struct {
 }
 
 func (o *DebugMatchedPaymentMerchantConfigOK) Error() string {
-	return fmt.Sprintf("[GET /platform/admin/payment/config/merchant/matched][%d] debugMatchedPaymentMerchantConfigOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /platform/admin/payment/config/merchant/matched][%d] debugMatchedPaymentMerchantConfigOK  %+v", 200, o.ToString())
+}
+
+func (o *DebugMatchedPaymentMerchantConfigOK) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *DebugMatchedPaymentMerchantConfigOK) GetPayload() *platformclientmodels.PaymentMerchantConfigInfo {
@@ -98,7 +108,16 @@ type DebugMatchedPaymentMerchantConfigNotFound struct {
 }
 
 func (o *DebugMatchedPaymentMerchantConfigNotFound) Error() string {
-	return fmt.Sprintf("[GET /platform/admin/payment/config/merchant/matched][%d] debugMatchedPaymentMerchantConfigNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[GET /platform/admin/payment/config/merchant/matched][%d] debugMatchedPaymentMerchantConfigNotFound  %+v", 404, o.ToString())
+}
+
+func (o *DebugMatchedPaymentMerchantConfigNotFound) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *DebugMatchedPaymentMerchantConfigNotFound) GetPayload() *platformclientmodels.ErrorEntity {

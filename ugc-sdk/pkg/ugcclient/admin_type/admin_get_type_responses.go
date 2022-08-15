@@ -10,6 +10,7 @@ package admin_type
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -77,7 +78,16 @@ type AdminGetTypeOK struct {
 }
 
 func (o *AdminGetTypeOK) Error() string {
-	return fmt.Sprintf("[GET /ugc/v1/admin/namespaces/{namespace}/types][%d] adminGetTypeOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /ugc/v1/admin/namespaces/{namespace}/types][%d] adminGetTypeOK  %+v", 200, o.ToString())
+}
+
+func (o *AdminGetTypeOK) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *AdminGetTypeOK) GetPayload() *ugcclientmodels.ModelsPaginatedGetTypeResponse {
@@ -110,7 +120,16 @@ type AdminGetTypeUnauthorized struct {
 }
 
 func (o *AdminGetTypeUnauthorized) Error() string {
-	return fmt.Sprintf("[GET /ugc/v1/admin/namespaces/{namespace}/types][%d] adminGetTypeUnauthorized  %+v", 401, o.Payload)
+	return fmt.Sprintf("[GET /ugc/v1/admin/namespaces/{namespace}/types][%d] adminGetTypeUnauthorized  %+v", 401, o.ToString())
+}
+
+func (o *AdminGetTypeUnauthorized) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *AdminGetTypeUnauthorized) GetPayload() *ugcclientmodels.ResponseError {
@@ -143,7 +162,16 @@ type AdminGetTypeNotFound struct {
 }
 
 func (o *AdminGetTypeNotFound) Error() string {
-	return fmt.Sprintf("[GET /ugc/v1/admin/namespaces/{namespace}/types][%d] adminGetTypeNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[GET /ugc/v1/admin/namespaces/{namespace}/types][%d] adminGetTypeNotFound  %+v", 404, o.ToString())
+}
+
+func (o *AdminGetTypeNotFound) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *AdminGetTypeNotFound) GetPayload() *ugcclientmodels.ResponseError {
@@ -176,7 +204,16 @@ type AdminGetTypeInternalServerError struct {
 }
 
 func (o *AdminGetTypeInternalServerError) Error() string {
-	return fmt.Sprintf("[GET /ugc/v1/admin/namespaces/{namespace}/types][%d] adminGetTypeInternalServerError  %+v", 500, o.Payload)
+	return fmt.Sprintf("[GET /ugc/v1/admin/namespaces/{namespace}/types][%d] adminGetTypeInternalServerError  %+v", 500, o.ToString())
+}
+
+func (o *AdminGetTypeInternalServerError) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *AdminGetTypeInternalServerError) GetPayload() *ugcclientmodels.ResponseError {

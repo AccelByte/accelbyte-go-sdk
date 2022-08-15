@@ -10,6 +10,7 @@ package users
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -98,7 +99,16 @@ type PublicUpdatePasswordV3BadRequest struct {
 }
 
 func (o *PublicUpdatePasswordV3BadRequest) Error() string {
-	return fmt.Sprintf("[PUT /iam/v3/public/namespaces/{namespace}/users/me/password][%d] publicUpdatePasswordV3BadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[PUT /iam/v3/public/namespaces/{namespace}/users/me/password][%d] publicUpdatePasswordV3BadRequest  %+v", 400, o.ToString())
+}
+
+func (o *PublicUpdatePasswordV3BadRequest) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *PublicUpdatePasswordV3BadRequest) GetPayload() *iamclientmodels.RestErrorResponse {
@@ -131,7 +141,16 @@ type PublicUpdatePasswordV3Unauthorized struct {
 }
 
 func (o *PublicUpdatePasswordV3Unauthorized) Error() string {
-	return fmt.Sprintf("[PUT /iam/v3/public/namespaces/{namespace}/users/me/password][%d] publicUpdatePasswordV3Unauthorized  %+v", 401, o.Payload)
+	return fmt.Sprintf("[PUT /iam/v3/public/namespaces/{namespace}/users/me/password][%d] publicUpdatePasswordV3Unauthorized  %+v", 401, o.ToString())
+}
+
+func (o *PublicUpdatePasswordV3Unauthorized) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *PublicUpdatePasswordV3Unauthorized) GetPayload() *iamclientmodels.RestErrorResponse {
@@ -164,7 +183,16 @@ type PublicUpdatePasswordV3InternalServerError struct {
 }
 
 func (o *PublicUpdatePasswordV3InternalServerError) Error() string {
-	return fmt.Sprintf("[PUT /iam/v3/public/namespaces/{namespace}/users/me/password][%d] publicUpdatePasswordV3InternalServerError  %+v", 500, o.Payload)
+	return fmt.Sprintf("[PUT /iam/v3/public/namespaces/{namespace}/users/me/password][%d] publicUpdatePasswordV3InternalServerError  %+v", 500, o.ToString())
+}
+
+func (o *PublicUpdatePasswordV3InternalServerError) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *PublicUpdatePasswordV3InternalServerError) GetPayload() *iamclientmodels.RestErrorResponse {

@@ -10,6 +10,7 @@ package fulfillment_script
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -65,7 +66,16 @@ type UpdateFulfillmentScriptOK struct {
 }
 
 func (o *UpdateFulfillmentScriptOK) Error() string {
-	return fmt.Sprintf("[PATCH /platform/admin/fulfillment/scripts/{id}][%d] updateFulfillmentScriptOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[PATCH /platform/admin/fulfillment/scripts/{id}][%d] updateFulfillmentScriptOK  %+v", 200, o.ToString())
+}
+
+func (o *UpdateFulfillmentScriptOK) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *UpdateFulfillmentScriptOK) GetPayload() *platformclientmodels.FulfillmentScriptInfo {
@@ -98,7 +108,16 @@ type UpdateFulfillmentScriptBadRequest struct {
 }
 
 func (o *UpdateFulfillmentScriptBadRequest) Error() string {
-	return fmt.Sprintf("[PATCH /platform/admin/fulfillment/scripts/{id}][%d] updateFulfillmentScriptBadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[PATCH /platform/admin/fulfillment/scripts/{id}][%d] updateFulfillmentScriptBadRequest  %+v", 400, o.ToString())
+}
+
+func (o *UpdateFulfillmentScriptBadRequest) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *UpdateFulfillmentScriptBadRequest) GetPayload() *platformclientmodels.ErrorEntity {

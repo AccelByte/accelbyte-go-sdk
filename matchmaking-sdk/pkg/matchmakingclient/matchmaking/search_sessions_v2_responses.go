@@ -10,6 +10,7 @@ package matchmaking
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -89,7 +90,16 @@ type SearchSessionsV2OK struct {
 }
 
 func (o *SearchSessionsV2OK) Error() string {
-	return fmt.Sprintf("[GET /matchmaking/v2/admin/namespaces/{namespace}/sessions/history/search][%d] searchSessionsV2OK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /matchmaking/v2/admin/namespaces/{namespace}/sessions/history/search][%d] searchSessionsV2OK  %+v", 200, o.ToString())
+}
+
+func (o *SearchSessionsV2OK) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *SearchSessionsV2OK) GetPayload() *matchmakingclientmodels.ServiceGetSessionHistorySearchResponseV2 {
@@ -122,7 +132,16 @@ type SearchSessionsV2BadRequest struct {
 }
 
 func (o *SearchSessionsV2BadRequest) Error() string {
-	return fmt.Sprintf("[GET /matchmaking/v2/admin/namespaces/{namespace}/sessions/history/search][%d] searchSessionsV2BadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[GET /matchmaking/v2/admin/namespaces/{namespace}/sessions/history/search][%d] searchSessionsV2BadRequest  %+v", 400, o.ToString())
+}
+
+func (o *SearchSessionsV2BadRequest) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *SearchSessionsV2BadRequest) GetPayload() *matchmakingclientmodels.ResponseErrorV1 {
@@ -155,7 +174,16 @@ type SearchSessionsV2Unauthorized struct {
 }
 
 func (o *SearchSessionsV2Unauthorized) Error() string {
-	return fmt.Sprintf("[GET /matchmaking/v2/admin/namespaces/{namespace}/sessions/history/search][%d] searchSessionsV2Unauthorized  %+v", 401, o.Payload)
+	return fmt.Sprintf("[GET /matchmaking/v2/admin/namespaces/{namespace}/sessions/history/search][%d] searchSessionsV2Unauthorized  %+v", 401, o.ToString())
+}
+
+func (o *SearchSessionsV2Unauthorized) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *SearchSessionsV2Unauthorized) GetPayload() *matchmakingclientmodels.ResponseErrorV1 {
@@ -188,7 +216,16 @@ type SearchSessionsV2Forbidden struct {
 }
 
 func (o *SearchSessionsV2Forbidden) Error() string {
-	return fmt.Sprintf("[GET /matchmaking/v2/admin/namespaces/{namespace}/sessions/history/search][%d] searchSessionsV2Forbidden  %+v", 403, o.Payload)
+	return fmt.Sprintf("[GET /matchmaking/v2/admin/namespaces/{namespace}/sessions/history/search][%d] searchSessionsV2Forbidden  %+v", 403, o.ToString())
+}
+
+func (o *SearchSessionsV2Forbidden) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *SearchSessionsV2Forbidden) GetPayload() *matchmakingclientmodels.ResponseErrorV1 {
@@ -221,7 +258,16 @@ type SearchSessionsV2NotFound struct {
 }
 
 func (o *SearchSessionsV2NotFound) Error() string {
-	return fmt.Sprintf("[GET /matchmaking/v2/admin/namespaces/{namespace}/sessions/history/search][%d] searchSessionsV2NotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[GET /matchmaking/v2/admin/namespaces/{namespace}/sessions/history/search][%d] searchSessionsV2NotFound  %+v", 404, o.ToString())
+}
+
+func (o *SearchSessionsV2NotFound) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *SearchSessionsV2NotFound) GetPayload() *matchmakingclientmodels.ResponseErrorV1 {
@@ -254,7 +300,16 @@ type SearchSessionsV2InternalServerError struct {
 }
 
 func (o *SearchSessionsV2InternalServerError) Error() string {
-	return fmt.Sprintf("[GET /matchmaking/v2/admin/namespaces/{namespace}/sessions/history/search][%d] searchSessionsV2InternalServerError  %+v", 500, o.Payload)
+	return fmt.Sprintf("[GET /matchmaking/v2/admin/namespaces/{namespace}/sessions/history/search][%d] searchSessionsV2InternalServerError  %+v", 500, o.ToString())
+}
+
+func (o *SearchSessionsV2InternalServerError) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *SearchSessionsV2InternalServerError) GetPayload() *matchmakingclientmodels.ResponseError {

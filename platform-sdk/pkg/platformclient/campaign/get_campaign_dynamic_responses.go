@@ -10,6 +10,7 @@ package campaign
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -65,7 +66,16 @@ type GetCampaignDynamicOK struct {
 }
 
 func (o *GetCampaignDynamicOK) Error() string {
-	return fmt.Sprintf("[GET /platform/admin/namespaces/{namespace}/campaigns/{campaignId}/dynamic][%d] getCampaignDynamicOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /platform/admin/namespaces/{namespace}/campaigns/{campaignId}/dynamic][%d] getCampaignDynamicOK  %+v", 200, o.ToString())
+}
+
+func (o *GetCampaignDynamicOK) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *GetCampaignDynamicOK) GetPayload() *platformclientmodels.CampaignDynamicInfo {
@@ -98,7 +108,16 @@ type GetCampaignDynamicNotFound struct {
 }
 
 func (o *GetCampaignDynamicNotFound) Error() string {
-	return fmt.Sprintf("[GET /platform/admin/namespaces/{namespace}/campaigns/{campaignId}/dynamic][%d] getCampaignDynamicNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[GET /platform/admin/namespaces/{namespace}/campaigns/{campaignId}/dynamic][%d] getCampaignDynamicNotFound  %+v", 404, o.ToString())
+}
+
+func (o *GetCampaignDynamicNotFound) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *GetCampaignDynamicNotFound) GetPayload() *platformclientmodels.ErrorEntity {

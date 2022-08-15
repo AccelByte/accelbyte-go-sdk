@@ -10,6 +10,7 @@ package admin_content
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -77,7 +78,16 @@ type AdminGetSpecificContentOK struct {
 }
 
 func (o *AdminGetSpecificContentOK) Error() string {
-	return fmt.Sprintf("[GET /ugc/v1/admin/namespaces/{namespace}/contents/{contentId}][%d] adminGetSpecificContentOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /ugc/v1/admin/namespaces/{namespace}/contents/{contentId}][%d] adminGetSpecificContentOK  %+v", 200, o.ToString())
+}
+
+func (o *AdminGetSpecificContentOK) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *AdminGetSpecificContentOK) GetPayload() *ugcclientmodels.ModelsContentDownloadResponse {
@@ -110,7 +120,16 @@ type AdminGetSpecificContentUnauthorized struct {
 }
 
 func (o *AdminGetSpecificContentUnauthorized) Error() string {
-	return fmt.Sprintf("[GET /ugc/v1/admin/namespaces/{namespace}/contents/{contentId}][%d] adminGetSpecificContentUnauthorized  %+v", 401, o.Payload)
+	return fmt.Sprintf("[GET /ugc/v1/admin/namespaces/{namespace}/contents/{contentId}][%d] adminGetSpecificContentUnauthorized  %+v", 401, o.ToString())
+}
+
+func (o *AdminGetSpecificContentUnauthorized) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *AdminGetSpecificContentUnauthorized) GetPayload() *ugcclientmodels.ResponseError {
@@ -143,7 +162,16 @@ type AdminGetSpecificContentNotFound struct {
 }
 
 func (o *AdminGetSpecificContentNotFound) Error() string {
-	return fmt.Sprintf("[GET /ugc/v1/admin/namespaces/{namespace}/contents/{contentId}][%d] adminGetSpecificContentNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[GET /ugc/v1/admin/namespaces/{namespace}/contents/{contentId}][%d] adminGetSpecificContentNotFound  %+v", 404, o.ToString())
+}
+
+func (o *AdminGetSpecificContentNotFound) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *AdminGetSpecificContentNotFound) GetPayload() *ugcclientmodels.ResponseError {
@@ -176,7 +204,16 @@ type AdminGetSpecificContentInternalServerError struct {
 }
 
 func (o *AdminGetSpecificContentInternalServerError) Error() string {
-	return fmt.Sprintf("[GET /ugc/v1/admin/namespaces/{namespace}/contents/{contentId}][%d] adminGetSpecificContentInternalServerError  %+v", 500, o.Payload)
+	return fmt.Sprintf("[GET /ugc/v1/admin/namespaces/{namespace}/contents/{contentId}][%d] adminGetSpecificContentInternalServerError  %+v", 500, o.ToString())
+}
+
+func (o *AdminGetSpecificContentInternalServerError) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *AdminGetSpecificContentInternalServerError) GetPayload() *ugcclientmodels.ResponseError {

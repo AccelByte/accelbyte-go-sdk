@@ -10,6 +10,7 @@ package fulfillment
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -98,7 +99,16 @@ type FulfillRewardsBadRequest struct {
 }
 
 func (o *FulfillRewardsBadRequest) Error() string {
-	return fmt.Sprintf("[POST /platform/admin/namespaces/{namespace}/users/{userId}/fulfillment/rewards][%d] fulfillRewardsBadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[POST /platform/admin/namespaces/{namespace}/users/{userId}/fulfillment/rewards][%d] fulfillRewardsBadRequest  %+v", 400, o.ToString())
+}
+
+func (o *FulfillRewardsBadRequest) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *FulfillRewardsBadRequest) GetPayload() *platformclientmodels.ErrorEntity {
@@ -131,7 +141,16 @@ type FulfillRewardsNotFound struct {
 }
 
 func (o *FulfillRewardsNotFound) Error() string {
-	return fmt.Sprintf("[POST /platform/admin/namespaces/{namespace}/users/{userId}/fulfillment/rewards][%d] fulfillRewardsNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[POST /platform/admin/namespaces/{namespace}/users/{userId}/fulfillment/rewards][%d] fulfillRewardsNotFound  %+v", 404, o.ToString())
+}
+
+func (o *FulfillRewardsNotFound) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *FulfillRewardsNotFound) GetPayload() *platformclientmodels.ErrorEntity {
@@ -164,7 +183,16 @@ type FulfillRewardsConflict struct {
 }
 
 func (o *FulfillRewardsConflict) Error() string {
-	return fmt.Sprintf("[POST /platform/admin/namespaces/{namespace}/users/{userId}/fulfillment/rewards][%d] fulfillRewardsConflict  %+v", 409, o.Payload)
+	return fmt.Sprintf("[POST /platform/admin/namespaces/{namespace}/users/{userId}/fulfillment/rewards][%d] fulfillRewardsConflict  %+v", 409, o.ToString())
+}
+
+func (o *FulfillRewardsConflict) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *FulfillRewardsConflict) GetPayload() *platformclientmodels.ErrorEntity {

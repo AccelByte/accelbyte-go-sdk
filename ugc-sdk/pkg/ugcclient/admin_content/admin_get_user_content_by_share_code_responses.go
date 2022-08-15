@@ -10,6 +10,7 @@ package admin_content
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -77,7 +78,16 @@ type AdminGetUserContentByShareCodeOK struct {
 }
 
 func (o *AdminGetUserContentByShareCodeOK) Error() string {
-	return fmt.Sprintf("[GET /ugc/v1/admin/namespaces/{namespace}/contents/sharecodes/{shareCode}][%d] adminGetUserContentByShareCodeOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /ugc/v1/admin/namespaces/{namespace}/contents/sharecodes/{shareCode}][%d] adminGetUserContentByShareCodeOK  %+v", 200, o.ToString())
+}
+
+func (o *AdminGetUserContentByShareCodeOK) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *AdminGetUserContentByShareCodeOK) GetPayload() *ugcclientmodels.ModelsContentDownloadResponse {
@@ -110,7 +120,16 @@ type AdminGetUserContentByShareCodeUnauthorized struct {
 }
 
 func (o *AdminGetUserContentByShareCodeUnauthorized) Error() string {
-	return fmt.Sprintf("[GET /ugc/v1/admin/namespaces/{namespace}/contents/sharecodes/{shareCode}][%d] adminGetUserContentByShareCodeUnauthorized  %+v", 401, o.Payload)
+	return fmt.Sprintf("[GET /ugc/v1/admin/namespaces/{namespace}/contents/sharecodes/{shareCode}][%d] adminGetUserContentByShareCodeUnauthorized  %+v", 401, o.ToString())
+}
+
+func (o *AdminGetUserContentByShareCodeUnauthorized) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *AdminGetUserContentByShareCodeUnauthorized) GetPayload() *ugcclientmodels.ResponseError {
@@ -143,7 +162,16 @@ type AdminGetUserContentByShareCodeNotFound struct {
 }
 
 func (o *AdminGetUserContentByShareCodeNotFound) Error() string {
-	return fmt.Sprintf("[GET /ugc/v1/admin/namespaces/{namespace}/contents/sharecodes/{shareCode}][%d] adminGetUserContentByShareCodeNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[GET /ugc/v1/admin/namespaces/{namespace}/contents/sharecodes/{shareCode}][%d] adminGetUserContentByShareCodeNotFound  %+v", 404, o.ToString())
+}
+
+func (o *AdminGetUserContentByShareCodeNotFound) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *AdminGetUserContentByShareCodeNotFound) GetPayload() *ugcclientmodels.ResponseError {
@@ -176,7 +204,16 @@ type AdminGetUserContentByShareCodeInternalServerError struct {
 }
 
 func (o *AdminGetUserContentByShareCodeInternalServerError) Error() string {
-	return fmt.Sprintf("[GET /ugc/v1/admin/namespaces/{namespace}/contents/sharecodes/{shareCode}][%d] adminGetUserContentByShareCodeInternalServerError  %+v", 500, o.Payload)
+	return fmt.Sprintf("[GET /ugc/v1/admin/namespaces/{namespace}/contents/sharecodes/{shareCode}][%d] adminGetUserContentByShareCodeInternalServerError  %+v", 500, o.ToString())
+}
+
+func (o *AdminGetUserContentByShareCodeInternalServerError) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *AdminGetUserContentByShareCodeInternalServerError) GetPayload() *ugcclientmodels.ResponseError {

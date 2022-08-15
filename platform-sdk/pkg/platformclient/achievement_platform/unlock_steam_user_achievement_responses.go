@@ -10,6 +10,7 @@ package achievement_platform
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -92,7 +93,16 @@ type UnlockSteamUserAchievementBadRequest struct {
 }
 
 func (o *UnlockSteamUserAchievementBadRequest) Error() string {
-	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/users/{userId}/achievement/steam][%d] unlockSteamUserAchievementBadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/users/{userId}/achievement/steam][%d] unlockSteamUserAchievementBadRequest  %+v", 400, o.ToString())
+}
+
+func (o *UnlockSteamUserAchievementBadRequest) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *UnlockSteamUserAchievementBadRequest) GetPayload() *platformclientmodels.ValidationErrorEntity {
@@ -125,7 +135,16 @@ type UnlockSteamUserAchievementNotFound struct {
 }
 
 func (o *UnlockSteamUserAchievementNotFound) Error() string {
-	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/users/{userId}/achievement/steam][%d] unlockSteamUserAchievementNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/users/{userId}/achievement/steam][%d] unlockSteamUserAchievementNotFound  %+v", 404, o.ToString())
+}
+
+func (o *UnlockSteamUserAchievementNotFound) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *UnlockSteamUserAchievementNotFound) GetPayload() *platformclientmodels.ErrorEntity {

@@ -10,6 +10,7 @@ package users
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -110,7 +111,16 @@ type AdminVerifyUserWithoutVerificationCodeV3BadRequest struct {
 }
 
 func (o *AdminVerifyUserWithoutVerificationCodeV3BadRequest) Error() string {
-	return fmt.Sprintf("[PUT /iam/v3/admin/namespaces/{namespace}/users/{userId}/verify][%d] adminVerifyUserWithoutVerificationCodeV3BadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[PUT /iam/v3/admin/namespaces/{namespace}/users/{userId}/verify][%d] adminVerifyUserWithoutVerificationCodeV3BadRequest  %+v", 400, o.ToString())
+}
+
+func (o *AdminVerifyUserWithoutVerificationCodeV3BadRequest) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *AdminVerifyUserWithoutVerificationCodeV3BadRequest) GetPayload() *iamclientmodels.RestErrorResponse {
@@ -143,7 +153,16 @@ type AdminVerifyUserWithoutVerificationCodeV3Unauthorized struct {
 }
 
 func (o *AdminVerifyUserWithoutVerificationCodeV3Unauthorized) Error() string {
-	return fmt.Sprintf("[PUT /iam/v3/admin/namespaces/{namespace}/users/{userId}/verify][%d] adminVerifyUserWithoutVerificationCodeV3Unauthorized  %+v", 401, o.Payload)
+	return fmt.Sprintf("[PUT /iam/v3/admin/namespaces/{namespace}/users/{userId}/verify][%d] adminVerifyUserWithoutVerificationCodeV3Unauthorized  %+v", 401, o.ToString())
+}
+
+func (o *AdminVerifyUserWithoutVerificationCodeV3Unauthorized) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *AdminVerifyUserWithoutVerificationCodeV3Unauthorized) GetPayload() *iamclientmodels.RestErrorResponse {
@@ -176,7 +195,16 @@ type AdminVerifyUserWithoutVerificationCodeV3Forbidden struct {
 }
 
 func (o *AdminVerifyUserWithoutVerificationCodeV3Forbidden) Error() string {
-	return fmt.Sprintf("[PUT /iam/v3/admin/namespaces/{namespace}/users/{userId}/verify][%d] adminVerifyUserWithoutVerificationCodeV3Forbidden  %+v", 403, o.Payload)
+	return fmt.Sprintf("[PUT /iam/v3/admin/namespaces/{namespace}/users/{userId}/verify][%d] adminVerifyUserWithoutVerificationCodeV3Forbidden  %+v", 403, o.ToString())
+}
+
+func (o *AdminVerifyUserWithoutVerificationCodeV3Forbidden) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *AdminVerifyUserWithoutVerificationCodeV3Forbidden) GetPayload() *iamclientmodels.RestErrorResponse {
@@ -209,7 +237,16 @@ type AdminVerifyUserWithoutVerificationCodeV3NotFound struct {
 }
 
 func (o *AdminVerifyUserWithoutVerificationCodeV3NotFound) Error() string {
-	return fmt.Sprintf("[PUT /iam/v3/admin/namespaces/{namespace}/users/{userId}/verify][%d] adminVerifyUserWithoutVerificationCodeV3NotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[PUT /iam/v3/admin/namespaces/{namespace}/users/{userId}/verify][%d] adminVerifyUserWithoutVerificationCodeV3NotFound  %+v", 404, o.ToString())
+}
+
+func (o *AdminVerifyUserWithoutVerificationCodeV3NotFound) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *AdminVerifyUserWithoutVerificationCodeV3NotFound) GetPayload() *iamclientmodels.RestErrorResponse {
@@ -242,7 +279,16 @@ type AdminVerifyUserWithoutVerificationCodeV3Conflict struct {
 }
 
 func (o *AdminVerifyUserWithoutVerificationCodeV3Conflict) Error() string {
-	return fmt.Sprintf("[PUT /iam/v3/admin/namespaces/{namespace}/users/{userId}/verify][%d] adminVerifyUserWithoutVerificationCodeV3Conflict  %+v", 409, o.Payload)
+	return fmt.Sprintf("[PUT /iam/v3/admin/namespaces/{namespace}/users/{userId}/verify][%d] adminVerifyUserWithoutVerificationCodeV3Conflict  %+v", 409, o.ToString())
+}
+
+func (o *AdminVerifyUserWithoutVerificationCodeV3Conflict) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *AdminVerifyUserWithoutVerificationCodeV3Conflict) GetPayload() *iamclientmodels.RestErrorResponse {

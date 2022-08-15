@@ -10,6 +10,7 @@ package users
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -71,7 +72,16 @@ type GetAdminInvitationV3OK struct {
 }
 
 func (o *GetAdminInvitationV3OK) Error() string {
-	return fmt.Sprintf("[GET /iam/v3/public/namespaces/{namespace}/users/invite/{invitationId}][%d] getAdminInvitationV3OK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /iam/v3/public/namespaces/{namespace}/users/invite/{invitationId}][%d] getAdminInvitationV3OK  %+v", 200, o.ToString())
+}
+
+func (o *GetAdminInvitationV3OK) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *GetAdminInvitationV3OK) GetPayload() *iamclientmodels.ModelUserInvitationV3 {
@@ -104,7 +114,16 @@ type GetAdminInvitationV3NotFound struct {
 }
 
 func (o *GetAdminInvitationV3NotFound) Error() string {
-	return fmt.Sprintf("[GET /iam/v3/public/namespaces/{namespace}/users/invite/{invitationId}][%d] getAdminInvitationV3NotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[GET /iam/v3/public/namespaces/{namespace}/users/invite/{invitationId}][%d] getAdminInvitationV3NotFound  %+v", 404, o.ToString())
+}
+
+func (o *GetAdminInvitationV3NotFound) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *GetAdminInvitationV3NotFound) GetPayload() *iamclientmodels.RestErrorResponse {
@@ -137,7 +156,16 @@ type GetAdminInvitationV3InternalServerError struct {
 }
 
 func (o *GetAdminInvitationV3InternalServerError) Error() string {
-	return fmt.Sprintf("[GET /iam/v3/public/namespaces/{namespace}/users/invite/{invitationId}][%d] getAdminInvitationV3InternalServerError  %+v", 500, o.Payload)
+	return fmt.Sprintf("[GET /iam/v3/public/namespaces/{namespace}/users/invite/{invitationId}][%d] getAdminInvitationV3InternalServerError  %+v", 500, o.ToString())
+}
+
+func (o *GetAdminInvitationV3InternalServerError) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *GetAdminInvitationV3InternalServerError) GetPayload() *iamclientmodels.RestErrorResponse {

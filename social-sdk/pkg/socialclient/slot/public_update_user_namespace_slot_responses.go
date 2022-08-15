@@ -10,6 +10,7 @@ package slot
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -71,7 +72,16 @@ type PublicUpdateUserNamespaceSlotOK struct {
 }
 
 func (o *PublicUpdateUserNamespaceSlotOK) Error() string {
-	return fmt.Sprintf("[PUT /social/public/namespaces/{namespace}/users/{userId}/slots/{slotId}][%d] publicUpdateUserNamespaceSlotOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[PUT /social/public/namespaces/{namespace}/users/{userId}/slots/{slotId}][%d] publicUpdateUserNamespaceSlotOK  %+v", 200, o.ToString())
+}
+
+func (o *PublicUpdateUserNamespaceSlotOK) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *PublicUpdateUserNamespaceSlotOK) GetPayload() *socialclientmodels.SlotInfo {
@@ -104,7 +114,16 @@ type PublicUpdateUserNamespaceSlotBadRequest struct {
 }
 
 func (o *PublicUpdateUserNamespaceSlotBadRequest) Error() string {
-	return fmt.Sprintf("[PUT /social/public/namespaces/{namespace}/users/{userId}/slots/{slotId}][%d] publicUpdateUserNamespaceSlotBadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[PUT /social/public/namespaces/{namespace}/users/{userId}/slots/{slotId}][%d] publicUpdateUserNamespaceSlotBadRequest  %+v", 400, o.ToString())
+}
+
+func (o *PublicUpdateUserNamespaceSlotBadRequest) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *PublicUpdateUserNamespaceSlotBadRequest) GetPayload() *socialclientmodels.ErrorEntity {
@@ -137,7 +156,16 @@ type PublicUpdateUserNamespaceSlotNotFound struct {
 }
 
 func (o *PublicUpdateUserNamespaceSlotNotFound) Error() string {
-	return fmt.Sprintf("[PUT /social/public/namespaces/{namespace}/users/{userId}/slots/{slotId}][%d] publicUpdateUserNamespaceSlotNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[PUT /social/public/namespaces/{namespace}/users/{userId}/slots/{slotId}][%d] publicUpdateUserNamespaceSlotNotFound  %+v", 404, o.ToString())
+}
+
+func (o *PublicUpdateUserNamespaceSlotNotFound) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *PublicUpdateUserNamespaceSlotNotFound) GetPayload() *socialclientmodels.ErrorEntity {

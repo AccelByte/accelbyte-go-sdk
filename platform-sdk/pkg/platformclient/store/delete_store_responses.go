@@ -10,6 +10,7 @@ package store
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -71,7 +72,16 @@ type DeleteStoreOK struct {
 }
 
 func (o *DeleteStoreOK) Error() string {
-	return fmt.Sprintf("[DELETE /platform/admin/namespaces/{namespace}/stores/{storeId}][%d] deleteStoreOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[DELETE /platform/admin/namespaces/{namespace}/stores/{storeId}][%d] deleteStoreOK  %+v", 200, o.ToString())
+}
+
+func (o *DeleteStoreOK) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *DeleteStoreOK) GetPayload() *platformclientmodels.StoreInfo {
@@ -104,7 +114,16 @@ type DeleteStoreNotFound struct {
 }
 
 func (o *DeleteStoreNotFound) Error() string {
-	return fmt.Sprintf("[DELETE /platform/admin/namespaces/{namespace}/stores/{storeId}][%d] deleteStoreNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[DELETE /platform/admin/namespaces/{namespace}/stores/{storeId}][%d] deleteStoreNotFound  %+v", 404, o.ToString())
+}
+
+func (o *DeleteStoreNotFound) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *DeleteStoreNotFound) GetPayload() *platformclientmodels.ErrorEntity {
@@ -137,7 +156,16 @@ type DeleteStoreConflict struct {
 }
 
 func (o *DeleteStoreConflict) Error() string {
-	return fmt.Sprintf("[DELETE /platform/admin/namespaces/{namespace}/stores/{storeId}][%d] deleteStoreConflict  %+v", 409, o.Payload)
+	return fmt.Sprintf("[DELETE /platform/admin/namespaces/{namespace}/stores/{storeId}][%d] deleteStoreConflict  %+v", 409, o.ToString())
+}
+
+func (o *DeleteStoreConflict) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *DeleteStoreConflict) GetPayload() *platformclientmodels.ErrorEntity {

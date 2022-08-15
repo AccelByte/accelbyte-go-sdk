@@ -10,6 +10,7 @@ package item
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -83,7 +84,16 @@ type CreateItemCreated struct {
 }
 
 func (o *CreateItemCreated) Error() string {
-	return fmt.Sprintf("[POST /platform/admin/namespaces/{namespace}/items][%d] createItemCreated  %+v", 201, o.Payload)
+	return fmt.Sprintf("[POST /platform/admin/namespaces/{namespace}/items][%d] createItemCreated  %+v", 201, o.ToString())
+}
+
+func (o *CreateItemCreated) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *CreateItemCreated) GetPayload() *platformclientmodels.FullItemInfo {
@@ -116,7 +126,16 @@ type CreateItemBadRequest struct {
 }
 
 func (o *CreateItemBadRequest) Error() string {
-	return fmt.Sprintf("[POST /platform/admin/namespaces/{namespace}/items][%d] createItemBadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[POST /platform/admin/namespaces/{namespace}/items][%d] createItemBadRequest  %+v", 400, o.ToString())
+}
+
+func (o *CreateItemBadRequest) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *CreateItemBadRequest) GetPayload() *platformclientmodels.ErrorEntity {
@@ -149,7 +168,16 @@ type CreateItemNotFound struct {
 }
 
 func (o *CreateItemNotFound) Error() string {
-	return fmt.Sprintf("[POST /platform/admin/namespaces/{namespace}/items][%d] createItemNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[POST /platform/admin/namespaces/{namespace}/items][%d] createItemNotFound  %+v", 404, o.ToString())
+}
+
+func (o *CreateItemNotFound) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *CreateItemNotFound) GetPayload() *platformclientmodels.ErrorEntity {
@@ -182,7 +210,16 @@ type CreateItemConflict struct {
 }
 
 func (o *CreateItemConflict) Error() string {
-	return fmt.Sprintf("[POST /platform/admin/namespaces/{namespace}/items][%d] createItemConflict  %+v", 409, o.Payload)
+	return fmt.Sprintf("[POST /platform/admin/namespaces/{namespace}/items][%d] createItemConflict  %+v", 409, o.ToString())
+}
+
+func (o *CreateItemConflict) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *CreateItemConflict) GetPayload() *platformclientmodels.ErrorEntity {
@@ -215,7 +252,16 @@ type CreateItemUnprocessableEntity struct {
 }
 
 func (o *CreateItemUnprocessableEntity) Error() string {
-	return fmt.Sprintf("[POST /platform/admin/namespaces/{namespace}/items][%d] createItemUnprocessableEntity  %+v", 422, o.Payload)
+	return fmt.Sprintf("[POST /platform/admin/namespaces/{namespace}/items][%d] createItemUnprocessableEntity  %+v", 422, o.ToString())
+}
+
+func (o *CreateItemUnprocessableEntity) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *CreateItemUnprocessableEntity) GetPayload() *platformclientmodels.ValidationErrorEntity {

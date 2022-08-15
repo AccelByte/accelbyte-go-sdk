@@ -10,6 +10,7 @@ package session
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -77,7 +78,16 @@ type DeleteSessionLocalDSOK struct {
 }
 
 func (o *DeleteSessionLocalDSOK) Error() string {
-	return fmt.Sprintf("[DELETE /sessionbrowser/namespaces/{namespace}/gamesession/{sessionID}/localds][%d] deleteSessionLocalDSOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[DELETE /sessionbrowser/namespaces/{namespace}/gamesession/{sessionID}/localds][%d] deleteSessionLocalDSOK  %+v", 200, o.ToString())
+}
+
+func (o *DeleteSessionLocalDSOK) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *DeleteSessionLocalDSOK) GetPayload() *sessionbrowserclientmodels.ModelsSessionResponse {
@@ -110,7 +120,16 @@ type DeleteSessionLocalDSBadRequest struct {
 }
 
 func (o *DeleteSessionLocalDSBadRequest) Error() string {
-	return fmt.Sprintf("[DELETE /sessionbrowser/namespaces/{namespace}/gamesession/{sessionID}/localds][%d] deleteSessionLocalDSBadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[DELETE /sessionbrowser/namespaces/{namespace}/gamesession/{sessionID}/localds][%d] deleteSessionLocalDSBadRequest  %+v", 400, o.ToString())
+}
+
+func (o *DeleteSessionLocalDSBadRequest) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *DeleteSessionLocalDSBadRequest) GetPayload() *sessionbrowserclientmodels.ResponseError {
@@ -143,7 +162,16 @@ type DeleteSessionLocalDSNotFound struct {
 }
 
 func (o *DeleteSessionLocalDSNotFound) Error() string {
-	return fmt.Sprintf("[DELETE /sessionbrowser/namespaces/{namespace}/gamesession/{sessionID}/localds][%d] deleteSessionLocalDSNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[DELETE /sessionbrowser/namespaces/{namespace}/gamesession/{sessionID}/localds][%d] deleteSessionLocalDSNotFound  %+v", 404, o.ToString())
+}
+
+func (o *DeleteSessionLocalDSNotFound) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *DeleteSessionLocalDSNotFound) GetPayload() *sessionbrowserclientmodels.ResponseError {
@@ -176,7 +204,16 @@ type DeleteSessionLocalDSInternalServerError struct {
 }
 
 func (o *DeleteSessionLocalDSInternalServerError) Error() string {
-	return fmt.Sprintf("[DELETE /sessionbrowser/namespaces/{namespace}/gamesession/{sessionID}/localds][%d] deleteSessionLocalDSInternalServerError  %+v", 500, o.Payload)
+	return fmt.Sprintf("[DELETE /sessionbrowser/namespaces/{namespace}/gamesession/{sessionID}/localds][%d] deleteSessionLocalDSInternalServerError  %+v", 500, o.ToString())
+}
+
+func (o *DeleteSessionLocalDSInternalServerError) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *DeleteSessionLocalDSInternalServerError) GetPayload() *sessionbrowserclientmodels.ResponseError {

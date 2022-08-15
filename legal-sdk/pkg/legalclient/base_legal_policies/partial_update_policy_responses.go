@@ -10,6 +10,7 @@ package base_legal_policies
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -65,7 +66,16 @@ type PartialUpdatePolicyOK struct {
 }
 
 func (o *PartialUpdatePolicyOK) Error() string {
-	return fmt.Sprintf("[PATCH /agreement/admin/base-policies/{basePolicyId}][%d] partialUpdatePolicyOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[PATCH /agreement/admin/base-policies/{basePolicyId}][%d] partialUpdatePolicyOK  %+v", 200, o.ToString())
+}
+
+func (o *PartialUpdatePolicyOK) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *PartialUpdatePolicyOK) GetPayload() *legalclientmodels.UpdateBasePolicyResponse {
@@ -98,7 +108,16 @@ type PartialUpdatePolicyBadRequest struct {
 }
 
 func (o *PartialUpdatePolicyBadRequest) Error() string {
-	return fmt.Sprintf("[PATCH /agreement/admin/base-policies/{basePolicyId}][%d] partialUpdatePolicyBadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[PATCH /agreement/admin/base-policies/{basePolicyId}][%d] partialUpdatePolicyBadRequest  %+v", 400, o.ToString())
+}
+
+func (o *PartialUpdatePolicyBadRequest) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *PartialUpdatePolicyBadRequest) GetPayload() *legalclientmodels.ErrorEntity {

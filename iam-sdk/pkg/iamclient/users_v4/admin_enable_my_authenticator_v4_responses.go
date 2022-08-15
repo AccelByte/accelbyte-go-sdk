@@ -10,6 +10,7 @@ package users_v4
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -116,7 +117,16 @@ type AdminEnableMyAuthenticatorV4BadRequest struct {
 }
 
 func (o *AdminEnableMyAuthenticatorV4BadRequest) Error() string {
-	return fmt.Sprintf("[POST /iam/v4/admin/users/me/mfa/authenticator/enable][%d] adminEnableMyAuthenticatorV4BadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[POST /iam/v4/admin/users/me/mfa/authenticator/enable][%d] adminEnableMyAuthenticatorV4BadRequest  %+v", 400, o.ToString())
+}
+
+func (o *AdminEnableMyAuthenticatorV4BadRequest) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *AdminEnableMyAuthenticatorV4BadRequest) GetPayload() *iamclientmodels.RestErrorResponse {
@@ -149,7 +159,16 @@ type AdminEnableMyAuthenticatorV4Unauthorized struct {
 }
 
 func (o *AdminEnableMyAuthenticatorV4Unauthorized) Error() string {
-	return fmt.Sprintf("[POST /iam/v4/admin/users/me/mfa/authenticator/enable][%d] adminEnableMyAuthenticatorV4Unauthorized  %+v", 401, o.Payload)
+	return fmt.Sprintf("[POST /iam/v4/admin/users/me/mfa/authenticator/enable][%d] adminEnableMyAuthenticatorV4Unauthorized  %+v", 401, o.ToString())
+}
+
+func (o *AdminEnableMyAuthenticatorV4Unauthorized) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *AdminEnableMyAuthenticatorV4Unauthorized) GetPayload() *iamclientmodels.RestErrorResponse {
@@ -182,7 +201,16 @@ type AdminEnableMyAuthenticatorV4Forbidden struct {
 }
 
 func (o *AdminEnableMyAuthenticatorV4Forbidden) Error() string {
-	return fmt.Sprintf("[POST /iam/v4/admin/users/me/mfa/authenticator/enable][%d] adminEnableMyAuthenticatorV4Forbidden  %+v", 403, o.Payload)
+	return fmt.Sprintf("[POST /iam/v4/admin/users/me/mfa/authenticator/enable][%d] adminEnableMyAuthenticatorV4Forbidden  %+v", 403, o.ToString())
+}
+
+func (o *AdminEnableMyAuthenticatorV4Forbidden) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *AdminEnableMyAuthenticatorV4Forbidden) GetPayload() *iamclientmodels.RestErrorResponse {
@@ -215,7 +243,16 @@ type AdminEnableMyAuthenticatorV4NotFound struct {
 }
 
 func (o *AdminEnableMyAuthenticatorV4NotFound) Error() string {
-	return fmt.Sprintf("[POST /iam/v4/admin/users/me/mfa/authenticator/enable][%d] adminEnableMyAuthenticatorV4NotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[POST /iam/v4/admin/users/me/mfa/authenticator/enable][%d] adminEnableMyAuthenticatorV4NotFound  %+v", 404, o.ToString())
+}
+
+func (o *AdminEnableMyAuthenticatorV4NotFound) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *AdminEnableMyAuthenticatorV4NotFound) GetPayload() *iamclientmodels.RestErrorResponse {
@@ -248,7 +285,16 @@ type AdminEnableMyAuthenticatorV4Conflict struct {
 }
 
 func (o *AdminEnableMyAuthenticatorV4Conflict) Error() string {
-	return fmt.Sprintf("[POST /iam/v4/admin/users/me/mfa/authenticator/enable][%d] adminEnableMyAuthenticatorV4Conflict  %+v", 409, o.Payload)
+	return fmt.Sprintf("[POST /iam/v4/admin/users/me/mfa/authenticator/enable][%d] adminEnableMyAuthenticatorV4Conflict  %+v", 409, o.ToString())
+}
+
+func (o *AdminEnableMyAuthenticatorV4Conflict) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *AdminEnableMyAuthenticatorV4Conflict) GetPayload() *iamclientmodels.RestErrorResponse {
@@ -281,7 +327,16 @@ type AdminEnableMyAuthenticatorV4InternalServerError struct {
 }
 
 func (o *AdminEnableMyAuthenticatorV4InternalServerError) Error() string {
-	return fmt.Sprintf("[POST /iam/v4/admin/users/me/mfa/authenticator/enable][%d] adminEnableMyAuthenticatorV4InternalServerError  %+v", 500, o.Payload)
+	return fmt.Sprintf("[POST /iam/v4/admin/users/me/mfa/authenticator/enable][%d] adminEnableMyAuthenticatorV4InternalServerError  %+v", 500, o.ToString())
+}
+
+func (o *AdminEnableMyAuthenticatorV4InternalServerError) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *AdminEnableMyAuthenticatorV4InternalServerError) GetPayload() *iamclientmodels.RestErrorResponse {

@@ -10,6 +10,7 @@ package game_profile
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -59,7 +60,16 @@ type PublicGetUserProfilesOK struct {
 }
 
 func (o *PublicGetUserProfilesOK) Error() string {
-	return fmt.Sprintf("[GET /social/public/namespaces/{namespace}/users/{userId}/profiles][%d] publicGetUserProfilesOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /social/public/namespaces/{namespace}/users/{userId}/profiles][%d] publicGetUserProfilesOK  %+v", 200, o.ToString())
+}
+
+func (o *PublicGetUserProfilesOK) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *PublicGetUserProfilesOK) GetPayload() []*socialclientmodels.GameProfileHeader {

@@ -10,6 +10,7 @@ package matchmaking
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -104,7 +105,16 @@ type QueueSessionHandlerBadRequest struct {
 }
 
 func (o *QueueSessionHandlerBadRequest) Error() string {
-	return fmt.Sprintf("[POST /matchmaking/namespaces/{namespace}/sessions][%d] queueSessionHandlerBadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[POST /matchmaking/namespaces/{namespace}/sessions][%d] queueSessionHandlerBadRequest  %+v", 400, o.ToString())
+}
+
+func (o *QueueSessionHandlerBadRequest) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *QueueSessionHandlerBadRequest) GetPayload() *matchmakingclientmodels.ResponseError {
@@ -137,7 +147,16 @@ type QueueSessionHandlerUnauthorized struct {
 }
 
 func (o *QueueSessionHandlerUnauthorized) Error() string {
-	return fmt.Sprintf("[POST /matchmaking/namespaces/{namespace}/sessions][%d] queueSessionHandlerUnauthorized  %+v", 401, o.Payload)
+	return fmt.Sprintf("[POST /matchmaking/namespaces/{namespace}/sessions][%d] queueSessionHandlerUnauthorized  %+v", 401, o.ToString())
+}
+
+func (o *QueueSessionHandlerUnauthorized) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *QueueSessionHandlerUnauthorized) GetPayload() *matchmakingclientmodels.ResponseError {
@@ -170,7 +189,16 @@ type QueueSessionHandlerForbidden struct {
 }
 
 func (o *QueueSessionHandlerForbidden) Error() string {
-	return fmt.Sprintf("[POST /matchmaking/namespaces/{namespace}/sessions][%d] queueSessionHandlerForbidden  %+v", 403, o.Payload)
+	return fmt.Sprintf("[POST /matchmaking/namespaces/{namespace}/sessions][%d] queueSessionHandlerForbidden  %+v", 403, o.ToString())
+}
+
+func (o *QueueSessionHandlerForbidden) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *QueueSessionHandlerForbidden) GetPayload() *matchmakingclientmodels.ResponseError {
@@ -203,7 +231,16 @@ type QueueSessionHandlerInternalServerError struct {
 }
 
 func (o *QueueSessionHandlerInternalServerError) Error() string {
-	return fmt.Sprintf("[POST /matchmaking/namespaces/{namespace}/sessions][%d] queueSessionHandlerInternalServerError  %+v", 500, o.Payload)
+	return fmt.Sprintf("[POST /matchmaking/namespaces/{namespace}/sessions][%d] queueSessionHandlerInternalServerError  %+v", 500, o.ToString())
+}
+
+func (o *QueueSessionHandlerInternalServerError) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *QueueSessionHandlerInternalServerError) GetPayload() *matchmakingclientmodels.ResponseError {

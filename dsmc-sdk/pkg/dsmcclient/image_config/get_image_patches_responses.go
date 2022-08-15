@@ -10,6 +10,7 @@ package image_config
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -71,7 +72,16 @@ type GetImagePatchesOK struct {
 }
 
 func (o *GetImagePatchesOK) Error() string {
-	return fmt.Sprintf("[GET /dsmcontroller/admin/namespaces/{namespace}/images/versions/{version}/patches][%d] getImagePatchesOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /dsmcontroller/admin/namespaces/{namespace}/images/versions/{version}/patches][%d] getImagePatchesOK  %+v", 200, o.ToString())
+}
+
+func (o *GetImagePatchesOK) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *GetImagePatchesOK) GetPayload() *dsmcclientmodels.ModelsListImagePatchesResponse {
@@ -104,7 +114,16 @@ type GetImagePatchesUnauthorized struct {
 }
 
 func (o *GetImagePatchesUnauthorized) Error() string {
-	return fmt.Sprintf("[GET /dsmcontroller/admin/namespaces/{namespace}/images/versions/{version}/patches][%d] getImagePatchesUnauthorized  %+v", 401, o.Payload)
+	return fmt.Sprintf("[GET /dsmcontroller/admin/namespaces/{namespace}/images/versions/{version}/patches][%d] getImagePatchesUnauthorized  %+v", 401, o.ToString())
+}
+
+func (o *GetImagePatchesUnauthorized) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *GetImagePatchesUnauthorized) GetPayload() *dsmcclientmodels.ResponseError {
@@ -137,7 +156,16 @@ type GetImagePatchesInternalServerError struct {
 }
 
 func (o *GetImagePatchesInternalServerError) Error() string {
-	return fmt.Sprintf("[GET /dsmcontroller/admin/namespaces/{namespace}/images/versions/{version}/patches][%d] getImagePatchesInternalServerError  %+v", 500, o.Payload)
+	return fmt.Sprintf("[GET /dsmcontroller/admin/namespaces/{namespace}/images/versions/{version}/patches][%d] getImagePatchesInternalServerError  %+v", 500, o.ToString())
+}
+
+func (o *GetImagePatchesInternalServerError) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *GetImagePatchesInternalServerError) GetPayload() *dsmcclientmodels.ResponseError {

@@ -10,6 +10,7 @@ package user_visibility
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -89,7 +90,16 @@ type GetHiddenUsersV2OK struct {
 }
 
 func (o *GetHiddenUsersV2OK) Error() string {
-	return fmt.Sprintf("[GET /leaderboard/v2/admin/namespaces/{namespace}/leaderboards/{leaderboardCode}/users/hidden][%d] getHiddenUsersV2OK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /leaderboard/v2/admin/namespaces/{namespace}/leaderboards/{leaderboardCode}/users/hidden][%d] getHiddenUsersV2OK  %+v", 200, o.ToString())
+}
+
+func (o *GetHiddenUsersV2OK) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *GetHiddenUsersV2OK) GetPayload() *leaderboardclientmodels.ModelsGetHiddenUserResponse {
@@ -122,7 +132,16 @@ type GetHiddenUsersV2BadRequest struct {
 }
 
 func (o *GetHiddenUsersV2BadRequest) Error() string {
-	return fmt.Sprintf("[GET /leaderboard/v2/admin/namespaces/{namespace}/leaderboards/{leaderboardCode}/users/hidden][%d] getHiddenUsersV2BadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[GET /leaderboard/v2/admin/namespaces/{namespace}/leaderboards/{leaderboardCode}/users/hidden][%d] getHiddenUsersV2BadRequest  %+v", 400, o.ToString())
+}
+
+func (o *GetHiddenUsersV2BadRequest) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *GetHiddenUsersV2BadRequest) GetPayload() *leaderboardclientmodels.ResponseErrorResponse {
@@ -155,7 +174,16 @@ type GetHiddenUsersV2Unauthorized struct {
 }
 
 func (o *GetHiddenUsersV2Unauthorized) Error() string {
-	return fmt.Sprintf("[GET /leaderboard/v2/admin/namespaces/{namespace}/leaderboards/{leaderboardCode}/users/hidden][%d] getHiddenUsersV2Unauthorized  %+v", 401, o.Payload)
+	return fmt.Sprintf("[GET /leaderboard/v2/admin/namespaces/{namespace}/leaderboards/{leaderboardCode}/users/hidden][%d] getHiddenUsersV2Unauthorized  %+v", 401, o.ToString())
+}
+
+func (o *GetHiddenUsersV2Unauthorized) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *GetHiddenUsersV2Unauthorized) GetPayload() *leaderboardclientmodels.ResponseErrorResponse {
@@ -188,7 +216,16 @@ type GetHiddenUsersV2Forbidden struct {
 }
 
 func (o *GetHiddenUsersV2Forbidden) Error() string {
-	return fmt.Sprintf("[GET /leaderboard/v2/admin/namespaces/{namespace}/leaderboards/{leaderboardCode}/users/hidden][%d] getHiddenUsersV2Forbidden  %+v", 403, o.Payload)
+	return fmt.Sprintf("[GET /leaderboard/v2/admin/namespaces/{namespace}/leaderboards/{leaderboardCode}/users/hidden][%d] getHiddenUsersV2Forbidden  %+v", 403, o.ToString())
+}
+
+func (o *GetHiddenUsersV2Forbidden) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *GetHiddenUsersV2Forbidden) GetPayload() *leaderboardclientmodels.ResponseErrorResponse {
@@ -221,7 +258,16 @@ type GetHiddenUsersV2NotFound struct {
 }
 
 func (o *GetHiddenUsersV2NotFound) Error() string {
-	return fmt.Sprintf("[GET /leaderboard/v2/admin/namespaces/{namespace}/leaderboards/{leaderboardCode}/users/hidden][%d] getHiddenUsersV2NotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[GET /leaderboard/v2/admin/namespaces/{namespace}/leaderboards/{leaderboardCode}/users/hidden][%d] getHiddenUsersV2NotFound  %+v", 404, o.ToString())
+}
+
+func (o *GetHiddenUsersV2NotFound) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *GetHiddenUsersV2NotFound) GetPayload() *leaderboardclientmodels.ResponseErrorResponse {
@@ -254,7 +300,16 @@ type GetHiddenUsersV2InternalServerError struct {
 }
 
 func (o *GetHiddenUsersV2InternalServerError) Error() string {
-	return fmt.Sprintf("[GET /leaderboard/v2/admin/namespaces/{namespace}/leaderboards/{leaderboardCode}/users/hidden][%d] getHiddenUsersV2InternalServerError  %+v", 500, o.Payload)
+	return fmt.Sprintf("[GET /leaderboard/v2/admin/namespaces/{namespace}/leaderboards/{leaderboardCode}/users/hidden][%d] getHiddenUsersV2InternalServerError  %+v", 500, o.ToString())
+}
+
+func (o *GetHiddenUsersV2InternalServerError) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *GetHiddenUsersV2InternalServerError) GetPayload() *leaderboardclientmodels.ResponseErrorResponse {

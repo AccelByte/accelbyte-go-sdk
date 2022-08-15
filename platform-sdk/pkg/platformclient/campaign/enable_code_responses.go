@@ -10,6 +10,7 @@ package campaign
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -65,7 +66,16 @@ type EnableCodeOK struct {
 }
 
 func (o *EnableCodeOK) Error() string {
-	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/codes/{code}/enable][%d] enableCodeOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/codes/{code}/enable][%d] enableCodeOK  %+v", 200, o.ToString())
+}
+
+func (o *EnableCodeOK) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *EnableCodeOK) GetPayload() *platformclientmodels.CodeInfo {
@@ -98,7 +108,16 @@ type EnableCodeNotFound struct {
 }
 
 func (o *EnableCodeNotFound) Error() string {
-	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/codes/{code}/enable][%d] enableCodeNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/codes/{code}/enable][%d] enableCodeNotFound  %+v", 404, o.ToString())
+}
+
+func (o *EnableCodeNotFound) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *EnableCodeNotFound) GetPayload() *platformclientmodels.ErrorEntity {

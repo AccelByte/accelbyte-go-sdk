@@ -10,6 +10,7 @@ package stat_configuration
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -65,7 +66,16 @@ type ImportStatsCreated struct {
 }
 
 func (o *ImportStatsCreated) Error() string {
-	return fmt.Sprintf("[POST /social/v1/admin/namespaces/{namespace}/stats/import][%d] importStatsCreated  %+v", 201, o.Payload)
+	return fmt.Sprintf("[POST /social/v1/admin/namespaces/{namespace}/stats/import][%d] importStatsCreated  %+v", 201, o.ToString())
+}
+
+func (o *ImportStatsCreated) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *ImportStatsCreated) GetPayload() *socialclientmodels.StatImportInfo {
@@ -98,7 +108,16 @@ type ImportStatsBadRequest struct {
 }
 
 func (o *ImportStatsBadRequest) Error() string {
-	return fmt.Sprintf("[POST /social/v1/admin/namespaces/{namespace}/stats/import][%d] importStatsBadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[POST /social/v1/admin/namespaces/{namespace}/stats/import][%d] importStatsBadRequest  %+v", 400, o.ToString())
+}
+
+func (o *ImportStatsBadRequest) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *ImportStatsBadRequest) GetPayload() *socialclientmodels.ErrorEntity {

@@ -10,6 +10,7 @@ package data_retrieval
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -89,7 +90,16 @@ type AdminGetListPersonalDataRequestOK struct {
 }
 
 func (o *AdminGetListPersonalDataRequestOK) Error() string {
-	return fmt.Sprintf("[GET /gdpr/admin/namespaces/{namespace}/requests][%d] adminGetListPersonalDataRequestOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /gdpr/admin/namespaces/{namespace}/requests][%d] adminGetListPersonalDataRequestOK  %+v", 200, o.ToString())
+}
+
+func (o *AdminGetListPersonalDataRequestOK) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *AdminGetListPersonalDataRequestOK) GetPayload() *gdprclientmodels.ModelsListPersonalDataResponse {
@@ -122,7 +132,16 @@ type AdminGetListPersonalDataRequestBadRequest struct {
 }
 
 func (o *AdminGetListPersonalDataRequestBadRequest) Error() string {
-	return fmt.Sprintf("[GET /gdpr/admin/namespaces/{namespace}/requests][%d] adminGetListPersonalDataRequestBadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[GET /gdpr/admin/namespaces/{namespace}/requests][%d] adminGetListPersonalDataRequestBadRequest  %+v", 400, o.ToString())
+}
+
+func (o *AdminGetListPersonalDataRequestBadRequest) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *AdminGetListPersonalDataRequestBadRequest) GetPayload() *gdprclientmodels.ResponseError {
@@ -155,7 +174,16 @@ type AdminGetListPersonalDataRequestUnauthorized struct {
 }
 
 func (o *AdminGetListPersonalDataRequestUnauthorized) Error() string {
-	return fmt.Sprintf("[GET /gdpr/admin/namespaces/{namespace}/requests][%d] adminGetListPersonalDataRequestUnauthorized  %+v", 401, o.Payload)
+	return fmt.Sprintf("[GET /gdpr/admin/namespaces/{namespace}/requests][%d] adminGetListPersonalDataRequestUnauthorized  %+v", 401, o.ToString())
+}
+
+func (o *AdminGetListPersonalDataRequestUnauthorized) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *AdminGetListPersonalDataRequestUnauthorized) GetPayload() *gdprclientmodels.ResponseError {
@@ -188,7 +216,16 @@ type AdminGetListPersonalDataRequestForbidden struct {
 }
 
 func (o *AdminGetListPersonalDataRequestForbidden) Error() string {
-	return fmt.Sprintf("[GET /gdpr/admin/namespaces/{namespace}/requests][%d] adminGetListPersonalDataRequestForbidden  %+v", 403, o.Payload)
+	return fmt.Sprintf("[GET /gdpr/admin/namespaces/{namespace}/requests][%d] adminGetListPersonalDataRequestForbidden  %+v", 403, o.ToString())
+}
+
+func (o *AdminGetListPersonalDataRequestForbidden) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *AdminGetListPersonalDataRequestForbidden) GetPayload() *gdprclientmodels.ResponseError {
@@ -221,7 +258,16 @@ type AdminGetListPersonalDataRequestNotFound struct {
 }
 
 func (o *AdminGetListPersonalDataRequestNotFound) Error() string {
-	return fmt.Sprintf("[GET /gdpr/admin/namespaces/{namespace}/requests][%d] adminGetListPersonalDataRequestNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[GET /gdpr/admin/namespaces/{namespace}/requests][%d] adminGetListPersonalDataRequestNotFound  %+v", 404, o.ToString())
+}
+
+func (o *AdminGetListPersonalDataRequestNotFound) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *AdminGetListPersonalDataRequestNotFound) GetPayload() *gdprclientmodels.ResponseError {
@@ -254,7 +300,16 @@ type AdminGetListPersonalDataRequestInternalServerError struct {
 }
 
 func (o *AdminGetListPersonalDataRequestInternalServerError) Error() string {
-	return fmt.Sprintf("[GET /gdpr/admin/namespaces/{namespace}/requests][%d] adminGetListPersonalDataRequestInternalServerError  %+v", 500, o.Payload)
+	return fmt.Sprintf("[GET /gdpr/admin/namespaces/{namespace}/requests][%d] adminGetListPersonalDataRequestInternalServerError  %+v", 500, o.ToString())
+}
+
+func (o *AdminGetListPersonalDataRequestInternalServerError) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *AdminGetListPersonalDataRequestInternalServerError) GetPayload() *gdprclientmodels.ResponseError {

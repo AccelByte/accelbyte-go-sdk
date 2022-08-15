@@ -10,6 +10,7 @@ package user_action
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -92,7 +93,16 @@ type PublicReportUserBadRequest struct {
 }
 
 func (o *PublicReportUserBadRequest) Error() string {
-	return fmt.Sprintf("[POST /basic/v1/public/namespaces/{namespace}/users/{userId}/actions/report][%d] publicReportUserBadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[POST /basic/v1/public/namespaces/{namespace}/users/{userId}/actions/report][%d] publicReportUserBadRequest  %+v", 400, o.ToString())
+}
+
+func (o *PublicReportUserBadRequest) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *PublicReportUserBadRequest) GetPayload() *basicclientmodels.ErrorEntity {
@@ -125,7 +135,16 @@ type PublicReportUserUnprocessableEntity struct {
 }
 
 func (o *PublicReportUserUnprocessableEntity) Error() string {
-	return fmt.Sprintf("[POST /basic/v1/public/namespaces/{namespace}/users/{userId}/actions/report][%d] publicReportUserUnprocessableEntity  %+v", 422, o.Payload)
+	return fmt.Sprintf("[POST /basic/v1/public/namespaces/{namespace}/users/{userId}/actions/report][%d] publicReportUserUnprocessableEntity  %+v", 422, o.ToString())
+}
+
+func (o *PublicReportUserUnprocessableEntity) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *PublicReportUserUnprocessableEntity) GetPayload() *basicclientmodels.ValidationErrorEntity {

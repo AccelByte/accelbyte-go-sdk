@@ -10,6 +10,7 @@ package key_group
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -71,7 +72,16 @@ type UploadKeysOK struct {
 }
 
 func (o *UploadKeysOK) Error() string {
-	return fmt.Sprintf("[POST /platform/admin/namespaces/{namespace}/keygroups/{keyGroupId}/keys][%d] uploadKeysOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[POST /platform/admin/namespaces/{namespace}/keygroups/{keyGroupId}/keys][%d] uploadKeysOK  %+v", 200, o.ToString())
+}
+
+func (o *UploadKeysOK) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *UploadKeysOK) GetPayload() *platformclientmodels.BulkOperationResult {
@@ -104,7 +114,16 @@ type UploadKeysBadRequest struct {
 }
 
 func (o *UploadKeysBadRequest) Error() string {
-	return fmt.Sprintf("[POST /platform/admin/namespaces/{namespace}/keygroups/{keyGroupId}/keys][%d] uploadKeysBadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[POST /platform/admin/namespaces/{namespace}/keygroups/{keyGroupId}/keys][%d] uploadKeysBadRequest  %+v", 400, o.ToString())
+}
+
+func (o *UploadKeysBadRequest) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *UploadKeysBadRequest) GetPayload() *platformclientmodels.ErrorEntity {
@@ -137,7 +156,16 @@ type UploadKeysNotFound struct {
 }
 
 func (o *UploadKeysNotFound) Error() string {
-	return fmt.Sprintf("[POST /platform/admin/namespaces/{namespace}/keygroups/{keyGroupId}/keys][%d] uploadKeysNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[POST /platform/admin/namespaces/{namespace}/keygroups/{keyGroupId}/keys][%d] uploadKeysNotFound  %+v", 404, o.ToString())
+}
+
+func (o *UploadKeysNotFound) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *UploadKeysNotFound) GetPayload() *platformclientmodels.ErrorEntity {

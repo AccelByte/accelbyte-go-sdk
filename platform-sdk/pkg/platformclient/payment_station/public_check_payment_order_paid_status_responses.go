@@ -10,6 +10,7 @@ package payment_station
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -65,7 +66,16 @@ type PublicCheckPaymentOrderPaidStatusOK struct {
 }
 
 func (o *PublicCheckPaymentOrderPaidStatusOK) Error() string {
-	return fmt.Sprintf("[GET /platform/public/namespaces/{namespace}/payment/orders/{paymentOrderNo}/status][%d] publicCheckPaymentOrderPaidStatusOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /platform/public/namespaces/{namespace}/payment/orders/{paymentOrderNo}/status][%d] publicCheckPaymentOrderPaidStatusOK  %+v", 200, o.ToString())
+}
+
+func (o *PublicCheckPaymentOrderPaidStatusOK) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *PublicCheckPaymentOrderPaidStatusOK) GetPayload() *platformclientmodels.PaymentOrderPaidResult {
@@ -98,7 +108,16 @@ type PublicCheckPaymentOrderPaidStatusNotFound struct {
 }
 
 func (o *PublicCheckPaymentOrderPaidStatusNotFound) Error() string {
-	return fmt.Sprintf("[GET /platform/public/namespaces/{namespace}/payment/orders/{paymentOrderNo}/status][%d] publicCheckPaymentOrderPaidStatusNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[GET /platform/public/namespaces/{namespace}/payment/orders/{paymentOrderNo}/status][%d] publicCheckPaymentOrderPaidStatusNotFound  %+v", 404, o.ToString())
+}
+
+func (o *PublicCheckPaymentOrderPaidStatusNotFound) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *PublicCheckPaymentOrderPaidStatusNotFound) GetPayload() *platformclientmodels.ErrorEntity {

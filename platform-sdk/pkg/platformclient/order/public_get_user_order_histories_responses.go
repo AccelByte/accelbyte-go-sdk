@@ -10,6 +10,7 @@ package order
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -59,7 +60,16 @@ type PublicGetUserOrderHistoriesOK struct {
 }
 
 func (o *PublicGetUserOrderHistoriesOK) Error() string {
-	return fmt.Sprintf("[GET /platform/public/namespaces/{namespace}/users/{userId}/orders/{orderNo}/history][%d] publicGetUserOrderHistoriesOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /platform/public/namespaces/{namespace}/users/{userId}/orders/{orderNo}/history][%d] publicGetUserOrderHistoriesOK  %+v", 200, o.ToString())
+}
+
+func (o *PublicGetUserOrderHistoriesOK) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *PublicGetUserOrderHistoriesOK) GetPayload() []*platformclientmodels.OrderHistoryInfo {

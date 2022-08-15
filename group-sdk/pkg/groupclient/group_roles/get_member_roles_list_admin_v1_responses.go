@@ -10,6 +10,7 @@ package group_roles
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -83,7 +84,16 @@ type GetMemberRolesListAdminV1OK struct {
 }
 
 func (o *GetMemberRolesListAdminV1OK) Error() string {
-	return fmt.Sprintf("[GET /group/v1/admin/namespaces/{namespace}/roles][%d] getMemberRolesListAdminV1OK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /group/v1/admin/namespaces/{namespace}/roles][%d] getMemberRolesListAdminV1OK  %+v", 200, o.ToString())
+}
+
+func (o *GetMemberRolesListAdminV1OK) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *GetMemberRolesListAdminV1OK) GetPayload() *groupclientmodels.ModelsGetMemberRolesListResponseV1 {
@@ -116,7 +126,16 @@ type GetMemberRolesListAdminV1BadRequest struct {
 }
 
 func (o *GetMemberRolesListAdminV1BadRequest) Error() string {
-	return fmt.Sprintf("[GET /group/v1/admin/namespaces/{namespace}/roles][%d] getMemberRolesListAdminV1BadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[GET /group/v1/admin/namespaces/{namespace}/roles][%d] getMemberRolesListAdminV1BadRequest  %+v", 400, o.ToString())
+}
+
+func (o *GetMemberRolesListAdminV1BadRequest) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *GetMemberRolesListAdminV1BadRequest) GetPayload() *groupclientmodels.ResponseErrorResponse {
@@ -149,7 +168,16 @@ type GetMemberRolesListAdminV1Unauthorized struct {
 }
 
 func (o *GetMemberRolesListAdminV1Unauthorized) Error() string {
-	return fmt.Sprintf("[GET /group/v1/admin/namespaces/{namespace}/roles][%d] getMemberRolesListAdminV1Unauthorized  %+v", 401, o.Payload)
+	return fmt.Sprintf("[GET /group/v1/admin/namespaces/{namespace}/roles][%d] getMemberRolesListAdminV1Unauthorized  %+v", 401, o.ToString())
+}
+
+func (o *GetMemberRolesListAdminV1Unauthorized) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *GetMemberRolesListAdminV1Unauthorized) GetPayload() *groupclientmodels.ResponseErrorResponse {
@@ -182,7 +210,16 @@ type GetMemberRolesListAdminV1Forbidden struct {
 }
 
 func (o *GetMemberRolesListAdminV1Forbidden) Error() string {
-	return fmt.Sprintf("[GET /group/v1/admin/namespaces/{namespace}/roles][%d] getMemberRolesListAdminV1Forbidden  %+v", 403, o.Payload)
+	return fmt.Sprintf("[GET /group/v1/admin/namespaces/{namespace}/roles][%d] getMemberRolesListAdminV1Forbidden  %+v", 403, o.ToString())
+}
+
+func (o *GetMemberRolesListAdminV1Forbidden) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *GetMemberRolesListAdminV1Forbidden) GetPayload() *groupclientmodels.ResponseErrorResponse {
@@ -215,7 +252,16 @@ type GetMemberRolesListAdminV1InternalServerError struct {
 }
 
 func (o *GetMemberRolesListAdminV1InternalServerError) Error() string {
-	return fmt.Sprintf("[GET /group/v1/admin/namespaces/{namespace}/roles][%d] getMemberRolesListAdminV1InternalServerError  %+v", 500, o.Payload)
+	return fmt.Sprintf("[GET /group/v1/admin/namespaces/{namespace}/roles][%d] getMemberRolesListAdminV1InternalServerError  %+v", 500, o.ToString())
+}
+
+func (o *GetMemberRolesListAdminV1InternalServerError) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *GetMemberRolesListAdminV1InternalServerError) GetPayload() *groupclientmodels.ResponseErrorResponse {

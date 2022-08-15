@@ -10,6 +10,7 @@ package public_content
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -77,7 +78,16 @@ type PublicDownloadContentByContentIDOK struct {
 }
 
 func (o *PublicDownloadContentByContentIDOK) Error() string {
-	return fmt.Sprintf("[GET /ugc/v1/public/namespaces/{namespace}/contents/{contentId}][%d] publicDownloadContentByContentIdOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /ugc/v1/public/namespaces/{namespace}/contents/{contentId}][%d] publicDownloadContentByContentIdOK  %+v", 200, o.ToString())
+}
+
+func (o *PublicDownloadContentByContentIDOK) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *PublicDownloadContentByContentIDOK) GetPayload() *ugcclientmodels.ModelsContentDownloadResponse {
@@ -110,7 +120,16 @@ type PublicDownloadContentByContentIDUnauthorized struct {
 }
 
 func (o *PublicDownloadContentByContentIDUnauthorized) Error() string {
-	return fmt.Sprintf("[GET /ugc/v1/public/namespaces/{namespace}/contents/{contentId}][%d] publicDownloadContentByContentIdUnauthorized  %+v", 401, o.Payload)
+	return fmt.Sprintf("[GET /ugc/v1/public/namespaces/{namespace}/contents/{contentId}][%d] publicDownloadContentByContentIdUnauthorized  %+v", 401, o.ToString())
+}
+
+func (o *PublicDownloadContentByContentIDUnauthorized) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *PublicDownloadContentByContentIDUnauthorized) GetPayload() *ugcclientmodels.ResponseError {
@@ -143,7 +162,16 @@ type PublicDownloadContentByContentIDNotFound struct {
 }
 
 func (o *PublicDownloadContentByContentIDNotFound) Error() string {
-	return fmt.Sprintf("[GET /ugc/v1/public/namespaces/{namespace}/contents/{contentId}][%d] publicDownloadContentByContentIdNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[GET /ugc/v1/public/namespaces/{namespace}/contents/{contentId}][%d] publicDownloadContentByContentIdNotFound  %+v", 404, o.ToString())
+}
+
+func (o *PublicDownloadContentByContentIDNotFound) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *PublicDownloadContentByContentIDNotFound) GetPayload() *ugcclientmodels.ResponseError {
@@ -176,7 +204,16 @@ type PublicDownloadContentByContentIDInternalServerError struct {
 }
 
 func (o *PublicDownloadContentByContentIDInternalServerError) Error() string {
-	return fmt.Sprintf("[GET /ugc/v1/public/namespaces/{namespace}/contents/{contentId}][%d] publicDownloadContentByContentIdInternalServerError  %+v", 500, o.Payload)
+	return fmt.Sprintf("[GET /ugc/v1/public/namespaces/{namespace}/contents/{contentId}][%d] publicDownloadContentByContentIdInternalServerError  %+v", 500, o.ToString())
+}
+
+func (o *PublicDownloadContentByContentIDInternalServerError) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *PublicDownloadContentByContentIDInternalServerError) GetPayload() *ugcclientmodels.ResponseError {

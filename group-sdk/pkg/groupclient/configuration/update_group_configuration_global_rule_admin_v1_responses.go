@@ -10,6 +10,7 @@ package configuration
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -89,7 +90,16 @@ type UpdateGroupConfigurationGlobalRuleAdminV1OK struct {
 }
 
 func (o *UpdateGroupConfigurationGlobalRuleAdminV1OK) Error() string {
-	return fmt.Sprintf("[PUT /group/v1/admin/namespaces/{namespace}/configuration/{configurationCode}/rules/{allowedAction}][%d] updateGroupConfigurationGlobalRuleAdminV1OK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[PUT /group/v1/admin/namespaces/{namespace}/configuration/{configurationCode}/rules/{allowedAction}][%d] updateGroupConfigurationGlobalRuleAdminV1OK  %+v", 200, o.ToString())
+}
+
+func (o *UpdateGroupConfigurationGlobalRuleAdminV1OK) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *UpdateGroupConfigurationGlobalRuleAdminV1OK) GetPayload() *groupclientmodels.ModelsUpdateGroupConfigurationResponseV1 {
@@ -122,7 +132,16 @@ type UpdateGroupConfigurationGlobalRuleAdminV1BadRequest struct {
 }
 
 func (o *UpdateGroupConfigurationGlobalRuleAdminV1BadRequest) Error() string {
-	return fmt.Sprintf("[PUT /group/v1/admin/namespaces/{namespace}/configuration/{configurationCode}/rules/{allowedAction}][%d] updateGroupConfigurationGlobalRuleAdminV1BadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[PUT /group/v1/admin/namespaces/{namespace}/configuration/{configurationCode}/rules/{allowedAction}][%d] updateGroupConfigurationGlobalRuleAdminV1BadRequest  %+v", 400, o.ToString())
+}
+
+func (o *UpdateGroupConfigurationGlobalRuleAdminV1BadRequest) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *UpdateGroupConfigurationGlobalRuleAdminV1BadRequest) GetPayload() *groupclientmodels.ResponseErrorResponse {
@@ -155,7 +174,16 @@ type UpdateGroupConfigurationGlobalRuleAdminV1Unauthorized struct {
 }
 
 func (o *UpdateGroupConfigurationGlobalRuleAdminV1Unauthorized) Error() string {
-	return fmt.Sprintf("[PUT /group/v1/admin/namespaces/{namespace}/configuration/{configurationCode}/rules/{allowedAction}][%d] updateGroupConfigurationGlobalRuleAdminV1Unauthorized  %+v", 401, o.Payload)
+	return fmt.Sprintf("[PUT /group/v1/admin/namespaces/{namespace}/configuration/{configurationCode}/rules/{allowedAction}][%d] updateGroupConfigurationGlobalRuleAdminV1Unauthorized  %+v", 401, o.ToString())
+}
+
+func (o *UpdateGroupConfigurationGlobalRuleAdminV1Unauthorized) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *UpdateGroupConfigurationGlobalRuleAdminV1Unauthorized) GetPayload() *groupclientmodels.ResponseErrorResponse {
@@ -188,7 +216,16 @@ type UpdateGroupConfigurationGlobalRuleAdminV1Forbidden struct {
 }
 
 func (o *UpdateGroupConfigurationGlobalRuleAdminV1Forbidden) Error() string {
-	return fmt.Sprintf("[PUT /group/v1/admin/namespaces/{namespace}/configuration/{configurationCode}/rules/{allowedAction}][%d] updateGroupConfigurationGlobalRuleAdminV1Forbidden  %+v", 403, o.Payload)
+	return fmt.Sprintf("[PUT /group/v1/admin/namespaces/{namespace}/configuration/{configurationCode}/rules/{allowedAction}][%d] updateGroupConfigurationGlobalRuleAdminV1Forbidden  %+v", 403, o.ToString())
+}
+
+func (o *UpdateGroupConfigurationGlobalRuleAdminV1Forbidden) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *UpdateGroupConfigurationGlobalRuleAdminV1Forbidden) GetPayload() *groupclientmodels.ResponseErrorResponse {
@@ -221,7 +258,16 @@ type UpdateGroupConfigurationGlobalRuleAdminV1NotFound struct {
 }
 
 func (o *UpdateGroupConfigurationGlobalRuleAdminV1NotFound) Error() string {
-	return fmt.Sprintf("[PUT /group/v1/admin/namespaces/{namespace}/configuration/{configurationCode}/rules/{allowedAction}][%d] updateGroupConfigurationGlobalRuleAdminV1NotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[PUT /group/v1/admin/namespaces/{namespace}/configuration/{configurationCode}/rules/{allowedAction}][%d] updateGroupConfigurationGlobalRuleAdminV1NotFound  %+v", 404, o.ToString())
+}
+
+func (o *UpdateGroupConfigurationGlobalRuleAdminV1NotFound) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *UpdateGroupConfigurationGlobalRuleAdminV1NotFound) GetPayload() *groupclientmodels.ResponseErrorResponse {
@@ -254,7 +300,16 @@ type UpdateGroupConfigurationGlobalRuleAdminV1InternalServerError struct {
 }
 
 func (o *UpdateGroupConfigurationGlobalRuleAdminV1InternalServerError) Error() string {
-	return fmt.Sprintf("[PUT /group/v1/admin/namespaces/{namespace}/configuration/{configurationCode}/rules/{allowedAction}][%d] updateGroupConfigurationGlobalRuleAdminV1InternalServerError  %+v", 500, o.Payload)
+	return fmt.Sprintf("[PUT /group/v1/admin/namespaces/{namespace}/configuration/{configurationCode}/rules/{allowedAction}][%d] updateGroupConfigurationGlobalRuleAdminV1InternalServerError  %+v", 500, o.ToString())
+}
+
+func (o *UpdateGroupConfigurationGlobalRuleAdminV1InternalServerError) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *UpdateGroupConfigurationGlobalRuleAdminV1InternalServerError) GetPayload() *groupclientmodels.ResponseErrorResponse {

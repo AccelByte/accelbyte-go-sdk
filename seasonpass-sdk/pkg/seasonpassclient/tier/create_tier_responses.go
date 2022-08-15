@@ -10,6 +10,7 @@ package tier
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -83,7 +84,16 @@ type CreateTierCreated struct {
 }
 
 func (o *CreateTierCreated) Error() string {
-	return fmt.Sprintf("[POST /seasonpass/admin/namespaces/{namespace}/seasons/{seasonId}/tiers][%d] createTierCreated  %+v", 201, o.Payload)
+	return fmt.Sprintf("[POST /seasonpass/admin/namespaces/{namespace}/seasons/{seasonId}/tiers][%d] createTierCreated  %+v", 201, o.ToString())
+}
+
+func (o *CreateTierCreated) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *CreateTierCreated) GetPayload() []*seasonpassclientmodels.Tier {
@@ -114,7 +124,16 @@ type CreateTierBadRequest struct {
 }
 
 func (o *CreateTierBadRequest) Error() string {
-	return fmt.Sprintf("[POST /seasonpass/admin/namespaces/{namespace}/seasons/{seasonId}/tiers][%d] createTierBadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[POST /seasonpass/admin/namespaces/{namespace}/seasons/{seasonId}/tiers][%d] createTierBadRequest  %+v", 400, o.ToString())
+}
+
+func (o *CreateTierBadRequest) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *CreateTierBadRequest) GetPayload() *seasonpassclientmodels.ErrorEntity {
@@ -147,7 +166,16 @@ type CreateTierNotFound struct {
 }
 
 func (o *CreateTierNotFound) Error() string {
-	return fmt.Sprintf("[POST /seasonpass/admin/namespaces/{namespace}/seasons/{seasonId}/tiers][%d] createTierNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[POST /seasonpass/admin/namespaces/{namespace}/seasons/{seasonId}/tiers][%d] createTierNotFound  %+v", 404, o.ToString())
+}
+
+func (o *CreateTierNotFound) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *CreateTierNotFound) GetPayload() *seasonpassclientmodels.ErrorEntity {
@@ -180,7 +208,16 @@ type CreateTierConflict struct {
 }
 
 func (o *CreateTierConflict) Error() string {
-	return fmt.Sprintf("[POST /seasonpass/admin/namespaces/{namespace}/seasons/{seasonId}/tiers][%d] createTierConflict  %+v", 409, o.Payload)
+	return fmt.Sprintf("[POST /seasonpass/admin/namespaces/{namespace}/seasons/{seasonId}/tiers][%d] createTierConflict  %+v", 409, o.ToString())
+}
+
+func (o *CreateTierConflict) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *CreateTierConflict) GetPayload() *seasonpassclientmodels.ErrorEntity {
@@ -213,7 +250,16 @@ type CreateTierUnprocessableEntity struct {
 }
 
 func (o *CreateTierUnprocessableEntity) Error() string {
-	return fmt.Sprintf("[POST /seasonpass/admin/namespaces/{namespace}/seasons/{seasonId}/tiers][%d] createTierUnprocessableEntity  %+v", 422, o.Payload)
+	return fmt.Sprintf("[POST /seasonpass/admin/namespaces/{namespace}/seasons/{seasonId}/tiers][%d] createTierUnprocessableEntity  %+v", 422, o.ToString())
+}
+
+func (o *CreateTierUnprocessableEntity) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *CreateTierUnprocessableEntity) GetPayload() *seasonpassclientmodels.ValidationErrorEntity {

@@ -10,6 +10,7 @@ package config
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -83,7 +84,16 @@ type CreateConfigCreated struct {
 }
 
 func (o *CreateConfigCreated) Error() string {
-	return fmt.Sprintf("[POST /dsmcontroller/admin/namespaces/{namespace}/configs][%d] createConfigCreated  %+v", 201, o.Payload)
+	return fmt.Sprintf("[POST /dsmcontroller/admin/namespaces/{namespace}/configs][%d] createConfigCreated  %+v", 201, o.ToString())
+}
+
+func (o *CreateConfigCreated) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *CreateConfigCreated) GetPayload() *dsmcclientmodels.ModelsDSMConfigRecord {
@@ -116,7 +126,16 @@ type CreateConfigBadRequest struct {
 }
 
 func (o *CreateConfigBadRequest) Error() string {
-	return fmt.Sprintf("[POST /dsmcontroller/admin/namespaces/{namespace}/configs][%d] createConfigBadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[POST /dsmcontroller/admin/namespaces/{namespace}/configs][%d] createConfigBadRequest  %+v", 400, o.ToString())
+}
+
+func (o *CreateConfigBadRequest) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *CreateConfigBadRequest) GetPayload() *dsmcclientmodels.ResponseError {
@@ -149,7 +168,16 @@ type CreateConfigUnauthorized struct {
 }
 
 func (o *CreateConfigUnauthorized) Error() string {
-	return fmt.Sprintf("[POST /dsmcontroller/admin/namespaces/{namespace}/configs][%d] createConfigUnauthorized  %+v", 401, o.Payload)
+	return fmt.Sprintf("[POST /dsmcontroller/admin/namespaces/{namespace}/configs][%d] createConfigUnauthorized  %+v", 401, o.ToString())
+}
+
+func (o *CreateConfigUnauthorized) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *CreateConfigUnauthorized) GetPayload() *dsmcclientmodels.ResponseError {
@@ -182,7 +210,16 @@ type CreateConfigConflict struct {
 }
 
 func (o *CreateConfigConflict) Error() string {
-	return fmt.Sprintf("[POST /dsmcontroller/admin/namespaces/{namespace}/configs][%d] createConfigConflict  %+v", 409, o.Payload)
+	return fmt.Sprintf("[POST /dsmcontroller/admin/namespaces/{namespace}/configs][%d] createConfigConflict  %+v", 409, o.ToString())
+}
+
+func (o *CreateConfigConflict) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *CreateConfigConflict) GetPayload() *dsmcclientmodels.ResponseError {
@@ -215,7 +252,16 @@ type CreateConfigInternalServerError struct {
 }
 
 func (o *CreateConfigInternalServerError) Error() string {
-	return fmt.Sprintf("[POST /dsmcontroller/admin/namespaces/{namespace}/configs][%d] createConfigInternalServerError  %+v", 500, o.Payload)
+	return fmt.Sprintf("[POST /dsmcontroller/admin/namespaces/{namespace}/configs][%d] createConfigInternalServerError  %+v", 500, o.ToString())
+}
+
+func (o *CreateConfigInternalServerError) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *CreateConfigInternalServerError) GetPayload() *dsmcclientmodels.ResponseError {

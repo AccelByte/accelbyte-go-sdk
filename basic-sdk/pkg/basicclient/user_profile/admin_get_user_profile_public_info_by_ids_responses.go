@@ -10,6 +10,7 @@ package user_profile
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -65,7 +66,16 @@ type AdminGetUserProfilePublicInfoByIdsOK struct {
 }
 
 func (o *AdminGetUserProfilePublicInfoByIdsOK) Error() string {
-	return fmt.Sprintf("[POST /basic/v1/admin/namespaces/{namespace}/profiles/public][%d] adminGetUserProfilePublicInfoByIdsOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[POST /basic/v1/admin/namespaces/{namespace}/profiles/public][%d] adminGetUserProfilePublicInfoByIdsOK  %+v", 200, o.ToString())
+}
+
+func (o *AdminGetUserProfilePublicInfoByIdsOK) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *AdminGetUserProfilePublicInfoByIdsOK) GetPayload() []*basicclientmodels.UserProfilePublicInfo {
@@ -96,7 +106,16 @@ type AdminGetUserProfilePublicInfoByIdsBadRequest struct {
 }
 
 func (o *AdminGetUserProfilePublicInfoByIdsBadRequest) Error() string {
-	return fmt.Sprintf("[POST /basic/v1/admin/namespaces/{namespace}/profiles/public][%d] adminGetUserProfilePublicInfoByIdsBadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[POST /basic/v1/admin/namespaces/{namespace}/profiles/public][%d] adminGetUserProfilePublicInfoByIdsBadRequest  %+v", 400, o.ToString())
+}
+
+func (o *AdminGetUserProfilePublicInfoByIdsBadRequest) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *AdminGetUserProfilePublicInfoByIdsBadRequest) GetPayload() *basicclientmodels.ValidationErrorEntity {

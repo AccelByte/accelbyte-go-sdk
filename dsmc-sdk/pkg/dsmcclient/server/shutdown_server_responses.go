@@ -10,6 +10,7 @@ package server
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -104,7 +105,16 @@ type ShutdownServerBadRequest struct {
 }
 
 func (o *ShutdownServerBadRequest) Error() string {
-	return fmt.Sprintf("[POST /dsmcontroller/namespaces/{namespace}/servers/shutdown][%d] shutdownServerBadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[POST /dsmcontroller/namespaces/{namespace}/servers/shutdown][%d] shutdownServerBadRequest  %+v", 400, o.ToString())
+}
+
+func (o *ShutdownServerBadRequest) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *ShutdownServerBadRequest) GetPayload() *dsmcclientmodels.ResponseError {
@@ -137,7 +147,16 @@ type ShutdownServerUnauthorized struct {
 }
 
 func (o *ShutdownServerUnauthorized) Error() string {
-	return fmt.Sprintf("[POST /dsmcontroller/namespaces/{namespace}/servers/shutdown][%d] shutdownServerUnauthorized  %+v", 401, o.Payload)
+	return fmt.Sprintf("[POST /dsmcontroller/namespaces/{namespace}/servers/shutdown][%d] shutdownServerUnauthorized  %+v", 401, o.ToString())
+}
+
+func (o *ShutdownServerUnauthorized) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *ShutdownServerUnauthorized) GetPayload() *dsmcclientmodels.ResponseError {
@@ -170,7 +189,16 @@ type ShutdownServerNotFound struct {
 }
 
 func (o *ShutdownServerNotFound) Error() string {
-	return fmt.Sprintf("[POST /dsmcontroller/namespaces/{namespace}/servers/shutdown][%d] shutdownServerNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[POST /dsmcontroller/namespaces/{namespace}/servers/shutdown][%d] shutdownServerNotFound  %+v", 404, o.ToString())
+}
+
+func (o *ShutdownServerNotFound) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *ShutdownServerNotFound) GetPayload() *dsmcclientmodels.ResponseError {
@@ -203,7 +231,16 @@ type ShutdownServerInternalServerError struct {
 }
 
 func (o *ShutdownServerInternalServerError) Error() string {
-	return fmt.Sprintf("[POST /dsmcontroller/namespaces/{namespace}/servers/shutdown][%d] shutdownServerInternalServerError  %+v", 500, o.Payload)
+	return fmt.Sprintf("[POST /dsmcontroller/namespaces/{namespace}/servers/shutdown][%d] shutdownServerInternalServerError  %+v", 500, o.ToString())
+}
+
+func (o *ShutdownServerInternalServerError) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *ShutdownServerInternalServerError) GetPayload() *dsmcclientmodels.ResponseError {

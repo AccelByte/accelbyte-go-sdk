@@ -10,6 +10,7 @@ package users
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -77,7 +78,16 @@ type CreateUserFromInvitationV3Created struct {
 }
 
 func (o *CreateUserFromInvitationV3Created) Error() string {
-	return fmt.Sprintf("[POST /iam/v3/public/namespaces/{namespace}/users/invite/{invitationId}][%d] createUserFromInvitationV3Created  %+v", 201, o.Payload)
+	return fmt.Sprintf("[POST /iam/v3/public/namespaces/{namespace}/users/invite/{invitationId}][%d] createUserFromInvitationV3Created  %+v", 201, o.ToString())
+}
+
+func (o *CreateUserFromInvitationV3Created) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *CreateUserFromInvitationV3Created) GetPayload() *iamclientmodels.ModelUserCreateResponseV3 {
@@ -110,7 +120,16 @@ type CreateUserFromInvitationV3BadRequest struct {
 }
 
 func (o *CreateUserFromInvitationV3BadRequest) Error() string {
-	return fmt.Sprintf("[POST /iam/v3/public/namespaces/{namespace}/users/invite/{invitationId}][%d] createUserFromInvitationV3BadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[POST /iam/v3/public/namespaces/{namespace}/users/invite/{invitationId}][%d] createUserFromInvitationV3BadRequest  %+v", 400, o.ToString())
+}
+
+func (o *CreateUserFromInvitationV3BadRequest) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *CreateUserFromInvitationV3BadRequest) GetPayload() *iamclientmodels.RestErrorResponse {
@@ -143,7 +162,16 @@ type CreateUserFromInvitationV3NotFound struct {
 }
 
 func (o *CreateUserFromInvitationV3NotFound) Error() string {
-	return fmt.Sprintf("[POST /iam/v3/public/namespaces/{namespace}/users/invite/{invitationId}][%d] createUserFromInvitationV3NotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[POST /iam/v3/public/namespaces/{namespace}/users/invite/{invitationId}][%d] createUserFromInvitationV3NotFound  %+v", 404, o.ToString())
+}
+
+func (o *CreateUserFromInvitationV3NotFound) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *CreateUserFromInvitationV3NotFound) GetPayload() *iamclientmodels.RestErrorResponse {
@@ -176,7 +204,16 @@ type CreateUserFromInvitationV3InternalServerError struct {
 }
 
 func (o *CreateUserFromInvitationV3InternalServerError) Error() string {
-	return fmt.Sprintf("[POST /iam/v3/public/namespaces/{namespace}/users/invite/{invitationId}][%d] createUserFromInvitationV3InternalServerError  %+v", 500, o.Payload)
+	return fmt.Sprintf("[POST /iam/v3/public/namespaces/{namespace}/users/invite/{invitationId}][%d] createUserFromInvitationV3InternalServerError  %+v", 500, o.ToString())
+}
+
+func (o *CreateUserFromInvitationV3InternalServerError) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *CreateUserFromInvitationV3InternalServerError) GetPayload() *iamclientmodels.RestErrorResponse {

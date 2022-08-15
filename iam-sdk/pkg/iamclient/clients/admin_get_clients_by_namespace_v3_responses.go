@@ -10,6 +10,7 @@ package clients
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -77,7 +78,16 @@ type AdminGetClientsByNamespaceV3OK struct {
 }
 
 func (o *AdminGetClientsByNamespaceV3OK) Error() string {
-	return fmt.Sprintf("[GET /iam/v3/admin/namespaces/{namespace}/clients][%d] adminGetClientsByNamespaceV3OK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /iam/v3/admin/namespaces/{namespace}/clients][%d] adminGetClientsByNamespaceV3OK  %+v", 200, o.ToString())
+}
+
+func (o *AdminGetClientsByNamespaceV3OK) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *AdminGetClientsByNamespaceV3OK) GetPayload() *iamclientmodels.ClientmodelClientsV3Response {
@@ -110,7 +120,16 @@ type AdminGetClientsByNamespaceV3BadRequest struct {
 }
 
 func (o *AdminGetClientsByNamespaceV3BadRequest) Error() string {
-	return fmt.Sprintf("[GET /iam/v3/admin/namespaces/{namespace}/clients][%d] adminGetClientsByNamespaceV3BadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[GET /iam/v3/admin/namespaces/{namespace}/clients][%d] adminGetClientsByNamespaceV3BadRequest  %+v", 400, o.ToString())
+}
+
+func (o *AdminGetClientsByNamespaceV3BadRequest) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *AdminGetClientsByNamespaceV3BadRequest) GetPayload() *iamclientmodels.RestErrorResponse {
@@ -143,7 +162,16 @@ type AdminGetClientsByNamespaceV3Unauthorized struct {
 }
 
 func (o *AdminGetClientsByNamespaceV3Unauthorized) Error() string {
-	return fmt.Sprintf("[GET /iam/v3/admin/namespaces/{namespace}/clients][%d] adminGetClientsByNamespaceV3Unauthorized  %+v", 401, o.Payload)
+	return fmt.Sprintf("[GET /iam/v3/admin/namespaces/{namespace}/clients][%d] adminGetClientsByNamespaceV3Unauthorized  %+v", 401, o.ToString())
+}
+
+func (o *AdminGetClientsByNamespaceV3Unauthorized) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *AdminGetClientsByNamespaceV3Unauthorized) GetPayload() *iamclientmodels.RestErrorResponse {
@@ -176,7 +204,16 @@ type AdminGetClientsByNamespaceV3Forbidden struct {
 }
 
 func (o *AdminGetClientsByNamespaceV3Forbidden) Error() string {
-	return fmt.Sprintf("[GET /iam/v3/admin/namespaces/{namespace}/clients][%d] adminGetClientsByNamespaceV3Forbidden  %+v", 403, o.Payload)
+	return fmt.Sprintf("[GET /iam/v3/admin/namespaces/{namespace}/clients][%d] adminGetClientsByNamespaceV3Forbidden  %+v", 403, o.ToString())
+}
+
+func (o *AdminGetClientsByNamespaceV3Forbidden) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *AdminGetClientsByNamespaceV3Forbidden) GetPayload() *iamclientmodels.RestErrorResponse {

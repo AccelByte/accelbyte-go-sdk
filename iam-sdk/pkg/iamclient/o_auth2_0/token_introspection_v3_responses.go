@@ -10,6 +10,7 @@ package o_auth2_0
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -71,7 +72,16 @@ type TokenIntrospectionV3OK struct {
 }
 
 func (o *TokenIntrospectionV3OK) Error() string {
-	return fmt.Sprintf("[POST /iam/v3/oauth/introspect][%d] tokenIntrospectionV3OK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[POST /iam/v3/oauth/introspect][%d] tokenIntrospectionV3OK  %+v", 200, o.ToString())
+}
+
+func (o *TokenIntrospectionV3OK) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *TokenIntrospectionV3OK) GetPayload() *iamclientmodels.OauthmodelTokenIntrospectResponse {
@@ -104,7 +114,16 @@ type TokenIntrospectionV3BadRequest struct {
 }
 
 func (o *TokenIntrospectionV3BadRequest) Error() string {
-	return fmt.Sprintf("[POST /iam/v3/oauth/introspect][%d] tokenIntrospectionV3BadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[POST /iam/v3/oauth/introspect][%d] tokenIntrospectionV3BadRequest  %+v", 400, o.ToString())
+}
+
+func (o *TokenIntrospectionV3BadRequest) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *TokenIntrospectionV3BadRequest) GetPayload() *iamclientmodels.OauthmodelErrorResponse {
@@ -137,7 +156,16 @@ type TokenIntrospectionV3Unauthorized struct {
 }
 
 func (o *TokenIntrospectionV3Unauthorized) Error() string {
-	return fmt.Sprintf("[POST /iam/v3/oauth/introspect][%d] tokenIntrospectionV3Unauthorized  %+v", 401, o.Payload)
+	return fmt.Sprintf("[POST /iam/v3/oauth/introspect][%d] tokenIntrospectionV3Unauthorized  %+v", 401, o.ToString())
+}
+
+func (o *TokenIntrospectionV3Unauthorized) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *TokenIntrospectionV3Unauthorized) GetPayload() *iamclientmodels.OauthmodelErrorResponse {

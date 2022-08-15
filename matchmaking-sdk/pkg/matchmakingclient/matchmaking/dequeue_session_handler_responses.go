@@ -10,6 +10,7 @@ package matchmaking
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -110,7 +111,16 @@ type DequeueSessionHandlerBadRequest struct {
 }
 
 func (o *DequeueSessionHandlerBadRequest) Error() string {
-	return fmt.Sprintf("[POST /matchmaking/namespaces/{namespace}/sessions/dequeue][%d] dequeueSessionHandlerBadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[POST /matchmaking/namespaces/{namespace}/sessions/dequeue][%d] dequeueSessionHandlerBadRequest  %+v", 400, o.ToString())
+}
+
+func (o *DequeueSessionHandlerBadRequest) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *DequeueSessionHandlerBadRequest) GetPayload() *matchmakingclientmodels.ResponseError {
@@ -143,7 +153,16 @@ type DequeueSessionHandlerUnauthorized struct {
 }
 
 func (o *DequeueSessionHandlerUnauthorized) Error() string {
-	return fmt.Sprintf("[POST /matchmaking/namespaces/{namespace}/sessions/dequeue][%d] dequeueSessionHandlerUnauthorized  %+v", 401, o.Payload)
+	return fmt.Sprintf("[POST /matchmaking/namespaces/{namespace}/sessions/dequeue][%d] dequeueSessionHandlerUnauthorized  %+v", 401, o.ToString())
+}
+
+func (o *DequeueSessionHandlerUnauthorized) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *DequeueSessionHandlerUnauthorized) GetPayload() *matchmakingclientmodels.ResponseError {
@@ -176,7 +195,16 @@ type DequeueSessionHandlerForbidden struct {
 }
 
 func (o *DequeueSessionHandlerForbidden) Error() string {
-	return fmt.Sprintf("[POST /matchmaking/namespaces/{namespace}/sessions/dequeue][%d] dequeueSessionHandlerForbidden  %+v", 403, o.Payload)
+	return fmt.Sprintf("[POST /matchmaking/namespaces/{namespace}/sessions/dequeue][%d] dequeueSessionHandlerForbidden  %+v", 403, o.ToString())
+}
+
+func (o *DequeueSessionHandlerForbidden) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *DequeueSessionHandlerForbidden) GetPayload() *matchmakingclientmodels.ResponseError {
@@ -209,7 +237,16 @@ type DequeueSessionHandlerNotFound struct {
 }
 
 func (o *DequeueSessionHandlerNotFound) Error() string {
-	return fmt.Sprintf("[POST /matchmaking/namespaces/{namespace}/sessions/dequeue][%d] dequeueSessionHandlerNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[POST /matchmaking/namespaces/{namespace}/sessions/dequeue][%d] dequeueSessionHandlerNotFound  %+v", 404, o.ToString())
+}
+
+func (o *DequeueSessionHandlerNotFound) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *DequeueSessionHandlerNotFound) GetPayload() *matchmakingclientmodels.ResponseError {
@@ -242,7 +279,16 @@ type DequeueSessionHandlerInternalServerError struct {
 }
 
 func (o *DequeueSessionHandlerInternalServerError) Error() string {
-	return fmt.Sprintf("[POST /matchmaking/namespaces/{namespace}/sessions/dequeue][%d] dequeueSessionHandlerInternalServerError  %+v", 500, o.Payload)
+	return fmt.Sprintf("[POST /matchmaking/namespaces/{namespace}/sessions/dequeue][%d] dequeueSessionHandlerInternalServerError  %+v", 500, o.ToString())
+}
+
+func (o *DequeueSessionHandlerInternalServerError) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *DequeueSessionHandlerInternalServerError) GetPayload() *matchmakingclientmodels.ResponseError {

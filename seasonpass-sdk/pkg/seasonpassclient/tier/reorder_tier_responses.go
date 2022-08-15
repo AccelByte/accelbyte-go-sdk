@@ -10,6 +10,7 @@ package tier
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -83,7 +84,16 @@ type ReorderTierOK struct {
 }
 
 func (o *ReorderTierOK) Error() string {
-	return fmt.Sprintf("[PUT /seasonpass/admin/namespaces/{namespace}/seasons/{seasonId}/tiers/{id}/reorder][%d] reorderTierOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[PUT /seasonpass/admin/namespaces/{namespace}/seasons/{seasonId}/tiers/{id}/reorder][%d] reorderTierOK  %+v", 200, o.ToString())
+}
+
+func (o *ReorderTierOK) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *ReorderTierOK) GetPayload() *seasonpassclientmodels.Tier {
@@ -116,7 +126,16 @@ type ReorderTierBadRequest struct {
 }
 
 func (o *ReorderTierBadRequest) Error() string {
-	return fmt.Sprintf("[PUT /seasonpass/admin/namespaces/{namespace}/seasons/{seasonId}/tiers/{id}/reorder][%d] reorderTierBadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[PUT /seasonpass/admin/namespaces/{namespace}/seasons/{seasonId}/tiers/{id}/reorder][%d] reorderTierBadRequest  %+v", 400, o.ToString())
+}
+
+func (o *ReorderTierBadRequest) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *ReorderTierBadRequest) GetPayload() *seasonpassclientmodels.ErrorEntity {
@@ -149,7 +168,16 @@ type ReorderTierNotFound struct {
 }
 
 func (o *ReorderTierNotFound) Error() string {
-	return fmt.Sprintf("[PUT /seasonpass/admin/namespaces/{namespace}/seasons/{seasonId}/tiers/{id}/reorder][%d] reorderTierNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[PUT /seasonpass/admin/namespaces/{namespace}/seasons/{seasonId}/tiers/{id}/reorder][%d] reorderTierNotFound  %+v", 404, o.ToString())
+}
+
+func (o *ReorderTierNotFound) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *ReorderTierNotFound) GetPayload() *seasonpassclientmodels.ErrorEntity {
@@ -182,7 +210,16 @@ type ReorderTierConflict struct {
 }
 
 func (o *ReorderTierConflict) Error() string {
-	return fmt.Sprintf("[PUT /seasonpass/admin/namespaces/{namespace}/seasons/{seasonId}/tiers/{id}/reorder][%d] reorderTierConflict  %+v", 409, o.Payload)
+	return fmt.Sprintf("[PUT /seasonpass/admin/namespaces/{namespace}/seasons/{seasonId}/tiers/{id}/reorder][%d] reorderTierConflict  %+v", 409, o.ToString())
+}
+
+func (o *ReorderTierConflict) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *ReorderTierConflict) GetPayload() *seasonpassclientmodels.ErrorEntity {
@@ -215,7 +252,16 @@ type ReorderTierUnprocessableEntity struct {
 }
 
 func (o *ReorderTierUnprocessableEntity) Error() string {
-	return fmt.Sprintf("[PUT /seasonpass/admin/namespaces/{namespace}/seasons/{seasonId}/tiers/{id}/reorder][%d] reorderTierUnprocessableEntity  %+v", 422, o.Payload)
+	return fmt.Sprintf("[PUT /seasonpass/admin/namespaces/{namespace}/seasons/{seasonId}/tiers/{id}/reorder][%d] reorderTierUnprocessableEntity  %+v", 422, o.ToString())
+}
+
+func (o *ReorderTierUnprocessableEntity) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *ReorderTierUnprocessableEntity) GetPayload() *seasonpassclientmodels.ValidationErrorEntity {

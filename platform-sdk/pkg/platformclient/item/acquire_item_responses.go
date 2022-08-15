@@ -10,6 +10,7 @@ package item
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -65,7 +66,16 @@ type AcquireItemOK struct {
 }
 
 func (o *AcquireItemOK) Error() string {
-	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/items/{itemId}/acquire][%d] acquireItemOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/items/{itemId}/acquire][%d] acquireItemOK  %+v", 200, o.ToString())
+}
+
+func (o *AcquireItemOK) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *AcquireItemOK) GetPayload() *platformclientmodels.ItemAcquireResult {
@@ -98,7 +108,16 @@ type AcquireItemNotFound struct {
 }
 
 func (o *AcquireItemNotFound) Error() string {
-	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/items/{itemId}/acquire][%d] acquireItemNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/items/{itemId}/acquire][%d] acquireItemNotFound  %+v", 404, o.ToString())
+}
+
+func (o *AcquireItemNotFound) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *AcquireItemNotFound) GetPayload() *platformclientmodels.ErrorEntity {

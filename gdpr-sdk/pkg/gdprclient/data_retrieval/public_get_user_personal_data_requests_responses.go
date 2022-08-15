@@ -10,6 +10,7 @@ package data_retrieval
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -77,7 +78,16 @@ type PublicGetUserPersonalDataRequestsOK struct {
 }
 
 func (o *PublicGetUserPersonalDataRequestsOK) Error() string {
-	return fmt.Sprintf("[GET /gdpr/public/namespaces/{namespace}/users/{userId}/requests][%d] publicGetUserPersonalDataRequestsOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /gdpr/public/namespaces/{namespace}/users/{userId}/requests][%d] publicGetUserPersonalDataRequestsOK  %+v", 200, o.ToString())
+}
+
+func (o *PublicGetUserPersonalDataRequestsOK) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *PublicGetUserPersonalDataRequestsOK) GetPayload() *gdprclientmodels.ModelsUserPersonalDataResponse {
@@ -110,7 +120,16 @@ type PublicGetUserPersonalDataRequestsBadRequest struct {
 }
 
 func (o *PublicGetUserPersonalDataRequestsBadRequest) Error() string {
-	return fmt.Sprintf("[GET /gdpr/public/namespaces/{namespace}/users/{userId}/requests][%d] publicGetUserPersonalDataRequestsBadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[GET /gdpr/public/namespaces/{namespace}/users/{userId}/requests][%d] publicGetUserPersonalDataRequestsBadRequest  %+v", 400, o.ToString())
+}
+
+func (o *PublicGetUserPersonalDataRequestsBadRequest) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *PublicGetUserPersonalDataRequestsBadRequest) GetPayload() *gdprclientmodels.ResponseError {
@@ -143,7 +162,16 @@ type PublicGetUserPersonalDataRequestsUnauthorized struct {
 }
 
 func (o *PublicGetUserPersonalDataRequestsUnauthorized) Error() string {
-	return fmt.Sprintf("[GET /gdpr/public/namespaces/{namespace}/users/{userId}/requests][%d] publicGetUserPersonalDataRequestsUnauthorized  %+v", 401, o.Payload)
+	return fmt.Sprintf("[GET /gdpr/public/namespaces/{namespace}/users/{userId}/requests][%d] publicGetUserPersonalDataRequestsUnauthorized  %+v", 401, o.ToString())
+}
+
+func (o *PublicGetUserPersonalDataRequestsUnauthorized) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *PublicGetUserPersonalDataRequestsUnauthorized) GetPayload() *gdprclientmodels.ResponseError {
@@ -176,7 +204,16 @@ type PublicGetUserPersonalDataRequestsInternalServerError struct {
 }
 
 func (o *PublicGetUserPersonalDataRequestsInternalServerError) Error() string {
-	return fmt.Sprintf("[GET /gdpr/public/namespaces/{namespace}/users/{userId}/requests][%d] publicGetUserPersonalDataRequestsInternalServerError  %+v", 500, o.Payload)
+	return fmt.Sprintf("[GET /gdpr/public/namespaces/{namespace}/users/{userId}/requests][%d] publicGetUserPersonalDataRequestsInternalServerError  %+v", 500, o.ToString())
+}
+
+func (o *PublicGetUserPersonalDataRequestsInternalServerError) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *PublicGetUserPersonalDataRequestsInternalServerError) GetPayload() *gdprclientmodels.ResponseError {

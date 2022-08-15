@@ -10,6 +10,7 @@ package misc
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -71,7 +72,16 @@ type GetLanguagesOK struct {
 }
 
 func (o *GetLanguagesOK) Error() string {
-	return fmt.Sprintf("[GET /basic/v1/admin/namespaces/{namespace}/misc/languages][%d] getLanguagesOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /basic/v1/admin/namespaces/{namespace}/misc/languages][%d] getLanguagesOK  %+v", 200, o.ToString())
+}
+
+func (o *GetLanguagesOK) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *GetLanguagesOK) GetPayload() map[string]interface{} {
@@ -102,7 +112,16 @@ type GetLanguagesBadRequest struct {
 }
 
 func (o *GetLanguagesBadRequest) Error() string {
-	return fmt.Sprintf("[GET /basic/v1/admin/namespaces/{namespace}/misc/languages][%d] getLanguagesBadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[GET /basic/v1/admin/namespaces/{namespace}/misc/languages][%d] getLanguagesBadRequest  %+v", 400, o.ToString())
+}
+
+func (o *GetLanguagesBadRequest) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *GetLanguagesBadRequest) GetPayload() *basicclientmodels.ValidationErrorEntity {
@@ -135,7 +154,16 @@ type GetLanguagesUnauthorized struct {
 }
 
 func (o *GetLanguagesUnauthorized) Error() string {
-	return fmt.Sprintf("[GET /basic/v1/admin/namespaces/{namespace}/misc/languages][%d] getLanguagesUnauthorized  %+v", 401, o.Payload)
+	return fmt.Sprintf("[GET /basic/v1/admin/namespaces/{namespace}/misc/languages][%d] getLanguagesUnauthorized  %+v", 401, o.ToString())
+}
+
+func (o *GetLanguagesUnauthorized) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *GetLanguagesUnauthorized) GetPayload() *basicclientmodels.ErrorEntity {

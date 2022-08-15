@@ -10,6 +10,7 @@ package campaign
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -59,7 +60,16 @@ type BulkEnableCodesOK struct {
 }
 
 func (o *BulkEnableCodesOK) Error() string {
-	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/codes/campaigns/{campaignId}/enable/bulk][%d] bulkEnableCodesOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/codes/campaigns/{campaignId}/enable/bulk][%d] bulkEnableCodesOK  %+v", 200, o.ToString())
+}
+
+func (o *BulkEnableCodesOK) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *BulkEnableCodesOK) GetPayload() *platformclientmodels.BulkOperationResult {

@@ -10,6 +10,7 @@ package reward
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -65,7 +66,16 @@ type DeleteRewardOK struct {
 }
 
 func (o *DeleteRewardOK) Error() string {
-	return fmt.Sprintf("[DELETE /platform/admin/namespaces/{namespace}/rewards/{rewardId}][%d] deleteRewardOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[DELETE /platform/admin/namespaces/{namespace}/rewards/{rewardId}][%d] deleteRewardOK  %+v", 200, o.ToString())
+}
+
+func (o *DeleteRewardOK) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *DeleteRewardOK) GetPayload() *platformclientmodels.RewardInfo {
@@ -98,7 +108,16 @@ type DeleteRewardNotFound struct {
 }
 
 func (o *DeleteRewardNotFound) Error() string {
-	return fmt.Sprintf("[DELETE /platform/admin/namespaces/{namespace}/rewards/{rewardId}][%d] deleteRewardNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[DELETE /platform/admin/namespaces/{namespace}/rewards/{rewardId}][%d] deleteRewardNotFound  %+v", 404, o.ToString())
+}
+
+func (o *DeleteRewardNotFound) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *DeleteRewardNotFound) GetPayload() *platformclientmodels.ErrorEntity {

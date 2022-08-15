@@ -10,6 +10,7 @@ package user_profile
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -83,7 +84,16 @@ type UpdateMyProfileOK struct {
 }
 
 func (o *UpdateMyProfileOK) Error() string {
-	return fmt.Sprintf("[PUT /basic/v1/public/namespaces/{namespace}/users/me/profiles][%d] updateMyProfileOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[PUT /basic/v1/public/namespaces/{namespace}/users/me/profiles][%d] updateMyProfileOK  %+v", 200, o.ToString())
+}
+
+func (o *UpdateMyProfileOK) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *UpdateMyProfileOK) GetPayload() *basicclientmodels.UserProfilePrivateInfo {
@@ -116,7 +126,16 @@ type UpdateMyProfileBadRequest struct {
 }
 
 func (o *UpdateMyProfileBadRequest) Error() string {
-	return fmt.Sprintf("[PUT /basic/v1/public/namespaces/{namespace}/users/me/profiles][%d] updateMyProfileBadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[PUT /basic/v1/public/namespaces/{namespace}/users/me/profiles][%d] updateMyProfileBadRequest  %+v", 400, o.ToString())
+}
+
+func (o *UpdateMyProfileBadRequest) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *UpdateMyProfileBadRequest) GetPayload() *basicclientmodels.ValidationErrorEntity {
@@ -149,7 +168,16 @@ type UpdateMyProfileUnauthorized struct {
 }
 
 func (o *UpdateMyProfileUnauthorized) Error() string {
-	return fmt.Sprintf("[PUT /basic/v1/public/namespaces/{namespace}/users/me/profiles][%d] updateMyProfileUnauthorized  %+v", 401, o.Payload)
+	return fmt.Sprintf("[PUT /basic/v1/public/namespaces/{namespace}/users/me/profiles][%d] updateMyProfileUnauthorized  %+v", 401, o.ToString())
+}
+
+func (o *UpdateMyProfileUnauthorized) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *UpdateMyProfileUnauthorized) GetPayload() *basicclientmodels.ErrorEntity {
@@ -182,7 +210,16 @@ type UpdateMyProfileForbidden struct {
 }
 
 func (o *UpdateMyProfileForbidden) Error() string {
-	return fmt.Sprintf("[PUT /basic/v1/public/namespaces/{namespace}/users/me/profiles][%d] updateMyProfileForbidden  %+v", 403, o.Payload)
+	return fmt.Sprintf("[PUT /basic/v1/public/namespaces/{namespace}/users/me/profiles][%d] updateMyProfileForbidden  %+v", 403, o.ToString())
+}
+
+func (o *UpdateMyProfileForbidden) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *UpdateMyProfileForbidden) GetPayload() *basicclientmodels.ErrorEntity {
@@ -215,7 +252,16 @@ type UpdateMyProfileNotFound struct {
 }
 
 func (o *UpdateMyProfileNotFound) Error() string {
-	return fmt.Sprintf("[PUT /basic/v1/public/namespaces/{namespace}/users/me/profiles][%d] updateMyProfileNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[PUT /basic/v1/public/namespaces/{namespace}/users/me/profiles][%d] updateMyProfileNotFound  %+v", 404, o.ToString())
+}
+
+func (o *UpdateMyProfileNotFound) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *UpdateMyProfileNotFound) GetPayload() *basicclientmodels.ErrorEntity {

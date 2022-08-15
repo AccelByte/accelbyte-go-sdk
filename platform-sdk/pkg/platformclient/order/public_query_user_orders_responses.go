@@ -10,6 +10,7 @@ package order
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -59,7 +60,16 @@ type PublicQueryUserOrdersOK struct {
 }
 
 func (o *PublicQueryUserOrdersOK) Error() string {
-	return fmt.Sprintf("[GET /platform/public/namespaces/{namespace}/users/{userId}/orders][%d] publicQueryUserOrdersOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /platform/public/namespaces/{namespace}/users/{userId}/orders][%d] publicQueryUserOrdersOK  %+v", 200, o.ToString())
+}
+
+func (o *PublicQueryUserOrdersOK) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *PublicQueryUserOrdersOK) GetPayload() *platformclientmodels.OrderPagingSlicedResult {

@@ -10,6 +10,7 @@ package game_profile
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -65,7 +66,16 @@ type PublicGetProfileOK struct {
 }
 
 func (o *PublicGetProfileOK) Error() string {
-	return fmt.Sprintf("[GET /social/public/namespaces/{namespace}/users/{userId}/profiles/{profileId}][%d] publicGetProfileOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /social/public/namespaces/{namespace}/users/{userId}/profiles/{profileId}][%d] publicGetProfileOK  %+v", 200, o.ToString())
+}
+
+func (o *PublicGetProfileOK) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *PublicGetProfileOK) GetPayload() *socialclientmodels.GameProfileInfo {
@@ -98,7 +108,16 @@ type PublicGetProfileNotFound struct {
 }
 
 func (o *PublicGetProfileNotFound) Error() string {
-	return fmt.Sprintf("[GET /social/public/namespaces/{namespace}/users/{userId}/profiles/{profileId}][%d] publicGetProfileNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[GET /social/public/namespaces/{namespace}/users/{userId}/profiles/{profileId}][%d] publicGetProfileNotFound  %+v", 404, o.ToString())
+}
+
+func (o *PublicGetProfileNotFound) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *PublicGetProfileNotFound) GetPayload() *socialclientmodels.ErrorEntity {

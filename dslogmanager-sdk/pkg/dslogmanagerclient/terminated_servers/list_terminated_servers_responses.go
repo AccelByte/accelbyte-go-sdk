@@ -10,6 +10,7 @@ package terminated_servers
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -77,7 +78,16 @@ type ListTerminatedServersOK struct {
 }
 
 func (o *ListTerminatedServersOK) Error() string {
-	return fmt.Sprintf("[GET /dslogmanager/namespaces/{namespace}/servers/search][%d] listTerminatedServersOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /dslogmanager/namespaces/{namespace}/servers/search][%d] listTerminatedServersOK  %+v", 200, o.ToString())
+}
+
+func (o *ListTerminatedServersOK) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *ListTerminatedServersOK) GetPayload() *dslogmanagerclientmodels.ModelsListTerminatedServersResponse {
@@ -110,7 +120,16 @@ type ListTerminatedServersBadRequest struct {
 }
 
 func (o *ListTerminatedServersBadRequest) Error() string {
-	return fmt.Sprintf("[GET /dslogmanager/namespaces/{namespace}/servers/search][%d] listTerminatedServersBadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[GET /dslogmanager/namespaces/{namespace}/servers/search][%d] listTerminatedServersBadRequest  %+v", 400, o.ToString())
+}
+
+func (o *ListTerminatedServersBadRequest) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *ListTerminatedServersBadRequest) GetPayload() *dslogmanagerclientmodels.ResponseError {
@@ -143,7 +162,16 @@ type ListTerminatedServersUnauthorized struct {
 }
 
 func (o *ListTerminatedServersUnauthorized) Error() string {
-	return fmt.Sprintf("[GET /dslogmanager/namespaces/{namespace}/servers/search][%d] listTerminatedServersUnauthorized  %+v", 401, o.Payload)
+	return fmt.Sprintf("[GET /dslogmanager/namespaces/{namespace}/servers/search][%d] listTerminatedServersUnauthorized  %+v", 401, o.ToString())
+}
+
+func (o *ListTerminatedServersUnauthorized) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *ListTerminatedServersUnauthorized) GetPayload() *dslogmanagerclientmodels.ResponseError {
@@ -176,7 +204,16 @@ type ListTerminatedServersInternalServerError struct {
 }
 
 func (o *ListTerminatedServersInternalServerError) Error() string {
-	return fmt.Sprintf("[GET /dslogmanager/namespaces/{namespace}/servers/search][%d] listTerminatedServersInternalServerError  %+v", 500, o.Payload)
+	return fmt.Sprintf("[GET /dslogmanager/namespaces/{namespace}/servers/search][%d] listTerminatedServersInternalServerError  %+v", 500, o.ToString())
+}
+
+func (o *ListTerminatedServersInternalServerError) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *ListTerminatedServersInternalServerError) GetPayload() *dslogmanagerclientmodels.ResponseError {

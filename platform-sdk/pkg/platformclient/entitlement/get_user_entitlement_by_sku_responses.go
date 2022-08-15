@@ -10,6 +10,7 @@ package entitlement
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -65,7 +66,16 @@ type GetUserEntitlementBySkuOK struct {
 }
 
 func (o *GetUserEntitlementBySkuOK) Error() string {
-	return fmt.Sprintf("[GET /platform/admin/namespaces/{namespace}/users/{userId}/entitlements/bySku][%d] getUserEntitlementBySkuOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /platform/admin/namespaces/{namespace}/users/{userId}/entitlements/bySku][%d] getUserEntitlementBySkuOK  %+v", 200, o.ToString())
+}
+
+func (o *GetUserEntitlementBySkuOK) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *GetUserEntitlementBySkuOK) GetPayload() *platformclientmodels.EntitlementInfo {
@@ -98,7 +108,16 @@ type GetUserEntitlementBySkuNotFound struct {
 }
 
 func (o *GetUserEntitlementBySkuNotFound) Error() string {
-	return fmt.Sprintf("[GET /platform/admin/namespaces/{namespace}/users/{userId}/entitlements/bySku][%d] getUserEntitlementBySkuNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[GET /platform/admin/namespaces/{namespace}/users/{userId}/entitlements/bySku][%d] getUserEntitlementBySkuNotFound  %+v", 404, o.ToString())
+}
+
+func (o *GetUserEntitlementBySkuNotFound) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *GetUserEntitlementBySkuNotFound) GetPayload() *platformclientmodels.ErrorEntity {

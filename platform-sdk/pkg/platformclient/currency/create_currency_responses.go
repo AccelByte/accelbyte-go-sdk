@@ -10,6 +10,7 @@ package currency
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -71,7 +72,16 @@ type CreateCurrencyOK struct {
 }
 
 func (o *CreateCurrencyOK) Error() string {
-	return fmt.Sprintf("[POST /platform/admin/namespaces/{namespace}/currencies][%d] createCurrencyOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[POST /platform/admin/namespaces/{namespace}/currencies][%d] createCurrencyOK  %+v", 200, o.ToString())
+}
+
+func (o *CreateCurrencyOK) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *CreateCurrencyOK) GetPayload() *platformclientmodels.CurrencyInfo {
@@ -104,7 +114,16 @@ type CreateCurrencyConflict struct {
 }
 
 func (o *CreateCurrencyConflict) Error() string {
-	return fmt.Sprintf("[POST /platform/admin/namespaces/{namespace}/currencies][%d] createCurrencyConflict  %+v", 409, o.Payload)
+	return fmt.Sprintf("[POST /platform/admin/namespaces/{namespace}/currencies][%d] createCurrencyConflict  %+v", 409, o.ToString())
+}
+
+func (o *CreateCurrencyConflict) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *CreateCurrencyConflict) GetPayload() *platformclientmodels.ErrorEntity {
@@ -137,7 +156,16 @@ type CreateCurrencyUnprocessableEntity struct {
 }
 
 func (o *CreateCurrencyUnprocessableEntity) Error() string {
-	return fmt.Sprintf("[POST /platform/admin/namespaces/{namespace}/currencies][%d] createCurrencyUnprocessableEntity  %+v", 422, o.Payload)
+	return fmt.Sprintf("[POST /platform/admin/namespaces/{namespace}/currencies][%d] createCurrencyUnprocessableEntity  %+v", 422, o.ToString())
+}
+
+func (o *CreateCurrencyUnprocessableEntity) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *CreateCurrencyUnprocessableEntity) GetPayload() *platformclientmodels.ValidationErrorEntity {

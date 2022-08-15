@@ -10,6 +10,7 @@ package wallet
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -65,7 +66,16 @@ type GetUserWalletOK struct {
 }
 
 func (o *GetUserWalletOK) Error() string {
-	return fmt.Sprintf("[GET /platform/admin/namespaces/{namespace}/users/{userId}/wallets/{walletId}][%d] getUserWalletOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /platform/admin/namespaces/{namespace}/users/{userId}/wallets/{walletId}][%d] getUserWalletOK  %+v", 200, o.ToString())
+}
+
+func (o *GetUserWalletOK) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *GetUserWalletOK) GetPayload() *platformclientmodels.WalletInfo {
@@ -98,7 +108,16 @@ type GetUserWalletNotFound struct {
 }
 
 func (o *GetUserWalletNotFound) Error() string {
-	return fmt.Sprintf("[GET /platform/admin/namespaces/{namespace}/users/{userId}/wallets/{walletId}][%d] getUserWalletNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[GET /platform/admin/namespaces/{namespace}/users/{userId}/wallets/{walletId}][%d] getUserWalletNotFound  %+v", 404, o.ToString())
+}
+
+func (o *GetUserWalletNotFound) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *GetUserWalletNotFound) GetPayload() *platformclientmodels.ErrorEntity {

@@ -10,6 +10,7 @@ package admin_game_record
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -71,7 +72,16 @@ type ListGameRecordsHandlerV1OK struct {
 }
 
 func (o *ListGameRecordsHandlerV1OK) Error() string {
-	return fmt.Sprintf("[GET /cloudsave/v1/admin/namespaces/{namespace}/records][%d] listGameRecordsHandlerV1OK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /cloudsave/v1/admin/namespaces/{namespace}/records][%d] listGameRecordsHandlerV1OK  %+v", 200, o.ToString())
+}
+
+func (o *ListGameRecordsHandlerV1OK) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *ListGameRecordsHandlerV1OK) GetPayload() *cloudsaveclientmodels.ModelsListGameRecordKeysResponse {
@@ -104,7 +114,16 @@ type ListGameRecordsHandlerV1Unauthorized struct {
 }
 
 func (o *ListGameRecordsHandlerV1Unauthorized) Error() string {
-	return fmt.Sprintf("[GET /cloudsave/v1/admin/namespaces/{namespace}/records][%d] listGameRecordsHandlerV1Unauthorized  %+v", 401, o.Payload)
+	return fmt.Sprintf("[GET /cloudsave/v1/admin/namespaces/{namespace}/records][%d] listGameRecordsHandlerV1Unauthorized  %+v", 401, o.ToString())
+}
+
+func (o *ListGameRecordsHandlerV1Unauthorized) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *ListGameRecordsHandlerV1Unauthorized) GetPayload() *cloudsaveclientmodels.ModelsResponseError {
@@ -137,7 +156,16 @@ type ListGameRecordsHandlerV1InternalServerError struct {
 }
 
 func (o *ListGameRecordsHandlerV1InternalServerError) Error() string {
-	return fmt.Sprintf("[GET /cloudsave/v1/admin/namespaces/{namespace}/records][%d] listGameRecordsHandlerV1InternalServerError  %+v", 500, o.Payload)
+	return fmt.Sprintf("[GET /cloudsave/v1/admin/namespaces/{namespace}/records][%d] listGameRecordsHandlerV1InternalServerError  %+v", 500, o.ToString())
+}
+
+func (o *ListGameRecordsHandlerV1InternalServerError) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *ListGameRecordsHandlerV1InternalServerError) GetPayload() *cloudsaveclientmodels.ModelsResponseError {

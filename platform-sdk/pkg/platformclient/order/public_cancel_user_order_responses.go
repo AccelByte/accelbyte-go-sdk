@@ -10,6 +10,7 @@ package order
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -71,7 +72,16 @@ type PublicCancelUserOrderOK struct {
 }
 
 func (o *PublicCancelUserOrderOK) Error() string {
-	return fmt.Sprintf("[PUT /platform/public/namespaces/{namespace}/users/{userId}/orders/{orderNo}/cancel][%d] publicCancelUserOrderOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[PUT /platform/public/namespaces/{namespace}/users/{userId}/orders/{orderNo}/cancel][%d] publicCancelUserOrderOK  %+v", 200, o.ToString())
+}
+
+func (o *PublicCancelUserOrderOK) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *PublicCancelUserOrderOK) GetPayload() *platformclientmodels.OrderInfo {
@@ -104,7 +114,16 @@ type PublicCancelUserOrderNotFound struct {
 }
 
 func (o *PublicCancelUserOrderNotFound) Error() string {
-	return fmt.Sprintf("[PUT /platform/public/namespaces/{namespace}/users/{userId}/orders/{orderNo}/cancel][%d] publicCancelUserOrderNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[PUT /platform/public/namespaces/{namespace}/users/{userId}/orders/{orderNo}/cancel][%d] publicCancelUserOrderNotFound  %+v", 404, o.ToString())
+}
+
+func (o *PublicCancelUserOrderNotFound) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *PublicCancelUserOrderNotFound) GetPayload() *platformclientmodels.ErrorEntity {
@@ -137,7 +156,16 @@ type PublicCancelUserOrderConflict struct {
 }
 
 func (o *PublicCancelUserOrderConflict) Error() string {
-	return fmt.Sprintf("[PUT /platform/public/namespaces/{namespace}/users/{userId}/orders/{orderNo}/cancel][%d] publicCancelUserOrderConflict  %+v", 409, o.Payload)
+	return fmt.Sprintf("[PUT /platform/public/namespaces/{namespace}/users/{userId}/orders/{orderNo}/cancel][%d] publicCancelUserOrderConflict  %+v", 409, o.ToString())
+}
+
+func (o *PublicCancelUserOrderConflict) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *PublicCancelUserOrderConflict) GetPayload() *platformclientmodels.ErrorEntity {

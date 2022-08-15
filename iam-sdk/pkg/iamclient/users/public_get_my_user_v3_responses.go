@@ -10,6 +10,7 @@ package users
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -71,7 +72,16 @@ type PublicGetMyUserV3OK struct {
 }
 
 func (o *PublicGetMyUserV3OK) Error() string {
-	return fmt.Sprintf("[GET /iam/v3/public/users/me][%d] publicGetMyUserV3OK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /iam/v3/public/users/me][%d] publicGetMyUserV3OK  %+v", 200, o.ToString())
+}
+
+func (o *PublicGetMyUserV3OK) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *PublicGetMyUserV3OK) GetPayload() *iamclientmodels.ModelUserResponseV3 {
@@ -104,7 +114,16 @@ type PublicGetMyUserV3Unauthorized struct {
 }
 
 func (o *PublicGetMyUserV3Unauthorized) Error() string {
-	return fmt.Sprintf("[GET /iam/v3/public/users/me][%d] publicGetMyUserV3Unauthorized  %+v", 401, o.Payload)
+	return fmt.Sprintf("[GET /iam/v3/public/users/me][%d] publicGetMyUserV3Unauthorized  %+v", 401, o.ToString())
+}
+
+func (o *PublicGetMyUserV3Unauthorized) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *PublicGetMyUserV3Unauthorized) GetPayload() *iamclientmodels.RestErrorResponse {
@@ -137,7 +156,16 @@ type PublicGetMyUserV3InternalServerError struct {
 }
 
 func (o *PublicGetMyUserV3InternalServerError) Error() string {
-	return fmt.Sprintf("[GET /iam/v3/public/users/me][%d] publicGetMyUserV3InternalServerError  %+v", 500, o.Payload)
+	return fmt.Sprintf("[GET /iam/v3/public/users/me][%d] publicGetMyUserV3InternalServerError  %+v", 500, o.ToString())
+}
+
+func (o *PublicGetMyUserV3InternalServerError) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *PublicGetMyUserV3InternalServerError) GetPayload() *iamclientmodels.RestErrorResponse {

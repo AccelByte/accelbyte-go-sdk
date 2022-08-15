@@ -10,6 +10,7 @@ package agreement
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -86,7 +87,16 @@ type ChangePreferenceConsent1BadRequest struct {
 }
 
 func (o *ChangePreferenceConsent1BadRequest) Error() string {
-	return fmt.Sprintf("[PATCH /agreement/public/agreements/localized-policy-versions/preferences][%d] changePreferenceConsent1BadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[PATCH /agreement/public/agreements/localized-policy-versions/preferences][%d] changePreferenceConsent1BadRequest  %+v", 400, o.ToString())
+}
+
+func (o *ChangePreferenceConsent1BadRequest) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *ChangePreferenceConsent1BadRequest) GetPayload() *legalclientmodels.ErrorEntity {

@@ -10,6 +10,7 @@ package policies
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -65,7 +66,16 @@ type RetrieveLatestPoliciesPublicOK struct {
 }
 
 func (o *RetrieveLatestPoliciesPublicOK) Error() string {
-	return fmt.Sprintf("[GET /agreement/public/policies/namespaces/{namespace}][%d] retrieveLatestPoliciesPublicOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /agreement/public/policies/namespaces/{namespace}][%d] retrieveLatestPoliciesPublicOK  %+v", 200, o.ToString())
+}
+
+func (o *RetrieveLatestPoliciesPublicOK) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *RetrieveLatestPoliciesPublicOK) GetPayload() []*legalclientmodels.RetrievePolicyPublicResponse {
@@ -96,7 +106,16 @@ type RetrieveLatestPoliciesPublicNotFound struct {
 }
 
 func (o *RetrieveLatestPoliciesPublicNotFound) Error() string {
-	return fmt.Sprintf("[GET /agreement/public/policies/namespaces/{namespace}][%d] retrieveLatestPoliciesPublicNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[GET /agreement/public/policies/namespaces/{namespace}][%d] retrieveLatestPoliciesPublicNotFound  %+v", 404, o.ToString())
+}
+
+func (o *RetrieveLatestPoliciesPublicNotFound) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *RetrieveLatestPoliciesPublicNotFound) GetPayload() *legalclientmodels.ErrorEntity {

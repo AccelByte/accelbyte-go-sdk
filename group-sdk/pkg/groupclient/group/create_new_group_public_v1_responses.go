@@ -10,6 +10,7 @@ package group
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -89,7 +90,16 @@ type CreateNewGroupPublicV1Created struct {
 }
 
 func (o *CreateNewGroupPublicV1Created) Error() string {
-	return fmt.Sprintf("[POST /group/v1/public/namespaces/{namespace}/groups][%d] createNewGroupPublicV1Created  %+v", 201, o.Payload)
+	return fmt.Sprintf("[POST /group/v1/public/namespaces/{namespace}/groups][%d] createNewGroupPublicV1Created  %+v", 201, o.ToString())
+}
+
+func (o *CreateNewGroupPublicV1Created) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *CreateNewGroupPublicV1Created) GetPayload() *groupclientmodels.ModelsGroupResponseV1 {
@@ -122,7 +132,16 @@ type CreateNewGroupPublicV1BadRequest struct {
 }
 
 func (o *CreateNewGroupPublicV1BadRequest) Error() string {
-	return fmt.Sprintf("[POST /group/v1/public/namespaces/{namespace}/groups][%d] createNewGroupPublicV1BadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[POST /group/v1/public/namespaces/{namespace}/groups][%d] createNewGroupPublicV1BadRequest  %+v", 400, o.ToString())
+}
+
+func (o *CreateNewGroupPublicV1BadRequest) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *CreateNewGroupPublicV1BadRequest) GetPayload() *groupclientmodels.ResponseErrorResponse {
@@ -155,7 +174,16 @@ type CreateNewGroupPublicV1Unauthorized struct {
 }
 
 func (o *CreateNewGroupPublicV1Unauthorized) Error() string {
-	return fmt.Sprintf("[POST /group/v1/public/namespaces/{namespace}/groups][%d] createNewGroupPublicV1Unauthorized  %+v", 401, o.Payload)
+	return fmt.Sprintf("[POST /group/v1/public/namespaces/{namespace}/groups][%d] createNewGroupPublicV1Unauthorized  %+v", 401, o.ToString())
+}
+
+func (o *CreateNewGroupPublicV1Unauthorized) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *CreateNewGroupPublicV1Unauthorized) GetPayload() *groupclientmodels.ResponseErrorResponse {
@@ -188,7 +216,16 @@ type CreateNewGroupPublicV1Forbidden struct {
 }
 
 func (o *CreateNewGroupPublicV1Forbidden) Error() string {
-	return fmt.Sprintf("[POST /group/v1/public/namespaces/{namespace}/groups][%d] createNewGroupPublicV1Forbidden  %+v", 403, o.Payload)
+	return fmt.Sprintf("[POST /group/v1/public/namespaces/{namespace}/groups][%d] createNewGroupPublicV1Forbidden  %+v", 403, o.ToString())
+}
+
+func (o *CreateNewGroupPublicV1Forbidden) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *CreateNewGroupPublicV1Forbidden) GetPayload() *groupclientmodels.ResponseErrorResponse {
@@ -221,7 +258,16 @@ type CreateNewGroupPublicV1Conflict struct {
 }
 
 func (o *CreateNewGroupPublicV1Conflict) Error() string {
-	return fmt.Sprintf("[POST /group/v1/public/namespaces/{namespace}/groups][%d] createNewGroupPublicV1Conflict  %+v", 409, o.Payload)
+	return fmt.Sprintf("[POST /group/v1/public/namespaces/{namespace}/groups][%d] createNewGroupPublicV1Conflict  %+v", 409, o.ToString())
+}
+
+func (o *CreateNewGroupPublicV1Conflict) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *CreateNewGroupPublicV1Conflict) GetPayload() *groupclientmodels.ResponseErrorResponse {
@@ -254,7 +300,16 @@ type CreateNewGroupPublicV1InternalServerError struct {
 }
 
 func (o *CreateNewGroupPublicV1InternalServerError) Error() string {
-	return fmt.Sprintf("[POST /group/v1/public/namespaces/{namespace}/groups][%d] createNewGroupPublicV1InternalServerError  %+v", 500, o.Payload)
+	return fmt.Sprintf("[POST /group/v1/public/namespaces/{namespace}/groups][%d] createNewGroupPublicV1InternalServerError  %+v", 500, o.ToString())
+}
+
+func (o *CreateNewGroupPublicV1InternalServerError) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *CreateNewGroupPublicV1InternalServerError) GetPayload() *groupclientmodels.ResponseErrorResponse {

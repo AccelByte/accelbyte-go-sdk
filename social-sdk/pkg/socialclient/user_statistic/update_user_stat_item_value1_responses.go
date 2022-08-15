@@ -10,6 +10,7 @@ package user_statistic
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -83,7 +84,16 @@ type UpdateUserStatItemValue1OK struct {
 }
 
 func (o *UpdateUserStatItemValue1OK) Error() string {
-	return fmt.Sprintf("[PUT /social/v2/public/namespaces/{namespace}/users/{userId}/stats/{statCode}/statitems/value][%d] updateUserStatItemValue1OK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[PUT /social/v2/public/namespaces/{namespace}/users/{userId}/stats/{statCode}/statitems/value][%d] updateUserStatItemValue1OK  %+v", 200, o.ToString())
+}
+
+func (o *UpdateUserStatItemValue1OK) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *UpdateUserStatItemValue1OK) GetPayload() *socialclientmodels.StatItemIncResult {
@@ -116,7 +126,16 @@ type UpdateUserStatItemValue1BadRequest struct {
 }
 
 func (o *UpdateUserStatItemValue1BadRequest) Error() string {
-	return fmt.Sprintf("[PUT /social/v2/public/namespaces/{namespace}/users/{userId}/stats/{statCode}/statitems/value][%d] updateUserStatItemValue1BadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[PUT /social/v2/public/namespaces/{namespace}/users/{userId}/stats/{statCode}/statitems/value][%d] updateUserStatItemValue1BadRequest  %+v", 400, o.ToString())
+}
+
+func (o *UpdateUserStatItemValue1BadRequest) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *UpdateUserStatItemValue1BadRequest) GetPayload() *socialclientmodels.ErrorEntity {
@@ -149,7 +168,16 @@ type UpdateUserStatItemValue1NotFound struct {
 }
 
 func (o *UpdateUserStatItemValue1NotFound) Error() string {
-	return fmt.Sprintf("[PUT /social/v2/public/namespaces/{namespace}/users/{userId}/stats/{statCode}/statitems/value][%d] updateUserStatItemValue1NotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[PUT /social/v2/public/namespaces/{namespace}/users/{userId}/stats/{statCode}/statitems/value][%d] updateUserStatItemValue1NotFound  %+v", 404, o.ToString())
+}
+
+func (o *UpdateUserStatItemValue1NotFound) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *UpdateUserStatItemValue1NotFound) GetPayload() *socialclientmodels.ErrorEntity {
@@ -182,7 +210,16 @@ type UpdateUserStatItemValue1Conflict struct {
 }
 
 func (o *UpdateUserStatItemValue1Conflict) Error() string {
-	return fmt.Sprintf("[PUT /social/v2/public/namespaces/{namespace}/users/{userId}/stats/{statCode}/statitems/value][%d] updateUserStatItemValue1Conflict  %+v", 409, o.Payload)
+	return fmt.Sprintf("[PUT /social/v2/public/namespaces/{namespace}/users/{userId}/stats/{statCode}/statitems/value][%d] updateUserStatItemValue1Conflict  %+v", 409, o.ToString())
+}
+
+func (o *UpdateUserStatItemValue1Conflict) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *UpdateUserStatItemValue1Conflict) GetPayload() *socialclientmodels.ErrorEntity {
@@ -215,7 +252,16 @@ type UpdateUserStatItemValue1UnprocessableEntity struct {
 }
 
 func (o *UpdateUserStatItemValue1UnprocessableEntity) Error() string {
-	return fmt.Sprintf("[PUT /social/v2/public/namespaces/{namespace}/users/{userId}/stats/{statCode}/statitems/value][%d] updateUserStatItemValue1UnprocessableEntity  %+v", 422, o.Payload)
+	return fmt.Sprintf("[PUT /social/v2/public/namespaces/{namespace}/users/{userId}/stats/{statCode}/statitems/value][%d] updateUserStatItemValue1UnprocessableEntity  %+v", 422, o.ToString())
+}
+
+func (o *UpdateUserStatItemValue1UnprocessableEntity) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *UpdateUserStatItemValue1UnprocessableEntity) GetPayload() *socialclientmodels.ValidationErrorEntity {

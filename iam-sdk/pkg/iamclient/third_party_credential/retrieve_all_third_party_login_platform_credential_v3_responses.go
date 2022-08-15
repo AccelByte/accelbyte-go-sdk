@@ -10,6 +10,7 @@ package third_party_credential
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -83,7 +84,16 @@ type RetrieveAllThirdPartyLoginPlatformCredentialV3OK struct {
 }
 
 func (o *RetrieveAllThirdPartyLoginPlatformCredentialV3OK) Error() string {
-	return fmt.Sprintf("[GET /iam/v3/admin/namespaces/{namespace}/platforms/all/clients][%d] retrieveAllThirdPartyLoginPlatformCredentialV3OK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /iam/v3/admin/namespaces/{namespace}/platforms/all/clients][%d] retrieveAllThirdPartyLoginPlatformCredentialV3OK  %+v", 200, o.ToString())
+}
+
+func (o *RetrieveAllThirdPartyLoginPlatformCredentialV3OK) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *RetrieveAllThirdPartyLoginPlatformCredentialV3OK) GetPayload() []*iamclientmodels.ModelThirdPartyLoginPlatformCredentialResponse {
@@ -156,7 +166,16 @@ type RetrieveAllThirdPartyLoginPlatformCredentialV3NotFound struct {
 }
 
 func (o *RetrieveAllThirdPartyLoginPlatformCredentialV3NotFound) Error() string {
-	return fmt.Sprintf("[GET /iam/v3/admin/namespaces/{namespace}/platforms/all/clients][%d] retrieveAllThirdPartyLoginPlatformCredentialV3NotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[GET /iam/v3/admin/namespaces/{namespace}/platforms/all/clients][%d] retrieveAllThirdPartyLoginPlatformCredentialV3NotFound  %+v", 404, o.ToString())
+}
+
+func (o *RetrieveAllThirdPartyLoginPlatformCredentialV3NotFound) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *RetrieveAllThirdPartyLoginPlatformCredentialV3NotFound) GetPayload() *iamclientmodels.RestErrorResponse {
@@ -189,7 +208,16 @@ type RetrieveAllThirdPartyLoginPlatformCredentialV3InternalServerError struct {
 }
 
 func (o *RetrieveAllThirdPartyLoginPlatformCredentialV3InternalServerError) Error() string {
-	return fmt.Sprintf("[GET /iam/v3/admin/namespaces/{namespace}/platforms/all/clients][%d] retrieveAllThirdPartyLoginPlatformCredentialV3InternalServerError  %+v", 500, o.Payload)
+	return fmt.Sprintf("[GET /iam/v3/admin/namespaces/{namespace}/platforms/all/clients][%d] retrieveAllThirdPartyLoginPlatformCredentialV3InternalServerError  %+v", 500, o.ToString())
+}
+
+func (o *RetrieveAllThirdPartyLoginPlatformCredentialV3InternalServerError) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *RetrieveAllThirdPartyLoginPlatformCredentialV3InternalServerError) GetPayload() *iamclientmodels.RestErrorResponse {

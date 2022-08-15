@@ -10,6 +10,7 @@ package users
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -89,7 +90,16 @@ type AdminUpdateCountryAgeRestrictionV3OK struct {
 }
 
 func (o *AdminUpdateCountryAgeRestrictionV3OK) Error() string {
-	return fmt.Sprintf("[PATCH /iam/v3/admin/namespaces/{namespace}/agerestrictions/countries/{countryCode}][%d] adminUpdateCountryAgeRestrictionV3OK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[PATCH /iam/v3/admin/namespaces/{namespace}/agerestrictions/countries/{countryCode}][%d] adminUpdateCountryAgeRestrictionV3OK  %+v", 200, o.ToString())
+}
+
+func (o *AdminUpdateCountryAgeRestrictionV3OK) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *AdminUpdateCountryAgeRestrictionV3OK) GetPayload() *iamclientmodels.ModelCountryV3Response {
@@ -122,7 +132,16 @@ type AdminUpdateCountryAgeRestrictionV3BadRequest struct {
 }
 
 func (o *AdminUpdateCountryAgeRestrictionV3BadRequest) Error() string {
-	return fmt.Sprintf("[PATCH /iam/v3/admin/namespaces/{namespace}/agerestrictions/countries/{countryCode}][%d] adminUpdateCountryAgeRestrictionV3BadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[PATCH /iam/v3/admin/namespaces/{namespace}/agerestrictions/countries/{countryCode}][%d] adminUpdateCountryAgeRestrictionV3BadRequest  %+v", 400, o.ToString())
+}
+
+func (o *AdminUpdateCountryAgeRestrictionV3BadRequest) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *AdminUpdateCountryAgeRestrictionV3BadRequest) GetPayload() *iamclientmodels.RestErrorResponse {
@@ -155,7 +174,16 @@ type AdminUpdateCountryAgeRestrictionV3Unauthorized struct {
 }
 
 func (o *AdminUpdateCountryAgeRestrictionV3Unauthorized) Error() string {
-	return fmt.Sprintf("[PATCH /iam/v3/admin/namespaces/{namespace}/agerestrictions/countries/{countryCode}][%d] adminUpdateCountryAgeRestrictionV3Unauthorized  %+v", 401, o.Payload)
+	return fmt.Sprintf("[PATCH /iam/v3/admin/namespaces/{namespace}/agerestrictions/countries/{countryCode}][%d] adminUpdateCountryAgeRestrictionV3Unauthorized  %+v", 401, o.ToString())
+}
+
+func (o *AdminUpdateCountryAgeRestrictionV3Unauthorized) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *AdminUpdateCountryAgeRestrictionV3Unauthorized) GetPayload() *iamclientmodels.RestErrorResponse {
@@ -188,7 +216,16 @@ type AdminUpdateCountryAgeRestrictionV3Forbidden struct {
 }
 
 func (o *AdminUpdateCountryAgeRestrictionV3Forbidden) Error() string {
-	return fmt.Sprintf("[PATCH /iam/v3/admin/namespaces/{namespace}/agerestrictions/countries/{countryCode}][%d] adminUpdateCountryAgeRestrictionV3Forbidden  %+v", 403, o.Payload)
+	return fmt.Sprintf("[PATCH /iam/v3/admin/namespaces/{namespace}/agerestrictions/countries/{countryCode}][%d] adminUpdateCountryAgeRestrictionV3Forbidden  %+v", 403, o.ToString())
+}
+
+func (o *AdminUpdateCountryAgeRestrictionV3Forbidden) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *AdminUpdateCountryAgeRestrictionV3Forbidden) GetPayload() *iamclientmodels.RestErrorResponse {
@@ -221,7 +258,16 @@ type AdminUpdateCountryAgeRestrictionV3NotFound struct {
 }
 
 func (o *AdminUpdateCountryAgeRestrictionV3NotFound) Error() string {
-	return fmt.Sprintf("[PATCH /iam/v3/admin/namespaces/{namespace}/agerestrictions/countries/{countryCode}][%d] adminUpdateCountryAgeRestrictionV3NotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[PATCH /iam/v3/admin/namespaces/{namespace}/agerestrictions/countries/{countryCode}][%d] adminUpdateCountryAgeRestrictionV3NotFound  %+v", 404, o.ToString())
+}
+
+func (o *AdminUpdateCountryAgeRestrictionV3NotFound) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *AdminUpdateCountryAgeRestrictionV3NotFound) GetPayload() *iamclientmodels.RestErrorResponse {
@@ -254,7 +300,16 @@ type AdminUpdateCountryAgeRestrictionV3InternalServerError struct {
 }
 
 func (o *AdminUpdateCountryAgeRestrictionV3InternalServerError) Error() string {
-	return fmt.Sprintf("[PATCH /iam/v3/admin/namespaces/{namespace}/agerestrictions/countries/{countryCode}][%d] adminUpdateCountryAgeRestrictionV3InternalServerError  %+v", 500, o.Payload)
+	return fmt.Sprintf("[PATCH /iam/v3/admin/namespaces/{namespace}/agerestrictions/countries/{countryCode}][%d] adminUpdateCountryAgeRestrictionV3InternalServerError  %+v", 500, o.ToString())
+}
+
+func (o *AdminUpdateCountryAgeRestrictionV3InternalServerError) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *AdminUpdateCountryAgeRestrictionV3InternalServerError) GetPayload() *iamclientmodels.RestErrorResponse {

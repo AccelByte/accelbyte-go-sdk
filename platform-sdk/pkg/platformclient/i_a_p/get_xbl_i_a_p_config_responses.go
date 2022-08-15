@@ -10,6 +10,7 @@ package i_a_p
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -59,7 +60,16 @@ type GetXblIAPConfigOK struct {
 }
 
 func (o *GetXblIAPConfigOK) Error() string {
-	return fmt.Sprintf("[GET /platform/admin/namespaces/{namespace}/iap/config/xbl][%d] getXblIAPConfigOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /platform/admin/namespaces/{namespace}/iap/config/xbl][%d] getXblIAPConfigOK  %+v", 200, o.ToString())
+}
+
+func (o *GetXblIAPConfigOK) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *GetXblIAPConfigOK) GetPayload() *platformclientmodels.XblIAPConfigInfo {

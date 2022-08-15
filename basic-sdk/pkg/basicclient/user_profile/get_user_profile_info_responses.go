@@ -10,6 +10,7 @@ package user_profile
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -83,7 +84,16 @@ type GetUserProfileInfoOK struct {
 }
 
 func (o *GetUserProfileInfoOK) Error() string {
-	return fmt.Sprintf("[GET /basic/v1/admin/namespaces/{namespace}/users/{userId}/profiles][%d] getUserProfileInfoOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /basic/v1/admin/namespaces/{namespace}/users/{userId}/profiles][%d] getUserProfileInfoOK  %+v", 200, o.ToString())
+}
+
+func (o *GetUserProfileInfoOK) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *GetUserProfileInfoOK) GetPayload() *basicclientmodels.UserProfilePrivateInfo {
@@ -116,7 +126,16 @@ type GetUserProfileInfoBadRequest struct {
 }
 
 func (o *GetUserProfileInfoBadRequest) Error() string {
-	return fmt.Sprintf("[GET /basic/v1/admin/namespaces/{namespace}/users/{userId}/profiles][%d] getUserProfileInfoBadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[GET /basic/v1/admin/namespaces/{namespace}/users/{userId}/profiles][%d] getUserProfileInfoBadRequest  %+v", 400, o.ToString())
+}
+
+func (o *GetUserProfileInfoBadRequest) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *GetUserProfileInfoBadRequest) GetPayload() *basicclientmodels.ValidationErrorEntity {
@@ -149,7 +168,16 @@ type GetUserProfileInfoUnauthorized struct {
 }
 
 func (o *GetUserProfileInfoUnauthorized) Error() string {
-	return fmt.Sprintf("[GET /basic/v1/admin/namespaces/{namespace}/users/{userId}/profiles][%d] getUserProfileInfoUnauthorized  %+v", 401, o.Payload)
+	return fmt.Sprintf("[GET /basic/v1/admin/namespaces/{namespace}/users/{userId}/profiles][%d] getUserProfileInfoUnauthorized  %+v", 401, o.ToString())
+}
+
+func (o *GetUserProfileInfoUnauthorized) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *GetUserProfileInfoUnauthorized) GetPayload() *basicclientmodels.ErrorEntity {
@@ -182,7 +210,16 @@ type GetUserProfileInfoForbidden struct {
 }
 
 func (o *GetUserProfileInfoForbidden) Error() string {
-	return fmt.Sprintf("[GET /basic/v1/admin/namespaces/{namespace}/users/{userId}/profiles][%d] getUserProfileInfoForbidden  %+v", 403, o.Payload)
+	return fmt.Sprintf("[GET /basic/v1/admin/namespaces/{namespace}/users/{userId}/profiles][%d] getUserProfileInfoForbidden  %+v", 403, o.ToString())
+}
+
+func (o *GetUserProfileInfoForbidden) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *GetUserProfileInfoForbidden) GetPayload() *basicclientmodels.ErrorEntity {
@@ -215,7 +252,16 @@ type GetUserProfileInfoNotFound struct {
 }
 
 func (o *GetUserProfileInfoNotFound) Error() string {
-	return fmt.Sprintf("[GET /basic/v1/admin/namespaces/{namespace}/users/{userId}/profiles][%d] getUserProfileInfoNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[GET /basic/v1/admin/namespaces/{namespace}/users/{userId}/profiles][%d] getUserProfileInfoNotFound  %+v", 404, o.ToString())
+}
+
+func (o *GetUserProfileInfoNotFound) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *GetUserProfileInfoNotFound) GetPayload() *basicclientmodels.ErrorEntity {

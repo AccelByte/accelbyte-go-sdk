@@ -10,6 +10,7 @@ package agreement
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -59,7 +60,16 @@ type BulkAcceptVersionedPolicyCreated struct {
 }
 
 func (o *BulkAcceptVersionedPolicyCreated) Error() string {
-	return fmt.Sprintf("[POST /agreement/public/agreements/policies][%d] bulkAcceptVersionedPolicyCreated  %+v", 201, o.Payload)
+	return fmt.Sprintf("[POST /agreement/public/agreements/policies][%d] bulkAcceptVersionedPolicyCreated  %+v", 201, o.ToString())
+}
+
+func (o *BulkAcceptVersionedPolicyCreated) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *BulkAcceptVersionedPolicyCreated) GetPayload() *legalclientmodels.AcceptAgreementResponse {

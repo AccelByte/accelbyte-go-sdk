@@ -10,6 +10,7 @@ package base_legal_policies
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -65,7 +66,16 @@ type RetrievePolicyCountryOK struct {
 }
 
 func (o *RetrievePolicyCountryOK) Error() string {
-	return fmt.Sprintf("[GET /agreement/admin/base-policies/{basePolicyId}/countries/{countryCode}][%d] retrievePolicyCountryOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /agreement/admin/base-policies/{basePolicyId}/countries/{countryCode}][%d] retrievePolicyCountryOK  %+v", 200, o.ToString())
+}
+
+func (o *RetrievePolicyCountryOK) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *RetrievePolicyCountryOK) GetPayload() *legalclientmodels.RetrievePolicyResponse {
@@ -98,7 +108,16 @@ type RetrievePolicyCountryNotFound struct {
 }
 
 func (o *RetrievePolicyCountryNotFound) Error() string {
-	return fmt.Sprintf("[GET /agreement/admin/base-policies/{basePolicyId}/countries/{countryCode}][%d] retrievePolicyCountryNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[GET /agreement/admin/base-policies/{basePolicyId}/countries/{countryCode}][%d] retrievePolicyCountryNotFound  %+v", 404, o.ToString())
+}
+
+func (o *RetrievePolicyCountryNotFound) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *RetrievePolicyCountryNotFound) GetPayload() *legalclientmodels.ErrorEntity {

@@ -10,6 +10,7 @@ package user_statistic
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -77,7 +78,16 @@ type PublicQueryUserStatItems1OK struct {
 }
 
 func (o *PublicQueryUserStatItems1OK) Error() string {
-	return fmt.Sprintf("[GET /social/v1/public/namespaces/{namespace}/users/{userId}/statitems/value/bulk][%d] publicQueryUserStatItems1OK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /social/v1/public/namespaces/{namespace}/users/{userId}/statitems/value/bulk][%d] publicQueryUserStatItems1OK  %+v", 200, o.ToString())
+}
+
+func (o *PublicQueryUserStatItems1OK) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *PublicQueryUserStatItems1OK) GetPayload() []*socialclientmodels.ADTOObjectForUserStatItemValue {
@@ -108,7 +118,16 @@ type PublicQueryUserStatItems1BadRequest struct {
 }
 
 func (o *PublicQueryUserStatItems1BadRequest) Error() string {
-	return fmt.Sprintf("[GET /social/v1/public/namespaces/{namespace}/users/{userId}/statitems/value/bulk][%d] publicQueryUserStatItems1BadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[GET /social/v1/public/namespaces/{namespace}/users/{userId}/statitems/value/bulk][%d] publicQueryUserStatItems1BadRequest  %+v", 400, o.ToString())
+}
+
+func (o *PublicQueryUserStatItems1BadRequest) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *PublicQueryUserStatItems1BadRequest) GetPayload() *socialclientmodels.ErrorEntity {
@@ -141,7 +160,16 @@ type PublicQueryUserStatItems1NotFound struct {
 }
 
 func (o *PublicQueryUserStatItems1NotFound) Error() string {
-	return fmt.Sprintf("[GET /social/v1/public/namespaces/{namespace}/users/{userId}/statitems/value/bulk][%d] publicQueryUserStatItems1NotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[GET /social/v1/public/namespaces/{namespace}/users/{userId}/statitems/value/bulk][%d] publicQueryUserStatItems1NotFound  %+v", 404, o.ToString())
+}
+
+func (o *PublicQueryUserStatItems1NotFound) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *PublicQueryUserStatItems1NotFound) GetPayload() *socialclientmodels.ErrorEntity {
@@ -174,7 +202,16 @@ type PublicQueryUserStatItems1UnprocessableEntity struct {
 }
 
 func (o *PublicQueryUserStatItems1UnprocessableEntity) Error() string {
-	return fmt.Sprintf("[GET /social/v1/public/namespaces/{namespace}/users/{userId}/statitems/value/bulk][%d] publicQueryUserStatItems1UnprocessableEntity  %+v", 422, o.Payload)
+	return fmt.Sprintf("[GET /social/v1/public/namespaces/{namespace}/users/{userId}/statitems/value/bulk][%d] publicQueryUserStatItems1UnprocessableEntity  %+v", 422, o.ToString())
+}
+
+func (o *PublicQueryUserStatItems1UnprocessableEntity) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *PublicQueryUserStatItems1UnprocessableEntity) GetPayload() *socialclientmodels.ValidationErrorEntity {

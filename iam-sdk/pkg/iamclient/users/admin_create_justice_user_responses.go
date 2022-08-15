@@ -10,6 +10,7 @@ package users
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -89,7 +90,16 @@ type AdminCreateJusticeUserCreated struct {
 }
 
 func (o *AdminCreateJusticeUserCreated) Error() string {
-	return fmt.Sprintf("[POST /iam/v3/admin/namespaces/{namespace}/users/{userId}/platforms/justice/{targetNamespace}][%d] adminCreateJusticeUserCreated  %+v", 201, o.Payload)
+	return fmt.Sprintf("[POST /iam/v3/admin/namespaces/{namespace}/users/{userId}/platforms/justice/{targetNamespace}][%d] adminCreateJusticeUserCreated  %+v", 201, o.ToString())
+}
+
+func (o *AdminCreateJusticeUserCreated) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *AdminCreateJusticeUserCreated) GetPayload() *iamclientmodels.ModelCreateJusticeUserResponse {
@@ -122,7 +132,16 @@ type AdminCreateJusticeUserBadRequest struct {
 }
 
 func (o *AdminCreateJusticeUserBadRequest) Error() string {
-	return fmt.Sprintf("[POST /iam/v3/admin/namespaces/{namespace}/users/{userId}/platforms/justice/{targetNamespace}][%d] adminCreateJusticeUserBadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[POST /iam/v3/admin/namespaces/{namespace}/users/{userId}/platforms/justice/{targetNamespace}][%d] adminCreateJusticeUserBadRequest  %+v", 400, o.ToString())
+}
+
+func (o *AdminCreateJusticeUserBadRequest) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *AdminCreateJusticeUserBadRequest) GetPayload() *iamclientmodels.RestErrorResponse {
@@ -155,7 +174,16 @@ type AdminCreateJusticeUserUnauthorized struct {
 }
 
 func (o *AdminCreateJusticeUserUnauthorized) Error() string {
-	return fmt.Sprintf("[POST /iam/v3/admin/namespaces/{namespace}/users/{userId}/platforms/justice/{targetNamespace}][%d] adminCreateJusticeUserUnauthorized  %+v", 401, o.Payload)
+	return fmt.Sprintf("[POST /iam/v3/admin/namespaces/{namespace}/users/{userId}/platforms/justice/{targetNamespace}][%d] adminCreateJusticeUserUnauthorized  %+v", 401, o.ToString())
+}
+
+func (o *AdminCreateJusticeUserUnauthorized) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *AdminCreateJusticeUserUnauthorized) GetPayload() *iamclientmodels.RestErrorResponse {
@@ -188,7 +216,16 @@ type AdminCreateJusticeUserForbidden struct {
 }
 
 func (o *AdminCreateJusticeUserForbidden) Error() string {
-	return fmt.Sprintf("[POST /iam/v3/admin/namespaces/{namespace}/users/{userId}/platforms/justice/{targetNamespace}][%d] adminCreateJusticeUserForbidden  %+v", 403, o.Payload)
+	return fmt.Sprintf("[POST /iam/v3/admin/namespaces/{namespace}/users/{userId}/platforms/justice/{targetNamespace}][%d] adminCreateJusticeUserForbidden  %+v", 403, o.ToString())
+}
+
+func (o *AdminCreateJusticeUserForbidden) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *AdminCreateJusticeUserForbidden) GetPayload() *iamclientmodels.RestErrorResponse {
@@ -221,7 +258,16 @@ type AdminCreateJusticeUserNotFound struct {
 }
 
 func (o *AdminCreateJusticeUserNotFound) Error() string {
-	return fmt.Sprintf("[POST /iam/v3/admin/namespaces/{namespace}/users/{userId}/platforms/justice/{targetNamespace}][%d] adminCreateJusticeUserNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[POST /iam/v3/admin/namespaces/{namespace}/users/{userId}/platforms/justice/{targetNamespace}][%d] adminCreateJusticeUserNotFound  %+v", 404, o.ToString())
+}
+
+func (o *AdminCreateJusticeUserNotFound) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *AdminCreateJusticeUserNotFound) GetPayload() *iamclientmodels.RestErrorResponse {
@@ -254,7 +300,16 @@ type AdminCreateJusticeUserInternalServerError struct {
 }
 
 func (o *AdminCreateJusticeUserInternalServerError) Error() string {
-	return fmt.Sprintf("[POST /iam/v3/admin/namespaces/{namespace}/users/{userId}/platforms/justice/{targetNamespace}][%d] adminCreateJusticeUserInternalServerError  %+v", 500, o.Payload)
+	return fmt.Sprintf("[POST /iam/v3/admin/namespaces/{namespace}/users/{userId}/platforms/justice/{targetNamespace}][%d] adminCreateJusticeUserInternalServerError  %+v", 500, o.ToString())
+}
+
+func (o *AdminCreateJusticeUserInternalServerError) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *AdminCreateJusticeUserInternalServerError) GetPayload() *iamclientmodels.RestErrorResponse {

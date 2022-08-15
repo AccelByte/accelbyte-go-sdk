@@ -10,6 +10,7 @@ package users
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -89,7 +90,16 @@ type AdminGetUserByEmailAddressV3OK struct {
 }
 
 func (o *AdminGetUserByEmailAddressV3OK) Error() string {
-	return fmt.Sprintf("[GET /iam/v3/admin/namespaces/{namespace}/users][%d] adminGetUserByEmailAddressV3OK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /iam/v3/admin/namespaces/{namespace}/users][%d] adminGetUserByEmailAddressV3OK  %+v", 200, o.ToString())
+}
+
+func (o *AdminGetUserByEmailAddressV3OK) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *AdminGetUserByEmailAddressV3OK) GetPayload() *iamclientmodels.ModelUserResponseV3 {
@@ -122,7 +132,16 @@ type AdminGetUserByEmailAddressV3BadRequest struct {
 }
 
 func (o *AdminGetUserByEmailAddressV3BadRequest) Error() string {
-	return fmt.Sprintf("[GET /iam/v3/admin/namespaces/{namespace}/users][%d] adminGetUserByEmailAddressV3BadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[GET /iam/v3/admin/namespaces/{namespace}/users][%d] adminGetUserByEmailAddressV3BadRequest  %+v", 400, o.ToString())
+}
+
+func (o *AdminGetUserByEmailAddressV3BadRequest) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *AdminGetUserByEmailAddressV3BadRequest) GetPayload() *iamclientmodels.RestErrorResponse {
@@ -155,7 +174,16 @@ type AdminGetUserByEmailAddressV3Unauthorized struct {
 }
 
 func (o *AdminGetUserByEmailAddressV3Unauthorized) Error() string {
-	return fmt.Sprintf("[GET /iam/v3/admin/namespaces/{namespace}/users][%d] adminGetUserByEmailAddressV3Unauthorized  %+v", 401, o.Payload)
+	return fmt.Sprintf("[GET /iam/v3/admin/namespaces/{namespace}/users][%d] adminGetUserByEmailAddressV3Unauthorized  %+v", 401, o.ToString())
+}
+
+func (o *AdminGetUserByEmailAddressV3Unauthorized) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *AdminGetUserByEmailAddressV3Unauthorized) GetPayload() *iamclientmodels.RestErrorResponse {
@@ -188,7 +216,16 @@ type AdminGetUserByEmailAddressV3Forbidden struct {
 }
 
 func (o *AdminGetUserByEmailAddressV3Forbidden) Error() string {
-	return fmt.Sprintf("[GET /iam/v3/admin/namespaces/{namespace}/users][%d] adminGetUserByEmailAddressV3Forbidden  %+v", 403, o.Payload)
+	return fmt.Sprintf("[GET /iam/v3/admin/namespaces/{namespace}/users][%d] adminGetUserByEmailAddressV3Forbidden  %+v", 403, o.ToString())
+}
+
+func (o *AdminGetUserByEmailAddressV3Forbidden) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *AdminGetUserByEmailAddressV3Forbidden) GetPayload() *iamclientmodels.RestErrorResponse {
@@ -221,7 +258,16 @@ type AdminGetUserByEmailAddressV3NotFound struct {
 }
 
 func (o *AdminGetUserByEmailAddressV3NotFound) Error() string {
-	return fmt.Sprintf("[GET /iam/v3/admin/namespaces/{namespace}/users][%d] adminGetUserByEmailAddressV3NotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[GET /iam/v3/admin/namespaces/{namespace}/users][%d] adminGetUserByEmailAddressV3NotFound  %+v", 404, o.ToString())
+}
+
+func (o *AdminGetUserByEmailAddressV3NotFound) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *AdminGetUserByEmailAddressV3NotFound) GetPayload() *iamclientmodels.RestErrorResponse {
@@ -254,7 +300,16 @@ type AdminGetUserByEmailAddressV3InternalServerError struct {
 }
 
 func (o *AdminGetUserByEmailAddressV3InternalServerError) Error() string {
-	return fmt.Sprintf("[GET /iam/v3/admin/namespaces/{namespace}/users][%d] adminGetUserByEmailAddressV3InternalServerError  %+v", 500, o.Payload)
+	return fmt.Sprintf("[GET /iam/v3/admin/namespaces/{namespace}/users][%d] adminGetUserByEmailAddressV3InternalServerError  %+v", 500, o.ToString())
+}
+
+func (o *AdminGetUserByEmailAddressV3InternalServerError) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *AdminGetUserByEmailAddressV3InternalServerError) GetPayload() *iamclientmodels.RestErrorResponse {

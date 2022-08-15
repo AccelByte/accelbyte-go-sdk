@@ -10,6 +10,7 @@ package bans
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -71,7 +72,16 @@ type AdminGetBannedUsersV3OK struct {
 }
 
 func (o *AdminGetBannedUsersV3OK) Error() string {
-	return fmt.Sprintf("[GET /iam/v3/admin/namespaces/{namespace}/bans/users][%d] adminGetBannedUsersV3OK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /iam/v3/admin/namespaces/{namespace}/bans/users][%d] adminGetBannedUsersV3OK  %+v", 200, o.ToString())
+}
+
+func (o *AdminGetBannedUsersV3OK) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *AdminGetBannedUsersV3OK) GetPayload() *iamclientmodels.ModelGetUserBanV3Response {
@@ -104,7 +114,16 @@ type AdminGetBannedUsersV3Unauthorized struct {
 }
 
 func (o *AdminGetBannedUsersV3Unauthorized) Error() string {
-	return fmt.Sprintf("[GET /iam/v3/admin/namespaces/{namespace}/bans/users][%d] adminGetBannedUsersV3Unauthorized  %+v", 401, o.Payload)
+	return fmt.Sprintf("[GET /iam/v3/admin/namespaces/{namespace}/bans/users][%d] adminGetBannedUsersV3Unauthorized  %+v", 401, o.ToString())
+}
+
+func (o *AdminGetBannedUsersV3Unauthorized) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *AdminGetBannedUsersV3Unauthorized) GetPayload() *iamclientmodels.ModelGetUserBanV3Response {
@@ -137,7 +156,16 @@ type AdminGetBannedUsersV3Forbidden struct {
 }
 
 func (o *AdminGetBannedUsersV3Forbidden) Error() string {
-	return fmt.Sprintf("[GET /iam/v3/admin/namespaces/{namespace}/bans/users][%d] adminGetBannedUsersV3Forbidden  %+v", 403, o.Payload)
+	return fmt.Sprintf("[GET /iam/v3/admin/namespaces/{namespace}/bans/users][%d] adminGetBannedUsersV3Forbidden  %+v", 403, o.ToString())
+}
+
+func (o *AdminGetBannedUsersV3Forbidden) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *AdminGetBannedUsersV3Forbidden) GetPayload() *iamclientmodels.ModelGetUserBanV3Response {

@@ -10,6 +10,7 @@ package localized_policy_versions
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -59,7 +60,16 @@ type RetrieveLocalizedPolicyVersionsOK struct {
 }
 
 func (o *RetrieveLocalizedPolicyVersionsOK) Error() string {
-	return fmt.Sprintf("[GET /agreement/admin/localized-policy-versions/versions/{policyVersionId}][%d] retrieveLocalizedPolicyVersionsOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /agreement/admin/localized-policy-versions/versions/{policyVersionId}][%d] retrieveLocalizedPolicyVersionsOK  %+v", 200, o.ToString())
+}
+
+func (o *RetrieveLocalizedPolicyVersionsOK) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *RetrieveLocalizedPolicyVersionsOK) GetPayload() []*legalclientmodels.RetrieveLocalizedPolicyVersionResponse {

@@ -10,6 +10,7 @@ package notification
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -83,7 +84,16 @@ type GetNotificationTopicV1AdminOK struct {
 }
 
 func (o *GetNotificationTopicV1AdminOK) Error() string {
-	return fmt.Sprintf("[GET /lobby/v1/admin/notification/namespaces/{namespace}/topics/{topicName}][%d] getNotificationTopicV1AdminOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /lobby/v1/admin/notification/namespaces/{namespace}/topics/{topicName}][%d] getNotificationTopicV1AdminOK  %+v", 200, o.ToString())
+}
+
+func (o *GetNotificationTopicV1AdminOK) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *GetNotificationTopicV1AdminOK) GetPayload() *lobbyclientmodels.ModelNotificationTopicResponseV1 {
@@ -116,7 +126,16 @@ type GetNotificationTopicV1AdminUnauthorized struct {
 }
 
 func (o *GetNotificationTopicV1AdminUnauthorized) Error() string {
-	return fmt.Sprintf("[GET /lobby/v1/admin/notification/namespaces/{namespace}/topics/{topicName}][%d] getNotificationTopicV1AdminUnauthorized  %+v", 401, o.Payload)
+	return fmt.Sprintf("[GET /lobby/v1/admin/notification/namespaces/{namespace}/topics/{topicName}][%d] getNotificationTopicV1AdminUnauthorized  %+v", 401, o.ToString())
+}
+
+func (o *GetNotificationTopicV1AdminUnauthorized) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *GetNotificationTopicV1AdminUnauthorized) GetPayload() *lobbyclientmodels.RestapiErrorResponseV1 {
@@ -149,7 +168,16 @@ type GetNotificationTopicV1AdminForbidden struct {
 }
 
 func (o *GetNotificationTopicV1AdminForbidden) Error() string {
-	return fmt.Sprintf("[GET /lobby/v1/admin/notification/namespaces/{namespace}/topics/{topicName}][%d] getNotificationTopicV1AdminForbidden  %+v", 403, o.Payload)
+	return fmt.Sprintf("[GET /lobby/v1/admin/notification/namespaces/{namespace}/topics/{topicName}][%d] getNotificationTopicV1AdminForbidden  %+v", 403, o.ToString())
+}
+
+func (o *GetNotificationTopicV1AdminForbidden) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *GetNotificationTopicV1AdminForbidden) GetPayload() *lobbyclientmodels.RestapiErrorResponseV1 {
@@ -182,7 +210,16 @@ type GetNotificationTopicV1AdminNotFound struct {
 }
 
 func (o *GetNotificationTopicV1AdminNotFound) Error() string {
-	return fmt.Sprintf("[GET /lobby/v1/admin/notification/namespaces/{namespace}/topics/{topicName}][%d] getNotificationTopicV1AdminNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[GET /lobby/v1/admin/notification/namespaces/{namespace}/topics/{topicName}][%d] getNotificationTopicV1AdminNotFound  %+v", 404, o.ToString())
+}
+
+func (o *GetNotificationTopicV1AdminNotFound) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *GetNotificationTopicV1AdminNotFound) GetPayload() *lobbyclientmodels.RestapiErrorResponseV1 {
@@ -215,7 +252,16 @@ type GetNotificationTopicV1AdminInternalServerError struct {
 }
 
 func (o *GetNotificationTopicV1AdminInternalServerError) Error() string {
-	return fmt.Sprintf("[GET /lobby/v1/admin/notification/namespaces/{namespace}/topics/{topicName}][%d] getNotificationTopicV1AdminInternalServerError  %+v", 500, o.Payload)
+	return fmt.Sprintf("[GET /lobby/v1/admin/notification/namespaces/{namespace}/topics/{topicName}][%d] getNotificationTopicV1AdminInternalServerError  %+v", 500, o.ToString())
+}
+
+func (o *GetNotificationTopicV1AdminInternalServerError) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *GetNotificationTopicV1AdminInternalServerError) GetPayload() *lobbyclientmodels.RestapiErrorResponseV1 {

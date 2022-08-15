@@ -10,6 +10,7 @@ package payment_station
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -71,7 +72,16 @@ type GetPaymentTaxValueOK struct {
 }
 
 func (o *GetPaymentTaxValueOK) Error() string {
-	return fmt.Sprintf("[GET /platform/public/namespaces/{namespace}/payment/tax][%d] getPaymentTaxValueOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /platform/public/namespaces/{namespace}/payment/tax][%d] getPaymentTaxValueOK  %+v", 200, o.ToString())
+}
+
+func (o *GetPaymentTaxValueOK) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *GetPaymentTaxValueOK) GetPayload() *platformclientmodels.TaxResult {
@@ -104,7 +114,16 @@ type GetPaymentTaxValueBadRequest struct {
 }
 
 func (o *GetPaymentTaxValueBadRequest) Error() string {
-	return fmt.Sprintf("[GET /platform/public/namespaces/{namespace}/payment/tax][%d] getPaymentTaxValueBadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[GET /platform/public/namespaces/{namespace}/payment/tax][%d] getPaymentTaxValueBadRequest  %+v", 400, o.ToString())
+}
+
+func (o *GetPaymentTaxValueBadRequest) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *GetPaymentTaxValueBadRequest) GetPayload() *platformclientmodels.ErrorEntity {
@@ -137,7 +156,16 @@ type GetPaymentTaxValueNotFound struct {
 }
 
 func (o *GetPaymentTaxValueNotFound) Error() string {
-	return fmt.Sprintf("[GET /platform/public/namespaces/{namespace}/payment/tax][%d] getPaymentTaxValueNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[GET /platform/public/namespaces/{namespace}/payment/tax][%d] getPaymentTaxValueNotFound  %+v", 404, o.ToString())
+}
+
+func (o *GetPaymentTaxValueNotFound) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *GetPaymentTaxValueNotFound) GetPayload() *platformclientmodels.ErrorEntity {

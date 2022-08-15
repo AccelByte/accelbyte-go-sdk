@@ -10,6 +10,7 @@ package fulfillment_script
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -59,7 +60,16 @@ type TestFulfillmentScriptEvalOK struct {
 }
 
 func (o *TestFulfillmentScriptEvalOK) Error() string {
-	return fmt.Sprintf("[POST /platform/admin/fulfillment/scripts/tests/eval][%d] testFulfillmentScriptEvalOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[POST /platform/admin/fulfillment/scripts/tests/eval][%d] testFulfillmentScriptEvalOK  %+v", 200, o.ToString())
+}
+
+func (o *TestFulfillmentScriptEvalOK) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *TestFulfillmentScriptEvalOK) GetPayload() *platformclientmodels.FulfillmentScriptEvalTestResult {

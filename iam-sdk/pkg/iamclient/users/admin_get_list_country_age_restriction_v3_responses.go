@@ -10,6 +10,7 @@ package users
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -83,7 +84,16 @@ type AdminGetListCountryAgeRestrictionV3OK struct {
 }
 
 func (o *AdminGetListCountryAgeRestrictionV3OK) Error() string {
-	return fmt.Sprintf("[GET /iam/v3/admin/namespaces/{namespace}/agerestrictions/countries][%d] adminGetListCountryAgeRestrictionV3OK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /iam/v3/admin/namespaces/{namespace}/agerestrictions/countries][%d] adminGetListCountryAgeRestrictionV3OK  %+v", 200, o.ToString())
+}
+
+func (o *AdminGetListCountryAgeRestrictionV3OK) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *AdminGetListCountryAgeRestrictionV3OK) GetPayload() []*iamclientmodels.ModelCountryV3Response {
@@ -114,7 +124,16 @@ type AdminGetListCountryAgeRestrictionV3BadRequest struct {
 }
 
 func (o *AdminGetListCountryAgeRestrictionV3BadRequest) Error() string {
-	return fmt.Sprintf("[GET /iam/v3/admin/namespaces/{namespace}/agerestrictions/countries][%d] adminGetListCountryAgeRestrictionV3BadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[GET /iam/v3/admin/namespaces/{namespace}/agerestrictions/countries][%d] adminGetListCountryAgeRestrictionV3BadRequest  %+v", 400, o.ToString())
+}
+
+func (o *AdminGetListCountryAgeRestrictionV3BadRequest) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *AdminGetListCountryAgeRestrictionV3BadRequest) GetPayload() *iamclientmodels.RestErrorResponse {
@@ -147,7 +166,16 @@ type AdminGetListCountryAgeRestrictionV3Unauthorized struct {
 }
 
 func (o *AdminGetListCountryAgeRestrictionV3Unauthorized) Error() string {
-	return fmt.Sprintf("[GET /iam/v3/admin/namespaces/{namespace}/agerestrictions/countries][%d] adminGetListCountryAgeRestrictionV3Unauthorized  %+v", 401, o.Payload)
+	return fmt.Sprintf("[GET /iam/v3/admin/namespaces/{namespace}/agerestrictions/countries][%d] adminGetListCountryAgeRestrictionV3Unauthorized  %+v", 401, o.ToString())
+}
+
+func (o *AdminGetListCountryAgeRestrictionV3Unauthorized) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *AdminGetListCountryAgeRestrictionV3Unauthorized) GetPayload() *iamclientmodels.RestErrorResponse {
@@ -180,7 +208,16 @@ type AdminGetListCountryAgeRestrictionV3Forbidden struct {
 }
 
 func (o *AdminGetListCountryAgeRestrictionV3Forbidden) Error() string {
-	return fmt.Sprintf("[GET /iam/v3/admin/namespaces/{namespace}/agerestrictions/countries][%d] adminGetListCountryAgeRestrictionV3Forbidden  %+v", 403, o.Payload)
+	return fmt.Sprintf("[GET /iam/v3/admin/namespaces/{namespace}/agerestrictions/countries][%d] adminGetListCountryAgeRestrictionV3Forbidden  %+v", 403, o.ToString())
+}
+
+func (o *AdminGetListCountryAgeRestrictionV3Forbidden) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *AdminGetListCountryAgeRestrictionV3Forbidden) GetPayload() *iamclientmodels.RestErrorResponse {
@@ -213,7 +250,16 @@ type AdminGetListCountryAgeRestrictionV3InternalServerError struct {
 }
 
 func (o *AdminGetListCountryAgeRestrictionV3InternalServerError) Error() string {
-	return fmt.Sprintf("[GET /iam/v3/admin/namespaces/{namespace}/agerestrictions/countries][%d] adminGetListCountryAgeRestrictionV3InternalServerError  %+v", 500, o.Payload)
+	return fmt.Sprintf("[GET /iam/v3/admin/namespaces/{namespace}/agerestrictions/countries][%d] adminGetListCountryAgeRestrictionV3InternalServerError  %+v", 500, o.ToString())
+}
+
+func (o *AdminGetListCountryAgeRestrictionV3InternalServerError) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *AdminGetListCountryAgeRestrictionV3InternalServerError) GetPayload() *iamclientmodels.RestErrorResponse {

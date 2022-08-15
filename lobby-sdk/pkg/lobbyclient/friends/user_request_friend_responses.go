@@ -10,6 +10,7 @@ package friends
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -116,7 +117,16 @@ type UserRequestFriendBadRequest struct {
 }
 
 func (o *UserRequestFriendBadRequest) Error() string {
-	return fmt.Sprintf("[POST /friends/namespaces/{namespace}/me/request][%d] userRequestFriendBadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[POST /friends/namespaces/{namespace}/me/request][%d] userRequestFriendBadRequest  %+v", 400, o.ToString())
+}
+
+func (o *UserRequestFriendBadRequest) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *UserRequestFriendBadRequest) GetPayload() *lobbyclientmodels.RestapiErrorResponseV1 {
@@ -149,7 +159,16 @@ type UserRequestFriendUnauthorized struct {
 }
 
 func (o *UserRequestFriendUnauthorized) Error() string {
-	return fmt.Sprintf("[POST /friends/namespaces/{namespace}/me/request][%d] userRequestFriendUnauthorized  %+v", 401, o.Payload)
+	return fmt.Sprintf("[POST /friends/namespaces/{namespace}/me/request][%d] userRequestFriendUnauthorized  %+v", 401, o.ToString())
+}
+
+func (o *UserRequestFriendUnauthorized) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *UserRequestFriendUnauthorized) GetPayload() *lobbyclientmodels.RestapiErrorResponseV1 {
@@ -182,7 +201,16 @@ type UserRequestFriendForbidden struct {
 }
 
 func (o *UserRequestFriendForbidden) Error() string {
-	return fmt.Sprintf("[POST /friends/namespaces/{namespace}/me/request][%d] userRequestFriendForbidden  %+v", 403, o.Payload)
+	return fmt.Sprintf("[POST /friends/namespaces/{namespace}/me/request][%d] userRequestFriendForbidden  %+v", 403, o.ToString())
+}
+
+func (o *UserRequestFriendForbidden) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *UserRequestFriendForbidden) GetPayload() *lobbyclientmodels.RestapiErrorResponseV1 {
@@ -215,7 +243,16 @@ type UserRequestFriendNotFound struct {
 }
 
 func (o *UserRequestFriendNotFound) Error() string {
-	return fmt.Sprintf("[POST /friends/namespaces/{namespace}/me/request][%d] userRequestFriendNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[POST /friends/namespaces/{namespace}/me/request][%d] userRequestFriendNotFound  %+v", 404, o.ToString())
+}
+
+func (o *UserRequestFriendNotFound) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *UserRequestFriendNotFound) GetPayload() *lobbyclientmodels.RestapiErrorResponseV1 {
@@ -248,7 +285,16 @@ type UserRequestFriendUnprocessableEntity struct {
 }
 
 func (o *UserRequestFriendUnprocessableEntity) Error() string {
-	return fmt.Sprintf("[POST /friends/namespaces/{namespace}/me/request][%d] userRequestFriendUnprocessableEntity  %+v", 422, o.Payload)
+	return fmt.Sprintf("[POST /friends/namespaces/{namespace}/me/request][%d] userRequestFriendUnprocessableEntity  %+v", 422, o.ToString())
+}
+
+func (o *UserRequestFriendUnprocessableEntity) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *UserRequestFriendUnprocessableEntity) GetPayload() *lobbyclientmodels.RestapiErrorResponseV1 {
@@ -281,7 +327,16 @@ type UserRequestFriendInternalServerError struct {
 }
 
 func (o *UserRequestFriendInternalServerError) Error() string {
-	return fmt.Sprintf("[POST /friends/namespaces/{namespace}/me/request][%d] userRequestFriendInternalServerError  %+v", 500, o.Payload)
+	return fmt.Sprintf("[POST /friends/namespaces/{namespace}/me/request][%d] userRequestFriendInternalServerError  %+v", 500, o.ToString())
+}
+
+func (o *UserRequestFriendInternalServerError) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *UserRequestFriendInternalServerError) GetPayload() *lobbyclientmodels.RestapiErrorResponseV1 {

@@ -10,6 +10,7 @@ package subscription
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -71,7 +72,16 @@ type PublicCancelSubscriptionOK struct {
 }
 
 func (o *PublicCancelSubscriptionOK) Error() string {
-	return fmt.Sprintf("[PUT /platform/public/namespaces/{namespace}/users/{userId}/subscriptions/{subscriptionId}/cancel][%d] publicCancelSubscriptionOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[PUT /platform/public/namespaces/{namespace}/users/{userId}/subscriptions/{subscriptionId}/cancel][%d] publicCancelSubscriptionOK  %+v", 200, o.ToString())
+}
+
+func (o *PublicCancelSubscriptionOK) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *PublicCancelSubscriptionOK) GetPayload() *platformclientmodels.SubscriptionInfo {
@@ -104,7 +114,16 @@ type PublicCancelSubscriptionNotFound struct {
 }
 
 func (o *PublicCancelSubscriptionNotFound) Error() string {
-	return fmt.Sprintf("[PUT /platform/public/namespaces/{namespace}/users/{userId}/subscriptions/{subscriptionId}/cancel][%d] publicCancelSubscriptionNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[PUT /platform/public/namespaces/{namespace}/users/{userId}/subscriptions/{subscriptionId}/cancel][%d] publicCancelSubscriptionNotFound  %+v", 404, o.ToString())
+}
+
+func (o *PublicCancelSubscriptionNotFound) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *PublicCancelSubscriptionNotFound) GetPayload() *platformclientmodels.ErrorEntity {
@@ -137,7 +156,16 @@ type PublicCancelSubscriptionConflict struct {
 }
 
 func (o *PublicCancelSubscriptionConflict) Error() string {
-	return fmt.Sprintf("[PUT /platform/public/namespaces/{namespace}/users/{userId}/subscriptions/{subscriptionId}/cancel][%d] publicCancelSubscriptionConflict  %+v", 409, o.Payload)
+	return fmt.Sprintf("[PUT /platform/public/namespaces/{namespace}/users/{userId}/subscriptions/{subscriptionId}/cancel][%d] publicCancelSubscriptionConflict  %+v", 409, o.ToString())
+}
+
+func (o *PublicCancelSubscriptionConflict) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *PublicCancelSubscriptionConflict) GetPayload() *platformclientmodels.ErrorEntity {

@@ -10,6 +10,7 @@ package season
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -65,7 +66,16 @@ type GetUserParticipatedSeasonsOK struct {
 }
 
 func (o *GetUserParticipatedSeasonsOK) Error() string {
-	return fmt.Sprintf("[GET /seasonpass/admin/namespaces/{namespace}/users/{userId}/seasons][%d] getUserParticipatedSeasonsOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /seasonpass/admin/namespaces/{namespace}/users/{userId}/seasons][%d] getUserParticipatedSeasonsOK  %+v", 200, o.ToString())
+}
+
+func (o *GetUserParticipatedSeasonsOK) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *GetUserParticipatedSeasonsOK) GetPayload() *seasonpassclientmodels.ListUserSeasonInfoPagingSlicedResult {
@@ -98,7 +108,16 @@ type GetUserParticipatedSeasonsBadRequest struct {
 }
 
 func (o *GetUserParticipatedSeasonsBadRequest) Error() string {
-	return fmt.Sprintf("[GET /seasonpass/admin/namespaces/{namespace}/users/{userId}/seasons][%d] getUserParticipatedSeasonsBadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[GET /seasonpass/admin/namespaces/{namespace}/users/{userId}/seasons][%d] getUserParticipatedSeasonsBadRequest  %+v", 400, o.ToString())
+}
+
+func (o *GetUserParticipatedSeasonsBadRequest) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *GetUserParticipatedSeasonsBadRequest) GetPayload() *seasonpassclientmodels.ErrorEntity {

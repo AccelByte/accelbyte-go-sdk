@@ -10,6 +10,7 @@ package image_config
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -110,7 +111,16 @@ type DeleteImagePatchBadRequest struct {
 }
 
 func (o *DeleteImagePatchBadRequest) Error() string {
-	return fmt.Sprintf("[DELETE /dsmcontroller/admin/namespaces/{namespace}/images/patches][%d] deleteImagePatchBadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[DELETE /dsmcontroller/admin/namespaces/{namespace}/images/patches][%d] deleteImagePatchBadRequest  %+v", 400, o.ToString())
+}
+
+func (o *DeleteImagePatchBadRequest) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *DeleteImagePatchBadRequest) GetPayload() *dsmcclientmodels.ResponseError {
@@ -143,7 +153,16 @@ type DeleteImagePatchUnauthorized struct {
 }
 
 func (o *DeleteImagePatchUnauthorized) Error() string {
-	return fmt.Sprintf("[DELETE /dsmcontroller/admin/namespaces/{namespace}/images/patches][%d] deleteImagePatchUnauthorized  %+v", 401, o.Payload)
+	return fmt.Sprintf("[DELETE /dsmcontroller/admin/namespaces/{namespace}/images/patches][%d] deleteImagePatchUnauthorized  %+v", 401, o.ToString())
+}
+
+func (o *DeleteImagePatchUnauthorized) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *DeleteImagePatchUnauthorized) GetPayload() *dsmcclientmodels.ResponseError {
@@ -176,7 +195,16 @@ type DeleteImagePatchNotFound struct {
 }
 
 func (o *DeleteImagePatchNotFound) Error() string {
-	return fmt.Sprintf("[DELETE /dsmcontroller/admin/namespaces/{namespace}/images/patches][%d] deleteImagePatchNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[DELETE /dsmcontroller/admin/namespaces/{namespace}/images/patches][%d] deleteImagePatchNotFound  %+v", 404, o.ToString())
+}
+
+func (o *DeleteImagePatchNotFound) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *DeleteImagePatchNotFound) GetPayload() *dsmcclientmodels.ResponseError {
@@ -209,7 +237,16 @@ type DeleteImagePatchUnprocessableEntity struct {
 }
 
 func (o *DeleteImagePatchUnprocessableEntity) Error() string {
-	return fmt.Sprintf("[DELETE /dsmcontroller/admin/namespaces/{namespace}/images/patches][%d] deleteImagePatchUnprocessableEntity  %+v", 422, o.Payload)
+	return fmt.Sprintf("[DELETE /dsmcontroller/admin/namespaces/{namespace}/images/patches][%d] deleteImagePatchUnprocessableEntity  %+v", 422, o.ToString())
+}
+
+func (o *DeleteImagePatchUnprocessableEntity) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *DeleteImagePatchUnprocessableEntity) GetPayload() *dsmcclientmodels.ResponseError {
@@ -242,7 +279,16 @@ type DeleteImagePatchInternalServerError struct {
 }
 
 func (o *DeleteImagePatchInternalServerError) Error() string {
-	return fmt.Sprintf("[DELETE /dsmcontroller/admin/namespaces/{namespace}/images/patches][%d] deleteImagePatchInternalServerError  %+v", 500, o.Payload)
+	return fmt.Sprintf("[DELETE /dsmcontroller/admin/namespaces/{namespace}/images/patches][%d] deleteImagePatchInternalServerError  %+v", 500, o.ToString())
+}
+
+func (o *DeleteImagePatchInternalServerError) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *DeleteImagePatchInternalServerError) GetPayload() *dsmcclientmodels.ResponseError {

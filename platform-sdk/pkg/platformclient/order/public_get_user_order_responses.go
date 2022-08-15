@@ -10,6 +10,7 @@ package order
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -65,7 +66,16 @@ type PublicGetUserOrderOK struct {
 }
 
 func (o *PublicGetUserOrderOK) Error() string {
-	return fmt.Sprintf("[GET /platform/public/namespaces/{namespace}/users/{userId}/orders/{orderNo}][%d] publicGetUserOrderOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /platform/public/namespaces/{namespace}/users/{userId}/orders/{orderNo}][%d] publicGetUserOrderOK  %+v", 200, o.ToString())
+}
+
+func (o *PublicGetUserOrderOK) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *PublicGetUserOrderOK) GetPayload() *platformclientmodels.OrderInfo {
@@ -98,7 +108,16 @@ type PublicGetUserOrderNotFound struct {
 }
 
 func (o *PublicGetUserOrderNotFound) Error() string {
-	return fmt.Sprintf("[GET /platform/public/namespaces/{namespace}/users/{userId}/orders/{orderNo}][%d] publicGetUserOrderNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[GET /platform/public/namespaces/{namespace}/users/{userId}/orders/{orderNo}][%d] publicGetUserOrderNotFound  %+v", 404, o.ToString())
+}
+
+func (o *PublicGetUserOrderNotFound) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *PublicGetUserOrderNotFound) GetPayload() *platformclientmodels.ErrorEntity {

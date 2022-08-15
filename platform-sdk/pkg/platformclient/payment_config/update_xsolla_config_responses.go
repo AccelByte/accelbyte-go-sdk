@@ -10,6 +10,7 @@ package payment_config
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -65,7 +66,16 @@ type UpdateXsollaConfigOK struct {
 }
 
 func (o *UpdateXsollaConfigOK) Error() string {
-	return fmt.Sprintf("[PUT /platform/admin/payment/config/merchant/{id}/xsollaconfig][%d] updateXsollaConfigOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[PUT /platform/admin/payment/config/merchant/{id}/xsollaconfig][%d] updateXsollaConfigOK  %+v", 200, o.ToString())
+}
+
+func (o *UpdateXsollaConfigOK) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *UpdateXsollaConfigOK) GetPayload() *platformclientmodels.PaymentMerchantConfigInfo {
@@ -98,7 +108,16 @@ type UpdateXsollaConfigNotFound struct {
 }
 
 func (o *UpdateXsollaConfigNotFound) Error() string {
-	return fmt.Sprintf("[PUT /platform/admin/payment/config/merchant/{id}/xsollaconfig][%d] updateXsollaConfigNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[PUT /platform/admin/payment/config/merchant/{id}/xsollaconfig][%d] updateXsollaConfigNotFound  %+v", 404, o.ToString())
+}
+
+func (o *UpdateXsollaConfigNotFound) ToString() string {
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
 }
 
 func (o *UpdateXsollaConfigNotFound) GetPayload() *platformclientmodels.ErrorEntity {

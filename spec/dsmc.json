@@ -5059,10 +5059,6 @@
           "format": "int32",
           "type": "integer"
         },
-        "unlimited": {
-          "type": "boolean",
-          "x-omitempty": false
-        },
         "use_buffer_percent": {
           "type": "boolean",
           "x-omitempty": false
@@ -5078,7 +5074,6 @@
         "min_count",
         "region_overrides",
         "regions",
-        "unlimited",
         "use_buffer_percent"
       ]
     },
@@ -5136,10 +5131,6 @@
           "format": "int32",
           "type": "integer"
         },
-        "unlimited": {
-          "type": "boolean",
-          "x-omitempty": false
-        },
         "use_buffer_percent": {
           "type": "boolean",
           "x-omitempty": false
@@ -5157,7 +5148,6 @@
         "overrides",
         "region_overrides",
         "regions",
-        "unlimited",
         "use_buffer_percent"
       ]
     },
@@ -5286,10 +5276,6 @@
           "format": "int32",
           "type": "integer"
         },
-        "unlimited": {
-          "type": "boolean",
-          "x-omitempty": false
-        },
         "use_buffer_percent": {
           "type": "boolean",
           "x-omitempty": false
@@ -5300,7 +5286,6 @@
         "buffer_percent",
         "max_count",
         "min_count",
-        "unlimited",
         "use_buffer_percent"
       ]
     },
@@ -5582,10 +5567,6 @@
           "format": "int32",
           "type": "integer"
         },
-        "unlimited": {
-          "type": "boolean",
-          "x-omitempty": false
-        },
         "use_buffer_percent": {
           "type": "boolean",
           "x-omitempty": false
@@ -5602,7 +5583,6 @@
         "name",
         "region_overrides",
         "regions",
-        "unlimited",
         "use_buffer_percent"
       ]
     },
@@ -5674,10 +5654,6 @@
           "format": "int32",
           "type": "integer"
         },
-        "unlimited": {
-          "type": "boolean",
-          "x-omitempty": false
-        },
         "updatedAt": {
           "format": "date-time",
           "type": "string",
@@ -5704,7 +5680,6 @@
         "overrides",
         "region_overrides",
         "regions",
-        "unlimited",
         "updatedAt",
         "use_buffer_percent"
       ]
@@ -6142,10 +6117,6 @@
         "name": {
           "type": "string"
         },
-        "unlimited": {
-          "type": "boolean",
-          "x-omitempty": false
-        },
         "use_buffer_percent": {
           "type": "boolean",
           "x-omitempty": false
@@ -6157,7 +6128,6 @@
         "max_count",
         "min_count",
         "name",
-        "unlimited",
         "use_buffer_percent"
       ]
     },
@@ -6532,10 +6502,6 @@
           "format": "int32",
           "type": "integer"
         },
-        "unlimited": {
-          "type": "boolean",
-          "x-omitempty": false
-        },
         "use_buffer_percent": {
           "type": "boolean",
           "x-omitempty": false
@@ -6551,7 +6517,6 @@
         "min_count",
         "regions",
         "session_timeout",
-        "unlimited",
         "use_buffer_percent"
       ]
     },
@@ -6597,10 +6562,6 @@
           "format": "int32",
           "type": "integer"
         },
-        "unlimited": {
-          "type": "boolean",
-          "x-omitempty": false
-        },
         "use_buffer_percent": {
           "type": "boolean",
           "x-omitempty": false
@@ -6617,7 +6578,6 @@
         "min_count",
         "regions",
         "session_timeout",
-        "unlimited",
         "use_buffer_percent"
       ]
     },
@@ -6678,10 +6638,6 @@
           "format": "int32",
           "type": "integer"
         },
-        "unlimited": {
-          "type": "boolean",
-          "x-omitempty": false
-        },
         "use_buffer_percent": {
           "type": "boolean",
           "x-omitempty": false
@@ -6692,7 +6648,6 @@
         "buffer_percent",
         "max_count",
         "min_count",
-        "unlimited",
         "use_buffer_percent"
       ]
     },

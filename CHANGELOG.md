@@ -3,9 +3,13 @@
 
 ### Chore
 - **makefile:** review samples target
+- **sdk:** add return statements for error string
 - **sdk:** migrate wrappers in auth to use the operation with suffix short
+- **sdk:** print error string
 - **sdk:** regenerate by adding comment for client operation short
+- **sdk:** regenerate sdk, cli sample app, cli test, doc index for AccelByte Cloud 3.29 (again)
 - **sdk:** regenerate sdk, cli sample app, cli test, doc index for AccelByte Cloud 3.29
+- **spec:** update spec for AccelByte Cloud 3.29 (again)
 - **spec:** update spec for AccelByte Cloud 3.29
 - **test:** add cli cookie value
 
@@ -14,12 +18,15 @@
 
 ### Docs
 - remove references to Justice and replaced it with AccelByte Cloud
+- update CHANGELOG.md for v0.25.0 release (again)
 - update CHANGELOG.md for v0.25.0 release
 
 ### Fix
+- **makefile:** build samples folder only
 - **test:** core - enable data race detector
 - **test:** http retry - set big file to 100 mb for now
 - **test:** refresh token - data race
+- **sdk:** regenerate to use json marshall instead of MarshalBinary
 
 ### Test
 - **qosm:** add integration test for QoSM

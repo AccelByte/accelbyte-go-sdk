@@ -53,10 +53,6 @@ type ModelsUpdateDeploymentOverrideRequest struct {
 	// Required: true
 	SessionTimeout *int32 `json:"session_timeout"`
 
-	// unlimited
-	// Required: true
-	Unlimited *bool `json:"unlimited"`
-
 	// use buffer percent
 	// Required: true
 	UseBufferPercent *bool `json:"use_buffer_percent"`
@@ -99,10 +95,6 @@ func (m *ModelsUpdateDeploymentOverrideRequest) Validate(formats strfmt.Registry
 	}
 
 	if err := m.validateSessionTimeout(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.validateUnlimited(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -191,15 +183,6 @@ func (m *ModelsUpdateDeploymentOverrideRequest) validateRegions(formats strfmt.R
 func (m *ModelsUpdateDeploymentOverrideRequest) validateSessionTimeout(formats strfmt.Registry) error {
 
 	if err := validate.Required("session_timeout", "body", m.SessionTimeout); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *ModelsUpdateDeploymentOverrideRequest) validateUnlimited(formats strfmt.Registry) error {
-
-	if err := validate.Required("unlimited", "body", m.Unlimited); err != nil {
 		return err
 	}
 

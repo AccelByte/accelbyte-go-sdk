@@ -23,7 +23,7 @@ import (
 var (
 	authInfoWriter runtime.ClientAuthInfoWriter
 	security       [][]string
-	token          iamclientmodels.OauthmodelTokenResponseV3
+	token          *iamclientmodels.OauthmodelTokenResponseV3
 	dummyService   = &dummyWrapperService{
 		ConfigRepository:  &ConfigRepositoryImpl{},
 		TokenRepository:   &TokenRepositoryImpl{},
@@ -56,8 +56,8 @@ func TestAuthInfoWriterBearer(t *testing.T) {
 
 	// mockup client input value
 	accessToken := dummyAccessToken
-	token = iamclientmodels.OauthmodelTokenResponseV3{AccessToken: &accessToken}
-	err = dummyService.TokenRepository.Store(token)
+	token = &iamclientmodels.OauthmodelTokenResponseV3{AccessToken: &accessToken}
+	err = dummyService.TokenRepository.Store(*token)
 	if err != nil {
 		assert.FailNow(t, "fail to store the token")
 	}
@@ -138,8 +138,8 @@ func TestAuthInfoWriterCookie(t *testing.T) {
 
 	// mockup client input value
 	accessToken := dummyAccessToken
-	token = iamclientmodels.OauthmodelTokenResponseV3{AccessToken: &accessToken}
-	err = dummyService.TokenRepository.Store(token)
+	token = &iamclientmodels.OauthmodelTokenResponseV3{AccessToken: &accessToken}
+	err = dummyService.TokenRepository.Store(*token)
 	if err != nil {
 		assert.FailNow(t, "fail to store the token")
 	}
@@ -177,8 +177,8 @@ func TestAuthInfoWriterOptional(t *testing.T) {
 
 	// mockup client input value
 	accessToken := dummyAccessToken
-	token = iamclientmodels.OauthmodelTokenResponseV3{AccessToken: &accessToken}
-	err = dummyService.TokenRepository.Store(token)
+	token = &iamclientmodels.OauthmodelTokenResponseV3{AccessToken: &accessToken}
+	err = dummyService.TokenRepository.Store(*token)
 	if err != nil {
 		assert.FailNow(t, "fail to store the token")
 	}
@@ -396,7 +396,7 @@ func (tokenRepository *TokenRepositoryImpl) GetToken() (*iamclientmodels.Oauthmo
 		return nil, fmt.Errorf("empty access Token")
 	}
 
-	return &token, nil
+	return token, nil
 }
 
 func (tokenRepository *TokenRepositoryImpl) RemoveToken() error {

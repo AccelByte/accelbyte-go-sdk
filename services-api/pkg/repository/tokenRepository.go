@@ -4,41 +4,57 @@
 package repository
 
 import (
+	"encoding/json"
 	"time"
 
 	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclientmodels"
 )
 
+var token iamclientmodels.OauthmodelTokenResponseV3
+
 type TokenRepository interface {
-	Store(accessToken iamclientmodels.OauthmodelTokenResponseV3) error
+	Store(accessToken interface{}) error
 	GetToken() (*iamclientmodels.OauthmodelTokenResponseV3, error)
 	RemoveToken() error
 	TokenIssuedTimeUTC() time.Time
 }
 
 func GetRefreshExpiresIn(repository TokenRepository) (*int32, error) {
-	token, _ := repository.GetToken()
+	getToken, errGet := repository.GetToken()
+	if errGet != nil {
+		return nil, errGet
+	}
 
-	return token.RefreshExpiresIn, nil
+	return getToken.RefreshExpiresIn, nil
 }
 
 func GetExpiresIn(repository TokenRepository) (*int32, error) {
-	token, _ := repository.GetToken()
+	getToken, errGet := repository.GetToken()
+	if errGet != nil {
+		return nil, errGet
+	}
+	token = *getToken
 
 	return token.ExpiresIn, nil
 }
 
 func GetRefreshToken(repository TokenRepository) (string, error) {
-	token, _ := repository.GetToken()
+	getToken, errGet := repository.GetToken()
+	if errGet != nil {
+		return "", errGet
+	}
 
-	return *token.RefreshToken, nil
+	return *getToken.RefreshToken, nil
 }
 
 func GetSecondsTillExpiry(repository TokenRepository, refreshRate float64) time.Duration {
 	if !HasToken(repository) {
 		return 0
 	}
-	get, _ := GetExpiresIn(repository)
+	get, err := GetExpiresIn(repository)
+	if err != nil {
+		return 0
+	}
 	withRefreshRate := float64(*get) * refreshRate
 	expiresAt := repository.TokenIssuedTimeUTC().Add(time.Duration(withRefreshRate) * time.Second)
 	timeNow := time.Now().UTC()
@@ -63,7 +79,10 @@ func GetSecondsTillExpiryRefresh(repository TokenRepository, refreshRate float64
 	if !HasToken(repository) {
 		return 0
 	}
-	get, _ := GetRefreshExpiresIn(repository)
+	get, err := GetRefreshExpiresIn(repository)
+	if err != nil {
+		return 0
+	}
 	withRefreshRate := float64(*get) * refreshRate
 	expiresAt := repository.TokenIssuedTimeUTC().Add(time.Duration(withRefreshRate) * time.Second)
 	secondsTillExpiry := expiresAt.Sub(time.Now().UTC()) // in seconds ex 1m6.995968173s
@@ -73,4 +92,18 @@ func GetSecondsTillExpiryRefresh(repository TokenRepository, refreshRate float64
 
 func HasRefreshTokenExpired(repository TokenRepository, refreshRate float64) bool {
 	return GetSecondsTillExpiryRefresh(repository, refreshRate) <= 0
+}
+
+func ConvertInterfaceToModel(tokenInterface interface{}, tokenModel *iamclientmodels.OauthmodelTokenResponseV3) (*iamclientmodels.OauthmodelTokenResponseV3, error) {
+	tmpToken, errMarshal := json.Marshal(tokenInterface)
+	if errMarshal != nil {
+		return nil, errMarshal
+	}
+
+	errUnmarshal := json.Unmarshal(tmpToken, &tokenModel)
+	if errUnmarshal != nil {
+		return nil, errUnmarshal
+	}
+
+	return tokenModel, nil
 }

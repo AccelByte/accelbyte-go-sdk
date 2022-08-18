@@ -11,6 +11,7 @@ import (
 	"time"
 
 	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclientmodels"
+	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/repository"
 )
 
 type TokenRepositoryImpl struct {
@@ -19,19 +20,26 @@ type TokenRepositoryImpl struct {
 	mu          sync.Mutex
 }
 
+var token iamclientmodels.OauthmodelTokenResponseV3
+
 func DefaultTokenRepositoryImpl() *TokenRepositoryImpl {
 	return &TokenRepositoryImpl{
-		AccessToken: &iamclientmodels.OauthmodelTokenResponseV3{},
+		AccessToken: &token,
 	}
 }
 
-func (t *TokenRepositoryImpl) Store(accessToken iamclientmodels.OauthmodelTokenResponseV3) error {
+func (t *TokenRepositoryImpl) Store(accessToken interface{}) error {
 	defer t.mu.Unlock()
 	t.mu.Lock()
 
 	timeNow := time.Now().UTC()
 	t.IssuedTime = &timeNow
-	t.AccessToken = &accessToken
+
+	convertedToken, err := repository.ConvertInterfaceToModel(accessToken, &token)
+	if err != nil {
+		return err
+	}
+	t.AccessToken = convertedToken
 
 	return nil
 }

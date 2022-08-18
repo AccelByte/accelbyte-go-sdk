@@ -7,6 +7,7 @@ package auth
 import (
 	"encoding/base64"
 	"fmt"
+	"strings"
 	"time"
 
 	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclient"
@@ -30,6 +31,7 @@ var Once utils.Once
 // AuthInfoWriter called by the existing security from the wrapper
 func AuthInfoWriter(s Session, outerValues [][]string, key string) runtime.ClientAuthInfoWriter {
 	return runtime.ClientAuthInfoWriterFunc(func(r runtime.ClientRequest, _ strfmt.Registry) error {
+		var errors []string
 		for _, innerValue := range outerValues {
 			success := true
 			for _, value := range innerValue {
@@ -37,6 +39,7 @@ func AuthInfoWriter(s Session, outerValues [][]string, key string) runtime.Clien
 				case constant.BearerAuth:
 					err := TokenRepo(s).AuthenticateRequest(r, nil)
 					if err != nil {
+						errors = append(errors, err.Error())
 						success = false
 
 						break
@@ -44,6 +47,7 @@ func AuthInfoWriter(s Session, outerValues [][]string, key string) runtime.Clien
 				case constant.BasicAuth:
 					err := ConfigRepo(s).AuthenticateRequest(r, nil)
 					if err != nil {
+						errors = append(errors, err.Error())
 						success = false
 
 						break
@@ -51,6 +55,7 @@ func AuthInfoWriter(s Session, outerValues [][]string, key string) runtime.Clien
 				case constant.CookieAuth:
 					err := Cookie(s, key).AuthenticateRequest(r, nil)
 					if err != nil {
+						errors = append(errors, err.Error())
 						success = false
 
 						break
@@ -61,8 +66,9 @@ func AuthInfoWriter(s Session, outerValues [][]string, key string) runtime.Clien
 				return nil
 			}
 		}
+		aggregatedErr := fmt.Errorf(strings.Join(errors, ""))
 
-		return fmt.Errorf("failed to find an existing authorization")
+		return fmt.Errorf("failed to find an existing authorization. %s", aggregatedErr)
 	})
 }
 
@@ -92,6 +98,9 @@ func TokenRepo(s Session) runtime.ClientAuthInfoWriter {
 	if err != nil {
 		return Error(err)
 	}
+	if getToken.AccessToken == nil {
+		return Error(fmt.Errorf("access token is nil. please do login first"))
+	}
 
 	return Bearer(*getToken.AccessToken)
 }
@@ -112,6 +121,9 @@ func Cookie(s Session, key string) runtime.ClientAuthInfoWriter {
 	getToken, err := s.Token.GetToken()
 	if err != nil {
 		return Error(err)
+	}
+	if getToken.AccessToken == nil {
+		return Error(fmt.Errorf("access token is nil"))
 	}
 
 	return CookieValue(key, *getToken.AccessToken)

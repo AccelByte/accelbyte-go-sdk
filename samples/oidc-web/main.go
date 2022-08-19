@@ -6,31 +6,22 @@ package main
 
 import (
 	"encoding/json"
-	"fmt"
 	"io"
 	"log"
 	"net/http"
 	"net/url"
-	"os"
-	"time"
 
 	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclient/o_auth2_0"
 	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclient/o_auth2_0_extension"
-	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/iam"
+	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils/auth"
 )
 
 var (
-	tokenRepo = TokenRepositoryImpl{
-		accessToken: &iamclientmodels.OauthmodelTokenResponseV3{},
-	}
-	configRepo = ConfigRepositoryImpl{
-		baseUrl:      os.Getenv("AB_BASE_URL"),
-		clientId:     os.Getenv("AB_CLIENT_ID"),
-		clientSecret: os.Getenv("AB_CLIENT_SECRET"),
-	}
-	oauth = &iam.OAuth20Service{
+	tokenRepo  = *auth.DefaultTokenRepositoryImpl()
+	configRepo = *auth.DefaultConfigRepositoryImpl()
+	oauth      = &iam.OAuth20Service{
 		Client:           factory.NewIamClient(&configRepo),
 		ConfigRepository: &configRepo,
 		TokenRepository:  &tokenRepo,
@@ -158,54 +149,4 @@ type token struct {
 	IDToken      *string `json:"id_token"`
 	RefreshToken *string `json:"refresh_token"`
 	TokenType    *string `json:"token_type"`
-}
-
-type TokenRepositoryImpl struct {
-	IssuedTime  *time.Time
-	accessToken *iamclientmodels.OauthmodelTokenResponseV3
-}
-
-type ConfigRepositoryImpl struct {
-	baseUrl      string
-	clientId     string
-	clientSecret string
-}
-
-func (t *TokenRepositoryImpl) Store(accessToken iamclientmodels.OauthmodelTokenResponseV3) error {
-	timeNow := time.Now().UTC()
-	t.IssuedTime = &timeNow
-	t.accessToken = &accessToken
-
-	return nil
-}
-
-func (t *TokenRepositoryImpl) GetToken() (*iamclientmodels.OauthmodelTokenResponseV3, error) {
-	if t.accessToken == nil {
-		return nil, fmt.Errorf("empty access Token")
-	}
-
-	return t.accessToken, nil
-}
-
-func (t *TokenRepositoryImpl) RemoveToken() error {
-	t.IssuedTime = nil
-	t.accessToken = nil
-
-	return nil
-}
-
-func (t *TokenRepositoryImpl) TokenIssuedTimeUTC() time.Time {
-	return *t.IssuedTime
-}
-
-func (c *ConfigRepositoryImpl) GetClientId() string {
-	return c.clientId
-}
-
-func (c *ConfigRepositoryImpl) GetClientSecret() string {
-	return c.clientSecret
-}
-
-func (c *ConfigRepositoryImpl) GetJusticeBaseUrl() string {
-	return c.baseUrl
 }

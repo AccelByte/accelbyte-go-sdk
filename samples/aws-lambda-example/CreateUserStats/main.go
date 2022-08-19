@@ -6,13 +6,11 @@ package main
 
 import (
 	"encoding/json"
-	"fmt"
-	"os"
-	"time"
 
 	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/social"
+	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils/auth"
 	"github.com/AccelByte/accelbyte-go-sdk/social-sdk/pkg/socialclient/stat_configuration"
 	"github.com/AccelByte/accelbyte-go-sdk/social-sdk/pkg/socialclient/user_statistic"
 	"github.com/AccelByte/accelbyte-go-sdk/social-sdk/pkg/socialclientmodels"
@@ -20,14 +18,6 @@ import (
 	"github.com/aws/aws-lambda-go/lambda"
 	"github.com/dgrijalva/jwt-go"
 )
-
-type TokenRepositoryImpl struct {
-	IssuedTime  *time.Time
-	accessToken *iamclientmodels.OauthmodelTokenResponseV3
-}
-
-type ConfigRepositoryImpl struct {
-}
 
 type RequestParams struct {
 	Namespace string `json:"namespace"`
@@ -39,8 +29,6 @@ type Request struct {
 	AccessToken string        `json:"access_token"`
 	Params      RequestParams `json:"params"`
 }
-
-var clientTokenV3 iamclientmodels.OauthmodelTokenResponseV3
 
 func main() {
 	lambda.Start(Handler)
@@ -57,7 +45,7 @@ func Handler(evt events.LambdaFunctionURLRequest) (events.LambdaFunctionURLRespo
 	if err != nil {
 		return events.LambdaFunctionURLResponse{}, err
 	}
-	tokenRepositoryImpl := &TokenRepositoryImpl{}
+	tokenRepositoryImpl := *auth.DefaultTokenRepositoryImpl()
 	if tokenResponseV3 != nil {
 		err = tokenRepositoryImpl.Store(*tokenResponseV3)
 		if err != nil {
@@ -66,12 +54,12 @@ func Handler(evt events.LambdaFunctionURLRequest) (events.LambdaFunctionURLRespo
 	}
 
 	// substitute of creating a stat configuration in admin portal
-	_, err = createStatConfig(request.Params, tokenRepositoryImpl)
+	_, err = createStatConfig(request.Params, &tokenRepositoryImpl)
 	if err != nil {
 		return events.LambdaFunctionURLResponse{}, err
 	}
 
-	_, err = createUserStatItem(request.Params, tokenRepositoryImpl)
+	_, err = createUserStatItem(request.Params, &tokenRepositoryImpl)
 	if err != nil {
 		return events.LambdaFunctionURLResponse{}, err
 	}
@@ -81,9 +69,9 @@ func Handler(evt events.LambdaFunctionURLRequest) (events.LambdaFunctionURLRespo
 	}, nil
 }
 
-func createStatConfig(params RequestParams, tokenRepositoryImpl *TokenRepositoryImpl) (interface{}, error) {
+func createStatConfig(params RequestParams, tokenRepositoryImpl *auth.TokenRepositoryImpl) (interface{}, error) {
 	statisticService := social.StatConfigurationService{
-		Client:          factory.NewSocialClient(&ConfigRepositoryImpl{}),
+		Client:          factory.NewSocialClient(auth.DefaultConfigRepositoryImpl()),
 		TokenRepository: tokenRepositoryImpl,
 	}
 	defaultValue := 0.1
@@ -111,9 +99,9 @@ func createStatConfig(params RequestParams, tokenRepositoryImpl *TokenRepository
 	return nil, nil
 }
 
-func createUserStatItem(params RequestParams, tokenRepositoryImpl *TokenRepositoryImpl) (interface{}, error) {
+func createUserStatItem(params RequestParams, tokenRepositoryImpl *auth.TokenRepositoryImpl) (interface{}, error) {
 	statisticService := social.UserStatisticService{
-		Client:          factory.NewSocialClient(&ConfigRepositoryImpl{}),
+		Client:          factory.NewSocialClient(auth.DefaultConfigRepositoryImpl()),
 		TokenRepository: tokenRepositoryImpl,
 	}
 	input := &user_statistic.CreateUserStatItemParams{
@@ -149,43 +137,4 @@ func convertTokenToTokenResponseV3(accessToken string) (*iamclientmodels.Oauthmo
 	}
 
 	return nil, err
-}
-
-func (tokenRepository *TokenRepositoryImpl) Store(accessToken iamclientmodels.OauthmodelTokenResponseV3) error {
-	timeNow := time.Now().UTC()
-	tokenRepository.IssuedTime = &timeNow
-	tokenRepository.accessToken = &accessToken
-
-	return nil
-}
-
-func (tokenRepository *TokenRepositoryImpl) GetToken() (*iamclientmodels.OauthmodelTokenResponseV3, error) {
-	if tokenRepository.accessToken == nil {
-		return nil, fmt.Errorf("empty access Token")
-	}
-
-	return &clientTokenV3, nil
-}
-
-func (tokenRepository *TokenRepositoryImpl) RemoveToken() error {
-	tokenRepository.IssuedTime = nil
-	tokenRepository.accessToken = nil
-
-	return nil
-}
-
-func (tokenRepository *TokenRepositoryImpl) TokenIssuedTimeUTC() time.Time {
-	return *tokenRepository.IssuedTime
-}
-
-func (configRepository *ConfigRepositoryImpl) GetClientId() string {
-	return os.Getenv("APP_CLIENT_ID")
-}
-
-func (configRepository *ConfigRepositoryImpl) GetClientSecret() string {
-	return os.Getenv("APP_CLIENT_SECRET")
-}
-
-func (configRepository *ConfigRepositoryImpl) GetJusticeBaseUrl() string {
-	return os.Getenv("ACCELBYTE_BASE_URL")
 }

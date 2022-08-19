@@ -10,6 +10,7 @@ import (
 	"time"
 
 	models "github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclientmodels"
+	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/repository"
 	"github.com/golang-jwt/jwt"
 )
 
@@ -18,12 +19,17 @@ type TokenRepositoryImpl struct {
 	accessToken *models.OauthmodelTokenResponseV3
 }
 
-var clientTokenV3 models.OauthmodelTokenResponseV3
+var clientTokenV3 *models.OauthmodelTokenResponseV3
 
-func (tokenRepository *TokenRepositoryImpl) Store(accessToken models.OauthmodelTokenResponseV3) error {
+func (tokenRepository *TokenRepositoryImpl) Store(accessToken interface{}) error {
 	timeNow := time.Now().UTC()
 	tokenRepository.IssuedTime = &timeNow
-	tokenRepository.accessToken = &accessToken
+
+	tokenConverted, err := repository.ConvertInterfaceToModel(accessToken, clientTokenV3)
+	if err != nil {
+		return err
+	}
+	tokenRepository.accessToken = tokenConverted
 
 	return nil
 }
@@ -33,7 +39,7 @@ func (tokenRepository *TokenRepositoryImpl) GetToken() (*models.OauthmodelTokenR
 		return nil, fmt.Errorf("empty access Token")
 	}
 
-	return &clientTokenV3, nil
+	return clientTokenV3, nil
 }
 
 func (tokenRepository *TokenRepositoryImpl) RemoveToken() error {

@@ -9,6 +9,7 @@ import (
 	"time"
 
 	models "github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclientmodels"
+	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/repository"
 )
 
 type TokenRepositoryGameImpl struct {
@@ -16,12 +17,17 @@ type TokenRepositoryGameImpl struct {
 	accessToken *models.OauthmodelTokenResponseV3
 }
 
-var clientTokenV3 models.OauthmodelTokenResponseV3
+var clientTokenV3 *models.OauthmodelTokenResponseV3
 
-func (tokenRepositoryGame *TokenRepositoryGameImpl) Store(accessToken models.OauthmodelTokenResponseV3) error {
+func (tokenRepositoryGame *TokenRepositoryGameImpl) Store(accessToken interface{}) error {
 	timeNow := time.Now().UTC()
 	tokenRepositoryGame.IssuedTime = &timeNow
-	tokenRepositoryGame.accessToken = &accessToken
+
+	tokenConverted, err := repository.ConvertInterfaceToModel(accessToken, clientTokenV3)
+	if err != nil {
+		return err
+	}
+	tokenRepositoryGame.accessToken = tokenConverted
 
 	return nil
 }
@@ -31,7 +37,7 @@ func (tokenRepositoryGame *TokenRepositoryGameImpl) GetToken() (*models.Oauthmod
 		return nil, fmt.Errorf("empty access Token")
 	}
 
-	return &clientTokenV3, nil
+	return clientTokenV3, nil
 }
 
 func (tokenRepositoryGame *TokenRepositoryGameImpl) RemoveToken() error {

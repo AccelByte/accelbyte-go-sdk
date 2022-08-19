@@ -20,7 +20,7 @@ type TokenRepositoryImpl struct {
 	IssuedTime time.Time
 }
 
-func (tokenRepository *TokenRepositoryImpl) Store(accessToken iamclientmodels.OauthmodelTokenResponseV3) error {
+func (tokenRepository *TokenRepositoryImpl) Store(accessToken interface{}) error {
 	tokenRepository.TokenIssuedTimeUTC()
 
 	_, err := os.Stat(os.TempDir() + "/justice-sample-apps/")

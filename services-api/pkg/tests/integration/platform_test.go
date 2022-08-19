@@ -7,6 +7,7 @@ package integration_test
 import (
 	"testing"
 
+	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils/auth"
 	"github.com/stretchr/testify/assert"
 
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclient/store"
@@ -18,8 +19,8 @@ import (
 
 var (
 	storeService = &platform.StoreService{
-		Client:          factory.NewPlatformClient(&integration.ConfigRepositoryImpl{}),
-		TokenRepository: &integration.TokenRepositoryImpl{},
+		Client:          factory.NewPlatformClient(auth.DefaultConfigRepositoryImpl()),
+		TokenRepository: auth.DefaultTokenRepositoryImpl(),
 	}
 	language  = "en-US"
 	region    = "US"

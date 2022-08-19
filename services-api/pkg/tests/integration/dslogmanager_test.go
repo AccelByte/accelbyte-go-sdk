@@ -7,6 +7,7 @@ package integration_test
 import (
 	"testing"
 
+	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils/auth"
 	"github.com/stretchr/testify/assert"
 
 	"github.com/AccelByte/accelbyte-go-sdk/dslogmanager-sdk/pkg/dslogmanagerclient/terminated_servers"
@@ -17,8 +18,8 @@ import (
 
 var (
 	terminatedServersService = &dslogmanager.TerminatedServersService{
-		Client:          factory.NewDslogmanagerClient(&integration.ConfigRepositoryImpl{}),
-		TokenRepository: &integration.TokenRepositoryImpl{},
+		Client:          factory.NewDslogmanagerClient(auth.DefaultConfigRepositoryImpl()),
+		TokenRepository: auth.DefaultTokenRepositoryImpl(),
 	}
 	limit                 = int64(20)
 	inputTerminatedServer = &terminated_servers.ListTerminatedServersParams{

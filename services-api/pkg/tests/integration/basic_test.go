@@ -7,6 +7,7 @@ package integration_test
 import (
 	"testing"
 
+	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils/auth"
 	"github.com/sirupsen/logrus"
 	"github.com/stretchr/testify/assert"
 
@@ -23,8 +24,8 @@ var (
 	timezone           = "Asia/Jakarta"
 	basicLanguange     = "en"
 	userProfileService = &basic.UserProfileService{
-		Client:          factory.NewBasicClient(&integration.ConfigRepositoryImpl{}),
-		TokenRepository: &integration.TokenRepositoryImpl{},
+		Client:          factory.NewBasicClient(auth.DefaultConfigRepositoryImpl()),
+		TokenRepository: auth.DefaultTokenRepositoryImpl(),
 	}
 	bodyBasic = &basicclientmodels.UserProfilePrivateCreate{
 		AvatarLargeURL: basicURL,

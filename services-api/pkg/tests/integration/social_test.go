@@ -7,6 +7,7 @@ package integration_test
 import (
 	"testing"
 
+	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils/auth"
 	"github.com/stretchr/testify/assert"
 
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
@@ -18,8 +19,8 @@ import (
 
 var (
 	statConfigurationService = &social.StatConfigurationService{
-		Client:          factory.NewSocialClient(&integration.ConfigRepositoryImpl{}),
-		TokenRepository: &integration.TokenRepositoryImpl{},
+		Client:          factory.NewSocialClient(auth.DefaultConfigRepositoryImpl()),
+		TokenRepository: auth.DefaultTokenRepositoryImpl(),
 	}
 	statCodeSocial = "123gosdkstat"
 	tagsSocial     []string

@@ -9,6 +9,7 @@ import (
 	"testing"
 	"time"
 
+	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils/auth"
 	"github.com/stretchr/testify/assert"
 
 	"github.com/AccelByte/accelbyte-go-sdk/leaderboard-sdk/pkg/leaderboardclient/leaderboard_configuration"
@@ -22,8 +23,8 @@ const letterBytes = "abcdefghijklmnopqrstuvwxyz1234567890"
 
 var (
 	leaderboardConfigurationService = &leaderboard.LeaderboardConfigurationService{
-		Client:          factory.NewLeaderboardClient(&integration.ConfigRepositoryImpl{}),
-		TokenRepository: &integration.TokenRepositoryImpl{},
+		Client:          factory.NewLeaderboardClient(auth.DefaultConfigRepositoryImpl()),
+		TokenRepository: auth.DefaultTokenRepositoryImpl(),
 	}
 	nameLeaderboard     = "test"
 	timeLeaderboard     = "12:00"

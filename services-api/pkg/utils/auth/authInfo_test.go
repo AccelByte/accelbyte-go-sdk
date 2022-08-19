@@ -25,8 +25,8 @@ var (
 	security       [][]string
 	token          *iamclientmodels.OauthmodelTokenResponseV3
 	dummyService   = &dummyWrapperService{
-		ConfigRepository:  &ConfigRepositoryImpl{},
-		TokenRepository:   &TokenRepositoryImpl{},
+		ConfigRepository:  auth.DefaultConfigRepositoryImpl(),
+		TokenRepository:   auth.DefaultTokenRepositoryImpl(),
 		RefreshRepository: &auth.RefreshTokenImpl{},
 	}
 )
@@ -35,14 +35,6 @@ type dummyWrapperService struct {
 	ConfigRepository  repository.ConfigRepository
 	TokenRepository   repository.TokenRepository
 	RefreshRepository repository.RefreshTokenRepository
-}
-
-type TokenRepositoryImpl struct {
-	IssuedTime  *time.Time
-	accessToken *iamclientmodels.OauthmodelTokenResponseV3
-}
-
-type ConfigRepositoryImpl struct {
 }
 
 const dummyAccessToken = "foo"
@@ -72,17 +64,17 @@ func TestAuthInfoWriterBearer(t *testing.T) {
 			{"bearer"},
 		}
 		authInfoWriter = auth.AuthInfoWriter(auth.Session{
-			Token:   &TokenRepositoryImpl{},
-			Config:  &ConfigRepositoryImpl{},
+			Token:   auth.DefaultTokenRepositoryImpl(),
+			Config:  auth.DefaultConfigRepositoryImpl(),
 			Refresh: auth.DefaultRefreshTokenImpl(),
 		}, security, "")
 	}
 
 	writer := auth.AuthInfoWriter(auth.Session{
-		Token:   &TokenRepositoryImpl{},
-		Config:  &ConfigRepositoryImpl{},
+		Token:   auth.DefaultTokenRepositoryImpl(),
+		Config:  auth.DefaultConfigRepositoryImpl(),
 		Refresh: auth.DefaultRefreshTokenImpl(),
-	}, security, "")
+	}, security, "access_token")
 	err = writer.AuthenticateRequest(r, nil)
 	assert.Nil(t, err, "err should be nil")
 	assert.Equal(t, "Bearer foo", r.header.Get("Authorization"))
@@ -113,17 +105,17 @@ func TestAuthInfoWriterBasic(t *testing.T) {
 			{"basic"},
 		}
 		authInfoWriter = auth.AuthInfoWriter(auth.Session{
-			Token:   &TokenRepositoryImpl{},
-			Config:  &ConfigRepositoryImpl{},
+			Token:   auth.DefaultTokenRepositoryImpl(),
+			Config:  auth.DefaultConfigRepositoryImpl(),
 			Refresh: auth.DefaultRefreshTokenImpl(),
 		}, security, "")
 	}
 
 	writer := auth.AuthInfoWriter(auth.Session{
-		Token:   &TokenRepositoryImpl{},
-		Config:  &ConfigRepositoryImpl{},
+		Token:   auth.DefaultTokenRepositoryImpl(),
+		Config:  auth.DefaultConfigRepositoryImpl(),
 		Refresh: auth.DefaultRefreshTokenImpl(),
-	}, security, "")
+	}, security, "access_token")
 	err = writer.AuthenticateRequest(r, nil)
 	assert.Nil(t, err, "err should be nil")
 	assert.Equal(t, "Basic YWRtaW46YWRtaW4=", r.header.Get("Authorization"))
@@ -151,16 +143,16 @@ func TestAuthInfoWriterCookie(t *testing.T) {
 			{"cookie"},
 		}
 		authInfoWriter = auth.AuthInfoWriter(auth.Session{
-			Token:   &TokenRepositoryImpl{},
-			Config:  &ConfigRepositoryImpl{},
+			Token:   auth.DefaultTokenRepositoryImpl(),
+			Config:  auth.DefaultConfigRepositoryImpl(),
 			Refresh: auth.DefaultRefreshTokenImpl(),
-		}, security, "")
+		}, security, "access_token")
 	}
 	writer := auth.AuthInfoWriter(auth.Session{
-		Token:   &TokenRepositoryImpl{},
-		Config:  &ConfigRepositoryImpl{},
+		Token:   auth.DefaultTokenRepositoryImpl(),
+		Config:  auth.DefaultConfigRepositoryImpl(),
 		Refresh: auth.DefaultRefreshTokenImpl(),
-	}, security, "")
+	}, security, "access_token")
 	err = writer.AuthenticateRequest(r, nil)
 
 	assert.NoError(t, err)
@@ -191,16 +183,16 @@ func TestAuthInfoWriterOptional(t *testing.T) {
 			{"bearer"},
 		}
 		authInfoWriter = auth.AuthInfoWriter(auth.Session{
-			Token:   &TokenRepositoryImpl{},
-			Config:  &ConfigRepositoryImpl{},
+			Token:   auth.DefaultTokenRepositoryImpl(),
+			Config:  auth.DefaultConfigRepositoryImpl(),
 			Refresh: auth.DefaultRefreshTokenImpl(),
-		}, security, "")
+		}, security, "access_token")
 	}
 	writer := auth.AuthInfoWriter(auth.Session{
-		Token:   &TokenRepositoryImpl{},
-		Config:  &ConfigRepositoryImpl{},
+		Token:   auth.DefaultTokenRepositoryImpl(),
+		Config:  auth.DefaultConfigRepositoryImpl(),
 		Refresh: auth.DefaultRefreshTokenImpl(),
-	}, security, "")
+	}, security, "access_token")
 	err = writer.AuthenticateRequest(r, nil)
 
 	assert.NoError(t, err)
@@ -381,43 +373,4 @@ func (r *request) SetTimeout(timeout time.Duration) error {
 	r.timeout = timeout
 
 	return nil
-}
-
-func (tokenRepository *TokenRepositoryImpl) Store(accessToken iamclientmodels.OauthmodelTokenResponseV3) error {
-	timeNow := time.Now().UTC()
-	tokenRepository.IssuedTime = &timeNow
-	tokenRepository.accessToken = &accessToken
-
-	return nil
-}
-
-func (tokenRepository *TokenRepositoryImpl) GetToken() (*iamclientmodels.OauthmodelTokenResponseV3, error) {
-	if tokenRepository.accessToken == nil {
-		return nil, fmt.Errorf("empty access Token")
-	}
-
-	return token, nil
-}
-
-func (tokenRepository *TokenRepositoryImpl) RemoveToken() error {
-	tokenRepository.IssuedTime = nil
-	tokenRepository.accessToken = nil
-
-	return nil
-}
-
-func (tokenRepository *TokenRepositoryImpl) TokenIssuedTimeUTC() time.Time {
-	return *tokenRepository.IssuedTime
-}
-
-func (configRepository *ConfigRepositoryImpl) GetClientId() string {
-	return "admin"
-}
-
-func (configRepository *ConfigRepositoryImpl) GetClientSecret() string {
-	return "admin"
-}
-
-func (configRepository *ConfigRepositoryImpl) GetJusticeBaseUrl() string {
-	return ""
 }

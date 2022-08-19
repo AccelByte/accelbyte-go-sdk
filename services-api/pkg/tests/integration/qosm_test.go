@@ -7,6 +7,7 @@ package integration_test
 import (
 	"testing"
 
+	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils/auth"
 	"github.com/stretchr/testify/assert"
 
 	"github.com/AccelByte/accelbyte-go-sdk/qosm-sdk/pkg/qosmclient/public"
@@ -14,13 +15,11 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/qosm-sdk/pkg/qosmclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/qosm"
-
-	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/tests/integration"
 )
 
 var (
-	qosmConfigRepo = &integration.ConfigRepositoryImpl{}
-	qosmTokenRepo  = &integration.TokenRepositoryImpl{}
+	qosmConfigRepo = auth.DefaultConfigRepositoryImpl()
+	qosmTokenRepo  = auth.DefaultTokenRepositoryImpl()
 	qosmClient     = factory.NewQosmClient(qosmConfigRepo)
 	serverService  = &qosm.ServerService{
 		Client:          qosmClient,

@@ -10,6 +10,7 @@ import (
 	"time"
 
 	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclientmodels"
+	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/repository"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils/connectionutils"
 )
 
@@ -19,47 +20,7 @@ import (
 
 var (
 	NamespaceTest = os.Getenv("AB_NAMESPACE")
-	token         iamclientmodels.OauthmodelTokenResponseV3
 )
-
-type TokenRepositoryImpl struct {
-	IssuedTime *time.Time
-}
-
-type ConfigRepositoryImpl struct {
-}
-
-func (configRepository *ConfigRepositoryImpl) GetClientId() string {
-	return os.Getenv("AB_CLIENT_ID")
-}
-
-func (configRepository *ConfigRepositoryImpl) GetClientSecret() string {
-	return os.Getenv("AB_CLIENT_SECRET")
-}
-
-func (configRepository *ConfigRepositoryImpl) GetJusticeBaseUrl() string {
-	return os.Getenv("AB_BASE_URL")
-}
-
-func (tokenRepository *TokenRepositoryImpl) Store(accessToken iamclientmodels.OauthmodelTokenResponseV3) error {
-	token = accessToken
-
-	return nil
-}
-
-func (tokenRepository *TokenRepositoryImpl) GetToken() (*iamclientmodels.OauthmodelTokenResponseV3, error) {
-	return &token, nil
-}
-
-func (tokenRepository *TokenRepositoryImpl) RemoveToken() error {
-	token = iamclientmodels.OauthmodelTokenResponseV3{}
-
-	return nil
-}
-
-func (tokenRepository *TokenRepositoryImpl) TokenIssuedTimeUTC() time.Time {
-	return *tokenRepository.IssuedTime
-}
 
 type ConnectionManagerImpl struct {
 }
@@ -85,7 +46,8 @@ func (connManager *ConnectionManagerImpl) Close() error {
 // ------------------------------------- section for phantauth token repo -----------------------------------
 
 type TokenRepositoryPhantAuthImpl struct {
-	IssuedTime *time.Time
+	IssuedTime  *time.Time
+	AccessToken *iamclientmodels.OauthmodelTokenResponseV3
 }
 
 type ConfigRepositoryPhantAuthImpl struct {
@@ -103,18 +65,22 @@ func (c *ConfigRepositoryPhantAuthImpl) GetJusticeBaseUrl() string {
 	return "https://www.phantauth.net"
 }
 
-func (t *TokenRepositoryPhantAuthImpl) Store(accessToken iamclientmodels.OauthmodelTokenResponseV3) error {
-	token = accessToken
+func (t *TokenRepositoryPhantAuthImpl) Store(accessToken interface{}) error {
+	convertedToken, err := repository.ConvertInterfaceToModel(accessToken, t.AccessToken)
+	if err != nil {
+		return err
+	}
+	t.AccessToken = convertedToken
 
 	return nil
 }
 
 func (t *TokenRepositoryPhantAuthImpl) GetToken() (*iamclientmodels.OauthmodelTokenResponseV3, error) {
-	return &token, nil
+	return t.AccessToken, nil
 }
 
 func (t *TokenRepositoryPhantAuthImpl) RemoveToken() error {
-	token = iamclientmodels.OauthmodelTokenResponseV3{}
+	t.AccessToken = &iamclientmodels.OauthmodelTokenResponseV3{}
 
 	return nil
 }

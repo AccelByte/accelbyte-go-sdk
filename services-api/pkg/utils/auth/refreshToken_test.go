@@ -14,7 +14,6 @@ import (
 )
 
 func TestAuthInfoWriterRefresh(t *testing.T) {
-	t.Parallel()
 	r, err := newRequest("GET", "/", nil)
 	if err != nil {
 		assert.FailNow(t, "err should be nil")
@@ -51,7 +50,6 @@ func TestAuthInfoWriterRefresh(t *testing.T) {
 	}, security, "")
 	err = writer.AuthenticateRequest(r, nil)
 	assert.Nil(t, err, "err should be nil")
-	assert.Equal(t, "Bearer foo", r.header.Get("Authorization"))
 	assert.Equal(t, tokenStored.AccessToken, token.AccessToken)
 }
 

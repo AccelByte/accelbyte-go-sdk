@@ -21,6 +21,7 @@ var (
 		ConfigRepository: &ConfigRepositoryImplTest{},
 		TokenRepository:  &TokenRepositoryImplTest{},
 	}
+	token iamclientmodels.OauthmodelTokenResponseV3
 )
 
 const (
@@ -28,8 +29,8 @@ const (
 )
 
 type TokenRepositoryImplTest struct {
-	IssuedTime time.Time                                 `json:"issuedTime"`
-	Token      iamclientmodels.OauthmodelTokenResponseV3 `json:"Token"`
+	IssuedTime  *time.Time                                 `json:"issuedTime"`
+	AccessToken *iamclientmodels.OauthmodelTokenResponseV3 `json:"AccessToken"`
 }
 
 type ConfigRepositoryImplTest struct {
@@ -53,23 +54,29 @@ func (c *ConfigRepositoryImplTest) GetJusticeBaseUrl() string {
 	return ConstURL
 }
 
-func (t *TokenRepositoryImplTest) Store(accessToken iamclientmodels.OauthmodelTokenResponseV3) error {
-	t.IssuedTime = time.Now()
-	t.Token = accessToken
+func (t *TokenRepositoryImplTest) Store(accessToken interface{}) error {
+	timeNow := time.Now().UTC()
+	t.IssuedTime = &timeNow
+
+	convertedToken, err := repository.ConvertInterfaceToModel(accessToken, &token)
+	if err != nil {
+		return err
+	}
+	t.AccessToken = convertedToken
 
 	return nil
 }
 
 func (t *TokenRepositoryImplTest) GetToken() (*iamclientmodels.OauthmodelTokenResponseV3, error) {
-	return &t.Token, nil
+	return t.AccessToken, nil
 }
 
 func (t *TokenRepositoryImplTest) RemoveToken() error {
-	t.Token = iamclientmodels.OauthmodelTokenResponseV3{}
+	t.AccessToken = &iamclientmodels.OauthmodelTokenResponseV3{}
 
 	return nil
 }
 
 func (t *TokenRepositoryImplTest) TokenIssuedTimeUTC() time.Time {
-	return t.IssuedTime
+	return *t.IssuedTime
 }

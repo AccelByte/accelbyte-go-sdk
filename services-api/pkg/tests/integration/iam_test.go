@@ -11,6 +11,7 @@ import (
 	"os"
 	"testing"
 
+	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils/auth"
 	"github.com/sirupsen/logrus"
 	"github.com/stretchr/testify/assert"
 
@@ -18,7 +19,6 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclient/o_auth2_0_extension"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/iam"
-	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/tests/integration"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils"
 )
 
@@ -29,14 +29,14 @@ var (
 		},
 	}
 	oAuth20Service = &iam.OAuth20Service{
-		Client:           factory.NewIamClient(&integration.ConfigRepositoryImpl{}),
-		ConfigRepository: &integration.ConfigRepositoryImpl{},
-		TokenRepository:  &integration.TokenRepositoryImpl{},
+		Client:           factory.NewIamClient(auth.DefaultConfigRepositoryImpl()),
+		ConfigRepository: auth.DefaultConfigRepositoryImpl(),
+		TokenRepository:  auth.DefaultTokenRepositoryImpl(),
 	}
 	oAuth20ExtensionService = &iam.OAuth20ExtensionService{
-		Client:           factory.NewIamClient(&integration.ConfigRepositoryImpl{}),
-		ConfigRepository: &integration.ConfigRepositoryImpl{},
-		TokenRepository:  &integration.TokenRepositoryImpl{},
+		Client:           factory.NewIamClient(auth.DefaultConfigRepositoryImpl()),
+		ConfigRepository: auth.DefaultConfigRepositoryImpl(),
+		TokenRepository:  auth.DefaultTokenRepositoryImpl(),
 	}
 	codeChallengeMethod = o_auth2_0.AuthorizeV3S256Constant
 	redirectURI         string

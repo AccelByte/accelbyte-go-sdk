@@ -9,6 +9,7 @@ import (
 	"time"
 
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils"
+	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils/auth"
 	"github.com/stretchr/testify/assert"
 
 	"github.com/AccelByte/accelbyte-go-sdk/dsmc-sdk/pkg/dsmcclient/session"
@@ -21,8 +22,8 @@ import (
 
 var (
 	sessionDSMCService = &dsmc.SessionService{
-		Client:          factory.NewDsmcClient(&integration.ConfigRepositoryImpl{}),
-		TokenRepository: &integration.TokenRepositoryImpl{},
+		Client:          factory.NewDsmcClient(auth.DefaultConfigRepositoryImpl()),
+		TokenRepository: auth.DefaultTokenRepositoryImpl(),
 	}
 
 	deployment     = "default"

@@ -7,6 +7,7 @@ package integration_test
 import (
 	"testing"
 
+	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils/auth"
 	"github.com/stretchr/testify/assert"
 
 	"github.com/AccelByte/accelbyte-go-sdk/sessionbrowser-sdk/pkg/sessionbrowserclient/session"
@@ -19,8 +20,8 @@ import (
 
 var (
 	sessionService = &sessionbrowser.SessionService{
-		Client:          factory.NewSessionbrowserClient(&integration.ConfigRepositoryImpl{}),
-		TokenRepository: &integration.TokenRepositoryImpl{},
+		Client:          factory.NewSessionbrowserClient(auth.DefaultConfigRepositoryImpl()),
+		TokenRepository: auth.DefaultTokenRepositoryImpl(),
 	}
 	namespaceSession   = integration.NamespaceTest
 	sessionType        = "p2p" // "dedicated server can not be updated"

@@ -38,9 +38,9 @@ The following environment variables need to be set when using `ConfigRepository`
 ```go
 // example for OAuth20 in IAM service
 oAuth20Service := iam.OAuth20Service{
-    Client:           factory.NewIamClient(&repository.ConfigRepositoryImpl{}), 
-    ConfigRepository: &repository.ConfigRepositoryImpl{}, 
-    TokenRepository:  &repository.TokenRepositoryImpl{},
+    Client:           factory.NewIamClient(auth.DefaultConfigRepositoryImpl()), 
+    ConfigRepository: auth.DefaultConfigRepositoryImpl(), 
+    TokenRepository:  auth.DefaultTokenRepositoryImpl(),
 }
 ```
 
@@ -72,9 +72,9 @@ Use the following to get SDK instance with automatic token refresh functionality
 
 ```go
 oAuth20Service = &iam.OAuth20Service{
-		Client:           factory.NewIamClient(&repository.ConfigRepositoryImpl{}),
-		ConfigRepository: &repository.ConfigRepositoryImpl{},
-		TokenRepository:  &repository.TokenRepositoryImpl{},
+		Client:           factory.NewIamClient(auth.DefaultConfigRepositoryImpl()),
+		ConfigRepository: auth.DefaultConfigRepositoryImpl(),
+		TokenRepository:  auth.DefaultTokenRepositoryImpl(),
 		RefreshTokenRepository: &auth.RefreshTokenImpl{ // override the default refresh token. For example, enable the AutoRefresh functionality or change RefreshRate
 			RefreshRate: 0.5,
 			AutoRefresh: true,
@@ -111,8 +111,8 @@ As an example, we will get current user profile info using [getMyProfileInfo](ht
 // Instantiate UserProfile (Basic service) and input model as the global variable
 var (
     userProfileService = &basic.UserProfileService{
-        Client:          factory.NewBasicClient(&ConfigRepositoryImpl{}), 
-        TokenRepository: &TokenRepositoryImpl{},
+        Client:          factory.NewBasicClient(auth.DefaultConfigRepositoryImpl()), 
+        TokenRepository: auth.DefaultTokenRepositoryImpl(),
     }
     input = &user_profile.GetUserProfileInfoParams{
         Namespace: namespace,

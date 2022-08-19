@@ -18,10 +18,10 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclientmodels"
 	lobbyConfig "github.com/AccelByte/accelbyte-go-sdk/lobby-sdk/pkg/lobbyclient/config"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
+	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/repository"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/iam"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/lobby"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils"
-	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils/auth"
 	"github.com/stretchr/testify/assert"
 )
 
@@ -45,10 +45,10 @@ var (
 		Client:           factory.NewIamClient(&configRepo),
 		ConfigRepository: &configRepo,
 		TokenRepository:  &tokenRepo,
-		RefreshTokenRepository: &auth.RefreshTokenImpl{ // uncomment to enable the AutoRefresh functionality and change RefreshRate
-			RefreshRate: 0.5,
-			AutoRefresh: true,
-		},
+		//RefreshTokenRepository: &auth.RefreshTokenImpl{ // uncomment to enable the AutoRefresh functionality and change RefreshRate
+		//	RefreshRate: 0.5,
+		//	AutoRefresh: true,
+		//},
 	}
 	lobbyConfigService = &lobby.ConfigService{
 		Client:          factory.NewLobbyClient(&configRepo),
@@ -120,19 +120,24 @@ func (t *MyTokenRepo) GetToken() (*iamclientmodels.OauthmodelTokenResponseV3, er
 	defer t.mu.Unlock()
 	t.mu.Lock()
 	if t.accessToken == nil {
-		return nil, fmt.Errorf("empty access Token")
+		return nil, fmt.Errorf("empty access AccessToken")
 	}
 
 	return t.accessToken, nil
 }
 
-func (t *MyTokenRepo) Store(accessToken iamclientmodels.OauthmodelTokenResponseV3) error {
+func (t *MyTokenRepo) Store(accessToken interface{}) error {
 	defer t.mu.Unlock()
 	t.mu.Lock()
 
 	timeNow := time.Now().UTC()
 	t.IssuedTime = &timeNow
-	t.accessToken = &accessToken
+
+	convertedToken, err := repository.ConvertInterfaceToModel(accessToken, &token)
+	if err != nil {
+		return err
+	}
+	t.accessToken = convertedToken
 
 	return nil
 }

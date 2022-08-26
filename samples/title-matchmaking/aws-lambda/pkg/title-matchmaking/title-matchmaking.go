@@ -2,7 +2,7 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
-package service
+package title_matchmaking
 
 import (
 	"context"
@@ -15,16 +15,16 @@ import (
 	"strings"
 	"time"
 
-	"aws-lambda/pkg/constants"
-	"aws-lambda/pkg/repository"
+	"aws-lambda/pkg/title-matchmaking/constants"
+	"aws-lambda/pkg/title-matchmaking/dao"
+	daoRedis "aws-lambda/pkg/title-matchmaking/dao/redis"
 	"aws-lambda/pkg/title-matchmaking/models"
-	"aws-lambda/pkg/utils"
+	"aws-lambda/pkg/title-matchmaking/utils"
 	dsmcSession "github.com/AccelByte/accelbyte-go-sdk/dsmc-sdk/pkg/dsmcclient/session"
+	"github.com/AccelByte/accelbyte-go-sdk/dsmc-sdk/pkg/dsmcclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/lobby-sdk/pkg/lobbyclient/notification"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils/auth"
 	"github.com/AccelByte/accelbyte-go-sdk/sessionbrowser-sdk/pkg/sessionbrowserclient/session"
-
-	"github.com/AccelByte/accelbyte-go-sdk/dsmc-sdk/pkg/dsmcclientmodels"
 
 	"github.com/aws/aws-lambda-go/events"
 	"github.com/cenkalti/backoff"
@@ -51,6 +51,31 @@ var (
 	partyMembers            []*dsmcclientmodels.ModelsRequestMatchMember
 )
 
+// TitleMatchmakingService service for matchmaking
+type TitleMatchmakingService struct {
+	Name            string
+	IamBaseURL      string
+	Channel         dao.Channel
+	TitleMMDAORedis *daoRedis.TitleMMDAORedis
+}
+
+// New creates new TitleMatchmakingService
+func New(
+	name string,
+	iamBaseURL string,
+	channelList dao.Channel,
+	titleMMDAORedis *daoRedis.TitleMMDAORedis,
+) *TitleMatchmakingService {
+	service := &TitleMatchmakingService{
+		Name:            name,
+		IamBaseURL:      iamBaseURL,
+		Channel:         channelList,
+		TitleMMDAORedis: titleMMDAORedis,
+	}
+
+	return service
+}
+
 // StartMatchmaking is used as handler
 func (titleMMService *TitleMatchmakingService) StartMatchmaking(req *events.APIGatewayProxyRequest) (events.APIGatewayProxyResponse, error) {
 	ctx, cancel := context.WithTimeout(context.Background(), 10*time.Second)
@@ -67,7 +92,7 @@ func (titleMMService *TitleMatchmakingService) StartMatchmaking(req *events.APIG
 		return response, nil
 	}
 	reqToken = splitToken[1]
-	tokenConvert, err := repository.ConvertTokenToTokenResponseV3(reqToken)
+	tokenConvert, err := utils.ConvertTokenToTokenResponseV3(reqToken)
 	if tokenConvert == nil {
 		log.Print("Unable to convert token to response model :", err.Error())
 		response := events.APIGatewayProxyResponse{StatusCode: http.StatusUnauthorized, Body: fmt.Sprint(err.Error())}
@@ -75,7 +100,7 @@ func (titleMMService *TitleMatchmakingService) StartMatchmaking(req *events.APIG
 		return response, nil
 	}
 
-	userId := "a9163840b1534cd48af22a99b69fa065"
+	userId := *tokenConvert.UserID
 	namespace := os.Getenv("GAME_NAMESPACE")
 	namespaceGame := os.Getenv("GAME_NAMESPACE")
 	gameMode := os.Getenv("GAME_MODE")
@@ -98,11 +123,6 @@ func (titleMMService *TitleMatchmakingService) StartMatchmaking(req *events.APIG
 		ConfigRepository: &configGameImpl,
 		TokenRepository:  &tokenRepositoryGameImpl,
 	}
-	t, e := oauthService.TokenRepository.GetToken()
-	log.Print("t : ", *t.AccessToken)
-	log.Print("e : ", e)
-	a := oauthService.ConfigRepository.GetClientId()
-	log.Print("a : ", a)
 	err = oauthService.GrantTokenCredentials("", "")
 	if err != nil {
 		log.Print("Unable to grant token : ", err.Error())

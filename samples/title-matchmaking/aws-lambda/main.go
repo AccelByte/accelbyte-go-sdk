@@ -5,67 +5,45 @@
 package main
 
 import (
-	"flag"
-	"fmt"
 	"log"
 	"os"
 	"time"
 
-	"aws-lambda/pkg/config"
+	title_matchmaking "aws-lambda/pkg/title-matchmaking"
+	"aws-lambda/pkg/title-matchmaking/constants"
 	"aws-lambda/pkg/title-matchmaking/dao"
 	daoRedis "aws-lambda/pkg/title-matchmaking/dao/redis"
 	channelList2 "aws-lambda/pkg/title-matchmaking/dao/redis/channelList"
-	"aws-lambda/pkg/utils"
-
+	"aws-lambda/pkg/title-matchmaking/utils"
 	"github.com/go-redis/redis/v8"
 
 	"github.com/aws/aws-lambda-go/lambda"
-
-	"aws-lambda/pkg/title-matchmaking/service"
 )
 
 var (
-	titleMMConfig *config.Config
-	channelList   dao.Channel
+	channelList dao.Channel
 )
 
 func main() {
 	log.SetOutput(os.Stdout)
-	log.Print("Title Matchmaking Service")
+	log.Print(constants.ServiceName)
 
-	titleMMConfig = &config.Config{}
-
-	flag.Usage = func() {
-		flag.CommandLine.SetOutput(os.Stdout)
-
-		for _, val := range titleMMConfig.HelpDocs() {
-			fmt.Println(val)
-		}
-
-		fmt.Println("")
-		flag.PrintDefaults()
-	}
-	flag.Parse()
-
+	// setup the redis
 	redisClient := redis.NewClient(&redis.Options{
-		Addr:            "some-redis:6379",
+		Addr:            os.Getenv("REDIS_URL"), // ex. localhost:6379
 		MaxRetries:      60,
 		MaxRetryBackoff: time.Second,
 	})
-
 	channelList = channelList2.New(redisClient)
-
 	instanceID := utils.GenerateUUID()
-	titleMMDAORedisDB := daoRedis.New(titleMMConfig.ServiceName, instanceID, redisClient)
+	titleMMRedis := daoRedis.New(constants.ServiceName, instanceID, redisClient)
 
 	iamBaseURL := os.Getenv("IAM_BASE_URL")
-	titleMMService := service.New(
-		titleMMConfig.ServiceName,
-		titleMMConfig.Realm,
+	titleMMService := title_matchmaking.New(
+		constants.ServiceName,
 		iamBaseURL,
 		channelList,
-		&config.Config{},
-		titleMMDAORedisDB, // this is where you change it
+		titleMMRedis,
 	)
 
 	lambda.Start(titleMMService.StartMatchmaking)

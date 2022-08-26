@@ -12,7 +12,7 @@ import (
 
 	"github.com/go-redis/redis/v8"
 
-	"aws-lambda/pkg/constants"
+	"aws-lambda/pkg/title-matchmaking/constants"
 	"aws-lambda/pkg/title-matchmaking/models"
 )
 

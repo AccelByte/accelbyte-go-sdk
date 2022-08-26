@@ -5,6 +5,8 @@
 package constants
 
 const (
+	ServiceName = "Title Matchmaking Service"
+
 	ChannelListKey          = "matchmaking:channelList"
 	MatchmakingRequestQueue = "matchmaking:requestQueue"
 

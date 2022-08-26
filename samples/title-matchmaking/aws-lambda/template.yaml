@@ -43,19 +43,31 @@ Resources:
         Variables:
           GAME_CLIENT_ID: ''
           SESSION_BROWSER_MODE: ''
-          IAM_CLIENT_ID: ''
-          REDIS_URL: ''
-          IAM_BASE_URL: ''
-          SESSION_BROWSER_GAME_VERSION: ''
+          AB_CLIENT_ID: ''
+          REDIS_URL: '' # eg. localhost:3679
+          IAM_BASE_URL: '' # eg. https://xxx.accelbyte.io/iam
+          SESSION_BROWSER_GAME_VERSION: '' # any string
+          REDIS_HOST: ''
           GAME_NAMESPACE: ''
           SESSION_BROWSER_MAP_NAME: ''
-          ACCELBYTE_BASE_URL: ''
+          AB_BASE_URL: ''
           GAME_MODE: ''
-          SESSION_BROWSER_USERNAME: ''
-          IAM_CLIENT_SECRET: ''
+          SESSION_BROWSER_USERNAME: ''  # any string
+          AB_CLIENT_SECRET: ''
           SESSION_BROWSER_TYPE: ''
-          SESSION_BROWSER_PASSWORD: ''
+          SESSION_BROWSER_PASSWORD: '' # any string
           DSMC_DEPLOYMENT: ''
-          # Use 'host.docker.internal' when running locally
-          REDIS_HOST: ''
-          REDIS_PORT: ''
+
+Outputs:
+  # ServerlessRestApi is an implicit API created out of Events key under Serverless::Function
+  # Find out more about other implicit resources you can reference within SAM
+  # https://github.com/awslabs/serverless-application-model/blob/master/docs/internals/generated_resources.rst#api
+  TitleMatchmakingApi:
+    Description: "API Gateway endpoint URL for Prod stage for Title Matchmaking function"
+    Value: !Sub "https://${ServerlessRestApi}.execute-api.${AWS::Region}.amazonaws.com/Prod/title-matchmaking/"
+  TitleMatchmakingFunction:
+    Description: "Title Matchmaking Lambda Function ARN"
+    Value: !GetAtt TitleMatchmakingFunction.Arn
+  TitleMatchmakingFunctionIamRole:
+    Description: "Implicit IAM Role created for Title Matchmaking function"
+    Value: !GetAtt TitleMatchmakingFunctionRole.Arn

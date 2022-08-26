@@ -8,7 +8,7 @@
     },
     "description": "Justice UGC Service",
     "title": "justice-ugc-service",
-    "version": "2.4.0"
+    "version": "2.5.1"
   },
   "schemes": [
     "https"
@@ -7118,6 +7118,7 @@
           "$ref": "#/definitions/models.CreatorFollowState"
         },
         "creatorName": {
+          "description": "Creator Name is deprecated",
           "type": "string"
         },
         "downloadCount": {
@@ -7339,6 +7340,7 @@
           "type": "string"
         },
         "creatorName": {
+          "description": "Creator Name is deprecated",
           "type": "string"
         },
         "fileExtension": {

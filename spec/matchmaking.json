@@ -3,7 +3,7 @@
   "info": {
     "description": "Justice Matchmaking Service",
     "title": "Justice Matchmaking Service",
-    "version": "2.15.5"
+    "version": "2.15.6"
   },
   "schemes": [
     "https"
@@ -2262,6 +2262,9 @@
     },
     "models.AllianceFlexingRule": {
       "properties": {
+        "combination": {
+          "$ref": "#/definitions/models.Combination"
+        },
         "duration": {
           "format": "int64",
           "type": "integer"
@@ -2284,6 +2287,7 @@
         }
       },
       "required": [
+        "combination",
         "duration",
         "max_number",
         "min_number",
@@ -2293,6 +2297,9 @@
     },
     "models.AllianceRule": {
       "properties": {
+        "combination": {
+          "$ref": "#/definitions/models.Combination"
+        },
         "max_number": {
           "format": "int32",
           "type": "integer"
@@ -2311,6 +2318,7 @@
         }
       },
       "required": [
+        "combination",
         "max_number",
         "min_number",
         "player_max_number",
@@ -2319,6 +2327,9 @@
     },
     "models.AllianceRuleV1": {
       "properties": {
+        "combination": {
+          "$ref": "#/definitions/models.Combination"
+        },
         "maxNumber": {
           "format": "int32",
           "type": "integer"
@@ -2337,6 +2348,7 @@
         }
       },
       "required": [
+        "combination",
         "maxNumber",
         "minNumber",
         "playerMaxNumber",
@@ -2528,6 +2540,44 @@
         "socialMatchmaking",
         "updatedAt",
         "use_sub_gamemode"
+      ]
+    },
+    "models.Combination": {
+      "properties": {
+        "alliances": {
+          "items": {
+            "$ref": "#/definitions/models.Combination.alliances"
+          },
+          "type": "array"
+        },
+        "has_combination": {
+          "type": "boolean",
+          "x-omitempty": false
+        }
+      },
+      "required": [
+        "alliances",
+        "has_combination"
+      ]
+    },
+    "models.Combination.alliances": {
+      "properties": {
+        "max": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "min": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "name": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "max",
+        "min",
+        "name"
       ]
     },
     "models.CreateChannelResponse": {
@@ -3155,6 +3205,9 @@
     },
     "models.UpdateAllianceRule": {
       "properties": {
+        "combination": {
+          "$ref": "#/definitions/models.Combination"
+        },
         "maxNumber": {
           "format": "int32",
           "type": "integer"

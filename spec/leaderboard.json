@@ -8,7 +8,7 @@
     },
     "description": "Justice Leaderboard Service",
     "title": "justice-leaderboard-service",
-    "version": "2.15.6"
+    "version": "2.15.7"
   },
   "schemes": [
     "https"

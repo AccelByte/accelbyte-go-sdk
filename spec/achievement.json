@@ -17,6 +17,7 @@
         "ADMIN:NAMESPACE:{namespace}:ACHIEVEMENT [DELETE]": "ADMIN:NAMESPACE:{namespace}:ACHIEVEMENT [DELETE]",
         "ADMIN:NAMESPACE:{namespace}:ACHIEVEMENT [READ]": "ADMIN:NAMESPACE:{namespace}:ACHIEVEMENT [READ]",
         "ADMIN:NAMESPACE:{namespace}:ACHIEVEMENT [UPDATE]": "ADMIN:NAMESPACE:{namespace}:ACHIEVEMENT [UPDATE]",
+        "ADMIN:NAMESPACE:{namespace}:USER:{userId}:ACHIEVEMENT [DELETE]": "ADMIN:NAMESPACE:{namespace}:USER:{userId}:ACHIEVEMENT [DELETE]",
         "ADMIN:NAMESPACE:{namespace}:USER:{userId}:ACHIEVEMENT [READ]": "ADMIN:NAMESPACE:{namespace}:USER:{userId}:ACHIEVEMENT [READ]",
         "ADMIN:NAMESPACE:{namespace}:USER:{userId}:ACHIEVEMENT [UPDATE]": "ADMIN:NAMESPACE:{namespace}:USER:{userId}:ACHIEVEMENT [UPDATE]",
         "NAMESPACE:{namespace}:ACHIEVEMENT [READ]": "NAMESPACE:{namespace}:ACHIEVEMENT [READ]",
@@ -746,6 +747,85 @@
           }
         ],
         "summary": "Query user achievements [include achieved and in-progress]",
+        "tags": [
+          "achievements"
+        ]
+      }
+    },
+    "/achievement/v1/admin/namespaces/{namespace}/users/{userId}/achievements/{achievementCode}/reset": {
+      "delete": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "\u0026lt;p\u0026gt;[TEST FACILITY ONLY]\u0026lt;/p\u0026gt;\n                         \u0026lt;p\u0026gt;Required permission \n                         \u0026lt;code\u0026gt;ADMIN:NAMESPACE:{namespace}:USER:{userId}:ACHIEVEMENT [DELETE]\u0026lt;/code\u0026gt; and scope \u0026lt;code\u0026gt;social\u0026lt;/code\u0026gt;\n                  \u0026lt;/p\u0026gt;",
+        "operationId": "AdminResetAchievement",
+        "parameters": [
+          {
+            "description": "achievement code",
+            "in": "path",
+            "name": "achievementCode",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "namespace of the game",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "user id",
+            "in": "path",
+            "name": "userId",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content"
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          }
+        },
+        "security": [
+          {
+            "HasPermission": [
+              "ADMIN:NAMESPACE:{namespace}:USER:{userId}:ACHIEVEMENT [DELETE]"
+            ],
+            "HasScope": [
+              "social"
+            ],
+            "authorization": []
+          }
+        ],
+        "summary": "Reset an achievement",
         "tags": [
           "achievements"
         ]

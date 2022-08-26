@@ -8,7 +8,7 @@
     },
     "description": "Justice SeasonPass Service",
     "title": "justice-seasonpass-service",
-    "version": "1.13.2"
+    "version": "1.13.3"
   },
   "schemes": [
     "https"
@@ -551,6 +551,69 @@
         ],
         "x-authorization": {
           "action": "1",
+          "resource": "ADMIN:NAMESPACE:{namespace}:SEASONPASS"
+        }
+      }
+    },
+    "/seasonpass/admin/namespaces/{namespace}/seasons/{seasonId}/full": {
+      "get": {
+        "description": "This API is used to get a season full content, season only located in non-publisher namespace.\u0026lt;p\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;ADMIN:NAMESPACE:{namespace}:SEASONPASS\u0026#34;, action=2 (READ)\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: season data\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
+        "operationId": "getFullSeason",
+        "parameters": [
+          {
+            "description": "Namespace",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "path",
+            "name": "seasonId",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/FullSeasonInfo"
+            }
+          },
+          "400": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eErrorCode\u003c/td\u003e\u003ctd\u003eErrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20026\u003c/td\u003e\u003ctd\u003epublisher namespace not allowed\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/ErrorEntity"
+            }
+          },
+          "404": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eErrorCode\u003c/td\u003e\u003ctd\u003eErrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e49143\u003c/td\u003e\u003ctd\u003eSeason [{seasonId}] does not exist in namespace [{namespace}]\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/ErrorEntity"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          },
+          {
+            "HasPermission": [
+              "ADMIN:NAMESPACE:{namespace}:SEASONPASS [READ]"
+            ],
+            "authorization": []
+          }
+        ],
+        "summary": "Get a season full content",
+        "tags": [
+          "Season"
+        ],
+        "x-authorization": {
+          "action": "2",
           "resource": "ADMIN:NAMESPACE:{namespace}:SEASONPASS"
         }
       }
@@ -3409,6 +3472,68 @@
           "type": "object"
         }
       },
+      "type": "object"
+    },
+    "FullSeasonInfo": {
+      "description": "A DTO object for season full content.",
+      "properties": {
+        "id": {
+          "description": "id",
+          "type": "string"
+        },
+        "images": {
+          "description": "images",
+          "items": {
+            "$ref": "#/definitions/Image"
+          },
+          "type": "array"
+        },
+        "localizations": {
+          "additionalProperties": {
+            "$ref": "#/definitions/Localization"
+          },
+          "description": "localization, {language: localization} map",
+          "type": "object"
+        },
+        "name": {
+          "description": "name, max length is 127",
+          "type": "string"
+        },
+        "namespace": {
+          "description": "namespace",
+          "type": "string"
+        },
+        "passes": {
+          "description": "passes info",
+          "items": {
+            "$ref": "#/definitions/PassInfo"
+          },
+          "type": "array"
+        },
+        "rewards": {
+          "additionalProperties": {
+            "$ref": "#/definitions/RewardInfo"
+          },
+          "description": "rewards info",
+          "type": "object"
+        },
+        "tiers": {
+          "description": "tiers info",
+          "items": {
+            "$ref": "#/definitions/Tier"
+          },
+          "type": "array"
+        }
+      },
+      "required": [
+        "id",
+        "localizations",
+        "name",
+        "namespace",
+        "passes",
+        "rewards",
+        "tiers"
+      ],
       "type": "object"
     },
     "Image": {

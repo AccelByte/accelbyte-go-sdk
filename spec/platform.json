@@ -8,7 +8,7 @@
     },
     "description": "Justice Platform Service",
     "title": "justice-platform-service",
-    "version": "4.12.1"
+    "version": "4.13.0"
   },
   "schemes": [
     "https"
@@ -102,6 +102,10 @@
         "ADMIN:FULFILLMENT [DELETE]": "ADMIN:FULFILLMENT [DELETE]",
         "ADMIN:FULFILLMENT [READ]": "ADMIN:FULFILLMENT [READ]",
         "ADMIN:FULFILLMENT [UPDATE]": "ADMIN:FULFILLMENT [UPDATE]",
+        "ADMIN:ITEM:CONFIG [CREATE]": "ADMIN:ITEM:CONFIG [CREATE]",
+        "ADMIN:ITEM:CONFIG [DELETE]": "ADMIN:ITEM:CONFIG [DELETE]",
+        "ADMIN:ITEM:CONFIG [READ]": "ADMIN:ITEM:CONFIG [READ]",
+        "ADMIN:ITEM:CONFIG [UPDATE]": "ADMIN:ITEM:CONFIG [UPDATE]",
         "ADMIN:NAMESPACE:{namespace}:CAMPAIGN [CREATE]": "ADMIN:NAMESPACE:{namespace}:CAMPAIGN [CREATE]",
         "ADMIN:NAMESPACE:{namespace}:CAMPAIGN [READ]": "ADMIN:NAMESPACE:{namespace}:CAMPAIGN [READ]",
         "ADMIN:NAMESPACE:{namespace}:CAMPAIGN [UPDATE]": "ADMIN:NAMESPACE:{namespace}:CAMPAIGN [UPDATE]",
@@ -491,6 +495,342 @@
         "x-authorization": {
           "action": "1",
           "resource": "ADMIN:FULFILLMENT"
+        }
+      }
+    },
+    "/platform/admin/items/configs": {
+      "get": {
+        "description": "This API is used to get all item type configs.\u0026lt;p\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;ADMIN:ITEM:CONFIG\u0026#34;, action=2 (READ)\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: the list of items\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
+        "operationId": "listItemTypeConfigs",
+        "parameters": [],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "items": {
+                "$ref": "#/definitions/ItemTypeConfigInfo"
+              },
+              "type": "array"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          },
+          {
+            "HasPermission": [
+              "ADMIN:ITEM:CONFIG [READ]"
+            ],
+            "authorization": []
+          }
+        ],
+        "summary": "Get all item type configs",
+        "tags": [
+          "Item"
+        ],
+        "x-authorization": {
+          "action": "2",
+          "resource": "ADMIN:ITEM:CONFIG"
+        }
+      },
+      "post": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "This API is used to create an item type config.\u0026lt;p\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;ADMIN:ITEM:CONFIG\u0026#34;, action=1 (CREATE)\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: item type config data\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
+        "operationId": "createItemTypeConfig",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "required": false,
+            "schema": {
+              "$ref": "#/definitions/ItemTypeConfigCreate"
+            }
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "201": {
+            "description": "item type config created"
+          },
+          "400": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eErrorCode\u003c/td\u003e\u003ctd\u003eErrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e30336\u003c/td\u003e\u003ctd\u003eItem type [{itemType}] does not support\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/ErrorEntity"
+            }
+          },
+          "409": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eErrorCode\u003c/td\u003e\u003ctd\u003eErrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e30371\u003c/td\u003e\u003ctd\u003eItem type config for type [{itemType}] and clazz [{clazz}] already exists\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/ErrorEntity"
+            }
+          },
+          "422": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eErrorCode\u003c/td\u003e\u003ctd\u003eErrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20002\u003c/td\u003e\u003ctd\u003evalidation error\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/ValidationErrorEntity"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          },
+          {
+            "HasPermission": [
+              "ADMIN:ITEM:CONFIG [CREATE]"
+            ],
+            "authorization": []
+          }
+        ],
+        "summary": "Create an Item Type Config",
+        "tags": [
+          "Item"
+        ],
+        "x-authorization": {
+          "action": "1",
+          "resource": "ADMIN:ITEM:CONFIG"
+        }
+      }
+    },
+    "/platform/admin/items/configs/search": {
+      "get": {
+        "description": "This API is used to get an item type config.\u0026lt;p\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;ADMIN:ITEM:CONFIG\u0026#34;, action=2 (READ)\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: item type config data\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
+        "operationId": "searchItemTypeConfig",
+        "parameters": [
+          {
+            "enum": [
+              "APP",
+              "BUNDLE",
+              "CODE",
+              "COINS",
+              "EXTENSION",
+              "INGAMEITEM",
+              "MEDIA",
+              "OPTIONBOX",
+              "SEASON",
+              "SUBSCRIPTION"
+            ],
+            "in": "query",
+            "name": "itemType",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "clazz",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/ItemTypeConfigInfo"
+            }
+          },
+          "404": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eErrorCode\u003c/td\u003e\u003ctd\u003eErrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e30541\u003c/td\u003e\u003ctd\u003eItem type config [{id}] doesn't exist\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/ErrorEntity"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          },
+          {
+            "HasPermission": [
+              "ADMIN:ITEM:CONFIG [READ]"
+            ],
+            "authorization": []
+          }
+        ],
+        "summary": "Get an item type config",
+        "tags": [
+          "Item"
+        ],
+        "x-authorization": {
+          "action": "2",
+          "resource": "ADMIN:ITEM:CONFIG"
+        }
+      }
+    },
+    "/platform/admin/items/configs/{id}": {
+      "delete": {
+        "description": "This API is used to delete an item type config permanently.Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;ADMIN:ITEM:CONFIG\u0026#34;, action=8 (DELETE)\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
+        "operationId": "deleteItemTypeConfig",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "204": {
+            "description": "Delete item successfully"
+          },
+          "404": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eErrorCode\u003c/td\u003e\u003ctd\u003eErrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e30541\u003c/td\u003e\u003ctd\u003eItem type config [{id}] doesn't exist\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/ErrorEntity"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          },
+          {
+            "HasPermission": [
+              "ADMIN:ITEM:CONFIG [DELETE]"
+            ],
+            "authorization": []
+          }
+        ],
+        "summary": "Delete an item type config",
+        "tags": [
+          "Item"
+        ],
+        "x-authorization": {
+          "action": "8",
+          "resource": "ADMIN:ITEM:CONFIG"
+        }
+      },
+      "get": {
+        "description": "This API is used to get an item type config.\u0026lt;p\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;ADMIN:ITEM:CONFIG\u0026#34;, action=2 (READ)\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: item type config data\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
+        "operationId": "getItemTypeConfig",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/ItemTypeConfigInfo"
+            }
+          },
+          "404": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eErrorCode\u003c/td\u003e\u003ctd\u003eErrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e30541\u003c/td\u003e\u003ctd\u003eItem type config [{id}] doesn't exist\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/ErrorEntity"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          },
+          {
+            "HasPermission": [
+              "ADMIN:ITEM:CONFIG [READ]"
+            ],
+            "authorization": []
+          }
+        ],
+        "summary": "Get an item type config",
+        "tags": [
+          "Item"
+        ],
+        "x-authorization": {
+          "action": "2",
+          "resource": "ADMIN:ITEM:CONFIG"
+        }
+      },
+      "put": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "This API is used to update an item type config.\u0026lt;p\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;ADMIN:ITEM:CONFIG\u0026#34;, action=4 (UPDATE)\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: item type config data\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
+        "operationId": "updateItemTypeConfig",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "required": false,
+            "schema": {
+              "$ref": "#/definitions/ItemTypeConfigUpdate"
+            }
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/ItemTypeConfigInfo"
+            }
+          },
+          "404": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eErrorCode\u003c/td\u003e\u003ctd\u003eErrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e30541\u003c/td\u003e\u003ctd\u003eItem type config [{id}] doesn't exist\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/ErrorEntity"
+            }
+          },
+          "409": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eErrorCode\u003c/td\u003e\u003ctd\u003eErrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e30371\u003c/td\u003e\u003ctd\u003eItem type config for type [{itemType}] and clazz [{clazz}] already exists\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/ErrorEntity"
+            }
+          },
+          "422": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eErrorCode\u003c/td\u003e\u003ctd\u003eErrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20002\u003c/td\u003e\u003ctd\u003evalidation error\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/ValidationErrorEntity"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          },
+          {
+            "HasPermission": [
+              "ADMIN:ITEM:CONFIG [UPDATE]"
+            ],
+            "authorization": []
+          }
+        ],
+        "summary": "Update an Item Type Config",
+        "tags": [
+          "Item"
+        ],
+        "x-authorization": {
+          "action": "4",
+          "resource": "ADMIN:ITEM:CONFIG"
         }
       }
     },
@@ -4534,6 +4874,7 @@
               "BUNDLE",
               "CODE",
               "COINS",
+              "EXTENSION",
               "INGAMEITEM",
               "MEDIA",
               "OPTIONBOX",
@@ -5268,6 +5609,7 @@
               "BUNDLE",
               "CODE",
               "COINS",
+              "EXTENSION",
               "INGAMEITEM",
               "MEDIA",
               "OPTIONBOX",
@@ -9488,6 +9830,7 @@
               "BUNDLE",
               "CODE",
               "COINS",
+              "EXTENSION",
               "INGAMEITEM",
               "MEDIA",
               "OPTIONBOX",
@@ -9726,6 +10069,12 @@
             "schema": {
               "$ref": "#/definitions/ErrorEntity"
             }
+          },
+          "409": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eErrorCode\u003c/td\u003e\u003ctd\u003eErrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e30375\u003c/td\u003e\u003ctd\u003eItem id [{itemId}] of sku [{sku}] is duplicate with un-published deleted item in namespace [{namespace}]\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/ErrorEntity"
+            }
           }
         },
         "security": [
@@ -9845,6 +10194,7 @@
               "BUNDLE",
               "CODE",
               "COINS",
+              "EXTENSION",
               "INGAMEITEM",
               "MEDIA",
               "OPTIONBOX",
@@ -18523,6 +18873,7 @@
               "BUNDLE",
               "CODE",
               "COINS",
+              "EXTENSION",
               "INGAMEITEM",
               "MEDIA",
               "OPTIONBOX",
@@ -18860,6 +19211,7 @@
               "BUNDLE",
               "CODE",
               "COINS",
+              "EXTENSION",
               "INGAMEITEM",
               "MEDIA",
               "OPTIONBOX",
@@ -23381,6 +23733,183 @@
           "resource": "NAMESPACE:{namespace}:USER:{userId}:WALLET"
         }
       }
+    },
+    "/platform/v2/admin/namespaces/{namespace}/items/byCriteria": {
+      "get": {
+        "description": "This API is used to query items by criteria within a store.\u0026lt;p\u0026gt;The behaviour for itemStatus query parameter:\u0026lt;li\u0026gt;TRUE: Show only ACTIVE items\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;FALSE: Show only INACTIVE items\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;Not provided: show both ACTIVE and INACTIVE items\u0026lt;/li\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;ADMIN:NAMESPACE:{namespace}:ITEM\u0026#34;, action=2 (READ)\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: the list of items\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
+        "operationId": "queryItems_1",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "enum": [
+              "DEMO",
+              "DLC",
+              "GAME",
+              "SOFTWARE"
+            ],
+            "in": "query",
+            "name": "appType",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "allowed format: \\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}Z , filter date include(purchaseAt, expireAt)",
+            "in": "query",
+            "name": "availableDate",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "baseAppId",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "category path",
+            "in": "query",
+            "name": "categoryPath",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "features, separate multiple value by commas parameter",
+            "in": "query",
+            "name": "features",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "enum": [
+              "ACTIVE",
+              "INACTIVE"
+            ],
+            "in": "query",
+            "name": "itemStatus",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "enum": [
+              "APP",
+              "BUNDLE",
+              "CODE",
+              "COINS",
+              "EXTENSION",
+              "INGAMEITEM",
+              "MEDIA",
+              "OPTIONBOX",
+              "SEASON",
+              "SUBSCRIPTION"
+            ],
+            "in": "query",
+            "name": "itemType",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "default": 20,
+            "description": "limit",
+            "format": "int32",
+            "in": "query",
+            "name": "limit",
+            "required": false,
+            "type": "integer"
+          },
+          {
+            "default": 0,
+            "description": "offset",
+            "format": "int32",
+            "in": "query",
+            "name": "offset",
+            "required": false,
+            "type": "integer"
+          },
+          {
+            "description": "exist in region",
+            "in": "query",
+            "name": "region",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "default": "name:asc,displayOrder:asc",
+            "description": "default is name:asc,displayOrder:asc, allow values: [name, name:asc, name:desc, createdAt, createdAt:asc, createdAt:desc, updatedAt, updatedAt:asc, updatedAt:desc, displayOrder, displayOrder:asc, displayOrder:desc],and support sort group, eg: sortBy=name:asc,createdAt:desc. Make sure to always use more than one sort if the first sort is not an unique valuefor example, if you wish to sort by displayOrder, make sure to include other sort such as name or createdAt after the first sort, eg: displayOrder:asc,name:asc",
+            "in": "query",
+            "name": "sortBy",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "default is published store id",
+            "in": "query",
+            "name": "storeId",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "tags, separate multiple value by commas parameter",
+            "in": "query",
+            "name": "tags",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "targetNamespace",
+            "in": "query",
+            "name": "targetNamespace",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/FullItemPagingSlicedResult"
+            }
+          },
+          "404": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eErrorCode\u003c/td\u003e\u003ctd\u003eErrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e30141\u003c/td\u003e\u003ctd\u003eStore [{storeId}] does not exist in namespace [{namespace}]\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e30142\u003c/td\u003e\u003ctd\u003ePublished store does not exist in namespace [{namespace}]\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/ErrorEntity"
+            }
+          },
+          "422": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eErrorCode\u003c/td\u003e\u003ctd\u003eErrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20002\u003c/td\u003e\u003ctd\u003evalidation error\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/ValidationErrorEntity"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          },
+          {
+            "HasPermission": [
+              "ADMIN:NAMESPACE:{namespace}:ITEM [READ]"
+            ],
+            "authorization": []
+          }
+        ],
+        "summary": "Query items by criteria",
+        "tags": [
+          "Item"
+        ],
+        "x-authorization": {
+          "action": "2",
+          "resource": "ADMIN:NAMESPACE:{namespace}:ITEM"
+        }
+      }
     }
   },
   "definitions": {
@@ -24175,6 +24704,7 @@
             "BUNDLE",
             "CODE",
             "COINS",
+            "EXTENSION",
             "INGAMEITEM",
             "MEDIA",
             "OPTIONBOX",
@@ -24553,6 +25083,7 @@
             "BUNDLE",
             "CODE",
             "COINS",
+            "EXTENSION",
             "INGAMEITEM",
             "MEDIA",
             "OPTIONBOX",
@@ -25099,6 +25630,7 @@
             "BUNDLE",
             "CODE",
             "COINS",
+            "EXTENSION",
             "INGAMEITEM",
             "MEDIA",
             "OPTIONBOX",
@@ -26574,6 +27106,71 @@
       },
       "type": "object"
     },
+    "ExtensionFulfillmentSummary": {
+      "properties": {
+        "grantedAt": {
+          "description": "grantedAt",
+          "format": "date-time",
+          "type": "string",
+          "x-nullable": true
+        },
+        "itemClazz": {
+          "description": "customized item sub type",
+          "type": "string"
+        },
+        "itemExt": {
+          "additionalProperties": {
+            "type": "object"
+          },
+          "description": "customized item properties",
+          "type": "object"
+        },
+        "itemId": {
+          "description": "itemId",
+          "type": "string"
+        },
+        "itemType": {
+          "description": "item type",
+          "enum": [
+            "APP",
+            "BUNDLE",
+            "CODE",
+            "COINS",
+            "EXTENSION",
+            "INGAMEITEM",
+            "MEDIA",
+            "OPTIONBOX",
+            "SEASON",
+            "SUBSCRIPTION"
+          ],
+          "type": "string"
+        },
+        "metadata": {
+          "additionalProperties": {
+            "type": "object"
+          },
+          "description": "customized external fulfillment results",
+          "type": "object"
+        },
+        "namespace": {
+          "description": "namespace",
+          "type": "string"
+        },
+        "quantity": {
+          "description": "quantity",
+          "format": "int32",
+          "type": "integer"
+        },
+        "userId": {
+          "description": "userId",
+          "type": "string"
+        }
+      },
+      "required": [
+        "quantity"
+      ],
+      "type": "object"
+    },
     "ExternalPaymentOrderCreate": {
       "properties": {
         "currencyCode": {
@@ -26610,6 +27207,7 @@
             "BUNDLE",
             "CODE",
             "COINS",
+            "EXTENSION",
             "INGAMEITEM",
             "MEDIA",
             "OPTIONBOX",
@@ -26785,6 +27383,13 @@
           },
           "type": "array"
         },
+        "extensionFulfillmentSummaries": {
+          "description": "extension fulfillment granted",
+          "items": {
+            "$ref": "#/definitions/ExtensionFulfillmentSummary"
+          },
+          "type": "array"
+        },
         "fulfillItems": {
           "description": "items should do fulfillment",
           "items": {
@@ -26888,6 +27493,7 @@
             "BUNDLE",
             "CODE",
             "COINS",
+            "EXTENSION",
             "INGAMEITEM",
             "MEDIA",
             "OPTIONBOX",
@@ -27430,6 +28036,7 @@
             "BUNDLE",
             "CODE",
             "COINS",
+            "EXTENSION",
             "INGAMEITEM",
             "MEDIA",
             "OPTIONBOX",
@@ -28138,6 +28745,7 @@
             "BUNDLE",
             "CODE",
             "COINS",
+            "EXTENSION",
             "INGAMEITEM",
             "MEDIA",
             "OPTIONBOX",
@@ -28432,6 +29040,7 @@
             "BUNDLE",
             "CODE",
             "COINS",
+            "EXTENSION",
             "INGAMEITEM",
             "MEDIA",
             "OPTIONBOX",
@@ -28728,6 +29337,7 @@
             "BUNDLE",
             "CODE",
             "COINS",
+            "EXTENSION",
             "INGAMEITEM",
             "MEDIA",
             "OPTIONBOX",
@@ -28845,6 +29455,136 @@
       ],
       "type": "object"
     },
+    "ItemTypeConfigCreate": {
+      "description": "A DTO object for creating item type config API call.",
+      "properties": {
+        "clazz": {
+          "description": "customized item clazz",
+          "type": "string"
+        },
+        "dryRun": {
+          "description": "mock workflow while set true, default false",
+          "type": "boolean",
+          "x-omitempty": false
+        },
+        "fulfillmentUrl": {
+          "description": "url to send the fulfillment notification",
+          "type": "string"
+        },
+        "itemType": {
+          "description": "Item Type",
+          "enum": [
+            "APP",
+            "BUNDLE",
+            "CODE",
+            "COINS",
+            "EXTENSION",
+            "INGAMEITEM",
+            "MEDIA",
+            "OPTIONBOX",
+            "SEASON",
+            "SUBSCRIPTION"
+          ],
+          "type": "string"
+        },
+        "purchaseConditionUrl": {
+          "description": "url to check if the item is purchasable",
+          "type": "string"
+        }
+      },
+      "required": [
+        "fulfillmentUrl",
+        "itemType"
+      ],
+      "type": "object"
+    },
+    "ItemTypeConfigInfo": {
+      "properties": {
+        "clazz": {
+          "description": "customized item clazz",
+          "type": "string"
+        },
+        "createdAt": {
+          "description": "created time",
+          "format": "date-time",
+          "type": "string",
+          "x-nullable": false
+        },
+        "dryRun": {
+          "description": "mock workflow while set true, default false",
+          "type": "boolean",
+          "x-omitempty": false
+        },
+        "fulfillmentUrl": {
+          "description": "url to send the fulfillment notification",
+          "type": "string"
+        },
+        "id": {
+          "description": "Item type config id",
+          "type": "string"
+        },
+        "itemType": {
+          "description": "Item type",
+          "enum": [
+            "APP",
+            "BUNDLE",
+            "CODE",
+            "COINS",
+            "EXTENSION",
+            "INGAMEITEM",
+            "MEDIA",
+            "OPTIONBOX",
+            "SEASON",
+            "SUBSCRIPTION"
+          ],
+          "type": "string"
+        },
+        "purchaseConditionUrl": {
+          "description": "url to check if the item is purchasable",
+          "type": "string"
+        },
+        "updatedAt": {
+          "description": "updated time",
+          "format": "date-time",
+          "type": "string",
+          "x-nullable": false
+        }
+      },
+      "required": [
+        "createdAt",
+        "fulfillmentUrl",
+        "id",
+        "itemType",
+        "updatedAt"
+      ],
+      "type": "object"
+    },
+    "ItemTypeConfigUpdate": {
+      "description": "A DTO object for updating item API call.",
+      "properties": {
+        "clazz": {
+          "description": "customized item clazz",
+          "type": "string"
+        },
+        "dryRun": {
+          "description": "mock workflow while set true, default false",
+          "type": "boolean",
+          "x-omitempty": false
+        },
+        "fulfillmentUrl": {
+          "description": "url to send the fulfillment notification",
+          "type": "string"
+        },
+        "purchaseConditionUrl": {
+          "description": "url to check if the item is purchasable",
+          "type": "string"
+        }
+      },
+      "required": [
+        "fulfillmentUrl"
+      ],
+      "type": "object"
+    },
     "ItemUpdate": {
       "description": "A DTO object for updating item API call.",
       "properties": {
@@ -28936,6 +29676,7 @@
             "BUNDLE",
             "CODE",
             "COINS",
+            "EXTENSION",
             "INGAMEITEM",
             "MEDIA",
             "OPTIONBOX",
@@ -30525,6 +31266,7 @@
             "BUNDLE",
             "CODE",
             "COINS",
+            "EXTENSION",
             "INGAMEITEM",
             "MEDIA",
             "OPTIONBOX",
@@ -30787,6 +31529,7 @@
             "BUNDLE",
             "CODE",
             "COINS",
+            "EXTENSION",
             "INGAMEITEM",
             "MEDIA",
             "OPTIONBOX",
@@ -31051,6 +31794,7 @@
             "BUNDLE",
             "CODE",
             "COINS",
+            "EXTENSION",
             "INGAMEITEM",
             "MEDIA",
             "OPTIONBOX",
@@ -32234,6 +32978,7 @@
             "BUNDLE",
             "CODE",
             "COINS",
+            "EXTENSION",
             "INGAMEITEM",
             "MEDIA",
             "OPTIONBOX",

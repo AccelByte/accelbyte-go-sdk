@@ -15,21 +15,17 @@ import (
 	"strings"
 	"time"
 
-	dsmcSession "github.com/AccelByte/accelbyte-go-sdk/dsmc-sdk/pkg/dsmcclient/session"
-	"github.com/AccelByte/accelbyte-go-sdk/lobby-sdk/pkg/lobbyclient/notification"
-	"github.com/AccelByte/accelbyte-go-sdk/sessionbrowser-sdk/pkg/sessionbrowserclient/session"
-
 	"aws-lambda/pkg/constants"
 	"aws-lambda/pkg/repository"
-	"aws-lambda/pkg/repositoryGame"
 	"aws-lambda/pkg/title-matchmaking/models"
 	"aws-lambda/pkg/utils"
-
-	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclientmodels"
+	dsmcSession "github.com/AccelByte/accelbyte-go-sdk/dsmc-sdk/pkg/dsmcclient/session"
+	"github.com/AccelByte/accelbyte-go-sdk/lobby-sdk/pkg/lobbyclient/notification"
+	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils/auth"
+	"github.com/AccelByte/accelbyte-go-sdk/sessionbrowser-sdk/pkg/sessionbrowserclient/session"
 
 	"github.com/AccelByte/accelbyte-go-sdk/dsmc-sdk/pkg/dsmcclientmodels"
 
-	"github.com/AccelByte/iam-go-sdk"
 	"github.com/aws/aws-lambda-go/events"
 	"github.com/cenkalti/backoff"
 
@@ -44,13 +40,11 @@ import (
 )
 
 var (
-	configImpl              repository.ConfigRepositoryImpl
-	tokenRepositoryImpl     repository.TokenRepositoryImpl
+	configImpl              = *auth.DefaultConfigRepositoryImpl()
+	tokenRepositoryImpl     = *auth.DefaultTokenRepositoryImpl()
 	oauthService            iamService.OAuth20Service
-	configGameImpl          repositoryGame.ConfigRepositoryGameImpl
-	tokenRepositoryGameImpl repositoryGame.TokenRepositoryGameImpl
-	namespaceRoles          []iam.NamespaceRole
-	permissions             []iam.Permission
+	configGameImpl          = *auth.DefaultConfigRepositoryImpl()
+	tokenRepositoryGameImpl = *auth.DefaultTokenRepositoryImpl()
 	partyAttributes         interface{}
 	matchingAllies          []*dsmcclientmodels.ModelsRequestMatchingAlly
 	matchingParties         []*dsmcclientmodels.ModelsRequestMatchParty
@@ -81,37 +75,13 @@ func (titleMMService *TitleMatchmakingService) StartMatchmaking(req *events.APIG
 		return response, nil
 	}
 
-	// validate permission
-	clientId := os.Getenv("IAM_CLIENT_ID")
-	validateResp, validateErr := titleMMService.validatePermissionHandler(reqToken, clientId, tokenConvert)
-	if validateResp != http.StatusOK {
-		log.Print("Unable to validate permission handler. ", validateErr.Error())
-		response := events.APIGatewayProxyResponse{StatusCode: validateResp, Body: fmt.Sprint(validateErr.Error())}
-
-		return response, nil
-	}
-
-	// validate token and get userId
-	claims, err := titleMMService.IamClient.ValidateAndParseClaims(reqToken)
-	if claims == nil {
-		log.Print("Claim is empty. Error : ", err.Error())
-		message := "Claim is empty"
-		response := events.APIGatewayProxyResponse{StatusCode: http.StatusUnauthorized, Body: fmt.Sprint(message)}
-
-		return response, nil
-	}
-	if err != nil {
-		log.Print("Unable to validate and parse token. Error : ", err.Error())
-		response := events.APIGatewayProxyResponse{StatusCode: http.StatusUnauthorized, Body: fmt.Sprint(err.Error())}
-
-		return response, nil
-	}
-	userId := claims.Subject
-	namespace := claims.Namespace
+	userId := "a9163840b1534cd48af22a99b69fa065"
+	namespace := os.Getenv("GAME_NAMESPACE")
 	namespaceGame := os.Getenv("GAME_NAMESPACE")
 	gameMode := os.Getenv("GAME_MODE")
 
 	// store the valid token
+	log.Printf("storing token : %v", *tokenConvert.AccessToken)
 	errToken := tokenRepositoryImpl.Store(*tokenConvert)
 	if errToken != nil {
 		log.Print("Unable to store token :", errToken.Error())
@@ -128,6 +98,11 @@ func (titleMMService *TitleMatchmakingService) StartMatchmaking(req *events.APIG
 		ConfigRepository: &configGameImpl,
 		TokenRepository:  &tokenRepositoryGameImpl,
 	}
+	t, e := oauthService.TokenRepository.GetToken()
+	log.Print("t : ", *t.AccessToken)
+	log.Print("e : ", e)
+	a := oauthService.ConfigRepository.GetClientId()
+	log.Print("a : ", a)
 	err = oauthService.GrantTokenCredentials("", "")
 	if err != nil {
 		log.Print("Unable to grant token : ", err.Error())
@@ -483,91 +458,6 @@ func (titleMMService *TitleMatchmakingService) checkAllies(namespace, userId, ga
 	}
 
 	return allUsers, nil
-}
-
-// validating permission using lambda function
-func (titleMMService *TitleMatchmakingService) validatePermissionHandler(reqToken, clientId string,
-	tokenResponse *iamclientmodels.OauthmodelTokenResponseV3) (int, error) {
-	for _, namespaceRole := range tokenResponse.NamespaceRoles {
-		n := iam.NamespaceRole{
-			RoleID:    *namespaceRole.RoleID,
-			Namespace: *namespaceRole.Namespace,
-		}
-		namespaceRoles = append(namespaceRoles, n)
-	}
-	log.Printf("namespaceRoles : %+v", namespaceRoles)
-
-	var rangeSchedule []string
-	for _, permission := range tokenResponse.Permissions {
-		p := iam.Permission{
-			Resource:        *permission.Resource,
-			Action:          int(*permission.Action),
-			ScheduledAction: int(permission.SchedAction),
-			CronSchedule:    "",
-			RangeSchedule:   rangeSchedule,
-		}
-		permissions = append(permissions, p)
-	}
-
-	// validate token
-	validateAccessToken, err := titleMMService.IamClient.ValidateAccessToken(reqToken)
-	if err != nil {
-		log.Print("Validate access token error. Token expired.", err.Error())
-
-		return http.StatusBadRequest, err
-	}
-	if !validateAccessToken {
-		log.Print("Validate access token return false. ", err)
-
-		return http.StatusUnauthorized, err
-	} else {
-		log.Print("Access token is a valid one.")
-	}
-
-	// validate permission
-	claims := iam.JWTClaims{
-		Namespace:             *tokenResponse.Namespace,
-		DisplayName:           *tokenResponse.DisplayName,
-		Roles:                 tokenResponse.Roles,
-		AcceptedPolicyVersion: nil,
-		NamespaceRoles:        namespaceRoles,
-		Permissions:           permissions,
-		Bans:                  nil,
-		JusticeFlags:          0,
-		Scope:                 "",
-		Country:               "",
-		ClientID:              clientId,
-		IsComply:              false,
-		Claims:                iam.JWTClaims{}.Claims,
-	}
-	resource := make(map[string]string)
-	resource["{namespace}"] = claims.Namespace
-	validatePermission, err := titleMMService.IamClient.ValidatePermission(
-		&claims,
-		iam.Permission{
-			Resource: "NAMESPACE:{namespace}:MATCHMAKING",
-			Action:   iam.ActionCreate,
-		},
-		resource,
-	)
-
-	if err != nil {
-		log.Print("Unable to validate permission. Error : ", err.Error())
-
-		return http.StatusForbidden, err
-	} else {
-		log.Print("Successful validate permission from iam client")
-	}
-
-	if !validatePermission {
-		log.Print("Insufficient permissions")
-
-		return http.StatusForbidden, err
-	} else {
-		log.Print("There's enough permission")
-	}
-
-	return http.StatusOK, nil
 }
 
 // GO-SDK lobby service

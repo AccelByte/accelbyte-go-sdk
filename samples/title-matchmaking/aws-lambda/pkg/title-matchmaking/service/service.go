@@ -5,8 +5,6 @@
 package service
 
 import (
-	auth "github.com/AccelByte/go-restful-plugins/v4/pkg/auth/iam"
-	"github.com/AccelByte/iam-go-sdk"
 	"github.com/emicklei/go-restful/v3"
 	"github.com/patrickmn/go-cache"
 
@@ -18,12 +16,10 @@ import (
 
 // TitleMatchmakingService service for matchmaking
 type TitleMatchmakingService struct {
-	AuthFilter          *auth.Filter
 	WebService          *restful.WebService
 	RolePermissionCache *cache.Cache
 	Name                string
 	Realm               string
-	IamClient           iam.Client
 	IamBaseURL          string
 	Channel             dao.Channel
 	Config              *config.Config
@@ -32,17 +28,14 @@ type TitleMatchmakingService struct {
 
 // New creates new TitleMatchmakingService
 func New(
-	authFilter *auth.Filter,
 	name string,
 	realm string,
-	iamClient iam.Client,
 	iamBaseURL string,
 	channelList dao.Channel,
 	config *config.Config,
 	titleMMDAORedis *daoRedis.TitleMMDAORedis,
 ) *TitleMatchmakingService {
 	service := &TitleMatchmakingService{
-		AuthFilter: authFilter,
 		WebService: new(restful.WebService),
 		RolePermissionCache: cache.New(
 			constant.DefaultRoleCacheExpirationTime,
@@ -50,7 +43,6 @@ func New(
 		),
 		Name:            name,
 		Realm:           realm,
-		IamClient:       iamClient,
 		IamBaseURL:      iamBaseURL,
 		Channel:         channelList,
 		Config:          config,

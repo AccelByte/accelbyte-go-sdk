@@ -13,7 +13,7 @@ Resources:
       CodeUri: .
       Description: ''
       MemorySize: 512
-      Timeout: 15
+      Timeout: 60 # should be 30 or more to wait the DS status READY
       # The Amazon Resource Name (ARN) of the function's execution role.
       # Required: Yes
       # Type: String

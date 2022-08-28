@@ -4,6 +4,8 @@
 
 package constants
 
+import "time"
+
 const (
 	ServiceName = "Title Matchmaking Service"
 
@@ -11,4 +13,6 @@ const (
 	MatchmakingRequestQueue = "matchmaking:requestQueue"
 
 	MatchmakingNotificationTopic = "NOTIF"
+
+	DefaultTime = 30 * time.Second
 )

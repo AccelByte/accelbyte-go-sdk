@@ -23,7 +23,7 @@ func GenerateUUID() string {
 	return strings.ReplaceAll(id.String(), "-", "")
 }
 
-// ConvertTokenToTokenResponseV3 is used to convert token response
+// ConvertTokenToTokenResponseV3 is used to convert accessToken from STRING to OauthmodelTokenResponseV3
 func ConvertTokenToTokenResponseV3(accessToken string) (*iamclientmodels.OauthmodelTokenResponseV3, error) {
 	tokenResponseV3 := &iamclientmodels.OauthmodelTokenResponseV3{}
 	parsedToken, err := jwt.Parse(accessToken, func(token *jwt.Token) (interface{}, error) {

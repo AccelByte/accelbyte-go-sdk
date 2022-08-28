@@ -8,7 +8,6 @@ import (
 	"context"
 	"fmt"
 	"log"
-	"time"
 
 	"github.com/go-redis/redis/v8"
 
@@ -44,7 +43,7 @@ func (dao *Channel) Save(channel models.Channel) error {
 }
 
 func (dao *Channel) saveChannelListToRedis(channel models.Channel) error {
-	ctx, cancel := context.WithTimeout(context.Background(), 10*time.Second)
+	ctx, cancel := context.WithTimeout(context.Background(), constants.DefaultTime)
 	defer cancel()
 
 	res := dao.redisClient.SAdd(ctx, constants.ChannelListKey, channel.Slug)

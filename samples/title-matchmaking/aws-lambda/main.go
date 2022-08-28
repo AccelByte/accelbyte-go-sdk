@@ -9,12 +9,13 @@ import (
 	"os"
 	"time"
 
-	title_matchmaking "aws-lambda/pkg/title-matchmaking"
+	titleMatchmaking "aws-lambda/pkg/title-matchmaking"
 	"aws-lambda/pkg/title-matchmaking/constants"
 	"aws-lambda/pkg/title-matchmaking/dao"
-	daoRedis "aws-lambda/pkg/title-matchmaking/dao/redis"
-	channelList2 "aws-lambda/pkg/title-matchmaking/dao/redis/channelList"
+	r "aws-lambda/pkg/title-matchmaking/dao/redis"
+	c "aws-lambda/pkg/title-matchmaking/dao/redis/channelList"
 	"aws-lambda/pkg/title-matchmaking/utils"
+
 	"github.com/go-redis/redis/v8"
 
 	"github.com/aws/aws-lambda-go/lambda"
@@ -34,12 +35,12 @@ func main() {
 		MaxRetries:      60,
 		MaxRetryBackoff: time.Second,
 	})
-	channelList = channelList2.New(redisClient)
+	channelList = c.New(redisClient)
 	instanceID := utils.GenerateUUID()
-	titleMMRedis := daoRedis.New(constants.ServiceName, instanceID, redisClient)
+	titleMMRedis := r.New(constants.ServiceName, instanceID, redisClient)
 
 	iamBaseURL := os.Getenv("IAM_BASE_URL")
-	titleMMService := title_matchmaking.New(
+	titleMMService := titleMatchmaking.New(
 		constants.ServiceName,
 		iamBaseURL,
 		channelList,

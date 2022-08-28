@@ -13935,11 +13935,6 @@
             "description": "Access Token not exist or expired"
           }
         },
-        "security": [
-          {
-            "authorization": []
-          }
-        ],
         "summary": "OAuth2 token verification API",
         "tags": [
           "OAuth2.0"

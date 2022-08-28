@@ -288,11 +288,9 @@ func (aaa *OAuth20Service) TokenGrantV3(input *o_auth2_0.TokenGrantV3Params) (*i
 
 // Deprecated: Use VerifyTokenV3Short instead
 func (aaa *OAuth20Service) VerifyTokenV3(input *o_auth2_0.VerifyTokenV3Params) (*iamclientmodels.OauthmodelTokenResponseV3, error) {
-	token, err := aaa.TokenRepository.GetToken()
-	if err != nil {
-		return nil, err
-	}
-	ok, badRequest, err := aaa.Client.OAuth20.VerifyTokenV3(input, client.BearerToken(*token.AccessToken))
+	clientID := aaa.ConfigRepository.GetClientId()
+	clientSecret := aaa.ConfigRepository.GetClientSecret()
+	ok, badRequest, err := aaa.Client.OAuth20.VerifyTokenV3(input, client.BasicAuth(clientID, clientSecret))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -649,7 +647,7 @@ func (aaa *OAuth20Service) VerifyTokenV3Short(input *o_auth2_0.VerifyTokenV3Para
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
-			{"bearer"},
+			{"basic"},
 		}
 		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}

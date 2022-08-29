@@ -8,6 +8,7 @@ import (
 	"context"
 	"fmt"
 	"log"
+	"time"
 
 	"github.com/go-redis/redis/v8"
 
@@ -39,6 +40,10 @@ func (dao *Channel) Save(channel models.Channel) error {
 		return err
 	}
 
+	go func() {
+		_ = dao.deleteChannelList()
+	}()
+
 	return nil
 }
 
@@ -49,6 +54,21 @@ func (dao *Channel) saveChannelListToRedis(channel models.Channel) error {
 	res := dao.redisClient.SAdd(ctx, constants.ChannelListKey, channel.Slug)
 	if res.Err() != nil && res.Err() != redis.Nil {
 		log.Printf("failed to save to session. Error: %s", res.Err().Error())
+
+		return res.Err()
+	}
+
+	return nil
+}
+
+func (dao *Channel) deleteChannelList() error {
+	ctx, cancel := context.WithTimeout(context.Background(), constants.DefaultTime)
+	defer cancel()
+
+	time.Sleep(30 * time.Second)
+	res := dao.redisClient.FlushAll(ctx)
+	if res.Err() != nil && res.Err() != redis.Nil {
+		log.Printf("failed to flush all data. Error: %s", res.Err().Error())
 
 		return res.Err()
 	}

@@ -1,3 +1,37 @@
+<a name="v0.26.0"></a>
+## [v0.26.0] - 2022-08-29
+
+### Chore
+- **core:** use interface instead of directly using OauthmodelTokenResponseV3
+- **core:** write an error to login first
+- **makefile:** exclude justice codegen sdk path
+- **samples:** delete the data after certain time
+- **samples:** delete unnecessary codes
+- **samples:** edit yaml file
+- **samples:** remove iam go sdk
+- **samples:** refactoring title matchmaking sample apps
+- **sdk:** regenerate IAM service for verify token
+- **sdk:** regenerate sdk, cli sample app, cli test, doc index for AccelByte Cloud 3.30
+- **spec:** update spec for AccelByte Cloud 3.30
+
+### Docs
+- update CHANGELOG.md for v0.26.0 release
+
+### Breaking Changes:
+There is a commit to **use interface instead of directly using OauthmodelTokenResponseV3**. The example is in the chore commit:
+
+#### Chore:
+- **samples:** use default token implementation instead
+- **test:** use default token implementation instead
+
+### Feat
+- **core:** add the default config and token repository implementation
+- **test:** add default config and token repository
+
+### Fix
+- **makefile:** exclude path
+
+
 <a name="v0.25.0"></a>
 ## [v0.25.0] - 2022-08-15
 
@@ -849,6 +883,7 @@ The wrapper have been refactored and has breaking change, these are the list:
 ### Fix
 - delete go.mod ([#1](https://github.com/AccelByte/accelbyte-go-sdk/issues/1))
 
+[v0.26.0]: https://github.com/AccelByte/accelbyte-go-sdk/compare/v0.25.0...v0.26.0
 [v0.25.0]: https://github.com/AccelByte/accelbyte-go-sdk/compare/v0.24.0...v0.25.0
 [v0.24.0]: https://github.com/AccelByte/accelbyte-go-sdk/compare/v0.23.0...v0.24.0
 [v0.23.0]: https://github.com/AccelByte/accelbyte-go-sdk/compare/v0.22.0...v0.23.0

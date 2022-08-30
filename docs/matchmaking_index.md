@@ -59,6 +59,8 @@
 | `models.Channel` | [ModelsChannel ](../matchmaking-sdk/pkg/matchmakingclientmodels/models_channel.go) |
 | `models.ChannelRequest` | [ModelsChannelRequest ](../matchmaking-sdk/pkg/matchmakingclientmodels/models_channel_request.go) |
 | `models.ChannelV1` | [ModelsChannelV1 ](../matchmaking-sdk/pkg/matchmakingclientmodels/models_channel_v1.go) |
+| `models.Combination` | [ModelsCombination ](../matchmaking-sdk/pkg/matchmakingclientmodels/models_combination.go) |
+| `models.Combination.alliances` | [ModelsCombinationAlliances ](../matchmaking-sdk/pkg/matchmakingclientmodels/models_combination_alliances.go) |
 | `models.CreateChannelResponse` | [ModelsCreateChannelResponse ](../matchmaking-sdk/pkg/matchmakingclientmodels/models_create_channel_response.go) |
 | `models.DequeueRequest` | [ModelsDequeueRequest ](../matchmaking-sdk/pkg/matchmakingclientmodels/models_dequeue_request.go) |
 | `models.FlexingRule` | [ModelsFlexingRule ](../matchmaking-sdk/pkg/matchmakingclientmodels/models_flexing_rule.go) |

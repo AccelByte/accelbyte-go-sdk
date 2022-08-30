@@ -28,6 +28,7 @@ const (
 	SearchItemsBUNDLEConstant       = "BUNDLE"
 	SearchItemsCODEConstant         = "CODE"
 	SearchItemsCOINSConstant        = "COINS"
+	SearchItemsEXTENSIONConstant    = "EXTENSION"
 	SearchItemsINGAMEITEMConstant   = "INGAMEITEM"
 	SearchItemsMEDIAConstant        = "MEDIA"
 	SearchItemsOPTIONBOXConstant    = "OPTIONBOX"

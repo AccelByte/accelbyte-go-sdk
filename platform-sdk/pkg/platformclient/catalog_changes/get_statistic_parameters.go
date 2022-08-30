@@ -34,6 +34,7 @@ const (
 	GetStatisticBUNDLEConstant       = "BUNDLE"
 	GetStatisticCODEConstant         = "CODE"
 	GetStatisticCOINSConstant        = "COINS"
+	GetStatisticEXTENSIONConstant    = "EXTENSION"
 	GetStatisticINGAMEITEMConstant   = "INGAMEITEM"
 	GetStatisticMEDIAConstant        = "MEDIA"
 	GetStatisticOPTIONBOXConstant    = "OPTIONBOX"

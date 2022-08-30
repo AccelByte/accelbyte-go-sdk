@@ -31,7 +31,7 @@ type ModelsContentDownloadResponse struct {
 	// Required: true
 	CreatorFollowState *ModelsCreatorFollowState `json:"creatorFollowState"`
 
-	// creator name
+	// Creator Name is deprecated
 	// Required: true
 	CreatorName *string `json:"creatorName"`
 

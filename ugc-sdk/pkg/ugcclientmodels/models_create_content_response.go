@@ -30,7 +30,7 @@ type ModelsCreateContentResponse struct {
 	// Required: true
 	CreatedTime *string `json:"createdTime"`
 
-	// creator name
+	// Creator Name is deprecated
 	// Required: true
 	CreatorName *string `json:"creatorName"`
 

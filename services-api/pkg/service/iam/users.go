@@ -2570,6 +2570,32 @@ func (aaa *UsersService) AdminGetListJusticePlatformAccounts(input *users.AdminG
 	return ok.GetPayload(), nil
 }
 
+// Deprecated: Use AdminGetUserMappingShort instead
+func (aaa *UsersService) AdminGetUserMapping(input *users.AdminGetUserMappingParams) (*iamclientmodels.ModelGetUserMappingV3, error) {
+	token, err := aaa.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, badRequest, unauthorized, forbidden, notFound, err := aaa.Client.Users.AdminGetUserMapping(input, client.BearerToken(*token.AccessToken))
+	if badRequest != nil {
+		return nil, badRequest
+	}
+	if unauthorized != nil {
+		return nil, unauthorized
+	}
+	if forbidden != nil {
+		return nil, forbidden
+	}
+	if notFound != nil {
+		return nil, notFound
+	}
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
 // Deprecated: Use AdminCreateJusticeUserShort instead
 func (aaa *UsersService) AdminCreateJusticeUser(input *users.AdminCreateJusticeUserParams) (*iamclientmodels.ModelCreateJusticeUserResponse, error) {
 	token, err := aaa.TokenRepository.GetToken()
@@ -3451,6 +3477,35 @@ func (aaa *UsersService) PublicPlatformUnlinkAllV3(input *users.PublicPlatformUn
 	return nil
 }
 
+// Deprecated: Use PublicForcePlatformLinkV3Short instead
+func (aaa *UsersService) PublicForcePlatformLinkV3(input *users.PublicForcePlatformLinkV3Params) error {
+	token, err := aaa.TokenRepository.GetToken()
+	if err != nil {
+		return err
+	}
+	_, badRequest, unauthorized, notFound, conflict, internalServerError, err := aaa.Client.Users.PublicForcePlatformLinkV3(input, client.BearerToken(*token.AccessToken))
+	if badRequest != nil {
+		return badRequest
+	}
+	if unauthorized != nil {
+		return unauthorized
+	}
+	if notFound != nil {
+		return notFound
+	}
+	if conflict != nil {
+		return conflict
+	}
+	if internalServerError != nil {
+		return internalServerError
+	}
+	if err != nil {
+		return err
+	}
+
+	return nil
+}
+
 // Deprecated: Use PublicWebLinkPlatformShort instead
 func (aaa *UsersService) PublicWebLinkPlatform(input *users.PublicWebLinkPlatformParams) (*iamclientmodels.ModelWebLinkingResponse, error) {
 	token, err := aaa.TokenRepository.GetToken()
@@ -3573,6 +3628,29 @@ func (aaa *UsersService) PublicListUserAllPlatformAccountsDistinctV3(input *user
 	if badRequest != nil {
 		return nil, badRequest
 	}
+	if unauthorized != nil {
+		return nil, unauthorized
+	}
+	if forbidden != nil {
+		return nil, forbidden
+	}
+	if notFound != nil {
+		return nil, notFound
+	}
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
+// Deprecated: Use PublicGetUserInformationV3Short instead
+func (aaa *UsersService) PublicGetUserInformationV3(input *users.PublicGetUserInformationV3Params) (*iamclientmodels.AccountcommonUserInformationV3, error) {
+	token, err := aaa.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, unauthorized, forbidden, notFound, err := aaa.Client.Users.PublicGetUserInformationV3(input, client.BearerToken(*token.AccessToken))
 	if unauthorized != nil {
 		return nil, unauthorized
 	}
@@ -3763,6 +3841,46 @@ func (aaa *UsersService) PublicGetMyUserV3(input *users.PublicGetMyUserV3Params)
 	}
 
 	return ok.GetPayload(), nil
+}
+
+// Deprecated: Use PublicSendVerificationLinkV3Short instead
+func (aaa *UsersService) PublicSendVerificationLinkV3(input *users.PublicSendVerificationLinkV3Params) error {
+	token, err := aaa.TokenRepository.GetToken()
+	if err != nil {
+		return err
+	}
+	_, badRequest, unauthorized, conflict, tooManyRequests, err := aaa.Client.Users.PublicSendVerificationLinkV3(input, client.BearerToken(*token.AccessToken))
+	if badRequest != nil {
+		return badRequest
+	}
+	if unauthorized != nil {
+		return unauthorized
+	}
+	if conflict != nil {
+		return conflict
+	}
+	if tooManyRequests != nil {
+		return tooManyRequests
+	}
+	if err != nil {
+		return err
+	}
+
+	return nil
+}
+
+// Deprecated: Use PublicVerifyUserByLinkV3Short instead
+func (aaa *UsersService) PublicVerifyUserByLinkV3(input *users.PublicVerifyUserByLinkV3Params) error {
+	token, err := aaa.TokenRepository.GetToken()
+	if err != nil {
+		return err
+	}
+	_, err = aaa.Client.Users.PublicVerifyUserByLinkV3(input, client.BearerToken(*token.AccessToken))
+	if err != nil {
+		return err
+	}
+
+	return nil
 }
 
 func (aaa *UsersService) CreateUserShort(input *users.CreateUserParams) (*iamclientmodels.ModelUserCreateResponse, error) {
@@ -6165,6 +6283,31 @@ func (aaa *UsersService) AdminGetListJusticePlatformAccountsShort(input *users.A
 	return ok.GetPayload(), nil
 }
 
+func (aaa *UsersService) AdminGetUserMappingShort(input *users.AdminGetUserMappingParams) (*iamclientmodels.ModelGetUserMappingV3, error) {
+	authInfoWriter := input.AuthInfoWriter
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
+	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  aaa.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
+	ok, err := aaa.Client.Users.AdminGetUserMappingShort(input, authInfoWriter)
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
 func (aaa *UsersService) AdminCreateJusticeUserShort(input *users.AdminCreateJusticeUserParams) (*iamclientmodels.ModelCreateJusticeUserResponse, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
@@ -7015,6 +7158,31 @@ func (aaa *UsersService) PublicPlatformUnlinkAllV3Short(input *users.PublicPlatf
 	return nil
 }
 
+func (aaa *UsersService) PublicForcePlatformLinkV3Short(input *users.PublicForcePlatformLinkV3Params) error {
+	authInfoWriter := input.AuthInfoWriter
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
+	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  aaa.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
+	_, err := aaa.Client.Users.PublicForcePlatformLinkV3Short(input, authInfoWriter)
+	if err != nil {
+		return err
+	}
+
+	return nil
+}
+
 func (aaa *UsersService) PublicWebLinkPlatformShort(input *users.PublicWebLinkPlatformParams) (*iamclientmodels.ModelWebLinkingResponse, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
@@ -7158,6 +7326,31 @@ func (aaa *UsersService) PublicListUserAllPlatformAccountsDistinctV3Short(input 
 	}
 
 	ok, err := aaa.Client.Users.PublicListUserAllPlatformAccountsDistinctV3Short(input, authInfoWriter)
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
+func (aaa *UsersService) PublicGetUserInformationV3Short(input *users.PublicGetUserInformationV3Params) (*iamclientmodels.AccountcommonUserInformationV3, error) {
+	authInfoWriter := input.AuthInfoWriter
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
+	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  aaa.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
+	ok, err := aaa.Client.Users.PublicGetUserInformationV3Short(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -7338,4 +7531,54 @@ func (aaa *UsersService) PublicGetMyUserV3Short(input *users.PublicGetMyUserV3Pa
 	}
 
 	return ok.GetPayload(), nil
+}
+
+func (aaa *UsersService) PublicSendVerificationLinkV3Short(input *users.PublicSendVerificationLinkV3Params) error {
+	authInfoWriter := input.AuthInfoWriter
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
+	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  aaa.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
+	_, err := aaa.Client.Users.PublicSendVerificationLinkV3Short(input, authInfoWriter)
+	if err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (aaa *UsersService) PublicVerifyUserByLinkV3Short(input *users.PublicVerifyUserByLinkV3Params) error {
+	authInfoWriter := input.AuthInfoWriter
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
+	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  aaa.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
+	_, err := aaa.Client.Users.PublicVerifyUserByLinkV3Short(input, authInfoWriter)
+	if err != nil {
+		return err
+	}
+
+	return nil
 }

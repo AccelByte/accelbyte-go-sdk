@@ -17,6 +17,10 @@ import (
 // swagger:model models.AllianceFlexingRule
 type ModelsAllianceFlexingRule struct {
 
+	// combination
+	// Required: true
+	Combination *ModelsCombination `json:"combination"`
+
 	// duration
 	// Required: true
 	Duration *int64 `json:"duration"`
@@ -42,6 +46,10 @@ type ModelsAllianceFlexingRule struct {
 func (m *ModelsAllianceFlexingRule) Validate(formats strfmt.Registry) error {
 	var res []error
 
+	if err := m.validateCombination(formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.validateDuration(formats); err != nil {
 		res = append(res, err)
 	}
@@ -65,6 +73,24 @@ func (m *ModelsAllianceFlexingRule) Validate(formats strfmt.Registry) error {
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
+	return nil
+}
+
+func (m *ModelsAllianceFlexingRule) validateCombination(formats strfmt.Registry) error {
+
+	if err := validate.Required("combination", "body", m.Combination); err != nil {
+		return err
+	}
+
+	if m.Combination != nil {
+		if err := m.Combination.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("combination")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 

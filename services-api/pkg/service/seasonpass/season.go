@@ -191,6 +191,26 @@ func (aaa *SeasonService) CloneSeason(input *season.CloneSeasonParams) (*seasonp
 	return ok.GetPayload(), nil
 }
 
+// Deprecated: Use GetFullSeasonShort instead
+func (aaa *SeasonService) GetFullSeason(input *season.GetFullSeasonParams) (*seasonpassclientmodels.FullSeasonInfo, error) {
+	token, err := aaa.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, badRequest, notFound, err := aaa.Client.Season.GetFullSeason(input, client.BearerToken(*token.AccessToken))
+	if badRequest != nil {
+		return nil, badRequest
+	}
+	if notFound != nil {
+		return nil, notFound
+	}
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
 // Deprecated: Use PublishSeasonShort instead
 func (aaa *SeasonService) PublishSeason(input *season.PublishSeasonParams) (*seasonpassclientmodels.SeasonInfo, error) {
 	token, err := aaa.TokenRepository.GetToken()
@@ -632,6 +652,31 @@ func (aaa *SeasonService) CloneSeasonShort(input *season.CloneSeasonParams) (*se
 	}
 
 	ok, err := aaa.Client.Season.CloneSeasonShort(input, authInfoWriter)
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
+func (aaa *SeasonService) GetFullSeasonShort(input *season.GetFullSeasonParams) (*seasonpassclientmodels.FullSeasonInfo, error) {
+	authInfoWriter := input.AuthInfoWriter
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
+	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  aaa.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
+	ok, err := aaa.Client.Season.GetFullSeasonShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}

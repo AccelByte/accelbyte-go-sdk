@@ -27,6 +27,7 @@ func init() {
 	AchievementCmd.AddCommand(achievements.AdminDeleteAchievementCmd)
 	AchievementCmd.AddCommand(achievements.AdminUpdateAchievementListOrderCmd)
 	AchievementCmd.AddCommand(achievements.AdminListUserAchievementsCmd)
+	AchievementCmd.AddCommand(achievements.AdminResetAchievementCmd)
 	AchievementCmd.AddCommand(achievements.AdminUnlockAchievementCmd)
 	AchievementCmd.AddCommand(achievements.PublicListAchievementsCmd)
 	AchievementCmd.AddCommand(achievements.PublicGetAchievementCmd)

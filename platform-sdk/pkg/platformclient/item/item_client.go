@@ -39,10 +39,14 @@ type ClientService interface {
 	BulkGetLocaleItemsShort(params *BulkGetLocaleItemsParams, authInfo runtime.ClientAuthInfoWriter) (*BulkGetLocaleItemsOK, error)
 	CreateItem(params *CreateItemParams, authInfo runtime.ClientAuthInfoWriter) (*CreateItemCreated, *CreateItemBadRequest, *CreateItemNotFound, *CreateItemConflict, *CreateItemUnprocessableEntity, error)
 	CreateItemShort(params *CreateItemParams, authInfo runtime.ClientAuthInfoWriter) (*CreateItemCreated, error)
+	CreateItemTypeConfig(params *CreateItemTypeConfigParams, authInfo runtime.ClientAuthInfoWriter) (*CreateItemTypeConfigCreated, *CreateItemTypeConfigBadRequest, *CreateItemTypeConfigConflict, *CreateItemTypeConfigUnprocessableEntity, error)
+	CreateItemTypeConfigShort(params *CreateItemTypeConfigParams, authInfo runtime.ClientAuthInfoWriter) (*CreateItemTypeConfigCreated, error)
 	DefeatureItem(params *DefeatureItemParams, authInfo runtime.ClientAuthInfoWriter) (*DefeatureItemOK, *DefeatureItemNotFound, *DefeatureItemConflict, error)
 	DefeatureItemShort(params *DefeatureItemParams, authInfo runtime.ClientAuthInfoWriter) (*DefeatureItemOK, error)
 	DeleteItem(params *DeleteItemParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteItemNoContent, *DeleteItemNotFound, error)
 	DeleteItemShort(params *DeleteItemParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteItemNoContent, error)
+	DeleteItemTypeConfig(params *DeleteItemTypeConfigParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteItemTypeConfigNoContent, *DeleteItemTypeConfigNotFound, error)
+	DeleteItemTypeConfigShort(params *DeleteItemTypeConfigParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteItemTypeConfigNoContent, error)
 	DisableItem(params *DisableItemParams, authInfo runtime.ClientAuthInfoWriter) (*DisableItemOK, *DisableItemNotFound, *DisableItemConflict, error)
 	DisableItemShort(params *DisableItemParams, authInfo runtime.ClientAuthInfoWriter) (*DisableItemOK, error)
 	EnableItem(params *EnableItemParams, authInfo runtime.ClientAuthInfoWriter) (*EnableItemOK, *EnableItemNotFound, *EnableItemConflict, error)
@@ -65,12 +69,16 @@ type ClientService interface {
 	GetItemDynamicDataShort(params *GetItemDynamicDataParams, authInfo runtime.ClientAuthInfoWriter) (*GetItemDynamicDataOK, error)
 	GetItemIDBySku(params *GetItemIDBySkuParams, authInfo runtime.ClientAuthInfoWriter) (*GetItemIDBySkuOK, *GetItemIDBySkuNotFound, error)
 	GetItemIDBySkuShort(params *GetItemIDBySkuParams, authInfo runtime.ClientAuthInfoWriter) (*GetItemIDBySkuOK, error)
+	GetItemTypeConfig(params *GetItemTypeConfigParams, authInfo runtime.ClientAuthInfoWriter) (*GetItemTypeConfigOK, *GetItemTypeConfigNotFound, error)
+	GetItemTypeConfigShort(params *GetItemTypeConfigParams, authInfo runtime.ClientAuthInfoWriter) (*GetItemTypeConfigOK, error)
 	GetLocaleItem(params *GetLocaleItemParams, authInfo runtime.ClientAuthInfoWriter) (*GetLocaleItemOK, *GetLocaleItemNotFound, error)
 	GetLocaleItemShort(params *GetLocaleItemParams, authInfo runtime.ClientAuthInfoWriter) (*GetLocaleItemOK, error)
 	GetLocaleItemBySku(params *GetLocaleItemBySkuParams, authInfo runtime.ClientAuthInfoWriter) (*GetLocaleItemBySkuOK, *GetLocaleItemBySkuNotFound, error)
 	GetLocaleItemBySkuShort(params *GetLocaleItemBySkuParams, authInfo runtime.ClientAuthInfoWriter) (*GetLocaleItemBySkuOK, error)
 	ListBasicItemsByFeatures(params *ListBasicItemsByFeaturesParams, authInfo runtime.ClientAuthInfoWriter) (*ListBasicItemsByFeaturesOK, error)
 	ListBasicItemsByFeaturesShort(params *ListBasicItemsByFeaturesParams, authInfo runtime.ClientAuthInfoWriter) (*ListBasicItemsByFeaturesOK, error)
+	ListItemTypeConfigs(params *ListItemTypeConfigsParams, authInfo runtime.ClientAuthInfoWriter) (*ListItemTypeConfigsOK, error)
+	ListItemTypeConfigsShort(params *ListItemTypeConfigsParams, authInfo runtime.ClientAuthInfoWriter) (*ListItemTypeConfigsOK, error)
 	PublicBulkGetItems(params *PublicBulkGetItemsParams, authInfo runtime.ClientAuthInfoWriter) (*PublicBulkGetItemsOK, *PublicBulkGetItemsNotFound, error)
 	PublicBulkGetItemsShort(params *PublicBulkGetItemsParams, authInfo runtime.ClientAuthInfoWriter) (*PublicBulkGetItemsOK, error)
 	PublicGetApp(params *PublicGetAppParams) (*PublicGetAppOK, *PublicGetAppNotFound, error)
@@ -91,10 +99,14 @@ type ClientService interface {
 	PublicValidateItemPurchaseConditionShort(params *PublicValidateItemPurchaseConditionParams, authInfo runtime.ClientAuthInfoWriter) (*PublicValidateItemPurchaseConditionOK, error)
 	QueryItems(params *QueryItemsParams, authInfo runtime.ClientAuthInfoWriter) (*QueryItemsOK, *QueryItemsNotFound, *QueryItemsUnprocessableEntity, error)
 	QueryItemsShort(params *QueryItemsParams, authInfo runtime.ClientAuthInfoWriter) (*QueryItemsOK, error)
+	QueryItems1(params *QueryItems1Params, authInfo runtime.ClientAuthInfoWriter) (*QueryItems1OK, *QueryItems1NotFound, *QueryItems1UnprocessableEntity, error)
+	QueryItems1Short(params *QueryItems1Params, authInfo runtime.ClientAuthInfoWriter) (*QueryItems1OK, error)
 	QueryUncategorizedItems(params *QueryUncategorizedItemsParams, authInfo runtime.ClientAuthInfoWriter) (*QueryUncategorizedItemsOK, *QueryUncategorizedItemsNotFound, *QueryUncategorizedItemsUnprocessableEntity, error)
 	QueryUncategorizedItemsShort(params *QueryUncategorizedItemsParams, authInfo runtime.ClientAuthInfoWriter) (*QueryUncategorizedItemsOK, error)
 	ReturnItem(params *ReturnItemParams, authInfo runtime.ClientAuthInfoWriter) (*ReturnItemNoContent, *ReturnItemNotFound, *ReturnItemUnprocessableEntity, error)
 	ReturnItemShort(params *ReturnItemParams, authInfo runtime.ClientAuthInfoWriter) (*ReturnItemNoContent, error)
+	SearchItemTypeConfig(params *SearchItemTypeConfigParams, authInfo runtime.ClientAuthInfoWriter) (*SearchItemTypeConfigOK, *SearchItemTypeConfigNotFound, error)
+	SearchItemTypeConfigShort(params *SearchItemTypeConfigParams, authInfo runtime.ClientAuthInfoWriter) (*SearchItemTypeConfigOK, error)
 	SearchItems(params *SearchItemsParams, authInfo runtime.ClientAuthInfoWriter) (*SearchItemsOK, *SearchItemsNotFound, error)
 	SearchItemsShort(params *SearchItemsParams, authInfo runtime.ClientAuthInfoWriter) (*SearchItemsOK, error)
 	SyncInGameItem(params *SyncInGameItemParams, authInfo runtime.ClientAuthInfoWriter) (*SyncInGameItemOK, *SyncInGameItemBadRequest, *SyncInGameItemNotFound, *SyncInGameItemConflict, *SyncInGameItemUnprocessableEntity, error)
@@ -105,6 +117,8 @@ type ClientService interface {
 	UpdateItemShort(params *UpdateItemParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateItemOK, error)
 	UpdateItemPurchaseCondition(params *UpdateItemPurchaseConditionParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateItemPurchaseConditionOK, *UpdateItemPurchaseConditionBadRequest, *UpdateItemPurchaseConditionNotFound, *UpdateItemPurchaseConditionConflict, *UpdateItemPurchaseConditionUnprocessableEntity, error)
 	UpdateItemPurchaseConditionShort(params *UpdateItemPurchaseConditionParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateItemPurchaseConditionOK, error)
+	UpdateItemTypeConfig(params *UpdateItemTypeConfigParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateItemTypeConfigOK, *UpdateItemTypeConfigNotFound, *UpdateItemTypeConfigConflict, *UpdateItemTypeConfigUnprocessableEntity, error)
+	UpdateItemTypeConfigShort(params *UpdateItemTypeConfigParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateItemTypeConfigOK, error)
 	ValidateItemPurchaseCondition(params *ValidateItemPurchaseConditionParams, authInfo runtime.ClientAuthInfoWriter) (*ValidateItemPurchaseConditionOK, *ValidateItemPurchaseConditionUnprocessableEntity, error)
 	ValidateItemPurchaseConditionShort(params *ValidateItemPurchaseConditionParams, authInfo runtime.ClientAuthInfoWriter) (*ValidateItemPurchaseConditionOK, error)
 
@@ -632,6 +646,115 @@ func (a *Client) CreateItemShort(params *CreateItemParams, authInfo runtime.Clie
 }
 
 /*
+Deprecated: Use CreateItemTypeConfigShort instead.
+
+  CreateItemTypeConfig creates an item type config
+
+  This API is used to create an item type config.&lt;p&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:ITEM:CONFIG&#34;, action=1 (CREATE)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: item type config data&lt;/li&gt;&lt;/ul&gt;
+*/
+func (a *Client) CreateItemTypeConfig(params *CreateItemTypeConfigParams, authInfo runtime.ClientAuthInfoWriter) (*CreateItemTypeConfigCreated, *CreateItemTypeConfigBadRequest, *CreateItemTypeConfigConflict, *CreateItemTypeConfigUnprocessableEntity, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewCreateItemTypeConfigParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "createItemTypeConfig",
+		Method:             "POST",
+		PathPattern:        "/platform/admin/items/configs",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &CreateItemTypeConfigReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, nil, nil, nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *CreateItemTypeConfigCreated:
+		return v, nil, nil, nil, nil
+
+	case *CreateItemTypeConfigBadRequest:
+		return nil, v, nil, nil, nil
+
+	case *CreateItemTypeConfigConflict:
+		return nil, nil, v, nil, nil
+
+	case *CreateItemTypeConfigUnprocessableEntity:
+		return nil, nil, nil, v, nil
+
+	default:
+		return nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+  CreateItemTypeConfigShort creates an item type config
+
+  This API is used to create an item type config.&lt;p&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:ITEM:CONFIG&#34;, action=1 (CREATE)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: item type config data&lt;/li&gt;&lt;/ul&gt;
+*/
+func (a *Client) CreateItemTypeConfigShort(params *CreateItemTypeConfigParams, authInfo runtime.ClientAuthInfoWriter) (*CreateItemTypeConfigCreated, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewCreateItemTypeConfigParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "createItemTypeConfig",
+		Method:             "POST",
+		PathPattern:        "/platform/admin/items/configs",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &CreateItemTypeConfigReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *CreateItemTypeConfigCreated:
+		return v, nil
+	case *CreateItemTypeConfigBadRequest:
+		return nil, v
+	case *CreateItemTypeConfigConflict:
+		return nil, v
+	case *CreateItemTypeConfigUnprocessableEntity:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
 Deprecated: Use DefeatureItemShort instead.
 
   DefeatureItem defeatures an item
@@ -827,6 +950,105 @@ func (a *Client) DeleteItemShort(params *DeleteItemParams, authInfo runtime.Clie
 	case *DeleteItemNoContent:
 		return v, nil
 	case *DeleteItemNotFound:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+Deprecated: Use DeleteItemTypeConfigShort instead.
+
+  DeleteItemTypeConfig deletes an item type config
+
+  This API is used to delete an item type config permanently.Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:ITEM:CONFIG&#34;, action=8 (DELETE)&lt;/li&gt;&lt;/ul&gt;
+*/
+func (a *Client) DeleteItemTypeConfig(params *DeleteItemTypeConfigParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteItemTypeConfigNoContent, *DeleteItemTypeConfigNotFound, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewDeleteItemTypeConfigParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "deleteItemTypeConfig",
+		Method:             "DELETE",
+		PathPattern:        "/platform/admin/items/configs/{id}",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &DeleteItemTypeConfigReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *DeleteItemTypeConfigNoContent:
+		return v, nil, nil
+
+	case *DeleteItemTypeConfigNotFound:
+		return nil, v, nil
+
+	default:
+		return nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+  DeleteItemTypeConfigShort deletes an item type config
+
+  This API is used to delete an item type config permanently.Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:ITEM:CONFIG&#34;, action=8 (DELETE)&lt;/li&gt;&lt;/ul&gt;
+*/
+func (a *Client) DeleteItemTypeConfigShort(params *DeleteItemTypeConfigParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteItemTypeConfigNoContent, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewDeleteItemTypeConfigParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "deleteItemTypeConfig",
+		Method:             "DELETE",
+		PathPattern:        "/platform/admin/items/configs/{id}",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &DeleteItemTypeConfigReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *DeleteItemTypeConfigNoContent:
+		return v, nil
+	case *DeleteItemTypeConfigNotFound:
 		return nil, v
 
 	default:
@@ -1929,6 +2151,105 @@ func (a *Client) GetItemIDBySkuShort(params *GetItemIDBySkuParams, authInfo runt
 }
 
 /*
+Deprecated: Use GetItemTypeConfigShort instead.
+
+  GetItemTypeConfig gets an item type config
+
+  This API is used to get an item type config.&lt;p&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:ITEM:CONFIG&#34;, action=2 (READ)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: item type config data&lt;/li&gt;&lt;/ul&gt;
+*/
+func (a *Client) GetItemTypeConfig(params *GetItemTypeConfigParams, authInfo runtime.ClientAuthInfoWriter) (*GetItemTypeConfigOK, *GetItemTypeConfigNotFound, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewGetItemTypeConfigParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "getItemTypeConfig",
+		Method:             "GET",
+		PathPattern:        "/platform/admin/items/configs/{id}",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &GetItemTypeConfigReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *GetItemTypeConfigOK:
+		return v, nil, nil
+
+	case *GetItemTypeConfigNotFound:
+		return nil, v, nil
+
+	default:
+		return nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+  GetItemTypeConfigShort gets an item type config
+
+  This API is used to get an item type config.&lt;p&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:ITEM:CONFIG&#34;, action=2 (READ)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: item type config data&lt;/li&gt;&lt;/ul&gt;
+*/
+func (a *Client) GetItemTypeConfigShort(params *GetItemTypeConfigParams, authInfo runtime.ClientAuthInfoWriter) (*GetItemTypeConfigOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewGetItemTypeConfigParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "getItemTypeConfig",
+		Method:             "GET",
+		PathPattern:        "/platform/admin/items/configs/{id}",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &GetItemTypeConfigReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *GetItemTypeConfigOK:
+		return v, nil
+	case *GetItemTypeConfigNotFound:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
 Deprecated: Use GetLocaleItemShort instead.
 
   GetLocaleItem gets an item in locale
@@ -2213,6 +2534,100 @@ func (a *Client) ListBasicItemsByFeaturesShort(params *ListBasicItemsByFeaturesP
 	switch v := result.(type) {
 
 	case *ListBasicItemsByFeaturesOK:
+		return v, nil
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+Deprecated: Use ListItemTypeConfigsShort instead.
+
+  ListItemTypeConfigs gets all item type configs
+
+  This API is used to get all item type configs.&lt;p&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:ITEM:CONFIG&#34;, action=2 (READ)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: the list of items&lt;/li&gt;&lt;/ul&gt;
+*/
+func (a *Client) ListItemTypeConfigs(params *ListItemTypeConfigsParams, authInfo runtime.ClientAuthInfoWriter) (*ListItemTypeConfigsOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewListItemTypeConfigsParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "listItemTypeConfigs",
+		Method:             "GET",
+		PathPattern:        "/platform/admin/items/configs",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &ListItemTypeConfigsReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *ListItemTypeConfigsOK:
+		return v, nil
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+  ListItemTypeConfigsShort gets all item type configs
+
+  This API is used to get all item type configs.&lt;p&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:ITEM:CONFIG&#34;, action=2 (READ)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: the list of items&lt;/li&gt;&lt;/ul&gt;
+*/
+func (a *Client) ListItemTypeConfigsShort(params *ListItemTypeConfigsParams, authInfo runtime.ClientAuthInfoWriter) (*ListItemTypeConfigsOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewListItemTypeConfigsParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "listItemTypeConfigs",
+		Method:             "GET",
+		PathPattern:        "/platform/admin/items/configs",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &ListItemTypeConfigsReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *ListItemTypeConfigsOK:
 		return v, nil
 
 	default:
@@ -3219,6 +3634,110 @@ func (a *Client) QueryItemsShort(params *QueryItemsParams, authInfo runtime.Clie
 }
 
 /*
+Deprecated: Use QueryItems1Short instead.
+
+  QueryItems1 queries items by criteria
+
+  This API is used to query items by criteria within a store.&lt;p&gt;The behaviour for itemStatus query parameter:&lt;li&gt;TRUE: Show only ACTIVE items&lt;/li&gt;&lt;li&gt;FALSE: Show only INACTIVE items&lt;/li&gt;&lt;li&gt;Not provided: show both ACTIVE and INACTIVE items&lt;/li&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:ITEM&#34;, action=2 (READ)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: the list of items&lt;/li&gt;&lt;/ul&gt;
+*/
+func (a *Client) QueryItems1(params *QueryItems1Params, authInfo runtime.ClientAuthInfoWriter) (*QueryItems1OK, *QueryItems1NotFound, *QueryItems1UnprocessableEntity, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewQueryItems1Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "queryItems_1",
+		Method:             "GET",
+		PathPattern:        "/platform/v2/admin/namespaces/{namespace}/items/byCriteria",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &QueryItems1Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, nil, nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *QueryItems1OK:
+		return v, nil, nil, nil
+
+	case *QueryItems1NotFound:
+		return nil, v, nil, nil
+
+	case *QueryItems1UnprocessableEntity:
+		return nil, nil, v, nil
+
+	default:
+		return nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+  QueryItems1Short queries items by criteria
+
+  This API is used to query items by criteria within a store.&lt;p&gt;The behaviour for itemStatus query parameter:&lt;li&gt;TRUE: Show only ACTIVE items&lt;/li&gt;&lt;li&gt;FALSE: Show only INACTIVE items&lt;/li&gt;&lt;li&gt;Not provided: show both ACTIVE and INACTIVE items&lt;/li&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:ITEM&#34;, action=2 (READ)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: the list of items&lt;/li&gt;&lt;/ul&gt;
+*/
+func (a *Client) QueryItems1Short(params *QueryItems1Params, authInfo runtime.ClientAuthInfoWriter) (*QueryItems1OK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewQueryItems1Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "queryItems_1",
+		Method:             "GET",
+		PathPattern:        "/platform/v2/admin/namespaces/{namespace}/items/byCriteria",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &QueryItems1Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *QueryItems1OK:
+		return v, nil
+	case *QueryItems1NotFound:
+		return nil, v
+	case *QueryItems1UnprocessableEntity:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
 Deprecated: Use QueryUncategorizedItemsShort instead.
 
   QueryUncategorizedItems queries uncategorized items
@@ -3419,6 +3938,105 @@ func (a *Client) ReturnItemShort(params *ReturnItemParams, authInfo runtime.Clie
 	case *ReturnItemNotFound:
 		return nil, v
 	case *ReturnItemUnprocessableEntity:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+Deprecated: Use SearchItemTypeConfigShort instead.
+
+  SearchItemTypeConfig gets an item type config
+
+  This API is used to get an item type config.&lt;p&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:ITEM:CONFIG&#34;, action=2 (READ)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: item type config data&lt;/li&gt;&lt;/ul&gt;
+*/
+func (a *Client) SearchItemTypeConfig(params *SearchItemTypeConfigParams, authInfo runtime.ClientAuthInfoWriter) (*SearchItemTypeConfigOK, *SearchItemTypeConfigNotFound, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewSearchItemTypeConfigParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "searchItemTypeConfig",
+		Method:             "GET",
+		PathPattern:        "/platform/admin/items/configs/search",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &SearchItemTypeConfigReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *SearchItemTypeConfigOK:
+		return v, nil, nil
+
+	case *SearchItemTypeConfigNotFound:
+		return nil, v, nil
+
+	default:
+		return nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+  SearchItemTypeConfigShort gets an item type config
+
+  This API is used to get an item type config.&lt;p&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:ITEM:CONFIG&#34;, action=2 (READ)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: item type config data&lt;/li&gt;&lt;/ul&gt;
+*/
+func (a *Client) SearchItemTypeConfigShort(params *SearchItemTypeConfigParams, authInfo runtime.ClientAuthInfoWriter) (*SearchItemTypeConfigOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewSearchItemTypeConfigParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "searchItemTypeConfig",
+		Method:             "GET",
+		PathPattern:        "/platform/admin/items/configs/search",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &SearchItemTypeConfigReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *SearchItemTypeConfigOK:
+		return v, nil
+	case *SearchItemTypeConfigNotFound:
 		return nil, v
 
 	default:
@@ -4261,6 +4879,115 @@ func (a *Client) UpdateItemPurchaseConditionShort(params *UpdateItemPurchaseCond
 	case *UpdateItemPurchaseConditionConflict:
 		return nil, v
 	case *UpdateItemPurchaseConditionUnprocessableEntity:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+Deprecated: Use UpdateItemTypeConfigShort instead.
+
+  UpdateItemTypeConfig updates an item type config
+
+  This API is used to update an item type config.&lt;p&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:ITEM:CONFIG&#34;, action=4 (UPDATE)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: item type config data&lt;/li&gt;&lt;/ul&gt;
+*/
+func (a *Client) UpdateItemTypeConfig(params *UpdateItemTypeConfigParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateItemTypeConfigOK, *UpdateItemTypeConfigNotFound, *UpdateItemTypeConfigConflict, *UpdateItemTypeConfigUnprocessableEntity, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewUpdateItemTypeConfigParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "updateItemTypeConfig",
+		Method:             "PUT",
+		PathPattern:        "/platform/admin/items/configs/{id}",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &UpdateItemTypeConfigReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, nil, nil, nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *UpdateItemTypeConfigOK:
+		return v, nil, nil, nil, nil
+
+	case *UpdateItemTypeConfigNotFound:
+		return nil, v, nil, nil, nil
+
+	case *UpdateItemTypeConfigConflict:
+		return nil, nil, v, nil, nil
+
+	case *UpdateItemTypeConfigUnprocessableEntity:
+		return nil, nil, nil, v, nil
+
+	default:
+		return nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+  UpdateItemTypeConfigShort updates an item type config
+
+  This API is used to update an item type config.&lt;p&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:ITEM:CONFIG&#34;, action=4 (UPDATE)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: item type config data&lt;/li&gt;&lt;/ul&gt;
+*/
+func (a *Client) UpdateItemTypeConfigShort(params *UpdateItemTypeConfigParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateItemTypeConfigOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewUpdateItemTypeConfigParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "updateItemTypeConfig",
+		Method:             "PUT",
+		PathPattern:        "/platform/admin/items/configs/{id}",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &UpdateItemTypeConfigReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *UpdateItemTypeConfigOK:
+		return v, nil
+	case *UpdateItemTypeConfigNotFound:
+		return nil, v
+	case *UpdateItemTypeConfigConflict:
+		return nil, v
+	case *UpdateItemTypeConfigUnprocessableEntity:
 		return nil, v
 
 	default:

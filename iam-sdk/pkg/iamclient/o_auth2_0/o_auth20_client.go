@@ -229,8 +229,10 @@ Deprecated: Use AuthCodeRequestV3Short instead.
                authenticate endpoint after successfully authenticating facebook user.
                &lt;li&gt;&lt;strong&gt;google&lt;/strong&gt;&lt;/li&gt;This endpoint redirects to google login page, then redirect back to platform
                authenticate endpoint after successfully authenticating google user.
-			   &lt;li&gt;&lt;strong&gt;snapchat&lt;/strong&gt;&lt;/li&gt;This endpoint redirects to snapchat login page, then redirect back to platform
+							 &lt;li&gt;&lt;strong&gt;snapchat&lt;/strong&gt;&lt;/li&gt;This endpoint redirects to snapchat login page, then redirect back to platform
                authenticate endpoint after successfully authenticating snapchat user.
+							 &lt;li&gt;&lt;strong&gt;discord&lt;/strong&gt;&lt;/li&gt;This endpoint redirects to discord login page, then redirect back to platform
+               authenticate endpoint after successfully authenticating discord user.
                &lt;/ul&gt; action code : 10702&#39;
 */
 func (a *Client) AuthCodeRequestV3(params *AuthCodeRequestV3Params, authInfo runtime.ClientAuthInfoWriter) (*AuthCodeRequestV3Found, error) {
@@ -295,8 +297,10 @@ func (a *Client) AuthCodeRequestV3(params *AuthCodeRequestV3Params, authInfo run
                authenticate endpoint after successfully authenticating facebook user.
                &lt;li&gt;&lt;strong&gt;google&lt;/strong&gt;&lt;/li&gt;This endpoint redirects to google login page, then redirect back to platform
                authenticate endpoint after successfully authenticating google user.
-			   &lt;li&gt;&lt;strong&gt;snapchat&lt;/strong&gt;&lt;/li&gt;This endpoint redirects to snapchat login page, then redirect back to platform
+							 &lt;li&gt;&lt;strong&gt;snapchat&lt;/strong&gt;&lt;/li&gt;This endpoint redirects to snapchat login page, then redirect back to platform
                authenticate endpoint after successfully authenticating snapchat user.
+							 &lt;li&gt;&lt;strong&gt;discord&lt;/strong&gt;&lt;/li&gt;This endpoint redirects to discord login page, then redirect back to platform
+               authenticate endpoint after successfully authenticating discord user.
                &lt;/ul&gt; action code : 10702&#39;
 */
 func (a *Client) AuthCodeRequestV3Short(params *AuthCodeRequestV3Params, authInfo runtime.ClientAuthInfoWriter) (*AuthCodeRequestV3Found, error) {
@@ -837,7 +841,9 @@ Deprecated: Use PlatformTokenGrantV3Short instead.
 			This endpoint requires all requests to have Authorization header set with Basic access authentication
 			constructed from client id and client secret. For publisher-game namespace schema : Specify only either platform_token or device_id. Device token grant
 			should be requested along with device_id parameter against game namespace. Another 3rd party platform token grant should be requested
-			along with platform_token parameter against publisher namespace.&lt;/p&gt;
+			along with platform_token parameter against publisher namespace.&lt;/p&gt;&lt;br/&gt;
+            &lt;h2&gt;2FA remember device&lt;/h2&gt;
+            &lt;p&gt;To remember device for 2FA, should provide cookie: device_token or header: Device-Token&lt;/p&gt;
 			&lt;h2&gt;Supported platforms:&lt;/h2&gt;
 			&lt;ul&gt;
 				&lt;li&gt;&lt;strong&gt;steam&lt;/strong&gt;: The platform_token’s value is the authentication code returned by Steam.&lt;/li&gt;
@@ -972,7 +978,9 @@ func (a *Client) PlatformTokenGrantV3(params *PlatformTokenGrantV3Params, authIn
 			This endpoint requires all requests to have Authorization header set with Basic access authentication
 			constructed from client id and client secret. For publisher-game namespace schema : Specify only either platform_token or device_id. Device token grant
 			should be requested along with device_id parameter against game namespace. Another 3rd party platform token grant should be requested
-			along with platform_token parameter against publisher namespace.&lt;/p&gt;
+			along with platform_token parameter against publisher namespace.&lt;/p&gt;&lt;br/&gt;
+            &lt;h2&gt;2FA remember device&lt;/h2&gt;
+            &lt;p&gt;To remember device for 2FA, should provide cookie: device_token or header: Device-Token&lt;/p&gt;
 			&lt;h2&gt;Supported platforms:&lt;/h2&gt;
 			&lt;ul&gt;
 				&lt;li&gt;&lt;strong&gt;steam&lt;/strong&gt;: The platform_token’s value is the authentication code returned by Steam.&lt;/li&gt;
@@ -1423,6 +1431,8 @@ Deprecated: Use TokenGrantV3Short instead.
 			&lt;h2&gt;Track Login History&lt;/h2&gt;
 			&lt;p&gt;This endpoint will track login history to detect suspicious login activity, please provide &#34;device_id&#34; (alphanumeric) in request header parameter otherwise we will set to &#34;unknown&#34;.&lt;/p&gt;
 			&lt;p&gt;Align with General Data Protection Regulation in Europe, user login history will be kept within 28 days by default&#34;&lt;/p&gt;
+            &lt;h2&gt;2FA remember device&lt;/h2&gt;
+            &lt;p&gt;To remember device for 2FA, should provide cookie: device_token or header: Device-Token&lt;/p&gt;
 			&lt;p&gt;action code: 10703
 */
 func (a *Client) TokenGrantV3(params *TokenGrantV3Params, authInfo runtime.ClientAuthInfoWriter) (*TokenGrantV3OK, *TokenGrantV3BadRequest, *TokenGrantV3Unauthorized, *TokenGrantV3Forbidden, error) {
@@ -1546,6 +1556,8 @@ func (a *Client) TokenGrantV3(params *TokenGrantV3Params, authInfo runtime.Clien
 			&lt;h2&gt;Track Login History&lt;/h2&gt;
 			&lt;p&gt;This endpoint will track login history to detect suspicious login activity, please provide &#34;device_id&#34; (alphanumeric) in request header parameter otherwise we will set to &#34;unknown&#34;.&lt;/p&gt;
 			&lt;p&gt;Align with General Data Protection Regulation in Europe, user login history will be kept within 28 days by default&#34;&lt;/p&gt;
+            &lt;h2&gt;2FA remember device&lt;/h2&gt;
+            &lt;p&gt;To remember device for 2FA, should provide cookie: device_token or header: Device-Token&lt;/p&gt;
 			&lt;p&gt;action code: 10703
 */
 func (a *Client) TokenGrantV3Short(params *TokenGrantV3Params, authInfo runtime.ClientAuthInfoWriter) (*TokenGrantV3OK, error) {
@@ -1816,6 +1828,8 @@ Deprecated: Use Verify2FACodeShort instead.
 
   Verify 2FA code&lt;br/&gt;
 &lt;p&gt;This endpoint is used for verifying 2FA code.&lt;/p&gt;
+         &lt;h2&gt;2FA remember device&lt;/h2&gt;
+         &lt;p&gt;To remember device for 2FA, should provide cookie: device_token or header: Device-Token&lt;/p&gt;
 
 */
 func (a *Client) Verify2FACode(params *Verify2FACodeParams, authInfo runtime.ClientAuthInfoWriter) (*Verify2FACodeOK, *Verify2FACodeUnauthorized, error) {
@@ -1867,6 +1881,8 @@ func (a *Client) Verify2FACode(params *Verify2FACodeParams, authInfo runtime.Cli
 
   Verify 2FA code&lt;br/&gt;
 &lt;p&gt;This endpoint is used for verifying 2FA code.&lt;/p&gt;
+         &lt;h2&gt;2FA remember device&lt;/h2&gt;
+         &lt;p&gt;To remember device for 2FA, should provide cookie: device_token or header: Device-Token&lt;/p&gt;
 
 */
 func (a *Client) Verify2FACodeShort(params *Verify2FACodeParams, authInfo runtime.ClientAuthInfoWriter) (*Verify2FACodeOK, error) {

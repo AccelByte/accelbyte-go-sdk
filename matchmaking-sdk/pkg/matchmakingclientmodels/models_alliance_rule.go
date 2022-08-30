@@ -17,6 +17,10 @@ import (
 // swagger:model models.AllianceRule
 type ModelsAllianceRule struct {
 
+	// combination
+	// Required: true
+	Combination *ModelsCombination `json:"combination"`
+
 	// max number
 	// Required: true
 	MaxNumber *int32 `json:"max_number"`
@@ -38,6 +42,10 @@ type ModelsAllianceRule struct {
 func (m *ModelsAllianceRule) Validate(formats strfmt.Registry) error {
 	var res []error
 
+	if err := m.validateCombination(formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.validateMaxNumber(formats); err != nil {
 		res = append(res, err)
 	}
@@ -57,6 +65,24 @@ func (m *ModelsAllianceRule) Validate(formats strfmt.Registry) error {
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
+	return nil
+}
+
+func (m *ModelsAllianceRule) validateCombination(formats strfmt.Registry) error {
+
+	if err := validate.Required("combination", "body", m.Combination); err != nil {
+		return err
+	}
+
+	if m.Combination != nil {
+		if err := m.Combination.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("combination")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 

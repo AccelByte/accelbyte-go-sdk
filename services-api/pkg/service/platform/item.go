@@ -39,6 +39,117 @@ func (aaa *ItemService) GetAuthSession() auth.Session {
 	}
 }
 
+// Deprecated: Use ListItemTypeConfigsShort instead
+func (aaa *ItemService) ListItemTypeConfigs(input *item.ListItemTypeConfigsParams) ([]*platformclientmodels.ItemTypeConfigInfo, error) {
+	token, err := aaa.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, err := aaa.Client.Item.ListItemTypeConfigs(input, client.BearerToken(*token.AccessToken))
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
+// Deprecated: Use CreateItemTypeConfigShort instead
+func (aaa *ItemService) CreateItemTypeConfig(input *item.CreateItemTypeConfigParams) error {
+	token, err := aaa.TokenRepository.GetToken()
+	if err != nil {
+		return err
+	}
+	_, badRequest, conflict, unprocessableEntity, err := aaa.Client.Item.CreateItemTypeConfig(input, client.BearerToken(*token.AccessToken))
+	if badRequest != nil {
+		return badRequest
+	}
+	if conflict != nil {
+		return conflict
+	}
+	if unprocessableEntity != nil {
+		return unprocessableEntity
+	}
+	if err != nil {
+		return err
+	}
+
+	return nil
+}
+
+// Deprecated: Use SearchItemTypeConfigShort instead
+func (aaa *ItemService) SearchItemTypeConfig(input *item.SearchItemTypeConfigParams) (*platformclientmodels.ItemTypeConfigInfo, error) {
+	token, err := aaa.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, notFound, err := aaa.Client.Item.SearchItemTypeConfig(input, client.BearerToken(*token.AccessToken))
+	if notFound != nil {
+		return nil, notFound
+	}
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
+// Deprecated: Use GetItemTypeConfigShort instead
+func (aaa *ItemService) GetItemTypeConfig(input *item.GetItemTypeConfigParams) (*platformclientmodels.ItemTypeConfigInfo, error) {
+	token, err := aaa.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, notFound, err := aaa.Client.Item.GetItemTypeConfig(input, client.BearerToken(*token.AccessToken))
+	if notFound != nil {
+		return nil, notFound
+	}
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
+// Deprecated: Use UpdateItemTypeConfigShort instead
+func (aaa *ItemService) UpdateItemTypeConfig(input *item.UpdateItemTypeConfigParams) (*platformclientmodels.ItemTypeConfigInfo, error) {
+	token, err := aaa.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, notFound, conflict, unprocessableEntity, err := aaa.Client.Item.UpdateItemTypeConfig(input, client.BearerToken(*token.AccessToken))
+	if notFound != nil {
+		return nil, notFound
+	}
+	if conflict != nil {
+		return nil, conflict
+	}
+	if unprocessableEntity != nil {
+		return nil, unprocessableEntity
+	}
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
+// Deprecated: Use DeleteItemTypeConfigShort instead
+func (aaa *ItemService) DeleteItemTypeConfig(input *item.DeleteItemTypeConfigParams) error {
+	token, err := aaa.TokenRepository.GetToken()
+	if err != nil {
+		return err
+	}
+	_, notFound, err := aaa.Client.Item.DeleteItemTypeConfig(input, client.BearerToken(*token.AccessToken))
+	if notFound != nil {
+		return notFound
+	}
+	if err != nil {
+		return err
+	}
+
+	return nil
+}
+
 // Deprecated: Use SyncInGameItemShort instead
 func (aaa *ItemService) SyncInGameItem(input *item.SyncInGameItemParams) (*platformclientmodels.FullItemInfo, error) {
 	token, err := aaa.TokenRepository.GetToken()
@@ -719,6 +830,176 @@ func (aaa *ItemService) PublicGetItem(input *item.PublicGetItemParams) (*platfor
 	}
 
 	return ok.GetPayload(), nil
+}
+
+// Deprecated: Use QueryItems1Short instead
+func (aaa *ItemService) QueryItems1(input *item.QueryItems1Params) (*platformclientmodels.FullItemPagingSlicedResult, error) {
+	token, err := aaa.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, notFound, unprocessableEntity, err := aaa.Client.Item.QueryItems1(input, client.BearerToken(*token.AccessToken))
+	if notFound != nil {
+		return nil, notFound
+	}
+	if unprocessableEntity != nil {
+		return nil, unprocessableEntity
+	}
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
+func (aaa *ItemService) ListItemTypeConfigsShort(input *item.ListItemTypeConfigsParams) ([]*platformclientmodels.ItemTypeConfigInfo, error) {
+	authInfoWriter := input.AuthInfoWriter
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
+	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  aaa.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
+	ok, err := aaa.Client.Item.ListItemTypeConfigsShort(input, authInfoWriter)
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
+func (aaa *ItemService) CreateItemTypeConfigShort(input *item.CreateItemTypeConfigParams) error {
+	authInfoWriter := input.AuthInfoWriter
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
+	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  aaa.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
+	_, err := aaa.Client.Item.CreateItemTypeConfigShort(input, authInfoWriter)
+	if err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (aaa *ItemService) SearchItemTypeConfigShort(input *item.SearchItemTypeConfigParams) (*platformclientmodels.ItemTypeConfigInfo, error) {
+	authInfoWriter := input.AuthInfoWriter
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
+	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  aaa.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
+	ok, err := aaa.Client.Item.SearchItemTypeConfigShort(input, authInfoWriter)
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
+func (aaa *ItemService) GetItemTypeConfigShort(input *item.GetItemTypeConfigParams) (*platformclientmodels.ItemTypeConfigInfo, error) {
+	authInfoWriter := input.AuthInfoWriter
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
+	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  aaa.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
+	ok, err := aaa.Client.Item.GetItemTypeConfigShort(input, authInfoWriter)
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
+func (aaa *ItemService) UpdateItemTypeConfigShort(input *item.UpdateItemTypeConfigParams) (*platformclientmodels.ItemTypeConfigInfo, error) {
+	authInfoWriter := input.AuthInfoWriter
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
+	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  aaa.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
+	ok, err := aaa.Client.Item.UpdateItemTypeConfigShort(input, authInfoWriter)
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
+func (aaa *ItemService) DeleteItemTypeConfigShort(input *item.DeleteItemTypeConfigParams) error {
+	authInfoWriter := input.AuthInfoWriter
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
+	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  aaa.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
+	_, err := aaa.Client.Item.DeleteItemTypeConfigShort(input, authInfoWriter)
+	if err != nil {
+		return err
+	}
+
+	return nil
 }
 
 func (aaa *ItemService) SyncInGameItemShort(input *item.SyncInGameItemParams) (*platformclientmodels.FullItemInfo, error) {
@@ -1623,6 +1904,31 @@ func (aaa *ItemService) PublicGetItemShort(input *item.PublicGetItemParams) (*pl
 	}
 
 	ok, err := aaa.Client.Item.PublicGetItemShort(input, authInfoWriter)
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
+func (aaa *ItemService) QueryItems1Short(input *item.QueryItems1Params) (*platformclientmodels.FullItemPagingSlicedResult, error) {
+	authInfoWriter := input.AuthInfoWriter
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
+	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  aaa.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
+	ok, err := aaa.Client.Item.QueryItems1Short(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}

@@ -43,6 +43,8 @@ type ClientService interface {
 	AdminListAchievementsShort(params *AdminListAchievementsParams, authInfo runtime.ClientAuthInfoWriter) (*AdminListAchievementsOK, error)
 	AdminListUserAchievements(params *AdminListUserAchievementsParams, authInfo runtime.ClientAuthInfoWriter) (*AdminListUserAchievementsOK, *AdminListUserAchievementsBadRequest, *AdminListUserAchievementsUnauthorized, *AdminListUserAchievementsNotFound, *AdminListUserAchievementsInternalServerError, error)
 	AdminListUserAchievementsShort(params *AdminListUserAchievementsParams, authInfo runtime.ClientAuthInfoWriter) (*AdminListUserAchievementsOK, error)
+	AdminResetAchievement(params *AdminResetAchievementParams, authInfo runtime.ClientAuthInfoWriter) (*AdminResetAchievementNoContent, *AdminResetAchievementBadRequest, *AdminResetAchievementUnauthorized, *AdminResetAchievementNotFound, *AdminResetAchievementInternalServerError, error)
+	AdminResetAchievementShort(params *AdminResetAchievementParams, authInfo runtime.ClientAuthInfoWriter) (*AdminResetAchievementNoContent, error)
 	AdminUnlockAchievement(params *AdminUnlockAchievementParams, authInfo runtime.ClientAuthInfoWriter) (*AdminUnlockAchievementNoContent, *AdminUnlockAchievementBadRequest, *AdminUnlockAchievementUnauthorized, *AdminUnlockAchievementInternalServerError, error)
 	AdminUnlockAchievementShort(params *AdminUnlockAchievementParams, authInfo runtime.ClientAuthInfoWriter) (*AdminUnlockAchievementNoContent, error)
 	AdminUpdateAchievement(params *AdminUpdateAchievementParams, authInfo runtime.ClientAuthInfoWriter) (*AdminUpdateAchievementOK, *AdminUpdateAchievementBadRequest, *AdminUpdateAchievementUnauthorized, *AdminUpdateAchievementNotFound, *AdminUpdateAchievementInternalServerError, error)
@@ -659,6 +661,126 @@ func (a *Client) AdminListUserAchievementsShort(params *AdminListUserAchievement
 	case *AdminListUserAchievementsNotFound:
 		return nil, v
 	case *AdminListUserAchievementsInternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+Deprecated: Use AdminResetAchievementShort instead.
+
+  AdminResetAchievement resets an achievement
+
+  &lt;p&gt;[TEST FACILITY ONLY]&lt;/p&gt;
+                         &lt;p&gt;Required permission
+                         &lt;code&gt;ADMIN:NAMESPACE:{namespace}:USER:{userId}:ACHIEVEMENT [DELETE]&lt;/code&gt; and scope &lt;code&gt;social&lt;/code&gt;
+                  &lt;/p&gt;
+*/
+func (a *Client) AdminResetAchievement(params *AdminResetAchievementParams, authInfo runtime.ClientAuthInfoWriter) (*AdminResetAchievementNoContent, *AdminResetAchievementBadRequest, *AdminResetAchievementUnauthorized, *AdminResetAchievementNotFound, *AdminResetAchievementInternalServerError, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewAdminResetAchievementParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "AdminResetAchievement",
+		Method:             "DELETE",
+		PathPattern:        "/achievement/v1/admin/namespaces/{namespace}/users/{userId}/achievements/{achievementCode}/reset",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &AdminResetAchievementReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, nil, nil, nil, nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *AdminResetAchievementNoContent:
+		return v, nil, nil, nil, nil, nil
+
+	case *AdminResetAchievementBadRequest:
+		return nil, v, nil, nil, nil, nil
+
+	case *AdminResetAchievementUnauthorized:
+		return nil, nil, v, nil, nil, nil
+
+	case *AdminResetAchievementNotFound:
+		return nil, nil, nil, v, nil, nil
+
+	case *AdminResetAchievementInternalServerError:
+		return nil, nil, nil, nil, v, nil
+
+	default:
+		return nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+  AdminResetAchievementShort resets an achievement
+
+  &lt;p&gt;[TEST FACILITY ONLY]&lt;/p&gt;
+                         &lt;p&gt;Required permission
+                         &lt;code&gt;ADMIN:NAMESPACE:{namespace}:USER:{userId}:ACHIEVEMENT [DELETE]&lt;/code&gt; and scope &lt;code&gt;social&lt;/code&gt;
+                  &lt;/p&gt;
+*/
+func (a *Client) AdminResetAchievementShort(params *AdminResetAchievementParams, authInfo runtime.ClientAuthInfoWriter) (*AdminResetAchievementNoContent, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewAdminResetAchievementParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "AdminResetAchievement",
+		Method:             "DELETE",
+		PathPattern:        "/achievement/v1/admin/namespaces/{namespace}/users/{userId}/achievements/{achievementCode}/reset",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &AdminResetAchievementReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *AdminResetAchievementNoContent:
+		return v, nil
+	case *AdminResetAchievementBadRequest:
+		return nil, v
+	case *AdminResetAchievementUnauthorized:
+		return nil, v
+	case *AdminResetAchievementNotFound:
+		return nil, v
+	case *AdminResetAchievementInternalServerError:
 		return nil, v
 
 	default:

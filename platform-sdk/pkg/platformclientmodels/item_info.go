@@ -85,7 +85,7 @@ type ItemInfo struct {
 
 	// Item type
 	// Required: true
-	// Enum: [APP BUNDLE CODE COINS INGAMEITEM MEDIA OPTIONBOX SEASON SUBSCRIPTION]
+	// Enum: [APP BUNDLE CODE COINS EXTENSION INGAMEITEM MEDIA OPTIONBOX SEASON SUBSCRIPTION]
 	ItemType *string `json:"itemType"`
 
 	// language
@@ -454,7 +454,7 @@ var itemInfoTypeItemTypePropEnum []interface{}
 
 func init() {
 	var res []string
-	if err := json.Unmarshal([]byte(`["APP","BUNDLE","CODE","COINS","INGAMEITEM","MEDIA","OPTIONBOX","SEASON","SUBSCRIPTION"]`), &res); err != nil {
+	if err := json.Unmarshal([]byte(`["APP","BUNDLE","CODE","COINS","EXTENSION","INGAMEITEM","MEDIA","OPTIONBOX","SEASON","SUBSCRIPTION"]`), &res); err != nil {
 		panic(err)
 	}
 	for _, v := range res {
@@ -475,6 +475,9 @@ const (
 
 	// ItemInfoItemTypeCOINS captures enum value "COINS"
 	ItemInfoItemTypeCOINS string = "COINS"
+
+	// ItemInfoItemTypeEXTENSION captures enum value "EXTENSION"
+	ItemInfoItemTypeEXTENSION string = "EXTENSION"
 
 	// ItemInfoItemTypeINGAMEITEM captures enum value "INGAMEITEM"
 	ItemInfoItemTypeINGAMEITEM string = "INGAMEITEM"

@@ -34,6 +34,9 @@ type FulfillmentHistoryInfo struct {
 	// entitlement granted
 	EntitlementSummaries []*EntitlementSummary `json:"entitlementSummaries"`
 
+	// extension fulfillment granted
+	ExtensionFulfillmentSummaries []*ExtensionFulfillmentSummary `json:"extensionFulfillmentSummaries"`
+
 	// items should do fulfillment
 	FulfillItems []*FulfillmentItem `json:"fulfillItems"`
 
@@ -82,6 +85,10 @@ func (m *FulfillmentHistoryInfo) Validate(formats strfmt.Registry) error {
 	}
 
 	if err := m.validateEntitlementSummaries(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateExtensionFulfillmentSummaries(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -172,6 +179,31 @@ func (m *FulfillmentHistoryInfo) validateEntitlementSummaries(formats strfmt.Reg
 			if err := m.EntitlementSummaries[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("entitlementSummaries" + "." + strconv.Itoa(i))
+				}
+				return err
+			}
+		}
+
+	}
+
+	return nil
+}
+
+func (m *FulfillmentHistoryInfo) validateExtensionFulfillmentSummaries(formats strfmt.Registry) error {
+
+	if swag.IsZero(m.ExtensionFulfillmentSummaries) { // not required
+		return nil
+	}
+
+	for i := 0; i < len(m.ExtensionFulfillmentSummaries); i++ {
+		if swag.IsZero(m.ExtensionFulfillmentSummaries[i]) { // not required
+			continue
+		}
+
+		if m.ExtensionFulfillmentSummaries[i] != nil {
+			if err := m.ExtensionFulfillmentSummaries[i].Validate(formats); err != nil {
+				if ve, ok := err.(*errors.Validation); ok {
+					return ve.ValidateName("extensionFulfillmentSummaries" + "." + strconv.Itoa(i))
 				}
 				return err
 			}

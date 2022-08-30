@@ -47,6 +47,8 @@ type ClientService interface {
 	GetCurrentSeasonShort(params *GetCurrentSeasonParams, authInfo runtime.ClientAuthInfoWriter) (*GetCurrentSeasonOK, error)
 	GetCurrentUserSeasonProgression(params *GetCurrentUserSeasonProgressionParams, authInfo runtime.ClientAuthInfoWriter) (*GetCurrentUserSeasonProgressionOK, *GetCurrentUserSeasonProgressionBadRequest, *GetCurrentUserSeasonProgressionNotFound, error)
 	GetCurrentUserSeasonProgressionShort(params *GetCurrentUserSeasonProgressionParams, authInfo runtime.ClientAuthInfoWriter) (*GetCurrentUserSeasonProgressionOK, error)
+	GetFullSeason(params *GetFullSeasonParams, authInfo runtime.ClientAuthInfoWriter) (*GetFullSeasonOK, *GetFullSeasonBadRequest, *GetFullSeasonNotFound, error)
+	GetFullSeasonShort(params *GetFullSeasonParams, authInfo runtime.ClientAuthInfoWriter) (*GetFullSeasonOK, error)
 	GetSeason(params *GetSeasonParams, authInfo runtime.ClientAuthInfoWriter) (*GetSeasonOK, *GetSeasonBadRequest, *GetSeasonNotFound, error)
 	GetSeasonShort(params *GetSeasonParams, authInfo runtime.ClientAuthInfoWriter) (*GetSeasonOK, error)
 	GetUserParticipatedSeasons(params *GetUserParticipatedSeasonsParams, authInfo runtime.ClientAuthInfoWriter) (*GetUserParticipatedSeasonsOK, *GetUserParticipatedSeasonsBadRequest, error)
@@ -815,6 +817,110 @@ func (a *Client) GetCurrentUserSeasonProgressionShort(params *GetCurrentUserSeas
 	case *GetCurrentUserSeasonProgressionBadRequest:
 		return nil, v
 	case *GetCurrentUserSeasonProgressionNotFound:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+Deprecated: Use GetFullSeasonShort instead.
+
+  GetFullSeason gets a season full content
+
+  This API is used to get a season full content, season only located in non-publisher namespace.&lt;p&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:SEASONPASS&#34;, action=2 (READ)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: season data&lt;/li&gt;&lt;/ul&gt;
+*/
+func (a *Client) GetFullSeason(params *GetFullSeasonParams, authInfo runtime.ClientAuthInfoWriter) (*GetFullSeasonOK, *GetFullSeasonBadRequest, *GetFullSeasonNotFound, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewGetFullSeasonParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "getFullSeason",
+		Method:             "GET",
+		PathPattern:        "/seasonpass/admin/namespaces/{namespace}/seasons/{seasonId}/full",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &GetFullSeasonReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, nil, nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *GetFullSeasonOK:
+		return v, nil, nil, nil
+
+	case *GetFullSeasonBadRequest:
+		return nil, v, nil, nil
+
+	case *GetFullSeasonNotFound:
+		return nil, nil, v, nil
+
+	default:
+		return nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+  GetFullSeasonShort gets a season full content
+
+  This API is used to get a season full content, season only located in non-publisher namespace.&lt;p&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:SEASONPASS&#34;, action=2 (READ)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: season data&lt;/li&gt;&lt;/ul&gt;
+*/
+func (a *Client) GetFullSeasonShort(params *GetFullSeasonParams, authInfo runtime.ClientAuthInfoWriter) (*GetFullSeasonOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewGetFullSeasonParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "getFullSeason",
+		Method:             "GET",
+		PathPattern:        "/seasonpass/admin/namespaces/{namespace}/seasons/{seasonId}/full",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &GetFullSeasonReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *GetFullSeasonOK:
+		return v, nil
+	case *GetFullSeasonBadRequest:
+		return nil, v
+	case *GetFullSeasonNotFound:
 		return nil, v
 
 	default:

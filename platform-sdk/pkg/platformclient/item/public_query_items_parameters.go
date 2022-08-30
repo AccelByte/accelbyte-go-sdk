@@ -36,6 +36,7 @@ const (
 	PublicQueryItemsBUNDLEConstant       = "BUNDLE"
 	PublicQueryItemsCODEConstant         = "CODE"
 	PublicQueryItemsCOINSConstant        = "COINS"
+	PublicQueryItemsEXTENSIONConstant    = "EXTENSION"
 	PublicQueryItemsINGAMEITEMConstant   = "INGAMEITEM"
 	PublicQueryItemsMEDIAConstant        = "MEDIA"
 	PublicQueryItemsOPTIONBOXConstant    = "OPTIONBOX"

@@ -37,7 +37,7 @@ type ClientService interface {
 	GetStatisticShort(params *GetStatisticParams, authInfo runtime.ClientAuthInfoWriter) (*GetStatisticOK, error)
 	PublishAll(params *PublishAllParams, authInfo runtime.ClientAuthInfoWriter) (*PublishAllOK, *PublishAllBadRequest, *PublishAllNotFound, error)
 	PublishAllShort(params *PublishAllParams, authInfo runtime.ClientAuthInfoWriter) (*PublishAllOK, error)
-	PublishSelected(params *PublishSelectedParams, authInfo runtime.ClientAuthInfoWriter) (*PublishSelectedOK, *PublishSelectedBadRequest, *PublishSelectedNotFound, error)
+	PublishSelected(params *PublishSelectedParams, authInfo runtime.ClientAuthInfoWriter) (*PublishSelectedOK, *PublishSelectedBadRequest, *PublishSelectedNotFound, *PublishSelectedConflict, error)
 	PublishSelectedShort(params *PublishSelectedParams, authInfo runtime.ClientAuthInfoWriter) (*PublishSelectedOK, error)
 	QueryChanges(params *QueryChangesParams, authInfo runtime.ClientAuthInfoWriter) (*QueryChangesOK, error)
 	QueryChangesShort(params *QueryChangesParams, authInfo runtime.ClientAuthInfoWriter) (*QueryChangesOK, error)
@@ -258,7 +258,7 @@ Deprecated: Use PublishSelectedShort instead.
 
   This API is used to publish selected unpublished changes.&lt;p&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:STORE&#34;, action=1 (CREATE)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: no content&lt;/li&gt;&lt;/ul&gt;
 */
-func (a *Client) PublishSelected(params *PublishSelectedParams, authInfo runtime.ClientAuthInfoWriter) (*PublishSelectedOK, *PublishSelectedBadRequest, *PublishSelectedNotFound, error) {
+func (a *Client) PublishSelected(params *PublishSelectedParams, authInfo runtime.ClientAuthInfoWriter) (*PublishSelectedOK, *PublishSelectedBadRequest, *PublishSelectedNotFound, *PublishSelectedConflict, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewPublishSelectedParams()
@@ -286,22 +286,25 @@ func (a *Client) PublishSelected(params *PublishSelectedParams, authInfo runtime
 		Client:             params.HTTPClient,
 	})
 	if err != nil {
-		return nil, nil, nil, err
+		return nil, nil, nil, nil, err
 	}
 
 	switch v := result.(type) {
 
 	case *PublishSelectedOK:
-		return v, nil, nil, nil
+		return v, nil, nil, nil, nil
 
 	case *PublishSelectedBadRequest:
-		return nil, v, nil, nil
+		return nil, v, nil, nil, nil
 
 	case *PublishSelectedNotFound:
-		return nil, nil, v, nil
+		return nil, nil, v, nil, nil
+
+	case *PublishSelectedConflict:
+		return nil, nil, nil, v, nil
 
 	default:
-		return nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+		return nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
@@ -348,6 +351,8 @@ func (a *Client) PublishSelectedShort(params *PublishSelectedParams, authInfo ru
 	case *PublishSelectedBadRequest:
 		return nil, v
 	case *PublishSelectedNotFound:
+		return nil, v
+	case *PublishSelectedConflict:
 		return nil, v
 
 	default:

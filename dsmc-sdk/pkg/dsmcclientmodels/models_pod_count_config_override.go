@@ -37,6 +37,10 @@ type ModelsPodCountConfigOverride struct {
 	// Required: true
 	Name *string `json:"name"`
 
+	// unlimited
+	// Required: true
+	Unlimited *bool `json:"unlimited"`
+
 	// use buffer percent
 	// Required: true
 	UseBufferPercent *bool `json:"use_buffer_percent"`
@@ -63,6 +67,10 @@ func (m *ModelsPodCountConfigOverride) Validate(formats strfmt.Registry) error {
 	}
 
 	if err := m.validateName(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateUnlimited(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -115,6 +123,15 @@ func (m *ModelsPodCountConfigOverride) validateMinCount(formats strfmt.Registry)
 func (m *ModelsPodCountConfigOverride) validateName(formats strfmt.Registry) error {
 
 	if err := validate.Required("name", "body", m.Name); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *ModelsPodCountConfigOverride) validateUnlimited(formats strfmt.Registry) error {
+
+	if err := validate.Required("unlimited", "body", m.Unlimited); err != nil {
 		return err
 	}
 

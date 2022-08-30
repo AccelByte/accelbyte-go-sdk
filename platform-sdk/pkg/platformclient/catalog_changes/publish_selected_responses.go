@@ -47,6 +47,12 @@ func (o *PublishSelectedReader) ReadResponse(response runtime.ClientResponse, co
 			return nil, err
 		}
 		return result, nil
+	case 409:
+		result := NewPublishSelectedConflict()
+		if err := result.readResponse(response, consumer, o.formats); err != nil {
+			return nil, err
+		}
+		return result, nil
 
 	default:
 		data, err := ioutil.ReadAll(response.Body())
@@ -191,6 +197,54 @@ func (o *PublishSelectedNotFound) GetPayload() *platformclientmodels.ErrorEntity
 }
 
 func (o *PublishSelectedNotFound) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
+	o.Payload = new(platformclientmodels.ErrorEntity)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
+	}
+
+	return nil
+}
+
+// NewPublishSelectedConflict creates a PublishSelectedConflict with default headers values
+func NewPublishSelectedConflict() *PublishSelectedConflict {
+	return &PublishSelectedConflict{}
+}
+
+/*PublishSelectedConflict handles this case with default header values.
+
+  <table><tr><td>ErrorCode</td><td>ErrorMessage</td></tr><tr><td>30375</td><td>Item id [{itemId}] of sku [{sku}] is duplicate with un-published deleted item in namespace [{namespace}]</td></tr></table>
+*/
+type PublishSelectedConflict struct {
+	Payload *platformclientmodels.ErrorEntity
+}
+
+func (o *PublishSelectedConflict) Error() string {
+	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/stores/{storeId}/catalogChanges/publishSelected][%d] publishSelectedConflict  %+v", 409, o.ToJSONString())
+}
+
+func (o *PublishSelectedConflict) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
+}
+
+func (o *PublishSelectedConflict) GetPayload() *platformclientmodels.ErrorEntity {
+	return o.Payload
+}
+
+func (o *PublishSelectedConflict) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
 	o.Payload = new(platformclientmodels.ErrorEntity)
 

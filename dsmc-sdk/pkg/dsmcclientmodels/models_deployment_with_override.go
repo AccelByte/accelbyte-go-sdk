@@ -81,6 +81,10 @@ type ModelsDeploymentWithOverride struct {
 	// session timeout
 	SessionTimeout int32 `json:"session_timeout,omitempty"`
 
+	// unlimited
+	// Required: true
+	Unlimited *bool `json:"unlimited"`
+
 	// updated at
 	// Required: true
 	// Format: date-time
@@ -152,6 +156,10 @@ func (m *ModelsDeploymentWithOverride) Validate(formats strfmt.Registry) error {
 	}
 
 	if err := m.validateRegions(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateUnlimited(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -320,6 +328,15 @@ func (m *ModelsDeploymentWithOverride) validateRegionOverrides(formats strfmt.Re
 func (m *ModelsDeploymentWithOverride) validateRegions(formats strfmt.Registry) error {
 
 	if err := validate.Required("regions", "body", m.Regions); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *ModelsDeploymentWithOverride) validateUnlimited(formats strfmt.Registry) error {
+
+	if err := validate.Required("unlimited", "body", m.Unlimited); err != nil {
 		return err
 	}
 

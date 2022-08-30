@@ -85,7 +85,7 @@ type PopulatedItemInfo struct {
 
 	// Item type
 	// Required: true
-	// Enum: [APP BUNDLE CODE COINS INGAMEITEM MEDIA OPTIONBOX SEASON SUBSCRIPTION]
+	// Enum: [APP BUNDLE CODE COINS EXTENSION INGAMEITEM MEDIA OPTIONBOX SEASON SUBSCRIPTION]
 	ItemType *string `json:"itemType"`
 
 	// bundle items, only has value when item is bundle or optionbox and is populated
@@ -461,7 +461,7 @@ var populatedItemInfoTypeItemTypePropEnum []interface{}
 
 func init() {
 	var res []string
-	if err := json.Unmarshal([]byte(`["APP","BUNDLE","CODE","COINS","INGAMEITEM","MEDIA","OPTIONBOX","SEASON","SUBSCRIPTION"]`), &res); err != nil {
+	if err := json.Unmarshal([]byte(`["APP","BUNDLE","CODE","COINS","EXTENSION","INGAMEITEM","MEDIA","OPTIONBOX","SEASON","SUBSCRIPTION"]`), &res); err != nil {
 		panic(err)
 	}
 	for _, v := range res {
@@ -482,6 +482,9 @@ const (
 
 	// PopulatedItemInfoItemTypeCOINS captures enum value "COINS"
 	PopulatedItemInfoItemTypeCOINS string = "COINS"
+
+	// PopulatedItemInfoItemTypeEXTENSION captures enum value "EXTENSION"
+	PopulatedItemInfoItemTypeEXTENSION string = "EXTENSION"
 
 	// PopulatedItemInfoItemTypeINGAMEITEM captures enum value "INGAMEITEM"
 	PopulatedItemInfoItemTypeINGAMEITEM string = "INGAMEITEM"

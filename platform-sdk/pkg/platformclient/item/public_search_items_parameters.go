@@ -28,6 +28,7 @@ const (
 	PublicSearchItemsBUNDLEConstant       = "BUNDLE"
 	PublicSearchItemsCODEConstant         = "CODE"
 	PublicSearchItemsCOINSConstant        = "COINS"
+	PublicSearchItemsEXTENSIONConstant    = "EXTENSION"
 	PublicSearchItemsINGAMEITEMConstant   = "INGAMEITEM"
 	PublicSearchItemsMEDIAConstant        = "MEDIA"
 	PublicSearchItemsOPTIONBOXConstant    = "OPTIONBOX"

@@ -93,6 +93,8 @@ type ClientService interface {
 	AdminGetUserDeletionStatusV3Short(params *AdminGetUserDeletionStatusV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminGetUserDeletionStatusV3OK, error)
 	AdminGetUserLoginHistoriesV3(params *AdminGetUserLoginHistoriesV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminGetUserLoginHistoriesV3OK, *AdminGetUserLoginHistoriesV3Unauthorized, *AdminGetUserLoginHistoriesV3Forbidden, *AdminGetUserLoginHistoriesV3NotFound, error)
 	AdminGetUserLoginHistoriesV3Short(params *AdminGetUserLoginHistoriesV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminGetUserLoginHistoriesV3OK, error)
+	AdminGetUserMapping(params *AdminGetUserMappingParams, authInfo runtime.ClientAuthInfoWriter) (*AdminGetUserMappingOK, *AdminGetUserMappingBadRequest, *AdminGetUserMappingUnauthorized, *AdminGetUserMappingForbidden, *AdminGetUserMappingNotFound, error)
+	AdminGetUserMappingShort(params *AdminGetUserMappingParams, authInfo runtime.ClientAuthInfoWriter) (*AdminGetUserMappingOK, error)
 	AdminGetUserPlatformAccountsV3(params *AdminGetUserPlatformAccountsV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminGetUserPlatformAccountsV3OK, *AdminGetUserPlatformAccountsV3BadRequest, *AdminGetUserPlatformAccountsV3Unauthorized, *AdminGetUserPlatformAccountsV3Forbidden, *AdminGetUserPlatformAccountsV3NotFound, error)
 	AdminGetUserPlatformAccountsV3Short(params *AdminGetUserPlatformAccountsV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminGetUserPlatformAccountsV3OK, error)
 	AdminInviteUserV3(params *AdminInviteUserV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminInviteUserV3Created, *AdminInviteUserV3BadRequest, *AdminInviteUserV3NotFound, *AdminInviteUserV3Conflict, *AdminInviteUserV3UnprocessableEntity, *AdminInviteUserV3InternalServerError, error)
@@ -221,6 +223,8 @@ type ClientService interface {
 	PublicDeletePlatformLinkV2Short(params *PublicDeletePlatformLinkV2Params, authInfo runtime.ClientAuthInfoWriter) (*PublicDeletePlatformLinkV2NoContent, error)
 	PublicForceLinkPlatformWithProgression(params *PublicForceLinkPlatformWithProgressionParams, authInfo runtime.ClientAuthInfoWriter) (*PublicForceLinkPlatformWithProgressionNoContent, *PublicForceLinkPlatformWithProgressionBadRequest, *PublicForceLinkPlatformWithProgressionUnauthorized, *PublicForceLinkPlatformWithProgressionForbidden, *PublicForceLinkPlatformWithProgressionInternalServerError, error)
 	PublicForceLinkPlatformWithProgressionShort(params *PublicForceLinkPlatformWithProgressionParams, authInfo runtime.ClientAuthInfoWriter) (*PublicForceLinkPlatformWithProgressionNoContent, error)
+	PublicForcePlatformLinkV3(params *PublicForcePlatformLinkV3Params, authInfo runtime.ClientAuthInfoWriter) (*PublicForcePlatformLinkV3NoContent, *PublicForcePlatformLinkV3BadRequest, *PublicForcePlatformLinkV3Unauthorized, *PublicForcePlatformLinkV3NotFound, *PublicForcePlatformLinkV3Conflict, *PublicForcePlatformLinkV3InternalServerError, error)
+	PublicForcePlatformLinkV3Short(params *PublicForcePlatformLinkV3Params, authInfo runtime.ClientAuthInfoWriter) (*PublicForcePlatformLinkV3NoContent, error)
 	PublicForgotPasswordV2(params *PublicForgotPasswordV2Params, authInfo runtime.ClientAuthInfoWriter) (*PublicForgotPasswordV2NoContent, *PublicForgotPasswordV2BadRequest, *PublicForgotPasswordV2NotFound, *PublicForgotPasswordV2TooManyRequests, *PublicForgotPasswordV2InternalServerError, error)
 	PublicForgotPasswordV2Short(params *PublicForgotPasswordV2Params, authInfo runtime.ClientAuthInfoWriter) (*PublicForgotPasswordV2NoContent, error)
 	PublicForgotPasswordV3(params *PublicForgotPasswordV3Params, authInfo runtime.ClientAuthInfoWriter) (*PublicForgotPasswordV3NoContent, *PublicForgotPasswordV3BadRequest, *PublicForgotPasswordV3NotFound, *PublicForgotPasswordV3TooManyRequests, error)
@@ -243,6 +247,8 @@ type ClientService interface {
 	PublicGetUserByUserIDV2Short(params *PublicGetUserByUserIDV2Params, authInfo runtime.ClientAuthInfoWriter) (*PublicGetUserByUserIDV2OK, error)
 	PublicGetUserByUserIDV3(params *PublicGetUserByUserIDV3Params, authInfo runtime.ClientAuthInfoWriter) (*PublicGetUserByUserIDV3OK, *PublicGetUserByUserIDV3BadRequest, *PublicGetUserByUserIDV3NotFound, *PublicGetUserByUserIDV3InternalServerError, error)
 	PublicGetUserByUserIDV3Short(params *PublicGetUserByUserIDV3Params, authInfo runtime.ClientAuthInfoWriter) (*PublicGetUserByUserIDV3OK, error)
+	PublicGetUserInformationV3(params *PublicGetUserInformationV3Params, authInfo runtime.ClientAuthInfoWriter) (*PublicGetUserInformationV3OK, *PublicGetUserInformationV3Unauthorized, *PublicGetUserInformationV3Forbidden, *PublicGetUserInformationV3NotFound, error)
+	PublicGetUserInformationV3Short(params *PublicGetUserInformationV3Params, authInfo runtime.ClientAuthInfoWriter) (*PublicGetUserInformationV3OK, error)
 	PublicGetUserLoginHistoriesV3(params *PublicGetUserLoginHistoriesV3Params, authInfo runtime.ClientAuthInfoWriter) (*PublicGetUserLoginHistoriesV3OK, *PublicGetUserLoginHistoriesV3Unauthorized, *PublicGetUserLoginHistoriesV3Forbidden, *PublicGetUserLoginHistoriesV3NotFound, error)
 	PublicGetUserLoginHistoriesV3Short(params *PublicGetUserLoginHistoriesV3Params, authInfo runtime.ClientAuthInfoWriter) (*PublicGetUserLoginHistoriesV3OK, error)
 	PublicGetUserPlatformAccountsV3(params *PublicGetUserPlatformAccountsV3Params, authInfo runtime.ClientAuthInfoWriter) (*PublicGetUserPlatformAccountsV3OK, *PublicGetUserPlatformAccountsV3BadRequest, *PublicGetUserPlatformAccountsV3Unauthorized, *PublicGetUserPlatformAccountsV3Forbidden, *PublicGetUserPlatformAccountsV3NotFound, error)
@@ -271,6 +277,8 @@ type ClientService interface {
 	PublicSendRegistrationCodeShort(params *PublicSendRegistrationCodeParams, authInfo runtime.ClientAuthInfoWriter) (*PublicSendRegistrationCodeNoContent, error)
 	PublicSendVerificationCodeV3(params *PublicSendVerificationCodeV3Params, authInfo runtime.ClientAuthInfoWriter) (*PublicSendVerificationCodeV3NoContent, *PublicSendVerificationCodeV3BadRequest, *PublicSendVerificationCodeV3Unauthorized, *PublicSendVerificationCodeV3NotFound, *PublicSendVerificationCodeV3Conflict, *PublicSendVerificationCodeV3TooManyRequests, error)
 	PublicSendVerificationCodeV3Short(params *PublicSendVerificationCodeV3Params, authInfo runtime.ClientAuthInfoWriter) (*PublicSendVerificationCodeV3NoContent, error)
+	PublicSendVerificationLinkV3(params *PublicSendVerificationLinkV3Params, authInfo runtime.ClientAuthInfoWriter) (*PublicSendVerificationLinkV3NoContent, *PublicSendVerificationLinkV3BadRequest, *PublicSendVerificationLinkV3Unauthorized, *PublicSendVerificationLinkV3Conflict, *PublicSendVerificationLinkV3TooManyRequests, error)
+	PublicSendVerificationLinkV3Short(params *PublicSendVerificationLinkV3Params, authInfo runtime.ClientAuthInfoWriter) (*PublicSendVerificationLinkV3NoContent, error)
 	PublicUpdatePasswordV2(params *PublicUpdatePasswordV2Params, authInfo runtime.ClientAuthInfoWriter) (*PublicUpdatePasswordV2NoContent, *PublicUpdatePasswordV2BadRequest, *PublicUpdatePasswordV2Unauthorized, *PublicUpdatePasswordV2Forbidden, *PublicUpdatePasswordV2NotFound, *PublicUpdatePasswordV2InternalServerError, error)
 	PublicUpdatePasswordV2Short(params *PublicUpdatePasswordV2Params, authInfo runtime.ClientAuthInfoWriter) (*PublicUpdatePasswordV2NoContent, error)
 	PublicUpdatePasswordV3(params *PublicUpdatePasswordV3Params, authInfo runtime.ClientAuthInfoWriter) (*PublicUpdatePasswordV3NoContent, *PublicUpdatePasswordV3BadRequest, *PublicUpdatePasswordV3Unauthorized, *PublicUpdatePasswordV3InternalServerError, error)
@@ -287,6 +295,8 @@ type ClientService interface {
 	PublicVerifyHeadlessAccountV3Short(params *PublicVerifyHeadlessAccountV3Params, authInfo runtime.ClientAuthInfoWriter) (*PublicVerifyHeadlessAccountV3OK, error)
 	PublicVerifyRegistrationCode(params *PublicVerifyRegistrationCodeParams, authInfo runtime.ClientAuthInfoWriter) (*PublicVerifyRegistrationCodeNoContent, *PublicVerifyRegistrationCodeBadRequest, error)
 	PublicVerifyRegistrationCodeShort(params *PublicVerifyRegistrationCodeParams, authInfo runtime.ClientAuthInfoWriter) (*PublicVerifyRegistrationCodeNoContent, error)
+	PublicVerifyUserByLinkV3(params *PublicVerifyUserByLinkV3Params, authInfo runtime.ClientAuthInfoWriter) (*PublicVerifyUserByLinkV3Found, error)
+	PublicVerifyUserByLinkV3Short(params *PublicVerifyUserByLinkV3Params, authInfo runtime.ClientAuthInfoWriter) (*PublicVerifyUserByLinkV3Found, error)
 	PublicWebLinkPlatform(params *PublicWebLinkPlatformParams, authInfo runtime.ClientAuthInfoWriter) (*PublicWebLinkPlatformOK, *PublicWebLinkPlatformBadRequest, *PublicWebLinkPlatformUnauthorized, *PublicWebLinkPlatformNotFound, error)
 	PublicWebLinkPlatformShort(params *PublicWebLinkPlatformParams, authInfo runtime.ClientAuthInfoWriter) (*PublicWebLinkPlatformOK, error)
 	PublicWebLinkPlatformEstablish(params *PublicWebLinkPlatformEstablishParams, authInfo runtime.ClientAuthInfoWriter) (*PublicWebLinkPlatformEstablishFound, error)
@@ -3974,6 +3984,126 @@ func (a *Client) AdminGetUserLoginHistoriesV3Short(params *AdminGetUserLoginHist
 	case *AdminGetUserLoginHistoriesV3Forbidden:
 		return nil, v
 	case *AdminGetUserLoginHistoriesV3NotFound:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+Deprecated: Use AdminGetUserMappingShort instead.
+
+  AdminGetUserMapping gets user mapping
+
+  &lt;p&gt;This endpoint requires the client access token as the bearer token. Required permission &#39;ADMIN:NAMESPACE:{namespace}:JUSTICE:USER:{userId} [READ]&#39;&lt;/p&gt;
+			&lt;p&gt;This endpoint will support publisher access to game and game access to publisher&lt;/p&gt;
+			&lt;p&gt;If targetNamespace filled with publisher namespace then this endpoint will return its game user id and game namespace&lt;/p&gt;
+			&lt;p&gt;If targetNamespace filled with game namespace then this endpoint will return its publisher user id and publisher namespace&lt;/p&gt;
+*/
+func (a *Client) AdminGetUserMapping(params *AdminGetUserMappingParams, authInfo runtime.ClientAuthInfoWriter) (*AdminGetUserMappingOK, *AdminGetUserMappingBadRequest, *AdminGetUserMappingUnauthorized, *AdminGetUserMappingForbidden, *AdminGetUserMappingNotFound, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewAdminGetUserMappingParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "AdminGetUserMapping",
+		Method:             "GET",
+		PathPattern:        "/iam/v3/admin/namespaces/{namespace}/users/{userId}/platforms/justice/{targetNamespace}",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &AdminGetUserMappingReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, nil, nil, nil, nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *AdminGetUserMappingOK:
+		return v, nil, nil, nil, nil, nil
+
+	case *AdminGetUserMappingBadRequest:
+		return nil, v, nil, nil, nil, nil
+
+	case *AdminGetUserMappingUnauthorized:
+		return nil, nil, v, nil, nil, nil
+
+	case *AdminGetUserMappingForbidden:
+		return nil, nil, nil, v, nil, nil
+
+	case *AdminGetUserMappingNotFound:
+		return nil, nil, nil, nil, v, nil
+
+	default:
+		return nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+  AdminGetUserMappingShort gets user mapping
+
+  &lt;p&gt;This endpoint requires the client access token as the bearer token. Required permission &#39;ADMIN:NAMESPACE:{namespace}:JUSTICE:USER:{userId} [READ]&#39;&lt;/p&gt;
+			&lt;p&gt;This endpoint will support publisher access to game and game access to publisher&lt;/p&gt;
+			&lt;p&gt;If targetNamespace filled with publisher namespace then this endpoint will return its game user id and game namespace&lt;/p&gt;
+			&lt;p&gt;If targetNamespace filled with game namespace then this endpoint will return its publisher user id and publisher namespace&lt;/p&gt;
+*/
+func (a *Client) AdminGetUserMappingShort(params *AdminGetUserMappingParams, authInfo runtime.ClientAuthInfoWriter) (*AdminGetUserMappingOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewAdminGetUserMappingParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "AdminGetUserMapping",
+		Method:             "GET",
+		PathPattern:        "/iam/v3/admin/namespaces/{namespace}/users/{userId}/platforms/justice/{targetNamespace}",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &AdminGetUserMappingReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *AdminGetUserMappingOK:
+		return v, nil
+	case *AdminGetUserMappingBadRequest:
+		return nil, v
+	case *AdminGetUserMappingUnauthorized:
+		return nil, v
+	case *AdminGetUserMappingForbidden:
+		return nil, v
+	case *AdminGetUserMappingNotFound:
 		return nil, v
 
 	default:
@@ -9075,7 +9205,16 @@ Deprecated: Use GetAdminUsersByRoleIDShort instead.
 
   GetAdminUsersByRoleID gets admin users by role Id
 
-  &lt;p&gt;Required permission &#39;ADMIN:NAMESPACE:{namespace}:USER [READ]&#39;&lt;/p&gt;
+  &lt;h2&gt;The endpoint is going to be deprecated&lt;/h2&gt; &lt;/br&gt;
+			&lt;strong&gt;Endpoint migration guide&lt;/strong&gt;
+			&lt;ul&gt;
+                &lt;li&gt;&lt;b&gt;Substitute endpoint(Public): &lt;i&gt;/iam/v3/admin/namespaces/{namespace}/roles/{roleId}/users  [GET]&lt;/i&gt;&lt;/b&gt;
+                &lt;/li&gt;
+                &lt;li&gt;&lt;b&gt;Note:&lt;/b&gt;
+                        &lt;dd&gt;difference in V3 response, format difference: Pascal case =&gt; Camel case&lt;/dd&gt;&lt;/b&gt;
+                &lt;/li&gt;
+			&lt;/ul&gt;
+			&lt;p&gt;Required permission &#39;ADMIN:NAMESPACE:{namespace}:USER [READ]&#39;&lt;/p&gt;
 			&lt;p&gt;This endpoint search admin users which have the roleId&lt;/p&gt;
 			&lt;p&gt;Notes : this endpoint only accept admin role. Admin Role is role which have admin status and members.
 			Use endpoint [GET] /roles/{roleId}/admin to check the role status&lt;/p&gt;
@@ -9139,7 +9278,16 @@ func (a *Client) GetAdminUsersByRoleID(params *GetAdminUsersByRoleIDParams, auth
 /*
   GetAdminUsersByRoleIDShort gets admin users by role Id
 
-  &lt;p&gt;Required permission &#39;ADMIN:NAMESPACE:{namespace}:USER [READ]&#39;&lt;/p&gt;
+  &lt;h2&gt;The endpoint is going to be deprecated&lt;/h2&gt; &lt;/br&gt;
+			&lt;strong&gt;Endpoint migration guide&lt;/strong&gt;
+			&lt;ul&gt;
+                &lt;li&gt;&lt;b&gt;Substitute endpoint(Public): &lt;i&gt;/iam/v3/admin/namespaces/{namespace}/roles/{roleId}/users  [GET]&lt;/i&gt;&lt;/b&gt;
+                &lt;/li&gt;
+                &lt;li&gt;&lt;b&gt;Note:&lt;/b&gt;
+                        &lt;dd&gt;difference in V3 response, format difference: Pascal case =&gt; Camel case&lt;/dd&gt;&lt;/b&gt;
+                &lt;/li&gt;
+			&lt;/ul&gt;
+			&lt;p&gt;Required permission &#39;ADMIN:NAMESPACE:{namespace}:USER [READ]&#39;&lt;/p&gt;
 			&lt;p&gt;This endpoint search admin users which have the roleId&lt;/p&gt;
 			&lt;p&gt;Notes : this endpoint only accept admin role. Admin Role is role which have admin status and members.
 			Use endpoint [GET] /roles/{roleId}/admin to check the role status&lt;/p&gt;
@@ -10172,7 +10320,14 @@ Deprecated: Use GetUserInformationShort instead.
 
   GetUserInformation gets user s information
 
-  Required permissions &#39;NAMESPACE:{namespace}:INFORMATION:USER:{userId} [READ]&#39;.
+  &lt;h2&gt;The endpoint is going to be deprecated&lt;/h2&gt; &lt;/br&gt;
+		&lt;strong&gt;Endpoint migration guide&lt;/strong&gt;
+		&lt;ul&gt;
+                &lt;li&gt;&lt;b&gt;Substitute endpoint: &lt;i&gt;/iam/v3/public/namespaces/{namespace}/users/{userId}/information  [GET]&lt;/i&gt;&lt;/b&gt;
+                &lt;/li&gt;
+		&lt;/ul&gt;
+
+		Required permissions &#39;NAMESPACE:{namespace}:INFORMATION:USER:{userId} [READ]&#39;.
 */
 func (a *Client) GetUserInformation(params *GetUserInformationParams, authInfo runtime.ClientAuthInfoWriter) (*GetUserInformationOK, *GetUserInformationUnauthorized, *GetUserInformationForbidden, *GetUserInformationNotFound, error) {
 	// TODO: Validate the params before sending
@@ -10227,7 +10382,14 @@ func (a *Client) GetUserInformation(params *GetUserInformationParams, authInfo r
 /*
   GetUserInformationShort gets user s information
 
-  Required permissions &#39;NAMESPACE:{namespace}:INFORMATION:USER:{userId} [READ]&#39;.
+  &lt;h2&gt;The endpoint is going to be deprecated&lt;/h2&gt; &lt;/br&gt;
+		&lt;strong&gt;Endpoint migration guide&lt;/strong&gt;
+		&lt;ul&gt;
+                &lt;li&gt;&lt;b&gt;Substitute endpoint: &lt;i&gt;/iam/v3/public/namespaces/{namespace}/users/{userId}/information  [GET]&lt;/i&gt;&lt;/b&gt;
+                &lt;/li&gt;
+		&lt;/ul&gt;
+
+		Required permissions &#39;NAMESPACE:{namespace}:INFORMATION:USER:{userId} [READ]&#39;.
 */
 func (a *Client) GetUserInformationShort(params *GetUserInformationParams, authInfo runtime.ClientAuthInfoWriter) (*GetUserInformationOK, error) {
 	// TODO: Validate the params before sending
@@ -10281,8 +10443,13 @@ Deprecated: Use GetUserJusticePlatformAccountShort instead.
 
   GetUserJusticePlatformAccount gets the justice linked accounts on the designated namespace
 
-  &lt;p&gt;This endpoint requires the client access token as the bearer token. Required permission &#39;ADMIN:NAMESPACE:{namespace}:JUSTICE:USER:{userId} [UPDATE]&#39;&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;It is going to be removed on November 26th, 2018&lt;/strong&gt;&lt;/p&gt;
+  &lt;h2&gt;The endpoint is going to be deprecated&lt;/h2&gt; &lt;/br&gt;
+		&lt;strong&gt;Endpoint migration guide&lt;/strong&gt;
+		&lt;ul&gt;
+			&lt;li&gt;&lt;b&gt;Substitute endpoint: /iam/v3/admin/namespaces/{namespace}/users/{userId}/platforms/justice/{targetNamespace} [GET] &lt;/i&gt;&lt;/b&gt;
+		&lt;/ul&gt;
+
+&lt;p&gt;This endpoint requires the client access token as the bearer token. Required permission &#39;ADMIN:NAMESPACE:{namespace}:JUSTICE:USER:{userId} [UPDATE]&#39;&lt;/p&gt;
 &lt;p&gt;The endpoint returns user Justice platform account linked with the given user. If the user Justice platform account doesn&#39;t exist in the designated namespace, the endpoint is going to &lt;strong&gt;create and return the new Justice platform account.&lt;/strong&gt;
 The newly user Justice platform account is going to be forced to perform token grant through the given user and can&#39;t perform password update&lt;/p&gt;
 &lt;h3&gt;Read Justice Platform Account UserID&lt;/h3&gt;
@@ -10341,8 +10508,13 @@ func (a *Client) GetUserJusticePlatformAccount(params *GetUserJusticePlatformAcc
 /*
   GetUserJusticePlatformAccountShort gets the justice linked accounts on the designated namespace
 
-  &lt;p&gt;This endpoint requires the client access token as the bearer token. Required permission &#39;ADMIN:NAMESPACE:{namespace}:JUSTICE:USER:{userId} [UPDATE]&#39;&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;It is going to be removed on November 26th, 2018&lt;/strong&gt;&lt;/p&gt;
+  &lt;h2&gt;The endpoint is going to be deprecated&lt;/h2&gt; &lt;/br&gt;
+		&lt;strong&gt;Endpoint migration guide&lt;/strong&gt;
+		&lt;ul&gt;
+			&lt;li&gt;&lt;b&gt;Substitute endpoint: /iam/v3/admin/namespaces/{namespace}/users/{userId}/platforms/justice/{targetNamespace} [GET] &lt;/i&gt;&lt;/b&gt;
+		&lt;/ul&gt;
+
+&lt;p&gt;This endpoint requires the client access token as the bearer token. Required permission &#39;ADMIN:NAMESPACE:{namespace}:JUSTICE:USER:{userId} [UPDATE]&#39;&lt;/p&gt;
 &lt;p&gt;The endpoint returns user Justice platform account linked with the given user. If the user Justice platform account doesn&#39;t exist in the designated namespace, the endpoint is going to &lt;strong&gt;create and return the new Justice platform account.&lt;/strong&gt;
 The newly user Justice platform account is going to be forced to perform token grant through the given user and can&#39;t perform password update&lt;/p&gt;
 &lt;h3&gt;Read Justice Platform Account UserID&lt;/h3&gt;
@@ -10400,7 +10572,20 @@ Deprecated: Use GetUserLoginHistoriesShort instead.
 
   GetUserLoginHistories gets user s login histories
 
-  Required permission &#39;NAMESPACE:{namespace}:HISTORY:LOGIN:USER:{userId} [READ]&#39;&lt;p&gt;Notes for this endpoint: &lt;/p&gt; &lt;ul&gt;&lt;li&gt;This endpoint retrieve the first page of the data if `after` and `before` parameters is empty.&lt;/li&gt;&lt;li&gt;The maximum value of the limit is 100 and the minimum value of the limit is 1.&lt;/li&gt;&lt;li&gt;This endpoint retrieve the next page of the data if we provide `after` parameters with valid Unix timestamp.&lt;/li&gt;&lt;li&gt;This endpoint retrieve the previous page of the data if we provide `before` parameter with valid data Unix timestamp.&lt;/li&gt;&lt;ul&gt;
+  &lt;h2&gt;The endpoint is going to be deprecated&lt;/h2&gt; &lt;/br&gt;
+		&lt;strong&gt;Endpoint migration guide&lt;/strong&gt;
+		&lt;ul&gt;
+			&lt;li&gt;&lt;b&gt;Substitute endpoint: &lt;i&gt;/iam/v3/public/namespaces/{namespace}/users/{userId}/logins/histories  [GET]&lt;/i&gt;&lt;/b&gt;
+			&lt;li&gt;&lt;b&gt;Substitute endpoint: &lt;i&gt;/iam/v3/admin/namespaces/{namespace}/users/{userId}/logins/histories  [GET]&lt;/i&gt;&lt;/b&gt;
+			&lt;/li&gt;
+		&lt;/ul&gt;
+
+		Required permission &#39;NAMESPACE:{namespace}:HISTORY:LOGIN:USER:{userId} [READ]&#39;&#34;+
+		&#34;&lt;p&gt;Notes for this endpoint: &lt;/p&gt; &#34;+
+		&#34;&lt;ul&gt;&lt;li&gt;This endpoint retrieve the first page of the data if &#39;after&#39; and &#39;before&#39; parameters is empty.&lt;/li&gt;&#34;+
+		&#34;&lt;li&gt;The maximum value of the limit is 100 and the minimum value of the limit is 1.&lt;/li&gt;&#34;+
+		&#34;&lt;li&gt;This endpoint retrieve the next page of the data if we provide &#39;after&#39; parameters with valid Unix timestamp.&lt;/li&gt;&#34;+
+		&#34;&lt;li&gt;This endpoint retrieve the previous page of the data if we provide &#39;before&#39; parameter with valid data Unix timestamp.&lt;/li&gt;&lt;ul&gt;
 */
 func (a *Client) GetUserLoginHistories(params *GetUserLoginHistoriesParams, authInfo runtime.ClientAuthInfoWriter) (*GetUserLoginHistoriesOK, *GetUserLoginHistoriesUnauthorized, *GetUserLoginHistoriesForbidden, *GetUserLoginHistoriesNotFound, error) {
 	// TODO: Validate the params before sending
@@ -10455,7 +10640,20 @@ func (a *Client) GetUserLoginHistories(params *GetUserLoginHistoriesParams, auth
 /*
   GetUserLoginHistoriesShort gets user s login histories
 
-  Required permission &#39;NAMESPACE:{namespace}:HISTORY:LOGIN:USER:{userId} [READ]&#39;&lt;p&gt;Notes for this endpoint: &lt;/p&gt; &lt;ul&gt;&lt;li&gt;This endpoint retrieve the first page of the data if `after` and `before` parameters is empty.&lt;/li&gt;&lt;li&gt;The maximum value of the limit is 100 and the minimum value of the limit is 1.&lt;/li&gt;&lt;li&gt;This endpoint retrieve the next page of the data if we provide `after` parameters with valid Unix timestamp.&lt;/li&gt;&lt;li&gt;This endpoint retrieve the previous page of the data if we provide `before` parameter with valid data Unix timestamp.&lt;/li&gt;&lt;ul&gt;
+  &lt;h2&gt;The endpoint is going to be deprecated&lt;/h2&gt; &lt;/br&gt;
+		&lt;strong&gt;Endpoint migration guide&lt;/strong&gt;
+		&lt;ul&gt;
+			&lt;li&gt;&lt;b&gt;Substitute endpoint: &lt;i&gt;/iam/v3/public/namespaces/{namespace}/users/{userId}/logins/histories  [GET]&lt;/i&gt;&lt;/b&gt;
+			&lt;li&gt;&lt;b&gt;Substitute endpoint: &lt;i&gt;/iam/v3/admin/namespaces/{namespace}/users/{userId}/logins/histories  [GET]&lt;/i&gt;&lt;/b&gt;
+			&lt;/li&gt;
+		&lt;/ul&gt;
+
+		Required permission &#39;NAMESPACE:{namespace}:HISTORY:LOGIN:USER:{userId} [READ]&#39;&#34;+
+		&#34;&lt;p&gt;Notes for this endpoint: &lt;/p&gt; &#34;+
+		&#34;&lt;ul&gt;&lt;li&gt;This endpoint retrieve the first page of the data if &#39;after&#39; and &#39;before&#39; parameters is empty.&lt;/li&gt;&#34;+
+		&#34;&lt;li&gt;The maximum value of the limit is 100 and the minimum value of the limit is 1.&lt;/li&gt;&#34;+
+		&#34;&lt;li&gt;This endpoint retrieve the next page of the data if we provide &#39;after&#39; parameters with valid Unix timestamp.&lt;/li&gt;&#34;+
+		&#34;&lt;li&gt;This endpoint retrieve the previous page of the data if we provide &#39;before&#39; parameter with valid data Unix timestamp.&lt;/li&gt;&lt;ul&gt;
 */
 func (a *Client) GetUserLoginHistoriesShort(params *GetUserLoginHistoriesParams, authInfo runtime.ClientAuthInfoWriter) (*GetUserLoginHistoriesOK, error) {
 	// TODO: Validate the params before sending
@@ -10509,7 +10707,14 @@ Deprecated: Use GetUserMappingShort instead.
 
   GetUserMapping gets user mapping
 
-  &lt;p&gt;This endpoint requires the client access token as the bearer token. Required permission &#39;ADMIN:NAMESPACE:{namespace}:JUSTICE:USER:{userId} [READ]&#39;&lt;/p&gt;
+  &lt;h2&gt;The endpoint is going to be deprecated&lt;/h2&gt; &lt;/br&gt;
+			&lt;strong&gt;Endpoint migration guide&lt;/strong&gt;
+			&lt;ul&gt;
+                &lt;li&gt;&lt;b&gt;Substitute endpoint: &lt;i&gt;/iam/v3/admin/namespaces/{namespace}/users/{userId}/platforms/justice/{targetNamespace} [GET] &lt;/i&gt;&lt;/b&gt;
+                &lt;/li&gt;
+			&lt;/ul&gt;
+
+			&lt;p&gt;This endpoint requires the client access token as the bearer token. Required permission &#39;ADMIN:NAMESPACE:{namespace}:JUSTICE:USER:{userId} [READ]&#39;&lt;/p&gt;
 			&lt;p&gt;This endpoint will support publisher access to game and game access to publisher&lt;/p&gt;
 			&lt;p&gt;If targetNamespace filled with publisher namespace then this endpoint will return its game user id and game namespace&lt;/p&gt;
 			&lt;p&gt;If targetNamespace filled with game namespace then this endpoint will return its publisher user id and publisher namespace&lt;/p&gt;
@@ -10570,7 +10775,14 @@ func (a *Client) GetUserMapping(params *GetUserMappingParams, authInfo runtime.C
 /*
   GetUserMappingShort gets user mapping
 
-  &lt;p&gt;This endpoint requires the client access token as the bearer token. Required permission &#39;ADMIN:NAMESPACE:{namespace}:JUSTICE:USER:{userId} [READ]&#39;&lt;/p&gt;
+  &lt;h2&gt;The endpoint is going to be deprecated&lt;/h2&gt; &lt;/br&gt;
+			&lt;strong&gt;Endpoint migration guide&lt;/strong&gt;
+			&lt;ul&gt;
+                &lt;li&gt;&lt;b&gt;Substitute endpoint: &lt;i&gt;/iam/v3/admin/namespaces/{namespace}/users/{userId}/platforms/justice/{targetNamespace} [GET] &lt;/i&gt;&lt;/b&gt;
+                &lt;/li&gt;
+			&lt;/ul&gt;
+
+			&lt;p&gt;This endpoint requires the client access token as the bearer token. Required permission &#39;ADMIN:NAMESPACE:{namespace}:JUSTICE:USER:{userId} [READ]&#39;&lt;/p&gt;
 			&lt;p&gt;This endpoint will support publisher access to game and game access to publisher&lt;/p&gt;
 			&lt;p&gt;If targetNamespace filled with publisher namespace then this endpoint will return its game user id and game namespace&lt;/p&gt;
 			&lt;p&gt;If targetNamespace filled with game namespace then this endpoint will return its publisher user id and publisher namespace&lt;/p&gt;
@@ -10629,6 +10841,13 @@ Deprecated: Use GetUserPlatformAccountsShort instead.
 
   GetUserPlatformAccounts gets platform accounts linked to the user
 
+  &lt;h2&gt;The endpoint is going to be deprecated&lt;/h2&gt; &lt;/br&gt;
+		&lt;strong&gt;Endpoint migration guide&lt;/strong&gt;
+		&lt;ul&gt;
+                &lt;li&gt;&lt;b&gt;Substitute endpoint: &lt;i&gt;/iam/v3/public/namespaces/{namespace}/users/{userId}/platforms  [GET]&lt;/i&gt;&lt;/b&gt;
+                &lt;li&gt;&lt;b&gt;Substitute endpoint: &lt;i&gt;/iam/v3/admin/namespaces/{namespace}/users/{userId}/platforms  [GET]&lt;/i&gt;&lt;/b&gt;
+                &lt;/li&gt;
+		&lt;/ul&gt;
 
 &lt;p&gt;Required permission &#39;NAMESPACE:{namespace}:USER:{userId} [READ]&#39;.&lt;/p&gt;
 &lt;h2&gt;Justice Platform Account&lt;/h2&gt;
@@ -10688,6 +10907,13 @@ func (a *Client) GetUserPlatformAccounts(params *GetUserPlatformAccountsParams, 
 /*
   GetUserPlatformAccountsShort gets platform accounts linked to the user
 
+  &lt;h2&gt;The endpoint is going to be deprecated&lt;/h2&gt; &lt;/br&gt;
+		&lt;strong&gt;Endpoint migration guide&lt;/strong&gt;
+		&lt;ul&gt;
+                &lt;li&gt;&lt;b&gt;Substitute endpoint: &lt;i&gt;/iam/v3/public/namespaces/{namespace}/users/{userId}/platforms  [GET]&lt;/i&gt;&lt;/b&gt;
+                &lt;li&gt;&lt;b&gt;Substitute endpoint: &lt;i&gt;/iam/v3/admin/namespaces/{namespace}/users/{userId}/platforms  [GET]&lt;/i&gt;&lt;/b&gt;
+                &lt;/li&gt;
+		&lt;/ul&gt;
 
 &lt;p&gt;Required permission &#39;NAMESPACE:{namespace}:USER:{userId} [READ]&#39;.&lt;/p&gt;
 &lt;h2&gt;Justice Platform Account&lt;/h2&gt;
@@ -10984,7 +11210,13 @@ Deprecated: Use ListCrossNamespaceAccountLinkShort instead.
 
   ListCrossNamespaceAccountLink links existing account with another account in different namespace
 
-  &lt;h2&gt;The endpoint is going to be deprecated at 9 July, 2018. Please use this instead: /users/{userId}/platforms/{platformId}/link&lt;/h2&gt;
+  &lt;h2&gt;The endpoint is going to be deprecated&lt;/h2&gt; &lt;/br&gt;
+		&lt;strong&gt;Endpoint migration guide&lt;/strong&gt;
+		&lt;ul&gt;
+                &lt;li&gt;&lt;b&gt;Substitute endpoint: &lt;i&gt;/iam/v3/public/namespaces/{namespace}/users/me/platforms/{platformId}  [POST]&lt;/i&gt;&lt;/b&gt;
+                &lt;/li&gt;
+		&lt;/ul&gt;
+
 &lt;p&gt;Required permission &#39;NAMESPACE:{namespace}:USER:{userId} [UPDATE]&#39;.&lt;/p&gt;
 &lt;p&gt;
 	Access token from original namespace is needed as authorization header. Access token from designated account needed as form parameter to verify the ownership of that account.
@@ -11048,7 +11280,13 @@ func (a *Client) ListCrossNamespaceAccountLink(params *ListCrossNamespaceAccount
 /*
   ListCrossNamespaceAccountLinkShort links existing account with another account in different namespace
 
-  &lt;h2&gt;The endpoint is going to be deprecated at 9 July, 2018. Please use this instead: /users/{userId}/platforms/{platformId}/link&lt;/h2&gt;
+  &lt;h2&gt;The endpoint is going to be deprecated&lt;/h2&gt; &lt;/br&gt;
+		&lt;strong&gt;Endpoint migration guide&lt;/strong&gt;
+		&lt;ul&gt;
+                &lt;li&gt;&lt;b&gt;Substitute endpoint: &lt;i&gt;/iam/v3/public/namespaces/{namespace}/users/me/platforms/{platformId}  [POST]&lt;/i&gt;&lt;/b&gt;
+                &lt;/li&gt;
+		&lt;/ul&gt;
+
 &lt;p&gt;Required permission &#39;NAMESPACE:{namespace}:USER:{userId} [UPDATE]&#39;.&lt;/p&gt;
 &lt;p&gt;
 	Access token from original namespace is needed as authorization header. Access token from designated account needed as form parameter to verify the ownership of that account.
@@ -11110,7 +11348,14 @@ Deprecated: Use PlatformLinkShort instead.
 
   PlatformLink links user s account with platform
 
-  &lt;p&gt;Required permission &#39;NAMESPACE:{namespace}:USER:{userId} [UPDATE]&#39;.&lt;/p&gt;
+  &lt;h2&gt;The endpoint is going to be deprecated&lt;/h2&gt; &lt;/br&gt;
+			&lt;strong&gt;Endpoint migration guide&lt;/strong&gt;
+			&lt;ul&gt;
+                &lt;li&gt;&lt;b&gt;Substitute endpoint: &lt;i&gt;/iam/v3/public/namespaces/{namespace}/users/me/platforms/{platformId} [POST]&lt;/i&gt;&lt;/b&gt;
+                &lt;/li&gt;
+			&lt;/ul&gt;
+
+			&lt;p&gt;Required permission &#39;NAMESPACE:{namespace}:USER:{userId} [UPDATE]&#39;.&lt;/p&gt;
 			&lt;p&gt;&lt;br&gt;&lt;b&gt;Prerequisite:&lt;/b&gt; Platform client configuration need to be added to database for specific platformId. Namespace service URL need to be specified (refer to required environment variables).
 &lt;h2&gt;Supported platforms:&lt;/h2&gt;
 			&lt;ul&gt;
@@ -11189,7 +11434,14 @@ func (a *Client) PlatformLink(params *PlatformLinkParams, authInfo runtime.Clien
 /*
   PlatformLinkShort links user s account with platform
 
-  &lt;p&gt;Required permission &#39;NAMESPACE:{namespace}:USER:{userId} [UPDATE]&#39;.&lt;/p&gt;
+  &lt;h2&gt;The endpoint is going to be deprecated&lt;/h2&gt; &lt;/br&gt;
+			&lt;strong&gt;Endpoint migration guide&lt;/strong&gt;
+			&lt;ul&gt;
+                &lt;li&gt;&lt;b&gt;Substitute endpoint: &lt;i&gt;/iam/v3/public/namespaces/{namespace}/users/me/platforms/{platformId} [POST]&lt;/i&gt;&lt;/b&gt;
+                &lt;/li&gt;
+			&lt;/ul&gt;
+
+			&lt;p&gt;Required permission &#39;NAMESPACE:{namespace}:USER:{userId} [UPDATE]&#39;.&lt;/p&gt;
 			&lt;p&gt;&lt;br&gt;&lt;b&gt;Prerequisite:&lt;/b&gt; Platform client configuration need to be added to database for specific platformId. Namespace service URL need to be specified (refer to required environment variables).
 &lt;h2&gt;Supported platforms:&lt;/h2&gt;
 			&lt;ul&gt;
@@ -11264,7 +11516,16 @@ Deprecated: Use PlatformUnlinkShort instead.
 
   PlatformUnlink unlinks user s account with platform
 
-  &lt;p&gt;Required permission &#39;NAMESPACE:{namespace}:USER:{userId} [UPDATE]&#39;.&lt;/p&gt;
+  &lt;h2&gt;The endpoint is going to be deprecated&lt;/h2&gt; &lt;/br&gt;
+			&lt;strong&gt;Endpoint migration guide&lt;/strong&gt;
+			&lt;ul&gt;
+                &lt;li&gt;&lt;b&gt;Substitute endpoint: &lt;i&gt;/iam/v3/public/namespaces/{namespace}/users/me/platforms/{platformId}  [DELETE]&lt;/i&gt;&lt;/b&gt;
+                &lt;li&gt;&lt;b&gt;Substitute endpoint: &lt;i&gt;/iam/v3/public/namespaces/{namespace}/users/me/platforms/{platformId}/all  [DELETE]&lt;/i&gt;&lt;/b&gt;
+                &lt;/li&gt;
+			&lt;/ul&gt;
+
+
+		&lt;p&gt;Required permission &#39;NAMESPACE:{namespace}:USER:{userId} [UPDATE]&#39;.&lt;/p&gt;
 &lt;h2&gt;Supported platforms:&lt;/h2&gt;
 			&lt;ul&gt;
 				&lt;li&gt;&lt;strong&gt;steam&lt;/strong&gt;&lt;/li&gt;
@@ -11340,7 +11601,16 @@ func (a *Client) PlatformUnlink(params *PlatformUnlinkParams, authInfo runtime.C
 /*
   PlatformUnlinkShort unlinks user s account with platform
 
-  &lt;p&gt;Required permission &#39;NAMESPACE:{namespace}:USER:{userId} [UPDATE]&#39;.&lt;/p&gt;
+  &lt;h2&gt;The endpoint is going to be deprecated&lt;/h2&gt; &lt;/br&gt;
+			&lt;strong&gt;Endpoint migration guide&lt;/strong&gt;
+			&lt;ul&gt;
+                &lt;li&gt;&lt;b&gt;Substitute endpoint: &lt;i&gt;/iam/v3/public/namespaces/{namespace}/users/me/platforms/{platformId}  [DELETE]&lt;/i&gt;&lt;/b&gt;
+                &lt;li&gt;&lt;b&gt;Substitute endpoint: &lt;i&gt;/iam/v3/public/namespaces/{namespace}/users/me/platforms/{platformId}/all  [DELETE]&lt;/i&gt;&lt;/b&gt;
+                &lt;/li&gt;
+			&lt;/ul&gt;
+
+
+		&lt;p&gt;Required permission &#39;NAMESPACE:{namespace}:USER:{userId} [UPDATE]&#39;.&lt;/p&gt;
 &lt;h2&gt;Supported platforms:&lt;/h2&gt;
 			&lt;ul&gt;
 				&lt;li&gt;&lt;strong&gt;steam&lt;/strong&gt;&lt;/li&gt;
@@ -12167,6 +12437,181 @@ func (a *Client) PublicForceLinkPlatformWithProgressionShort(params *PublicForce
 }
 
 /*
+Deprecated: Use PublicForcePlatformLinkV3Short instead.
+
+  PublicForcePlatformLinkV3 forces linking user s account with platform
+
+  Force linking user account with platform.
+			&lt;br&gt; If this platform account was already linked to another user account, this endpoint will perform force linking and remove platform from that conflict user, not only from the current request namespace but also include all the enrolled namespaces.&lt;/br&gt;
+			&lt;br&gt; If current user have linked to this platform with another platform account (include once linked but it is unlinked now), it will not allow user to perform linking.&lt;/br&gt;
+			&lt;h2&gt;Supported platforms:&lt;/h2&gt;
+			&lt;ul&gt;
+				&lt;li&gt;&lt;strong&gt;steam&lt;/strong&gt;: The platform_token’s value is the authentication code returned by Steam.&lt;/li&gt;
+				&lt;li&gt;&lt;strong&gt;steamopenid&lt;/strong&gt;: Steam&#39;s user authentication method using OpenID 2.0. The platform_token&#39;s value is URL generated by Steam on web authentication&lt;/li&gt;
+				&lt;li&gt;&lt;strong&gt;facebook&lt;/strong&gt;: The platform_token’s value is the authorization code returned by Facebook OAuth&lt;/li&gt;
+				&lt;li&gt;&lt;strong&gt;google&lt;/strong&gt;: The platform_token’s value is the authorization code returned by Google OAuth&lt;/li&gt;
+				&lt;li&gt;&lt;strong&gt;oculus&lt;/strong&gt;: The platform_token’s value is a string composed of Oculus&#39;s user ID and the nonce separated by a colon (:).&lt;/li&gt;
+				&lt;li&gt;&lt;strong&gt;twitch&lt;/strong&gt;: The platform_token’s value is the authorization code returned by Twitch OAuth.&lt;/li&gt;
+				&lt;li&gt;&lt;strong&gt;discord&lt;/strong&gt;: The platform_token’s value is the authorization code returned by Discord OAuth&lt;/li&gt;
+				&lt;li&gt;&lt;strong&gt;android&lt;/strong&gt;: The device_id is the Android’s device ID&lt;/li&gt;
+				&lt;li&gt;&lt;strong&gt;ios&lt;/strong&gt;: The device_id is the iOS’s device ID.&lt;/li&gt;
+				&lt;li&gt;&lt;strong&gt;apple&lt;/strong&gt;: The platform_token’s value is the authorization code returned by Apple OAuth.(We will use this code to generate APP token)&lt;/li&gt;
+				&lt;li&gt;&lt;strong&gt;device&lt;/strong&gt;: Every device that does’nt run Android and iOS is categorized as a device. The device_id is the device’s ID.&lt;/li&gt;
+				&lt;li&gt;&lt;strong&gt;justice&lt;/strong&gt;: The platform_token’s value is the designated user’s access token.&lt;/li&gt;
+				&lt;li&gt;&lt;strong&gt;epicgames&lt;/strong&gt;: The platform_token’s value is an access-token obtained from Epicgames EOS Account Service.&lt;/li&gt;
+                &lt;li&gt;&lt;strong&gt;stadia&lt;/strong&gt;: The platform_token&#39;s value is a JWT Token, which can be obtained after calling the Stadia SDK&#39;s function.&lt;/li&gt;
+				&lt;li&gt;&lt;strong&gt;ps4&lt;/strong&gt;: The platform_token’s value is the authorization code returned by Sony OAuth.&lt;/li&gt;
+				&lt;li&gt;&lt;strong&gt;ps5&lt;/strong&gt;: The platform_token’s value is the authorization code returned by Sony OAuth.&lt;/li&gt;
+				&lt;li&gt;&lt;strong&gt;nintendo&lt;/strong&gt;: The platform_token’s value is the authorization code(id_token) returned by Nintendo OAuth.&lt;/li&gt;
+				&lt;li&gt;&lt;strong&gt;awscognito&lt;/strong&gt;: The platform_token’s value is the aws cognito access token or id token (JWT).&lt;/li&gt;
+				&lt;li&gt;&lt;strong&gt;live&lt;/strong&gt;: The platform_token’s value is xbox XSTS token&lt;/li&gt;
+				&lt;li&gt;&lt;strong&gt;xblweb&lt;/strong&gt;: The platform_token’s value is code returned by xbox after login&lt;/li&gt;
+				&lt;li&gt;&lt;strong&gt;netflix&lt;/strong&gt;: The platform_token’s value is GAT (Gamer Access Token) returned by Netflix backend&lt;/li&gt;
+				&lt;li&gt;&lt;strong&gt;snapchat&lt;/strong&gt;: The platform_token’s value is the authorization code returned by Snapchat OAuth.&lt;/li&gt;
+			&lt;/ul&gt;
+
+*/
+func (a *Client) PublicForcePlatformLinkV3(params *PublicForcePlatformLinkV3Params, authInfo runtime.ClientAuthInfoWriter) (*PublicForcePlatformLinkV3NoContent, *PublicForcePlatformLinkV3BadRequest, *PublicForcePlatformLinkV3Unauthorized, *PublicForcePlatformLinkV3NotFound, *PublicForcePlatformLinkV3Conflict, *PublicForcePlatformLinkV3InternalServerError, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewPublicForcePlatformLinkV3Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "PublicForcePlatformLinkV3",
+		Method:             "POST",
+		PathPattern:        "/iam/v3/public/namespaces/{namespace}/users/me/platforms/{platformId}/force",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/x-www-form-urlencoded"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &PublicForcePlatformLinkV3Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, nil, nil, nil, nil, nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *PublicForcePlatformLinkV3NoContent:
+		return v, nil, nil, nil, nil, nil, nil
+
+	case *PublicForcePlatformLinkV3BadRequest:
+		return nil, v, nil, nil, nil, nil, nil
+
+	case *PublicForcePlatformLinkV3Unauthorized:
+		return nil, nil, v, nil, nil, nil, nil
+
+	case *PublicForcePlatformLinkV3NotFound:
+		return nil, nil, nil, v, nil, nil, nil
+
+	case *PublicForcePlatformLinkV3Conflict:
+		return nil, nil, nil, nil, v, nil, nil
+
+	case *PublicForcePlatformLinkV3InternalServerError:
+		return nil, nil, nil, nil, nil, v, nil
+
+	default:
+		return nil, nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+  PublicForcePlatformLinkV3Short forces linking user s account with platform
+
+  Force linking user account with platform.
+			&lt;br&gt; If this platform account was already linked to another user account, this endpoint will perform force linking and remove platform from that conflict user, not only from the current request namespace but also include all the enrolled namespaces.&lt;/br&gt;
+			&lt;br&gt; If current user have linked to this platform with another platform account (include once linked but it is unlinked now), it will not allow user to perform linking.&lt;/br&gt;
+			&lt;h2&gt;Supported platforms:&lt;/h2&gt;
+			&lt;ul&gt;
+				&lt;li&gt;&lt;strong&gt;steam&lt;/strong&gt;: The platform_token’s value is the authentication code returned by Steam.&lt;/li&gt;
+				&lt;li&gt;&lt;strong&gt;steamopenid&lt;/strong&gt;: Steam&#39;s user authentication method using OpenID 2.0. The platform_token&#39;s value is URL generated by Steam on web authentication&lt;/li&gt;
+				&lt;li&gt;&lt;strong&gt;facebook&lt;/strong&gt;: The platform_token’s value is the authorization code returned by Facebook OAuth&lt;/li&gt;
+				&lt;li&gt;&lt;strong&gt;google&lt;/strong&gt;: The platform_token’s value is the authorization code returned by Google OAuth&lt;/li&gt;
+				&lt;li&gt;&lt;strong&gt;oculus&lt;/strong&gt;: The platform_token’s value is a string composed of Oculus&#39;s user ID and the nonce separated by a colon (:).&lt;/li&gt;
+				&lt;li&gt;&lt;strong&gt;twitch&lt;/strong&gt;: The platform_token’s value is the authorization code returned by Twitch OAuth.&lt;/li&gt;
+				&lt;li&gt;&lt;strong&gt;discord&lt;/strong&gt;: The platform_token’s value is the authorization code returned by Discord OAuth&lt;/li&gt;
+				&lt;li&gt;&lt;strong&gt;android&lt;/strong&gt;: The device_id is the Android’s device ID&lt;/li&gt;
+				&lt;li&gt;&lt;strong&gt;ios&lt;/strong&gt;: The device_id is the iOS’s device ID.&lt;/li&gt;
+				&lt;li&gt;&lt;strong&gt;apple&lt;/strong&gt;: The platform_token’s value is the authorization code returned by Apple OAuth.(We will use this code to generate APP token)&lt;/li&gt;
+				&lt;li&gt;&lt;strong&gt;device&lt;/strong&gt;: Every device that does’nt run Android and iOS is categorized as a device. The device_id is the device’s ID.&lt;/li&gt;
+				&lt;li&gt;&lt;strong&gt;justice&lt;/strong&gt;: The platform_token’s value is the designated user’s access token.&lt;/li&gt;
+				&lt;li&gt;&lt;strong&gt;epicgames&lt;/strong&gt;: The platform_token’s value is an access-token obtained from Epicgames EOS Account Service.&lt;/li&gt;
+                &lt;li&gt;&lt;strong&gt;stadia&lt;/strong&gt;: The platform_token&#39;s value is a JWT Token, which can be obtained after calling the Stadia SDK&#39;s function.&lt;/li&gt;
+				&lt;li&gt;&lt;strong&gt;ps4&lt;/strong&gt;: The platform_token’s value is the authorization code returned by Sony OAuth.&lt;/li&gt;
+				&lt;li&gt;&lt;strong&gt;ps5&lt;/strong&gt;: The platform_token’s value is the authorization code returned by Sony OAuth.&lt;/li&gt;
+				&lt;li&gt;&lt;strong&gt;nintendo&lt;/strong&gt;: The platform_token’s value is the authorization code(id_token) returned by Nintendo OAuth.&lt;/li&gt;
+				&lt;li&gt;&lt;strong&gt;awscognito&lt;/strong&gt;: The platform_token’s value is the aws cognito access token or id token (JWT).&lt;/li&gt;
+				&lt;li&gt;&lt;strong&gt;live&lt;/strong&gt;: The platform_token’s value is xbox XSTS token&lt;/li&gt;
+				&lt;li&gt;&lt;strong&gt;xblweb&lt;/strong&gt;: The platform_token’s value is code returned by xbox after login&lt;/li&gt;
+				&lt;li&gt;&lt;strong&gt;netflix&lt;/strong&gt;: The platform_token’s value is GAT (Gamer Access Token) returned by Netflix backend&lt;/li&gt;
+				&lt;li&gt;&lt;strong&gt;snapchat&lt;/strong&gt;: The platform_token’s value is the authorization code returned by Snapchat OAuth.&lt;/li&gt;
+			&lt;/ul&gt;
+
+*/
+func (a *Client) PublicForcePlatformLinkV3Short(params *PublicForcePlatformLinkV3Params, authInfo runtime.ClientAuthInfoWriter) (*PublicForcePlatformLinkV3NoContent, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewPublicForcePlatformLinkV3Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "PublicForcePlatformLinkV3",
+		Method:             "POST",
+		PathPattern:        "/iam/v3/public/namespaces/{namespace}/users/me/platforms/{platformId}/force",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/x-www-form-urlencoded"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &PublicForcePlatformLinkV3Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *PublicForcePlatformLinkV3NoContent:
+		return v, nil
+	case *PublicForcePlatformLinkV3BadRequest:
+		return nil, v
+	case *PublicForcePlatformLinkV3Unauthorized:
+		return nil, v
+	case *PublicForcePlatformLinkV3NotFound:
+		return nil, v
+	case *PublicForcePlatformLinkV3Conflict:
+		return nil, v
+	case *PublicForcePlatformLinkV3InternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
 Deprecated: Use PublicForgotPasswordV2Short instead.
 
   PublicForgotPasswordV2 requests password reset code
@@ -12717,7 +13162,7 @@ Deprecated: Use PublicGetPublisherUserV3Short instead.
 
   PublicGetPublisherUserV3 gets publisher user
 
-  &lt;p&gt;Required permissions &#39;NAMESPACE:{namespace}:PUBLISHER:USER:{userId} [READ].&lt;/p&gt;
+  &lt;p&gt;Required permissions &#39;NAMESPACE:{namespace}:USER:{userId}:PUBLISHER [READ].&lt;/p&gt;
 	&lt;p&gt;&lt;strong&gt;Restriction:&lt;/strong&gt;
 		Path Parameter &lt;strong&gt;namespace&lt;/strong&gt; can be provided only with game namespace&lt;/p&gt;
 */
@@ -12777,7 +13222,7 @@ func (a *Client) PublicGetPublisherUserV3(params *PublicGetPublisherUserV3Params
 /*
   PublicGetPublisherUserV3Short gets publisher user
 
-  &lt;p&gt;Required permissions &#39;NAMESPACE:{namespace}:PUBLISHER:USER:{userId} [READ].&lt;/p&gt;
+  &lt;p&gt;Required permissions &#39;NAMESPACE:{namespace}:USER:{userId}:PUBLISHER [READ].&lt;/p&gt;
 	&lt;p&gt;&lt;strong&gt;Restriction:&lt;/strong&gt;
 		Path Parameter &lt;strong&gt;namespace&lt;/strong&gt; can be provided only with game namespace&lt;/p&gt;
 */
@@ -13392,6 +13837,117 @@ func (a *Client) PublicGetUserByUserIDV3Short(params *PublicGetUserByUserIDV3Par
 	case *PublicGetUserByUserIDV3NotFound:
 		return nil, v
 	case *PublicGetUserByUserIDV3InternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+Deprecated: Use PublicGetUserInformationV3Short instead.
+
+  PublicGetUserInformationV3 gets user s information v3
+
+  &lt;p&gt;This endpoint retrieves user info and linked platform accounts.
+					Required permissions &#39;NAMESPACE:{namespace}:INFORMATION:USER:{userId} [READ]&#39;&lt;/p&gt;
+*/
+func (a *Client) PublicGetUserInformationV3(params *PublicGetUserInformationV3Params, authInfo runtime.ClientAuthInfoWriter) (*PublicGetUserInformationV3OK, *PublicGetUserInformationV3Unauthorized, *PublicGetUserInformationV3Forbidden, *PublicGetUserInformationV3NotFound, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewPublicGetUserInformationV3Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "PublicGetUserInformationV3",
+		Method:             "GET",
+		PathPattern:        "/iam/v3/public/namespaces/{namespace}/users/{userId}/information",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &PublicGetUserInformationV3Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, nil, nil, nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *PublicGetUserInformationV3OK:
+		return v, nil, nil, nil, nil
+
+	case *PublicGetUserInformationV3Unauthorized:
+		return nil, v, nil, nil, nil
+
+	case *PublicGetUserInformationV3Forbidden:
+		return nil, nil, v, nil, nil
+
+	case *PublicGetUserInformationV3NotFound:
+		return nil, nil, nil, v, nil
+
+	default:
+		return nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+  PublicGetUserInformationV3Short gets user s information v3
+
+  &lt;p&gt;This endpoint retrieves user info and linked platform accounts.
+					Required permissions &#39;NAMESPACE:{namespace}:INFORMATION:USER:{userId} [READ]&#39;&lt;/p&gt;
+*/
+func (a *Client) PublicGetUserInformationV3Short(params *PublicGetUserInformationV3Params, authInfo runtime.ClientAuthInfoWriter) (*PublicGetUserInformationV3OK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewPublicGetUserInformationV3Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "PublicGetUserInformationV3",
+		Method:             "GET",
+		PathPattern:        "/iam/v3/public/namespaces/{namespace}/users/{userId}/information",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &PublicGetUserInformationV3Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *PublicGetUserInformationV3OK:
+		return v, nil
+	case *PublicGetUserInformationV3Unauthorized:
+		return nil, v
+	case *PublicGetUserInformationV3Forbidden:
+		return nil, v
+	case *PublicGetUserInformationV3NotFound:
 		return nil, v
 
 	default:
@@ -15223,6 +15779,126 @@ func (a *Client) PublicSendVerificationCodeV3Short(params *PublicSendVerificatio
 }
 
 /*
+Deprecated: Use PublicSendVerificationLinkV3Short instead.
+
+  PublicSendVerificationLinkV3 sends verification link to user this link will point to iam v3 public users verify link verify
+
+  Required valid user authorization
+&lt;p&gt;The verification link is sent to email address&lt;/p&gt;
+&lt;p&gt;It will not send request if user email is already verified&lt;/p&gt;
+
+*/
+func (a *Client) PublicSendVerificationLinkV3(params *PublicSendVerificationLinkV3Params, authInfo runtime.ClientAuthInfoWriter) (*PublicSendVerificationLinkV3NoContent, *PublicSendVerificationLinkV3BadRequest, *PublicSendVerificationLinkV3Unauthorized, *PublicSendVerificationLinkV3Conflict, *PublicSendVerificationLinkV3TooManyRequests, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewPublicSendVerificationLinkV3Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "PublicSendVerificationLinkV3",
+		Method:             "POST",
+		PathPattern:        "/iam/v3/public/users/me/verify_link/request",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &PublicSendVerificationLinkV3Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, nil, nil, nil, nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *PublicSendVerificationLinkV3NoContent:
+		return v, nil, nil, nil, nil, nil
+
+	case *PublicSendVerificationLinkV3BadRequest:
+		return nil, v, nil, nil, nil, nil
+
+	case *PublicSendVerificationLinkV3Unauthorized:
+		return nil, nil, v, nil, nil, nil
+
+	case *PublicSendVerificationLinkV3Conflict:
+		return nil, nil, nil, v, nil, nil
+
+	case *PublicSendVerificationLinkV3TooManyRequests:
+		return nil, nil, nil, nil, v, nil
+
+	default:
+		return nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+  PublicSendVerificationLinkV3Short sends verification link to user this link will point to iam v3 public users verify link verify
+
+  Required valid user authorization
+&lt;p&gt;The verification link is sent to email address&lt;/p&gt;
+&lt;p&gt;It will not send request if user email is already verified&lt;/p&gt;
+
+*/
+func (a *Client) PublicSendVerificationLinkV3Short(params *PublicSendVerificationLinkV3Params, authInfo runtime.ClientAuthInfoWriter) (*PublicSendVerificationLinkV3NoContent, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewPublicSendVerificationLinkV3Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "PublicSendVerificationLinkV3",
+		Method:             "POST",
+		PathPattern:        "/iam/v3/public/users/me/verify_link/request",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &PublicSendVerificationLinkV3Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *PublicSendVerificationLinkV3NoContent:
+		return v, nil
+	case *PublicSendVerificationLinkV3BadRequest:
+		return nil, v
+	case *PublicSendVerificationLinkV3Unauthorized:
+		return nil, v
+	case *PublicSendVerificationLinkV3Conflict:
+		return nil, v
+	case *PublicSendVerificationLinkV3TooManyRequests:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
 Deprecated: Use PublicUpdatePasswordV2Short instead.
 
   PublicUpdatePasswordV2 updates user password
@@ -16186,6 +16862,96 @@ func (a *Client) PublicVerifyRegistrationCodeShort(params *PublicVerifyRegistrat
 		return v, nil
 	case *PublicVerifyRegistrationCodeBadRequest:
 		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+Deprecated: Use PublicVerifyUserByLinkV3Short instead.
+
+  PublicVerifyUserByLinkV3 verifies user email by the verification link code
+*/
+func (a *Client) PublicVerifyUserByLinkV3(params *PublicVerifyUserByLinkV3Params, authInfo runtime.ClientAuthInfoWriter) (*PublicVerifyUserByLinkV3Found, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewPublicVerifyUserByLinkV3Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "PublicVerifyUserByLinkV3",
+		Method:             "GET",
+		PathPattern:        "/iam/v3/public/users/verify_link/verify",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &PublicVerifyUserByLinkV3Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *PublicVerifyUserByLinkV3Found:
+		return v, nil
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+  PublicVerifyUserByLinkV3Short verifies user email by the verification link code
+*/
+func (a *Client) PublicVerifyUserByLinkV3Short(params *PublicVerifyUserByLinkV3Params, authInfo runtime.ClientAuthInfoWriter) (*PublicVerifyUserByLinkV3Found, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewPublicVerifyUserByLinkV3Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "PublicVerifyUserByLinkV3",
+		Method:             "GET",
+		PathPattern:        "/iam/v3/public/users/verify_link/verify",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &PublicVerifyUserByLinkV3Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *PublicVerifyUserByLinkV3Found:
+		return v, nil
 
 	default:
 		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
@@ -17768,7 +18534,14 @@ Deprecated: Use UpgradeHeadlessAccountWithVerificationCodeShort instead.
 
   UpgradeHeadlessAccountWithVerificationCode upgrades headless account and automatically verified the email address if it is succeeded
 
-  Required permission &#39;NAMESPACE:{namespace}:USER:{userId} [UPDATE]&#39;
+  &lt;h2&gt;The endpoint is going to be deprecated&lt;/h2&gt; &lt;/br&gt;
+		&lt;strong&gt;Endpoint migration guide&lt;/strong&gt;
+		&lt;ul&gt;
+			&lt;li&gt;&lt;b&gt;Substitute endpoint: &lt;i&gt;/iam/v3/public/namespaces/{namespace}/users/me/headless/code/verify  [POST]&lt;/i&gt;&lt;/b&gt;
+			&lt;/li&gt;
+		&lt;/ul&gt;
+
+	Required permission &#39;NAMESPACE:{namespace}:USER:{userId} [UPDATE]&#39;
 &lt;p&gt;The endpoint upgrades a headless account by linking the headless account with the email address and the password. By upgrading the headless account into a full account, the user could use the email address and password for using Justice IAM.
 The endpoint is a shortcut for upgrading a headless account and verifying the email address in one call. In order to get a verification code for the endpoint, please check the send verification code endpoint.&lt;/p&gt;
 */
@@ -17828,7 +18601,14 @@ func (a *Client) UpgradeHeadlessAccountWithVerificationCode(params *UpgradeHeadl
 /*
   UpgradeHeadlessAccountWithVerificationCodeShort upgrades headless account and automatically verified the email address if it is succeeded
 
-  Required permission &#39;NAMESPACE:{namespace}:USER:{userId} [UPDATE]&#39;
+  &lt;h2&gt;The endpoint is going to be deprecated&lt;/h2&gt; &lt;/br&gt;
+		&lt;strong&gt;Endpoint migration guide&lt;/strong&gt;
+		&lt;ul&gt;
+			&lt;li&gt;&lt;b&gt;Substitute endpoint: &lt;i&gt;/iam/v3/public/namespaces/{namespace}/users/me/headless/code/verify  [POST]&lt;/i&gt;&lt;/b&gt;
+			&lt;/li&gt;
+		&lt;/ul&gt;
+
+	Required permission &#39;NAMESPACE:{namespace}:USER:{userId} [UPDATE]&#39;
 &lt;p&gt;The endpoint upgrades a headless account by linking the headless account with the email address and the password. By upgrading the headless account into a full account, the user could use the email address and password for using Justice IAM.
 The endpoint is a shortcut for upgrading a headless account and verifying the email address in one call. In order to get a verification code for the endpoint, please check the send verification code endpoint.&lt;/p&gt;
 */
@@ -18143,7 +18923,15 @@ Deprecated: Use UpgradeHeadlessAccountShort instead.
 
   UpgradeHeadlessAccount upgrades user account to full account with email
 
-  Required permission &#39;NAMESPACE:{namespace}:USER:{userId} [UPDATE]&#39;
+  &lt;h2&gt;The endpoint is going to be deprecated&lt;/h2&gt; &lt;/br&gt;
+
+		 &lt;strong&gt;Endpoint migration guide&lt;/strong&gt;
+		&lt;ul&gt;
+                &lt;li&gt;&lt;b&gt;Substitute endpoint: &lt;i&gt;/iam/v3/public/namespaces/{namespace}/users/me/headless/verify  [POST]&lt;/i&gt;&lt;/b&gt;
+                &lt;/li&gt;
+		&lt;/ul&gt;
+
+		Required permission &#39;NAMESPACE:{namespace}:USER:{userId} [UPDATE]&#39;
 */
 func (a *Client) UpgradeHeadlessAccount(params *UpgradeHeadlessAccountParams, authInfo runtime.ClientAuthInfoWriter) (*UpgradeHeadlessAccountOK, *UpgradeHeadlessAccountUnauthorized, *UpgradeHeadlessAccountForbidden, *UpgradeHeadlessAccountConflict, error) {
 	// TODO: Validate the params before sending
@@ -18198,7 +18986,15 @@ func (a *Client) UpgradeHeadlessAccount(params *UpgradeHeadlessAccountParams, au
 /*
   UpgradeHeadlessAccountShort upgrades user account to full account with email
 
-  Required permission &#39;NAMESPACE:{namespace}:USER:{userId} [UPDATE]&#39;
+  &lt;h2&gt;The endpoint is going to be deprecated&lt;/h2&gt; &lt;/br&gt;
+
+		 &lt;strong&gt;Endpoint migration guide&lt;/strong&gt;
+		&lt;ul&gt;
+                &lt;li&gt;&lt;b&gt;Substitute endpoint: &lt;i&gt;/iam/v3/public/namespaces/{namespace}/users/me/headless/verify  [POST]&lt;/i&gt;&lt;/b&gt;
+                &lt;/li&gt;
+		&lt;/ul&gt;
+
+		Required permission &#39;NAMESPACE:{namespace}:USER:{userId} [UPDATE]&#39;
 */
 func (a *Client) UpgradeHeadlessAccountShort(params *UpgradeHeadlessAccountParams, authInfo runtime.ClientAuthInfoWriter) (*UpgradeHeadlessAccountOK, error) {
 	// TODO: Validate the params before sending

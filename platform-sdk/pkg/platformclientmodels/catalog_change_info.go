@@ -43,7 +43,7 @@ type CatalogChangeInfo struct {
 	ItemID string `json:"itemId,omitempty"`
 
 	// item type
-	// Enum: [APP BUNDLE CODE COINS INGAMEITEM MEDIA OPTIONBOX SEASON SUBSCRIPTION]
+	// Enum: [APP BUNDLE CODE COINS EXTENSION INGAMEITEM MEDIA OPTIONBOX SEASON SUBSCRIPTION]
 	ItemType string `json:"itemType,omitempty"`
 
 	// namespace
@@ -209,7 +209,7 @@ var catalogChangeInfoTypeItemTypePropEnum []interface{}
 
 func init() {
 	var res []string
-	if err := json.Unmarshal([]byte(`["APP","BUNDLE","CODE","COINS","INGAMEITEM","MEDIA","OPTIONBOX","SEASON","SUBSCRIPTION"]`), &res); err != nil {
+	if err := json.Unmarshal([]byte(`["APP","BUNDLE","CODE","COINS","EXTENSION","INGAMEITEM","MEDIA","OPTIONBOX","SEASON","SUBSCRIPTION"]`), &res); err != nil {
 		panic(err)
 	}
 	for _, v := range res {
@@ -230,6 +230,9 @@ const (
 
 	// CatalogChangeInfoItemTypeCOINS captures enum value "COINS"
 	CatalogChangeInfoItemTypeCOINS string = "COINS"
+
+	// CatalogChangeInfoItemTypeEXTENSION captures enum value "EXTENSION"
+	CatalogChangeInfoItemTypeEXTENSION string = "EXTENSION"
 
 	// CatalogChangeInfoItemTypeINGAMEITEM captures enum value "INGAMEITEM"
 	CatalogChangeInfoItemTypeINGAMEITEM string = "INGAMEITEM"

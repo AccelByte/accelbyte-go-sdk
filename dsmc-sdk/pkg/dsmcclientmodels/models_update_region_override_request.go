@@ -33,6 +33,10 @@ type ModelsUpdateRegionOverrideRequest struct {
 	// Required: true
 	MinCount *int32 `json:"min_count"`
 
+	// unlimited
+	// Required: true
+	Unlimited *bool `json:"unlimited"`
+
 	// use buffer percent
 	// Required: true
 	UseBufferPercent *bool `json:"use_buffer_percent"`
@@ -55,6 +59,10 @@ func (m *ModelsUpdateRegionOverrideRequest) Validate(formats strfmt.Registry) er
 	}
 
 	if err := m.validateMinCount(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateUnlimited(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -98,6 +106,15 @@ func (m *ModelsUpdateRegionOverrideRequest) validateMaxCount(formats strfmt.Regi
 func (m *ModelsUpdateRegionOverrideRequest) validateMinCount(formats strfmt.Registry) error {
 
 	if err := validate.Required("min_count", "body", m.MinCount); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *ModelsUpdateRegionOverrideRequest) validateUnlimited(formats strfmt.Registry) error {
+
+	if err := validate.Required("unlimited", "body", m.Unlimited); err != nil {
 		return err
 	}
 

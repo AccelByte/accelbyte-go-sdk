@@ -49,6 +49,12 @@ func init() {
 	PlatformCmd.AddCommand(fulfillmentScript.CreateFulfillmentScriptCmd)
 	PlatformCmd.AddCommand(fulfillmentScript.DeleteFulfillmentScriptCmd)
 	PlatformCmd.AddCommand(fulfillmentScript.UpdateFulfillmentScriptCmd)
+	PlatformCmd.AddCommand(item.ListItemTypeConfigsCmd)
+	PlatformCmd.AddCommand(item.CreateItemTypeConfigCmd)
+	PlatformCmd.AddCommand(item.SearchItemTypeConfigCmd)
+	PlatformCmd.AddCommand(item.GetItemTypeConfigCmd)
+	PlatformCmd.AddCommand(item.UpdateItemTypeConfigCmd)
+	PlatformCmd.AddCommand(item.DeleteItemTypeConfigCmd)
 	PlatformCmd.AddCommand(campaign.QueryCampaignsCmd)
 	PlatformCmd.AddCommand(campaign.CreateCampaignCmd)
 	PlatformCmd.AddCommand(campaign.GetCampaignCmd)
@@ -389,4 +395,5 @@ func init() {
 	PlatformCmd.AddCommand(subscription.PublicGetUserSubscriptionBillingHistoriesCmd)
 	PlatformCmd.AddCommand(wallet.PublicGetWalletCmd)
 	PlatformCmd.AddCommand(wallet.PublicListUserWalletTransactionsCmd)
+	PlatformCmd.AddCommand(item.QueryItems1Cmd)
 }

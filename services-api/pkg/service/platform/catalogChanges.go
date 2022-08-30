@@ -79,12 +79,15 @@ func (aaa *CatalogChangesService) PublishSelected(input *catalog_changes.Publish
 	if err != nil {
 		return nil, err
 	}
-	ok, badRequest, notFound, err := aaa.Client.CatalogChanges.PublishSelected(input, client.BearerToken(*token.AccessToken))
+	ok, badRequest, notFound, conflict, err := aaa.Client.CatalogChanges.PublishSelected(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
 	if notFound != nil {
 		return nil, notFound
+	}
+	if conflict != nil {
+		return nil, conflict
 	}
 	if err != nil {
 		return nil, err

@@ -36,6 +36,7 @@ const (
 	QueryItemsBUNDLEConstant       = "BUNDLE"
 	QueryItemsCODEConstant         = "CODE"
 	QueryItemsCOINSConstant        = "COINS"
+	QueryItemsEXTENSIONConstant    = "EXTENSION"
 	QueryItemsINGAMEITEMConstant   = "INGAMEITEM"
 	QueryItemsMEDIAConstant        = "MEDIA"
 	QueryItemsOPTIONBOXConstant    = "OPTIONBOX"

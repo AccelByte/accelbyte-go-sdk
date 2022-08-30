@@ -24,8 +24,9 @@ var VerifyTokenV3Cmd = &cobra.Command{
 	Long:  `Verify token V3`,
 	RunE: func(cmd *cobra.Command, args []string) error {
 		oAuth20Service := &iam.OAuth20Service{
-			Client:          factory.NewIamClient(&repository.ConfigRepositoryImpl{}),
-			TokenRepository: &repository.TokenRepositoryImpl{},
+			Client:           factory.NewIamClient(&repository.ConfigRepositoryImpl{}),
+			ConfigRepository: &repository.ConfigRepositoryImpl{},
+			TokenRepository:  &repository.TokenRepositoryImpl{},
 		}
 		token, _ := cmd.Flags().GetString("token")
 		httpClient := &http.Client{

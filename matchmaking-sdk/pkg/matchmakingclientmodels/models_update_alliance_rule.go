@@ -6,6 +6,7 @@ package matchmakingclientmodels
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"github.com/go-openapi/errors"
 	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
 )
@@ -14,6 +15,9 @@ import (
 //
 // swagger:model models.UpdateAllianceRule
 type ModelsUpdateAllianceRule struct {
+
+	// combination
+	Combination *ModelsCombination `json:"combination,omitempty"`
 
 	// max number
 	MaxNumber int32 `json:"maxNumber,omitempty"`
@@ -30,6 +34,33 @@ type ModelsUpdateAllianceRule struct {
 
 // Validate validates this models update alliance rule
 func (m *ModelsUpdateAllianceRule) Validate(formats strfmt.Registry) error {
+	var res []error
+
+	if err := m.validateCombination(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if len(res) > 0 {
+		return errors.CompositeValidationError(res...)
+	}
+	return nil
+}
+
+func (m *ModelsUpdateAllianceRule) validateCombination(formats strfmt.Registry) error {
+
+	if swag.IsZero(m.Combination) { // not required
+		return nil
+	}
+
+	if m.Combination != nil {
+		if err := m.Combination.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("combination")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 

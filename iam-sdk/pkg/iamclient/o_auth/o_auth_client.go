@@ -923,7 +923,7 @@ Deprecated: Use TokenGrantShort instead.
   &lt;h2&gt;The endpoint is going to be deprecated&lt;/h2&gt; &lt;/br&gt;
 			&lt;strong&gt;Endpoint migration guide&lt;/strong&gt;
                 &lt;ul&gt;
-                        &lt;li&gt;&lt;b&gt;Substitute endpoint: &lt;i&gt;/iam/v3/oauth/platforms/{platformId}/token  [POST]&lt;/i&gt;&lt;/b&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;b&gt;Substitute endpoint: &lt;i&gt;/iam/v3/oauth/token  [POST]&lt;/i&gt;&lt;/b&gt;&lt;/li&gt;
                         &lt;li&gt;&lt;b&gt;Note: difference in V3 response:&lt;/b&gt;
 							&lt;dd&gt;1. format difference（Pascal case =&gt; Camel case): permissions field from Action =&gt; action, Resource =&gt; resource &lt;/dd&gt;&lt;/b&gt;
 						&lt;/li&gt;
@@ -1062,7 +1062,7 @@ func (a *Client) TokenGrant(params *TokenGrantParams, authInfo runtime.ClientAut
   &lt;h2&gt;The endpoint is going to be deprecated&lt;/h2&gt; &lt;/br&gt;
 			&lt;strong&gt;Endpoint migration guide&lt;/strong&gt;
                 &lt;ul&gt;
-                        &lt;li&gt;&lt;b&gt;Substitute endpoint: &lt;i&gt;/iam/v3/oauth/platforms/{platformId}/token  [POST]&lt;/i&gt;&lt;/b&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;b&gt;Substitute endpoint: &lt;i&gt;/iam/v3/oauth/token  [POST]&lt;/i&gt;&lt;/b&gt;&lt;/li&gt;
                         &lt;li&gt;&lt;b&gt;Note: difference in V3 response:&lt;/b&gt;
 							&lt;dd&gt;1. format difference（Pascal case =&gt; Camel case): permissions field from Action =&gt; action, Resource =&gt; resource &lt;/dd&gt;&lt;/b&gt;
 						&lt;/li&gt;

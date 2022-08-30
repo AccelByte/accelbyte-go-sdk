@@ -264,6 +264,32 @@ func (aaa *AchievementsService) AdminListUserAchievements(input *achievements.Ad
 	return ok.GetPayload(), nil
 }
 
+// Deprecated: Use AdminResetAchievementShort instead
+func (aaa *AchievementsService) AdminResetAchievement(input *achievements.AdminResetAchievementParams) error {
+	token, err := aaa.TokenRepository.GetToken()
+	if err != nil {
+		return err
+	}
+	_, badRequest, unauthorized, notFound, internalServerError, err := aaa.Client.Achievements.AdminResetAchievement(input, client.BearerToken(*token.AccessToken))
+	if badRequest != nil {
+		return badRequest
+	}
+	if unauthorized != nil {
+		return unauthorized
+	}
+	if notFound != nil {
+		return notFound
+	}
+	if internalServerError != nil {
+		return internalServerError
+	}
+	if err != nil {
+		return err
+	}
+
+	return nil
+}
+
 // Deprecated: Use AdminUnlockAchievementShort instead
 func (aaa *AchievementsService) AdminUnlockAchievement(input *achievements.AdminUnlockAchievementParams) error {
 	token, err := aaa.TokenRepository.GetToken()
@@ -611,6 +637,31 @@ func (aaa *AchievementsService) AdminListUserAchievementsShort(input *achievemen
 	}
 
 	return ok.GetPayload(), nil
+}
+
+func (aaa *AchievementsService) AdminResetAchievementShort(input *achievements.AdminResetAchievementParams) error {
+	authInfoWriter := input.AuthInfoWriter
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
+	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  aaa.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
+	_, err := aaa.Client.Achievements.AdminResetAchievementShort(input, authInfoWriter)
+	if err != nil {
+		return err
+	}
+
+	return nil
 }
 
 func (aaa *AchievementsService) AdminUnlockAchievementShort(input *achievements.AdminUnlockAchievementParams) error {

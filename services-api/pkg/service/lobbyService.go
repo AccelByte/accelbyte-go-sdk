@@ -308,7 +308,7 @@ func (lobbyService *LobbyServiceWebsocket) GetSessionAttributeResponse(code int6
 }
 
 func (lobbyService *LobbyServiceWebsocket) Heartbeat() error {
-	logrus.Debug("ehm Heartbeat")
+	logrus.Debug("Heartbeat")
 	text := fmt.Sprintf("type: %s\n%s", model.TypeHeartbeat, utils.GenerateMessageID())
 	err := lobbyService.ConnectionManager.Get().Conn.WriteMessage(websocket.TextMessage, []byte(text))
 	if err != nil {
@@ -1011,7 +1011,7 @@ func (lobbyService *LobbyServiceWebsocket) SignalingP2PNotif(destinationId strin
 	return nil
 }
 
-func (lobbyService *LobbyServiceWebsocket) StartMatchmakingRequest(extraAttributes *string, gameMode *string, id *string, partyAttributes map[string]interface{}, priority *int64, tempParty *string) error {
+func (lobbyService *LobbyServiceWebsocket) StartMatchmakingRequest(extraAttributes *string, gameMode *string, id *string, partyAttributes string, priority *int64, tempParty *string) error {
 	logrus.Debug("StartMatchmakingRequest")
 	text := fmt.Sprintf("type: %s\n%s\nextraAttributes: %v\ngameMode: %v\nid: %v\npartyAttributes: %v\npriority: %v\ntempParty: %v", model.TypeStartMatchmakingRequest, utils.GenerateMessageID(), extraAttributes, gameMode, id, partyAttributes, priority, tempParty)
 	err := lobbyService.ConnectionManager.Get().Conn.WriteMessage(websocket.TextMessage, []byte(text))

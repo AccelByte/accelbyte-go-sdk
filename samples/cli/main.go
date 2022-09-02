@@ -708,11 +708,7 @@ func serveStandalone() {
 		podName := m["podName"]
 		portString := m["port"]
 		port, _ := strconv.ParseInt(portString, 10, 64)
-		portsString := m["ports"]
-		var ports string
-		if err := json.Unmarshal([]byte(portsString), &ports); err != nil {
-			return
-		}
+		ports := m["ports"]
 		protocol := m["protocol"]
 		provider := m["provider"]
 		region := m["region"]
@@ -805,11 +801,7 @@ func serveStandalone() {
 		if len(getArgs) >= 1 {
 			m = getParam(getArgs)
 		}
-		attributesString := m["attributes"]
-		var attributes string
-		if err := json.Unmarshal([]byte(attributesString), &attributes); err != nil {
-			return
-		}
+		attributes := m["attributes"]
 		codeString := m["code"]
 		code, _ := strconv.ParseInt(codeString, 10, 64)
 		id := m["id"]
@@ -1176,11 +1168,7 @@ func serveStandalone() {
 		if len(getArgs) >= 1 {
 			m = getParam(getArgs)
 		}
-		customAttributesString := m["customAttributes"]
-		var customAttributes string
-		if err := json.Unmarshal([]byte(customAttributesString), &customAttributes); err != nil {
-			return
-		}
+		customAttributes := m["customAttributes"]
 		inviteesString := m["invitees"]
 		var invitees []string
 		invitees = append(invitees, inviteesString)
@@ -1231,11 +1219,7 @@ func serveStandalone() {
 		}
 		codeString := m["code"]
 		code, _ := strconv.ParseInt(codeString, 10, 64)
-		customAttributesString := m["customAttributes"]
-		var customAttributes string
-		if err := json.Unmarshal([]byte(customAttributesString), &customAttributes); err != nil {
-			return
-		}
+		customAttributes := m["customAttributes"]
 		id := m["id"]
 		invitationToken := m["invitationToken"]
 		invitees := m["invitees"]
@@ -1817,11 +1801,7 @@ func serveStandalone() {
 		extraAttributes := m["extraAttributes"]
 		gameMode := m["gameMode"]
 		id := m["id"]
-		partyAttributesString := m["partyAttributes"]
-		var partyAttributes map[string]interface{}
-		if err := json.Unmarshal([]byte(partyAttributesString), &partyAttributes); err != nil {
-			return
-		}
+		partyAttributes := m["partyAttributes"]
 		priorityString := m["priority"]
 		priority, _ := strconv.ParseInt(priorityString, 10, 64)
 		tempParty := m["tempParty"]
@@ -1850,11 +1830,7 @@ func serveStandalone() {
 		if len(getArgs) >= 1 {
 			m = getParam(getArgs)
 		}
-		componentsString := m["components"]
-		var components string
-		if err := json.Unmarshal([]byte(componentsString), &components); err != nil {
-			return
-		}
+		components := m["components"]
 		err := lobbyService.SystemComponentsStatus(components)
 		if err != nil {
 			logrus.Error(err)

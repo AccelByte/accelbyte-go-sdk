@@ -709,7 +709,7 @@ func serveStandalone() {
 		portString := m["port"]
 		port, _ := strconv.ParseInt(portString, 10, 64)
 		portsString := m["ports"]
-		var ports map[string]int64
+		var ports string
 		if err := json.Unmarshal([]byte(portsString), &ports); err != nil {
 			return
 		}
@@ -806,7 +806,7 @@ func serveStandalone() {
 			m = getParam(getArgs)
 		}
 		attributesString := m["attributes"]
-		var attributes map[string]string
+		var attributes string
 		if err := json.Unmarshal([]byte(attributesString), &attributes); err != nil {
 			return
 		}
@@ -1177,7 +1177,7 @@ func serveStandalone() {
 			m = getParam(getArgs)
 		}
 		customAttributesString := m["customAttributes"]
-		var customAttributes map[string]interface{}
+		var customAttributes string
 		if err := json.Unmarshal([]byte(customAttributesString), &customAttributes); err != nil {
 			return
 		}
@@ -1232,7 +1232,7 @@ func serveStandalone() {
 		codeString := m["code"]
 		code, _ := strconv.ParseInt(codeString, 10, 64)
 		customAttributesString := m["customAttributes"]
-		var customAttributes map[string]interface{}
+		var customAttributes string
 		if err := json.Unmarshal([]byte(customAttributesString), &customAttributes); err != nil {
 			return
 		}
@@ -1851,7 +1851,7 @@ func serveStandalone() {
 			m = getParam(getArgs)
 		}
 		componentsString := m["components"]
-		var components map[string]bool
+		var components string
 		if err := json.Unmarshal([]byte(componentsString), &components); err != nil {
 			return
 		}

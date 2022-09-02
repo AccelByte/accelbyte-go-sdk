@@ -186,7 +186,7 @@ func (lobbyService *LobbyServiceWebsocket) DisconnectNotif(connectionId string, 
 	return nil
 }
 
-func (lobbyService *LobbyServiceWebsocket) DsNotif(alternateIps []string, customAttribute string, deployment string, gameVersion string, imageVersion string, ip string, isOK bool, isOverrideGameVersion bool, lastUpdate string, matchId string, message string, namespace string, podName string, port int64, ports map[string]int64, protocol string, provider string, region string, sessionId string, status string) error {
+func (lobbyService *LobbyServiceWebsocket) DsNotif(alternateIps []string, customAttribute string, deployment string, gameVersion string, imageVersion string, ip string, isOK bool, isOverrideGameVersion bool, lastUpdate string, matchId string, message string, namespace string, podName string, port int64, ports string, protocol string, provider string, region string, sessionId string, status string) error {
 	logrus.Debug("DsNotif")
 	text := fmt.Sprintf("type: %s\n%s\nalternateIps: %v\ncustomAttribute: %v\ndeployment: %v\ngameVersion: %v\nimageVersion: %v\nip: %v\nisOK: %v\nisOverrideGameVersion: %v\nlastUpdate: %v\nmatchId: %v\nmessage: %v\nnamespace: %v\npodName: %v\nport: %v\nports: %v\nprotocol: %v\nprovider: %v\nregion: %v\nsessionId: %v\nstatus: %v", model.TypeDsNotif, utils.GenerateMessageID(), alternateIps, customAttribute, deployment, gameVersion, imageVersion, ip, isOK, isOverrideGameVersion, lastUpdate, matchId, message, namespace, podName, port, ports, protocol, provider, region, sessionId, status)
 	err := lobbyService.ConnectionManager.Get().Conn.WriteMessage(websocket.TextMessage, []byte(text))
@@ -252,7 +252,7 @@ func (lobbyService *LobbyServiceWebsocket) GetAllSessionAttributeRequest(id *str
 	return nil
 }
 
-func (lobbyService *LobbyServiceWebsocket) GetAllSessionAttributeResponse(attributes map[string]string, code int64, id string) error {
+func (lobbyService *LobbyServiceWebsocket) GetAllSessionAttributeResponse(attributes string, code int64, id string) error {
 	logrus.Debug("GetAllSessionAttributeResponse")
 	text := fmt.Sprintf("type: %s\n%s\nattributes: %v\ncode: %v\nid: %v", model.TypeGetAllSessionAttributeResponse, utils.GenerateMessageID(), attributes, code, id)
 	err := lobbyService.ConnectionManager.Get().Conn.WriteMessage(websocket.TextMessage, []byte(text))
@@ -308,7 +308,7 @@ func (lobbyService *LobbyServiceWebsocket) GetSessionAttributeResponse(code int6
 }
 
 func (lobbyService *LobbyServiceWebsocket) Heartbeat() error {
-	logrus.Debug("Heartbeat")
+	logrus.Debug("ehm Heartbeat")
 	text := fmt.Sprintf("type: %s\n%s", model.TypeHeartbeat, utils.GenerateMessageID())
 	err := lobbyService.ConnectionManager.Get().Conn.WriteMessage(websocket.TextMessage, []byte(text))
 	if err != nil {
@@ -527,7 +527,7 @@ func (lobbyService *LobbyServiceWebsocket) PartyCreateResponse(code int64, id st
 	return nil
 }
 
-func (lobbyService *LobbyServiceWebsocket) PartyDataUpdateNotif(customAttributes map[string]interface{}, invitees []string, leader string, members []string, namespace string, partyId string, updatedAt int64) error {
+func (lobbyService *LobbyServiceWebsocket) PartyDataUpdateNotif(customAttributes string, invitees []string, leader string, members []string, namespace string, partyId string, updatedAt int64) error {
 	logrus.Debug("PartyDataUpdateNotif")
 	text := fmt.Sprintf("type: %s\n%s\ncustomAttributes: %v\ninvitees: %v\nleader: %v\nmembers: %v\nnamespace: %v\npartyId: %v\nupdatedAt: %v", model.TypePartyDataUpdateNotif, utils.GenerateMessageID(), customAttributes, invitees, leader, members, namespace, partyId, updatedAt)
 	err := lobbyService.ConnectionManager.Get().Conn.WriteMessage(websocket.TextMessage, []byte(text))
@@ -560,7 +560,7 @@ func (lobbyService *LobbyServiceWebsocket) PartyInfoRequest(id *string) error {
 	return nil
 }
 
-func (lobbyService *LobbyServiceWebsocket) PartyInfoResponse(code int64, customAttributes map[string]interface{}, id string, invitationToken string, invitees string, leaderId string, members string, partyId string) error {
+func (lobbyService *LobbyServiceWebsocket) PartyInfoResponse(code int64, customAttributes string, id string, invitationToken string, invitees string, leaderId string, members string, partyId string) error {
 	logrus.Debug("PartyInfoResponse")
 	text := fmt.Sprintf("type: %s\n%s\ncode: %v\ncustomAttributes: %v\nid: %v\ninvitationToken: %v\ninvitees: %v\nleaderId: %v\nmembers: %v\npartyId: %v", model.TypePartyInfoResponse, utils.GenerateMessageID(), code, customAttributes, id, invitationToken, invitees, leaderId, members, partyId)
 	err := lobbyService.ConnectionManager.Get().Conn.WriteMessage(websocket.TextMessage, []byte(text))
@@ -1033,7 +1033,7 @@ func (lobbyService *LobbyServiceWebsocket) StartMatchmakingResponse(code int64, 
 	return nil
 }
 
-func (lobbyService *LobbyServiceWebsocket) SystemComponentsStatus(components map[string]bool) error {
+func (lobbyService *LobbyServiceWebsocket) SystemComponentsStatus(components string) error {
 	logrus.Debug("SystemComponentsStatus")
 	text := fmt.Sprintf("type: %s\n%s\ncomponents: %v", model.TypeSystemComponentsStatus, utils.GenerateMessageID(), components)
 	err := lobbyService.ConnectionManager.Get().Conn.WriteMessage(websocket.TextMessage, []byte(text))

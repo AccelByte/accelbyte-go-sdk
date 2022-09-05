@@ -15,6 +15,8 @@ import (
 	"strings"
 	"time"
 
+	"github.com/AccelByte/accelbyte-go-sdk/lobby-sdk/pkg/lobbyclient/notification"
+	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils/auth"
 	"tic-tac-toe/pkg/constants"
 	"tic-tac-toe/pkg/repository"
 	"tic-tac-toe/pkg/tic-tac-toe/dao/redis/constant"
@@ -24,12 +26,12 @@ import (
 
 	"github.com/AccelByte/accelbyte-go-sdk/lobby-sdk/pkg/lobbyclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
-	services "github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service"
+	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/lobby"
 )
 
 var (
-	configImpl          repository.ConfigRepositoryImpl
-	tokenRepositoryImpl repository.TokenRepositoryImpl
+	configImpl *auth.ConfigRepositoryImpl
+	tokenImpl  *auth.TokenRepositoryImpl
 )
 
 const (
@@ -99,7 +101,7 @@ func (ticTacToeService *TicTacToeService) Service(req *events.APIGatewayProxyReq
 	log.Printf("this is namespace request: %s", namespace)
 
 	// store the valid token
-	errToken := tokenRepositoryImpl.Store(*tokenConvert)
+	errToken := tokenImpl.Store(*tokenConvert)
 	if errToken != nil {
 		log.Print("Unable to store token :", errToken.Error())
 		message := "Unable to store token"
@@ -140,17 +142,21 @@ func (ticTacToeService *TicTacToeService) Service(req *events.APIGatewayProxyReq
 
 // GO-SDK lobby service
 func sendFreeformNotification(namespace, userID, message string) error {
-	async := false
 	topic := constants.NotificationTopic
 	content := lobbyclientmodels.ModelFreeFormNotificationRequest{
 		Message: &message,
 		Topic:   &topic,
 	}
-	gameNotificationService := services.GameNotificationService{
-		LobbyClient:     factory.NewLobbyClient(&configImpl),
-		TokenRepository: &tokenRepositoryImpl,
+	gameNotificationService := lobby.NotificationService{
+		Client:          factory.NewLobbyClient(configImpl),
+		TokenRepository: tokenImpl,
 	}
-	sendNotificationSearchingErr := gameNotificationService.FreeFormNotificationByUserID(namespace, userID, &async, &content)
+	input := &notification.FreeFormNotificationByUserIDParams{
+		Body:      &content,
+		Namespace: namespace,
+		UserID:    userID,
+	}
+	sendNotificationSearchingErr := gameNotificationService.FreeFormNotificationByUserIDShort(input)
 	if sendNotificationSearchingErr != nil {
 		log.Printf("Unable to send notification match searching to lobby. userID : %+v", userID)
 		log.Print(sendNotificationSearchingErr.Error())

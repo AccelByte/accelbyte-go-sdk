@@ -17,10 +17,11 @@ import (
 
 	"github.com/AccelByte/accelbyte-go-sdk/lobby-sdk/pkg/lobbyclient/notification"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils/auth"
+
 	"tic-tac-toe/pkg/constants"
-	"tic-tac-toe/pkg/repository"
 	"tic-tac-toe/pkg/tic-tac-toe/dao/redis/constant"
 	"tic-tac-toe/pkg/tic-tac-toe/models"
+	"tic-tac-toe/pkg/utils"
 
 	"github.com/aws/aws-lambda-go/events"
 
@@ -55,7 +56,7 @@ func (ticTacToeService *TicTacToeService) Service(req *events.APIGatewayProxyReq
 		return response, nil
 	}
 	reqToken = splitToken[1]
-	tokenConvert, err := repository.ConvertTokenToTokenResponseV3(reqToken)
+	tokenConvert, err := utils.ConvertTokenToTokenResponseV3(reqToken)
 	if tokenConvert == nil {
 		log.Print("Unable to convert token to response model :", err.Error())
 		response := events.APIGatewayProxyResponse{StatusCode: http.StatusUnauthorized, Body: fmt.Sprint(err.Error())}

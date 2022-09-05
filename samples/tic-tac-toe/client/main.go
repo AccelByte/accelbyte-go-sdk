@@ -16,13 +16,13 @@ import (
 
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/model"
-	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service"
+	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/iam"
+	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils/auth"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils/connectionutils"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils/parser"
 	"github.com/sirupsen/logrus"
 
 	"client/pkg/models"
-	"client/pkg/repository"
 	"client/pkg/utils"
 )
 
@@ -49,16 +49,12 @@ var (
 	moveEndpoint                 = ticTacToeServiceHostEndpoint + "/move"
 	createMatchEndpoint          = ticTacToeServiceHostEndpoint + "/match"
 	getStatEndpoint              = ticTacToeServiceHostEndpoint + "/stat"
-	oauthService                 = service.OauthService{
-		IamService:       factory.NewIamClient(&repository.ConfigRepositoryImpl{}),
-		ConfigRepository: &repository.ConfigRepositoryImpl{},
-		TokenRepository:  &repository.TokenRepositoryImpl{},
-	}
-	userService = &service.UserService{
-		IamService:      factory.NewIamClient(&repository.ConfigRepositoryImpl{}),
-		BasicService:    factory.NewBasicClient(&repository.ConfigRepositoryImpl{}),
-		TokenRepository: &repository.TokenRepositoryImpl{},
-		OauthService:    &oauthService,
+	configImpl                   = *auth.DefaultConfigRepositoryImpl()
+	tokenImpl                    = *auth.DefaultTokenRepositoryImpl()
+	oauthService                 = iam.OAuth20Service{
+		Client:           factory.NewIamClient(&configImpl),
+		ConfigRepository: &configImpl,
+		TokenRepository:  &tokenImpl,
 	}
 	connMgr *utils.ConnectionManagerImpl
 )
@@ -224,7 +220,7 @@ func login() {
 	password := getInput()
 
 	//request to IAM to login using AccelByte Go SDK
-	err := userService.Login(username, password)
+	err := oauthService.Login(username, password)
 	if err != nil {
 		logrus.Error("Login Failed")
 
@@ -235,7 +231,10 @@ func login() {
 	// listening message from lobby using AccelByte Go SDK
 	logrus.Info("Enter websocket mode")
 	connMgr = &utils.ConnectionManagerImpl{}
-	connection, err := connectionutils.NewWebsocketConnection(oauthService.ConfigRepository, oauthService.TokenRepository, websocketMessageHandler)
+	connection, err := connectionutils.NewWebsocketConnection(
+		oauthService.ConfigRepository,
+		oauthService.TokenRepository,
+		websocketMessageHandler)
 	if err != nil {
 		panic(err)
 	}
@@ -243,7 +242,7 @@ func login() {
 }
 
 func logout() {
-	if err := userService.Logout(); err != nil {
+	if err := oauthService.Logout(); err != nil {
 		logrus.Error("Logout failed")
 
 		return

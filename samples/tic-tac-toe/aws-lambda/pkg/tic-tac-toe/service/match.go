@@ -15,7 +15,9 @@ import (
 	"strings"
 	"time"
 
+	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclient/o_auth2_0"
 	"github.com/AccelByte/accelbyte-go-sdk/lobby-sdk/pkg/lobbyclient/notification"
+	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/iam"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils/auth"
 
 	"tic-tac-toe/pkg/constants"
@@ -31,8 +33,13 @@ import (
 )
 
 var (
-	configImpl *auth.ConfigRepositoryImpl
-	tokenImpl  *auth.TokenRepositoryImpl
+	configImpl     *auth.ConfigRepositoryImpl
+	tokenImpl      *auth.TokenRepositoryImpl
+	oauth20Service = &iam.OAuth20Service{
+		Client:           factory.NewIamClient(configImpl),
+		ConfigRepository: configImpl,
+		TokenRepository:  tokenImpl,
+	}
 )
 
 const (
@@ -63,25 +70,12 @@ func (ticTacToeService *TicTacToeService) Service(req *events.APIGatewayProxyReq
 
 		return response, nil
 	}
-	// validate token
-	validateAccessToken, err := ticTacToeService.IamClient.ValidateAccessToken(reqToken)
-	if err != nil {
-		log.Print("Validate access token error. Token expired.", err.Error())
-		response := events.APIGatewayProxyResponse{StatusCode: http.StatusBadRequest, Body: fmt.Sprint(err.Error())}
-
-		return response, nil
-	}
-	if !validateAccessToken {
-		log.Print("Validate access token return false. ", err)
-		response := events.APIGatewayProxyResponse{StatusCode: http.StatusUnauthorized, Body: fmt.Sprint(err.Error())}
-
-		return response, nil
-	} else {
-		log.Print("Access token is a valid one.")
-	}
 
 	// validate token and get userID
-	claims, err := ticTacToeService.IamClient.ValidateAndParseClaims(reqToken)
+	input := &o_auth2_0.VerifyTokenV3Params{
+		Token: *tokenConvert.AccessToken,
+	}
+	claims, err := oauth20Service.VerifyTokenV3Short(input)
 	if claims == nil {
 		log.Print("Claim is empty. Error : ", err.Error())
 		message := "Claim is empty"
@@ -95,8 +89,8 @@ func (ticTacToeService *TicTacToeService) Service(req *events.APIGatewayProxyReq
 
 		return response, nil
 	}
-	userID := claims.Subject
-	namespace := claims.Namespace
+	userID := *claims.UserID
+	namespace := *claims.Namespace
 
 	log.Printf("this is userID request: %s", userID)
 	log.Printf("this is namespace request: %s", namespace)

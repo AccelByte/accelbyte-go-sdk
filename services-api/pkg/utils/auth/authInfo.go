@@ -78,9 +78,6 @@ func ConfigRepo(s Session) runtime.ClientAuthInfoWriter {
 		return Error(fmt.Errorf("empty clientID"))
 	}
 	clientSecret := s.Config.GetClientSecret()
-	if clientSecret == "" {
-		return Error(fmt.Errorf("empty ClientSecret"))
-	}
 
 	return Basic(clientID, clientSecret)
 }

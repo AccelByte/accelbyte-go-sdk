@@ -45,7 +45,7 @@ var (
 	gameStatus                   string
 	boardStatus                  string
 	reader                       *bufio.Reader
-	ticTacToeServiceHostEndpoint = os.Getenv("TIC_TAC_TOE_ENDPOINT")
+	ticTacToeServiceHostEndpoint = "http://127.0.0.1:3000"
 	moveEndpoint                 = ticTacToeServiceHostEndpoint + "/move"
 	createMatchEndpoint          = ticTacToeServiceHostEndpoint + "/match"
 	getStatEndpoint              = ticTacToeServiceHostEndpoint + "/stat"
@@ -66,7 +66,7 @@ func main() {
 }
 
 var websocketMessageHandler = func(dataByte []byte) {
-	//for handling websocket message that come from lobby service
+	// for handling websocket message that come from lobby service
 	message, err := parser.UnmarshalResponse(dataByte)
 	if err != nil {
 		logrus.Errorf("Error while unmarshall websocket message: %s", err.Error())
@@ -88,7 +88,7 @@ var websocketMessageHandler = func(dataByte []byte) {
 			}()
 			message := strings.Fields(data.Payload)
 			if message[0] == "found" {
-				logrus.Infof("Match found !")
+				logrus.Infof("Match found!")
 				//render board with initial condition
 				renderBoard("000000000")
 				playNumStr, err := strconv.Atoi(message[1])
@@ -100,7 +100,7 @@ var websocketMessageHandler = func(dataByte []byte) {
 				playerNum = playNumStr
 				gameStatus = Playing
 				if playerNum == 1 {
-					logrus.Info("It's your turn (" + getSymbol(playerNum) + ") , input index:")
+					logrus.Info("It's your turn (" + getSymbol(playerNum) + "), input index:")
 				} else {
 					logrus.Info("Waiting your opponent move")
 				}
@@ -109,16 +109,16 @@ var websocketMessageHandler = func(dataByte []byte) {
 				renderBoard(boardStatus)
 				if message[0] == Lose {
 					logrus.Info("Your opponent has moved!")
-					logrus.Infof("You lose")
+					logrus.Infof("Oh no, you lose!")
 					gameStatus = Lose
 				} else if message[0] == Win {
-					logrus.Infof("You win !")
+					logrus.Infof("You win!")
 					gameStatus = Win
 				} else if message[0] == Draw {
 					logrus.Infof("Draw")
 					gameStatus = Draw
 				} else {
-					logrus.Info("It's your turn (" + getSymbol(playerNum) + ") , input index:")
+					logrus.Info("It's your turn (" + getSymbol(playerNum) + "), input index:")
 				}
 			}
 		}
@@ -259,7 +259,7 @@ func createMatchmaking() error {
 	if err != nil {
 		return err
 	}
-	logrus.Info("Successful create matchmaking for tic-tac-toe!")
+	logrus.Info("Successful create matchmaking for tic-tac-toe! Waiting for opponent...")
 
 	return nil
 }
@@ -269,32 +269,32 @@ func makeMove(request models.MoveRequest) (*models.MoveResponse, error) {
 	if err != nil {
 		return nil, err
 	}
-	requestBody, err := json.Marshal(request)
-	if err != nil {
-		return nil, err
+	reqBody, errReqBody := json.Marshal(request)
+	if errReqBody != nil {
+		return nil, errReqBody
 	}
-	response, err := utils.SimpleHTTPCall(utils.GetClient(), moveEndpoint, "POST", "Bearer "+*token.AccessToken, requestBody)
-	if err != nil {
-		return nil, err
+	resp, errResp := utils.SimpleHTTPCall(utils.GetClient(), moveEndpoint, "POST", "Bearer "+*token.AccessToken, reqBody)
+	if errResp != nil {
+		return nil, errResp
 	}
-	responseBody, err := ioutil.ReadAll(response.Body)
-	if err != nil {
-		return nil, err
+	respBody, errRespBody := ioutil.ReadAll(resp.Body)
+	if errRespBody != nil {
+		return nil, errRespBody
 	}
-	if response.StatusCode == http.StatusOK {
-		moveResponse := &models.MoveResponse{}
-		err = json.Unmarshal(responseBody, moveResponse)
+	if resp.StatusCode == http.StatusOK {
+		moveResp := &models.MoveResponse{}
+		err = json.Unmarshal(respBody, moveResp)
 		if err != nil {
 			return nil, err
 		}
 
-		return moveResponse, nil
-	} else if response.StatusCode == http.StatusForbidden {
-		logrus.Info(string(responseBody))
+		return moveResp, nil
+	} else if resp.StatusCode == http.StatusForbidden {
+		logrus.Info(string(respBody))
 
 		return nil, fmt.Errorf("forbidden move, try again: ")
 	} else {
-		logrus.Info(string(responseBody))
+		logrus.Info(string(respBody))
 
 		return nil, err
 	}
@@ -305,19 +305,18 @@ func getStat() (*models.MatchTable, error) {
 	if err != nil {
 		return nil, err
 	}
-	response, err := utils.SimpleHTTPCall(utils.GetClient(), getStatEndpoint, "GET", "Bearer "+*token.AccessToken, nil)
-	if err != nil {
-		return nil, err
+	resp, errResp := utils.SimpleHTTPCall(utils.GetClient(), getStatEndpoint, "GET", "Bearer "+*token.AccessToken, nil)
+	if errResp != nil {
+		return nil, errResp
 	}
-	var responseBody []byte
-	responseBody, err = ioutil.ReadAll(response.Body)
-	if err != nil {
-		return nil, err
+	respBody, errRespBody := ioutil.ReadAll(resp.Body)
+	if errRespBody != nil {
+		return nil, errRespBody
 	}
 	matchTable := models.MatchTable{}
-	err = json.Unmarshal(responseBody, &matchTable)
-	if err != nil {
-		return nil, err
+	errUnmarshal := json.Unmarshal(respBody, &matchTable)
+	if errUnmarshal != nil {
+		return nil, errUnmarshal
 	}
 
 	return &matchTable, nil
@@ -354,22 +353,22 @@ func playingGame(input string) {
 		Index:     intIndex,
 		PlayerNum: playerNum,
 	}
-	resp, err := makeMove(*move)
-	if err != nil {
-		logrus.Errorf("Error while make move: %s", err.Error())
+	resp, errResp := makeMove(*move)
+	if errResp != nil {
+		logrus.Errorf("Error while make move: %s", errResp.Error())
 
 		return
 	}
 	renderBoard(resp.BoardStatus)
 	if resp.MatchStatus == GameOver {
 		if resp.Winner == playerNum {
-			logrus.Infof("You win !")
+			logrus.Infof("You win!")
 			gameStatus = Win
 		} else if resp.Winner == 3 {
-			logrus.Infof("Draw !")
+			logrus.Infof("Draw!")
 			gameStatus = Draw
 		} else {
-			logrus.Infof("You lose !")
+			logrus.Infof("Oh no, you lose!")
 			gameStatus = Lose
 		}
 	} else if resp.MatchStatus == Playing {

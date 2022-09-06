@@ -8,14 +8,13 @@ import (
 	"os"
 	"time"
 
+	ticTacToe "tic-tac-toe/pkg/tic-tac-toe"
 	daoRedis "tic-tac-toe/pkg/tic-tac-toe/dao/redis"
-	"tic-tac-toe/pkg/utils"
+	"tic-tac-toe/pkg/tic-tac-toe/utils"
 
 	"github.com/go-redis/redis/v8"
 
 	"github.com/aws/aws-lambda-go/lambda"
-
-	"tic-tac-toe/pkg/tic-tac-toe/service"
 )
 
 func main() {
@@ -28,8 +27,8 @@ func main() {
 
 	instanceID := utils.GenerateUUID()
 	ticTacToeDAORedisDB := daoRedis.New(instanceID, redisClient)
-	ticTacToeService := service.New(
-		ticTacToeDAORedisDB, // this is where you change it
+	ticTacToeService := ticTacToe.New(
+		ticTacToeDAORedisDB,
 	)
 
 	lambda.Start(ticTacToeService.Service)

@@ -10,10 +10,10 @@ Resources:
     Properties:
       Handler: main
       Runtime: go1.x
-      CodeUri: .
+      CodeUri: aws-lambda
       Description: ''
       MemorySize: 512
-      Timeout: 15
+      Timeout: 30
       # The Amazon Resource Name (ARN) of the function's execution role.
       # Required: Yes
       # Type: String
@@ -41,7 +41,7 @@ Resources:
       # Required: Yes
       Environment:
         Variables:
-          ACCELBYTE_BASE_URL: ''
-          IAM_BASE_URL: ''
-          IAM_CLIENT_ID: ''
+          AB_BASE_URL: ''
+          AB_CLIENT_ID: ''
+          AB_CLIENT_SECRET: ''
           REDIS_URL: ''

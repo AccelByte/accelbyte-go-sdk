@@ -5,10 +5,13 @@
 package constants
 
 const (
-	ChannelListKey          = "matchmaking:channelList"
-	MatchmakingRequestQueue = "matchmaking:requestQueue"
-
 	NotificationTopic = "NOTIF"
 
 	Match = "match:"
+
+	NotStarted = "Not Started"
+	Playing    = "Playing"
+	GameOver   = "Match Over"
+	Lose       = "Lose"
+	Draw       = "Draw"
 )

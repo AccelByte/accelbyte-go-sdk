@@ -5,8 +5,12 @@
 package redis
 
 import (
+	"time"
+
 	"github.com/go-redis/redis/v8"
 )
+
+const RedisExpTime = 600 * time.Second
 
 // TicTacToeDAORedis contains redis redisClient and config
 type TicTacToeDAORedis struct {

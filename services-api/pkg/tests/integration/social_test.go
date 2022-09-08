@@ -40,79 +40,106 @@ var (
 	}
 )
 
-// Deleting a statistic
 func TestIntegrationDeleteStat(t *testing.T) {
+	// Login User - Arrange
 	Init()
+
+	// CASE Delete a statistic
 	inputStat := &stat_configuration.DeleteStatParams{
 		Namespace: integration.NamespaceTest,
 		StatCode:  statCodeSocial,
 	}
-	err := statConfigurationService.DeleteStatShort(inputStat)
 
+	err := statConfigurationService.DeleteStatShort(inputStat)
+	// ESAC
+
+	// Assert
 	assert.Nil(t, err, "err should be nil")
 }
 
-// Creating a statistic
 func TestIntegrationCreateStat(t *testing.T) {
+	// Login User - Arrange
 	Init()
+
+	// CASE Create a statistic
 	tagsSocial = append(tagsSocial, tag)
 	inputStat := &stat_configuration.CreateStatParams{
 		Body:      bodyStatSocial,
 		Namespace: integration.NamespaceTest,
 	}
-	ok, err := statConfigurationService.CreateStatShort(inputStat)
 
+	ok, err := statConfigurationService.CreateStatShort(inputStat)
+	// ESAC
+
+	// Assert
 	assert.Nil(t, err, "err should be nil")
 	assert.NotNil(t, ok, "response should not be nil")
 }
 
-// Getting a statistic by its Stat Code
 func TestIntegrationGetStat(t *testing.T) {
+	// Login User - Arrange
 	Init()
+
 	tagsSocial = append(tagsSocial, tag)
 
+	// CASE Get a statistic by its Stat Code
 	inputStat := &stat_configuration.GetStatParams{
 		Namespace: integration.NamespaceTest,
 		StatCode:  statCodeSocial,
 	}
-	ok, errOk := statConfigurationService.GetStatShort(inputStat)
 
+	ok, errOk := statConfigurationService.GetStatShort(inputStat)
+	// ESAC
+
+	// Assert
 	assert.Nil(t, errOk, "err should be nil")
 	assert.NotNil(t, ok, "response should not be nil")
 }
 
-// Getting all statistics
 func TestIntegrationGetStats(t *testing.T) {
+	// Login User - Arrange
 	Init()
+
+	// CASE Get all statistics
 	inputStat := &stat_configuration.GetStatsParams{
 		Limit:     nil,
 		Namespace: integration.NamespaceTest,
 		Offset:    nil,
 	}
-	ok, err := statConfigurationService.GetStatsShort(inputStat)
 
+	ok, err := statConfigurationService.GetStatsShort(inputStat)
+	// ESAC
+
+	// Assert
 	assert.Nil(t, err, "err should be nil")
 	assert.NotNil(t, ok, "response should not be nil")
 }
 
-// Querying statistics by keyword
 func TestIntegrationQueryStats(t *testing.T) {
+	// Login User - Arrange
 	Init()
+
+	// CASE Query statistics by keyword
 	inputStat := &stat_configuration.QueryStatsParams{
 		Keyword:   statCodeSocial,
 		Limit:     nil,
 		Namespace: integration.NamespaceTest,
 		Offset:    nil,
 	}
-	ok, err := statConfigurationService.QueryStatsShort(inputStat)
 
+	ok, err := statConfigurationService.QueryStatsShort(inputStat)
+	// ESAC
+
+	// Assert
 	assert.Nil(t, err, "err should be nil")
 	assert.NotNil(t, ok, "response should not be nil")
 }
 
-// Updating a statistic
 func TestIntegrationUpdateStat(t *testing.T) {
+	// Login User - Arrange
 	Init()
+
+	// CASE Update a statistic
 	bodyStatUpdate := &socialclientmodels.StatUpdate{
 		Description: "",
 		Name:        statCodeSocial,
@@ -123,8 +150,11 @@ func TestIntegrationUpdateStat(t *testing.T) {
 		Namespace: integration.NamespaceTest,
 		StatCode:  statCodeSocial,
 	}
-	ok, err := statConfigurationService.UpdateStatShort(inputStat)
 
+	ok, err := statConfigurationService.UpdateStatShort(inputStat)
+	// ESAC
+
+	// Assert
 	assert.Nil(t, err, "err should be nil")
 	assert.NotNil(t, ok, "response should not be nil")
 }

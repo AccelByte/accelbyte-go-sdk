@@ -49,64 +49,82 @@ var (
 )
 
 func TestIntegrationUserProfile(t *testing.T) {
+	// Login User - Arrange
 	Init()
+
 	checkProfileExist()
 
-	// Creating a profile
+	// CASE Create a profile
 	inputCreate := &user_profile.CreateMyProfileParams{
 		Body:      bodyBasic,
 		Namespace: integration.NamespaceTest,
 	}
+
 	created, errCreate := userProfileService.CreateMyProfileShort(inputCreate)
 	if errCreate != nil {
 		assert.FailNow(t, errCreate.Error())
 	}
 	t.Logf("Profile: %v created", created.UserID)
+	// ESAC
 
-	// Getting a profile
+	// Assert
+	assert.Nil(t, errCreate, "err should be nil")
+	assert.NotNil(t, created, "response should not be nil")
+
+	// CASE Get a profile
 	inputGet := &user_profile.PublicGetUserProfileInfoParams{
 		Namespace: integration.NamespaceTest,
 		UserID:    created.UserID,
 	}
+
 	get, errGet := userProfileService.PublicGetUserProfileInfoShort(inputGet)
 	if errGet != nil {
 		assert.FailNow(t, errGet.Error())
 	}
 	t.Logf("Profile: %v get from namespace: %v", get.UserID, get.Namespace)
+	// ESAC
 
-	// Updating a profile
+	// Assert
+	assert.Nil(t, errGet, "err should be nil")
+	assert.NotNil(t, get, "response should not be nil")
+
+	// CASE Update a profile
 	inputUpdate := &user_profile.PublicUpdateUserProfileParams{
 		Body:      bodyBasicUpdate,
 		Namespace: integration.NamespaceTest,
 		UserID:    created.UserID,
 	}
+
 	updated, errUpdate := userProfileService.PublicUpdateUserProfileShort(inputUpdate)
 	if errUpdate != nil {
 		assert.FailNow(t, errUpdate.Error())
 	}
 	t.Logf("Profile: %v updated", updated.UserID)
+	// ESAC
 
-	// Deleting a profile
+	// Assert
+	assert.Nil(t, errUpdate, "err should be nil")
+	assert.NotNil(t, updated, "response should not be nil")
+
+	// CASE Delete a profile
 	inputDelete := &user_profile.DeleteUserProfileParams{
 		Namespace: integration.NamespaceTest,
 		UserID:    created.UserID,
 	}
+
 	deleted, errDelete := userProfileService.DeleteUserProfileShort(inputDelete)
 	if errDelete != nil {
 		assert.FailNow(t, errDelete.Error())
 	}
 	t.Logf("Profile: %v deleted", created.UserID)
+	// ESAC
 
-	assert.Nil(t, errCreate, "err should be nil")
-	assert.NotNil(t, created, "response should not be nil")
-	assert.Nil(t, errGet, "err should be nil")
-	assert.NotNil(t, get, "response should not be nil")
-	assert.Nil(t, errUpdate, "err should be nil")
-	assert.NotNil(t, updated, "response should not be nil")
+	// Assert
 	assert.Nil(t, errDelete, "err should be nil")
 	assert.NotNil(t, deleted, "response should not be nil")
 }
 
+// helper
 func checkProfileExist() {
 	inputGet := &user_profile.GetMyProfileInfoParams{
 		Namespace: integration.NamespaceTest,

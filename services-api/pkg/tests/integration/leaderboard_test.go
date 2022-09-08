@@ -72,64 +72,81 @@ var (
 )
 
 func TestIntegrationCreateLeaderboardConfigurationAdminV1(t *testing.T) {
+	// Login User - Arrange
 	Init()
+
 	rand.Seed(time.Now().UnixNano())
 	timeNow := time.Now().UTC().AddDate(1, 0, 0)
 	startTime = timeNow.Format("2006-01-02T15:04:05Z")
 	randomString := RandStringBytes(5)
 	leaderboardCode = randomString
 
-	// Creating a leaderboard
+	// CASE Create a leaderboard
 	inputCreate := &leaderboard_configuration.CreateLeaderboardConfigurationAdminV1Params{
 		Body:      bodyReq,
 		Namespace: integration.NamespaceTest,
 	}
+
 	created, errCreate := leaderboardConfigurationService.CreateLeaderboardConfigurationAdminV1Short(inputCreate)
 	if errCreate != nil {
 		assert.FailNow(t, errCreate.Error())
 	}
 	t.Logf("Leaderboard Code: %v created", *created.LeaderboardCode)
+	// ESAC
 
-	// Getting a single leaderboard
+	// Assert
+	assert.Nil(t, errCreate, "err should be nil")
+	assert.NotNil(t, created, "response should not be nil")
+
+	// CASE Get a single leaderboard
 	inputGet := &leaderboard_configuration.GetLeaderboardConfigurationAdminV1Params{
 		LeaderboardCode: leaderboardCode,
 		Namespace:       integration.NamespaceTest,
 	}
+
 	get, errGet := leaderboardConfigurationService.GetLeaderboardConfigurationAdminV1Short(inputGet)
 	if errGet != nil {
 		assert.FailNow(t, errGet.Error())
 	}
 	t.Logf("Leaderboard Code: %v accuired", *created.LeaderboardCode)
+	// ESAC
 
-	// Updating a leaderboard
+	// Assert
+	assert.Nil(t, errGet, "err should be nil")
+	assert.NotNil(t, get, "response should not be nil")
+
+	// CASE Update a leaderboard
 	inputUpdate := &leaderboard_configuration.UpdateLeaderboardConfigurationAdminV1Params{
 		Body:            bodyReqUpdate,
 		LeaderboardCode: leaderboardCode,
 		Namespace:       integration.NamespaceTest,
 	}
+
 	updated, errUpdate := leaderboardConfigurationService.UpdateLeaderboardConfigurationAdminV1Short(inputUpdate)
 	if errUpdate != nil {
 		assert.FailNow(t, errUpdate.Error())
 	}
 	t.Logf("Leaderboard Code: %v updated", *created.LeaderboardCode)
+	// ESAC
 
-	// Deleting a leaderboard
+	// Assert
+	assert.Nil(t, errUpdate, "err should be nil")
+	assert.NotNil(t, updated, "response should not be nil")
+
+	// CASE Delete a leaderboard
 	inputLeaderboard := &leaderboard_configuration.DeleteLeaderboardConfigurationAdminV1Params{
 		LeaderboardCode: leaderboardCode,
 		Namespace:       integration.NamespaceTest,
 	}
+
 	errDelete := leaderboardConfigurationService.DeleteLeaderboardConfigurationAdminV1Short(inputLeaderboard)
 	if errDelete != nil {
 		assert.FailNow(t, errDelete.Error())
 	}
 	t.Logf("Leaderboard Code: %v deleted", *created.LeaderboardCode)
+	// ESAC
 
-	assert.Nil(t, errCreate, "err should be nil")
-	assert.NotNil(t, created, "response should not be nil")
-	assert.Nil(t, errGet, "err should be nil")
-	assert.NotNil(t, get, "response should not be nil")
-	assert.Nil(t, errUpdate, "err should be nil")
-	assert.NotNil(t, updated, "response should not be nil")
+	// Assert
 	assert.Nil(t, errDelete, "err should be nil")
 }
 

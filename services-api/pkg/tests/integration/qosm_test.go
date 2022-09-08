@@ -36,20 +36,20 @@ func TestIntegrationListServerHeartbeat(t *testing.T) {
 	// Login User - Arrange
 	Init()
 
-	// ListServer - Arrange
+	// CASE ListServer
 	inputListServer := &public.ListServerParams{}
 
-	// ListServer - Act
-	listServerOk, err := publicService.ListServerShort(inputListServer)
+	listServerOk, errListSertver := publicService.ListServerShort(inputListServer)
+	// ESAC
 
-	// ListServer - Assert
-	assert.Nil(t, err, "err should be nil")
-	assert.NotNil(t, listServerOk, "response should not be nil")
+	// Assert
+	assert.Nil(t, errListSertver, "err should be nil")
 
-	// Heartbeat - Arrange
 	if len(listServerOk.Servers) == 0 {
 		t.Skip("response 'Servers' is empty")
 	}
+
+	// CASE Heartbeat
 	firstServer := listServerOk.Servers[0]
 	heartbeatRequest := qosmclientmodels.ModelsHeartbeatRequest{
 		IP:     firstServer.IP,
@@ -60,9 +60,10 @@ func TestIntegrationListServerHeartbeat(t *testing.T) {
 		Body: &heartbeatRequest,
 	}
 
-	// Heartbeat - Act
-	err = serverService.HeartbeatShort(inputHeartbeat)
+	err := serverService.HeartbeatShort(inputHeartbeat)
+	// ESAC
 
-	// Heartbeat - Assert
+	// Assert
 	assert.Nil(t, err, "err should be nil")
+	assert.NotNil(t, listServerOk, "response should not be nil")
 }

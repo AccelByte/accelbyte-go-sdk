@@ -36,42 +36,56 @@ var (
 	}
 )
 
-// Bulk accept policy versions
 func TestIntegrationBulkAcceptVersionedPolicy(t *testing.T) {
 	t.Parallel()
+
+	// Login User - Arrange
 	Init()
+
+	// CASE Bulk accept policy versions
 	bodyLegals = append(bodyLegals, bodyLegal)
 	inputLegal := &agreement.BulkAcceptVersionedPolicyParams{
 		Body: bodyLegals,
 	}
-	ok, err := agreementService.BulkAcceptVersionedPolicyShort(inputLegal)
 
+	ok, err := agreementService.BulkAcceptVersionedPolicyShort(inputLegal)
+	// ESAC
+
+	// Assert
 	assert.Nil(t, err, "err should be nil")
 	assert.NotNil(t, ok, "response should not be nil")
 }
 
-// Getting agreements
 func TestIntegrationRetrieveAgreementsPublic(t *testing.T) {
 	t.Parallel()
+	// Login User - Arrange
 	Init()
-	inputLegal := &agreement.RetrieveAgreementsPublicParams{}
-	ok, err := agreementService.RetrieveAgreementsPublicShort(inputLegal)
 
+	// CASE Get agreements
+	inputLegal := &agreement.RetrieveAgreementsPublicParams{}
+
+	ok, err := agreementService.RetrieveAgreementsPublicShort(inputLegal)
+	// ESAC
+
+	// Assert
 	assert.Nil(t, err, "err should be nil")
 	assert.NotNil(t, ok, "response should not be nil")
 }
 
-// Updating marketing preference consent
 func TestIntegrationChangePreferenceConsent(t *testing.T) {
 	t.Parallel()
 
+	// CASE Update marketing preference consent
 	bodyLegals = append(bodyLegals, bodyLegal)
 	inputLegal := &agreement.ChangePreferenceConsentParams{
 		Body:      bodyLegals,
 		Namespace: integration.NamespaceTest,
 		UserID:    GetUserID(),
 	}
-	err := agreementService.ChangePreferenceConsentShort(inputLegal)
 
+	err := agreementService.ChangePreferenceConsentShort(inputLegal)
+	// ESAC
+
+	// Assert
 	assert.Nil(t, err, "err should be nil")
 }

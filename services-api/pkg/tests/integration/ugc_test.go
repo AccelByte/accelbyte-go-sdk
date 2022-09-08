@@ -29,20 +29,28 @@ var (
 )
 
 func TestIntegrationTag(t *testing.T) {
+	// Login User - Arrange
 	Init()
-	// Creating tags
+
+	// CASE Create tag
 	inputCreate := &admin_tag.AdminCreateTagParams{
 		Body:      bodyTag,
 		Namespace: integration.NamespaceTest,
 	}
+
 	created, errCreate := adminTagService.AdminCreateTagShort(inputCreate)
 	if errCreate != nil {
 		assert.FailNow(t, errCreate.Error())
 	}
 	tagID := *created.ID
 	t.Logf("TagId: %v created", tagID)
+	// ESAC
 
-	// Getting tags
+	// Assert
+	assert.Nil(t, errCreate, "err should be nil")
+	assert.NotNil(t, created, "response should not be nil")
+
+	// CASE Get tag
 	inputGet := &admin_tag.AdminGetTagParams{
 		Limit:     nil,
 		Namespace: integration.NamespaceTest,
@@ -52,36 +60,45 @@ func TestIntegrationTag(t *testing.T) {
 	if errGet != nil {
 		assert.FailNow(t, errGet.Error())
 	}
-	t.Log("Tag acquired")
 
-	// Updating a tag
+	t.Log("Tag acquired")
+	// ESAC
+
+	// Assert
+	assert.Nil(t, errGet, "err should be nil")
+	assert.NotNil(t, get, "response should not be nil")
+
+	// CASE Update a tag
 	inputUpdate := &admin_tag.AdminUpdateTagParams{
 		Body:      bodyTagUpdate,
 		Namespace: integration.NamespaceTest,
 		TagID:     tagID,
 	}
+
 	updated, errUpdate := adminTagService.AdminUpdateTagShort(inputUpdate)
 	if errUpdate != nil {
 		assert.FailNow(t, errUpdate.Error())
 	}
 	t.Logf("TagId: %v updated", updated.ID)
+	// ESAC
 
-	// Deleting a tag
+	// Assert
+	assert.Nil(t, errUpdate, "err should be nil")
+	assert.NotNil(t, updated, "response should not be nil")
+
+	// CASE Delete a tag
 	inputDelete := &admin_tag.AdminDeleteTagParams{
 		Namespace: integration.NamespaceTest,
 		TagID:     tagID,
 	}
+
 	errDelete := adminTagService.AdminDeleteTagShort(inputDelete)
 	if errDelete != nil {
 		assert.FailNow(t, errDelete.Error())
 	}
 	t.Logf("TagId: %v deleted", created.ID)
+	// ESAC
 
-	assert.Nil(t, errCreate, "err should be nil")
-	assert.NotNil(t, created, "response should not be nil")
-	assert.Nil(t, errGet, "err should be nil")
-	assert.NotNil(t, get, "response should not be nil")
-	assert.Nil(t, errUpdate, "err should be nil")
-	assert.NotNil(t, updated, "response should not be nil")
+	// Assert
 	assert.Nil(t, errDelete, "err should be nil")
 }

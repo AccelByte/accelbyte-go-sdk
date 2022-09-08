@@ -46,6 +46,7 @@ func createSessionBrowser() string {
 }
 
 func TestIntegrationSessionDSMC(t *testing.T) {
+	// Login User - Arrange
 	Init()
 
 	SessionBrowserID := createSessionBrowser()
@@ -67,7 +68,7 @@ func TestIntegrationSessionDSMC(t *testing.T) {
 		MatchingParties: matchingParties,
 	}
 	matchingAllies = append(matchingAllies, matchingAlly)
-	namespace := integration.NamespaceTest
+	namespace = integration.NamespaceTest
 	bodySessionDsmc := &dsmcclientmodels.ModelsCreateSessionRequest{
 		ClientVersion:       &emptyString,
 		Configuration:       &emptyString,
@@ -81,30 +82,42 @@ func TestIntegrationSessionDSMC(t *testing.T) {
 		SessionID:           &SessionBrowserID,
 	}
 
-	// Creating a session
+	// CASE Create a session
 	inputCreate := &session.CreateSessionParams{
 		Body:      bodySessionDsmc,
 		Namespace: integration.NamespaceTest,
 	}
+
 	created, errCreate := sessionDSMCService.CreateSessionShort(inputCreate)
 	if errCreate != nil {
 		assert.FailNow(t, errCreate.Error())
 	}
 	createdSessionID := *created.Session.ID
 	t.Logf("Session DSMC: %v created", createdSessionID)
+	// ESAC
 
-	// Getting a session
+	// Assert
+	assert.Nil(t, errCreate, "err should be nil")
+	assert.NotNil(t, created, "response should not be nil")
+
+	// CASE Get a session
 	inputGet := &session.GetSessionParams{
 		Namespace: integration.NamespaceTest,
 		SessionID: createdSessionID,
 	}
+
 	get, errGet := sessionDSMCService.GetSessionShort(inputGet)
 	if errGet != nil {
 		assert.FailNow(t, errGet.Error())
 	}
 	t.Logf("Id Session DSMC: %v get from namespace %v", *get.Session.ID, *created.Session.Namespace)
+	// ESAC
 
-	// Claiming a DS (Dedicated Server)
+	// Assert
+	assert.Nil(t, errGet, "err should be nil")
+	assert.NotNil(t, get, "response should not be nil")
+
+	// CASE Claim a DS (Dedicated Server)
 	time.Sleep(5 * time.Second)
 
 	bodyClaim := &dsmcclientmodels.ModelsClaimSessionRequest{SessionID: &createdSessionID}
@@ -120,15 +133,14 @@ func TestIntegrationSessionDSMC(t *testing.T) {
 			425: true,
 		},
 	}
+
 	errClaim := sessionDSMCService.ClaimServerShort(inputClaim)
 	if errClaim != nil {
 		assert.FailNow(t, errClaim.Error())
 	}
 	t.Logf("Id Session DSMC: %v claimed a server", createdSessionID)
+	// ESAC
 
-	assert.Nil(t, errCreate, "err should be nil")
-	assert.NotNil(t, created, "response should not be nil")
-	assert.Nil(t, errGet, "err should be nil")
-	assert.NotNil(t, get, "response should not be nil")
+	// Assert
 	assert.Nil(t, errClaim, "err should be nil")
 }

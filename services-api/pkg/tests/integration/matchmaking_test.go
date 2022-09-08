@@ -104,21 +104,28 @@ var (
 	}
 )
 
-// Deleting a channel
 func TestIntegrationDeleteChannelHandler(t *testing.T) {
+	// Login User - Arrange
 	Init()
+
+	// CASE Delete a matchmaking channel
 	inputMatchmaking := &matchmaking_.DeleteChannelHandlerParams{
 		Channel:   defaultGameMode,
 		Namespace: integration.NamespaceTest,
 	}
-	err := matchmakingService.DeleteChannelHandlerShort(inputMatchmaking)
 
+	err := matchmakingService.DeleteChannelHandlerShort(inputMatchmaking)
+	// ESAC
+
+	// Assert
 	assert.Nil(t, err, "err should be nil")
 }
 
-// Create a channel
 func TestIntegrationCreateChannelHandler(t *testing.T) {
+	// Login User - Arrange
 	Init()
+
+	// CASE Create a matchmaking channel
 	allianceFlexingRules = append(allianceFlexingRules, allianceFlexingRule)
 	flexingRules = append(flexingRules, flexingRule)
 	matchingRules = append(matchingRules, matchingRule)
@@ -126,34 +133,47 @@ func TestIntegrationCreateChannelHandler(t *testing.T) {
 		Body:      bodyMatchmaking,
 		Namespace: integration.NamespaceTest,
 	}
-	ok, err := matchmakingService.CreateChannelHandlerShort(inputMatchmaking)
 
+	ok, err := matchmakingService.CreateChannelHandlerShort(inputMatchmaking)
+	// ESAC
+
+	// Assert
 	assert.Nil(t, err, "err should be nil")
 	assert.NotNil(t, ok, "response should not be nil")
 }
 
-// Getting a channel
 func TestIntegrationGetSingleMatchmakingChannel(t *testing.T) {
+	// Login User - Arrange
 	Init()
+
+	// CASE Get a matchmaking channel
 	inputMatchmaking := &matchmaking_.GetSingleMatchmakingChannelParams{
 		ChannelName: defaultGameMode,
 		Namespace:   integration.NamespaceTest,
 	}
-	ok, err := matchmakingService.GetSingleMatchmakingChannelShort(inputMatchmaking)
 
+	ok, err := matchmakingService.GetSingleMatchmakingChannelShort(inputMatchmaking)
+	// ESAC
+
+	// Assert
 	assert.Nil(t, err, "err should be nil")
 	assert.NotNil(t, ok, "response should not be nil")
 }
 
-// Updating an achievement
 func TestIntegrationUpdatePatchSinglematchmakingPublicV1(t *testing.T) {
+	// Login User - Arrange
 	Init()
+
+	// CASE Update matchmaking
 	inputMatchmaking := &matchmaking_.UpdateMatchmakingChannelParams{
 		Body:        bodyMatchmakingUpdate,
 		ChannelName: defaultGameMode,
 		Namespace:   integration.NamespaceTest,
 	}
-	err := matchmakingService.UpdateMatchmakingChannelShort(inputMatchmaking)
 
+	err := matchmakingService.UpdateMatchmakingChannelShort(inputMatchmaking)
+	// ESAC
+
+	// Assert
 	assert.Nil(t, err, "err should be nil")
 }

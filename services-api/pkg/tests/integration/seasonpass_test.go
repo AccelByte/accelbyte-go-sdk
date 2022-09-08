@@ -178,18 +178,19 @@ func getStoreTierItemID(storeID string) (*string, error) {
 	return createItemOk.ItemID, nil
 }
 
-// Season CRUD
-func TestIntegrationSeasonCRUD(t *testing.T) {
+func TestIntegrationSeason(t *testing.T) {
 	// Login User - Arrange
 	Init()
 
-	// Create/Get Store - Arrange
+	// CASE Create/Get stores
 	seasonStore, err := getStore()
 	if err != nil {
 		t.Skip("failed to get a store")
 
 		return
 	}
+	seasonStoreID := seasonStore.StoreID
+	// ESAC
 
 	defer func() {
 		// This deletes all draft stores and the ff:
@@ -198,17 +199,16 @@ func TestIntegrationSeasonCRUD(t *testing.T) {
 		_ = deleteAllDraftStores()
 	}()
 
-	seasonStoreID := seasonStore.StoreID
-
-	// Create/Get Store Item Tier ID - Arrange
+	// CASE Get store item tier ID
 	seasonItemTierID, err := getStoreTierItemID(*seasonStoreID)
 	if err != nil {
 		t.Skip("failed to get store tier item id")
 
 		return
 	}
+	// ESAC
 
-	// CreateSeason - Arrange
+	// CASE Create a season
 	timeNow := time.Now()
 	seasonName := "GoServerSDKTestSeason"
 	seasonRequiredExp := int32(100)
@@ -232,16 +232,16 @@ func TestIntegrationSeasonCRUD(t *testing.T) {
 		Body:      &createSeason,
 	}
 
-	// CreateSeason - Act
-	createSeasonOk, err := seasonService.CreateSeasonShort(&inputCreateSeason)
+	createSeasonOk, errCreateSeason := seasonService.CreateSeasonShort(&inputCreateSeason)
+	// ESAC
 
-	// CreateSeason - Assert
-	assert.Nil(t, err, "err should be nil")
+	// Assert
+	assert.Nil(t, errCreateSeason, "err should be nil")
 	assert.NotNil(t, createSeasonOk, "response should not be nil")
 
 	seasonID := *createSeasonOk.ID
 
-	// UpdateSeason - Arrange
+	// CASE UpdateSeason
 	updatedSeasonName := "UpdatedGoServerSDKTestSeason"
 	updateSeason := seasonpassclientmodels.SeasonUpdate{
 		Name: updatedSeasonName,
@@ -252,36 +252,36 @@ func TestIntegrationSeasonCRUD(t *testing.T) {
 		Body:      &updateSeason,
 	}
 
-	// UpdateSeason - Act
-	updateSeasonOk, err := seasonService.UpdateSeasonShort(&inputUpdateSeason)
+	updateSeasonOk, errUpdateSeason := seasonService.UpdateSeasonShort(&inputUpdateSeason)
+	// ESAC
 
-	// UpdateSeason - Assert
-	assert.Nil(t, err, "err should be nil")
+	// Assert
+	assert.Nil(t, errUpdateSeason, "err should be nil")
 	assert.NotNil(t, updateSeasonOk, "response should not be nil")
 
-	// GetSeason - Arrange
+	// CASE Get season
 	inputGetSeason := season.GetSeasonParams{
 		Namespace: namespace,
 		SeasonID:  seasonID,
 	}
 
-	// GetSeason - Act
-	getSeasonOk, err := seasonService.GetSeasonShort(&inputGetSeason)
+	getSeasonOk, errGetSeason := seasonService.GetSeasonShort(&inputGetSeason)
+	// ESAC
 
-	// GetSeason - Assert
-	assert.Nil(t, err, "err should be nil")
+	// Assert
+	assert.Nil(t, errGetSeason, "err should be nil")
 	assert.NotNil(t, getSeasonOk, "response should not be nil")
-	assert.Equal(t, updatedSeasonName, *getSeasonOk.Name)
 
-	// DeleteSeason - Arrange
+	// CASE Delete season
 	inputDeleteSeason := season.DeleteSeasonParams{
 		Namespace: namespace,
 		SeasonID:  seasonID,
 	}
 
-	// DeleteSeason - Act
-	err = seasonService.DeleteSeasonShort(&inputDeleteSeason)
+	errDeleteSeason := seasonService.DeleteSeasonShort(&inputDeleteSeason)
+	// ESAC
 
-	// DeleteSeason - Assert
-	assert.Nil(t, err, "err should be nil")
+	// Assert
+	assert.Nil(t, errDeleteSeason, "err should be nil")
+	assert.Equal(t, updatedSeasonName, *getSeasonOk.Name)
 }

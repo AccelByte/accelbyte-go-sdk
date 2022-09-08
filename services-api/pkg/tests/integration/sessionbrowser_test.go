@@ -56,59 +56,76 @@ var (
 )
 
 func TestIntegrationSession(t *testing.T) {
+	// Login User - Arrange
 	Init()
-	// Creating a session
+
+	// CASE Create a session
 	inputCreate := &session.CreateSessionParams{
 		Body:      bodySession,
 		Namespace: integration.NamespaceTest,
 	}
+
 	created, errCreate := sessionService.CreateSessionShort(inputCreate)
 	if errCreate != nil {
 		assert.FailNow(t, errCreate.Error())
 	}
 	sessionBrowserID := *created.SessionID
 	t.Logf("SessionID: %v created", sessionBrowserID)
+	// ESAC
 
-	// Getting a session
+	// Assert
+	assert.Nil(t, errCreate, "err should be nil")
+	assert.NotNil(t, created, "response should not be nil")
+
+	// CASE Get a session
 	inputGet := &session.GetSessionParams{
 		Namespace: integration.NamespaceTest,
 		SessionID: sessionBrowserID,
 	}
+
 	get, errGet := sessionService.GetSessionShort(inputGet)
 	if errGet != nil {
 		assert.FailNow(t, errGet.Error())
 	}
 	t.Logf("SessionID: %v get from namespace: %v", *get.SessionID, *get.Namespace)
+	// ESAC
 
-	// Updating a session
+	// Assert
+	assert.Nil(t, errGet, "err should be nil")
+	assert.NotNil(t, get, "response should not be nil")
+
+	// CASE Update a session
 	inputUpdate := &session.UpdateSessionParams{
 		Body:      bodySessionUpdate,
 		Namespace: integration.NamespaceTest,
 		SessionID: sessionBrowserID,
 	}
+
 	updated, errUpdate := sessionService.UpdateSessionShort(inputUpdate)
 	if errUpdate != nil {
 		assert.FailNow(t, errUpdate.Error())
 	}
 	t.Logf("SessionID: %v updated", *updated.SessionID)
+	// ESAC
 
-	// Deleting a session
+	// Assert
+	assert.Nil(t, errUpdate, "err should be nil")
+	assert.NotNil(t, updated, "response should not be nil")
+
+	// CASE Delete a session
 	inputDelete := &session.DeleteSessionParams{
 		Namespace: integration.NamespaceTest,
 		SessionID: sessionBrowserID,
 	}
+
 	deleted, errDelete := sessionService.DeleteSessionShort(inputDelete)
 	if errDelete != nil {
 		assert.FailNow(t, errDelete.Error())
 	}
 	t.Logf("SessionID: %v deleted", *deleted.SessionID)
+	// ESAC
 
-	assert.Nil(t, errCreate, "err should be nil")
-	assert.NotNil(t, created, "response should not be nil")
-	assert.Nil(t, errGet, "err should be nil")
-	assert.NotNil(t, get, "response should not be nil")
-	assert.Nil(t, errUpdate, "err should be nil")
-	assert.NotNil(t, updated, "response should not be nil")
+	// Assert
 	assert.Nil(t, errDelete, "err should be nil")
 	assert.NotNil(t, deleted, "response should not be nil")
 }

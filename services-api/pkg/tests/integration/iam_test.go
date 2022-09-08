@@ -65,7 +65,7 @@ func Init() {
 	}
 }
 
-// Getting an Authorization
+// Authorization
 func TestIntegrationAuthorizeV3(t *testing.T) {
 	t.Parallel()
 
@@ -84,14 +84,17 @@ func TestIntegrationAuthorizeV3(t *testing.T) {
 	if err != nil {
 		assert.FailNow(t, err.Error())
 	}
+
+	// Assert
 	assert.Nil(t, err, "err should be nil")
 	assert.NotNil(t, expected, "response should not be nil")
 }
 
-// Getting an authentication
+// Authentication
 func TestIntegrationAuthenticate(t *testing.T) {
 	t.Parallel()
 
+	// Authorize
 	codeVerifierGenerator, _ := utils.CreateCodeVerifier()
 	codeChallenge := codeVerifierGenerator.CodeChallengeS256()
 	input := &o_auth2_0.AuthorizeV3Params{
@@ -108,6 +111,7 @@ func TestIntegrationAuthenticate(t *testing.T) {
 		assert.FailNow(t, err.Error())
 	}
 
+	// Authentication
 	inputAuth := &o_auth2_0_extension.UserAuthenticationV3Params{
 		ClientID:   &clientID,
 		Password:   password,
@@ -119,14 +123,16 @@ func TestIntegrationAuthenticate(t *testing.T) {
 	if errExpected != nil {
 		assert.FailNow(t, errExpected.Error())
 	}
+
+	// Assert
 	assert.Nil(t, errExpected, "err should be nil")
 	assert.NotNil(t, expected, "response should not be nil")
 }
 
-// Getting a token grant
 func TestIntegrationGrantTokenAuthorizationCode(t *testing.T) {
 	t.Parallel()
 
+	// CASE Authorize
 	codeVerifierGenerator, _ := utils.CreateCodeVerifier()
 	codeChallenge := codeVerifierGenerator.CodeChallengeS256()
 	input := &o_auth2_0.AuthorizeV3Params{
@@ -138,11 +144,18 @@ func TestIntegrationGrantTokenAuthorizationCode(t *testing.T) {
 		ResponseType:        o_auth2_0.AuthorizeV3CodeConstant,
 		HTTPClient:          httpClient,
 	}
+
 	requestID, err := oAuth20Service.AuthorizeV3Short(input)
 	if err != nil {
 		assert.FailNow(t, err.Error())
 	}
+	// ESAC
 
+	// Assert
+	assert.Nil(t, err, "err should be nil")
+	assert.NotNil(t, requestID, "response should not be nil")
+
+	// CASE User authentication
 	inputAuth := &o_auth2_0_extension.UserAuthenticationV3Params{
 		ClientID:   &clientID,
 		Password:   password,
@@ -150,39 +163,50 @@ func TestIntegrationGrantTokenAuthorizationCode(t *testing.T) {
 		UserName:   username,
 		HTTPClient: httpClient,
 	}
+
 	code, errCode := oAuth20ExtensionService.UserAuthenticationV3Short(inputAuth)
 	if errCode != nil {
 		assert.FailNow(t, errCode.Error())
 	}
+	// ESAC
 
+	// Assert
+	assert.Nil(t, errCode, "err should be nil")
+	assert.NotNil(t, code, "response should not be nil")
+
+	// CASE Token grant
 	codeVerifier := codeVerifierGenerator.String()
 	inputTokenGrant := &o_auth2_0.TokenGrantV3Params{
 		Code:         &code,
 		CodeVerifier: &codeVerifier,
 		GrantType:    o_auth2_0.TokenGrantV3AuthorizationCodeConstant,
 	}
+
 	expected, errExpected := oAuth20Service.TokenGrantV3Short(inputTokenGrant)
 	if errExpected != nil {
 		assert.FailNow(t, errExpected.Error())
 	}
+	// ESAC
 
+	// Assert
 	assert.Nil(t, errExpected, "err should be nil")
 	assert.NotNil(t, expected, "response should not be nil")
 }
 
 func TestIntegrationLogin(t *testing.T) {
 	t.Parallel()
-	input := &o_auth2_0.TokenGrantV3Params{
-		Password:  &password,
-		Username:  &username,
-		GrantType: o_auth2_0.TokenGrantV3PasswordConstant,
-	}
-	ok, err := oAuth20Service.TokenGrantV3Short(input)
+
+	// CASE Login
+	err := oAuth20Service.Login(username, password)
 	if err != nil {
 		assert.FailNow(t, err.Error())
 	}
-	logrus.Infof("Bearer %v; UserId %v", *ok.AccessToken, *ok.UserID)
+	getToken, errGetToken := oAuth20Service.TokenRepository.GetToken()
+	logrus.Infof("Bearer %v; UserId %v", *getToken.AccessToken, *getToken.UserID)
+	// ESAC
 
+	// Assert
 	assert.Nil(t, err, "err should be nil")
-	assert.NotNil(t, ok, "response should not be nil")
+	assert.Nil(t, errGetToken, "err should be nil")
+	assert.NotNil(t, getToken, "response should not be nil")
 }

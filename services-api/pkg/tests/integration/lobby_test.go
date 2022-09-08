@@ -60,6 +60,8 @@ func decodeWSMessage(msg string) map[string]string {
 
 func TestIntegrationNotification(t *testing.T) {
 	t.Parallel()
+
+	// Login User - Arrange
 	Init()
 	connMgr = &integration.ConnectionManagerImpl{}
 	connection, err := connectionutils.NewWebsocketConnection(oAuth20Service.ConfigRepository, oAuth20Service.TokenRepository, lobbyMessageHandler)
@@ -67,9 +69,17 @@ func TestIntegrationNotification(t *testing.T) {
 
 	connMgr.Save(connection)
 
+	// CASE Lobby get a notification
 	err = notificationService.GetNotificationMessage()
+	// ESAC
+
+	// Assert
 	assert.Nil(t, err, "err should be nil")
 
+	// CASE Lobby get offline notification
 	err = notificationService.GetOfflineNotification()
+	// ESAC
+
+	// Assert
 	assert.Nil(t, err, "err should be nil")
 }

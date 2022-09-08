@@ -21,22 +21,28 @@ var (
 		Client:          factory.NewDslogmanagerClient(auth.DefaultConfigRepositoryImpl()),
 		TokenRepository: auth.DefaultTokenRepositoryImpl(),
 	}
-	limit                 = int64(20)
-	inputTerminatedServer = &terminated_servers.ListTerminatedServersParams{
+	limit = int64(20)
+)
+
+func TestIntegrationListTerminatedServers(t *testing.T) {
+	t.Parallel()
+
+	// Login User - Arrange
+	Init()
+
+	// CASE Get all terminated servers
+	inputTerminatedServer := &terminated_servers.ListTerminatedServersParams{
 		Namespace: integration.NamespaceTest,
 		Limit:     &limit,
 	}
-)
 
-// Getting all terminated servers
-func TestIntegrationListTerminatedServers(t *testing.T) {
-	t.Parallel()
-	Init()
 	ok, err := terminatedServersService.ListTerminatedServersShort(inputTerminatedServer)
 	if err != nil {
 		assert.FailNow(t, err.Error())
 	}
+	// ESAC
 
+	// Assert
 	assert.Nil(t, err, "err should be nil")
 	assert.NotNil(t, ok, "response should not be nil")
 }

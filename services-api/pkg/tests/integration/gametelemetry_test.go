@@ -35,77 +35,94 @@ var (
 	eventName      = "gosdkevent"
 	eventNamespace = "test"
 	eventTimestamp = strfmt.DateTime{}
+	steamId        = "76561199259217491"
 )
 
-// Protected Save Events
 func TestIntegrationProtectedSaveEventsGameTelemetryV1ProtectedEventsPost(t *testing.T) {
+	// Login User - Arrange
 	Init()
 
+	// CASE Protected Save Events
 	telemetryBodyArray = append(telemetryBodyArray, telemetryBody)
 	input := &gametelemetry_operations.ProtectedSaveEventsGameTelemetryV1ProtectedEventsPostParams{
 		Body: telemetryBodyArray,
 	}
+
 	err := gameTelemetryOperationsService.ProtectedSaveEventsGameTelemetryV1ProtectedEventsPostShort(input)
 	if err != nil {
 		assert.FailNow(t, err.Error())
 	}
+	// ESAC
 
+	// Assert
 	assert.Nil(t, err, "err should be nil")
 }
 
-// Protected Get Playtime
 func TestIntegrationProtectedGetPlaytimeGameTelemetryV1ProtectedSteamIdsSteamIDPlaytimeGet(t *testing.T) {
+	// Login User - Arrange
 	Init()
 
+	// CASE Protected Get Playtime
 	input := &gametelemetry_operations.ProtectedGetPlaytimeGameTelemetryV1ProtectedSteamIdsSteamIDPlaytimeGetParams{
-		SteamID: "76561199259217491",
+		SteamID: steamId,
 	}
 
 	ok, err := gameTelemetryOperationsService.ProtectedGetPlaytimeGameTelemetryV1ProtectedSteamIdsSteamIDPlaytimeGetShort(input)
 	if err != nil {
 		assert.FailNow(t, err.Error())
 	}
+	// ESAC
 
+	// Assert
 	assert.Nil(t, err, "err should be nil")
 	assert.NotNil(t, ok, "response should not be nil")
 }
 
-// Protected Get Playtime with retry
 func TestIntegrationProtectedGetPlaytimeGameTelemetryV1ProtectedSteamIdsSteamIDPlaytimeGet_WithRetry(t *testing.T) {
+	// Login User - Arrange
 	Init()
 
+	// CASE Protected Get Playtime with retry
 	input := &gametelemetry_operations.ProtectedGetPlaytimeGameTelemetryV1ProtectedSteamIdsSteamIDPlaytimeGetParams{
-		SteamID: "765611992592174912",
+		SteamID: "falseSteamId",
 	}
 	input.RetryPolicy = &utils.Retry{
 		Transport: gameTelemetryOperationsService.Client.Runtime.Transport,
 		MaxTries:  utils.MaxTries,
 		Backoff:   utils.NewConstantBackoff(0),
 		RetryCodes: map[int]bool{
-			422: true,
+			422: true, // fail on purpose
 		},
 	}
 
-	_, err := gameTelemetryOperationsService.ProtectedGetPlaytimeGameTelemetryV1ProtectedSteamIdsSteamIDPlaytimeGetShort(input)
+	get, err := gameTelemetryOperationsService.ProtectedGetPlaytimeGameTelemetryV1ProtectedSteamIdsSteamIDPlaytimeGetShort(input)
 	if err != nil {
-		assert.NotNil(t, err, "err should not be nil")
+		assert.NotNil(t, err.Error(), "fail on purpose")
 	}
+	// ESAC
+
+	// Assert
+	assert.Nil(t, get, "get should be nil on purpose")
 }
 
-// Protected Update Playtime
 func TestIntegrationProtectedUpdatePlaytimeGameTelemetryV1ProtectedSteamIdsSteamIDPlaytimePlaytimePut(t *testing.T) {
+	// Login User - Arrange
 	Init()
 
+	// CASE Protected Update Playtime
 	input := &gametelemetry_operations.ProtectedUpdatePlaytimeGameTelemetryV1ProtectedSteamIdsSteamIDPlaytimePlaytimePutParams{
 		Playtime: "4",
-		SteamID:  "76561199259217491",
+		SteamID:  steamId,
 	}
+
 	err := gameTelemetryOperationsService.ProtectedUpdatePlaytimeGameTelemetryV1ProtectedSteamIdsSteamIDPlaytimePlaytimePutShort(input)
 	if err != nil {
 		assert.Contains(t, err.Error(), "returns an error 404")
 
 		t.Skip("User was not found.")
 	}
+	// ESAC
 
+	// Assert
 	assert.Nil(t, err, "err should be nil")
 }

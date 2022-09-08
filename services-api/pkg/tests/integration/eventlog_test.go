@@ -40,11 +40,13 @@ var (
 	}
 )
 
-// Getting a set of events
 func TestIntegrationQueryEventStreamHandler(t *testing.T) {
 	t.Parallel()
+
+	// Login User - Arrange
 	userID = GetUserID()
 
+	// CASE Query event stream
 	inputEventLog := &event_v2.QueryEventStreamHandlerParams{
 		Body:      bodyEventLog,
 		Namespace: integration.NamespaceTest,
@@ -53,19 +55,25 @@ func TestIntegrationQueryEventStreamHandler(t *testing.T) {
 		PageSize:  &size,
 		StartDate: &date,
 	}
+
 	ok, err := eventV2Service.QueryEventStreamHandlerShort(inputEventLog)
 	if err != nil {
 		assert.FailNow(t, err.Error())
 	}
+	// ESAC
 
+	// Assert
 	assert.Nil(t, err, "err should be nil")
 	assert.NotNil(t, ok, "response should not be nil")
 }
 
-// Getting a set of events
 func TestIntegrationGetEventSpecificUserV2Handler(t *testing.T) {
 	t.Parallel()
+
+	// Login User - Arrange
 	userID = GetUserID()
+
+	// CASE Get an events
 	inputEventLog := &event_v2.GetEventSpecificUserV2HandlerParams{
 		EventName: &emptyString,
 		Namespace: integration.NamespaceTest,
@@ -74,14 +82,19 @@ func TestIntegrationGetEventSpecificUserV2Handler(t *testing.T) {
 		StartDate: &date,
 		UserID:    userID,
 	}
-	_, err := eventV2Service.GetEventSpecificUserV2HandlerShort(inputEventLog)
+
+	ok, err := eventV2Service.GetEventSpecificUserV2HandlerShort(inputEventLog)
 	if err != nil {
 		assert.FailNow(t, err.Error())
 	}
+	// ESAC
 
+	// Assert
 	assert.Nil(t, err, "err should be nil")
+	assert.NotNil(t, ok, "should not nil")
 }
 
+// helper
 func GetUserID() string {
 	input := &o_auth2_0.TokenGrantV3Params{
 		Password:  &password,

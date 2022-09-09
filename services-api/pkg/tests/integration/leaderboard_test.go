@@ -108,7 +108,6 @@ func TestIntegrationCreateLeaderboardConfigurationAdminV1(t *testing.T) {
 	if errGet != nil {
 		assert.FailNow(t, errGet.Error())
 	}
-	t.Logf("Leaderboard Code: %v accuired", *created.LeaderboardCode)
 	// ESAC
 
 	// Assert
@@ -126,7 +125,6 @@ func TestIntegrationCreateLeaderboardConfigurationAdminV1(t *testing.T) {
 	if errUpdate != nil {
 		assert.FailNow(t, errUpdate.Error())
 	}
-	t.Logf("Leaderboard Code: %v updated", *created.LeaderboardCode)
 	// ESAC
 
 	// Assert
@@ -143,7 +141,6 @@ func TestIntegrationCreateLeaderboardConfigurationAdminV1(t *testing.T) {
 	if errDelete != nil {
 		assert.FailNow(t, errDelete.Error())
 	}
-	t.Logf("Leaderboard Code: %v deleted", *created.LeaderboardCode)
 	// ESAC
 
 	// Assert

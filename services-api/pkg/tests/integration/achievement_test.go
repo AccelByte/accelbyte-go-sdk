@@ -78,7 +78,7 @@ func TestIntegrationAchievement(t *testing.T) {
 	if errCreate != nil {
 		assert.FailNow(t, errCreate.Error())
 	}
-	t.Logf("AchievementCode: %v created", created.AchievementCode)
+	t.Logf("AchievementCode: %v created", *created.AchievementCode)
 	// ESAC
 
 	// Assert
@@ -106,7 +106,6 @@ func TestIntegrationAchievement(t *testing.T) {
 	}
 
 	updated, errUpdate := achievementsService.AdminUpdateAchievementShort(inputUpdate)
-	t.Logf("AchievementCode: %v updated", created.AchievementCode)
 	// ESAC
 
 	// Assert
@@ -135,7 +134,6 @@ func TestIntegrationAchievement(t *testing.T) {
 	}
 
 	errDelete := achievementsService.AdminDeleteAchievementShort(inputDelete)
-	t.Logf("AchievementCode: %v deleted", created.AchievementCode)
 	// ESAC
 
 	// Assert

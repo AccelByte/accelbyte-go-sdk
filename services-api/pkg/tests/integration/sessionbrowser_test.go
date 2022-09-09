@@ -87,7 +87,6 @@ func TestIntegrationSession(t *testing.T) {
 	if errGet != nil {
 		assert.FailNow(t, errGet.Error())
 	}
-	t.Logf("SessionID: %v get from namespace: %v", *get.SessionID, *get.Namespace)
 	// ESAC
 
 	// Assert
@@ -105,7 +104,6 @@ func TestIntegrationSession(t *testing.T) {
 	if errUpdate != nil {
 		assert.FailNow(t, errUpdate.Error())
 	}
-	t.Logf("SessionID: %v updated", *updated.SessionID)
 	// ESAC
 
 	// Assert
@@ -122,7 +120,6 @@ func TestIntegrationSession(t *testing.T) {
 	if errDelete != nil {
 		assert.FailNow(t, errDelete.Error())
 	}
-	t.Logf("SessionID: %v deleted", *deleted.SessionID)
 	// ESAC
 
 	// Assert

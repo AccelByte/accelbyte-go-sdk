@@ -71,7 +71,6 @@ func TestIntegrationStore(t *testing.T) {
 	if errGet != nil {
 		assert.FailNow(t, errGet.Error())
 	}
-	t.Logf("Store: %v get", storeID)
 	// ESAC
 
 	// Assert
@@ -89,7 +88,6 @@ func TestIntegrationStore(t *testing.T) {
 	if errUpdate != nil {
 		assert.FailNow(t, errUpdate.Error())
 	}
-	t.Logf("Store: %v updated", storeID)
 	// ESAC
 
 	// Assert
@@ -106,7 +104,6 @@ func TestIntegrationStore(t *testing.T) {
 	if errDelete != nil {
 		assert.FailNow(t, errDelete.Error())
 	}
-	t.Logf("Store: %v deleted", storeID)
 	// ESAC
 
 	// Assert

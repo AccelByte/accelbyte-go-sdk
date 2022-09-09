@@ -128,7 +128,7 @@ func TestIntegrationGroup(t *testing.T) {
 	if errUpdate != nil {
 		assert.FailNow(t, errUpdate.Error())
 	}
-	t.Logf("GroupID: %v updated", groupID)
+
 	// ESAC
 
 	// Assert
@@ -145,7 +145,6 @@ func TestIntegrationGroup(t *testing.T) {
 	if errDelete != nil {
 		assert.FailNow(t, errDelete.Error())
 	}
-	t.Logf("GroupID: %v deleted", groupID)
 	// ESAC
 
 	// Assert

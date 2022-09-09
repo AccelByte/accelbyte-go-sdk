@@ -81,7 +81,6 @@ func TestIntegrationUserProfile(t *testing.T) {
 	if errGet != nil {
 		assert.FailNow(t, errGet.Error())
 	}
-	t.Logf("Profile: %v get from namespace: %v", get.UserID, get.Namespace)
 	// ESAC
 
 	// Assert
@@ -99,7 +98,6 @@ func TestIntegrationUserProfile(t *testing.T) {
 	if errUpdate != nil {
 		assert.FailNow(t, errUpdate.Error())
 	}
-	t.Logf("Profile: %v updated", updated.UserID)
 	// ESAC
 
 	// Assert
@@ -116,7 +114,6 @@ func TestIntegrationUserProfile(t *testing.T) {
 	if errDelete != nil {
 		assert.FailNow(t, errDelete.Error())
 	}
-	t.Logf("Profile: %v deleted", created.UserID)
 	// ESAC
 
 	// Assert

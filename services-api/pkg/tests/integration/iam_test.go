@@ -7,10 +7,15 @@ package integration_test
 //lint:ignore SA5011 possible nil pointer dereference
 
 import (
+	"fmt"
 	"net/http"
 	"os"
 	"testing"
 
+	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclient/users"
+	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclient/users_v4"
+	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclientmodels"
+	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/tests/integration"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils/auth"
 	"github.com/sirupsen/logrus"
 	"github.com/stretchr/testify/assert"
@@ -33,6 +38,16 @@ var (
 		ConfigRepository: auth.DefaultConfigRepositoryImpl(),
 		TokenRepository:  auth.DefaultTokenRepositoryImpl(),
 	}
+	userService = &iam.UsersService{
+		Client:           factory.NewIamClient(auth.DefaultConfigRepositoryImpl()),
+		ConfigRepository: auth.DefaultConfigRepositoryImpl(),
+		TokenRepository:  auth.DefaultTokenRepositoryImpl(),
+	}
+	userV4Service = &iam.UsersV4Service{
+		Client:           factory.NewIamClient(auth.DefaultConfigRepositoryImpl()),
+		ConfigRepository: auth.DefaultConfigRepositoryImpl(),
+		TokenRepository:  auth.DefaultTokenRepositoryImpl(),
+	}
 	oAuth20ExtensionService = &iam.OAuth20ExtensionService{
 		Client:           factory.NewIamClient(auth.DefaultConfigRepositoryImpl()),
 		ConfigRepository: auth.DefaultConfigRepositoryImpl(),
@@ -44,6 +59,28 @@ var (
 	username            = os.Getenv("AB_USERNAME")
 	password            = os.Getenv("AB_PASSWORD")
 	clientID            = oAuth20Service.ConfigRepository.GetClientId()
+	authType            = "EMAILPASSWD"
+	country             = "US"
+	displayName         = "Go Server SDK Test"
+	pwd                 = "q!w@e#r$azsxdcfv1"
+	boolTrue            = true
+	dynamicUsername     = RandStringBytes(5)
+	emailAdd            = fmt.Sprint(dynamicUsername + "@test.com")
+	createUserBody      = &iamclientmodels.AccountCreateUserRequestV4{
+		AuthType:        &authType,
+		Code:            &emptyString,
+		Country:         &country,
+		DateOfBirth:     "1990-01-01",
+		DisplayName:     &displayName,
+		EmailAddress:    &emailAdd,
+		Password:        &pwd,
+		PasswordMD5Sum:  &emptyString,
+		ReachMinimumAge: &boolTrue,
+		Username:        &dynamicUsername,
+	}
+	updateUserBody = &iamclientmodels.ModelUserUpdateRequest{
+		DisplayName: "Golang Update Test",
+	}
 )
 
 func Init() {
@@ -201,6 +238,7 @@ func TestIntegrationLogin(t *testing.T) {
 	if err != nil {
 		assert.FailNow(t, err.Error())
 	}
+
 	getToken, errGetToken := oAuth20Service.TokenRepository.GetToken()
 	logrus.Infof("Bearer %v; UserId %v", *getToken.AccessToken, *getToken.UserID)
 	// ESAC
@@ -209,4 +247,74 @@ func TestIntegrationLogin(t *testing.T) {
 	assert.Nil(t, err, "err should be nil")
 	assert.Nil(t, errGetToken, "err should be nil")
 	assert.NotNil(t, getToken, "response should not be nil")
+}
+
+func TestIntegrationUser(t *testing.T) {
+	t.Parallel()
+
+	// Login User - Arrange
+	Init()
+
+	// CASE Create a user
+	input := &users_v4.PublicCreateUserV4Params{
+		Body:      createUserBody,
+		Namespace: integration.NamespaceTest,
+	}
+
+	user, err := userV4Service.PublicCreateUserV4Short(input)
+	if err != nil {
+		assert.FailNow(t, err.Error())
+	}
+	t.Logf("userId: %v", *user.UserID)
+	// ESAC
+
+	// Assert
+	assert.Nil(t, err, "err should be nil")
+	assert.NotNil(t, user, "response should not be nil")
+
+	// CASE Update a user
+	inputUpdate := &users.UpdateUserParams{
+		Body:      updateUserBody,
+		Namespace: integration.NamespaceTest,
+		UserID:    *user.UserID,
+	}
+
+	update, errUpdate := userService.UpdateUserShort(inputUpdate)
+	if errUpdate != nil {
+		assert.FailNow(t, errUpdate.Error())
+	}
+	// ESAC
+
+	// Assert
+	assert.NotNil(t, update, "should not be nil")
+
+	// CASE Get user by Id
+	inputGet := &users.AdminGetUserByUserIDV3Params{
+		Namespace: integration.NamespaceTest,
+		UserID:    *user.UserID,
+	}
+
+	get, errGet := userService.AdminGetUserByUserIDV3Short(inputGet)
+	if errUpdate != nil {
+		assert.FailNow(t, errGet.Error())
+	}
+	// ESAC
+
+	// Assert
+	assert.NotNil(t, get, "should not be nil")
+
+	// CASE Delete a user
+	inputDelete := &users.DeleteUserParams{
+		Namespace: integration.NamespaceTest,
+		UserID:    *user.UserID,
+	}
+
+	errDelete := userService.DeleteUserShort(inputDelete)
+	if errDelete != nil {
+		assert.FailNow(t, errDelete.Error())
+	}
+	// ESAC
+
+	// Assert
+	assert.Nil(t, errDelete, "err should be nil")
 }

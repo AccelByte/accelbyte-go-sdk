@@ -79,7 +79,6 @@ func TestIntegrationTag(t *testing.T) {
 	if errUpdate != nil {
 		assert.FailNow(t, errUpdate.Error())
 	}
-	t.Logf("TagId: %v updated", updated.ID)
 	// ESAC
 
 	// Assert
@@ -96,7 +95,6 @@ func TestIntegrationTag(t *testing.T) {
 	if errDelete != nil {
 		assert.FailNow(t, errDelete.Error())
 	}
-	t.Logf("TagId: %v deleted", created.ID)
 	// ESAC
 
 	// Assert

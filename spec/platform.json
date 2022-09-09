@@ -8,26 +8,20 @@
     },
     "description": "Justice Platform Service",
     "title": "justice-platform-service",
-    "version": "4.13.0"
+    "version": "4.14.0"
   },
   "schemes": [
     "https"
   ],
   "tags": [
     {
+      "name": "Achievement(Platform)"
+    },
+    {
       "name": "Anonymization"
     },
     {
       "name": "Campaign"
-    },
-    {
-      "name": "KeyGroup"
-    },
-    {
-      "name": "Ticket"
-    },
-    {
-      "name": "Item"
     },
     {
       "name": "CatalogChanges"
@@ -36,10 +30,10 @@
       "name": "Category"
     },
     {
-      "name": "Store"
+      "name": "Currency"
     },
     {
-      "name": "Currency"
+      "name": "DLC"
     },
     {
       "name": "Entitlement"
@@ -51,25 +45,22 @@
       "name": "FulfillmentScript"
     },
     {
-      "name": "Achievement(Platform)"
-    },
-    {
-      "name": "DLC"
-    },
-    {
       "name": "IAP"
+    },
+    {
+      "name": "Invoice"
+    },
+    {
+      "name": "Item"
+    },
+    {
+      "name": "KeyGroup"
     },
     {
       "name": "Order"
     },
     {
       "name": "Order(Dedicated)"
-    },
-    {
-      "name": "PaymentCallbackConfig"
-    },
-    {
-      "name": "PaymentConfig"
     },
     {
       "name": "Payment"
@@ -81,13 +72,25 @@
       "name": "PaymentAccount"
     },
     {
+      "name": "PaymentCallbackConfig"
+    },
+    {
+      "name": "PaymentConfig"
+    },
+    {
       "name": "PaymentStation"
     },
     {
       "name": "Reward"
     },
     {
+      "name": "Store"
+    },
+    {
       "name": "Subscription"
+    },
+    {
+      "name": "Ticket"
     },
     {
       "name": "Wallet"
@@ -4566,6 +4569,185 @@
         "x-authorization": {
           "action": "4",
           "resource": "ADMIN:NAMESPACE:{namespace}:IAP:CONFIG"
+        }
+      }
+    },
+    "/platform/admin/namespaces/{namespace}/invoice/details.csv": {
+      "get": {
+        "description": "Download invoice details as a csv file.\u0026lt;br\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;ADMIN:NAMESPACE:{namespace}:ORDER\u0026#34;, action=2 (READ)\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: invoice details csv file\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
+        "operationId": "downloadInvoiceDetails",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "end time is exclusive, using ISO 8601 format e.g. yyyy-MM-dd'T'HH:mm:ssZZ",
+            "in": "query",
+            "name": "endTime",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "start time is inclusive, using ISO 8601 format e.g. yyyy-MM-dd'T'HH:mm:ssZZ",
+            "in": "query",
+            "name": "startTime",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "feature",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "itemId",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "enum": [
+              "APP",
+              "BUNDLE",
+              "CODE",
+              "COINS",
+              "EXTENSION",
+              "INGAMEITEM",
+              "MEDIA",
+              "OPTIONBOX",
+              "SEASON",
+              "SUBSCRIPTION"
+            ],
+            "in": "query",
+            "name": "itemType",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "text/csv"
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful operation"
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          },
+          {
+            "HasPermission": [
+              "ADMIN:NAMESPACE:{namespace}:ORDER [READ]"
+            ],
+            "authorization": []
+          }
+        ],
+        "summary": "Download invoice details",
+        "tags": [
+          "Invoice"
+        ],
+        "x-authorization": {
+          "action": "2",
+          "resource": "ADMIN:NAMESPACE:{namespace}:ORDER"
+        }
+      }
+    },
+    "/platform/admin/namespaces/{namespace}/invoice/summary": {
+      "get": {
+        "description": "Generate invoice summary.\u0026lt;br\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;ADMIN:NAMESPACE:{namespace}:ORDER\u0026#34;, action=2 (READ)\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: query orders\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
+        "operationId": "generateInvoiceSummary",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "end time is exclusive, using ISO 8601 format e.g. yyyy-MM-dd'T'HH:mm:ssZZ",
+            "in": "query",
+            "name": "endTime",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "start time is inclusive, using ISO 8601 format e.g. yyyy-MM-dd'T'HH:mm:ssZZ",
+            "in": "query",
+            "name": "startTime",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "feature",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "itemId",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "enum": [
+              "APP",
+              "BUNDLE",
+              "CODE",
+              "COINS",
+              "EXTENSION",
+              "INGAMEITEM",
+              "MEDIA",
+              "OPTIONBOX",
+              "SEASON",
+              "SUBSCRIPTION"
+            ],
+            "in": "query",
+            "name": "itemType",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/InvoiceSummary"
+            }
+          },
+          "422": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eErrorCode\u003c/td\u003e\u003ctd\u003eErrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20002\u003c/td\u003e\u003ctd\u003evalidation error\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/ValidationErrorEntity"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          },
+          {
+            "HasPermission": [
+              "ADMIN:NAMESPACE:{namespace}:ORDER [READ]"
+            ],
+            "authorization": []
+          }
+        ],
+        "summary": "Generate invoice summary",
+        "tags": [
+          "Invoice"
+        ],
+        "x-authorization": {
+          "action": "2",
+          "resource": "ADMIN:NAMESPACE:{namespace}:ORDER"
         }
       }
     },
@@ -28614,6 +28796,63 @@
         "categoryPath",
         "targetItemId",
         "targetNamespace"
+      ],
+      "type": "object"
+    },
+    "InvoiceCurrencySummary": {
+      "properties": {
+        "currency": {
+          "$ref": "#/definitions/CurrencySummary",
+          "description": "currency"
+        },
+        "salesVolume": {
+          "description": "sales volume",
+          "format": "int64",
+          "type": "integer"
+        },
+        "subtotalPrice": {
+          "description": "subtotal price",
+          "format": "int64",
+          "type": "integer"
+        },
+        "totalPrice": {
+          "description": "total price",
+          "format": "int64",
+          "type": "integer"
+        },
+        "totalTax": {
+          "description": "total tax",
+          "format": "int64",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "currency",
+        "salesVolume",
+        "subtotalPrice",
+        "totalPrice",
+        "totalTax"
+      ],
+      "type": "object"
+    },
+    "InvoiceSummary": {
+      "properties": {
+        "invoiceCurrencySummary": {
+          "description": "invoice currency summary",
+          "items": {
+            "$ref": "#/definitions/InvoiceCurrencySummary"
+          },
+          "type": "array"
+        },
+        "totalSalesVolume": {
+          "description": "total sales volume",
+          "format": "int64",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "invoiceCurrencySummary",
+        "totalSalesVolume"
       ],
       "type": "object"
     },

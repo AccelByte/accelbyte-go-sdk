@@ -3,7 +3,7 @@
   "info": {
     "description": "Justice DSM Controller Service",
     "title": "justice-dsm-controller-service",
-    "version": "3.5.0"
+    "version": "3.6.1"
   },
   "schemes": [
     "https"
@@ -4071,6 +4071,68 @@
         ]
       }
     },
+    "/dsmcontroller/namespaces/{namespace}/images/limit": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Required permission: NAMESPACE:{namespace}:DSM:CONFIG [READ]\n\nRequired scope: social\n\nThis endpoint get DS image limit for specific namespace.This endpoint also give the non-persistent image which is used by any deployments",
+        "operationId": "ImageLimitClient",
+        "parameters": [
+          {
+            "description": "namespace of the game",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "ok",
+            "schema": {
+              "$ref": "#/definitions/models.GetImageLimitResponse"
+            }
+          },
+          "400": {
+            "description": "malformed request",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          }
+        },
+        "security": [
+          {
+            "HasPermission": [
+              "NAMESPACE:{namespace}:DSM:CONFIG [READ]"
+            ],
+            "HasScope": [
+              "social"
+            ],
+            "authorization": []
+          }
+        ],
+        "summary": "DS Image Limit for Client",
+        "tags": [
+          "Image Config"
+        ]
+      }
+    },
     "/dsmcontroller/namespaces/{namespace}/images/versions/{version}": {
       "get": {
         "consumes": [
@@ -5778,12 +5840,17 @@
         "non_persistent_image_number": {
           "format": "int32",
           "type": "integer"
+        },
+        "non_persistent_image_used_in_deployment_number": {
+          "format": "int32",
+          "type": "integer"
         }
       },
       "required": [
         "image_count",
         "image_limit",
-        "non_persistent_image_number"
+        "non_persistent_image_number",
+        "non_persistent_image_used_in_deployment_number"
       ]
     },
     "models.GetImagePatchDetailResponse": {

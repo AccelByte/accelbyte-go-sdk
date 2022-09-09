@@ -8,7 +8,7 @@
     },
     "description": "Justice IAM Service",
     "title": "justice-iam-service",
-    "version": "5.15.0"
+    "version": "5.16.0"
   },
   "schemes": [
     "https"
@@ -24,6 +24,8 @@
         "ADMIN:CONFIGURATION [UPDATE]": "ADMIN:CONFIGURATION [UPDATE]",
         "ADMIN:NAMESPACE:{namespace}:AGERESTRICTION [READ]": "ADMIN:NAMESPACE:{namespace}:AGERESTRICTION [READ]",
         "ADMIN:NAMESPACE:{namespace}:AGERESTRICTION [UPDATE]": "ADMIN:NAMESPACE:{namespace}:AGERESTRICTION [UPDATE]",
+        "ADMIN:NAMESPACE:{namespace}:BAN [CREATE]": "ADMIN:NAMESPACE:{namespace}:BAN [CREATE]",
+        "ADMIN:NAMESPACE:{namespace}:BAN [UPDATE]": "ADMIN:NAMESPACE:{namespace}:BAN [UPDATE]",
         "ADMIN:NAMESPACE:{namespace}:BAN:USER:{userId} [CREATE]": "ADMIN:NAMESPACE:{namespace}:BAN:USER:{userId} [CREATE]",
         "ADMIN:NAMESPACE:{namespace}:BAN:USER:{userId} [READ]": "ADMIN:NAMESPACE:{namespace}:BAN:USER:{userId} [READ]",
         "ADMIN:NAMESPACE:{namespace}:BAN:USER:{userId} [UPDATE]": "ADMIN:NAMESPACE:{namespace}:BAN:USER:{userId} [UPDATE]",
@@ -867,7 +869,7 @@
           "application/json"
         ],
         "deprecated": true,
-        "description": " \u0026lt;h2\u0026gt;The endpoint is going to be deprecated\u0026lt;/h2\u0026gt; \u0026lt;/br\u0026gt;\n\u0026lt;strong\u0026gt;Endpoint migration guide\u0026lt;/strong\u0026gt;\n\u0026lt;ul\u0026gt;\n\u0026lt;li\u0026gt;\u0026lt;b\u0026gt;Substitute endpoint: \u0026lt;i\u0026gt;/iam/v3/public/namespaces/{namespace}/users  [POST]\u0026lt;/i\u0026gt;\u0026lt;/b\u0026gt;\n\u0026lt;li\u0026gt;\u0026lt;b\u0026gt;Substitute endpoint: \u0026lt;i\u0026gt;/iam/v4/public/namespaces/{namespace}/users  [POST]\u0026lt;/i\u0026gt;\u0026lt;/b\u0026gt;\n\u0026lt;/li\u0026gt;\n\u0026lt;li\u0026gt;\u0026lt;b\u0026gt;Note:\u0026lt;/b\u0026gt;\n\t\u0026lt;dd\u0026gt; 1. v3 \u0026amp; v4 introduce optional verification code\u0026lt;/dd\u0026gt;\n\t\u0026lt;dd\u0026gt; 2. format difference（Pascal case =\u0026gt; Camel case)\u0026lt;/dd\u0026gt;\n\u0026lt;/li\u0026gt;\n\u0026lt;/ul\u0026gt;\n\n\u0026lt;p\u0026gt;Required permission \u0026#39;NAMESPACE:{namespace}:USER [CREATE]\u0026#39;.\u0026lt;/p\u0026gt;\n\u0026lt;p\u0026gt;Available Authentication Types:\u0026lt;/p\u0026gt;\n\u0026lt;ol\u0026gt;\n\u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;EMAILPASSWD\u0026lt;/strong\u0026gt;: an authentication type used for new user registration through email.\u0026lt;/li\u0026gt;\n\u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;PHONEPASSWD\u0026lt;/strong\u0026gt;: an authentication type used for new user registration through phone number.\u0026lt;/li\u0026gt;\n\u0026lt;/ol\u0026gt;\n\u0026lt;p\u0026gt;Country use ISO3166-1 alpha-2 two letter, e.g. US.\u0026lt;/p\u0026gt;\n\n",
+        "description": "\u0026lt;h2\u0026gt;The endpoint is going to be deprecated\u0026lt;/h2\u0026gt; \u0026lt;/br\u0026gt;\n\u0026lt;strong\u0026gt;Endpoint migration guide\u0026lt;/strong\u0026gt;\n\u0026lt;ul\u0026gt;\n\u0026lt;li\u0026gt;\u0026lt;b\u0026gt;Substitute endpoint: \u0026lt;i\u0026gt;/iam/v3/public/namespaces/{namespace}/users  [POST]\u0026lt;/i\u0026gt;\u0026lt;/b\u0026gt;\n\u0026lt;li\u0026gt;\u0026lt;b\u0026gt;Substitute endpoint: \u0026lt;i\u0026gt;/iam/v4/public/namespaces/{namespace}/users  [POST]\u0026lt;/i\u0026gt;\u0026lt;/b\u0026gt;\n\u0026lt;/li\u0026gt;\n\u0026lt;li\u0026gt;\u0026lt;b\u0026gt;Note:\u0026lt;/b\u0026gt;\n\t\u0026lt;dd\u0026gt; 1. v3 \u0026amp; v4 introduce optional verification code\u0026lt;/dd\u0026gt;\n\t\u0026lt;dd\u0026gt; 2. format difference（Pascal case =\u0026gt; Camel case)\u0026lt;/dd\u0026gt;\n\u0026lt;/li\u0026gt;\n\u0026lt;/ul\u0026gt;\n\n\u0026lt;p\u0026gt;Required permission \u0026#39;NAMESPACE:{namespace}:USER [CREATE]\u0026#39;.\u0026lt;/p\u0026gt;\n\u0026lt;p\u0026gt;Available Authentication Types:\u0026lt;/p\u0026gt;\n\u0026lt;ol\u0026gt;\n\u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;EMAILPASSWD\u0026lt;/strong\u0026gt;: an authentication type used for new user registration through email.\u0026lt;/li\u0026gt;\n\u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;PHONEPASSWD\u0026lt;/strong\u0026gt;: an authentication type used for new user registration through phone number.\u0026lt;/li\u0026gt;\n\u0026lt;/ol\u0026gt;\n\u0026lt;p\u0026gt;Country use ISO3166-1 alpha-2 two letter, e.g. US.\u0026lt;/p\u0026gt;\n\n",
         "operationId": "CreateUser",
         "parameters": [
           {
@@ -3389,7 +3391,7 @@
           "application/x-www-form-urlencoded"
         ],
         "deprecated": true,
-        "description": "\u0026lt;h2\u0026gt;The endpoint is going to be deprecated\u0026lt;/h2\u0026gt; \u0026lt;/br\u0026gt;\n\tThe endpoint supports two response types:\u0026lt;br/\u0026gt;\n\t\u0026lt;p\u0026gt;\u0026lt;strong\u0026gt;1. Response Type == \u0026#34;code\u0026#34;:\u0026lt;/strong\u0026gt;\u0026lt;/p\u0026gt;\n\t\u0026lt;p\u0026gt;The endpoint returns an authorization code that will be used by the IAM client to exchange for an access token. It supports two different headers, the basic and the bearer header. Each behaves differently.\u0026lt;/p\u0026gt;\n\u0026lt;ul\u0026gt;\n\u0026lt;li\u0026gt;\n\t\u0026lt;p\u0026gt;\u0026lt;strong\u0026gt;The basic header\u0026lt;/strong\u0026gt;\u0026lt;/p\u0026gt;\n\t\u0026lt;p\u0026gt;The basic header’s value is the base64 of the client ID and client secret. It is used by the developer whenever the developer authorizes a user on a same namespace.\u0026lt;/p\u0026gt;\n\u0026lt;/li\u0026gt;\n\u0026lt;li\u0026gt;\n\t\u0026lt;p\u0026gt;\u0026lt;strong\u0026gt;The bearer header\u0026lt;/strong\u0026gt;\u0026lt;/p\u0026gt;\n\t\u0026lt;p\u0026gt;The bearer header’s value is an access token. It is used by the developer whenever the developer authorizes a user on a different namespace. The endpoint validates user’s entitlement on the designated namespace for making sure the user is authorized for a designated namespace.\u0026lt;/p\u0026gt;\n\u0026lt;/li\u0026gt;\n\u0026lt;/ul\u0026gt;\n\u0026lt;p\u0026gt;Following are the responses returned by the endpoint:\u0026lt;/p\u0026gt;\n\u0026lt;ul\u0026gt;\n\u0026lt;li\u0026gt;\u0026lt;p\u0026gt;\u0026lt;strong\u0026gt;Authorize success\u0026lt;/strong\u0026gt;: redirects to the given URL with the following information: ?code={authorization code}\u0026amp;state={state}\u0026lt;/p\u0026gt;\u0026lt;/li\u0026gt;\n\u0026lt;li\u0026gt;\u0026lt;p\u0026gt;\u0026lt;strong\u0026gt;Authorize failure\u0026lt;/strong\u0026gt;: redirects to the given URL with the following information:?error=access_denied\u0026amp;error_description=...\u0026lt;/p\u0026gt;\u0026lt;/li\u0026gt;\n\u0026lt;/ul\u0026gt;\n\u0026lt;p\u0026gt;\u0026lt;strong\u0026gt;2. Response Type == \u0026#34;token\u0026#34; (Implicit) is deprecated. \u0026lt;/strong\u0026gt;\u0026lt;/p\u0026gt;\n\u0026lt;p\u0026gt;\u0026lt;strong\u0026gt;Endpoint migration guide\u0026lt;/strong\u0026gt;\u0026lt;/p\u0026gt;\n\u0026lt;ul\u0026gt;\n\u0026lt;li\u0026gt;\u0026lt;b\u0026gt;Substitute endpoint: \u0026lt;i\u0026gt;/iam/v3/oauth/authorize  [GET]\u0026lt;/i\u0026gt;\u0026lt;/b\u0026gt;\u0026lt;/li\u0026gt;\n\u0026lt;li\u0026gt;\u0026lt;b\u0026gt;Note: \u0026lt;/b\u0026gt;\n\t\u0026lt;dd\u0026gt;1. V3 is standard OAuth2 flow and support PKCE\u0026lt;dd\u0026gt;\u0026lt;/br\u0026gt;\n\t\u0026lt;dd\u0026gt;2. Will not support implicit flow in v3.\u0026lt;dd\u0026gt;\u0026lt;/br\u0026gt;\n\u0026lt;/li\u0026gt;\n\u0026lt;/ul\u0026gt;\n",
+        "description": "\u0026lt;h2\u0026gt;The endpoint is going to be deprecated\u0026lt;/h2\u0026gt; \u0026lt;/br\u0026gt;\n\tThe endpoint supports two response types:\u0026lt;br/\u0026gt;\n\t\u0026lt;p\u0026gt;\u0026lt;strong\u0026gt;1. Response Type == \u0026#34;code\u0026#34;:\u0026lt;/strong\u0026gt;\u0026lt;/p\u0026gt;\n\t\u0026lt;p\u0026gt;The endpoint returns an authorization code that will be used by the IAM client to exchange for an access token. It supports two different headers, the basic and the bearer header. Each behaves differently.\u0026lt;/p\u0026gt;\n\u0026lt;ul\u0026gt;\n\u0026lt;li\u0026gt;\n\t\u0026lt;p\u0026gt;\u0026lt;strong\u0026gt;The basic header\u0026lt;/strong\u0026gt;\u0026lt;/p\u0026gt;\n\t\u0026lt;p\u0026gt;The basic header’s value is the base64 of the client ID and client secret. It is used by the developer whenever the developer authorizes a user on a same namespace.\u0026lt;/p\u0026gt;\n\u0026lt;/li\u0026gt;\n\u0026lt;li\u0026gt;\n\t\u0026lt;p\u0026gt;\u0026lt;strong\u0026gt;The bearer header\u0026lt;/strong\u0026gt;\u0026lt;/p\u0026gt;\n\t\u0026lt;p\u0026gt;The bearer header’s value is an access token. It is used by the developer whenever the developer authorizes a user on a different namespace. The endpoint validates user’s entitlement on the designated namespace for making sure the user is authorized for a designated namespace.\u0026lt;/p\u0026gt;\n\u0026lt;/li\u0026gt;\n\u0026lt;/ul\u0026gt;\n\u0026lt;p\u0026gt;Following are the responses returned by the endpoint:\u0026lt;/p\u0026gt;\n\u0026lt;ul\u0026gt;\n\u0026lt;li\u0026gt;\u0026lt;p\u0026gt;\u0026lt;strong\u0026gt;Authorize success\u0026lt;/strong\u0026gt;: redirects to the given URL with the following information: ?code={authorization code}\u0026amp;state={state}\u0026lt;/p\u0026gt;\u0026lt;/li\u0026gt;\n\u0026lt;li\u0026gt;\u0026lt;p\u0026gt;\u0026lt;strong\u0026gt;Authorize failure\u0026lt;/strong\u0026gt;: redirects to the given URL with the following information:?error=access_denied\u0026amp;error_description=...\u0026lt;/p\u0026gt;\u0026lt;/li\u0026gt;\n\u0026lt;/ul\u0026gt;\n\u0026lt;p\u0026gt;\u0026lt;strong\u0026gt;2. Response Type == \u0026#34;token\u0026#34; (Implicit) is deprecated. \u0026lt;/strong\u0026gt;\u0026lt;/p\u0026gt;\n\u0026lt;p\u0026gt;\u0026lt;strong\u0026gt;Endpoint migration guide\u0026lt;/strong\u0026gt;\u0026lt;/p\u0026gt;\n\u0026lt;ul\u0026gt;\n\u0026lt;li\u0026gt;\u0026lt;b\u0026gt;Substitute endpoint (for: basic header style): \u0026lt;i\u0026gt;/iam/v3/oauth/authorize  [GET]\u0026lt;/i\u0026gt;\u0026lt;/b\u0026gt;\u0026lt;/li\u0026gt;\n\u0026lt;li\u0026gt;\u0026lt;b\u0026gt;Substitute endpoint (for: bearer header style): \u0026lt;/b\u0026gt;\n\t\u0026lt;dd\u0026gt;step1: /iam/v3/namespace/{namespace}/token/request [POST] =\u0026gt; get code\u0026lt;dd\u0026gt;\u0026lt;/br\u0026gt;\n\t\u0026lt;dd\u0026gt;step2: /iam/v3/token/exchange [POST] =\u0026gt; get token by step1\u0026#39;s code\u0026lt;dd\u0026gt;\u0026lt;/br\u0026gt;\n\u0026lt;/li\u0026gt;\n\u0026lt;li\u0026gt;\u0026lt;b\u0026gt;Note: \u0026lt;/b\u0026gt;\n\t\u0026lt;dd\u0026gt;1. V3 is standard OAuth2 flow and support PKCE\u0026lt;dd\u0026gt;\u0026lt;/br\u0026gt;\n\t\u0026lt;dd\u0026gt;2. Will not support implicit flow in v3.\u0026lt;dd\u0026gt;\u0026lt;/br\u0026gt;\n\u0026lt;/li\u0026gt;\n\u0026lt;/ul\u0026gt;\n",
         "operationId": "Authorization",
         "parameters": [
           {
@@ -4831,7 +4833,8 @@
     },
     "/iam/v2/admin/namespaces/{namespace}/agerestrictions": {
       "get": {
-        "description": "Required permission \u0026#39;ADMIN:NAMESPACE:{namespace}:AGERESTRICTION [READ]\u0026#39;",
+        "deprecated": true,
+        "description": "\u0026lt;h2\u0026gt;The endpoint is going to be deprecated\u0026lt;/h2\u0026gt; \u0026lt;/br\u0026gt;\n\t\t\u0026lt;strong\u0026gt;Endpoint migration guide\u0026lt;/strong\u0026gt;\n\t\t\u0026lt;ul\u0026gt;\n\t\t\t\u0026lt;li\u0026gt;\u0026lt;b\u0026gt;Substitute endpoint: \u0026lt;i\u0026gt;/iam/v3/admin/namespaces/{namespace}/agerestrictions  [GET]\u0026lt;/i\u0026gt;\u0026lt;/b\u0026gt;\n\t\t\t\u0026lt;/li\u0026gt;\n\t\t\t\u0026lt;li\u0026gt;\u0026lt;b\u0026gt;Note:\u0026lt;/b\u0026gt;\n                        \u0026lt;dd\u0026gt;difference in V3 response, format difference: Pascal case =\u0026gt; Camel case\u0026lt;/dd\u0026gt;\u0026lt;/b\u0026gt;\n\t\t\t\u0026lt;/li\u0026gt;\n\t\t\u0026lt;/ul\u0026gt;\n\t\t\n\t\tRequired permission \u0026#39;ADMIN:NAMESPACE:{namespace}:AGERESTRICTION [READ]\u0026#39;",
         "operationId": "AdminGetAgeRestrictionStatusV2",
         "parameters": [
           {
@@ -4879,7 +4882,8 @@
         "consumes": [
           "application/json"
         ],
-        "description": "Required permission \u0026#39;ADMIN:NAMESPACE:{namespace}:AGERESTRICTION [UPDATE]\u0026#39;",
+        "deprecated": true,
+        "description": "\u0026lt;h2\u0026gt;The endpoint is going to be deprecated\u0026lt;/h2\u0026gt; \u0026lt;/br\u0026gt;\n\t\t\u0026lt;strong\u0026gt;Endpoint migration guide\u0026lt;/strong\u0026gt;\n\t\t\u0026lt;ul\u0026gt;\n\t\t\t\u0026lt;li\u0026gt;\u0026lt;b\u0026gt;Substitute endpoint: \u0026lt;i\u0026gt;/iam/v3/admin/namespaces/{namespace}/agerestrictions  [PATCH]\u0026lt;/i\u0026gt;\u0026lt;/b\u0026gt;\n\t\t\t\u0026lt;/li\u0026gt;\n\t\t\u0026lt;/ul\u0026gt;\n\n\t\tRequired permission \u0026#39;ADMIN:NAMESPACE:{namespace}:AGERESTRICTION [UPDATE]\u0026#39;",
         "operationId": "AdminUpdateAgeRestrictionConfigV2",
         "parameters": [
           {
@@ -4937,7 +4941,8 @@
     },
     "/iam/v2/admin/namespaces/{namespace}/countries/agerestrictions": {
       "get": {
-        "description": "Required permission \u0026#39;ADMIN:NAMESPACE:{namespace}:AGERESTRICTION [READ]\u0026#39;",
+        "deprecated": true,
+        "description": "\u0026lt;h2\u0026gt;The endpoint is going to be deprecated\u0026lt;/h2\u0026gt; \u0026lt;/br\u0026gt;\n\t\t\u0026lt;strong\u0026gt;Endpoint migration guide\u0026lt;/strong\u0026gt;\n\t\t\u0026lt;ul\u0026gt;\n                \u0026lt;li\u0026gt;\u0026lt;b\u0026gt;Substitute endpoint: \u0026lt;i\u0026gt;/iam/v3/admin/namespaces/{namespace}/agerestrictions/countries  [GET]\u0026lt;/i\u0026gt;\u0026lt;/b\u0026gt;\n                \u0026lt;/li\u0026gt;\n\t\t\u0026lt;/ul\u0026gt;\n\t\t\n\t\tRequired permission \u0026#39;ADMIN:NAMESPACE:{namespace}:AGERESTRICTION [READ]\u0026#39;",
         "operationId": "GetListCountryAgeRestriction",
         "parameters": [
           {
@@ -4990,7 +4995,8 @@
         "consumes": [
           "application/json"
         ],
-        "description": "Required permission \u0026#39;ADMIN:NAMESPACE:{namespace}:AGERESTRICTION [UPDATE]\u0026#39;",
+        "deprecated": true,
+        "description": "\u0026lt;h2\u0026gt;The endpoint is going to be deprecated\u0026lt;/h2\u0026gt; \u0026lt;/br\u0026gt;\n\t\t\u0026lt;strong\u0026gt;Endpoint migration guide\u0026lt;/strong\u0026gt;\n\t\t\u0026lt;ul\u0026gt;\n                \u0026lt;li\u0026gt;\u0026lt;b\u0026gt;Substitute endpoint: \u0026lt;i\u0026gt;/iam/v3/admin/namespaces/{namespace}/agerestrictions/countries/{countryCode}  [PATCH]\u0026lt;/i\u0026gt;\u0026lt;/b\u0026gt;\n                \u0026lt;/li\u0026gt;\n\t\t\u0026lt;/ul\u0026gt;\n\t\t\n\t\tRequired permission \u0026#39;ADMIN:NAMESPACE:{namespace}:AGERESTRICTION [UPDATE]\u0026#39;",
         "operationId": "UpdateCountryAgeRestriction",
         "parameters": [
           {
@@ -5055,7 +5061,8 @@
     },
     "/iam/v2/admin/namespaces/{namespace}/users": {
       "get": {
-        "description": "Required permission \u0026#39;ADMIN:NAMESPACE:{namespace}:USER [READ]\u0026#39;.",
+        "deprecated": true,
+        "description": "\u0026lt;h2\u0026gt;The endpoint is going to be deprecated\u0026lt;/h2\u0026gt; \u0026lt;/br\u0026gt;\n\t\t\u0026lt;strong\u0026gt;Endpoint migration guide\u0026lt;/strong\u0026gt;\n\t\t\u0026lt;ul\u0026gt;\n\t\t\t\u0026lt;li\u0026gt;\u0026lt;b\u0026gt;Substitute endpoint: \u0026lt;i\u0026gt;/iam/v3/admin/namespaces/{namespace}/users/search  [GET]\u0026lt;/i\u0026gt;\u0026lt;/b\u0026gt;\n\t\t\t\u0026lt;/li\u0026gt;\n\t\t\u0026lt;/ul\u0026gt;\n\t\t\n\t\tRequired permission \u0026#39;ADMIN:NAMESPACE:{namespace}:USER [READ]\u0026#39;.",
         "operationId": "AdminSearchUsersV2",
         "parameters": [
           {
@@ -5157,7 +5164,8 @@
     },
     "/iam/v2/admin/namespaces/{namespace}/users/{userId}": {
       "get": {
-        "description": "Required permission \u0026#39;ADMIN:NAMESPACE:{namespace}:USER:{userId} [READ]\u0026#39;",
+        "deprecated": true,
+        "description": "\u0026lt;h2\u0026gt;The endpoint is going to be deprecated\u0026lt;/h2\u0026gt; \u0026lt;/br\u0026gt;\n\t\t\u0026lt;strong\u0026gt;Endpoint migration guide\u0026lt;/strong\u0026gt;\n\t\t\u0026lt;ul\u0026gt;\n\t\t\t\u0026lt;li\u0026gt;\u0026lt;b\u0026gt;Substitute endpoint: \u0026lt;i\u0026gt;/iam/v3/admin/namespaces/{namespace}/users/{userId}  [GET]\u0026lt;/i\u0026gt;\u0026lt;/b\u0026gt;\n\t\t\t\u0026lt;/li\u0026gt;\n\t\t\u0026lt;/ul\u0026gt;\n\t\tRequired permission \u0026#39;ADMIN:NAMESPACE:{namespace}:USER:{userId} [READ]\u0026#39;",
         "operationId": "AdminGetUserByUserIdV2",
         "parameters": [
           {
@@ -5209,7 +5217,8 @@
         "consumes": [
           "application/json"
         ],
-        "description": "\u0026lt;p\u0026gt;Required permission \u0026#39;ADMIN:NAMESPACE:{namespace}:USER:{userId} [UPDATE]\u0026#39;\u0026lt;/p\u0026gt;\u0026lt;br\u0026gt;\u0026lt;p\u0026gt;This Endpoint support update user based on given data. \u0026lt;b\u0026gt;Single request can update single field or multi fields.\u0026lt;/b\u0026gt;\u0026lt;/p\u0026gt; \u0026lt;p\u0026gt;Supported field {Country, DisplayName, LanguageTag}\u0026lt;/p\u0026gt;\u0026lt;p\u0026gt;Country use ISO3166-1 alpha-2 two letter, e.g. US.\u0026lt;/p\u0026gt;\u0026lt;br\u0026gt;\u0026lt;b\u0026gt;Several case of updating email address\u0026lt;/b\u0026gt;\u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;User want to update email address of which have been verified, NewEmailAddress response field will be filled with new email address.\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;User want to update email address of which have not been verified, {LoginId, OldEmailAddress, EmailAddress} response field will be filled with new email address. \u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;User want to update email address of which have been verified and updated before, {LoginId, OldEmailAddress, EmailAddress} response field will be filled with verified email before. NewEmailAddress response field will be filled with newest email address. \u0026lt;/li\u0026gt;",
+        "deprecated": true,
+        "description": "\u0026lt;h2\u0026gt;The endpoint is going to be deprecated\u0026lt;/h2\u0026gt; \u0026lt;/br\u0026gt;\n\t\t\u0026lt;strong\u0026gt;Endpoint migration guide\u0026lt;/strong\u0026gt;\n\t\t\u0026lt;ul\u0026gt;\n\t\t\t\u0026lt;li\u0026gt;\u0026lt;b\u0026gt;Substitute endpoint: \u0026lt;i\u0026gt;/iam/v3/admin/namespaces/{namespace}/users/{userId}  [PATCH]\u0026lt;/i\u0026gt;\u0026lt;/b\u0026gt;\n\t\t\t\u0026lt;/li\u0026gt;\n\t\t\u0026lt;/ul\u0026gt;\t\t\n\t\t\n\t\t\u0026lt;p\u0026gt;Required permission \u0026#39;ADMIN:NAMESPACE:{namespace}:USER:{userId} [UPDATE]\u0026#39;\u0026lt;/p\u0026gt;\u0026#34;+\n\t\t\u0026#34;\u0026lt;br\u0026gt;\u0026lt;p\u0026gt;This Endpoint support update user based on given data. \u0026lt;b\u0026gt;Single request can update single field or multi fields.\u0026lt;/b\u0026gt;\u0026lt;/p\u0026gt; \u0026#34;+\n\t\t\u0026#34;\u0026lt;p\u0026gt;Supported field {Country, DisplayName, LanguageTag}\u0026lt;/p\u0026gt;\u0026#34;+\n\t\t\u0026#34;\u0026lt;p\u0026gt;Country use ISO3166-1 alpha-2 two letter, e.g. US.\u0026lt;/p\u0026gt;\u0026#34;+\n\t\t\u0026#34;\u0026lt;br\u0026gt;\u0026lt;b\u0026gt;Several case of updating email address\u0026lt;/b\u0026gt;\u0026#34;+\n\t\t\u0026#34;\u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;User want to update email address of which have been verified, NewEmailAddress response field will be filled with new email address.\u0026lt;/li\u0026gt;\u0026#34;+\n\t\t\u0026#34;\u0026lt;li\u0026gt;User want to update email address of which have not been verified, {LoginId, OldEmailAddress, EmailAddress} response field will be filled with new email address. \u0026lt;/li\u0026gt;\u0026#34;+\n\t\t\u0026#34;\u0026lt;li\u0026gt;User want to update email address of which have been verified and updated before, {LoginId, OldEmailAddress, EmailAddress} response field will be filled with verified email before. NewEmailAddress response field will be filled with newest email address. \u0026lt;/li\u0026gt;",
         "operationId": "AdminUpdateUserV2",
         "parameters": [
           {
@@ -5280,7 +5289,8 @@
         "consumes": [
           "application/json"
         ],
-        "description": "Required permission \u0026#39;ADMIN:NAMESPACE:{namespace}:BAN:USER:{userId} [CREATE]\u0026#39;.",
+        "deprecated": true,
+        "description": "\u0026lt;h2\u0026gt;The endpoint is going to be deprecated\u0026lt;/h2\u0026gt; \u0026lt;/br\u0026gt;\n\t\t\u0026lt;strong\u0026gt;Endpoint migration guide\u0026lt;/strong\u0026gt;\n\t\t\u0026lt;ul\u0026gt;\n\t\t\t\u0026lt;li\u0026gt;\u0026lt;b\u0026gt;Substitute endpoint: \u0026lt;i\u0026gt;/iam/v3/admin/namespaces/{namespace}/users/{userId}/bans  [POST]\u0026lt;/i\u0026gt;\u0026lt;/b\u0026gt;\n\t\t\t\u0026lt;/li\u0026gt;\n\t\t\u0026lt;/ul\u0026gt;\n\t\t\n\t\tRequired permission \u0026#39;ADMIN:NAMESPACE:{namespace}:BAN:USER:{userId} [CREATE]\u0026#39;.",
         "operationId": "AdminBanUserV2",
         "parameters": [
           {
@@ -5348,7 +5358,8 @@
     },
     "/iam/v2/admin/namespaces/{namespace}/users/{userId}/bans": {
       "get": {
-        "description": "Required permission \u0026#39;ADMIN:NAMESPACE:{namespace}:BAN:USER:{userId} [READ]\u0026#39;.",
+        "deprecated": true,
+        "description": "\u0026lt;h2\u0026gt;The endpoint is going to be deprecated\u0026lt;/h2\u0026gt; \u0026lt;/br\u0026gt;\n\t\t\u0026lt;strong\u0026gt;Endpoint migration guide\u0026lt;/strong\u0026gt;\n\t\t\u0026lt;ul\u0026gt;\n\t\t\t\u0026lt;li\u0026gt;\u0026lt;b\u0026gt;Substitute endpoint: \u0026lt;i\u0026gt;/iam/v3/admin/namespaces/{namespace}/users/{userId}/bans  [GET]\u0026lt;/i\u0026gt;\u0026lt;/b\u0026gt;\n\t\t\t\u0026lt;/li\u0026gt;\n\t\t\u0026lt;/ul\u0026gt;\n\t\t\n\t\tRequired permission \u0026#39;ADMIN:NAMESPACE:{namespace}:BAN:USER:{userId} [READ]\u0026#39;.",
         "operationId": "AdminGetUserBanV2",
         "parameters": [
           {
@@ -5415,7 +5426,8 @@
         "consumes": [
           "application/json"
         ],
-        "description": "Required permissions \u0026#39;ADMIN:NAMESPACE:{namespace}:USERSTATUS:USER:{userId} [UPDATE]\u0026#39;\n\t\t\u0026lt;p\u0026gt;For \u0026lt;strong\u0026gt;Deletion Account\u0026lt;/strong\u0026gt; purpose fill the reason with:\u0026lt;/p\u0026gt;\n\t\t\u0026lt;ul\u0026gt;\n\t\t\u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;DeactivateAccount\u0026lt;/strong\u0026gt; : if your deletion request comes from user\u0026lt;/li\u0026gt;\n\t\t\u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;AdminDeactivateAccount\u0026lt;/strong\u0026gt; : if your deletion request comes from admin\u0026lt;/li\u0026gt;\n\t\t\u0026lt;/ul\u0026gt;",
+        "deprecated": true,
+        "description": "\u0026lt;h2\u0026gt;The endpoint is going to be deprecated\u0026lt;/h2\u0026gt; \u0026lt;/br\u0026gt;\n\t\t\u0026lt;strong\u0026gt;Endpoint migration guide\u0026lt;/strong\u0026gt;\n\t\t\u0026lt;ul\u0026gt;\n\t\t\t\u0026lt;li\u0026gt;\u0026lt;b\u0026gt;Substitute endpoint: \u0026lt;i\u0026gt;/iam/v3/admin/namespaces/{namespace}/users/{userId}/status  [PATCH]\u0026lt;/i\u0026gt;\u0026lt;/b\u0026gt;\n\t\t\t\u0026lt;/li\u0026gt;\n\t\t\u0026lt;/ul\u0026gt;\n\t\t\n\t\tRequired permissions \u0026#39;ADMIN:NAMESPACE:{namespace}:USERSTATUS:USER:{userId} [UPDATE]\u0026#39;\n\t\t\u0026lt;p\u0026gt;For \u0026lt;strong\u0026gt;Deletion Account\u0026lt;/strong\u0026gt; purpose fill the reason with:\u0026lt;/p\u0026gt;\n\t\t\u0026lt;ul\u0026gt;\n\t\t\u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;DeactivateAccount\u0026lt;/strong\u0026gt; : if your deletion request comes from user\u0026lt;/li\u0026gt;\n\t\t\u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;AdminDeactivateAccount\u0026lt;/strong\u0026gt; : if your deletion request comes from admin\u0026lt;/li\u0026gt;\n\t\t\u0026lt;/ul\u0026gt;",
         "operationId": "AdminDisableUserV2",
         "parameters": [
           {
@@ -5483,7 +5495,8 @@
         "consumes": [
           "*/*"
         ],
-        "description": "Required permissions \u0026#39;ADMIN:NAMESPACE:{namespace}:USERSTATUS:USER:{userId} [UPDATE]\u0026#39;",
+        "deprecated": true,
+        "description": "\u0026lt;h2\u0026gt;The endpoint is going to be deprecated\u0026lt;/h2\u0026gt; \u0026lt;/br\u0026gt;\n\t\t\u0026lt;strong\u0026gt;Endpoint migration guide\u0026lt;/strong\u0026gt;\n\t\t\u0026lt;ul\u0026gt;\n\t\t\t\u0026lt;li\u0026gt;\u0026lt;b\u0026gt;Substitute endpoint: \u0026lt;i\u0026gt;/iam/v3/admin/namespaces/{namespace}/users/{userId}/status  [PATCH]\u0026lt;/i\u0026gt;\u0026lt;/b\u0026gt;\n\t\t\t\u0026lt;/li\u0026gt;\n\t\t\u0026lt;/ul\u0026gt;\n\n\t\tRequired permissions \u0026#39;ADMIN:NAMESPACE:{namespace}:USERSTATUS:USER:{userId} [UPDATE]\u0026#39;",
         "operationId": "AdminEnableUserV2",
         "parameters": [
           {
@@ -5540,7 +5553,8 @@
         "consumes": [
           "application/json"
         ],
-        "description": "Required permission \u0026#39;ADMIN:NAMESPACE:{namespace}:PASSWORD:USER:{userId} [UPDATE]\u0026#39;",
+        "deprecated": true,
+        "description": "\u0026lt;h2\u0026gt;The endpoint is going to be deprecated\u0026lt;/h2\u0026gt; \u0026lt;/br\u0026gt;\n\t\t\u0026lt;strong\u0026gt;Endpoint migration guide\u0026lt;/strong\u0026gt;\n\t\t\u0026lt;ul\u0026gt;\n                \u0026lt;li\u0026gt;\u0026lt;b\u0026gt;Substitute endpoint: \u0026lt;i\u0026gt;/iam/v3/admin/namespaces/{namespace}/users/{userId}/password  [PUT]\u0026lt;/i\u0026gt;\u0026lt;/b\u0026gt;\n                \u0026lt;/li\u0026gt;\n\t\t\u0026lt;/ul\u0026gt;\n\n\t\tRequired permission \u0026#39;ADMIN:NAMESPACE:{namespace}:PASSWORD:USER:{userId} [UPDATE]\u0026#39;",
         "operationId": "AdminResetPasswordV2",
         "parameters": [
           {
@@ -5609,7 +5623,8 @@
           "application/x-www-form-urlencoded",
           "text/plain"
         ],
-        "description": "\u0026lt;p\u0026gt;Required permission \u0026#39;ADMIN:NAMESPACE:{namespace}:USER:{userId} [DELETE]\u0026#39;.\u0026lt;/p\u0026gt;\n\u0026lt;h2\u0026gt;Supported platforms:\u0026lt;/h2\u0026gt;\n\t\t\t\u0026lt;ul\u0026gt;\n\t\t\t\t\u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;steam\u0026lt;/strong\u0026gt;\u0026lt;/li\u0026gt;\n\t\t\t\t\u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;steamopenid\u0026lt;/strong\u0026gt;\u0026lt;/li\u0026gt;\n\t\t\t\t\u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;facebook\u0026lt;/strong\u0026gt;\u0026lt;/li\u0026gt;\n\t\t\t\t\u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;google\u0026lt;/strong\u0026gt;\u0026lt;/li\u0026gt;\n\t\t\t\t\u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;oculus\u0026lt;/strong\u0026gt;\u0026lt;/li\u0026gt;\n\t\t\t\t\u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;twitch\u0026lt;/strong\u0026gt;\u0026lt;/li\u0026gt;\n\t\t\t\t\u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;android\u0026lt;/strong\u0026gt;\u0026lt;/li\u0026gt;\n\t\t\t\t\u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;ios\u0026lt;/strong\u0026gt;\u0026lt;/li\u0026gt;\n\t\t\t\t\u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;device\u0026lt;/strong\u0026gt;\u0026lt;/li\u0026gt;\n\t\t\t\t\u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;discord\u0026lt;/strong\u0026gt;\u0026lt;/li\u0026gt;\n\t\t\t\u0026lt;/ul\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;Delete link of user\u0026#39;s account with platform. \u0026#39;justice\u0026#39; platform might have multiple accounts from different namespaces linked. platform_namespace need to be specified when the platform ID is \u0026#39;justice\u0026#39;.\n\t\t\t\u0026lt;br\u0026gt;Delete link of justice platform will enable password token grant and password update. \u0026lt;/p\u0026gt;",
+        "deprecated": true,
+        "description": "\u0026lt;h2\u0026gt;The endpoint is going to be deprecated\u0026lt;/h2\u0026gt; \u0026lt;/br\u0026gt;\n\t\t\t\u0026lt;strong\u0026gt;Endpoint migration guide\u0026lt;/strong\u0026gt;\n\t\t\t\u0026lt;ul\u0026gt;\n                \u0026lt;li\u0026gt;\u0026lt;b\u0026gt;Substitute endpoint: \u0026lt;i\u0026gt;/iam/v3/admin/namespaces/{namespace}/users/{userId}/platforms/{platformId}  [DELETE]\u0026lt;/i\u0026gt;\u0026lt;/b\u0026gt;\n                \u0026lt;/li\u0026gt;\n\t\t\t\u0026lt;/ul\u0026gt;\n\n\t\t\t\u0026lt;p\u0026gt;Required permission \u0026#39;ADMIN:NAMESPACE:{namespace}:USER:{userId} [DELETE]\u0026#39;.\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;h2\u0026gt;Supported platforms:\u0026lt;/h2\u0026gt;\n\t\t\t\u0026lt;ul\u0026gt;\n\t\t\t\t\u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;steam\u0026lt;/strong\u0026gt;\u0026lt;/li\u0026gt;\n\t\t\t\t\u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;steamopenid\u0026lt;/strong\u0026gt;\u0026lt;/li\u0026gt;\n\t\t\t\t\u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;facebook\u0026lt;/strong\u0026gt;\u0026lt;/li\u0026gt;\n\t\t\t\t\u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;google\u0026lt;/strong\u0026gt;\u0026lt;/li\u0026gt;\n\t\t\t\t\u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;oculus\u0026lt;/strong\u0026gt;\u0026lt;/li\u0026gt;\n\t\t\t\t\u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;twitch\u0026lt;/strong\u0026gt;\u0026lt;/li\u0026gt;\n\t\t\t\t\u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;android\u0026lt;/strong\u0026gt;\u0026lt;/li\u0026gt;\n\t\t\t\t\u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;ios\u0026lt;/strong\u0026gt;\u0026lt;/li\u0026gt;\n\t\t\t\t\u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;device\u0026lt;/strong\u0026gt;\u0026lt;/li\u0026gt;\n\t\t\t\t\u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;discord\u0026lt;/strong\u0026gt;\u0026lt;/li\u0026gt;\n\t\t\t\u0026lt;/ul\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;Delete link of user\u0026#39;s account with platform. \u0026#39;justice\u0026#39; platform might have multiple accounts from different namespaces linked. platform_namespace need to be specified when the platform ID is \u0026#39;justice\u0026#39;.\n\t\t\t\u0026lt;br\u0026gt;Delete link of justice platform will enable password token grant and password update. \u0026lt;/p\u0026gt;",
         "operationId": "AdminDeletePlatformLinkV2",
         "parameters": [
           {
@@ -5682,7 +5697,8 @@
         "consumes": [
           "application/json"
         ],
-        "description": "Required permission \u0026#39;ADMIN:NAMESPACE:{namespace}:ROLE:USER:{userId} [UPDATE]\u0026#39;",
+        "deprecated": true,
+        "description": "\u0026lt;h2\u0026gt;The endpoint is going to be deprecated\u0026lt;/h2\u0026gt; \u0026lt;/br\u0026gt;\n\t\t\u0026lt;strong\u0026gt;Endpoint migration guide\u0026lt;/strong\u0026gt;\n\t\t\u0026lt;ul\u0026gt;\n\t\t\t\u0026lt;li\u0026gt;\u0026lt;b\u0026gt;Substitute endpoint: /iam/v3/admin/namespaces/{namespace}/users/{userId}/roles  [PATCH]\u0026lt;/i\u0026gt;\u0026lt;/b\u0026gt;\n\t\t\t\u0026lt;/li\u0026gt;\n\t\t\u0026lt;/ul\u0026gt;\t\n\n\t\tRequired permission \u0026#39;ADMIN:NAMESPACE:{namespace}:ROLE:USER:{userId} [UPDATE]\u0026#39;",
         "operationId": "AdminCreateUserRolesV2",
         "parameters": [
           {
@@ -5751,7 +5767,8 @@
         "consumes": [
           "application/json"
         ],
-        "description": "Required permission \u0026#39;ADMIN:NAMESPACE:{namespace}:ROLE:USER:{userId} [UPDATE]\u0026#39;",
+        "deprecated": true,
+        "description": "\u0026lt;h2\u0026gt;The endpoint is going to be deprecated\u0026lt;/h2\u0026gt; \u0026lt;/br\u0026gt;\n\t\t\u0026lt;strong\u0026gt;Endpoint migration guide\u0026lt;/strong\u0026gt;\n\t\t\u0026lt;ul\u0026gt;\n                \u0026lt;li\u0026gt;\u0026lt;b\u0026gt;Substitute endpoint: \u0026lt;i\u0026gt;/iam/v3/admin/namespaces/{namespace}/users/{userId}/roles  [PATCH]\u0026lt;/i\u0026gt;\u0026lt;/b\u0026gt;\n                \u0026lt;/li\u0026gt;\n\t\t\u0026lt;/ul\u0026gt;\n\n\t\tRequired permission \u0026#39;ADMIN:NAMESPACE:{namespace}:ROLE:USER:{userId} [UPDATE]\u0026#39;",
         "operationId": "AdminPutUserRolesV2",
         "parameters": [
           {
@@ -5816,6 +5833,8 @@
     },
     "/iam/v2/public/namespaces/{namespace}/countries/{countryCode}/agerestrictions": {
       "get": {
+        "deprecated": true,
+        "description": "\u0026lt;h2\u0026gt;The endpoint is going to be deprecated\u0026lt;/h2\u0026gt; \u0026lt;/br\u0026gt;\n\t\t\u0026lt;strong\u0026gt;Endpoint migration guide\u0026lt;/strong\u0026gt;\n\t\t\u0026lt;ul\u0026gt;\n\t\t\t\u0026lt;li\u0026gt;\u0026lt;b\u0026gt;Substitute endpoint: \u0026lt;i\u0026gt;/iam/v3/public/namespaces/{namespace}/agerestrictions/countries/{countryCode}  [GET]\u0026lt;/i\u0026gt;\u0026lt;/b\u0026gt;\n\t\t\t\u0026lt;/li\u0026gt;\n\t\t\u0026lt;/ul\u0026gt;\n\n\t\t",
         "operationId": "PublicGetCountryAgeRestriction",
         "parameters": [
           {
@@ -5840,10 +5859,7 @@
           "200": {
             "description": "OK",
             "schema": {
-              "items": {
-                "$ref": "#/definitions/accountcommon.CountryAgeRestriction"
-              },
-              "type": "array"
+              "$ref": "#/definitions/accountcommon.Country"
             }
           },
           "401": {
@@ -5869,7 +5885,8 @@
         "consumes": [
           "application/json"
         ],
-        "description": "\n\u0026lt;p\u0026gt;Available Authentication Types:\u0026lt;/p\u0026gt;\n\u0026lt;ol\u0026gt;\n\u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;EMAILPASSWD\u0026lt;/strong\u0026gt;: an authentication type used for new user registration through email.\u0026lt;/li\u0026gt;\n\u0026lt;/ol\u0026gt;\n\u0026lt;p\u0026gt;Country use ISO3166-1 alpha-2 two letter, e.g. US.\u0026lt;/p\u0026gt;\n",
+        "deprecated": true,
+        "description": "\u0026lt;h2\u0026gt;The endpoint is going to be deprecated\u0026lt;/h2\u0026gt; \u0026lt;/br\u0026gt;\n\u0026lt;strong\u0026gt;Endpoint migration guide\u0026lt;/strong\u0026gt;\n\u0026lt;ul\u0026gt;\n\u0026lt;li\u0026gt;\u0026lt;b\u0026gt;Substitute endpoint: \u0026lt;i\u0026gt;/iam/v3/public/namespaces/{namespace}/users  [POST]\u0026lt;/i\u0026gt;\u0026lt;/b\u0026gt;\n\u0026lt;li\u0026gt;\u0026lt;b\u0026gt;Substitute endpoint: \u0026lt;i\u0026gt;/iam/v4/public/namespaces/{namespace}/users  [POST]\u0026lt;/i\u0026gt;\u0026lt;/b\u0026gt;\n\u0026lt;/li\u0026gt;\n\u0026lt;li\u0026gt;\u0026lt;b\u0026gt;Note:\u0026lt;/b\u0026gt;\n\t\u0026lt;dd\u0026gt; 1. v3 \u0026amp; v4 introduce optional verification code\u0026lt;/dd\u0026gt;\n\t\u0026lt;dd\u0026gt; 2. format difference（Pascal case =\u0026gt; Camel case)\u0026lt;/dd\u0026gt;\n\u0026lt;/li\u0026gt;\n\u0026lt;/ul\u0026gt;\n\u0026lt;p\u0026gt;Available Authentication Types:\u0026lt;/p\u0026gt;\n\u0026lt;ol\u0026gt;\n\u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;EMAILPASSWD\u0026lt;/strong\u0026gt;: an authentication type used for new user registration through email.\u0026lt;/li\u0026gt;\n\u0026lt;/ol\u0026gt;\n\u0026lt;p\u0026gt;Country use ISO3166-1 alpha-2 two letter, e.g. US.\u0026lt;/p\u0026gt;\n",
         "operationId": "PublicCreateUserV2",
         "parameters": [
           {
@@ -5927,7 +5944,8 @@
         "consumes": [
           "application/json"
         ],
-        "description": "\u0026lt;p\u0026gt;\u0026lt;strong\u0026gt;Special note for publisher-game scenario:\u0026lt;/strong\u0026gt; Game Client should provide game namespace path parameter and Publisher Client should provide publisher namespace path parameter. \u0026lt;/p\u0026gt;\u0026lt;p\u0026gt;The password reset code will be sent to the publisher account\u0026#39;s email address. \u0026lt;/p\u0026gt;",
+        "deprecated": true,
+        "description": "\u0026lt;h2\u0026gt;The endpoint is going to be deprecated\u0026lt;/h2\u0026gt; \u0026lt;/br\u0026gt;\n\t\t\u0026lt;strong\u0026gt;Endpoint migration guide\u0026lt;/strong\u0026gt;\n\t\t\u0026lt;ul\u0026gt;\n\t\t\t\u0026lt;li\u0026gt;\u0026lt;b\u0026gt;Substitute endpoint: \u0026lt;i\u0026gt;/iam/v3/public/namespaces/{namespace}/users/forgot  [POST]\u0026lt;/i\u0026gt;\u0026lt;/b\u0026gt;\n\t\t\t\u0026lt;/li\u0026gt;\n\t\t\u0026lt;/ul\u0026gt;\n\t\t\u0026lt;p\u0026gt;\u0026lt;strong\u0026gt;Special note for publisher-game scenario:\u0026lt;/strong\u0026gt; Game Client should provide game namespace path parameter and Publisher Client should provide publisher namespace path parameter. \u0026lt;/p\u0026gt;\u0026#34;+\n\t\t\u0026#34;\u0026lt;p\u0026gt;The password reset code will be sent to the publisher account\u0026#39;s email address. \u0026lt;/p\u0026gt;",
         "operationId": "PublicForgotPasswordV2",
         "parameters": [
           {
@@ -5982,6 +6000,8 @@
         "consumes": [
           "application/json"
         ],
+        "deprecated": true,
+        "description": "\u0026lt;h2\u0026gt;The endpoint is going to be deprecated\u0026lt;/h2\u0026gt; \u0026lt;/br\u0026gt;\n\t\t\u0026lt;strong\u0026gt;Endpoint migration guide\u0026lt;/strong\u0026gt;\n\t\t\u0026lt;ul\u0026gt;\n\t\t\t\u0026lt;li\u0026gt;\u0026lt;b\u0026gt;Substitute endpoint: \u0026lt;i\u0026gt;/iam/v3/public/namespaces/{namespace}/users/reset  [POST]\u0026lt;/i\u0026gt;\u0026lt;/b\u0026gt;\n\t\t\t\u0026lt;/li\u0026gt;\n\t\t\u0026lt;/ul\u0026gt;\n\t\t",
         "operationId": "PublicResetPasswordV2",
         "parameters": [
           {
@@ -6033,6 +6053,8 @@
     },
     "/iam/v2/public/namespaces/{namespace}/users/{userId}": {
       "get": {
+        "deprecated": true,
+        "description": "\u0026lt;h2\u0026gt;The endpoint is going to be deprecated\u0026lt;/h2\u0026gt; \u0026lt;/br\u0026gt;\n\t\t\u0026lt;strong\u0026gt;Endpoint migration guide\u0026lt;/strong\u0026gt;\n\t\t\u0026lt;ul\u0026gt;\n\t\t\u0026lt;li\u0026gt;\u0026lt;b\u0026gt;Substitute endpoint(Public): \u0026lt;i\u0026gt;/iam/v3/public/namespaces/{namespace}/users/{userId}  [GET]\u0026lt;/i\u0026gt;\u0026lt;/b\u0026gt;\n\t\t\u0026lt;li\u0026gt;\u0026lt;b\u0026gt;Substitute endpoint(Admin): \u0026lt;i\u0026gt;/iam/v3/admin/namespaces/{namespace}/users/{userId}  [GET]\u0026lt;/i\u0026gt;\u0026lt;/b\u0026gt;\n\t\t\u0026lt;/li\u0026gt;\n\t\t\u0026lt;li\u0026gt;\u0026lt;b\u0026gt;Note:\u0026lt;/b\u0026gt;\n            \t\t\u0026lt;dd\u0026gt;format difference in response: Pascal case =\u0026gt; Camel case\u0026lt;/dd\u0026gt;\u0026lt;/b\u0026gt;\n\t\t\u0026lt;/li\u0026gt;\n\t\t\u0026lt;/ul\u0026gt;\n\t\t",
         "operationId": "PublicGetUserByUserIDV2",
         "parameters": [
           {
@@ -6081,7 +6103,8 @@
         "consumes": [
           "application/json"
         ],
-        "description": "\u0026lt;br\u0026gt;\u0026lt;p\u0026gt;This Endpoint support update user based on given data. \u0026lt;b\u0026gt;Single request can update single field or multi fields.\u0026lt;/b\u0026gt;\u0026lt;/p\u0026gt; This endpoint require valid user access token to accessed. \u0026lt;p\u0026gt;Supported field {Country, DisplayName, LanguageTag}\u0026lt;/p\u0026gt;",
+        "deprecated": true,
+        "description": "\u0026lt;h2\u0026gt;The endpoint is going to be deprecated\u0026lt;/h2\u0026gt; \u0026lt;/br\u0026gt;\n\t\t\u0026lt;strong\u0026gt;Endpoint migration guide\u0026lt;/strong\u0026gt;\n\t\t\u0026lt;ul\u0026gt;\n                \u0026lt;li\u0026gt;\u0026lt;b\u0026gt;Substitute endpoint([PUT]): \u0026lt;i\u0026gt;/iam/v3/public/namespaces/{namespace}/users/me  [PUT]\u0026lt;/i\u0026gt;\u0026lt;/b\u0026gt;\n                \u0026lt;li\u0026gt;\u0026lt;b\u0026gt;Substitute endpoint([PATCH]): \u0026lt;i\u0026gt;/iam/v3/public/namespaces/{namespace}/users/me  [PATCH]\u0026lt;/i\u0026gt;\u0026lt;/b\u0026gt;\n                \u0026lt;li\u0026gt;\u0026lt;b\u0026gt;Substitute endpoint([PATCH]): \u0026lt;i\u0026gt;/iam/v4/public/namespaces/{namespace}/users/me  [PATCH]\u0026lt;/i\u0026gt;\u0026lt;/b\u0026gt;\n                \u0026lt;/li\u0026gt;\n                \u0026lt;li\u0026gt;\u0026lt;b\u0026gt;Note:  \u0026lt;/b\u0026gt;\n\t\t\t\t\t\u0026lt;dd\u0026gt;1. Prefer [PATCH] if client support PATCH method\u0026lt;/dd\u0026gt;\n\t\t\t\t\t\u0026lt;dd\u0026gt;2. Difference in V3/v4 request body, format difference: Pascal case =\u0026gt; Camel case\u0026lt;/dd\u0026gt;\n\t\t\t\t\u0026lt;/li\u0026gt;\n\t\t\u0026lt;/ul\u0026gt;\n\t\t\u0026lt;br\u0026gt;\u0026lt;p\u0026gt;This Endpoint support update user based on given data. \u0026lt;b\u0026gt;Single request can update single field or multi fields.\u0026lt;/b\u0026gt;\u0026lt;/p\u0026gt; \u0026#34;+\n\t\t\u0026#34;This endpoint require valid user access token to accessed. \u0026lt;p\u0026gt;Supported field {Country, DisplayName, LanguageTag}\u0026lt;/p\u0026gt;",
         "operationId": "PublicUpdateUserV2",
         "parameters": [
           {
@@ -6149,6 +6172,8 @@
     },
     "/iam/v2/public/namespaces/{namespace}/users/{userId}/bans": {
       "get": {
+        "deprecated": true,
+        "description": "\u0026lt;h2\u0026gt;The endpoint is going to be deprecated\u0026lt;/h2\u0026gt; \u0026lt;/br\u0026gt;\n\t\t\t\u0026lt;strong\u0026gt;Endpoint migration guide\u0026lt;/strong\u0026gt;\n\t\t\t\u0026lt;ul\u0026gt;\n                \u0026lt;li\u0026gt;\u0026lt;b\u0026gt;Substitute endpoint: \u0026lt;i\u0026gt;/iam/v3/public/namespaces/{namespace}/users/{userId}/bans  [GET]\u0026lt;/i\u0026gt;\u0026lt;/b\u0026gt;\n                \u0026lt;/li\u0026gt;\n\t\t\t\u0026lt;/ul\u0026gt;\n\t\t",
         "operationId": "PublicGetUserBan",
         "parameters": [
           {
@@ -6212,7 +6237,8 @@
         "consumes": [
           "application/json"
         ],
-        "description": "This endpoint need a valid user access token",
+        "deprecated": true,
+        "description": "\u0026lt;h2\u0026gt;The endpoint is going to be deprecated\u0026lt;/h2\u0026gt; \u0026lt;/br\u0026gt;\n\t\t\u0026lt;strong\u0026gt;Endpoint migration guide\u0026lt;/strong\u0026gt;\n\t\t\u0026lt;ul\u0026gt;\n                \u0026lt;li\u0026gt;\u0026lt;b\u0026gt;Substitute endpoint: \u0026lt;i\u0026gt;/iam/v3/public/namespaces/{namespace}/users/me/password  [PUT]\u0026lt;/i\u0026gt;\u0026lt;/b\u0026gt;\n                \u0026lt;/li\u0026gt;\n\t\t\u0026lt;/ul\u0026gt;\n\n\t\tThis endpoint need a valid user access token",
         "operationId": "PublicUpdatePasswordV2",
         "parameters": [
           {
@@ -6274,7 +6300,8 @@
     },
     "/iam/v2/public/namespaces/{namespace}/users/{userId}/platforms/justice": {
       "get": {
-        "description": "This endpoint gets list justice platform account by providing publisher namespace and publisher userID.",
+        "deprecated": true,
+        "description": "\u0026lt;h2\u0026gt;The endpoint is going to be deprecated\u0026lt;/h2\u0026gt; \u0026lt;/br\u0026gt;\n\t\t\u0026lt;strong\u0026gt;Endpoint migration guide\u0026lt;/strong\u0026gt;\n\t\t\u0026lt;ul\u0026gt;\n\t\t\t\u0026lt;li\u0026gt;\u0026lt;b\u0026gt;Substitute endpoint: \u0026lt;i\u0026gt;/iam/v3/public/namespaces/{namespace}/users/{userId}/platforms/justice  [GET]\u0026lt;/i\u0026gt;\u0026lt;/b\u0026gt;\n\t\t\t\u0026lt;/li\u0026gt;\n\t\t\u0026lt;/ul\u0026gt;\n\n\t\tThis endpoint gets list justice platform account by providing publisher namespace and publisher userID.",
         "operationId": "GetListJusticePlatformAccounts",
         "parameters": [
           {
@@ -6329,7 +6356,8 @@
           "application/x-www-form-urlencoded",
           "text/plain"
         ],
-        "description": "\u0026lt;h2\u0026gt;Supported platforms:\u0026lt;/h2\u0026gt;\n\t\t\t\u0026lt;ul\u0026gt;\n\t\t\t\t\u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;steam\u0026lt;/strong\u0026gt;\u0026lt;/li\u0026gt;\n\t\t\t\t\u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;steamopenid\u0026lt;/strong\u0026gt;\u0026lt;/li\u0026gt;\n\t\t\t\t\u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;facebook\u0026lt;/strong\u0026gt;\u0026lt;/li\u0026gt;\n\t\t\t\t\u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;google\u0026lt;/strong\u0026gt;\u0026lt;/li\u0026gt;\n\t\t\t\t\u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;oculus\u0026lt;/strong\u0026gt;\u0026lt;/li\u0026gt;\n\t\t\t\t\u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;twitch\u0026lt;/strong\u0026gt;\u0026lt;/li\u0026gt;\n\t\t\t\t\u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;android\u0026lt;/strong\u0026gt;\u0026lt;/li\u0026gt;\n\t\t\t\t\u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;ios\u0026lt;/strong\u0026gt;\u0026lt;/li\u0026gt;\n\t\t\t\t\u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;device\u0026lt;/strong\u0026gt;\u0026lt;/li\u0026gt;\n\t\t\t\t\u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;discord\u0026lt;/strong\u0026gt;\u0026lt;/li\u0026gt;\n\t\t\t\u0026lt;/ul\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;Delete link of user\u0026#39;s account with platform. \u0026#39;justice\u0026#39; platform might have multiple accounts from different namespaces linked. platform_namespace need to be specified when the platform ID is \u0026#39;justice\u0026#39;.\n\t\t\t\u0026lt;br\u0026gt;Delete link of justice platform will enable password token grant and password update. \u0026lt;/p\u0026gt;",
+        "deprecated": true,
+        "description": "\u0026lt;h2\u0026gt;The endpoint is going to be deprecated\u0026lt;/h2\u0026gt; \u0026lt;/br\u0026gt;\n\t\t\t\u0026lt;strong\u0026gt;Endpoint migration guide\u0026lt;/strong\u0026gt;\n\t\t\t\u0026lt;ul\u0026gt;\n                \u0026lt;li\u0026gt;\u0026lt;b\u0026gt;Substitute endpoint: \u0026lt;i\u0026gt;/iam/v3/public/namespaces/{namespace}/users/me/platforms/{platformId}  [DELETE]\u0026lt;/i\u0026gt;\u0026lt;/b\u0026gt;\n                \u0026lt;li\u0026gt;\u0026lt;b\u0026gt;Substitute endpoint: \u0026lt;i\u0026gt;/iam/v3/public/namespaces/{namespace}/users/me/platforms/{platformId}/all  [DELETE]\u0026lt;/i\u0026gt;\u0026lt;/b\u0026gt;\n                \u0026lt;/li\u0026gt;\n\t\t\t\u0026lt;/ul\u0026gt;\n\n\t\t\t\u0026lt;h2\u0026gt;Supported platforms:\u0026lt;/h2\u0026gt;\n\t\t\t\u0026lt;ul\u0026gt;\n\t\t\t\t\u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;steam\u0026lt;/strong\u0026gt;\u0026lt;/li\u0026gt;\n\t\t\t\t\u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;steamopenid\u0026lt;/strong\u0026gt;\u0026lt;/li\u0026gt;\n\t\t\t\t\u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;facebook\u0026lt;/strong\u0026gt;\u0026lt;/li\u0026gt;\n\t\t\t\t\u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;google\u0026lt;/strong\u0026gt;\u0026lt;/li\u0026gt;\n\t\t\t\t\u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;oculus\u0026lt;/strong\u0026gt;\u0026lt;/li\u0026gt;\n\t\t\t\t\u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;twitch\u0026lt;/strong\u0026gt;\u0026lt;/li\u0026gt;\n\t\t\t\t\u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;android\u0026lt;/strong\u0026gt;\u0026lt;/li\u0026gt;\n\t\t\t\t\u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;ios\u0026lt;/strong\u0026gt;\u0026lt;/li\u0026gt;\n\t\t\t\t\u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;device\u0026lt;/strong\u0026gt;\u0026lt;/li\u0026gt;\n\t\t\t\t\u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;discord\u0026lt;/strong\u0026gt;\u0026lt;/li\u0026gt;\n\t\t\t\u0026lt;/ul\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;Delete link of user\u0026#39;s account with platform. \u0026#39;justice\u0026#39; platform might have multiple accounts from different namespaces linked. platform_namespace need to be specified when the platform ID is \u0026#39;justice\u0026#39;.\n\t\t\t\u0026lt;br\u0026gt;Delete link of justice platform will enable password token grant and password update. \u0026lt;/p\u0026gt;",
         "operationId": "PublicDeletePlatformLinkV2",
         "parameters": [
           {
@@ -6397,7 +6425,8 @@
         "consumes": [
           "application/x-www-form-urlencoded"
         ],
-        "description": "\u0026lt;p\u0026gt;\u0026lt;br\u0026gt;\u0026lt;b\u0026gt;Prerequisite:\u0026lt;/b\u0026gt; \n\t\tPlatform client configuration need to be added to database for specific platformId. Namespace service URL need to be specified (refer to required environment variables).\n\t\t\t\u0026lt;h2\u0026gt;Supported platforms:\u0026lt;/h2\u0026gt;\n\t\t\t\u0026lt;ul\u0026gt;\n\t\t\t\t\u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;steam\u0026lt;/strong\u0026gt;: The ticket’s value is the authentication code returned by Steam.\u0026lt;/li\u0026gt;\n\t\t\t\t\u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;steamopenid\u0026lt;/strong\u0026gt;: Steam\u0026#39;s user authentication method using OpenID 2.0. The ticket\u0026#39;s value is URL generated by Steam on web authentication\u0026lt;/li\u0026gt;\n\t\t\t\t\u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;facebook\u0026lt;/strong\u0026gt;: The ticket’s value is the authorization code returned by Facebook OAuth\u0026lt;/li\u0026gt;\n\t\t\t\t\u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;google\u0026lt;/strong\u0026gt;: The ticket’s value is the authorization code returned by Google OAuth\u0026lt;/li\u0026gt;\n\t\t\t\t\u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;oculus\u0026lt;/strong\u0026gt;: The ticket’s value is a string composed of Oculus\u0026#39;s user ID and the nonce separated by a colon (:).\u0026lt;/li\u0026gt;\n\t\t\t\t\u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;twitch\u0026lt;/strong\u0026gt;: The ticket’s value is the authorization code returned by Twitch OAuth.\u0026lt;/li\u0026gt;\n\t\t\t\t\u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;android\u0026lt;/strong\u0026gt;: The ticket\u0026#39;s value is the Android’s device ID\u0026lt;/li\u0026gt;\n\t\t\t\t\u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;ios\u0026lt;/strong\u0026gt;: The ticket\u0026#39;s value is the iOS’s device ID.\u0026lt;/li\u0026gt;\n\t\t\t\t\u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;device\u0026lt;/strong\u0026gt;: Every device that doesn\u0026#39;t run Android and iOS is categorized as a device platform. The ticket\u0026#39;s value is the device’s ID.\u0026lt;/li\u0026gt;\n\t\t\t\t\u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;discord\u0026lt;/strong\u0026gt;: The ticket’s value is the authorization code returned by Discord OAuth.\u0026lt;/li\u0026gt;\n\t\t\t\u0026lt;/ul\u0026gt;",
+        "deprecated": true,
+        "description": "\u0026lt;h2\u0026gt;The endpoint is going to be deprecated\u0026lt;/h2\u0026gt; \u0026lt;/br\u0026gt;\n\t\t\u0026lt;strong\u0026gt;Endpoint migration guide\u0026lt;/strong\u0026gt;\n\t\t\u0026lt;ul\u0026gt;\n                \u0026lt;li\u0026gt;\u0026lt;b\u0026gt;Substitute endpoint: \u0026lt;i\u0026gt;/iam/v3/public/namespaces/{namespace}/users/me/platforms/{platformId}  [POST]\u0026lt;/i\u0026gt;\u0026lt;/b\u0026gt;\n                \u0026lt;/li\u0026gt;\n\t\t\u0026lt;/ul\u0026gt;\n\t\t\u0026lt;p\u0026gt;\u0026lt;br\u0026gt;\u0026lt;b\u0026gt;Prerequisite:\u0026lt;/b\u0026gt; \n\t\tPlatform client configuration need to be added to database for specific platformId. Namespace service URL need to be specified (refer to required environment variables).\n\t\t\t\u0026lt;h2\u0026gt;Supported platforms:\u0026lt;/h2\u0026gt;\n\t\t\t\u0026lt;ul\u0026gt;\n\t\t\t\t\u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;steam\u0026lt;/strong\u0026gt;: The ticket’s value is the authentication code returned by Steam.\u0026lt;/li\u0026gt;\n\t\t\t\t\u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;steamopenid\u0026lt;/strong\u0026gt;: Steam\u0026#39;s user authentication method using OpenID 2.0. The ticket\u0026#39;s value is URL generated by Steam on web authentication\u0026lt;/li\u0026gt;\n\t\t\t\t\u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;facebook\u0026lt;/strong\u0026gt;: The ticket’s value is the authorization code returned by Facebook OAuth\u0026lt;/li\u0026gt;\n\t\t\t\t\u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;google\u0026lt;/strong\u0026gt;: The ticket’s value is the authorization code returned by Google OAuth\u0026lt;/li\u0026gt;\n\t\t\t\t\u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;oculus\u0026lt;/strong\u0026gt;: The ticket’s value is a string composed of Oculus\u0026#39;s user ID and the nonce separated by a colon (:).\u0026lt;/li\u0026gt;\n\t\t\t\t\u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;twitch\u0026lt;/strong\u0026gt;: The ticket’s value is the authorization code returned by Twitch OAuth.\u0026lt;/li\u0026gt;\n\t\t\t\t\u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;android\u0026lt;/strong\u0026gt;: The ticket\u0026#39;s value is the Android’s device ID\u0026lt;/li\u0026gt;\n\t\t\t\t\u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;ios\u0026lt;/strong\u0026gt;: The ticket\u0026#39;s value is the iOS’s device ID.\u0026lt;/li\u0026gt;\n\t\t\t\t\u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;device\u0026lt;/strong\u0026gt;: Every device that doesn\u0026#39;t run Android and iOS is categorized as a device platform. The ticket\u0026#39;s value is the device’s ID.\u0026lt;/li\u0026gt;\n\t\t\t\t\u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;discord\u0026lt;/strong\u0026gt;: The ticket’s value is the authorization code returned by Discord OAuth.\u0026lt;/li\u0026gt;\n\t\t\t\u0026lt;/ul\u0026gt;",
         "operationId": "PublicPlatformLinkV2",
         "parameters": [
           {
@@ -6589,7 +6618,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "\u0026lt;p\u0026gt;Required permission \u0026#39;ADMIN:CONFIGURATION\u0026#39; [UPDATE]\u0026lt;/p\u0026gt;\n\t\t\u0026lt;p\u0026gt;This endpoint is used to update input validation configuration.\u0026lt;/p\u0026gt;\n\t\tSupported \u0026lt;code\u0026gt;field\u0026lt;/code\u0026gt;:\u0026lt;br\u0026gt;\n\t\t\u0026lt;ul\u0026gt;\n\t\t\u0026lt;li\u0026gt;displayName\u0026lt;/li\u0026gt;\n\t\t\u0026lt;li\u0026gt;password\u0026lt;/li\u0026gt;\n\t\t\u0026lt;li\u0026gt;username\u0026lt;/li\u0026gt;\n\t\t\u0026lt;/ul\u0026gt;\n\t\t\u0026lt;p\u0026gt;If \u0026lt;code\u0026gt;isCustomRegex\u0026lt;/code\u0026gt; is set to true, \u0026lt;code\u0026gt;regex\u0026lt;/code\u0026gt; parameter will be used as input validation and the other parameters will be ignored. Otherwise, \u0026lt;code\u0026gt;regex\u0026lt;/code\u0026gt; parameter will be ignored and regex for input validation will be generated based on the combination of the other parameters. \u0026lt;/p\u0026gt;\n\t\t\u0026lt;p\u0026gt;If \u0026lt;code\u0026gt;allowUnicode\u0026lt;/code\u0026gt; is set to true, unicode regex pattern will be use as the input validation and the other parameters will be ignored.\u0026lt;/p\u0026gt;\n\t\tSupported \u0026lt;code\u0026gt;letterCase\u0026lt;/code\u0026gt;:\u0026lt;br\u0026gt;\n\t\t\u0026lt;ul\u0026gt;\n\t\t\u0026lt;li\u0026gt;lowercase\u0026lt;/li\u0026gt;\n\t\t\u0026lt;li\u0026gt;uppercase\u0026lt;/li\u0026gt;\n\t\t\u0026lt;li\u0026gt;mixed: uppercase and lowercase\u0026lt;/li\u0026gt;\n\t\t\u0026lt;li\u0026gt;mixed: uppercase and/or lowercase\u0026lt;/li\u0026gt;\n\t\t\u0026lt;/ul\u0026gt;\n\t\tSupported \u0026lt;code\u0026gt;specialCharacterLocation\u0026lt;/code\u0026gt;:\u0026lt;br\u0026gt;\n\t\t\u0026lt;ul\u0026gt;\n\t\t\u0026lt;li\u0026gt;anywhere\u0026lt;/li\u0026gt;\n\t\t\u0026lt;li\u0026gt;middle\u0026lt;/li\u0026gt;\n\t\t\u0026lt;/ul\u0026gt;\n\t\t\u0026lt;p\u0026gt;If \u0026lt;code\u0026gt;specialCharacters\u0026lt;/code\u0026gt; is empty, \u0026lt;code\u0026gt;specialCharacterLocation\u0026lt;/code\u0026gt; and \u0026lt;code\u0026gt;maxRepeatingSpecialCharacter\u0026lt;/code\u0026gt; will be ignored.\u0026lt;/p\u0026gt;\n\t\t\u0026lt;p\u0026gt;\u0026lt;code\u0026gt;minCharType\u0026lt;/code\u0026gt; is used to identify how many required criteria in the regex. The supported criteria are number, letter, special character, and letter case. If set to 0 or 1 means all criteria are optional. It can be set as much as the number of criteria enabled.\u0026lt;/p\u0026gt;\n\t\t",
+        "description": "\u0026lt;p\u0026gt;Required permission \u0026#39;ADMIN:CONFIGURATION\u0026#39; [UPDATE]\u0026lt;/p\u0026gt;\n\t\t\u0026lt;p\u0026gt;This endpoint is used to update input validation configuration.\u0026lt;/p\u0026gt;\n\t\tSupported \u0026lt;code\u0026gt;field\u0026lt;/code\u0026gt;:\u0026lt;br\u0026gt;\n\t\t\u0026lt;ul\u0026gt;\n\t\t\u0026lt;li\u0026gt;displayName\u0026lt;/li\u0026gt;\n\t\t\u0026lt;li\u0026gt;password\u0026lt;/li\u0026gt;\n\t\t\u0026lt;li\u0026gt;username\u0026lt;/li\u0026gt;\n\t\t\u0026lt;li\u0026gt;email\u0026lt;/li\u0026gt;\n\t\t\u0026lt;/ul\u0026gt;\n\t\t\u0026lt;p\u0026gt;If \u0026lt;code\u0026gt;isCustomRegex\u0026lt;/code\u0026gt; is set to true, \u0026lt;code\u0026gt;regex\u0026lt;/code\u0026gt; parameter will be used as input validation and the other parameters will be ignored. Otherwise, \u0026lt;code\u0026gt;regex\u0026lt;/code\u0026gt; parameter will be ignored and regex for input validation will be generated based on the combination of the other parameters. \u0026lt;/p\u0026gt;\n\t\t\u0026lt;p\u0026gt;If \u0026lt;code\u0026gt;allowUnicode\u0026lt;/code\u0026gt; is set to true, unicode regex pattern will be use as the input validation and the other parameters will be ignored.\u0026lt;/p\u0026gt;\n\t\tSupported \u0026lt;code\u0026gt;letterCase\u0026lt;/code\u0026gt;:\u0026lt;br\u0026gt;\n\t\t\u0026lt;ul\u0026gt;\n\t\t\u0026lt;li\u0026gt;lowercase\u0026lt;/li\u0026gt;\n\t\t\u0026lt;li\u0026gt;uppercase\u0026lt;/li\u0026gt;\n\t\t\u0026lt;li\u0026gt;mixed: uppercase and lowercase\u0026lt;/li\u0026gt;\n\t\t\u0026lt;li\u0026gt;mixed: uppercase and/or lowercase\u0026lt;/li\u0026gt;\n\t\t\u0026lt;/ul\u0026gt;\n\t\tSupported \u0026lt;code\u0026gt;specialCharacterLocation\u0026lt;/code\u0026gt;:\u0026lt;br\u0026gt;\n\t\t\u0026lt;ul\u0026gt;\n\t\t\u0026lt;li\u0026gt;anywhere\u0026lt;/li\u0026gt;\n\t\t\u0026lt;li\u0026gt;middle\u0026lt;/li\u0026gt;\n\t\t\u0026lt;/ul\u0026gt;\n\t\t\u0026lt;p\u0026gt;If \u0026lt;code\u0026gt;specialCharacters\u0026lt;/code\u0026gt; is empty, \u0026lt;code\u0026gt;specialCharacterLocation\u0026lt;/code\u0026gt; and \u0026lt;code\u0026gt;maxRepeatingSpecialCharacter\u0026lt;/code\u0026gt; will be ignored.\u0026lt;/p\u0026gt;\n\t\t\u0026lt;p\u0026gt;\u0026lt;code\u0026gt;minCharType\u0026lt;/code\u0026gt; is used to identify how many required criteria in the regex. The supported criteria are number, letter, special character, and letter case. If set to 0 or 1 means all criteria are optional. It can be set as much as the number of criteria enabled.\u0026lt;/p\u0026gt;\n\t\t\u0026lt;p\u0026gt;If \u0026lt;code\u0026gt;blockedWord\u0026lt;/code\u0026gt; is set by admin, any input from user which contain kind of blocked word(s) will be blocked for create/upgrade/update account\u0026lt;/p\u0026gt;\n\t\t",
         "operationId": "AdminUpdateInputValidations",
         "parameters": [
           {
@@ -7122,6 +7151,150 @@
           }
         ],
         "summary": "Get list of user filtered by ban types",
+        "tags": [
+          "Bans"
+        ]
+      },
+      "post": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "\u0026lt;p\u0026gt;Required permission \u0026#39;ADMIN:NAMESPACE:{namespace}:BAN [CREATE]\u0026#39;.\u0026lt;/p\u0026gt;\n\u0026lt;p\u0026gt;Bulk ban user with specific type of ban. Ban types and reason can be queried. The maximum limit value is 100 userIDs\u0026lt;/p\u0026gt;\n\u0026lt;p\u0026gt;action code : 10141 \u0026lt;/p\u0026gt;\n",
+        "operationId": "AdminBanUserBulkV3",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/model.BulkBanCreateRequestV3"
+            }
+          },
+          {
+            "description": "Namespace, only accept alphabet and numeric",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "201": {
+            "description": "Created",
+            "schema": {
+              "$ref": "#/definitions/model.ListBulkUserBanResponseV3"
+            }
+          },
+          "400": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20002\u003c/td\u003e\u003ctd\u003evalidation error\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20019\u003c/td\u003e\u003ctd\u003eunable to parse request body\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/rest.ErrorResponse"
+            }
+          },
+          "401": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20001\u003c/td\u003e\u003ctd\u003eunauthorized access\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/rest.ErrorResponse"
+            }
+          },
+          "403": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20013\u003c/td\u003e\u003ctd\u003einsufficient permissions\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/rest.ErrorResponse"
+            }
+          },
+          "404": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20008\u003c/td\u003e\u003ctd\u003euser not found\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e10139\u003c/td\u003e\u003ctd\u003eplatform account not found\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e10158\u003c/td\u003e\u003ctd\u003eban not found\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/rest.ErrorResponse"
+            }
+          }
+        },
+        "security": [
+          {
+            "HasPermission": [
+              "ADMIN:NAMESPACE:{namespace}:BAN [CREATE]"
+            ],
+            "authorization": []
+          }
+        ],
+        "summary": "Bulk ban user",
+        "tags": [
+          "Bans"
+        ]
+      }
+    },
+    "/iam/v3/admin/namespaces/{namespace}/bans/users/disabled": {
+      "patch": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "\u0026lt;p\u0026gt;Required permission \u0026#39;ADMIN:NAMESPACE:{namespace}:BAN [UPDATE]\u0026#39;.\u0026lt;/p\u0026gt;\n\u0026lt;p\u0026gt;disable bulk ban user. The maximum limit value is 100\u0026lt;/p\u0026gt;\n\u0026lt;p\u0026gt;action code : 10142 \u0026lt;/p\u0026gt;\n",
+        "operationId": "AdminUnbanUserBulkV3",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/model.BulkUnbanCreateRequestV3"
+            }
+          },
+          {
+            "description": "Namespace, only accept alphabet and numeric",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "201": {
+            "description": "Created",
+            "schema": {
+              "$ref": "#/definitions/model.ListBulkUserBanResponseV3"
+            }
+          },
+          "400": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20002\u003c/td\u003e\u003ctd\u003evalidation error\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20019\u003c/td\u003e\u003ctd\u003eunable to parse request body\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/rest.ErrorResponse"
+            }
+          },
+          "401": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20001\u003c/td\u003e\u003ctd\u003eunauthorized access\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/rest.ErrorResponse"
+            }
+          },
+          "403": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20013\u003c/td\u003e\u003ctd\u003einsufficient permissions\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/rest.ErrorResponse"
+            }
+          },
+          "404": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20008\u003c/td\u003e\u003ctd\u003euser not found\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e10139\u003c/td\u003e\u003ctd\u003eplatform account not found\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e10158\u003c/td\u003e\u003ctd\u003eban not found\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/rest.ErrorResponse"
+            }
+          }
+        },
+        "security": [
+          {
+            "HasPermission": [
+              "ADMIN:NAMESPACE:{namespace}:BAN [UPDATE]"
+            ],
+            "authorization": []
+          }
+        ],
+        "summary": "Bulk unban user",
         "tags": [
           "Bans"
         ]
@@ -10309,6 +10482,74 @@
         ]
       }
     },
+    "/iam/v3/admin/namespaces/{namespace}/users/{userId}/password": {
+      "put": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Required permission \u0026#39;ADMIN:NAMESPACE:{namespace}:PASSWORD:USER:{userId} [UPDATE]\u0026#39;",
+        "operationId": "AdminResetPasswordV3",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/model.UserPasswordUpdateV3Request"
+            }
+          },
+          {
+            "description": "Namespace, only accept alphabet and numeric",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "User ID",
+            "in": "path",
+            "name": "userId",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "204": {
+            "description": "Operation succeeded"
+          },
+          "400": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20019\u003c/td\u003e\u003ctd\u003eunable to parse request body\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20002\u003c/td\u003e\u003ctd\u003evalidation error\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e10142\u003c/td\u003e\u003ctd\u003enew password cannot be same with original\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e10143\u003c/td\u003e\u003ctd\u003epassword not match\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e"
+          },
+          "401": {
+            "description": "Unauthorized access"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20008\u003c/td\u003e\u003ctd\u003euser not found\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e"
+          },
+          "500": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20000\u003c/td\u003e\u003ctd\u003einternal server error\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e"
+          }
+        },
+        "security": [
+          {
+            "HasPermission": [
+              "ADMIN:NAMESPACE:{namespace}:PASSWORD:USER:{userId} [UPDATE]"
+            ],
+            "authorization": []
+          }
+        ],
+        "summary": "Update User Password",
+        "tags": [
+          "Users"
+        ]
+      }
+    },
     "/iam/v3/admin/namespaces/{namespace}/users/{userId}/permissions": {
       "delete": {
         "consumes": [
@@ -13155,6 +13396,51 @@
         ]
       }
     },
+    "/iam/v3/namespace/{namespace}/token/request": {
+      "post": {
+        "consumes": [
+          "application/x-www-form-urlencoded"
+        ],
+        "description": "\u0026lt;p\u0026gt;This endpoint is being used to request the code to generate publisher user\u0026#39;s game token.\u0026lt;br\u0026gt;\n\t\tIt require a valid user token with publisher namespace.\u0026lt;br\u0026gt;\n\t\tPath namespace should be a game namespace.\u0026lt;br\u0026gt;\n\t\tClient ID should match the target namespace.\n\t\tIt response a code and it can be consumed by \u0026lt;strong\u0026gt;/iam/v3/token/exchange\u0026lt;/strong\u0026gt;\n\t\t\u0026lt;/p\u0026gt;",
+        "operationId": "RequestGameTokenCodeResponseV3",
+        "parameters": [
+          {
+            "description": "Client ID for target namespace",
+            "in": "formData",
+            "name": "client_id",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "Namespace, only accept alphabet and numeric",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "Succeed to generate token.",
+            "schema": {
+              "$ref": "#/definitions/oauthmodel.GameTokenCodeResponse"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "summary": "Request code to get game token",
+        "tags": [
+          "OAuth2.0 - Extension"
+        ]
+      }
+    },
     "/iam/v3/oauth/admin/namespaces/{namespace}/users/{userId}/platforms/{platformId}/platformToken": {
       "get": {
         "consumes": [
@@ -14185,6 +14471,54 @@
         ]
       }
     },
+    "/iam/v3/public/namespaces/{namespace}/agerestrictions/countries/{countryCode}": {
+      "get": {
+        "description": "Get age restriction by country code. It will always get by publisher namespace \u0026lt;/br\u0026gt;\n\t\t\u0026lt;p\u0026gt;Requires valid user access token \u0026lt;/p\u0026gt;",
+        "operationId": "PublicGetCountryAgeRestrictionV3",
+        "parameters": [
+          {
+            "description": "Country Code ",
+            "in": "path",
+            "name": "countryCode",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "Namespace, only accept alphabet and numeric",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/model.CountryV3Response"
+            }
+          },
+          "401": {
+            "description": "Unauthorized access"
+          },
+          "404": {
+            "description": "Data not found"
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "summary": "Public get age restriction by country code",
+        "tags": [
+          "Users"
+        ]
+      }
+    },
     "/iam/v3/public/namespaces/{namespace}/platforms/clients/active": {
       "get": {
         "description": "This is the Public API to Get All Active 3rd Platform Credential.",
@@ -15103,10 +15437,7 @@
           "200": {
             "description": "OK",
             "schema": {
-              "items": {
-                "$ref": "#/definitions/model.UserResponseV3"
-              },
-              "type": "array"
+              "$ref": "#/definitions/model.UserResponseV3"
             }
           },
           "400": {
@@ -15171,10 +15502,7 @@
           "200": {
             "description": "OK",
             "schema": {
-              "items": {
-                "$ref": "#/definitions/model.UserResponseV3"
-              },
-              "type": "array"
+              "$ref": "#/definitions/model.UserResponseV3"
             }
           },
           "400": {
@@ -16541,6 +16869,81 @@
         ]
       }
     },
+    "/iam/v3/public/namespaces/{namespace}/users/{userId}/platforms/justice": {
+      "get": {
+        "description": "This endpoint gets list justice platform account by providing publisher namespace and publisher userID\u0026lt;/br\u0026gt;\n\u0026lt;p\u0026gt;Requires valid user access token \u0026lt;/p\u0026gt;\u0026lt;/br\u0026gt;",
+        "operationId": "PublicListJusticePlatformAccountsV3",
+        "parameters": [
+          {
+            "description": "Namespace, only accept alphabet and numeric",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": " Publisher User ID",
+            "in": "path",
+            "name": "userId",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "items": {
+                "$ref": "#/definitions/model.GetUserMappingV3"
+              },
+              "type": "array"
+            }
+          },
+          "400": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/rest.ErrorResponse"
+            }
+          },
+          "401": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20001\u003c/td\u003e\u003ctd\u003eunauthorized access\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/rest.ErrorResponse"
+            }
+          },
+          "403": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20003\u003c/td\u003e\u003ctd\u003eforbidden access\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/rest.ErrorResponse"
+            }
+          },
+          "404": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20008\u003c/td\u003e\u003ctd\u003euser not found\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/rest.ErrorResponse"
+            }
+          },
+          "500": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20000\u003c/td\u003e\u003ctd\u003einternal server error\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/rest.ErrorResponse"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "summary": "Get User Justice Platform Accounts",
+        "tags": [
+          "Users"
+        ]
+      }
+    },
     "/iam/v3/public/namespaces/{namespace}/users/{userId}/platforms/link": {
       "post": {
         "consumes": [
@@ -17039,7 +17442,13 @@
         ],
         "responses": {
           "302": {
-            "description": "Found. Redirected to verification finish page."
+            "description": "Found. Redirected to verification finish page.",
+            "headers": {
+              "Location": {
+                "description": "The Location header",
+                "type": "string"
+              }
+            }
           }
         },
         "security": [
@@ -17195,6 +17604,44 @@
         "summary": "Logout",
         "tags": [
           "SSO"
+        ]
+      }
+    },
+    "/iam/v3/token/exchange": {
+      "post": {
+        "consumes": [
+          "application/x-www-form-urlencoded"
+        ],
+        "description": "\u0026lt;p\u0026gt;This endpoint is being used to generate publisher user\u0026#39;s game token.\u0026lt;br\u0026gt;\n\t\tIt require basic header with ClientID and Secret, it should match the ClientID when call \u0026lt;strong\u0026gt;/iam/v3/namespace/{namespace}/token/request\u0026lt;/strong\u0026gt;\u0026lt;br\u0026gt;\n\t\tIt required a code which can be generated from \u0026lt;strong\u0026gt;/iam/v3/namespace/{namespace}/token/request\u0026lt;/strong\u0026gt;.\u0026lt;br\u0026gt;\n\t\t\u0026lt;/p\u0026gt;",
+        "operationId": "RequestGameTokenResponseV3",
+        "parameters": [
+          {
+            "description": "code from request game token",
+            "in": "formData",
+            "name": "code",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "Succeed to generate token.",
+            "schema": {
+              "$ref": "#/definitions/oauthmodel.TokenResponseV3"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "summary": "Generate game token by code",
+        "tags": [
+          "OAuth2.0 - Extension"
         ]
       }
     },
@@ -20633,6 +21080,12 @@
           "type": "boolean",
           "x-omitempty": false
         },
+        "blockedWord": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
         "description": {
           "items": {
             "$ref": "#/definitions/.validation.description"
@@ -20684,6 +21137,7 @@
         "allowLetter",
         "allowSpace",
         "allowUnicode",
+        "blockedWord",
         "description",
         "isCustomRegex",
         "letterCase",
@@ -21048,13 +21502,8 @@
       },
       "required": [
         "authType",
-        "code",
         "country",
-        "displayName",
         "emailAddress",
-        "password",
-        "passwordMD5Sum",
-        "reachMinimumAge",
         "username"
       ]
     },
@@ -21152,9 +21601,7 @@
         "code",
         "emailAddress",
         "password",
-        "reachMinimumAge",
-        "username",
-        "validateOnly"
+        "username"
       ]
     },
     "accountcommon.Ban": {
@@ -21356,6 +21803,34 @@
       "required": [
         "platformUserID",
         "publisherAccounts"
+      ]
+    },
+    "accountcommon.Country": {
+      "properties": {
+        "AgeRestriction": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "CountryCode": {
+          "type": "string"
+        },
+        "CountryName": {
+          "type": "string"
+        },
+        "Enable": {
+          "type": "boolean",
+          "x-omitempty": false
+        },
+        "Namespace": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "AgeRestriction",
+        "CountryCode",
+        "CountryName",
+        "Enable",
+        "Namespace"
       ]
     },
     "accountcommon.CountryAgeRestriction": {
@@ -22728,7 +23203,6 @@
       },
       "required": [
         "generatedAt",
-        "invalidCodes",
         "validCodes"
       ]
     },
@@ -22774,6 +23248,50 @@
         "enabled",
         "skipNotif"
       ]
+    },
+    "model.BulkBanCreateRequestV3": {
+      "properties": {
+        "ban": {
+          "type": "string"
+        },
+        "comment": {
+          "type": "string"
+        },
+        "endDate": {
+          "type": "string"
+        },
+        "reason": {
+          "type": "string"
+        },
+        "skipNotif": {
+          "type": "boolean",
+          "x-omitempty": false
+        },
+        "userIds": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "required": [
+        "ban",
+        "comment",
+        "endDate",
+        "reason",
+        "skipNotif",
+        "userIds"
+      ]
+    },
+    "model.BulkUnbanCreateRequestV3": {
+      "properties": {
+        "bans": {
+          "items": {
+            "$ref": "#/definitions/model.userUnbanCreateRequestV3"
+          },
+          "type": "array"
+        }
+      }
     },
     "model.CheckValidUserIDRequestV4": {
       "properties": {
@@ -22909,6 +23427,20 @@
       "required": [
         "default",
         "enabled"
+      ]
+    },
+    "model.FailedBanUnbanUserV3": {
+      "properties": {
+        "reason": {
+          "type": "string"
+        },
+        "userId": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "reason",
+        "userId"
       ]
     },
     "model.ForgotPasswordRequestV3": {
@@ -23301,6 +23833,26 @@
       "required": [
         "data",
         "paging"
+      ]
+    },
+    "model.ListBulkUserBanResponseV3": {
+      "properties": {
+        "failedBans": {
+          "items": {
+            "$ref": "#/definitions/model.FailedBanUnbanUserV3"
+          },
+          "type": "array"
+        },
+        "successBans": {
+          "items": {
+            "$ref": "#/definitions/model.UserBanResponseV3"
+          },
+          "type": "array"
+        }
+      },
+      "required": [
+        "failedBans",
+        "successBans"
       ]
     },
     "model.ListBulkUserResponse": {
@@ -24941,8 +25493,7 @@
       "required": [
         "code",
         "emailAddress",
-        "password",
-        "validateOnly"
+        "password"
       ]
     },
     "model.UserActiveBanResponse": {
@@ -25927,9 +26478,7 @@
       },
       "required": [
         "code",
-        "contactType",
-        "languageTag",
-        "validateOnly"
+        "contactType"
       ]
     },
     "model.ValidUserIDResponseV4": {
@@ -25965,6 +26514,12 @@
         "allowUnicode": {
           "type": "boolean",
           "x-omitempty": false
+        },
+        "blockedWord": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
         },
         "description": {
           "items": {
@@ -26017,6 +26572,7 @@
         "allowLetter",
         "allowSpace",
         "allowUnicode",
+        "blockedWord",
         "description",
         "isCustomRegex",
         "letterCase",
@@ -26047,6 +26603,12 @@
         "allowUnicode": {
           "type": "boolean",
           "x-omitempty": false
+        },
+        "blockedWord": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
         },
         "description": {
           "$ref": "#/definitions/accountcommon.InputValidationDescription"
@@ -26096,6 +26658,7 @@
         "allowLetter",
         "allowSpace",
         "allowUnicode",
+        "blockedWord",
         "description",
         "isCustomRegex",
         "letterCase",
@@ -26153,6 +26716,20 @@
       },
       "required": [
         "third_party_url"
+      ]
+    },
+    "model.userUnbanCreateRequestV3": {
+      "properties": {
+        "banId": {
+          "type": "string"
+        },
+        "userId": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "banId",
+        "userId"
       ]
     },
     "oauthapi.RevocationList": {
@@ -26283,6 +26860,16 @@
       },
       "required": [
         "error"
+      ]
+    },
+    "oauthmodel.GameTokenCodeResponse": {
+      "properties": {
+        "code": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "code"
       ]
     },
     "oauthmodel.TokenIntrospectResponse": {
@@ -26445,10 +27032,12 @@
           "type": "string"
         },
         "refresh_expires_in": {
+          "description": "present if it is user token",
           "format": "int32",
           "type": "integer"
         },
         "refresh_token": {
+          "description": "present if it is user token",
           "type": "string"
         },
         "roles": {
@@ -26464,6 +27053,7 @@
           "type": "string"
         },
         "user_id": {
+          "description": "present if it is user token",
           "type": "string"
         },
         "xuid": {
@@ -26473,18 +27063,13 @@
       "required": [
         "access_token",
         "bans",
-        "display_name",
         "expires_in",
         "namespace",
         "namespace_roles",
         "permissions",
-        "refresh_expires_in",
-        "refresh_token",
         "roles",
         "scope",
-        "token_type",
-        "user_id",
-        "xuid"
+        "token_type"
       ]
     },
     "oauthmodel.TokenThirdPartyResponse": {

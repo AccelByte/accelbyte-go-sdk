@@ -8,7 +8,7 @@
     },
     "description": "Justice Cloudsave Service",
     "title": "justice-cloudsave-service",
-    "version": "3.1.3"
+    "version": "3.1.4"
   },
   "schemes": [
     "https"
@@ -486,6 +486,82 @@
         "summary": "Create or replace game record",
         "tags": [
           "AdminGameRecord"
+        ]
+      }
+    },
+    "/cloudsave/v1/admin/namespaces/{namespace}/users/bulk/records/size": {
+      "post": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "\u0026lt;table\u0026gt;\n\t\u0026lt;tr\u0026gt;\n\t\t\u0026lt;td\u0026gt;Required Permission\u0026lt;/td\u0026gt;\n\t\t\u0026lt;td\u0026gt;\u0026lt;code\u0026gt;ADMIN:NAMESPACE:{namespace}:CLOUDSAVE:RECORD [READ]\u0026lt;/code\u0026gt;\u0026lt;/td\u0026gt;\n\t\u0026lt;/tr\u0026gt;\n\t\u0026lt;tr\u0026gt;\n\t\t\u0026lt;td\u0026gt;Required Scope\u0026lt;/td\u0026gt;\n\t\t\u0026lt;td\u0026gt;\u0026lt;code\u0026gt;social\u0026lt;/code\u0026gt;\u0026lt;/td\u0026gt;\n\t\u0026lt;/tr\u0026gt;\n\u0026lt;/table\u0026gt;\n\u0026lt;br/\u0026gt;\nBulk get player\u0026#39;s record size, max allowed 20 at a time, that can be\n\tretrieved using this endpoint.\n",
+        "operationId": "bulkGetPlayerRecordSizeHandlerV1",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/models.BulkUserKeyRequest"
+            }
+          },
+          {
+            "description": "namespace of the game",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "Record retrieved",
+            "schema": {
+              "$ref": "#/definitions/models.BulkGetPlayerRecordSizeResponse"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/models.ResponseError"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/models.ResponseError"
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "schema": {
+              "$ref": "#/definitions/models.ResponseError"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/models.ResponseError"
+            }
+          }
+        },
+        "security": [
+          {
+            "HasPermission": [
+              "ADMIN:NAMESPACE:{namespace}:CLOUDSAVE:RECORD [READ]"
+            ],
+            "HasScope": [
+              "social"
+            ],
+            "authorization": []
+          }
+        ],
+        "summary": "Bulk get player records size",
+        "tags": [
+          "AdminPlayerRecord"
         ]
       }
     },
@@ -1428,6 +1504,82 @@
           }
         ],
         "summary": "Create or replace player public record",
+        "tags": [
+          "AdminPlayerRecord"
+        ]
+      }
+    },
+    "/cloudsave/v1/admin/namespaces/{namespace}/users/{userId}/records/{key}/size": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Required permission: \u0026lt;code\u0026gt;ADMIN:NAMESPACE:{namespace}:USER:{userId}:CLOUDSAVE:RECORD [READ]\u0026lt;/code\u0026gt;\n\nRequired scope: \u0026lt;code\u0026gt;social\u0026lt;/code\u0026gt;\n\nGet a size of the player record ",
+        "operationId": "adminGetPlayerRecordSizeHandlerV1",
+        "parameters": [
+          {
+            "description": "key of record",
+            "in": "path",
+            "name": "key",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "namespace of the game",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "user ID who own the record",
+            "in": "path",
+            "name": "userId",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "Record in user-level retrieved",
+            "schema": {
+              "$ref": "#/definitions/models.PlayerRecordSizeResponse"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/models.ResponseError"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/models.ResponseError"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/models.ResponseError"
+            }
+          }
+        },
+        "security": [
+          {
+            "HasPermission": [
+              "ADMIN:NAMESPACE:{namespace}:USER:{userId}:CLOUDSAVE:RECORD [READ]"
+            ],
+            "HasScope": [
+              "social"
+            ],
+            "authorization": []
+          }
+        ],
+        "summary": "Get player record size",
         "tags": [
           "AdminPlayerRecord"
         ]
@@ -2719,6 +2871,19 @@
         "data"
       ]
     },
+    "models.BulkGetPlayerRecordSizeResponse": {
+      "properties": {
+        "data": {
+          "items": {
+            "$ref": "#/definitions/models.PlayerRecordSizeResponse"
+          },
+          "type": "array"
+        }
+      },
+      "required": [
+        "data"
+      ]
+    },
     "models.BulkUserIDsRequest": {
       "properties": {
         "userIds": {
@@ -2730,6 +2895,19 @@
       },
       "required": [
         "userIds"
+      ]
+    },
+    "models.BulkUserKeyRequest": {
+      "properties": {
+        "data": {
+          "items": {
+            "$ref": "#/definitions/models.UserKeyRequest"
+          },
+          "type": "array"
+        }
+      },
+      "required": [
+        "data"
       ]
     },
     "models.ConcurrentRecordRequest": {
@@ -2903,6 +3081,34 @@
         "value"
       ]
     },
+    "models.PlayerRecordSizeResponse": {
+      "properties": {
+        "current_size": {
+          "format": "int64",
+          "type": "integer"
+        },
+        "key": {
+          "type": "string"
+        },
+        "namespace": {
+          "type": "string"
+        },
+        "remaining_size": {
+          "format": "int64",
+          "type": "integer"
+        },
+        "user_id": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "current_size",
+        "key",
+        "namespace",
+        "remaining_size",
+        "user_id"
+      ]
+    },
     "models.ResponseError": {
       "properties": {
         "errorCode": {
@@ -2916,6 +3122,23 @@
       "required": [
         "errorCode",
         "errorMessage"
+      ]
+    },
+    "models.UserKeyRequest": {
+      "properties": {
+        "keys": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "user_id": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "keys",
+        "user_id"
       ]
     }
   }

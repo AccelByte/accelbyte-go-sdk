@@ -250,8 +250,6 @@ func TestIntegrationLogin(t *testing.T) {
 }
 
 func TestIntegrationUser(t *testing.T) {
-	t.Parallel()
-
 	// Login User - Arrange
 	Init()
 

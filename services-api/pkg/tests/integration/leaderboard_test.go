@@ -150,6 +150,7 @@ func TestIntegrationCreateLeaderboardConfigurationAdminV1(t *testing.T) {
 func RandStringBytes(n int) string {
 	b := make([]byte, n)
 	for i := range b {
+		rand.Seed(time.Now().UnixNano())
 		b[i] = letterBytes[rand.Intn(len(letterBytes))]
 	}
 

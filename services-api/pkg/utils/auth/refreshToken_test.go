@@ -21,7 +21,7 @@ func TestAuthInfoWriterRefresh(t *testing.T) {
 
 	// mockup client input value
 	refreshToken := dummyAccessToken
-	token = &iamclientmodels.OauthmodelTokenResponseV3{RefreshToken: &refreshToken}
+	token = &iamclientmodels.OauthmodelTokenResponseV3{RefreshToken: refreshToken}
 	err = dummyService.TokenRepository.Store(*token)
 	if err != nil {
 		assert.FailNow(t, "fail to store the token")
@@ -61,7 +61,7 @@ func TestAuthInfoWriter_RefreshToken(t *testing.T) {
 	}{
 		{
 			name: "refresh token",
-			args: iamclientmodels.OauthmodelTokenResponseV3{RefreshToken: &refreshToken},
+			args: iamclientmodels.OauthmodelTokenResponseV3{RefreshToken: refreshToken},
 		},
 	}
 

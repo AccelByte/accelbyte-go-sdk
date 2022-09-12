@@ -140,7 +140,7 @@ func RefreshTokenScheduler(session Session, loginType string) {
 
 		switch loginType {
 		case "user": // user token have a refreshToken
-			if getToken.RefreshToken != nil {
+			if getToken.RefreshToken != "" {
 				go func() {
 					for {
 						token, _ := session.Token.GetToken()
@@ -190,7 +190,7 @@ func UserTokenRefresher(s Session) {
 	token, _ := s.Token.GetToken()
 	p := &o_auth2_0.TokenGrantV3Params{
 		GrantType:    o_auth2_0.TokenGrantV3RefreshTokenConstant,
-		RefreshToken: token.RefreshToken,
+		RefreshToken: &token.RefreshToken,
 	}
 	service := OAuth20RefreshService{
 		Client:           factory.NewIamClient(s.Config),

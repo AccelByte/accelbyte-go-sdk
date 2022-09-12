@@ -205,10 +205,10 @@ Permissions: %v
 Display Name: %s
 `,
 		*token.AccessToken,
-		*token.UserID,
+		token.UserID,
 		*token.Namespace,
 		token.Permissions,
-		*token.DisplayName,
+		token.DisplayName,
 	)
 }
 

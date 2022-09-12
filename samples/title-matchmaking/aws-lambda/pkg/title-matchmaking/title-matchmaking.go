@@ -145,13 +145,13 @@ func (titleMMService *TitleMatchmakingService) StartMatchmaking(req *events.APIG
 	log.Printf("Namespace %v", namespace)
 
 	// check the userId
-	if verifyConvert.UserID == nil {
+	if verifyConvert.UserID == "" {
 		message := "Cannot find userId. You may have the wrong token. Please use the user token with password grant."
 		log.Print(message)
 
 		return &events.APIGatewayProxyResponse{StatusCode: http.StatusUnauthorized, Body: message}, nil
 	}
-	userId := *verifyConvert.UserID
+	userId := verifyConvert.UserID
 	log.Printf("UserId %v", userId)
 	namespaceGame := os.Getenv("GAME_NAMESPACE")
 	gameMode := os.Getenv("GAME_MODE")

@@ -63,19 +63,18 @@ var (
 	country             = "US"
 	displayName         = "Go Server SDK Test"
 	pwd                 = "q!w@e#r$azsxdcfv1"
-	boolTrue            = true
 	dynamicUsername     = RandStringBytes(5)
 	emailAdd            = fmt.Sprint(dynamicUsername + "@test.com")
 	createUserBody      = &iamclientmodels.AccountCreateUserRequestV4{
 		AuthType:        &authType,
-		Code:            &emptyString,
+		Code:            "",
 		Country:         &country,
 		DateOfBirth:     "1990-01-01",
-		DisplayName:     &displayName,
+		DisplayName:     displayName,
 		EmailAddress:    &emailAdd,
-		Password:        &pwd,
-		PasswordMD5Sum:  &emptyString,
-		ReachMinimumAge: &boolTrue,
+		Password:        pwd,
+		PasswordMD5Sum:  "",
+		ReachMinimumAge: true,
 		Username:        &dynamicUsername,
 	}
 	updateUserBody = &iamclientmodels.ModelUserUpdateRequest{
@@ -240,7 +239,7 @@ func TestIntegrationLogin(t *testing.T) {
 	}
 
 	getToken, errGetToken := oAuth20Service.TokenRepository.GetToken()
-	logrus.Infof("Bearer %v; UserId %v", *getToken.AccessToken, *getToken.UserID)
+	logrus.Infof("Bearer %v; UserId %v", *getToken.AccessToken, getToken.UserID)
 	// ESAC
 
 	// Assert

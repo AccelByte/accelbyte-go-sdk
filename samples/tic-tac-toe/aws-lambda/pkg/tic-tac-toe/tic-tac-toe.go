@@ -111,7 +111,7 @@ func (t *TicTacToeService) Service(req *events.APIGatewayProxyRequest) (events.A
 
 		return events.APIGatewayProxyResponse{StatusCode: http.StatusUnauthorized, Body: fmt.Sprint(errClaims.Error())}, nil
 	}
-	userID := *claims.UserID
+	userID := claims.UserID
 	namespace := *claims.Namespace
 
 	log.Printf("userID request: %s", userID)

@@ -19,10 +19,10 @@ type TokenRepository interface {
 	TokenIssuedTimeUTC() time.Time
 }
 
-func GetRefreshExpiresIn(repository TokenRepository) (*int32, error) {
+func GetRefreshExpiresIn(repository TokenRepository) (int32, error) {
 	getToken, errGet := repository.GetToken()
 	if errGet != nil {
-		return nil, errGet
+		return 0, errGet
 	}
 
 	return getToken.RefreshExpiresIn, nil
@@ -44,7 +44,7 @@ func GetRefreshToken(repository TokenRepository) (string, error) {
 		return "", errGet
 	}
 
-	return *getToken.RefreshToken, nil
+	return getToken.RefreshToken, nil
 }
 
 func GetSecondsTillExpiry(repository TokenRepository, refreshRate float64) time.Duration {
@@ -83,7 +83,7 @@ func GetSecondsTillExpiryRefresh(repository TokenRepository, refreshRate float64
 	if err != nil {
 		return 0
 	}
-	withRefreshRate := float64(*get) * refreshRate
+	withRefreshRate := float64(get) * refreshRate
 	expiresAt := repository.TokenIssuedTimeUTC().Add(time.Duration(withRefreshRate) * time.Second)
 	secondsTillExpiry := expiresAt.Sub(time.Now().UTC()) // in seconds ex 1m6.995968173s
 

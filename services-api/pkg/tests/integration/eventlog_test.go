@@ -113,5 +113,5 @@ func GetUserID() string {
 		}
 	}
 
-	return *accessToken.UserID
+	return accessToken.UserID
 }

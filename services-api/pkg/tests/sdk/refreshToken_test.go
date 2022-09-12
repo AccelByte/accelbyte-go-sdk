@@ -42,8 +42,8 @@ func TestAuthInfoWriterRefresh_withMockServer(t *testing.T) {
 
 	// 4. force the Token to be expired
 	expiresIn = int32(5)
-	getToken.ExpiresIn = &expiresIn        // monkey-patch, force expiry Token
-	getToken.RefreshExpiresIn = &expiresIn // monkey-patch, force expiry refreshToken
+	getToken.ExpiresIn = &expiresIn       // monkey-patch, force expiry Token
+	getToken.RefreshExpiresIn = expiresIn // monkey-patch, force expiry refreshToken
 
 	getExpiresIn, _ := repository.GetExpiresIn(oAuth20Service.TokenRepository)
 	assert.Equal(t, *getExpiresIn, expiresIn)
@@ -99,8 +99,8 @@ func TestAuthInfoWriterRefreshAsync_withMockServer(t *testing.T) {
 
 	// 4. force the Token to be expired
 	expiresIn = int32(5)
-	getToken.ExpiresIn = &expiresIn        // monkey-patch, force expiry Token
-	getToken.RefreshExpiresIn = &expiresIn // monkey-patch, force expiry refreshToken
+	getToken.ExpiresIn = &expiresIn       // monkey-patch, force expiry Token
+	getToken.RefreshExpiresIn = expiresIn // monkey-patch, force expiry refreshToken
 
 	getExpiresIn, _ := repository.GetExpiresIn(oAuth20Service.TokenRepository)
 	assert.Equal(t, *getExpiresIn, expiresIn)

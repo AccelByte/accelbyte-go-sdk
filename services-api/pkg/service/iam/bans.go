@@ -139,6 +139,58 @@ func (aaa *BansService) AdminGetBannedUsersV3(input *bans.AdminGetBannedUsersV3P
 	return ok.GetPayload(), nil
 }
 
+// Deprecated: Use AdminBanUserBulkV3Short instead
+func (aaa *BansService) AdminBanUserBulkV3(input *bans.AdminBanUserBulkV3Params) (*iamclientmodels.ModelListBulkUserBanResponseV3, error) {
+	token, err := aaa.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	created, badRequest, unauthorized, forbidden, notFound, err := aaa.Client.Bans.AdminBanUserBulkV3(input, client.BearerToken(*token.AccessToken))
+	if badRequest != nil {
+		return nil, badRequest
+	}
+	if unauthorized != nil {
+		return nil, unauthorized
+	}
+	if forbidden != nil {
+		return nil, forbidden
+	}
+	if notFound != nil {
+		return nil, notFound
+	}
+	if err != nil {
+		return nil, err
+	}
+
+	return created.GetPayload(), nil
+}
+
+// Deprecated: Use AdminUnbanUserBulkV3Short instead
+func (aaa *BansService) AdminUnbanUserBulkV3(input *bans.AdminUnbanUserBulkV3Params) (*iamclientmodels.ModelListBulkUserBanResponseV3, error) {
+	token, err := aaa.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	created, badRequest, unauthorized, forbidden, notFound, err := aaa.Client.Bans.AdminUnbanUserBulkV3(input, client.BearerToken(*token.AccessToken))
+	if badRequest != nil {
+		return nil, badRequest
+	}
+	if unauthorized != nil {
+		return nil, unauthorized
+	}
+	if forbidden != nil {
+		return nil, forbidden
+	}
+	if notFound != nil {
+		return nil, notFound
+	}
+	if err != nil {
+		return nil, err
+	}
+
+	return created.GetPayload(), nil
+}
+
 // Deprecated: Use AdminGetBansTypeWithNamespaceV3Short instead
 func (aaa *BansService) AdminGetBansTypeWithNamespaceV3(input *bans.AdminGetBansTypeWithNamespaceV3Params) (*iamclientmodels.AccountcommonBansV3, error) {
 	token, err := aaa.TokenRepository.GetToken()
@@ -282,6 +334,56 @@ func (aaa *BansService) AdminGetBannedUsersV3Short(input *bans.AdminGetBannedUse
 	}
 
 	return ok.GetPayload(), nil
+}
+
+func (aaa *BansService) AdminBanUserBulkV3Short(input *bans.AdminBanUserBulkV3Params) (*iamclientmodels.ModelListBulkUserBanResponseV3, error) {
+	authInfoWriter := input.AuthInfoWriter
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
+	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  aaa.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
+	created, err := aaa.Client.Bans.AdminBanUserBulkV3Short(input, authInfoWriter)
+	if err != nil {
+		return nil, err
+	}
+
+	return created.GetPayload(), nil
+}
+
+func (aaa *BansService) AdminUnbanUserBulkV3Short(input *bans.AdminUnbanUserBulkV3Params) (*iamclientmodels.ModelListBulkUserBanResponseV3, error) {
+	authInfoWriter := input.AuthInfoWriter
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
+	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  aaa.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
+	created, err := aaa.Client.Bans.AdminUnbanUserBulkV3Short(input, authInfoWriter)
+	if err != nil {
+		return nil, err
+	}
+
+	return created.GetPayload(), nil
 }
 
 func (aaa *BansService) AdminGetBansTypeWithNamespaceV3Short(input *bans.AdminGetBansTypeWithNamespaceV3Params) (*iamclientmodels.AccountcommonBansV3, error) {

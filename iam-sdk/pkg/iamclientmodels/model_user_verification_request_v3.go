@@ -26,12 +26,10 @@ type ModelUserVerificationRequestV3 struct {
 	ContactType *string `json:"contactType"`
 
 	// language tag
-	// Required: true
-	LanguageTag *string `json:"languageTag"`
+	LanguageTag string `json:"languageTag,omitempty"`
 
 	// validate only
-	// Required: true
-	ValidateOnly *bool `json:"validateOnly"`
+	ValidateOnly bool `json:"validateOnly"`
 }
 
 // Validate validates this model user verification request v3
@@ -43,14 +41,6 @@ func (m *ModelUserVerificationRequestV3) Validate(formats strfmt.Registry) error
 	}
 
 	if err := m.validateContactType(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.validateLanguageTag(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.validateValidateOnly(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -72,24 +62,6 @@ func (m *ModelUserVerificationRequestV3) validateCode(formats strfmt.Registry) e
 func (m *ModelUserVerificationRequestV3) validateContactType(formats strfmt.Registry) error {
 
 	if err := validate.Required("contactType", "body", m.ContactType); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *ModelUserVerificationRequestV3) validateLanguageTag(formats strfmt.Registry) error {
-
-	if err := validate.Required("languageTag", "body", m.LanguageTag); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *ModelUserVerificationRequestV3) validateValidateOnly(formats strfmt.Registry) error {
-
-	if err := validate.Required("validateOnly", "body", m.ValidateOnly); err != nil {
 		return err
 	}
 

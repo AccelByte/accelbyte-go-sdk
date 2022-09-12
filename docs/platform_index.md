@@ -219,6 +219,12 @@
 | `/platform/public/namespaces/{namespace}/users/{userId}/iap/twitch/sync` | PUT | SyncTwitchDropsEntitlementShort | [SyncTwitchDropsEntitlementShort](../platform-sdk/pkg/platformclient/iap/iap_client.go) | [SyncTwitchDropsEntitlementShort](../services-api/pkg/service/platform/iap.go) | [SyncTwitchDropsEntitlementShort](../samples/cli/cmd/platform/iap/syncTwitchDropsEntitlement.go) |
 | `/platform/public/namespaces/{namespace}/users/{userId}/iap/xbl/sync` | PUT | SyncXboxInventoryShort | [SyncXboxInventoryShort](../platform-sdk/pkg/platformclient/iap/iap_client.go) | [SyncXboxInventoryShort](../services-api/pkg/service/platform/iap.go) | [SyncXboxInventoryShort](../samples/cli/cmd/platform/iap/syncXboxInventory.go) |
 
+### Invoice Wrapper:  [Invoice](../services-api/pkg/service/platform/invoice.go)
+| Endpoint | Method | ID | Class | Wrapper | Example |
+|---|---|---|---|---|---|
+| `/platform/admin/namespaces/{namespace}/invoice/details.csv` | GET | DownloadInvoiceDetailsShort | [DownloadInvoiceDetailsShort](../platform-sdk/pkg/platformclient/invoice/invoice_client.go) | [DownloadInvoiceDetailsShort](../services-api/pkg/service/platform/invoice.go) | [DownloadInvoiceDetailsShort](../samples/cli/cmd/platform/invoice/downloadInvoiceDetails.go) |
+| `/platform/admin/namespaces/{namespace}/invoice/summary` | GET | GenerateInvoiceSummaryShort | [GenerateInvoiceSummaryShort](../platform-sdk/pkg/platformclient/invoice/invoice_client.go) | [GenerateInvoiceSummaryShort](../services-api/pkg/service/platform/invoice.go) | [GenerateInvoiceSummaryShort](../samples/cli/cmd/platform/invoice/generateInvoiceSummary.go) |
+
 ### KeyGroup Wrapper:  [KeyGroup](../services-api/pkg/service/platform/keyGroup.go)
 | Endpoint | Method | ID | Class | Wrapper | Example |
 |---|---|---|---|---|---|
@@ -576,6 +582,8 @@
 | `IAPOrderPagingSlicedResult` | [IAPOrderPagingSlicedResult ](../platform-sdk/pkg/platformclientmodels/iap_order_paging_sliced_result.go) |
 | `Image` | [Image ](../platform-sdk/pkg/platformclientmodels/image.go) |
 | `InGameItemSync` | [InGameItemSync ](../platform-sdk/pkg/platformclientmodels/in_game_item_sync.go) |
+| `InvoiceCurrencySummary` | [InvoiceCurrencySummary ](../platform-sdk/pkg/platformclientmodels/invoice_currency_summary.go) |
+| `InvoiceSummary` | [InvoiceSummary ](../platform-sdk/pkg/platformclientmodels/invoice_summary.go) |
 | `ItemAcquireRequest` | [ItemAcquireRequest ](../platform-sdk/pkg/platformclientmodels/item_acquire_request.go) |
 | `ItemAcquireResult` | [ItemAcquireResult ](../platform-sdk/pkg/platformclientmodels/item_acquire_result.go) |
 | `ItemCreate` | [ItemCreate ](../platform-sdk/pkg/platformclientmodels/item_create.go) |

@@ -39,6 +39,32 @@ func (aaa *AdminPlayerRecordService) GetAuthSession() auth.Session {
 	}
 }
 
+// Deprecated: Use BulkGetPlayerRecordSizeHandlerV1Short instead
+func (aaa *AdminPlayerRecordService) BulkGetPlayerRecordSizeHandlerV1(input *admin_player_record.BulkGetPlayerRecordSizeHandlerV1Params) (*cloudsaveclientmodels.ModelsBulkGetPlayerRecordSizeResponse, error) {
+	token, err := aaa.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, badRequest, unauthorized, forbidden, internalServerError, err := aaa.Client.AdminPlayerRecord.BulkGetPlayerRecordSizeHandlerV1(input, client.BearerToken(*token.AccessToken))
+	if badRequest != nil {
+		return nil, badRequest
+	}
+	if unauthorized != nil {
+		return nil, unauthorized
+	}
+	if forbidden != nil {
+		return nil, forbidden
+	}
+	if internalServerError != nil {
+		return nil, internalServerError
+	}
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
 // Deprecated: Use ListPlayerRecordHandlerV1Short instead
 func (aaa *AdminPlayerRecordService) ListPlayerRecordHandlerV1(input *admin_player_record.ListPlayerRecordHandlerV1Params) (*cloudsaveclientmodels.ModelsListPlayerRecordKeysResponse, error) {
 	token, err := aaa.TokenRepository.GetToken()
@@ -258,6 +284,54 @@ func (aaa *AdminPlayerRecordService) AdminDeletePlayerPublicRecordHandlerV1(inpu
 	}
 
 	return nil
+}
+
+// Deprecated: Use AdminGetPlayerRecordSizeHandlerV1Short instead
+func (aaa *AdminPlayerRecordService) AdminGetPlayerRecordSizeHandlerV1(input *admin_player_record.AdminGetPlayerRecordSizeHandlerV1Params) (*cloudsaveclientmodels.ModelsPlayerRecordSizeResponse, error) {
+	token, err := aaa.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, unauthorized, notFound, internalServerError, err := aaa.Client.AdminPlayerRecord.AdminGetPlayerRecordSizeHandlerV1(input, client.BearerToken(*token.AccessToken))
+	if unauthorized != nil {
+		return nil, unauthorized
+	}
+	if notFound != nil {
+		return nil, notFound
+	}
+	if internalServerError != nil {
+		return nil, internalServerError
+	}
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
+func (aaa *AdminPlayerRecordService) BulkGetPlayerRecordSizeHandlerV1Short(input *admin_player_record.BulkGetPlayerRecordSizeHandlerV1Params) (*cloudsaveclientmodels.ModelsBulkGetPlayerRecordSizeResponse, error) {
+	authInfoWriter := input.AuthInfoWriter
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
+	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  aaa.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
+	ok, err := aaa.Client.AdminPlayerRecord.BulkGetPlayerRecordSizeHandlerV1Short(input, authInfoWriter)
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
 }
 
 func (aaa *AdminPlayerRecordService) ListPlayerRecordHandlerV1Short(input *admin_player_record.ListPlayerRecordHandlerV1Params) (*cloudsaveclientmodels.ModelsListPlayerRecordKeysResponse, error) {
@@ -508,4 +582,29 @@ func (aaa *AdminPlayerRecordService) AdminDeletePlayerPublicRecordHandlerV1Short
 	}
 
 	return nil
+}
+
+func (aaa *AdminPlayerRecordService) AdminGetPlayerRecordSizeHandlerV1Short(input *admin_player_record.AdminGetPlayerRecordSizeHandlerV1Params) (*cloudsaveclientmodels.ModelsPlayerRecordSizeResponse, error) {
+	authInfoWriter := input.AuthInfoWriter
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
+	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  aaa.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
+	ok, err := aaa.Client.AdminPlayerRecord.AdminGetPlayerRecordSizeHandlerV1Short(input, authInfoWriter)
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
 }

@@ -43,6 +43,10 @@ type ClientService interface {
 	LogoutShort(params *LogoutParams, authInfo runtime.ClientAuthInfoWriter) (*LogoutNoContent, error)
 	PlatformAuthenticationV3(params *PlatformAuthenticationV3Params, authInfo runtime.ClientAuthInfoWriter) (*PlatformAuthenticationV3Found, error)
 	PlatformAuthenticationV3Short(params *PlatformAuthenticationV3Params, authInfo runtime.ClientAuthInfoWriter) (*PlatformAuthenticationV3Found, error)
+	RequestGameTokenCodeResponseV3(params *RequestGameTokenCodeResponseV3Params, authInfo runtime.ClientAuthInfoWriter) (*RequestGameTokenCodeResponseV3OK, error)
+	RequestGameTokenCodeResponseV3Short(params *RequestGameTokenCodeResponseV3Params, authInfo runtime.ClientAuthInfoWriter) (*RequestGameTokenCodeResponseV3OK, error)
+	RequestGameTokenResponseV3(params *RequestGameTokenResponseV3Params, authInfo runtime.ClientAuthInfoWriter) (*RequestGameTokenResponseV3OK, error)
+	RequestGameTokenResponseV3Short(params *RequestGameTokenResponseV3Params, authInfo runtime.ClientAuthInfoWriter) (*RequestGameTokenResponseV3OK, error)
 	UserAuthenticationV3(params *UserAuthenticationV3Params, authInfo runtime.ClientAuthInfoWriter) (*UserAuthenticationV3Found, error)
 	UserAuthenticationV3Short(params *UserAuthenticationV3Params, authInfo runtime.ClientAuthInfoWriter) (*UserAuthenticationV3Found, error)
 
@@ -585,6 +589,210 @@ func (a *Client) PlatformAuthenticationV3Short(params *PlatformAuthenticationV3P
 	switch v := result.(type) {
 
 	case *PlatformAuthenticationV3Found:
+		return v, nil
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+Deprecated: Use RequestGameTokenCodeResponseV3Short instead.
+
+  RequestGameTokenCodeResponseV3 requests code to get game token
+
+  &lt;p&gt;This endpoint is being used to request the code to generate publisher user&#39;s game token.&lt;br&gt;
+		It require a valid user token with publisher namespace.&lt;br&gt;
+		Path namespace should be a game namespace.&lt;br&gt;
+		Client ID should match the target namespace.
+		It response a code and it can be consumed by &lt;strong&gt;/iam/v3/token/exchange&lt;/strong&gt;
+		&lt;/p&gt;
+*/
+func (a *Client) RequestGameTokenCodeResponseV3(params *RequestGameTokenCodeResponseV3Params, authInfo runtime.ClientAuthInfoWriter) (*RequestGameTokenCodeResponseV3OK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewRequestGameTokenCodeResponseV3Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "RequestGameTokenCodeResponseV3",
+		Method:             "POST",
+		PathPattern:        "/iam/v3/namespace/{namespace}/token/request",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/x-www-form-urlencoded"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &RequestGameTokenCodeResponseV3Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *RequestGameTokenCodeResponseV3OK:
+		return v, nil
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+  RequestGameTokenCodeResponseV3Short requests code to get game token
+
+  &lt;p&gt;This endpoint is being used to request the code to generate publisher user&#39;s game token.&lt;br&gt;
+		It require a valid user token with publisher namespace.&lt;br&gt;
+		Path namespace should be a game namespace.&lt;br&gt;
+		Client ID should match the target namespace.
+		It response a code and it can be consumed by &lt;strong&gt;/iam/v3/token/exchange&lt;/strong&gt;
+		&lt;/p&gt;
+*/
+func (a *Client) RequestGameTokenCodeResponseV3Short(params *RequestGameTokenCodeResponseV3Params, authInfo runtime.ClientAuthInfoWriter) (*RequestGameTokenCodeResponseV3OK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewRequestGameTokenCodeResponseV3Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "RequestGameTokenCodeResponseV3",
+		Method:             "POST",
+		PathPattern:        "/iam/v3/namespace/{namespace}/token/request",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/x-www-form-urlencoded"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &RequestGameTokenCodeResponseV3Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *RequestGameTokenCodeResponseV3OK:
+		return v, nil
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+Deprecated: Use RequestGameTokenResponseV3Short instead.
+
+  RequestGameTokenResponseV3 generates game token by code
+
+  &lt;p&gt;This endpoint is being used to generate publisher user&#39;s game token.&lt;br&gt;
+		It require basic header with ClientID and Secret, it should match the ClientID when call &lt;strong&gt;/iam/v3/namespace/{namespace}/token/request&lt;/strong&gt;&lt;br&gt;
+		It required a code which can be generated from &lt;strong&gt;/iam/v3/namespace/{namespace}/token/request&lt;/strong&gt;.&lt;br&gt;
+		&lt;/p&gt;
+*/
+func (a *Client) RequestGameTokenResponseV3(params *RequestGameTokenResponseV3Params, authInfo runtime.ClientAuthInfoWriter) (*RequestGameTokenResponseV3OK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewRequestGameTokenResponseV3Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "RequestGameTokenResponseV3",
+		Method:             "POST",
+		PathPattern:        "/iam/v3/token/exchange",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/x-www-form-urlencoded"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &RequestGameTokenResponseV3Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *RequestGameTokenResponseV3OK:
+		return v, nil
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+  RequestGameTokenResponseV3Short generates game token by code
+
+  &lt;p&gt;This endpoint is being used to generate publisher user&#39;s game token.&lt;br&gt;
+		It require basic header with ClientID and Secret, it should match the ClientID when call &lt;strong&gt;/iam/v3/namespace/{namespace}/token/request&lt;/strong&gt;&lt;br&gt;
+		It required a code which can be generated from &lt;strong&gt;/iam/v3/namespace/{namespace}/token/request&lt;/strong&gt;.&lt;br&gt;
+		&lt;/p&gt;
+*/
+func (a *Client) RequestGameTokenResponseV3Short(params *RequestGameTokenResponseV3Params, authInfo runtime.ClientAuthInfoWriter) (*RequestGameTokenResponseV3OK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewRequestGameTokenResponseV3Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "RequestGameTokenResponseV3",
+		Method:             "POST",
+		PathPattern:        "/iam/v3/token/exchange",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/x-www-form-urlencoded"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &RequestGameTokenResponseV3Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *RequestGameTokenResponseV3OK:
 		return v, nil
 
 	default:

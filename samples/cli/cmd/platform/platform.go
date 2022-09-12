@@ -18,6 +18,7 @@ import (
 	"github.com/AccelByte/sample-apps/cmd/platform/fulfillment"
 	"github.com/AccelByte/sample-apps/cmd/platform/fulfillmentScript"
 	"github.com/AccelByte/sample-apps/cmd/platform/iap"
+	"github.com/AccelByte/sample-apps/cmd/platform/invoice"
 	"github.com/AccelByte/sample-apps/cmd/platform/item"
 	"github.com/AccelByte/sample-apps/cmd/platform/keyGroup"
 	"github.com/AccelByte/sample-apps/cmd/platform/order"
@@ -121,6 +122,8 @@ func init() {
 	PlatformCmd.AddCommand(iap.UpdateXblIAPConfigCmd)
 	PlatformCmd.AddCommand(iap.DeleteXblAPConfigCmd)
 	PlatformCmd.AddCommand(iap.UpdateXblBPCertFileCmd)
+	PlatformCmd.AddCommand(invoice.DownloadInvoiceDetailsCmd)
+	PlatformCmd.AddCommand(invoice.GenerateInvoiceSummaryCmd)
 	PlatformCmd.AddCommand(item.SyncInGameItemCmd)
 	PlatformCmd.AddCommand(item.CreateItemCmd)
 	PlatformCmd.AddCommand(item.GetItemByAppIdCmd)

@@ -68,7 +68,7 @@ func NewPublicGetCountryAgeRestrictionOK() *PublicGetCountryAgeRestrictionOK {
   OK
 */
 type PublicGetCountryAgeRestrictionOK struct {
-	Payload []*iamclientmodels.AccountcommonCountryAgeRestriction
+	Payload *iamclientmodels.AccountcommonCountry
 }
 
 func (o *PublicGetCountryAgeRestrictionOK) Error() string {
@@ -90,14 +90,16 @@ func (o *PublicGetCountryAgeRestrictionOK) ToJSONString() string {
 	return fmt.Sprintf("%+v", string(b))
 }
 
-func (o *PublicGetCountryAgeRestrictionOK) GetPayload() []*iamclientmodels.AccountcommonCountryAgeRestriction {
+func (o *PublicGetCountryAgeRestrictionOK) GetPayload() *iamclientmodels.AccountcommonCountry {
 	return o.Payload
 }
 
 func (o *PublicGetCountryAgeRestrictionOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
+	o.Payload = new(iamclientmodels.AccountcommonCountry)
+
 	// response payload
-	if err := consumer.Consume(response.Body(), &o.Payload); err != nil && err != io.EOF {
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
 		return err
 	}
 

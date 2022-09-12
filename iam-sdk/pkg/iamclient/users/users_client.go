@@ -113,6 +113,8 @@ type ClientService interface {
 	AdminPutUserRolesV2Short(params *AdminPutUserRolesV2Params, authInfo runtime.ClientAuthInfoWriter) (*AdminPutUserRolesV2NoContent, error)
 	AdminResetPasswordV2(params *AdminResetPasswordV2Params, authInfo runtime.ClientAuthInfoWriter) (*AdminResetPasswordV2NoContent, *AdminResetPasswordV2BadRequest, *AdminResetPasswordV2Unauthorized, *AdminResetPasswordV2Forbidden, *AdminResetPasswordV2NotFound, *AdminResetPasswordV2InternalServerError, error)
 	AdminResetPasswordV2Short(params *AdminResetPasswordV2Params, authInfo runtime.ClientAuthInfoWriter) (*AdminResetPasswordV2NoContent, error)
+	AdminResetPasswordV3(params *AdminResetPasswordV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminResetPasswordV3NoContent, *AdminResetPasswordV3BadRequest, *AdminResetPasswordV3Unauthorized, *AdminResetPasswordV3Forbidden, *AdminResetPasswordV3NotFound, *AdminResetPasswordV3InternalServerError, error)
+	AdminResetPasswordV3Short(params *AdminResetPasswordV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminResetPasswordV3NoContent, error)
 	AdminSaveUserRoleV3(params *AdminSaveUserRoleV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminSaveUserRoleV3NoContent, *AdminSaveUserRoleV3BadRequest, *AdminSaveUserRoleV3Forbidden, *AdminSaveUserRoleV3NotFound, *AdminSaveUserRoleV3UnprocessableEntity, *AdminSaveUserRoleV3InternalServerError, error)
 	AdminSaveUserRoleV3Short(params *AdminSaveUserRoleV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminSaveUserRoleV3NoContent, error)
 	AdminSearchUserV3(params *AdminSearchUserV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminSearchUserV3OK, *AdminSearchUserV3BadRequest, *AdminSearchUserV3Unauthorized, *AdminSearchUserV3Forbidden, *AdminSearchUserV3InternalServerError, error)
@@ -233,6 +235,8 @@ type ClientService interface {
 	PublicGetAsyncStatusShort(params *PublicGetAsyncStatusParams, authInfo runtime.ClientAuthInfoWriter) (*PublicGetAsyncStatusOK, error)
 	PublicGetCountryAgeRestriction(params *PublicGetCountryAgeRestrictionParams, authInfo runtime.ClientAuthInfoWriter) (*PublicGetCountryAgeRestrictionOK, *PublicGetCountryAgeRestrictionUnauthorized, *PublicGetCountryAgeRestrictionNotFound, error)
 	PublicGetCountryAgeRestrictionShort(params *PublicGetCountryAgeRestrictionParams, authInfo runtime.ClientAuthInfoWriter) (*PublicGetCountryAgeRestrictionOK, error)
+	PublicGetCountryAgeRestrictionV3(params *PublicGetCountryAgeRestrictionV3Params, authInfo runtime.ClientAuthInfoWriter) (*PublicGetCountryAgeRestrictionV3OK, *PublicGetCountryAgeRestrictionV3Unauthorized, *PublicGetCountryAgeRestrictionV3NotFound, error)
+	PublicGetCountryAgeRestrictionV3Short(params *PublicGetCountryAgeRestrictionV3Params, authInfo runtime.ClientAuthInfoWriter) (*PublicGetCountryAgeRestrictionV3OK, error)
 	PublicGetMyUserV3(params *PublicGetMyUserV3Params, authInfo runtime.ClientAuthInfoWriter) (*PublicGetMyUserV3OK, *PublicGetMyUserV3Unauthorized, *PublicGetMyUserV3InternalServerError, error)
 	PublicGetMyUserV3Short(params *PublicGetMyUserV3Params, authInfo runtime.ClientAuthInfoWriter) (*PublicGetMyUserV3OK, error)
 	PublicGetPublisherUserV3(params *PublicGetPublisherUserV3Params, authInfo runtime.ClientAuthInfoWriter) (*PublicGetPublisherUserV3OK, *PublicGetPublisherUserV3BadRequest, *PublicGetPublisherUserV3Unauthorized, *PublicGetPublisherUserV3Forbidden, *PublicGetPublisherUserV3NotFound, error)
@@ -255,6 +259,8 @@ type ClientService interface {
 	PublicGetUserPlatformAccountsV3Short(params *PublicGetUserPlatformAccountsV3Params, authInfo runtime.ClientAuthInfoWriter) (*PublicGetUserPlatformAccountsV3OK, error)
 	PublicLinkPlatformAccount(params *PublicLinkPlatformAccountParams, authInfo runtime.ClientAuthInfoWriter) (*PublicLinkPlatformAccountNoContent, *PublicLinkPlatformAccountBadRequest, *PublicLinkPlatformAccountUnauthorized, *PublicLinkPlatformAccountForbidden, *PublicLinkPlatformAccountInternalServerError, error)
 	PublicLinkPlatformAccountShort(params *PublicLinkPlatformAccountParams, authInfo runtime.ClientAuthInfoWriter) (*PublicLinkPlatformAccountNoContent, error)
+	PublicListJusticePlatformAccountsV3(params *PublicListJusticePlatformAccountsV3Params, authInfo runtime.ClientAuthInfoWriter) (*PublicListJusticePlatformAccountsV3OK, *PublicListJusticePlatformAccountsV3BadRequest, *PublicListJusticePlatformAccountsV3Unauthorized, *PublicListJusticePlatformAccountsV3Forbidden, *PublicListJusticePlatformAccountsV3NotFound, *PublicListJusticePlatformAccountsV3InternalServerError, error)
+	PublicListJusticePlatformAccountsV3Short(params *PublicListJusticePlatformAccountsV3Params, authInfo runtime.ClientAuthInfoWriter) (*PublicListJusticePlatformAccountsV3OK, error)
 	PublicListUserAllPlatformAccountsDistinctV3(params *PublicListUserAllPlatformAccountsDistinctV3Params, authInfo runtime.ClientAuthInfoWriter) (*PublicListUserAllPlatformAccountsDistinctV3OK, *PublicListUserAllPlatformAccountsDistinctV3BadRequest, *PublicListUserAllPlatformAccountsDistinctV3Unauthorized, *PublicListUserAllPlatformAccountsDistinctV3Forbidden, *PublicListUserAllPlatformAccountsDistinctV3NotFound, error)
 	PublicListUserAllPlatformAccountsDistinctV3Short(params *PublicListUserAllPlatformAccountsDistinctV3Params, authInfo runtime.ClientAuthInfoWriter) (*PublicListUserAllPlatformAccountsDistinctV3OK, error)
 	PublicListUserIDByPlatformUserIDsV3(params *PublicListUserIDByPlatformUserIDsV3Params, authInfo runtime.ClientAuthInfoWriter) (*PublicListUserIDByPlatformUserIDsV3OK, *PublicListUserIDByPlatformUserIDsV3BadRequest, *PublicListUserIDByPlatformUserIDsV3Unauthorized, *PublicListUserIDByPlatformUserIDsV3Forbidden, *PublicListUserIDByPlatformUserIDsV3InternalServerError, error)
@@ -942,7 +948,14 @@ Deprecated: Use AdminBanUserV2Short instead.
 
   AdminBanUserV2 bans a single user
 
-  Required permission &#39;ADMIN:NAMESPACE:{namespace}:BAN:USER:{userId} [CREATE]&#39;.
+  &lt;h2&gt;The endpoint is going to be deprecated&lt;/h2&gt; &lt;/br&gt;
+		&lt;strong&gt;Endpoint migration guide&lt;/strong&gt;
+		&lt;ul&gt;
+			&lt;li&gt;&lt;b&gt;Substitute endpoint: &lt;i&gt;/iam/v3/admin/namespaces/{namespace}/users/{userId}/bans  [POST]&lt;/i&gt;&lt;/b&gt;
+			&lt;/li&gt;
+		&lt;/ul&gt;
+
+		Required permission &#39;ADMIN:NAMESPACE:{namespace}:BAN:USER:{userId} [CREATE]&#39;.
 */
 func (a *Client) AdminBanUserV2(params *AdminBanUserV2Params, authInfo runtime.ClientAuthInfoWriter) (*AdminBanUserV2Created, *AdminBanUserV2BadRequest, *AdminBanUserV2Unauthorized, *AdminBanUserV2Forbidden, *AdminBanUserV2NotFound, *AdminBanUserV2InternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -1003,7 +1016,14 @@ func (a *Client) AdminBanUserV2(params *AdminBanUserV2Params, authInfo runtime.C
 /*
   AdminBanUserV2Short bans a single user
 
-  Required permission &#39;ADMIN:NAMESPACE:{namespace}:BAN:USER:{userId} [CREATE]&#39;.
+  &lt;h2&gt;The endpoint is going to be deprecated&lt;/h2&gt; &lt;/br&gt;
+		&lt;strong&gt;Endpoint migration guide&lt;/strong&gt;
+		&lt;ul&gt;
+			&lt;li&gt;&lt;b&gt;Substitute endpoint: &lt;i&gt;/iam/v3/admin/namespaces/{namespace}/users/{userId}/bans  [POST]&lt;/i&gt;&lt;/b&gt;
+			&lt;/li&gt;
+		&lt;/ul&gt;
+
+		Required permission &#39;ADMIN:NAMESPACE:{namespace}:BAN:USER:{userId} [CREATE]&#39;.
 */
 func (a *Client) AdminBanUserV2Short(params *AdminBanUserV2Params, authInfo runtime.ClientAuthInfoWriter) (*AdminBanUserV2Created, error) {
 	// TODO: Validate the params before sending
@@ -1306,7 +1326,14 @@ Deprecated: Use AdminCreateUserRolesV2Short instead.
 
   AdminCreateUserRolesV2 saves user roles
 
-  Required permission &#39;ADMIN:NAMESPACE:{namespace}:ROLE:USER:{userId} [UPDATE]&#39;
+  &lt;h2&gt;The endpoint is going to be deprecated&lt;/h2&gt; &lt;/br&gt;
+		&lt;strong&gt;Endpoint migration guide&lt;/strong&gt;
+		&lt;ul&gt;
+			&lt;li&gt;&lt;b&gt;Substitute endpoint: /iam/v3/admin/namespaces/{namespace}/users/{userId}/roles  [PATCH]&lt;/i&gt;&lt;/b&gt;
+			&lt;/li&gt;
+		&lt;/ul&gt;
+
+		Required permission &#39;ADMIN:NAMESPACE:{namespace}:ROLE:USER:{userId} [UPDATE]&#39;
 */
 func (a *Client) AdminCreateUserRolesV2(params *AdminCreateUserRolesV2Params, authInfo runtime.ClientAuthInfoWriter) (*AdminCreateUserRolesV2NoContent, *AdminCreateUserRolesV2BadRequest, *AdminCreateUserRolesV2Unauthorized, *AdminCreateUserRolesV2Forbidden, *AdminCreateUserRolesV2NotFound, *AdminCreateUserRolesV2Conflict, error) {
 	// TODO: Validate the params before sending
@@ -1367,7 +1394,14 @@ func (a *Client) AdminCreateUserRolesV2(params *AdminCreateUserRolesV2Params, au
 /*
   AdminCreateUserRolesV2Short saves user roles
 
-  Required permission &#39;ADMIN:NAMESPACE:{namespace}:ROLE:USER:{userId} [UPDATE]&#39;
+  &lt;h2&gt;The endpoint is going to be deprecated&lt;/h2&gt; &lt;/br&gt;
+		&lt;strong&gt;Endpoint migration guide&lt;/strong&gt;
+		&lt;ul&gt;
+			&lt;li&gt;&lt;b&gt;Substitute endpoint: /iam/v3/admin/namespaces/{namespace}/users/{userId}/roles  [PATCH]&lt;/i&gt;&lt;/b&gt;
+			&lt;/li&gt;
+		&lt;/ul&gt;
+
+		Required permission &#39;ADMIN:NAMESPACE:{namespace}:ROLE:USER:{userId} [UPDATE]&#39;
 */
 func (a *Client) AdminCreateUserRolesV2Short(params *AdminCreateUserRolesV2Params, authInfo runtime.ClientAuthInfoWriter) (*AdminCreateUserRolesV2NoContent, error) {
 	// TODO: Validate the params before sending
@@ -1425,8 +1459,15 @@ Deprecated: Use AdminDeletePlatformLinkV2Short instead.
 
   AdminDeletePlatformLinkV2 deletes the link of user s account with platform
 
-  &lt;p&gt;Required permission &#39;ADMIN:NAMESPACE:{namespace}:USER:{userId} [DELETE]&#39;.&lt;/p&gt;
-&lt;h2&gt;Supported platforms:&lt;/h2&gt;
+  &lt;h2&gt;The endpoint is going to be deprecated&lt;/h2&gt; &lt;/br&gt;
+			&lt;strong&gt;Endpoint migration guide&lt;/strong&gt;
+			&lt;ul&gt;
+                &lt;li&gt;&lt;b&gt;Substitute endpoint: &lt;i&gt;/iam/v3/admin/namespaces/{namespace}/users/{userId}/platforms/{platformId}  [DELETE]&lt;/i&gt;&lt;/b&gt;
+                &lt;/li&gt;
+			&lt;/ul&gt;
+
+			&lt;p&gt;Required permission &#39;ADMIN:NAMESPACE:{namespace}:USER:{userId} [DELETE]&#39;.&lt;/p&gt;
+			&lt;h2&gt;Supported platforms:&lt;/h2&gt;
 			&lt;ul&gt;
 				&lt;li&gt;&lt;strong&gt;steam&lt;/strong&gt;&lt;/li&gt;
 				&lt;li&gt;&lt;strong&gt;steamopenid&lt;/strong&gt;&lt;/li&gt;
@@ -1501,8 +1542,15 @@ func (a *Client) AdminDeletePlatformLinkV2(params *AdminDeletePlatformLinkV2Para
 /*
   AdminDeletePlatformLinkV2Short deletes the link of user s account with platform
 
-  &lt;p&gt;Required permission &#39;ADMIN:NAMESPACE:{namespace}:USER:{userId} [DELETE]&#39;.&lt;/p&gt;
-&lt;h2&gt;Supported platforms:&lt;/h2&gt;
+  &lt;h2&gt;The endpoint is going to be deprecated&lt;/h2&gt; &lt;/br&gt;
+			&lt;strong&gt;Endpoint migration guide&lt;/strong&gt;
+			&lt;ul&gt;
+                &lt;li&gt;&lt;b&gt;Substitute endpoint: &lt;i&gt;/iam/v3/admin/namespaces/{namespace}/users/{userId}/platforms/{platformId}  [DELETE]&lt;/i&gt;&lt;/b&gt;
+                &lt;/li&gt;
+			&lt;/ul&gt;
+
+			&lt;p&gt;Required permission &#39;ADMIN:NAMESPACE:{namespace}:USER:{userId} [DELETE]&#39;.&lt;/p&gt;
+			&lt;h2&gt;Supported platforms:&lt;/h2&gt;
 			&lt;ul&gt;
 				&lt;li&gt;&lt;strong&gt;steam&lt;/strong&gt;&lt;/li&gt;
 				&lt;li&gt;&lt;strong&gt;steamopenid&lt;/strong&gt;&lt;/li&gt;
@@ -2143,7 +2191,14 @@ Deprecated: Use AdminDisableUserV2Short instead.
 
   AdminDisableUserV2 disables a user
 
-  Required permissions &#39;ADMIN:NAMESPACE:{namespace}:USERSTATUS:USER:{userId} [UPDATE]&#39;
+  &lt;h2&gt;The endpoint is going to be deprecated&lt;/h2&gt; &lt;/br&gt;
+		&lt;strong&gt;Endpoint migration guide&lt;/strong&gt;
+		&lt;ul&gt;
+			&lt;li&gt;&lt;b&gt;Substitute endpoint: &lt;i&gt;/iam/v3/admin/namespaces/{namespace}/users/{userId}/status  [PATCH]&lt;/i&gt;&lt;/b&gt;
+			&lt;/li&gt;
+		&lt;/ul&gt;
+
+		Required permissions &#39;ADMIN:NAMESPACE:{namespace}:USERSTATUS:USER:{userId} [UPDATE]&#39;
 		&lt;p&gt;For &lt;strong&gt;Deletion Account&lt;/strong&gt; purpose fill the reason with:&lt;/p&gt;
 		&lt;ul&gt;
 		&lt;li&gt;&lt;strong&gt;DeactivateAccount&lt;/strong&gt; : if your deletion request comes from user&lt;/li&gt;
@@ -2209,7 +2264,14 @@ func (a *Client) AdminDisableUserV2(params *AdminDisableUserV2Params, authInfo r
 /*
   AdminDisableUserV2Short disables a user
 
-  Required permissions &#39;ADMIN:NAMESPACE:{namespace}:USERSTATUS:USER:{userId} [UPDATE]&#39;
+  &lt;h2&gt;The endpoint is going to be deprecated&lt;/h2&gt; &lt;/br&gt;
+		&lt;strong&gt;Endpoint migration guide&lt;/strong&gt;
+		&lt;ul&gt;
+			&lt;li&gt;&lt;b&gt;Substitute endpoint: &lt;i&gt;/iam/v3/admin/namespaces/{namespace}/users/{userId}/status  [PATCH]&lt;/i&gt;&lt;/b&gt;
+			&lt;/li&gt;
+		&lt;/ul&gt;
+
+		Required permissions &#39;ADMIN:NAMESPACE:{namespace}:USERSTATUS:USER:{userId} [UPDATE]&#39;
 		&lt;p&gt;For &lt;strong&gt;Deletion Account&lt;/strong&gt; purpose fill the reason with:&lt;/p&gt;
 		&lt;ul&gt;
 		&lt;li&gt;&lt;strong&gt;DeactivateAccount&lt;/strong&gt; : if your deletion request comes from user&lt;/li&gt;
@@ -2272,7 +2334,14 @@ Deprecated: Use AdminEnableUserV2Short instead.
 
   AdminEnableUserV2 enables a user
 
-  Required permissions &#39;ADMIN:NAMESPACE:{namespace}:USERSTATUS:USER:{userId} [UPDATE]&#39;
+  &lt;h2&gt;The endpoint is going to be deprecated&lt;/h2&gt; &lt;/br&gt;
+		&lt;strong&gt;Endpoint migration guide&lt;/strong&gt;
+		&lt;ul&gt;
+			&lt;li&gt;&lt;b&gt;Substitute endpoint: &lt;i&gt;/iam/v3/admin/namespaces/{namespace}/users/{userId}/status  [PATCH]&lt;/i&gt;&lt;/b&gt;
+			&lt;/li&gt;
+		&lt;/ul&gt;
+
+		Required permissions &#39;ADMIN:NAMESPACE:{namespace}:USERSTATUS:USER:{userId} [UPDATE]&#39;
 */
 func (a *Client) AdminEnableUserV2(params *AdminEnableUserV2Params, authInfo runtime.ClientAuthInfoWriter) (*AdminEnableUserV2NoContent, *AdminEnableUserV2Unauthorized, *AdminEnableUserV2Forbidden, *AdminEnableUserV2NotFound, *AdminEnableUserV2InternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -2330,7 +2399,14 @@ func (a *Client) AdminEnableUserV2(params *AdminEnableUserV2Params, authInfo run
 /*
   AdminEnableUserV2Short enables a user
 
-  Required permissions &#39;ADMIN:NAMESPACE:{namespace}:USERSTATUS:USER:{userId} [UPDATE]&#39;
+  &lt;h2&gt;The endpoint is going to be deprecated&lt;/h2&gt; &lt;/br&gt;
+		&lt;strong&gt;Endpoint migration guide&lt;/strong&gt;
+		&lt;ul&gt;
+			&lt;li&gt;&lt;b&gt;Substitute endpoint: &lt;i&gt;/iam/v3/admin/namespaces/{namespace}/users/{userId}/status  [PATCH]&lt;/i&gt;&lt;/b&gt;
+			&lt;/li&gt;
+		&lt;/ul&gt;
+
+		Required permissions &#39;ADMIN:NAMESPACE:{namespace}:USERSTATUS:USER:{userId} [UPDATE]&#39;
 */
 func (a *Client) AdminEnableUserV2Short(params *AdminEnableUserV2Params, authInfo runtime.ClientAuthInfoWriter) (*AdminEnableUserV2NoContent, error) {
 	// TODO: Validate the params before sending
@@ -2386,7 +2462,17 @@ Deprecated: Use AdminGetAgeRestrictionStatusV2Short instead.
 
   AdminGetAgeRestrictionStatusV2 gets age restriction status
 
-  Required permission &#39;ADMIN:NAMESPACE:{namespace}:AGERESTRICTION [READ]&#39;
+  &lt;h2&gt;The endpoint is going to be deprecated&lt;/h2&gt; &lt;/br&gt;
+		&lt;strong&gt;Endpoint migration guide&lt;/strong&gt;
+		&lt;ul&gt;
+			&lt;li&gt;&lt;b&gt;Substitute endpoint: &lt;i&gt;/iam/v3/admin/namespaces/{namespace}/agerestrictions  [GET]&lt;/i&gt;&lt;/b&gt;
+			&lt;/li&gt;
+			&lt;li&gt;&lt;b&gt;Note:&lt;/b&gt;
+                        &lt;dd&gt;difference in V3 response, format difference: Pascal case =&gt; Camel case&lt;/dd&gt;&lt;/b&gt;
+			&lt;/li&gt;
+		&lt;/ul&gt;
+
+		Required permission &#39;ADMIN:NAMESPACE:{namespace}:AGERESTRICTION [READ]&#39;
 */
 func (a *Client) AdminGetAgeRestrictionStatusV2(params *AdminGetAgeRestrictionStatusV2Params, authInfo runtime.ClientAuthInfoWriter) (*AdminGetAgeRestrictionStatusV2OK, *AdminGetAgeRestrictionStatusV2Unauthorized, *AdminGetAgeRestrictionStatusV2Forbidden, *AdminGetAgeRestrictionStatusV2NotFound, error) {
 	// TODO: Validate the params before sending
@@ -2441,7 +2527,17 @@ func (a *Client) AdminGetAgeRestrictionStatusV2(params *AdminGetAgeRestrictionSt
 /*
   AdminGetAgeRestrictionStatusV2Short gets age restriction status
 
-  Required permission &#39;ADMIN:NAMESPACE:{namespace}:AGERESTRICTION [READ]&#39;
+  &lt;h2&gt;The endpoint is going to be deprecated&lt;/h2&gt; &lt;/br&gt;
+		&lt;strong&gt;Endpoint migration guide&lt;/strong&gt;
+		&lt;ul&gt;
+			&lt;li&gt;&lt;b&gt;Substitute endpoint: &lt;i&gt;/iam/v3/admin/namespaces/{namespace}/agerestrictions  [GET]&lt;/i&gt;&lt;/b&gt;
+			&lt;/li&gt;
+			&lt;li&gt;&lt;b&gt;Note:&lt;/b&gt;
+                        &lt;dd&gt;difference in V3 response, format difference: Pascal case =&gt; Camel case&lt;/dd&gt;&lt;/b&gt;
+			&lt;/li&gt;
+		&lt;/ul&gt;
+
+		Required permission &#39;ADMIN:NAMESPACE:{namespace}:AGERESTRICTION [READ]&#39;
 */
 func (a *Client) AdminGetAgeRestrictionStatusV2Short(params *AdminGetAgeRestrictionStatusV2Params, authInfo runtime.ClientAuthInfoWriter) (*AdminGetAgeRestrictionStatusV2OK, error) {
 	// TODO: Validate the params before sending
@@ -3074,7 +3170,14 @@ Deprecated: Use AdminGetUserBanV2Short instead.
 
   AdminGetUserBanV2 gets user s bans
 
-  Required permission &#39;ADMIN:NAMESPACE:{namespace}:BAN:USER:{userId} [READ]&#39;.
+  &lt;h2&gt;The endpoint is going to be deprecated&lt;/h2&gt; &lt;/br&gt;
+		&lt;strong&gt;Endpoint migration guide&lt;/strong&gt;
+		&lt;ul&gt;
+			&lt;li&gt;&lt;b&gt;Substitute endpoint: &lt;i&gt;/iam/v3/admin/namespaces/{namespace}/users/{userId}/bans  [GET]&lt;/i&gt;&lt;/b&gt;
+			&lt;/li&gt;
+		&lt;/ul&gt;
+
+		Required permission &#39;ADMIN:NAMESPACE:{namespace}:BAN:USER:{userId} [READ]&#39;.
 */
 func (a *Client) AdminGetUserBanV2(params *AdminGetUserBanV2Params, authInfo runtime.ClientAuthInfoWriter) (*AdminGetUserBanV2OK, *AdminGetUserBanV2Unauthorized, *AdminGetUserBanV2Forbidden, *AdminGetUserBanV2NotFound, error) {
 	// TODO: Validate the params before sending
@@ -3129,7 +3232,14 @@ func (a *Client) AdminGetUserBanV2(params *AdminGetUserBanV2Params, authInfo run
 /*
   AdminGetUserBanV2Short gets user s bans
 
-  Required permission &#39;ADMIN:NAMESPACE:{namespace}:BAN:USER:{userId} [READ]&#39;.
+  &lt;h2&gt;The endpoint is going to be deprecated&lt;/h2&gt; &lt;/br&gt;
+		&lt;strong&gt;Endpoint migration guide&lt;/strong&gt;
+		&lt;ul&gt;
+			&lt;li&gt;&lt;b&gt;Substitute endpoint: &lt;i&gt;/iam/v3/admin/namespaces/{namespace}/users/{userId}/bans  [GET]&lt;/i&gt;&lt;/b&gt;
+			&lt;/li&gt;
+		&lt;/ul&gt;
+
+		Required permission &#39;ADMIN:NAMESPACE:{namespace}:BAN:USER:{userId} [READ]&#39;.
 */
 func (a *Client) AdminGetUserBanV2Short(params *AdminGetUserBanV2Params, authInfo runtime.ClientAuthInfoWriter) (*AdminGetUserBanV2OK, error) {
 	// TODO: Validate the params before sending
@@ -3550,7 +3660,13 @@ Deprecated: Use AdminGetUserByUserIDV2Short instead.
 
   AdminGetUserByUserIDV2 gets user by user Id
 
-  Required permission &#39;ADMIN:NAMESPACE:{namespace}:USER:{userId} [READ]&#39;
+  &lt;h2&gt;The endpoint is going to be deprecated&lt;/h2&gt; &lt;/br&gt;
+		&lt;strong&gt;Endpoint migration guide&lt;/strong&gt;
+		&lt;ul&gt;
+			&lt;li&gt;&lt;b&gt;Substitute endpoint: &lt;i&gt;/iam/v3/admin/namespaces/{namespace}/users/{userId}  [GET]&lt;/i&gt;&lt;/b&gt;
+			&lt;/li&gt;
+		&lt;/ul&gt;
+		Required permission &#39;ADMIN:NAMESPACE:{namespace}:USER:{userId} [READ]&#39;
 */
 func (a *Client) AdminGetUserByUserIDV2(params *AdminGetUserByUserIDV2Params, authInfo runtime.ClientAuthInfoWriter) (*AdminGetUserByUserIDV2OK, *AdminGetUserByUserIDV2NotFound, *AdminGetUserByUserIDV2InternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -3602,7 +3718,13 @@ func (a *Client) AdminGetUserByUserIDV2(params *AdminGetUserByUserIDV2Params, au
 /*
   AdminGetUserByUserIDV2Short gets user by user Id
 
-  Required permission &#39;ADMIN:NAMESPACE:{namespace}:USER:{userId} [READ]&#39;
+  &lt;h2&gt;The endpoint is going to be deprecated&lt;/h2&gt; &lt;/br&gt;
+		&lt;strong&gt;Endpoint migration guide&lt;/strong&gt;
+		&lt;ul&gt;
+			&lt;li&gt;&lt;b&gt;Substitute endpoint: &lt;i&gt;/iam/v3/admin/namespaces/{namespace}/users/{userId}  [GET]&lt;/i&gt;&lt;/b&gt;
+			&lt;/li&gt;
+		&lt;/ul&gt;
+		Required permission &#39;ADMIN:NAMESPACE:{namespace}:USER:{userId} [READ]&#39;
 */
 func (a *Client) AdminGetUserByUserIDV2Short(params *AdminGetUserByUserIDV2Params, authInfo runtime.ClientAuthInfoWriter) (*AdminGetUserByUserIDV2OK, error) {
 	// TODO: Validate the params before sending
@@ -5070,7 +5192,14 @@ Deprecated: Use AdminPutUserRolesV2Short instead.
 
   AdminPutUserRolesV2 updates user roles will replace all the existing roles
 
-  Required permission &#39;ADMIN:NAMESPACE:{namespace}:ROLE:USER:{userId} [UPDATE]&#39;
+  &lt;h2&gt;The endpoint is going to be deprecated&lt;/h2&gt; &lt;/br&gt;
+		&lt;strong&gt;Endpoint migration guide&lt;/strong&gt;
+		&lt;ul&gt;
+                &lt;li&gt;&lt;b&gt;Substitute endpoint: &lt;i&gt;/iam/v3/admin/namespaces/{namespace}/users/{userId}/roles  [PATCH]&lt;/i&gt;&lt;/b&gt;
+                &lt;/li&gt;
+		&lt;/ul&gt;
+
+		Required permission &#39;ADMIN:NAMESPACE:{namespace}:ROLE:USER:{userId} [UPDATE]&#39;
 */
 func (a *Client) AdminPutUserRolesV2(params *AdminPutUserRolesV2Params, authInfo runtime.ClientAuthInfoWriter) (*AdminPutUserRolesV2NoContent, *AdminPutUserRolesV2BadRequest, *AdminPutUserRolesV2Unauthorized, *AdminPutUserRolesV2Forbidden, *AdminPutUserRolesV2NotFound, error) {
 	// TODO: Validate the params before sending
@@ -5128,7 +5257,14 @@ func (a *Client) AdminPutUserRolesV2(params *AdminPutUserRolesV2Params, authInfo
 /*
   AdminPutUserRolesV2Short updates user roles will replace all the existing roles
 
-  Required permission &#39;ADMIN:NAMESPACE:{namespace}:ROLE:USER:{userId} [UPDATE]&#39;
+  &lt;h2&gt;The endpoint is going to be deprecated&lt;/h2&gt; &lt;/br&gt;
+		&lt;strong&gt;Endpoint migration guide&lt;/strong&gt;
+		&lt;ul&gt;
+                &lt;li&gt;&lt;b&gt;Substitute endpoint: &lt;i&gt;/iam/v3/admin/namespaces/{namespace}/users/{userId}/roles  [PATCH]&lt;/i&gt;&lt;/b&gt;
+                &lt;/li&gt;
+		&lt;/ul&gt;
+
+		Required permission &#39;ADMIN:NAMESPACE:{namespace}:ROLE:USER:{userId} [UPDATE]&#39;
 */
 func (a *Client) AdminPutUserRolesV2Short(params *AdminPutUserRolesV2Params, authInfo runtime.ClientAuthInfoWriter) (*AdminPutUserRolesV2NoContent, error) {
 	// TODO: Validate the params before sending
@@ -5184,7 +5320,14 @@ Deprecated: Use AdminResetPasswordV2Short instead.
 
   AdminResetPasswordV2 updates user password
 
-  Required permission &#39;ADMIN:NAMESPACE:{namespace}:PASSWORD:USER:{userId} [UPDATE]&#39;
+  &lt;h2&gt;The endpoint is going to be deprecated&lt;/h2&gt; &lt;/br&gt;
+		&lt;strong&gt;Endpoint migration guide&lt;/strong&gt;
+		&lt;ul&gt;
+                &lt;li&gt;&lt;b&gt;Substitute endpoint: &lt;i&gt;/iam/v3/admin/namespaces/{namespace}/users/{userId}/password  [PUT]&lt;/i&gt;&lt;/b&gt;
+                &lt;/li&gt;
+		&lt;/ul&gt;
+
+		Required permission &#39;ADMIN:NAMESPACE:{namespace}:PASSWORD:USER:{userId} [UPDATE]&#39;
 */
 func (a *Client) AdminResetPasswordV2(params *AdminResetPasswordV2Params, authInfo runtime.ClientAuthInfoWriter) (*AdminResetPasswordV2NoContent, *AdminResetPasswordV2BadRequest, *AdminResetPasswordV2Unauthorized, *AdminResetPasswordV2Forbidden, *AdminResetPasswordV2NotFound, *AdminResetPasswordV2InternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -5245,7 +5388,14 @@ func (a *Client) AdminResetPasswordV2(params *AdminResetPasswordV2Params, authIn
 /*
   AdminResetPasswordV2Short updates user password
 
-  Required permission &#39;ADMIN:NAMESPACE:{namespace}:PASSWORD:USER:{userId} [UPDATE]&#39;
+  &lt;h2&gt;The endpoint is going to be deprecated&lt;/h2&gt; &lt;/br&gt;
+		&lt;strong&gt;Endpoint migration guide&lt;/strong&gt;
+		&lt;ul&gt;
+                &lt;li&gt;&lt;b&gt;Substitute endpoint: &lt;i&gt;/iam/v3/admin/namespaces/{namespace}/users/{userId}/password  [PUT]&lt;/i&gt;&lt;/b&gt;
+                &lt;/li&gt;
+		&lt;/ul&gt;
+
+		Required permission &#39;ADMIN:NAMESPACE:{namespace}:PASSWORD:USER:{userId} [UPDATE]&#39;
 */
 func (a *Client) AdminResetPasswordV2Short(params *AdminResetPasswordV2Params, authInfo runtime.ClientAuthInfoWriter) (*AdminResetPasswordV2NoContent, error) {
 	// TODO: Validate the params before sending
@@ -5291,6 +5441,125 @@ func (a *Client) AdminResetPasswordV2Short(params *AdminResetPasswordV2Params, a
 	case *AdminResetPasswordV2NotFound:
 		return nil, v
 	case *AdminResetPasswordV2InternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+Deprecated: Use AdminResetPasswordV3Short instead.
+
+  AdminResetPasswordV3 updates user password
+
+  Required permission &#39;ADMIN:NAMESPACE:{namespace}:PASSWORD:USER:{userId} [UPDATE]&#39;
+*/
+func (a *Client) AdminResetPasswordV3(params *AdminResetPasswordV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminResetPasswordV3NoContent, *AdminResetPasswordV3BadRequest, *AdminResetPasswordV3Unauthorized, *AdminResetPasswordV3Forbidden, *AdminResetPasswordV3NotFound, *AdminResetPasswordV3InternalServerError, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewAdminResetPasswordV3Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "AdminResetPasswordV3",
+		Method:             "PUT",
+		PathPattern:        "/iam/v3/admin/namespaces/{namespace}/users/{userId}/password",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &AdminResetPasswordV3Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, nil, nil, nil, nil, nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *AdminResetPasswordV3NoContent:
+		return v, nil, nil, nil, nil, nil, nil
+
+	case *AdminResetPasswordV3BadRequest:
+		return nil, v, nil, nil, nil, nil, nil
+
+	case *AdminResetPasswordV3Unauthorized:
+		return nil, nil, v, nil, nil, nil, nil
+
+	case *AdminResetPasswordV3Forbidden:
+		return nil, nil, nil, v, nil, nil, nil
+
+	case *AdminResetPasswordV3NotFound:
+		return nil, nil, nil, nil, v, nil, nil
+
+	case *AdminResetPasswordV3InternalServerError:
+		return nil, nil, nil, nil, nil, v, nil
+
+	default:
+		return nil, nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+  AdminResetPasswordV3Short updates user password
+
+  Required permission &#39;ADMIN:NAMESPACE:{namespace}:PASSWORD:USER:{userId} [UPDATE]&#39;
+*/
+func (a *Client) AdminResetPasswordV3Short(params *AdminResetPasswordV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminResetPasswordV3NoContent, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewAdminResetPasswordV3Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "AdminResetPasswordV3",
+		Method:             "PUT",
+		PathPattern:        "/iam/v3/admin/namespaces/{namespace}/users/{userId}/password",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &AdminResetPasswordV3Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *AdminResetPasswordV3NoContent:
+		return v, nil
+	case *AdminResetPasswordV3BadRequest:
+		return nil, v
+	case *AdminResetPasswordV3Unauthorized:
+		return nil, v
+	case *AdminResetPasswordV3Forbidden:
+		return nil, v
+	case *AdminResetPasswordV3NotFound:
+		return nil, v
+	case *AdminResetPasswordV3InternalServerError:
 		return nil, v
 
 	default:
@@ -5568,7 +5837,14 @@ Deprecated: Use AdminSearchUsersV2Short instead.
 
   AdminSearchUsersV2 searches users
 
-  Required permission &#39;ADMIN:NAMESPACE:{namespace}:USER [READ]&#39;.
+  &lt;h2&gt;The endpoint is going to be deprecated&lt;/h2&gt; &lt;/br&gt;
+		&lt;strong&gt;Endpoint migration guide&lt;/strong&gt;
+		&lt;ul&gt;
+			&lt;li&gt;&lt;b&gt;Substitute endpoint: &lt;i&gt;/iam/v3/admin/namespaces/{namespace}/users/search  [GET]&lt;/i&gt;&lt;/b&gt;
+			&lt;/li&gt;
+		&lt;/ul&gt;
+
+		Required permission &#39;ADMIN:NAMESPACE:{namespace}:USER [READ]&#39;.
 */
 func (a *Client) AdminSearchUsersV2(params *AdminSearchUsersV2Params, authInfo runtime.ClientAuthInfoWriter) (*AdminSearchUsersV2OK, *AdminSearchUsersV2BadRequest, *AdminSearchUsersV2Unauthorized, *AdminSearchUsersV2Forbidden, error) {
 	// TODO: Validate the params before sending
@@ -5623,7 +5899,14 @@ func (a *Client) AdminSearchUsersV2(params *AdminSearchUsersV2Params, authInfo r
 /*
   AdminSearchUsersV2Short searches users
 
-  Required permission &#39;ADMIN:NAMESPACE:{namespace}:USER [READ]&#39;.
+  &lt;h2&gt;The endpoint is going to be deprecated&lt;/h2&gt; &lt;/br&gt;
+		&lt;strong&gt;Endpoint migration guide&lt;/strong&gt;
+		&lt;ul&gt;
+			&lt;li&gt;&lt;b&gt;Substitute endpoint: &lt;i&gt;/iam/v3/admin/namespaces/{namespace}/users/search  [GET]&lt;/i&gt;&lt;/b&gt;
+			&lt;/li&gt;
+		&lt;/ul&gt;
+
+		Required permission &#39;ADMIN:NAMESPACE:{namespace}:USER [READ]&#39;.
 */
 func (a *Client) AdminSearchUsersV2Short(params *AdminSearchUsersV2Params, authInfo runtime.ClientAuthInfoWriter) (*AdminSearchUsersV2OK, error) {
 	// TODO: Validate the params before sending
@@ -5835,7 +6118,14 @@ Deprecated: Use AdminUpdateAgeRestrictionConfigV2Short instead.
 
   AdminUpdateAgeRestrictionConfigV2 updates age restriction config value
 
-  Required permission &#39;ADMIN:NAMESPACE:{namespace}:AGERESTRICTION [UPDATE]&#39;
+  &lt;h2&gt;The endpoint is going to be deprecated&lt;/h2&gt; &lt;/br&gt;
+		&lt;strong&gt;Endpoint migration guide&lt;/strong&gt;
+		&lt;ul&gt;
+			&lt;li&gt;&lt;b&gt;Substitute endpoint: &lt;i&gt;/iam/v3/admin/namespaces/{namespace}/agerestrictions  [PATCH]&lt;/i&gt;&lt;/b&gt;
+			&lt;/li&gt;
+		&lt;/ul&gt;
+
+		Required permission &#39;ADMIN:NAMESPACE:{namespace}:AGERESTRICTION [UPDATE]&#39;
 */
 func (a *Client) AdminUpdateAgeRestrictionConfigV2(params *AdminUpdateAgeRestrictionConfigV2Params, authInfo runtime.ClientAuthInfoWriter) (*AdminUpdateAgeRestrictionConfigV2OK, *AdminUpdateAgeRestrictionConfigV2BadRequest, *AdminUpdateAgeRestrictionConfigV2Unauthorized, *AdminUpdateAgeRestrictionConfigV2Forbidden, *AdminUpdateAgeRestrictionConfigV2NotFound, error) {
 	// TODO: Validate the params before sending
@@ -5893,7 +6183,14 @@ func (a *Client) AdminUpdateAgeRestrictionConfigV2(params *AdminUpdateAgeRestric
 /*
   AdminUpdateAgeRestrictionConfigV2Short updates age restriction config value
 
-  Required permission &#39;ADMIN:NAMESPACE:{namespace}:AGERESTRICTION [UPDATE]&#39;
+  &lt;h2&gt;The endpoint is going to be deprecated&lt;/h2&gt; &lt;/br&gt;
+		&lt;strong&gt;Endpoint migration guide&lt;/strong&gt;
+		&lt;ul&gt;
+			&lt;li&gt;&lt;b&gt;Substitute endpoint: &lt;i&gt;/iam/v3/admin/namespaces/{namespace}/agerestrictions  [PATCH]&lt;/i&gt;&lt;/b&gt;
+			&lt;/li&gt;
+		&lt;/ul&gt;
+
+		Required permission &#39;ADMIN:NAMESPACE:{namespace}:AGERESTRICTION [UPDATE]&#39;
 */
 func (a *Client) AdminUpdateAgeRestrictionConfigV2Short(params *AdminUpdateAgeRestrictionConfigV2Params, authInfo runtime.ClientAuthInfoWriter) (*AdminUpdateAgeRestrictionConfigV2OK, error) {
 	// TODO: Validate the params before sending
@@ -6724,7 +7021,21 @@ Deprecated: Use AdminUpdateUserV2Short instead.
 
   AdminUpdateUserV2 updates user
 
-  &lt;p&gt;Required permission &#39;ADMIN:NAMESPACE:{namespace}:USER:{userId} [UPDATE]&#39;&lt;/p&gt;&lt;br&gt;&lt;p&gt;This Endpoint support update user based on given data. &lt;b&gt;Single request can update single field or multi fields.&lt;/b&gt;&lt;/p&gt; &lt;p&gt;Supported field {Country, DisplayName, LanguageTag}&lt;/p&gt;&lt;p&gt;Country use ISO3166-1 alpha-2 two letter, e.g. US.&lt;/p&gt;&lt;br&gt;&lt;b&gt;Several case of updating email address&lt;/b&gt;&lt;ul&gt;&lt;li&gt;User want to update email address of which have been verified, NewEmailAddress response field will be filled with new email address.&lt;/li&gt;&lt;li&gt;User want to update email address of which have not been verified, {LoginId, OldEmailAddress, EmailAddress} response field will be filled with new email address. &lt;/li&gt;&lt;li&gt;User want to update email address of which have been verified and updated before, {LoginId, OldEmailAddress, EmailAddress} response field will be filled with verified email before. NewEmailAddress response field will be filled with newest email address. &lt;/li&gt;
+  &lt;h2&gt;The endpoint is going to be deprecated&lt;/h2&gt; &lt;/br&gt;
+		&lt;strong&gt;Endpoint migration guide&lt;/strong&gt;
+		&lt;ul&gt;
+			&lt;li&gt;&lt;b&gt;Substitute endpoint: &lt;i&gt;/iam/v3/admin/namespaces/{namespace}/users/{userId}  [PATCH]&lt;/i&gt;&lt;/b&gt;
+			&lt;/li&gt;
+		&lt;/ul&gt;
+
+		&lt;p&gt;Required permission &#39;ADMIN:NAMESPACE:{namespace}:USER:{userId} [UPDATE]&#39;&lt;/p&gt;&#34;+
+		&#34;&lt;br&gt;&lt;p&gt;This Endpoint support update user based on given data. &lt;b&gt;Single request can update single field or multi fields.&lt;/b&gt;&lt;/p&gt; &#34;+
+		&#34;&lt;p&gt;Supported field {Country, DisplayName, LanguageTag}&lt;/p&gt;&#34;+
+		&#34;&lt;p&gt;Country use ISO3166-1 alpha-2 two letter, e.g. US.&lt;/p&gt;&#34;+
+		&#34;&lt;br&gt;&lt;b&gt;Several case of updating email address&lt;/b&gt;&#34;+
+		&#34;&lt;ul&gt;&lt;li&gt;User want to update email address of which have been verified, NewEmailAddress response field will be filled with new email address.&lt;/li&gt;&#34;+
+		&#34;&lt;li&gt;User want to update email address of which have not been verified, {LoginId, OldEmailAddress, EmailAddress} response field will be filled with new email address. &lt;/li&gt;&#34;+
+		&#34;&lt;li&gt;User want to update email address of which have been verified and updated before, {LoginId, OldEmailAddress, EmailAddress} response field will be filled with verified email before. NewEmailAddress response field will be filled with newest email address. &lt;/li&gt;
 */
 func (a *Client) AdminUpdateUserV2(params *AdminUpdateUserV2Params, authInfo runtime.ClientAuthInfoWriter) (*AdminUpdateUserV2OK, *AdminUpdateUserV2BadRequest, *AdminUpdateUserV2Unauthorized, *AdminUpdateUserV2NotFound, *AdminUpdateUserV2Conflict, *AdminUpdateUserV2InternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -6785,7 +7096,21 @@ func (a *Client) AdminUpdateUserV2(params *AdminUpdateUserV2Params, authInfo run
 /*
   AdminUpdateUserV2Short updates user
 
-  &lt;p&gt;Required permission &#39;ADMIN:NAMESPACE:{namespace}:USER:{userId} [UPDATE]&#39;&lt;/p&gt;&lt;br&gt;&lt;p&gt;This Endpoint support update user based on given data. &lt;b&gt;Single request can update single field or multi fields.&lt;/b&gt;&lt;/p&gt; &lt;p&gt;Supported field {Country, DisplayName, LanguageTag}&lt;/p&gt;&lt;p&gt;Country use ISO3166-1 alpha-2 two letter, e.g. US.&lt;/p&gt;&lt;br&gt;&lt;b&gt;Several case of updating email address&lt;/b&gt;&lt;ul&gt;&lt;li&gt;User want to update email address of which have been verified, NewEmailAddress response field will be filled with new email address.&lt;/li&gt;&lt;li&gt;User want to update email address of which have not been verified, {LoginId, OldEmailAddress, EmailAddress} response field will be filled with new email address. &lt;/li&gt;&lt;li&gt;User want to update email address of which have been verified and updated before, {LoginId, OldEmailAddress, EmailAddress} response field will be filled with verified email before. NewEmailAddress response field will be filled with newest email address. &lt;/li&gt;
+  &lt;h2&gt;The endpoint is going to be deprecated&lt;/h2&gt; &lt;/br&gt;
+		&lt;strong&gt;Endpoint migration guide&lt;/strong&gt;
+		&lt;ul&gt;
+			&lt;li&gt;&lt;b&gt;Substitute endpoint: &lt;i&gt;/iam/v3/admin/namespaces/{namespace}/users/{userId}  [PATCH]&lt;/i&gt;&lt;/b&gt;
+			&lt;/li&gt;
+		&lt;/ul&gt;
+
+		&lt;p&gt;Required permission &#39;ADMIN:NAMESPACE:{namespace}:USER:{userId} [UPDATE]&#39;&lt;/p&gt;&#34;+
+		&#34;&lt;br&gt;&lt;p&gt;This Endpoint support update user based on given data. &lt;b&gt;Single request can update single field or multi fields.&lt;/b&gt;&lt;/p&gt; &#34;+
+		&#34;&lt;p&gt;Supported field {Country, DisplayName, LanguageTag}&lt;/p&gt;&#34;+
+		&#34;&lt;p&gt;Country use ISO3166-1 alpha-2 two letter, e.g. US.&lt;/p&gt;&#34;+
+		&#34;&lt;br&gt;&lt;b&gt;Several case of updating email address&lt;/b&gt;&#34;+
+		&#34;&lt;ul&gt;&lt;li&gt;User want to update email address of which have been verified, NewEmailAddress response field will be filled with new email address.&lt;/li&gt;&#34;+
+		&#34;&lt;li&gt;User want to update email address of which have not been verified, {LoginId, OldEmailAddress, EmailAddress} response field will be filled with new email address. &lt;/li&gt;&#34;+
+		&#34;&lt;li&gt;User want to update email address of which have been verified and updated before, {LoginId, OldEmailAddress, EmailAddress} response field will be filled with verified email before. NewEmailAddress response field will be filled with newest email address. &lt;/li&gt;
 */
 func (a *Client) AdminUpdateUserV2Short(params *AdminUpdateUserV2Params, authInfo runtime.ClientAuthInfoWriter) (*AdminUpdateUserV2OK, error) {
 	// TODO: Validate the params before sending
@@ -7655,7 +7980,7 @@ Deprecated: Use CreateUserShort instead.
 
   CreateUser creates user
 
-   &lt;h2&gt;The endpoint is going to be deprecated&lt;/h2&gt; &lt;/br&gt;
+  &lt;h2&gt;The endpoint is going to be deprecated&lt;/h2&gt; &lt;/br&gt;
 &lt;strong&gt;Endpoint migration guide&lt;/strong&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;b&gt;Substitute endpoint: &lt;i&gt;/iam/v3/public/namespaces/{namespace}/users  [POST]&lt;/i&gt;&lt;/b&gt;
@@ -7733,7 +8058,7 @@ func (a *Client) CreateUser(params *CreateUserParams, authInfo runtime.ClientAut
 /*
   CreateUserShort creates user
 
-   &lt;h2&gt;The endpoint is going to be deprecated&lt;/h2&gt; &lt;/br&gt;
+  &lt;h2&gt;The endpoint is going to be deprecated&lt;/h2&gt; &lt;/br&gt;
 &lt;strong&gt;Endpoint migration guide&lt;/strong&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;b&gt;Substitute endpoint: &lt;i&gt;/iam/v3/public/namespaces/{namespace}/users  [POST]&lt;/i&gt;&lt;/b&gt;
@@ -9475,7 +9800,14 @@ Deprecated: Use GetListCountryAgeRestrictionShort instead.
 
   GetListCountryAgeRestriction gets list country age restriction
 
-  Required permission &#39;ADMIN:NAMESPACE:{namespace}:AGERESTRICTION [READ]&#39;
+  &lt;h2&gt;The endpoint is going to be deprecated&lt;/h2&gt; &lt;/br&gt;
+		&lt;strong&gt;Endpoint migration guide&lt;/strong&gt;
+		&lt;ul&gt;
+                &lt;li&gt;&lt;b&gt;Substitute endpoint: &lt;i&gt;/iam/v3/admin/namespaces/{namespace}/agerestrictions/countries  [GET]&lt;/i&gt;&lt;/b&gt;
+                &lt;/li&gt;
+		&lt;/ul&gt;
+
+		Required permission &#39;ADMIN:NAMESPACE:{namespace}:AGERESTRICTION [READ]&#39;
 */
 func (a *Client) GetListCountryAgeRestriction(params *GetListCountryAgeRestrictionParams, authInfo runtime.ClientAuthInfoWriter) (*GetListCountryAgeRestrictionOK, *GetListCountryAgeRestrictionUnauthorized, *GetListCountryAgeRestrictionForbidden, *GetListCountryAgeRestrictionNotFound, error) {
 	// TODO: Validate the params before sending
@@ -9530,7 +9862,14 @@ func (a *Client) GetListCountryAgeRestriction(params *GetListCountryAgeRestricti
 /*
   GetListCountryAgeRestrictionShort gets list country age restriction
 
-  Required permission &#39;ADMIN:NAMESPACE:{namespace}:AGERESTRICTION [READ]&#39;
+  &lt;h2&gt;The endpoint is going to be deprecated&lt;/h2&gt; &lt;/br&gt;
+		&lt;strong&gt;Endpoint migration guide&lt;/strong&gt;
+		&lt;ul&gt;
+                &lt;li&gt;&lt;b&gt;Substitute endpoint: &lt;i&gt;/iam/v3/admin/namespaces/{namespace}/agerestrictions/countries  [GET]&lt;/i&gt;&lt;/b&gt;
+                &lt;/li&gt;
+		&lt;/ul&gt;
+
+		Required permission &#39;ADMIN:NAMESPACE:{namespace}:AGERESTRICTION [READ]&#39;
 */
 func (a *Client) GetListCountryAgeRestrictionShort(params *GetListCountryAgeRestrictionParams, authInfo runtime.ClientAuthInfoWriter) (*GetListCountryAgeRestrictionOK, error) {
 	// TODO: Validate the params before sending
@@ -9584,7 +9923,14 @@ Deprecated: Use GetListJusticePlatformAccountsShort instead.
 
   GetListJusticePlatformAccounts gets user justice platform accounts
 
-  This endpoint gets list justice platform account by providing publisher namespace and publisher userID.
+  &lt;h2&gt;The endpoint is going to be deprecated&lt;/h2&gt; &lt;/br&gt;
+		&lt;strong&gt;Endpoint migration guide&lt;/strong&gt;
+		&lt;ul&gt;
+			&lt;li&gt;&lt;b&gt;Substitute endpoint: &lt;i&gt;/iam/v3/public/namespaces/{namespace}/users/{userId}/platforms/justice  [GET]&lt;/i&gt;&lt;/b&gt;
+			&lt;/li&gt;
+		&lt;/ul&gt;
+
+		This endpoint gets list justice platform account by providing publisher namespace and publisher userID.
 */
 func (a *Client) GetListJusticePlatformAccounts(params *GetListJusticePlatformAccountsParams, authInfo runtime.ClientAuthInfoWriter) (*GetListJusticePlatformAccountsOK, *GetListJusticePlatformAccountsBadRequest, *GetListJusticePlatformAccountsNotFound, error) {
 	// TODO: Validate the params before sending
@@ -9636,7 +9982,14 @@ func (a *Client) GetListJusticePlatformAccounts(params *GetListJusticePlatformAc
 /*
   GetListJusticePlatformAccountsShort gets user justice platform accounts
 
-  This endpoint gets list justice platform account by providing publisher namespace and publisher userID.
+  &lt;h2&gt;The endpoint is going to be deprecated&lt;/h2&gt; &lt;/br&gt;
+		&lt;strong&gt;Endpoint migration guide&lt;/strong&gt;
+		&lt;ul&gt;
+			&lt;li&gt;&lt;b&gt;Substitute endpoint: &lt;i&gt;/iam/v3/public/namespaces/{namespace}/users/{userId}/platforms/justice  [GET]&lt;/i&gt;&lt;/b&gt;
+			&lt;/li&gt;
+		&lt;/ul&gt;
+
+		This endpoint gets list justice platform account by providing publisher namespace and publisher userID.
 */
 func (a *Client) GetListJusticePlatformAccountsShort(params *GetListJusticePlatformAccountsParams, authInfo runtime.ClientAuthInfoWriter) (*GetListJusticePlatformAccountsOK, error) {
 	// TODO: Validate the params before sending
@@ -11920,7 +12273,17 @@ Deprecated: Use PublicCreateUserV2Short instead.
 
   PublicCreateUserV2 creates user
 
-
+  &lt;h2&gt;The endpoint is going to be deprecated&lt;/h2&gt; &lt;/br&gt;
+&lt;strong&gt;Endpoint migration guide&lt;/strong&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;b&gt;Substitute endpoint: &lt;i&gt;/iam/v3/public/namespaces/{namespace}/users  [POST]&lt;/i&gt;&lt;/b&gt;
+&lt;li&gt;&lt;b&gt;Substitute endpoint: &lt;i&gt;/iam/v4/public/namespaces/{namespace}/users  [POST]&lt;/i&gt;&lt;/b&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;b&gt;Note:&lt;/b&gt;
+	&lt;dd&gt; 1. v3 &amp; v4 introduce optional verification code&lt;/dd&gt;
+	&lt;dd&gt; 2. format difference（Pascal case =&gt; Camel case)&lt;/dd&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
 &lt;p&gt;Available Authentication Types:&lt;/p&gt;
 &lt;ol&gt;
 &lt;li&gt;&lt;strong&gt;EMAILPASSWD&lt;/strong&gt;: an authentication type used for new user registration through email.&lt;/li&gt;
@@ -11984,7 +12347,17 @@ func (a *Client) PublicCreateUserV2(params *PublicCreateUserV2Params, authInfo r
 /*
   PublicCreateUserV2Short creates user
 
-
+  &lt;h2&gt;The endpoint is going to be deprecated&lt;/h2&gt; &lt;/br&gt;
+&lt;strong&gt;Endpoint migration guide&lt;/strong&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;b&gt;Substitute endpoint: &lt;i&gt;/iam/v3/public/namespaces/{namespace}/users  [POST]&lt;/i&gt;&lt;/b&gt;
+&lt;li&gt;&lt;b&gt;Substitute endpoint: &lt;i&gt;/iam/v4/public/namespaces/{namespace}/users  [POST]&lt;/i&gt;&lt;/b&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;b&gt;Note:&lt;/b&gt;
+	&lt;dd&gt; 1. v3 &amp; v4 introduce optional verification code&lt;/dd&gt;
+	&lt;dd&gt; 2. format difference（Pascal case =&gt; Camel case)&lt;/dd&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
 &lt;p&gt;Available Authentication Types:&lt;/p&gt;
 &lt;ol&gt;
 &lt;li&gt;&lt;strong&gt;EMAILPASSWD&lt;/strong&gt;: an authentication type used for new user registration through email.&lt;/li&gt;
@@ -12174,7 +12547,15 @@ Deprecated: Use PublicDeletePlatformLinkV2Short instead.
 
   PublicDeletePlatformLinkV2 deletes the link of user s account with platform
 
-  &lt;h2&gt;Supported platforms:&lt;/h2&gt;
+  &lt;h2&gt;The endpoint is going to be deprecated&lt;/h2&gt; &lt;/br&gt;
+			&lt;strong&gt;Endpoint migration guide&lt;/strong&gt;
+			&lt;ul&gt;
+                &lt;li&gt;&lt;b&gt;Substitute endpoint: &lt;i&gt;/iam/v3/public/namespaces/{namespace}/users/me/platforms/{platformId}  [DELETE]&lt;/i&gt;&lt;/b&gt;
+                &lt;li&gt;&lt;b&gt;Substitute endpoint: &lt;i&gt;/iam/v3/public/namespaces/{namespace}/users/me/platforms/{platformId}/all  [DELETE]&lt;/i&gt;&lt;/b&gt;
+                &lt;/li&gt;
+			&lt;/ul&gt;
+
+			&lt;h2&gt;Supported platforms:&lt;/h2&gt;
 			&lt;ul&gt;
 				&lt;li&gt;&lt;strong&gt;steam&lt;/strong&gt;&lt;/li&gt;
 				&lt;li&gt;&lt;strong&gt;steamopenid&lt;/strong&gt;&lt;/li&gt;
@@ -12249,7 +12630,15 @@ func (a *Client) PublicDeletePlatformLinkV2(params *PublicDeletePlatformLinkV2Pa
 /*
   PublicDeletePlatformLinkV2Short deletes the link of user s account with platform
 
-  &lt;h2&gt;Supported platforms:&lt;/h2&gt;
+  &lt;h2&gt;The endpoint is going to be deprecated&lt;/h2&gt; &lt;/br&gt;
+			&lt;strong&gt;Endpoint migration guide&lt;/strong&gt;
+			&lt;ul&gt;
+                &lt;li&gt;&lt;b&gt;Substitute endpoint: &lt;i&gt;/iam/v3/public/namespaces/{namespace}/users/me/platforms/{platformId}  [DELETE]&lt;/i&gt;&lt;/b&gt;
+                &lt;li&gt;&lt;b&gt;Substitute endpoint: &lt;i&gt;/iam/v3/public/namespaces/{namespace}/users/me/platforms/{platformId}/all  [DELETE]&lt;/i&gt;&lt;/b&gt;
+                &lt;/li&gt;
+			&lt;/ul&gt;
+
+			&lt;h2&gt;Supported platforms:&lt;/h2&gt;
 			&lt;ul&gt;
 				&lt;li&gt;&lt;strong&gt;steam&lt;/strong&gt;&lt;/li&gt;
 				&lt;li&gt;&lt;strong&gt;steamopenid&lt;/strong&gt;&lt;/li&gt;
@@ -12616,7 +13005,14 @@ Deprecated: Use PublicForgotPasswordV2Short instead.
 
   PublicForgotPasswordV2 requests password reset code
 
-  &lt;p&gt;&lt;strong&gt;Special note for publisher-game scenario:&lt;/strong&gt; Game Client should provide game namespace path parameter and Publisher Client should provide publisher namespace path parameter. &lt;/p&gt;&lt;p&gt;The password reset code will be sent to the publisher account&#39;s email address. &lt;/p&gt;
+  &lt;h2&gt;The endpoint is going to be deprecated&lt;/h2&gt; &lt;/br&gt;
+		&lt;strong&gt;Endpoint migration guide&lt;/strong&gt;
+		&lt;ul&gt;
+			&lt;li&gt;&lt;b&gt;Substitute endpoint: &lt;i&gt;/iam/v3/public/namespaces/{namespace}/users/forgot  [POST]&lt;/i&gt;&lt;/b&gt;
+			&lt;/li&gt;
+		&lt;/ul&gt;
+		&lt;p&gt;&lt;strong&gt;Special note for publisher-game scenario:&lt;/strong&gt; Game Client should provide game namespace path parameter and Publisher Client should provide publisher namespace path parameter. &lt;/p&gt;&#34;+
+		&#34;&lt;p&gt;The password reset code will be sent to the publisher account&#39;s email address. &lt;/p&gt;
 */
 func (a *Client) PublicForgotPasswordV2(params *PublicForgotPasswordV2Params, authInfo runtime.ClientAuthInfoWriter) (*PublicForgotPasswordV2NoContent, *PublicForgotPasswordV2BadRequest, *PublicForgotPasswordV2NotFound, *PublicForgotPasswordV2TooManyRequests, *PublicForgotPasswordV2InternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -12674,7 +13070,14 @@ func (a *Client) PublicForgotPasswordV2(params *PublicForgotPasswordV2Params, au
 /*
   PublicForgotPasswordV2Short requests password reset code
 
-  &lt;p&gt;&lt;strong&gt;Special note for publisher-game scenario:&lt;/strong&gt; Game Client should provide game namespace path parameter and Publisher Client should provide publisher namespace path parameter. &lt;/p&gt;&lt;p&gt;The password reset code will be sent to the publisher account&#39;s email address. &lt;/p&gt;
+  &lt;h2&gt;The endpoint is going to be deprecated&lt;/h2&gt; &lt;/br&gt;
+		&lt;strong&gt;Endpoint migration guide&lt;/strong&gt;
+		&lt;ul&gt;
+			&lt;li&gt;&lt;b&gt;Substitute endpoint: &lt;i&gt;/iam/v3/public/namespaces/{namespace}/users/forgot  [POST]&lt;/i&gt;&lt;/b&gt;
+			&lt;/li&gt;
+		&lt;/ul&gt;
+		&lt;p&gt;&lt;strong&gt;Special note for publisher-game scenario:&lt;/strong&gt; Game Client should provide game namespace path parameter and Publisher Client should provide publisher namespace path parameter. &lt;/p&gt;&#34;+
+		&#34;&lt;p&gt;The password reset code will be sent to the publisher account&#39;s email address. &lt;/p&gt;
 */
 func (a *Client) PublicForgotPasswordV2Short(params *PublicForgotPasswordV2Params, authInfo runtime.ClientAuthInfoWriter) (*PublicForgotPasswordV2NoContent, error) {
 	// TODO: Validate the params before sending
@@ -12957,6 +13360,15 @@ func (a *Client) PublicGetAsyncStatusShort(params *PublicGetAsyncStatusParams, a
 Deprecated: Use PublicGetCountryAgeRestrictionShort instead.
 
   PublicGetCountryAgeRestriction publics get age restriction by country code
+
+  &lt;h2&gt;The endpoint is going to be deprecated&lt;/h2&gt; &lt;/br&gt;
+		&lt;strong&gt;Endpoint migration guide&lt;/strong&gt;
+		&lt;ul&gt;
+			&lt;li&gt;&lt;b&gt;Substitute endpoint: &lt;i&gt;/iam/v3/public/namespaces/{namespace}/agerestrictions/countries/{countryCode}  [GET]&lt;/i&gt;&lt;/b&gt;
+			&lt;/li&gt;
+		&lt;/ul&gt;
+
+
 */
 func (a *Client) PublicGetCountryAgeRestriction(params *PublicGetCountryAgeRestrictionParams, authInfo runtime.ClientAuthInfoWriter) (*PublicGetCountryAgeRestrictionOK, *PublicGetCountryAgeRestrictionUnauthorized, *PublicGetCountryAgeRestrictionNotFound, error) {
 	// TODO: Validate the params before sending
@@ -13007,6 +13419,15 @@ func (a *Client) PublicGetCountryAgeRestriction(params *PublicGetCountryAgeRestr
 
 /*
   PublicGetCountryAgeRestrictionShort publics get age restriction by country code
+
+  &lt;h2&gt;The endpoint is going to be deprecated&lt;/h2&gt; &lt;/br&gt;
+		&lt;strong&gt;Endpoint migration guide&lt;/strong&gt;
+		&lt;ul&gt;
+			&lt;li&gt;&lt;b&gt;Substitute endpoint: &lt;i&gt;/iam/v3/public/namespaces/{namespace}/agerestrictions/countries/{countryCode}  [GET]&lt;/i&gt;&lt;/b&gt;
+			&lt;/li&gt;
+		&lt;/ul&gt;
+
+
 */
 func (a *Client) PublicGetCountryAgeRestrictionShort(params *PublicGetCountryAgeRestrictionParams, authInfo runtime.ClientAuthInfoWriter) (*PublicGetCountryAgeRestrictionOK, error) {
 	// TODO: Validate the params before sending
@@ -13046,6 +13467,112 @@ func (a *Client) PublicGetCountryAgeRestrictionShort(params *PublicGetCountryAge
 	case *PublicGetCountryAgeRestrictionUnauthorized:
 		return nil, v
 	case *PublicGetCountryAgeRestrictionNotFound:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+Deprecated: Use PublicGetCountryAgeRestrictionV3Short instead.
+
+  PublicGetCountryAgeRestrictionV3 publics get age restriction by country code
+
+  Get age restriction by country code. It will always get by publisher namespace &lt;/br&gt;
+		&lt;p&gt;Requires valid user access token &lt;/p&gt;
+*/
+func (a *Client) PublicGetCountryAgeRestrictionV3(params *PublicGetCountryAgeRestrictionV3Params, authInfo runtime.ClientAuthInfoWriter) (*PublicGetCountryAgeRestrictionV3OK, *PublicGetCountryAgeRestrictionV3Unauthorized, *PublicGetCountryAgeRestrictionV3NotFound, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewPublicGetCountryAgeRestrictionV3Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "PublicGetCountryAgeRestrictionV3",
+		Method:             "GET",
+		PathPattern:        "/iam/v3/public/namespaces/{namespace}/agerestrictions/countries/{countryCode}",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &PublicGetCountryAgeRestrictionV3Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, nil, nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *PublicGetCountryAgeRestrictionV3OK:
+		return v, nil, nil, nil
+
+	case *PublicGetCountryAgeRestrictionV3Unauthorized:
+		return nil, v, nil, nil
+
+	case *PublicGetCountryAgeRestrictionV3NotFound:
+		return nil, nil, v, nil
+
+	default:
+		return nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+  PublicGetCountryAgeRestrictionV3Short publics get age restriction by country code
+
+  Get age restriction by country code. It will always get by publisher namespace &lt;/br&gt;
+		&lt;p&gt;Requires valid user access token &lt;/p&gt;
+*/
+func (a *Client) PublicGetCountryAgeRestrictionV3Short(params *PublicGetCountryAgeRestrictionV3Params, authInfo runtime.ClientAuthInfoWriter) (*PublicGetCountryAgeRestrictionV3OK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewPublicGetCountryAgeRestrictionV3Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "PublicGetCountryAgeRestrictionV3",
+		Method:             "GET",
+		PathPattern:        "/iam/v3/public/namespaces/{namespace}/agerestrictions/countries/{countryCode}",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &PublicGetCountryAgeRestrictionV3Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *PublicGetCountryAgeRestrictionV3OK:
+		return v, nil
+	case *PublicGetCountryAgeRestrictionV3Unauthorized:
+		return nil, v
+	case *PublicGetCountryAgeRestrictionV3NotFound:
 		return nil, v
 
 	default:
@@ -13279,6 +13806,14 @@ func (a *Client) PublicGetPublisherUserV3Short(params *PublicGetPublisherUserV3P
 Deprecated: Use PublicGetUserBanShort instead.
 
   PublicGetUserBan gets user s bans
+
+  &lt;h2&gt;The endpoint is going to be deprecated&lt;/h2&gt; &lt;/br&gt;
+			&lt;strong&gt;Endpoint migration guide&lt;/strong&gt;
+			&lt;ul&gt;
+                &lt;li&gt;&lt;b&gt;Substitute endpoint: &lt;i&gt;/iam/v3/public/namespaces/{namespace}/users/{userId}/bans  [GET]&lt;/i&gt;&lt;/b&gt;
+                &lt;/li&gt;
+			&lt;/ul&gt;
+
 */
 func (a *Client) PublicGetUserBan(params *PublicGetUserBanParams, authInfo runtime.ClientAuthInfoWriter) (*PublicGetUserBanOK, *PublicGetUserBanUnauthorized, *PublicGetUserBanForbidden, *PublicGetUserBanNotFound, error) {
 	// TODO: Validate the params before sending
@@ -13332,6 +13867,14 @@ func (a *Client) PublicGetUserBan(params *PublicGetUserBanParams, authInfo runti
 
 /*
   PublicGetUserBanShort gets user s bans
+
+  &lt;h2&gt;The endpoint is going to be deprecated&lt;/h2&gt; &lt;/br&gt;
+			&lt;strong&gt;Endpoint migration guide&lt;/strong&gt;
+			&lt;ul&gt;
+                &lt;li&gt;&lt;b&gt;Substitute endpoint: &lt;i&gt;/iam/v3/public/namespaces/{namespace}/users/{userId}/bans  [GET]&lt;/i&gt;&lt;/b&gt;
+                &lt;/li&gt;
+			&lt;/ul&gt;
+
 */
 func (a *Client) PublicGetUserBanShort(params *PublicGetUserBanParams, authInfo runtime.ClientAuthInfoWriter) (*PublicGetUserBanOK, error) {
 	// TODO: Validate the params before sending
@@ -13639,6 +14182,18 @@ func (a *Client) PublicGetUserByPlatformUserIDV3Short(params *PublicGetUserByPla
 Deprecated: Use PublicGetUserByUserIDV2Short instead.
 
   PublicGetUserByUserIDV2 gets user by user ID
+
+  &lt;h2&gt;The endpoint is going to be deprecated&lt;/h2&gt; &lt;/br&gt;
+		&lt;strong&gt;Endpoint migration guide&lt;/strong&gt;
+		&lt;ul&gt;
+		&lt;li&gt;&lt;b&gt;Substitute endpoint(Public): &lt;i&gt;/iam/v3/public/namespaces/{namespace}/users/{userId}  [GET]&lt;/i&gt;&lt;/b&gt;
+		&lt;li&gt;&lt;b&gt;Substitute endpoint(Admin): &lt;i&gt;/iam/v3/admin/namespaces/{namespace}/users/{userId}  [GET]&lt;/i&gt;&lt;/b&gt;
+		&lt;/li&gt;
+		&lt;li&gt;&lt;b&gt;Note:&lt;/b&gt;
+            		&lt;dd&gt;format difference in response: Pascal case =&gt; Camel case&lt;/dd&gt;&lt;/b&gt;
+		&lt;/li&gt;
+		&lt;/ul&gt;
+
 */
 func (a *Client) PublicGetUserByUserIDV2(params *PublicGetUserByUserIDV2Params, authInfo runtime.ClientAuthInfoWriter) (*PublicGetUserByUserIDV2OK, *PublicGetUserByUserIDV2NotFound, *PublicGetUserByUserIDV2InternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -13689,6 +14244,18 @@ func (a *Client) PublicGetUserByUserIDV2(params *PublicGetUserByUserIDV2Params, 
 
 /*
   PublicGetUserByUserIDV2Short gets user by user ID
+
+  &lt;h2&gt;The endpoint is going to be deprecated&lt;/h2&gt; &lt;/br&gt;
+		&lt;strong&gt;Endpoint migration guide&lt;/strong&gt;
+		&lt;ul&gt;
+		&lt;li&gt;&lt;b&gt;Substitute endpoint(Public): &lt;i&gt;/iam/v3/public/namespaces/{namespace}/users/{userId}  [GET]&lt;/i&gt;&lt;/b&gt;
+		&lt;li&gt;&lt;b&gt;Substitute endpoint(Admin): &lt;i&gt;/iam/v3/admin/namespaces/{namespace}/users/{userId}  [GET]&lt;/i&gt;&lt;/b&gt;
+		&lt;/li&gt;
+		&lt;li&gt;&lt;b&gt;Note:&lt;/b&gt;
+            		&lt;dd&gt;format difference in response: Pascal case =&gt; Camel case&lt;/dd&gt;&lt;/b&gt;
+		&lt;/li&gt;
+		&lt;/ul&gt;
+
 */
 func (a *Client) PublicGetUserByUserIDV2Short(params *PublicGetUserByUserIDV2Params, authInfo runtime.ClientAuthInfoWriter) (*PublicGetUserByUserIDV2OK, error) {
 	// TODO: Validate the params before sending
@@ -14303,6 +14870,127 @@ func (a *Client) PublicLinkPlatformAccountShort(params *PublicLinkPlatformAccoun
 }
 
 /*
+Deprecated: Use PublicListJusticePlatformAccountsV3Short instead.
+
+  PublicListJusticePlatformAccountsV3 gets user justice platform accounts
+
+  This endpoint gets list justice platform account by providing publisher namespace and publisher userID&lt;/br&gt;
+&lt;p&gt;Requires valid user access token &lt;/p&gt;&lt;/br&gt;
+*/
+func (a *Client) PublicListJusticePlatformAccountsV3(params *PublicListJusticePlatformAccountsV3Params, authInfo runtime.ClientAuthInfoWriter) (*PublicListJusticePlatformAccountsV3OK, *PublicListJusticePlatformAccountsV3BadRequest, *PublicListJusticePlatformAccountsV3Unauthorized, *PublicListJusticePlatformAccountsV3Forbidden, *PublicListJusticePlatformAccountsV3NotFound, *PublicListJusticePlatformAccountsV3InternalServerError, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewPublicListJusticePlatformAccountsV3Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "PublicListJusticePlatformAccountsV3",
+		Method:             "GET",
+		PathPattern:        "/iam/v3/public/namespaces/{namespace}/users/{userId}/platforms/justice",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &PublicListJusticePlatformAccountsV3Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, nil, nil, nil, nil, nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *PublicListJusticePlatformAccountsV3OK:
+		return v, nil, nil, nil, nil, nil, nil
+
+	case *PublicListJusticePlatformAccountsV3BadRequest:
+		return nil, v, nil, nil, nil, nil, nil
+
+	case *PublicListJusticePlatformAccountsV3Unauthorized:
+		return nil, nil, v, nil, nil, nil, nil
+
+	case *PublicListJusticePlatformAccountsV3Forbidden:
+		return nil, nil, nil, v, nil, nil, nil
+
+	case *PublicListJusticePlatformAccountsV3NotFound:
+		return nil, nil, nil, nil, v, nil, nil
+
+	case *PublicListJusticePlatformAccountsV3InternalServerError:
+		return nil, nil, nil, nil, nil, v, nil
+
+	default:
+		return nil, nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+  PublicListJusticePlatformAccountsV3Short gets user justice platform accounts
+
+  This endpoint gets list justice platform account by providing publisher namespace and publisher userID&lt;/br&gt;
+&lt;p&gt;Requires valid user access token &lt;/p&gt;&lt;/br&gt;
+*/
+func (a *Client) PublicListJusticePlatformAccountsV3Short(params *PublicListJusticePlatformAccountsV3Params, authInfo runtime.ClientAuthInfoWriter) (*PublicListJusticePlatformAccountsV3OK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewPublicListJusticePlatformAccountsV3Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "PublicListJusticePlatformAccountsV3",
+		Method:             "GET",
+		PathPattern:        "/iam/v3/public/namespaces/{namespace}/users/{userId}/platforms/justice",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &PublicListJusticePlatformAccountsV3Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *PublicListJusticePlatformAccountsV3OK:
+		return v, nil
+	case *PublicListJusticePlatformAccountsV3BadRequest:
+		return nil, v
+	case *PublicListJusticePlatformAccountsV3Unauthorized:
+		return nil, v
+	case *PublicListJusticePlatformAccountsV3Forbidden:
+		return nil, v
+	case *PublicListJusticePlatformAccountsV3NotFound:
+		return nil, v
+	case *PublicListJusticePlatformAccountsV3InternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
 Deprecated: Use PublicListUserAllPlatformAccountsDistinctV3Short instead.
 
   PublicListUserAllPlatformAccountsDistinctV3 gets distinct platform accounts linked to the user
@@ -14681,7 +15369,13 @@ Deprecated: Use PublicPlatformLinkV2Short instead.
 
   PublicPlatformLinkV2 links user s account with platform
 
-  &lt;p&gt;&lt;br&gt;&lt;b&gt;Prerequisite:&lt;/b&gt;
+  &lt;h2&gt;The endpoint is going to be deprecated&lt;/h2&gt; &lt;/br&gt;
+		&lt;strong&gt;Endpoint migration guide&lt;/strong&gt;
+		&lt;ul&gt;
+                &lt;li&gt;&lt;b&gt;Substitute endpoint: &lt;i&gt;/iam/v3/public/namespaces/{namespace}/users/me/platforms/{platformId}  [POST]&lt;/i&gt;&lt;/b&gt;
+                &lt;/li&gt;
+		&lt;/ul&gt;
+		&lt;p&gt;&lt;br&gt;&lt;b&gt;Prerequisite:&lt;/b&gt;
 		Platform client configuration need to be added to database for specific platformId. Namespace service URL need to be specified (refer to required environment variables).
 			&lt;h2&gt;Supported platforms:&lt;/h2&gt;
 			&lt;ul&gt;
@@ -14759,7 +15453,13 @@ func (a *Client) PublicPlatformLinkV2(params *PublicPlatformLinkV2Params, authIn
 /*
   PublicPlatformLinkV2Short links user s account with platform
 
-  &lt;p&gt;&lt;br&gt;&lt;b&gt;Prerequisite:&lt;/b&gt;
+  &lt;h2&gt;The endpoint is going to be deprecated&lt;/h2&gt; &lt;/br&gt;
+		&lt;strong&gt;Endpoint migration guide&lt;/strong&gt;
+		&lt;ul&gt;
+                &lt;li&gt;&lt;b&gt;Substitute endpoint: &lt;i&gt;/iam/v3/public/namespaces/{namespace}/users/me/platforms/{platformId}  [POST]&lt;/i&gt;&lt;/b&gt;
+                &lt;/li&gt;
+		&lt;/ul&gt;
+		&lt;p&gt;&lt;br&gt;&lt;b&gt;Prerequisite:&lt;/b&gt;
 		Platform client configuration need to be added to database for specific platformId. Namespace service URL need to be specified (refer to required environment variables).
 			&lt;h2&gt;Supported platforms:&lt;/h2&gt;
 			&lt;ul&gt;
@@ -15279,6 +15979,14 @@ func (a *Client) PublicPlatformUnlinkV3Short(params *PublicPlatformUnlinkV3Param
 Deprecated: Use PublicResetPasswordV2Short instead.
 
   PublicResetPasswordV2 resets user password
+
+  &lt;h2&gt;The endpoint is going to be deprecated&lt;/h2&gt; &lt;/br&gt;
+		&lt;strong&gt;Endpoint migration guide&lt;/strong&gt;
+		&lt;ul&gt;
+			&lt;li&gt;&lt;b&gt;Substitute endpoint: &lt;i&gt;/iam/v3/public/namespaces/{namespace}/users/reset  [POST]&lt;/i&gt;&lt;/b&gt;
+			&lt;/li&gt;
+		&lt;/ul&gt;
+
 */
 func (a *Client) PublicResetPasswordV2(params *PublicResetPasswordV2Params, authInfo runtime.ClientAuthInfoWriter) (*PublicResetPasswordV2NoContent, *PublicResetPasswordV2BadRequest, *PublicResetPasswordV2Forbidden, *PublicResetPasswordV2NotFound, *PublicResetPasswordV2InternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -15335,6 +16043,14 @@ func (a *Client) PublicResetPasswordV2(params *PublicResetPasswordV2Params, auth
 
 /*
   PublicResetPasswordV2Short resets user password
+
+  &lt;h2&gt;The endpoint is going to be deprecated&lt;/h2&gt; &lt;/br&gt;
+		&lt;strong&gt;Endpoint migration guide&lt;/strong&gt;
+		&lt;ul&gt;
+			&lt;li&gt;&lt;b&gt;Substitute endpoint: &lt;i&gt;/iam/v3/public/namespaces/{namespace}/users/reset  [POST]&lt;/i&gt;&lt;/b&gt;
+			&lt;/li&gt;
+		&lt;/ul&gt;
+
 */
 func (a *Client) PublicResetPasswordV2Short(params *PublicResetPasswordV2Params, authInfo runtime.ClientAuthInfoWriter) (*PublicResetPasswordV2NoContent, error) {
 	// TODO: Validate the params before sending
@@ -15903,7 +16619,14 @@ Deprecated: Use PublicUpdatePasswordV2Short instead.
 
   PublicUpdatePasswordV2 updates user password
 
-  This endpoint need a valid user access token
+  &lt;h2&gt;The endpoint is going to be deprecated&lt;/h2&gt; &lt;/br&gt;
+		&lt;strong&gt;Endpoint migration guide&lt;/strong&gt;
+		&lt;ul&gt;
+                &lt;li&gt;&lt;b&gt;Substitute endpoint: &lt;i&gt;/iam/v3/public/namespaces/{namespace}/users/me/password  [PUT]&lt;/i&gt;&lt;/b&gt;
+                &lt;/li&gt;
+		&lt;/ul&gt;
+
+		This endpoint need a valid user access token
 */
 func (a *Client) PublicUpdatePasswordV2(params *PublicUpdatePasswordV2Params, authInfo runtime.ClientAuthInfoWriter) (*PublicUpdatePasswordV2NoContent, *PublicUpdatePasswordV2BadRequest, *PublicUpdatePasswordV2Unauthorized, *PublicUpdatePasswordV2Forbidden, *PublicUpdatePasswordV2NotFound, *PublicUpdatePasswordV2InternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -15964,7 +16687,14 @@ func (a *Client) PublicUpdatePasswordV2(params *PublicUpdatePasswordV2Params, au
 /*
   PublicUpdatePasswordV2Short updates user password
 
-  This endpoint need a valid user access token
+  &lt;h2&gt;The endpoint is going to be deprecated&lt;/h2&gt; &lt;/br&gt;
+		&lt;strong&gt;Endpoint migration guide&lt;/strong&gt;
+		&lt;ul&gt;
+                &lt;li&gt;&lt;b&gt;Substitute endpoint: &lt;i&gt;/iam/v3/public/namespaces/{namespace}/users/me/password  [PUT]&lt;/i&gt;&lt;/b&gt;
+                &lt;/li&gt;
+		&lt;/ul&gt;
+
+		This endpoint need a valid user access token
 */
 func (a *Client) PublicUpdatePasswordV2Short(params *PublicUpdatePasswordV2Params, authInfo runtime.ClientAuthInfoWriter) (*PublicUpdatePasswordV2NoContent, error) {
 	// TODO: Validate the params before sending
@@ -16131,7 +16861,20 @@ Deprecated: Use PublicUpdateUserV2Short instead.
 
   PublicUpdateUserV2 updates user
 
-  &lt;br&gt;&lt;p&gt;This Endpoint support update user based on given data. &lt;b&gt;Single request can update single field or multi fields.&lt;/b&gt;&lt;/p&gt; This endpoint require valid user access token to accessed. &lt;p&gt;Supported field {Country, DisplayName, LanguageTag}&lt;/p&gt;
+  &lt;h2&gt;The endpoint is going to be deprecated&lt;/h2&gt; &lt;/br&gt;
+		&lt;strong&gt;Endpoint migration guide&lt;/strong&gt;
+		&lt;ul&gt;
+                &lt;li&gt;&lt;b&gt;Substitute endpoint([PUT]): &lt;i&gt;/iam/v3/public/namespaces/{namespace}/users/me  [PUT]&lt;/i&gt;&lt;/b&gt;
+                &lt;li&gt;&lt;b&gt;Substitute endpoint([PATCH]): &lt;i&gt;/iam/v3/public/namespaces/{namespace}/users/me  [PATCH]&lt;/i&gt;&lt;/b&gt;
+                &lt;li&gt;&lt;b&gt;Substitute endpoint([PATCH]): &lt;i&gt;/iam/v4/public/namespaces/{namespace}/users/me  [PATCH]&lt;/i&gt;&lt;/b&gt;
+                &lt;/li&gt;
+                &lt;li&gt;&lt;b&gt;Note:  &lt;/b&gt;
+					&lt;dd&gt;1. Prefer [PATCH] if client support PATCH method&lt;/dd&gt;
+					&lt;dd&gt;2. Difference in V3/v4 request body, format difference: Pascal case =&gt; Camel case&lt;/dd&gt;
+				&lt;/li&gt;
+		&lt;/ul&gt;
+		&lt;br&gt;&lt;p&gt;This Endpoint support update user based on given data. &lt;b&gt;Single request can update single field or multi fields.&lt;/b&gt;&lt;/p&gt; &#34;+
+		&#34;This endpoint require valid user access token to accessed. &lt;p&gt;Supported field {Country, DisplayName, LanguageTag}&lt;/p&gt;
 */
 func (a *Client) PublicUpdateUserV2(params *PublicUpdateUserV2Params, authInfo runtime.ClientAuthInfoWriter) (*PublicUpdateUserV2OK, *PublicUpdateUserV2BadRequest, *PublicUpdateUserV2Unauthorized, *PublicUpdateUserV2NotFound, *PublicUpdateUserV2Conflict, *PublicUpdateUserV2InternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -16192,7 +16935,20 @@ func (a *Client) PublicUpdateUserV2(params *PublicUpdateUserV2Params, authInfo r
 /*
   PublicUpdateUserV2Short updates user
 
-  &lt;br&gt;&lt;p&gt;This Endpoint support update user based on given data. &lt;b&gt;Single request can update single field or multi fields.&lt;/b&gt;&lt;/p&gt; This endpoint require valid user access token to accessed. &lt;p&gt;Supported field {Country, DisplayName, LanguageTag}&lt;/p&gt;
+  &lt;h2&gt;The endpoint is going to be deprecated&lt;/h2&gt; &lt;/br&gt;
+		&lt;strong&gt;Endpoint migration guide&lt;/strong&gt;
+		&lt;ul&gt;
+                &lt;li&gt;&lt;b&gt;Substitute endpoint([PUT]): &lt;i&gt;/iam/v3/public/namespaces/{namespace}/users/me  [PUT]&lt;/i&gt;&lt;/b&gt;
+                &lt;li&gt;&lt;b&gt;Substitute endpoint([PATCH]): &lt;i&gt;/iam/v3/public/namespaces/{namespace}/users/me  [PATCH]&lt;/i&gt;&lt;/b&gt;
+                &lt;li&gt;&lt;b&gt;Substitute endpoint([PATCH]): &lt;i&gt;/iam/v4/public/namespaces/{namespace}/users/me  [PATCH]&lt;/i&gt;&lt;/b&gt;
+                &lt;/li&gt;
+                &lt;li&gt;&lt;b&gt;Note:  &lt;/b&gt;
+					&lt;dd&gt;1. Prefer [PATCH] if client support PATCH method&lt;/dd&gt;
+					&lt;dd&gt;2. Difference in V3/v4 request body, format difference: Pascal case =&gt; Camel case&lt;/dd&gt;
+				&lt;/li&gt;
+		&lt;/ul&gt;
+		&lt;br&gt;&lt;p&gt;This Endpoint support update user based on given data. &lt;b&gt;Single request can update single field or multi fields.&lt;/b&gt;&lt;/p&gt; &#34;+
+		&#34;This endpoint require valid user access token to accessed. &lt;p&gt;Supported field {Country, DisplayName, LanguageTag}&lt;/p&gt;
 */
 func (a *Client) PublicUpdateUserV2Short(params *PublicUpdateUserV2Params, authInfo runtime.ClientAuthInfoWriter) (*PublicUpdateUserV2OK, error) {
 	// TODO: Validate the params before sending
@@ -17996,7 +18752,14 @@ Deprecated: Use UpdateCountryAgeRestrictionShort instead.
 
   UpdateCountryAgeRestriction updates country s age restriction
 
-  Required permission &#39;ADMIN:NAMESPACE:{namespace}:AGERESTRICTION [UPDATE]&#39;
+  &lt;h2&gt;The endpoint is going to be deprecated&lt;/h2&gt; &lt;/br&gt;
+		&lt;strong&gt;Endpoint migration guide&lt;/strong&gt;
+		&lt;ul&gt;
+                &lt;li&gt;&lt;b&gt;Substitute endpoint: &lt;i&gt;/iam/v3/admin/namespaces/{namespace}/agerestrictions/countries/{countryCode}  [PATCH]&lt;/i&gt;&lt;/b&gt;
+                &lt;/li&gt;
+		&lt;/ul&gt;
+
+		Required permission &#39;ADMIN:NAMESPACE:{namespace}:AGERESTRICTION [UPDATE]&#39;
 */
 func (a *Client) UpdateCountryAgeRestriction(params *UpdateCountryAgeRestrictionParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateCountryAgeRestrictionOK, *UpdateCountryAgeRestrictionBadRequest, *UpdateCountryAgeRestrictionUnauthorized, *UpdateCountryAgeRestrictionForbidden, *UpdateCountryAgeRestrictionNotFound, error) {
 	// TODO: Validate the params before sending
@@ -18054,7 +18817,14 @@ func (a *Client) UpdateCountryAgeRestriction(params *UpdateCountryAgeRestriction
 /*
   UpdateCountryAgeRestrictionShort updates country s age restriction
 
-  Required permission &#39;ADMIN:NAMESPACE:{namespace}:AGERESTRICTION [UPDATE]&#39;
+  &lt;h2&gt;The endpoint is going to be deprecated&lt;/h2&gt; &lt;/br&gt;
+		&lt;strong&gt;Endpoint migration guide&lt;/strong&gt;
+		&lt;ul&gt;
+                &lt;li&gt;&lt;b&gt;Substitute endpoint: &lt;i&gt;/iam/v3/admin/namespaces/{namespace}/agerestrictions/countries/{countryCode}  [PATCH]&lt;/i&gt;&lt;/b&gt;
+                &lt;/li&gt;
+		&lt;/ul&gt;
+
+		Required permission &#39;ADMIN:NAMESPACE:{namespace}:AGERESTRICTION [UPDATE]&#39;
 */
 func (a *Client) UpdateCountryAgeRestrictionShort(params *UpdateCountryAgeRestrictionParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateCountryAgeRestrictionOK, error) {
 	// TODO: Validate the params before sending

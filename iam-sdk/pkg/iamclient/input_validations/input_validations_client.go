@@ -274,6 +274,7 @@ Deprecated: Use AdminUpdateInputValidationsShort instead.
 		&lt;li&gt;displayName&lt;/li&gt;
 		&lt;li&gt;password&lt;/li&gt;
 		&lt;li&gt;username&lt;/li&gt;
+		&lt;li&gt;email&lt;/li&gt;
 		&lt;/ul&gt;
 		&lt;p&gt;If &lt;code&gt;isCustomRegex&lt;/code&gt; is set to true, &lt;code&gt;regex&lt;/code&gt; parameter will be used as input validation and the other parameters will be ignored. Otherwise, &lt;code&gt;regex&lt;/code&gt; parameter will be ignored and regex for input validation will be generated based on the combination of the other parameters. &lt;/p&gt;
 		&lt;p&gt;If &lt;code&gt;allowUnicode&lt;/code&gt; is set to true, unicode regex pattern will be use as the input validation and the other parameters will be ignored.&lt;/p&gt;
@@ -291,6 +292,7 @@ Deprecated: Use AdminUpdateInputValidationsShort instead.
 		&lt;/ul&gt;
 		&lt;p&gt;If &lt;code&gt;specialCharacters&lt;/code&gt; is empty, &lt;code&gt;specialCharacterLocation&lt;/code&gt; and &lt;code&gt;maxRepeatingSpecialCharacter&lt;/code&gt; will be ignored.&lt;/p&gt;
 		&lt;p&gt;&lt;code&gt;minCharType&lt;/code&gt; is used to identify how many required criteria in the regex. The supported criteria are number, letter, special character, and letter case. If set to 0 or 1 means all criteria are optional. It can be set as much as the number of criteria enabled.&lt;/p&gt;
+		&lt;p&gt;If &lt;code&gt;blockedWord&lt;/code&gt; is set by admin, any input from user which contain kind of blocked word(s) will be blocked for create/upgrade/update account&lt;/p&gt;
 
 */
 func (a *Client) AdminUpdateInputValidations(params *AdminUpdateInputValidationsParams, authInfo runtime.ClientAuthInfoWriter) (*AdminUpdateInputValidationsNoContent, *AdminUpdateInputValidationsUnauthorized, *AdminUpdateInputValidationsForbidden, *AdminUpdateInputValidationsNotFound, error) {
@@ -353,6 +355,7 @@ func (a *Client) AdminUpdateInputValidations(params *AdminUpdateInputValidations
 		&lt;li&gt;displayName&lt;/li&gt;
 		&lt;li&gt;password&lt;/li&gt;
 		&lt;li&gt;username&lt;/li&gt;
+		&lt;li&gt;email&lt;/li&gt;
 		&lt;/ul&gt;
 		&lt;p&gt;If &lt;code&gt;isCustomRegex&lt;/code&gt; is set to true, &lt;code&gt;regex&lt;/code&gt; parameter will be used as input validation and the other parameters will be ignored. Otherwise, &lt;code&gt;regex&lt;/code&gt; parameter will be ignored and regex for input validation will be generated based on the combination of the other parameters. &lt;/p&gt;
 		&lt;p&gt;If &lt;code&gt;allowUnicode&lt;/code&gt; is set to true, unicode regex pattern will be use as the input validation and the other parameters will be ignored.&lt;/p&gt;
@@ -370,6 +373,7 @@ func (a *Client) AdminUpdateInputValidations(params *AdminUpdateInputValidations
 		&lt;/ul&gt;
 		&lt;p&gt;If &lt;code&gt;specialCharacters&lt;/code&gt; is empty, &lt;code&gt;specialCharacterLocation&lt;/code&gt; and &lt;code&gt;maxRepeatingSpecialCharacter&lt;/code&gt; will be ignored.&lt;/p&gt;
 		&lt;p&gt;&lt;code&gt;minCharType&lt;/code&gt; is used to identify how many required criteria in the regex. The supported criteria are number, letter, special character, and letter case. If set to 0 or 1 means all criteria are optional. It can be set as much as the number of criteria enabled.&lt;/p&gt;
+		&lt;p&gt;If &lt;code&gt;blockedWord&lt;/code&gt; is set by admin, any input from user which contain kind of blocked word(s) will be blocked for create/upgrade/update account&lt;/p&gt;
 
 */
 func (a *Client) AdminUpdateInputValidationsShort(params *AdminUpdateInputValidationsParams, authInfo runtime.ClientAuthInfoWriter) (*AdminUpdateInputValidationsNoContent, error) {

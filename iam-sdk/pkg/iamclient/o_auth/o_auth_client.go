@@ -82,7 +82,11 @@ Deprecated: Use AuthorizationShort instead.
 &lt;p&gt;&lt;strong&gt;2. Response Type == &#34;token&#34; (Implicit) is deprecated. &lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;Endpoint migration guide&lt;/strong&gt;&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;b&gt;Substitute endpoint: &lt;i&gt;/iam/v3/oauth/authorize  [GET]&lt;/i&gt;&lt;/b&gt;&lt;/li&gt;
+&lt;li&gt;&lt;b&gt;Substitute endpoint (for: basic header style): &lt;i&gt;/iam/v3/oauth/authorize  [GET]&lt;/i&gt;&lt;/b&gt;&lt;/li&gt;
+&lt;li&gt;&lt;b&gt;Substitute endpoint (for: bearer header style): &lt;/b&gt;
+	&lt;dd&gt;step1: /iam/v3/namespace/{namespace}/token/request [POST] =&gt; get code&lt;dd&gt;&lt;/br&gt;
+	&lt;dd&gt;step2: /iam/v3/token/exchange [POST] =&gt; get token by step1&#39;s code&lt;dd&gt;&lt;/br&gt;
+&lt;/li&gt;
 &lt;li&gt;&lt;b&gt;Note: &lt;/b&gt;
 	&lt;dd&gt;1. V3 is standard OAuth2 flow and support PKCE&lt;dd&gt;&lt;/br&gt;
 	&lt;dd&gt;2. Will not support implicit flow in v3.&lt;dd&gt;&lt;/br&gt;
@@ -156,7 +160,11 @@ func (a *Client) Authorization(params *AuthorizationParams, authInfo runtime.Cli
 &lt;p&gt;&lt;strong&gt;2. Response Type == &#34;token&#34; (Implicit) is deprecated. &lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;Endpoint migration guide&lt;/strong&gt;&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;b&gt;Substitute endpoint: &lt;i&gt;/iam/v3/oauth/authorize  [GET]&lt;/i&gt;&lt;/b&gt;&lt;/li&gt;
+&lt;li&gt;&lt;b&gt;Substitute endpoint (for: basic header style): &lt;i&gt;/iam/v3/oauth/authorize  [GET]&lt;/i&gt;&lt;/b&gt;&lt;/li&gt;
+&lt;li&gt;&lt;b&gt;Substitute endpoint (for: bearer header style): &lt;/b&gt;
+	&lt;dd&gt;step1: /iam/v3/namespace/{namespace}/token/request [POST] =&gt; get code&lt;dd&gt;&lt;/br&gt;
+	&lt;dd&gt;step2: /iam/v3/token/exchange [POST] =&gt; get token by step1&#39;s code&lt;dd&gt;&lt;/br&gt;
+&lt;/li&gt;
 &lt;li&gt;&lt;b&gt;Note: &lt;/b&gt;
 	&lt;dd&gt;1. V3 is standard OAuth2 flow and support PKCE&lt;dd&gt;&lt;/br&gt;
 	&lt;dd&gt;2. Will not support implicit flow in v3.&lt;dd&gt;&lt;/br&gt;

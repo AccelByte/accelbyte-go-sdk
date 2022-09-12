@@ -80,7 +80,7 @@ func NewPublicPartialUpdateUserV3OK() *PublicPartialUpdateUserV3OK {
   OK
 */
 type PublicPartialUpdateUserV3OK struct {
-	Payload []*iamclientmodels.ModelUserResponseV3
+	Payload *iamclientmodels.ModelUserResponseV3
 }
 
 func (o *PublicPartialUpdateUserV3OK) Error() string {
@@ -102,14 +102,16 @@ func (o *PublicPartialUpdateUserV3OK) ToJSONString() string {
 	return fmt.Sprintf("%+v", string(b))
 }
 
-func (o *PublicPartialUpdateUserV3OK) GetPayload() []*iamclientmodels.ModelUserResponseV3 {
+func (o *PublicPartialUpdateUserV3OK) GetPayload() *iamclientmodels.ModelUserResponseV3 {
 	return o.Payload
 }
 
 func (o *PublicPartialUpdateUserV3OK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
+	o.Payload = new(iamclientmodels.ModelUserResponseV3)
+
 	// response payload
-	if err := consumer.Consume(response.Body(), &o.Payload); err != nil && err != io.EOF {
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
 		return err
 	}
 

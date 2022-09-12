@@ -28,6 +28,10 @@ type ModelsGetImageLimitResponseData struct {
 	// non persistent image number
 	// Required: true
 	NonPersistentImageNumber *int32 `json:"non_persistent_image_number"`
+
+	// non persistent image used in deployment number
+	// Required: true
+	NonPersistentImageUsedInDeploymentNumber *int32 `json:"non_persistent_image_used_in_deployment_number"`
 }
 
 // Validate validates this models get image limit response data
@@ -43,6 +47,10 @@ func (m *ModelsGetImageLimitResponseData) Validate(formats strfmt.Registry) erro
 	}
 
 	if err := m.validateNonPersistentImageNumber(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateNonPersistentImageUsedInDeploymentNumber(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -73,6 +81,15 @@ func (m *ModelsGetImageLimitResponseData) validateImageLimit(formats strfmt.Regi
 func (m *ModelsGetImageLimitResponseData) validateNonPersistentImageNumber(formats strfmt.Registry) error {
 
 	if err := validate.Required("non_persistent_image_number", "body", m.NonPersistentImageNumber); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *ModelsGetImageLimitResponseData) validateNonPersistentImageUsedInDeploymentNumber(formats strfmt.Registry) error {
+
+	if err := validate.Required("non_persistent_image_used_in_deployment_number", "body", m.NonPersistentImageUsedInDeploymentNumber); err != nil {
 		return err
 	}
 

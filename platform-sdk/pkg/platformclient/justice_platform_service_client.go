@@ -28,6 +28,7 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclient/fulfillment"
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclient/fulfillment_script"
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclient/i_a_p"
+	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclient/invoice"
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclient/item"
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclient/key_group"
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclient/order"
@@ -114,6 +115,7 @@ func New(transport runtime.ClientTransport, runtime *httptransport.Runtime, form
 	cli.Fulfillment = fulfillment.New(transport, formats)
 	cli.FulfillmentScript = fulfillment_script.New(transport, formats)
 	cli.Iap = i_a_p.New(transport, formats)
+	cli.Invoice = invoice.New(transport, formats)
 	cli.Item = item.New(transport, formats)
 	cli.KeyGroup = key_group.New(transport, formats)
 	cli.Order = order.New(transport, formats)
@@ -211,6 +213,8 @@ type JusticePlatformService struct {
 
 	Iap i_a_p.ClientService
 
+	Invoice invoice.ClientService
+
 	Item item.ClientService
 
 	KeyGroup key_group.ClientService
@@ -259,6 +263,7 @@ func (c *JusticePlatformService) SetTransport(transport runtime.ClientTransport)
 	c.Fulfillment.SetTransport(transport)
 	c.FulfillmentScript.SetTransport(transport)
 	c.Iap.SetTransport(transport)
+	c.Invoice.SetTransport(transport)
 	c.Item.SetTransport(transport)
 	c.KeyGroup.SetTransport(transport)
 	c.Order.SetTransport(transport)

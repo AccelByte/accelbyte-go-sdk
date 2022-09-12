@@ -336,6 +336,29 @@ func (aaa *ImageConfigService) GetImagePatchDetail(input *image_config.GetImageP
 	return ok.GetPayload(), nil
 }
 
+// Deprecated: Use ImageLimitClientShort instead
+func (aaa *ImageConfigService) ImageLimitClient(input *image_config.ImageLimitClientParams) (*dsmcclientmodels.ModelsGetImageLimitResponse, error) {
+	token, err := aaa.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, badRequest, unauthorized, internalServerError, err := aaa.Client.ImageConfig.ImageLimitClient(input, client.BearerToken(*token.AccessToken))
+	if badRequest != nil {
+		return nil, badRequest
+	}
+	if unauthorized != nil {
+		return nil, unauthorized
+	}
+	if internalServerError != nil {
+		return nil, internalServerError
+	}
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
 // Deprecated: Use ImageDetailClientShort instead
 func (aaa *ImageConfigService) ImageDetailClient(input *image_config.ImageDetailClientParams) (*dsmcclientmodels.ModelsGetImageDetailResponse, error) {
 	token, err := aaa.TokenRepository.GetToken()
@@ -652,6 +675,31 @@ func (aaa *ImageConfigService) GetImagePatchDetailShort(input *image_config.GetI
 	}
 
 	ok, err := aaa.Client.ImageConfig.GetImagePatchDetailShort(input, authInfoWriter)
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
+func (aaa *ImageConfigService) ImageLimitClientShort(input *image_config.ImageLimitClientParams) (*dsmcclientmodels.ModelsGetImageLimitResponse, error) {
+	authInfoWriter := input.AuthInfoWriter
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
+	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  aaa.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
+	ok, err := aaa.Client.ImageConfig.ImageLimitClientShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}

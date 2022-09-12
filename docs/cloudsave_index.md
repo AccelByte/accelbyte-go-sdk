@@ -23,6 +23,7 @@
 ### AdminPlayerRecord Wrapper:  [AdminPlayerRecord](../services-api/pkg/service/cloudsave/adminPlayerRecord.go)
 | Endpoint | Method | ID | Class | Wrapper | Example |
 |---|---|---|---|---|---|
+| `/cloudsave/v1/admin/namespaces/{namespace}/users/bulk/records/size` | POST | BulkGetPlayerRecordSizeHandlerV1Short | [BulkGetPlayerRecordSizeHandlerV1Short](../cloudsave-sdk/pkg/cloudsaveclient/admin_player_record/admin_player_record_client.go) | [BulkGetPlayerRecordSizeHandlerV1Short](../services-api/pkg/service/cloudsave/adminPlayerRecord.go) | [BulkGetPlayerRecordSizeHandlerV1Short](../samples/cli/cmd/cloudsave/adminPlayerRecord/bulkGetPlayerRecordSizeHandlerV1.go) |
 | `/cloudsave/v1/admin/namespaces/{namespace}/users/records` | GET | ListPlayerRecordHandlerV1Short | [ListPlayerRecordHandlerV1Short](../cloudsave-sdk/pkg/cloudsaveclient/admin_player_record/admin_player_record_client.go) | [ListPlayerRecordHandlerV1Short](../services-api/pkg/service/cloudsave/adminPlayerRecord.go) | [ListPlayerRecordHandlerV1Short](../samples/cli/cmd/cloudsave/adminPlayerRecord/listPlayerRecordHandlerV1.go) |
 | `/cloudsave/v1/admin/namespaces/{namespace}/users/{userId}/records` | GET | AdminRetrievePlayerRecordsShort | [AdminRetrievePlayerRecordsShort](../cloudsave-sdk/pkg/cloudsaveclient/admin_player_record/admin_player_record_client.go) | [AdminRetrievePlayerRecordsShort](../services-api/pkg/service/cloudsave/adminPlayerRecord.go) | [AdminRetrievePlayerRecordsShort](../samples/cli/cmd/cloudsave/adminPlayerRecord/adminRetrievePlayerRecords.go) |
 | `/cloudsave/v1/admin/namespaces/{namespace}/users/{userId}/records/{key}` | GET | AdminGetPlayerRecordHandlerV1Short | [AdminGetPlayerRecordHandlerV1Short](../cloudsave-sdk/pkg/cloudsaveclient/admin_player_record/admin_player_record_client.go) | [AdminGetPlayerRecordHandlerV1Short](../services-api/pkg/service/cloudsave/adminPlayerRecord.go) | [AdminGetPlayerRecordHandlerV1Short](../samples/cli/cmd/cloudsave/adminPlayerRecord/adminGetPlayerRecordHandlerV1.go) |
@@ -33,6 +34,7 @@
 | `/cloudsave/v1/admin/namespaces/{namespace}/users/{userId}/records/{key}/public` | PUT | AdminPutPlayerPublicRecordHandlerV1Short | [AdminPutPlayerPublicRecordHandlerV1Short](../cloudsave-sdk/pkg/cloudsaveclient/admin_player_record/admin_player_record_client.go) | [AdminPutPlayerPublicRecordHandlerV1Short](../services-api/pkg/service/cloudsave/adminPlayerRecord.go) | [AdminPutPlayerPublicRecordHandlerV1Short](../samples/cli/cmd/cloudsave/adminPlayerRecord/adminPutPlayerPublicRecordHandlerV1.go) |
 | `/cloudsave/v1/admin/namespaces/{namespace}/users/{userId}/records/{key}/public` | POST | AdminPostPlayerPublicRecordHandlerV1Short | [AdminPostPlayerPublicRecordHandlerV1Short](../cloudsave-sdk/pkg/cloudsaveclient/admin_player_record/admin_player_record_client.go) | [AdminPostPlayerPublicRecordHandlerV1Short](../services-api/pkg/service/cloudsave/adminPlayerRecord.go) | [AdminPostPlayerPublicRecordHandlerV1Short](../samples/cli/cmd/cloudsave/adminPlayerRecord/adminPostPlayerPublicRecordHandlerV1.go) |
 | `/cloudsave/v1/admin/namespaces/{namespace}/users/{userId}/records/{key}/public` | DELETE | AdminDeletePlayerPublicRecordHandlerV1Short | [AdminDeletePlayerPublicRecordHandlerV1Short](../cloudsave-sdk/pkg/cloudsaveclient/admin_player_record/admin_player_record_client.go) | [AdminDeletePlayerPublicRecordHandlerV1Short](../services-api/pkg/service/cloudsave/adminPlayerRecord.go) | [AdminDeletePlayerPublicRecordHandlerV1Short](../samples/cli/cmd/cloudsave/adminPlayerRecord/adminDeletePlayerPublicRecordHandlerV1.go) |
+| `/cloudsave/v1/admin/namespaces/{namespace}/users/{userId}/records/{key}/size` | GET | AdminGetPlayerRecordSizeHandlerV1Short | [AdminGetPlayerRecordSizeHandlerV1Short](../cloudsave-sdk/pkg/cloudsaveclient/admin_player_record/admin_player_record_client.go) | [AdminGetPlayerRecordSizeHandlerV1Short](../services-api/pkg/service/cloudsave/adminPlayerRecord.go) | [AdminGetPlayerRecordSizeHandlerV1Short](../samples/cli/cmd/cloudsave/adminPlayerRecord/adminGetPlayerRecordSizeHandlerV1.go) |
 
 ### ConcurrentRecord Wrapper:  [ConcurrentRecord](../services-api/pkg/service/cloudsave/concurrentRecord.go)
 | Endpoint | Method | ID | Class | Wrapper | Example |
@@ -71,7 +73,9 @@
 |---|---|
 | `models.AdminConcurrentRecordRequest` | [ModelsAdminConcurrentRecordRequest ](../cloudsave-sdk/pkg/cloudsaveclientmodels/models_admin_concurrent_record_request.go) |
 | `models.BulkGetPlayerRecordResponse` | [ModelsBulkGetPlayerRecordResponse ](../cloudsave-sdk/pkg/cloudsaveclientmodels/models_bulk_get_player_record_response.go) |
+| `models.BulkGetPlayerRecordSizeResponse` | [ModelsBulkGetPlayerRecordSizeResponse ](../cloudsave-sdk/pkg/cloudsaveclientmodels/models_bulk_get_player_record_size_response.go) |
 | `models.BulkUserIDsRequest` | [ModelsBulkUserIDsRequest ](../cloudsave-sdk/pkg/cloudsaveclientmodels/models_bulk_user_i_ds_request.go) |
+| `models.BulkUserKeyRequest` | [ModelsBulkUserKeyRequest ](../cloudsave-sdk/pkg/cloudsaveclientmodels/models_bulk_user_key_request.go) |
 | `models.ConcurrentRecordRequest` | [ModelsConcurrentRecordRequest ](../cloudsave-sdk/pkg/cloudsaveclientmodels/models_concurrent_record_request.go) |
 | `models.GameRecordRequest` | [ModelsGameRecordRequest ](../cloudsave-sdk/pkg/cloudsaveclientmodels/models_game_record_request.go) |
 | `models.GameRecordResponse` | [ModelsGameRecordResponse ](../cloudsave-sdk/pkg/cloudsaveclientmodels/models_game_record_response.go) |
@@ -81,4 +85,6 @@
 | `models.PlayerRecordKeyInfo` | [ModelsPlayerRecordKeyInfo ](../cloudsave-sdk/pkg/cloudsaveclientmodels/models_player_record_key_info.go) |
 | `models.PlayerRecordRequest` | [ModelsPlayerRecordRequest ](../cloudsave-sdk/pkg/cloudsaveclientmodels/models_player_record_request.go) |
 | `models.PlayerRecordResponse` | [ModelsPlayerRecordResponse ](../cloudsave-sdk/pkg/cloudsaveclientmodels/models_player_record_response.go) |
+| `models.PlayerRecordSizeResponse` | [ModelsPlayerRecordSizeResponse ](../cloudsave-sdk/pkg/cloudsaveclientmodels/models_player_record_size_response.go) |
 | `models.ResponseError` | [ModelsResponseError ](../cloudsave-sdk/pkg/cloudsaveclientmodels/models_response_error.go) |
+| `models.UserKeyRequest` | [ModelsUserKeyRequest ](../cloudsave-sdk/pkg/cloudsaveclientmodels/models_user_key_request.go) |

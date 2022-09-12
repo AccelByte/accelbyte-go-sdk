@@ -1417,7 +1417,7 @@ func (aaa *UsersService) AdminCreateUserRolesV2(input *users.AdminCreateUserRole
 }
 
 // Deprecated: Use PublicGetCountryAgeRestrictionShort instead
-func (aaa *UsersService) PublicGetCountryAgeRestriction(input *users.PublicGetCountryAgeRestrictionParams) ([]*iamclientmodels.AccountcommonCountryAgeRestriction, error) {
+func (aaa *UsersService) PublicGetCountryAgeRestriction(input *users.PublicGetCountryAgeRestrictionParams) (*iamclientmodels.AccountcommonCountry, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
@@ -2411,6 +2411,35 @@ func (aaa *UsersService) AdminGetUserLoginHistoriesV3(input *users.AdminGetUserL
 	return ok.GetPayload(), nil
 }
 
+// Deprecated: Use AdminResetPasswordV3Short instead
+func (aaa *UsersService) AdminResetPasswordV3(input *users.AdminResetPasswordV3Params) error {
+	token, err := aaa.TokenRepository.GetToken()
+	if err != nil {
+		return err
+	}
+	_, badRequest, unauthorized, forbidden, notFound, internalServerError, err := aaa.Client.Users.AdminResetPasswordV3(input, client.BearerToken(*token.AccessToken))
+	if badRequest != nil {
+		return badRequest
+	}
+	if unauthorized != nil {
+		return unauthorized
+	}
+	if forbidden != nil {
+		return forbidden
+	}
+	if notFound != nil {
+		return notFound
+	}
+	if internalServerError != nil {
+		return internalServerError
+	}
+	if err != nil {
+		return err
+	}
+
+	return nil
+}
+
 // Deprecated: Use AdminUpdateUserPermissionV3Short instead
 func (aaa *UsersService) AdminUpdateUserPermissionV3(input *users.AdminUpdateUserPermissionV3Params) error {
 	token, err := aaa.TokenRepository.GetToken()
@@ -2897,6 +2926,26 @@ func (aaa *UsersService) AdminGetMyUserV3(input *users.AdminGetMyUserV3Params) (
 	return ok.GetPayload(), nil
 }
 
+// Deprecated: Use PublicGetCountryAgeRestrictionV3Short instead
+func (aaa *UsersService) PublicGetCountryAgeRestrictionV3(input *users.PublicGetCountryAgeRestrictionV3Params) (*iamclientmodels.ModelCountryV3Response, error) {
+	token, err := aaa.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, unauthorized, notFound, err := aaa.Client.Users.PublicGetCountryAgeRestrictionV3(input, client.BearerToken(*token.AccessToken))
+	if unauthorized != nil {
+		return nil, unauthorized
+	}
+	if notFound != nil {
+		return nil, notFound
+	}
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
 // Deprecated: Use PublicListUserIDByPlatformUserIDsV3Short instead
 func (aaa *UsersService) PublicListUserIDByPlatformUserIDsV3(input *users.PublicListUserIDByPlatformUserIDsV3Params) (*iamclientmodels.AccountcommonUserPlatforms, error) {
 	token, err := aaa.TokenRepository.GetToken()
@@ -3177,7 +3226,7 @@ func (aaa *UsersService) CreateUserFromInvitationV3(input *users.CreateUserFromI
 }
 
 // Deprecated: Use UpdateUserV3Short instead
-func (aaa *UsersService) UpdateUserV3(input *users.UpdateUserV3Params) ([]*iamclientmodels.ModelUserResponseV3, error) {
+func (aaa *UsersService) UpdateUserV3(input *users.UpdateUserV3Params) (*iamclientmodels.ModelUserResponseV3, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
@@ -3203,7 +3252,7 @@ func (aaa *UsersService) UpdateUserV3(input *users.UpdateUserV3Params) ([]*iamcl
 }
 
 // Deprecated: Use PublicPartialUpdateUserV3Short instead
-func (aaa *UsersService) PublicPartialUpdateUserV3(input *users.PublicPartialUpdateUserV3Params) ([]*iamclientmodels.ModelUserResponseV3, error) {
+func (aaa *UsersService) PublicPartialUpdateUserV3(input *users.PublicPartialUpdateUserV3Params) (*iamclientmodels.ModelUserResponseV3, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
@@ -3708,6 +3757,35 @@ func (aaa *UsersService) PublicGetUserPlatformAccountsV3(input *users.PublicGetU
 	}
 	if notFound != nil {
 		return nil, notFound
+	}
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
+// Deprecated: Use PublicListJusticePlatformAccountsV3Short instead
+func (aaa *UsersService) PublicListJusticePlatformAccountsV3(input *users.PublicListJusticePlatformAccountsV3Params) ([]*iamclientmodels.ModelGetUserMappingV3, error) {
+	token, err := aaa.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, badRequest, unauthorized, forbidden, notFound, internalServerError, err := aaa.Client.Users.PublicListJusticePlatformAccountsV3(input, client.BearerToken(*token.AccessToken))
+	if badRequest != nil {
+		return nil, badRequest
+	}
+	if unauthorized != nil {
+		return nil, unauthorized
+	}
+	if forbidden != nil {
+		return nil, forbidden
+	}
+	if notFound != nil {
+		return nil, notFound
+	}
+	if internalServerError != nil {
+		return nil, internalServerError
 	}
 	if err != nil {
 		return nil, err
@@ -5208,7 +5286,7 @@ func (aaa *UsersService) AdminCreateUserRolesV2Short(input *users.AdminCreateUse
 	return nil
 }
 
-func (aaa *UsersService) PublicGetCountryAgeRestrictionShort(input *users.PublicGetCountryAgeRestrictionParams) ([]*iamclientmodels.AccountcommonCountryAgeRestriction, error) {
+func (aaa *UsersService) PublicGetCountryAgeRestrictionShort(input *users.PublicGetCountryAgeRestrictionParams) (*iamclientmodels.AccountcommonCountry, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -6133,6 +6211,31 @@ func (aaa *UsersService) AdminGetUserLoginHistoriesV3Short(input *users.AdminGet
 	return ok.GetPayload(), nil
 }
 
+func (aaa *UsersService) AdminResetPasswordV3Short(input *users.AdminResetPasswordV3Params) error {
+	authInfoWriter := input.AuthInfoWriter
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
+	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  aaa.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
+	_, err := aaa.Client.Users.AdminResetPasswordV3Short(input, authInfoWriter)
+	if err != nil {
+		return err
+	}
+
+	return nil
+}
+
 func (aaa *UsersService) AdminUpdateUserPermissionV3Short(input *users.AdminUpdateUserPermissionV3Params) error {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
@@ -6583,6 +6686,31 @@ func (aaa *UsersService) AdminGetMyUserV3Short(input *users.AdminGetMyUserV3Para
 	return ok.GetPayload(), nil
 }
 
+func (aaa *UsersService) PublicGetCountryAgeRestrictionV3Short(input *users.PublicGetCountryAgeRestrictionV3Params) (*iamclientmodels.ModelCountryV3Response, error) {
+	authInfoWriter := input.AuthInfoWriter
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
+	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  aaa.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
+	ok, err := aaa.Client.Users.PublicGetCountryAgeRestrictionV3Short(input, authInfoWriter)
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
 func (aaa *UsersService) PublicListUserIDByPlatformUserIDsV3Short(input *users.PublicListUserIDByPlatformUserIDsV3Params) (*iamclientmodels.AccountcommonUserPlatforms, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
@@ -6883,7 +7011,7 @@ func (aaa *UsersService) CreateUserFromInvitationV3Short(input *users.CreateUser
 	return created.GetPayload(), nil
 }
 
-func (aaa *UsersService) UpdateUserV3Short(input *users.UpdateUserV3Params) ([]*iamclientmodels.ModelUserResponseV3, error) {
+func (aaa *UsersService) UpdateUserV3Short(input *users.UpdateUserV3Params) (*iamclientmodels.ModelUserResponseV3, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -6908,7 +7036,7 @@ func (aaa *UsersService) UpdateUserV3Short(input *users.UpdateUserV3Params) ([]*
 	return ok.GetPayload(), nil
 }
 
-func (aaa *UsersService) PublicPartialUpdateUserV3Short(input *users.PublicPartialUpdateUserV3Params) ([]*iamclientmodels.ModelUserResponseV3, error) {
+func (aaa *UsersService) PublicPartialUpdateUserV3Short(input *users.PublicPartialUpdateUserV3Params) (*iamclientmodels.ModelUserResponseV3, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -7401,6 +7529,31 @@ func (aaa *UsersService) PublicGetUserPlatformAccountsV3Short(input *users.Publi
 	}
 
 	ok, err := aaa.Client.Users.PublicGetUserPlatformAccountsV3Short(input, authInfoWriter)
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
+func (aaa *UsersService) PublicListJusticePlatformAccountsV3Short(input *users.PublicListJusticePlatformAccountsV3Params) ([]*iamclientmodels.ModelGetUserMappingV3, error) {
+	authInfoWriter := input.AuthInfoWriter
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
+	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  aaa.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
+	ok, err := aaa.Client.Users.PublicListJusticePlatformAccountsV3Short(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}

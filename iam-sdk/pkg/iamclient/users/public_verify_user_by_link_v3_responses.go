@@ -52,6 +52,9 @@ func NewPublicVerifyUserByLinkV3Found() *PublicVerifyUserByLinkV3Found {
   Found. Redirected to verification finish page.
 */
 type PublicVerifyUserByLinkV3Found struct {
+	/*The Location header
+	 */
+	Location string
 }
 
 func (o *PublicVerifyUserByLinkV3Found) Error() string {
@@ -59,6 +62,9 @@ func (o *PublicVerifyUserByLinkV3Found) Error() string {
 }
 
 func (o *PublicVerifyUserByLinkV3Found) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
+	// response header Location
+	o.Location = response.GetHeader("Location")
 
 	return nil
 }

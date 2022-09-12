@@ -35,6 +35,10 @@ type Validation struct {
 	// Required: true
 	AllowUnicode *bool `json:"allowUnicode"`
 
+	// blocked word
+	// Required: true
+	BlockedWord []string `json:"blockedWord"`
+
 	// description
 	// Required: true
 	Description []*ValidationDescription `json:"description"`
@@ -97,6 +101,10 @@ func (m *Validation) Validate(formats strfmt.Registry) error {
 	}
 
 	if err := m.validateAllowUnicode(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateBlockedWord(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -180,6 +188,15 @@ func (m *Validation) validateAllowSpace(formats strfmt.Registry) error {
 func (m *Validation) validateAllowUnicode(formats strfmt.Registry) error {
 
 	if err := validate.Required("allowUnicode", "body", m.AllowUnicode); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *Validation) validateBlockedWord(formats strfmt.Registry) error {
+
+	if err := validate.Required("blockedWord", "body", m.BlockedWord); err != nil {
 		return err
 	}
 

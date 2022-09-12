@@ -43,6 +43,8 @@ type ClientService interface {
 	AdminGetPlayerPublicRecordHandlerV1Short(params *AdminGetPlayerPublicRecordHandlerV1Params, authInfo runtime.ClientAuthInfoWriter) (*AdminGetPlayerPublicRecordHandlerV1OK, error)
 	AdminGetPlayerRecordHandlerV1(params *AdminGetPlayerRecordHandlerV1Params, authInfo runtime.ClientAuthInfoWriter) (*AdminGetPlayerRecordHandlerV1OK, *AdminGetPlayerRecordHandlerV1Unauthorized, *AdminGetPlayerRecordHandlerV1NotFound, *AdminGetPlayerRecordHandlerV1InternalServerError, error)
 	AdminGetPlayerRecordHandlerV1Short(params *AdminGetPlayerRecordHandlerV1Params, authInfo runtime.ClientAuthInfoWriter) (*AdminGetPlayerRecordHandlerV1OK, error)
+	AdminGetPlayerRecordSizeHandlerV1(params *AdminGetPlayerRecordSizeHandlerV1Params, authInfo runtime.ClientAuthInfoWriter) (*AdminGetPlayerRecordSizeHandlerV1OK, *AdminGetPlayerRecordSizeHandlerV1Unauthorized, *AdminGetPlayerRecordSizeHandlerV1NotFound, *AdminGetPlayerRecordSizeHandlerV1InternalServerError, error)
+	AdminGetPlayerRecordSizeHandlerV1Short(params *AdminGetPlayerRecordSizeHandlerV1Params, authInfo runtime.ClientAuthInfoWriter) (*AdminGetPlayerRecordSizeHandlerV1OK, error)
 	AdminPostPlayerPublicRecordHandlerV1(params *AdminPostPlayerPublicRecordHandlerV1Params, authInfo runtime.ClientAuthInfoWriter) (*AdminPostPlayerPublicRecordHandlerV1Created, *AdminPostPlayerPublicRecordHandlerV1BadRequest, *AdminPostPlayerPublicRecordHandlerV1Unauthorized, *AdminPostPlayerPublicRecordHandlerV1InternalServerError, error)
 	AdminPostPlayerPublicRecordHandlerV1Short(params *AdminPostPlayerPublicRecordHandlerV1Params, authInfo runtime.ClientAuthInfoWriter) (*AdminPostPlayerPublicRecordHandlerV1Created, error)
 	AdminPostPlayerRecordHandlerV1(params *AdminPostPlayerRecordHandlerV1Params, authInfo runtime.ClientAuthInfoWriter) (*AdminPostPlayerRecordHandlerV1Created, *AdminPostPlayerRecordHandlerV1Unauthorized, *AdminPostPlayerRecordHandlerV1InternalServerError, error)
@@ -51,6 +53,8 @@ type ClientService interface {
 	AdminPutPlayerPublicRecordHandlerV1Short(params *AdminPutPlayerPublicRecordHandlerV1Params, authInfo runtime.ClientAuthInfoWriter) (*AdminPutPlayerPublicRecordHandlerV1OK, error)
 	AdminPutPlayerRecordHandlerV1(params *AdminPutPlayerRecordHandlerV1Params, authInfo runtime.ClientAuthInfoWriter) (*AdminPutPlayerRecordHandlerV1OK, *AdminPutPlayerRecordHandlerV1Unauthorized, *AdminPutPlayerRecordHandlerV1InternalServerError, error)
 	AdminPutPlayerRecordHandlerV1Short(params *AdminPutPlayerRecordHandlerV1Params, authInfo runtime.ClientAuthInfoWriter) (*AdminPutPlayerRecordHandlerV1OK, error)
+	BulkGetPlayerRecordSizeHandlerV1(params *BulkGetPlayerRecordSizeHandlerV1Params, authInfo runtime.ClientAuthInfoWriter) (*BulkGetPlayerRecordSizeHandlerV1OK, *BulkGetPlayerRecordSizeHandlerV1BadRequest, *BulkGetPlayerRecordSizeHandlerV1Unauthorized, *BulkGetPlayerRecordSizeHandlerV1Forbidden, *BulkGetPlayerRecordSizeHandlerV1InternalServerError, error)
+	BulkGetPlayerRecordSizeHandlerV1Short(params *BulkGetPlayerRecordSizeHandlerV1Params, authInfo runtime.ClientAuthInfoWriter) (*BulkGetPlayerRecordSizeHandlerV1OK, error)
 	ListPlayerRecordHandlerV1(params *ListPlayerRecordHandlerV1Params, authInfo runtime.ClientAuthInfoWriter) (*ListPlayerRecordHandlerV1OK, *ListPlayerRecordHandlerV1BadRequest, *ListPlayerRecordHandlerV1Unauthorized, *ListPlayerRecordHandlerV1InternalServerError, error)
 	ListPlayerRecordHandlerV1Short(params *ListPlayerRecordHandlerV1Params, authInfo runtime.ClientAuthInfoWriter) (*ListPlayerRecordHandlerV1OK, error)
 
@@ -666,6 +670,123 @@ func (a *Client) AdminGetPlayerRecordHandlerV1Short(params *AdminGetPlayerRecord
 	case *AdminGetPlayerRecordHandlerV1NotFound:
 		return nil, v
 	case *AdminGetPlayerRecordHandlerV1InternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+Deprecated: Use AdminGetPlayerRecordSizeHandlerV1Short instead.
+
+  AdminGetPlayerRecordSizeHandlerV1 gets player record size
+
+  Required permission: &lt;code&gt;ADMIN:NAMESPACE:{namespace}:USER:{userId}:CLOUDSAVE:RECORD [READ]&lt;/code&gt;
+
+Required scope: &lt;code&gt;social&lt;/code&gt;
+
+Get a size of the player record
+*/
+func (a *Client) AdminGetPlayerRecordSizeHandlerV1(params *AdminGetPlayerRecordSizeHandlerV1Params, authInfo runtime.ClientAuthInfoWriter) (*AdminGetPlayerRecordSizeHandlerV1OK, *AdminGetPlayerRecordSizeHandlerV1Unauthorized, *AdminGetPlayerRecordSizeHandlerV1NotFound, *AdminGetPlayerRecordSizeHandlerV1InternalServerError, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewAdminGetPlayerRecordSizeHandlerV1Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "adminGetPlayerRecordSizeHandlerV1",
+		Method:             "GET",
+		PathPattern:        "/cloudsave/v1/admin/namespaces/{namespace}/users/{userId}/records/{key}/size",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &AdminGetPlayerRecordSizeHandlerV1Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, nil, nil, nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *AdminGetPlayerRecordSizeHandlerV1OK:
+		return v, nil, nil, nil, nil
+
+	case *AdminGetPlayerRecordSizeHandlerV1Unauthorized:
+		return nil, v, nil, nil, nil
+
+	case *AdminGetPlayerRecordSizeHandlerV1NotFound:
+		return nil, nil, v, nil, nil
+
+	case *AdminGetPlayerRecordSizeHandlerV1InternalServerError:
+		return nil, nil, nil, v, nil
+
+	default:
+		return nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+  AdminGetPlayerRecordSizeHandlerV1Short gets player record size
+
+  Required permission: &lt;code&gt;ADMIN:NAMESPACE:{namespace}:USER:{userId}:CLOUDSAVE:RECORD [READ]&lt;/code&gt;
+
+Required scope: &lt;code&gt;social&lt;/code&gt;
+
+Get a size of the player record
+*/
+func (a *Client) AdminGetPlayerRecordSizeHandlerV1Short(params *AdminGetPlayerRecordSizeHandlerV1Params, authInfo runtime.ClientAuthInfoWriter) (*AdminGetPlayerRecordSizeHandlerV1OK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewAdminGetPlayerRecordSizeHandlerV1Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "adminGetPlayerRecordSizeHandlerV1",
+		Method:             "GET",
+		PathPattern:        "/cloudsave/v1/admin/namespaces/{namespace}/users/{userId}/records/{key}/size",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &AdminGetPlayerRecordSizeHandlerV1Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *AdminGetPlayerRecordSizeHandlerV1OK:
+		return v, nil
+	case *AdminGetPlayerRecordSizeHandlerV1Unauthorized:
+		return nil, v
+	case *AdminGetPlayerRecordSizeHandlerV1NotFound:
+		return nil, v
+	case *AdminGetPlayerRecordSizeHandlerV1InternalServerError:
 		return nil, v
 
 	default:
@@ -1428,6 +1549,146 @@ func (a *Client) AdminPutPlayerRecordHandlerV1Short(params *AdminPutPlayerRecord
 	case *AdminPutPlayerRecordHandlerV1Unauthorized:
 		return nil, v
 	case *AdminPutPlayerRecordHandlerV1InternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+Deprecated: Use BulkGetPlayerRecordSizeHandlerV1Short instead.
+
+  BulkGetPlayerRecordSizeHandlerV1 bulks get player records size
+
+  &lt;table&gt;
+	&lt;tr&gt;
+		&lt;td&gt;Required Permission&lt;/td&gt;
+		&lt;td&gt;&lt;code&gt;ADMIN:NAMESPACE:{namespace}:CLOUDSAVE:RECORD [READ]&lt;/code&gt;&lt;/td&gt;
+	&lt;/tr&gt;
+	&lt;tr&gt;
+		&lt;td&gt;Required Scope&lt;/td&gt;
+		&lt;td&gt;&lt;code&gt;social&lt;/code&gt;&lt;/td&gt;
+	&lt;/tr&gt;
+&lt;/table&gt;
+&lt;br/&gt;
+Bulk get player&#39;s record size, max allowed 20 at a time, that can be
+	retrieved using this endpoint.
+
+*/
+func (a *Client) BulkGetPlayerRecordSizeHandlerV1(params *BulkGetPlayerRecordSizeHandlerV1Params, authInfo runtime.ClientAuthInfoWriter) (*BulkGetPlayerRecordSizeHandlerV1OK, *BulkGetPlayerRecordSizeHandlerV1BadRequest, *BulkGetPlayerRecordSizeHandlerV1Unauthorized, *BulkGetPlayerRecordSizeHandlerV1Forbidden, *BulkGetPlayerRecordSizeHandlerV1InternalServerError, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewBulkGetPlayerRecordSizeHandlerV1Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "bulkGetPlayerRecordSizeHandlerV1",
+		Method:             "POST",
+		PathPattern:        "/cloudsave/v1/admin/namespaces/{namespace}/users/bulk/records/size",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &BulkGetPlayerRecordSizeHandlerV1Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, nil, nil, nil, nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *BulkGetPlayerRecordSizeHandlerV1OK:
+		return v, nil, nil, nil, nil, nil
+
+	case *BulkGetPlayerRecordSizeHandlerV1BadRequest:
+		return nil, v, nil, nil, nil, nil
+
+	case *BulkGetPlayerRecordSizeHandlerV1Unauthorized:
+		return nil, nil, v, nil, nil, nil
+
+	case *BulkGetPlayerRecordSizeHandlerV1Forbidden:
+		return nil, nil, nil, v, nil, nil
+
+	case *BulkGetPlayerRecordSizeHandlerV1InternalServerError:
+		return nil, nil, nil, nil, v, nil
+
+	default:
+		return nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+  BulkGetPlayerRecordSizeHandlerV1Short bulks get player records size
+
+  &lt;table&gt;
+	&lt;tr&gt;
+		&lt;td&gt;Required Permission&lt;/td&gt;
+		&lt;td&gt;&lt;code&gt;ADMIN:NAMESPACE:{namespace}:CLOUDSAVE:RECORD [READ]&lt;/code&gt;&lt;/td&gt;
+	&lt;/tr&gt;
+	&lt;tr&gt;
+		&lt;td&gt;Required Scope&lt;/td&gt;
+		&lt;td&gt;&lt;code&gt;social&lt;/code&gt;&lt;/td&gt;
+	&lt;/tr&gt;
+&lt;/table&gt;
+&lt;br/&gt;
+Bulk get player&#39;s record size, max allowed 20 at a time, that can be
+	retrieved using this endpoint.
+
+*/
+func (a *Client) BulkGetPlayerRecordSizeHandlerV1Short(params *BulkGetPlayerRecordSizeHandlerV1Params, authInfo runtime.ClientAuthInfoWriter) (*BulkGetPlayerRecordSizeHandlerV1OK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewBulkGetPlayerRecordSizeHandlerV1Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "bulkGetPlayerRecordSizeHandlerV1",
+		Method:             "POST",
+		PathPattern:        "/cloudsave/v1/admin/namespaces/{namespace}/users/bulk/records/size",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &BulkGetPlayerRecordSizeHandlerV1Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *BulkGetPlayerRecordSizeHandlerV1OK:
+		return v, nil
+	case *BulkGetPlayerRecordSizeHandlerV1BadRequest:
+		return nil, v
+	case *BulkGetPlayerRecordSizeHandlerV1Unauthorized:
+		return nil, v
+	case *BulkGetPlayerRecordSizeHandlerV1Forbidden:
+		return nil, v
+	case *BulkGetPlayerRecordSizeHandlerV1InternalServerError:
 		return nil, v
 
 	default:

@@ -28,8 +28,7 @@ type OauthmodelTokenResponseV3 struct {
 	Bans []*AccountcommonJWTBanV3 `json:"bans"`
 
 	// display name
-	// Required: true
-	DisplayName *string `json:"display_name"`
+	DisplayName string `json:"display_name,omitempty"`
 
 	// expires in
 	// Required: true
@@ -59,13 +58,11 @@ type OauthmodelTokenResponseV3 struct {
 	// platform user id
 	PlatformUserID string `json:"platform_user_id,omitempty"`
 
-	// refresh expires in
-	// Required: true
-	RefreshExpiresIn *int32 `json:"refresh_expires_in"`
+	// present if it is user token
+	RefreshExpiresIn int32 `json:"refresh_expires_in,omitempty"`
 
-	// refresh token
-	// Required: true
-	RefreshToken *string `json:"refresh_token"`
+	// present if it is user token
+	RefreshToken string `json:"refresh_token,omitempty"`
 
 	// roles
 	// Required: true
@@ -79,13 +76,11 @@ type OauthmodelTokenResponseV3 struct {
 	// Required: true
 	TokenType *string `json:"token_type"`
 
-	// user id
-	// Required: true
-	UserID *string `json:"user_id"`
+	// present if it is user token
+	UserID string `json:"user_id,omitempty"`
 
 	// xuid
-	// Required: true
-	Xuid *string `json:"xuid"`
+	Xuid string `json:"xuid,omitempty"`
 }
 
 // Validate validates this oauthmodel token response v3
@@ -97,10 +92,6 @@ func (m *OauthmodelTokenResponseV3) Validate(formats strfmt.Registry) error {
 	}
 
 	if err := m.validateBans(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.validateDisplayName(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -120,14 +111,6 @@ func (m *OauthmodelTokenResponseV3) Validate(formats strfmt.Registry) error {
 		res = append(res, err)
 	}
 
-	if err := m.validateRefreshExpiresIn(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.validateRefreshToken(formats); err != nil {
-		res = append(res, err)
-	}
-
 	if err := m.validateRoles(formats); err != nil {
 		res = append(res, err)
 	}
@@ -137,14 +120,6 @@ func (m *OauthmodelTokenResponseV3) Validate(formats strfmt.Registry) error {
 	}
 
 	if err := m.validateTokenType(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.validateUserID(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.validateXuid(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -183,15 +158,6 @@ func (m *OauthmodelTokenResponseV3) validateBans(formats strfmt.Registry) error 
 			}
 		}
 
-	}
-
-	return nil
-}
-
-func (m *OauthmodelTokenResponseV3) validateDisplayName(formats strfmt.Registry) error {
-
-	if err := validate.Required("display_name", "body", m.DisplayName); err != nil {
-		return err
 	}
 
 	return nil
@@ -265,24 +231,6 @@ func (m *OauthmodelTokenResponseV3) validatePermissions(formats strfmt.Registry)
 	return nil
 }
 
-func (m *OauthmodelTokenResponseV3) validateRefreshExpiresIn(formats strfmt.Registry) error {
-
-	if err := validate.Required("refresh_expires_in", "body", m.RefreshExpiresIn); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *OauthmodelTokenResponseV3) validateRefreshToken(formats strfmt.Registry) error {
-
-	if err := validate.Required("refresh_token", "body", m.RefreshToken); err != nil {
-		return err
-	}
-
-	return nil
-}
-
 func (m *OauthmodelTokenResponseV3) validateRoles(formats strfmt.Registry) error {
 
 	if err := validate.Required("roles", "body", m.Roles); err != nil {
@@ -304,24 +252,6 @@ func (m *OauthmodelTokenResponseV3) validateScope(formats strfmt.Registry) error
 func (m *OauthmodelTokenResponseV3) validateTokenType(formats strfmt.Registry) error {
 
 	if err := validate.Required("token_type", "body", m.TokenType); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *OauthmodelTokenResponseV3) validateUserID(formats strfmt.Registry) error {
-
-	if err := validate.Required("user_id", "body", m.UserID); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *OauthmodelTokenResponseV3) validateXuid(formats strfmt.Registry) error {
-
-	if err := validate.Required("xuid", "body", m.Xuid); err != nil {
 		return err
 	}
 

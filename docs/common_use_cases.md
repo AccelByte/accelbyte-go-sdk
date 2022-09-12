@@ -561,7 +561,7 @@ if err != nil {
 }
 
 getToken, errGetToken := oAuth20Service.TokenRepository.GetToken()
-logrus.Infof("Bearer %v; UserId %v", *getToken.AccessToken, *getToken.UserID)
+logrus.Infof("Bearer %v; UserId %v", *getToken.AccessToken, getToken.UserID)
 ```
 
 ### Create a user

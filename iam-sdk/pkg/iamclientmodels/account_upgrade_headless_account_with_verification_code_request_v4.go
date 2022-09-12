@@ -39,16 +39,14 @@ type AccountUpgradeHeadlessAccountWithVerificationCodeRequestV4 struct {
 	Password *string `json:"password"`
 
 	// reach minimum age
-	// Required: true
-	ReachMinimumAge *bool `json:"reachMinimumAge"`
+	ReachMinimumAge bool `json:"reachMinimumAge"`
 
 	// username
 	// Required: true
 	Username *string `json:"username"`
 
 	// validate only
-	// Required: true
-	ValidateOnly *bool `json:"validateOnly"`
+	ValidateOnly bool `json:"validateOnly"`
 }
 
 // Validate validates this account upgrade headless account with verification code request v4
@@ -67,15 +65,7 @@ func (m *AccountUpgradeHeadlessAccountWithVerificationCodeRequestV4) Validate(fo
 		res = append(res, err)
 	}
 
-	if err := m.validateReachMinimumAge(formats); err != nil {
-		res = append(res, err)
-	}
-
 	if err := m.validateUsername(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.validateValidateOnly(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -112,27 +102,9 @@ func (m *AccountUpgradeHeadlessAccountWithVerificationCodeRequestV4) validatePas
 	return nil
 }
 
-func (m *AccountUpgradeHeadlessAccountWithVerificationCodeRequestV4) validateReachMinimumAge(formats strfmt.Registry) error {
-
-	if err := validate.Required("reachMinimumAge", "body", m.ReachMinimumAge); err != nil {
-		return err
-	}
-
-	return nil
-}
-
 func (m *AccountUpgradeHeadlessAccountWithVerificationCodeRequestV4) validateUsername(formats strfmt.Registry) error {
 
 	if err := validate.Required("username", "body", m.Username); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *AccountUpgradeHeadlessAccountWithVerificationCodeRequestV4) validateValidateOnly(formats strfmt.Registry) error {
-
-	if err := validate.Required("validateOnly", "body", m.ValidateOnly); err != nil {
 		return err
 	}
 

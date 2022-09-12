@@ -132,6 +132,20 @@ func (aaa *OAuth20ExtensionService) Logout(input *o_auth2_0_extension.LogoutPara
 	return nil
 }
 
+// Deprecated: Use RequestGameTokenCodeResponseV3Short instead
+func (aaa *OAuth20ExtensionService) RequestGameTokenCodeResponseV3(input *o_auth2_0_extension.RequestGameTokenCodeResponseV3Params) (*iamclientmodels.OauthmodelGameTokenCodeResponse, error) {
+	token, err := aaa.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, err := aaa.Client.OAuth20Extension.RequestGameTokenCodeResponseV3(input, client.BearerToken(*token.AccessToken))
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
 // Deprecated: Use PlatformAuthenticationV3Short instead
 func (aaa *OAuth20ExtensionService) PlatformAuthenticationV3(input *o_auth2_0_extension.PlatformAuthenticationV3Params) (string, error) {
 	token, err := aaa.TokenRepository.GetToken()
@@ -144,6 +158,20 @@ func (aaa *OAuth20ExtensionService) PlatformAuthenticationV3(input *o_auth2_0_ex
 	}
 
 	return ok.Location, nil
+}
+
+// Deprecated: Use RequestGameTokenResponseV3Short instead
+func (aaa *OAuth20ExtensionService) RequestGameTokenResponseV3(input *o_auth2_0_extension.RequestGameTokenResponseV3Params) (*iamclientmodels.OauthmodelTokenResponseV3, error) {
+	token, err := aaa.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, err := aaa.Client.OAuth20Extension.RequestGameTokenResponseV3(input, client.BearerToken(*token.AccessToken))
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
 }
 
 func (aaa *OAuth20ExtensionService) UserAuthenticationV3Short(input *o_auth2_0_extension.UserAuthenticationV3Params) (string, error) {
@@ -284,6 +312,31 @@ func (aaa *OAuth20ExtensionService) LogoutShort(input *o_auth2_0_extension.Logou
 	return nil
 }
 
+func (aaa *OAuth20ExtensionService) RequestGameTokenCodeResponseV3Short(input *o_auth2_0_extension.RequestGameTokenCodeResponseV3Params) (*iamclientmodels.OauthmodelGameTokenCodeResponse, error) {
+	authInfoWriter := input.AuthInfoWriter
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
+	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  aaa.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
+	ok, err := aaa.Client.OAuth20Extension.RequestGameTokenCodeResponseV3Short(input, authInfoWriter)
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
 func (aaa *OAuth20ExtensionService) PlatformAuthenticationV3Short(input *o_auth2_0_extension.PlatformAuthenticationV3Params) (string, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
@@ -307,4 +360,29 @@ func (aaa *OAuth20ExtensionService) PlatformAuthenticationV3Short(input *o_auth2
 	}
 
 	return ok.Location, nil
+}
+
+func (aaa *OAuth20ExtensionService) RequestGameTokenResponseV3Short(input *o_auth2_0_extension.RequestGameTokenResponseV3Params) (*iamclientmodels.OauthmodelTokenResponseV3, error) {
+	authInfoWriter := input.AuthInfoWriter
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
+	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  aaa.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
+	ok, err := aaa.Client.OAuth20Extension.RequestGameTokenResponseV3Short(input, authInfoWriter)
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
 }

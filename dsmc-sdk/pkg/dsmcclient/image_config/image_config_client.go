@@ -53,6 +53,8 @@ type ClientService interface {
 	GetImagePatchesShort(params *GetImagePatchesParams, authInfo runtime.ClientAuthInfoWriter) (*GetImagePatchesOK, error)
 	ImageDetailClient(params *ImageDetailClientParams, authInfo runtime.ClientAuthInfoWriter) (*ImageDetailClientOK, *ImageDetailClientUnauthorized, *ImageDetailClientNotFound, *ImageDetailClientInternalServerError, error)
 	ImageDetailClientShort(params *ImageDetailClientParams, authInfo runtime.ClientAuthInfoWriter) (*ImageDetailClientOK, error)
+	ImageLimitClient(params *ImageLimitClientParams, authInfo runtime.ClientAuthInfoWriter) (*ImageLimitClientOK, *ImageLimitClientBadRequest, *ImageLimitClientUnauthorized, *ImageLimitClientInternalServerError, error)
+	ImageLimitClientShort(params *ImageLimitClientParams, authInfo runtime.ClientAuthInfoWriter) (*ImageLimitClientOK, error)
 	ImportImages(params *ImportImagesParams, authInfo runtime.ClientAuthInfoWriter) (*ImportImagesOK, *ImportImagesBadRequest, *ImportImagesUnauthorized, *ImportImagesForbidden, *ImportImagesInternalServerError, error)
 	ImportImagesShort(params *ImportImagesParams, authInfo runtime.ClientAuthInfoWriter) (*ImportImagesOK, error)
 	ListImages(params *ListImagesParams, authInfo runtime.ClientAuthInfoWriter) (*ListImagesOK, *ListImagesBadRequest, *ListImagesUnauthorized, *ListImagesInternalServerError, error)
@@ -1304,6 +1306,123 @@ func (a *Client) ImageDetailClientShort(params *ImageDetailClientParams, authInf
 	case *ImageDetailClientNotFound:
 		return nil, v
 	case *ImageDetailClientInternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+Deprecated: Use ImageLimitClientShort instead.
+
+  ImageLimitClient ds s image limit for client
+
+  Required permission: NAMESPACE:{namespace}:DSM:CONFIG [READ]
+
+Required scope: social
+
+This endpoint get DS image limit for specific namespace.This endpoint also give the non-persistent image which is used by any deployments
+*/
+func (a *Client) ImageLimitClient(params *ImageLimitClientParams, authInfo runtime.ClientAuthInfoWriter) (*ImageLimitClientOK, *ImageLimitClientBadRequest, *ImageLimitClientUnauthorized, *ImageLimitClientInternalServerError, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewImageLimitClientParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "ImageLimitClient",
+		Method:             "GET",
+		PathPattern:        "/dsmcontroller/namespaces/{namespace}/images/limit",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &ImageLimitClientReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, nil, nil, nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *ImageLimitClientOK:
+		return v, nil, nil, nil, nil
+
+	case *ImageLimitClientBadRequest:
+		return nil, v, nil, nil, nil
+
+	case *ImageLimitClientUnauthorized:
+		return nil, nil, v, nil, nil
+
+	case *ImageLimitClientInternalServerError:
+		return nil, nil, nil, v, nil
+
+	default:
+		return nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+  ImageLimitClientShort ds s image limit for client
+
+  Required permission: NAMESPACE:{namespace}:DSM:CONFIG [READ]
+
+Required scope: social
+
+This endpoint get DS image limit for specific namespace.This endpoint also give the non-persistent image which is used by any deployments
+*/
+func (a *Client) ImageLimitClientShort(params *ImageLimitClientParams, authInfo runtime.ClientAuthInfoWriter) (*ImageLimitClientOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewImageLimitClientParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "ImageLimitClient",
+		Method:             "GET",
+		PathPattern:        "/dsmcontroller/namespaces/{namespace}/images/limit",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &ImageLimitClientReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *ImageLimitClientOK:
+		return v, nil
+	case *ImageLimitClientBadRequest:
+		return nil, v
+	case *ImageLimitClientUnauthorized:
+		return nil, v
+	case *ImageLimitClientInternalServerError:
 		return nil, v
 
 	default:

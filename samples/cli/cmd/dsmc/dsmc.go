@@ -80,6 +80,7 @@ func init() {
 	DsmcCmd.AddCommand(admin.DeleteSessionCmd)
 	DsmcCmd.AddCommand(config.ExportConfigV1Cmd)
 	DsmcCmd.AddCommand(config.ImportConfigV1Cmd)
+	DsmcCmd.AddCommand(imageConfig.ImageLimitClientCmd)
 	DsmcCmd.AddCommand(imageConfig.ImageDetailClientCmd)
 	DsmcCmd.AddCommand(server.DeregisterLocalServerCmd)
 	DsmcCmd.AddCommand(server.RegisterLocalServerCmd)

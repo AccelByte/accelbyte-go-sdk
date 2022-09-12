@@ -33,6 +33,8 @@ type Client struct {
 
 // ClientService is the interface for Client methods
 type ClientService interface {
+	AdminBanUserBulkV3(params *AdminBanUserBulkV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminBanUserBulkV3Created, *AdminBanUserBulkV3BadRequest, *AdminBanUserBulkV3Unauthorized, *AdminBanUserBulkV3Forbidden, *AdminBanUserBulkV3NotFound, error)
+	AdminBanUserBulkV3Short(params *AdminBanUserBulkV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminBanUserBulkV3Created, error)
 	AdminGetBannedUsersV3(params *AdminGetBannedUsersV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminGetBannedUsersV3OK, *AdminGetBannedUsersV3Unauthorized, *AdminGetBannedUsersV3Forbidden, error)
 	AdminGetBannedUsersV3Short(params *AdminGetBannedUsersV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminGetBannedUsersV3OK, error)
 	AdminGetBansTypeV3(params *AdminGetBansTypeV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminGetBansTypeV3OK, *AdminGetBansTypeV3Unauthorized, *AdminGetBansTypeV3Forbidden, error)
@@ -41,12 +43,134 @@ type ClientService interface {
 	AdminGetBansTypeWithNamespaceV3Short(params *AdminGetBansTypeWithNamespaceV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminGetBansTypeWithNamespaceV3OK, error)
 	AdminGetListBanReasonV3(params *AdminGetListBanReasonV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminGetListBanReasonV3OK, *AdminGetListBanReasonV3Unauthorized, *AdminGetListBanReasonV3Forbidden, error)
 	AdminGetListBanReasonV3Short(params *AdminGetListBanReasonV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminGetListBanReasonV3OK, error)
+	AdminUnbanUserBulkV3(params *AdminUnbanUserBulkV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminUnbanUserBulkV3Created, *AdminUnbanUserBulkV3BadRequest, *AdminUnbanUserBulkV3Unauthorized, *AdminUnbanUserBulkV3Forbidden, *AdminUnbanUserBulkV3NotFound, error)
+	AdminUnbanUserBulkV3Short(params *AdminUnbanUserBulkV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminUnbanUserBulkV3Created, error)
 	GetBansType(params *GetBansTypeParams, authInfo runtime.ClientAuthInfoWriter) (*GetBansTypeOK, *GetBansTypeUnauthorized, *GetBansTypeForbidden, error)
 	GetBansTypeShort(params *GetBansTypeParams, authInfo runtime.ClientAuthInfoWriter) (*GetBansTypeOK, error)
 	GetListBanReason(params *GetListBanReasonParams, authInfo runtime.ClientAuthInfoWriter) (*GetListBanReasonOK, *GetListBanReasonUnauthorized, *GetListBanReasonForbidden, error)
 	GetListBanReasonShort(params *GetListBanReasonParams, authInfo runtime.ClientAuthInfoWriter) (*GetListBanReasonOK, error)
 
 	SetTransport(transport runtime.ClientTransport)
+}
+
+/*
+Deprecated: Use AdminBanUserBulkV3Short instead.
+
+  AdminBanUserBulkV3 bulks ban user
+
+  &lt;p&gt;Required permission &#39;ADMIN:NAMESPACE:{namespace}:BAN [CREATE]&#39;.&lt;/p&gt;
+&lt;p&gt;Bulk ban user with specific type of ban. Ban types and reason can be queried. The maximum limit value is 100 userIDs&lt;/p&gt;
+&lt;p&gt;action code : 10141 &lt;/p&gt;
+
+*/
+func (a *Client) AdminBanUserBulkV3(params *AdminBanUserBulkV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminBanUserBulkV3Created, *AdminBanUserBulkV3BadRequest, *AdminBanUserBulkV3Unauthorized, *AdminBanUserBulkV3Forbidden, *AdminBanUserBulkV3NotFound, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewAdminBanUserBulkV3Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "AdminBanUserBulkV3",
+		Method:             "POST",
+		PathPattern:        "/iam/v3/admin/namespaces/{namespace}/bans/users",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &AdminBanUserBulkV3Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, nil, nil, nil, nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *AdminBanUserBulkV3Created:
+		return v, nil, nil, nil, nil, nil
+
+	case *AdminBanUserBulkV3BadRequest:
+		return nil, v, nil, nil, nil, nil
+
+	case *AdminBanUserBulkV3Unauthorized:
+		return nil, nil, v, nil, nil, nil
+
+	case *AdminBanUserBulkV3Forbidden:
+		return nil, nil, nil, v, nil, nil
+
+	case *AdminBanUserBulkV3NotFound:
+		return nil, nil, nil, nil, v, nil
+
+	default:
+		return nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+  AdminBanUserBulkV3Short bulks ban user
+
+  &lt;p&gt;Required permission &#39;ADMIN:NAMESPACE:{namespace}:BAN [CREATE]&#39;.&lt;/p&gt;
+&lt;p&gt;Bulk ban user with specific type of ban. Ban types and reason can be queried. The maximum limit value is 100 userIDs&lt;/p&gt;
+&lt;p&gt;action code : 10141 &lt;/p&gt;
+
+*/
+func (a *Client) AdminBanUserBulkV3Short(params *AdminBanUserBulkV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminBanUserBulkV3Created, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewAdminBanUserBulkV3Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "AdminBanUserBulkV3",
+		Method:             "POST",
+		PathPattern:        "/iam/v3/admin/namespaces/{namespace}/bans/users",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &AdminBanUserBulkV3Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *AdminBanUserBulkV3Created:
+		return v, nil
+	case *AdminBanUserBulkV3BadRequest:
+		return nil, v
+	case *AdminBanUserBulkV3Unauthorized:
+		return nil, v
+	case *AdminBanUserBulkV3Forbidden:
+		return nil, v
+	case *AdminBanUserBulkV3NotFound:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
 }
 
 /*
@@ -468,6 +592,126 @@ func (a *Client) AdminGetListBanReasonV3Short(params *AdminGetListBanReasonV3Par
 	case *AdminGetListBanReasonV3Unauthorized:
 		return nil, v
 	case *AdminGetListBanReasonV3Forbidden:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+Deprecated: Use AdminUnbanUserBulkV3Short instead.
+
+  AdminUnbanUserBulkV3 bulks unban user
+
+  &lt;p&gt;Required permission &#39;ADMIN:NAMESPACE:{namespace}:BAN [UPDATE]&#39;.&lt;/p&gt;
+&lt;p&gt;disable bulk ban user. The maximum limit value is 100&lt;/p&gt;
+&lt;p&gt;action code : 10142 &lt;/p&gt;
+
+*/
+func (a *Client) AdminUnbanUserBulkV3(params *AdminUnbanUserBulkV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminUnbanUserBulkV3Created, *AdminUnbanUserBulkV3BadRequest, *AdminUnbanUserBulkV3Unauthorized, *AdminUnbanUserBulkV3Forbidden, *AdminUnbanUserBulkV3NotFound, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewAdminUnbanUserBulkV3Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "AdminUnbanUserBulkV3",
+		Method:             "PATCH",
+		PathPattern:        "/iam/v3/admin/namespaces/{namespace}/bans/users/disabled",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &AdminUnbanUserBulkV3Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, nil, nil, nil, nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *AdminUnbanUserBulkV3Created:
+		return v, nil, nil, nil, nil, nil
+
+	case *AdminUnbanUserBulkV3BadRequest:
+		return nil, v, nil, nil, nil, nil
+
+	case *AdminUnbanUserBulkV3Unauthorized:
+		return nil, nil, v, nil, nil, nil
+
+	case *AdminUnbanUserBulkV3Forbidden:
+		return nil, nil, nil, v, nil, nil
+
+	case *AdminUnbanUserBulkV3NotFound:
+		return nil, nil, nil, nil, v, nil
+
+	default:
+		return nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+  AdminUnbanUserBulkV3Short bulks unban user
+
+  &lt;p&gt;Required permission &#39;ADMIN:NAMESPACE:{namespace}:BAN [UPDATE]&#39;.&lt;/p&gt;
+&lt;p&gt;disable bulk ban user. The maximum limit value is 100&lt;/p&gt;
+&lt;p&gt;action code : 10142 &lt;/p&gt;
+
+*/
+func (a *Client) AdminUnbanUserBulkV3Short(params *AdminUnbanUserBulkV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminUnbanUserBulkV3Created, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewAdminUnbanUserBulkV3Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "AdminUnbanUserBulkV3",
+		Method:             "PATCH",
+		PathPattern:        "/iam/v3/admin/namespaces/{namespace}/bans/users/disabled",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &AdminUnbanUserBulkV3Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *AdminUnbanUserBulkV3Created:
+		return v, nil
+	case *AdminUnbanUserBulkV3BadRequest:
+		return nil, v
+	case *AdminUnbanUserBulkV3Unauthorized:
+		return nil, v
+	case *AdminUnbanUserBulkV3Forbidden:
+		return nil, v
+	case *AdminUnbanUserBulkV3NotFound:
 		return nil, v
 
 	default:

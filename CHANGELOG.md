@@ -1,3 +1,31 @@
+<a name="v0.27.0"></a>
+## [v0.27.0] - 2022-09-12
+
+### Chore
+- adjust the params from required to optional in samples and tests
+- **cli:** regenerate lobby cli
+- **docs:** add generated common uses cases doc
+- **samples:** delete iam go sdk
+- **samples:** refactor the code
+- **samples:** synchronize the service name after converting to use go sdk local directory
+- **samples:** use default config and token repository implementation
+- **samples:** use go sdk local directory
+- **sdk:** regenerate sdk, cli sample app, cli test, doc index for AccelByte Cloud 3.31
+- **spec:** update spec for AccelByte Cloud 3.31
+- **test:** add random seed for username
+- **test:** run the test in sequence due to 403 error when delete user
+- **tests:** add markers for codegen to pick up
+- **tests:** refactor and replace deprecated method
+
+### Docs
+- update CHANGELOG.md for v0.27.0 release
+
+### Fix
+- **cli:** failed to validate the additional properties
+- **sdk:** allow to have an empty secret id
+- **ws:** remove the hardcode of connection utils
+
+
 <a name="v0.26.0"></a>
 ## [v0.26.0] - 2022-08-29
 
@@ -883,6 +911,7 @@ The wrapper have been refactored and has breaking change, these are the list:
 ### Fix
 - delete go.mod ([#1](https://github.com/AccelByte/accelbyte-go-sdk/issues/1))
 
+[v0.27.0]: https://github.com/AccelByte/accelbyte-go-sdk/compare/v0.26.0...v0.27.0
 [v0.26.0]: https://github.com/AccelByte/accelbyte-go-sdk/compare/v0.25.0...v0.26.0
 [v0.25.0]: https://github.com/AccelByte/accelbyte-go-sdk/compare/v0.24.0...v0.25.0
 [v0.24.0]: https://github.com/AccelByte/accelbyte-go-sdk/compare/v0.23.0...v0.24.0

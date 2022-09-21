@@ -14,10 +14,10 @@ import (
 var (
 	ConstClientId     = "admin"
 	ConstClientSecret = "admin"
-	ConstURL          = "http://localhost:80"
+	ConstURL          = "http://localhost:8070"
 	ConfigRepo        ConfigRepositoryImplTest
 	TestService       = &TestWrapperService{
-		Client:           NewClientWithBasePath("localhost:80", ""),
+		Client:           NewClientWithBasePath("localhost:8070", ""),
 		ConfigRepository: &ConfigRepositoryImplTest{},
 		TokenRepository:  &TokenRepositoryImplTest{},
 	}

@@ -5,12 +5,9 @@
 package sdk_test
 
 import (
-	"bufio"
 	"bytes"
 	"encoding/json"
 	"fmt"
-	"io"
-	"log"
 	"net/http"
 	"os"
 	"sync"
@@ -25,14 +22,17 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/iam"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/lobby"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils"
-	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils/auth"
 	"github.com/stretchr/testify/assert"
 )
 
 var (
-	accessToken                = "foo"
-	expiresIn                  = int32(3600)
-	configRepo                 = *auth.DefaultConfigRepositoryImpl()
+	accessToken = "foo"
+	expiresIn   = int32(3600)
+	configRepo  = MyConfigRepo{
+		baseUrl:      mockServerBaseUrl,
+		clientId:     mockServerClientId,
+		clientSecret: mockServerClientSecret,
+	}
 	contentTypeApplicationJson = "application/json"
 	emptyString                = ""
 	iamBansService             = &iam.BansService{
@@ -60,7 +60,12 @@ var (
 	mockServerConfigureOverwriteResponse = "/configure-overwrite-response"
 	mockServerResetOverwriteResponse     = "/reset-overwrite-response"
 	namespace                            = "test"
-	tokenRepo                            = *auth.DefaultTokenRepositoryImpl()
+	tokenRepo                            = MyTokenRepo{
+		accessToken: &iamclientmodels.OauthmodelTokenResponseV3{
+			AccessToken: &accessToken,
+			ExpiresIn:   &expiresIn,
+		},
+	}
 )
 
 // region MockServer
@@ -216,12 +221,6 @@ func TestRetryRequest_withMaxTries(t *testing.T) {
 }
 
 func TestRetryRequest_withBigFile(t *testing.T) {
-	// Arrange - login
-	e := oAuth20Service.LoginUser(os.Getenv("AB_USERNAME"), os.Getenv("AB_PASSWORD"))
-	if e != nil {
-		t.Fatal("unable to login")
-	}
-
 	// Arrange - create a big file
 	filePath := "test.dat"
 	mbSize := 1024
@@ -236,36 +235,10 @@ func TestRetryRequest_withBigFile(t *testing.T) {
 		_ = os.Remove(filePath)
 	}()
 
-	// Arrange - open a file a file
-	file, errFile := os.Open(filePath)
-	if errFile != nil {
-		t.Fatal("unable to open big file")
-	}
-
-	// Arrange - copy
-	nBytes, nChunks := int64(0), int64(0)
-	r := bufio.NewReader(file)
-
-	// divide to chunks
-	for {
-		n, err := r.Read(buf[:cap(buf)])
-		log.Print("divide to chunks")
-		buf = buf[:n]
-		if n == 0 {
-			if err == nil {
-				continue
-			}
-			if err == io.EOF {
-				break
-			}
-			log.Fatal(err)
-		}
-		nChunks++
-		nBytes += int64(len(buf))
-		// process buf
-		if err != nil && err != io.EOF {
-			log.Fatal(err)
-		}
+	// Arrange - open a file and read by chunks
+	file, errRead := utils.ReadByChunks(filePath)
+	if errRead != nil {
+		t.Fatal("unable to read big file")
 	}
 
 	// Arrange - additional
@@ -273,7 +246,7 @@ func TestRetryRequest_withBigFile(t *testing.T) {
 	err = configureMockServerOverwriteResponse(map[string]interface{}{
 		"enabled":   true,
 		"overwrite": true,
-		"status":    404,
+		"status":    404, // same result as demo environment
 	})
 	if err != nil {
 		t.Fatal("unable to configure mock server")
@@ -291,7 +264,6 @@ func TestRetryRequest_withBigFile(t *testing.T) {
 		MaxTries: maxNumberOfRetries,
 		RetryCodes: map[int]bool{
 			404: true,
-			502: true,
 		},
 		Transport: &roundTripper,
 	}
@@ -302,7 +274,7 @@ func TestRetryRequest_withBigFile(t *testing.T) {
 	}
 	ok, errOk := lobbyConfigService.AdminImportConfigV1Short(&paramsRetry)
 	if errOk != nil {
-		assert.NotNil(t, errOk, "err response is expected. the endpoint only accept JSON file")
+		assert.NotNil(t, errOk, "err response is expected. the endpoint only accept JSON file. "+errOk.Error())
 	}
 	assert.Nil(t, ok, "nil response is expected")
 

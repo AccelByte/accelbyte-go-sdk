@@ -8,7 +8,7 @@
     },
     "description": "Justice Platform Service",
     "title": "justice-platform-service",
-    "version": "4.14.0"
+    "version": "4.14.1"
   },
   "schemes": [
     "https"
@@ -5049,6 +5049,15 @@
             "name": "features",
             "required": false,
             "type": "string"
+          },
+          {
+            "default": false,
+            "description": "default is false, only available when search by category path, it will return all of the items(includes sub category path) under this category path",
+            "in": "query",
+            "name": "includeSubCategoryItem",
+            "required": false,
+            "type": "boolean",
+            "x-omitempty": false
           },
           {
             "enum": [
@@ -19050,6 +19059,15 @@
             "type": "string"
           },
           {
+            "default": false,
+            "description": "default is false, only available when search by category path, it will return all of the items(includes sub category path) under this category path",
+            "in": "query",
+            "name": "includeSubCategoryItem",
+            "required": false,
+            "type": "boolean",
+            "x-omitempty": false
+          },
+          {
             "enum": [
               "APP",
               "BUNDLE",
@@ -20223,13 +20241,14 @@
         ],
         "responses": {
           "204": {
-            "description": "no content"
+            "description": "no content.(if query param 'returnUrl' is empty)"
           },
           "307": {
-            "description": "successful operation",
+            "description": "successful operation.(if query param 'returnUrl' is not empty)",
             "headers": {
               "Location": {
                 "description": "The Location header",
+                "format": "uri",
                 "type": "string"
               }
             }
@@ -20970,6 +20989,12 @@
         "responses": {
           "204": {
             "description": "Successful operation"
+          },
+          "400": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eErrorCode\u003c/td\u003e\u003ctd\u003eErrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e39125\u003c/td\u003e\u003ctd\u003eInvalid platform [{platformId}] user token\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e39126\u003c/td\u003e\u003ctd\u003eUser id [{}] in namespace [{}] doesn't link platform [{}]\u003c/td\u003e\u003c/tr\u003e",
+            "schema": {
+              "$ref": "#/definitions/ErrorEntity"
+            }
           }
         },
         "security": [
@@ -21022,6 +21047,12 @@
         "responses": {
           "204": {
             "description": "Successful operation"
+          },
+          "400": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eErrorCode\u003c/td\u003e\u003ctd\u003eErrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e39125\u003c/td\u003e\u003ctd\u003eInvalid platform [{platformId}] user token\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e39126\u003c/td\u003e\u003ctd\u003eUser id [{}] in namespace [{}] doesn't link platform [{}]\u003c/td\u003e\u003c/tr\u003e",
+            "schema": {
+              "$ref": "#/definitions/ErrorEntity"
+            }
           }
         },
         "security": [
@@ -21132,6 +21163,12 @@
         "responses": {
           "204": {
             "description": "Successful operation"
+          },
+          "400": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eErrorCode\u003c/td\u003e\u003ctd\u003eErrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e39125\u003c/td\u003e\u003ctd\u003eInvalid platform [{platformId}] user token\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e39126\u003c/td\u003e\u003ctd\u003eUser id [{}] in namespace [{}] doesn't link platform [{}]\u003c/td\u003e\u003c/tr\u003e",
+            "schema": {
+              "$ref": "#/definitions/ErrorEntity"
+            }
           }
         },
         "security": [
@@ -22241,6 +22278,12 @@
               },
               "type": "array"
             }
+          },
+          "400": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eErrorCode\u003c/td\u003e\u003ctd\u003eErrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e39125\u003c/td\u003e\u003ctd\u003eInvalid platform [{platformId}] user token\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e39126\u003c/td\u003e\u003ctd\u003eUser id [{}] in namespace [{}] doesn't link platform [{}]\u003c/td\u003e\u003c/tr\u003e",
+            "schema": {
+              "$ref": "#/definitions/ErrorEntity"
+            }
           }
         },
         "security": [
@@ -22383,6 +22426,12 @@
                 "$ref": "#/definitions/PlayStationReconcileResult"
               },
               "type": "array"
+            }
+          },
+          "400": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eErrorCode\u003c/td\u003e\u003ctd\u003eErrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e39125\u003c/td\u003e\u003ctd\u003eInvalid platform [{platformId}] user token\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e39126\u003c/td\u003e\u003ctd\u003eUser id [{}] in namespace [{}] doesn't link platform [{}]\u003c/td\u003e\u003c/tr\u003e",
+            "schema": {
+              "$ref": "#/definitions/ErrorEntity"
             }
           }
         },
@@ -22564,6 +22613,12 @@
         "responses": {
           "204": {
             "description": "Sync Successful"
+          },
+          "400": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eErrorCode\u003c/td\u003e\u003ctd\u003eErrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e39125\u003c/td\u003e\u003ctd\u003eInvalid platform [{platformId}] user token\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e39126\u003c/td\u003e\u003ctd\u003eUser id [{}] in namespace [{}] doesn't link platform [{}]\u003c/td\u003e\u003c/tr\u003e",
+            "schema": {
+              "$ref": "#/definitions/ErrorEntity"
+            }
           }
         },
         "security": [
@@ -22627,6 +22682,12 @@
                 "$ref": "#/definitions/XblReconcileResult"
               },
               "type": "array"
+            }
+          },
+          "400": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eErrorCode\u003c/td\u003e\u003ctd\u003eErrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e39125\u003c/td\u003e\u003ctd\u003eInvalid platform [{platformId}] user token\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e39126\u003c/td\u003e\u003ctd\u003eUser id [{}] in namespace [{}] doesn't link platform [{}]\u003c/td\u003e\u003c/tr\u003e",
+            "schema": {
+              "$ref": "#/definitions/ErrorEntity"
             }
           }
         },
@@ -23967,6 +24028,15 @@
             "type": "string"
           },
           {
+            "default": false,
+            "description": "default is false, only available when search by category path, it will return all of the items(includes sub category path) under this category path",
+            "in": "query",
+            "name": "includeSubCategoryItem",
+            "required": false,
+            "type": "boolean",
+            "x-omitempty": false
+          },
+          {
             "enum": [
               "ACTIVE",
               "INACTIVE"
@@ -24020,12 +24090,33 @@
             "type": "string"
           },
           {
-            "default": "name:asc,displayOrder:asc",
+            "default": [
+              "name:asc",
+              "displayOrder:asc"
+            ],
             "description": "default is name:asc,displayOrder:asc, allow values: [name, name:asc, name:desc, createdAt, createdAt:asc, createdAt:desc, updatedAt, updatedAt:asc, updatedAt:desc, displayOrder, displayOrder:asc, displayOrder:desc],and support sort group, eg: sortBy=name:asc,createdAt:desc. Make sure to always use more than one sort if the first sort is not an unique valuefor example, if you wish to sort by displayOrder, make sure to include other sort such as name or createdAt after the first sort, eg: displayOrder:asc,name:asc",
             "in": "query",
+            "items": {
+              "enum": [
+                "name",
+                "name:asc",
+                "name:desc",
+                "createdAt",
+                "createdAt:asc",
+                "createdAt:desc",
+                "updatedAt",
+                "updatedAt:asc",
+                "updatedAt:desc",
+                "displayOrder",
+                "displayOrder:asc",
+                "displayOrder:desc"
+              ],
+              "type": "string"
+            },
             "name": "sortBy",
             "required": false,
-            "type": "string"
+            "type": "array",
+            "uniqueItems": true
           },
           {
             "description": "default is published store id",
@@ -32920,6 +33011,14 @@
           "description": "platform wallet namespace",
           "type": "string"
         },
+        "status": {
+          "description": "status",
+          "enum": [
+            "ACTIVE",
+            "INACTIVE"
+          ],
+          "type": "string"
+        },
         "userId": {
           "description": "user id",
           "type": "string"
@@ -32932,6 +33031,7 @@
           "type": "array"
         },
         "walletStatus": {
+          "description": "wallet status will be deprecated in the feature, pls use status field.",
           "enum": [
             "ACTIVE",
             "INACTIVE"

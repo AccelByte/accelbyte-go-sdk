@@ -3,7 +3,7 @@
   "info": {
     "description": "Justice Matchmaking Service",
     "title": "Justice Matchmaking Service",
-    "version": "2.15.7"
+    "version": "2.15.8"
   },
   "schemes": [
     "https"
@@ -1706,7 +1706,8 @@
         "consumes": [
           "application/json"
         ],
-        "description": "Required Permission: ADMIN:NAMESPACE:{namespace}:MATCHMAKING:CHANNEL [Read]\n\t\nRequired Scope: social\n\t\nSearch sessions.",
+        "deprecated": true,
+        "description": "\n\u0026lt;p\u0026gt;\n\t\u0026lt;h2\u0026gt;The endpoint is going to be deprecated\u0026lt;/h2\u0026gt; \u0026lt;/br\u0026gt;\n\t\u0026lt;strong\u0026gt;Endpoint migration guide\u0026lt;/strong\u0026gt;\n\t\u0026lt;ul\u0026gt;\n\t\t\u0026lt;li\u0026gt;\u0026lt;b\u0026gt;Substitute endpoint: \u0026lt;i\u0026gt;/sessionbrowser/admin/namespaces/{namespace}/sessions/history/search [GET]\u0026lt;/i\u0026gt;\u0026lt;/b\u0026gt;\u0026lt;/li\u0026gt;\n\t\u0026lt;/ul\u0026gt;\n\u0026lt;/p\u0026gt;\n\nRequired Permission: ADMIN:NAMESPACE:{namespace}:MATCHMAKING:CHANNEL [Read]\n\t\nRequired Scope: social\n\t\nSearch sessions.",
         "operationId": "SearchSessions",
         "parameters": [
           {
@@ -1825,7 +1826,8 @@
         "consumes": [
           "application/json"
         ],
-        "description": "Required Permission: ADMIN:NAMESPACE:{namespace}:MATCHMAKING:CHANNEL [Read]\n\t\nRequired Scope: social\n\t\nGet session history detailed.\n\nif party_id value empty/null, field will not show in response body.",
+        "deprecated": true,
+        "description": "\n\u0026lt;p\u0026gt;\n\t\u0026lt;h2\u0026gt;The endpoint is going to be deprecated\u0026lt;/h2\u0026gt; \u0026lt;/br\u0026gt;\n\t\u0026lt;strong\u0026gt;Endpoint migration guide\u0026lt;/strong\u0026gt;\n\t\u0026lt;ul\u0026gt;\n\t\t\u0026lt;li\u0026gt;\u0026lt;b\u0026gt;Substitute endpoint: \u0026lt;i\u0026gt;/sessionbrowser/admin/namespaces/{namespace}/sessions/{sessionId}/history/detailed [GET]\u0026lt;/i\u0026gt;\u0026lt;/b\u0026gt;\u0026lt;/li\u0026gt;\n\t\u0026lt;/ul\u0026gt;\n\u0026lt;/p\u0026gt;\n\nRequired Permission: ADMIN:NAMESPACE:{namespace}:MATCHMAKING:CHANNEL [Read]\n\t\nRequired Scope: social\n\t\nGet session history detailed.\n\nif party_id value empty/null, field will not show in response body.",
         "operationId": "GetSessionHistoryDetailed",
         "parameters": [
           {
@@ -2093,7 +2095,8 @@
         "consumes": [
           "application/json"
         ],
-        "description": "Required Permission: ADMIN:NAMESPACE:{namespace}:MATCHMAKING:CHANNEL [Read]\n\t\nRequired Scope: social\n\t\nSearch sessions. Optimize the query by differentiating query with filter namespace only and filter with namespace \u0026amp; other filter (partyID, userID, matchID).\nQuery with filter namespace only will not group whole session data while query with filter namespace \u0026amp; other filter will include session data.",
+        "deprecated": true,
+        "description": "\u0026lt;p\u0026gt;\n\t\u0026lt;h2\u0026gt;The endpoint is going to be deprecated\u0026lt;/h2\u0026gt; \u0026lt;/br\u0026gt;\n\t\u0026lt;strong\u0026gt;Endpoint migration guide\u0026lt;/strong\u0026gt;\n\t\u0026lt;ul\u0026gt;\n\t\t\u0026lt;li\u0026gt;\u0026lt;b\u0026gt;Substitute endpoint: \u0026lt;i\u0026gt;/sessionbrowser/admin/namespaces/{namespace}/sessions/history/search [GET]\u0026lt;/i\u0026gt;\u0026lt;/b\u0026gt;\u0026lt;/li\u0026gt;\n\t\u0026lt;/ul\u0026gt;\n\u0026lt;/p\u0026gt;\n\nRequired Permission: ADMIN:NAMESPACE:{namespace}:MATCHMAKING:CHANNEL [Read]\n\t\nRequired Scope: social\n\t\nSearch sessions. Optimize the query by differentiating query with filter namespace only and filter with namespace \u0026amp; other filter (partyID, userID, matchID).\nQuery with filter namespace only will not group whole session data while query with filter namespace \u0026amp; other filter will include session data.",
         "operationId": "SearchSessionsV2",
         "parameters": [
           {
@@ -2553,11 +2556,26 @@
         "has_combination": {
           "type": "boolean",
           "x-omitempty": false
+        },
+        "role_flexing_enable": {
+          "type": "boolean",
+          "x-omitempty": false
+        },
+        "role_flexing_player": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "role_flexing_second": {
+          "format": "int32",
+          "type": "integer"
         }
       },
       "required": [
         "alliances",
-        "has_combination"
+        "has_combination",
+        "role_flexing_enable",
+        "role_flexing_player",
+        "role_flexing_second"
       ]
     },
     "models.Combination.alliances": {
@@ -2849,13 +2867,18 @@
             "$ref": "#/definitions/models.PartyMember"
           },
           "type": "array"
+        },
+        "ticket_id": {
+          "type": "string",
+          "x-nullable": false
         }
       },
       "required": [
         "first_ticket_created_at",
         "party_attributes",
         "party_id",
-        "party_members"
+        "party_members",
+        "ticket_id"
       ]
     },
     "models.MatchingRule": {
@@ -2941,6 +2964,10 @@
           "type": "string",
           "x-nullable": false
         },
+        "ticket_id": {
+          "type": "string",
+          "x-nullable": false
+        },
         "updated_at": {
           "format": "date-time",
           "type": "string",
@@ -2960,6 +2987,7 @@
         "region",
         "server_name",
         "status",
+        "ticket_id",
         "updated_at"
       ]
     },

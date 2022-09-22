@@ -8,7 +8,7 @@
     },
     "description": "Justice IAM Service",
     "title": "justice-iam-service",
-    "version": "5.16.0"
+    "version": "5.17.0"
   },
   "schemes": [
     "https"
@@ -6676,7 +6676,7 @@
         "operationId": "AdminResetInputValidations",
         "parameters": [
           {
-            "description": "Name of the input validation field to reset: username, displayName, or password",
+            "description": "Name of the input validation field to reset: email, username, displayName, or password",
             "in": "path",
             "name": "field",
             "required": true,
@@ -9333,7 +9333,7 @@
             "type": "string"
           },
           {
-            "description": "Platform Id that want to be searched, supported values: steam, steamopenid, psn, xbox, epicgames, stadia, nintendo, oculus, aws cognito, facebook, google, discord, twitch, or snapchat",
+            "description": "Platform Id that want to be searched, supported values: steam, steamopenid, psn, xbox, epicgames, stadia, nintendo, oculus, aws cognito, facebook, google, discord, twitch, snapchat or amazon",
             "in": "query",
             "name": "platformId",
             "type": "string"
@@ -13375,7 +13375,7 @@
         "consumes": [
           "*/*"
         ],
-        "description": "\u0026lt;p\u0026gt;This endpoint is used to remove \u0026lt;b\u0026gt;access_token\u0026lt;/b\u0026gt; cookie and \u0026lt;b\u0026gt;refresh_token\u0026lt;/b\u0026gt; cookie.\u0026lt;/p\u0026gt;",
+        "description": "\u0026lt;p\u0026gt;This endpoint is used to remove \u0026lt;b\u0026gt;access_token\u0026lt;/b\u0026gt;, \u0026lt;b\u0026gt;refresh_token\u0026lt;/b\u0026gt; from cookie and revoke token from usage.\u0026lt;/p\u0026gt;\n\t\t\u0026lt;p\u0026gt;Supported methods:\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;ul\u0026gt;\n\t\t\t\t\u0026lt;li\u0026gt;VerifyToken to verify token from header\u0026lt;/li\u0026gt;\n\t\t\t\t\u0026lt;li\u0026gt;AddTokenToRevocationList to revoke token with TTL\u0026lt;/li\u0026gt;\n\t\t\t\u0026lt;/ul\u0026gt;",
         "operationId": "Logout",
         "produces": [
           "application/json"
@@ -13446,7 +13446,7 @@
         "consumes": [
           "application/x-www-form-urlencoded"
         ],
-        "description": "Admin Retrieve User Third Party Platform Token\u0026lt;br/\u0026gt;\n\u0026lt;p\u0026gt;\nThis endpoint used for retrieving third party platform token for user that login using third party.\nPassing platform group name or it\u0026#39;s member will return same access token that can be used across the platform members. \n\u0026lt;/p\u0026gt;\n         \u0026lt;p\u0026gt;Notes:\u0026lt;/p\u0026gt;\n       \u0026lt;ul\u0026gt;\n                 \u0026lt;li\u0026gt;Required permission: ADMIN:NAMESPACE:{namespace}:USER:{userId} [READ]\u0026lt;/li\u0026gt;\n             \u0026lt;/ul\u0026gt;\n\u0026lt;p\u0026gt;The third party platform and platform group covered for this is:\u0026lt;/p\u0026gt;\n\u0026lt;ul\u0026gt;\t\t\t\t\n\t\u0026lt;li\u0026gt;(psn) ps4web\u0026lt;/li\u0026gt;\n\t\u0026lt;li\u0026gt;(psn) ps4\u0026lt;/li\u0026gt;\n\t\u0026lt;li\u0026gt;(psn) ps5\u0026lt;/li\u0026gt;\n\t\u0026lt;li\u0026gt;xbox live\u0026lt;/li\u0026gt;\n\t\u0026lt;li\u0026gt;steam\u0026lt;/li\u0026gt;\n\u0026lt;/ul\u0026gt;",
+        "description": "Admin Retrieve User Third Party Platform Token\u0026lt;br/\u0026gt;\n\u0026lt;p\u0026gt;\nThis endpoint used for retrieving third party platform token for user that login using third party,\n         if user have not link requested platform in game namespace, will try to retrieving third party platform token from publisher namespace.\nPassing platform group name or it\u0026#39;s member will return same access token that can be used across the platform members. \n\u0026lt;/p\u0026gt;\n         \u0026lt;p\u0026gt;Notes:\u0026lt;/p\u0026gt;\n       \u0026lt;ul\u0026gt;\n                 \u0026lt;li\u0026gt;Required permission: ADMIN:NAMESPACE:{namespace}:USER:{userId} [READ]\u0026lt;/li\u0026gt;\n             \u0026lt;/ul\u0026gt;\n\u0026lt;p\u0026gt;The third party platform and platform group covered for this is:\u0026lt;/p\u0026gt;\n\u0026lt;ul\u0026gt;\t\t\t\t\n\t\u0026lt;li\u0026gt;(psn) ps4web\u0026lt;/li\u0026gt;\n\t\u0026lt;li\u0026gt;(psn) ps4\u0026lt;/li\u0026gt;\n\t\u0026lt;li\u0026gt;(psn) ps5\u0026lt;/li\u0026gt;\n\t\u0026lt;li\u0026gt;xbox live\u0026lt;/li\u0026gt;\n\t\u0026lt;li\u0026gt;steam\u0026lt;/li\u0026gt;\n\u0026lt;/ul\u0026gt;",
         "operationId": "AdminRetrieveUserThirdPartyPlatformTokenV3",
         "parameters": [
           {
@@ -13876,7 +13876,7 @@
         "consumes": [
           "application/x-www-form-urlencoded"
         ],
-        "description": "Retrieve User Third Party Platform Token\u0026lt;br/\u0026gt;\n\u0026lt;p\u0026gt;\nThis endpoint used for retrieving third party platform token for user that login using third party.\nPassing platform group name or it\u0026#39;s member will return same access token that can be used across the platform members. \n\u0026lt;/p\u0026gt;\n\u0026lt;p\u0026gt;The third party platform and platform group covered for this is:\u0026lt;/p\u0026gt;\n\u0026lt;ul\u0026gt;\t\t\t\t\n\t\u0026lt;li\u0026gt;(psn) ps4web\u0026lt;/li\u0026gt;\n\t\u0026lt;li\u0026gt;(psn) ps4\u0026lt;/li\u0026gt;\n\t\u0026lt;li\u0026gt;(psn) ps5\u0026lt;/li\u0026gt;\n\t\u0026lt;li\u0026gt;epicgames\u0026lt;/li\u0026gt;\n\t\u0026lt;li\u0026gt;twitch\u0026lt;/li\u0026gt;\n\t\u0026lt;li\u0026gt;awscognito\u0026lt;/li\u0026gt;\n\u0026lt;/ul\u0026gt;",
+        "description": "Retrieve User Third Party Platform Token\u0026lt;br/\u0026gt;\n\u0026lt;p\u0026gt;\nThis endpoint used for retrieving third party platform token for user that login using third party,\nif user have not link requested platform in game namespace, will try to retrieving third party platform token from publisher namespace.\nPassing platform group name or it\u0026#39;s member will return same access token that can be used across the platform members. \n\u0026lt;/p\u0026gt;\n\u0026lt;p\u0026gt;The third party platform and platform group covered for this is:\u0026lt;/p\u0026gt;\n\u0026lt;ul\u0026gt;\t\t\t\t\n\t\u0026lt;li\u0026gt;(psn) ps4web\u0026lt;/li\u0026gt;\n\t\u0026lt;li\u0026gt;(psn) ps4\u0026lt;/li\u0026gt;\n\t\u0026lt;li\u0026gt;(psn) ps5\u0026lt;/li\u0026gt;\n\t\u0026lt;li\u0026gt;epicgames\u0026lt;/li\u0026gt;\n\t\u0026lt;li\u0026gt;twitch\u0026lt;/li\u0026gt;\n\t\u0026lt;li\u0026gt;awscognito\u0026lt;/li\u0026gt;\n\u0026lt;/ul\u0026gt;",
         "operationId": "RetrieveUserThirdPartyPlatformTokenV3",
         "parameters": [
           {
@@ -13946,7 +13946,7 @@
         "consumes": [
           "application/x-www-form-urlencoded"
         ],
-        "description": "Generate url to request auth code from third party platform \u0026lt;br\u0026gt;\n               \u0026lt;h2\u0026gt;Supported platforms:\u0026lt;/h2\u0026gt;\u0026lt;ul\u0026gt;\n               \u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;steamopenid\u0026lt;/strong\u0026gt;\u0026lt;/li\u0026gt;This endpoint redirects to steam login page, then redirect back to platform\n               authenticate endpoint after successfully authenticating user steam.\n               \u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;xblweb\u0026lt;/strong\u0026gt;\u0026lt;/li\u0026gt;This endpoint redirects to xbox login page, then redirect back to platform\n               authenticate endpoint after successfully authenticating xbox user.\n               \u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;ps4web\u0026lt;/strong\u0026gt;\u0026lt;/li\u0026gt;This endpoint redirects to psn login page, then redirect back to platform\n               authenticate endpoint after successfully authenticating psn user.\n               \u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;epicgames\u0026lt;/strong\u0026gt;\u0026lt;/li\u0026gt;This endpoint redirects to Epicgames OAuth login page. then redirect to platform\n               authenticate endpoint after successfully authenticating an Epicgames credential\n               \u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;twitch\u0026lt;/strong\u0026gt;\u0026lt;/li\u0026gt;This endpoint redirects to twitch login page, then redirect back to platform\n               authenticate endpoint after successfully authenticating twitch user.\n               \u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;azure\u0026lt;/strong\u0026gt;\u0026lt;/li\u0026gt;This endpoint redirects to azure login page, then redirect back to platform\n               authenticate(saml) endpoint after successfully authenticating azure user.\n               \u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;facebook\u0026lt;/strong\u0026gt;\u0026lt;/li\u0026gt;This endpoint redirects to facebook login page, then redirect back to platform\n               authenticate endpoint after successfully authenticating facebook user.\n               \u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;google\u0026lt;/strong\u0026gt;\u0026lt;/li\u0026gt;This endpoint redirects to google login page, then redirect back to platform\n               authenticate endpoint after successfully authenticating google user.\n\t\t\t\t\t\t\t \u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;snapchat\u0026lt;/strong\u0026gt;\u0026lt;/li\u0026gt;This endpoint redirects to snapchat login page, then redirect back to platform\n               authenticate endpoint after successfully authenticating snapchat user.\n\t\t\t\t\t\t\t \u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;discord\u0026lt;/strong\u0026gt;\u0026lt;/li\u0026gt;This endpoint redirects to discord login page, then redirect back to platform\n               authenticate endpoint after successfully authenticating discord user.\n               \u0026lt;/ul\u0026gt; action code : 10702\u0026#39;",
+        "description": "Generate url to request auth code from third party platform \u0026lt;br\u0026gt;\n               \u0026lt;h2\u0026gt;Supported platforms:\u0026lt;/h2\u0026gt;\u0026lt;ul\u0026gt;\n               \u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;steamopenid\u0026lt;/strong\u0026gt;\u0026lt;/li\u0026gt;This endpoint redirects to steam login page, then redirect back to platform\n               authenticate endpoint after successfully authenticating user steam.\n               \u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;xblweb\u0026lt;/strong\u0026gt;\u0026lt;/li\u0026gt;This endpoint redirects to xbox login page, then redirect back to platform\n               authenticate endpoint after successfully authenticating xbox user.\n               \u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;ps4web\u0026lt;/strong\u0026gt;\u0026lt;/li\u0026gt;This endpoint redirects to psn login page, then redirect back to platform\n               authenticate endpoint after successfully authenticating psn user.\n               \u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;epicgames\u0026lt;/strong\u0026gt;\u0026lt;/li\u0026gt;This endpoint redirects to Epicgames OAuth login page. then redirect to platform\n               authenticate endpoint after successfully authenticating an Epicgames credential\n               \u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;twitch\u0026lt;/strong\u0026gt;\u0026lt;/li\u0026gt;This endpoint redirects to twitch login page, then redirect back to platform\n               authenticate endpoint after successfully authenticating twitch user.\n               \u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;azure\u0026lt;/strong\u0026gt;\u0026lt;/li\u0026gt;This endpoint redirects to azure login page, then redirect back to platform\n               authenticate(saml) endpoint after successfully authenticating azure user.\n               \u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;facebook\u0026lt;/strong\u0026gt;\u0026lt;/li\u0026gt;This endpoint redirects to facebook login page, then redirect back to platform\n               authenticate endpoint after successfully authenticating facebook user.\n               \u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;google\u0026lt;/strong\u0026gt;\u0026lt;/li\u0026gt;This endpoint redirects to google login page, then redirect back to platform\n               authenticate endpoint after successfully authenticating google user.\n\t\t\t\t\t\t\t \u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;snapchat\u0026lt;/strong\u0026gt;\u0026lt;/li\u0026gt;This endpoint redirects to snapchat login page, then redirect back to platform\n               authenticate endpoint after successfully authenticating snapchat user.\n\t\t\t\t\t\t\t \u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;discord\u0026lt;/strong\u0026gt;\u0026lt;/li\u0026gt;This endpoint redirects to discord login page, then redirect back to platform\n               authenticate endpoint after successfully authenticating discord user.\n               \u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;amazon\u0026lt;/strong\u0026gt;\u0026lt;/li\u0026gt;This endpoint redirects to amazon login page, then redirect back to platform\n               authenticate endpoint after successfully authenticating amazon user.\n               \u0026lt;/ul\u0026gt; action code : 10702\u0026#39;",
         "operationId": "AuthCodeRequestV3",
         "parameters": [
           {
@@ -19812,7 +19812,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "Create a test user and not send verification code email\n\t\t\u0026lt;p\u0026gt;\n\t\t\u0026lt;b\u0026gt;Required attributes:\u0026lt;/b\u0026gt;\n\t\t- verified: this new user is verified or not\n\t\t- authType: possible value is EMAILPASSWD\n\t\t- emailAddress: 5 to 254 characters\n\t\t- username: 3 to 48 characters, case insensitive, alphanumeric with allowed symbols underscore (_) and dot (.)\n\t\t- password: 8 to 32 characters, satisfy at least 3 out of 4 conditions(uppercase, lowercase letters, numbers and special characters) and should not have more than 2 equal characters in a row.\n\t\t- country: ISO3166-1 alpha-2 two letter, e.g. US.\n\t\t- dateOfBirth: YYYY-MM-DD, e.g. 1990-01-01. valid values are between 1905-01-01 until current date.\n\t\t\u0026lt;br/\u0026gt;\n\t\t\u0026lt;b\u0026gt;Not required attributes:\u0026lt;/b\u0026gt;\t\n\t\t- displayName: 1 to 48 characters\n\t\t\u0026lt;/p\u0026gt;\n\t\t\u0026lt;p\u0026gt;This endpoint support accepting agreements for the created user. Supply the accepted agreements in acceptedPolicies attribute.\u0026lt;/p\u0026gt;\n\t\t",
+        "description": "Create a test user and not send verification code email\n\t\t\u0026lt;p\u0026gt;\n\t\t\u0026lt;b\u0026gt;Required attributes:\u0026lt;/b\u0026gt;\n\t\t- verified: this new user is verified or not\n\t\t- authType: possible value is EMAILPASSWD\n\t\t- emailAddress: Please refer to the rule from /v3/public/inputValidations API.\n\t\t- username: Please refer to the rule from /v3/public/inputValidations API.\n\t\t- password: Please refer to the rule from /v3/public/inputValidations API.\n\t\t- country: ISO3166-1 alpha-2 two letter, e.g. US.\n\t\t- dateOfBirth: YYYY-MM-DD, e.g. 1990-01-01. valid values are between 1905-01-01 until current date.\n\t\t\u0026lt;br/\u0026gt;\n\t\t\u0026lt;b\u0026gt;Not required attributes:\u0026lt;/b\u0026gt;\t\n\t\t- displayName: Please refer to the rule from /v3/public/inputValidations API.\n\t\t\u0026lt;/p\u0026gt;\n\t\t\u0026lt;p\u0026gt;This endpoint support accepting agreements for the created user. Supply the accepted agreements in acceptedPolicies attribute.\u0026lt;/p\u0026gt;\n\t\t",
         "operationId": "PublicCreateTestUserV4",
         "parameters": [
           {
@@ -19882,7 +19882,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "Create a new user with unique email address and username.\n\t\t\u0026lt;p\u0026gt;\n\t\t\u0026lt;b\u0026gt;Required attributes:\u0026lt;/b\u0026gt;\n\t\t- authType: possible value is EMAILPASSWD\n\t\t- emailAddress: 5 to 254 characters\n\t\t- username: 3 to 48 characters, case insensitive, alphanumeric with allowed symbols underscore (_) and dot (.)\n\t\t- password: 8 to 32 characters, satisfy at least 3 out of 4 conditions(uppercase, lowercase letters, numbers and special characters) and should not have more than 2 equal characters in a row.\n\t\t- country: ISO3166-1 alpha-2 two letter, e.g. US.\n\t\t- dateOfBirth: YYYY-MM-DD, e.g. 1990-01-01. valid values are between 1905-01-01 until current date.\n\t\t\u0026lt;br/\u0026gt;\n\t\t\u0026lt;b\u0026gt;Not required attributes:\u0026lt;/b\u0026gt;\t\n\t\t- displayName: 1 to 48 characters\n\t\t\u0026lt;/p\u0026gt;\n\t\t\u0026lt;p\u0026gt;This endpoint support accepting agreements for the created user. Supply the accepted agreements in acceptedPolicies attribute.\u0026lt;/p\u0026gt;\n\t\t",
+        "description": "Create a new user with unique email address and username.\n\t\t\u0026lt;p\u0026gt;\n\t\t\u0026lt;b\u0026gt;Required attributes:\u0026lt;/b\u0026gt;\n\t\t- authType: possible value is EMAILPASSWD\n\t\t- emailAddress: Please refer to the rule from /v3/public/inputValidations API.\n\t\t- username: Please refer to the rule from /v3/public/inputValidations API.\n\t\t- password: Please refer to the rule from /v3/public/inputValidations API.\n\t\t- country: ISO3166-1 alpha-2 two letter, e.g. US.\n\t\t- dateOfBirth: YYYY-MM-DD, e.g. 1990-01-01. valid values are between 1905-01-01 until current date.\n\t\t\u0026lt;br/\u0026gt;\n\t\t\u0026lt;b\u0026gt;Not required attributes:\u0026lt;/b\u0026gt;\t\n\t\t- displayName: Please refer to the rule from /v3/public/inputValidations API.\n\t\t\u0026lt;/p\u0026gt;\n\t\t\u0026lt;p\u0026gt;This endpoint support accepting agreements for the created user. Supply the accepted agreements in acceptedPolicies attribute.\u0026lt;/p\u0026gt;\n\t\t",
         "operationId": "PublicCreateUserV4",
         "parameters": [
           {
@@ -19952,7 +19952,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "This endpoint create user from saved roles when creating invitation and submitted data.\nUser will be able to login after completing submitting the data through this endpoint.\nAvailable Authentication Types:\n\n\tEMAILPASSWD: an authentication type used for new user registration through email.\n\nCountry use ISO3166-1 alpha-2 two letter, e.g. US.\n\nDate of Birth format : YYYY-MM-DD, e.g. 2019-04-29.\n\nRequired attributes:\n- authType: possible value is EMAILPASSWD (see above)\n- country: ISO3166-1 alpha-2 two letter, e.g. US.\n- dateOfBirth: YYYY-MM-DD, e.g. 1990-01-01. valid values are between 1905-01-01 until current date.\n- displayName: case insensitive, alphanumeric with allowed symbols dash (-), comma (,), and dot (.)\n- password: 8 to 32 characters, satisfy at least 3 out of 4 conditions(uppercase, lowercase letters, numbers and special characters) and should not have more than 2 equal characters in a row.\n- username: case insensitive, alphanumeric with allowed symbols underscore (_) and dot (.)\n",
+        "description": "This endpoint create user from saved roles when creating invitation and submitted data.\nUser will be able to login after completing submitting the data through this endpoint.\nAvailable Authentication Types:\n\n\tEMAILPASSWD: an authentication type used for new user registration through email.\n\nCountry use ISO3166-1 alpha-2 two letter, e.g. US.\n\nDate of Birth format : YYYY-MM-DD, e.g. 2019-04-29.\n\nRequired attributes:\n- authType: possible value is EMAILPASSWD (see above)\n- country: ISO3166-1 alpha-2 two letter, e.g. US.\n- dateOfBirth: YYYY-MM-DD, e.g. 1990-01-01. valid values are between 1905-01-01 until current date.\n- displayName: Please refer to the rule from /v3/public/inputValidations API.\n- password: Please refer to the rule from /v3/public/inputValidations API.\n- username: Please refer to the rule from /v3/public/inputValidations API.\n",
         "operationId": "CreateUserFromInvitationV4",
         "parameters": [
           {
@@ -23774,7 +23774,7 @@
           "type": "array"
         },
         "error": {
-          "$ref": "#/definitions/rest.ErrorResponse"
+          "$ref": "#/definitions/rest.ErrorResponseWithConflictedUserPlatformAccounts"
         },
         "expiration": {
           "format": "int32",
@@ -27086,6 +27086,27 @@
       ]
     },
     "rest.ErrorResponse": {
+      "properties": {
+        "errorCode": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "errorMessage": {
+          "type": "string"
+        },
+        "messageVariables": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "type": "object"
+        }
+      },
+      "required": [
+        "errorCode",
+        "errorMessage"
+      ]
+    },
+    "rest.ErrorResponseWithConflictedUserPlatformAccounts": {
       "properties": {
         "errorCode": {
           "format": "int32",

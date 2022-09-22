@@ -13,7 +13,9 @@
       "authorizationUrl": "https://dummy.oauth.net/auth",
       "flow": "accessCode",
       "scopes": {
+        "ADMIN:NAMESPACE:{namespace}:SESSION [Read]": "ADMIN:NAMESPACE:{namespace}:SESSION [Read]",
         "ADMIN:NAMESPACE:{namespace}:SESSIONBROWSER:SESSION [READ]": "ADMIN:NAMESPACE:{namespace}:SESSIONBROWSER:SESSION [READ]",
+        "ADMIN:NAMESPACE:{namespace}:SESSIONBROWSER:SESSION [Read]": "ADMIN:NAMESPACE:{namespace}:SESSIONBROWSER:SESSION [Read]",
         "NAMESPACE:{namespace}:SESSIONBROWSER:RECENTPLAYER [READ]": "NAMESPACE:{namespace}:SESSIONBROWSER:RECENTPLAYER [READ]",
         "NAMESPACE:{namespace}:SESSIONBROWSER:SESSION [CREATE]": "NAMESPACE:{namespace}:SESSIONBROWSER:SESSION [CREATE]",
         "NAMESPACE:{namespace}:SESSIONBROWSER:SESSION [DELETE]": "NAMESPACE:{namespace}:SESSIONBROWSER:SESSION [DELETE]",
@@ -287,6 +289,197 @@
           }
         ],
         "summary": "Admin get specified session by session ID",
+        "tags": [
+          "Session"
+        ]
+      }
+    },
+    "/sessionbrowser/admin/namespaces/{namespace}/sessions/history/search": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Required Permission: ADMIN:NAMESPACE:{namespace}:SESSION [Read]\n\t\nRequired Scope: social\n\t\nSearch sessions. Optimize the query by differentiating query with filter namespace only and filter with namespace \u0026amp; other filter (partyID, userID, matchID).\nQuery with filter namespace only will not group whole session data while query with filter namespace \u0026amp; other filter will include session data.",
+        "operationId": "AdminSearchSessionsV2",
+        "parameters": [
+          {
+            "description": "namespace",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "limit",
+            "in": "query",
+            "name": "limit",
+            "required": true,
+            "type": "integer"
+          },
+          {
+            "description": "offset",
+            "in": "query",
+            "name": "offset",
+            "required": true,
+            "type": "integer"
+          },
+          {
+            "description": "ID of the channel",
+            "in": "query",
+            "name": "channel",
+            "type": "string"
+          },
+          {
+            "description": "only deleted session",
+            "in": "query",
+            "name": "deleted",
+            "type": "boolean",
+            "x-omitempty": false
+          },
+          {
+            "description": "ID of the match session",
+            "in": "query",
+            "name": "matchID",
+            "type": "string"
+          },
+          {
+            "description": "ID of the party",
+            "in": "query",
+            "name": "partyID",
+            "type": "string"
+          },
+          {
+            "description": "ID of the user",
+            "in": "query",
+            "name": "userID",
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "Operation succeeded",
+            "schema": {
+              "$ref": "#/definitions/models.GetSessionHistorySearchResponseV2"
+            }
+          },
+          "400": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20002\u003c/td\u003e\u003ctd\u003evalidation error\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20019\u003c/td\u003e\u003ctd\u003eunable to parse request body\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/restapi.ErrorV1"
+            }
+          },
+          "401": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20001\u003c/td\u003e\u003ctd\u003eunauthorized access\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/restapi.ErrorV1"
+            }
+          },
+          "403": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20013\u003c/td\u003e\u003ctd\u003einsufficient permissions\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20014\u003c/td\u003e\u003ctd\u003einvalid audience\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20015\u003c/td\u003e\u003ctd\u003einsufficient scope\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/restapi.ErrorV1"
+            }
+          },
+          "500": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20000\u003c/td\u003e\u003ctd\u003einternal server error\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          }
+        },
+        "security": [
+          {
+            "HasPermission": [
+              "ADMIN:NAMESPACE:{namespace}:SESSION [Read]"
+            ],
+            "HasScope": [
+              "social"
+            ],
+            "authorization": []
+          }
+        ],
+        "summary": "Search sessions",
+        "tags": [
+          "Session"
+        ]
+      }
+    },
+    "/sessionbrowser/admin/namespaces/{namespace}/sessions/{matchID}/history/detailed": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Required Permission: ADMIN:NAMESPACE:{namespace}:SESSIONBROWSER:SESSION [Read]\n\t\nRequired Scope: social\n\t\nGet session history detailed.\n\nif party_id value empty/null, field will not show in response body.",
+        "operationId": "GetSessionHistoryDetailed",
+        "parameters": [
+          {
+            "description": "ID of the match session",
+            "in": "path",
+            "name": "matchID",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "namespace",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "Operation succeeded",
+            "schema": {
+              "items": {
+                "$ref": "#/definitions/models.GetSessionHistoryDetailedResponseItem"
+              },
+              "type": "array"
+            }
+          },
+          "400": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20002\u003c/td\u003e\u003ctd\u003evalidation error\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20019\u003c/td\u003e\u003ctd\u003eunable to parse request body\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/restapi.ErrorV1"
+            }
+          },
+          "401": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20001\u003c/td\u003e\u003ctd\u003eunauthorized access\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/restapi.ErrorV1"
+            }
+          },
+          "403": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20013\u003c/td\u003e\u003ctd\u003einsufficient permissions\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20014\u003c/td\u003e\u003ctd\u003einvalid audience\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20015\u003c/td\u003e\u003ctd\u003einsufficient scope\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/restapi.ErrorV1"
+            }
+          },
+          "500": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20000\u003c/td\u003e\u003ctd\u003einternal server error\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/restapi.ErrorV1"
+            }
+          }
+        },
+        "security": [
+          {
+            "HasPermission": [
+              "ADMIN:NAMESPACE:{namespace}:SESSIONBROWSER:SESSION [Read]"
+            ],
+            "HasScope": [
+              "social"
+            ],
+            "authorization": []
+          }
+        ],
+        "summary": "Get session history detailed",
         "tags": [
           "Session"
         ]
@@ -1563,6 +1756,158 @@
         "settings"
       ]
     },
+    "models.GetSessionHistoryDetailedResponseItem": {
+      "properties": {
+        "_id": {
+          "type": "string",
+          "x-nullable": true
+        },
+        "channel": {
+          "type": "string",
+          "x-nullable": false
+        },
+        "client_version": {
+          "type": "string",
+          "x-nullable": false
+        },
+        "created_at": {
+          "format": "date-time",
+          "type": "string",
+          "x-nullable": false
+        },
+        "event_description": {
+          "type": "string",
+          "x-nullable": true
+        },
+        "event_name": {
+          "type": "string",
+          "x-nullable": false
+        },
+        "game_mode": {
+          "type": "string",
+          "x-nullable": false
+        },
+        "joinable": {
+          "type": "boolean",
+          "x-nullable": false,
+          "x-omitempty": false
+        },
+        "match_id": {
+          "type": "string",
+          "x-nullable": false
+        },
+        "matching_allies": {
+          "items": {
+            "$ref": "#/definitions/models.MatchingAlly"
+          },
+          "type": "array",
+          "x-nullable": false
+        },
+        "namespace": {
+          "type": "string",
+          "x-nullable": false
+        },
+        "party_id": {
+          "type": "string",
+          "x-nullable": false
+        },
+        "region": {
+          "type": "string",
+          "x-nullable": false
+        },
+        "server_name": {
+          "type": "string",
+          "x-nullable": false
+        },
+        "status": {
+          "type": "string",
+          "x-nullable": false
+        }
+      },
+      "required": [
+        "_id",
+        "channel",
+        "client_version",
+        "created_at",
+        "event_description",
+        "event_name",
+        "game_mode",
+        "joinable",
+        "match_id",
+        "matching_allies",
+        "namespace",
+        "region",
+        "server_name",
+        "status"
+      ]
+    },
+    "models.GetSessionHistorySearchResponseItemV2": {
+      "properties": {
+        "_id": {
+          "type": "string",
+          "x-nullable": false
+        },
+        "created_at": {
+          "format": "date-time",
+          "type": "string",
+          "x-nullable": false
+        },
+        "game_mode": {
+          "type": "string",
+          "x-nullable": false
+        },
+        "joinable": {
+          "type": "boolean",
+          "x-nullable": false,
+          "x-omitempty": false
+        },
+        "match_id": {
+          "type": "string",
+          "x-nullable": false
+        },
+        "namespace": {
+          "type": "string",
+          "x-nullable": false
+        },
+        "status": {
+          "type": "string",
+          "x-nullable": false
+        },
+        "sub_game_mode": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "required": [
+        "_id",
+        "created_at",
+        "game_mode",
+        "joinable",
+        "match_id",
+        "namespace",
+        "status",
+        "sub_game_mode"
+      ]
+    },
+    "models.GetSessionHistorySearchResponseV2": {
+      "properties": {
+        "data": {
+          "items": {
+            "$ref": "#/definitions/models.GetSessionHistorySearchResponseItemV2"
+          },
+          "type": "array"
+        },
+        "pagination": {
+          "$ref": "#/definitions/models.Pagination"
+        }
+      },
+      "required": [
+        "data",
+        "pagination"
+      ]
+    },
     "models.JoinGameSessionRequest": {
       "properties": {
         "password": {
@@ -1571,6 +1916,17 @@
       },
       "required": [
         "password"
+      ]
+    },
+    "models.MatchAttributes": {
+      "properties": {
+        "first_ticket_created_at": {
+          "format": "int64",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "first_ticket_created_at"
       ]
     },
     "models.MatchMaking": {
@@ -1682,6 +2038,9 @@
     },
     "models.MatchingParty": {
       "properties": {
+        "match_attributes": {
+          "$ref": "#/definitions/models.MatchAttributes"
+        },
         "party_attributes": {
           "type": "object"
         },
@@ -1697,9 +2056,32 @@
         }
       },
       "required": [
+        "match_attributes",
         "party_attributes",
         "party_id",
         "party_members"
+      ]
+    },
+    "models.Pagination": {
+      "properties": {
+        "first": {
+          "type": "string"
+        },
+        "last": {
+          "type": "string"
+        },
+        "next": {
+          "type": "string"
+        },
+        "previous": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "first",
+        "last",
+        "next",
+        "previous"
       ]
     },
     "models.PagingCursor": {
@@ -2009,17 +2391,12 @@
     },
     "models.UpdateSessionRequest": {
       "properties": {
-        "game_current_player": {
-          "format": "int32",
-          "type": "integer"
-        },
         "game_max_player": {
           "format": "int32",
           "type": "integer"
         }
       },
       "required": [
-        "game_current_player",
         "game_max_player"
       ]
     },
@@ -2069,6 +2446,23 @@
         "errorMessage",
         "message",
         "name"
+      ]
+    },
+    "restapi.ErrorV1": {
+      "properties": {
+        "errorCode": {
+          "format": "int32",
+          "type": "integer",
+          "x-nullable": false
+        },
+        "errorMessage": {
+          "type": "string",
+          "x-nullable": false
+        }
+      },
+      "required": [
+        "errorCode",
+        "errorMessage"
       ]
     }
   }

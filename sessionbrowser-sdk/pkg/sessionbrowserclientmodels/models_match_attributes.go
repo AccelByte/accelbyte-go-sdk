@@ -12,21 +12,21 @@ import (
 	"github.com/go-openapi/validate"
 )
 
-// ModelsUpdateSessionRequest models update session request
+// ModelsMatchAttributes models match attributes
 //
-// swagger:model models.UpdateSessionRequest
-type ModelsUpdateSessionRequest struct {
+// swagger:model models.MatchAttributes
+type ModelsMatchAttributes struct {
 
-	// game max player
+	// first ticket created at
 	// Required: true
-	GameMaxPlayer *int32 `json:"game_max_player"`
+	FirstTicketCreatedAt *int64 `json:"first_ticket_created_at"`
 }
 
-// Validate validates this models update session request
-func (m *ModelsUpdateSessionRequest) Validate(formats strfmt.Registry) error {
+// Validate validates this models match attributes
+func (m *ModelsMatchAttributes) Validate(formats strfmt.Registry) error {
 	var res []error
 
-	if err := m.validateGameMaxPlayer(formats); err != nil {
+	if err := m.validateFirstTicketCreatedAt(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -36,9 +36,9 @@ func (m *ModelsUpdateSessionRequest) Validate(formats strfmt.Registry) error {
 	return nil
 }
 
-func (m *ModelsUpdateSessionRequest) validateGameMaxPlayer(formats strfmt.Registry) error {
+func (m *ModelsMatchAttributes) validateFirstTicketCreatedAt(formats strfmt.Registry) error {
 
-	if err := validate.Required("game_max_player", "body", m.GameMaxPlayer); err != nil {
+	if err := validate.Required("first_ticket_created_at", "body", m.FirstTicketCreatedAt); err != nil {
 		return err
 	}
 
@@ -46,7 +46,7 @@ func (m *ModelsUpdateSessionRequest) validateGameMaxPlayer(formats strfmt.Regist
 }
 
 // MarshalBinary interface implementation
-func (m *ModelsUpdateSessionRequest) MarshalBinary() ([]byte, error) {
+func (m *ModelsMatchAttributes) MarshalBinary() ([]byte, error) {
 	if m == nil {
 		return nil, nil
 	}
@@ -54,8 +54,8 @@ func (m *ModelsUpdateSessionRequest) MarshalBinary() ([]byte, error) {
 }
 
 // UnmarshalBinary interface implementation
-func (m *ModelsUpdateSessionRequest) UnmarshalBinary(b []byte) error {
-	var res ModelsUpdateSessionRequest
+func (m *ModelsMatchAttributes) UnmarshalBinary(b []byte) error {
+	var res ModelsMatchAttributes
 	if err := swag.ReadJSON(b, &res); err != nil {
 		return err
 	}

@@ -73,6 +73,10 @@ type ModelsMatchmakingResult struct {
 	// Required: true
 	Status string `json:"status"`
 
+	// ticket id
+	// Required: true
+	TicketID string `json:"ticket_id"`
+
 	// updated at
 	// Required: true
 	// Format: date-time
@@ -128,6 +132,10 @@ func (m *ModelsMatchmakingResult) Validate(formats strfmt.Registry) error {
 	}
 
 	if err := m.validateStatus(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateTicketID(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -259,6 +267,15 @@ func (m *ModelsMatchmakingResult) validateServerName(formats strfmt.Registry) er
 func (m *ModelsMatchmakingResult) validateStatus(formats strfmt.Registry) error {
 
 	if err := validate.RequiredString("status", "body", string(m.Status)); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *ModelsMatchmakingResult) validateTicketID(formats strfmt.Registry) error {
+
+	if err := validate.RequiredString("ticket_id", "body", string(m.TicketID)); err != nil {
 		return err
 	}
 

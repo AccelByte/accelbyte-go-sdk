@@ -34,6 +34,7 @@ var QueryItemsCmd = &cobra.Command{
 		baseAppId, _ := cmd.Flags().GetString("baseAppId")
 		categoryPath, _ := cmd.Flags().GetString("categoryPath")
 		features, _ := cmd.Flags().GetString("features")
+		includeSubCategoryItem, _ := cmd.Flags().GetBool("includeSubCategoryItem")
 		itemType, _ := cmd.Flags().GetString("itemType")
 		limit, _ := cmd.Flags().GetInt32("limit")
 		offset, _ := cmd.Flags().GetInt32("offset")
@@ -48,21 +49,22 @@ var QueryItemsCmd = &cobra.Command{
 		tags, _ := cmd.Flags().GetString("tags")
 		targetNamespace, _ := cmd.Flags().GetString("targetNamespace")
 		input := &item.QueryItemsParams{
-			Namespace:       namespace,
-			ActiveOnly:      &activeOnly,
-			AppType:         &appType,
-			AvailableDate:   &availableDate,
-			BaseAppID:       &baseAppId,
-			CategoryPath:    &categoryPath,
-			Features:        &features,
-			ItemType:        &itemType,
-			Limit:           &limit,
-			Offset:          &offset,
-			Region:          &region,
-			SortBy:          sortBy,
-			StoreID:         &storeId,
-			Tags:            &tags,
-			TargetNamespace: &targetNamespace,
+			Namespace:              namespace,
+			ActiveOnly:             &activeOnly,
+			AppType:                &appType,
+			AvailableDate:          &availableDate,
+			BaseAppID:              &baseAppId,
+			CategoryPath:           &categoryPath,
+			Features:               &features,
+			IncludeSubCategoryItem: &includeSubCategoryItem,
+			ItemType:               &itemType,
+			Limit:                  &limit,
+			Offset:                 &offset,
+			Region:                 &region,
+			SortBy:                 sortBy,
+			StoreID:                &storeId,
+			Tags:                   &tags,
+			TargetNamespace:        &targetNamespace,
 		}
 		ok, err := itemService.QueryItemsShort(input)
 		if err != nil {
@@ -86,6 +88,7 @@ func init() {
 	QueryItemsCmd.Flags().String("baseAppId", "", "Base app id")
 	QueryItemsCmd.Flags().String("categoryPath", "", "Category path")
 	QueryItemsCmd.Flags().String("features", "", "Features")
+	QueryItemsCmd.Flags().Bool("includeSubCategoryItem", false, "Include sub category item")
 	QueryItemsCmd.Flags().String("itemType", "", "Item type")
 	QueryItemsCmd.Flags().Int32("limit", 20, "Limit")
 	QueryItemsCmd.Flags().Int32("offset", 0, "Offset")

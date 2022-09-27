@@ -13,6 +13,7 @@ import (
 	"fmt"
 	"io/ioutil"
 
+	"github.com/go-openapi/errors"
 	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/strfmt"
 )
@@ -55,7 +56,7 @@ func NewPublicNormalizePaymentReturnURLNoContent() *PublicNormalizePaymentReturn
 
 /*PublicNormalizePaymentReturnURLNoContent handles this case with default header values.
 
-  no content
+  no content.(if query param 'returnUrl' is empty)
 */
 type PublicNormalizePaymentReturnURLNoContent struct {
 }
@@ -76,12 +77,12 @@ func NewPublicNormalizePaymentReturnURLTemporaryRedirect() *PublicNormalizePayme
 
 /*PublicNormalizePaymentReturnURLTemporaryRedirect handles this case with default header values.
 
-  successful operation
+  successful operation.(if query param 'returnUrl' is not empty)
 */
 type PublicNormalizePaymentReturnURLTemporaryRedirect struct {
 	/*The Location header
 	 */
-	Location string
+	Location strfmt.URI
 }
 
 func (o *PublicNormalizePaymentReturnURLTemporaryRedirect) Error() string {
@@ -91,7 +92,12 @@ func (o *PublicNormalizePaymentReturnURLTemporaryRedirect) Error() string {
 func (o *PublicNormalizePaymentReturnURLTemporaryRedirect) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
 	// response header Location
-	o.Location = response.GetHeader("Location")
+
+	location, err := formats.Parse("uri", response.GetHeader("Location"))
+	if err != nil {
+		return errors.InvalidType("Location", "header", "strfmt.URI", response.GetHeader("Location"))
+	}
+	o.Location = *(location.(*strfmt.URI))
 
 	return nil
 }

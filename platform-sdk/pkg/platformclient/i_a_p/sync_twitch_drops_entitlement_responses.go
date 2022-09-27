@@ -10,11 +10,15 @@ package i_a_p
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
+	"io"
 	"io/ioutil"
 
 	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/strfmt"
+
+	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclientmodels"
 )
 
 // SyncTwitchDropsEntitlementReader is a Reader for the SyncTwitchDropsEntitlement structure.
@@ -27,6 +31,12 @@ func (o *SyncTwitchDropsEntitlementReader) ReadResponse(response runtime.ClientR
 	switch response.Code() {
 	case 204:
 		result := NewSyncTwitchDropsEntitlementNoContent()
+		if err := result.readResponse(response, consumer, o.formats); err != nil {
+			return nil, err
+		}
+		return result, nil
+	case 400:
+		result := NewSyncTwitchDropsEntitlementBadRequest()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
@@ -59,6 +69,54 @@ func (o *SyncTwitchDropsEntitlementNoContent) Error() string {
 }
 
 func (o *SyncTwitchDropsEntitlementNoContent) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
+	return nil
+}
+
+// NewSyncTwitchDropsEntitlementBadRequest creates a SyncTwitchDropsEntitlementBadRequest with default headers values
+func NewSyncTwitchDropsEntitlementBadRequest() *SyncTwitchDropsEntitlementBadRequest {
+	return &SyncTwitchDropsEntitlementBadRequest{}
+}
+
+/*SyncTwitchDropsEntitlementBadRequest handles this case with default header values.
+
+  <table><tr><td>ErrorCode</td><td>ErrorMessage</td></tr><tr><td>39125</td><td>Invalid platform [{platformId}] user token</td></tr><tr><td>39126</td><td>User id [{}] in namespace [{}] doesn't link platform [{}]</td></tr>
+*/
+type SyncTwitchDropsEntitlementBadRequest struct {
+	Payload *platformclientmodels.ErrorEntity
+}
+
+func (o *SyncTwitchDropsEntitlementBadRequest) Error() string {
+	return fmt.Sprintf("[PUT /platform/public/namespaces/{namespace}/users/{userId}/iap/twitch/sync][%d] syncTwitchDropsEntitlementBadRequest  %+v", 400, o.ToJSONString())
+}
+
+func (o *SyncTwitchDropsEntitlementBadRequest) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
+}
+
+func (o *SyncTwitchDropsEntitlementBadRequest) GetPayload() *platformclientmodels.ErrorEntity {
+	return o.Payload
+}
+
+func (o *SyncTwitchDropsEntitlementBadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
+	o.Payload = new(platformclientmodels.ErrorEntity)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
+	}
 
 	return nil
 }

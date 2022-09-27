@@ -32,6 +32,7 @@ var PublicQueryItemsCmd = &cobra.Command{
 		baseAppId, _ := cmd.Flags().GetString("baseAppId")
 		categoryPath, _ := cmd.Flags().GetString("categoryPath")
 		features, _ := cmd.Flags().GetString("features")
+		includeSubCategoryItem, _ := cmd.Flags().GetBool("includeSubCategoryItem")
 		itemType, _ := cmd.Flags().GetString("itemType")
 		language, _ := cmd.Flags().GetString("language")
 		limit, _ := cmd.Flags().GetInt32("limit")
@@ -46,19 +47,20 @@ var PublicQueryItemsCmd = &cobra.Command{
 		storeId, _ := cmd.Flags().GetString("storeId")
 		tags, _ := cmd.Flags().GetString("tags")
 		input := &item.PublicQueryItemsParams{
-			Namespace:    namespace,
-			AppType:      &appType,
-			BaseAppID:    &baseAppId,
-			CategoryPath: &categoryPath,
-			Features:     &features,
-			ItemType:     &itemType,
-			Language:     &language,
-			Limit:        &limit,
-			Offset:       &offset,
-			Region:       &region,
-			SortBy:       sortBy,
-			StoreID:      &storeId,
-			Tags:         &tags,
+			Namespace:              namespace,
+			AppType:                &appType,
+			BaseAppID:              &baseAppId,
+			CategoryPath:           &categoryPath,
+			Features:               &features,
+			IncludeSubCategoryItem: &includeSubCategoryItem,
+			ItemType:               &itemType,
+			Language:               &language,
+			Limit:                  &limit,
+			Offset:                 &offset,
+			Region:                 &region,
+			SortBy:                 sortBy,
+			StoreID:                &storeId,
+			Tags:                   &tags,
 		}
 		ok, err := itemService.PublicQueryItemsShort(input)
 		if err != nil {
@@ -80,6 +82,7 @@ func init() {
 	PublicQueryItemsCmd.Flags().String("baseAppId", "", "Base app id")
 	PublicQueryItemsCmd.Flags().String("categoryPath", "", "Category path")
 	PublicQueryItemsCmd.Flags().String("features", "", "Features")
+	PublicQueryItemsCmd.Flags().Bool("includeSubCategoryItem", false, "Include sub category item")
 	PublicQueryItemsCmd.Flags().String("itemType", "", "Item type")
 	PublicQueryItemsCmd.Flags().String("language", "", "Language")
 	PublicQueryItemsCmd.Flags().Int32("limit", 20, "Limit")

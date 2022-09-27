@@ -37,6 +37,8 @@ type ClientService interface {
 	AddPlayerToSessionShort(params *AddPlayerToSessionParams, authInfo runtime.ClientAuthInfoWriter) (*AddPlayerToSessionOK, error)
 	AdminGetSession(params *AdminGetSessionParams, authInfo runtime.ClientAuthInfoWriter) (*AdminGetSessionOK, *AdminGetSessionNotFound, *AdminGetSessionInternalServerError, error)
 	AdminGetSessionShort(params *AdminGetSessionParams, authInfo runtime.ClientAuthInfoWriter) (*AdminGetSessionOK, error)
+	AdminSearchSessionsV2(params *AdminSearchSessionsV2Params, authInfo runtime.ClientAuthInfoWriter) (*AdminSearchSessionsV2OK, *AdminSearchSessionsV2BadRequest, *AdminSearchSessionsV2Unauthorized, *AdminSearchSessionsV2Forbidden, *AdminSearchSessionsV2InternalServerError, error)
+	AdminSearchSessionsV2Short(params *AdminSearchSessionsV2Params, authInfo runtime.ClientAuthInfoWriter) (*AdminSearchSessionsV2OK, error)
 	CreateSession(params *CreateSessionParams, authInfo runtime.ClientAuthInfoWriter) (*CreateSessionOK, *CreateSessionBadRequest, *CreateSessionForbidden, *CreateSessionConflict, *CreateSessionInternalServerError, error)
 	CreateSessionShort(params *CreateSessionParams, authInfo runtime.ClientAuthInfoWriter) (*CreateSessionOK, error)
 	DeleteSession(params *DeleteSessionParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteSessionOK, *DeleteSessionBadRequest, *DeleteSessionNotFound, *DeleteSessionInternalServerError, error)
@@ -53,6 +55,8 @@ type ClientService interface {
 	GetSessionShort(params *GetSessionParams, authInfo runtime.ClientAuthInfoWriter) (*GetSessionOK, error)
 	GetSessionByUserIDs(params *GetSessionByUserIDsParams, authInfo runtime.ClientAuthInfoWriter) (*GetSessionByUserIDsOK, *GetSessionByUserIDsBadRequest, *GetSessionByUserIDsInternalServerError, error)
 	GetSessionByUserIDsShort(params *GetSessionByUserIDsParams, authInfo runtime.ClientAuthInfoWriter) (*GetSessionByUserIDsOK, error)
+	GetSessionHistoryDetailed(params *GetSessionHistoryDetailedParams, authInfo runtime.ClientAuthInfoWriter) (*GetSessionHistoryDetailedOK, *GetSessionHistoryDetailedBadRequest, *GetSessionHistoryDetailedUnauthorized, *GetSessionHistoryDetailedForbidden, *GetSessionHistoryDetailedInternalServerError, error)
+	GetSessionHistoryDetailedShort(params *GetSessionHistoryDetailedParams, authInfo runtime.ClientAuthInfoWriter) (*GetSessionHistoryDetailedOK, error)
 	GetTotalActiveSession(params *GetTotalActiveSessionParams, authInfo runtime.ClientAuthInfoWriter) (*GetTotalActiveSessionOK, *GetTotalActiveSessionBadRequest, *GetTotalActiveSessionInternalServerError, error)
 	GetTotalActiveSessionShort(params *GetTotalActiveSessionParams, authInfo runtime.ClientAuthInfoWriter) (*GetTotalActiveSessionOK, error)
 	JoinSession(params *JoinSessionParams, authInfo runtime.ClientAuthInfoWriter) (*JoinSessionOK, *JoinSessionBadRequest, *JoinSessionForbidden, *JoinSessionNotFound, *JoinSessionInternalServerError, error)
@@ -291,6 +295,130 @@ func (a *Client) AdminGetSessionShort(params *AdminGetSessionParams, authInfo ru
 	case *AdminGetSessionNotFound:
 		return nil, v
 	case *AdminGetSessionInternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+Deprecated: Use AdminSearchSessionsV2Short instead.
+
+  AdminSearchSessionsV2 searches sessions
+
+  Required Permission: ADMIN:NAMESPACE:{namespace}:SESSION [Read]
+
+Required Scope: social
+
+Search sessions. Optimize the query by differentiating query with filter namespace only and filter with namespace &amp; other filter (partyID, userID, matchID).
+Query with filter namespace only will not group whole session data while query with filter namespace &amp; other filter will include session data.
+*/
+func (a *Client) AdminSearchSessionsV2(params *AdminSearchSessionsV2Params, authInfo runtime.ClientAuthInfoWriter) (*AdminSearchSessionsV2OK, *AdminSearchSessionsV2BadRequest, *AdminSearchSessionsV2Unauthorized, *AdminSearchSessionsV2Forbidden, *AdminSearchSessionsV2InternalServerError, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewAdminSearchSessionsV2Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "AdminSearchSessionsV2",
+		Method:             "GET",
+		PathPattern:        "/sessionbrowser/admin/namespaces/{namespace}/sessions/history/search",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &AdminSearchSessionsV2Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, nil, nil, nil, nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *AdminSearchSessionsV2OK:
+		return v, nil, nil, nil, nil, nil
+
+	case *AdminSearchSessionsV2BadRequest:
+		return nil, v, nil, nil, nil, nil
+
+	case *AdminSearchSessionsV2Unauthorized:
+		return nil, nil, v, nil, nil, nil
+
+	case *AdminSearchSessionsV2Forbidden:
+		return nil, nil, nil, v, nil, nil
+
+	case *AdminSearchSessionsV2InternalServerError:
+		return nil, nil, nil, nil, v, nil
+
+	default:
+		return nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+  AdminSearchSessionsV2Short searches sessions
+
+  Required Permission: ADMIN:NAMESPACE:{namespace}:SESSION [Read]
+
+Required Scope: social
+
+Search sessions. Optimize the query by differentiating query with filter namespace only and filter with namespace &amp; other filter (partyID, userID, matchID).
+Query with filter namespace only will not group whole session data while query with filter namespace &amp; other filter will include session data.
+*/
+func (a *Client) AdminSearchSessionsV2Short(params *AdminSearchSessionsV2Params, authInfo runtime.ClientAuthInfoWriter) (*AdminSearchSessionsV2OK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewAdminSearchSessionsV2Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "AdminSearchSessionsV2",
+		Method:             "GET",
+		PathPattern:        "/sessionbrowser/admin/namespaces/{namespace}/sessions/history/search",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &AdminSearchSessionsV2Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *AdminSearchSessionsV2OK:
+		return v, nil
+	case *AdminSearchSessionsV2BadRequest:
+		return nil, v
+	case *AdminSearchSessionsV2Unauthorized:
+		return nil, v
+	case *AdminSearchSessionsV2Forbidden:
+		return nil, v
+	case *AdminSearchSessionsV2InternalServerError:
 		return nil, v
 
 	default:
@@ -1199,6 +1327,132 @@ func (a *Client) GetSessionByUserIDsShort(params *GetSessionByUserIDsParams, aut
 	case *GetSessionByUserIDsBadRequest:
 		return nil, v
 	case *GetSessionByUserIDsInternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+Deprecated: Use GetSessionHistoryDetailedShort instead.
+
+  GetSessionHistoryDetailed gets session history detailed
+
+  Required Permission: ADMIN:NAMESPACE:{namespace}:SESSIONBROWSER:SESSION [Read]
+
+Required Scope: social
+
+Get session history detailed.
+
+if party_id value empty/null, field will not show in response body.
+*/
+func (a *Client) GetSessionHistoryDetailed(params *GetSessionHistoryDetailedParams, authInfo runtime.ClientAuthInfoWriter) (*GetSessionHistoryDetailedOK, *GetSessionHistoryDetailedBadRequest, *GetSessionHistoryDetailedUnauthorized, *GetSessionHistoryDetailedForbidden, *GetSessionHistoryDetailedInternalServerError, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewGetSessionHistoryDetailedParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "GetSessionHistoryDetailed",
+		Method:             "GET",
+		PathPattern:        "/sessionbrowser/admin/namespaces/{namespace}/sessions/{matchID}/history/detailed",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &GetSessionHistoryDetailedReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, nil, nil, nil, nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *GetSessionHistoryDetailedOK:
+		return v, nil, nil, nil, nil, nil
+
+	case *GetSessionHistoryDetailedBadRequest:
+		return nil, v, nil, nil, nil, nil
+
+	case *GetSessionHistoryDetailedUnauthorized:
+		return nil, nil, v, nil, nil, nil
+
+	case *GetSessionHistoryDetailedForbidden:
+		return nil, nil, nil, v, nil, nil
+
+	case *GetSessionHistoryDetailedInternalServerError:
+		return nil, nil, nil, nil, v, nil
+
+	default:
+		return nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+  GetSessionHistoryDetailedShort gets session history detailed
+
+  Required Permission: ADMIN:NAMESPACE:{namespace}:SESSIONBROWSER:SESSION [Read]
+
+Required Scope: social
+
+Get session history detailed.
+
+if party_id value empty/null, field will not show in response body.
+*/
+func (a *Client) GetSessionHistoryDetailedShort(params *GetSessionHistoryDetailedParams, authInfo runtime.ClientAuthInfoWriter) (*GetSessionHistoryDetailedOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewGetSessionHistoryDetailedParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "GetSessionHistoryDetailed",
+		Method:             "GET",
+		PathPattern:        "/sessionbrowser/admin/namespaces/{namespace}/sessions/{matchID}/history/detailed",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &GetSessionHistoryDetailedReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *GetSessionHistoryDetailedOK:
+		return v, nil
+	case *GetSessionHistoryDetailedBadRequest:
+		return nil, v
+	case *GetSessionHistoryDetailedUnauthorized:
+		return nil, v
+	case *GetSessionHistoryDetailedForbidden:
+		return nil, v
+	case *GetSessionHistoryDetailedInternalServerError:
 		return nil, v
 
 	default:

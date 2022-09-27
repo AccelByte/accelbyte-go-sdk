@@ -10,11 +10,15 @@ package d_l_c
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
+	"io"
 	"io/ioutil"
 
 	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/strfmt"
+
+	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclientmodels"
 )
 
 // SyncXboxDLCReader is a Reader for the SyncXboxDLC structure.
@@ -27,6 +31,12 @@ func (o *SyncXboxDLCReader) ReadResponse(response runtime.ClientResponse, consum
 	switch response.Code() {
 	case 204:
 		result := NewSyncXboxDLCNoContent()
+		if err := result.readResponse(response, consumer, o.formats); err != nil {
+			return nil, err
+		}
+		return result, nil
+	case 400:
+		result := NewSyncXboxDLCBadRequest()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
@@ -59,6 +69,54 @@ func (o *SyncXboxDLCNoContent) Error() string {
 }
 
 func (o *SyncXboxDLCNoContent) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
+	return nil
+}
+
+// NewSyncXboxDLCBadRequest creates a SyncXboxDLCBadRequest with default headers values
+func NewSyncXboxDLCBadRequest() *SyncXboxDLCBadRequest {
+	return &SyncXboxDLCBadRequest{}
+}
+
+/*SyncXboxDLCBadRequest handles this case with default header values.
+
+  <table><tr><td>ErrorCode</td><td>ErrorMessage</td></tr><tr><td>39125</td><td>Invalid platform [{platformId}] user token</td></tr><tr><td>39126</td><td>User id [{}] in namespace [{}] doesn't link platform [{}]</td></tr>
+*/
+type SyncXboxDLCBadRequest struct {
+	Payload *platformclientmodels.ErrorEntity
+}
+
+func (o *SyncXboxDLCBadRequest) Error() string {
+	return fmt.Sprintf("[PUT /platform/public/namespaces/{namespace}/users/{userId}/dlc/xbl/sync][%d] syncXboxDLCBadRequest  %+v", 400, o.ToJSONString())
+}
+
+func (o *SyncXboxDLCBadRequest) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
+}
+
+func (o *SyncXboxDLCBadRequest) GetPayload() *platformclientmodels.ErrorEntity {
+	return o.Payload
+}
+
+func (o *SyncXboxDLCBadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
+	o.Payload = new(platformclientmodels.ErrorEntity)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
+	}
 
 	return nil
 }

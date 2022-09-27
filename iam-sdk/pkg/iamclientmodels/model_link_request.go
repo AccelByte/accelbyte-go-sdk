@@ -31,7 +31,7 @@ type ModelLinkRequest struct {
 	CurrentUserLinkedGames []string `json:"current_user_linked_games"`
 
 	// error
-	Error *RestErrorResponse `json:"error,omitempty"`
+	Error *RestErrorResponseWithConflictedUserPlatformAccounts `json:"error,omitempty"`
 
 	// expiration
 	Expiration int32 `json:"expiration,omitempty"`

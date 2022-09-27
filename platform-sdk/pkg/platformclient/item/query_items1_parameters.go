@@ -54,14 +54,16 @@ const (
 // with the default values initialized.
 func NewQueryItems1Params() *QueryItems1Params {
 	var (
-		limitDefault  = int32(20)
-		offsetDefault = int32(0)
-		sortByDefault = string("name:asc,displayOrder:asc")
+		includeSubCategoryItemDefault = bool(false)
+		limitDefault                  = int32(20)
+		offsetDefault                 = int32(0)
+		sortByDefault                 = []string{"name:asc", "displayOrder:asc"}
 	)
 	return &QueryItems1Params{
-		Limit:  &limitDefault,
-		Offset: &offsetDefault,
-		SortBy: &sortByDefault,
+		IncludeSubCategoryItem: &includeSubCategoryItemDefault,
+		Limit:                  &limitDefault,
+		Offset:                 &offsetDefault,
+		SortBy:                 sortByDefault,
 
 		timeout: cr.DefaultTimeout,
 	}
@@ -71,14 +73,16 @@ func NewQueryItems1Params() *QueryItems1Params {
 // with the default values initialized, and the ability to set a timeout on a request
 func NewQueryItems1ParamsWithTimeout(timeout time.Duration) *QueryItems1Params {
 	var (
-		limitDefault  = int32(20)
-		offsetDefault = int32(0)
-		sortByDefault = string("name:asc,displayOrder:asc")
+		includeSubCategoryItemDefault = bool(false)
+		limitDefault                  = int32(20)
+		offsetDefault                 = int32(0)
+		sortByDefault                 = []string{"name:asc", "displayOrder:asc"}
 	)
 	return &QueryItems1Params{
-		Limit:  &limitDefault,
-		Offset: &offsetDefault,
-		SortBy: &sortByDefault,
+		IncludeSubCategoryItem: &includeSubCategoryItemDefault,
+		Limit:                  &limitDefault,
+		Offset:                 &offsetDefault,
+		SortBy:                 sortByDefault,
 
 		timeout: timeout,
 	}
@@ -88,14 +92,16 @@ func NewQueryItems1ParamsWithTimeout(timeout time.Duration) *QueryItems1Params {
 // with the default values initialized, and the ability to set a context for a request
 func NewQueryItems1ParamsWithContext(ctx context.Context) *QueryItems1Params {
 	var (
-		limitDefault  = int32(20)
-		offsetDefault = int32(0)
-		sortByDefault = string("name:asc,displayOrder:asc")
+		includeSubCategoryItemDefault = bool(false)
+		limitDefault                  = int32(20)
+		offsetDefault                 = int32(0)
+		sortByDefault                 = []string{"name:asc", "displayOrder:asc"}
 	)
 	return &QueryItems1Params{
-		Limit:  &limitDefault,
-		Offset: &offsetDefault,
-		SortBy: &sortByDefault,
+		IncludeSubCategoryItem: &includeSubCategoryItemDefault,
+		Limit:                  &limitDefault,
+		Offset:                 &offsetDefault,
+		SortBy:                 sortByDefault,
 
 		Context: ctx,
 	}
@@ -105,15 +111,17 @@ func NewQueryItems1ParamsWithContext(ctx context.Context) *QueryItems1Params {
 // with the default values initialized, and the ability to set a custom HTTPClient for a request
 func NewQueryItems1ParamsWithHTTPClient(client *http.Client) *QueryItems1Params {
 	var (
-		limitDefault  = int32(20)
-		offsetDefault = int32(0)
-		sortByDefault = string("name:asc,displayOrder:asc")
+		includeSubCategoryItemDefault = bool(false)
+		limitDefault                  = int32(20)
+		offsetDefault                 = int32(0)
+		sortByDefault                 = []string{"name:asc", "displayOrder:asc"}
 	)
 	return &QueryItems1Params{
-		Limit:      &limitDefault,
-		Offset:     &offsetDefault,
-		SortBy:     &sortByDefault,
-		HTTPClient: client,
+		IncludeSubCategoryItem: &includeSubCategoryItemDefault,
+		Limit:                  &limitDefault,
+		Offset:                 &offsetDefault,
+		SortBy:                 sortByDefault,
+		HTTPClient:             client,
 	}
 }
 
@@ -143,6 +151,11 @@ type QueryItems1Params struct {
 
 	*/
 	Features *string
+	/*IncludeSubCategoryItem
+	  default is false, only available when search by category path, it will return all of the items(includes sub category path) under this category path
+
+	*/
+	IncludeSubCategoryItem *bool
 	/*ItemStatus*/
 	ItemStatus *string
 	/*ItemType*/
@@ -168,7 +181,7 @@ type QueryItems1Params struct {
 	  default is name:asc,displayOrder:asc, allow values: [name, name:asc, name:desc, createdAt, createdAt:asc, createdAt:desc, updatedAt, updatedAt:asc, updatedAt:desc, displayOrder, displayOrder:asc, displayOrder:desc],and support sort group, eg: sortBy=name:asc,createdAt:desc. Make sure to always use more than one sort if the first sort is not an unique valuefor example, if you wish to sort by displayOrder, make sure to include other sort such as name or createdAt after the first sort, eg: displayOrder:asc,name:asc
 
 	*/
-	SortBy *string
+	SortBy []string
 	/*StoreID
 	  default is published store id
 
@@ -293,6 +306,17 @@ func (o *QueryItems1Params) SetFeatures(features *string) {
 	o.Features = features
 }
 
+// WithIncludeSubCategoryItem adds the includeSubCategoryItem to the query items 1 params
+func (o *QueryItems1Params) WithIncludeSubCategoryItem(includeSubCategoryItem *bool) *QueryItems1Params {
+	o.SetIncludeSubCategoryItem(includeSubCategoryItem)
+	return o
+}
+
+// SetIncludeSubCategoryItem adds the includeSubCategoryItem to the query items 1 params
+func (o *QueryItems1Params) SetIncludeSubCategoryItem(includeSubCategoryItem *bool) {
+	o.IncludeSubCategoryItem = includeSubCategoryItem
+}
+
 // WithItemStatus adds the itemStatus to the query items 1 params
 func (o *QueryItems1Params) WithItemStatus(itemStatus *string) *QueryItems1Params {
 	o.SetItemStatus(itemStatus)
@@ -360,13 +384,13 @@ func (o *QueryItems1Params) SetRegion(region *string) {
 }
 
 // WithSortBy adds the sortBy to the query items 1 params
-func (o *QueryItems1Params) WithSortBy(sortBy *string) *QueryItems1Params {
+func (o *QueryItems1Params) WithSortBy(sortBy []string) *QueryItems1Params {
 	o.SetSortBy(sortBy)
 	return o
 }
 
 // SetSortBy adds the sortBy to the query items 1 params
-func (o *QueryItems1Params) SetSortBy(sortBy *string) {
+func (o *QueryItems1Params) SetSortBy(sortBy []string) {
 	o.SortBy = sortBy
 }
 
@@ -491,6 +515,22 @@ func (o *QueryItems1Params) WriteToRequest(r runtime.ClientRequest, reg strfmt.R
 
 	}
 
+	if o.IncludeSubCategoryItem != nil {
+
+		// query param includeSubCategoryItem
+		var qrIncludeSubCategoryItem bool
+		if o.IncludeSubCategoryItem != nil {
+			qrIncludeSubCategoryItem = *o.IncludeSubCategoryItem
+		}
+		qIncludeSubCategoryItem := swag.FormatBool(qrIncludeSubCategoryItem)
+		if qIncludeSubCategoryItem != "" {
+			if err := r.SetQueryParam("includeSubCategoryItem", qIncludeSubCategoryItem); err != nil {
+				return err
+			}
+		}
+
+	}
+
 	if o.ItemStatus != nil {
 
 		// query param itemStatus
@@ -576,20 +616,12 @@ func (o *QueryItems1Params) WriteToRequest(r runtime.ClientRequest, reg strfmt.R
 
 	}
 
-	if o.SortBy != nil {
+	valuesSortBy := o.SortBy
 
-		// query param sortBy
-		var qrSortBy string
-		if o.SortBy != nil {
-			qrSortBy = *o.SortBy
-		}
-		qSortBy := qrSortBy
-		if qSortBy != "" {
-			if err := r.SetQueryParam("sortBy", qSortBy); err != nil {
-				return err
-			}
-		}
-
+	joinedSortBy := swag.JoinByFormat(valuesSortBy, "")
+	// query array param sortBy
+	if err := r.SetQueryParam("sortBy", joinedSortBy...); err != nil {
+		return err
 	}
 
 	if o.StoreID != nil {

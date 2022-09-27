@@ -72,7 +72,8 @@ Deprecated: Use AdminRetrieveUserThirdPartyPlatformTokenV3Short instead.
 
   Admin Retrieve User Third Party Platform Token&lt;br/&gt;
 &lt;p&gt;
-This endpoint used for retrieving third party platform token for user that login using third party.
+This endpoint used for retrieving third party platform token for user that login using third party,
+         if user have not link requested platform in game namespace, will try to retrieving third party platform token from publisher namespace.
 Passing platform group name or it&#39;s member will return same access token that can be used across the platform members.
 &lt;/p&gt;
          &lt;p&gt;Notes:&lt;/p&gt;
@@ -143,7 +144,8 @@ func (a *Client) AdminRetrieveUserThirdPartyPlatformTokenV3(params *AdminRetriev
 
   Admin Retrieve User Third Party Platform Token&lt;br/&gt;
 &lt;p&gt;
-This endpoint used for retrieving third party platform token for user that login using third party.
+This endpoint used for retrieving third party platform token for user that login using third party,
+         if user have not link requested platform in game namespace, will try to retrieving third party platform token from publisher namespace.
 Passing platform group name or it&#39;s member will return same access token that can be used across the platform members.
 &lt;/p&gt;
          &lt;p&gt;Notes:&lt;/p&gt;
@@ -233,6 +235,8 @@ Deprecated: Use AuthCodeRequestV3Short instead.
                authenticate endpoint after successfully authenticating snapchat user.
 							 &lt;li&gt;&lt;strong&gt;discord&lt;/strong&gt;&lt;/li&gt;This endpoint redirects to discord login page, then redirect back to platform
                authenticate endpoint after successfully authenticating discord user.
+               &lt;li&gt;&lt;strong&gt;amazon&lt;/strong&gt;&lt;/li&gt;This endpoint redirects to amazon login page, then redirect back to platform
+               authenticate endpoint after successfully authenticating amazon user.
                &lt;/ul&gt; action code : 10702&#39;
 */
 func (a *Client) AuthCodeRequestV3(params *AuthCodeRequestV3Params, authInfo runtime.ClientAuthInfoWriter) (*AuthCodeRequestV3Found, error) {
@@ -301,6 +305,8 @@ func (a *Client) AuthCodeRequestV3(params *AuthCodeRequestV3Params, authInfo run
                authenticate endpoint after successfully authenticating snapchat user.
 							 &lt;li&gt;&lt;strong&gt;discord&lt;/strong&gt;&lt;/li&gt;This endpoint redirects to discord login page, then redirect back to platform
                authenticate endpoint after successfully authenticating discord user.
+               &lt;li&gt;&lt;strong&gt;amazon&lt;/strong&gt;&lt;/li&gt;This endpoint redirects to amazon login page, then redirect back to platform
+               authenticate endpoint after successfully authenticating amazon user.
                &lt;/ul&gt; action code : 10702&#39;
 */
 func (a *Client) AuthCodeRequestV3Short(params *AuthCodeRequestV3Params, authInfo runtime.ClientAuthInfoWriter) (*AuthCodeRequestV3Found, error) {
@@ -1113,7 +1119,8 @@ Deprecated: Use RetrieveUserThirdPartyPlatformTokenV3Short instead.
 
   Retrieve User Third Party Platform Token&lt;br/&gt;
 &lt;p&gt;
-This endpoint used for retrieving third party platform token for user that login using third party.
+This endpoint used for retrieving third party platform token for user that login using third party,
+if user have not link requested platform in game namespace, will try to retrieving third party platform token from publisher namespace.
 Passing platform group name or it&#39;s member will return same access token that can be used across the platform members.
 &lt;/p&gt;
 &lt;p&gt;The third party platform and platform group covered for this is:&lt;/p&gt;
@@ -1181,7 +1188,8 @@ func (a *Client) RetrieveUserThirdPartyPlatformTokenV3(params *RetrieveUserThird
 
   Retrieve User Third Party Platform Token&lt;br/&gt;
 &lt;p&gt;
-This endpoint used for retrieving third party platform token for user that login using third party.
+This endpoint used for retrieving third party platform token for user that login using third party,
+if user have not link requested platform in game namespace, will try to retrieving third party platform token from publisher namespace.
 Passing platform group name or it&#39;s member will return same access token that can be used across the platform members.
 &lt;/p&gt;
 &lt;p&gt;The third party platform and platform group covered for this is:&lt;/p&gt;

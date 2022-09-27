@@ -119,6 +119,58 @@ func (aaa *SessionService) AdminGetSession(input *session.AdminGetSessionParams)
 	return ok.GetPayload(), nil
 }
 
+// Deprecated: Use AdminSearchSessionsV2Short instead
+func (aaa *SessionService) AdminSearchSessionsV2(input *session.AdminSearchSessionsV2Params) (*sessionbrowserclientmodels.ModelsGetSessionHistorySearchResponseV2, error) {
+	token, err := aaa.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, badRequest, unauthorized, forbidden, internalServerError, err := aaa.Client.Session.AdminSearchSessionsV2(input, client.BearerToken(*token.AccessToken))
+	if badRequest != nil {
+		return nil, badRequest
+	}
+	if unauthorized != nil {
+		return nil, unauthorized
+	}
+	if forbidden != nil {
+		return nil, forbidden
+	}
+	if internalServerError != nil {
+		return nil, internalServerError
+	}
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
+// Deprecated: Use GetSessionHistoryDetailedShort instead
+func (aaa *SessionService) GetSessionHistoryDetailed(input *session.GetSessionHistoryDetailedParams) ([]*sessionbrowserclientmodels.ModelsGetSessionHistoryDetailedResponseItem, error) {
+	token, err := aaa.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, badRequest, unauthorized, forbidden, internalServerError, err := aaa.Client.Session.GetSessionHistoryDetailed(input, client.BearerToken(*token.AccessToken))
+	if badRequest != nil {
+		return nil, badRequest
+	}
+	if unauthorized != nil {
+		return nil, unauthorized
+	}
+	if forbidden != nil {
+		return nil, forbidden
+	}
+	if internalServerError != nil {
+		return nil, internalServerError
+	}
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
 // Deprecated: Use QuerySessionShort instead
 func (aaa *SessionService) QuerySession(input *session.QuerySessionParams) (*sessionbrowserclientmodels.ModelsSessionQueryResponse, error) {
 	token, err := aaa.TokenRepository.GetToken()
@@ -482,6 +534,56 @@ func (aaa *SessionService) AdminGetSessionShort(input *session.AdminGetSessionPa
 	}
 
 	ok, err := aaa.Client.Session.AdminGetSessionShort(input, authInfoWriter)
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
+func (aaa *SessionService) AdminSearchSessionsV2Short(input *session.AdminSearchSessionsV2Params) (*sessionbrowserclientmodels.ModelsGetSessionHistorySearchResponseV2, error) {
+	authInfoWriter := input.AuthInfoWriter
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
+	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  aaa.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
+	ok, err := aaa.Client.Session.AdminSearchSessionsV2Short(input, authInfoWriter)
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
+func (aaa *SessionService) GetSessionHistoryDetailedShort(input *session.GetSessionHistoryDetailedParams) ([]*sessionbrowserclientmodels.ModelsGetSessionHistoryDetailedResponseItem, error) {
+	authInfoWriter := input.AuthInfoWriter
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
+	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  aaa.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
+	ok, err := aaa.Client.Session.GetSessionHistoryDetailedShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}

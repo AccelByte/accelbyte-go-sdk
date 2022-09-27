@@ -48,16 +48,18 @@ const (
 // with the default values initialized.
 func NewQueryItemsParams() *QueryItemsParams {
 	var (
-		activeOnlyDefault = bool(true)
-		limitDefault      = int32(20)
-		offsetDefault     = int32(0)
-		sortByDefault     = []string{"name:asc", "displayOrder:asc"}
+		activeOnlyDefault             = bool(true)
+		includeSubCategoryItemDefault = bool(false)
+		limitDefault                  = int32(20)
+		offsetDefault                 = int32(0)
+		sortByDefault                 = []string{"name:asc", "displayOrder:asc"}
 	)
 	return &QueryItemsParams{
-		ActiveOnly: &activeOnlyDefault,
-		Limit:      &limitDefault,
-		Offset:     &offsetDefault,
-		SortBy:     sortByDefault,
+		ActiveOnly:             &activeOnlyDefault,
+		IncludeSubCategoryItem: &includeSubCategoryItemDefault,
+		Limit:                  &limitDefault,
+		Offset:                 &offsetDefault,
+		SortBy:                 sortByDefault,
 
 		timeout: cr.DefaultTimeout,
 	}
@@ -67,16 +69,18 @@ func NewQueryItemsParams() *QueryItemsParams {
 // with the default values initialized, and the ability to set a timeout on a request
 func NewQueryItemsParamsWithTimeout(timeout time.Duration) *QueryItemsParams {
 	var (
-		activeOnlyDefault = bool(true)
-		limitDefault      = int32(20)
-		offsetDefault     = int32(0)
-		sortByDefault     = []string{"name:asc", "displayOrder:asc"}
+		activeOnlyDefault             = bool(true)
+		includeSubCategoryItemDefault = bool(false)
+		limitDefault                  = int32(20)
+		offsetDefault                 = int32(0)
+		sortByDefault                 = []string{"name:asc", "displayOrder:asc"}
 	)
 	return &QueryItemsParams{
-		ActiveOnly: &activeOnlyDefault,
-		Limit:      &limitDefault,
-		Offset:     &offsetDefault,
-		SortBy:     sortByDefault,
+		ActiveOnly:             &activeOnlyDefault,
+		IncludeSubCategoryItem: &includeSubCategoryItemDefault,
+		Limit:                  &limitDefault,
+		Offset:                 &offsetDefault,
+		SortBy:                 sortByDefault,
 
 		timeout: timeout,
 	}
@@ -86,16 +90,18 @@ func NewQueryItemsParamsWithTimeout(timeout time.Duration) *QueryItemsParams {
 // with the default values initialized, and the ability to set a context for a request
 func NewQueryItemsParamsWithContext(ctx context.Context) *QueryItemsParams {
 	var (
-		activeOnlyDefault = bool(true)
-		limitDefault      = int32(20)
-		offsetDefault     = int32(0)
-		sortByDefault     = []string{"name:asc", "displayOrder:asc"}
+		activeOnlyDefault             = bool(true)
+		includeSubCategoryItemDefault = bool(false)
+		limitDefault                  = int32(20)
+		offsetDefault                 = int32(0)
+		sortByDefault                 = []string{"name:asc", "displayOrder:asc"}
 	)
 	return &QueryItemsParams{
-		ActiveOnly: &activeOnlyDefault,
-		Limit:      &limitDefault,
-		Offset:     &offsetDefault,
-		SortBy:     sortByDefault,
+		ActiveOnly:             &activeOnlyDefault,
+		IncludeSubCategoryItem: &includeSubCategoryItemDefault,
+		Limit:                  &limitDefault,
+		Offset:                 &offsetDefault,
+		SortBy:                 sortByDefault,
 
 		Context: ctx,
 	}
@@ -105,17 +111,19 @@ func NewQueryItemsParamsWithContext(ctx context.Context) *QueryItemsParams {
 // with the default values initialized, and the ability to set a custom HTTPClient for a request
 func NewQueryItemsParamsWithHTTPClient(client *http.Client) *QueryItemsParams {
 	var (
-		activeOnlyDefault = bool(true)
-		limitDefault      = int32(20)
-		offsetDefault     = int32(0)
-		sortByDefault     = []string{"name:asc", "displayOrder:asc"}
+		activeOnlyDefault             = bool(true)
+		includeSubCategoryItemDefault = bool(false)
+		limitDefault                  = int32(20)
+		offsetDefault                 = int32(0)
+		sortByDefault                 = []string{"name:asc", "displayOrder:asc"}
 	)
 	return &QueryItemsParams{
-		ActiveOnly: &activeOnlyDefault,
-		Limit:      &limitDefault,
-		Offset:     &offsetDefault,
-		SortBy:     sortByDefault,
-		HTTPClient: client,
+		ActiveOnly:             &activeOnlyDefault,
+		IncludeSubCategoryItem: &includeSubCategoryItemDefault,
+		Limit:                  &limitDefault,
+		Offset:                 &offsetDefault,
+		SortBy:                 sortByDefault,
+		HTTPClient:             client,
 	}
 }
 
@@ -147,6 +155,11 @@ type QueryItemsParams struct {
 
 	*/
 	Features *string
+	/*IncludeSubCategoryItem
+	  default is false, only available when search by category path, it will return all of the items(includes sub category path) under this category path
+
+	*/
+	IncludeSubCategoryItem *bool
 	/*ItemType*/
 	ItemType *string
 	/*Limit
@@ -304,6 +317,17 @@ func (o *QueryItemsParams) WithFeatures(features *string) *QueryItemsParams {
 // SetFeatures adds the features to the query items params
 func (o *QueryItemsParams) SetFeatures(features *string) {
 	o.Features = features
+}
+
+// WithIncludeSubCategoryItem adds the includeSubCategoryItem to the query items params
+func (o *QueryItemsParams) WithIncludeSubCategoryItem(includeSubCategoryItem *bool) *QueryItemsParams {
+	o.SetIncludeSubCategoryItem(includeSubCategoryItem)
+	return o
+}
+
+// SetIncludeSubCategoryItem adds the includeSubCategoryItem to the query items params
+func (o *QueryItemsParams) SetIncludeSubCategoryItem(includeSubCategoryItem *bool) {
+	o.IncludeSubCategoryItem = includeSubCategoryItem
 }
 
 // WithItemType adds the itemType to the query items params
@@ -503,6 +527,22 @@ func (o *QueryItemsParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.Re
 		qFeatures := qrFeatures
 		if qFeatures != "" {
 			if err := r.SetQueryParam("features", qFeatures); err != nil {
+				return err
+			}
+		}
+
+	}
+
+	if o.IncludeSubCategoryItem != nil {
+
+		// query param includeSubCategoryItem
+		var qrIncludeSubCategoryItem bool
+		if o.IncludeSubCategoryItem != nil {
+			qrIncludeSubCategoryItem = *o.IncludeSubCategoryItem
+		}
+		qIncludeSubCategoryItem := swag.FormatBool(qrIncludeSubCategoryItem)
+		if qIncludeSubCategoryItem != "" {
+			if err := r.SetQueryParam("includeSubCategoryItem", qIncludeSubCategoryItem); err != nil {
 				return err
 			}
 		}

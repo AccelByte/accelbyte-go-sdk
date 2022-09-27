@@ -2744,9 +2744,9 @@ Required attributes:
 - authType: possible value is EMAILPASSWD (see above)
 - country: ISO3166-1 alpha-2 two letter, e.g. US.
 - dateOfBirth: YYYY-MM-DD, e.g. 1990-01-01. valid values are between 1905-01-01 until current date.
-- displayName: case insensitive, alphanumeric with allowed symbols dash (-), comma (,), and dot (.)
-- password: 8 to 32 characters, satisfy at least 3 out of 4 conditions(uppercase, lowercase letters, numbers and special characters) and should not have more than 2 equal characters in a row.
-- username: case insensitive, alphanumeric with allowed symbols underscore (_) and dot (.)
+- displayName: Please refer to the rule from /v3/public/inputValidations API.
+- password: Please refer to the rule from /v3/public/inputValidations API.
+- username: Please refer to the rule from /v3/public/inputValidations API.
 
 */
 func (a *Client) CreateUserFromInvitationV4(params *CreateUserFromInvitationV4Params, authInfo runtime.ClientAuthInfoWriter) (*CreateUserFromInvitationV4Created, *CreateUserFromInvitationV4BadRequest, *CreateUserFromInvitationV4NotFound, *CreateUserFromInvitationV4InternalServerError, error) {
@@ -2816,9 +2816,9 @@ Required attributes:
 - authType: possible value is EMAILPASSWD (see above)
 - country: ISO3166-1 alpha-2 two letter, e.g. US.
 - dateOfBirth: YYYY-MM-DD, e.g. 1990-01-01. valid values are between 1905-01-01 until current date.
-- displayName: case insensitive, alphanumeric with allowed symbols dash (-), comma (,), and dot (.)
-- password: 8 to 32 characters, satisfy at least 3 out of 4 conditions(uppercase, lowercase letters, numbers and special characters) and should not have more than 2 equal characters in a row.
-- username: case insensitive, alphanumeric with allowed symbols underscore (_) and dot (.)
+- displayName: Please refer to the rule from /v3/public/inputValidations API.
+- password: Please refer to the rule from /v3/public/inputValidations API.
+- username: Please refer to the rule from /v3/public/inputValidations API.
 
 */
 func (a *Client) CreateUserFromInvitationV4Short(params *CreateUserFromInvitationV4Params, authInfo runtime.ClientAuthInfoWriter) (*CreateUserFromInvitationV4Created, error) {
@@ -2878,14 +2878,14 @@ Deprecated: Use PublicCreateTestUserV4Short instead.
 		&lt;b&gt;Required attributes:&lt;/b&gt;
 		- verified: this new user is verified or not
 		- authType: possible value is EMAILPASSWD
-		- emailAddress: 5 to 254 characters
-		- username: 3 to 48 characters, case insensitive, alphanumeric with allowed symbols underscore (_) and dot (.)
-		- password: 8 to 32 characters, satisfy at least 3 out of 4 conditions(uppercase, lowercase letters, numbers and special characters) and should not have more than 2 equal characters in a row.
+		- emailAddress: Please refer to the rule from /v3/public/inputValidations API.
+		- username: Please refer to the rule from /v3/public/inputValidations API.
+		- password: Please refer to the rule from /v3/public/inputValidations API.
 		- country: ISO3166-1 alpha-2 two letter, e.g. US.
 		- dateOfBirth: YYYY-MM-DD, e.g. 1990-01-01. valid values are between 1905-01-01 until current date.
 		&lt;br/&gt;
 		&lt;b&gt;Not required attributes:&lt;/b&gt;
-		- displayName: 1 to 48 characters
+		- displayName: Please refer to the rule from /v3/public/inputValidations API.
 		&lt;/p&gt;
 		&lt;p&gt;This endpoint support accepting agreements for the created user. Supply the accepted agreements in acceptedPolicies attribute.&lt;/p&gt;
 
@@ -2951,14 +2951,14 @@ func (a *Client) PublicCreateTestUserV4(params *PublicCreateTestUserV4Params, au
 		&lt;b&gt;Required attributes:&lt;/b&gt;
 		- verified: this new user is verified or not
 		- authType: possible value is EMAILPASSWD
-		- emailAddress: 5 to 254 characters
-		- username: 3 to 48 characters, case insensitive, alphanumeric with allowed symbols underscore (_) and dot (.)
-		- password: 8 to 32 characters, satisfy at least 3 out of 4 conditions(uppercase, lowercase letters, numbers and special characters) and should not have more than 2 equal characters in a row.
+		- emailAddress: Please refer to the rule from /v3/public/inputValidations API.
+		- username: Please refer to the rule from /v3/public/inputValidations API.
+		- password: Please refer to the rule from /v3/public/inputValidations API.
 		- country: ISO3166-1 alpha-2 two letter, e.g. US.
 		- dateOfBirth: YYYY-MM-DD, e.g. 1990-01-01. valid values are between 1905-01-01 until current date.
 		&lt;br/&gt;
 		&lt;b&gt;Not required attributes:&lt;/b&gt;
-		- displayName: 1 to 48 characters
+		- displayName: Please refer to the rule from /v3/public/inputValidations API.
 		&lt;/p&gt;
 		&lt;p&gt;This endpoint support accepting agreements for the created user. Supply the accepted agreements in acceptedPolicies attribute.&lt;/p&gt;
 
@@ -3021,14 +3021,14 @@ Deprecated: Use PublicCreateUserV4Short instead.
 		&lt;p&gt;
 		&lt;b&gt;Required attributes:&lt;/b&gt;
 		- authType: possible value is EMAILPASSWD
-		- emailAddress: 5 to 254 characters
-		- username: 3 to 48 characters, case insensitive, alphanumeric with allowed symbols underscore (_) and dot (.)
-		- password: 8 to 32 characters, satisfy at least 3 out of 4 conditions(uppercase, lowercase letters, numbers and special characters) and should not have more than 2 equal characters in a row.
+		- emailAddress: Please refer to the rule from /v3/public/inputValidations API.
+		- username: Please refer to the rule from /v3/public/inputValidations API.
+		- password: Please refer to the rule from /v3/public/inputValidations API.
 		- country: ISO3166-1 alpha-2 two letter, e.g. US.
 		- dateOfBirth: YYYY-MM-DD, e.g. 1990-01-01. valid values are between 1905-01-01 until current date.
 		&lt;br/&gt;
 		&lt;b&gt;Not required attributes:&lt;/b&gt;
-		- displayName: 1 to 48 characters
+		- displayName: Please refer to the rule from /v3/public/inputValidations API.
 		&lt;/p&gt;
 		&lt;p&gt;This endpoint support accepting agreements for the created user. Supply the accepted agreements in acceptedPolicies attribute.&lt;/p&gt;
 
@@ -3093,14 +3093,14 @@ func (a *Client) PublicCreateUserV4(params *PublicCreateUserV4Params, authInfo r
 		&lt;p&gt;
 		&lt;b&gt;Required attributes:&lt;/b&gt;
 		- authType: possible value is EMAILPASSWD
-		- emailAddress: 5 to 254 characters
-		- username: 3 to 48 characters, case insensitive, alphanumeric with allowed symbols underscore (_) and dot (.)
-		- password: 8 to 32 characters, satisfy at least 3 out of 4 conditions(uppercase, lowercase letters, numbers and special characters) and should not have more than 2 equal characters in a row.
+		- emailAddress: Please refer to the rule from /v3/public/inputValidations API.
+		- username: Please refer to the rule from /v3/public/inputValidations API.
+		- password: Please refer to the rule from /v3/public/inputValidations API.
 		- country: ISO3166-1 alpha-2 two letter, e.g. US.
 		- dateOfBirth: YYYY-MM-DD, e.g. 1990-01-01. valid values are between 1905-01-01 until current date.
 		&lt;br/&gt;
 		&lt;b&gt;Not required attributes:&lt;/b&gt;
-		- displayName: 1 to 48 characters
+		- displayName: Please refer to the rule from /v3/public/inputValidations API.
 		&lt;/p&gt;
 		&lt;p&gt;This endpoint support accepting agreements for the created user. Supply the accepted agreements in acceptedPolicies attribute.&lt;/p&gt;
 

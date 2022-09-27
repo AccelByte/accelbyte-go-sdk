@@ -1653,7 +1653,16 @@ Deprecated: Use GetSessionHistoryDetailedShort instead.
 
   GetSessionHistoryDetailed gets session history detailed
 
-  Required Permission: ADMIN:NAMESPACE:{namespace}:MATCHMAKING:CHANNEL [Read]
+
+&lt;p&gt;
+	&lt;h2&gt;The endpoint is going to be deprecated&lt;/h2&gt; &lt;/br&gt;
+	&lt;strong&gt;Endpoint migration guide&lt;/strong&gt;
+	&lt;ul&gt;
+		&lt;li&gt;&lt;b&gt;Substitute endpoint: &lt;i&gt;/sessionbrowser/admin/namespaces/{namespace}/sessions/{sessionId}/history/detailed [GET]&lt;/i&gt;&lt;/b&gt;&lt;/li&gt;
+	&lt;/ul&gt;
+&lt;/p&gt;
+
+Required Permission: ADMIN:NAMESPACE:{namespace}:MATCHMAKING:CHANNEL [Read]
 
 Required Scope: social
 
@@ -1720,7 +1729,16 @@ func (a *Client) GetSessionHistoryDetailed(params *GetSessionHistoryDetailedPara
 /*
   GetSessionHistoryDetailedShort gets session history detailed
 
-  Required Permission: ADMIN:NAMESPACE:{namespace}:MATCHMAKING:CHANNEL [Read]
+
+&lt;p&gt;
+	&lt;h2&gt;The endpoint is going to be deprecated&lt;/h2&gt; &lt;/br&gt;
+	&lt;strong&gt;Endpoint migration guide&lt;/strong&gt;
+	&lt;ul&gt;
+		&lt;li&gt;&lt;b&gt;Substitute endpoint: &lt;i&gt;/sessionbrowser/admin/namespaces/{namespace}/sessions/{sessionId}/history/detailed [GET]&lt;/i&gt;&lt;/b&gt;&lt;/li&gt;
+	&lt;/ul&gt;
+&lt;/p&gt;
+
+Required Permission: ADMIN:NAMESPACE:{namespace}:MATCHMAKING:CHANNEL [Read]
 
 Required Scope: social
 
@@ -2709,7 +2727,16 @@ Deprecated: Use SearchSessionsShort instead.
 
   SearchSessions searches sessions
 
-  Required Permission: ADMIN:NAMESPACE:{namespace}:MATCHMAKING:CHANNEL [Read]
+
+&lt;p&gt;
+	&lt;h2&gt;The endpoint is going to be deprecated&lt;/h2&gt; &lt;/br&gt;
+	&lt;strong&gt;Endpoint migration guide&lt;/strong&gt;
+	&lt;ul&gt;
+		&lt;li&gt;&lt;b&gt;Substitute endpoint: &lt;i&gt;/sessionbrowser/admin/namespaces/{namespace}/sessions/history/search [GET]&lt;/i&gt;&lt;/b&gt;&lt;/li&gt;
+	&lt;/ul&gt;
+&lt;/p&gt;
+
+Required Permission: ADMIN:NAMESPACE:{namespace}:MATCHMAKING:CHANNEL [Read]
 
 Required Scope: social
 
@@ -2774,7 +2801,16 @@ func (a *Client) SearchSessions(params *SearchSessionsParams, authInfo runtime.C
 /*
   SearchSessionsShort searches sessions
 
-  Required Permission: ADMIN:NAMESPACE:{namespace}:MATCHMAKING:CHANNEL [Read]
+
+&lt;p&gt;
+	&lt;h2&gt;The endpoint is going to be deprecated&lt;/h2&gt; &lt;/br&gt;
+	&lt;strong&gt;Endpoint migration guide&lt;/strong&gt;
+	&lt;ul&gt;
+		&lt;li&gt;&lt;b&gt;Substitute endpoint: &lt;i&gt;/sessionbrowser/admin/namespaces/{namespace}/sessions/history/search [GET]&lt;/i&gt;&lt;/b&gt;&lt;/li&gt;
+	&lt;/ul&gt;
+&lt;/p&gt;
+
+Required Permission: ADMIN:NAMESPACE:{namespace}:MATCHMAKING:CHANNEL [Read]
 
 Required Scope: social
 
@@ -2836,7 +2872,15 @@ Deprecated: Use SearchSessionsV2Short instead.
 
   SearchSessionsV2 searches sessions
 
-  Required Permission: ADMIN:NAMESPACE:{namespace}:MATCHMAKING:CHANNEL [Read]
+  &lt;p&gt;
+	&lt;h2&gt;The endpoint is going to be deprecated&lt;/h2&gt; &lt;/br&gt;
+	&lt;strong&gt;Endpoint migration guide&lt;/strong&gt;
+	&lt;ul&gt;
+		&lt;li&gt;&lt;b&gt;Substitute endpoint: &lt;i&gt;/sessionbrowser/admin/namespaces/{namespace}/sessions/history/search [GET]&lt;/i&gt;&lt;/b&gt;&lt;/li&gt;
+	&lt;/ul&gt;
+&lt;/p&gt;
+
+Required Permission: ADMIN:NAMESPACE:{namespace}:MATCHMAKING:CHANNEL [Read]
 
 Required Scope: social
 
@@ -2902,7 +2946,15 @@ func (a *Client) SearchSessionsV2(params *SearchSessionsV2Params, authInfo runti
 /*
   SearchSessionsV2Short searches sessions
 
-  Required Permission: ADMIN:NAMESPACE:{namespace}:MATCHMAKING:CHANNEL [Read]
+  &lt;p&gt;
+	&lt;h2&gt;The endpoint is going to be deprecated&lt;/h2&gt; &lt;/br&gt;
+	&lt;strong&gt;Endpoint migration guide&lt;/strong&gt;
+	&lt;ul&gt;
+		&lt;li&gt;&lt;b&gt;Substitute endpoint: &lt;i&gt;/sessionbrowser/admin/namespaces/{namespace}/sessions/history/search [GET]&lt;/i&gt;&lt;/b&gt;&lt;/li&gt;
+	&lt;/ul&gt;
+&lt;/p&gt;
+
+Required Permission: ADMIN:NAMESPACE:{namespace}:MATCHMAKING:CHANNEL [Read]
 
 Required Scope: social
 

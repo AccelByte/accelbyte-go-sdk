@@ -41,13 +41,13 @@ type ClientService interface {
 	GetDLCItemConfigShort(params *GetDLCItemConfigParams, authInfo runtime.ClientAuthInfoWriter) (*GetDLCItemConfigOK, error)
 	GetPlatformDLCConfig(params *GetPlatformDLCConfigParams, authInfo runtime.ClientAuthInfoWriter) (*GetPlatformDLCConfigOK, *GetPlatformDLCConfigNotFound, error)
 	GetPlatformDLCConfigShort(params *GetPlatformDLCConfigParams, authInfo runtime.ClientAuthInfoWriter) (*GetPlatformDLCConfigOK, error)
-	PublicSyncPsnDlcInventory(params *PublicSyncPsnDlcInventoryParams, authInfo runtime.ClientAuthInfoWriter) (*PublicSyncPsnDlcInventoryNoContent, error)
+	PublicSyncPsnDlcInventory(params *PublicSyncPsnDlcInventoryParams, authInfo runtime.ClientAuthInfoWriter) (*PublicSyncPsnDlcInventoryNoContent, *PublicSyncPsnDlcInventoryBadRequest, error)
 	PublicSyncPsnDlcInventoryShort(params *PublicSyncPsnDlcInventoryParams, authInfo runtime.ClientAuthInfoWriter) (*PublicSyncPsnDlcInventoryNoContent, error)
-	SyncEpicGameDLC(params *SyncEpicGameDLCParams, authInfo runtime.ClientAuthInfoWriter) (*SyncEpicGameDLCNoContent, error)
+	SyncEpicGameDLC(params *SyncEpicGameDLCParams, authInfo runtime.ClientAuthInfoWriter) (*SyncEpicGameDLCNoContent, *SyncEpicGameDLCBadRequest, error)
 	SyncEpicGameDLCShort(params *SyncEpicGameDLCParams, authInfo runtime.ClientAuthInfoWriter) (*SyncEpicGameDLCNoContent, error)
 	SyncSteamDLC(params *SyncSteamDLCParams, authInfo runtime.ClientAuthInfoWriter) (*SyncSteamDLCNoContent, *SyncSteamDLCBadRequest, error)
 	SyncSteamDLCShort(params *SyncSteamDLCParams, authInfo runtime.ClientAuthInfoWriter) (*SyncSteamDLCNoContent, error)
-	SyncXboxDLC(params *SyncXboxDLCParams, authInfo runtime.ClientAuthInfoWriter) (*SyncXboxDLCNoContent, error)
+	SyncXboxDLC(params *SyncXboxDLCParams, authInfo runtime.ClientAuthInfoWriter) (*SyncXboxDLCNoContent, *SyncXboxDLCBadRequest, error)
 	SyncXboxDLCShort(params *SyncXboxDLCParams, authInfo runtime.ClientAuthInfoWriter) (*SyncXboxDLCNoContent, error)
 	UpdateDLCItemConfig(params *UpdateDLCItemConfigParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateDLCItemConfigOK, *UpdateDLCItemConfigUnprocessableEntity, error)
 	UpdateDLCItemConfigShort(params *UpdateDLCItemConfigParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateDLCItemConfigOK, error)
@@ -450,7 +450,7 @@ Deprecated: Use PublicSyncPsnDlcInventoryShort instead.
 
   Synchronize with dlc entitlements in PSN Store.&lt;p&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=NAMESPACE:{namespace}:USER:{userId}:DLC, action=4 (UPDATE)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: result of synchronization&lt;/li&gt;&lt;/ul&gt;
 */
-func (a *Client) PublicSyncPsnDlcInventory(params *PublicSyncPsnDlcInventoryParams, authInfo runtime.ClientAuthInfoWriter) (*PublicSyncPsnDlcInventoryNoContent, error) {
+func (a *Client) PublicSyncPsnDlcInventory(params *PublicSyncPsnDlcInventoryParams, authInfo runtime.ClientAuthInfoWriter) (*PublicSyncPsnDlcInventoryNoContent, *PublicSyncPsnDlcInventoryBadRequest, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewPublicSyncPsnDlcInventoryParams()
@@ -478,16 +478,19 @@ func (a *Client) PublicSyncPsnDlcInventory(params *PublicSyncPsnDlcInventoryPara
 		Client:             params.HTTPClient,
 	})
 	if err != nil {
-		return nil, err
+		return nil, nil, err
 	}
 
 	switch v := result.(type) {
 
 	case *PublicSyncPsnDlcInventoryNoContent:
-		return v, nil
+		return v, nil, nil
+
+	case *PublicSyncPsnDlcInventoryBadRequest:
+		return nil, v, nil
 
 	default:
-		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+		return nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
@@ -531,6 +534,8 @@ func (a *Client) PublicSyncPsnDlcInventoryShort(params *PublicSyncPsnDlcInventor
 
 	case *PublicSyncPsnDlcInventoryNoContent:
 		return v, nil
+	case *PublicSyncPsnDlcInventoryBadRequest:
+		return nil, v
 
 	default:
 		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
@@ -544,7 +549,7 @@ Deprecated: Use SyncEpicGameDLCShort instead.
 
   Sync epic games dlc items.&lt;p&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=NAMESPACE:{namespace}:USER:{userId}:DLC, action=4 (UPDATE)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: &lt;/li&gt;&lt;/ul&gt;
 */
-func (a *Client) SyncEpicGameDLC(params *SyncEpicGameDLCParams, authInfo runtime.ClientAuthInfoWriter) (*SyncEpicGameDLCNoContent, error) {
+func (a *Client) SyncEpicGameDLC(params *SyncEpicGameDLCParams, authInfo runtime.ClientAuthInfoWriter) (*SyncEpicGameDLCNoContent, *SyncEpicGameDLCBadRequest, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewSyncEpicGameDLCParams()
@@ -572,16 +577,19 @@ func (a *Client) SyncEpicGameDLC(params *SyncEpicGameDLCParams, authInfo runtime
 		Client:             params.HTTPClient,
 	})
 	if err != nil {
-		return nil, err
+		return nil, nil, err
 	}
 
 	switch v := result.(type) {
 
 	case *SyncEpicGameDLCNoContent:
-		return v, nil
+		return v, nil, nil
+
+	case *SyncEpicGameDLCBadRequest:
+		return nil, v, nil
 
 	default:
-		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+		return nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
@@ -625,6 +633,8 @@ func (a *Client) SyncEpicGameDLCShort(params *SyncEpicGameDLCParams, authInfo ru
 
 	case *SyncEpicGameDLCNoContent:
 		return v, nil
+	case *SyncEpicGameDLCBadRequest:
+		return nil, v
 
 	default:
 		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
@@ -737,7 +747,7 @@ Deprecated: Use SyncXboxDLCShort instead.
 
   Sync Xbox inventory&#39;s dlc items.&lt;p&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=NAMESPACE:{namespace}:USER:{userId}:DLC, action=4 (UPDATE)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: &lt;/li&gt;&lt;/ul&gt;
 */
-func (a *Client) SyncXboxDLC(params *SyncXboxDLCParams, authInfo runtime.ClientAuthInfoWriter) (*SyncXboxDLCNoContent, error) {
+func (a *Client) SyncXboxDLC(params *SyncXboxDLCParams, authInfo runtime.ClientAuthInfoWriter) (*SyncXboxDLCNoContent, *SyncXboxDLCBadRequest, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewSyncXboxDLCParams()
@@ -765,16 +775,19 @@ func (a *Client) SyncXboxDLC(params *SyncXboxDLCParams, authInfo runtime.ClientA
 		Client:             params.HTTPClient,
 	})
 	if err != nil {
-		return nil, err
+		return nil, nil, err
 	}
 
 	switch v := result.(type) {
 
 	case *SyncXboxDLCNoContent:
-		return v, nil
+		return v, nil, nil
+
+	case *SyncXboxDLCBadRequest:
+		return nil, v, nil
 
 	default:
-		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+		return nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
@@ -818,6 +831,8 @@ func (a *Client) SyncXboxDLCShort(params *SyncXboxDLCParams, authInfo runtime.Cl
 
 	case *SyncXboxDLCNoContent:
 		return v, nil
+	case *SyncXboxDLCBadRequest:
+		return nil, v
 
 	default:
 		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))

@@ -141,7 +141,10 @@ func (aaa *DLCService) SyncEpicGameDLC(input *d_l_c.SyncEpicGameDLCParams) error
 	if err != nil {
 		return err
 	}
-	_, err = aaa.Client.Dlc.SyncEpicGameDLC(input, client.BearerToken(*token.AccessToken))
+	_, badRequest, err := aaa.Client.Dlc.SyncEpicGameDLC(input, client.BearerToken(*token.AccessToken))
+	if badRequest != nil {
+		return badRequest
+	}
 	if err != nil {
 		return err
 	}
@@ -155,7 +158,10 @@ func (aaa *DLCService) PublicSyncPsnDlcInventory(input *d_l_c.PublicSyncPsnDlcIn
 	if err != nil {
 		return err
 	}
-	_, err = aaa.Client.Dlc.PublicSyncPsnDlcInventory(input, client.BearerToken(*token.AccessToken))
+	_, badRequest, err := aaa.Client.Dlc.PublicSyncPsnDlcInventory(input, client.BearerToken(*token.AccessToken))
+	if badRequest != nil {
+		return badRequest
+	}
 	if err != nil {
 		return err
 	}
@@ -186,7 +192,10 @@ func (aaa *DLCService) SyncXboxDLC(input *d_l_c.SyncXboxDLCParams) error {
 	if err != nil {
 		return err
 	}
-	_, err = aaa.Client.Dlc.SyncXboxDLC(input, client.BearerToken(*token.AccessToken))
+	_, badRequest, err := aaa.Client.Dlc.SyncXboxDLC(input, client.BearerToken(*token.AccessToken))
+	if badRequest != nil {
+		return badRequest
+	}
 	if err != nil {
 		return err
 	}

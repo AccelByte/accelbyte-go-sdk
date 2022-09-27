@@ -19,6 +19,10 @@ import (
 // swagger:model models.MatchingParty
 type ModelsMatchingParty struct {
 
+	// match attributes
+	// Required: true
+	MatchAttributes *ModelsMatchAttributes `json:"match_attributes"`
+
 	// party attributes
 	// Required: true
 	PartyAttributes interface{} `json:"party_attributes"`
@@ -36,6 +40,10 @@ type ModelsMatchingParty struct {
 func (m *ModelsMatchingParty) Validate(formats strfmt.Registry) error {
 	var res []error
 
+	if err := m.validateMatchAttributes(formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.validatePartyAttributes(formats); err != nil {
 		res = append(res, err)
 	}
@@ -51,6 +59,24 @@ func (m *ModelsMatchingParty) Validate(formats strfmt.Registry) error {
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
+	return nil
+}
+
+func (m *ModelsMatchingParty) validateMatchAttributes(formats strfmt.Registry) error {
+
+	if err := validate.Required("match_attributes", "body", m.MatchAttributes); err != nil {
+		return err
+	}
+
+	if m.MatchAttributes != nil {
+		if err := m.MatchAttributes.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("match_attributes")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 

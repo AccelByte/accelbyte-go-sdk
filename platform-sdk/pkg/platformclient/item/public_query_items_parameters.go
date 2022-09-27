@@ -48,14 +48,16 @@ const (
 // with the default values initialized.
 func NewPublicQueryItemsParams() *PublicQueryItemsParams {
 	var (
-		limitDefault  = int32(20)
-		offsetDefault = int32(0)
-		sortByDefault = []string{"name:asc", "displayOrder:asc"}
+		includeSubCategoryItemDefault = bool(false)
+		limitDefault                  = int32(20)
+		offsetDefault                 = int32(0)
+		sortByDefault                 = []string{"name:asc", "displayOrder:asc"}
 	)
 	return &PublicQueryItemsParams{
-		Limit:  &limitDefault,
-		Offset: &offsetDefault,
-		SortBy: sortByDefault,
+		IncludeSubCategoryItem: &includeSubCategoryItemDefault,
+		Limit:                  &limitDefault,
+		Offset:                 &offsetDefault,
+		SortBy:                 sortByDefault,
 
 		timeout: cr.DefaultTimeout,
 	}
@@ -65,14 +67,16 @@ func NewPublicQueryItemsParams() *PublicQueryItemsParams {
 // with the default values initialized, and the ability to set a timeout on a request
 func NewPublicQueryItemsParamsWithTimeout(timeout time.Duration) *PublicQueryItemsParams {
 	var (
-		limitDefault  = int32(20)
-		offsetDefault = int32(0)
-		sortByDefault = []string{"name:asc", "displayOrder:asc"}
+		includeSubCategoryItemDefault = bool(false)
+		limitDefault                  = int32(20)
+		offsetDefault                 = int32(0)
+		sortByDefault                 = []string{"name:asc", "displayOrder:asc"}
 	)
 	return &PublicQueryItemsParams{
-		Limit:  &limitDefault,
-		Offset: &offsetDefault,
-		SortBy: sortByDefault,
+		IncludeSubCategoryItem: &includeSubCategoryItemDefault,
+		Limit:                  &limitDefault,
+		Offset:                 &offsetDefault,
+		SortBy:                 sortByDefault,
 
 		timeout: timeout,
 	}
@@ -82,14 +86,16 @@ func NewPublicQueryItemsParamsWithTimeout(timeout time.Duration) *PublicQueryIte
 // with the default values initialized, and the ability to set a context for a request
 func NewPublicQueryItemsParamsWithContext(ctx context.Context) *PublicQueryItemsParams {
 	var (
-		limitDefault  = int32(20)
-		offsetDefault = int32(0)
-		sortByDefault = []string{"name:asc", "displayOrder:asc"}
+		includeSubCategoryItemDefault = bool(false)
+		limitDefault                  = int32(20)
+		offsetDefault                 = int32(0)
+		sortByDefault                 = []string{"name:asc", "displayOrder:asc"}
 	)
 	return &PublicQueryItemsParams{
-		Limit:  &limitDefault,
-		Offset: &offsetDefault,
-		SortBy: sortByDefault,
+		IncludeSubCategoryItem: &includeSubCategoryItemDefault,
+		Limit:                  &limitDefault,
+		Offset:                 &offsetDefault,
+		SortBy:                 sortByDefault,
 
 		Context: ctx,
 	}
@@ -99,15 +105,17 @@ func NewPublicQueryItemsParamsWithContext(ctx context.Context) *PublicQueryItems
 // with the default values initialized, and the ability to set a custom HTTPClient for a request
 func NewPublicQueryItemsParamsWithHTTPClient(client *http.Client) *PublicQueryItemsParams {
 	var (
-		limitDefault  = int32(20)
-		offsetDefault = int32(0)
-		sortByDefault = []string{"name:asc", "displayOrder:asc"}
+		includeSubCategoryItemDefault = bool(false)
+		limitDefault                  = int32(20)
+		offsetDefault                 = int32(0)
+		sortByDefault                 = []string{"name:asc", "displayOrder:asc"}
 	)
 	return &PublicQueryItemsParams{
-		Limit:      &limitDefault,
-		Offset:     &offsetDefault,
-		SortBy:     sortByDefault,
-		HTTPClient: client,
+		IncludeSubCategoryItem: &includeSubCategoryItemDefault,
+		Limit:                  &limitDefault,
+		Offset:                 &offsetDefault,
+		SortBy:                 sortByDefault,
+		HTTPClient:             client,
 	}
 }
 
@@ -132,6 +140,11 @@ type PublicQueryItemsParams struct {
 
 	*/
 	Features *string
+	/*IncludeSubCategoryItem
+	  default is false, only available when search by category path, it will return all of the items(includes sub category path) under this category path
+
+	*/
+	IncludeSubCategoryItem *bool
 	/*ItemType*/
 	ItemType *string
 	/*Language*/
@@ -261,6 +274,17 @@ func (o *PublicQueryItemsParams) WithFeatures(features *string) *PublicQueryItem
 // SetFeatures adds the features to the public query items params
 func (o *PublicQueryItemsParams) SetFeatures(features *string) {
 	o.Features = features
+}
+
+// WithIncludeSubCategoryItem adds the includeSubCategoryItem to the public query items params
+func (o *PublicQueryItemsParams) WithIncludeSubCategoryItem(includeSubCategoryItem *bool) *PublicQueryItemsParams {
+	o.SetIncludeSubCategoryItem(includeSubCategoryItem)
+	return o
+}
+
+// SetIncludeSubCategoryItem adds the includeSubCategoryItem to the public query items params
+func (o *PublicQueryItemsParams) SetIncludeSubCategoryItem(includeSubCategoryItem *bool) {
+	o.IncludeSubCategoryItem = includeSubCategoryItem
 }
 
 // WithItemType adds the itemType to the public query items params
@@ -428,6 +452,22 @@ func (o *PublicQueryItemsParams) WriteToRequest(r runtime.ClientRequest, reg str
 		qFeatures := qrFeatures
 		if qFeatures != "" {
 			if err := r.SetQueryParam("features", qFeatures); err != nil {
+				return err
+			}
+		}
+
+	}
+
+	if o.IncludeSubCategoryItem != nil {
+
+		// query param includeSubCategoryItem
+		var qrIncludeSubCategoryItem bool
+		if o.IncludeSubCategoryItem != nil {
+			qrIncludeSubCategoryItem = *o.IncludeSubCategoryItem
+		}
+		qIncludeSubCategoryItem := swag.FormatBool(qrIncludeSubCategoryItem)
+		if qIncludeSubCategoryItem != "" {
+			if err := r.SetQueryParam("includeSubCategoryItem", qIncludeSubCategoryItem); err != nil {
 				return err
 			}
 		}

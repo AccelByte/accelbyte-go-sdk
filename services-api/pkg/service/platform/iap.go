@@ -531,7 +531,10 @@ func (aaa *IAPService) SyncEpicGamesInventory(input *i_a_p.SyncEpicGamesInventor
 	if err != nil {
 		return nil, err
 	}
-	ok, err := aaa.Client.Iap.SyncEpicGamesInventory(input, client.BearerToken(*token.AccessToken))
+	ok, badRequest, err := aaa.Client.Iap.SyncEpicGamesInventory(input, client.BearerToken(*token.AccessToken))
+	if badRequest != nil {
+		return nil, badRequest
+	}
 	if err != nil {
 		return nil, err
 	}
@@ -568,7 +571,10 @@ func (aaa *IAPService) PublicReconcilePlayStationStore(input *i_a_p.PublicReconc
 	if err != nil {
 		return nil, err
 	}
-	ok, err := aaa.Client.Iap.PublicReconcilePlayStationStore(input, client.BearerToken(*token.AccessToken))
+	ok, badRequest, err := aaa.Client.Iap.PublicReconcilePlayStationStore(input, client.BearerToken(*token.AccessToken))
+	if badRequest != nil {
+		return nil, badRequest
+	}
 	if err != nil {
 		return nil, err
 	}
@@ -613,7 +619,10 @@ func (aaa *IAPService) SyncTwitchDropsEntitlement(input *i_a_p.SyncTwitchDropsEn
 	if err != nil {
 		return err
 	}
-	_, err = aaa.Client.Iap.SyncTwitchDropsEntitlement(input, client.BearerToken(*token.AccessToken))
+	_, badRequest, err := aaa.Client.Iap.SyncTwitchDropsEntitlement(input, client.BearerToken(*token.AccessToken))
+	if badRequest != nil {
+		return badRequest
+	}
 	if err != nil {
 		return err
 	}
@@ -627,7 +636,10 @@ func (aaa *IAPService) SyncXboxInventory(input *i_a_p.SyncXboxInventoryParams) (
 	if err != nil {
 		return nil, err
 	}
-	ok, err := aaa.Client.Iap.SyncXboxInventory(input, client.BearerToken(*token.AccessToken))
+	ok, badRequest, err := aaa.Client.Iap.SyncXboxInventory(input, client.BearerToken(*token.AccessToken))
+	if badRequest != nil {
+		return nil, badRequest
+	}
 	if err != nil {
 		return nil, err
 	}

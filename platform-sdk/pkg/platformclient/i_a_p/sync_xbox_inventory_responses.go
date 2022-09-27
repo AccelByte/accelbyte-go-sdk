@@ -35,6 +35,12 @@ func (o *SyncXboxInventoryReader) ReadResponse(response runtime.ClientResponse, 
 			return nil, err
 		}
 		return result, nil
+	case 400:
+		result := NewSyncXboxInventoryBadRequest()
+		if err := result.readResponse(response, consumer, o.formats); err != nil {
+			return nil, err
+		}
+		return result, nil
 
 	default:
 		data, err := ioutil.ReadAll(response.Body())
@@ -86,6 +92,54 @@ func (o *SyncXboxInventoryOK) readResponse(response runtime.ClientResponse, cons
 
 	// response payload
 	if err := consumer.Consume(response.Body(), &o.Payload); err != nil && err != io.EOF {
+		return err
+	}
+
+	return nil
+}
+
+// NewSyncXboxInventoryBadRequest creates a SyncXboxInventoryBadRequest with default headers values
+func NewSyncXboxInventoryBadRequest() *SyncXboxInventoryBadRequest {
+	return &SyncXboxInventoryBadRequest{}
+}
+
+/*SyncXboxInventoryBadRequest handles this case with default header values.
+
+  <table><tr><td>ErrorCode</td><td>ErrorMessage</td></tr><tr><td>39125</td><td>Invalid platform [{platformId}] user token</td></tr><tr><td>39126</td><td>User id [{}] in namespace [{}] doesn't link platform [{}]</td></tr>
+*/
+type SyncXboxInventoryBadRequest struct {
+	Payload *platformclientmodels.ErrorEntity
+}
+
+func (o *SyncXboxInventoryBadRequest) Error() string {
+	return fmt.Sprintf("[PUT /platform/public/namespaces/{namespace}/users/{userId}/iap/xbl/sync][%d] syncXboxInventoryBadRequest  %+v", 400, o.ToJSONString())
+}
+
+func (o *SyncXboxInventoryBadRequest) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
+}
+
+func (o *SyncXboxInventoryBadRequest) GetPayload() *platformclientmodels.ErrorEntity {
+	return o.Payload
+}
+
+func (o *SyncXboxInventoryBadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
+	o.Payload = new(platformclientmodels.ErrorEntity)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
 		return err
 	}
 

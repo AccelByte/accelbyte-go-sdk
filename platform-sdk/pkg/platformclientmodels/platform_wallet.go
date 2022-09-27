@@ -39,6 +39,10 @@ type PlatformWallet struct {
 	// Required: true
 	Namespace *string `json:"namespace"`
 
+	// status
+	// Enum: [ACTIVE INACTIVE]
+	Status string `json:"status,omitempty"`
+
 	// user id
 	// Required: true
 	UserID *string `json:"userId"`
@@ -46,7 +50,7 @@ type PlatformWallet struct {
 	// wallets balances info
 	WalletInfos []*WalletInfo `json:"walletInfos"`
 
-	// wallet status
+	// wallet status will be deprecated in the feature, pls use status field.
 	// Enum: [ACTIVE INACTIVE]
 	WalletStatus string `json:"walletStatus,omitempty"`
 }
@@ -68,6 +72,10 @@ func (m *PlatformWallet) Validate(formats strfmt.Registry) error {
 	}
 
 	if err := m.validateNamespace(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateStatus(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -119,6 +127,49 @@ func (m *PlatformWallet) validateCurrencySymbol(formats strfmt.Registry) error {
 func (m *PlatformWallet) validateNamespace(formats strfmt.Registry) error {
 
 	if err := validate.Required("namespace", "body", m.Namespace); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+var platformWalletTypeStatusPropEnum []interface{}
+
+func init() {
+	var res []string
+	if err := json.Unmarshal([]byte(`["ACTIVE","INACTIVE"]`), &res); err != nil {
+		panic(err)
+	}
+	for _, v := range res {
+		platformWalletTypeStatusPropEnum = append(platformWalletTypeStatusPropEnum, v)
+	}
+}
+
+const (
+
+	// PlatformWalletStatusACTIVE captures enum value "ACTIVE"
+	PlatformWalletStatusACTIVE string = "ACTIVE"
+
+	// PlatformWalletStatusINACTIVE captures enum value "INACTIVE"
+	PlatformWalletStatusINACTIVE string = "INACTIVE"
+)
+
+// prop value enum
+func (m *PlatformWallet) validateStatusEnum(path, location string, value string) error {
+	if err := validate.EnumCase(path, location, value, platformWalletTypeStatusPropEnum, true); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (m *PlatformWallet) validateStatus(formats strfmt.Registry) error {
+
+	if swag.IsZero(m.Status) { // not required
+		return nil
+	}
+
+	// value enum
+	if err := m.validateStatusEnum("status", "body", m.Status); err != nil {
 		return err
 	}
 

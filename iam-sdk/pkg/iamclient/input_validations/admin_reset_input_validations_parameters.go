@@ -68,7 +68,7 @@ type AdminResetInputValidationsParams struct {
 	/*RetryPolicy*/
 	RetryPolicy *utils.Retry
 	/*Field
-	  Name of the input validation field to reset: username, displayName, or password
+	  Name of the input validation field to reset: email, username, displayName, or password
 
 	*/
 	Field string

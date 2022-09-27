@@ -363,7 +363,12 @@ Deprecated: Use LogoutShort instead.
 
   Logout logouts
 
-  &lt;p&gt;This endpoint is used to remove &lt;b&gt;access_token&lt;/b&gt; cookie and &lt;b&gt;refresh_token&lt;/b&gt; cookie.&lt;/p&gt;
+  &lt;p&gt;This endpoint is used to remove &lt;b&gt;access_token&lt;/b&gt;, &lt;b&gt;refresh_token&lt;/b&gt; from cookie and revoke token from usage.&lt;/p&gt;
+		&lt;p&gt;Supported methods:&lt;/p&gt;
+			&lt;ul&gt;
+				&lt;li&gt;VerifyToken to verify token from header&lt;/li&gt;
+				&lt;li&gt;AddTokenToRevocationList to revoke token with TTL&lt;/li&gt;
+			&lt;/ul&gt;
 */
 func (a *Client) Logout(params *LogoutParams, authInfo runtime.ClientAuthInfoWriter) (*LogoutNoContent, error) {
 	// TODO: Validate the params before sending
@@ -409,7 +414,12 @@ func (a *Client) Logout(params *LogoutParams, authInfo runtime.ClientAuthInfoWri
 /*
   LogoutShort logouts
 
-  &lt;p&gt;This endpoint is used to remove &lt;b&gt;access_token&lt;/b&gt; cookie and &lt;b&gt;refresh_token&lt;/b&gt; cookie.&lt;/p&gt;
+  &lt;p&gt;This endpoint is used to remove &lt;b&gt;access_token&lt;/b&gt;, &lt;b&gt;refresh_token&lt;/b&gt; from cookie and revoke token from usage.&lt;/p&gt;
+		&lt;p&gt;Supported methods:&lt;/p&gt;
+			&lt;ul&gt;
+				&lt;li&gt;VerifyToken to verify token from header&lt;/li&gt;
+				&lt;li&gt;AddTokenToRevocationList to revoke token with TTL&lt;/li&gt;
+			&lt;/ul&gt;
 */
 func (a *Client) LogoutShort(params *LogoutParams, authInfo runtime.ClientAuthInfoWriter) (*LogoutNoContent, error) {
 	// TODO: Validate the params before sending

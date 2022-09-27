@@ -26,6 +26,18 @@ type ModelsCombination struct {
 	// has combination
 	// Required: true
 	HasCombination *bool `json:"has_combination"`
+
+	// role flexing enable
+	// Required: true
+	RoleFlexingEnable *bool `json:"role_flexing_enable"`
+
+	// role flexing player
+	// Required: true
+	RoleFlexingPlayer *int32 `json:"role_flexing_player"`
+
+	// role flexing second
+	// Required: true
+	RoleFlexingSecond *int32 `json:"role_flexing_second"`
 }
 
 // Validate validates this models combination
@@ -37,6 +49,18 @@ func (m *ModelsCombination) Validate(formats strfmt.Registry) error {
 	}
 
 	if err := m.validateHasCombination(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateRoleFlexingEnable(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateRoleFlexingPlayer(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateRoleFlexingSecond(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -74,6 +98,33 @@ func (m *ModelsCombination) validateAlliances(formats strfmt.Registry) error {
 func (m *ModelsCombination) validateHasCombination(formats strfmt.Registry) error {
 
 	if err := validate.Required("has_combination", "body", m.HasCombination); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *ModelsCombination) validateRoleFlexingEnable(formats strfmt.Registry) error {
+
+	if err := validate.Required("role_flexing_enable", "body", m.RoleFlexingEnable); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *ModelsCombination) validateRoleFlexingPlayer(formats strfmt.Registry) error {
+
+	if err := validate.Required("role_flexing_player", "body", m.RoleFlexingPlayer); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *ModelsCombination) validateRoleFlexingSecond(formats strfmt.Registry) error {
+
+	if err := validate.Required("role_flexing_second", "body", m.RoleFlexingSecond); err != nil {
 		return err
 	}
 

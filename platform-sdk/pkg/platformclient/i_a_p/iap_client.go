@@ -75,21 +75,21 @@ type ClientService interface {
 	PublicFulfillAppleIAPItemShort(params *PublicFulfillAppleIAPItemParams, authInfo runtime.ClientAuthInfoWriter) (*PublicFulfillAppleIAPItemNoContent, error)
 	PublicFulfillGoogleIAPItem(params *PublicFulfillGoogleIAPItemParams, authInfo runtime.ClientAuthInfoWriter) (*PublicFulfillGoogleIAPItemOK, *PublicFulfillGoogleIAPItemBadRequest, *PublicFulfillGoogleIAPItemNotFound, *PublicFulfillGoogleIAPItemConflict, error)
 	PublicFulfillGoogleIAPItemShort(params *PublicFulfillGoogleIAPItemParams, authInfo runtime.ClientAuthInfoWriter) (*PublicFulfillGoogleIAPItemOK, error)
-	PublicReconcilePlayStationStore(params *PublicReconcilePlayStationStoreParams, authInfo runtime.ClientAuthInfoWriter) (*PublicReconcilePlayStationStoreOK, error)
+	PublicReconcilePlayStationStore(params *PublicReconcilePlayStationStoreParams, authInfo runtime.ClientAuthInfoWriter) (*PublicReconcilePlayStationStoreOK, *PublicReconcilePlayStationStoreBadRequest, error)
 	PublicReconcilePlayStationStoreShort(params *PublicReconcilePlayStationStoreParams, authInfo runtime.ClientAuthInfoWriter) (*PublicReconcilePlayStationStoreOK, error)
 	QueryAllUserIAPOrders(params *QueryAllUserIAPOrdersParams, authInfo runtime.ClientAuthInfoWriter) (*QueryAllUserIAPOrdersOK, error)
 	QueryAllUserIAPOrdersShort(params *QueryAllUserIAPOrdersParams, authInfo runtime.ClientAuthInfoWriter) (*QueryAllUserIAPOrdersOK, error)
 	QueryUserIAPOrders(params *QueryUserIAPOrdersParams, authInfo runtime.ClientAuthInfoWriter) (*QueryUserIAPOrdersOK, error)
 	QueryUserIAPOrdersShort(params *QueryUserIAPOrdersParams, authInfo runtime.ClientAuthInfoWriter) (*QueryUserIAPOrdersOK, error)
-	SyncEpicGamesInventory(params *SyncEpicGamesInventoryParams, authInfo runtime.ClientAuthInfoWriter) (*SyncEpicGamesInventoryOK, error)
+	SyncEpicGamesInventory(params *SyncEpicGamesInventoryParams, authInfo runtime.ClientAuthInfoWriter) (*SyncEpicGamesInventoryOK, *SyncEpicGamesInventoryBadRequest, error)
 	SyncEpicGamesInventoryShort(params *SyncEpicGamesInventoryParams, authInfo runtime.ClientAuthInfoWriter) (*SyncEpicGamesInventoryOK, error)
 	SyncStadiaEntitlement(params *SyncStadiaEntitlementParams, authInfo runtime.ClientAuthInfoWriter) (*SyncStadiaEntitlementNoContent, error)
 	SyncStadiaEntitlementShort(params *SyncStadiaEntitlementParams, authInfo runtime.ClientAuthInfoWriter) (*SyncStadiaEntitlementNoContent, error)
 	SyncSteamInventory(params *SyncSteamInventoryParams, authInfo runtime.ClientAuthInfoWriter) (*SyncSteamInventoryNoContent, *SyncSteamInventoryBadRequest, error)
 	SyncSteamInventoryShort(params *SyncSteamInventoryParams, authInfo runtime.ClientAuthInfoWriter) (*SyncSteamInventoryNoContent, error)
-	SyncTwitchDropsEntitlement(params *SyncTwitchDropsEntitlementParams, authInfo runtime.ClientAuthInfoWriter) (*SyncTwitchDropsEntitlementNoContent, error)
+	SyncTwitchDropsEntitlement(params *SyncTwitchDropsEntitlementParams, authInfo runtime.ClientAuthInfoWriter) (*SyncTwitchDropsEntitlementNoContent, *SyncTwitchDropsEntitlementBadRequest, error)
 	SyncTwitchDropsEntitlementShort(params *SyncTwitchDropsEntitlementParams, authInfo runtime.ClientAuthInfoWriter) (*SyncTwitchDropsEntitlementNoContent, error)
-	SyncXboxInventory(params *SyncXboxInventoryParams, authInfo runtime.ClientAuthInfoWriter) (*SyncXboxInventoryOK, error)
+	SyncXboxInventory(params *SyncXboxInventoryParams, authInfo runtime.ClientAuthInfoWriter) (*SyncXboxInventoryOK, *SyncXboxInventoryBadRequest, error)
 	SyncXboxInventoryShort(params *SyncXboxInventoryParams, authInfo runtime.ClientAuthInfoWriter) (*SyncXboxInventoryOK, error)
 	UpdateAppleIAPConfig(params *UpdateAppleIAPConfigParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateAppleIAPConfigOK, error)
 	UpdateAppleIAPConfigShort(params *UpdateAppleIAPConfigParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateAppleIAPConfigOK, error)
@@ -2148,7 +2148,7 @@ Deprecated: Use PublicReconcilePlayStationStoreShort instead.
 
   Synchronize with entitlements in PSN Store.&lt;p&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;NAMESPACE:{namespace}:USER:{userId}:IAP&#34;, action=4 (UPDATE)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: result of synchronization&lt;/li&gt;&lt;/ul&gt;
 */
-func (a *Client) PublicReconcilePlayStationStore(params *PublicReconcilePlayStationStoreParams, authInfo runtime.ClientAuthInfoWriter) (*PublicReconcilePlayStationStoreOK, error) {
+func (a *Client) PublicReconcilePlayStationStore(params *PublicReconcilePlayStationStoreParams, authInfo runtime.ClientAuthInfoWriter) (*PublicReconcilePlayStationStoreOK, *PublicReconcilePlayStationStoreBadRequest, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewPublicReconcilePlayStationStoreParams()
@@ -2176,16 +2176,19 @@ func (a *Client) PublicReconcilePlayStationStore(params *PublicReconcilePlayStat
 		Client:             params.HTTPClient,
 	})
 	if err != nil {
-		return nil, err
+		return nil, nil, err
 	}
 
 	switch v := result.(type) {
 
 	case *PublicReconcilePlayStationStoreOK:
-		return v, nil
+		return v, nil, nil
+
+	case *PublicReconcilePlayStationStoreBadRequest:
+		return nil, v, nil
 
 	default:
-		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+		return nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
@@ -2229,6 +2232,8 @@ func (a *Client) PublicReconcilePlayStationStoreShort(params *PublicReconcilePla
 
 	case *PublicReconcilePlayStationStoreOK:
 		return v, nil
+	case *PublicReconcilePlayStationStoreBadRequest:
+		return nil, v
 
 	default:
 		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
@@ -2430,7 +2435,7 @@ Deprecated: Use SyncEpicGamesInventoryShort instead.
 
   Sync epic games inventory&#39;s items.&lt;p&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;NAMESPACE:{namespace}:USER:{userId}:IAP&#34;, action=4 (UPDATE)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: &lt;/li&gt;&lt;/ul&gt;
 */
-func (a *Client) SyncEpicGamesInventory(params *SyncEpicGamesInventoryParams, authInfo runtime.ClientAuthInfoWriter) (*SyncEpicGamesInventoryOK, error) {
+func (a *Client) SyncEpicGamesInventory(params *SyncEpicGamesInventoryParams, authInfo runtime.ClientAuthInfoWriter) (*SyncEpicGamesInventoryOK, *SyncEpicGamesInventoryBadRequest, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewSyncEpicGamesInventoryParams()
@@ -2458,16 +2463,19 @@ func (a *Client) SyncEpicGamesInventory(params *SyncEpicGamesInventoryParams, au
 		Client:             params.HTTPClient,
 	})
 	if err != nil {
-		return nil, err
+		return nil, nil, err
 	}
 
 	switch v := result.(type) {
 
 	case *SyncEpicGamesInventoryOK:
-		return v, nil
+		return v, nil, nil
+
+	case *SyncEpicGamesInventoryBadRequest:
+		return nil, v, nil
 
 	default:
-		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+		return nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
@@ -2511,6 +2519,8 @@ func (a *Client) SyncEpicGamesInventoryShort(params *SyncEpicGamesInventoryParam
 
 	case *SyncEpicGamesInventoryOK:
 		return v, nil
+	case *SyncEpicGamesInventoryBadRequest:
+		return nil, v
 
 	default:
 		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
@@ -2717,7 +2727,7 @@ Deprecated: Use SyncTwitchDropsEntitlementShort instead.
 
   Sync twitch drops entitlements.&lt;p&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;NAMESPACE:{namespace}:USER:{userId}:IAP&#34;, action=4 (UPDATE)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: &lt;/li&gt;&lt;/ul&gt;
 */
-func (a *Client) SyncTwitchDropsEntitlement(params *SyncTwitchDropsEntitlementParams, authInfo runtime.ClientAuthInfoWriter) (*SyncTwitchDropsEntitlementNoContent, error) {
+func (a *Client) SyncTwitchDropsEntitlement(params *SyncTwitchDropsEntitlementParams, authInfo runtime.ClientAuthInfoWriter) (*SyncTwitchDropsEntitlementNoContent, *SyncTwitchDropsEntitlementBadRequest, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewSyncTwitchDropsEntitlementParams()
@@ -2745,16 +2755,19 @@ func (a *Client) SyncTwitchDropsEntitlement(params *SyncTwitchDropsEntitlementPa
 		Client:             params.HTTPClient,
 	})
 	if err != nil {
-		return nil, err
+		return nil, nil, err
 	}
 
 	switch v := result.(type) {
 
 	case *SyncTwitchDropsEntitlementNoContent:
-		return v, nil
+		return v, nil, nil
+
+	case *SyncTwitchDropsEntitlementBadRequest:
+		return nil, v, nil
 
 	default:
-		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+		return nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
@@ -2798,6 +2811,8 @@ func (a *Client) SyncTwitchDropsEntitlementShort(params *SyncTwitchDropsEntitlem
 
 	case *SyncTwitchDropsEntitlementNoContent:
 		return v, nil
+	case *SyncTwitchDropsEntitlementBadRequest:
+		return nil, v
 
 	default:
 		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
@@ -2811,7 +2826,7 @@ Deprecated: Use SyncXboxInventoryShort instead.
 
   Sync Xbox inventory&#39;s items.&lt;p&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;NAMESPACE:{namespace}:USER:{userId}:IAP&#34;, action=4 (UPDATE)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: &lt;/li&gt;&lt;/ul&gt;
 */
-func (a *Client) SyncXboxInventory(params *SyncXboxInventoryParams, authInfo runtime.ClientAuthInfoWriter) (*SyncXboxInventoryOK, error) {
+func (a *Client) SyncXboxInventory(params *SyncXboxInventoryParams, authInfo runtime.ClientAuthInfoWriter) (*SyncXboxInventoryOK, *SyncXboxInventoryBadRequest, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewSyncXboxInventoryParams()
@@ -2839,16 +2854,19 @@ func (a *Client) SyncXboxInventory(params *SyncXboxInventoryParams, authInfo run
 		Client:             params.HTTPClient,
 	})
 	if err != nil {
-		return nil, err
+		return nil, nil, err
 	}
 
 	switch v := result.(type) {
 
 	case *SyncXboxInventoryOK:
-		return v, nil
+		return v, nil, nil
+
+	case *SyncXboxInventoryBadRequest:
+		return nil, v, nil
 
 	default:
-		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+		return nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
@@ -2892,6 +2910,8 @@ func (a *Client) SyncXboxInventoryShort(params *SyncXboxInventoryParams, authInf
 
 	case *SyncXboxInventoryOK:
 		return v, nil
+	case *SyncXboxInventoryBadRequest:
+		return nil, v
 
 	default:
 		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))

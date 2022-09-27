@@ -1,3 +1,19 @@
+<a name="v0.28.0"></a>
+## [v0.28.0] - 2022-09-28
+
+### Chore
+- **makefile:** add docker httpbin for test
+- **sdk:** regenerate sdk, cli sample app, cli test, doc index for AccelByte Cloud 3.32
+- **spec:** update spec for AccelByte Cloud 3.32
+- **test:** add utils to read in chunks and fix port for core test
+- **test:** delete the game current player params from session browser
+- **test:** use 1gb file streamed by chunks
+- **test:** use localhost httpbin
+
+### Docs
+- update CHANGELOG.md for v0.28.0 release
+
+
 <a name="v0.27.0"></a>
 ## [v0.27.0] - 2022-09-12
 
@@ -911,6 +927,7 @@ The wrapper have been refactored and has breaking change, these are the list:
 ### Fix
 - delete go.mod ([#1](https://github.com/AccelByte/accelbyte-go-sdk/issues/1))
 
+[v0.28.0]: https://github.com/AccelByte/accelbyte-go-sdk/compare/v0.27.0...v0.28.0
 [v0.27.0]: https://github.com/AccelByte/accelbyte-go-sdk/compare/v0.26.0...v0.27.0
 [v0.26.0]: https://github.com/AccelByte/accelbyte-go-sdk/compare/v0.25.0...v0.26.0
 [v0.25.0]: https://github.com/AccelByte/accelbyte-go-sdk/compare/v0.24.0...v0.25.0

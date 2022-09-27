@@ -50,8 +50,7 @@ var (
 		Username:           &emptyString,
 	}
 	bodySessionUpdate = &sessionbrowserclientmodels.ModelsUpdateSessionRequest{
-		GameCurrentPlayer: &defaultInt32,
-		GameMaxPlayer:     &defaultInt32,
+		GameMaxPlayer: &defaultInt32,
 	}
 )
 

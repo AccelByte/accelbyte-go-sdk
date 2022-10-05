@@ -50,20 +50,22 @@ Create file `main.go` inside the project directory
 
 The `ConfigRepositoryImpl` gets its values from `AB_BASE_URL`, `AB_CLIENT_ID`, and `AB_CLIENT_SECRET` environment variables.
 
-```golang
+```go
 package main
 
 import (
-	"fmt"
-	"os"
-	"time"
-
 	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclient/o_auth2_0_extension"
-	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclientmodels"
+	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils/auth"
 	"github.com/sirupsen/logrus"
 
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/iam"
+)
+
+var (
+	// use the default config and token implementation
+	configRepo = *auth.DefaultConfigRepositoryImpl()
+	tokenRepo  = *auth.DefaultTokenRepositoryImpl()
 )
 
 func main() {
@@ -88,85 +90,21 @@ func main() {
 	token, _ := oauth.TokenRepository.GetToken()
 	logrus.Infof("print %v", *token.AccessToken)
 
-	// call an AccelByte Cloud API e.g. GetCountryLocationV3
+	// prepare the IAM's Oauth 2.0 Extention service
 	oAuth20ExtensionService := &iam.OAuth20ExtensionService{
-		Client:           factory.NewIamClient(&configRepo),
-		TokenRepository:  &tokenRepo,
+		Client:          factory.NewIamClient(&configRepo),
+		TokenRepository: &tokenRepo,
 	}
 	input := &o_auth2_0_extension.GetCountryLocationV3Params{}
-	ok, _ := oAuth20ExtensionService.GetCountryLocationV3Short(input)
-	if err != nil {
-		logrus.Error(err.Error())
+
+	// call an AccelByte Cloud API e.g. GetCountryLocationV3
+	ok, errLoc := oAuth20ExtensionService.GetCountryLocationV3Short(input)
+	if errLoc != nil {
+		logrus.Error(errLoc.Error())
 	} else {
 		logrus.Infof("Country name: %s", *ok.CountryName)
 	}
 }
-
-/*
-This TokenRepositoryImpl and ConfigRepositoryImpl is a mandatory implementation
-before using the SDK. The implementation inside and naming can be adjusted accordingly
-*/
-type TokenRepositoryImpl struct {
-	IssuedTime  *time.Time
-	accessToken *iamclientmodels.OauthmodelTokenResponseV3
-}
-
-type ConfigRepositoryImpl struct {
-	baseUrl      string
-	clientId     string
-	clientSecret string
-}
-
-var (
-	tokenRepo = TokenRepositoryImpl{
-		accessToken: &iamclientmodels.OauthmodelTokenResponseV3{},
-	}
-	configRepo = ConfigRepositoryImpl{
-		baseUrl:      os.Getenv("AB_BASE_URL"),
-		clientId:     os.Getenv("AB_CLIENT_ID"),
-		clientSecret: os.Getenv("AB_CLIENT_SECRET"),
-	}
-)
-
-func (t *TokenRepositoryImpl) Store(accessToken iamclientmodels.OauthmodelTokenResponseV3) error {
-	timeNow := time.Now().UTC()
-	t.IssuedTime = &timeNow
-	t.accessToken = &accessToken
-
-	return nil
-}
-
-func (t *TokenRepositoryImpl) GetToken() (*iamclientmodels.OauthmodelTokenResponseV3, error) {
-	if t.accessToken == nil {
-		return nil, fmt.Errorf("empty access Token")
-	}
-
-	return t.accessToken, nil
-}
-
-func (t *TokenRepositoryImpl) RemoveToken() error {
-	t.IssuedTime = nil
-	t.accessToken = nil
-
-	return nil
-}
-
-func (t *TokenRepositoryImpl) TokenIssuedTimeUTC() time.Time {
-	return *t.IssuedTime
-}
-
-func (c *ConfigRepositoryImpl) GetClientId() string {
-	return c.clientId
-}
-
-func (c *ConfigRepositoryImpl) GetClientSecret() string {
-	return c.clientSecret
-}
-
-func (c *ConfigRepositoryImpl) GetJusticeBaseUrl() string {
-	return c.baseUrl
-}
-
 ```
 
 ### 4. Run the Code

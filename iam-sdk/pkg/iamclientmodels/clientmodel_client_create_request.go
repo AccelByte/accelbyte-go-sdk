@@ -42,6 +42,10 @@ type ClientmodelClientCreateRequest struct {
 	// secret
 	// Required: true
 	Secret *string `json:"Secret"`
+
+	// two factor enabled
+	// Required: true
+	TwoFactorEnabled *bool `json:"TwoFactorEnabled"`
 }
 
 // Validate validates this clientmodel client create request
@@ -69,6 +73,10 @@ func (m *ClientmodelClientCreateRequest) Validate(formats strfmt.Registry) error
 	}
 
 	if err := m.validateSecret(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateTwoFactorEnabled(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -142,6 +150,15 @@ func (m *ClientmodelClientCreateRequest) validateRedirectURI(formats strfmt.Regi
 func (m *ClientmodelClientCreateRequest) validateSecret(formats strfmt.Registry) error {
 
 	if err := validate.Required("Secret", "body", m.Secret); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *ClientmodelClientCreateRequest) validateTwoFactorEnabled(formats strfmt.Registry) error {
+
+	if err := validate.Required("TwoFactorEnabled", "body", m.TwoFactorEnabled); err != nil {
 		return err
 	}
 

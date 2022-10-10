@@ -30,6 +30,7 @@
 | Model Struct | Class |
 |---|---|
 | `log.AppMessageDeclaration` | [LogAppMessageDeclaration ](../../dslogmanager-sdk/pkg/dslogmanagerclientmodels/log_app_message_declaration.go) |
+| `models.AllocationEvent` | [ModelsAllocationEvent ](../../dslogmanager-sdk/pkg/dslogmanagerclientmodels/models_allocation_event.go) |
 | `models.BatchDownloadLogsRequest` | [ModelsBatchDownloadLogsRequest ](../../dslogmanager-sdk/pkg/dslogmanagerclientmodels/models_batch_download_logs_request.go) |
 | `models.DownloadLogsRequest` | [ModelsDownloadLogsRequest ](../../dslogmanager-sdk/pkg/dslogmanagerclientmodels/models_download_logs_request.go) |
 | `models.ListTerminatedServersResponse` | [ModelsListTerminatedServersResponse ](../../dslogmanager-sdk/pkg/dslogmanagerclientmodels/models_list_terminated_servers_response.go) |

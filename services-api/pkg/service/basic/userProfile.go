@@ -394,6 +394,55 @@ func (aaa *UserProfileService) CreateMyProfile(input *user_profile.CreateMyProfi
 	return created.GetPayload(), nil
 }
 
+// Deprecated: Use GetMyPrivateCustomAttributesInfoShort instead
+func (aaa *UserProfileService) GetMyPrivateCustomAttributesInfo(input *user_profile.GetMyPrivateCustomAttributesInfoParams) (map[string]interface{}, error) {
+	token, err := aaa.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, unauthorized, forbidden, notFound, err := aaa.Client.UserProfile.GetMyPrivateCustomAttributesInfo(input, client.BearerToken(*token.AccessToken))
+	if unauthorized != nil {
+		return nil, unauthorized
+	}
+	if forbidden != nil {
+		return nil, forbidden
+	}
+	if notFound != nil {
+		return nil, notFound
+	}
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
+// Deprecated: Use UpdateMyPrivateCustomAttributesPartiallyShort instead
+func (aaa *UserProfileService) UpdateMyPrivateCustomAttributesPartially(input *user_profile.UpdateMyPrivateCustomAttributesPartiallyParams) (map[string]interface{}, error) {
+	token, err := aaa.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, badRequest, unauthorized, forbidden, notFound, err := aaa.Client.UserProfile.UpdateMyPrivateCustomAttributesPartially(input, client.BearerToken(*token.AccessToken))
+	if badRequest != nil {
+		return nil, badRequest
+	}
+	if unauthorized != nil {
+		return nil, unauthorized
+	}
+	if forbidden != nil {
+		return nil, forbidden
+	}
+	if notFound != nil {
+		return nil, notFound
+	}
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
 // Deprecated: Use GetMyZipCodeShort instead
 func (aaa *UserProfileService) GetMyZipCode(input *user_profile.GetMyZipCodeParams) (*basicclientmodels.UserZipCode, error) {
 	token, err := aaa.TokenRepository.GetToken()
@@ -944,6 +993,56 @@ func (aaa *UserProfileService) CreateMyProfileShort(input *user_profile.CreateMy
 	}
 
 	return created.GetPayload(), nil
+}
+
+func (aaa *UserProfileService) GetMyPrivateCustomAttributesInfoShort(input *user_profile.GetMyPrivateCustomAttributesInfoParams) (map[string]interface{}, error) {
+	authInfoWriter := input.AuthInfoWriter
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
+	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  aaa.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
+	ok, err := aaa.Client.UserProfile.GetMyPrivateCustomAttributesInfoShort(input, authInfoWriter)
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
+func (aaa *UserProfileService) UpdateMyPrivateCustomAttributesPartiallyShort(input *user_profile.UpdateMyPrivateCustomAttributesPartiallyParams) (map[string]interface{}, error) {
+	authInfoWriter := input.AuthInfoWriter
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
+	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  aaa.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
+	ok, err := aaa.Client.UserProfile.UpdateMyPrivateCustomAttributesPartiallyShort(input, authInfoWriter)
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
 }
 
 func (aaa *UserProfileService) GetMyZipCodeShort(input *user_profile.GetMyZipCodeParams) (*basicclientmodels.UserZipCode, error) {

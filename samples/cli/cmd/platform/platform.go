@@ -154,6 +154,7 @@ func init() {
 	PlatformCmd.AddCommand(item.ReturnItemCmd)
 	PlatformCmd.AddCommand(keyGroup.QueryKeyGroupsCmd)
 	PlatformCmd.AddCommand(keyGroup.CreateKeyGroupCmd)
+	PlatformCmd.AddCommand(keyGroup.GetKeyGroupByBoothNameCmd)
 	PlatformCmd.AddCommand(keyGroup.GetKeyGroupCmd)
 	PlatformCmd.AddCommand(keyGroup.UpdateKeyGroupCmd)
 	PlatformCmd.AddCommand(keyGroup.GetKeyGroupDynamicCmd)
@@ -399,4 +400,6 @@ func init() {
 	PlatformCmd.AddCommand(wallet.PublicGetWalletCmd)
 	PlatformCmd.AddCommand(wallet.PublicListUserWalletTransactionsCmd)
 	PlatformCmd.AddCommand(item.QueryItems1Cmd)
+	PlatformCmd.AddCommand(store.ImportStore1Cmd)
+	PlatformCmd.AddCommand(store.ExportStore1Cmd)
 }

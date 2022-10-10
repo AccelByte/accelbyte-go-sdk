@@ -37,6 +37,8 @@ type ClientService interface {
 	CreateKeyGroupShort(params *CreateKeyGroupParams, authInfo runtime.ClientAuthInfoWriter) (*CreateKeyGroupCreated, error)
 	GetKeyGroup(params *GetKeyGroupParams, authInfo runtime.ClientAuthInfoWriter) (*GetKeyGroupOK, *GetKeyGroupNotFound, error)
 	GetKeyGroupShort(params *GetKeyGroupParams, authInfo runtime.ClientAuthInfoWriter) (*GetKeyGroupOK, error)
+	GetKeyGroupByBoothName(params *GetKeyGroupByBoothNameParams, authInfo runtime.ClientAuthInfoWriter) (*GetKeyGroupByBoothNameOK, *GetKeyGroupByBoothNameNotFound, error)
+	GetKeyGroupByBoothNameShort(params *GetKeyGroupByBoothNameParams, authInfo runtime.ClientAuthInfoWriter) (*GetKeyGroupByBoothNameOK, error)
 	GetKeyGroupDynamic(params *GetKeyGroupDynamicParams, authInfo runtime.ClientAuthInfoWriter) (*GetKeyGroupDynamicOK, *GetKeyGroupDynamicNotFound, error)
 	GetKeyGroupDynamicShort(params *GetKeyGroupDynamicParams, authInfo runtime.ClientAuthInfoWriter) (*GetKeyGroupDynamicOK, error)
 	ListKeys(params *ListKeysParams, authInfo runtime.ClientAuthInfoWriter) (*ListKeysOK, error)
@@ -247,6 +249,105 @@ func (a *Client) GetKeyGroupShort(params *GetKeyGroupParams, authInfo runtime.Cl
 	case *GetKeyGroupOK:
 		return v, nil
 	case *GetKeyGroupNotFound:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+Deprecated: Use GetKeyGroupByBoothNameShort instead.
+
+  GetKeyGroupByBoothName gets key group by booth name
+
+  Get key group.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:KEYGROUP&#34;, action=2 (READ)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: key group info&lt;/li&gt;&lt;/ul&gt;
+*/
+func (a *Client) GetKeyGroupByBoothName(params *GetKeyGroupByBoothNameParams, authInfo runtime.ClientAuthInfoWriter) (*GetKeyGroupByBoothNameOK, *GetKeyGroupByBoothNameNotFound, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewGetKeyGroupByBoothNameParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "getKeyGroupByBoothName",
+		Method:             "GET",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/keygroups/byBoothName",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &GetKeyGroupByBoothNameReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *GetKeyGroupByBoothNameOK:
+		return v, nil, nil
+
+	case *GetKeyGroupByBoothNameNotFound:
+		return nil, v, nil
+
+	default:
+		return nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+  GetKeyGroupByBoothNameShort gets key group by booth name
+
+  Get key group.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:KEYGROUP&#34;, action=2 (READ)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: key group info&lt;/li&gt;&lt;/ul&gt;
+*/
+func (a *Client) GetKeyGroupByBoothNameShort(params *GetKeyGroupByBoothNameParams, authInfo runtime.ClientAuthInfoWriter) (*GetKeyGroupByBoothNameOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewGetKeyGroupByBoothNameParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "getKeyGroupByBoothName",
+		Method:             "GET",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/keygroups/byBoothName",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &GetKeyGroupByBoothNameReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *GetKeyGroupByBoothNameOK:
+		return v, nil
+	case *GetKeyGroupByBoothNameNotFound:
 		return nil, v
 
 	default:

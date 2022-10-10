@@ -61,6 +61,9 @@ type ModelLinkRequest struct {
 	// Required: true
 	RedirectURI *string `json:"redirect_uri"`
 
+	// refresh token
+	RefreshToken string `json:"refreshToken,omitempty"`
+
 	// request id
 	// Required: true
 	RequestID *string `json:"request_id"`

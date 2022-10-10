@@ -45,13 +45,13 @@ type ClientService interface {
 	GetJWKSV3Short(params *GetJWKSV3Params, authInfo runtime.ClientAuthInfoWriter) (*GetJWKSV3OK, error)
 	GetRevocationListV3(params *GetRevocationListV3Params, authInfo runtime.ClientAuthInfoWriter) (*GetRevocationListV3OK, *GetRevocationListV3Unauthorized, error)
 	GetRevocationListV3Short(params *GetRevocationListV3Params, authInfo runtime.ClientAuthInfoWriter) (*GetRevocationListV3OK, error)
-	PlatformTokenGrantV3(params *PlatformTokenGrantV3Params, authInfo runtime.ClientAuthInfoWriter) (*PlatformTokenGrantV3OK, *PlatformTokenGrantV3BadRequest, *PlatformTokenGrantV3Unauthorized, error)
+	PlatformTokenGrantV3(params *PlatformTokenGrantV3Params, authInfo runtime.ClientAuthInfoWriter) (*PlatformTokenGrantV3OK, *PlatformTokenGrantV3BadRequest, *PlatformTokenGrantV3Unauthorized, *PlatformTokenGrantV3Forbidden, error)
 	PlatformTokenGrantV3Short(params *PlatformTokenGrantV3Params, authInfo runtime.ClientAuthInfoWriter) (*PlatformTokenGrantV3OK, error)
 	RetrieveUserThirdPartyPlatformTokenV3(params *RetrieveUserThirdPartyPlatformTokenV3Params, authInfo runtime.ClientAuthInfoWriter) (*RetrieveUserThirdPartyPlatformTokenV3OK, *RetrieveUserThirdPartyPlatformTokenV3Unauthorized, *RetrieveUserThirdPartyPlatformTokenV3Forbidden, *RetrieveUserThirdPartyPlatformTokenV3NotFound, error)
 	RetrieveUserThirdPartyPlatformTokenV3Short(params *RetrieveUserThirdPartyPlatformTokenV3Params, authInfo runtime.ClientAuthInfoWriter) (*RetrieveUserThirdPartyPlatformTokenV3OK, error)
 	RevokeUserV3(params *RevokeUserV3Params, authInfo runtime.ClientAuthInfoWriter) (*RevokeUserV3OK, *RevokeUserV3BadRequest, *RevokeUserV3Unauthorized, *RevokeUserV3Forbidden, error)
 	RevokeUserV3Short(params *RevokeUserV3Params, authInfo runtime.ClientAuthInfoWriter) (*RevokeUserV3OK, error)
-	TokenGrantV3(params *TokenGrantV3Params, authInfo runtime.ClientAuthInfoWriter) (*TokenGrantV3OK, *TokenGrantV3BadRequest, *TokenGrantV3Unauthorized, *TokenGrantV3Forbidden, error)
+	TokenGrantV3(params *TokenGrantV3Params, authInfo runtime.ClientAuthInfoWriter) (*TokenGrantV3OK, *TokenGrantV3BadRequest, *TokenGrantV3Unauthorized, *TokenGrantV3Forbidden, *TokenGrantV3TooManyRequests, error)
 	TokenGrantV3Short(params *TokenGrantV3Params, authInfo runtime.ClientAuthInfoWriter) (*TokenGrantV3OK, error)
 	TokenIntrospectionV3(params *TokenIntrospectionV3Params, authInfo runtime.ClientAuthInfoWriter) (*TokenIntrospectionV3OK, *TokenIntrospectionV3BadRequest, *TokenIntrospectionV3Unauthorized, error)
 	TokenIntrospectionV3Short(params *TokenIntrospectionV3Params, authInfo runtime.ClientAuthInfoWriter) (*TokenIntrospectionV3OK, error)
@@ -930,7 +930,7 @@ Deprecated: Use PlatformTokenGrantV3Short instead.
 			&lt;p&gt;The JWT contains user&#39;s active bans with its expiry date. List of ban types can be obtained from /bans.&lt;/p&gt;
 			&lt;br&gt;action code : 10704
 */
-func (a *Client) PlatformTokenGrantV3(params *PlatformTokenGrantV3Params, authInfo runtime.ClientAuthInfoWriter) (*PlatformTokenGrantV3OK, *PlatformTokenGrantV3BadRequest, *PlatformTokenGrantV3Unauthorized, error) {
+func (a *Client) PlatformTokenGrantV3(params *PlatformTokenGrantV3Params, authInfo runtime.ClientAuthInfoWriter) (*PlatformTokenGrantV3OK, *PlatformTokenGrantV3BadRequest, *PlatformTokenGrantV3Unauthorized, *PlatformTokenGrantV3Forbidden, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewPlatformTokenGrantV3Params()
@@ -958,22 +958,25 @@ func (a *Client) PlatformTokenGrantV3(params *PlatformTokenGrantV3Params, authIn
 		Client:             params.HTTPClient,
 	})
 	if err != nil {
-		return nil, nil, nil, err
+		return nil, nil, nil, nil, err
 	}
 
 	switch v := result.(type) {
 
 	case *PlatformTokenGrantV3OK:
-		return v, nil, nil, nil
+		return v, nil, nil, nil, nil
 
 	case *PlatformTokenGrantV3BadRequest:
-		return nil, v, nil, nil
+		return nil, v, nil, nil, nil
 
 	case *PlatformTokenGrantV3Unauthorized:
-		return nil, nil, v, nil
+		return nil, nil, v, nil, nil
+
+	case *PlatformTokenGrantV3Forbidden:
+		return nil, nil, nil, v, nil
 
 	default:
-		return nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+		return nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
@@ -1105,6 +1108,8 @@ func (a *Client) PlatformTokenGrantV3Short(params *PlatformTokenGrantV3Params, a
 	case *PlatformTokenGrantV3BadRequest:
 		return nil, v
 	case *PlatformTokenGrantV3Unauthorized:
+		return nil, v
+	case *PlatformTokenGrantV3Forbidden:
 		return nil, v
 
 	default:
@@ -1436,14 +1441,18 @@ Deprecated: Use TokenGrantV3Short instead.
 			&lt;/ul&gt;
 			&lt;h2&gt;Bans&lt;/h2&gt;
 			&lt;p&gt;The JWT contains user&#39;s active bans with its expiry date. List of ban types can be obtained from /bans.&lt;/p&gt;
+			&lt;h2&gt;Device Cookie Validation&lt;/h2&gt;
+			&lt;p&gt;&lt;i&gt;&lt;b&gt;For grant type &#34;password&#34; only&lt;/b&gt;&lt;/i&gt;&lt;/p&gt;
+			&lt;p&gt;Device Cookie is used to protect the user account from brute force login attack, &lt;a target=&#34;_blank&#34; href=&#34;https://owasp.org/www-community/Slow_Down_Online_Guessing_Attacks_with_Device_Cookies&#34;&gt;more detail from OWASP&lt;a&gt;.&lt;/p&gt;
+			&lt;p&gt;This endpoint will read device cookie from request header &lt;b&gt;Auth-Trust-Id&lt;/b&gt;. If device cookie not found, it will generate a new one and set it into response body &lt;b&gt;auth_trust_id&lt;/b&gt; when successfully login.&lt;/p&gt;
 			&lt;h2&gt;Track Login History&lt;/h2&gt;
-			&lt;p&gt;This endpoint will track login history to detect suspicious login activity, please provide &#34;device_id&#34; (alphanumeric) in request header parameter otherwise we will set to &#34;unknown&#34;.&lt;/p&gt;
+			&lt;p&gt;This endpoint will track login history to detect suspicious login activity, please provide &lt;b&gt;Device-Id&lt;/b&gt; (alphanumeric) in request header parameter otherwise it will set to &#34;unknown&#34;.&lt;/p&gt;
 			&lt;p&gt;Align with General Data Protection Regulation in Europe, user login history will be kept within 28 days by default&#34;&lt;/p&gt;
             &lt;h2&gt;2FA remember device&lt;/h2&gt;
             &lt;p&gt;To remember device for 2FA, should provide cookie: device_token or header: Device-Token&lt;/p&gt;
 			&lt;p&gt;action code: 10703
 */
-func (a *Client) TokenGrantV3(params *TokenGrantV3Params, authInfo runtime.ClientAuthInfoWriter) (*TokenGrantV3OK, *TokenGrantV3BadRequest, *TokenGrantV3Unauthorized, *TokenGrantV3Forbidden, error) {
+func (a *Client) TokenGrantV3(params *TokenGrantV3Params, authInfo runtime.ClientAuthInfoWriter) (*TokenGrantV3OK, *TokenGrantV3BadRequest, *TokenGrantV3Unauthorized, *TokenGrantV3Forbidden, *TokenGrantV3TooManyRequests, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewTokenGrantV3Params()
@@ -1471,25 +1480,28 @@ func (a *Client) TokenGrantV3(params *TokenGrantV3Params, authInfo runtime.Clien
 		Client:             params.HTTPClient,
 	})
 	if err != nil {
-		return nil, nil, nil, nil, err
+		return nil, nil, nil, nil, nil, err
 	}
 
 	switch v := result.(type) {
 
 	case *TokenGrantV3OK:
-		return v, nil, nil, nil, nil
+		return v, nil, nil, nil, nil, nil
 
 	case *TokenGrantV3BadRequest:
-		return nil, v, nil, nil, nil
+		return nil, v, nil, nil, nil, nil
 
 	case *TokenGrantV3Unauthorized:
-		return nil, nil, v, nil, nil
+		return nil, nil, v, nil, nil, nil
 
 	case *TokenGrantV3Forbidden:
-		return nil, nil, nil, v, nil
+		return nil, nil, nil, v, nil, nil
+
+	case *TokenGrantV3TooManyRequests:
+		return nil, nil, nil, nil, v, nil
 
 	default:
-		return nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+		return nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
@@ -1561,8 +1573,12 @@ func (a *Client) TokenGrantV3(params *TokenGrantV3Params, authInfo runtime.Clien
 			&lt;/ul&gt;
 			&lt;h2&gt;Bans&lt;/h2&gt;
 			&lt;p&gt;The JWT contains user&#39;s active bans with its expiry date. List of ban types can be obtained from /bans.&lt;/p&gt;
+			&lt;h2&gt;Device Cookie Validation&lt;/h2&gt;
+			&lt;p&gt;&lt;i&gt;&lt;b&gt;For grant type &#34;password&#34; only&lt;/b&gt;&lt;/i&gt;&lt;/p&gt;
+			&lt;p&gt;Device Cookie is used to protect the user account from brute force login attack, &lt;a target=&#34;_blank&#34; href=&#34;https://owasp.org/www-community/Slow_Down_Online_Guessing_Attacks_with_Device_Cookies&#34;&gt;more detail from OWASP&lt;a&gt;.&lt;/p&gt;
+			&lt;p&gt;This endpoint will read device cookie from request header &lt;b&gt;Auth-Trust-Id&lt;/b&gt;. If device cookie not found, it will generate a new one and set it into response body &lt;b&gt;auth_trust_id&lt;/b&gt; when successfully login.&lt;/p&gt;
 			&lt;h2&gt;Track Login History&lt;/h2&gt;
-			&lt;p&gt;This endpoint will track login history to detect suspicious login activity, please provide &#34;device_id&#34; (alphanumeric) in request header parameter otherwise we will set to &#34;unknown&#34;.&lt;/p&gt;
+			&lt;p&gt;This endpoint will track login history to detect suspicious login activity, please provide &lt;b&gt;Device-Id&lt;/b&gt; (alphanumeric) in request header parameter otherwise it will set to &#34;unknown&#34;.&lt;/p&gt;
 			&lt;p&gt;Align with General Data Protection Regulation in Europe, user login history will be kept within 28 days by default&#34;&lt;/p&gt;
             &lt;h2&gt;2FA remember device&lt;/h2&gt;
             &lt;p&gt;To remember device for 2FA, should provide cookie: device_token or header: Device-Token&lt;/p&gt;
@@ -1608,6 +1624,8 @@ func (a *Client) TokenGrantV3Short(params *TokenGrantV3Params, authInfo runtime.
 	case *TokenGrantV3Unauthorized:
 		return nil, v
 	case *TokenGrantV3Forbidden:
+		return nil, v
+	case *TokenGrantV3TooManyRequests:
 		return nil, v
 
 	default:

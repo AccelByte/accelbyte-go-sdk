@@ -17,6 +17,9 @@ import (
 // swagger:model StatUpdate
 type StatUpdate struct {
 
+	// default value
+	DefaultValue float64 `json:"defaultValue,omitempty"`
+
 	// description
 	Description string `json:"description,omitempty"`
 

@@ -9,6 +9,7 @@ package iam
 import (
 	"github.com/AccelByte/sample-apps/cmd/iam/bans"
 	"github.com/AccelByte/sample-apps/cmd/iam/clients"
+	"github.com/AccelByte/sample-apps/cmd/iam/devicesV4"
 	"github.com/AccelByte/sample-apps/cmd/iam/inputValidations"
 	"github.com/AccelByte/sample-apps/cmd/iam/oAuth"
 	"github.com/AccelByte/sample-apps/cmd/iam/oAuth20"
@@ -300,6 +301,18 @@ func init() {
 	IamCmd.AddCommand(sso.LoginSSOClientCmd)
 	IamCmd.AddCommand(sso.LogoutSSOClientCmd)
 	IamCmd.AddCommand(oAuth20Extension.RequestGameTokenResponseV3Cmd)
+	IamCmd.AddCommand(devicesV4.AdminGetDevicesByUserV4Cmd)
+	IamCmd.AddCommand(devicesV4.AdminGetBannedDevicesV4Cmd)
+	IamCmd.AddCommand(devicesV4.AdminGetUserDeviceBansV4Cmd)
+	IamCmd.AddCommand(devicesV4.AdminBanDeviceV4Cmd)
+	IamCmd.AddCommand(devicesV4.AdminGetDeviceBanV4Cmd)
+	IamCmd.AddCommand(devicesV4.AdminUpdateDeviceBanV4Cmd)
+	IamCmd.AddCommand(devicesV4.AdminGenerateReportV4Cmd)
+	IamCmd.AddCommand(devicesV4.AdminGetDeviceTypesV4Cmd)
+	IamCmd.AddCommand(devicesV4.AdminGetDeviceBansV4Cmd)
+	IamCmd.AddCommand(devicesV4.AdminDecryptDeviceV4Cmd)
+	IamCmd.AddCommand(devicesV4.AdminUnbanDeviceV4Cmd)
+	IamCmd.AddCommand(devicesV4.AdminGetUsersByDeviceV4Cmd)
 	IamCmd.AddCommand(usersV4.AdminCreateTestUsersV4Cmd)
 	IamCmd.AddCommand(usersV4.AdminBulkCheckValidUserIDV4Cmd)
 	IamCmd.AddCommand(usersV4.AdminUpdateUserV4Cmd)

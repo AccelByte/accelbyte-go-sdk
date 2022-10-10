@@ -61,6 +61,9 @@ type ClientmodelClientCreationV3Request struct {
 	// secret
 	// Required: true
 	Secret *string `json:"secret"`
+
+	// two factor enabled
+	TwoFactorEnabled bool `json:"twoFactorEnabled"`
 }
 
 // Validate validates this clientmodel client creation v3 request

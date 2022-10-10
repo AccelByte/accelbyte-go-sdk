@@ -30,6 +30,7 @@ var PlatformTokenRequestHandlerCmd = &cobra.Command{
 		namespace, _ := cmd.Flags().GetString("namespace")
 		platformId, _ := cmd.Flags().GetString("platformId")
 		deviceId, _ := cmd.Flags().GetString("deviceId")
+		macAddress, _ := cmd.Flags().GetString("macAddress")
 		platformToken, _ := cmd.Flags().GetString("platformToken")
 		httpClient := &http.Client{
 			CheckRedirect: func(req *http.Request, via []*http.Request) error {
@@ -38,6 +39,7 @@ var PlatformTokenRequestHandlerCmd = &cobra.Command{
 		}
 		input := &o_auth.PlatformTokenRequestHandlerParams{
 			DeviceID:      &deviceId,
+			MacAddress:    &macAddress,
 			PlatformToken: &platformToken,
 			Namespace:     namespace,
 			PlatformID:    platformId,
@@ -58,6 +60,7 @@ var PlatformTokenRequestHandlerCmd = &cobra.Command{
 
 func init() {
 	PlatformTokenRequestHandlerCmd.Flags().String("deviceId", "", "Device id")
+	PlatformTokenRequestHandlerCmd.Flags().String("macAddress", "", "Mac address")
 	PlatformTokenRequestHandlerCmd.Flags().String("platformToken", "", "Platform token")
 	PlatformTokenRequestHandlerCmd.Flags().String("namespace", "", "Namespace")
 	_ = PlatformTokenRequestHandlerCmd.MarkFlagRequired("namespace")

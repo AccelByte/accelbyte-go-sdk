@@ -333,6 +333,22 @@
 | `/iam/v3/sso/{platformId}` | GET | LoginSSOClientShort | [LoginSSOClientShort](../../iam-sdk/pkg/iamclient/sso/sso_client.go) | [LoginSSOClientShort](../../services-api/pkg/service/iam/sso.go) | [LoginSSOClientShort](../../samples/cli/cmd/iam/sso/loginSSOClient.go) |
 | `/iam/v3/sso/{platformId}/logout` | POST | LogoutSSOClientShort | [LogoutSSOClientShort](../../iam-sdk/pkg/iamclient/sso/sso_client.go) | [LogoutSSOClientShort](../../services-api/pkg/service/iam/sso.go) | [LogoutSSOClientShort](../../samples/cli/cmd/iam/sso/logoutSSOClient.go) |
 
+### Devices V4 Wrapper:  [DevicesV4](../../services-api/pkg/service/iam/devicesV4.go)
+| Endpoint | Method | ID | Class | Wrapper | Example |
+|---|---|---|---|---|---|
+| `/iam/v4/admin/namespaces/{namespace}/devices` | GET | AdminGetDevicesByUserV4Short | [AdminGetDevicesByUserV4Short](../../iam-sdk/pkg/iamclient/devices_v4/devices_v4_client.go) | [AdminGetDevicesByUserV4Short](../../services-api/pkg/service/iam/devicesV4.go) | [AdminGetDevicesByUserV4Short](../../samples/cli/cmd/iam/devicesV4/adminGetDevicesByUserV4.go) |
+| `/iam/v4/admin/namespaces/{namespace}/devices/banned` | GET | AdminGetBannedDevicesV4Short | [AdminGetBannedDevicesV4Short](../../iam-sdk/pkg/iamclient/devices_v4/devices_v4_client.go) | [AdminGetBannedDevicesV4Short](../../services-api/pkg/service/iam/devicesV4.go) | [AdminGetBannedDevicesV4Short](../../samples/cli/cmd/iam/devicesV4/adminGetBannedDevicesV4.go) |
+| `/iam/v4/admin/namespaces/{namespace}/devices/bans` | GET | AdminGetUserDeviceBansV4Short | [AdminGetUserDeviceBansV4Short](../../iam-sdk/pkg/iamclient/devices_v4/devices_v4_client.go) | [AdminGetUserDeviceBansV4Short](../../services-api/pkg/service/iam/devicesV4.go) | [AdminGetUserDeviceBansV4Short](../../samples/cli/cmd/iam/devicesV4/adminGetUserDeviceBansV4.go) |
+| `/iam/v4/admin/namespaces/{namespace}/devices/bans` | POST | AdminBanDeviceV4Short | [AdminBanDeviceV4Short](../../iam-sdk/pkg/iamclient/devices_v4/devices_v4_client.go) | [AdminBanDeviceV4Short](../../services-api/pkg/service/iam/devicesV4.go) | [AdminBanDeviceV4Short](../../samples/cli/cmd/iam/devicesV4/adminBanDeviceV4.go) |
+| `/iam/v4/admin/namespaces/{namespace}/devices/bans/{banId}` | GET | AdminGetDeviceBanV4Short | [AdminGetDeviceBanV4Short](../../iam-sdk/pkg/iamclient/devices_v4/devices_v4_client.go) | [AdminGetDeviceBanV4Short](../../services-api/pkg/service/iam/devicesV4.go) | [AdminGetDeviceBanV4Short](../../samples/cli/cmd/iam/devicesV4/adminGetDeviceBanV4.go) |
+| `/iam/v4/admin/namespaces/{namespace}/devices/bans/{banId}` | PUT | AdminUpdateDeviceBanV4Short | [AdminUpdateDeviceBanV4Short](../../iam-sdk/pkg/iamclient/devices_v4/devices_v4_client.go) | [AdminUpdateDeviceBanV4Short](../../services-api/pkg/service/iam/devicesV4.go) | [AdminUpdateDeviceBanV4Short](../../samples/cli/cmd/iam/devicesV4/adminUpdateDeviceBanV4.go) |
+| `/iam/v4/admin/namespaces/{namespace}/devices/report` | GET | AdminGenerateReportV4Short | [AdminGenerateReportV4Short](../../iam-sdk/pkg/iamclient/devices_v4/devices_v4_client.go) | [AdminGenerateReportV4Short](../../services-api/pkg/service/iam/devicesV4.go) | [AdminGenerateReportV4Short](../../samples/cli/cmd/iam/devicesV4/adminGenerateReportV4.go) |
+| `/iam/v4/admin/namespaces/{namespace}/devices/types` | GET | AdminGetDeviceTypesV4Short | [AdminGetDeviceTypesV4Short](../../iam-sdk/pkg/iamclient/devices_v4/devices_v4_client.go) | [AdminGetDeviceTypesV4Short](../../services-api/pkg/service/iam/devicesV4.go) | [AdminGetDeviceTypesV4Short](../../samples/cli/cmd/iam/devicesV4/adminGetDeviceTypesV4.go) |
+| `/iam/v4/admin/namespaces/{namespace}/devices/{deviceId}/bans` | GET | AdminGetDeviceBansV4Short | [AdminGetDeviceBansV4Short](../../iam-sdk/pkg/iamclient/devices_v4/devices_v4_client.go) | [AdminGetDeviceBansV4Short](../../services-api/pkg/service/iam/devicesV4.go) | [AdminGetDeviceBansV4Short](../../samples/cli/cmd/iam/devicesV4/adminGetDeviceBansV4.go) |
+| `/iam/v4/admin/namespaces/{namespace}/devices/{deviceId}/decrypt` | GET | AdminDecryptDeviceV4Short | [AdminDecryptDeviceV4Short](../../iam-sdk/pkg/iamclient/devices_v4/devices_v4_client.go) | [AdminDecryptDeviceV4Short](../../services-api/pkg/service/iam/devicesV4.go) | [AdminDecryptDeviceV4Short](../../samples/cli/cmd/iam/devicesV4/adminDecryptDeviceV4.go) |
+| `/iam/v4/admin/namespaces/{namespace}/devices/{deviceId}/unban` | PUT | AdminUnbanDeviceV4Short | [AdminUnbanDeviceV4Short](../../iam-sdk/pkg/iamclient/devices_v4/devices_v4_client.go) | [AdminUnbanDeviceV4Short](../../services-api/pkg/service/iam/devicesV4.go) | [AdminUnbanDeviceV4Short](../../samples/cli/cmd/iam/devicesV4/adminUnbanDeviceV4.go) |
+| `/iam/v4/admin/namespaces/{namespace}/devices/{deviceId}/users` | GET | AdminGetUsersByDeviceV4Short | [AdminGetUsersByDeviceV4Short](../../iam-sdk/pkg/iamclient/devices_v4/devices_v4_client.go) | [AdminGetUsersByDeviceV4Short](../../services-api/pkg/service/iam/devicesV4.go) | [AdminGetUsersByDeviceV4Short](../../samples/cli/cmd/iam/devicesV4/adminGetUsersByDeviceV4.go) |
+
 ### Users V4 Wrapper:  [UsersV4](../../services-api/pkg/service/iam/usersV4.go)
 | Endpoint | Method | ID | Class | Wrapper | Example |
 |---|---|---|---|---|---|
@@ -478,6 +494,18 @@
 | `model.CountryAgeRestrictionV3Request` | [ModelCountryAgeRestrictionV3Request ](../../iam-sdk/pkg/iamclientmodels/model_country_age_restriction_v3_request.go) |
 | `model.CountryV3Response` | [ModelCountryV3Response ](../../iam-sdk/pkg/iamclientmodels/model_country_v3_response.go) |
 | `model.CreateJusticeUserResponse` | [ModelCreateJusticeUserResponse ](../../iam-sdk/pkg/iamclientmodels/model_create_justice_user_response.go) |
+| `model.DeviceBanRequestV4` | [ModelDeviceBanRequestV4 ](../../iam-sdk/pkg/iamclientmodels/model_device_ban_request_v4.go) |
+| `model.DeviceBanResponseV4` | [ModelDeviceBanResponseV4 ](../../iam-sdk/pkg/iamclientmodels/model_device_ban_response_v4.go) |
+| `model.DeviceBanUpdateRequestV4` | [ModelDeviceBanUpdateRequestV4 ](../../iam-sdk/pkg/iamclientmodels/model_device_ban_update_request_v4.go) |
+| `model.DeviceBannedResponseV4` | [ModelDeviceBannedResponseV4 ](../../iam-sdk/pkg/iamclientmodels/model_device_banned_response_v4.go) |
+| `model.DeviceBansResponseV4` | [ModelDeviceBansResponseV4 ](../../iam-sdk/pkg/iamclientmodels/model_device_bans_response_v4.go) |
+| `model.DeviceIDDecryptResponseV4` | [ModelDeviceIDDecryptResponseV4 ](../../iam-sdk/pkg/iamclientmodels/model_device_id_decrypt_response_v4.go) |
+| `model.DeviceResponseV4` | [ModelDeviceResponseV4 ](../../iam-sdk/pkg/iamclientmodels/model_device_response_v4.go) |
+| `model.DeviceTypeResponseV4` | [ModelDeviceTypeResponseV4 ](../../iam-sdk/pkg/iamclientmodels/model_device_type_response_v4.go) |
+| `model.DeviceTypesResponseV4` | [ModelDeviceTypesResponseV4 ](../../iam-sdk/pkg/iamclientmodels/model_device_types_response_v4.go) |
+| `model.DeviceUserResponseV4` | [ModelDeviceUserResponseV4 ](../../iam-sdk/pkg/iamclientmodels/model_device_user_response_v4.go) |
+| `model.DeviceUsersResponseV4` | [ModelDeviceUsersResponseV4 ](../../iam-sdk/pkg/iamclientmodels/model_device_users_response_v4.go) |
+| `model.DevicesResponseV4` | [ModelDevicesResponseV4 ](../../iam-sdk/pkg/iamclientmodels/model_devices_response_v4.go) |
 | `model.DisableUserRequest` | [ModelDisableUserRequest ](../../iam-sdk/pkg/iamclientmodels/model_disable_user_request.go) |
 | `model.EmailUpdateRequestV4` | [ModelEmailUpdateRequestV4 ](../../iam-sdk/pkg/iamclientmodels/model_email_update_request_v4.go) |
 | `model.EnabledFactorsResponseV4` | [ModelEnabledFactorsResponseV4 ](../../iam-sdk/pkg/iamclientmodels/model_enabled_factors_response_v4.go) |
@@ -615,6 +643,7 @@
 | `oauthmodel.TokenResponse` | [OauthmodelTokenResponse ](../../iam-sdk/pkg/iamclientmodels/oauthmodel_token_response.go) |
 | `oauthmodel.TokenResponseV3` | [OauthmodelTokenResponseV3 ](../../iam-sdk/pkg/iamclientmodels/oauthmodel_token_response_v3.go) |
 | `oauthmodel.TokenThirdPartyResponse` | [OauthmodelTokenThirdPartyResponse ](../../iam-sdk/pkg/iamclientmodels/oauthmodel_token_third_party_response.go) |
+| `oauthmodel.TokenWithDeviceCookieResponseV3` | [OauthmodelTokenWithDeviceCookieResponseV3 ](../../iam-sdk/pkg/iamclientmodels/oauthmodel_token_with_device_cookie_response_v3.go) |
 | `rest.ErrorResponse` | [RestErrorResponse ](../../iam-sdk/pkg/iamclientmodels/rest_error_response.go) |
 | `rest.ErrorResponseWithConflictedUserPlatformAccounts` | [RestErrorResponseWithConflictedUserPlatformAccounts ](../../iam-sdk/pkg/iamclientmodels/rest_error_response_with_conflicted_user_platform_accounts.go) |
 | `restapi.ErrorResponse` | [RestapiErrorResponse ](../../iam-sdk/pkg/iamclientmodels/restapi_error_response.go) |

@@ -88,6 +88,11 @@ type TokenGrantV3Params struct {
 
 	/*RetryPolicy*/
 	RetryPolicy *utils.Retry
+	/*AuthTrustID
+	  Auth-Trust-Id for Device Cookie Validation (Used on grant type 'password')
+
+	*/
+	AuthTrustID *string
 	/*ClientID
 	  client_id (used with grant type 'authorization_code')
 
@@ -190,6 +195,17 @@ func (o *TokenGrantV3Params) SetHTTPClientTransport(roundTripper http.RoundTripp
 	} else {
 		o.HTTPClient = &http.Client{Transport: roundTripper}
 	}
+}
+
+// WithAuthTrustID adds the authTrustID to the token grant v3 params
+func (o *TokenGrantV3Params) WithAuthTrustID(authTrustID *string) *TokenGrantV3Params {
+	o.SetAuthTrustID(authTrustID)
+	return o
+}
+
+// SetAuthTrustID adds the authTrustId to the token grant v3 params
+func (o *TokenGrantV3Params) SetAuthTrustID(authTrustID *string) {
+	o.AuthTrustID = authTrustID
 }
 
 // WithClientID adds the clientID to the token grant v3 params
@@ -309,6 +325,15 @@ func (o *TokenGrantV3Params) WriteToRequest(r runtime.ClientRequest, reg strfmt.
 		return err
 	}
 	var res []error
+
+	if o.AuthTrustID != nil {
+
+		// header param Auth-Trust-Id
+		if err := r.SetHeaderParam("Auth-Trust-Id", *o.AuthTrustID); err != nil {
+			return err
+		}
+
+	}
 
 	if o.ClientID != nil {
 

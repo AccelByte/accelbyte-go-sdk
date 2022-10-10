@@ -53,6 +53,12 @@ func (o *TokenGrantV3Reader) ReadResponse(response runtime.ClientResponse, consu
 			return nil, err
 		}
 		return result, nil
+	case 429:
+		result := NewTokenGrantV3TooManyRequests()
+		if err := result.readResponse(response, consumer, o.formats); err != nil {
+			return nil, err
+		}
+		return result, nil
 
 	default:
 		data, err := ioutil.ReadAll(response.Body())
@@ -74,7 +80,7 @@ func NewTokenGrantV3OK() *TokenGrantV3OK {
   Token returned
 */
 type TokenGrantV3OK struct {
-	Payload *iamclientmodels.OauthmodelTokenResponseV3
+	Payload *iamclientmodels.OauthmodelTokenWithDeviceCookieResponseV3
 }
 
 func (o *TokenGrantV3OK) Error() string {
@@ -96,13 +102,13 @@ func (o *TokenGrantV3OK) ToJSONString() string {
 	return fmt.Sprintf("%+v", string(b))
 }
 
-func (o *TokenGrantV3OK) GetPayload() *iamclientmodels.OauthmodelTokenResponseV3 {
+func (o *TokenGrantV3OK) GetPayload() *iamclientmodels.OauthmodelTokenWithDeviceCookieResponseV3 {
 	return o.Payload
 }
 
 func (o *TokenGrantV3OK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
-	o.Payload = new(iamclientmodels.OauthmodelTokenResponseV3)
+	o.Payload = new(iamclientmodels.OauthmodelTokenWithDeviceCookieResponseV3)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
@@ -245,6 +251,54 @@ func (o *TokenGrantV3Forbidden) GetPayload() *iamclientmodels.OauthmodelErrorRes
 }
 
 func (o *TokenGrantV3Forbidden) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
+	o.Payload = new(iamclientmodels.OauthmodelErrorResponse)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
+	}
+
+	return nil
+}
+
+// NewTokenGrantV3TooManyRequests creates a TokenGrantV3TooManyRequests with default headers values
+func NewTokenGrantV3TooManyRequests() *TokenGrantV3TooManyRequests {
+	return &TokenGrantV3TooManyRequests{}
+}
+
+/*TokenGrantV3TooManyRequests handles this case with default header values.
+
+  Too many failed auth attempt
+*/
+type TokenGrantV3TooManyRequests struct {
+	Payload *iamclientmodels.OauthmodelErrorResponse
+}
+
+func (o *TokenGrantV3TooManyRequests) Error() string {
+	return fmt.Sprintf("[POST /iam/v3/oauth/token][%d] tokenGrantV3TooManyRequests  %+v", 429, o.ToJSONString())
+}
+
+func (o *TokenGrantV3TooManyRequests) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
+}
+
+func (o *TokenGrantV3TooManyRequests) GetPayload() *iamclientmodels.OauthmodelErrorResponse {
+	return o.Payload
+}
+
+func (o *TokenGrantV3TooManyRequests) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
 	o.Payload = new(iamclientmodels.OauthmodelErrorResponse)
 

@@ -166,6 +166,23 @@ func (aaa *StatConfigurationService) UpdateStat(input *stat_configuration.Update
 	return ok.GetPayload(), nil
 }
 
+// Deprecated: Use DeleteTiedStatShort instead
+func (aaa *StatConfigurationService) DeleteTiedStat(input *stat_configuration.DeleteTiedStatParams) error {
+	token, err := aaa.TokenRepository.GetToken()
+	if err != nil {
+		return err
+	}
+	_, conflict, err := aaa.Client.StatConfiguration.DeleteTiedStat(input, client.BearerToken(*token.AccessToken))
+	if conflict != nil {
+		return conflict
+	}
+	if err != nil {
+		return err
+	}
+
+	return nil
+}
+
 // Deprecated: Use CreateStat1Short instead
 func (aaa *StatConfigurationService) CreateStat1(input *stat_configuration.CreateStat1Params) (*socialclientmodels.StatInfo, error) {
 	token, err := aaa.TokenRepository.GetToken()
@@ -381,6 +398,31 @@ func (aaa *StatConfigurationService) UpdateStatShort(input *stat_configuration.U
 	}
 
 	return ok.GetPayload(), nil
+}
+
+func (aaa *StatConfigurationService) DeleteTiedStatShort(input *stat_configuration.DeleteTiedStatParams) error {
+	authInfoWriter := input.AuthInfoWriter
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
+	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  aaa.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
+	_, err := aaa.Client.StatConfiguration.DeleteTiedStatShort(input, authInfoWriter)
+	if err != nil {
+		return err
+	}
+
+	return nil
 }
 
 func (aaa *StatConfigurationService) CreateStat1Short(input *stat_configuration.CreateStat1Params) (*socialclientmodels.StatInfo, error) {

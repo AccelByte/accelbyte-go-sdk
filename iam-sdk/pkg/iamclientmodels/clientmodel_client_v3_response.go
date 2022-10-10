@@ -68,6 +68,10 @@ type ClientmodelClientV3Response struct {
 	// scopes
 	// Required: true
 	Scopes []string `json:"scopes"`
+
+	// two factor enabled
+	// Required: true
+	TwoFactorEnabled *bool `json:"twoFactorEnabled"`
 }
 
 // Validate validates this clientmodel client v3 response
@@ -119,6 +123,10 @@ func (m *ClientmodelClientV3Response) Validate(formats strfmt.Registry) error {
 	}
 
 	if err := m.validateScopes(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateTwoFactorEnabled(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -254,6 +262,15 @@ func (m *ClientmodelClientV3Response) validateRedirectURI(formats strfmt.Registr
 func (m *ClientmodelClientV3Response) validateScopes(formats strfmt.Registry) error {
 
 	if err := validate.Required("scopes", "body", m.Scopes); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *ClientmodelClientV3Response) validateTwoFactorEnabled(formats strfmt.Registry) error {
+
+	if err := validate.Required("twoFactorEnabled", "body", m.TwoFactorEnabled); err != nil {
 		return err
 	}
 

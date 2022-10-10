@@ -113,7 +113,7 @@ func NewImportStoreBadRequest() *ImportStoreBadRequest {
 
 /*ImportStoreBadRequest handles this case with default header values.
 
-  <table><tr><td>ErrorCode</td><td>ErrorMessage</td></tr><tr><td>30121</td><td>Store data is invalid</td></tr><tr><td>30122</td><td>Store's meta mismatch</td></tr></table>
+  <table><tr><td>ErrorCode</td><td>ErrorMessage</td></tr><tr><td>30121</td><td>Store data is invalid</td></tr><tr><td>30122</td><td>Store's meta mismatch</td></tr><tr><td>36141</td><td>Currency [{currencyCode}] does not exist in namespace [{namespace}]</td></tr><tr><td>30122</td><td>Item [{itemId}] does not exist in namespace [{namespace}]</td></tr><tr><td>30375</td><td>Item id [{itemId}] of sku [{sku}] is duplicate with un-published deleted item in namespace [{namespace}]</td></tr><tr><td>37041</td><td>Ticket booth [{boothName}] does not exist in namespace [{namespace}]</td></tr></table>
 */
 type ImportStoreBadRequest struct {
 	Payload *platformclientmodels.ErrorEntity

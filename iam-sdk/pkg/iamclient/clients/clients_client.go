@@ -357,6 +357,7 @@ Deprecated: Use AdminCreateClientV3Short instead.
 				&lt;li&gt;Nintendo&lt;/li&gt;
 			&lt;/ul&gt;
 		&lt;/li&gt;
+        &lt;li&gt;&lt;strong&gt;twoFactorEnabled&lt;/strong&gt;: The flag to indicate whether 2FA validation is enable for this client. default value: false&lt;/li&gt;
 		&lt;/ul&gt;
 		&lt;/p&gt;
 
@@ -448,6 +449,7 @@ func (a *Client) AdminCreateClientV3(params *AdminCreateClientV3Params, authInfo
 				&lt;li&gt;Nintendo&lt;/li&gt;
 			&lt;/ul&gt;
 		&lt;/li&gt;
+        &lt;li&gt;&lt;strong&gt;twoFactorEnabled&lt;/strong&gt;: The flag to indicate whether 2FA validation is enable for this client. default value: false&lt;/li&gt;
 		&lt;/ul&gt;
 		&lt;/p&gt;
 
@@ -1221,6 +1223,7 @@ Deprecated: Use AdminUpdateClientV3Short instead.
 				&lt;li&gt;Nintendo&lt;/li&gt;
 			&lt;/ul&gt;
 		&lt;/li&gt;
+        &lt;li&gt;&lt;strong&gt;twoFactorEnabled&lt;/strong&gt;: The flag to indicate whether 2FA validation is enable for this client. default value: false&lt;/li&gt;
 		&lt;/ul&gt;
 		&lt;/p&gt;
 */
@@ -1303,6 +1306,7 @@ func (a *Client) AdminUpdateClientV3(params *AdminUpdateClientV3Params, authInfo
 				&lt;li&gt;Nintendo&lt;/li&gt;
 			&lt;/ul&gt;
 		&lt;/li&gt;
+        &lt;li&gt;&lt;strong&gt;twoFactorEnabled&lt;/strong&gt;: The flag to indicate whether 2FA validation is enable for this client. default value: false&lt;/li&gt;
 		&lt;/ul&gt;
 		&lt;/p&gt;
 */

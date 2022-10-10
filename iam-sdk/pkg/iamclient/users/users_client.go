@@ -1622,7 +1622,7 @@ Deprecated: Use AdminDeleteUserInformationV3Short instead.
 
   AdminDeleteUserInformationV3 deletes user s information
 
-  Required permissions &#39;ADMIN:NAMESPACE:{namespace}:INFORMATION:USER:{userId} [DELETE]&#39;.
+  [WARNING] This endpoint is deleting user data from database directly by skipping GDPR flow.Required permissions &#39;ADMIN:NAMESPACE:{namespace}:INFORMATION:USER:{userId} [DELETE]&#39;.
 */
 func (a *Client) AdminDeleteUserInformationV3(params *AdminDeleteUserInformationV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminDeleteUserInformationV3NoContent, *AdminDeleteUserInformationV3Unauthorized, *AdminDeleteUserInformationV3Forbidden, *AdminDeleteUserInformationV3NotFound, error) {
 	// TODO: Validate the params before sending
@@ -1677,7 +1677,7 @@ func (a *Client) AdminDeleteUserInformationV3(params *AdminDeleteUserInformation
 /*
   AdminDeleteUserInformationV3Short deletes user s information
 
-  Required permissions &#39;ADMIN:NAMESPACE:{namespace}:INFORMATION:USER:{userId} [DELETE]&#39;.
+  [WARNING] This endpoint is deleting user data from database directly by skipping GDPR flow.Required permissions &#39;ADMIN:NAMESPACE:{namespace}:INFORMATION:USER:{userId} [DELETE]&#39;.
 */
 func (a *Client) AdminDeleteUserInformationV3Short(params *AdminDeleteUserInformationV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminDeleteUserInformationV3NoContent, error) {
 	// TODO: Validate the params before sending

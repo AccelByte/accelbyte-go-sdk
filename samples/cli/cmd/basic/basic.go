@@ -72,6 +72,8 @@ func init() {
 	BasicCmd.AddCommand(userProfile.GetMyProfileInfoCmd)
 	BasicCmd.AddCommand(userProfile.UpdateMyProfileCmd)
 	BasicCmd.AddCommand(userProfile.CreateMyProfileCmd)
+	BasicCmd.AddCommand(userProfile.GetMyPrivateCustomAttributesInfoCmd)
+	BasicCmd.AddCommand(userProfile.UpdateMyPrivateCustomAttributesPartiallyCmd)
 	BasicCmd.AddCommand(userProfile.GetMyZipCodeCmd)
 	BasicCmd.AddCommand(userProfile.UpdateMyZipCodeCmd)
 	BasicCmd.AddCommand(userAction.PublicReportUserCmd)

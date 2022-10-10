@@ -31,6 +31,14 @@ type ModelsMatchmakingResult struct {
 	// Required: true
 	Deployment string `json:"deployment"`
 
+	// error code
+	// Required: true
+	ErrorCode *int32 `json:"error_code"`
+
+	// error message
+	// Required: true
+	ErrorMessage *string `json:"error_message"`
+
 	// game mode
 	// Required: true
 	GameMode string `json:"game_mode"`
@@ -96,6 +104,14 @@ func (m *ModelsMatchmakingResult) Validate(formats strfmt.Registry) error {
 	}
 
 	if err := m.validateDeployment(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateErrorCode(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateErrorMessage(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -170,6 +186,24 @@ func (m *ModelsMatchmakingResult) validateClientVersion(formats strfmt.Registry)
 func (m *ModelsMatchmakingResult) validateDeployment(formats strfmt.Registry) error {
 
 	if err := validate.RequiredString("deployment", "body", string(m.Deployment)); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *ModelsMatchmakingResult) validateErrorCode(formats strfmt.Registry) error {
+
+	if err := validate.Required("error_code", "body", m.ErrorCode); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *ModelsMatchmakingResult) validateErrorMessage(formats strfmt.Registry) error {
+
+	if err := validate.Required("error_message", "body", m.ErrorMessage); err != nil {
 		return err
 	}
 

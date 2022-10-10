@@ -10,7 +10,7 @@ import (
 )
 
 func UserAgentGen() string {
-	userAgent := "AccelByteGoSDK/v0.28.0"
+	userAgent := "AccelByteGoSDK/v0.29.0"
 	appName := os.Getenv("APP_CLIENT_NAME")
 
 	if len(appName) > 0 {

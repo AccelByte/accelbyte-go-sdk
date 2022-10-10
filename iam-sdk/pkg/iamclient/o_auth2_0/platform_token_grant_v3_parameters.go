@@ -95,6 +95,11 @@ type PlatformTokenGrantV3Params struct {
 
 	*/
 	DeviceID *string
+	/*MacAddress
+	  Mac address of device
+
+	*/
+	MacAddress *string
 	/*PlatformID
 	  Platform ID to login with
 
@@ -192,6 +197,17 @@ func (o *PlatformTokenGrantV3Params) SetDeviceID(deviceID *string) {
 	o.DeviceID = deviceID
 }
 
+// WithMacAddress adds the macAddress to the platform token grant v3 params
+func (o *PlatformTokenGrantV3Params) WithMacAddress(macAddress *string) *PlatformTokenGrantV3Params {
+	o.SetMacAddress(macAddress)
+	return o
+}
+
+// SetMacAddress adds the macAddress to the platform token grant v3 params
+func (o *PlatformTokenGrantV3Params) SetMacAddress(macAddress *string) {
+	o.MacAddress = macAddress
+}
+
 // WithPlatformID adds the platformID to the platform token grant v3 params
 func (o *PlatformTokenGrantV3Params) WithPlatformID(platformID string) *PlatformTokenGrantV3Params {
 	o.SetPlatformID(platformID)
@@ -264,6 +280,22 @@ func (o *PlatformTokenGrantV3Params) WriteToRequest(r runtime.ClientRequest, reg
 		fDeviceID := frDeviceID
 		if fDeviceID != "" {
 			if err := r.SetFormParam("device_id", fDeviceID); err != nil {
+				return err
+			}
+		}
+
+	}
+
+	if o.MacAddress != nil {
+
+		// form param macAddress
+		var frMacAddress string
+		if o.MacAddress != nil {
+			frMacAddress = *o.MacAddress
+		}
+		fMacAddress := frMacAddress
+		if fMacAddress != "" {
+			if err := r.SetFormParam("macAddress", fMacAddress); err != nil {
 				return err
 			}
 		}

@@ -230,6 +230,7 @@
 |---|---|---|---|---|---|
 | `/platform/admin/namespaces/{namespace}/keygroups` | GET | QueryKeyGroupsShort | [QueryKeyGroupsShort](../../platform-sdk/pkg/platformclient/key_group/key_group_client.go) | [QueryKeyGroupsShort](../../services-api/pkg/service/platform/keyGroup.go) | [QueryKeyGroupsShort](../../samples/cli/cmd/platform/keyGroup/queryKeyGroups.go) |
 | `/platform/admin/namespaces/{namespace}/keygroups` | POST | CreateKeyGroupShort | [CreateKeyGroupShort](../../platform-sdk/pkg/platformclient/key_group/key_group_client.go) | [CreateKeyGroupShort](../../services-api/pkg/service/platform/keyGroup.go) | [CreateKeyGroupShort](../../samples/cli/cmd/platform/keyGroup/createKeyGroup.go) |
+| `/platform/admin/namespaces/{namespace}/keygroups/byBoothName` | GET | GetKeyGroupByBoothNameShort | [GetKeyGroupByBoothNameShort](../../platform-sdk/pkg/platformclient/key_group/key_group_client.go) | [GetKeyGroupByBoothNameShort](../../services-api/pkg/service/platform/keyGroup.go) | [GetKeyGroupByBoothNameShort](../../samples/cli/cmd/platform/keyGroup/getKeyGroupByBoothName.go) |
 | `/platform/admin/namespaces/{namespace}/keygroups/{keyGroupId}` | GET | GetKeyGroupShort | [GetKeyGroupShort](../../platform-sdk/pkg/platformclient/key_group/key_group_client.go) | [GetKeyGroupShort](../../services-api/pkg/service/platform/keyGroup.go) | [GetKeyGroupShort](../../samples/cli/cmd/platform/keyGroup/getKeyGroup.go) |
 | `/platform/admin/namespaces/{namespace}/keygroups/{keyGroupId}` | PUT | UpdateKeyGroupShort | [UpdateKeyGroupShort](../../platform-sdk/pkg/platformclient/key_group/key_group_client.go) | [UpdateKeyGroupShort](../../services-api/pkg/service/platform/keyGroup.go) | [UpdateKeyGroupShort](../../samples/cli/cmd/platform/keyGroup/updateKeyGroup.go) |
 | `/platform/admin/namespaces/{namespace}/keygroups/{keyGroupId}/dynamic` | GET | GetKeyGroupDynamicShort | [GetKeyGroupDynamicShort](../../platform-sdk/pkg/platformclient/key_group/key_group_client.go) | [GetKeyGroupDynamicShort](../../services-api/pkg/service/platform/keyGroup.go) | [GetKeyGroupDynamicShort](../../samples/cli/cmd/platform/keyGroup/getKeyGroupDynamic.go) |
@@ -340,6 +341,8 @@
 | `/platform/admin/namespaces/{namespace}/stores/{storeId}/clone` | PUT | CloneStoreShort | [CloneStoreShort](../../platform-sdk/pkg/platformclient/store/store_client.go) | [CloneStoreShort](../../services-api/pkg/service/platform/store.go) | [CloneStoreShort](../../samples/cli/cmd/platform/store/cloneStore.go) |
 | `/platform/admin/namespaces/{namespace}/stores/{storeId}/export` | GET | ExportStoreShort | [ExportStoreShort](../../platform-sdk/pkg/platformclient/store/store_client.go) | [ExportStoreShort](../../services-api/pkg/service/platform/store.go) | [ExportStoreShort](../../samples/cli/cmd/platform/store/exportStore.go) |
 | `/platform/public/namespaces/{namespace}/stores` | GET | PublicListStoresShort | [PublicListStoresShort](../../platform-sdk/pkg/platformclient/store/store_client.go) | [PublicListStoresShort](../../services-api/pkg/service/platform/store.go) | [PublicListStoresShort](../../samples/cli/cmd/platform/store/publicListStores.go) |
+| `/platform/v2/admin/namespaces/{namespace}/stores/import` | PUT | ImportStore1Short | [ImportStore1Short](../../platform-sdk/pkg/platformclient/store/store_client.go) | [ImportStore1Short](../../services-api/pkg/service/platform/store.go) | [ImportStore1Short](../../samples/cli/cmd/platform/store/importStore1.go) |
+| `/platform/v2/admin/namespaces/{namespace}/stores/{storeId}/export` | POST | ExportStore1Short | [ExportStore1Short](../../platform-sdk/pkg/platformclient/store/store_client.go) | [ExportStore1Short](../../services-api/pkg/service/platform/store.go) | [ExportStore1Short](../../samples/cli/cmd/platform/store/exportStore1.go) |
 
 ### CatalogChanges Wrapper:  [CatalogChanges](../../services-api/pkg/service/platform/catalogChanges.go)
 | Endpoint | Method | ID | Class | Wrapper | Example |
@@ -549,6 +552,7 @@
 | `EpicGamesReconcileResult` | [EpicGamesReconcileResult ](../../platform-sdk/pkg/platformclientmodels/epic_games_reconcile_result.go) |
 | `ErrorEntity` | [ErrorEntity ](../../platform-sdk/pkg/platformclientmodels/error_entity.go) |
 | `EventPayload` | [EventPayload ](../../platform-sdk/pkg/platformclientmodels/event_payload.go) |
+| `ExportStoreRequest` | [ExportStoreRequest ](../../platform-sdk/pkg/platformclientmodels/export_store_request.go) |
 | `ExtensionFulfillmentSummary` | [ExtensionFulfillmentSummary ](../../platform-sdk/pkg/platformclientmodels/extension_fulfillment_summary.go) |
 | `ExternalPaymentOrderCreate` | [ExternalPaymentOrderCreate ](../../platform-sdk/pkg/platformclientmodels/external_payment_order_create.go) |
 | `FieldValidationError` | [FieldValidationError ](../../platform-sdk/pkg/platformclientmodels/field_validation_error.go) |
@@ -581,6 +585,10 @@
 | `IAPOrderInfo` | [IAPOrderInfo ](../../platform-sdk/pkg/platformclientmodels/iap_order_info.go) |
 | `IAPOrderPagingSlicedResult` | [IAPOrderPagingSlicedResult ](../../platform-sdk/pkg/platformclientmodels/iap_order_paging_sliced_result.go) |
 | `Image` | [Image ](../../platform-sdk/pkg/platformclientmodels/image.go) |
+| `ImportErrorDetails` | [ImportErrorDetails ](../../platform-sdk/pkg/platformclientmodels/import_error_details.go) |
+| `ImportStoreError` | [ImportStoreError ](../../platform-sdk/pkg/platformclientmodels/import_store_error.go) |
+| `ImportStoreItemInfo` | [ImportStoreItemInfo ](../../platform-sdk/pkg/platformclientmodels/import_store_item_info.go) |
+| `ImportStoreResult` | [ImportStoreResult ](../../platform-sdk/pkg/platformclientmodels/import_store_result.go) |
 | `InGameItemSync` | [InGameItemSync ](../../platform-sdk/pkg/platformclientmodels/in_game_item_sync.go) |
 | `InvoiceCurrencySummary` | [InvoiceCurrencySummary ](../../platform-sdk/pkg/platformclientmodels/invoice_currency_summary.go) |
 | `InvoiceSummary` | [InvoiceSummary ](../../platform-sdk/pkg/platformclientmodels/invoice_summary.go) |
@@ -725,6 +733,7 @@
 | `TicketSaleIncrementResult` | [TicketSaleIncrementResult ](../../platform-sdk/pkg/platformclientmodels/ticket_sale_increment_result.go) |
 | `Time-limited balance` | [TimeLimitedBalance ](../../platform-sdk/pkg/platformclientmodels/time_limited_balance.go) |
 | `TimedOwnership` | [TimedOwnership ](../../platform-sdk/pkg/platformclientmodels/timed_ownership.go) |
+| `TrackedEntitlementInfo` | [TrackedEntitlementInfo ](../../platform-sdk/pkg/platformclientmodels/tracked_entitlement_info.go) |
 | `TradeNotification` | [TradeNotification ](../../platform-sdk/pkg/platformclientmodels/trade_notification.go) |
 | `Transaction` | [Transaction ](../../platform-sdk/pkg/platformclientmodels/transaction.go) |
 | `TransactionAmountDetails` | [TransactionAmountDetails ](../../platform-sdk/pkg/platformclientmodels/transaction_amount_details.go) |

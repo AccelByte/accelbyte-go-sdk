@@ -58,9 +58,15 @@ Deprecated: Use AuthenticationWithPlatformLinkV3Short instead.
 
   AuthenticationWithPlatformLinkV3 authentications with platform link
 
-  &lt;p&gt;This endpoint is being used to authenticate a user account and perform platform link.
-					It validates user&#39;s email / username and password. If user already enable 2FA,
-					invoke &#39;&#39;/mfa/verify&#39; with response&#39;s mfa_token&#39;&lt;/p&gt;
+  This endpoint is being used to authenticate a user account and perform platform link.
+It validates user&#39;s email / username and password.
+If user already enable 2FA, then invoke &lt;i&gt;/mfa/verify&lt;/i&gt; using &lt;b&gt;mfa_token&lt;/b&gt; from this endpoint response.
+
+&lt;h2&gt;Device Cookie Validation&lt;/h2&gt;
+
+Device Cookie is used to protect the user account from brute force login attack, &lt;a target=&#34;_blank&#34; href=&#34;https://owasp.org/www-community/Slow_Down_Online_Guessing_Attacks_with_Device_Cookies&#34;&gt;more detail from OWASP&lt;a&gt;.
+This endpoint will read device cookie from cookie &lt;b&gt;auth-trust-id&lt;/b&gt;. If device cookie not found, it will generate a new one and set it into cookie when successfully authenticate.
+
 */
 func (a *Client) AuthenticationWithPlatformLinkV3(params *AuthenticationWithPlatformLinkV3Params, authInfo runtime.ClientAuthInfoWriter) (*AuthenticationWithPlatformLinkV3OK, *AuthenticationWithPlatformLinkV3BadRequest, *AuthenticationWithPlatformLinkV3Unauthorized, *AuthenticationWithPlatformLinkV3Conflict, error) {
 	// TODO: Validate the params before sending
@@ -115,9 +121,15 @@ func (a *Client) AuthenticationWithPlatformLinkV3(params *AuthenticationWithPlat
 /*
   AuthenticationWithPlatformLinkV3Short authentications with platform link
 
-  &lt;p&gt;This endpoint is being used to authenticate a user account and perform platform link.
-					It validates user&#39;s email / username and password. If user already enable 2FA,
-					invoke &#39;&#39;/mfa/verify&#39; with response&#39;s mfa_token&#39;&lt;/p&gt;
+  This endpoint is being used to authenticate a user account and perform platform link.
+It validates user&#39;s email / username and password.
+If user already enable 2FA, then invoke &lt;i&gt;/mfa/verify&lt;/i&gt; using &lt;b&gt;mfa_token&lt;/b&gt; from this endpoint response.
+
+&lt;h2&gt;Device Cookie Validation&lt;/h2&gt;
+
+Device Cookie is used to protect the user account from brute force login attack, &lt;a target=&#34;_blank&#34; href=&#34;https://owasp.org/www-community/Slow_Down_Online_Guessing_Attacks_with_Device_Cookies&#34;&gt;more detail from OWASP&lt;a&gt;.
+This endpoint will read device cookie from cookie &lt;b&gt;auth-trust-id&lt;/b&gt;. If device cookie not found, it will generate a new one and set it into cookie when successfully authenticate.
+
 */
 func (a *Client) AuthenticationWithPlatformLinkV3Short(params *AuthenticationWithPlatformLinkV3Params, authInfo runtime.ClientAuthInfoWriter) (*AuthenticationWithPlatformLinkV3OK, error) {
 	// TODO: Validate the params before sending
@@ -815,11 +827,17 @@ Deprecated: Use UserAuthenticationV3Short instead.
 
   UserAuthenticationV3 authentications API
 
-  &lt;p&gt;This endpoint is being used to authenticate a user account.
-					It validates user&#39;s email / username and password. Deactivated or login-banned users are unable to login
-					Redirect URI and Client ID must be specified as a pair and only used to redirect to the specified
-					redirect URI in case the requestId is no longer valid.&lt;/p&gt;
-					&lt;br&gt;action code: 10801
+  This endpoint is being used to authenticate a user account.
+It validates user&#39;s email / username and password.
+Deactivated or login-banned users are unable to login.
+Redirect URI and Client ID must be specified as a pair and only used to redirect to the specified redirect URI in case the requestId is no longer valid.
+
+&lt;h2&gt;Device Cookie Validation&lt;/h2&gt;
+
+Device Cookie is used to protect the user account from brute force login attack, &lt;a target=&#34;_blank&#34; href=&#34;https://owasp.org/www-community/Slow_Down_Online_Guessing_Attacks_with_Device_Cookies&#34;&gt;more detail from OWASP&lt;a&gt;.
+This endpoint will read device cookie from cookie &lt;b&gt;auth-trust-id&lt;/b&gt;. If device cookie not found, it will generate a new one and set it into cookie when successfully authenticate.
+
+Action code: 10801
 */
 func (a *Client) UserAuthenticationV3(params *UserAuthenticationV3Params, authInfo runtime.ClientAuthInfoWriter) (*UserAuthenticationV3Found, error) {
 	// TODO: Validate the params before sending
@@ -865,11 +883,17 @@ func (a *Client) UserAuthenticationV3(params *UserAuthenticationV3Params, authIn
 /*
   UserAuthenticationV3Short authentications API
 
-  &lt;p&gt;This endpoint is being used to authenticate a user account.
-					It validates user&#39;s email / username and password. Deactivated or login-banned users are unable to login
-					Redirect URI and Client ID must be specified as a pair and only used to redirect to the specified
-					redirect URI in case the requestId is no longer valid.&lt;/p&gt;
-					&lt;br&gt;action code: 10801
+  This endpoint is being used to authenticate a user account.
+It validates user&#39;s email / username and password.
+Deactivated or login-banned users are unable to login.
+Redirect URI and Client ID must be specified as a pair and only used to redirect to the specified redirect URI in case the requestId is no longer valid.
+
+&lt;h2&gt;Device Cookie Validation&lt;/h2&gt;
+
+Device Cookie is used to protect the user account from brute force login attack, &lt;a target=&#34;_blank&#34; href=&#34;https://owasp.org/www-community/Slow_Down_Online_Guessing_Attacks_with_Device_Cookies&#34;&gt;more detail from OWASP&lt;a&gt;.
+This endpoint will read device cookie from cookie &lt;b&gt;auth-trust-id&lt;/b&gt;. If device cookie not found, it will generate a new one and set it into cookie when successfully authenticate.
+
+Action code: 10801
 */
 func (a *Client) UserAuthenticationV3Short(params *UserAuthenticationV3Params, authInfo runtime.ClientAuthInfoWriter) (*UserAuthenticationV3Found, error) {
 	// TODO: Validate the params before sending

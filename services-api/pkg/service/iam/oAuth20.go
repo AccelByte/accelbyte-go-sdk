@@ -216,12 +216,15 @@ func (aaa *OAuth20Service) AuthCodeRequestV3(input *o_auth2_0.AuthCodeRequestV3P
 func (aaa *OAuth20Service) PlatformTokenGrantV3(input *o_auth2_0.PlatformTokenGrantV3Params) (*iamclientmodels.OauthmodelTokenResponse, error) {
 	clientID := aaa.ConfigRepository.GetClientId()
 	clientSecret := aaa.ConfigRepository.GetClientSecret()
-	ok, badRequest, unauthorized, err := aaa.Client.OAuth20.PlatformTokenGrantV3(input, client.BasicAuth(clientID, clientSecret))
+	ok, badRequest, unauthorized, forbidden, err := aaa.Client.OAuth20.PlatformTokenGrantV3(input, client.BasicAuth(clientID, clientSecret))
 	if badRequest != nil {
 		return nil, badRequest
 	}
 	if unauthorized != nil {
 		return nil, unauthorized
+	}
+	if forbidden != nil {
+		return nil, forbidden
 	}
 	if err != nil {
 		return nil, err
@@ -266,10 +269,10 @@ func (aaa *OAuth20Service) TokenRevocationV3(input *o_auth2_0.TokenRevocationV3P
 }
 
 // Deprecated: Use TokenGrantV3Short instead
-func (aaa *OAuth20Service) TokenGrantV3(input *o_auth2_0.TokenGrantV3Params) (*iamclientmodels.OauthmodelTokenResponseV3, error) {
+func (aaa *OAuth20Service) TokenGrantV3(input *o_auth2_0.TokenGrantV3Params) (*iamclientmodels.OauthmodelTokenWithDeviceCookieResponseV3, error) {
 	clientID := aaa.ConfigRepository.GetClientId()
 	clientSecret := aaa.ConfigRepository.GetClientSecret()
-	ok, badRequest, unauthorized, forbidden, err := aaa.Client.OAuth20.TokenGrantV3(input, client.BasicAuth(clientID, clientSecret))
+	ok, badRequest, unauthorized, forbidden, tooManyRequests, err := aaa.Client.OAuth20.TokenGrantV3(input, client.BasicAuth(clientID, clientSecret))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -278,6 +281,9 @@ func (aaa *OAuth20Service) TokenGrantV3(input *o_auth2_0.TokenGrantV3Params) (*i
 	}
 	if forbidden != nil {
 		return nil, forbidden
+	}
+	if tooManyRequests != nil {
+		return nil, tooManyRequests
 	}
 	if err != nil {
 		return nil, err
@@ -611,7 +617,7 @@ func (aaa *OAuth20Service) TokenRevocationV3Short(input *o_auth2_0.TokenRevocati
 	return nil
 }
 
-func (aaa *OAuth20Service) TokenGrantV3Short(input *o_auth2_0.TokenGrantV3Params) (*iamclientmodels.OauthmodelTokenResponseV3, error) {
+func (aaa *OAuth20Service) TokenGrantV3Short(input *o_auth2_0.TokenGrantV3Params) (*iamclientmodels.OauthmodelTokenWithDeviceCookieResponseV3, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{

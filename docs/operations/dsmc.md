@@ -116,6 +116,7 @@
 | Model Struct | Class |
 |---|---|
 | `log.AppMessageDeclaration` | [LogAppMessageDeclaration ](../../dsmc-sdk/pkg/dsmcclientmodels/log_app_message_declaration.go) |
+| `models.AllocationEvent` | [ModelsAllocationEvent ](../../dsmc-sdk/pkg/dsmcclientmodels/models_allocation_event.go) |
 | `models.ClaimSessionRequest` | [ModelsClaimSessionRequest ](../../dsmc-sdk/pkg/dsmcclientmodels/models_claim_session_request.go) |
 | `models.CountServerResponse` | [ModelsCountServerResponse ](../../dsmc-sdk/pkg/dsmcclientmodels/models_count_server_response.go) |
 | `models.CountSessionResponse` | [ModelsCountSessionResponse ](../../dsmc-sdk/pkg/dsmcclientmodels/models_count_session_response.go) |

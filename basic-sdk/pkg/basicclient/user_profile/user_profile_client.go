@@ -41,6 +41,8 @@ type ClientService interface {
 	DeleteUserProfileShort(params *DeleteUserProfileParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteUserProfileOK, error)
 	GetCustomAttributesInfo(params *GetCustomAttributesInfoParams, authInfo runtime.ClientAuthInfoWriter) (*GetCustomAttributesInfoOK, *GetCustomAttributesInfoUnauthorized, *GetCustomAttributesInfoForbidden, *GetCustomAttributesInfoNotFound, error)
 	GetCustomAttributesInfoShort(params *GetCustomAttributesInfoParams, authInfo runtime.ClientAuthInfoWriter) (*GetCustomAttributesInfoOK, error)
+	GetMyPrivateCustomAttributesInfo(params *GetMyPrivateCustomAttributesInfoParams, authInfo runtime.ClientAuthInfoWriter) (*GetMyPrivateCustomAttributesInfoOK, *GetMyPrivateCustomAttributesInfoUnauthorized, *GetMyPrivateCustomAttributesInfoForbidden, *GetMyPrivateCustomAttributesInfoNotFound, error)
+	GetMyPrivateCustomAttributesInfoShort(params *GetMyPrivateCustomAttributesInfoParams, authInfo runtime.ClientAuthInfoWriter) (*GetMyPrivateCustomAttributesInfoOK, error)
 	GetMyProfileInfo(params *GetMyProfileInfoParams, authInfo runtime.ClientAuthInfoWriter) (*GetMyProfileInfoOK, *GetMyProfileInfoBadRequest, *GetMyProfileInfoUnauthorized, *GetMyProfileInfoForbidden, *GetMyProfileInfoNotFound, error)
 	GetMyProfileInfoShort(params *GetMyProfileInfoParams, authInfo runtime.ClientAuthInfoWriter) (*GetMyProfileInfoOK, error)
 	GetMyZipCode(params *GetMyZipCodeParams, authInfo runtime.ClientAuthInfoWriter) (*GetMyZipCodeOK, *GetMyZipCodeUnauthorized, *GetMyZipCodeForbidden, error)
@@ -71,6 +73,8 @@ type ClientService interface {
 	PublicUpdateUserProfileStatusShort(params *PublicUpdateUserProfileStatusParams, authInfo runtime.ClientAuthInfoWriter) (*PublicUpdateUserProfileStatusOK, error)
 	UpdateCustomAttributesPartially(params *UpdateCustomAttributesPartiallyParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateCustomAttributesPartiallyOK, *UpdateCustomAttributesPartiallyBadRequest, *UpdateCustomAttributesPartiallyUnauthorized, *UpdateCustomAttributesPartiallyForbidden, *UpdateCustomAttributesPartiallyNotFound, error)
 	UpdateCustomAttributesPartiallyShort(params *UpdateCustomAttributesPartiallyParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateCustomAttributesPartiallyOK, error)
+	UpdateMyPrivateCustomAttributesPartially(params *UpdateMyPrivateCustomAttributesPartiallyParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateMyPrivateCustomAttributesPartiallyOK, *UpdateMyPrivateCustomAttributesPartiallyBadRequest, *UpdateMyPrivateCustomAttributesPartiallyUnauthorized, *UpdateMyPrivateCustomAttributesPartiallyForbidden, *UpdateMyPrivateCustomAttributesPartiallyNotFound, error)
+	UpdateMyPrivateCustomAttributesPartiallyShort(params *UpdateMyPrivateCustomAttributesPartiallyParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateMyPrivateCustomAttributesPartiallyOK, error)
 	UpdateMyProfile(params *UpdateMyProfileParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateMyProfileOK, *UpdateMyProfileBadRequest, *UpdateMyProfileUnauthorized, *UpdateMyProfileForbidden, *UpdateMyProfileNotFound, error)
 	UpdateMyProfileShort(params *UpdateMyProfileParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateMyProfileOK, error)
 	UpdateMyZipCode(params *UpdateMyZipCodeParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateMyZipCodeOK, *UpdateMyZipCodeBadRequest, *UpdateMyZipCodeUnauthorized, *UpdateMyZipCodeForbidden, error)
@@ -519,6 +523,115 @@ func (a *Client) GetCustomAttributesInfoShort(params *GetCustomAttributesInfoPar
 	case *GetCustomAttributesInfoForbidden:
 		return nil, v
 	case *GetCustomAttributesInfoNotFound:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+Deprecated: Use GetMyPrivateCustomAttributesInfoShort instead.
+
+  GetMyPrivateCustomAttributesInfo gets my private custom attributes
+
+  Get my private custom attributes.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&lt;b&gt;&#34;NAMESPACE:{namespace}:PROFILE&#34;&lt;/b&gt;, action=2 &lt;b&gt;(READ)&lt;/b&gt;&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: custom attributes&lt;/li&gt;&lt;li&gt;&lt;i&gt;Action code&lt;/i&gt;: 11403&lt;/li&gt;&lt;/ul&gt;
+*/
+func (a *Client) GetMyPrivateCustomAttributesInfo(params *GetMyPrivateCustomAttributesInfoParams, authInfo runtime.ClientAuthInfoWriter) (*GetMyPrivateCustomAttributesInfoOK, *GetMyPrivateCustomAttributesInfoUnauthorized, *GetMyPrivateCustomAttributesInfoForbidden, *GetMyPrivateCustomAttributesInfoNotFound, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewGetMyPrivateCustomAttributesInfoParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "getMyPrivateCustomAttributesInfo",
+		Method:             "GET",
+		PathPattern:        "/basic/v1/public/namespaces/{namespace}/users/me/profiles/privateCustomAttributes",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &GetMyPrivateCustomAttributesInfoReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, nil, nil, nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *GetMyPrivateCustomAttributesInfoOK:
+		return v, nil, nil, nil, nil
+
+	case *GetMyPrivateCustomAttributesInfoUnauthorized:
+		return nil, v, nil, nil, nil
+
+	case *GetMyPrivateCustomAttributesInfoForbidden:
+		return nil, nil, v, nil, nil
+
+	case *GetMyPrivateCustomAttributesInfoNotFound:
+		return nil, nil, nil, v, nil
+
+	default:
+		return nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+  GetMyPrivateCustomAttributesInfoShort gets my private custom attributes
+
+  Get my private custom attributes.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&lt;b&gt;&#34;NAMESPACE:{namespace}:PROFILE&#34;&lt;/b&gt;, action=2 &lt;b&gt;(READ)&lt;/b&gt;&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: custom attributes&lt;/li&gt;&lt;li&gt;&lt;i&gt;Action code&lt;/i&gt;: 11403&lt;/li&gt;&lt;/ul&gt;
+*/
+func (a *Client) GetMyPrivateCustomAttributesInfoShort(params *GetMyPrivateCustomAttributesInfoParams, authInfo runtime.ClientAuthInfoWriter) (*GetMyPrivateCustomAttributesInfoOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewGetMyPrivateCustomAttributesInfoParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "getMyPrivateCustomAttributesInfo",
+		Method:             "GET",
+		PathPattern:        "/basic/v1/public/namespaces/{namespace}/users/me/profiles/privateCustomAttributes",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &GetMyPrivateCustomAttributesInfoReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *GetMyPrivateCustomAttributesInfoOK:
+		return v, nil
+	case *GetMyPrivateCustomAttributesInfoUnauthorized:
+		return nil, v
+	case *GetMyPrivateCustomAttributesInfoForbidden:
+		return nil, v
+	case *GetMyPrivateCustomAttributesInfoNotFound:
 		return nil, v
 
 	default:
@@ -2163,6 +2276,120 @@ func (a *Client) UpdateCustomAttributesPartiallyShort(params *UpdateCustomAttrib
 	case *UpdateCustomAttributesPartiallyForbidden:
 		return nil, v
 	case *UpdateCustomAttributesPartiallyNotFound:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+Deprecated: Use UpdateMyPrivateCustomAttributesPartiallyShort instead.
+
+  UpdateMyPrivateCustomAttributesPartially updates partially private custom attributes tied to me
+
+  Update partially private custom attributes tied to me.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&lt;b&gt;&#34;NAMESPACE:{namespace}:PROFILE&#34;&lt;/b&gt;, action=4 &lt;b&gt;(UPDATE)&lt;/b&gt;&lt;/li&gt;&lt;li&gt;&lt;i&gt;Action code&lt;/i&gt;: 11402&lt;/li&gt;&lt;li&gt;&lt;i&gt;Request body&lt;/i&gt;: allowed format: JSON object&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: Updated custom attributes&lt;/li&gt;&lt;/ul&gt;
+*/
+func (a *Client) UpdateMyPrivateCustomAttributesPartially(params *UpdateMyPrivateCustomAttributesPartiallyParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateMyPrivateCustomAttributesPartiallyOK, *UpdateMyPrivateCustomAttributesPartiallyBadRequest, *UpdateMyPrivateCustomAttributesPartiallyUnauthorized, *UpdateMyPrivateCustomAttributesPartiallyForbidden, *UpdateMyPrivateCustomAttributesPartiallyNotFound, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewUpdateMyPrivateCustomAttributesPartiallyParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "updateMyPrivateCustomAttributesPartially",
+		Method:             "PUT",
+		PathPattern:        "/basic/v1/public/namespaces/{namespace}/users/me/profiles/privateCustomAttributes",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &UpdateMyPrivateCustomAttributesPartiallyReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, nil, nil, nil, nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *UpdateMyPrivateCustomAttributesPartiallyOK:
+		return v, nil, nil, nil, nil, nil
+
+	case *UpdateMyPrivateCustomAttributesPartiallyBadRequest:
+		return nil, v, nil, nil, nil, nil
+
+	case *UpdateMyPrivateCustomAttributesPartiallyUnauthorized:
+		return nil, nil, v, nil, nil, nil
+
+	case *UpdateMyPrivateCustomAttributesPartiallyForbidden:
+		return nil, nil, nil, v, nil, nil
+
+	case *UpdateMyPrivateCustomAttributesPartiallyNotFound:
+		return nil, nil, nil, nil, v, nil
+
+	default:
+		return nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+  UpdateMyPrivateCustomAttributesPartiallyShort updates partially private custom attributes tied to me
+
+  Update partially private custom attributes tied to me.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&lt;b&gt;&#34;NAMESPACE:{namespace}:PROFILE&#34;&lt;/b&gt;, action=4 &lt;b&gt;(UPDATE)&lt;/b&gt;&lt;/li&gt;&lt;li&gt;&lt;i&gt;Action code&lt;/i&gt;: 11402&lt;/li&gt;&lt;li&gt;&lt;i&gt;Request body&lt;/i&gt;: allowed format: JSON object&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: Updated custom attributes&lt;/li&gt;&lt;/ul&gt;
+*/
+func (a *Client) UpdateMyPrivateCustomAttributesPartiallyShort(params *UpdateMyPrivateCustomAttributesPartiallyParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateMyPrivateCustomAttributesPartiallyOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewUpdateMyPrivateCustomAttributesPartiallyParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "updateMyPrivateCustomAttributesPartially",
+		Method:             "PUT",
+		PathPattern:        "/basic/v1/public/namespaces/{namespace}/users/me/profiles/privateCustomAttributes",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &UpdateMyPrivateCustomAttributesPartiallyReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *UpdateMyPrivateCustomAttributesPartiallyOK:
+		return v, nil
+	case *UpdateMyPrivateCustomAttributesPartiallyBadRequest:
+		return nil, v
+	case *UpdateMyPrivateCustomAttributesPartiallyUnauthorized:
+		return nil, v
+	case *UpdateMyPrivateCustomAttributesPartiallyForbidden:
+		return nil, v
+	case *UpdateMyPrivateCustomAttributesPartiallyNotFound:
 		return nil, v
 
 	default:

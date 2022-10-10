@@ -43,6 +43,9 @@ type ClientmodelClientUpdateV3Request struct {
 
 	// redirect Uri
 	RedirectURI string `json:"redirectUri,omitempty"`
+
+	// two factor enabled
+	TwoFactorEnabled bool `json:"twoFactorEnabled"`
 }
 
 // Validate validates this clientmodel client update v3 request

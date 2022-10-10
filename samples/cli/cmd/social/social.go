@@ -61,6 +61,7 @@ func init() {
 	SocialCmd.AddCommand(statConfiguration.GetStatCmd)
 	SocialCmd.AddCommand(statConfiguration.DeleteStatCmd)
 	SocialCmd.AddCommand(statConfiguration.UpdateStatCmd)
+	SocialCmd.AddCommand(statConfiguration.DeleteTiedStatCmd)
 	SocialCmd.AddCommand(userStatistic.GetUserStatItemsCmd)
 	SocialCmd.AddCommand(userStatistic.BulkCreateUserStatItemsCmd)
 	SocialCmd.AddCommand(userStatistic.BulkIncUserStatItem1Cmd)

@@ -74,7 +74,7 @@ func NewPublicConsumeUserEntitlementOK() *PublicConsumeUserEntitlementOK {
   successful operation
 */
 type PublicConsumeUserEntitlementOK struct {
-	Payload *platformclientmodels.EntitlementInfo
+	Payload *platformclientmodels.TrackedEntitlementInfo
 }
 
 func (o *PublicConsumeUserEntitlementOK) Error() string {
@@ -96,13 +96,13 @@ func (o *PublicConsumeUserEntitlementOK) ToJSONString() string {
 	return fmt.Sprintf("%+v", string(b))
 }
 
-func (o *PublicConsumeUserEntitlementOK) GetPayload() *platformclientmodels.EntitlementInfo {
+func (o *PublicConsumeUserEntitlementOK) GetPayload() *platformclientmodels.TrackedEntitlementInfo {
 	return o.Payload
 }
 
 func (o *PublicConsumeUserEntitlementOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
-	o.Payload = new(platformclientmodels.EntitlementInfo)
+	o.Payload = new(platformclientmodels.TrackedEntitlementInfo)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
@@ -215,7 +215,7 @@ func NewPublicConsumeUserEntitlementConflict() *PublicConsumeUserEntitlementConf
 
 /*PublicConsumeUserEntitlementConflict handles this case with default header values.
 
-  <table><tr><td>ErrorCode</td><td>ErrorMessage</td></tr><tr><td>31171</td><td>Entitlement [{entitlementId}] already revoked</td></tr><tr><td>31172</td><td>Entitlement [{entitlementId}] not active</td></tr><tr><td>31173</td><td>Entitlement [{entitlementId}] is not consumable</td></tr><tr><td>31174</td><td>Entitlement [{entitlementId}] already consumed</td></tr><tr><td>31176</td><td>Entitlement [{entitlementId}] use count is insufficient</td></tr><tr><td>31178</td><td>Entitlement [{entitlementId}] out of time range</td></tr><tr><td>20006</td><td>optimistic lock</td></tr></table>
+  <table><tr><td>ErrorCode</td><td>ErrorMessage</td></tr><tr><td>31171</td><td>Entitlement [{entitlementId}] already revoked</td></tr><tr><td>31172</td><td>Entitlement [{entitlementId}] not active</td></tr><tr><td>31173</td><td>Entitlement [{entitlementId}] is not consumable</td></tr><tr><td>31174</td><td>Entitlement [{entitlementId}] already consumed</td></tr><tr><td>31176</td><td>Entitlement [{entitlementId}] use count is insufficient</td></tr><tr><td>31178</td><td>Entitlement [{entitlementId}] out of time range</td></tr><tr><td>31180</td><td>Duplicate request id: [{requestId}]</td></tr><tr><td>20006</td><td>optimistic lock</td></tr></table>
 */
 type PublicConsumeUserEntitlementConflict struct {
 	Payload *platformclientmodels.ErrorEntity

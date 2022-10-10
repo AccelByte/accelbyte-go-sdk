@@ -73,6 +73,23 @@ func (aaa *KeyGroupService) CreateKeyGroup(input *key_group.CreateKeyGroupParams
 	return created.GetPayload(), nil
 }
 
+// Deprecated: Use GetKeyGroupByBoothNameShort instead
+func (aaa *KeyGroupService) GetKeyGroupByBoothName(input *key_group.GetKeyGroupByBoothNameParams) (*platformclientmodels.KeyGroupInfo, error) {
+	token, err := aaa.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, notFound, err := aaa.Client.KeyGroup.GetKeyGroupByBoothName(input, client.BearerToken(*token.AccessToken))
+	if notFound != nil {
+		return nil, notFound
+	}
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
 // Deprecated: Use GetKeyGroupShort instead
 func (aaa *KeyGroupService) GetKeyGroup(input *key_group.GetKeyGroupParams) (*platformclientmodels.KeyGroupInfo, error) {
 	token, err := aaa.TokenRepository.GetToken()
@@ -212,6 +229,31 @@ func (aaa *KeyGroupService) CreateKeyGroupShort(input *key_group.CreateKeyGroupP
 	}
 
 	return created.GetPayload(), nil
+}
+
+func (aaa *KeyGroupService) GetKeyGroupByBoothNameShort(input *key_group.GetKeyGroupByBoothNameParams) (*platformclientmodels.KeyGroupInfo, error) {
+	authInfoWriter := input.AuthInfoWriter
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
+	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  aaa.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
+	ok, err := aaa.Client.KeyGroup.GetKeyGroupByBoothNameShort(input, authInfoWriter)
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
 }
 
 func (aaa *KeyGroupService) GetKeyGroupShort(input *key_group.GetKeyGroupParams) (*platformclientmodels.KeyGroupInfo, error) {

@@ -18,6 +18,9 @@ type EntitlementDecrement struct {
 	// options, it is only available when entitlement clazz is OPTIONBOX and value should be item id.
 	Options []string `json:"options"`
 
+	// Request id(Optional), client should provide a unique request id to perform at most once execution, When a request id is resubmitted, it will return original successful response
+	RequestID string `json:"requestId,omitempty"`
+
 	// the count to decrease, 1 for default, option box entitlement only allow 1
 	UseCount int32 `json:"useCount,omitempty"`
 }

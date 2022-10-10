@@ -19,6 +19,10 @@ import (
 // swagger:model models.Server
 type ModelsServer struct {
 
+	// allocation events
+	// Required: true
+	AllocationEvents []*ModelsAllocationEvent `json:"allocation_events"`
+
 	// allocation id
 	// Required: true
 	AllocationID *string `json:"allocation_id"`
@@ -122,6 +126,10 @@ type ModelsServer struct {
 func (m *ModelsServer) Validate(formats strfmt.Registry) error {
 	var res []error
 
+	if err := m.validateAllocationEvents(formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.validateAllocationID(formats); err != nil {
 		res = append(res, err)
 	}
@@ -221,6 +229,31 @@ func (m *ModelsServer) Validate(formats strfmt.Registry) error {
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
+	return nil
+}
+
+func (m *ModelsServer) validateAllocationEvents(formats strfmt.Registry) error {
+
+	if err := validate.Required("allocation_events", "body", m.AllocationEvents); err != nil {
+		return err
+	}
+
+	for i := 0; i < len(m.AllocationEvents); i++ {
+		if swag.IsZero(m.AllocationEvents[i]) { // not required
+			continue
+		}
+
+		if m.AllocationEvents[i] != nil {
+			if err := m.AllocationEvents[i].Validate(formats); err != nil {
+				if ve, ok := err.(*errors.Validation); ok {
+					return ve.ValidateName("allocation_events" + "." + strconv.Itoa(i))
+				}
+				return err
+			}
+		}
+
+	}
+
 	return nil
 }
 

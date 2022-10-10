@@ -29,6 +29,7 @@ var TokenGrantV3Cmd = &cobra.Command{
 			TokenRepository:  &repository.TokenRepositoryImpl{},
 		}
 		grantType, _ := cmd.Flags().GetString("grantType")
+		authTrustId, _ := cmd.Flags().GetString("authTrustId")
 		deviceId, _ := cmd.Flags().GetString("deviceId")
 		clientId, _ := cmd.Flags().GetString("clientId")
 		code, _ := cmd.Flags().GetString("code")
@@ -44,6 +45,7 @@ var TokenGrantV3Cmd = &cobra.Command{
 			},
 		}
 		input := &o_auth2_0.TokenGrantV3Params{
+			AuthTrustID:  &authTrustId,
 			DeviceID:     &deviceId,
 			ClientID:     &clientId,
 			Code:         &code,
@@ -70,6 +72,7 @@ var TokenGrantV3Cmd = &cobra.Command{
 }
 
 func init() {
+	TokenGrantV3Cmd.Flags().String("authTrustId", "", "Auth trust id")
 	TokenGrantV3Cmd.Flags().String("deviceId", "", "Device id")
 	TokenGrantV3Cmd.Flags().String("clientId", "", "Client id")
 	TokenGrantV3Cmd.Flags().String("code", "", "Code")

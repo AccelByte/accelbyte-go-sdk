@@ -43,6 +43,10 @@ type ClientmodelClientResponse struct {
 	// redirect Uri
 	// Required: true
 	RedirectURI *string `json:"RedirectUri"`
+
+	// two factor enabled
+	// Required: true
+	TwoFactorEnabled *bool `json:"TwoFactorEnabled"`
 }
 
 // Validate validates this clientmodel client response
@@ -70,6 +74,10 @@ func (m *ClientmodelClientResponse) Validate(formats strfmt.Registry) error {
 	}
 
 	if err := m.validateRedirectURI(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateTwoFactorEnabled(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -147,6 +155,15 @@ func (m *ClientmodelClientResponse) validateNamespace(formats strfmt.Registry) e
 func (m *ClientmodelClientResponse) validateRedirectURI(formats strfmt.Registry) error {
 
 	if err := validate.Required("RedirectUri", "body", m.RedirectURI); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *ClientmodelClientResponse) validateTwoFactorEnabled(formats strfmt.Registry) error {
+
+	if err := validate.Required("TwoFactorEnabled", "body", m.TwoFactorEnabled); err != nil {
 		return err
 	}
 

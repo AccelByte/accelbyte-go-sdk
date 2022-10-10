@@ -72,6 +72,11 @@ type PlatformTokenRequestHandlerParams struct {
 
 	*/
 	DeviceID *string
+	/*MacAddress
+	  Mac address of device
+
+	*/
+	MacAddress *string
 	/*Namespace
 	  Requested namespace for token grant
 
@@ -152,6 +157,17 @@ func (o *PlatformTokenRequestHandlerParams) SetDeviceID(deviceID *string) {
 	o.DeviceID = deviceID
 }
 
+// WithMacAddress adds the macAddress to the platform token request handler params
+func (o *PlatformTokenRequestHandlerParams) WithMacAddress(macAddress *string) *PlatformTokenRequestHandlerParams {
+	o.SetMacAddress(macAddress)
+	return o
+}
+
+// SetMacAddress adds the macAddress to the platform token request handler params
+func (o *PlatformTokenRequestHandlerParams) SetMacAddress(macAddress *string) {
+	o.MacAddress = macAddress
+}
+
 // WithNamespace adds the namespace to the platform token request handler params
 func (o *PlatformTokenRequestHandlerParams) WithNamespace(namespace string) *PlatformTokenRequestHandlerParams {
 	o.SetNamespace(namespace)
@@ -203,6 +219,22 @@ func (o *PlatformTokenRequestHandlerParams) WriteToRequest(r runtime.ClientReque
 		fDeviceID := frDeviceID
 		if fDeviceID != "" {
 			if err := r.SetFormParam("device_id", fDeviceID); err != nil {
+				return err
+			}
+		}
+
+	}
+
+	if o.MacAddress != nil {
+
+		// form param macAddress
+		var frMacAddress string
+		if o.MacAddress != nil {
+			frMacAddress = *o.MacAddress
+		}
+		fMacAddress := frMacAddress
+		if fMacAddress != "" {
+			if err := r.SetFormParam("macAddress", fMacAddress); err != nil {
 				return err
 			}
 		}

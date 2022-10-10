@@ -32,6 +32,7 @@ var PlatformTokenGrantV3Cmd = &cobra.Command{
 		clientId, _ := cmd.Flags().GetString("clientId")
 		createHeadless, _ := cmd.Flags().GetBool("createHeadless")
 		deviceId, _ := cmd.Flags().GetString("deviceId")
+		macAddress, _ := cmd.Flags().GetString("macAddress")
 		platformToken, _ := cmd.Flags().GetString("platformToken")
 		httpClient := &http.Client{
 			CheckRedirect: func(req *http.Request, via []*http.Request) error {
@@ -42,6 +43,7 @@ var PlatformTokenGrantV3Cmd = &cobra.Command{
 			ClientID:       &clientId,
 			CreateHeadless: &createHeadless,
 			DeviceID:       &deviceId,
+			MacAddress:     &macAddress,
 			PlatformToken:  &platformToken,
 			PlatformID:     platformId,
 			HTTPClient:     httpClient,
@@ -63,6 +65,7 @@ func init() {
 	PlatformTokenGrantV3Cmd.Flags().String("clientId", "", "Client id")
 	PlatformTokenGrantV3Cmd.Flags().Bool("createHeadless", false, "Create headless")
 	PlatformTokenGrantV3Cmd.Flags().String("deviceId", "", "Device id")
+	PlatformTokenGrantV3Cmd.Flags().String("macAddress", "", "Mac address")
 	PlatformTokenGrantV3Cmd.Flags().String("platformToken", "", "Platform token")
 	PlatformTokenGrantV3Cmd.Flags().String("platformId", "", "Platform id")
 	_ = PlatformTokenGrantV3Cmd.MarkFlagRequired("platformId")

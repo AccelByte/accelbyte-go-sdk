@@ -268,6 +268,43 @@ func (aaa *StoreService) PublicListStores(input *store.PublicListStoresParams) (
 	return ok.GetPayload(), nil
 }
 
+// Deprecated: Use ImportStore1Short instead
+func (aaa *StoreService) ImportStore1(input *store.ImportStore1Params) (*platformclientmodels.ImportStoreResult, error) {
+	token, err := aaa.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, badRequest, notFound, err := aaa.Client.Store.ImportStore1(input, client.BearerToken(*token.AccessToken))
+	if badRequest != nil {
+		return nil, badRequest
+	}
+	if notFound != nil {
+		return nil, notFound
+	}
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
+// Deprecated: Use ExportStore1Short instead
+func (aaa *StoreService) ExportStore1(input *store.ExportStore1Params) error {
+	token, err := aaa.TokenRepository.GetToken()
+	if err != nil {
+		return err
+	}
+	_, notFound, err := aaa.Client.Store.ExportStore1(input, client.BearerToken(*token.AccessToken))
+	if notFound != nil {
+		return notFound
+	}
+	if err != nil {
+		return err
+	}
+
+	return nil
+}
+
 func (aaa *StoreService) ListStoresShort(input *store.ListStoresParams) ([]*platformclientmodels.StoreInfo, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
@@ -575,4 +612,54 @@ func (aaa *StoreService) PublicListStoresShort(input *store.PublicListStoresPara
 	}
 
 	return ok.GetPayload(), nil
+}
+
+func (aaa *StoreService) ImportStore1Short(input *store.ImportStore1Params) (*platformclientmodels.ImportStoreResult, error) {
+	authInfoWriter := input.AuthInfoWriter
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
+	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  aaa.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
+	ok, err := aaa.Client.Store.ImportStore1Short(input, authInfoWriter)
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
+func (aaa *StoreService) ExportStore1Short(input *store.ExportStore1Params) error {
+	authInfoWriter := input.AuthInfoWriter
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
+	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  aaa.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
+	_, err := aaa.Client.Store.ExportStore1Short(input, authInfoWriter)
+	if err != nil {
+		return err
+	}
+
+	return nil
 }

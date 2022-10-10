@@ -1,3 +1,18 @@
+<a name="v0.29.0"></a>
+## [v0.29.0] - 2022-10-11
+
+### Chore
+- **sdk:** regenerate sdk, cli sample app, cli test, doc index for AccelByte Cloud 3.33
+- **spec:** update spec for AccelByte Cloud 3.33
+
+### Docs
+- doc folder adjustments
+- update CHANGELOG.md for v0.29.0 release
+- **operations:** adjust the broken links
+- **operations:** regenerate and delete index suffix
+- **readme:** use the default config and token implementation
+
+
 <a name="v0.28.0"></a>
 ## [v0.28.0] - 2022-09-28
 
@@ -927,6 +942,7 @@ The wrapper have been refactored and has breaking change, these are the list:
 ### Fix
 - delete go.mod ([#1](https://github.com/AccelByte/accelbyte-go-sdk/issues/1))
 
+[v0.29.0]: https://github.com/AccelByte/accelbyte-go-sdk/compare/v0.28.0...v0.29.0
 [v0.28.0]: https://github.com/AccelByte/accelbyte-go-sdk/compare/v0.27.0...v0.28.0
 [v0.27.0]: https://github.com/AccelByte/accelbyte-go-sdk/compare/v0.26.0...v0.27.0
 [v0.26.0]: https://github.com/AccelByte/accelbyte-go-sdk/compare/v0.25.0...v0.26.0

@@ -8,7 +8,7 @@
     },
     "description": "Justice IAM Service",
     "title": "justice-iam-service",
-    "version": "5.17.0"
+    "version": "5.18.0"
   },
   "schemes": [
     "https"
@@ -38,6 +38,9 @@
         "ADMIN:NAMESPACE:{namespace}:CLIENTDOMAIN [UPDATE]": "ADMIN:NAMESPACE:{namespace}:CLIENTDOMAIN [UPDATE]",
         "ADMIN:NAMESPACE:{namespace}:DELETIONSTATUS:USER:{userId} [READ]": "ADMIN:NAMESPACE:{namespace}:DELETIONSTATUS:USER:{userId} [READ]",
         "ADMIN:NAMESPACE:{namespace}:DELETIONSTATUS:USER:{userId} [UPDATE]": "ADMIN:NAMESPACE:{namespace}:DELETIONSTATUS:USER:{userId} [UPDATE]",
+        "ADMIN:NAMESPACE:{namespace}:DEVICE [CREATE]": "ADMIN:NAMESPACE:{namespace}:DEVICE [CREATE]",
+        "ADMIN:NAMESPACE:{namespace}:DEVICE [READ]": "ADMIN:NAMESPACE:{namespace}:DEVICE [READ]",
+        "ADMIN:NAMESPACE:{namespace}:DEVICE [UPDATE]": "ADMIN:NAMESPACE:{namespace}:DEVICE [UPDATE]",
         "ADMIN:NAMESPACE:{namespace}:HISTORY:LOGIN:USER:{userId} [READ]": "ADMIN:NAMESPACE:{namespace}:HISTORY:LOGIN:USER:{userId} [READ]",
         "ADMIN:NAMESPACE:{namespace}:INFORMATION:USER:{userId} [DELETE]": "ADMIN:NAMESPACE:{namespace}:INFORMATION:USER:{userId} [DELETE]",
         "ADMIN:NAMESPACE:{namespace}:JUSTICE:USER:{userId} [READ]": "ADMIN:NAMESPACE:{namespace}:JUSTICE:USER:{userId} [READ]",
@@ -3528,6 +3531,12 @@
             "description": "Device/hardware identifier",
             "in": "formData",
             "name": "device_id",
+            "type": "string"
+          },
+          {
+            "description": "Mac address of device",
+            "in": "formData",
+            "name": "macAddress",
             "type": "string"
           },
           {
@@ -7421,7 +7430,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "Add a new OAuth 2.0 client. Protected by the permission: ADMIN:NAMESPACE:{namespace}:CLIENT [CREATE]\u0026lt;br\u0026gt;\n\t\tA new client automatically granted with these scopes: commerce, account, analytics, publishing, social.\u0026lt;br\u0026gt;\n\t\taction code: 10301\u0026lt;br\u0026gt;\n\t\t\u0026lt;p\u0026gt;\u0026lt;strong\u0026gt;Fields Description:\u0026lt;/strong\u0026gt;\n\t\t\u0026lt;ul\u0026gt;\n\t\t\u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;clientId\u0026lt;/strong\u0026gt; : The client ID. e.g f815e5c44f364993961be3b3f26a7bf4\u0026lt;/li\u0026gt;\n\t\t\u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;clientName\u0026lt;/strong\u0026gt; : The client name. e.g E-commerce\u0026lt;/li\u0026gt;\n\t\t\u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;secret\u0026lt;/strong\u0026gt; : The client\u0026#39;s secret. It\u0026#39;s empty if the client\u0026#39;s type is a public client. Otherwise, the client secret is required\u0026lt;/li\u0026gt;\n\t\t\u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;namespace\u0026lt;/strong\u0026gt; : The namespace where the client lives. e.g sample-game\u0026lt;/li\u0026gt;\n\t\t\u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;redirectUri\u0026lt;/strong\u0026gt; : Contains the redirect URI used in OAuth callback. e.g https://example.net/platform\u0026lt;/li\u0026gt;\n\t\t\u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;oauthClientType\u0026lt;/strong\u0026gt; : The OAuth 2.0 client type. The client type determines whether the authorization needs Proof Of Key Exchange or not. \n\t\t\t\t\tA public client type doesn\u0026#39;t have a client secret and should use PKCE flow. \n\t\t\t\t\tA confidential client type has a client secret and don\u0026#39;t use PKCE flow\n\t\t\t\u0026lt;ul\u0026gt;Supported oAuthClientType :\n\t\t\t\t\u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;Public\u0026lt;/strong\u0026gt;\u0026lt;/li\u0026gt;\n\t\t\t\t\u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;Confidential\u0026lt;/strong\u0026gt;\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;\u0026lt;/li\u0026gt;\n\t\t\u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;audiences\u0026lt;/strong\u0026gt; : List of target client IDs who is intended to receive the token. e.g [\u0026#34;eaaa65618fe24293b00a61454182b435\u0026#34;, \u0026#34;40073ee9bc3446d3a051a71b48509a5d\u0026#34;]\u0026lt;/li\u0026gt;\n\t\t\u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;baseUri\u0026lt;/strong\u0026gt; : A base URI of the application. It is used for making sure the token is intended to be used by the client. e.g https://example.net/platform\u0026lt;/li\u0026gt;\n\t\t\u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;clientPermissions\u0026lt;/strong\u0026gt; : Contains the client\u0026#39;s permissions\u0026lt;/li\u0026gt;\n\t\t\u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;deletable\u0026lt;/strong\u0026gt; : The flag to identify whether client is deletable (optional). default value: true\u0026lt;/li\u0026gt;\n\t\t\u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;clientPlatform\u0026lt;/strong\u0026gt;: available client platform (optional). default value: \u0026#34;\u0026#34;\n  \t\t\t\u0026lt;ul\u0026gt;\n\t\t\t\t\u0026lt;li\u0026gt;Playstation\u0026lt;/li\u0026gt;\n\t\t\t\t\u0026lt;li\u0026gt;Xbox\u0026lt;/li\u0026gt;\n\t\t\t\t\u0026lt;li\u0026gt;Steam\u0026lt;/li\u0026gt;\n\t\t\t\t\u0026lt;li\u0026gt;Epic\u0026lt;/li\u0026gt;\n\t\t\t\t\u0026lt;li\u0026gt;IOS\u0026lt;/li\u0026gt;\n\t\t\t\t\u0026lt;li\u0026gt;GooglePlay\u0026lt;/li\u0026gt;\n\t\t\t\t\u0026lt;li\u0026gt;Nintendo\u0026lt;/li\u0026gt;\n\t\t\t\u0026lt;/ul\u0026gt;\n\t\t\u0026lt;/li\u0026gt;\n\t\t\u0026lt;/ul\u0026gt;\n\t\t\u0026lt;/p\u0026gt;\n\t\t",
+        "description": "Add a new OAuth 2.0 client. Protected by the permission: ADMIN:NAMESPACE:{namespace}:CLIENT [CREATE]\u0026lt;br\u0026gt;\n\t\tA new client automatically granted with these scopes: commerce, account, analytics, publishing, social.\u0026lt;br\u0026gt;\n\t\taction code: 10301\u0026lt;br\u0026gt;\n\t\t\u0026lt;p\u0026gt;\u0026lt;strong\u0026gt;Fields Description:\u0026lt;/strong\u0026gt;\n\t\t\u0026lt;ul\u0026gt;\n\t\t\u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;clientId\u0026lt;/strong\u0026gt; : The client ID. e.g f815e5c44f364993961be3b3f26a7bf4\u0026lt;/li\u0026gt;\n\t\t\u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;clientName\u0026lt;/strong\u0026gt; : The client name. e.g E-commerce\u0026lt;/li\u0026gt;\n\t\t\u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;secret\u0026lt;/strong\u0026gt; : The client\u0026#39;s secret. It\u0026#39;s empty if the client\u0026#39;s type is a public client. Otherwise, the client secret is required\u0026lt;/li\u0026gt;\n\t\t\u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;namespace\u0026lt;/strong\u0026gt; : The namespace where the client lives. e.g sample-game\u0026lt;/li\u0026gt;\n\t\t\u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;redirectUri\u0026lt;/strong\u0026gt; : Contains the redirect URI used in OAuth callback. e.g https://example.net/platform\u0026lt;/li\u0026gt;\n\t\t\u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;oauthClientType\u0026lt;/strong\u0026gt; : The OAuth 2.0 client type. The client type determines whether the authorization needs Proof Of Key Exchange or not. \n\t\t\t\t\tA public client type doesn\u0026#39;t have a client secret and should use PKCE flow. \n\t\t\t\t\tA confidential client type has a client secret and don\u0026#39;t use PKCE flow\n\t\t\t\u0026lt;ul\u0026gt;Supported oAuthClientType :\n\t\t\t\t\u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;Public\u0026lt;/strong\u0026gt;\u0026lt;/li\u0026gt;\n\t\t\t\t\u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;Confidential\u0026lt;/strong\u0026gt;\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;\u0026lt;/li\u0026gt;\n\t\t\u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;audiences\u0026lt;/strong\u0026gt; : List of target client IDs who is intended to receive the token. e.g [\u0026#34;eaaa65618fe24293b00a61454182b435\u0026#34;, \u0026#34;40073ee9bc3446d3a051a71b48509a5d\u0026#34;]\u0026lt;/li\u0026gt;\n\t\t\u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;baseUri\u0026lt;/strong\u0026gt; : A base URI of the application. It is used for making sure the token is intended to be used by the client. e.g https://example.net/platform\u0026lt;/li\u0026gt;\n\t\t\u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;clientPermissions\u0026lt;/strong\u0026gt; : Contains the client\u0026#39;s permissions\u0026lt;/li\u0026gt;\n\t\t\u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;deletable\u0026lt;/strong\u0026gt; : The flag to identify whether client is deletable (optional). default value: true\u0026lt;/li\u0026gt;\n\t\t\u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;clientPlatform\u0026lt;/strong\u0026gt;: available client platform (optional). default value: \u0026#34;\u0026#34;\n  \t\t\t\u0026lt;ul\u0026gt;\n\t\t\t\t\u0026lt;li\u0026gt;Playstation\u0026lt;/li\u0026gt;\n\t\t\t\t\u0026lt;li\u0026gt;Xbox\u0026lt;/li\u0026gt;\n\t\t\t\t\u0026lt;li\u0026gt;Steam\u0026lt;/li\u0026gt;\n\t\t\t\t\u0026lt;li\u0026gt;Epic\u0026lt;/li\u0026gt;\n\t\t\t\t\u0026lt;li\u0026gt;IOS\u0026lt;/li\u0026gt;\n\t\t\t\t\u0026lt;li\u0026gt;GooglePlay\u0026lt;/li\u0026gt;\n\t\t\t\t\u0026lt;li\u0026gt;Nintendo\u0026lt;/li\u0026gt;\n\t\t\t\u0026lt;/ul\u0026gt;\n\t\t\u0026lt;/li\u0026gt;\n        \u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;twoFactorEnabled\u0026lt;/strong\u0026gt;: The flag to indicate whether 2FA validation is enable for this client. default value: false\u0026lt;/li\u0026gt;\n\t\t\u0026lt;/ul\u0026gt;\n\t\t\u0026lt;/p\u0026gt;\n\t\t",
         "operationId": "AdminCreateClientV3",
         "parameters": [
           {
@@ -7631,7 +7640,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "Updates an OAuth 2.0 client. Protected by the permission: ADMIN:NAMESPACE:{namespace}:CLIENT [UPDATE].\n\t\t\t\tSpecify only the fields you want to update in the request payload, e.g. {\u0026#34;ClientName\u0026#34;:\u0026#34;E-commerce\u0026#34;, \u0026#34;BaseUri\u0026#34;:\u0026#34;https://example.net\u0026#34;}\n\t\t\u0026lt;br\u0026gt; action code: 10302\u0026lt;br\u0026gt;\n\t\t\u0026lt;p\u0026gt;\u0026lt;strong\u0026gt;Fields Description:\u0026lt;/strong\u0026gt;\n\t\t\u0026lt;ul\u0026gt;\n\t\t\u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;clientName\u0026lt;/strong\u0026gt; : The client name. It should not be empty if the field exists in the body. e.g E-commerce\u0026lt;/li\u0026gt;\n\t\t\u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;namespace\u0026lt;/strong\u0026gt; : The namespace where the client lives. e.g sample-game\u0026lt;/li\u0026gt;\n\t\t\u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;redirectUri\u0026lt;/strong\u0026gt; : Contains the redirect URI used in OAuth callback. It should not be empty if the field exists in the body.  e.g https://example.net/platform\u0026lt;/li\u0026gt;\n\t\t\u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;audiences\u0026lt;/strong\u0026gt; : List of target client IDs who is intended to receive the token. e.g [\u0026#34;eaaa65618fe24293b00a61454182b435\u0026#34;, \u0026#34;40073ee9bc3446d3a051a71b48509a5d\u0026#34;]\u0026lt;/li\u0026gt;\n\t\t\u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;baseUri\u0026lt;/strong\u0026gt; : A base URI of the application. It is used in the audience checking for making sure the token is used by the right resource server. Required if the application type is a server. e.g https://example.net/platform\u0026lt;/li\u0026gt;\n\t\t\u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;clientPermissions\u0026lt;/strong\u0026gt; : Contains the client\u0026#39;s permissions\u0026lt;/li\u0026gt;\n\t\t\u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;deletable\u0026lt;/strong\u0026gt; : The flag to identify whether client is deletable (optional). e.g. true\u0026lt;/li\u0026gt;\n\t\t\u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;clientPlatform\u0026lt;/strong\u0026gt; : available client platform (optional). default value: \u0026#34;\u0026#34;.\n  \t\t\t\u0026lt;ul\u0026gt;\n\t\t\t\t\u0026lt;li\u0026gt;Playstation\u0026lt;/li\u0026gt;\n\t\t\t\t\u0026lt;li\u0026gt;Xbox\u0026lt;/li\u0026gt;\n\t\t\t\t\u0026lt;li\u0026gt;Steam\u0026lt;/li\u0026gt;\n\t\t\t\t\u0026lt;li\u0026gt;Epic\u0026lt;/li\u0026gt;\n\t\t\t\t\u0026lt;li\u0026gt;IOS\u0026lt;/li\u0026gt;\n\t\t\t\t\u0026lt;li\u0026gt;GooglePlay\u0026lt;/li\u0026gt;\n\t\t\t\t\u0026lt;li\u0026gt;Nintendo\u0026lt;/li\u0026gt;\n\t\t\t\u0026lt;/ul\u0026gt;\n\t\t\u0026lt;/li\u0026gt;\n\t\t\u0026lt;/ul\u0026gt;\n\t\t\u0026lt;/p\u0026gt;",
+        "description": "Updates an OAuth 2.0 client. Protected by the permission: ADMIN:NAMESPACE:{namespace}:CLIENT [UPDATE].\n\t\t\t\tSpecify only the fields you want to update in the request payload, e.g. {\u0026#34;ClientName\u0026#34;:\u0026#34;E-commerce\u0026#34;, \u0026#34;BaseUri\u0026#34;:\u0026#34;https://example.net\u0026#34;}\n\t\t\u0026lt;br\u0026gt; action code: 10302\u0026lt;br\u0026gt;\n\t\t\u0026lt;p\u0026gt;\u0026lt;strong\u0026gt;Fields Description:\u0026lt;/strong\u0026gt;\n\t\t\u0026lt;ul\u0026gt;\n\t\t\u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;clientName\u0026lt;/strong\u0026gt; : The client name. It should not be empty if the field exists in the body. e.g E-commerce\u0026lt;/li\u0026gt;\n\t\t\u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;namespace\u0026lt;/strong\u0026gt; : The namespace where the client lives. e.g sample-game\u0026lt;/li\u0026gt;\n\t\t\u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;redirectUri\u0026lt;/strong\u0026gt; : Contains the redirect URI used in OAuth callback. It should not be empty if the field exists in the body.  e.g https://example.net/platform\u0026lt;/li\u0026gt;\n\t\t\u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;audiences\u0026lt;/strong\u0026gt; : List of target client IDs who is intended to receive the token. e.g [\u0026#34;eaaa65618fe24293b00a61454182b435\u0026#34;, \u0026#34;40073ee9bc3446d3a051a71b48509a5d\u0026#34;]\u0026lt;/li\u0026gt;\n\t\t\u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;baseUri\u0026lt;/strong\u0026gt; : A base URI of the application. It is used in the audience checking for making sure the token is used by the right resource server. Required if the application type is a server. e.g https://example.net/platform\u0026lt;/li\u0026gt;\n\t\t\u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;clientPermissions\u0026lt;/strong\u0026gt; : Contains the client\u0026#39;s permissions\u0026lt;/li\u0026gt;\n\t\t\u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;deletable\u0026lt;/strong\u0026gt; : The flag to identify whether client is deletable (optional). e.g. true\u0026lt;/li\u0026gt;\n\t\t\u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;clientPlatform\u0026lt;/strong\u0026gt; : available client platform (optional). default value: \u0026#34;\u0026#34;.\n  \t\t\t\u0026lt;ul\u0026gt;\n\t\t\t\t\u0026lt;li\u0026gt;Playstation\u0026lt;/li\u0026gt;\n\t\t\t\t\u0026lt;li\u0026gt;Xbox\u0026lt;/li\u0026gt;\n\t\t\t\t\u0026lt;li\u0026gt;Steam\u0026lt;/li\u0026gt;\n\t\t\t\t\u0026lt;li\u0026gt;Epic\u0026lt;/li\u0026gt;\n\t\t\t\t\u0026lt;li\u0026gt;IOS\u0026lt;/li\u0026gt;\n\t\t\t\t\u0026lt;li\u0026gt;GooglePlay\u0026lt;/li\u0026gt;\n\t\t\t\t\u0026lt;li\u0026gt;Nintendo\u0026lt;/li\u0026gt;\n\t\t\t\u0026lt;/ul\u0026gt;\n\t\t\u0026lt;/li\u0026gt;\n        \u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;twoFactorEnabled\u0026lt;/strong\u0026gt;: The flag to indicate whether 2FA validation is enable for this client. default value: false\u0026lt;/li\u0026gt;\n\t\t\u0026lt;/ul\u0026gt;\n\t\t\u0026lt;/p\u0026gt;",
         "operationId": "AdminUpdateClientV3",
         "parameters": [
           {
@@ -10361,7 +10370,7 @@
     },
     "/iam/v3/admin/namespaces/{namespace}/users/{userId}/information": {
       "delete": {
-        "description": "Required permissions \u0026#39;ADMIN:NAMESPACE:{namespace}:INFORMATION:USER:{userId} [DELETE]\u0026#39;.",
+        "description": "[WARNING] This endpoint is deleting user data from database directly by skipping GDPR flow.Required permissions \u0026#39;ADMIN:NAMESPACE:{namespace}:INFORMATION:USER:{userId} [DELETE]\u0026#39;.",
         "operationId": "AdminDeleteUserInformationV3",
         "parameters": [
           {
@@ -13147,7 +13156,7 @@
         "consumes": [
           "application/x-www-form-urlencoded"
         ],
-        "description": "\u0026lt;p\u0026gt;This endpoint is being used to authenticate a user account. \n\t\t\t\t\tIt validates user\u0026#39;s email / username and password. Deactivated or login-banned users are unable to login\n\t\t\t\t\tRedirect URI and Client ID must be specified as a pair and only used to redirect to the specified\n\t\t\t\t\tredirect URI in case the requestId is no longer valid.\u0026lt;/p\u0026gt;\n\t\t\t\t\t\u0026lt;br\u0026gt;action code: 10801",
+        "description": "This endpoint is being used to authenticate a user account. \nIt validates user\u0026#39;s email / username and password.\nDeactivated or login-banned users are unable to login.\nRedirect URI and Client ID must be specified as a pair and only used to redirect to the specified redirect URI in case the requestId is no longer valid.\n\n\u0026lt;h2\u0026gt;Device Cookie Validation\u0026lt;/h2\u0026gt;\n\nDevice Cookie is used to protect the user account from brute force login attack, \u0026lt;a target=\u0026#34;_blank\u0026#34; href=\u0026#34;https://owasp.org/www-community/Slow_Down_Online_Guessing_Attacks_with_Device_Cookies\u0026#34;\u0026gt;more detail from OWASP\u0026lt;a\u0026gt;.\nThis endpoint will read device cookie from cookie \u0026lt;b\u0026gt;auth-trust-id\u0026lt;/b\u0026gt;. If device cookie not found, it will generate a new one and set it into cookie when successfully authenticate.\n\nAction code: 10801",
         "operationId": "UserAuthenticationV3",
         "parameters": [
           {
@@ -13217,7 +13226,7 @@
         "consumes": [
           "application/x-www-form-urlencoded"
         ],
-        "description": "\u0026lt;p\u0026gt;This endpoint is being used to authenticate a user account and perform platform link. \n\t\t\t\t\tIt validates user\u0026#39;s email / username and password. If user already enable 2FA, \n\t\t\t\t\tinvoke \u0026#39;\u0026#39;/mfa/verify\u0026#39; with response\u0026#39;s mfa_token\u0026#39;\u0026lt;/p\u0026gt;",
+        "description": "This endpoint is being used to authenticate a user account and perform platform link. \nIt validates user\u0026#39;s email / username and password. \nIf user already enable 2FA, then invoke \u0026lt;i\u0026gt;/mfa/verify\u0026lt;/i\u0026gt; using \u0026lt;b\u0026gt;mfa_token\u0026lt;/b\u0026gt; from this endpoint response.\n\n\u0026lt;h2\u0026gt;Device Cookie Validation\u0026lt;/h2\u0026gt;\n\nDevice Cookie is used to protect the user account from brute force login attack, \u0026lt;a target=\u0026#34;_blank\u0026#34; href=\u0026#34;https://owasp.org/www-community/Slow_Down_Online_Guessing_Attacks_with_Device_Cookies\u0026#34;\u0026gt;more detail from OWASP\u0026lt;a\u0026gt;.\nThis endpoint will read device cookie from cookie \u0026lt;b\u0026gt;auth-trust-id\u0026lt;/b\u0026gt;. If device cookie not found, it will generate a new one and set it into cookie when successfully authenticate.\n",
         "operationId": "AuthenticationWithPlatformLinkV3",
         "parameters": [
           {
@@ -14038,6 +14047,12 @@
             "type": "string"
           },
           {
+            "description": "Mac address of device",
+            "in": "formData",
+            "name": "macAddress",
+            "type": "string"
+          },
+          {
             "description": "Token from platform auth",
             "in": "formData",
             "name": "platform_token",
@@ -14062,6 +14077,12 @@
           },
           "401": {
             "description": "Client authentication failed",
+            "schema": {
+              "$ref": "#/definitions/oauthmodel.ErrorResponse"
+            }
+          },
+          "403": {
+            "description": "Forbidden",
             "schema": {
               "$ref": "#/definitions/oauthmodel.ErrorResponse"
             }
@@ -14155,7 +14176,7 @@
         "consumes": [
           "application/x-www-form-urlencoded"
         ],
-        "description": "\u0026lt;p\u0026gt;This endpoint supports grant type:\u0026lt;/p\u0026gt;\u0026lt;ol\u0026gt;\n\t \t\t\u0026lt;li\u0026gt;Grant Type == \u0026lt;code\u0026gt;authorization_code\u0026lt;/code\u0026gt;:\u0026lt;br /\u0026gt;\n\t\t\t\t\u0026amp;nbsp;\u0026amp;nbsp;\u0026amp;nbsp; It generates the user token by given the authorization\n\t\t\t\tcode which generated in \u0026#34;/iam/v3/authenticate\u0026#34; API response. It should also pass\n\t\t\t\tin the redirect_uri, which should be the same as generating the\n\t\t\t\tauthorization code request.\n\t\t\t\u0026lt;/li\u0026gt;\n\t\t\t\u0026lt;li\u0026gt;Grant Type == \u0026lt;code\u0026gt;password\u0026lt;/code\u0026gt;:\u0026lt;br /\u0026gt;\n\t \t\t\t\u0026amp;nbsp;\u0026amp;nbsp;\u0026amp;nbsp; The grant type to use for authenticating a user, whether it\u0026#39;s by email / username and password combination\n\t\t\t\tor through platform.\n\t\t\t\u0026lt;/li\u0026gt;\n\t\t\t\u0026lt;li\u0026gt;Grant Type == \u0026lt;code\u0026gt;refresh_token\u0026lt;/code\u0026gt;:\u0026lt;br /\u0026gt;\n\t \t\t\t\u0026amp;nbsp;\u0026amp;nbsp;\u0026amp;nbsp; Used to get a new access token for a valid refresh token.\n\t\t\t\u0026lt;/li\u0026gt;\n\t\t\t\u0026lt;li\u0026gt;Grant Type == \u0026lt;code\u0026gt;client_credentials\u0026lt;/code\u0026gt;:\u0026lt;br /\u0026gt;\n\t \t\t\t\u0026amp;nbsp;\u0026amp;nbsp;\u0026amp;nbsp; It generates a token by checking the client credentials provided through Authorization header.\n\t\t\t\u0026lt;/li\u0026gt;\u0026lt;/ol\u0026gt;\n\t\t\t\u0026lt;h2\u0026gt;Access Token Content\u0026lt;/h2\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;Following is the access token’s content:\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;ul\u0026gt;\n\t\t\t\u0026lt;li\u0026gt;\n\t\t\t\t\u0026lt;p\u0026gt;\u0026lt;strong\u0026gt;namespace\u0026lt;/strong\u0026gt;. It is the namespace the token was generated from.\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;/li\u0026gt;\n\t\t\t\u0026lt;li\u0026gt;\n\t\t\t\t\u0026lt;p\u0026gt;\u0026lt;strong\u0026gt;display_name\u0026lt;/strong\u0026gt;. The display name of the sub. It is empty if the token is generated from the client credential\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;/li\u0026gt;\n\t\t\t\u0026lt;li\u0026gt;\n\t\t\t\t\u0026lt;p\u0026gt;\u0026lt;strong\u0026gt;roles\u0026lt;/strong\u0026gt;. The sub’s roles. It is empty if the token is generated from the client credential\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;/li\u0026gt;\n\t\t\t\u0026lt;li\u0026gt;\n\t\t\t\t\u0026lt;p\u0026gt;\u0026lt;strong\u0026gt;namespace_roles\u0026lt;/strong\u0026gt;. The sub’s roles scoped to namespace. Improvement from roles, which make the role scoped to specific namespace instead of global to publisher namespace\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;/li\u0026gt;\n\t\t\t\u0026lt;li\u0026gt;\n\t\t\t\t\u0026lt;p\u0026gt;\u0026lt;strong\u0026gt;permissions\u0026lt;/strong\u0026gt;. The sub or aud’ permissions\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;/li\u0026gt;\n\t\t\t\u0026lt;li\u0026gt;\n\t\t\t\t\u0026lt;p\u0026gt;\u0026lt;strong\u0026gt;bans\u0026lt;/strong\u0026gt;. The sub’s list of bans. It is used by the IAM client for validating the token.\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;/li\u0026gt;\n\t\t\t\u0026lt;li\u0026gt;\n\t\t\t\t\u0026lt;p\u0026gt;\u0026lt;strong\u0026gt;jflgs\u0026lt;/strong\u0026gt;. It stands for Justice Flags. It is a special flag used for storing additional status information regarding the sub. It is implemented as a bit mask. Following explains what each bit represents:\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;ul\u0026gt;\n\t\t\t\t\u0026lt;li\u0026gt;\u0026lt;p\u0026gt;1: Email Address Verified\u0026lt;/p\u0026gt;\u0026lt;/li\u0026gt;\n\t\t\t\t\u0026lt;li\u0026gt;\u0026lt;p\u0026gt;2: Phone Number Verified\u0026lt;/p\u0026gt;\u0026lt;/li\u0026gt;\n\t\t\t\t\u0026lt;li\u0026gt;\u0026lt;p\u0026gt;4: Anonymous\u0026lt;/p\u0026gt;\u0026lt;/li\u0026gt;\n\t\t\t\t\u0026lt;li\u0026gt;\u0026lt;p\u0026gt;8: Suspicious Login\u0026lt;/p\u0026gt;\u0026lt;/li\u0026gt;\n\t\t\t\u0026lt;/ul\u0026gt;\n\t\t\t\u0026lt;/li\u0026gt;\n\t\t\t\u0026lt;li\u0026gt;\n\t\t\t\t\u0026lt;p\u0026gt;\u0026lt;strong\u0026gt;aud\u0026lt;/strong\u0026gt;. The aud is the targeted resource server.\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;/li\u0026gt;\n\t\t\t\u0026lt;li\u0026gt;\n\t\t\t\t\u0026lt;p\u0026gt;\u0026lt;strong\u0026gt;iat\u0026lt;/strong\u0026gt;. The time the token issues at. It is in Epoch time format\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;/li\u0026gt;\n\t\t\t\u0026lt;li\u0026gt;\n\t\t\t\t\u0026lt;p\u0026gt;\u0026lt;strong\u0026gt;exp\u0026lt;/strong\u0026gt;. The time the token expires. It is in Epoch time format\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;/li\u0026gt;\n\t\t\t\u0026lt;li\u0026gt;\n\t\t\t\t\u0026lt;p\u0026gt;\u0026lt;strong\u0026gt;client_id\u0026lt;/strong\u0026gt;. The UserID. The sub is omitted if the token is generated from client credential\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;/li\u0026gt;\t\n\t\t\t\u0026lt;li\u0026gt;\n\t\t\t\t\u0026lt;p\u0026gt;\u0026lt;strong\u0026gt;scope\u0026lt;/strong\u0026gt;. The scope of the access request, expressed as a list of space-delimited, case-sensitive strings\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;/li\u0026gt;\n\t\t\t\u0026lt;/ul\u0026gt;\n\t\t\t\u0026lt;h2\u0026gt;Bans\u0026lt;/h2\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;The JWT contains user\u0026#39;s active bans with its expiry date. List of ban types can be obtained from /bans.\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;h2\u0026gt;Track Login History\u0026lt;/h2\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;This endpoint will track login history to detect suspicious login activity, please provide \u0026#34;device_id\u0026#34; (alphanumeric) in request header parameter otherwise we will set to \u0026#34;unknown\u0026#34;.\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;Align with General Data Protection Regulation in Europe, user login history will be kept within 28 days by default\u0026#34;\u0026lt;/p\u0026gt;\n            \u0026lt;h2\u0026gt;2FA remember device\u0026lt;/h2\u0026gt;\n            \u0026lt;p\u0026gt;To remember device for 2FA, should provide cookie: device_token or header: Device-Token\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;action code: 10703",
+        "description": "\u0026lt;p\u0026gt;This endpoint supports grant type:\u0026lt;/p\u0026gt;\u0026lt;ol\u0026gt;\n\t \t\t\u0026lt;li\u0026gt;Grant Type == \u0026lt;code\u0026gt;authorization_code\u0026lt;/code\u0026gt;:\u0026lt;br /\u0026gt;\n\t\t\t\t\u0026amp;nbsp;\u0026amp;nbsp;\u0026amp;nbsp; It generates the user token by given the authorization\n\t\t\t\tcode which generated in \u0026#34;/iam/v3/authenticate\u0026#34; API response. It should also pass\n\t\t\t\tin the redirect_uri, which should be the same as generating the\n\t\t\t\tauthorization code request.\n\t\t\t\u0026lt;/li\u0026gt;\n\t\t\t\u0026lt;li\u0026gt;Grant Type == \u0026lt;code\u0026gt;password\u0026lt;/code\u0026gt;:\u0026lt;br /\u0026gt;\n\t \t\t\t\u0026amp;nbsp;\u0026amp;nbsp;\u0026amp;nbsp; The grant type to use for authenticating a user, whether it\u0026#39;s by email / username and password combination\n\t\t\t\tor through platform.\n\t\t\t\u0026lt;/li\u0026gt;\n\t\t\t\u0026lt;li\u0026gt;Grant Type == \u0026lt;code\u0026gt;refresh_token\u0026lt;/code\u0026gt;:\u0026lt;br /\u0026gt;\n\t \t\t\t\u0026amp;nbsp;\u0026amp;nbsp;\u0026amp;nbsp; Used to get a new access token for a valid refresh token.\n\t\t\t\u0026lt;/li\u0026gt;\n\t\t\t\u0026lt;li\u0026gt;Grant Type == \u0026lt;code\u0026gt;client_credentials\u0026lt;/code\u0026gt;:\u0026lt;br /\u0026gt;\n\t \t\t\t\u0026amp;nbsp;\u0026amp;nbsp;\u0026amp;nbsp; It generates a token by checking the client credentials provided through Authorization header.\n\t\t\t\u0026lt;/li\u0026gt;\u0026lt;/ol\u0026gt;\n\t\t\t\u0026lt;h2\u0026gt;Access Token Content\u0026lt;/h2\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;Following is the access token’s content:\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;ul\u0026gt;\n\t\t\t\u0026lt;li\u0026gt;\n\t\t\t\t\u0026lt;p\u0026gt;\u0026lt;strong\u0026gt;namespace\u0026lt;/strong\u0026gt;. It is the namespace the token was generated from.\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;/li\u0026gt;\n\t\t\t\u0026lt;li\u0026gt;\n\t\t\t\t\u0026lt;p\u0026gt;\u0026lt;strong\u0026gt;display_name\u0026lt;/strong\u0026gt;. The display name of the sub. It is empty if the token is generated from the client credential\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;/li\u0026gt;\n\t\t\t\u0026lt;li\u0026gt;\n\t\t\t\t\u0026lt;p\u0026gt;\u0026lt;strong\u0026gt;roles\u0026lt;/strong\u0026gt;. The sub’s roles. It is empty if the token is generated from the client credential\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;/li\u0026gt;\n\t\t\t\u0026lt;li\u0026gt;\n\t\t\t\t\u0026lt;p\u0026gt;\u0026lt;strong\u0026gt;namespace_roles\u0026lt;/strong\u0026gt;. The sub’s roles scoped to namespace. Improvement from roles, which make the role scoped to specific namespace instead of global to publisher namespace\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;/li\u0026gt;\n\t\t\t\u0026lt;li\u0026gt;\n\t\t\t\t\u0026lt;p\u0026gt;\u0026lt;strong\u0026gt;permissions\u0026lt;/strong\u0026gt;. The sub or aud’ permissions\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;/li\u0026gt;\n\t\t\t\u0026lt;li\u0026gt;\n\t\t\t\t\u0026lt;p\u0026gt;\u0026lt;strong\u0026gt;bans\u0026lt;/strong\u0026gt;. The sub’s list of bans. It is used by the IAM client for validating the token.\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;/li\u0026gt;\n\t\t\t\u0026lt;li\u0026gt;\n\t\t\t\t\u0026lt;p\u0026gt;\u0026lt;strong\u0026gt;jflgs\u0026lt;/strong\u0026gt;. It stands for Justice Flags. It is a special flag used for storing additional status information regarding the sub. It is implemented as a bit mask. Following explains what each bit represents:\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;ul\u0026gt;\n\t\t\t\t\u0026lt;li\u0026gt;\u0026lt;p\u0026gt;1: Email Address Verified\u0026lt;/p\u0026gt;\u0026lt;/li\u0026gt;\n\t\t\t\t\u0026lt;li\u0026gt;\u0026lt;p\u0026gt;2: Phone Number Verified\u0026lt;/p\u0026gt;\u0026lt;/li\u0026gt;\n\t\t\t\t\u0026lt;li\u0026gt;\u0026lt;p\u0026gt;4: Anonymous\u0026lt;/p\u0026gt;\u0026lt;/li\u0026gt;\n\t\t\t\t\u0026lt;li\u0026gt;\u0026lt;p\u0026gt;8: Suspicious Login\u0026lt;/p\u0026gt;\u0026lt;/li\u0026gt;\n\t\t\t\u0026lt;/ul\u0026gt;\n\t\t\t\u0026lt;/li\u0026gt;\n\t\t\t\u0026lt;li\u0026gt;\n\t\t\t\t\u0026lt;p\u0026gt;\u0026lt;strong\u0026gt;aud\u0026lt;/strong\u0026gt;. The aud is the targeted resource server.\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;/li\u0026gt;\n\t\t\t\u0026lt;li\u0026gt;\n\t\t\t\t\u0026lt;p\u0026gt;\u0026lt;strong\u0026gt;iat\u0026lt;/strong\u0026gt;. The time the token issues at. It is in Epoch time format\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;/li\u0026gt;\n\t\t\t\u0026lt;li\u0026gt;\n\t\t\t\t\u0026lt;p\u0026gt;\u0026lt;strong\u0026gt;exp\u0026lt;/strong\u0026gt;. The time the token expires. It is in Epoch time format\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;/li\u0026gt;\n\t\t\t\u0026lt;li\u0026gt;\n\t\t\t\t\u0026lt;p\u0026gt;\u0026lt;strong\u0026gt;client_id\u0026lt;/strong\u0026gt;. The UserID. The sub is omitted if the token is generated from client credential\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;/li\u0026gt;\t\n\t\t\t\u0026lt;li\u0026gt;\n\t\t\t\t\u0026lt;p\u0026gt;\u0026lt;strong\u0026gt;scope\u0026lt;/strong\u0026gt;. The scope of the access request, expressed as a list of space-delimited, case-sensitive strings\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;/li\u0026gt;\n\t\t\t\u0026lt;/ul\u0026gt;\n\t\t\t\u0026lt;h2\u0026gt;Bans\u0026lt;/h2\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;The JWT contains user\u0026#39;s active bans with its expiry date. List of ban types can be obtained from /bans.\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;h2\u0026gt;Device Cookie Validation\u0026lt;/h2\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;\u0026lt;i\u0026gt;\u0026lt;b\u0026gt;For grant type \u0026#34;password\u0026#34; only\u0026lt;/b\u0026gt;\u0026lt;/i\u0026gt;\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;Device Cookie is used to protect the user account from brute force login attack, \u0026lt;a target=\u0026#34;_blank\u0026#34; href=\u0026#34;https://owasp.org/www-community/Slow_Down_Online_Guessing_Attacks_with_Device_Cookies\u0026#34;\u0026gt;more detail from OWASP\u0026lt;a\u0026gt;.\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;This endpoint will read device cookie from request header \u0026lt;b\u0026gt;Auth-Trust-Id\u0026lt;/b\u0026gt;. If device cookie not found, it will generate a new one and set it into response body \u0026lt;b\u0026gt;auth_trust_id\u0026lt;/b\u0026gt; when successfully login.\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;h2\u0026gt;Track Login History\u0026lt;/h2\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;This endpoint will track login history to detect suspicious login activity, please provide \u0026lt;b\u0026gt;Device-Id\u0026lt;/b\u0026gt; (alphanumeric) in request header parameter otherwise it will set to \u0026#34;unknown\u0026#34;.\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;Align with General Data Protection Regulation in Europe, user login history will be kept within 28 days by default\u0026#34;\u0026lt;/p\u0026gt;\n            \u0026lt;h2\u0026gt;2FA remember device\u0026lt;/h2\u0026gt;\n            \u0026lt;p\u0026gt;To remember device for 2FA, should provide cookie: device_token or header: Device-Token\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;action code: 10703",
         "operationId": "TokenGrantV3",
         "parameters": [
           {
@@ -14222,6 +14243,12 @@
             "type": "string"
           },
           {
+            "description": "Auth-Trust-Id for Device Cookie Validation (Used on grant type 'password')",
+            "in": "header",
+            "name": "Auth-Trust-Id",
+            "type": "string"
+          },
+          {
             "description": "DeviceID (Used on grant type 'password' to track login history) ex. 90252d14544846d79f367148e3f9a3d9",
             "in": "header",
             "name": "device_id",
@@ -14235,7 +14262,7 @@
           "200": {
             "description": "Token returned",
             "schema": {
-              "$ref": "#/definitions/oauthmodel.TokenResponseV3"
+              "$ref": "#/definitions/oauthmodel.TokenWithDeviceCookieResponseV3"
             }
           },
           "400": {
@@ -14252,6 +14279,12 @@
           },
           "403": {
             "description": "Unauthorized access",
+            "schema": {
+              "$ref": "#/definitions/oauthmodel.ErrorResponse"
+            }
+          },
+          "429": {
+            "description": "Too many failed auth attempt",
             "schema": {
               "$ref": "#/definitions/oauthmodel.ErrorResponse"
             }
@@ -17642,6 +17675,839 @@
         "summary": "Generate game token by code",
         "tags": [
           "OAuth2.0 - Extension"
+        ]
+      }
+    },
+    "/iam/v4/admin/namespaces/{namespace}/devices": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "      \u0026lt;p\u0026gt;This is the endpoint for an admin to get devices a user ever used to login.\u0026lt;br\u0026gt;\n\u0026lt;p\u0026gt;Required permission \u0026lt;pre\u0026gt;\u0026#39;ADMIN:NAMESPACE:{namespace}:DEVICE [READ]\u0026#39;\u0026lt;/pre\u0026gt;\u0026lt;/p\u0026gt;\n",
+        "operationId": "AdminGetDevicesByUserV4",
+        "parameters": [
+          {
+            "description": "Namespace, only accept alphabet and numeric",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "user id",
+            "in": "query",
+            "name": "userId",
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "Operation succeeded",
+            "schema": {
+              "$ref": "#/definitions/model.DevicesResponseV4"
+            }
+          },
+          "400": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20002\u003c/td\u003e\u003ctd\u003evalidation error\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20021\u003c/td\u003e\u003ctd\u003einvalid pagination parameter\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/rest.ErrorResponse"
+            }
+          },
+          "401": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20001\u003c/td\u003e\u003ctd\u003eunauthorized access\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/rest.ErrorResponse"
+            }
+          },
+          "404": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e10139\u003c/td\u003e\u003ctd\u003eplatform account not found\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/rest.ErrorResponse"
+            }
+          },
+          "500": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20000\u003c/td\u003e\u003ctd\u003einternal server error\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/rest.ErrorResponse"
+            }
+          }
+        },
+        "security": [
+          {
+            "HasPermission": [
+              "ADMIN:NAMESPACE:{namespace}:DEVICE [READ]"
+            ],
+            "authorization": []
+          }
+        ],
+        "summary": "Admin get devices by user id",
+        "tags": [
+          "Devices V4"
+        ]
+      }
+    },
+    "/iam/v4/admin/namespaces/{namespace}/devices/banned": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "      \u0026lt;p\u0026gt;This is the endpoint for an admin to get banned devices.\u0026lt;br\u0026gt;\n\u0026lt;p\u0026gt;Required permission \u0026lt;pre\u0026gt;\u0026#39;ADMIN:NAMESPACE:{namespace}:DEVICE [READ]\u0026#39;\u0026lt;/pre\u0026gt;\u0026lt;/p\u0026gt;\n",
+        "operationId": "AdminGetBannedDevicesV4",
+        "parameters": [
+          {
+            "description": "Namespace, only accept alphabet and numeric",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "device type",
+            "in": "query",
+            "name": "deviceType",
+            "type": "string"
+          },
+          {
+            "description": "end date",
+            "in": "query",
+            "name": "endDate",
+            "type": "string"
+          },
+          {
+            "description": "the maximum number of data that may be returned (1...100)",
+            "in": "query",
+            "name": "limit",
+            "type": "integer"
+          },
+          {
+            "description": "the count to skip",
+            "in": "query",
+            "name": "offset",
+            "type": "integer"
+          },
+          {
+            "description": "start date",
+            "in": "query",
+            "name": "startDate",
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "Operation succeeded",
+            "schema": {
+              "$ref": "#/definitions/model.DeviceBannedResponseV4"
+            }
+          },
+          "401": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20001\u003c/td\u003e\u003ctd\u003eunauthorized access\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/rest.ErrorResponse"
+            }
+          },
+          "500": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20000\u003c/td\u003e\u003ctd\u003einternal server error\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/rest.ErrorResponse"
+            }
+          }
+        },
+        "security": [
+          {
+            "HasPermission": [
+              "ADMIN:NAMESPACE:{namespace}:DEVICE [READ]"
+            ],
+            "authorization": []
+          }
+        ],
+        "summary": "Admin get banned devices",
+        "tags": [
+          "Devices V4"
+        ]
+      }
+    },
+    "/iam/v4/admin/namespaces/{namespace}/devices/bans": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "      \u0026lt;p\u0026gt;This is the endpoint for an admin to get device bans of user.\u0026lt;br\u0026gt;\n\u0026lt;p\u0026gt;Required permission \u0026lt;pre\u0026gt;\u0026#39;ADMIN:NAMESPACE:{namespace}:DEVICE [READ]\u0026#39;\u0026lt;/pre\u0026gt;\u0026lt;/p\u0026gt;\n",
+        "operationId": "AdminGetUserDeviceBansV4",
+        "parameters": [
+          {
+            "description": "Namespace, only accept alphabet and numeric",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "user id",
+            "in": "query",
+            "name": "userId",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "Operation succeeded",
+            "schema": {
+              "$ref": "#/definitions/model.DeviceBansResponseV4"
+            }
+          },
+          "401": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20001\u003c/td\u003e\u003ctd\u003eunauthorized access\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/rest.ErrorResponse"
+            }
+          },
+          "404": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e10139\u003c/td\u003e\u003ctd\u003eplatform account not found\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/rest.ErrorResponse"
+            }
+          },
+          "500": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20000\u003c/td\u003e\u003ctd\u003einternal server error\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/rest.ErrorResponse"
+            }
+          }
+        },
+        "security": [
+          {
+            "HasPermission": [
+              "ADMIN:NAMESPACE:{namespace}:DEVICE [READ]"
+            ],
+            "authorization": []
+          }
+        ],
+        "summary": "Admin get device bans of user",
+        "tags": [
+          "Devices V4"
+        ]
+      },
+      "post": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "      \u0026lt;p\u0026gt;This is the endpoint for an admin to ban a device.\u0026lt;br\u0026gt;\n\u0026lt;p\u0026gt;Required permission \u0026lt;pre\u0026gt;\u0026#39;ADMIN:NAMESPACE:{namespace}:DEVICE [CREATE]\u0026#39;\u0026lt;/pre\u0026gt;\u0026lt;/p\u0026gt;\n",
+        "operationId": "AdminBanDeviceV4",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/model.DeviceBanRequestV4"
+            }
+          },
+          {
+            "description": "Namespace, only accept alphabet and numeric",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "204": {
+            "description": "Operation succeeded"
+          },
+          "400": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20019\u003c/td\u003e\u003ctd\u003eunable to parse request body\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20002\u003c/td\u003e\u003ctd\u003evalidation error\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e10204\u003c/td\u003e\u003ctd\u003edevice can not be banned\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/rest.ErrorResponse"
+            }
+          },
+          "401": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20001\u003c/td\u003e\u003ctd\u003eunauthorized access\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/rest.ErrorResponse"
+            }
+          },
+          "409": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e10202\u003c/td\u003e\u003ctd\u003eactive device ban config already exists\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/rest.ErrorResponse"
+            }
+          },
+          "500": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20000\u003c/td\u003e\u003ctd\u003einternal server error\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/rest.ErrorResponse"
+            }
+          }
+        },
+        "security": [
+          {
+            "HasPermission": [
+              "ADMIN:NAMESPACE:{namespace}:DEVICE [CREATE]"
+            ],
+            "authorization": []
+          }
+        ],
+        "summary": "Admin Ban a device",
+        "tags": [
+          "Devices V4"
+        ]
+      }
+    },
+    "/iam/v4/admin/namespaces/{namespace}/devices/bans/{banId}": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "      \u0026lt;p\u0026gt;This is the endpoint for an admin to get device ban config.\u0026lt;br\u0026gt;\n\u0026lt;p\u0026gt;Required permission \u0026lt;pre\u0026gt;\u0026#39;ADMIN:NAMESPACE:{namespace}:DEVICE [READ]\u0026#39;\u0026lt;/pre\u0026gt;\u0026lt;/p\u0026gt;\n",
+        "operationId": "AdminGetDeviceBanV4",
+        "parameters": [
+          {
+            "description": "device id",
+            "in": "path",
+            "name": "banId",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "Namespace, only accept alphabet and numeric",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "Operation succeeded",
+            "schema": {
+              "$ref": "#/definitions/model.DeviceBanResponseV4"
+            }
+          },
+          "400": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20002\u003c/td\u003e\u003ctd\u003evalidation error\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/rest.ErrorResponse"
+            }
+          },
+          "401": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20001\u003c/td\u003e\u003ctd\u003eunauthorized access\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/rest.ErrorResponse"
+            }
+          },
+          "404": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e10158\u003c/td\u003e\u003ctd\u003eban not found\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/rest.ErrorResponse"
+            }
+          },
+          "500": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20000\u003c/td\u003e\u003ctd\u003einternal server error\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/rest.ErrorResponse"
+            }
+          }
+        },
+        "security": [
+          {
+            "HasPermission": [
+              "ADMIN:NAMESPACE:{namespace}:DEVICE [READ]"
+            ],
+            "authorization": []
+          }
+        ],
+        "summary": "Admin get device ban config",
+        "tags": [
+          "Devices V4"
+        ]
+      },
+      "put": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "      \u0026lt;p\u0026gt;This is the endpoint for an admin to update a device ban config.\u0026lt;br\u0026gt;\n\u0026lt;p\u0026gt;Required permission \u0026lt;pre\u0026gt;\u0026#39;ADMIN:NAMESPACE:{namespace}:DEVICE [UPDATE]\u0026#39;\u0026lt;/pre\u0026gt;\u0026lt;/p\u0026gt;\n",
+        "operationId": "AdminUpdateDeviceBanV4",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/model.DeviceBanUpdateRequestV4"
+            }
+          },
+          {
+            "description": "Ban ID, should follow UUID version 4 without hyphen",
+            "in": "path",
+            "name": "banId",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "Namespace, only accept alphabet and numeric",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "204": {
+            "description": "Operation succeeded"
+          },
+          "400": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20019\u003c/td\u003e\u003ctd\u003eunable to parse request body\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20002\u003c/td\u003e\u003ctd\u003evalidation error\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/rest.ErrorResponse"
+            }
+          },
+          "401": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20001\u003c/td\u003e\u003ctd\u003eunauthorized access\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/rest.ErrorResponse"
+            }
+          },
+          "404": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e10158\u003c/td\u003e\u003ctd\u003eban not found\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/rest.ErrorResponse"
+            }
+          },
+          "409": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e10202\u003c/td\u003e\u003ctd\u003eactive device ban config already exists\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/rest.ErrorResponse"
+            }
+          },
+          "500": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20000\u003c/td\u003e\u003ctd\u003einternal server error\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/rest.ErrorResponse"
+            }
+          }
+        },
+        "security": [
+          {
+            "HasPermission": [
+              "ADMIN:NAMESPACE:{namespace}:DEVICE [UPDATE]"
+            ],
+            "authorization": []
+          }
+        ],
+        "summary": "Admin update device ban config",
+        "tags": [
+          "Devices V4"
+        ]
+      }
+    },
+    "/iam/v4/admin/namespaces/{namespace}/devices/report": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "      \u0026lt;p\u0026gt;This is the endpoint for an admin to generate device report.\u0026lt;br\u0026gt;\n\u0026lt;p\u0026gt;Required permission \u0026lt;pre\u0026gt;\u0026#39;ADMIN:NAMESPACE:{namespace}:DEVICE [READ]\u0026#39;\u0026lt;/pre\u0026gt;\u0026lt;/p\u0026gt;\n",
+        "operationId": "AdminGenerateReportV4",
+        "parameters": [
+          {
+            "description": "Namespace, only accept alphabet and numeric",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "device type",
+            "in": "query",
+            "name": "deviceType",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "end date",
+            "in": "query",
+            "name": "endDate",
+            "type": "string"
+          },
+          {
+            "description": "start date",
+            "in": "query",
+            "name": "startDate",
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "Operation succeeded"
+          },
+          "400": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20002\u003c/td\u003e\u003ctd\u003evalidation error\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/rest.ErrorResponse"
+            }
+          },
+          "401": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20001\u003c/td\u003e\u003ctd\u003eunauthorized access\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/rest.ErrorResponse"
+            }
+          },
+          "404": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20008\u003c/td\u003e\u003ctd\u003euser not found\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e10139\u003c/td\u003e\u003ctd\u003eplatform account not found\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e10158\u003c/td\u003e\u003ctd\u003eban not found\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/rest.ErrorResponse"
+            }
+          },
+          "500": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20000\u003c/td\u003e\u003ctd\u003einternal server error\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/rest.ErrorResponse"
+            }
+          }
+        },
+        "security": [
+          {
+            "HasPermission": [
+              "ADMIN:NAMESPACE:{namespace}:DEVICE [READ]"
+            ],
+            "authorization": []
+          }
+        ],
+        "summary": "Admin generate device report",
+        "tags": [
+          "Devices V4"
+        ]
+      }
+    },
+    "/iam/v4/admin/namespaces/{namespace}/devices/types": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "      \u0026lt;p\u0026gt;This is the endpoint for an admin to get device types.\u0026lt;br\u0026gt;\n\u0026lt;p\u0026gt;Required permission \u0026lt;pre\u0026gt;\u0026#39;ADMIN:NAMESPACE:{namespace}:DEVICE [READ]\u0026#39;\u0026lt;/pre\u0026gt;\u0026lt;/p\u0026gt;\n",
+        "operationId": "AdminGetDeviceTypesV4",
+        "parameters": [
+          {
+            "description": "Namespace, only accept alphabet and numeric",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "Operation succeeded",
+            "schema": {
+              "$ref": "#/definitions/model.DeviceTypesResponseV4"
+            }
+          },
+          "401": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20001\u003c/td\u003e\u003ctd\u003eunauthorized access\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/rest.ErrorResponse"
+            }
+          },
+          "500": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20000\u003c/td\u003e\u003ctd\u003einternal server error\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/rest.ErrorResponse"
+            }
+          }
+        },
+        "security": [
+          {
+            "HasPermission": [
+              "ADMIN:NAMESPACE:{namespace}:DEVICE [READ]"
+            ],
+            "authorization": []
+          }
+        ],
+        "summary": "Admin get device types",
+        "tags": [
+          "Devices V4"
+        ]
+      }
+    },
+    "/iam/v4/admin/namespaces/{namespace}/devices/{deviceId}/bans": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "      \u0026lt;p\u0026gt;This is the endpoint for an admin to get device ban list.\u0026lt;br\u0026gt;\n\u0026lt;p\u0026gt;Required permission \u0026lt;pre\u0026gt;\u0026#39;ADMIN:NAMESPACE:{namespace}:DEVICE [READ]\u0026#39;\u0026lt;/pre\u0026gt;\u0026lt;/p\u0026gt;\n",
+        "operationId": "AdminGetDeviceBansV4",
+        "parameters": [
+          {
+            "description": "device id",
+            "in": "path",
+            "name": "deviceId",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "Namespace, only accept alphabet and numeric",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "Operation succeeded",
+            "schema": {
+              "$ref": "#/definitions/model.DeviceBansResponseV4"
+            }
+          },
+          "400": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20002\u003c/td\u003e\u003ctd\u003evalidation error\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/rest.ErrorResponse"
+            }
+          },
+          "401": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20001\u003c/td\u003e\u003ctd\u003eunauthorized access\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/rest.ErrorResponse"
+            }
+          },
+          "500": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20000\u003c/td\u003e\u003ctd\u003einternal server error\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/rest.ErrorResponse"
+            }
+          }
+        },
+        "security": [
+          {
+            "HasPermission": [
+              "ADMIN:NAMESPACE:{namespace}:DEVICE [READ]"
+            ],
+            "authorization": []
+          }
+        ],
+        "summary": "Admin get device ban list",
+        "tags": [
+          "Devices V4"
+        ]
+      }
+    },
+    "/iam/v4/admin/namespaces/{namespace}/devices/{deviceId}/decrypt": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "      \u0026lt;p\u0026gt;This is the endpoint for an admin to decrypt device id.\u0026lt;br\u0026gt;\n\u0026lt;p\u0026gt;Required permission \u0026lt;pre\u0026gt;\u0026#39;ADMIN:NAMESPACE:{namespace}:DEVICE [READ]\u0026#39;\u0026lt;/pre\u0026gt;\u0026lt;/p\u0026gt;\n",
+        "operationId": "AdminDecryptDeviceV4",
+        "parameters": [
+          {
+            "description": "device id",
+            "in": "path",
+            "name": "deviceId",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "Namespace, only accept alphabet and numeric",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "Operation succeeded",
+            "schema": {
+              "$ref": "#/definitions/model.DeviceIDDecryptResponseV4"
+            }
+          },
+          "400": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20002\u003c/td\u003e\u003ctd\u003evalidation error\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/rest.ErrorResponse"
+            }
+          },
+          "401": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20001\u003c/td\u003e\u003ctd\u003eunauthorized access\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/rest.ErrorResponse"
+            }
+          },
+          "500": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20000\u003c/td\u003e\u003ctd\u003einternal server error\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/rest.ErrorResponse"
+            }
+          }
+        },
+        "security": [
+          {
+            "HasPermission": [
+              "ADMIN:NAMESPACE:{namespace}:DEVICE [READ]"
+            ],
+            "authorization": []
+          }
+        ],
+        "summary": "Admin decrypt device id",
+        "tags": [
+          "Devices V4"
+        ]
+      }
+    },
+    "/iam/v4/admin/namespaces/{namespace}/devices/{deviceId}/unban": {
+      "put": {
+        "description": "      \u0026lt;p\u0026gt;This is the endpoint for an admin to unban device.\u0026lt;br\u0026gt;\n\u0026lt;p\u0026gt;Required permission \u0026lt;pre\u0026gt;\u0026#39;ADMIN:NAMESPACE:{namespace}:DEVICE [UPDATE]\u0026#39;\u0026lt;/pre\u0026gt;\u0026lt;/p\u0026gt;\n",
+        "operationId": "AdminUnbanDeviceV4",
+        "parameters": [
+          {
+            "description": "device id",
+            "in": "path",
+            "name": "deviceId",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "Namespace, only accept alphabet and numeric",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "204": {
+            "description": "Operation succeeded"
+          },
+          "400": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20019\u003c/td\u003e\u003ctd\u003eunable to parse request body\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20002\u003c/td\u003e\u003ctd\u003evalidation error\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/rest.ErrorResponse"
+            }
+          },
+          "401": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20001\u003c/td\u003e\u003ctd\u003eunauthorized access\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/rest.ErrorResponse"
+            }
+          },
+          "500": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20000\u003c/td\u003e\u003ctd\u003einternal server error\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/rest.ErrorResponse"
+            }
+          }
+        },
+        "security": [
+          {
+            "HasPermission": [
+              "ADMIN:NAMESPACE:{namespace}:DEVICE [UPDATE]"
+            ],
+            "authorization": []
+          }
+        ],
+        "summary": "Admin unban device",
+        "tags": [
+          "Devices V4"
+        ]
+      }
+    },
+    "/iam/v4/admin/namespaces/{namespace}/devices/{deviceId}/users": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "      \u0026lt;p\u0026gt;This is the endpoint for an admin to get users that ever login on the device.\u0026lt;br\u0026gt;\n\u0026lt;p\u0026gt;Required permission \u0026lt;pre\u0026gt;\u0026#39;ADMIN:NAMESPACE:{namespace}:USER [READ]\u0026#39;\u0026lt;/pre\u0026gt;\u0026lt;/p\u0026gt;\n",
+        "operationId": "AdminGetUsersByDeviceV4",
+        "parameters": [
+          {
+            "description": "device id",
+            "in": "path",
+            "name": "deviceId",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "Namespace, only accept alphabet and numeric",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "Operation succeeded",
+            "schema": {
+              "$ref": "#/definitions/model.DeviceUsersResponseV4"
+            }
+          },
+          "400": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20002\u003c/td\u003e\u003ctd\u003evalidation error\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/rest.ErrorResponse"
+            }
+          },
+          "401": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20001\u003c/td\u003e\u003ctd\u003eunauthorized access\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/rest.ErrorResponse"
+            }
+          },
+          "500": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20000\u003c/td\u003e\u003ctd\u003einternal server error\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/rest.ErrorResponse"
+            }
+          }
+        },
+        "security": [
+          {
+            "HasPermission": [
+              "ADMIN:NAMESPACE:{namespace}:USER [READ]"
+            ],
+            "authorization": []
+          }
+        ],
+        "summary": "Admin get users by device id",
+        "tags": [
+          "Devices V4"
         ]
       }
     },
@@ -22727,6 +23593,10 @@
         },
         "Secret": {
           "type": "string"
+        },
+        "TwoFactorEnabled": {
+          "type": "boolean",
+          "x-omitempty": false
         }
       },
       "required": [
@@ -22735,7 +23605,8 @@
         "ClientPermissions",
         "Namespace",
         "RedirectUri",
-        "Secret"
+        "Secret",
+        "TwoFactorEnabled"
       ]
     },
     "clientmodel.ClientCreationResponse": {
@@ -22757,6 +23628,10 @@
         },
         "RedirectUri": {
           "type": "string"
+        },
+        "TwoFactorEnabled": {
+          "type": "boolean",
+          "x-omitempty": false
         }
       },
       "required": [
@@ -22764,7 +23639,8 @@
         "ClientName",
         "ClientPermissions",
         "Namespace",
-        "RedirectUri"
+        "RedirectUri",
+        "TwoFactorEnabled"
       ]
     },
     "clientmodel.ClientCreationV3Request": {
@@ -22808,6 +23684,10 @@
         },
         "secret": {
           "type": "string"
+        },
+        "twoFactorEnabled": {
+          "type": "boolean",
+          "x-omitempty": false
         }
       },
       "required": [
@@ -22847,6 +23727,10 @@
         },
         "RedirectUri": {
           "type": "string"
+        },
+        "TwoFactorEnabled": {
+          "type": "boolean",
+          "x-omitempty": false
         }
       },
       "required": [
@@ -22855,7 +23739,8 @@
         "ClientPermissions",
         "CreatedAt",
         "Namespace",
-        "RedirectUri"
+        "RedirectUri",
+        "TwoFactorEnabled"
       ]
     },
     "clientmodel.ClientUpdateRequest": {
@@ -22865,11 +23750,16 @@
         },
         "RedirectUri": {
           "type": "string"
+        },
+        "TwoFactorEnabled": {
+          "type": "boolean",
+          "x-omitempty": false
         }
       },
       "required": [
         "ClientName",
-        "RedirectUri"
+        "RedirectUri",
+        "TwoFactorEnabled"
       ]
     },
     "clientmodel.ClientUpdateSecretRequest": {
@@ -22914,6 +23804,10 @@
         },
         "redirectUri": {
           "type": "string"
+        },
+        "twoFactorEnabled": {
+          "type": "boolean",
+          "x-omitempty": false
         }
       },
       "required": [
@@ -22970,6 +23864,10 @@
             "type": "string"
           },
           "type": "array"
+        },
+        "twoFactorEnabled": {
+          "type": "boolean",
+          "x-omitempty": false
         }
       },
       "required": [
@@ -22984,7 +23882,8 @@
         "namespace",
         "oauthClientType",
         "redirectUri",
-        "scopes"
+        "scopes",
+        "twoFactorEnabled"
       ]
     },
     "clientmodel.ClientsV3Response": {
@@ -23389,6 +24288,254 @@
       "required": [
         "namespace",
         "userId"
+      ]
+    },
+    "model.DeviceBanRequestV4": {
+      "properties": {
+        "comment": {
+          "type": "string"
+        },
+        "deviceId": {
+          "type": "string"
+        },
+        "deviceType": {
+          "type": "string"
+        },
+        "enabled": {
+          "type": "boolean",
+          "x-omitempty": false
+        },
+        "endDate": {
+          "type": "string"
+        },
+        "ext": {
+          "type": "object"
+        },
+        "reason": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "comment",
+        "deviceId",
+        "deviceType",
+        "enabled",
+        "endDate",
+        "ext",
+        "reason"
+      ]
+    },
+    "model.DeviceBanResponseV4": {
+      "properties": {
+        "bannedAt": {
+          "format": "int64",
+          "type": "integer"
+        },
+        "bannedBy": {
+          "type": "string"
+        },
+        "comment": {
+          "type": "string"
+        },
+        "deviceId": {
+          "type": "string"
+        },
+        "deviceType": {
+          "type": "string"
+        },
+        "disabledAt": {
+          "format": "int64",
+          "type": "integer"
+        },
+        "enabled": {
+          "type": "boolean",
+          "x-omitempty": false
+        },
+        "endDate": {
+          "format": "int64",
+          "type": "integer"
+        },
+        "id": {
+          "type": "string"
+        },
+        "namespace": {
+          "type": "string"
+        },
+        "reason": {
+          "type": "string"
+        },
+        "targetNamespace": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "bannedAt",
+        "bannedBy",
+        "comment",
+        "deviceId",
+        "deviceType",
+        "disabledAt",
+        "enabled",
+        "endDate",
+        "id",
+        "namespace",
+        "reason",
+        "targetNamespace"
+      ]
+    },
+    "model.DeviceBanUpdateRequestV4": {
+      "properties": {
+        "enabled": {
+          "type": "boolean",
+          "x-omitempty": false
+        }
+      },
+      "required": [
+        "enabled"
+      ]
+    },
+    "model.DeviceBannedResponseV4": {
+      "properties": {
+        "data": {
+          "items": {
+            "$ref": "#/definitions/model.DeviceBanResponseV4"
+          },
+          "type": "array"
+        },
+        "paging": {
+          "$ref": "#/definitions/accountcommon.Pagination"
+        }
+      },
+      "required": [
+        "data",
+        "paging"
+      ]
+    },
+    "model.DeviceBansResponseV4": {
+      "properties": {
+        "data": {
+          "items": {
+            "$ref": "#/definitions/model.DeviceBanResponseV4"
+          },
+          "type": "array"
+        }
+      },
+      "required": [
+        "data"
+      ]
+    },
+    "model.DeviceIDDecryptResponseV4": {
+      "properties": {
+        "deviceId": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "deviceId"
+      ]
+    },
+    "model.DeviceResponseV4": {
+      "properties": {
+        "ban": {
+          "$ref": "#/definitions/model.DeviceBanResponseV4"
+        },
+        "deviceId": {
+          "type": "string"
+        },
+        "deviceType": {
+          "type": "string"
+        },
+        "ext": {
+          "type": "object"
+        },
+        "ip": {
+          "type": "string"
+        },
+        "lastLoginTime": {
+          "format": "int64",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "deviceId",
+        "deviceType",
+        "ip",
+        "lastLoginTime"
+      ]
+    },
+    "model.DeviceTypeResponseV4": {
+      "properties": {
+        "deviceType": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "deviceType"
+      ]
+    },
+    "model.DeviceTypesResponseV4": {
+      "properties": {
+        "data": {
+          "items": {
+            "$ref": "#/definitions/model.DeviceTypeResponseV4"
+          },
+          "type": "array"
+        }
+      },
+      "required": [
+        "data"
+      ]
+    },
+    "model.DeviceUserResponseV4": {
+      "properties": {
+        "ext": {
+          "type": "object"
+        },
+        "ip": {
+          "type": "string"
+        },
+        "lastLoginTime": {
+          "format": "int64",
+          "type": "integer"
+        },
+        "namespace": {
+          "type": "string"
+        },
+        "userId": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "ip",
+        "lastLoginTime",
+        "namespace",
+        "userId"
+      ]
+    },
+    "model.DeviceUsersResponseV4": {
+      "properties": {
+        "users": {
+          "items": {
+            "$ref": "#/definitions/model.DeviceUserResponseV4"
+          },
+          "type": "array"
+        }
+      },
+      "required": [
+        "users"
+      ]
+    },
+    "model.DevicesResponseV4": {
+      "properties": {
+        "devices": {
+          "items": {
+            "$ref": "#/definitions/model.DeviceResponseV4"
+          },
+          "type": "array"
+        }
+      },
+      "required": [
+        "devices"
       ]
     },
     "model.DisableUserRequest": {
@@ -23799,6 +24946,9 @@
           "type": "string"
         },
         "redirect_uri": {
+          "type": "string"
+        },
+        "refreshToken": {
           "type": "string"
         },
         "request_id": {
@@ -27083,6 +28233,98 @@
       },
       "required": [
         "platform_token"
+      ]
+    },
+    "oauthmodel.TokenWithDeviceCookieResponseV3": {
+      "properties": {
+        "access_token": {
+          "type": "string"
+        },
+        "auth_trust_id": {
+          "description": "Authentication Trust Id for device cookie validation. Only exist when login using grant_type=password and no existing Auth-Trust-Id given from request header",
+          "type": "string"
+        },
+        "bans": {
+          "items": {
+            "$ref": "#/definitions/accountcommon.JWTBanV3"
+          },
+          "type": "array"
+        },
+        "display_name": {
+          "type": "string"
+        },
+        "expires_in": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "is_comply": {
+          "type": "boolean",
+          "x-omitempty": false
+        },
+        "jflgs": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "namespace": {
+          "type": "string"
+        },
+        "namespace_roles": {
+          "items": {
+            "$ref": "#/definitions/accountcommon.NamespaceRole"
+          },
+          "type": "array"
+        },
+        "permissions": {
+          "items": {
+            "$ref": "#/definitions/accountcommon.PermissionV3"
+          },
+          "type": "array"
+        },
+        "platform_id": {
+          "type": "string"
+        },
+        "platform_user_id": {
+          "type": "string"
+        },
+        "refresh_expires_in": {
+          "description": "present if it is user token",
+          "format": "int32",
+          "type": "integer"
+        },
+        "refresh_token": {
+          "description": "present if it is user token",
+          "type": "string"
+        },
+        "roles": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "scope": {
+          "type": "string"
+        },
+        "token_type": {
+          "type": "string"
+        },
+        "user_id": {
+          "description": "present if it is user token",
+          "type": "string"
+        },
+        "xuid": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "access_token",
+        "bans",
+        "expires_in",
+        "namespace",
+        "namespace_roles",
+        "permissions",
+        "roles",
+        "scope",
+        "token_type"
       ]
     },
     "rest.ErrorResponse": {

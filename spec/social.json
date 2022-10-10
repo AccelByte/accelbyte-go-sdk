@@ -8,7 +8,7 @@
     },
     "description": "Justice Social Service",
     "title": "justice-social-service",
-    "version": "1.29.5"
+    "version": "1.29.6"
   },
   "schemes": [
     "https"
@@ -2510,6 +2510,58 @@
         ],
         "x-authorization": {
           "action": "4",
+          "resource": "ADMIN:NAMESPACE:{namespace}:STAT"
+        }
+      }
+    },
+    "/social/v1/admin/namespaces/{namespace}/stats/{statCode}/tied": {
+      "delete": {
+        "description": "Deletes stat template.\u0026lt;br\u0026gt;Other detail info:\u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;ADMIN:NAMESPACE:{namespace}:STAT\u0026#34;, action=8 (DELETE)\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
+        "operationId": "deleteTiedStat",
+        "parameters": [
+          {
+            "description": "namespace",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "stat code",
+            "in": "path",
+            "name": "statCode",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Successfully delete the stat of tied status"
+          },
+          "409": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eErrorCode\u003c/td\u003e\u003ctd\u003eErrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e12276\u003c/td\u003e\u003ctd\u003e Stat template with code [{statCode}] in namespace [{namespace}] not deletable due it is in an INIT status \u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/ErrorEntity"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          },
+          {
+            "HasPermission": [
+              "ADMIN:NAMESPACE:{namespace}:STAT [DELETE]"
+            ],
+            "authorization": []
+          }
+        ],
+        "summary": "Deletes tied stat",
+        "tags": [
+          "StatConfiguration"
+        ],
+        "x-authorization": {
+          "action": "8",
           "resource": "ADMIN:NAMESPACE:{namespace}:STAT"
         }
       }
@@ -6086,6 +6138,10 @@
     },
     "StatUpdate": {
       "properties": {
+        "defaultValue": {
+          "format": "double",
+          "type": "number"
+        },
         "description": {
           "type": "string"
         },

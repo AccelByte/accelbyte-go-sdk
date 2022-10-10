@@ -3,7 +3,7 @@
   "info": {
     "description": "Justice Matchmaking Service",
     "title": "Justice Matchmaking Service",
-    "version": "2.15.8"
+    "version": "2.16.1"
   },
   "schemes": [
     "https"
@@ -2917,6 +2917,13 @@
           "type": "string",
           "x-nullable": false
         },
+        "error_code": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "error_message": {
+          "type": "string"
+        },
         "game_mode": {
           "type": "string",
           "x-nullable": false
@@ -2978,6 +2985,8 @@
         "channel",
         "client_version",
         "deployment",
+        "error_code",
+        "error_message",
         "game_mode",
         "match_id",
         "matching_allies",

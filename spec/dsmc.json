@@ -3,7 +3,7 @@
   "info": {
     "description": "Justice DSM Controller Service",
     "title": "justice-dsm-controller-service",
-    "version": "3.7.0"
+    "version": "3.8.0"
   },
   "schemes": [
     "https"
@@ -4983,6 +4983,26 @@
         "Text"
       ]
     },
+    "models.AllocationEvent": {
+      "properties": {
+        "description": {
+          "type": "string"
+        },
+        "time_stamp": {
+          "format": "date-time",
+          "type": "string",
+          "x-nullable": false
+        },
+        "type": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "description",
+        "time_stamp",
+        "type"
+      ]
+    },
     "models.ClaimSessionRequest": {
       "properties": {
         "session_id": {
@@ -6311,6 +6331,12 @@
     },
     "models.Server": {
       "properties": {
+        "allocation_events": {
+          "items": {
+            "$ref": "#/definitions/models.AllocationEvent"
+          },
+          "type": "array"
+        },
         "allocation_id": {
           "type": "string"
         },
@@ -6402,6 +6428,7 @@
         }
       },
       "required": [
+        "allocation_events",
         "allocation_id",
         "alternate_ips",
         "cpu_limit",

@@ -8,7 +8,7 @@
     },
     "description": "Justice Platform Service",
     "title": "justice-platform-service",
-    "version": "4.14.1"
+    "version": "4.15.0"
   },
   "schemes": [
     "https"
@@ -5831,6 +5831,14 @@
             "type": "integer"
           },
           {
+            "default": "name:asc,createdAt:asc",
+            "description": "default is name:asc,createdAt:asc, allow values: [name, name:asc, name:desc, createdAt, createdAt:asc, createdAt:desc, updatedAt, updatedAt:asc, updatedAt:desc, displayOrder, displayOrder:asc, displayOrder:desc],and support sort group, eg: sortBy=name:asc,createdAt:desc. Make sure to always use more than one sort if the first sort is not an unique valuefor example, if you wish to sort by displayOrder, make sure to include other sort such as name or createdAt after the first sort, eg: displayOrder:asc,name:asc",
+            "in": "query",
+            "name": "sortBy",
+            "required": false,
+            "type": "string"
+          },
+          {
             "description": "default is published store id",
             "in": "query",
             "name": "storeId",
@@ -7169,6 +7177,62 @@
         ],
         "x-authorization": {
           "action": "1",
+          "resource": "ADMIN:NAMESPACE:{namespace}:KEYGROUP"
+        }
+      }
+    },
+    "/platform/admin/namespaces/{namespace}/keygroups/byBoothName": {
+      "get": {
+        "description": "Get key group.\u0026lt;br\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;ADMIN:NAMESPACE:{namespace}:KEYGROUP\u0026#34;, action=2 (READ)\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: key group info\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
+        "operationId": "getKeyGroupByBoothName",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "boothName",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/KeyGroupInfo"
+            }
+          },
+          "404": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eErrorCode\u003c/td\u003e\u003ctd\u003eErrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e37041\u003c/td\u003e\u003ctd\u003eTicket booth [{boothName}] does not exist in namespace [{namespace}]\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/ErrorEntity"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          },
+          {
+            "HasPermission": [
+              "ADMIN:NAMESPACE:{namespace}:KEYGROUP [READ]"
+            ],
+            "authorization": []
+          }
+        ],
+        "summary": "Get key group by booth name",
+        "tags": [
+          "KeyGroup"
+        ],
+        "x-authorization": {
+          "action": "2",
           "resource": "ADMIN:NAMESPACE:{namespace}:KEYGROUP"
         }
       }
@@ -9514,7 +9578,8 @@
         "consumes": [
           "multipart/form-data"
         ],
-        "description": "This API is used to import a store.\u0026lt;p\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;ADMIN:NAMESPACE:{namespace}:STORE\u0026#34;, action=4 (UPDATE)\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
+        "deprecated": true,
+        "description": "This API is used to import a store.\u0026lt;p\u0026gt;This api has been deprecated, pls use /v2/admin/namespaces/{namespace}/stores/import to import store.\u0026lt;br\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;ADMIN:NAMESPACE:{namespace}:STORE\u0026#34;, action=4 (UPDATE)\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "importStore",
         "parameters": [
           {
@@ -9548,7 +9613,7 @@
             }
           },
           "400": {
-            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eErrorCode\u003c/td\u003e\u003ctd\u003eErrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e30121\u003c/td\u003e\u003ctd\u003eStore data is invalid\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e30122\u003c/td\u003e\u003ctd\u003eStore's meta mismatch\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eErrorCode\u003c/td\u003e\u003ctd\u003eErrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e30121\u003c/td\u003e\u003ctd\u003eStore data is invalid\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e30122\u003c/td\u003e\u003ctd\u003eStore's meta mismatch\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e36141\u003c/td\u003e\u003ctd\u003eCurrency [{currencyCode}] does not exist in namespace [{namespace}]\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e30122\u003c/td\u003e\u003ctd\u003eItem [{itemId}] does not exist in namespace [{namespace}]\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e30375\u003c/td\u003e\u003ctd\u003eItem id [{itemId}] of sku [{sku}] is duplicate with un-published deleted item in namespace [{namespace}]\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e37041\u003c/td\u003e\u003ctd\u003eTicket booth [{boothName}] does not exist in namespace [{namespace}]\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/ErrorEntity"
             }
@@ -10715,7 +10780,8 @@
     },
     "/platform/admin/namespaces/{namespace}/stores/{storeId}/export": {
       "get": {
-        "description": "This API is used to export a store.\u0026lt;p\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;ADMIN:NAMESPACE:{namespace}:STORE\u0026#34;, action=2 (READ)\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
+        "deprecated": true,
+        "description": "This API is used to export a store.\u0026lt;p\u0026gt;This api has been deprecated, pls use /v2/admin/namespaces/{namespace}/stores/export to export store.\u0026lt;br\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;ADMIN:NAMESPACE:{namespace}:STORE\u0026#34;, action=2 (READ)\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "exportStore",
         "parameters": [
           {
@@ -12939,7 +13005,7 @@
           "200": {
             "description": "successful operation",
             "schema": {
-              "$ref": "#/definitions/EntitlementInfo"
+              "$ref": "#/definitions/TrackedEntitlementInfo"
             }
           },
           "404": {
@@ -12949,7 +13015,7 @@
             }
           },
           "409": {
-            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eErrorCode\u003c/td\u003e\u003ctd\u003eErrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e31171\u003c/td\u003e\u003ctd\u003eEntitlement [{entitlementId}] already revoked\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e31172\u003c/td\u003e\u003ctd\u003eEntitlement [{entitlementId}] not active\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e31173\u003c/td\u003e\u003ctd\u003eEntitlement [{entitlementId}] is not consumable\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e31174\u003c/td\u003e\u003ctd\u003eEntitlement [{entitlementId}] already consumed\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e31176\u003c/td\u003e\u003ctd\u003eEntitlement [{entitlementId}] use count is insufficient\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20006\u003c/td\u003e\u003ctd\u003eoptimistic lock\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eErrorCode\u003c/td\u003e\u003ctd\u003eErrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e31171\u003c/td\u003e\u003ctd\u003eEntitlement [{entitlementId}] already revoked\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e31172\u003c/td\u003e\u003ctd\u003eEntitlement [{entitlementId}] not active\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e31173\u003c/td\u003e\u003ctd\u003eEntitlement [{entitlementId}] is not consumable\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e31174\u003c/td\u003e\u003ctd\u003eEntitlement [{entitlementId}] already consumed\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e31176\u003c/td\u003e\u003ctd\u003eEntitlement [{entitlementId}] use count is insufficient\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e31180\u003c/td\u003e\u003ctd\u003eDuplicate request id: [{requestId}]\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20006\u003c/td\u003e\u003ctd\u003eoptimistic lock\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/ErrorEntity"
             }
@@ -22039,7 +22105,7 @@
           "200": {
             "description": "successful operation",
             "schema": {
-              "$ref": "#/definitions/EntitlementInfo"
+              "$ref": "#/definitions/TrackedEntitlementInfo"
             }
           },
           "400": {
@@ -22055,7 +22121,7 @@
             }
           },
           "409": {
-            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eErrorCode\u003c/td\u003e\u003ctd\u003eErrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e31171\u003c/td\u003e\u003ctd\u003eEntitlement [{entitlementId}] already revoked\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e31172\u003c/td\u003e\u003ctd\u003eEntitlement [{entitlementId}] not active\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e31173\u003c/td\u003e\u003ctd\u003eEntitlement [{entitlementId}] is not consumable\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e31174\u003c/td\u003e\u003ctd\u003eEntitlement [{entitlementId}] already consumed\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e31176\u003c/td\u003e\u003ctd\u003eEntitlement [{entitlementId}] use count is insufficient\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e31178\u003c/td\u003e\u003ctd\u003eEntitlement [{entitlementId}] out of time range\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20006\u003c/td\u003e\u003ctd\u003eoptimistic lock\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eErrorCode\u003c/td\u003e\u003ctd\u003eErrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e31171\u003c/td\u003e\u003ctd\u003eEntitlement [{entitlementId}] already revoked\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e31172\u003c/td\u003e\u003ctd\u003eEntitlement [{entitlementId}] not active\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e31173\u003c/td\u003e\u003ctd\u003eEntitlement [{entitlementId}] is not consumable\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e31174\u003c/td\u003e\u003ctd\u003eEntitlement [{entitlementId}] already consumed\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e31176\u003c/td\u003e\u003ctd\u003eEntitlement [{entitlementId}] use count is insufficient\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e31178\u003c/td\u003e\u003ctd\u003eEntitlement [{entitlementId}] out of time range\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e31180\u003c/td\u003e\u003ctd\u003eDuplicate request id: [{requestId}]\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20006\u003c/td\u003e\u003ctd\u003eoptimistic lock\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/ErrorEntity"
             }
@@ -24181,6 +24247,142 @@
         "x-authorization": {
           "action": "2",
           "resource": "ADMIN:NAMESPACE:{namespace}:ITEM"
+        }
+      }
+    },
+    "/platform/v2/admin/namespaces/{namespace}/stores/import": {
+      "put": {
+        "consumes": [
+          "multipart/form-data"
+        ],
+        "description": "This API is used to import a store.\u0026lt;p\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;ADMIN:NAMESPACE:{namespace}:STORE\u0026#34;, action=4 (UPDATE)\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
+        "operationId": "importStore_1",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "formData",
+            "name": "file",
+            "required": false,
+            "type": "file"
+          },
+          {
+            "description": "default we will use published store id,and will create published store if it dose not exist",
+            "in": "query",
+            "name": "storeId",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/ImportStoreResult"
+            }
+          },
+          "400": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eErrorCode\u003c/td\u003e\u003ctd\u003eErrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e30121\u003c/td\u003e\u003ctd\u003eStore data is invalid\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e30122\u003c/td\u003e\u003ctd\u003eStore's meta mismatch\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/ErrorEntity"
+            }
+          },
+          "404": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eErrorCode\u003c/td\u003e\u003ctd\u003eErrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e30141\u003c/td\u003e\u003ctd\u003eStore [{storeId}] does not exist in namespace [{namespace}]\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/ErrorEntity"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          },
+          {
+            "HasPermission": [
+              "ADMIN:NAMESPACE:{namespace}:STORE [UPDATE]"
+            ],
+            "authorization": []
+          }
+        ],
+        "summary": "Import a store",
+        "tags": [
+          "Store"
+        ],
+        "x-authorization": {
+          "action": "4",
+          "resource": "ADMIN:NAMESPACE:{namespace}:STORE"
+        }
+      }
+    },
+    "/platform/v2/admin/namespaces/{namespace}/stores/{storeId}/export": {
+      "post": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "This API is used to export a whole or partial store.\u0026lt;p\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;ADMIN:NAMESPACE:{namespace}:STORE\u0026#34;, action=2 (READ)\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
+        "operationId": "exportStore_1",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "path",
+            "name": "storeId",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "required": false,
+            "schema": {
+              "$ref": "#/definitions/ExportStoreRequest"
+            }
+          }
+        ],
+        "produces": [
+          "application/zip"
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful operation"
+          },
+          "404": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eErrorCode\u003c/td\u003e\u003ctd\u003eErrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e30141\u003c/td\u003e\u003ctd\u003eStore [{storeId}] does not exist in namespace [{namespace}]\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/ErrorEntity"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          },
+          {
+            "HasPermission": [
+              "ADMIN:NAMESPACE:{namespace}:STORE [READ]"
+            ],
+            "authorization": []
+          }
+        ],
+        "summary": "Export a store",
+        "tags": [
+          "Store"
+        ],
+        "x-authorization": {
+          "action": "2",
+          "resource": "ADMIN:NAMESPACE:{namespace}:STORE"
         }
       }
     }
@@ -26802,6 +27004,10 @@
           },
           "type": "array"
         },
+        "requestId": {
+          "description": "Request id(Optional), client should provide a unique request id to perform at most once execution, When a request id is resubmitted, it will return original successful response",
+          "type": "string"
+        },
         "useCount": {
           "description": "the count to decrease, 1 for default, option box entitlement only allow 1",
           "format": "int32",
@@ -27375,6 +27581,18 @@
             "type": "object"
           },
           "type": "object"
+        }
+      },
+      "type": "object"
+    },
+    "ExportStoreRequest": {
+      "properties": {
+        "itemIds": {
+          "description": "item ids",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
         }
       },
       "type": "object"
@@ -28865,6 +29083,122 @@
         "smallImageUrl",
         "width"
       ],
+      "type": "object"
+    },
+    "ImportErrorDetails": {
+      "properties": {
+        "errorCode": {
+          "description": "error code",
+          "format": "int32",
+          "type": "integer"
+        },
+        "errorMessage": {
+          "description": "error message",
+          "type": "string"
+        },
+        "messageVariables": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "message variables",
+          "type": "object"
+        }
+      },
+      "type": "object"
+    },
+    "ImportStoreError": {
+      "properties": {
+        "errors": {
+          "description": "errors",
+          "items": {
+            "$ref": "#/definitions/ImportErrorDetails"
+          },
+          "type": "array"
+        },
+        "item": {
+          "$ref": "#/definitions/ImportStoreItemInfo",
+          "description": "item info"
+        },
+        "type": {
+          "description": "type",
+          "enum": [
+            "ITEM"
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ImportStoreItemInfo": {
+      "properties": {
+        "categoryPath": {
+          "description": "Item category path",
+          "type": "string"
+        },
+        "itemId": {
+          "description": "Item id",
+          "type": "string"
+        },
+        "itemType": {
+          "description": "Item type",
+          "enum": [
+            "APP",
+            "BUNDLE",
+            "CODE",
+            "COINS",
+            "EXTENSION",
+            "INGAMEITEM",
+            "MEDIA",
+            "OPTIONBOX",
+            "SEASON",
+            "SUBSCRIPTION"
+          ],
+          "type": "string"
+        },
+        "localizations": {
+          "additionalProperties": {
+            "$ref": "#/definitions/Localization"
+          },
+          "description": "Item localizations",
+          "type": "object"
+        },
+        "name": {
+          "description": "Name",
+          "type": "string"
+        },
+        "sku": {
+          "description": "Sku",
+          "type": "string"
+        }
+      },
+      "required": [
+        "categoryPath",
+        "itemId",
+        "itemType",
+        "localizations",
+        "name"
+      ],
+      "type": "object"
+    },
+    "ImportStoreResult": {
+      "properties": {
+        "errors": {
+          "description": "errors",
+          "items": {
+            "$ref": "#/definitions/ImportStoreError"
+          },
+          "type": "array"
+        },
+        "storeInfo": {
+          "$ref": "#/definitions/StoreInfo",
+          "description": "store info"
+        },
+        "success": {
+          "description": "import result",
+          "type": "boolean",
+          "x-omitempty": false
+        }
+      },
       "type": "object"
     },
     "InGameItemSync": {
@@ -35378,6 +35712,182 @@
       },
       "required": [
         "owned"
+      ],
+      "type": "object"
+    },
+    "TrackedEntitlementInfo": {
+      "properties": {
+        "appId": {
+          "description": "appId if entitlement is an app",
+          "type": "string"
+        },
+        "appType": {
+          "description": "appType if entitlement is an app",
+          "enum": [
+            "DEMO",
+            "DLC",
+            "GAME",
+            "SOFTWARE"
+          ],
+          "type": "string"
+        },
+        "clazz": {
+          "description": "entitlement class",
+          "enum": [
+            "APP",
+            "CODE",
+            "ENTITLEMENT",
+            "MEDIA",
+            "OPTIONBOX",
+            "SUBSCRIPTION"
+          ],
+          "type": "string"
+        },
+        "createdAt": {
+          "description": "entitlement created at",
+          "format": "date-time",
+          "type": "string",
+          "x-nullable": false
+        },
+        "endDate": {
+          "description": "entitlement end date",
+          "format": "date-time",
+          "type": "string",
+          "x-nullable": true
+        },
+        "features": {
+          "description": "entitlement features",
+          "items": {
+            "type": "string"
+          },
+          "type": "array",
+          "uniqueItems": true
+        },
+        "grantedAt": {
+          "description": "entitlement granted at",
+          "format": "date-time",
+          "type": "string",
+          "x-nullable": false
+        },
+        "grantedCode": {
+          "description": "grantedCode, the granted code",
+          "type": "string"
+        },
+        "id": {
+          "description": "entitlement id",
+          "type": "string"
+        },
+        "itemId": {
+          "description": "itemId of the entitlement",
+          "type": "string"
+        },
+        "itemNamespace": {
+          "description": "itemNamespace for the purchased item",
+          "type": "string"
+        },
+        "itemSnapshot": {
+          "$ref": "#/definitions/ItemSnapshot",
+          "description": "itemSnapshot"
+        },
+        "name": {
+          "description": "entitlement name",
+          "type": "string"
+        },
+        "namespace": {
+          "description": "entitlement namespace",
+          "type": "string"
+        },
+        "replayed": {
+          "description": "replayed, if true,the response is original successful response. This will not be included in response if client have not pass request id.",
+          "type": "boolean",
+          "x-omitempty": false
+        },
+        "requestId": {
+          "description": "request id",
+          "type": "string"
+        },
+        "sku": {
+          "description": "sku for purchased item",
+          "type": "string"
+        },
+        "source": {
+          "description": "entitlement source",
+          "enum": [
+            "ACHIEVEMENT",
+            "GIFT",
+            "IAP",
+            "OTHER",
+            "PROMOTION",
+            "PURCHASE",
+            "REDEEM_CODE",
+            "REFERRAL_BONUS",
+            "REWARD"
+          ],
+          "type": "string"
+        },
+        "stackable": {
+          "description": "Whether the CONSUMABLE entitlement is stackable",
+          "type": "boolean",
+          "x-omitempty": false
+        },
+        "startDate": {
+          "description": "entitlement start date",
+          "format": "date-time",
+          "type": "string",
+          "x-nullable": true
+        },
+        "status": {
+          "description": "entitlement status",
+          "enum": [
+            "ACTIVE",
+            "CONSUMED",
+            "INACTIVE",
+            "REVOKED"
+          ],
+          "type": "string"
+        },
+        "storeId": {
+          "description": "storeId of the item, published store if omitted",
+          "type": "string"
+        },
+        "type": {
+          "description": "entitlement type",
+          "enum": [
+            "CONSUMABLE",
+            "DURABLE"
+          ],
+          "type": "string"
+        },
+        "updatedAt": {
+          "description": "entitlement updated at",
+          "format": "date-time",
+          "type": "string",
+          "x-nullable": false
+        },
+        "useCount": {
+          "description": "useCount for entitlement",
+          "format": "int32",
+          "type": "integer"
+        },
+        "userId": {
+          "description": "userId for this entitlement",
+          "type": "string"
+        }
+      },
+      "required": [
+        "clazz",
+        "createdAt",
+        "grantedAt",
+        "id",
+        "itemId",
+        "itemNamespace",
+        "name",
+        "namespace",
+        "source",
+        "status",
+        "type",
+        "updatedAt",
+        "userId"
       ],
       "type": "object"
     },

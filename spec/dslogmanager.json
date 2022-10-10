@@ -8,7 +8,7 @@
     },
     "description": "Justice DS Log Manager Service",
     "title": "justice-ds-log-manager-service",
-    "version": "2.4.2"
+    "version": "2.4.3"
   },
   "schemes": [
     "https"
@@ -581,6 +581,26 @@
         "Text"
       ]
     },
+    "models.AllocationEvent": {
+      "properties": {
+        "description": {
+          "type": "string"
+        },
+        "time_stamp": {
+          "format": "date-time",
+          "type": "string",
+          "x-nullable": false
+        },
+        "type": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "description",
+        "time_stamp",
+        "type"
+      ]
+    },
     "models.BatchDownloadLogsRequest": {
       "properties": {
         "Downloads": {
@@ -747,6 +767,12 @@
     },
     "models.Server": {
       "properties": {
+        "allocation_events": {
+          "items": {
+            "$ref": "#/definitions/models.AllocationEvent"
+          },
+          "type": "array"
+        },
         "allocation_id": {
           "type": "string"
         },
@@ -833,6 +859,7 @@
         }
       },
       "required": [
+        "allocation_events",
         "allocation_id",
         "alternate_ips",
         "cpu_limit",

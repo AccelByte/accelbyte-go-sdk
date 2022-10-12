@@ -8,6 +8,8 @@ import (
 	"net/http"
 	"os"
 
+	"github.com/go-openapi/runtime"
+	httptransport "github.com/go-openapi/runtime/client"
 	"github.com/sirupsen/logrus"
 )
 
@@ -38,4 +40,21 @@ func (c *CustomTransport) RoundTrip(r *http.Request) (*http.Response, error) {
 	}
 
 	return c.inner.RoundTrip(r)
+}
+
+func CustomTransportRuntime(transport *httptransport.Runtime) *httptransport.Runtime {
+	transport.Producers["*/*"] = runtime.JSONProducer()
+	transport.Consumers["application/problem+json"] = runtime.JSONConsumer()
+	transport.Consumers["application/x-www-form-urlencoded"] = runtime.JSONConsumer()
+	transport.Consumers["application/zip"] = runtime.JSONConsumer()
+	transport.Consumers["application/x-zip-compressed"] = runtime.ByteStreamConsumer()
+	transport.Consumers["application/pdf"] = runtime.JSONConsumer()
+	transport.Consumers["text/x-log"] = runtime.JSONConsumer()
+	transport.Consumers["image/png"] = runtime.ByteStreamConsumer()
+	transport.Consumers["text/plain"] = runtime.JSONConsumer()
+
+	// optional custom request header
+	transport.Transport = SetLogger(transport.Transport)
+
+	return transport
 }

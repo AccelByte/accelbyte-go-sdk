@@ -61,18 +61,8 @@ func NewHTTPClientWithConfig(formats strfmt.Registry, cfg *TransportConfig) *Jus
 	// create transport and client
 	transport := httptransport.New(cfg.Host, cfg.BasePath, cfg.Schemes)
 
-	// optional custom producers and consumer
-	transport.Producers["*/*"] = runtime.JSONProducer()
-	transport.Consumers["application/problem+json"] = runtime.JSONConsumer()
-	transport.Consumers["application/x-www-form-urlencoded"] = runtime.JSONConsumer()
-	transport.Consumers["application/zip"] = runtime.JSONConsumer()
-	transport.Consumers["application/pdf"] = runtime.JSONConsumer()
-	transport.Consumers["text/x-log"] = runtime.JSONConsumer()
-	transport.Consumers["image/png"] = runtime.ByteStreamConsumer()
-	transport.Consumers["text/plain"] = runtime.JSONConsumer()
-
-	// optional custom request header
-	transport.Transport = utils.SetLogger(transport.Transport)
+	// custom transport runtime
+	utils.CustomTransportRuntime(transport)
 
 	return New(transport, transport, formats)
 }

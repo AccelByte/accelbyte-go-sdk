@@ -83,6 +83,7 @@ func NewHTTPClientWithConfig(formats strfmt.Registry, cfg *TransportConfig) *Jus
 	transport.Consumers["application/problem+json"] = runtime.JSONConsumer()
 	transport.Consumers["application/x-www-form-urlencoded"] = runtime.JSONConsumer()
 	transport.Consumers["application/zip"] = runtime.JSONConsumer()
+	transport.Consumers["application/x-zip-compressed"] = runtime.JSONConsumer()
 	transport.Consumers["application/pdf"] = runtime.JSONConsumer()
 	transport.Consumers["text/x-log"] = runtime.JSONConsumer()
 	transport.Consumers["image/png"] = runtime.ByteStreamConsumer()

@@ -5,9 +5,11 @@
 package integration_test
 
 import (
+	"os"
 	"testing"
 
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils/auth"
+	"github.com/sirupsen/logrus"
 	"github.com/stretchr/testify/assert"
 
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclient/store"
@@ -37,6 +39,7 @@ var (
 		Description:     title,
 		Title:           &title,
 	}
+	okExport = &platformclientmodels.ExportStoreRequest{}
 )
 
 func TestIntegrationStore(t *testing.T) {
@@ -109,4 +112,92 @@ func TestIntegrationStore(t *testing.T) {
 	// Assert
 	assert.Nil(t, errDelete, "err should be nil")
 	assert.NotNil(t, deleted, "response should not be nil")
+}
+
+func TestIntegrationExportImportStore(t *testing.T) {
+	// Login User - Arrange
+	Init()
+
+	storeId := createStore()
+	defer func() {
+		_ = deleteStore(storeId)
+	}()
+
+	// CASE Store export
+	inputExport := &store.ExportStore1Params{
+		Namespace: integration.NamespaceTest,
+		StoreID:   storeId,
+	}
+
+	errExport := storeService.ExportStore1Short(inputExport)
+	if errExport != nil {
+		t.Fatal(errExport.Error())
+	}
+	// ESAC
+
+	// Assert
+	assert.Nil(t, errExport, "should be nil")
+
+	// Arrange
+	filePath := "test.zip"
+	//b, _ := json.Marshal(okExport)
+	//err := ioutil.WriteFile(filePath, b, 0644)
+	//if err != nil {
+	//	t.Fatal("unable to write lobby file")
+	//}
+
+	// Arrange - read entire JSON file
+	file, errFile := os.Open(filePath)
+	if errFile != nil {
+		t.Fatal("unable to open lobby file")
+	}
+
+	// CASE Store export
+	inputImport := &store.ImportStore1Params{
+		File:      file,
+		Namespace: integration.NamespaceTest,
+		StoreID:   &storeId,
+	}
+
+	okImport, errImport := storeService.ImportStore1Short(inputImport)
+	if errImport != nil {
+		t.Fatal(errImport.Error())
+	}
+	// ESAC
+
+	// Assert
+	assert.Nil(t, errImport, "should be nil")
+	assert.NotNil(t, okImport, "should not be nil")
+}
+
+func createStore() string {
+	inputCreate := &store.CreateStoreParams{
+		Body:      bodyStore,
+		Namespace: integration.NamespaceTest,
+	}
+
+	created, errCreate := storeService.CreateStoreShort(inputCreate)
+	if errCreate != nil {
+		logrus.Error(errCreate.Error())
+	} else {
+		storeID := *created.StoreID
+
+		return storeID
+	}
+
+	return ""
+}
+
+func deleteStore(storeId string) error {
+	inputCreate := &store.DeleteStoreParams{
+		StoreID:   storeId,
+		Namespace: integration.NamespaceTest,
+	}
+
+	_, errDelete := storeService.DeleteStoreShort(inputCreate)
+	if errDelete != nil {
+		logrus.Error(errDelete.Error())
+	}
+
+	return nil
 }

@@ -80,17 +80,17 @@ func (aaa *RewardService) QueryRewards(input *reward.QueryRewardsParams) (*platf
 }
 
 // Deprecated: Use ExportRewardsShort instead
-func (aaa *RewardService) ExportRewards(input *reward.ExportRewardsParams) error {
+func (aaa *RewardService) ExportRewards(input *reward.ExportRewardsParams) ([]platformclientmodels.ConfigInfo, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
-		return err
+		return nil, err
 	}
-	_, err = aaa.Client.Reward.ExportRewards(input, client.BearerToken(*token.AccessToken))
+	ok, err := aaa.Client.Reward.ExportRewards(input, client.BearerToken(*token.AccessToken))
 	if err != nil {
-		return err
+		return nil, err
 	}
 
-	return nil
+	return ok.GetPayload(), nil
 }
 
 // Deprecated: Use ImportRewardsShort instead
@@ -296,7 +296,7 @@ func (aaa *RewardService) QueryRewardsShort(input *reward.QueryRewardsParams) (*
 	return ok.GetPayload(), nil
 }
 
-func (aaa *RewardService) ExportRewardsShort(input *reward.ExportRewardsParams) error {
+func (aaa *RewardService) ExportRewardsShort(input *reward.ExportRewardsParams) ([]platformclientmodels.ConfigInfo, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -313,12 +313,12 @@ func (aaa *RewardService) ExportRewardsShort(input *reward.ExportRewardsParams) 
 		}
 	}
 
-	_, err := aaa.Client.Reward.ExportRewardsShort(input, authInfoWriter)
+	ok, err := aaa.Client.Reward.ExportRewardsShort(input, authInfoWriter)
 	if err != nil {
-		return err
+		return nil, err
 	}
 
-	return nil
+	return ok.GetPayload(), nil
 }
 
 func (aaa *RewardService) ImportRewardsShort(input *reward.ImportRewardsParams) error {

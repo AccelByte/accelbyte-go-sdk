@@ -29,11 +29,13 @@ var ExportRewardsCmd = &cobra.Command{
 		input := &reward.ExportRewardsParams{
 			Namespace: namespace,
 		}
-		errInput := rewardService.ExportRewardsShort(input)
-		if errInput != nil {
-			logrus.Error(errInput)
+		ok, err := rewardService.ExportRewardsShort(input)
+		if err != nil {
+			logrus.Error(err)
 
-			return errInput
+			return err
+		} else {
+			logrus.Infof("Response CLI success: %+v", ok)
 		}
 
 		return nil

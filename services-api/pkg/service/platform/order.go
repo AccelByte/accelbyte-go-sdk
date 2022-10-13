@@ -7,6 +7,8 @@
 package platform
 
 import (
+	"io"
+
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclient"
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclient/order"
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclientmodels"
@@ -276,23 +278,23 @@ func (aaa *OrderService) ProcessUserOrderNotification(input *order.ProcessUserOr
 }
 
 // Deprecated: Use DownloadUserOrderReceiptShort instead
-func (aaa *OrderService) DownloadUserOrderReceipt(input *order.DownloadUserOrderReceiptParams) error {
+func (aaa *OrderService) DownloadUserOrderReceipt(input *order.DownloadUserOrderReceiptParams, writer io.Writer) (io.Writer, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
-		return err
+		return nil, err
 	}
-	_, notFound, conflict, err := aaa.Client.Order.DownloadUserOrderReceipt(input, client.BearerToken(*token.AccessToken))
+	ok, notFound, conflict, err := aaa.Client.Order.DownloadUserOrderReceipt(input, client.BearerToken(*token.AccessToken), writer)
 	if notFound != nil {
-		return notFound
+		return nil, notFound
 	}
 	if conflict != nil {
-		return conflict
+		return nil, conflict
 	}
 	if err != nil {
-		return err
+		return nil, err
 	}
 
-	return nil
+	return ok.GetPayload(), nil
 }
 
 // Deprecated: Use PublicQueryUserOrdersShort instead
@@ -390,23 +392,23 @@ func (aaa *OrderService) PublicGetUserOrderHistories(input *order.PublicGetUserO
 }
 
 // Deprecated: Use PublicDownloadUserOrderReceiptShort instead
-func (aaa *OrderService) PublicDownloadUserOrderReceipt(input *order.PublicDownloadUserOrderReceiptParams) error {
+func (aaa *OrderService) PublicDownloadUserOrderReceipt(input *order.PublicDownloadUserOrderReceiptParams, writer io.Writer) (io.Writer, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
-		return err
+		return nil, err
 	}
-	_, notFound, conflict, err := aaa.Client.Order.PublicDownloadUserOrderReceipt(input, client.BearerToken(*token.AccessToken))
+	ok, notFound, conflict, err := aaa.Client.Order.PublicDownloadUserOrderReceipt(input, client.BearerToken(*token.AccessToken), writer)
 	if notFound != nil {
-		return notFound
+		return nil, notFound
 	}
 	if conflict != nil {
-		return conflict
+		return nil, conflict
 	}
 	if err != nil {
-		return err
+		return nil, err
 	}
 
-	return nil
+	return ok.GetPayload(), nil
 }
 
 func (aaa *OrderService) QueryOrdersShort(input *order.QueryOrdersParams) (*platformclientmodels.OrderPagingResult, error) {
@@ -734,7 +736,7 @@ func (aaa *OrderService) ProcessUserOrderNotificationShort(input *order.ProcessU
 	return nil
 }
 
-func (aaa *OrderService) DownloadUserOrderReceiptShort(input *order.DownloadUserOrderReceiptParams) error {
+func (aaa *OrderService) DownloadUserOrderReceiptShort(input *order.DownloadUserOrderReceiptParams, writer io.Writer) (io.Writer, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -751,12 +753,12 @@ func (aaa *OrderService) DownloadUserOrderReceiptShort(input *order.DownloadUser
 		}
 	}
 
-	_, err := aaa.Client.Order.DownloadUserOrderReceiptShort(input, authInfoWriter)
+	ok, err := aaa.Client.Order.DownloadUserOrderReceiptShort(input, authInfoWriter, writer)
 	if err != nil {
-		return err
+		return nil, err
 	}
 
-	return nil
+	return ok.GetPayload(), nil
 }
 
 func (aaa *OrderService) PublicQueryUserOrdersShort(input *order.PublicQueryUserOrdersParams) (*platformclientmodels.OrderPagingSlicedResult, error) {
@@ -884,7 +886,7 @@ func (aaa *OrderService) PublicGetUserOrderHistoriesShort(input *order.PublicGet
 	return ok.GetPayload(), nil
 }
 
-func (aaa *OrderService) PublicDownloadUserOrderReceiptShort(input *order.PublicDownloadUserOrderReceiptParams) error {
+func (aaa *OrderService) PublicDownloadUserOrderReceiptShort(input *order.PublicDownloadUserOrderReceiptParams, writer io.Writer) (io.Writer, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -901,10 +903,10 @@ func (aaa *OrderService) PublicDownloadUserOrderReceiptShort(input *order.Public
 		}
 	}
 
-	_, err := aaa.Client.Order.PublicDownloadUserOrderReceiptShort(input, authInfoWriter)
+	ok, err := aaa.Client.Order.PublicDownloadUserOrderReceiptShort(input, authInfoWriter, writer)
 	if err != nil {
-		return err
+		return nil, err
 	}
 
-	return nil
+	return ok.GetPayload(), nil
 }

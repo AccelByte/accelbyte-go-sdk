@@ -7,6 +7,8 @@
 package platform
 
 import (
+	"io"
+
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclient"
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclient/store"
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclientmodels"
@@ -242,20 +244,20 @@ func (aaa *StoreService) CloneStore(input *store.CloneStoreParams) (*platformcli
 }
 
 // Deprecated: Use ExportStoreShort instead
-func (aaa *StoreService) ExportStore(input *store.ExportStoreParams) error {
+func (aaa *StoreService) ExportStore(input *store.ExportStoreParams, writer io.Writer) (io.Writer, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
-		return err
+		return nil, err
 	}
-	_, notFound, err := aaa.Client.Store.ExportStore(input, client.BearerToken(*token.AccessToken))
+	ok, notFound, err := aaa.Client.Store.ExportStore(input, client.BearerToken(*token.AccessToken), writer)
 	if notFound != nil {
-		return notFound
+		return nil, notFound
 	}
 	if err != nil {
-		return err
+		return nil, err
 	}
 
-	return nil
+	return ok.GetPayload(), nil
 }
 
 // Deprecated: Use PublicListStoresShort instead
@@ -289,20 +291,20 @@ func (aaa *StoreService) ImportStore1(input *store.ImportStore1Params) (*platfor
 }
 
 // Deprecated: Use ExportStore1Short instead
-func (aaa *StoreService) ExportStore1(input *store.ExportStore1Params) error {
+func (aaa *StoreService) ExportStore1(input *store.ExportStore1Params, writer io.Writer) (io.Writer, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
-		return err
+		return nil, err
 	}
-	_, notFound, err := aaa.Client.Store.ExportStore1(input, client.BearerToken(*token.AccessToken))
+	ok, notFound, err := aaa.Client.Store.ExportStore1(input, client.BearerToken(*token.AccessToken), writer)
 	if notFound != nil {
-		return notFound
+		return nil, notFound
 	}
 	if err != nil {
-		return err
+		return nil, err
 	}
 
-	return nil
+	return ok.GetPayload(), nil
 }
 
 func (aaa *StoreService) ListStoresShort(input *store.ListStoresParams) ([]*platformclientmodels.StoreInfo, error) {
@@ -580,7 +582,7 @@ func (aaa *StoreService) CloneStoreShort(input *store.CloneStoreParams) (*platfo
 	return ok.GetPayload(), nil
 }
 
-func (aaa *StoreService) ExportStoreShort(input *store.ExportStoreParams) error {
+func (aaa *StoreService) ExportStoreShort(input *store.ExportStoreParams, writer io.Writer) (io.Writer, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -597,12 +599,12 @@ func (aaa *StoreService) ExportStoreShort(input *store.ExportStoreParams) error 
 		}
 	}
 
-	_, err := aaa.Client.Store.ExportStoreShort(input, authInfoWriter)
+	ok, err := aaa.Client.Store.ExportStoreShort(input, authInfoWriter, writer)
 	if err != nil {
-		return err
+		return nil, err
 	}
 
-	return nil
+	return ok.GetPayload(), nil
 }
 
 func (aaa *StoreService) PublicListStoresShort(input *store.PublicListStoresParams) ([]*platformclientmodels.StoreInfo, error) {
@@ -639,7 +641,7 @@ func (aaa *StoreService) ImportStore1Short(input *store.ImportStore1Params) (*pl
 	return ok.GetPayload(), nil
 }
 
-func (aaa *StoreService) ExportStore1Short(input *store.ExportStore1Params) error {
+func (aaa *StoreService) ExportStore1Short(input *store.ExportStore1Params, writer io.Writer) (io.Writer, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -656,10 +658,10 @@ func (aaa *StoreService) ExportStore1Short(input *store.ExportStore1Params) erro
 		}
 	}
 
-	_, err := aaa.Client.Store.ExportStore1Short(input, authInfoWriter)
+	ok, err := aaa.Client.Store.ExportStore1Short(input, authInfoWriter, writer)
 	if err != nil {
-		return err
+		return nil, err
 	}
 
-	return nil
+	return ok.GetPayload(), nil
 }

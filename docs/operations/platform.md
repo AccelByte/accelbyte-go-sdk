@@ -209,6 +209,7 @@
 | `/platform/admin/namespaces/{namespace}/iap/config/xbl/cert` | PUT | UpdateXblBPCertFileShort | [UpdateXblBPCertFileShort](../../platform-sdk/pkg/platformclient/iap/iap_client.go) | [UpdateXblBPCertFileShort](../../services-api/pkg/service/platform/iap.go) | [UpdateXblBPCertFileShort](../../samples/cli/cmd/platform/iap/updateXblBPCertFile.go) |
 | `/platform/admin/namespaces/{namespace}/users/{userId}/iap` | GET | QueryUserIAPOrdersShort | [QueryUserIAPOrdersShort](../../platform-sdk/pkg/platformclient/iap/iap_client.go) | [QueryUserIAPOrdersShort](../../services-api/pkg/service/platform/iap.go) | [QueryUserIAPOrdersShort](../../samples/cli/cmd/platform/iap/queryUserIAPOrders.go) |
 | `/platform/admin/namespaces/{namespace}/users/{userId}/iap/all` | GET | QueryAllUserIAPOrdersShort | [QueryAllUserIAPOrdersShort](../../platform-sdk/pkg/platformclient/iap/iap_client.go) | [QueryAllUserIAPOrdersShort](../../services-api/pkg/service/platform/iap.go) | [QueryAllUserIAPOrdersShort](../../samples/cli/cmd/platform/iap/queryAllUserIAPOrders.go) |
+| `/platform/admin/namespaces/{namespace}/users/{userId}/iap/consume/history` | GET | QueryUserIAPConsumeHistoryShort | [QueryUserIAPConsumeHistoryShort](../../platform-sdk/pkg/platformclient/iap/iap_client.go) | [QueryUserIAPConsumeHistoryShort](../../services-api/pkg/service/platform/iap.go) | [QueryUserIAPConsumeHistoryShort](../../samples/cli/cmd/platform/iap/queryUserIAPConsumeHistory.go) |
 | `/platform/admin/namespaces/{namespace}/users/{userId}/iap/mock/receipt` | PUT | MockFulfillIAPItemShort | [MockFulfillIAPItemShort](../../platform-sdk/pkg/platformclient/iap/iap_client.go) | [MockFulfillIAPItemShort](../../services-api/pkg/service/platform/iap.go) | [MockFulfillIAPItemShort](../../samples/cli/cmd/platform/iap/mockFulfillIAPItem.go) |
 | `/platform/public/namespaces/{namespace}/users/{userId}/iap/apple/receipt` | PUT | PublicFulfillAppleIAPItemShort | [PublicFulfillAppleIAPItemShort](../../platform-sdk/pkg/platformclient/iap/iap_client.go) | [PublicFulfillAppleIAPItemShort](../../services-api/pkg/service/platform/iap.go) | [PublicFulfillAppleIAPItemShort](../../samples/cli/cmd/platform/iap/publicFulfillAppleIAPItem.go) |
 | `/platform/public/namespaces/{namespace}/users/{userId}/iap/epicgames/sync` | PUT | SyncEpicGamesInventoryShort | [SyncEpicGamesInventoryShort](../../platform-sdk/pkg/platformclient/iap/iap_client.go) | [SyncEpicGamesInventoryShort](../../services-api/pkg/service/platform/iap.go) | [SyncEpicGamesInventoryShort](../../samples/cli/cmd/platform/iap/syncEpicGamesInventory.go) |
@@ -514,6 +515,7 @@
 | `CategoryInfo` | [CategoryInfo ](../../platform-sdk/pkg/platformclientmodels/category_info.go) |
 | `CategoryUpdate` | [CategoryUpdate ](../../platform-sdk/pkg/platformclientmodels/category_update.go) |
 | `CheckoutConfig` | [CheckoutConfig ](../../platform-sdk/pkg/platformclientmodels/checkout_config.go) |
+| `ClientRequestParameter` | [ClientRequestParameter ](../../platform-sdk/pkg/platformclientmodels/client_request_parameter.go) |
 | `CodeCreate` | [CodeCreate ](../../platform-sdk/pkg/platformclientmodels/code_create.go) |
 | `CodeCreateResult` | [CodeCreateResult ](../../platform-sdk/pkg/platformclientmodels/code_create_result.go) |
 | `CodeInfo` | [CodeInfo ](../../platform-sdk/pkg/platformclientmodels/code_info.go) |
@@ -521,6 +523,8 @@
 | `ConditionGroup` | [ConditionGroup ](../../platform-sdk/pkg/platformclientmodels/condition_group.go) |
 | `ConditionGroupValidateResult` | [ConditionGroupValidateResult ](../../platform-sdk/pkg/platformclientmodels/condition_group_validate_result.go) |
 | `ConditionMatchResult` | [ConditionMatchResult ](../../platform-sdk/pkg/platformclientmodels/condition_match_result.go) |
+| `ConfigInfo` | [ConfigInfo ](../../platform-sdk/pkg/platformclientmodels/config_info.go) |
+| `ConsumeItem` | [ConsumeItem ](../../platform-sdk/pkg/platformclientmodels/consume_item.go) |
 | `CreditRequest` | [CreditRequest ](../../platform-sdk/pkg/platformclientmodels/credit_request.go) |
 | `CreditSummary` | [CreditSummary ](../../platform-sdk/pkg/platformclientmodels/credit_summary.go) |
 | `CurrencyConfig` | [CurrencyConfig ](../../platform-sdk/pkg/platformclientmodels/currency_config.go) |
@@ -579,6 +583,8 @@
 | `GoogleReceiptResolveResult` | [GoogleReceiptResolveResult ](../../platform-sdk/pkg/platformclientmodels/google_receipt_resolve_result.go) |
 | `GrantSubscriptionDaysRequest` | [GrantSubscriptionDaysRequest ](../../platform-sdk/pkg/platformclientmodels/grant_subscription_days_request.go) |
 | `HierarchicalCategoryInfo` | [HierarchicalCategoryInfo ](../../platform-sdk/pkg/platformclientmodels/hierarchical_category_info.go) |
+| `IAPConsumeHistoryInfo` | [IAPConsumeHistoryInfo ](../../platform-sdk/pkg/platformclientmodels/iap_consume_history_info.go) |
+| `IAPConsumeHistoryPagingSlicedResult` | [IAPConsumeHistoryPagingSlicedResult ](../../platform-sdk/pkg/platformclientmodels/iap_consume_history_paging_sliced_result.go) |
 | `IAPItemConfigInfo` | [IAPItemConfigInfo ](../../platform-sdk/pkg/platformclientmodels/iap_item_config_info.go) |
 | `IAPItemConfigUpdate` | [IAPItemConfigUpdate ](../../platform-sdk/pkg/platformclientmodels/iap_item_config_update.go) |
 | `IAPItemEntry` | [IAPItemEntry ](../../platform-sdk/pkg/platformclientmodels/iap_item_entry.go) |
@@ -693,6 +699,7 @@
 | `RedeemResult` | [RedeemResult ](../../platform-sdk/pkg/platformclientmodels/redeem_result.go) |
 | `RedeemableItem` | [RedeemableItem ](../../platform-sdk/pkg/platformclientmodels/redeemable_item.go) |
 | `RegionDataItem` | [RegionDataItem ](../../platform-sdk/pkg/platformclientmodels/region_data_item.go) |
+| `RequestHistory` | [RequestHistory ](../../platform-sdk/pkg/platformclientmodels/request_history.go) |
 | `Requirement` | [Requirement ](../../platform-sdk/pkg/platformclientmodels/requirement.go) |
 | `RewardCondition` | [RewardCondition ](../../platform-sdk/pkg/platformclientmodels/reward_condition.go) |
 | `RewardCreate` | [RewardCreate ](../../platform-sdk/pkg/platformclientmodels/reward_create.go) |

@@ -71,17 +71,17 @@ func (aaa *StatConfigurationService) CreateStat(input *stat_configuration.Create
 }
 
 // Deprecated: Use ExportStatsShort instead
-func (aaa *StatConfigurationService) ExportStats(input *stat_configuration.ExportStatsParams) error {
+func (aaa *StatConfigurationService) ExportStats(input *stat_configuration.ExportStatsParams) ([]socialclientmodels.ConfigInfo, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
-		return err
+		return nil, err
 	}
-	_, err = aaa.Client.StatConfiguration.ExportStats(input, client.BearerToken(*token.AccessToken))
+	ok, err := aaa.Client.StatConfiguration.ExportStats(input, client.BearerToken(*token.AccessToken))
 	if err != nil {
-		return err
+		return nil, err
 	}
 
-	return nil
+	return ok.GetPayload(), nil
 }
 
 // Deprecated: Use ImportStatsShort instead
@@ -250,7 +250,7 @@ func (aaa *StatConfigurationService) CreateStatShort(input *stat_configuration.C
 	return created.GetPayload(), nil
 }
 
-func (aaa *StatConfigurationService) ExportStatsShort(input *stat_configuration.ExportStatsParams) error {
+func (aaa *StatConfigurationService) ExportStatsShort(input *stat_configuration.ExportStatsParams) ([]socialclientmodels.ConfigInfo, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -267,12 +267,12 @@ func (aaa *StatConfigurationService) ExportStatsShort(input *stat_configuration.
 		}
 	}
 
-	_, err := aaa.Client.StatConfiguration.ExportStatsShort(input, authInfoWriter)
+	ok, err := aaa.Client.StatConfiguration.ExportStatsShort(input, authInfoWriter)
 	if err != nil {
-		return err
+		return nil, err
 	}
 
-	return nil
+	return ok.GetPayload(), nil
 }
 
 func (aaa *StatConfigurationService) ImportStatsShort(input *stat_configuration.ImportStatsParams) (*socialclientmodels.StatImportInfo, error) {

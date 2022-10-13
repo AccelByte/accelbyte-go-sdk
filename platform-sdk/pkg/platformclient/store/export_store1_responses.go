@@ -24,13 +24,14 @@ import (
 // ExportStore1Reader is a Reader for the ExportStore1 structure.
 type ExportStore1Reader struct {
 	formats strfmt.Registry
+	writer  io.Writer
 }
 
 // ReadResponse reads a server response into the received o.
 func (o *ExportStore1Reader) ReadResponse(response runtime.ClientResponse, consumer runtime.Consumer) (interface{}, error) {
 	switch response.Code() {
 	case 200:
-		result := NewExportStore1OK()
+		result := NewExportStore1OK(o.writer)
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
@@ -53,8 +54,10 @@ func (o *ExportStore1Reader) ReadResponse(response runtime.ClientResponse, consu
 }
 
 // NewExportStore1OK creates a ExportStore1OK with default headers values
-func NewExportStore1OK() *ExportStore1OK {
-	return &ExportStore1OK{}
+func NewExportStore1OK(writer io.Writer) *ExportStore1OK {
+	return &ExportStore1OK{
+		Payload: writer,
+	}
 }
 
 /*ExportStore1OK handles this case with default header values.
@@ -62,13 +65,38 @@ func NewExportStore1OK() *ExportStore1OK {
   Successful operation
 */
 type ExportStore1OK struct {
+	Payload io.Writer
 }
 
 func (o *ExportStore1OK) Error() string {
-	return fmt.Sprintf("[POST /platform/v2/admin/namespaces/{namespace}/stores/{storeId}/export][%d] exportStore1OK ", 200)
+	return fmt.Sprintf("[POST /platform/v2/admin/namespaces/{namespace}/stores/{storeId}/export][%d] exportStore1OK  %+v", 200, o.ToJSONString())
+}
+
+func (o *ExportStore1OK) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
+}
+
+func (o *ExportStore1OK) GetPayload() io.Writer {
+	return o.Payload
 }
 
 func (o *ExportStore1OK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
+	}
 
 	return nil
 }

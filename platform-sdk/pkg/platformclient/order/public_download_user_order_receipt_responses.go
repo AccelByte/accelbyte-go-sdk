@@ -24,13 +24,14 @@ import (
 // PublicDownloadUserOrderReceiptReader is a Reader for the PublicDownloadUserOrderReceipt structure.
 type PublicDownloadUserOrderReceiptReader struct {
 	formats strfmt.Registry
+	writer  io.Writer
 }
 
 // ReadResponse reads a server response into the received o.
 func (o *PublicDownloadUserOrderReceiptReader) ReadResponse(response runtime.ClientResponse, consumer runtime.Consumer) (interface{}, error) {
 	switch response.Code() {
 	case 200:
-		result := NewPublicDownloadUserOrderReceiptOK()
+		result := NewPublicDownloadUserOrderReceiptOK(o.writer)
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
@@ -59,8 +60,10 @@ func (o *PublicDownloadUserOrderReceiptReader) ReadResponse(response runtime.Cli
 }
 
 // NewPublicDownloadUserOrderReceiptOK creates a PublicDownloadUserOrderReceiptOK with default headers values
-func NewPublicDownloadUserOrderReceiptOK() *PublicDownloadUserOrderReceiptOK {
-	return &PublicDownloadUserOrderReceiptOK{}
+func NewPublicDownloadUserOrderReceiptOK(writer io.Writer) *PublicDownloadUserOrderReceiptOK {
+	return &PublicDownloadUserOrderReceiptOK{
+		Payload: writer,
+	}
 }
 
 /*PublicDownloadUserOrderReceiptOK handles this case with default header values.
@@ -68,13 +71,38 @@ func NewPublicDownloadUserOrderReceiptOK() *PublicDownloadUserOrderReceiptOK {
   Successful operation
 */
 type PublicDownloadUserOrderReceiptOK struct {
+	Payload io.Writer
 }
 
 func (o *PublicDownloadUserOrderReceiptOK) Error() string {
-	return fmt.Sprintf("[GET /platform/public/namespaces/{namespace}/users/{userId}/orders/{orderNo}/receipt.pdf][%d] publicDownloadUserOrderReceiptOK ", 200)
+	return fmt.Sprintf("[GET /platform/public/namespaces/{namespace}/users/{userId}/orders/{orderNo}/receipt.pdf][%d] publicDownloadUserOrderReceiptOK  %+v", 200, o.ToJSONString())
+}
+
+func (o *PublicDownloadUserOrderReceiptOK) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
+}
+
+func (o *PublicDownloadUserOrderReceiptOK) GetPayload() io.Writer {
+	return o.Payload
 }
 
 func (o *PublicDownloadUserOrderReceiptOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
+	}
 
 	return nil
 }

@@ -10,11 +10,15 @@ package stat_configuration
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
+	"io"
 	"io/ioutil"
 
 	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/strfmt"
+
+	"github.com/AccelByte/accelbyte-go-sdk/social-sdk/pkg/socialclientmodels"
 )
 
 // ExportStatsReader is a Reader for the ExportStats structure.
@@ -52,13 +56,38 @@ func NewExportStatsOK() *ExportStatsOK {
   successful export of stat configs
 */
 type ExportStatsOK struct {
+	Payload []socialclientmodels.ConfigInfo
 }
 
 func (o *ExportStatsOK) Error() string {
-	return fmt.Sprintf("[GET /social/v1/admin/namespaces/{namespace}/stats/export][%d] exportStatsOK ", 200)
+	return fmt.Sprintf("[GET /social/v1/admin/namespaces/{namespace}/stats/export][%d] exportStatsOK  %+v", 200, o.ToJSONString())
+}
+
+func (o *ExportStatsOK) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
+}
+
+func (o *ExportStatsOK) GetPayload() []socialclientmodels.ConfigInfo {
+	return o.Payload
 }
 
 func (o *ExportStatsOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
+	// response payload
+	if err := consumer.Consume(response.Body(), &o.Payload); err != nil && err != io.EOF {
+		return err
+	}
 
 	return nil
 }

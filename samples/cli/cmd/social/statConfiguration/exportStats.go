@@ -29,11 +29,13 @@ var ExportStatsCmd = &cobra.Command{
 		input := &stat_configuration.ExportStatsParams{
 			Namespace: namespace,
 		}
-		errInput := statConfigurationService.ExportStatsShort(input)
-		if errInput != nil {
-			logrus.Error(errInput)
+		ok, err := statConfigurationService.ExportStatsShort(input)
+		if err != nil {
+			logrus.Error(err)
 
-			return errInput
+			return err
+		} else {
+			logrus.Infof("Response CLI success: %+v", ok)
 		}
 
 		return nil

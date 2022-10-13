@@ -479,6 +479,20 @@ func (aaa *IAPService) QueryAllUserIAPOrders(input *i_a_p.QueryAllUserIAPOrdersP
 	return ok.GetPayload(), nil
 }
 
+// Deprecated: Use QueryUserIAPConsumeHistoryShort instead
+func (aaa *IAPService) QueryUserIAPConsumeHistory(input *i_a_p.QueryUserIAPConsumeHistoryParams) (*platformclientmodels.IAPConsumeHistoryPagingSlicedResult, error) {
+	token, err := aaa.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, err := aaa.Client.Iap.QueryUserIAPConsumeHistory(input, client.BearerToken(*token.AccessToken))
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
 // Deprecated: Use MockFulfillIAPItemShort instead
 func (aaa *IAPService) MockFulfillIAPItem(input *i_a_p.MockFulfillIAPItemParams) error {
 	token, err := aaa.TokenRepository.GetToken()
@@ -1415,6 +1429,31 @@ func (aaa *IAPService) QueryAllUserIAPOrdersShort(input *i_a_p.QueryAllUserIAPOr
 	}
 
 	ok, err := aaa.Client.Iap.QueryAllUserIAPOrdersShort(input, authInfoWriter)
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
+func (aaa *IAPService) QueryUserIAPConsumeHistoryShort(input *i_a_p.QueryUserIAPConsumeHistoryParams) (*platformclientmodels.IAPConsumeHistoryPagingSlicedResult, error) {
+	authInfoWriter := input.AuthInfoWriter
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
+	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  aaa.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
+	ok, err := aaa.Client.Iap.QueryUserIAPConsumeHistoryShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}

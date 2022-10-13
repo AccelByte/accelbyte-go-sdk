@@ -8,7 +8,7 @@
     },
     "description": "Justice Social Service",
     "title": "justice-social-service",
-    "version": "1.29.6"
+    "version": "1.30.0"
   },
   "schemes": [
     "https"
@@ -2179,7 +2179,13 @@
         ],
         "responses": {
           "200": {
-            "description": "successful export of stat configs"
+            "description": "successful export of stat configs",
+            "schema": {
+              "items": {
+                "$ref": "#/definitions/ConfigInfo"
+              },
+              "type": "array"
+            }
           }
         },
         "security": [
@@ -5514,6 +5520,9 @@
         "userId",
         "value"
       ],
+      "type": "object"
+    },
+    "ConfigInfo": {
       "type": "object"
     },
     "ErrorEntity": {

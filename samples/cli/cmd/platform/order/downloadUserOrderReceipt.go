@@ -7,6 +7,8 @@
 package order
 
 import (
+	"bytes"
+
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclient/order"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/platform"
@@ -33,11 +35,14 @@ var DownloadUserOrderReceiptCmd = &cobra.Command{
 			OrderNo:   orderNo,
 			UserID:    userId,
 		}
-		errInput := orderService.DownloadUserOrderReceiptShort(input)
-		if errInput != nil {
-			logrus.Error(errInput)
+		writer := bytes.NewBuffer(nil)
+		ok, err := orderService.DownloadUserOrderReceiptShort(input, writer)
+		if err != nil {
+			logrus.Error(err)
 
-			return errInput
+			return err
+		} else {
+			logrus.Infof("Response CLI success: %+v", ok)
 		}
 
 		return nil

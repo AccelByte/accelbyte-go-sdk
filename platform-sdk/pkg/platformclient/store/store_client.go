@@ -12,6 +12,7 @@ package store
 import (
 	"context"
 	"fmt"
+	"io"
 	"reflect"
 
 	"github.com/go-openapi/runtime"
@@ -41,10 +42,10 @@ type ClientService interface {
 	DeletePublishedStoreShort(params *DeletePublishedStoreParams, authInfo runtime.ClientAuthInfoWriter) (*DeletePublishedStoreOK, error)
 	DeleteStore(params *DeleteStoreParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteStoreOK, *DeleteStoreNotFound, *DeleteStoreConflict, error)
 	DeleteStoreShort(params *DeleteStoreParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteStoreOK, error)
-	ExportStore(params *ExportStoreParams, authInfo runtime.ClientAuthInfoWriter) (*ExportStoreOK, *ExportStoreNotFound, error)
-	ExportStoreShort(params *ExportStoreParams, authInfo runtime.ClientAuthInfoWriter) (*ExportStoreOK, error)
-	ExportStore1(params *ExportStore1Params, authInfo runtime.ClientAuthInfoWriter) (*ExportStore1OK, *ExportStore1NotFound, error)
-	ExportStore1Short(params *ExportStore1Params, authInfo runtime.ClientAuthInfoWriter) (*ExportStore1OK, error)
+	ExportStore(params *ExportStoreParams, authInfo runtime.ClientAuthInfoWriter, writer io.Writer) (*ExportStoreOK, *ExportStoreNotFound, error)
+	ExportStoreShort(params *ExportStoreParams, authInfo runtime.ClientAuthInfoWriter, writer io.Writer) (*ExportStoreOK, error)
+	ExportStore1(params *ExportStore1Params, authInfo runtime.ClientAuthInfoWriter, writer io.Writer) (*ExportStore1OK, *ExportStore1NotFound, error)
+	ExportStore1Short(params *ExportStore1Params, authInfo runtime.ClientAuthInfoWriter, writer io.Writer) (*ExportStore1OK, error)
 	GetPublishedStore(params *GetPublishedStoreParams, authInfo runtime.ClientAuthInfoWriter) (*GetPublishedStoreOK, *GetPublishedStoreNotFound, error)
 	GetPublishedStoreShort(params *GetPublishedStoreParams, authInfo runtime.ClientAuthInfoWriter) (*GetPublishedStoreOK, error)
 	GetPublishedStoreBackup(params *GetPublishedStoreBackupParams, authInfo runtime.ClientAuthInfoWriter) (*GetPublishedStoreBackupOK, *GetPublishedStoreBackupNotFound, error)
@@ -485,7 +486,7 @@ Deprecated: Use ExportStoreShort instead.
 
   This API is used to export a store.&lt;p&gt;This api has been deprecated, pls use /v2/admin/namespaces/{namespace}/stores/export to export store.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:STORE&#34;, action=2 (READ)&lt;/li&gt;&lt;/ul&gt;
 */
-func (a *Client) ExportStore(params *ExportStoreParams, authInfo runtime.ClientAuthInfoWriter) (*ExportStoreOK, *ExportStoreNotFound, error) {
+func (a *Client) ExportStore(params *ExportStoreParams, authInfo runtime.ClientAuthInfoWriter, writer io.Writer) (*ExportStoreOK, *ExportStoreNotFound, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewExportStoreParams()
@@ -507,7 +508,7 @@ func (a *Client) ExportStore(params *ExportStoreParams, authInfo runtime.ClientA
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
 		Params:             params,
-		Reader:             &ExportStoreReader{formats: a.formats},
+		Reader:             &ExportStoreReader{formats: a.formats, writer: writer},
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
@@ -534,7 +535,7 @@ func (a *Client) ExportStore(params *ExportStoreParams, authInfo runtime.ClientA
 
   This API is used to export a store.&lt;p&gt;This api has been deprecated, pls use /v2/admin/namespaces/{namespace}/stores/export to export store.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:STORE&#34;, action=2 (READ)&lt;/li&gt;&lt;/ul&gt;
 */
-func (a *Client) ExportStoreShort(params *ExportStoreParams, authInfo runtime.ClientAuthInfoWriter) (*ExportStoreOK, error) {
+func (a *Client) ExportStoreShort(params *ExportStoreParams, authInfo runtime.ClientAuthInfoWriter, writer io.Writer) (*ExportStoreOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewExportStoreParams()
@@ -556,7 +557,7 @@ func (a *Client) ExportStoreShort(params *ExportStoreParams, authInfo runtime.Cl
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
 		Params:             params,
-		Reader:             &ExportStoreReader{formats: a.formats},
+		Reader:             &ExportStoreReader{formats: a.formats, writer: writer},
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
@@ -584,7 +585,7 @@ Deprecated: Use ExportStore1Short instead.
 
   This API is used to export a whole or partial store.&lt;p&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:STORE&#34;, action=2 (READ)&lt;/li&gt;&lt;/ul&gt;
 */
-func (a *Client) ExportStore1(params *ExportStore1Params, authInfo runtime.ClientAuthInfoWriter) (*ExportStore1OK, *ExportStore1NotFound, error) {
+func (a *Client) ExportStore1(params *ExportStore1Params, authInfo runtime.ClientAuthInfoWriter, writer io.Writer) (*ExportStore1OK, *ExportStore1NotFound, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewExportStore1Params()
@@ -606,7 +607,7 @@ func (a *Client) ExportStore1(params *ExportStore1Params, authInfo runtime.Clien
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
 		Params:             params,
-		Reader:             &ExportStore1Reader{formats: a.formats},
+		Reader:             &ExportStore1Reader{formats: a.formats, writer: writer},
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
@@ -633,7 +634,7 @@ func (a *Client) ExportStore1(params *ExportStore1Params, authInfo runtime.Clien
 
   This API is used to export a whole or partial store.&lt;p&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:STORE&#34;, action=2 (READ)&lt;/li&gt;&lt;/ul&gt;
 */
-func (a *Client) ExportStore1Short(params *ExportStore1Params, authInfo runtime.ClientAuthInfoWriter) (*ExportStore1OK, error) {
+func (a *Client) ExportStore1Short(params *ExportStore1Params, authInfo runtime.ClientAuthInfoWriter, writer io.Writer) (*ExportStore1OK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewExportStore1Params()
@@ -655,7 +656,7 @@ func (a *Client) ExportStore1Short(params *ExportStore1Params, authInfo runtime.
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
 		Params:             params,
-		Reader:             &ExportStore1Reader{formats: a.formats},
+		Reader:             &ExportStore1Reader{formats: a.formats, writer: writer},
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,

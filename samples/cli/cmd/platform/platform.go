@@ -249,6 +249,7 @@ func init() {
 	PlatformCmd.AddCommand(fulfillment.FulfillRewardsCmd)
 	PlatformCmd.AddCommand(iap.QueryUserIAPOrdersCmd)
 	PlatformCmd.AddCommand(iap.QueryAllUserIAPOrdersCmd)
+	PlatformCmd.AddCommand(iap.QueryUserIAPConsumeHistoryCmd)
 	PlatformCmd.AddCommand(iap.MockFulfillIAPItemCmd)
 	PlatformCmd.AddCommand(order.QueryUserOrdersCmd)
 	PlatformCmd.AddCommand(order.AdminCreateUserOrderCmd)

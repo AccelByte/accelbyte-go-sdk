@@ -12,6 +12,7 @@ package order
 import (
 	"context"
 	"fmt"
+	"io"
 	"reflect"
 
 	"github.com/go-openapi/runtime"
@@ -37,8 +38,8 @@ type ClientService interface {
 	AdminCreateUserOrderShort(params *AdminCreateUserOrderParams, authInfo runtime.ClientAuthInfoWriter) (*AdminCreateUserOrderCreated, error)
 	CountOfPurchasedItem(params *CountOfPurchasedItemParams, authInfo runtime.ClientAuthInfoWriter) (*CountOfPurchasedItemOK, error)
 	CountOfPurchasedItemShort(params *CountOfPurchasedItemParams, authInfo runtime.ClientAuthInfoWriter) (*CountOfPurchasedItemOK, error)
-	DownloadUserOrderReceipt(params *DownloadUserOrderReceiptParams, authInfo runtime.ClientAuthInfoWriter) (*DownloadUserOrderReceiptOK, *DownloadUserOrderReceiptNotFound, *DownloadUserOrderReceiptConflict, error)
-	DownloadUserOrderReceiptShort(params *DownloadUserOrderReceiptParams, authInfo runtime.ClientAuthInfoWriter) (*DownloadUserOrderReceiptOK, error)
+	DownloadUserOrderReceipt(params *DownloadUserOrderReceiptParams, authInfo runtime.ClientAuthInfoWriter, writer io.Writer) (*DownloadUserOrderReceiptOK, *DownloadUserOrderReceiptNotFound, *DownloadUserOrderReceiptConflict, error)
+	DownloadUserOrderReceiptShort(params *DownloadUserOrderReceiptParams, authInfo runtime.ClientAuthInfoWriter, writer io.Writer) (*DownloadUserOrderReceiptOK, error)
 	FulfillUserOrder(params *FulfillUserOrderParams, authInfo runtime.ClientAuthInfoWriter) (*FulfillUserOrderOK, *FulfillUserOrderBadRequest, *FulfillUserOrderNotFound, *FulfillUserOrderConflict, error)
 	FulfillUserOrderShort(params *FulfillUserOrderParams, authInfo runtime.ClientAuthInfoWriter) (*FulfillUserOrderOK, error)
 	GetOrder(params *GetOrderParams, authInfo runtime.ClientAuthInfoWriter) (*GetOrderOK, *GetOrderNotFound, error)
@@ -57,8 +58,8 @@ type ClientService interface {
 	PublicCancelUserOrderShort(params *PublicCancelUserOrderParams, authInfo runtime.ClientAuthInfoWriter) (*PublicCancelUserOrderOK, error)
 	PublicCreateUserOrder(params *PublicCreateUserOrderParams, authInfo runtime.ClientAuthInfoWriter) (*PublicCreateUserOrderCreated, *PublicCreateUserOrderBadRequest, *PublicCreateUserOrderForbidden, *PublicCreateUserOrderNotFound, *PublicCreateUserOrderConflict, *PublicCreateUserOrderUnprocessableEntity, error)
 	PublicCreateUserOrderShort(params *PublicCreateUserOrderParams, authInfo runtime.ClientAuthInfoWriter) (*PublicCreateUserOrderCreated, error)
-	PublicDownloadUserOrderReceipt(params *PublicDownloadUserOrderReceiptParams, authInfo runtime.ClientAuthInfoWriter) (*PublicDownloadUserOrderReceiptOK, *PublicDownloadUserOrderReceiptNotFound, *PublicDownloadUserOrderReceiptConflict, error)
-	PublicDownloadUserOrderReceiptShort(params *PublicDownloadUserOrderReceiptParams, authInfo runtime.ClientAuthInfoWriter) (*PublicDownloadUserOrderReceiptOK, error)
+	PublicDownloadUserOrderReceipt(params *PublicDownloadUserOrderReceiptParams, authInfo runtime.ClientAuthInfoWriter, writer io.Writer) (*PublicDownloadUserOrderReceiptOK, *PublicDownloadUserOrderReceiptNotFound, *PublicDownloadUserOrderReceiptConflict, error)
+	PublicDownloadUserOrderReceiptShort(params *PublicDownloadUserOrderReceiptParams, authInfo runtime.ClientAuthInfoWriter, writer io.Writer) (*PublicDownloadUserOrderReceiptOK, error)
 	PublicGetUserOrder(params *PublicGetUserOrderParams, authInfo runtime.ClientAuthInfoWriter) (*PublicGetUserOrderOK, *PublicGetUserOrderNotFound, error)
 	PublicGetUserOrderShort(params *PublicGetUserOrderParams, authInfo runtime.ClientAuthInfoWriter) (*PublicGetUserOrderOK, error)
 	PublicGetUserOrderHistories(params *PublicGetUserOrderHistoriesParams, authInfo runtime.ClientAuthInfoWriter) (*PublicGetUserOrderHistoriesOK, error)
@@ -297,7 +298,7 @@ Deprecated: Use DownloadUserOrderReceiptShort instead.
 
   Download user order receipt by orderNo.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:USER:{userId}:ORDER&#34;, action=2 (READ)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: order receipt pdf&lt;/li&gt;&lt;/ul&gt;
 */
-func (a *Client) DownloadUserOrderReceipt(params *DownloadUserOrderReceiptParams, authInfo runtime.ClientAuthInfoWriter) (*DownloadUserOrderReceiptOK, *DownloadUserOrderReceiptNotFound, *DownloadUserOrderReceiptConflict, error) {
+func (a *Client) DownloadUserOrderReceipt(params *DownloadUserOrderReceiptParams, authInfo runtime.ClientAuthInfoWriter, writer io.Writer) (*DownloadUserOrderReceiptOK, *DownloadUserOrderReceiptNotFound, *DownloadUserOrderReceiptConflict, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewDownloadUserOrderReceiptParams()
@@ -319,7 +320,7 @@ func (a *Client) DownloadUserOrderReceipt(params *DownloadUserOrderReceiptParams
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
 		Params:             params,
-		Reader:             &DownloadUserOrderReceiptReader{formats: a.formats},
+		Reader:             &DownloadUserOrderReceiptReader{formats: a.formats, writer: writer},
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
@@ -349,7 +350,7 @@ func (a *Client) DownloadUserOrderReceipt(params *DownloadUserOrderReceiptParams
 
   Download user order receipt by orderNo.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:USER:{userId}:ORDER&#34;, action=2 (READ)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: order receipt pdf&lt;/li&gt;&lt;/ul&gt;
 */
-func (a *Client) DownloadUserOrderReceiptShort(params *DownloadUserOrderReceiptParams, authInfo runtime.ClientAuthInfoWriter) (*DownloadUserOrderReceiptOK, error) {
+func (a *Client) DownloadUserOrderReceiptShort(params *DownloadUserOrderReceiptParams, authInfo runtime.ClientAuthInfoWriter, writer io.Writer) (*DownloadUserOrderReceiptOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewDownloadUserOrderReceiptParams()
@@ -371,7 +372,7 @@ func (a *Client) DownloadUserOrderReceiptShort(params *DownloadUserOrderReceiptP
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
 		Params:             params,
-		Reader:             &DownloadUserOrderReceiptReader{formats: a.formats},
+		Reader:             &DownloadUserOrderReceiptReader{formats: a.formats, writer: writer},
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
@@ -1312,7 +1313,7 @@ Deprecated: Use PublicDownloadUserOrderReceiptShort instead.
 
   Download user order receipt by orderNo.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;NAMESPACE:{namespace}:USER:{userId}:ORDER&#34;, action=2 (READ)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: order receipt pdf&lt;/li&gt;&lt;/ul&gt;
 */
-func (a *Client) PublicDownloadUserOrderReceipt(params *PublicDownloadUserOrderReceiptParams, authInfo runtime.ClientAuthInfoWriter) (*PublicDownloadUserOrderReceiptOK, *PublicDownloadUserOrderReceiptNotFound, *PublicDownloadUserOrderReceiptConflict, error) {
+func (a *Client) PublicDownloadUserOrderReceipt(params *PublicDownloadUserOrderReceiptParams, authInfo runtime.ClientAuthInfoWriter, writer io.Writer) (*PublicDownloadUserOrderReceiptOK, *PublicDownloadUserOrderReceiptNotFound, *PublicDownloadUserOrderReceiptConflict, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewPublicDownloadUserOrderReceiptParams()
@@ -1334,7 +1335,7 @@ func (a *Client) PublicDownloadUserOrderReceipt(params *PublicDownloadUserOrderR
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
 		Params:             params,
-		Reader:             &PublicDownloadUserOrderReceiptReader{formats: a.formats},
+		Reader:             &PublicDownloadUserOrderReceiptReader{formats: a.formats, writer: writer},
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
@@ -1364,7 +1365,7 @@ func (a *Client) PublicDownloadUserOrderReceipt(params *PublicDownloadUserOrderR
 
   Download user order receipt by orderNo.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;NAMESPACE:{namespace}:USER:{userId}:ORDER&#34;, action=2 (READ)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: order receipt pdf&lt;/li&gt;&lt;/ul&gt;
 */
-func (a *Client) PublicDownloadUserOrderReceiptShort(params *PublicDownloadUserOrderReceiptParams, authInfo runtime.ClientAuthInfoWriter) (*PublicDownloadUserOrderReceiptOK, error) {
+func (a *Client) PublicDownloadUserOrderReceiptShort(params *PublicDownloadUserOrderReceiptParams, authInfo runtime.ClientAuthInfoWriter, writer io.Writer) (*PublicDownloadUserOrderReceiptOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewPublicDownloadUserOrderReceiptParams()
@@ -1386,7 +1387,7 @@ func (a *Client) PublicDownloadUserOrderReceiptShort(params *PublicDownloadUserO
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
 		Params:             params,
-		Reader:             &PublicDownloadUserOrderReceiptReader{formats: a.formats},
+		Reader:             &PublicDownloadUserOrderReceiptReader{formats: a.formats, writer: writer},
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,

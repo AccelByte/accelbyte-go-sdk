@@ -24,13 +24,14 @@ import (
 // ExportStoreReader is a Reader for the ExportStore structure.
 type ExportStoreReader struct {
 	formats strfmt.Registry
+	writer  io.Writer
 }
 
 // ReadResponse reads a server response into the received o.
 func (o *ExportStoreReader) ReadResponse(response runtime.ClientResponse, consumer runtime.Consumer) (interface{}, error) {
 	switch response.Code() {
 	case 200:
-		result := NewExportStoreOK()
+		result := NewExportStoreOK(o.writer)
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
@@ -53,8 +54,10 @@ func (o *ExportStoreReader) ReadResponse(response runtime.ClientResponse, consum
 }
 
 // NewExportStoreOK creates a ExportStoreOK with default headers values
-func NewExportStoreOK() *ExportStoreOK {
-	return &ExportStoreOK{}
+func NewExportStoreOK(writer io.Writer) *ExportStoreOK {
+	return &ExportStoreOK{
+		Payload: writer,
+	}
 }
 
 /*ExportStoreOK handles this case with default header values.
@@ -62,13 +65,38 @@ func NewExportStoreOK() *ExportStoreOK {
   Successful operation
 */
 type ExportStoreOK struct {
+	Payload io.Writer
 }
 
 func (o *ExportStoreOK) Error() string {
-	return fmt.Sprintf("[GET /platform/admin/namespaces/{namespace}/stores/{storeId}/export][%d] exportStoreOK ", 200)
+	return fmt.Sprintf("[GET /platform/admin/namespaces/{namespace}/stores/{storeId}/export][%d] exportStoreOK  %+v", 200, o.ToJSONString())
+}
+
+func (o *ExportStoreOK) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
+}
+
+func (o *ExportStoreOK) GetPayload() io.Writer {
+	return o.Payload
 }
 
 func (o *ExportStoreOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
+	}
 
 	return nil
 }

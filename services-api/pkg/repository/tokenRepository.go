@@ -94,16 +94,17 @@ func HasRefreshTokenExpired(repository TokenRepository, refreshRate float64) boo
 	return GetSecondsTillExpiryRefresh(repository, refreshRate) <= 0
 }
 
-func ConvertInterfaceToModel(tokenInterface interface{}, tokenModel *iamclientmodels.OauthmodelTokenResponseV3) (*iamclientmodels.OauthmodelTokenResponseV3, error) {
+func ConvertInterfaceToModel(tokenInterface interface{}) (*iamclientmodels.OauthmodelTokenResponseV3, error) {
 	tmpToken, errMarshal := json.Marshal(tokenInterface)
 	if errMarshal != nil {
 		return nil, errMarshal
 	}
 
-	errUnmarshal := json.Unmarshal(tmpToken, &tokenModel)
+	token := &iamclientmodels.OauthmodelTokenResponseV3{}
+	errUnmarshal := json.Unmarshal(tmpToken, &token)
 	if errUnmarshal != nil {
 		return nil, errUnmarshal
 	}
 
-	return tokenModel, nil
+	return token, nil
 }

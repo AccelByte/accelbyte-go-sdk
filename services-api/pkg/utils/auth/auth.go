@@ -20,11 +20,9 @@ type TokenRepositoryImpl struct {
 	mu          sync.Mutex
 }
 
-var token iamclientmodels.OauthmodelTokenResponseV3
-
 func DefaultTokenRepositoryImpl() *TokenRepositoryImpl {
 	return &TokenRepositoryImpl{
-		AccessToken: &token,
+		AccessToken: &iamclientmodels.OauthmodelTokenResponseV3{},
 	}
 }
 
@@ -35,7 +33,7 @@ func (t *TokenRepositoryImpl) Store(accessToken interface{}) error {
 	timeNow := time.Now().UTC()
 	t.IssuedTime = &timeNow
 
-	convertedToken, err := repository.ConvertInterfaceToModel(accessToken, &token)
+	convertedToken, err := repository.ConvertInterfaceToModel(accessToken)
 	if err != nil {
 		return err
 	}

@@ -21,7 +21,7 @@ import (
 var (
 	agreementService = &legal.AgreementService{
 		Client:          factory.NewLegalClient(auth.DefaultConfigRepositoryImpl()),
-		TokenRepository: auth.DefaultTokenRepositoryImpl(),
+		TokenRepository: tokenRepository,
 	}
 	isAccepted               = true
 	bodyLegals               []*legalclientmodels.AcceptAgreementRequest

@@ -66,7 +66,7 @@ func (c *ConfigRepositoryPhantAuthImpl) GetJusticeBaseUrl() string {
 }
 
 func (t *TokenRepositoryPhantAuthImpl) Store(accessToken interface{}) error {
-	convertedToken, err := repository.ConvertInterfaceToModel(accessToken, t.AccessToken)
+	convertedToken, err := repository.ConvertInterfaceToModel(accessToken)
 	if err != nil {
 		return err
 	}

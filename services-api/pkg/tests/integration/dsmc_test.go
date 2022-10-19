@@ -23,7 +23,7 @@ import (
 var (
 	sessionDSMCService = &dsmc.SessionService{
 		Client:          factory.NewDsmcClient(auth.DefaultConfigRepositoryImpl()),
-		TokenRepository: auth.DefaultTokenRepositoryImpl(),
+		TokenRepository: tokenRepository,
 	}
 
 	deployment     = "default"

@@ -20,7 +20,7 @@ import (
 var (
 	matchmakingService = &matchmaking.MatchmakingService{
 		Client:          factory.NewMatchmakingClient(auth.DefaultConfigRepositoryImpl()),
-		TokenRepository: auth.DefaultTokenRepositoryImpl(),
+		TokenRepository: tokenRepository,
 	}
 	empty           = "-"
 	defaultGameMode = "go_sdk"

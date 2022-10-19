@@ -20,7 +20,7 @@ import (
 var (
 	statConfigurationService = &social.StatConfigurationService{
 		Client:          factory.NewSocialClient(auth.DefaultConfigRepositoryImpl()),
-		TokenRepository: auth.DefaultTokenRepositoryImpl(),
+		TokenRepository: tokenRepository,
 	}
 	statCodeSocial = "123gosdkstat"
 	tagsSocial     []string

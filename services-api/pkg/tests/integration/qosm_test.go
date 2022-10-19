@@ -19,7 +19,7 @@ import (
 
 var (
 	qosmConfigRepo = auth.DefaultConfigRepositoryImpl()
-	qosmTokenRepo  = auth.DefaultTokenRepositoryImpl()
+	qosmTokenRepo  = tokenRepository
 	qosmClient     = factory.NewQosmClient(qosmConfigRepo)
 	serverService  = &qosm.ServerService{
 		Client:          qosmClient,

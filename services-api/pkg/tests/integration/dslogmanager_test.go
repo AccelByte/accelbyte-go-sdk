@@ -19,7 +19,7 @@ import (
 var (
 	terminatedServersService = &dslogmanager.TerminatedServersService{
 		Client:          factory.NewDslogmanagerClient(auth.DefaultConfigRepositoryImpl()),
-		TokenRepository: auth.DefaultTokenRepositoryImpl(),
+		TokenRepository: tokenRepository,
 	}
 	limit = int64(20)
 )

@@ -133,7 +133,7 @@ func (t *MyTokenRepo) Store(accessToken interface{}) error {
 	timeNow := time.Now().UTC()
 	t.IssuedTime = &timeNow
 
-	convertedToken, err := repository.ConvertInterfaceToModel(accessToken, &token)
+	convertedToken, err := repository.ConvertInterfaceToModel(accessToken)
 	if err != nil {
 		return err
 	}

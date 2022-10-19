@@ -21,7 +21,7 @@ import (
 var (
 	sessionService = &sessionbrowser.SessionService{
 		Client:          factory.NewSessionbrowserClient(auth.DefaultConfigRepositoryImpl()),
-		TokenRepository: auth.DefaultTokenRepositoryImpl(),
+		TokenRepository: tokenRepository,
 	}
 	namespaceSession   = integration.NamespaceTest
 	sessionType        = "p2p" // "dedicated server can not be updated"

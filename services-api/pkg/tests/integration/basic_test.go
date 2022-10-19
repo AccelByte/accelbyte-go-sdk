@@ -25,7 +25,7 @@ var (
 	basicLanguange     = "en"
 	userProfileService = &basic.UserProfileService{
 		Client:          factory.NewBasicClient(auth.DefaultConfigRepositoryImpl()),
-		TokenRepository: auth.DefaultTokenRepositoryImpl(),
+		TokenRepository: tokenRepository,
 	}
 	bodyBasic = &basicclientmodels.UserProfilePrivateCreate{
 		AvatarLargeURL: basicURL,

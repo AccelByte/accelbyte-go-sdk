@@ -19,7 +19,7 @@ import (
 var (
 	publicGameRecordService = &cloudsave.PublicGameRecordService{
 		Client:          factory.NewCloudsaveClient(auth.DefaultConfigRepositoryImpl()),
-		TokenRepository: auth.DefaultTokenRepositoryImpl(),
+		TokenRepository: tokenRepository,
 	}
 	key = "sample-player-record"
 )

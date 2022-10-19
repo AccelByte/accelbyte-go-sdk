@@ -36,25 +36,24 @@ var (
 	accelbyteCurrencyCode    = "USD"
 	namespace                = os.Getenv("AB_NAMESPACE")
 	configRepo               = auth.DefaultConfigRepositoryImpl()
-	tokenRepo                = auth.DefaultTokenRepositoryImpl()
 	seasonpassClient         = factory.NewSeasonpassClient(configRepo)
 	seasonpassPlatformClient = factory.NewPlatformClient(configRepo)
 	seasonService            = &seasonpass.SeasonService{
 		Client:          seasonpassClient,
-		TokenRepository: tokenRepo,
+		TokenRepository: tokenRepository,
 	}
 	storeTitle            = "Go Server SDK Season Store"
 	seasonCategoryService = &platform.CategoryService{
 		Client:          seasonpassPlatformClient,
-		TokenRepository: tokenRepo,
+		TokenRepository: tokenRepository,
 	}
 	seasonItemService = &platform.ItemService{
 		Client:          seasonpassPlatformClient,
-		TokenRepository: tokenRepo,
+		TokenRepository: tokenRepository,
 	}
 	seasonStoreService = &platform.StoreService{
 		Client:          seasonpassPlatformClient,
-		TokenRepository: tokenRepo,
+		TokenRepository: tokenRepository,
 	}
 	seasonCreateStore = &platformclientmodels.StoreCreate{
 		DefaultLanguage: "en-US",

@@ -20,7 +20,7 @@ import (
 var (
 	adminTagService = &ugc.AdminTagService{
 		Client:          factory.NewUgcClient(auth.DefaultConfigRepositoryImpl()),
-		TokenRepository: auth.DefaultTokenRepositoryImpl(),
+		TokenRepository: tokenRepository,
 	}
 	tag           = "GoSDKTag"
 	tagUpdate     = "GoSDKTagUpdate"

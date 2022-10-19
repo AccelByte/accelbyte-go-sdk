@@ -20,7 +20,7 @@ import (
 var (
 	storeService = &platform.StoreService{
 		Client:          factory.NewPlatformClient(auth.DefaultConfigRepositoryImpl()),
-		TokenRepository: auth.DefaultTokenRepositoryImpl(),
+		TokenRepository: tokenRepository,
 	}
 	language  = "en-US"
 	region    = "US"

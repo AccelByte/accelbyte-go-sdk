@@ -22,11 +22,11 @@ import (
 var (
 	configurationService = &group.ConfigurationService{
 		Client:          factory.NewGroupClient(auth.DefaultConfigRepositoryImpl()),
-		TokenRepository: auth.DefaultTokenRepositoryImpl(),
+		TokenRepository: tokenRepository,
 	}
 	groupService = &group.GroupService{
 		Client:          factory.NewGroupClient(auth.DefaultConfigRepositoryImpl()),
-		TokenRepository: auth.DefaultTokenRepositoryImpl(),
+		TokenRepository: tokenRepository,
 	}
 	configurationCode = "initialConfigurationCode"
 	groupDescription  = "DESCRIPTION"

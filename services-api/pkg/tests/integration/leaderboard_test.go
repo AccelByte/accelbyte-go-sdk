@@ -24,7 +24,7 @@ const letterBytes = "abcdefghijklmnopqrstuvwxyz1234567890"
 var (
 	leaderboardConfigurationService = &leaderboard.LeaderboardConfigurationService{
 		Client:          factory.NewLeaderboardClient(auth.DefaultConfigRepositoryImpl()),
-		TokenRepository: auth.DefaultTokenRepositoryImpl(),
+		TokenRepository: tokenRepository,
 	}
 	nameLeaderboard     = "test"
 	timeLeaderboard     = "12:00"

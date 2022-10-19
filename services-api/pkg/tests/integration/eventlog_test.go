@@ -22,7 +22,7 @@ import (
 var (
 	eventV2Service = &eventlog.EventV2Service{
 		Client:          factory.NewEventlogClient(auth.DefaultConfigRepositoryImpl()),
-		TokenRepository: auth.DefaultTokenRepositoryImpl(),
+		TokenRepository: tokenRepository,
 	}
 	offset       = int64(0)
 	date         = "2022-03-23T10:06:40Z"

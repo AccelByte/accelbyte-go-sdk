@@ -20,7 +20,7 @@ import (
 var (
 	achievementsService = &achievement.AchievementsService{
 		Client:          factory.NewAchievementClient(auth.DefaultConfigRepositoryImpl()),
-		TokenRepository: auth.DefaultTokenRepositoryImpl(),
+		TokenRepository: tokenRepository,
 	}
 	achievementCode = "GOLANG"
 	defaultLanguage = "EN"

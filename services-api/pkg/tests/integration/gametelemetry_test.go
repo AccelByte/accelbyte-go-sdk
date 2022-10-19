@@ -21,7 +21,7 @@ import (
 var (
 	gameTelemetryOperationsService = &gametelemetry.GametelemetryOperationsService{
 		Client:          factory.NewGametelemetryClient(auth.DefaultConfigRepositoryImpl()),
-		TokenRepository: auth.DefaultTokenRepositoryImpl(),
+		TokenRepository: tokenRepository,
 	}
 	telemetryBodyArray []*gametelemetryclientmodels.TelemetryBody
 	telemetryBody      = &gametelemetryclientmodels.TelemetryBody{

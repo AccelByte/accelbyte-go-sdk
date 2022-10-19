@@ -19,7 +19,7 @@ import (
 var (
 	dataRetrievalService = &gdpr.DataRetrievalService{
 		Client:          factory.NewGdprClient(auth.DefaultConfigRepositoryImpl()),
-		TokenRepository: auth.DefaultTokenRepositoryImpl(),
+		TokenRepository: tokenRepository,
 	}
 	body   []string
 	email  = "goSDK@accelbyte.net"

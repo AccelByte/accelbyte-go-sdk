@@ -5,9 +5,13 @@
 package integration_test
 
 import (
+	"bytes"
 	"os"
 	"testing"
 
+	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclient/catalog_changes"
+	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclient/reward"
+	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils/auth"
 	"github.com/sirupsen/logrus"
 	"github.com/stretchr/testify/assert"
@@ -21,6 +25,14 @@ import (
 
 var (
 	storeService = &platform.StoreService{
+		Client:          factory.NewPlatformClient(auth.DefaultConfigRepositoryImpl()),
+		TokenRepository: tokenRepository,
+	}
+	catalogChangesService = &platform.CatalogChangesService{
+		Client:          factory.NewPlatformClient(auth.DefaultConfigRepositoryImpl()),
+		TokenRepository: tokenRepository,
+	}
+	rewardService = &platform.RewardService{
 		Client:          factory.NewPlatformClient(auth.DefaultConfigRepositoryImpl()),
 		TokenRepository: tokenRepository,
 	}
@@ -39,7 +51,6 @@ var (
 		Description:     title,
 		Title:           &title,
 	}
-	okExport = &platformclientmodels.ExportStoreRequest{}
 )
 
 func TestIntegrationStore(t *testing.T) {
@@ -119,17 +130,19 @@ func TestIntegrationExportImportStore(t *testing.T) {
 	Init()
 
 	storeId := createStore()
+	publishedStoreId := publishStore(storeId)
 	defer func() {
-		_ = deleteStore(storeId)
+		_ = deletePublishStore(storeId)
 	}()
+	writer := bytes.NewBuffer(nil)
 
 	// CASE Store export
 	inputExport := &store.ExportStore1Params{
 		Namespace: integration.NamespaceTest,
-		StoreID:   storeId,
+		StoreID:   publishedStoreId,
 	}
 
-	errExport := storeService.ExportStore1Short(inputExport)
+	okExport, errExport := storeService.ExportStore1Short(inputExport, writer)
 	if errExport != nil {
 		t.Fatal(errExport.Error())
 	}
@@ -137,20 +150,16 @@ func TestIntegrationExportImportStore(t *testing.T) {
 
 	// Assert
 	assert.Nil(t, errExport, "should be nil")
+	assert.NotNil(t, okExport, "should not be nil")
 
-	// Arrange
-	filePath := "test.zip"
-	//b, _ := json.Marshal(okExport)
-	//err := ioutil.WriteFile(filePath, b, 0644)
-	//if err != nil {
-	//	t.Fatal("unable to write lobby file")
-	//}
-
-	// Arrange - read entire JSON file
-	file, errFile := os.Open(filePath)
-	if errFile != nil {
-		t.Fatal("unable to open lobby file")
+	// Prepare the file zip with "published" json store - Arrange
+	file, err := utils.ConvertToFileZip(okExport, writer)
+	if err != nil {
+		t.Fatalf("failed to convert file. %s", err.Error())
 	}
+	defer func() {
+		_ = os.Remove("test.zip")
+	}()
 
 	// CASE Store export
 	inputImport := &store.ImportStore1Params{
@@ -170,6 +179,51 @@ func TestIntegrationExportImportStore(t *testing.T) {
 	assert.NotNil(t, okImport, "should not be nil")
 }
 
+func TestIntegrationExportImportReward(t *testing.T) {
+	// Login User - Arrange
+	Init()
+
+	// CASE Reward export
+	inputExport := &reward.ExportRewardsParams{
+		Namespace: integration.NamespaceTest,
+	}
+
+	okExport, errExport := rewardService.ExportRewardsShort(inputExport)
+	if errExport != nil {
+		t.Fatal(errExport.Error())
+	}
+	// ESAC
+
+	// Assert
+	assert.Nil(t, errExport, "should be nil")
+	assert.NotNil(t, okExport, "should not be nil")
+
+	// Arrange
+	file, err := utils.ConvertToFileJSON(okExport)
+	if err != nil {
+		t.Fatal(err.Error())
+	}
+	defer func() {
+		_ = os.Remove("test.json")
+	}()
+
+	// CASE Reward import
+	inputImport := &reward.ImportRewardsParams{
+		File:            file,
+		Namespace:       integration.NamespaceTest,
+		ReplaceExisting: false,
+	}
+
+	errImport := rewardService.ImportRewardsShort(inputImport)
+	if errImport != nil {
+		t.Fatal(errImport.Error())
+	}
+	// ESAC
+
+	// Assert
+	assert.Nil(t, errImport, "should be nil")
+}
+
 func createStore() string {
 	inputCreate := &store.CreateStoreParams{
 		Body:      bodyStore,
@@ -179,24 +233,49 @@ func createStore() string {
 	created, errCreate := storeService.CreateStoreShort(inputCreate)
 	if errCreate != nil {
 		logrus.Error(errCreate.Error())
-	} else {
-		storeID := *created.StoreID
 
-		return storeID
+		return ""
 	}
+	storeID := *created.StoreID
 
-	return ""
+	return storeID
 }
 
-func deleteStore(storeId string) error {
-	inputCreate := &store.DeleteStoreParams{
+func publishStore(storeId string) string {
+	inputCreate := &catalog_changes.PublishAllParams{
 		StoreID:   storeId,
 		Namespace: integration.NamespaceTest,
 	}
 
-	_, errDelete := storeService.DeleteStoreShort(inputCreate)
+	created, errCreate := catalogChangesService.PublishAllShort(inputCreate)
+	if errCreate != nil {
+		logrus.Error(errCreate.Error())
+
+		return ""
+	}
+	storeID := *created.StoreID
+
+	return storeID
+}
+
+func deletePublishStore(storeId string) error {
+	input := &store.DeletePublishedStoreParams{
+		Namespace: integration.NamespaceTest,
+	}
+
+	_, errDelete := storeService.DeletePublishedStoreShort(input)
 	if errDelete != nil {
 		logrus.Error(errDelete.Error())
+	}
+
+	inputDelete := &store.DeleteStoreParams{
+		StoreID:   storeId,
+		Namespace: integration.NamespaceTest,
+	}
+
+	_, err := storeService.DeleteStoreShort(inputDelete)
+	if err != nil {
+		logrus.Error(err.Error())
 	}
 
 	return nil

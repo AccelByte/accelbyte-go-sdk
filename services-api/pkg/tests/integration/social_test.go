@@ -5,8 +5,10 @@
 package integration_test
 
 import (
+	"os"
 	"testing"
 
+	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils/auth"
 	"github.com/stretchr/testify/assert"
 
@@ -157,4 +159,44 @@ func TestIntegrationUpdateStat(t *testing.T) {
 	// Assert
 	assert.Nil(t, err, "err should be nil")
 	assert.NotNil(t, ok, "response should not be nil")
+}
+
+func TestIntegrationExportStat(t *testing.T) {
+	// Login User - Arrange
+	Init()
+
+	// CASE Stat export
+	inputExportStat := &stat_configuration.ExportStatsParams{
+		Namespace: integration.NamespaceTest,
+	}
+
+	okExport, errExport := statConfigurationService.ExportStatsShort(inputExportStat)
+	// ESAC
+
+	// Assert
+	assert.Nil(t, errExport, "err should be nil")
+	assert.NotNil(t, okExport, "should not be nil")
+
+	// Arrange
+	file, err := utils.ConvertToFileJSON(okExport)
+	if err != nil {
+		t.Fatal(err.Error())
+	}
+	defer func() {
+		_ = os.Remove("test.json")
+	}()
+
+	// CASE Stat import
+	inputImportStat := &stat_configuration.ImportStatsParams{
+		File:            file,
+		Namespace:       integration.NamespaceTest,
+		ReplaceExisting: nil,
+	}
+
+	okImport, errImport := statConfigurationService.ImportStatsShort(inputImportStat)
+	// ESAC
+
+	// Assert
+	assert.Nil(t, errImport, "err should be nil")
+	assert.NotNil(t, okImport, "err should not be nil")
 }

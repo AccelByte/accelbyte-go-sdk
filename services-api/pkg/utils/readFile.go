@@ -6,9 +6,15 @@ package utils
 
 import (
 	"bufio"
+	"bytes"
+	"encoding/json"
 	"io"
+	"io/ioutil"
 	"log"
 	"os"
+
+	"github.com/go-openapi/runtime"
+	"github.com/sirupsen/logrus"
 )
 
 func ReadByChunks(filePath string) (*os.File, error) {
@@ -39,6 +45,48 @@ func ReadByChunks(filePath string) (*os.File, error) {
 		if errRead != nil && errRead != io.EOF {
 			log.Fatal(errRead)
 		}
+	}
+
+	return file, nil
+}
+
+func ConvertToFileJSON(data interface{}) (runtime.NamedReadCloser, error) {
+	content, errMarshal := json.Marshal(data)
+	if errMarshal != nil {
+		logrus.Fatal(errMarshal)
+	}
+
+	errCreate := ioutil.WriteFile("test.json", content, 0644)
+	if errCreate != nil {
+		logrus.Fatal(errCreate)
+	}
+
+	file, errOpen := os.Open("test.json")
+	if errOpen != nil {
+		logrus.Fatal(errOpen)
+	}
+
+	return file, nil
+}
+
+func ConvertToFileZip(fileByte io.Writer, writer *bytes.Buffer) (runtime.NamedReadCloser, error) {
+	_, errMarshal := json.Marshal(fileByte)
+	if errMarshal != nil {
+		logrus.Fatal(errMarshal)
+	}
+
+	f, errCreate := os.Create("test.zip")
+	if errCreate != nil {
+		logrus.Fatal(errCreate)
+	}
+
+	if _, err := io.Copy(f, writer); err != nil {
+		logrus.Fatal(err.Error())
+	}
+
+	file, errOpen := os.Open("test.zip")
+	if errOpen != nil {
+		logrus.Fatal(errOpen)
 	}
 
 	return file, nil

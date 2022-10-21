@@ -44,14 +44,14 @@ func (c *CustomTransport) RoundTrip(r *http.Request) (*http.Response, error) {
 
 func CustomTransportRuntime(transport *httptransport.Runtime) *httptransport.Runtime {
 	transport.Producers["*/*"] = runtime.JSONProducer()
+	transport.Consumers["text/x-log"] = runtime.JSONConsumer()
+	transport.Consumers["text/plain"] = runtime.JSONConsumer()
 	transport.Consumers["application/problem+json"] = runtime.JSONConsumer()
 	transport.Consumers["application/x-www-form-urlencoded"] = runtime.JSONConsumer()
-	transport.Consumers["application/zip"] = runtime.JSONConsumer()
-	transport.Consumers["application/x-zip-compressed"] = runtime.ByteStreamConsumer()
-	transport.Consumers["application/pdf"] = runtime.JSONConsumer()
-	transport.Consumers["text/x-log"] = runtime.JSONConsumer()
 	transport.Consumers["image/png"] = runtime.ByteStreamConsumer()
-	transport.Consumers["text/plain"] = runtime.JSONConsumer()
+	transport.Consumers["application/pdf"] = runtime.ByteStreamConsumer()
+	transport.Consumers["application/zip"] = runtime.ByteStreamConsumer()
+	transport.Consumers["application/x-zip-compressed"] = runtime.ByteStreamConsumer()
 
 	// optional custom request header
 	transport.Transport = SetLogger(transport.Transport)

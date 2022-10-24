@@ -8,7 +8,7 @@
     },
     "description": "Justice SeasonPass Service",
     "title": "justice-seasonpass-service",
-    "version": "1.15.0"
+    "version": "1.16.0"
   },
   "schemes": [
     "https"
@@ -257,6 +257,77 @@
           }
         ],
         "summary": "Get current published season summary",
+        "tags": [
+          "Season"
+        ],
+        "x-authorization": {
+          "action": "2",
+          "resource": "ADMIN:NAMESPACE:{namespace}:SEASONPASS"
+        }
+      }
+    },
+    "/seasonpass/admin/namespaces/{namespace}/seasons/current/users/bulk/progression": {
+      "post": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "This API is used to bulk get user current season progression, season only located in non-publisher namespace.\u0026lt;p\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;ADMIN:NAMESPACE:{namespace}:SEASONPASS, action=2 (READ)\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: user season progression\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
+        "operationId": "bulkGetUserSeasonProgression",
+        "parameters": [
+          {
+            "description": "Namespace",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "required": false,
+            "schema": {
+              "$ref": "#/definitions/BulkUserProgressionRequest"
+            }
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "items": {
+                "$ref": "#/definitions/UserSeasonSummary"
+              },
+              "type": "array"
+            }
+          },
+          "400": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eErrorCode\u003c/td\u003e\u003ctd\u003eErrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20026\u003c/td\u003e\u003ctd\u003epublisher namespace not allowed\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/ErrorEntity"
+            }
+          },
+          "404": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eErrorCode\u003c/td\u003e\u003ctd\u003eErrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e49147\u003c/td\u003e\u003ctd\u003ePublished season does not exist\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/ErrorEntity"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          },
+          {
+            "HasPermission": [
+              "ADMIN:NAMESPACE:{namespace}:SEASONPASS [READ]"
+            ],
+            "authorization": []
+          }
+        ],
+        "summary": "Bulk get user current season progression",
         "tags": [
           "Season"
         ],
@@ -3148,6 +3219,17 @@
     }
   },
   "definitions": {
+    "BulkUserProgressionRequest": {
+      "properties": {
+        "userIds": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
     "ClaimableRewards": {
       "description": "A DTO object for claimable rewards.",
       "properties": {

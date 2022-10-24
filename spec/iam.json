@@ -8,7 +8,7 @@
     },
     "description": "Justice IAM Service",
     "title": "justice-iam-service",
-    "version": "5.18.0"
+    "version": "5.20.0"
   },
   "schemes": [
     "https"
@@ -6627,7 +6627,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "\u0026lt;p\u0026gt;Required permission \u0026#39;ADMIN:CONFIGURATION\u0026#39; [UPDATE]\u0026lt;/p\u0026gt;\n\t\t\u0026lt;p\u0026gt;This endpoint is used to update input validation configuration.\u0026lt;/p\u0026gt;\n\t\tSupported \u0026lt;code\u0026gt;field\u0026lt;/code\u0026gt;:\u0026lt;br\u0026gt;\n\t\t\u0026lt;ul\u0026gt;\n\t\t\u0026lt;li\u0026gt;displayName\u0026lt;/li\u0026gt;\n\t\t\u0026lt;li\u0026gt;password\u0026lt;/li\u0026gt;\n\t\t\u0026lt;li\u0026gt;username\u0026lt;/li\u0026gt;\n\t\t\u0026lt;li\u0026gt;email\u0026lt;/li\u0026gt;\n\t\t\u0026lt;/ul\u0026gt;\n\t\t\u0026lt;p\u0026gt;If \u0026lt;code\u0026gt;isCustomRegex\u0026lt;/code\u0026gt; is set to true, \u0026lt;code\u0026gt;regex\u0026lt;/code\u0026gt; parameter will be used as input validation and the other parameters will be ignored. Otherwise, \u0026lt;code\u0026gt;regex\u0026lt;/code\u0026gt; parameter will be ignored and regex for input validation will be generated based on the combination of the other parameters. \u0026lt;/p\u0026gt;\n\t\t\u0026lt;p\u0026gt;If \u0026lt;code\u0026gt;allowUnicode\u0026lt;/code\u0026gt; is set to true, unicode regex pattern will be use as the input validation and the other parameters will be ignored.\u0026lt;/p\u0026gt;\n\t\tSupported \u0026lt;code\u0026gt;letterCase\u0026lt;/code\u0026gt;:\u0026lt;br\u0026gt;\n\t\t\u0026lt;ul\u0026gt;\n\t\t\u0026lt;li\u0026gt;lowercase\u0026lt;/li\u0026gt;\n\t\t\u0026lt;li\u0026gt;uppercase\u0026lt;/li\u0026gt;\n\t\t\u0026lt;li\u0026gt;mixed: uppercase and lowercase\u0026lt;/li\u0026gt;\n\t\t\u0026lt;li\u0026gt;mixed: uppercase and/or lowercase\u0026lt;/li\u0026gt;\n\t\t\u0026lt;/ul\u0026gt;\n\t\tSupported \u0026lt;code\u0026gt;specialCharacterLocation\u0026lt;/code\u0026gt;:\u0026lt;br\u0026gt;\n\t\t\u0026lt;ul\u0026gt;\n\t\t\u0026lt;li\u0026gt;anywhere\u0026lt;/li\u0026gt;\n\t\t\u0026lt;li\u0026gt;middle\u0026lt;/li\u0026gt;\n\t\t\u0026lt;/ul\u0026gt;\n\t\t\u0026lt;p\u0026gt;If \u0026lt;code\u0026gt;specialCharacters\u0026lt;/code\u0026gt; is empty, \u0026lt;code\u0026gt;specialCharacterLocation\u0026lt;/code\u0026gt; and \u0026lt;code\u0026gt;maxRepeatingSpecialCharacter\u0026lt;/code\u0026gt; will be ignored.\u0026lt;/p\u0026gt;\n\t\t\u0026lt;p\u0026gt;\u0026lt;code\u0026gt;minCharType\u0026lt;/code\u0026gt; is used to identify how many required criteria in the regex. The supported criteria are number, letter, special character, and letter case. If set to 0 or 1 means all criteria are optional. It can be set as much as the number of criteria enabled.\u0026lt;/p\u0026gt;\n\t\t\u0026lt;p\u0026gt;If \u0026lt;code\u0026gt;blockedWord\u0026lt;/code\u0026gt; is set by admin, any input from user which contain kind of blocked word(s) will be blocked for create/upgrade/update account\u0026lt;/p\u0026gt;\n\t\t",
+        "description": "\u0026lt;p\u0026gt;Required permission \u0026#39;ADMIN:CONFIGURATION\u0026#39; [UPDATE]\u0026lt;/p\u0026gt;\n\t\t\u0026lt;p\u0026gt;This endpoint is used to update input validation configuration.\u0026lt;/p\u0026gt;\n\t\tSupported \u0026lt;code\u0026gt;field\u0026lt;/code\u0026gt;:\u0026lt;br\u0026gt;\n\t\t\u0026lt;ul\u0026gt;\n\t\t\u0026lt;li\u0026gt;displayName\u0026lt;/li\u0026gt;\n\t\t\u0026lt;li\u0026gt;password\u0026lt;/li\u0026gt;\n\t\t\u0026lt;li\u0026gt;username\u0026lt;/li\u0026gt;\n\t\t\u0026lt;li\u0026gt;email\u0026lt;/li\u0026gt;\n\t\t\u0026lt;/ul\u0026gt;\n\t\t\u0026lt;p\u0026gt;If \u0026lt;code\u0026gt;isCustomRegex\u0026lt;/code\u0026gt; is set to true, \u0026lt;code\u0026gt;regex\u0026lt;/code\u0026gt; parameter will be used as input validation and the other parameters will be ignored. Otherwise, \u0026lt;code\u0026gt;regex\u0026lt;/code\u0026gt; parameter will be ignored and regex for input validation will be generated based on the combination of the other parameters. \u0026lt;/p\u0026gt;\n\t\t\u0026lt;p\u0026gt;If \u0026lt;code\u0026gt;allowUnicode\u0026lt;/code\u0026gt; is set to true, unicode regex pattern will be use as the input validation and the other parameters will be ignored.\u0026lt;/p\u0026gt;\n\t\tSupported \u0026lt;code\u0026gt;letterCase\u0026lt;/code\u0026gt;:\u0026lt;br\u0026gt;\n\t\t\u0026lt;ul\u0026gt;\n\t\t\u0026lt;li\u0026gt;lowercase\u0026lt;/li\u0026gt;\n\t\t\u0026lt;li\u0026gt;uppercase\u0026lt;/li\u0026gt;\n\t\t\u0026lt;li\u0026gt;mixed: uppercase and lowercase\u0026lt;/li\u0026gt;\n\t\t\u0026lt;li\u0026gt;mixed: uppercase and/or lowercase\u0026lt;/li\u0026gt;\n\t\t\u0026lt;/ul\u0026gt;\n\t\tflexible special character non words with \u0026lt;code\u0026gt;allowAllSpecialCharacters\u0026lt;/code\u0026gt;\u0026lt;br\u0026gt;\n\t\t\u0026lt;p\u0026gt;if \u0026lt;code\u0026gt;allowAllSpecialCharacters\u0026lt;/code\u0026gt; is set to true \u0026lt;code\u0026gt;specialCharacters\u0026lt;/code\u0026gt; will forced to empty. \u0026lt;p\u0026gt;\n\t\tSupported \u0026lt;code\u0026gt;specialCharacterLocation\u0026lt;/code\u0026gt;:\u0026lt;br\u0026gt;\n\t\t\u0026lt;ul\u0026gt;\n\t\t\u0026lt;li\u0026gt;anywhere\u0026lt;/li\u0026gt;\n\t\t\u0026lt;li\u0026gt;middle\u0026lt;/li\u0026gt;\n\t\t\u0026lt;/ul\u0026gt;\n\t\t\u0026lt;p\u0026gt;If \u0026lt;code\u0026gt;specialCharacters\u0026lt;/code\u0026gt; is empty, \u0026lt;code\u0026gt;specialCharacterLocation\u0026lt;/code\u0026gt; and \u0026lt;code\u0026gt;maxRepeatingSpecialCharacter\u0026lt;/code\u0026gt; will be ignored.\u0026lt;/p\u0026gt;\n\t\t\u0026lt;p\u0026gt;\u0026lt;code\u0026gt;minCharType\u0026lt;/code\u0026gt; is used to identify how many required criteria in the regex. The supported criteria are number, letter, special character, and letter case. If set to 0 or 1 means all criteria are optional. It can be set as much as the number of criteria enabled.\u0026lt;/p\u0026gt;\n\t\t\u0026lt;p\u0026gt;If \u0026lt;code\u0026gt;blockedWord\u0026lt;/code\u0026gt; is set by admin, any input from user which contain kind of blocked word(s) will be blocked for create/upgrade/update account\u0026lt;/p\u0026gt;\n\t\t",
         "operationId": "AdminUpdateInputValidations",
         "parameters": [
           {
@@ -7430,7 +7430,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "Add a new OAuth 2.0 client. Protected by the permission: ADMIN:NAMESPACE:{namespace}:CLIENT [CREATE]\u0026lt;br\u0026gt;\n\t\tA new client automatically granted with these scopes: commerce, account, analytics, publishing, social.\u0026lt;br\u0026gt;\n\t\taction code: 10301\u0026lt;br\u0026gt;\n\t\t\u0026lt;p\u0026gt;\u0026lt;strong\u0026gt;Fields Description:\u0026lt;/strong\u0026gt;\n\t\t\u0026lt;ul\u0026gt;\n\t\t\u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;clientId\u0026lt;/strong\u0026gt; : The client ID. e.g f815e5c44f364993961be3b3f26a7bf4\u0026lt;/li\u0026gt;\n\t\t\u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;clientName\u0026lt;/strong\u0026gt; : The client name. e.g E-commerce\u0026lt;/li\u0026gt;\n\t\t\u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;secret\u0026lt;/strong\u0026gt; : The client\u0026#39;s secret. It\u0026#39;s empty if the client\u0026#39;s type is a public client. Otherwise, the client secret is required\u0026lt;/li\u0026gt;\n\t\t\u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;namespace\u0026lt;/strong\u0026gt; : The namespace where the client lives. e.g sample-game\u0026lt;/li\u0026gt;\n\t\t\u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;redirectUri\u0026lt;/strong\u0026gt; : Contains the redirect URI used in OAuth callback. e.g https://example.net/platform\u0026lt;/li\u0026gt;\n\t\t\u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;oauthClientType\u0026lt;/strong\u0026gt; : The OAuth 2.0 client type. The client type determines whether the authorization needs Proof Of Key Exchange or not. \n\t\t\t\t\tA public client type doesn\u0026#39;t have a client secret and should use PKCE flow. \n\t\t\t\t\tA confidential client type has a client secret and don\u0026#39;t use PKCE flow\n\t\t\t\u0026lt;ul\u0026gt;Supported oAuthClientType :\n\t\t\t\t\u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;Public\u0026lt;/strong\u0026gt;\u0026lt;/li\u0026gt;\n\t\t\t\t\u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;Confidential\u0026lt;/strong\u0026gt;\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;\u0026lt;/li\u0026gt;\n\t\t\u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;audiences\u0026lt;/strong\u0026gt; : List of target client IDs who is intended to receive the token. e.g [\u0026#34;eaaa65618fe24293b00a61454182b435\u0026#34;, \u0026#34;40073ee9bc3446d3a051a71b48509a5d\u0026#34;]\u0026lt;/li\u0026gt;\n\t\t\u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;baseUri\u0026lt;/strong\u0026gt; : A base URI of the application. It is used for making sure the token is intended to be used by the client. e.g https://example.net/platform\u0026lt;/li\u0026gt;\n\t\t\u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;clientPermissions\u0026lt;/strong\u0026gt; : Contains the client\u0026#39;s permissions\u0026lt;/li\u0026gt;\n\t\t\u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;deletable\u0026lt;/strong\u0026gt; : The flag to identify whether client is deletable (optional). default value: true\u0026lt;/li\u0026gt;\n\t\t\u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;clientPlatform\u0026lt;/strong\u0026gt;: available client platform (optional). default value: \u0026#34;\u0026#34;\n  \t\t\t\u0026lt;ul\u0026gt;\n\t\t\t\t\u0026lt;li\u0026gt;Playstation\u0026lt;/li\u0026gt;\n\t\t\t\t\u0026lt;li\u0026gt;Xbox\u0026lt;/li\u0026gt;\n\t\t\t\t\u0026lt;li\u0026gt;Steam\u0026lt;/li\u0026gt;\n\t\t\t\t\u0026lt;li\u0026gt;Epic\u0026lt;/li\u0026gt;\n\t\t\t\t\u0026lt;li\u0026gt;IOS\u0026lt;/li\u0026gt;\n\t\t\t\t\u0026lt;li\u0026gt;GooglePlay\u0026lt;/li\u0026gt;\n\t\t\t\t\u0026lt;li\u0026gt;Nintendo\u0026lt;/li\u0026gt;\n\t\t\t\u0026lt;/ul\u0026gt;\n\t\t\u0026lt;/li\u0026gt;\n        \u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;twoFactorEnabled\u0026lt;/strong\u0026gt;: The flag to indicate whether 2FA validation is enable for this client. default value: false\u0026lt;/li\u0026gt;\n\t\t\u0026lt;/ul\u0026gt;\n\t\t\u0026lt;/p\u0026gt;\n\t\t",
+        "description": "Add a new OAuth 2.0 client. Protected by the permission: ADMIN:NAMESPACE:{namespace}:CLIENT [CREATE]\u0026lt;br\u0026gt;\n\t\tA new client automatically granted with these scopes: commerce, account, analytics, publishing, social.\u0026lt;br\u0026gt;\n\t\taction code: 10301\u0026lt;br\u0026gt;\n\t\t\u0026lt;p\u0026gt;\u0026lt;strong\u0026gt;Fields Description:\u0026lt;/strong\u0026gt;\n\t\t\u0026lt;ul\u0026gt;\n\t\t\u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;clientId\u0026lt;/strong\u0026gt; : The client ID. e.g f815e5c44f364993961be3b3f26a7bf4\u0026lt;/li\u0026gt;\n\t\t\u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;clientName\u0026lt;/strong\u0026gt; : The client name. e.g E-commerce\u0026lt;/li\u0026gt;\n\t\t\u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;secret\u0026lt;/strong\u0026gt; : The client\u0026#39;s secret. It\u0026#39;s empty if the client\u0026#39;s type is a public client. Otherwise, the client secret is required\u0026lt;/li\u0026gt;\n\t\t\u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;namespace\u0026lt;/strong\u0026gt; : The namespace where the client lives. e.g sample-game\u0026lt;/li\u0026gt;\n\t\t\u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;redirectUri\u0026lt;/strong\u0026gt; : Contains the redirect URI used in OAuth callback. e.g https://example.net/platform\u0026lt;/li\u0026gt;\n\t\t\u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;oauthClientType\u0026lt;/strong\u0026gt; : The OAuth 2.0 client type. The client type determines whether the authorization needs Proof Of Key Exchange or not. \n\t\t\t\t\tA public client type doesn\u0026#39;t have a client secret and should use PKCE flow. \n\t\t\t\t\tA confidential client type has a client secret and don\u0026#39;t use PKCE flow\n\t\t\t\u0026lt;ul\u0026gt;Supported oAuthClientType :\n\t\t\t\t\u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;Public\u0026lt;/strong\u0026gt;\u0026lt;/li\u0026gt;\n\t\t\t\t\u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;Confidential\u0026lt;/strong\u0026gt;\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;\u0026lt;/li\u0026gt;\n\t\t\u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;audiences\u0026lt;/strong\u0026gt; : List of target client IDs who is intended to receive the token. e.g [\u0026#34;eaaa65618fe24293b00a61454182b435\u0026#34;, \u0026#34;40073ee9bc3446d3a051a71b48509a5d\u0026#34;]\u0026lt;/li\u0026gt;\n\t\t\u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;baseUri\u0026lt;/strong\u0026gt; : A base URI of the application. It is used for making sure the token is intended to be used by the client. e.g https://example.net/platform\u0026lt;/li\u0026gt;\n\t\t\u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;clientPermissions\u0026lt;/strong\u0026gt; : Contains the client\u0026#39;s permissions\u0026lt;/li\u0026gt;\n\t\t\u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;deletable\u0026lt;/strong\u0026gt; : The flag to identify whether client is deletable (optional). default value: true\u0026lt;/li\u0026gt;\n\t\t\u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;clientPlatform\u0026lt;/strong\u0026gt;: available client platform (optional). default value: \u0026#34;\u0026#34;\n  \t\t\t\u0026lt;ul\u0026gt;\n\t\t\t\t\u0026lt;li\u0026gt;Playstation\u0026lt;/li\u0026gt;\n\t\t\t\t\u0026lt;li\u0026gt;Xbox\u0026lt;/li\u0026gt;\n\t\t\t\t\u0026lt;li\u0026gt;Steam\u0026lt;/li\u0026gt;\n\t\t\t\t\u0026lt;li\u0026gt;Epic\u0026lt;/li\u0026gt;\n\t\t\t\t\u0026lt;li\u0026gt;IOS\u0026lt;/li\u0026gt;\n\t\t\t\t\u0026lt;li\u0026gt;GooglePlay\u0026lt;/li\u0026gt;\n\t\t\t\t\u0026lt;li\u0026gt;Nintendo\u0026lt;/li\u0026gt;\n\t\t\t\u0026lt;/ul\u0026gt;\n\t\t\u0026lt;/li\u0026gt;\n        \u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;twoFactorEnabled\u0026lt;/strong\u0026gt;: The flag to indicate whether 2FA validation is enable for this client. default value: false\u0026lt;/li\u0026gt;\n\t\t\u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;oauthAccessTokenExpiration\u0026lt;/strong\u0026gt;: a configurable expiration time for \u0026lt;strong\u0026gt;access_token\u0026lt;/strong\u0026gt;, default value: 0 (mean fetch value from environment variable) \u0026lt;/li\u0026gt;\n\t\t\u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;oauthRefreshTokenExpiration\u0026lt;/strong\u0026gt;: a configurable expiration time for \u0026lt;strong\u0026gt;refresh_token\u0026lt;/strong\u0026gt;, default value: 0 (mean fetch value from environment variable)\u0026lt;/li\u0026gt;\n\t\t\u0026lt;/ul\u0026gt;\n\t\t\u0026lt;/p\u0026gt;\n\t\t",
         "operationId": "AdminCreateClientV3",
         "parameters": [
           {
@@ -7640,7 +7640,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "Updates an OAuth 2.0 client. Protected by the permission: ADMIN:NAMESPACE:{namespace}:CLIENT [UPDATE].\n\t\t\t\tSpecify only the fields you want to update in the request payload, e.g. {\u0026#34;ClientName\u0026#34;:\u0026#34;E-commerce\u0026#34;, \u0026#34;BaseUri\u0026#34;:\u0026#34;https://example.net\u0026#34;}\n\t\t\u0026lt;br\u0026gt; action code: 10302\u0026lt;br\u0026gt;\n\t\t\u0026lt;p\u0026gt;\u0026lt;strong\u0026gt;Fields Description:\u0026lt;/strong\u0026gt;\n\t\t\u0026lt;ul\u0026gt;\n\t\t\u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;clientName\u0026lt;/strong\u0026gt; : The client name. It should not be empty if the field exists in the body. e.g E-commerce\u0026lt;/li\u0026gt;\n\t\t\u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;namespace\u0026lt;/strong\u0026gt; : The namespace where the client lives. e.g sample-game\u0026lt;/li\u0026gt;\n\t\t\u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;redirectUri\u0026lt;/strong\u0026gt; : Contains the redirect URI used in OAuth callback. It should not be empty if the field exists in the body.  e.g https://example.net/platform\u0026lt;/li\u0026gt;\n\t\t\u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;audiences\u0026lt;/strong\u0026gt; : List of target client IDs who is intended to receive the token. e.g [\u0026#34;eaaa65618fe24293b00a61454182b435\u0026#34;, \u0026#34;40073ee9bc3446d3a051a71b48509a5d\u0026#34;]\u0026lt;/li\u0026gt;\n\t\t\u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;baseUri\u0026lt;/strong\u0026gt; : A base URI of the application. It is used in the audience checking for making sure the token is used by the right resource server. Required if the application type is a server. e.g https://example.net/platform\u0026lt;/li\u0026gt;\n\t\t\u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;clientPermissions\u0026lt;/strong\u0026gt; : Contains the client\u0026#39;s permissions\u0026lt;/li\u0026gt;\n\t\t\u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;deletable\u0026lt;/strong\u0026gt; : The flag to identify whether client is deletable (optional). e.g. true\u0026lt;/li\u0026gt;\n\t\t\u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;clientPlatform\u0026lt;/strong\u0026gt; : available client platform (optional). default value: \u0026#34;\u0026#34;.\n  \t\t\t\u0026lt;ul\u0026gt;\n\t\t\t\t\u0026lt;li\u0026gt;Playstation\u0026lt;/li\u0026gt;\n\t\t\t\t\u0026lt;li\u0026gt;Xbox\u0026lt;/li\u0026gt;\n\t\t\t\t\u0026lt;li\u0026gt;Steam\u0026lt;/li\u0026gt;\n\t\t\t\t\u0026lt;li\u0026gt;Epic\u0026lt;/li\u0026gt;\n\t\t\t\t\u0026lt;li\u0026gt;IOS\u0026lt;/li\u0026gt;\n\t\t\t\t\u0026lt;li\u0026gt;GooglePlay\u0026lt;/li\u0026gt;\n\t\t\t\t\u0026lt;li\u0026gt;Nintendo\u0026lt;/li\u0026gt;\n\t\t\t\u0026lt;/ul\u0026gt;\n\t\t\u0026lt;/li\u0026gt;\n        \u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;twoFactorEnabled\u0026lt;/strong\u0026gt;: The flag to indicate whether 2FA validation is enable for this client. default value: false\u0026lt;/li\u0026gt;\n\t\t\u0026lt;/ul\u0026gt;\n\t\t\u0026lt;/p\u0026gt;",
+        "description": "Updates an OAuth 2.0 client. Protected by the permission: ADMIN:NAMESPACE:{namespace}:CLIENT [UPDATE].\n\t\t\t\tSpecify only the fields you want to update in the request payload, e.g. {\u0026#34;ClientName\u0026#34;:\u0026#34;E-commerce\u0026#34;, \u0026#34;BaseUri\u0026#34;:\u0026#34;https://example.net\u0026#34;}\n\t\t\u0026lt;br\u0026gt; action code: 10302\u0026lt;br\u0026gt;\n\t\t\u0026lt;p\u0026gt;\u0026lt;strong\u0026gt;Fields Description:\u0026lt;/strong\u0026gt;\n\t\t\u0026lt;ul\u0026gt;\n\t\t\u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;clientName\u0026lt;/strong\u0026gt; : The client name. It should not be empty if the field exists in the body. e.g E-commerce\u0026lt;/li\u0026gt;\n\t\t\u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;namespace\u0026lt;/strong\u0026gt; : The namespace where the client lives. e.g sample-game\u0026lt;/li\u0026gt;\n\t\t\u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;redirectUri\u0026lt;/strong\u0026gt; : Contains the redirect URI used in OAuth callback. It should not be empty if the field exists in the body.  e.g https://example.net/platform\u0026lt;/li\u0026gt;\n\t\t\u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;audiences\u0026lt;/strong\u0026gt; : List of target client IDs who is intended to receive the token. e.g [\u0026#34;eaaa65618fe24293b00a61454182b435\u0026#34;, \u0026#34;40073ee9bc3446d3a051a71b48509a5d\u0026#34;]\u0026lt;/li\u0026gt;\n\t\t\u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;baseUri\u0026lt;/strong\u0026gt; : A base URI of the application. It is used in the audience checking for making sure the token is used by the right resource server. Required if the application type is a server. e.g https://example.net/platform\u0026lt;/li\u0026gt;\n\t\t\u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;clientPermissions\u0026lt;/strong\u0026gt; : Contains the client\u0026#39;s permissions\u0026lt;/li\u0026gt;\n\t\t\u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;deletable\u0026lt;/strong\u0026gt; : The flag to identify whether client is deletable (optional). e.g. true\u0026lt;/li\u0026gt;\n\t\t\u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;clientPlatform\u0026lt;/strong\u0026gt; : available client platform (optional). default value: \u0026#34;\u0026#34;.\n  \t\t\t\u0026lt;ul\u0026gt;\n\t\t\t\t\u0026lt;li\u0026gt;Playstation\u0026lt;/li\u0026gt;\n\t\t\t\t\u0026lt;li\u0026gt;Xbox\u0026lt;/li\u0026gt;\n\t\t\t\t\u0026lt;li\u0026gt;Steam\u0026lt;/li\u0026gt;\n\t\t\t\t\u0026lt;li\u0026gt;Epic\u0026lt;/li\u0026gt;\n\t\t\t\t\u0026lt;li\u0026gt;IOS\u0026lt;/li\u0026gt;\n\t\t\t\t\u0026lt;li\u0026gt;GooglePlay\u0026lt;/li\u0026gt;\n\t\t\t\t\u0026lt;li\u0026gt;Nintendo\u0026lt;/li\u0026gt;\n\t\t\t\u0026lt;/ul\u0026gt;\n\t\t\u0026lt;/li\u0026gt;\n        \u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;twoFactorEnabled\u0026lt;/strong\u0026gt;: The flag to indicate whether 2FA validation is enable for this client. default value: false\u0026lt;/li\u0026gt;\n\t\t\u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;oauthAccessTokenExpiration\u0026lt;/strong\u0026gt;: a configurable expiration time for \u0026lt;strong\u0026gt;access_token\u0026lt;/strong\u0026gt;, default value: 0 (mean fetch value from environment variable)\u0026lt;/li\u0026gt;\n\t\t\u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;oauthRefreshTokenExpiration\u0026lt;/strong\u0026gt;: a configurable expiration time for \u0026lt;strong\u0026gt;refresh_token\u0026lt;/strong\u0026gt;, default value: 0 (mean fetch value from environment variable)\u0026lt;/li\u0026gt;\n\t\t\u0026lt;/ul\u0026gt;\n\t\t\u0026lt;/p\u0026gt;",
         "operationId": "AdminUpdateClientV3",
         "parameters": [
           {
@@ -14506,7 +14506,7 @@
     },
     "/iam/v3/public/namespaces/{namespace}/agerestrictions/countries/{countryCode}": {
       "get": {
-        "description": "Get age restriction by country code. It will always get by publisher namespace \u0026lt;/br\u0026gt;\n\t\t\u0026lt;p\u0026gt;Requires valid user access token \u0026lt;/p\u0026gt;",
+        "description": "Get age restriction by country code. It will always get by publisher namespace",
         "operationId": "PublicGetCountryAgeRestrictionV3",
         "parameters": [
           {
@@ -21930,6 +21930,11 @@
     },
     ".validation": {
       "properties": {
+        "allowAllSpecialCharacters": {
+          "description": "allow all special Characters non words.",
+          "type": "boolean",
+          "x-omitempty": false
+        },
         "allowDigit": {
           "type": "boolean",
           "x-omitempty": false
@@ -21999,6 +22004,7 @@
         }
       },
       "required": [
+        "allowAllSpecialCharacters",
         "allowDigit",
         "allowLetter",
         "allowSpace",
@@ -23676,8 +23682,18 @@
         "namespace": {
           "type": "string"
         },
+        "oauthAccessTokenExpiration": {
+          "description": "min value 1 second, max value 86400 seconds",
+          "format": "int32",
+          "type": "integer"
+        },
         "oauthClientType": {
           "type": "string"
+        },
+        "oauthRefreshTokenExpiration": {
+          "description": "min value 1 seconds, max value 2592000 seconds",
+          "format": "int32",
+          "type": "integer"
         },
         "redirectUri": {
           "type": "string"
@@ -23802,6 +23818,16 @@
         "namespace": {
           "type": "string"
         },
+        "oauthAccessTokenExpiration": {
+          "description": "min value 1 second, max value 86400 seconds",
+          "format": "int32",
+          "type": "integer"
+        },
+        "oauthRefreshTokenExpiration": {
+          "description": "min value 1 seconds, max value 2592000 seconds",
+          "format": "int32",
+          "type": "integer"
+        },
         "redirectUri": {
           "type": "string"
         },
@@ -23853,8 +23879,16 @@
         "namespace": {
           "type": "string"
         },
+        "oauthAccessTokenExpiration": {
+          "format": "int32",
+          "type": "integer"
+        },
         "oauthClientType": {
           "type": "string"
+        },
+        "oauthRefreshTokenExpiration": {
+          "format": "int32",
+          "type": "integer"
         },
         "redirectUri": {
           "type": "string"
@@ -27649,6 +27683,10 @@
     },
     "model.ValidationDetail": {
       "properties": {
+        "allowAllSpecialCharacters": {
+          "type": "boolean",
+          "x-omitempty": false
+        },
         "allowDigit": {
           "type": "boolean",
           "x-omitempty": false
@@ -27718,6 +27756,7 @@
         }
       },
       "required": [
+        "allowAllSpecialCharacters",
         "allowDigit",
         "allowLetter",
         "allowSpace",
@@ -27738,6 +27777,10 @@
     },
     "model.ValidationDetailPublic": {
       "properties": {
+        "allowAllSpecialCharacters": {
+          "type": "boolean",
+          "x-omitempty": false
+        },
         "allowDigit": {
           "type": "boolean",
           "x-omitempty": false
@@ -27804,6 +27847,7 @@
         }
       },
       "required": [
+        "allowAllSpecialCharacters",
         "allowDigit",
         "allowLetter",
         "allowSpace",
@@ -28000,6 +28044,12 @@
         },
         "linkingToken": {
           "type": "string"
+        },
+        "messageVariables": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "type": "object"
         },
         "mfa_token": {
           "type": "string"

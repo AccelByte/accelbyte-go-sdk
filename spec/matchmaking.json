@@ -3,7 +3,7 @@
   "info": {
     "description": "Justice Matchmaking Service",
     "title": "Justice Matchmaking Service",
-    "version": "2.16.1"
+    "version": "2.17.2"
   },
   "schemes": [
     "https"
@@ -3160,6 +3160,10 @@
           },
           "type": "array"
         },
+        "rebalance_enable": {
+          "type": "boolean",
+          "x-omitempty": false
+        },
         "sub_game_modes": {
           "additionalProperties": {
             "$ref": "#/definitions/models.SubGameMode"
@@ -3173,6 +3177,7 @@
         "flexing_rule",
         "match_options",
         "matching_rule",
+        "rebalance_enable",
         "sub_game_modes"
       ]
     },

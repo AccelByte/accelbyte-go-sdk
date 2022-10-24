@@ -8,7 +8,7 @@
     },
     "description": "Justice Platform Service",
     "title": "justice-platform-service",
-    "version": "4.16.0"
+    "version": "4.17.0"
   },
   "schemes": [
     "https"
@@ -9065,10 +9065,7 @@
           "200": {
             "description": "successful export of reward configs",
             "schema": {
-              "items": {
-                "$ref": "#/definitions/ConfigInfo"
-              },
-              "type": "array"
+              "type": "file"
             }
           }
         },
@@ -26676,9 +26673,6 @@
           "type": "string"
         }
       },
-      "type": "object"
-    },
-    "ConfigInfo": {
       "type": "object"
     },
     "ConsumeItem": {

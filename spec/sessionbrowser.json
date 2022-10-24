@@ -14,6 +14,7 @@
       "flow": "accessCode",
       "scopes": {
         "ADMIN:NAMESPACE:{namespace}:SESSION [Read]": "ADMIN:NAMESPACE:{namespace}:SESSION [Read]",
+        "ADMIN:NAMESPACE:{namespace}:SESSIONBROWSER:SESSION [DELETE]": "ADMIN:NAMESPACE:{namespace}:SESSIONBROWSER:SESSION [DELETE]",
         "ADMIN:NAMESPACE:{namespace}:SESSIONBROWSER:SESSION [READ]": "ADMIN:NAMESPACE:{namespace}:SESSIONBROWSER:SESSION [READ]",
         "ADMIN:NAMESPACE:{namespace}:SESSIONBROWSER:SESSION [Read]": "ADMIN:NAMESPACE:{namespace}:SESSIONBROWSER:SESSION [Read]",
         "NAMESPACE:{namespace}:SESSIONBROWSER:RECENTPLAYER [READ]": "NAMESPACE:{namespace}:SESSIONBROWSER:RECENTPLAYER [READ]",
@@ -238,7 +239,77 @@
       }
     },
     "/sessionbrowser/admin/namespaces/{namespace}/gamesession/{sessionID}": {
+      "delete": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Required permission: ADMIN:NAMESPACE:{namespace}:SESSIONBROWSER:SESSION [DELETE]\n\nRequired scope: social\n\nAdmin delete the session by session ID",
+        "operationId": "AdminDeleteSession",
+        "parameters": [
+          {
+            "description": "namespace",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "session ID",
+            "in": "path",
+            "name": "sessionID",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "session deleted",
+            "schema": {
+              "$ref": "#/definitions/models.AdminSessionResponse"
+            }
+          },
+          "400": {
+            "description": "malformed request",
+            "schema": {
+              "$ref": "#/definitions/restapi.ErrorResponseV2"
+            }
+          },
+          "404": {
+            "description": "session not found",
+            "schema": {
+              "$ref": "#/definitions/restapi.ErrorResponseV2"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/restapi.ErrorResponseV2"
+            }
+          }
+        },
+        "security": [
+          {
+            "HasPermission": [
+              "ADMIN:NAMESPACE:{namespace}:SESSIONBROWSER:SESSION [DELETE]"
+            ],
+            "HasScope": [
+              "social"
+            ],
+            "authorization": []
+          }
+        ],
+        "summary": "Admin delete specified session by session ID",
+        "tags": [
+          "Session"
+        ]
+      },
       "get": {
+        "consumes": [
+          "application/json"
+        ],
         "description": "Required permission: ADMIN:NAMESPACE:{namespace}:SESSIONBROWSER:SESSION [READ]\n\nRequired scope: social\n\nGet the session by session ID for admin user",
         "operationId": "AdminGetSession",
         "parameters": [
@@ -256,6 +327,9 @@
             "required": true,
             "type": "string"
           }
+        ],
+        "produces": [
+          "application/json"
         ],
         "responses": {
           "200": {
@@ -744,7 +818,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "Required permission: NAMESPACE:{namespace}:SESSIONBROWSER:SESSION [DELETE]\n\nRequired scope: social\n\nDelete the session by session ID",
+        "description": "Required permission: NAMESPACE:{namespace}:SESSIONBROWSER:SESSION [DELETE]\n\nRequired scope: social\n\nDelete the session (p2p) by session ID",
         "operationId": "DeleteSession",
         "parameters": [
           {
@@ -802,7 +876,7 @@
             "authorization": []
           }
         ],
-        "summary": "Delete specified session by session ID",
+        "summary": "Delete specified (p2p) session by session ID",
         "tags": [
           "Session"
         ]

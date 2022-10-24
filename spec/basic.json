@@ -8,7 +8,7 @@
     },
     "description": "Justice Basic Service",
     "title": "justice-basic-service",
-    "version": "2.1.3"
+    "version": "2.2.1"
   },
   "schemes": [
     "https"

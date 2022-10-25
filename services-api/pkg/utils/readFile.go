@@ -9,7 +9,6 @@ import (
 	"bytes"
 	"encoding/json"
 	"io"
-	"io/ioutil"
 	"log"
 	"os"
 
@@ -50,32 +49,13 @@ func ReadByChunks(filePath string) (*os.File, error) {
 	return file, nil
 }
 
-func ConvertToFileJSON(data interface{}) (runtime.NamedReadCloser, error) {
-	content, errMarshal := json.Marshal(data)
-	if errMarshal != nil {
-		logrus.Fatal(errMarshal)
-	}
-
-	errCreate := ioutil.WriteFile("test.json", content, 0644)
-	if errCreate != nil {
-		logrus.Fatal(errCreate)
-	}
-
-	file, errOpen := os.Open("test.json")
-	if errOpen != nil {
-		logrus.Fatal(errOpen)
-	}
-
-	return file, nil
-}
-
-func ConvertToFileZip(fileByte io.Writer, writer *bytes.Buffer) (runtime.NamedReadCloser, error) {
+func ConvertByteToFile(fileByte io.Writer, writer *bytes.Buffer, fileName string) (runtime.NamedReadCloser, error) {
 	_, errMarshal := json.Marshal(fileByte)
 	if errMarshal != nil {
 		logrus.Fatal(errMarshal)
 	}
 
-	f, errCreate := os.Create("test.zip")
+	f, errCreate := os.Create(fileName)
 	if errCreate != nil {
 		logrus.Fatal(errCreate)
 	}
@@ -84,7 +64,7 @@ func ConvertToFileZip(fileByte io.Writer, writer *bytes.Buffer) (runtime.NamedRe
 		logrus.Fatal(err.Error())
 	}
 
-	file, errOpen := os.Open("test.zip")
+	file, errOpen := os.Open(fileName)
 	if errOpen != nil {
 		logrus.Fatal(errOpen)
 	}

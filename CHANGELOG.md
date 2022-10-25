@@ -1,3 +1,26 @@
+<a name="v0.30.0"></a>
+## [v0.30.0] - 2022-10-25
+
+### Chore
+- regenerate platform and social to support export file
+- **go:** move out the custom transport runtime to go sdk core and add byte consumer
+- **integration-tests:** add skip when failing to claim server
+- **sdk:** add utils and custom transport to support export file
+- **sdk:** refactor converted file utils
+- **sdk:** regenerate sdk, cli sample app, cli test, doc index for AccelByte Cloud 3.34
+- **spec:** update spec for AccelByte Cloud 3.34
+- **test:** add integration test for export store
+- **test:** adjust file test on platform and social
+- **test:** refactor export import test in social and platform service
+
+### Docs
+- update CHANGELOG.md for v0.30.0 release
+
+### Fix
+- **auth:** remove global var in token repo implementation
+- **integration-tests:** fix token repo usage in integration tests
+
+
 <a name="v0.29.0"></a>
 ## [v0.29.0] - 2022-10-11
 
@@ -942,6 +965,7 @@ The wrapper have been refactored and has breaking change, these are the list:
 ### Fix
 - delete go.mod ([#1](https://github.com/AccelByte/accelbyte-go-sdk/issues/1))
 
+[v0.30.0]: https://github.com/AccelByte/accelbyte-go-sdk/compare/v0.29.0...v0.30.0
 [v0.29.0]: https://github.com/AccelByte/accelbyte-go-sdk/compare/v0.28.0...v0.29.0
 [v0.28.0]: https://github.com/AccelByte/accelbyte-go-sdk/compare/v0.27.0...v0.28.0
 [v0.27.0]: https://github.com/AccelByte/accelbyte-go-sdk/compare/v0.26.0...v0.27.0

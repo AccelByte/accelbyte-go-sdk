@@ -12,6 +12,7 @@ package users
 import (
 	"fmt"
 	"io/ioutil"
+	"strings"
 
 	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/strfmt"
@@ -77,6 +78,11 @@ func (o *DeleteUserInformationNoContent) Error() string {
 }
 
 func (o *DeleteUserInformationNoContent) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+	// handle file responses
+	contentDisposition := response.GetHeader("Content-Disposition")
+	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
+		consumer = runtime.ByteStreamConsumer()
+	}
 
 	return nil
 }
@@ -98,6 +104,11 @@ func (o *DeleteUserInformationUnauthorized) Error() string {
 }
 
 func (o *DeleteUserInformationUnauthorized) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+	// handle file responses
+	contentDisposition := response.GetHeader("Content-Disposition")
+	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
+		consumer = runtime.ByteStreamConsumer()
+	}
 
 	return nil
 }
@@ -119,6 +130,11 @@ func (o *DeleteUserInformationForbidden) Error() string {
 }
 
 func (o *DeleteUserInformationForbidden) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+	// handle file responses
+	contentDisposition := response.GetHeader("Content-Disposition")
+	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
+		consumer = runtime.ByteStreamConsumer()
+	}
 
 	return nil
 }
@@ -140,6 +156,11 @@ func (o *DeleteUserInformationNotFound) Error() string {
 }
 
 func (o *DeleteUserInformationNotFound) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+	// handle file responses
+	contentDisposition := response.GetHeader("Content-Disposition")
+	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
+		consumer = runtime.ByteStreamConsumer()
+	}
 
 	return nil
 }

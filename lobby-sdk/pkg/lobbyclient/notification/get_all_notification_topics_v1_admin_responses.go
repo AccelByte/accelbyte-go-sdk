@@ -14,6 +14,7 @@ import (
 	"fmt"
 	"io"
 	"io/ioutil"
+	"strings"
 
 	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/strfmt"
@@ -107,6 +108,11 @@ func (o *GetAllNotificationTopicsV1AdminOK) GetPayload() *lobbyclientmodels.Mode
 }
 
 func (o *GetAllNotificationTopicsV1AdminOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+	// handle file responses
+	contentDisposition := response.GetHeader("Content-Disposition")
+	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
+		consumer = runtime.ByteStreamConsumer()
+	}
 
 	o.Payload = new(lobbyclientmodels.ModelGetAllNotificationTopicsResponse)
 
@@ -155,6 +161,11 @@ func (o *GetAllNotificationTopicsV1AdminUnauthorized) GetPayload() *lobbyclientm
 }
 
 func (o *GetAllNotificationTopicsV1AdminUnauthorized) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+	// handle file responses
+	contentDisposition := response.GetHeader("Content-Disposition")
+	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
+		consumer = runtime.ByteStreamConsumer()
+	}
 
 	o.Payload = new(lobbyclientmodels.RestapiErrorResponseV1)
 
@@ -203,6 +214,11 @@ func (o *GetAllNotificationTopicsV1AdminForbidden) GetPayload() *lobbyclientmode
 }
 
 func (o *GetAllNotificationTopicsV1AdminForbidden) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+	// handle file responses
+	contentDisposition := response.GetHeader("Content-Disposition")
+	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
+		consumer = runtime.ByteStreamConsumer()
+	}
 
 	o.Payload = new(lobbyclientmodels.RestapiErrorResponseV1)
 
@@ -251,6 +267,11 @@ func (o *GetAllNotificationTopicsV1AdminNotFound) GetPayload() *lobbyclientmodel
 }
 
 func (o *GetAllNotificationTopicsV1AdminNotFound) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+	// handle file responses
+	contentDisposition := response.GetHeader("Content-Disposition")
+	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
+		consumer = runtime.ByteStreamConsumer()
+	}
 
 	o.Payload = new(lobbyclientmodels.RestapiErrorResponseV1)
 
@@ -299,6 +320,11 @@ func (o *GetAllNotificationTopicsV1AdminInternalServerError) GetPayload() *lobby
 }
 
 func (o *GetAllNotificationTopicsV1AdminInternalServerError) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+	// handle file responses
+	contentDisposition := response.GetHeader("Content-Disposition")
+	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
+		consumer = runtime.ByteStreamConsumer()
+	}
 
 	o.Payload = new(lobbyclientmodels.RestapiErrorResponseV1)
 

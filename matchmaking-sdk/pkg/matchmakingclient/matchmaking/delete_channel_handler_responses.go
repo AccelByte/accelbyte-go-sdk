@@ -14,6 +14,7 @@ import (
 	"fmt"
 	"io"
 	"io/ioutil"
+	"strings"
 
 	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/strfmt"
@@ -81,6 +82,11 @@ func (o *DeleteChannelHandlerNoContent) Error() string {
 }
 
 func (o *DeleteChannelHandlerNoContent) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+	// handle file responses
+	contentDisposition := response.GetHeader("Content-Disposition")
+	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
+		consumer = runtime.ByteStreamConsumer()
+	}
 
 	return nil
 }
@@ -122,6 +128,11 @@ func (o *DeleteChannelHandlerUnauthorized) GetPayload() *matchmakingclientmodels
 }
 
 func (o *DeleteChannelHandlerUnauthorized) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+	// handle file responses
+	contentDisposition := response.GetHeader("Content-Disposition")
+	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
+		consumer = runtime.ByteStreamConsumer()
+	}
 
 	o.Payload = new(matchmakingclientmodels.ResponseError)
 
@@ -170,6 +181,11 @@ func (o *DeleteChannelHandlerForbidden) GetPayload() *matchmakingclientmodels.Re
 }
 
 func (o *DeleteChannelHandlerForbidden) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+	// handle file responses
+	contentDisposition := response.GetHeader("Content-Disposition")
+	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
+		consumer = runtime.ByteStreamConsumer()
+	}
 
 	o.Payload = new(matchmakingclientmodels.ResponseError)
 
@@ -218,6 +234,11 @@ func (o *DeleteChannelHandlerInternalServerError) GetPayload() *matchmakingclien
 }
 
 func (o *DeleteChannelHandlerInternalServerError) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+	// handle file responses
+	contentDisposition := response.GetHeader("Content-Disposition")
+	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
+		consumer = runtime.ByteStreamConsumer()
+	}
 
 	o.Payload = new(matchmakingclientmodels.ResponseError)
 

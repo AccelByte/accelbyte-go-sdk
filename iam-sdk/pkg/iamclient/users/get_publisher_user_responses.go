@@ -14,6 +14,7 @@ import (
 	"fmt"
 	"io"
 	"io/ioutil"
+	"strings"
 
 	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/strfmt"
@@ -107,6 +108,11 @@ func (o *GetPublisherUserOK) GetPayload() *iamclientmodels.ModelGetPublisherUser
 }
 
 func (o *GetPublisherUserOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+	// handle file responses
+	contentDisposition := response.GetHeader("Content-Disposition")
+	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
+		consumer = runtime.ByteStreamConsumer()
+	}
 
 	o.Payload = new(iamclientmodels.ModelGetPublisherUserResponse)
 
@@ -155,6 +161,11 @@ func (o *GetPublisherUserBadRequest) GetPayload() *iamclientmodels.RestErrorResp
 }
 
 func (o *GetPublisherUserBadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+	// handle file responses
+	contentDisposition := response.GetHeader("Content-Disposition")
+	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
+		consumer = runtime.ByteStreamConsumer()
+	}
 
 	o.Payload = new(iamclientmodels.RestErrorResponse)
 
@@ -183,6 +194,11 @@ func (o *GetPublisherUserUnauthorized) Error() string {
 }
 
 func (o *GetPublisherUserUnauthorized) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+	// handle file responses
+	contentDisposition := response.GetHeader("Content-Disposition")
+	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
+		consumer = runtime.ByteStreamConsumer()
+	}
 
 	return nil
 }
@@ -204,6 +220,11 @@ func (o *GetPublisherUserForbidden) Error() string {
 }
 
 func (o *GetPublisherUserForbidden) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+	// handle file responses
+	contentDisposition := response.GetHeader("Content-Disposition")
+	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
+		consumer = runtime.ByteStreamConsumer()
+	}
 
 	return nil
 }
@@ -225,6 +246,11 @@ func (o *GetPublisherUserNotFound) Error() string {
 }
 
 func (o *GetPublisherUserNotFound) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+	// handle file responses
+	contentDisposition := response.GetHeader("Content-Disposition")
+	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
+		consumer = runtime.ByteStreamConsumer()
+	}
 
 	return nil
 }

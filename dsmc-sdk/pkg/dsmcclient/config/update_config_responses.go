@@ -14,6 +14,7 @@ import (
 	"fmt"
 	"io"
 	"io/ioutil"
+	"strings"
 
 	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/strfmt"
@@ -107,6 +108,11 @@ func (o *UpdateConfigOK) GetPayload() *dsmcclientmodels.ModelsDSMConfigRecord {
 }
 
 func (o *UpdateConfigOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+	// handle file responses
+	contentDisposition := response.GetHeader("Content-Disposition")
+	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
+		consumer = runtime.ByteStreamConsumer()
+	}
 
 	o.Payload = new(dsmcclientmodels.ModelsDSMConfigRecord)
 
@@ -155,6 +161,11 @@ func (o *UpdateConfigBadRequest) GetPayload() *dsmcclientmodels.ResponseError {
 }
 
 func (o *UpdateConfigBadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+	// handle file responses
+	contentDisposition := response.GetHeader("Content-Disposition")
+	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
+		consumer = runtime.ByteStreamConsumer()
+	}
 
 	o.Payload = new(dsmcclientmodels.ResponseError)
 
@@ -203,6 +214,11 @@ func (o *UpdateConfigUnauthorized) GetPayload() *dsmcclientmodels.ResponseError 
 }
 
 func (o *UpdateConfigUnauthorized) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+	// handle file responses
+	contentDisposition := response.GetHeader("Content-Disposition")
+	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
+		consumer = runtime.ByteStreamConsumer()
+	}
 
 	o.Payload = new(dsmcclientmodels.ResponseError)
 
@@ -251,6 +267,11 @@ func (o *UpdateConfigNotFound) GetPayload() *dsmcclientmodels.ResponseError {
 }
 
 func (o *UpdateConfigNotFound) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+	// handle file responses
+	contentDisposition := response.GetHeader("Content-Disposition")
+	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
+		consumer = runtime.ByteStreamConsumer()
+	}
 
 	o.Payload = new(dsmcclientmodels.ResponseError)
 
@@ -299,6 +320,11 @@ func (o *UpdateConfigInternalServerError) GetPayload() *dsmcclientmodels.Respons
 }
 
 func (o *UpdateConfigInternalServerError) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+	// handle file responses
+	contentDisposition := response.GetHeader("Content-Disposition")
+	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
+		consumer = runtime.ByteStreamConsumer()
+	}
 
 	o.Payload = new(dsmcclientmodels.ResponseError)
 

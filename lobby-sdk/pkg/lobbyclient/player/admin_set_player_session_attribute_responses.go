@@ -14,6 +14,7 @@ import (
 	"fmt"
 	"io"
 	"io/ioutil"
+	"strings"
 
 	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/strfmt"
@@ -93,6 +94,11 @@ func (o *AdminSetPlayerSessionAttributeNoContent) Error() string {
 }
 
 func (o *AdminSetPlayerSessionAttributeNoContent) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+	// handle file responses
+	contentDisposition := response.GetHeader("Content-Disposition")
+	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
+		consumer = runtime.ByteStreamConsumer()
+	}
 
 	return nil
 }
@@ -134,6 +140,11 @@ func (o *AdminSetPlayerSessionAttributeBadRequest) GetPayload() *lobbyclientmode
 }
 
 func (o *AdminSetPlayerSessionAttributeBadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+	// handle file responses
+	contentDisposition := response.GetHeader("Content-Disposition")
+	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
+		consumer = runtime.ByteStreamConsumer()
+	}
 
 	o.Payload = new(lobbyclientmodels.RestapiErrorResponseBody)
 
@@ -182,6 +193,11 @@ func (o *AdminSetPlayerSessionAttributeUnauthorized) GetPayload() *lobbyclientmo
 }
 
 func (o *AdminSetPlayerSessionAttributeUnauthorized) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+	// handle file responses
+	contentDisposition := response.GetHeader("Content-Disposition")
+	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
+		consumer = runtime.ByteStreamConsumer()
+	}
 
 	o.Payload = new(lobbyclientmodels.RestapiErrorResponseBody)
 
@@ -230,6 +246,11 @@ func (o *AdminSetPlayerSessionAttributeForbidden) GetPayload() *lobbyclientmodel
 }
 
 func (o *AdminSetPlayerSessionAttributeForbidden) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+	// handle file responses
+	contentDisposition := response.GetHeader("Content-Disposition")
+	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
+		consumer = runtime.ByteStreamConsumer()
+	}
 
 	o.Payload = new(lobbyclientmodels.RestapiErrorResponseBody)
 
@@ -278,6 +299,11 @@ func (o *AdminSetPlayerSessionAttributeNotFound) GetPayload() *lobbyclientmodels
 }
 
 func (o *AdminSetPlayerSessionAttributeNotFound) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+	// handle file responses
+	contentDisposition := response.GetHeader("Content-Disposition")
+	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
+		consumer = runtime.ByteStreamConsumer()
+	}
 
 	o.Payload = new(lobbyclientmodels.RestapiErrorResponseBody)
 
@@ -326,6 +352,11 @@ func (o *AdminSetPlayerSessionAttributeInternalServerError) GetPayload() *lobbyc
 }
 
 func (o *AdminSetPlayerSessionAttributeInternalServerError) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+	// handle file responses
+	contentDisposition := response.GetHeader("Content-Disposition")
+	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
+		consumer = runtime.ByteStreamConsumer()
+	}
 
 	o.Payload = new(lobbyclientmodels.RestapiErrorResponseBody)
 

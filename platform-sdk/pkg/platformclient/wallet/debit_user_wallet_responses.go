@@ -14,6 +14,7 @@ import (
 	"fmt"
 	"io"
 	"io/ioutil"
+	"strings"
 
 	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/strfmt"
@@ -107,6 +108,11 @@ func (o *DebitUserWalletOK) GetPayload() *platformclientmodels.WalletInfo {
 }
 
 func (o *DebitUserWalletOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+	// handle file responses
+	contentDisposition := response.GetHeader("Content-Disposition")
+	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
+		consumer = runtime.ByteStreamConsumer()
+	}
 
 	o.Payload = new(platformclientmodels.WalletInfo)
 
@@ -155,6 +161,11 @@ func (o *DebitUserWalletBadRequest) GetPayload() *platformclientmodels.ErrorEnti
 }
 
 func (o *DebitUserWalletBadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+	// handle file responses
+	contentDisposition := response.GetHeader("Content-Disposition")
+	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
+		consumer = runtime.ByteStreamConsumer()
+	}
 
 	o.Payload = new(platformclientmodels.ErrorEntity)
 
@@ -203,6 +214,11 @@ func (o *DebitUserWalletNotFound) GetPayload() *platformclientmodels.ErrorEntity
 }
 
 func (o *DebitUserWalletNotFound) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+	// handle file responses
+	contentDisposition := response.GetHeader("Content-Disposition")
+	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
+		consumer = runtime.ByteStreamConsumer()
+	}
 
 	o.Payload = new(platformclientmodels.ErrorEntity)
 
@@ -251,6 +267,11 @@ func (o *DebitUserWalletConflict) GetPayload() *platformclientmodels.ErrorEntity
 }
 
 func (o *DebitUserWalletConflict) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+	// handle file responses
+	contentDisposition := response.GetHeader("Content-Disposition")
+	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
+		consumer = runtime.ByteStreamConsumer()
+	}
 
 	o.Payload = new(platformclientmodels.ErrorEntity)
 
@@ -299,6 +320,11 @@ func (o *DebitUserWalletUnprocessableEntity) GetPayload() *platformclientmodels.
 }
 
 func (o *DebitUserWalletUnprocessableEntity) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+	// handle file responses
+	contentDisposition := response.GetHeader("Content-Disposition")
+	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
+		consumer = runtime.ByteStreamConsumer()
+	}
 
 	o.Payload = new(platformclientmodels.ValidationErrorEntity)
 

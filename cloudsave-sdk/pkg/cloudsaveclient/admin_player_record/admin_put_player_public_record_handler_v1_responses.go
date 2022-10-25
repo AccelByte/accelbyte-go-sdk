@@ -14,6 +14,7 @@ import (
 	"fmt"
 	"io"
 	"io/ioutil"
+	"strings"
 
 	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/strfmt"
@@ -101,6 +102,11 @@ func (o *AdminPutPlayerPublicRecordHandlerV1OK) GetPayload() *cloudsaveclientmod
 }
 
 func (o *AdminPutPlayerPublicRecordHandlerV1OK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+	// handle file responses
+	contentDisposition := response.GetHeader("Content-Disposition")
+	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
+		consumer = runtime.ByteStreamConsumer()
+	}
 
 	o.Payload = new(cloudsaveclientmodels.ModelsPlayerRecordResponse)
 
@@ -149,6 +155,11 @@ func (o *AdminPutPlayerPublicRecordHandlerV1BadRequest) GetPayload() *cloudsavec
 }
 
 func (o *AdminPutPlayerPublicRecordHandlerV1BadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+	// handle file responses
+	contentDisposition := response.GetHeader("Content-Disposition")
+	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
+		consumer = runtime.ByteStreamConsumer()
+	}
 
 	o.Payload = new(cloudsaveclientmodels.ModelsResponseError)
 
@@ -197,6 +208,11 @@ func (o *AdminPutPlayerPublicRecordHandlerV1Unauthorized) GetPayload() *cloudsav
 }
 
 func (o *AdminPutPlayerPublicRecordHandlerV1Unauthorized) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+	// handle file responses
+	contentDisposition := response.GetHeader("Content-Disposition")
+	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
+		consumer = runtime.ByteStreamConsumer()
+	}
 
 	o.Payload = new(cloudsaveclientmodels.ModelsResponseError)
 
@@ -245,6 +261,11 @@ func (o *AdminPutPlayerPublicRecordHandlerV1InternalServerError) GetPayload() *c
 }
 
 func (o *AdminPutPlayerPublicRecordHandlerV1InternalServerError) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+	// handle file responses
+	contentDisposition := response.GetHeader("Content-Disposition")
+	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
+		consumer = runtime.ByteStreamConsumer()
+	}
 
 	o.Payload = new(cloudsaveclientmodels.ModelsResponseError)
 

@@ -14,6 +14,7 @@ import (
 	"fmt"
 	"io"
 	"io/ioutil"
+	"strings"
 
 	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/strfmt"
@@ -101,6 +102,11 @@ func (o *UpdateMyZipCodeOK) GetPayload() *basicclientmodels.UserZipCode {
 }
 
 func (o *UpdateMyZipCodeOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+	// handle file responses
+	contentDisposition := response.GetHeader("Content-Disposition")
+	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
+		consumer = runtime.ByteStreamConsumer()
+	}
 
 	o.Payload = new(basicclientmodels.UserZipCode)
 
@@ -149,6 +155,11 @@ func (o *UpdateMyZipCodeBadRequest) GetPayload() *basicclientmodels.ValidationEr
 }
 
 func (o *UpdateMyZipCodeBadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+	// handle file responses
+	contentDisposition := response.GetHeader("Content-Disposition")
+	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
+		consumer = runtime.ByteStreamConsumer()
+	}
 
 	o.Payload = new(basicclientmodels.ValidationErrorEntity)
 
@@ -197,6 +208,11 @@ func (o *UpdateMyZipCodeUnauthorized) GetPayload() *basicclientmodels.ErrorEntit
 }
 
 func (o *UpdateMyZipCodeUnauthorized) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+	// handle file responses
+	contentDisposition := response.GetHeader("Content-Disposition")
+	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
+		consumer = runtime.ByteStreamConsumer()
+	}
 
 	o.Payload = new(basicclientmodels.ErrorEntity)
 
@@ -245,6 +261,11 @@ func (o *UpdateMyZipCodeForbidden) GetPayload() *basicclientmodels.ErrorEntity {
 }
 
 func (o *UpdateMyZipCodeForbidden) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+	// handle file responses
+	contentDisposition := response.GetHeader("Content-Disposition")
+	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
+		consumer = runtime.ByteStreamConsumer()
+	}
 
 	o.Payload = new(basicclientmodels.ErrorEntity)
 

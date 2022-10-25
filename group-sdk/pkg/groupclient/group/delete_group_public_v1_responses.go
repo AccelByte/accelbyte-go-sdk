@@ -14,6 +14,7 @@ import (
 	"fmt"
 	"io"
 	"io/ioutil"
+	"strings"
 
 	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/strfmt"
@@ -93,6 +94,11 @@ func (o *DeleteGroupPublicV1NoContent) Error() string {
 }
 
 func (o *DeleteGroupPublicV1NoContent) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+	// handle file responses
+	contentDisposition := response.GetHeader("Content-Disposition")
+	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
+		consumer = runtime.ByteStreamConsumer()
+	}
 
 	return nil
 }
@@ -134,6 +140,11 @@ func (o *DeleteGroupPublicV1BadRequest) GetPayload() *groupclientmodels.Response
 }
 
 func (o *DeleteGroupPublicV1BadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+	// handle file responses
+	contentDisposition := response.GetHeader("Content-Disposition")
+	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
+		consumer = runtime.ByteStreamConsumer()
+	}
 
 	o.Payload = new(groupclientmodels.ResponseErrorResponse)
 
@@ -182,6 +193,11 @@ func (o *DeleteGroupPublicV1Unauthorized) GetPayload() *groupclientmodels.Respon
 }
 
 func (o *DeleteGroupPublicV1Unauthorized) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+	// handle file responses
+	contentDisposition := response.GetHeader("Content-Disposition")
+	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
+		consumer = runtime.ByteStreamConsumer()
+	}
 
 	o.Payload = new(groupclientmodels.ResponseErrorResponse)
 
@@ -230,6 +246,11 @@ func (o *DeleteGroupPublicV1Forbidden) GetPayload() *groupclientmodels.ResponseE
 }
 
 func (o *DeleteGroupPublicV1Forbidden) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+	// handle file responses
+	contentDisposition := response.GetHeader("Content-Disposition")
+	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
+		consumer = runtime.ByteStreamConsumer()
+	}
 
 	o.Payload = new(groupclientmodels.ResponseErrorResponse)
 
@@ -278,6 +299,11 @@ func (o *DeleteGroupPublicV1NotFound) GetPayload() *groupclientmodels.ResponseEr
 }
 
 func (o *DeleteGroupPublicV1NotFound) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+	// handle file responses
+	contentDisposition := response.GetHeader("Content-Disposition")
+	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
+		consumer = runtime.ByteStreamConsumer()
+	}
 
 	o.Payload = new(groupclientmodels.ResponseErrorResponse)
 
@@ -326,6 +352,11 @@ func (o *DeleteGroupPublicV1InternalServerError) GetPayload() *groupclientmodels
 }
 
 func (o *DeleteGroupPublicV1InternalServerError) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+	// handle file responses
+	contentDisposition := response.GetHeader("Content-Disposition")
+	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
+		consumer = runtime.ByteStreamConsumer()
+	}
 
 	o.Payload = new(groupclientmodels.ResponseErrorResponse)
 

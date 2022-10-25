@@ -7,6 +7,8 @@
 package social
 
 import (
+	"io"
+
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/repository"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils/auth"
@@ -71,12 +73,12 @@ func (aaa *StatConfigurationService) CreateStat(input *stat_configuration.Create
 }
 
 // Deprecated: Use ExportStatsShort instead
-func (aaa *StatConfigurationService) ExportStats(input *stat_configuration.ExportStatsParams) ([]socialclientmodels.ConfigInfo, error) {
+func (aaa *StatConfigurationService) ExportStats(input *stat_configuration.ExportStatsParams, writer io.Writer) (io.Writer, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, err := aaa.Client.StatConfiguration.ExportStats(input, client.BearerToken(*token.AccessToken))
+	ok, err := aaa.Client.StatConfiguration.ExportStats(input, client.BearerToken(*token.AccessToken), writer)
 	if err != nil {
 		return nil, err
 	}
@@ -250,7 +252,7 @@ func (aaa *StatConfigurationService) CreateStatShort(input *stat_configuration.C
 	return created.GetPayload(), nil
 }
 
-func (aaa *StatConfigurationService) ExportStatsShort(input *stat_configuration.ExportStatsParams) ([]socialclientmodels.ConfigInfo, error) {
+func (aaa *StatConfigurationService) ExportStatsShort(input *stat_configuration.ExportStatsParams, writer io.Writer) (io.Writer, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -267,7 +269,7 @@ func (aaa *StatConfigurationService) ExportStatsShort(input *stat_configuration.
 		}
 	}
 
-	ok, err := aaa.Client.StatConfiguration.ExportStatsShort(input, authInfoWriter)
+	ok, err := aaa.Client.StatConfiguration.ExportStatsShort(input, authInfoWriter, writer)
 	if err != nil {
 		return nil, err
 	}

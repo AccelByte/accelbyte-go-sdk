@@ -14,6 +14,7 @@ import (
 	"fmt"
 	"io"
 	"io/ioutil"
+	"strings"
 
 	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/strfmt"
@@ -87,6 +88,11 @@ func (o *UnBanUsersOK) Error() string {
 }
 
 func (o *UnBanUsersOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+	// handle file responses
+	contentDisposition := response.GetHeader("Content-Disposition")
+	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
+		consumer = runtime.ByteStreamConsumer()
+	}
 
 	return nil
 }
@@ -128,6 +134,11 @@ func (o *UnBanUsersBadRequest) GetPayload() *basicclientmodels.ErrorEntity {
 }
 
 func (o *UnBanUsersBadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+	// handle file responses
+	contentDisposition := response.GetHeader("Content-Disposition")
+	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
+		consumer = runtime.ByteStreamConsumer()
+	}
 
 	o.Payload = new(basicclientmodels.ErrorEntity)
 
@@ -176,6 +187,11 @@ func (o *UnBanUsersNotFound) GetPayload() *basicclientmodels.ErrorEntity {
 }
 
 func (o *UnBanUsersNotFound) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+	// handle file responses
+	contentDisposition := response.GetHeader("Content-Disposition")
+	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
+		consumer = runtime.ByteStreamConsumer()
+	}
 
 	o.Payload = new(basicclientmodels.ErrorEntity)
 
@@ -224,6 +240,11 @@ func (o *UnBanUsersUnprocessableEntity) GetPayload() *basicclientmodels.Validati
 }
 
 func (o *UnBanUsersUnprocessableEntity) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+	// handle file responses
+	contentDisposition := response.GetHeader("Content-Disposition")
+	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
+		consumer = runtime.ByteStreamConsumer()
+	}
 
 	o.Payload = new(basicclientmodels.ValidationErrorEntity)
 
@@ -272,6 +293,11 @@ func (o *UnBanUsersInternalServerError) GetPayload() *basicclientmodels.ErrorEnt
 }
 
 func (o *UnBanUsersInternalServerError) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+	// handle file responses
+	contentDisposition := response.GetHeader("Content-Disposition")
+	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
+		consumer = runtime.ByteStreamConsumer()
+	}
 
 	o.Payload = new(basicclientmodels.ErrorEntity)
 

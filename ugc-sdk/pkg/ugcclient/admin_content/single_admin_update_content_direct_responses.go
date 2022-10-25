@@ -14,6 +14,7 @@ import (
 	"fmt"
 	"io"
 	"io/ioutil"
+	"strings"
 
 	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/strfmt"
@@ -107,6 +108,11 @@ func (o *SingleAdminUpdateContentDirectOK) GetPayload() *ugcclientmodels.ModelsC
 }
 
 func (o *SingleAdminUpdateContentDirectOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+	// handle file responses
+	contentDisposition := response.GetHeader("Content-Disposition")
+	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
+		consumer = runtime.ByteStreamConsumer()
+	}
 
 	o.Payload = new(ugcclientmodels.ModelsCreateContentResponse)
 
@@ -155,6 +161,11 @@ func (o *SingleAdminUpdateContentDirectBadRequest) GetPayload() *ugcclientmodels
 }
 
 func (o *SingleAdminUpdateContentDirectBadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+	// handle file responses
+	contentDisposition := response.GetHeader("Content-Disposition")
+	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
+		consumer = runtime.ByteStreamConsumer()
+	}
 
 	o.Payload = new(ugcclientmodels.ResponseError)
 
@@ -203,6 +214,11 @@ func (o *SingleAdminUpdateContentDirectUnauthorized) GetPayload() *ugcclientmode
 }
 
 func (o *SingleAdminUpdateContentDirectUnauthorized) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+	// handle file responses
+	contentDisposition := response.GetHeader("Content-Disposition")
+	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
+		consumer = runtime.ByteStreamConsumer()
+	}
 
 	o.Payload = new(ugcclientmodels.ResponseError)
 
@@ -251,6 +267,11 @@ func (o *SingleAdminUpdateContentDirectNotFound) GetPayload() *ugcclientmodels.R
 }
 
 func (o *SingleAdminUpdateContentDirectNotFound) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+	// handle file responses
+	contentDisposition := response.GetHeader("Content-Disposition")
+	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
+		consumer = runtime.ByteStreamConsumer()
+	}
 
 	o.Payload = new(ugcclientmodels.ResponseError)
 
@@ -299,6 +320,11 @@ func (o *SingleAdminUpdateContentDirectInternalServerError) GetPayload() *ugccli
 }
 
 func (o *SingleAdminUpdateContentDirectInternalServerError) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+	// handle file responses
+	contentDisposition := response.GetHeader("Content-Disposition")
+	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
+		consumer = runtime.ByteStreamConsumer()
+	}
 
 	o.Payload = new(ugcclientmodels.ResponseError)
 

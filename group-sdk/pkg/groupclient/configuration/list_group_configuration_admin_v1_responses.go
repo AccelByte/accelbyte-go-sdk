@@ -14,6 +14,7 @@ import (
 	"fmt"
 	"io"
 	"io/ioutil"
+	"strings"
 
 	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/strfmt"
@@ -113,6 +114,11 @@ func (o *ListGroupConfigurationAdminV1OK) GetPayload() *groupclientmodels.Models
 }
 
 func (o *ListGroupConfigurationAdminV1OK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+	// handle file responses
+	contentDisposition := response.GetHeader("Content-Disposition")
+	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
+		consumer = runtime.ByteStreamConsumer()
+	}
 
 	o.Payload = new(groupclientmodels.ModelsListConfigurationResponseV1)
 
@@ -161,6 +167,11 @@ func (o *ListGroupConfigurationAdminV1BadRequest) GetPayload() *groupclientmodel
 }
 
 func (o *ListGroupConfigurationAdminV1BadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+	// handle file responses
+	contentDisposition := response.GetHeader("Content-Disposition")
+	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
+		consumer = runtime.ByteStreamConsumer()
+	}
 
 	o.Payload = new(groupclientmodels.ResponseErrorResponse)
 
@@ -209,6 +220,11 @@ func (o *ListGroupConfigurationAdminV1Unauthorized) GetPayload() *groupclientmod
 }
 
 func (o *ListGroupConfigurationAdminV1Unauthorized) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+	// handle file responses
+	contentDisposition := response.GetHeader("Content-Disposition")
+	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
+		consumer = runtime.ByteStreamConsumer()
+	}
 
 	o.Payload = new(groupclientmodels.ResponseErrorResponse)
 
@@ -257,6 +273,11 @@ func (o *ListGroupConfigurationAdminV1Forbidden) GetPayload() *groupclientmodels
 }
 
 func (o *ListGroupConfigurationAdminV1Forbidden) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+	// handle file responses
+	contentDisposition := response.GetHeader("Content-Disposition")
+	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
+		consumer = runtime.ByteStreamConsumer()
+	}
 
 	o.Payload = new(groupclientmodels.ResponseErrorResponse)
 
@@ -305,6 +326,11 @@ func (o *ListGroupConfigurationAdminV1NotFound) GetPayload() *groupclientmodels.
 }
 
 func (o *ListGroupConfigurationAdminV1NotFound) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+	// handle file responses
+	contentDisposition := response.GetHeader("Content-Disposition")
+	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
+		consumer = runtime.ByteStreamConsumer()
+	}
 
 	o.Payload = new(groupclientmodels.ResponseErrorResponse)
 
@@ -353,6 +379,11 @@ func (o *ListGroupConfigurationAdminV1InternalServerError) GetPayload() *groupcl
 }
 
 func (o *ListGroupConfigurationAdminV1InternalServerError) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+	// handle file responses
+	contentDisposition := response.GetHeader("Content-Disposition")
+	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
+		consumer = runtime.ByteStreamConsumer()
+	}
 
 	o.Payload = new(groupclientmodels.ResponseErrorResponse)
 

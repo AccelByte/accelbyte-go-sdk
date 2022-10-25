@@ -12,6 +12,7 @@ package reward
 import (
 	"context"
 	"fmt"
+	"io"
 	"reflect"
 
 	"github.com/go-openapi/runtime"
@@ -41,8 +42,8 @@ type ClientService interface {
 	DeleteRewardShort(params *DeleteRewardParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteRewardOK, error)
 	DeleteRewardConditionRecord(params *DeleteRewardConditionRecordParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteRewardConditionRecordNoContent, error)
 	DeleteRewardConditionRecordShort(params *DeleteRewardConditionRecordParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteRewardConditionRecordNoContent, error)
-	ExportRewards(params *ExportRewardsParams, authInfo runtime.ClientAuthInfoWriter) (*ExportRewardsOK, error)
-	ExportRewardsShort(params *ExportRewardsParams, authInfo runtime.ClientAuthInfoWriter) (*ExportRewardsOK, error)
+	ExportRewards(params *ExportRewardsParams, authInfo runtime.ClientAuthInfoWriter, writer io.Writer) (*ExportRewardsOK, error)
+	ExportRewardsShort(params *ExportRewardsParams, authInfo runtime.ClientAuthInfoWriter, writer io.Writer) (*ExportRewardsOK, error)
 	GetReward(params *GetRewardParams, authInfo runtime.ClientAuthInfoWriter) (*GetRewardOK, *GetRewardNotFound, error)
 	GetRewardShort(params *GetRewardParams, authInfo runtime.ClientAuthInfoWriter) (*GetRewardOK, error)
 	GetRewardByCode(params *GetRewardByCodeParams, authInfo runtime.ClientAuthInfoWriter) (*GetRewardByCodeOK, *GetRewardByCodeNotFound, error)
@@ -469,7 +470,7 @@ Deprecated: Use ExportRewardsShort instead.
 
   Export reward configurations for a given namespace into file. At current, only JSON file is supported.&lt;p&gt;Other detail info:&lt;ul&gt;&lt;li&gt;&lt;i&gt;*Required permission*: resource=&#34;ADMIN:NAMESPACE:{namespace}:REWARD&#34;, action=2 (READ)&lt;/li&gt;&lt;/ul&gt;
 */
-func (a *Client) ExportRewards(params *ExportRewardsParams, authInfo runtime.ClientAuthInfoWriter) (*ExportRewardsOK, error) {
+func (a *Client) ExportRewards(params *ExportRewardsParams, authInfo runtime.ClientAuthInfoWriter, writer io.Writer) (*ExportRewardsOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewExportRewardsParams()
@@ -491,7 +492,7 @@ func (a *Client) ExportRewards(params *ExportRewardsParams, authInfo runtime.Cli
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
 		Params:             params,
-		Reader:             &ExportRewardsReader{formats: a.formats},
+		Reader:             &ExportRewardsReader{formats: a.formats, writer: writer},
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
@@ -515,7 +516,7 @@ func (a *Client) ExportRewards(params *ExportRewardsParams, authInfo runtime.Cli
 
   Export reward configurations for a given namespace into file. At current, only JSON file is supported.&lt;p&gt;Other detail info:&lt;ul&gt;&lt;li&gt;&lt;i&gt;*Required permission*: resource=&#34;ADMIN:NAMESPACE:{namespace}:REWARD&#34;, action=2 (READ)&lt;/li&gt;&lt;/ul&gt;
 */
-func (a *Client) ExportRewardsShort(params *ExportRewardsParams, authInfo runtime.ClientAuthInfoWriter) (*ExportRewardsOK, error) {
+func (a *Client) ExportRewardsShort(params *ExportRewardsParams, authInfo runtime.ClientAuthInfoWriter, writer io.Writer) (*ExportRewardsOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewExportRewardsParams()
@@ -537,7 +538,7 @@ func (a *Client) ExportRewardsShort(params *ExportRewardsParams, authInfo runtim
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
 		Params:             params,
-		Reader:             &ExportRewardsReader{formats: a.formats},
+		Reader:             &ExportRewardsReader{formats: a.formats, writer: writer},
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,

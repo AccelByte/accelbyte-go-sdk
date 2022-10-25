@@ -14,6 +14,7 @@ import (
 	"fmt"
 	"io"
 	"io/ioutil"
+	"strings"
 
 	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/strfmt"
@@ -119,6 +120,11 @@ func (o *PublicUpgradeHeadlessAccountV3OK) GetPayload() *iamclientmodels.ModelUs
 }
 
 func (o *PublicUpgradeHeadlessAccountV3OK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+	// handle file responses
+	contentDisposition := response.GetHeader("Content-Disposition")
+	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
+		consumer = runtime.ByteStreamConsumer()
+	}
 
 	o.Payload = new(iamclientmodels.ModelUserResponseV3)
 
@@ -167,6 +173,11 @@ func (o *PublicUpgradeHeadlessAccountV3BadRequest) GetPayload() *iamclientmodels
 }
 
 func (o *PublicUpgradeHeadlessAccountV3BadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+	// handle file responses
+	contentDisposition := response.GetHeader("Content-Disposition")
+	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
+		consumer = runtime.ByteStreamConsumer()
+	}
 
 	o.Payload = new(iamclientmodels.RestErrorResponse)
 
@@ -215,6 +226,11 @@ func (o *PublicUpgradeHeadlessAccountV3Unauthorized) GetPayload() *iamclientmode
 }
 
 func (o *PublicUpgradeHeadlessAccountV3Unauthorized) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+	// handle file responses
+	contentDisposition := response.GetHeader("Content-Disposition")
+	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
+		consumer = runtime.ByteStreamConsumer()
+	}
 
 	o.Payload = new(iamclientmodels.RestErrorResponse)
 
@@ -263,6 +279,11 @@ func (o *PublicUpgradeHeadlessAccountV3Forbidden) GetPayload() *iamclientmodels.
 }
 
 func (o *PublicUpgradeHeadlessAccountV3Forbidden) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+	// handle file responses
+	contentDisposition := response.GetHeader("Content-Disposition")
+	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
+		consumer = runtime.ByteStreamConsumer()
+	}
 
 	o.Payload = new(iamclientmodels.RestErrorResponse)
 
@@ -311,6 +332,11 @@ func (o *PublicUpgradeHeadlessAccountV3NotFound) GetPayload() *iamclientmodels.R
 }
 
 func (o *PublicUpgradeHeadlessAccountV3NotFound) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+	// handle file responses
+	contentDisposition := response.GetHeader("Content-Disposition")
+	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
+		consumer = runtime.ByteStreamConsumer()
+	}
 
 	o.Payload = new(iamclientmodels.RestErrorResponse)
 
@@ -359,6 +385,11 @@ func (o *PublicUpgradeHeadlessAccountV3Conflict) GetPayload() *iamclientmodels.R
 }
 
 func (o *PublicUpgradeHeadlessAccountV3Conflict) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+	// handle file responses
+	contentDisposition := response.GetHeader("Content-Disposition")
+	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
+		consumer = runtime.ByteStreamConsumer()
+	}
 
 	o.Payload = new(iamclientmodels.RestErrorResponse)
 
@@ -387,6 +418,11 @@ func (o *PublicUpgradeHeadlessAccountV3InternalServerError) Error() string {
 }
 
 func (o *PublicUpgradeHeadlessAccountV3InternalServerError) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+	// handle file responses
+	contentDisposition := response.GetHeader("Content-Disposition")
+	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
+		consumer = runtime.ByteStreamConsumer()
+	}
 
 	return nil
 }

@@ -14,6 +14,7 @@ import (
 	"fmt"
 	"io"
 	"io/ioutil"
+	"strings"
 
 	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/strfmt"
@@ -107,6 +108,11 @@ func (o *AdminListUsersV3OK) GetPayload() *iamclientmodels.AccountcommonListUser
 }
 
 func (o *AdminListUsersV3OK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+	// handle file responses
+	contentDisposition := response.GetHeader("Content-Disposition")
+	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
+		consumer = runtime.ByteStreamConsumer()
+	}
 
 	o.Payload = new(iamclientmodels.AccountcommonListUsersWithPlatformAccountsResponse)
 
@@ -155,6 +161,11 @@ func (o *AdminListUsersV3BadRequest) GetPayload() *iamclientmodels.RestErrorResp
 }
 
 func (o *AdminListUsersV3BadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+	// handle file responses
+	contentDisposition := response.GetHeader("Content-Disposition")
+	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
+		consumer = runtime.ByteStreamConsumer()
+	}
 
 	o.Payload = new(iamclientmodels.RestErrorResponse)
 
@@ -203,6 +214,11 @@ func (o *AdminListUsersV3Unauthorized) GetPayload() *iamclientmodels.RestErrorRe
 }
 
 func (o *AdminListUsersV3Unauthorized) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+	// handle file responses
+	contentDisposition := response.GetHeader("Content-Disposition")
+	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
+		consumer = runtime.ByteStreamConsumer()
+	}
 
 	o.Payload = new(iamclientmodels.RestErrorResponse)
 
@@ -251,6 +267,11 @@ func (o *AdminListUsersV3Forbidden) GetPayload() *iamclientmodels.RestErrorRespo
 }
 
 func (o *AdminListUsersV3Forbidden) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+	// handle file responses
+	contentDisposition := response.GetHeader("Content-Disposition")
+	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
+		consumer = runtime.ByteStreamConsumer()
+	}
 
 	o.Payload = new(iamclientmodels.RestErrorResponse)
 
@@ -299,6 +320,11 @@ func (o *AdminListUsersV3InternalServerError) GetPayload() *iamclientmodels.Rest
 }
 
 func (o *AdminListUsersV3InternalServerError) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+	// handle file responses
+	contentDisposition := response.GetHeader("Content-Disposition")
+	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
+		consumer = runtime.ByteStreamConsumer()
+	}
 
 	o.Payload = new(iamclientmodels.RestErrorResponse)
 

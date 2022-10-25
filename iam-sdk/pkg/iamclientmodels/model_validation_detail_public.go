@@ -17,6 +17,10 @@ import (
 // swagger:model model.ValidationDetailPublic
 type ModelValidationDetailPublic struct {
 
+	// allow all special characters
+	// Required: true
+	AllowAllSpecialCharacters *bool `json:"allowAllSpecialCharacters"`
+
 	// allow digit
 	// Required: true
 	AllowDigit *bool `json:"allowDigit"`
@@ -86,6 +90,10 @@ type ModelValidationDetailPublic struct {
 func (m *ModelValidationDetailPublic) Validate(formats strfmt.Registry) error {
 	var res []error
 
+	if err := m.validateAllowAllSpecialCharacters(formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.validateAllowDigit(formats); err != nil {
 		res = append(res, err)
 	}
@@ -153,6 +161,15 @@ func (m *ModelValidationDetailPublic) Validate(formats strfmt.Registry) error {
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
+	return nil
+}
+
+func (m *ModelValidationDetailPublic) validateAllowAllSpecialCharacters(formats strfmt.Registry) error {
+
+	if err := validate.Required("allowAllSpecialCharacters", "body", m.AllowAllSpecialCharacters); err != nil {
+		return err
+	}
+
 	return nil
 }
 

@@ -14,6 +14,7 @@ import (
 	"fmt"
 	"io"
 	"io/ioutil"
+	"strings"
 
 	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/strfmt"
@@ -101,6 +102,11 @@ func (o *AdminGetSpecificContentOK) GetPayload() *ugcclientmodels.ModelsContentD
 }
 
 func (o *AdminGetSpecificContentOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+	// handle file responses
+	contentDisposition := response.GetHeader("Content-Disposition")
+	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
+		consumer = runtime.ByteStreamConsumer()
+	}
 
 	o.Payload = new(ugcclientmodels.ModelsContentDownloadResponse)
 
@@ -149,6 +155,11 @@ func (o *AdminGetSpecificContentUnauthorized) GetPayload() *ugcclientmodels.Resp
 }
 
 func (o *AdminGetSpecificContentUnauthorized) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+	// handle file responses
+	contentDisposition := response.GetHeader("Content-Disposition")
+	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
+		consumer = runtime.ByteStreamConsumer()
+	}
 
 	o.Payload = new(ugcclientmodels.ResponseError)
 
@@ -197,6 +208,11 @@ func (o *AdminGetSpecificContentNotFound) GetPayload() *ugcclientmodels.Response
 }
 
 func (o *AdminGetSpecificContentNotFound) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+	// handle file responses
+	contentDisposition := response.GetHeader("Content-Disposition")
+	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
+		consumer = runtime.ByteStreamConsumer()
+	}
 
 	o.Payload = new(ugcclientmodels.ResponseError)
 
@@ -245,6 +261,11 @@ func (o *AdminGetSpecificContentInternalServerError) GetPayload() *ugcclientmode
 }
 
 func (o *AdminGetSpecificContentInternalServerError) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+	// handle file responses
+	contentDisposition := response.GetHeader("Content-Disposition")
+	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
+		consumer = runtime.ByteStreamConsumer()
+	}
 
 	o.Payload = new(ugcclientmodels.ResponseError)
 

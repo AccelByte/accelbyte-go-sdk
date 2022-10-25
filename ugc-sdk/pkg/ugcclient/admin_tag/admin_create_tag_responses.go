@@ -14,6 +14,7 @@ import (
 	"fmt"
 	"io"
 	"io/ioutil"
+	"strings"
 
 	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/strfmt"
@@ -107,6 +108,11 @@ func (o *AdminCreateTagCreated) GetPayload() *ugcclientmodels.ModelsCreateTagRes
 }
 
 func (o *AdminCreateTagCreated) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+	// handle file responses
+	contentDisposition := response.GetHeader("Content-Disposition")
+	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
+		consumer = runtime.ByteStreamConsumer()
+	}
 
 	o.Payload = new(ugcclientmodels.ModelsCreateTagResponse)
 
@@ -155,6 +161,11 @@ func (o *AdminCreateTagBadRequest) GetPayload() *ugcclientmodels.ResponseError {
 }
 
 func (o *AdminCreateTagBadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+	// handle file responses
+	contentDisposition := response.GetHeader("Content-Disposition")
+	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
+		consumer = runtime.ByteStreamConsumer()
+	}
 
 	o.Payload = new(ugcclientmodels.ResponseError)
 
@@ -203,6 +214,11 @@ func (o *AdminCreateTagUnauthorized) GetPayload() *ugcclientmodels.ResponseError
 }
 
 func (o *AdminCreateTagUnauthorized) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+	// handle file responses
+	contentDisposition := response.GetHeader("Content-Disposition")
+	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
+		consumer = runtime.ByteStreamConsumer()
+	}
 
 	o.Payload = new(ugcclientmodels.ResponseError)
 
@@ -251,6 +267,11 @@ func (o *AdminCreateTagConflict) GetPayload() *ugcclientmodels.ResponseError {
 }
 
 func (o *AdminCreateTagConflict) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+	// handle file responses
+	contentDisposition := response.GetHeader("Content-Disposition")
+	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
+		consumer = runtime.ByteStreamConsumer()
+	}
 
 	o.Payload = new(ugcclientmodels.ResponseError)
 
@@ -299,6 +320,11 @@ func (o *AdminCreateTagInternalServerError) GetPayload() *ugcclientmodels.Respon
 }
 
 func (o *AdminCreateTagInternalServerError) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+	// handle file responses
+	contentDisposition := response.GetHeader("Content-Disposition")
+	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
+		consumer = runtime.ByteStreamConsumer()
+	}
 
 	o.Payload = new(ugcclientmodels.ResponseError)
 

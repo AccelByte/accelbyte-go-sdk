@@ -14,6 +14,7 @@ import (
 	"fmt"
 	"io"
 	"io/ioutil"
+	"strings"
 
 	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/strfmt"
@@ -107,6 +108,11 @@ func (o *UpdateRootRegionOverrideOK) GetPayload() *dsmcclientmodels.ModelsDeploy
 }
 
 func (o *UpdateRootRegionOverrideOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+	// handle file responses
+	contentDisposition := response.GetHeader("Content-Disposition")
+	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
+		consumer = runtime.ByteStreamConsumer()
+	}
 
 	o.Payload = new(dsmcclientmodels.ModelsDeploymentWithOverride)
 
@@ -155,6 +161,11 @@ func (o *UpdateRootRegionOverrideBadRequest) GetPayload() *dsmcclientmodels.Resp
 }
 
 func (o *UpdateRootRegionOverrideBadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+	// handle file responses
+	contentDisposition := response.GetHeader("Content-Disposition")
+	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
+		consumer = runtime.ByteStreamConsumer()
+	}
 
 	o.Payload = new(dsmcclientmodels.ResponseError)
 
@@ -203,6 +214,11 @@ func (o *UpdateRootRegionOverrideUnauthorized) GetPayload() *dsmcclientmodels.Re
 }
 
 func (o *UpdateRootRegionOverrideUnauthorized) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+	// handle file responses
+	contentDisposition := response.GetHeader("Content-Disposition")
+	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
+		consumer = runtime.ByteStreamConsumer()
+	}
 
 	o.Payload = new(dsmcclientmodels.ResponseError)
 
@@ -251,6 +267,11 @@ func (o *UpdateRootRegionOverrideNotFound) GetPayload() *dsmcclientmodels.Respon
 }
 
 func (o *UpdateRootRegionOverrideNotFound) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+	// handle file responses
+	contentDisposition := response.GetHeader("Content-Disposition")
+	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
+		consumer = runtime.ByteStreamConsumer()
+	}
 
 	o.Payload = new(dsmcclientmodels.ResponseError)
 
@@ -299,6 +320,11 @@ func (o *UpdateRootRegionOverrideInternalServerError) GetPayload() *dsmcclientmo
 }
 
 func (o *UpdateRootRegionOverrideInternalServerError) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+	// handle file responses
+	contentDisposition := response.GetHeader("Content-Disposition")
+	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
+		consumer = runtime.ByteStreamConsumer()
+	}
 
 	o.Payload = new(dsmcclientmodels.ResponseError)
 

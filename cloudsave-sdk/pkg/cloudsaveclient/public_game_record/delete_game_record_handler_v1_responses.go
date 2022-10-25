@@ -14,6 +14,7 @@ import (
 	"fmt"
 	"io"
 	"io/ioutil"
+	"strings"
 
 	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/strfmt"
@@ -81,6 +82,11 @@ func (o *DeleteGameRecordHandlerV1NoContent) Error() string {
 }
 
 func (o *DeleteGameRecordHandlerV1NoContent) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+	// handle file responses
+	contentDisposition := response.GetHeader("Content-Disposition")
+	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
+		consumer = runtime.ByteStreamConsumer()
+	}
 
 	return nil
 }
@@ -122,6 +128,11 @@ func (o *DeleteGameRecordHandlerV1BadRequest) GetPayload() *cloudsaveclientmodel
 }
 
 func (o *DeleteGameRecordHandlerV1BadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+	// handle file responses
+	contentDisposition := response.GetHeader("Content-Disposition")
+	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
+		consumer = runtime.ByteStreamConsumer()
+	}
 
 	o.Payload = new(cloudsaveclientmodels.ModelsResponseError)
 
@@ -170,6 +181,11 @@ func (o *DeleteGameRecordHandlerV1Unauthorized) GetPayload() *cloudsaveclientmod
 }
 
 func (o *DeleteGameRecordHandlerV1Unauthorized) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+	// handle file responses
+	contentDisposition := response.GetHeader("Content-Disposition")
+	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
+		consumer = runtime.ByteStreamConsumer()
+	}
 
 	o.Payload = new(cloudsaveclientmodels.ModelsResponseError)
 
@@ -218,6 +234,11 @@ func (o *DeleteGameRecordHandlerV1InternalServerError) GetPayload() *cloudsavecl
 }
 
 func (o *DeleteGameRecordHandlerV1InternalServerError) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+	// handle file responses
+	contentDisposition := response.GetHeader("Content-Disposition")
+	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
+		consumer = runtime.ByteStreamConsumer()
+	}
 
 	o.Payload = new(cloudsaveclientmodels.ModelsResponseError)
 

@@ -14,6 +14,7 @@ import (
 	"fmt"
 	"io"
 	"io/ioutil"
+	"strings"
 
 	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/strfmt"
@@ -81,6 +82,11 @@ func (o *DeleteUserStatItems2NoContent) Error() string {
 }
 
 func (o *DeleteUserStatItems2NoContent) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+	// handle file responses
+	contentDisposition := response.GetHeader("Content-Disposition")
+	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
+		consumer = runtime.ByteStreamConsumer()
+	}
 
 	return nil
 }
@@ -122,6 +128,11 @@ func (o *DeleteUserStatItems2Unauthorized) GetPayload() *socialclientmodels.Erro
 }
 
 func (o *DeleteUserStatItems2Unauthorized) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+	// handle file responses
+	contentDisposition := response.GetHeader("Content-Disposition")
+	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
+		consumer = runtime.ByteStreamConsumer()
+	}
 
 	o.Payload = new(socialclientmodels.ErrorEntity)
 
@@ -170,6 +181,11 @@ func (o *DeleteUserStatItems2Forbidden) GetPayload() *socialclientmodels.ErrorEn
 }
 
 func (o *DeleteUserStatItems2Forbidden) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+	// handle file responses
+	contentDisposition := response.GetHeader("Content-Disposition")
+	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
+		consumer = runtime.ByteStreamConsumer()
+	}
 
 	o.Payload = new(socialclientmodels.ErrorEntity)
 
@@ -218,6 +234,11 @@ func (o *DeleteUserStatItems2NotFound) GetPayload() *socialclientmodels.ErrorEnt
 }
 
 func (o *DeleteUserStatItems2NotFound) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+	// handle file responses
+	contentDisposition := response.GetHeader("Content-Disposition")
+	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
+		consumer = runtime.ByteStreamConsumer()
+	}
 
 	o.Payload = new(socialclientmodels.ErrorEntity)
 

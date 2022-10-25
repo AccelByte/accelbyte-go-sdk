@@ -14,6 +14,7 @@ import (
 	"fmt"
 	"io"
 	"io/ioutil"
+	"strings"
 
 	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/strfmt"
@@ -113,6 +114,11 @@ func (o *UpdateGroupCustomAttributesPublicV1OK) GetPayload() *groupclientmodels.
 }
 
 func (o *UpdateGroupCustomAttributesPublicV1OK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+	// handle file responses
+	contentDisposition := response.GetHeader("Content-Disposition")
+	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
+		consumer = runtime.ByteStreamConsumer()
+	}
 
 	o.Payload = new(groupclientmodels.ModelsGroupResponseV1)
 
@@ -161,6 +167,11 @@ func (o *UpdateGroupCustomAttributesPublicV1BadRequest) GetPayload() *groupclien
 }
 
 func (o *UpdateGroupCustomAttributesPublicV1BadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+	// handle file responses
+	contentDisposition := response.GetHeader("Content-Disposition")
+	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
+		consumer = runtime.ByteStreamConsumer()
+	}
 
 	o.Payload = new(groupclientmodels.ResponseErrorResponse)
 
@@ -209,6 +220,11 @@ func (o *UpdateGroupCustomAttributesPublicV1Unauthorized) GetPayload() *groupcli
 }
 
 func (o *UpdateGroupCustomAttributesPublicV1Unauthorized) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+	// handle file responses
+	contentDisposition := response.GetHeader("Content-Disposition")
+	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
+		consumer = runtime.ByteStreamConsumer()
+	}
 
 	o.Payload = new(groupclientmodels.ResponseErrorResponse)
 
@@ -257,6 +273,11 @@ func (o *UpdateGroupCustomAttributesPublicV1Forbidden) GetPayload() *groupclient
 }
 
 func (o *UpdateGroupCustomAttributesPublicV1Forbidden) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+	// handle file responses
+	contentDisposition := response.GetHeader("Content-Disposition")
+	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
+		consumer = runtime.ByteStreamConsumer()
+	}
 
 	o.Payload = new(groupclientmodels.ResponseErrorResponse)
 
@@ -305,6 +326,11 @@ func (o *UpdateGroupCustomAttributesPublicV1NotFound) GetPayload() *groupclientm
 }
 
 func (o *UpdateGroupCustomAttributesPublicV1NotFound) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+	// handle file responses
+	contentDisposition := response.GetHeader("Content-Disposition")
+	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
+		consumer = runtime.ByteStreamConsumer()
+	}
 
 	o.Payload = new(groupclientmodels.ResponseErrorResponse)
 
@@ -353,6 +379,11 @@ func (o *UpdateGroupCustomAttributesPublicV1InternalServerError) GetPayload() *g
 }
 
 func (o *UpdateGroupCustomAttributesPublicV1InternalServerError) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+	// handle file responses
+	contentDisposition := response.GetHeader("Content-Disposition")
+	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
+		consumer = runtime.ByteStreamConsumer()
+	}
 
 	o.Payload = new(groupclientmodels.ResponseErrorResponse)
 

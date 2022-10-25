@@ -14,6 +14,7 @@ import (
 	"fmt"
 	"io"
 	"io/ioutil"
+	"strings"
 
 	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/strfmt"
@@ -95,6 +96,11 @@ func (o *PublicUpdateUserNamespaceSlotOK) GetPayload() *socialclientmodels.SlotI
 }
 
 func (o *PublicUpdateUserNamespaceSlotOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+	// handle file responses
+	contentDisposition := response.GetHeader("Content-Disposition")
+	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
+		consumer = runtime.ByteStreamConsumer()
+	}
 
 	o.Payload = new(socialclientmodels.SlotInfo)
 
@@ -143,6 +149,11 @@ func (o *PublicUpdateUserNamespaceSlotBadRequest) GetPayload() *socialclientmode
 }
 
 func (o *PublicUpdateUserNamespaceSlotBadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+	// handle file responses
+	contentDisposition := response.GetHeader("Content-Disposition")
+	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
+		consumer = runtime.ByteStreamConsumer()
+	}
 
 	o.Payload = new(socialclientmodels.ErrorEntity)
 
@@ -191,6 +202,11 @@ func (o *PublicUpdateUserNamespaceSlotNotFound) GetPayload() *socialclientmodels
 }
 
 func (o *PublicUpdateUserNamespaceSlotNotFound) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+	// handle file responses
+	contentDisposition := response.GetHeader("Content-Disposition")
+	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
+		consumer = runtime.ByteStreamConsumer()
+	}
 
 	o.Payload = new(socialclientmodels.ErrorEntity)
 

@@ -35,6 +35,8 @@ type Client struct {
 type ClientService interface {
 	AddPlayerToSession(params *AddPlayerToSessionParams, authInfo runtime.ClientAuthInfoWriter) (*AddPlayerToSessionOK, *AddPlayerToSessionBadRequest, *AddPlayerToSessionNotFound, *AddPlayerToSessionInternalServerError, error)
 	AddPlayerToSessionShort(params *AddPlayerToSessionParams, authInfo runtime.ClientAuthInfoWriter) (*AddPlayerToSessionOK, error)
+	AdminDeleteSession(params *AdminDeleteSessionParams, authInfo runtime.ClientAuthInfoWriter) (*AdminDeleteSessionOK, *AdminDeleteSessionBadRequest, *AdminDeleteSessionNotFound, *AdminDeleteSessionInternalServerError, error)
+	AdminDeleteSessionShort(params *AdminDeleteSessionParams, authInfo runtime.ClientAuthInfoWriter) (*AdminDeleteSessionOK, error)
 	AdminGetSession(params *AdminGetSessionParams, authInfo runtime.ClientAuthInfoWriter) (*AdminGetSessionOK, *AdminGetSessionNotFound, *AdminGetSessionInternalServerError, error)
 	AdminGetSessionShort(params *AdminGetSessionParams, authInfo runtime.ClientAuthInfoWriter) (*AdminGetSessionOK, error)
 	AdminSearchSessionsV2(params *AdminSearchSessionsV2Params, authInfo runtime.ClientAuthInfoWriter) (*AdminSearchSessionsV2OK, *AdminSearchSessionsV2BadRequest, *AdminSearchSessionsV2Unauthorized, *AdminSearchSessionsV2Forbidden, *AdminSearchSessionsV2InternalServerError, error)
@@ -183,6 +185,123 @@ func (a *Client) AddPlayerToSessionShort(params *AddPlayerToSessionParams, authI
 	case *AddPlayerToSessionNotFound:
 		return nil, v
 	case *AddPlayerToSessionInternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+Deprecated: Use AdminDeleteSessionShort instead.
+
+  AdminDeleteSession admins delete specified session by session ID
+
+  Required permission: ADMIN:NAMESPACE:{namespace}:SESSIONBROWSER:SESSION [DELETE]
+
+Required scope: social
+
+Admin delete the session by session ID
+*/
+func (a *Client) AdminDeleteSession(params *AdminDeleteSessionParams, authInfo runtime.ClientAuthInfoWriter) (*AdminDeleteSessionOK, *AdminDeleteSessionBadRequest, *AdminDeleteSessionNotFound, *AdminDeleteSessionInternalServerError, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewAdminDeleteSessionParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "AdminDeleteSession",
+		Method:             "DELETE",
+		PathPattern:        "/sessionbrowser/admin/namespaces/{namespace}/gamesession/{sessionID}",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &AdminDeleteSessionReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, nil, nil, nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *AdminDeleteSessionOK:
+		return v, nil, nil, nil, nil
+
+	case *AdminDeleteSessionBadRequest:
+		return nil, v, nil, nil, nil
+
+	case *AdminDeleteSessionNotFound:
+		return nil, nil, v, nil, nil
+
+	case *AdminDeleteSessionInternalServerError:
+		return nil, nil, nil, v, nil
+
+	default:
+		return nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+  AdminDeleteSessionShort admins delete specified session by session ID
+
+  Required permission: ADMIN:NAMESPACE:{namespace}:SESSIONBROWSER:SESSION [DELETE]
+
+Required scope: social
+
+Admin delete the session by session ID
+*/
+func (a *Client) AdminDeleteSessionShort(params *AdminDeleteSessionParams, authInfo runtime.ClientAuthInfoWriter) (*AdminDeleteSessionOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewAdminDeleteSessionParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "AdminDeleteSession",
+		Method:             "DELETE",
+		PathPattern:        "/sessionbrowser/admin/namespaces/{namespace}/gamesession/{sessionID}",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &AdminDeleteSessionReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *AdminDeleteSessionOK:
+		return v, nil
+	case *AdminDeleteSessionBadRequest:
+		return nil, v
+	case *AdminDeleteSessionNotFound:
+		return nil, v
+	case *AdminDeleteSessionInternalServerError:
 		return nil, v
 
 	default:
@@ -551,13 +670,13 @@ func (a *Client) CreateSessionShort(params *CreateSessionParams, authInfo runtim
 /*
 Deprecated: Use DeleteSessionShort instead.
 
-  DeleteSession deletes specified session by session ID
+  DeleteSession deletes specified p2p session by session ID
 
   Required permission: NAMESPACE:{namespace}:SESSIONBROWSER:SESSION [DELETE]
 
 Required scope: social
 
-Delete the session by session ID
+Delete the session (p2p) by session ID
 */
 func (a *Client) DeleteSession(params *DeleteSessionParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteSessionOK, *DeleteSessionBadRequest, *DeleteSessionNotFound, *DeleteSessionInternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -610,13 +729,13 @@ func (a *Client) DeleteSession(params *DeleteSessionParams, authInfo runtime.Cli
 }
 
 /*
-  DeleteSessionShort deletes specified session by session ID
+  DeleteSessionShort deletes specified p2p session by session ID
 
   Required permission: NAMESPACE:{namespace}:SESSIONBROWSER:SESSION [DELETE]
 
 Required scope: social
 
-Delete the session by session ID
+Delete the session (p2p) by session ID
 */
 func (a *Client) DeleteSessionShort(params *DeleteSessionParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteSessionOK, error) {
 	// TODO: Validate the params before sending

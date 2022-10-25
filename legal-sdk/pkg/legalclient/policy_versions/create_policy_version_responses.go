@@ -14,6 +14,7 @@ import (
 	"fmt"
 	"io"
 	"io/ioutil"
+	"strings"
 
 	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/strfmt"
@@ -89,6 +90,11 @@ func (o *CreatePolicyVersionCreated) GetPayload() *legalclientmodels.CreatePolic
 }
 
 func (o *CreatePolicyVersionCreated) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+	// handle file responses
+	contentDisposition := response.GetHeader("Content-Disposition")
+	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
+		consumer = runtime.ByteStreamConsumer()
+	}
 
 	o.Payload = new(legalclientmodels.CreatePolicyVersionResponse)
 
@@ -137,6 +143,11 @@ func (o *CreatePolicyVersionBadRequest) GetPayload() *legalclientmodels.ErrorEnt
 }
 
 func (o *CreatePolicyVersionBadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+	// handle file responses
+	contentDisposition := response.GetHeader("Content-Disposition")
+	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
+		consumer = runtime.ByteStreamConsumer()
+	}
 
 	o.Payload = new(legalclientmodels.ErrorEntity)
 

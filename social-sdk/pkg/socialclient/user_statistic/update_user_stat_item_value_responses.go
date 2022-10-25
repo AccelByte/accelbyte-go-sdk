@@ -14,6 +14,7 @@ import (
 	"fmt"
 	"io"
 	"io/ioutil"
+	"strings"
 
 	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/strfmt"
@@ -107,6 +108,11 @@ func (o *UpdateUserStatItemValueOK) GetPayload() *socialclientmodels.StatItemInc
 }
 
 func (o *UpdateUserStatItemValueOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+	// handle file responses
+	contentDisposition := response.GetHeader("Content-Disposition")
+	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
+		consumer = runtime.ByteStreamConsumer()
+	}
 
 	o.Payload = new(socialclientmodels.StatItemIncResult)
 
@@ -155,6 +161,11 @@ func (o *UpdateUserStatItemValueBadRequest) GetPayload() *socialclientmodels.Err
 }
 
 func (o *UpdateUserStatItemValueBadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+	// handle file responses
+	contentDisposition := response.GetHeader("Content-Disposition")
+	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
+		consumer = runtime.ByteStreamConsumer()
+	}
 
 	o.Payload = new(socialclientmodels.ErrorEntity)
 
@@ -203,6 +214,11 @@ func (o *UpdateUserStatItemValueNotFound) GetPayload() *socialclientmodels.Error
 }
 
 func (o *UpdateUserStatItemValueNotFound) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+	// handle file responses
+	contentDisposition := response.GetHeader("Content-Disposition")
+	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
+		consumer = runtime.ByteStreamConsumer()
+	}
 
 	o.Payload = new(socialclientmodels.ErrorEntity)
 
@@ -251,6 +267,11 @@ func (o *UpdateUserStatItemValueConflict) GetPayload() *socialclientmodels.Error
 }
 
 func (o *UpdateUserStatItemValueConflict) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+	// handle file responses
+	contentDisposition := response.GetHeader("Content-Disposition")
+	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
+		consumer = runtime.ByteStreamConsumer()
+	}
 
 	o.Payload = new(socialclientmodels.ErrorEntity)
 
@@ -299,6 +320,11 @@ func (o *UpdateUserStatItemValueUnprocessableEntity) GetPayload() *socialclientm
 }
 
 func (o *UpdateUserStatItemValueUnprocessableEntity) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+	// handle file responses
+	contentDisposition := response.GetHeader("Content-Disposition")
+	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
+		consumer = runtime.ByteStreamConsumer()
+	}
 
 	o.Payload = new(socialclientmodels.ValidationErrorEntity)
 

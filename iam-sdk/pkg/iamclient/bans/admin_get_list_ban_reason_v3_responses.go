@@ -14,6 +14,7 @@ import (
 	"fmt"
 	"io"
 	"io/ioutil"
+	"strings"
 
 	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/strfmt"
@@ -95,6 +96,11 @@ func (o *AdminGetListBanReasonV3OK) GetPayload() *iamclientmodels.AccountcommonB
 }
 
 func (o *AdminGetListBanReasonV3OK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+	// handle file responses
+	contentDisposition := response.GetHeader("Content-Disposition")
+	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
+		consumer = runtime.ByteStreamConsumer()
+	}
 
 	o.Payload = new(iamclientmodels.AccountcommonBanReasonsV3)
 
@@ -143,6 +149,11 @@ func (o *AdminGetListBanReasonV3Unauthorized) GetPayload() *iamclientmodels.Rest
 }
 
 func (o *AdminGetListBanReasonV3Unauthorized) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+	// handle file responses
+	contentDisposition := response.GetHeader("Content-Disposition")
+	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
+		consumer = runtime.ByteStreamConsumer()
+	}
 
 	o.Payload = new(iamclientmodels.RestapiErrorResponse)
 
@@ -191,6 +202,11 @@ func (o *AdminGetListBanReasonV3Forbidden) GetPayload() *iamclientmodels.Restapi
 }
 
 func (o *AdminGetListBanReasonV3Forbidden) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+	// handle file responses
+	contentDisposition := response.GetHeader("Content-Disposition")
+	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
+		consumer = runtime.ByteStreamConsumer()
+	}
 
 	o.Payload = new(iamclientmodels.RestapiErrorResponse)
 

@@ -14,6 +14,7 @@ import (
 	"fmt"
 	"io"
 	"io/ioutil"
+	"strings"
 
 	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/strfmt"
@@ -101,6 +102,11 @@ func (o *GetImageLimitOK) GetPayload() *dsmcclientmodels.ModelsGetImageLimitResp
 }
 
 func (o *GetImageLimitOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+	// handle file responses
+	contentDisposition := response.GetHeader("Content-Disposition")
+	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
+		consumer = runtime.ByteStreamConsumer()
+	}
 
 	o.Payload = new(dsmcclientmodels.ModelsGetImageLimitResponse)
 
@@ -149,6 +155,11 @@ func (o *GetImageLimitBadRequest) GetPayload() *dsmcclientmodels.ResponseError {
 }
 
 func (o *GetImageLimitBadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+	// handle file responses
+	contentDisposition := response.GetHeader("Content-Disposition")
+	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
+		consumer = runtime.ByteStreamConsumer()
+	}
 
 	o.Payload = new(dsmcclientmodels.ResponseError)
 
@@ -197,6 +208,11 @@ func (o *GetImageLimitUnauthorized) GetPayload() *dsmcclientmodels.ResponseError
 }
 
 func (o *GetImageLimitUnauthorized) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+	// handle file responses
+	contentDisposition := response.GetHeader("Content-Disposition")
+	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
+		consumer = runtime.ByteStreamConsumer()
+	}
 
 	o.Payload = new(dsmcclientmodels.ResponseError)
 
@@ -245,6 +261,11 @@ func (o *GetImageLimitInternalServerError) GetPayload() *dsmcclientmodels.Respon
 }
 
 func (o *GetImageLimitInternalServerError) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+	// handle file responses
+	contentDisposition := response.GetHeader("Content-Disposition")
+	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
+		consumer = runtime.ByteStreamConsumer()
+	}
 
 	o.Payload = new(dsmcclientmodels.ResponseError)
 

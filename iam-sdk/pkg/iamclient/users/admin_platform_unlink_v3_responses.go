@@ -14,6 +14,7 @@ import (
 	"fmt"
 	"io"
 	"io/ioutil"
+	"strings"
 
 	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/strfmt"
@@ -93,6 +94,11 @@ func (o *AdminPlatformUnlinkV3NoContent) Error() string {
 }
 
 func (o *AdminPlatformUnlinkV3NoContent) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+	// handle file responses
+	contentDisposition := response.GetHeader("Content-Disposition")
+	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
+		consumer = runtime.ByteStreamConsumer()
+	}
 
 	return nil
 }
@@ -134,6 +140,11 @@ func (o *AdminPlatformUnlinkV3BadRequest) GetPayload() *iamclientmodels.RestapiE
 }
 
 func (o *AdminPlatformUnlinkV3BadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+	// handle file responses
+	contentDisposition := response.GetHeader("Content-Disposition")
+	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
+		consumer = runtime.ByteStreamConsumer()
+	}
 
 	o.Payload = new(iamclientmodels.RestapiErrorResponse)
 
@@ -182,6 +193,11 @@ func (o *AdminPlatformUnlinkV3Unauthorized) GetPayload() *iamclientmodels.Restap
 }
 
 func (o *AdminPlatformUnlinkV3Unauthorized) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+	// handle file responses
+	contentDisposition := response.GetHeader("Content-Disposition")
+	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
+		consumer = runtime.ByteStreamConsumer()
+	}
 
 	o.Payload = new(iamclientmodels.RestapiErrorResponse)
 
@@ -230,6 +246,11 @@ func (o *AdminPlatformUnlinkV3Forbidden) GetPayload() *iamclientmodels.RestapiEr
 }
 
 func (o *AdminPlatformUnlinkV3Forbidden) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+	// handle file responses
+	contentDisposition := response.GetHeader("Content-Disposition")
+	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
+		consumer = runtime.ByteStreamConsumer()
+	}
 
 	o.Payload = new(iamclientmodels.RestapiErrorResponse)
 
@@ -278,6 +299,11 @@ func (o *AdminPlatformUnlinkV3NotFound) GetPayload() *iamclientmodels.RestapiErr
 }
 
 func (o *AdminPlatformUnlinkV3NotFound) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+	// handle file responses
+	contentDisposition := response.GetHeader("Content-Disposition")
+	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
+		consumer = runtime.ByteStreamConsumer()
+	}
 
 	o.Payload = new(iamclientmodels.RestapiErrorResponse)
 
@@ -306,6 +332,11 @@ func (o *AdminPlatformUnlinkV3InternalServerError) Error() string {
 }
 
 func (o *AdminPlatformUnlinkV3InternalServerError) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+	// handle file responses
+	contentDisposition := response.GetHeader("Content-Disposition")
+	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
+		consumer = runtime.ByteStreamConsumer()
+	}
 
 	return nil
 }

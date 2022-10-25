@@ -14,6 +14,7 @@ import (
 	"fmt"
 	"io"
 	"io/ioutil"
+	"strings"
 
 	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/strfmt"
@@ -93,6 +94,11 @@ func (o *UpdateMatchmakingChannelNoContent) Error() string {
 }
 
 func (o *UpdateMatchmakingChannelNoContent) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+	// handle file responses
+	contentDisposition := response.GetHeader("Content-Disposition")
+	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
+		consumer = runtime.ByteStreamConsumer()
+	}
 
 	return nil
 }
@@ -134,6 +140,11 @@ func (o *UpdateMatchmakingChannelBadRequest) GetPayload() *matchmakingclientmode
 }
 
 func (o *UpdateMatchmakingChannelBadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+	// handle file responses
+	contentDisposition := response.GetHeader("Content-Disposition")
+	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
+		consumer = runtime.ByteStreamConsumer()
+	}
 
 	o.Payload = new(matchmakingclientmodels.ResponseErrorV1)
 
@@ -182,6 +193,11 @@ func (o *UpdateMatchmakingChannelUnauthorized) GetPayload() *matchmakingclientmo
 }
 
 func (o *UpdateMatchmakingChannelUnauthorized) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+	// handle file responses
+	contentDisposition := response.GetHeader("Content-Disposition")
+	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
+		consumer = runtime.ByteStreamConsumer()
+	}
 
 	o.Payload = new(matchmakingclientmodels.ResponseErrorV1)
 
@@ -230,6 +246,11 @@ func (o *UpdateMatchmakingChannelForbidden) GetPayload() *matchmakingclientmodel
 }
 
 func (o *UpdateMatchmakingChannelForbidden) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+	// handle file responses
+	contentDisposition := response.GetHeader("Content-Disposition")
+	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
+		consumer = runtime.ByteStreamConsumer()
+	}
 
 	o.Payload = new(matchmakingclientmodels.ResponseErrorV1)
 
@@ -278,6 +299,11 @@ func (o *UpdateMatchmakingChannelNotFound) GetPayload() *matchmakingclientmodels
 }
 
 func (o *UpdateMatchmakingChannelNotFound) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+	// handle file responses
+	contentDisposition := response.GetHeader("Content-Disposition")
+	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
+		consumer = runtime.ByteStreamConsumer()
+	}
 
 	o.Payload = new(matchmakingclientmodels.ResponseErrorV1)
 
@@ -326,6 +352,11 @@ func (o *UpdateMatchmakingChannelInternalServerError) GetPayload() *matchmakingc
 }
 
 func (o *UpdateMatchmakingChannelInternalServerError) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+	// handle file responses
+	contentDisposition := response.GetHeader("Content-Disposition")
+	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
+		consumer = runtime.ByteStreamConsumer()
+	}
 
 	o.Payload = new(matchmakingclientmodels.ResponseError)
 

@@ -14,6 +14,7 @@ import (
 	"fmt"
 	"io"
 	"io/ioutil"
+	"strings"
 
 	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/strfmt"
@@ -107,6 +108,11 @@ func (o *GetBannedUsersOK) GetPayload() []*basicclientmodels.ADTOObjectForEqu8Us
 }
 
 func (o *GetBannedUsersOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+	// handle file responses
+	contentDisposition := response.GetHeader("Content-Disposition")
+	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
+		consumer = runtime.ByteStreamConsumer()
+	}
 
 	// response payload
 	if err := consumer.Consume(response.Body(), &o.Payload); err != nil && err != io.EOF {
@@ -153,6 +159,11 @@ func (o *GetBannedUsersBadRequest) GetPayload() *basicclientmodels.ErrorEntity {
 }
 
 func (o *GetBannedUsersBadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+	// handle file responses
+	contentDisposition := response.GetHeader("Content-Disposition")
+	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
+		consumer = runtime.ByteStreamConsumer()
+	}
 
 	o.Payload = new(basicclientmodels.ErrorEntity)
 
@@ -201,6 +212,11 @@ func (o *GetBannedUsersNotFound) GetPayload() *basicclientmodels.ErrorEntity {
 }
 
 func (o *GetBannedUsersNotFound) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+	// handle file responses
+	contentDisposition := response.GetHeader("Content-Disposition")
+	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
+		consumer = runtime.ByteStreamConsumer()
+	}
 
 	o.Payload = new(basicclientmodels.ErrorEntity)
 
@@ -249,6 +265,11 @@ func (o *GetBannedUsersUnprocessableEntity) GetPayload() *basicclientmodels.Vali
 }
 
 func (o *GetBannedUsersUnprocessableEntity) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+	// handle file responses
+	contentDisposition := response.GetHeader("Content-Disposition")
+	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
+		consumer = runtime.ByteStreamConsumer()
+	}
 
 	o.Payload = new(basicclientmodels.ValidationErrorEntity)
 
@@ -297,6 +318,11 @@ func (o *GetBannedUsersInternalServerError) GetPayload() *basicclientmodels.Erro
 }
 
 func (o *GetBannedUsersInternalServerError) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+	// handle file responses
+	contentDisposition := response.GetHeader("Content-Disposition")
+	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
+		consumer = runtime.ByteStreamConsumer()
+	}
 
 	o.Payload = new(basicclientmodels.ErrorEntity)
 

@@ -14,6 +14,7 @@ import (
 	"fmt"
 	"io"
 	"io/ioutil"
+	"strings"
 
 	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/strfmt"
@@ -87,6 +88,11 @@ func (o *PublicCancelUserPersonalDataRequestNoContent) Error() string {
 }
 
 func (o *PublicCancelUserPersonalDataRequestNoContent) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+	// handle file responses
+	contentDisposition := response.GetHeader("Content-Disposition")
+	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
+		consumer = runtime.ByteStreamConsumer()
+	}
 
 	return nil
 }
@@ -128,6 +134,11 @@ func (o *PublicCancelUserPersonalDataRequestUnauthorized) GetPayload() *gdprclie
 }
 
 func (o *PublicCancelUserPersonalDataRequestUnauthorized) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+	// handle file responses
+	contentDisposition := response.GetHeader("Content-Disposition")
+	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
+		consumer = runtime.ByteStreamConsumer()
+	}
 
 	o.Payload = new(gdprclientmodels.ResponseError)
 
@@ -176,6 +187,11 @@ func (o *PublicCancelUserPersonalDataRequestNotFound) GetPayload() *gdprclientmo
 }
 
 func (o *PublicCancelUserPersonalDataRequestNotFound) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+	// handle file responses
+	contentDisposition := response.GetHeader("Content-Disposition")
+	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
+		consumer = runtime.ByteStreamConsumer()
+	}
 
 	o.Payload = new(gdprclientmodels.ResponseError)
 
@@ -224,6 +240,11 @@ func (o *PublicCancelUserPersonalDataRequestConflict) GetPayload() *gdprclientmo
 }
 
 func (o *PublicCancelUserPersonalDataRequestConflict) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+	// handle file responses
+	contentDisposition := response.GetHeader("Content-Disposition")
+	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
+		consumer = runtime.ByteStreamConsumer()
+	}
 
 	o.Payload = new(gdprclientmodels.ResponseError)
 
@@ -272,6 +293,11 @@ func (o *PublicCancelUserPersonalDataRequestInternalServerError) GetPayload() *g
 }
 
 func (o *PublicCancelUserPersonalDataRequestInternalServerError) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+	// handle file responses
+	contentDisposition := response.GetHeader("Content-Disposition")
+	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
+		consumer = runtime.ByteStreamConsumer()
+	}
 
 	o.Payload = new(gdprclientmodels.ResponseError)
 

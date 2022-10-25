@@ -14,6 +14,7 @@ import (
 	"fmt"
 	"io"
 	"io/ioutil"
+	"strings"
 
 	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/strfmt"
@@ -95,6 +96,11 @@ func (o *UploadKeysOK) GetPayload() *platformclientmodels.BulkOperationResult {
 }
 
 func (o *UploadKeysOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+	// handle file responses
+	contentDisposition := response.GetHeader("Content-Disposition")
+	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
+		consumer = runtime.ByteStreamConsumer()
+	}
 
 	o.Payload = new(platformclientmodels.BulkOperationResult)
 
@@ -143,6 +149,11 @@ func (o *UploadKeysBadRequest) GetPayload() *platformclientmodels.ErrorEntity {
 }
 
 func (o *UploadKeysBadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+	// handle file responses
+	contentDisposition := response.GetHeader("Content-Disposition")
+	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
+		consumer = runtime.ByteStreamConsumer()
+	}
 
 	o.Payload = new(platformclientmodels.ErrorEntity)
 
@@ -191,6 +202,11 @@ func (o *UploadKeysNotFound) GetPayload() *platformclientmodels.ErrorEntity {
 }
 
 func (o *UploadKeysNotFound) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+	// handle file responses
+	contentDisposition := response.GetHeader("Content-Disposition")
+	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
+		consumer = runtime.ByteStreamConsumer()
+	}
 
 	o.Payload = new(platformclientmodels.ErrorEntity)
 

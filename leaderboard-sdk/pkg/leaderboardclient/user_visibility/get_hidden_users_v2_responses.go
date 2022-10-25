@@ -14,6 +14,7 @@ import (
 	"fmt"
 	"io"
 	"io/ioutil"
+	"strings"
 
 	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/strfmt"
@@ -113,6 +114,11 @@ func (o *GetHiddenUsersV2OK) GetPayload() *leaderboardclientmodels.ModelsGetHidd
 }
 
 func (o *GetHiddenUsersV2OK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+	// handle file responses
+	contentDisposition := response.GetHeader("Content-Disposition")
+	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
+		consumer = runtime.ByteStreamConsumer()
+	}
 
 	o.Payload = new(leaderboardclientmodels.ModelsGetHiddenUserResponse)
 
@@ -161,6 +167,11 @@ func (o *GetHiddenUsersV2BadRequest) GetPayload() *leaderboardclientmodels.Respo
 }
 
 func (o *GetHiddenUsersV2BadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+	// handle file responses
+	contentDisposition := response.GetHeader("Content-Disposition")
+	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
+		consumer = runtime.ByteStreamConsumer()
+	}
 
 	o.Payload = new(leaderboardclientmodels.ResponseErrorResponse)
 
@@ -209,6 +220,11 @@ func (o *GetHiddenUsersV2Unauthorized) GetPayload() *leaderboardclientmodels.Res
 }
 
 func (o *GetHiddenUsersV2Unauthorized) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+	// handle file responses
+	contentDisposition := response.GetHeader("Content-Disposition")
+	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
+		consumer = runtime.ByteStreamConsumer()
+	}
 
 	o.Payload = new(leaderboardclientmodels.ResponseErrorResponse)
 
@@ -257,6 +273,11 @@ func (o *GetHiddenUsersV2Forbidden) GetPayload() *leaderboardclientmodels.Respon
 }
 
 func (o *GetHiddenUsersV2Forbidden) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+	// handle file responses
+	contentDisposition := response.GetHeader("Content-Disposition")
+	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
+		consumer = runtime.ByteStreamConsumer()
+	}
 
 	o.Payload = new(leaderboardclientmodels.ResponseErrorResponse)
 
@@ -305,6 +326,11 @@ func (o *GetHiddenUsersV2NotFound) GetPayload() *leaderboardclientmodels.Respons
 }
 
 func (o *GetHiddenUsersV2NotFound) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+	// handle file responses
+	contentDisposition := response.GetHeader("Content-Disposition")
+	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
+		consumer = runtime.ByteStreamConsumer()
+	}
 
 	o.Payload = new(leaderboardclientmodels.ResponseErrorResponse)
 
@@ -353,6 +379,11 @@ func (o *GetHiddenUsersV2InternalServerError) GetPayload() *leaderboardclientmod
 }
 
 func (o *GetHiddenUsersV2InternalServerError) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+	// handle file responses
+	contentDisposition := response.GetHeader("Content-Disposition")
+	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
+		consumer = runtime.ByteStreamConsumer()
+	}
 
 	o.Payload = new(leaderboardclientmodels.ResponseErrorResponse)
 

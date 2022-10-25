@@ -14,6 +14,7 @@ import (
 	"fmt"
 	"io"
 	"io/ioutil"
+	"strings"
 
 	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/strfmt"
@@ -107,6 +108,11 @@ func (o *UpdateSeasonOK) GetPayload() *seasonpassclientmodels.SeasonInfo {
 }
 
 func (o *UpdateSeasonOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+	// handle file responses
+	contentDisposition := response.GetHeader("Content-Disposition")
+	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
+		consumer = runtime.ByteStreamConsumer()
+	}
 
 	o.Payload = new(seasonpassclientmodels.SeasonInfo)
 
@@ -155,6 +161,11 @@ func (o *UpdateSeasonBadRequest) GetPayload() *seasonpassclientmodels.ErrorEntit
 }
 
 func (o *UpdateSeasonBadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+	// handle file responses
+	contentDisposition := response.GetHeader("Content-Disposition")
+	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
+		consumer = runtime.ByteStreamConsumer()
+	}
 
 	o.Payload = new(seasonpassclientmodels.ErrorEntity)
 
@@ -203,6 +214,11 @@ func (o *UpdateSeasonNotFound) GetPayload() *seasonpassclientmodels.ErrorEntity 
 }
 
 func (o *UpdateSeasonNotFound) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+	// handle file responses
+	contentDisposition := response.GetHeader("Content-Disposition")
+	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
+		consumer = runtime.ByteStreamConsumer()
+	}
 
 	o.Payload = new(seasonpassclientmodels.ErrorEntity)
 
@@ -251,6 +267,11 @@ func (o *UpdateSeasonConflict) GetPayload() *seasonpassclientmodels.ErrorEntity 
 }
 
 func (o *UpdateSeasonConflict) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+	// handle file responses
+	contentDisposition := response.GetHeader("Content-Disposition")
+	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
+		consumer = runtime.ByteStreamConsumer()
+	}
 
 	o.Payload = new(seasonpassclientmodels.ErrorEntity)
 
@@ -299,6 +320,11 @@ func (o *UpdateSeasonUnprocessableEntity) GetPayload() *seasonpassclientmodels.V
 }
 
 func (o *UpdateSeasonUnprocessableEntity) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+	// handle file responses
+	contentDisposition := response.GetHeader("Content-Disposition")
+	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
+		consumer = runtime.ByteStreamConsumer()
+	}
 
 	o.Payload = new(seasonpassclientmodels.ValidationErrorEntity)
 

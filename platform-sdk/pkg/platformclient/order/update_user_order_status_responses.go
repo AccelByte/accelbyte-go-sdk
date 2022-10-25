@@ -14,6 +14,7 @@ import (
 	"fmt"
 	"io"
 	"io/ioutil"
+	"strings"
 
 	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/strfmt"
@@ -101,6 +102,11 @@ func (o *UpdateUserOrderStatusOK) GetPayload() *platformclientmodels.OrderInfo {
 }
 
 func (o *UpdateUserOrderStatusOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+	// handle file responses
+	contentDisposition := response.GetHeader("Content-Disposition")
+	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
+		consumer = runtime.ByteStreamConsumer()
+	}
 
 	o.Payload = new(platformclientmodels.OrderInfo)
 
@@ -149,6 +155,11 @@ func (o *UpdateUserOrderStatusNotFound) GetPayload() *platformclientmodels.Error
 }
 
 func (o *UpdateUserOrderStatusNotFound) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+	// handle file responses
+	contentDisposition := response.GetHeader("Content-Disposition")
+	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
+		consumer = runtime.ByteStreamConsumer()
+	}
 
 	o.Payload = new(platformclientmodels.ErrorEntity)
 
@@ -197,6 +208,11 @@ func (o *UpdateUserOrderStatusConflict) GetPayload() *platformclientmodels.Error
 }
 
 func (o *UpdateUserOrderStatusConflict) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+	// handle file responses
+	contentDisposition := response.GetHeader("Content-Disposition")
+	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
+		consumer = runtime.ByteStreamConsumer()
+	}
 
 	o.Payload = new(platformclientmodels.ErrorEntity)
 
@@ -245,6 +261,11 @@ func (o *UpdateUserOrderStatusUnprocessableEntity) GetPayload() *platformclientm
 }
 
 func (o *UpdateUserOrderStatusUnprocessableEntity) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+	// handle file responses
+	contentDisposition := response.GetHeader("Content-Disposition")
+	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
+		consumer = runtime.ByteStreamConsumer()
+	}
 
 	o.Payload = new(platformclientmodels.ValidationErrorEntity)
 

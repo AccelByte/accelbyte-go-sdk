@@ -14,6 +14,7 @@ import (
 	"fmt"
 	"io"
 	"io/ioutil"
+	"strings"
 
 	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/strfmt"
@@ -107,6 +108,11 @@ func (o *RetrieveAllActiveThirdPartyLoginPlatformCredentialPublicV3OK) GetPayloa
 }
 
 func (o *RetrieveAllActiveThirdPartyLoginPlatformCredentialPublicV3OK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+	// handle file responses
+	contentDisposition := response.GetHeader("Content-Disposition")
+	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
+		consumer = runtime.ByteStreamConsumer()
+	}
 
 	// response payload
 	if err := consumer.Consume(response.Body(), &o.Payload); err != nil && err != io.EOF {
@@ -133,6 +139,11 @@ func (o *RetrieveAllActiveThirdPartyLoginPlatformCredentialPublicV3Unauthorized)
 }
 
 func (o *RetrieveAllActiveThirdPartyLoginPlatformCredentialPublicV3Unauthorized) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+	// handle file responses
+	contentDisposition := response.GetHeader("Content-Disposition")
+	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
+		consumer = runtime.ByteStreamConsumer()
+	}
 
 	return nil
 }
@@ -154,6 +165,11 @@ func (o *RetrieveAllActiveThirdPartyLoginPlatformCredentialPublicV3Forbidden) Er
 }
 
 func (o *RetrieveAllActiveThirdPartyLoginPlatformCredentialPublicV3Forbidden) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+	// handle file responses
+	contentDisposition := response.GetHeader("Content-Disposition")
+	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
+		consumer = runtime.ByteStreamConsumer()
+	}
 
 	return nil
 }
@@ -195,6 +211,11 @@ func (o *RetrieveAllActiveThirdPartyLoginPlatformCredentialPublicV3NotFound) Get
 }
 
 func (o *RetrieveAllActiveThirdPartyLoginPlatformCredentialPublicV3NotFound) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+	// handle file responses
+	contentDisposition := response.GetHeader("Content-Disposition")
+	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
+		consumer = runtime.ByteStreamConsumer()
+	}
 
 	o.Payload = new(iamclientmodels.RestErrorResponse)
 
@@ -243,6 +264,11 @@ func (o *RetrieveAllActiveThirdPartyLoginPlatformCredentialPublicV3InternalServe
 }
 
 func (o *RetrieveAllActiveThirdPartyLoginPlatformCredentialPublicV3InternalServerError) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+	// handle file responses
+	contentDisposition := response.GetHeader("Content-Disposition")
+	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
+		consumer = runtime.ByteStreamConsumer()
+	}
 
 	o.Payload = new(iamclientmodels.RestErrorResponse)
 

@@ -14,6 +14,7 @@ import (
 	"fmt"
 	"io"
 	"io/ioutil"
+	"strings"
 
 	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/strfmt"
@@ -101,6 +102,11 @@ func (o *GetCurrentMonthLeaderboardRankingPublicV1OK) GetPayload() *leaderboardc
 }
 
 func (o *GetCurrentMonthLeaderboardRankingPublicV1OK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+	// handle file responses
+	contentDisposition := response.GetHeader("Content-Disposition")
+	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
+		consumer = runtime.ByteStreamConsumer()
+	}
 
 	o.Payload = new(leaderboardclientmodels.ModelsGetLeaderboardRankingResp)
 
@@ -149,6 +155,11 @@ func (o *GetCurrentMonthLeaderboardRankingPublicV1BadRequest) GetPayload() *lead
 }
 
 func (o *GetCurrentMonthLeaderboardRankingPublicV1BadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+	// handle file responses
+	contentDisposition := response.GetHeader("Content-Disposition")
+	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
+		consumer = runtime.ByteStreamConsumer()
+	}
 
 	o.Payload = new(leaderboardclientmodels.ResponseErrorResponse)
 
@@ -197,6 +208,11 @@ func (o *GetCurrentMonthLeaderboardRankingPublicV1NotFound) GetPayload() *leader
 }
 
 func (o *GetCurrentMonthLeaderboardRankingPublicV1NotFound) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+	// handle file responses
+	contentDisposition := response.GetHeader("Content-Disposition")
+	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
+		consumer = runtime.ByteStreamConsumer()
+	}
 
 	o.Payload = new(leaderboardclientmodels.ResponseErrorResponse)
 
@@ -245,6 +261,11 @@ func (o *GetCurrentMonthLeaderboardRankingPublicV1InternalServerError) GetPayloa
 }
 
 func (o *GetCurrentMonthLeaderboardRankingPublicV1InternalServerError) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+	// handle file responses
+	contentDisposition := response.GetHeader("Content-Disposition")
+	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
+		consumer = runtime.ByteStreamConsumer()
+	}
 
 	o.Payload = new(leaderboardclientmodels.ResponseErrorResponse)
 

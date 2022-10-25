@@ -14,6 +14,7 @@ import (
 	"fmt"
 	"io"
 	"io/ioutil"
+	"strings"
 
 	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/strfmt"
@@ -75,6 +76,11 @@ func (o *AdminDeletePlayerRecordHandlerV1NoContent) Error() string {
 }
 
 func (o *AdminDeletePlayerRecordHandlerV1NoContent) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+	// handle file responses
+	contentDisposition := response.GetHeader("Content-Disposition")
+	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
+		consumer = runtime.ByteStreamConsumer()
+	}
 
 	return nil
 }
@@ -116,6 +122,11 @@ func (o *AdminDeletePlayerRecordHandlerV1Unauthorized) GetPayload() *cloudsavecl
 }
 
 func (o *AdminDeletePlayerRecordHandlerV1Unauthorized) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+	// handle file responses
+	contentDisposition := response.GetHeader("Content-Disposition")
+	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
+		consumer = runtime.ByteStreamConsumer()
+	}
 
 	o.Payload = new(cloudsaveclientmodels.ModelsResponseError)
 
@@ -164,6 +175,11 @@ func (o *AdminDeletePlayerRecordHandlerV1InternalServerError) GetPayload() *clou
 }
 
 func (o *AdminDeletePlayerRecordHandlerV1InternalServerError) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+	// handle file responses
+	contentDisposition := response.GetHeader("Content-Disposition")
+	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
+		consumer = runtime.ByteStreamConsumer()
+	}
 
 	o.Payload = new(cloudsaveclientmodels.ModelsResponseError)
 

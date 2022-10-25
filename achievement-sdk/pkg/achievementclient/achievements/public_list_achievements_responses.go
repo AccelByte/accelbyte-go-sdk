@@ -14,6 +14,7 @@ import (
 	"fmt"
 	"io"
 	"io/ioutil"
+	"strings"
 
 	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/strfmt"
@@ -107,6 +108,11 @@ func (o *PublicListAchievementsOK) GetPayload() *achievementclientmodels.ModelsP
 }
 
 func (o *PublicListAchievementsOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+	// handle file responses
+	contentDisposition := response.GetHeader("Content-Disposition")
+	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
+		consumer = runtime.ByteStreamConsumer()
+	}
 
 	o.Payload = new(achievementclientmodels.ModelsPublicAchievementsResponse)
 
@@ -155,6 +161,11 @@ func (o *PublicListAchievementsBadRequest) GetPayload() *achievementclientmodels
 }
 
 func (o *PublicListAchievementsBadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+	// handle file responses
+	contentDisposition := response.GetHeader("Content-Disposition")
+	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
+		consumer = runtime.ByteStreamConsumer()
+	}
 
 	o.Payload = new(achievementclientmodels.ResponseError)
 
@@ -203,6 +214,11 @@ func (o *PublicListAchievementsUnauthorized) GetPayload() *achievementclientmode
 }
 
 func (o *PublicListAchievementsUnauthorized) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+	// handle file responses
+	contentDisposition := response.GetHeader("Content-Disposition")
+	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
+		consumer = runtime.ByteStreamConsumer()
+	}
 
 	o.Payload = new(achievementclientmodels.ResponseError)
 
@@ -251,6 +267,11 @@ func (o *PublicListAchievementsNotFound) GetPayload() *achievementclientmodels.R
 }
 
 func (o *PublicListAchievementsNotFound) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+	// handle file responses
+	contentDisposition := response.GetHeader("Content-Disposition")
+	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
+		consumer = runtime.ByteStreamConsumer()
+	}
 
 	o.Payload = new(achievementclientmodels.ResponseError)
 
@@ -299,6 +320,11 @@ func (o *PublicListAchievementsInternalServerError) GetPayload() *achievementcli
 }
 
 func (o *PublicListAchievementsInternalServerError) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+	// handle file responses
+	contentDisposition := response.GetHeader("Content-Disposition")
+	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
+		consumer = runtime.ByteStreamConsumer()
+	}
 
 	o.Payload = new(achievementclientmodels.ResponseError)
 

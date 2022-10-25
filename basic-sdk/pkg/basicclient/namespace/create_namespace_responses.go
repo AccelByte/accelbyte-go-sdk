@@ -14,6 +14,7 @@ import (
 	"fmt"
 	"io"
 	"io/ioutil"
+	"strings"
 
 	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/strfmt"
@@ -107,6 +108,11 @@ func (o *CreateNamespaceCreated) GetPayload() *basicclientmodels.NamespaceInfo {
 }
 
 func (o *CreateNamespaceCreated) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+	// handle file responses
+	contentDisposition := response.GetHeader("Content-Disposition")
+	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
+		consumer = runtime.ByteStreamConsumer()
+	}
 
 	o.Payload = new(basicclientmodels.NamespaceInfo)
 
@@ -155,6 +161,11 @@ func (o *CreateNamespaceBadRequest) GetPayload() *basicclientmodels.ValidationEr
 }
 
 func (o *CreateNamespaceBadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+	// handle file responses
+	contentDisposition := response.GetHeader("Content-Disposition")
+	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
+		consumer = runtime.ByteStreamConsumer()
+	}
 
 	o.Payload = new(basicclientmodels.ValidationErrorEntity)
 
@@ -203,6 +214,11 @@ func (o *CreateNamespaceUnauthorized) GetPayload() *basicclientmodels.ErrorEntit
 }
 
 func (o *CreateNamespaceUnauthorized) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+	// handle file responses
+	contentDisposition := response.GetHeader("Content-Disposition")
+	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
+		consumer = runtime.ByteStreamConsumer()
+	}
 
 	o.Payload = new(basicclientmodels.ErrorEntity)
 
@@ -251,6 +267,11 @@ func (o *CreateNamespaceForbidden) GetPayload() *basicclientmodels.ErrorEntity {
 }
 
 func (o *CreateNamespaceForbidden) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+	// handle file responses
+	contentDisposition := response.GetHeader("Content-Disposition")
+	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
+		consumer = runtime.ByteStreamConsumer()
+	}
 
 	o.Payload = new(basicclientmodels.ErrorEntity)
 
@@ -299,6 +320,11 @@ func (o *CreateNamespaceConflict) GetPayload() *basicclientmodels.ErrorEntity {
 }
 
 func (o *CreateNamespaceConflict) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+	// handle file responses
+	contentDisposition := response.GetHeader("Content-Disposition")
+	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
+		consumer = runtime.ByteStreamConsumer()
+	}
 
 	o.Payload = new(basicclientmodels.ErrorEntity)
 

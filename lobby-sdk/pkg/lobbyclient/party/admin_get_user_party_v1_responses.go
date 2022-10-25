@@ -14,6 +14,7 @@ import (
 	"fmt"
 	"io"
 	"io/ioutil"
+	"strings"
 
 	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/strfmt"
@@ -113,6 +114,11 @@ func (o *AdminGetUserPartyV1OK) GetPayload() *lobbyclientmodels.ModelsPartyData 
 }
 
 func (o *AdminGetUserPartyV1OK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+	// handle file responses
+	contentDisposition := response.GetHeader("Content-Disposition")
+	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
+		consumer = runtime.ByteStreamConsumer()
+	}
 
 	o.Payload = new(lobbyclientmodels.ModelsPartyData)
 
@@ -161,6 +167,11 @@ func (o *AdminGetUserPartyV1BadRequest) GetPayload() *lobbyclientmodels.RestapiE
 }
 
 func (o *AdminGetUserPartyV1BadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+	// handle file responses
+	contentDisposition := response.GetHeader("Content-Disposition")
+	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
+		consumer = runtime.ByteStreamConsumer()
+	}
 
 	o.Payload = new(lobbyclientmodels.RestapiErrorResponseBody)
 
@@ -209,6 +220,11 @@ func (o *AdminGetUserPartyV1Unauthorized) GetPayload() *lobbyclientmodels.Restap
 }
 
 func (o *AdminGetUserPartyV1Unauthorized) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+	// handle file responses
+	contentDisposition := response.GetHeader("Content-Disposition")
+	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
+		consumer = runtime.ByteStreamConsumer()
+	}
 
 	o.Payload = new(lobbyclientmodels.RestapiErrorResponseBody)
 
@@ -257,6 +273,11 @@ func (o *AdminGetUserPartyV1Forbidden) GetPayload() *lobbyclientmodels.RestapiEr
 }
 
 func (o *AdminGetUserPartyV1Forbidden) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+	// handle file responses
+	contentDisposition := response.GetHeader("Content-Disposition")
+	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
+		consumer = runtime.ByteStreamConsumer()
+	}
 
 	o.Payload = new(lobbyclientmodels.RestapiErrorResponseBody)
 
@@ -305,6 +326,11 @@ func (o *AdminGetUserPartyV1NotFound) GetPayload() *lobbyclientmodels.RestapiErr
 }
 
 func (o *AdminGetUserPartyV1NotFound) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+	// handle file responses
+	contentDisposition := response.GetHeader("Content-Disposition")
+	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
+		consumer = runtime.ByteStreamConsumer()
+	}
 
 	o.Payload = new(lobbyclientmodels.RestapiErrorResponseBody)
 
@@ -353,6 +379,11 @@ func (o *AdminGetUserPartyV1InternalServerError) GetPayload() *lobbyclientmodels
 }
 
 func (o *AdminGetUserPartyV1InternalServerError) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+	// handle file responses
+	contentDisposition := response.GetHeader("Content-Disposition")
+	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
+		consumer = runtime.ByteStreamConsumer()
+	}
 
 	o.Payload = new(lobbyclientmodels.RestapiErrorResponseBody)
 

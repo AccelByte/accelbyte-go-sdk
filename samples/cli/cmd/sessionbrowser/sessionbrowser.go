@@ -22,6 +22,7 @@ func init() {
 	SessionbrowserCmd.AddCommand(session.GetActiveCustomGameSessionsCmd)
 	SessionbrowserCmd.AddCommand(session.GetActiveMatchmakingGameSessionsCmd)
 	SessionbrowserCmd.AddCommand(session.AdminGetSessionCmd)
+	SessionbrowserCmd.AddCommand(session.AdminDeleteSessionCmd)
 	SessionbrowserCmd.AddCommand(session.AdminSearchSessionsV2Cmd)
 	SessionbrowserCmd.AddCommand(session.GetSessionHistoryDetailedCmd)
 	SessionbrowserCmd.AddCommand(session.QuerySessionCmd)

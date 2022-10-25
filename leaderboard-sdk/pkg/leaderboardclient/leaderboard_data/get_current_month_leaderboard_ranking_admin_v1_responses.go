@@ -14,6 +14,7 @@ import (
 	"fmt"
 	"io"
 	"io/ioutil"
+	"strings"
 
 	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/strfmt"
@@ -113,6 +114,11 @@ func (o *GetCurrentMonthLeaderboardRankingAdminV1OK) GetPayload() *leaderboardcl
 }
 
 func (o *GetCurrentMonthLeaderboardRankingAdminV1OK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+	// handle file responses
+	contentDisposition := response.GetHeader("Content-Disposition")
+	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
+		consumer = runtime.ByteStreamConsumer()
+	}
 
 	o.Payload = new(leaderboardclientmodels.ModelsGetLeaderboardRankingResp)
 
@@ -161,6 +167,11 @@ func (o *GetCurrentMonthLeaderboardRankingAdminV1BadRequest) GetPayload() *leade
 }
 
 func (o *GetCurrentMonthLeaderboardRankingAdminV1BadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+	// handle file responses
+	contentDisposition := response.GetHeader("Content-Disposition")
+	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
+		consumer = runtime.ByteStreamConsumer()
+	}
 
 	o.Payload = new(leaderboardclientmodels.ResponseErrorResponse)
 
@@ -209,6 +220,11 @@ func (o *GetCurrentMonthLeaderboardRankingAdminV1Unauthorized) GetPayload() *lea
 }
 
 func (o *GetCurrentMonthLeaderboardRankingAdminV1Unauthorized) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+	// handle file responses
+	contentDisposition := response.GetHeader("Content-Disposition")
+	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
+		consumer = runtime.ByteStreamConsumer()
+	}
 
 	o.Payload = new(leaderboardclientmodels.ResponseErrorResponse)
 
@@ -257,6 +273,11 @@ func (o *GetCurrentMonthLeaderboardRankingAdminV1Forbidden) GetPayload() *leader
 }
 
 func (o *GetCurrentMonthLeaderboardRankingAdminV1Forbidden) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+	// handle file responses
+	contentDisposition := response.GetHeader("Content-Disposition")
+	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
+		consumer = runtime.ByteStreamConsumer()
+	}
 
 	o.Payload = new(leaderboardclientmodels.ResponseErrorResponse)
 
@@ -305,6 +326,11 @@ func (o *GetCurrentMonthLeaderboardRankingAdminV1NotFound) GetPayload() *leaderb
 }
 
 func (o *GetCurrentMonthLeaderboardRankingAdminV1NotFound) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+	// handle file responses
+	contentDisposition := response.GetHeader("Content-Disposition")
+	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
+		consumer = runtime.ByteStreamConsumer()
+	}
 
 	o.Payload = new(leaderboardclientmodels.ResponseErrorResponse)
 
@@ -353,6 +379,11 @@ func (o *GetCurrentMonthLeaderboardRankingAdminV1InternalServerError) GetPayload
 }
 
 func (o *GetCurrentMonthLeaderboardRankingAdminV1InternalServerError) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+	// handle file responses
+	contentDisposition := response.GetHeader("Content-Disposition")
+	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
+		consumer = runtime.ByteStreamConsumer()
+	}
 
 	o.Payload = new(leaderboardclientmodels.ResponseErrorResponse)
 

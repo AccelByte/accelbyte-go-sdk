@@ -39,6 +39,10 @@ type ModelsRuleSet struct {
 	// Required: true
 	MatchingRule []*ModelsMatchingRule `json:"matching_rule"`
 
+	// rebalance enable
+	// Required: true
+	RebalanceEnable *bool `json:"rebalance_enable"`
+
 	// sub game modes
 	// Required: true
 	SubGameModes map[string]ModelsSubGameMode `json:"sub_game_modes"`
@@ -65,6 +69,10 @@ func (m *ModelsRuleSet) Validate(formats strfmt.Registry) error {
 	}
 
 	if err := m.validateMatchingRule(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateRebalanceEnable(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -184,6 +192,15 @@ func (m *ModelsRuleSet) validateMatchingRule(formats strfmt.Registry) error {
 			}
 		}
 
+	}
+
+	return nil
+}
+
+func (m *ModelsRuleSet) validateRebalanceEnable(formats strfmt.Registry) error {
+
+	if err := validate.Required("rebalance_enable", "body", m.RebalanceEnable); err != nil {
+		return err
 	}
 
 	return nil

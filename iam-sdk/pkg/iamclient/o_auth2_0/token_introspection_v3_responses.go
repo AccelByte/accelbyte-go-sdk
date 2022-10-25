@@ -14,6 +14,7 @@ import (
 	"fmt"
 	"io"
 	"io/ioutil"
+	"strings"
 
 	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/strfmt"
@@ -95,6 +96,11 @@ func (o *TokenIntrospectionV3OK) GetPayload() *iamclientmodels.OauthmodelTokenIn
 }
 
 func (o *TokenIntrospectionV3OK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+	// handle file responses
+	contentDisposition := response.GetHeader("Content-Disposition")
+	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
+		consumer = runtime.ByteStreamConsumer()
+	}
 
 	o.Payload = new(iamclientmodels.OauthmodelTokenIntrospectResponse)
 
@@ -143,6 +149,11 @@ func (o *TokenIntrospectionV3BadRequest) GetPayload() *iamclientmodels.Oauthmode
 }
 
 func (o *TokenIntrospectionV3BadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+	// handle file responses
+	contentDisposition := response.GetHeader("Content-Disposition")
+	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
+		consumer = runtime.ByteStreamConsumer()
+	}
 
 	o.Payload = new(iamclientmodels.OauthmodelErrorResponse)
 
@@ -191,6 +202,11 @@ func (o *TokenIntrospectionV3Unauthorized) GetPayload() *iamclientmodels.Oauthmo
 }
 
 func (o *TokenIntrospectionV3Unauthorized) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+	// handle file responses
+	contentDisposition := response.GetHeader("Content-Disposition")
+	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
+		consumer = runtime.ByteStreamConsumer()
+	}
 
 	o.Payload = new(iamclientmodels.OauthmodelErrorResponse)
 

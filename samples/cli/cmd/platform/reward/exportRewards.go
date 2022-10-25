@@ -7,6 +7,8 @@
 package reward
 
 import (
+	"bytes"
+
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclient/reward"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/platform"
@@ -29,7 +31,8 @@ var ExportRewardsCmd = &cobra.Command{
 		input := &reward.ExportRewardsParams{
 			Namespace: namespace,
 		}
-		ok, err := rewardService.ExportRewardsShort(input)
+		writer := bytes.NewBuffer(nil)
+		ok, err := rewardService.ExportRewardsShort(input, writer)
 		if err != nil {
 			logrus.Error(err)
 

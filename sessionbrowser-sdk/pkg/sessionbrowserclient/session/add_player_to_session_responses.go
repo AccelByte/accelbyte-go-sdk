@@ -14,6 +14,7 @@ import (
 	"fmt"
 	"io"
 	"io/ioutil"
+	"strings"
 
 	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/strfmt"
@@ -101,6 +102,11 @@ func (o *AddPlayerToSessionOK) GetPayload() *sessionbrowserclientmodels.ModelsAd
 }
 
 func (o *AddPlayerToSessionOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+	// handle file responses
+	contentDisposition := response.GetHeader("Content-Disposition")
+	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
+		consumer = runtime.ByteStreamConsumer()
+	}
 
 	o.Payload = new(sessionbrowserclientmodels.ModelsAddPlayerResponse)
 
@@ -149,6 +155,11 @@ func (o *AddPlayerToSessionBadRequest) GetPayload() *sessionbrowserclientmodels.
 }
 
 func (o *AddPlayerToSessionBadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+	// handle file responses
+	contentDisposition := response.GetHeader("Content-Disposition")
+	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
+		consumer = runtime.ByteStreamConsumer()
+	}
 
 	o.Payload = new(sessionbrowserclientmodels.RestapiErrorResponseV2)
 
@@ -197,6 +208,11 @@ func (o *AddPlayerToSessionNotFound) GetPayload() *sessionbrowserclientmodels.Re
 }
 
 func (o *AddPlayerToSessionNotFound) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+	// handle file responses
+	contentDisposition := response.GetHeader("Content-Disposition")
+	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
+		consumer = runtime.ByteStreamConsumer()
+	}
 
 	o.Payload = new(sessionbrowserclientmodels.RestapiErrorResponseV2)
 
@@ -245,6 +261,11 @@ func (o *AddPlayerToSessionInternalServerError) GetPayload() *sessionbrowserclie
 }
 
 func (o *AddPlayerToSessionInternalServerError) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+	// handle file responses
+	contentDisposition := response.GetHeader("Content-Disposition")
+	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
+		consumer = runtime.ByteStreamConsumer()
+	}
 
 	o.Payload = new(sessionbrowserclientmodels.RestapiErrorResponseV2)
 

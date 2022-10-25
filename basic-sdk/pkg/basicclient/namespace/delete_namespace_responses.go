@@ -14,6 +14,7 @@ import (
 	"fmt"
 	"io"
 	"io/ioutil"
+	"strings"
 
 	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/strfmt"
@@ -113,6 +114,11 @@ func (o *DeleteNamespaceOK) GetPayload() *basicclientmodels.NamespaceInfo {
 }
 
 func (o *DeleteNamespaceOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+	// handle file responses
+	contentDisposition := response.GetHeader("Content-Disposition")
+	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
+		consumer = runtime.ByteStreamConsumer()
+	}
 
 	o.Payload = new(basicclientmodels.NamespaceInfo)
 
@@ -161,6 +167,11 @@ func (o *DeleteNamespaceBadRequest) GetPayload() *basicclientmodels.ValidationEr
 }
 
 func (o *DeleteNamespaceBadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+	// handle file responses
+	contentDisposition := response.GetHeader("Content-Disposition")
+	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
+		consumer = runtime.ByteStreamConsumer()
+	}
 
 	o.Payload = new(basicclientmodels.ValidationErrorEntity)
 
@@ -209,6 +220,11 @@ func (o *DeleteNamespaceUnauthorized) GetPayload() *basicclientmodels.ErrorEntit
 }
 
 func (o *DeleteNamespaceUnauthorized) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+	// handle file responses
+	contentDisposition := response.GetHeader("Content-Disposition")
+	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
+		consumer = runtime.ByteStreamConsumer()
+	}
 
 	o.Payload = new(basicclientmodels.ErrorEntity)
 
@@ -257,6 +273,11 @@ func (o *DeleteNamespaceForbidden) GetPayload() *basicclientmodels.ErrorEntity {
 }
 
 func (o *DeleteNamespaceForbidden) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+	// handle file responses
+	contentDisposition := response.GetHeader("Content-Disposition")
+	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
+		consumer = runtime.ByteStreamConsumer()
+	}
 
 	o.Payload = new(basicclientmodels.ErrorEntity)
 
@@ -305,6 +326,11 @@ func (o *DeleteNamespaceNotFound) GetPayload() *basicclientmodels.ErrorEntity {
 }
 
 func (o *DeleteNamespaceNotFound) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+	// handle file responses
+	contentDisposition := response.GetHeader("Content-Disposition")
+	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
+		consumer = runtime.ByteStreamConsumer()
+	}
 
 	o.Payload = new(basicclientmodels.ErrorEntity)
 
@@ -353,6 +379,11 @@ func (o *DeleteNamespaceConflict) GetPayload() *basicclientmodels.ErrorEntity {
 }
 
 func (o *DeleteNamespaceConflict) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+	// handle file responses
+	contentDisposition := response.GetHeader("Content-Disposition")
+	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
+		consumer = runtime.ByteStreamConsumer()
+	}
 
 	o.Payload = new(basicclientmodels.ErrorEntity)
 

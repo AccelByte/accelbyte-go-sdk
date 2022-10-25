@@ -14,6 +14,7 @@ import (
 	"fmt"
 	"io"
 	"io/ioutil"
+	"strings"
 
 	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/strfmt"
@@ -107,6 +108,11 @@ func (o *CreateRewardCreated) GetPayload() *seasonpassclientmodels.RewardInfo {
 }
 
 func (o *CreateRewardCreated) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+	// handle file responses
+	contentDisposition := response.GetHeader("Content-Disposition")
+	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
+		consumer = runtime.ByteStreamConsumer()
+	}
 
 	o.Payload = new(seasonpassclientmodels.RewardInfo)
 
@@ -155,6 +161,11 @@ func (o *CreateRewardBadRequest) GetPayload() *seasonpassclientmodels.ErrorEntit
 }
 
 func (o *CreateRewardBadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+	// handle file responses
+	contentDisposition := response.GetHeader("Content-Disposition")
+	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
+		consumer = runtime.ByteStreamConsumer()
+	}
 
 	o.Payload = new(seasonpassclientmodels.ErrorEntity)
 
@@ -203,6 +214,11 @@ func (o *CreateRewardNotFound) GetPayload() *seasonpassclientmodels.ErrorEntity 
 }
 
 func (o *CreateRewardNotFound) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+	// handle file responses
+	contentDisposition := response.GetHeader("Content-Disposition")
+	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
+		consumer = runtime.ByteStreamConsumer()
+	}
 
 	o.Payload = new(seasonpassclientmodels.ErrorEntity)
 
@@ -251,6 +267,11 @@ func (o *CreateRewardConflict) GetPayload() *seasonpassclientmodels.ErrorEntity 
 }
 
 func (o *CreateRewardConflict) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+	// handle file responses
+	contentDisposition := response.GetHeader("Content-Disposition")
+	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
+		consumer = runtime.ByteStreamConsumer()
+	}
 
 	o.Payload = new(seasonpassclientmodels.ErrorEntity)
 
@@ -299,6 +320,11 @@ func (o *CreateRewardUnprocessableEntity) GetPayload() *seasonpassclientmodels.V
 }
 
 func (o *CreateRewardUnprocessableEntity) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+	// handle file responses
+	contentDisposition := response.GetHeader("Content-Disposition")
+	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
+		consumer = runtime.ByteStreamConsumer()
+	}
 
 	o.Payload = new(seasonpassclientmodels.ValidationErrorEntity)
 

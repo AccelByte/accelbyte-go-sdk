@@ -24,6 +24,7 @@ func init() {
 	SeasonpassCmd.AddCommand(season.QuerySeasonsCmd)
 	SeasonpassCmd.AddCommand(season.CreateSeasonCmd)
 	SeasonpassCmd.AddCommand(season.GetCurrentSeasonCmd)
+	SeasonpassCmd.AddCommand(season.BulkGetUserSeasonProgressionCmd)
 	SeasonpassCmd.AddCommand(season.GetSeasonCmd)
 	SeasonpassCmd.AddCommand(season.DeleteSeasonCmd)
 	SeasonpassCmd.AddCommand(season.UpdateSeasonCmd)

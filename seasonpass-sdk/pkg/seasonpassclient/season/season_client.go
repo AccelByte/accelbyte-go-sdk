@@ -33,6 +33,8 @@ type Client struct {
 
 // ClientService is the interface for Client methods
 type ClientService interface {
+	BulkGetUserSeasonProgression(params *BulkGetUserSeasonProgressionParams, authInfo runtime.ClientAuthInfoWriter) (*BulkGetUserSeasonProgressionOK, *BulkGetUserSeasonProgressionBadRequest, *BulkGetUserSeasonProgressionNotFound, error)
+	BulkGetUserSeasonProgressionShort(params *BulkGetUserSeasonProgressionParams, authInfo runtime.ClientAuthInfoWriter) (*BulkGetUserSeasonProgressionOK, error)
 	CheckSeasonPurchasable(params *CheckSeasonPurchasableParams, authInfo runtime.ClientAuthInfoWriter) (*CheckSeasonPurchasableNoContent, *CheckSeasonPurchasableBadRequest, *CheckSeasonPurchasableNotFound, *CheckSeasonPurchasableConflict, error)
 	CheckSeasonPurchasableShort(params *CheckSeasonPurchasableParams, authInfo runtime.ClientAuthInfoWriter) (*CheckSeasonPurchasableNoContent, error)
 	CloneSeason(params *CloneSeasonParams, authInfo runtime.ClientAuthInfoWriter) (*CloneSeasonOK, *CloneSeasonBadRequest, *CloneSeasonNotFound, *CloneSeasonUnprocessableEntity, error)
@@ -79,6 +81,110 @@ type ClientService interface {
 	UpdateSeasonShort(params *UpdateSeasonParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateSeasonOK, error)
 
 	SetTransport(transport runtime.ClientTransport)
+}
+
+/*
+Deprecated: Use BulkGetUserSeasonProgressionShort instead.
+
+  BulkGetUserSeasonProgression bulks get user current season progression
+
+  This API is used to bulk get user current season progression, season only located in non-publisher namespace.&lt;p&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:SEASONPASS, action=2 (READ)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: user season progression&lt;/li&gt;&lt;/ul&gt;
+*/
+func (a *Client) BulkGetUserSeasonProgression(params *BulkGetUserSeasonProgressionParams, authInfo runtime.ClientAuthInfoWriter) (*BulkGetUserSeasonProgressionOK, *BulkGetUserSeasonProgressionBadRequest, *BulkGetUserSeasonProgressionNotFound, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewBulkGetUserSeasonProgressionParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "bulkGetUserSeasonProgression",
+		Method:             "POST",
+		PathPattern:        "/seasonpass/admin/namespaces/{namespace}/seasons/current/users/bulk/progression",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &BulkGetUserSeasonProgressionReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, nil, nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *BulkGetUserSeasonProgressionOK:
+		return v, nil, nil, nil
+
+	case *BulkGetUserSeasonProgressionBadRequest:
+		return nil, v, nil, nil
+
+	case *BulkGetUserSeasonProgressionNotFound:
+		return nil, nil, v, nil
+
+	default:
+		return nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+  BulkGetUserSeasonProgressionShort bulks get user current season progression
+
+  This API is used to bulk get user current season progression, season only located in non-publisher namespace.&lt;p&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:SEASONPASS, action=2 (READ)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: user season progression&lt;/li&gt;&lt;/ul&gt;
+*/
+func (a *Client) BulkGetUserSeasonProgressionShort(params *BulkGetUserSeasonProgressionParams, authInfo runtime.ClientAuthInfoWriter) (*BulkGetUserSeasonProgressionOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewBulkGetUserSeasonProgressionParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "bulkGetUserSeasonProgression",
+		Method:             "POST",
+		PathPattern:        "/seasonpass/admin/namespaces/{namespace}/seasons/current/users/bulk/progression",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &BulkGetUserSeasonProgressionReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *BulkGetUserSeasonProgressionOK:
+		return v, nil
+	case *BulkGetUserSeasonProgressionBadRequest:
+		return nil, v
+	case *BulkGetUserSeasonProgressionNotFound:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
 }
 
 /*

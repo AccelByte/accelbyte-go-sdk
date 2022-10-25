@@ -14,6 +14,7 @@ import (
 	"fmt"
 	"io"
 	"io/ioutil"
+	"strings"
 
 	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/strfmt"
@@ -81,6 +82,11 @@ func (o *CheckSeasonPurchasableNoContent) Error() string {
 }
 
 func (o *CheckSeasonPurchasableNoContent) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+	// handle file responses
+	contentDisposition := response.GetHeader("Content-Disposition")
+	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
+		consumer = runtime.ByteStreamConsumer()
+	}
 
 	return nil
 }
@@ -122,6 +128,11 @@ func (o *CheckSeasonPurchasableBadRequest) GetPayload() *seasonpassclientmodels.
 }
 
 func (o *CheckSeasonPurchasableBadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+	// handle file responses
+	contentDisposition := response.GetHeader("Content-Disposition")
+	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
+		consumer = runtime.ByteStreamConsumer()
+	}
 
 	o.Payload = new(seasonpassclientmodels.ErrorEntity)
 
@@ -170,6 +181,11 @@ func (o *CheckSeasonPurchasableNotFound) GetPayload() *seasonpassclientmodels.Er
 }
 
 func (o *CheckSeasonPurchasableNotFound) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+	// handle file responses
+	contentDisposition := response.GetHeader("Content-Disposition")
+	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
+		consumer = runtime.ByteStreamConsumer()
+	}
 
 	o.Payload = new(seasonpassclientmodels.ErrorEntity)
 
@@ -218,6 +234,11 @@ func (o *CheckSeasonPurchasableConflict) GetPayload() *seasonpassclientmodels.Er
 }
 
 func (o *CheckSeasonPurchasableConflict) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+	// handle file responses
+	contentDisposition := response.GetHeader("Content-Disposition")
+	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
+		consumer = runtime.ByteStreamConsumer()
+	}
 
 	o.Payload = new(seasonpassclientmodels.ErrorEntity)
 

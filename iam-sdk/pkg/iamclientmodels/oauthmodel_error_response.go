@@ -39,6 +39,9 @@ type OauthmodelErrorResponse struct {
 	// linking token
 	LinkingToken string `json:"linkingToken,omitempty"`
 
+	// message variables
+	MessageVariables map[string]string `json:"messageVariables,omitempty"`
+
 	// mfa token
 	MfaToken string `json:"mfa_token,omitempty"`
 

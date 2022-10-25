@@ -14,6 +14,7 @@ import (
 	"fmt"
 	"io"
 	"io/ioutil"
+	"strings"
 
 	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/strfmt"
@@ -95,6 +96,11 @@ func (o *QuerySessionOK) GetPayload() *sessionbrowserclientmodels.ModelsSessionQ
 }
 
 func (o *QuerySessionOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+	// handle file responses
+	contentDisposition := response.GetHeader("Content-Disposition")
+	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
+		consumer = runtime.ByteStreamConsumer()
+	}
 
 	o.Payload = new(sessionbrowserclientmodels.ModelsSessionQueryResponse)
 
@@ -143,6 +149,11 @@ func (o *QuerySessionBadRequest) GetPayload() *sessionbrowserclientmodels.Respon
 }
 
 func (o *QuerySessionBadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+	// handle file responses
+	contentDisposition := response.GetHeader("Content-Disposition")
+	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
+		consumer = runtime.ByteStreamConsumer()
+	}
 
 	o.Payload = new(sessionbrowserclientmodels.ResponseError)
 
@@ -191,6 +202,11 @@ func (o *QuerySessionInternalServerError) GetPayload() *sessionbrowserclientmode
 }
 
 func (o *QuerySessionInternalServerError) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+	// handle file responses
+	contentDisposition := response.GetHeader("Content-Disposition")
+	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
+		consumer = runtime.ByteStreamConsumer()
+	}
 
 	o.Payload = new(sessionbrowserclientmodels.ResponseError)
 

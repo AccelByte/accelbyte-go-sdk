@@ -14,6 +14,7 @@ import (
 	"fmt"
 	"io"
 	"io/ioutil"
+	"strings"
 
 	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/strfmt"
@@ -95,6 +96,11 @@ func (o *GetActiveCustomGameSessionsOK) GetPayload() *sessionbrowserclientmodels
 }
 
 func (o *GetActiveCustomGameSessionsOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+	// handle file responses
+	contentDisposition := response.GetHeader("Content-Disposition")
+	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
+		consumer = runtime.ByteStreamConsumer()
+	}
 
 	o.Payload = new(sessionbrowserclientmodels.ModelsActiveCustomGameResponse)
 
@@ -143,6 +149,11 @@ func (o *GetActiveCustomGameSessionsBadRequest) GetPayload() *sessionbrowserclie
 }
 
 func (o *GetActiveCustomGameSessionsBadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+	// handle file responses
+	contentDisposition := response.GetHeader("Content-Disposition")
+	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
+		consumer = runtime.ByteStreamConsumer()
+	}
 
 	o.Payload = new(sessionbrowserclientmodels.RestapiErrorResponseV2)
 
@@ -191,6 +202,11 @@ func (o *GetActiveCustomGameSessionsInternalServerError) GetPayload() *sessionbr
 }
 
 func (o *GetActiveCustomGameSessionsInternalServerError) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+	// handle file responses
+	contentDisposition := response.GetHeader("Content-Disposition")
+	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
+		consumer = runtime.ByteStreamConsumer()
+	}
 
 	o.Payload = new(sessionbrowserclientmodels.RestapiErrorResponseV2)
 

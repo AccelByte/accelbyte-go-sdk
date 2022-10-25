@@ -14,6 +14,7 @@ import (
 	"fmt"
 	"io"
 	"io/ioutil"
+	"strings"
 
 	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/strfmt"
@@ -101,6 +102,11 @@ func (o *PublicGetUserAccountDeletionStatusOK) GetPayload() *gdprclientmodels.Mo
 }
 
 func (o *PublicGetUserAccountDeletionStatusOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+	// handle file responses
+	contentDisposition := response.GetHeader("Content-Disposition")
+	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
+		consumer = runtime.ByteStreamConsumer()
+	}
 
 	o.Payload = new(gdprclientmodels.ModelsDeletionStatus)
 
@@ -149,6 +155,11 @@ func (o *PublicGetUserAccountDeletionStatusUnauthorized) GetPayload() *gdprclien
 }
 
 func (o *PublicGetUserAccountDeletionStatusUnauthorized) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+	// handle file responses
+	contentDisposition := response.GetHeader("Content-Disposition")
+	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
+		consumer = runtime.ByteStreamConsumer()
+	}
 
 	o.Payload = new(gdprclientmodels.ResponseError)
 
@@ -197,6 +208,11 @@ func (o *PublicGetUserAccountDeletionStatusForbidden) GetPayload() *gdprclientmo
 }
 
 func (o *PublicGetUserAccountDeletionStatusForbidden) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+	// handle file responses
+	contentDisposition := response.GetHeader("Content-Disposition")
+	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
+		consumer = runtime.ByteStreamConsumer()
+	}
 
 	o.Payload = new(gdprclientmodels.ResponseError)
 
@@ -245,6 +261,11 @@ func (o *PublicGetUserAccountDeletionStatusInternalServerError) GetPayload() *gd
 }
 
 func (o *PublicGetUserAccountDeletionStatusInternalServerError) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+	// handle file responses
+	contentDisposition := response.GetHeader("Content-Disposition")
+	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
+		consumer = runtime.ByteStreamConsumer()
+	}
 
 	o.Payload = new(gdprclientmodels.ResponseError)
 

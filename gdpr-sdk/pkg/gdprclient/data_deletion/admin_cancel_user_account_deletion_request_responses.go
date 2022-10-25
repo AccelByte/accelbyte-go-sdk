@@ -14,6 +14,7 @@ import (
 	"fmt"
 	"io"
 	"io/ioutil"
+	"strings"
 
 	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/strfmt"
@@ -93,6 +94,11 @@ func (o *AdminCancelUserAccountDeletionRequestNoContent) Error() string {
 }
 
 func (o *AdminCancelUserAccountDeletionRequestNoContent) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+	// handle file responses
+	contentDisposition := response.GetHeader("Content-Disposition")
+	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
+		consumer = runtime.ByteStreamConsumer()
+	}
 
 	return nil
 }
@@ -134,6 +140,11 @@ func (o *AdminCancelUserAccountDeletionRequestBadRequest) GetPayload() *gdprclie
 }
 
 func (o *AdminCancelUserAccountDeletionRequestBadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+	// handle file responses
+	contentDisposition := response.GetHeader("Content-Disposition")
+	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
+		consumer = runtime.ByteStreamConsumer()
+	}
 
 	o.Payload = new(gdprclientmodels.ResponseError)
 
@@ -182,6 +193,11 @@ func (o *AdminCancelUserAccountDeletionRequestUnauthorized) GetPayload() *gdprcl
 }
 
 func (o *AdminCancelUserAccountDeletionRequestUnauthorized) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+	// handle file responses
+	contentDisposition := response.GetHeader("Content-Disposition")
+	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
+		consumer = runtime.ByteStreamConsumer()
+	}
 
 	o.Payload = new(gdprclientmodels.ResponseError)
 
@@ -230,6 +246,11 @@ func (o *AdminCancelUserAccountDeletionRequestForbidden) GetPayload() *gdprclien
 }
 
 func (o *AdminCancelUserAccountDeletionRequestForbidden) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+	// handle file responses
+	contentDisposition := response.GetHeader("Content-Disposition")
+	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
+		consumer = runtime.ByteStreamConsumer()
+	}
 
 	o.Payload = new(gdprclientmodels.ResponseError)
 
@@ -278,6 +299,11 @@ func (o *AdminCancelUserAccountDeletionRequestNotFound) GetPayload() *gdprclient
 }
 
 func (o *AdminCancelUserAccountDeletionRequestNotFound) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+	// handle file responses
+	contentDisposition := response.GetHeader("Content-Disposition")
+	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
+		consumer = runtime.ByteStreamConsumer()
+	}
 
 	o.Payload = new(gdprclientmodels.ResponseError)
 
@@ -326,6 +352,11 @@ func (o *AdminCancelUserAccountDeletionRequestInternalServerError) GetPayload() 
 }
 
 func (o *AdminCancelUserAccountDeletionRequestInternalServerError) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+	// handle file responses
+	contentDisposition := response.GetHeader("Content-Disposition")
+	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
+		consumer = runtime.ByteStreamConsumer()
+	}
 
 	o.Payload = new(gdprclientmodels.ResponseError)
 

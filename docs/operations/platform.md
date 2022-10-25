@@ -523,7 +523,6 @@
 | `ConditionGroup` | [ConditionGroup ](../../platform-sdk/pkg/platformclientmodels/condition_group.go) |
 | `ConditionGroupValidateResult` | [ConditionGroupValidateResult ](../../platform-sdk/pkg/platformclientmodels/condition_group_validate_result.go) |
 | `ConditionMatchResult` | [ConditionMatchResult ](../../platform-sdk/pkg/platformclientmodels/condition_match_result.go) |
-| `ConfigInfo` | [ConfigInfo ](../../platform-sdk/pkg/platformclientmodels/config_info.go) |
 | `ConsumeItem` | [ConsumeItem ](../../platform-sdk/pkg/platformclientmodels/consume_item.go) |
 | `CreditRequest` | [CreditRequest ](../../platform-sdk/pkg/platformclientmodels/credit_request.go) |
 | `CreditSummary` | [CreditSummary ](../../platform-sdk/pkg/platformclientmodels/credit_summary.go) |

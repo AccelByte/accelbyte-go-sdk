@@ -13479,8 +13479,7 @@ Deprecated: Use PublicGetCountryAgeRestrictionV3Short instead.
 
   PublicGetCountryAgeRestrictionV3 publics get age restriction by country code
 
-  Get age restriction by country code. It will always get by publisher namespace &lt;/br&gt;
-		&lt;p&gt;Requires valid user access token &lt;/p&gt;
+  Get age restriction by country code. It will always get by publisher namespace
 */
 func (a *Client) PublicGetCountryAgeRestrictionV3(params *PublicGetCountryAgeRestrictionV3Params, authInfo runtime.ClientAuthInfoWriter) (*PublicGetCountryAgeRestrictionV3OK, *PublicGetCountryAgeRestrictionV3Unauthorized, *PublicGetCountryAgeRestrictionV3NotFound, error) {
 	// TODO: Validate the params before sending
@@ -13532,8 +13531,7 @@ func (a *Client) PublicGetCountryAgeRestrictionV3(params *PublicGetCountryAgeRes
 /*
   PublicGetCountryAgeRestrictionV3Short publics get age restriction by country code
 
-  Get age restriction by country code. It will always get by publisher namespace &lt;/br&gt;
-		&lt;p&gt;Requires valid user access token &lt;/p&gt;
+  Get age restriction by country code. It will always get by publisher namespace
 */
 func (a *Client) PublicGetCountryAgeRestrictionV3Short(params *PublicGetCountryAgeRestrictionV3Params, authInfo runtime.ClientAuthInfoWriter) (*PublicGetCountryAgeRestrictionV3OK, error) {
 	// TODO: Validate the params before sending

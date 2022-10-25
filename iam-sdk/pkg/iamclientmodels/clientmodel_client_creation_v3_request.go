@@ -50,9 +50,15 @@ type ClientmodelClientCreationV3Request struct {
 	// Required: true
 	Namespace *string `json:"namespace"`
 
+	// min value 1 second, max value 86400 seconds
+	OauthAccessTokenExpiration int32 `json:"oauthAccessTokenExpiration,omitempty"`
+
 	// oauth client type
 	// Required: true
 	OauthClientType *string `json:"oauthClientType"`
+
+	// min value 1 seconds, max value 2592000 seconds
+	OauthRefreshTokenExpiration int32 `json:"oauthRefreshTokenExpiration,omitempty"`
 
 	// redirect Uri
 	// Required: true

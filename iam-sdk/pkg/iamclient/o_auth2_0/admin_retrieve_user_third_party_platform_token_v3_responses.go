@@ -14,6 +14,7 @@ import (
 	"fmt"
 	"io"
 	"io/ioutil"
+	"strings"
 
 	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/strfmt"
@@ -101,6 +102,11 @@ func (o *AdminRetrieveUserThirdPartyPlatformTokenV3OK) GetPayload() *iamclientmo
 }
 
 func (o *AdminRetrieveUserThirdPartyPlatformTokenV3OK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+	// handle file responses
+	contentDisposition := response.GetHeader("Content-Disposition")
+	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
+		consumer = runtime.ByteStreamConsumer()
+	}
 
 	o.Payload = new(iamclientmodels.OauthmodelTokenThirdPartyResponse)
 
@@ -149,6 +155,11 @@ func (o *AdminRetrieveUserThirdPartyPlatformTokenV3Unauthorized) GetPayload() *i
 }
 
 func (o *AdminRetrieveUserThirdPartyPlatformTokenV3Unauthorized) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+	// handle file responses
+	contentDisposition := response.GetHeader("Content-Disposition")
+	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
+		consumer = runtime.ByteStreamConsumer()
+	}
 
 	o.Payload = new(iamclientmodels.OauthmodelErrorResponse)
 
@@ -197,6 +208,11 @@ func (o *AdminRetrieveUserThirdPartyPlatformTokenV3Forbidden) GetPayload() *iamc
 }
 
 func (o *AdminRetrieveUserThirdPartyPlatformTokenV3Forbidden) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+	// handle file responses
+	contentDisposition := response.GetHeader("Content-Disposition")
+	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
+		consumer = runtime.ByteStreamConsumer()
+	}
 
 	o.Payload = new(iamclientmodels.OauthmodelErrorResponse)
 
@@ -245,6 +261,11 @@ func (o *AdminRetrieveUserThirdPartyPlatformTokenV3NotFound) GetPayload() *iamcl
 }
 
 func (o *AdminRetrieveUserThirdPartyPlatformTokenV3NotFound) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+	// handle file responses
+	contentDisposition := response.GetHeader("Content-Disposition")
+	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
+		consumer = runtime.ByteStreamConsumer()
+	}
 
 	o.Payload = new(iamclientmodels.OauthmodelErrorResponse)
 

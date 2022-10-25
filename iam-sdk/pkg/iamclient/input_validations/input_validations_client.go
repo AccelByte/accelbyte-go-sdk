@@ -285,6 +285,8 @@ Deprecated: Use AdminUpdateInputValidationsShort instead.
 		&lt;li&gt;mixed: uppercase and lowercase&lt;/li&gt;
 		&lt;li&gt;mixed: uppercase and/or lowercase&lt;/li&gt;
 		&lt;/ul&gt;
+		flexible special character non words with &lt;code&gt;allowAllSpecialCharacters&lt;/code&gt;&lt;br&gt;
+		&lt;p&gt;if &lt;code&gt;allowAllSpecialCharacters&lt;/code&gt; is set to true &lt;code&gt;specialCharacters&lt;/code&gt; will forced to empty. &lt;p&gt;
 		Supported &lt;code&gt;specialCharacterLocation&lt;/code&gt;:&lt;br&gt;
 		&lt;ul&gt;
 		&lt;li&gt;anywhere&lt;/li&gt;
@@ -366,6 +368,8 @@ func (a *Client) AdminUpdateInputValidations(params *AdminUpdateInputValidations
 		&lt;li&gt;mixed: uppercase and lowercase&lt;/li&gt;
 		&lt;li&gt;mixed: uppercase and/or lowercase&lt;/li&gt;
 		&lt;/ul&gt;
+		flexible special character non words with &lt;code&gt;allowAllSpecialCharacters&lt;/code&gt;&lt;br&gt;
+		&lt;p&gt;if &lt;code&gt;allowAllSpecialCharacters&lt;/code&gt; is set to true &lt;code&gt;specialCharacters&lt;/code&gt; will forced to empty. &lt;p&gt;
 		Supported &lt;code&gt;specialCharacterLocation&lt;/code&gt;:&lt;br&gt;
 		&lt;ul&gt;
 		&lt;li&gt;anywhere&lt;/li&gt;

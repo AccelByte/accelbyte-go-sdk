@@ -57,9 +57,15 @@ type ClientmodelClientV3Response struct {
 	// Required: true
 	Namespace *string `json:"namespace"`
 
+	// oauth access token expiration
+	OauthAccessTokenExpiration int32 `json:"oauthAccessTokenExpiration,omitempty"`
+
 	// oauth client type
 	// Required: true
 	OauthClientType *string `json:"oauthClientType"`
+
+	// oauth refresh token expiration
+	OauthRefreshTokenExpiration int32 `json:"oauthRefreshTokenExpiration,omitempty"`
 
 	// redirect Uri
 	// Required: true

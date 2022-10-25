@@ -51,23 +51,23 @@ touch "tmp.dat"
 #- 2 ChangePreferenceConsent
 samples/cli/sample-apps Legal changePreferenceConsent \
     --namespace $AB_NAMESPACE \
-    --userId 'lxnqPCcq' \
-    --body '[{"isAccepted": false, "isNeedToSendEventMarketing": true, "localizedPolicyVersionId": "8P0Xb5zW", "policyId": "4Z9iRg0C", "policyVersionId": "mUU5FSu7"}, {"isAccepted": false, "isNeedToSendEventMarketing": true, "localizedPolicyVersionId": "gEZ2f8tB", "policyId": "SgO7l70L", "policyVersionId": "9j7XL0Tg"}, {"isAccepted": false, "isNeedToSendEventMarketing": true, "localizedPolicyVersionId": "IF87J3ss", "policyId": "Xhbg1DBl", "policyVersionId": "Ym080hLK"}]' \
+    --userId 'fK7DhMJg' \
+    --body '[{"isAccepted": false, "isNeedToSendEventMarketing": false, "localizedPolicyVersionId": "hq9oIdfC", "policyId": "ejbA3GPa", "policyVersionId": "WNvqjSB0"}, {"isAccepted": true, "isNeedToSendEventMarketing": true, "localizedPolicyVersionId": "JVrymvpB", "policyId": "2R9Ita5b", "policyVersionId": "p1V3QaxA"}, {"isAccepted": false, "isNeedToSendEventMarketing": false, "localizedPolicyVersionId": "iBT4IMsR", "policyId": "VDG0zkhq", "policyVersionId": "27AHlixq"}]' \
     > test.out 2>&1
 eval_tap $? 2 'ChangePreferenceConsent' test.out
 
 #- 3 RetrieveAcceptedAgreements
 samples/cli/sample-apps Legal retrieveAcceptedAgreements \
-    --userId '0MHOFbUQ' \
+    --userId 'eY7K7m9o' \
     > test.out 2>&1
 eval_tap $? 3 'RetrieveAcceptedAgreements' test.out
 
 #- 4 RetrieveAllUsersByPolicyVersion
 samples/cli/sample-apps Legal retrieveAllUsersByPolicyVersion \
-    --keyword 'SwgGG4SM' \
-    --limit '18' \
-    --offset '33' \
-    --policyVersionId 'zPX8LzMK' \
+    --keyword 'xNHli0XZ' \
+    --limit '23' \
+    --offset '17' \
+    --policyVersionId 'aIjb0HXQ' \
     > test.out 2>&1
 eval_tap $? 4 'RetrieveAllUsersByPolicyVersion' test.out
 
@@ -78,177 +78,177 @@ eval_tap $? 5 'RetrieveAllLegalPolicies' test.out
 
 #- 6 CreatePolicy
 samples/cli/sample-apps Legal createPolicy \
-    --body '{"affectedClientIds": ["H09Mek5m", "GUfE7fht", "m1ZOSe0x"], "affectedCountries": ["gCaIijWL", "yrk9A6O3", "Op7yTqen"], "basePolicyName": "OvA7WW6K", "description": "5mlp1gRs", "namespace": "tid9wUru", "tags": ["kzMMY8VM", "hqfKUGEy", "q2Sfpi5b"], "typeId": "3MB10y9h"}' \
+    --body '{"affectedClientIds": ["ngJVRI4e", "MMbGtFFY", "990UUSjO"], "affectedCountries": ["ov3GDqwg", "gACx4Q4a", "EgyBt3yQ"], "basePolicyName": "6w3JnlaB", "description": "NFmP6hUz", "namespace": "tfP2sHaI", "tags": ["8zm2y3YE", "bbD3ZB6o", "v5UycjnC"], "typeId": "ertIzt3v"}' \
     > test.out 2>&1
 eval_tap $? 6 'CreatePolicy' test.out
 
 #- 7 RetrieveSinglePolicy
 samples/cli/sample-apps Legal retrieveSinglePolicy \
-    --basePolicyId 'wvrBHHDl' \
+    --basePolicyId 'ZZ1SP3SJ' \
     > test.out 2>&1
 eval_tap $? 7 'RetrieveSinglePolicy' test.out
 
 #- 8 PartialUpdatePolicy
 samples/cli/sample-apps Legal partialUpdatePolicy \
-    --basePolicyId 'uhqtIz4P' \
-    --body '{"affectedClientIds": ["DXTcrC5m", "tvdctl50", "SjnGEH0t"], "affectedCountries": ["u7HenVIH", "YY6x9Z9A", "UYVQ656l"], "basePolicyName": "SFjkh2rg", "description": "dqISyKo4", "namespace": "7UVCVDdh", "tags": ["yPu1Idr0", "KC96w45A", "8H4XS4xc"]}' \
+    --basePolicyId 'bSVzpk6J' \
+    --body '{"affectedClientIds": ["bbXwTAMv", "wLmGWEvP", "CTlFrbCg"], "affectedCountries": ["KvuFZUbh", "zCAM9cRv", "S4k8mA7A"], "basePolicyName": "7BbkbsPt", "description": "Fa0WFlPF", "namespace": "cYOfyfgQ", "tags": ["jWlfeXdQ", "u1lBBZQU", "yYNECpJB"]}' \
     > test.out 2>&1
 eval_tap $? 8 'PartialUpdatePolicy' test.out
 
 #- 9 RetrievePolicyCountry
 samples/cli/sample-apps Legal retrievePolicyCountry \
-    --basePolicyId 'D84jFcsQ' \
-    --countryCode 'yH8nMP7m' \
+    --basePolicyId 'Or329ak4' \
+    --countryCode 'bNlmGxch' \
     > test.out 2>&1
 eval_tap $? 9 'RetrievePolicyCountry' test.out
 
 #- 10 RetrieveLocalizedPolicyVersions
 samples/cli/sample-apps Legal retrieveLocalizedPolicyVersions \
-    --policyVersionId 'mNXHCzu9' \
+    --policyVersionId 'epbx2yVD' \
     > test.out 2>&1
 eval_tap $? 10 'RetrieveLocalizedPolicyVersions' test.out
 
 #- 11 CreateLocalizedPolicyVersion
 samples/cli/sample-apps Legal createLocalizedPolicyVersion \
-    --policyVersionId 'KkIjDu8m' \
-    --body '{"contentType": "CGtiRhGR", "description": "CUzlkbVI", "localeCode": "mAAqNkIB"}' \
+    --policyVersionId 'tEpDX6ql' \
+    --body '{"contentType": "yuZ84U9l", "description": "25so6UIo", "localeCode": "ykyP2NGc"}' \
     > test.out 2>&1
 eval_tap $? 11 'CreateLocalizedPolicyVersion' test.out
 
 #- 12 RetrieveSingleLocalizedPolicyVersion
 samples/cli/sample-apps Legal retrieveSingleLocalizedPolicyVersion \
-    --localizedPolicyVersionId 'l7vXAYXQ' \
+    --localizedPolicyVersionId 'gunxWW0B' \
     > test.out 2>&1
 eval_tap $? 12 'RetrieveSingleLocalizedPolicyVersion' test.out
 
 #- 13 UpdateLocalizedPolicyVersion
 samples/cli/sample-apps Legal updateLocalizedPolicyVersion \
-    --localizedPolicyVersionId 'zI55IuZR' \
-    --body '{"attachmentChecksum": "9Dcrj7rI", "attachmentLocation": "9IR6e3cl", "attachmentVersionIdentifier": "BuROAkwV", "contentType": "ZTQZvmw6", "description": "fdetVbBW"}' \
+    --localizedPolicyVersionId 'nfAjeF2w' \
+    --body '{"attachmentChecksum": "Ozcm0kNA", "attachmentLocation": "XOQt2Gmp", "attachmentVersionIdentifier": "7Rw30swF", "contentType": "E237oHJd", "description": "09F0GMWc"}' \
     > test.out 2>&1
 eval_tap $? 13 'UpdateLocalizedPolicyVersion' test.out
 
 #- 14 RequestPresignedURL
 samples/cli/sample-apps Legal requestPresignedURL \
-    --localizedPolicyVersionId 'mC5QLflb' \
-    --body '{"contentMD5": "9aPgNtJW", "contentType": "Bk3rqPGZ"}' \
+    --localizedPolicyVersionId 'oaTYNkud' \
+    --body '{"contentMD5": "rjn9pfA8", "contentType": "kXFl0vbI"}' \
     > test.out 2>&1
 eval_tap $? 14 'RequestPresignedURL' test.out
 
 #- 15 SetDefaultPolicy
 samples/cli/sample-apps Legal setDefaultPolicy \
-    --localizedPolicyVersionId 'Lo8gcMKO' \
+    --localizedPolicyVersionId 'rks0b9QS' \
     > test.out 2>&1
 eval_tap $? 15 'SetDefaultPolicy' test.out
 
 #- 16 IndirectBulkAcceptVersionedPolicy
 samples/cli/sample-apps Legal indirectBulkAcceptVersionedPolicy \
     --namespace $AB_NAMESPACE \
-    --userId 'MYGoMVvN' \
-    --publisherUserId 'yKQQfLss' \
-    --clientId 'yqE3Ho5h' \
-    --countryCode 'qQxYCkve' \
-    --body '[{"isAccepted": false, "isNeedToSendEventMarketing": false, "localizedPolicyVersionId": "it8CjyIA", "policyId": "OdedqZt1", "policyVersionId": "iw3uQGI1"}, {"isAccepted": true, "isNeedToSendEventMarketing": false, "localizedPolicyVersionId": "Gecw7Wxq", "policyId": "eB38y78c", "policyVersionId": "oyRqHmmX"}, {"isAccepted": true, "isNeedToSendEventMarketing": true, "localizedPolicyVersionId": "Q0z4qKFd", "policyId": "oMsyLWdG", "policyVersionId": "HUvgFtZv"}]' \
+    --userId 'zTFXXzgX' \
+    --publisherUserId '5pHI0VNT' \
+    --clientId 'ksZXxg6I' \
+    --countryCode '3WdCCh73' \
+    --body '[{"isAccepted": true, "isNeedToSendEventMarketing": false, "localizedPolicyVersionId": "TRRzUHVA", "policyId": "p3sxfoK1", "policyVersionId": "yq8mGxAs"}, {"isAccepted": false, "isNeedToSendEventMarketing": true, "localizedPolicyVersionId": "1EBoXkTC", "policyId": "YNRibkUM", "policyVersionId": "KQH0kSyA"}, {"isAccepted": false, "isNeedToSendEventMarketing": false, "localizedPolicyVersionId": "kjdIHYLg", "policyId": "tJ5VQpVd", "policyVersionId": "u6SmPShs"}]' \
     > test.out 2>&1
 eval_tap $? 16 'IndirectBulkAcceptVersionedPolicy' test.out
 
 #- 17 AdminRetrieveEligibilities
 samples/cli/sample-apps Legal adminRetrieveEligibilities \
     --namespace $AB_NAMESPACE \
-    --userId 'go5tetsr' \
-    --publisherUserId 'mfPHEnmz' \
-    --clientId 'LRSSKZ8H' \
-    --countryCode 'ncwmPn1i' \
+    --userId 'CRjDKyZJ' \
+    --publisherUserId 'lVNlK7Us' \
+    --clientId 'OK3BGweR' \
+    --countryCode 'vrYMe0hs' \
     > test.out 2>&1
 eval_tap $? 17 'AdminRetrieveEligibilities' test.out
 
 #- 18 RetrievePolicies
 samples/cli/sample-apps Legal retrievePolicies \
-    --countryCode 'RavfyPtM' \
+    --countryCode 'z5LPbiEL' \
     > test.out 2>&1
 eval_tap $? 18 'RetrievePolicies' test.out
 
 #- 19 UpdatePolicyVersion
 samples/cli/sample-apps Legal updatePolicyVersion \
-    --policyVersionId '0rOs5Cci' \
-    --body '{"description": "6J3oXRnP", "displayVersion": "q7eZlHYA", "isCommitted": false}' \
+    --policyVersionId '6Vs6jO0G' \
+    --body '{"description": "lbtcDJ7e", "displayVersion": "tD74L543", "isCommitted": false}' \
     > test.out 2>&1
 eval_tap $? 19 'UpdatePolicyVersion' test.out
 
 #- 20 PublishPolicyVersion
 samples/cli/sample-apps Legal publishPolicyVersion \
-    --policyVersionId 'JjRO8i2x' \
-    --shouldNotify 'true' \
+    --policyVersionId 'cqXFWqgx' \
+    --shouldNotify 'false' \
     > test.out 2>&1
 eval_tap $? 20 'PublishPolicyVersion' test.out
 
 #- 21 UpdatePolicy
 samples/cli/sample-apps Legal updatePolicy \
-    --policyId 'JA1EyXER' \
-    --body '{"description": "Qlrm5yqt", "isDefaultOpted": false, "isMandatory": false, "policyName": "ZxDGoEIJ", "readableId": "C12iqrn4", "shouldNotifyOnUpdate": true}' \
+    --policyId 'd5ZAyT81' \
+    --body '{"description": "SAKg3pXw", "isDefaultOpted": true, "isMandatory": true, "policyName": "k5ShCS8I", "readableId": "9zgJQiOh", "shouldNotifyOnUpdate": true}' \
     > test.out 2>&1
 eval_tap $? 21 'UpdatePolicy' test.out
 
 #- 22 SetDefaultPolicy1
 samples/cli/sample-apps Legal setDefaultPolicy1 \
-    --policyId 'pF4OfCi5' \
+    --policyId '6C9Q7gQ4' \
     > test.out 2>&1
 eval_tap $? 22 'SetDefaultPolicy1' test.out
 
 #- 23 RetrieveSinglePolicyVersion
 samples/cli/sample-apps Legal retrieveSinglePolicyVersion \
-    --policyId 'HhC6GbbG' \
-    --versionId 'oiTe7meq' \
+    --policyId 'IBtNV68b' \
+    --versionId 'n52jVC58' \
     > test.out 2>&1
 eval_tap $? 23 'RetrieveSinglePolicyVersion' test.out
 
 #- 24 CreatePolicyVersion
 samples/cli/sample-apps Legal createPolicyVersion \
-    --policyId 'hEbIpkU0' \
-    --body '{"description": "ka5f3iDU", "displayVersion": "eoiaxy7p", "isCommitted": false}' \
+    --policyId '5tK2EwPy' \
+    --body '{"description": "LdZgW3lI", "displayVersion": "cP4W1PdF", "isCommitted": true}' \
     > test.out 2>&1
 eval_tap $? 24 'CreatePolicyVersion' test.out
 
 #- 25 RetrieveAllPolicyTypes
 samples/cli/sample-apps Legal retrieveAllPolicyTypes \
-    --offset '96' \
-    --limit '46' \
+    --offset '60' \
+    --limit '26' \
     > test.out 2>&1
 eval_tap $? 25 'RetrieveAllPolicyTypes' test.out
 
 #- 26 GetUserInfoStatus
 samples/cli/sample-apps Legal getUserInfoStatus \
-    --namespaces 'oVxW4MAo' \
+    --namespaces 'i9nOWvHx' \
     > test.out 2>&1
 eval_tap $? 26 'GetUserInfoStatus' test.out
 
 #- 27 SyncUserInfo
 samples/cli/sample-apps Legal syncUserInfo \
-    --namespace 'X8td6FIy' \
+    --namespace '7s5JwvYD' \
     > test.out 2>&1
 eval_tap $? 27 'SyncUserInfo' test.out
 
 #- 28 InvalidateUserInfoCache
 samples/cli/sample-apps Legal invalidateUserInfoCache \
-    --namespace 'WoX4WunT' \
+    --namespace 'AWkq89VR' \
     > test.out 2>&1
 eval_tap $? 28 'InvalidateUserInfoCache' test.out
 
 #- 29 AnonymizeUserAgreement
 samples/cli/sample-apps Legal anonymizeUserAgreement \
-    --userId '9zsKwRtj' \
+    --userId 'vKZsph8w' \
     > test.out 2>&1
 eval_tap $? 29 'AnonymizeUserAgreement' test.out
 
 #- 30 ChangePreferenceConsent1
 samples/cli/sample-apps Legal changePreferenceConsent1 \
-    --body '[{"isAccepted": true, "isNeedToSendEventMarketing": false, "localizedPolicyVersionId": "lsJFRHUU", "policyId": "Q2MenCqL", "policyVersionId": "vbJO7mWf"}, {"isAccepted": true, "isNeedToSendEventMarketing": true, "localizedPolicyVersionId": "OymByog5", "policyId": "pTqjKeJf", "policyVersionId": "x3bV2ZQO"}, {"isAccepted": true, "isNeedToSendEventMarketing": true, "localizedPolicyVersionId": "2ERttMED", "policyId": "mR8hfaeJ", "policyVersionId": "KDNWkw7y"}]' \
+    --body '[{"isAccepted": true, "isNeedToSendEventMarketing": false, "localizedPolicyVersionId": "CnB1QTVc", "policyId": "bUN69YuQ", "policyVersionId": "8GgxtjzK"}, {"isAccepted": false, "isNeedToSendEventMarketing": true, "localizedPolicyVersionId": "UsVb2vhi", "policyId": "AvKH4Vei", "policyVersionId": "mG7zokmQ"}, {"isAccepted": true, "isNeedToSendEventMarketing": true, "localizedPolicyVersionId": "oHUlxaTg", "policyId": "I1YCxEG3", "policyVersionId": "OYTndWs8"}]' \
     > test.out 2>&1
 eval_tap $? 30 'ChangePreferenceConsent1' test.out
 
 #- 31 AcceptVersionedPolicy
 samples/cli/sample-apps Legal acceptVersionedPolicy \
-    --localizedPolicyVersionId 'eoF9wDq1' \
+    --localizedPolicyVersionId '78XRZuvY' \
     > test.out 2>&1
 eval_tap $? 31 'AcceptVersionedPolicy' test.out
 
@@ -259,24 +259,24 @@ eval_tap $? 32 'RetrieveAgreementsPublic' test.out
 
 #- 33 BulkAcceptVersionedPolicy
 samples/cli/sample-apps Legal bulkAcceptVersionedPolicy \
-    --body '[{"isAccepted": true, "isNeedToSendEventMarketing": false, "localizedPolicyVersionId": "tDfpdOLG", "policyId": "Xx91wjOx", "policyVersionId": "NSi993jz"}, {"isAccepted": true, "isNeedToSendEventMarketing": false, "localizedPolicyVersionId": "z3GtMyK1", "policyId": "dC4wNqXr", "policyVersionId": "kR8GhYgW"}, {"isAccepted": true, "isNeedToSendEventMarketing": true, "localizedPolicyVersionId": "7gLCVpYj", "policyId": "BzXlxMxu", "policyVersionId": "R6mxxkh0"}]' \
+    --body '[{"isAccepted": true, "isNeedToSendEventMarketing": true, "localizedPolicyVersionId": "ou0LH3Up", "policyId": "plRWx7Xb", "policyVersionId": "FvPP7OlI"}, {"isAccepted": true, "isNeedToSendEventMarketing": true, "localizedPolicyVersionId": "LeE6194W", "policyId": "Jwtztqlb", "policyVersionId": "pK5j0hyF"}, {"isAccepted": true, "isNeedToSendEventMarketing": false, "localizedPolicyVersionId": "iKEw3sJY", "policyId": "tySbcva2", "policyVersionId": "5B5tNmHD"}]' \
     > test.out 2>&1
 eval_tap $? 33 'BulkAcceptVersionedPolicy' test.out
 
 #- 34 IndirectBulkAcceptVersionedPolicyV2
 samples/cli/sample-apps Legal indirectBulkAcceptVersionedPolicyV2 \
-    --clientId 'BlKJiQdc' \
-    --countryCode 'p2nF2p2a' \
+    --clientId 'PnkoRWGl' \
+    --countryCode 'PHFtRMSt' \
     --namespace $AB_NAMESPACE \
-    --userId 'A9dXB01a' \
-    --body '[{"isAccepted": true, "isNeedToSendEventMarketing": true, "localizedPolicyVersionId": "qqQwHu9F", "policyId": "J8cw8onV", "policyVersionId": "JuyXn6fl"}, {"isAccepted": false, "isNeedToSendEventMarketing": true, "localizedPolicyVersionId": "LA6Etygt", "policyId": "GFAfBxQb", "policyVersionId": "oQFZS8fU"}, {"isAccepted": true, "isNeedToSendEventMarketing": true, "localizedPolicyVersionId": "IYHv958E", "policyId": "PNCHGTEB", "policyVersionId": "JRZIOuHD"}]' \
+    --userId 'kum6arQ2' \
+    --body '[{"isAccepted": false, "isNeedToSendEventMarketing": false, "localizedPolicyVersionId": "dHOAEInC", "policyId": "oS4AjvJo", "policyVersionId": "LVvrz24E"}, {"isAccepted": false, "isNeedToSendEventMarketing": true, "localizedPolicyVersionId": "ujvhcP4x", "policyId": "twQIneIK", "policyVersionId": "ymBWU7Tg"}, {"isAccepted": true, "isNeedToSendEventMarketing": true, "localizedPolicyVersionId": "JQLZqdN7", "policyId": "Uki8tBUZ", "policyVersionId": "5LEdHV7J"}]' \
     > test.out 2>&1
 eval_tap $? 34 'IndirectBulkAcceptVersionedPolicyV2' test.out
 
 #- 35 IndirectBulkAcceptVersionedPolicy1
 samples/cli/sample-apps Legal indirectBulkAcceptVersionedPolicy1 \
-    --userId 'GwkpwVmL' \
-    --body '[{"isAccepted": false, "isNeedToSendEventMarketing": false, "localizedPolicyVersionId": "XHN7ZUBu", "policyId": "QY1yssGh", "policyVersionId": "ZZVxMBmn"}, {"isAccepted": false, "isNeedToSendEventMarketing": false, "localizedPolicyVersionId": "msyAw9W5", "policyId": "NvvaZEDg", "policyVersionId": "Jj3PLWbx"}, {"isAccepted": false, "isNeedToSendEventMarketing": true, "localizedPolicyVersionId": "QkwNiPYb", "policyId": "WkzPjUxb", "policyVersionId": "aYStLtCM"}]' \
+    --userId '67mKwrxi' \
+    --body '[{"isAccepted": true, "isNeedToSendEventMarketing": true, "localizedPolicyVersionId": "13Gq1n38", "policyId": "371sd4TK", "policyVersionId": "wHND1a1M"}, {"isAccepted": false, "isNeedToSendEventMarketing": true, "localizedPolicyVersionId": "tLOzLG3m", "policyId": "uvVcPKOF", "policyVersionId": "56qJp353"}, {"isAccepted": true, "isNeedToSendEventMarketing": true, "localizedPolicyVersionId": "7TKY6ssN", "policyId": "i86UqLUm", "policyVersionId": "tbSM9MjO"}]' \
     > test.out 2>&1
 eval_tap $? 35 'IndirectBulkAcceptVersionedPolicy1' test.out
 
@@ -288,25 +288,25 @@ eval_tap $? 36 'RetrieveEligibilitiesPublic' test.out
 
 #- 37 RetrieveEligibilitiesPublicIndirect
 samples/cli/sample-apps Legal retrieveEligibilitiesPublicIndirect \
-    --clientId 'YleGsX8J' \
-    --countryCode 'Pv7sqa7v' \
+    --clientId 'tvgLECZ2' \
+    --countryCode 'knYttsmC' \
     --namespace $AB_NAMESPACE \
-    --userId 'JIBbTJ3p' \
+    --userId 'vwhiveI7' \
     > test.out 2>&1
 eval_tap $? 37 'RetrieveEligibilitiesPublicIndirect' test.out
 
 #- 38 RetrieveSingleLocalizedPolicyVersion1
 samples/cli/sample-apps Legal retrieveSingleLocalizedPolicyVersion1 \
-    --localizedPolicyVersionId '7gUC6CiK' \
+    --localizedPolicyVersionId 'T5uiBUwc' \
     > test.out 2>&1
 eval_tap $? 38 'RetrieveSingleLocalizedPolicyVersion1' test.out
 
 #- 39 RetrieveLatestPolicies
 samples/cli/sample-apps Legal retrieveLatestPolicies \
-    --countryCode 'eNDWIhVu' \
-    --defaultOnEmpty 'false' \
+    --countryCode 'oNmyIaHk' \
+    --defaultOnEmpty 'true' \
     --policyType 'MARKETING_PREFERENCE_TYPE' \
-    --tags 'KV0M1N2O' \
+    --tags 'tHTYWDu3' \
     > test.out 2>&1
 eval_tap $? 39 'RetrieveLatestPolicies' test.out
 
@@ -314,20 +314,20 @@ eval_tap $? 39 'RetrieveLatestPolicies' test.out
 samples/cli/sample-apps Legal retrieveLatestPoliciesPublic \
     --namespace $AB_NAMESPACE \
     --alwaysIncludeDefault 'true' \
-    --defaultOnEmpty 'false' \
-    --policyType 'MARKETING_PREFERENCE_TYPE' \
-    --tags 'rjvmol9P' \
+    --defaultOnEmpty 'true' \
+    --policyType 'LEGAL_DOCUMENT_TYPE' \
+    --tags 'TLrXXg3u' \
     > test.out 2>&1
 eval_tap $? 40 'RetrieveLatestPoliciesPublic' test.out
 
 #- 41 RetrieveLatestPoliciesByNamespaceAndCountryPublic
 samples/cli/sample-apps Legal retrieveLatestPoliciesByNamespaceAndCountryPublic \
-    --countryCode 'DbxOU8L0' \
+    --countryCode '4zonMITi' \
     --namespace $AB_NAMESPACE \
     --alwaysIncludeDefault 'true' \
     --defaultOnEmpty 'true' \
     --policyType 'MARKETING_PREFERENCE_TYPE' \
-    --tags '9KvmUqT8' \
+    --tags 'mPmzOnGc' \
     > test.out 2>&1
 eval_tap $? 41 'RetrieveLatestPoliciesByNamespaceAndCountryPublic' test.out
 

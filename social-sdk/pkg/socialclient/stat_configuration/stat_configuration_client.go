@@ -12,6 +12,7 @@ package stat_configuration
 import (
 	"context"
 	"fmt"
+	"io"
 	"reflect"
 
 	"github.com/go-openapi/runtime"
@@ -41,8 +42,8 @@ type ClientService interface {
 	DeleteStatShort(params *DeleteStatParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteStatNoContent, error)
 	DeleteTiedStat(params *DeleteTiedStatParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteTiedStatNoContent, *DeleteTiedStatConflict, error)
 	DeleteTiedStatShort(params *DeleteTiedStatParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteTiedStatNoContent, error)
-	ExportStats(params *ExportStatsParams, authInfo runtime.ClientAuthInfoWriter) (*ExportStatsOK, error)
-	ExportStatsShort(params *ExportStatsParams, authInfo runtime.ClientAuthInfoWriter) (*ExportStatsOK, error)
+	ExportStats(params *ExportStatsParams, authInfo runtime.ClientAuthInfoWriter, writer io.Writer) (*ExportStatsOK, error)
+	ExportStatsShort(params *ExportStatsParams, authInfo runtime.ClientAuthInfoWriter, writer io.Writer) (*ExportStatsOK, error)
 	GetStat(params *GetStatParams, authInfo runtime.ClientAuthInfoWriter) (*GetStatOK, *GetStatNotFound, error)
 	GetStatShort(params *GetStatParams, authInfo runtime.ClientAuthInfoWriter) (*GetStatOK, error)
 	GetStats(params *GetStatsParams, authInfo runtime.ClientAuthInfoWriter) (*GetStatsOK, error)
@@ -460,7 +461,7 @@ Deprecated: Use ExportStatsShort instead.
 
   Export all stat configurations for a given namespace into file  At current, only JSON file is supported.&lt;p&gt;Other detail info:&lt;ul&gt;&lt;li&gt;&lt;i&gt;*Required permission*: resource=&#34;ADMIN:NAMESPACE:{namespace}:STAT&#34;, action=2 (READ)&lt;/li&gt;&lt;/ul&gt;
 */
-func (a *Client) ExportStats(params *ExportStatsParams, authInfo runtime.ClientAuthInfoWriter) (*ExportStatsOK, error) {
+func (a *Client) ExportStats(params *ExportStatsParams, authInfo runtime.ClientAuthInfoWriter, writer io.Writer) (*ExportStatsOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewExportStatsParams()
@@ -482,7 +483,7 @@ func (a *Client) ExportStats(params *ExportStatsParams, authInfo runtime.ClientA
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
 		Params:             params,
-		Reader:             &ExportStatsReader{formats: a.formats},
+		Reader:             &ExportStatsReader{formats: a.formats, writer: writer},
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
@@ -506,7 +507,7 @@ func (a *Client) ExportStats(params *ExportStatsParams, authInfo runtime.ClientA
 
   Export all stat configurations for a given namespace into file  At current, only JSON file is supported.&lt;p&gt;Other detail info:&lt;ul&gt;&lt;li&gt;&lt;i&gt;*Required permission*: resource=&#34;ADMIN:NAMESPACE:{namespace}:STAT&#34;, action=2 (READ)&lt;/li&gt;&lt;/ul&gt;
 */
-func (a *Client) ExportStatsShort(params *ExportStatsParams, authInfo runtime.ClientAuthInfoWriter) (*ExportStatsOK, error) {
+func (a *Client) ExportStatsShort(params *ExportStatsParams, authInfo runtime.ClientAuthInfoWriter, writer io.Writer) (*ExportStatsOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewExportStatsParams()
@@ -528,7 +529,7 @@ func (a *Client) ExportStatsShort(params *ExportStatsParams, authInfo runtime.Cl
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
 		Params:             params,
-		Reader:             &ExportStatsReader{formats: a.formats},
+		Reader:             &ExportStatsReader{formats: a.formats, writer: writer},
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,

@@ -263,7 +263,9 @@ inputClaim.RetryPolicy = &utils.Retry{
 
 errClaim := sessionDSMCService.ClaimServerShort(inputClaim)
 if errClaim != nil {
-	assert.FailNow(t, errClaim.Error())
+	t.Skipf("can't claim server right now due to error: %v\n", errClaim)
+
+	return
 }
 t.Logf("Id Session DSMC: %v claimed a server", createdSessionID)
 ```
@@ -851,6 +853,63 @@ if errDelete != nil {
 }
 ```
 
+### Store export
+
+```go
+inputExport := &store.ExportStore1Params{
+	Namespace: integration.NamespaceTest,
+	StoreID:   publishedStoreId,
+}
+
+okExport, errExport := storeService.ExportStore1Short(inputExport, writer)
+if errExport != nil {
+	t.Fatal(errExport.Error())
+}
+```
+
+### Store export
+
+```go
+inputExport := &store.ExportStore1Params{
+	Namespace: integration.NamespaceTest,
+	StoreID:   publishedStoreId,
+}
+
+okExport, errExport := storeService.ExportStore1Short(inputExport, writer)
+if errExport != nil {
+	t.Fatal(errExport.Error())
+}
+```
+
+### Reward export
+
+```go
+inputExport := &reward.ExportRewardsParams{
+	Namespace: integration.NamespaceTest,
+}
+
+writer := bytes.NewBuffer(nil)
+okExport, errExport := rewardService.ExportRewardsShort(inputExport, writer)
+if errExport != nil {
+	t.Fatal(errExport.Error())
+}
+```
+
+### Reward import
+
+```go
+inputImport := &reward.ImportRewardsParams{
+	File:            file,
+	Namespace:       integration.NamespaceTest,
+	ReplaceExisting: false,
+}
+
+errImport := rewardService.ImportRewardsShort(inputImport)
+if errImport != nil {
+	t.Fatal(errImport.Error())
+}
+```
+
 ## QOSM
 
 Source: [qosm_test.go](../services-api/pkg/tests/integration/qosm_test.go)
@@ -1114,6 +1173,29 @@ inputStat := &stat_configuration.UpdateStatParams{
 }
 
 ok, err := statConfigurationService.UpdateStatShort(inputStat)
+```
+
+### Stat export
+
+```go
+inputExportStat := &stat_configuration.ExportStatsParams{
+	Namespace: integration.NamespaceTest,
+}
+
+writer := bytes.NewBuffer(nil)
+okExport, errExport := statConfigurationService.ExportStatsShort(inputExportStat, writer)
+```
+
+### Stat import
+
+```go
+inputImportStat := &stat_configuration.ImportStatsParams{
+	File:            file,
+	Namespace:       integration.NamespaceTest,
+	ReplaceExisting: nil,
+}
+
+okImport, errImport := statConfigurationService.ImportStatsShort(inputImportStat)
 ```
 
 ## UGC

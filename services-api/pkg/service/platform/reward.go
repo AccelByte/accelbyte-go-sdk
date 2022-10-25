@@ -7,6 +7,8 @@
 package platform
 
 import (
+	"io"
+
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclient"
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclient/reward"
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclientmodels"
@@ -80,12 +82,12 @@ func (aaa *RewardService) QueryRewards(input *reward.QueryRewardsParams) (*platf
 }
 
 // Deprecated: Use ExportRewardsShort instead
-func (aaa *RewardService) ExportRewards(input *reward.ExportRewardsParams) ([]platformclientmodels.ConfigInfo, error) {
+func (aaa *RewardService) ExportRewards(input *reward.ExportRewardsParams, writer io.Writer) (io.Writer, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, err := aaa.Client.Reward.ExportRewards(input, client.BearerToken(*token.AccessToken))
+	ok, err := aaa.Client.Reward.ExportRewards(input, client.BearerToken(*token.AccessToken), writer)
 	if err != nil {
 		return nil, err
 	}
@@ -296,7 +298,7 @@ func (aaa *RewardService) QueryRewardsShort(input *reward.QueryRewardsParams) (*
 	return ok.GetPayload(), nil
 }
 
-func (aaa *RewardService) ExportRewardsShort(input *reward.ExportRewardsParams) ([]platformclientmodels.ConfigInfo, error) {
+func (aaa *RewardService) ExportRewardsShort(input *reward.ExportRewardsParams, writer io.Writer) (io.Writer, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -313,7 +315,7 @@ func (aaa *RewardService) ExportRewardsShort(input *reward.ExportRewardsParams) 
 		}
 	}
 
-	ok, err := aaa.Client.Reward.ExportRewardsShort(input, authInfoWriter)
+	ok, err := aaa.Client.Reward.ExportRewardsShort(input, authInfoWriter, writer)
 	if err != nil {
 		return nil, err
 	}

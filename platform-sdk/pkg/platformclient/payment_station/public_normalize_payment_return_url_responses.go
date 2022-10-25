@@ -12,6 +12,7 @@ package payment_station
 import (
 	"fmt"
 	"io/ioutil"
+	"strings"
 
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/runtime"
@@ -66,6 +67,11 @@ func (o *PublicNormalizePaymentReturnURLNoContent) Error() string {
 }
 
 func (o *PublicNormalizePaymentReturnURLNoContent) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+	// handle file responses
+	contentDisposition := response.GetHeader("Content-Disposition")
+	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
+		consumer = runtime.ByteStreamConsumer()
+	}
 
 	return nil
 }
@@ -90,6 +96,11 @@ func (o *PublicNormalizePaymentReturnURLTemporaryRedirect) Error() string {
 }
 
 func (o *PublicNormalizePaymentReturnURLTemporaryRedirect) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+	// handle file responses
+	contentDisposition := response.GetHeader("Content-Disposition")
+	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
+		consumer = runtime.ByteStreamConsumer()
+	}
 
 	// response header Location
 

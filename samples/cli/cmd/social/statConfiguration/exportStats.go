@@ -7,6 +7,8 @@
 package statConfiguration
 
 import (
+	"bytes"
+
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/social"
 	"github.com/AccelByte/accelbyte-go-sdk/social-sdk/pkg/socialclient/stat_configuration"
@@ -29,7 +31,8 @@ var ExportStatsCmd = &cobra.Command{
 		input := &stat_configuration.ExportStatsParams{
 			Namespace: namespace,
 		}
-		ok, err := statConfigurationService.ExportStatsShort(input)
+		writer := bytes.NewBuffer(nil)
+		ok, err := statConfigurationService.ExportStatsShort(input, writer)
 		if err != nil {
 			logrus.Error(err)
 

@@ -99,6 +99,26 @@ func (aaa *SeasonService) GetCurrentSeason(input *season.GetCurrentSeasonParams)
 	return ok.GetPayload(), nil
 }
 
+// Deprecated: Use BulkGetUserSeasonProgressionShort instead
+func (aaa *SeasonService) BulkGetUserSeasonProgression(input *season.BulkGetUserSeasonProgressionParams) ([]*seasonpassclientmodels.UserSeasonSummary, error) {
+	token, err := aaa.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, badRequest, notFound, err := aaa.Client.Season.BulkGetUserSeasonProgression(input, client.BearerToken(*token.AccessToken))
+	if badRequest != nil {
+		return nil, badRequest
+	}
+	if notFound != nil {
+		return nil, notFound
+	}
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
 // Deprecated: Use GetSeasonShort instead
 func (aaa *SeasonService) GetSeason(input *season.GetSeasonParams) (*seasonpassclientmodels.SeasonInfo, error) {
 	token, err := aaa.TokenRepository.GetToken()
@@ -552,6 +572,31 @@ func (aaa *SeasonService) GetCurrentSeasonShort(input *season.GetCurrentSeasonPa
 	}
 
 	ok, err := aaa.Client.Season.GetCurrentSeasonShort(input, authInfoWriter)
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
+func (aaa *SeasonService) BulkGetUserSeasonProgressionShort(input *season.BulkGetUserSeasonProgressionParams) ([]*seasonpassclientmodels.UserSeasonSummary, error) {
+	authInfoWriter := input.AuthInfoWriter
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
+	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  aaa.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
+	ok, err := aaa.Client.Season.BulkGetUserSeasonProgressionShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}

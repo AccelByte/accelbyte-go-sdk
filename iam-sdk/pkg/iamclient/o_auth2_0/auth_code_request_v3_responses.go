@@ -12,6 +12,7 @@ package o_auth2_0
 import (
 	"fmt"
 	"io/ioutil"
+	"strings"
 
 	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/strfmt"
@@ -62,6 +63,11 @@ func (o *AuthCodeRequestV3Found) Error() string {
 }
 
 func (o *AuthCodeRequestV3Found) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+	// handle file responses
+	contentDisposition := response.GetHeader("Content-Disposition")
+	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
+		consumer = runtime.ByteStreamConsumer()
+	}
 
 	// response header Location
 	o.Location = response.GetHeader("Location")

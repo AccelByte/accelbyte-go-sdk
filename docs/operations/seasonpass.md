@@ -10,6 +10,7 @@
 | `/seasonpass/admin/namespaces/{namespace}/seasons` | GET | QuerySeasonsShort | [QuerySeasonsShort](../../seasonpass-sdk/pkg/seasonpassclient/season/season_client.go) | [QuerySeasonsShort](../../services-api/pkg/service/seasonpass/season.go) | [QuerySeasonsShort](../../samples/cli/cmd/seasonpass/season/querySeasons.go) |
 | `/seasonpass/admin/namespaces/{namespace}/seasons` | POST | CreateSeasonShort | [CreateSeasonShort](../../seasonpass-sdk/pkg/seasonpassclient/season/season_client.go) | [CreateSeasonShort](../../services-api/pkg/service/seasonpass/season.go) | [CreateSeasonShort](../../samples/cli/cmd/seasonpass/season/createSeason.go) |
 | `/seasonpass/admin/namespaces/{namespace}/seasons/current` | GET | GetCurrentSeasonShort | [GetCurrentSeasonShort](../../seasonpass-sdk/pkg/seasonpassclient/season/season_client.go) | [GetCurrentSeasonShort](../../services-api/pkg/service/seasonpass/season.go) | [GetCurrentSeasonShort](../../samples/cli/cmd/seasonpass/season/getCurrentSeason.go) |
+| `/seasonpass/admin/namespaces/{namespace}/seasons/current/users/bulk/progression` | POST | BulkGetUserSeasonProgressionShort | [BulkGetUserSeasonProgressionShort](../../seasonpass-sdk/pkg/seasonpassclient/season/season_client.go) | [BulkGetUserSeasonProgressionShort](../../services-api/pkg/service/seasonpass/season.go) | [BulkGetUserSeasonProgressionShort](../../samples/cli/cmd/seasonpass/season/bulkGetUserSeasonProgression.go) |
 | `/seasonpass/admin/namespaces/{namespace}/seasons/{seasonId}` | GET | GetSeasonShort | [GetSeasonShort](../../seasonpass-sdk/pkg/seasonpassclient/season/season_client.go) | [GetSeasonShort](../../services-api/pkg/service/seasonpass/season.go) | [GetSeasonShort](../../samples/cli/cmd/seasonpass/season/getSeason.go) |
 | `/seasonpass/admin/namespaces/{namespace}/seasons/{seasonId}` | DELETE | DeleteSeasonShort | [DeleteSeasonShort](../../seasonpass-sdk/pkg/seasonpassclient/season/season_client.go) | [DeleteSeasonShort](../../services-api/pkg/service/seasonpass/season.go) | [DeleteSeasonShort](../../samples/cli/cmd/seasonpass/season/deleteSeason.go) |
 | `/seasonpass/admin/namespaces/{namespace}/seasons/{seasonId}` | PATCH | UpdateSeasonShort | [UpdateSeasonShort](../../seasonpass-sdk/pkg/seasonpassclient/season/season_client.go) | [UpdateSeasonShort](../../services-api/pkg/service/seasonpass/season.go) | [UpdateSeasonShort](../../samples/cli/cmd/seasonpass/season/updateSeason.go) |
@@ -69,6 +70,7 @@
 
 | Model Struct | Class |
 |---|---|
+| `BulkUserProgressionRequest` | [BulkUserProgressionRequest ](../../seasonpass-sdk/pkg/seasonpassclientmodels/bulk_user_progression_request.go) |
 | `ClaimableRewards` | [ClaimableRewards ](../../seasonpass-sdk/pkg/seasonpassclientmodels/claimable_rewards.go) |
 | `ClaimableUserSeasonInfo` | [ClaimableUserSeasonInfo ](../../seasonpass-sdk/pkg/seasonpassclientmodels/claimable_user_season_info.go) |
 | `ErrorEntity` | [ErrorEntity ](../../seasonpass-sdk/pkg/seasonpassclientmodels/error_entity.go) |

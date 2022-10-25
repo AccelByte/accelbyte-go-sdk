@@ -41,6 +41,12 @@ type ClientmodelClientUpdateV3Request struct {
 	// namespace
 	Namespace string `json:"namespace,omitempty"`
 
+	// min value 1 second, max value 86400 seconds
+	OauthAccessTokenExpiration int32 `json:"oauthAccessTokenExpiration,omitempty"`
+
+	// min value 1 seconds, max value 2592000 seconds
+	OauthRefreshTokenExpiration int32 `json:"oauthRefreshTokenExpiration,omitempty"`
+
 	// redirect Uri
 	RedirectURI string `json:"redirectUri,omitempty"`
 

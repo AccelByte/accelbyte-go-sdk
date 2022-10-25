@@ -119,6 +119,29 @@ func (aaa *SessionService) AdminGetSession(input *session.AdminGetSessionParams)
 	return ok.GetPayload(), nil
 }
 
+// Deprecated: Use AdminDeleteSessionShort instead
+func (aaa *SessionService) AdminDeleteSession(input *session.AdminDeleteSessionParams) (*sessionbrowserclientmodels.ModelsAdminSessionResponse, error) {
+	token, err := aaa.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, badRequest, notFound, internalServerError, err := aaa.Client.Session.AdminDeleteSession(input, client.BearerToken(*token.AccessToken))
+	if badRequest != nil {
+		return nil, badRequest
+	}
+	if notFound != nil {
+		return nil, notFound
+	}
+	if internalServerError != nil {
+		return nil, internalServerError
+	}
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
 // Deprecated: Use AdminSearchSessionsV2Short instead
 func (aaa *SessionService) AdminSearchSessionsV2(input *session.AdminSearchSessionsV2Params) (*sessionbrowserclientmodels.ModelsGetSessionHistorySearchResponseV2, error) {
 	token, err := aaa.TokenRepository.GetToken()
@@ -534,6 +557,31 @@ func (aaa *SessionService) AdminGetSessionShort(input *session.AdminGetSessionPa
 	}
 
 	ok, err := aaa.Client.Session.AdminGetSessionShort(input, authInfoWriter)
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
+func (aaa *SessionService) AdminDeleteSessionShort(input *session.AdminDeleteSessionParams) (*sessionbrowserclientmodels.ModelsAdminSessionResponse, error) {
+	authInfoWriter := input.AuthInfoWriter
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
+	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  aaa.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
+	ok, err := aaa.Client.Session.AdminDeleteSessionShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}

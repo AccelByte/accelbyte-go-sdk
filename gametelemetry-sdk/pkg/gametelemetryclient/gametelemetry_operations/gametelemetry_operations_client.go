@@ -163,17 +163,18 @@ This endpoint does not require permission.
 This endpoint send events into designated streaming pipeline and each request can contain single or multiple events.
 &lt;p&gt; Format of the event:
 
-- **EventNamespace (required)**: namespace of the relevant game with domain name format.
+- **EventNamespace (required)**: Namespace of the relevant game with domain name format.
                 &lt;p&gt; Only accept input with valid characters. Allowed characters: &lt;b&gt;Aa-Zz0-9_.-&lt;/b&gt; &lt;p&gt;
                 &lt;p&gt; It is encouraged to use alphanumeric only characters. &lt;b&gt;_.-&lt;/b&gt; will be deprecated soon &lt;p&gt;
                 &lt;p&gt; Example: io.accelbyte.justice.dev.samplegame &lt;/p&gt;
 
-- **EventName (required)**: name of the event.
+- **EventName (required)**: Name of the event.
                 &lt;p&gt; Only accept input with valid characters. Allowed characters: &lt;b&gt;Aa-Zz0-9_.-&lt;/b&gt; &lt;p&gt;
                 &lt;p&gt; It is encouraged to use alphanumeric only characters. &lt;b&gt;_.-&lt;/b&gt; will be deprecated soon &lt;p&gt;
                 &lt;p&gt; Example: player_killed, mission_accomplished &lt;/p&gt;
 
-- **Payload (required)**: an arbitrary json with the payload of the said event
+- **Payload (required)**: An arbitrary json with the payload of the said event.
+                &lt;p&gt; Default maximum payload size is &lt;b&gt;1MB&lt;/b&gt; &lt;p&gt;
 */
 func (a *Client) ProtectedSaveEventsGameTelemetryV1ProtectedEventsPost(params *ProtectedSaveEventsGameTelemetryV1ProtectedEventsPostParams, authInfo runtime.ClientAuthInfoWriter) (*ProtectedSaveEventsGameTelemetryV1ProtectedEventsPostNoContent, *ProtectedSaveEventsGameTelemetryV1ProtectedEventsPostUnprocessableEntity, error) {
 	// TODO: Validate the params before sending
@@ -228,17 +229,18 @@ This endpoint does not require permission.
 This endpoint send events into designated streaming pipeline and each request can contain single or multiple events.
 &lt;p&gt; Format of the event:
 
-- **EventNamespace (required)**: namespace of the relevant game with domain name format.
+- **EventNamespace (required)**: Namespace of the relevant game with domain name format.
                 &lt;p&gt; Only accept input with valid characters. Allowed characters: &lt;b&gt;Aa-Zz0-9_.-&lt;/b&gt; &lt;p&gt;
                 &lt;p&gt; It is encouraged to use alphanumeric only characters. &lt;b&gt;_.-&lt;/b&gt; will be deprecated soon &lt;p&gt;
                 &lt;p&gt; Example: io.accelbyte.justice.dev.samplegame &lt;/p&gt;
 
-- **EventName (required)**: name of the event.
+- **EventName (required)**: Name of the event.
                 &lt;p&gt; Only accept input with valid characters. Allowed characters: &lt;b&gt;Aa-Zz0-9_.-&lt;/b&gt; &lt;p&gt;
                 &lt;p&gt; It is encouraged to use alphanumeric only characters. &lt;b&gt;_.-&lt;/b&gt; will be deprecated soon &lt;p&gt;
                 &lt;p&gt; Example: player_killed, mission_accomplished &lt;/p&gt;
 
-- **Payload (required)**: an arbitrary json with the payload of the said event
+- **Payload (required)**: An arbitrary json with the payload of the said event.
+                &lt;p&gt; Default maximum payload size is &lt;b&gt;1MB&lt;/b&gt; &lt;p&gt;
 */
 func (a *Client) ProtectedSaveEventsGameTelemetryV1ProtectedEventsPostShort(params *ProtectedSaveEventsGameTelemetryV1ProtectedEventsPostParams, authInfo runtime.ClientAuthInfoWriter) (*ProtectedSaveEventsGameTelemetryV1ProtectedEventsPostNoContent, error) {
 	// TODO: Validate the params before sending

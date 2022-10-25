@@ -19,6 +19,10 @@ import (
 // swagger:model .validation
 type Validation struct {
 
+	// allow all special Characters non words.
+	// Required: true
+	AllowAllSpecialCharacters *bool `json:"allowAllSpecialCharacters"`
+
 	// allow digit
 	// Required: true
 	AllowDigit *bool `json:"allowDigit"`
@@ -88,6 +92,10 @@ type Validation struct {
 func (m *Validation) Validate(formats strfmt.Registry) error {
 	var res []error
 
+	if err := m.validateAllowAllSpecialCharacters(formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.validateAllowDigit(formats); err != nil {
 		res = append(res, err)
 	}
@@ -155,6 +163,15 @@ func (m *Validation) Validate(formats strfmt.Registry) error {
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
+	return nil
+}
+
+func (m *Validation) validateAllowAllSpecialCharacters(formats strfmt.Registry) error {
+
+	if err := validate.Required("allowAllSpecialCharacters", "body", m.AllowAllSpecialCharacters); err != nil {
+		return err
+	}
+
 	return nil
 }
 

@@ -5,6 +5,7 @@
 package integration_test
 
 import (
+	"bytes"
 	"os"
 	"testing"
 
@@ -170,7 +171,8 @@ func TestIntegrationExportStat(t *testing.T) {
 		Namespace: integration.NamespaceTest,
 	}
 
-	okExport, errExport := statConfigurationService.ExportStatsShort(inputExportStat)
+	writer := bytes.NewBuffer(nil)
+	okExport, errExport := statConfigurationService.ExportStatsShort(inputExportStat, writer)
 	// ESAC
 
 	// Assert
@@ -178,12 +180,13 @@ func TestIntegrationExportStat(t *testing.T) {
 	assert.NotNil(t, okExport, "should not be nil")
 
 	// Arrange
-	file, err := utils.ConvertToFileJSON(okExport)
+	fileName := "test.json"
+	file, err := utils.ConvertByteToFile(okExport, writer, fileName)
 	if err != nil {
 		t.Fatal(err.Error())
 	}
 	defer func() {
-		_ = os.Remove("test.json")
+		_ = os.Remove(fileName)
 	}()
 
 	// CASE Stat import

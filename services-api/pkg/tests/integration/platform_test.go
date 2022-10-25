@@ -153,12 +153,13 @@ func TestIntegrationExportImportStore(t *testing.T) {
 	assert.NotNil(t, okExport, "should not be nil")
 
 	// Prepare the file zip with "published" json store - Arrange
-	file, err := utils.ConvertToFileZip(okExport, writer)
+	fileName := "test.zip"
+	file, err := utils.ConvertByteToFile(okExport, writer, fileName)
 	if err != nil {
 		t.Fatalf("failed to convert file. %s", err.Error())
 	}
 	defer func() {
-		_ = os.Remove("test.zip")
+		_ = os.Remove(fileName)
 	}()
 
 	// CASE Store export
@@ -188,7 +189,8 @@ func TestIntegrationExportImportReward(t *testing.T) {
 		Namespace: integration.NamespaceTest,
 	}
 
-	okExport, errExport := rewardService.ExportRewardsShort(inputExport)
+	writer := bytes.NewBuffer(nil)
+	okExport, errExport := rewardService.ExportRewardsShort(inputExport, writer)
 	if errExport != nil {
 		t.Fatal(errExport.Error())
 	}
@@ -199,12 +201,13 @@ func TestIntegrationExportImportReward(t *testing.T) {
 	assert.NotNil(t, okExport, "should not be nil")
 
 	// Arrange
-	file, err := utils.ConvertToFileJSON(okExport)
+	fileName := "test.json"
+	file, err := utils.ConvertByteToFile(okExport, writer, fileName)
 	if err != nil {
 		t.Fatal(err.Error())
 	}
 	defer func() {
-		_ = os.Remove("test.json")
+		_ = os.Remove(fileName)
 	}()
 
 	// CASE Reward import

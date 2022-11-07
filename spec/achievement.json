@@ -235,10 +235,7 @@
           "200": {
             "description": "OK",
             "schema": {
-              "items": {
-                "$ref": "#/definitions/models.Achievement"
-              },
-              "type": "array"
+              "type": "file"
             }
           },
           "401": {
@@ -1265,99 +1262,6 @@
     }
   },
   "definitions": {
-    "models.Achievement": {
-      "properties": {
-        "AchievementCode": {
-          "type": "string"
-        },
-        "CreatedAt": {
-          "format": "date-time",
-          "type": "string",
-          "x-nullable": false
-        },
-        "DefaultLanguage": {
-          "type": "string"
-        },
-        "Description": {
-          "additionalProperties": {
-            "type": "string"
-          },
-          "type": "object"
-        },
-        "GoalValue": {
-          "format": "double",
-          "type": "number"
-        },
-        "Hidden": {
-          "type": "boolean",
-          "x-omitempty": false
-        },
-        "ID": {
-          "type": "string"
-        },
-        "Incremental": {
-          "type": "boolean",
-          "x-omitempty": false
-        },
-        "ListOrder": {
-          "format": "int32",
-          "type": "integer"
-        },
-        "LockedIcons": {
-          "items": {
-            "$ref": "#/definitions/models.Icon"
-          },
-          "type": "array"
-        },
-        "Name": {
-          "additionalProperties": {
-            "type": "string"
-          },
-          "type": "object"
-        },
-        "Namespace": {
-          "type": "string"
-        },
-        "StatCode": {
-          "type": "string"
-        },
-        "Tags": {
-          "items": {
-            "type": "string"
-          },
-          "type": "array"
-        },
-        "UnlockedIcons": {
-          "items": {
-            "$ref": "#/definitions/models.Icon"
-          },
-          "type": "array"
-        },
-        "UpdatedAt": {
-          "format": "date-time",
-          "type": "string",
-          "x-nullable": false
-        }
-      },
-      "required": [
-        "AchievementCode",
-        "CreatedAt",
-        "DefaultLanguage",
-        "Description",
-        "GoalValue",
-        "Hidden",
-        "ID",
-        "Incremental",
-        "ListOrder",
-        "LockedIcons",
-        "Name",
-        "Namespace",
-        "StatCode",
-        "Tags",
-        "UnlockedIcons",
-        "UpdatedAt"
-      ]
-    },
     "models.AchievementOrderUpdateRequest": {
       "properties": {
         "targetOrder": {
@@ -1774,7 +1678,7 @@
         "achievedAt": {
           "format": "date-time",
           "type": "string",
-          "x-nullable": false
+          "x-nullable": true
         },
         "achievementCode": {
           "type": "string"
@@ -1798,7 +1702,6 @@
         }
       },
       "required": [
-        "achievedAt",
         "achievementCode",
         "id",
         "latestValue",

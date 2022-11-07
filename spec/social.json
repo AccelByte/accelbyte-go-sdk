@@ -2241,7 +2241,7 @@
         ],
         "responses": {
           "201": {
-            "description": "successful operation",
+            "description": "Import stats successfully",
             "schema": {
               "$ref": "#/definitions/StatImportInfo"
             }

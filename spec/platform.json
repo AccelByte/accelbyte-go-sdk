@@ -2798,6 +2798,12 @@
               "$ref": "#/definitions/DLCItemConfigInfo"
             }
           },
+          "409": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eErrorCode\u003c/td\u003e\u003ctd\u003eErrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e39471\u003c/td\u003e\u003ctd\u003eDuplicated dlc reward id [{dlcRewardId}] in namespace [{namespace}] \u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/ErrorEntity"
+            }
+          },
           "422": {
             "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eErrorCode\u003c/td\u003e\u003ctd\u003eErrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20002\u003c/td\u003e\u003ctd\u003evalidation error\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
@@ -7183,6 +7189,7 @@
     },
     "/platform/admin/namespaces/{namespace}/keygroups/byBoothName": {
       "get": {
+        "deprecated": true,
         "description": "Get key group.\u0026lt;br\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;ADMIN:NAMESPACE:{namespace}:KEYGROUP\u0026#34;, action=2 (READ)\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: key group info\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "getKeyGroupByBoothName",
         "parameters": [

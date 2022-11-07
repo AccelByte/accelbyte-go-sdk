@@ -1228,7 +1228,7 @@
           "200": {
             "description": "OK",
             "schema": {
-              "$ref": "#/definitions/models.ConfigExport"
+              "type": "file"
             }
           },
           "401": {
@@ -8138,110 +8138,6 @@
       },
       "required": [
         "maxDSWaitTime"
-      ]
-    },
-    "models.ConfigExport": {
-      "properties": {
-        "allowInviteNonConnectedUser": {
-          "type": "boolean",
-          "x-omitempty": false
-        },
-        "allowJoinPartyDuringMatchmaking": {
-          "type": "boolean",
-          "x-omitempty": false
-        },
-        "autoKickOnDisconnect": {
-          "type": "boolean",
-          "x-omitempty": false
-        },
-        "autoKickOnDisconnectDelay": {
-          "format": "integer",
-          "type": "integer"
-        },
-        "cancelTicketOnDisconnect": {
-          "type": "boolean",
-          "x-omitempty": false
-        },
-        "chatRateLimitBurst": {
-          "format": "int32",
-          "type": "integer"
-        },
-        "chatRateLimitDuration": {
-          "format": "integer",
-          "type": "integer"
-        },
-        "concurrentUsersLimit": {
-          "format": "int32",
-          "type": "integer"
-        },
-        "disableInvitationOnJoinParty": {
-          "type": "boolean",
-          "x-omitempty": false
-        },
-        "enableChat": {
-          "type": "boolean",
-          "x-omitempty": false
-        },
-        "entitlementCheck": {
-          "type": "boolean",
-          "x-omitempty": false
-        },
-        "entitlementItemID": {
-          "type": "string"
-        },
-        "generalRateLimitBurst": {
-          "format": "int32",
-          "type": "integer"
-        },
-        "generalRateLimitDuration": {
-          "format": "integer",
-          "type": "integer"
-        },
-        "keepPresenceActivityOnDisconnect": {
-          "type": "boolean",
-          "x-omitempty": false
-        },
-        "maxDSWaitTime": {
-          "format": "integer",
-          "type": "integer"
-        },
-        "maxPartyMember": {
-          "format": "int32",
-          "type": "integer"
-        },
-        "namespace": {
-          "type": "string"
-        },
-        "profanityFilter": {
-          "type": "boolean",
-          "x-omitempty": false
-        },
-        "readyConsentTimeout": {
-          "format": "integer",
-          "type": "integer"
-        }
-      },
-      "required": [
-        "allowInviteNonConnectedUser",
-        "allowJoinPartyDuringMatchmaking",
-        "autoKickOnDisconnect",
-        "autoKickOnDisconnectDelay",
-        "cancelTicketOnDisconnect",
-        "chatRateLimitBurst",
-        "chatRateLimitDuration",
-        "concurrentUsersLimit",
-        "disableInvitationOnJoinParty",
-        "enableChat",
-        "entitlementCheck",
-        "entitlementItemID",
-        "generalRateLimitBurst",
-        "generalRateLimitDuration",
-        "keepPresenceActivityOnDisconnect",
-        "maxDSWaitTime",
-        "maxPartyMember",
-        "namespace",
-        "profanityFilter",
-        "readyConsentTimeout"
       ]
     },
     "models.ConfigList": {

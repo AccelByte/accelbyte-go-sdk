@@ -1,3 +1,15 @@
+<a name="v0.31.0"></a>
+## [v0.31.0] - 2022-11-08
+
+### Chore
+- **sdk:** regenerate sdk, cli sample app, cli test, doc index for AccelByte Cloud 3.35
+- **spec:** update spec for AccelByte Cloud 3.35
+
+### Docs
+- fix create oauth client link in getting started doc
+- update CHANGELOG.md for v0.30.0 release
+
+
 <a name="v0.30.0"></a>
 ## [v0.30.0] - 2022-10-25
 
@@ -965,6 +977,7 @@ The wrapper have been refactored and has breaking change, these are the list:
 ### Fix
 - delete go.mod ([#1](https://github.com/AccelByte/accelbyte-go-sdk/issues/1))
 
+[v0.31.0]: https://github.com/AccelByte/accelbyte-go-sdk/compare/v0.30.0...v0.31.0
 [v0.30.0]: https://github.com/AccelByte/accelbyte-go-sdk/compare/v0.29.0...v0.30.0
 [v0.29.0]: https://github.com/AccelByte/accelbyte-go-sdk/compare/v0.28.0...v0.29.0
 [v0.28.0]: https://github.com/AccelByte/accelbyte-go-sdk/compare/v0.27.0...v0.28.0

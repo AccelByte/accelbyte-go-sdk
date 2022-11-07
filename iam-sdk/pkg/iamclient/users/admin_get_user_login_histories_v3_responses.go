@@ -125,13 +125,33 @@ func NewAdminGetUserLoginHistoriesV3Unauthorized() *AdminGetUserLoginHistoriesV3
 
 /*AdminGetUserLoginHistoriesV3Unauthorized handles this case with default header values.
 
-  Unauthorized access
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20001</td><td>unauthorized access</td></tr></table>
 */
 type AdminGetUserLoginHistoriesV3Unauthorized struct {
+	Payload *iamclientmodels.RestErrorResponse
 }
 
 func (o *AdminGetUserLoginHistoriesV3Unauthorized) Error() string {
-	return fmt.Sprintf("[GET /iam/v3/admin/namespaces/{namespace}/users/{userId}/logins/histories][%d] adminGetUserLoginHistoriesV3Unauthorized ", 401)
+	return fmt.Sprintf("[GET /iam/v3/admin/namespaces/{namespace}/users/{userId}/logins/histories][%d] adminGetUserLoginHistoriesV3Unauthorized  %+v", 401, o.ToJSONString())
+}
+
+func (o *AdminGetUserLoginHistoriesV3Unauthorized) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
+}
+
+func (o *AdminGetUserLoginHistoriesV3Unauthorized) GetPayload() *iamclientmodels.RestErrorResponse {
+	return o.Payload
 }
 
 func (o *AdminGetUserLoginHistoriesV3Unauthorized) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -139,6 +159,13 @@ func (o *AdminGetUserLoginHistoriesV3Unauthorized) readResponse(response runtime
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
 		consumer = runtime.ByteStreamConsumer()
+	}
+
+	o.Payload = new(iamclientmodels.RestErrorResponse)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
 	}
 
 	return nil
@@ -151,13 +178,33 @@ func NewAdminGetUserLoginHistoriesV3Forbidden() *AdminGetUserLoginHistoriesV3For
 
 /*AdminGetUserLoginHistoriesV3Forbidden handles this case with default header values.
 
-  Forbidden
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20013</td><td>insufficient permissions</td></tr></table>
 */
 type AdminGetUserLoginHistoriesV3Forbidden struct {
+	Payload *iamclientmodels.RestErrorResponse
 }
 
 func (o *AdminGetUserLoginHistoriesV3Forbidden) Error() string {
-	return fmt.Sprintf("[GET /iam/v3/admin/namespaces/{namespace}/users/{userId}/logins/histories][%d] adminGetUserLoginHistoriesV3Forbidden ", 403)
+	return fmt.Sprintf("[GET /iam/v3/admin/namespaces/{namespace}/users/{userId}/logins/histories][%d] adminGetUserLoginHistoriesV3Forbidden  %+v", 403, o.ToJSONString())
+}
+
+func (o *AdminGetUserLoginHistoriesV3Forbidden) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
+}
+
+func (o *AdminGetUserLoginHistoriesV3Forbidden) GetPayload() *iamclientmodels.RestErrorResponse {
+	return o.Payload
 }
 
 func (o *AdminGetUserLoginHistoriesV3Forbidden) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -165,6 +212,13 @@ func (o *AdminGetUserLoginHistoriesV3Forbidden) readResponse(response runtime.Cl
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
 		consumer = runtime.ByteStreamConsumer()
+	}
+
+	o.Payload = new(iamclientmodels.RestErrorResponse)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
 	}
 
 	return nil

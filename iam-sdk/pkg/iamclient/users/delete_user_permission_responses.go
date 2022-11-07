@@ -10,12 +10,16 @@ package users
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
+	"io"
 	"io/ioutil"
 	"strings"
 
 	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/strfmt"
+
+	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclientmodels"
 )
 
 // DeleteUserPermissionReader is a Reader for the DeleteUserPermission structure.
@@ -103,10 +107,30 @@ func NewDeleteUserPermissionBadRequest() *DeleteUserPermissionBadRequest {
   Invalid request
 */
 type DeleteUserPermissionBadRequest struct {
+	Payload *iamclientmodels.RestErrorResponse
 }
 
 func (o *DeleteUserPermissionBadRequest) Error() string {
-	return fmt.Sprintf("[DELETE /iam/namespaces/{namespace}/users/{userId}/permissions/{resource}/{action}][%d] deleteUserPermissionBadRequest ", 400)
+	return fmt.Sprintf("[DELETE /iam/namespaces/{namespace}/users/{userId}/permissions/{resource}/{action}][%d] deleteUserPermissionBadRequest  %+v", 400, o.ToJSONString())
+}
+
+func (o *DeleteUserPermissionBadRequest) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
+}
+
+func (o *DeleteUserPermissionBadRequest) GetPayload() *iamclientmodels.RestErrorResponse {
+	return o.Payload
 }
 
 func (o *DeleteUserPermissionBadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -114,6 +138,13 @@ func (o *DeleteUserPermissionBadRequest) readResponse(response runtime.ClientRes
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
 		consumer = runtime.ByteStreamConsumer()
+	}
+
+	o.Payload = new(iamclientmodels.RestErrorResponse)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
 	}
 
 	return nil
@@ -126,13 +157,33 @@ func NewDeleteUserPermissionUnauthorized() *DeleteUserPermissionUnauthorized {
 
 /*DeleteUserPermissionUnauthorized handles this case with default header values.
 
-  Unauthorized access
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20001</td><td>unauthorized access</td></tr></table>
 */
 type DeleteUserPermissionUnauthorized struct {
+	Payload *iamclientmodels.RestErrorResponse
 }
 
 func (o *DeleteUserPermissionUnauthorized) Error() string {
-	return fmt.Sprintf("[DELETE /iam/namespaces/{namespace}/users/{userId}/permissions/{resource}/{action}][%d] deleteUserPermissionUnauthorized ", 401)
+	return fmt.Sprintf("[DELETE /iam/namespaces/{namespace}/users/{userId}/permissions/{resource}/{action}][%d] deleteUserPermissionUnauthorized  %+v", 401, o.ToJSONString())
+}
+
+func (o *DeleteUserPermissionUnauthorized) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
+}
+
+func (o *DeleteUserPermissionUnauthorized) GetPayload() *iamclientmodels.RestErrorResponse {
+	return o.Payload
 }
 
 func (o *DeleteUserPermissionUnauthorized) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -140,6 +191,13 @@ func (o *DeleteUserPermissionUnauthorized) readResponse(response runtime.ClientR
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
 		consumer = runtime.ByteStreamConsumer()
+	}
+
+	o.Payload = new(iamclientmodels.RestErrorResponse)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
 	}
 
 	return nil
@@ -152,13 +210,33 @@ func NewDeleteUserPermissionForbidden() *DeleteUserPermissionForbidden {
 
 /*DeleteUserPermissionForbidden handles this case with default header values.
 
-  Forbidden
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20013</td><td>insufficient permissions</td></tr></table>
 */
 type DeleteUserPermissionForbidden struct {
+	Payload *iamclientmodels.RestErrorResponse
 }
 
 func (o *DeleteUserPermissionForbidden) Error() string {
-	return fmt.Sprintf("[DELETE /iam/namespaces/{namespace}/users/{userId}/permissions/{resource}/{action}][%d] deleteUserPermissionForbidden ", 403)
+	return fmt.Sprintf("[DELETE /iam/namespaces/{namespace}/users/{userId}/permissions/{resource}/{action}][%d] deleteUserPermissionForbidden  %+v", 403, o.ToJSONString())
+}
+
+func (o *DeleteUserPermissionForbidden) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
+}
+
+func (o *DeleteUserPermissionForbidden) GetPayload() *iamclientmodels.RestErrorResponse {
+	return o.Payload
 }
 
 func (o *DeleteUserPermissionForbidden) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -166,6 +244,13 @@ func (o *DeleteUserPermissionForbidden) readResponse(response runtime.ClientResp
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
 		consumer = runtime.ByteStreamConsumer()
+	}
+
+	o.Payload = new(iamclientmodels.RestErrorResponse)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
 	}
 
 	return nil

@@ -36,6 +36,12 @@ func (o *RetrieveSSOLoginPlatformCredentialReader) ReadResponse(response runtime
 			return nil, err
 		}
 		return result, nil
+	case 400:
+		result := NewRetrieveSSOLoginPlatformCredentialBadRequest()
+		if err := result.readResponse(response, consumer, o.formats); err != nil {
+			return nil, err
+		}
+		return result, nil
 	case 401:
 		result := NewRetrieveSSOLoginPlatformCredentialUnauthorized()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -124,6 +130,59 @@ func (o *RetrieveSSOLoginPlatformCredentialOK) readResponse(response runtime.Cli
 	return nil
 }
 
+// NewRetrieveSSOLoginPlatformCredentialBadRequest creates a RetrieveSSOLoginPlatformCredentialBadRequest with default headers values
+func NewRetrieveSSOLoginPlatformCredentialBadRequest() *RetrieveSSOLoginPlatformCredentialBadRequest {
+	return &RetrieveSSOLoginPlatformCredentialBadRequest{}
+}
+
+/*RetrieveSSOLoginPlatformCredentialBadRequest handles this case with default header values.
+
+  Invalid request
+*/
+type RetrieveSSOLoginPlatformCredentialBadRequest struct {
+	Payload *iamclientmodels.RestErrorResponse
+}
+
+func (o *RetrieveSSOLoginPlatformCredentialBadRequest) Error() string {
+	return fmt.Sprintf("[GET /iam/v3/admin/namespaces/{namespace}/platforms/{platformId}/sso][%d] retrieveSSOLoginPlatformCredentialBadRequest  %+v", 400, o.ToJSONString())
+}
+
+func (o *RetrieveSSOLoginPlatformCredentialBadRequest) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
+}
+
+func (o *RetrieveSSOLoginPlatformCredentialBadRequest) GetPayload() *iamclientmodels.RestErrorResponse {
+	return o.Payload
+}
+
+func (o *RetrieveSSOLoginPlatformCredentialBadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+	// handle file responses
+	contentDisposition := response.GetHeader("Content-Disposition")
+	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
+		consumer = runtime.ByteStreamConsumer()
+	}
+
+	o.Payload = new(iamclientmodels.RestErrorResponse)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
+	}
+
+	return nil
+}
+
 // NewRetrieveSSOLoginPlatformCredentialUnauthorized creates a RetrieveSSOLoginPlatformCredentialUnauthorized with default headers values
 func NewRetrieveSSOLoginPlatformCredentialUnauthorized() *RetrieveSSOLoginPlatformCredentialUnauthorized {
 	return &RetrieveSSOLoginPlatformCredentialUnauthorized{}
@@ -131,13 +190,33 @@ func NewRetrieveSSOLoginPlatformCredentialUnauthorized() *RetrieveSSOLoginPlatfo
 
 /*RetrieveSSOLoginPlatformCredentialUnauthorized handles this case with default header values.
 
-  Unauthorized
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20001</td><td>unauthorized access</td></tr></table>
 */
 type RetrieveSSOLoginPlatformCredentialUnauthorized struct {
+	Payload *iamclientmodels.RestErrorResponse
 }
 
 func (o *RetrieveSSOLoginPlatformCredentialUnauthorized) Error() string {
-	return fmt.Sprintf("[GET /iam/v3/admin/namespaces/{namespace}/platforms/{platformId}/sso][%d] retrieveSSOLoginPlatformCredentialUnauthorized ", 401)
+	return fmt.Sprintf("[GET /iam/v3/admin/namespaces/{namespace}/platforms/{platformId}/sso][%d] retrieveSSOLoginPlatformCredentialUnauthorized  %+v", 401, o.ToJSONString())
+}
+
+func (o *RetrieveSSOLoginPlatformCredentialUnauthorized) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
+}
+
+func (o *RetrieveSSOLoginPlatformCredentialUnauthorized) GetPayload() *iamclientmodels.RestErrorResponse {
+	return o.Payload
 }
 
 func (o *RetrieveSSOLoginPlatformCredentialUnauthorized) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -145,6 +224,13 @@ func (o *RetrieveSSOLoginPlatformCredentialUnauthorized) readResponse(response r
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
 		consumer = runtime.ByteStreamConsumer()
+	}
+
+	o.Payload = new(iamclientmodels.RestErrorResponse)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
 	}
 
 	return nil
@@ -157,13 +243,33 @@ func NewRetrieveSSOLoginPlatformCredentialForbidden() *RetrieveSSOLoginPlatformC
 
 /*RetrieveSSOLoginPlatformCredentialForbidden handles this case with default header values.
 
-  Forbidden
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20013</td><td>insufficient permissions</td></tr></table>
 */
 type RetrieveSSOLoginPlatformCredentialForbidden struct {
+	Payload *iamclientmodels.RestErrorResponse
 }
 
 func (o *RetrieveSSOLoginPlatformCredentialForbidden) Error() string {
-	return fmt.Sprintf("[GET /iam/v3/admin/namespaces/{namespace}/platforms/{platformId}/sso][%d] retrieveSSOLoginPlatformCredentialForbidden ", 403)
+	return fmt.Sprintf("[GET /iam/v3/admin/namespaces/{namespace}/platforms/{platformId}/sso][%d] retrieveSSOLoginPlatformCredentialForbidden  %+v", 403, o.ToJSONString())
+}
+
+func (o *RetrieveSSOLoginPlatformCredentialForbidden) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
+}
+
+func (o *RetrieveSSOLoginPlatformCredentialForbidden) GetPayload() *iamclientmodels.RestErrorResponse {
+	return o.Payload
 }
 
 func (o *RetrieveSSOLoginPlatformCredentialForbidden) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -171,6 +277,13 @@ func (o *RetrieveSSOLoginPlatformCredentialForbidden) readResponse(response runt
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
 		consumer = runtime.ByteStreamConsumer()
+	}
+
+	o.Payload = new(iamclientmodels.RestErrorResponse)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
 	}
 
 	return nil
@@ -236,7 +349,7 @@ func NewRetrieveSSOLoginPlatformCredentialInternalServerError() *RetrieveSSOLogi
 
 /*RetrieveSSOLoginPlatformCredentialInternalServerError handles this case with default header values.
 
-  Internal Server Error
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20000</td><td>internal server error</td></tr></table>
 */
 type RetrieveSSOLoginPlatformCredentialInternalServerError struct {
 	Payload *iamclientmodels.RestErrorResponse

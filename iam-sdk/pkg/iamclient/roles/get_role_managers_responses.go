@@ -134,10 +134,30 @@ func NewGetRoleManagersBadRequest() *GetRoleManagersBadRequest {
   Invalid request
 */
 type GetRoleManagersBadRequest struct {
+	Payload *iamclientmodels.RestErrorResponse
 }
 
 func (o *GetRoleManagersBadRequest) Error() string {
-	return fmt.Sprintf("[GET /iam/roles/{roleId}/managers][%d] getRoleManagersBadRequest ", 400)
+	return fmt.Sprintf("[GET /iam/roles/{roleId}/managers][%d] getRoleManagersBadRequest  %+v", 400, o.ToJSONString())
+}
+
+func (o *GetRoleManagersBadRequest) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
+}
+
+func (o *GetRoleManagersBadRequest) GetPayload() *iamclientmodels.RestErrorResponse {
+	return o.Payload
 }
 
 func (o *GetRoleManagersBadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -145,6 +165,13 @@ func (o *GetRoleManagersBadRequest) readResponse(response runtime.ClientResponse
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
 		consumer = runtime.ByteStreamConsumer()
+	}
+
+	o.Payload = new(iamclientmodels.RestErrorResponse)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
 	}
 
 	return nil
@@ -157,13 +184,33 @@ func NewGetRoleManagersUnauthorized() *GetRoleManagersUnauthorized {
 
 /*GetRoleManagersUnauthorized handles this case with default header values.
 
-  Unauthorized access
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20001</td><td>unauthorized access</td></tr></table>
 */
 type GetRoleManagersUnauthorized struct {
+	Payload *iamclientmodels.RestErrorResponse
 }
 
 func (o *GetRoleManagersUnauthorized) Error() string {
-	return fmt.Sprintf("[GET /iam/roles/{roleId}/managers][%d] getRoleManagersUnauthorized ", 401)
+	return fmt.Sprintf("[GET /iam/roles/{roleId}/managers][%d] getRoleManagersUnauthorized  %+v", 401, o.ToJSONString())
+}
+
+func (o *GetRoleManagersUnauthorized) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
+}
+
+func (o *GetRoleManagersUnauthorized) GetPayload() *iamclientmodels.RestErrorResponse {
+	return o.Payload
 }
 
 func (o *GetRoleManagersUnauthorized) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -171,6 +218,13 @@ func (o *GetRoleManagersUnauthorized) readResponse(response runtime.ClientRespon
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
 		consumer = runtime.ByteStreamConsumer()
+	}
+
+	o.Payload = new(iamclientmodels.RestErrorResponse)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
 	}
 
 	return nil
@@ -183,13 +237,33 @@ func NewGetRoleManagersForbidden() *GetRoleManagersForbidden {
 
 /*GetRoleManagersForbidden handles this case with default header values.
 
-  Forbidden
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20013</td><td>insufficient permissions</td></tr></table>
 */
 type GetRoleManagersForbidden struct {
+	Payload *iamclientmodels.RestErrorResponse
 }
 
 func (o *GetRoleManagersForbidden) Error() string {
-	return fmt.Sprintf("[GET /iam/roles/{roleId}/managers][%d] getRoleManagersForbidden ", 403)
+	return fmt.Sprintf("[GET /iam/roles/{roleId}/managers][%d] getRoleManagersForbidden  %+v", 403, o.ToJSONString())
+}
+
+func (o *GetRoleManagersForbidden) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
+}
+
+func (o *GetRoleManagersForbidden) GetPayload() *iamclientmodels.RestErrorResponse {
+	return o.Payload
 }
 
 func (o *GetRoleManagersForbidden) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -197,6 +271,13 @@ func (o *GetRoleManagersForbidden) readResponse(response runtime.ClientResponse,
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
 		consumer = runtime.ByteStreamConsumer()
+	}
+
+	o.Payload = new(iamclientmodels.RestErrorResponse)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
 	}
 
 	return nil

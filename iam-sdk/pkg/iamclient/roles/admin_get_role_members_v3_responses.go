@@ -60,6 +60,12 @@ func (o *AdminGetRoleMembersV3Reader) ReadResponse(response runtime.ClientRespon
 			return nil, err
 		}
 		return result, nil
+	case 500:
+		result := NewAdminGetRoleMembersV3InternalServerError()
+		if err := result.readResponse(response, consumer, o.formats); err != nil {
+			return nil, err
+		}
+		return result, nil
 
 	default:
 		data, err := ioutil.ReadAll(response.Body())
@@ -320,6 +326,59 @@ func (o *AdminGetRoleMembersV3NotFound) GetPayload() *iamclientmodels.RestErrorR
 }
 
 func (o *AdminGetRoleMembersV3NotFound) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+	// handle file responses
+	contentDisposition := response.GetHeader("Content-Disposition")
+	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
+		consumer = runtime.ByteStreamConsumer()
+	}
+
+	o.Payload = new(iamclientmodels.RestErrorResponse)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
+	}
+
+	return nil
+}
+
+// NewAdminGetRoleMembersV3InternalServerError creates a AdminGetRoleMembersV3InternalServerError with default headers values
+func NewAdminGetRoleMembersV3InternalServerError() *AdminGetRoleMembersV3InternalServerError {
+	return &AdminGetRoleMembersV3InternalServerError{}
+}
+
+/*AdminGetRoleMembersV3InternalServerError handles this case with default header values.
+
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20000</td><td>internal server error</td></tr></table>
+*/
+type AdminGetRoleMembersV3InternalServerError struct {
+	Payload *iamclientmodels.RestErrorResponse
+}
+
+func (o *AdminGetRoleMembersV3InternalServerError) Error() string {
+	return fmt.Sprintf("[GET /iam/v3/admin/roles/{roleId}/members][%d] adminGetRoleMembersV3InternalServerError  %+v", 500, o.ToJSONString())
+}
+
+func (o *AdminGetRoleMembersV3InternalServerError) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
+}
+
+func (o *AdminGetRoleMembersV3InternalServerError) GetPayload() *iamclientmodels.RestErrorResponse {
+	return o.Payload
+}
+
+func (o *AdminGetRoleMembersV3InternalServerError) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {

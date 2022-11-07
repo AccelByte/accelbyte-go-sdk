@@ -36,18 +36,6 @@ func (o *RetrieveActiveOIDCClientsPublicV3Reader) ReadResponse(response runtime.
 			return nil, err
 		}
 		return result, nil
-	case 401:
-		result := NewRetrieveActiveOIDCClientsPublicV3Unauthorized()
-		if err := result.readResponse(response, consumer, o.formats); err != nil {
-			return nil, err
-		}
-		return result, nil
-	case 403:
-		result := NewRetrieveActiveOIDCClientsPublicV3Forbidden()
-		if err := result.readResponse(response, consumer, o.formats); err != nil {
-			return nil, err
-		}
-		return result, nil
 	case 404:
 		result := NewRetrieveActiveOIDCClientsPublicV3NotFound()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -122,58 +110,6 @@ func (o *RetrieveActiveOIDCClientsPublicV3OK) readResponse(response runtime.Clie
 	return nil
 }
 
-// NewRetrieveActiveOIDCClientsPublicV3Unauthorized creates a RetrieveActiveOIDCClientsPublicV3Unauthorized with default headers values
-func NewRetrieveActiveOIDCClientsPublicV3Unauthorized() *RetrieveActiveOIDCClientsPublicV3Unauthorized {
-	return &RetrieveActiveOIDCClientsPublicV3Unauthorized{}
-}
-
-/*RetrieveActiveOIDCClientsPublicV3Unauthorized handles this case with default header values.
-
-  Unauthorized
-*/
-type RetrieveActiveOIDCClientsPublicV3Unauthorized struct {
-}
-
-func (o *RetrieveActiveOIDCClientsPublicV3Unauthorized) Error() string {
-	return fmt.Sprintf("[GET /iam/v3/public/namespaces/{namespace}/platforms/clients/oidc][%d] retrieveActiveOIdCClientsPublicV3Unauthorized ", 401)
-}
-
-func (o *RetrieveActiveOIDCClientsPublicV3Unauthorized) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
-	// handle file responses
-	contentDisposition := response.GetHeader("Content-Disposition")
-	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
-		consumer = runtime.ByteStreamConsumer()
-	}
-
-	return nil
-}
-
-// NewRetrieveActiveOIDCClientsPublicV3Forbidden creates a RetrieveActiveOIDCClientsPublicV3Forbidden with default headers values
-func NewRetrieveActiveOIDCClientsPublicV3Forbidden() *RetrieveActiveOIDCClientsPublicV3Forbidden {
-	return &RetrieveActiveOIDCClientsPublicV3Forbidden{}
-}
-
-/*RetrieveActiveOIDCClientsPublicV3Forbidden handles this case with default header values.
-
-  Forbidden
-*/
-type RetrieveActiveOIDCClientsPublicV3Forbidden struct {
-}
-
-func (o *RetrieveActiveOIDCClientsPublicV3Forbidden) Error() string {
-	return fmt.Sprintf("[GET /iam/v3/public/namespaces/{namespace}/platforms/clients/oidc][%d] retrieveActiveOIdCClientsPublicV3Forbidden ", 403)
-}
-
-func (o *RetrieveActiveOIDCClientsPublicV3Forbidden) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
-	// handle file responses
-	contentDisposition := response.GetHeader("Content-Disposition")
-	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
-		consumer = runtime.ByteStreamConsumer()
-	}
-
-	return nil
-}
-
 // NewRetrieveActiveOIDCClientsPublicV3NotFound creates a RetrieveActiveOIDCClientsPublicV3NotFound with default headers values
 func NewRetrieveActiveOIDCClientsPublicV3NotFound() *RetrieveActiveOIDCClientsPublicV3NotFound {
 	return &RetrieveActiveOIDCClientsPublicV3NotFound{}
@@ -181,7 +117,7 @@ func NewRetrieveActiveOIDCClientsPublicV3NotFound() *RetrieveActiveOIDCClientsPu
 
 /*RetrieveActiveOIDCClientsPublicV3NotFound handles this case with default header values.
 
-  OIDC Credential Not Found
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>10175</td><td>third party credential not found</td></tr></table>
 */
 type RetrieveActiveOIDCClientsPublicV3NotFound struct {
 	Payload *iamclientmodels.RestErrorResponse
@@ -234,7 +170,7 @@ func NewRetrieveActiveOIDCClientsPublicV3InternalServerError() *RetrieveActiveOI
 
 /*RetrieveActiveOIDCClientsPublicV3InternalServerError handles this case with default header values.
 
-  Internal Server Error
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20000</td><td>internal server error</td></tr></table>
 */
 type RetrieveActiveOIDCClientsPublicV3InternalServerError struct {
 	Payload *iamclientmodels.RestErrorResponse

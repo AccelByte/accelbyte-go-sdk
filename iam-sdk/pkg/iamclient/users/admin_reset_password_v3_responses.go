@@ -10,12 +10,16 @@ package users
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
+	"io"
 	"io/ioutil"
 	"strings"
 
 	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/strfmt"
+
+	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclientmodels"
 )
 
 // AdminResetPasswordV3Reader is a Reader for the AdminResetPasswordV3 structure.
@@ -132,13 +136,33 @@ func NewAdminResetPasswordV3Unauthorized() *AdminResetPasswordV3Unauthorized {
 
 /*AdminResetPasswordV3Unauthorized handles this case with default header values.
 
-  Unauthorized access
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20001</td><td>unauthorized access</td></tr></table>
 */
 type AdminResetPasswordV3Unauthorized struct {
+	Payload *iamclientmodels.RestErrorResponse
 }
 
 func (o *AdminResetPasswordV3Unauthorized) Error() string {
-	return fmt.Sprintf("[PUT /iam/v3/admin/namespaces/{namespace}/users/{userId}/password][%d] adminResetPasswordV3Unauthorized ", 401)
+	return fmt.Sprintf("[PUT /iam/v3/admin/namespaces/{namespace}/users/{userId}/password][%d] adminResetPasswordV3Unauthorized  %+v", 401, o.ToJSONString())
+}
+
+func (o *AdminResetPasswordV3Unauthorized) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
+}
+
+func (o *AdminResetPasswordV3Unauthorized) GetPayload() *iamclientmodels.RestErrorResponse {
+	return o.Payload
 }
 
 func (o *AdminResetPasswordV3Unauthorized) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -146,6 +170,13 @@ func (o *AdminResetPasswordV3Unauthorized) readResponse(response runtime.ClientR
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
 		consumer = runtime.ByteStreamConsumer()
+	}
+
+	o.Payload = new(iamclientmodels.RestErrorResponse)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
 	}
 
 	return nil
@@ -158,13 +189,33 @@ func NewAdminResetPasswordV3Forbidden() *AdminResetPasswordV3Forbidden {
 
 /*AdminResetPasswordV3Forbidden handles this case with default header values.
 
-  Forbidden
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20013</td><td>insufficient permissions</td></tr></table>
 */
 type AdminResetPasswordV3Forbidden struct {
+	Payload *iamclientmodels.RestErrorResponse
 }
 
 func (o *AdminResetPasswordV3Forbidden) Error() string {
-	return fmt.Sprintf("[PUT /iam/v3/admin/namespaces/{namespace}/users/{userId}/password][%d] adminResetPasswordV3Forbidden ", 403)
+	return fmt.Sprintf("[PUT /iam/v3/admin/namespaces/{namespace}/users/{userId}/password][%d] adminResetPasswordV3Forbidden  %+v", 403, o.ToJSONString())
+}
+
+func (o *AdminResetPasswordV3Forbidden) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
+}
+
+func (o *AdminResetPasswordV3Forbidden) GetPayload() *iamclientmodels.RestErrorResponse {
+	return o.Payload
 }
 
 func (o *AdminResetPasswordV3Forbidden) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -172,6 +223,13 @@ func (o *AdminResetPasswordV3Forbidden) readResponse(response runtime.ClientResp
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
 		consumer = runtime.ByteStreamConsumer()
+	}
+
+	o.Payload = new(iamclientmodels.RestErrorResponse)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
 	}
 
 	return nil
@@ -213,10 +271,30 @@ func NewAdminResetPasswordV3InternalServerError() *AdminResetPasswordV3InternalS
   <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20000</td><td>internal server error</td></tr></table>
 */
 type AdminResetPasswordV3InternalServerError struct {
+	Payload *iamclientmodels.RestErrorResponse
 }
 
 func (o *AdminResetPasswordV3InternalServerError) Error() string {
-	return fmt.Sprintf("[PUT /iam/v3/admin/namespaces/{namespace}/users/{userId}/password][%d] adminResetPasswordV3InternalServerError ", 500)
+	return fmt.Sprintf("[PUT /iam/v3/admin/namespaces/{namespace}/users/{userId}/password][%d] adminResetPasswordV3InternalServerError  %+v", 500, o.ToJSONString())
+}
+
+func (o *AdminResetPasswordV3InternalServerError) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
+}
+
+func (o *AdminResetPasswordV3InternalServerError) GetPayload() *iamclientmodels.RestErrorResponse {
+	return o.Payload
 }
 
 func (o *AdminResetPasswordV3InternalServerError) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -224,6 +302,13 @@ func (o *AdminResetPasswordV3InternalServerError) readResponse(response runtime.
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
 		consumer = runtime.ByteStreamConsumer()
+	}
+
+	o.Payload = new(iamclientmodels.RestErrorResponse)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
 	}
 
 	return nil

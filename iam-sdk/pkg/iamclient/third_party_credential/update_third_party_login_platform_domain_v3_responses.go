@@ -190,13 +190,33 @@ func NewUpdateThirdPartyLoginPlatformDomainV3Unauthorized() *UpdateThirdPartyLog
 
 /*UpdateThirdPartyLoginPlatformDomainV3Unauthorized handles this case with default header values.
 
-  Unauthorized
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20001</td><td>unauthorized access</td></tr></table>
 */
 type UpdateThirdPartyLoginPlatformDomainV3Unauthorized struct {
+	Payload *iamclientmodels.RestErrorResponse
 }
 
 func (o *UpdateThirdPartyLoginPlatformDomainV3Unauthorized) Error() string {
-	return fmt.Sprintf("[PUT /iam/v3/admin/namespaces/{namespace}/platforms/{platformId}/clients/domain][%d] updateThirdPartyLoginPlatformDomainV3Unauthorized ", 401)
+	return fmt.Sprintf("[PUT /iam/v3/admin/namespaces/{namespace}/platforms/{platformId}/clients/domain][%d] updateThirdPartyLoginPlatformDomainV3Unauthorized  %+v", 401, o.ToJSONString())
+}
+
+func (o *UpdateThirdPartyLoginPlatformDomainV3Unauthorized) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
+}
+
+func (o *UpdateThirdPartyLoginPlatformDomainV3Unauthorized) GetPayload() *iamclientmodels.RestErrorResponse {
+	return o.Payload
 }
 
 func (o *UpdateThirdPartyLoginPlatformDomainV3Unauthorized) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -204,6 +224,13 @@ func (o *UpdateThirdPartyLoginPlatformDomainV3Unauthorized) readResponse(respons
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
 		consumer = runtime.ByteStreamConsumer()
+	}
+
+	o.Payload = new(iamclientmodels.RestErrorResponse)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
 	}
 
 	return nil
@@ -216,13 +243,33 @@ func NewUpdateThirdPartyLoginPlatformDomainV3Forbidden() *UpdateThirdPartyLoginP
 
 /*UpdateThirdPartyLoginPlatformDomainV3Forbidden handles this case with default header values.
 
-  Forbidden
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20013</td><td>insufficient permissions</td></tr></table>
 */
 type UpdateThirdPartyLoginPlatformDomainV3Forbidden struct {
+	Payload *iamclientmodels.RestErrorResponse
 }
 
 func (o *UpdateThirdPartyLoginPlatformDomainV3Forbidden) Error() string {
-	return fmt.Sprintf("[PUT /iam/v3/admin/namespaces/{namespace}/platforms/{platformId}/clients/domain][%d] updateThirdPartyLoginPlatformDomainV3Forbidden ", 403)
+	return fmt.Sprintf("[PUT /iam/v3/admin/namespaces/{namespace}/platforms/{platformId}/clients/domain][%d] updateThirdPartyLoginPlatformDomainV3Forbidden  %+v", 403, o.ToJSONString())
+}
+
+func (o *UpdateThirdPartyLoginPlatformDomainV3Forbidden) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
+}
+
+func (o *UpdateThirdPartyLoginPlatformDomainV3Forbidden) GetPayload() *iamclientmodels.RestErrorResponse {
+	return o.Payload
 }
 
 func (o *UpdateThirdPartyLoginPlatformDomainV3Forbidden) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -230,6 +277,13 @@ func (o *UpdateThirdPartyLoginPlatformDomainV3Forbidden) readResponse(response r
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
 		consumer = runtime.ByteStreamConsumer()
+	}
+
+	o.Payload = new(iamclientmodels.RestErrorResponse)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
 	}
 
 	return nil
@@ -242,7 +296,7 @@ func NewUpdateThirdPartyLoginPlatformDomainV3NotFound() *UpdateThirdPartyLoginPl
 
 /*UpdateThirdPartyLoginPlatformDomainV3NotFound handles this case with default header values.
 
-  Platform client not found
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>10175</td><td>third party credential not found</td></tr></table>
 */
 type UpdateThirdPartyLoginPlatformDomainV3NotFound struct {
 	Payload *iamclientmodels.RestErrorResponse
@@ -295,7 +349,7 @@ func NewUpdateThirdPartyLoginPlatformDomainV3InternalServerError() *UpdateThirdP
 
 /*UpdateThirdPartyLoginPlatformDomainV3InternalServerError handles this case with default header values.
 
-  Internal Server Error
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20000</td><td>internal server error</td></tr></table>
 */
 type UpdateThirdPartyLoginPlatformDomainV3InternalServerError struct {
 	Payload *iamclientmodels.RestErrorResponse

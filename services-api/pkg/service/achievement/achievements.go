@@ -7,6 +7,8 @@
 package achievement
 
 import (
+	"io"
+
 	"github.com/AccelByte/accelbyte-go-sdk/achievement-sdk/pkg/achievementclient"
 	"github.com/AccelByte/accelbyte-go-sdk/achievement-sdk/pkg/achievementclient/achievements"
 	"github.com/AccelByte/accelbyte-go-sdk/achievement-sdk/pkg/achievementclientmodels"
@@ -89,12 +91,12 @@ func (aaa *AchievementsService) AdminCreateNewAchievement(input *achievements.Ad
 }
 
 // Deprecated: Use ExportAchievementsShort instead
-func (aaa *AchievementsService) ExportAchievements(input *achievements.ExportAchievementsParams) ([]*achievementclientmodels.ModelsAchievement, error) {
+func (aaa *AchievementsService) ExportAchievements(input *achievements.ExportAchievementsParams, writer io.Writer) (io.Writer, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, unauthorized, forbidden, internalServerError, err := aaa.Client.Achievements.ExportAchievements(input, client.BearerToken(*token.AccessToken))
+	ok, unauthorized, forbidden, internalServerError, err := aaa.Client.Achievements.ExportAchievements(input, client.BearerToken(*token.AccessToken), writer)
 	if unauthorized != nil {
 		return nil, unauthorized
 	}
@@ -464,7 +466,7 @@ func (aaa *AchievementsService) AdminCreateNewAchievementShort(input *achievemen
 	return created.GetPayload(), nil
 }
 
-func (aaa *AchievementsService) ExportAchievementsShort(input *achievements.ExportAchievementsParams) ([]*achievementclientmodels.ModelsAchievement, error) {
+func (aaa *AchievementsService) ExportAchievementsShort(input *achievements.ExportAchievementsParams, writer io.Writer) (io.Writer, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -481,7 +483,7 @@ func (aaa *AchievementsService) ExportAchievementsShort(input *achievements.Expo
 		}
 	}
 
-	ok, err := aaa.Client.Achievements.ExportAchievementsShort(input, authInfoWriter)
+	ok, err := aaa.Client.Achievements.ExportAchievementsShort(input, authInfoWriter, writer)
 	if err != nil {
 		return nil, err
 	}

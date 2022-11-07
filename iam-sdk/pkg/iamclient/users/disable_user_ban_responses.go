@@ -131,13 +131,33 @@ func NewDisableUserBanUnauthorized() *DisableUserBanUnauthorized {
 
 /*DisableUserBanUnauthorized handles this case with default header values.
 
-  Unauthorized access
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20001</td><td>unauthorized access</td></tr></table>
 */
 type DisableUserBanUnauthorized struct {
+	Payload *iamclientmodels.RestErrorResponse
 }
 
 func (o *DisableUserBanUnauthorized) Error() string {
-	return fmt.Sprintf("[PUT /iam/namespaces/{namespace}/users/{userId}/bans/{banId}/disable][%d] disableUserBanUnauthorized ", 401)
+	return fmt.Sprintf("[PUT /iam/namespaces/{namespace}/users/{userId}/bans/{banId}/disable][%d] disableUserBanUnauthorized  %+v", 401, o.ToJSONString())
+}
+
+func (o *DisableUserBanUnauthorized) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
+}
+
+func (o *DisableUserBanUnauthorized) GetPayload() *iamclientmodels.RestErrorResponse {
+	return o.Payload
 }
 
 func (o *DisableUserBanUnauthorized) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -145,6 +165,13 @@ func (o *DisableUserBanUnauthorized) readResponse(response runtime.ClientRespons
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
 		consumer = runtime.ByteStreamConsumer()
+	}
+
+	o.Payload = new(iamclientmodels.RestErrorResponse)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
 	}
 
 	return nil

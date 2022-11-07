@@ -25,13 +25,14 @@ import (
 // AdminExportConfigV1Reader is a Reader for the AdminExportConfigV1 structure.
 type AdminExportConfigV1Reader struct {
 	formats strfmt.Registry
+	writer  io.Writer
 }
 
 // ReadResponse reads a server response into the received o.
 func (o *AdminExportConfigV1Reader) ReadResponse(response runtime.ClientResponse, consumer runtime.Consumer) (interface{}, error) {
 	switch response.Code() {
 	case 200:
-		result := NewAdminExportConfigV1OK()
+		result := NewAdminExportConfigV1OK(o.writer)
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
@@ -66,8 +67,10 @@ func (o *AdminExportConfigV1Reader) ReadResponse(response runtime.ClientResponse
 }
 
 // NewAdminExportConfigV1OK creates a AdminExportConfigV1OK with default headers values
-func NewAdminExportConfigV1OK() *AdminExportConfigV1OK {
-	return &AdminExportConfigV1OK{}
+func NewAdminExportConfigV1OK(writer io.Writer) *AdminExportConfigV1OK {
+	return &AdminExportConfigV1OK{
+		Payload: writer,
+	}
 }
 
 /*AdminExportConfigV1OK handles this case with default header values.
@@ -75,7 +78,7 @@ func NewAdminExportConfigV1OK() *AdminExportConfigV1OK {
   OK
 */
 type AdminExportConfigV1OK struct {
-	Payload *lobbyclientmodels.ModelsConfigExport
+	Payload io.Writer
 }
 
 func (o *AdminExportConfigV1OK) Error() string {
@@ -97,7 +100,7 @@ func (o *AdminExportConfigV1OK) ToJSONString() string {
 	return fmt.Sprintf("%+v", string(b))
 }
 
-func (o *AdminExportConfigV1OK) GetPayload() *lobbyclientmodels.ModelsConfigExport {
+func (o *AdminExportConfigV1OK) GetPayload() io.Writer {
 	return o.Payload
 }
 
@@ -107,8 +110,6 @@ func (o *AdminExportConfigV1OK) readResponse(response runtime.ClientResponse, co
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
 		consumer = runtime.ByteStreamConsumer()
 	}
-
-	o.Payload = new(lobbyclientmodels.ModelsConfigExport)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {

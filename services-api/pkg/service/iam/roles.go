@@ -472,7 +472,7 @@ func (aaa *RolesService) AdminGetRolesV3(input *roles.AdminGetRolesV3Params) (*i
 	if err != nil {
 		return nil, err
 	}
-	ok, badRequest, unauthorized, forbidden, err := aaa.Client.Roles.AdminGetRolesV3(input, client.BearerToken(*token.AccessToken))
+	ok, badRequest, unauthorized, forbidden, internalServerError, err := aaa.Client.Roles.AdminGetRolesV3(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -481,6 +481,9 @@ func (aaa *RolesService) AdminGetRolesV3(input *roles.AdminGetRolesV3Params) (*i
 	}
 	if forbidden != nil {
 		return nil, forbidden
+	}
+	if internalServerError != nil {
+		return nil, internalServerError
 	}
 	if err != nil {
 		return nil, err
@@ -495,7 +498,7 @@ func (aaa *RolesService) AdminCreateRoleV3(input *roles.AdminCreateRoleV3Params)
 	if err != nil {
 		return nil, err
 	}
-	created, badRequest, unauthorized, forbidden, err := aaa.Client.Roles.AdminCreateRoleV3(input, client.BearerToken(*token.AccessToken))
+	created, badRequest, unauthorized, forbidden, internalServerError, err := aaa.Client.Roles.AdminCreateRoleV3(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -504,6 +507,9 @@ func (aaa *RolesService) AdminCreateRoleV3(input *roles.AdminCreateRoleV3Params)
 	}
 	if forbidden != nil {
 		return nil, forbidden
+	}
+	if internalServerError != nil {
+		return nil, internalServerError
 	}
 	if err != nil {
 		return nil, err
@@ -518,7 +524,7 @@ func (aaa *RolesService) AdminGetRoleV3(input *roles.AdminGetRoleV3Params) (*iam
 	if err != nil {
 		return nil, err
 	}
-	ok, badRequest, unauthorized, forbidden, notFound, err := aaa.Client.Roles.AdminGetRoleV3(input, client.BearerToken(*token.AccessToken))
+	ok, badRequest, unauthorized, forbidden, notFound, internalServerError, err := aaa.Client.Roles.AdminGetRoleV3(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -530,6 +536,9 @@ func (aaa *RolesService) AdminGetRoleV3(input *roles.AdminGetRoleV3Params) (*iam
 	}
 	if notFound != nil {
 		return nil, notFound
+	}
+	if internalServerError != nil {
+		return nil, internalServerError
 	}
 	if err != nil {
 		return nil, err
@@ -576,7 +585,7 @@ func (aaa *RolesService) AdminUpdateRoleV3(input *roles.AdminUpdateRoleV3Params)
 	if err != nil {
 		return nil, err
 	}
-	ok, badRequest, unauthorized, forbidden, notFound, err := aaa.Client.Roles.AdminUpdateRoleV3(input, client.BearerToken(*token.AccessToken))
+	ok, badRequest, unauthorized, forbidden, notFound, internalServerError, err := aaa.Client.Roles.AdminUpdateRoleV3(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -588,6 +597,9 @@ func (aaa *RolesService) AdminUpdateRoleV3(input *roles.AdminUpdateRoleV3Params)
 	}
 	if notFound != nil {
 		return nil, notFound
+	}
+	if internalServerError != nil {
+		return nil, internalServerError
 	}
 	if err != nil {
 		return nil, err
@@ -602,7 +614,7 @@ func (aaa *RolesService) AdminGetRoleAdminStatusV3(input *roles.AdminGetRoleAdmi
 	if err != nil {
 		return nil, err
 	}
-	ok, badRequest, unauthorized, forbidden, notFound, err := aaa.Client.Roles.AdminGetRoleAdminStatusV3(input, client.BearerToken(*token.AccessToken))
+	ok, badRequest, unauthorized, forbidden, notFound, internalServerError, err := aaa.Client.Roles.AdminGetRoleAdminStatusV3(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -614,6 +626,9 @@ func (aaa *RolesService) AdminGetRoleAdminStatusV3(input *roles.AdminGetRoleAdmi
 	}
 	if notFound != nil {
 		return nil, notFound
+	}
+	if internalServerError != nil {
+		return nil, internalServerError
 	}
 	if err != nil {
 		return nil, err
@@ -686,7 +701,7 @@ func (aaa *RolesService) AdminGetRoleManagersV3(input *roles.AdminGetRoleManager
 	if err != nil {
 		return nil, err
 	}
-	ok, badRequest, unauthorized, forbidden, notFound, err := aaa.Client.Roles.AdminGetRoleManagersV3(input, client.BearerToken(*token.AccessToken))
+	ok, badRequest, unauthorized, forbidden, notFound, internalServerError, err := aaa.Client.Roles.AdminGetRoleManagersV3(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -698,6 +713,9 @@ func (aaa *RolesService) AdminGetRoleManagersV3(input *roles.AdminGetRoleManager
 	}
 	if notFound != nil {
 		return nil, notFound
+	}
+	if internalServerError != nil {
+		return nil, internalServerError
 	}
 	if err != nil {
 		return nil, err
@@ -741,7 +759,7 @@ func (aaa *RolesService) AdminRemoveRoleManagersV3(input *roles.AdminRemoveRoleM
 	if err != nil {
 		return err
 	}
-	_, badRequest, unauthorized, forbidden, notFound, err := aaa.Client.Roles.AdminRemoveRoleManagersV3(input, client.BearerToken(*token.AccessToken))
+	_, badRequest, unauthorized, forbidden, notFound, internalServerError, err := aaa.Client.Roles.AdminRemoveRoleManagersV3(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return badRequest
 	}
@@ -753,6 +771,9 @@ func (aaa *RolesService) AdminRemoveRoleManagersV3(input *roles.AdminRemoveRoleM
 	}
 	if notFound != nil {
 		return notFound
+	}
+	if internalServerError != nil {
+		return internalServerError
 	}
 	if err != nil {
 		return err
@@ -767,7 +788,7 @@ func (aaa *RolesService) AdminGetRoleMembersV3(input *roles.AdminGetRoleMembersV
 	if err != nil {
 		return nil, err
 	}
-	ok, badRequest, unauthorized, forbidden, notFound, err := aaa.Client.Roles.AdminGetRoleMembersV3(input, client.BearerToken(*token.AccessToken))
+	ok, badRequest, unauthorized, forbidden, notFound, internalServerError, err := aaa.Client.Roles.AdminGetRoleMembersV3(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -779,6 +800,9 @@ func (aaa *RolesService) AdminGetRoleMembersV3(input *roles.AdminGetRoleMembersV
 	}
 	if notFound != nil {
 		return nil, notFound
+	}
+	if internalServerError != nil {
+		return nil, internalServerError
 	}
 	if err != nil {
 		return nil, err
@@ -793,7 +817,7 @@ func (aaa *RolesService) AdminAddRoleMembersV3(input *roles.AdminAddRoleMembersV
 	if err != nil {
 		return err
 	}
-	_, badRequest, unauthorized, forbidden, notFound, conflict, err := aaa.Client.Roles.AdminAddRoleMembersV3(input, client.BearerToken(*token.AccessToken))
+	_, badRequest, unauthorized, forbidden, notFound, conflict, internalServerError, err := aaa.Client.Roles.AdminAddRoleMembersV3(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return badRequest
 	}
@@ -809,6 +833,9 @@ func (aaa *RolesService) AdminAddRoleMembersV3(input *roles.AdminAddRoleMembersV
 	if conflict != nil {
 		return conflict
 	}
+	if internalServerError != nil {
+		return internalServerError
+	}
 	if err != nil {
 		return err
 	}
@@ -822,7 +849,7 @@ func (aaa *RolesService) AdminRemoveRoleMembersV3(input *roles.AdminRemoveRoleMe
 	if err != nil {
 		return err
 	}
-	_, badRequest, unauthorized, forbidden, notFound, err := aaa.Client.Roles.AdminRemoveRoleMembersV3(input, client.BearerToken(*token.AccessToken))
+	_, badRequest, unauthorized, forbidden, notFound, internalServerError, err := aaa.Client.Roles.AdminRemoveRoleMembersV3(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return badRequest
 	}
@@ -834,6 +861,9 @@ func (aaa *RolesService) AdminRemoveRoleMembersV3(input *roles.AdminRemoveRoleMe
 	}
 	if notFound != nil {
 		return notFound
+	}
+	if internalServerError != nil {
+		return internalServerError
 	}
 	if err != nil {
 		return err
@@ -848,7 +878,7 @@ func (aaa *RolesService) AdminUpdateRolePermissionsV3(input *roles.AdminUpdateRo
 	if err != nil {
 		return err
 	}
-	_, badRequest, unauthorized, forbidden, notFound, err := aaa.Client.Roles.AdminUpdateRolePermissionsV3(input, client.BearerToken(*token.AccessToken))
+	_, badRequest, unauthorized, forbidden, notFound, internalServerError, err := aaa.Client.Roles.AdminUpdateRolePermissionsV3(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return badRequest
 	}
@@ -860,6 +890,9 @@ func (aaa *RolesService) AdminUpdateRolePermissionsV3(input *roles.AdminUpdateRo
 	}
 	if notFound != nil {
 		return notFound
+	}
+	if internalServerError != nil {
+		return internalServerError
 	}
 	if err != nil {
 		return err
@@ -874,7 +907,7 @@ func (aaa *RolesService) AdminAddRolePermissionsV3(input *roles.AdminAddRolePerm
 	if err != nil {
 		return err
 	}
-	_, badRequest, unauthorized, forbidden, notFound, err := aaa.Client.Roles.AdminAddRolePermissionsV3(input, client.BearerToken(*token.AccessToken))
+	_, badRequest, unauthorized, forbidden, notFound, internalServerError, err := aaa.Client.Roles.AdminAddRolePermissionsV3(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return badRequest
 	}
@@ -886,6 +919,9 @@ func (aaa *RolesService) AdminAddRolePermissionsV3(input *roles.AdminAddRolePerm
 	}
 	if notFound != nil {
 		return notFound
+	}
+	if internalServerError != nil {
+		return internalServerError
 	}
 	if err != nil {
 		return err
@@ -989,7 +1025,7 @@ func (aaa *RolesService) AdminGetRolesV4(input *roles.AdminGetRolesV4Params) (*i
 	if err != nil {
 		return nil, err
 	}
-	ok, badRequest, unauthorized, forbidden, err := aaa.Client.Roles.AdminGetRolesV4(input, client.BearerToken(*token.AccessToken))
+	ok, badRequest, unauthorized, forbidden, internalServerError, err := aaa.Client.Roles.AdminGetRolesV4(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -998,6 +1034,9 @@ func (aaa *RolesService) AdminGetRolesV4(input *roles.AdminGetRolesV4Params) (*i
 	}
 	if forbidden != nil {
 		return nil, forbidden
+	}
+	if internalServerError != nil {
+		return nil, internalServerError
 	}
 	if err != nil {
 		return nil, err
@@ -1012,7 +1051,7 @@ func (aaa *RolesService) AdminCreateRoleV4(input *roles.AdminCreateRoleV4Params)
 	if err != nil {
 		return nil, err
 	}
-	created, badRequest, unauthorized, forbidden, err := aaa.Client.Roles.AdminCreateRoleV4(input, client.BearerToken(*token.AccessToken))
+	created, badRequest, unauthorized, forbidden, internalServerError, err := aaa.Client.Roles.AdminCreateRoleV4(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -1021,6 +1060,9 @@ func (aaa *RolesService) AdminCreateRoleV4(input *roles.AdminCreateRoleV4Params)
 	}
 	if forbidden != nil {
 		return nil, forbidden
+	}
+	if internalServerError != nil {
+		return nil, internalServerError
 	}
 	if err != nil {
 		return nil, err
@@ -1035,7 +1077,7 @@ func (aaa *RolesService) AdminGetRoleV4(input *roles.AdminGetRoleV4Params) (*iam
 	if err != nil {
 		return nil, err
 	}
-	ok, badRequest, unauthorized, forbidden, notFound, err := aaa.Client.Roles.AdminGetRoleV4(input, client.BearerToken(*token.AccessToken))
+	ok, badRequest, unauthorized, forbidden, notFound, internalServerError, err := aaa.Client.Roles.AdminGetRoleV4(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -1047,6 +1089,9 @@ func (aaa *RolesService) AdminGetRoleV4(input *roles.AdminGetRoleV4Params) (*iam
 	}
 	if notFound != nil {
 		return nil, notFound
+	}
+	if internalServerError != nil {
+		return nil, internalServerError
 	}
 	if err != nil {
 		return nil, err

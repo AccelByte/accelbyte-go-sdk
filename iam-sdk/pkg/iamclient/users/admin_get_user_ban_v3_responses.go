@@ -60,6 +60,12 @@ func (o *AdminGetUserBanV3Reader) ReadResponse(response runtime.ClientResponse, 
 			return nil, err
 		}
 		return result, nil
+	case 500:
+		result := NewAdminGetUserBanV3InternalServerError()
+		if err := result.readResponse(response, consumer, o.formats); err != nil {
+			return nil, err
+		}
+		return result, nil
 
 	default:
 		data, err := ioutil.ReadAll(response.Body())
@@ -320,6 +326,59 @@ func (o *AdminGetUserBanV3NotFound) GetPayload() *iamclientmodels.RestErrorRespo
 }
 
 func (o *AdminGetUserBanV3NotFound) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+	// handle file responses
+	contentDisposition := response.GetHeader("Content-Disposition")
+	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
+		consumer = runtime.ByteStreamConsumer()
+	}
+
+	o.Payload = new(iamclientmodels.RestErrorResponse)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
+	}
+
+	return nil
+}
+
+// NewAdminGetUserBanV3InternalServerError creates a AdminGetUserBanV3InternalServerError with default headers values
+func NewAdminGetUserBanV3InternalServerError() *AdminGetUserBanV3InternalServerError {
+	return &AdminGetUserBanV3InternalServerError{}
+}
+
+/*AdminGetUserBanV3InternalServerError handles this case with default header values.
+
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20000</td><td>internal server error</td></tr></table>
+*/
+type AdminGetUserBanV3InternalServerError struct {
+	Payload *iamclientmodels.RestErrorResponse
+}
+
+func (o *AdminGetUserBanV3InternalServerError) Error() string {
+	return fmt.Sprintf("[GET /iam/v3/admin/namespaces/{namespace}/users/{userId}/bans][%d] adminGetUserBanV3InternalServerError  %+v", 500, o.ToJSONString())
+}
+
+func (o *AdminGetUserBanV3InternalServerError) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
+}
+
+func (o *AdminGetUserBanV3InternalServerError) GetPayload() *iamclientmodels.RestErrorResponse {
+	return o.Payload
+}
+
+func (o *AdminGetUserBanV3InternalServerError) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {

@@ -166,7 +166,7 @@ This endpoint send events into designated streaming pipeline and each request ca
 - **EventNamespace (required)**: Namespace of the relevant game with domain name format.
                 &lt;p&gt; Only accept input with valid characters. Allowed characters: &lt;b&gt;Aa-Zz0-9_.-&lt;/b&gt; &lt;p&gt;
                 &lt;p&gt; It is encouraged to use alphanumeric only characters. &lt;b&gt;_.-&lt;/b&gt; will be deprecated soon &lt;p&gt;
-                &lt;p&gt; Example: io.accelbyte.justice.dev.samplegame &lt;/p&gt;
+                &lt;p&gt; Example: accelbyte &lt;/p&gt;
 
 - **EventName (required)**: Name of the event.
                 &lt;p&gt; Only accept input with valid characters. Allowed characters: &lt;b&gt;Aa-Zz0-9_.-&lt;/b&gt; &lt;p&gt;
@@ -232,7 +232,7 @@ This endpoint send events into designated streaming pipeline and each request ca
 - **EventNamespace (required)**: Namespace of the relevant game with domain name format.
                 &lt;p&gt; Only accept input with valid characters. Allowed characters: &lt;b&gt;Aa-Zz0-9_.-&lt;/b&gt; &lt;p&gt;
                 &lt;p&gt; It is encouraged to use alphanumeric only characters. &lt;b&gt;_.-&lt;/b&gt; will be deprecated soon &lt;p&gt;
-                &lt;p&gt; Example: io.accelbyte.justice.dev.samplegame &lt;/p&gt;
+                &lt;p&gt; Example: accelbyte &lt;/p&gt;
 
 - **EventName (required)**: Name of the event.
                 &lt;p&gt; Only accept input with valid characters. Allowed characters: &lt;b&gt;Aa-Zz0-9_.-&lt;/b&gt; &lt;p&gt;

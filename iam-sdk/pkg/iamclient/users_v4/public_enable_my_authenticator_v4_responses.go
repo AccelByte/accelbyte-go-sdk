@@ -222,7 +222,7 @@ func NewPublicEnableMyAuthenticatorV4Forbidden() *PublicEnableMyAuthenticatorV4F
 
 /*PublicEnableMyAuthenticatorV4Forbidden handles this case with default header values.
 
-  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20003</td><td>forbidden access</td></tr></table>
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20013</td><td>insufficient permissions</td></tr></table>
 */
 type PublicEnableMyAuthenticatorV4Forbidden struct {
 	Payload *iamclientmodels.RestErrorResponse

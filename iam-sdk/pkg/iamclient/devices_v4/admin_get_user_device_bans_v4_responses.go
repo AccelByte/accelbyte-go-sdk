@@ -42,6 +42,12 @@ func (o *AdminGetUserDeviceBansV4Reader) ReadResponse(response runtime.ClientRes
 			return nil, err
 		}
 		return result, nil
+	case 403:
+		result := NewAdminGetUserDeviceBansV4Forbidden()
+		if err := result.readResponse(response, consumer, o.formats); err != nil {
+			return nil, err
+		}
+		return result, nil
 	case 404:
 		result := NewAdminGetUserDeviceBansV4NotFound()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -155,6 +161,59 @@ func (o *AdminGetUserDeviceBansV4Unauthorized) GetPayload() *iamclientmodels.Res
 }
 
 func (o *AdminGetUserDeviceBansV4Unauthorized) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+	// handle file responses
+	contentDisposition := response.GetHeader("Content-Disposition")
+	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
+		consumer = runtime.ByteStreamConsumer()
+	}
+
+	o.Payload = new(iamclientmodels.RestErrorResponse)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
+	}
+
+	return nil
+}
+
+// NewAdminGetUserDeviceBansV4Forbidden creates a AdminGetUserDeviceBansV4Forbidden with default headers values
+func NewAdminGetUserDeviceBansV4Forbidden() *AdminGetUserDeviceBansV4Forbidden {
+	return &AdminGetUserDeviceBansV4Forbidden{}
+}
+
+/*AdminGetUserDeviceBansV4Forbidden handles this case with default header values.
+
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20013</td><td>insufficient permissions</td></tr></table>
+*/
+type AdminGetUserDeviceBansV4Forbidden struct {
+	Payload *iamclientmodels.RestErrorResponse
+}
+
+func (o *AdminGetUserDeviceBansV4Forbidden) Error() string {
+	return fmt.Sprintf("[GET /iam/v4/admin/namespaces/{namespace}/devices/bans][%d] adminGetUserDeviceBansV4Forbidden  %+v", 403, o.ToJSONString())
+}
+
+func (o *AdminGetUserDeviceBansV4Forbidden) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
+}
+
+func (o *AdminGetUserDeviceBansV4Forbidden) GetPayload() *iamclientmodels.RestErrorResponse {
+	return o.Payload
+}
+
+func (o *AdminGetUserDeviceBansV4Forbidden) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {

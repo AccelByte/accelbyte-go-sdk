@@ -54,6 +54,12 @@ func (o *AdminCreateRoleV3Reader) ReadResponse(response runtime.ClientResponse, 
 			return nil, err
 		}
 		return result, nil
+	case 500:
+		result := NewAdminCreateRoleV3InternalServerError()
+		if err := result.readResponse(response, consumer, o.formats); err != nil {
+			return nil, err
+		}
+		return result, nil
 
 	default:
 		data, err := ioutil.ReadAll(response.Body())
@@ -261,6 +267,59 @@ func (o *AdminCreateRoleV3Forbidden) GetPayload() *iamclientmodels.RestErrorResp
 }
 
 func (o *AdminCreateRoleV3Forbidden) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+	// handle file responses
+	contentDisposition := response.GetHeader("Content-Disposition")
+	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
+		consumer = runtime.ByteStreamConsumer()
+	}
+
+	o.Payload = new(iamclientmodels.RestErrorResponse)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
+	}
+
+	return nil
+}
+
+// NewAdminCreateRoleV3InternalServerError creates a AdminCreateRoleV3InternalServerError with default headers values
+func NewAdminCreateRoleV3InternalServerError() *AdminCreateRoleV3InternalServerError {
+	return &AdminCreateRoleV3InternalServerError{}
+}
+
+/*AdminCreateRoleV3InternalServerError handles this case with default header values.
+
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20000</td><td>internal server error</td></tr></table>
+*/
+type AdminCreateRoleV3InternalServerError struct {
+	Payload *iamclientmodels.RestErrorResponse
+}
+
+func (o *AdminCreateRoleV3InternalServerError) Error() string {
+	return fmt.Sprintf("[POST /iam/v3/admin/roles][%d] adminCreateRoleV3InternalServerError  %+v", 500, o.ToJSONString())
+}
+
+func (o *AdminCreateRoleV3InternalServerError) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
+}
+
+func (o *AdminCreateRoleV3InternalServerError) GetPayload() *iamclientmodels.RestErrorResponse {
+	return o.Payload
+}
+
+func (o *AdminCreateRoleV3InternalServerError) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {

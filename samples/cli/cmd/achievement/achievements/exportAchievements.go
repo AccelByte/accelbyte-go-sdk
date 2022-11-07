@@ -7,6 +7,8 @@
 package achievements
 
 import (
+	"bytes"
+
 	"github.com/AccelByte/accelbyte-go-sdk/achievement-sdk/pkg/achievementclient/achievements"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/achievement"
@@ -29,7 +31,8 @@ var ExportAchievementsCmd = &cobra.Command{
 		input := &achievements.ExportAchievementsParams{
 			Namespace: namespace,
 		}
-		ok, err := achievementsService.ExportAchievementsShort(input)
+		writer := bytes.NewBuffer(nil)
+		ok, err := achievementsService.ExportAchievementsShort(input, writer)
 		if err != nil {
 			logrus.Error(err)
 

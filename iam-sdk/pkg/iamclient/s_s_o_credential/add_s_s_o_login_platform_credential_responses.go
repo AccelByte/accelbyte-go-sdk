@@ -131,7 +131,7 @@ func NewAddSSOLoginPlatformCredentialBadRequest() *AddSSOLoginPlatformCredential
 
 /*AddSSOLoginPlatformCredentialBadRequest handles this case with default header values.
 
-  Bad Request
+  Invalid request
 */
 type AddSSOLoginPlatformCredentialBadRequest struct {
 	Payload *iamclientmodels.RestErrorResponse
@@ -184,13 +184,33 @@ func NewAddSSOLoginPlatformCredentialUnauthorized() *AddSSOLoginPlatformCredenti
 
 /*AddSSOLoginPlatformCredentialUnauthorized handles this case with default header values.
 
-  Unauthorized
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20001</td><td>unauthorized access</td></tr></table>
 */
 type AddSSOLoginPlatformCredentialUnauthorized struct {
+	Payload *iamclientmodels.RestErrorResponse
 }
 
 func (o *AddSSOLoginPlatformCredentialUnauthorized) Error() string {
-	return fmt.Sprintf("[POST /iam/v3/admin/namespaces/{namespace}/platforms/{platformId}/sso][%d] addSSOLoginPlatformCredentialUnauthorized ", 401)
+	return fmt.Sprintf("[POST /iam/v3/admin/namespaces/{namespace}/platforms/{platformId}/sso][%d] addSSOLoginPlatformCredentialUnauthorized  %+v", 401, o.ToJSONString())
+}
+
+func (o *AddSSOLoginPlatformCredentialUnauthorized) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
+}
+
+func (o *AddSSOLoginPlatformCredentialUnauthorized) GetPayload() *iamclientmodels.RestErrorResponse {
+	return o.Payload
 }
 
 func (o *AddSSOLoginPlatformCredentialUnauthorized) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -198,6 +218,13 @@ func (o *AddSSOLoginPlatformCredentialUnauthorized) readResponse(response runtim
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
 		consumer = runtime.ByteStreamConsumer()
+	}
+
+	o.Payload = new(iamclientmodels.RestErrorResponse)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
 	}
 
 	return nil
@@ -210,13 +237,33 @@ func NewAddSSOLoginPlatformCredentialForbidden() *AddSSOLoginPlatformCredentialF
 
 /*AddSSOLoginPlatformCredentialForbidden handles this case with default header values.
 
-  Forbidden
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20013</td><td>insufficient permissions</td></tr></table>
 */
 type AddSSOLoginPlatformCredentialForbidden struct {
+	Payload *iamclientmodels.RestErrorResponse
 }
 
 func (o *AddSSOLoginPlatformCredentialForbidden) Error() string {
-	return fmt.Sprintf("[POST /iam/v3/admin/namespaces/{namespace}/platforms/{platformId}/sso][%d] addSSOLoginPlatformCredentialForbidden ", 403)
+	return fmt.Sprintf("[POST /iam/v3/admin/namespaces/{namespace}/platforms/{platformId}/sso][%d] addSSOLoginPlatformCredentialForbidden  %+v", 403, o.ToJSONString())
+}
+
+func (o *AddSSOLoginPlatformCredentialForbidden) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
+}
+
+func (o *AddSSOLoginPlatformCredentialForbidden) GetPayload() *iamclientmodels.RestErrorResponse {
+	return o.Payload
 }
 
 func (o *AddSSOLoginPlatformCredentialForbidden) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -224,6 +271,13 @@ func (o *AddSSOLoginPlatformCredentialForbidden) readResponse(response runtime.C
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
 		consumer = runtime.ByteStreamConsumer()
+	}
+
+	o.Payload = new(iamclientmodels.RestErrorResponse)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
 	}
 
 	return nil
@@ -236,7 +290,7 @@ func NewAddSSOLoginPlatformCredentialInternalServerError() *AddSSOLoginPlatformC
 
 /*AddSSOLoginPlatformCredentialInternalServerError handles this case with default header values.
 
-  Internal Server Error
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20000</td><td>internal server error</td></tr></table>
 */
 type AddSSOLoginPlatformCredentialInternalServerError struct {
 	Payload *iamclientmodels.RestErrorResponse

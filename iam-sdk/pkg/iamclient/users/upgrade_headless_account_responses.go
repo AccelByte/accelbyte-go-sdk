@@ -125,13 +125,33 @@ func NewUpgradeHeadlessAccountUnauthorized() *UpgradeHeadlessAccountUnauthorized
 
 /*UpgradeHeadlessAccountUnauthorized handles this case with default header values.
 
-  Unauthorized access
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20001</td><td>unauthorized access</td></tr></table>
 */
 type UpgradeHeadlessAccountUnauthorized struct {
+	Payload *iamclientmodels.RestErrorResponse
 }
 
 func (o *UpgradeHeadlessAccountUnauthorized) Error() string {
-	return fmt.Sprintf("[POST /iam/namespaces/{namespace}/users/{userId}/upgradeHeadlessAccount][%d] upgradeHeadlessAccountUnauthorized ", 401)
+	return fmt.Sprintf("[POST /iam/namespaces/{namespace}/users/{userId}/upgradeHeadlessAccount][%d] upgradeHeadlessAccountUnauthorized  %+v", 401, o.ToJSONString())
+}
+
+func (o *UpgradeHeadlessAccountUnauthorized) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
+}
+
+func (o *UpgradeHeadlessAccountUnauthorized) GetPayload() *iamclientmodels.RestErrorResponse {
+	return o.Payload
 }
 
 func (o *UpgradeHeadlessAccountUnauthorized) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -139,6 +159,13 @@ func (o *UpgradeHeadlessAccountUnauthorized) readResponse(response runtime.Clien
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
 		consumer = runtime.ByteStreamConsumer()
+	}
+
+	o.Payload = new(iamclientmodels.RestErrorResponse)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
 	}
 
 	return nil
@@ -151,13 +178,33 @@ func NewUpgradeHeadlessAccountForbidden() *UpgradeHeadlessAccountForbidden {
 
 /*UpgradeHeadlessAccountForbidden handles this case with default header values.
 
-  Forbidden
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20013</td><td>insufficient permissions</td></tr></table>
 */
 type UpgradeHeadlessAccountForbidden struct {
+	Payload *iamclientmodels.RestErrorResponse
 }
 
 func (o *UpgradeHeadlessAccountForbidden) Error() string {
-	return fmt.Sprintf("[POST /iam/namespaces/{namespace}/users/{userId}/upgradeHeadlessAccount][%d] upgradeHeadlessAccountForbidden ", 403)
+	return fmt.Sprintf("[POST /iam/namespaces/{namespace}/users/{userId}/upgradeHeadlessAccount][%d] upgradeHeadlessAccountForbidden  %+v", 403, o.ToJSONString())
+}
+
+func (o *UpgradeHeadlessAccountForbidden) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
+}
+
+func (o *UpgradeHeadlessAccountForbidden) GetPayload() *iamclientmodels.RestErrorResponse {
+	return o.Payload
 }
 
 func (o *UpgradeHeadlessAccountForbidden) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -165,6 +212,13 @@ func (o *UpgradeHeadlessAccountForbidden) readResponse(response runtime.ClientRe
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
 		consumer = runtime.ByteStreamConsumer()
+	}
+
+	o.Payload = new(iamclientmodels.RestErrorResponse)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
 	}
 
 	return nil

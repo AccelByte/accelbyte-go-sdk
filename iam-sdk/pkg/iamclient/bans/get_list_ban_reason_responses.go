@@ -119,13 +119,33 @@ func NewGetListBanReasonUnauthorized() *GetListBanReasonUnauthorized {
 
 /*GetListBanReasonUnauthorized handles this case with default header values.
 
-  Unauthorized access
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20001</td><td>unauthorized access</td></tr></table>
 */
 type GetListBanReasonUnauthorized struct {
+	Payload *iamclientmodels.RestErrorResponse
 }
 
 func (o *GetListBanReasonUnauthorized) Error() string {
-	return fmt.Sprintf("[GET /iam/bans/reasons][%d] getListBanReasonUnauthorized ", 401)
+	return fmt.Sprintf("[GET /iam/bans/reasons][%d] getListBanReasonUnauthorized  %+v", 401, o.ToJSONString())
+}
+
+func (o *GetListBanReasonUnauthorized) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
+}
+
+func (o *GetListBanReasonUnauthorized) GetPayload() *iamclientmodels.RestErrorResponse {
+	return o.Payload
 }
 
 func (o *GetListBanReasonUnauthorized) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -133,6 +153,13 @@ func (o *GetListBanReasonUnauthorized) readResponse(response runtime.ClientRespo
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
 		consumer = runtime.ByteStreamConsumer()
+	}
+
+	o.Payload = new(iamclientmodels.RestErrorResponse)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
 	}
 
 	return nil
@@ -145,13 +172,33 @@ func NewGetListBanReasonForbidden() *GetListBanReasonForbidden {
 
 /*GetListBanReasonForbidden handles this case with default header values.
 
-  Forbidden
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20013</td><td>insufficient permissions</td></tr></table>
 */
 type GetListBanReasonForbidden struct {
+	Payload *iamclientmodels.RestErrorResponse
 }
 
 func (o *GetListBanReasonForbidden) Error() string {
-	return fmt.Sprintf("[GET /iam/bans/reasons][%d] getListBanReasonForbidden ", 403)
+	return fmt.Sprintf("[GET /iam/bans/reasons][%d] getListBanReasonForbidden  %+v", 403, o.ToJSONString())
+}
+
+func (o *GetListBanReasonForbidden) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
+}
+
+func (o *GetListBanReasonForbidden) GetPayload() *iamclientmodels.RestErrorResponse {
+	return o.Payload
 }
 
 func (o *GetListBanReasonForbidden) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -159,6 +206,13 @@ func (o *GetListBanReasonForbidden) readResponse(response runtime.ClientResponse
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
 		consumer = runtime.ByteStreamConsumer()
+	}
+
+	o.Payload = new(iamclientmodels.RestErrorResponse)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
 	}
 
 	return nil

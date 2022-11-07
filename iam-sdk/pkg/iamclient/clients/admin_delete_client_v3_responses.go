@@ -113,7 +113,7 @@ func NewAdminDeleteClientV3BadRequest() *AdminDeleteClientV3BadRequest {
   <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20002</td><td>validation error</td></tr></table>
 */
 type AdminDeleteClientV3BadRequest struct {
-	Payload *iamclientmodels.RestapiErrorResponse
+	Payload *iamclientmodels.RestErrorResponse
 }
 
 func (o *AdminDeleteClientV3BadRequest) Error() string {
@@ -135,7 +135,7 @@ func (o *AdminDeleteClientV3BadRequest) ToJSONString() string {
 	return fmt.Sprintf("%+v", string(b))
 }
 
-func (o *AdminDeleteClientV3BadRequest) GetPayload() *iamclientmodels.RestapiErrorResponse {
+func (o *AdminDeleteClientV3BadRequest) GetPayload() *iamclientmodels.RestErrorResponse {
 	return o.Payload
 }
 
@@ -146,7 +146,7 @@ func (o *AdminDeleteClientV3BadRequest) readResponse(response runtime.ClientResp
 		consumer = runtime.ByteStreamConsumer()
 	}
 
-	o.Payload = new(iamclientmodels.RestapiErrorResponse)
+	o.Payload = new(iamclientmodels.RestErrorResponse)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
@@ -166,7 +166,7 @@ func NewAdminDeleteClientV3Unauthorized() *AdminDeleteClientV3Unauthorized {
   <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20001</td><td>unauthorized access</td></tr></table>
 */
 type AdminDeleteClientV3Unauthorized struct {
-	Payload *iamclientmodels.RestapiErrorResponse
+	Payload *iamclientmodels.RestErrorResponse
 }
 
 func (o *AdminDeleteClientV3Unauthorized) Error() string {
@@ -188,7 +188,7 @@ func (o *AdminDeleteClientV3Unauthorized) ToJSONString() string {
 	return fmt.Sprintf("%+v", string(b))
 }
 
-func (o *AdminDeleteClientV3Unauthorized) GetPayload() *iamclientmodels.RestapiErrorResponse {
+func (o *AdminDeleteClientV3Unauthorized) GetPayload() *iamclientmodels.RestErrorResponse {
 	return o.Payload
 }
 
@@ -199,7 +199,7 @@ func (o *AdminDeleteClientV3Unauthorized) readResponse(response runtime.ClientRe
 		consumer = runtime.ByteStreamConsumer()
 	}
 
-	o.Payload = new(iamclientmodels.RestapiErrorResponse)
+	o.Payload = new(iamclientmodels.RestErrorResponse)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
@@ -219,7 +219,7 @@ func NewAdminDeleteClientV3Forbidden() *AdminDeleteClientV3Forbidden {
   <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20013</td><td>insufficient permissions</td></tr></table>
 */
 type AdminDeleteClientV3Forbidden struct {
-	Payload *iamclientmodels.RestapiErrorResponse
+	Payload *iamclientmodels.RestErrorResponse
 }
 
 func (o *AdminDeleteClientV3Forbidden) Error() string {
@@ -241,7 +241,7 @@ func (o *AdminDeleteClientV3Forbidden) ToJSONString() string {
 	return fmt.Sprintf("%+v", string(b))
 }
 
-func (o *AdminDeleteClientV3Forbidden) GetPayload() *iamclientmodels.RestapiErrorResponse {
+func (o *AdminDeleteClientV3Forbidden) GetPayload() *iamclientmodels.RestErrorResponse {
 	return o.Payload
 }
 
@@ -252,7 +252,7 @@ func (o *AdminDeleteClientV3Forbidden) readResponse(response runtime.ClientRespo
 		consumer = runtime.ByteStreamConsumer()
 	}
 
-	o.Payload = new(iamclientmodels.RestapiErrorResponse)
+	o.Payload = new(iamclientmodels.RestErrorResponse)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
@@ -272,7 +272,7 @@ func NewAdminDeleteClientV3NotFound() *AdminDeleteClientV3NotFound {
   <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>10365</td><td>client not found</td></tr></table>
 */
 type AdminDeleteClientV3NotFound struct {
-	Payload *iamclientmodels.RestapiErrorResponse
+	Payload *iamclientmodels.RestErrorResponse
 }
 
 func (o *AdminDeleteClientV3NotFound) Error() string {
@@ -294,7 +294,7 @@ func (o *AdminDeleteClientV3NotFound) ToJSONString() string {
 	return fmt.Sprintf("%+v", string(b))
 }
 
-func (o *AdminDeleteClientV3NotFound) GetPayload() *iamclientmodels.RestapiErrorResponse {
+func (o *AdminDeleteClientV3NotFound) GetPayload() *iamclientmodels.RestErrorResponse {
 	return o.Payload
 }
 
@@ -305,7 +305,7 @@ func (o *AdminDeleteClientV3NotFound) readResponse(response runtime.ClientRespon
 		consumer = runtime.ByteStreamConsumer()
 	}
 
-	o.Payload = new(iamclientmodels.RestapiErrorResponse)
+	o.Payload = new(iamclientmodels.RestErrorResponse)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
@@ -325,7 +325,7 @@ func NewAdminDeleteClientV3Conflict() *AdminDeleteClientV3Conflict {
   <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20009</td><td>request_conflict</td></tr></table>
 */
 type AdminDeleteClientV3Conflict struct {
-	Payload *iamclientmodels.RestapiErrorResponse
+	Payload *iamclientmodels.RestErrorResponse
 }
 
 func (o *AdminDeleteClientV3Conflict) Error() string {
@@ -347,7 +347,7 @@ func (o *AdminDeleteClientV3Conflict) ToJSONString() string {
 	return fmt.Sprintf("%+v", string(b))
 }
 
-func (o *AdminDeleteClientV3Conflict) GetPayload() *iamclientmodels.RestapiErrorResponse {
+func (o *AdminDeleteClientV3Conflict) GetPayload() *iamclientmodels.RestErrorResponse {
 	return o.Payload
 }
 
@@ -358,7 +358,7 @@ func (o *AdminDeleteClientV3Conflict) readResponse(response runtime.ClientRespon
 		consumer = runtime.ByteStreamConsumer()
 	}
 
-	o.Payload = new(iamclientmodels.RestapiErrorResponse)
+	o.Payload = new(iamclientmodels.RestErrorResponse)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {

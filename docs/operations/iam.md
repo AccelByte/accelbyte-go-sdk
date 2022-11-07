@@ -646,4 +646,3 @@
 | `oauthmodel.TokenWithDeviceCookieResponseV3` | [OauthmodelTokenWithDeviceCookieResponseV3 ](../../iam-sdk/pkg/iamclientmodels/oauthmodel_token_with_device_cookie_response_v3.go) |
 | `rest.ErrorResponse` | [RestErrorResponse ](../../iam-sdk/pkg/iamclientmodels/rest_error_response.go) |
 | `rest.ErrorResponseWithConflictedUserPlatformAccounts` | [RestErrorResponseWithConflictedUserPlatformAccounts ](../../iam-sdk/pkg/iamclientmodels/rest_error_response_with_conflicted_user_platform_accounts.go) |
-| `restapi.ErrorResponse` | [RestapiErrorResponse ](../../iam-sdk/pkg/iamclientmodels/restapi_error_response.go) |

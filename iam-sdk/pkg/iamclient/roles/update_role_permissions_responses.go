@@ -10,12 +10,16 @@ package roles
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
+	"io"
 	"io/ioutil"
 	"strings"
 
 	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/strfmt"
+
+	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclientmodels"
 )
 
 // UpdateRolePermissionsReader is a Reader for the UpdateRolePermissions structure.
@@ -103,10 +107,30 @@ func NewUpdateRolePermissionsBadRequest() *UpdateRolePermissionsBadRequest {
   Invalid request
 */
 type UpdateRolePermissionsBadRequest struct {
+	Payload *iamclientmodels.RestErrorResponse
 }
 
 func (o *UpdateRolePermissionsBadRequest) Error() string {
-	return fmt.Sprintf("[POST /iam/roles/{roleId}/permissions][%d] updateRolePermissionsBadRequest ", 400)
+	return fmt.Sprintf("[POST /iam/roles/{roleId}/permissions][%d] updateRolePermissionsBadRequest  %+v", 400, o.ToJSONString())
+}
+
+func (o *UpdateRolePermissionsBadRequest) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
+}
+
+func (o *UpdateRolePermissionsBadRequest) GetPayload() *iamclientmodels.RestErrorResponse {
+	return o.Payload
 }
 
 func (o *UpdateRolePermissionsBadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -114,6 +138,13 @@ func (o *UpdateRolePermissionsBadRequest) readResponse(response runtime.ClientRe
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
 		consumer = runtime.ByteStreamConsumer()
+	}
+
+	o.Payload = new(iamclientmodels.RestErrorResponse)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
 	}
 
 	return nil
@@ -126,13 +157,33 @@ func NewUpdateRolePermissionsUnauthorized() *UpdateRolePermissionsUnauthorized {
 
 /*UpdateRolePermissionsUnauthorized handles this case with default header values.
 
-  Unauthorized access
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20001</td><td>unauthorized access</td></tr></table>
 */
 type UpdateRolePermissionsUnauthorized struct {
+	Payload *iamclientmodels.RestErrorResponse
 }
 
 func (o *UpdateRolePermissionsUnauthorized) Error() string {
-	return fmt.Sprintf("[POST /iam/roles/{roleId}/permissions][%d] updateRolePermissionsUnauthorized ", 401)
+	return fmt.Sprintf("[POST /iam/roles/{roleId}/permissions][%d] updateRolePermissionsUnauthorized  %+v", 401, o.ToJSONString())
+}
+
+func (o *UpdateRolePermissionsUnauthorized) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
+}
+
+func (o *UpdateRolePermissionsUnauthorized) GetPayload() *iamclientmodels.RestErrorResponse {
+	return o.Payload
 }
 
 func (o *UpdateRolePermissionsUnauthorized) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -140,6 +191,13 @@ func (o *UpdateRolePermissionsUnauthorized) readResponse(response runtime.Client
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
 		consumer = runtime.ByteStreamConsumer()
+	}
+
+	o.Payload = new(iamclientmodels.RestErrorResponse)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
 	}
 
 	return nil
@@ -152,13 +210,33 @@ func NewUpdateRolePermissionsForbidden() *UpdateRolePermissionsForbidden {
 
 /*UpdateRolePermissionsForbidden handles this case with default header values.
 
-  Forbidden
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20013</td><td>insufficient permissions</td></tr></table>
 */
 type UpdateRolePermissionsForbidden struct {
+	Payload *iamclientmodels.RestErrorResponse
 }
 
 func (o *UpdateRolePermissionsForbidden) Error() string {
-	return fmt.Sprintf("[POST /iam/roles/{roleId}/permissions][%d] updateRolePermissionsForbidden ", 403)
+	return fmt.Sprintf("[POST /iam/roles/{roleId}/permissions][%d] updateRolePermissionsForbidden  %+v", 403, o.ToJSONString())
+}
+
+func (o *UpdateRolePermissionsForbidden) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
+}
+
+func (o *UpdateRolePermissionsForbidden) GetPayload() *iamclientmodels.RestErrorResponse {
+	return o.Payload
 }
 
 func (o *UpdateRolePermissionsForbidden) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -166,6 +244,13 @@ func (o *UpdateRolePermissionsForbidden) readResponse(response runtime.ClientRes
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
 		consumer = runtime.ByteStreamConsumer()
+	}
+
+	o.Payload = new(iamclientmodels.RestErrorResponse)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
 	}
 
 	return nil

@@ -1945,9 +1945,15 @@ func (aaa *UsersService) AdminInviteUserV3(input *users.AdminInviteUserV3Params)
 	if err != nil {
 		return nil, err
 	}
-	created, badRequest, notFound, conflict, unprocessableEntity, internalServerError, err := aaa.Client.Users.AdminInviteUserV3(input, client.BearerToken(*token.AccessToken))
+	created, badRequest, unauthorized, forbidden, notFound, conflict, unprocessableEntity, internalServerError, err := aaa.Client.Users.AdminInviteUserV3(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
+	}
+	if unauthorized != nil {
+		return nil, unauthorized
+	}
+	if forbidden != nil {
+		return nil, forbidden
 	}
 	if notFound != nil {
 		return nil, notFound
@@ -2116,7 +2122,7 @@ func (aaa *UsersService) AdminGetUserBanV3(input *users.AdminGetUserBanV3Params)
 	if err != nil {
 		return nil, err
 	}
-	ok, badRequest, unauthorized, forbidden, notFound, err := aaa.Client.Users.AdminGetUserBanV3(input, client.BearerToken(*token.AccessToken))
+	ok, badRequest, unauthorized, forbidden, notFound, internalServerError, err := aaa.Client.Users.AdminGetUserBanV3(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -2128,6 +2134,9 @@ func (aaa *UsersService) AdminGetUserBanV3(input *users.AdminGetUserBanV3Params)
 	}
 	if notFound != nil {
 		return nil, notFound
+	}
+	if internalServerError != nil {
+		return nil, internalServerError
 	}
 	if err != nil {
 		return nil, err
@@ -2142,7 +2151,7 @@ func (aaa *UsersService) AdminBanUserV3(input *users.AdminBanUserV3Params) (*iam
 	if err != nil {
 		return nil, err
 	}
-	created, badRequest, unauthorized, forbidden, notFound, err := aaa.Client.Users.AdminBanUserV3(input, client.BearerToken(*token.AccessToken))
+	created, badRequest, unauthorized, forbidden, notFound, internalServerError, err := aaa.Client.Users.AdminBanUserV3(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -2154,6 +2163,9 @@ func (aaa *UsersService) AdminBanUserV3(input *users.AdminBanUserV3Params) (*iam
 	}
 	if notFound != nil {
 		return nil, notFound
+	}
+	if internalServerError != nil {
+		return nil, internalServerError
 	}
 	if err != nil {
 		return nil, err
@@ -2550,7 +2562,7 @@ func (aaa *UsersService) AdminGetUserPlatformAccountsV3(input *users.AdminGetUse
 	if err != nil {
 		return nil, err
 	}
-	ok, badRequest, unauthorized, forbidden, notFound, err := aaa.Client.Users.AdminGetUserPlatformAccountsV3(input, client.BearerToken(*token.AccessToken))
+	ok, badRequest, unauthorized, forbidden, notFound, internalServerError, err := aaa.Client.Users.AdminGetUserPlatformAccountsV3(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -2562,6 +2574,9 @@ func (aaa *UsersService) AdminGetUserPlatformAccountsV3(input *users.AdminGetUse
 	}
 	if notFound != nil {
 		return nil, notFound
+	}
+	if internalServerError != nil {
+		return nil, internalServerError
 	}
 	if err != nil {
 		return nil, err
@@ -2773,9 +2788,12 @@ func (aaa *UsersService) AdminSaveUserRoleV3(input *users.AdminSaveUserRoleV3Par
 	if err != nil {
 		return err
 	}
-	_, badRequest, forbidden, notFound, unprocessableEntity, internalServerError, err := aaa.Client.Users.AdminSaveUserRoleV3(input, client.BearerToken(*token.AccessToken))
+	_, badRequest, unauthorized, forbidden, notFound, unprocessableEntity, internalServerError, err := aaa.Client.Users.AdminSaveUserRoleV3(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return badRequest
+	}
+	if unauthorized != nil {
+		return unauthorized
 	}
 	if forbidden != nil {
 		return forbidden
@@ -2802,7 +2820,7 @@ func (aaa *UsersService) AdminAddUserRoleV3(input *users.AdminAddUserRoleV3Param
 	if err != nil {
 		return err
 	}
-	_, badRequest, unauthorized, forbidden, notFound, conflict, err := aaa.Client.Users.AdminAddUserRoleV3(input, client.BearerToken(*token.AccessToken))
+	_, badRequest, unauthorized, forbidden, notFound, conflict, internalServerError, err := aaa.Client.Users.AdminAddUserRoleV3(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return badRequest
 	}
@@ -2817,6 +2835,9 @@ func (aaa *UsersService) AdminAddUserRoleV3(input *users.AdminAddUserRoleV3Param
 	}
 	if conflict != nil {
 		return conflict
+	}
+	if internalServerError != nil {
+		return internalServerError
 	}
 	if err != nil {
 		return err
@@ -2831,7 +2852,7 @@ func (aaa *UsersService) AdminDeleteUserRoleV3(input *users.AdminDeleteUserRoleV
 	if err != nil {
 		return err
 	}
-	_, badRequest, unauthorized, forbidden, notFound, err := aaa.Client.Users.AdminDeleteUserRoleV3(input, client.BearerToken(*token.AccessToken))
+	_, badRequest, unauthorized, forbidden, notFound, internalServerError, err := aaa.Client.Users.AdminDeleteUserRoleV3(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return badRequest
 	}
@@ -2843,6 +2864,9 @@ func (aaa *UsersService) AdminDeleteUserRoleV3(input *users.AdminDeleteUserRoleV
 	}
 	if notFound != nil {
 		return notFound
+	}
+	if internalServerError != nil {
+		return internalServerError
 	}
 	if err != nil {
 		return err
@@ -2857,7 +2881,7 @@ func (aaa *UsersService) AdminUpdateUserStatusV3(input *users.AdminUpdateUserSta
 	if err != nil {
 		return err
 	}
-	_, badRequest, unauthorized, forbidden, notFound, err := aaa.Client.Users.AdminUpdateUserStatusV3(input, client.BearerToken(*token.AccessToken))
+	_, badRequest, unauthorized, forbidden, notFound, internalServerError, err := aaa.Client.Users.AdminUpdateUserStatusV3(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return badRequest
 	}
@@ -2869,6 +2893,9 @@ func (aaa *UsersService) AdminUpdateUserStatusV3(input *users.AdminUpdateUserSta
 	}
 	if notFound != nil {
 		return notFound
+	}
+	if internalServerError != nil {
+		return internalServerError
 	}
 	if err != nil {
 		return err
@@ -2883,7 +2910,7 @@ func (aaa *UsersService) AdminVerifyUserWithoutVerificationCodeV3(input *users.A
 	if err != nil {
 		return err
 	}
-	_, badRequest, unauthorized, forbidden, notFound, conflict, err := aaa.Client.Users.AdminVerifyUserWithoutVerificationCodeV3(input, client.BearerToken(*token.AccessToken))
+	_, badRequest, unauthorized, forbidden, notFound, conflict, internalServerError, err := aaa.Client.Users.AdminVerifyUserWithoutVerificationCodeV3(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return badRequest
 	}
@@ -2898,6 +2925,9 @@ func (aaa *UsersService) AdminVerifyUserWithoutVerificationCodeV3(input *users.A
 	}
 	if conflict != nil {
 		return conflict
+	}
+	if internalServerError != nil {
+		return internalServerError
 	}
 	if err != nil {
 		return err
@@ -3079,15 +3109,9 @@ func (aaa *UsersService) CheckUserAvailability(input *users.CheckUserAvailabilit
 	if err != nil {
 		return err
 	}
-	_, badRequest, unauthorized, forbidden, notFound, unprocessableEntity, err := aaa.Client.Users.CheckUserAvailability(input, client.BearerToken(*token.AccessToken))
+	_, badRequest, notFound, unprocessableEntity, err := aaa.Client.Users.CheckUserAvailability(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return badRequest
-	}
-	if unauthorized != nil {
-		return unauthorized
-	}
-	if forbidden != nil {
-		return forbidden
 	}
 	if notFound != nil {
 		return notFound
@@ -3673,7 +3697,7 @@ func (aaa *UsersService) PublicListUserAllPlatformAccountsDistinctV3(input *user
 	if err != nil {
 		return nil, err
 	}
-	ok, badRequest, unauthorized, forbidden, notFound, err := aaa.Client.Users.PublicListUserAllPlatformAccountsDistinctV3(input, client.BearerToken(*token.AccessToken))
+	ok, badRequest, unauthorized, forbidden, notFound, internalServerError, err := aaa.Client.Users.PublicListUserAllPlatformAccountsDistinctV3(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -3685,6 +3709,9 @@ func (aaa *UsersService) PublicListUserAllPlatformAccountsDistinctV3(input *user
 	}
 	if notFound != nil {
 		return nil, notFound
+	}
+	if internalServerError != nil {
+		return nil, internalServerError
 	}
 	if err != nil {
 		return nil, err
@@ -3699,7 +3726,7 @@ func (aaa *UsersService) PublicGetUserInformationV3(input *users.PublicGetUserIn
 	if err != nil {
 		return nil, err
 	}
-	ok, unauthorized, forbidden, notFound, err := aaa.Client.Users.PublicGetUserInformationV3(input, client.BearerToken(*token.AccessToken))
+	ok, unauthorized, forbidden, notFound, internalServerError, err := aaa.Client.Users.PublicGetUserInformationV3(input, client.BearerToken(*token.AccessToken))
 	if unauthorized != nil {
 		return nil, unauthorized
 	}
@@ -3708,6 +3735,9 @@ func (aaa *UsersService) PublicGetUserInformationV3(input *users.PublicGetUserIn
 	}
 	if notFound != nil {
 		return nil, notFound
+	}
+	if internalServerError != nil {
+		return nil, internalServerError
 	}
 	if err != nil {
 		return nil, err
@@ -3745,7 +3775,7 @@ func (aaa *UsersService) PublicGetUserPlatformAccountsV3(input *users.PublicGetU
 	if err != nil {
 		return nil, err
 	}
-	ok, badRequest, unauthorized, forbidden, notFound, err := aaa.Client.Users.PublicGetUserPlatformAccountsV3(input, client.BearerToken(*token.AccessToken))
+	ok, badRequest, unauthorized, forbidden, notFound, internalServerError, err := aaa.Client.Users.PublicGetUserPlatformAccountsV3(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -3757,6 +3787,9 @@ func (aaa *UsersService) PublicGetUserPlatformAccountsV3(input *users.PublicGetU
 	}
 	if notFound != nil {
 		return nil, notFound
+	}
+	if internalServerError != nil {
+		return nil, internalServerError
 	}
 	if err != nil {
 		return nil, err

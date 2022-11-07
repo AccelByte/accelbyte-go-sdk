@@ -71,7 +71,10 @@ func (aaa *SSOCredentialService) RetrieveSSOLoginPlatformCredential(input *s_s_o
 	if err != nil {
 		return nil, err
 	}
-	ok, unauthorized, forbidden, notFound, internalServerError, err := aaa.Client.SsoCredential.RetrieveSSOLoginPlatformCredential(input, client.BearerToken(*token.AccessToken))
+	ok, badRequest, unauthorized, forbidden, notFound, internalServerError, err := aaa.Client.SsoCredential.RetrieveSSOLoginPlatformCredential(input, client.BearerToken(*token.AccessToken))
+	if badRequest != nil {
+		return nil, badRequest
+	}
 	if unauthorized != nil {
 		return nil, unauthorized
 	}
@@ -123,7 +126,10 @@ func (aaa *SSOCredentialService) DeleteSSOLoginPlatformCredentialV3(input *s_s_o
 	if err != nil {
 		return err
 	}
-	_, unauthorized, forbidden, notFound, internalServerError, err := aaa.Client.SsoCredential.DeleteSSOLoginPlatformCredentialV3(input, client.BearerToken(*token.AccessToken))
+	_, badRequest, unauthorized, forbidden, notFound, internalServerError, err := aaa.Client.SsoCredential.DeleteSSOLoginPlatformCredentialV3(input, client.BearerToken(*token.AccessToken))
+	if badRequest != nil {
+		return badRequest
+	}
 	if unauthorized != nil {
 		return unauthorized
 	}

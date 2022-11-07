@@ -41,17 +41,17 @@ type ClientService interface {
 	AddRolePermissionShort(params *AddRolePermissionParams, authInfo runtime.ClientAuthInfoWriter) (*AddRolePermissionNoContent, error)
 	AdminAddRoleManagersV3(params *AdminAddRoleManagersV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminAddRoleManagersV3NoContent, *AdminAddRoleManagersV3BadRequest, *AdminAddRoleManagersV3Unauthorized, *AdminAddRoleManagersV3Forbidden, *AdminAddRoleManagersV3NotFound, *AdminAddRoleManagersV3Conflict, error)
 	AdminAddRoleManagersV3Short(params *AdminAddRoleManagersV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminAddRoleManagersV3NoContent, error)
-	AdminAddRoleMembersV3(params *AdminAddRoleMembersV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminAddRoleMembersV3NoContent, *AdminAddRoleMembersV3BadRequest, *AdminAddRoleMembersV3Unauthorized, *AdminAddRoleMembersV3Forbidden, *AdminAddRoleMembersV3NotFound, *AdminAddRoleMembersV3Conflict, error)
+	AdminAddRoleMembersV3(params *AdminAddRoleMembersV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminAddRoleMembersV3NoContent, *AdminAddRoleMembersV3BadRequest, *AdminAddRoleMembersV3Unauthorized, *AdminAddRoleMembersV3Forbidden, *AdminAddRoleMembersV3NotFound, *AdminAddRoleMembersV3Conflict, *AdminAddRoleMembersV3InternalServerError, error)
 	AdminAddRoleMembersV3Short(params *AdminAddRoleMembersV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminAddRoleMembersV3NoContent, error)
-	AdminAddRolePermissionsV3(params *AdminAddRolePermissionsV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminAddRolePermissionsV3NoContent, *AdminAddRolePermissionsV3BadRequest, *AdminAddRolePermissionsV3Unauthorized, *AdminAddRolePermissionsV3Forbidden, *AdminAddRolePermissionsV3NotFound, error)
+	AdminAddRolePermissionsV3(params *AdminAddRolePermissionsV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminAddRolePermissionsV3NoContent, *AdminAddRolePermissionsV3BadRequest, *AdminAddRolePermissionsV3Unauthorized, *AdminAddRolePermissionsV3Forbidden, *AdminAddRolePermissionsV3NotFound, *AdminAddRolePermissionsV3InternalServerError, error)
 	AdminAddRolePermissionsV3Short(params *AdminAddRolePermissionsV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminAddRolePermissionsV3NoContent, error)
 	AdminAddRolePermissionsV4(params *AdminAddRolePermissionsV4Params, authInfo runtime.ClientAuthInfoWriter) (*AdminAddRolePermissionsV4OK, *AdminAddRolePermissionsV4BadRequest, *AdminAddRolePermissionsV4Unauthorized, *AdminAddRolePermissionsV4Forbidden, *AdminAddRolePermissionsV4NotFound, error)
 	AdminAddRolePermissionsV4Short(params *AdminAddRolePermissionsV4Params, authInfo runtime.ClientAuthInfoWriter) (*AdminAddRolePermissionsV4OK, error)
 	AdminAssignUserToRoleV4(params *AdminAssignUserToRoleV4Params, authInfo runtime.ClientAuthInfoWriter) (*AdminAssignUserToRoleV4Created, *AdminAssignUserToRoleV4BadRequest, *AdminAssignUserToRoleV4Unauthorized, *AdminAssignUserToRoleV4Forbidden, *AdminAssignUserToRoleV4NotFound, *AdminAssignUserToRoleV4Conflict, *AdminAssignUserToRoleV4UnprocessableEntity, error)
 	AdminAssignUserToRoleV4Short(params *AdminAssignUserToRoleV4Params, authInfo runtime.ClientAuthInfoWriter) (*AdminAssignUserToRoleV4Created, error)
-	AdminCreateRoleV3(params *AdminCreateRoleV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminCreateRoleV3Created, *AdminCreateRoleV3BadRequest, *AdminCreateRoleV3Unauthorized, *AdminCreateRoleV3Forbidden, error)
+	AdminCreateRoleV3(params *AdminCreateRoleV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminCreateRoleV3Created, *AdminCreateRoleV3BadRequest, *AdminCreateRoleV3Unauthorized, *AdminCreateRoleV3Forbidden, *AdminCreateRoleV3InternalServerError, error)
 	AdminCreateRoleV3Short(params *AdminCreateRoleV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminCreateRoleV3Created, error)
-	AdminCreateRoleV4(params *AdminCreateRoleV4Params, authInfo runtime.ClientAuthInfoWriter) (*AdminCreateRoleV4Created, *AdminCreateRoleV4BadRequest, *AdminCreateRoleV4Unauthorized, *AdminCreateRoleV4Forbidden, error)
+	AdminCreateRoleV4(params *AdminCreateRoleV4Params, authInfo runtime.ClientAuthInfoWriter) (*AdminCreateRoleV4Created, *AdminCreateRoleV4BadRequest, *AdminCreateRoleV4Unauthorized, *AdminCreateRoleV4Forbidden, *AdminCreateRoleV4InternalServerError, error)
 	AdminCreateRoleV4Short(params *AdminCreateRoleV4Params, authInfo runtime.ClientAuthInfoWriter) (*AdminCreateRoleV4Created, error)
 	AdminDeleteRolePermissionV3(params *AdminDeleteRolePermissionV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminDeleteRolePermissionV3NoContent, *AdminDeleteRolePermissionV3BadRequest, *AdminDeleteRolePermissionV3Unauthorized, *AdminDeleteRolePermissionV3Forbidden, *AdminDeleteRolePermissionV3NotFound, *AdminDeleteRolePermissionV3InternalServerError, error)
 	AdminDeleteRolePermissionV3Short(params *AdminDeleteRolePermissionV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminDeleteRolePermissionV3NoContent, error)
@@ -63,37 +63,37 @@ type ClientService interface {
 	AdminDeleteRoleV3Short(params *AdminDeleteRoleV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminDeleteRoleV3NoContent, error)
 	AdminDeleteRoleV4(params *AdminDeleteRoleV4Params, authInfo runtime.ClientAuthInfoWriter) (*AdminDeleteRoleV4NoContent, *AdminDeleteRoleV4BadRequest, *AdminDeleteRoleV4Unauthorized, *AdminDeleteRoleV4Forbidden, *AdminDeleteRoleV4NotFound, *AdminDeleteRoleV4InternalServerError, error)
 	AdminDeleteRoleV4Short(params *AdminDeleteRoleV4Params, authInfo runtime.ClientAuthInfoWriter) (*AdminDeleteRoleV4NoContent, error)
-	AdminGetRoleAdminStatusV3(params *AdminGetRoleAdminStatusV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminGetRoleAdminStatusV3OK, *AdminGetRoleAdminStatusV3BadRequest, *AdminGetRoleAdminStatusV3Unauthorized, *AdminGetRoleAdminStatusV3Forbidden, *AdminGetRoleAdminStatusV3NotFound, error)
+	AdminGetRoleAdminStatusV3(params *AdminGetRoleAdminStatusV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminGetRoleAdminStatusV3OK, *AdminGetRoleAdminStatusV3BadRequest, *AdminGetRoleAdminStatusV3Unauthorized, *AdminGetRoleAdminStatusV3Forbidden, *AdminGetRoleAdminStatusV3NotFound, *AdminGetRoleAdminStatusV3InternalServerError, error)
 	AdminGetRoleAdminStatusV3Short(params *AdminGetRoleAdminStatusV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminGetRoleAdminStatusV3OK, error)
-	AdminGetRoleManagersV3(params *AdminGetRoleManagersV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminGetRoleManagersV3OK, *AdminGetRoleManagersV3BadRequest, *AdminGetRoleManagersV3Unauthorized, *AdminGetRoleManagersV3Forbidden, *AdminGetRoleManagersV3NotFound, error)
+	AdminGetRoleManagersV3(params *AdminGetRoleManagersV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminGetRoleManagersV3OK, *AdminGetRoleManagersV3BadRequest, *AdminGetRoleManagersV3Unauthorized, *AdminGetRoleManagersV3Forbidden, *AdminGetRoleManagersV3NotFound, *AdminGetRoleManagersV3InternalServerError, error)
 	AdminGetRoleManagersV3Short(params *AdminGetRoleManagersV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminGetRoleManagersV3OK, error)
-	AdminGetRoleMembersV3(params *AdminGetRoleMembersV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminGetRoleMembersV3OK, *AdminGetRoleMembersV3BadRequest, *AdminGetRoleMembersV3Unauthorized, *AdminGetRoleMembersV3Forbidden, *AdminGetRoleMembersV3NotFound, error)
+	AdminGetRoleMembersV3(params *AdminGetRoleMembersV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminGetRoleMembersV3OK, *AdminGetRoleMembersV3BadRequest, *AdminGetRoleMembersV3Unauthorized, *AdminGetRoleMembersV3Forbidden, *AdminGetRoleMembersV3NotFound, *AdminGetRoleMembersV3InternalServerError, error)
 	AdminGetRoleMembersV3Short(params *AdminGetRoleMembersV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminGetRoleMembersV3OK, error)
-	AdminGetRoleV3(params *AdminGetRoleV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminGetRoleV3OK, *AdminGetRoleV3BadRequest, *AdminGetRoleV3Unauthorized, *AdminGetRoleV3Forbidden, *AdminGetRoleV3NotFound, error)
+	AdminGetRoleV3(params *AdminGetRoleV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminGetRoleV3OK, *AdminGetRoleV3BadRequest, *AdminGetRoleV3Unauthorized, *AdminGetRoleV3Forbidden, *AdminGetRoleV3NotFound, *AdminGetRoleV3InternalServerError, error)
 	AdminGetRoleV3Short(params *AdminGetRoleV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminGetRoleV3OK, error)
-	AdminGetRoleV4(params *AdminGetRoleV4Params, authInfo runtime.ClientAuthInfoWriter) (*AdminGetRoleV4OK, *AdminGetRoleV4BadRequest, *AdminGetRoleV4Unauthorized, *AdminGetRoleV4Forbidden, *AdminGetRoleV4NotFound, error)
+	AdminGetRoleV4(params *AdminGetRoleV4Params, authInfo runtime.ClientAuthInfoWriter) (*AdminGetRoleV4OK, *AdminGetRoleV4BadRequest, *AdminGetRoleV4Unauthorized, *AdminGetRoleV4Forbidden, *AdminGetRoleV4NotFound, *AdminGetRoleV4InternalServerError, error)
 	AdminGetRoleV4Short(params *AdminGetRoleV4Params, authInfo runtime.ClientAuthInfoWriter) (*AdminGetRoleV4OK, error)
-	AdminGetRolesV3(params *AdminGetRolesV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminGetRolesV3OK, *AdminGetRolesV3BadRequest, *AdminGetRolesV3Unauthorized, *AdminGetRolesV3Forbidden, error)
+	AdminGetRolesV3(params *AdminGetRolesV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminGetRolesV3OK, *AdminGetRolesV3BadRequest, *AdminGetRolesV3Unauthorized, *AdminGetRolesV3Forbidden, *AdminGetRolesV3InternalServerError, error)
 	AdminGetRolesV3Short(params *AdminGetRolesV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminGetRolesV3OK, error)
-	AdminGetRolesV4(params *AdminGetRolesV4Params, authInfo runtime.ClientAuthInfoWriter) (*AdminGetRolesV4OK, *AdminGetRolesV4BadRequest, *AdminGetRolesV4Unauthorized, *AdminGetRolesV4Forbidden, error)
+	AdminGetRolesV4(params *AdminGetRolesV4Params, authInfo runtime.ClientAuthInfoWriter) (*AdminGetRolesV4OK, *AdminGetRolesV4BadRequest, *AdminGetRolesV4Unauthorized, *AdminGetRolesV4Forbidden, *AdminGetRolesV4InternalServerError, error)
 	AdminGetRolesV4Short(params *AdminGetRolesV4Params, authInfo runtime.ClientAuthInfoWriter) (*AdminGetRolesV4OK, error)
 	AdminListAssignedUsersV4(params *AdminListAssignedUsersV4Params, authInfo runtime.ClientAuthInfoWriter) (*AdminListAssignedUsersV4OK, *AdminListAssignedUsersV4BadRequest, *AdminListAssignedUsersV4Unauthorized, *AdminListAssignedUsersV4Forbidden, *AdminListAssignedUsersV4NotFound, error)
 	AdminListAssignedUsersV4Short(params *AdminListAssignedUsersV4Params, authInfo runtime.ClientAuthInfoWriter) (*AdminListAssignedUsersV4OK, error)
 	AdminRemoveRoleAdminV3(params *AdminRemoveRoleAdminV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminRemoveRoleAdminV3NoContent, *AdminRemoveRoleAdminV3BadRequest, *AdminRemoveRoleAdminV3Unauthorized, *AdminRemoveRoleAdminV3Forbidden, *AdminRemoveRoleAdminV3NotFound, *AdminRemoveRoleAdminV3InternalServerError, error)
 	AdminRemoveRoleAdminV3Short(params *AdminRemoveRoleAdminV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminRemoveRoleAdminV3NoContent, error)
-	AdminRemoveRoleManagersV3(params *AdminRemoveRoleManagersV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminRemoveRoleManagersV3NoContent, *AdminRemoveRoleManagersV3BadRequest, *AdminRemoveRoleManagersV3Unauthorized, *AdminRemoveRoleManagersV3Forbidden, *AdminRemoveRoleManagersV3NotFound, error)
+	AdminRemoveRoleManagersV3(params *AdminRemoveRoleManagersV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminRemoveRoleManagersV3NoContent, *AdminRemoveRoleManagersV3BadRequest, *AdminRemoveRoleManagersV3Unauthorized, *AdminRemoveRoleManagersV3Forbidden, *AdminRemoveRoleManagersV3NotFound, *AdminRemoveRoleManagersV3InternalServerError, error)
 	AdminRemoveRoleManagersV3Short(params *AdminRemoveRoleManagersV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminRemoveRoleManagersV3NoContent, error)
-	AdminRemoveRoleMembersV3(params *AdminRemoveRoleMembersV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminRemoveRoleMembersV3NoContent, *AdminRemoveRoleMembersV3BadRequest, *AdminRemoveRoleMembersV3Unauthorized, *AdminRemoveRoleMembersV3Forbidden, *AdminRemoveRoleMembersV3NotFound, error)
+	AdminRemoveRoleMembersV3(params *AdminRemoveRoleMembersV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminRemoveRoleMembersV3NoContent, *AdminRemoveRoleMembersV3BadRequest, *AdminRemoveRoleMembersV3Unauthorized, *AdminRemoveRoleMembersV3Forbidden, *AdminRemoveRoleMembersV3NotFound, *AdminRemoveRoleMembersV3InternalServerError, error)
 	AdminRemoveRoleMembersV3Short(params *AdminRemoveRoleMembersV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminRemoveRoleMembersV3NoContent, error)
 	AdminRevokeUserFromRoleV4(params *AdminRevokeUserFromRoleV4Params, authInfo runtime.ClientAuthInfoWriter) (*AdminRevokeUserFromRoleV4NoContent, *AdminRevokeUserFromRoleV4BadRequest, *AdminRevokeUserFromRoleV4Unauthorized, *AdminRevokeUserFromRoleV4Forbidden, *AdminRevokeUserFromRoleV4NotFound, error)
 	AdminRevokeUserFromRoleV4Short(params *AdminRevokeUserFromRoleV4Params, authInfo runtime.ClientAuthInfoWriter) (*AdminRevokeUserFromRoleV4NoContent, error)
 	AdminUpdateAdminRoleStatusV3(params *AdminUpdateAdminRoleStatusV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminUpdateAdminRoleStatusV3NoContent, *AdminUpdateAdminRoleStatusV3BadRequest, *AdminUpdateAdminRoleStatusV3Unauthorized, *AdminUpdateAdminRoleStatusV3Forbidden, *AdminUpdateAdminRoleStatusV3NotFound, *AdminUpdateAdminRoleStatusV3InternalServerError, error)
 	AdminUpdateAdminRoleStatusV3Short(params *AdminUpdateAdminRoleStatusV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminUpdateAdminRoleStatusV3NoContent, error)
-	AdminUpdateRolePermissionsV3(params *AdminUpdateRolePermissionsV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminUpdateRolePermissionsV3NoContent, *AdminUpdateRolePermissionsV3BadRequest, *AdminUpdateRolePermissionsV3Unauthorized, *AdminUpdateRolePermissionsV3Forbidden, *AdminUpdateRolePermissionsV3NotFound, error)
+	AdminUpdateRolePermissionsV3(params *AdminUpdateRolePermissionsV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminUpdateRolePermissionsV3NoContent, *AdminUpdateRolePermissionsV3BadRequest, *AdminUpdateRolePermissionsV3Unauthorized, *AdminUpdateRolePermissionsV3Forbidden, *AdminUpdateRolePermissionsV3NotFound, *AdminUpdateRolePermissionsV3InternalServerError, error)
 	AdminUpdateRolePermissionsV3Short(params *AdminUpdateRolePermissionsV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminUpdateRolePermissionsV3NoContent, error)
 	AdminUpdateRolePermissionsV4(params *AdminUpdateRolePermissionsV4Params, authInfo runtime.ClientAuthInfoWriter) (*AdminUpdateRolePermissionsV4OK, *AdminUpdateRolePermissionsV4BadRequest, *AdminUpdateRolePermissionsV4Unauthorized, *AdminUpdateRolePermissionsV4Forbidden, *AdminUpdateRolePermissionsV4NotFound, error)
 	AdminUpdateRolePermissionsV4Short(params *AdminUpdateRolePermissionsV4Params, authInfo runtime.ClientAuthInfoWriter) (*AdminUpdateRolePermissionsV4OK, error)
-	AdminUpdateRoleV3(params *AdminUpdateRoleV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminUpdateRoleV3OK, *AdminUpdateRoleV3BadRequest, *AdminUpdateRoleV3Unauthorized, *AdminUpdateRoleV3Forbidden, *AdminUpdateRoleV3NotFound, error)
+	AdminUpdateRoleV3(params *AdminUpdateRoleV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminUpdateRoleV3OK, *AdminUpdateRoleV3BadRequest, *AdminUpdateRoleV3Unauthorized, *AdminUpdateRoleV3Forbidden, *AdminUpdateRoleV3NotFound, *AdminUpdateRoleV3InternalServerError, error)
 	AdminUpdateRoleV3Short(params *AdminUpdateRoleV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminUpdateRoleV3OK, error)
 	AdminUpdateRoleV4(params *AdminUpdateRoleV4Params, authInfo runtime.ClientAuthInfoWriter) (*AdminUpdateRoleV4OK, *AdminUpdateRoleV4BadRequest, *AdminUpdateRoleV4Unauthorized, *AdminUpdateRoleV4Forbidden, *AdminUpdateRoleV4NotFound, error)
 	AdminUpdateRoleV4Short(params *AdminUpdateRoleV4Params, authInfo runtime.ClientAuthInfoWriter) (*AdminUpdateRoleV4OK, error)
@@ -697,7 +697,7 @@ Deprecated: Use AdminAddRoleMembersV3Short instead.
 			&lt;p&gt;Admin roles has its members listed in the role.&lt;/p&gt;
 			&lt;p&gt;Role can only be assigned to other users by the role&#39;s manager.&lt;/p&gt; &lt;br&gt;action code: 10410&lt;/br&gt;
 */
-func (a *Client) AdminAddRoleMembersV3(params *AdminAddRoleMembersV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminAddRoleMembersV3NoContent, *AdminAddRoleMembersV3BadRequest, *AdminAddRoleMembersV3Unauthorized, *AdminAddRoleMembersV3Forbidden, *AdminAddRoleMembersV3NotFound, *AdminAddRoleMembersV3Conflict, error) {
+func (a *Client) AdminAddRoleMembersV3(params *AdminAddRoleMembersV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminAddRoleMembersV3NoContent, *AdminAddRoleMembersV3BadRequest, *AdminAddRoleMembersV3Unauthorized, *AdminAddRoleMembersV3Forbidden, *AdminAddRoleMembersV3NotFound, *AdminAddRoleMembersV3Conflict, *AdminAddRoleMembersV3InternalServerError, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewAdminAddRoleMembersV3Params()
@@ -725,31 +725,34 @@ func (a *Client) AdminAddRoleMembersV3(params *AdminAddRoleMembersV3Params, auth
 		Client:             params.HTTPClient,
 	})
 	if err != nil {
-		return nil, nil, nil, nil, nil, nil, err
+		return nil, nil, nil, nil, nil, nil, nil, err
 	}
 
 	switch v := result.(type) {
 
 	case *AdminAddRoleMembersV3NoContent:
-		return v, nil, nil, nil, nil, nil, nil
+		return v, nil, nil, nil, nil, nil, nil, nil
 
 	case *AdminAddRoleMembersV3BadRequest:
-		return nil, v, nil, nil, nil, nil, nil
+		return nil, v, nil, nil, nil, nil, nil, nil
 
 	case *AdminAddRoleMembersV3Unauthorized:
-		return nil, nil, v, nil, nil, nil, nil
+		return nil, nil, v, nil, nil, nil, nil, nil
 
 	case *AdminAddRoleMembersV3Forbidden:
-		return nil, nil, nil, v, nil, nil, nil
+		return nil, nil, nil, v, nil, nil, nil, nil
 
 	case *AdminAddRoleMembersV3NotFound:
-		return nil, nil, nil, nil, v, nil, nil
+		return nil, nil, nil, nil, v, nil, nil, nil
 
 	case *AdminAddRoleMembersV3Conflict:
-		return nil, nil, nil, nil, nil, v, nil
+		return nil, nil, nil, nil, nil, v, nil, nil
+
+	case *AdminAddRoleMembersV3InternalServerError:
+		return nil, nil, nil, nil, nil, nil, v, nil
 
 	default:
-		return nil, nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+		return nil, nil, nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
@@ -805,6 +808,8 @@ func (a *Client) AdminAddRoleMembersV3Short(params *AdminAddRoleMembersV3Params,
 		return nil, v
 	case *AdminAddRoleMembersV3Conflict:
 		return nil, v
+	case *AdminAddRoleMembersV3InternalServerError:
+		return nil, v
 
 	default:
 		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
@@ -846,7 +851,7 @@ Deprecated: Use AdminAddRolePermissionsV3Short instead.
 			&lt;/ol&gt;
 
 */
-func (a *Client) AdminAddRolePermissionsV3(params *AdminAddRolePermissionsV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminAddRolePermissionsV3NoContent, *AdminAddRolePermissionsV3BadRequest, *AdminAddRolePermissionsV3Unauthorized, *AdminAddRolePermissionsV3Forbidden, *AdminAddRolePermissionsV3NotFound, error) {
+func (a *Client) AdminAddRolePermissionsV3(params *AdminAddRolePermissionsV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminAddRolePermissionsV3NoContent, *AdminAddRolePermissionsV3BadRequest, *AdminAddRolePermissionsV3Unauthorized, *AdminAddRolePermissionsV3Forbidden, *AdminAddRolePermissionsV3NotFound, *AdminAddRolePermissionsV3InternalServerError, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewAdminAddRolePermissionsV3Params()
@@ -874,28 +879,31 @@ func (a *Client) AdminAddRolePermissionsV3(params *AdminAddRolePermissionsV3Para
 		Client:             params.HTTPClient,
 	})
 	if err != nil {
-		return nil, nil, nil, nil, nil, err
+		return nil, nil, nil, nil, nil, nil, err
 	}
 
 	switch v := result.(type) {
 
 	case *AdminAddRolePermissionsV3NoContent:
-		return v, nil, nil, nil, nil, nil
+		return v, nil, nil, nil, nil, nil, nil
 
 	case *AdminAddRolePermissionsV3BadRequest:
-		return nil, v, nil, nil, nil, nil
+		return nil, v, nil, nil, nil, nil, nil
 
 	case *AdminAddRolePermissionsV3Unauthorized:
-		return nil, nil, v, nil, nil, nil
+		return nil, nil, v, nil, nil, nil, nil
 
 	case *AdminAddRolePermissionsV3Forbidden:
-		return nil, nil, nil, v, nil, nil
+		return nil, nil, nil, v, nil, nil, nil
 
 	case *AdminAddRolePermissionsV3NotFound:
-		return nil, nil, nil, nil, v, nil
+		return nil, nil, nil, nil, v, nil, nil
+
+	case *AdminAddRolePermissionsV3InternalServerError:
+		return nil, nil, nil, nil, nil, v, nil
 
 	default:
-		return nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+		return nil, nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
@@ -974,6 +982,8 @@ func (a *Client) AdminAddRolePermissionsV3Short(params *AdminAddRolePermissionsV
 	case *AdminAddRolePermissionsV3Forbidden:
 		return nil, v
 	case *AdminAddRolePermissionsV3NotFound:
+		return nil, v
+	case *AdminAddRolePermissionsV3InternalServerError:
 		return nil, v
 
 	default:
@@ -1307,7 +1317,7 @@ Create role request body:
 
 &lt;br&gt;action code: 10401
 */
-func (a *Client) AdminCreateRoleV3(params *AdminCreateRoleV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminCreateRoleV3Created, *AdminCreateRoleV3BadRequest, *AdminCreateRoleV3Unauthorized, *AdminCreateRoleV3Forbidden, error) {
+func (a *Client) AdminCreateRoleV3(params *AdminCreateRoleV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminCreateRoleV3Created, *AdminCreateRoleV3BadRequest, *AdminCreateRoleV3Unauthorized, *AdminCreateRoleV3Forbidden, *AdminCreateRoleV3InternalServerError, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewAdminCreateRoleV3Params()
@@ -1335,25 +1345,28 @@ func (a *Client) AdminCreateRoleV3(params *AdminCreateRoleV3Params, authInfo run
 		Client:             params.HTTPClient,
 	})
 	if err != nil {
-		return nil, nil, nil, nil, err
+		return nil, nil, nil, nil, nil, err
 	}
 
 	switch v := result.(type) {
 
 	case *AdminCreateRoleV3Created:
-		return v, nil, nil, nil, nil
+		return v, nil, nil, nil, nil, nil
 
 	case *AdminCreateRoleV3BadRequest:
-		return nil, v, nil, nil, nil
+		return nil, v, nil, nil, nil, nil
 
 	case *AdminCreateRoleV3Unauthorized:
-		return nil, nil, v, nil, nil
+		return nil, nil, v, nil, nil, nil
 
 	case *AdminCreateRoleV3Forbidden:
-		return nil, nil, nil, v, nil
+		return nil, nil, nil, v, nil, nil
+
+	case *AdminCreateRoleV3InternalServerError:
+		return nil, nil, nil, nil, v, nil
 
 	default:
-		return nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+		return nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
@@ -1414,6 +1427,8 @@ func (a *Client) AdminCreateRoleV3Short(params *AdminCreateRoleV3Params, authInf
 		return nil, v
 	case *AdminCreateRoleV3Forbidden:
 		return nil, v
+	case *AdminCreateRoleV3InternalServerError:
+		return nil, v
 
 	default:
 		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
@@ -1435,7 +1450,7 @@ Create role request body:
 
 action code: 10401
 */
-func (a *Client) AdminCreateRoleV4(params *AdminCreateRoleV4Params, authInfo runtime.ClientAuthInfoWriter) (*AdminCreateRoleV4Created, *AdminCreateRoleV4BadRequest, *AdminCreateRoleV4Unauthorized, *AdminCreateRoleV4Forbidden, error) {
+func (a *Client) AdminCreateRoleV4(params *AdminCreateRoleV4Params, authInfo runtime.ClientAuthInfoWriter) (*AdminCreateRoleV4Created, *AdminCreateRoleV4BadRequest, *AdminCreateRoleV4Unauthorized, *AdminCreateRoleV4Forbidden, *AdminCreateRoleV4InternalServerError, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewAdminCreateRoleV4Params()
@@ -1463,25 +1478,28 @@ func (a *Client) AdminCreateRoleV4(params *AdminCreateRoleV4Params, authInfo run
 		Client:             params.HTTPClient,
 	})
 	if err != nil {
-		return nil, nil, nil, nil, err
+		return nil, nil, nil, nil, nil, err
 	}
 
 	switch v := result.(type) {
 
 	case *AdminCreateRoleV4Created:
-		return v, nil, nil, nil, nil
+		return v, nil, nil, nil, nil, nil
 
 	case *AdminCreateRoleV4BadRequest:
-		return nil, v, nil, nil, nil
+		return nil, v, nil, nil, nil, nil
 
 	case *AdminCreateRoleV4Unauthorized:
-		return nil, nil, v, nil, nil
+		return nil, nil, v, nil, nil, nil
 
 	case *AdminCreateRoleV4Forbidden:
-		return nil, nil, nil, v, nil
+		return nil, nil, nil, v, nil, nil
+
+	case *AdminCreateRoleV4InternalServerError:
+		return nil, nil, nil, nil, v, nil
 
 	default:
-		return nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+		return nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
@@ -1538,6 +1556,8 @@ func (a *Client) AdminCreateRoleV4Short(params *AdminCreateRoleV4Params, authInf
 	case *AdminCreateRoleV4Unauthorized:
 		return nil, v
 	case *AdminCreateRoleV4Forbidden:
+		return nil, v
+	case *AdminCreateRoleV4InternalServerError:
 		return nil, v
 
 	default:
@@ -2144,7 +2164,7 @@ Deprecated: Use AdminGetRoleAdminStatusV3Short instead.
 			&lt;p&gt;Admin roles has its members listed in the role.&lt;/p&gt;
 			&lt;p&gt;action code: 10420&lt;/p&gt;
 */
-func (a *Client) AdminGetRoleAdminStatusV3(params *AdminGetRoleAdminStatusV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminGetRoleAdminStatusV3OK, *AdminGetRoleAdminStatusV3BadRequest, *AdminGetRoleAdminStatusV3Unauthorized, *AdminGetRoleAdminStatusV3Forbidden, *AdminGetRoleAdminStatusV3NotFound, error) {
+func (a *Client) AdminGetRoleAdminStatusV3(params *AdminGetRoleAdminStatusV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminGetRoleAdminStatusV3OK, *AdminGetRoleAdminStatusV3BadRequest, *AdminGetRoleAdminStatusV3Unauthorized, *AdminGetRoleAdminStatusV3Forbidden, *AdminGetRoleAdminStatusV3NotFound, *AdminGetRoleAdminStatusV3InternalServerError, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewAdminGetRoleAdminStatusV3Params()
@@ -2172,28 +2192,31 @@ func (a *Client) AdminGetRoleAdminStatusV3(params *AdminGetRoleAdminStatusV3Para
 		Client:             params.HTTPClient,
 	})
 	if err != nil {
-		return nil, nil, nil, nil, nil, err
+		return nil, nil, nil, nil, nil, nil, err
 	}
 
 	switch v := result.(type) {
 
 	case *AdminGetRoleAdminStatusV3OK:
-		return v, nil, nil, nil, nil, nil
+		return v, nil, nil, nil, nil, nil, nil
 
 	case *AdminGetRoleAdminStatusV3BadRequest:
-		return nil, v, nil, nil, nil, nil
+		return nil, v, nil, nil, nil, nil, nil
 
 	case *AdminGetRoleAdminStatusV3Unauthorized:
-		return nil, nil, v, nil, nil, nil
+		return nil, nil, v, nil, nil, nil, nil
 
 	case *AdminGetRoleAdminStatusV3Forbidden:
-		return nil, nil, nil, v, nil, nil
+		return nil, nil, nil, v, nil, nil, nil
 
 	case *AdminGetRoleAdminStatusV3NotFound:
-		return nil, nil, nil, nil, v, nil
+		return nil, nil, nil, nil, v, nil, nil
+
+	case *AdminGetRoleAdminStatusV3InternalServerError:
+		return nil, nil, nil, nil, nil, v, nil
 
 	default:
-		return nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+		return nil, nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
@@ -2247,6 +2270,8 @@ func (a *Client) AdminGetRoleAdminStatusV3Short(params *AdminGetRoleAdminStatusV
 		return nil, v
 	case *AdminGetRoleAdminStatusV3NotFound:
 		return nil, v
+	case *AdminGetRoleAdminStatusV3InternalServerError:
+		return nil, v
 
 	default:
 		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
@@ -2262,7 +2287,7 @@ Deprecated: Use AdminGetRoleManagersV3Short instead.
 			&lt;p&gt;Role can only be assigned to other users by the role&#39;s manager.&lt;/p&gt;&lt;br/&gt;
 			action code: 10415
 */
-func (a *Client) AdminGetRoleManagersV3(params *AdminGetRoleManagersV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminGetRoleManagersV3OK, *AdminGetRoleManagersV3BadRequest, *AdminGetRoleManagersV3Unauthorized, *AdminGetRoleManagersV3Forbidden, *AdminGetRoleManagersV3NotFound, error) {
+func (a *Client) AdminGetRoleManagersV3(params *AdminGetRoleManagersV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminGetRoleManagersV3OK, *AdminGetRoleManagersV3BadRequest, *AdminGetRoleManagersV3Unauthorized, *AdminGetRoleManagersV3Forbidden, *AdminGetRoleManagersV3NotFound, *AdminGetRoleManagersV3InternalServerError, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewAdminGetRoleManagersV3Params()
@@ -2290,28 +2315,31 @@ func (a *Client) AdminGetRoleManagersV3(params *AdminGetRoleManagersV3Params, au
 		Client:             params.HTTPClient,
 	})
 	if err != nil {
-		return nil, nil, nil, nil, nil, err
+		return nil, nil, nil, nil, nil, nil, err
 	}
 
 	switch v := result.(type) {
 
 	case *AdminGetRoleManagersV3OK:
-		return v, nil, nil, nil, nil, nil
+		return v, nil, nil, nil, nil, nil, nil
 
 	case *AdminGetRoleManagersV3BadRequest:
-		return nil, v, nil, nil, nil, nil
+		return nil, v, nil, nil, nil, nil, nil
 
 	case *AdminGetRoleManagersV3Unauthorized:
-		return nil, nil, v, nil, nil, nil
+		return nil, nil, v, nil, nil, nil, nil
 
 	case *AdminGetRoleManagersV3Forbidden:
-		return nil, nil, nil, v, nil, nil
+		return nil, nil, nil, v, nil, nil, nil
 
 	case *AdminGetRoleManagersV3NotFound:
-		return nil, nil, nil, nil, v, nil
+		return nil, nil, nil, nil, v, nil, nil
+
+	case *AdminGetRoleManagersV3InternalServerError:
+		return nil, nil, nil, nil, nil, v, nil
 
 	default:
-		return nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+		return nil, nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
@@ -2365,6 +2393,8 @@ func (a *Client) AdminGetRoleManagersV3Short(params *AdminGetRoleManagersV3Param
 		return nil, v
 	case *AdminGetRoleManagersV3NotFound:
 		return nil, v
+	case *AdminGetRoleManagersV3InternalServerError:
+		return nil, v
 
 	default:
 		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
@@ -2381,7 +2411,7 @@ Deprecated: Use AdminGetRoleMembersV3Short instead.
 &lt;p&gt;action code: 10416&lt;/p&gt;
 
 */
-func (a *Client) AdminGetRoleMembersV3(params *AdminGetRoleMembersV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminGetRoleMembersV3OK, *AdminGetRoleMembersV3BadRequest, *AdminGetRoleMembersV3Unauthorized, *AdminGetRoleMembersV3Forbidden, *AdminGetRoleMembersV3NotFound, error) {
+func (a *Client) AdminGetRoleMembersV3(params *AdminGetRoleMembersV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminGetRoleMembersV3OK, *AdminGetRoleMembersV3BadRequest, *AdminGetRoleMembersV3Unauthorized, *AdminGetRoleMembersV3Forbidden, *AdminGetRoleMembersV3NotFound, *AdminGetRoleMembersV3InternalServerError, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewAdminGetRoleMembersV3Params()
@@ -2409,28 +2439,31 @@ func (a *Client) AdminGetRoleMembersV3(params *AdminGetRoleMembersV3Params, auth
 		Client:             params.HTTPClient,
 	})
 	if err != nil {
-		return nil, nil, nil, nil, nil, err
+		return nil, nil, nil, nil, nil, nil, err
 	}
 
 	switch v := result.(type) {
 
 	case *AdminGetRoleMembersV3OK:
-		return v, nil, nil, nil, nil, nil
+		return v, nil, nil, nil, nil, nil, nil
 
 	case *AdminGetRoleMembersV3BadRequest:
-		return nil, v, nil, nil, nil, nil
+		return nil, v, nil, nil, nil, nil, nil
 
 	case *AdminGetRoleMembersV3Unauthorized:
-		return nil, nil, v, nil, nil, nil
+		return nil, nil, v, nil, nil, nil, nil
 
 	case *AdminGetRoleMembersV3Forbidden:
-		return nil, nil, nil, v, nil, nil
+		return nil, nil, nil, v, nil, nil, nil
 
 	case *AdminGetRoleMembersV3NotFound:
-		return nil, nil, nil, nil, v, nil
+		return nil, nil, nil, nil, v, nil, nil
+
+	case *AdminGetRoleMembersV3InternalServerError:
+		return nil, nil, nil, nil, nil, v, nil
 
 	default:
-		return nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+		return nil, nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
@@ -2485,6 +2518,8 @@ func (a *Client) AdminGetRoleMembersV3Short(params *AdminGetRoleMembersV3Params,
 		return nil, v
 	case *AdminGetRoleMembersV3NotFound:
 		return nil, v
+	case *AdminGetRoleMembersV3InternalServerError:
+		return nil, v
 
 	default:
 		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
@@ -2498,7 +2533,7 @@ Deprecated: Use AdminGetRoleV3Short instead.
 
   Required permission &#39;ADMIN:ROLE [READ]&#39;&lt;br&gt; &lt;p&gt;action code: 10419&lt;/p&gt;
 */
-func (a *Client) AdminGetRoleV3(params *AdminGetRoleV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminGetRoleV3OK, *AdminGetRoleV3BadRequest, *AdminGetRoleV3Unauthorized, *AdminGetRoleV3Forbidden, *AdminGetRoleV3NotFound, error) {
+func (a *Client) AdminGetRoleV3(params *AdminGetRoleV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminGetRoleV3OK, *AdminGetRoleV3BadRequest, *AdminGetRoleV3Unauthorized, *AdminGetRoleV3Forbidden, *AdminGetRoleV3NotFound, *AdminGetRoleV3InternalServerError, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewAdminGetRoleV3Params()
@@ -2526,28 +2561,31 @@ func (a *Client) AdminGetRoleV3(params *AdminGetRoleV3Params, authInfo runtime.C
 		Client:             params.HTTPClient,
 	})
 	if err != nil {
-		return nil, nil, nil, nil, nil, err
+		return nil, nil, nil, nil, nil, nil, err
 	}
 
 	switch v := result.(type) {
 
 	case *AdminGetRoleV3OK:
-		return v, nil, nil, nil, nil, nil
+		return v, nil, nil, nil, nil, nil, nil
 
 	case *AdminGetRoleV3BadRequest:
-		return nil, v, nil, nil, nil, nil
+		return nil, v, nil, nil, nil, nil, nil
 
 	case *AdminGetRoleV3Unauthorized:
-		return nil, nil, v, nil, nil, nil
+		return nil, nil, v, nil, nil, nil, nil
 
 	case *AdminGetRoleV3Forbidden:
-		return nil, nil, nil, v, nil, nil
+		return nil, nil, nil, v, nil, nil, nil
 
 	case *AdminGetRoleV3NotFound:
-		return nil, nil, nil, nil, v, nil
+		return nil, nil, nil, nil, v, nil, nil
+
+	case *AdminGetRoleV3InternalServerError:
+		return nil, nil, nil, nil, nil, v, nil
 
 	default:
-		return nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+		return nil, nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
@@ -2599,6 +2637,8 @@ func (a *Client) AdminGetRoleV3Short(params *AdminGetRoleV3Params, authInfo runt
 		return nil, v
 	case *AdminGetRoleV3NotFound:
 		return nil, v
+	case *AdminGetRoleV3InternalServerError:
+		return nil, v
 
 	default:
 		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
@@ -2614,7 +2654,7 @@ Deprecated: Use AdminGetRoleV4Short instead.
 
 action code: 10419
 */
-func (a *Client) AdminGetRoleV4(params *AdminGetRoleV4Params, authInfo runtime.ClientAuthInfoWriter) (*AdminGetRoleV4OK, *AdminGetRoleV4BadRequest, *AdminGetRoleV4Unauthorized, *AdminGetRoleV4Forbidden, *AdminGetRoleV4NotFound, error) {
+func (a *Client) AdminGetRoleV4(params *AdminGetRoleV4Params, authInfo runtime.ClientAuthInfoWriter) (*AdminGetRoleV4OK, *AdminGetRoleV4BadRequest, *AdminGetRoleV4Unauthorized, *AdminGetRoleV4Forbidden, *AdminGetRoleV4NotFound, *AdminGetRoleV4InternalServerError, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewAdminGetRoleV4Params()
@@ -2642,28 +2682,31 @@ func (a *Client) AdminGetRoleV4(params *AdminGetRoleV4Params, authInfo runtime.C
 		Client:             params.HTTPClient,
 	})
 	if err != nil {
-		return nil, nil, nil, nil, nil, err
+		return nil, nil, nil, nil, nil, nil, err
 	}
 
 	switch v := result.(type) {
 
 	case *AdminGetRoleV4OK:
-		return v, nil, nil, nil, nil, nil
+		return v, nil, nil, nil, nil, nil, nil
 
 	case *AdminGetRoleV4BadRequest:
-		return nil, v, nil, nil, nil, nil
+		return nil, v, nil, nil, nil, nil, nil
 
 	case *AdminGetRoleV4Unauthorized:
-		return nil, nil, v, nil, nil, nil
+		return nil, nil, v, nil, nil, nil, nil
 
 	case *AdminGetRoleV4Forbidden:
-		return nil, nil, nil, v, nil, nil
+		return nil, nil, nil, v, nil, nil, nil
 
 	case *AdminGetRoleV4NotFound:
-		return nil, nil, nil, nil, v, nil
+		return nil, nil, nil, nil, v, nil, nil
+
+	case *AdminGetRoleV4InternalServerError:
+		return nil, nil, nil, nil, nil, v, nil
 
 	default:
-		return nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+		return nil, nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
@@ -2717,6 +2760,8 @@ func (a *Client) AdminGetRoleV4Short(params *AdminGetRoleV4Params, authInfo runt
 		return nil, v
 	case *AdminGetRoleV4NotFound:
 		return nil, v
+	case *AdminGetRoleV4InternalServerError:
+		return nil, v
 
 	default:
 		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
@@ -2730,7 +2775,7 @@ Deprecated: Use AdminGetRolesV3Short instead.
 
   Required permission &#39;ADMIN:ROLE [READ]&#39;&lt;br&gt; &lt;p&gt;action code: 10414&lt;/p&gt;
 */
-func (a *Client) AdminGetRolesV3(params *AdminGetRolesV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminGetRolesV3OK, *AdminGetRolesV3BadRequest, *AdminGetRolesV3Unauthorized, *AdminGetRolesV3Forbidden, error) {
+func (a *Client) AdminGetRolesV3(params *AdminGetRolesV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminGetRolesV3OK, *AdminGetRolesV3BadRequest, *AdminGetRolesV3Unauthorized, *AdminGetRolesV3Forbidden, *AdminGetRolesV3InternalServerError, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewAdminGetRolesV3Params()
@@ -2758,25 +2803,28 @@ func (a *Client) AdminGetRolesV3(params *AdminGetRolesV3Params, authInfo runtime
 		Client:             params.HTTPClient,
 	})
 	if err != nil {
-		return nil, nil, nil, nil, err
+		return nil, nil, nil, nil, nil, err
 	}
 
 	switch v := result.(type) {
 
 	case *AdminGetRolesV3OK:
-		return v, nil, nil, nil, nil
+		return v, nil, nil, nil, nil, nil
 
 	case *AdminGetRolesV3BadRequest:
-		return nil, v, nil, nil, nil
+		return nil, v, nil, nil, nil, nil
 
 	case *AdminGetRolesV3Unauthorized:
-		return nil, nil, v, nil, nil
+		return nil, nil, v, nil, nil, nil
 
 	case *AdminGetRolesV3Forbidden:
-		return nil, nil, nil, v, nil
+		return nil, nil, nil, v, nil, nil
+
+	case *AdminGetRolesV3InternalServerError:
+		return nil, nil, nil, nil, v, nil
 
 	default:
-		return nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+		return nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
@@ -2826,6 +2874,8 @@ func (a *Client) AdminGetRolesV3Short(params *AdminGetRolesV3Params, authInfo ru
 		return nil, v
 	case *AdminGetRolesV3Forbidden:
 		return nil, v
+	case *AdminGetRolesV3InternalServerError:
+		return nil, v
 
 	default:
 		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
@@ -2841,7 +2891,7 @@ Deprecated: Use AdminGetRolesV4Short instead.
 
 action code: 10414
 */
-func (a *Client) AdminGetRolesV4(params *AdminGetRolesV4Params, authInfo runtime.ClientAuthInfoWriter) (*AdminGetRolesV4OK, *AdminGetRolesV4BadRequest, *AdminGetRolesV4Unauthorized, *AdminGetRolesV4Forbidden, error) {
+func (a *Client) AdminGetRolesV4(params *AdminGetRolesV4Params, authInfo runtime.ClientAuthInfoWriter) (*AdminGetRolesV4OK, *AdminGetRolesV4BadRequest, *AdminGetRolesV4Unauthorized, *AdminGetRolesV4Forbidden, *AdminGetRolesV4InternalServerError, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewAdminGetRolesV4Params()
@@ -2869,25 +2919,28 @@ func (a *Client) AdminGetRolesV4(params *AdminGetRolesV4Params, authInfo runtime
 		Client:             params.HTTPClient,
 	})
 	if err != nil {
-		return nil, nil, nil, nil, err
+		return nil, nil, nil, nil, nil, err
 	}
 
 	switch v := result.(type) {
 
 	case *AdminGetRolesV4OK:
-		return v, nil, nil, nil, nil
+		return v, nil, nil, nil, nil, nil
 
 	case *AdminGetRolesV4BadRequest:
-		return nil, v, nil, nil, nil
+		return nil, v, nil, nil, nil, nil
 
 	case *AdminGetRolesV4Unauthorized:
-		return nil, nil, v, nil, nil
+		return nil, nil, v, nil, nil, nil
 
 	case *AdminGetRolesV4Forbidden:
-		return nil, nil, nil, v, nil
+		return nil, nil, nil, v, nil, nil
+
+	case *AdminGetRolesV4InternalServerError:
+		return nil, nil, nil, nil, v, nil
 
 	default:
-		return nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+		return nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
@@ -2938,6 +2991,8 @@ func (a *Client) AdminGetRolesV4Short(params *AdminGetRolesV4Params, authInfo ru
 	case *AdminGetRolesV4Unauthorized:
 		return nil, v
 	case *AdminGetRolesV4Forbidden:
+		return nil, v
+	case *AdminGetRolesV4InternalServerError:
 		return nil, v
 
 	default:
@@ -3192,7 +3247,7 @@ Deprecated: Use AdminRemoveRoleManagersV3Short instead.
   &lt;p&gt;Required permission &#39;ADMIN:ROLE [UPDATE]&#39;&lt;/p&gt;
 			&lt;p&gt;Role can only be assigned to other users by the role&#39;s manager.&lt;/p&gt; &lt;br&gt; action code: 10409
 */
-func (a *Client) AdminRemoveRoleManagersV3(params *AdminRemoveRoleManagersV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminRemoveRoleManagersV3NoContent, *AdminRemoveRoleManagersV3BadRequest, *AdminRemoveRoleManagersV3Unauthorized, *AdminRemoveRoleManagersV3Forbidden, *AdminRemoveRoleManagersV3NotFound, error) {
+func (a *Client) AdminRemoveRoleManagersV3(params *AdminRemoveRoleManagersV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminRemoveRoleManagersV3NoContent, *AdminRemoveRoleManagersV3BadRequest, *AdminRemoveRoleManagersV3Unauthorized, *AdminRemoveRoleManagersV3Forbidden, *AdminRemoveRoleManagersV3NotFound, *AdminRemoveRoleManagersV3InternalServerError, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewAdminRemoveRoleManagersV3Params()
@@ -3220,28 +3275,31 @@ func (a *Client) AdminRemoveRoleManagersV3(params *AdminRemoveRoleManagersV3Para
 		Client:             params.HTTPClient,
 	})
 	if err != nil {
-		return nil, nil, nil, nil, nil, err
+		return nil, nil, nil, nil, nil, nil, err
 	}
 
 	switch v := result.(type) {
 
 	case *AdminRemoveRoleManagersV3NoContent:
-		return v, nil, nil, nil, nil, nil
+		return v, nil, nil, nil, nil, nil, nil
 
 	case *AdminRemoveRoleManagersV3BadRequest:
-		return nil, v, nil, nil, nil, nil
+		return nil, v, nil, nil, nil, nil, nil
 
 	case *AdminRemoveRoleManagersV3Unauthorized:
-		return nil, nil, v, nil, nil, nil
+		return nil, nil, v, nil, nil, nil, nil
 
 	case *AdminRemoveRoleManagersV3Forbidden:
-		return nil, nil, nil, v, nil, nil
+		return nil, nil, nil, v, nil, nil, nil
 
 	case *AdminRemoveRoleManagersV3NotFound:
-		return nil, nil, nil, nil, v, nil
+		return nil, nil, nil, nil, v, nil, nil
+
+	case *AdminRemoveRoleManagersV3InternalServerError:
+		return nil, nil, nil, nil, nil, v, nil
 
 	default:
-		return nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+		return nil, nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
@@ -3294,6 +3352,8 @@ func (a *Client) AdminRemoveRoleManagersV3Short(params *AdminRemoveRoleManagersV
 		return nil, v
 	case *AdminRemoveRoleManagersV3NotFound:
 		return nil, v
+	case *AdminRemoveRoleManagersV3InternalServerError:
+		return nil, v
 
 	default:
 		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
@@ -3309,7 +3369,7 @@ Deprecated: Use AdminRemoveRoleMembersV3Short instead.
 			&lt;p&gt;Admin roles has its members listed in the role.&lt;/p&gt;
 			&lt;p&gt;Role can only be assigned to other users by the role&#39;s manager.&lt;/p&gt; &lt;br&gt; action code: 10411
 */
-func (a *Client) AdminRemoveRoleMembersV3(params *AdminRemoveRoleMembersV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminRemoveRoleMembersV3NoContent, *AdminRemoveRoleMembersV3BadRequest, *AdminRemoveRoleMembersV3Unauthorized, *AdminRemoveRoleMembersV3Forbidden, *AdminRemoveRoleMembersV3NotFound, error) {
+func (a *Client) AdminRemoveRoleMembersV3(params *AdminRemoveRoleMembersV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminRemoveRoleMembersV3NoContent, *AdminRemoveRoleMembersV3BadRequest, *AdminRemoveRoleMembersV3Unauthorized, *AdminRemoveRoleMembersV3Forbidden, *AdminRemoveRoleMembersV3NotFound, *AdminRemoveRoleMembersV3InternalServerError, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewAdminRemoveRoleMembersV3Params()
@@ -3337,28 +3397,31 @@ func (a *Client) AdminRemoveRoleMembersV3(params *AdminRemoveRoleMembersV3Params
 		Client:             params.HTTPClient,
 	})
 	if err != nil {
-		return nil, nil, nil, nil, nil, err
+		return nil, nil, nil, nil, nil, nil, err
 	}
 
 	switch v := result.(type) {
 
 	case *AdminRemoveRoleMembersV3NoContent:
-		return v, nil, nil, nil, nil, nil
+		return v, nil, nil, nil, nil, nil, nil
 
 	case *AdminRemoveRoleMembersV3BadRequest:
-		return nil, v, nil, nil, nil, nil
+		return nil, v, nil, nil, nil, nil, nil
 
 	case *AdminRemoveRoleMembersV3Unauthorized:
-		return nil, nil, v, nil, nil, nil
+		return nil, nil, v, nil, nil, nil, nil
 
 	case *AdminRemoveRoleMembersV3Forbidden:
-		return nil, nil, nil, v, nil, nil
+		return nil, nil, nil, v, nil, nil, nil
 
 	case *AdminRemoveRoleMembersV3NotFound:
-		return nil, nil, nil, nil, v, nil
+		return nil, nil, nil, nil, v, nil, nil
+
+	case *AdminRemoveRoleMembersV3InternalServerError:
+		return nil, nil, nil, nil, nil, v, nil
 
 	default:
-		return nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+		return nil, nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
@@ -3411,6 +3474,8 @@ func (a *Client) AdminRemoveRoleMembersV3Short(params *AdminRemoveRoleMembersV3P
 	case *AdminRemoveRoleMembersV3Forbidden:
 		return nil, v
 	case *AdminRemoveRoleMembersV3NotFound:
+		return nil, v
+	case *AdminRemoveRoleMembersV3InternalServerError:
 		return nil, v
 
 	default:
@@ -3708,7 +3773,7 @@ Deprecated: Use AdminUpdateRolePermissionsV3Short instead.
 			&lt;/ol&gt;
 
 */
-func (a *Client) AdminUpdateRolePermissionsV3(params *AdminUpdateRolePermissionsV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminUpdateRolePermissionsV3NoContent, *AdminUpdateRolePermissionsV3BadRequest, *AdminUpdateRolePermissionsV3Unauthorized, *AdminUpdateRolePermissionsV3Forbidden, *AdminUpdateRolePermissionsV3NotFound, error) {
+func (a *Client) AdminUpdateRolePermissionsV3(params *AdminUpdateRolePermissionsV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminUpdateRolePermissionsV3NoContent, *AdminUpdateRolePermissionsV3BadRequest, *AdminUpdateRolePermissionsV3Unauthorized, *AdminUpdateRolePermissionsV3Forbidden, *AdminUpdateRolePermissionsV3NotFound, *AdminUpdateRolePermissionsV3InternalServerError, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewAdminUpdateRolePermissionsV3Params()
@@ -3736,28 +3801,31 @@ func (a *Client) AdminUpdateRolePermissionsV3(params *AdminUpdateRolePermissions
 		Client:             params.HTTPClient,
 	})
 	if err != nil {
-		return nil, nil, nil, nil, nil, err
+		return nil, nil, nil, nil, nil, nil, err
 	}
 
 	switch v := result.(type) {
 
 	case *AdminUpdateRolePermissionsV3NoContent:
-		return v, nil, nil, nil, nil, nil
+		return v, nil, nil, nil, nil, nil, nil
 
 	case *AdminUpdateRolePermissionsV3BadRequest:
-		return nil, v, nil, nil, nil, nil
+		return nil, v, nil, nil, nil, nil, nil
 
 	case *AdminUpdateRolePermissionsV3Unauthorized:
-		return nil, nil, v, nil, nil, nil
+		return nil, nil, v, nil, nil, nil, nil
 
 	case *AdminUpdateRolePermissionsV3Forbidden:
-		return nil, nil, nil, v, nil, nil
+		return nil, nil, nil, v, nil, nil, nil
 
 	case *AdminUpdateRolePermissionsV3NotFound:
-		return nil, nil, nil, nil, v, nil
+		return nil, nil, nil, nil, v, nil, nil
+
+	case *AdminUpdateRolePermissionsV3InternalServerError:
+		return nil, nil, nil, nil, nil, v, nil
 
 	default:
-		return nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+		return nil, nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
@@ -3836,6 +3904,8 @@ func (a *Client) AdminUpdateRolePermissionsV3Short(params *AdminUpdateRolePermis
 	case *AdminUpdateRolePermissionsV3Forbidden:
 		return nil, v
 	case *AdminUpdateRolePermissionsV3NotFound:
+		return nil, v
+	case *AdminUpdateRolePermissionsV3InternalServerError:
 		return nil, v
 
 	default:
@@ -4027,7 +4097,7 @@ Update role request body:
 
 &lt;br&gt;action code: 10402
 */
-func (a *Client) AdminUpdateRoleV3(params *AdminUpdateRoleV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminUpdateRoleV3OK, *AdminUpdateRoleV3BadRequest, *AdminUpdateRoleV3Unauthorized, *AdminUpdateRoleV3Forbidden, *AdminUpdateRoleV3NotFound, error) {
+func (a *Client) AdminUpdateRoleV3(params *AdminUpdateRoleV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminUpdateRoleV3OK, *AdminUpdateRoleV3BadRequest, *AdminUpdateRoleV3Unauthorized, *AdminUpdateRoleV3Forbidden, *AdminUpdateRoleV3NotFound, *AdminUpdateRoleV3InternalServerError, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewAdminUpdateRoleV3Params()
@@ -4055,28 +4125,31 @@ func (a *Client) AdminUpdateRoleV3(params *AdminUpdateRoleV3Params, authInfo run
 		Client:             params.HTTPClient,
 	})
 	if err != nil {
-		return nil, nil, nil, nil, nil, err
+		return nil, nil, nil, nil, nil, nil, err
 	}
 
 	switch v := result.(type) {
 
 	case *AdminUpdateRoleV3OK:
-		return v, nil, nil, nil, nil, nil
+		return v, nil, nil, nil, nil, nil, nil
 
 	case *AdminUpdateRoleV3BadRequest:
-		return nil, v, nil, nil, nil, nil
+		return nil, v, nil, nil, nil, nil, nil
 
 	case *AdminUpdateRoleV3Unauthorized:
-		return nil, nil, v, nil, nil, nil
+		return nil, nil, v, nil, nil, nil, nil
 
 	case *AdminUpdateRoleV3Forbidden:
-		return nil, nil, nil, v, nil, nil
+		return nil, nil, nil, v, nil, nil, nil
 
 	case *AdminUpdateRoleV3NotFound:
-		return nil, nil, nil, nil, v, nil
+		return nil, nil, nil, nil, v, nil, nil
+
+	case *AdminUpdateRoleV3InternalServerError:
+		return nil, nil, nil, nil, nil, v, nil
 
 	default:
-		return nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+		return nil, nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
@@ -4134,6 +4207,8 @@ func (a *Client) AdminUpdateRoleV3Short(params *AdminUpdateRoleV3Params, authInf
 	case *AdminUpdateRoleV3Forbidden:
 		return nil, v
 	case *AdminUpdateRoleV3NotFound:
+		return nil, v
+	case *AdminUpdateRoleV3InternalServerError:
 		return nil, v
 
 	default:

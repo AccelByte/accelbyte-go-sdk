@@ -120,10 +120,30 @@ func NewGetListJusticePlatformAccountsBadRequest() *GetListJusticePlatformAccoun
   Invalid request
 */
 type GetListJusticePlatformAccountsBadRequest struct {
+	Payload *iamclientmodels.RestErrorResponse
 }
 
 func (o *GetListJusticePlatformAccountsBadRequest) Error() string {
-	return fmt.Sprintf("[GET /iam/v2/public/namespaces/{namespace}/users/{userId}/platforms/justice][%d] getListJusticePlatformAccountsBadRequest ", 400)
+	return fmt.Sprintf("[GET /iam/v2/public/namespaces/{namespace}/users/{userId}/platforms/justice][%d] getListJusticePlatformAccountsBadRequest  %+v", 400, o.ToJSONString())
+}
+
+func (o *GetListJusticePlatformAccountsBadRequest) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
+}
+
+func (o *GetListJusticePlatformAccountsBadRequest) GetPayload() *iamclientmodels.RestErrorResponse {
+	return o.Payload
 }
 
 func (o *GetListJusticePlatformAccountsBadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -131,6 +151,13 @@ func (o *GetListJusticePlatformAccountsBadRequest) readResponse(response runtime
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
 		consumer = runtime.ByteStreamConsumer()
+	}
+
+	o.Payload = new(iamclientmodels.RestErrorResponse)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
 	}
 
 	return nil

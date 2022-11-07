@@ -119,6 +119,9 @@ type ModelThirdPartyLoginPlatformCredentialResponse struct {
 	// registered domains
 	// Required: true
 	RegisteredDomains []*AccountcommonRegisteredDomain `json:"registeredDomains"`
+
+	// scopes for generic OAuth Authorization code flow
+	Scopes []string `json:"scopes"`
 }
 
 // Validate validates this model third party login platform credential response

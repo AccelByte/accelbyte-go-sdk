@@ -114,6 +114,10 @@ type ModelThirdPartyLoginPlatformCredentialRequest struct {
 	// third party token endpoint to obtain token
 	// Required: true
 	TokenEndpoint *string `json:"TokenEndpoint"`
+
+	// scopes for generic OAuth Authorization code flow. Default is [openid, profile, email]
+	// Required: true
+	Scopes []string `json:"scopes"`
 }
 
 // Validate validates this model third party login platform credential request
@@ -213,6 +217,10 @@ func (m *ModelThirdPartyLoginPlatformCredentialRequest) Validate(formats strfmt.
 	}
 
 	if err := m.validateTokenEndpoint(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateScopes(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -453,6 +461,15 @@ func (m *ModelThirdPartyLoginPlatformCredentialRequest) validateTokenClaimsMappi
 func (m *ModelThirdPartyLoginPlatformCredentialRequest) validateTokenEndpoint(formats strfmt.Registry) error {
 
 	if err := validate.Required("TokenEndpoint", "body", m.TokenEndpoint); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *ModelThirdPartyLoginPlatformCredentialRequest) validateScopes(formats strfmt.Registry) error {
+
+	if err := validate.Required("scopes", "body", m.Scopes); err != nil {
 		return err
 	}
 

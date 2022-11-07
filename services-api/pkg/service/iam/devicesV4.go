@@ -45,12 +45,15 @@ func (aaa *DevicesV4Service) AdminGetDevicesByUserV4(input *devices_v4.AdminGetD
 	if err != nil {
 		return nil, err
 	}
-	ok, badRequest, unauthorized, notFound, internalServerError, err := aaa.Client.DevicesV4.AdminGetDevicesByUserV4(input, client.BearerToken(*token.AccessToken))
+	ok, badRequest, unauthorized, forbidden, notFound, internalServerError, err := aaa.Client.DevicesV4.AdminGetDevicesByUserV4(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
 	if unauthorized != nil {
 		return nil, unauthorized
+	}
+	if forbidden != nil {
+		return nil, forbidden
 	}
 	if notFound != nil {
 		return nil, notFound
@@ -71,9 +74,12 @@ func (aaa *DevicesV4Service) AdminGetBannedDevicesV4(input *devices_v4.AdminGetB
 	if err != nil {
 		return nil, err
 	}
-	ok, unauthorized, internalServerError, err := aaa.Client.DevicesV4.AdminGetBannedDevicesV4(input, client.BearerToken(*token.AccessToken))
+	ok, unauthorized, forbidden, internalServerError, err := aaa.Client.DevicesV4.AdminGetBannedDevicesV4(input, client.BearerToken(*token.AccessToken))
 	if unauthorized != nil {
 		return nil, unauthorized
+	}
+	if forbidden != nil {
+		return nil, forbidden
 	}
 	if internalServerError != nil {
 		return nil, internalServerError
@@ -91,9 +97,12 @@ func (aaa *DevicesV4Service) AdminGetUserDeviceBansV4(input *devices_v4.AdminGet
 	if err != nil {
 		return nil, err
 	}
-	ok, unauthorized, notFound, internalServerError, err := aaa.Client.DevicesV4.AdminGetUserDeviceBansV4(input, client.BearerToken(*token.AccessToken))
+	ok, unauthorized, forbidden, notFound, internalServerError, err := aaa.Client.DevicesV4.AdminGetUserDeviceBansV4(input, client.BearerToken(*token.AccessToken))
 	if unauthorized != nil {
 		return nil, unauthorized
+	}
+	if forbidden != nil {
+		return nil, forbidden
 	}
 	if notFound != nil {
 		return nil, notFound
@@ -114,12 +123,15 @@ func (aaa *DevicesV4Service) AdminBanDeviceV4(input *devices_v4.AdminBanDeviceV4
 	if err != nil {
 		return err
 	}
-	_, badRequest, unauthorized, conflict, internalServerError, err := aaa.Client.DevicesV4.AdminBanDeviceV4(input, client.BearerToken(*token.AccessToken))
+	_, badRequest, unauthorized, forbidden, conflict, internalServerError, err := aaa.Client.DevicesV4.AdminBanDeviceV4(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return badRequest
 	}
 	if unauthorized != nil {
 		return unauthorized
+	}
+	if forbidden != nil {
+		return forbidden
 	}
 	if conflict != nil {
 		return conflict
@@ -140,12 +152,15 @@ func (aaa *DevicesV4Service) AdminGetDeviceBanV4(input *devices_v4.AdminGetDevic
 	if err != nil {
 		return nil, err
 	}
-	ok, badRequest, unauthorized, notFound, internalServerError, err := aaa.Client.DevicesV4.AdminGetDeviceBanV4(input, client.BearerToken(*token.AccessToken))
+	ok, badRequest, unauthorized, forbidden, notFound, internalServerError, err := aaa.Client.DevicesV4.AdminGetDeviceBanV4(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
 	if unauthorized != nil {
 		return nil, unauthorized
+	}
+	if forbidden != nil {
+		return nil, forbidden
 	}
 	if notFound != nil {
 		return nil, notFound
@@ -166,12 +181,15 @@ func (aaa *DevicesV4Service) AdminUpdateDeviceBanV4(input *devices_v4.AdminUpdat
 	if err != nil {
 		return err
 	}
-	_, badRequest, unauthorized, notFound, conflict, internalServerError, err := aaa.Client.DevicesV4.AdminUpdateDeviceBanV4(input, client.BearerToken(*token.AccessToken))
+	_, badRequest, unauthorized, forbidden, notFound, conflict, internalServerError, err := aaa.Client.DevicesV4.AdminUpdateDeviceBanV4(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return badRequest
 	}
 	if unauthorized != nil {
 		return unauthorized
+	}
+	if forbidden != nil {
+		return forbidden
 	}
 	if notFound != nil {
 		return notFound
@@ -195,12 +213,15 @@ func (aaa *DevicesV4Service) AdminGenerateReportV4(input *devices_v4.AdminGenera
 	if err != nil {
 		return err
 	}
-	_, badRequest, unauthorized, notFound, internalServerError, err := aaa.Client.DevicesV4.AdminGenerateReportV4(input, client.BearerToken(*token.AccessToken))
+	_, badRequest, unauthorized, forbidden, notFound, internalServerError, err := aaa.Client.DevicesV4.AdminGenerateReportV4(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return badRequest
 	}
 	if unauthorized != nil {
 		return unauthorized
+	}
+	if forbidden != nil {
+		return forbidden
 	}
 	if notFound != nil {
 		return notFound
@@ -221,9 +242,12 @@ func (aaa *DevicesV4Service) AdminGetDeviceTypesV4(input *devices_v4.AdminGetDev
 	if err != nil {
 		return nil, err
 	}
-	ok, unauthorized, internalServerError, err := aaa.Client.DevicesV4.AdminGetDeviceTypesV4(input, client.BearerToken(*token.AccessToken))
+	ok, unauthorized, forbidden, internalServerError, err := aaa.Client.DevicesV4.AdminGetDeviceTypesV4(input, client.BearerToken(*token.AccessToken))
 	if unauthorized != nil {
 		return nil, unauthorized
+	}
+	if forbidden != nil {
+		return nil, forbidden
 	}
 	if internalServerError != nil {
 		return nil, internalServerError
@@ -241,12 +265,15 @@ func (aaa *DevicesV4Service) AdminGetDeviceBansV4(input *devices_v4.AdminGetDevi
 	if err != nil {
 		return nil, err
 	}
-	ok, badRequest, unauthorized, internalServerError, err := aaa.Client.DevicesV4.AdminGetDeviceBansV4(input, client.BearerToken(*token.AccessToken))
+	ok, badRequest, unauthorized, forbidden, internalServerError, err := aaa.Client.DevicesV4.AdminGetDeviceBansV4(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
 	if unauthorized != nil {
 		return nil, unauthorized
+	}
+	if forbidden != nil {
+		return nil, forbidden
 	}
 	if internalServerError != nil {
 		return nil, internalServerError
@@ -264,12 +291,15 @@ func (aaa *DevicesV4Service) AdminDecryptDeviceV4(input *devices_v4.AdminDecrypt
 	if err != nil {
 		return nil, err
 	}
-	ok, badRequest, unauthorized, internalServerError, err := aaa.Client.DevicesV4.AdminDecryptDeviceV4(input, client.BearerToken(*token.AccessToken))
+	ok, badRequest, unauthorized, forbidden, internalServerError, err := aaa.Client.DevicesV4.AdminDecryptDeviceV4(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
 	if unauthorized != nil {
 		return nil, unauthorized
+	}
+	if forbidden != nil {
+		return nil, forbidden
 	}
 	if internalServerError != nil {
 		return nil, internalServerError
@@ -287,12 +317,15 @@ func (aaa *DevicesV4Service) AdminUnbanDeviceV4(input *devices_v4.AdminUnbanDevi
 	if err != nil {
 		return err
 	}
-	_, badRequest, unauthorized, internalServerError, err := aaa.Client.DevicesV4.AdminUnbanDeviceV4(input, client.BearerToken(*token.AccessToken))
+	_, badRequest, unauthorized, forbidden, internalServerError, err := aaa.Client.DevicesV4.AdminUnbanDeviceV4(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return badRequest
 	}
 	if unauthorized != nil {
 		return unauthorized
+	}
+	if forbidden != nil {
+		return forbidden
 	}
 	if internalServerError != nil {
 		return internalServerError
@@ -310,12 +343,15 @@ func (aaa *DevicesV4Service) AdminGetUsersByDeviceV4(input *devices_v4.AdminGetU
 	if err != nil {
 		return nil, err
 	}
-	ok, badRequest, unauthorized, internalServerError, err := aaa.Client.DevicesV4.AdminGetUsersByDeviceV4(input, client.BearerToken(*token.AccessToken))
+	ok, badRequest, unauthorized, forbidden, internalServerError, err := aaa.Client.DevicesV4.AdminGetUsersByDeviceV4(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
 	if unauthorized != nil {
 		return nil, unauthorized
+	}
+	if forbidden != nil {
+		return nil, forbidden
 	}
 	if internalServerError != nil {
 		return nil, internalServerError

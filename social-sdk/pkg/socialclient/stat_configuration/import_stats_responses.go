@@ -60,7 +60,7 @@ func NewImportStatsCreated() *ImportStatsCreated {
 
 /*ImportStatsCreated handles this case with default header values.
 
-  successful operation
+  Import stats successfully
 */
 type ImportStatsCreated struct {
 	Payload *socialclientmodels.StatImportInfo

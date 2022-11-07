@@ -290,13 +290,33 @@ func NewPublicUpdateUserV4InternalServerError() *PublicUpdateUserV4InternalServe
 
 /*PublicUpdateUserV4InternalServerError handles this case with default header values.
 
-  Internal Server Error
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20000</td><td>internal server error</td></tr></table>
 */
 type PublicUpdateUserV4InternalServerError struct {
+	Payload *iamclientmodels.RestErrorResponse
 }
 
 func (o *PublicUpdateUserV4InternalServerError) Error() string {
-	return fmt.Sprintf("[PATCH /iam/v4/public/namespaces/{namespace}/users/me][%d] publicUpdateUserV4InternalServerError ", 500)
+	return fmt.Sprintf("[PATCH /iam/v4/public/namespaces/{namespace}/users/me][%d] publicUpdateUserV4InternalServerError  %+v", 500, o.ToJSONString())
+}
+
+func (o *PublicUpdateUserV4InternalServerError) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
+}
+
+func (o *PublicUpdateUserV4InternalServerError) GetPayload() *iamclientmodels.RestErrorResponse {
+	return o.Payload
 }
 
 func (o *PublicUpdateUserV4InternalServerError) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -304,6 +324,13 @@ func (o *PublicUpdateUserV4InternalServerError) readResponse(response runtime.Cl
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
 		consumer = runtime.ByteStreamConsumer()
+	}
+
+	o.Payload = new(iamclientmodels.RestErrorResponse)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
 	}
 
 	return nil

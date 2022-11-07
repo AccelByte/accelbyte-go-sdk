@@ -39,7 +39,7 @@ type ClientService interface {
 	DeleteThirdPartyLoginPlatformCredentialV3Short(params *DeleteThirdPartyLoginPlatformCredentialV3Params, authInfo runtime.ClientAuthInfoWriter) (*DeleteThirdPartyLoginPlatformCredentialV3NoContent, error)
 	DeleteThirdPartyLoginPlatformDomainV3(params *DeleteThirdPartyLoginPlatformDomainV3Params, authInfo runtime.ClientAuthInfoWriter) (*DeleteThirdPartyLoginPlatformDomainV3NoContent, *DeleteThirdPartyLoginPlatformDomainV3BadRequest, *DeleteThirdPartyLoginPlatformDomainV3Unauthorized, *DeleteThirdPartyLoginPlatformDomainV3Forbidden, *DeleteThirdPartyLoginPlatformDomainV3NotFound, *DeleteThirdPartyLoginPlatformDomainV3InternalServerError, error)
 	DeleteThirdPartyLoginPlatformDomainV3Short(params *DeleteThirdPartyLoginPlatformDomainV3Params, authInfo runtime.ClientAuthInfoWriter) (*DeleteThirdPartyLoginPlatformDomainV3NoContent, error)
-	RetrieveActiveOIDCClientsPublicV3(params *RetrieveActiveOIDCClientsPublicV3Params, authInfo runtime.ClientAuthInfoWriter) (*RetrieveActiveOIDCClientsPublicV3OK, *RetrieveActiveOIDCClientsPublicV3Unauthorized, *RetrieveActiveOIDCClientsPublicV3Forbidden, *RetrieveActiveOIDCClientsPublicV3NotFound, *RetrieveActiveOIDCClientsPublicV3InternalServerError, error)
+	RetrieveActiveOIDCClientsPublicV3(params *RetrieveActiveOIDCClientsPublicV3Params, authInfo runtime.ClientAuthInfoWriter) (*RetrieveActiveOIDCClientsPublicV3OK, *RetrieveActiveOIDCClientsPublicV3NotFound, *RetrieveActiveOIDCClientsPublicV3InternalServerError, error)
 	RetrieveActiveOIDCClientsPublicV3Short(params *RetrieveActiveOIDCClientsPublicV3Params, authInfo runtime.ClientAuthInfoWriter) (*RetrieveActiveOIDCClientsPublicV3OK, error)
 	RetrieveAllActiveThirdPartyLoginPlatformCredentialPublicV3(params *RetrieveAllActiveThirdPartyLoginPlatformCredentialPublicV3Params, authInfo runtime.ClientAuthInfoWriter) (*RetrieveAllActiveThirdPartyLoginPlatformCredentialPublicV3OK, *RetrieveAllActiveThirdPartyLoginPlatformCredentialPublicV3Unauthorized, *RetrieveAllActiveThirdPartyLoginPlatformCredentialPublicV3Forbidden, *RetrieveAllActiveThirdPartyLoginPlatformCredentialPublicV3NotFound, *RetrieveAllActiveThirdPartyLoginPlatformCredentialPublicV3InternalServerError, error)
 	RetrieveAllActiveThirdPartyLoginPlatformCredentialPublicV3Short(params *RetrieveAllActiveThirdPartyLoginPlatformCredentialPublicV3Params, authInfo runtime.ClientAuthInfoWriter) (*RetrieveAllActiveThirdPartyLoginPlatformCredentialPublicV3OK, error)
@@ -467,7 +467,7 @@ Deprecated: Use RetrieveActiveOIDCClientsPublicV3Short instead.
 
   This is the Public API to Get All Active OIDC Platform Credential By Client ID
 */
-func (a *Client) RetrieveActiveOIDCClientsPublicV3(params *RetrieveActiveOIDCClientsPublicV3Params, authInfo runtime.ClientAuthInfoWriter) (*RetrieveActiveOIDCClientsPublicV3OK, *RetrieveActiveOIDCClientsPublicV3Unauthorized, *RetrieveActiveOIDCClientsPublicV3Forbidden, *RetrieveActiveOIDCClientsPublicV3NotFound, *RetrieveActiveOIDCClientsPublicV3InternalServerError, error) {
+func (a *Client) RetrieveActiveOIDCClientsPublicV3(params *RetrieveActiveOIDCClientsPublicV3Params, authInfo runtime.ClientAuthInfoWriter) (*RetrieveActiveOIDCClientsPublicV3OK, *RetrieveActiveOIDCClientsPublicV3NotFound, *RetrieveActiveOIDCClientsPublicV3InternalServerError, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewRetrieveActiveOIDCClientsPublicV3Params()
@@ -495,28 +495,22 @@ func (a *Client) RetrieveActiveOIDCClientsPublicV3(params *RetrieveActiveOIDCCli
 		Client:             params.HTTPClient,
 	})
 	if err != nil {
-		return nil, nil, nil, nil, nil, err
+		return nil, nil, nil, err
 	}
 
 	switch v := result.(type) {
 
 	case *RetrieveActiveOIDCClientsPublicV3OK:
-		return v, nil, nil, nil, nil, nil
-
-	case *RetrieveActiveOIDCClientsPublicV3Unauthorized:
-		return nil, v, nil, nil, nil, nil
-
-	case *RetrieveActiveOIDCClientsPublicV3Forbidden:
-		return nil, nil, v, nil, nil, nil
+		return v, nil, nil, nil
 
 	case *RetrieveActiveOIDCClientsPublicV3NotFound:
-		return nil, nil, nil, v, nil, nil
+		return nil, v, nil, nil
 
 	case *RetrieveActiveOIDCClientsPublicV3InternalServerError:
-		return nil, nil, nil, nil, v, nil
+		return nil, nil, v, nil
 
 	default:
-		return nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+		return nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
@@ -560,10 +554,6 @@ func (a *Client) RetrieveActiveOIDCClientsPublicV3Short(params *RetrieveActiveOI
 
 	case *RetrieveActiveOIDCClientsPublicV3OK:
 		return v, nil
-	case *RetrieveActiveOIDCClientsPublicV3Unauthorized:
-		return nil, v
-	case *RetrieveActiveOIDCClientsPublicV3Forbidden:
-		return nil, v
 	case *RetrieveActiveOIDCClientsPublicV3NotFound:
 		return nil, v
 	case *RetrieveActiveOIDCClientsPublicV3InternalServerError:

@@ -48,6 +48,12 @@ func (o *AdminGetBansTypeV3Reader) ReadResponse(response runtime.ClientResponse,
 			return nil, err
 		}
 		return result, nil
+	case 500:
+		result := NewAdminGetBansTypeV3InternalServerError()
+		if err := result.readResponse(response, consumer, o.formats); err != nil {
+			return nil, err
+		}
+		return result, nil
 
 	default:
 		data, err := ioutil.ReadAll(response.Body())
@@ -122,7 +128,7 @@ func NewAdminGetBansTypeV3Unauthorized() *AdminGetBansTypeV3Unauthorized {
   <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20001</td><td>unauthorized access</td></tr></table>
 */
 type AdminGetBansTypeV3Unauthorized struct {
-	Payload *iamclientmodels.RestapiErrorResponse
+	Payload *iamclientmodels.RestErrorResponse
 }
 
 func (o *AdminGetBansTypeV3Unauthorized) Error() string {
@@ -144,7 +150,7 @@ func (o *AdminGetBansTypeV3Unauthorized) ToJSONString() string {
 	return fmt.Sprintf("%+v", string(b))
 }
 
-func (o *AdminGetBansTypeV3Unauthorized) GetPayload() *iamclientmodels.RestapiErrorResponse {
+func (o *AdminGetBansTypeV3Unauthorized) GetPayload() *iamclientmodels.RestErrorResponse {
 	return o.Payload
 }
 
@@ -155,7 +161,7 @@ func (o *AdminGetBansTypeV3Unauthorized) readResponse(response runtime.ClientRes
 		consumer = runtime.ByteStreamConsumer()
 	}
 
-	o.Payload = new(iamclientmodels.RestapiErrorResponse)
+	o.Payload = new(iamclientmodels.RestErrorResponse)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
@@ -175,7 +181,7 @@ func NewAdminGetBansTypeV3Forbidden() *AdminGetBansTypeV3Forbidden {
   <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20013</td><td>insufficient permissions</td></tr></table>
 */
 type AdminGetBansTypeV3Forbidden struct {
-	Payload *iamclientmodels.RestapiErrorResponse
+	Payload *iamclientmodels.RestErrorResponse
 }
 
 func (o *AdminGetBansTypeV3Forbidden) Error() string {
@@ -197,7 +203,7 @@ func (o *AdminGetBansTypeV3Forbidden) ToJSONString() string {
 	return fmt.Sprintf("%+v", string(b))
 }
 
-func (o *AdminGetBansTypeV3Forbidden) GetPayload() *iamclientmodels.RestapiErrorResponse {
+func (o *AdminGetBansTypeV3Forbidden) GetPayload() *iamclientmodels.RestErrorResponse {
 	return o.Payload
 }
 
@@ -208,7 +214,60 @@ func (o *AdminGetBansTypeV3Forbidden) readResponse(response runtime.ClientRespon
 		consumer = runtime.ByteStreamConsumer()
 	}
 
-	o.Payload = new(iamclientmodels.RestapiErrorResponse)
+	o.Payload = new(iamclientmodels.RestErrorResponse)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
+	}
+
+	return nil
+}
+
+// NewAdminGetBansTypeV3InternalServerError creates a AdminGetBansTypeV3InternalServerError with default headers values
+func NewAdminGetBansTypeV3InternalServerError() *AdminGetBansTypeV3InternalServerError {
+	return &AdminGetBansTypeV3InternalServerError{}
+}
+
+/*AdminGetBansTypeV3InternalServerError handles this case with default header values.
+
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20000</td><td>internal server error</td></tr></table>
+*/
+type AdminGetBansTypeV3InternalServerError struct {
+	Payload *iamclientmodels.RestErrorResponse
+}
+
+func (o *AdminGetBansTypeV3InternalServerError) Error() string {
+	return fmt.Sprintf("[GET /iam/v3/admin/bans][%d] adminGetBansTypeV3InternalServerError  %+v", 500, o.ToJSONString())
+}
+
+func (o *AdminGetBansTypeV3InternalServerError) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
+}
+
+func (o *AdminGetBansTypeV3InternalServerError) GetPayload() *iamclientmodels.RestErrorResponse {
+	return o.Payload
+}
+
+func (o *AdminGetBansTypeV3InternalServerError) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+	// handle file responses
+	contentDisposition := response.GetHeader("Content-Disposition")
+	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
+		consumer = runtime.ByteStreamConsumer()
+	}
+
+	o.Payload = new(iamclientmodels.RestErrorResponse)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {

@@ -288,13 +288,7 @@ func (aaa *ThirdPartyCredentialService) RetrieveActiveOIDCClientsPublicV3(input 
 	if err != nil {
 		return nil, err
 	}
-	ok, unauthorized, forbidden, notFound, internalServerError, err := aaa.Client.ThirdPartyCredential.RetrieveActiveOIDCClientsPublicV3(input, client.BearerToken(*token.AccessToken))
-	if unauthorized != nil {
-		return nil, unauthorized
-	}
-	if forbidden != nil {
-		return nil, forbidden
-	}
+	ok, notFound, internalServerError, err := aaa.Client.ThirdPartyCredential.RetrieveActiveOIDCClientsPublicV3(input, client.BearerToken(*token.AccessToken))
 	if notFound != nil {
 		return nil, notFound
 	}

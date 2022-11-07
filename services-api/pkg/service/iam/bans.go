@@ -85,12 +85,15 @@ func (aaa *BansService) AdminGetBansTypeV3(input *bans.AdminGetBansTypeV3Params)
 	if err != nil {
 		return nil, err
 	}
-	ok, unauthorized, forbidden, err := aaa.Client.Bans.AdminGetBansTypeV3(input, client.BearerToken(*token.AccessToken))
+	ok, unauthorized, forbidden, internalServerError, err := aaa.Client.Bans.AdminGetBansTypeV3(input, client.BearerToken(*token.AccessToken))
 	if unauthorized != nil {
 		return nil, unauthorized
 	}
 	if forbidden != nil {
 		return nil, forbidden
+	}
+	if internalServerError != nil {
+		return nil, internalServerError
 	}
 	if err != nil {
 		return nil, err
@@ -105,12 +108,15 @@ func (aaa *BansService) AdminGetListBanReasonV3(input *bans.AdminGetListBanReaso
 	if err != nil {
 		return nil, err
 	}
-	ok, unauthorized, forbidden, err := aaa.Client.Bans.AdminGetListBanReasonV3(input, client.BearerToken(*token.AccessToken))
+	ok, unauthorized, forbidden, internalServerError, err := aaa.Client.Bans.AdminGetListBanReasonV3(input, client.BearerToken(*token.AccessToken))
 	if unauthorized != nil {
 		return nil, unauthorized
 	}
 	if forbidden != nil {
 		return nil, forbidden
+	}
+	if internalServerError != nil {
+		return nil, internalServerError
 	}
 	if err != nil {
 		return nil, err
@@ -125,12 +131,15 @@ func (aaa *BansService) AdminGetBannedUsersV3(input *bans.AdminGetBannedUsersV3P
 	if err != nil {
 		return nil, err
 	}
-	ok, unauthorized, forbidden, err := aaa.Client.Bans.AdminGetBannedUsersV3(input, client.BearerToken(*token.AccessToken))
+	ok, unauthorized, forbidden, internalServerError, err := aaa.Client.Bans.AdminGetBannedUsersV3(input, client.BearerToken(*token.AccessToken))
 	if unauthorized != nil {
 		return nil, unauthorized
 	}
 	if forbidden != nil {
 		return nil, forbidden
+	}
+	if internalServerError != nil {
+		return nil, internalServerError
 	}
 	if err != nil {
 		return nil, err
@@ -145,7 +154,7 @@ func (aaa *BansService) AdminBanUserBulkV3(input *bans.AdminBanUserBulkV3Params)
 	if err != nil {
 		return nil, err
 	}
-	created, badRequest, unauthorized, forbidden, notFound, err := aaa.Client.Bans.AdminBanUserBulkV3(input, client.BearerToken(*token.AccessToken))
+	created, badRequest, unauthorized, forbidden, notFound, internalServerError, err := aaa.Client.Bans.AdminBanUserBulkV3(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -157,6 +166,9 @@ func (aaa *BansService) AdminBanUserBulkV3(input *bans.AdminBanUserBulkV3Params)
 	}
 	if notFound != nil {
 		return nil, notFound
+	}
+	if internalServerError != nil {
+		return nil, internalServerError
 	}
 	if err != nil {
 		return nil, err
@@ -171,7 +183,7 @@ func (aaa *BansService) AdminUnbanUserBulkV3(input *bans.AdminUnbanUserBulkV3Par
 	if err != nil {
 		return nil, err
 	}
-	created, badRequest, unauthorized, forbidden, notFound, err := aaa.Client.Bans.AdminUnbanUserBulkV3(input, client.BearerToken(*token.AccessToken))
+	created, badRequest, unauthorized, forbidden, notFound, internalServerError, err := aaa.Client.Bans.AdminUnbanUserBulkV3(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -183,6 +195,9 @@ func (aaa *BansService) AdminUnbanUserBulkV3(input *bans.AdminUnbanUserBulkV3Par
 	}
 	if notFound != nil {
 		return nil, notFound
+	}
+	if internalServerError != nil {
+		return nil, internalServerError
 	}
 	if err != nil {
 		return nil, err
@@ -197,12 +212,15 @@ func (aaa *BansService) AdminGetBansTypeWithNamespaceV3(input *bans.AdminGetBans
 	if err != nil {
 		return nil, err
 	}
-	ok, unauthorized, forbidden, err := aaa.Client.Bans.AdminGetBansTypeWithNamespaceV3(input, client.BearerToken(*token.AccessToken))
+	ok, unauthorized, forbidden, internalServerError, err := aaa.Client.Bans.AdminGetBansTypeWithNamespaceV3(input, client.BearerToken(*token.AccessToken))
 	if unauthorized != nil {
 		return nil, unauthorized
 	}
 	if forbidden != nil {
 		return nil, forbidden
+	}
+	if internalServerError != nil {
+		return nil, internalServerError
 	}
 	if err != nil {
 		return nil, err

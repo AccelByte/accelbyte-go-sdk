@@ -128,10 +128,30 @@ func NewSearchUserBadRequest() *SearchUserBadRequest {
   Invalid request
 */
 type SearchUserBadRequest struct {
+	Payload *iamclientmodels.RestErrorResponse
 }
 
 func (o *SearchUserBadRequest) Error() string {
-	return fmt.Sprintf("[GET /iam/namespaces/{namespace}/users/search][%d] searchUserBadRequest ", 400)
+	return fmt.Sprintf("[GET /iam/namespaces/{namespace}/users/search][%d] searchUserBadRequest  %+v", 400, o.ToJSONString())
+}
+
+func (o *SearchUserBadRequest) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
+}
+
+func (o *SearchUserBadRequest) GetPayload() *iamclientmodels.RestErrorResponse {
+	return o.Payload
 }
 
 func (o *SearchUserBadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -139,6 +159,13 @@ func (o *SearchUserBadRequest) readResponse(response runtime.ClientResponse, con
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
 		consumer = runtime.ByteStreamConsumer()
+	}
+
+	o.Payload = new(iamclientmodels.RestErrorResponse)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
 	}
 
 	return nil
@@ -151,13 +178,33 @@ func NewSearchUserUnauthorized() *SearchUserUnauthorized {
 
 /*SearchUserUnauthorized handles this case with default header values.
 
-  Unauthorized access
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20001</td><td>unauthorized access</td></tr></table>
 */
 type SearchUserUnauthorized struct {
+	Payload *iamclientmodels.RestErrorResponse
 }
 
 func (o *SearchUserUnauthorized) Error() string {
-	return fmt.Sprintf("[GET /iam/namespaces/{namespace}/users/search][%d] searchUserUnauthorized ", 401)
+	return fmt.Sprintf("[GET /iam/namespaces/{namespace}/users/search][%d] searchUserUnauthorized  %+v", 401, o.ToJSONString())
+}
+
+func (o *SearchUserUnauthorized) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
+}
+
+func (o *SearchUserUnauthorized) GetPayload() *iamclientmodels.RestErrorResponse {
+	return o.Payload
 }
 
 func (o *SearchUserUnauthorized) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -165,6 +212,13 @@ func (o *SearchUserUnauthorized) readResponse(response runtime.ClientResponse, c
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
 		consumer = runtime.ByteStreamConsumer()
+	}
+
+	o.Payload = new(iamclientmodels.RestErrorResponse)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
 	}
 
 	return nil
@@ -177,13 +231,33 @@ func NewSearchUserForbidden() *SearchUserForbidden {
 
 /*SearchUserForbidden handles this case with default header values.
 
-  Forbidden
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20013</td><td>insufficient permissions</td></tr></table>
 */
 type SearchUserForbidden struct {
+	Payload *iamclientmodels.RestErrorResponse
 }
 
 func (o *SearchUserForbidden) Error() string {
-	return fmt.Sprintf("[GET /iam/namespaces/{namespace}/users/search][%d] searchUserForbidden ", 403)
+	return fmt.Sprintf("[GET /iam/namespaces/{namespace}/users/search][%d] searchUserForbidden  %+v", 403, o.ToJSONString())
+}
+
+func (o *SearchUserForbidden) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
+}
+
+func (o *SearchUserForbidden) GetPayload() *iamclientmodels.RestErrorResponse {
+	return o.Payload
 }
 
 func (o *SearchUserForbidden) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -191,6 +265,13 @@ func (o *SearchUserForbidden) readResponse(response runtime.ClientResponse, cons
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
 		consumer = runtime.ByteStreamConsumer()
+	}
+
+	o.Payload = new(iamclientmodels.RestErrorResponse)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
 	}
 
 	return nil

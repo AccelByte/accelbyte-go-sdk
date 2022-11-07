@@ -19,7 +19,7 @@ type BloomFilterJSON struct {
 
 	// bits
 	// Required: true
-	Bits []int64 `json:"bits"`
+	Bits []uint64 `json:"bits"`
 
 	// k
 	// Required: true

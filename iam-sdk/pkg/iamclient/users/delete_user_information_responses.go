@@ -10,12 +10,16 @@ package users
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
+	"io"
 	"io/ioutil"
 	"strings"
 
 	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/strfmt"
+
+	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclientmodels"
 )
 
 // DeleteUserInformationReader is a Reader for the DeleteUserInformation structure.
@@ -94,13 +98,33 @@ func NewDeleteUserInformationUnauthorized() *DeleteUserInformationUnauthorized {
 
 /*DeleteUserInformationUnauthorized handles this case with default header values.
 
-  Unauthorized access
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20001</td><td>unauthorized access</td></tr></table>
 */
 type DeleteUserInformationUnauthorized struct {
+	Payload *iamclientmodels.RestErrorResponse
 }
 
 func (o *DeleteUserInformationUnauthorized) Error() string {
-	return fmt.Sprintf("[DELETE /iam/namespaces/{namespace}/users/{userId}/information][%d] deleteUserInformationUnauthorized ", 401)
+	return fmt.Sprintf("[DELETE /iam/namespaces/{namespace}/users/{userId}/information][%d] deleteUserInformationUnauthorized  %+v", 401, o.ToJSONString())
+}
+
+func (o *DeleteUserInformationUnauthorized) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
+}
+
+func (o *DeleteUserInformationUnauthorized) GetPayload() *iamclientmodels.RestErrorResponse {
+	return o.Payload
 }
 
 func (o *DeleteUserInformationUnauthorized) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -108,6 +132,13 @@ func (o *DeleteUserInformationUnauthorized) readResponse(response runtime.Client
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
 		consumer = runtime.ByteStreamConsumer()
+	}
+
+	o.Payload = new(iamclientmodels.RestErrorResponse)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
 	}
 
 	return nil
@@ -120,13 +151,33 @@ func NewDeleteUserInformationForbidden() *DeleteUserInformationForbidden {
 
 /*DeleteUserInformationForbidden handles this case with default header values.
 
-  Forbidden
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20013</td><td>insufficient permissions</td></tr></table>
 */
 type DeleteUserInformationForbidden struct {
+	Payload *iamclientmodels.RestErrorResponse
 }
 
 func (o *DeleteUserInformationForbidden) Error() string {
-	return fmt.Sprintf("[DELETE /iam/namespaces/{namespace}/users/{userId}/information][%d] deleteUserInformationForbidden ", 403)
+	return fmt.Sprintf("[DELETE /iam/namespaces/{namespace}/users/{userId}/information][%d] deleteUserInformationForbidden  %+v", 403, o.ToJSONString())
+}
+
+func (o *DeleteUserInformationForbidden) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
+}
+
+func (o *DeleteUserInformationForbidden) GetPayload() *iamclientmodels.RestErrorResponse {
+	return o.Payload
 }
 
 func (o *DeleteUserInformationForbidden) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -134,6 +185,13 @@ func (o *DeleteUserInformationForbidden) readResponse(response runtime.ClientRes
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
 		consumer = runtime.ByteStreamConsumer()
+	}
+
+	o.Payload = new(iamclientmodels.RestErrorResponse)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
 	}
 
 	return nil

@@ -37,16 +37,18 @@ const (
 // with the default values initialized.
 func NewAuthorizeV3Params() *AuthorizeV3Params {
 	var (
-		codeChallengeMethodDefault = string("plain")
-		createHeadlessDefault      = bool(true)
-		responseTypeDefault        = string("code")
-		scopeDefault               = string("commerce account social publishing analytics")
+		codeChallengeMethodDefault                = string("plain")
+		createHeadlessDefault                     = bool(true)
+		responseTypeDefault                       = string("code")
+		scopeDefault                              = string("commerce account social publishing analytics")
+		useRedirectURIAsLoginURLWhenLockedDefault = bool(false)
 	)
 	return &AuthorizeV3Params{
-		CodeChallengeMethod: &codeChallengeMethodDefault,
-		CreateHeadless:      &createHeadlessDefault,
-		ResponseType:        responseTypeDefault,
-		Scope:               &scopeDefault,
+		CodeChallengeMethod:                &codeChallengeMethodDefault,
+		CreateHeadless:                     &createHeadlessDefault,
+		ResponseType:                       responseTypeDefault,
+		Scope:                              &scopeDefault,
+		UseRedirectURIAsLoginURLWhenLocked: &useRedirectURIAsLoginURLWhenLockedDefault,
 
 		timeout: cr.DefaultTimeout,
 	}
@@ -56,16 +58,18 @@ func NewAuthorizeV3Params() *AuthorizeV3Params {
 // with the default values initialized, and the ability to set a timeout on a request
 func NewAuthorizeV3ParamsWithTimeout(timeout time.Duration) *AuthorizeV3Params {
 	var (
-		codeChallengeMethodDefault = string("plain")
-		createHeadlessDefault      = bool(true)
-		responseTypeDefault        = string("code")
-		scopeDefault               = string("commerce account social publishing analytics")
+		codeChallengeMethodDefault                = string("plain")
+		createHeadlessDefault                     = bool(true)
+		responseTypeDefault                       = string("code")
+		scopeDefault                              = string("commerce account social publishing analytics")
+		useRedirectURIAsLoginURLWhenLockedDefault = bool(false)
 	)
 	return &AuthorizeV3Params{
-		CodeChallengeMethod: &codeChallengeMethodDefault,
-		CreateHeadless:      &createHeadlessDefault,
-		ResponseType:        responseTypeDefault,
-		Scope:               &scopeDefault,
+		CodeChallengeMethod:                &codeChallengeMethodDefault,
+		CreateHeadless:                     &createHeadlessDefault,
+		ResponseType:                       responseTypeDefault,
+		Scope:                              &scopeDefault,
+		UseRedirectURIAsLoginURLWhenLocked: &useRedirectURIAsLoginURLWhenLockedDefault,
 
 		timeout: timeout,
 	}
@@ -75,16 +79,18 @@ func NewAuthorizeV3ParamsWithTimeout(timeout time.Duration) *AuthorizeV3Params {
 // with the default values initialized, and the ability to set a context for a request
 func NewAuthorizeV3ParamsWithContext(ctx context.Context) *AuthorizeV3Params {
 	var (
-		codeChallengeMethodDefault = string("plain")
-		createHeadlessDefault      = bool(true)
-		responseTypeDefault        = string("code")
-		scopeDefault               = string("commerce account social publishing analytics")
+		codeChallengeMethodDefault                = string("plain")
+		createHeadlessDefault                     = bool(true)
+		responseTypeDefault                       = string("code")
+		scopeDefault                              = string("commerce account social publishing analytics")
+		useRedirectUriAsLoginUrlWhenLockedDefault = bool(false)
 	)
 	return &AuthorizeV3Params{
-		CodeChallengeMethod: &codeChallengeMethodDefault,
-		CreateHeadless:      &createHeadlessDefault,
-		ResponseType:        responseTypeDefault,
-		Scope:               &scopeDefault,
+		CodeChallengeMethod:                &codeChallengeMethodDefault,
+		CreateHeadless:                     &createHeadlessDefault,
+		ResponseType:                       responseTypeDefault,
+		Scope:                              &scopeDefault,
+		UseRedirectURIAsLoginURLWhenLocked: &useRedirectUriAsLoginUrlWhenLockedDefault,
 
 		Context: ctx,
 	}
@@ -94,17 +100,19 @@ func NewAuthorizeV3ParamsWithContext(ctx context.Context) *AuthorizeV3Params {
 // with the default values initialized, and the ability to set a custom HTTPClient for a request
 func NewAuthorizeV3ParamsWithHTTPClient(client *http.Client) *AuthorizeV3Params {
 	var (
-		codeChallengeMethodDefault = string("plain")
-		createHeadlessDefault      = bool(true)
-		responseTypeDefault        = string("code")
-		scopeDefault               = string("commerce account social publishing analytics")
+		codeChallengeMethodDefault                = string("plain")
+		createHeadlessDefault                     = bool(true)
+		responseTypeDefault                       = string("code")
+		scopeDefault                              = string("commerce account social publishing analytics")
+		useRedirectUriAsLoginUrlWhenLockedDefault = bool(false)
 	)
 	return &AuthorizeV3Params{
-		CodeChallengeMethod: &codeChallengeMethodDefault,
-		CreateHeadless:      &createHeadlessDefault,
-		ResponseType:        responseTypeDefault,
-		Scope:               &scopeDefault,
-		HTTPClient:          client,
+		CodeChallengeMethod:                &codeChallengeMethodDefault,
+		CreateHeadless:                     &createHeadlessDefault,
+		ResponseType:                       responseTypeDefault,
+		Scope:                              &scopeDefault,
+		UseRedirectURIAsLoginURLWhenLocked: &useRedirectUriAsLoginUrlWhenLockedDefault,
+		HTTPClient:                         client,
 	}
 }
 
@@ -160,6 +168,11 @@ type AuthorizeV3Params struct {
 
 	*/
 	TargetAuthPage *string
+	/*UseRedirectURIAsLoginURLWhenLocked
+	  Use Redirect URI as the Login URL after resetting password when got locked
+
+	*/
+	UseRedirectURIAsLoginURLWhenLocked *bool
 
 	timeout        time.Duration
 	AuthInfoWriter runtime.ClientAuthInfoWriter
@@ -313,6 +326,17 @@ func (o *AuthorizeV3Params) SetTargetAuthPage(targetAuthPage *string) {
 	o.TargetAuthPage = targetAuthPage
 }
 
+// WithUseRedirectURIAsLoginURLWhenLocked adds the useRedirectURIAsLoginURLWhenLocked to the authorize v3 params
+func (o *AuthorizeV3Params) WithUseRedirectURIAsLoginURLWhenLocked(useRedirectURIAsLoginURLWhenLocked *bool) *AuthorizeV3Params {
+	o.SetUseRedirectURIAsLoginURLWhenLocked(useRedirectURIAsLoginURLWhenLocked)
+	return o
+}
+
+// SetUseRedirectURIAsLoginURLWhenLocked adds the useRedirectUriAsLoginUrlWhenLocked to the authorize v3 params
+func (o *AuthorizeV3Params) SetUseRedirectURIAsLoginURLWhenLocked(useRedirectURIAsLoginURLWhenLocked *bool) {
+	o.UseRedirectURIAsLoginURLWhenLocked = useRedirectURIAsLoginURLWhenLocked
+}
+
 // WriteToRequest writes these params to a swagger request
 func (o *AuthorizeV3Params) WriteToRequest(r runtime.ClientRequest, reg strfmt.Registry) error {
 
@@ -445,6 +469,22 @@ func (o *AuthorizeV3Params) WriteToRequest(r runtime.ClientRequest, reg strfmt.R
 		qTargetAuthPage := qrTargetAuthPage
 		if qTargetAuthPage != "" {
 			if err := r.SetQueryParam("target_auth_page", qTargetAuthPage); err != nil {
+				return err
+			}
+		}
+
+	}
+
+	if o.UseRedirectURIAsLoginURLWhenLocked != nil {
+
+		// query param useRedirectUriAsLoginUrlWhenLocked
+		var qrUseRedirectURIAsLoginURLWhenLocked bool
+		if o.UseRedirectURIAsLoginURLWhenLocked != nil {
+			qrUseRedirectURIAsLoginURLWhenLocked = *o.UseRedirectURIAsLoginURLWhenLocked
+		}
+		qUseRedirectURIAsLoginURLWhenLocked := swag.FormatBool(qrUseRedirectURIAsLoginURLWhenLocked)
+		if qUseRedirectURIAsLoginURLWhenLocked != "" {
+			if err := r.SetQueryParam("useRedirectUriAsLoginUrlWhenLocked", qUseRedirectURIAsLoginURLWhenLocked); err != nil {
 				return err
 			}
 		}

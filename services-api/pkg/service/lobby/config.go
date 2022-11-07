@@ -7,6 +7,8 @@
 package lobby
 
 import (
+	"io"
+
 	"github.com/AccelByte/accelbyte-go-sdk/lobby-sdk/pkg/lobbyclient"
 	"github.com/AccelByte/accelbyte-go-sdk/lobby-sdk/pkg/lobbyclient/config"
 	"github.com/AccelByte/accelbyte-go-sdk/lobby-sdk/pkg/lobbyclientmodels"
@@ -130,12 +132,12 @@ func (aaa *ConfigService) AdminUpdateConfigV1(input *config.AdminUpdateConfigV1P
 }
 
 // Deprecated: Use AdminExportConfigV1Short instead
-func (aaa *ConfigService) AdminExportConfigV1(input *config.AdminExportConfigV1Params) (*lobbyclientmodels.ModelsConfigExport, error) {
+func (aaa *ConfigService) AdminExportConfigV1(input *config.AdminExportConfigV1Params, writer io.Writer) (io.Writer, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, unauthorized, forbidden, internalServerError, err := aaa.Client.Config.AdminExportConfigV1(input, client.BearerToken(*token.AccessToken))
+	ok, unauthorized, forbidden, internalServerError, err := aaa.Client.Config.AdminExportConfigV1(input, client.BearerToken(*token.AccessToken), writer)
 	if unauthorized != nil {
 		return nil, unauthorized
 	}
@@ -250,7 +252,7 @@ func (aaa *ConfigService) AdminUpdateConfigV1Short(input *config.AdminUpdateConf
 	return ok.GetPayload(), nil
 }
 
-func (aaa *ConfigService) AdminExportConfigV1Short(input *config.AdminExportConfigV1Params) (*lobbyclientmodels.ModelsConfigExport, error) {
+func (aaa *ConfigService) AdminExportConfigV1Short(input *config.AdminExportConfigV1Params, writer io.Writer) (io.Writer, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -267,7 +269,7 @@ func (aaa *ConfigService) AdminExportConfigV1Short(input *config.AdminExportConf
 		}
 	}
 
-	ok, err := aaa.Client.Config.AdminExportConfigV1Short(input, authInfoWriter)
+	ok, err := aaa.Client.Config.AdminExportConfigV1Short(input, authInfoWriter, writer)
 	if err != nil {
 		return nil, err
 	}

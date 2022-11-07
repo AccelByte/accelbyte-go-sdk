@@ -128,10 +128,30 @@ func NewCreateRoleBadRequest() *CreateRoleBadRequest {
   Invalid request
 */
 type CreateRoleBadRequest struct {
+	Payload *iamclientmodels.RestErrorResponse
 }
 
 func (o *CreateRoleBadRequest) Error() string {
-	return fmt.Sprintf("[POST /iam/roles][%d] createRoleBadRequest ", 400)
+	return fmt.Sprintf("[POST /iam/roles][%d] createRoleBadRequest  %+v", 400, o.ToJSONString())
+}
+
+func (o *CreateRoleBadRequest) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
+}
+
+func (o *CreateRoleBadRequest) GetPayload() *iamclientmodels.RestErrorResponse {
+	return o.Payload
 }
 
 func (o *CreateRoleBadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -139,6 +159,13 @@ func (o *CreateRoleBadRequest) readResponse(response runtime.ClientResponse, con
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
 		consumer = runtime.ByteStreamConsumer()
+	}
+
+	o.Payload = new(iamclientmodels.RestErrorResponse)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
 	}
 
 	return nil
@@ -151,13 +178,33 @@ func NewCreateRoleUnauthorized() *CreateRoleUnauthorized {
 
 /*CreateRoleUnauthorized handles this case with default header values.
 
-  Unauthorized access
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20001</td><td>unauthorized access</td></tr></table>
 */
 type CreateRoleUnauthorized struct {
+	Payload *iamclientmodels.RestErrorResponse
 }
 
 func (o *CreateRoleUnauthorized) Error() string {
-	return fmt.Sprintf("[POST /iam/roles][%d] createRoleUnauthorized ", 401)
+	return fmt.Sprintf("[POST /iam/roles][%d] createRoleUnauthorized  %+v", 401, o.ToJSONString())
+}
+
+func (o *CreateRoleUnauthorized) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
+}
+
+func (o *CreateRoleUnauthorized) GetPayload() *iamclientmodels.RestErrorResponse {
+	return o.Payload
 }
 
 func (o *CreateRoleUnauthorized) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -165,6 +212,13 @@ func (o *CreateRoleUnauthorized) readResponse(response runtime.ClientResponse, c
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
 		consumer = runtime.ByteStreamConsumer()
+	}
+
+	o.Payload = new(iamclientmodels.RestErrorResponse)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
 	}
 
 	return nil
@@ -177,13 +231,33 @@ func NewCreateRoleForbidden() *CreateRoleForbidden {
 
 /*CreateRoleForbidden handles this case with default header values.
 
-  Forbidden
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20013</td><td>insufficient permissions</td></tr></table>
 */
 type CreateRoleForbidden struct {
+	Payload *iamclientmodels.RestErrorResponse
 }
 
 func (o *CreateRoleForbidden) Error() string {
-	return fmt.Sprintf("[POST /iam/roles][%d] createRoleForbidden ", 403)
+	return fmt.Sprintf("[POST /iam/roles][%d] createRoleForbidden  %+v", 403, o.ToJSONString())
+}
+
+func (o *CreateRoleForbidden) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
+}
+
+func (o *CreateRoleForbidden) GetPayload() *iamclientmodels.RestErrorResponse {
+	return o.Payload
 }
 
 func (o *CreateRoleForbidden) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -191,6 +265,13 @@ func (o *CreateRoleForbidden) readResponse(response runtime.ClientResponse, cons
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
 		consumer = runtime.ByteStreamConsumer()
+	}
+
+	o.Payload = new(iamclientmodels.RestErrorResponse)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
 	}
 
 	return nil

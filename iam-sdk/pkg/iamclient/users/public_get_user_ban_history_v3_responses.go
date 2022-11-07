@@ -140,10 +140,30 @@ func NewPublicGetUserBanHistoryV3BadRequest() *PublicGetUserBanHistoryV3BadReque
   <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20019</td><td>unable to parse request body</td></tr></table>
 */
 type PublicGetUserBanHistoryV3BadRequest struct {
+	Payload *iamclientmodels.RestErrorResponse
 }
 
 func (o *PublicGetUserBanHistoryV3BadRequest) Error() string {
-	return fmt.Sprintf("[GET /iam/v3/public/namespaces/{namespace}/users/{userId}/bans][%d] publicGetUserBanHistoryV3BadRequest ", 400)
+	return fmt.Sprintf("[GET /iam/v3/public/namespaces/{namespace}/users/{userId}/bans][%d] publicGetUserBanHistoryV3BadRequest  %+v", 400, o.ToJSONString())
+}
+
+func (o *PublicGetUserBanHistoryV3BadRequest) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
+}
+
+func (o *PublicGetUserBanHistoryV3BadRequest) GetPayload() *iamclientmodels.RestErrorResponse {
+	return o.Payload
 }
 
 func (o *PublicGetUserBanHistoryV3BadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -151,6 +171,13 @@ func (o *PublicGetUserBanHistoryV3BadRequest) readResponse(response runtime.Clie
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
 		consumer = runtime.ByteStreamConsumer()
+	}
+
+	o.Payload = new(iamclientmodels.RestErrorResponse)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
 	}
 
 	return nil
@@ -163,13 +190,33 @@ func NewPublicGetUserBanHistoryV3Unauthorized() *PublicGetUserBanHistoryV3Unauth
 
 /*PublicGetUserBanHistoryV3Unauthorized handles this case with default header values.
 
-  Unauthorized access
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20001</td><td>unauthorized access</td></tr></table>
 */
 type PublicGetUserBanHistoryV3Unauthorized struct {
+	Payload *iamclientmodels.RestErrorResponse
 }
 
 func (o *PublicGetUserBanHistoryV3Unauthorized) Error() string {
-	return fmt.Sprintf("[GET /iam/v3/public/namespaces/{namespace}/users/{userId}/bans][%d] publicGetUserBanHistoryV3Unauthorized ", 401)
+	return fmt.Sprintf("[GET /iam/v3/public/namespaces/{namespace}/users/{userId}/bans][%d] publicGetUserBanHistoryV3Unauthorized  %+v", 401, o.ToJSONString())
+}
+
+func (o *PublicGetUserBanHistoryV3Unauthorized) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
+}
+
+func (o *PublicGetUserBanHistoryV3Unauthorized) GetPayload() *iamclientmodels.RestErrorResponse {
+	return o.Payload
 }
 
 func (o *PublicGetUserBanHistoryV3Unauthorized) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -177,6 +224,13 @@ func (o *PublicGetUserBanHistoryV3Unauthorized) readResponse(response runtime.Cl
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
 		consumer = runtime.ByteStreamConsumer()
+	}
+
+	o.Payload = new(iamclientmodels.RestErrorResponse)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
 	}
 
 	return nil
@@ -189,13 +243,33 @@ func NewPublicGetUserBanHistoryV3Forbidden() *PublicGetUserBanHistoryV3Forbidden
 
 /*PublicGetUserBanHistoryV3Forbidden handles this case with default header values.
 
-  Forbidden
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20013</td><td>insufficient permissions</td></tr></table>
 */
 type PublicGetUserBanHistoryV3Forbidden struct {
+	Payload *iamclientmodels.RestErrorResponse
 }
 
 func (o *PublicGetUserBanHistoryV3Forbidden) Error() string {
-	return fmt.Sprintf("[GET /iam/v3/public/namespaces/{namespace}/users/{userId}/bans][%d] publicGetUserBanHistoryV3Forbidden ", 403)
+	return fmt.Sprintf("[GET /iam/v3/public/namespaces/{namespace}/users/{userId}/bans][%d] publicGetUserBanHistoryV3Forbidden  %+v", 403, o.ToJSONString())
+}
+
+func (o *PublicGetUserBanHistoryV3Forbidden) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
+}
+
+func (o *PublicGetUserBanHistoryV3Forbidden) GetPayload() *iamclientmodels.RestErrorResponse {
+	return o.Payload
 }
 
 func (o *PublicGetUserBanHistoryV3Forbidden) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -203,6 +277,13 @@ func (o *PublicGetUserBanHistoryV3Forbidden) readResponse(response runtime.Clien
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
 		consumer = runtime.ByteStreamConsumer()
+	}
+
+	o.Payload = new(iamclientmodels.RestErrorResponse)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
 	}
 
 	return nil
@@ -218,10 +299,30 @@ func NewPublicGetUserBanHistoryV3NotFound() *PublicGetUserBanHistoryV3NotFound {
   <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20008</td><td>user not found</td></tr><tr><td>10139</td><td>platform account not found</td></tr></table>
 */
 type PublicGetUserBanHistoryV3NotFound struct {
+	Payload *iamclientmodels.RestErrorResponse
 }
 
 func (o *PublicGetUserBanHistoryV3NotFound) Error() string {
-	return fmt.Sprintf("[GET /iam/v3/public/namespaces/{namespace}/users/{userId}/bans][%d] publicGetUserBanHistoryV3NotFound ", 404)
+	return fmt.Sprintf("[GET /iam/v3/public/namespaces/{namespace}/users/{userId}/bans][%d] publicGetUserBanHistoryV3NotFound  %+v", 404, o.ToJSONString())
+}
+
+func (o *PublicGetUserBanHistoryV3NotFound) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
+}
+
+func (o *PublicGetUserBanHistoryV3NotFound) GetPayload() *iamclientmodels.RestErrorResponse {
+	return o.Payload
 }
 
 func (o *PublicGetUserBanHistoryV3NotFound) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -229,6 +330,13 @@ func (o *PublicGetUserBanHistoryV3NotFound) readResponse(response runtime.Client
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
 		consumer = runtime.ByteStreamConsumer()
+	}
+
+	o.Payload = new(iamclientmodels.RestErrorResponse)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
 	}
 
 	return nil
@@ -244,10 +352,30 @@ func NewPublicGetUserBanHistoryV3InternalServerError() *PublicGetUserBanHistoryV
   <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20000</td><td>internal server error</td></tr></table>
 */
 type PublicGetUserBanHistoryV3InternalServerError struct {
+	Payload *iamclientmodels.RestErrorResponse
 }
 
 func (o *PublicGetUserBanHistoryV3InternalServerError) Error() string {
-	return fmt.Sprintf("[GET /iam/v3/public/namespaces/{namespace}/users/{userId}/bans][%d] publicGetUserBanHistoryV3InternalServerError ", 500)
+	return fmt.Sprintf("[GET /iam/v3/public/namespaces/{namespace}/users/{userId}/bans][%d] publicGetUserBanHistoryV3InternalServerError  %+v", 500, o.ToJSONString())
+}
+
+func (o *PublicGetUserBanHistoryV3InternalServerError) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
+}
+
+func (o *PublicGetUserBanHistoryV3InternalServerError) GetPayload() *iamclientmodels.RestErrorResponse {
+	return o.Payload
 }
 
 func (o *PublicGetUserBanHistoryV3InternalServerError) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -255,6 +383,13 @@ func (o *PublicGetUserBanHistoryV3InternalServerError) readResponse(response run
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
 		consumer = runtime.ByteStreamConsumer()
+	}
+
+	o.Payload = new(iamclientmodels.RestErrorResponse)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
 	}
 
 	return nil

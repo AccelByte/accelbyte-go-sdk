@@ -48,6 +48,12 @@ func (o *AdminDecryptDeviceV4Reader) ReadResponse(response runtime.ClientRespons
 			return nil, err
 		}
 		return result, nil
+	case 403:
+		result := NewAdminDecryptDeviceV4Forbidden()
+		if err := result.readResponse(response, consumer, o.formats); err != nil {
+			return nil, err
+		}
+		return result, nil
 	case 500:
 		result := NewAdminDecryptDeviceV4InternalServerError()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -208,6 +214,59 @@ func (o *AdminDecryptDeviceV4Unauthorized) GetPayload() *iamclientmodels.RestErr
 }
 
 func (o *AdminDecryptDeviceV4Unauthorized) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+	// handle file responses
+	contentDisposition := response.GetHeader("Content-Disposition")
+	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
+		consumer = runtime.ByteStreamConsumer()
+	}
+
+	o.Payload = new(iamclientmodels.RestErrorResponse)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
+	}
+
+	return nil
+}
+
+// NewAdminDecryptDeviceV4Forbidden creates a AdminDecryptDeviceV4Forbidden with default headers values
+func NewAdminDecryptDeviceV4Forbidden() *AdminDecryptDeviceV4Forbidden {
+	return &AdminDecryptDeviceV4Forbidden{}
+}
+
+/*AdminDecryptDeviceV4Forbidden handles this case with default header values.
+
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20013</td><td>insufficient permissions</td></tr></table>
+*/
+type AdminDecryptDeviceV4Forbidden struct {
+	Payload *iamclientmodels.RestErrorResponse
+}
+
+func (o *AdminDecryptDeviceV4Forbidden) Error() string {
+	return fmt.Sprintf("[GET /iam/v4/admin/namespaces/{namespace}/devices/{deviceId}/decrypt][%d] adminDecryptDeviceV4Forbidden  %+v", 403, o.ToJSONString())
+}
+
+func (o *AdminDecryptDeviceV4Forbidden) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
+}
+
+func (o *AdminDecryptDeviceV4Forbidden) GetPayload() *iamclientmodels.RestErrorResponse {
+	return o.Payload
+}
+
+func (o *AdminDecryptDeviceV4Forbidden) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {

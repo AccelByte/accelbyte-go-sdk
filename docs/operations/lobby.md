@@ -193,7 +193,6 @@
 | `models.BlockedByPlayerData` | [ModelsBlockedByPlayerData ](../../lobby-sdk/pkg/lobbyclientmodels/models_blocked_by_player_data.go) |
 | `models.BlockedPlayerData` | [ModelsBlockedPlayerData ](../../lobby-sdk/pkg/lobbyclientmodels/models_blocked_player_data.go) |
 | `models.Config` | [ModelsConfig ](../../lobby-sdk/pkg/lobbyclientmodels/models_config.go) |
-| `models.ConfigExport` | [ModelsConfigExport ](../../lobby-sdk/pkg/lobbyclientmodels/models_config_export.go) |
 | `models.ConfigList` | [ModelsConfigList ](../../lobby-sdk/pkg/lobbyclientmodels/models_config_list.go) |
 | `models.ConfigReq` | [ModelsConfigReq ](../../lobby-sdk/pkg/lobbyclientmodels/models_config_req.go) |
 | `models.CreateConfigRequest` | [ModelsCreateConfigRequest ](../../lobby-sdk/pkg/lobbyclientmodels/models_create_config_request.go) |

@@ -134,10 +134,30 @@ func NewUpdateCountryAgeRestrictionBadRequest() *UpdateCountryAgeRestrictionBadR
   Invalid request
 */
 type UpdateCountryAgeRestrictionBadRequest struct {
+	Payload *iamclientmodels.RestErrorResponse
 }
 
 func (o *UpdateCountryAgeRestrictionBadRequest) Error() string {
-	return fmt.Sprintf("[PATCH /iam/v2/admin/namespaces/{namespace}/countries/{countryCode}][%d] updateCountryAgeRestrictionBadRequest ", 400)
+	return fmt.Sprintf("[PATCH /iam/v2/admin/namespaces/{namespace}/countries/{countryCode}][%d] updateCountryAgeRestrictionBadRequest  %+v", 400, o.ToJSONString())
+}
+
+func (o *UpdateCountryAgeRestrictionBadRequest) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
+}
+
+func (o *UpdateCountryAgeRestrictionBadRequest) GetPayload() *iamclientmodels.RestErrorResponse {
+	return o.Payload
 }
 
 func (o *UpdateCountryAgeRestrictionBadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -145,6 +165,13 @@ func (o *UpdateCountryAgeRestrictionBadRequest) readResponse(response runtime.Cl
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
 		consumer = runtime.ByteStreamConsumer()
+	}
+
+	o.Payload = new(iamclientmodels.RestErrorResponse)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
 	}
 
 	return nil
@@ -157,13 +184,33 @@ func NewUpdateCountryAgeRestrictionUnauthorized() *UpdateCountryAgeRestrictionUn
 
 /*UpdateCountryAgeRestrictionUnauthorized handles this case with default header values.
 
-  Unauthorized access
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20001</td><td>unauthorized access</td></tr></table>
 */
 type UpdateCountryAgeRestrictionUnauthorized struct {
+	Payload *iamclientmodels.RestErrorResponse
 }
 
 func (o *UpdateCountryAgeRestrictionUnauthorized) Error() string {
-	return fmt.Sprintf("[PATCH /iam/v2/admin/namespaces/{namespace}/countries/{countryCode}][%d] updateCountryAgeRestrictionUnauthorized ", 401)
+	return fmt.Sprintf("[PATCH /iam/v2/admin/namespaces/{namespace}/countries/{countryCode}][%d] updateCountryAgeRestrictionUnauthorized  %+v", 401, o.ToJSONString())
+}
+
+func (o *UpdateCountryAgeRestrictionUnauthorized) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
+}
+
+func (o *UpdateCountryAgeRestrictionUnauthorized) GetPayload() *iamclientmodels.RestErrorResponse {
+	return o.Payload
 }
 
 func (o *UpdateCountryAgeRestrictionUnauthorized) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -171,6 +218,13 @@ func (o *UpdateCountryAgeRestrictionUnauthorized) readResponse(response runtime.
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
 		consumer = runtime.ByteStreamConsumer()
+	}
+
+	o.Payload = new(iamclientmodels.RestErrorResponse)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
 	}
 
 	return nil
@@ -183,13 +237,33 @@ func NewUpdateCountryAgeRestrictionForbidden() *UpdateCountryAgeRestrictionForbi
 
 /*UpdateCountryAgeRestrictionForbidden handles this case with default header values.
 
-  Forbidden
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20013</td><td>insufficient permissions</td></tr></table>
 */
 type UpdateCountryAgeRestrictionForbidden struct {
+	Payload *iamclientmodels.RestErrorResponse
 }
 
 func (o *UpdateCountryAgeRestrictionForbidden) Error() string {
-	return fmt.Sprintf("[PATCH /iam/v2/admin/namespaces/{namespace}/countries/{countryCode}][%d] updateCountryAgeRestrictionForbidden ", 403)
+	return fmt.Sprintf("[PATCH /iam/v2/admin/namespaces/{namespace}/countries/{countryCode}][%d] updateCountryAgeRestrictionForbidden  %+v", 403, o.ToJSONString())
+}
+
+func (o *UpdateCountryAgeRestrictionForbidden) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
+}
+
+func (o *UpdateCountryAgeRestrictionForbidden) GetPayload() *iamclientmodels.RestErrorResponse {
+	return o.Payload
 }
 
 func (o *UpdateCountryAgeRestrictionForbidden) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -197,6 +271,13 @@ func (o *UpdateCountryAgeRestrictionForbidden) readResponse(response runtime.Cli
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
 		consumer = runtime.ByteStreamConsumer()
+	}
+
+	o.Payload = new(iamclientmodels.RestErrorResponse)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
 	}
 
 	return nil

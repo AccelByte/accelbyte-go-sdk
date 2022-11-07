@@ -128,10 +128,30 @@ func NewAdminSearchUsersV2BadRequest() *AdminSearchUsersV2BadRequest {
   Invalid request
 */
 type AdminSearchUsersV2BadRequest struct {
+	Payload *iamclientmodels.RestErrorResponse
 }
 
 func (o *AdminSearchUsersV2BadRequest) Error() string {
-	return fmt.Sprintf("[GET /iam/v2/admin/namespaces/{namespace}/users][%d] adminSearchUsersV2BadRequest ", 400)
+	return fmt.Sprintf("[GET /iam/v2/admin/namespaces/{namespace}/users][%d] adminSearchUsersV2BadRequest  %+v", 400, o.ToJSONString())
+}
+
+func (o *AdminSearchUsersV2BadRequest) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
+}
+
+func (o *AdminSearchUsersV2BadRequest) GetPayload() *iamclientmodels.RestErrorResponse {
+	return o.Payload
 }
 
 func (o *AdminSearchUsersV2BadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -139,6 +159,13 @@ func (o *AdminSearchUsersV2BadRequest) readResponse(response runtime.ClientRespo
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
 		consumer = runtime.ByteStreamConsumer()
+	}
+
+	o.Payload = new(iamclientmodels.RestErrorResponse)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
 	}
 
 	return nil
@@ -151,13 +178,33 @@ func NewAdminSearchUsersV2Unauthorized() *AdminSearchUsersV2Unauthorized {
 
 /*AdminSearchUsersV2Unauthorized handles this case with default header values.
 
-  Unauthorized access
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20001</td><td>unauthorized access</td></tr></table>
 */
 type AdminSearchUsersV2Unauthorized struct {
+	Payload *iamclientmodels.RestErrorResponse
 }
 
 func (o *AdminSearchUsersV2Unauthorized) Error() string {
-	return fmt.Sprintf("[GET /iam/v2/admin/namespaces/{namespace}/users][%d] adminSearchUsersV2Unauthorized ", 401)
+	return fmt.Sprintf("[GET /iam/v2/admin/namespaces/{namespace}/users][%d] adminSearchUsersV2Unauthorized  %+v", 401, o.ToJSONString())
+}
+
+func (o *AdminSearchUsersV2Unauthorized) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
+}
+
+func (o *AdminSearchUsersV2Unauthorized) GetPayload() *iamclientmodels.RestErrorResponse {
+	return o.Payload
 }
 
 func (o *AdminSearchUsersV2Unauthorized) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -165,6 +212,13 @@ func (o *AdminSearchUsersV2Unauthorized) readResponse(response runtime.ClientRes
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
 		consumer = runtime.ByteStreamConsumer()
+	}
+
+	o.Payload = new(iamclientmodels.RestErrorResponse)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
 	}
 
 	return nil
@@ -177,13 +231,33 @@ func NewAdminSearchUsersV2Forbidden() *AdminSearchUsersV2Forbidden {
 
 /*AdminSearchUsersV2Forbidden handles this case with default header values.
 
-  Forbidden
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20013</td><td>insufficient permissions</td></tr></table>
 */
 type AdminSearchUsersV2Forbidden struct {
+	Payload *iamclientmodels.RestErrorResponse
 }
 
 func (o *AdminSearchUsersV2Forbidden) Error() string {
-	return fmt.Sprintf("[GET /iam/v2/admin/namespaces/{namespace}/users][%d] adminSearchUsersV2Forbidden ", 403)
+	return fmt.Sprintf("[GET /iam/v2/admin/namespaces/{namespace}/users][%d] adminSearchUsersV2Forbidden  %+v", 403, o.ToJSONString())
+}
+
+func (o *AdminSearchUsersV2Forbidden) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
+}
+
+func (o *AdminSearchUsersV2Forbidden) GetPayload() *iamclientmodels.RestErrorResponse {
+	return o.Payload
 }
 
 func (o *AdminSearchUsersV2Forbidden) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -191,6 +265,13 @@ func (o *AdminSearchUsersV2Forbidden) readResponse(response runtime.ClientRespon
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
 		consumer = runtime.ByteStreamConsumer()
+	}
+
+	o.Payload = new(iamclientmodels.RestErrorResponse)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
 	}
 
 	return nil

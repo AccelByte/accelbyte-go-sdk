@@ -39,11 +39,11 @@ type ClientService interface {
 	AddUserRoleShort(params *AddUserRoleParams, authInfo runtime.ClientAuthInfoWriter) (*AddUserRoleNoContent, error)
 	AdminAddUserPermissionsV3(params *AdminAddUserPermissionsV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminAddUserPermissionsV3NoContent, *AdminAddUserPermissionsV3BadRequest, *AdminAddUserPermissionsV3Unauthorized, *AdminAddUserPermissionsV3Forbidden, *AdminAddUserPermissionsV3NotFound, error)
 	AdminAddUserPermissionsV3Short(params *AdminAddUserPermissionsV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminAddUserPermissionsV3NoContent, error)
-	AdminAddUserRoleV3(params *AdminAddUserRoleV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminAddUserRoleV3NoContent, *AdminAddUserRoleV3BadRequest, *AdminAddUserRoleV3Unauthorized, *AdminAddUserRoleV3Forbidden, *AdminAddUserRoleV3NotFound, *AdminAddUserRoleV3Conflict, error)
+	AdminAddUserRoleV3(params *AdminAddUserRoleV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminAddUserRoleV3NoContent, *AdminAddUserRoleV3BadRequest, *AdminAddUserRoleV3Unauthorized, *AdminAddUserRoleV3Forbidden, *AdminAddUserRoleV3NotFound, *AdminAddUserRoleV3Conflict, *AdminAddUserRoleV3InternalServerError, error)
 	AdminAddUserRoleV3Short(params *AdminAddUserRoleV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminAddUserRoleV3NoContent, error)
 	AdminBanUserV2(params *AdminBanUserV2Params, authInfo runtime.ClientAuthInfoWriter) (*AdminBanUserV2Created, *AdminBanUserV2BadRequest, *AdminBanUserV2Unauthorized, *AdminBanUserV2Forbidden, *AdminBanUserV2NotFound, *AdminBanUserV2InternalServerError, error)
 	AdminBanUserV2Short(params *AdminBanUserV2Params, authInfo runtime.ClientAuthInfoWriter) (*AdminBanUserV2Created, error)
-	AdminBanUserV3(params *AdminBanUserV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminBanUserV3Created, *AdminBanUserV3BadRequest, *AdminBanUserV3Unauthorized, *AdminBanUserV3Forbidden, *AdminBanUserV3NotFound, error)
+	AdminBanUserV3(params *AdminBanUserV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminBanUserV3Created, *AdminBanUserV3BadRequest, *AdminBanUserV3Unauthorized, *AdminBanUserV3Forbidden, *AdminBanUserV3NotFound, *AdminBanUserV3InternalServerError, error)
 	AdminBanUserV3Short(params *AdminBanUserV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminBanUserV3Created, error)
 	AdminCreateJusticeUser(params *AdminCreateJusticeUserParams, authInfo runtime.ClientAuthInfoWriter) (*AdminCreateJusticeUserCreated, *AdminCreateJusticeUserBadRequest, *AdminCreateJusticeUserUnauthorized, *AdminCreateJusticeUserForbidden, *AdminCreateJusticeUserNotFound, *AdminCreateJusticeUserInternalServerError, error)
 	AdminCreateJusticeUserShort(params *AdminCreateJusticeUserParams, authInfo runtime.ClientAuthInfoWriter) (*AdminCreateJusticeUserCreated, error)
@@ -57,7 +57,7 @@ type ClientService interface {
 	AdminDeleteUserPermissionBulkV3Short(params *AdminDeleteUserPermissionBulkV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminDeleteUserPermissionBulkV3NoContent, error)
 	AdminDeleteUserPermissionV3(params *AdminDeleteUserPermissionV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminDeleteUserPermissionV3NoContent, *AdminDeleteUserPermissionV3BadRequest, *AdminDeleteUserPermissionV3Unauthorized, *AdminDeleteUserPermissionV3Forbidden, *AdminDeleteUserPermissionV3NotFound, error)
 	AdminDeleteUserPermissionV3Short(params *AdminDeleteUserPermissionV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminDeleteUserPermissionV3NoContent, error)
-	AdminDeleteUserRoleV3(params *AdminDeleteUserRoleV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminDeleteUserRoleV3NoContent, *AdminDeleteUserRoleV3BadRequest, *AdminDeleteUserRoleV3Unauthorized, *AdminDeleteUserRoleV3Forbidden, *AdminDeleteUserRoleV3NotFound, error)
+	AdminDeleteUserRoleV3(params *AdminDeleteUserRoleV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminDeleteUserRoleV3NoContent, *AdminDeleteUserRoleV3BadRequest, *AdminDeleteUserRoleV3Unauthorized, *AdminDeleteUserRoleV3Forbidden, *AdminDeleteUserRoleV3NotFound, *AdminDeleteUserRoleV3InternalServerError, error)
 	AdminDeleteUserRoleV3Short(params *AdminDeleteUserRoleV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminDeleteUserRoleV3NoContent, error)
 	AdminDeleteUserRolesV3(params *AdminDeleteUserRolesV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminDeleteUserRolesV3NoContent, *AdminDeleteUserRolesV3BadRequest, *AdminDeleteUserRolesV3Unauthorized, *AdminDeleteUserRolesV3Forbidden, *AdminDeleteUserRolesV3NotFound, error)
 	AdminDeleteUserRolesV3Short(params *AdminDeleteUserRolesV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminDeleteUserRolesV3NoContent, error)
@@ -79,7 +79,7 @@ type ClientService interface {
 	AdminGetMyUserV3Short(params *AdminGetMyUserV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminGetMyUserV3OK, error)
 	AdminGetUserBanV2(params *AdminGetUserBanV2Params, authInfo runtime.ClientAuthInfoWriter) (*AdminGetUserBanV2OK, *AdminGetUserBanV2Unauthorized, *AdminGetUserBanV2Forbidden, *AdminGetUserBanV2NotFound, error)
 	AdminGetUserBanV2Short(params *AdminGetUserBanV2Params, authInfo runtime.ClientAuthInfoWriter) (*AdminGetUserBanV2OK, error)
-	AdminGetUserBanV3(params *AdminGetUserBanV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminGetUserBanV3OK, *AdminGetUserBanV3BadRequest, *AdminGetUserBanV3Unauthorized, *AdminGetUserBanV3Forbidden, *AdminGetUserBanV3NotFound, error)
+	AdminGetUserBanV3(params *AdminGetUserBanV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminGetUserBanV3OK, *AdminGetUserBanV3BadRequest, *AdminGetUserBanV3Unauthorized, *AdminGetUserBanV3Forbidden, *AdminGetUserBanV3NotFound, *AdminGetUserBanV3InternalServerError, error)
 	AdminGetUserBanV3Short(params *AdminGetUserBanV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminGetUserBanV3OK, error)
 	AdminGetUserByEmailAddressV3(params *AdminGetUserByEmailAddressV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminGetUserByEmailAddressV3OK, *AdminGetUserByEmailAddressV3BadRequest, *AdminGetUserByEmailAddressV3Unauthorized, *AdminGetUserByEmailAddressV3Forbidden, *AdminGetUserByEmailAddressV3NotFound, *AdminGetUserByEmailAddressV3InternalServerError, error)
 	AdminGetUserByEmailAddressV3Short(params *AdminGetUserByEmailAddressV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminGetUserByEmailAddressV3OK, error)
@@ -95,9 +95,9 @@ type ClientService interface {
 	AdminGetUserLoginHistoriesV3Short(params *AdminGetUserLoginHistoriesV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminGetUserLoginHistoriesV3OK, error)
 	AdminGetUserMapping(params *AdminGetUserMappingParams, authInfo runtime.ClientAuthInfoWriter) (*AdminGetUserMappingOK, *AdminGetUserMappingBadRequest, *AdminGetUserMappingUnauthorized, *AdminGetUserMappingForbidden, *AdminGetUserMappingNotFound, error)
 	AdminGetUserMappingShort(params *AdminGetUserMappingParams, authInfo runtime.ClientAuthInfoWriter) (*AdminGetUserMappingOK, error)
-	AdminGetUserPlatformAccountsV3(params *AdminGetUserPlatformAccountsV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminGetUserPlatformAccountsV3OK, *AdminGetUserPlatformAccountsV3BadRequest, *AdminGetUserPlatformAccountsV3Unauthorized, *AdminGetUserPlatformAccountsV3Forbidden, *AdminGetUserPlatformAccountsV3NotFound, error)
+	AdminGetUserPlatformAccountsV3(params *AdminGetUserPlatformAccountsV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminGetUserPlatformAccountsV3OK, *AdminGetUserPlatformAccountsV3BadRequest, *AdminGetUserPlatformAccountsV3Unauthorized, *AdminGetUserPlatformAccountsV3Forbidden, *AdminGetUserPlatformAccountsV3NotFound, *AdminGetUserPlatformAccountsV3InternalServerError, error)
 	AdminGetUserPlatformAccountsV3Short(params *AdminGetUserPlatformAccountsV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminGetUserPlatformAccountsV3OK, error)
-	AdminInviteUserV3(params *AdminInviteUserV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminInviteUserV3Created, *AdminInviteUserV3BadRequest, *AdminInviteUserV3NotFound, *AdminInviteUserV3Conflict, *AdminInviteUserV3UnprocessableEntity, *AdminInviteUserV3InternalServerError, error)
+	AdminInviteUserV3(params *AdminInviteUserV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminInviteUserV3Created, *AdminInviteUserV3BadRequest, *AdminInviteUserV3Unauthorized, *AdminInviteUserV3Forbidden, *AdminInviteUserV3NotFound, *AdminInviteUserV3Conflict, *AdminInviteUserV3UnprocessableEntity, *AdminInviteUserV3InternalServerError, error)
 	AdminInviteUserV3Short(params *AdminInviteUserV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminInviteUserV3Created, error)
 	AdminLinkPlatformAccount(params *AdminLinkPlatformAccountParams, authInfo runtime.ClientAuthInfoWriter) (*AdminLinkPlatformAccountNoContent, *AdminLinkPlatformAccountBadRequest, *AdminLinkPlatformAccountUnauthorized, *AdminLinkPlatformAccountForbidden, *AdminLinkPlatformAccountInternalServerError, error)
 	AdminLinkPlatformAccountShort(params *AdminLinkPlatformAccountParams, authInfo runtime.ClientAuthInfoWriter) (*AdminLinkPlatformAccountNoContent, error)
@@ -115,7 +115,7 @@ type ClientService interface {
 	AdminResetPasswordV2Short(params *AdminResetPasswordV2Params, authInfo runtime.ClientAuthInfoWriter) (*AdminResetPasswordV2NoContent, error)
 	AdminResetPasswordV3(params *AdminResetPasswordV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminResetPasswordV3NoContent, *AdminResetPasswordV3BadRequest, *AdminResetPasswordV3Unauthorized, *AdminResetPasswordV3Forbidden, *AdminResetPasswordV3NotFound, *AdminResetPasswordV3InternalServerError, error)
 	AdminResetPasswordV3Short(params *AdminResetPasswordV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminResetPasswordV3NoContent, error)
-	AdminSaveUserRoleV3(params *AdminSaveUserRoleV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminSaveUserRoleV3NoContent, *AdminSaveUserRoleV3BadRequest, *AdminSaveUserRoleV3Forbidden, *AdminSaveUserRoleV3NotFound, *AdminSaveUserRoleV3UnprocessableEntity, *AdminSaveUserRoleV3InternalServerError, error)
+	AdminSaveUserRoleV3(params *AdminSaveUserRoleV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminSaveUserRoleV3NoContent, *AdminSaveUserRoleV3BadRequest, *AdminSaveUserRoleV3Unauthorized, *AdminSaveUserRoleV3Forbidden, *AdminSaveUserRoleV3NotFound, *AdminSaveUserRoleV3UnprocessableEntity, *AdminSaveUserRoleV3InternalServerError, error)
 	AdminSaveUserRoleV3Short(params *AdminSaveUserRoleV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminSaveUserRoleV3NoContent, error)
 	AdminSearchUserV3(params *AdminSearchUserV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminSearchUserV3OK, *AdminSearchUserV3BadRequest, *AdminSearchUserV3Unauthorized, *AdminSearchUserV3Forbidden, *AdminSearchUserV3InternalServerError, error)
 	AdminSearchUserV3Short(params *AdminSearchUserV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminSearchUserV3OK, error)
@@ -135,7 +135,7 @@ type ClientService interface {
 	AdminUpdateUserDeletionStatusV3Short(params *AdminUpdateUserDeletionStatusV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminUpdateUserDeletionStatusV3NoContent, error)
 	AdminUpdateUserPermissionV3(params *AdminUpdateUserPermissionV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminUpdateUserPermissionV3NoContent, *AdminUpdateUserPermissionV3BadRequest, *AdminUpdateUserPermissionV3Unauthorized, *AdminUpdateUserPermissionV3Forbidden, *AdminUpdateUserPermissionV3NotFound, error)
 	AdminUpdateUserPermissionV3Short(params *AdminUpdateUserPermissionV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminUpdateUserPermissionV3NoContent, error)
-	AdminUpdateUserStatusV3(params *AdminUpdateUserStatusV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminUpdateUserStatusV3NoContent, *AdminUpdateUserStatusV3BadRequest, *AdminUpdateUserStatusV3Unauthorized, *AdminUpdateUserStatusV3Forbidden, *AdminUpdateUserStatusV3NotFound, error)
+	AdminUpdateUserStatusV3(params *AdminUpdateUserStatusV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminUpdateUserStatusV3NoContent, *AdminUpdateUserStatusV3BadRequest, *AdminUpdateUserStatusV3Unauthorized, *AdminUpdateUserStatusV3Forbidden, *AdminUpdateUserStatusV3NotFound, *AdminUpdateUserStatusV3InternalServerError, error)
 	AdminUpdateUserStatusV3Short(params *AdminUpdateUserStatusV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminUpdateUserStatusV3NoContent, error)
 	AdminUpdateUserV2(params *AdminUpdateUserV2Params, authInfo runtime.ClientAuthInfoWriter) (*AdminUpdateUserV2OK, *AdminUpdateUserV2BadRequest, *AdminUpdateUserV2Unauthorized, *AdminUpdateUserV2NotFound, *AdminUpdateUserV2Conflict, *AdminUpdateUserV2InternalServerError, error)
 	AdminUpdateUserV2Short(params *AdminUpdateUserV2Params, authInfo runtime.ClientAuthInfoWriter) (*AdminUpdateUserV2OK, error)
@@ -145,11 +145,11 @@ type ClientService interface {
 	AdminUpgradeHeadlessAccountV3Short(params *AdminUpgradeHeadlessAccountV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminUpgradeHeadlessAccountV3OK, error)
 	AdminVerifyAccountV3(params *AdminVerifyAccountV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminVerifyAccountV3NoContent, *AdminVerifyAccountV3BadRequest, *AdminVerifyAccountV3Unauthorized, *AdminVerifyAccountV3Forbidden, *AdminVerifyAccountV3NotFound, *AdminVerifyAccountV3InternalServerError, error)
 	AdminVerifyAccountV3Short(params *AdminVerifyAccountV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminVerifyAccountV3NoContent, error)
-	AdminVerifyUserWithoutVerificationCodeV3(params *AdminVerifyUserWithoutVerificationCodeV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminVerifyUserWithoutVerificationCodeV3NoContent, *AdminVerifyUserWithoutVerificationCodeV3BadRequest, *AdminVerifyUserWithoutVerificationCodeV3Unauthorized, *AdminVerifyUserWithoutVerificationCodeV3Forbidden, *AdminVerifyUserWithoutVerificationCodeV3NotFound, *AdminVerifyUserWithoutVerificationCodeV3Conflict, error)
+	AdminVerifyUserWithoutVerificationCodeV3(params *AdminVerifyUserWithoutVerificationCodeV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminVerifyUserWithoutVerificationCodeV3NoContent, *AdminVerifyUserWithoutVerificationCodeV3BadRequest, *AdminVerifyUserWithoutVerificationCodeV3Unauthorized, *AdminVerifyUserWithoutVerificationCodeV3Forbidden, *AdminVerifyUserWithoutVerificationCodeV3NotFound, *AdminVerifyUserWithoutVerificationCodeV3Conflict, *AdminVerifyUserWithoutVerificationCodeV3InternalServerError, error)
 	AdminVerifyUserWithoutVerificationCodeV3Short(params *AdminVerifyUserWithoutVerificationCodeV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminVerifyUserWithoutVerificationCodeV3NoContent, error)
 	BanUser(params *BanUserParams, authInfo runtime.ClientAuthInfoWriter) (*BanUserCreated, *BanUserBadRequest, *BanUserUnauthorized, *BanUserForbidden, *BanUserNotFound, *BanUserInternalServerError, error)
 	BanUserShort(params *BanUserParams, authInfo runtime.ClientAuthInfoWriter) (*BanUserCreated, error)
-	CheckUserAvailability(params *CheckUserAvailabilityParams, authInfo runtime.ClientAuthInfoWriter) (*CheckUserAvailabilityNoContent, *CheckUserAvailabilityBadRequest, *CheckUserAvailabilityUnauthorized, *CheckUserAvailabilityForbidden, *CheckUserAvailabilityNotFound, *CheckUserAvailabilityUnprocessableEntity, error)
+	CheckUserAvailability(params *CheckUserAvailabilityParams, authInfo runtime.ClientAuthInfoWriter) (*CheckUserAvailabilityNoContent, *CheckUserAvailabilityBadRequest, *CheckUserAvailabilityNotFound, *CheckUserAvailabilityUnprocessableEntity, error)
 	CheckUserAvailabilityShort(params *CheckUserAvailabilityParams, authInfo runtime.ClientAuthInfoWriter) (*CheckUserAvailabilityNoContent, error)
 	CreateUser(params *CreateUserParams, authInfo runtime.ClientAuthInfoWriter) (*CreateUserCreated, *CreateUserBadRequest, *CreateUserUnauthorized, *CreateUserForbidden, *CreateUserConflict, error)
 	CreateUserShort(params *CreateUserParams, authInfo runtime.ClientAuthInfoWriter) (*CreateUserCreated, error)
@@ -251,17 +251,17 @@ type ClientService interface {
 	PublicGetUserByUserIDV2Short(params *PublicGetUserByUserIDV2Params, authInfo runtime.ClientAuthInfoWriter) (*PublicGetUserByUserIDV2OK, error)
 	PublicGetUserByUserIDV3(params *PublicGetUserByUserIDV3Params, authInfo runtime.ClientAuthInfoWriter) (*PublicGetUserByUserIDV3OK, *PublicGetUserByUserIDV3BadRequest, *PublicGetUserByUserIDV3NotFound, *PublicGetUserByUserIDV3InternalServerError, error)
 	PublicGetUserByUserIDV3Short(params *PublicGetUserByUserIDV3Params, authInfo runtime.ClientAuthInfoWriter) (*PublicGetUserByUserIDV3OK, error)
-	PublicGetUserInformationV3(params *PublicGetUserInformationV3Params, authInfo runtime.ClientAuthInfoWriter) (*PublicGetUserInformationV3OK, *PublicGetUserInformationV3Unauthorized, *PublicGetUserInformationV3Forbidden, *PublicGetUserInformationV3NotFound, error)
+	PublicGetUserInformationV3(params *PublicGetUserInformationV3Params, authInfo runtime.ClientAuthInfoWriter) (*PublicGetUserInformationV3OK, *PublicGetUserInformationV3Unauthorized, *PublicGetUserInformationV3Forbidden, *PublicGetUserInformationV3NotFound, *PublicGetUserInformationV3InternalServerError, error)
 	PublicGetUserInformationV3Short(params *PublicGetUserInformationV3Params, authInfo runtime.ClientAuthInfoWriter) (*PublicGetUserInformationV3OK, error)
 	PublicGetUserLoginHistoriesV3(params *PublicGetUserLoginHistoriesV3Params, authInfo runtime.ClientAuthInfoWriter) (*PublicGetUserLoginHistoriesV3OK, *PublicGetUserLoginHistoriesV3Unauthorized, *PublicGetUserLoginHistoriesV3Forbidden, *PublicGetUserLoginHistoriesV3NotFound, error)
 	PublicGetUserLoginHistoriesV3Short(params *PublicGetUserLoginHistoriesV3Params, authInfo runtime.ClientAuthInfoWriter) (*PublicGetUserLoginHistoriesV3OK, error)
-	PublicGetUserPlatformAccountsV3(params *PublicGetUserPlatformAccountsV3Params, authInfo runtime.ClientAuthInfoWriter) (*PublicGetUserPlatformAccountsV3OK, *PublicGetUserPlatformAccountsV3BadRequest, *PublicGetUserPlatformAccountsV3Unauthorized, *PublicGetUserPlatformAccountsV3Forbidden, *PublicGetUserPlatformAccountsV3NotFound, error)
+	PublicGetUserPlatformAccountsV3(params *PublicGetUserPlatformAccountsV3Params, authInfo runtime.ClientAuthInfoWriter) (*PublicGetUserPlatformAccountsV3OK, *PublicGetUserPlatformAccountsV3BadRequest, *PublicGetUserPlatformAccountsV3Unauthorized, *PublicGetUserPlatformAccountsV3Forbidden, *PublicGetUserPlatformAccountsV3NotFound, *PublicGetUserPlatformAccountsV3InternalServerError, error)
 	PublicGetUserPlatformAccountsV3Short(params *PublicGetUserPlatformAccountsV3Params, authInfo runtime.ClientAuthInfoWriter) (*PublicGetUserPlatformAccountsV3OK, error)
 	PublicLinkPlatformAccount(params *PublicLinkPlatformAccountParams, authInfo runtime.ClientAuthInfoWriter) (*PublicLinkPlatformAccountNoContent, *PublicLinkPlatformAccountBadRequest, *PublicLinkPlatformAccountUnauthorized, *PublicLinkPlatformAccountForbidden, *PublicLinkPlatformAccountInternalServerError, error)
 	PublicLinkPlatformAccountShort(params *PublicLinkPlatformAccountParams, authInfo runtime.ClientAuthInfoWriter) (*PublicLinkPlatformAccountNoContent, error)
 	PublicListJusticePlatformAccountsV3(params *PublicListJusticePlatformAccountsV3Params, authInfo runtime.ClientAuthInfoWriter) (*PublicListJusticePlatformAccountsV3OK, *PublicListJusticePlatformAccountsV3BadRequest, *PublicListJusticePlatformAccountsV3Unauthorized, *PublicListJusticePlatformAccountsV3Forbidden, *PublicListJusticePlatformAccountsV3NotFound, *PublicListJusticePlatformAccountsV3InternalServerError, error)
 	PublicListJusticePlatformAccountsV3Short(params *PublicListJusticePlatformAccountsV3Params, authInfo runtime.ClientAuthInfoWriter) (*PublicListJusticePlatformAccountsV3OK, error)
-	PublicListUserAllPlatformAccountsDistinctV3(params *PublicListUserAllPlatformAccountsDistinctV3Params, authInfo runtime.ClientAuthInfoWriter) (*PublicListUserAllPlatformAccountsDistinctV3OK, *PublicListUserAllPlatformAccountsDistinctV3BadRequest, *PublicListUserAllPlatformAccountsDistinctV3Unauthorized, *PublicListUserAllPlatformAccountsDistinctV3Forbidden, *PublicListUserAllPlatformAccountsDistinctV3NotFound, error)
+	PublicListUserAllPlatformAccountsDistinctV3(params *PublicListUserAllPlatformAccountsDistinctV3Params, authInfo runtime.ClientAuthInfoWriter) (*PublicListUserAllPlatformAccountsDistinctV3OK, *PublicListUserAllPlatformAccountsDistinctV3BadRequest, *PublicListUserAllPlatformAccountsDistinctV3Unauthorized, *PublicListUserAllPlatformAccountsDistinctV3Forbidden, *PublicListUserAllPlatformAccountsDistinctV3NotFound, *PublicListUserAllPlatformAccountsDistinctV3InternalServerError, error)
 	PublicListUserAllPlatformAccountsDistinctV3Short(params *PublicListUserAllPlatformAccountsDistinctV3Params, authInfo runtime.ClientAuthInfoWriter) (*PublicListUserAllPlatformAccountsDistinctV3OK, error)
 	PublicListUserIDByPlatformUserIDsV3(params *PublicListUserIDByPlatformUserIDsV3Params, authInfo runtime.ClientAuthInfoWriter) (*PublicListUserIDByPlatformUserIDsV3OK, *PublicListUserIDByPlatformUserIDsV3BadRequest, *PublicListUserIDByPlatformUserIDsV3Unauthorized, *PublicListUserIDByPlatformUserIDsV3Forbidden, *PublicListUserIDByPlatformUserIDsV3InternalServerError, error)
 	PublicListUserIDByPlatformUserIDsV3Short(params *PublicListUserIDByPlatformUserIDsV3Params, authInfo runtime.ClientAuthInfoWriter) (*PublicListUserIDByPlatformUserIDsV3OK, error)
@@ -829,7 +829,7 @@ Deprecated: Use AdminAddUserRoleV3Short instead.
 &lt;p&gt;action code: 10109&lt;/p&gt;
 
 */
-func (a *Client) AdminAddUserRoleV3(params *AdminAddUserRoleV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminAddUserRoleV3NoContent, *AdminAddUserRoleV3BadRequest, *AdminAddUserRoleV3Unauthorized, *AdminAddUserRoleV3Forbidden, *AdminAddUserRoleV3NotFound, *AdminAddUserRoleV3Conflict, error) {
+func (a *Client) AdminAddUserRoleV3(params *AdminAddUserRoleV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminAddUserRoleV3NoContent, *AdminAddUserRoleV3BadRequest, *AdminAddUserRoleV3Unauthorized, *AdminAddUserRoleV3Forbidden, *AdminAddUserRoleV3NotFound, *AdminAddUserRoleV3Conflict, *AdminAddUserRoleV3InternalServerError, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewAdminAddUserRoleV3Params()
@@ -857,31 +857,34 @@ func (a *Client) AdminAddUserRoleV3(params *AdminAddUserRoleV3Params, authInfo r
 		Client:             params.HTTPClient,
 	})
 	if err != nil {
-		return nil, nil, nil, nil, nil, nil, err
+		return nil, nil, nil, nil, nil, nil, nil, err
 	}
 
 	switch v := result.(type) {
 
 	case *AdminAddUserRoleV3NoContent:
-		return v, nil, nil, nil, nil, nil, nil
+		return v, nil, nil, nil, nil, nil, nil, nil
 
 	case *AdminAddUserRoleV3BadRequest:
-		return nil, v, nil, nil, nil, nil, nil
+		return nil, v, nil, nil, nil, nil, nil, nil
 
 	case *AdminAddUserRoleV3Unauthorized:
-		return nil, nil, v, nil, nil, nil, nil
+		return nil, nil, v, nil, nil, nil, nil, nil
 
 	case *AdminAddUserRoleV3Forbidden:
-		return nil, nil, nil, v, nil, nil, nil
+		return nil, nil, nil, v, nil, nil, nil, nil
 
 	case *AdminAddUserRoleV3NotFound:
-		return nil, nil, nil, nil, v, nil, nil
+		return nil, nil, nil, nil, v, nil, nil, nil
 
 	case *AdminAddUserRoleV3Conflict:
-		return nil, nil, nil, nil, nil, v, nil
+		return nil, nil, nil, nil, nil, v, nil, nil
+
+	case *AdminAddUserRoleV3InternalServerError:
+		return nil, nil, nil, nil, nil, nil, v, nil
 
 	default:
-		return nil, nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+		return nil, nil, nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
@@ -936,6 +939,8 @@ func (a *Client) AdminAddUserRoleV3Short(params *AdminAddUserRoleV3Params, authI
 	case *AdminAddUserRoleV3NotFound:
 		return nil, v
 	case *AdminAddUserRoleV3Conflict:
+		return nil, v
+	case *AdminAddUserRoleV3InternalServerError:
 		return nil, v
 
 	default:
@@ -1086,7 +1091,7 @@ Deprecated: Use AdminBanUserV3Short instead.
 &lt;p&gt;action code : 10141 &lt;/p&gt;
 
 */
-func (a *Client) AdminBanUserV3(params *AdminBanUserV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminBanUserV3Created, *AdminBanUserV3BadRequest, *AdminBanUserV3Unauthorized, *AdminBanUserV3Forbidden, *AdminBanUserV3NotFound, error) {
+func (a *Client) AdminBanUserV3(params *AdminBanUserV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminBanUserV3Created, *AdminBanUserV3BadRequest, *AdminBanUserV3Unauthorized, *AdminBanUserV3Forbidden, *AdminBanUserV3NotFound, *AdminBanUserV3InternalServerError, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewAdminBanUserV3Params()
@@ -1114,28 +1119,31 @@ func (a *Client) AdminBanUserV3(params *AdminBanUserV3Params, authInfo runtime.C
 		Client:             params.HTTPClient,
 	})
 	if err != nil {
-		return nil, nil, nil, nil, nil, err
+		return nil, nil, nil, nil, nil, nil, err
 	}
 
 	switch v := result.(type) {
 
 	case *AdminBanUserV3Created:
-		return v, nil, nil, nil, nil, nil
+		return v, nil, nil, nil, nil, nil, nil
 
 	case *AdminBanUserV3BadRequest:
-		return nil, v, nil, nil, nil, nil
+		return nil, v, nil, nil, nil, nil, nil
 
 	case *AdminBanUserV3Unauthorized:
-		return nil, nil, v, nil, nil, nil
+		return nil, nil, v, nil, nil, nil, nil
 
 	case *AdminBanUserV3Forbidden:
-		return nil, nil, nil, v, nil, nil
+		return nil, nil, nil, v, nil, nil, nil
 
 	case *AdminBanUserV3NotFound:
-		return nil, nil, nil, nil, v, nil
+		return nil, nil, nil, nil, v, nil, nil
+
+	case *AdminBanUserV3InternalServerError:
+		return nil, nil, nil, nil, nil, v, nil
 
 	default:
-		return nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+		return nil, nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
@@ -1189,6 +1197,8 @@ func (a *Client) AdminBanUserV3Short(params *AdminBanUserV3Params, authInfo runt
 	case *AdminBanUserV3Forbidden:
 		return nil, v
 	case *AdminBanUserV3NotFound:
+		return nil, v
+	case *AdminBanUserV3InternalServerError:
 		return nil, v
 
 	default:
@@ -1963,7 +1973,7 @@ Deprecated: Use AdminDeleteUserRoleV3Short instead.
 &lt;p&gt;action code: 10110&lt;/p&gt;
 
 */
-func (a *Client) AdminDeleteUserRoleV3(params *AdminDeleteUserRoleV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminDeleteUserRoleV3NoContent, *AdminDeleteUserRoleV3BadRequest, *AdminDeleteUserRoleV3Unauthorized, *AdminDeleteUserRoleV3Forbidden, *AdminDeleteUserRoleV3NotFound, error) {
+func (a *Client) AdminDeleteUserRoleV3(params *AdminDeleteUserRoleV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminDeleteUserRoleV3NoContent, *AdminDeleteUserRoleV3BadRequest, *AdminDeleteUserRoleV3Unauthorized, *AdminDeleteUserRoleV3Forbidden, *AdminDeleteUserRoleV3NotFound, *AdminDeleteUserRoleV3InternalServerError, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewAdminDeleteUserRoleV3Params()
@@ -1991,28 +2001,31 @@ func (a *Client) AdminDeleteUserRoleV3(params *AdminDeleteUserRoleV3Params, auth
 		Client:             params.HTTPClient,
 	})
 	if err != nil {
-		return nil, nil, nil, nil, nil, err
+		return nil, nil, nil, nil, nil, nil, err
 	}
 
 	switch v := result.(type) {
 
 	case *AdminDeleteUserRoleV3NoContent:
-		return v, nil, nil, nil, nil, nil
+		return v, nil, nil, nil, nil, nil, nil
 
 	case *AdminDeleteUserRoleV3BadRequest:
-		return nil, v, nil, nil, nil, nil
+		return nil, v, nil, nil, nil, nil, nil
 
 	case *AdminDeleteUserRoleV3Unauthorized:
-		return nil, nil, v, nil, nil, nil
+		return nil, nil, v, nil, nil, nil, nil
 
 	case *AdminDeleteUserRoleV3Forbidden:
-		return nil, nil, nil, v, nil, nil
+		return nil, nil, nil, v, nil, nil, nil
 
 	case *AdminDeleteUserRoleV3NotFound:
-		return nil, nil, nil, nil, v, nil
+		return nil, nil, nil, nil, v, nil, nil
+
+	case *AdminDeleteUserRoleV3InternalServerError:
+		return nil, nil, nil, nil, nil, v, nil
 
 	default:
-		return nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+		return nil, nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
@@ -2065,6 +2078,8 @@ func (a *Client) AdminDeleteUserRoleV3Short(params *AdminDeleteUserRoleV3Params,
 	case *AdminDeleteUserRoleV3Forbidden:
 		return nil, v
 	case *AdminDeleteUserRoleV3NotFound:
+		return nil, v
+	case *AdminDeleteUserRoleV3InternalServerError:
 		return nil, v
 
 	default:
@@ -3298,7 +3313,7 @@ Deprecated: Use AdminGetUserBanV3Short instead.
 &lt;p&gt;action code : 10126&lt;/p&gt;
 
 */
-func (a *Client) AdminGetUserBanV3(params *AdminGetUserBanV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminGetUserBanV3OK, *AdminGetUserBanV3BadRequest, *AdminGetUserBanV3Unauthorized, *AdminGetUserBanV3Forbidden, *AdminGetUserBanV3NotFound, error) {
+func (a *Client) AdminGetUserBanV3(params *AdminGetUserBanV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminGetUserBanV3OK, *AdminGetUserBanV3BadRequest, *AdminGetUserBanV3Unauthorized, *AdminGetUserBanV3Forbidden, *AdminGetUserBanV3NotFound, *AdminGetUserBanV3InternalServerError, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewAdminGetUserBanV3Params()
@@ -3326,28 +3341,31 @@ func (a *Client) AdminGetUserBanV3(params *AdminGetUserBanV3Params, authInfo run
 		Client:             params.HTTPClient,
 	})
 	if err != nil {
-		return nil, nil, nil, nil, nil, err
+		return nil, nil, nil, nil, nil, nil, err
 	}
 
 	switch v := result.(type) {
 
 	case *AdminGetUserBanV3OK:
-		return v, nil, nil, nil, nil, nil
+		return v, nil, nil, nil, nil, nil, nil
 
 	case *AdminGetUserBanV3BadRequest:
-		return nil, v, nil, nil, nil, nil
+		return nil, v, nil, nil, nil, nil, nil
 
 	case *AdminGetUserBanV3Unauthorized:
-		return nil, nil, v, nil, nil, nil
+		return nil, nil, v, nil, nil, nil, nil
 
 	case *AdminGetUserBanV3Forbidden:
-		return nil, nil, nil, v, nil, nil
+		return nil, nil, nil, v, nil, nil, nil
 
 	case *AdminGetUserBanV3NotFound:
-		return nil, nil, nil, nil, v, nil
+		return nil, nil, nil, nil, v, nil, nil
+
+	case *AdminGetUserBanV3InternalServerError:
+		return nil, nil, nil, nil, nil, v, nil
 
 	default:
-		return nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+		return nil, nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
@@ -3401,6 +3419,8 @@ func (a *Client) AdminGetUserBanV3Short(params *AdminGetUserBanV3Params, authInf
 	case *AdminGetUserBanV3Forbidden:
 		return nil, v
 	case *AdminGetUserBanV3NotFound:
+		return nil, v
+	case *AdminGetUserBanV3InternalServerError:
 		return nil, v
 
 	default:
@@ -4245,7 +4265,7 @@ Deprecated: Use AdminGetUserPlatformAccountsV3Short instead.
 			&lt;br&gt;Gets platform accounts that are already linked with user account
         	&lt;br&gt;action code : 10128
 */
-func (a *Client) AdminGetUserPlatformAccountsV3(params *AdminGetUserPlatformAccountsV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminGetUserPlatformAccountsV3OK, *AdminGetUserPlatformAccountsV3BadRequest, *AdminGetUserPlatformAccountsV3Unauthorized, *AdminGetUserPlatformAccountsV3Forbidden, *AdminGetUserPlatformAccountsV3NotFound, error) {
+func (a *Client) AdminGetUserPlatformAccountsV3(params *AdminGetUserPlatformAccountsV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminGetUserPlatformAccountsV3OK, *AdminGetUserPlatformAccountsV3BadRequest, *AdminGetUserPlatformAccountsV3Unauthorized, *AdminGetUserPlatformAccountsV3Forbidden, *AdminGetUserPlatformAccountsV3NotFound, *AdminGetUserPlatformAccountsV3InternalServerError, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewAdminGetUserPlatformAccountsV3Params()
@@ -4273,28 +4293,31 @@ func (a *Client) AdminGetUserPlatformAccountsV3(params *AdminGetUserPlatformAcco
 		Client:             params.HTTPClient,
 	})
 	if err != nil {
-		return nil, nil, nil, nil, nil, err
+		return nil, nil, nil, nil, nil, nil, err
 	}
 
 	switch v := result.(type) {
 
 	case *AdminGetUserPlatformAccountsV3OK:
-		return v, nil, nil, nil, nil, nil
+		return v, nil, nil, nil, nil, nil, nil
 
 	case *AdminGetUserPlatformAccountsV3BadRequest:
-		return nil, v, nil, nil, nil, nil
+		return nil, v, nil, nil, nil, nil, nil
 
 	case *AdminGetUserPlatformAccountsV3Unauthorized:
-		return nil, nil, v, nil, nil, nil
+		return nil, nil, v, nil, nil, nil, nil
 
 	case *AdminGetUserPlatformAccountsV3Forbidden:
-		return nil, nil, nil, v, nil, nil
+		return nil, nil, nil, v, nil, nil, nil
 
 	case *AdminGetUserPlatformAccountsV3NotFound:
-		return nil, nil, nil, nil, v, nil
+		return nil, nil, nil, nil, v, nil, nil
+
+	case *AdminGetUserPlatformAccountsV3InternalServerError:
+		return nil, nil, nil, nil, nil, v, nil
 
 	default:
-		return nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+		return nil, nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
@@ -4351,6 +4374,8 @@ func (a *Client) AdminGetUserPlatformAccountsV3Short(params *AdminGetUserPlatfor
 		return nil, v
 	case *AdminGetUserPlatformAccountsV3NotFound:
 		return nil, v
+	case *AdminGetUserPlatformAccountsV3InternalServerError:
+		return nil, v
 
 	default:
 		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
@@ -4372,7 +4397,7 @@ Role is optional, if not specified then it will only assign User role
 The invited admin will also assigned with &#34;User&#34; role by default.
 
 */
-func (a *Client) AdminInviteUserV3(params *AdminInviteUserV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminInviteUserV3Created, *AdminInviteUserV3BadRequest, *AdminInviteUserV3NotFound, *AdminInviteUserV3Conflict, *AdminInviteUserV3UnprocessableEntity, *AdminInviteUserV3InternalServerError, error) {
+func (a *Client) AdminInviteUserV3(params *AdminInviteUserV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminInviteUserV3Created, *AdminInviteUserV3BadRequest, *AdminInviteUserV3Unauthorized, *AdminInviteUserV3Forbidden, *AdminInviteUserV3NotFound, *AdminInviteUserV3Conflict, *AdminInviteUserV3UnprocessableEntity, *AdminInviteUserV3InternalServerError, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewAdminInviteUserV3Params()
@@ -4400,31 +4425,37 @@ func (a *Client) AdminInviteUserV3(params *AdminInviteUserV3Params, authInfo run
 		Client:             params.HTTPClient,
 	})
 	if err != nil {
-		return nil, nil, nil, nil, nil, nil, err
+		return nil, nil, nil, nil, nil, nil, nil, nil, err
 	}
 
 	switch v := result.(type) {
 
 	case *AdminInviteUserV3Created:
-		return v, nil, nil, nil, nil, nil, nil
+		return v, nil, nil, nil, nil, nil, nil, nil, nil
 
 	case *AdminInviteUserV3BadRequest:
-		return nil, v, nil, nil, nil, nil, nil
+		return nil, v, nil, nil, nil, nil, nil, nil, nil
+
+	case *AdminInviteUserV3Unauthorized:
+		return nil, nil, v, nil, nil, nil, nil, nil, nil
+
+	case *AdminInviteUserV3Forbidden:
+		return nil, nil, nil, v, nil, nil, nil, nil, nil
 
 	case *AdminInviteUserV3NotFound:
-		return nil, nil, v, nil, nil, nil, nil
+		return nil, nil, nil, nil, v, nil, nil, nil, nil
 
 	case *AdminInviteUserV3Conflict:
-		return nil, nil, nil, v, nil, nil, nil
+		return nil, nil, nil, nil, nil, v, nil, nil, nil
 
 	case *AdminInviteUserV3UnprocessableEntity:
-		return nil, nil, nil, nil, v, nil, nil
+		return nil, nil, nil, nil, nil, nil, v, nil, nil
 
 	case *AdminInviteUserV3InternalServerError:
-		return nil, nil, nil, nil, nil, v, nil
+		return nil, nil, nil, nil, nil, nil, nil, v, nil
 
 	default:
-		return nil, nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+		return nil, nil, nil, nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
@@ -4477,6 +4508,10 @@ func (a *Client) AdminInviteUserV3Short(params *AdminInviteUserV3Params, authInf
 	case *AdminInviteUserV3Created:
 		return v, nil
 	case *AdminInviteUserV3BadRequest:
+		return nil, v
+	case *AdminInviteUserV3Unauthorized:
+		return nil, v
+	case *AdminInviteUserV3Forbidden:
 		return nil, v
 	case *AdminInviteUserV3NotFound:
 		return nil, v
@@ -5578,7 +5613,7 @@ User&#39;s roles will be updated with given roles (replacing current user&#39;s 
 Skipped the check whether the user performing the request is a role manager / assigner since there is a plan to discard the role manager / assigner.
 
 */
-func (a *Client) AdminSaveUserRoleV3(params *AdminSaveUserRoleV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminSaveUserRoleV3NoContent, *AdminSaveUserRoleV3BadRequest, *AdminSaveUserRoleV3Forbidden, *AdminSaveUserRoleV3NotFound, *AdminSaveUserRoleV3UnprocessableEntity, *AdminSaveUserRoleV3InternalServerError, error) {
+func (a *Client) AdminSaveUserRoleV3(params *AdminSaveUserRoleV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminSaveUserRoleV3NoContent, *AdminSaveUserRoleV3BadRequest, *AdminSaveUserRoleV3Unauthorized, *AdminSaveUserRoleV3Forbidden, *AdminSaveUserRoleV3NotFound, *AdminSaveUserRoleV3UnprocessableEntity, *AdminSaveUserRoleV3InternalServerError, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewAdminSaveUserRoleV3Params()
@@ -5606,31 +5641,34 @@ func (a *Client) AdminSaveUserRoleV3(params *AdminSaveUserRoleV3Params, authInfo
 		Client:             params.HTTPClient,
 	})
 	if err != nil {
-		return nil, nil, nil, nil, nil, nil, err
+		return nil, nil, nil, nil, nil, nil, nil, err
 	}
 
 	switch v := result.(type) {
 
 	case *AdminSaveUserRoleV3NoContent:
-		return v, nil, nil, nil, nil, nil, nil
+		return v, nil, nil, nil, nil, nil, nil, nil
 
 	case *AdminSaveUserRoleV3BadRequest:
-		return nil, v, nil, nil, nil, nil, nil
+		return nil, v, nil, nil, nil, nil, nil, nil
+
+	case *AdminSaveUserRoleV3Unauthorized:
+		return nil, nil, v, nil, nil, nil, nil, nil
 
 	case *AdminSaveUserRoleV3Forbidden:
-		return nil, nil, v, nil, nil, nil, nil
+		return nil, nil, nil, v, nil, nil, nil, nil
 
 	case *AdminSaveUserRoleV3NotFound:
-		return nil, nil, nil, v, nil, nil, nil
+		return nil, nil, nil, nil, v, nil, nil, nil
 
 	case *AdminSaveUserRoleV3UnprocessableEntity:
-		return nil, nil, nil, nil, v, nil, nil
+		return nil, nil, nil, nil, nil, v, nil, nil
 
 	case *AdminSaveUserRoleV3InternalServerError:
-		return nil, nil, nil, nil, nil, v, nil
+		return nil, nil, nil, nil, nil, nil, v, nil
 
 	default:
-		return nil, nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+		return nil, nil, nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
@@ -5679,6 +5717,8 @@ func (a *Client) AdminSaveUserRoleV3Short(params *AdminSaveUserRoleV3Params, aut
 	case *AdminSaveUserRoleV3NoContent:
 		return v, nil
 	case *AdminSaveUserRoleV3BadRequest:
+		return nil, v
+	case *AdminSaveUserRoleV3Unauthorized:
 		return nil, v
 	case *AdminSaveUserRoleV3Forbidden:
 		return nil, v
@@ -6902,7 +6942,7 @@ Deprecated: Use AdminUpdateUserStatusV3Short instead.
 		&lt;p&gt;Enable user ignore field &#39;reason&#39; in the request body. &lt;/p&gt;
 		&lt;br&gt;action code : 10143
 */
-func (a *Client) AdminUpdateUserStatusV3(params *AdminUpdateUserStatusV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminUpdateUserStatusV3NoContent, *AdminUpdateUserStatusV3BadRequest, *AdminUpdateUserStatusV3Unauthorized, *AdminUpdateUserStatusV3Forbidden, *AdminUpdateUserStatusV3NotFound, error) {
+func (a *Client) AdminUpdateUserStatusV3(params *AdminUpdateUserStatusV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminUpdateUserStatusV3NoContent, *AdminUpdateUserStatusV3BadRequest, *AdminUpdateUserStatusV3Unauthorized, *AdminUpdateUserStatusV3Forbidden, *AdminUpdateUserStatusV3NotFound, *AdminUpdateUserStatusV3InternalServerError, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewAdminUpdateUserStatusV3Params()
@@ -6930,28 +6970,31 @@ func (a *Client) AdminUpdateUserStatusV3(params *AdminUpdateUserStatusV3Params, 
 		Client:             params.HTTPClient,
 	})
 	if err != nil {
-		return nil, nil, nil, nil, nil, err
+		return nil, nil, nil, nil, nil, nil, err
 	}
 
 	switch v := result.(type) {
 
 	case *AdminUpdateUserStatusV3NoContent:
-		return v, nil, nil, nil, nil, nil
+		return v, nil, nil, nil, nil, nil, nil
 
 	case *AdminUpdateUserStatusV3BadRequest:
-		return nil, v, nil, nil, nil, nil
+		return nil, v, nil, nil, nil, nil, nil
 
 	case *AdminUpdateUserStatusV3Unauthorized:
-		return nil, nil, v, nil, nil, nil
+		return nil, nil, v, nil, nil, nil, nil
 
 	case *AdminUpdateUserStatusV3Forbidden:
-		return nil, nil, nil, v, nil, nil
+		return nil, nil, nil, v, nil, nil, nil
 
 	case *AdminUpdateUserStatusV3NotFound:
-		return nil, nil, nil, nil, v, nil
+		return nil, nil, nil, nil, v, nil, nil
+
+	case *AdminUpdateUserStatusV3InternalServerError:
+		return nil, nil, nil, nil, nil, v, nil
 
 	default:
-		return nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+		return nil, nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
@@ -7009,6 +7052,8 @@ func (a *Client) AdminUpdateUserStatusV3Short(params *AdminUpdateUserStatusV3Par
 	case *AdminUpdateUserStatusV3Forbidden:
 		return nil, v
 	case *AdminUpdateUserStatusV3NotFound:
+		return nil, v
+	case *AdminUpdateUserStatusV3InternalServerError:
 		return nil, v
 
 	default:
@@ -7589,7 +7634,7 @@ Deprecated: Use AdminVerifyUserWithoutVerificationCodeV3Short instead.
 &lt;p&gt;action code: 10118&lt;/p&gt;
 
 */
-func (a *Client) AdminVerifyUserWithoutVerificationCodeV3(params *AdminVerifyUserWithoutVerificationCodeV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminVerifyUserWithoutVerificationCodeV3NoContent, *AdminVerifyUserWithoutVerificationCodeV3BadRequest, *AdminVerifyUserWithoutVerificationCodeV3Unauthorized, *AdminVerifyUserWithoutVerificationCodeV3Forbidden, *AdminVerifyUserWithoutVerificationCodeV3NotFound, *AdminVerifyUserWithoutVerificationCodeV3Conflict, error) {
+func (a *Client) AdminVerifyUserWithoutVerificationCodeV3(params *AdminVerifyUserWithoutVerificationCodeV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminVerifyUserWithoutVerificationCodeV3NoContent, *AdminVerifyUserWithoutVerificationCodeV3BadRequest, *AdminVerifyUserWithoutVerificationCodeV3Unauthorized, *AdminVerifyUserWithoutVerificationCodeV3Forbidden, *AdminVerifyUserWithoutVerificationCodeV3NotFound, *AdminVerifyUserWithoutVerificationCodeV3Conflict, *AdminVerifyUserWithoutVerificationCodeV3InternalServerError, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewAdminVerifyUserWithoutVerificationCodeV3Params()
@@ -7617,31 +7662,34 @@ func (a *Client) AdminVerifyUserWithoutVerificationCodeV3(params *AdminVerifyUse
 		Client:             params.HTTPClient,
 	})
 	if err != nil {
-		return nil, nil, nil, nil, nil, nil, err
+		return nil, nil, nil, nil, nil, nil, nil, err
 	}
 
 	switch v := result.(type) {
 
 	case *AdminVerifyUserWithoutVerificationCodeV3NoContent:
-		return v, nil, nil, nil, nil, nil, nil
+		return v, nil, nil, nil, nil, nil, nil, nil
 
 	case *AdminVerifyUserWithoutVerificationCodeV3BadRequest:
-		return nil, v, nil, nil, nil, nil, nil
+		return nil, v, nil, nil, nil, nil, nil, nil
 
 	case *AdminVerifyUserWithoutVerificationCodeV3Unauthorized:
-		return nil, nil, v, nil, nil, nil, nil
+		return nil, nil, v, nil, nil, nil, nil, nil
 
 	case *AdminVerifyUserWithoutVerificationCodeV3Forbidden:
-		return nil, nil, nil, v, nil, nil, nil
+		return nil, nil, nil, v, nil, nil, nil, nil
 
 	case *AdminVerifyUserWithoutVerificationCodeV3NotFound:
-		return nil, nil, nil, nil, v, nil, nil
+		return nil, nil, nil, nil, v, nil, nil, nil
 
 	case *AdminVerifyUserWithoutVerificationCodeV3Conflict:
-		return nil, nil, nil, nil, nil, v, nil
+		return nil, nil, nil, nil, nil, v, nil, nil
+
+	case *AdminVerifyUserWithoutVerificationCodeV3InternalServerError:
+		return nil, nil, nil, nil, nil, nil, v, nil
 
 	default:
-		return nil, nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+		return nil, nil, nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
@@ -7696,6 +7744,8 @@ func (a *Client) AdminVerifyUserWithoutVerificationCodeV3Short(params *AdminVeri
 	case *AdminVerifyUserWithoutVerificationCodeV3NotFound:
 		return nil, v
 	case *AdminVerifyUserWithoutVerificationCodeV3Conflict:
+		return nil, v
+	case *AdminVerifyUserWithoutVerificationCodeV3InternalServerError:
 		return nil, v
 
 	default:
@@ -7853,7 +7903,7 @@ Response Code :
 	- Account Not Available : 204 (no content)
 
 */
-func (a *Client) CheckUserAvailability(params *CheckUserAvailabilityParams, authInfo runtime.ClientAuthInfoWriter) (*CheckUserAvailabilityNoContent, *CheckUserAvailabilityBadRequest, *CheckUserAvailabilityUnauthorized, *CheckUserAvailabilityForbidden, *CheckUserAvailabilityNotFound, *CheckUserAvailabilityUnprocessableEntity, error) {
+func (a *Client) CheckUserAvailability(params *CheckUserAvailabilityParams, authInfo runtime.ClientAuthInfoWriter) (*CheckUserAvailabilityNoContent, *CheckUserAvailabilityBadRequest, *CheckUserAvailabilityNotFound, *CheckUserAvailabilityUnprocessableEntity, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewCheckUserAvailabilityParams()
@@ -7881,31 +7931,25 @@ func (a *Client) CheckUserAvailability(params *CheckUserAvailabilityParams, auth
 		Client:             params.HTTPClient,
 	})
 	if err != nil {
-		return nil, nil, nil, nil, nil, nil, err
+		return nil, nil, nil, nil, err
 	}
 
 	switch v := result.(type) {
 
 	case *CheckUserAvailabilityNoContent:
-		return v, nil, nil, nil, nil, nil, nil
+		return v, nil, nil, nil, nil
 
 	case *CheckUserAvailabilityBadRequest:
-		return nil, v, nil, nil, nil, nil, nil
-
-	case *CheckUserAvailabilityUnauthorized:
-		return nil, nil, v, nil, nil, nil, nil
-
-	case *CheckUserAvailabilityForbidden:
-		return nil, nil, nil, v, nil, nil, nil
+		return nil, v, nil, nil, nil
 
 	case *CheckUserAvailabilityNotFound:
-		return nil, nil, nil, nil, v, nil, nil
+		return nil, nil, v, nil, nil
 
 	case *CheckUserAvailabilityUnprocessableEntity:
-		return nil, nil, nil, nil, nil, v, nil
+		return nil, nil, nil, v, nil
 
 	default:
-		return nil, nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+		return nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
@@ -7960,10 +8004,6 @@ func (a *Client) CheckUserAvailabilityShort(params *CheckUserAvailabilityParams,
 	case *CheckUserAvailabilityNoContent:
 		return v, nil
 	case *CheckUserAvailabilityBadRequest:
-		return nil, v
-	case *CheckUserAvailabilityUnauthorized:
-		return nil, v
-	case *CheckUserAvailabilityForbidden:
 		return nil, v
 	case *CheckUserAvailabilityNotFound:
 		return nil, v
@@ -14417,7 +14457,7 @@ Deprecated: Use PublicGetUserInformationV3Short instead.
   &lt;p&gt;This endpoint retrieves user info and linked platform accounts.
 					Required permissions &#39;NAMESPACE:{namespace}:INFORMATION:USER:{userId} [READ]&#39;&lt;/p&gt;
 */
-func (a *Client) PublicGetUserInformationV3(params *PublicGetUserInformationV3Params, authInfo runtime.ClientAuthInfoWriter) (*PublicGetUserInformationV3OK, *PublicGetUserInformationV3Unauthorized, *PublicGetUserInformationV3Forbidden, *PublicGetUserInformationV3NotFound, error) {
+func (a *Client) PublicGetUserInformationV3(params *PublicGetUserInformationV3Params, authInfo runtime.ClientAuthInfoWriter) (*PublicGetUserInformationV3OK, *PublicGetUserInformationV3Unauthorized, *PublicGetUserInformationV3Forbidden, *PublicGetUserInformationV3NotFound, *PublicGetUserInformationV3InternalServerError, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewPublicGetUserInformationV3Params()
@@ -14445,25 +14485,28 @@ func (a *Client) PublicGetUserInformationV3(params *PublicGetUserInformationV3Pa
 		Client:             params.HTTPClient,
 	})
 	if err != nil {
-		return nil, nil, nil, nil, err
+		return nil, nil, nil, nil, nil, err
 	}
 
 	switch v := result.(type) {
 
 	case *PublicGetUserInformationV3OK:
-		return v, nil, nil, nil, nil
+		return v, nil, nil, nil, nil, nil
 
 	case *PublicGetUserInformationV3Unauthorized:
-		return nil, v, nil, nil, nil
+		return nil, v, nil, nil, nil, nil
 
 	case *PublicGetUserInformationV3Forbidden:
-		return nil, nil, v, nil, nil
+		return nil, nil, v, nil, nil, nil
 
 	case *PublicGetUserInformationV3NotFound:
-		return nil, nil, nil, v, nil
+		return nil, nil, nil, v, nil, nil
+
+	case *PublicGetUserInformationV3InternalServerError:
+		return nil, nil, nil, nil, v, nil
 
 	default:
-		return nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+		return nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
@@ -14513,6 +14556,8 @@ func (a *Client) PublicGetUserInformationV3Short(params *PublicGetUserInformatio
 	case *PublicGetUserInformationV3Forbidden:
 		return nil, v
 	case *PublicGetUserInformationV3NotFound:
+		return nil, v
+	case *PublicGetUserInformationV3InternalServerError:
 		return nil, v
 
 	default:
@@ -14637,7 +14682,7 @@ Deprecated: Use PublicGetUserPlatformAccountsV3Short instead.
   &lt;p&gt;This endpoint retrieves platform accounts linked to user. Required valid user authorization.
 					&lt;br&gt;action code: 10128 &lt;/p&gt;
 */
-func (a *Client) PublicGetUserPlatformAccountsV3(params *PublicGetUserPlatformAccountsV3Params, authInfo runtime.ClientAuthInfoWriter) (*PublicGetUserPlatformAccountsV3OK, *PublicGetUserPlatformAccountsV3BadRequest, *PublicGetUserPlatformAccountsV3Unauthorized, *PublicGetUserPlatformAccountsV3Forbidden, *PublicGetUserPlatformAccountsV3NotFound, error) {
+func (a *Client) PublicGetUserPlatformAccountsV3(params *PublicGetUserPlatformAccountsV3Params, authInfo runtime.ClientAuthInfoWriter) (*PublicGetUserPlatformAccountsV3OK, *PublicGetUserPlatformAccountsV3BadRequest, *PublicGetUserPlatformAccountsV3Unauthorized, *PublicGetUserPlatformAccountsV3Forbidden, *PublicGetUserPlatformAccountsV3NotFound, *PublicGetUserPlatformAccountsV3InternalServerError, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewPublicGetUserPlatformAccountsV3Params()
@@ -14665,28 +14710,31 @@ func (a *Client) PublicGetUserPlatformAccountsV3(params *PublicGetUserPlatformAc
 		Client:             params.HTTPClient,
 	})
 	if err != nil {
-		return nil, nil, nil, nil, nil, err
+		return nil, nil, nil, nil, nil, nil, err
 	}
 
 	switch v := result.(type) {
 
 	case *PublicGetUserPlatformAccountsV3OK:
-		return v, nil, nil, nil, nil, nil
+		return v, nil, nil, nil, nil, nil, nil
 
 	case *PublicGetUserPlatformAccountsV3BadRequest:
-		return nil, v, nil, nil, nil, nil
+		return nil, v, nil, nil, nil, nil, nil
 
 	case *PublicGetUserPlatformAccountsV3Unauthorized:
-		return nil, nil, v, nil, nil, nil
+		return nil, nil, v, nil, nil, nil, nil
 
 	case *PublicGetUserPlatformAccountsV3Forbidden:
-		return nil, nil, nil, v, nil, nil
+		return nil, nil, nil, v, nil, nil, nil
 
 	case *PublicGetUserPlatformAccountsV3NotFound:
-		return nil, nil, nil, nil, v, nil
+		return nil, nil, nil, nil, v, nil, nil
+
+	case *PublicGetUserPlatformAccountsV3InternalServerError:
+		return nil, nil, nil, nil, nil, v, nil
 
 	default:
-		return nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+		return nil, nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
@@ -14738,6 +14786,8 @@ func (a *Client) PublicGetUserPlatformAccountsV3Short(params *PublicGetUserPlatf
 	case *PublicGetUserPlatformAccountsV3Forbidden:
 		return nil, v
 	case *PublicGetUserPlatformAccountsV3NotFound:
+		return nil, v
+	case *PublicGetUserPlatformAccountsV3InternalServerError:
 		return nil, v
 
 	default:
@@ -14997,7 +15047,7 @@ Deprecated: Use PublicListUserAllPlatformAccountsDistinctV3Short instead.
 					&lt;br&gt;It will query all linked platform accounts and result will be distinct &amp; grouped, same platform we will pick oldest linked one.
 					&lt;br&gt;Required valid user authorization.&lt;/p&gt;
 */
-func (a *Client) PublicListUserAllPlatformAccountsDistinctV3(params *PublicListUserAllPlatformAccountsDistinctV3Params, authInfo runtime.ClientAuthInfoWriter) (*PublicListUserAllPlatformAccountsDistinctV3OK, *PublicListUserAllPlatformAccountsDistinctV3BadRequest, *PublicListUserAllPlatformAccountsDistinctV3Unauthorized, *PublicListUserAllPlatformAccountsDistinctV3Forbidden, *PublicListUserAllPlatformAccountsDistinctV3NotFound, error) {
+func (a *Client) PublicListUserAllPlatformAccountsDistinctV3(params *PublicListUserAllPlatformAccountsDistinctV3Params, authInfo runtime.ClientAuthInfoWriter) (*PublicListUserAllPlatformAccountsDistinctV3OK, *PublicListUserAllPlatformAccountsDistinctV3BadRequest, *PublicListUserAllPlatformAccountsDistinctV3Unauthorized, *PublicListUserAllPlatformAccountsDistinctV3Forbidden, *PublicListUserAllPlatformAccountsDistinctV3NotFound, *PublicListUserAllPlatformAccountsDistinctV3InternalServerError, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewPublicListUserAllPlatformAccountsDistinctV3Params()
@@ -15025,28 +15075,31 @@ func (a *Client) PublicListUserAllPlatformAccountsDistinctV3(params *PublicListU
 		Client:             params.HTTPClient,
 	})
 	if err != nil {
-		return nil, nil, nil, nil, nil, err
+		return nil, nil, nil, nil, nil, nil, err
 	}
 
 	switch v := result.(type) {
 
 	case *PublicListUserAllPlatformAccountsDistinctV3OK:
-		return v, nil, nil, nil, nil, nil
+		return v, nil, nil, nil, nil, nil, nil
 
 	case *PublicListUserAllPlatformAccountsDistinctV3BadRequest:
-		return nil, v, nil, nil, nil, nil
+		return nil, v, nil, nil, nil, nil, nil
 
 	case *PublicListUserAllPlatformAccountsDistinctV3Unauthorized:
-		return nil, nil, v, nil, nil, nil
+		return nil, nil, v, nil, nil, nil, nil
 
 	case *PublicListUserAllPlatformAccountsDistinctV3Forbidden:
-		return nil, nil, nil, v, nil, nil
+		return nil, nil, nil, v, nil, nil, nil
 
 	case *PublicListUserAllPlatformAccountsDistinctV3NotFound:
-		return nil, nil, nil, nil, v, nil
+		return nil, nil, nil, nil, v, nil, nil
+
+	case *PublicListUserAllPlatformAccountsDistinctV3InternalServerError:
+		return nil, nil, nil, nil, nil, v, nil
 
 	default:
-		return nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+		return nil, nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
@@ -15099,6 +15152,8 @@ func (a *Client) PublicListUserAllPlatformAccountsDistinctV3Short(params *Public
 	case *PublicListUserAllPlatformAccountsDistinctV3Forbidden:
 		return nil, v
 	case *PublicListUserAllPlatformAccountsDistinctV3NotFound:
+		return nil, v
+	case *PublicListUserAllPlatformAccountsDistinctV3InternalServerError:
 		return nil, v
 
 	default:

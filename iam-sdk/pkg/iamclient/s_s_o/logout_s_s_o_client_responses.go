@@ -204,7 +204,7 @@ func NewLogoutSSOClientInternalServerError() *LogoutSSOClientInternalServerError
 
 /*LogoutSSOClientInternalServerError handles this case with default header values.
 
-  Internal Server Error
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20000</td><td>internal server error</td></tr></table>
 */
 type LogoutSSOClientInternalServerError struct {
 	Payload *iamclientmodels.RestErrorResponse

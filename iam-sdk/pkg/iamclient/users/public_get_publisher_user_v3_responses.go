@@ -184,13 +184,33 @@ func NewPublicGetPublisherUserV3Unauthorized() *PublicGetPublisherUserV3Unauthor
 
 /*PublicGetPublisherUserV3Unauthorized handles this case with default header values.
 
-  Unauthorized access
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20001</td><td>unauthorized access</td></tr></table>
 */
 type PublicGetPublisherUserV3Unauthorized struct {
+	Payload *iamclientmodels.RestErrorResponse
 }
 
 func (o *PublicGetPublisherUserV3Unauthorized) Error() string {
-	return fmt.Sprintf("[GET /iam/v3/public/namespaces/{namespace}/users/{userId}/publisher][%d] publicGetPublisherUserV3Unauthorized ", 401)
+	return fmt.Sprintf("[GET /iam/v3/public/namespaces/{namespace}/users/{userId}/publisher][%d] publicGetPublisherUserV3Unauthorized  %+v", 401, o.ToJSONString())
+}
+
+func (o *PublicGetPublisherUserV3Unauthorized) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
+}
+
+func (o *PublicGetPublisherUserV3Unauthorized) GetPayload() *iamclientmodels.RestErrorResponse {
+	return o.Payload
 }
 
 func (o *PublicGetPublisherUserV3Unauthorized) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -198,6 +218,13 @@ func (o *PublicGetPublisherUserV3Unauthorized) readResponse(response runtime.Cli
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
 		consumer = runtime.ByteStreamConsumer()
+	}
+
+	o.Payload = new(iamclientmodels.RestErrorResponse)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
 	}
 
 	return nil
@@ -210,13 +237,33 @@ func NewPublicGetPublisherUserV3Forbidden() *PublicGetPublisherUserV3Forbidden {
 
 /*PublicGetPublisherUserV3Forbidden handles this case with default header values.
 
-  Forbidden
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20013</td><td>insufficient permissions</td></tr></table>
 */
 type PublicGetPublisherUserV3Forbidden struct {
+	Payload *iamclientmodels.RestErrorResponse
 }
 
 func (o *PublicGetPublisherUserV3Forbidden) Error() string {
-	return fmt.Sprintf("[GET /iam/v3/public/namespaces/{namespace}/users/{userId}/publisher][%d] publicGetPublisherUserV3Forbidden ", 403)
+	return fmt.Sprintf("[GET /iam/v3/public/namespaces/{namespace}/users/{userId}/publisher][%d] publicGetPublisherUserV3Forbidden  %+v", 403, o.ToJSONString())
+}
+
+func (o *PublicGetPublisherUserV3Forbidden) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
+}
+
+func (o *PublicGetPublisherUserV3Forbidden) GetPayload() *iamclientmodels.RestErrorResponse {
+	return o.Payload
 }
 
 func (o *PublicGetPublisherUserV3Forbidden) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -224,6 +271,13 @@ func (o *PublicGetPublisherUserV3Forbidden) readResponse(response runtime.Client
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
 		consumer = runtime.ByteStreamConsumer()
+	}
+
+	o.Payload = new(iamclientmodels.RestErrorResponse)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
 	}
 
 	return nil

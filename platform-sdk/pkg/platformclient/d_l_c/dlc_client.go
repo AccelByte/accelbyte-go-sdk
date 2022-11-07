@@ -49,7 +49,7 @@ type ClientService interface {
 	SyncSteamDLCShort(params *SyncSteamDLCParams, authInfo runtime.ClientAuthInfoWriter) (*SyncSteamDLCNoContent, error)
 	SyncXboxDLC(params *SyncXboxDLCParams, authInfo runtime.ClientAuthInfoWriter) (*SyncXboxDLCNoContent, *SyncXboxDLCBadRequest, error)
 	SyncXboxDLCShort(params *SyncXboxDLCParams, authInfo runtime.ClientAuthInfoWriter) (*SyncXboxDLCNoContent, error)
-	UpdateDLCItemConfig(params *UpdateDLCItemConfigParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateDLCItemConfigOK, *UpdateDLCItemConfigUnprocessableEntity, error)
+	UpdateDLCItemConfig(params *UpdateDLCItemConfigParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateDLCItemConfigOK, *UpdateDLCItemConfigConflict, *UpdateDLCItemConfigUnprocessableEntity, error)
 	UpdateDLCItemConfigShort(params *UpdateDLCItemConfigParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateDLCItemConfigOK, error)
 	UpdatePlatformDLCConfig(params *UpdatePlatformDLCConfigParams, authInfo runtime.ClientAuthInfoWriter) (*UpdatePlatformDLCConfigOK, *UpdatePlatformDLCConfigUnprocessableEntity, error)
 	UpdatePlatformDLCConfigShort(params *UpdatePlatformDLCConfigParams, authInfo runtime.ClientAuthInfoWriter) (*UpdatePlatformDLCConfigOK, error)
@@ -846,7 +846,7 @@ Deprecated: Use UpdateDLCItemConfigShort instead.
 
   Update DLC item config. Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:DLC:CONFIG&#34;, action=4 (UPDATE)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: updated DLC item config&lt;/li&gt;&lt;/ul&gt;
 */
-func (a *Client) UpdateDLCItemConfig(params *UpdateDLCItemConfigParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateDLCItemConfigOK, *UpdateDLCItemConfigUnprocessableEntity, error) {
+func (a *Client) UpdateDLCItemConfig(params *UpdateDLCItemConfigParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateDLCItemConfigOK, *UpdateDLCItemConfigConflict, *UpdateDLCItemConfigUnprocessableEntity, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewUpdateDLCItemConfigParams()
@@ -874,19 +874,22 @@ func (a *Client) UpdateDLCItemConfig(params *UpdateDLCItemConfigParams, authInfo
 		Client:             params.HTTPClient,
 	})
 	if err != nil {
-		return nil, nil, err
+		return nil, nil, nil, err
 	}
 
 	switch v := result.(type) {
 
 	case *UpdateDLCItemConfigOK:
-		return v, nil, nil
+		return v, nil, nil, nil
+
+	case *UpdateDLCItemConfigConflict:
+		return nil, v, nil, nil
 
 	case *UpdateDLCItemConfigUnprocessableEntity:
-		return nil, v, nil
+		return nil, nil, v, nil
 
 	default:
-		return nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+		return nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
@@ -930,6 +933,8 @@ func (a *Client) UpdateDLCItemConfigShort(params *UpdateDLCItemConfigParams, aut
 
 	case *UpdateDLCItemConfigOK:
 		return v, nil
+	case *UpdateDLCItemConfigConflict:
+		return nil, v
 	case *UpdateDLCItemConfigUnprocessableEntity:
 		return nil, v
 

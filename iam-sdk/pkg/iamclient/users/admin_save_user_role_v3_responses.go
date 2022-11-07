@@ -42,6 +42,12 @@ func (o *AdminSaveUserRoleV3Reader) ReadResponse(response runtime.ClientResponse
 			return nil, err
 		}
 		return result, nil
+	case 401:
+		result := NewAdminSaveUserRoleV3Unauthorized()
+		if err := result.readResponse(response, consumer, o.formats); err != nil {
+			return nil, err
+		}
+		return result, nil
 	case 403:
 		result := NewAdminSaveUserRoleV3Forbidden()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -156,6 +162,59 @@ func (o *AdminSaveUserRoleV3BadRequest) readResponse(response runtime.ClientResp
 	return nil
 }
 
+// NewAdminSaveUserRoleV3Unauthorized creates a AdminSaveUserRoleV3Unauthorized with default headers values
+func NewAdminSaveUserRoleV3Unauthorized() *AdminSaveUserRoleV3Unauthorized {
+	return &AdminSaveUserRoleV3Unauthorized{}
+}
+
+/*AdminSaveUserRoleV3Unauthorized handles this case with default header values.
+
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20001</td><td>unauthorized access</td></tr></table>
+*/
+type AdminSaveUserRoleV3Unauthorized struct {
+	Payload *iamclientmodels.RestErrorResponse
+}
+
+func (o *AdminSaveUserRoleV3Unauthorized) Error() string {
+	return fmt.Sprintf("[PATCH /iam/v3/admin/namespaces/{namespace}/users/{userId}/roles][%d] adminSaveUserRoleV3Unauthorized  %+v", 401, o.ToJSONString())
+}
+
+func (o *AdminSaveUserRoleV3Unauthorized) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
+}
+
+func (o *AdminSaveUserRoleV3Unauthorized) GetPayload() *iamclientmodels.RestErrorResponse {
+	return o.Payload
+}
+
+func (o *AdminSaveUserRoleV3Unauthorized) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+	// handle file responses
+	contentDisposition := response.GetHeader("Content-Disposition")
+	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
+		consumer = runtime.ByteStreamConsumer()
+	}
+
+	o.Payload = new(iamclientmodels.RestErrorResponse)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
+	}
+
+	return nil
+}
+
 // NewAdminSaveUserRoleV3Forbidden creates a AdminSaveUserRoleV3Forbidden with default headers values
 func NewAdminSaveUserRoleV3Forbidden() *AdminSaveUserRoleV3Forbidden {
 	return &AdminSaveUserRoleV3Forbidden{}
@@ -163,7 +222,7 @@ func NewAdminSaveUserRoleV3Forbidden() *AdminSaveUserRoleV3Forbidden {
 
 /*AdminSaveUserRoleV3Forbidden handles this case with default header values.
 
-  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20003</td><td>forbidden access</td></tr></table>
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20013</td><td>insufficient permissions</td></tr></table>
 */
 type AdminSaveUserRoleV3Forbidden struct {
 	Payload *iamclientmodels.RestErrorResponse

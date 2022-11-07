@@ -10,12 +10,16 @@ package users
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
+	"io"
 	"io/ioutil"
 	"strings"
 
 	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/strfmt"
+
+	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclientmodels"
 )
 
 // AdminDeletePlatformLinkV2Reader is a Reader for the AdminDeletePlatformLinkV2 structure.
@@ -132,13 +136,33 @@ func NewAdminDeletePlatformLinkV2Unauthorized() *AdminDeletePlatformLinkV2Unauth
 
 /*AdminDeletePlatformLinkV2Unauthorized handles this case with default header values.
 
-  Unauthorized access
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20001</td><td>unauthorized access</td></tr></table>
 */
 type AdminDeletePlatformLinkV2Unauthorized struct {
+	Payload *iamclientmodels.RestErrorResponse
 }
 
 func (o *AdminDeletePlatformLinkV2Unauthorized) Error() string {
-	return fmt.Sprintf("[DELETE /iam/v2/admin/namespaces/{namespace}/users/{userId}/platforms/{platformId}/link][%d] adminDeletePlatformLinkV2Unauthorized ", 401)
+	return fmt.Sprintf("[DELETE /iam/v2/admin/namespaces/{namespace}/users/{userId}/platforms/{platformId}/link][%d] adminDeletePlatformLinkV2Unauthorized  %+v", 401, o.ToJSONString())
+}
+
+func (o *AdminDeletePlatformLinkV2Unauthorized) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
+}
+
+func (o *AdminDeletePlatformLinkV2Unauthorized) GetPayload() *iamclientmodels.RestErrorResponse {
+	return o.Payload
 }
 
 func (o *AdminDeletePlatformLinkV2Unauthorized) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -146,6 +170,13 @@ func (o *AdminDeletePlatformLinkV2Unauthorized) readResponse(response runtime.Cl
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
 		consumer = runtime.ByteStreamConsumer()
+	}
+
+	o.Payload = new(iamclientmodels.RestErrorResponse)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
 	}
 
 	return nil
@@ -158,13 +189,33 @@ func NewAdminDeletePlatformLinkV2Forbidden() *AdminDeletePlatformLinkV2Forbidden
 
 /*AdminDeletePlatformLinkV2Forbidden handles this case with default header values.
 
-  Forbidden
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20013</td><td>insufficient permissions</td></tr></table>
 */
 type AdminDeletePlatformLinkV2Forbidden struct {
+	Payload *iamclientmodels.RestErrorResponse
 }
 
 func (o *AdminDeletePlatformLinkV2Forbidden) Error() string {
-	return fmt.Sprintf("[DELETE /iam/v2/admin/namespaces/{namespace}/users/{userId}/platforms/{platformId}/link][%d] adminDeletePlatformLinkV2Forbidden ", 403)
+	return fmt.Sprintf("[DELETE /iam/v2/admin/namespaces/{namespace}/users/{userId}/platforms/{platformId}/link][%d] adminDeletePlatformLinkV2Forbidden  %+v", 403, o.ToJSONString())
+}
+
+func (o *AdminDeletePlatformLinkV2Forbidden) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
+}
+
+func (o *AdminDeletePlatformLinkV2Forbidden) GetPayload() *iamclientmodels.RestErrorResponse {
+	return o.Payload
 }
 
 func (o *AdminDeletePlatformLinkV2Forbidden) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -172,6 +223,13 @@ func (o *AdminDeletePlatformLinkV2Forbidden) readResponse(response runtime.Clien
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
 		consumer = runtime.ByteStreamConsumer()
+	}
+
+	o.Payload = new(iamclientmodels.RestErrorResponse)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
 	}
 
 	return nil

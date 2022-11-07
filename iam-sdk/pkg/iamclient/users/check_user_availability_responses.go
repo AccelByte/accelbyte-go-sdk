@@ -42,18 +42,6 @@ func (o *CheckUserAvailabilityReader) ReadResponse(response runtime.ClientRespon
 			return nil, err
 		}
 		return result, nil
-	case 401:
-		result := NewCheckUserAvailabilityUnauthorized()
-		if err := result.readResponse(response, consumer, o.formats); err != nil {
-			return nil, err
-		}
-		return result, nil
-	case 403:
-		result := NewCheckUserAvailabilityForbidden()
-		if err := result.readResponse(response, consumer, o.formats); err != nil {
-			return nil, err
-		}
-		return result, nil
 	case 404:
 		result := NewCheckUserAvailabilityNotFound()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -110,13 +98,33 @@ func NewCheckUserAvailabilityBadRequest() *CheckUserAvailabilityBadRequest {
 
 /*CheckUserAvailabilityBadRequest handles this case with default header values.
 
-  Invalid request
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20002</td><td>validation error</td></tr></table>
 */
 type CheckUserAvailabilityBadRequest struct {
+	Payload *iamclientmodels.RestErrorResponse
 }
 
 func (o *CheckUserAvailabilityBadRequest) Error() string {
-	return fmt.Sprintf("[GET /iam/v3/public/namespaces/{namespace}/users/availability][%d] checkUserAvailabilityBadRequest ", 400)
+	return fmt.Sprintf("[GET /iam/v3/public/namespaces/{namespace}/users/availability][%d] checkUserAvailabilityBadRequest  %+v", 400, o.ToJSONString())
+}
+
+func (o *CheckUserAvailabilityBadRequest) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
+}
+
+func (o *CheckUserAvailabilityBadRequest) GetPayload() *iamclientmodels.RestErrorResponse {
+	return o.Payload
 }
 
 func (o *CheckUserAvailabilityBadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -126,56 +134,11 @@ func (o *CheckUserAvailabilityBadRequest) readResponse(response runtime.ClientRe
 		consumer = runtime.ByteStreamConsumer()
 	}
 
-	return nil
-}
+	o.Payload = new(iamclientmodels.RestErrorResponse)
 
-// NewCheckUserAvailabilityUnauthorized creates a CheckUserAvailabilityUnauthorized with default headers values
-func NewCheckUserAvailabilityUnauthorized() *CheckUserAvailabilityUnauthorized {
-	return &CheckUserAvailabilityUnauthorized{}
-}
-
-/*CheckUserAvailabilityUnauthorized handles this case with default header values.
-
-  Unauthorized access
-*/
-type CheckUserAvailabilityUnauthorized struct {
-}
-
-func (o *CheckUserAvailabilityUnauthorized) Error() string {
-	return fmt.Sprintf("[GET /iam/v3/public/namespaces/{namespace}/users/availability][%d] checkUserAvailabilityUnauthorized ", 401)
-}
-
-func (o *CheckUserAvailabilityUnauthorized) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
-	// handle file responses
-	contentDisposition := response.GetHeader("Content-Disposition")
-	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
-		consumer = runtime.ByteStreamConsumer()
-	}
-
-	return nil
-}
-
-// NewCheckUserAvailabilityForbidden creates a CheckUserAvailabilityForbidden with default headers values
-func NewCheckUserAvailabilityForbidden() *CheckUserAvailabilityForbidden {
-	return &CheckUserAvailabilityForbidden{}
-}
-
-/*CheckUserAvailabilityForbidden handles this case with default header values.
-
-  Forbidden
-*/
-type CheckUserAvailabilityForbidden struct {
-}
-
-func (o *CheckUserAvailabilityForbidden) Error() string {
-	return fmt.Sprintf("[GET /iam/v3/public/namespaces/{namespace}/users/availability][%d] checkUserAvailabilityForbidden ", 403)
-}
-
-func (o *CheckUserAvailabilityForbidden) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
-	// handle file responses
-	contentDisposition := response.GetHeader("Content-Disposition")
-	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
-		consumer = runtime.ByteStreamConsumer()
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
 	}
 
 	return nil

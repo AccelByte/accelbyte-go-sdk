@@ -134,7 +134,7 @@ func NewAdminUpdateRoleV4BadRequest() *AdminUpdateRoleV4BadRequest {
   <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20002</td><td>validation error</td></tr><tr><td>20019</td><td>unable to parse request body</td></tr></table>
 */
 type AdminUpdateRoleV4BadRequest struct {
-	Payload *iamclientmodels.RestapiErrorResponse
+	Payload *iamclientmodels.RestErrorResponse
 }
 
 func (o *AdminUpdateRoleV4BadRequest) Error() string {
@@ -156,7 +156,7 @@ func (o *AdminUpdateRoleV4BadRequest) ToJSONString() string {
 	return fmt.Sprintf("%+v", string(b))
 }
 
-func (o *AdminUpdateRoleV4BadRequest) GetPayload() *iamclientmodels.RestapiErrorResponse {
+func (o *AdminUpdateRoleV4BadRequest) GetPayload() *iamclientmodels.RestErrorResponse {
 	return o.Payload
 }
 
@@ -167,7 +167,7 @@ func (o *AdminUpdateRoleV4BadRequest) readResponse(response runtime.ClientRespon
 		consumer = runtime.ByteStreamConsumer()
 	}
 
-	o.Payload = new(iamclientmodels.RestapiErrorResponse)
+	o.Payload = new(iamclientmodels.RestErrorResponse)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
@@ -187,7 +187,7 @@ func NewAdminUpdateRoleV4Unauthorized() *AdminUpdateRoleV4Unauthorized {
   <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20001</td><td>unauthorized access</td></tr></table>
 */
 type AdminUpdateRoleV4Unauthorized struct {
-	Payload *iamclientmodels.RestapiErrorResponse
+	Payload *iamclientmodels.RestErrorResponse
 }
 
 func (o *AdminUpdateRoleV4Unauthorized) Error() string {
@@ -209,7 +209,7 @@ func (o *AdminUpdateRoleV4Unauthorized) ToJSONString() string {
 	return fmt.Sprintf("%+v", string(b))
 }
 
-func (o *AdminUpdateRoleV4Unauthorized) GetPayload() *iamclientmodels.RestapiErrorResponse {
+func (o *AdminUpdateRoleV4Unauthorized) GetPayload() *iamclientmodels.RestErrorResponse {
 	return o.Payload
 }
 
@@ -220,7 +220,7 @@ func (o *AdminUpdateRoleV4Unauthorized) readResponse(response runtime.ClientResp
 		consumer = runtime.ByteStreamConsumer()
 	}
 
-	o.Payload = new(iamclientmodels.RestapiErrorResponse)
+	o.Payload = new(iamclientmodels.RestErrorResponse)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
@@ -240,7 +240,7 @@ func NewAdminUpdateRoleV4Forbidden() *AdminUpdateRoleV4Forbidden {
   <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20013</td><td>insufficient permissions</td></tr></table>
 */
 type AdminUpdateRoleV4Forbidden struct {
-	Payload *iamclientmodels.RestapiErrorResponse
+	Payload *iamclientmodels.RestErrorResponse
 }
 
 func (o *AdminUpdateRoleV4Forbidden) Error() string {
@@ -262,7 +262,7 @@ func (o *AdminUpdateRoleV4Forbidden) ToJSONString() string {
 	return fmt.Sprintf("%+v", string(b))
 }
 
-func (o *AdminUpdateRoleV4Forbidden) GetPayload() *iamclientmodels.RestapiErrorResponse {
+func (o *AdminUpdateRoleV4Forbidden) GetPayload() *iamclientmodels.RestErrorResponse {
 	return o.Payload
 }
 
@@ -273,7 +273,7 @@ func (o *AdminUpdateRoleV4Forbidden) readResponse(response runtime.ClientRespons
 		consumer = runtime.ByteStreamConsumer()
 	}
 
-	o.Payload = new(iamclientmodels.RestapiErrorResponse)
+	o.Payload = new(iamclientmodels.RestErrorResponse)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
@@ -293,7 +293,7 @@ func NewAdminUpdateRoleV4NotFound() *AdminUpdateRoleV4NotFound {
   <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>10456</td><td>role not found</td></tr></table>
 */
 type AdminUpdateRoleV4NotFound struct {
-	Payload *iamclientmodels.RestapiErrorResponse
+	Payload *iamclientmodels.RestErrorResponse
 }
 
 func (o *AdminUpdateRoleV4NotFound) Error() string {
@@ -315,7 +315,7 @@ func (o *AdminUpdateRoleV4NotFound) ToJSONString() string {
 	return fmt.Sprintf("%+v", string(b))
 }
 
-func (o *AdminUpdateRoleV4NotFound) GetPayload() *iamclientmodels.RestapiErrorResponse {
+func (o *AdminUpdateRoleV4NotFound) GetPayload() *iamclientmodels.RestErrorResponse {
 	return o.Payload
 }
 
@@ -326,7 +326,7 @@ func (o *AdminUpdateRoleV4NotFound) readResponse(response runtime.ClientResponse
 		consumer = runtime.ByteStreamConsumer()
 	}
 
-	o.Payload = new(iamclientmodels.RestapiErrorResponse)
+	o.Payload = new(iamclientmodels.RestErrorResponse)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {

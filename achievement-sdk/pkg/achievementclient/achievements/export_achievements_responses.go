@@ -25,13 +25,14 @@ import (
 // ExportAchievementsReader is a Reader for the ExportAchievements structure.
 type ExportAchievementsReader struct {
 	formats strfmt.Registry
+	writer  io.Writer
 }
 
 // ReadResponse reads a server response into the received o.
 func (o *ExportAchievementsReader) ReadResponse(response runtime.ClientResponse, consumer runtime.Consumer) (interface{}, error) {
 	switch response.Code() {
 	case 200:
-		result := NewExportAchievementsOK()
+		result := NewExportAchievementsOK(o.writer)
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
@@ -66,8 +67,10 @@ func (o *ExportAchievementsReader) ReadResponse(response runtime.ClientResponse,
 }
 
 // NewExportAchievementsOK creates a ExportAchievementsOK with default headers values
-func NewExportAchievementsOK() *ExportAchievementsOK {
-	return &ExportAchievementsOK{}
+func NewExportAchievementsOK(writer io.Writer) *ExportAchievementsOK {
+	return &ExportAchievementsOK{
+		Payload: writer,
+	}
 }
 
 /*ExportAchievementsOK handles this case with default header values.
@@ -75,7 +78,7 @@ func NewExportAchievementsOK() *ExportAchievementsOK {
   OK
 */
 type ExportAchievementsOK struct {
-	Payload []*achievementclientmodels.ModelsAchievement
+	Payload io.Writer
 }
 
 func (o *ExportAchievementsOK) Error() string {
@@ -97,7 +100,7 @@ func (o *ExportAchievementsOK) ToJSONString() string {
 	return fmt.Sprintf("%+v", string(b))
 }
 
-func (o *ExportAchievementsOK) GetPayload() []*achievementclientmodels.ModelsAchievement {
+func (o *ExportAchievementsOK) GetPayload() io.Writer {
 	return o.Payload
 }
 
@@ -109,7 +112,7 @@ func (o *ExportAchievementsOK) readResponse(response runtime.ClientResponse, con
 	}
 
 	// response payload
-	if err := consumer.Consume(response.Body(), &o.Payload); err != nil && err != io.EOF {
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
 		return err
 	}
 

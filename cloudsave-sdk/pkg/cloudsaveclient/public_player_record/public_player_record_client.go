@@ -656,6 +656,15 @@ Example 2
 	&lt;pre&gt;{ &#34;data1&#34;: { &#34;data2&#34;: &#34;value&#34;, &#34;data3&#34;: &#34;new value&#34; }&lt;/pre&gt;
 
 
+&lt;h2&gt;Restriction &lt;/h2&gt;
+This is the restriction of Key Naming for the record:
+1. Cannot use &lt;b&gt;&#34;.&#34;&lt;/b&gt; as the key name
+-	&lt;pre&gt;{ &#34;data.2&#34;: &#34;value&#34; }&lt;/pre&gt;
+2. Cannot use &lt;b&gt;&#34;$&#34;&lt;/b&gt; as the prefix in key names
+-	&lt;pre&gt;{ &#34;$data&#34;: &#34;value&#34; }&lt;/pre&gt;
+3. Cannot use empty string in key names
+-	&lt;pre&gt;{ &#34;&#34;: &#34;value&#34; }&lt;/pre&gt;
+
 
 &lt;h2&gt;Reserved Word&lt;/h2&gt;
 
@@ -663,7 +672,6 @@ Reserved Word List: &lt;b&gt;__META&lt;/b&gt;
 
 The reserved word cannot be used as a field in record value,
 If still defining the field when creating or updating the record, it will be ignored.
-
 
 
 &lt;h2&gt;Warning: This endpoint is going to deprecate&lt;/h2&gt;
@@ -764,6 +772,15 @@ Example 2
 	&lt;pre&gt;{ &#34;data1&#34;: { &#34;data2&#34;: &#34;value&#34;, &#34;data3&#34;: &#34;new value&#34; }&lt;/pre&gt;
 
 
+&lt;h2&gt;Restriction &lt;/h2&gt;
+This is the restriction of Key Naming for the record:
+1. Cannot use &lt;b&gt;&#34;.&#34;&lt;/b&gt; as the key name
+-	&lt;pre&gt;{ &#34;data.2&#34;: &#34;value&#34; }&lt;/pre&gt;
+2. Cannot use &lt;b&gt;&#34;$&#34;&lt;/b&gt; as the prefix in key names
+-	&lt;pre&gt;{ &#34;$data&#34;: &#34;value&#34; }&lt;/pre&gt;
+3. Cannot use empty string in key names
+-	&lt;pre&gt;{ &#34;&#34;: &#34;value&#34; }&lt;/pre&gt;
+
 
 &lt;h2&gt;Reserved Word&lt;/h2&gt;
 
@@ -771,7 +788,6 @@ Reserved Word List: &lt;b&gt;__META&lt;/b&gt;
 
 The reserved word cannot be used as a field in record value,
 If still defining the field when creating or updating the record, it will be ignored.
-
 
 
 &lt;h2&gt;Warning: This endpoint is going to deprecate&lt;/h2&gt;
@@ -862,6 +878,15 @@ Example 2
 -	Result:
 	&lt;pre&gt;{ &#34;data1&#34;: { &#34;data2&#34;: &#34;value&#34;, &#34;data3&#34;: &#34;new value&#34; }&lt;/pre&gt;
 
+
+&lt;h2&gt;Restriction &lt;/h2&gt;
+This is the restriction of Key Naming for the record:
+1. Cannot use &lt;b&gt;&#34;.&#34;&lt;/b&gt; as the key name
+-	&lt;pre&gt;{ &#34;data.2&#34;: &#34;value&#34; }&lt;/pre&gt;
+2. Cannot use &lt;b&gt;&#34;$&#34;&lt;/b&gt; as the prefix in key names
+-	&lt;pre&gt;{ &#34;$data&#34;: &#34;value&#34; }&lt;/pre&gt;
+3. Cannot use empty string in key names
+-	&lt;pre&gt;{ &#34;&#34;: &#34;value&#34; }&lt;/pre&gt;
 
 
 &lt;h2&gt;Record Metadata&lt;/h2&gt;
@@ -968,6 +993,15 @@ Example 2
 -	Result:
 	&lt;pre&gt;{ &#34;data1&#34;: { &#34;data2&#34;: &#34;value&#34;, &#34;data3&#34;: &#34;new value&#34; }&lt;/pre&gt;
 
+
+&lt;h2&gt;Restriction &lt;/h2&gt;
+This is the restriction of Key Naming for the record:
+1. Cannot use &lt;b&gt;&#34;.&#34;&lt;/b&gt; as the key name
+-	&lt;pre&gt;{ &#34;data.2&#34;: &#34;value&#34; }&lt;/pre&gt;
+2. Cannot use &lt;b&gt;&#34;$&#34;&lt;/b&gt; as the prefix in key names
+-	&lt;pre&gt;{ &#34;$data&#34;: &#34;value&#34; }&lt;/pre&gt;
+3. Cannot use empty string in key names
+-	&lt;pre&gt;{ &#34;&#34;: &#34;value&#34; }&lt;/pre&gt;
 
 
 &lt;h2&gt;Record Metadata&lt;/h2&gt;
@@ -1216,6 +1250,15 @@ Example
 	&lt;pre&gt;{ &#34;data2&#34;: &#34;new value&#34; }&lt;/pre&gt;
 
 
+&lt;h2&gt;Restriction &lt;/h2&gt;
+This is the restriction of Key Naming for the record:
+1. Cannot use &lt;b&gt;&#34;.&#34;&lt;/b&gt; as the key name
+-	&lt;pre&gt;{ &#34;data.2&#34;: &#34;value&#34; }&lt;/pre&gt;
+2. Cannot use &lt;b&gt;&#34;$&#34;&lt;/b&gt; as the prefix in key names
+-	&lt;pre&gt;{ &#34;$data&#34;: &#34;value&#34; }&lt;/pre&gt;
+3. Cannot use empty string in key names
+-	&lt;pre&gt;{ &#34;&#34;: &#34;value&#34; }&lt;/pre&gt;
+
 
 &lt;h2&gt;Reserved Word&lt;/h2&gt;
 
@@ -1223,7 +1266,6 @@ Reserved Word List: &lt;b&gt;__META&lt;/b&gt;
 
 The reserved word cannot be used as a field in record value,
 If still defining the field when creating or updating the record, it will be ignored.
-
 
 
 &lt;h2&gt;Warning: This endpoint is going to deprecate&lt;/h2&gt;
@@ -1317,6 +1359,15 @@ Example
 	&lt;pre&gt;{ &#34;data2&#34;: &#34;new value&#34; }&lt;/pre&gt;
 
 
+&lt;h2&gt;Restriction &lt;/h2&gt;
+This is the restriction of Key Naming for the record:
+1. Cannot use &lt;b&gt;&#34;.&#34;&lt;/b&gt; as the key name
+-	&lt;pre&gt;{ &#34;data.2&#34;: &#34;value&#34; }&lt;/pre&gt;
+2. Cannot use &lt;b&gt;&#34;$&#34;&lt;/b&gt; as the prefix in key names
+-	&lt;pre&gt;{ &#34;$data&#34;: &#34;value&#34; }&lt;/pre&gt;
+3. Cannot use empty string in key names
+-	&lt;pre&gt;{ &#34;&#34;: &#34;value&#34; }&lt;/pre&gt;
+
 
 &lt;h2&gt;Reserved Word&lt;/h2&gt;
 
@@ -1324,7 +1375,6 @@ Reserved Word List: &lt;b&gt;__META&lt;/b&gt;
 
 The reserved word cannot be used as a field in record value,
 If still defining the field when creating or updating the record, it will be ignored.
-
 
 
 &lt;h2&gt;Warning: This endpoint is going to deprecate&lt;/h2&gt;
@@ -1408,6 +1458,15 @@ Example
 -	Result:
 	&lt;pre&gt;{ &#34;data2&#34;: &#34;new value&#34; }&lt;/pre&gt;
 
+
+&lt;h2&gt;Restriction &lt;/h2&gt;
+This is the restriction of Key Naming for the record:
+1. Cannot use &lt;b&gt;&#34;.&#34;&lt;/b&gt; as the key name
+-	&lt;pre&gt;{ &#34;data.2&#34;: &#34;value&#34; }&lt;/pre&gt;
+2. Cannot use &lt;b&gt;&#34;$&#34;&lt;/b&gt; as the prefix in key names
+-	&lt;pre&gt;{ &#34;$data&#34;: &#34;value&#34; }&lt;/pre&gt;
+3. Cannot use empty string in key names
+-	&lt;pre&gt;{ &#34;&#34;: &#34;value&#34; }&lt;/pre&gt;
 
 
 &lt;h2&gt;Record Metadata&lt;/h2&gt;
@@ -1507,6 +1566,15 @@ Example
 -	Result:
 	&lt;pre&gt;{ &#34;data2&#34;: &#34;new value&#34; }&lt;/pre&gt;
 
+
+&lt;h2&gt;Restriction &lt;/h2&gt;
+This is the restriction of Key Naming for the record:
+1. Cannot use &lt;b&gt;&#34;.&#34;&lt;/b&gt; as the key name
+-	&lt;pre&gt;{ &#34;data.2&#34;: &#34;value&#34; }&lt;/pre&gt;
+2. Cannot use &lt;b&gt;&#34;$&#34;&lt;/b&gt; as the prefix in key names
+-	&lt;pre&gt;{ &#34;$data&#34;: &#34;value&#34; }&lt;/pre&gt;
+3. Cannot use empty string in key names
+-	&lt;pre&gt;{ &#34;&#34;: &#34;value&#34; }&lt;/pre&gt;
 
 
 &lt;h2&gt;Record Metadata&lt;/h2&gt;

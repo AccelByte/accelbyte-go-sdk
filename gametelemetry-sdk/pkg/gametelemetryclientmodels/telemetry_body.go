@@ -17,9 +17,6 @@ import (
 // swagger:model TelemetryBody
 type TelemetryBody struct {
 
-	// Eventid
-	EventID string `json:"EventId,omitempty"`
-
 	// Eventname
 	// Required: true
 	EventName *string `json:"EventName"`
@@ -27,10 +24,6 @@ type TelemetryBody struct {
 	// Eventnamespace
 	// Required: true
 	EventNamespace *string `json:"EventNamespace"`
-
-	// Eventtimestamp
-	// Format: date-time
-	EventTimestamp *strfmt.DateTime `json:"EventTimestamp,omitempty"`
 
 	// Payload
 	// Required: true
@@ -46,10 +39,6 @@ func (m *TelemetryBody) Validate(formats strfmt.Registry) error {
 	}
 
 	if err := m.validateEventNamespace(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.validateEventTimestamp(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -75,19 +64,6 @@ func (m *TelemetryBody) validateEventName(formats strfmt.Registry) error {
 func (m *TelemetryBody) validateEventNamespace(formats strfmt.Registry) error {
 
 	if err := validate.Required("EventNamespace", "body", m.EventNamespace); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *TelemetryBody) validateEventTimestamp(formats strfmt.Registry) error {
-
-	if swag.IsZero(m.EventTimestamp) { // not required
-		return nil
-	}
-
-	if err := validate.FormatOf("EventTimestamp", "body", "date-time", m.EventTimestamp.String(), formats); err != nil {
 		return err
 	}
 

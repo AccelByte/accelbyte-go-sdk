@@ -157,13 +157,33 @@ func NewCreateUserUnauthorized() *CreateUserUnauthorized {
 
 /*CreateUserUnauthorized handles this case with default header values.
 
-  Unauthorized access
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20001</td><td>unauthorized access</td></tr></table>
 */
 type CreateUserUnauthorized struct {
+	Payload *iamclientmodels.RestErrorResponse
 }
 
 func (o *CreateUserUnauthorized) Error() string {
-	return fmt.Sprintf("[POST /iam/namespaces/{namespace}/users][%d] createUserUnauthorized ", 401)
+	return fmt.Sprintf("[POST /iam/namespaces/{namespace}/users][%d] createUserUnauthorized  %+v", 401, o.ToJSONString())
+}
+
+func (o *CreateUserUnauthorized) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
+}
+
+func (o *CreateUserUnauthorized) GetPayload() *iamclientmodels.RestErrorResponse {
+	return o.Payload
 }
 
 func (o *CreateUserUnauthorized) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -171,6 +191,13 @@ func (o *CreateUserUnauthorized) readResponse(response runtime.ClientResponse, c
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
 		consumer = runtime.ByteStreamConsumer()
+	}
+
+	o.Payload = new(iamclientmodels.RestErrorResponse)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
 	}
 
 	return nil
@@ -183,13 +210,33 @@ func NewCreateUserForbidden() *CreateUserForbidden {
 
 /*CreateUserForbidden handles this case with default header values.
 
-  Forbidden
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20013</td><td>insufficient permissions</td></tr></table>
 */
 type CreateUserForbidden struct {
+	Payload *iamclientmodels.RestErrorResponse
 }
 
 func (o *CreateUserForbidden) Error() string {
-	return fmt.Sprintf("[POST /iam/namespaces/{namespace}/users][%d] createUserForbidden ", 403)
+	return fmt.Sprintf("[POST /iam/namespaces/{namespace}/users][%d] createUserForbidden  %+v", 403, o.ToJSONString())
+}
+
+func (o *CreateUserForbidden) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
+}
+
+func (o *CreateUserForbidden) GetPayload() *iamclientmodels.RestErrorResponse {
+	return o.Payload
 }
 
 func (o *CreateUserForbidden) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -197,6 +244,13 @@ func (o *CreateUserForbidden) readResponse(response runtime.ClientResponse, cons
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
 		consumer = runtime.ByteStreamConsumer()
+	}
+
+	o.Payload = new(iamclientmodels.RestErrorResponse)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
 	}
 
 	return nil

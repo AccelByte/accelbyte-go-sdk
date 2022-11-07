@@ -35,11 +35,11 @@ type Client struct {
 type ClientService interface {
 	AddSSOLoginPlatformCredential(params *AddSSOLoginPlatformCredentialParams, authInfo runtime.ClientAuthInfoWriter) (*AddSSOLoginPlatformCredentialCreated, *AddSSOLoginPlatformCredentialBadRequest, *AddSSOLoginPlatformCredentialUnauthorized, *AddSSOLoginPlatformCredentialForbidden, *AddSSOLoginPlatformCredentialInternalServerError, error)
 	AddSSOLoginPlatformCredentialShort(params *AddSSOLoginPlatformCredentialParams, authInfo runtime.ClientAuthInfoWriter) (*AddSSOLoginPlatformCredentialCreated, error)
-	DeleteSSOLoginPlatformCredentialV3(params *DeleteSSOLoginPlatformCredentialV3Params, authInfo runtime.ClientAuthInfoWriter) (*DeleteSSOLoginPlatformCredentialV3NoContent, *DeleteSSOLoginPlatformCredentialV3Unauthorized, *DeleteSSOLoginPlatformCredentialV3Forbidden, *DeleteSSOLoginPlatformCredentialV3NotFound, *DeleteSSOLoginPlatformCredentialV3InternalServerError, error)
+	DeleteSSOLoginPlatformCredentialV3(params *DeleteSSOLoginPlatformCredentialV3Params, authInfo runtime.ClientAuthInfoWriter) (*DeleteSSOLoginPlatformCredentialV3NoContent, *DeleteSSOLoginPlatformCredentialV3BadRequest, *DeleteSSOLoginPlatformCredentialV3Unauthorized, *DeleteSSOLoginPlatformCredentialV3Forbidden, *DeleteSSOLoginPlatformCredentialV3NotFound, *DeleteSSOLoginPlatformCredentialV3InternalServerError, error)
 	DeleteSSOLoginPlatformCredentialV3Short(params *DeleteSSOLoginPlatformCredentialV3Params, authInfo runtime.ClientAuthInfoWriter) (*DeleteSSOLoginPlatformCredentialV3NoContent, error)
 	RetrieveAllSSOLoginPlatformCredentialV3(params *RetrieveAllSSOLoginPlatformCredentialV3Params, authInfo runtime.ClientAuthInfoWriter) (*RetrieveAllSSOLoginPlatformCredentialV3OK, *RetrieveAllSSOLoginPlatformCredentialV3Unauthorized, *RetrieveAllSSOLoginPlatformCredentialV3Forbidden, *RetrieveAllSSOLoginPlatformCredentialV3NotFound, *RetrieveAllSSOLoginPlatformCredentialV3InternalServerError, error)
 	RetrieveAllSSOLoginPlatformCredentialV3Short(params *RetrieveAllSSOLoginPlatformCredentialV3Params, authInfo runtime.ClientAuthInfoWriter) (*RetrieveAllSSOLoginPlatformCredentialV3OK, error)
-	RetrieveSSOLoginPlatformCredential(params *RetrieveSSOLoginPlatformCredentialParams, authInfo runtime.ClientAuthInfoWriter) (*RetrieveSSOLoginPlatformCredentialOK, *RetrieveSSOLoginPlatformCredentialUnauthorized, *RetrieveSSOLoginPlatformCredentialForbidden, *RetrieveSSOLoginPlatformCredentialNotFound, *RetrieveSSOLoginPlatformCredentialInternalServerError, error)
+	RetrieveSSOLoginPlatformCredential(params *RetrieveSSOLoginPlatformCredentialParams, authInfo runtime.ClientAuthInfoWriter) (*RetrieveSSOLoginPlatformCredentialOK, *RetrieveSSOLoginPlatformCredentialBadRequest, *RetrieveSSOLoginPlatformCredentialUnauthorized, *RetrieveSSOLoginPlatformCredentialForbidden, *RetrieveSSOLoginPlatformCredentialNotFound, *RetrieveSSOLoginPlatformCredentialInternalServerError, error)
 	RetrieveSSOLoginPlatformCredentialShort(params *RetrieveSSOLoginPlatformCredentialParams, authInfo runtime.ClientAuthInfoWriter) (*RetrieveSSOLoginPlatformCredentialOK, error)
 	UpdateSSOPlatformCredential(params *UpdateSSOPlatformCredentialParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateSSOPlatformCredentialOK, *UpdateSSOPlatformCredentialBadRequest, *UpdateSSOPlatformCredentialUnauthorized, *UpdateSSOPlatformCredentialForbidden, *UpdateSSOPlatformCredentialNotFound, *UpdateSSOPlatformCredentialInternalServerError, error)
 	UpdateSSOPlatformCredentialShort(params *UpdateSSOPlatformCredentialParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateSSOPlatformCredentialOK, error)
@@ -178,7 +178,7 @@ Deprecated: Use DeleteSSOLoginPlatformCredentialV3Short instead.
 
   This is the API to Delete SSO Platform Credential. It needs ADMIN:NAMESPACE:{namespace}:PLATFORM:{platformId}:SSO [DELETE] resource
 */
-func (a *Client) DeleteSSOLoginPlatformCredentialV3(params *DeleteSSOLoginPlatformCredentialV3Params, authInfo runtime.ClientAuthInfoWriter) (*DeleteSSOLoginPlatformCredentialV3NoContent, *DeleteSSOLoginPlatformCredentialV3Unauthorized, *DeleteSSOLoginPlatformCredentialV3Forbidden, *DeleteSSOLoginPlatformCredentialV3NotFound, *DeleteSSOLoginPlatformCredentialV3InternalServerError, error) {
+func (a *Client) DeleteSSOLoginPlatformCredentialV3(params *DeleteSSOLoginPlatformCredentialV3Params, authInfo runtime.ClientAuthInfoWriter) (*DeleteSSOLoginPlatformCredentialV3NoContent, *DeleteSSOLoginPlatformCredentialV3BadRequest, *DeleteSSOLoginPlatformCredentialV3Unauthorized, *DeleteSSOLoginPlatformCredentialV3Forbidden, *DeleteSSOLoginPlatformCredentialV3NotFound, *DeleteSSOLoginPlatformCredentialV3InternalServerError, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewDeleteSSOLoginPlatformCredentialV3Params()
@@ -206,28 +206,31 @@ func (a *Client) DeleteSSOLoginPlatformCredentialV3(params *DeleteSSOLoginPlatfo
 		Client:             params.HTTPClient,
 	})
 	if err != nil {
-		return nil, nil, nil, nil, nil, err
+		return nil, nil, nil, nil, nil, nil, err
 	}
 
 	switch v := result.(type) {
 
 	case *DeleteSSOLoginPlatformCredentialV3NoContent:
-		return v, nil, nil, nil, nil, nil
+		return v, nil, nil, nil, nil, nil, nil
+
+	case *DeleteSSOLoginPlatformCredentialV3BadRequest:
+		return nil, v, nil, nil, nil, nil, nil
 
 	case *DeleteSSOLoginPlatformCredentialV3Unauthorized:
-		return nil, v, nil, nil, nil, nil
+		return nil, nil, v, nil, nil, nil, nil
 
 	case *DeleteSSOLoginPlatformCredentialV3Forbidden:
-		return nil, nil, v, nil, nil, nil
+		return nil, nil, nil, v, nil, nil, nil
 
 	case *DeleteSSOLoginPlatformCredentialV3NotFound:
-		return nil, nil, nil, v, nil, nil
+		return nil, nil, nil, nil, v, nil, nil
 
 	case *DeleteSSOLoginPlatformCredentialV3InternalServerError:
-		return nil, nil, nil, nil, v, nil
+		return nil, nil, nil, nil, nil, v, nil
 
 	default:
-		return nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+		return nil, nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
@@ -271,6 +274,8 @@ func (a *Client) DeleteSSOLoginPlatformCredentialV3Short(params *DeleteSSOLoginP
 
 	case *DeleteSSOLoginPlatformCredentialV3NoContent:
 		return v, nil
+	case *DeleteSSOLoginPlatformCredentialV3BadRequest:
+		return nil, v
 	case *DeleteSSOLoginPlatformCredentialV3Unauthorized:
 		return nil, v
 	case *DeleteSSOLoginPlatformCredentialV3Forbidden:
@@ -406,7 +411,7 @@ Deprecated: Use RetrieveSSOLoginPlatformCredentialShort instead.
 
   This is the API to Get SSO Platform Credential. It needs ADMIN:NAMESPACE:{namespace}:PLATFORM:{platformId}:SSO [READ] resource
 */
-func (a *Client) RetrieveSSOLoginPlatformCredential(params *RetrieveSSOLoginPlatformCredentialParams, authInfo runtime.ClientAuthInfoWriter) (*RetrieveSSOLoginPlatformCredentialOK, *RetrieveSSOLoginPlatformCredentialUnauthorized, *RetrieveSSOLoginPlatformCredentialForbidden, *RetrieveSSOLoginPlatformCredentialNotFound, *RetrieveSSOLoginPlatformCredentialInternalServerError, error) {
+func (a *Client) RetrieveSSOLoginPlatformCredential(params *RetrieveSSOLoginPlatformCredentialParams, authInfo runtime.ClientAuthInfoWriter) (*RetrieveSSOLoginPlatformCredentialOK, *RetrieveSSOLoginPlatformCredentialBadRequest, *RetrieveSSOLoginPlatformCredentialUnauthorized, *RetrieveSSOLoginPlatformCredentialForbidden, *RetrieveSSOLoginPlatformCredentialNotFound, *RetrieveSSOLoginPlatformCredentialInternalServerError, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewRetrieveSSOLoginPlatformCredentialParams()
@@ -434,28 +439,31 @@ func (a *Client) RetrieveSSOLoginPlatformCredential(params *RetrieveSSOLoginPlat
 		Client:             params.HTTPClient,
 	})
 	if err != nil {
-		return nil, nil, nil, nil, nil, err
+		return nil, nil, nil, nil, nil, nil, err
 	}
 
 	switch v := result.(type) {
 
 	case *RetrieveSSOLoginPlatformCredentialOK:
-		return v, nil, nil, nil, nil, nil
+		return v, nil, nil, nil, nil, nil, nil
+
+	case *RetrieveSSOLoginPlatformCredentialBadRequest:
+		return nil, v, nil, nil, nil, nil, nil
 
 	case *RetrieveSSOLoginPlatformCredentialUnauthorized:
-		return nil, v, nil, nil, nil, nil
+		return nil, nil, v, nil, nil, nil, nil
 
 	case *RetrieveSSOLoginPlatformCredentialForbidden:
-		return nil, nil, v, nil, nil, nil
+		return nil, nil, nil, v, nil, nil, nil
 
 	case *RetrieveSSOLoginPlatformCredentialNotFound:
-		return nil, nil, nil, v, nil, nil
+		return nil, nil, nil, nil, v, nil, nil
 
 	case *RetrieveSSOLoginPlatformCredentialInternalServerError:
-		return nil, nil, nil, nil, v, nil
+		return nil, nil, nil, nil, nil, v, nil
 
 	default:
-		return nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+		return nil, nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
@@ -499,6 +507,8 @@ func (a *Client) RetrieveSSOLoginPlatformCredentialShort(params *RetrieveSSOLogi
 
 	case *RetrieveSSOLoginPlatformCredentialOK:
 		return v, nil
+	case *RetrieveSSOLoginPlatformCredentialBadRequest:
+		return nil, v
 	case *RetrieveSSOLoginPlatformCredentialUnauthorized:
 		return nil, v
 	case *RetrieveSSOLoginPlatformCredentialForbidden:

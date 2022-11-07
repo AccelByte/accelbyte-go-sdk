@@ -30,7 +30,6 @@
 
 | Model Struct | Class |
 |---|---|
-| `models.Achievement` | [ModelsAchievement ](../../achievement-sdk/pkg/achievementclientmodels/models_achievement.go) |
 | `models.AchievementOrderUpdateRequest` | [ModelsAchievementOrderUpdateRequest ](../../achievement-sdk/pkg/achievementclientmodels/models_achievement_order_update_request.go) |
 | `models.AchievementRequest` | [ModelsAchievementRequest ](../../achievement-sdk/pkg/achievementclientmodels/models_achievement_request.go) |
 | `models.AchievementResponse` | [ModelsAchievementResponse ](../../achievement-sdk/pkg/achievementclientmodels/models_achievement_response.go) |

@@ -117,13 +117,33 @@ func NewGetClientsbyNamespaceUnauthorized() *GetClientsbyNamespaceUnauthorized {
 
 /*GetClientsbyNamespaceUnauthorized handles this case with default header values.
 
-  Unauthorized access
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20001</td><td>unauthorized access</td></tr></table>
 */
 type GetClientsbyNamespaceUnauthorized struct {
+	Payload *iamclientmodels.RestErrorResponse
 }
 
 func (o *GetClientsbyNamespaceUnauthorized) Error() string {
-	return fmt.Sprintf("[GET /iam/namespaces/{namespace}/clients][%d] getClientsbyNamespaceUnauthorized ", 401)
+	return fmt.Sprintf("[GET /iam/namespaces/{namespace}/clients][%d] getClientsbyNamespaceUnauthorized  %+v", 401, o.ToJSONString())
+}
+
+func (o *GetClientsbyNamespaceUnauthorized) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
+}
+
+func (o *GetClientsbyNamespaceUnauthorized) GetPayload() *iamclientmodels.RestErrorResponse {
+	return o.Payload
 }
 
 func (o *GetClientsbyNamespaceUnauthorized) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -131,6 +151,13 @@ func (o *GetClientsbyNamespaceUnauthorized) readResponse(response runtime.Client
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
 		consumer = runtime.ByteStreamConsumer()
+	}
+
+	o.Payload = new(iamclientmodels.RestErrorResponse)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
 	}
 
 	return nil
@@ -143,13 +170,33 @@ func NewGetClientsbyNamespaceForbidden() *GetClientsbyNamespaceForbidden {
 
 /*GetClientsbyNamespaceForbidden handles this case with default header values.
 
-  Forbidden
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20013</td><td>insufficient permissions</td></tr></table>
 */
 type GetClientsbyNamespaceForbidden struct {
+	Payload *iamclientmodels.RestErrorResponse
 }
 
 func (o *GetClientsbyNamespaceForbidden) Error() string {
-	return fmt.Sprintf("[GET /iam/namespaces/{namespace}/clients][%d] getClientsbyNamespaceForbidden ", 403)
+	return fmt.Sprintf("[GET /iam/namespaces/{namespace}/clients][%d] getClientsbyNamespaceForbidden  %+v", 403, o.ToJSONString())
+}
+
+func (o *GetClientsbyNamespaceForbidden) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
+}
+
+func (o *GetClientsbyNamespaceForbidden) GetPayload() *iamclientmodels.RestErrorResponse {
+	return o.Payload
 }
 
 func (o *GetClientsbyNamespaceForbidden) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -157,6 +204,13 @@ func (o *GetClientsbyNamespaceForbidden) readResponse(response runtime.ClientRes
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
 		consumer = runtime.ByteStreamConsumer()
+	}
+
+	o.Payload = new(iamclientmodels.RestErrorResponse)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
 	}
 
 	return nil

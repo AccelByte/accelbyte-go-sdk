@@ -98,13 +98,33 @@ func NewAdminUpdateInputValidationsUnauthorized() *AdminUpdateInputValidationsUn
 
 /*AdminUpdateInputValidationsUnauthorized handles this case with default header values.
 
-  Unauthorized access
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20001</td><td>unauthorized access</td></tr></table>
 */
 type AdminUpdateInputValidationsUnauthorized struct {
+	Payload *iamclientmodels.RestErrorResponse
 }
 
 func (o *AdminUpdateInputValidationsUnauthorized) Error() string {
-	return fmt.Sprintf("[PUT /iam/v3/admin/inputValidations][%d] adminUpdateInputValidationsUnauthorized ", 401)
+	return fmt.Sprintf("[PUT /iam/v3/admin/inputValidations][%d] adminUpdateInputValidationsUnauthorized  %+v", 401, o.ToJSONString())
+}
+
+func (o *AdminUpdateInputValidationsUnauthorized) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
+}
+
+func (o *AdminUpdateInputValidationsUnauthorized) GetPayload() *iamclientmodels.RestErrorResponse {
+	return o.Payload
 }
 
 func (o *AdminUpdateInputValidationsUnauthorized) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -112,6 +132,13 @@ func (o *AdminUpdateInputValidationsUnauthorized) readResponse(response runtime.
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
 		consumer = runtime.ByteStreamConsumer()
+	}
+
+	o.Payload = new(iamclientmodels.RestErrorResponse)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
 	}
 
 	return nil
@@ -124,13 +151,33 @@ func NewAdminUpdateInputValidationsForbidden() *AdminUpdateInputValidationsForbi
 
 /*AdminUpdateInputValidationsForbidden handles this case with default header values.
 
-  Forbidden
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20013</td><td>insufficient permissions</td></tr></table>
 */
 type AdminUpdateInputValidationsForbidden struct {
+	Payload *iamclientmodels.RestErrorResponse
 }
 
 func (o *AdminUpdateInputValidationsForbidden) Error() string {
-	return fmt.Sprintf("[PUT /iam/v3/admin/inputValidations][%d] adminUpdateInputValidationsForbidden ", 403)
+	return fmt.Sprintf("[PUT /iam/v3/admin/inputValidations][%d] adminUpdateInputValidationsForbidden  %+v", 403, o.ToJSONString())
+}
+
+func (o *AdminUpdateInputValidationsForbidden) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
+}
+
+func (o *AdminUpdateInputValidationsForbidden) GetPayload() *iamclientmodels.RestErrorResponse {
+	return o.Payload
 }
 
 func (o *AdminUpdateInputValidationsForbidden) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -138,6 +185,13 @@ func (o *AdminUpdateInputValidationsForbidden) readResponse(response runtime.Cli
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
 		consumer = runtime.ByteStreamConsumer()
+	}
+
+	o.Payload = new(iamclientmodels.RestErrorResponse)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
 	}
 
 	return nil

@@ -235,11 +235,9 @@ func (aaa *OAuth20Service) PlatformTokenGrantV3(input *o_auth2_0.PlatformTokenGr
 
 // Deprecated: Use GetRevocationListV3Short instead
 func (aaa *OAuth20Service) GetRevocationListV3(input *o_auth2_0.GetRevocationListV3Params) (*iamclientmodels.OauthapiRevocationList, error) {
-	token, err := aaa.TokenRepository.GetToken()
-	if err != nil {
-		return nil, err
-	}
-	ok, unauthorized, err := aaa.Client.OAuth20.GetRevocationListV3(input, client.BearerToken(*token.AccessToken))
+	clientID := aaa.ConfigRepository.GetClientId()
+	clientSecret := aaa.ConfigRepository.GetClientSecret()
+	ok, unauthorized, err := aaa.Client.OAuth20.GetRevocationListV3(input, client.BasicAuth(clientID, clientSecret))
 	if unauthorized != nil {
 		return nil, unauthorized
 	}
@@ -571,7 +569,7 @@ func (aaa *OAuth20Service) GetRevocationListV3Short(input *o_auth2_0.GetRevocati
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
-			{"bearer"},
+			{"basic"},
 		}
 		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}

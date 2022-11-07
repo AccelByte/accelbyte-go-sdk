@@ -42,6 +42,12 @@ func (o *AdminAddUserRoleV4Reader) ReadResponse(response runtime.ClientResponse,
 			return nil, err
 		}
 		return result, nil
+	case 401:
+		result := NewAdminAddUserRoleV4Unauthorized()
+		if err := result.readResponse(response, consumer, o.formats); err != nil {
+			return nil, err
+		}
+		return result, nil
 	case 403:
 		result := NewAdminAddUserRoleV4Forbidden()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -183,6 +189,59 @@ func (o *AdminAddUserRoleV4BadRequest) readResponse(response runtime.ClientRespo
 	return nil
 }
 
+// NewAdminAddUserRoleV4Unauthorized creates a AdminAddUserRoleV4Unauthorized with default headers values
+func NewAdminAddUserRoleV4Unauthorized() *AdminAddUserRoleV4Unauthorized {
+	return &AdminAddUserRoleV4Unauthorized{}
+}
+
+/*AdminAddUserRoleV4Unauthorized handles this case with default header values.
+
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20001</td><td>unauthorized access</td></tr></table>
+*/
+type AdminAddUserRoleV4Unauthorized struct {
+	Payload *iamclientmodels.RestErrorResponse
+}
+
+func (o *AdminAddUserRoleV4Unauthorized) Error() string {
+	return fmt.Sprintf("[POST /iam/v4/admin/namespaces/{namespace}/users/{userId}/roles][%d] adminAddUserRoleV4Unauthorized  %+v", 401, o.ToJSONString())
+}
+
+func (o *AdminAddUserRoleV4Unauthorized) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
+}
+
+func (o *AdminAddUserRoleV4Unauthorized) GetPayload() *iamclientmodels.RestErrorResponse {
+	return o.Payload
+}
+
+func (o *AdminAddUserRoleV4Unauthorized) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+	// handle file responses
+	contentDisposition := response.GetHeader("Content-Disposition")
+	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
+		consumer = runtime.ByteStreamConsumer()
+	}
+
+	o.Payload = new(iamclientmodels.RestErrorResponse)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
+	}
+
+	return nil
+}
+
 // NewAdminAddUserRoleV4Forbidden creates a AdminAddUserRoleV4Forbidden with default headers values
 func NewAdminAddUserRoleV4Forbidden() *AdminAddUserRoleV4Forbidden {
 	return &AdminAddUserRoleV4Forbidden{}
@@ -190,7 +249,7 @@ func NewAdminAddUserRoleV4Forbidden() *AdminAddUserRoleV4Forbidden {
 
 /*AdminAddUserRoleV4Forbidden handles this case with default header values.
 
-  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20003</td><td>forbidden access</td></tr></table>
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20013</td><td>insufficient permissions</td></tr></table>
 */
 type AdminAddUserRoleV4Forbidden struct {
 	Payload *iamclientmodels.RestErrorResponse
@@ -349,7 +408,7 @@ func NewAdminAddUserRoleV4InternalServerError() *AdminAddUserRoleV4InternalServe
 
 /*AdminAddUserRoleV4InternalServerError handles this case with default header values.
 
-  AdminAddUserRoleV4InternalServerError admin add user role v4 internal server error
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20000</td><td>internal server error</td></tr></table>
 */
 type AdminAddUserRoleV4InternalServerError struct {
 	Payload *iamclientmodels.RestErrorResponse

@@ -7,6 +7,8 @@
 package config
 
 import (
+	"bytes"
+
 	"github.com/AccelByte/accelbyte-go-sdk/lobby-sdk/pkg/lobbyclient/config"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/lobby"
@@ -29,7 +31,8 @@ var AdminExportConfigV1Cmd = &cobra.Command{
 		input := &config.AdminExportConfigV1Params{
 			Namespace: namespace,
 		}
-		ok, err := configService.AdminExportConfigV1Short(input)
+		writer := bytes.NewBuffer(nil)
+		ok, err := configService.AdminExportConfigV1Short(input, writer)
 		if err != nil {
 			logrus.Error(err)
 

@@ -12,6 +12,7 @@ package config
 import (
 	"context"
 	"fmt"
+	"io"
 	"reflect"
 
 	"github.com/go-openapi/runtime"
@@ -33,8 +34,8 @@ type Client struct {
 
 // ClientService is the interface for Client methods
 type ClientService interface {
-	AdminExportConfigV1(params *AdminExportConfigV1Params, authInfo runtime.ClientAuthInfoWriter) (*AdminExportConfigV1OK, *AdminExportConfigV1Unauthorized, *AdminExportConfigV1Forbidden, *AdminExportConfigV1InternalServerError, error)
-	AdminExportConfigV1Short(params *AdminExportConfigV1Params, authInfo runtime.ClientAuthInfoWriter) (*AdminExportConfigV1OK, error)
+	AdminExportConfigV1(params *AdminExportConfigV1Params, authInfo runtime.ClientAuthInfoWriter, writer io.Writer) (*AdminExportConfigV1OK, *AdminExportConfigV1Unauthorized, *AdminExportConfigV1Forbidden, *AdminExportConfigV1InternalServerError, error)
+	AdminExportConfigV1Short(params *AdminExportConfigV1Params, authInfo runtime.ClientAuthInfoWriter, writer io.Writer) (*AdminExportConfigV1OK, error)
 	AdminGetAllConfigV1(params *AdminGetAllConfigV1Params, authInfo runtime.ClientAuthInfoWriter) (*AdminGetAllConfigV1OK, *AdminGetAllConfigV1BadRequest, *AdminGetAllConfigV1Unauthorized, *AdminGetAllConfigV1Forbidden, *AdminGetAllConfigV1NotFound, *AdminGetAllConfigV1InternalServerError, error)
 	AdminGetAllConfigV1Short(params *AdminGetAllConfigV1Params, authInfo runtime.ClientAuthInfoWriter) (*AdminGetAllConfigV1OK, error)
 	AdminGetConfigV1(params *AdminGetConfigV1Params, authInfo runtime.ClientAuthInfoWriter) (*AdminGetConfigV1OK, *AdminGetConfigV1BadRequest, *AdminGetConfigV1Unauthorized, *AdminGetConfigV1Forbidden, *AdminGetConfigV1NotFound, *AdminGetConfigV1InternalServerError, error)
@@ -60,7 +61,7 @@ Deprecated: Use AdminExportConfigV1Short instead.
 				Export lobby configuration to a json file. The file can then be imported from the /import endpoint.
 
 */
-func (a *Client) AdminExportConfigV1(params *AdminExportConfigV1Params, authInfo runtime.ClientAuthInfoWriter) (*AdminExportConfigV1OK, *AdminExportConfigV1Unauthorized, *AdminExportConfigV1Forbidden, *AdminExportConfigV1InternalServerError, error) {
+func (a *Client) AdminExportConfigV1(params *AdminExportConfigV1Params, authInfo runtime.ClientAuthInfoWriter, writer io.Writer) (*AdminExportConfigV1OK, *AdminExportConfigV1Unauthorized, *AdminExportConfigV1Forbidden, *AdminExportConfigV1InternalServerError, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewAdminExportConfigV1Params()
@@ -82,7 +83,7 @@ func (a *Client) AdminExportConfigV1(params *AdminExportConfigV1Params, authInfo
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
 		Params:             params,
-		Reader:             &AdminExportConfigV1Reader{formats: a.formats},
+		Reader:             &AdminExportConfigV1Reader{formats: a.formats, writer: writer},
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
@@ -121,7 +122,7 @@ func (a *Client) AdminExportConfigV1(params *AdminExportConfigV1Params, authInfo
 				Export lobby configuration to a json file. The file can then be imported from the /import endpoint.
 
 */
-func (a *Client) AdminExportConfigV1Short(params *AdminExportConfigV1Params, authInfo runtime.ClientAuthInfoWriter) (*AdminExportConfigV1OK, error) {
+func (a *Client) AdminExportConfigV1Short(params *AdminExportConfigV1Params, authInfo runtime.ClientAuthInfoWriter, writer io.Writer) (*AdminExportConfigV1OK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewAdminExportConfigV1Params()
@@ -143,7 +144,7 @@ func (a *Client) AdminExportConfigV1Short(params *AdminExportConfigV1Params, aut
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
 		Params:             params,
-		Reader:             &AdminExportConfigV1Reader{formats: a.formats},
+		Reader:             &AdminExportConfigV1Reader{formats: a.formats, writer: writer},
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,

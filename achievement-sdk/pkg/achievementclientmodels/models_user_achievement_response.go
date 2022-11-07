@@ -18,9 +18,8 @@ import (
 type ModelsUserAchievementResponse struct {
 
 	// achieved at
-	// Required: true
 	// Format: date-time
-	AchievedAt strfmt.DateTime `json:"achievedAt"`
+	AchievedAt *strfmt.DateTime `json:"achievedAt,omitempty"`
 
 	// achievement code
 	// Required: true
@@ -79,8 +78,8 @@ func (m *ModelsUserAchievementResponse) Validate(formats strfmt.Registry) error 
 
 func (m *ModelsUserAchievementResponse) validateAchievedAt(formats strfmt.Registry) error {
 
-	if err := validate.Required("achievedAt", "body", strfmt.DateTime(m.AchievedAt)); err != nil {
-		return err
+	if swag.IsZero(m.AchievedAt) { // not required
+		return nil
 	}
 
 	if err := validate.FormatOf("achievedAt", "body", "date-time", m.AchievedAt.String(), formats); err != nil {

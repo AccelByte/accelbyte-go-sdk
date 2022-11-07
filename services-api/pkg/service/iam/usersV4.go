@@ -184,7 +184,10 @@ func (aaa *UsersV4Service) AdminListUserRolesV4(input *users_v4.AdminListUserRol
 	if err != nil {
 		return nil, err
 	}
-	ok, forbidden, notFound, internalServerError, err := aaa.Client.UsersV4.AdminListUserRolesV4(input, client.BearerToken(*token.AccessToken))
+	ok, unauthorized, forbidden, notFound, internalServerError, err := aaa.Client.UsersV4.AdminListUserRolesV4(input, client.BearerToken(*token.AccessToken))
+	if unauthorized != nil {
+		return nil, unauthorized
+	}
 	if forbidden != nil {
 		return nil, forbidden
 	}
@@ -207,9 +210,12 @@ func (aaa *UsersV4Service) AdminUpdateUserRoleV4(input *users_v4.AdminUpdateUser
 	if err != nil {
 		return nil, err
 	}
-	ok, badRequest, forbidden, notFound, unprocessableEntity, internalServerError, err := aaa.Client.UsersV4.AdminUpdateUserRoleV4(input, client.BearerToken(*token.AccessToken))
+	ok, badRequest, unauthorized, forbidden, notFound, unprocessableEntity, internalServerError, err := aaa.Client.UsersV4.AdminUpdateUserRoleV4(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
+	}
+	if unauthorized != nil {
+		return nil, unauthorized
 	}
 	if forbidden != nil {
 		return nil, forbidden
@@ -236,9 +242,12 @@ func (aaa *UsersV4Service) AdminAddUserRoleV4(input *users_v4.AdminAddUserRoleV4
 	if err != nil {
 		return nil, err
 	}
-	ok, badRequest, forbidden, notFound, unprocessableEntity, internalServerError, err := aaa.Client.UsersV4.AdminAddUserRoleV4(input, client.BearerToken(*token.AccessToken))
+	ok, badRequest, unauthorized, forbidden, notFound, unprocessableEntity, internalServerError, err := aaa.Client.UsersV4.AdminAddUserRoleV4(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
+	}
+	if unauthorized != nil {
+		return nil, unauthorized
 	}
 	if forbidden != nil {
 		return nil, forbidden
@@ -265,9 +274,12 @@ func (aaa *UsersV4Service) AdminRemoveUserRoleV4(input *users_v4.AdminRemoveUser
 	if err != nil {
 		return err
 	}
-	_, badRequest, forbidden, notFound, unprocessableEntity, internalServerError, err := aaa.Client.UsersV4.AdminRemoveUserRoleV4(input, client.BearerToken(*token.AccessToken))
+	_, badRequest, unauthorized, forbidden, notFound, unprocessableEntity, internalServerError, err := aaa.Client.UsersV4.AdminRemoveUserRoleV4(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return badRequest
+	}
+	if unauthorized != nil {
+		return unauthorized
 	}
 	if forbidden != nil {
 		return forbidden
@@ -616,9 +628,15 @@ func (aaa *UsersV4Service) AdminInviteUserV4(input *users_v4.AdminInviteUserV4Pa
 	if err != nil {
 		return nil, err
 	}
-	created, badRequest, notFound, conflict, unprocessableEntity, internalServerError, err := aaa.Client.UsersV4.AdminInviteUserV4(input, client.BearerToken(*token.AccessToken))
+	created, badRequest, unauthorized, forbidden, notFound, conflict, unprocessableEntity, internalServerError, err := aaa.Client.UsersV4.AdminInviteUserV4(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
+	}
+	if unauthorized != nil {
+		return nil, unauthorized
+	}
+	if forbidden != nil {
+		return nil, forbidden
 	}
 	if notFound != nil {
 		return nil, notFound

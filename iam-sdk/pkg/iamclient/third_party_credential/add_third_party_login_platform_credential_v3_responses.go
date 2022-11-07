@@ -131,7 +131,7 @@ func NewAddThirdPartyLoginPlatformCredentialV3BadRequest() *AddThirdPartyLoginPl
 
 /*AddThirdPartyLoginPlatformCredentialV3BadRequest handles this case with default header values.
 
-  Bad Request
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20019</td><td>unable to parse request body</td></tr></table>
 */
 type AddThirdPartyLoginPlatformCredentialV3BadRequest struct {
 	Payload *iamclientmodels.RestErrorResponse
@@ -184,13 +184,33 @@ func NewAddThirdPartyLoginPlatformCredentialV3Unauthorized() *AddThirdPartyLogin
 
 /*AddThirdPartyLoginPlatformCredentialV3Unauthorized handles this case with default header values.
 
-  Unauthorized
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20001</td><td>unauthorized access</td></tr></table>
 */
 type AddThirdPartyLoginPlatformCredentialV3Unauthorized struct {
+	Payload *iamclientmodels.RestErrorResponse
 }
 
 func (o *AddThirdPartyLoginPlatformCredentialV3Unauthorized) Error() string {
-	return fmt.Sprintf("[POST /iam/v3/admin/namespaces/{namespace}/platforms/{platformId}/clients][%d] addThirdPartyLoginPlatformCredentialV3Unauthorized ", 401)
+	return fmt.Sprintf("[POST /iam/v3/admin/namespaces/{namespace}/platforms/{platformId}/clients][%d] addThirdPartyLoginPlatformCredentialV3Unauthorized  %+v", 401, o.ToJSONString())
+}
+
+func (o *AddThirdPartyLoginPlatformCredentialV3Unauthorized) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
+}
+
+func (o *AddThirdPartyLoginPlatformCredentialV3Unauthorized) GetPayload() *iamclientmodels.RestErrorResponse {
+	return o.Payload
 }
 
 func (o *AddThirdPartyLoginPlatformCredentialV3Unauthorized) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -198,6 +218,13 @@ func (o *AddThirdPartyLoginPlatformCredentialV3Unauthorized) readResponse(respon
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
 		consumer = runtime.ByteStreamConsumer()
+	}
+
+	o.Payload = new(iamclientmodels.RestErrorResponse)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
 	}
 
 	return nil
@@ -210,13 +237,33 @@ func NewAddThirdPartyLoginPlatformCredentialV3Forbidden() *AddThirdPartyLoginPla
 
 /*AddThirdPartyLoginPlatformCredentialV3Forbidden handles this case with default header values.
 
-  Forbidden
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20013</td><td>insufficient permissions</td></tr></table>
 */
 type AddThirdPartyLoginPlatformCredentialV3Forbidden struct {
+	Payload *iamclientmodels.RestErrorResponse
 }
 
 func (o *AddThirdPartyLoginPlatformCredentialV3Forbidden) Error() string {
-	return fmt.Sprintf("[POST /iam/v3/admin/namespaces/{namespace}/platforms/{platformId}/clients][%d] addThirdPartyLoginPlatformCredentialV3Forbidden ", 403)
+	return fmt.Sprintf("[POST /iam/v3/admin/namespaces/{namespace}/platforms/{platformId}/clients][%d] addThirdPartyLoginPlatformCredentialV3Forbidden  %+v", 403, o.ToJSONString())
+}
+
+func (o *AddThirdPartyLoginPlatformCredentialV3Forbidden) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
+}
+
+func (o *AddThirdPartyLoginPlatformCredentialV3Forbidden) GetPayload() *iamclientmodels.RestErrorResponse {
+	return o.Payload
 }
 
 func (o *AddThirdPartyLoginPlatformCredentialV3Forbidden) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -224,6 +271,13 @@ func (o *AddThirdPartyLoginPlatformCredentialV3Forbidden) readResponse(response 
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
 		consumer = runtime.ByteStreamConsumer()
+	}
+
+	o.Payload = new(iamclientmodels.RestErrorResponse)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
 	}
 
 	return nil
@@ -236,7 +290,7 @@ func NewAddThirdPartyLoginPlatformCredentialV3InternalServerError() *AddThirdPar
 
 /*AddThirdPartyLoginPlatformCredentialV3InternalServerError handles this case with default header values.
 
-  Internal Server Error
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20000</td><td>internal server error</td></tr></table>
 */
 type AddThirdPartyLoginPlatformCredentialV3InternalServerError struct {
 	Payload *iamclientmodels.RestErrorResponse

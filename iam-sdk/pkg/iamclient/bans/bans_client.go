@@ -33,17 +33,17 @@ type Client struct {
 
 // ClientService is the interface for Client methods
 type ClientService interface {
-	AdminBanUserBulkV3(params *AdminBanUserBulkV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminBanUserBulkV3Created, *AdminBanUserBulkV3BadRequest, *AdminBanUserBulkV3Unauthorized, *AdminBanUserBulkV3Forbidden, *AdminBanUserBulkV3NotFound, error)
+	AdminBanUserBulkV3(params *AdminBanUserBulkV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminBanUserBulkV3Created, *AdminBanUserBulkV3BadRequest, *AdminBanUserBulkV3Unauthorized, *AdminBanUserBulkV3Forbidden, *AdminBanUserBulkV3NotFound, *AdminBanUserBulkV3InternalServerError, error)
 	AdminBanUserBulkV3Short(params *AdminBanUserBulkV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminBanUserBulkV3Created, error)
-	AdminGetBannedUsersV3(params *AdminGetBannedUsersV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminGetBannedUsersV3OK, *AdminGetBannedUsersV3Unauthorized, *AdminGetBannedUsersV3Forbidden, error)
+	AdminGetBannedUsersV3(params *AdminGetBannedUsersV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminGetBannedUsersV3OK, *AdminGetBannedUsersV3Unauthorized, *AdminGetBannedUsersV3Forbidden, *AdminGetBannedUsersV3InternalServerError, error)
 	AdminGetBannedUsersV3Short(params *AdminGetBannedUsersV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminGetBannedUsersV3OK, error)
-	AdminGetBansTypeV3(params *AdminGetBansTypeV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminGetBansTypeV3OK, *AdminGetBansTypeV3Unauthorized, *AdminGetBansTypeV3Forbidden, error)
+	AdminGetBansTypeV3(params *AdminGetBansTypeV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminGetBansTypeV3OK, *AdminGetBansTypeV3Unauthorized, *AdminGetBansTypeV3Forbidden, *AdminGetBansTypeV3InternalServerError, error)
 	AdminGetBansTypeV3Short(params *AdminGetBansTypeV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminGetBansTypeV3OK, error)
-	AdminGetBansTypeWithNamespaceV3(params *AdminGetBansTypeWithNamespaceV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminGetBansTypeWithNamespaceV3OK, *AdminGetBansTypeWithNamespaceV3Unauthorized, *AdminGetBansTypeWithNamespaceV3Forbidden, error)
+	AdminGetBansTypeWithNamespaceV3(params *AdminGetBansTypeWithNamespaceV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminGetBansTypeWithNamespaceV3OK, *AdminGetBansTypeWithNamespaceV3Unauthorized, *AdminGetBansTypeWithNamespaceV3Forbidden, *AdminGetBansTypeWithNamespaceV3InternalServerError, error)
 	AdminGetBansTypeWithNamespaceV3Short(params *AdminGetBansTypeWithNamespaceV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminGetBansTypeWithNamespaceV3OK, error)
-	AdminGetListBanReasonV3(params *AdminGetListBanReasonV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminGetListBanReasonV3OK, *AdminGetListBanReasonV3Unauthorized, *AdminGetListBanReasonV3Forbidden, error)
+	AdminGetListBanReasonV3(params *AdminGetListBanReasonV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminGetListBanReasonV3OK, *AdminGetListBanReasonV3Unauthorized, *AdminGetListBanReasonV3Forbidden, *AdminGetListBanReasonV3InternalServerError, error)
 	AdminGetListBanReasonV3Short(params *AdminGetListBanReasonV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminGetListBanReasonV3OK, error)
-	AdminUnbanUserBulkV3(params *AdminUnbanUserBulkV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminUnbanUserBulkV3Created, *AdminUnbanUserBulkV3BadRequest, *AdminUnbanUserBulkV3Unauthorized, *AdminUnbanUserBulkV3Forbidden, *AdminUnbanUserBulkV3NotFound, error)
+	AdminUnbanUserBulkV3(params *AdminUnbanUserBulkV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminUnbanUserBulkV3Created, *AdminUnbanUserBulkV3BadRequest, *AdminUnbanUserBulkV3Unauthorized, *AdminUnbanUserBulkV3Forbidden, *AdminUnbanUserBulkV3NotFound, *AdminUnbanUserBulkV3InternalServerError, error)
 	AdminUnbanUserBulkV3Short(params *AdminUnbanUserBulkV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminUnbanUserBulkV3Created, error)
 	GetBansType(params *GetBansTypeParams, authInfo runtime.ClientAuthInfoWriter) (*GetBansTypeOK, *GetBansTypeUnauthorized, *GetBansTypeForbidden, error)
 	GetBansTypeShort(params *GetBansTypeParams, authInfo runtime.ClientAuthInfoWriter) (*GetBansTypeOK, error)
@@ -63,7 +63,7 @@ Deprecated: Use AdminBanUserBulkV3Short instead.
 &lt;p&gt;action code : 10141 &lt;/p&gt;
 
 */
-func (a *Client) AdminBanUserBulkV3(params *AdminBanUserBulkV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminBanUserBulkV3Created, *AdminBanUserBulkV3BadRequest, *AdminBanUserBulkV3Unauthorized, *AdminBanUserBulkV3Forbidden, *AdminBanUserBulkV3NotFound, error) {
+func (a *Client) AdminBanUserBulkV3(params *AdminBanUserBulkV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminBanUserBulkV3Created, *AdminBanUserBulkV3BadRequest, *AdminBanUserBulkV3Unauthorized, *AdminBanUserBulkV3Forbidden, *AdminBanUserBulkV3NotFound, *AdminBanUserBulkV3InternalServerError, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewAdminBanUserBulkV3Params()
@@ -91,28 +91,31 @@ func (a *Client) AdminBanUserBulkV3(params *AdminBanUserBulkV3Params, authInfo r
 		Client:             params.HTTPClient,
 	})
 	if err != nil {
-		return nil, nil, nil, nil, nil, err
+		return nil, nil, nil, nil, nil, nil, err
 	}
 
 	switch v := result.(type) {
 
 	case *AdminBanUserBulkV3Created:
-		return v, nil, nil, nil, nil, nil
+		return v, nil, nil, nil, nil, nil, nil
 
 	case *AdminBanUserBulkV3BadRequest:
-		return nil, v, nil, nil, nil, nil
+		return nil, v, nil, nil, nil, nil, nil
 
 	case *AdminBanUserBulkV3Unauthorized:
-		return nil, nil, v, nil, nil, nil
+		return nil, nil, v, nil, nil, nil, nil
 
 	case *AdminBanUserBulkV3Forbidden:
-		return nil, nil, nil, v, nil, nil
+		return nil, nil, nil, v, nil, nil, nil
 
 	case *AdminBanUserBulkV3NotFound:
-		return nil, nil, nil, nil, v, nil
+		return nil, nil, nil, nil, v, nil, nil
+
+	case *AdminBanUserBulkV3InternalServerError:
+		return nil, nil, nil, nil, nil, v, nil
 
 	default:
-		return nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+		return nil, nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
@@ -167,6 +170,8 @@ func (a *Client) AdminBanUserBulkV3Short(params *AdminBanUserBulkV3Params, authI
 		return nil, v
 	case *AdminBanUserBulkV3NotFound:
 		return nil, v
+	case *AdminBanUserBulkV3InternalServerError:
+		return nil, v
 
 	default:
 		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
@@ -181,7 +186,7 @@ Deprecated: Use AdminGetBannedUsersV3Short instead.
   Required permission &#39;ADMIN:BAN [READ]&#39; &lt;br&gt;Ban type is the code
 			available for ban assignment. It is applicable globally for any namespace.  &lt;br&gt;action code : 10201
 */
-func (a *Client) AdminGetBannedUsersV3(params *AdminGetBannedUsersV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminGetBannedUsersV3OK, *AdminGetBannedUsersV3Unauthorized, *AdminGetBannedUsersV3Forbidden, error) {
+func (a *Client) AdminGetBannedUsersV3(params *AdminGetBannedUsersV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminGetBannedUsersV3OK, *AdminGetBannedUsersV3Unauthorized, *AdminGetBannedUsersV3Forbidden, *AdminGetBannedUsersV3InternalServerError, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewAdminGetBannedUsersV3Params()
@@ -209,22 +214,25 @@ func (a *Client) AdminGetBannedUsersV3(params *AdminGetBannedUsersV3Params, auth
 		Client:             params.HTTPClient,
 	})
 	if err != nil {
-		return nil, nil, nil, err
+		return nil, nil, nil, nil, err
 	}
 
 	switch v := result.(type) {
 
 	case *AdminGetBannedUsersV3OK:
-		return v, nil, nil, nil
+		return v, nil, nil, nil, nil
 
 	case *AdminGetBannedUsersV3Unauthorized:
-		return nil, v, nil, nil
+		return nil, v, nil, nil, nil
 
 	case *AdminGetBannedUsersV3Forbidden:
-		return nil, nil, v, nil
+		return nil, nil, v, nil, nil
+
+	case *AdminGetBannedUsersV3InternalServerError:
+		return nil, nil, nil, v, nil
 
 	default:
-		return nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+		return nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
@@ -273,6 +281,8 @@ func (a *Client) AdminGetBannedUsersV3Short(params *AdminGetBannedUsersV3Params,
 		return nil, v
 	case *AdminGetBannedUsersV3Forbidden:
 		return nil, v
+	case *AdminGetBannedUsersV3InternalServerError:
+		return nil, v
 
 	default:
 		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
@@ -287,7 +297,7 @@ Deprecated: Use AdminGetBansTypeV3Short instead.
   Required permission &#39;ADMIN:BAN [READ]&#39; &lt;br&gt;Ban type is the code
 			available for ban assignment. It is applicable globally for any namespace.  &lt;br&gt;action code : 10201
 */
-func (a *Client) AdminGetBansTypeV3(params *AdminGetBansTypeV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminGetBansTypeV3OK, *AdminGetBansTypeV3Unauthorized, *AdminGetBansTypeV3Forbidden, error) {
+func (a *Client) AdminGetBansTypeV3(params *AdminGetBansTypeV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminGetBansTypeV3OK, *AdminGetBansTypeV3Unauthorized, *AdminGetBansTypeV3Forbidden, *AdminGetBansTypeV3InternalServerError, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewAdminGetBansTypeV3Params()
@@ -315,22 +325,25 @@ func (a *Client) AdminGetBansTypeV3(params *AdminGetBansTypeV3Params, authInfo r
 		Client:             params.HTTPClient,
 	})
 	if err != nil {
-		return nil, nil, nil, err
+		return nil, nil, nil, nil, err
 	}
 
 	switch v := result.(type) {
 
 	case *AdminGetBansTypeV3OK:
-		return v, nil, nil, nil
+		return v, nil, nil, nil, nil
 
 	case *AdminGetBansTypeV3Unauthorized:
-		return nil, v, nil, nil
+		return nil, v, nil, nil, nil
 
 	case *AdminGetBansTypeV3Forbidden:
-		return nil, nil, v, nil
+		return nil, nil, v, nil, nil
+
+	case *AdminGetBansTypeV3InternalServerError:
+		return nil, nil, nil, v, nil
 
 	default:
-		return nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+		return nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
@@ -379,6 +392,8 @@ func (a *Client) AdminGetBansTypeV3Short(params *AdminGetBansTypeV3Params, authI
 		return nil, v
 	case *AdminGetBansTypeV3Forbidden:
 		return nil, v
+	case *AdminGetBansTypeV3InternalServerError:
+		return nil, v
 
 	default:
 		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
@@ -393,7 +408,7 @@ Deprecated: Use AdminGetBansTypeWithNamespaceV3Short instead.
   Required permission &#39;ADMIN:BAN [READ]&#39; &lt;br&gt;Ban type is the code
 			available for ban assignment. It is applicable globally for any namespace.  &lt;br&gt;action code : 10201
 */
-func (a *Client) AdminGetBansTypeWithNamespaceV3(params *AdminGetBansTypeWithNamespaceV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminGetBansTypeWithNamespaceV3OK, *AdminGetBansTypeWithNamespaceV3Unauthorized, *AdminGetBansTypeWithNamespaceV3Forbidden, error) {
+func (a *Client) AdminGetBansTypeWithNamespaceV3(params *AdminGetBansTypeWithNamespaceV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminGetBansTypeWithNamespaceV3OK, *AdminGetBansTypeWithNamespaceV3Unauthorized, *AdminGetBansTypeWithNamespaceV3Forbidden, *AdminGetBansTypeWithNamespaceV3InternalServerError, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewAdminGetBansTypeWithNamespaceV3Params()
@@ -421,22 +436,25 @@ func (a *Client) AdminGetBansTypeWithNamespaceV3(params *AdminGetBansTypeWithNam
 		Client:             params.HTTPClient,
 	})
 	if err != nil {
-		return nil, nil, nil, err
+		return nil, nil, nil, nil, err
 	}
 
 	switch v := result.(type) {
 
 	case *AdminGetBansTypeWithNamespaceV3OK:
-		return v, nil, nil, nil
+		return v, nil, nil, nil, nil
 
 	case *AdminGetBansTypeWithNamespaceV3Unauthorized:
-		return nil, v, nil, nil
+		return nil, v, nil, nil, nil
 
 	case *AdminGetBansTypeWithNamespaceV3Forbidden:
-		return nil, nil, v, nil
+		return nil, nil, v, nil, nil
+
+	case *AdminGetBansTypeWithNamespaceV3InternalServerError:
+		return nil, nil, nil, v, nil
 
 	default:
-		return nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+		return nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
@@ -485,6 +503,8 @@ func (a *Client) AdminGetBansTypeWithNamespaceV3Short(params *AdminGetBansTypeWi
 		return nil, v
 	case *AdminGetBansTypeWithNamespaceV3Forbidden:
 		return nil, v
+	case *AdminGetBansTypeWithNamespaceV3InternalServerError:
+		return nil, v
 
 	default:
 		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
@@ -500,7 +520,7 @@ Deprecated: Use AdminGetListBanReasonV3Short instead.
 Ban reasons is the code available to justify ban assignment. It is applicable globally for any namespace.
 &lt;p&gt;action code : 10202&lt;/p&gt;
 */
-func (a *Client) AdminGetListBanReasonV3(params *AdminGetListBanReasonV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminGetListBanReasonV3OK, *AdminGetListBanReasonV3Unauthorized, *AdminGetListBanReasonV3Forbidden, error) {
+func (a *Client) AdminGetListBanReasonV3(params *AdminGetListBanReasonV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminGetListBanReasonV3OK, *AdminGetListBanReasonV3Unauthorized, *AdminGetListBanReasonV3Forbidden, *AdminGetListBanReasonV3InternalServerError, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewAdminGetListBanReasonV3Params()
@@ -528,22 +548,25 @@ func (a *Client) AdminGetListBanReasonV3(params *AdminGetListBanReasonV3Params, 
 		Client:             params.HTTPClient,
 	})
 	if err != nil {
-		return nil, nil, nil, err
+		return nil, nil, nil, nil, err
 	}
 
 	switch v := result.(type) {
 
 	case *AdminGetListBanReasonV3OK:
-		return v, nil, nil, nil
+		return v, nil, nil, nil, nil
 
 	case *AdminGetListBanReasonV3Unauthorized:
-		return nil, v, nil, nil
+		return nil, v, nil, nil, nil
 
 	case *AdminGetListBanReasonV3Forbidden:
-		return nil, nil, v, nil
+		return nil, nil, v, nil, nil
+
+	case *AdminGetListBanReasonV3InternalServerError:
+		return nil, nil, nil, v, nil
 
 	default:
-		return nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+		return nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
@@ -593,6 +616,8 @@ func (a *Client) AdminGetListBanReasonV3Short(params *AdminGetListBanReasonV3Par
 		return nil, v
 	case *AdminGetListBanReasonV3Forbidden:
 		return nil, v
+	case *AdminGetListBanReasonV3InternalServerError:
+		return nil, v
 
 	default:
 		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
@@ -609,7 +634,7 @@ Deprecated: Use AdminUnbanUserBulkV3Short instead.
 &lt;p&gt;action code : 10142 &lt;/p&gt;
 
 */
-func (a *Client) AdminUnbanUserBulkV3(params *AdminUnbanUserBulkV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminUnbanUserBulkV3Created, *AdminUnbanUserBulkV3BadRequest, *AdminUnbanUserBulkV3Unauthorized, *AdminUnbanUserBulkV3Forbidden, *AdminUnbanUserBulkV3NotFound, error) {
+func (a *Client) AdminUnbanUserBulkV3(params *AdminUnbanUserBulkV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminUnbanUserBulkV3Created, *AdminUnbanUserBulkV3BadRequest, *AdminUnbanUserBulkV3Unauthorized, *AdminUnbanUserBulkV3Forbidden, *AdminUnbanUserBulkV3NotFound, *AdminUnbanUserBulkV3InternalServerError, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewAdminUnbanUserBulkV3Params()
@@ -637,28 +662,31 @@ func (a *Client) AdminUnbanUserBulkV3(params *AdminUnbanUserBulkV3Params, authIn
 		Client:             params.HTTPClient,
 	})
 	if err != nil {
-		return nil, nil, nil, nil, nil, err
+		return nil, nil, nil, nil, nil, nil, err
 	}
 
 	switch v := result.(type) {
 
 	case *AdminUnbanUserBulkV3Created:
-		return v, nil, nil, nil, nil, nil
+		return v, nil, nil, nil, nil, nil, nil
 
 	case *AdminUnbanUserBulkV3BadRequest:
-		return nil, v, nil, nil, nil, nil
+		return nil, v, nil, nil, nil, nil, nil
 
 	case *AdminUnbanUserBulkV3Unauthorized:
-		return nil, nil, v, nil, nil, nil
+		return nil, nil, v, nil, nil, nil, nil
 
 	case *AdminUnbanUserBulkV3Forbidden:
-		return nil, nil, nil, v, nil, nil
+		return nil, nil, nil, v, nil, nil, nil
 
 	case *AdminUnbanUserBulkV3NotFound:
-		return nil, nil, nil, nil, v, nil
+		return nil, nil, nil, nil, v, nil, nil
+
+	case *AdminUnbanUserBulkV3InternalServerError:
+		return nil, nil, nil, nil, nil, v, nil
 
 	default:
-		return nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+		return nil, nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
@@ -712,6 +740,8 @@ func (a *Client) AdminUnbanUserBulkV3Short(params *AdminUnbanUserBulkV3Params, a
 	case *AdminUnbanUserBulkV3Forbidden:
 		return nil, v
 	case *AdminUnbanUserBulkV3NotFound:
+		return nil, v
+	case *AdminUnbanUserBulkV3InternalServerError:
 		return nil, v
 
 	default:

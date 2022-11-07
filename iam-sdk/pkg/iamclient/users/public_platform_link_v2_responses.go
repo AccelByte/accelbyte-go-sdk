@@ -10,12 +10,16 @@ package users
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
+	"io"
 	"io/ioutil"
 	"strings"
 
 	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/strfmt"
+
+	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclientmodels"
 )
 
 // PublicPlatformLinkV2Reader is a Reader for the PublicPlatformLinkV2 structure.
@@ -138,13 +142,33 @@ func NewPublicPlatformLinkV2Unauthorized() *PublicPlatformLinkV2Unauthorized {
 
 /*PublicPlatformLinkV2Unauthorized handles this case with default header values.
 
-  Unauthorized access
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20001</td><td>unauthorized access</td></tr></table>
 */
 type PublicPlatformLinkV2Unauthorized struct {
+	Payload *iamclientmodels.RestErrorResponse
 }
 
 func (o *PublicPlatformLinkV2Unauthorized) Error() string {
-	return fmt.Sprintf("[POST /iam/v2/public/namespaces/{namespace}/users/{userId}/platforms/{platformId}/link][%d] publicPlatformLinkV2Unauthorized ", 401)
+	return fmt.Sprintf("[POST /iam/v2/public/namespaces/{namespace}/users/{userId}/platforms/{platformId}/link][%d] publicPlatformLinkV2Unauthorized  %+v", 401, o.ToJSONString())
+}
+
+func (o *PublicPlatformLinkV2Unauthorized) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
+}
+
+func (o *PublicPlatformLinkV2Unauthorized) GetPayload() *iamclientmodels.RestErrorResponse {
+	return o.Payload
 }
 
 func (o *PublicPlatformLinkV2Unauthorized) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -152,6 +176,13 @@ func (o *PublicPlatformLinkV2Unauthorized) readResponse(response runtime.ClientR
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
 		consumer = runtime.ByteStreamConsumer()
+	}
+
+	o.Payload = new(iamclientmodels.RestErrorResponse)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
 	}
 
 	return nil
@@ -164,13 +195,33 @@ func NewPublicPlatformLinkV2Forbidden() *PublicPlatformLinkV2Forbidden {
 
 /*PublicPlatformLinkV2Forbidden handles this case with default header values.
 
-  Forbidden
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20013</td><td>insufficient permissions</td></tr></table>
 */
 type PublicPlatformLinkV2Forbidden struct {
+	Payload *iamclientmodels.RestErrorResponse
 }
 
 func (o *PublicPlatformLinkV2Forbidden) Error() string {
-	return fmt.Sprintf("[POST /iam/v2/public/namespaces/{namespace}/users/{userId}/platforms/{platformId}/link][%d] publicPlatformLinkV2Forbidden ", 403)
+	return fmt.Sprintf("[POST /iam/v2/public/namespaces/{namespace}/users/{userId}/platforms/{platformId}/link][%d] publicPlatformLinkV2Forbidden  %+v", 403, o.ToJSONString())
+}
+
+func (o *PublicPlatformLinkV2Forbidden) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
+}
+
+func (o *PublicPlatformLinkV2Forbidden) GetPayload() *iamclientmodels.RestErrorResponse {
+	return o.Payload
 }
 
 func (o *PublicPlatformLinkV2Forbidden) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -178,6 +229,13 @@ func (o *PublicPlatformLinkV2Forbidden) readResponse(response runtime.ClientResp
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
 		consumer = runtime.ByteStreamConsumer()
+	}
+
+	o.Payload = new(iamclientmodels.RestErrorResponse)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
 	}
 
 	return nil

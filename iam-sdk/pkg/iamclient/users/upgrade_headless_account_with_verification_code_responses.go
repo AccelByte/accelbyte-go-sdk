@@ -134,10 +134,30 @@ func NewUpgradeHeadlessAccountWithVerificationCodeBadRequest() *UpgradeHeadlessA
   Invalid request
 */
 type UpgradeHeadlessAccountWithVerificationCodeBadRequest struct {
+	Payload *iamclientmodels.RestErrorResponse
 }
 
 func (o *UpgradeHeadlessAccountWithVerificationCodeBadRequest) Error() string {
-	return fmt.Sprintf("[POST /iam/namespaces/{namespace}/users/{userId}/upgradeHeadlessAccountWithVerificationCode][%d] upgradeHeadlessAccountWithVerificationCodeBadRequest ", 400)
+	return fmt.Sprintf("[POST /iam/namespaces/{namespace}/users/{userId}/upgradeHeadlessAccountWithVerificationCode][%d] upgradeHeadlessAccountWithVerificationCodeBadRequest  %+v", 400, o.ToJSONString())
+}
+
+func (o *UpgradeHeadlessAccountWithVerificationCodeBadRequest) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
+}
+
+func (o *UpgradeHeadlessAccountWithVerificationCodeBadRequest) GetPayload() *iamclientmodels.RestErrorResponse {
+	return o.Payload
 }
 
 func (o *UpgradeHeadlessAccountWithVerificationCodeBadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -145,6 +165,13 @@ func (o *UpgradeHeadlessAccountWithVerificationCodeBadRequest) readResponse(resp
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
 		consumer = runtime.ByteStreamConsumer()
+	}
+
+	o.Payload = new(iamclientmodels.RestErrorResponse)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
 	}
 
 	return nil
@@ -157,13 +184,33 @@ func NewUpgradeHeadlessAccountWithVerificationCodeUnauthorized() *UpgradeHeadles
 
 /*UpgradeHeadlessAccountWithVerificationCodeUnauthorized handles this case with default header values.
 
-  Unauthorized access
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20001</td><td>unauthorized access</td></tr></table>
 */
 type UpgradeHeadlessAccountWithVerificationCodeUnauthorized struct {
+	Payload *iamclientmodels.RestErrorResponse
 }
 
 func (o *UpgradeHeadlessAccountWithVerificationCodeUnauthorized) Error() string {
-	return fmt.Sprintf("[POST /iam/namespaces/{namespace}/users/{userId}/upgradeHeadlessAccountWithVerificationCode][%d] upgradeHeadlessAccountWithVerificationCodeUnauthorized ", 401)
+	return fmt.Sprintf("[POST /iam/namespaces/{namespace}/users/{userId}/upgradeHeadlessAccountWithVerificationCode][%d] upgradeHeadlessAccountWithVerificationCodeUnauthorized  %+v", 401, o.ToJSONString())
+}
+
+func (o *UpgradeHeadlessAccountWithVerificationCodeUnauthorized) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
+}
+
+func (o *UpgradeHeadlessAccountWithVerificationCodeUnauthorized) GetPayload() *iamclientmodels.RestErrorResponse {
+	return o.Payload
 }
 
 func (o *UpgradeHeadlessAccountWithVerificationCodeUnauthorized) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -171,6 +218,13 @@ func (o *UpgradeHeadlessAccountWithVerificationCodeUnauthorized) readResponse(re
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
 		consumer = runtime.ByteStreamConsumer()
+	}
+
+	o.Payload = new(iamclientmodels.RestErrorResponse)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
 	}
 
 	return nil
@@ -183,13 +237,33 @@ func NewUpgradeHeadlessAccountWithVerificationCodeForbidden() *UpgradeHeadlessAc
 
 /*UpgradeHeadlessAccountWithVerificationCodeForbidden handles this case with default header values.
 
-  Forbidden
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20013</td><td>insufficient permissions</td></tr></table>
 */
 type UpgradeHeadlessAccountWithVerificationCodeForbidden struct {
+	Payload *iamclientmodels.RestErrorResponse
 }
 
 func (o *UpgradeHeadlessAccountWithVerificationCodeForbidden) Error() string {
-	return fmt.Sprintf("[POST /iam/namespaces/{namespace}/users/{userId}/upgradeHeadlessAccountWithVerificationCode][%d] upgradeHeadlessAccountWithVerificationCodeForbidden ", 403)
+	return fmt.Sprintf("[POST /iam/namespaces/{namespace}/users/{userId}/upgradeHeadlessAccountWithVerificationCode][%d] upgradeHeadlessAccountWithVerificationCodeForbidden  %+v", 403, o.ToJSONString())
+}
+
+func (o *UpgradeHeadlessAccountWithVerificationCodeForbidden) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
+}
+
+func (o *UpgradeHeadlessAccountWithVerificationCodeForbidden) GetPayload() *iamclientmodels.RestErrorResponse {
+	return o.Payload
 }
 
 func (o *UpgradeHeadlessAccountWithVerificationCodeForbidden) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -197,6 +271,13 @@ func (o *UpgradeHeadlessAccountWithVerificationCodeForbidden) readResponse(respo
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
 		consumer = runtime.ByteStreamConsumer()
+	}
+
+	o.Payload = new(iamclientmodels.RestErrorResponse)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
 	}
 
 	return nil

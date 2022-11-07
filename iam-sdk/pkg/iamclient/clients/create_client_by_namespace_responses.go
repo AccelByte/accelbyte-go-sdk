@@ -134,10 +134,30 @@ func NewCreateClientByNamespaceBadRequest() *CreateClientByNamespaceBadRequest {
   Invalid request
 */
 type CreateClientByNamespaceBadRequest struct {
+	Payload *iamclientmodels.RestErrorResponse
 }
 
 func (o *CreateClientByNamespaceBadRequest) Error() string {
-	return fmt.Sprintf("[POST /iam/namespaces/{namespace}/clients][%d] createClientByNamespaceBadRequest ", 400)
+	return fmt.Sprintf("[POST /iam/namespaces/{namespace}/clients][%d] createClientByNamespaceBadRequest  %+v", 400, o.ToJSONString())
+}
+
+func (o *CreateClientByNamespaceBadRequest) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
+}
+
+func (o *CreateClientByNamespaceBadRequest) GetPayload() *iamclientmodels.RestErrorResponse {
+	return o.Payload
 }
 
 func (o *CreateClientByNamespaceBadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -145,6 +165,13 @@ func (o *CreateClientByNamespaceBadRequest) readResponse(response runtime.Client
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
 		consumer = runtime.ByteStreamConsumer()
+	}
+
+	o.Payload = new(iamclientmodels.RestErrorResponse)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
 	}
 
 	return nil
@@ -157,13 +184,33 @@ func NewCreateClientByNamespaceUnauthorized() *CreateClientByNamespaceUnauthoriz
 
 /*CreateClientByNamespaceUnauthorized handles this case with default header values.
 
-  Unauthorized access
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20001</td><td>unauthorized access</td></tr></table>
 */
 type CreateClientByNamespaceUnauthorized struct {
+	Payload *iamclientmodels.RestErrorResponse
 }
 
 func (o *CreateClientByNamespaceUnauthorized) Error() string {
-	return fmt.Sprintf("[POST /iam/namespaces/{namespace}/clients][%d] createClientByNamespaceUnauthorized ", 401)
+	return fmt.Sprintf("[POST /iam/namespaces/{namespace}/clients][%d] createClientByNamespaceUnauthorized  %+v", 401, o.ToJSONString())
+}
+
+func (o *CreateClientByNamespaceUnauthorized) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
+}
+
+func (o *CreateClientByNamespaceUnauthorized) GetPayload() *iamclientmodels.RestErrorResponse {
+	return o.Payload
 }
 
 func (o *CreateClientByNamespaceUnauthorized) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -171,6 +218,13 @@ func (o *CreateClientByNamespaceUnauthorized) readResponse(response runtime.Clie
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
 		consumer = runtime.ByteStreamConsumer()
+	}
+
+	o.Payload = new(iamclientmodels.RestErrorResponse)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
 	}
 
 	return nil
@@ -183,13 +237,33 @@ func NewCreateClientByNamespaceForbidden() *CreateClientByNamespaceForbidden {
 
 /*CreateClientByNamespaceForbidden handles this case with default header values.
 
-  Forbidden
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20013</td><td>insufficient permissions</td></tr></table>
 */
 type CreateClientByNamespaceForbidden struct {
+	Payload *iamclientmodels.RestErrorResponse
 }
 
 func (o *CreateClientByNamespaceForbidden) Error() string {
-	return fmt.Sprintf("[POST /iam/namespaces/{namespace}/clients][%d] createClientByNamespaceForbidden ", 403)
+	return fmt.Sprintf("[POST /iam/namespaces/{namespace}/clients][%d] createClientByNamespaceForbidden  %+v", 403, o.ToJSONString())
+}
+
+func (o *CreateClientByNamespaceForbidden) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
+}
+
+func (o *CreateClientByNamespaceForbidden) GetPayload() *iamclientmodels.RestErrorResponse {
+	return o.Payload
 }
 
 func (o *CreateClientByNamespaceForbidden) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -197,6 +271,13 @@ func (o *CreateClientByNamespaceForbidden) readResponse(response runtime.ClientR
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
 		consumer = runtime.ByteStreamConsumer()
+	}
+
+	o.Payload = new(iamclientmodels.RestErrorResponse)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
 	}
 
 	return nil

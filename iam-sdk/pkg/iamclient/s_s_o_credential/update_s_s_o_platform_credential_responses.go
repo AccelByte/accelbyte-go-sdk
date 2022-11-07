@@ -137,7 +137,7 @@ func NewUpdateSSOPlatformCredentialBadRequest() *UpdateSSOPlatformCredentialBadR
 
 /*UpdateSSOPlatformCredentialBadRequest handles this case with default header values.
 
-  Bad Request
+  Invalid request
 */
 type UpdateSSOPlatformCredentialBadRequest struct {
 	Payload *iamclientmodels.RestErrorResponse
@@ -190,13 +190,33 @@ func NewUpdateSSOPlatformCredentialUnauthorized() *UpdateSSOPlatformCredentialUn
 
 /*UpdateSSOPlatformCredentialUnauthorized handles this case with default header values.
 
-  Unauthorized
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20001</td><td>unauthorized access</td></tr></table>
 */
 type UpdateSSOPlatformCredentialUnauthorized struct {
+	Payload *iamclientmodels.RestErrorResponse
 }
 
 func (o *UpdateSSOPlatformCredentialUnauthorized) Error() string {
-	return fmt.Sprintf("[PATCH /iam/v3/admin/namespaces/{namespace}/platforms/{platformId}/sso][%d] updateSSOPlatformCredentialUnauthorized ", 401)
+	return fmt.Sprintf("[PATCH /iam/v3/admin/namespaces/{namespace}/platforms/{platformId}/sso][%d] updateSSOPlatformCredentialUnauthorized  %+v", 401, o.ToJSONString())
+}
+
+func (o *UpdateSSOPlatformCredentialUnauthorized) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
+}
+
+func (o *UpdateSSOPlatformCredentialUnauthorized) GetPayload() *iamclientmodels.RestErrorResponse {
+	return o.Payload
 }
 
 func (o *UpdateSSOPlatformCredentialUnauthorized) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -204,6 +224,13 @@ func (o *UpdateSSOPlatformCredentialUnauthorized) readResponse(response runtime.
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
 		consumer = runtime.ByteStreamConsumer()
+	}
+
+	o.Payload = new(iamclientmodels.RestErrorResponse)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
 	}
 
 	return nil
@@ -216,13 +243,33 @@ func NewUpdateSSOPlatformCredentialForbidden() *UpdateSSOPlatformCredentialForbi
 
 /*UpdateSSOPlatformCredentialForbidden handles this case with default header values.
 
-  Forbidden
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20013</td><td>insufficient permissions</td></tr></table>
 */
 type UpdateSSOPlatformCredentialForbidden struct {
+	Payload *iamclientmodels.RestErrorResponse
 }
 
 func (o *UpdateSSOPlatformCredentialForbidden) Error() string {
-	return fmt.Sprintf("[PATCH /iam/v3/admin/namespaces/{namespace}/platforms/{platformId}/sso][%d] updateSSOPlatformCredentialForbidden ", 403)
+	return fmt.Sprintf("[PATCH /iam/v3/admin/namespaces/{namespace}/platforms/{platformId}/sso][%d] updateSSOPlatformCredentialForbidden  %+v", 403, o.ToJSONString())
+}
+
+func (o *UpdateSSOPlatformCredentialForbidden) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
+}
+
+func (o *UpdateSSOPlatformCredentialForbidden) GetPayload() *iamclientmodels.RestErrorResponse {
+	return o.Payload
 }
 
 func (o *UpdateSSOPlatformCredentialForbidden) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -230,6 +277,13 @@ func (o *UpdateSSOPlatformCredentialForbidden) readResponse(response runtime.Cli
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
 		consumer = runtime.ByteStreamConsumer()
+	}
+
+	o.Payload = new(iamclientmodels.RestErrorResponse)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
 	}
 
 	return nil
@@ -242,7 +296,7 @@ func NewUpdateSSOPlatformCredentialNotFound() *UpdateSSOPlatformCredentialNotFou
 
 /*UpdateSSOPlatformCredentialNotFound handles this case with default header values.
 
-  SSO Credential Not Found
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>10175</td><td>third party credential not found</td></tr></table>
 */
 type UpdateSSOPlatformCredentialNotFound struct {
 	Payload *iamclientmodels.RestErrorResponse
@@ -295,7 +349,7 @@ func NewUpdateSSOPlatformCredentialInternalServerError() *UpdateSSOPlatformCrede
 
 /*UpdateSSOPlatformCredentialInternalServerError handles this case with default header values.
 
-  Internal Server Error
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20000</td><td>internal server error</td></tr></table>
 */
 type UpdateSSOPlatformCredentialInternalServerError struct {
 	Payload *iamclientmodels.RestErrorResponse

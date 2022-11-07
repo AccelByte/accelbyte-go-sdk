@@ -113,7 +113,7 @@ func NewAdminPlatformUnlinkV3BadRequest() *AdminPlatformUnlinkV3BadRequest {
   <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20019</td><td>unable to parse request body</td></tr><tr><td>20002</td><td>validation error</td></tr></table>
 */
 type AdminPlatformUnlinkV3BadRequest struct {
-	Payload *iamclientmodels.RestapiErrorResponse
+	Payload *iamclientmodels.RestErrorResponse
 }
 
 func (o *AdminPlatformUnlinkV3BadRequest) Error() string {
@@ -135,7 +135,7 @@ func (o *AdminPlatformUnlinkV3BadRequest) ToJSONString() string {
 	return fmt.Sprintf("%+v", string(b))
 }
 
-func (o *AdminPlatformUnlinkV3BadRequest) GetPayload() *iamclientmodels.RestapiErrorResponse {
+func (o *AdminPlatformUnlinkV3BadRequest) GetPayload() *iamclientmodels.RestErrorResponse {
 	return o.Payload
 }
 
@@ -146,7 +146,7 @@ func (o *AdminPlatformUnlinkV3BadRequest) readResponse(response runtime.ClientRe
 		consumer = runtime.ByteStreamConsumer()
 	}
 
-	o.Payload = new(iamclientmodels.RestapiErrorResponse)
+	o.Payload = new(iamclientmodels.RestErrorResponse)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
@@ -166,7 +166,7 @@ func NewAdminPlatformUnlinkV3Unauthorized() *AdminPlatformUnlinkV3Unauthorized {
   <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20001</td><td>unauthorized access</td></tr></table>
 */
 type AdminPlatformUnlinkV3Unauthorized struct {
-	Payload *iamclientmodels.RestapiErrorResponse
+	Payload *iamclientmodels.RestErrorResponse
 }
 
 func (o *AdminPlatformUnlinkV3Unauthorized) Error() string {
@@ -188,7 +188,7 @@ func (o *AdminPlatformUnlinkV3Unauthorized) ToJSONString() string {
 	return fmt.Sprintf("%+v", string(b))
 }
 
-func (o *AdminPlatformUnlinkV3Unauthorized) GetPayload() *iamclientmodels.RestapiErrorResponse {
+func (o *AdminPlatformUnlinkV3Unauthorized) GetPayload() *iamclientmodels.RestErrorResponse {
 	return o.Payload
 }
 
@@ -199,7 +199,7 @@ func (o *AdminPlatformUnlinkV3Unauthorized) readResponse(response runtime.Client
 		consumer = runtime.ByteStreamConsumer()
 	}
 
-	o.Payload = new(iamclientmodels.RestapiErrorResponse)
+	o.Payload = new(iamclientmodels.RestErrorResponse)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
@@ -219,7 +219,7 @@ func NewAdminPlatformUnlinkV3Forbidden() *AdminPlatformUnlinkV3Forbidden {
   <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20013</td><td>insufficient permissions</td></tr></table>
 */
 type AdminPlatformUnlinkV3Forbidden struct {
-	Payload *iamclientmodels.RestapiErrorResponse
+	Payload *iamclientmodels.RestErrorResponse
 }
 
 func (o *AdminPlatformUnlinkV3Forbidden) Error() string {
@@ -241,7 +241,7 @@ func (o *AdminPlatformUnlinkV3Forbidden) ToJSONString() string {
 	return fmt.Sprintf("%+v", string(b))
 }
 
-func (o *AdminPlatformUnlinkV3Forbidden) GetPayload() *iamclientmodels.RestapiErrorResponse {
+func (o *AdminPlatformUnlinkV3Forbidden) GetPayload() *iamclientmodels.RestErrorResponse {
 	return o.Payload
 }
 
@@ -252,7 +252,7 @@ func (o *AdminPlatformUnlinkV3Forbidden) readResponse(response runtime.ClientRes
 		consumer = runtime.ByteStreamConsumer()
 	}
 
-	o.Payload = new(iamclientmodels.RestapiErrorResponse)
+	o.Payload = new(iamclientmodels.RestErrorResponse)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
@@ -272,7 +272,7 @@ func NewAdminPlatformUnlinkV3NotFound() *AdminPlatformUnlinkV3NotFound {
   <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20008</td><td>user not found</td></tr></table>
 */
 type AdminPlatformUnlinkV3NotFound struct {
-	Payload *iamclientmodels.RestapiErrorResponse
+	Payload *iamclientmodels.RestErrorResponse
 }
 
 func (o *AdminPlatformUnlinkV3NotFound) Error() string {
@@ -294,7 +294,7 @@ func (o *AdminPlatformUnlinkV3NotFound) ToJSONString() string {
 	return fmt.Sprintf("%+v", string(b))
 }
 
-func (o *AdminPlatformUnlinkV3NotFound) GetPayload() *iamclientmodels.RestapiErrorResponse {
+func (o *AdminPlatformUnlinkV3NotFound) GetPayload() *iamclientmodels.RestErrorResponse {
 	return o.Payload
 }
 
@@ -305,7 +305,7 @@ func (o *AdminPlatformUnlinkV3NotFound) readResponse(response runtime.ClientResp
 		consumer = runtime.ByteStreamConsumer()
 	}
 
-	o.Payload = new(iamclientmodels.RestapiErrorResponse)
+	o.Payload = new(iamclientmodels.RestErrorResponse)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
@@ -322,13 +322,33 @@ func NewAdminPlatformUnlinkV3InternalServerError() *AdminPlatformUnlinkV3Interna
 
 /*AdminPlatformUnlinkV3InternalServerError handles this case with default header values.
 
-  Internal Server Error
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20000</td><td>internal server error</td></tr></table>
 */
 type AdminPlatformUnlinkV3InternalServerError struct {
+	Payload *iamclientmodels.RestErrorResponse
 }
 
 func (o *AdminPlatformUnlinkV3InternalServerError) Error() string {
-	return fmt.Sprintf("[DELETE /iam/v3/admin/namespaces/{namespace}/users/{userId}/platforms/{platformId}][%d] adminPlatformUnlinkV3InternalServerError ", 500)
+	return fmt.Sprintf("[DELETE /iam/v3/admin/namespaces/{namespace}/users/{userId}/platforms/{platformId}][%d] adminPlatformUnlinkV3InternalServerError  %+v", 500, o.ToJSONString())
+}
+
+func (o *AdminPlatformUnlinkV3InternalServerError) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
+}
+
+func (o *AdminPlatformUnlinkV3InternalServerError) GetPayload() *iamclientmodels.RestErrorResponse {
+	return o.Payload
 }
 
 func (o *AdminPlatformUnlinkV3InternalServerError) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -336,6 +356,13 @@ func (o *AdminPlatformUnlinkV3InternalServerError) readResponse(response runtime
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
 		consumer = runtime.ByteStreamConsumer()
+	}
+
+	o.Payload = new(iamclientmodels.RestErrorResponse)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
 	}
 
 	return nil

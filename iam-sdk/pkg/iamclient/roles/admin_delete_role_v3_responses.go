@@ -119,7 +119,7 @@ func NewAdminDeleteRoleV3BadRequest() *AdminDeleteRoleV3BadRequest {
   <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20002</td><td>validation error</td></tr></table>
 */
 type AdminDeleteRoleV3BadRequest struct {
-	Payload *iamclientmodels.RestapiErrorResponse
+	Payload *iamclientmodels.RestErrorResponse
 }
 
 func (o *AdminDeleteRoleV3BadRequest) Error() string {
@@ -141,7 +141,7 @@ func (o *AdminDeleteRoleV3BadRequest) ToJSONString() string {
 	return fmt.Sprintf("%+v", string(b))
 }
 
-func (o *AdminDeleteRoleV3BadRequest) GetPayload() *iamclientmodels.RestapiErrorResponse {
+func (o *AdminDeleteRoleV3BadRequest) GetPayload() *iamclientmodels.RestErrorResponse {
 	return o.Payload
 }
 
@@ -152,7 +152,7 @@ func (o *AdminDeleteRoleV3BadRequest) readResponse(response runtime.ClientRespon
 		consumer = runtime.ByteStreamConsumer()
 	}
 
-	o.Payload = new(iamclientmodels.RestapiErrorResponse)
+	o.Payload = new(iamclientmodels.RestErrorResponse)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
@@ -172,7 +172,7 @@ func NewAdminDeleteRoleV3Unauthorized() *AdminDeleteRoleV3Unauthorized {
   <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20001</td><td>unauthorized access</td></tr></table>
 */
 type AdminDeleteRoleV3Unauthorized struct {
-	Payload *iamclientmodels.RestapiErrorResponse
+	Payload *iamclientmodels.RestErrorResponse
 }
 
 func (o *AdminDeleteRoleV3Unauthorized) Error() string {
@@ -194,7 +194,7 @@ func (o *AdminDeleteRoleV3Unauthorized) ToJSONString() string {
 	return fmt.Sprintf("%+v", string(b))
 }
 
-func (o *AdminDeleteRoleV3Unauthorized) GetPayload() *iamclientmodels.RestapiErrorResponse {
+func (o *AdminDeleteRoleV3Unauthorized) GetPayload() *iamclientmodels.RestErrorResponse {
 	return o.Payload
 }
 
@@ -205,7 +205,7 @@ func (o *AdminDeleteRoleV3Unauthorized) readResponse(response runtime.ClientResp
 		consumer = runtime.ByteStreamConsumer()
 	}
 
-	o.Payload = new(iamclientmodels.RestapiErrorResponse)
+	o.Payload = new(iamclientmodels.RestErrorResponse)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
@@ -225,7 +225,7 @@ func NewAdminDeleteRoleV3Forbidden() *AdminDeleteRoleV3Forbidden {
   <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20013</td><td>insufficient permissions</td></tr></table>
 */
 type AdminDeleteRoleV3Forbidden struct {
-	Payload *iamclientmodels.RestapiErrorResponse
+	Payload *iamclientmodels.RestErrorResponse
 }
 
 func (o *AdminDeleteRoleV3Forbidden) Error() string {
@@ -247,7 +247,7 @@ func (o *AdminDeleteRoleV3Forbidden) ToJSONString() string {
 	return fmt.Sprintf("%+v", string(b))
 }
 
-func (o *AdminDeleteRoleV3Forbidden) GetPayload() *iamclientmodels.RestapiErrorResponse {
+func (o *AdminDeleteRoleV3Forbidden) GetPayload() *iamclientmodels.RestErrorResponse {
 	return o.Payload
 }
 
@@ -258,7 +258,7 @@ func (o *AdminDeleteRoleV3Forbidden) readResponse(response runtime.ClientRespons
 		consumer = runtime.ByteStreamConsumer()
 	}
 
-	o.Payload = new(iamclientmodels.RestapiErrorResponse)
+	o.Payload = new(iamclientmodels.RestErrorResponse)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
@@ -278,7 +278,7 @@ func NewAdminDeleteRoleV3NotFound() *AdminDeleteRoleV3NotFound {
   <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>10456</td><td>role not found</td></tr></table>
 */
 type AdminDeleteRoleV3NotFound struct {
-	Payload *iamclientmodels.RestapiErrorResponse
+	Payload *iamclientmodels.RestErrorResponse
 }
 
 func (o *AdminDeleteRoleV3NotFound) Error() string {
@@ -300,7 +300,7 @@ func (o *AdminDeleteRoleV3NotFound) ToJSONString() string {
 	return fmt.Sprintf("%+v", string(b))
 }
 
-func (o *AdminDeleteRoleV3NotFound) GetPayload() *iamclientmodels.RestapiErrorResponse {
+func (o *AdminDeleteRoleV3NotFound) GetPayload() *iamclientmodels.RestErrorResponse {
 	return o.Payload
 }
 
@@ -311,7 +311,7 @@ func (o *AdminDeleteRoleV3NotFound) readResponse(response runtime.ClientResponse
 		consumer = runtime.ByteStreamConsumer()
 	}
 
-	o.Payload = new(iamclientmodels.RestapiErrorResponse)
+	o.Payload = new(iamclientmodels.RestErrorResponse)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
@@ -331,7 +331,7 @@ func NewAdminDeleteRoleV3Conflict() *AdminDeleteRoleV3Conflict {
   <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20009</td><td>request_conflict</td></tr></table>
 */
 type AdminDeleteRoleV3Conflict struct {
-	Payload *iamclientmodels.RestapiErrorResponse
+	Payload *iamclientmodels.RestErrorResponse
 }
 
 func (o *AdminDeleteRoleV3Conflict) Error() string {
@@ -353,7 +353,7 @@ func (o *AdminDeleteRoleV3Conflict) ToJSONString() string {
 	return fmt.Sprintf("%+v", string(b))
 }
 
-func (o *AdminDeleteRoleV3Conflict) GetPayload() *iamclientmodels.RestapiErrorResponse {
+func (o *AdminDeleteRoleV3Conflict) GetPayload() *iamclientmodels.RestErrorResponse {
 	return o.Payload
 }
 
@@ -364,7 +364,7 @@ func (o *AdminDeleteRoleV3Conflict) readResponse(response runtime.ClientResponse
 		consumer = runtime.ByteStreamConsumer()
 	}
 
-	o.Payload = new(iamclientmodels.RestapiErrorResponse)
+	o.Payload = new(iamclientmodels.RestErrorResponse)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
@@ -381,13 +381,33 @@ func NewAdminDeleteRoleV3InternalServerError() *AdminDeleteRoleV3InternalServerE
 
 /*AdminDeleteRoleV3InternalServerError handles this case with default header values.
 
-  Internal Server Error
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20000</td><td>internal server error</td></tr></table>
 */
 type AdminDeleteRoleV3InternalServerError struct {
+	Payload *iamclientmodels.RestErrorResponse
 }
 
 func (o *AdminDeleteRoleV3InternalServerError) Error() string {
-	return fmt.Sprintf("[DELETE /iam/v3/admin/roles/{roleId}][%d] adminDeleteRoleV3InternalServerError ", 500)
+	return fmt.Sprintf("[DELETE /iam/v3/admin/roles/{roleId}][%d] adminDeleteRoleV3InternalServerError  %+v", 500, o.ToJSONString())
+}
+
+func (o *AdminDeleteRoleV3InternalServerError) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
+}
+
+func (o *AdminDeleteRoleV3InternalServerError) GetPayload() *iamclientmodels.RestErrorResponse {
+	return o.Payload
 }
 
 func (o *AdminDeleteRoleV3InternalServerError) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -395,6 +415,13 @@ func (o *AdminDeleteRoleV3InternalServerError) readResponse(response runtime.Cli
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
 		consumer = runtime.ByteStreamConsumer()
+	}
+
+	o.Payload = new(iamclientmodels.RestErrorResponse)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
 	}
 
 	return nil

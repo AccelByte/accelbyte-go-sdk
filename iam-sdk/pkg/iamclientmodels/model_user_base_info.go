@@ -32,6 +32,9 @@ type ModelUserBaseInfo struct {
 	// user Id
 	// Required: true
 	UserID *string `json:"userId"`
+
+	// username
+	Username string `json:"username,omitempty"`
 }
 
 // Validate validates this model user base info

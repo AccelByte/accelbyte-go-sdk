@@ -33,29 +33,29 @@ type Client struct {
 
 // ClientService is the interface for Client methods
 type ClientService interface {
-	AdminBanDeviceV4(params *AdminBanDeviceV4Params, authInfo runtime.ClientAuthInfoWriter) (*AdminBanDeviceV4NoContent, *AdminBanDeviceV4BadRequest, *AdminBanDeviceV4Unauthorized, *AdminBanDeviceV4Conflict, *AdminBanDeviceV4InternalServerError, error)
+	AdminBanDeviceV4(params *AdminBanDeviceV4Params, authInfo runtime.ClientAuthInfoWriter) (*AdminBanDeviceV4NoContent, *AdminBanDeviceV4BadRequest, *AdminBanDeviceV4Unauthorized, *AdminBanDeviceV4Forbidden, *AdminBanDeviceV4Conflict, *AdminBanDeviceV4InternalServerError, error)
 	AdminBanDeviceV4Short(params *AdminBanDeviceV4Params, authInfo runtime.ClientAuthInfoWriter) (*AdminBanDeviceV4NoContent, error)
-	AdminDecryptDeviceV4(params *AdminDecryptDeviceV4Params, authInfo runtime.ClientAuthInfoWriter) (*AdminDecryptDeviceV4OK, *AdminDecryptDeviceV4BadRequest, *AdminDecryptDeviceV4Unauthorized, *AdminDecryptDeviceV4InternalServerError, error)
+	AdminDecryptDeviceV4(params *AdminDecryptDeviceV4Params, authInfo runtime.ClientAuthInfoWriter) (*AdminDecryptDeviceV4OK, *AdminDecryptDeviceV4BadRequest, *AdminDecryptDeviceV4Unauthorized, *AdminDecryptDeviceV4Forbidden, *AdminDecryptDeviceV4InternalServerError, error)
 	AdminDecryptDeviceV4Short(params *AdminDecryptDeviceV4Params, authInfo runtime.ClientAuthInfoWriter) (*AdminDecryptDeviceV4OK, error)
-	AdminGenerateReportV4(params *AdminGenerateReportV4Params, authInfo runtime.ClientAuthInfoWriter) (*AdminGenerateReportV4OK, *AdminGenerateReportV4BadRequest, *AdminGenerateReportV4Unauthorized, *AdminGenerateReportV4NotFound, *AdminGenerateReportV4InternalServerError, error)
+	AdminGenerateReportV4(params *AdminGenerateReportV4Params, authInfo runtime.ClientAuthInfoWriter) (*AdminGenerateReportV4OK, *AdminGenerateReportV4BadRequest, *AdminGenerateReportV4Unauthorized, *AdminGenerateReportV4Forbidden, *AdminGenerateReportV4NotFound, *AdminGenerateReportV4InternalServerError, error)
 	AdminGenerateReportV4Short(params *AdminGenerateReportV4Params, authInfo runtime.ClientAuthInfoWriter) (*AdminGenerateReportV4OK, error)
-	AdminGetBannedDevicesV4(params *AdminGetBannedDevicesV4Params, authInfo runtime.ClientAuthInfoWriter) (*AdminGetBannedDevicesV4OK, *AdminGetBannedDevicesV4Unauthorized, *AdminGetBannedDevicesV4InternalServerError, error)
+	AdminGetBannedDevicesV4(params *AdminGetBannedDevicesV4Params, authInfo runtime.ClientAuthInfoWriter) (*AdminGetBannedDevicesV4OK, *AdminGetBannedDevicesV4Unauthorized, *AdminGetBannedDevicesV4Forbidden, *AdminGetBannedDevicesV4InternalServerError, error)
 	AdminGetBannedDevicesV4Short(params *AdminGetBannedDevicesV4Params, authInfo runtime.ClientAuthInfoWriter) (*AdminGetBannedDevicesV4OK, error)
-	AdminGetDeviceBanV4(params *AdminGetDeviceBanV4Params, authInfo runtime.ClientAuthInfoWriter) (*AdminGetDeviceBanV4OK, *AdminGetDeviceBanV4BadRequest, *AdminGetDeviceBanV4Unauthorized, *AdminGetDeviceBanV4NotFound, *AdminGetDeviceBanV4InternalServerError, error)
+	AdminGetDeviceBanV4(params *AdminGetDeviceBanV4Params, authInfo runtime.ClientAuthInfoWriter) (*AdminGetDeviceBanV4OK, *AdminGetDeviceBanV4BadRequest, *AdminGetDeviceBanV4Unauthorized, *AdminGetDeviceBanV4Forbidden, *AdminGetDeviceBanV4NotFound, *AdminGetDeviceBanV4InternalServerError, error)
 	AdminGetDeviceBanV4Short(params *AdminGetDeviceBanV4Params, authInfo runtime.ClientAuthInfoWriter) (*AdminGetDeviceBanV4OK, error)
-	AdminGetDeviceBansV4(params *AdminGetDeviceBansV4Params, authInfo runtime.ClientAuthInfoWriter) (*AdminGetDeviceBansV4OK, *AdminGetDeviceBansV4BadRequest, *AdminGetDeviceBansV4Unauthorized, *AdminGetDeviceBansV4InternalServerError, error)
+	AdminGetDeviceBansV4(params *AdminGetDeviceBansV4Params, authInfo runtime.ClientAuthInfoWriter) (*AdminGetDeviceBansV4OK, *AdminGetDeviceBansV4BadRequest, *AdminGetDeviceBansV4Unauthorized, *AdminGetDeviceBansV4Forbidden, *AdminGetDeviceBansV4InternalServerError, error)
 	AdminGetDeviceBansV4Short(params *AdminGetDeviceBansV4Params, authInfo runtime.ClientAuthInfoWriter) (*AdminGetDeviceBansV4OK, error)
-	AdminGetDeviceTypesV4(params *AdminGetDeviceTypesV4Params, authInfo runtime.ClientAuthInfoWriter) (*AdminGetDeviceTypesV4OK, *AdminGetDeviceTypesV4Unauthorized, *AdminGetDeviceTypesV4InternalServerError, error)
+	AdminGetDeviceTypesV4(params *AdminGetDeviceTypesV4Params, authInfo runtime.ClientAuthInfoWriter) (*AdminGetDeviceTypesV4OK, *AdminGetDeviceTypesV4Unauthorized, *AdminGetDeviceTypesV4Forbidden, *AdminGetDeviceTypesV4InternalServerError, error)
 	AdminGetDeviceTypesV4Short(params *AdminGetDeviceTypesV4Params, authInfo runtime.ClientAuthInfoWriter) (*AdminGetDeviceTypesV4OK, error)
-	AdminGetDevicesByUserV4(params *AdminGetDevicesByUserV4Params, authInfo runtime.ClientAuthInfoWriter) (*AdminGetDevicesByUserV4OK, *AdminGetDevicesByUserV4BadRequest, *AdminGetDevicesByUserV4Unauthorized, *AdminGetDevicesByUserV4NotFound, *AdminGetDevicesByUserV4InternalServerError, error)
+	AdminGetDevicesByUserV4(params *AdminGetDevicesByUserV4Params, authInfo runtime.ClientAuthInfoWriter) (*AdminGetDevicesByUserV4OK, *AdminGetDevicesByUserV4BadRequest, *AdminGetDevicesByUserV4Unauthorized, *AdminGetDevicesByUserV4Forbidden, *AdminGetDevicesByUserV4NotFound, *AdminGetDevicesByUserV4InternalServerError, error)
 	AdminGetDevicesByUserV4Short(params *AdminGetDevicesByUserV4Params, authInfo runtime.ClientAuthInfoWriter) (*AdminGetDevicesByUserV4OK, error)
-	AdminGetUserDeviceBansV4(params *AdminGetUserDeviceBansV4Params, authInfo runtime.ClientAuthInfoWriter) (*AdminGetUserDeviceBansV4OK, *AdminGetUserDeviceBansV4Unauthorized, *AdminGetUserDeviceBansV4NotFound, *AdminGetUserDeviceBansV4InternalServerError, error)
+	AdminGetUserDeviceBansV4(params *AdminGetUserDeviceBansV4Params, authInfo runtime.ClientAuthInfoWriter) (*AdminGetUserDeviceBansV4OK, *AdminGetUserDeviceBansV4Unauthorized, *AdminGetUserDeviceBansV4Forbidden, *AdminGetUserDeviceBansV4NotFound, *AdminGetUserDeviceBansV4InternalServerError, error)
 	AdminGetUserDeviceBansV4Short(params *AdminGetUserDeviceBansV4Params, authInfo runtime.ClientAuthInfoWriter) (*AdminGetUserDeviceBansV4OK, error)
-	AdminGetUsersByDeviceV4(params *AdminGetUsersByDeviceV4Params, authInfo runtime.ClientAuthInfoWriter) (*AdminGetUsersByDeviceV4OK, *AdminGetUsersByDeviceV4BadRequest, *AdminGetUsersByDeviceV4Unauthorized, *AdminGetUsersByDeviceV4InternalServerError, error)
+	AdminGetUsersByDeviceV4(params *AdminGetUsersByDeviceV4Params, authInfo runtime.ClientAuthInfoWriter) (*AdminGetUsersByDeviceV4OK, *AdminGetUsersByDeviceV4BadRequest, *AdminGetUsersByDeviceV4Unauthorized, *AdminGetUsersByDeviceV4Forbidden, *AdminGetUsersByDeviceV4InternalServerError, error)
 	AdminGetUsersByDeviceV4Short(params *AdminGetUsersByDeviceV4Params, authInfo runtime.ClientAuthInfoWriter) (*AdminGetUsersByDeviceV4OK, error)
-	AdminUnbanDeviceV4(params *AdminUnbanDeviceV4Params, authInfo runtime.ClientAuthInfoWriter) (*AdminUnbanDeviceV4NoContent, *AdminUnbanDeviceV4BadRequest, *AdminUnbanDeviceV4Unauthorized, *AdminUnbanDeviceV4InternalServerError, error)
+	AdminUnbanDeviceV4(params *AdminUnbanDeviceV4Params, authInfo runtime.ClientAuthInfoWriter) (*AdminUnbanDeviceV4NoContent, *AdminUnbanDeviceV4BadRequest, *AdminUnbanDeviceV4Unauthorized, *AdminUnbanDeviceV4Forbidden, *AdminUnbanDeviceV4InternalServerError, error)
 	AdminUnbanDeviceV4Short(params *AdminUnbanDeviceV4Params, authInfo runtime.ClientAuthInfoWriter) (*AdminUnbanDeviceV4NoContent, error)
-	AdminUpdateDeviceBanV4(params *AdminUpdateDeviceBanV4Params, authInfo runtime.ClientAuthInfoWriter) (*AdminUpdateDeviceBanV4NoContent, *AdminUpdateDeviceBanV4BadRequest, *AdminUpdateDeviceBanV4Unauthorized, *AdminUpdateDeviceBanV4NotFound, *AdminUpdateDeviceBanV4Conflict, *AdminUpdateDeviceBanV4InternalServerError, error)
+	AdminUpdateDeviceBanV4(params *AdminUpdateDeviceBanV4Params, authInfo runtime.ClientAuthInfoWriter) (*AdminUpdateDeviceBanV4NoContent, *AdminUpdateDeviceBanV4BadRequest, *AdminUpdateDeviceBanV4Unauthorized, *AdminUpdateDeviceBanV4Forbidden, *AdminUpdateDeviceBanV4NotFound, *AdminUpdateDeviceBanV4Conflict, *AdminUpdateDeviceBanV4InternalServerError, error)
 	AdminUpdateDeviceBanV4Short(params *AdminUpdateDeviceBanV4Params, authInfo runtime.ClientAuthInfoWriter) (*AdminUpdateDeviceBanV4NoContent, error)
 
 	SetTransport(transport runtime.ClientTransport)
@@ -70,7 +70,7 @@ Deprecated: Use AdminBanDeviceV4Short instead.
 &lt;p&gt;Required permission &lt;pre&gt;&#39;ADMIN:NAMESPACE:{namespace}:DEVICE [CREATE]&#39;&lt;/pre&gt;&lt;/p&gt;
 
 */
-func (a *Client) AdminBanDeviceV4(params *AdminBanDeviceV4Params, authInfo runtime.ClientAuthInfoWriter) (*AdminBanDeviceV4NoContent, *AdminBanDeviceV4BadRequest, *AdminBanDeviceV4Unauthorized, *AdminBanDeviceV4Conflict, *AdminBanDeviceV4InternalServerError, error) {
+func (a *Client) AdminBanDeviceV4(params *AdminBanDeviceV4Params, authInfo runtime.ClientAuthInfoWriter) (*AdminBanDeviceV4NoContent, *AdminBanDeviceV4BadRequest, *AdminBanDeviceV4Unauthorized, *AdminBanDeviceV4Forbidden, *AdminBanDeviceV4Conflict, *AdminBanDeviceV4InternalServerError, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewAdminBanDeviceV4Params()
@@ -98,28 +98,31 @@ func (a *Client) AdminBanDeviceV4(params *AdminBanDeviceV4Params, authInfo runti
 		Client:             params.HTTPClient,
 	})
 	if err != nil {
-		return nil, nil, nil, nil, nil, err
+		return nil, nil, nil, nil, nil, nil, err
 	}
 
 	switch v := result.(type) {
 
 	case *AdminBanDeviceV4NoContent:
-		return v, nil, nil, nil, nil, nil
+		return v, nil, nil, nil, nil, nil, nil
 
 	case *AdminBanDeviceV4BadRequest:
-		return nil, v, nil, nil, nil, nil
+		return nil, v, nil, nil, nil, nil, nil
 
 	case *AdminBanDeviceV4Unauthorized:
-		return nil, nil, v, nil, nil, nil
+		return nil, nil, v, nil, nil, nil, nil
+
+	case *AdminBanDeviceV4Forbidden:
+		return nil, nil, nil, v, nil, nil, nil
 
 	case *AdminBanDeviceV4Conflict:
-		return nil, nil, nil, v, nil, nil
+		return nil, nil, nil, nil, v, nil, nil
 
 	case *AdminBanDeviceV4InternalServerError:
-		return nil, nil, nil, nil, v, nil
+		return nil, nil, nil, nil, nil, v, nil
 
 	default:
-		return nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+		return nil, nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
@@ -169,6 +172,8 @@ func (a *Client) AdminBanDeviceV4Short(params *AdminBanDeviceV4Params, authInfo 
 		return nil, v
 	case *AdminBanDeviceV4Unauthorized:
 		return nil, v
+	case *AdminBanDeviceV4Forbidden:
+		return nil, v
 	case *AdminBanDeviceV4Conflict:
 		return nil, v
 	case *AdminBanDeviceV4InternalServerError:
@@ -188,7 +193,7 @@ Deprecated: Use AdminDecryptDeviceV4Short instead.
 &lt;p&gt;Required permission &lt;pre&gt;&#39;ADMIN:NAMESPACE:{namespace}:DEVICE [READ]&#39;&lt;/pre&gt;&lt;/p&gt;
 
 */
-func (a *Client) AdminDecryptDeviceV4(params *AdminDecryptDeviceV4Params, authInfo runtime.ClientAuthInfoWriter) (*AdminDecryptDeviceV4OK, *AdminDecryptDeviceV4BadRequest, *AdminDecryptDeviceV4Unauthorized, *AdminDecryptDeviceV4InternalServerError, error) {
+func (a *Client) AdminDecryptDeviceV4(params *AdminDecryptDeviceV4Params, authInfo runtime.ClientAuthInfoWriter) (*AdminDecryptDeviceV4OK, *AdminDecryptDeviceV4BadRequest, *AdminDecryptDeviceV4Unauthorized, *AdminDecryptDeviceV4Forbidden, *AdminDecryptDeviceV4InternalServerError, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewAdminDecryptDeviceV4Params()
@@ -216,25 +221,28 @@ func (a *Client) AdminDecryptDeviceV4(params *AdminDecryptDeviceV4Params, authIn
 		Client:             params.HTTPClient,
 	})
 	if err != nil {
-		return nil, nil, nil, nil, err
+		return nil, nil, nil, nil, nil, err
 	}
 
 	switch v := result.(type) {
 
 	case *AdminDecryptDeviceV4OK:
-		return v, nil, nil, nil, nil
+		return v, nil, nil, nil, nil, nil
 
 	case *AdminDecryptDeviceV4BadRequest:
-		return nil, v, nil, nil, nil
+		return nil, v, nil, nil, nil, nil
 
 	case *AdminDecryptDeviceV4Unauthorized:
-		return nil, nil, v, nil, nil
+		return nil, nil, v, nil, nil, nil
+
+	case *AdminDecryptDeviceV4Forbidden:
+		return nil, nil, nil, v, nil, nil
 
 	case *AdminDecryptDeviceV4InternalServerError:
-		return nil, nil, nil, v, nil
+		return nil, nil, nil, nil, v, nil
 
 	default:
-		return nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+		return nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
@@ -284,6 +292,8 @@ func (a *Client) AdminDecryptDeviceV4Short(params *AdminDecryptDeviceV4Params, a
 		return nil, v
 	case *AdminDecryptDeviceV4Unauthorized:
 		return nil, v
+	case *AdminDecryptDeviceV4Forbidden:
+		return nil, v
 	case *AdminDecryptDeviceV4InternalServerError:
 		return nil, v
 
@@ -301,7 +311,7 @@ Deprecated: Use AdminGenerateReportV4Short instead.
 &lt;p&gt;Required permission &lt;pre&gt;&#39;ADMIN:NAMESPACE:{namespace}:DEVICE [READ]&#39;&lt;/pre&gt;&lt;/p&gt;
 
 */
-func (a *Client) AdminGenerateReportV4(params *AdminGenerateReportV4Params, authInfo runtime.ClientAuthInfoWriter) (*AdminGenerateReportV4OK, *AdminGenerateReportV4BadRequest, *AdminGenerateReportV4Unauthorized, *AdminGenerateReportV4NotFound, *AdminGenerateReportV4InternalServerError, error) {
+func (a *Client) AdminGenerateReportV4(params *AdminGenerateReportV4Params, authInfo runtime.ClientAuthInfoWriter) (*AdminGenerateReportV4OK, *AdminGenerateReportV4BadRequest, *AdminGenerateReportV4Unauthorized, *AdminGenerateReportV4Forbidden, *AdminGenerateReportV4NotFound, *AdminGenerateReportV4InternalServerError, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewAdminGenerateReportV4Params()
@@ -329,28 +339,31 @@ func (a *Client) AdminGenerateReportV4(params *AdminGenerateReportV4Params, auth
 		Client:             params.HTTPClient,
 	})
 	if err != nil {
-		return nil, nil, nil, nil, nil, err
+		return nil, nil, nil, nil, nil, nil, err
 	}
 
 	switch v := result.(type) {
 
 	case *AdminGenerateReportV4OK:
-		return v, nil, nil, nil, nil, nil
+		return v, nil, nil, nil, nil, nil, nil
 
 	case *AdminGenerateReportV4BadRequest:
-		return nil, v, nil, nil, nil, nil
+		return nil, v, nil, nil, nil, nil, nil
 
 	case *AdminGenerateReportV4Unauthorized:
-		return nil, nil, v, nil, nil, nil
+		return nil, nil, v, nil, nil, nil, nil
+
+	case *AdminGenerateReportV4Forbidden:
+		return nil, nil, nil, v, nil, nil, nil
 
 	case *AdminGenerateReportV4NotFound:
-		return nil, nil, nil, v, nil, nil
+		return nil, nil, nil, nil, v, nil, nil
 
 	case *AdminGenerateReportV4InternalServerError:
-		return nil, nil, nil, nil, v, nil
+		return nil, nil, nil, nil, nil, v, nil
 
 	default:
-		return nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+		return nil, nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
@@ -400,6 +413,8 @@ func (a *Client) AdminGenerateReportV4Short(params *AdminGenerateReportV4Params,
 		return nil, v
 	case *AdminGenerateReportV4Unauthorized:
 		return nil, v
+	case *AdminGenerateReportV4Forbidden:
+		return nil, v
 	case *AdminGenerateReportV4NotFound:
 		return nil, v
 	case *AdminGenerateReportV4InternalServerError:
@@ -419,7 +434,7 @@ Deprecated: Use AdminGetBannedDevicesV4Short instead.
 &lt;p&gt;Required permission &lt;pre&gt;&#39;ADMIN:NAMESPACE:{namespace}:DEVICE [READ]&#39;&lt;/pre&gt;&lt;/p&gt;
 
 */
-func (a *Client) AdminGetBannedDevicesV4(params *AdminGetBannedDevicesV4Params, authInfo runtime.ClientAuthInfoWriter) (*AdminGetBannedDevicesV4OK, *AdminGetBannedDevicesV4Unauthorized, *AdminGetBannedDevicesV4InternalServerError, error) {
+func (a *Client) AdminGetBannedDevicesV4(params *AdminGetBannedDevicesV4Params, authInfo runtime.ClientAuthInfoWriter) (*AdminGetBannedDevicesV4OK, *AdminGetBannedDevicesV4Unauthorized, *AdminGetBannedDevicesV4Forbidden, *AdminGetBannedDevicesV4InternalServerError, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewAdminGetBannedDevicesV4Params()
@@ -447,22 +462,25 @@ func (a *Client) AdminGetBannedDevicesV4(params *AdminGetBannedDevicesV4Params, 
 		Client:             params.HTTPClient,
 	})
 	if err != nil {
-		return nil, nil, nil, err
+		return nil, nil, nil, nil, err
 	}
 
 	switch v := result.(type) {
 
 	case *AdminGetBannedDevicesV4OK:
-		return v, nil, nil, nil
+		return v, nil, nil, nil, nil
 
 	case *AdminGetBannedDevicesV4Unauthorized:
-		return nil, v, nil, nil
+		return nil, v, nil, nil, nil
+
+	case *AdminGetBannedDevicesV4Forbidden:
+		return nil, nil, v, nil, nil
 
 	case *AdminGetBannedDevicesV4InternalServerError:
-		return nil, nil, v, nil
+		return nil, nil, nil, v, nil
 
 	default:
-		return nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+		return nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
@@ -510,6 +528,8 @@ func (a *Client) AdminGetBannedDevicesV4Short(params *AdminGetBannedDevicesV4Par
 		return v, nil
 	case *AdminGetBannedDevicesV4Unauthorized:
 		return nil, v
+	case *AdminGetBannedDevicesV4Forbidden:
+		return nil, v
 	case *AdminGetBannedDevicesV4InternalServerError:
 		return nil, v
 
@@ -527,7 +547,7 @@ Deprecated: Use AdminGetDeviceBanV4Short instead.
 &lt;p&gt;Required permission &lt;pre&gt;&#39;ADMIN:NAMESPACE:{namespace}:DEVICE [READ]&#39;&lt;/pre&gt;&lt;/p&gt;
 
 */
-func (a *Client) AdminGetDeviceBanV4(params *AdminGetDeviceBanV4Params, authInfo runtime.ClientAuthInfoWriter) (*AdminGetDeviceBanV4OK, *AdminGetDeviceBanV4BadRequest, *AdminGetDeviceBanV4Unauthorized, *AdminGetDeviceBanV4NotFound, *AdminGetDeviceBanV4InternalServerError, error) {
+func (a *Client) AdminGetDeviceBanV4(params *AdminGetDeviceBanV4Params, authInfo runtime.ClientAuthInfoWriter) (*AdminGetDeviceBanV4OK, *AdminGetDeviceBanV4BadRequest, *AdminGetDeviceBanV4Unauthorized, *AdminGetDeviceBanV4Forbidden, *AdminGetDeviceBanV4NotFound, *AdminGetDeviceBanV4InternalServerError, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewAdminGetDeviceBanV4Params()
@@ -555,28 +575,31 @@ func (a *Client) AdminGetDeviceBanV4(params *AdminGetDeviceBanV4Params, authInfo
 		Client:             params.HTTPClient,
 	})
 	if err != nil {
-		return nil, nil, nil, nil, nil, err
+		return nil, nil, nil, nil, nil, nil, err
 	}
 
 	switch v := result.(type) {
 
 	case *AdminGetDeviceBanV4OK:
-		return v, nil, nil, nil, nil, nil
+		return v, nil, nil, nil, nil, nil, nil
 
 	case *AdminGetDeviceBanV4BadRequest:
-		return nil, v, nil, nil, nil, nil
+		return nil, v, nil, nil, nil, nil, nil
 
 	case *AdminGetDeviceBanV4Unauthorized:
-		return nil, nil, v, nil, nil, nil
+		return nil, nil, v, nil, nil, nil, nil
+
+	case *AdminGetDeviceBanV4Forbidden:
+		return nil, nil, nil, v, nil, nil, nil
 
 	case *AdminGetDeviceBanV4NotFound:
-		return nil, nil, nil, v, nil, nil
+		return nil, nil, nil, nil, v, nil, nil
 
 	case *AdminGetDeviceBanV4InternalServerError:
-		return nil, nil, nil, nil, v, nil
+		return nil, nil, nil, nil, nil, v, nil
 
 	default:
-		return nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+		return nil, nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
@@ -626,6 +649,8 @@ func (a *Client) AdminGetDeviceBanV4Short(params *AdminGetDeviceBanV4Params, aut
 		return nil, v
 	case *AdminGetDeviceBanV4Unauthorized:
 		return nil, v
+	case *AdminGetDeviceBanV4Forbidden:
+		return nil, v
 	case *AdminGetDeviceBanV4NotFound:
 		return nil, v
 	case *AdminGetDeviceBanV4InternalServerError:
@@ -645,7 +670,7 @@ Deprecated: Use AdminGetDeviceBansV4Short instead.
 &lt;p&gt;Required permission &lt;pre&gt;&#39;ADMIN:NAMESPACE:{namespace}:DEVICE [READ]&#39;&lt;/pre&gt;&lt;/p&gt;
 
 */
-func (a *Client) AdminGetDeviceBansV4(params *AdminGetDeviceBansV4Params, authInfo runtime.ClientAuthInfoWriter) (*AdminGetDeviceBansV4OK, *AdminGetDeviceBansV4BadRequest, *AdminGetDeviceBansV4Unauthorized, *AdminGetDeviceBansV4InternalServerError, error) {
+func (a *Client) AdminGetDeviceBansV4(params *AdminGetDeviceBansV4Params, authInfo runtime.ClientAuthInfoWriter) (*AdminGetDeviceBansV4OK, *AdminGetDeviceBansV4BadRequest, *AdminGetDeviceBansV4Unauthorized, *AdminGetDeviceBansV4Forbidden, *AdminGetDeviceBansV4InternalServerError, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewAdminGetDeviceBansV4Params()
@@ -673,25 +698,28 @@ func (a *Client) AdminGetDeviceBansV4(params *AdminGetDeviceBansV4Params, authIn
 		Client:             params.HTTPClient,
 	})
 	if err != nil {
-		return nil, nil, nil, nil, err
+		return nil, nil, nil, nil, nil, err
 	}
 
 	switch v := result.(type) {
 
 	case *AdminGetDeviceBansV4OK:
-		return v, nil, nil, nil, nil
+		return v, nil, nil, nil, nil, nil
 
 	case *AdminGetDeviceBansV4BadRequest:
-		return nil, v, nil, nil, nil
+		return nil, v, nil, nil, nil, nil
 
 	case *AdminGetDeviceBansV4Unauthorized:
-		return nil, nil, v, nil, nil
+		return nil, nil, v, nil, nil, nil
+
+	case *AdminGetDeviceBansV4Forbidden:
+		return nil, nil, nil, v, nil, nil
 
 	case *AdminGetDeviceBansV4InternalServerError:
-		return nil, nil, nil, v, nil
+		return nil, nil, nil, nil, v, nil
 
 	default:
-		return nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+		return nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
@@ -741,6 +769,8 @@ func (a *Client) AdminGetDeviceBansV4Short(params *AdminGetDeviceBansV4Params, a
 		return nil, v
 	case *AdminGetDeviceBansV4Unauthorized:
 		return nil, v
+	case *AdminGetDeviceBansV4Forbidden:
+		return nil, v
 	case *AdminGetDeviceBansV4InternalServerError:
 		return nil, v
 
@@ -758,7 +788,7 @@ Deprecated: Use AdminGetDeviceTypesV4Short instead.
 &lt;p&gt;Required permission &lt;pre&gt;&#39;ADMIN:NAMESPACE:{namespace}:DEVICE [READ]&#39;&lt;/pre&gt;&lt;/p&gt;
 
 */
-func (a *Client) AdminGetDeviceTypesV4(params *AdminGetDeviceTypesV4Params, authInfo runtime.ClientAuthInfoWriter) (*AdminGetDeviceTypesV4OK, *AdminGetDeviceTypesV4Unauthorized, *AdminGetDeviceTypesV4InternalServerError, error) {
+func (a *Client) AdminGetDeviceTypesV4(params *AdminGetDeviceTypesV4Params, authInfo runtime.ClientAuthInfoWriter) (*AdminGetDeviceTypesV4OK, *AdminGetDeviceTypesV4Unauthorized, *AdminGetDeviceTypesV4Forbidden, *AdminGetDeviceTypesV4InternalServerError, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewAdminGetDeviceTypesV4Params()
@@ -786,22 +816,25 @@ func (a *Client) AdminGetDeviceTypesV4(params *AdminGetDeviceTypesV4Params, auth
 		Client:             params.HTTPClient,
 	})
 	if err != nil {
-		return nil, nil, nil, err
+		return nil, nil, nil, nil, err
 	}
 
 	switch v := result.(type) {
 
 	case *AdminGetDeviceTypesV4OK:
-		return v, nil, nil, nil
+		return v, nil, nil, nil, nil
 
 	case *AdminGetDeviceTypesV4Unauthorized:
-		return nil, v, nil, nil
+		return nil, v, nil, nil, nil
+
+	case *AdminGetDeviceTypesV4Forbidden:
+		return nil, nil, v, nil, nil
 
 	case *AdminGetDeviceTypesV4InternalServerError:
-		return nil, nil, v, nil
+		return nil, nil, nil, v, nil
 
 	default:
-		return nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+		return nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
@@ -849,6 +882,8 @@ func (a *Client) AdminGetDeviceTypesV4Short(params *AdminGetDeviceTypesV4Params,
 		return v, nil
 	case *AdminGetDeviceTypesV4Unauthorized:
 		return nil, v
+	case *AdminGetDeviceTypesV4Forbidden:
+		return nil, v
 	case *AdminGetDeviceTypesV4InternalServerError:
 		return nil, v
 
@@ -866,7 +901,7 @@ Deprecated: Use AdminGetDevicesByUserV4Short instead.
 &lt;p&gt;Required permission &lt;pre&gt;&#39;ADMIN:NAMESPACE:{namespace}:DEVICE [READ]&#39;&lt;/pre&gt;&lt;/p&gt;
 
 */
-func (a *Client) AdminGetDevicesByUserV4(params *AdminGetDevicesByUserV4Params, authInfo runtime.ClientAuthInfoWriter) (*AdminGetDevicesByUserV4OK, *AdminGetDevicesByUserV4BadRequest, *AdminGetDevicesByUserV4Unauthorized, *AdminGetDevicesByUserV4NotFound, *AdminGetDevicesByUserV4InternalServerError, error) {
+func (a *Client) AdminGetDevicesByUserV4(params *AdminGetDevicesByUserV4Params, authInfo runtime.ClientAuthInfoWriter) (*AdminGetDevicesByUserV4OK, *AdminGetDevicesByUserV4BadRequest, *AdminGetDevicesByUserV4Unauthorized, *AdminGetDevicesByUserV4Forbidden, *AdminGetDevicesByUserV4NotFound, *AdminGetDevicesByUserV4InternalServerError, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewAdminGetDevicesByUserV4Params()
@@ -894,28 +929,31 @@ func (a *Client) AdminGetDevicesByUserV4(params *AdminGetDevicesByUserV4Params, 
 		Client:             params.HTTPClient,
 	})
 	if err != nil {
-		return nil, nil, nil, nil, nil, err
+		return nil, nil, nil, nil, nil, nil, err
 	}
 
 	switch v := result.(type) {
 
 	case *AdminGetDevicesByUserV4OK:
-		return v, nil, nil, nil, nil, nil
+		return v, nil, nil, nil, nil, nil, nil
 
 	case *AdminGetDevicesByUserV4BadRequest:
-		return nil, v, nil, nil, nil, nil
+		return nil, v, nil, nil, nil, nil, nil
 
 	case *AdminGetDevicesByUserV4Unauthorized:
-		return nil, nil, v, nil, nil, nil
+		return nil, nil, v, nil, nil, nil, nil
+
+	case *AdminGetDevicesByUserV4Forbidden:
+		return nil, nil, nil, v, nil, nil, nil
 
 	case *AdminGetDevicesByUserV4NotFound:
-		return nil, nil, nil, v, nil, nil
+		return nil, nil, nil, nil, v, nil, nil
 
 	case *AdminGetDevicesByUserV4InternalServerError:
-		return nil, nil, nil, nil, v, nil
+		return nil, nil, nil, nil, nil, v, nil
 
 	default:
-		return nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+		return nil, nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
@@ -965,6 +1003,8 @@ func (a *Client) AdminGetDevicesByUserV4Short(params *AdminGetDevicesByUserV4Par
 		return nil, v
 	case *AdminGetDevicesByUserV4Unauthorized:
 		return nil, v
+	case *AdminGetDevicesByUserV4Forbidden:
+		return nil, v
 	case *AdminGetDevicesByUserV4NotFound:
 		return nil, v
 	case *AdminGetDevicesByUserV4InternalServerError:
@@ -984,7 +1024,7 @@ Deprecated: Use AdminGetUserDeviceBansV4Short instead.
 &lt;p&gt;Required permission &lt;pre&gt;&#39;ADMIN:NAMESPACE:{namespace}:DEVICE [READ]&#39;&lt;/pre&gt;&lt;/p&gt;
 
 */
-func (a *Client) AdminGetUserDeviceBansV4(params *AdminGetUserDeviceBansV4Params, authInfo runtime.ClientAuthInfoWriter) (*AdminGetUserDeviceBansV4OK, *AdminGetUserDeviceBansV4Unauthorized, *AdminGetUserDeviceBansV4NotFound, *AdminGetUserDeviceBansV4InternalServerError, error) {
+func (a *Client) AdminGetUserDeviceBansV4(params *AdminGetUserDeviceBansV4Params, authInfo runtime.ClientAuthInfoWriter) (*AdminGetUserDeviceBansV4OK, *AdminGetUserDeviceBansV4Unauthorized, *AdminGetUserDeviceBansV4Forbidden, *AdminGetUserDeviceBansV4NotFound, *AdminGetUserDeviceBansV4InternalServerError, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewAdminGetUserDeviceBansV4Params()
@@ -1012,25 +1052,28 @@ func (a *Client) AdminGetUserDeviceBansV4(params *AdminGetUserDeviceBansV4Params
 		Client:             params.HTTPClient,
 	})
 	if err != nil {
-		return nil, nil, nil, nil, err
+		return nil, nil, nil, nil, nil, err
 	}
 
 	switch v := result.(type) {
 
 	case *AdminGetUserDeviceBansV4OK:
-		return v, nil, nil, nil, nil
+		return v, nil, nil, nil, nil, nil
 
 	case *AdminGetUserDeviceBansV4Unauthorized:
-		return nil, v, nil, nil, nil
+		return nil, v, nil, nil, nil, nil
+
+	case *AdminGetUserDeviceBansV4Forbidden:
+		return nil, nil, v, nil, nil, nil
 
 	case *AdminGetUserDeviceBansV4NotFound:
-		return nil, nil, v, nil, nil
+		return nil, nil, nil, v, nil, nil
 
 	case *AdminGetUserDeviceBansV4InternalServerError:
-		return nil, nil, nil, v, nil
+		return nil, nil, nil, nil, v, nil
 
 	default:
-		return nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+		return nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
@@ -1078,6 +1121,8 @@ func (a *Client) AdminGetUserDeviceBansV4Short(params *AdminGetUserDeviceBansV4P
 		return v, nil
 	case *AdminGetUserDeviceBansV4Unauthorized:
 		return nil, v
+	case *AdminGetUserDeviceBansV4Forbidden:
+		return nil, v
 	case *AdminGetUserDeviceBansV4NotFound:
 		return nil, v
 	case *AdminGetUserDeviceBansV4InternalServerError:
@@ -1097,7 +1142,7 @@ Deprecated: Use AdminGetUsersByDeviceV4Short instead.
 &lt;p&gt;Required permission &lt;pre&gt;&#39;ADMIN:NAMESPACE:{namespace}:USER [READ]&#39;&lt;/pre&gt;&lt;/p&gt;
 
 */
-func (a *Client) AdminGetUsersByDeviceV4(params *AdminGetUsersByDeviceV4Params, authInfo runtime.ClientAuthInfoWriter) (*AdminGetUsersByDeviceV4OK, *AdminGetUsersByDeviceV4BadRequest, *AdminGetUsersByDeviceV4Unauthorized, *AdminGetUsersByDeviceV4InternalServerError, error) {
+func (a *Client) AdminGetUsersByDeviceV4(params *AdminGetUsersByDeviceV4Params, authInfo runtime.ClientAuthInfoWriter) (*AdminGetUsersByDeviceV4OK, *AdminGetUsersByDeviceV4BadRequest, *AdminGetUsersByDeviceV4Unauthorized, *AdminGetUsersByDeviceV4Forbidden, *AdminGetUsersByDeviceV4InternalServerError, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewAdminGetUsersByDeviceV4Params()
@@ -1125,25 +1170,28 @@ func (a *Client) AdminGetUsersByDeviceV4(params *AdminGetUsersByDeviceV4Params, 
 		Client:             params.HTTPClient,
 	})
 	if err != nil {
-		return nil, nil, nil, nil, err
+		return nil, nil, nil, nil, nil, err
 	}
 
 	switch v := result.(type) {
 
 	case *AdminGetUsersByDeviceV4OK:
-		return v, nil, nil, nil, nil
+		return v, nil, nil, nil, nil, nil
 
 	case *AdminGetUsersByDeviceV4BadRequest:
-		return nil, v, nil, nil, nil
+		return nil, v, nil, nil, nil, nil
 
 	case *AdminGetUsersByDeviceV4Unauthorized:
-		return nil, nil, v, nil, nil
+		return nil, nil, v, nil, nil, nil
+
+	case *AdminGetUsersByDeviceV4Forbidden:
+		return nil, nil, nil, v, nil, nil
 
 	case *AdminGetUsersByDeviceV4InternalServerError:
-		return nil, nil, nil, v, nil
+		return nil, nil, nil, nil, v, nil
 
 	default:
-		return nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+		return nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
@@ -1193,6 +1241,8 @@ func (a *Client) AdminGetUsersByDeviceV4Short(params *AdminGetUsersByDeviceV4Par
 		return nil, v
 	case *AdminGetUsersByDeviceV4Unauthorized:
 		return nil, v
+	case *AdminGetUsersByDeviceV4Forbidden:
+		return nil, v
 	case *AdminGetUsersByDeviceV4InternalServerError:
 		return nil, v
 
@@ -1210,7 +1260,7 @@ Deprecated: Use AdminUnbanDeviceV4Short instead.
 &lt;p&gt;Required permission &lt;pre&gt;&#39;ADMIN:NAMESPACE:{namespace}:DEVICE [UPDATE]&#39;&lt;/pre&gt;&lt;/p&gt;
 
 */
-func (a *Client) AdminUnbanDeviceV4(params *AdminUnbanDeviceV4Params, authInfo runtime.ClientAuthInfoWriter) (*AdminUnbanDeviceV4NoContent, *AdminUnbanDeviceV4BadRequest, *AdminUnbanDeviceV4Unauthorized, *AdminUnbanDeviceV4InternalServerError, error) {
+func (a *Client) AdminUnbanDeviceV4(params *AdminUnbanDeviceV4Params, authInfo runtime.ClientAuthInfoWriter) (*AdminUnbanDeviceV4NoContent, *AdminUnbanDeviceV4BadRequest, *AdminUnbanDeviceV4Unauthorized, *AdminUnbanDeviceV4Forbidden, *AdminUnbanDeviceV4InternalServerError, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewAdminUnbanDeviceV4Params()
@@ -1238,25 +1288,28 @@ func (a *Client) AdminUnbanDeviceV4(params *AdminUnbanDeviceV4Params, authInfo r
 		Client:             params.HTTPClient,
 	})
 	if err != nil {
-		return nil, nil, nil, nil, err
+		return nil, nil, nil, nil, nil, err
 	}
 
 	switch v := result.(type) {
 
 	case *AdminUnbanDeviceV4NoContent:
-		return v, nil, nil, nil, nil
+		return v, nil, nil, nil, nil, nil
 
 	case *AdminUnbanDeviceV4BadRequest:
-		return nil, v, nil, nil, nil
+		return nil, v, nil, nil, nil, nil
 
 	case *AdminUnbanDeviceV4Unauthorized:
-		return nil, nil, v, nil, nil
+		return nil, nil, v, nil, nil, nil
+
+	case *AdminUnbanDeviceV4Forbidden:
+		return nil, nil, nil, v, nil, nil
 
 	case *AdminUnbanDeviceV4InternalServerError:
-		return nil, nil, nil, v, nil
+		return nil, nil, nil, nil, v, nil
 
 	default:
-		return nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+		return nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
@@ -1306,6 +1359,8 @@ func (a *Client) AdminUnbanDeviceV4Short(params *AdminUnbanDeviceV4Params, authI
 		return nil, v
 	case *AdminUnbanDeviceV4Unauthorized:
 		return nil, v
+	case *AdminUnbanDeviceV4Forbidden:
+		return nil, v
 	case *AdminUnbanDeviceV4InternalServerError:
 		return nil, v
 
@@ -1323,7 +1378,7 @@ Deprecated: Use AdminUpdateDeviceBanV4Short instead.
 &lt;p&gt;Required permission &lt;pre&gt;&#39;ADMIN:NAMESPACE:{namespace}:DEVICE [UPDATE]&#39;&lt;/pre&gt;&lt;/p&gt;
 
 */
-func (a *Client) AdminUpdateDeviceBanV4(params *AdminUpdateDeviceBanV4Params, authInfo runtime.ClientAuthInfoWriter) (*AdminUpdateDeviceBanV4NoContent, *AdminUpdateDeviceBanV4BadRequest, *AdminUpdateDeviceBanV4Unauthorized, *AdminUpdateDeviceBanV4NotFound, *AdminUpdateDeviceBanV4Conflict, *AdminUpdateDeviceBanV4InternalServerError, error) {
+func (a *Client) AdminUpdateDeviceBanV4(params *AdminUpdateDeviceBanV4Params, authInfo runtime.ClientAuthInfoWriter) (*AdminUpdateDeviceBanV4NoContent, *AdminUpdateDeviceBanV4BadRequest, *AdminUpdateDeviceBanV4Unauthorized, *AdminUpdateDeviceBanV4Forbidden, *AdminUpdateDeviceBanV4NotFound, *AdminUpdateDeviceBanV4Conflict, *AdminUpdateDeviceBanV4InternalServerError, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewAdminUpdateDeviceBanV4Params()
@@ -1351,31 +1406,34 @@ func (a *Client) AdminUpdateDeviceBanV4(params *AdminUpdateDeviceBanV4Params, au
 		Client:             params.HTTPClient,
 	})
 	if err != nil {
-		return nil, nil, nil, nil, nil, nil, err
+		return nil, nil, nil, nil, nil, nil, nil, err
 	}
 
 	switch v := result.(type) {
 
 	case *AdminUpdateDeviceBanV4NoContent:
-		return v, nil, nil, nil, nil, nil, nil
+		return v, nil, nil, nil, nil, nil, nil, nil
 
 	case *AdminUpdateDeviceBanV4BadRequest:
-		return nil, v, nil, nil, nil, nil, nil
+		return nil, v, nil, nil, nil, nil, nil, nil
 
 	case *AdminUpdateDeviceBanV4Unauthorized:
-		return nil, nil, v, nil, nil, nil, nil
+		return nil, nil, v, nil, nil, nil, nil, nil
+
+	case *AdminUpdateDeviceBanV4Forbidden:
+		return nil, nil, nil, v, nil, nil, nil, nil
 
 	case *AdminUpdateDeviceBanV4NotFound:
-		return nil, nil, nil, v, nil, nil, nil
+		return nil, nil, nil, nil, v, nil, nil, nil
 
 	case *AdminUpdateDeviceBanV4Conflict:
-		return nil, nil, nil, nil, v, nil, nil
+		return nil, nil, nil, nil, nil, v, nil, nil
 
 	case *AdminUpdateDeviceBanV4InternalServerError:
-		return nil, nil, nil, nil, nil, v, nil
+		return nil, nil, nil, nil, nil, nil, v, nil
 
 	default:
-		return nil, nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+		return nil, nil, nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
@@ -1424,6 +1482,8 @@ func (a *Client) AdminUpdateDeviceBanV4Short(params *AdminUpdateDeviceBanV4Param
 	case *AdminUpdateDeviceBanV4BadRequest:
 		return nil, v
 	case *AdminUpdateDeviceBanV4Unauthorized:
+		return nil, v
+	case *AdminUpdateDeviceBanV4Forbidden:
 		return nil, v
 	case *AdminUpdateDeviceBanV4NotFound:
 		return nil, v

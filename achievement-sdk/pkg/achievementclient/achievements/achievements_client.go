@@ -12,6 +12,7 @@ package achievements
 import (
 	"context"
 	"fmt"
+	"io"
 	"reflect"
 
 	"github.com/go-openapi/runtime"
@@ -51,8 +52,8 @@ type ClientService interface {
 	AdminUpdateAchievementShort(params *AdminUpdateAchievementParams, authInfo runtime.ClientAuthInfoWriter) (*AdminUpdateAchievementOK, error)
 	AdminUpdateAchievementListOrder(params *AdminUpdateAchievementListOrderParams, authInfo runtime.ClientAuthInfoWriter) (*AdminUpdateAchievementListOrderNoContent, *AdminUpdateAchievementListOrderBadRequest, *AdminUpdateAchievementListOrderUnauthorized, *AdminUpdateAchievementListOrderNotFound, *AdminUpdateAchievementListOrderInternalServerError, error)
 	AdminUpdateAchievementListOrderShort(params *AdminUpdateAchievementListOrderParams, authInfo runtime.ClientAuthInfoWriter) (*AdminUpdateAchievementListOrderNoContent, error)
-	ExportAchievements(params *ExportAchievementsParams, authInfo runtime.ClientAuthInfoWriter) (*ExportAchievementsOK, *ExportAchievementsUnauthorized, *ExportAchievementsForbidden, *ExportAchievementsInternalServerError, error)
-	ExportAchievementsShort(params *ExportAchievementsParams, authInfo runtime.ClientAuthInfoWriter) (*ExportAchievementsOK, error)
+	ExportAchievements(params *ExportAchievementsParams, authInfo runtime.ClientAuthInfoWriter, writer io.Writer) (*ExportAchievementsOK, *ExportAchievementsUnauthorized, *ExportAchievementsForbidden, *ExportAchievementsInternalServerError, error)
+	ExportAchievementsShort(params *ExportAchievementsParams, authInfo runtime.ClientAuthInfoWriter, writer io.Writer) (*ExportAchievementsOK, error)
 	ImportAchievements(params *ImportAchievementsParams, authInfo runtime.ClientAuthInfoWriter) (*ImportAchievementsOK, *ImportAchievementsUnauthorized, *ImportAchievementsForbidden, *ImportAchievementsInternalServerError, error)
 	ImportAchievementsShort(params *ImportAchievementsParams, authInfo runtime.ClientAuthInfoWriter) (*ImportAchievementsOK, error)
 	PublicGetAchievement(params *PublicGetAchievementParams, authInfo runtime.ClientAuthInfoWriter) (*PublicGetAchievementOK, *PublicGetAchievementBadRequest, *PublicGetAchievementUnauthorized, *PublicGetAchievementNotFound, *PublicGetAchievementInternalServerError, error)
@@ -1142,7 +1143,7 @@ Deprecated: Use ExportAchievementsShort instead.
 				Required Scope: social
 
 */
-func (a *Client) ExportAchievements(params *ExportAchievementsParams, authInfo runtime.ClientAuthInfoWriter) (*ExportAchievementsOK, *ExportAchievementsUnauthorized, *ExportAchievementsForbidden, *ExportAchievementsInternalServerError, error) {
+func (a *Client) ExportAchievements(params *ExportAchievementsParams, authInfo runtime.ClientAuthInfoWriter, writer io.Writer) (*ExportAchievementsOK, *ExportAchievementsUnauthorized, *ExportAchievementsForbidden, *ExportAchievementsInternalServerError, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewExportAchievementsParams()
@@ -1164,7 +1165,7 @@ func (a *Client) ExportAchievements(params *ExportAchievementsParams, authInfo r
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
 		Params:             params,
-		Reader:             &ExportAchievementsReader{formats: a.formats},
+		Reader:             &ExportAchievementsReader{formats: a.formats, writer: writer},
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
@@ -1201,7 +1202,7 @@ func (a *Client) ExportAchievements(params *ExportAchievementsParams, authInfo r
 				Required Scope: social
 
 */
-func (a *Client) ExportAchievementsShort(params *ExportAchievementsParams, authInfo runtime.ClientAuthInfoWriter) (*ExportAchievementsOK, error) {
+func (a *Client) ExportAchievementsShort(params *ExportAchievementsParams, authInfo runtime.ClientAuthInfoWriter, writer io.Writer) (*ExportAchievementsOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewExportAchievementsParams()
@@ -1223,7 +1224,7 @@ func (a *Client) ExportAchievementsShort(params *ExportAchievementsParams, authI
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
 		Params:             params,
-		Reader:             &ExportAchievementsReader{formats: a.formats},
+		Reader:             &ExportAchievementsReader{formats: a.formats, writer: writer},
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,

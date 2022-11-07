@@ -42,6 +42,12 @@ func (o *AdminRemoveUserRoleV4Reader) ReadResponse(response runtime.ClientRespon
 			return nil, err
 		}
 		return result, nil
+	case 401:
+		result := NewAdminRemoveUserRoleV4Unauthorized()
+		if err := result.readResponse(response, consumer, o.formats); err != nil {
+			return nil, err
+		}
+		return result, nil
 	case 403:
 		result := NewAdminRemoveUserRoleV4Forbidden()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -156,6 +162,59 @@ func (o *AdminRemoveUserRoleV4BadRequest) readResponse(response runtime.ClientRe
 	return nil
 }
 
+// NewAdminRemoveUserRoleV4Unauthorized creates a AdminRemoveUserRoleV4Unauthorized with default headers values
+func NewAdminRemoveUserRoleV4Unauthorized() *AdminRemoveUserRoleV4Unauthorized {
+	return &AdminRemoveUserRoleV4Unauthorized{}
+}
+
+/*AdminRemoveUserRoleV4Unauthorized handles this case with default header values.
+
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20001</td><td>unauthorized access</td></tr></table>
+*/
+type AdminRemoveUserRoleV4Unauthorized struct {
+	Payload *iamclientmodels.RestErrorResponse
+}
+
+func (o *AdminRemoveUserRoleV4Unauthorized) Error() string {
+	return fmt.Sprintf("[DELETE /iam/v4/admin/namespaces/{namespace}/users/{userId}/roles][%d] adminRemoveUserRoleV4Unauthorized  %+v", 401, o.ToJSONString())
+}
+
+func (o *AdminRemoveUserRoleV4Unauthorized) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
+}
+
+func (o *AdminRemoveUserRoleV4Unauthorized) GetPayload() *iamclientmodels.RestErrorResponse {
+	return o.Payload
+}
+
+func (o *AdminRemoveUserRoleV4Unauthorized) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+	// handle file responses
+	contentDisposition := response.GetHeader("Content-Disposition")
+	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
+		consumer = runtime.ByteStreamConsumer()
+	}
+
+	o.Payload = new(iamclientmodels.RestErrorResponse)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
+	}
+
+	return nil
+}
+
 // NewAdminRemoveUserRoleV4Forbidden creates a AdminRemoveUserRoleV4Forbidden with default headers values
 func NewAdminRemoveUserRoleV4Forbidden() *AdminRemoveUserRoleV4Forbidden {
 	return &AdminRemoveUserRoleV4Forbidden{}
@@ -163,7 +222,7 @@ func NewAdminRemoveUserRoleV4Forbidden() *AdminRemoveUserRoleV4Forbidden {
 
 /*AdminRemoveUserRoleV4Forbidden handles this case with default header values.
 
-  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20003</td><td>forbidden access</td></tr></table>
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20013</td><td>insufficient permissions</td></tr></table>
 */
 type AdminRemoveUserRoleV4Forbidden struct {
 	Payload *iamclientmodels.RestErrorResponse

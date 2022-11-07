@@ -37,22 +37,24 @@ var AuthorizeV3Cmd = &cobra.Command{
 		scope, _ := cmd.Flags().GetString("scope")
 		state, _ := cmd.Flags().GetString("state")
 		targetAuthPage, _ := cmd.Flags().GetString("targetAuthPage")
+		useRedirectUriAsLoginUrlWhenLocked, _ := cmd.Flags().GetBool("useRedirectUriAsLoginUrlWhenLocked")
 		httpClient := &http.Client{
 			CheckRedirect: func(req *http.Request, via []*http.Request) error {
 				return http.ErrUseLastResponse
 			},
 		}
 		input := &o_auth2_0.AuthorizeV3Params{
-			CodeChallenge:       &codeChallenge,
-			CodeChallengeMethod: &codeChallengeMethod,
-			CreateHeadless:      &createHeadless,
-			RedirectURI:         &redirectUri,
-			Scope:               &scope,
-			State:               &state,
-			TargetAuthPage:      &targetAuthPage,
-			ClientID:            clientId,
-			ResponseType:        responseType,
-			HTTPClient:          httpClient,
+			CodeChallenge:                      &codeChallenge,
+			CodeChallengeMethod:                &codeChallengeMethod,
+			CreateHeadless:                     &createHeadless,
+			RedirectURI:                        &redirectUri,
+			Scope:                              &scope,
+			State:                              &state,
+			TargetAuthPage:                     &targetAuthPage,
+			UseRedirectURIAsLoginURLWhenLocked: &useRedirectUriAsLoginUrlWhenLocked,
+			ClientID:                           clientId,
+			ResponseType:                       responseType,
+			HTTPClient:                         httpClient,
 		}
 		_, errInput := oAuth20Service.AuthorizeV3Short(input)
 		if errInput != nil {
@@ -73,6 +75,7 @@ func init() {
 	AuthorizeV3Cmd.Flags().String("scope", "", "Scope")
 	AuthorizeV3Cmd.Flags().String("state", "", "State")
 	AuthorizeV3Cmd.Flags().String("targetAuthPage", "", "Target auth page")
+	AuthorizeV3Cmd.Flags().Bool("useRedirectUriAsLoginUrlWhenLocked", false, "Use redirect uri as login url when locked")
 	AuthorizeV3Cmd.Flags().String("clientId", "", "Client id")
 	_ = AuthorizeV3Cmd.MarkFlagRequired("client_id")
 	AuthorizeV3Cmd.Flags().String("responseType", "", "Response type")

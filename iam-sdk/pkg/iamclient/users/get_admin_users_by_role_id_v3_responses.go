@@ -140,7 +140,7 @@ func NewGetAdminUsersByRoleIDV3BadRequest() *GetAdminUsersByRoleIDV3BadRequest {
   <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20002</td><td>validation error</td></tr><tr><td>10157</td><td>specified role is not admin role</td></tr></table>
 */
 type GetAdminUsersByRoleIDV3BadRequest struct {
-	Payload *iamclientmodels.RestapiErrorResponse
+	Payload *iamclientmodels.RestErrorResponse
 }
 
 func (o *GetAdminUsersByRoleIDV3BadRequest) Error() string {
@@ -162,7 +162,7 @@ func (o *GetAdminUsersByRoleIDV3BadRequest) ToJSONString() string {
 	return fmt.Sprintf("%+v", string(b))
 }
 
-func (o *GetAdminUsersByRoleIDV3BadRequest) GetPayload() *iamclientmodels.RestapiErrorResponse {
+func (o *GetAdminUsersByRoleIDV3BadRequest) GetPayload() *iamclientmodels.RestErrorResponse {
 	return o.Payload
 }
 
@@ -173,7 +173,7 @@ func (o *GetAdminUsersByRoleIDV3BadRequest) readResponse(response runtime.Client
 		consumer = runtime.ByteStreamConsumer()
 	}
 
-	o.Payload = new(iamclientmodels.RestapiErrorResponse)
+	o.Payload = new(iamclientmodels.RestErrorResponse)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
@@ -193,7 +193,7 @@ func NewGetAdminUsersByRoleIDV3Unauthorized() *GetAdminUsersByRoleIDV3Unauthoriz
   <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20001</td><td>unauthorized access</td></tr></table>
 */
 type GetAdminUsersByRoleIDV3Unauthorized struct {
-	Payload *iamclientmodels.RestapiErrorResponse
+	Payload *iamclientmodels.RestErrorResponse
 }
 
 func (o *GetAdminUsersByRoleIDV3Unauthorized) Error() string {
@@ -215,7 +215,7 @@ func (o *GetAdminUsersByRoleIDV3Unauthorized) ToJSONString() string {
 	return fmt.Sprintf("%+v", string(b))
 }
 
-func (o *GetAdminUsersByRoleIDV3Unauthorized) GetPayload() *iamclientmodels.RestapiErrorResponse {
+func (o *GetAdminUsersByRoleIDV3Unauthorized) GetPayload() *iamclientmodels.RestErrorResponse {
 	return o.Payload
 }
 
@@ -226,7 +226,7 @@ func (o *GetAdminUsersByRoleIDV3Unauthorized) readResponse(response runtime.Clie
 		consumer = runtime.ByteStreamConsumer()
 	}
 
-	o.Payload = new(iamclientmodels.RestapiErrorResponse)
+	o.Payload = new(iamclientmodels.RestErrorResponse)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
@@ -246,7 +246,7 @@ func NewGetAdminUsersByRoleIDV3Forbidden() *GetAdminUsersByRoleIDV3Forbidden {
   <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20013</td><td>insufficient permissions</td></tr></table>
 */
 type GetAdminUsersByRoleIDV3Forbidden struct {
-	Payload *iamclientmodels.RestapiErrorResponse
+	Payload *iamclientmodels.RestErrorResponse
 }
 
 func (o *GetAdminUsersByRoleIDV3Forbidden) Error() string {
@@ -268,7 +268,7 @@ func (o *GetAdminUsersByRoleIDV3Forbidden) ToJSONString() string {
 	return fmt.Sprintf("%+v", string(b))
 }
 
-func (o *GetAdminUsersByRoleIDV3Forbidden) GetPayload() *iamclientmodels.RestapiErrorResponse {
+func (o *GetAdminUsersByRoleIDV3Forbidden) GetPayload() *iamclientmodels.RestErrorResponse {
 	return o.Payload
 }
 
@@ -279,7 +279,7 @@ func (o *GetAdminUsersByRoleIDV3Forbidden) readResponse(response runtime.ClientR
 		consumer = runtime.ByteStreamConsumer()
 	}
 
-	o.Payload = new(iamclientmodels.RestapiErrorResponse)
+	o.Payload = new(iamclientmodels.RestErrorResponse)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
@@ -299,7 +299,7 @@ func NewGetAdminUsersByRoleIDV3NotFound() *GetAdminUsersByRoleIDV3NotFound {
   <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>10156</td><td>role not found</td></tr></table>
 */
 type GetAdminUsersByRoleIDV3NotFound struct {
-	Payload *iamclientmodels.RestapiErrorResponse
+	Payload *iamclientmodels.RestErrorResponse
 }
 
 func (o *GetAdminUsersByRoleIDV3NotFound) Error() string {
@@ -321,7 +321,7 @@ func (o *GetAdminUsersByRoleIDV3NotFound) ToJSONString() string {
 	return fmt.Sprintf("%+v", string(b))
 }
 
-func (o *GetAdminUsersByRoleIDV3NotFound) GetPayload() *iamclientmodels.RestapiErrorResponse {
+func (o *GetAdminUsersByRoleIDV3NotFound) GetPayload() *iamclientmodels.RestErrorResponse {
 	return o.Payload
 }
 
@@ -332,7 +332,7 @@ func (o *GetAdminUsersByRoleIDV3NotFound) readResponse(response runtime.ClientRe
 		consumer = runtime.ByteStreamConsumer()
 	}
 
-	o.Payload = new(iamclientmodels.RestapiErrorResponse)
+	o.Payload = new(iamclientmodels.RestErrorResponse)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
@@ -349,13 +349,33 @@ func NewGetAdminUsersByRoleIDV3InternalServerError() *GetAdminUsersByRoleIDV3Int
 
 /*GetAdminUsersByRoleIDV3InternalServerError handles this case with default header values.
 
-  Internal Server Error
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20000</td><td>internal server error</td></tr></table>
 */
 type GetAdminUsersByRoleIDV3InternalServerError struct {
+	Payload *iamclientmodels.RestErrorResponse
 }
 
 func (o *GetAdminUsersByRoleIDV3InternalServerError) Error() string {
-	return fmt.Sprintf("[GET /iam/v3/admin/namespaces/{namespace}/roles/{roleId}/users][%d] getAdminUsersByRoleIdV3InternalServerError ", 500)
+	return fmt.Sprintf("[GET /iam/v3/admin/namespaces/{namespace}/roles/{roleId}/users][%d] getAdminUsersByRoleIdV3InternalServerError  %+v", 500, o.ToJSONString())
+}
+
+func (o *GetAdminUsersByRoleIDV3InternalServerError) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
+}
+
+func (o *GetAdminUsersByRoleIDV3InternalServerError) GetPayload() *iamclientmodels.RestErrorResponse {
+	return o.Payload
 }
 
 func (o *GetAdminUsersByRoleIDV3InternalServerError) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -363,6 +383,13 @@ func (o *GetAdminUsersByRoleIDV3InternalServerError) readResponse(response runti
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
 		consumer = runtime.ByteStreamConsumer()
+	}
+
+	o.Payload = new(iamclientmodels.RestErrorResponse)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
 	}
 
 	return nil

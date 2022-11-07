@@ -134,10 +134,30 @@ func NewGetUserByPlatformUserIDBadRequest() *GetUserByPlatformUserIDBadRequest {
   Invalid request
 */
 type GetUserByPlatformUserIDBadRequest struct {
+	Payload *iamclientmodels.RestErrorResponse
 }
 
 func (o *GetUserByPlatformUserIDBadRequest) Error() string {
-	return fmt.Sprintf("[GET /iam/namespaces/{namespace}/users/byPlatformUserID][%d] getUserByPlatformUserIdBadRequest ", 400)
+	return fmt.Sprintf("[GET /iam/namespaces/{namespace}/users/byPlatformUserID][%d] getUserByPlatformUserIdBadRequest  %+v", 400, o.ToJSONString())
+}
+
+func (o *GetUserByPlatformUserIDBadRequest) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
+}
+
+func (o *GetUserByPlatformUserIDBadRequest) GetPayload() *iamclientmodels.RestErrorResponse {
+	return o.Payload
 }
 
 func (o *GetUserByPlatformUserIDBadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -145,6 +165,13 @@ func (o *GetUserByPlatformUserIDBadRequest) readResponse(response runtime.Client
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
 		consumer = runtime.ByteStreamConsumer()
+	}
+
+	o.Payload = new(iamclientmodels.RestErrorResponse)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
 	}
 
 	return nil
@@ -157,13 +184,33 @@ func NewGetUserByPlatformUserIDUnauthorized() *GetUserByPlatformUserIDUnauthoriz
 
 /*GetUserByPlatformUserIDUnauthorized handles this case with default header values.
 
-  Unauthorized access
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20001</td><td>unauthorized access</td></tr></table>
 */
 type GetUserByPlatformUserIDUnauthorized struct {
+	Payload *iamclientmodels.RestErrorResponse
 }
 
 func (o *GetUserByPlatformUserIDUnauthorized) Error() string {
-	return fmt.Sprintf("[GET /iam/namespaces/{namespace}/users/byPlatformUserID][%d] getUserByPlatformUserIdUnauthorized ", 401)
+	return fmt.Sprintf("[GET /iam/namespaces/{namespace}/users/byPlatformUserID][%d] getUserByPlatformUserIdUnauthorized  %+v", 401, o.ToJSONString())
+}
+
+func (o *GetUserByPlatformUserIDUnauthorized) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
+}
+
+func (o *GetUserByPlatformUserIDUnauthorized) GetPayload() *iamclientmodels.RestErrorResponse {
+	return o.Payload
 }
 
 func (o *GetUserByPlatformUserIDUnauthorized) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -171,6 +218,13 @@ func (o *GetUserByPlatformUserIDUnauthorized) readResponse(response runtime.Clie
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
 		consumer = runtime.ByteStreamConsumer()
+	}
+
+	o.Payload = new(iamclientmodels.RestErrorResponse)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
 	}
 
 	return nil
@@ -183,13 +237,33 @@ func NewGetUserByPlatformUserIDForbidden() *GetUserByPlatformUserIDForbidden {
 
 /*GetUserByPlatformUserIDForbidden handles this case with default header values.
 
-  Forbidden
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20013</td><td>insufficient permissions</td></tr></table>
 */
 type GetUserByPlatformUserIDForbidden struct {
+	Payload *iamclientmodels.RestErrorResponse
 }
 
 func (o *GetUserByPlatformUserIDForbidden) Error() string {
-	return fmt.Sprintf("[GET /iam/namespaces/{namespace}/users/byPlatformUserID][%d] getUserByPlatformUserIdForbidden ", 403)
+	return fmt.Sprintf("[GET /iam/namespaces/{namespace}/users/byPlatformUserID][%d] getUserByPlatformUserIdForbidden  %+v", 403, o.ToJSONString())
+}
+
+func (o *GetUserByPlatformUserIDForbidden) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
+}
+
+func (o *GetUserByPlatformUserIDForbidden) GetPayload() *iamclientmodels.RestErrorResponse {
+	return o.Payload
 }
 
 func (o *GetUserByPlatformUserIDForbidden) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -197,6 +271,13 @@ func (o *GetUserByPlatformUserIDForbidden) readResponse(response runtime.ClientR
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
 		consumer = runtime.ByteStreamConsumer()
+	}
+
+	o.Payload = new(iamclientmodels.RestErrorResponse)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
 	}
 
 	return nil

@@ -10,12 +10,16 @@ package roles
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
+	"io"
 	"io/ioutil"
 	"strings"
 
 	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/strfmt"
+
+	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclientmodels"
 )
 
 // RemoveRoleManagersReader is a Reader for the RemoveRoleManagers structure.
@@ -103,10 +107,30 @@ func NewRemoveRoleManagersBadRequest() *RemoveRoleManagersBadRequest {
   Invalid request
 */
 type RemoveRoleManagersBadRequest struct {
+	Payload *iamclientmodels.RestErrorResponse
 }
 
 func (o *RemoveRoleManagersBadRequest) Error() string {
-	return fmt.Sprintf("[DELETE /iam/roles/{roleId}/managers][%d] removeRoleManagersBadRequest ", 400)
+	return fmt.Sprintf("[DELETE /iam/roles/{roleId}/managers][%d] removeRoleManagersBadRequest  %+v", 400, o.ToJSONString())
+}
+
+func (o *RemoveRoleManagersBadRequest) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
+}
+
+func (o *RemoveRoleManagersBadRequest) GetPayload() *iamclientmodels.RestErrorResponse {
+	return o.Payload
 }
 
 func (o *RemoveRoleManagersBadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -114,6 +138,13 @@ func (o *RemoveRoleManagersBadRequest) readResponse(response runtime.ClientRespo
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
 		consumer = runtime.ByteStreamConsumer()
+	}
+
+	o.Payload = new(iamclientmodels.RestErrorResponse)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
 	}
 
 	return nil
@@ -126,13 +157,33 @@ func NewRemoveRoleManagersUnauthorized() *RemoveRoleManagersUnauthorized {
 
 /*RemoveRoleManagersUnauthorized handles this case with default header values.
 
-  Unauthorized access
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20001</td><td>unauthorized access</td></tr></table>
 */
 type RemoveRoleManagersUnauthorized struct {
+	Payload *iamclientmodels.RestErrorResponse
 }
 
 func (o *RemoveRoleManagersUnauthorized) Error() string {
-	return fmt.Sprintf("[DELETE /iam/roles/{roleId}/managers][%d] removeRoleManagersUnauthorized ", 401)
+	return fmt.Sprintf("[DELETE /iam/roles/{roleId}/managers][%d] removeRoleManagersUnauthorized  %+v", 401, o.ToJSONString())
+}
+
+func (o *RemoveRoleManagersUnauthorized) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
+}
+
+func (o *RemoveRoleManagersUnauthorized) GetPayload() *iamclientmodels.RestErrorResponse {
+	return o.Payload
 }
 
 func (o *RemoveRoleManagersUnauthorized) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -140,6 +191,13 @@ func (o *RemoveRoleManagersUnauthorized) readResponse(response runtime.ClientRes
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
 		consumer = runtime.ByteStreamConsumer()
+	}
+
+	o.Payload = new(iamclientmodels.RestErrorResponse)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
 	}
 
 	return nil
@@ -152,13 +210,33 @@ func NewRemoveRoleManagersForbidden() *RemoveRoleManagersForbidden {
 
 /*RemoveRoleManagersForbidden handles this case with default header values.
 
-  Forbidden
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20013</td><td>insufficient permissions</td></tr></table>
 */
 type RemoveRoleManagersForbidden struct {
+	Payload *iamclientmodels.RestErrorResponse
 }
 
 func (o *RemoveRoleManagersForbidden) Error() string {
-	return fmt.Sprintf("[DELETE /iam/roles/{roleId}/managers][%d] removeRoleManagersForbidden ", 403)
+	return fmt.Sprintf("[DELETE /iam/roles/{roleId}/managers][%d] removeRoleManagersForbidden  %+v", 403, o.ToJSONString())
+}
+
+func (o *RemoveRoleManagersForbidden) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
+}
+
+func (o *RemoveRoleManagersForbidden) GetPayload() *iamclientmodels.RestErrorResponse {
+	return o.Payload
 }
 
 func (o *RemoveRoleManagersForbidden) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -166,6 +244,13 @@ func (o *RemoveRoleManagersForbidden) readResponse(response runtime.ClientRespon
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
 		consumer = runtime.ByteStreamConsumer()
+	}
+
+	o.Payload = new(iamclientmodels.RestErrorResponse)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
 	}
 
 	return nil

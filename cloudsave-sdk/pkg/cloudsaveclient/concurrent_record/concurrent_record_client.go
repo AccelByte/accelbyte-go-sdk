@@ -77,6 +77,15 @@ Example
 	&lt;pre&gt;{ &#34;data2&#34;: &#34;new value&#34; }&lt;/pre&gt;
 
 
+&lt;h2&gt;Restriction &lt;/h2&gt;
+This is the restriction of Key Naming for the record:
+1. Cannot use &lt;b&gt;&#34;.&#34;&lt;/b&gt; as the key name
+-	&lt;pre&gt;{ &#34;data.2&#34;: &#34;value&#34; }&lt;/pre&gt;
+2. Cannot use &lt;b&gt;&#34;$&#34;&lt;/b&gt; as the prefix in key names
+-	&lt;pre&gt;{ &#34;$data&#34;: &#34;value&#34; }&lt;/pre&gt;
+3. Cannot use empty string in key names
+-	&lt;pre&gt;{ &#34;&#34;: &#34;value&#34; }&lt;/pre&gt;
+
 
 &lt;h2&gt;Reserved Word&lt;/h2&gt;
 
@@ -179,6 +188,15 @@ Example
 	&lt;pre&gt;{ &#34;data2&#34;: &#34;new value&#34; }&lt;/pre&gt;
 
 
+&lt;h2&gt;Restriction &lt;/h2&gt;
+This is the restriction of Key Naming for the record:
+1. Cannot use &lt;b&gt;&#34;.&#34;&lt;/b&gt; as the key name
+-	&lt;pre&gt;{ &#34;data.2&#34;: &#34;value&#34; }&lt;/pre&gt;
+2. Cannot use &lt;b&gt;&#34;$&#34;&lt;/b&gt; as the prefix in key names
+-	&lt;pre&gt;{ &#34;$data&#34;: &#34;value&#34; }&lt;/pre&gt;
+3. Cannot use empty string in key names
+-	&lt;pre&gt;{ &#34;&#34;: &#34;value&#34; }&lt;/pre&gt;
+
 
 &lt;h2&gt;Reserved Word&lt;/h2&gt;
 
@@ -278,6 +296,15 @@ Example
 -	Result:
 	&lt;pre&gt;{ &#34;data2&#34;: &#34;new value&#34; }&lt;/pre&gt;
 
+
+&lt;h2&gt;Restriction &lt;/h2&gt;
+This is the restriction of Key Naming for the record:
+1. Cannot use &lt;b&gt;&#34;.&#34;&lt;/b&gt; as the key name
+-	&lt;pre&gt;{ &#34;data.2&#34;: &#34;value&#34; }&lt;/pre&gt;
+2. Cannot use &lt;b&gt;&#34;$&#34;&lt;/b&gt; as the prefix in key names
+-	&lt;pre&gt;{ &#34;$data&#34;: &#34;value&#34; }&lt;/pre&gt;
+3. Cannot use empty string in key names
+-	&lt;pre&gt;{ &#34;&#34;: &#34;value&#34; }&lt;/pre&gt;
 
 
 &lt;h2&gt;Reserved Word&lt;/h2&gt;
@@ -381,6 +408,15 @@ Example
 	&lt;pre&gt;{ &#34;data2&#34;: &#34;new value&#34; }&lt;/pre&gt;
 
 
+&lt;h2&gt;Restriction &lt;/h2&gt;
+This is the restriction of Key Naming for the record:
+1. Cannot use &lt;b&gt;&#34;.&#34;&lt;/b&gt; as the key name
+-	&lt;pre&gt;{ &#34;data.2&#34;: &#34;value&#34; }&lt;/pre&gt;
+2. Cannot use &lt;b&gt;&#34;$&#34;&lt;/b&gt; as the prefix in key names
+-	&lt;pre&gt;{ &#34;$data&#34;: &#34;value&#34; }&lt;/pre&gt;
+3. Cannot use empty string in key names
+-	&lt;pre&gt;{ &#34;&#34;: &#34;value&#34; }&lt;/pre&gt;
+
 
 &lt;h2&gt;Reserved Word&lt;/h2&gt;
 
@@ -480,6 +516,15 @@ Example
 -	Result:
 	&lt;pre&gt;{ &#34;data2&#34;: &#34;new value&#34; }&lt;/pre&gt;
 
+
+&lt;h2&gt;Restriction &lt;/h2&gt;
+This is the restriction of Key Naming for the record:
+1. Cannot use &lt;b&gt;&#34;.&#34;&lt;/b&gt; as the key name
+-	&lt;pre&gt;{ &#34;data.2&#34;: &#34;value&#34; }&lt;/pre&gt;
+2. Cannot use &lt;b&gt;&#34;$&#34;&lt;/b&gt; as the prefix in key names
+-	&lt;pre&gt;{ &#34;$data&#34;: &#34;value&#34; }&lt;/pre&gt;
+3. Cannot use empty string in key names
+-	&lt;pre&gt;{ &#34;&#34;: &#34;value&#34; }&lt;/pre&gt;
 
 
 &lt;h2&gt;Reserved Word&lt;/h2&gt;
@@ -582,6 +627,15 @@ Example
 -	Result:
 	&lt;pre&gt;{ &#34;data2&#34;: &#34;new value&#34; }&lt;/pre&gt;
 
+
+&lt;h2&gt;Restriction &lt;/h2&gt;
+This is the restriction of Key Naming for the record:
+1. Cannot use &lt;b&gt;&#34;.&#34;&lt;/b&gt; as the key name
+-	&lt;pre&gt;{ &#34;data.2&#34;: &#34;value&#34; }&lt;/pre&gt;
+2. Cannot use &lt;b&gt;&#34;$&#34;&lt;/b&gt; as the prefix in key names
+-	&lt;pre&gt;{ &#34;$data&#34;: &#34;value&#34; }&lt;/pre&gt;
+3. Cannot use empty string in key names
+-	&lt;pre&gt;{ &#34;&#34;: &#34;value&#34; }&lt;/pre&gt;
 
 
 &lt;h2&gt;Reserved Word&lt;/h2&gt;

@@ -42,6 +42,18 @@ func (o *AdminInviteUserV4Reader) ReadResponse(response runtime.ClientResponse, 
 			return nil, err
 		}
 		return result, nil
+	case 401:
+		result := NewAdminInviteUserV4Unauthorized()
+		if err := result.readResponse(response, consumer, o.formats); err != nil {
+			return nil, err
+		}
+		return result, nil
+	case 403:
+		result := NewAdminInviteUserV4Forbidden()
+		if err := result.readResponse(response, consumer, o.formats); err != nil {
+			return nil, err
+		}
+		return result, nil
 	case 404:
 		result := NewAdminInviteUserV4NotFound()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -167,6 +179,112 @@ func (o *AdminInviteUserV4BadRequest) GetPayload() *iamclientmodels.RestErrorRes
 }
 
 func (o *AdminInviteUserV4BadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+	// handle file responses
+	contentDisposition := response.GetHeader("Content-Disposition")
+	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
+		consumer = runtime.ByteStreamConsumer()
+	}
+
+	o.Payload = new(iamclientmodels.RestErrorResponse)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
+	}
+
+	return nil
+}
+
+// NewAdminInviteUserV4Unauthorized creates a AdminInviteUserV4Unauthorized with default headers values
+func NewAdminInviteUserV4Unauthorized() *AdminInviteUserV4Unauthorized {
+	return &AdminInviteUserV4Unauthorized{}
+}
+
+/*AdminInviteUserV4Unauthorized handles this case with default header values.
+
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20001</td><td>unauthorized access</td></tr></table>
+*/
+type AdminInviteUserV4Unauthorized struct {
+	Payload *iamclientmodels.RestErrorResponse
+}
+
+func (o *AdminInviteUserV4Unauthorized) Error() string {
+	return fmt.Sprintf("[POST /iam/v4/admin/users/users/invite][%d] adminInviteUserV4Unauthorized  %+v", 401, o.ToJSONString())
+}
+
+func (o *AdminInviteUserV4Unauthorized) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
+}
+
+func (o *AdminInviteUserV4Unauthorized) GetPayload() *iamclientmodels.RestErrorResponse {
+	return o.Payload
+}
+
+func (o *AdminInviteUserV4Unauthorized) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+	// handle file responses
+	contentDisposition := response.GetHeader("Content-Disposition")
+	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
+		consumer = runtime.ByteStreamConsumer()
+	}
+
+	o.Payload = new(iamclientmodels.RestErrorResponse)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
+	}
+
+	return nil
+}
+
+// NewAdminInviteUserV4Forbidden creates a AdminInviteUserV4Forbidden with default headers values
+func NewAdminInviteUserV4Forbidden() *AdminInviteUserV4Forbidden {
+	return &AdminInviteUserV4Forbidden{}
+}
+
+/*AdminInviteUserV4Forbidden handles this case with default header values.
+
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20013</td><td>insufficient permissions</td></tr></table>
+*/
+type AdminInviteUserV4Forbidden struct {
+	Payload *iamclientmodels.RestErrorResponse
+}
+
+func (o *AdminInviteUserV4Forbidden) Error() string {
+	return fmt.Sprintf("[POST /iam/v4/admin/users/users/invite][%d] adminInviteUserV4Forbidden  %+v", 403, o.ToJSONString())
+}
+
+func (o *AdminInviteUserV4Forbidden) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
+}
+
+func (o *AdminInviteUserV4Forbidden) GetPayload() *iamclientmodels.RestErrorResponse {
+	return o.Payload
+}
+
+func (o *AdminInviteUserV4Forbidden) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {

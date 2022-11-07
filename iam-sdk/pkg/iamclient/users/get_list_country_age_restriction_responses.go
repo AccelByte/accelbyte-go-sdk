@@ -123,13 +123,33 @@ func NewGetListCountryAgeRestrictionUnauthorized() *GetListCountryAgeRestriction
 
 /*GetListCountryAgeRestrictionUnauthorized handles this case with default header values.
 
-  Unauthorized access
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20001</td><td>unauthorized access</td></tr></table>
 */
 type GetListCountryAgeRestrictionUnauthorized struct {
+	Payload *iamclientmodels.RestErrorResponse
 }
 
 func (o *GetListCountryAgeRestrictionUnauthorized) Error() string {
-	return fmt.Sprintf("[GET /iam/v2/admin/namespaces/{namespace}/countries/agerestrictions][%d] getListCountryAgeRestrictionUnauthorized ", 401)
+	return fmt.Sprintf("[GET /iam/v2/admin/namespaces/{namespace}/countries/agerestrictions][%d] getListCountryAgeRestrictionUnauthorized  %+v", 401, o.ToJSONString())
+}
+
+func (o *GetListCountryAgeRestrictionUnauthorized) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
+}
+
+func (o *GetListCountryAgeRestrictionUnauthorized) GetPayload() *iamclientmodels.RestErrorResponse {
+	return o.Payload
 }
 
 func (o *GetListCountryAgeRestrictionUnauthorized) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -137,6 +157,13 @@ func (o *GetListCountryAgeRestrictionUnauthorized) readResponse(response runtime
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
 		consumer = runtime.ByteStreamConsumer()
+	}
+
+	o.Payload = new(iamclientmodels.RestErrorResponse)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
 	}
 
 	return nil
@@ -149,13 +176,33 @@ func NewGetListCountryAgeRestrictionForbidden() *GetListCountryAgeRestrictionFor
 
 /*GetListCountryAgeRestrictionForbidden handles this case with default header values.
 
-  Forbidden
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20013</td><td>insufficient permissions</td></tr></table>
 */
 type GetListCountryAgeRestrictionForbidden struct {
+	Payload *iamclientmodels.RestErrorResponse
 }
 
 func (o *GetListCountryAgeRestrictionForbidden) Error() string {
-	return fmt.Sprintf("[GET /iam/v2/admin/namespaces/{namespace}/countries/agerestrictions][%d] getListCountryAgeRestrictionForbidden ", 403)
+	return fmt.Sprintf("[GET /iam/v2/admin/namespaces/{namespace}/countries/agerestrictions][%d] getListCountryAgeRestrictionForbidden  %+v", 403, o.ToJSONString())
+}
+
+func (o *GetListCountryAgeRestrictionForbidden) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
+}
+
+func (o *GetListCountryAgeRestrictionForbidden) GetPayload() *iamclientmodels.RestErrorResponse {
+	return o.Payload
 }
 
 func (o *GetListCountryAgeRestrictionForbidden) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -163,6 +210,13 @@ func (o *GetListCountryAgeRestrictionForbidden) readResponse(response runtime.Cl
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
 		consumer = runtime.ByteStreamConsumer()
+	}
+
+	o.Payload = new(iamclientmodels.RestErrorResponse)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
 	}
 
 	return nil

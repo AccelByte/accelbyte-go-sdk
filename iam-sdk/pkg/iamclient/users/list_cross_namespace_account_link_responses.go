@@ -10,12 +10,16 @@ package users
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
+	"io"
 	"io/ioutil"
 	"strings"
 
 	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/strfmt"
+
+	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclientmodels"
 )
 
 // ListCrossNamespaceAccountLinkReader is a Reader for the ListCrossNamespaceAccountLink structure.
@@ -103,10 +107,30 @@ func NewListCrossNamespaceAccountLinkBadRequest() *ListCrossNamespaceAccountLink
   Invalid request
 */
 type ListCrossNamespaceAccountLinkBadRequest struct {
+	Payload *iamclientmodels.RestErrorResponse
 }
 
 func (o *ListCrossNamespaceAccountLinkBadRequest) Error() string {
-	return fmt.Sprintf("[POST /iam/namespaces/{namespace}/users/{userId}/crosslink][%d] listCrossNamespaceAccountLinkBadRequest ", 400)
+	return fmt.Sprintf("[POST /iam/namespaces/{namespace}/users/{userId}/crosslink][%d] listCrossNamespaceAccountLinkBadRequest  %+v", 400, o.ToJSONString())
+}
+
+func (o *ListCrossNamespaceAccountLinkBadRequest) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
+}
+
+func (o *ListCrossNamespaceAccountLinkBadRequest) GetPayload() *iamclientmodels.RestErrorResponse {
+	return o.Payload
 }
 
 func (o *ListCrossNamespaceAccountLinkBadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -114,6 +138,13 @@ func (o *ListCrossNamespaceAccountLinkBadRequest) readResponse(response runtime.
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
 		consumer = runtime.ByteStreamConsumer()
+	}
+
+	o.Payload = new(iamclientmodels.RestErrorResponse)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
 	}
 
 	return nil
@@ -126,13 +157,33 @@ func NewListCrossNamespaceAccountLinkUnauthorized() *ListCrossNamespaceAccountLi
 
 /*ListCrossNamespaceAccountLinkUnauthorized handles this case with default header values.
 
-  Unauthorized access
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20001</td><td>unauthorized access</td></tr></table>
 */
 type ListCrossNamespaceAccountLinkUnauthorized struct {
+	Payload *iamclientmodels.RestErrorResponse
 }
 
 func (o *ListCrossNamespaceAccountLinkUnauthorized) Error() string {
-	return fmt.Sprintf("[POST /iam/namespaces/{namespace}/users/{userId}/crosslink][%d] listCrossNamespaceAccountLinkUnauthorized ", 401)
+	return fmt.Sprintf("[POST /iam/namespaces/{namespace}/users/{userId}/crosslink][%d] listCrossNamespaceAccountLinkUnauthorized  %+v", 401, o.ToJSONString())
+}
+
+func (o *ListCrossNamespaceAccountLinkUnauthorized) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
+}
+
+func (o *ListCrossNamespaceAccountLinkUnauthorized) GetPayload() *iamclientmodels.RestErrorResponse {
+	return o.Payload
 }
 
 func (o *ListCrossNamespaceAccountLinkUnauthorized) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -140,6 +191,13 @@ func (o *ListCrossNamespaceAccountLinkUnauthorized) readResponse(response runtim
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
 		consumer = runtime.ByteStreamConsumer()
+	}
+
+	o.Payload = new(iamclientmodels.RestErrorResponse)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
 	}
 
 	return nil
@@ -152,13 +210,33 @@ func NewListCrossNamespaceAccountLinkForbidden() *ListCrossNamespaceAccountLinkF
 
 /*ListCrossNamespaceAccountLinkForbidden handles this case with default header values.
 
-  Forbidden
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20013</td><td>insufficient permissions</td></tr></table>
 */
 type ListCrossNamespaceAccountLinkForbidden struct {
+	Payload *iamclientmodels.RestErrorResponse
 }
 
 func (o *ListCrossNamespaceAccountLinkForbidden) Error() string {
-	return fmt.Sprintf("[POST /iam/namespaces/{namespace}/users/{userId}/crosslink][%d] listCrossNamespaceAccountLinkForbidden ", 403)
+	return fmt.Sprintf("[POST /iam/namespaces/{namespace}/users/{userId}/crosslink][%d] listCrossNamespaceAccountLinkForbidden  %+v", 403, o.ToJSONString())
+}
+
+func (o *ListCrossNamespaceAccountLinkForbidden) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
+}
+
+func (o *ListCrossNamespaceAccountLinkForbidden) GetPayload() *iamclientmodels.RestErrorResponse {
+	return o.Payload
 }
 
 func (o *ListCrossNamespaceAccountLinkForbidden) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -166,6 +244,13 @@ func (o *ListCrossNamespaceAccountLinkForbidden) readResponse(response runtime.C
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
 		consumer = runtime.ByteStreamConsumer()
+	}
+
+	o.Payload = new(iamclientmodels.RestErrorResponse)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
 	}
 
 	return nil

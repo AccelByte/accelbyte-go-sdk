@@ -36,6 +36,12 @@ func (o *DeleteSSOLoginPlatformCredentialV3Reader) ReadResponse(response runtime
 			return nil, err
 		}
 		return result, nil
+	case 400:
+		result := NewDeleteSSOLoginPlatformCredentialV3BadRequest()
+		if err := result.readResponse(response, consumer, o.formats); err != nil {
+			return nil, err
+		}
+		return result, nil
 	case 401:
 		result := NewDeleteSSOLoginPlatformCredentialV3Unauthorized()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -97,6 +103,59 @@ func (o *DeleteSSOLoginPlatformCredentialV3NoContent) readResponse(response runt
 	return nil
 }
 
+// NewDeleteSSOLoginPlatformCredentialV3BadRequest creates a DeleteSSOLoginPlatformCredentialV3BadRequest with default headers values
+func NewDeleteSSOLoginPlatformCredentialV3BadRequest() *DeleteSSOLoginPlatformCredentialV3BadRequest {
+	return &DeleteSSOLoginPlatformCredentialV3BadRequest{}
+}
+
+/*DeleteSSOLoginPlatformCredentialV3BadRequest handles this case with default header values.
+
+  Invalid request
+*/
+type DeleteSSOLoginPlatformCredentialV3BadRequest struct {
+	Payload *iamclientmodels.RestErrorResponse
+}
+
+func (o *DeleteSSOLoginPlatformCredentialV3BadRequest) Error() string {
+	return fmt.Sprintf("[DELETE /iam/v3/admin/namespaces/{namespace}/platforms/{platformId}/sso][%d] deleteSSOLoginPlatformCredentialV3BadRequest  %+v", 400, o.ToJSONString())
+}
+
+func (o *DeleteSSOLoginPlatformCredentialV3BadRequest) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
+}
+
+func (o *DeleteSSOLoginPlatformCredentialV3BadRequest) GetPayload() *iamclientmodels.RestErrorResponse {
+	return o.Payload
+}
+
+func (o *DeleteSSOLoginPlatformCredentialV3BadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+	// handle file responses
+	contentDisposition := response.GetHeader("Content-Disposition")
+	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
+		consumer = runtime.ByteStreamConsumer()
+	}
+
+	o.Payload = new(iamclientmodels.RestErrorResponse)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
+	}
+
+	return nil
+}
+
 // NewDeleteSSOLoginPlatformCredentialV3Unauthorized creates a DeleteSSOLoginPlatformCredentialV3Unauthorized with default headers values
 func NewDeleteSSOLoginPlatformCredentialV3Unauthorized() *DeleteSSOLoginPlatformCredentialV3Unauthorized {
 	return &DeleteSSOLoginPlatformCredentialV3Unauthorized{}
@@ -104,13 +163,33 @@ func NewDeleteSSOLoginPlatformCredentialV3Unauthorized() *DeleteSSOLoginPlatform
 
 /*DeleteSSOLoginPlatformCredentialV3Unauthorized handles this case with default header values.
 
-  Unauthorized
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20001</td><td>unauthorized access</td></tr></table>
 */
 type DeleteSSOLoginPlatformCredentialV3Unauthorized struct {
+	Payload *iamclientmodels.RestErrorResponse
 }
 
 func (o *DeleteSSOLoginPlatformCredentialV3Unauthorized) Error() string {
-	return fmt.Sprintf("[DELETE /iam/v3/admin/namespaces/{namespace}/platforms/{platformId}/sso][%d] deleteSSOLoginPlatformCredentialV3Unauthorized ", 401)
+	return fmt.Sprintf("[DELETE /iam/v3/admin/namespaces/{namespace}/platforms/{platformId}/sso][%d] deleteSSOLoginPlatformCredentialV3Unauthorized  %+v", 401, o.ToJSONString())
+}
+
+func (o *DeleteSSOLoginPlatformCredentialV3Unauthorized) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
+}
+
+func (o *DeleteSSOLoginPlatformCredentialV3Unauthorized) GetPayload() *iamclientmodels.RestErrorResponse {
+	return o.Payload
 }
 
 func (o *DeleteSSOLoginPlatformCredentialV3Unauthorized) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -118,6 +197,13 @@ func (o *DeleteSSOLoginPlatformCredentialV3Unauthorized) readResponse(response r
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
 		consumer = runtime.ByteStreamConsumer()
+	}
+
+	o.Payload = new(iamclientmodels.RestErrorResponse)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
 	}
 
 	return nil
@@ -130,13 +216,33 @@ func NewDeleteSSOLoginPlatformCredentialV3Forbidden() *DeleteSSOLoginPlatformCre
 
 /*DeleteSSOLoginPlatformCredentialV3Forbidden handles this case with default header values.
 
-  Forbidden
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20013</td><td>insufficient permissions</td></tr></table>
 */
 type DeleteSSOLoginPlatformCredentialV3Forbidden struct {
+	Payload *iamclientmodels.RestErrorResponse
 }
 
 func (o *DeleteSSOLoginPlatformCredentialV3Forbidden) Error() string {
-	return fmt.Sprintf("[DELETE /iam/v3/admin/namespaces/{namespace}/platforms/{platformId}/sso][%d] deleteSSOLoginPlatformCredentialV3Forbidden ", 403)
+	return fmt.Sprintf("[DELETE /iam/v3/admin/namespaces/{namespace}/platforms/{platformId}/sso][%d] deleteSSOLoginPlatformCredentialV3Forbidden  %+v", 403, o.ToJSONString())
+}
+
+func (o *DeleteSSOLoginPlatformCredentialV3Forbidden) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
+}
+
+func (o *DeleteSSOLoginPlatformCredentialV3Forbidden) GetPayload() *iamclientmodels.RestErrorResponse {
+	return o.Payload
 }
 
 func (o *DeleteSSOLoginPlatformCredentialV3Forbidden) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -144,6 +250,13 @@ func (o *DeleteSSOLoginPlatformCredentialV3Forbidden) readResponse(response runt
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
 		consumer = runtime.ByteStreamConsumer()
+	}
+
+	o.Payload = new(iamclientmodels.RestErrorResponse)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
 	}
 
 	return nil
@@ -156,7 +269,7 @@ func NewDeleteSSOLoginPlatformCredentialV3NotFound() *DeleteSSOLoginPlatformCred
 
 /*DeleteSSOLoginPlatformCredentialV3NotFound handles this case with default header values.
 
-  SSO Credential Not Found
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>10175</td><td>third party credential not found</td></tr></table>
 */
 type DeleteSSOLoginPlatformCredentialV3NotFound struct {
 	Payload *iamclientmodels.RestErrorResponse
@@ -209,7 +322,7 @@ func NewDeleteSSOLoginPlatformCredentialV3InternalServerError() *DeleteSSOLoginP
 
 /*DeleteSSOLoginPlatformCredentialV3InternalServerError handles this case with default header values.
 
-  Internal Server Error
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20000</td><td>internal server error</td></tr></table>
 */
 type DeleteSSOLoginPlatformCredentialV3InternalServerError struct {
 	Payload *iamclientmodels.RestErrorResponse

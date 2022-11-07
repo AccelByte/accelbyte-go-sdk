@@ -24,8 +24,9 @@ var GetRevocationListV3Cmd = &cobra.Command{
 	Long:  `Get revocation list V3`,
 	RunE: func(cmd *cobra.Command, args []string) error {
 		oAuth20Service := &iam.OAuth20Service{
-			Client:          factory.NewIamClient(&repository.ConfigRepositoryImpl{}),
-			TokenRepository: &repository.TokenRepositoryImpl{},
+			Client:           factory.NewIamClient(&repository.ConfigRepositoryImpl{}),
+			ConfigRepository: &repository.ConfigRepositoryImpl{},
+			TokenRepository:  &repository.TokenRepositoryImpl{},
 		}
 		httpClient := &http.Client{
 			CheckRedirect: func(req *http.Request, via []*http.Request) error {

@@ -28,7 +28,7 @@ $ go mod init golang-application
 
 Add the required configuration in `go.mod`. 
 
-Replace `{VERSION}` with a specific release version tag from [releases](https://github.com/AccelByte/accelbyte-golang-sdk/releases) and run `go mod tidy`.
+Replace `{VERSION}` with a specific release version tag from [releases](https://github.com/AccelByte/accelbyte-go-sdk/releases) and run `go mod tidy`.
 
 It is recommended to use the matching Golang Server SDK version for the given AccelByte Cloud version.
 

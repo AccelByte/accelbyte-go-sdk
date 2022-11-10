@@ -223,13 +223,14 @@ var (
 		clientId:     os.Getenv("AB_CLIENT_ID"),
 		clientSecret: os.Getenv("AB_CLIENT_SECRET"),
 	}
+	token iamclientmodels.OauthmodelTokenResponseV3
 )
 
 func (t *TokenRepositoryImpl) Store(accessToken interface{}) error {
 	timeNow := time.Now().UTC()
 	t.IssuedTime = &timeNow
 
-	convertedToken, err := repository.ConvertInterfaceToModel(accessToken)
+	convertedToken, err := repository.ConvertInterfaceToModel(accessToken, &token) // we recommend to use v0.30.0 or latest. see `migration-guide-v0.29-to-v0.30.md` file in this folder 
 	if err != nil {
 		return err
 	}

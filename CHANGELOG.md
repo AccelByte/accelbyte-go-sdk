@@ -1,3 +1,16 @@
+<a name="v0.31.1"></a>
+## [v0.31.1] - 2022-11-11
+
+### Chore
+- **sdk:** regenerate services
+
+### Fix
+- **spec:** fix spec files
+
+### Docs
+- update CHANGELOG.md for v0.31.1 release
+
+
 <a name="v0.31.0"></a>
 ## [v0.31.0] - 2022-11-08
 
@@ -977,6 +990,7 @@ The wrapper have been refactored and has breaking change, these are the list:
 ### Fix
 - delete go.mod ([#1](https://github.com/AccelByte/accelbyte-go-sdk/issues/1))
 
+[v0.31.1]: https://github.com/AccelByte/accelbyte-go-sdk/compare/v0.31.0...v0.31.1
 [v0.31.0]: https://github.com/AccelByte/accelbyte-go-sdk/compare/v0.30.0...v0.31.0
 [v0.30.0]: https://github.com/AccelByte/accelbyte-go-sdk/compare/v0.29.0...v0.30.0
 [v0.29.0]: https://github.com/AccelByte/accelbyte-go-sdk/compare/v0.28.0...v0.29.0

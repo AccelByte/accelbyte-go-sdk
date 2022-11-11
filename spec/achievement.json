@@ -1678,7 +1678,7 @@
         "achievedAt": {
           "format": "date-time",
           "type": "string",
-          "x-nullable": true
+          "x-nullable": false
         },
         "achievementCode": {
           "type": "string"
@@ -1702,6 +1702,7 @@
         }
       },
       "required": [
+        "achievedAt",
         "achievementCode",
         "id",
         "latestValue",

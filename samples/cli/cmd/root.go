@@ -8,6 +8,8 @@ import (
 	"fmt"
 	"os"
 
+	"github.com/AccelByte/sample-apps/cmd/match2"
+	"github.com/AccelByte/sample-apps/cmd/session"
 	"github.com/spf13/cobra"
 
 	"github.com/AccelByte/sample-apps/cmd/achievement"
@@ -87,10 +89,12 @@ func init() {
 	RootCmd.AddCommand(leaderboard.LeaderboardCmd)
 	RootCmd.AddCommand(legal.LegalCmd)
 	RootCmd.AddCommand(lobby.LobbyCmd)
+	RootCmd.AddCommand(match2.Match2Cmd)
 	RootCmd.AddCommand(matchmaking.MatchmakingCmd)
 	RootCmd.AddCommand(platform.PlatformCmd)
 	RootCmd.AddCommand(qosm.QosmCmd)
 	RootCmd.AddCommand(seasonpass.SeasonpassCmd)
+	RootCmd.AddCommand(session.SessionCmd)
 	RootCmd.AddCommand(sessionbrowser.SessionbrowserCmd)
 	RootCmd.AddCommand(social.SocialCmd)
 	RootCmd.AddCommand(ugc.UgcCmd)

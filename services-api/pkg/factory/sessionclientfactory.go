@@ -1,0 +1,35 @@
+// Copyright (c) 2021 AccelByte Inc. All Rights Reserved.
+// This is licensed software from AccelByte Inc, for limitations
+// and restrictions contact your company contract manager.
+
+// Code generated. DO NOT EDIT.
+
+package factory
+
+import (
+	"strings"
+
+	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/repository"
+	"github.com/AccelByte/accelbyte-go-sdk/session-sdk/pkg/sessionclient"
+)
+
+var sessionClientInstance *sessionclient.JusticeSessionService
+
+func NewSessionClient(configRepository repository.ConfigRepository) *sessionclient.JusticeSessionService {
+	if sessionClientInstance == nil {
+		baseURL := configRepository.GetJusticeBaseUrl()
+		if len(baseURL) > 0 {
+			baseURLSplit := strings.Split(baseURL, "://")
+			httpClientConfig := &sessionclient.TransportConfig{
+				Host:     baseURLSplit[1],
+				BasePath: "",
+				Schemes:  []string{baseURLSplit[0]},
+			}
+			sessionClientInstance = sessionclient.NewHTTPClientWithConfig(nil, httpClientConfig)
+		} else {
+			sessionClientInstance = sessionclient.NewHTTPClient(nil)
+		}
+	}
+
+	return sessionClientInstance
+}

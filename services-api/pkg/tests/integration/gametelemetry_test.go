@@ -10,6 +10,7 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/gametelemetry-sdk/pkg/gametelemetryclient/gametelemetry_operations"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils/auth"
+	"github.com/go-openapi/strfmt"
 	"github.com/stretchr/testify/assert"
 
 	"github.com/AccelByte/accelbyte-go-sdk/gametelemetry-sdk/pkg/gametelemetryclientmodels"
@@ -24,12 +25,16 @@ var (
 	}
 	telemetryBodyArray []*gametelemetryclientmodels.TelemetryBody
 	telemetryBody      = &gametelemetryclientmodels.TelemetryBody{
+		EventID:        eventID,
 		EventName:      &eventName,
 		EventNamespace: &eventNamespace,
+		EventTimestamp: &eventTimestamp,
 		Payload:        map[string]interface{}{"foo": "bar"},
 	}
+	eventID        = "gosdk"
 	eventName      = "gosdkevent"
 	eventNamespace = "test"
+	eventTimestamp = strfmt.DateTime{}
 	steamId        = "76561199259217491"
 )
 

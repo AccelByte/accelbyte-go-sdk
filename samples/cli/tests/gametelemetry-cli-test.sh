@@ -51,34 +51,34 @@ touch "tmp.dat"
 #- 2 GetEventsGameTelemetryV1AdminNamespacesNamespaceEventsGet
 samples/cli/sample-apps Gametelemetry getEventsGameTelemetryV1AdminNamespacesNamespaceEventsGet \
     --namespace $AB_NAMESPACE \
-    --endTime '3wcOUmpe' \
-    --eventId '7M3pToRc' \
-    --eventName '5JSPWGdI' \
-    --eventPayload 'NiV97ph5' \
-    --limit '60' \
-    --offset '99' \
-    --startTime 'JNMgpUVq' \
+    --endTime 'mh2KCq5u' \
+    --eventId 'LLwOgvrr' \
+    --eventName 'dHNd7MxZ' \
+    --eventPayload '8J5m2Few' \
+    --limit '56' \
+    --offset '68' \
+    --startTime '7Uz4t3Ly' \
     > test.out 2>&1
 eval_tap $? 2 'GetEventsGameTelemetryV1AdminNamespacesNamespaceEventsGet' test.out
 
 #- 3 ProtectedSaveEventsGameTelemetryV1ProtectedEventsPost
 samples/cli/sample-apps Gametelemetry protectedSaveEventsGameTelemetryV1ProtectedEventsPost \
     --cookie 'access_token=foo' \
-    --body '[{"EventName": "iq9eoIvO", "EventNamespace": "QCGELgAc", "Payload": {"ygcwtMPW": {}, "QuKp5FRy": {}, "OTggCavl": {}}}, {"EventName": "2S6OZcH9", "EventNamespace": "75RHDBrG", "Payload": {"i8zvgK98": {}, "GaHmD1pE": {}, "yAN3qqJ4": {}}}, {"EventName": "v5n5DyQi", "EventNamespace": "BEhX9Mui", "Payload": {"vHnVLqtF": {}, "WAE7IZZa": {}, "DypNqI9d": {}}}]' \
+    --body '[{"EventId": "atxVtbeT", "EventName": "BIPTAEUE", "EventNamespace": "Q6Yush8W", "EventTimestamp": "1978-07-07T00:00:00Z", "Payload": {"30lodjE0": {}, "dcPkAZBJ": {}, "6tpsc5wW": {}}}, {"EventId": "KaPPm9aq", "EventName": "WETElr5e", "EventNamespace": "enkgz71D", "EventTimestamp": "1983-12-07T00:00:00Z", "Payload": {"lwclupuL": {}, "H30AsWf4": {}, "SNrQ4BZy": {}}}, {"EventId": "tenGKxC0", "EventName": "0d8CIjhd", "EventNamespace": "wKM99HbN", "EventTimestamp": "1990-09-02T00:00:00Z", "Payload": {"rfD7bwff": {}, "TwL7ZE6j": {}, "M20F89OY": {}}}]' \
     > test.out 2>&1
 eval_tap $? 3 'ProtectedSaveEventsGameTelemetryV1ProtectedEventsPost' test.out
 
 #- 4 ProtectedGetPlaytimeGameTelemetryV1ProtectedSteamIdsSteamIdPlaytimeGet
 samples/cli/sample-apps Gametelemetry protectedGetPlaytimeGameTelemetryV1ProtectedSteamIdsSteamIdPlaytimeGet \
-    --steamId 'b3eC9bbH' \
+    --steamId 'Z82rc4fC' \
     --cookie 'access_token=foo' \
     > test.out 2>&1
 eval_tap $? 4 'ProtectedGetPlaytimeGameTelemetryV1ProtectedSteamIdsSteamIdPlaytimeGet' test.out
 
 #- 5 ProtectedUpdatePlaytimeGameTelemetryV1ProtectedSteamIdsSteamIdPlaytimePlaytimePut
 samples/cli/sample-apps Gametelemetry protectedUpdatePlaytimeGameTelemetryV1ProtectedSteamIdsSteamIdPlaytimePlaytimePut \
-    --playtime '5BXBTp8A' \
-    --steamId 'xbbonohl' \
+    --playtime 'r5euDbos' \
+    --steamId 'cmAUoIv8' \
     --cookie 'access_token=foo' \
     > test.out 2>&1
 eval_tap $? 5 'ProtectedUpdatePlaytimeGameTelemetryV1ProtectedSteamIdsSteamIdPlaytimePlaytimePut' test.out

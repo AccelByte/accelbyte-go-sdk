@@ -38,6 +38,16 @@
 | `/dsmcontroller/namespaces/{namespace}/images/limit` | GET | ImageLimitClientShort | [ImageLimitClientShort](../../dsmc-sdk/pkg/dsmcclient/image_config/image_config_client.go) | [ImageLimitClientShort](../../services-api/pkg/service/dsmc/imageConfig.go) | [ImageLimitClientShort](../../samples/cli/cmd/dsmc/imageConfig/imageLimitClient.go) |
 | `/dsmcontroller/namespaces/{namespace}/images/versions/{version}` | GET | ImageDetailClientShort | [ImageDetailClientShort](../../dsmc-sdk/pkg/dsmcclient/image_config/image_config_client.go) | [ImageDetailClientShort](../../services-api/pkg/service/dsmc/imageConfig.go) | [ImageDetailClientShort](../../samples/cli/cmd/dsmc/imageConfig/imageDetailClient.go) |
 
+### Pod Config Wrapper:  [PodConfig](../../services-api/pkg/service/dsmc/podConfig.go)
+| Endpoint | Method | ID | Class | Wrapper | Example |
+|---|---|---|---|---|---|
+| `/dsmcontroller/admin/instances/spec/lowest` | GET | GetLowestInstanceSpecShort | [GetLowestInstanceSpecShort](../../dsmc-sdk/pkg/dsmcclient/pod_config/pod_config_client.go) | [GetLowestInstanceSpecShort](../../services-api/pkg/service/dsmc/podConfig.go) | [GetLowestInstanceSpecShort](../../samples/cli/cmd/dsmc/podConfig/getLowestInstanceSpec.go) |
+| `/dsmcontroller/admin/namespaces/{namespace}/configs/pods` | GET | GetAllPodConfigShort | [GetAllPodConfigShort](../../dsmc-sdk/pkg/dsmcclient/pod_config/pod_config_client.go) | [GetAllPodConfigShort](../../services-api/pkg/service/dsmc/podConfig.go) | [GetAllPodConfigShort](../../samples/cli/cmd/dsmc/podConfig/getAllPodConfig.go) |
+| `/dsmcontroller/admin/namespaces/{namespace}/configs/pods/{name}` | GET | GetPodConfigShort | [GetPodConfigShort](../../dsmc-sdk/pkg/dsmcclient/pod_config/pod_config_client.go) | [GetPodConfigShort](../../services-api/pkg/service/dsmc/podConfig.go) | [GetPodConfigShort](../../samples/cli/cmd/dsmc/podConfig/getPodConfig.go) |
+| `/dsmcontroller/admin/namespaces/{namespace}/configs/pods/{name}` | POST | CreatePodConfigShort | [CreatePodConfigShort](../../dsmc-sdk/pkg/dsmcclient/pod_config/pod_config_client.go) | [CreatePodConfigShort](../../services-api/pkg/service/dsmc/podConfig.go) | [CreatePodConfigShort](../../samples/cli/cmd/dsmc/podConfig/createPodConfig.go) |
+| `/dsmcontroller/admin/namespaces/{namespace}/configs/pods/{name}` | DELETE | DeletePodConfigShort | [DeletePodConfigShort](../../dsmc-sdk/pkg/dsmcclient/pod_config/pod_config_client.go) | [DeletePodConfigShort](../../services-api/pkg/service/dsmc/podConfig.go) | [DeletePodConfigShort](../../samples/cli/cmd/dsmc/podConfig/deletePodConfig.go) |
+| `/dsmcontroller/admin/namespaces/{namespace}/configs/pods/{name}` | PATCH | UpdatePodConfigShort | [UpdatePodConfigShort](../../dsmc-sdk/pkg/dsmcclient/pod_config/pod_config_client.go) | [UpdatePodConfigShort](../../services-api/pkg/service/dsmc/podConfig.go) | [UpdatePodConfigShort](../../samples/cli/cmd/dsmc/podConfig/updatePodConfig.go) |
+
 ### Deployment Config Wrapper:  [DeploymentConfig](../../services-api/pkg/service/dsmc/deploymentConfig.go)
 | Endpoint | Method | ID | Class | Wrapper | Example |
 |---|---|---|---|---|---|
@@ -55,15 +65,6 @@
 | `/dsmcontroller/admin/namespaces/{namespace}/configs/deployments/{deployment}/overrides/versions/{version}/regions/{region}` | POST | CreateOverrideRegionOverrideShort | [CreateOverrideRegionOverrideShort](../../dsmc-sdk/pkg/dsmcclient/deployment_config/deployment_config_client.go) | [CreateOverrideRegionOverrideShort](../../services-api/pkg/service/dsmc/deploymentConfig.go) | [CreateOverrideRegionOverrideShort](../../samples/cli/cmd/dsmc/deploymentConfig/createOverrideRegionOverride.go) |
 | `/dsmcontroller/admin/namespaces/{namespace}/configs/deployments/{deployment}/overrides/versions/{version}/regions/{region}` | DELETE | DeleteOverrideRegionOverrideShort | [DeleteOverrideRegionOverrideShort](../../dsmc-sdk/pkg/dsmcclient/deployment_config/deployment_config_client.go) | [DeleteOverrideRegionOverrideShort](../../services-api/pkg/service/dsmc/deploymentConfig.go) | [DeleteOverrideRegionOverrideShort](../../samples/cli/cmd/dsmc/deploymentConfig/deleteOverrideRegionOverride.go) |
 | `/dsmcontroller/admin/namespaces/{namespace}/configs/deployments/{deployment}/overrides/versions/{version}/regions/{region}` | PATCH | UpdateOverrideRegionOverrideShort | [UpdateOverrideRegionOverrideShort](../../dsmc-sdk/pkg/dsmcclient/deployment_config/deployment_config_client.go) | [UpdateOverrideRegionOverrideShort](../../services-api/pkg/service/dsmc/deploymentConfig.go) | [UpdateOverrideRegionOverrideShort](../../samples/cli/cmd/dsmc/deploymentConfig/updateOverrideRegionOverride.go) |
-
-### Pod Config Wrapper:  [PodConfig](../../services-api/pkg/service/dsmc/podConfig.go)
-| Endpoint | Method | ID | Class | Wrapper | Example |
-|---|---|---|---|---|---|
-| `/dsmcontroller/admin/namespaces/{namespace}/configs/pods` | GET | GetAllPodConfigShort | [GetAllPodConfigShort](../../dsmc-sdk/pkg/dsmcclient/pod_config/pod_config_client.go) | [GetAllPodConfigShort](../../services-api/pkg/service/dsmc/podConfig.go) | [GetAllPodConfigShort](../../samples/cli/cmd/dsmc/podConfig/getAllPodConfig.go) |
-| `/dsmcontroller/admin/namespaces/{namespace}/configs/pods/{name}` | GET | GetPodConfigShort | [GetPodConfigShort](../../dsmc-sdk/pkg/dsmcclient/pod_config/pod_config_client.go) | [GetPodConfigShort](../../services-api/pkg/service/dsmc/podConfig.go) | [GetPodConfigShort](../../samples/cli/cmd/dsmc/podConfig/getPodConfig.go) |
-| `/dsmcontroller/admin/namespaces/{namespace}/configs/pods/{name}` | POST | CreatePodConfigShort | [CreatePodConfigShort](../../dsmc-sdk/pkg/dsmcclient/pod_config/pod_config_client.go) | [CreatePodConfigShort](../../services-api/pkg/service/dsmc/podConfig.go) | [CreatePodConfigShort](../../samples/cli/cmd/dsmc/podConfig/createPodConfig.go) |
-| `/dsmcontroller/admin/namespaces/{namespace}/configs/pods/{name}` | DELETE | DeletePodConfigShort | [DeletePodConfigShort](../../dsmc-sdk/pkg/dsmcclient/pod_config/pod_config_client.go) | [DeletePodConfigShort](../../services-api/pkg/service/dsmc/podConfig.go) | [DeletePodConfigShort](../../samples/cli/cmd/dsmc/podConfig/deletePodConfig.go) |
-| `/dsmcontroller/admin/namespaces/{namespace}/configs/pods/{name}` | PATCH | UpdatePodConfigShort | [UpdatePodConfigShort](../../dsmc-sdk/pkg/dsmcclient/pod_config/pod_config_client.go) | [UpdatePodConfigShort](../../services-api/pkg/service/dsmc/podConfig.go) | [UpdatePodConfigShort](../../samples/cli/cmd/dsmc/podConfig/updatePodConfig.go) |
 
 ### Admin Wrapper:  [Admin](../../services-api/pkg/service/dsmc/admin.go)
 | Endpoint | Method | ID | Class | Wrapper | Example |
@@ -129,7 +130,6 @@
 | `models.CreatePortRequest` | [ModelsCreatePortRequest ](../../dsmc-sdk/pkg/dsmcclientmodels/models_create_port_request.go) |
 | `models.CreateRegionOverrideRequest` | [ModelsCreateRegionOverrideRequest ](../../dsmc-sdk/pkg/dsmcclientmodels/models_create_region_override_request.go) |
 | `models.CreateSessionRequest` | [ModelsCreateSessionRequest ](../../dsmc-sdk/pkg/dsmcclientmodels/models_create_session_request.go) |
-| `models.DSMConfigExport` | [ModelsDSMConfigExport ](../../dsmc-sdk/pkg/dsmcclientmodels/models_dsm_config_export.go) |
 | `models.DSMConfigRecord` | [ModelsDSMConfigRecord ](../../dsmc-sdk/pkg/dsmcclientmodels/models_dsm_config_record.go) |
 | `models.DefaultProvider` | [ModelsDefaultProvider ](../../dsmc-sdk/pkg/dsmcclientmodels/models_default_provider.go) |
 | `models.DeploymentConfigOverride` | [ModelsDeploymentConfigOverride ](../../dsmc-sdk/pkg/dsmcclientmodels/models_deployment_config_override.go) |
@@ -143,6 +143,7 @@
 | `models.ImageRecord` | [ModelsImageRecord ](../../dsmc-sdk/pkg/dsmcclientmodels/models_image_record.go) |
 | `models.ImageRecordUpdate` | [ModelsImageRecordUpdate ](../../dsmc-sdk/pkg/dsmcclientmodels/models_image_record_update.go) |
 | `models.ImportResponse` | [ModelsImportResponse ](../../dsmc-sdk/pkg/dsmcclientmodels/models_import_response.go) |
+| `models.InstanceSpec` | [ModelsInstanceSpec ](../../dsmc-sdk/pkg/dsmcclientmodels/models_instance_spec.go) |
 | `models.ListConfigResponse` | [ModelsListConfigResponse ](../../dsmc-sdk/pkg/dsmcclientmodels/models_list_config_response.go) |
 | `models.ListDeploymentResponse` | [ModelsListDeploymentResponse ](../../dsmc-sdk/pkg/dsmcclientmodels/models_list_deployment_response.go) |
 | `models.ListImagePatchesResponse` | [ModelsListImagePatchesResponse ](../../dsmc-sdk/pkg/dsmcclientmodels/models_list_image_patches_response.go) |

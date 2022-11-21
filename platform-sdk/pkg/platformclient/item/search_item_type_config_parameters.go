@@ -29,6 +29,7 @@ const (
 	SearchItemTypeConfigCOINSConstant        = "COINS"
 	SearchItemTypeConfigEXTENSIONConstant    = "EXTENSION"
 	SearchItemTypeConfigINGAMEITEMConstant   = "INGAMEITEM"
+	SearchItemTypeConfigLOOTBOXConstant      = "LOOTBOX"
 	SearchItemTypeConfigMEDIAConstant        = "MEDIA"
 	SearchItemTypeConfigOPTIONBOXConstant    = "OPTIONBOX"
 	SearchItemTypeConfigSEASONConstant       = "SEASON"

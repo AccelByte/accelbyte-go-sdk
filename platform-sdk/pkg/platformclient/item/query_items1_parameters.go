@@ -44,6 +44,7 @@ const (
 	QueryItems1COINSConstant        = "COINS"
 	QueryItems1EXTENSIONConstant    = "EXTENSION"
 	QueryItems1INGAMEITEMConstant   = "INGAMEITEM"
+	QueryItems1LOOTBOXConstant      = "LOOTBOX"
 	QueryItems1MEDIAConstant        = "MEDIA"
 	QueryItems1OPTIONBOXConstant    = "OPTIONBOX"
 	QueryItems1SEASONConstant       = "SEASON"
@@ -156,6 +157,11 @@ type QueryItems1Params struct {
 
 	*/
 	IncludeSubCategoryItem *bool
+	/*ItemName
+	  itemName, fuzzy matching
+
+	*/
+	ItemName *string
 	/*ItemStatus*/
 	ItemStatus *string
 	/*ItemType*/
@@ -315,6 +321,17 @@ func (o *QueryItems1Params) WithIncludeSubCategoryItem(includeSubCategoryItem *b
 // SetIncludeSubCategoryItem adds the includeSubCategoryItem to the query items 1 params
 func (o *QueryItems1Params) SetIncludeSubCategoryItem(includeSubCategoryItem *bool) {
 	o.IncludeSubCategoryItem = includeSubCategoryItem
+}
+
+// WithItemName adds the itemName to the query items 1 params
+func (o *QueryItems1Params) WithItemName(itemName *string) *QueryItems1Params {
+	o.SetItemName(itemName)
+	return o
+}
+
+// SetItemName adds the itemName to the query items 1 params
+func (o *QueryItems1Params) SetItemName(itemName *string) {
+	o.ItemName = itemName
 }
 
 // WithItemStatus adds the itemStatus to the query items 1 params
@@ -525,6 +542,22 @@ func (o *QueryItems1Params) WriteToRequest(r runtime.ClientRequest, reg strfmt.R
 		qIncludeSubCategoryItem := swag.FormatBool(qrIncludeSubCategoryItem)
 		if qIncludeSubCategoryItem != "" {
 			if err := r.SetQueryParam("includeSubCategoryItem", qIncludeSubCategoryItem); err != nil {
+				return err
+			}
+		}
+
+	}
+
+	if o.ItemName != nil {
+
+		// query param itemName
+		var qrItemName string
+		if o.ItemName != nil {
+			qrItemName = *o.ItemName
+		}
+		qItemName := qrItemName
+		if qItemName != "" {
+			if err := r.SetQueryParam("itemName", qItemName); err != nil {
 				return err
 			}
 		}

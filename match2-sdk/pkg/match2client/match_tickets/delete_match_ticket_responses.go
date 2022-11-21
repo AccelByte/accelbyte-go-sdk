@@ -30,8 +30,8 @@ type DeleteMatchTicketReader struct {
 // ReadResponse reads a server response into the received o.
 func (o *DeleteMatchTicketReader) ReadResponse(response runtime.ClientResponse, consumer runtime.Consumer) (interface{}, error) {
 	switch response.Code() {
-	case 200:
-		result := NewDeleteMatchTicketOK()
+	case 204:
+		result := NewDeleteMatchTicketNoContent()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
@@ -71,23 +71,23 @@ func (o *DeleteMatchTicketReader) ReadResponse(response runtime.ClientResponse, 
 	}
 }
 
-// NewDeleteMatchTicketOK creates a DeleteMatchTicketOK with default headers values
-func NewDeleteMatchTicketOK() *DeleteMatchTicketOK {
-	return &DeleteMatchTicketOK{}
+// NewDeleteMatchTicketNoContent creates a DeleteMatchTicketNoContent with default headers values
+func NewDeleteMatchTicketNoContent() *DeleteMatchTicketNoContent {
+	return &DeleteMatchTicketNoContent{}
 }
 
-/*DeleteMatchTicketOK handles this case with default header values.
+/*DeleteMatchTicketNoContent handles this case with default header values.
 
-  OK
+  No Content
 */
-type DeleteMatchTicketOK struct {
+type DeleteMatchTicketNoContent struct {
 }
 
-func (o *DeleteMatchTicketOK) Error() string {
-	return fmt.Sprintf("[DELETE /match2/v1/namespaces/{namespace}/match-tickets/{ticketid}][%d] deleteMatchTicketOK ", 200)
+func (o *DeleteMatchTicketNoContent) Error() string {
+	return fmt.Sprintf("[DELETE /match2/v1/namespaces/{namespace}/match-tickets/{ticketid}][%d] deleteMatchTicketNoContent ", 204)
 }
 
-func (o *DeleteMatchTicketOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+func (o *DeleteMatchTicketNoContent) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {

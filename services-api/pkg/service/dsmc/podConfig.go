@@ -39,6 +39,26 @@ func (aaa *PodConfigService) GetAuthSession() auth.Session {
 	}
 }
 
+// Deprecated: Use GetLowestInstanceSpecShort instead
+func (aaa *PodConfigService) GetLowestInstanceSpec(input *pod_config.GetLowestInstanceSpecParams) (*dsmcclientmodels.ModelsInstanceSpec, error) {
+	token, err := aaa.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, unauthorized, internalServerError, err := aaa.Client.PodConfig.GetLowestInstanceSpec(input, client.BearerToken(*token.AccessToken))
+	if unauthorized != nil {
+		return nil, unauthorized
+	}
+	if internalServerError != nil {
+		return nil, internalServerError
+	}
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
 // Deprecated: Use GetAllPodConfigShort instead
 func (aaa *PodConfigService) GetAllPodConfig(input *pod_config.GetAllPodConfigParams) (*dsmcclientmodels.ModelsListPodConfigResponse, error) {
 	token, err := aaa.TokenRepository.GetToken()
@@ -165,6 +185,31 @@ func (aaa *PodConfigService) UpdatePodConfig(input *pod_config.UpdatePodConfigPa
 	if internalServerError != nil {
 		return nil, internalServerError
 	}
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
+func (aaa *PodConfigService) GetLowestInstanceSpecShort(input *pod_config.GetLowestInstanceSpecParams) (*dsmcclientmodels.ModelsInstanceSpec, error) {
+	authInfoWriter := input.AuthInfoWriter
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
+	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  aaa.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
+	ok, err := aaa.Client.PodConfig.GetLowestInstanceSpecShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}

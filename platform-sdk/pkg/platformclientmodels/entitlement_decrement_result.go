@@ -7,6 +7,7 @@ package platformclientmodels
 
 import (
 	"encoding/json"
+	"strconv"
 
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/strfmt"
@@ -14,10 +15,10 @@ import (
 	"github.com/go-openapi/validate"
 )
 
-// TrackedEntitlementInfo tracked entitlement info
+// EntitlementDecrementResult entitlement decrement result
 //
-// swagger:model TrackedEntitlementInfo
-type TrackedEntitlementInfo struct {
+// swagger:model EntitlementDecrementResult
+type EntitlementDecrementResult struct {
 
 	// appId if entitlement is an app
 	AppID string `json:"appId,omitempty"`
@@ -28,7 +29,7 @@ type TrackedEntitlementInfo struct {
 
 	// entitlement class
 	// Required: true
-	// Enum: [APP CODE ENTITLEMENT MEDIA OPTIONBOX SUBSCRIPTION]
+	// Enum: [APP CODE ENTITLEMENT LOOTBOX MEDIA OPTIONBOX SUBSCRIPTION]
 	Clazz *string `json:"clazz"`
 
 	// entitlement created at
@@ -81,6 +82,9 @@ type TrackedEntitlementInfo struct {
 	// request id
 	RequestID string `json:"requestId,omitempty"`
 
+	// loot reward, only return when consume a loot box entitlement
+	Rewards []*EntitlementLootBoxReward `json:"rewards"`
+
 	// sku for purchased item
 	Sku string `json:"sku,omitempty"`
 
@@ -122,8 +126,8 @@ type TrackedEntitlementInfo struct {
 	UserID *string `json:"userId"`
 }
 
-// Validate validates this tracked entitlement info
-func (m *TrackedEntitlementInfo) Validate(formats strfmt.Registry) error {
+// Validate validates this entitlement decrement result
+func (m *EntitlementDecrementResult) Validate(formats strfmt.Registry) error {
 	var res []error
 
 	if err := m.validateAppType(formats); err != nil {
@@ -174,6 +178,10 @@ func (m *TrackedEntitlementInfo) Validate(formats strfmt.Registry) error {
 		res = append(res, err)
 	}
 
+	if err := m.validateRewards(formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.validateSource(formats); err != nil {
 		res = append(res, err)
 	}
@@ -204,7 +212,7 @@ func (m *TrackedEntitlementInfo) Validate(formats strfmt.Registry) error {
 	return nil
 }
 
-var trackedEntitlementInfoTypeAppTypePropEnum []interface{}
+var entitlementDecrementResultTypeAppTypePropEnum []interface{}
 
 func init() {
 	var res []string
@@ -212,34 +220,34 @@ func init() {
 		panic(err)
 	}
 	for _, v := range res {
-		trackedEntitlementInfoTypeAppTypePropEnum = append(trackedEntitlementInfoTypeAppTypePropEnum, v)
+		entitlementDecrementResultTypeAppTypePropEnum = append(entitlementDecrementResultTypeAppTypePropEnum, v)
 	}
 }
 
 const (
 
-	// TrackedEntitlementInfoAppTypeDEMO captures enum value "DEMO"
-	TrackedEntitlementInfoAppTypeDEMO string = "DEMO"
+	// EntitlementDecrementResultAppTypeDEMO captures enum value "DEMO"
+	EntitlementDecrementResultAppTypeDEMO string = "DEMO"
 
-	// TrackedEntitlementInfoAppTypeDLC captures enum value "DLC"
-	TrackedEntitlementInfoAppTypeDLC string = "DLC"
+	// EntitlementDecrementResultAppTypeDLC captures enum value "DLC"
+	EntitlementDecrementResultAppTypeDLC string = "DLC"
 
-	// TrackedEntitlementInfoAppTypeGAME captures enum value "GAME"
-	TrackedEntitlementInfoAppTypeGAME string = "GAME"
+	// EntitlementDecrementResultAppTypeGAME captures enum value "GAME"
+	EntitlementDecrementResultAppTypeGAME string = "GAME"
 
-	// TrackedEntitlementInfoAppTypeSOFTWARE captures enum value "SOFTWARE"
-	TrackedEntitlementInfoAppTypeSOFTWARE string = "SOFTWARE"
+	// EntitlementDecrementResultAppTypeSOFTWARE captures enum value "SOFTWARE"
+	EntitlementDecrementResultAppTypeSOFTWARE string = "SOFTWARE"
 )
 
 // prop value enum
-func (m *TrackedEntitlementInfo) validateAppTypeEnum(path, location string, value string) error {
-	if err := validate.EnumCase(path, location, value, trackedEntitlementInfoTypeAppTypePropEnum, true); err != nil {
+func (m *EntitlementDecrementResult) validateAppTypeEnum(path, location string, value string) error {
+	if err := validate.EnumCase(path, location, value, entitlementDecrementResultTypeAppTypePropEnum, true); err != nil {
 		return err
 	}
 	return nil
 }
 
-func (m *TrackedEntitlementInfo) validateAppType(formats strfmt.Registry) error {
+func (m *EntitlementDecrementResult) validateAppType(formats strfmt.Registry) error {
 
 	if swag.IsZero(m.AppType) { // not required
 		return nil
@@ -253,48 +261,51 @@ func (m *TrackedEntitlementInfo) validateAppType(formats strfmt.Registry) error 
 	return nil
 }
 
-var trackedEntitlementInfoTypeClazzPropEnum []interface{}
+var entitlementDecrementResultTypeClazzPropEnum []interface{}
 
 func init() {
 	var res []string
-	if err := json.Unmarshal([]byte(`["APP","CODE","ENTITLEMENT","MEDIA","OPTIONBOX","SUBSCRIPTION"]`), &res); err != nil {
+	if err := json.Unmarshal([]byte(`["APP","CODE","ENTITLEMENT","LOOTBOX","MEDIA","OPTIONBOX","SUBSCRIPTION"]`), &res); err != nil {
 		panic(err)
 	}
 	for _, v := range res {
-		trackedEntitlementInfoTypeClazzPropEnum = append(trackedEntitlementInfoTypeClazzPropEnum, v)
+		entitlementDecrementResultTypeClazzPropEnum = append(entitlementDecrementResultTypeClazzPropEnum, v)
 	}
 }
 
 const (
 
-	// TrackedEntitlementInfoClazzAPP captures enum value "APP"
-	TrackedEntitlementInfoClazzAPP string = "APP"
+	// EntitlementDecrementResultClazzAPP captures enum value "APP"
+	EntitlementDecrementResultClazzAPP string = "APP"
 
-	// TrackedEntitlementInfoClazzCODE captures enum value "CODE"
-	TrackedEntitlementInfoClazzCODE string = "CODE"
+	// EntitlementDecrementResultClazzCODE captures enum value "CODE"
+	EntitlementDecrementResultClazzCODE string = "CODE"
 
-	// TrackedEntitlementInfoClazzENTITLEMENT captures enum value "ENTITLEMENT"
-	TrackedEntitlementInfoClazzENTITLEMENT string = "ENTITLEMENT"
+	// EntitlementDecrementResultClazzENTITLEMENT captures enum value "ENTITLEMENT"
+	EntitlementDecrementResultClazzENTITLEMENT string = "ENTITLEMENT"
 
-	// TrackedEntitlementInfoClazzMEDIA captures enum value "MEDIA"
-	TrackedEntitlementInfoClazzMEDIA string = "MEDIA"
+	// EntitlementDecrementResultClazzLOOTBOX captures enum value "LOOTBOX"
+	EntitlementDecrementResultClazzLOOTBOX string = "LOOTBOX"
 
-	// TrackedEntitlementInfoClazzOPTIONBOX captures enum value "OPTIONBOX"
-	TrackedEntitlementInfoClazzOPTIONBOX string = "OPTIONBOX"
+	// EntitlementDecrementResultClazzMEDIA captures enum value "MEDIA"
+	EntitlementDecrementResultClazzMEDIA string = "MEDIA"
 
-	// TrackedEntitlementInfoClazzSUBSCRIPTION captures enum value "SUBSCRIPTION"
-	TrackedEntitlementInfoClazzSUBSCRIPTION string = "SUBSCRIPTION"
+	// EntitlementDecrementResultClazzOPTIONBOX captures enum value "OPTIONBOX"
+	EntitlementDecrementResultClazzOPTIONBOX string = "OPTIONBOX"
+
+	// EntitlementDecrementResultClazzSUBSCRIPTION captures enum value "SUBSCRIPTION"
+	EntitlementDecrementResultClazzSUBSCRIPTION string = "SUBSCRIPTION"
 )
 
 // prop value enum
-func (m *TrackedEntitlementInfo) validateClazzEnum(path, location string, value string) error {
-	if err := validate.EnumCase(path, location, value, trackedEntitlementInfoTypeClazzPropEnum, true); err != nil {
+func (m *EntitlementDecrementResult) validateClazzEnum(path, location string, value string) error {
+	if err := validate.EnumCase(path, location, value, entitlementDecrementResultTypeClazzPropEnum, true); err != nil {
 		return err
 	}
 	return nil
 }
 
-func (m *TrackedEntitlementInfo) validateClazz(formats strfmt.Registry) error {
+func (m *EntitlementDecrementResult) validateClazz(formats strfmt.Registry) error {
 
 	if err := validate.Required("clazz", "body", m.Clazz); err != nil {
 		return err
@@ -308,7 +319,7 @@ func (m *TrackedEntitlementInfo) validateClazz(formats strfmt.Registry) error {
 	return nil
 }
 
-func (m *TrackedEntitlementInfo) validateCreatedAt(formats strfmt.Registry) error {
+func (m *EntitlementDecrementResult) validateCreatedAt(formats strfmt.Registry) error {
 
 	if err := validate.Required("createdAt", "body", strfmt.DateTime(m.CreatedAt)); err != nil {
 		return err
@@ -321,7 +332,7 @@ func (m *TrackedEntitlementInfo) validateCreatedAt(formats strfmt.Registry) erro
 	return nil
 }
 
-func (m *TrackedEntitlementInfo) validateEndDate(formats strfmt.Registry) error {
+func (m *EntitlementDecrementResult) validateEndDate(formats strfmt.Registry) error {
 
 	if swag.IsZero(m.EndDate) { // not required
 		return nil
@@ -334,7 +345,7 @@ func (m *TrackedEntitlementInfo) validateEndDate(formats strfmt.Registry) error 
 	return nil
 }
 
-func (m *TrackedEntitlementInfo) validateFeatures(formats strfmt.Registry) error {
+func (m *EntitlementDecrementResult) validateFeatures(formats strfmt.Registry) error {
 
 	if swag.IsZero(m.Features) { // not required
 		return nil
@@ -347,7 +358,7 @@ func (m *TrackedEntitlementInfo) validateFeatures(formats strfmt.Registry) error
 	return nil
 }
 
-func (m *TrackedEntitlementInfo) validateGrantedAt(formats strfmt.Registry) error {
+func (m *EntitlementDecrementResult) validateGrantedAt(formats strfmt.Registry) error {
 
 	if err := validate.Required("grantedAt", "body", strfmt.DateTime(m.GrantedAt)); err != nil {
 		return err
@@ -360,7 +371,7 @@ func (m *TrackedEntitlementInfo) validateGrantedAt(formats strfmt.Registry) erro
 	return nil
 }
 
-func (m *TrackedEntitlementInfo) validateID(formats strfmt.Registry) error {
+func (m *EntitlementDecrementResult) validateID(formats strfmt.Registry) error {
 
 	if err := validate.Required("id", "body", m.ID); err != nil {
 		return err
@@ -369,7 +380,7 @@ func (m *TrackedEntitlementInfo) validateID(formats strfmt.Registry) error {
 	return nil
 }
 
-func (m *TrackedEntitlementInfo) validateItemID(formats strfmt.Registry) error {
+func (m *EntitlementDecrementResult) validateItemID(formats strfmt.Registry) error {
 
 	if err := validate.Required("itemId", "body", m.ItemID); err != nil {
 		return err
@@ -378,7 +389,7 @@ func (m *TrackedEntitlementInfo) validateItemID(formats strfmt.Registry) error {
 	return nil
 }
 
-func (m *TrackedEntitlementInfo) validateItemNamespace(formats strfmt.Registry) error {
+func (m *EntitlementDecrementResult) validateItemNamespace(formats strfmt.Registry) error {
 
 	if err := validate.Required("itemNamespace", "body", m.ItemNamespace); err != nil {
 		return err
@@ -387,7 +398,7 @@ func (m *TrackedEntitlementInfo) validateItemNamespace(formats strfmt.Registry) 
 	return nil
 }
 
-func (m *TrackedEntitlementInfo) validateItemSnapshot(formats strfmt.Registry) error {
+func (m *EntitlementDecrementResult) validateItemSnapshot(formats strfmt.Registry) error {
 
 	if swag.IsZero(m.ItemSnapshot) { // not required
 		return nil
@@ -405,7 +416,7 @@ func (m *TrackedEntitlementInfo) validateItemSnapshot(formats strfmt.Registry) e
 	return nil
 }
 
-func (m *TrackedEntitlementInfo) validateName(formats strfmt.Registry) error {
+func (m *EntitlementDecrementResult) validateName(formats strfmt.Registry) error {
 
 	if err := validate.Required("name", "body", m.Name); err != nil {
 		return err
@@ -414,7 +425,7 @@ func (m *TrackedEntitlementInfo) validateName(formats strfmt.Registry) error {
 	return nil
 }
 
-func (m *TrackedEntitlementInfo) validateNamespace(formats strfmt.Registry) error {
+func (m *EntitlementDecrementResult) validateNamespace(formats strfmt.Registry) error {
 
 	if err := validate.Required("namespace", "body", m.Namespace); err != nil {
 		return err
@@ -423,7 +434,32 @@ func (m *TrackedEntitlementInfo) validateNamespace(formats strfmt.Registry) erro
 	return nil
 }
 
-var trackedEntitlementInfoTypeSourcePropEnum []interface{}
+func (m *EntitlementDecrementResult) validateRewards(formats strfmt.Registry) error {
+
+	if swag.IsZero(m.Rewards) { // not required
+		return nil
+	}
+
+	for i := 0; i < len(m.Rewards); i++ {
+		if swag.IsZero(m.Rewards[i]) { // not required
+			continue
+		}
+
+		if m.Rewards[i] != nil {
+			if err := m.Rewards[i].Validate(formats); err != nil {
+				if ve, ok := err.(*errors.Validation); ok {
+					return ve.ValidateName("rewards" + "." + strconv.Itoa(i))
+				}
+				return err
+			}
+		}
+
+	}
+
+	return nil
+}
+
+var entitlementDecrementResultTypeSourcePropEnum []interface{}
 
 func init() {
 	var res []string
@@ -431,49 +467,49 @@ func init() {
 		panic(err)
 	}
 	for _, v := range res {
-		trackedEntitlementInfoTypeSourcePropEnum = append(trackedEntitlementInfoTypeSourcePropEnum, v)
+		entitlementDecrementResultTypeSourcePropEnum = append(entitlementDecrementResultTypeSourcePropEnum, v)
 	}
 }
 
 const (
 
-	// TrackedEntitlementInfoSourceACHIEVEMENT captures enum value "ACHIEVEMENT"
-	TrackedEntitlementInfoSourceACHIEVEMENT string = "ACHIEVEMENT"
+	// EntitlementDecrementResultSourceACHIEVEMENT captures enum value "ACHIEVEMENT"
+	EntitlementDecrementResultSourceACHIEVEMENT string = "ACHIEVEMENT"
 
-	// TrackedEntitlementInfoSourceGIFT captures enum value "GIFT"
-	TrackedEntitlementInfoSourceGIFT string = "GIFT"
+	// EntitlementDecrementResultSourceGIFT captures enum value "GIFT"
+	EntitlementDecrementResultSourceGIFT string = "GIFT"
 
-	// TrackedEntitlementInfoSourceIAP captures enum value "IAP"
-	TrackedEntitlementInfoSourceIAP string = "IAP"
+	// EntitlementDecrementResultSourceIAP captures enum value "IAP"
+	EntitlementDecrementResultSourceIAP string = "IAP"
 
-	// TrackedEntitlementInfoSourceOTHER captures enum value "OTHER"
-	TrackedEntitlementInfoSourceOTHER string = "OTHER"
+	// EntitlementDecrementResultSourceOTHER captures enum value "OTHER"
+	EntitlementDecrementResultSourceOTHER string = "OTHER"
 
-	// TrackedEntitlementInfoSourcePROMOTION captures enum value "PROMOTION"
-	TrackedEntitlementInfoSourcePROMOTION string = "PROMOTION"
+	// EntitlementDecrementResultSourcePROMOTION captures enum value "PROMOTION"
+	EntitlementDecrementResultSourcePROMOTION string = "PROMOTION"
 
-	// TrackedEntitlementInfoSourcePURCHASE captures enum value "PURCHASE"
-	TrackedEntitlementInfoSourcePURCHASE string = "PURCHASE"
+	// EntitlementDecrementResultSourcePURCHASE captures enum value "PURCHASE"
+	EntitlementDecrementResultSourcePURCHASE string = "PURCHASE"
 
-	// TrackedEntitlementInfoSourceREDEEMCODE captures enum value "REDEEM_CODE"
-	TrackedEntitlementInfoSourceREDEEMCODE string = "REDEEM_CODE"
+	// EntitlementDecrementResultSourceREDEEMCODE captures enum value "REDEEM_CODE"
+	EntitlementDecrementResultSourceREDEEMCODE string = "REDEEM_CODE"
 
-	// TrackedEntitlementInfoSourceREFERRALBONUS captures enum value "REFERRAL_BONUS"
-	TrackedEntitlementInfoSourceREFERRALBONUS string = "REFERRAL_BONUS"
+	// EntitlementDecrementResultSourceREFERRALBONUS captures enum value "REFERRAL_BONUS"
+	EntitlementDecrementResultSourceREFERRALBONUS string = "REFERRAL_BONUS"
 
-	// TrackedEntitlementInfoSourceREWARD captures enum value "REWARD"
-	TrackedEntitlementInfoSourceREWARD string = "REWARD"
+	// EntitlementDecrementResultSourceREWARD captures enum value "REWARD"
+	EntitlementDecrementResultSourceREWARD string = "REWARD"
 )
 
 // prop value enum
-func (m *TrackedEntitlementInfo) validateSourceEnum(path, location string, value string) error {
-	if err := validate.EnumCase(path, location, value, trackedEntitlementInfoTypeSourcePropEnum, true); err != nil {
+func (m *EntitlementDecrementResult) validateSourceEnum(path, location string, value string) error {
+	if err := validate.EnumCase(path, location, value, entitlementDecrementResultTypeSourcePropEnum, true); err != nil {
 		return err
 	}
 	return nil
 }
 
-func (m *TrackedEntitlementInfo) validateSource(formats strfmt.Registry) error {
+func (m *EntitlementDecrementResult) validateSource(formats strfmt.Registry) error {
 
 	if err := validate.Required("source", "body", m.Source); err != nil {
 		return err
@@ -487,7 +523,7 @@ func (m *TrackedEntitlementInfo) validateSource(formats strfmt.Registry) error {
 	return nil
 }
 
-func (m *TrackedEntitlementInfo) validateStartDate(formats strfmt.Registry) error {
+func (m *EntitlementDecrementResult) validateStartDate(formats strfmt.Registry) error {
 
 	if swag.IsZero(m.StartDate) { // not required
 		return nil
@@ -500,7 +536,7 @@ func (m *TrackedEntitlementInfo) validateStartDate(formats strfmt.Registry) erro
 	return nil
 }
 
-var trackedEntitlementInfoTypeStatusPropEnum []interface{}
+var entitlementDecrementResultTypeStatusPropEnum []interface{}
 
 func init() {
 	var res []string
@@ -508,34 +544,34 @@ func init() {
 		panic(err)
 	}
 	for _, v := range res {
-		trackedEntitlementInfoTypeStatusPropEnum = append(trackedEntitlementInfoTypeStatusPropEnum, v)
+		entitlementDecrementResultTypeStatusPropEnum = append(entitlementDecrementResultTypeStatusPropEnum, v)
 	}
 }
 
 const (
 
-	// TrackedEntitlementInfoStatusACTIVE captures enum value "ACTIVE"
-	TrackedEntitlementInfoStatusACTIVE string = "ACTIVE"
+	// EntitlementDecrementResultStatusACTIVE captures enum value "ACTIVE"
+	EntitlementDecrementResultStatusACTIVE string = "ACTIVE"
 
-	// TrackedEntitlementInfoStatusCONSUMED captures enum value "CONSUMED"
-	TrackedEntitlementInfoStatusCONSUMED string = "CONSUMED"
+	// EntitlementDecrementResultStatusCONSUMED captures enum value "CONSUMED"
+	EntitlementDecrementResultStatusCONSUMED string = "CONSUMED"
 
-	// TrackedEntitlementInfoStatusINACTIVE captures enum value "INACTIVE"
-	TrackedEntitlementInfoStatusINACTIVE string = "INACTIVE"
+	// EntitlementDecrementResultStatusINACTIVE captures enum value "INACTIVE"
+	EntitlementDecrementResultStatusINACTIVE string = "INACTIVE"
 
-	// TrackedEntitlementInfoStatusREVOKED captures enum value "REVOKED"
-	TrackedEntitlementInfoStatusREVOKED string = "REVOKED"
+	// EntitlementDecrementResultStatusREVOKED captures enum value "REVOKED"
+	EntitlementDecrementResultStatusREVOKED string = "REVOKED"
 )
 
 // prop value enum
-func (m *TrackedEntitlementInfo) validateStatusEnum(path, location string, value string) error {
-	if err := validate.EnumCase(path, location, value, trackedEntitlementInfoTypeStatusPropEnum, true); err != nil {
+func (m *EntitlementDecrementResult) validateStatusEnum(path, location string, value string) error {
+	if err := validate.EnumCase(path, location, value, entitlementDecrementResultTypeStatusPropEnum, true); err != nil {
 		return err
 	}
 	return nil
 }
 
-func (m *TrackedEntitlementInfo) validateStatus(formats strfmt.Registry) error {
+func (m *EntitlementDecrementResult) validateStatus(formats strfmt.Registry) error {
 
 	if err := validate.Required("status", "body", m.Status); err != nil {
 		return err
@@ -549,7 +585,7 @@ func (m *TrackedEntitlementInfo) validateStatus(formats strfmt.Registry) error {
 	return nil
 }
 
-var trackedEntitlementInfoTypeTypePropEnum []interface{}
+var entitlementDecrementResultTypeTypePropEnum []interface{}
 
 func init() {
 	var res []string
@@ -557,28 +593,28 @@ func init() {
 		panic(err)
 	}
 	for _, v := range res {
-		trackedEntitlementInfoTypeTypePropEnum = append(trackedEntitlementInfoTypeTypePropEnum, v)
+		entitlementDecrementResultTypeTypePropEnum = append(entitlementDecrementResultTypeTypePropEnum, v)
 	}
 }
 
 const (
 
-	// TrackedEntitlementInfoTypeCONSUMABLE captures enum value "CONSUMABLE"
-	TrackedEntitlementInfoTypeCONSUMABLE string = "CONSUMABLE"
+	// EntitlementDecrementResultTypeCONSUMABLE captures enum value "CONSUMABLE"
+	EntitlementDecrementResultTypeCONSUMABLE string = "CONSUMABLE"
 
-	// TrackedEntitlementInfoTypeDURABLE captures enum value "DURABLE"
-	TrackedEntitlementInfoTypeDURABLE string = "DURABLE"
+	// EntitlementDecrementResultTypeDURABLE captures enum value "DURABLE"
+	EntitlementDecrementResultTypeDURABLE string = "DURABLE"
 )
 
 // prop value enum
-func (m *TrackedEntitlementInfo) validateTypeEnum(path, location string, value string) error {
-	if err := validate.EnumCase(path, location, value, trackedEntitlementInfoTypeTypePropEnum, true); err != nil {
+func (m *EntitlementDecrementResult) validateTypeEnum(path, location string, value string) error {
+	if err := validate.EnumCase(path, location, value, entitlementDecrementResultTypeTypePropEnum, true); err != nil {
 		return err
 	}
 	return nil
 }
 
-func (m *TrackedEntitlementInfo) validateType(formats strfmt.Registry) error {
+func (m *EntitlementDecrementResult) validateType(formats strfmt.Registry) error {
 
 	if err := validate.Required("type", "body", m.Type); err != nil {
 		return err
@@ -592,7 +628,7 @@ func (m *TrackedEntitlementInfo) validateType(formats strfmt.Registry) error {
 	return nil
 }
 
-func (m *TrackedEntitlementInfo) validateUpdatedAt(formats strfmt.Registry) error {
+func (m *EntitlementDecrementResult) validateUpdatedAt(formats strfmt.Registry) error {
 
 	if err := validate.Required("updatedAt", "body", strfmt.DateTime(m.UpdatedAt)); err != nil {
 		return err
@@ -605,7 +641,7 @@ func (m *TrackedEntitlementInfo) validateUpdatedAt(formats strfmt.Registry) erro
 	return nil
 }
 
-func (m *TrackedEntitlementInfo) validateUserID(formats strfmt.Registry) error {
+func (m *EntitlementDecrementResult) validateUserID(formats strfmt.Registry) error {
 
 	if err := validate.Required("userId", "body", m.UserID); err != nil {
 		return err
@@ -615,7 +651,7 @@ func (m *TrackedEntitlementInfo) validateUserID(formats strfmt.Registry) error {
 }
 
 // MarshalBinary interface implementation
-func (m *TrackedEntitlementInfo) MarshalBinary() ([]byte, error) {
+func (m *EntitlementDecrementResult) MarshalBinary() ([]byte, error) {
 	if m == nil {
 		return nil, nil
 	}
@@ -623,8 +659,8 @@ func (m *TrackedEntitlementInfo) MarshalBinary() ([]byte, error) {
 }
 
 // UnmarshalBinary interface implementation
-func (m *TrackedEntitlementInfo) UnmarshalBinary(b []byte) error {
-	var res TrackedEntitlementInfo
+func (m *EntitlementDecrementResult) UnmarshalBinary(b []byte) error {
+	var res EntitlementDecrementResult
 	if err := swag.ReadJSON(b, &res); err != nil {
 		return err
 	}

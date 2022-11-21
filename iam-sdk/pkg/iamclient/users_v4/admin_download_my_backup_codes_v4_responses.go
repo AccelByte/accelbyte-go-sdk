@@ -25,13 +25,14 @@ import (
 // AdminDownloadMyBackupCodesV4Reader is a Reader for the AdminDownloadMyBackupCodesV4 structure.
 type AdminDownloadMyBackupCodesV4Reader struct {
 	formats strfmt.Registry
+	writer  io.Writer
 }
 
 // ReadResponse reads a server response into the received o.
 func (o *AdminDownloadMyBackupCodesV4Reader) ReadResponse(response runtime.ClientResponse, consumer runtime.Consumer) (interface{}, error) {
 	switch response.Code() {
 	case 200:
-		result := NewAdminDownloadMyBackupCodesV4OK()
+		result := NewAdminDownloadMyBackupCodesV4OK(o.writer)
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
@@ -78,8 +79,10 @@ func (o *AdminDownloadMyBackupCodesV4Reader) ReadResponse(response runtime.Clien
 }
 
 // NewAdminDownloadMyBackupCodesV4OK creates a AdminDownloadMyBackupCodesV4OK with default headers values
-func NewAdminDownloadMyBackupCodesV4OK() *AdminDownloadMyBackupCodesV4OK {
-	return &AdminDownloadMyBackupCodesV4OK{}
+func NewAdminDownloadMyBackupCodesV4OK(writer io.Writer) *AdminDownloadMyBackupCodesV4OK {
+	return &AdminDownloadMyBackupCodesV4OK{
+		Payload: writer,
+	}
 }
 
 /*AdminDownloadMyBackupCodesV4OK handles this case with default header values.
@@ -87,10 +90,30 @@ func NewAdminDownloadMyBackupCodesV4OK() *AdminDownloadMyBackupCodesV4OK {
   Backup codes downloaded
 */
 type AdminDownloadMyBackupCodesV4OK struct {
+	Payload io.Writer
 }
 
 func (o *AdminDownloadMyBackupCodesV4OK) Error() string {
-	return fmt.Sprintf("[GET /iam/v4/admin/users/me/mfa/backupCode/download][%d] adminDownloadMyBackupCodesV4OK ", 200)
+	return fmt.Sprintf("[GET /iam/v4/admin/users/me/mfa/backupCode/download][%d] adminDownloadMyBackupCodesV4OK  %+v", 200, o.ToJSONString())
+}
+
+func (o *AdminDownloadMyBackupCodesV4OK) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
+}
+
+func (o *AdminDownloadMyBackupCodesV4OK) GetPayload() io.Writer {
+	return o.Payload
 }
 
 func (o *AdminDownloadMyBackupCodesV4OK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -98,6 +121,11 @@ func (o *AdminDownloadMyBackupCodesV4OK) readResponse(response runtime.ClientRes
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
 		consumer = runtime.ByteStreamConsumer()
+	}
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
 	}
 
 	return nil

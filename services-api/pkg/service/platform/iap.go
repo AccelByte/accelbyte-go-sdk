@@ -580,20 +580,37 @@ func (aaa *IAPService) PublicFulfillGoogleIAPItem(input *i_a_p.PublicFulfillGoog
 }
 
 // Deprecated: Use PublicReconcilePlayStationStoreShort instead
-func (aaa *IAPService) PublicReconcilePlayStationStore(input *i_a_p.PublicReconcilePlayStationStoreParams) ([]*platformclientmodels.PlayStationReconcileResult, error) {
+func (aaa *IAPService) PublicReconcilePlayStationStore(input *i_a_p.PublicReconcilePlayStationStoreParams) error {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
-		return nil, err
+		return err
 	}
-	ok, badRequest, err := aaa.Client.Iap.PublicReconcilePlayStationStore(input, client.BearerToken(*token.AccessToken))
+	_, badRequest, err := aaa.Client.Iap.PublicReconcilePlayStationStore(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
-		return nil, badRequest
+		return badRequest
 	}
 	if err != nil {
-		return nil, err
+		return err
 	}
 
-	return ok.GetPayload(), nil
+	return nil
+}
+
+// Deprecated: Use PublicReconcilePlayStationStoreWithMultipleServiceLabelsShort instead
+func (aaa *IAPService) PublicReconcilePlayStationStoreWithMultipleServiceLabels(input *i_a_p.PublicReconcilePlayStationStoreWithMultipleServiceLabelsParams) error {
+	token, err := aaa.TokenRepository.GetToken()
+	if err != nil {
+		return err
+	}
+	_, badRequest, err := aaa.Client.Iap.PublicReconcilePlayStationStoreWithMultipleServiceLabels(input, client.BearerToken(*token.AccessToken))
+	if badRequest != nil {
+		return badRequest
+	}
+	if err != nil {
+		return err
+	}
+
+	return nil
 }
 
 // Deprecated: Use SyncStadiaEntitlementShort instead
@@ -1561,7 +1578,7 @@ func (aaa *IAPService) PublicFulfillGoogleIAPItemShort(input *i_a_p.PublicFulfil
 	return ok.GetPayload(), nil
 }
 
-func (aaa *IAPService) PublicReconcilePlayStationStoreShort(input *i_a_p.PublicReconcilePlayStationStoreParams) ([]*platformclientmodels.PlayStationReconcileResult, error) {
+func (aaa *IAPService) PublicReconcilePlayStationStoreShort(input *i_a_p.PublicReconcilePlayStationStoreParams) error {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -1578,12 +1595,37 @@ func (aaa *IAPService) PublicReconcilePlayStationStoreShort(input *i_a_p.PublicR
 		}
 	}
 
-	ok, err := aaa.Client.Iap.PublicReconcilePlayStationStoreShort(input, authInfoWriter)
+	_, err := aaa.Client.Iap.PublicReconcilePlayStationStoreShort(input, authInfoWriter)
 	if err != nil {
-		return nil, err
+		return err
 	}
 
-	return ok.GetPayload(), nil
+	return nil
+}
+
+func (aaa *IAPService) PublicReconcilePlayStationStoreWithMultipleServiceLabelsShort(input *i_a_p.PublicReconcilePlayStationStoreWithMultipleServiceLabelsParams) error {
+	authInfoWriter := input.AuthInfoWriter
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
+	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  aaa.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
+	_, err := aaa.Client.Iap.PublicReconcilePlayStationStoreWithMultipleServiceLabelsShort(input, authInfoWriter)
+	if err != nil {
+		return err
+	}
+
+	return nil
 }
 
 func (aaa *IAPService) SyncStadiaEntitlementShort(input *i_a_p.SyncStadiaEntitlementParams) error {

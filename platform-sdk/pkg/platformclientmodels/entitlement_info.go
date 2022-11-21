@@ -28,7 +28,7 @@ type EntitlementInfo struct {
 
 	// entitlement class
 	// Required: true
-	// Enum: [APP CODE ENTITLEMENT MEDIA OPTIONBOX SUBSCRIPTION]
+	// Enum: [APP CODE ENTITLEMENT LOOTBOX MEDIA OPTIONBOX SUBSCRIPTION]
 	Clazz *string `json:"clazz"`
 
 	// entitlement created at
@@ -251,7 +251,7 @@ var entitlementInfoTypeClazzPropEnum []interface{}
 
 func init() {
 	var res []string
-	if err := json.Unmarshal([]byte(`["APP","CODE","ENTITLEMENT","MEDIA","OPTIONBOX","SUBSCRIPTION"]`), &res); err != nil {
+	if err := json.Unmarshal([]byte(`["APP","CODE","ENTITLEMENT","LOOTBOX","MEDIA","OPTIONBOX","SUBSCRIPTION"]`), &res); err != nil {
 		panic(err)
 	}
 	for _, v := range res {
@@ -269,6 +269,9 @@ const (
 
 	// EntitlementInfoClazzENTITLEMENT captures enum value "ENTITLEMENT"
 	EntitlementInfoClazzENTITLEMENT string = "ENTITLEMENT"
+
+	// EntitlementInfoClazzLOOTBOX captures enum value "LOOTBOX"
+	EntitlementInfoClazzLOOTBOX string = "LOOTBOX"
 
 	// EntitlementInfoClazzMEDIA captures enum value "MEDIA"
 	EntitlementInfoClazzMEDIA string = "MEDIA"

@@ -30,8 +30,8 @@ type DeleteRuleSetReader struct {
 // ReadResponse reads a server response into the received o.
 func (o *DeleteRuleSetReader) ReadResponse(response runtime.ClientResponse, consumer runtime.Consumer) (interface{}, error) {
 	switch response.Code() {
-	case 200:
-		result := NewDeleteRuleSetOK()
+	case 204:
+		result := NewDeleteRuleSetNoContent()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
@@ -71,23 +71,23 @@ func (o *DeleteRuleSetReader) ReadResponse(response runtime.ClientResponse, cons
 	}
 }
 
-// NewDeleteRuleSetOK creates a DeleteRuleSetOK with default headers values
-func NewDeleteRuleSetOK() *DeleteRuleSetOK {
-	return &DeleteRuleSetOK{}
+// NewDeleteRuleSetNoContent creates a DeleteRuleSetNoContent with default headers values
+func NewDeleteRuleSetNoContent() *DeleteRuleSetNoContent {
+	return &DeleteRuleSetNoContent{}
 }
 
-/*DeleteRuleSetOK handles this case with default header values.
+/*DeleteRuleSetNoContent handles this case with default header values.
 
-  OK
+  No Content
 */
-type DeleteRuleSetOK struct {
+type DeleteRuleSetNoContent struct {
 }
 
-func (o *DeleteRuleSetOK) Error() string {
-	return fmt.Sprintf("[DELETE /match2/v1/namespaces/{namespace}/rulesets/{ruleset}][%d] deleteRuleSetOK ", 200)
+func (o *DeleteRuleSetNoContent) Error() string {
+	return fmt.Sprintf("[DELETE /match2/v1/namespaces/{namespace}/rulesets/{ruleset}][%d] deleteRuleSetNoContent ", 204)
 }
 
-func (o *DeleteRuleSetOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+func (o *DeleteRuleSetNoContent) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {

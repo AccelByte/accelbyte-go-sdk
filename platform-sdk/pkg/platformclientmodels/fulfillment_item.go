@@ -32,7 +32,7 @@ type FulfillmentItem struct {
 	ItemSku string `json:"itemSku,omitempty"`
 
 	// item type
-	// Enum: [APP BUNDLE CODE COINS EXTENSION INGAMEITEM MEDIA OPTIONBOX SEASON SUBSCRIPTION]
+	// Enum: [APP BUNDLE CODE COINS EXTENSION INGAMEITEM LOOTBOX MEDIA OPTIONBOX SEASON SUBSCRIPTION]
 	ItemType string `json:"itemType,omitempty"`
 
 	// quantity
@@ -65,7 +65,7 @@ var fulfillmentItemTypeItemTypePropEnum []interface{}
 
 func init() {
 	var res []string
-	if err := json.Unmarshal([]byte(`["APP","BUNDLE","CODE","COINS","EXTENSION","INGAMEITEM","MEDIA","OPTIONBOX","SEASON","SUBSCRIPTION"]`), &res); err != nil {
+	if err := json.Unmarshal([]byte(`["APP","BUNDLE","CODE","COINS","EXTENSION","INGAMEITEM","LOOTBOX","MEDIA","OPTIONBOX","SEASON","SUBSCRIPTION"]`), &res); err != nil {
 		panic(err)
 	}
 	for _, v := range res {
@@ -92,6 +92,9 @@ const (
 
 	// FulfillmentItemItemTypeINGAMEITEM captures enum value "INGAMEITEM"
 	FulfillmentItemItemTypeINGAMEITEM string = "INGAMEITEM"
+
+	// FulfillmentItemItemTypeLOOTBOX captures enum value "LOOTBOX"
+	FulfillmentItemItemTypeLOOTBOX string = "LOOTBOX"
 
 	// FulfillmentItemItemTypeMEDIA captures enum value "MEDIA"
 	FulfillmentItemItemTypeMEDIA string = "MEDIA"

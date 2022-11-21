@@ -35,8 +35,8 @@ type Client struct {
 type ClientService interface {
 	CreateRuleSet(params *CreateRuleSetParams, authInfo runtime.ClientAuthInfoWriter) (*CreateRuleSetCreated, *CreateRuleSetBadRequest, *CreateRuleSetUnauthorized, *CreateRuleSetForbidden, *CreateRuleSetConflict, *CreateRuleSetInternalServerError, error)
 	CreateRuleSetShort(params *CreateRuleSetParams, authInfo runtime.ClientAuthInfoWriter) (*CreateRuleSetCreated, error)
-	DeleteRuleSet(params *DeleteRuleSetParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteRuleSetOK, *DeleteRuleSetUnauthorized, *DeleteRuleSetForbidden, *DeleteRuleSetNotFound, *DeleteRuleSetInternalServerError, error)
-	DeleteRuleSetShort(params *DeleteRuleSetParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteRuleSetOK, error)
+	DeleteRuleSet(params *DeleteRuleSetParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteRuleSetNoContent, *DeleteRuleSetUnauthorized, *DeleteRuleSetForbidden, *DeleteRuleSetNotFound, *DeleteRuleSetInternalServerError, error)
+	DeleteRuleSetShort(params *DeleteRuleSetParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteRuleSetNoContent, error)
 	RuleSetDetails(params *RuleSetDetailsParams, authInfo runtime.ClientAuthInfoWriter) (*RuleSetDetailsOK, *RuleSetDetailsUnauthorized, *RuleSetDetailsForbidden, *RuleSetDetailsInternalServerError, error)
 	RuleSetDetailsShort(params *RuleSetDetailsParams, authInfo runtime.ClientAuthInfoWriter) (*RuleSetDetailsOK, error)
 	RuleSetList(params *RuleSetListParams, authInfo runtime.ClientAuthInfoWriter) (*RuleSetListOK, *RuleSetListUnauthorized, *RuleSetListForbidden, *RuleSetListInternalServerError, error)
@@ -194,7 +194,7 @@ Required Scope: social
 Deletes an existing rule set.
 
 */
-func (a *Client) DeleteRuleSet(params *DeleteRuleSetParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteRuleSetOK, *DeleteRuleSetUnauthorized, *DeleteRuleSetForbidden, *DeleteRuleSetNotFound, *DeleteRuleSetInternalServerError, error) {
+func (a *Client) DeleteRuleSet(params *DeleteRuleSetParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteRuleSetNoContent, *DeleteRuleSetUnauthorized, *DeleteRuleSetForbidden, *DeleteRuleSetNotFound, *DeleteRuleSetInternalServerError, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewDeleteRuleSetParams()
@@ -227,7 +227,7 @@ func (a *Client) DeleteRuleSet(params *DeleteRuleSetParams, authInfo runtime.Cli
 
 	switch v := result.(type) {
 
-	case *DeleteRuleSetOK:
+	case *DeleteRuleSetNoContent:
 		return v, nil, nil, nil, nil, nil
 
 	case *DeleteRuleSetUnauthorized:
@@ -257,7 +257,7 @@ Required Scope: social
 Deletes an existing rule set.
 
 */
-func (a *Client) DeleteRuleSetShort(params *DeleteRuleSetParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteRuleSetOK, error) {
+func (a *Client) DeleteRuleSetShort(params *DeleteRuleSetParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteRuleSetNoContent, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewDeleteRuleSetParams()
@@ -290,7 +290,7 @@ func (a *Client) DeleteRuleSetShort(params *DeleteRuleSetParams, authInfo runtim
 
 	switch v := result.(type) {
 
-	case *DeleteRuleSetOK:
+	case *DeleteRuleSetNoContent:
 		return v, nil
 	case *DeleteRuleSetUnauthorized:
 		return nil, v

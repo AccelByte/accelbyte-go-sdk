@@ -25,13 +25,14 @@ import (
 // ExportConfigV1Reader is a Reader for the ExportConfigV1 structure.
 type ExportConfigV1Reader struct {
 	formats strfmt.Registry
+	writer  io.Writer
 }
 
 // ReadResponse reads a server response into the received o.
 func (o *ExportConfigV1Reader) ReadResponse(response runtime.ClientResponse, consumer runtime.Consumer) (interface{}, error) {
 	switch response.Code() {
 	case 200:
-		result := NewExportConfigV1OK()
+		result := NewExportConfigV1OK(o.writer)
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
@@ -72,8 +73,10 @@ func (o *ExportConfigV1Reader) ReadResponse(response runtime.ClientResponse, con
 }
 
 // NewExportConfigV1OK creates a ExportConfigV1OK with default headers values
-func NewExportConfigV1OK() *ExportConfigV1OK {
-	return &ExportConfigV1OK{}
+func NewExportConfigV1OK(writer io.Writer) *ExportConfigV1OK {
+	return &ExportConfigV1OK{
+		Payload: writer,
+	}
 }
 
 /*ExportConfigV1OK handles this case with default header values.
@@ -81,7 +84,7 @@ func NewExportConfigV1OK() *ExportConfigV1OK {
   config exported
 */
 type ExportConfigV1OK struct {
-	Payload *dsmcclientmodels.ModelsDSMConfigExport
+	Payload io.Writer
 }
 
 func (o *ExportConfigV1OK) Error() string {
@@ -103,7 +106,7 @@ func (o *ExportConfigV1OK) ToJSONString() string {
 	return fmt.Sprintf("%+v", string(b))
 }
 
-func (o *ExportConfigV1OK) GetPayload() *dsmcclientmodels.ModelsDSMConfigExport {
+func (o *ExportConfigV1OK) GetPayload() io.Writer {
 	return o.Payload
 }
 
@@ -113,8 +116,6 @@ func (o *ExportConfigV1OK) readResponse(response runtime.ClientResponse, consume
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
 		consumer = runtime.ByteStreamConsumer()
 	}
-
-	o.Payload = new(dsmcclientmodels.ModelsDSMConfigExport)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {

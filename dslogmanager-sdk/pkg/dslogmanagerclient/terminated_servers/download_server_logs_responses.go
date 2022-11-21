@@ -25,13 +25,14 @@ import (
 // DownloadServerLogsReader is a Reader for the DownloadServerLogs structure.
 type DownloadServerLogsReader struct {
 	formats strfmt.Registry
+	writer  io.Writer
 }
 
 // ReadResponse reads a server response into the received o.
 func (o *DownloadServerLogsReader) ReadResponse(response runtime.ClientResponse, consumer runtime.Consumer) (interface{}, error) {
 	switch response.Code() {
 	case 200:
-		result := NewDownloadServerLogsOK()
+		result := NewDownloadServerLogsOK(o.writer)
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
@@ -60,8 +61,10 @@ func (o *DownloadServerLogsReader) ReadResponse(response runtime.ClientResponse,
 }
 
 // NewDownloadServerLogsOK creates a DownloadServerLogsOK with default headers values
-func NewDownloadServerLogsOK() *DownloadServerLogsOK {
-	return &DownloadServerLogsOK{}
+func NewDownloadServerLogsOK(writer io.Writer) *DownloadServerLogsOK {
+	return &DownloadServerLogsOK{
+		Payload: writer,
+	}
 }
 
 /*DownloadServerLogsOK handles this case with default header values.
@@ -69,10 +72,30 @@ func NewDownloadServerLogsOK() *DownloadServerLogsOK {
   server logs downloaded.
 */
 type DownloadServerLogsOK struct {
+	Payload io.Writer
 }
 
 func (o *DownloadServerLogsOK) Error() string {
-	return fmt.Sprintf("[GET /dslogmanager/namespaces/{namespace}/servers/{podName}/logs/download][%d] downloadServerLogsOK ", 200)
+	return fmt.Sprintf("[GET /dslogmanager/namespaces/{namespace}/servers/{podName}/logs/download][%d] downloadServerLogsOK  %+v", 200, o.ToJSONString())
+}
+
+func (o *DownloadServerLogsOK) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
+}
+
+func (o *DownloadServerLogsOK) GetPayload() io.Writer {
+	return o.Payload
 }
 
 func (o *DownloadServerLogsOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -80,6 +103,11 @@ func (o *DownloadServerLogsOK) readResponse(response runtime.ClientResponse, con
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
 		consumer = runtime.ByteStreamConsumer()
+	}
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
 	}
 
 	return nil

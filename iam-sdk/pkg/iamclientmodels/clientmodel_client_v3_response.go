@@ -48,6 +48,10 @@ type ClientmodelClientV3Response struct {
 	// Format: date-time
 	CreatedAt strfmt.DateTime `json:"createdAt"`
 
+	// description
+	// Required: true
+	Description *string `json:"description"`
+
 	// modified at
 	// Required: true
 	// Format: date-time
@@ -60,12 +64,18 @@ type ClientmodelClientV3Response struct {
 	// oauth access token expiration
 	OauthAccessTokenExpiration int32 `json:"oauthAccessTokenExpiration,omitempty"`
 
+	// oauth access token expiration time unit
+	OauthAccessTokenExpirationTimeUnit string `json:"oauthAccessTokenExpirationTimeUnit,omitempty"`
+
 	// oauth client type
 	// Required: true
 	OauthClientType *string `json:"oauthClientType"`
 
 	// oauth refresh token expiration
 	OauthRefreshTokenExpiration int32 `json:"oauthRefreshTokenExpiration,omitempty"`
+
+	// oauth refresh token expiration time unit
+	OauthRefreshTokenExpirationTimeUnit string `json:"oauthRefreshTokenExpirationTimeUnit,omitempty"`
 
 	// redirect Uri
 	// Required: true
@@ -109,6 +119,10 @@ func (m *ClientmodelClientV3Response) Validate(formats strfmt.Registry) error {
 	}
 
 	if err := m.validateCreatedAt(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateDescription(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -219,6 +233,15 @@ func (m *ClientmodelClientV3Response) validateCreatedAt(formats strfmt.Registry)
 	}
 
 	if err := validate.FormatOf("createdAt", "body", "date-time", m.CreatedAt.String(), formats); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *ClientmodelClientV3Response) validateDescription(formats strfmt.Registry) error {
+
+	if err := validate.Required("description", "body", m.Description); err != nil {
 		return err
 	}
 

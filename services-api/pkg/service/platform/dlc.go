@@ -172,6 +172,23 @@ func (aaa *DLCService) PublicSyncPsnDlcInventory(input *d_l_c.PublicSyncPsnDlcIn
 	return nil
 }
 
+// Deprecated: Use PublicSyncPsnDlcInventoryWithMultipleServiceLabelsShort instead
+func (aaa *DLCService) PublicSyncPsnDlcInventoryWithMultipleServiceLabels(input *d_l_c.PublicSyncPsnDlcInventoryWithMultipleServiceLabelsParams) error {
+	token, err := aaa.TokenRepository.GetToken()
+	if err != nil {
+		return err
+	}
+	_, badRequest, err := aaa.Client.Dlc.PublicSyncPsnDlcInventoryWithMultipleServiceLabels(input, client.BearerToken(*token.AccessToken))
+	if badRequest != nil {
+		return badRequest
+	}
+	if err != nil {
+		return err
+	}
+
+	return nil
+}
+
 // Deprecated: Use SyncSteamDLCShort instead
 func (aaa *DLCService) SyncSteamDLC(input *d_l_c.SyncSteamDLCParams) error {
 	token, err := aaa.TokenRepository.GetToken()
@@ -399,6 +416,31 @@ func (aaa *DLCService) PublicSyncPsnDlcInventoryShort(input *d_l_c.PublicSyncPsn
 	}
 
 	_, err := aaa.Client.Dlc.PublicSyncPsnDlcInventoryShort(input, authInfoWriter)
+	if err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (aaa *DLCService) PublicSyncPsnDlcInventoryWithMultipleServiceLabelsShort(input *d_l_c.PublicSyncPsnDlcInventoryWithMultipleServiceLabelsParams) error {
+	authInfoWriter := input.AuthInfoWriter
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
+	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  aaa.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
+	_, err := aaa.Client.Dlc.PublicSyncPsnDlcInventoryWithMultipleServiceLabelsShort(input, authInfoWriter)
 	if err != nil {
 		return err
 	}

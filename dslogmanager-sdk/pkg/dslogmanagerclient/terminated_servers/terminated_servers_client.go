@@ -12,6 +12,7 @@ package terminated_servers
 import (
 	"context"
 	"fmt"
+	"io"
 	"reflect"
 
 	"github.com/go-openapi/runtime"
@@ -35,8 +36,8 @@ type Client struct {
 type ClientService interface {
 	CheckServerLogs(params *CheckServerLogsParams, authInfo runtime.ClientAuthInfoWriter) (*CheckServerLogsOK, *CheckServerLogsNotFound, *CheckServerLogsInternalServerError, error)
 	CheckServerLogsShort(params *CheckServerLogsParams, authInfo runtime.ClientAuthInfoWriter) (*CheckServerLogsOK, error)
-	DownloadServerLogs(params *DownloadServerLogsParams, authInfo runtime.ClientAuthInfoWriter) (*DownloadServerLogsOK, *DownloadServerLogsNotFound, *DownloadServerLogsInternalServerError, error)
-	DownloadServerLogsShort(params *DownloadServerLogsParams, authInfo runtime.ClientAuthInfoWriter) (*DownloadServerLogsOK, error)
+	DownloadServerLogs(params *DownloadServerLogsParams, authInfo runtime.ClientAuthInfoWriter, writer io.Writer) (*DownloadServerLogsOK, *DownloadServerLogsNotFound, *DownloadServerLogsInternalServerError, error)
+	DownloadServerLogsShort(params *DownloadServerLogsParams, authInfo runtime.ClientAuthInfoWriter, writer io.Writer) (*DownloadServerLogsOK, error)
 	ListTerminatedServers(params *ListTerminatedServersParams, authInfo runtime.ClientAuthInfoWriter) (*ListTerminatedServersOK, *ListTerminatedServersBadRequest, *ListTerminatedServersUnauthorized, *ListTerminatedServersInternalServerError, error)
 	ListTerminatedServersShort(params *ListTerminatedServersParams, authInfo runtime.ClientAuthInfoWriter) (*ListTerminatedServersOK, error)
 
@@ -166,7 +167,7 @@ Required scope: social
 
 This endpoint will download dedicated server&#39;s log file (.log).
 */
-func (a *Client) DownloadServerLogs(params *DownloadServerLogsParams, authInfo runtime.ClientAuthInfoWriter) (*DownloadServerLogsOK, *DownloadServerLogsNotFound, *DownloadServerLogsInternalServerError, error) {
+func (a *Client) DownloadServerLogs(params *DownloadServerLogsParams, authInfo runtime.ClientAuthInfoWriter, writer io.Writer) (*DownloadServerLogsOK, *DownloadServerLogsNotFound, *DownloadServerLogsInternalServerError, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewDownloadServerLogsParams()
@@ -188,7 +189,7 @@ func (a *Client) DownloadServerLogs(params *DownloadServerLogsParams, authInfo r
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
 		Params:             params,
-		Reader:             &DownloadServerLogsReader{formats: a.formats},
+		Reader:             &DownloadServerLogsReader{formats: a.formats, writer: writer},
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
@@ -222,7 +223,7 @@ Required scope: social
 
 This endpoint will download dedicated server&#39;s log file (.log).
 */
-func (a *Client) DownloadServerLogsShort(params *DownloadServerLogsParams, authInfo runtime.ClientAuthInfoWriter) (*DownloadServerLogsOK, error) {
+func (a *Client) DownloadServerLogsShort(params *DownloadServerLogsParams, authInfo runtime.ClientAuthInfoWriter, writer io.Writer) (*DownloadServerLogsOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewDownloadServerLogsParams()
@@ -244,7 +245,7 @@ func (a *Client) DownloadServerLogsShort(params *DownloadServerLogsParams, authI
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
 		Params:             params,
-		Reader:             &DownloadServerLogsReader{formats: a.formats},
+		Reader:             &DownloadServerLogsReader{formats: a.formats, writer: writer},
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,

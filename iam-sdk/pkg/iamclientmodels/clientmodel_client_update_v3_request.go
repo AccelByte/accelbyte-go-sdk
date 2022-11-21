@@ -38,17 +38,30 @@ type ClientmodelClientUpdateV3Request struct {
 	// deletable
 	Deletable bool `json:"deletable"`
 
+	// length 0~1024
+	// Required: true
+	Description *string `json:"description"`
+
 	// namespace
 	Namespace string `json:"namespace,omitempty"`
 
 	// min value 1 second, max value 86400 seconds
 	OauthAccessTokenExpiration int32 `json:"oauthAccessTokenExpiration,omitempty"`
 
+	// valid time unit: SECONDS, MINUTES, or HOURS. Default is SECONDS
+	OauthAccessTokenExpirationTimeUnit string `json:"oauthAccessTokenExpirationTimeUnit,omitempty"`
+
 	// min value 1 seconds, max value 2592000 seconds
 	OauthRefreshTokenExpiration int32 `json:"oauthRefreshTokenExpiration,omitempty"`
 
+	// valid time unit: SECONDS, MINUTES, HOURS or DAYS. Default is MINUTES
+	OauthRefreshTokenExpirationTimeUnit string `json:"oauthRefreshTokenExpirationTimeUnit,omitempty"`
+
 	// redirect Uri
 	RedirectURI string `json:"redirectUri,omitempty"`
+
+	// scopes
+	Scopes []string `json:"scopes"`
 
 	// two factor enabled
 	TwoFactorEnabled bool `json:"twoFactorEnabled"`
@@ -63,6 +76,10 @@ func (m *ClientmodelClientUpdateV3Request) Validate(formats strfmt.Registry) err
 	}
 
 	if err := m.validateClientPlatform(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateDescription(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -100,6 +117,15 @@ func (m *ClientmodelClientUpdateV3Request) validateClientPermissions(formats str
 func (m *ClientmodelClientUpdateV3Request) validateClientPlatform(formats strfmt.Registry) error {
 
 	if err := validate.Required("clientPlatform", "body", m.ClientPlatform); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *ClientmodelClientUpdateV3Request) validateDescription(formats strfmt.Registry) error {
+
+	if err := validate.Required("description", "body", m.Description); err != nil {
 		return err
 	}
 

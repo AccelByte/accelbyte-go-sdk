@@ -34,6 +34,7 @@ var QueryItems1Cmd = &cobra.Command{
 		categoryPath, _ := cmd.Flags().GetString("categoryPath")
 		features, _ := cmd.Flags().GetString("features")
 		includeSubCategoryItem, _ := cmd.Flags().GetBool("includeSubCategoryItem")
+		itemName, _ := cmd.Flags().GetString("itemName")
 		itemStatus, _ := cmd.Flags().GetString("itemStatus")
 		itemType, _ := cmd.Flags().GetString("itemType")
 		limit, _ := cmd.Flags().GetInt32("limit")
@@ -56,6 +57,7 @@ var QueryItems1Cmd = &cobra.Command{
 			CategoryPath:           &categoryPath,
 			Features:               &features,
 			IncludeSubCategoryItem: &includeSubCategoryItem,
+			ItemName:               &itemName,
 			ItemStatus:             &itemStatus,
 			ItemType:               &itemType,
 			Limit:                  &limit,
@@ -88,6 +90,7 @@ func init() {
 	QueryItems1Cmd.Flags().String("categoryPath", "", "Category path")
 	QueryItems1Cmd.Flags().String("features", "", "Features")
 	QueryItems1Cmd.Flags().Bool("includeSubCategoryItem", false, "Include sub category item")
+	QueryItems1Cmd.Flags().String("itemName", "", "Item name")
 	QueryItems1Cmd.Flags().String("itemStatus", "", "Item status")
 	QueryItems1Cmd.Flags().String("itemType", "", "Item type")
 	QueryItems1Cmd.Flags().Int32("limit", 20, "Limit")

@@ -7,6 +7,8 @@
 package matchmaking
 
 import (
+	"io"
+
 	"github.com/AccelByte/accelbyte-go-sdk/matchmaking-sdk/pkg/matchmakingclient"
 	"github.com/AccelByte/accelbyte-go-sdk/matchmaking-sdk/pkg/matchmakingclient/matchmaking"
 	"github.com/AccelByte/accelbyte-go-sdk/matchmaking-sdk/pkg/matchmakingclientmodels"
@@ -318,12 +320,12 @@ func (aaa *MatchmakingService) BulkGetSessions(input *matchmaking.BulkGetSession
 }
 
 // Deprecated: Use ExportChannelsShort instead
-func (aaa *MatchmakingService) ExportChannels(input *matchmaking.ExportChannelsParams) ([]*matchmakingclientmodels.ModelsChannelV1, error) {
+func (aaa *MatchmakingService) ExportChannels(input *matchmaking.ExportChannelsParams, writer io.Writer) (io.Writer, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, unauthorized, forbidden, internalServerError, err := aaa.Client.Matchmaking.ExportChannels(input, client.BearerToken(*token.AccessToken))
+	ok, unauthorized, forbidden, internalServerError, err := aaa.Client.Matchmaking.ExportChannels(input, client.BearerToken(*token.AccessToken), writer)
 	if unauthorized != nil {
 		return nil, unauthorized
 	}
@@ -967,7 +969,7 @@ func (aaa *MatchmakingService) BulkGetSessionsShort(input *matchmaking.BulkGetSe
 	return ok.GetPayload(), nil
 }
 
-func (aaa *MatchmakingService) ExportChannelsShort(input *matchmaking.ExportChannelsParams) ([]*matchmakingclientmodels.ModelsChannelV1, error) {
+func (aaa *MatchmakingService) ExportChannelsShort(input *matchmaking.ExportChannelsParams, writer io.Writer) (io.Writer, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -984,7 +986,7 @@ func (aaa *MatchmakingService) ExportChannelsShort(input *matchmaking.ExportChan
 		}
 	}
 
-	ok, err := aaa.Client.Matchmaking.ExportChannelsShort(input, authInfoWriter)
+	ok, err := aaa.Client.Matchmaking.ExportChannelsShort(input, authInfoWriter, writer)
 	if err != nil {
 		return nil, err
 	}

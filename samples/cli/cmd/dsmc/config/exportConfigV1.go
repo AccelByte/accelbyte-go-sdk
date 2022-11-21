@@ -7,6 +7,8 @@
 package config
 
 import (
+	"bytes"
+
 	"github.com/AccelByte/accelbyte-go-sdk/dsmc-sdk/pkg/dsmcclient/config"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/dsmc"
@@ -29,7 +31,8 @@ var ExportConfigV1Cmd = &cobra.Command{
 		input := &config.ExportConfigV1Params{
 			Namespace: namespace,
 		}
-		ok, err := configService.ExportConfigV1Short(input)
+		writer := bytes.NewBuffer(nil)
+		ok, err := configService.ExportConfigV1Short(input, writer)
 		if err != nil {
 			logrus.Error(err)
 

@@ -7,6 +7,8 @@
 package dsmc
 
 import (
+	"io"
+
 	"github.com/AccelByte/accelbyte-go-sdk/dsmc-sdk/pkg/dsmcclient"
 	"github.com/AccelByte/accelbyte-go-sdk/dsmc-sdk/pkg/dsmcclient/config"
 	"github.com/AccelByte/accelbyte-go-sdk/dsmc-sdk/pkg/dsmcclientmodels"
@@ -285,12 +287,12 @@ func (aaa *ConfigService) UpdatePort(input *config.UpdatePortParams) (*dsmcclien
 }
 
 // Deprecated: Use ExportConfigV1Short instead
-func (aaa *ConfigService) ExportConfigV1(input *config.ExportConfigV1Params) (*dsmcclientmodels.ModelsDSMConfigExport, error) {
+func (aaa *ConfigService) ExportConfigV1(input *config.ExportConfigV1Params, writer io.Writer) (io.Writer, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, unauthorized, forbidden, notFound, internalServerError, err := aaa.Client.Config.ExportConfigV1(input, client.BearerToken(*token.AccessToken))
+	ok, unauthorized, forbidden, notFound, internalServerError, err := aaa.Client.Config.ExportConfigV1(input, client.BearerToken(*token.AccessToken), writer)
 	if unauthorized != nil {
 		return nil, unauthorized
 	}
@@ -589,7 +591,7 @@ func (aaa *ConfigService) UpdatePortShort(input *config.UpdatePortParams) (*dsmc
 	return ok.GetPayload(), nil
 }
 
-func (aaa *ConfigService) ExportConfigV1Short(input *config.ExportConfigV1Params) (*dsmcclientmodels.ModelsDSMConfigExport, error) {
+func (aaa *ConfigService) ExportConfigV1Short(input *config.ExportConfigV1Params, writer io.Writer) (io.Writer, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -606,7 +608,7 @@ func (aaa *ConfigService) ExportConfigV1Short(input *config.ExportConfigV1Params
 		}
 	}
 
-	ok, err := aaa.Client.Config.ExportConfigV1Short(input, authInfoWriter)
+	ok, err := aaa.Client.Config.ExportConfigV1Short(input, authInfoWriter, writer)
 	if err != nil {
 		return nil, err
 	}

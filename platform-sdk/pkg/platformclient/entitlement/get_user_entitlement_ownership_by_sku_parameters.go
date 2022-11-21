@@ -26,6 +26,7 @@ const (
 	GetUserEntitlementOwnershipBySkuAPPConstant          = "APP"
 	GetUserEntitlementOwnershipBySkuCODEConstant         = "CODE"
 	GetUserEntitlementOwnershipBySkuENTITLEMENTConstant  = "ENTITLEMENT"
+	GetUserEntitlementOwnershipBySkuLOOTBOXConstant      = "LOOTBOX"
 	GetUserEntitlementOwnershipBySkuMEDIAConstant        = "MEDIA"
 	GetUserEntitlementOwnershipBySkuOPTIONBOXConstant    = "OPTIONBOX"
 	GetUserEntitlementOwnershipBySkuSUBSCRIPTIONConstant = "SUBSCRIPTION"

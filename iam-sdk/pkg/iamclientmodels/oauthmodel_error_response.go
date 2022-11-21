@@ -23,6 +23,9 @@ type OauthmodelErrorResponse struct {
 	// default factor
 	DefaultFactor string `json:"default_factor,omitempty"`
 
+	// email
+	Email string `json:"email,omitempty"`
+
 	// error
 	// Required: true
 	Error *string `json:"error"`

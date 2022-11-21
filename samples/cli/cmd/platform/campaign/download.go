@@ -7,6 +7,8 @@
 package campaign
 
 import (
+	"bytes"
+
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclient/campaign"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/platform"
@@ -33,11 +35,14 @@ var DownloadCmd = &cobra.Command{
 			Namespace:  namespace,
 			BatchNo:    &batchNo,
 		}
-		errInput := campaignService.DownloadShort(input)
-		if errInput != nil {
-			logrus.Error(errInput)
+		writer := bytes.NewBuffer(nil)
+		ok, err := campaignService.DownloadShort(input, writer)
+		if err != nil {
+			logrus.Error(err)
 
-			return errInput
+			return err
+		} else {
+			logrus.Infof("Response CLI success: %+v", ok)
 		}
 
 		return nil

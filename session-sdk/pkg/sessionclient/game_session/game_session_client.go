@@ -47,8 +47,8 @@ type ClientService interface {
 	GetGameSessionByPodNameShort(params *GetGameSessionByPodNameParams, authInfo runtime.ClientAuthInfoWriter) (*GetGameSessionByPodNameOK, error)
 	JoinGameSession(params *JoinGameSessionParams, authInfo runtime.ClientAuthInfoWriter) (*JoinGameSessionOK, *JoinGameSessionBadRequest, *JoinGameSessionUnauthorized, *JoinGameSessionForbidden, *JoinGameSessionNotFound, *JoinGameSessionInternalServerError, error)
 	JoinGameSessionShort(params *JoinGameSessionParams, authInfo runtime.ClientAuthInfoWriter) (*JoinGameSessionOK, error)
-	LeaveGameSession(params *LeaveGameSessionParams, authInfo runtime.ClientAuthInfoWriter) (*LeaveGameSessionOK, *LeaveGameSessionBadRequest, *LeaveGameSessionUnauthorized, *LeaveGameSessionForbidden, *LeaveGameSessionNotFound, *LeaveGameSessionInternalServerError, error)
-	LeaveGameSessionShort(params *LeaveGameSessionParams, authInfo runtime.ClientAuthInfoWriter) (*LeaveGameSessionOK, error)
+	LeaveGameSession(params *LeaveGameSessionParams, authInfo runtime.ClientAuthInfoWriter) (*LeaveGameSessionNoContent, *LeaveGameSessionBadRequest, *LeaveGameSessionUnauthorized, *LeaveGameSessionForbidden, *LeaveGameSessionNotFound, *LeaveGameSessionInternalServerError, error)
+	LeaveGameSessionShort(params *LeaveGameSessionParams, authInfo runtime.ClientAuthInfoWriter) (*LeaveGameSessionNoContent, error)
 	PatchUpdateGameSession(params *PatchUpdateGameSessionParams, authInfo runtime.ClientAuthInfoWriter) (*PatchUpdateGameSessionOK, *PatchUpdateGameSessionBadRequest, *PatchUpdateGameSessionUnauthorized, *PatchUpdateGameSessionForbidden, *PatchUpdateGameSessionNotFound, *PatchUpdateGameSessionInternalServerError, error)
 	PatchUpdateGameSessionShort(params *PatchUpdateGameSessionParams, authInfo runtime.ClientAuthInfoWriter) (*PatchUpdateGameSessionOK, error)
 	PublicGameSessionInvite(params *PublicGameSessionInviteParams, authInfo runtime.ClientAuthInfoWriter) (*PublicGameSessionInviteCreated, *PublicGameSessionInviteNoContent, *PublicGameSessionInviteBadRequest, *PublicGameSessionInviteUnauthorized, *PublicGameSessionInviteNotFound, *PublicGameSessionInviteInternalServerError, error)
@@ -955,7 +955,7 @@ Deprecated: Use LeaveGameSessionShort instead.
 
   Leave a game session.
 */
-func (a *Client) LeaveGameSession(params *LeaveGameSessionParams, authInfo runtime.ClientAuthInfoWriter) (*LeaveGameSessionOK, *LeaveGameSessionBadRequest, *LeaveGameSessionUnauthorized, *LeaveGameSessionForbidden, *LeaveGameSessionNotFound, *LeaveGameSessionInternalServerError, error) {
+func (a *Client) LeaveGameSession(params *LeaveGameSessionParams, authInfo runtime.ClientAuthInfoWriter) (*LeaveGameSessionNoContent, *LeaveGameSessionBadRequest, *LeaveGameSessionUnauthorized, *LeaveGameSessionForbidden, *LeaveGameSessionNotFound, *LeaveGameSessionInternalServerError, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewLeaveGameSessionParams()
@@ -988,7 +988,7 @@ func (a *Client) LeaveGameSession(params *LeaveGameSessionParams, authInfo runti
 
 	switch v := result.(type) {
 
-	case *LeaveGameSessionOK:
+	case *LeaveGameSessionNoContent:
 		return v, nil, nil, nil, nil, nil, nil
 
 	case *LeaveGameSessionBadRequest:
@@ -1016,7 +1016,7 @@ func (a *Client) LeaveGameSession(params *LeaveGameSessionParams, authInfo runti
 
   Leave a game session.
 */
-func (a *Client) LeaveGameSessionShort(params *LeaveGameSessionParams, authInfo runtime.ClientAuthInfoWriter) (*LeaveGameSessionOK, error) {
+func (a *Client) LeaveGameSessionShort(params *LeaveGameSessionParams, authInfo runtime.ClientAuthInfoWriter) (*LeaveGameSessionNoContent, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewLeaveGameSessionParams()
@@ -1049,7 +1049,7 @@ func (a *Client) LeaveGameSessionShort(params *LeaveGameSessionParams, authInfo 
 
 	switch v := result.(type) {
 
-	case *LeaveGameSessionOK:
+	case *LeaveGameSessionNoContent:
 		return v, nil
 	case *LeaveGameSessionBadRequest:
 		return nil, v

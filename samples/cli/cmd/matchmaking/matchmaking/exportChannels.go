@@ -7,6 +7,8 @@
 package matchmaking
 
 import (
+	"bytes"
+
 	matchmaking_ "github.com/AccelByte/accelbyte-go-sdk/matchmaking-sdk/pkg/matchmakingclient/matchmaking"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/matchmaking"
@@ -29,7 +31,8 @@ var ExportChannelsCmd = &cobra.Command{
 		input := &matchmaking_.ExportChannelsParams{
 			Namespace: namespace,
 		}
-		ok, err := matchmakingService.ExportChannelsShort(input)
+		writer := bytes.NewBuffer(nil)
+		ok, err := matchmakingService.ExportChannelsShort(input, writer)
 		if err != nil {
 			logrus.Error(err)
 

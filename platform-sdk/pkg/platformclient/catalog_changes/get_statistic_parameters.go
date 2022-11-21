@@ -36,6 +36,7 @@ const (
 	GetStatisticCOINSConstant        = "COINS"
 	GetStatisticEXTENSIONConstant    = "EXTENSION"
 	GetStatisticINGAMEITEMConstant   = "INGAMEITEM"
+	GetStatisticLOOTBOXConstant      = "LOOTBOX"
 	GetStatisticMEDIAConstant        = "MEDIA"
 	GetStatisticOPTIONBOXConstant    = "OPTIONBOX"
 	GetStatisticSEASONConstant       = "SEASON"

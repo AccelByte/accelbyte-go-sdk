@@ -38,6 +38,7 @@ const (
 	PublicQueryItemsCOINSConstant        = "COINS"
 	PublicQueryItemsEXTENSIONConstant    = "EXTENSION"
 	PublicQueryItemsINGAMEITEMConstant   = "INGAMEITEM"
+	PublicQueryItemsLOOTBOXConstant      = "LOOTBOX"
 	PublicQueryItemsMEDIAConstant        = "MEDIA"
 	PublicQueryItemsOPTIONBOXConstant    = "OPTIONBOX"
 	PublicQueryItemsSEASONConstant       = "SEASON"

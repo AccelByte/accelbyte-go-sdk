@@ -25,13 +25,14 @@ import (
 // BatchDownloadServerLogsReader is a Reader for the BatchDownloadServerLogs structure.
 type BatchDownloadServerLogsReader struct {
 	formats strfmt.Registry
+	writer  io.Writer
 }
 
 // ReadResponse reads a server response into the received o.
 func (o *BatchDownloadServerLogsReader) ReadResponse(response runtime.ClientResponse, consumer runtime.Consumer) (interface{}, error) {
 	switch response.Code() {
 	case 200:
-		result := NewBatchDownloadServerLogsOK()
+		result := NewBatchDownloadServerLogsOK(o.writer)
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
@@ -60,8 +61,10 @@ func (o *BatchDownloadServerLogsReader) ReadResponse(response runtime.ClientResp
 }
 
 // NewBatchDownloadServerLogsOK creates a BatchDownloadServerLogsOK with default headers values
-func NewBatchDownloadServerLogsOK() *BatchDownloadServerLogsOK {
-	return &BatchDownloadServerLogsOK{}
+func NewBatchDownloadServerLogsOK(writer io.Writer) *BatchDownloadServerLogsOK {
+	return &BatchDownloadServerLogsOK{
+		Payload: writer,
+	}
 }
 
 /*BatchDownloadServerLogsOK handles this case with default header values.
@@ -69,10 +72,30 @@ func NewBatchDownloadServerLogsOK() *BatchDownloadServerLogsOK {
   server logs downloaded.
 */
 type BatchDownloadServerLogsOK struct {
+	Payload io.Writer
 }
 
 func (o *BatchDownloadServerLogsOK) Error() string {
-	return fmt.Sprintf("[POST /dslogmanager/servers/logs/download][%d] batchDownloadServerLogsOK ", 200)
+	return fmt.Sprintf("[POST /dslogmanager/servers/logs/download][%d] batchDownloadServerLogsOK  %+v", 200, o.ToJSONString())
+}
+
+func (o *BatchDownloadServerLogsOK) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
+}
+
+func (o *BatchDownloadServerLogsOK) GetPayload() io.Writer {
+	return o.Payload
 }
 
 func (o *BatchDownloadServerLogsOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -80,6 +103,11 @@ func (o *BatchDownloadServerLogsOK) readResponse(response runtime.ClientResponse
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
 		consumer = runtime.ByteStreamConsumer()
+	}
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
 	}
 
 	return nil

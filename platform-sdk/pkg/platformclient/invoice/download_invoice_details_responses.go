@@ -10,7 +10,9 @@ package invoice
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
+	"io"
 	"io/ioutil"
 	"strings"
 
@@ -21,13 +23,14 @@ import (
 // DownloadInvoiceDetailsReader is a Reader for the DownloadInvoiceDetails structure.
 type DownloadInvoiceDetailsReader struct {
 	formats strfmt.Registry
+	writer  io.Writer
 }
 
 // ReadResponse reads a server response into the received o.
 func (o *DownloadInvoiceDetailsReader) ReadResponse(response runtime.ClientResponse, consumer runtime.Consumer) (interface{}, error) {
 	switch response.Code() {
 	case 200:
-		result := NewDownloadInvoiceDetailsOK()
+		result := NewDownloadInvoiceDetailsOK(o.writer)
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
@@ -44,8 +47,10 @@ func (o *DownloadInvoiceDetailsReader) ReadResponse(response runtime.ClientRespo
 }
 
 // NewDownloadInvoiceDetailsOK creates a DownloadInvoiceDetailsOK with default headers values
-func NewDownloadInvoiceDetailsOK() *DownloadInvoiceDetailsOK {
-	return &DownloadInvoiceDetailsOK{}
+func NewDownloadInvoiceDetailsOK(writer io.Writer) *DownloadInvoiceDetailsOK {
+	return &DownloadInvoiceDetailsOK{
+		Payload: writer,
+	}
 }
 
 /*DownloadInvoiceDetailsOK handles this case with default header values.
@@ -53,10 +58,30 @@ func NewDownloadInvoiceDetailsOK() *DownloadInvoiceDetailsOK {
   Successful operation
 */
 type DownloadInvoiceDetailsOK struct {
+	Payload io.Writer
 }
 
 func (o *DownloadInvoiceDetailsOK) Error() string {
-	return fmt.Sprintf("[GET /platform/admin/namespaces/{namespace}/invoice/details.csv][%d] downloadInvoiceDetailsOK ", 200)
+	return fmt.Sprintf("[GET /platform/admin/namespaces/{namespace}/invoice/details.csv][%d] downloadInvoiceDetailsOK  %+v", 200, o.ToJSONString())
+}
+
+func (o *DownloadInvoiceDetailsOK) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
+}
+
+func (o *DownloadInvoiceDetailsOK) GetPayload() io.Writer {
+	return o.Payload
 }
 
 func (o *DownloadInvoiceDetailsOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -64,6 +89,11 @@ func (o *DownloadInvoiceDetailsOK) readResponse(response runtime.ClientResponse,
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
 		consumer = runtime.ByteStreamConsumer()
+	}
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
 	}
 
 	return nil

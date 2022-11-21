@@ -43,6 +43,8 @@ type ClientService interface {
 	GetPlatformDLCConfigShort(params *GetPlatformDLCConfigParams, authInfo runtime.ClientAuthInfoWriter) (*GetPlatformDLCConfigOK, error)
 	PublicSyncPsnDlcInventory(params *PublicSyncPsnDlcInventoryParams, authInfo runtime.ClientAuthInfoWriter) (*PublicSyncPsnDlcInventoryNoContent, *PublicSyncPsnDlcInventoryBadRequest, error)
 	PublicSyncPsnDlcInventoryShort(params *PublicSyncPsnDlcInventoryParams, authInfo runtime.ClientAuthInfoWriter) (*PublicSyncPsnDlcInventoryNoContent, error)
+	PublicSyncPsnDlcInventoryWithMultipleServiceLabels(params *PublicSyncPsnDlcInventoryWithMultipleServiceLabelsParams, authInfo runtime.ClientAuthInfoWriter) (*PublicSyncPsnDlcInventoryWithMultipleServiceLabelsNoContent, *PublicSyncPsnDlcInventoryWithMultipleServiceLabelsBadRequest, error)
+	PublicSyncPsnDlcInventoryWithMultipleServiceLabelsShort(params *PublicSyncPsnDlcInventoryWithMultipleServiceLabelsParams, authInfo runtime.ClientAuthInfoWriter) (*PublicSyncPsnDlcInventoryWithMultipleServiceLabelsNoContent, error)
 	SyncEpicGameDLC(params *SyncEpicGameDLCParams, authInfo runtime.ClientAuthInfoWriter) (*SyncEpicGameDLCNoContent, *SyncEpicGameDLCBadRequest, error)
 	SyncEpicGameDLCShort(params *SyncEpicGameDLCParams, authInfo runtime.ClientAuthInfoWriter) (*SyncEpicGameDLCNoContent, error)
 	SyncSteamDLC(params *SyncSteamDLCParams, authInfo runtime.ClientAuthInfoWriter) (*SyncSteamDLCNoContent, *SyncSteamDLCBadRequest, error)
@@ -535,6 +537,105 @@ func (a *Client) PublicSyncPsnDlcInventoryShort(params *PublicSyncPsnDlcInventor
 	case *PublicSyncPsnDlcInventoryNoContent:
 		return v, nil
 	case *PublicSyncPsnDlcInventoryBadRequest:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+Deprecated: Use PublicSyncPsnDlcInventoryWithMultipleServiceLabelsShort instead.
+
+  PublicSyncPsnDlcInventoryWithMultipleServiceLabels synchronizes with dlc entitlements in p s n store with multiple service labels
+
+  Synchronize with dlc entitlements in PSN Store with multiple service labels.&lt;p&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=NAMESPACE:{namespace}:USER:{userId}:DLC, action=4 (UPDATE)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: result of synchronization&lt;/li&gt;&lt;/ul&gt;
+*/
+func (a *Client) PublicSyncPsnDlcInventoryWithMultipleServiceLabels(params *PublicSyncPsnDlcInventoryWithMultipleServiceLabelsParams, authInfo runtime.ClientAuthInfoWriter) (*PublicSyncPsnDlcInventoryWithMultipleServiceLabelsNoContent, *PublicSyncPsnDlcInventoryWithMultipleServiceLabelsBadRequest, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewPublicSyncPsnDlcInventoryWithMultipleServiceLabelsParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "publicSyncPsnDlcInventoryWithMultipleServiceLabels",
+		Method:             "PUT",
+		PathPattern:        "/platform/public/namespaces/{namespace}/users/{userId}/dlc/psn/sync/multiServiceLabels",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &PublicSyncPsnDlcInventoryWithMultipleServiceLabelsReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *PublicSyncPsnDlcInventoryWithMultipleServiceLabelsNoContent:
+		return v, nil, nil
+
+	case *PublicSyncPsnDlcInventoryWithMultipleServiceLabelsBadRequest:
+		return nil, v, nil
+
+	default:
+		return nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+  PublicSyncPsnDlcInventoryWithMultipleServiceLabelsShort synchronizes with dlc entitlements in p s n store with multiple service labels
+
+  Synchronize with dlc entitlements in PSN Store with multiple service labels.&lt;p&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=NAMESPACE:{namespace}:USER:{userId}:DLC, action=4 (UPDATE)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: result of synchronization&lt;/li&gt;&lt;/ul&gt;
+*/
+func (a *Client) PublicSyncPsnDlcInventoryWithMultipleServiceLabelsShort(params *PublicSyncPsnDlcInventoryWithMultipleServiceLabelsParams, authInfo runtime.ClientAuthInfoWriter) (*PublicSyncPsnDlcInventoryWithMultipleServiceLabelsNoContent, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewPublicSyncPsnDlcInventoryWithMultipleServiceLabelsParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "publicSyncPsnDlcInventoryWithMultipleServiceLabels",
+		Method:             "PUT",
+		PathPattern:        "/platform/public/namespaces/{namespace}/users/{userId}/dlc/psn/sync/multiServiceLabels",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &PublicSyncPsnDlcInventoryWithMultipleServiceLabelsReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *PublicSyncPsnDlcInventoryWithMultipleServiceLabelsNoContent:
+		return v, nil
+	case *PublicSyncPsnDlcInventoryWithMultipleServiceLabelsBadRequest:
 		return nil, v
 
 	default:

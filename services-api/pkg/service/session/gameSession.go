@@ -344,32 +344,32 @@ func (aaa *GameSessionService) JoinGameSession(input *game_session.JoinGameSessi
 }
 
 // Deprecated: Use LeaveGameSessionShort instead
-func (aaa *GameSessionService) LeaveGameSession(input *game_session.LeaveGameSessionParams) (*sessionclientmodels.ApimodelsGameSessionResponse, error) {
+func (aaa *GameSessionService) LeaveGameSession(input *game_session.LeaveGameSessionParams) error {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
-		return nil, err
+		return err
 	}
-	ok, badRequest, unauthorized, forbidden, notFound, internalServerError, err := aaa.Client.GameSession.LeaveGameSession(input, client.BearerToken(*token.AccessToken))
+	_, badRequest, unauthorized, forbidden, notFound, internalServerError, err := aaa.Client.GameSession.LeaveGameSession(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
-		return nil, badRequest
+		return badRequest
 	}
 	if unauthorized != nil {
-		return nil, unauthorized
+		return unauthorized
 	}
 	if forbidden != nil {
-		return nil, forbidden
+		return forbidden
 	}
 	if notFound != nil {
-		return nil, notFound
+		return notFound
 	}
 	if internalServerError != nil {
-		return nil, internalServerError
+		return internalServerError
 	}
 	if err != nil {
-		return nil, err
+		return err
 	}
 
-	return ok.GetPayload(), nil
+	return nil
 }
 
 // Deprecated: Use PublicGameSessionRejectShort instead
@@ -699,7 +699,7 @@ func (aaa *GameSessionService) JoinGameSessionShort(input *game_session.JoinGame
 	return ok.GetPayload(), nil
 }
 
-func (aaa *GameSessionService) LeaveGameSessionShort(input *game_session.LeaveGameSessionParams) (*sessionclientmodels.ApimodelsGameSessionResponse, error) {
+func (aaa *GameSessionService) LeaveGameSessionShort(input *game_session.LeaveGameSessionParams) error {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -716,12 +716,12 @@ func (aaa *GameSessionService) LeaveGameSessionShort(input *game_session.LeaveGa
 		}
 	}
 
-	ok, err := aaa.Client.GameSession.LeaveGameSessionShort(input, authInfoWriter)
+	_, err := aaa.Client.GameSession.LeaveGameSessionShort(input, authInfoWriter)
 	if err != nil {
-		return nil, err
+		return err
 	}
 
-	return ok.GetPayload(), nil
+	return nil
 }
 
 func (aaa *GameSessionService) PublicGameSessionRejectShort(input *game_session.PublicGameSessionRejectParams) error {

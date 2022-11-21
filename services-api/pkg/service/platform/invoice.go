@@ -7,6 +7,8 @@
 package platform
 
 import (
+	"io"
+
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclient"
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclient/invoice"
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclientmodels"
@@ -40,17 +42,17 @@ func (aaa *InvoiceService) GetAuthSession() auth.Session {
 }
 
 // Deprecated: Use DownloadInvoiceDetailsShort instead
-func (aaa *InvoiceService) DownloadInvoiceDetails(input *invoice.DownloadInvoiceDetailsParams) error {
+func (aaa *InvoiceService) DownloadInvoiceDetails(input *invoice.DownloadInvoiceDetailsParams, writer io.Writer) (io.Writer, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
-		return err
+		return nil, err
 	}
-	_, err = aaa.Client.Invoice.DownloadInvoiceDetails(input, client.BearerToken(*token.AccessToken))
+	ok, err := aaa.Client.Invoice.DownloadInvoiceDetails(input, client.BearerToken(*token.AccessToken), writer)
 	if err != nil {
-		return err
+		return nil, err
 	}
 
-	return nil
+	return ok.GetPayload(), nil
 }
 
 // Deprecated: Use GenerateInvoiceSummaryShort instead
@@ -70,7 +72,7 @@ func (aaa *InvoiceService) GenerateInvoiceSummary(input *invoice.GenerateInvoice
 	return ok.GetPayload(), nil
 }
 
-func (aaa *InvoiceService) DownloadInvoiceDetailsShort(input *invoice.DownloadInvoiceDetailsParams) error {
+func (aaa *InvoiceService) DownloadInvoiceDetailsShort(input *invoice.DownloadInvoiceDetailsParams, writer io.Writer) (io.Writer, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -87,12 +89,12 @@ func (aaa *InvoiceService) DownloadInvoiceDetailsShort(input *invoice.DownloadIn
 		}
 	}
 
-	_, err := aaa.Client.Invoice.DownloadInvoiceDetailsShort(input, authInfoWriter)
+	ok, err := aaa.Client.Invoice.DownloadInvoiceDetailsShort(input, authInfoWriter, writer)
 	if err != nil {
-		return err
+		return nil, err
 	}
 
-	return nil
+	return ok.GetPayload(), nil
 }
 
 func (aaa *InvoiceService) GenerateInvoiceSummaryShort(input *invoice.GenerateInvoiceSummaryParams) (*platformclientmodels.InvoiceSummary, error) {

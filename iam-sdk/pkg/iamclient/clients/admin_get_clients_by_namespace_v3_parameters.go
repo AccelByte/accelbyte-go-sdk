@@ -68,6 +68,21 @@ type AdminGetClientsByNamespaceV3Params struct {
 
 	/*RetryPolicy*/
 	RetryPolicy *utils.Retry
+	/*ClientID
+	  Client id, should follow UUID version 4 without hyphen
+
+	*/
+	ClientID *string
+	/*ClientName
+	  Client name, support fuzzy query
+
+	*/
+	ClientName *string
+	/*ClientType
+	  Client type
+
+	*/
+	ClientType *string
 	/*Limit
 	  the maximum number of data that may be returned (1...100)
 
@@ -137,6 +152,39 @@ func (o *AdminGetClientsByNamespaceV3Params) SetHTTPClientTransport(roundTripper
 	}
 }
 
+// WithClientID adds the clientID to the admin get clients by namespace v3 params
+func (o *AdminGetClientsByNamespaceV3Params) WithClientID(clientID *string) *AdminGetClientsByNamespaceV3Params {
+	o.SetClientID(clientID)
+	return o
+}
+
+// SetClientID adds the clientId to the admin get clients by namespace v3 params
+func (o *AdminGetClientsByNamespaceV3Params) SetClientID(clientID *string) {
+	o.ClientID = clientID
+}
+
+// WithClientName adds the clientName to the admin get clients by namespace v3 params
+func (o *AdminGetClientsByNamespaceV3Params) WithClientName(clientName *string) *AdminGetClientsByNamespaceV3Params {
+	o.SetClientName(clientName)
+	return o
+}
+
+// SetClientName adds the clientName to the admin get clients by namespace v3 params
+func (o *AdminGetClientsByNamespaceV3Params) SetClientName(clientName *string) {
+	o.ClientName = clientName
+}
+
+// WithClientType adds the clientType to the admin get clients by namespace v3 params
+func (o *AdminGetClientsByNamespaceV3Params) WithClientType(clientType *string) *AdminGetClientsByNamespaceV3Params {
+	o.SetClientType(clientType)
+	return o
+}
+
+// SetClientType adds the clientType to the admin get clients by namespace v3 params
+func (o *AdminGetClientsByNamespaceV3Params) SetClientType(clientType *string) {
+	o.ClientType = clientType
+}
+
 // WithLimit adds the limit to the admin get clients by namespace v3 params
 func (o *AdminGetClientsByNamespaceV3Params) WithLimit(limit *int64) *AdminGetClientsByNamespaceV3Params {
 	o.SetLimit(limit)
@@ -177,6 +225,54 @@ func (o *AdminGetClientsByNamespaceV3Params) WriteToRequest(r runtime.ClientRequ
 		return err
 	}
 	var res []error
+
+	if o.ClientID != nil {
+
+		// query param clientId
+		var qrClientID string
+		if o.ClientID != nil {
+			qrClientID = *o.ClientID
+		}
+		qClientID := qrClientID
+		if qClientID != "" {
+			if err := r.SetQueryParam("clientId", qClientID); err != nil {
+				return err
+			}
+		}
+
+	}
+
+	if o.ClientName != nil {
+
+		// query param clientName
+		var qrClientName string
+		if o.ClientName != nil {
+			qrClientName = *o.ClientName
+		}
+		qClientName := qrClientName
+		if qClientName != "" {
+			if err := r.SetQueryParam("clientName", qClientName); err != nil {
+				return err
+			}
+		}
+
+	}
+
+	if o.ClientType != nil {
+
+		// query param clientType
+		var qrClientType string
+		if o.ClientType != nil {
+			qrClientType = *o.ClientType
+		}
+		qClientType := qrClientType
+		if qClientType != "" {
+			if err := r.SetQueryParam("clientType", qClientType); err != nil {
+				return err
+			}
+		}
+
+	}
 
 	if o.Limit != nil {
 

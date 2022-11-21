@@ -60,33 +60,13 @@ func NewPublicReconcilePlayStationStoreOK() *PublicReconcilePlayStationStoreOK {
 
 /*PublicReconcilePlayStationStoreOK handles this case with default header values.
 
-  successful operation
+  Successful operation
 */
 type PublicReconcilePlayStationStoreOK struct {
-	Payload []*platformclientmodels.PlayStationReconcileResult
 }
 
 func (o *PublicReconcilePlayStationStoreOK) Error() string {
-	return fmt.Sprintf("[PUT /platform/public/namespaces/{namespace}/users/{userId}/iap/psn/sync][%d] publicReconcilePlayStationStoreOK  %+v", 200, o.ToJSONString())
-}
-
-func (o *PublicReconcilePlayStationStoreOK) ToJSONString() string {
-	if o.Payload == nil {
-		return "{}"
-	}
-
-	b, err := json.Marshal(o.Payload)
-	if err != nil {
-		fmt.Println(err)
-
-		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
-	}
-
-	return fmt.Sprintf("%+v", string(b))
-}
-
-func (o *PublicReconcilePlayStationStoreOK) GetPayload() []*platformclientmodels.PlayStationReconcileResult {
-	return o.Payload
+	return fmt.Sprintf("[PUT /platform/public/namespaces/{namespace}/users/{userId}/iap/psn/sync][%d] publicReconcilePlayStationStoreOK ", 200)
 }
 
 func (o *PublicReconcilePlayStationStoreOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -94,11 +74,6 @@ func (o *PublicReconcilePlayStationStoreOK) readResponse(response runtime.Client
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
 		consumer = runtime.ByteStreamConsumer()
-	}
-
-	// response payload
-	if err := consumer.Consume(response.Body(), &o.Payload); err != nil && err != io.EOF {
-		return err
 	}
 
 	return nil
@@ -111,7 +86,7 @@ func NewPublicReconcilePlayStationStoreBadRequest() *PublicReconcilePlayStationS
 
 /*PublicReconcilePlayStationStoreBadRequest handles this case with default header values.
 
-  <table><tr><td>ErrorCode</td><td>ErrorMessage</td></tr><tr><td>39125</td><td>Invalid platform [{platformId}] user token</td></tr><tr><td>39126</td><td>User id [{}] in namespace [{}] doesn't link platform [{}]</td></tr>
+  <table><tr><td>ErrorCode</td><td>ErrorMessage</td></tr><tr><td>39125</td><td>Invalid platform [{platformId}] user token</td></tr><tr><td>39126</td><td>User id [{}] in namespace [{}] doesn't link platform [{}]</td></tr><tr><td>39127</td><td>Invalid service label [{serviceLabel}]</td></tr>
 */
 type PublicReconcilePlayStationStoreBadRequest struct {
 	Payload *platformclientmodels.ErrorEntity

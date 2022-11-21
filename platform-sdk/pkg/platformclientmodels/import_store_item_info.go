@@ -29,7 +29,7 @@ type ImportStoreItemInfo struct {
 
 	// Item type
 	// Required: true
-	// Enum: [APP BUNDLE CODE COINS EXTENSION INGAMEITEM MEDIA OPTIONBOX SEASON SUBSCRIPTION]
+	// Enum: [APP BUNDLE CODE COINS EXTENSION INGAMEITEM LOOTBOX MEDIA OPTIONBOX SEASON SUBSCRIPTION]
 	ItemType *string `json:"itemType"`
 
 	// Item localizations
@@ -96,7 +96,7 @@ var importStoreItemInfoTypeItemTypePropEnum []interface{}
 
 func init() {
 	var res []string
-	if err := json.Unmarshal([]byte(`["APP","BUNDLE","CODE","COINS","EXTENSION","INGAMEITEM","MEDIA","OPTIONBOX","SEASON","SUBSCRIPTION"]`), &res); err != nil {
+	if err := json.Unmarshal([]byte(`["APP","BUNDLE","CODE","COINS","EXTENSION","INGAMEITEM","LOOTBOX","MEDIA","OPTIONBOX","SEASON","SUBSCRIPTION"]`), &res); err != nil {
 		panic(err)
 	}
 	for _, v := range res {
@@ -123,6 +123,9 @@ const (
 
 	// ImportStoreItemInfoItemTypeINGAMEITEM captures enum value "INGAMEITEM"
 	ImportStoreItemInfoItemTypeINGAMEITEM string = "INGAMEITEM"
+
+	// ImportStoreItemInfoItemTypeLOOTBOX captures enum value "LOOTBOX"
+	ImportStoreItemInfoItemTypeLOOTBOX string = "LOOTBOX"
 
 	// ImportStoreItemInfoItemTypeMEDIA captures enum value "MEDIA"
 	ImportStoreItemInfoItemTypeMEDIA string = "MEDIA"

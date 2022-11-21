@@ -120,6 +120,7 @@
 | `/platform/admin/namespaces/{namespace}/dlc/config/platformMap` | DELETE | DeletePlatformDLCConfigShort | [DeletePlatformDLCConfigShort](../../platform-sdk/pkg/platformclient/dlc/dlc_client.go) | [DeletePlatformDLCConfigShort](../../services-api/pkg/service/platform/dlc.go) | [DeletePlatformDLCConfigShort](../../samples/cli/cmd/platform/dlc/deletePlatformDLCConfig.go) |
 | `/platform/public/namespaces/{namespace}/users/{userId}/dlc/epicgames/sync` | PUT | SyncEpicGameDLCShort | [SyncEpicGameDLCShort](../../platform-sdk/pkg/platformclient/dlc/dlc_client.go) | [SyncEpicGameDLCShort](../../services-api/pkg/service/platform/dlc.go) | [SyncEpicGameDLCShort](../../samples/cli/cmd/platform/dlc/syncEpicGameDLC.go) |
 | `/platform/public/namespaces/{namespace}/users/{userId}/dlc/psn/sync` | PUT | PublicSyncPsnDlcInventoryShort | [PublicSyncPsnDlcInventoryShort](../../platform-sdk/pkg/platformclient/dlc/dlc_client.go) | [PublicSyncPsnDlcInventoryShort](../../services-api/pkg/service/platform/dlc.go) | [PublicSyncPsnDlcInventoryShort](../../samples/cli/cmd/platform/dlc/publicSyncPsnDlcInventory.go) |
+| `/platform/public/namespaces/{namespace}/users/{userId}/dlc/psn/sync/multiServiceLabels` | PUT | PublicSyncPsnDlcInventoryWithMultipleServiceLabelsShort | [PublicSyncPsnDlcInventoryWithMultipleServiceLabelsShort](../../platform-sdk/pkg/platformclient/dlc/dlc_client.go) | [PublicSyncPsnDlcInventoryWithMultipleServiceLabelsShort](../../services-api/pkg/service/platform/dlc.go) | [PublicSyncPsnDlcInventoryWithMultipleServiceLabelsShort](../../samples/cli/cmd/platform/dlc/publicSyncPsnDlcInventoryWithMultipleServiceLabels.go) |
 | `/platform/public/namespaces/{namespace}/users/{userId}/dlc/steam/sync` | PUT | SyncSteamDLCShort | [SyncSteamDLCShort](../../platform-sdk/pkg/platformclient/dlc/dlc_client.go) | [SyncSteamDLCShort](../../services-api/pkg/service/platform/dlc.go) | [SyncSteamDLCShort](../../samples/cli/cmd/platform/dlc/syncSteamDLC.go) |
 | `/platform/public/namespaces/{namespace}/users/{userId}/dlc/xbl/sync` | PUT | SyncXboxDLCShort | [SyncXboxDLCShort](../../platform-sdk/pkg/platformclient/dlc/dlc_client.go) | [SyncXboxDLCShort](../../services-api/pkg/service/platform/dlc.go) | [SyncXboxDLCShort](../../samples/cli/cmd/platform/dlc/syncXboxDLC.go) |
 
@@ -215,6 +216,7 @@
 | `/platform/public/namespaces/{namespace}/users/{userId}/iap/epicgames/sync` | PUT | SyncEpicGamesInventoryShort | [SyncEpicGamesInventoryShort](../../platform-sdk/pkg/platformclient/iap/iap_client.go) | [SyncEpicGamesInventoryShort](../../services-api/pkg/service/platform/iap.go) | [SyncEpicGamesInventoryShort](../../samples/cli/cmd/platform/iap/syncEpicGamesInventory.go) |
 | `/platform/public/namespaces/{namespace}/users/{userId}/iap/google/receipt` | PUT | PublicFulfillGoogleIAPItemShort | [PublicFulfillGoogleIAPItemShort](../../platform-sdk/pkg/platformclient/iap/iap_client.go) | [PublicFulfillGoogleIAPItemShort](../../services-api/pkg/service/platform/iap.go) | [PublicFulfillGoogleIAPItemShort](../../samples/cli/cmd/platform/iap/publicFulfillGoogleIAPItem.go) |
 | `/platform/public/namespaces/{namespace}/users/{userId}/iap/psn/sync` | PUT | PublicReconcilePlayStationStoreShort | [PublicReconcilePlayStationStoreShort](../../platform-sdk/pkg/platformclient/iap/iap_client.go) | [PublicReconcilePlayStationStoreShort](../../services-api/pkg/service/platform/iap.go) | [PublicReconcilePlayStationStoreShort](../../samples/cli/cmd/platform/iap/publicReconcilePlayStationStore.go) |
+| `/platform/public/namespaces/{namespace}/users/{userId}/iap/psn/sync/multiServiceLabels` | PUT | PublicReconcilePlayStationStoreWithMultipleServiceLabelsShort | [PublicReconcilePlayStationStoreWithMultipleServiceLabelsShort](../../platform-sdk/pkg/platformclient/iap/iap_client.go) | [PublicReconcilePlayStationStoreWithMultipleServiceLabelsShort](../../services-api/pkg/service/platform/iap.go) | [PublicReconcilePlayStationStoreWithMultipleServiceLabelsShort](../../samples/cli/cmd/platform/iap/publicReconcilePlayStationStoreWithMultipleServiceLabels.go) |
 | `/platform/public/namespaces/{namespace}/users/{userId}/iap/stadia/sync` | PUT | SyncStadiaEntitlementShort | [SyncStadiaEntitlementShort](../../platform-sdk/pkg/platformclient/iap/iap_client.go) | [SyncStadiaEntitlementShort](../../services-api/pkg/service/platform/iap.go) | [SyncStadiaEntitlementShort](../../samples/cli/cmd/platform/iap/syncStadiaEntitlement.go) |
 | `/platform/public/namespaces/{namespace}/users/{userId}/iap/steam/sync` | PUT | SyncSteamInventoryShort | [SyncSteamInventoryShort](../../platform-sdk/pkg/platformclient/iap/iap_client.go) | [SyncSteamInventoryShort](../../services-api/pkg/service/platform/iap.go) | [SyncSteamInventoryShort](../../samples/cli/cmd/platform/iap/syncSteamInventory.go) |
 | `/platform/public/namespaces/{namespace}/users/{userId}/iap/twitch/sync` | PUT | SyncTwitchDropsEntitlementShort | [SyncTwitchDropsEntitlementShort](../../platform-sdk/pkg/platformclient/iap/iap_client.go) | [SyncTwitchDropsEntitlementShort](../../services-api/pkg/service/platform/iap.go) | [SyncTwitchDropsEntitlementShort](../../samples/cli/cmd/platform/iap/syncTwitchDropsEntitlement.go) |
@@ -500,6 +502,7 @@
 | `BillingAccount` | [BillingAccount ](../../platform-sdk/pkg/platformclientmodels/billing_account.go) |
 | `BillingHistoryInfo` | [BillingHistoryInfo ](../../platform-sdk/pkg/platformclientmodels/billing_history_info.go) |
 | `BillingHistoryPagingSlicedResult` | [BillingHistoryPagingSlicedResult ](../../platform-sdk/pkg/platformclientmodels/billing_history_paging_sliced_result.go) |
+| `BoxItem` | [BoxItem ](../../platform-sdk/pkg/platformclientmodels/box_item.go) |
 | `BulkOperationResult` | [BulkOperationResult ](../../platform-sdk/pkg/platformclientmodels/bulk_operation_result.go) |
 | `BundledItemInfo` | [BundledItemInfo ](../../platform-sdk/pkg/platformclientmodels/bundled_item_info.go) |
 | `CampaignCreate` | [CampaignCreate ](../../platform-sdk/pkg/platformclientmodels/campaign_create.go) |
@@ -541,9 +544,11 @@
 | `DetailedWalletTransactionInfo` | [DetailedWalletTransactionInfo ](../../platform-sdk/pkg/platformclientmodels/detailed_wallet_transaction_info.go) |
 | `DetailedWalletTransactionPagingSlicedResult` | [DetailedWalletTransactionPagingSlicedResult ](../../platform-sdk/pkg/platformclientmodels/detailed_wallet_transaction_paging_sliced_result.go) |
 | `EntitlementDecrement` | [EntitlementDecrement ](../../platform-sdk/pkg/platformclientmodels/entitlement_decrement.go) |
+| `EntitlementDecrementResult` | [EntitlementDecrementResult ](../../platform-sdk/pkg/platformclientmodels/entitlement_decrement_result.go) |
 | `EntitlementGrant` | [EntitlementGrant ](../../platform-sdk/pkg/platformclientmodels/entitlement_grant.go) |
 | `EntitlementHistoryInfo` | [EntitlementHistoryInfo ](../../platform-sdk/pkg/platformclientmodels/entitlement_history_info.go) |
 | `EntitlementInfo` | [EntitlementInfo ](../../platform-sdk/pkg/platformclientmodels/entitlement_info.go) |
+| `EntitlementLootBoxReward` | [EntitlementLootBoxReward ](../../platform-sdk/pkg/platformclientmodels/entitlement_loot_box_reward.go) |
 | `EntitlementOwnership` | [EntitlementOwnership ](../../platform-sdk/pkg/platformclientmodels/entitlement_ownership.go) |
 | `EntitlementPagingSlicedResult` | [EntitlementPagingSlicedResult ](../../platform-sdk/pkg/platformclientmodels/entitlement_paging_sliced_result.go) |
 | `EntitlementSummary` | [EntitlementSummary ](../../platform-sdk/pkg/platformclientmodels/entitlement_summary.go) |
@@ -620,10 +625,11 @@
 | `KeyInfo` | [KeyInfo ](../../platform-sdk/pkg/platformclientmodels/key_info.go) |
 | `KeyPagingSliceResult` | [KeyPagingSliceResult ](../../platform-sdk/pkg/platformclientmodels/key_paging_slice_result.go) |
 | `Localization` | [Localization ](../../platform-sdk/pkg/platformclientmodels/localization.go) |
+| `LootBoxConfig` | [LootBoxConfig ](../../platform-sdk/pkg/platformclientmodels/loot_box_config.go) |
+| `LootBoxReward` | [LootBoxReward ](../../platform-sdk/pkg/platformclientmodels/loot_box_reward.go) |
 | `MockIAPReceipt` | [MockIAPReceipt ](../../platform-sdk/pkg/platformclientmodels/mock_iap_receipt.go) |
 | `NotificationProcessResult` | [NotificationProcessResult ](../../platform-sdk/pkg/platformclientmodels/notification_process_result.go) |
 | `OptionBoxConfig` | [OptionBoxConfig ](../../platform-sdk/pkg/platformclientmodels/option_box_config.go) |
-| `OptionBoxItem` | [OptionBoxItem ](../../platform-sdk/pkg/platformclientmodels/option_box_item.go) |
 | `Order` | [Order ](../../platform-sdk/pkg/platformclientmodels/order.go) |
 | `OrderCreate` | [OrderCreate ](../../platform-sdk/pkg/platformclientmodels/order_create.go) |
 | `OrderGrantInfo` | [OrderGrantInfo ](../../platform-sdk/pkg/platformclientmodels/order_grant_info.go) |
@@ -680,10 +686,11 @@
 | `PlatformWallet` | [PlatformWallet ](../../platform-sdk/pkg/platformclientmodels/platform_wallet.go) |
 | `PlatformWalletConfigInfo` | [PlatformWalletConfigInfo ](../../platform-sdk/pkg/platformclientmodels/platform_wallet_config_info.go) |
 | `PlatformWalletConfigUpdate` | [PlatformWalletConfigUpdate ](../../platform-sdk/pkg/platformclientmodels/platform_wallet_config_update.go) |
+| `PlayStationDLCSyncMultiServiceLabelsRequest` | [PlayStationDLCSyncMultiServiceLabelsRequest ](../../platform-sdk/pkg/platformclientmodels/play_station_dlc_sync_multi_service_labels_request.go) |
 | `PlayStationDLCSyncRequest` | [PlayStationDLCSyncRequest ](../../platform-sdk/pkg/platformclientmodels/play_station_dlc_sync_request.go) |
 | `PlayStationIAPConfigInfo` | [PlayStationIAPConfigInfo ](../../platform-sdk/pkg/platformclientmodels/play_station_iap_config_info.go) |
+| `PlayStationMultiServiceLabelsReconcileRequest` | [PlayStationMultiServiceLabelsReconcileRequest ](../../platform-sdk/pkg/platformclientmodels/play_station_multi_service_labels_reconcile_request.go) |
 | `PlayStationReconcileRequest` | [PlayStationReconcileRequest ](../../platform-sdk/pkg/platformclientmodels/play_station_reconcile_request.go) |
-| `PlayStationReconcileResult` | [PlayStationReconcileResult ](../../platform-sdk/pkg/platformclientmodels/play_station_reconcile_result.go) |
 | `PlaystationIAPConfigRequest` | [PlaystationIAPConfigRequest ](../../platform-sdk/pkg/platformclientmodels/playstation_iap_config_request.go) |
 | `PopulatedItemInfo` | [PopulatedItemInfo ](../../platform-sdk/pkg/platformclientmodels/populated_item_info.go) |
 | `PredicateValidateResult` | [PredicateValidateResult ](../../platform-sdk/pkg/platformclientmodels/predicate_validate_result.go) |
@@ -739,7 +746,6 @@
 | `TicketSaleIncrementResult` | [TicketSaleIncrementResult ](../../platform-sdk/pkg/platformclientmodels/ticket_sale_increment_result.go) |
 | `Time-limited balance` | [TimeLimitedBalance ](../../platform-sdk/pkg/platformclientmodels/time_limited_balance.go) |
 | `TimedOwnership` | [TimedOwnership ](../../platform-sdk/pkg/platformclientmodels/timed_ownership.go) |
-| `TrackedEntitlementInfo` | [TrackedEntitlementInfo ](../../platform-sdk/pkg/platformclientmodels/tracked_entitlement_info.go) |
 | `TradeNotification` | [TradeNotification ](../../platform-sdk/pkg/platformclientmodels/trade_notification.go) |
 | `Transaction` | [Transaction ](../../platform-sdk/pkg/platformclientmodels/transaction.go) |
 | `TransactionAmountDetails` | [TransactionAmountDetails ](../../platform-sdk/pkg/platformclientmodels/transaction_amount_details.go) |

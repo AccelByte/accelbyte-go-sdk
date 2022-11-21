@@ -360,6 +360,8 @@ Deprecated: Use AdminCreateClientV3Short instead.
         &lt;li&gt;&lt;strong&gt;twoFactorEnabled&lt;/strong&gt;: The flag to indicate whether 2FA validation is enable for this client. default value: false&lt;/li&gt;
 		&lt;li&gt;&lt;strong&gt;oauthAccessTokenExpiration&lt;/strong&gt;: a configurable expiration time for &lt;strong&gt;access_token&lt;/strong&gt;, default value: 0 (mean fetch value from environment variable) &lt;/li&gt;
 		&lt;li&gt;&lt;strong&gt;oauthRefreshTokenExpiration&lt;/strong&gt;: a configurable expiration time for &lt;strong&gt;refresh_token&lt;/strong&gt;, default value: 0 (mean fetch value from environment variable)&lt;/li&gt;
+		&lt;li&gt;&lt;strong&gt;oauthAccessTokenExpirationTimeUnit&lt;/strong&gt;: a configurable expiration time unit for &lt;strong&gt;access_token&lt;/strong&gt;, default value: SECONDS&lt;/li&gt;
+		&lt;li&gt;&lt;strong&gt;oauthRefreshTokenExpirationTimeUnit&lt;/strong&gt;: a configurable expiration time unit for &lt;strong&gt;refresh_token&lt;/strong&gt;, default value: SECONDS&lt;/li&gt;
 		&lt;/ul&gt;
 		&lt;/p&gt;
 
@@ -454,6 +456,8 @@ func (a *Client) AdminCreateClientV3(params *AdminCreateClientV3Params, authInfo
         &lt;li&gt;&lt;strong&gt;twoFactorEnabled&lt;/strong&gt;: The flag to indicate whether 2FA validation is enable for this client. default value: false&lt;/li&gt;
 		&lt;li&gt;&lt;strong&gt;oauthAccessTokenExpiration&lt;/strong&gt;: a configurable expiration time for &lt;strong&gt;access_token&lt;/strong&gt;, default value: 0 (mean fetch value from environment variable) &lt;/li&gt;
 		&lt;li&gt;&lt;strong&gt;oauthRefreshTokenExpiration&lt;/strong&gt;: a configurable expiration time for &lt;strong&gt;refresh_token&lt;/strong&gt;, default value: 0 (mean fetch value from environment variable)&lt;/li&gt;
+		&lt;li&gt;&lt;strong&gt;oauthAccessTokenExpirationTimeUnit&lt;/strong&gt;: a configurable expiration time unit for &lt;strong&gt;access_token&lt;/strong&gt;, default value: SECONDS&lt;/li&gt;
+		&lt;li&gt;&lt;strong&gt;oauthRefreshTokenExpirationTimeUnit&lt;/strong&gt;: a configurable expiration time unit for &lt;strong&gt;refresh_token&lt;/strong&gt;, default value: SECONDS&lt;/li&gt;
 		&lt;/ul&gt;
 		&lt;/p&gt;
 
@@ -1230,6 +1234,8 @@ Deprecated: Use AdminUpdateClientV3Short instead.
         &lt;li&gt;&lt;strong&gt;twoFactorEnabled&lt;/strong&gt;: The flag to indicate whether 2FA validation is enable for this client. default value: false&lt;/li&gt;
 		&lt;li&gt;&lt;strong&gt;oauthAccessTokenExpiration&lt;/strong&gt;: a configurable expiration time for &lt;strong&gt;access_token&lt;/strong&gt;, default value: 0 (mean fetch value from environment variable)&lt;/li&gt;
 		&lt;li&gt;&lt;strong&gt;oauthRefreshTokenExpiration&lt;/strong&gt;: a configurable expiration time for &lt;strong&gt;refresh_token&lt;/strong&gt;, default value: 0 (mean fetch value from environment variable)&lt;/li&gt;
+		&lt;li&gt;&lt;strong&gt;oauthAccessTokenExpirationTimeUnit&lt;/strong&gt;: a configurable expiration time unit for &lt;strong&gt;access_token&lt;/strong&gt;, will use previous value if not specified&lt;/li&gt;
+		&lt;li&gt;&lt;strong&gt;oauthRefreshTokenExpirationTimeUnit&lt;/strong&gt;: a configurable expiration time unit for &lt;strong&gt;refresh_token&lt;/strong&gt;, will use previous value if not specified&lt;/li&gt;
 		&lt;/ul&gt;
 		&lt;/p&gt;
 */
@@ -1315,6 +1321,8 @@ func (a *Client) AdminUpdateClientV3(params *AdminUpdateClientV3Params, authInfo
         &lt;li&gt;&lt;strong&gt;twoFactorEnabled&lt;/strong&gt;: The flag to indicate whether 2FA validation is enable for this client. default value: false&lt;/li&gt;
 		&lt;li&gt;&lt;strong&gt;oauthAccessTokenExpiration&lt;/strong&gt;: a configurable expiration time for &lt;strong&gt;access_token&lt;/strong&gt;, default value: 0 (mean fetch value from environment variable)&lt;/li&gt;
 		&lt;li&gt;&lt;strong&gt;oauthRefreshTokenExpiration&lt;/strong&gt;: a configurable expiration time for &lt;strong&gt;refresh_token&lt;/strong&gt;, default value: 0 (mean fetch value from environment variable)&lt;/li&gt;
+		&lt;li&gt;&lt;strong&gt;oauthAccessTokenExpirationTimeUnit&lt;/strong&gt;: a configurable expiration time unit for &lt;strong&gt;access_token&lt;/strong&gt;, will use previous value if not specified&lt;/li&gt;
+		&lt;li&gt;&lt;strong&gt;oauthRefreshTokenExpirationTimeUnit&lt;/strong&gt;: a configurable expiration time unit for &lt;strong&gt;refresh_token&lt;/strong&gt;, will use previous value if not specified&lt;/li&gt;
 		&lt;/ul&gt;
 		&lt;/p&gt;
 */

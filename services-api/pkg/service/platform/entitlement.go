@@ -308,7 +308,7 @@ func (aaa *EntitlementService) UpdateUserEntitlement(input *entitlement.UpdateUs
 }
 
 // Deprecated: Use ConsumeUserEntitlementShort instead
-func (aaa *EntitlementService) ConsumeUserEntitlement(input *entitlement.ConsumeUserEntitlementParams) (*platformclientmodels.TrackedEntitlementInfo, error) {
+func (aaa *EntitlementService) ConsumeUserEntitlement(input *entitlement.ConsumeUserEntitlementParams) (*platformclientmodels.EntitlementDecrementResult, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
@@ -635,7 +635,7 @@ func (aaa *EntitlementService) PublicGetUserEntitlement(input *entitlement.Publi
 }
 
 // Deprecated: Use PublicConsumeUserEntitlementShort instead
-func (aaa *EntitlementService) PublicConsumeUserEntitlement(input *entitlement.PublicConsumeUserEntitlementParams) (*platformclientmodels.TrackedEntitlementInfo, error) {
+func (aaa *EntitlementService) PublicConsumeUserEntitlement(input *entitlement.PublicConsumeUserEntitlementParams) (*platformclientmodels.EntitlementDecrementResult, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
@@ -1082,7 +1082,7 @@ func (aaa *EntitlementService) UpdateUserEntitlementShort(input *entitlement.Upd
 	return ok.GetPayload(), nil
 }
 
-func (aaa *EntitlementService) ConsumeUserEntitlementShort(input *entitlement.ConsumeUserEntitlementParams) (*platformclientmodels.TrackedEntitlementInfo, error) {
+func (aaa *EntitlementService) ConsumeUserEntitlementShort(input *entitlement.ConsumeUserEntitlementParams) (*platformclientmodels.EntitlementDecrementResult, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -1607,7 +1607,7 @@ func (aaa *EntitlementService) PublicGetUserEntitlementShort(input *entitlement.
 	return ok.GetPayload(), nil
 }
 
-func (aaa *EntitlementService) PublicConsumeUserEntitlementShort(input *entitlement.PublicConsumeUserEntitlementParams) (*platformclientmodels.TrackedEntitlementInfo, error) {
+func (aaa *EntitlementService) PublicConsumeUserEntitlementShort(input *entitlement.PublicConsumeUserEntitlementParams) (*platformclientmodels.EntitlementDecrementResult, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{

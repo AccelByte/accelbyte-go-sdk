@@ -7,6 +7,8 @@
 package dslogmanager
 
 import (
+	"io"
+
 	"github.com/AccelByte/accelbyte-go-sdk/dslogmanager-sdk/pkg/dslogmanagerclient"
 	"github.com/AccelByte/accelbyte-go-sdk/dslogmanager-sdk/pkg/dslogmanagerclient/all_terminated_servers"
 	"github.com/AccelByte/accelbyte-go-sdk/dslogmanager-sdk/pkg/dslogmanagerclientmodels"
@@ -40,23 +42,23 @@ func (aaa *AllTerminatedServersService) GetAuthSession() auth.Session {
 }
 
 // Deprecated: Use BatchDownloadServerLogsShort instead
-func (aaa *AllTerminatedServersService) BatchDownloadServerLogs(input *all_terminated_servers.BatchDownloadServerLogsParams) error {
+func (aaa *AllTerminatedServersService) BatchDownloadServerLogs(input *all_terminated_servers.BatchDownloadServerLogsParams, writer io.Writer) (io.Writer, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
-		return err
+		return nil, err
 	}
-	_, badRequest, internalServerError, err := aaa.Client.AllTerminatedServers.BatchDownloadServerLogs(input, client.BearerToken(*token.AccessToken))
+	ok, badRequest, internalServerError, err := aaa.Client.AllTerminatedServers.BatchDownloadServerLogs(input, client.BearerToken(*token.AccessToken), writer)
 	if badRequest != nil {
-		return badRequest
+		return nil, badRequest
 	}
 	if internalServerError != nil {
-		return internalServerError
+		return nil, internalServerError
 	}
 	if err != nil {
-		return err
+		return nil, err
 	}
 
-	return nil
+	return ok.GetPayload(), nil
 }
 
 // Deprecated: Use ListAllTerminatedServersShort instead
@@ -82,7 +84,7 @@ func (aaa *AllTerminatedServersService) ListAllTerminatedServers(input *all_term
 	return ok.GetPayload(), nil
 }
 
-func (aaa *AllTerminatedServersService) BatchDownloadServerLogsShort(input *all_terminated_servers.BatchDownloadServerLogsParams) error {
+func (aaa *AllTerminatedServersService) BatchDownloadServerLogsShort(input *all_terminated_servers.BatchDownloadServerLogsParams, writer io.Writer) (io.Writer, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -99,12 +101,12 @@ func (aaa *AllTerminatedServersService) BatchDownloadServerLogsShort(input *all_
 		}
 	}
 
-	_, err := aaa.Client.AllTerminatedServers.BatchDownloadServerLogsShort(input, authInfoWriter)
+	ok, err := aaa.Client.AllTerminatedServers.BatchDownloadServerLogsShort(input, authInfoWriter, writer)
 	if err != nil {
-		return err
+		return nil, err
 	}
 
-	return nil
+	return ok.GetPayload(), nil
 }
 
 func (aaa *AllTerminatedServersService) ListAllTerminatedServersShort(input *all_terminated_servers.ListAllTerminatedServersParams) (*dslogmanagerclientmodels.ModelsListTerminatedServersResponse, error) {

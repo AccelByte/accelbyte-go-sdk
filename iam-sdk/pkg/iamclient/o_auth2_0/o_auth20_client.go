@@ -39,7 +39,7 @@ type ClientService interface {
 	AuthCodeRequestV3Short(params *AuthCodeRequestV3Params, authInfo runtime.ClientAuthInfoWriter) (*AuthCodeRequestV3Found, error)
 	AuthorizeV3(params *AuthorizeV3Params, authInfo runtime.ClientAuthInfoWriter) (*AuthorizeV3Found, error)
 	AuthorizeV3Short(params *AuthorizeV3Params, authInfo runtime.ClientAuthInfoWriter) (*AuthorizeV3Found, error)
-	Change2FAMethod(params *Change2FAMethodParams, authInfo runtime.ClientAuthInfoWriter) (*Change2FAMethodNoContent, *Change2FAMethodBadRequest, error)
+	Change2FAMethod(params *Change2FAMethodParams, authInfo runtime.ClientAuthInfoWriter) (*Change2FAMethodNoContent, *Change2FAMethodBadRequest, *Change2FAMethodInternalServerError, error)
 	Change2FAMethodShort(params *Change2FAMethodParams, authInfo runtime.ClientAuthInfoWriter) (*Change2FAMethodNoContent, error)
 	GetJWKSV3(params *GetJWKSV3Params, authInfo runtime.ClientAuthInfoWriter) (*GetJWKSV3OK, error)
 	GetJWKSV3Short(params *GetJWKSV3Params, authInfo runtime.ClientAuthInfoWriter) (*GetJWKSV3OK, error)
@@ -51,6 +51,8 @@ type ClientService interface {
 	RetrieveUserThirdPartyPlatformTokenV3Short(params *RetrieveUserThirdPartyPlatformTokenV3Params, authInfo runtime.ClientAuthInfoWriter) (*RetrieveUserThirdPartyPlatformTokenV3OK, error)
 	RevokeUserV3(params *RevokeUserV3Params, authInfo runtime.ClientAuthInfoWriter) (*RevokeUserV3OK, *RevokeUserV3BadRequest, *RevokeUserV3Unauthorized, *RevokeUserV3Forbidden, error)
 	RevokeUserV3Short(params *RevokeUserV3Params, authInfo runtime.ClientAuthInfoWriter) (*RevokeUserV3OK, error)
+	SendMFAAuthenticationCode(params *SendMFAAuthenticationCodeParams, authInfo runtime.ClientAuthInfoWriter) (*SendMFAAuthenticationCodeNoContent, *SendMFAAuthenticationCodeBadRequest, *SendMFAAuthenticationCodeForbidden, *SendMFAAuthenticationCodeNotFound, *SendMFAAuthenticationCodeTooManyRequests, *SendMFAAuthenticationCodeInternalServerError, error)
+	SendMFAAuthenticationCodeShort(params *SendMFAAuthenticationCodeParams, authInfo runtime.ClientAuthInfoWriter) (*SendMFAAuthenticationCodeNoContent, error)
 	TokenGrantV3(params *TokenGrantV3Params, authInfo runtime.ClientAuthInfoWriter) (*TokenGrantV3OK, *TokenGrantV3BadRequest, *TokenGrantV3Unauthorized, *TokenGrantV3Forbidden, *TokenGrantV3TooManyRequests, error)
 	TokenGrantV3Short(params *TokenGrantV3Params, authInfo runtime.ClientAuthInfoWriter) (*TokenGrantV3OK, error)
 	TokenIntrospectionV3(params *TokenIntrospectionV3Params, authInfo runtime.ClientAuthInfoWriter) (*TokenIntrospectionV3OK, *TokenIntrospectionV3BadRequest, *TokenIntrospectionV3Unauthorized, error)
@@ -522,11 +524,12 @@ Deprecated: Use Change2FAMethodShort instead.
 &lt;p&gt;Supported methods:&lt;/p&gt;
 &lt;ul&gt;
 	&lt;li&gt;authenticator&lt;/li&gt;
-	&lt;li&gt;backupCodes&lt;/li&gt;
+	&lt;li&gt;backupCode&lt;/li&gt;
+	&lt;li&gt;email&lt;/li&gt;
 &lt;/ul&gt;
 
 */
-func (a *Client) Change2FAMethod(params *Change2FAMethodParams, authInfo runtime.ClientAuthInfoWriter) (*Change2FAMethodNoContent, *Change2FAMethodBadRequest, error) {
+func (a *Client) Change2FAMethod(params *Change2FAMethodParams, authInfo runtime.ClientAuthInfoWriter) (*Change2FAMethodNoContent, *Change2FAMethodBadRequest, *Change2FAMethodInternalServerError, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewChange2FAMethodParams()
@@ -554,19 +557,22 @@ func (a *Client) Change2FAMethod(params *Change2FAMethodParams, authInfo runtime
 		Client:             params.HTTPClient,
 	})
 	if err != nil {
-		return nil, nil, err
+		return nil, nil, nil, err
 	}
 
 	switch v := result.(type) {
 
 	case *Change2FAMethodNoContent:
-		return v, nil, nil
+		return v, nil, nil, nil
 
 	case *Change2FAMethodBadRequest:
-		return nil, v, nil
+		return nil, v, nil, nil
+
+	case *Change2FAMethodInternalServerError:
+		return nil, nil, v, nil
 
 	default:
-		return nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+		return nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
@@ -578,7 +584,8 @@ func (a *Client) Change2FAMethod(params *Change2FAMethodParams, authInfo runtime
 &lt;p&gt;Supported methods:&lt;/p&gt;
 &lt;ul&gt;
 	&lt;li&gt;authenticator&lt;/li&gt;
-	&lt;li&gt;backupCodes&lt;/li&gt;
+	&lt;li&gt;backupCode&lt;/li&gt;
+	&lt;li&gt;email&lt;/li&gt;
 &lt;/ul&gt;
 
 */
@@ -618,6 +625,8 @@ func (a *Client) Change2FAMethodShort(params *Change2FAMethodParams, authInfo ru
 	case *Change2FAMethodNoContent:
 		return v, nil
 	case *Change2FAMethodBadRequest:
+		return nil, v
+	case *Change2FAMethodInternalServerError:
 		return nil, v
 
 	default:
@@ -1364,6 +1373,129 @@ func (a *Client) RevokeUserV3Short(params *RevokeUserV3Params, authInfo runtime.
 	case *RevokeUserV3Unauthorized:
 		return nil, v
 	case *RevokeUserV3Forbidden:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+Deprecated: Use SendMFAAuthenticationCodeShort instead.
+
+  SendMFAAuthenticationCode sends 2 f a code
+
+  Send 2FA code&lt;br/&gt;
+&lt;p&gt;This endpoint is used for sending 2FA code.&lt;/p&gt;
+
+*/
+func (a *Client) SendMFAAuthenticationCode(params *SendMFAAuthenticationCodeParams, authInfo runtime.ClientAuthInfoWriter) (*SendMFAAuthenticationCodeNoContent, *SendMFAAuthenticationCodeBadRequest, *SendMFAAuthenticationCodeForbidden, *SendMFAAuthenticationCodeNotFound, *SendMFAAuthenticationCodeTooManyRequests, *SendMFAAuthenticationCodeInternalServerError, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewSendMFAAuthenticationCodeParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "SendMFAAuthenticationCode",
+		Method:             "POST",
+		PathPattern:        "/iam/v3/oauth/mfa/code",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/x-www-form-urlencoded"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &SendMFAAuthenticationCodeReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, nil, nil, nil, nil, nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *SendMFAAuthenticationCodeNoContent:
+		return v, nil, nil, nil, nil, nil, nil
+
+	case *SendMFAAuthenticationCodeBadRequest:
+		return nil, v, nil, nil, nil, nil, nil
+
+	case *SendMFAAuthenticationCodeForbidden:
+		return nil, nil, v, nil, nil, nil, nil
+
+	case *SendMFAAuthenticationCodeNotFound:
+		return nil, nil, nil, v, nil, nil, nil
+
+	case *SendMFAAuthenticationCodeTooManyRequests:
+		return nil, nil, nil, nil, v, nil, nil
+
+	case *SendMFAAuthenticationCodeInternalServerError:
+		return nil, nil, nil, nil, nil, v, nil
+
+	default:
+		return nil, nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+  SendMFAAuthenticationCodeShort sends 2 f a code
+
+  Send 2FA code&lt;br/&gt;
+&lt;p&gt;This endpoint is used for sending 2FA code.&lt;/p&gt;
+
+*/
+func (a *Client) SendMFAAuthenticationCodeShort(params *SendMFAAuthenticationCodeParams, authInfo runtime.ClientAuthInfoWriter) (*SendMFAAuthenticationCodeNoContent, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewSendMFAAuthenticationCodeParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "SendMFAAuthenticationCode",
+		Method:             "POST",
+		PathPattern:        "/iam/v3/oauth/mfa/code",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/x-www-form-urlencoded"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &SendMFAAuthenticationCodeReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *SendMFAAuthenticationCodeNoContent:
+		return v, nil
+	case *SendMFAAuthenticationCodeBadRequest:
+		return nil, v
+	case *SendMFAAuthenticationCodeForbidden:
+		return nil, v
+	case *SendMFAAuthenticationCodeNotFound:
+		return nil, v
+	case *SendMFAAuthenticationCodeTooManyRequests:
+		return nil, v
+	case *SendMFAAuthenticationCodeInternalServerError:
 		return nil, v
 
 	default:

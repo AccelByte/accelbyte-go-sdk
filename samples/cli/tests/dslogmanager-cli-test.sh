@@ -51,60 +51,60 @@ touch "tmp.dat"
 #- 2 ListTerminatedServers
 samples/cli/sample-apps Dslogmanager listTerminatedServers \
     --namespace $AB_NAMESPACE \
-    --deployment 'SiX2GHsz' \
-    --endDate '3GTdOB5D' \
-    --gameMode '4GGjGpz5' \
-    --limit '12' \
-    --next 'wvpDrB4A' \
-    --partyId 'aCaUQ334' \
-    --podName 'p09LpHTC' \
-    --previous 'AhEHpl27' \
-    --provider 'rtx2U88Z' \
-    --region 'OPhL8ZOb' \
-    --sessionId 'QbnNuO3s' \
-    --startDate 'y312k9Rd' \
-    --status 'SKkvU3N6' \
-    --userId 'nhnFDnpD' \
+    --deployment 'R4C9L3n9' \
+    --endDate 'DrzDk4NQ' \
+    --gameMode 'Ebp89nRB' \
+    --limit '4' \
+    --next 'KvE4kG54' \
+    --partyId 'SXDJsvpe' \
+    --podName 'tUupxJ9v' \
+    --previous 'VOD5x9is' \
+    --provider 'IoR3Dtp4' \
+    --region 'Mi37Yyps' \
+    --sessionId 'upMbAMhv' \
+    --startDate 'K7NEk60U' \
+    --status '2goFLDyt' \
+    --userId 'mRpyoo1W' \
     > test.out 2>&1
 eval_tap $? 2 'ListTerminatedServers' test.out
 
 #- 3 DownloadServerLogs
 samples/cli/sample-apps Dslogmanager downloadServerLogs \
     --namespace $AB_NAMESPACE \
-    --podName 'EtXElZW4' \
+    --podName '1XJa503p' \
     > test.out 2>&1
 eval_tap $? 3 'DownloadServerLogs' test.out
 
 #- 4 CheckServerLogs
 samples/cli/sample-apps Dslogmanager checkServerLogs \
     --namespace $AB_NAMESPACE \
-    --podName 'sfMXNKLB' \
+    --podName 'nkvG1GLK' \
     > test.out 2>&1
 eval_tap $? 4 'CheckServerLogs' test.out
 
 #- 5 BatchDownloadServerLogs
 samples/cli/sample-apps Dslogmanager batchDownloadServerLogs \
-    --body '{"Downloads": [{"alloc_id": "WWI62hFK", "namespace": "VHxNoUNe", "pod_name": "su5w1YnU"}, {"alloc_id": "9j8Birqn", "namespace": "c1a91dOI", "pod_name": "1YtF5f9b"}, {"alloc_id": "TctYY4fi", "namespace": "imhDrOWb", "pod_name": "umKmmUfX"}]}' \
+    --body '{"Downloads": [{"alloc_id": "8YjnDUHn", "namespace": "MKuv5pxC", "pod_name": "RWUBzIxY"}, {"alloc_id": "HVNaMO8V", "namespace": "t0n8FVVo", "pod_name": "U0tPg444"}, {"alloc_id": "0e14NqDR", "namespace": "UvHleqhC", "pod_name": "bnvKzJg1"}]}' \
     > test.out 2>&1
 eval_tap $? 5 'BatchDownloadServerLogs' test.out
 
 #- 6 ListAllTerminatedServers
 samples/cli/sample-apps Dslogmanager listAllTerminatedServers \
-    --deployment 'NMHp9xsT' \
-    --endDate 'SMOnmoJk' \
-    --gameMode 'kkHXIs4O' \
-    --limit '46' \
-    --namespace 'Uqwqbm25' \
-    --next 'UX2xxAmk' \
-    --partyId 'XAp9wsJZ' \
-    --podName 'BzkIam4J' \
-    --previous 'FlqjCQ31' \
-    --provider 'VAMNi6Re' \
-    --region 'akot45ak' \
-    --sessionId 'PAuxg6K5' \
-    --startDate '19HYdfk8' \
-    --status 'Ww9DGh7S' \
-    --userId '4utLU621' \
+    --deployment 'UDbQ7n5H' \
+    --endDate '3ivE32KI' \
+    --gameMode 'gnxCsLMy' \
+    --limit '57' \
+    --namespace 'bVHkioO1' \
+    --next '68zhPnBn' \
+    --partyId '37R21c1S' \
+    --podName 'idbS3Ycg' \
+    --previous 'rx2nvfx5' \
+    --provider 'jBRMVZbr' \
+    --region 'HPali0jm' \
+    --sessionId '98t5RvMN' \
+    --startDate 'fblqL4vQ' \
+    --status 'SZ4ueqTK' \
+    --userId 'uAiRHS8G' \
     > test.out 2>&1
 eval_tap $? 6 'ListAllTerminatedServers' test.out
 

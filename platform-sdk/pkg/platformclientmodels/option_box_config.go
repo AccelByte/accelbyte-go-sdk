@@ -19,7 +19,7 @@ import (
 type OptionBoxConfig struct {
 
 	// Option box items
-	BoxItems []*OptionBoxItem `json:"boxItems"`
+	BoxItems []*BoxItem `json:"boxItems"`
 }
 
 // Validate validates this option box config

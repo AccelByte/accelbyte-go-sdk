@@ -7,6 +7,7 @@
 package allTerminatedServers
 
 import (
+	"bytes"
 	"encoding/json"
 
 	"github.com/AccelByte/accelbyte-go-sdk/dslogmanager-sdk/pkg/dslogmanagerclient/all_terminated_servers"
@@ -37,11 +38,14 @@ var BatchDownloadServerLogsCmd = &cobra.Command{
 		input := &all_terminated_servers.BatchDownloadServerLogsParams{
 			Body: body,
 		}
-		errInput := allTerminatedServersService.BatchDownloadServerLogsShort(input)
-		if errInput != nil {
-			logrus.Error(errInput)
+		writer := bytes.NewBuffer(nil)
+		ok, err := allTerminatedServersService.BatchDownloadServerLogsShort(input, writer)
+		if err != nil {
+			logrus.Error(err)
 
-			return errInput
+			return err
+		} else {
+			logrus.Infof("Response CLI success: %+v", ok)
 		}
 
 		return nil

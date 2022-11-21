@@ -12,6 +12,7 @@ package invoice
 import (
 	"context"
 	"fmt"
+	"io"
 	"reflect"
 
 	"github.com/go-openapi/runtime"
@@ -33,8 +34,8 @@ type Client struct {
 
 // ClientService is the interface for Client methods
 type ClientService interface {
-	DownloadInvoiceDetails(params *DownloadInvoiceDetailsParams, authInfo runtime.ClientAuthInfoWriter) (*DownloadInvoiceDetailsOK, error)
-	DownloadInvoiceDetailsShort(params *DownloadInvoiceDetailsParams, authInfo runtime.ClientAuthInfoWriter) (*DownloadInvoiceDetailsOK, error)
+	DownloadInvoiceDetails(params *DownloadInvoiceDetailsParams, authInfo runtime.ClientAuthInfoWriter, writer io.Writer) (*DownloadInvoiceDetailsOK, error)
+	DownloadInvoiceDetailsShort(params *DownloadInvoiceDetailsParams, authInfo runtime.ClientAuthInfoWriter, writer io.Writer) (*DownloadInvoiceDetailsOK, error)
 	GenerateInvoiceSummary(params *GenerateInvoiceSummaryParams, authInfo runtime.ClientAuthInfoWriter) (*GenerateInvoiceSummaryOK, *GenerateInvoiceSummaryUnprocessableEntity, error)
 	GenerateInvoiceSummaryShort(params *GenerateInvoiceSummaryParams, authInfo runtime.ClientAuthInfoWriter) (*GenerateInvoiceSummaryOK, error)
 
@@ -48,7 +49,7 @@ Deprecated: Use DownloadInvoiceDetailsShort instead.
 
   Download invoice details as a csv file.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:ORDER&#34;, action=2 (READ)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: invoice details csv file&lt;/li&gt;&lt;/ul&gt;
 */
-func (a *Client) DownloadInvoiceDetails(params *DownloadInvoiceDetailsParams, authInfo runtime.ClientAuthInfoWriter) (*DownloadInvoiceDetailsOK, error) {
+func (a *Client) DownloadInvoiceDetails(params *DownloadInvoiceDetailsParams, authInfo runtime.ClientAuthInfoWriter, writer io.Writer) (*DownloadInvoiceDetailsOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewDownloadInvoiceDetailsParams()
@@ -70,7 +71,7 @@ func (a *Client) DownloadInvoiceDetails(params *DownloadInvoiceDetailsParams, au
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
 		Params:             params,
-		Reader:             &DownloadInvoiceDetailsReader{formats: a.formats},
+		Reader:             &DownloadInvoiceDetailsReader{formats: a.formats, writer: writer},
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
@@ -94,7 +95,7 @@ func (a *Client) DownloadInvoiceDetails(params *DownloadInvoiceDetailsParams, au
 
   Download invoice details as a csv file.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:ORDER&#34;, action=2 (READ)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: invoice details csv file&lt;/li&gt;&lt;/ul&gt;
 */
-func (a *Client) DownloadInvoiceDetailsShort(params *DownloadInvoiceDetailsParams, authInfo runtime.ClientAuthInfoWriter) (*DownloadInvoiceDetailsOK, error) {
+func (a *Client) DownloadInvoiceDetailsShort(params *DownloadInvoiceDetailsParams, authInfo runtime.ClientAuthInfoWriter, writer io.Writer) (*DownloadInvoiceDetailsOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewDownloadInvoiceDetailsParams()
@@ -116,7 +117,7 @@ func (a *Client) DownloadInvoiceDetailsShort(params *DownloadInvoiceDetailsParam
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
 		Params:             params,
-		Reader:             &DownloadInvoiceDetailsReader{formats: a.formats},
+		Reader:             &DownloadInvoiceDetailsReader{formats: a.formats, writer: writer},
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,

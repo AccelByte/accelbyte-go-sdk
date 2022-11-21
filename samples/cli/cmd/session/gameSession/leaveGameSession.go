@@ -31,13 +31,11 @@ var LeaveGameSessionCmd = &cobra.Command{
 			Namespace: namespace,
 			SessionID: sessionId,
 		}
-		ok, err := gameSessionService.LeaveGameSessionShort(input)
-		if err != nil {
-			logrus.Error(err)
+		errInput := gameSessionService.LeaveGameSessionShort(input)
+		if errInput != nil {
+			logrus.Error(errInput)
 
-			return err
-		} else {
-			logrus.Infof("Response CLI success: %+v", ok)
+			return errInput
 		}
 
 		return nil

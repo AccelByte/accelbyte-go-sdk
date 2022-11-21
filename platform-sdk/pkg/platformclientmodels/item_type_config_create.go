@@ -31,7 +31,7 @@ type ItemTypeConfigCreate struct {
 
 	// Item Type
 	// Required: true
-	// Enum: [APP BUNDLE CODE COINS EXTENSION INGAMEITEM MEDIA OPTIONBOX SEASON SUBSCRIPTION]
+	// Enum: [APP BUNDLE CODE COINS EXTENSION INGAMEITEM LOOTBOX MEDIA OPTIONBOX SEASON SUBSCRIPTION]
 	ItemType *string `json:"itemType"`
 
 	// url to check if the item is purchasable
@@ -69,7 +69,7 @@ var itemTypeConfigCreateTypeItemTypePropEnum []interface{}
 
 func init() {
 	var res []string
-	if err := json.Unmarshal([]byte(`["APP","BUNDLE","CODE","COINS","EXTENSION","INGAMEITEM","MEDIA","OPTIONBOX","SEASON","SUBSCRIPTION"]`), &res); err != nil {
+	if err := json.Unmarshal([]byte(`["APP","BUNDLE","CODE","COINS","EXTENSION","INGAMEITEM","LOOTBOX","MEDIA","OPTIONBOX","SEASON","SUBSCRIPTION"]`), &res); err != nil {
 		panic(err)
 	}
 	for _, v := range res {
@@ -96,6 +96,9 @@ const (
 
 	// ItemTypeConfigCreateItemTypeINGAMEITEM captures enum value "INGAMEITEM"
 	ItemTypeConfigCreateItemTypeINGAMEITEM string = "INGAMEITEM"
+
+	// ItemTypeConfigCreateItemTypeLOOTBOX captures enum value "LOOTBOX"
+	ItemTypeConfigCreateItemTypeLOOTBOX string = "LOOTBOX"
 
 	// ItemTypeConfigCreateItemTypeMEDIA captures enum value "MEDIA"
 	ItemTypeConfigCreateItemTypeMEDIA string = "MEDIA"

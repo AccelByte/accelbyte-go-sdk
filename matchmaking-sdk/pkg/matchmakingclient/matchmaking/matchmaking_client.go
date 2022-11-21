@@ -12,6 +12,7 @@ package matchmaking
 import (
 	"context"
 	"fmt"
+	"io"
 	"reflect"
 
 	"github.com/go-openapi/runtime"
@@ -47,8 +48,8 @@ type ClientService interface {
 	DeleteUserFromSessionInChannelShort(params *DeleteUserFromSessionInChannelParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteUserFromSessionInChannelOK, error)
 	DequeueSessionHandler(params *DequeueSessionHandlerParams, authInfo runtime.ClientAuthInfoWriter) (*DequeueSessionHandlerNoContent, *DequeueSessionHandlerBadRequest, *DequeueSessionHandlerUnauthorized, *DequeueSessionHandlerForbidden, *DequeueSessionHandlerNotFound, *DequeueSessionHandlerInternalServerError, error)
 	DequeueSessionHandlerShort(params *DequeueSessionHandlerParams, authInfo runtime.ClientAuthInfoWriter) (*DequeueSessionHandlerNoContent, error)
-	ExportChannels(params *ExportChannelsParams, authInfo runtime.ClientAuthInfoWriter) (*ExportChannelsOK, *ExportChannelsUnauthorized, *ExportChannelsForbidden, *ExportChannelsInternalServerError, error)
-	ExportChannelsShort(params *ExportChannelsParams, authInfo runtime.ClientAuthInfoWriter) (*ExportChannelsOK, error)
+	ExportChannels(params *ExportChannelsParams, authInfo runtime.ClientAuthInfoWriter, writer io.Writer) (*ExportChannelsOK, *ExportChannelsUnauthorized, *ExportChannelsForbidden, *ExportChannelsInternalServerError, error)
+	ExportChannelsShort(params *ExportChannelsParams, authInfo runtime.ClientAuthInfoWriter, writer io.Writer) (*ExportChannelsOK, error)
 	GetAllChannelsHandler(params *GetAllChannelsHandlerParams, authInfo runtime.ClientAuthInfoWriter) (*GetAllChannelsHandlerOK, *GetAllChannelsHandlerBadRequest, *GetAllChannelsHandlerUnauthorized, *GetAllChannelsHandlerForbidden, *GetAllChannelsHandlerConflict, *GetAllChannelsHandlerInternalServerError, error)
 	GetAllChannelsHandlerShort(params *GetAllChannelsHandlerParams, authInfo runtime.ClientAuthInfoWriter) (*GetAllChannelsHandlerOK, error)
 	GetAllPartyInAllChannel(params *GetAllPartyInAllChannelParams, authInfo runtime.ClientAuthInfoWriter) (*GetAllPartyInAllChannelOK, *GetAllPartyInAllChannelBadRequest, *GetAllPartyInAllChannelUnauthorized, *GetAllPartyInAllChannelForbidden, *GetAllPartyInAllChannelNotFound, *GetAllPartyInAllChannelInternalServerError, error)
@@ -1026,7 +1027,7 @@ Export channels configuration to file.
 
 Action Code: 510114
 */
-func (a *Client) ExportChannels(params *ExportChannelsParams, authInfo runtime.ClientAuthInfoWriter) (*ExportChannelsOK, *ExportChannelsUnauthorized, *ExportChannelsForbidden, *ExportChannelsInternalServerError, error) {
+func (a *Client) ExportChannels(params *ExportChannelsParams, authInfo runtime.ClientAuthInfoWriter, writer io.Writer) (*ExportChannelsOK, *ExportChannelsUnauthorized, *ExportChannelsForbidden, *ExportChannelsInternalServerError, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewExportChannelsParams()
@@ -1048,7 +1049,7 @@ func (a *Client) ExportChannels(params *ExportChannelsParams, authInfo runtime.C
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
 		Params:             params,
-		Reader:             &ExportChannelsReader{formats: a.formats},
+		Reader:             &ExportChannelsReader{formats: a.formats, writer: writer},
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
@@ -1087,7 +1088,7 @@ Export channels configuration to file.
 
 Action Code: 510114
 */
-func (a *Client) ExportChannelsShort(params *ExportChannelsParams, authInfo runtime.ClientAuthInfoWriter) (*ExportChannelsOK, error) {
+func (a *Client) ExportChannelsShort(params *ExportChannelsParams, authInfo runtime.ClientAuthInfoWriter, writer io.Writer) (*ExportChannelsOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewExportChannelsParams()
@@ -1109,7 +1110,7 @@ func (a *Client) ExportChannelsShort(params *ExportChannelsParams, authInfo runt
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
 		Params:             params,
-		Reader:             &ExportChannelsReader{formats: a.formats},
+		Reader:             &ExportChannelsReader{formats: a.formats, writer: writer},
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,

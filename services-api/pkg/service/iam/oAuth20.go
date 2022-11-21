@@ -141,15 +141,47 @@ func (aaa *OAuth20Service) GetJWKSV3(input *o_auth2_0.GetJWKSV3Params) (*iamclie
 	return ok.GetPayload(), nil
 }
 
+// Deprecated: Use SendMFAAuthenticationCodeShort instead
+func (aaa *OAuth20Service) SendMFAAuthenticationCode(input *o_auth2_0.SendMFAAuthenticationCodeParams) error {
+	token, err := aaa.TokenRepository.GetToken()
+	if err != nil {
+		return err
+	}
+	_, badRequest, forbidden, notFound, tooManyRequests, internalServerError, err := aaa.Client.OAuth20.SendMFAAuthenticationCode(input, client.BearerToken(*token.AccessToken))
+	if badRequest != nil {
+		return badRequest
+	}
+	if forbidden != nil {
+		return forbidden
+	}
+	if notFound != nil {
+		return notFound
+	}
+	if tooManyRequests != nil {
+		return tooManyRequests
+	}
+	if internalServerError != nil {
+		return internalServerError
+	}
+	if err != nil {
+		return err
+	}
+
+	return nil
+}
+
 // Deprecated: Use Change2FAMethodShort instead
 func (aaa *OAuth20Service) Change2FAMethod(input *o_auth2_0.Change2FAMethodParams) error {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	_, badRequest, err := aaa.Client.OAuth20.Change2FAMethod(input, client.BearerToken(*token.AccessToken))
+	_, badRequest, internalServerError, err := aaa.Client.OAuth20.Change2FAMethod(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return badRequest
+	}
+	if internalServerError != nil {
+		return internalServerError
 	}
 	if err != nil {
 		return err
@@ -438,6 +470,31 @@ func (aaa *OAuth20Service) GetJWKSV3Short(input *o_auth2_0.GetJWKSV3Params) (*ia
 	}
 
 	return ok.GetPayload(), nil
+}
+
+func (aaa *OAuth20Service) SendMFAAuthenticationCodeShort(input *o_auth2_0.SendMFAAuthenticationCodeParams) error {
+	authInfoWriter := input.AuthInfoWriter
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
+	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  aaa.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
+	_, err := aaa.Client.OAuth20.SendMFAAuthenticationCodeShort(input, authInfoWriter)
+	if err != nil {
+		return err
+	}
+
+	return nil
 }
 
 func (aaa *OAuth20Service) Change2FAMethodShort(input *o_auth2_0.Change2FAMethodParams) error {

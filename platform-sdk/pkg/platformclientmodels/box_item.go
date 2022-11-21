@@ -10,10 +10,10 @@ import (
 	"github.com/go-openapi/swag"
 )
 
-// OptionBoxItem Option box item
+// BoxItem box item
 //
-// swagger:model OptionBoxItem
-type OptionBoxItem struct {
+// swagger:model BoxItem
+type BoxItem struct {
 
 	// count
 	Count int32 `json:"count,omitempty"`
@@ -23,15 +23,18 @@ type OptionBoxItem struct {
 
 	// item sku
 	ItemSku string `json:"itemSku,omitempty"`
+
+	// item type
+	ItemType string `json:"itemType,omitempty"`
 }
 
-// Validate validates this option box item
-func (m *OptionBoxItem) Validate(formats strfmt.Registry) error {
+// Validate validates this box item
+func (m *BoxItem) Validate(formats strfmt.Registry) error {
 	return nil
 }
 
 // MarshalBinary interface implementation
-func (m *OptionBoxItem) MarshalBinary() ([]byte, error) {
+func (m *BoxItem) MarshalBinary() ([]byte, error) {
 	if m == nil {
 		return nil, nil
 	}
@@ -39,8 +42,8 @@ func (m *OptionBoxItem) MarshalBinary() ([]byte, error) {
 }
 
 // UnmarshalBinary interface implementation
-func (m *OptionBoxItem) UnmarshalBinary(b []byte) error {
-	var res OptionBoxItem
+func (m *BoxItem) UnmarshalBinary(b []byte) error {
+	var res BoxItem
 	if err := swag.ReadJSON(b, &res); err != nil {
 		return err
 	}

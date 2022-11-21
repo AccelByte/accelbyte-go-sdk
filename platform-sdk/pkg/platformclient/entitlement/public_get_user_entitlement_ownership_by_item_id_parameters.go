@@ -26,6 +26,7 @@ const (
 	PublicGetUserEntitlementOwnershipByItemIDAPPConstant          = "APP"
 	PublicGetUserEntitlementOwnershipByItemIDCODEConstant         = "CODE"
 	PublicGetUserEntitlementOwnershipByItemIDENTITLEMENTConstant  = "ENTITLEMENT"
+	PublicGetUserEntitlementOwnershipByItemIDLOOTBOXConstant      = "LOOTBOX"
 	PublicGetUserEntitlementOwnershipByItemIDMEDIAConstant        = "MEDIA"
 	PublicGetUserEntitlementOwnershipByItemIDOPTIONBOXConstant    = "OPTIONBOX"
 	PublicGetUserEntitlementOwnershipByItemIDSUBSCRIPTIONConstant = "SUBSCRIPTION"

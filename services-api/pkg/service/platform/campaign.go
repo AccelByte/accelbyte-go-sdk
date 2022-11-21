@@ -7,6 +7,8 @@
 package platform
 
 import (
+	"io"
+
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclient"
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclient/campaign"
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclientmodels"
@@ -165,17 +167,17 @@ func (aaa *CampaignService) CreateCodes(input *campaign.CreateCodesParams) (*pla
 }
 
 // Deprecated: Use DownloadShort instead
-func (aaa *CampaignService) Download(input *campaign.DownloadParams) error {
+func (aaa *CampaignService) Download(input *campaign.DownloadParams, writer io.Writer) (io.Writer, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
-		return err
+		return nil, err
 	}
-	_, err = aaa.Client.Campaign.Download(input, client.BearerToken(*token.AccessToken))
+	ok, err := aaa.Client.Campaign.Download(input, client.BearerToken(*token.AccessToken), writer)
 	if err != nil {
-		return err
+		return nil, err
 	}
 
-	return nil
+	return ok.GetPayload(), nil
 }
 
 // Deprecated: Use BulkDisableCodesShort instead
@@ -472,7 +474,7 @@ func (aaa *CampaignService) CreateCodesShort(input *campaign.CreateCodesParams) 
 	return created.GetPayload(), nil
 }
 
-func (aaa *CampaignService) DownloadShort(input *campaign.DownloadParams) error {
+func (aaa *CampaignService) DownloadShort(input *campaign.DownloadParams, writer io.Writer) (io.Writer, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -489,12 +491,12 @@ func (aaa *CampaignService) DownloadShort(input *campaign.DownloadParams) error 
 		}
 	}
 
-	_, err := aaa.Client.Campaign.DownloadShort(input, authInfoWriter)
+	ok, err := aaa.Client.Campaign.DownloadShort(input, authInfoWriter, writer)
 	if err != nil {
-		return err
+		return nil, err
 	}
 
-	return nil
+	return ok.GetPayload(), nil
 }
 
 func (aaa *CampaignService) BulkDisableCodesShort(input *campaign.BulkDisableCodesParams) (*platformclientmodels.BulkOperationResult, error) {

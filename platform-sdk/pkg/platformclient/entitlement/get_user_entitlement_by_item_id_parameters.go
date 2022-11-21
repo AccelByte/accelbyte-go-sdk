@@ -27,6 +27,7 @@ const (
 	GetUserEntitlementByItemIDAPPConstant          = "APP"
 	GetUserEntitlementByItemIDCODEConstant         = "CODE"
 	GetUserEntitlementByItemIDENTITLEMENTConstant  = "ENTITLEMENT"
+	GetUserEntitlementByItemIDLOOTBOXConstant      = "LOOTBOX"
 	GetUserEntitlementByItemIDMEDIAConstant        = "MEDIA"
 	GetUserEntitlementByItemIDOPTIONBOXConstant    = "OPTIONBOX"
 	GetUserEntitlementByItemIDSUBSCRIPTIONConstant = "SUBSCRIPTION"

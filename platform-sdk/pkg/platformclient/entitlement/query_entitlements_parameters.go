@@ -35,6 +35,7 @@ const (
 	QueryEntitlementsAPPConstant          = "APP"
 	QueryEntitlementsCODEConstant         = "CODE"
 	QueryEntitlementsENTITLEMENTConstant  = "ENTITLEMENT"
+	QueryEntitlementsLOOTBOXConstant      = "LOOTBOX"
 	QueryEntitlementsMEDIAConstant        = "MEDIA"
 	QueryEntitlementsOPTIONBOXConstant    = "OPTIONBOX"
 	QueryEntitlementsSUBSCRIPTIONConstant = "SUBSCRIPTION"

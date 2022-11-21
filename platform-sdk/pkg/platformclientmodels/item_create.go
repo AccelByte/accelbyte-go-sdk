@@ -66,7 +66,7 @@ type ItemCreate struct {
 
 	// Item Type
 	// Required: true
-	// Enum: [APP BUNDLE CODE COINS EXTENSION INGAMEITEM MEDIA OPTIONBOX SEASON SUBSCRIPTION]
+	// Enum: [APP BUNDLE CODE COINS EXTENSION INGAMEITEM LOOTBOX MEDIA OPTIONBOX SEASON SUBSCRIPTION]
 	ItemType *string `json:"itemType"`
 
 	// Whether can be visible in Store for public user
@@ -75,6 +75,9 @@ type ItemCreate struct {
 	// Localization, key language, value localization content
 	// Required: true
 	Localizations map[string]Localization `json:"localizations"`
+
+	// loot box config, should be empty if item type is not "LOOTBOX"
+	LootBoxConfig *LootBoxConfig `json:"lootBoxConfig,omitempty"`
 
 	// Max count, -1 means UNLIMITED, unset when itemType is CODE
 	MaxCount int32 `json:"maxCount,omitempty"`
@@ -160,6 +163,10 @@ func (m *ItemCreate) Validate(formats strfmt.Registry) error {
 	}
 
 	if err := m.validateLocalizations(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateLootBoxConfig(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -340,7 +347,7 @@ var itemCreateTypeItemTypePropEnum []interface{}
 
 func init() {
 	var res []string
-	if err := json.Unmarshal([]byte(`["APP","BUNDLE","CODE","COINS","EXTENSION","INGAMEITEM","MEDIA","OPTIONBOX","SEASON","SUBSCRIPTION"]`), &res); err != nil {
+	if err := json.Unmarshal([]byte(`["APP","BUNDLE","CODE","COINS","EXTENSION","INGAMEITEM","LOOTBOX","MEDIA","OPTIONBOX","SEASON","SUBSCRIPTION"]`), &res); err != nil {
 		panic(err)
 	}
 	for _, v := range res {
@@ -367,6 +374,9 @@ const (
 
 	// ItemCreateItemTypeINGAMEITEM captures enum value "INGAMEITEM"
 	ItemCreateItemTypeINGAMEITEM string = "INGAMEITEM"
+
+	// ItemCreateItemTypeLOOTBOX captures enum value "LOOTBOX"
+	ItemCreateItemTypeLOOTBOX string = "LOOTBOX"
 
 	// ItemCreateItemTypeMEDIA captures enum value "MEDIA"
 	ItemCreateItemTypeMEDIA string = "MEDIA"
@@ -416,6 +426,24 @@ func (m *ItemCreate) validateLocalizations(formats strfmt.Registry) error {
 			}
 		}
 
+	}
+
+	return nil
+}
+
+func (m *ItemCreate) validateLootBoxConfig(formats strfmt.Registry) error {
+
+	if swag.IsZero(m.LootBoxConfig) { // not required
+		return nil
+	}
+
+	if m.LootBoxConfig != nil {
+		if err := m.LootBoxConfig.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("lootBoxConfig")
+			}
+			return err
+		}
 	}
 
 	return nil

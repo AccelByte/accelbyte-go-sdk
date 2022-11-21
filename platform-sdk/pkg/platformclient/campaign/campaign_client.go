@@ -12,6 +12,7 @@ package campaign
 import (
 	"context"
 	"fmt"
+	"io"
 	"reflect"
 
 	"github.com/go-openapi/runtime"
@@ -45,8 +46,8 @@ type ClientService interface {
 	CreateCodesShort(params *CreateCodesParams, authInfo runtime.ClientAuthInfoWriter) (*CreateCodesCreated, error)
 	DisableCode(params *DisableCodeParams, authInfo runtime.ClientAuthInfoWriter) (*DisableCodeOK, *DisableCodeNotFound, error)
 	DisableCodeShort(params *DisableCodeParams, authInfo runtime.ClientAuthInfoWriter) (*DisableCodeOK, error)
-	Download(params *DownloadParams, authInfo runtime.ClientAuthInfoWriter) (*DownloadOK, error)
-	DownloadShort(params *DownloadParams, authInfo runtime.ClientAuthInfoWriter) (*DownloadOK, error)
+	Download(params *DownloadParams, authInfo runtime.ClientAuthInfoWriter, writer io.Writer) (*DownloadOK, error)
+	DownloadShort(params *DownloadParams, authInfo runtime.ClientAuthInfoWriter, writer io.Writer) (*DownloadOK, error)
 	EnableCode(params *EnableCodeParams, authInfo runtime.ClientAuthInfoWriter) (*EnableCodeOK, *EnableCodeNotFound, error)
 	EnableCodeShort(params *EnableCodeParams, authInfo runtime.ClientAuthInfoWriter) (*EnableCodeOK, error)
 	GetCampaign(params *GetCampaignParams, authInfo runtime.ClientAuthInfoWriter) (*GetCampaignOK, *GetCampaignNotFound, error)
@@ -678,7 +679,7 @@ Deprecated: Use DownloadShort instead.
 
   Download all or a batch of campaign&#39;s codes as a csv file.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:CAMPAIGN&#34;, action=2 (READ)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: codes csv file&lt;/li&gt;&lt;/ul&gt;
 */
-func (a *Client) Download(params *DownloadParams, authInfo runtime.ClientAuthInfoWriter) (*DownloadOK, error) {
+func (a *Client) Download(params *DownloadParams, authInfo runtime.ClientAuthInfoWriter, writer io.Writer) (*DownloadOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewDownloadParams()
@@ -700,7 +701,7 @@ func (a *Client) Download(params *DownloadParams, authInfo runtime.ClientAuthInf
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
 		Params:             params,
-		Reader:             &DownloadReader{formats: a.formats},
+		Reader:             &DownloadReader{formats: a.formats, writer: writer},
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
@@ -724,7 +725,7 @@ func (a *Client) Download(params *DownloadParams, authInfo runtime.ClientAuthInf
 
   Download all or a batch of campaign&#39;s codes as a csv file.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:CAMPAIGN&#34;, action=2 (READ)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: codes csv file&lt;/li&gt;&lt;/ul&gt;
 */
-func (a *Client) DownloadShort(params *DownloadParams, authInfo runtime.ClientAuthInfoWriter) (*DownloadOK, error) {
+func (a *Client) DownloadShort(params *DownloadParams, authInfo runtime.ClientAuthInfoWriter, writer io.Writer) (*DownloadOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewDownloadParams()
@@ -746,7 +747,7 @@ func (a *Client) DownloadShort(params *DownloadParams, authInfo runtime.ClientAu
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
 		Params:             params,
-		Reader:             &DownloadReader{formats: a.formats},
+		Reader:             &DownloadReader{formats: a.formats, writer: writer},
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,

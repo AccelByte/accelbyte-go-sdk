@@ -75,7 +75,7 @@ func NewPublicConsumeUserEntitlementOK() *PublicConsumeUserEntitlementOK {
   successful operation
 */
 type PublicConsumeUserEntitlementOK struct {
-	Payload *platformclientmodels.TrackedEntitlementInfo
+	Payload *platformclientmodels.EntitlementDecrementResult
 }
 
 func (o *PublicConsumeUserEntitlementOK) Error() string {
@@ -97,7 +97,7 @@ func (o *PublicConsumeUserEntitlementOK) ToJSONString() string {
 	return fmt.Sprintf("%+v", string(b))
 }
 
-func (o *PublicConsumeUserEntitlementOK) GetPayload() *platformclientmodels.TrackedEntitlementInfo {
+func (o *PublicConsumeUserEntitlementOK) GetPayload() *platformclientmodels.EntitlementDecrementResult {
 	return o.Payload
 }
 
@@ -108,7 +108,7 @@ func (o *PublicConsumeUserEntitlementOK) readResponse(response runtime.ClientRes
 		consumer = runtime.ByteStreamConsumer()
 	}
 
-	o.Payload = new(platformclientmodels.TrackedEntitlementInfo)
+	o.Payload = new(platformclientmodels.EntitlementDecrementResult)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {

@@ -32,6 +32,7 @@ func init() {
 	DsmcCmd.AddCommand(imageConfig.CreateImageCmd)
 	DsmcCmd.AddCommand(imageConfig.ImportImagesCmd)
 	DsmcCmd.AddCommand(imageConfig.CreateImagePatchCmd)
+	DsmcCmd.AddCommand(podConfig.GetLowestInstanceSpecCmd)
 	DsmcCmd.AddCommand(config.GetConfigCmd)
 	DsmcCmd.AddCommand(config.CreateConfigCmd)
 	DsmcCmd.AddCommand(config.DeleteConfigCmd)

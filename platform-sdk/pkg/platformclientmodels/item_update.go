@@ -65,7 +65,7 @@ type ItemUpdate struct {
 
 	// Item Type
 	// Required: true
-	// Enum: [APP BUNDLE CODE COINS EXTENSION INGAMEITEM MEDIA OPTIONBOX SEASON SUBSCRIPTION]
+	// Enum: [APP BUNDLE CODE COINS EXTENSION INGAMEITEM LOOTBOX MEDIA OPTIONBOX SEASON SUBSCRIPTION]
 	ItemType *string `json:"itemType"`
 
 	// Whether can be visible in Store for public user
@@ -73,6 +73,9 @@ type ItemUpdate struct {
 
 	// Localization, key language, value localization content
 	Localizations map[string]Localization `json:"localizations,omitempty"`
+
+	// loot box config, should be empty if item type is not "LOOTBOX"
+	LootBoxConfig *LootBoxConfig `json:"lootBoxConfig,omitempty"`
 
 	// Max count, -1 means UNLIMITED, new value should >= old value if both old value and new value is limited, unset when itemType is CODE
 	MaxCount int32 `json:"maxCount,omitempty"`
@@ -151,6 +154,10 @@ func (m *ItemUpdate) Validate(formats strfmt.Registry) error {
 	}
 
 	if err := m.validateLocalizations(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateLootBoxConfig(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -318,7 +325,7 @@ var itemUpdateTypeItemTypePropEnum []interface{}
 
 func init() {
 	var res []string
-	if err := json.Unmarshal([]byte(`["APP","BUNDLE","CODE","COINS","EXTENSION","INGAMEITEM","MEDIA","OPTIONBOX","SEASON","SUBSCRIPTION"]`), &res); err != nil {
+	if err := json.Unmarshal([]byte(`["APP","BUNDLE","CODE","COINS","EXTENSION","INGAMEITEM","LOOTBOX","MEDIA","OPTIONBOX","SEASON","SUBSCRIPTION"]`), &res); err != nil {
 		panic(err)
 	}
 	for _, v := range res {
@@ -345,6 +352,9 @@ const (
 
 	// ItemUpdateItemTypeINGAMEITEM captures enum value "INGAMEITEM"
 	ItemUpdateItemTypeINGAMEITEM string = "INGAMEITEM"
+
+	// ItemUpdateItemTypeLOOTBOX captures enum value "LOOTBOX"
+	ItemUpdateItemTypeLOOTBOX string = "LOOTBOX"
 
 	// ItemUpdateItemTypeMEDIA captures enum value "MEDIA"
 	ItemUpdateItemTypeMEDIA string = "MEDIA"
@@ -398,6 +408,24 @@ func (m *ItemUpdate) validateLocalizations(formats strfmt.Registry) error {
 			}
 		}
 
+	}
+
+	return nil
+}
+
+func (m *ItemUpdate) validateLootBoxConfig(formats strfmt.Registry) error {
+
+	if swag.IsZero(m.LootBoxConfig) { // not required
+		return nil
+	}
+
+	if m.LootBoxConfig != nil {
+		if err := m.LootBoxConfig.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("lootBoxConfig")
+			}
+			return err
+		}
 	}
 
 	return nil

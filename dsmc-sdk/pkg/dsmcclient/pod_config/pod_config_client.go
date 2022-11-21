@@ -39,6 +39,8 @@ type ClientService interface {
 	DeletePodConfigShort(params *DeletePodConfigParams, authInfo runtime.ClientAuthInfoWriter) (*DeletePodConfigNoContent, error)
 	GetAllPodConfig(params *GetAllPodConfigParams, authInfo runtime.ClientAuthInfoWriter) (*GetAllPodConfigOK, *GetAllPodConfigBadRequest, *GetAllPodConfigUnauthorized, *GetAllPodConfigInternalServerError, error)
 	GetAllPodConfigShort(params *GetAllPodConfigParams, authInfo runtime.ClientAuthInfoWriter) (*GetAllPodConfigOK, error)
+	GetLowestInstanceSpec(params *GetLowestInstanceSpecParams, authInfo runtime.ClientAuthInfoWriter) (*GetLowestInstanceSpecOK, *GetLowestInstanceSpecUnauthorized, *GetLowestInstanceSpecInternalServerError, error)
+	GetLowestInstanceSpecShort(params *GetLowestInstanceSpecParams, authInfo runtime.ClientAuthInfoWriter) (*GetLowestInstanceSpecOK, error)
 	GetPodConfig(params *GetPodConfigParams, authInfo runtime.ClientAuthInfoWriter) (*GetPodConfigOK, *GetPodConfigBadRequest, *GetPodConfigUnauthorized, *GetPodConfigNotFound, *GetPodConfigInternalServerError, error)
 	GetPodConfigShort(params *GetPodConfigParams, authInfo runtime.ClientAuthInfoWriter) (*GetPodConfigOK, error)
 	UpdatePodConfig(params *UpdatePodConfigParams, authInfo runtime.ClientAuthInfoWriter) (*UpdatePodConfigOK, *UpdatePodConfigBadRequest, *UpdatePodConfigUnauthorized, *UpdatePodConfigNotFound, *UpdatePodConfigConflict, *UpdatePodConfigInternalServerError, error)
@@ -410,6 +412,118 @@ func (a *Client) GetAllPodConfigShort(params *GetAllPodConfigParams, authInfo ru
 	case *GetAllPodConfigUnauthorized:
 		return nil, v
 	case *GetAllPodConfigInternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+Deprecated: Use GetLowestInstanceSpecShort instead.
+
+  GetLowestInstanceSpec gets lowest instance spec
+
+  Required permission: ADMIN:NAMESPACE:*:DSM:CONFIG [READ]
+
+Required scope: social
+
+This endpoint returns the lowest instance spec, both cpu (in Mhz) and memory (in Mb).
+*/
+func (a *Client) GetLowestInstanceSpec(params *GetLowestInstanceSpecParams, authInfo runtime.ClientAuthInfoWriter) (*GetLowestInstanceSpecOK, *GetLowestInstanceSpecUnauthorized, *GetLowestInstanceSpecInternalServerError, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewGetLowestInstanceSpecParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "GetLowestInstanceSpec",
+		Method:             "GET",
+		PathPattern:        "/dsmcontroller/admin/instances/spec/lowest",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &GetLowestInstanceSpecReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, nil, nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *GetLowestInstanceSpecOK:
+		return v, nil, nil, nil
+
+	case *GetLowestInstanceSpecUnauthorized:
+		return nil, v, nil, nil
+
+	case *GetLowestInstanceSpecInternalServerError:
+		return nil, nil, v, nil
+
+	default:
+		return nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+  GetLowestInstanceSpecShort gets lowest instance spec
+
+  Required permission: ADMIN:NAMESPACE:*:DSM:CONFIG [READ]
+
+Required scope: social
+
+This endpoint returns the lowest instance spec, both cpu (in Mhz) and memory (in Mb).
+*/
+func (a *Client) GetLowestInstanceSpecShort(params *GetLowestInstanceSpecParams, authInfo runtime.ClientAuthInfoWriter) (*GetLowestInstanceSpecOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewGetLowestInstanceSpecParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "GetLowestInstanceSpec",
+		Method:             "GET",
+		PathPattern:        "/dsmcontroller/admin/instances/spec/lowest",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &GetLowestInstanceSpecReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *GetLowestInstanceSpecOK:
+		return v, nil
+	case *GetLowestInstanceSpecUnauthorized:
+		return nil, v
+	case *GetLowestInstanceSpecInternalServerError:
 		return nil, v
 
 	default:

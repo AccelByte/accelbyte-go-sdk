@@ -42,6 +42,12 @@ func (o *Change2FAMethodReader) ReadResponse(response runtime.ClientResponse, co
 			return nil, err
 		}
 		return result, nil
+	case 500:
+		result := NewChange2FAMethodInternalServerError()
+		if err := result.readResponse(response, consumer, o.formats); err != nil {
+			return nil, err
+		}
+		return result, nil
 
 	default:
 		data, err := ioutil.ReadAll(response.Body())
@@ -86,7 +92,7 @@ func NewChange2FAMethodBadRequest() *Change2FAMethodBadRequest {
 
 /*Change2FAMethodBadRequest handles this case with default header values.
 
-  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>10189</td><td>invalid factor</td></tr></table>
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>10189</td><td>invalid factor</td></tr><tr><td>20002</td><td>validation error</td></tr></table>
 */
 type Change2FAMethodBadRequest struct {
 	Payload *iamclientmodels.RestErrorResponse
@@ -116,6 +122,59 @@ func (o *Change2FAMethodBadRequest) GetPayload() *iamclientmodels.RestErrorRespo
 }
 
 func (o *Change2FAMethodBadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+	// handle file responses
+	contentDisposition := response.GetHeader("Content-Disposition")
+	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
+		consumer = runtime.ByteStreamConsumer()
+	}
+
+	o.Payload = new(iamclientmodels.RestErrorResponse)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
+	}
+
+	return nil
+}
+
+// NewChange2FAMethodInternalServerError creates a Change2FAMethodInternalServerError with default headers values
+func NewChange2FAMethodInternalServerError() *Change2FAMethodInternalServerError {
+	return &Change2FAMethodInternalServerError{}
+}
+
+/*Change2FAMethodInternalServerError handles this case with default header values.
+
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20000</td><td>internal server error</td></tr></table>
+*/
+type Change2FAMethodInternalServerError struct {
+	Payload *iamclientmodels.RestErrorResponse
+}
+
+func (o *Change2FAMethodInternalServerError) Error() string {
+	return fmt.Sprintf("[POST /iam/v3/oauth/mfa/factor/change][%d] change2FAMethodInternalServerError  %+v", 500, o.ToJSONString())
+}
+
+func (o *Change2FAMethodInternalServerError) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
+}
+
+func (o *Change2FAMethodInternalServerError) GetPayload() *iamclientmodels.RestErrorResponse {
+	return o.Payload
+}
+
+func (o *Change2FAMethodInternalServerError) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {

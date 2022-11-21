@@ -30,6 +30,7 @@ const (
 	SearchItemsCOINSConstant        = "COINS"
 	SearchItemsEXTENSIONConstant    = "EXTENSION"
 	SearchItemsINGAMEITEMConstant   = "INGAMEITEM"
+	SearchItemsLOOTBOXConstant      = "LOOTBOX"
 	SearchItemsMEDIAConstant        = "MEDIA"
 	SearchItemsOPTIONBOXConstant    = "OPTIONBOX"
 	SearchItemsSEASONConstant       = "SEASON"

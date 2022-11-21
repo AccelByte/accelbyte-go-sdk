@@ -29,6 +29,7 @@ const (
 	DownloadInvoiceDetailsCOINSConstant        = "COINS"
 	DownloadInvoiceDetailsEXTENSIONConstant    = "EXTENSION"
 	DownloadInvoiceDetailsINGAMEITEMConstant   = "INGAMEITEM"
+	DownloadInvoiceDetailsLOOTBOXConstant      = "LOOTBOX"
 	DownloadInvoiceDetailsMEDIAConstant        = "MEDIA"
 	DownloadInvoiceDetailsOPTIONBOXConstant    = "OPTIONBOX"
 	DownloadInvoiceDetailsSEASONConstant       = "SEASON"

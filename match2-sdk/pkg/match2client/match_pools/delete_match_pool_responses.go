@@ -30,8 +30,8 @@ type DeleteMatchPoolReader struct {
 // ReadResponse reads a server response into the received o.
 func (o *DeleteMatchPoolReader) ReadResponse(response runtime.ClientResponse, consumer runtime.Consumer) (interface{}, error) {
 	switch response.Code() {
-	case 200:
-		result := NewDeleteMatchPoolOK()
+	case 204:
+		result := NewDeleteMatchPoolNoContent()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
@@ -71,23 +71,23 @@ func (o *DeleteMatchPoolReader) ReadResponse(response runtime.ClientResponse, co
 	}
 }
 
-// NewDeleteMatchPoolOK creates a DeleteMatchPoolOK with default headers values
-func NewDeleteMatchPoolOK() *DeleteMatchPoolOK {
-	return &DeleteMatchPoolOK{}
+// NewDeleteMatchPoolNoContent creates a DeleteMatchPoolNoContent with default headers values
+func NewDeleteMatchPoolNoContent() *DeleteMatchPoolNoContent {
+	return &DeleteMatchPoolNoContent{}
 }
 
-/*DeleteMatchPoolOK handles this case with default header values.
+/*DeleteMatchPoolNoContent handles this case with default header values.
 
-  OK
+  No Content
 */
-type DeleteMatchPoolOK struct {
+type DeleteMatchPoolNoContent struct {
 }
 
-func (o *DeleteMatchPoolOK) Error() string {
-	return fmt.Sprintf("[DELETE /match2/v1/namespaces/{namespace}/match-pools/{pool}][%d] deleteMatchPoolOK ", 200)
+func (o *DeleteMatchPoolNoContent) Error() string {
+	return fmt.Sprintf("[DELETE /match2/v1/namespaces/{namespace}/match-pools/{pool}][%d] deleteMatchPoolNoContent ", 204)
 }
 
-func (o *DeleteMatchPoolOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+func (o *DeleteMatchPoolNoContent) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {

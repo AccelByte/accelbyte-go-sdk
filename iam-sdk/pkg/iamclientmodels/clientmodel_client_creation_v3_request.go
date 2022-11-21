@@ -46,12 +46,19 @@ type ClientmodelClientCreationV3Request struct {
 	// deletable
 	Deletable bool `json:"deletable"`
 
+	// length 0~1024
+	// Required: true
+	Description *string `json:"description"`
+
 	// namespace
 	// Required: true
 	Namespace *string `json:"namespace"`
 
 	// min value 1 second, max value 86400 seconds
 	OauthAccessTokenExpiration int32 `json:"oauthAccessTokenExpiration,omitempty"`
+
+	// valid time unit: SECONDS, MINUTES, or HOURS
+	OauthAccessTokenExpirationTimeUnit string `json:"oauthAccessTokenExpirationTimeUnit,omitempty"`
 
 	// oauth client type
 	// Required: true
@@ -60,9 +67,15 @@ type ClientmodelClientCreationV3Request struct {
 	// min value 1 seconds, max value 2592000 seconds
 	OauthRefreshTokenExpiration int32 `json:"oauthRefreshTokenExpiration,omitempty"`
 
+	// valid time unit: SECONDS, MINUTES, HOURS or DAYS
+	OauthRefreshTokenExpirationTimeUnit string `json:"oauthRefreshTokenExpirationTimeUnit,omitempty"`
+
 	// redirect Uri
 	// Required: true
 	RedirectURI *string `json:"redirectUri"`
+
+	// scopes
+	Scopes []string `json:"scopes"`
 
 	// secret
 	// Required: true
@@ -97,6 +110,10 @@ func (m *ClientmodelClientCreationV3Request) Validate(formats strfmt.Registry) e
 	}
 
 	if err := m.validateClientPlatform(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateDescription(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -186,6 +203,15 @@ func (m *ClientmodelClientCreationV3Request) validateClientPermissions(formats s
 func (m *ClientmodelClientCreationV3Request) validateClientPlatform(formats strfmt.Registry) error {
 
 	if err := validate.Required("clientPlatform", "body", m.ClientPlatform); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *ClientmodelClientCreationV3Request) validateDescription(formats strfmt.Registry) error {
+
+	if err := validate.Required("description", "body", m.Description); err != nil {
 		return err
 	}
 

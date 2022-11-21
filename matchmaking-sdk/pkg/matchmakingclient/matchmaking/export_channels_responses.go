@@ -25,13 +25,14 @@ import (
 // ExportChannelsReader is a Reader for the ExportChannels structure.
 type ExportChannelsReader struct {
 	formats strfmt.Registry
+	writer  io.Writer
 }
 
 // ReadResponse reads a server response into the received o.
 func (o *ExportChannelsReader) ReadResponse(response runtime.ClientResponse, consumer runtime.Consumer) (interface{}, error) {
 	switch response.Code() {
 	case 200:
-		result := NewExportChannelsOK()
+		result := NewExportChannelsOK(o.writer)
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
@@ -66,8 +67,10 @@ func (o *ExportChannelsReader) ReadResponse(response runtime.ClientResponse, con
 }
 
 // NewExportChannelsOK creates a ExportChannelsOK with default headers values
-func NewExportChannelsOK() *ExportChannelsOK {
-	return &ExportChannelsOK{}
+func NewExportChannelsOK(writer io.Writer) *ExportChannelsOK {
+	return &ExportChannelsOK{
+		Payload: writer,
+	}
 }
 
 /*ExportChannelsOK handles this case with default header values.
@@ -75,7 +78,7 @@ func NewExportChannelsOK() *ExportChannelsOK {
   OK
 */
 type ExportChannelsOK struct {
-	Payload []*matchmakingclientmodels.ModelsChannelV1
+	Payload io.Writer
 }
 
 func (o *ExportChannelsOK) Error() string {
@@ -97,7 +100,7 @@ func (o *ExportChannelsOK) ToJSONString() string {
 	return fmt.Sprintf("%+v", string(b))
 }
 
-func (o *ExportChannelsOK) GetPayload() []*matchmakingclientmodels.ModelsChannelV1 {
+func (o *ExportChannelsOK) GetPayload() io.Writer {
 	return o.Payload
 }
 
@@ -109,7 +112,7 @@ func (o *ExportChannelsOK) readResponse(response runtime.ClientResponse, consume
 	}
 
 	// response payload
-	if err := consumer.Consume(response.Body(), &o.Payload); err != nil && err != io.EOF {
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
 		return err
 	}
 

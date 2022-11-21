@@ -12,6 +12,7 @@ package all_terminated_servers
 import (
 	"context"
 	"fmt"
+	"io"
 	"reflect"
 
 	"github.com/go-openapi/runtime"
@@ -33,8 +34,8 @@ type Client struct {
 
 // ClientService is the interface for Client methods
 type ClientService interface {
-	BatchDownloadServerLogs(params *BatchDownloadServerLogsParams, authInfo runtime.ClientAuthInfoWriter) (*BatchDownloadServerLogsOK, *BatchDownloadServerLogsBadRequest, *BatchDownloadServerLogsInternalServerError, error)
-	BatchDownloadServerLogsShort(params *BatchDownloadServerLogsParams, authInfo runtime.ClientAuthInfoWriter) (*BatchDownloadServerLogsOK, error)
+	BatchDownloadServerLogs(params *BatchDownloadServerLogsParams, authInfo runtime.ClientAuthInfoWriter, writer io.Writer) (*BatchDownloadServerLogsOK, *BatchDownloadServerLogsBadRequest, *BatchDownloadServerLogsInternalServerError, error)
+	BatchDownloadServerLogsShort(params *BatchDownloadServerLogsParams, authInfo runtime.ClientAuthInfoWriter, writer io.Writer) (*BatchDownloadServerLogsOK, error)
 	ListAllTerminatedServers(params *ListAllTerminatedServersParams, authInfo runtime.ClientAuthInfoWriter) (*ListAllTerminatedServersOK, *ListAllTerminatedServersBadRequest, *ListAllTerminatedServersUnauthorized, *ListAllTerminatedServersInternalServerError, error)
 	ListAllTerminatedServersShort(params *ListAllTerminatedServersParams, authInfo runtime.ClientAuthInfoWriter) (*ListAllTerminatedServersOK, error)
 
@@ -52,7 +53,7 @@ Required scope: social
 
 This endpoint will download dedicated server&#39;s log file (.zip).
 */
-func (a *Client) BatchDownloadServerLogs(params *BatchDownloadServerLogsParams, authInfo runtime.ClientAuthInfoWriter) (*BatchDownloadServerLogsOK, *BatchDownloadServerLogsBadRequest, *BatchDownloadServerLogsInternalServerError, error) {
+func (a *Client) BatchDownloadServerLogs(params *BatchDownloadServerLogsParams, authInfo runtime.ClientAuthInfoWriter, writer io.Writer) (*BatchDownloadServerLogsOK, *BatchDownloadServerLogsBadRequest, *BatchDownloadServerLogsInternalServerError, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewBatchDownloadServerLogsParams()
@@ -74,7 +75,7 @@ func (a *Client) BatchDownloadServerLogs(params *BatchDownloadServerLogsParams, 
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
 		Params:             params,
-		Reader:             &BatchDownloadServerLogsReader{formats: a.formats},
+		Reader:             &BatchDownloadServerLogsReader{formats: a.formats, writer: writer},
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
@@ -108,7 +109,7 @@ Required scope: social
 
 This endpoint will download dedicated server&#39;s log file (.zip).
 */
-func (a *Client) BatchDownloadServerLogsShort(params *BatchDownloadServerLogsParams, authInfo runtime.ClientAuthInfoWriter) (*BatchDownloadServerLogsOK, error) {
+func (a *Client) BatchDownloadServerLogsShort(params *BatchDownloadServerLogsParams, authInfo runtime.ClientAuthInfoWriter, writer io.Writer) (*BatchDownloadServerLogsOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewBatchDownloadServerLogsParams()
@@ -130,7 +131,7 @@ func (a *Client) BatchDownloadServerLogsShort(params *BatchDownloadServerLogsPar
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
 		Params:             params,
-		Reader:             &BatchDownloadServerLogsReader{formats: a.formats},
+		Reader:             &BatchDownloadServerLogsReader{formats: a.formats, writer: writer},
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,

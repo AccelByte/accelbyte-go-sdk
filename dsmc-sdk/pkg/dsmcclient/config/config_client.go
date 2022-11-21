@@ -12,6 +12,7 @@ package config
 import (
 	"context"
 	"fmt"
+	"io"
 	"reflect"
 
 	"github.com/go-openapi/runtime"
@@ -53,8 +54,8 @@ type ClientService interface {
 	UpdateConfigShort(params *UpdateConfigParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateConfigOK, error)
 	UpdatePort(params *UpdatePortParams, authInfo runtime.ClientAuthInfoWriter) (*UpdatePortOK, *UpdatePortBadRequest, *UpdatePortUnauthorized, *UpdatePortNotFound, *UpdatePortInternalServerError, error)
 	UpdatePortShort(params *UpdatePortParams, authInfo runtime.ClientAuthInfoWriter) (*UpdatePortOK, error)
-	ExportConfigV1(params *ExportConfigV1Params, authInfo runtime.ClientAuthInfoWriter) (*ExportConfigV1OK, *ExportConfigV1Unauthorized, *ExportConfigV1Forbidden, *ExportConfigV1NotFound, *ExportConfigV1InternalServerError, error)
-	ExportConfigV1Short(params *ExportConfigV1Params, authInfo runtime.ClientAuthInfoWriter) (*ExportConfigV1OK, error)
+	ExportConfigV1(params *ExportConfigV1Params, authInfo runtime.ClientAuthInfoWriter, writer io.Writer) (*ExportConfigV1OK, *ExportConfigV1Unauthorized, *ExportConfigV1Forbidden, *ExportConfigV1NotFound, *ExportConfigV1InternalServerError, error)
+	ExportConfigV1Short(params *ExportConfigV1Params, authInfo runtime.ClientAuthInfoWriter, writer io.Writer) (*ExportConfigV1OK, error)
 	ImportConfigV1(params *ImportConfigV1Params, authInfo runtime.ClientAuthInfoWriter) (*ImportConfigV1OK, *ImportConfigV1BadRequest, *ImportConfigV1Unauthorized, *ImportConfigV1Forbidden, *ImportConfigV1NotFound, *ImportConfigV1InternalServerError, error)
 	ImportConfigV1Short(params *ImportConfigV1Params, authInfo runtime.ClientAuthInfoWriter) (*ImportConfigV1OK, error)
 
@@ -1524,7 +1525,7 @@ Required scope: social
 This endpoint export a dedicated servers config in a namespace.
 
 */
-func (a *Client) ExportConfigV1(params *ExportConfigV1Params, authInfo runtime.ClientAuthInfoWriter) (*ExportConfigV1OK, *ExportConfigV1Unauthorized, *ExportConfigV1Forbidden, *ExportConfigV1NotFound, *ExportConfigV1InternalServerError, error) {
+func (a *Client) ExportConfigV1(params *ExportConfigV1Params, authInfo runtime.ClientAuthInfoWriter, writer io.Writer) (*ExportConfigV1OK, *ExportConfigV1Unauthorized, *ExportConfigV1Forbidden, *ExportConfigV1NotFound, *ExportConfigV1InternalServerError, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewExportConfigV1Params()
@@ -1546,7 +1547,7 @@ func (a *Client) ExportConfigV1(params *ExportConfigV1Params, authInfo runtime.C
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
 		Params:             params,
-		Reader:             &ExportConfigV1Reader{formats: a.formats},
+		Reader:             &ExportConfigV1Reader{formats: a.formats, writer: writer},
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
@@ -1587,7 +1588,7 @@ Required scope: social
 This endpoint export a dedicated servers config in a namespace.
 
 */
-func (a *Client) ExportConfigV1Short(params *ExportConfigV1Params, authInfo runtime.ClientAuthInfoWriter) (*ExportConfigV1OK, error) {
+func (a *Client) ExportConfigV1Short(params *ExportConfigV1Params, authInfo runtime.ClientAuthInfoWriter, writer io.Writer) (*ExportConfigV1OK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewExportConfigV1Params()
@@ -1609,7 +1610,7 @@ func (a *Client) ExportConfigV1Short(params *ExportConfigV1Params, authInfo runt
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
 		Params:             params,
-		Reader:             &ExportConfigV1Reader{formats: a.formats},
+		Reader:             &ExportConfigV1Reader{formats: a.formats, writer: writer},
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,

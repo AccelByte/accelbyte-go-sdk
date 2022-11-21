@@ -29,6 +29,7 @@ const (
 	GenerateInvoiceSummaryCOINSConstant        = "COINS"
 	GenerateInvoiceSummaryEXTENSIONConstant    = "EXTENSION"
 	GenerateInvoiceSummaryINGAMEITEMConstant   = "INGAMEITEM"
+	GenerateInvoiceSummaryLOOTBOXConstant      = "LOOTBOX"
 	GenerateInvoiceSummaryMEDIAConstant        = "MEDIA"
 	GenerateInvoiceSummaryOPTIONBOXConstant    = "OPTIONBOX"
 	GenerateInvoiceSummarySEASONConstant       = "SEASON"

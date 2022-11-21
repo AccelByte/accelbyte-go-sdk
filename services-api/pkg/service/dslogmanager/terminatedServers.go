@@ -7,6 +7,8 @@
 package dslogmanager
 
 import (
+	"io"
+
 	"github.com/AccelByte/accelbyte-go-sdk/dslogmanager-sdk/pkg/dslogmanagerclient"
 	"github.com/AccelByte/accelbyte-go-sdk/dslogmanager-sdk/pkg/dslogmanagerclient/terminated_servers"
 	"github.com/AccelByte/accelbyte-go-sdk/dslogmanager-sdk/pkg/dslogmanagerclientmodels"
@@ -63,23 +65,23 @@ func (aaa *TerminatedServersService) ListTerminatedServers(input *terminated_ser
 }
 
 // Deprecated: Use DownloadServerLogsShort instead
-func (aaa *TerminatedServersService) DownloadServerLogs(input *terminated_servers.DownloadServerLogsParams) error {
+func (aaa *TerminatedServersService) DownloadServerLogs(input *terminated_servers.DownloadServerLogsParams, writer io.Writer) (io.Writer, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
-		return err
+		return nil, err
 	}
-	_, notFound, internalServerError, err := aaa.Client.TerminatedServers.DownloadServerLogs(input, client.BearerToken(*token.AccessToken))
+	ok, notFound, internalServerError, err := aaa.Client.TerminatedServers.DownloadServerLogs(input, client.BearerToken(*token.AccessToken), writer)
 	if notFound != nil {
-		return notFound
+		return nil, notFound
 	}
 	if internalServerError != nil {
-		return internalServerError
+		return nil, internalServerError
 	}
 	if err != nil {
-		return err
+		return nil, err
 	}
 
-	return nil
+	return ok.GetPayload(), nil
 }
 
 // Deprecated: Use CheckServerLogsShort instead
@@ -127,7 +129,7 @@ func (aaa *TerminatedServersService) ListTerminatedServersShort(input *terminate
 	return ok.GetPayload(), nil
 }
 
-func (aaa *TerminatedServersService) DownloadServerLogsShort(input *terminated_servers.DownloadServerLogsParams) error {
+func (aaa *TerminatedServersService) DownloadServerLogsShort(input *terminated_servers.DownloadServerLogsParams, writer io.Writer) (io.Writer, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -144,12 +146,12 @@ func (aaa *TerminatedServersService) DownloadServerLogsShort(input *terminated_s
 		}
 	}
 
-	_, err := aaa.Client.TerminatedServers.DownloadServerLogsShort(input, authInfoWriter)
+	ok, err := aaa.Client.TerminatedServers.DownloadServerLogsShort(input, authInfoWriter, writer)
 	if err != nil {
-		return err
+		return nil, err
 	}
 
-	return nil
+	return ok.GetPayload(), nil
 }
 
 func (aaa *TerminatedServersService) CheckServerLogsShort(input *terminated_servers.CheckServerLogsParams) (*dslogmanagerclientmodels.ModelsLogFileStatus, error) {

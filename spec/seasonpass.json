@@ -8,7 +8,7 @@
     },
     "description": "Justice SeasonPass Service",
     "title": "justice-seasonpass-service",
-    "version": "1.16.0"
+    "version": "1.16.1"
   },
   "schemes": [
     "https"
@@ -4340,7 +4340,9 @@
             "BUNDLE",
             "CODE",
             "COINS",
+            "EXTENSION",
             "INGAMEITEM",
+            "LOOTBOX",
             "MEDIA",
             "OPTIONBOX",
             "SEASON",

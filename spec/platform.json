@@ -8,7 +8,7 @@
     },
     "description": "Justice Platform Service",
     "title": "justice-platform-service",
-    "version": "4.17.0"
+    "version": "4.17.1"
   },
   "schemes": [
     "https"
@@ -616,6 +616,7 @@
               "COINS",
               "EXTENSION",
               "INGAMEITEM",
+              "LOOTBOX",
               "MEDIA",
               "OPTIONBOX",
               "SEASON",
@@ -1885,7 +1886,10 @@
         ],
         "responses": {
           "200": {
-            "description": "Successful operation"
+            "description": "Successful operation",
+            "schema": {
+              "type": "file"
+            }
           }
         },
         "security": [
@@ -3017,6 +3021,7 @@
               "APP",
               "CODE",
               "ENTITLEMENT",
+              "LOOTBOX",
               "MEDIA",
               "OPTIONBOX",
               "SUBSCRIPTION"
@@ -4623,6 +4628,7 @@
               "COINS",
               "EXTENSION",
               "INGAMEITEM",
+              "LOOTBOX",
               "MEDIA",
               "OPTIONBOX",
               "SEASON",
@@ -4639,7 +4645,10 @@
         ],
         "responses": {
           "200": {
-            "description": "Successful operation"
+            "description": "Successful operation",
+            "schema": {
+              "type": "file"
+            }
           }
         },
         "security": [
@@ -4708,6 +4717,7 @@
               "COINS",
               "EXTENSION",
               "INGAMEITEM",
+              "LOOTBOX",
               "MEDIA",
               "OPTIONBOX",
               "SEASON",
@@ -4798,7 +4808,7 @@
             }
           },
           "400": {
-            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eErrorCode\u003c/td\u003e\u003ctd\u003eErrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e30322\u003c/td\u003e\u003ctd\u003eBundle item [{itemId}] can't be bundled\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e30325\u003c/td\u003e\u003ctd\u003eCode item [{itemId}] can't be bundled\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e30326\u003c/td\u003e\u003ctd\u003eSubscription item [{itemId}] can't be bundled\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e30329\u003c/td\u003e\u003ctd\u003eInvalid bundled item [{itemId}] quantity\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e30021\u003c/td\u003e\u003ctd\u003eDefault language [{language}] required\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e30321\u003c/td\u003e\u003ctd\u003eInvalid item discount amount\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e30022\u003c/td\u003e\u003ctd\u003eDefault region [{region}] is required\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e30323\u003c/td\u003e\u003ctd\u003eTarget namespace is required\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e30327\u003c/td\u003e\u003ctd\u003eInvalid item trial price\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e30330\u003c/td\u003e\u003ctd\u003eInvalid item region price currency namespace [{namespace}]\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e30332\u003c/td\u003e\u003ctd\u003eInvalid option box item [{itemId}] quantity\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e30333\u003c/td\u003e\u003ctd\u003eItem [{itemId}] item type [{itemType}] can't be bundled into option box\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e30334\u003c/td\u003e\u003ctd\u003eOption box item [{itemId}] can't be bundled\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eErrorCode\u003c/td\u003e\u003ctd\u003eErrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e30322\u003c/td\u003e\u003ctd\u003eBundle item [{itemId}] can't be bundled\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e30325\u003c/td\u003e\u003ctd\u003eCode item [{itemId}] can't be bundled\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e30326\u003c/td\u003e\u003ctd\u003eSubscription item [{itemId}] can't be bundled\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e30329\u003c/td\u003e\u003ctd\u003eInvalid bundled item [{itemId}] quantity\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e30021\u003c/td\u003e\u003ctd\u003eDefault language [{language}] required\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e30321\u003c/td\u003e\u003ctd\u003eInvalid item discount amount\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e30022\u003c/td\u003e\u003ctd\u003eDefault region [{region}] is required\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e30323\u003c/td\u003e\u003ctd\u003eTarget namespace is required\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e30327\u003c/td\u003e\u003ctd\u003eInvalid item trial price\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e30330\u003c/td\u003e\u003ctd\u003eInvalid item region price currency namespace [{namespace}]\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e30332\u003c/td\u003e\u003ctd\u003eInvalid option box item [{itemId}] quantity\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e30333\u003c/td\u003e\u003ctd\u003eItem [{itemId}] item type [{itemType}] can't be bundled into option box\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e30334\u003c/td\u003e\u003ctd\u003eOption box item [{itemId}] can't be bundled\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e30337\u003c/td\u003e\u003ctd\u003eInvalid loot box item [{itemId}] quantity\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e30338\u003c/td\u003e\u003ctd\u003eItem [{itemId}] item type [{itemType}] can't be bundled into loot box\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e30339\u003c/td\u003e\u003ctd\u003eLoot box item [{itemId}] can't be bundled\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/ErrorEntity"
             }
@@ -5073,6 +5083,7 @@
               "COINS",
               "EXTENSION",
               "INGAMEITEM",
+              "LOOTBOX",
               "MEDIA",
               "OPTIONBOX",
               "SEASON",
@@ -5808,6 +5819,7 @@
               "COINS",
               "EXTENSION",
               "INGAMEITEM",
+              "LOOTBOX",
               "MEDIA",
               "OPTIONBOX",
               "SEASON",
@@ -6191,7 +6203,7 @@
             }
           },
           "400": {
-            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eErrorCode\u003c/td\u003e\u003ctd\u003eErrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e30322\u003c/td\u003e\u003ctd\u003eBundle item [{itemId}] can't be bundled\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e30325\u003c/td\u003e\u003ctd\u003eCode item [{itemId}] can't be bundled\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e30326\u003c/td\u003e\u003ctd\u003eSubscription item [{itemId}] can't be bundled\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e30329\u003c/td\u003e\u003ctd\u003eInvalid bundled item [{itemId}] quantity\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e30021\u003c/td\u003e\u003ctd\u003eDefault language [{language}] required\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e30321\u003c/td\u003e\u003ctd\u003eInvalid item discount amount\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e30022\u003c/td\u003e\u003ctd\u003eDefault region [{region}] is required\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e30323\u003c/td\u003e\u003ctd\u003eTarget namespace is required\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e30327\u003c/td\u003e\u003ctd\u003eInvalid item trial price\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e30330\u003c/td\u003e\u003ctd\u003eInvalid item region price currency namespace [{namespace}]\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e30332\u003c/td\u003e\u003ctd\u003eInvalid option box item [{itemId}] quantity\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e30333\u003c/td\u003e\u003ctd\u003eItem [{itemId}] item type [{itemType}] can't be bundled into option box\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e30334\u003c/td\u003e\u003ctd\u003eOption box item [{itemId}] can't be bundled\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eErrorCode\u003c/td\u003e\u003ctd\u003eErrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e30322\u003c/td\u003e\u003ctd\u003eBundle item [{itemId}] can't be bundled\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e30325\u003c/td\u003e\u003ctd\u003eCode item [{itemId}] can't be bundled\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e30326\u003c/td\u003e\u003ctd\u003eSubscription item [{itemId}] can't be bundled\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e30329\u003c/td\u003e\u003ctd\u003eInvalid bundled item [{itemId}] quantity\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e30021\u003c/td\u003e\u003ctd\u003eDefault language [{language}] required\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e30321\u003c/td\u003e\u003ctd\u003eInvalid item discount amount\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e30022\u003c/td\u003e\u003ctd\u003eDefault region [{region}] is required\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e30323\u003c/td\u003e\u003ctd\u003eTarget namespace is required\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e30327\u003c/td\u003e\u003ctd\u003eInvalid item trial price\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e30330\u003c/td\u003e\u003ctd\u003eInvalid item region price currency namespace [{namespace}]\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e30332\u003c/td\u003e\u003ctd\u003eInvalid option box item [{itemId}] quantity\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e30333\u003c/td\u003e\u003ctd\u003eItem [{itemId}] item type [{itemType}] can't be bundled into option box\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e30334\u003c/td\u003e\u003ctd\u003eOption box item [{itemId}] can't be bundled\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e30337\u003c/td\u003e\u003ctd\u003eInvalid loot box item [{itemId}] quantity\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e30338\u003c/td\u003e\u003ctd\u003eItem [{itemId}] item type [{itemType}] can't be bundled into loot box\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e30339\u003c/td\u003e\u003ctd\u003eLoot box item [{itemId}] can't be bundled\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/ErrorEntity"
             }
@@ -10098,6 +10110,7 @@
               "COINS",
               "EXTENSION",
               "INGAMEITEM",
+              "LOOTBOX",
               "MEDIA",
               "OPTIONBOX",
               "SEASON",
@@ -10462,6 +10475,7 @@
               "COINS",
               "EXTENSION",
               "INGAMEITEM",
+              "LOOTBOX",
               "MEDIA",
               "OPTIONBOX",
               "SEASON",
@@ -11890,6 +11904,7 @@
               "APP",
               "CODE",
               "ENTITLEMENT",
+              "LOOTBOX",
               "MEDIA",
               "OPTIONBOX",
               "SUBSCRIPTION"
@@ -12243,6 +12258,7 @@
               "APP",
               "CODE",
               "ENTITLEMENT",
+              "LOOTBOX",
               "MEDIA",
               "OPTIONBOX",
               "SUBSCRIPTION"
@@ -12327,6 +12343,7 @@
               "APP",
               "CODE",
               "ENTITLEMENT",
+              "LOOTBOX",
               "MEDIA",
               "OPTIONBOX",
               "SUBSCRIPTION"
@@ -12599,6 +12616,7 @@
               "APP",
               "CODE",
               "ENTITLEMENT",
+              "LOOTBOX",
               "MEDIA",
               "OPTIONBOX",
               "SUBSCRIPTION"
@@ -12732,6 +12750,7 @@
               "APP",
               "CODE",
               "ENTITLEMENT",
+              "LOOTBOX",
               "MEDIA",
               "OPTIONBOX",
               "SUBSCRIPTION"
@@ -13018,7 +13037,7 @@
           "200": {
             "description": "successful operation",
             "schema": {
-              "$ref": "#/definitions/TrackedEntitlementInfo"
+              "$ref": "#/definitions/EntitlementDecrementResult"
             }
           },
           "404": {
@@ -19264,6 +19283,7 @@
               "COINS",
               "EXTENSION",
               "INGAMEITEM",
+              "LOOTBOX",
               "MEDIA",
               "OPTIONBOX",
               "SEASON",
@@ -19602,6 +19622,7 @@
               "COINS",
               "EXTENSION",
               "INGAMEITEM",
+              "LOOTBOX",
               "MEDIA",
               "OPTIONBOX",
               "SEASON",
@@ -20909,6 +20930,7 @@
               "APP",
               "CODE",
               "ENTITLEMENT",
+              "LOOTBOX",
               "MEDIA",
               "OPTIONBOX",
               "SUBSCRIPTION"
@@ -20973,6 +20995,7 @@
               "APP",
               "CODE",
               "ENTITLEMENT",
+              "LOOTBOX",
               "MEDIA",
               "OPTIONBOX",
               "SUBSCRIPTION"
@@ -21238,7 +21261,7 @@
             "description": "Successful operation"
           },
           "400": {
-            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eErrorCode\u003c/td\u003e\u003ctd\u003eErrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e39125\u003c/td\u003e\u003ctd\u003eInvalid platform [{platformId}] user token\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e39126\u003c/td\u003e\u003ctd\u003eUser id [{}] in namespace [{}] doesn't link platform [{}]\u003c/td\u003e\u003c/tr\u003e",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eErrorCode\u003c/td\u003e\u003ctd\u003eErrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e39125\u003c/td\u003e\u003ctd\u003eInvalid platform [{platformId}] user token\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e39126\u003c/td\u003e\u003ctd\u003eUser id [{}] in namespace [{}] doesn't link platform [{}]\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e39127\u003c/td\u003e\u003ctd\u003eInvalid service label [{serviceLabel}]\u003c/td\u003e\u003c/tr\u003e",
             "schema": {
               "$ref": "#/definitions/ErrorEntity"
             }
@@ -21250,6 +21273,64 @@
           }
         ],
         "summary": "Synchronize with dlc entitlements in PSN Store.",
+        "tags": [
+          "DLC"
+        ],
+        "x-authorization": {
+          "action": "4",
+          "resource": "NAMESPACE:{namespace}:USER:{userId}:DLC"
+        }
+      }
+    },
+    "/platform/public/namespaces/{namespace}/users/{userId}/dlc/psn/sync/multiServiceLabels": {
+      "put": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Synchronize with dlc entitlements in PSN Store with multiple service labels.\u0026lt;p\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=NAMESPACE:{namespace}:USER:{userId}:DLC, action=4 (UPDATE)\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: result of synchronization\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
+        "operationId": "publicSyncPsnDlcInventoryWithMultipleServiceLabels",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "path",
+            "name": "userId",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "required": false,
+            "schema": {
+              "$ref": "#/definitions/PlayStationDLCSyncMultiServiceLabelsRequest"
+            }
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "204": {
+            "description": "Successful operation"
+          },
+          "400": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eErrorCode\u003c/td\u003e\u003ctd\u003eErrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e39125\u003c/td\u003e\u003ctd\u003eInvalid platform [{platformId}] user token\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e39126\u003c/td\u003e\u003ctd\u003eUser id [{}] in namespace [{}] doesn't link platform [{}]\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e39127\u003c/td\u003e\u003ctd\u003eInvalid service label [{serviceLabel}]\u003c/td\u003e\u003c/tr\u003e",
+            "schema": {
+              "$ref": "#/definitions/ErrorEntity"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "summary": "Synchronize with dlc entitlements in PSN Store with multiple service labels.",
         "tags": [
           "DLC"
         ],
@@ -21409,6 +21490,7 @@
               "APP",
               "CODE",
               "ENTITLEMENT",
+              "LOOTBOX",
               "MEDIA",
               "OPTIONBOX",
               "SUBSCRIPTION"
@@ -21661,6 +21743,7 @@
               "APP",
               "CODE",
               "ENTITLEMENT",
+              "LOOTBOX",
               "MEDIA",
               "OPTIONBOX",
               "SUBSCRIPTION"
@@ -21737,6 +21820,7 @@
               "APP",
               "CODE",
               "ENTITLEMENT",
+              "LOOTBOX",
               "MEDIA",
               "OPTIONBOX",
               "SUBSCRIPTION"
@@ -21949,6 +22033,7 @@
               "APP",
               "CODE",
               "ENTITLEMENT",
+              "LOOTBOX",
               "MEDIA",
               "OPTIONBOX",
               "SUBSCRIPTION"
@@ -22082,6 +22167,7 @@
               "APP",
               "CODE",
               "ENTITLEMENT",
+              "LOOTBOX",
               "MEDIA",
               "OPTIONBOX",
               "SUBSCRIPTION"
@@ -22228,7 +22314,7 @@
           "200": {
             "description": "successful operation",
             "schema": {
-              "$ref": "#/definitions/TrackedEntitlementInfo"
+              "$ref": "#/definitions/EntitlementDecrementResult"
             }
           },
           "400": {
@@ -22609,16 +22695,10 @@
         ],
         "responses": {
           "200": {
-            "description": "successful operation",
-            "schema": {
-              "items": {
-                "$ref": "#/definitions/PlayStationReconcileResult"
-              },
-              "type": "array"
-            }
+            "description": "Successful operation"
           },
           "400": {
-            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eErrorCode\u003c/td\u003e\u003ctd\u003eErrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e39125\u003c/td\u003e\u003ctd\u003eInvalid platform [{platformId}] user token\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e39126\u003c/td\u003e\u003ctd\u003eUser id [{}] in namespace [{}] doesn't link platform [{}]\u003c/td\u003e\u003c/tr\u003e",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eErrorCode\u003c/td\u003e\u003ctd\u003eErrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e39125\u003c/td\u003e\u003ctd\u003eInvalid platform [{platformId}] user token\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e39126\u003c/td\u003e\u003ctd\u003eUser id [{}] in namespace [{}] doesn't link platform [{}]\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e39127\u003c/td\u003e\u003ctd\u003eInvalid service label [{serviceLabel}]\u003c/td\u003e\u003c/tr\u003e",
             "schema": {
               "$ref": "#/definitions/ErrorEntity"
             }
@@ -22636,6 +22716,70 @@
           }
         ],
         "summary": "Synchronize with entitlements in PSN Store.",
+        "tags": [
+          "IAP"
+        ],
+        "x-authorization": {
+          "action": "4",
+          "resource": "NAMESPACE:{namespace}:USER:{userId}:IAP"
+        }
+      }
+    },
+    "/platform/public/namespaces/{namespace}/users/{userId}/iap/psn/sync/multiServiceLabels": {
+      "put": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Synchronize with entitlements in PSN Store with multiple service labels.\u0026lt;p\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;NAMESPACE:{namespace}:USER:{userId}:IAP\u0026#34;, action=4 (UPDATE)\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: result of synchronization\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
+        "operationId": "publicReconcilePlayStationStoreWithMultipleServiceLabels",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "path",
+            "name": "userId",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "required": false,
+            "schema": {
+              "$ref": "#/definitions/PlayStationMultiServiceLabelsReconcileRequest"
+            }
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful operation"
+          },
+          "400": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eErrorCode\u003c/td\u003e\u003ctd\u003eErrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e39125\u003c/td\u003e\u003ctd\u003eInvalid platform [{platformId}] user token\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e39126\u003c/td\u003e\u003ctd\u003eUser id [{}] in namespace [{}] doesn't link platform [{}]\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e39127\u003c/td\u003e\u003ctd\u003eInvalid service label [{serviceLabel}]\u003c/td\u003e\u003c/tr\u003e",
+            "schema": {
+              "$ref": "#/definitions/ErrorEntity"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          },
+          {
+            "HasPermission": [
+              "NAMESPACE:{namespace}:USER:{userId}:IAP [UPDATE]"
+            ],
+            "authorization": []
+          }
+        ],
+        "summary": "Synchronize with entitlements in PSN Store with multiple service labels.",
         "tags": [
           "IAP"
         ],
@@ -24229,6 +24373,13 @@
             "x-omitempty": false
           },
           {
+            "description": "itemName, fuzzy matching",
+            "in": "query",
+            "name": "itemName",
+            "required": false,
+            "type": "string"
+          },
+          {
             "enum": [
               "ACTIVE",
               "INACTIVE"
@@ -24246,6 +24397,7 @@
               "COINS",
               "EXTENSION",
               "INGAMEITEM",
+              "LOOTBOX",
               "MEDIA",
               "OPTIONBOX",
               "SEASON",
@@ -25310,6 +25462,7 @@
             "COINS",
             "EXTENSION",
             "INGAMEITEM",
+            "LOOTBOX",
             "MEDIA",
             "OPTIONBOX",
             "SEASON",
@@ -25558,6 +25711,29 @@
       ],
       "type": "object"
     },
+    "BoxItem": {
+      "description": "box item",
+      "properties": {
+        "count": {
+          "description": "count",
+          "format": "int32",
+          "type": "integer"
+        },
+        "itemId": {
+          "description": "item id",
+          "type": "string"
+        },
+        "itemSku": {
+          "description": "item sku",
+          "type": "string"
+        },
+        "itemType": {
+          "description": "item type",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "BulkOperationResult": {
       "properties": {
         "affected": {
@@ -25689,6 +25865,7 @@
             "COINS",
             "EXTENSION",
             "INGAMEITEM",
+            "LOOTBOX",
             "MEDIA",
             "OPTIONBOX",
             "SEASON",
@@ -25714,6 +25891,10 @@
         "longDescription": {
           "description": "long description info",
           "type": "string"
+        },
+        "lootBoxConfig": {
+          "$ref": "#/definitions/LootBoxConfig",
+          "description": "loot box config"
         },
         "maxCount": {
           "description": "Max count, -1 means UNLIMITED, unset when itemType is CODE",
@@ -26236,6 +26417,7 @@
             "COINS",
             "EXTENSION",
             "INGAMEITEM",
+            "LOOTBOX",
             "MEDIA",
             "OPTIONBOX",
             "SEASON",
@@ -27181,6 +27363,190 @@
       },
       "type": "object"
     },
+    "EntitlementDecrementResult": {
+      "properties": {
+        "appId": {
+          "description": "appId if entitlement is an app",
+          "type": "string"
+        },
+        "appType": {
+          "description": "appType if entitlement is an app",
+          "enum": [
+            "DEMO",
+            "DLC",
+            "GAME",
+            "SOFTWARE"
+          ],
+          "type": "string"
+        },
+        "clazz": {
+          "description": "entitlement class",
+          "enum": [
+            "APP",
+            "CODE",
+            "ENTITLEMENT",
+            "LOOTBOX",
+            "MEDIA",
+            "OPTIONBOX",
+            "SUBSCRIPTION"
+          ],
+          "type": "string"
+        },
+        "createdAt": {
+          "description": "entitlement created at",
+          "format": "date-time",
+          "type": "string",
+          "x-nullable": false
+        },
+        "endDate": {
+          "description": "entitlement end date",
+          "format": "date-time",
+          "type": "string",
+          "x-nullable": true
+        },
+        "features": {
+          "description": "entitlement features",
+          "items": {
+            "type": "string"
+          },
+          "type": "array",
+          "uniqueItems": true
+        },
+        "grantedAt": {
+          "description": "entitlement granted at",
+          "format": "date-time",
+          "type": "string",
+          "x-nullable": false
+        },
+        "grantedCode": {
+          "description": "grantedCode, the granted code",
+          "type": "string"
+        },
+        "id": {
+          "description": "entitlement id",
+          "type": "string"
+        },
+        "itemId": {
+          "description": "itemId of the entitlement",
+          "type": "string"
+        },
+        "itemNamespace": {
+          "description": "itemNamespace for the purchased item",
+          "type": "string"
+        },
+        "itemSnapshot": {
+          "$ref": "#/definitions/ItemSnapshot",
+          "description": "itemSnapshot"
+        },
+        "name": {
+          "description": "entitlement name",
+          "type": "string"
+        },
+        "namespace": {
+          "description": "entitlement namespace",
+          "type": "string"
+        },
+        "replayed": {
+          "description": "replayed, if true,the response is original successful response. This will not be included in response if client have not pass request id.",
+          "type": "boolean",
+          "x-omitempty": false
+        },
+        "requestId": {
+          "description": "request id",
+          "type": "string"
+        },
+        "rewards": {
+          "description": "loot reward, only return when consume a loot box entitlement",
+          "items": {
+            "$ref": "#/definitions/EntitlementLootBoxReward"
+          },
+          "type": "array"
+        },
+        "sku": {
+          "description": "sku for purchased item",
+          "type": "string"
+        },
+        "source": {
+          "description": "entitlement source",
+          "enum": [
+            "ACHIEVEMENT",
+            "GIFT",
+            "IAP",
+            "OTHER",
+            "PROMOTION",
+            "PURCHASE",
+            "REDEEM_CODE",
+            "REFERRAL_BONUS",
+            "REWARD"
+          ],
+          "type": "string"
+        },
+        "stackable": {
+          "description": "Whether the CONSUMABLE entitlement is stackable",
+          "type": "boolean",
+          "x-omitempty": false
+        },
+        "startDate": {
+          "description": "entitlement start date",
+          "format": "date-time",
+          "type": "string",
+          "x-nullable": true
+        },
+        "status": {
+          "description": "entitlement status",
+          "enum": [
+            "ACTIVE",
+            "CONSUMED",
+            "INACTIVE",
+            "REVOKED"
+          ],
+          "type": "string"
+        },
+        "storeId": {
+          "description": "storeId of the item, published store if omitted",
+          "type": "string"
+        },
+        "type": {
+          "description": "entitlement type",
+          "enum": [
+            "CONSUMABLE",
+            "DURABLE"
+          ],
+          "type": "string"
+        },
+        "updatedAt": {
+          "description": "entitlement updated at",
+          "format": "date-time",
+          "type": "string",
+          "x-nullable": false
+        },
+        "useCount": {
+          "description": "useCount for entitlement",
+          "format": "int32",
+          "type": "integer"
+        },
+        "userId": {
+          "description": "userId for this entitlement",
+          "type": "string"
+        }
+      },
+      "required": [
+        "clazz",
+        "createdAt",
+        "grantedAt",
+        "id",
+        "itemId",
+        "itemNamespace",
+        "name",
+        "namespace",
+        "source",
+        "status",
+        "type",
+        "updatedAt",
+        "userId"
+      ],
+      "type": "object"
+    },
     "EntitlementGrant": {
       "description": "A DTO object for granting entitlement API call.",
       "properties": {
@@ -27330,6 +27696,7 @@
             "APP",
             "CODE",
             "ENTITLEMENT",
+            "LOOTBOX",
             "MEDIA",
             "OPTIONBOX",
             "SUBSCRIPTION"
@@ -27475,6 +27842,24 @@
       ],
       "type": "object"
     },
+    "EntitlementLootBoxReward": {
+      "properties": {
+        "count": {
+          "description": "count",
+          "format": "int32",
+          "type": "integer"
+        },
+        "itemId": {
+          "description": "item id",
+          "type": "string"
+        },
+        "itemSku": {
+          "description": "item sku",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "EntitlementOwnership": {
       "properties": {
         "itemId": {
@@ -27514,6 +27899,7 @@
             "APP",
             "CODE",
             "ENTITLEMENT",
+            "LOOTBOX",
             "MEDIA",
             "OPTIONBOX",
             "SUBSCRIPTION"
@@ -27794,6 +28180,7 @@
             "COINS",
             "EXTENSION",
             "INGAMEITEM",
+            "LOOTBOX",
             "MEDIA",
             "OPTIONBOX",
             "SEASON",
@@ -27865,6 +28252,7 @@
             "COINS",
             "EXTENSION",
             "INGAMEITEM",
+            "LOOTBOX",
             "MEDIA",
             "OPTIONBOX",
             "SEASON",
@@ -28151,6 +28539,7 @@
             "COINS",
             "EXTENSION",
             "INGAMEITEM",
+            "LOOTBOX",
             "MEDIA",
             "OPTIONBOX",
             "SEASON",
@@ -28694,6 +29083,7 @@
             "COINS",
             "EXTENSION",
             "INGAMEITEM",
+            "LOOTBOX",
             "MEDIA",
             "OPTIONBOX",
             "SEASON",
@@ -28712,6 +29102,10 @@
           },
           "description": "Item localizations",
           "type": "object"
+        },
+        "lootBoxConfig": {
+          "$ref": "#/definitions/LootBoxConfig",
+          "description": "loot box config"
         },
         "maxCount": {
           "description": "Max count, -1 means UNLIMITED, unset when itemType is CODE",
@@ -29387,6 +29781,7 @@
             "COINS",
             "EXTENSION",
             "INGAMEITEM",
+            "LOOTBOX",
             "MEDIA",
             "OPTIONBOX",
             "SEASON",
@@ -29650,6 +30045,7 @@
             "COINS",
             "EXTENSION",
             "INGAMEITEM",
+            "LOOTBOX",
             "MEDIA",
             "OPTIONBOX",
             "SEASON",
@@ -29668,6 +30064,10 @@
           },
           "description": "Localization, key language, value localization content",
           "type": "object"
+        },
+        "lootBoxConfig": {
+          "$ref": "#/definitions/LootBoxConfig",
+          "description": "loot box config, should be empty if item type is not \"LOOTBOX\""
         },
         "maxCount": {
           "description": "Max count, -1 means UNLIMITED, unset when itemType is CODE",
@@ -29945,6 +30345,7 @@
             "COINS",
             "EXTENSION",
             "INGAMEITEM",
+            "LOOTBOX",
             "MEDIA",
             "OPTIONBOX",
             "SEASON",
@@ -29970,6 +30371,10 @@
         "longDescription": {
           "description": "long description info",
           "type": "string"
+        },
+        "lootBoxConfig": {
+          "$ref": "#/definitions/LootBoxConfig",
+          "description": "loot box config"
         },
         "maxCount": {
           "description": "Max count, -1 means UNLIMITED, unset when itemType is CODE",
@@ -30242,6 +30647,7 @@
             "COINS",
             "EXTENSION",
             "INGAMEITEM",
+            "LOOTBOX",
             "MEDIA",
             "OPTIONBOX",
             "SEASON",
@@ -30257,6 +30663,10 @@
           "description": "Whether can be visible in Store for public user",
           "type": "boolean",
           "x-omitempty": false
+        },
+        "lootBoxConfig": {
+          "$ref": "#/definitions/LootBoxConfig",
+          "description": "loot box config"
         },
         "maxCount": {
           "description": "Max count, -1 means UNLIMITED, unset when itemType is CODE",
@@ -30383,6 +30793,7 @@
             "COINS",
             "EXTENSION",
             "INGAMEITEM",
+            "LOOTBOX",
             "MEDIA",
             "OPTIONBOX",
             "SEASON",
@@ -30435,6 +30846,7 @@
             "COINS",
             "EXTENSION",
             "INGAMEITEM",
+            "LOOTBOX",
             "MEDIA",
             "OPTIONBOX",
             "SEASON",
@@ -30581,6 +30993,7 @@
             "COINS",
             "EXTENSION",
             "INGAMEITEM",
+            "LOOTBOX",
             "MEDIA",
             "OPTIONBOX",
             "SEASON",
@@ -30599,6 +31012,10 @@
           },
           "description": "Localization, key language, value localization content",
           "type": "object"
+        },
+        "lootBoxConfig": {
+          "$ref": "#/definitions/LootBoxConfig",
+          "description": "loot box config, should be empty if item type is not \"LOOTBOX\""
         },
         "maxCount": {
           "description": "Max count, -1 means UNLIMITED, new value should \u003e= old value if both old value and new value is limited, unset when itemType is CODE",
@@ -30969,6 +31386,58 @@
       ],
       "type": "object"
     },
+    "LootBoxConfig": {
+      "properties": {
+        "rewardCount": {
+          "description": "reward count, default is 1",
+          "format": "int32",
+          "type": "integer"
+        },
+        "rewards": {
+          "description": "rewards",
+          "items": {
+            "$ref": "#/definitions/LootBoxReward"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "LootBoxReward": {
+      "properties": {
+        "lootBoxItems": {
+          "description": "reward items, if type is PROBABILITY_GROUP, will random get one of items in it, if type is REWARD_GROUP/REWARD, will grant all items to user when roll this reward",
+          "items": {
+            "$ref": "#/definitions/BoxItem"
+          },
+          "type": "array"
+        },
+        "name": {
+          "description": "reward name",
+          "type": "string"
+        },
+        "odds": {
+          "description": "odds, automatic calculation based on weights.",
+          "format": "double",
+          "type": "number"
+        },
+        "type": {
+          "description": "reward type",
+          "enum": [
+            "PROBABILITY_GROUP",
+            "REWARD",
+            "REWARD_GROUP"
+          ],
+          "type": "string"
+        },
+        "weight": {
+          "description": "reward weight",
+          "format": "int32",
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
     "MockIAPReceipt": {
       "properties": {
         "itemIdentityType": {
@@ -31043,28 +31512,9 @@
         "boxItems": {
           "description": "Option box items",
           "items": {
-            "$ref": "#/definitions/OptionBoxItem"
+            "$ref": "#/definitions/BoxItem"
           },
           "type": "array"
-        }
-      },
-      "type": "object"
-    },
-    "OptionBoxItem": {
-      "description": "Option box item",
-      "properties": {
-        "count": {
-          "description": "count",
-          "format": "int32",
-          "type": "integer"
-        },
-        "itemId": {
-          "description": "item id",
-          "type": "string"
-        },
-        "itemSku": {
-          "description": "item sku",
-          "type": "string"
         }
       },
       "type": "object"
@@ -32171,6 +32621,7 @@
             "COINS",
             "EXTENSION",
             "INGAMEITEM",
+            "LOOTBOX",
             "MEDIA",
             "OPTIONBOX",
             "SEASON",
@@ -32434,6 +32885,7 @@
             "COINS",
             "EXTENSION",
             "INGAMEITEM",
+            "LOOTBOX",
             "MEDIA",
             "OPTIONBOX",
             "SEASON",
@@ -32699,6 +33151,7 @@
             "COINS",
             "EXTENSION",
             "INGAMEITEM",
+            "LOOTBOX",
             "MEDIA",
             "OPTIONBOX",
             "SEASON",
@@ -33687,6 +34140,20 @@
       },
       "type": "object"
     },
+    "PlayStationDLCSyncMultiServiceLabelsRequest": {
+      "properties": {
+        "serviceLabels": {
+          "description": "service labels",
+          "items": {
+            "format": "int32",
+            "type": "integer"
+          },
+          "type": "array",
+          "uniqueItems": true
+        }
+      },
+      "type": "object"
+    },
     "PlayStationDLCSyncRequest": {
       "properties": {
         "serviceLabel": {
@@ -33714,6 +34181,33 @@
       ],
       "type": "object"
     },
+    "PlayStationMultiServiceLabelsReconcileRequest": {
+      "properties": {
+        "currencyCode": {
+          "description": "product price currency",
+          "type": "string"
+        },
+        "price": {
+          "description": "product price",
+          "format": "double",
+          "type": "number"
+        },
+        "productId": {
+          "description": "productId",
+          "type": "string"
+        },
+        "serviceLabels": {
+          "description": "service labels",
+          "items": {
+            "format": "int32",
+            "type": "integer"
+          },
+          "type": "array",
+          "uniqueItems": true
+        }
+      },
+      "type": "object"
+    },
     "PlayStationReconcileRequest": {
       "properties": {
         "currencyCode": {
@@ -33733,31 +34227,6 @@
           "description": "service label",
           "format": "int32",
           "type": "integer"
-        }
-      },
-      "type": "object"
-    },
-    "PlayStationReconcileResult": {
-      "properties": {
-        "itemId": {
-          "type": "string"
-        },
-        "psnItemId": {
-          "type": "string"
-        },
-        "sku": {
-          "type": "string"
-        },
-        "status": {
-          "enum": [
-            "FAILED",
-            "FULFILLED",
-            "VERIFIED"
-          ],
-          "type": "string"
-        },
-        "transactionId": {
-          "type": "string"
         }
       },
       "type": "object"
@@ -33892,6 +34361,7 @@
             "COINS",
             "EXTENSION",
             "INGAMEITEM",
+            "LOOTBOX",
             "MEDIA",
             "OPTIONBOX",
             "SEASON",
@@ -33924,6 +34394,10 @@
         "longDescription": {
           "description": "long description info",
           "type": "string"
+        },
+        "lootBoxConfig": {
+          "$ref": "#/definitions/LootBoxConfig",
+          "description": "loot box config"
         },
         "maxCount": {
           "description": "Max count, -1 means UNLIMITED, unset when itemType is CODE",
@@ -34772,6 +35246,7 @@
             "APP",
             "CODE",
             "ENTITLEMENT",
+            "LOOTBOX",
             "MEDIA",
             "OPTIONBOX",
             "SUBSCRIPTION"
@@ -35981,182 +36456,6 @@
       },
       "required": [
         "owned"
-      ],
-      "type": "object"
-    },
-    "TrackedEntitlementInfo": {
-      "properties": {
-        "appId": {
-          "description": "appId if entitlement is an app",
-          "type": "string"
-        },
-        "appType": {
-          "description": "appType if entitlement is an app",
-          "enum": [
-            "DEMO",
-            "DLC",
-            "GAME",
-            "SOFTWARE"
-          ],
-          "type": "string"
-        },
-        "clazz": {
-          "description": "entitlement class",
-          "enum": [
-            "APP",
-            "CODE",
-            "ENTITLEMENT",
-            "MEDIA",
-            "OPTIONBOX",
-            "SUBSCRIPTION"
-          ],
-          "type": "string"
-        },
-        "createdAt": {
-          "description": "entitlement created at",
-          "format": "date-time",
-          "type": "string",
-          "x-nullable": false
-        },
-        "endDate": {
-          "description": "entitlement end date",
-          "format": "date-time",
-          "type": "string",
-          "x-nullable": true
-        },
-        "features": {
-          "description": "entitlement features",
-          "items": {
-            "type": "string"
-          },
-          "type": "array",
-          "uniqueItems": true
-        },
-        "grantedAt": {
-          "description": "entitlement granted at",
-          "format": "date-time",
-          "type": "string",
-          "x-nullable": false
-        },
-        "grantedCode": {
-          "description": "grantedCode, the granted code",
-          "type": "string"
-        },
-        "id": {
-          "description": "entitlement id",
-          "type": "string"
-        },
-        "itemId": {
-          "description": "itemId of the entitlement",
-          "type": "string"
-        },
-        "itemNamespace": {
-          "description": "itemNamespace for the purchased item",
-          "type": "string"
-        },
-        "itemSnapshot": {
-          "$ref": "#/definitions/ItemSnapshot",
-          "description": "itemSnapshot"
-        },
-        "name": {
-          "description": "entitlement name",
-          "type": "string"
-        },
-        "namespace": {
-          "description": "entitlement namespace",
-          "type": "string"
-        },
-        "replayed": {
-          "description": "replayed, if true,the response is original successful response. This will not be included in response if client have not pass request id.",
-          "type": "boolean",
-          "x-omitempty": false
-        },
-        "requestId": {
-          "description": "request id",
-          "type": "string"
-        },
-        "sku": {
-          "description": "sku for purchased item",
-          "type": "string"
-        },
-        "source": {
-          "description": "entitlement source",
-          "enum": [
-            "ACHIEVEMENT",
-            "GIFT",
-            "IAP",
-            "OTHER",
-            "PROMOTION",
-            "PURCHASE",
-            "REDEEM_CODE",
-            "REFERRAL_BONUS",
-            "REWARD"
-          ],
-          "type": "string"
-        },
-        "stackable": {
-          "description": "Whether the CONSUMABLE entitlement is stackable",
-          "type": "boolean",
-          "x-omitempty": false
-        },
-        "startDate": {
-          "description": "entitlement start date",
-          "format": "date-time",
-          "type": "string",
-          "x-nullable": true
-        },
-        "status": {
-          "description": "entitlement status",
-          "enum": [
-            "ACTIVE",
-            "CONSUMED",
-            "INACTIVE",
-            "REVOKED"
-          ],
-          "type": "string"
-        },
-        "storeId": {
-          "description": "storeId of the item, published store if omitted",
-          "type": "string"
-        },
-        "type": {
-          "description": "entitlement type",
-          "enum": [
-            "CONSUMABLE",
-            "DURABLE"
-          ],
-          "type": "string"
-        },
-        "updatedAt": {
-          "description": "entitlement updated at",
-          "format": "date-time",
-          "type": "string",
-          "x-nullable": false
-        },
-        "useCount": {
-          "description": "useCount for entitlement",
-          "format": "int32",
-          "type": "integer"
-        },
-        "userId": {
-          "description": "userId for this entitlement",
-          "type": "string"
-        }
-      },
-      "required": [
-        "clazz",
-        "createdAt",
-        "grantedAt",
-        "id",
-        "itemId",
-        "itemNamespace",
-        "name",
-        "namespace",
-        "source",
-        "status",
-        "type",
-        "updatedAt",
-        "userId"
       ],
       "type": "object"
     },

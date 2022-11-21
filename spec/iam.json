@@ -8,7 +8,7 @@
     },
     "description": "Justice IAM Service",
     "title": "justice-iam-service",
-    "version": "5.20.0"
+    "version": "5.21.0"
   },
   "schemes": [
     "https"
@@ -8041,6 +8041,24 @@
             "type": "string"
           },
           {
+            "description": "Client id, should follow UUID version 4 without hyphen",
+            "in": "query",
+            "name": "clientId",
+            "type": "string"
+          },
+          {
+            "description": "Client name, support fuzzy query",
+            "in": "query",
+            "name": "clientName",
+            "type": "string"
+          },
+          {
+            "description": "Client type",
+            "in": "query",
+            "name": "clientType",
+            "type": "string"
+          },
+          {
             "description": "the maximum number of data that may be returned (1...100)",
             "in": "query",
             "name": "limit",
@@ -8099,7 +8117,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "Add a new OAuth 2.0 client. Protected by the permission: ADMIN:NAMESPACE:{namespace}:CLIENT [CREATE]\u0026lt;br\u0026gt;\n\t\tA new client automatically granted with these scopes: commerce, account, analytics, publishing, social.\u0026lt;br\u0026gt;\n\t\taction code: 10301\u0026lt;br\u0026gt;\n\t\t\u0026lt;p\u0026gt;\u0026lt;strong\u0026gt;Fields Description:\u0026lt;/strong\u0026gt;\n\t\t\u0026lt;ul\u0026gt;\n\t\t\u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;clientId\u0026lt;/strong\u0026gt; : The client ID. e.g f815e5c44f364993961be3b3f26a7bf4\u0026lt;/li\u0026gt;\n\t\t\u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;clientName\u0026lt;/strong\u0026gt; : The client name. e.g E-commerce\u0026lt;/li\u0026gt;\n\t\t\u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;secret\u0026lt;/strong\u0026gt; : The client\u0026#39;s secret. It\u0026#39;s empty if the client\u0026#39;s type is a public client. Otherwise, the client secret is required\u0026lt;/li\u0026gt;\n\t\t\u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;namespace\u0026lt;/strong\u0026gt; : The namespace where the client lives. e.g sample-game\u0026lt;/li\u0026gt;\n\t\t\u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;redirectUri\u0026lt;/strong\u0026gt; : Contains the redirect URI used in OAuth callback. e.g https://example.net/platform\u0026lt;/li\u0026gt;\n\t\t\u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;oauthClientType\u0026lt;/strong\u0026gt; : The OAuth 2.0 client type. The client type determines whether the authorization needs Proof Of Key Exchange or not. \n\t\t\t\t\tA public client type doesn\u0026#39;t have a client secret and should use PKCE flow. \n\t\t\t\t\tA confidential client type has a client secret and don\u0026#39;t use PKCE flow\n\t\t\t\u0026lt;ul\u0026gt;Supported oAuthClientType :\n\t\t\t\t\u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;Public\u0026lt;/strong\u0026gt;\u0026lt;/li\u0026gt;\n\t\t\t\t\u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;Confidential\u0026lt;/strong\u0026gt;\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;\u0026lt;/li\u0026gt;\n\t\t\u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;audiences\u0026lt;/strong\u0026gt; : List of target client IDs who is intended to receive the token. e.g [\u0026#34;eaaa65618fe24293b00a61454182b435\u0026#34;, \u0026#34;40073ee9bc3446d3a051a71b48509a5d\u0026#34;]\u0026lt;/li\u0026gt;\n\t\t\u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;baseUri\u0026lt;/strong\u0026gt; : A base URI of the application. It is used for making sure the token is intended to be used by the client. e.g https://example.net/platform\u0026lt;/li\u0026gt;\n\t\t\u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;clientPermissions\u0026lt;/strong\u0026gt; : Contains the client\u0026#39;s permissions\u0026lt;/li\u0026gt;\n\t\t\u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;deletable\u0026lt;/strong\u0026gt; : The flag to identify whether client is deletable (optional). default value: true\u0026lt;/li\u0026gt;\n\t\t\u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;clientPlatform\u0026lt;/strong\u0026gt;: available client platform (optional). default value: \u0026#34;\u0026#34;\n  \t\t\t\u0026lt;ul\u0026gt;\n\t\t\t\t\u0026lt;li\u0026gt;Playstation\u0026lt;/li\u0026gt;\n\t\t\t\t\u0026lt;li\u0026gt;Xbox\u0026lt;/li\u0026gt;\n\t\t\t\t\u0026lt;li\u0026gt;Steam\u0026lt;/li\u0026gt;\n\t\t\t\t\u0026lt;li\u0026gt;Epic\u0026lt;/li\u0026gt;\n\t\t\t\t\u0026lt;li\u0026gt;IOS\u0026lt;/li\u0026gt;\n\t\t\t\t\u0026lt;li\u0026gt;GooglePlay\u0026lt;/li\u0026gt;\n\t\t\t\t\u0026lt;li\u0026gt;Nintendo\u0026lt;/li\u0026gt;\n\t\t\t\u0026lt;/ul\u0026gt;\n\t\t\u0026lt;/li\u0026gt;\n        \u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;twoFactorEnabled\u0026lt;/strong\u0026gt;: The flag to indicate whether 2FA validation is enable for this client. default value: false\u0026lt;/li\u0026gt;\n\t\t\u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;oauthAccessTokenExpiration\u0026lt;/strong\u0026gt;: a configurable expiration time for \u0026lt;strong\u0026gt;access_token\u0026lt;/strong\u0026gt;, default value: 0 (mean fetch value from environment variable) \u0026lt;/li\u0026gt;\n\t\t\u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;oauthRefreshTokenExpiration\u0026lt;/strong\u0026gt;: a configurable expiration time for \u0026lt;strong\u0026gt;refresh_token\u0026lt;/strong\u0026gt;, default value: 0 (mean fetch value from environment variable)\u0026lt;/li\u0026gt;\n\t\t\u0026lt;/ul\u0026gt;\n\t\t\u0026lt;/p\u0026gt;\n\t\t",
+        "description": "Add a new OAuth 2.0 client. Protected by the permission: ADMIN:NAMESPACE:{namespace}:CLIENT [CREATE]\u0026lt;br\u0026gt;\n\t\tA new client automatically granted with these scopes: commerce, account, analytics, publishing, social.\u0026lt;br\u0026gt;\n\t\taction code: 10301\u0026lt;br\u0026gt;\n\t\t\u0026lt;p\u0026gt;\u0026lt;strong\u0026gt;Fields Description:\u0026lt;/strong\u0026gt;\n\t\t\u0026lt;ul\u0026gt;\n\t\t\u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;clientId\u0026lt;/strong\u0026gt; : The client ID. e.g f815e5c44f364993961be3b3f26a7bf4\u0026lt;/li\u0026gt;\n\t\t\u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;clientName\u0026lt;/strong\u0026gt; : The client name. e.g E-commerce\u0026lt;/li\u0026gt;\n\t\t\u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;secret\u0026lt;/strong\u0026gt; : The client\u0026#39;s secret. It\u0026#39;s empty if the client\u0026#39;s type is a public client. Otherwise, the client secret is required\u0026lt;/li\u0026gt;\n\t\t\u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;namespace\u0026lt;/strong\u0026gt; : The namespace where the client lives. e.g sample-game\u0026lt;/li\u0026gt;\n\t\t\u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;redirectUri\u0026lt;/strong\u0026gt; : Contains the redirect URI used in OAuth callback. e.g https://example.net/platform\u0026lt;/li\u0026gt;\n\t\t\u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;oauthClientType\u0026lt;/strong\u0026gt; : The OAuth 2.0 client type. The client type determines whether the authorization needs Proof Of Key Exchange or not. \n\t\t\t\t\tA public client type doesn\u0026#39;t have a client secret and should use PKCE flow. \n\t\t\t\t\tA confidential client type has a client secret and don\u0026#39;t use PKCE flow\n\t\t\t\u0026lt;ul\u0026gt;Supported oAuthClientType :\n\t\t\t\t\u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;Public\u0026lt;/strong\u0026gt;\u0026lt;/li\u0026gt;\n\t\t\t\t\u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;Confidential\u0026lt;/strong\u0026gt;\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;\u0026lt;/li\u0026gt;\n\t\t\u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;audiences\u0026lt;/strong\u0026gt; : List of target client IDs who is intended to receive the token. e.g [\u0026#34;eaaa65618fe24293b00a61454182b435\u0026#34;, \u0026#34;40073ee9bc3446d3a051a71b48509a5d\u0026#34;]\u0026lt;/li\u0026gt;\n\t\t\u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;baseUri\u0026lt;/strong\u0026gt; : A base URI of the application. It is used for making sure the token is intended to be used by the client. e.g https://example.net/platform\u0026lt;/li\u0026gt;\n\t\t\u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;clientPermissions\u0026lt;/strong\u0026gt; : Contains the client\u0026#39;s permissions\u0026lt;/li\u0026gt;\n\t\t\u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;deletable\u0026lt;/strong\u0026gt; : The flag to identify whether client is deletable (optional). default value: true\u0026lt;/li\u0026gt;\n\t\t\u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;clientPlatform\u0026lt;/strong\u0026gt;: available client platform (optional). default value: \u0026#34;\u0026#34;\n  \t\t\t\u0026lt;ul\u0026gt;\n\t\t\t\t\u0026lt;li\u0026gt;Playstation\u0026lt;/li\u0026gt;\n\t\t\t\t\u0026lt;li\u0026gt;Xbox\u0026lt;/li\u0026gt;\n\t\t\t\t\u0026lt;li\u0026gt;Steam\u0026lt;/li\u0026gt;\n\t\t\t\t\u0026lt;li\u0026gt;Epic\u0026lt;/li\u0026gt;\n\t\t\t\t\u0026lt;li\u0026gt;IOS\u0026lt;/li\u0026gt;\n\t\t\t\t\u0026lt;li\u0026gt;GooglePlay\u0026lt;/li\u0026gt;\n\t\t\t\t\u0026lt;li\u0026gt;Nintendo\u0026lt;/li\u0026gt;\n\t\t\t\u0026lt;/ul\u0026gt;\n\t\t\u0026lt;/li\u0026gt;\n        \u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;twoFactorEnabled\u0026lt;/strong\u0026gt;: The flag to indicate whether 2FA validation is enable for this client. default value: false\u0026lt;/li\u0026gt;\n\t\t\u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;oauthAccessTokenExpiration\u0026lt;/strong\u0026gt;: a configurable expiration time for \u0026lt;strong\u0026gt;access_token\u0026lt;/strong\u0026gt;, default value: 0 (mean fetch value from environment variable) \u0026lt;/li\u0026gt;\n\t\t\u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;oauthRefreshTokenExpiration\u0026lt;/strong\u0026gt;: a configurable expiration time for \u0026lt;strong\u0026gt;refresh_token\u0026lt;/strong\u0026gt;, default value: 0 (mean fetch value from environment variable)\u0026lt;/li\u0026gt;\n\t\t\u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;oauthAccessTokenExpirationTimeUnit\u0026lt;/strong\u0026gt;: a configurable expiration time unit for \u0026lt;strong\u0026gt;access_token\u0026lt;/strong\u0026gt;, default value: SECONDS\u0026lt;/li\u0026gt;\n\t\t\u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;oauthRefreshTokenExpirationTimeUnit\u0026lt;/strong\u0026gt;: a configurable expiration time unit for \u0026lt;strong\u0026gt;refresh_token\u0026lt;/strong\u0026gt;, default value: SECONDS\u0026lt;/li\u0026gt;\n\t\t\u0026lt;/ul\u0026gt;\n\t\t\u0026lt;/p\u0026gt;\n\t\t",
         "operationId": "AdminCreateClientV3",
         "parameters": [
           {
@@ -8309,7 +8327,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "Updates an OAuth 2.0 client. Protected by the permission: ADMIN:NAMESPACE:{namespace}:CLIENT [UPDATE].\n\t\t\t\tSpecify only the fields you want to update in the request payload, e.g. {\u0026#34;ClientName\u0026#34;:\u0026#34;E-commerce\u0026#34;, \u0026#34;BaseUri\u0026#34;:\u0026#34;https://example.net\u0026#34;}\n\t\t\u0026lt;br\u0026gt; action code: 10302\u0026lt;br\u0026gt;\n\t\t\u0026lt;p\u0026gt;\u0026lt;strong\u0026gt;Fields Description:\u0026lt;/strong\u0026gt;\n\t\t\u0026lt;ul\u0026gt;\n\t\t\u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;clientName\u0026lt;/strong\u0026gt; : The client name. It should not be empty if the field exists in the body. e.g E-commerce\u0026lt;/li\u0026gt;\n\t\t\u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;namespace\u0026lt;/strong\u0026gt; : The namespace where the client lives. e.g sample-game\u0026lt;/li\u0026gt;\n\t\t\u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;redirectUri\u0026lt;/strong\u0026gt; : Contains the redirect URI used in OAuth callback. It should not be empty if the field exists in the body.  e.g https://example.net/platform\u0026lt;/li\u0026gt;\n\t\t\u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;audiences\u0026lt;/strong\u0026gt; : List of target client IDs who is intended to receive the token. e.g [\u0026#34;eaaa65618fe24293b00a61454182b435\u0026#34;, \u0026#34;40073ee9bc3446d3a051a71b48509a5d\u0026#34;]\u0026lt;/li\u0026gt;\n\t\t\u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;baseUri\u0026lt;/strong\u0026gt; : A base URI of the application. It is used in the audience checking for making sure the token is used by the right resource server. Required if the application type is a server. e.g https://example.net/platform\u0026lt;/li\u0026gt;\n\t\t\u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;clientPermissions\u0026lt;/strong\u0026gt; : Contains the client\u0026#39;s permissions\u0026lt;/li\u0026gt;\n\t\t\u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;deletable\u0026lt;/strong\u0026gt; : The flag to identify whether client is deletable (optional). e.g. true\u0026lt;/li\u0026gt;\n\t\t\u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;clientPlatform\u0026lt;/strong\u0026gt; : available client platform (optional). default value: \u0026#34;\u0026#34;.\n  \t\t\t\u0026lt;ul\u0026gt;\n\t\t\t\t\u0026lt;li\u0026gt;Playstation\u0026lt;/li\u0026gt;\n\t\t\t\t\u0026lt;li\u0026gt;Xbox\u0026lt;/li\u0026gt;\n\t\t\t\t\u0026lt;li\u0026gt;Steam\u0026lt;/li\u0026gt;\n\t\t\t\t\u0026lt;li\u0026gt;Epic\u0026lt;/li\u0026gt;\n\t\t\t\t\u0026lt;li\u0026gt;IOS\u0026lt;/li\u0026gt;\n\t\t\t\t\u0026lt;li\u0026gt;GooglePlay\u0026lt;/li\u0026gt;\n\t\t\t\t\u0026lt;li\u0026gt;Nintendo\u0026lt;/li\u0026gt;\n\t\t\t\u0026lt;/ul\u0026gt;\n\t\t\u0026lt;/li\u0026gt;\n        \u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;twoFactorEnabled\u0026lt;/strong\u0026gt;: The flag to indicate whether 2FA validation is enable for this client. default value: false\u0026lt;/li\u0026gt;\n\t\t\u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;oauthAccessTokenExpiration\u0026lt;/strong\u0026gt;: a configurable expiration time for \u0026lt;strong\u0026gt;access_token\u0026lt;/strong\u0026gt;, default value: 0 (mean fetch value from environment variable)\u0026lt;/li\u0026gt;\n\t\t\u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;oauthRefreshTokenExpiration\u0026lt;/strong\u0026gt;: a configurable expiration time for \u0026lt;strong\u0026gt;refresh_token\u0026lt;/strong\u0026gt;, default value: 0 (mean fetch value from environment variable)\u0026lt;/li\u0026gt;\n\t\t\u0026lt;/ul\u0026gt;\n\t\t\u0026lt;/p\u0026gt;",
+        "description": "Updates an OAuth 2.0 client. Protected by the permission: ADMIN:NAMESPACE:{namespace}:CLIENT [UPDATE].\n\t\t\t\tSpecify only the fields you want to update in the request payload, e.g. {\u0026#34;ClientName\u0026#34;:\u0026#34;E-commerce\u0026#34;, \u0026#34;BaseUri\u0026#34;:\u0026#34;https://example.net\u0026#34;}\n\t\t\u0026lt;br\u0026gt; action code: 10302\u0026lt;br\u0026gt;\n\t\t\u0026lt;p\u0026gt;\u0026lt;strong\u0026gt;Fields Description:\u0026lt;/strong\u0026gt;\n\t\t\u0026lt;ul\u0026gt;\n\t\t\u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;clientName\u0026lt;/strong\u0026gt; : The client name. It should not be empty if the field exists in the body. e.g E-commerce\u0026lt;/li\u0026gt;\n\t\t\u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;namespace\u0026lt;/strong\u0026gt; : The namespace where the client lives. e.g sample-game\u0026lt;/li\u0026gt;\n\t\t\u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;redirectUri\u0026lt;/strong\u0026gt; : Contains the redirect URI used in OAuth callback. It should not be empty if the field exists in the body.  e.g https://example.net/platform\u0026lt;/li\u0026gt;\n\t\t\u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;audiences\u0026lt;/strong\u0026gt; : List of target client IDs who is intended to receive the token. e.g [\u0026#34;eaaa65618fe24293b00a61454182b435\u0026#34;, \u0026#34;40073ee9bc3446d3a051a71b48509a5d\u0026#34;]\u0026lt;/li\u0026gt;\n\t\t\u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;baseUri\u0026lt;/strong\u0026gt; : A base URI of the application. It is used in the audience checking for making sure the token is used by the right resource server. Required if the application type is a server. e.g https://example.net/platform\u0026lt;/li\u0026gt;\n\t\t\u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;clientPermissions\u0026lt;/strong\u0026gt; : Contains the client\u0026#39;s permissions\u0026lt;/li\u0026gt;\n\t\t\u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;deletable\u0026lt;/strong\u0026gt; : The flag to identify whether client is deletable (optional). e.g. true\u0026lt;/li\u0026gt;\n\t\t\u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;clientPlatform\u0026lt;/strong\u0026gt; : available client platform (optional). default value: \u0026#34;\u0026#34;.\n  \t\t\t\u0026lt;ul\u0026gt;\n\t\t\t\t\u0026lt;li\u0026gt;Playstation\u0026lt;/li\u0026gt;\n\t\t\t\t\u0026lt;li\u0026gt;Xbox\u0026lt;/li\u0026gt;\n\t\t\t\t\u0026lt;li\u0026gt;Steam\u0026lt;/li\u0026gt;\n\t\t\t\t\u0026lt;li\u0026gt;Epic\u0026lt;/li\u0026gt;\n\t\t\t\t\u0026lt;li\u0026gt;IOS\u0026lt;/li\u0026gt;\n\t\t\t\t\u0026lt;li\u0026gt;GooglePlay\u0026lt;/li\u0026gt;\n\t\t\t\t\u0026lt;li\u0026gt;Nintendo\u0026lt;/li\u0026gt;\n\t\t\t\u0026lt;/ul\u0026gt;\n\t\t\u0026lt;/li\u0026gt;\n        \u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;twoFactorEnabled\u0026lt;/strong\u0026gt;: The flag to indicate whether 2FA validation is enable for this client. default value: false\u0026lt;/li\u0026gt;\n\t\t\u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;oauthAccessTokenExpiration\u0026lt;/strong\u0026gt;: a configurable expiration time for \u0026lt;strong\u0026gt;access_token\u0026lt;/strong\u0026gt;, default value: 0 (mean fetch value from environment variable)\u0026lt;/li\u0026gt;\n\t\t\u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;oauthRefreshTokenExpiration\u0026lt;/strong\u0026gt;: a configurable expiration time for \u0026lt;strong\u0026gt;refresh_token\u0026lt;/strong\u0026gt;, default value: 0 (mean fetch value from environment variable)\u0026lt;/li\u0026gt;\n\t\t\u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;oauthAccessTokenExpirationTimeUnit\u0026lt;/strong\u0026gt;: a configurable expiration time unit for \u0026lt;strong\u0026gt;access_token\u0026lt;/strong\u0026gt;, will use previous value if not specified\u0026lt;/li\u0026gt;\n\t\t\u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;oauthRefreshTokenExpirationTimeUnit\u0026lt;/strong\u0026gt;: a configurable expiration time unit for \u0026lt;strong\u0026gt;refresh_token\u0026lt;/strong\u0026gt;, will use previous value if not specified\u0026lt;/li\u0026gt;\n\t\t\u0026lt;/ul\u0026gt;\n\t\t\u0026lt;/p\u0026gt;",
         "operationId": "AdminUpdateClientV3",
         "parameters": [
           {
@@ -14818,12 +14836,91 @@
         ]
       }
     },
+    "/iam/v3/oauth/mfa/code": {
+      "post": {
+        "consumes": [
+          "application/x-www-form-urlencoded"
+        ],
+        "description": "Send 2FA code\u0026lt;br/\u0026gt;\n\u0026lt;p\u0026gt;This endpoint is used for sending 2FA code.\u0026lt;/p\u0026gt;\n",
+        "operationId": "SendMFAAuthenticationCode",
+        "parameters": [
+          {
+            "description": "client id",
+            "in": "formData",
+            "name": "clientId",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "factor",
+            "in": "formData",
+            "name": "factor",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "mfa token",
+            "in": "formData",
+            "name": "mfaToken",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "204": {
+            "description": "Code sent"
+          },
+          "400": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20002\u003c/td\u003e\u003ctd\u003evalidation error\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e10189\u003c/td\u003e\u003ctd\u003einvalid factor\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/rest.ErrorResponse"
+            }
+          },
+          "403": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20003\u003c/td\u003e\u003ctd\u003eforbidden access\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/rest.ErrorResponse"
+            }
+          },
+          "404": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20008\u003c/td\u003e\u003ctd\u003euser not found\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/rest.ErrorResponse"
+            }
+          },
+          "429": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20007\u003c/td\u003e\u003ctd\u003etoo many requests\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/rest.ErrorResponse"
+            }
+          },
+          "500": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20000\u003c/td\u003e\u003ctd\u003einternal server error\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/rest.ErrorResponse"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "summary": "Send 2FA code",
+        "tags": [
+          "OAuth2.0"
+        ]
+      }
+    },
     "/iam/v3/oauth/mfa/factor/change": {
       "post": {
         "consumes": [
           "application/x-www-form-urlencoded"
         ],
-        "description": "Change 2FA method\u0026lt;br/\u0026gt;\n\u0026lt;p\u0026gt;This endpoint is used for change 2FA method. Only enabled methods are accepted.\u0026lt;/p\u0026gt;\n\u0026lt;p\u0026gt;Supported methods:\u0026lt;/p\u0026gt;\n\u0026lt;ul\u0026gt;\n\t\u0026lt;li\u0026gt;authenticator\u0026lt;/li\u0026gt;\n\t\u0026lt;li\u0026gt;backupCodes\u0026lt;/li\u0026gt;\n\u0026lt;/ul\u0026gt;\n",
+        "description": "Change 2FA method\u0026lt;br/\u0026gt;\n\u0026lt;p\u0026gt;This endpoint is used for change 2FA method. Only enabled methods are accepted.\u0026lt;/p\u0026gt;\n\u0026lt;p\u0026gt;Supported methods:\u0026lt;/p\u0026gt;\n\u0026lt;ul\u0026gt;\n\t\u0026lt;li\u0026gt;authenticator\u0026lt;/li\u0026gt;\n\t\u0026lt;li\u0026gt;backupCode\u0026lt;/li\u0026gt;\n\t\u0026lt;li\u0026gt;email\u0026lt;/li\u0026gt;\n\u0026lt;/ul\u0026gt;\n",
         "operationId": "Change2FAMethod",
         "parameters": [
           {
@@ -14849,7 +14946,13 @@
             "description": "Method changed"
           },
           "400": {
-            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e10189\u003c/td\u003e\u003ctd\u003einvalid factor\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e10189\u003c/td\u003e\u003ctd\u003einvalid factor\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20002\u003c/td\u003e\u003ctd\u003evalidation error\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/rest.ErrorResponse"
+            }
+          },
+          "500": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20000\u003c/td\u003e\u003ctd\u003einternal server error\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/rest.ErrorResponse"
             }
@@ -21639,7 +21742,10 @@
         ],
         "responses": {
           "200": {
-            "description": "Backup codes downloaded"
+            "description": "Backup codes downloaded",
+            "schema": {
+              "type": "file"
+            }
           },
           "400": {
             "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e10192\u003c/td\u003e\u003ctd\u003efactor not enabled\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e10191\u003c/td\u003e\u003ctd\u003eemail address not verified\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e10195\u003c/td\u003e\u003ctd\u003eno valid backup code found\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e10171\u003c/td\u003e\u003ctd\u003eemail address not found\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
@@ -21740,6 +21846,189 @@
           }
         ],
         "summary": "Enable 2FA backup codes",
+        "tags": [
+          "Users V4"
+        ]
+      }
+    },
+    "/iam/v4/admin/users/me/mfa/email/code": {
+      "post": {
+        "description": "\u0026lt;p\u0026gt;This endpoint is used to send email code.\u0026lt;/p\u0026gt;\n\u0026lt;p\u0026gt;This endpoint Requires valid user access token\u0026lt;/p\u0026gt;\n",
+        "operationId": "AdminSendMyMFAEmailCodeV4",
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "204": {
+            "description": "code sent"
+          },
+          "400": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e10191\u003c/td\u003e\u003ctd\u003eemail address not verified\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e10171\u003c/td\u003e\u003ctd\u003eemail address not found\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/rest.ErrorResponse"
+            }
+          },
+          "401": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20001\u003c/td\u003e\u003ctd\u003eunauthorized access\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/rest.ErrorResponse"
+            }
+          },
+          "403": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20003\u003c/td\u003e\u003ctd\u003eforbidden access\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/rest.ErrorResponse"
+            }
+          },
+          "404": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e10139\u003c/td\u003e\u003ctd\u003eplatform account not found\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20008\u003c/td\u003e\u003ctd\u003euser not found\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/rest.ErrorResponse"
+            }
+          },
+          "429": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20007\u003c/td\u003e\u003ctd\u003etoo many requests\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/rest.ErrorResponse"
+            }
+          },
+          "500": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20000\u003c/td\u003e\u003ctd\u003einternal server error\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/rest.ErrorResponse"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "summary": "Send code for enabling email",
+        "tags": [
+          "Users V4"
+        ]
+      }
+    },
+    "/iam/v4/admin/users/me/mfa/email/disable": {
+      "post": {
+        "description": "\u0026lt;p\u0026gt;This endpoint is used to disable 2FA email.\u0026lt;/p\u0026gt;\n\u0026lt;p\u0026gt;This endpoint Requires valid user access token\u0026lt;/p\u0026gt;\n",
+        "operationId": "AdminDisableMyEmailV4",
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "204": {
+            "description": "email disabled"
+          },
+          "400": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e10191\u003c/td\u003e\u003ctd\u003eemail address not verified\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e10171\u003c/td\u003e\u003ctd\u003eemail address not found\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/rest.ErrorResponse"
+            }
+          },
+          "401": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20001\u003c/td\u003e\u003ctd\u003eunauthorized access\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/rest.ErrorResponse"
+            }
+          },
+          "403": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20003\u003c/td\u003e\u003ctd\u003eforbidden access\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/rest.ErrorResponse"
+            }
+          },
+          "404": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e10139\u003c/td\u003e\u003ctd\u003eplatform account not found\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20008\u003c/td\u003e\u003ctd\u003euser not found\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/rest.ErrorResponse"
+            }
+          },
+          "500": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20000\u003c/td\u003e\u003ctd\u003einternal server error\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/rest.ErrorResponse"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "summary": "Disable 2FA email",
+        "tags": [
+          "Users V4"
+        ]
+      }
+    },
+    "/iam/v4/admin/users/me/mfa/email/enable": {
+      "post": {
+        "consumes": [
+          "application/x-www-form-urlencoded"
+        ],
+        "description": "\u0026lt;p\u0026gt;This endpoint is used to enable 2FA email.\u0026lt;/p\u0026gt;\n\u0026lt;p\u0026gt;This endpoint Requires valid user access token\u0026lt;/p\u0026gt;\n",
+        "operationId": "AdminEnableMyEmailV4",
+        "parameters": [
+          {
+            "description": "code",
+            "in": "formData",
+            "name": "code",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "204": {
+            "description": "email enabled"
+          },
+          "400": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e10138\u003c/td\u003e\u003ctd\u003ecode not match\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e10191\u003c/td\u003e\u003ctd\u003eemail address not verified\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e10137\u003c/td\u003e\u003ctd\u003ecode is expired\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e10171\u003c/td\u003e\u003ctd\u003eemail address not found\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/rest.ErrorResponse"
+            }
+          },
+          "401": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20001\u003c/td\u003e\u003ctd\u003eunauthorized access\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/rest.ErrorResponse"
+            }
+          },
+          "403": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20003\u003c/td\u003e\u003ctd\u003eforbidden access\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/rest.ErrorResponse"
+            }
+          },
+          "404": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e10139\u003c/td\u003e\u003ctd\u003eplatform account not found\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20008\u003c/td\u003e\u003ctd\u003euser not found\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/rest.ErrorResponse"
+            }
+          },
+          "409": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e10194\u003c/td\u003e\u003ctd\u003efactor already enabled\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/rest.ErrorResponse"
+            }
+          },
+          "500": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20000\u003c/td\u003e\u003ctd\u003einternal server error\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/rest.ErrorResponse"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "summary": "Enable 2FA email",
         "tags": [
           "Users V4"
         ]
@@ -22872,7 +23161,10 @@
         ],
         "responses": {
           "200": {
-            "description": "Backup codes downloaded"
+            "description": "Backup codes downloaded",
+            "schema": {
+              "type": "file"
+            }
           },
           "400": {
             "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e10192\u003c/td\u003e\u003ctd\u003efactor not enabled\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e10191\u003c/td\u003e\u003ctd\u003eemail address not verified\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e10195\u003c/td\u003e\u003ctd\u003eno valid backup code found\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e10171\u003c/td\u003e\u003ctd\u003eemail address not found\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
@@ -23056,6 +23348,214 @@
           }
         ],
         "summary": "Remove Trusted Device",
+        "tags": [
+          "Users V4"
+        ]
+      }
+    },
+    "/iam/v4/public/namespaces/{namespace}/users/me/mfa/email/code": {
+      "post": {
+        "description": "\u0026lt;p\u0026gt;This endpoint is used to send email code.\u0026lt;/p\u0026gt;\n\u0026lt;p\u0026gt;This endpoint Requires valid user access token\u0026lt;/p\u0026gt;\n",
+        "operationId": "PublicSendMyMFAEmailCodeV4",
+        "parameters": [
+          {
+            "description": "Namespace, only accept alphabet and numeric",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "204": {
+            "description": "code sent"
+          },
+          "400": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e10191\u003c/td\u003e\u003ctd\u003eemail address not verified\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e10171\u003c/td\u003e\u003ctd\u003eemail address not found\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/rest.ErrorResponse"
+            }
+          },
+          "401": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20001\u003c/td\u003e\u003ctd\u003eunauthorized access\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/rest.ErrorResponse"
+            }
+          },
+          "403": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20003\u003c/td\u003e\u003ctd\u003eforbidden access\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/rest.ErrorResponse"
+            }
+          },
+          "404": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e10139\u003c/td\u003e\u003ctd\u003eplatform account not found\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20008\u003c/td\u003e\u003ctd\u003euser not found\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/rest.ErrorResponse"
+            }
+          },
+          "429": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20007\u003c/td\u003e\u003ctd\u003etoo many requests\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/rest.ErrorResponse"
+            }
+          },
+          "500": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20000\u003c/td\u003e\u003ctd\u003einternal server error\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/rest.ErrorResponse"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "summary": "Send code for enabling email",
+        "tags": [
+          "Users V4"
+        ]
+      }
+    },
+    "/iam/v4/public/namespaces/{namespace}/users/me/mfa/email/disable": {
+      "post": {
+        "description": "\u0026lt;p\u0026gt;This endpoint is used to disable 2FA email.\u0026lt;/p\u0026gt;\n\u0026lt;p\u0026gt;This endpoint Requires valid user access token\u0026lt;/p\u0026gt;\n",
+        "operationId": "PublicDisableMyEmailV4",
+        "parameters": [
+          {
+            "description": "Namespace, only accept alphabet and numeric",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "204": {
+            "description": "email disabled"
+          },
+          "400": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e10191\u003c/td\u003e\u003ctd\u003eemail address not verified\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e10171\u003c/td\u003e\u003ctd\u003eemail address not found\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/rest.ErrorResponse"
+            }
+          },
+          "401": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20001\u003c/td\u003e\u003ctd\u003eunauthorized access\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/rest.ErrorResponse"
+            }
+          },
+          "403": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20003\u003c/td\u003e\u003ctd\u003eforbidden access\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/rest.ErrorResponse"
+            }
+          },
+          "404": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e10139\u003c/td\u003e\u003ctd\u003eplatform account not found\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20008\u003c/td\u003e\u003ctd\u003euser not found\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/rest.ErrorResponse"
+            }
+          },
+          "500": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20000\u003c/td\u003e\u003ctd\u003einternal server error\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/rest.ErrorResponse"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "summary": "Disable 2FA email",
+        "tags": [
+          "Users V4"
+        ]
+      }
+    },
+    "/iam/v4/public/namespaces/{namespace}/users/me/mfa/email/enable": {
+      "post": {
+        "consumes": [
+          "application/x-www-form-urlencoded"
+        ],
+        "description": "\u0026lt;p\u0026gt;This endpoint is used to enable 2FA email.\u0026lt;/p\u0026gt;\n\u0026lt;p\u0026gt;This endpoint Requires valid user access token\u0026lt;/p\u0026gt;\n",
+        "operationId": "PublicEnableMyEmailV4",
+        "parameters": [
+          {
+            "description": "code",
+            "in": "formData",
+            "name": "code",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "Namespace, only accept alphabet and numeric",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "204": {
+            "description": "email enabled"
+          },
+          "400": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e10138\u003c/td\u003e\u003ctd\u003ecode not match\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e10191\u003c/td\u003e\u003ctd\u003eemail address not verified\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e10137\u003c/td\u003e\u003ctd\u003ecode is expired\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e10171\u003c/td\u003e\u003ctd\u003eemail address not found\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/rest.ErrorResponse"
+            }
+          },
+          "401": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20001\u003c/td\u003e\u003ctd\u003eunauthorized access\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/rest.ErrorResponse"
+            }
+          },
+          "403": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20003\u003c/td\u003e\u003ctd\u003eforbidden access\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/rest.ErrorResponse"
+            }
+          },
+          "404": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e10139\u003c/td\u003e\u003ctd\u003eplatform account not found\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20008\u003c/td\u003e\u003ctd\u003euser not found\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/rest.ErrorResponse"
+            }
+          },
+          "409": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e10194\u003c/td\u003e\u003ctd\u003efactor already enabled\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/rest.ErrorResponse"
+            }
+          },
+          "500": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20000\u003c/td\u003e\u003ctd\u003einternal server error\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/rest.ErrorResponse"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "summary": "Enable 2FA email",
         "tags": [
           "Users V4"
         ]
@@ -24964,6 +25464,10 @@
           "type": "boolean",
           "x-omitempty": false
         },
+        "description": {
+          "description": "length 0~1024",
+          "type": "string"
+        },
         "namespace": {
           "type": "string"
         },
@@ -24971,6 +25475,10 @@
           "description": "min value 1 second, max value 86400 seconds",
           "format": "int32",
           "type": "integer"
+        },
+        "oauthAccessTokenExpirationTimeUnit": {
+          "description": "valid time unit: SECONDS, MINUTES, or HOURS",
+          "type": "string"
         },
         "oauthClientType": {
           "type": "string"
@@ -24980,8 +25488,18 @@
           "format": "int32",
           "type": "integer"
         },
+        "oauthRefreshTokenExpirationTimeUnit": {
+          "description": "valid time unit: SECONDS, MINUTES, HOURS or DAYS",
+          "type": "string"
+        },
         "redirectUri": {
           "type": "string"
+        },
+        "scopes": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
         },
         "secret": {
           "type": "string"
@@ -24998,6 +25516,7 @@
         "clientName",
         "clientPermissions",
         "clientPlatform",
+        "description",
         "namespace",
         "oauthClientType",
         "redirectUri",
@@ -25100,6 +25619,10 @@
           "type": "boolean",
           "x-omitempty": false
         },
+        "description": {
+          "description": "length 0~1024",
+          "type": "string"
+        },
         "namespace": {
           "type": "string"
         },
@@ -25108,13 +25631,27 @@
           "format": "int32",
           "type": "integer"
         },
+        "oauthAccessTokenExpirationTimeUnit": {
+          "description": "valid time unit: SECONDS, MINUTES, or HOURS. Default is SECONDS",
+          "type": "string"
+        },
         "oauthRefreshTokenExpiration": {
           "description": "min value 1 seconds, max value 2592000 seconds",
           "format": "int32",
           "type": "integer"
         },
+        "oauthRefreshTokenExpirationTimeUnit": {
+          "description": "valid time unit: SECONDS, MINUTES, HOURS or DAYS. Default is MINUTES",
+          "type": "string"
+        },
         "redirectUri": {
           "type": "string"
+        },
+        "scopes": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
         },
         "twoFactorEnabled": {
           "type": "boolean",
@@ -25122,7 +25659,8 @@
         }
       },
       "required": [
-        "clientPlatform"
+        "clientPlatform",
+        "description"
       ]
     },
     "clientmodel.ClientV3Response": {
@@ -25156,6 +25694,9 @@
           "type": "string",
           "x-nullable": false
         },
+        "description": {
+          "type": "string"
+        },
         "modifiedAt": {
           "format": "date-time",
           "type": "string",
@@ -25168,12 +25709,18 @@
           "format": "int32",
           "type": "integer"
         },
+        "oauthAccessTokenExpirationTimeUnit": {
+          "type": "string"
+        },
         "oauthClientType": {
           "type": "string"
         },
         "oauthRefreshTokenExpiration": {
           "format": "int32",
           "type": "integer"
+        },
+        "oauthRefreshTokenExpirationTimeUnit": {
+          "type": "string"
         },
         "redirectUri": {
           "type": "string"
@@ -25197,6 +25744,7 @@
         "clientPermissions",
         "clientPlatform",
         "createdAt",
+        "description",
         "modifiedAt",
         "namespace",
         "oauthClientType",
@@ -29328,6 +29876,9 @@
           "type": "string"
         },
         "default_factor": {
+          "type": "string"
+        },
+        "email": {
           "type": "string"
         },
         "error": {

@@ -8,7 +8,7 @@
     },
     "description": "Justice DS Log Manager Service",
     "title": "justice-ds-log-manager-service",
-    "version": "2.6.0"
+    "version": "2.7.3"
   },
   "schemes": [
     "https"
@@ -215,7 +215,10 @@
         ],
         "responses": {
           "200": {
-            "description": "server logs downloaded."
+            "description": "server logs downloaded.",
+            "schema": {
+              "type": "file"
+            }
           },
           "404": {
             "description": "Not Found",
@@ -333,7 +336,10 @@
         ],
         "responses": {
           "200": {
-            "description": "server logs downloaded."
+            "description": "server logs downloaded.",
+            "schema": {
+              "type": "file"
+            }
           },
           "400": {
             "description": "Bad Request",

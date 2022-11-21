@@ -3,7 +3,7 @@
   "info": {
     "description": "Justice Matchmaking Service",
     "title": "Justice Matchmaking Service",
-    "version": "2.17.2"
+    "version": "2.17.3"
   },
   "schemes": [
     "https"
@@ -975,10 +975,7 @@
           "200": {
             "description": "OK",
             "schema": {
-              "items": {
-                "$ref": "#/definitions/models.ChannelV1"
-              },
-              "type": "array"
+              "type": "file"
             }
           },
           "401": {

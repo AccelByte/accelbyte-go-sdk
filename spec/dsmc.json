@@ -3,7 +3,7 @@
   "info": {
     "description": "Justice DSM Controller Service",
     "title": "justice-dsm-controller-service",
-    "version": "3.10.1"
+    "version": "3.11.0"
   },
   "schemes": [
     "https"
@@ -13,6 +13,7 @@
       "authorizationUrl": "https://dummy.oauth.net/auth",
       "flow": "accessCode",
       "scopes": {
+        "ADMIN:NAMESPACE:*:DSM:CONFIG [READ]": "ADMIN:NAMESPACE:*:DSM:CONFIG [READ]",
         "ADMIN:NAMESPACE:{namespace}:DSM:CONFIG [CREATE]": "ADMIN:NAMESPACE:{namespace}:DSM:CONFIG [CREATE]",
         "ADMIN:NAMESPACE:{namespace}:DSM:CONFIG [DELETE]": "ADMIN:NAMESPACE:{namespace}:DSM:CONFIG [DELETE]",
         "ADMIN:NAMESPACE:{namespace}:DSM:CONFIG [READ]": "ADMIN:NAMESPACE:{namespace}:DSM:CONFIG [READ]",
@@ -350,7 +351,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "```\nRequired permission: ADMIN:NAMESPACE:{namespace}:DSM:CONFIG [CREATE] \nRequired scope: social\n\nThis endpoint will create image patch.\n\nSample image:\n{\n\t\u0026#34;namespace\u0026#34;:\u0026#34;dewa\u0026#34;,\n\t\u0026#34;version\u0026#34;:\u0026#34;1.0.0\u0026#34;,\n\t\u0026#34;patchVersion\u0026#34;:\u0026#34;1.0.0-patch\u0026#34;,\n\t\u0026#34;image\u0026#34;:\u0026#34;144436415367.dkr.ecr.us-west-2.amazonaws.com/dewa:1.0.0-patch\u0026#34;,\n\t\u0026#34;persistent\u0026#34;:false\n}\n```",
+        "description": "```\nRequired permission: ADMIN:NAMESPACE:{namespace}:DSM:CONFIG [CREATE]\nRequired scope: social\n\nThis endpoint will create image patch.\n\nSample image:\n{\n\t\u0026#34;namespace\u0026#34;:\u0026#34;dewa\u0026#34;,\n\t\u0026#34;version\u0026#34;:\u0026#34;1.0.0\u0026#34;,\n\t\u0026#34;patchVersion\u0026#34;:\u0026#34;1.0.0-patch\u0026#34;,\n\t\u0026#34;image\u0026#34;:\u0026#34;144436415367.dkr.ecr.us-west-2.amazonaws.com/dewa:1.0.0-patch\u0026#34;,\n\t\u0026#34;persistent\u0026#34;:false\n}\n```",
         "operationId": "CreateImagePatch",
         "parameters": [
           {
@@ -408,6 +409,53 @@
         "summary": "Create image patch",
         "tags": [
           "Image Config"
+        ]
+      }
+    },
+    "/dsmcontroller/admin/instances/spec/lowest": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Required permission: ADMIN:NAMESPACE:*:DSM:CONFIG [READ]\n\nRequired scope: social\n\nThis endpoint returns the lowest instance spec, both cpu (in Mhz) and memory (in Mb).",
+        "operationId": "GetLowestInstanceSpec",
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "Lowest Instance Spec",
+            "schema": {
+              "$ref": "#/definitions/models.InstanceSpec"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          }
+        },
+        "security": [
+          {
+            "HasPermission": [
+              "ADMIN:NAMESPACE:*:DSM:CONFIG [READ]"
+            ],
+            "HasScope": [
+              "social"
+            ],
+            "authorization": []
+          }
+        ],
+        "summary": "Get lowest instance spec.",
+        "tags": [
+          "Pod Config"
         ]
       }
     },
@@ -3946,7 +3994,7 @@
           "200": {
             "description": "config exported",
             "schema": {
-              "$ref": "#/definitions/models.DSMConfigExport"
+              "type": "file"
             }
           },
           "401": {
@@ -5434,96 +5482,6 @@
         "session_id"
       ]
     },
-    "models.DSMConfigExport": {
-      "properties": {
-        "claim_timeout": {
-          "format": "int32",
-          "type": "integer"
-        },
-        "createdAt": {
-          "format": "date-time",
-          "type": "string",
-          "x-nullable": false
-        },
-        "creation_timeout": {
-          "format": "int32",
-          "type": "integer"
-        },
-        "default_version": {
-          "type": "string"
-        },
-        "deployments": {
-          "items": {
-            "$ref": "#/definitions/models.DeploymentWithOverride"
-          },
-          "type": "array"
-        },
-        "images": {
-          "items": {
-            "$ref": "#/definitions/models.ImageRecord"
-          },
-          "type": "array"
-        },
-        "namespace": {
-          "type": "string"
-        },
-        "pod_configs": {
-          "items": {
-            "$ref": "#/definitions/models.PodConfigRecord"
-          },
-          "type": "array"
-        },
-        "port": {
-          "format": "int32",
-          "type": "integer"
-        },
-        "ports": {
-          "additionalProperties": {
-            "type": "integer"
-          },
-          "type": "object"
-        },
-        "protocol": {
-          "type": "string"
-        },
-        "providers": {
-          "items": {
-            "type": "string"
-          },
-          "type": "array"
-        },
-        "session_timeout": {
-          "format": "int32",
-          "type": "integer"
-        },
-        "unreachable_timeout": {
-          "format": "int32",
-          "type": "integer"
-        },
-        "updatedAt": {
-          "format": "date-time",
-          "type": "string",
-          "x-nullable": false
-        }
-      },
-      "required": [
-        "claim_timeout",
-        "createdAt",
-        "creation_timeout",
-        "default_version",
-        "deployments",
-        "images",
-        "namespace",
-        "pod_configs",
-        "port",
-        "ports",
-        "protocol",
-        "providers",
-        "session_timeout",
-        "unreachable_timeout",
-        "updatedAt"
-      ]
-    },
     "models.DSMConfigRecord": {
       "properties": {
         "claim_timeout": {
@@ -5980,6 +5938,22 @@
       "required": [
         "affected",
         "failed"
+      ]
+    },
+    "models.InstanceSpec": {
+      "properties": {
+        "cpu": {
+          "format": "int64",
+          "type": "integer"
+        },
+        "mem": {
+          "format": "int64",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "cpu",
+        "mem"
       ]
     },
     "models.ListConfigResponse": {

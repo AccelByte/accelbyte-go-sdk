@@ -1,3 +1,26 @@
+<a name="v0.32.0"></a>
+## [v0.32.0] - 2022-11-22
+
+### Chore
+- **sdk:** regenerate sdk, cli sample app, cli test, doc index for AccelByte Cloud 3.36
+- **sdk:** regenerate sdk, cli sample app, cli test, doc index for session and match2 service
+- **spec:** update spec for AccelByte Cloud 3.36
+
+### Docs
+- add migration guide
+- add migration guide from v0.29 to v0.30
+- add migration guide from v0.31.2 to v0.32.0
+- update CHANGELOG.md for v0.32.0 release
+
+### Feat
+- **cli:** add command for session and match2 service
+- **spec:** add session and match2
+- 
+### Fix
+- **docs:** broken link to release page
+- **docs:** recommend to use the latest version
+
+
 <a name="v0.31.2"></a>
 ## [v0.31.2] - 2022-11-14
 
@@ -1004,6 +1027,7 @@ The wrapper have been refactored and has breaking change, these are the list:
 ### Fix
 - delete go.mod ([#1](https://github.com/AccelByte/accelbyte-go-sdk/issues/1))
 
+[v0.32.0]: https://github.com/AccelByte/accelbyte-go-sdk/compare/v0.31.2...v0.32.0
 [v0.31.2]: https://github.com/AccelByte/accelbyte-go-sdk/compare/v0.31.1...v0.31.2
 [v0.31.1]: https://github.com/AccelByte/accelbyte-go-sdk/compare/v0.31.0...v0.31.1
 [v0.31.0]: https://github.com/AccelByte/accelbyte-go-sdk/compare/v0.30.0...v0.31.0

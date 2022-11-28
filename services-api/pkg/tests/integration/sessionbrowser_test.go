@@ -54,7 +54,7 @@ var (
 	}
 )
 
-func TestIntegrationSession(t *testing.T) {
+func TestIntegrationSessionBrowser(t *testing.T) {
 	// Login User - Arrange
 	Init()
 

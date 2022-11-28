@@ -61,12 +61,13 @@ pipeline {
             }
             stage('Lint Spec') {
               steps {
-                sh "[ -s spec/TIMESTAMP ]"  // Make sure TIMESTAMP file is present in spec directory
+                sh "[ -s spec/openapi-2.0-vendor-extensions.md ]" // Make sure OpenAPI 2.0 vendor extensions is present
+                sh "[ -s spec/TIMESTAMP ]"  // Make sure TIMESTAMP file is present
               }
             }
             stage('Lint Code') {
               steps {
-                sh "[ -s codegen.txt ]"  // Make sure codegen.txt file is present in spec directory
+                sh "[ -s codegen.txt ]"  // Make sure codegen.txt file is present
                 sh "make lint-mod-outdated"
                 sh "make lint"
               }

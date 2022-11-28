@@ -19,8 +19,8 @@ This guide will show you how to create an application which uses Golang Server S
 Create a folder and use `go mod init` to create a Golang project.
 
 ```bash
-$ mkdir myproject
-$ cd myproject/
+$ mkdir getting-started
+$ cd getting-started/
 $ go mod init golang-application
 ```
 
@@ -90,7 +90,7 @@ func main() {
 	token, _ := oauth.TokenRepository.GetToken()
 	logrus.Infof("print %v", *token.AccessToken)
 
-	// prepare the IAM's Oauth 2.0 Extention service
+	// prepare the IAM's Oauth 2.0 Extension service
 	oAuth20ExtensionService := &iam.OAuth20ExtensionService{
 		Client:          factory.NewIamClient(&configRepo),
 		TokenRepository: &tokenRepo,

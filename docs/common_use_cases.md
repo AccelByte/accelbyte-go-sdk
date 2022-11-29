@@ -790,6 +790,150 @@ inputMatchmaking := &matchmaking_.UpdateMatchmakingChannelParams{
 err := matchmakingService.UpdateMatchmakingChannelShort(inputMatchmaking)
 ```
 
+## MatchmakingV2
+
+Source: [match2_test.go](../services-api/pkg/tests/integration/match2_test.go)
+
+### Health check
+
+```go
+input := &operations.GetHealthcheckInfoParams{}
+err := operationMatch2Service.GetHealthcheckInfoShort(input)
+if err != nil {
+	assert.FailNow(t, err.Error())
+
+	return
+}
+```
+
+### Create a match rule set
+
+```go
+inputCreateRule := &rule_sets.CreateRuleSetParams{
+	Body: &match2clientmodels.APIMatchRuleSet{
+		Data: &data,
+		Name: &ruleSetName,
+	},
+	Namespace: integration.NamespaceTest,
+}
+errCreateRule := ruleSetsService.CreateRuleSetShort(inputCreateRule)
+if errCreateRule != nil {
+	assert.FailNow(t, errCreateRule.Error())
+
+	return
+}
+```
+
+### Create a match pool
+
+```go
+inputCreatePool := &match_pools.CreateMatchPoolParams{
+	Body:      bodyMatchPool,
+	Namespace: integration.NamespaceTest,
+}
+errCreated := matchPoolService.CreateMatchPoolShort(inputCreatePool)
+if errCreated != nil {
+	assert.FailNow(t, errCreated.Error())
+
+	return
+}
+```
+
+### List match pools
+
+```go
+inputCreate := &match_pools.MatchPoolListParams{
+	Limit:     &limit,
+	Namespace: integration.NamespaceTest,
+	Offset:    &offset,
+}
+getList, errGetList := matchPoolService.MatchPoolListShort(inputCreate)
+if errGetList != nil {
+	assert.FailNow(t, errGetList.Error())
+
+	return
+}
+```
+
+### User create a match ticket
+
+```go
+inputCreateTicket := &match_tickets.CreateMatchTicketParams{
+	Body: &match2clientmodels.APIMatchTicketRequest{
+		MatchPool: &poolName,
+		SessionID: &sessionID,
+	},
+	Namespace: integration.NamespaceTest,
+}
+createdTicket, errCreatedTicket := matchTicketService.CreateMatchTicketShort(inputCreateTicket)
+if errCreatedTicket != nil {
+	assert.FailNow(t, errCreatedTicket.Error())
+
+	return
+}
+```
+
+### Delete a match ticket
+
+```go
+inputDeleteTicket := &match_tickets.DeleteMatchTicketParams{
+	Namespace: integration.NamespaceTest,
+	Ticketid:  *createdTicket.MatchTicketID,
+}
+errDeletedTicket := matchTicketService.DeleteMatchTicketShort(inputDeleteTicket)
+if errDeletedTicket != nil {
+	assert.FailNow(t, errDeletedTicket.Error())
+
+	return
+}
+```
+
+### Delete a match pool
+
+```go
+inputDeletePool := &match_pools.DeleteMatchPoolParams{
+	Namespace: integration.NamespaceTest,
+	Pool:      poolName,
+}
+errDeletedPool := matchPoolService.DeleteMatchPoolShort(inputDeletePool)
+if errDeletedPool != nil {
+	assert.FailNow(t, errDeletedPool.Error())
+
+	return
+}
+```
+
+### Delete a match rule set
+
+```go
+inputDeleteRule := &rule_sets.DeleteRuleSetParams{
+	Namespace: integration.NamespaceTest,
+	Ruleset:   matchRuleSet,
+}
+errDeletedRule := ruleSetsService.DeleteRuleSetShort(inputDeleteRule)
+if errDeletedRule != nil {
+	assert.FailNow(t, errDeletedRule.Error())
+
+	return
+}
+```
+
+### List match functions
+
+```go
+inputCreate := &match_functions.MatchFunctionListParams{
+	Limit:     &limit,
+	Namespace: integration.NamespaceTest,
+	Offset:    &offset,
+}
+getList, errGetList := matchFunctionService.MatchFunctionListShort(inputCreate)
+if errGetList != nil {
+	assert.FailNow(t, errGetList.Error())
+
+	return
+}
+```
+
 ## Platform
 
 Source: [platform_test.go](../services-api/pkg/tests/integration/platform_test.go)
@@ -1030,6 +1174,200 @@ inputDeleteSeason := season.DeleteSeasonParams{
 }
 
 errDeleteSeason := seasonService.DeleteSeasonShort(&inputDeleteSeason)
+```
+
+## Session
+
+Source: [session_test.go](../services-api/pkg/tests/integration/session_test.go)
+
+### Health check
+
+```go
+input := &operations.GetHealthcheckInfoParams{}
+err := operationService.GetHealthcheckInfoShort(input)
+if err != nil {
+	assert.FailNow(t, err.Error())
+
+	return
+}
+```
+
+### Create Configuration Template
+
+```go
+inputCreate := &configuration_template.AdminCreateConfigurationTemplateV1Params{
+	Body:      bodyTemplate,
+	Namespace: integration.NamespaceTest,
+}
+created, errCreated := configService.AdminCreateConfigurationTemplateV1Short(inputCreate)
+if errCreated != nil {
+	assert.FailNow(t, errCreated.Error())
+
+	return
+}
+```
+
+### Update Configuration Template
+
+```go
+inputUpdate := &configuration_template.AdminUpdateConfigurationTemplateV1Params{
+	Body:      bodyTemplateUpdate,
+	Namespace: integration.NamespaceTest,
+	Name:      *created.Name,
+}
+updated, errUpdated := configService.AdminUpdateConfigurationTemplateV1Short(inputUpdate)
+if errUpdated != nil {
+	assert.FailNow(t, errUpdated.Error())
+
+	return
+}
+```
+
+### Delete Configuration Template
+
+```go
+inputDelete := &configuration_template.AdminDeleteConfigurationTemplateV1Params{
+	Name:      *created.Name,
+	Namespace: integration.NamespaceTest,
+}
+deleted, errDeleted := configService.AdminDeleteConfigurationTemplateV1Short(inputDelete)
+if errDeleted != nil {
+	assert.FailNow(t, errDeleted.Error())
+
+	return
+}
+```
+
+### Create Game Session
+
+```go
+inputCreate := &game_session.CreateGameSessionParams{
+	Body:      gameSessionBody,
+	Namespace: integration.NamespaceTest,
+}
+created, errCreated := gameSessionService.CreateGameSessionShort(inputCreate)
+if errCreated != nil {
+	assert.FailNow(t, errCreated.Error())
+
+	return
+}
+```
+
+### Join a Game Session
+
+```go
+inputJoin := &game_session.JoinGameSessionParams{
+	Namespace: integration.NamespaceTest,
+	SessionID: *created.ID,
+}
+joined, errJoined := gameSessionServiceFor2ndPlayer.JoinGameSessionShort(inputJoin)
+if errJoined != nil {
+	assert.FailNow(t, errJoined.Error())
+
+	return
+}
+```
+
+### Leave a Game Session
+
+```go
+inputLeave := &game_session.LeaveGameSessionParams{
+	Namespace: integration.NamespaceTest,
+	SessionID: *created.ID,
+}
+errLeave := gameSessionService.LeaveGameSessionShort(inputLeave)
+if errLeave != nil {
+	assert.FailNow(t, errLeave.Error())
+
+	return
+}
+```
+
+### Delete Game Session
+
+```go
+inputDelete := &game_session.DeleteGameSessionParams{
+	Namespace: integration.NamespaceTest,
+	SessionID: *created.ID,
+}
+errDeleted := gameSessionService.DeleteGameSessionShort(inputDelete)
+if errDeleted != nil {
+	assert.FailNow(t, errDeleted.Error())
+
+	return
+}
+```
+
+### Health check
+
+```go
+input := &operations.GetHealthcheckInfoParams{}
+err := operationService.GetHealthcheckInfoShort(input)
+if err != nil {
+	assert.FailNow(t, err.Error())
+
+	return
+}
+```
+
+### Create a party
+
+```go
+inputCreated := &partySession.PublicCreatePartyParams{
+	Body:      bodyParty,
+	Namespace: integration.NamespaceTest,
+}
+created, errCreated := partyService.PublicCreatePartyShort(inputCreated)
+if errCreated != nil {
+	assert.FailNow(t, errCreated.Error())
+
+	return
+}
+```
+
+### User join a party with code
+
+```go
+inputJoined := &partySession.PublicPartyJoinCodeParams{
+	Body:      &sessionclientmodels.ApimodelsJoinByCodeRequest{Code: &created.Code},
+	Namespace: integration.NamespaceTest,
+}
+joined, errJoined := partyService.PublicPartyJoinCodeShort(inputJoined)
+if errJoined != nil {
+	assert.FailNow(t, errJoined.Error())
+
+	return
+}
+```
+
+### Get party detail
+
+```go
+inputGet := &partySession.PublicGetPartyParams{
+	Namespace: integration.NamespaceTest,
+	PartyID:   *joined.ID,
+}
+get, errGet := partyService.PublicGetPartyShort(inputGet)
+if errGet != nil {
+	assert.FailNow(t, errGet.Error())
+
+	return
+}
+```
+
+### User leave a party
+
+```go
+inputLeave := &partySession.PublicGetPartyParams{
+	Namespace: integration.NamespaceTest,
+	PartyID:   *joined.ID,
+}
+leave, errLeave := partyService.PublicGetPartyShort(inputLeave)
+if errGet != nil {
+	assert.FailNow(t, errLeave.Error())
+
+	return
+}
 ```
 
 ## SessionBrowser

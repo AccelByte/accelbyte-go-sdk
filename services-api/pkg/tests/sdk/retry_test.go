@@ -5,153 +5,98 @@
 package sdk_test
 
 import (
-	"net/http"
 	"testing"
 	"time"
 
+	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclient/bans"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils"
 	"github.com/stretchr/testify/assert"
 )
 
-func TestRetry_success(t *testing.T) {
-	calls := 0
-	slept := int64(0)
-	c := config{
-		transport: func(r *http.Request) (*http.Response, error) {
-			calls++
-
-			return &successRes, nil
-		},
-		sleeper: func(duration time.Duration) {
-			slept += duration.Milliseconds()
-		},
+var (
+	TestMockService = &TestWrapperService{
+		Client:           NewClientWithBasePath("0.0.0.0:8080", ""),
+		ConfigRepository: &ConfigRepositoryImplTest{},
+		TokenRepository:  &TokenRepositoryImplTest{},
 	}
-	res, err := c.getTestRetry().RoundTrip(&request)
-
-	assert.Equal(t, calls, 1)
-	assert.Equal(t, slept, int64(0))
-	assert.Equal(t, err, nil)
-	assert.Equal(t, *res, successRes)
-}
-
-func TestRetry_withRetryOnce(t *testing.T) {
-	calls := 0
-	slept := int64(0)
-	c := config{
-		transport: func(r *http.Request) (*http.Response, error) {
-			calls++
-			if calls == 2 { // called twice because it has a default attempt once
-				return &successRes, nil
-			}
-
-			return &retryResErrWithRetry, nil
-		},
-		sleeper: func(duration time.Duration) {
-			slept += duration.Milliseconds()
-		},
-	}
-	res, err := c.getTestRetry().RoundTrip(&request)
-
-	assert.Equal(t, calls, 2)
-	assert.Equal(t, slept, int64(100))
-	assert.Equal(t, err, nil)
-	assert.Equal(t, *res, successRes)
-}
-
-func TestRetry_MockServer(t *testing.T) {
-	tests := []struct {
-		name   string
-		params MockServerConfigureParams
-		err    string
-	}{
-		{
-			name: "retry with default attempt",
-			params: MockServerConfigureParams{
-				Body: &MockServerConfigure{
-					Enabled: true,
-					Status:  200,
-				},
-			},
-		},
-	}
-	for _, tt := range tests {
-		t.Skip("nil pointer dereference in docker but not locally")
-		t.Run(tt.name, func(t *testing.T) {
-			input := &MockServerConfigureParams{
-				Body: tt.params.Body,
-			}
-			_, err := TestMockService.Client.TestOperations.MockServerConfigure(input)
-			assert.NotNil(t, err, "error should be empty")
-		})
-	}
-}
+)
 
 func TestRetry_MockServerCustomOverride(t *testing.T) {
-	calls := 0
+	maxNumberOfRetries := uint(1)
+	roundTripper := MyRoundTripper{
+		Counter:      0,
+		RoundTripper: TestMockService.Client.Runtime.Transport,
+	}
 	tests := []struct {
 		name   string
-		params MockServerConfigureParams
+		params bans.AdminGetBansTypeV3Params
 		err    string
 	}{
 		{
 			name: "override the default retry with three custom attempt",
-			params: MockServerConfigureParams{
-				Body: &MockServerConfigure{
-					Status: 403,
-				},
+			params: bans.AdminGetBansTypeV3Params{
 				RetryPolicy: &utils.Retry{
-					Transport: TestMockService.Client.Runtime.Transport,
-					MaxTries:  3,
+					Transport: &roundTripper,
+					MaxTries:  maxNumberOfRetries,
 					Backoff:   utils.NewConstantBackoff(0),
 					RetryCodes: map[int]bool{
-						403: true,
+						404: true,
 					},
 				},
 			},
 		},
 		{
 			name: "retry with constant backoff",
-			params: MockServerConfigureParams{
-				Body: &MockServerConfigure{
-					Status: 403,
-				},
+			params: bans.AdminGetBansTypeV3Params{
 				RetryPolicy: &utils.Retry{
-					Transport: TestMockService.Client.Runtime.Transport,
-					MaxTries:  utils.MaxTries,
+					Transport: &roundTripper,
+					MaxTries:  maxNumberOfRetries,
 					Backoff:   utils.NewConstantBackoff(0),
 					RetryCodes: map[int]bool{
-						403: true,
+						404: true,
 					},
 				},
 			},
 		},
 		{
 			name: "retry with exponential backoff",
-			params: MockServerConfigureParams{
-				Body: &MockServerConfigure{
-					Status: 403,
-				},
+			params: bans.AdminGetBansTypeV3Params{
 				RetryPolicy: &utils.Retry{
-					Transport: TestMockService.Client.Runtime.Transport,
-					MaxTries:  utils.MaxTries,
+					Transport: &roundTripper,
+					MaxTries:  maxNumberOfRetries,
 					Backoff:   utils.NewExponentialBackoff(utils.StartBackoff, utils.MaxBackoff),
 					RetryCodes: map[int]bool{
-						403: true,
+						404: true,
 					},
 				},
 			},
 		},
 	}
 	for _, tt := range tests {
-		t.Skip("nil pointer dereference in docker but not locally")
 		t.Run(tt.name, func(t *testing.T) {
-			input := &MockServerConfigureParams{
-				Body: tt.params.Body,
+			err := configureMockServerOverwriteResponse(map[string]interface{}{
+				"enabled":   true,
+				"overwrite": true,
+				"status":    404,
+			})
+			if err != nil {
+				t.Skip("unable to configure mock server")
+			}
+
+			time.Sleep(1 * time.Second)
+
+			input := &bans.AdminGetBansTypeV3Params{
+				RetryPolicy: tt.params.RetryPolicy,
 			}
 			input.RetryPolicy = tt.params.RetryPolicy
-			_, err := TestMockService.Client.TestOperations.MockServerConfigure(input)
-			assert.Nil(t, err, "error should be empty")
-			assert.Equal(t, calls, 1)
+			_, err = iamBansService.AdminGetBansTypeV3Short(input)
+			assert.NotNil(t, err, "fail on purpose")
+			t.Logf("name: %s, count: %v", tt.name, roundTripper.Counter)
 		})
 	}
+	assert.Equal(t, 6, roundTripper.Counter)
+
+	// Clean up
+	err := resetMockServerOverwriteResponse()
+	assert.Nil(t, err)
 }

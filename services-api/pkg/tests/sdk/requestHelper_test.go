@@ -99,58 +99,6 @@ func (p GetParams) Validate() error {
 	return nil
 }
 
-type MockServerConfigure struct {
-	Enabled   bool `json:"enabled"`
-	Overwrite bool `json:"overwrite"`
-	Status    int  `json:"status"`
-}
-
-// needs to be moved to other file
-type MockServerConfigureParams struct {
-	/*Cookie*/
-	Cookie *string
-	/*RetryPolicy*/
-	RetryPolicy *utils.Retry
-
-	Body *MockServerConfigure
-
-	timeout        time.Duration
-	AuthInfoWriter runtime.ClientAuthInfoWriter
-	Context        context.Context
-	HTTPClient     *http.Client
-}
-
-func (o *MockServerConfigureParams) SetHTTPClient(client *http.Client) {
-	o.HTTPClient = client
-}
-
-func (o MockServerConfigureParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.Registry) error {
-	if err := r.SetTimeout(o.timeout); err != nil {
-		return err
-	}
-	var res []error
-
-	if o.Body != nil {
-		if err := r.SetBodyParam(o.Body); err != nil {
-			return err
-		}
-	}
-
-	if len(res) > 0 {
-		return errors.CompositeValidationError(res...)
-	}
-
-	return nil
-}
-
-func (o MockServerConfigureParams) Validate() error {
-	if o.Body == nil {
-		return fmt.Errorf("empty body")
-	}
-
-	return nil
-}
-
 func AssertRequest(req *http.Request) error {
 	if req.Body != nil {
 		if req.Body != nil {
@@ -205,8 +153,6 @@ type Client struct {
 
 type ClientService interface {
 	Get(params *GetParams) (*Ok, error)
-	MockServerConfigure(params *MockServerConfigureParams) (*Ok, error)
-	MockServerResetOverwriteResponse(params *MockServerConfigureParams) (*Ok, error)
 
 	SetTransport(transport runtime.ClientTransport)
 }
@@ -224,82 +170,6 @@ func (a *Client) Get(params *GetParams) (*Ok, error) {
 		ID:                 "get",
 		Method:             "GET",
 		PathPattern:        "/get",
-		ProducesMediaTypes: []string{"application/json"},
-		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"https"},
-		Reader:             &GetReader{},
-		Params:             params,
-		Context:            params.Context,
-		Client:             params.HTTPClient,
-	})
-	if err != nil {
-		return nil, err
-	}
-
-	switch v := result.(type) {
-	case *Ok:
-		return v, nil
-
-	default:
-		return nil, fmt.Errorf("unexpected Type %v", reflect.TypeOf(v))
-	}
-}
-
-func (a *Client) MockServerConfigure(params *MockServerConfigureParams) (*Ok, error) {
-	if err := params.Validate(); err != nil {
-		return nil, err
-	}
-
-	if params.Context == nil {
-		params.Context = context.Background()
-	}
-
-	if params.RetryPolicy != nil {
-		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
-	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
-		ID:                 "mockServerConfigure",
-		Method:             "POST",
-		PathPattern:        "/configure-overwrite-response",
-		ProducesMediaTypes: []string{"application/json"},
-		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"https"},
-		Reader:             &GetReader{},
-		Params:             params,
-		Context:            params.Context,
-		Client:             params.HTTPClient,
-	})
-	if err != nil {
-		return nil, err
-	}
-
-	switch v := result.(type) {
-	case *Ok:
-		return v, nil
-
-	default:
-		return nil, fmt.Errorf("unexpected Type %v", reflect.TypeOf(v))
-	}
-}
-
-func (a *Client) MockServerResetOverwriteResponse(params *MockServerConfigureParams) (*Ok, error) {
-	if err := params.Validate(); err != nil {
-		return nil, err
-	}
-
-	if params.Context == nil {
-		params.Context = context.Background()
-	}
-
-	if params.RetryPolicy != nil {
-		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
-	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
-		ID:                 "MockServerResetOverwriteResponse",
-		Method:             "POST",
-		PathPattern:        "/reset-overwrite-response",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},

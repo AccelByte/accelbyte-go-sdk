@@ -109,8 +109,8 @@
 
 | Model Struct | Class |
 |---|---|
-| `A DTO object for resetting user stat items` | [ADTOObjectForResettingUserStatItems ](../../social-sdk/pkg/socialclientmodels/a_dto_object_for_resetting_user_stat_items.go) |
-| `A DTO object for user stat item value` | [ADTOObjectForUserStatItemValue ](../../social-sdk/pkg/socialclientmodels/a_dto_object_for_user_stat_item_value.go) |
+| `A DTO object for resetting user stat items` | [ADTOObjectForResettingUserStatItems ](../../social-sdk/pkg/socialclientmodels/a_d_t_o_object_for_resetting_user_stat_items.go) |
+| `A DTO object for user stat item value` | [ADTOObjectForUserStatItemValue ](../../social-sdk/pkg/socialclientmodels/a_d_t_o_object_for_user_stat_item_value.go) |
 | `Attribute` | [Attribute ](../../social-sdk/pkg/socialclientmodels/attribute.go) |
 | `BulkStatItemCreate` | [BulkStatItemCreate ](../../social-sdk/pkg/socialclientmodels/bulk_stat_item_create.go) |
 | `BulkStatItemInc` | [BulkStatItemInc ](../../social-sdk/pkg/socialclientmodels/bulk_stat_item_inc.go) |

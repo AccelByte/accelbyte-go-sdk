@@ -207,8 +207,8 @@
 | `models.ImportConfigResponse` | [ModelsImportConfigResponse ](../../lobby-sdk/pkg/lobbyclientmodels/models_import_config_response.go) |
 | `models.ListBlockedPlayerRequest` | [ModelsListBlockedPlayerRequest ](../../lobby-sdk/pkg/lobbyclientmodels/models_list_blocked_player_request.go) |
 | `models.PartyData` | [ModelsPartyData ](../../lobby-sdk/pkg/lobbyclientmodels/models_party_data.go) |
-| `models.PartyPUTCustomAttributesRequest` | [ModelsPartyPUTCustomAttributesRequest ](../../lobby-sdk/pkg/lobbyclientmodels/models_party_put_custom_attributes_request.go) |
-| `models.PartyPUTLimitSizeRequest` | [ModelsPartyPUTLimitSizeRequest ](../../lobby-sdk/pkg/lobbyclientmodels/models_party_put_limit_size_request.go) |
+| `models.PartyPUTCustomAttributesRequest` | [ModelsPartyPUTCustomAttributesRequest ](../../lobby-sdk/pkg/lobbyclientmodels/models_party_p_u_t_custom_attributes_request.go) |
+| `models.PartyPUTLimitSizeRequest` | [ModelsPartyPUTLimitSizeRequest ](../../lobby-sdk/pkg/lobbyclientmodels/models_party_p_u_t_limit_size_request.go) |
 | `models.ProfanityFilter` | [ModelsProfanityFilter ](../../lobby-sdk/pkg/lobbyclientmodels/models_profanity_filter.go) |
 | `models.ProfanityRule` | [ModelsProfanityRule ](../../lobby-sdk/pkg/lobbyclientmodels/models_profanity_rule.go) |
 | `models.SetPlayerSessionAttributeRequest` | [ModelsSetPlayerSessionAttributeRequest ](../../lobby-sdk/pkg/lobbyclientmodels/models_set_player_session_attribute_request.go) |

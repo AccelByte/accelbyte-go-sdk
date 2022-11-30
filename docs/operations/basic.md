@@ -31,9 +31,9 @@
 ### EQU8Config Wrapper:  [EQU8Config](../../services-api/pkg/service/basic/equ8Config.go)
 | Endpoint | Method | ID | Class | Wrapper | Example |
 |---|---|---|---|---|---|
-| `/basic/v1/admin/namespaces/{namespace}/equ8/config` | GET | GetConfigShort | [GetConfigShort](../../basic-sdk/pkg/basicclient/equ8_config/equ8_config_client.go) | [GetConfigShort](../../services-api/pkg/service/basic/equ8Config.go) | [GetConfigShort](../../samples/cli/cmd/basic/equ8Config/getConfig.go) |
-| `/basic/v1/admin/namespaces/{namespace}/equ8/config` | DELETE | DeleteConfigShort | [DeleteConfigShort](../../basic-sdk/pkg/basicclient/equ8_config/equ8_config_client.go) | [DeleteConfigShort](../../services-api/pkg/service/basic/equ8Config.go) | [DeleteConfigShort](../../samples/cli/cmd/basic/equ8Config/deleteConfig.go) |
-| `/basic/v1/admin/namespaces/{namespace}/equ8/config` | PATCH | UpdateConfigShort | [UpdateConfigShort](../../basic-sdk/pkg/basicclient/equ8_config/equ8_config_client.go) | [UpdateConfigShort](../../services-api/pkg/service/basic/equ8Config.go) | [UpdateConfigShort](../../samples/cli/cmd/basic/equ8Config/updateConfig.go) |
+| `/basic/v1/admin/namespaces/{namespace}/equ8/config` | GET | GetConfigShort | [GetConfigShort](../../basic-sdk/pkg/basicclient/e_q_u8_config/eq_u8_config_client.go) | [GetConfigShort](../../services-api/pkg/service/basic/equ8Config.go) | [GetConfigShort](../../samples/cli/cmd/basic/equ8Config/getConfig.go) |
+| `/basic/v1/admin/namespaces/{namespace}/equ8/config` | DELETE | DeleteConfigShort | [DeleteConfigShort](../../basic-sdk/pkg/basicclient/e_q_u8_config/eq_u8_config_client.go) | [DeleteConfigShort](../../services-api/pkg/service/basic/equ8Config.go) | [DeleteConfigShort](../../samples/cli/cmd/basic/equ8Config/deleteConfig.go) |
+| `/basic/v1/admin/namespaces/{namespace}/equ8/config` | PATCH | UpdateConfigShort | [UpdateConfigShort](../../basic-sdk/pkg/basicclient/e_q_u8_config/eq_u8_config_client.go) | [UpdateConfigShort](../../services-api/pkg/service/basic/equ8Config.go) | [UpdateConfigShort](../../samples/cli/cmd/basic/equ8Config/updateConfig.go) |
 
 ### FileUpload Wrapper:  [FileUpload](../../services-api/pkg/service/basic/fileUpload.go)
 | Endpoint | Method | ID | Class | Wrapper | Example |
@@ -100,10 +100,10 @@
 
 | Model Struct | Class |
 |---|---|
-| `A DTO for unban user API call.` | [ADTOForUnbanUserAPICall ](../../basic-sdk/pkg/basicclientmodels/a_dto_for_unban_user_api_call.go) |
-| `A DTO for update equ8 config API call.` | [ADTOForUpdateEqu8ConfigAPICall ](../../basic-sdk/pkg/basicclientmodels/a_dto_for_update_equ8_config_api_call.go) |
-| `A DTO object for equ8 user ban status` | [ADTOObjectForEqu8UserBanStatus ](../../basic-sdk/pkg/basicclientmodels/a_dto_object_for_equ8_user_ban_status.go) |
-| `A DTO object for equ8 user status` | [ADTOObjectForEqu8UserStatus ](../../basic-sdk/pkg/basicclientmodels/a_dto_object_for_equ8_user_status.go) |
+| `A DTO for unban user API call.` | [ADTOForUnbanUserAPICall ](../../basic-sdk/pkg/basicclientmodels/a_d_t_o_for_unban_user_api_call.go) |
+| `A DTO for update equ8 config API call.` | [ADTOForUpdateEqu8ConfigAPICall ](../../basic-sdk/pkg/basicclientmodels/a_d_t_o_for_update_equ8_config_api_call.go) |
+| `A DTO object for equ8 user ban status` | [ADTOObjectForEqu8UserBanStatus ](../../basic-sdk/pkg/basicclientmodels/a_d_t_o_object_for_equ8_user_ban_status.go) |
+| `A DTO object for equ8 user status` | [ADTOObjectForEqu8UserStatus ](../../basic-sdk/pkg/basicclientmodels/a_d_t_o_object_for_equ8_user_status.go) |
 | `Action` | [Action ](../../basic-sdk/pkg/basicclientmodels/action.go) |
 | `AddCountryGroupRequest` | [AddCountryGroupRequest ](../../basic-sdk/pkg/basicclientmodels/add_country_group_request.go) |
 | `AddCountryGroupResponse` | [AddCountryGroupResponse ](../../basic-sdk/pkg/basicclientmodels/add_country_group_response.go) |

@@ -77,8 +77,8 @@
 | `models.MultipleEventID` | [ModelsMultipleEventID ](../../eventlog-sdk/pkg/eventlogclientmodels/models_multiple_event_id.go) |
 | `models.MultipleEventLevel` | [ModelsMultipleEventLevel ](../../eventlog-sdk/pkg/eventlogclientmodels/models_multiple_event_level.go) |
 | `models.MultipleEventType` | [ModelsMultipleEventType ](../../eventlog-sdk/pkg/eventlogclientmodels/models_multiple_event_type.go) |
-| `models.MultipleUX` | [ModelsMultipleUX ](../../eventlog-sdk/pkg/eventlogclientmodels/models_multiple_ux.go) |
+| `models.MultipleUX` | [ModelsMultipleUX ](../../eventlog-sdk/pkg/eventlogclientmodels/models_multiple_u_x.go) |
 | `models.Pagination` | [ModelsPagination ](../../eventlog-sdk/pkg/eventlogclientmodels/models_pagination.go) |
 | `models.Paging` | [ModelsPaging ](../../eventlog-sdk/pkg/eventlogclientmodels/models_paging.go) |
-| `models.UX` | [ModelsUX ](../../eventlog-sdk/pkg/eventlogclientmodels/models_ux.go) |
+| `models.UX` | [ModelsUX ](../../eventlog-sdk/pkg/eventlogclientmodels/models_u_x.go) |
 | `models.UserLastActivity` | [ModelsUserLastActivity ](../../eventlog-sdk/pkg/eventlogclientmodels/models_user_last_activity.go) |

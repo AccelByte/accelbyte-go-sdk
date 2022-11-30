@@ -68,7 +68,7 @@
 | `apimodels.CreateConfigurationTemplateRequest` | [ApimodelsCreateConfigurationTemplateRequest ](../../session-sdk/pkg/sessionclientmodels/apimodels_create_configuration_template_request.go) |
 | `apimodels.CreateGameSessionRequest` | [ApimodelsCreateGameSessionRequest ](../../session-sdk/pkg/sessionclientmodels/apimodels_create_game_session_request.go) |
 | `apimodels.CreatePartyRequest` | [ApimodelsCreatePartyRequest ](../../session-sdk/pkg/sessionclientmodels/apimodels_create_party_request.go) |
-| `apimodels.DSInformationResponse` | [ApimodelsDSInformationResponse ](../../session-sdk/pkg/sessionclientmodels/apimodels_ds_information_response.go) |
+| `apimodels.DSInformationResponse` | [ApimodelsDSInformationResponse ](../../session-sdk/pkg/sessionclientmodels/apimodels_d_s_information_response.go) |
 | `apimodels.GameSessionQueryResponse` | [ApimodelsGameSessionQueryResponse ](../../session-sdk/pkg/sessionclientmodels/apimodels_game_session_query_response.go) |
 | `apimodels.GameSessionResponse` | [ApimodelsGameSessionResponse ](../../session-sdk/pkg/sessionclientmodels/apimodels_game_session_response.go) |
 | `apimodels.JoinByCodeRequest` | [ApimodelsJoinByCodeRequest ](../../session-sdk/pkg/sessionclientmodels/apimodels_join_by_code_request.go) |

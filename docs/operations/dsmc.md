@@ -121,7 +121,7 @@
 | `models.ClaimSessionRequest` | [ModelsClaimSessionRequest ](../../dsmc-sdk/pkg/dsmcclientmodels/models_claim_session_request.go) |
 | `models.CountServerResponse` | [ModelsCountServerResponse ](../../dsmc-sdk/pkg/dsmcclientmodels/models_count_server_response.go) |
 | `models.CountSessionResponse` | [ModelsCountSessionResponse ](../../dsmc-sdk/pkg/dsmcclientmodels/models_count_session_response.go) |
-| `models.CreateDSMConfigRequest` | [ModelsCreateDSMConfigRequest ](../../dsmc-sdk/pkg/dsmcclientmodels/models_create_dsm_config_request.go) |
+| `models.CreateDSMConfigRequest` | [ModelsCreateDSMConfigRequest ](../../dsmc-sdk/pkg/dsmcclientmodels/models_create_d_s_m_config_request.go) |
 | `models.CreateDeploymentOverrideRequest` | [ModelsCreateDeploymentOverrideRequest ](../../dsmc-sdk/pkg/dsmcclientmodels/models_create_deployment_override_request.go) |
 | `models.CreateDeploymentRequest` | [ModelsCreateDeploymentRequest ](../../dsmc-sdk/pkg/dsmcclientmodels/models_create_deployment_request.go) |
 | `models.CreateImagePatchRequest` | [ModelsCreateImagePatchRequest ](../../dsmc-sdk/pkg/dsmcclientmodels/models_create_image_patch_request.go) |
@@ -130,7 +130,7 @@
 | `models.CreatePortRequest` | [ModelsCreatePortRequest ](../../dsmc-sdk/pkg/dsmcclientmodels/models_create_port_request.go) |
 | `models.CreateRegionOverrideRequest` | [ModelsCreateRegionOverrideRequest ](../../dsmc-sdk/pkg/dsmcclientmodels/models_create_region_override_request.go) |
 | `models.CreateSessionRequest` | [ModelsCreateSessionRequest ](../../dsmc-sdk/pkg/dsmcclientmodels/models_create_session_request.go) |
-| `models.DSMConfigRecord` | [ModelsDSMConfigRecord ](../../dsmc-sdk/pkg/dsmcclientmodels/models_dsm_config_record.go) |
+| `models.DSMConfigRecord` | [ModelsDSMConfigRecord ](../../dsmc-sdk/pkg/dsmcclientmodels/models_d_s_m_config_record.go) |
 | `models.DefaultProvider` | [ModelsDefaultProvider ](../../dsmc-sdk/pkg/dsmcclientmodels/models_default_provider.go) |
 | `models.DeploymentConfigOverride` | [ModelsDeploymentConfigOverride ](../../dsmc-sdk/pkg/dsmcclientmodels/models_deployment_config_override.go) |
 | `models.DeploymentWithOverride` | [ModelsDeploymentWithOverride ](../../dsmc-sdk/pkg/dsmcclientmodels/models_deployment_with_override.go) |
@@ -168,7 +168,7 @@
 | `models.SessionResponse` | [ModelsSessionResponse ](../../dsmc-sdk/pkg/dsmcclientmodels/models_session_response.go) |
 | `models.ShutdownServerRequest` | [ModelsShutdownServerRequest ](../../dsmc-sdk/pkg/dsmcclientmodels/models_shutdown_server_request.go) |
 | `models.StatusHistory` | [ModelsStatusHistory ](../../dsmc-sdk/pkg/dsmcclientmodels/models_status_history.go) |
-| `models.UpdateDSMConfigRequest` | [ModelsUpdateDSMConfigRequest ](../../dsmc-sdk/pkg/dsmcclientmodels/models_update_dsm_config_request.go) |
+| `models.UpdateDSMConfigRequest` | [ModelsUpdateDSMConfigRequest ](../../dsmc-sdk/pkg/dsmcclientmodels/models_update_d_s_m_config_request.go) |
 | `models.UpdateDeploymentOverrideRequest` | [ModelsUpdateDeploymentOverrideRequest ](../../dsmc-sdk/pkg/dsmcclientmodels/models_update_deployment_override_request.go) |
 | `models.UpdateDeploymentRequest` | [ModelsUpdateDeploymentRequest ](../../dsmc-sdk/pkg/dsmcclientmodels/models_update_deployment_request.go) |
 | `models.UpdatePodConfigRequest` | [ModelsUpdatePodConfigRequest ](../../dsmc-sdk/pkg/dsmcclientmodels/models_update_pod_config_request.go) |

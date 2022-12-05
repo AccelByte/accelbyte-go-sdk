@@ -3,7 +3,7 @@
   "info": {
     "description": "Justice Achievement Service",
     "title": "justice-achievement-service",
-    "version": ""
+    "version": "2.12.2"
   },
   "schemes": [
     "https"
@@ -31,7 +31,8 @@
       "authorizationUrl": "https://dummy.oauth.net/auth",
       "flow": "accessCode",
       "scopes": {
-        "social": "social"
+        "social": "social",
+        "socialSuccessful": "socialSuccessful"
       },
       "tokenUrl": "https://dumy.oauth.net/token",
       "type": "oauth2"
@@ -217,7 +218,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "\n\t\t\t\tRequired permission ADMIN:NAMESPACE:{namespace}:ACHIEVEMENT [READ]\n\n\t\t\t\tRequired Scope: social\n\t\t\t",
+        "description": "\u0026lt;p\u0026gt;\n\t\t\t\tRequired permission \u0026lt;code\u0026gt;ADMIN:NAMESPACE:{namespace}:ACHIEVEMENT [READ]\u0026lt;/code\u0026gt;\u0026lt;/p\u0026gt;\u0026lt;p\u0026gt;Required Scope: \u0026lt;code\u0026gt;social\u0026lt;/code\u0026gt;\u0026lt;p\u0026gt;Successful response header will contain: \u0026lt;code\u0026gt;content-disposition: attachment; filename=achievement_\u0026lt;namespace\u0026gt;_config.json\u0026lt;/code\u0026gt;\u0026lt;/p\u0026gt;",
         "operationId": "ExportAchievements",
         "parameters": [
           {
@@ -263,7 +264,7 @@
               "ADMIN:NAMESPACE:{namespace}:ACHIEVEMENT [READ]"
             ],
             "HasScope": [
-              "social"
+              "socialSuccessful"
             ],
             "authorization": []
           }
@@ -279,7 +280,7 @@
         "consumes": [
           "multipart/form-data"
         ],
-        "description": "\n\t\t\t\tRequired permission ADMIN:NAMESPACE:{namespace}:ACHIEVEMENT [UPDATE]\n\n\t\t\t\tRequired Scope: social\n\n\t\t\t\tImport channels configuration from file. It will merge with existing channels.\n\t\t\t\tAvailable import strategy:\n\t\t\t\t- leaveOut: if channel with same key exist, the existing will be used and imported one will be ignored (default)\n\t\t\t\t- replace: if channel with same key exist, the imported channel will be used and existing one will be removed\n\t\t\t",
+        "description": "\n\t\t\t\tRequired permission ADMIN:NAMESPACE:{namespace}:ACHIEVEMENT [UPDATE]\n\n\t\t\t\tRequired Scope: social\n\n\t\t\t\tImport achievement configuration from file. It will merge with existing achievement.\n\t\t\t\tAvailable import strategy:\n\t\t\t\t- leaveOut: if achievement with same key exist, the existing will be used and imported one will be ignored (default)\n\t\t\t\t- replace: if achievement with same key exist, the imported achievement will be used and existing one will be removed\n\t\t\t",
         "operationId": "ImportAchievements",
         "parameters": [
           {

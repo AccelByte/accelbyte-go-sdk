@@ -8,7 +8,7 @@
     },
     "description": "Justice Group Service",
     "title": "justice-group-service",
-    "version": "2.11.10"
+    "version": "2.12.0"
   },
   "schemes": [
     "https"

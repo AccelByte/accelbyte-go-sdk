@@ -3,7 +3,7 @@
   "info": {
     "description": "Justice Session Service",
     "title": "justice-session-service",
-    "version": "2.1.0"
+    "version": "2.3.0"
   },
   "schemes": [
     "https"
@@ -2749,6 +2749,10 @@
           },
           "type": "array"
         },
+        "textChat": {
+          "type": "boolean",
+          "x-omitempty": false
+        },
         "type": {
           "type": "string"
         },
@@ -2769,6 +2773,7 @@
         "name",
         "namespace",
         "requestedRegions",
+        "textChat",
         "type",
         "updatedAt"
       ]
@@ -2826,6 +2831,10 @@
           },
           "type": "array"
         },
+        "textChat": {
+          "type": "boolean",
+          "x-omitempty": false
+        },
         "type": {
           "type": "string"
         }
@@ -2840,6 +2849,7 @@
         "minPlayers",
         "name",
         "requestedRegions",
+        "textChat",
         "type"
       ]
     },
@@ -2897,6 +2907,10 @@
           },
           "type": "array"
         },
+        "textChat": {
+          "type": "boolean",
+          "x-omitempty": false
+        },
         "ticketIDs": {
           "items": {
             "type": "string"
@@ -2922,6 +2936,7 @@
         "requestedRegions",
         "serverName",
         "teams",
+        "textChat",
         "ticketIDs",
         "type"
       ]
@@ -2959,6 +2974,10 @@
           "format": "int32",
           "type": "integer"
         },
+        "textChat": {
+          "type": "boolean",
+          "x-omitempty": false
+        },
         "type": {
           "type": "string"
         }
@@ -2972,6 +2991,7 @@
         "maxPlayers",
         "members",
         "minPlayers",
+        "textChat",
         "type"
       ]
     },
@@ -3281,6 +3301,10 @@
           },
           "type": "array"
         },
+        "textChat": {
+          "type": "boolean",
+          "x-omitempty": false
+        },
         "type": {
           "type": "string"
         }
@@ -3295,6 +3319,7 @@
         "minPlayers",
         "name",
         "requestedRegions",
+        "textChat",
         "type"
       ]
     },
@@ -3362,6 +3387,10 @@
           },
           "type": "array"
         },
+        "textChat": {
+          "type": "boolean",
+          "x-omitempty": false
+        },
         "type": {
           "type": "string"
         }
@@ -3376,6 +3405,7 @@
         "minPlayers",
         "name",
         "requestedRegions",
+        "textChat",
         "type"
       ]
     },

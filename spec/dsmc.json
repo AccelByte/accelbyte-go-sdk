@@ -3,7 +3,7 @@
   "info": {
     "description": "Justice DSM Controller Service",
     "title": "justice-dsm-controller-service",
-    "version": "3.11.0"
+    "version": "4.0.2"
   },
   "schemes": [
     "https"

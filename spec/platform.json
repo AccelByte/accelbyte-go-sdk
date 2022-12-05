@@ -8,7 +8,7 @@
     },
     "description": "Justice Platform Service",
     "title": "justice-platform-service",
-    "version": "4.17.1"
+    "version": "4.18.1"
   },
   "schemes": [
     "https"
@@ -11862,6 +11862,68 @@
         }
       }
     },
+    "/platform/admin/namespaces/{namespace}/users/{userId}/dlc": {
+      "get": {
+        "description": "Get user dlc by platform.\u0026lt;br\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;ADMIN:NAMESPACE:{namespace}:USER:{userId}:IAP\u0026#34;, action=2 (READ)\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: user dlc\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
+        "operationId": "getUserDLC",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "path",
+            "name": "userId",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "enum": [
+              "EPICGAMES",
+              "PSN",
+              "STEAM",
+              "XBOX"
+            ],
+            "in": "query",
+            "name": "type",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/UserDLC"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          },
+          {
+            "HasPermission": [
+              "ADMIN:NAMESPACE:{namespace}:USER:{userId}:IAP [READ]"
+            ],
+            "authorization": []
+          }
+        ],
+        "summary": "Get user dlc by platform",
+        "tags": [
+          "DLC"
+        ],
+        "x-authorization": {
+          "action": "2",
+          "resource": "ADMIN:NAMESPACE:{namespace}:USER:{userId}:IAP"
+        }
+      }
+    },
     "/platform/admin/namespaces/{namespace}/users/{userId}/entitlements": {
       "get": {
         "description": "Query entitlements for a specific user.\u0026lt;p\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;ADMIN:NAMESPACE:{namespace}:USER:{userId}:ENTITLEMENT\u0026#34;, action=2 (READ)\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: entitlement list\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
@@ -12298,6 +12360,69 @@
           }
         ],
         "summary": "Get user entitlement by itemId",
+        "tags": [
+          "Entitlement"
+        ],
+        "x-authorization": {
+          "action": "2",
+          "resource": "ADMIN:NAMESPACE:{namespace}:USER:{userId}:ENTITLEMENT"
+        }
+      }
+    },
+    "/platform/admin/namespaces/{namespace}/users/{userId}/entitlements/byItemIds": {
+      "get": {
+        "description": "Get user entitlements by itemIds.\u0026lt;p\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;ADMIN:NAMESPACE:{namespace}:USER:{userId}:ENTITLEMENT\u0026#34;, action=2 (READ)\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
+        "operationId": "getUserActiveEntitlementsByItemIds",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "path",
+            "name": "userId",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "collectionFormat": "multi",
+            "in": "query",
+            "items": {
+              "type": "string"
+            },
+            "name": "ids",
+            "required": false,
+            "type": "array"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "items": {
+                "$ref": "#/definitions/EntitlementInfo"
+              },
+              "type": "array"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          },
+          {
+            "HasPermission": [
+              "ADMIN:NAMESPACE:{namespace}:USER:{userId}:ENTITLEMENT [READ]"
+            ],
+            "authorization": []
+          }
+        ],
+        "summary": "Get user entitlements by itemIds",
         "tags": [
           "Entitlement"
         ],
@@ -22695,7 +22820,13 @@
         ],
         "responses": {
           "200": {
-            "description": "Successful operation"
+            "description": "successful operation",
+            "schema": {
+              "items": {
+                "$ref": "#/definitions/PlayStationReconcileResult"
+              },
+              "type": "array"
+            }
           },
           "400": {
             "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eErrorCode\u003c/td\u003e\u003ctd\u003eErrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e39125\u003c/td\u003e\u003ctd\u003eInvalid platform [{platformId}] user token\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e39126\u003c/td\u003e\u003ctd\u003eUser id [{}] in namespace [{}] doesn't link platform [{}]\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e39127\u003c/td\u003e\u003ctd\u003eInvalid service label [{serviceLabel}]\u003c/td\u003e\u003c/tr\u003e",
@@ -22759,7 +22890,13 @@
         ],
         "responses": {
           "200": {
-            "description": "Successful operation"
+            "description": "successful operation",
+            "schema": {
+              "items": {
+                "$ref": "#/definitions/PlayStationReconcileResult"
+              },
+              "type": "array"
+            }
           },
           "400": {
             "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eErrorCode\u003c/td\u003e\u003ctd\u003eErrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e39125\u003c/td\u003e\u003ctd\u003eInvalid platform [{platformId}] user token\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e39126\u003c/td\u003e\u003ctd\u003eUser id [{}] in namespace [{}] doesn't link platform [{}]\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e39127\u003c/td\u003e\u003ctd\u003eInvalid service label [{serviceLabel}]\u003c/td\u003e\u003c/tr\u003e",
@@ -27219,6 +27356,50 @@
             "$ref": "#/definitions/DLCItem"
           },
           "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "DLCRecord": {
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "obtainedAt": {
+          "format": "date-time",
+          "type": "string",
+          "x-nullable": true
+        },
+        "revokeResults": {
+          "items": {
+            "$ref": "#/definitions/RevokeResult"
+          },
+          "type": "array"
+        },
+        "revokedAt": {
+          "format": "date-time",
+          "type": "string",
+          "x-nullable": true
+        },
+        "rewards": {
+          "items": {
+            "$ref": "#/definitions/PlatformReward"
+          },
+          "type": "array"
+        },
+        "sources": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array",
+          "uniqueItems": true
+        },
+        "status": {
+          "enum": [
+            "FULFILLED",
+            "REVOKED"
+          ],
+          "type": "string"
         }
       },
       "type": "object"
@@ -34231,6 +34412,31 @@
       },
       "type": "object"
     },
+    "PlayStationReconcileResult": {
+      "properties": {
+        "itemId": {
+          "type": "string"
+        },
+        "psnItemId": {
+          "type": "string"
+        },
+        "sku": {
+          "type": "string"
+        },
+        "status": {
+          "enum": [
+            "FAILED",
+            "FULFILLED",
+            "VERIFIED"
+          ],
+          "type": "string"
+        },
+        "transactionId": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "PlaystationIAPConfigRequest": {
       "properties": {
         "environment": {
@@ -34922,6 +35128,48 @@
       "required": [
         "label"
       ],
+      "type": "object"
+    },
+    "RevokeItemSummary": {
+      "properties": {
+        "itemId": {
+          "type": "string"
+        },
+        "itemSku": {
+          "type": "string"
+        },
+        "itemType": {
+          "type": "string"
+        },
+        "revokeStatus": {
+          "enum": [
+            "COMPLETED",
+            "SKIPPED"
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "RevokeResult": {
+      "properties": {
+        "revokeItemSummaries": {
+          "items": {
+            "$ref": "#/definitions/RevokeItemSummary"
+          },
+          "type": "array"
+        },
+        "reward": {
+          "$ref": "#/definitions/PlatformReward"
+        },
+        "status": {
+          "enum": [
+            "COMPLETED",
+            "SKIPPED"
+          ],
+          "type": "string"
+        }
+      },
       "type": "object"
     },
     "RewardCondition": {
@@ -36860,6 +37108,49 @@
         },
         "region": {
           "description": "country value from ISO countries",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "UserDLC": {
+      "properties": {
+        "createdAt": {
+          "format": "date-time",
+          "type": "string",
+          "x-nullable": true
+        },
+        "dlcs": {
+          "items": {
+            "$ref": "#/definitions/DLCRecord"
+          },
+          "type": "array"
+        },
+        "id": {
+          "type": "string"
+        },
+        "namespace": {
+          "type": "string"
+        },
+        "platform": {
+          "enum": [
+            "EPICGAMES",
+            "PSN",
+            "STEAM",
+            "XBOX"
+          ],
+          "type": "string"
+        },
+        "rvn": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "updatedAt": {
+          "format": "date-time",
+          "type": "string",
+          "x-nullable": true
+        },
+        "userId": {
           "type": "string"
         }
       },

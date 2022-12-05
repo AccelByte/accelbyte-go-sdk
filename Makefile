@@ -49,7 +49,7 @@ test_core:
 
 test_integration:
 	@test -n "$(ENV_FILE_PATH)" || (echo "ENV_FILE_PATH is not set" ; exit 1)
-	docker run -t --rm -u $$(id -u):$$(id -g) --env-file $(ENV_FILE_PATH) -v $$(pwd):/data/ -w /data/ -e GOCACHE=/data/.cache/go-build $(GOLANG_DOCKER_IMAGE) \
+	docker run -t --rm -u $$(id -u):$$(id -g) -e AB_PHANTAUTH_URL="https://phantauth.rbs1518.net" --env-file $(ENV_FILE_PATH) -v $$(pwd):/data/ -w /data/ -e GOCACHE=/data/.cache/go-build $(GOLANG_DOCKER_IMAGE) \
 			sh -c "go test -v github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/tests/integration"
 
 test_cli:

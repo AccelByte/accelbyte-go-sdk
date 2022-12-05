@@ -10,7 +10,9 @@ import (
 	"io"
 	"io/ioutil"
 	"net/http"
+	"os"
 	"reflect"
+	"strings"
 	"time"
 
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/repository"
@@ -29,11 +31,22 @@ type TestWrapperService struct {
 
 var (
 	OAuth20PhantAuthService = &TestWrapperService{
-		Client:           NewClientWithBasePath("phantauth.net", ""),
+		Client:           NewClientWithBasePath(getPhantauthURL(), ""),
 		ConfigRepository: &ConfigRepositoryPhantAuthImpl{},
 		TokenRepository:  &TokenRepositoryPhantAuthImpl{},
 	}
 )
+
+func getPhantauthURL() string {
+	url := os.Getenv("AB_PHANTAUTH_BASE_URL")
+	if strings.HasPrefix(strings.ToLower(url), "https://") {
+		phanauthURL := strings.TrimPrefix(url, "https://")
+
+		return phanauthURL
+	}
+
+	return url
+}
 
 // SECTION 1 - parameters of GET
 type GetPhantauthParams struct {

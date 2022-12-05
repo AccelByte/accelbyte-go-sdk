@@ -53,6 +53,10 @@ type ApimodelsUpdateConfigurationTemplateRequest struct {
 	// Required: true
 	RequestedRegions []string `json:"requestedRegions"`
 
+	// text chat
+	// Required: true
+	TextChat *bool `json:"textChat"`
+
 	// type
 	// Required: true
 	Type *string `json:"type"`
@@ -95,6 +99,10 @@ func (m *ApimodelsUpdateConfigurationTemplateRequest) Validate(formats strfmt.Re
 	}
 
 	if err := m.validateRequestedRegions(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateTextChat(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -183,6 +191,15 @@ func (m *ApimodelsUpdateConfigurationTemplateRequest) validateName(formats strfm
 func (m *ApimodelsUpdateConfigurationTemplateRequest) validateRequestedRegions(formats strfmt.Registry) error {
 
 	if err := validate.Required("requestedRegions", "body", m.RequestedRegions); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *ApimodelsUpdateConfigurationTemplateRequest) validateTextChat(formats strfmt.Registry) error {
+
+	if err := validate.Required("textChat", "body", m.TextChat); err != nil {
 		return err
 	}
 

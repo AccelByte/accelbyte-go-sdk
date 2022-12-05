@@ -118,6 +118,7 @@
 | `/platform/admin/namespaces/{namespace}/dlc/config/platformMap` | GET | GetPlatformDLCConfigShort | [GetPlatformDLCConfigShort](../../platform-sdk/pkg/platformclient/d_l_c/dlc_client.go) | [GetPlatformDLCConfigShort](../../services-api/pkg/service/platform/dlc.go) | [GetPlatformDLCConfigShort](../../samples/cli/cmd/platform/dlc/getPlatformDLCConfig.go) |
 | `/platform/admin/namespaces/{namespace}/dlc/config/platformMap` | PUT | UpdatePlatformDLCConfigShort | [UpdatePlatformDLCConfigShort](../../platform-sdk/pkg/platformclient/d_l_c/dlc_client.go) | [UpdatePlatformDLCConfigShort](../../services-api/pkg/service/platform/dlc.go) | [UpdatePlatformDLCConfigShort](../../samples/cli/cmd/platform/dlc/updatePlatformDLCConfig.go) |
 | `/platform/admin/namespaces/{namespace}/dlc/config/platformMap` | DELETE | DeletePlatformDLCConfigShort | [DeletePlatformDLCConfigShort](../../platform-sdk/pkg/platformclient/d_l_c/dlc_client.go) | [DeletePlatformDLCConfigShort](../../services-api/pkg/service/platform/dlc.go) | [DeletePlatformDLCConfigShort](../../samples/cli/cmd/platform/dlc/deletePlatformDLCConfig.go) |
+| `/platform/admin/namespaces/{namespace}/users/{userId}/dlc` | GET | GetUserDLCShort | [GetUserDLCShort](../../platform-sdk/pkg/platformclient/d_l_c/dlc_client.go) | [GetUserDLCShort](../../services-api/pkg/service/platform/dlc.go) | [GetUserDLCShort](../../samples/cli/cmd/platform/dlc/getUserDLC.go) |
 | `/platform/public/namespaces/{namespace}/users/{userId}/dlc/epicgames/sync` | PUT | SyncEpicGameDLCShort | [SyncEpicGameDLCShort](../../platform-sdk/pkg/platformclient/d_l_c/dlc_client.go) | [SyncEpicGameDLCShort](../../services-api/pkg/service/platform/dlc.go) | [SyncEpicGameDLCShort](../../samples/cli/cmd/platform/dlc/syncEpicGameDLC.go) |
 | `/platform/public/namespaces/{namespace}/users/{userId}/dlc/psn/sync` | PUT | PublicSyncPsnDlcInventoryShort | [PublicSyncPsnDlcInventoryShort](../../platform-sdk/pkg/platformclient/d_l_c/dlc_client.go) | [PublicSyncPsnDlcInventoryShort](../../services-api/pkg/service/platform/dlc.go) | [PublicSyncPsnDlcInventoryShort](../../samples/cli/cmd/platform/dlc/publicSyncPsnDlcInventory.go) |
 | `/platform/public/namespaces/{namespace}/users/{userId}/dlc/psn/sync/multiServiceLabels` | PUT | PublicSyncPsnDlcInventoryWithMultipleServiceLabelsShort | [PublicSyncPsnDlcInventoryWithMultipleServiceLabelsShort](../../platform-sdk/pkg/platformclient/d_l_c/dlc_client.go) | [PublicSyncPsnDlcInventoryWithMultipleServiceLabelsShort](../../services-api/pkg/service/platform/dlc.go) | [PublicSyncPsnDlcInventoryWithMultipleServiceLabelsShort](../../samples/cli/cmd/platform/dlc/publicSyncPsnDlcInventoryWithMultipleServiceLabels.go) |
@@ -134,6 +135,7 @@
 | `/platform/admin/namespaces/{namespace}/users/{userId}/entitlements/byAppId` | GET | GetUserAppEntitlementByAppIdShort | [GetUserAppEntitlementByAppIdShort](../../platform-sdk/pkg/platformclient/entitlement/entitlement_client.go) | [GetUserAppEntitlementByAppIdShort](../../services-api/pkg/service/platform/entitlement.go) | [GetUserAppEntitlementByAppIdShort](../../samples/cli/cmd/platform/entitlement/getUserAppEntitlementByAppId.go) |
 | `/platform/admin/namespaces/{namespace}/users/{userId}/entitlements/byAppType` | GET | QueryUserEntitlementsByAppTypeShort | [QueryUserEntitlementsByAppTypeShort](../../platform-sdk/pkg/platformclient/entitlement/entitlement_client.go) | [QueryUserEntitlementsByAppTypeShort](../../services-api/pkg/service/platform/entitlement.go) | [QueryUserEntitlementsByAppTypeShort](../../samples/cli/cmd/platform/entitlement/queryUserEntitlementsByAppType.go) |
 | `/platform/admin/namespaces/{namespace}/users/{userId}/entitlements/byItemId` | GET | GetUserEntitlementByItemIdShort | [GetUserEntitlementByItemIdShort](../../platform-sdk/pkg/platformclient/entitlement/entitlement_client.go) | [GetUserEntitlementByItemIdShort](../../services-api/pkg/service/platform/entitlement.go) | [GetUserEntitlementByItemIdShort](../../samples/cli/cmd/platform/entitlement/getUserEntitlementByItemId.go) |
+| `/platform/admin/namespaces/{namespace}/users/{userId}/entitlements/byItemIds` | GET | GetUserActiveEntitlementsByItemIdsShort | [GetUserActiveEntitlementsByItemIdsShort](../../platform-sdk/pkg/platformclient/entitlement/entitlement_client.go) | [GetUserActiveEntitlementsByItemIdsShort](../../services-api/pkg/service/platform/entitlement.go) | [GetUserActiveEntitlementsByItemIdsShort](../../samples/cli/cmd/platform/entitlement/getUserActiveEntitlementsByItemIds.go) |
 | `/platform/admin/namespaces/{namespace}/users/{userId}/entitlements/bySku` | GET | GetUserEntitlementBySkuShort | [GetUserEntitlementBySkuShort](../../platform-sdk/pkg/platformclient/entitlement/entitlement_client.go) | [GetUserEntitlementBySkuShort](../../services-api/pkg/service/platform/entitlement.go) | [GetUserEntitlementBySkuShort](../../samples/cli/cmd/platform/entitlement/getUserEntitlementBySku.go) |
 | `/platform/admin/namespaces/{namespace}/users/{userId}/entitlements/ownership/any` | GET | ExistsAnyUserActiveEntitlementShort | [ExistsAnyUserActiveEntitlementShort](../../platform-sdk/pkg/platformclient/entitlement/entitlement_client.go) | [ExistsAnyUserActiveEntitlementShort](../../services-api/pkg/service/platform/entitlement.go) | [ExistsAnyUserActiveEntitlementShort](../../samples/cli/cmd/platform/entitlement/existsAnyUserActiveEntitlement.go) |
 | `/platform/admin/namespaces/{namespace}/users/{userId}/entitlements/ownership/anyOf` | GET | ExistsAnyUserActiveEntitlementByItemIdsShort | [ExistsAnyUserActiveEntitlementByItemIdsShort](../../platform-sdk/pkg/platformclient/entitlement/entitlement_client.go) | [ExistsAnyUserActiveEntitlementByItemIdsShort](../../services-api/pkg/service/platform/entitlement.go) | [ExistsAnyUserActiveEntitlementByItemIdsShort](../../samples/cli/cmd/platform/entitlement/existsAnyUserActiveEntitlementByItemIds.go) |
@@ -539,6 +541,7 @@
 | `DLCItem` | [DLCItem ](../../platform-sdk/pkg/platformclientmodels/d_l_c_item.go) |
 | `DLCItemConfigInfo` | [DLCItemConfigInfo ](../../platform-sdk/pkg/platformclientmodels/d_l_c_item_config_info.go) |
 | `DLCItemConfigUpdate` | [DLCItemConfigUpdate ](../../platform-sdk/pkg/platformclientmodels/d_l_c_item_config_update.go) |
+| `DLCRecord` | [DLCRecord ](../../platform-sdk/pkg/platformclientmodels/d_l_c_record.go) |
 | `DebitRequest` | [DebitRequest ](../../platform-sdk/pkg/platformclientmodels/debit_request.go) |
 | `DeleteRewardConditionRequest` | [DeleteRewardConditionRequest ](../../platform-sdk/pkg/platformclientmodels/delete_reward_condition_request.go) |
 | `DetailedWalletTransactionInfo` | [DetailedWalletTransactionInfo ](../../platform-sdk/pkg/platformclientmodels/detailed_wallet_transaction_info.go) |
@@ -691,6 +694,7 @@
 | `PlayStationIAPConfigInfo` | [PlayStationIAPConfigInfo ](../../platform-sdk/pkg/platformclientmodels/play_station_i_a_p_config_info.go) |
 | `PlayStationMultiServiceLabelsReconcileRequest` | [PlayStationMultiServiceLabelsReconcileRequest ](../../platform-sdk/pkg/platformclientmodels/play_station_multi_service_labels_reconcile_request.go) |
 | `PlayStationReconcileRequest` | [PlayStationReconcileRequest ](../../platform-sdk/pkg/platformclientmodels/play_station_reconcile_request.go) |
+| `PlayStationReconcileResult` | [PlayStationReconcileResult ](../../platform-sdk/pkg/platformclientmodels/play_station_reconcile_result.go) |
 | `PlaystationIAPConfigRequest` | [PlaystationIAPConfigRequest ](../../platform-sdk/pkg/platformclientmodels/playstation_i_a_p_config_request.go) |
 | `PopulatedItemInfo` | [PopulatedItemInfo ](../../platform-sdk/pkg/platformclientmodels/populated_item_info.go) |
 | `PredicateValidateResult` | [PredicateValidateResult ](../../platform-sdk/pkg/platformclientmodels/predicate_validate_result.go) |
@@ -707,6 +711,8 @@
 | `RegionDataItem` | [RegionDataItem ](../../platform-sdk/pkg/platformclientmodels/region_data_item.go) |
 | `RequestHistory` | [RequestHistory ](../../platform-sdk/pkg/platformclientmodels/request_history.go) |
 | `Requirement` | [Requirement ](../../platform-sdk/pkg/platformclientmodels/requirement.go) |
+| `RevokeItemSummary` | [RevokeItemSummary ](../../platform-sdk/pkg/platformclientmodels/revoke_item_summary.go) |
+| `RevokeResult` | [RevokeResult ](../../platform-sdk/pkg/platformclientmodels/revoke_result.go) |
 | `RewardCondition` | [RewardCondition ](../../platform-sdk/pkg/platformclientmodels/reward_condition.go) |
 | `RewardCreate` | [RewardCreate ](../../platform-sdk/pkg/platformclientmodels/reward_create.go) |
 | `RewardInfo` | [RewardInfo ](../../platform-sdk/pkg/platformclientmodels/reward_info.go) |
@@ -752,6 +758,7 @@
 | `TwitchIAPConfigInfo` | [TwitchIAPConfigInfo ](../../platform-sdk/pkg/platformclientmodels/twitch_i_a_p_config_info.go) |
 | `TwitchIAPConfigRequest` | [TwitchIAPConfigRequest ](../../platform-sdk/pkg/platformclientmodels/twitch_i_a_p_config_request.go) |
 | `TwitchSyncRequest` | [TwitchSyncRequest ](../../platform-sdk/pkg/platformclientmodels/twitch_sync_request.go) |
+| `UserDLC` | [UserDLC ](../../platform-sdk/pkg/platformclientmodels/user_d_l_c.go) |
 | `ValidationErrorEntity` | [ValidationErrorEntity ](../../platform-sdk/pkg/platformclientmodels/validation_error_entity.go) |
 | `WalletInfo` | [WalletInfo ](../../platform-sdk/pkg/platformclientmodels/wallet_info.go) |
 | `WalletPagingSlicedResult` | [WalletPagingSlicedResult ](../../platform-sdk/pkg/platformclientmodels/wallet_paging_sliced_result.go) |

@@ -41,11 +41,13 @@ var PublicReconcilePlayStationStoreWithMultipleServiceLabelsCmd = &cobra.Command
 			Namespace: namespace,
 			UserID:    userId,
 		}
-		errInput := iapService.PublicReconcilePlayStationStoreWithMultipleServiceLabelsShort(input)
-		if errInput != nil {
-			logrus.Error(errInput)
+		ok, err := iapService.PublicReconcilePlayStationStoreWithMultipleServiceLabelsShort(input)
+		if err != nil {
+			logrus.Error(err)
 
-			return errInput
+			return err
+		} else {
+			logrus.Infof("Response CLI success: %+v", ok)
 		}
 
 		return nil

@@ -1141,11 +1141,8 @@ Deprecated: Use ExportAchievementsShort instead.
 
   ExportAchievements exports achievements configuration into a json file
 
-
-				Required permission ADMIN:NAMESPACE:{namespace}:ACHIEVEMENT [READ]
-
-				Required Scope: social
-
+  &lt;p&gt;
+				Required permission &lt;code&gt;ADMIN:NAMESPACE:{namespace}:ACHIEVEMENT [READ]&lt;/code&gt;&lt;/p&gt;&lt;p&gt;Required Scope: &lt;code&gt;social&lt;/code&gt;&lt;p&gt;Successful response header will contain: &lt;code&gt;content-disposition: attachment; filename=achievement_&lt;namespace&gt;_config.json&lt;/code&gt;&lt;/p&gt;
 */
 func (a *Client) ExportAchievements(params *ExportAchievementsParams, authInfo runtime.ClientAuthInfoWriter, writer io.Writer) (*ExportAchievementsOK, *ExportAchievementsUnauthorized, *ExportAchievementsForbidden, *ExportAchievementsInternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -1200,11 +1197,8 @@ func (a *Client) ExportAchievements(params *ExportAchievementsParams, authInfo r
 /*
   ExportAchievementsShort exports achievements configuration into a json file
 
-
-				Required permission ADMIN:NAMESPACE:{namespace}:ACHIEVEMENT [READ]
-
-				Required Scope: social
-
+  &lt;p&gt;
+				Required permission &lt;code&gt;ADMIN:NAMESPACE:{namespace}:ACHIEVEMENT [READ]&lt;/code&gt;&lt;/p&gt;&lt;p&gt;Required Scope: &lt;code&gt;social&lt;/code&gt;&lt;p&gt;Successful response header will contain: &lt;code&gt;content-disposition: attachment; filename=achievement_&lt;namespace&gt;_config.json&lt;/code&gt;&lt;/p&gt;
 */
 func (a *Client) ExportAchievementsShort(params *ExportAchievementsParams, authInfo runtime.ClientAuthInfoWriter, writer io.Writer) (*ExportAchievementsOK, error) {
 	// TODO: Validate the params before sending
@@ -1263,10 +1257,10 @@ Deprecated: Use ImportAchievementsShort instead.
 
 				Required Scope: social
 
-				Import channels configuration from file. It will merge with existing channels.
+				Import achievement configuration from file. It will merge with existing achievement.
 				Available import strategy:
-				- leaveOut: if channel with same key exist, the existing will be used and imported one will be ignored (default)
-				- replace: if channel with same key exist, the imported channel will be used and existing one will be removed
+				- leaveOut: if achievement with same key exist, the existing will be used and imported one will be ignored (default)
+				- replace: if achievement with same key exist, the imported achievement will be used and existing one will be removed
 
 */
 func (a *Client) ImportAchievements(params *ImportAchievementsParams, authInfo runtime.ClientAuthInfoWriter) (*ImportAchievementsOK, *ImportAchievementsUnauthorized, *ImportAchievementsForbidden, *ImportAchievementsInternalServerError, error) {
@@ -1327,10 +1321,10 @@ func (a *Client) ImportAchievements(params *ImportAchievementsParams, authInfo r
 
 				Required Scope: social
 
-				Import channels configuration from file. It will merge with existing channels.
+				Import achievement configuration from file. It will merge with existing achievement.
 				Available import strategy:
-				- leaveOut: if channel with same key exist, the existing will be used and imported one will be ignored (default)
-				- replace: if channel with same key exist, the imported channel will be used and existing one will be removed
+				- leaveOut: if achievement with same key exist, the existing will be used and imported one will be ignored (default)
+				- replace: if achievement with same key exist, the imported achievement will be used and existing one will be removed
 
 */
 func (a *Client) ImportAchievementsShort(params *ImportAchievementsParams, authInfo runtime.ClientAuthInfoWriter) (*ImportAchievementsOK, error) {

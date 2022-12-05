@@ -138,6 +138,20 @@ func (aaa *DLCService) DeletePlatformDLCConfig(input *d_l_c.DeletePlatformDLCCon
 	return nil
 }
 
+// Deprecated: Use GetUserDLCShort instead
+func (aaa *DLCService) GetUserDLC(input *d_l_c.GetUserDLCParams) (*platformclientmodels.UserDLC, error) {
+	token, err := aaa.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, err := aaa.Client.Dlc.GetUserDLC(input, client.BearerToken(*token.AccessToken))
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
 // Deprecated: Use SyncEpicGameDLCShort instead
 func (aaa *DLCService) SyncEpicGameDLC(input *d_l_c.SyncEpicGameDLCParams) error {
 	token, err := aaa.TokenRepository.GetToken()
@@ -371,6 +385,31 @@ func (aaa *DLCService) DeletePlatformDLCConfigShort(input *d_l_c.DeletePlatformD
 	}
 
 	return nil
+}
+
+func (aaa *DLCService) GetUserDLCShort(input *d_l_c.GetUserDLCParams) (*platformclientmodels.UserDLC, error) {
+	authInfoWriter := input.AuthInfoWriter
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
+	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  aaa.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
+	ok, err := aaa.Client.Dlc.GetUserDLCShort(input, authInfoWriter)
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
 }
 
 func (aaa *DLCService) SyncEpicGameDLCShort(input *d_l_c.SyncEpicGameDLCParams) error {

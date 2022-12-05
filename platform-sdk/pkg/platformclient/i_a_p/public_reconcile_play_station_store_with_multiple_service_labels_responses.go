@@ -60,13 +60,33 @@ func NewPublicReconcilePlayStationStoreWithMultipleServiceLabelsOK() *PublicReco
 
 /*PublicReconcilePlayStationStoreWithMultipleServiceLabelsOK handles this case with default header values.
 
-  Successful operation
+  successful operation
 */
 type PublicReconcilePlayStationStoreWithMultipleServiceLabelsOK struct {
+	Payload []*platformclientmodels.PlayStationReconcileResult
 }
 
 func (o *PublicReconcilePlayStationStoreWithMultipleServiceLabelsOK) Error() string {
-	return fmt.Sprintf("[PUT /platform/public/namespaces/{namespace}/users/{userId}/iap/psn/sync/multiServiceLabels][%d] publicReconcilePlayStationStoreWithMultipleServiceLabelsOK ", 200)
+	return fmt.Sprintf("[PUT /platform/public/namespaces/{namespace}/users/{userId}/iap/psn/sync/multiServiceLabels][%d] publicReconcilePlayStationStoreWithMultipleServiceLabelsOK  %+v", 200, o.ToJSONString())
+}
+
+func (o *PublicReconcilePlayStationStoreWithMultipleServiceLabelsOK) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
+}
+
+func (o *PublicReconcilePlayStationStoreWithMultipleServiceLabelsOK) GetPayload() []*platformclientmodels.PlayStationReconcileResult {
+	return o.Payload
 }
 
 func (o *PublicReconcilePlayStationStoreWithMultipleServiceLabelsOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -74,6 +94,11 @@ func (o *PublicReconcilePlayStationStoreWithMultipleServiceLabelsOK) readRespons
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
 		consumer = runtime.ByteStreamConsumer()
+	}
+
+	// response payload
+	if err := consumer.Consume(response.Body(), &o.Payload); err != nil && err != io.EOF {
+		return err
 	}
 
 	return nil

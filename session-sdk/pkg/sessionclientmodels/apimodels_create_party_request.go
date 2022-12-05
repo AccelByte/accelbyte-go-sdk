@@ -51,6 +51,10 @@ type ApimodelsCreatePartyRequest struct {
 	// Required: true
 	MinPlayers *int32 `json:"minPlayers"`
 
+	// text chat
+	// Required: true
+	TextChat *bool `json:"textChat"`
+
 	// type
 	// Required: true
 	Type *string `json:"type"`
@@ -89,6 +93,10 @@ func (m *ApimodelsCreatePartyRequest) Validate(formats strfmt.Registry) error {
 	}
 
 	if err := m.validateMinPlayers(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateTextChat(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -184,6 +192,15 @@ func (m *ApimodelsCreatePartyRequest) validateMembers(formats strfmt.Registry) e
 func (m *ApimodelsCreatePartyRequest) validateMinPlayers(formats strfmt.Registry) error {
 
 	if err := validate.Required("minPlayers", "body", m.MinPlayers); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *ApimodelsCreatePartyRequest) validateTextChat(formats strfmt.Registry) error {
+
+	if err := validate.Required("textChat", "body", m.TextChat); err != nil {
 		return err
 	}
 

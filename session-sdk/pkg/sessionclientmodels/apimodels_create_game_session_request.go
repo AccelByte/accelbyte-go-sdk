@@ -75,6 +75,10 @@ type ApimodelsCreateGameSessionRequest struct {
 	// Required: true
 	Teams []*ModelsTeam `json:"teams"`
 
+	// text chat
+	// Required: true
+	TextChat *bool `json:"textChat"`
+
 	// ticket i ds
 	// Required: true
 	TicketIDs []string `json:"ticketIDs"`
@@ -141,6 +145,10 @@ func (m *ApimodelsCreateGameSessionRequest) Validate(formats strfmt.Registry) er
 	}
 
 	if err := m.validateTeams(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateTextChat(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -295,6 +303,15 @@ func (m *ApimodelsCreateGameSessionRequest) validateTeams(formats strfmt.Registr
 			}
 		}
 
+	}
+
+	return nil
+}
+
+func (m *ApimodelsCreateGameSessionRequest) validateTextChat(formats strfmt.Registry) error {
+
+	if err := validate.Required("textChat", "body", m.TextChat); err != nil {
+		return err
 	}
 
 	return nil

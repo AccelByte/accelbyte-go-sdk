@@ -1,3 +1,40 @@
+<a name="v0.33.0"></a>
+## [v0.33.0] - 2022-12-06
+
+### Chore
+- disable changelog broken link test for now
+- **sdk:** regenerate sdk, cli sample app, cli test, doc index for AccelByte Cloud 3.37
+- **spec:** update spec for AccelByte Cloud 3.37
+- **test:** move to one file
+
+### CI
+- **brokenlink:** added check for getting started documentation
+- **jenkinsfile:** added openapi 2.0 vendor extension info
+
+### Docs
+- added openapi 2.0 vendor extension info
+- add session and match2 common use cases
+- fix tic tac toc guide
+- update CHANGELOG.md for v0.33.0 release
+- update getting-started
+
+### Feat
+- **samples:** getting started project
+
+### Fix
+- **docs:** broken link in operation docs class, model, and equ8 config class
+- **docs:** broken link in operation docs class IAM
+- **test:** nil pointer dereference in docker but not locally
+
+### Test
+- **integration:** add match2 test
+- **integration:** add session test
+- **integration:** fix duplicate session test renaming
+- **integration:** use alternate phantauth instance
+
+
+<a name="v0.31.2"></a>
+
 <a name="v0.32.0"></a>
 ## [v0.32.0] - 2022-11-22
 
@@ -1027,6 +1064,7 @@ The wrapper have been refactored and has breaking change, these are the list:
 ### Fix
 - delete go.mod ([#1](https://github.com/AccelByte/accelbyte-go-sdk/issues/1))
 
+[v0.33.0]: https://github.com/AccelByte/accelbyte-go-sdk/compare/v0.32.0...v0.33.0
 [v0.32.0]: https://github.com/AccelByte/accelbyte-go-sdk/compare/v0.31.2...v0.32.0
 [v0.31.2]: https://github.com/AccelByte/accelbyte-go-sdk/compare/v0.31.1...v0.31.2
 [v0.31.1]: https://github.com/AccelByte/accelbyte-go-sdk/compare/v0.31.0...v0.31.1

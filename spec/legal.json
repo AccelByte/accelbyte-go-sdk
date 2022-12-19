@@ -8,7 +8,7 @@
     },
     "description": "Justice Legal Service",
     "title": "justice-legal-service",
-    "version": "1.25.1"
+    "version": "1.25.2"
   },
   "schemes": [
     "https"
@@ -57,6 +57,7 @@
         "ADMIN:NAMESPACE:*:LEGAL [DELETE]": "ADMIN:NAMESPACE:*:LEGAL [DELETE]",
         "ADMIN:NAMESPACE:*:LEGAL [READ]": "ADMIN:NAMESPACE:*:LEGAL [READ]",
         "ADMIN:NAMESPACE:*:LEGAL [UPDATE]": "ADMIN:NAMESPACE:*:LEGAL [UPDATE]",
+        "ADMIN:NAMESPACE:{namespace}:LEGAL [UPDATE]": "ADMIN:NAMESPACE:{namespace}:LEGAL [UPDATE]",
         "ADMIN:NAMESPACE:{namespace}:USER:{userId}:LEGAL [CREATE]": "ADMIN:NAMESPACE:{namespace}:USER:{userId}:LEGAL [CREATE]",
         "ADMIN:NAMESPACE:{namespace}:USER:{userId}:LEGAL [READ]": "ADMIN:NAMESPACE:{namespace}:USER:{userId}:LEGAL [READ]",
         "NAMESPACE:{namespace}:LEGAL [CREATE]": "NAMESPACE:{namespace}:LEGAL [CREATE]",
@@ -85,6 +86,7 @@
         "consumes": [
           "application/json"
         ],
+        "description": "This API will Update Preference Consent. Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;ADMIN:NAMESPACE:{namespace}:LEGAL\u0026#34;, action=4 (UPDATE)\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "changePreferenceConsent",
         "parameters": [
           {
@@ -118,14 +120,27 @@
         ],
         "responses": {
           "200": {
-            "description": "successful operation"
+            "description": "operation successful"
+          },
+          "404": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eNumericErrorCode\u003c/td\u003e\u003ctd\u003eErrorCode\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e40047\u003c/td\u003e\u003ctd\u003eerrors.net.accelbyte.platform.legal.user_agreement_not_found\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/ErrorEntity"
+            }
           }
         },
         "security": [
           {
             "authorization": []
+          },
+          {
+            "HasPermission": [
+              "ADMIN:NAMESPACE:{namespace}:LEGAL [UPDATE]"
+            ],
+            "authorization": []
           }
         ],
+        "summary": "Change Preference Consent",
         "tags": [
           "Agreement"
         ]
@@ -310,8 +325,14 @@
               "$ref": "#/definitions/CreateBasePolicyResponse"
             }
           },
-          "409": {
-            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eNumericErrorCode\u003c/td\u003e\u003ctd\u003eErrorCode\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e40030\u003c/td\u003e\u003ctd\u003eerrors.net.accelbyte.platform.legal.invalid_policy_type\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+          "400": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eNumericErrorCode\u003c/td\u003e\u003ctd\u003eErrorCode\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e40038\u003c/td\u003e\u003ctd\u003eerrors.net.accelbyte.platform.legal.invalid_affected_client_id\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/ErrorEntity"
+            }
+          },
+          "404": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eNumericErrorCode\u003c/td\u003e\u003ctd\u003eErrorCode\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e40030\u003c/td\u003e\u003ctd\u003eerrors.net.accelbyte.platform.legal.policy_type_not_exist\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/ErrorEntity"
             }
@@ -420,7 +441,13 @@
             }
           },
           "400": {
-            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eNumericErrorCode\u003c/td\u003e\u003ctd\u003eErrorCode\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e40032\u003c/td\u003e\u003ctd\u003eerrors.net.accelbyte.platform.legal.invalid_base_policy\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eNumericErrorCode\u003c/td\u003e\u003ctd\u003eErrorCode\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e40032\u003c/td\u003e\u003ctd\u003eerrors.net.accelbyte.platform.legal.invalid_base_policy\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e40038\u003c/td\u003e\u003ctd\u003eerrors.net.accelbyte.platform.legal.invalid_affected_client_id\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/ErrorEntity"
+            }
+          },
+          "404": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eNumericErrorCode\u003c/td\u003e\u003ctd\u003eErrorCode\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e40030\u003c/td\u003e\u003ctd\u003eerrors.net.accelbyte.platform.legal.policy_type_not_exist\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/ErrorEntity"
             }
@@ -474,7 +501,7 @@
             }
           },
           "404": {
-            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eNumericErrorCode\u003c/td\u003e\u003ctd\u003eErrorCode\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e40031\u003c/td\u003e\u003ctd\u003eerrors.net.accelbyte.platform.legal.base_policy_not_found\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eNumericErrorCode\u003c/td\u003e\u003ctd\u003eErrorCode\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e40041\u003c/td\u003e\u003ctd\u003eerrors.net.accelbyte.platform.legal.policy_not_found\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/ErrorEntity"
             }
@@ -626,8 +653,8 @@
               "$ref": "#/definitions/RetrieveLocalizedPolicyVersionResponse"
             }
           },
-          "400": {
-            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eNumericErrorCode\u003c/td\u003e\u003ctd\u003eErrorCode\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e2912\u003c/td\u003e\u003ctd\u003eerrors.net.accelbyte.platform.legal.invalid_policy_version\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+          "404": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eNumericErrorCode\u003c/td\u003e\u003ctd\u003eErrorCode\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e2912\u003c/td\u003e\u003ctd\u003eerrors.net.accelbyte.platform.legal.policy_version_not_found\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/ErrorEntity"
             }
@@ -782,7 +809,13 @@
         ],
         "responses": {
           "200": {
-            "description": "successful operation"
+            "description": "Successful operation"
+          },
+          "400": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eNumericErrorCode\u003c/td\u003e\u003ctd\u003eErrorCode\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e40035\u003c/td\u003e\u003ctd\u003eerrors.net.accelbyte.platform.legal.invalid_localize_policy_version\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/ErrorEntity"
+            }
           }
         },
         "security": [
@@ -935,6 +968,12 @@
             "schema": {
               "$ref": "#/definitions/RetrieveUserEligibilitiesIndirectResponse"
             }
+          },
+          "400": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eNumericErrorCode\u003c/td\u003e\u003ctd\u003eErrorCode\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e40045\u003c/td\u003e\u003ctd\u003eerrors.net.accelbyte.platform.legal.user_id_needed\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/ErrorEntity"
+            }
           }
         },
         "security": [
@@ -1037,6 +1076,12 @@
             "schema": {
               "$ref": "#/definitions/ErrorEntity"
             }
+          },
+          "409": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eNumericErrorCode\u003c/td\u003e\u003ctd\u003eErrorCode\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e40043\u003c/td\u003e\u003ctd\u003eerrors.net.accelbyte.platform.legal.localized_policy_version_already_exist\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/ErrorEntity"
+            }
           }
         },
         "security": [
@@ -1083,10 +1128,16 @@
         ],
         "responses": {
           "200": {
-            "description": "successful operation"
+            "description": "operation successful"
           },
           "400": {
-            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eNumericErrorCode\u003c/td\u003e\u003ctd\u003eErrorCode\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e40033\u003c/td\u003e\u003ctd\u003eerrors.net.accelbyte.platform.legal.invalid_policy_version\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eNumericErrorCode\u003c/td\u003e\u003ctd\u003eErrorCode\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e40035\u003c/td\u003e\u003ctd\u003eerrors.net.accelbyte.platform.legal.invalid_policy_version\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e40046\u003c/td\u003e\u003ctd\u003eerrors.net.accelbyte.platform.legal.default_selection_not_provided\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e40030\u003c/td\u003e\u003ctd\u003eerrors.net.accelbyte.platform.legal.localized_policy_version_not_provided\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/ErrorEntity"
+            }
+          },
+          "409": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eNumericErrorCode\u003c/td\u003e\u003ctd\u003eErrorCode\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e40039\u003c/td\u003e\u003ctd\u003eerrors.net.accelbyte.platform.legal.localized_policy_version_already_latest\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e40043\u003c/td\u003e\u003ctd\u003eerrors.net.accelbyte.platform.legal.localized_policy_version_already_publish\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/ErrorEntity"
             }
@@ -1138,7 +1189,13 @@
         ],
         "responses": {
           "200": {
-            "description": "successful operation"
+            "description": "operation successful"
+          },
+          "400": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eNumericErrorCode\u003c/td\u003e\u003ctd\u003eErrorCode\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e40033\u003c/td\u003e\u003ctd\u003eerrors.net.accelbyte.platform.legal.invalid_policy_id\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/ErrorEntity"
+            }
           }
         },
         "security": [
@@ -1176,7 +1233,13 @@
         ],
         "responses": {
           "200": {
-            "description": "successful operation"
+            "description": "operation successful"
+          },
+          "400": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eNumericErrorCode\u003c/td\u003e\u003ctd\u003eErrorCode\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e40033\u003c/td\u003e\u003ctd\u003eerrors.net.accelbyte.platform.legal.invalid_policy_id\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/ErrorEntity"
+            }
           }
         },
         "security": [
@@ -1230,7 +1293,7 @@
             }
           },
           "404": {
-            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eNumericErrorCode\u003c/td\u003e\u003ctd\u003eErrorCode\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e40035\u003c/td\u003e\u003ctd\u003eerrors.net.accelbyte.platform.legal.policy_version_not_found\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eNumericErrorCode\u003c/td\u003e\u003ctd\u003eErrorCode\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e40036\u003c/td\u003e\u003ctd\u003eerrors.net.accelbyte.platform.legal.policy_version_id_not_found\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/ErrorEntity"
             }
@@ -1380,7 +1443,7 @@
         ],
         "responses": {
           "204": {
-            "description": "successful operation"
+            "description": "Successful operation"
           }
         },
         "security": [
@@ -1456,7 +1519,7 @@
         ],
         "responses": {
           "200": {
-            "description": "successful operation"
+            "description": "Successful operation"
           }
         },
         "security": [
@@ -1497,10 +1560,10 @@
         ],
         "responses": {
           "204": {
-            "description": "Anonymize successfully"
+            "description": "successful anonymize"
           },
           "404": {
-            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eNumericErrorCode\u003c/td\u003e\u003ctd\u003eErrorCode\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e40047\u003c/td\u003e\u003ctd\u003eerrors.net.accelbyte.platform.legal.user_agreement_not_found\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eNumericErrorCode\u003c/td\u003e\u003ctd\u003eErrorCode\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e40045\u003c/td\u003e\u003ctd\u003eerrors.net.accelbyte.platform.legal.user_agreement_not_found\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/ErrorEntity"
             }
@@ -1548,10 +1611,10 @@
         ],
         "responses": {
           "200": {
-            "description": "successful operation"
+            "description": "Successful operation"
           },
           "400": {
-            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eErrorCode\u003c/td\u003e\u003ctd\u003eErrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e40017\u003c/td\u003e\u003ctd\u003ePolicy with id : [{policyId}] is not marketing preference\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eErrorCode\u003c/td\u003e\u003ctd\u003eErrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e40017\u003c/td\u003e\u003ctd\u003ePolicy with id : [{policyId}] is not marketing preference\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e40045\u003c/td\u003e\u003ctd\u003eerrors.net.accelbyte.platform.legal.user_id_needed\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/ErrorEntity"
             }
@@ -1586,7 +1649,13 @@
         ],
         "responses": {
           "201": {
-            "description": "successful operation"
+            "description": "successful anonymize"
+          },
+          "400": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eNumericErrorCode\u003c/td\u003e\u003ctd\u003eErrorCode\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e40045\u003c/td\u003e\u003ctd\u003eerrors.net.accelbyte.platform.legal.user_id_needed\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e40035\u003c/td\u003e\u003ctd\u003eerrors.net.accelbyte.platform.legal.invalid_localize_policy_version_id\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/ErrorEntity"
+            }
           }
         },
         "security": [
@@ -1616,6 +1685,12 @@
                 "$ref": "#/definitions/RetrieveAcceptedAgreementResponse"
               },
               "type": "array"
+            }
+          },
+          "400": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eErrorCode\u003c/td\u003e\u003ctd\u003eErrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e40045\u003c/td\u003e\u003ctd\u003eerrors.net.accelbyte.platform.legal.user_id_needed\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/ErrorEntity"
             }
           }
         },
@@ -1656,6 +1731,12 @@
             "description": "successful operation",
             "schema": {
               "$ref": "#/definitions/AcceptAgreementResponse"
+            }
+          },
+          "400": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eNumericErrorCode\u003c/td\u003e\u003ctd\u003eErrorCode\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e40045\u003c/td\u003e\u003ctd\u003eerrors.net.accelbyte.platform.legal.user_id_needed\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e40035\u003c/td\u003e\u003ctd\u003eerrors.net.accelbyte.platform.legal.invalid_localize_policy_version_id\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/ErrorEntity"
             }
           }
         },
@@ -1782,6 +1863,12 @@
             "schema": {
               "$ref": "#/definitions/AcceptAgreementResponse"
             }
+          },
+          "404": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eNumericErrorCode\u003c/td\u003e\u003ctd\u003eErrorCode\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e40035\u003c/td\u003e\u003ctd\u003eerrors.net.accelbyte.platform.legal.policy_version_not_found\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/ErrorEntity"
+            }
           }
         },
         "security": [
@@ -1819,6 +1906,18 @@
                 "$ref": "#/definitions/RetrieveUserEligibilitiesResponse"
               },
               "type": "array"
+            }
+          },
+          "400": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eNumericErrorCode\u003c/td\u003e\u003ctd\u003eErrorCode\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e40045\u003c/td\u003e\u003ctd\u003eerrors.net.accelbyte.platform.legal.user_id_needed\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/ErrorEntity"
+            }
+          },
+          "404": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eNumericErrorCode\u003c/td\u003e\u003ctd\u003eErrorCode\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e40041\u003c/td\u003e\u003ctd\u003eerrors.net.accelbyte.platform.legal.policy_not_found\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/ErrorEntity"
             }
           }
         },
@@ -1875,6 +1974,12 @@
             "description": "successful operation",
             "schema": {
               "$ref": "#/definitions/RetrieveUserEligibilitiesIndirectResponse"
+            }
+          },
+          "400": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eNumericErrorCode\u003c/td\u003e\u003ctd\u003eErrorCode\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e40045\u003c/td\u003e\u003ctd\u003eerrors.net.accelbyte.platform.legal.user_id_needed\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/ErrorEntity"
             }
           }
         },

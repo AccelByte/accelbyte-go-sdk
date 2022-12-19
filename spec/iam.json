@@ -8,7 +8,7 @@
     },
     "description": "Justice IAM Service",
     "title": "justice-iam-service",
-    "version": "5.22.0"
+    "version": "5.23.0"
   },
   "schemes": [
     "https"
@@ -8318,7 +8318,7 @@
             "authorization": []
           }
         ],
-        "summary": "Get clients by namespace and client id",
+        "summary": "Get clients by namespace and client id. If multi tenant mode is on and the clientId match withadmin portal client id env var, it will ignore the namespace",
         "tags": [
           "Clients"
         ]
@@ -10009,6 +10009,96 @@
           }
         ],
         "summary": "Invite User",
+        "tags": [
+          "Users"
+        ]
+      }
+    },
+    "/iam/v3/admin/namespaces/{namespace}/users/linkhistories": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "\u0026lt;p\u0026gt;Required permission ADMIN:NAMESPACE:{namespace}:USER [READ]\u0026lt;/p\u0026gt;\n               \u0026lt;li\u0026gt;if limit is not defined, The default limit is 100\u0026lt;/li\u0026gt;\n\u0026lt;/ul\u0026gt;\u0026lt;/p\u0026gt;",
+        "operationId": "AdminQueryThirdPlatformLinkHistoryV3",
+        "parameters": [
+          {
+            "description": "Namespace, only accept alphabet and numeric",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "Platform Id that want to be searched, supported values: steam, steamopenid, psn, xbox, epicgames, stadia, nintendo, oculus, aws cognito, facebook, google, discord, twitch, snapchat or amazon",
+            "in": "query",
+            "name": "platformId",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "the maximum number of data that may be returned (1...100), default 100",
+            "in": "query",
+            "name": "limit",
+            "type": "integer"
+          },
+          {
+            "description": "Offset, default 0",
+            "in": "query",
+            "name": "offset",
+            "type": "integer"
+          },
+          {
+            "description": "Platform user id",
+            "in": "query",
+            "name": "platformUserId",
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/model.LinkingHistoryResponseWithPaginationV3"
+            }
+          },
+          "400": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20002\u003c/td\u003e\u003ctd\u003evalidation error\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/rest.ErrorResponse"
+            }
+          },
+          "401": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20001\u003c/td\u003e\u003ctd\u003eunauthorized access\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/rest.ErrorResponse"
+            }
+          },
+          "403": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20013\u003c/td\u003e\u003ctd\u003einsufficient permissions\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/rest.ErrorResponse"
+            }
+          },
+          "500": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20000\u003c/td\u003e\u003ctd\u003einternal server error\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/rest.ErrorResponse"
+            }
+          }
+        },
+        "security": [
+          {
+            "HasPermission": [
+              "ADMIN:NAMESPACE:{namespace}:USER [READ]"
+            ],
+            "authorization": []
+          }
+        ],
+        "summary": "Search linking history of the query platform with platform user id",
         "tags": [
           "Users"
         ]
@@ -14504,6 +14594,127 @@
         ]
       }
     },
+    "/iam/v3/link/code/request": {
+      "post": {
+        "consumes": [
+          "application/x-www-form-urlencoded"
+        ],
+        "description": "\u0026lt;p\u0026gt;This endpoint is being used to request the one time code [8 length] for headless account to link or upgrade to a full account.\u0026lt;br\u0026gt;\n\t\tIt require a valid user token.\u0026lt;br\u0026gt;\n\t\tShould specify the target platform id and current user should already linked to this platform.\u0026lt;br\u0026gt;\n\t\tCurrent user should be a headless account.\u0026lt;br\u0026gt;\n\t\t\t\u0026lt;h2\u0026gt;Supported platforms:\u0026lt;/h2\u0026gt;\n\t\t\t\u0026lt;ul\u0026gt;\n\t\t\t\t\u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;steam\u0026lt;/strong\u0026gt;\u0026lt;/li\u0026gt;\n\t\t\t\t\u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;steamopenid\u0026lt;/strong\u0026gt;\u0026lt;/li\u0026gt;\n\t\t\t\t\u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;facebook\u0026lt;/strong\u0026gt;\u0026lt;/li\u0026gt;\n\t\t\t\t\u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;google\u0026lt;/strong\u0026gt;\u0026lt;/li\u0026gt;\n\t\t\t\t\u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;oculus\u0026lt;/strong\u0026gt;\u0026lt;/li\u0026gt;\n\t\t\t\t\u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;twitch\u0026lt;/strong\u0026gt;\u0026lt;/li\u0026gt;\n\t\t\t\t\u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;discord\u0026lt;/strong\u0026gt;\u0026lt;/li\u0026gt;\n\t\t\t\t\u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;android\u0026lt;/strong\u0026gt;\u0026lt;/li\u0026gt;\n\t\t\t\t\u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;ios\u0026lt;/strong\u0026gt;\u0026lt;/li\u0026gt;\n\t\t\t\t\u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;apple\u0026lt;/strong\u0026gt;\u0026lt;/li\u0026gt;\n\t\t\t\t\u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;device\u0026lt;/strong\u0026gt;\u0026lt;/li\u0026gt;\n\t\t\t\t\u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;justice\u0026lt;/strong\u0026gt;\u0026lt;/li\u0026gt;\n\t\t\t\t\u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;epicgames\u0026lt;/strong\u0026gt;\u0026lt;/li\u0026gt;\n                \u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;stadia\u0026lt;/strong\u0026gt;\u0026lt;/li\u0026gt;\n\t\t\t\t\u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;ps4\u0026lt;/strong\u0026gt;\u0026lt;/li\u0026gt;\n\t\t\t\t\u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;ps5\u0026lt;/strong\u0026gt;\u0026lt;/li\u0026gt;\n\t\t\t\t\u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;nintendo\u0026lt;/strong\u0026gt;\u0026lt;/li\u0026gt;\n\t\t\t\t\u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;awscognito\u0026lt;/strong\u0026gt;\u0026lt;/li\u0026gt;\n\t\t\t\t\u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;live\u0026lt;/strong\u0026gt;\u0026lt;/li\u0026gt;\n\t\t\t\t\u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;xblweb\u0026lt;/strong\u0026gt;\u0026lt;/li\u0026gt;\n\t\t\t\t\u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;netflix\u0026lt;/strong\u0026gt;\u0026lt;/li\u0026gt;\n\t\t\t\t\u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;snapchat\u0026lt;/strong\u0026gt;\u0026lt;/li\u0026gt;\n\t\t\t\u0026lt;/ul\u0026gt;\n\t\t\u0026lt;/p\u0026gt;",
+        "operationId": "RequestOneTimeLinkingCodeV3",
+        "parameters": [
+          {
+            "description": "Target platform ID for linking",
+            "in": "formData",
+            "name": "platformId",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "Succeed to one time code.",
+            "schema": {
+              "$ref": "#/definitions/oauthmodel.OneTimeLinkingCodeResponse"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "summary": "Generate one time linking code",
+        "tags": [
+          "OAuth2.0 - Extension"
+        ]
+      }
+    },
+    "/iam/v3/link/code/validate": {
+      "post": {
+        "consumes": [
+          "application/x-www-form-urlencoded"
+        ],
+        "description": "\u0026lt;p\u0026gt;This endpoint is being used to validate one time link code.\u0026lt;br\u0026gt;\n\t\tIt require a valid user token.\u0026lt;br\u0026gt;\n\t\tShould specify the target platform id and current user should already linked to this platform.\u0026lt;br\u0026gt;\n\t\tCurrent user should be a headless account.\u0026lt;br\u0026gt;\n\t\t\u0026lt;/p\u0026gt;",
+        "operationId": "ValidateOneTimeLinkingCodeV3",
+        "parameters": [
+          {
+            "description": "one time linking code",
+            "in": "formData",
+            "name": "oneTimeLinkCode",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "Succeed to validate one time code.",
+            "schema": {
+              "$ref": "#/definitions/oauthmodel.OneTimeLinkingCodeValidationResponse"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "summary": "Validate one time linking code",
+        "tags": [
+          "OAuth2.0 - Extension"
+        ]
+      }
+    },
+    "/iam/v3/link/token/exchange": {
+      "post": {
+        "consumes": [
+          "application/x-www-form-urlencoded"
+        ],
+        "description": "\u0026lt;p\u0026gt;This endpoint is being used to generate user\u0026#39;s token by one time link code.\u0026lt;br\u0026gt;\n\t\tIt require publisher ClientID\u0026lt;br\u0026gt;\n\t\tIt required a code which can be generated from \u0026lt;strong\u0026gt;/iam/v3/link/code/request\u0026lt;/strong\u0026gt;.\u0026lt;br\u0026gt;\n\t\t\u0026lt;/p\u0026gt;",
+        "operationId": "RequestTokenByOneTimeLinkCodeResponseV3",
+        "parameters": [
+          {
+            "description": "publisher clientID",
+            "in": "formData",
+            "name": "client_id",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "one time linking code",
+            "in": "formData",
+            "name": "oneTimeLinkCode",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "Succeed to generate user token by one time link code.",
+            "schema": {
+              "$ref": "#/definitions/oauthmodel.TokenResponseV3"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "summary": "Generate publisher token by headless account's one time link code",
+        "tags": [
+          "OAuth2.0 - Extension"
+        ]
+      }
+    },
     "/iam/v3/location/country": {
       "get": {
         "consumes": [
@@ -14790,6 +15001,12 @@
             "name": "createHeadless",
             "type": "boolean",
             "x-omitempty": false
+          },
+          {
+            "description": "One time link code for headless account to link. Can get from [/iam/v3/link/code/request]",
+            "in": "query",
+            "name": "oneTimeLinkCode",
+            "type": "string"
           },
           {
             "description": "Redirect URI registered for requesting client. Required if client registered with multiple redirect URI. Registered redirect uri will be assigned if left empty.",
@@ -18720,6 +18937,125 @@
           }
         ],
         "summary": "Get My User",
+        "tags": [
+          "Users"
+        ]
+      }
+    },
+    "/iam/v3/public/users/me/headless/link/conflict": {
+      "get": {
+        "description": "Note:\u0026lt;br\u0026gt;\n1. My account should be full account\n2. My account not linked to request headless account\u0026#39;s third platform.",
+        "operationId": "PublicGetLinkHeadlessAccountToMyAccountConflictV3",
+        "parameters": [
+          {
+            "description": "one time linking code",
+            "in": "query",
+            "name": "oneTimeLinkCode",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/model.GetLinkHeadlessAccountConflictResponse"
+            }
+          },
+          "400": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20002\u003c/td\u003e\u003ctd\u003evalidation error\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/rest.ErrorResponse"
+            }
+          },
+          "401": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20001\u003c/td\u003e\u003ctd\u003eunauthorized access\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20022\u003c/td\u003e\u003ctd\u003etoken is not user token\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/rest.ErrorResponse"
+            }
+          },
+          "403": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20013\u003c/td\u003e\u003ctd\u003einsufficient permissions\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/rest.ErrorResponse"
+            }
+          },
+          "500": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20000\u003c/td\u003e\u003ctd\u003einternal server error\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/rest.ErrorResponse"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "summary": "Get conflict result when link headless account to current full account by one time code",
+        "tags": [
+          "Users"
+        ]
+      }
+    },
+    "/iam/v3/public/users/me/headless/linkWithProgression": {
+      "post": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Note:\u0026lt;br\u0026gt;\n1. My account should be full account\n2. My account not linked to headless account\u0026#39;s third platform.",
+        "operationId": "LinkHeadlessAccountToMyAccountV3",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/model.LinkHeadlessAccountRequest"
+            }
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content"
+          },
+          "400": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20002\u003c/td\u003e\u003ctd\u003evalidation error\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/rest.ErrorResponse"
+            }
+          },
+          "401": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20001\u003c/td\u003e\u003ctd\u003eunauthorized access\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20022\u003c/td\u003e\u003ctd\u003etoken is not user token\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/rest.ErrorResponse"
+            }
+          },
+          "403": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20013\u003c/td\u003e\u003ctd\u003einsufficient permissions\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/rest.ErrorResponse"
+            }
+          },
+          "500": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20000\u003c/td\u003e\u003ctd\u003einternal server error\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/rest.ErrorResponse"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "summary": "Link headless account to current full account",
         "tags": [
           "Users"
         ]
@@ -25895,6 +26231,28 @@
         "policyVersionId"
       ]
     },
+    "model.AccountProgressionInfo": {
+      "properties": {
+        "displayName": {
+          "type": "string"
+        },
+        "email": {
+          "type": "string"
+        },
+        "linkedGames": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "userName": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "linkedGames"
+      ]
+    },
     "model.AddUserRoleV4Request": {
       "properties": {
         "assignedNamespaces": {
@@ -26579,6 +26937,36 @@
         "Paging"
       ]
     },
+    "model.GetLinkHeadlessAccountConflictResponse": {
+      "properties": {
+        "currentAccount": {
+          "$ref": "#/definitions/model.AccountProgressionInfo",
+          "description": "only exists when platformLinkConflict=false \u0026 platformAlreadyLinked=false"
+        },
+        "headlessAccount": {
+          "$ref": "#/definitions/model.AccountProgressionInfo",
+          "description": "only exists when platformLinkConflict=false \u0026 platformAlreadyLinked=false"
+        },
+        "platformAlreadyLinked": {
+          "description": "if full account already linked to this platform",
+          "type": "boolean",
+          "x-omitempty": false
+        },
+        "platformId": {
+          "type": "string"
+        },
+        "platformLinkConflict": {
+          "description": "if linked to this platform's other account",
+          "type": "boolean",
+          "x-omitempty": false
+        }
+      },
+      "required": [
+        "platformAlreadyLinked",
+        "platformId",
+        "platformLinkConflict"
+      ]
+    },
     "model.GetPublisherUserResponse": {
       "properties": {
         "Namespace": {
@@ -26828,6 +27216,23 @@
         "data"
       ]
     },
+    "model.LinkHeadlessAccountRequest": {
+      "properties": {
+        "chosenNamespaces": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "oneTimeLinkCode": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "chosenNamespaces",
+        "oneTimeLinkCode"
+      ]
+    },
     "model.LinkPlatformAccountRequest": {
       "properties": {
         "platformId": {
@@ -26925,6 +27330,29 @@
         "redirect_uri",
         "request_id",
         "status"
+      ]
+    },
+    "model.LinkingHistoryResponseWithPaginationV3": {
+      "properties": {
+        "data": {
+          "description": "publisher user id which linked to this platform account",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "paging": {
+          "$ref": "#/definitions/accountcommon.PaginationV3"
+        },
+        "totalData": {
+          "format": "int32",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "data",
+        "paging",
+        "totalData"
       ]
     },
     "model.ListAssignedUsersV4Response": {
@@ -30027,6 +30455,42 @@
       },
       "required": [
         "code"
+      ]
+    },
+    "oauthmodel.OneTimeLinkingCodeResponse": {
+      "properties": {
+        "exp": {
+          "description": "code will be expired in seconds",
+          "format": "int64",
+          "type": "integer"
+        },
+        "oneTimeLinkCode": {
+          "type": "string"
+        },
+        "oneTimeLinkUrl": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "exp",
+        "oneTimeLinkCode",
+        "oneTimeLinkUrl"
+      ]
+    },
+    "oauthmodel.OneTimeLinkingCodeValidationResponse": {
+      "properties": {
+        "expired": {
+          "type": "boolean",
+          "x-omitempty": false
+        },
+        "valid": {
+          "type": "boolean",
+          "x-omitempty": false
+        }
+      },
+      "required": [
+        "expired",
+        "valid"
       ]
     },
     "oauthmodel.TokenIntrospectResponse": {

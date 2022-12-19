@@ -3,7 +3,7 @@
   "info": {
     "description": "Justice DSM Controller Service",
     "title": "justice-dsm-controller-service",
-    "version": "4.0.2"
+    "version": "5.0.1"
   },
   "schemes": [
     "https"
@@ -3691,81 +3691,6 @@
         ]
       }
     },
-    "/dsmcontroller/admin/namespaces/{namespace}/servers/{podName}/logs": {
-      "get": {
-        "consumes": [
-          "application/json"
-        ],
-        "description": "Required permission: ADMIN:NAMESPACE:{namespace}:DSM:SERVER [READ]\n\nRequired scope: social\n\nThis endpoint queries a specified dedicated server\u0026#39;s logs.",
-        "operationId": "getServerLogs",
-        "parameters": [
-          {
-            "description": "namespace of the game",
-            "in": "path",
-            "name": "namespace",
-            "required": true,
-            "type": "string"
-          },
-          {
-            "description": "name of the DS pod",
-            "in": "path",
-            "name": "podName",
-            "required": true,
-            "type": "string"
-          }
-        ],
-        "produces": [
-          "application/json"
-        ],
-        "responses": {
-          "200": {
-            "description": "server logs queried",
-            "schema": {
-              "$ref": "#/definitions/models.ServerLogs"
-            }
-          },
-          "400": {
-            "description": "malformed request",
-            "schema": {
-              "$ref": "#/definitions/response.Error"
-            }
-          },
-          "401": {
-            "description": "Unauthorized",
-            "schema": {
-              "$ref": "#/definitions/response.Error"
-            }
-          },
-          "404": {
-            "description": "server not found",
-            "schema": {
-              "$ref": "#/definitions/response.Error"
-            }
-          },
-          "500": {
-            "description": "Internal Server Error",
-            "schema": {
-              "$ref": "#/definitions/response.Error"
-            }
-          }
-        },
-        "security": [
-          {
-            "HasPermission": [
-              "ADMIN:NAMESPACE:{namespace}:DSM:SERVER [READ]"
-            ],
-            "HasScope": [
-              "social"
-            ],
-            "authorization": []
-          }
-        ],
-        "summary": "Queries server logs",
-        "tags": [
-          "Admin"
-        ]
-      }
-    },
     "/dsmcontroller/admin/namespaces/{namespace}/sessions": {
       "get": {
         "consumes": [
@@ -6427,16 +6352,6 @@
         "session_id",
         "status",
         "status_history"
-      ]
-    },
-    "models.ServerLogs": {
-      "properties": {
-        "logs": {
-          "type": "string"
-        }
-      },
-      "required": [
-        "logs"
       ]
     },
     "models.ServerSessionResponse": {

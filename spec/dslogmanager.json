@@ -19,7 +19,8 @@
       "flow": "accessCode",
       "scopes": {
         "ADMIN:NAMESPACE:{namespace}:DSLM:LOG [READ]": "ADMIN:NAMESPACE:{namespace}:DSLM:LOG [READ]",
-        "ADMIN:NAMESPACE:{namespace}:DSLM:SERVER [READ]": "ADMIN:NAMESPACE:{namespace}:DSLM:SERVER [READ]"
+        "ADMIN:NAMESPACE:{namespace}:DSLM:SERVER [READ]": "ADMIN:NAMESPACE:{namespace}:DSLM:SERVER [READ]",
+        "ADMIN:NAMESPACE:{namespace}:DSM:SERVER [READ]": "ADMIN:NAMESPACE:{namespace}:DSM:SERVER [READ]"
       },
       "tokenUrl": "https://dumy.oauth.net/token",
       "type": "oauth2"
@@ -41,6 +42,102 @@
   },
   "swagger": "2.0",
   "paths": {
+    "/dslogmanager/admin/namespaces/{namespace}/servers/{podName}/logs": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Required permission: ADMIN:NAMESPACE:{namespace}:DSM:SERVER [READ]\n\nRequired scope: social\n\nThis endpoint queries a specified dedicated server\u0026#39;s logs.",
+        "operationId": "getServerLogs",
+        "parameters": [
+          {
+            "description": "namespace of the game",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "name of the DS pod",
+            "in": "path",
+            "name": "podName",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "default": "all",
+            "description": "The log type requested. \"stderr\", \"stdout\" or \"all\". Default : \"all\"",
+            "in": "query",
+            "name": "logType",
+            "type": "string"
+          },
+          {
+            "default": 10000,
+            "description": "The offset to start streaming log data at. Default : 10000",
+            "in": "query",
+            "name": "offset",
+            "type": "integer"
+          },
+          {
+            "default": "end",
+            "description": "Either \"start\" or \"end\" and defines from where the offset is applied. Default : \"end\"",
+            "in": "query",
+            "name": "origin",
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "server logs queried",
+            "schema": {
+              "$ref": "#/definitions/models.ServerLogs"
+            }
+          },
+          "400": {
+            "description": "malformed request",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "404": {
+            "description": "server not found",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          }
+        },
+        "security": [
+          {
+            "HasPermission": [
+              "ADMIN:NAMESPACE:{namespace}:DSM:SERVER [READ]"
+            ],
+            "HasScope": [
+              "social"
+            ],
+            "authorization": []
+          }
+        ],
+        "summary": "Queries server logs",
+        "tags": [
+          "Admin"
+        ]
+      }
+    },
     "/dslogmanager/namespaces/{namespace}/servers/search": {
       "get": {
         "consumes": [
@@ -889,6 +986,20 @@
         "session_id",
         "status",
         "status_history"
+      ]
+    },
+    "models.ServerLogs": {
+      "properties": {
+        "std_err_logs": {
+          "type": "string"
+        },
+        "std_out_logs": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "std_err_logs",
+        "std_out_logs"
       ]
     },
     "models.StatusHistory": {

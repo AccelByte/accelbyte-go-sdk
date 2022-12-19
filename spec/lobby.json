@@ -1650,7 +1650,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "Required permission : \u0026lt;code\u0026gt;ADMIN:NAMESPACE:{namespace}:NOTIFICATION [CREATE]\u0026lt;/code\u0026gt; with scope \u0026lt;code\u0026gt;social\u0026lt;/code\u0026gt;\n\t\t\t\t\t\u0026lt;br\u0026gt;Sends templated notification to a party.\n\t\t\t\t\t\u0026lt;br\u0026gt;In the request body, specify which template slug (template identifier) to use and the template language. \n\t\t\t\t\t\u0026lt;br\u0026gt;NotificationTemplate context is the key-value pair defining the value of each handlebar specified in the template content. \n\t\t\t\t\tTemplate need to be published before it can be use to send notifications\u0026lt;br\u0026gt;",
+        "description": "Required permission : \u0026lt;code\u0026gt;ADMIN:NAMESPACE:{namespace}:NOTIFICATION [CREATE]\u0026lt;/code\u0026gt; with scope \u0026lt;code\u0026gt;social\u0026lt;/code\u0026gt;\n\t\t\t\t\t\u0026lt;br\u0026gt;Sends templated notification to a party.\n\t\t\t\t\t\u0026lt;br\u0026gt;In the request body, specify which template slug (template identifier) to use and the template language.\n\t\t\t\t\t\u0026lt;br\u0026gt;NotificationTemplate context is the key-value pair defining the value of each handlebar specified in the template content.\n\t\t\t\t\tTemplate need to be published before it can be use to send notifications\u0026lt;br\u0026gt;",
         "operationId": "sendPartyTemplatedNotificationV1Admin",
         "parameters": [
           {
@@ -1806,7 +1806,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "Required permission : \u0026lt;code\u0026gt;ADMIN:NAMESPACE:{namespace}:NOTIFICATION [CREATE]\u0026lt;/code\u0026gt; with scope \u0026lt;code\u0026gt;social\u0026lt;/code\u0026gt;\n\t\t\t\u0026lt;br\u0026gt;Create new notification template. Include handlebars {{key}} for replaceable contexts. The key inside \n\t\t\thandlebars will be the key to be replaced when sending notification. Already existing template with the same \n\t\t\tslug and language can not be created.\n\t\t\t\u0026lt;br\u0026gt;Check model description for detailed input restrictions.\u0026lt;br\u0026gt;\n\t\t\tAction Code: 50204",
+        "description": "Required permission : \u0026lt;code\u0026gt;ADMIN:NAMESPACE:{namespace}:NOTIFICATION [CREATE]\u0026lt;/code\u0026gt; with scope \u0026lt;code\u0026gt;social\u0026lt;/code\u0026gt;\n\t\t\t\u0026lt;br\u0026gt;Create new notification template. Include handlebars {{key}} for replaceable contexts. The key inside\n\t\t\thandlebars will be the key to be replaced when sending notification. Already existing template with the same\n\t\t\tslug and language can not be created.\n\t\t\t\u0026lt;br\u0026gt;Check model description for detailed input restrictions.\u0026lt;br\u0026gt;\n\t\t\tAction Code: 50204",
         "operationId": "createNotificationTemplateV1Admin",
         "parameters": [
           {
@@ -1886,7 +1886,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "Required permission : \u0026lt;code\u0026gt;ADMIN:NAMESPACE:{namespace}:NOTIFICATION [CREATE]\u0026lt;/code\u0026gt; with scope \u0026lt;code\u0026gt;social\u0026lt;/code\u0026gt;\n\t\t\t\u0026lt;br\u0026gt;Sends notification to all connected users in a namespace with predefined template. \n\t\t\t\u0026lt;br\u0026gt;In the request body, specify which template slug (template identifier) to use and the template language. \n\t\t\t\u0026lt;br\u0026gt;NotificationTemplate context is the key-value pair defining the value of each handlebar specified in the template content. \n\t\t\tTemplate need to be published before it can be use to send notifications\u0026lt;br/\u0026gt;\n\t\t\tAction Code: 50202",
+        "description": "Required permission : \u0026lt;code\u0026gt;ADMIN:NAMESPACE:{namespace}:NOTIFICATION [CREATE]\u0026lt;/code\u0026gt; with scope \u0026lt;code\u0026gt;social\u0026lt;/code\u0026gt;\n\t\t\t\u0026lt;br\u0026gt;Sends notification to all connected users in a namespace with predefined template.\n\t\t\t\u0026lt;br\u0026gt;In the request body, specify which template slug (template identifier) to use and the template language.\n\t\t\t\u0026lt;br\u0026gt;NotificationTemplate context is the key-value pair defining the value of each handlebar specified in the template content.\n\t\t\tTemplate need to be published before it can be use to send notifications\u0026lt;br/\u0026gt;\n\t\t\tAction Code: 50202",
         "operationId": "sendUsersTemplatedNotificationV1Admin",
         "parameters": [
           {
@@ -2536,7 +2536,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "Required permission : \u0026lt;code\u0026gt;ADMIN:NAMESPACE:{namespace}:NOTIFICATION [CREATE]\u0026lt;/code\u0026gt; with scope \u0026lt;code\u0026gt;social\u0026lt;/code\u0026gt;\n\t\t\t\u0026lt;br\u0026gt;Create new notification topic.\n\t\t\t\u0026lt;br\u0026gt;topic should be alphabets, no special char except underscore, uppercase and no spacing. for example: TOPIC_TEST. \n\t\t\tAlready existing topic can not be created\u0026lt;br/\u0026gt;\n\t\t\tAction Code: 50214",
+        "description": "Required permission : \u0026lt;code\u0026gt;ADMIN:NAMESPACE:{namespace}:NOTIFICATION [CREATE]\u0026lt;/code\u0026gt; with scope \u0026lt;code\u0026gt;social\u0026lt;/code\u0026gt;\n\t\t\t\u0026lt;br\u0026gt;Create new notification topic.\n\t\t\t\u0026lt;br\u0026gt;topic should be alphabets, no special char except underscore, uppercase and no spacing. for example: TOPIC_TEST.\n\t\t\tAlready existing topic can not be created\u0026lt;br/\u0026gt;\n\t\t\tAction Code: 50214",
         "operationId": "createNotificationTopicV1Admin",
         "parameters": [
           {
@@ -2604,7 +2604,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "Required permission : \u0026lt;code\u0026gt;ADMIN:NAMESPACE:{namespace}:NOTIFICATION [DELETE]\u0026lt;/code\u0026gt; with scope \u0026lt;code\u0026gt;social\u0026lt;/code\u0026gt;\n\t\t\t\u0026lt;br\u0026gt;delete topic information by topic name.\n\t\t\t\u0026lt;br\u0026gt;topic should be alphabets, no special char except underscore, uppercase and no spacing. for example: TOPIC_TEST. \n\t\t\tAlready existing topic can not be created \u0026lt;br/\u0026gt;\n\t\t\tAction Code: 50217",
+        "description": "Required permission : \u0026lt;code\u0026gt;ADMIN:NAMESPACE:{namespace}:NOTIFICATION [DELETE]\u0026lt;/code\u0026gt; with scope \u0026lt;code\u0026gt;social\u0026lt;/code\u0026gt;\n\t\t\t\u0026lt;br\u0026gt;delete topic information by topic name.\n\t\t\t\u0026lt;br\u0026gt;topic should be alphabets, no special char except underscore, uppercase and no spacing. for example: TOPIC_TEST.\n\t\t\tAlready existing topic can not be created \u0026lt;br/\u0026gt;\n\t\t\tAction Code: 50217",
         "operationId": "deleteNotificationTopicV1Admin",
         "parameters": [
           {
@@ -2747,7 +2747,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "Required permission : \u0026lt;code\u0026gt;ADMIN:NAMESPACE:{namespace}:NOTIFICATION [UPDATE]\u0026lt;/code\u0026gt; with scope \u0026lt;code\u0026gt;social\u0026lt;/code\u0026gt;\n\t\t\t\u0026lt;br\u0026gt;update topic information by topic name.\n\t\t\t\u0026lt;br\u0026gt;topic should be alphabets, no special char except underscore, uppercase and no spacing. for example: TOPIC_TEST. \n\t\t\tAlready existing topic can not be created \u0026lt;br/\u0026gt;\n\t\t\tAction Code: 50216",
+        "description": "Required permission : \u0026lt;code\u0026gt;ADMIN:NAMESPACE:{namespace}:NOTIFICATION [UPDATE]\u0026lt;/code\u0026gt; with scope \u0026lt;code\u0026gt;social\u0026lt;/code\u0026gt;\n\t\t\t\u0026lt;br\u0026gt;update topic information by topic name.\n\t\t\t\u0026lt;br\u0026gt;topic should be alphabets, no special char except underscore, uppercase and no spacing. for example: TOPIC_TEST.\n\t\t\tAlready existing topic can not be created \u0026lt;br/\u0026gt;\n\t\t\tAction Code: 50216",
         "operationId": "updateNotificationTopicV1Admin",
         "parameters": [
           {
@@ -2915,7 +2915,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "Required permission : \u0026lt;code\u0026gt;ADMIN:NAMESPACE:{namespace}:NOTIFICATION [CREATE]\u0026lt;/code\u0026gt; with scope \u0026lt;code\u0026gt;social\u0026lt;/code\u0026gt;\n\t\t\t\u0026lt;br\u0026gt;Sends templated notification to a user.\n\t\t\t\u0026lt;br\u0026gt;In the request body, specify which template slug (template identifier) to use and the template language. \n\t\t\t\u0026lt;br\u0026gt;NotificationTemplate context is the key-value pair defining the value of each handlebar specified in the template content. \n\t\t\tTemplate need to be published before it can be use to send notifications\u0026lt;br\u0026gt;\n\t\t\tAction Code: 50212",
+        "description": "Required permission : \u0026lt;code\u0026gt;ADMIN:NAMESPACE:{namespace}:NOTIFICATION [CREATE]\u0026lt;/code\u0026gt; with scope \u0026lt;code\u0026gt;social\u0026lt;/code\u0026gt;\n\t\t\t\u0026lt;br\u0026gt;Sends templated notification to a user.\n\t\t\t\u0026lt;br\u0026gt;In the request body, specify which template slug (template identifier) to use and the template language.\n\t\t\t\u0026lt;br\u0026gt;NotificationTemplate context is the key-value pair defining the value of each handlebar specified in the template content.\n\t\t\tTemplate need to be published before it can be use to send notifications\u0026lt;br\u0026gt;\n\t\t\tAction Code: 50212",
         "operationId": "sendSpecificUserTemplatedNotificationV1Admin",
         "parameters": [
           {
@@ -5905,7 +5905,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "Required permission : \u0026lt;code\u0026gt;NAMESPACE:{namespace}:NOTIFICATION [CREATE]\u0026lt;/code\u0026gt; with scope \u0026lt;code\u0026gt;social\u0026lt;/code\u0026gt;\n\t\t\t\u0026lt;br\u0026gt;Sends notification to all connected users in a namespace with predefined template. \n\t\t\t\u0026lt;br\u0026gt;In the request body, specify which template slug (template identifier) to use and the template language. \n\t\t\t\u0026lt;br\u0026gt;NotificationTemplate context is the key-value pair defining the value of each handlebar specified in the template content. \n\t\t\tTemplate need to be published before it can be use to send notifications",
+        "description": "Required permission : \u0026lt;code\u0026gt;NAMESPACE:{namespace}:NOTIFICATION [CREATE]\u0026lt;/code\u0026gt; with scope \u0026lt;code\u0026gt;social\u0026lt;/code\u0026gt;\n\t\t\t\u0026lt;br\u0026gt;Sends notification to all connected users in a namespace with predefined template.\n\t\t\t\u0026lt;br\u0026gt;In the request body, specify which template slug (template identifier) to use and the template language.\n\t\t\t\u0026lt;br\u0026gt;NotificationTemplate context is the key-value pair defining the value of each handlebar specified in the template content.\n\t\t\tTemplate need to be published before it can be use to send notifications",
         "operationId": "notificationWithTemplate",
         "parameters": [
           {
@@ -6048,7 +6048,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "Required permission : \u0026lt;code\u0026gt;NAMESPACE:{namespace}:TEMPLATE [CREATE]\u0026lt;/code\u0026gt; with scope \u0026lt;code\u0026gt;social\u0026lt;/code\u0026gt;\n\t\t\t\u0026lt;br\u0026gt;Create new notification template. Include handlebars {{key}} for replaceable contexts. The the key inside \n\t\t\thandlebars will be the key to be replaced when sending notification. Already existing template with the same \n\t\t\tslug and language can not be created.\n\t\t\t\u0026lt;br\u0026gt;Check model description for detailed input restrictions.",
+        "description": "Required permission : \u0026lt;code\u0026gt;NAMESPACE:{namespace}:TEMPLATE [CREATE]\u0026lt;/code\u0026gt; with scope \u0026lt;code\u0026gt;social\u0026lt;/code\u0026gt;\n\t\t\t\u0026lt;br\u0026gt;Create new notification template. Include handlebars {{key}} for replaceable contexts. The the key inside\n\t\t\thandlebars will be the key to be replaced when sending notification. Already existing template with the same\n\t\t\tslug and language can not be created.\n\t\t\t\u0026lt;br\u0026gt;Check model description for detailed input restrictions.",
         "operationId": "createTemplate",
         "parameters": [
           {
@@ -6692,7 +6692,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "Required permission : \u0026lt;code\u0026gt;NAMESPACE:{namespace}:TOPIC [CREATE]\u0026lt;/code\u0026gt; with scope \u0026lt;code\u0026gt;social\u0026lt;/code\u0026gt;\n\t\t\t\u0026lt;br\u0026gt;Create new notification topic.\n\t\t\t\u0026lt;br\u0026gt;topic should be alphabets, no special char except underscore, uppercase and no spacing. for example: TOPIC_TEST. \n\t\t\tAlready existing topic can not be created",
+        "description": "Required permission : \u0026lt;code\u0026gt;NAMESPACE:{namespace}:TOPIC [CREATE]\u0026lt;/code\u0026gt; with scope \u0026lt;code\u0026gt;social\u0026lt;/code\u0026gt;\n\t\t\t\u0026lt;br\u0026gt;Create new notification topic.\n\t\t\t\u0026lt;br\u0026gt;topic should be alphabets, no special char except underscore, uppercase and no spacing. for example: TOPIC_TEST.\n\t\t\tAlready existing topic can not be created",
         "operationId": "createTopic",
         "parameters": [
           {
@@ -6766,7 +6766,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "Required permission : \u0026lt;code\u0026gt;NAMESPACE:{namespace}:TOPIC [DELETE]\u0026lt;/code\u0026gt; with scope \u0026lt;code\u0026gt;social\u0026lt;/code\u0026gt;\n\t\t\t\u0026lt;br\u0026gt;delete topic information by topic name.\n\t\t\t\u0026lt;br\u0026gt;topic should be alphabets, no special char except underscore, uppercase and no spacing. for example: TOPIC_TEST. \n\t\t\tAlready existing topic can not be created",
+        "description": "Required permission : \u0026lt;code\u0026gt;NAMESPACE:{namespace}:TOPIC [DELETE]\u0026lt;/code\u0026gt; with scope \u0026lt;code\u0026gt;social\u0026lt;/code\u0026gt;\n\t\t\t\u0026lt;br\u0026gt;delete topic information by topic name.\n\t\t\t\u0026lt;br\u0026gt;topic should be alphabets, no special char except underscore, uppercase and no spacing. for example: TOPIC_TEST.\n\t\t\tAlready existing topic can not be created",
         "operationId": "deleteTopicByTopicName",
         "parameters": [
           {
@@ -6909,7 +6909,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "Required permission : \u0026lt;code\u0026gt;NAMESPACE:{namespace}:TOPIC [UPDATE]\u0026lt;/code\u0026gt; with scope \u0026lt;code\u0026gt;social\u0026lt;/code\u0026gt;\n\t\t\t\u0026lt;br\u0026gt;update topic information by topic name.\n\t\t\t\u0026lt;br\u0026gt;topic should be alphabets, no special char except underscore, uppercase and no spacing. for example: TOPIC_TEST. \n\t\t\tAlready existing topic can not be created",
+        "description": "Required permission : \u0026lt;code\u0026gt;NAMESPACE:{namespace}:TOPIC [UPDATE]\u0026lt;/code\u0026gt; with scope \u0026lt;code\u0026gt;social\u0026lt;/code\u0026gt;\n\t\t\t\u0026lt;br\u0026gt;update topic information by topic name.\n\t\t\t\u0026lt;br\u0026gt;topic should be alphabets, no special char except underscore, uppercase and no spacing. for example: TOPIC_TEST.\n\t\t\tAlready existing topic can not be created",
         "operationId": "updateTopicByTopicName",
         "parameters": [
           {
@@ -7071,7 +7071,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "Required permission : \u0026lt;code\u0026gt;NAMESPACE:{namespace}:USER:{userId}:NOTIFICATION [CREATE]\u0026lt;/code\u0026gt; with scope \u0026lt;code\u0026gt;social\u0026lt;/code\u0026gt;\n\t\t\t\u0026lt;br\u0026gt;Sends notification to a user with predefined template.\n\t\t\t\u0026lt;br\u0026gt;In the request body, specify which template slug (template identifier) to use and the template language. \n\t\t\t\u0026lt;br\u0026gt;NotificationTemplate context is the key-value pair defining the value of each handlebar specified in the template content. \n\t\t\tTemplate need to be published before it can be use to send notifications",
+        "description": "Required permission : \u0026lt;code\u0026gt;NAMESPACE:{namespace}:USER:{userId}:NOTIFICATION [CREATE]\u0026lt;/code\u0026gt; with scope \u0026lt;code\u0026gt;social\u0026lt;/code\u0026gt;\n\t\t\t\u0026lt;br\u0026gt;Sends notification to a user with predefined template.\n\t\t\t\u0026lt;br\u0026gt;In the request body, specify which template slug (template identifier) to use and the template language.\n\t\t\t\u0026lt;br\u0026gt;NotificationTemplate context is the key-value pair defining the value of each handlebar specified in the template content.\n\t\t\tTemplate need to be published before it can be use to send notifications",
         "operationId": "notificationWithTemplateByUserID",
         "parameters": [
           {

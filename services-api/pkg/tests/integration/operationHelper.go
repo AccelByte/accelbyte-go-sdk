@@ -38,7 +38,7 @@ var (
 )
 
 func getPhantauthURL() string {
-	url := os.Getenv("AB_PHANTAUTH_BASE_URL")
+	url := os.Getenv("AB_PHANTAUTH_URL")
 	if strings.HasPrefix(strings.ToLower(url), "https://") {
 		phanauthURL := strings.TrimPrefix(url, "https://")
 

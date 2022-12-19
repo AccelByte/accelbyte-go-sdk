@@ -45,9 +45,12 @@ func (aaa *PolicyVersionsService) UpdatePolicyVersion(input *policy_versions.Upd
 	if err != nil {
 		return nil, err
 	}
-	ok, badRequest, err := aaa.Client.PolicyVersions.UpdatePolicyVersion(input, client.BearerToken(*token.AccessToken))
+	ok, badRequest, conflict, err := aaa.Client.PolicyVersions.UpdatePolicyVersion(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
+	}
+	if conflict != nil {
+		return nil, conflict
 	}
 	if err != nil {
 		return nil, err
@@ -62,9 +65,12 @@ func (aaa *PolicyVersionsService) PublishPolicyVersion(input *policy_versions.Pu
 	if err != nil {
 		return err
 	}
-	_, badRequest, err := aaa.Client.PolicyVersions.PublishPolicyVersion(input, client.BearerToken(*token.AccessToken))
+	_, badRequest, conflict, err := aaa.Client.PolicyVersions.PublishPolicyVersion(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return badRequest
+	}
+	if conflict != nil {
+		return conflict
 	}
 	if err != nil {
 		return err

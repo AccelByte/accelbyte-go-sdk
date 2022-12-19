@@ -39,6 +39,8 @@ type ClientService interface {
 	CreateNamespaceShort(params *CreateNamespaceParams, authInfo runtime.ClientAuthInfoWriter) (*CreateNamespaceCreated, error)
 	DeleteNamespace(params *DeleteNamespaceParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteNamespaceOK, *DeleteNamespaceBadRequest, *DeleteNamespaceUnauthorized, *DeleteNamespaceForbidden, *DeleteNamespaceNotFound, *DeleteNamespaceConflict, error)
 	DeleteNamespaceShort(params *DeleteNamespaceParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteNamespaceOK, error)
+	GetGameNamespaces(params *GetGameNamespacesParams, authInfo runtime.ClientAuthInfoWriter) (*GetGameNamespacesOK, *GetGameNamespacesUnauthorized, *GetGameNamespacesForbidden, error)
+	GetGameNamespacesShort(params *GetGameNamespacesParams, authInfo runtime.ClientAuthInfoWriter) (*GetGameNamespacesOK, error)
 	GetNamespace(params *GetNamespaceParams, authInfo runtime.ClientAuthInfoWriter) (*GetNamespaceOK, *GetNamespaceBadRequest, *GetNamespaceUnauthorized, *GetNamespaceForbidden, *GetNamespaceNotFound, error)
 	GetNamespaceShort(params *GetNamespaceParams, authInfo runtime.ClientAuthInfoWriter) (*GetNamespaceOK, error)
 	GetNamespacePublisher(params *GetNamespacePublisherParams, authInfo runtime.ClientAuthInfoWriter) (*GetNamespacePublisherOK, *GetNamespacePublisherBadRequest, *GetNamespacePublisherUnauthorized, *GetNamespacePublisherForbidden, *GetNamespacePublisherNotFound, error)
@@ -179,7 +181,7 @@ Deprecated: Use CreateNamespaceShort instead.
 
   CreateNamespace creates a namespace
 
-  Create a namespace.&lt;br&gt;By default the namespace is enabled.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&lt;b&gt;&#34;ADMIN:NAMESPACE&#34;&lt;/b&gt;, action=1 &lt;b&gt;(CREATE)&lt;/b&gt;&lt;/li&gt;&lt;li&gt;&lt;i&gt;Action code&lt;/i&gt;: 11301&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: created namespace&lt;/li&gt;&lt;/ul&gt;
+  Create a namespace.&lt;br&gt;By default the namespace is enabled.&lt;br&gt;In multi tenant mode, parentNamespace will be automatically filled with requester namespace. &lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&lt;b&gt;&#34;ADMIN:NAMESPACE&#34;&lt;/b&gt;, action=1 &lt;b&gt;(CREATE)&lt;/b&gt;&lt;/li&gt;&lt;li&gt;&lt;i&gt;Action code&lt;/i&gt;: 11301&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: created namespace&lt;/li&gt;&lt;/ul&gt;
 */
 func (a *Client) CreateNamespace(params *CreateNamespaceParams, authInfo runtime.ClientAuthInfoWriter) (*CreateNamespaceCreated, *CreateNamespaceBadRequest, *CreateNamespaceUnauthorized, *CreateNamespaceForbidden, *CreateNamespaceConflict, error) {
 	// TODO: Validate the params before sending
@@ -237,7 +239,7 @@ func (a *Client) CreateNamespace(params *CreateNamespaceParams, authInfo runtime
 /*
   CreateNamespaceShort creates a namespace
 
-  Create a namespace.&lt;br&gt;By default the namespace is enabled.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&lt;b&gt;&#34;ADMIN:NAMESPACE&#34;&lt;/b&gt;, action=1 &lt;b&gt;(CREATE)&lt;/b&gt;&lt;/li&gt;&lt;li&gt;&lt;i&gt;Action code&lt;/i&gt;: 11301&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: created namespace&lt;/li&gt;&lt;/ul&gt;
+  Create a namespace.&lt;br&gt;By default the namespace is enabled.&lt;br&gt;In multi tenant mode, parentNamespace will be automatically filled with requester namespace. &lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&lt;b&gt;&#34;ADMIN:NAMESPACE&#34;&lt;/b&gt;, action=1 &lt;b&gt;(CREATE)&lt;/b&gt;&lt;/li&gt;&lt;li&gt;&lt;i&gt;Action code&lt;/i&gt;: 11301&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: created namespace&lt;/li&gt;&lt;/ul&gt;
 */
 func (a *Client) CreateNamespaceShort(params *CreateNamespaceParams, authInfo runtime.ClientAuthInfoWriter) (*CreateNamespaceCreated, error) {
 	// TODO: Validate the params before sending
@@ -408,11 +410,115 @@ func (a *Client) DeleteNamespaceShort(params *DeleteNamespaceParams, authInfo ru
 }
 
 /*
+Deprecated: Use GetGameNamespacesShort instead.
+
+  GetGameNamespaces gets game namespaces
+
+  Get game namespaces.&lt;br&gt;In multi tenant mode, a given super admin namespace will return all game namespaces of studio namespaces&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&lt;b&gt;&#34;ADMIN:NAMESPACE:{namespace}:NAMESPACE&#34;&lt;/b&gt;, action=2 &lt;b&gt;(READ)&lt;/b&gt;&lt;/li&gt;&lt;li&gt;&lt;i&gt;Action code&lt;/i&gt;: 11308&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: list of namespaces&lt;/li&gt;&lt;/ul&gt;
+*/
+func (a *Client) GetGameNamespaces(params *GetGameNamespacesParams, authInfo runtime.ClientAuthInfoWriter) (*GetGameNamespacesOK, *GetGameNamespacesUnauthorized, *GetGameNamespacesForbidden, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewGetGameNamespacesParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "getGameNamespaces",
+		Method:             "GET",
+		PathPattern:        "/basic/v1/admin/namespaces/{namespace}/game",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &GetGameNamespacesReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, nil, nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *GetGameNamespacesOK:
+		return v, nil, nil, nil
+
+	case *GetGameNamespacesUnauthorized:
+		return nil, v, nil, nil
+
+	case *GetGameNamespacesForbidden:
+		return nil, nil, v, nil
+
+	default:
+		return nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+  GetGameNamespacesShort gets game namespaces
+
+  Get game namespaces.&lt;br&gt;In multi tenant mode, a given super admin namespace will return all game namespaces of studio namespaces&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&lt;b&gt;&#34;ADMIN:NAMESPACE:{namespace}:NAMESPACE&#34;&lt;/b&gt;, action=2 &lt;b&gt;(READ)&lt;/b&gt;&lt;/li&gt;&lt;li&gt;&lt;i&gt;Action code&lt;/i&gt;: 11308&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: list of namespaces&lt;/li&gt;&lt;/ul&gt;
+*/
+func (a *Client) GetGameNamespacesShort(params *GetGameNamespacesParams, authInfo runtime.ClientAuthInfoWriter) (*GetGameNamespacesOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewGetGameNamespacesParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "getGameNamespaces",
+		Method:             "GET",
+		PathPattern:        "/basic/v1/admin/namespaces/{namespace}/game",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &GetGameNamespacesReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *GetGameNamespacesOK:
+		return v, nil
+	case *GetGameNamespacesUnauthorized:
+		return nil, v
+	case *GetGameNamespacesForbidden:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
 Deprecated: Use GetNamespaceShort instead.
 
   GetNamespace gets a namespace
 
-  Get a namespace.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&lt;b&gt;&#34;ADMIN:NAMESPACE:{namespace}:NAMESPACE&#34;&lt;/b&gt;, action=2 &lt;b&gt;(READ)&lt;/b&gt;&lt;/li&gt;&lt;li&gt;&lt;i&gt;Action code&lt;/i&gt;: 11304&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: namespace&lt;/li&gt;&lt;/ul&gt;
+  Get a namespace.&lt;br&gt;In multi tenant mode, parentNamespace will be returned.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&lt;b&gt;&#34;ADMIN:NAMESPACE:{namespace}:NAMESPACE&#34;&lt;/b&gt;, action=2 &lt;b&gt;(READ)&lt;/b&gt;&lt;/li&gt;&lt;li&gt;&lt;i&gt;Action code&lt;/i&gt;: 11304&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: namespace&lt;/li&gt;&lt;/ul&gt;
 */
 func (a *Client) GetNamespace(params *GetNamespaceParams, authInfo runtime.ClientAuthInfoWriter) (*GetNamespaceOK, *GetNamespaceBadRequest, *GetNamespaceUnauthorized, *GetNamespaceForbidden, *GetNamespaceNotFound, error) {
 	// TODO: Validate the params before sending
@@ -470,7 +576,7 @@ func (a *Client) GetNamespace(params *GetNamespaceParams, authInfo runtime.Clien
 /*
   GetNamespaceShort gets a namespace
 
-  Get a namespace.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&lt;b&gt;&#34;ADMIN:NAMESPACE:{namespace}:NAMESPACE&#34;&lt;/b&gt;, action=2 &lt;b&gt;(READ)&lt;/b&gt;&lt;/li&gt;&lt;li&gt;&lt;i&gt;Action code&lt;/i&gt;: 11304&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: namespace&lt;/li&gt;&lt;/ul&gt;
+  Get a namespace.&lt;br&gt;In multi tenant mode, parentNamespace will be returned.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&lt;b&gt;&#34;ADMIN:NAMESPACE:{namespace}:NAMESPACE&#34;&lt;/b&gt;, action=2 &lt;b&gt;(READ)&lt;/b&gt;&lt;/li&gt;&lt;li&gt;&lt;i&gt;Action code&lt;/i&gt;: 11304&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: namespace&lt;/li&gt;&lt;/ul&gt;
 */
 func (a *Client) GetNamespaceShort(params *GetNamespaceParams, authInfo runtime.ClientAuthInfoWriter) (*GetNamespaceOK, error) {
 	// TODO: Validate the params before sending

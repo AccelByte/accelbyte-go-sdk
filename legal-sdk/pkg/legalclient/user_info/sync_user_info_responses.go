@@ -50,7 +50,7 @@ func NewSyncUserInfoOK() *SyncUserInfoOK {
 
 /*SyncUserInfoOK handles this case with default header values.
 
-  successful operation
+  Successful operation
 */
 type SyncUserInfoOK struct {
 }

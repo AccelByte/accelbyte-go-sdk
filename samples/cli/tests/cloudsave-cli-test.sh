@@ -50,31 +50,31 @@ touch "tmp.dat"
 
 #- 2 AdminPutGameRecordConcurrentHandlerV1
 samples/cli/sample-apps Cloudsave adminPutGameRecordConcurrentHandlerV1 \
-    --key '9Zyqn5pz' \
+    --key 'UaC0CkLb' \
     --namespace $AB_NAMESPACE \
-    --body '{"set_by": "MqMM5kwF", "updatedAt": "bsN84b5Q", "value": {"gP51mhLU": {}, "Ijkw9V4b": {}, "lVLVWEwq": {}}}' \
+    --body '{"set_by": "F8yXreBM", "updatedAt": "uUlJKXOv", "value": {"vsX9Lx4W": {}, "bKSFE6jL": {}, "DeWQO5gD": {}}}' \
     > test.out 2>&1
 eval_tap $? 2 'AdminPutGameRecordConcurrentHandlerV1' test.out
 
 #- 3 ListGameRecordsHandlerV1
 samples/cli/sample-apps Cloudsave listGameRecordsHandlerV1 \
     --namespace $AB_NAMESPACE \
-    --query 'M5iGBQGQ' \
-    --limit '42' \
-    --offset '32' \
+    --query '0jyC24kJ' \
+    --limit '46' \
+    --offset '16' \
     > test.out 2>&1
 eval_tap $? 3 'ListGameRecordsHandlerV1' test.out
 
 #- 4 AdminGetGameRecordHandlerV1
 samples/cli/sample-apps Cloudsave adminGetGameRecordHandlerV1 \
-    --key 'bf0mui48' \
+    --key 'B4V8MXLX' \
     --namespace $AB_NAMESPACE \
     > test.out 2>&1
 eval_tap $? 4 'AdminGetGameRecordHandlerV1' test.out
 
 #- 5 AdminPutGameRecordHandlerV1
 samples/cli/sample-apps Cloudsave adminPutGameRecordHandlerV1 \
-    --key 'uhimKs6U' \
+    --key 'i4ZAgWMo' \
     --namespace $AB_NAMESPACE \
     --body '{}' \
     > test.out 2>&1
@@ -82,7 +82,7 @@ eval_tap $? 5 'AdminPutGameRecordHandlerV1' test.out
 
 #- 6 AdminPostGameRecordHandlerV1
 samples/cli/sample-apps Cloudsave adminPostGameRecordHandlerV1 \
-    --key 'q746Ou5R' \
+    --key 'lpejJMSB' \
     --namespace $AB_NAMESPACE \
     --body '{}' \
     > test.out 2>&1
@@ -90,7 +90,7 @@ eval_tap $? 6 'AdminPostGameRecordHandlerV1' test.out
 
 #- 7 AdminDeleteGameRecordHandlerV1
 samples/cli/sample-apps Cloudsave adminDeleteGameRecordHandlerV1 \
-    --key 'iE4432b3' \
+    --key 'Pjoc0bPu' \
     --namespace $AB_NAMESPACE \
     > test.out 2>&1
 eval_tap $? 7 'AdminDeleteGameRecordHandlerV1' test.out
@@ -98,7 +98,7 @@ eval_tap $? 7 'AdminDeleteGameRecordHandlerV1' test.out
 #- 8 BulkGetPlayerRecordSizeHandlerV1
 samples/cli/sample-apps Cloudsave bulkGetPlayerRecordSizeHandlerV1 \
     --namespace $AB_NAMESPACE \
-    --body '{"data": [{"keys": ["tng3VJF0", "QEGqmpYw", "dbfkTE8p"], "user_id": "dUVvKFml"}, {"keys": ["1EtbQ3Vp", "4ZVMA9a7", "POcVQMyR"], "user_id": "slSV0ET6"}, {"keys": ["hMNNH3kX", "1o6XRCix", "BbwKiB0d"], "user_id": "XhTTfLIR"}]}' \
+    --body '{"data": [{"keys": ["bBj0u5nU", "KW61ytkt", "Sg096Gby"], "user_id": "FQ83iBse"}, {"keys": ["2SgRv964", "ARU58Iue", "jj87tdwp"], "user_id": "dtGH2pBy"}, {"keys": ["IIjb3zBP", "tnWqhzy4", "wMvAVtUg"], "user_id": "S83eohID"}]}' \
     > test.out 2>&1
 eval_tap $? 8 'BulkGetPlayerRecordSizeHandlerV1' test.out
 
@@ -107,125 +107,125 @@ eval_tap 0 9 'ListPlayerRecordHandlerV1 # SKIP deprecated' test.out
 
 #- 10 AdminPutPlayerRecordConcurrentHandlerV1
 samples/cli/sample-apps Cloudsave adminPutPlayerRecordConcurrentHandlerV1 \
-    --key 'EVfjAMq4' \
+    --key 'mcItGCHk' \
     --namespace $AB_NAMESPACE \
-    --userId '7CazxJ03' \
-    --body '{"set_by": "JMaRFrny", "updatedAt": "XBSPS7yc", "value": {"3CP2gSIX": {}, "XTfwFa7i": {}, "XacmNyMp": {}}}' \
+    --userId 'Jc196tLE' \
+    --body '{"set_by": "Zfv8Hbfd", "updatedAt": "5keZDcjx", "value": {"OWuZqg0u": {}, "YYOQl5qb": {}, "yxAQ0thS": {}}}' \
     > test.out 2>&1
 eval_tap $? 10 'AdminPutPlayerRecordConcurrentHandlerV1' test.out
 
 #- 11 AdminPutPlayerPublicRecordConcurrentHandlerV1
 samples/cli/sample-apps Cloudsave adminPutPlayerPublicRecordConcurrentHandlerV1 \
-    --key 'eGInHF8k' \
+    --key 'gcEN86s5' \
     --namespace $AB_NAMESPACE \
-    --userId 'ya2HRFDC' \
-    --body '{"set_by": "ElFP0vX0", "updatedAt": "O04ESHAC", "value": {"H6bZ97dP": {}, "2xkerMkC": {}, "1XZUT3Gz": {}}}' \
+    --userId 'QJmRrqY5' \
+    --body '{"set_by": "n0yyWZ2M", "updatedAt": "Vnow2NTT", "value": {"MTYpeNZv": {}, "crdcReQt": {}, "NhwqxHi5": {}}}' \
     > test.out 2>&1
 eval_tap $? 11 'AdminPutPlayerPublicRecordConcurrentHandlerV1' test.out
 
 #- 12 AdminRetrievePlayerRecords
 samples/cli/sample-apps Cloudsave adminRetrievePlayerRecords \
     --namespace $AB_NAMESPACE \
-    --userId 'ewEggYoM' \
-    --limit '99' \
-    --offset '98' \
+    --userId 'xZkZXHHN' \
+    --limit '91' \
+    --offset '91' \
     > test.out 2>&1
 eval_tap $? 12 'AdminRetrievePlayerRecords' test.out
 
 #- 13 AdminGetPlayerRecordHandlerV1
 samples/cli/sample-apps Cloudsave adminGetPlayerRecordHandlerV1 \
-    --key 'SBsOMaRH' \
+    --key 'ryQQ1vIO' \
     --namespace $AB_NAMESPACE \
-    --userId 'YzH955Ks' \
+    --userId 'WGje4bQf' \
     > test.out 2>&1
 eval_tap $? 13 'AdminGetPlayerRecordHandlerV1' test.out
 
 #- 14 AdminPutPlayerRecordHandlerV1
 samples/cli/sample-apps Cloudsave adminPutPlayerRecordHandlerV1 \
-    --key 'aNYiZDsU' \
+    --key '9ZyhbhMp' \
     --namespace $AB_NAMESPACE \
-    --userId 'FLPAULho' \
+    --userId 'B2oIvTdD' \
     --body '{}' \
     > test.out 2>&1
 eval_tap $? 14 'AdminPutPlayerRecordHandlerV1' test.out
 
 #- 15 AdminPostPlayerRecordHandlerV1
 samples/cli/sample-apps Cloudsave adminPostPlayerRecordHandlerV1 \
-    --key 'cf0QxEXT' \
+    --key 'p4nIzrPc' \
     --namespace $AB_NAMESPACE \
-    --userId 'n3oStVjF' \
+    --userId '51ElXKM7' \
     --body '{}' \
     > test.out 2>&1
 eval_tap $? 15 'AdminPostPlayerRecordHandlerV1' test.out
 
 #- 16 AdminDeletePlayerRecordHandlerV1
 samples/cli/sample-apps Cloudsave adminDeletePlayerRecordHandlerV1 \
-    --key 'DpqgWN2c' \
+    --key 'TQxE054L' \
     --namespace $AB_NAMESPACE \
-    --userId 'AQqAdPRA' \
+    --userId '6lwceYqP' \
     > test.out 2>&1
 eval_tap $? 16 'AdminDeletePlayerRecordHandlerV1' test.out
 
 #- 17 AdminGetPlayerPublicRecordHandlerV1
 samples/cli/sample-apps Cloudsave adminGetPlayerPublicRecordHandlerV1 \
-    --key 'koaZlC3T' \
+    --key 'Dxx6JBcw' \
     --namespace $AB_NAMESPACE \
-    --userId 'VU4zQZMR' \
+    --userId '6kYOd8ED' \
     > test.out 2>&1
 eval_tap $? 17 'AdminGetPlayerPublicRecordHandlerV1' test.out
 
 #- 18 AdminPutPlayerPublicRecordHandlerV1
 samples/cli/sample-apps Cloudsave adminPutPlayerPublicRecordHandlerV1 \
-    --key 'ZUEi5gLC' \
+    --key 'uT05c507' \
     --namespace $AB_NAMESPACE \
-    --userId '58imEbEc' \
+    --userId 'NtXSbApO' \
     --body '{}' \
     > test.out 2>&1
 eval_tap $? 18 'AdminPutPlayerPublicRecordHandlerV1' test.out
 
 #- 19 AdminPostPlayerPublicRecordHandlerV1
 samples/cli/sample-apps Cloudsave adminPostPlayerPublicRecordHandlerV1 \
-    --key 'iezAgGty' \
+    --key '9YF8lm9c' \
     --namespace $AB_NAMESPACE \
-    --userId 'fac62NvI' \
+    --userId 'fychJZHd' \
     --body '{}' \
     > test.out 2>&1
 eval_tap $? 19 'AdminPostPlayerPublicRecordHandlerV1' test.out
 
 #- 20 AdminDeletePlayerPublicRecordHandlerV1
 samples/cli/sample-apps Cloudsave adminDeletePlayerPublicRecordHandlerV1 \
-    --key 'OTeR1V05' \
+    --key 'KgnX4BON' \
     --namespace $AB_NAMESPACE \
-    --userId '7XdKoaA8' \
+    --userId 'eLUh5EmW' \
     > test.out 2>&1
 eval_tap $? 20 'AdminDeletePlayerPublicRecordHandlerV1' test.out
 
 #- 21 AdminGetPlayerRecordSizeHandlerV1
 samples/cli/sample-apps Cloudsave adminGetPlayerRecordSizeHandlerV1 \
-    --key 'qR0ph9gY' \
+    --key 't1AJDA3O' \
     --namespace $AB_NAMESPACE \
-    --userId 'iW1Rly7Q' \
+    --userId 'IZZMabI3' \
     > test.out 2>&1
 eval_tap $? 21 'AdminGetPlayerRecordSizeHandlerV1' test.out
 
 #- 22 PutGameRecordConcurrentHandlerV1
 samples/cli/sample-apps Cloudsave putGameRecordConcurrentHandlerV1 \
-    --key 'EibbMZ4z' \
+    --key 'r6U2v1Bt' \
     --namespace $AB_NAMESPACE \
-    --body '{"updatedAt": "V6L0xsCM", "value": {"Omz73e6Q": {}, "H3Kj8j2E": {}, "fmVOWVIg": {}}}' \
+    --body '{"updatedAt": "34ks4Bvu", "value": {"4pILU2z4": {}, "Koi7HvjI": {}, "ucUttPEI": {}}}' \
     > test.out 2>&1
 eval_tap $? 22 'PutGameRecordConcurrentHandlerV1' test.out
 
 #- 23 GetGameRecordHandlerV1
 samples/cli/sample-apps Cloudsave getGameRecordHandlerV1 \
-    --key 'Wc8kIzUV' \
+    --key 'emkXf5LE' \
     --namespace $AB_NAMESPACE \
     > test.out 2>&1
 eval_tap $? 23 'GetGameRecordHandlerV1' test.out
 
 #- 24 PutGameRecordHandlerV1
 samples/cli/sample-apps Cloudsave putGameRecordHandlerV1 \
-    --key 'QFueKJyI' \
+    --key 'BBGb8mYm' \
     --namespace $AB_NAMESPACE \
     --body '{}' \
     > test.out 2>&1
@@ -233,7 +233,7 @@ eval_tap $? 24 'PutGameRecordHandlerV1' test.out
 
 #- 25 PostGameRecordHandlerV1
 samples/cli/sample-apps Cloudsave postGameRecordHandlerV1 \
-    --key 'VNEYmu6e' \
+    --key 'ZQwTmgXw' \
     --namespace $AB_NAMESPACE \
     --body '{}' \
     > test.out 2>&1
@@ -241,100 +241,100 @@ eval_tap $? 25 'PostGameRecordHandlerV1' test.out
 
 #- 26 DeleteGameRecordHandlerV1
 samples/cli/sample-apps Cloudsave deleteGameRecordHandlerV1 \
-    --key 'sJ1GhjWZ' \
+    --key 'M1CRQoC1' \
     --namespace $AB_NAMESPACE \
     > test.out 2>&1
 eval_tap $? 26 'DeleteGameRecordHandlerV1' test.out
 
 #- 27 BulkGetPlayerPublicRecordHandlerV1
 samples/cli/sample-apps Cloudsave bulkGetPlayerPublicRecordHandlerV1 \
-    --key 'YCZVhRFY' \
+    --key 'nGUuYRUE' \
     --namespace $AB_NAMESPACE \
-    --body '{"userIds": ["3JB4fZGJ", "cqchy0HR", "O4HIfkUF"]}' \
+    --body '{"userIds": ["0gxJV6Ao", "KaNmYYhm", "kOa3CDoE"]}' \
     > test.out 2>&1
 eval_tap $? 27 'BulkGetPlayerPublicRecordHandlerV1' test.out
 
 #- 28 PublicDeletePlayerPublicRecordHandlerV1
 samples/cli/sample-apps Cloudsave publicDeletePlayerPublicRecordHandlerV1 \
-    --key 'YkyI1X42' \
+    --key 'iOmt1xso' \
     --namespace $AB_NAMESPACE \
     > test.out 2>&1
 eval_tap $? 28 'PublicDeletePlayerPublicRecordHandlerV1' test.out
 
 #- 29 PutPlayerRecordConcurrentHandlerV1
 samples/cli/sample-apps Cloudsave putPlayerRecordConcurrentHandlerV1 \
-    --key '6eyOosJr' \
+    --key 'wLNo5Jtk' \
     --namespace $AB_NAMESPACE \
-    --userId 'dFFmOvWV' \
-    --body '{"updatedAt": "3g0mCTvQ", "value": {"t8wSZvet": {}, "vb0pI15g": {}, "0HIurLU8": {}}}' \
+    --userId 'Yx83q8Sp' \
+    --body '{"updatedAt": "SVZiKsKs", "value": {"HfrXveog": {}, "MjCQgOGX": {}, "ikcQOvZM": {}}}' \
     > test.out 2>&1
 eval_tap $? 29 'PutPlayerRecordConcurrentHandlerV1' test.out
 
 #- 30 PutPlayerPublicRecordConcurrentHandlerV1
 samples/cli/sample-apps Cloudsave putPlayerPublicRecordConcurrentHandlerV1 \
-    --key '5KNcTvkc' \
+    --key 'dk7jS9r0' \
     --namespace $AB_NAMESPACE \
-    --userId 'FRdq2FHO' \
-    --body '{"updatedAt": "BYKCu37D", "value": {"gNvHzuFP": {}, "3SWnjsg8": {}, "4sc1s8rh": {}}}' \
+    --userId 'wfs1d2df' \
+    --body '{"updatedAt": "7FazIuaN", "value": {"6MY0xbSb": {}, "CctqtQhN": {}, "z1XIUe0f": {}}}' \
     > test.out 2>&1
 eval_tap $? 30 'PutPlayerPublicRecordConcurrentHandlerV1' test.out
 
 #- 31 GetPlayerRecordHandlerV1
 samples/cli/sample-apps Cloudsave getPlayerRecordHandlerV1 \
-    --key '9Hu4V0AO' \
+    --key 'YMH4h2eX' \
     --namespace $AB_NAMESPACE \
-    --userId 'w0bnKKKF' \
+    --userId '7x9BlVPh' \
     > test.out 2>&1
 eval_tap $? 31 'GetPlayerRecordHandlerV1' test.out
 
 #- 32 PutPlayerRecordHandlerV1
 samples/cli/sample-apps Cloudsave putPlayerRecordHandlerV1 \
-    --key 'E2kqVwKT' \
+    --key '2yKSarIA' \
     --namespace $AB_NAMESPACE \
-    --userId '9j0tGnfX' \
+    --userId 'TvtGnDBK' \
     --body '{}' \
     > test.out 2>&1
 eval_tap $? 32 'PutPlayerRecordHandlerV1' test.out
 
 #- 33 PostPlayerRecordHandlerV1
 samples/cli/sample-apps Cloudsave postPlayerRecordHandlerV1 \
-    --key 'VQwyjVPZ' \
+    --key 'N1teHTlw' \
     --namespace $AB_NAMESPACE \
-    --userId 'hHuVnkqz' \
+    --userId 'Ehe4F6Eh' \
     --body '{}' \
     > test.out 2>&1
 eval_tap $? 33 'PostPlayerRecordHandlerV1' test.out
 
 #- 34 DeletePlayerRecordHandlerV1
 samples/cli/sample-apps Cloudsave deletePlayerRecordHandlerV1 \
-    --key '75z83Teq' \
+    --key 'LqZgugge' \
     --namespace $AB_NAMESPACE \
-    --userId '3Z9JOlHk' \
+    --userId 'O27zRmy7' \
     > test.out 2>&1
 eval_tap $? 34 'DeletePlayerRecordHandlerV1' test.out
 
 #- 35 GetPlayerPublicRecordHandlerV1
 samples/cli/sample-apps Cloudsave getPlayerPublicRecordHandlerV1 \
-    --key 'ppEtLIPo' \
+    --key 'f38Ijr0L' \
     --namespace $AB_NAMESPACE \
-    --userId 'YePIJvb1' \
+    --userId 'usaIWEp3' \
     > test.out 2>&1
 eval_tap $? 35 'GetPlayerPublicRecordHandlerV1' test.out
 
 #- 36 PutPlayerPublicRecordHandlerV1
 samples/cli/sample-apps Cloudsave putPlayerPublicRecordHandlerV1 \
-    --key 'CBNhiXiQ' \
+    --key 'wBQMgb62' \
     --namespace $AB_NAMESPACE \
-    --userId 'VNFz0cEK' \
+    --userId '9hibo7Nh' \
     --body '{}' \
     > test.out 2>&1
 eval_tap $? 36 'PutPlayerPublicRecordHandlerV1' test.out
 
 #- 37 PostPlayerPublicRecordHandlerV1
 samples/cli/sample-apps Cloudsave postPlayerPublicRecordHandlerV1 \
-    --key 'alwakOox' \
+    --key 'AJBlZG0j' \
     --namespace $AB_NAMESPACE \
-    --userId 'M8ThONfT' \
+    --userId 'HtrPfkMh' \
     --body '{}' \
     > test.out 2>&1
 eval_tap $? 37 'PostPlayerPublicRecordHandlerV1' test.out

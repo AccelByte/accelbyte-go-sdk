@@ -45,7 +45,13 @@ func (aaa *EligibilitiesService) RetrieveEligibilitiesPublic(input *eligibilitie
 	if err != nil {
 		return nil, err
 	}
-	ok, err := aaa.Client.Eligibilities.RetrieveEligibilitiesPublic(input, client.BearerToken(*token.AccessToken))
+	ok, badRequest, notFound, err := aaa.Client.Eligibilities.RetrieveEligibilitiesPublic(input, client.BearerToken(*token.AccessToken))
+	if badRequest != nil {
+		return nil, badRequest
+	}
+	if notFound != nil {
+		return nil, notFound
+	}
 	if err != nil {
 		return nil, err
 	}
@@ -59,7 +65,10 @@ func (aaa *EligibilitiesService) RetrieveEligibilitiesPublicIndirect(input *elig
 	if err != nil {
 		return nil, err
 	}
-	ok, err := aaa.Client.Eligibilities.RetrieveEligibilitiesPublicIndirect(input, client.BearerToken(*token.AccessToken))
+	ok, badRequest, err := aaa.Client.Eligibilities.RetrieveEligibilitiesPublicIndirect(input, client.BearerToken(*token.AccessToken))
+	if badRequest != nil {
+		return nil, badRequest
+	}
 	if err != nil {
 		return nil, err
 	}

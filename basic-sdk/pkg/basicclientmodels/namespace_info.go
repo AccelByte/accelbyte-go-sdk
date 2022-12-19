@@ -29,6 +29,9 @@ type NamespaceInfo struct {
 	// namespace
 	Namespace string `json:"namespace,omitempty"`
 
+	// parentNamespace is only present in multi tenant mode
+	ParentNamespace string `json:"parentNamespace,omitempty"`
+
 	// status
 	// Enum: [ACTIVE DELETED INACTIVE]
 	Status string `json:"status,omitempty"`

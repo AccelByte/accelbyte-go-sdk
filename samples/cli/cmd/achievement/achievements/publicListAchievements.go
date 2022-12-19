@@ -7,6 +7,8 @@
 package achievements
 
 import (
+	"encoding/json"
+
 	"github.com/AccelByte/accelbyte-go-sdk/achievement-sdk/pkg/achievementclient/achievements"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/achievement"
@@ -30,11 +32,18 @@ var PublicListAchievementsCmd = &cobra.Command{
 		limit, _ := cmd.Flags().GetInt64("limit")
 		offset, _ := cmd.Flags().GetInt64("offset")
 		sortBy, _ := cmd.Flags().GetString("sortBy")
+		tagsString := cmd.Flag("tags").Value.String()
+		var tags []string
+		errTags := json.Unmarshal([]byte(tagsString), &tags)
+		if errTags != nil {
+			return errTags
+		}
 		input := &achievements.PublicListAchievementsParams{
 			Namespace: namespace,
 			Limit:     &limit,
 			Offset:    &offset,
 			SortBy:    &sortBy,
+			Tags:      tags,
 			Language:  language,
 		}
 		ok, err := achievementsService.PublicListAchievementsShort(input)
@@ -56,6 +65,7 @@ func init() {
 	PublicListAchievementsCmd.Flags().Int64("limit", 20, "Limit")
 	PublicListAchievementsCmd.Flags().Int64("offset", 0, "Offset")
 	PublicListAchievementsCmd.Flags().String("sortBy", "", "Sort by")
+	PublicListAchievementsCmd.Flags().String("tags", "", "Tags")
 	PublicListAchievementsCmd.Flags().String("language", "", "Language")
 	_ = PublicListAchievementsCmd.MarkFlagRequired("language")
 }

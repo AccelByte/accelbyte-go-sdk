@@ -50,7 +50,7 @@ func NewInvalidateUserInfoCacheNoContent() *InvalidateUserInfoCacheNoContent {
 
 /*InvalidateUserInfoCacheNoContent handles this case with default header values.
 
-  successful operation
+  Successful operation
 */
 type InvalidateUserInfoCacheNoContent struct {
 }

@@ -7,6 +7,7 @@
 package dslogmanager
 
 import (
+	"github.com/AccelByte/sample-apps/cmd/dslogmanager/admin"
 	"github.com/AccelByte/sample-apps/cmd/dslogmanager/allTerminatedServers"
 	"github.com/AccelByte/sample-apps/cmd/dslogmanager/dslogmanagerOperations"
 	"github.com/AccelByte/sample-apps/cmd/dslogmanager/terminatedServers"
@@ -20,6 +21,7 @@ var DslogmanagerCmd = &cobra.Command{
 }
 
 func init() {
+	DslogmanagerCmd.AddCommand(admin.GetServerLogsCmd)
 	DslogmanagerCmd.AddCommand(terminatedServers.ListTerminatedServersCmd)
 	DslogmanagerCmd.AddCommand(terminatedServers.DownloadServerLogsCmd)
 	DslogmanagerCmd.AddCommand(terminatedServers.CheckServerLogsCmd)

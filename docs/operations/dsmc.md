@@ -76,7 +76,6 @@
 | `/dsmcontroller/admin/namespaces/{namespace}/servers/local/{name}` | DELETE | DeleteLocalServerShort | [DeleteLocalServerShort](../../dsmc-sdk/pkg/dsmcclient/admin/admin_client.go) | [DeleteLocalServerShort](../../services-api/pkg/service/dsmc/admin.go) | [DeleteLocalServerShort](../../samples/cli/cmd/dsmc/admin/deleteLocalServer.go) |
 | `/dsmcontroller/admin/namespaces/{namespace}/servers/{podName}` | GET | GetServerShort | [GetServerShort](../../dsmc-sdk/pkg/dsmcclient/admin/admin_client.go) | [GetServerShort](../../services-api/pkg/service/dsmc/admin.go) | [GetServerShort](../../samples/cli/cmd/dsmc/admin/getServer.go) |
 | `/dsmcontroller/admin/namespaces/{namespace}/servers/{podName}` | DELETE | DeleteServerShort | [DeleteServerShort](../../dsmc-sdk/pkg/dsmcclient/admin/admin_client.go) | [DeleteServerShort](../../services-api/pkg/service/dsmc/admin.go) | [DeleteServerShort](../../samples/cli/cmd/dsmc/admin/deleteServer.go) |
-| `/dsmcontroller/admin/namespaces/{namespace}/servers/{podName}/logs` | GET | GetServerLogsShort | [GetServerLogsShort](../../dsmc-sdk/pkg/dsmcclient/admin/admin_client.go) | [GetServerLogsShort](../../services-api/pkg/service/dsmc/admin.go) | [GetServerLogsShort](../../samples/cli/cmd/dsmc/admin/getServerLogs.go) |
 | `/dsmcontroller/admin/namespaces/{namespace}/sessions` | GET | ListSessionShort | [ListSessionShort](../../dsmc-sdk/pkg/dsmcclient/admin/admin_client.go) | [ListSessionShort](../../services-api/pkg/service/dsmc/admin.go) | [ListSessionShort](../../samples/cli/cmd/dsmc/admin/listSession.go) |
 | `/dsmcontroller/admin/namespaces/{namespace}/sessions/count` | GET | CountSessionShort | [CountSessionShort](../../dsmc-sdk/pkg/dsmcclient/admin/admin_client.go) | [CountSessionShort](../../services-api/pkg/service/dsmc/admin.go) | [CountSessionShort](../../samples/cli/cmd/dsmc/admin/countSession.go) |
 | `/dsmcontroller/admin/namespaces/{namespace}/sessions/{sessionID}` | DELETE | DeleteSessionShort | [DeleteSessionShort](../../dsmc-sdk/pkg/dsmcclient/admin/admin_client.go) | [DeleteSessionShort](../../services-api/pkg/service/dsmc/admin.go) | [DeleteSessionShort](../../samples/cli/cmd/dsmc/admin/deleteSession.go) |
@@ -162,7 +161,6 @@
 | `models.RequestMatchParty` | [ModelsRequestMatchParty ](../../dsmc-sdk/pkg/dsmcclientmodels/models_request_match_party.go) |
 | `models.RequestMatchingAlly` | [ModelsRequestMatchingAlly ](../../dsmc-sdk/pkg/dsmcclientmodels/models_request_matching_ally.go) |
 | `models.Server` | [ModelsServer ](../../dsmc-sdk/pkg/dsmcclientmodels/models_server.go) |
-| `models.ServerLogs` | [ModelsServerLogs ](../../dsmc-sdk/pkg/dsmcclientmodels/models_server_logs.go) |
 | `models.ServerSessionResponse` | [ModelsServerSessionResponse ](../../dsmc-sdk/pkg/dsmcclientmodels/models_server_session_response.go) |
 | `models.Session` | [ModelsSession ](../../dsmc-sdk/pkg/dsmcclientmodels/models_session.go) |
 | `models.SessionResponse` | [ModelsSessionResponse ](../../dsmc-sdk/pkg/dsmcclientmodels/models_session_response.go) |

@@ -36,8 +36,8 @@ func (o *RetrieveSingleLocalizedPolicyVersionReader) ReadResponse(response runti
 			return nil, err
 		}
 		return result, nil
-	case 400:
-		result := NewRetrieveSingleLocalizedPolicyVersionBadRequest()
+	case 404:
+		result := NewRetrieveSingleLocalizedPolicyVersionNotFound()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
@@ -106,24 +106,24 @@ func (o *RetrieveSingleLocalizedPolicyVersionOK) readResponse(response runtime.C
 	return nil
 }
 
-// NewRetrieveSingleLocalizedPolicyVersionBadRequest creates a RetrieveSingleLocalizedPolicyVersionBadRequest with default headers values
-func NewRetrieveSingleLocalizedPolicyVersionBadRequest() *RetrieveSingleLocalizedPolicyVersionBadRequest {
-	return &RetrieveSingleLocalizedPolicyVersionBadRequest{}
+// NewRetrieveSingleLocalizedPolicyVersionNotFound creates a RetrieveSingleLocalizedPolicyVersionNotFound with default headers values
+func NewRetrieveSingleLocalizedPolicyVersionNotFound() *RetrieveSingleLocalizedPolicyVersionNotFound {
+	return &RetrieveSingleLocalizedPolicyVersionNotFound{}
 }
 
-/*RetrieveSingleLocalizedPolicyVersionBadRequest handles this case with default header values.
+/*RetrieveSingleLocalizedPolicyVersionNotFound handles this case with default header values.
 
-  <table><tr><td>NumericErrorCode</td><td>ErrorCode</td></tr><tr><td>2912</td><td>errors.net.accelbyte.platform.legal.invalid_policy_version</td></tr></table>
+  <table><tr><td>NumericErrorCode</td><td>ErrorCode</td></tr><tr><td>2912</td><td>errors.net.accelbyte.platform.legal.policy_version_not_found</td></tr></table>
 */
-type RetrieveSingleLocalizedPolicyVersionBadRequest struct {
+type RetrieveSingleLocalizedPolicyVersionNotFound struct {
 	Payload *legalclientmodels.ErrorEntity
 }
 
-func (o *RetrieveSingleLocalizedPolicyVersionBadRequest) Error() string {
-	return fmt.Sprintf("[GET /agreement/admin/localized-policy-versions/{localizedPolicyVersionId}][%d] retrieveSingleLocalizedPolicyVersionBadRequest  %+v", 400, o.ToJSONString())
+func (o *RetrieveSingleLocalizedPolicyVersionNotFound) Error() string {
+	return fmt.Sprintf("[GET /agreement/admin/localized-policy-versions/{localizedPolicyVersionId}][%d] retrieveSingleLocalizedPolicyVersionNotFound  %+v", 404, o.ToJSONString())
 }
 
-func (o *RetrieveSingleLocalizedPolicyVersionBadRequest) ToJSONString() string {
+func (o *RetrieveSingleLocalizedPolicyVersionNotFound) ToJSONString() string {
 	if o.Payload == nil {
 		return "{}"
 	}
@@ -138,11 +138,11 @@ func (o *RetrieveSingleLocalizedPolicyVersionBadRequest) ToJSONString() string {
 	return fmt.Sprintf("%+v", string(b))
 }
 
-func (o *RetrieveSingleLocalizedPolicyVersionBadRequest) GetPayload() *legalclientmodels.ErrorEntity {
+func (o *RetrieveSingleLocalizedPolicyVersionNotFound) GetPayload() *legalclientmodels.ErrorEntity {
 	return o.Payload
 }
 
-func (o *RetrieveSingleLocalizedPolicyVersionBadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+func (o *RetrieveSingleLocalizedPolicyVersionNotFound) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {

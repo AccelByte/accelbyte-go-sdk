@@ -111,7 +111,7 @@ func NewRetrieveSinglePolicyVersionNotFound() *RetrieveSinglePolicyVersionNotFou
 
 /*RetrieveSinglePolicyVersionNotFound handles this case with default header values.
 
-  <table><tr><td>NumericErrorCode</td><td>ErrorCode</td></tr><tr><td>40035</td><td>errors.net.accelbyte.platform.legal.policy_version_not_found</td></tr></table>
+  <table><tr><td>NumericErrorCode</td><td>ErrorCode</td></tr><tr><td>40036</td><td>errors.net.accelbyte.platform.legal.policy_version_id_not_found</td></tr></table>
 */
 type RetrieveSinglePolicyVersionNotFound struct {
 	Payload *legalclientmodels.ErrorEntity

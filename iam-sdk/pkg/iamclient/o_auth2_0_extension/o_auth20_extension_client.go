@@ -47,8 +47,14 @@ type ClientService interface {
 	RequestGameTokenCodeResponseV3Short(params *RequestGameTokenCodeResponseV3Params, authInfo runtime.ClientAuthInfoWriter) (*RequestGameTokenCodeResponseV3OK, error)
 	RequestGameTokenResponseV3(params *RequestGameTokenResponseV3Params, authInfo runtime.ClientAuthInfoWriter) (*RequestGameTokenResponseV3OK, error)
 	RequestGameTokenResponseV3Short(params *RequestGameTokenResponseV3Params, authInfo runtime.ClientAuthInfoWriter) (*RequestGameTokenResponseV3OK, error)
+	RequestOneTimeLinkingCodeV3(params *RequestOneTimeLinkingCodeV3Params, authInfo runtime.ClientAuthInfoWriter) (*RequestOneTimeLinkingCodeV3OK, error)
+	RequestOneTimeLinkingCodeV3Short(params *RequestOneTimeLinkingCodeV3Params, authInfo runtime.ClientAuthInfoWriter) (*RequestOneTimeLinkingCodeV3OK, error)
+	RequestTokenByOneTimeLinkCodeResponseV3(params *RequestTokenByOneTimeLinkCodeResponseV3Params, authInfo runtime.ClientAuthInfoWriter) (*RequestTokenByOneTimeLinkCodeResponseV3OK, error)
+	RequestTokenByOneTimeLinkCodeResponseV3Short(params *RequestTokenByOneTimeLinkCodeResponseV3Params, authInfo runtime.ClientAuthInfoWriter) (*RequestTokenByOneTimeLinkCodeResponseV3OK, error)
 	UserAuthenticationV3(params *UserAuthenticationV3Params, authInfo runtime.ClientAuthInfoWriter) (*UserAuthenticationV3Found, error)
 	UserAuthenticationV3Short(params *UserAuthenticationV3Params, authInfo runtime.ClientAuthInfoWriter) (*UserAuthenticationV3Found, error)
+	ValidateOneTimeLinkingCodeV3(params *ValidateOneTimeLinkingCodeV3Params, authInfo runtime.ClientAuthInfoWriter) (*ValidateOneTimeLinkingCodeV3OK, error)
+	ValidateOneTimeLinkingCodeV3Short(params *ValidateOneTimeLinkingCodeV3Params, authInfo runtime.ClientAuthInfoWriter) (*ValidateOneTimeLinkingCodeV3OK, error)
 
 	SetTransport(transport runtime.ClientTransport)
 }
@@ -823,6 +829,258 @@ func (a *Client) RequestGameTokenResponseV3Short(params *RequestGameTokenRespons
 }
 
 /*
+Deprecated: Use RequestOneTimeLinkingCodeV3Short instead.
+
+  RequestOneTimeLinkingCodeV3 generates one time linking code
+
+  &lt;p&gt;This endpoint is being used to request the one time code [8 length] for headless account to link or upgrade to a full account.&lt;br&gt;
+		It require a valid user token.&lt;br&gt;
+		Should specify the target platform id and current user should already linked to this platform.&lt;br&gt;
+		Current user should be a headless account.&lt;br&gt;
+			&lt;h2&gt;Supported platforms:&lt;/h2&gt;
+			&lt;ul&gt;
+				&lt;li&gt;&lt;strong&gt;steam&lt;/strong&gt;&lt;/li&gt;
+				&lt;li&gt;&lt;strong&gt;steamopenid&lt;/strong&gt;&lt;/li&gt;
+				&lt;li&gt;&lt;strong&gt;facebook&lt;/strong&gt;&lt;/li&gt;
+				&lt;li&gt;&lt;strong&gt;google&lt;/strong&gt;&lt;/li&gt;
+				&lt;li&gt;&lt;strong&gt;oculus&lt;/strong&gt;&lt;/li&gt;
+				&lt;li&gt;&lt;strong&gt;twitch&lt;/strong&gt;&lt;/li&gt;
+				&lt;li&gt;&lt;strong&gt;discord&lt;/strong&gt;&lt;/li&gt;
+				&lt;li&gt;&lt;strong&gt;android&lt;/strong&gt;&lt;/li&gt;
+				&lt;li&gt;&lt;strong&gt;ios&lt;/strong&gt;&lt;/li&gt;
+				&lt;li&gt;&lt;strong&gt;apple&lt;/strong&gt;&lt;/li&gt;
+				&lt;li&gt;&lt;strong&gt;device&lt;/strong&gt;&lt;/li&gt;
+				&lt;li&gt;&lt;strong&gt;justice&lt;/strong&gt;&lt;/li&gt;
+				&lt;li&gt;&lt;strong&gt;epicgames&lt;/strong&gt;&lt;/li&gt;
+                &lt;li&gt;&lt;strong&gt;stadia&lt;/strong&gt;&lt;/li&gt;
+				&lt;li&gt;&lt;strong&gt;ps4&lt;/strong&gt;&lt;/li&gt;
+				&lt;li&gt;&lt;strong&gt;ps5&lt;/strong&gt;&lt;/li&gt;
+				&lt;li&gt;&lt;strong&gt;nintendo&lt;/strong&gt;&lt;/li&gt;
+				&lt;li&gt;&lt;strong&gt;awscognito&lt;/strong&gt;&lt;/li&gt;
+				&lt;li&gt;&lt;strong&gt;live&lt;/strong&gt;&lt;/li&gt;
+				&lt;li&gt;&lt;strong&gt;xblweb&lt;/strong&gt;&lt;/li&gt;
+				&lt;li&gt;&lt;strong&gt;netflix&lt;/strong&gt;&lt;/li&gt;
+				&lt;li&gt;&lt;strong&gt;snapchat&lt;/strong&gt;&lt;/li&gt;
+			&lt;/ul&gt;
+		&lt;/p&gt;
+*/
+func (a *Client) RequestOneTimeLinkingCodeV3(params *RequestOneTimeLinkingCodeV3Params, authInfo runtime.ClientAuthInfoWriter) (*RequestOneTimeLinkingCodeV3OK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewRequestOneTimeLinkingCodeV3Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "RequestOneTimeLinkingCodeV3",
+		Method:             "POST",
+		PathPattern:        "/iam/v3/link/code/request",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/x-www-form-urlencoded"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &RequestOneTimeLinkingCodeV3Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *RequestOneTimeLinkingCodeV3OK:
+		return v, nil
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+  RequestOneTimeLinkingCodeV3Short generates one time linking code
+
+  &lt;p&gt;This endpoint is being used to request the one time code [8 length] for headless account to link or upgrade to a full account.&lt;br&gt;
+		It require a valid user token.&lt;br&gt;
+		Should specify the target platform id and current user should already linked to this platform.&lt;br&gt;
+		Current user should be a headless account.&lt;br&gt;
+			&lt;h2&gt;Supported platforms:&lt;/h2&gt;
+			&lt;ul&gt;
+				&lt;li&gt;&lt;strong&gt;steam&lt;/strong&gt;&lt;/li&gt;
+				&lt;li&gt;&lt;strong&gt;steamopenid&lt;/strong&gt;&lt;/li&gt;
+				&lt;li&gt;&lt;strong&gt;facebook&lt;/strong&gt;&lt;/li&gt;
+				&lt;li&gt;&lt;strong&gt;google&lt;/strong&gt;&lt;/li&gt;
+				&lt;li&gt;&lt;strong&gt;oculus&lt;/strong&gt;&lt;/li&gt;
+				&lt;li&gt;&lt;strong&gt;twitch&lt;/strong&gt;&lt;/li&gt;
+				&lt;li&gt;&lt;strong&gt;discord&lt;/strong&gt;&lt;/li&gt;
+				&lt;li&gt;&lt;strong&gt;android&lt;/strong&gt;&lt;/li&gt;
+				&lt;li&gt;&lt;strong&gt;ios&lt;/strong&gt;&lt;/li&gt;
+				&lt;li&gt;&lt;strong&gt;apple&lt;/strong&gt;&lt;/li&gt;
+				&lt;li&gt;&lt;strong&gt;device&lt;/strong&gt;&lt;/li&gt;
+				&lt;li&gt;&lt;strong&gt;justice&lt;/strong&gt;&lt;/li&gt;
+				&lt;li&gt;&lt;strong&gt;epicgames&lt;/strong&gt;&lt;/li&gt;
+                &lt;li&gt;&lt;strong&gt;stadia&lt;/strong&gt;&lt;/li&gt;
+				&lt;li&gt;&lt;strong&gt;ps4&lt;/strong&gt;&lt;/li&gt;
+				&lt;li&gt;&lt;strong&gt;ps5&lt;/strong&gt;&lt;/li&gt;
+				&lt;li&gt;&lt;strong&gt;nintendo&lt;/strong&gt;&lt;/li&gt;
+				&lt;li&gt;&lt;strong&gt;awscognito&lt;/strong&gt;&lt;/li&gt;
+				&lt;li&gt;&lt;strong&gt;live&lt;/strong&gt;&lt;/li&gt;
+				&lt;li&gt;&lt;strong&gt;xblweb&lt;/strong&gt;&lt;/li&gt;
+				&lt;li&gt;&lt;strong&gt;netflix&lt;/strong&gt;&lt;/li&gt;
+				&lt;li&gt;&lt;strong&gt;snapchat&lt;/strong&gt;&lt;/li&gt;
+			&lt;/ul&gt;
+		&lt;/p&gt;
+*/
+func (a *Client) RequestOneTimeLinkingCodeV3Short(params *RequestOneTimeLinkingCodeV3Params, authInfo runtime.ClientAuthInfoWriter) (*RequestOneTimeLinkingCodeV3OK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewRequestOneTimeLinkingCodeV3Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "RequestOneTimeLinkingCodeV3",
+		Method:             "POST",
+		PathPattern:        "/iam/v3/link/code/request",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/x-www-form-urlencoded"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &RequestOneTimeLinkingCodeV3Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *RequestOneTimeLinkingCodeV3OK:
+		return v, nil
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+Deprecated: Use RequestTokenByOneTimeLinkCodeResponseV3Short instead.
+
+  RequestTokenByOneTimeLinkCodeResponseV3 generates publisher token by headless account s one time link code
+
+  &lt;p&gt;This endpoint is being used to generate user&#39;s token by one time link code.&lt;br&gt;
+		It require publisher ClientID&lt;br&gt;
+		It required a code which can be generated from &lt;strong&gt;/iam/v3/link/code/request&lt;/strong&gt;.&lt;br&gt;
+		&lt;/p&gt;
+*/
+func (a *Client) RequestTokenByOneTimeLinkCodeResponseV3(params *RequestTokenByOneTimeLinkCodeResponseV3Params, authInfo runtime.ClientAuthInfoWriter) (*RequestTokenByOneTimeLinkCodeResponseV3OK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewRequestTokenByOneTimeLinkCodeResponseV3Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "RequestTokenByOneTimeLinkCodeResponseV3",
+		Method:             "POST",
+		PathPattern:        "/iam/v3/link/token/exchange",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/x-www-form-urlencoded"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &RequestTokenByOneTimeLinkCodeResponseV3Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *RequestTokenByOneTimeLinkCodeResponseV3OK:
+		return v, nil
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+  RequestTokenByOneTimeLinkCodeResponseV3Short generates publisher token by headless account s one time link code
+
+  &lt;p&gt;This endpoint is being used to generate user&#39;s token by one time link code.&lt;br&gt;
+		It require publisher ClientID&lt;br&gt;
+		It required a code which can be generated from &lt;strong&gt;/iam/v3/link/code/request&lt;/strong&gt;.&lt;br&gt;
+		&lt;/p&gt;
+*/
+func (a *Client) RequestTokenByOneTimeLinkCodeResponseV3Short(params *RequestTokenByOneTimeLinkCodeResponseV3Params, authInfo runtime.ClientAuthInfoWriter) (*RequestTokenByOneTimeLinkCodeResponseV3OK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewRequestTokenByOneTimeLinkCodeResponseV3Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "RequestTokenByOneTimeLinkCodeResponseV3",
+		Method:             "POST",
+		PathPattern:        "/iam/v3/link/token/exchange",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/x-www-form-urlencoded"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &RequestTokenByOneTimeLinkCodeResponseV3Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *RequestTokenByOneTimeLinkCodeResponseV3OK:
+		return v, nil
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
 Deprecated: Use UserAuthenticationV3Short instead.
 
   UserAuthenticationV3 authentications API
@@ -929,6 +1187,108 @@ func (a *Client) UserAuthenticationV3Short(params *UserAuthenticationV3Params, a
 	switch v := result.(type) {
 
 	case *UserAuthenticationV3Found:
+		return v, nil
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+Deprecated: Use ValidateOneTimeLinkingCodeV3Short instead.
+
+  ValidateOneTimeLinkingCodeV3 validates one time linking code
+
+  &lt;p&gt;This endpoint is being used to validate one time link code.&lt;br&gt;
+		It require a valid user token.&lt;br&gt;
+		Should specify the target platform id and current user should already linked to this platform.&lt;br&gt;
+		Current user should be a headless account.&lt;br&gt;
+		&lt;/p&gt;
+*/
+func (a *Client) ValidateOneTimeLinkingCodeV3(params *ValidateOneTimeLinkingCodeV3Params, authInfo runtime.ClientAuthInfoWriter) (*ValidateOneTimeLinkingCodeV3OK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewValidateOneTimeLinkingCodeV3Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "ValidateOneTimeLinkingCodeV3",
+		Method:             "POST",
+		PathPattern:        "/iam/v3/link/code/validate",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/x-www-form-urlencoded"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &ValidateOneTimeLinkingCodeV3Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *ValidateOneTimeLinkingCodeV3OK:
+		return v, nil
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+  ValidateOneTimeLinkingCodeV3Short validates one time linking code
+
+  &lt;p&gt;This endpoint is being used to validate one time link code.&lt;br&gt;
+		It require a valid user token.&lt;br&gt;
+		Should specify the target platform id and current user should already linked to this platform.&lt;br&gt;
+		Current user should be a headless account.&lt;br&gt;
+		&lt;/p&gt;
+*/
+func (a *Client) ValidateOneTimeLinkingCodeV3Short(params *ValidateOneTimeLinkingCodeV3Params, authInfo runtime.ClientAuthInfoWriter) (*ValidateOneTimeLinkingCodeV3OK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewValidateOneTimeLinkingCodeV3Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "ValidateOneTimeLinkingCodeV3",
+		Method:             "POST",
+		PathPattern:        "/iam/v3/link/code/validate",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/x-www-form-urlencoded"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &ValidateOneTimeLinkingCodeV3Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *ValidateOneTimeLinkingCodeV3OK:
 		return v, nil
 
 	default:

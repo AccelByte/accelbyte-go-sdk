@@ -185,32 +185,6 @@ func (aaa *AdminService) DeleteServer(input *admin.DeleteServerParams) error {
 	return nil
 }
 
-// Deprecated: Use GetServerLogsShort instead
-func (aaa *AdminService) GetServerLogs(input *admin.GetServerLogsParams) (*dsmcclientmodels.ModelsServerLogs, error) {
-	token, err := aaa.TokenRepository.GetToken()
-	if err != nil {
-		return nil, err
-	}
-	ok, badRequest, unauthorized, notFound, internalServerError, err := aaa.Client.Admin.GetServerLogs(input, client.BearerToken(*token.AccessToken))
-	if badRequest != nil {
-		return nil, badRequest
-	}
-	if unauthorized != nil {
-		return nil, unauthorized
-	}
-	if notFound != nil {
-		return nil, notFound
-	}
-	if internalServerError != nil {
-		return nil, internalServerError
-	}
-	if err != nil {
-		return nil, err
-	}
-
-	return ok.GetPayload(), nil
-}
-
 // Deprecated: Use ListSessionShort instead
 func (aaa *AdminService) ListSession(input *admin.ListSessionParams) (*dsmcclientmodels.ModelsListSessionResponse, error) {
 	token, err := aaa.TokenRepository.GetToken()
@@ -444,31 +418,6 @@ func (aaa *AdminService) DeleteServerShort(input *admin.DeleteServerParams) erro
 	}
 
 	return nil
-}
-
-func (aaa *AdminService) GetServerLogsShort(input *admin.GetServerLogsParams) (*dsmcclientmodels.ModelsServerLogs, error) {
-	authInfoWriter := input.AuthInfoWriter
-	if authInfoWriter == nil {
-		security := [][]string{
-			{"bearer"},
-		}
-		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
-	}
-	if input.RetryPolicy == nil {
-		input.RetryPolicy = &utils.Retry{
-			MaxTries:   utils.MaxTries,
-			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  aaa.Client.Runtime.Transport,
-			RetryCodes: utils.RetryCodes,
-		}
-	}
-
-	ok, err := aaa.Client.Admin.GetServerLogsShort(input, authInfoWriter)
-	if err != nil {
-		return nil, err
-	}
-
-	return ok.GetPayload(), nil
 }
 
 func (aaa *AdminService) ListSessionShort(input *admin.ListSessionParams) (*dsmcclientmodels.ModelsListSessionResponse, error) {

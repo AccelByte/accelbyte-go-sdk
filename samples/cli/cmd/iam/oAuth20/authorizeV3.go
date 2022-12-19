@@ -33,6 +33,7 @@ var AuthorizeV3Cmd = &cobra.Command{
 		codeChallenge, _ := cmd.Flags().GetString("codeChallenge")
 		codeChallengeMethod, _ := cmd.Flags().GetString("codeChallengeMethod")
 		createHeadless, _ := cmd.Flags().GetBool("createHeadless")
+		oneTimeLinkCode, _ := cmd.Flags().GetString("oneTimeLinkCode")
 		redirectUri, _ := cmd.Flags().GetString("redirectUri")
 		scope, _ := cmd.Flags().GetString("scope")
 		state, _ := cmd.Flags().GetString("state")
@@ -47,6 +48,7 @@ var AuthorizeV3Cmd = &cobra.Command{
 			CodeChallenge:                      &codeChallenge,
 			CodeChallengeMethod:                &codeChallengeMethod,
 			CreateHeadless:                     &createHeadless,
+			OneTimeLinkCode:                    &oneTimeLinkCode,
 			RedirectURI:                        &redirectUri,
 			Scope:                              &scope,
 			State:                              &state,
@@ -71,6 +73,7 @@ func init() {
 	AuthorizeV3Cmd.Flags().String("codeChallenge", "", "Code challenge")
 	AuthorizeV3Cmd.Flags().String("codeChallengeMethod", "", "Code challenge method")
 	AuthorizeV3Cmd.Flags().Bool("createHeadless", false, "Create headless")
+	AuthorizeV3Cmd.Flags().String("oneTimeLinkCode", "", "One time link code")
 	AuthorizeV3Cmd.Flags().String("redirectUri", "", "Redirect uri")
 	AuthorizeV3Cmd.Flags().String("scope", "", "Scope")
 	AuthorizeV3Cmd.Flags().String("state", "", "State")

@@ -39,6 +39,7 @@ func init() {
 	BasicCmd.AddCommand(equ8Config.DeleteConfigCmd)
 	BasicCmd.AddCommand(equ8Config.UpdateConfigCmd)
 	BasicCmd.AddCommand(fileUpload.GeneratedUploadUrlCmd)
+	BasicCmd.AddCommand(namespace.GetGameNamespacesCmd)
 	BasicCmd.AddCommand(misc.GetCountriesCmd)
 	BasicCmd.AddCommand(misc.GetCountryGroupsCmd)
 	BasicCmd.AddCommand(misc.AddCountryGroupCmd)

@@ -169,6 +169,26 @@ func (aaa *NamespaceService) UpdateNamespace(input *namespace.UpdateNamespacePar
 	return ok.GetPayload(), nil
 }
 
+// Deprecated: Use GetGameNamespacesShort instead
+func (aaa *NamespaceService) GetGameNamespaces(input *namespace.GetGameNamespacesParams) ([]*basicclientmodels.NamespaceInfo, error) {
+	token, err := aaa.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, unauthorized, forbidden, err := aaa.Client.Namespace.GetGameNamespaces(input, client.BearerToken(*token.AccessToken))
+	if unauthorized != nil {
+		return nil, unauthorized
+	}
+	if forbidden != nil {
+		return nil, forbidden
+	}
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
 // Deprecated: Use GetNamespacePublisherShort instead
 func (aaa *NamespaceService) GetNamespacePublisher(input *namespace.GetNamespacePublisherParams) (*basicclientmodels.NamespacePublisherInfo, error) {
 	token, err := aaa.TokenRepository.GetToken()
@@ -385,6 +405,31 @@ func (aaa *NamespaceService) UpdateNamespaceShort(input *namespace.UpdateNamespa
 	}
 
 	ok, err := aaa.Client.Namespace.UpdateNamespaceShort(input, authInfoWriter)
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
+func (aaa *NamespaceService) GetGameNamespacesShort(input *namespace.GetGameNamespacesParams) ([]*basicclientmodels.NamespaceInfo, error) {
+	authInfoWriter := input.AuthInfoWriter
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
+	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  aaa.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
+	ok, err := aaa.Client.Namespace.GetGameNamespacesShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}

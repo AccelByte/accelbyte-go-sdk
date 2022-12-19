@@ -10,12 +10,16 @@ package agreement
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
+	"io"
 	"io/ioutil"
 	"strings"
 
 	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/strfmt"
+
+	"github.com/AccelByte/accelbyte-go-sdk/legal-sdk/pkg/legalclientmodels"
 )
 
 // AcceptVersionedPolicyReader is a Reader for the AcceptVersionedPolicy structure.
@@ -28,6 +32,12 @@ func (o *AcceptVersionedPolicyReader) ReadResponse(response runtime.ClientRespon
 	switch response.Code() {
 	case 201:
 		result := NewAcceptVersionedPolicyCreated()
+		if err := result.readResponse(response, consumer, o.formats); err != nil {
+			return nil, err
+		}
+		return result, nil
+	case 400:
+		result := NewAcceptVersionedPolicyBadRequest()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
@@ -50,7 +60,7 @@ func NewAcceptVersionedPolicyCreated() *AcceptVersionedPolicyCreated {
 
 /*AcceptVersionedPolicyCreated handles this case with default header values.
 
-  successful operation
+  successful anonymize
 */
 type AcceptVersionedPolicyCreated struct {
 }
@@ -64,6 +74,59 @@ func (o *AcceptVersionedPolicyCreated) readResponse(response runtime.ClientRespo
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
 		consumer = runtime.ByteStreamConsumer()
+	}
+
+	return nil
+}
+
+// NewAcceptVersionedPolicyBadRequest creates a AcceptVersionedPolicyBadRequest with default headers values
+func NewAcceptVersionedPolicyBadRequest() *AcceptVersionedPolicyBadRequest {
+	return &AcceptVersionedPolicyBadRequest{}
+}
+
+/*AcceptVersionedPolicyBadRequest handles this case with default header values.
+
+  <table><tr><td>NumericErrorCode</td><td>ErrorCode</td></tr><tr><td>40045</td><td>errors.net.accelbyte.platform.legal.user_id_needed</td></tr><tr><td>40035</td><td>errors.net.accelbyte.platform.legal.invalid_localize_policy_version_id</td></tr></table>
+*/
+type AcceptVersionedPolicyBadRequest struct {
+	Payload *legalclientmodels.ErrorEntity
+}
+
+func (o *AcceptVersionedPolicyBadRequest) Error() string {
+	return fmt.Sprintf("[POST /agreement/public/agreements/localized-policy-versions/{localizedPolicyVersionId}][%d] acceptVersionedPolicyBadRequest  %+v", 400, o.ToJSONString())
+}
+
+func (o *AcceptVersionedPolicyBadRequest) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
+}
+
+func (o *AcceptVersionedPolicyBadRequest) GetPayload() *legalclientmodels.ErrorEntity {
+	return o.Payload
+}
+
+func (o *AcceptVersionedPolicyBadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+	// handle file responses
+	contentDisposition := response.GetHeader("Content-Disposition")
+	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
+		consumer = runtime.ByteStreamConsumer()
+	}
+
+	o.Payload = new(legalclientmodels.ErrorEntity)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
 	}
 
 	return nil

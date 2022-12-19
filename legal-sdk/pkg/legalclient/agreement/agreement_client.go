@@ -33,21 +33,21 @@ type Client struct {
 
 // ClientService is the interface for Client methods
 type ClientService interface {
-	AcceptVersionedPolicy(params *AcceptVersionedPolicyParams, authInfo runtime.ClientAuthInfoWriter) (*AcceptVersionedPolicyCreated, error)
+	AcceptVersionedPolicy(params *AcceptVersionedPolicyParams, authInfo runtime.ClientAuthInfoWriter) (*AcceptVersionedPolicyCreated, *AcceptVersionedPolicyBadRequest, error)
 	AcceptVersionedPolicyShort(params *AcceptVersionedPolicyParams, authInfo runtime.ClientAuthInfoWriter) (*AcceptVersionedPolicyCreated, error)
-	BulkAcceptVersionedPolicy(params *BulkAcceptVersionedPolicyParams, authInfo runtime.ClientAuthInfoWriter) (*BulkAcceptVersionedPolicyCreated, error)
+	BulkAcceptVersionedPolicy(params *BulkAcceptVersionedPolicyParams, authInfo runtime.ClientAuthInfoWriter) (*BulkAcceptVersionedPolicyCreated, *BulkAcceptVersionedPolicyBadRequest, error)
 	BulkAcceptVersionedPolicyShort(params *BulkAcceptVersionedPolicyParams, authInfo runtime.ClientAuthInfoWriter) (*BulkAcceptVersionedPolicyCreated, error)
-	ChangePreferenceConsent(params *ChangePreferenceConsentParams, authInfo runtime.ClientAuthInfoWriter) (*ChangePreferenceConsentOK, error)
+	ChangePreferenceConsent(params *ChangePreferenceConsentParams, authInfo runtime.ClientAuthInfoWriter) (*ChangePreferenceConsentOK, *ChangePreferenceConsentNotFound, error)
 	ChangePreferenceConsentShort(params *ChangePreferenceConsentParams, authInfo runtime.ClientAuthInfoWriter) (*ChangePreferenceConsentOK, error)
 	ChangePreferenceConsent1(params *ChangePreferenceConsent1Params, authInfo runtime.ClientAuthInfoWriter) (*ChangePreferenceConsent1OK, *ChangePreferenceConsent1BadRequest, error)
 	ChangePreferenceConsent1Short(params *ChangePreferenceConsent1Params, authInfo runtime.ClientAuthInfoWriter) (*ChangePreferenceConsent1OK, error)
 	IndirectBulkAcceptVersionedPolicyV2(params *IndirectBulkAcceptVersionedPolicyV2Params, authInfo runtime.ClientAuthInfoWriter) (*IndirectBulkAcceptVersionedPolicyV2Created, error)
 	IndirectBulkAcceptVersionedPolicyV2Short(params *IndirectBulkAcceptVersionedPolicyV2Params, authInfo runtime.ClientAuthInfoWriter) (*IndirectBulkAcceptVersionedPolicyV2Created, error)
-	IndirectBulkAcceptVersionedPolicy1(params *IndirectBulkAcceptVersionedPolicy1Params, authInfo runtime.ClientAuthInfoWriter) (*IndirectBulkAcceptVersionedPolicy1Created, error)
+	IndirectBulkAcceptVersionedPolicy1(params *IndirectBulkAcceptVersionedPolicy1Params, authInfo runtime.ClientAuthInfoWriter) (*IndirectBulkAcceptVersionedPolicy1Created, *IndirectBulkAcceptVersionedPolicy1NotFound, error)
 	IndirectBulkAcceptVersionedPolicy1Short(params *IndirectBulkAcceptVersionedPolicy1Params, authInfo runtime.ClientAuthInfoWriter) (*IndirectBulkAcceptVersionedPolicy1Created, error)
 	RetrieveAcceptedAgreements(params *RetrieveAcceptedAgreementsParams, authInfo runtime.ClientAuthInfoWriter) (*RetrieveAcceptedAgreementsOK, error)
 	RetrieveAcceptedAgreementsShort(params *RetrieveAcceptedAgreementsParams, authInfo runtime.ClientAuthInfoWriter) (*RetrieveAcceptedAgreementsOK, error)
-	RetrieveAgreementsPublic(params *RetrieveAgreementsPublicParams, authInfo runtime.ClientAuthInfoWriter) (*RetrieveAgreementsPublicOK, error)
+	RetrieveAgreementsPublic(params *RetrieveAgreementsPublicParams, authInfo runtime.ClientAuthInfoWriter) (*RetrieveAgreementsPublicOK, *RetrieveAgreementsPublicBadRequest, error)
 	RetrieveAgreementsPublicShort(params *RetrieveAgreementsPublicParams, authInfo runtime.ClientAuthInfoWriter) (*RetrieveAgreementsPublicOK, error)
 	RetrieveAllUsersByPolicyVersion(params *RetrieveAllUsersByPolicyVersionParams, authInfo runtime.ClientAuthInfoWriter) (*RetrieveAllUsersByPolicyVersionOK, *RetrieveAllUsersByPolicyVersionNotFound, error)
 	RetrieveAllUsersByPolicyVersionShort(params *RetrieveAllUsersByPolicyVersionParams, authInfo runtime.ClientAuthInfoWriter) (*RetrieveAllUsersByPolicyVersionOK, error)
@@ -62,7 +62,7 @@ Deprecated: Use AcceptVersionedPolicyShort instead.
 
   Accepts a legal policy version. Supply with localized version policy id to accept an agreement.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: login user&lt;/li&gt;&lt;/ul&gt;
 */
-func (a *Client) AcceptVersionedPolicy(params *AcceptVersionedPolicyParams, authInfo runtime.ClientAuthInfoWriter) (*AcceptVersionedPolicyCreated, error) {
+func (a *Client) AcceptVersionedPolicy(params *AcceptVersionedPolicyParams, authInfo runtime.ClientAuthInfoWriter) (*AcceptVersionedPolicyCreated, *AcceptVersionedPolicyBadRequest, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewAcceptVersionedPolicyParams()
@@ -90,16 +90,19 @@ func (a *Client) AcceptVersionedPolicy(params *AcceptVersionedPolicyParams, auth
 		Client:             params.HTTPClient,
 	})
 	if err != nil {
-		return nil, err
+		return nil, nil, err
 	}
 
 	switch v := result.(type) {
 
 	case *AcceptVersionedPolicyCreated:
-		return v, nil
+		return v, nil, nil
+
+	case *AcceptVersionedPolicyBadRequest:
+		return nil, v, nil
 
 	default:
-		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+		return nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
@@ -143,6 +146,8 @@ func (a *Client) AcceptVersionedPolicyShort(params *AcceptVersionedPolicyParams,
 
 	case *AcceptVersionedPolicyCreated:
 		return v, nil
+	case *AcceptVersionedPolicyBadRequest:
+		return nil, v
 
 	default:
 		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
@@ -156,7 +161,7 @@ Deprecated: Use BulkAcceptVersionedPolicyShort instead.
 
   Accepts many legal policy versions all at once. Supply with localized version policy id to accept an agreement.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: login user&lt;/li&gt;&lt;/ul&gt;
 */
-func (a *Client) BulkAcceptVersionedPolicy(params *BulkAcceptVersionedPolicyParams, authInfo runtime.ClientAuthInfoWriter) (*BulkAcceptVersionedPolicyCreated, error) {
+func (a *Client) BulkAcceptVersionedPolicy(params *BulkAcceptVersionedPolicyParams, authInfo runtime.ClientAuthInfoWriter) (*BulkAcceptVersionedPolicyCreated, *BulkAcceptVersionedPolicyBadRequest, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewBulkAcceptVersionedPolicyParams()
@@ -184,16 +189,19 @@ func (a *Client) BulkAcceptVersionedPolicy(params *BulkAcceptVersionedPolicyPara
 		Client:             params.HTTPClient,
 	})
 	if err != nil {
-		return nil, err
+		return nil, nil, err
 	}
 
 	switch v := result.(type) {
 
 	case *BulkAcceptVersionedPolicyCreated:
-		return v, nil
+		return v, nil, nil
+
+	case *BulkAcceptVersionedPolicyBadRequest:
+		return nil, v, nil
 
 	default:
-		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+		return nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
@@ -237,6 +245,8 @@ func (a *Client) BulkAcceptVersionedPolicyShort(params *BulkAcceptVersionedPolic
 
 	case *BulkAcceptVersionedPolicyCreated:
 		return v, nil
+	case *BulkAcceptVersionedPolicyBadRequest:
+		return nil, v
 
 	default:
 		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
@@ -246,9 +256,11 @@ func (a *Client) BulkAcceptVersionedPolicyShort(params *BulkAcceptVersionedPolic
 /*
 Deprecated: Use ChangePreferenceConsentShort instead.
 
-  ChangePreferenceConsent change preference consent API
+  ChangePreferenceConsent changes preference consent
+
+  This API will Update Preference Consent. Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:LEGAL&#34;, action=4 (UPDATE)&lt;/li&gt;&lt;/ul&gt;
 */
-func (a *Client) ChangePreferenceConsent(params *ChangePreferenceConsentParams, authInfo runtime.ClientAuthInfoWriter) (*ChangePreferenceConsentOK, error) {
+func (a *Client) ChangePreferenceConsent(params *ChangePreferenceConsentParams, authInfo runtime.ClientAuthInfoWriter) (*ChangePreferenceConsentOK, *ChangePreferenceConsentNotFound, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewChangePreferenceConsentParams()
@@ -276,21 +288,26 @@ func (a *Client) ChangePreferenceConsent(params *ChangePreferenceConsentParams, 
 		Client:             params.HTTPClient,
 	})
 	if err != nil {
-		return nil, err
+		return nil, nil, err
 	}
 
 	switch v := result.(type) {
 
 	case *ChangePreferenceConsentOK:
-		return v, nil
+		return v, nil, nil
+
+	case *ChangePreferenceConsentNotFound:
+		return nil, v, nil
 
 	default:
-		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+		return nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
 /*
-  ChangePreferenceConsentShort change preference consent API
+  ChangePreferenceConsentShort changes preference consent
+
+  This API will Update Preference Consent. Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:LEGAL&#34;, action=4 (UPDATE)&lt;/li&gt;&lt;/ul&gt;
 */
 func (a *Client) ChangePreferenceConsentShort(params *ChangePreferenceConsentParams, authInfo runtime.ClientAuthInfoWriter) (*ChangePreferenceConsentOK, error) {
 	// TODO: Validate the params before sending
@@ -327,6 +344,8 @@ func (a *Client) ChangePreferenceConsentShort(params *ChangePreferenceConsentPar
 
 	case *ChangePreferenceConsentOK:
 		return v, nil
+	case *ChangePreferenceConsentNotFound:
+		return nil, v
 
 	default:
 		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
@@ -533,7 +552,7 @@ Deprecated: Use IndirectBulkAcceptVersionedPolicy1Short instead.
 
   Accepts many legal policy versions all at once. Supply with localized version policy id and userId to accept an agreement. This endpoint used by Authentication Service during new user registration.&lt;br&gt;&lt;br/&gt;Available Extra Information to return: &lt;br/&gt;&lt;ul&gt;&lt;li&gt;&lt;b&gt;userIds&lt;/b&gt; : List of userId mapping (&lt;b&gt;IMPORTANT: GOING TO DEPRECATE&lt;/b&gt;)&lt;/li&gt;&lt;/ul&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: login user&lt;/li&gt;&lt;/ul&gt;
 */
-func (a *Client) IndirectBulkAcceptVersionedPolicy1(params *IndirectBulkAcceptVersionedPolicy1Params, authInfo runtime.ClientAuthInfoWriter) (*IndirectBulkAcceptVersionedPolicy1Created, error) {
+func (a *Client) IndirectBulkAcceptVersionedPolicy1(params *IndirectBulkAcceptVersionedPolicy1Params, authInfo runtime.ClientAuthInfoWriter) (*IndirectBulkAcceptVersionedPolicy1Created, *IndirectBulkAcceptVersionedPolicy1NotFound, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewIndirectBulkAcceptVersionedPolicy1Params()
@@ -561,16 +580,19 @@ func (a *Client) IndirectBulkAcceptVersionedPolicy1(params *IndirectBulkAcceptVe
 		Client:             params.HTTPClient,
 	})
 	if err != nil {
-		return nil, err
+		return nil, nil, err
 	}
 
 	switch v := result.(type) {
 
 	case *IndirectBulkAcceptVersionedPolicy1Created:
-		return v, nil
+		return v, nil, nil
+
+	case *IndirectBulkAcceptVersionedPolicy1NotFound:
+		return nil, v, nil
 
 	default:
-		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+		return nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
@@ -614,6 +636,8 @@ func (a *Client) IndirectBulkAcceptVersionedPolicy1Short(params *IndirectBulkAcc
 
 	case *IndirectBulkAcceptVersionedPolicy1Created:
 		return v, nil
+	case *IndirectBulkAcceptVersionedPolicy1NotFound:
+		return nil, v
 
 	default:
 		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
@@ -721,7 +745,7 @@ Deprecated: Use RetrieveAgreementsPublicShort instead.
 
   Retrieve accepted Legal Agreements.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: login user&lt;/li&gt;&lt;/ul&gt;
 */
-func (a *Client) RetrieveAgreementsPublic(params *RetrieveAgreementsPublicParams, authInfo runtime.ClientAuthInfoWriter) (*RetrieveAgreementsPublicOK, error) {
+func (a *Client) RetrieveAgreementsPublic(params *RetrieveAgreementsPublicParams, authInfo runtime.ClientAuthInfoWriter) (*RetrieveAgreementsPublicOK, *RetrieveAgreementsPublicBadRequest, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewRetrieveAgreementsPublicParams()
@@ -749,16 +773,19 @@ func (a *Client) RetrieveAgreementsPublic(params *RetrieveAgreementsPublicParams
 		Client:             params.HTTPClient,
 	})
 	if err != nil {
-		return nil, err
+		return nil, nil, err
 	}
 
 	switch v := result.(type) {
 
 	case *RetrieveAgreementsPublicOK:
-		return v, nil
+		return v, nil, nil
+
+	case *RetrieveAgreementsPublicBadRequest:
+		return nil, v, nil
 
 	default:
-		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+		return nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
@@ -802,6 +829,8 @@ func (a *Client) RetrieveAgreementsPublicShort(params *RetrieveAgreementsPublicP
 
 	case *RetrieveAgreementsPublicOK:
 		return v, nil
+	case *RetrieveAgreementsPublicBadRequest:
+		return nil, v
 
 	default:
 		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))

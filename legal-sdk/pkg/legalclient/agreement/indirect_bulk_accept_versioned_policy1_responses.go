@@ -36,6 +36,12 @@ func (o *IndirectBulkAcceptVersionedPolicy1Reader) ReadResponse(response runtime
 			return nil, err
 		}
 		return result, nil
+	case 404:
+		result := NewIndirectBulkAcceptVersionedPolicy1NotFound()
+		if err := result.readResponse(response, consumer, o.formats); err != nil {
+			return nil, err
+		}
+		return result, nil
 
 	default:
 		data, err := ioutil.ReadAll(response.Body())
@@ -91,6 +97,59 @@ func (o *IndirectBulkAcceptVersionedPolicy1Created) readResponse(response runtim
 	}
 
 	o.Payload = new(legalclientmodels.AcceptAgreementResponse)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
+	}
+
+	return nil
+}
+
+// NewIndirectBulkAcceptVersionedPolicy1NotFound creates a IndirectBulkAcceptVersionedPolicy1NotFound with default headers values
+func NewIndirectBulkAcceptVersionedPolicy1NotFound() *IndirectBulkAcceptVersionedPolicy1NotFound {
+	return &IndirectBulkAcceptVersionedPolicy1NotFound{}
+}
+
+/*IndirectBulkAcceptVersionedPolicy1NotFound handles this case with default header values.
+
+  <table><tr><td>NumericErrorCode</td><td>ErrorCode</td></tr><tr><td>40035</td><td>errors.net.accelbyte.platform.legal.policy_version_not_found</td></tr></table>
+*/
+type IndirectBulkAcceptVersionedPolicy1NotFound struct {
+	Payload *legalclientmodels.ErrorEntity
+}
+
+func (o *IndirectBulkAcceptVersionedPolicy1NotFound) Error() string {
+	return fmt.Sprintf("[POST /agreement/public/agreements/policies/users/{userId}][%d] indirectBulkAcceptVersionedPolicy1NotFound  %+v", 404, o.ToJSONString())
+}
+
+func (o *IndirectBulkAcceptVersionedPolicy1NotFound) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
+}
+
+func (o *IndirectBulkAcceptVersionedPolicy1NotFound) GetPayload() *legalclientmodels.ErrorEntity {
+	return o.Payload
+}
+
+func (o *IndirectBulkAcceptVersionedPolicy1NotFound) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+	// handle file responses
+	contentDisposition := response.GetHeader("Content-Disposition")
+	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
+		consumer = runtime.ByteStreamConsumer()
+	}
+
+	o.Payload = new(legalclientmodels.ErrorEntity)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {

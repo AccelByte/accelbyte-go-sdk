@@ -33,9 +33,9 @@ type Client struct {
 
 // ClientService is the interface for Client methods
 type ClientService interface {
-	CreatePolicy(params *CreatePolicyParams, authInfo runtime.ClientAuthInfoWriter) (*CreatePolicyCreated, *CreatePolicyConflict, *CreatePolicyUnprocessableEntity, error)
+	CreatePolicy(params *CreatePolicyParams, authInfo runtime.ClientAuthInfoWriter) (*CreatePolicyCreated, *CreatePolicyBadRequest, *CreatePolicyNotFound, *CreatePolicyUnprocessableEntity, error)
 	CreatePolicyShort(params *CreatePolicyParams, authInfo runtime.ClientAuthInfoWriter) (*CreatePolicyCreated, error)
-	PartialUpdatePolicy(params *PartialUpdatePolicyParams, authInfo runtime.ClientAuthInfoWriter) (*PartialUpdatePolicyOK, *PartialUpdatePolicyBadRequest, error)
+	PartialUpdatePolicy(params *PartialUpdatePolicyParams, authInfo runtime.ClientAuthInfoWriter) (*PartialUpdatePolicyOK, *PartialUpdatePolicyBadRequest, *PartialUpdatePolicyNotFound, error)
 	PartialUpdatePolicyShort(params *PartialUpdatePolicyParams, authInfo runtime.ClientAuthInfoWriter) (*PartialUpdatePolicyOK, error)
 	RetrieveAllLegalPolicies(params *RetrieveAllLegalPoliciesParams, authInfo runtime.ClientAuthInfoWriter) (*RetrieveAllLegalPoliciesOK, error)
 	RetrieveAllLegalPoliciesShort(params *RetrieveAllLegalPoliciesParams, authInfo runtime.ClientAuthInfoWriter) (*RetrieveAllLegalPoliciesOK, error)
@@ -56,7 +56,7 @@ Deprecated: Use CreatePolicyShort instead.
 
   Create a legal policy.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:*:LEGAL&#34;, action=1 (CREATE)&lt;/li&gt;&lt;/ul&gt;
 */
-func (a *Client) CreatePolicy(params *CreatePolicyParams, authInfo runtime.ClientAuthInfoWriter) (*CreatePolicyCreated, *CreatePolicyConflict, *CreatePolicyUnprocessableEntity, error) {
+func (a *Client) CreatePolicy(params *CreatePolicyParams, authInfo runtime.ClientAuthInfoWriter) (*CreatePolicyCreated, *CreatePolicyBadRequest, *CreatePolicyNotFound, *CreatePolicyUnprocessableEntity, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewCreatePolicyParams()
@@ -84,22 +84,25 @@ func (a *Client) CreatePolicy(params *CreatePolicyParams, authInfo runtime.Clien
 		Client:             params.HTTPClient,
 	})
 	if err != nil {
-		return nil, nil, nil, err
+		return nil, nil, nil, nil, err
 	}
 
 	switch v := result.(type) {
 
 	case *CreatePolicyCreated:
-		return v, nil, nil, nil
+		return v, nil, nil, nil, nil
 
-	case *CreatePolicyConflict:
-		return nil, v, nil, nil
+	case *CreatePolicyBadRequest:
+		return nil, v, nil, nil, nil
+
+	case *CreatePolicyNotFound:
+		return nil, nil, v, nil, nil
 
 	case *CreatePolicyUnprocessableEntity:
-		return nil, nil, v, nil
+		return nil, nil, nil, v, nil
 
 	default:
-		return nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+		return nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
@@ -143,7 +146,9 @@ func (a *Client) CreatePolicyShort(params *CreatePolicyParams, authInfo runtime.
 
 	case *CreatePolicyCreated:
 		return v, nil
-	case *CreatePolicyConflict:
+	case *CreatePolicyBadRequest:
+		return nil, v
+	case *CreatePolicyNotFound:
 		return nil, v
 	case *CreatePolicyUnprocessableEntity:
 		return nil, v
@@ -160,7 +165,7 @@ Deprecated: Use PartialUpdatePolicyShort instead.
 
   Update an existing base policy.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:*:LEGAL&#34;, action=4 (UPDATE)&lt;/li&gt;&lt;/ul&gt;
 */
-func (a *Client) PartialUpdatePolicy(params *PartialUpdatePolicyParams, authInfo runtime.ClientAuthInfoWriter) (*PartialUpdatePolicyOK, *PartialUpdatePolicyBadRequest, error) {
+func (a *Client) PartialUpdatePolicy(params *PartialUpdatePolicyParams, authInfo runtime.ClientAuthInfoWriter) (*PartialUpdatePolicyOK, *PartialUpdatePolicyBadRequest, *PartialUpdatePolicyNotFound, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewPartialUpdatePolicyParams()
@@ -188,19 +193,22 @@ func (a *Client) PartialUpdatePolicy(params *PartialUpdatePolicyParams, authInfo
 		Client:             params.HTTPClient,
 	})
 	if err != nil {
-		return nil, nil, err
+		return nil, nil, nil, err
 	}
 
 	switch v := result.(type) {
 
 	case *PartialUpdatePolicyOK:
-		return v, nil, nil
+		return v, nil, nil, nil
 
 	case *PartialUpdatePolicyBadRequest:
-		return nil, v, nil
+		return nil, v, nil, nil
+
+	case *PartialUpdatePolicyNotFound:
+		return nil, nil, v, nil
 
 	default:
-		return nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+		return nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
@@ -245,6 +253,8 @@ func (a *Client) PartialUpdatePolicyShort(params *PartialUpdatePolicyParams, aut
 	case *PartialUpdatePolicyOK:
 		return v, nil
 	case *PartialUpdatePolicyBadRequest:
+		return nil, v
+	case *PartialUpdatePolicyNotFound:
 		return nil, v
 
 	default:

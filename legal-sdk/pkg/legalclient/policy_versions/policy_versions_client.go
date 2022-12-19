@@ -35,11 +35,11 @@ type Client struct {
 type ClientService interface {
 	CreatePolicyVersion(params *CreatePolicyVersionParams, authInfo runtime.ClientAuthInfoWriter) (*CreatePolicyVersionCreated, *CreatePolicyVersionBadRequest, error)
 	CreatePolicyVersionShort(params *CreatePolicyVersionParams, authInfo runtime.ClientAuthInfoWriter) (*CreatePolicyVersionCreated, error)
-	PublishPolicyVersion(params *PublishPolicyVersionParams, authInfo runtime.ClientAuthInfoWriter) (*PublishPolicyVersionOK, *PublishPolicyVersionBadRequest, error)
+	PublishPolicyVersion(params *PublishPolicyVersionParams, authInfo runtime.ClientAuthInfoWriter) (*PublishPolicyVersionOK, *PublishPolicyVersionBadRequest, *PublishPolicyVersionConflict, error)
 	PublishPolicyVersionShort(params *PublishPolicyVersionParams, authInfo runtime.ClientAuthInfoWriter) (*PublishPolicyVersionOK, error)
 	RetrieveSinglePolicyVersion(params *RetrieveSinglePolicyVersionParams, authInfo runtime.ClientAuthInfoWriter) (*RetrieveSinglePolicyVersionOK, *RetrieveSinglePolicyVersionNotFound, error)
 	RetrieveSinglePolicyVersionShort(params *RetrieveSinglePolicyVersionParams, authInfo runtime.ClientAuthInfoWriter) (*RetrieveSinglePolicyVersionOK, error)
-	UpdatePolicyVersion(params *UpdatePolicyVersionParams, authInfo runtime.ClientAuthInfoWriter) (*UpdatePolicyVersionOK, *UpdatePolicyVersionBadRequest, error)
+	UpdatePolicyVersion(params *UpdatePolicyVersionParams, authInfo runtime.ClientAuthInfoWriter) (*UpdatePolicyVersionOK, *UpdatePolicyVersionBadRequest, *UpdatePolicyVersionConflict, error)
 	UpdatePolicyVersionShort(params *UpdatePolicyVersionParams, authInfo runtime.ClientAuthInfoWriter) (*UpdatePolicyVersionOK, error)
 
 	SetTransport(transport runtime.ClientTransport)
@@ -151,7 +151,7 @@ Deprecated: Use PublishPolicyVersionShort instead.
 
   Manually publish a version of a particular country-specific policy.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:*:LEGAL&#34;, action=4 (UPDATE)&lt;/li&gt;&lt;/ul&gt;
 */
-func (a *Client) PublishPolicyVersion(params *PublishPolicyVersionParams, authInfo runtime.ClientAuthInfoWriter) (*PublishPolicyVersionOK, *PublishPolicyVersionBadRequest, error) {
+func (a *Client) PublishPolicyVersion(params *PublishPolicyVersionParams, authInfo runtime.ClientAuthInfoWriter) (*PublishPolicyVersionOK, *PublishPolicyVersionBadRequest, *PublishPolicyVersionConflict, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewPublishPolicyVersionParams()
@@ -179,19 +179,22 @@ func (a *Client) PublishPolicyVersion(params *PublishPolicyVersionParams, authIn
 		Client:             params.HTTPClient,
 	})
 	if err != nil {
-		return nil, nil, err
+		return nil, nil, nil, err
 	}
 
 	switch v := result.(type) {
 
 	case *PublishPolicyVersionOK:
-		return v, nil, nil
+		return v, nil, nil, nil
 
 	case *PublishPolicyVersionBadRequest:
-		return nil, v, nil
+		return nil, v, nil, nil
+
+	case *PublishPolicyVersionConflict:
+		return nil, nil, v, nil
 
 	default:
-		return nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+		return nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
@@ -236,6 +239,8 @@ func (a *Client) PublishPolicyVersionShort(params *PublishPolicyVersionParams, a
 	case *PublishPolicyVersionOK:
 		return v, nil
 	case *PublishPolicyVersionBadRequest:
+		return nil, v
+	case *PublishPolicyVersionConflict:
 		return nil, v
 
 	default:
@@ -349,7 +354,7 @@ Deprecated: Use UpdatePolicyVersionShort instead.
 
   Update a particular policy version.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:*:LEGAL&#34;, action=4 (UPDATE)&lt;/li&gt;&lt;/ul&gt;
 */
-func (a *Client) UpdatePolicyVersion(params *UpdatePolicyVersionParams, authInfo runtime.ClientAuthInfoWriter) (*UpdatePolicyVersionOK, *UpdatePolicyVersionBadRequest, error) {
+func (a *Client) UpdatePolicyVersion(params *UpdatePolicyVersionParams, authInfo runtime.ClientAuthInfoWriter) (*UpdatePolicyVersionOK, *UpdatePolicyVersionBadRequest, *UpdatePolicyVersionConflict, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewUpdatePolicyVersionParams()
@@ -377,19 +382,22 @@ func (a *Client) UpdatePolicyVersion(params *UpdatePolicyVersionParams, authInfo
 		Client:             params.HTTPClient,
 	})
 	if err != nil {
-		return nil, nil, err
+		return nil, nil, nil, err
 	}
 
 	switch v := result.(type) {
 
 	case *UpdatePolicyVersionOK:
-		return v, nil, nil
+		return v, nil, nil, nil
 
 	case *UpdatePolicyVersionBadRequest:
-		return nil, v, nil
+		return nil, v, nil, nil
+
+	case *UpdatePolicyVersionConflict:
+		return nil, nil, v, nil
 
 	default:
-		return nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+		return nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
@@ -434,6 +442,8 @@ func (a *Client) UpdatePolicyVersionShort(params *UpdatePolicyVersionParams, aut
 	case *UpdatePolicyVersionOK:
 		return v, nil
 	case *UpdatePolicyVersionBadRequest:
+		return nil, v
+	case *UpdatePolicyVersionConflict:
 		return nil, v
 
 	default:

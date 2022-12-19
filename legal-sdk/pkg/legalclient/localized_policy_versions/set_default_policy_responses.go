@@ -10,12 +10,16 @@ package localized_policy_versions
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
+	"io"
 	"io/ioutil"
 	"strings"
 
 	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/strfmt"
+
+	"github.com/AccelByte/accelbyte-go-sdk/legal-sdk/pkg/legalclientmodels"
 )
 
 // SetDefaultPolicyReader is a Reader for the SetDefaultPolicy structure.
@@ -28,6 +32,12 @@ func (o *SetDefaultPolicyReader) ReadResponse(response runtime.ClientResponse, c
 	switch response.Code() {
 	case 200:
 		result := NewSetDefaultPolicyOK()
+		if err := result.readResponse(response, consumer, o.formats); err != nil {
+			return nil, err
+		}
+		return result, nil
+	case 400:
+		result := NewSetDefaultPolicyBadRequest()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
@@ -50,7 +60,7 @@ func NewSetDefaultPolicyOK() *SetDefaultPolicyOK {
 
 /*SetDefaultPolicyOK handles this case with default header values.
 
-  successful operation
+  Successful operation
 */
 type SetDefaultPolicyOK struct {
 }
@@ -64,6 +74,59 @@ func (o *SetDefaultPolicyOK) readResponse(response runtime.ClientResponse, consu
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
 		consumer = runtime.ByteStreamConsumer()
+	}
+
+	return nil
+}
+
+// NewSetDefaultPolicyBadRequest creates a SetDefaultPolicyBadRequest with default headers values
+func NewSetDefaultPolicyBadRequest() *SetDefaultPolicyBadRequest {
+	return &SetDefaultPolicyBadRequest{}
+}
+
+/*SetDefaultPolicyBadRequest handles this case with default header values.
+
+  <table><tr><td>NumericErrorCode</td><td>ErrorCode</td></tr><tr><td>40035</td><td>errors.net.accelbyte.platform.legal.invalid_localize_policy_version</td></tr></table>
+*/
+type SetDefaultPolicyBadRequest struct {
+	Payload *legalclientmodels.ErrorEntity
+}
+
+func (o *SetDefaultPolicyBadRequest) Error() string {
+	return fmt.Sprintf("[PATCH /agreement/admin/localized-policy-versions/{localizedPolicyVersionId}/default][%d] setDefaultPolicyBadRequest  %+v", 400, o.ToJSONString())
+}
+
+func (o *SetDefaultPolicyBadRequest) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
+}
+
+func (o *SetDefaultPolicyBadRequest) GetPayload() *legalclientmodels.ErrorEntity {
+	return o.Payload
+}
+
+func (o *SetDefaultPolicyBadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+	// handle file responses
+	contentDisposition := response.GetHeader("Content-Disposition")
+	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
+		consumer = runtime.ByteStreamConsumer()
+	}
+
+	o.Payload = new(legalclientmodels.ErrorEntity)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
 	}
 
 	return nil

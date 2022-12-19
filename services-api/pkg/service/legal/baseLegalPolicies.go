@@ -59,9 +59,12 @@ func (aaa *BaseLegalPoliciesService) CreatePolicy(input *base_legal_policies.Cre
 	if err != nil {
 		return nil, err
 	}
-	created, conflict, unprocessableEntity, err := aaa.Client.BaseLegalPolicies.CreatePolicy(input, client.BearerToken(*token.AccessToken))
-	if conflict != nil {
-		return nil, conflict
+	created, badRequest, notFound, unprocessableEntity, err := aaa.Client.BaseLegalPolicies.CreatePolicy(input, client.BearerToken(*token.AccessToken))
+	if badRequest != nil {
+		return nil, badRequest
+	}
+	if notFound != nil {
+		return nil, notFound
 	}
 	if unprocessableEntity != nil {
 		return nil, unprocessableEntity
@@ -96,9 +99,12 @@ func (aaa *BaseLegalPoliciesService) PartialUpdatePolicy(input *base_legal_polic
 	if err != nil {
 		return nil, err
 	}
-	ok, badRequest, err := aaa.Client.BaseLegalPolicies.PartialUpdatePolicy(input, client.BearerToken(*token.AccessToken))
+	ok, badRequest, notFound, err := aaa.Client.BaseLegalPolicies.PartialUpdatePolicy(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
+	}
+	if notFound != nil {
+		return nil, notFound
 	}
 	if err != nil {
 		return nil, err

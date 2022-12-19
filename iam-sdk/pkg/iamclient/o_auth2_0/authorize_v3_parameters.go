@@ -143,6 +143,11 @@ type AuthorizeV3Params struct {
 
 	*/
 	CreateHeadless *bool
+	/*OneTimeLinkCode
+	  One time link code for headless account to link. Can get from [/iam/v3/link/code/request]
+
+	*/
+	OneTimeLinkCode *string
 	/*RedirectURI
 	  Redirect URI registered for requesting client. Required if client registered with multiple redirect URI. Registered redirect uri will be assigned if left empty.
 
@@ -271,6 +276,17 @@ func (o *AuthorizeV3Params) SetCreateHeadless(createHeadless *bool) {
 	o.CreateHeadless = createHeadless
 }
 
+// WithOneTimeLinkCode adds the oneTimeLinkCode to the authorize v3 params
+func (o *AuthorizeV3Params) WithOneTimeLinkCode(oneTimeLinkCode *string) *AuthorizeV3Params {
+	o.SetOneTimeLinkCode(oneTimeLinkCode)
+	return o
+}
+
+// SetOneTimeLinkCode adds the oneTimeLinkCode to the authorize v3 params
+func (o *AuthorizeV3Params) SetOneTimeLinkCode(oneTimeLinkCode *string) {
+	o.OneTimeLinkCode = oneTimeLinkCode
+}
+
 // WithRedirectURI adds the redirectURI to the authorize v3 params
 func (o *AuthorizeV3Params) WithRedirectURI(redirectURI *string) *AuthorizeV3Params {
 	o.SetRedirectURI(redirectURI)
@@ -396,6 +412,22 @@ func (o *AuthorizeV3Params) WriteToRequest(r runtime.ClientRequest, reg strfmt.R
 		qCreateHeadless := swag.FormatBool(qrCreateHeadless)
 		if qCreateHeadless != "" {
 			if err := r.SetQueryParam("createHeadless", qCreateHeadless); err != nil {
+				return err
+			}
+		}
+
+	}
+
+	if o.OneTimeLinkCode != nil {
+
+		// query param oneTimeLinkCode
+		var qrOneTimeLinkCode string
+		if o.OneTimeLinkCode != nil {
+			qrOneTimeLinkCode = *o.OneTimeLinkCode
+		}
+		qOneTimeLinkCode := qrOneTimeLinkCode
+		if qOneTimeLinkCode != "" {
+			if err := r.SetQueryParam("oneTimeLinkCode", qOneTimeLinkCode); err != nil {
 				return err
 			}
 		}

@@ -36,8 +36,14 @@ func (o *CreatePolicyReader) ReadResponse(response runtime.ClientResponse, consu
 			return nil, err
 		}
 		return result, nil
-	case 409:
-		result := NewCreatePolicyConflict()
+	case 400:
+		result := NewCreatePolicyBadRequest()
+		if err := result.readResponse(response, consumer, o.formats); err != nil {
+			return nil, err
+		}
+		return result, nil
+	case 404:
+		result := NewCreatePolicyNotFound()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
@@ -112,24 +118,24 @@ func (o *CreatePolicyCreated) readResponse(response runtime.ClientResponse, cons
 	return nil
 }
 
-// NewCreatePolicyConflict creates a CreatePolicyConflict with default headers values
-func NewCreatePolicyConflict() *CreatePolicyConflict {
-	return &CreatePolicyConflict{}
+// NewCreatePolicyBadRequest creates a CreatePolicyBadRequest with default headers values
+func NewCreatePolicyBadRequest() *CreatePolicyBadRequest {
+	return &CreatePolicyBadRequest{}
 }
 
-/*CreatePolicyConflict handles this case with default header values.
+/*CreatePolicyBadRequest handles this case with default header values.
 
-  <table><tr><td>NumericErrorCode</td><td>ErrorCode</td></tr><tr><td>40030</td><td>errors.net.accelbyte.platform.legal.invalid_policy_type</td></tr></table>
+  <table><tr><td>NumericErrorCode</td><td>ErrorCode</td></tr><tr><td>40038</td><td>errors.net.accelbyte.platform.legal.invalid_affected_client_id</td></tr></table>
 */
-type CreatePolicyConflict struct {
+type CreatePolicyBadRequest struct {
 	Payload *legalclientmodels.ErrorEntity
 }
 
-func (o *CreatePolicyConflict) Error() string {
-	return fmt.Sprintf("[POST /agreement/admin/base-policies][%d] createPolicyConflict  %+v", 409, o.ToJSONString())
+func (o *CreatePolicyBadRequest) Error() string {
+	return fmt.Sprintf("[POST /agreement/admin/base-policies][%d] createPolicyBadRequest  %+v", 400, o.ToJSONString())
 }
 
-func (o *CreatePolicyConflict) ToJSONString() string {
+func (o *CreatePolicyBadRequest) ToJSONString() string {
 	if o.Payload == nil {
 		return "{}"
 	}
@@ -144,11 +150,64 @@ func (o *CreatePolicyConflict) ToJSONString() string {
 	return fmt.Sprintf("%+v", string(b))
 }
 
-func (o *CreatePolicyConflict) GetPayload() *legalclientmodels.ErrorEntity {
+func (o *CreatePolicyBadRequest) GetPayload() *legalclientmodels.ErrorEntity {
 	return o.Payload
 }
 
-func (o *CreatePolicyConflict) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+func (o *CreatePolicyBadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+	// handle file responses
+	contentDisposition := response.GetHeader("Content-Disposition")
+	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
+		consumer = runtime.ByteStreamConsumer()
+	}
+
+	o.Payload = new(legalclientmodels.ErrorEntity)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
+	}
+
+	return nil
+}
+
+// NewCreatePolicyNotFound creates a CreatePolicyNotFound with default headers values
+func NewCreatePolicyNotFound() *CreatePolicyNotFound {
+	return &CreatePolicyNotFound{}
+}
+
+/*CreatePolicyNotFound handles this case with default header values.
+
+  <table><tr><td>NumericErrorCode</td><td>ErrorCode</td></tr><tr><td>40030</td><td>errors.net.accelbyte.platform.legal.policy_type_not_exist</td></tr></table>
+*/
+type CreatePolicyNotFound struct {
+	Payload *legalclientmodels.ErrorEntity
+}
+
+func (o *CreatePolicyNotFound) Error() string {
+	return fmt.Sprintf("[POST /agreement/admin/base-policies][%d] createPolicyNotFound  %+v", 404, o.ToJSONString())
+}
+
+func (o *CreatePolicyNotFound) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
+}
+
+func (o *CreatePolicyNotFound) GetPayload() *legalclientmodels.ErrorEntity {
+	return o.Payload
+}
+
+func (o *CreatePolicyNotFound) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {

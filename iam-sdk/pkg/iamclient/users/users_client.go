@@ -113,6 +113,8 @@ type ClientService interface {
 	AdminPlatformUnlinkV3Short(params *AdminPlatformUnlinkV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminPlatformUnlinkV3NoContent, error)
 	AdminPutUserRolesV2(params *AdminPutUserRolesV2Params, authInfo runtime.ClientAuthInfoWriter) (*AdminPutUserRolesV2NoContent, *AdminPutUserRolesV2BadRequest, *AdminPutUserRolesV2Unauthorized, *AdminPutUserRolesV2Forbidden, *AdminPutUserRolesV2NotFound, error)
 	AdminPutUserRolesV2Short(params *AdminPutUserRolesV2Params, authInfo runtime.ClientAuthInfoWriter) (*AdminPutUserRolesV2NoContent, error)
+	AdminQueryThirdPlatformLinkHistoryV3(params *AdminQueryThirdPlatformLinkHistoryV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminQueryThirdPlatformLinkHistoryV3OK, *AdminQueryThirdPlatformLinkHistoryV3BadRequest, *AdminQueryThirdPlatformLinkHistoryV3Unauthorized, *AdminQueryThirdPlatformLinkHistoryV3Forbidden, *AdminQueryThirdPlatformLinkHistoryV3InternalServerError, error)
+	AdminQueryThirdPlatformLinkHistoryV3Short(params *AdminQueryThirdPlatformLinkHistoryV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminQueryThirdPlatformLinkHistoryV3OK, error)
 	AdminResetPasswordV2(params *AdminResetPasswordV2Params, authInfo runtime.ClientAuthInfoWriter) (*AdminResetPasswordV2NoContent, *AdminResetPasswordV2BadRequest, *AdminResetPasswordV2Unauthorized, *AdminResetPasswordV2Forbidden, *AdminResetPasswordV2NotFound, *AdminResetPasswordV2InternalServerError, error)
 	AdminResetPasswordV2Short(params *AdminResetPasswordV2Params, authInfo runtime.ClientAuthInfoWriter) (*AdminResetPasswordV2NoContent, error)
 	AdminResetPasswordV3(params *AdminResetPasswordV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminResetPasswordV3NoContent, *AdminResetPasswordV3BadRequest, *AdminResetPasswordV3Unauthorized, *AdminResetPasswordV3Forbidden, *AdminResetPasswordV3NotFound, *AdminResetPasswordV3InternalServerError, error)
@@ -207,6 +209,8 @@ type ClientService interface {
 	GetUserPlatformAccountsShort(params *GetUserPlatformAccountsParams, authInfo runtime.ClientAuthInfoWriter) (*GetUserPlatformAccountsOK, error)
 	GetUsersByLoginIds(params *GetUsersByLoginIdsParams, authInfo runtime.ClientAuthInfoWriter) (*GetUsersByLoginIdsOK, *GetUsersByLoginIdsBadRequest, *GetUsersByLoginIdsUnauthorized, *GetUsersByLoginIdsForbidden, error)
 	GetUsersByLoginIdsShort(params *GetUsersByLoginIdsParams, authInfo runtime.ClientAuthInfoWriter) (*GetUsersByLoginIdsOK, error)
+	LinkHeadlessAccountToMyAccountV3(params *LinkHeadlessAccountToMyAccountV3Params, authInfo runtime.ClientAuthInfoWriter) (*LinkHeadlessAccountToMyAccountV3NoContent, *LinkHeadlessAccountToMyAccountV3BadRequest, *LinkHeadlessAccountToMyAccountV3Unauthorized, *LinkHeadlessAccountToMyAccountV3Forbidden, *LinkHeadlessAccountToMyAccountV3InternalServerError, error)
+	LinkHeadlessAccountToMyAccountV3Short(params *LinkHeadlessAccountToMyAccountV3Params, authInfo runtime.ClientAuthInfoWriter) (*LinkHeadlessAccountToMyAccountV3NoContent, error)
 	ListAdminsV3(params *ListAdminsV3Params, authInfo runtime.ClientAuthInfoWriter) (*ListAdminsV3OK, *ListAdminsV3Unauthorized, *ListAdminsV3Forbidden, *ListAdminsV3InternalServerError, error)
 	ListAdminsV3Short(params *ListAdminsV3Params, authInfo runtime.ClientAuthInfoWriter) (*ListAdminsV3OK, error)
 	ListCrossNamespaceAccountLink(params *ListCrossNamespaceAccountLinkParams, authInfo runtime.ClientAuthInfoWriter) (*ListCrossNamespaceAccountLinkOK, *ListCrossNamespaceAccountLinkBadRequest, *ListCrossNamespaceAccountLinkUnauthorized, *ListCrossNamespaceAccountLinkForbidden, *ListCrossNamespaceAccountLinkNotFound, error)
@@ -239,6 +243,8 @@ type ClientService interface {
 	PublicGetCountryAgeRestrictionShort(params *PublicGetCountryAgeRestrictionParams, authInfo runtime.ClientAuthInfoWriter) (*PublicGetCountryAgeRestrictionOK, error)
 	PublicGetCountryAgeRestrictionV3(params *PublicGetCountryAgeRestrictionV3Params, authInfo runtime.ClientAuthInfoWriter) (*PublicGetCountryAgeRestrictionV3OK, *PublicGetCountryAgeRestrictionV3Unauthorized, *PublicGetCountryAgeRestrictionV3NotFound, error)
 	PublicGetCountryAgeRestrictionV3Short(params *PublicGetCountryAgeRestrictionV3Params, authInfo runtime.ClientAuthInfoWriter) (*PublicGetCountryAgeRestrictionV3OK, error)
+	PublicGetLinkHeadlessAccountToMyAccountConflictV3(params *PublicGetLinkHeadlessAccountToMyAccountConflictV3Params, authInfo runtime.ClientAuthInfoWriter) (*PublicGetLinkHeadlessAccountToMyAccountConflictV3OK, *PublicGetLinkHeadlessAccountToMyAccountConflictV3BadRequest, *PublicGetLinkHeadlessAccountToMyAccountConflictV3Unauthorized, *PublicGetLinkHeadlessAccountToMyAccountConflictV3Forbidden, *PublicGetLinkHeadlessAccountToMyAccountConflictV3InternalServerError, error)
+	PublicGetLinkHeadlessAccountToMyAccountConflictV3Short(params *PublicGetLinkHeadlessAccountToMyAccountConflictV3Params, authInfo runtime.ClientAuthInfoWriter) (*PublicGetLinkHeadlessAccountToMyAccountConflictV3OK, error)
 	PublicGetMyUserV3(params *PublicGetMyUserV3Params, authInfo runtime.ClientAuthInfoWriter) (*PublicGetMyUserV3OK, *PublicGetMyUserV3Unauthorized, *PublicGetMyUserV3InternalServerError, error)
 	PublicGetMyUserV3Short(params *PublicGetMyUserV3Params, authInfo runtime.ClientAuthInfoWriter) (*PublicGetMyUserV3OK, error)
 	PublicGetPublisherUserV3(params *PublicGetPublisherUserV3Params, authInfo runtime.ClientAuthInfoWriter) (*PublicGetPublisherUserV3OK, *PublicGetPublisherUserV3BadRequest, *PublicGetPublisherUserV3Unauthorized, *PublicGetPublisherUserV3Forbidden, *PublicGetPublisherUserV3NotFound, error)
@@ -5532,6 +5538,124 @@ func (a *Client) AdminPutUserRolesV2Short(params *AdminPutUserRolesV2Params, aut
 	case *AdminPutUserRolesV2Forbidden:
 		return nil, v
 	case *AdminPutUserRolesV2NotFound:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+Deprecated: Use AdminQueryThirdPlatformLinkHistoryV3Short instead.
+
+  AdminQueryThirdPlatformLinkHistoryV3 searches linking history of the query platform with platform user id
+
+  &lt;p&gt;Required permission ADMIN:NAMESPACE:{namespace}:USER [READ]&lt;/p&gt;
+               &lt;li&gt;if limit is not defined, The default limit is 100&lt;/li&gt;
+&lt;/ul&gt;&lt;/p&gt;
+*/
+func (a *Client) AdminQueryThirdPlatformLinkHistoryV3(params *AdminQueryThirdPlatformLinkHistoryV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminQueryThirdPlatformLinkHistoryV3OK, *AdminQueryThirdPlatformLinkHistoryV3BadRequest, *AdminQueryThirdPlatformLinkHistoryV3Unauthorized, *AdminQueryThirdPlatformLinkHistoryV3Forbidden, *AdminQueryThirdPlatformLinkHistoryV3InternalServerError, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewAdminQueryThirdPlatformLinkHistoryV3Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "AdminQueryThirdPlatformLinkHistoryV3",
+		Method:             "GET",
+		PathPattern:        "/iam/v3/admin/namespaces/{namespace}/users/linkhistories",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &AdminQueryThirdPlatformLinkHistoryV3Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, nil, nil, nil, nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *AdminQueryThirdPlatformLinkHistoryV3OK:
+		return v, nil, nil, nil, nil, nil
+
+	case *AdminQueryThirdPlatformLinkHistoryV3BadRequest:
+		return nil, v, nil, nil, nil, nil
+
+	case *AdminQueryThirdPlatformLinkHistoryV3Unauthorized:
+		return nil, nil, v, nil, nil, nil
+
+	case *AdminQueryThirdPlatformLinkHistoryV3Forbidden:
+		return nil, nil, nil, v, nil, nil
+
+	case *AdminQueryThirdPlatformLinkHistoryV3InternalServerError:
+		return nil, nil, nil, nil, v, nil
+
+	default:
+		return nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+  AdminQueryThirdPlatformLinkHistoryV3Short searches linking history of the query platform with platform user id
+
+  &lt;p&gt;Required permission ADMIN:NAMESPACE:{namespace}:USER [READ]&lt;/p&gt;
+               &lt;li&gt;if limit is not defined, The default limit is 100&lt;/li&gt;
+&lt;/ul&gt;&lt;/p&gt;
+*/
+func (a *Client) AdminQueryThirdPlatformLinkHistoryV3Short(params *AdminQueryThirdPlatformLinkHistoryV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminQueryThirdPlatformLinkHistoryV3OK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewAdminQueryThirdPlatformLinkHistoryV3Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "AdminQueryThirdPlatformLinkHistoryV3",
+		Method:             "GET",
+		PathPattern:        "/iam/v3/admin/namespaces/{namespace}/users/linkhistories",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &AdminQueryThirdPlatformLinkHistoryV3Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *AdminQueryThirdPlatformLinkHistoryV3OK:
+		return v, nil
+	case *AdminQueryThirdPlatformLinkHistoryV3BadRequest:
+		return nil, v
+	case *AdminQueryThirdPlatformLinkHistoryV3Unauthorized:
+		return nil, v
+	case *AdminQueryThirdPlatformLinkHistoryV3Forbidden:
+		return nil, v
+	case *AdminQueryThirdPlatformLinkHistoryV3InternalServerError:
 		return nil, v
 
 	default:
@@ -11673,6 +11797,124 @@ func (a *Client) GetUsersByLoginIdsShort(params *GetUsersByLoginIdsParams, authI
 }
 
 /*
+Deprecated: Use LinkHeadlessAccountToMyAccountV3Short instead.
+
+  LinkHeadlessAccountToMyAccountV3 links headless account to current full account
+
+  Note:&lt;br&gt;
+1. My account should be full account
+2. My account not linked to headless account&#39;s third platform.
+*/
+func (a *Client) LinkHeadlessAccountToMyAccountV3(params *LinkHeadlessAccountToMyAccountV3Params, authInfo runtime.ClientAuthInfoWriter) (*LinkHeadlessAccountToMyAccountV3NoContent, *LinkHeadlessAccountToMyAccountV3BadRequest, *LinkHeadlessAccountToMyAccountV3Unauthorized, *LinkHeadlessAccountToMyAccountV3Forbidden, *LinkHeadlessAccountToMyAccountV3InternalServerError, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewLinkHeadlessAccountToMyAccountV3Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "LinkHeadlessAccountToMyAccountV3",
+		Method:             "POST",
+		PathPattern:        "/iam/v3/public/users/me/headless/linkWithProgression",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &LinkHeadlessAccountToMyAccountV3Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, nil, nil, nil, nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *LinkHeadlessAccountToMyAccountV3NoContent:
+		return v, nil, nil, nil, nil, nil
+
+	case *LinkHeadlessAccountToMyAccountV3BadRequest:
+		return nil, v, nil, nil, nil, nil
+
+	case *LinkHeadlessAccountToMyAccountV3Unauthorized:
+		return nil, nil, v, nil, nil, nil
+
+	case *LinkHeadlessAccountToMyAccountV3Forbidden:
+		return nil, nil, nil, v, nil, nil
+
+	case *LinkHeadlessAccountToMyAccountV3InternalServerError:
+		return nil, nil, nil, nil, v, nil
+
+	default:
+		return nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+  LinkHeadlessAccountToMyAccountV3Short links headless account to current full account
+
+  Note:&lt;br&gt;
+1. My account should be full account
+2. My account not linked to headless account&#39;s third platform.
+*/
+func (a *Client) LinkHeadlessAccountToMyAccountV3Short(params *LinkHeadlessAccountToMyAccountV3Params, authInfo runtime.ClientAuthInfoWriter) (*LinkHeadlessAccountToMyAccountV3NoContent, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewLinkHeadlessAccountToMyAccountV3Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "LinkHeadlessAccountToMyAccountV3",
+		Method:             "POST",
+		PathPattern:        "/iam/v3/public/users/me/headless/linkWithProgression",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &LinkHeadlessAccountToMyAccountV3Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *LinkHeadlessAccountToMyAccountV3NoContent:
+		return v, nil
+	case *LinkHeadlessAccountToMyAccountV3BadRequest:
+		return nil, v
+	case *LinkHeadlessAccountToMyAccountV3Unauthorized:
+		return nil, v
+	case *LinkHeadlessAccountToMyAccountV3Forbidden:
+		return nil, v
+	case *LinkHeadlessAccountToMyAccountV3InternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
 Deprecated: Use ListAdminsV3Short instead.
 
   ListAdminsV3 lists user admins
@@ -13800,6 +14042,124 @@ func (a *Client) PublicGetCountryAgeRestrictionV3Short(params *PublicGetCountryA
 	case *PublicGetCountryAgeRestrictionV3Unauthorized:
 		return nil, v
 	case *PublicGetCountryAgeRestrictionV3NotFound:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+Deprecated: Use PublicGetLinkHeadlessAccountToMyAccountConflictV3Short instead.
+
+  PublicGetLinkHeadlessAccountToMyAccountConflictV3 gets conflict result when link headless account to current full account by one time code
+
+  Note:&lt;br&gt;
+1. My account should be full account
+2. My account not linked to request headless account&#39;s third platform.
+*/
+func (a *Client) PublicGetLinkHeadlessAccountToMyAccountConflictV3(params *PublicGetLinkHeadlessAccountToMyAccountConflictV3Params, authInfo runtime.ClientAuthInfoWriter) (*PublicGetLinkHeadlessAccountToMyAccountConflictV3OK, *PublicGetLinkHeadlessAccountToMyAccountConflictV3BadRequest, *PublicGetLinkHeadlessAccountToMyAccountConflictV3Unauthorized, *PublicGetLinkHeadlessAccountToMyAccountConflictV3Forbidden, *PublicGetLinkHeadlessAccountToMyAccountConflictV3InternalServerError, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewPublicGetLinkHeadlessAccountToMyAccountConflictV3Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "PublicGetLinkHeadlessAccountToMyAccountConflictV3",
+		Method:             "GET",
+		PathPattern:        "/iam/v3/public/users/me/headless/link/conflict",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &PublicGetLinkHeadlessAccountToMyAccountConflictV3Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, nil, nil, nil, nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *PublicGetLinkHeadlessAccountToMyAccountConflictV3OK:
+		return v, nil, nil, nil, nil, nil
+
+	case *PublicGetLinkHeadlessAccountToMyAccountConflictV3BadRequest:
+		return nil, v, nil, nil, nil, nil
+
+	case *PublicGetLinkHeadlessAccountToMyAccountConflictV3Unauthorized:
+		return nil, nil, v, nil, nil, nil
+
+	case *PublicGetLinkHeadlessAccountToMyAccountConflictV3Forbidden:
+		return nil, nil, nil, v, nil, nil
+
+	case *PublicGetLinkHeadlessAccountToMyAccountConflictV3InternalServerError:
+		return nil, nil, nil, nil, v, nil
+
+	default:
+		return nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+  PublicGetLinkHeadlessAccountToMyAccountConflictV3Short gets conflict result when link headless account to current full account by one time code
+
+  Note:&lt;br&gt;
+1. My account should be full account
+2. My account not linked to request headless account&#39;s third platform.
+*/
+func (a *Client) PublicGetLinkHeadlessAccountToMyAccountConflictV3Short(params *PublicGetLinkHeadlessAccountToMyAccountConflictV3Params, authInfo runtime.ClientAuthInfoWriter) (*PublicGetLinkHeadlessAccountToMyAccountConflictV3OK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewPublicGetLinkHeadlessAccountToMyAccountConflictV3Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "PublicGetLinkHeadlessAccountToMyAccountConflictV3",
+		Method:             "GET",
+		PathPattern:        "/iam/v3/public/users/me/headless/link/conflict",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &PublicGetLinkHeadlessAccountToMyAccountConflictV3Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *PublicGetLinkHeadlessAccountToMyAccountConflictV3OK:
+		return v, nil
+	case *PublicGetLinkHeadlessAccountToMyAccountConflictV3BadRequest:
+		return nil, v
+	case *PublicGetLinkHeadlessAccountToMyAccountConflictV3Unauthorized:
+		return nil, v
+	case *PublicGetLinkHeadlessAccountToMyAccountConflictV3Forbidden:
+		return nil, v
+	case *PublicGetLinkHeadlessAccountToMyAccountConflictV3InternalServerError:
 		return nil, v
 
 	default:

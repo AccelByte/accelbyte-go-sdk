@@ -33,7 +33,7 @@ type Client struct {
 
 // ClientService is the interface for Client methods
 type ClientService interface {
-	AdminRetrieveEligibilities(params *AdminRetrieveEligibilitiesParams, authInfo runtime.ClientAuthInfoWriter) (*AdminRetrieveEligibilitiesOK, error)
+	AdminRetrieveEligibilities(params *AdminRetrieveEligibilitiesParams, authInfo runtime.ClientAuthInfoWriter) (*AdminRetrieveEligibilitiesOK, *AdminRetrieveEligibilitiesBadRequest, error)
 	AdminRetrieveEligibilitiesShort(params *AdminRetrieveEligibilitiesParams, authInfo runtime.ClientAuthInfoWriter) (*AdminRetrieveEligibilitiesOK, error)
 
 	SetTransport(transport runtime.ClientTransport)
@@ -46,7 +46,7 @@ Deprecated: Use AdminRetrieveEligibilitiesShort instead.
 
   Retrieve the active policies and its conformance status by userThis process only supports cross-namespace checking between game namespace and publisher namespace , that means if the active policy already accepted by the same user in publisher namespace, then it will also be considered as eligible in non-publisher namespace.&lt;br/&gt;&lt;br/&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:USER:{userId}:LEGAL&#34;, action=2 (READ)&lt;/li&gt;&lt;/ul&gt;
 */
-func (a *Client) AdminRetrieveEligibilities(params *AdminRetrieveEligibilitiesParams, authInfo runtime.ClientAuthInfoWriter) (*AdminRetrieveEligibilitiesOK, error) {
+func (a *Client) AdminRetrieveEligibilities(params *AdminRetrieveEligibilitiesParams, authInfo runtime.ClientAuthInfoWriter) (*AdminRetrieveEligibilitiesOK, *AdminRetrieveEligibilitiesBadRequest, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewAdminRetrieveEligibilitiesParams()
@@ -74,16 +74,19 @@ func (a *Client) AdminRetrieveEligibilities(params *AdminRetrieveEligibilitiesPa
 		Client:             params.HTTPClient,
 	})
 	if err != nil {
-		return nil, err
+		return nil, nil, err
 	}
 
 	switch v := result.(type) {
 
 	case *AdminRetrieveEligibilitiesOK:
-		return v, nil
+		return v, nil, nil
+
+	case *AdminRetrieveEligibilitiesBadRequest:
+		return nil, v, nil
 
 	default:
-		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+		return nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
@@ -127,6 +130,8 @@ func (a *Client) AdminRetrieveEligibilitiesShort(params *AdminRetrieveEligibilit
 
 	case *AdminRetrieveEligibilitiesOK:
 		return v, nil
+	case *AdminRetrieveEligibilitiesBadRequest:
+		return nil, v
 
 	default:
 		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))

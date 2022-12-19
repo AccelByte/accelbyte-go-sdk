@@ -45,7 +45,10 @@ func (aaa *AgreementService) ChangePreferenceConsent(input *agreement.ChangePref
 	if err != nil {
 		return err
 	}
-	_, err = aaa.Client.Agreement.ChangePreferenceConsent(input, client.BearerToken(*token.AccessToken))
+	_, notFound, err := aaa.Client.Agreement.ChangePreferenceConsent(input, client.BearerToken(*token.AccessToken))
+	if notFound != nil {
+		return notFound
+	}
 	if err != nil {
 		return err
 	}
@@ -107,7 +110,10 @@ func (aaa *AgreementService) AcceptVersionedPolicy(input *agreement.AcceptVersio
 	if err != nil {
 		return err
 	}
-	_, err = aaa.Client.Agreement.AcceptVersionedPolicy(input, client.BearerToken(*token.AccessToken))
+	_, badRequest, err := aaa.Client.Agreement.AcceptVersionedPolicy(input, client.BearerToken(*token.AccessToken))
+	if badRequest != nil {
+		return badRequest
+	}
 	if err != nil {
 		return err
 	}
@@ -121,7 +127,10 @@ func (aaa *AgreementService) RetrieveAgreementsPublic(input *agreement.RetrieveA
 	if err != nil {
 		return nil, err
 	}
-	ok, err := aaa.Client.Agreement.RetrieveAgreementsPublic(input, client.BearerToken(*token.AccessToken))
+	ok, badRequest, err := aaa.Client.Agreement.RetrieveAgreementsPublic(input, client.BearerToken(*token.AccessToken))
+	if badRequest != nil {
+		return nil, badRequest
+	}
 	if err != nil {
 		return nil, err
 	}
@@ -135,7 +144,10 @@ func (aaa *AgreementService) BulkAcceptVersionedPolicy(input *agreement.BulkAcce
 	if err != nil {
 		return nil, err
 	}
-	created, err := aaa.Client.Agreement.BulkAcceptVersionedPolicy(input, client.BearerToken(*token.AccessToken))
+	created, badRequest, err := aaa.Client.Agreement.BulkAcceptVersionedPolicy(input, client.BearerToken(*token.AccessToken))
+	if badRequest != nil {
+		return nil, badRequest
+	}
 	if err != nil {
 		return nil, err
 	}
@@ -163,7 +175,10 @@ func (aaa *AgreementService) IndirectBulkAcceptVersionedPolicy1(input *agreement
 	if err != nil {
 		return nil, err
 	}
-	created, err := aaa.Client.Agreement.IndirectBulkAcceptVersionedPolicy1(input, client.BearerToken(*token.AccessToken))
+	created, notFound, err := aaa.Client.Agreement.IndirectBulkAcceptVersionedPolicy1(input, client.BearerToken(*token.AccessToken))
+	if notFound != nil {
+		return nil, notFound
+	}
 	if err != nil {
 		return nil, err
 	}

@@ -10,12 +10,16 @@ package policies
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
+	"io"
 	"io/ioutil"
 	"strings"
 
 	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/strfmt"
+
+	"github.com/AccelByte/accelbyte-go-sdk/legal-sdk/pkg/legalclientmodels"
 )
 
 // SetDefaultPolicy1Reader is a Reader for the SetDefaultPolicy1 structure.
@@ -28,6 +32,12 @@ func (o *SetDefaultPolicy1Reader) ReadResponse(response runtime.ClientResponse, 
 	switch response.Code() {
 	case 200:
 		result := NewSetDefaultPolicy1OK()
+		if err := result.readResponse(response, consumer, o.formats); err != nil {
+			return nil, err
+		}
+		return result, nil
+	case 400:
+		result := NewSetDefaultPolicy1BadRequest()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
@@ -50,7 +60,7 @@ func NewSetDefaultPolicy1OK() *SetDefaultPolicy1OK {
 
 /*SetDefaultPolicy1OK handles this case with default header values.
 
-  successful operation
+  operation successful
 */
 type SetDefaultPolicy1OK struct {
 }
@@ -64,6 +74,59 @@ func (o *SetDefaultPolicy1OK) readResponse(response runtime.ClientResponse, cons
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
 		consumer = runtime.ByteStreamConsumer()
+	}
+
+	return nil
+}
+
+// NewSetDefaultPolicy1BadRequest creates a SetDefaultPolicy1BadRequest with default headers values
+func NewSetDefaultPolicy1BadRequest() *SetDefaultPolicy1BadRequest {
+	return &SetDefaultPolicy1BadRequest{}
+}
+
+/*SetDefaultPolicy1BadRequest handles this case with default header values.
+
+  <table><tr><td>NumericErrorCode</td><td>ErrorCode</td></tr><tr><td>40033</td><td>errors.net.accelbyte.platform.legal.invalid_policy_id</td></tr></table>
+*/
+type SetDefaultPolicy1BadRequest struct {
+	Payload *legalclientmodels.ErrorEntity
+}
+
+func (o *SetDefaultPolicy1BadRequest) Error() string {
+	return fmt.Sprintf("[PATCH /agreement/admin/policies/{policyId}/default][%d] setDefaultPolicy1BadRequest  %+v", 400, o.ToJSONString())
+}
+
+func (o *SetDefaultPolicy1BadRequest) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
+}
+
+func (o *SetDefaultPolicy1BadRequest) GetPayload() *legalclientmodels.ErrorEntity {
+	return o.Payload
+}
+
+func (o *SetDefaultPolicy1BadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+	// handle file responses
+	contentDisposition := response.GetHeader("Content-Disposition")
+	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
+		consumer = runtime.ByteStreamConsumer()
+	}
+
+	o.Payload = new(legalclientmodels.ErrorEntity)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
 	}
 
 	return nil

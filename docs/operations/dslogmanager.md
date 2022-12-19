@@ -4,6 +4,11 @@
 
 ## Operations
 
+### Admin Wrapper:  [Admin](../../services-api/pkg/service/dslogmanager/admin.go)
+| Endpoint | Method | ID | Class | Wrapper | Example |
+|---|---|---|---|---|---|
+| `/dslogmanager/admin/namespaces/{namespace}/servers/{podName}/logs` | GET | GetServerLogsShort | [GetServerLogsShort](../../dslogmanager-sdk/pkg/dslogmanagerclient/admin/admin_client.go) | [GetServerLogsShort](../../services-api/pkg/service/dslogmanager/admin.go) | [GetServerLogsShort](../../samples/cli/cmd/dslogmanager/admin/getServerLogs.go) |
+
 ### Terminated Servers Wrapper:  [TerminatedServers](../../services-api/pkg/service/dslogmanager/terminatedServers.go)
 | Endpoint | Method | ID | Class | Wrapper | Example |
 |---|---|---|---|---|---|
@@ -42,5 +47,6 @@
 | `models.RequestMatchParty` | [ModelsRequestMatchParty ](../../dslogmanager-sdk/pkg/dslogmanagerclientmodels/models_request_match_party.go) |
 | `models.RequestMatchingAlly` | [ModelsRequestMatchingAlly ](../../dslogmanager-sdk/pkg/dslogmanagerclientmodels/models_request_matching_ally.go) |
 | `models.Server` | [ModelsServer ](../../dslogmanager-sdk/pkg/dslogmanagerclientmodels/models_server.go) |
+| `models.ServerLogs` | [ModelsServerLogs ](../../dslogmanager-sdk/pkg/dslogmanagerclientmodels/models_server_logs.go) |
 | `models.StatusHistory` | [ModelsStatusHistory ](../../dslogmanager-sdk/pkg/dslogmanagerclientmodels/models_status_history.go) |
 | `response.Error` | [ResponseError ](../../dslogmanager-sdk/pkg/dslogmanagerclientmodels/response_error.go) |

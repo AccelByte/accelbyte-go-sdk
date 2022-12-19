@@ -10,12 +10,16 @@ package agreement
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
+	"io"
 	"io/ioutil"
 	"strings"
 
 	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/strfmt"
+
+	"github.com/AccelByte/accelbyte-go-sdk/legal-sdk/pkg/legalclientmodels"
 )
 
 // ChangePreferenceConsentReader is a Reader for the ChangePreferenceConsent structure.
@@ -28,6 +32,12 @@ func (o *ChangePreferenceConsentReader) ReadResponse(response runtime.ClientResp
 	switch response.Code() {
 	case 200:
 		result := NewChangePreferenceConsentOK()
+		if err := result.readResponse(response, consumer, o.formats); err != nil {
+			return nil, err
+		}
+		return result, nil
+	case 404:
+		result := NewChangePreferenceConsentNotFound()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
@@ -50,7 +60,7 @@ func NewChangePreferenceConsentOK() *ChangePreferenceConsentOK {
 
 /*ChangePreferenceConsentOK handles this case with default header values.
 
-  successful operation
+  operation successful
 */
 type ChangePreferenceConsentOK struct {
 }
@@ -64,6 +74,59 @@ func (o *ChangePreferenceConsentOK) readResponse(response runtime.ClientResponse
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
 		consumer = runtime.ByteStreamConsumer()
+	}
+
+	return nil
+}
+
+// NewChangePreferenceConsentNotFound creates a ChangePreferenceConsentNotFound with default headers values
+func NewChangePreferenceConsentNotFound() *ChangePreferenceConsentNotFound {
+	return &ChangePreferenceConsentNotFound{}
+}
+
+/*ChangePreferenceConsentNotFound handles this case with default header values.
+
+  <table><tr><td>NumericErrorCode</td><td>ErrorCode</td></tr><tr><td>40047</td><td>errors.net.accelbyte.platform.legal.user_agreement_not_found</td></tr></table>
+*/
+type ChangePreferenceConsentNotFound struct {
+	Payload *legalclientmodels.ErrorEntity
+}
+
+func (o *ChangePreferenceConsentNotFound) Error() string {
+	return fmt.Sprintf("[PATCH /agreement/admin/agreements/localized-policy-versions/preferences/namespaces/{namespace}/userId/{userId}][%d] changePreferenceConsentNotFound  %+v", 404, o.ToJSONString())
+}
+
+func (o *ChangePreferenceConsentNotFound) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
+}
+
+func (o *ChangePreferenceConsentNotFound) GetPayload() *legalclientmodels.ErrorEntity {
+	return o.Payload
+}
+
+func (o *ChangePreferenceConsentNotFound) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+	// handle file responses
+	contentDisposition := response.GetHeader("Content-Disposition")
+	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
+		consumer = runtime.ByteStreamConsumer()
+	}
+
+	o.Payload = new(legalclientmodels.ErrorEntity)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
 	}
 
 	return nil

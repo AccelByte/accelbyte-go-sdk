@@ -33,9 +33,9 @@ type Client struct {
 
 // ClientService is the interface for Client methods
 type ClientService interface {
-	RetrieveEligibilitiesPublic(params *RetrieveEligibilitiesPublicParams, authInfo runtime.ClientAuthInfoWriter) (*RetrieveEligibilitiesPublicOK, error)
+	RetrieveEligibilitiesPublic(params *RetrieveEligibilitiesPublicParams, authInfo runtime.ClientAuthInfoWriter) (*RetrieveEligibilitiesPublicOK, *RetrieveEligibilitiesPublicBadRequest, *RetrieveEligibilitiesPublicNotFound, error)
 	RetrieveEligibilitiesPublicShort(params *RetrieveEligibilitiesPublicParams, authInfo runtime.ClientAuthInfoWriter) (*RetrieveEligibilitiesPublicOK, error)
-	RetrieveEligibilitiesPublicIndirect(params *RetrieveEligibilitiesPublicIndirectParams, authInfo runtime.ClientAuthInfoWriter) (*RetrieveEligibilitiesPublicIndirectOK, error)
+	RetrieveEligibilitiesPublicIndirect(params *RetrieveEligibilitiesPublicIndirectParams, authInfo runtime.ClientAuthInfoWriter) (*RetrieveEligibilitiesPublicIndirectOK, *RetrieveEligibilitiesPublicIndirectBadRequest, error)
 	RetrieveEligibilitiesPublicIndirectShort(params *RetrieveEligibilitiesPublicIndirectParams, authInfo runtime.ClientAuthInfoWriter) (*RetrieveEligibilitiesPublicIndirectOK, error)
 
 	SetTransport(transport runtime.ClientTransport)
@@ -48,7 +48,7 @@ Deprecated: Use RetrieveEligibilitiesPublicShort instead.
 
   Retrieve the active policies and its conformance status by user.&lt;br&gt;This process supports cross-namespace checking, that means if the active policy already accepted by the same user in other namespace, then it will be considered as eligible.&lt;br/&gt;&lt;br/&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: login user&lt;/li&gt;&lt;/ul&gt;
 */
-func (a *Client) RetrieveEligibilitiesPublic(params *RetrieveEligibilitiesPublicParams, authInfo runtime.ClientAuthInfoWriter) (*RetrieveEligibilitiesPublicOK, error) {
+func (a *Client) RetrieveEligibilitiesPublic(params *RetrieveEligibilitiesPublicParams, authInfo runtime.ClientAuthInfoWriter) (*RetrieveEligibilitiesPublicOK, *RetrieveEligibilitiesPublicBadRequest, *RetrieveEligibilitiesPublicNotFound, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewRetrieveEligibilitiesPublicParams()
@@ -76,16 +76,22 @@ func (a *Client) RetrieveEligibilitiesPublic(params *RetrieveEligibilitiesPublic
 		Client:             params.HTTPClient,
 	})
 	if err != nil {
-		return nil, err
+		return nil, nil, nil, err
 	}
 
 	switch v := result.(type) {
 
 	case *RetrieveEligibilitiesPublicOK:
-		return v, nil
+		return v, nil, nil, nil
+
+	case *RetrieveEligibilitiesPublicBadRequest:
+		return nil, v, nil, nil
+
+	case *RetrieveEligibilitiesPublicNotFound:
+		return nil, nil, v, nil
 
 	default:
-		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+		return nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
@@ -129,6 +135,10 @@ func (a *Client) RetrieveEligibilitiesPublicShort(params *RetrieveEligibilitiesP
 
 	case *RetrieveEligibilitiesPublicOK:
 		return v, nil
+	case *RetrieveEligibilitiesPublicBadRequest:
+		return nil, v
+	case *RetrieveEligibilitiesPublicNotFound:
+		return nil, v
 
 	default:
 		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
@@ -142,7 +152,7 @@ Deprecated: Use RetrieveEligibilitiesPublicIndirectShort instead.
 
   Retrieve the active policies and its conformance status by userThis process only supports cross-namespace checking between game namespace and publisher namespace , that means if the active policy already accepted by the same user in publisher namespace, then it will also be considered as eligible in non-publisher namespace.&lt;br/&gt;&lt;br/&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: login user&lt;/li&gt;&lt;/ul&gt;
 */
-func (a *Client) RetrieveEligibilitiesPublicIndirect(params *RetrieveEligibilitiesPublicIndirectParams, authInfo runtime.ClientAuthInfoWriter) (*RetrieveEligibilitiesPublicIndirectOK, error) {
+func (a *Client) RetrieveEligibilitiesPublicIndirect(params *RetrieveEligibilitiesPublicIndirectParams, authInfo runtime.ClientAuthInfoWriter) (*RetrieveEligibilitiesPublicIndirectOK, *RetrieveEligibilitiesPublicIndirectBadRequest, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewRetrieveEligibilitiesPublicIndirectParams()
@@ -170,16 +180,19 @@ func (a *Client) RetrieveEligibilitiesPublicIndirect(params *RetrieveEligibiliti
 		Client:             params.HTTPClient,
 	})
 	if err != nil {
-		return nil, err
+		return nil, nil, err
 	}
 
 	switch v := result.(type) {
 
 	case *RetrieveEligibilitiesPublicIndirectOK:
-		return v, nil
+		return v, nil, nil
+
+	case *RetrieveEligibilitiesPublicIndirectBadRequest:
+		return nil, v, nil
 
 	default:
-		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+		return nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
@@ -223,6 +236,8 @@ func (a *Client) RetrieveEligibilitiesPublicIndirectShort(params *RetrieveEligib
 
 	case *RetrieveEligibilitiesPublicIndirectOK:
 		return v, nil
+	case *RetrieveEligibilitiesPublicIndirectBadRequest:
+		return nil, v
 
 	default:
 		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))

@@ -60,7 +60,7 @@ func NewAnonymizeUserAgreementNoContent() *AnonymizeUserAgreementNoContent {
 
 /*AnonymizeUserAgreementNoContent handles this case with default header values.
 
-  Anonymize successfully
+  successful anonymize
 */
 type AnonymizeUserAgreementNoContent struct {
 }
@@ -86,7 +86,7 @@ func NewAnonymizeUserAgreementNotFound() *AnonymizeUserAgreementNotFound {
 
 /*AnonymizeUserAgreementNotFound handles this case with default header values.
 
-  <table><tr><td>NumericErrorCode</td><td>ErrorCode</td></tr><tr><td>40047</td><td>errors.net.accelbyte.platform.legal.user_agreement_not_found</td></tr></table>
+  <table><tr><td>NumericErrorCode</td><td>ErrorCode</td></tr><tr><td>40045</td><td>errors.net.accelbyte.platform.legal.user_agreement_not_found</td></tr></table>
 */
 type AnonymizeUserAgreementNotFound struct {
 	Payload *legalclientmodels.ErrorEntity

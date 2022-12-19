@@ -36,6 +36,12 @@ func (o *RetrieveAgreementsPublicReader) ReadResponse(response runtime.ClientRes
 			return nil, err
 		}
 		return result, nil
+	case 400:
+		result := NewRetrieveAgreementsPublicBadRequest()
+		if err := result.readResponse(response, consumer, o.formats); err != nil {
+			return nil, err
+		}
+		return result, nil
 
 	default:
 		data, err := ioutil.ReadAll(response.Body())
@@ -92,6 +98,59 @@ func (o *RetrieveAgreementsPublicOK) readResponse(response runtime.ClientRespons
 
 	// response payload
 	if err := consumer.Consume(response.Body(), &o.Payload); err != nil && err != io.EOF {
+		return err
+	}
+
+	return nil
+}
+
+// NewRetrieveAgreementsPublicBadRequest creates a RetrieveAgreementsPublicBadRequest with default headers values
+func NewRetrieveAgreementsPublicBadRequest() *RetrieveAgreementsPublicBadRequest {
+	return &RetrieveAgreementsPublicBadRequest{}
+}
+
+/*RetrieveAgreementsPublicBadRequest handles this case with default header values.
+
+  <table><tr><td>ErrorCode</td><td>ErrorMessage</td></tr><tr><td>40045</td><td>errors.net.accelbyte.platform.legal.user_id_needed</td></tr></table>
+*/
+type RetrieveAgreementsPublicBadRequest struct {
+	Payload *legalclientmodels.ErrorEntity
+}
+
+func (o *RetrieveAgreementsPublicBadRequest) Error() string {
+	return fmt.Sprintf("[GET /agreement/public/agreements/policies][%d] retrieveAgreementsPublicBadRequest  %+v", 400, o.ToJSONString())
+}
+
+func (o *RetrieveAgreementsPublicBadRequest) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
+}
+
+func (o *RetrieveAgreementsPublicBadRequest) GetPayload() *legalclientmodels.ErrorEntity {
+	return o.Payload
+}
+
+func (o *RetrieveAgreementsPublicBadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+	// handle file responses
+	contentDisposition := response.GetHeader("Content-Disposition")
+	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
+		consumer = runtime.ByteStreamConsumer()
+	}
+
+	o.Payload = new(legalclientmodels.ErrorEntity)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
 		return err
 	}
 

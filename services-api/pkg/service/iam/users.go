@@ -1974,6 +1974,32 @@ func (aaa *UsersService) AdminInviteUserV3(input *users.AdminInviteUserV3Params)
 	return created.GetPayload(), nil
 }
 
+// Deprecated: Use AdminQueryThirdPlatformLinkHistoryV3Short instead
+func (aaa *UsersService) AdminQueryThirdPlatformLinkHistoryV3(input *users.AdminQueryThirdPlatformLinkHistoryV3Params) (*iamclientmodels.ModelLinkingHistoryResponseWithPaginationV3, error) {
+	token, err := aaa.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, badRequest, unauthorized, forbidden, internalServerError, err := aaa.Client.Users.AdminQueryThirdPlatformLinkHistoryV3(input, client.BearerToken(*token.AccessToken))
+	if badRequest != nil {
+		return nil, badRequest
+	}
+	if unauthorized != nil {
+		return nil, unauthorized
+	}
+	if forbidden != nil {
+		return nil, forbidden
+	}
+	if internalServerError != nil {
+		return nil, internalServerError
+	}
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
 // Deprecated: Use AdminListUsersV3Short instead
 func (aaa *UsersService) AdminListUsersV3(input *users.AdminListUsersV3Params) (*iamclientmodels.AccountcommonListUsersWithPlatformAccountsResponse, error) {
 	token, err := aaa.TokenRepository.GetToken()
@@ -3983,6 +4009,58 @@ func (aaa *UsersService) PublicGetMyUserV3(input *users.PublicGetMyUserV3Params)
 	return ok.GetPayload(), nil
 }
 
+// Deprecated: Use PublicGetLinkHeadlessAccountToMyAccountConflictV3Short instead
+func (aaa *UsersService) PublicGetLinkHeadlessAccountToMyAccountConflictV3(input *users.PublicGetLinkHeadlessAccountToMyAccountConflictV3Params) (*iamclientmodels.ModelGetLinkHeadlessAccountConflictResponse, error) {
+	token, err := aaa.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, badRequest, unauthorized, forbidden, internalServerError, err := aaa.Client.Users.PublicGetLinkHeadlessAccountToMyAccountConflictV3(input, client.BearerToken(*token.AccessToken))
+	if badRequest != nil {
+		return nil, badRequest
+	}
+	if unauthorized != nil {
+		return nil, unauthorized
+	}
+	if forbidden != nil {
+		return nil, forbidden
+	}
+	if internalServerError != nil {
+		return nil, internalServerError
+	}
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
+// Deprecated: Use LinkHeadlessAccountToMyAccountV3Short instead
+func (aaa *UsersService) LinkHeadlessAccountToMyAccountV3(input *users.LinkHeadlessAccountToMyAccountV3Params) error {
+	token, err := aaa.TokenRepository.GetToken()
+	if err != nil {
+		return err
+	}
+	_, badRequest, unauthorized, forbidden, internalServerError, err := aaa.Client.Users.LinkHeadlessAccountToMyAccountV3(input, client.BearerToken(*token.AccessToken))
+	if badRequest != nil {
+		return badRequest
+	}
+	if unauthorized != nil {
+		return unauthorized
+	}
+	if forbidden != nil {
+		return forbidden
+	}
+	if internalServerError != nil {
+		return internalServerError
+	}
+	if err != nil {
+		return err
+	}
+
+	return nil
+}
+
 // Deprecated: Use PublicSendVerificationLinkV3Short instead
 func (aaa *UsersService) PublicSendVerificationLinkV3(input *users.PublicSendVerificationLinkV3Params) error {
 	token, err := aaa.TokenRepository.GetToken()
@@ -5871,6 +5949,31 @@ func (aaa *UsersService) AdminInviteUserV3Short(input *users.AdminInviteUserV3Pa
 	}
 
 	return created.GetPayload(), nil
+}
+
+func (aaa *UsersService) AdminQueryThirdPlatformLinkHistoryV3Short(input *users.AdminQueryThirdPlatformLinkHistoryV3Params) (*iamclientmodels.ModelLinkingHistoryResponseWithPaginationV3, error) {
+	authInfoWriter := input.AuthInfoWriter
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
+	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  aaa.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
+	ok, err := aaa.Client.Users.AdminQueryThirdPlatformLinkHistoryV3Short(input, authInfoWriter)
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
 }
 
 func (aaa *UsersService) AdminListUsersV3Short(input *users.AdminListUsersV3Params) (*iamclientmodels.AccountcommonListUsersWithPlatformAccountsResponse, error) {
@@ -7771,6 +7874,56 @@ func (aaa *UsersService) PublicGetMyUserV3Short(input *users.PublicGetMyUserV3Pa
 	}
 
 	return ok.GetPayload(), nil
+}
+
+func (aaa *UsersService) PublicGetLinkHeadlessAccountToMyAccountConflictV3Short(input *users.PublicGetLinkHeadlessAccountToMyAccountConflictV3Params) (*iamclientmodels.ModelGetLinkHeadlessAccountConflictResponse, error) {
+	authInfoWriter := input.AuthInfoWriter
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
+	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  aaa.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
+	ok, err := aaa.Client.Users.PublicGetLinkHeadlessAccountToMyAccountConflictV3Short(input, authInfoWriter)
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
+func (aaa *UsersService) LinkHeadlessAccountToMyAccountV3Short(input *users.LinkHeadlessAccountToMyAccountV3Params) error {
+	authInfoWriter := input.AuthInfoWriter
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
+	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  aaa.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
+	_, err := aaa.Client.Users.LinkHeadlessAccountToMyAccountV3Short(input, authInfoWriter)
+	if err != nil {
+		return err
+	}
+
+	return nil
 }
 
 func (aaa *UsersService) PublicSendVerificationLinkV3Short(input *users.PublicSendVerificationLinkV3Params) error {

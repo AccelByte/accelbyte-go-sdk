@@ -79,9 +79,9 @@ func (aaa *LocalizedPolicyVersionsService) RetrieveSingleLocalizedPolicyVersion(
 	if err != nil {
 		return nil, err
 	}
-	ok, badRequest, err := aaa.Client.LocalizedPolicyVersions.RetrieveSingleLocalizedPolicyVersion(input, client.BearerToken(*token.AccessToken))
-	if badRequest != nil {
-		return nil, badRequest
+	ok, notFound, err := aaa.Client.LocalizedPolicyVersions.RetrieveSingleLocalizedPolicyVersion(input, client.BearerToken(*token.AccessToken))
+	if notFound != nil {
+		return nil, notFound
 	}
 	if err != nil {
 		return nil, err
@@ -130,7 +130,10 @@ func (aaa *LocalizedPolicyVersionsService) SetDefaultPolicy(input *localized_pol
 	if err != nil {
 		return err
 	}
-	_, err = aaa.Client.LocalizedPolicyVersions.SetDefaultPolicy(input, client.BearerToken(*token.AccessToken))
+	_, badRequest, err := aaa.Client.LocalizedPolicyVersions.SetDefaultPolicy(input, client.BearerToken(*token.AccessToken))
+	if badRequest != nil {
+		return badRequest
+	}
 	if err != nil {
 		return err
 	}

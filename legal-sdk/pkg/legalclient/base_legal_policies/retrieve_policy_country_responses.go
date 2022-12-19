@@ -113,7 +113,7 @@ func NewRetrievePolicyCountryNotFound() *RetrievePolicyCountryNotFound {
 
 /*RetrievePolicyCountryNotFound handles this case with default header values.
 
-  <table><tr><td>NumericErrorCode</td><td>ErrorCode</td></tr><tr><td>40031</td><td>errors.net.accelbyte.platform.legal.base_policy_not_found</td></tr></table>
+  <table><tr><td>NumericErrorCode</td><td>ErrorCode</td></tr><tr><td>40041</td><td>errors.net.accelbyte.platform.legal.policy_not_found</td></tr></table>
 */
 type RetrievePolicyCountryNotFound struct {
 	Payload *legalclientmodels.ErrorEntity

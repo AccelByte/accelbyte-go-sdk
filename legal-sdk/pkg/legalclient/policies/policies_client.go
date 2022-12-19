@@ -41,9 +41,9 @@ type ClientService interface {
 	RetrieveLatestPoliciesPublicShort(params *RetrieveLatestPoliciesPublicParams, authInfo runtime.ClientAuthInfoWriter) (*RetrieveLatestPoliciesPublicOK, error)
 	RetrievePolicies(params *RetrievePoliciesParams, authInfo runtime.ClientAuthInfoWriter) (*RetrievePoliciesOK, error)
 	RetrievePoliciesShort(params *RetrievePoliciesParams, authInfo runtime.ClientAuthInfoWriter) (*RetrievePoliciesOK, error)
-	SetDefaultPolicy1(params *SetDefaultPolicy1Params, authInfo runtime.ClientAuthInfoWriter) (*SetDefaultPolicy1OK, error)
+	SetDefaultPolicy1(params *SetDefaultPolicy1Params, authInfo runtime.ClientAuthInfoWriter) (*SetDefaultPolicy1OK, *SetDefaultPolicy1BadRequest, error)
 	SetDefaultPolicy1Short(params *SetDefaultPolicy1Params, authInfo runtime.ClientAuthInfoWriter) (*SetDefaultPolicy1OK, error)
-	UpdatePolicy(params *UpdatePolicyParams, authInfo runtime.ClientAuthInfoWriter) (*UpdatePolicyOK, error)
+	UpdatePolicy(params *UpdatePolicyParams, authInfo runtime.ClientAuthInfoWriter) (*UpdatePolicyOK, *UpdatePolicyBadRequest, error)
 	UpdatePolicyShort(params *UpdatePolicyParams, authInfo runtime.ClientAuthInfoWriter) (*UpdatePolicyOK, error)
 
 	SetTransport(transport runtime.ClientTransport)
@@ -433,7 +433,7 @@ Deprecated: Use SetDefaultPolicy1Short instead.
 
   Update a policy to be the default.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:*:LEGAL&#34;, action=4 (UPDATE)&lt;/li&gt;&lt;/ul&gt;
 */
-func (a *Client) SetDefaultPolicy1(params *SetDefaultPolicy1Params, authInfo runtime.ClientAuthInfoWriter) (*SetDefaultPolicy1OK, error) {
+func (a *Client) SetDefaultPolicy1(params *SetDefaultPolicy1Params, authInfo runtime.ClientAuthInfoWriter) (*SetDefaultPolicy1OK, *SetDefaultPolicy1BadRequest, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewSetDefaultPolicy1Params()
@@ -461,16 +461,19 @@ func (a *Client) SetDefaultPolicy1(params *SetDefaultPolicy1Params, authInfo run
 		Client:             params.HTTPClient,
 	})
 	if err != nil {
-		return nil, err
+		return nil, nil, err
 	}
 
 	switch v := result.(type) {
 
 	case *SetDefaultPolicy1OK:
-		return v, nil
+		return v, nil, nil
+
+	case *SetDefaultPolicy1BadRequest:
+		return nil, v, nil
 
 	default:
-		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+		return nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
@@ -514,6 +517,8 @@ func (a *Client) SetDefaultPolicy1Short(params *SetDefaultPolicy1Params, authInf
 
 	case *SetDefaultPolicy1OK:
 		return v, nil
+	case *SetDefaultPolicy1BadRequest:
+		return nil, v
 
 	default:
 		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
@@ -527,7 +532,7 @@ Deprecated: Use UpdatePolicyShort instead.
 
   Update country-specific policy.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:*:LEGAL&#34;, action=4 (UPDATE)&lt;/li&gt;&lt;/ul&gt;
 */
-func (a *Client) UpdatePolicy(params *UpdatePolicyParams, authInfo runtime.ClientAuthInfoWriter) (*UpdatePolicyOK, error) {
+func (a *Client) UpdatePolicy(params *UpdatePolicyParams, authInfo runtime.ClientAuthInfoWriter) (*UpdatePolicyOK, *UpdatePolicyBadRequest, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewUpdatePolicyParams()
@@ -555,16 +560,19 @@ func (a *Client) UpdatePolicy(params *UpdatePolicyParams, authInfo runtime.Clien
 		Client:             params.HTTPClient,
 	})
 	if err != nil {
-		return nil, err
+		return nil, nil, err
 	}
 
 	switch v := result.(type) {
 
 	case *UpdatePolicyOK:
-		return v, nil
+		return v, nil, nil
+
+	case *UpdatePolicyBadRequest:
+		return nil, v, nil
 
 	default:
-		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+		return nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
@@ -608,6 +616,8 @@ func (a *Client) UpdatePolicyShort(params *UpdatePolicyParams, authInfo runtime.
 
 	case *UpdatePolicyOK:
 		return v, nil
+	case *UpdatePolicyBadRequest:
+		return nil, v
 
 	default:
 		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))

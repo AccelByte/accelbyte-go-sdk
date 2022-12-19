@@ -36,6 +36,12 @@ func (o *RetrieveEligibilitiesPublicIndirectReader) ReadResponse(response runtim
 			return nil, err
 		}
 		return result, nil
+	case 400:
+		result := NewRetrieveEligibilitiesPublicIndirectBadRequest()
+		if err := result.readResponse(response, consumer, o.formats); err != nil {
+			return nil, err
+		}
+		return result, nil
 
 	default:
 		data, err := ioutil.ReadAll(response.Body())
@@ -91,6 +97,59 @@ func (o *RetrieveEligibilitiesPublicIndirectOK) readResponse(response runtime.Cl
 	}
 
 	o.Payload = new(legalclientmodels.RetrieveUserEligibilitiesIndirectResponse)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
+	}
+
+	return nil
+}
+
+// NewRetrieveEligibilitiesPublicIndirectBadRequest creates a RetrieveEligibilitiesPublicIndirectBadRequest with default headers values
+func NewRetrieveEligibilitiesPublicIndirectBadRequest() *RetrieveEligibilitiesPublicIndirectBadRequest {
+	return &RetrieveEligibilitiesPublicIndirectBadRequest{}
+}
+
+/*RetrieveEligibilitiesPublicIndirectBadRequest handles this case with default header values.
+
+  <table><tr><td>NumericErrorCode</td><td>ErrorCode</td></tr><tr><td>40045</td><td>errors.net.accelbyte.platform.legal.user_id_needed</td></tr></table>
+*/
+type RetrieveEligibilitiesPublicIndirectBadRequest struct {
+	Payload *legalclientmodels.ErrorEntity
+}
+
+func (o *RetrieveEligibilitiesPublicIndirectBadRequest) Error() string {
+	return fmt.Sprintf("[GET /agreement/public/eligibilities/namespaces/{namespace}/countries/{countryCode}/clients/{clientId}/users/{userId}][%d] retrieveEligibilitiesPublicIndirectBadRequest  %+v", 400, o.ToJSONString())
+}
+
+func (o *RetrieveEligibilitiesPublicIndirectBadRequest) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
+}
+
+func (o *RetrieveEligibilitiesPublicIndirectBadRequest) GetPayload() *legalclientmodels.ErrorEntity {
+	return o.Payload
+}
+
+func (o *RetrieveEligibilitiesPublicIndirectBadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+	// handle file responses
+	contentDisposition := response.GetHeader("Content-Disposition")
+	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
+		consumer = runtime.ByteStreamConsumer()
+	}
+
+	o.Payload = new(legalclientmodels.ErrorEntity)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {

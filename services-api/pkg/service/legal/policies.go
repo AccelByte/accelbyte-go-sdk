@@ -59,7 +59,10 @@ func (aaa *PoliciesService) UpdatePolicy(input *policies.UpdatePolicyParams) err
 	if err != nil {
 		return err
 	}
-	_, err = aaa.Client.Policies.UpdatePolicy(input, client.BearerToken(*token.AccessToken))
+	_, badRequest, err := aaa.Client.Policies.UpdatePolicy(input, client.BearerToken(*token.AccessToken))
+	if badRequest != nil {
+		return badRequest
+	}
 	if err != nil {
 		return err
 	}
@@ -73,7 +76,10 @@ func (aaa *PoliciesService) SetDefaultPolicy1(input *policies.SetDefaultPolicy1P
 	if err != nil {
 		return err
 	}
-	_, err = aaa.Client.Policies.SetDefaultPolicy1(input, client.BearerToken(*token.AccessToken))
+	_, badRequest, err := aaa.Client.Policies.SetDefaultPolicy1(input, client.BearerToken(*token.AccessToken))
+	if badRequest != nil {
+		return badRequest
+	}
 	if err != nil {
 		return err
 	}

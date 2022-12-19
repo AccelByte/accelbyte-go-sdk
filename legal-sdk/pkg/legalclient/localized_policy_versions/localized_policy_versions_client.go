@@ -39,11 +39,11 @@ type ClientService interface {
 	RequestPresignedURLShort(params *RequestPresignedURLParams, authInfo runtime.ClientAuthInfoWriter) (*RequestPresignedURLCreated, error)
 	RetrieveLocalizedPolicyVersions(params *RetrieveLocalizedPolicyVersionsParams, authInfo runtime.ClientAuthInfoWriter) (*RetrieveLocalizedPolicyVersionsOK, error)
 	RetrieveLocalizedPolicyVersionsShort(params *RetrieveLocalizedPolicyVersionsParams, authInfo runtime.ClientAuthInfoWriter) (*RetrieveLocalizedPolicyVersionsOK, error)
-	RetrieveSingleLocalizedPolicyVersion(params *RetrieveSingleLocalizedPolicyVersionParams, authInfo runtime.ClientAuthInfoWriter) (*RetrieveSingleLocalizedPolicyVersionOK, *RetrieveSingleLocalizedPolicyVersionBadRequest, error)
+	RetrieveSingleLocalizedPolicyVersion(params *RetrieveSingleLocalizedPolicyVersionParams, authInfo runtime.ClientAuthInfoWriter) (*RetrieveSingleLocalizedPolicyVersionOK, *RetrieveSingleLocalizedPolicyVersionNotFound, error)
 	RetrieveSingleLocalizedPolicyVersionShort(params *RetrieveSingleLocalizedPolicyVersionParams, authInfo runtime.ClientAuthInfoWriter) (*RetrieveSingleLocalizedPolicyVersionOK, error)
 	RetrieveSingleLocalizedPolicyVersion1(params *RetrieveSingleLocalizedPolicyVersion1Params) (*RetrieveSingleLocalizedPolicyVersion1OK, *RetrieveSingleLocalizedPolicyVersion1NotFound, error)
 	RetrieveSingleLocalizedPolicyVersion1Short(params *RetrieveSingleLocalizedPolicyVersion1Params) (*RetrieveSingleLocalizedPolicyVersion1OK, error)
-	SetDefaultPolicy(params *SetDefaultPolicyParams, authInfo runtime.ClientAuthInfoWriter) (*SetDefaultPolicyOK, error)
+	SetDefaultPolicy(params *SetDefaultPolicyParams, authInfo runtime.ClientAuthInfoWriter) (*SetDefaultPolicyOK, *SetDefaultPolicyBadRequest, error)
 	SetDefaultPolicyShort(params *SetDefaultPolicyParams, authInfo runtime.ClientAuthInfoWriter) (*SetDefaultPolicyOK, error)
 	UpdateLocalizedPolicyVersion(params *UpdateLocalizedPolicyVersionParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateLocalizedPolicyVersionOK, *UpdateLocalizedPolicyVersionBadRequest, error)
 	UpdateLocalizedPolicyVersionShort(params *UpdateLocalizedPolicyVersionParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateLocalizedPolicyVersionOK, error)
@@ -355,7 +355,7 @@ Deprecated: Use RetrieveSingleLocalizedPolicyVersionShort instead.
 
   Retrieve a version of a particular country-specific policy.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:*:LEGAL&#34;, action=2 (READ)&lt;/li&gt;&lt;/ul&gt;
 */
-func (a *Client) RetrieveSingleLocalizedPolicyVersion(params *RetrieveSingleLocalizedPolicyVersionParams, authInfo runtime.ClientAuthInfoWriter) (*RetrieveSingleLocalizedPolicyVersionOK, *RetrieveSingleLocalizedPolicyVersionBadRequest, error) {
+func (a *Client) RetrieveSingleLocalizedPolicyVersion(params *RetrieveSingleLocalizedPolicyVersionParams, authInfo runtime.ClientAuthInfoWriter) (*RetrieveSingleLocalizedPolicyVersionOK, *RetrieveSingleLocalizedPolicyVersionNotFound, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewRetrieveSingleLocalizedPolicyVersionParams()
@@ -391,7 +391,7 @@ func (a *Client) RetrieveSingleLocalizedPolicyVersion(params *RetrieveSingleLoca
 	case *RetrieveSingleLocalizedPolicyVersionOK:
 		return v, nil, nil
 
-	case *RetrieveSingleLocalizedPolicyVersionBadRequest:
+	case *RetrieveSingleLocalizedPolicyVersionNotFound:
 		return nil, v, nil
 
 	default:
@@ -439,7 +439,7 @@ func (a *Client) RetrieveSingleLocalizedPolicyVersionShort(params *RetrieveSingl
 
 	case *RetrieveSingleLocalizedPolicyVersionOK:
 		return v, nil
-	case *RetrieveSingleLocalizedPolicyVersionBadRequest:
+	case *RetrieveSingleLocalizedPolicyVersionNotFound:
 		return nil, v
 
 	default:
@@ -551,7 +551,7 @@ Deprecated: Use SetDefaultPolicyShort instead.
 
   Update a localized version policy to be the default.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:*:LEGAL&#34;, action=4 (UPDATE)&lt;/li&gt;&lt;/ul&gt;
 */
-func (a *Client) SetDefaultPolicy(params *SetDefaultPolicyParams, authInfo runtime.ClientAuthInfoWriter) (*SetDefaultPolicyOK, error) {
+func (a *Client) SetDefaultPolicy(params *SetDefaultPolicyParams, authInfo runtime.ClientAuthInfoWriter) (*SetDefaultPolicyOK, *SetDefaultPolicyBadRequest, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewSetDefaultPolicyParams()
@@ -579,16 +579,19 @@ func (a *Client) SetDefaultPolicy(params *SetDefaultPolicyParams, authInfo runti
 		Client:             params.HTTPClient,
 	})
 	if err != nil {
-		return nil, err
+		return nil, nil, err
 	}
 
 	switch v := result.(type) {
 
 	case *SetDefaultPolicyOK:
-		return v, nil
+		return v, nil, nil
+
+	case *SetDefaultPolicyBadRequest:
+		return nil, v, nil
 
 	default:
-		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+		return nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
@@ -632,6 +635,8 @@ func (a *Client) SetDefaultPolicyShort(params *SetDefaultPolicyParams, authInfo 
 
 	case *SetDefaultPolicyOK:
 		return v, nil
+	case *SetDefaultPolicyBadRequest:
+		return nil, v
 
 	default:
 		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))

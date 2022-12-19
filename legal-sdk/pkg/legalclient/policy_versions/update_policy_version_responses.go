@@ -42,6 +42,12 @@ func (o *UpdatePolicyVersionReader) ReadResponse(response runtime.ClientResponse
 			return nil, err
 		}
 		return result, nil
+	case 409:
+		result := NewUpdatePolicyVersionConflict()
+		if err := result.readResponse(response, consumer, o.formats); err != nil {
+			return nil, err
+		}
+		return result, nil
 
 	default:
 		data, err := ioutil.ReadAll(response.Body())
@@ -143,6 +149,59 @@ func (o *UpdatePolicyVersionBadRequest) GetPayload() *legalclientmodels.ErrorEnt
 }
 
 func (o *UpdatePolicyVersionBadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+	// handle file responses
+	contentDisposition := response.GetHeader("Content-Disposition")
+	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
+		consumer = runtime.ByteStreamConsumer()
+	}
+
+	o.Payload = new(legalclientmodels.ErrorEntity)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
+	}
+
+	return nil
+}
+
+// NewUpdatePolicyVersionConflict creates a UpdatePolicyVersionConflict with default headers values
+func NewUpdatePolicyVersionConflict() *UpdatePolicyVersionConflict {
+	return &UpdatePolicyVersionConflict{}
+}
+
+/*UpdatePolicyVersionConflict handles this case with default header values.
+
+  <table><tr><td>NumericErrorCode</td><td>ErrorCode</td></tr><tr><td>40043</td><td>errors.net.accelbyte.platform.legal.localized_policy_version_already_exist</td></tr></table>
+*/
+type UpdatePolicyVersionConflict struct {
+	Payload *legalclientmodels.ErrorEntity
+}
+
+func (o *UpdatePolicyVersionConflict) Error() string {
+	return fmt.Sprintf("[PATCH /agreement/admin/policies/versions/{policyVersionId}][%d] updatePolicyVersionConflict  %+v", 409, o.ToJSONString())
+}
+
+func (o *UpdatePolicyVersionConflict) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
+}
+
+func (o *UpdatePolicyVersionConflict) GetPayload() *legalclientmodels.ErrorEntity {
+	return o.Payload
+}
+
+func (o *UpdatePolicyVersionConflict) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {

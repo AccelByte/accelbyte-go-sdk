@@ -8,6 +8,9 @@ package achievement
 
 import (
 	"github.com/AccelByte/sample-apps/cmd/achievement/achievements"
+	"github.com/AccelByte/sample-apps/cmd/achievement/anonymization"
+	"github.com/AccelByte/sample-apps/cmd/achievement/tags"
+	"github.com/AccelByte/sample-apps/cmd/achievement/userAchievements"
 	"github.com/spf13/cobra"
 )
 
@@ -26,11 +29,14 @@ func init() {
 	AchievementCmd.AddCommand(achievements.AdminUpdateAchievementCmd)
 	AchievementCmd.AddCommand(achievements.AdminDeleteAchievementCmd)
 	AchievementCmd.AddCommand(achievements.AdminUpdateAchievementListOrderCmd)
-	AchievementCmd.AddCommand(achievements.AdminListUserAchievementsCmd)
-	AchievementCmd.AddCommand(achievements.AdminResetAchievementCmd)
-	AchievementCmd.AddCommand(achievements.AdminUnlockAchievementCmd)
+	AchievementCmd.AddCommand(tags.AdminListTagsCmd)
+	AchievementCmd.AddCommand(userAchievements.AdminListUserAchievementsCmd)
+	AchievementCmd.AddCommand(userAchievements.AdminResetAchievementCmd)
+	AchievementCmd.AddCommand(userAchievements.AdminUnlockAchievementCmd)
+	AchievementCmd.AddCommand(anonymization.AdminAnonymizeUserAchievementCmd)
 	AchievementCmd.AddCommand(achievements.PublicListAchievementsCmd)
 	AchievementCmd.AddCommand(achievements.PublicGetAchievementCmd)
-	AchievementCmd.AddCommand(achievements.PublicListUserAchievementsCmd)
-	AchievementCmd.AddCommand(achievements.PublicUnlockAchievementCmd)
+	AchievementCmd.AddCommand(tags.PublicListTagsCmd)
+	AchievementCmd.AddCommand(userAchievements.PublicListUserAchievementsCmd)
+	AchievementCmd.AddCommand(userAchievements.PublicUnlockAchievementCmd)
 }

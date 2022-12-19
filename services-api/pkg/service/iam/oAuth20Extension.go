@@ -104,6 +104,48 @@ func (aaa *OAuth20ExtensionService) GenerateTokenByNewHeadlessAccountV3(input *o
 	return ok.GetPayload(), nil
 }
 
+// Deprecated: Use RequestOneTimeLinkingCodeV3Short instead
+func (aaa *OAuth20ExtensionService) RequestOneTimeLinkingCodeV3(input *o_auth2_0_extension.RequestOneTimeLinkingCodeV3Params) (*iamclientmodels.OauthmodelOneTimeLinkingCodeResponse, error) {
+	token, err := aaa.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, err := aaa.Client.OAuth20Extension.RequestOneTimeLinkingCodeV3(input, client.BearerToken(*token.AccessToken))
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
+// Deprecated: Use ValidateOneTimeLinkingCodeV3Short instead
+func (aaa *OAuth20ExtensionService) ValidateOneTimeLinkingCodeV3(input *o_auth2_0_extension.ValidateOneTimeLinkingCodeV3Params) (*iamclientmodels.OauthmodelOneTimeLinkingCodeValidationResponse, error) {
+	token, err := aaa.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, err := aaa.Client.OAuth20Extension.ValidateOneTimeLinkingCodeV3(input, client.BearerToken(*token.AccessToken))
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
+// Deprecated: Use RequestTokenByOneTimeLinkCodeResponseV3Short instead
+func (aaa *OAuth20ExtensionService) RequestTokenByOneTimeLinkCodeResponseV3(input *o_auth2_0_extension.RequestTokenByOneTimeLinkCodeResponseV3Params) (*iamclientmodels.OauthmodelTokenResponseV3, error) {
+	token, err := aaa.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, err := aaa.Client.OAuth20Extension.RequestTokenByOneTimeLinkCodeResponseV3(input, client.BearerToken(*token.AccessToken))
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
 // Deprecated: Use GetCountryLocationV3Short instead
 func (aaa *OAuth20ExtensionService) GetCountryLocationV3(input *o_auth2_0_extension.GetCountryLocationV3Params) (*iamclientmodels.OauthmodelCountryLocationResponse, error) {
 	token, err := aaa.TokenRepository.GetToken()
@@ -255,6 +297,81 @@ func (aaa *OAuth20ExtensionService) GenerateTokenByNewHeadlessAccountV3Short(inp
 	}
 
 	ok, err := aaa.Client.OAuth20Extension.GenerateTokenByNewHeadlessAccountV3Short(input, authInfoWriter)
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
+func (aaa *OAuth20ExtensionService) RequestOneTimeLinkingCodeV3Short(input *o_auth2_0_extension.RequestOneTimeLinkingCodeV3Params) (*iamclientmodels.OauthmodelOneTimeLinkingCodeResponse, error) {
+	authInfoWriter := input.AuthInfoWriter
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
+	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  aaa.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
+	ok, err := aaa.Client.OAuth20Extension.RequestOneTimeLinkingCodeV3Short(input, authInfoWriter)
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
+func (aaa *OAuth20ExtensionService) ValidateOneTimeLinkingCodeV3Short(input *o_auth2_0_extension.ValidateOneTimeLinkingCodeV3Params) (*iamclientmodels.OauthmodelOneTimeLinkingCodeValidationResponse, error) {
+	authInfoWriter := input.AuthInfoWriter
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
+	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  aaa.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
+	ok, err := aaa.Client.OAuth20Extension.ValidateOneTimeLinkingCodeV3Short(input, authInfoWriter)
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
+func (aaa *OAuth20ExtensionService) RequestTokenByOneTimeLinkCodeResponseV3Short(input *o_auth2_0_extension.RequestTokenByOneTimeLinkCodeResponseV3Params) (*iamclientmodels.OauthmodelTokenResponseV3, error) {
+	authInfoWriter := input.AuthInfoWriter
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
+	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  aaa.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
+	ok, err := aaa.Client.OAuth20Extension.RequestTokenByOneTimeLinkCodeResponseV3Short(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}

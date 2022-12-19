@@ -134,6 +134,11 @@ type PublicListAchievementsParams struct {
 
 	*/
 	SortBy *string
+	/*Tags
+	  tags
+
+	*/
+	Tags []string
 
 	timeout        time.Duration
 	AuthInfoWriter runtime.ClientAuthInfoWriter
@@ -243,6 +248,17 @@ func (o *PublicListAchievementsParams) SetSortBy(sortBy *string) {
 	o.SortBy = sortBy
 }
 
+// WithTags adds the tags to the public list achievements params
+func (o *PublicListAchievementsParams) WithTags(tags []string) *PublicListAchievementsParams {
+	o.SetTags(tags)
+	return o
+}
+
+// SetTags adds the tags to the public list achievements params
+func (o *PublicListAchievementsParams) SetTags(tags []string) {
+	o.Tags = tags
+}
+
 // WriteToRequest writes these params to a swagger request
 func (o *PublicListAchievementsParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.Registry) error {
 
@@ -311,6 +327,14 @@ func (o *PublicListAchievementsParams) WriteToRequest(r runtime.ClientRequest, r
 			}
 		}
 
+	}
+
+	valuesTags := o.Tags
+
+	joinedTags := swag.JoinByFormat(valuesTags, "csv")
+	// query array param tags
+	if err := r.SetQueryParam("tags", joinedTags...); err != nil {
+		return err
 	}
 
 	// setting the default header value

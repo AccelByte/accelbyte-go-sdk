@@ -75,7 +75,6 @@ func init() {
 	DsmcCmd.AddCommand(admin.DeleteLocalServerCmd)
 	DsmcCmd.AddCommand(admin.GetServerCmd)
 	DsmcCmd.AddCommand(admin.DeleteServerCmd)
-	DsmcCmd.AddCommand(admin.GetServerLogsCmd)
 	DsmcCmd.AddCommand(admin.ListSessionCmd)
 	DsmcCmd.AddCommand(admin.CountSessionCmd)
 	DsmcCmd.AddCommand(admin.DeleteSessionCmd)

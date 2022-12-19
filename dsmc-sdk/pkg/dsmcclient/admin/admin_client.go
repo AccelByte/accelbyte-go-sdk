@@ -53,8 +53,6 @@ type ClientService interface {
 	ListServerShort(params *ListServerParams, authInfo runtime.ClientAuthInfoWriter) (*ListServerOK, error)
 	ListSession(params *ListSessionParams, authInfo runtime.ClientAuthInfoWriter) (*ListSessionOK, *ListSessionUnauthorized, *ListSessionInternalServerError, error)
 	ListSessionShort(params *ListSessionParams, authInfo runtime.ClientAuthInfoWriter) (*ListSessionOK, error)
-	GetServerLogs(params *GetServerLogsParams, authInfo runtime.ClientAuthInfoWriter) (*GetServerLogsOK, *GetServerLogsBadRequest, *GetServerLogsUnauthorized, *GetServerLogsNotFound, *GetServerLogsInternalServerError, error)
-	GetServerLogsShort(params *GetServerLogsParams, authInfo runtime.ClientAuthInfoWriter) (*GetServerLogsOK, error)
 
 	SetTransport(transport runtime.ClientTransport)
 }
@@ -1192,128 +1190,6 @@ func (a *Client) ListSessionShort(params *ListSessionParams, authInfo runtime.Cl
 	case *ListSessionUnauthorized:
 		return nil, v
 	case *ListSessionInternalServerError:
-		return nil, v
-
-	default:
-		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
-	}
-}
-
-/*
-Deprecated: Use GetServerLogsShort instead.
-
-  GetServerLogs queries server logs
-
-  Required permission: ADMIN:NAMESPACE:{namespace}:DSM:SERVER [READ]
-
-Required scope: social
-
-This endpoint queries a specified dedicated server&#39;s logs.
-*/
-func (a *Client) GetServerLogs(params *GetServerLogsParams, authInfo runtime.ClientAuthInfoWriter) (*GetServerLogsOK, *GetServerLogsBadRequest, *GetServerLogsUnauthorized, *GetServerLogsNotFound, *GetServerLogsInternalServerError, error) {
-	// TODO: Validate the params before sending
-	if params == nil {
-		params = NewGetServerLogsParams()
-	}
-
-	if params.Context == nil {
-		params.Context = context.Background()
-	}
-
-	if params.RetryPolicy != nil {
-		params.SetHTTPClientTransport(params.RetryPolicy)
-	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
-		ID:                 "getServerLogs",
-		Method:             "GET",
-		PathPattern:        "/dsmcontroller/admin/namespaces/{namespace}/servers/{podName}/logs",
-		ProducesMediaTypes: []string{"application/json"},
-		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"https"},
-		Params:             params,
-		Reader:             &GetServerLogsReader{formats: a.formats},
-		AuthInfo:           authInfo,
-		Context:            params.Context,
-		Client:             params.HTTPClient,
-	})
-	if err != nil {
-		return nil, nil, nil, nil, nil, err
-	}
-
-	switch v := result.(type) {
-
-	case *GetServerLogsOK:
-		return v, nil, nil, nil, nil, nil
-
-	case *GetServerLogsBadRequest:
-		return nil, v, nil, nil, nil, nil
-
-	case *GetServerLogsUnauthorized:
-		return nil, nil, v, nil, nil, nil
-
-	case *GetServerLogsNotFound:
-		return nil, nil, nil, v, nil, nil
-
-	case *GetServerLogsInternalServerError:
-		return nil, nil, nil, nil, v, nil
-
-	default:
-		return nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
-	}
-}
-
-/*
-  GetServerLogsShort queries server logs
-
-  Required permission: ADMIN:NAMESPACE:{namespace}:DSM:SERVER [READ]
-
-Required scope: social
-
-This endpoint queries a specified dedicated server&#39;s logs.
-*/
-func (a *Client) GetServerLogsShort(params *GetServerLogsParams, authInfo runtime.ClientAuthInfoWriter) (*GetServerLogsOK, error) {
-	// TODO: Validate the params before sending
-	if params == nil {
-		params = NewGetServerLogsParams()
-	}
-
-	if params.Context == nil {
-		params.Context = context.Background()
-	}
-
-	if params.RetryPolicy != nil {
-		params.SetHTTPClientTransport(params.RetryPolicy)
-	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
-		ID:                 "getServerLogs",
-		Method:             "GET",
-		PathPattern:        "/dsmcontroller/admin/namespaces/{namespace}/servers/{podName}/logs",
-		ProducesMediaTypes: []string{"application/json"},
-		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"https"},
-		Params:             params,
-		Reader:             &GetServerLogsReader{formats: a.formats},
-		AuthInfo:           authInfo,
-		Context:            params.Context,
-		Client:             params.HTTPClient,
-	})
-	if err != nil {
-		return nil, err
-	}
-
-	switch v := result.(type) {
-
-	case *GetServerLogsOK:
-		return v, nil
-	case *GetServerLogsBadRequest:
-		return nil, v
-	case *GetServerLogsUnauthorized:
-		return nil, v
-	case *GetServerLogsNotFound:
-		return nil, v
-	case *GetServerLogsInternalServerError:
 		return nil, v
 
 	default:

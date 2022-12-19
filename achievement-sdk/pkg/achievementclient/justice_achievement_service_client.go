@@ -18,6 +18,9 @@ import (
 	"github.com/go-openapi/strfmt"
 
 	"github.com/AccelByte/accelbyte-go-sdk/achievement-sdk/pkg/achievementclient/achievements"
+	"github.com/AccelByte/accelbyte-go-sdk/achievement-sdk/pkg/achievementclient/anonymization"
+	"github.com/AccelByte/accelbyte-go-sdk/achievement-sdk/pkg/achievementclient/tags"
+	"github.com/AccelByte/accelbyte-go-sdk/achievement-sdk/pkg/achievementclient/user_achievements"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils"
 )
 
@@ -69,6 +72,9 @@ func New(transport runtime.ClientTransport, runtime *httptransport.Runtime, form
 	cli.Transport = transport
 	cli.Runtime = runtime
 	cli.Achievements = achievements.New(transport, formats)
+	cli.Anonymization = anonymization.New(transport, formats)
+	cli.Tags = tags.New(transport, formats)
+	cli.UserAchievements = user_achievements.New(transport, formats)
 
 	return cli
 }
@@ -131,6 +137,12 @@ func (cfg *TransportConfig) WithSchemes(schemes []string) *TransportConfig {
 type JusticeAchievementService struct {
 	Achievements achievements.ClientService
 
+	Anonymization anonymization.ClientService
+
+	Tags tags.ClientService
+
+	UserAchievements user_achievements.ClientService
+
 	Runtime   *httptransport.Runtime
 	Transport runtime.ClientTransport
 }
@@ -139,4 +151,7 @@ type JusticeAchievementService struct {
 func (c *JusticeAchievementService) SetTransport(transport runtime.ClientTransport) {
 	c.Transport = transport
 	c.Achievements.SetTransport(transport)
+	c.Anonymization.SetTransport(transport)
+	c.Tags.SetTransport(transport)
+	c.UserAchievements.SetTransport(transport)
 }

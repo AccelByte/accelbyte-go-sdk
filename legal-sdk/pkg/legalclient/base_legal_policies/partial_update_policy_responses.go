@@ -42,6 +42,12 @@ func (o *PartialUpdatePolicyReader) ReadResponse(response runtime.ClientResponse
 			return nil, err
 		}
 		return result, nil
+	case 404:
+		result := NewPartialUpdatePolicyNotFound()
+		if err := result.readResponse(response, consumer, o.formats); err != nil {
+			return nil, err
+		}
+		return result, nil
 
 	default:
 		data, err := ioutil.ReadAll(response.Body())
@@ -113,7 +119,7 @@ func NewPartialUpdatePolicyBadRequest() *PartialUpdatePolicyBadRequest {
 
 /*PartialUpdatePolicyBadRequest handles this case with default header values.
 
-  <table><tr><td>NumericErrorCode</td><td>ErrorCode</td></tr><tr><td>40032</td><td>errors.net.accelbyte.platform.legal.invalid_base_policy</td></tr></table>
+  <table><tr><td>NumericErrorCode</td><td>ErrorCode</td></tr><tr><td>40032</td><td>errors.net.accelbyte.platform.legal.invalid_base_policy</td></tr><tr><td>40038</td><td>errors.net.accelbyte.platform.legal.invalid_affected_client_id</td></tr></table>
 */
 type PartialUpdatePolicyBadRequest struct {
 	Payload *legalclientmodels.ErrorEntity
@@ -143,6 +149,59 @@ func (o *PartialUpdatePolicyBadRequest) GetPayload() *legalclientmodels.ErrorEnt
 }
 
 func (o *PartialUpdatePolicyBadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+	// handle file responses
+	contentDisposition := response.GetHeader("Content-Disposition")
+	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
+		consumer = runtime.ByteStreamConsumer()
+	}
+
+	o.Payload = new(legalclientmodels.ErrorEntity)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
+	}
+
+	return nil
+}
+
+// NewPartialUpdatePolicyNotFound creates a PartialUpdatePolicyNotFound with default headers values
+func NewPartialUpdatePolicyNotFound() *PartialUpdatePolicyNotFound {
+	return &PartialUpdatePolicyNotFound{}
+}
+
+/*PartialUpdatePolicyNotFound handles this case with default header values.
+
+  <table><tr><td>NumericErrorCode</td><td>ErrorCode</td></tr><tr><td>40030</td><td>errors.net.accelbyte.platform.legal.policy_type_not_exist</td></tr></table>
+*/
+type PartialUpdatePolicyNotFound struct {
+	Payload *legalclientmodels.ErrorEntity
+}
+
+func (o *PartialUpdatePolicyNotFound) Error() string {
+	return fmt.Sprintf("[PATCH /agreement/admin/base-policies/{basePolicyId}][%d] partialUpdatePolicyNotFound  %+v", 404, o.ToJSONString())
+}
+
+func (o *PartialUpdatePolicyNotFound) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
+}
+
+func (o *PartialUpdatePolicyNotFound) GetPayload() *legalclientmodels.ErrorEntity {
+	return o.Payload
+}
+
+func (o *PartialUpdatePolicyNotFound) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {

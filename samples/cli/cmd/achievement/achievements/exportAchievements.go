@@ -8,6 +8,7 @@ package achievements
 
 import (
 	"bytes"
+	"encoding/json"
 
 	"github.com/AccelByte/accelbyte-go-sdk/achievement-sdk/pkg/achievementclient/achievements"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
@@ -28,8 +29,15 @@ var ExportAchievementsCmd = &cobra.Command{
 			TokenRepository: &repository.TokenRepositoryImpl{},
 		}
 		namespace, _ := cmd.Flags().GetString("namespace")
+		tagsString := cmd.Flag("tags").Value.String()
+		var tags []string
+		errTags := json.Unmarshal([]byte(tagsString), &tags)
+		if errTags != nil {
+			return errTags
+		}
 		input := &achievements.ExportAchievementsParams{
 			Namespace: namespace,
+			Tags:      tags,
 		}
 		writer := bytes.NewBuffer(nil)
 		ok, err := achievementsService.ExportAchievementsShort(input, writer)
@@ -48,4 +56,5 @@ var ExportAchievementsCmd = &cobra.Command{
 func init() {
 	ExportAchievementsCmd.Flags().String("namespace", "", "Namespace")
 	_ = ExportAchievementsCmd.MarkFlagRequired("namespace")
+	ExportAchievementsCmd.Flags().String("tags", "", "Tags")
 }

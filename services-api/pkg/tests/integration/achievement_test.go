@@ -27,10 +27,11 @@ var (
 	description     = make(map[string]string)
 	goalValue       = float64(1)
 	hidden          = false
+	hiddenUpdate    = true
 	incremental     = false
 	lockedIcons     []*achievementclientmodels.ModelsIcon
 	name            = make(map[string]string)
-	statCode        = "STAT_CODE_GO"
+	statCode        = "STAT-CODE-GO"
 	tags            []string
 	unlockedIcons   []*achievementclientmodels.ModelsIcon
 	bodyAchievement = &achievementclientmodels.ModelsAchievementRequest{
@@ -50,7 +51,7 @@ var (
 		DefaultLanguage: &defaultLanguage,
 		Description:     description,
 		GoalValue:       &goalValue,
-		Hidden:          &hidden,
+		Hidden:          &hiddenUpdate,
 		Incremental:     &incremental,
 		LockedIcons:     lockedIcons,
 		Name:            name,
@@ -109,6 +110,7 @@ func TestIntegrationAchievement(t *testing.T) {
 	// ESAC
 
 	// Assert
+	assert.Equal(t, true, *updated.Hidden)
 	assert.Nil(t, errUpdate, "err should be nil")
 	assert.NotNil(t, updated, "response should not be nil")
 

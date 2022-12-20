@@ -8,7 +8,11 @@
 
 ### Docs
 - add migration guide from v0.33.0 to v0.34.0
+- update CHANGELOG.md for v0.34.0 release (again)
 - update CHANGELOG.md for v0.34.0 release
+
+### Test
+- **integration:** fix invalid stat code
 
 
 <a name="v0.33.0"></a>

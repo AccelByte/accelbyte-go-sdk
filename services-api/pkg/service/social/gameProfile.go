@@ -39,7 +39,7 @@ func (aaa *GameProfileService) GetAuthSession() auth.Session {
 	}
 }
 
-// Deprecated: Use GetUserProfilesShort instead
+// deprecated(2022-01-10): please use GetUserProfilesShort instead.
 func (aaa *GameProfileService) GetUserProfiles(input *game_profile.GetUserProfilesParams) ([]*socialclientmodels.GameProfileHeader, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -53,7 +53,7 @@ func (aaa *GameProfileService) GetUserProfiles(input *game_profile.GetUserProfil
 	return ok.GetPayload(), nil
 }
 
-// Deprecated: Use GetProfileShort instead
+// deprecated(2022-01-10): please use GetProfileShort instead.
 func (aaa *GameProfileService) GetProfile(input *game_profile.GetProfileParams) (*socialclientmodels.GameProfileInfo, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -70,7 +70,7 @@ func (aaa *GameProfileService) GetProfile(input *game_profile.GetProfileParams) 
 	return ok.GetPayload(), nil
 }
 
-// Deprecated: Use PublicGetUserGameProfilesShort instead
+// deprecated(2022-01-10): please use PublicGetUserGameProfilesShort instead.
 func (aaa *GameProfileService) PublicGetUserGameProfiles(input *game_profile.PublicGetUserGameProfilesParams) ([]*socialclientmodels.UserGameProfiles, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -87,7 +87,7 @@ func (aaa *GameProfileService) PublicGetUserGameProfiles(input *game_profile.Pub
 	return ok.GetPayload(), nil
 }
 
-// Deprecated: Use PublicGetUserProfilesShort instead
+// deprecated(2022-01-10): please use PublicGetUserProfilesShort instead.
 func (aaa *GameProfileService) PublicGetUserProfiles(input *game_profile.PublicGetUserProfilesParams) ([]*socialclientmodels.GameProfileHeader, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -101,7 +101,7 @@ func (aaa *GameProfileService) PublicGetUserProfiles(input *game_profile.PublicG
 	return ok.GetPayload(), nil
 }
 
-// Deprecated: Use PublicCreateProfileShort instead
+// deprecated(2022-01-10): please use PublicCreateProfileShort instead.
 func (aaa *GameProfileService) PublicCreateProfile(input *game_profile.PublicCreateProfileParams) error {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -118,7 +118,7 @@ func (aaa *GameProfileService) PublicCreateProfile(input *game_profile.PublicCre
 	return nil
 }
 
-// Deprecated: Use PublicGetProfileShort instead
+// deprecated(2022-01-10): please use PublicGetProfileShort instead.
 func (aaa *GameProfileService) PublicGetProfile(input *game_profile.PublicGetProfileParams) (*socialclientmodels.GameProfileInfo, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -135,7 +135,7 @@ func (aaa *GameProfileService) PublicGetProfile(input *game_profile.PublicGetPro
 	return ok.GetPayload(), nil
 }
 
-// Deprecated: Use PublicUpdateProfileShort instead
+// deprecated(2022-01-10): please use PublicUpdateProfileShort instead.
 func (aaa *GameProfileService) PublicUpdateProfile(input *game_profile.PublicUpdateProfileParams) (*socialclientmodels.GameProfileInfo, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -155,7 +155,7 @@ func (aaa *GameProfileService) PublicUpdateProfile(input *game_profile.PublicUpd
 	return ok.GetPayload(), nil
 }
 
-// Deprecated: Use PublicDeleteProfileShort instead
+// deprecated(2022-01-10): please use PublicDeleteProfileShort instead.
 func (aaa *GameProfileService) PublicDeleteProfile(input *game_profile.PublicDeleteProfileParams) error {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -172,7 +172,7 @@ func (aaa *GameProfileService) PublicDeleteProfile(input *game_profile.PublicDel
 	return nil
 }
 
-// Deprecated: Use PublicGetProfileAttributeShort instead
+// deprecated(2022-01-10): please use PublicGetProfileAttributeShort instead.
 func (aaa *GameProfileService) PublicGetProfileAttribute(input *game_profile.PublicGetProfileAttributeParams) (*socialclientmodels.Attribute, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -189,7 +189,7 @@ func (aaa *GameProfileService) PublicGetProfileAttribute(input *game_profile.Pub
 	return ok.GetPayload(), nil
 }
 
-// Deprecated: Use PublicUpdateAttributeShort instead
+// deprecated(2022-01-10): please use PublicUpdateAttributeShort instead.
 func (aaa *GameProfileService) PublicUpdateAttribute(input *game_profile.PublicUpdateAttributeParams) (*socialclientmodels.GameProfileInfo, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {

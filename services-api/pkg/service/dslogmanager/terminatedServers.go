@@ -41,7 +41,7 @@ func (aaa *TerminatedServersService) GetAuthSession() auth.Session {
 	}
 }
 
-// Deprecated: Use ListTerminatedServersShort instead
+// deprecated(2022-01-10): please use ListTerminatedServersShort instead.
 func (aaa *TerminatedServersService) ListTerminatedServers(input *terminated_servers.ListTerminatedServersParams) (*dslogmanagerclientmodels.ModelsListTerminatedServersResponse, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -64,7 +64,7 @@ func (aaa *TerminatedServersService) ListTerminatedServers(input *terminated_ser
 	return ok.GetPayload(), nil
 }
 
-// Deprecated: Use DownloadServerLogsShort instead
+// deprecated(2022-01-10): please use DownloadServerLogsShort instead.
 func (aaa *TerminatedServersService) DownloadServerLogs(input *terminated_servers.DownloadServerLogsParams, writer io.Writer) (io.Writer, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -84,7 +84,7 @@ func (aaa *TerminatedServersService) DownloadServerLogs(input *terminated_server
 	return ok.GetPayload(), nil
 }
 
-// Deprecated: Use CheckServerLogsShort instead
+// deprecated(2022-01-10): please use CheckServerLogsShort instead.
 func (aaa *TerminatedServersService) CheckServerLogs(input *terminated_servers.CheckServerLogsParams) (*dslogmanagerclientmodels.ModelsLogFileStatus, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {

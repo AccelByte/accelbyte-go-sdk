@@ -39,7 +39,7 @@ func (aaa *SlotConfigService) GetAuthSession() auth.Session {
 	}
 }
 
-// Deprecated: Use GetNamespaceSlotConfigShort instead
+// deprecated(2022-01-10): please use GetNamespaceSlotConfigShort instead.
 func (aaa *SlotConfigService) GetNamespaceSlotConfig(input *slot_config.GetNamespaceSlotConfigParams) (*socialclientmodels.NamespaceSlotConfigInfo, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -53,7 +53,7 @@ func (aaa *SlotConfigService) GetNamespaceSlotConfig(input *slot_config.GetNames
 	return ok.GetPayload(), nil
 }
 
-// Deprecated: Use UpdateNamespaceSlotConfigShort instead
+// deprecated(2022-01-10): please use UpdateNamespaceSlotConfigShort instead.
 func (aaa *SlotConfigService) UpdateNamespaceSlotConfig(input *slot_config.UpdateNamespaceSlotConfigParams) (*socialclientmodels.NamespaceSlotConfigInfo, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -67,7 +67,7 @@ func (aaa *SlotConfigService) UpdateNamespaceSlotConfig(input *slot_config.Updat
 	return ok.GetPayload(), nil
 }
 
-// Deprecated: Use DeleteNamespaceSlotConfigShort instead
+// deprecated(2022-01-10): please use DeleteNamespaceSlotConfigShort instead.
 func (aaa *SlotConfigService) DeleteNamespaceSlotConfig(input *slot_config.DeleteNamespaceSlotConfigParams) error {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -81,7 +81,7 @@ func (aaa *SlotConfigService) DeleteNamespaceSlotConfig(input *slot_config.Delet
 	return nil
 }
 
-// Deprecated: Use GetUserSlotConfigShort instead
+// deprecated(2022-01-10): please use GetUserSlotConfigShort instead.
 func (aaa *SlotConfigService) GetUserSlotConfig(input *slot_config.GetUserSlotConfigParams) (*socialclientmodels.UserSlotConfigInfo, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -95,7 +95,7 @@ func (aaa *SlotConfigService) GetUserSlotConfig(input *slot_config.GetUserSlotCo
 	return ok.GetPayload(), nil
 }
 
-// Deprecated: Use UpdateUserSlotConfigShort instead
+// deprecated(2022-01-10): please use UpdateUserSlotConfigShort instead.
 func (aaa *SlotConfigService) UpdateUserSlotConfig(input *slot_config.UpdateUserSlotConfigParams) (*socialclientmodels.UserSlotConfigInfo, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -109,7 +109,7 @@ func (aaa *SlotConfigService) UpdateUserSlotConfig(input *slot_config.UpdateUser
 	return ok.GetPayload(), nil
 }
 
-// Deprecated: Use DeleteUserSlotConfigShort instead
+// deprecated(2022-01-10): please use DeleteUserSlotConfigShort instead.
 func (aaa *SlotConfigService) DeleteUserSlotConfig(input *slot_config.DeleteUserSlotConfigParams) error {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {

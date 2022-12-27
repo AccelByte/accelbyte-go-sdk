@@ -39,7 +39,7 @@ func (aaa *OrderDedicatedService) GetAuthSession() auth.Session {
 	}
 }
 
-// Deprecated: Use SyncOrdersShort instead
+// deprecated(2022-01-10): please use SyncOrdersShort instead.
 func (aaa *OrderDedicatedService) SyncOrders(input *order_dedicated.SyncOrdersParams) (*platformclientmodels.OrderSyncResult, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {

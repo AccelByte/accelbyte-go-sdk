@@ -39,7 +39,7 @@ func (aaa *PolicyVersionsService) GetAuthSession() auth.Session {
 	}
 }
 
-// Deprecated: Use UpdatePolicyVersionShort instead
+// deprecated(2022-01-10): please use UpdatePolicyVersionShort instead.
 func (aaa *PolicyVersionsService) UpdatePolicyVersion(input *policy_versions.UpdatePolicyVersionParams) (*legalclientmodels.UpdatePolicyVersionResponse, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -59,7 +59,7 @@ func (aaa *PolicyVersionsService) UpdatePolicyVersion(input *policy_versions.Upd
 	return ok.GetPayload(), nil
 }
 
-// Deprecated: Use PublishPolicyVersionShort instead
+// deprecated(2022-01-10): please use PublishPolicyVersionShort instead.
 func (aaa *PolicyVersionsService) PublishPolicyVersion(input *policy_versions.PublishPolicyVersionParams) error {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -79,7 +79,7 @@ func (aaa *PolicyVersionsService) PublishPolicyVersion(input *policy_versions.Pu
 	return nil
 }
 
-// Deprecated: Use RetrieveSinglePolicyVersionShort instead
+// deprecated(2022-01-10): please use RetrieveSinglePolicyVersionShort instead.
 func (aaa *PolicyVersionsService) RetrieveSinglePolicyVersion(input *policy_versions.RetrieveSinglePolicyVersionParams) ([]*legalclientmodels.RetrievePolicyVersionResponse, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -96,7 +96,7 @@ func (aaa *PolicyVersionsService) RetrieveSinglePolicyVersion(input *policy_vers
 	return ok.GetPayload(), nil
 }
 
-// Deprecated: Use CreatePolicyVersionShort instead
+// deprecated(2022-01-10): please use CreatePolicyVersionShort instead.
 func (aaa *PolicyVersionsService) CreatePolicyVersion(input *policy_versions.CreatePolicyVersionParams) (*legalclientmodels.CreatePolicyVersionResponse, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {

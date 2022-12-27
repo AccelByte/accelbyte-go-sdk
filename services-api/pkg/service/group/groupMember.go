@@ -39,7 +39,7 @@ func (aaa *GroupMemberService) GetAuthSession() auth.Session {
 	}
 }
 
-// Deprecated: Use GetGroupMembersListAdminV1Short instead
+// deprecated(2022-01-10): please use GetGroupMembersListAdminV1Short instead.
 func (aaa *GroupMemberService) GetGroupMembersListAdminV1(input *group_member.GetGroupMembersListAdminV1Params) (*groupclientmodels.ModelsGetGroupMemberListResponseV1, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -68,7 +68,7 @@ func (aaa *GroupMemberService) GetGroupMembersListAdminV1(input *group_member.Ge
 	return ok.GetPayload(), nil
 }
 
-// Deprecated: Use AcceptGroupInvitationPublicV1Short instead
+// deprecated(2022-01-10): please use AcceptGroupInvitationPublicV1Short instead.
 func (aaa *GroupMemberService) AcceptGroupInvitationPublicV1(input *group_member.AcceptGroupInvitationPublicV1Params) (*groupclientmodels.ModelsMemberRequestGroupResponseV1, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -100,7 +100,7 @@ func (aaa *GroupMemberService) AcceptGroupInvitationPublicV1(input *group_member
 	return ok.GetPayload(), nil
 }
 
-// Deprecated: Use RejectGroupInvitationPublicV1Short instead
+// deprecated(2022-01-10): please use RejectGroupInvitationPublicV1Short instead.
 func (aaa *GroupMemberService) RejectGroupInvitationPublicV1(input *group_member.RejectGroupInvitationPublicV1Params) (*groupclientmodels.ModelsMemberRequestGroupResponseV1, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -132,7 +132,7 @@ func (aaa *GroupMemberService) RejectGroupInvitationPublicV1(input *group_member
 	return ok.GetPayload(), nil
 }
 
-// Deprecated: Use JoinGroupV1Short instead
+// deprecated(2022-01-10): please use JoinGroupV1Short instead.
 func (aaa *GroupMemberService) JoinGroupV1(input *group_member.JoinGroupV1Params) (*groupclientmodels.ModelsJoinGroupResponseV1, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -161,7 +161,7 @@ func (aaa *GroupMemberService) JoinGroupV1(input *group_member.JoinGroupV1Params
 	return created.GetPayload(), nil
 }
 
-// Deprecated: Use CancelGroupJoinRequestV1Short instead
+// deprecated(2022-01-10): please use CancelGroupJoinRequestV1Short instead.
 func (aaa *GroupMemberService) CancelGroupJoinRequestV1(input *group_member.CancelGroupJoinRequestV1Params) (*groupclientmodels.ModelsMemberRequestGroupResponseV1, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -190,7 +190,7 @@ func (aaa *GroupMemberService) CancelGroupJoinRequestV1(input *group_member.Canc
 	return ok.GetPayload(), nil
 }
 
-// Deprecated: Use GetGroupMembersListPublicV1Short instead
+// deprecated(2022-01-10): please use GetGroupMembersListPublicV1Short instead.
 func (aaa *GroupMemberService) GetGroupMembersListPublicV1(input *group_member.GetGroupMembersListPublicV1Params) (*groupclientmodels.ModelsGetGroupMemberListResponseV1, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -219,7 +219,7 @@ func (aaa *GroupMemberService) GetGroupMembersListPublicV1(input *group_member.G
 	return ok.GetPayload(), nil
 }
 
-// Deprecated: Use LeaveGroupPublicV1Short instead
+// deprecated(2022-01-10): please use LeaveGroupPublicV1Short instead.
 func (aaa *GroupMemberService) LeaveGroupPublicV1(input *group_member.LeaveGroupPublicV1Params) (*groupclientmodels.ModelsLeaveGroupResponseV1, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -248,7 +248,7 @@ func (aaa *GroupMemberService) LeaveGroupPublicV1(input *group_member.LeaveGroup
 	return ok.GetPayload(), nil
 }
 
-// Deprecated: Use GetUserGroupInformationPublicV1Short instead
+// deprecated(2022-01-10): please use GetUserGroupInformationPublicV1Short instead.
 func (aaa *GroupMemberService) GetUserGroupInformationPublicV1(input *group_member.GetUserGroupInformationPublicV1Params) (*groupclientmodels.ModelsGetUserGroupInformationResponseV1, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -277,7 +277,7 @@ func (aaa *GroupMemberService) GetUserGroupInformationPublicV1(input *group_memb
 	return ok.GetPayload(), nil
 }
 
-// Deprecated: Use InviteGroupPublicV1Short instead
+// deprecated(2022-01-10): please use InviteGroupPublicV1Short instead.
 func (aaa *GroupMemberService) InviteGroupPublicV1(input *group_member.InviteGroupPublicV1Params) (*groupclientmodels.ModelsUserInvitationResponseV1, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -309,7 +309,7 @@ func (aaa *GroupMemberService) InviteGroupPublicV1(input *group_member.InviteGro
 	return ok.GetPayload(), nil
 }
 
-// Deprecated: Use AcceptGroupJoinRequestPublicV1Short instead
+// deprecated(2022-01-10): please use AcceptGroupJoinRequestPublicV1Short instead.
 func (aaa *GroupMemberService) AcceptGroupJoinRequestPublicV1(input *group_member.AcceptGroupJoinRequestPublicV1Params) (*groupclientmodels.ModelsMemberRequestGroupResponseV1, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -341,7 +341,7 @@ func (aaa *GroupMemberService) AcceptGroupJoinRequestPublicV1(input *group_membe
 	return ok.GetPayload(), nil
 }
 
-// Deprecated: Use RejectGroupJoinRequestPublicV1Short instead
+// deprecated(2022-01-10): please use RejectGroupJoinRequestPublicV1Short instead.
 func (aaa *GroupMemberService) RejectGroupJoinRequestPublicV1(input *group_member.RejectGroupJoinRequestPublicV1Params) (*groupclientmodels.ModelsMemberRequestGroupResponseV1, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -373,7 +373,7 @@ func (aaa *GroupMemberService) RejectGroupJoinRequestPublicV1(input *group_membe
 	return ok.GetPayload(), nil
 }
 
-// Deprecated: Use KickGroupMemberPublicV1Short instead
+// deprecated(2022-01-10): please use KickGroupMemberPublicV1Short instead.
 func (aaa *GroupMemberService) KickGroupMemberPublicV1(input *group_member.KickGroupMemberPublicV1Params) (*groupclientmodels.ModelsKickGroupMemberResponseV1, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {

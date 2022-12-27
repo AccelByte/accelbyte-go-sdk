@@ -38,7 +38,7 @@ func (aaa *ServerService) GetAuthSession() auth.Session {
 	}
 }
 
-// Deprecated: Use HeartbeatShort instead
+// deprecated(2022-01-10): please use HeartbeatShort instead.
 func (aaa *ServerService) Heartbeat(input *server.HeartbeatParams) error {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {

@@ -39,7 +39,7 @@ func (aaa *ThirdPartyService) GetAuthSession() auth.Session {
 	}
 }
 
-// Deprecated: Use AdminGetThirdPartyConfigShort instead
+// deprecated(2022-01-10): please use AdminGetThirdPartyConfigShort instead.
 func (aaa *ThirdPartyService) AdminGetThirdPartyConfig(input *third_party.AdminGetThirdPartyConfigParams) (*lobbyclientmodels.ModelsGetConfigResponse, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -65,7 +65,7 @@ func (aaa *ThirdPartyService) AdminGetThirdPartyConfig(input *third_party.AdminG
 	return ok.GetPayload(), nil
 }
 
-// Deprecated: Use AdminUpdateThirdPartyConfigShort instead
+// deprecated(2022-01-10): please use AdminUpdateThirdPartyConfigShort instead.
 func (aaa *ThirdPartyService) AdminUpdateThirdPartyConfig(input *third_party.AdminUpdateThirdPartyConfigParams) (*lobbyclientmodels.ModelsUpdateConfigResponse, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -91,7 +91,7 @@ func (aaa *ThirdPartyService) AdminUpdateThirdPartyConfig(input *third_party.Adm
 	return ok.GetPayload(), nil
 }
 
-// Deprecated: Use AdminCreateThirdPartyConfigShort instead
+// deprecated(2022-01-10): please use AdminCreateThirdPartyConfigShort instead.
 func (aaa *ThirdPartyService) AdminCreateThirdPartyConfig(input *third_party.AdminCreateThirdPartyConfigParams) (*lobbyclientmodels.ModelsCreateConfigResponse, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -120,7 +120,7 @@ func (aaa *ThirdPartyService) AdminCreateThirdPartyConfig(input *third_party.Adm
 	return created.GetPayload(), nil
 }
 
-// Deprecated: Use AdminDeleteThirdPartyConfigShort instead
+// deprecated(2022-01-10): please use AdminDeleteThirdPartyConfigShort instead.
 func (aaa *ThirdPartyService) AdminDeleteThirdPartyConfig(input *third_party.AdminDeleteThirdPartyConfigParams) (string, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {

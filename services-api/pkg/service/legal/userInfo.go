@@ -39,7 +39,7 @@ func (aaa *UserInfoService) GetAuthSession() auth.Session {
 	}
 }
 
-// Deprecated: Use GetUserInfoStatusShort instead
+// deprecated(2022-01-10): please use GetUserInfoStatusShort instead.
 func (aaa *UserInfoService) GetUserInfoStatus(input *user_info.GetUserInfoStatusParams) ([]*legalclientmodels.RetrieveUserInfoCacheStatusResponse, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -53,7 +53,7 @@ func (aaa *UserInfoService) GetUserInfoStatus(input *user_info.GetUserInfoStatus
 	return ok.GetPayload(), nil
 }
 
-// Deprecated: Use SyncUserInfoShort instead
+// deprecated(2022-01-10): please use SyncUserInfoShort instead.
 func (aaa *UserInfoService) SyncUserInfo(input *user_info.SyncUserInfoParams) error {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -67,7 +67,7 @@ func (aaa *UserInfoService) SyncUserInfo(input *user_info.SyncUserInfoParams) er
 	return nil
 }
 
-// Deprecated: Use InvalidateUserInfoCacheShort instead
+// deprecated(2022-01-10): please use InvalidateUserInfoCacheShort instead.
 func (aaa *UserInfoService) InvalidateUserInfoCache(input *user_info.InvalidateUserInfoCacheParams) error {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {

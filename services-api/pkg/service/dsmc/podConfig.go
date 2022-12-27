@@ -39,7 +39,7 @@ func (aaa *PodConfigService) GetAuthSession() auth.Session {
 	}
 }
 
-// Deprecated: Use GetLowestInstanceSpecShort instead
+// deprecated(2022-01-10): please use GetLowestInstanceSpecShort instead.
 func (aaa *PodConfigService) GetLowestInstanceSpec(input *pod_config.GetLowestInstanceSpecParams) (*dsmcclientmodels.ModelsInstanceSpec, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -59,7 +59,7 @@ func (aaa *PodConfigService) GetLowestInstanceSpec(input *pod_config.GetLowestIn
 	return ok.GetPayload(), nil
 }
 
-// Deprecated: Use GetAllPodConfigShort instead
+// deprecated(2022-01-10): please use GetAllPodConfigShort instead.
 func (aaa *PodConfigService) GetAllPodConfig(input *pod_config.GetAllPodConfigParams) (*dsmcclientmodels.ModelsListPodConfigResponse, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -82,7 +82,7 @@ func (aaa *PodConfigService) GetAllPodConfig(input *pod_config.GetAllPodConfigPa
 	return ok.GetPayload(), nil
 }
 
-// Deprecated: Use GetPodConfigShort instead
+// deprecated(2022-01-10): please use GetPodConfigShort instead.
 func (aaa *PodConfigService) GetPodConfig(input *pod_config.GetPodConfigParams) (*dsmcclientmodels.ModelsPodConfigRecord, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -108,7 +108,7 @@ func (aaa *PodConfigService) GetPodConfig(input *pod_config.GetPodConfigParams) 
 	return ok.GetPayload(), nil
 }
 
-// Deprecated: Use CreatePodConfigShort instead
+// deprecated(2022-01-10): please use CreatePodConfigShort instead.
 func (aaa *PodConfigService) CreatePodConfig(input *pod_config.CreatePodConfigParams) (*dsmcclientmodels.ModelsPodConfigRecord, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -134,7 +134,7 @@ func (aaa *PodConfigService) CreatePodConfig(input *pod_config.CreatePodConfigPa
 	return created.GetPayload(), nil
 }
 
-// Deprecated: Use DeletePodConfigShort instead
+// deprecated(2022-01-10): please use DeletePodConfigShort instead.
 func (aaa *PodConfigService) DeletePodConfig(input *pod_config.DeletePodConfigParams) error {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -163,7 +163,7 @@ func (aaa *PodConfigService) DeletePodConfig(input *pod_config.DeletePodConfigPa
 	return nil
 }
 
-// Deprecated: Use UpdatePodConfigShort instead
+// deprecated(2022-01-10): please use UpdatePodConfigShort instead.
 func (aaa *PodConfigService) UpdatePodConfig(input *pod_config.UpdatePodConfigParams) (*dsmcclientmodels.ModelsPodConfigRecord, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {

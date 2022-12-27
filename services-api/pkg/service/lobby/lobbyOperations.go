@@ -39,7 +39,7 @@ func (aaa *LobbyOperationsService) GetAuthSession() auth.Session {
 	}
 }
 
-// Deprecated: Use AdminUpdatePartyAttributesV1Short instead
+// deprecated(2022-01-10): please use AdminUpdatePartyAttributesV1Short instead.
 func (aaa *LobbyOperationsService) AdminUpdatePartyAttributesV1(input *lobby_operations.AdminUpdatePartyAttributesV1Params) (*lobbyclientmodels.ModelsPartyData, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -71,7 +71,7 @@ func (aaa *LobbyOperationsService) AdminUpdatePartyAttributesV1(input *lobby_ope
 	return ok.GetPayload(), nil
 }
 
-// Deprecated: Use AdminJoinPartyV1Short instead
+// deprecated(2022-01-10): please use AdminJoinPartyV1Short instead.
 func (aaa *LobbyOperationsService) AdminJoinPartyV1(input *lobby_operations.AdminJoinPartyV1Params) error {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -103,7 +103,7 @@ func (aaa *LobbyOperationsService) AdminJoinPartyV1(input *lobby_operations.Admi
 	return nil
 }
 
-// Deprecated: Use PublicGetMessagesShort instead
+// deprecated(2022-01-10): please use PublicGetMessagesShort instead.
 func (aaa *LobbyOperationsService) PublicGetMessages(input *lobby_operations.PublicGetMessagesParams) ([]*lobbyclientmodels.LogAppMessageDeclaration, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {

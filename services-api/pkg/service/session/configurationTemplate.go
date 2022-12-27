@@ -39,7 +39,7 @@ func (aaa *ConfigurationTemplateService) GetAuthSession() auth.Session {
 	}
 }
 
-// Deprecated: Use AdminCreateConfigurationTemplateV1Short instead
+// deprecated(2022-01-10): please use AdminCreateConfigurationTemplateV1Short instead.
 func (aaa *ConfigurationTemplateService) AdminCreateConfigurationTemplateV1(input *configuration_template.AdminCreateConfigurationTemplateV1Params) (*sessionclientmodels.ApimodelsConfigurationTemplateResponse, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -68,7 +68,7 @@ func (aaa *ConfigurationTemplateService) AdminCreateConfigurationTemplateV1(inpu
 	return created.GetPayload(), nil
 }
 
-// Deprecated: Use AdminGetAllConfigurationTemplatesV1Short instead
+// deprecated(2022-01-10): please use AdminGetAllConfigurationTemplatesV1Short instead.
 func (aaa *ConfigurationTemplateService) AdminGetAllConfigurationTemplatesV1(input *configuration_template.AdminGetAllConfigurationTemplatesV1Params) (*sessionclientmodels.ApimodelsConfigurationTemplatesResponse, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -94,7 +94,7 @@ func (aaa *ConfigurationTemplateService) AdminGetAllConfigurationTemplatesV1(inp
 	return ok.GetPayload(), nil
 }
 
-// Deprecated: Use AdminGetConfigurationTemplateV1Short instead
+// deprecated(2022-01-10): please use AdminGetConfigurationTemplateV1Short instead.
 func (aaa *ConfigurationTemplateService) AdminGetConfigurationTemplateV1(input *configuration_template.AdminGetConfigurationTemplateV1Params) (*sessionclientmodels.ApimodelsConfigurationTemplateResponse, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -123,7 +123,7 @@ func (aaa *ConfigurationTemplateService) AdminGetConfigurationTemplateV1(input *
 	return ok.GetPayload(), nil
 }
 
-// Deprecated: Use AdminUpdateConfigurationTemplateV1Short instead
+// deprecated(2022-01-10): please use AdminUpdateConfigurationTemplateV1Short instead.
 func (aaa *ConfigurationTemplateService) AdminUpdateConfigurationTemplateV1(input *configuration_template.AdminUpdateConfigurationTemplateV1Params) (*sessionclientmodels.ApimodelsConfigurationTemplateResponse, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -152,7 +152,7 @@ func (aaa *ConfigurationTemplateService) AdminUpdateConfigurationTemplateV1(inpu
 	return ok.GetPayload(), nil
 }
 
-// Deprecated: Use AdminDeleteConfigurationTemplateV1Short instead
+// deprecated(2022-01-10): please use AdminDeleteConfigurationTemplateV1Short instead.
 func (aaa *ConfigurationTemplateService) AdminDeleteConfigurationTemplateV1(input *configuration_template.AdminDeleteConfigurationTemplateV1Params) (*sessionclientmodels.ResponseError, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {

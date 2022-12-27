@@ -38,7 +38,7 @@ func (aaa *AdminConcurrentRecordService) GetAuthSession() auth.Session {
 	}
 }
 
-// Deprecated: Use AdminPutGameRecordConcurrentHandlerV1Short instead
+// deprecated(2022-01-10): please use AdminPutGameRecordConcurrentHandlerV1Short instead.
 func (aaa *AdminConcurrentRecordService) AdminPutGameRecordConcurrentHandlerV1(input *admin_concurrent_record.AdminPutGameRecordConcurrentHandlerV1Params) error {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -64,7 +64,7 @@ func (aaa *AdminConcurrentRecordService) AdminPutGameRecordConcurrentHandlerV1(i
 	return nil
 }
 
-// Deprecated: Use AdminPutPlayerRecordConcurrentHandlerV1Short instead
+// deprecated(2022-01-10): please use AdminPutPlayerRecordConcurrentHandlerV1Short instead.
 func (aaa *AdminConcurrentRecordService) AdminPutPlayerRecordConcurrentHandlerV1(input *admin_concurrent_record.AdminPutPlayerRecordConcurrentHandlerV1Params) error {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -90,7 +90,7 @@ func (aaa *AdminConcurrentRecordService) AdminPutPlayerRecordConcurrentHandlerV1
 	return nil
 }
 
-// Deprecated: Use AdminPutPlayerPublicRecordConcurrentHandlerV1Short instead
+// deprecated(2022-01-10): please use AdminPutPlayerPublicRecordConcurrentHandlerV1Short instead.
 func (aaa *AdminConcurrentRecordService) AdminPutPlayerPublicRecordConcurrentHandlerV1(input *admin_concurrent_record.AdminPutPlayerPublicRecordConcurrentHandlerV1Params) error {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {

@@ -39,7 +39,7 @@ func (aaa *SSOCredentialService) GetAuthSession() auth.Session {
 	}
 }
 
-// Deprecated: Use RetrieveAllSSOLoginPlatformCredentialV3Short instead
+// deprecated(2022-01-10): please use RetrieveAllSSOLoginPlatformCredentialV3Short instead.
 func (aaa *SSOCredentialService) RetrieveAllSSOLoginPlatformCredentialV3(input *s_s_o_credential.RetrieveAllSSOLoginPlatformCredentialV3Params) ([]*iamclientmodels.ModelSSOPlatformCredentialResponse, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -65,7 +65,7 @@ func (aaa *SSOCredentialService) RetrieveAllSSOLoginPlatformCredentialV3(input *
 	return ok.GetPayload(), nil
 }
 
-// Deprecated: Use RetrieveSSOLoginPlatformCredentialShort instead
+// deprecated(2022-01-10): please use RetrieveSSOLoginPlatformCredentialShort instead.
 func (aaa *SSOCredentialService) RetrieveSSOLoginPlatformCredential(input *s_s_o_credential.RetrieveSSOLoginPlatformCredentialParams) (*iamclientmodels.ModelSSOPlatformCredentialResponse, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -94,7 +94,7 @@ func (aaa *SSOCredentialService) RetrieveSSOLoginPlatformCredential(input *s_s_o
 	return ok.GetPayload(), nil
 }
 
-// Deprecated: Use AddSSOLoginPlatformCredentialShort instead
+// deprecated(2022-01-10): please use AddSSOLoginPlatformCredentialShort instead.
 func (aaa *SSOCredentialService) AddSSOLoginPlatformCredential(input *s_s_o_credential.AddSSOLoginPlatformCredentialParams) (*iamclientmodels.ModelSSOPlatformCredentialResponse, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -120,7 +120,7 @@ func (aaa *SSOCredentialService) AddSSOLoginPlatformCredential(input *s_s_o_cred
 	return created.GetPayload(), nil
 }
 
-// Deprecated: Use DeleteSSOLoginPlatformCredentialV3Short instead
+// deprecated(2022-01-10): please use DeleteSSOLoginPlatformCredentialV3Short instead.
 func (aaa *SSOCredentialService) DeleteSSOLoginPlatformCredentialV3(input *s_s_o_credential.DeleteSSOLoginPlatformCredentialV3Params) error {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -149,7 +149,7 @@ func (aaa *SSOCredentialService) DeleteSSOLoginPlatformCredentialV3(input *s_s_o
 	return nil
 }
 
-// Deprecated: Use UpdateSSOPlatformCredentialShort instead
+// deprecated(2022-01-10): please use UpdateSSOPlatformCredentialShort instead.
 func (aaa *SSOCredentialService) UpdateSSOPlatformCredential(input *s_s_o_credential.UpdateSSOPlatformCredentialParams) (*iamclientmodels.ModelSSOPlatformCredentialResponse, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {

@@ -39,7 +39,7 @@ func (aaa *TicketService) GetAuthSession() auth.Session {
 	}
 }
 
-// Deprecated: Use GetTicketDynamicShort instead
+// deprecated(2022-01-10): please use GetTicketDynamicShort instead.
 func (aaa *TicketService) GetTicketDynamic(input *ticket.GetTicketDynamicParams) (*platformclientmodels.TicketDynamicInfo, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -56,7 +56,7 @@ func (aaa *TicketService) GetTicketDynamic(input *ticket.GetTicketDynamicParams)
 	return ok.GetPayload(), nil
 }
 
-// Deprecated: Use DecreaseTicketSaleShort instead
+// deprecated(2022-01-10): please use DecreaseTicketSaleShort instead.
 func (aaa *TicketService) DecreaseTicketSale(input *ticket.DecreaseTicketSaleParams) error {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -76,7 +76,7 @@ func (aaa *TicketService) DecreaseTicketSale(input *ticket.DecreaseTicketSalePar
 	return nil
 }
 
-// Deprecated: Use GetTicketBoothIDShort instead
+// deprecated(2022-01-10): please use GetTicketBoothIDShort instead.
 func (aaa *TicketService) GetTicketBoothID(input *ticket.GetTicketBoothIDParams) (*platformclientmodels.TicketBoothID, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -93,7 +93,7 @@ func (aaa *TicketService) GetTicketBoothID(input *ticket.GetTicketBoothIDParams)
 	return ok.GetPayload(), nil
 }
 
-// Deprecated: Use IncreaseTicketSaleShort instead
+// deprecated(2022-01-10): please use IncreaseTicketSaleShort instead.
 func (aaa *TicketService) IncreaseTicketSale(input *ticket.IncreaseTicketSaleParams) (*platformclientmodels.TicketSaleIncrementResult, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -113,7 +113,7 @@ func (aaa *TicketService) IncreaseTicketSale(input *ticket.IncreaseTicketSalePar
 	return ok.GetPayload(), nil
 }
 
-// Deprecated: Use AcquireUserTicketShort instead
+// deprecated(2022-01-10): please use AcquireUserTicketShort instead.
 func (aaa *TicketService) AcquireUserTicket(input *ticket.AcquireUserTicketParams) (*platformclientmodels.TicketAcquireResult, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {

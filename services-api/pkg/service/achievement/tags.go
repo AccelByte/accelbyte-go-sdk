@@ -39,7 +39,7 @@ func (aaa *TagsService) GetAuthSession() auth.Session {
 	}
 }
 
-// Deprecated: Use AdminListTagsShort instead
+// deprecated(2022-01-10): please use AdminListTagsShort instead.
 func (aaa *TagsService) AdminListTags(input *tags.AdminListTagsParams) (*achievementclientmodels.ModelsPaginatedTagResponse, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -65,7 +65,7 @@ func (aaa *TagsService) AdminListTags(input *tags.AdminListTagsParams) (*achieve
 	return ok.GetPayload(), nil
 }
 
-// Deprecated: Use PublicListTagsShort instead
+// deprecated(2022-01-10): please use PublicListTagsShort instead.
 func (aaa *TagsService) PublicListTags(input *tags.PublicListTagsParams) (*achievementclientmodels.ModelsPaginatedTagResponse, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {

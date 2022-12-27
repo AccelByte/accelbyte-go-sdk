@@ -39,7 +39,7 @@ func (aaa *AdminUserAgreementService) GetAuthSession() auth.Session {
 	}
 }
 
-// Deprecated: Use IndirectBulkAcceptVersionedPolicyShort instead
+// deprecated(2022-01-10): please use IndirectBulkAcceptVersionedPolicyShort instead.
 func (aaa *AdminUserAgreementService) IndirectBulkAcceptVersionedPolicy(input *admin_user_agreement.IndirectBulkAcceptVersionedPolicyParams) (*legalclientmodels.AcceptAgreementResponse, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {

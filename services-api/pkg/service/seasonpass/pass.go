@@ -39,7 +39,7 @@ func (aaa *PassService) GetAuthSession() auth.Session {
 	}
 }
 
-// Deprecated: Use QueryPassesShort instead
+// deprecated(2022-01-10): please use QueryPassesShort instead.
 func (aaa *PassService) QueryPasses(input *pass.QueryPassesParams) ([]*seasonpassclientmodels.PassInfo, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -59,7 +59,7 @@ func (aaa *PassService) QueryPasses(input *pass.QueryPassesParams) ([]*seasonpas
 	return ok.GetPayload(), nil
 }
 
-// Deprecated: Use CreatePassShort instead
+// deprecated(2022-01-10): please use CreatePassShort instead.
 func (aaa *PassService) CreatePass(input *pass.CreatePassParams) (*seasonpassclientmodels.PassInfo, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -85,7 +85,7 @@ func (aaa *PassService) CreatePass(input *pass.CreatePassParams) (*seasonpasscli
 	return created.GetPayload(), nil
 }
 
-// Deprecated: Use GetPassShort instead
+// deprecated(2022-01-10): please use GetPassShort instead.
 func (aaa *PassService) GetPass(input *pass.GetPassParams) (*seasonpassclientmodels.PassInfo, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -105,7 +105,7 @@ func (aaa *PassService) GetPass(input *pass.GetPassParams) (*seasonpassclientmod
 	return ok.GetPayload(), nil
 }
 
-// Deprecated: Use DeletePassShort instead
+// deprecated(2022-01-10): please use DeletePassShort instead.
 func (aaa *PassService) DeletePass(input *pass.DeletePassParams) error {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -128,7 +128,7 @@ func (aaa *PassService) DeletePass(input *pass.DeletePassParams) error {
 	return nil
 }
 
-// Deprecated: Use UpdatePassShort instead
+// deprecated(2022-01-10): please use UpdatePassShort instead.
 func (aaa *PassService) UpdatePass(input *pass.UpdatePassParams) (*seasonpassclientmodels.PassInfo, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -154,7 +154,7 @@ func (aaa *PassService) UpdatePass(input *pass.UpdatePassParams) (*seasonpasscli
 	return ok.GetPayload(), nil
 }
 
-// Deprecated: Use GrantUserPassShort instead
+// deprecated(2022-01-10): please use GrantUserPassShort instead.
 func (aaa *PassService) GrantUserPass(input *pass.GrantUserPassParams) (*seasonpassclientmodels.UserSeasonSummary, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {

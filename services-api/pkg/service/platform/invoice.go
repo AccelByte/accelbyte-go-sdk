@@ -41,7 +41,7 @@ func (aaa *InvoiceService) GetAuthSession() auth.Session {
 	}
 }
 
-// Deprecated: Use DownloadInvoiceDetailsShort instead
+// deprecated(2022-01-10): please use DownloadInvoiceDetailsShort instead.
 func (aaa *InvoiceService) DownloadInvoiceDetails(input *invoice.DownloadInvoiceDetailsParams, writer io.Writer) (io.Writer, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -55,7 +55,7 @@ func (aaa *InvoiceService) DownloadInvoiceDetails(input *invoice.DownloadInvoice
 	return ok.GetPayload(), nil
 }
 
-// Deprecated: Use GenerateInvoiceSummaryShort instead
+// deprecated(2022-01-10): please use GenerateInvoiceSummaryShort instead.
 func (aaa *InvoiceService) GenerateInvoiceSummary(input *invoice.GenerateInvoiceSummaryParams) (*platformclientmodels.InvoiceSummary, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {

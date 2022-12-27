@@ -39,7 +39,7 @@ func (aaa *AdminService) GetAuthSession() auth.Session {
 	}
 }
 
-// Deprecated: Use ListServerShort instead
+// deprecated(2022-01-10): please use ListServerShort instead.
 func (aaa *AdminService) ListServer(input *admin.ListServerParams) (*dsmcclientmodels.ModelsListServerResponse, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -59,7 +59,7 @@ func (aaa *AdminService) ListServer(input *admin.ListServerParams) (*dsmcclientm
 	return ok.GetPayload(), nil
 }
 
-// Deprecated: Use CountServerShort instead
+// deprecated(2022-01-10): please use CountServerShort instead.
 func (aaa *AdminService) CountServer(input *admin.CountServerParams) (*dsmcclientmodels.ModelsCountServerResponse, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -79,7 +79,7 @@ func (aaa *AdminService) CountServer(input *admin.CountServerParams) (*dsmcclien
 	return ok.GetPayload(), nil
 }
 
-// Deprecated: Use CountServerDetailedShort instead
+// deprecated(2022-01-10): please use CountServerDetailedShort instead.
 func (aaa *AdminService) CountServerDetailed(input *admin.CountServerDetailedParams) (*dsmcclientmodels.ModelsDetailedCountServerResponse, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -99,7 +99,7 @@ func (aaa *AdminService) CountServerDetailed(input *admin.CountServerDetailedPar
 	return ok.GetPayload(), nil
 }
 
-// Deprecated: Use ListLocalServerShort instead
+// deprecated(2022-01-10): please use ListLocalServerShort instead.
 func (aaa *AdminService) ListLocalServer(input *admin.ListLocalServerParams) (*dsmcclientmodels.ModelsListServerResponse, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -119,7 +119,7 @@ func (aaa *AdminService) ListLocalServer(input *admin.ListLocalServerParams) (*d
 	return ok.GetPayload(), nil
 }
 
-// Deprecated: Use DeleteLocalServerShort instead
+// deprecated(2022-01-10): please use DeleteLocalServerShort instead.
 func (aaa *AdminService) DeleteLocalServer(input *admin.DeleteLocalServerParams) error {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -139,7 +139,7 @@ func (aaa *AdminService) DeleteLocalServer(input *admin.DeleteLocalServerParams)
 	return nil
 }
 
-// Deprecated: Use GetServerShort instead
+// deprecated(2022-01-10): please use GetServerShort instead.
 func (aaa *AdminService) GetServer(input *admin.GetServerParams) (*dsmcclientmodels.ModelsServer, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -162,7 +162,7 @@ func (aaa *AdminService) GetServer(input *admin.GetServerParams) (*dsmcclientmod
 	return ok.GetPayload(), nil
 }
 
-// Deprecated: Use DeleteServerShort instead
+// deprecated(2022-01-10): please use DeleteServerShort instead.
 func (aaa *AdminService) DeleteServer(input *admin.DeleteServerParams) error {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -185,7 +185,7 @@ func (aaa *AdminService) DeleteServer(input *admin.DeleteServerParams) error {
 	return nil
 }
 
-// Deprecated: Use ListSessionShort instead
+// deprecated(2022-01-10): please use ListSessionShort instead.
 func (aaa *AdminService) ListSession(input *admin.ListSessionParams) (*dsmcclientmodels.ModelsListSessionResponse, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -205,7 +205,7 @@ func (aaa *AdminService) ListSession(input *admin.ListSessionParams) (*dsmcclien
 	return ok.GetPayload(), nil
 }
 
-// Deprecated: Use CountSessionShort instead
+// deprecated(2022-01-10): please use CountSessionShort instead.
 func (aaa *AdminService) CountSession(input *admin.CountSessionParams) (*dsmcclientmodels.ModelsCountSessionResponse, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -225,7 +225,7 @@ func (aaa *AdminService) CountSession(input *admin.CountSessionParams) (*dsmccli
 	return ok.GetPayload(), nil
 }
 
-// Deprecated: Use DeleteSessionShort instead
+// deprecated(2022-01-10): please use DeleteSessionShort instead.
 func (aaa *AdminService) DeleteSession(input *admin.DeleteSessionParams) error {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {

@@ -39,7 +39,7 @@ func (aaa *GroupRolesService) GetAuthSession() auth.Session {
 	}
 }
 
-// Deprecated: Use GetMemberRolesListAdminV1Short instead
+// deprecated(2022-01-10): please use GetMemberRolesListAdminV1Short instead.
 func (aaa *GroupRolesService) GetMemberRolesListAdminV1(input *group_roles.GetMemberRolesListAdminV1Params) (*groupclientmodels.ModelsGetMemberRolesListResponseV1, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -65,7 +65,7 @@ func (aaa *GroupRolesService) GetMemberRolesListAdminV1(input *group_roles.GetMe
 	return ok.GetPayload(), nil
 }
 
-// Deprecated: Use CreateMemberRoleAdminV1Short instead
+// deprecated(2022-01-10): please use CreateMemberRoleAdminV1Short instead.
 func (aaa *GroupRolesService) CreateMemberRoleAdminV1(input *group_roles.CreateMemberRoleAdminV1Params) (*groupclientmodels.ModelsCreateMemberRoleResponseV1, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -91,7 +91,7 @@ func (aaa *GroupRolesService) CreateMemberRoleAdminV1(input *group_roles.CreateM
 	return created.GetPayload(), nil
 }
 
-// Deprecated: Use GetSingleMemberRoleAdminV1Short instead
+// deprecated(2022-01-10): please use GetSingleMemberRoleAdminV1Short instead.
 func (aaa *GroupRolesService) GetSingleMemberRoleAdminV1(input *group_roles.GetSingleMemberRoleAdminV1Params) (*groupclientmodels.ModelsGetMemberRoleResponseV1, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -120,7 +120,7 @@ func (aaa *GroupRolesService) GetSingleMemberRoleAdminV1(input *group_roles.GetS
 	return ok.GetPayload(), nil
 }
 
-// Deprecated: Use DeleteMemberRoleAdminV1Short instead
+// deprecated(2022-01-10): please use DeleteMemberRoleAdminV1Short instead.
 func (aaa *GroupRolesService) DeleteMemberRoleAdminV1(input *group_roles.DeleteMemberRoleAdminV1Params) error {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -149,7 +149,7 @@ func (aaa *GroupRolesService) DeleteMemberRoleAdminV1(input *group_roles.DeleteM
 	return nil
 }
 
-// Deprecated: Use UpdateMemberRoleAdminV1Short instead
+// deprecated(2022-01-10): please use UpdateMemberRoleAdminV1Short instead.
 func (aaa *GroupRolesService) UpdateMemberRoleAdminV1(input *group_roles.UpdateMemberRoleAdminV1Params) (*groupclientmodels.ModelsUpdateMemberRoleResponseV1, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -178,7 +178,7 @@ func (aaa *GroupRolesService) UpdateMemberRoleAdminV1(input *group_roles.UpdateM
 	return ok.GetPayload(), nil
 }
 
-// Deprecated: Use UpdateMemberRolePermissionAdminV1Short instead
+// deprecated(2022-01-10): please use UpdateMemberRolePermissionAdminV1Short instead.
 func (aaa *GroupRolesService) UpdateMemberRolePermissionAdminV1(input *group_roles.UpdateMemberRolePermissionAdminV1Params) (*groupclientmodels.ModelsUpdateMemberRoleResponseV1, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -207,7 +207,7 @@ func (aaa *GroupRolesService) UpdateMemberRolePermissionAdminV1(input *group_rol
 	return ok.GetPayload(), nil
 }
 
-// Deprecated: Use GetMemberRolesListPublicV1Short instead
+// deprecated(2022-01-10): please use GetMemberRolesListPublicV1Short instead.
 func (aaa *GroupRolesService) GetMemberRolesListPublicV1(input *group_roles.GetMemberRolesListPublicV1Params) (*groupclientmodels.ModelsGetMemberRolesListResponseV1, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -233,7 +233,7 @@ func (aaa *GroupRolesService) GetMemberRolesListPublicV1(input *group_roles.GetM
 	return ok.GetPayload(), nil
 }
 
-// Deprecated: Use UpdateMemberRolePublicV1Short instead
+// deprecated(2022-01-10): please use UpdateMemberRolePublicV1Short instead.
 func (aaa *GroupRolesService) UpdateMemberRolePublicV1(input *group_roles.UpdateMemberRolePublicV1Params) (*groupclientmodels.ModelsGetUserGroupInformationResponseV1, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -262,7 +262,7 @@ func (aaa *GroupRolesService) UpdateMemberRolePublicV1(input *group_roles.Update
 	return ok.GetPayload(), nil
 }
 
-// Deprecated: Use DeleteMemberRolePublicV1Short instead
+// deprecated(2022-01-10): please use DeleteMemberRolePublicV1Short instead.
 func (aaa *GroupRolesService) DeleteMemberRolePublicV1(input *group_roles.DeleteMemberRolePublicV1Params) error {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {

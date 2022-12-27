@@ -39,7 +39,7 @@ func (aaa *DslogmanagerOperationsService) GetAuthSession() auth.Session {
 	}
 }
 
-// Deprecated: Use PublicGetMessagesShort instead
+// deprecated(2022-01-10): please use PublicGetMessagesShort instead.
 func (aaa *DslogmanagerOperationsService) PublicGetMessages(input *dslogmanager_operations.PublicGetMessagesParams) ([]*dslogmanagerclientmodels.LogAppMessageDeclaration, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {

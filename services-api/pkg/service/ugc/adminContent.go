@@ -39,7 +39,7 @@ func (aaa *AdminContentService) GetAuthSession() auth.Session {
 	}
 }
 
-// Deprecated: Use AdminUploadContentDirectShort instead
+// deprecated(2022-01-10): please use AdminUploadContentDirectShort instead.
 func (aaa *AdminContentService) AdminUploadContentDirect(input *admin_content.AdminUploadContentDirectParams) (*ugcclientmodels.ModelsCreateContentResponse, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -62,7 +62,7 @@ func (aaa *AdminContentService) AdminUploadContentDirect(input *admin_content.Ad
 	return created.GetPayload(), nil
 }
 
-// Deprecated: Use AdminUploadContentS3Short instead
+// deprecated(2022-01-10): please use AdminUploadContentS3Short instead.
 func (aaa *AdminContentService) AdminUploadContentS3(input *admin_content.AdminUploadContentS3Params) (*ugcclientmodels.ModelsCreateContentResponse, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -85,7 +85,7 @@ func (aaa *AdminContentService) AdminUploadContentS3(input *admin_content.AdminU
 	return created.GetPayload(), nil
 }
 
-// Deprecated: Use SingleAdminUpdateContentS3Short instead
+// deprecated(2022-01-10): please use SingleAdminUpdateContentS3Short instead.
 func (aaa *AdminContentService) SingleAdminUpdateContentS3(input *admin_content.SingleAdminUpdateContentS3Params) (*ugcclientmodels.ModelsCreateContentResponse, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -111,7 +111,7 @@ func (aaa *AdminContentService) SingleAdminUpdateContentS3(input *admin_content.
 	return ok.GetPayload(), nil
 }
 
-// Deprecated: Use AdminSearchChannelSpecificContentShort instead
+// deprecated(2022-01-10): please use AdminSearchChannelSpecificContentShort instead.
 func (aaa *AdminContentService) AdminSearchChannelSpecificContent(input *admin_content.AdminSearchChannelSpecificContentParams) (*ugcclientmodels.ModelsPaginatedContentDownloadResponse, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -134,7 +134,7 @@ func (aaa *AdminContentService) AdminSearchChannelSpecificContent(input *admin_c
 	return ok.GetPayload(), nil
 }
 
-// Deprecated: Use SingleAdminUpdateContentDirectShort instead
+// deprecated(2022-01-10): please use SingleAdminUpdateContentDirectShort instead.
 func (aaa *AdminContentService) SingleAdminUpdateContentDirect(input *admin_content.SingleAdminUpdateContentDirectParams) (*ugcclientmodels.ModelsCreateContentResponse, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -160,7 +160,7 @@ func (aaa *AdminContentService) SingleAdminUpdateContentDirect(input *admin_cont
 	return ok.GetPayload(), nil
 }
 
-// Deprecated: Use SingleAdminDeleteContentShort instead
+// deprecated(2022-01-10): please use SingleAdminDeleteContentShort instead.
 func (aaa *AdminContentService) SingleAdminDeleteContent(input *admin_content.SingleAdminDeleteContentParams) error {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -183,7 +183,7 @@ func (aaa *AdminContentService) SingleAdminDeleteContent(input *admin_content.Si
 	return nil
 }
 
-// Deprecated: Use SingleAdminGetContentShort instead
+// deprecated(2022-01-10): please use SingleAdminGetContentShort instead.
 func (aaa *AdminContentService) SingleAdminGetContent(input *admin_content.SingleAdminGetContentParams) (*ugcclientmodels.ModelsPaginatedContentDownloadResponse, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -206,7 +206,7 @@ func (aaa *AdminContentService) SingleAdminGetContent(input *admin_content.Singl
 	return ok.GetPayload(), nil
 }
 
-// Deprecated: Use AdminSearchContentShort instead
+// deprecated(2022-01-10): please use AdminSearchContentShort instead.
 func (aaa *AdminContentService) AdminSearchContent(input *admin_content.AdminSearchContentParams) (*ugcclientmodels.ModelsPaginatedContentDownloadResponse, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -229,7 +229,7 @@ func (aaa *AdminContentService) AdminSearchContent(input *admin_content.AdminSea
 	return ok.GetPayload(), nil
 }
 
-// Deprecated: Use AdminGetUserContentByShareCodeShort instead
+// deprecated(2022-01-10): please use AdminGetUserContentByShareCodeShort instead.
 func (aaa *AdminContentService) AdminGetUserContentByShareCode(input *admin_content.AdminGetUserContentByShareCodeParams) (*ugcclientmodels.ModelsContentDownloadResponse, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -252,7 +252,7 @@ func (aaa *AdminContentService) AdminGetUserContentByShareCode(input *admin_cont
 	return ok.GetPayload(), nil
 }
 
-// Deprecated: Use AdminGetSpecificContentShort instead
+// deprecated(2022-01-10): please use AdminGetSpecificContentShort instead.
 func (aaa *AdminContentService) AdminGetSpecificContent(input *admin_content.AdminGetSpecificContentParams) (*ugcclientmodels.ModelsContentDownloadResponse, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -275,7 +275,7 @@ func (aaa *AdminContentService) AdminGetSpecificContent(input *admin_content.Adm
 	return ok.GetPayload(), nil
 }
 
-// Deprecated: Use AdminDownloadContentPreviewShort instead
+// deprecated(2022-01-10): please use AdminDownloadContentPreviewShort instead.
 func (aaa *AdminContentService) AdminDownloadContentPreview(input *admin_content.AdminDownloadContentPreviewParams) (*ugcclientmodels.ModelsGetContentPreviewResponse, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -298,7 +298,7 @@ func (aaa *AdminContentService) AdminDownloadContentPreview(input *admin_content
 	return ok.GetPayload(), nil
 }
 
-// Deprecated: Use AdminUpdateScreenshotsShort instead
+// deprecated(2022-01-10): please use AdminUpdateScreenshotsShort instead.
 func (aaa *AdminContentService) AdminUpdateScreenshots(input *admin_content.AdminUpdateScreenshotsParams) (*ugcclientmodels.ModelsUpdateScreenshotResponse, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -324,7 +324,7 @@ func (aaa *AdminContentService) AdminUpdateScreenshots(input *admin_content.Admi
 	return ok.GetPayload(), nil
 }
 
-// Deprecated: Use AdminUploadContentScreenshotShort instead
+// deprecated(2022-01-10): please use AdminUploadContentScreenshotShort instead.
 func (aaa *AdminContentService) AdminUploadContentScreenshot(input *admin_content.AdminUploadContentScreenshotParams) (*ugcclientmodels.ModelsCreateScreenshotResponse, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -350,7 +350,7 @@ func (aaa *AdminContentService) AdminUploadContentScreenshot(input *admin_conten
 	return created.GetPayload(), nil
 }
 
-// Deprecated: Use AdminDeleteContentScreenshotShort instead
+// deprecated(2022-01-10): please use AdminDeleteContentScreenshotShort instead.
 func (aaa *AdminContentService) AdminDeleteContentScreenshot(input *admin_content.AdminDeleteContentScreenshotParams) error {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -376,7 +376,7 @@ func (aaa *AdminContentService) AdminDeleteContentScreenshot(input *admin_conten
 	return nil
 }
 
-// Deprecated: Use AdminUpdateContentS3Short instead
+// deprecated(2022-01-10): please use AdminUpdateContentS3Short instead.
 func (aaa *AdminContentService) AdminUpdateContentS3(input *admin_content.AdminUpdateContentS3Params) (*ugcclientmodels.ModelsCreateContentResponse, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -402,7 +402,7 @@ func (aaa *AdminContentService) AdminUpdateContentS3(input *admin_content.AdminU
 	return ok.GetPayload(), nil
 }
 
-// Deprecated: Use AdminUpdateContentDirectShort instead
+// deprecated(2022-01-10): please use AdminUpdateContentDirectShort instead.
 func (aaa *AdminContentService) AdminUpdateContentDirect(input *admin_content.AdminUpdateContentDirectParams) (*ugcclientmodels.ModelsCreateContentResponse, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -428,7 +428,7 @@ func (aaa *AdminContentService) AdminUpdateContentDirect(input *admin_content.Ad
 	return ok.GetPayload(), nil
 }
 
-// Deprecated: Use AdminDeleteContentShort instead
+// deprecated(2022-01-10): please use AdminDeleteContentShort instead.
 func (aaa *AdminContentService) AdminDeleteContent(input *admin_content.AdminDeleteContentParams) error {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -451,7 +451,7 @@ func (aaa *AdminContentService) AdminDeleteContent(input *admin_content.AdminDel
 	return nil
 }
 
-// Deprecated: Use AdminGetContentShort instead
+// deprecated(2022-01-10): please use AdminGetContentShort instead.
 func (aaa *AdminContentService) AdminGetContent(input *admin_content.AdminGetContentParams) (*ugcclientmodels.ModelsPaginatedContentDownloadResponse, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -474,7 +474,7 @@ func (aaa *AdminContentService) AdminGetContent(input *admin_content.AdminGetCon
 	return ok.GetPayload(), nil
 }
 
-// Deprecated: Use AdminHideUserContentShort instead
+// deprecated(2022-01-10): please use AdminHideUserContentShort instead.
 func (aaa *AdminContentService) AdminHideUserContent(input *admin_content.AdminHideUserContentParams) (*ugcclientmodels.ModelsCreateContentResponse, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {

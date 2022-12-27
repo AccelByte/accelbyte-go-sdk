@@ -41,7 +41,7 @@ func (aaa *AchievementsService) GetAuthSession() auth.Session {
 	}
 }
 
-// Deprecated: Use AdminListAchievementsShort instead
+// deprecated(2022-01-10): please use AdminListAchievementsShort instead.
 func (aaa *AchievementsService) AdminListAchievements(input *achievements.AdminListAchievementsParams) (*achievementclientmodels.ModelsPaginatedAchievementResponse, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -67,7 +67,7 @@ func (aaa *AchievementsService) AdminListAchievements(input *achievements.AdminL
 	return ok.GetPayload(), nil
 }
 
-// Deprecated: Use AdminCreateNewAchievementShort instead
+// deprecated(2022-01-10): please use AdminCreateNewAchievementShort instead.
 func (aaa *AchievementsService) AdminCreateNewAchievement(input *achievements.AdminCreateNewAchievementParams) (*achievementclientmodels.ModelsAchievementResponse, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -90,7 +90,7 @@ func (aaa *AchievementsService) AdminCreateNewAchievement(input *achievements.Ad
 	return created.GetPayload(), nil
 }
 
-// Deprecated: Use ExportAchievementsShort instead
+// deprecated(2022-01-10): please use ExportAchievementsShort instead.
 func (aaa *AchievementsService) ExportAchievements(input *achievements.ExportAchievementsParams, writer io.Writer) (io.Writer, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -113,7 +113,7 @@ func (aaa *AchievementsService) ExportAchievements(input *achievements.ExportAch
 	return ok.GetPayload(), nil
 }
 
-// Deprecated: Use ImportAchievementsShort instead
+// deprecated(2022-01-10): please use ImportAchievementsShort instead.
 func (aaa *AchievementsService) ImportAchievements(input *achievements.ImportAchievementsParams) (*achievementclientmodels.ServiceImportConfigResponse, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -136,7 +136,7 @@ func (aaa *AchievementsService) ImportAchievements(input *achievements.ImportAch
 	return ok.GetPayload(), nil
 }
 
-// Deprecated: Use AdminGetAchievementShort instead
+// deprecated(2022-01-10): please use AdminGetAchievementShort instead.
 func (aaa *AchievementsService) AdminGetAchievement(input *achievements.AdminGetAchievementParams) (*achievementclientmodels.ModelsAchievementResponse, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -162,7 +162,7 @@ func (aaa *AchievementsService) AdminGetAchievement(input *achievements.AdminGet
 	return ok.GetPayload(), nil
 }
 
-// Deprecated: Use AdminUpdateAchievementShort instead
+// deprecated(2022-01-10): please use AdminUpdateAchievementShort instead.
 func (aaa *AchievementsService) AdminUpdateAchievement(input *achievements.AdminUpdateAchievementParams) (*achievementclientmodels.ModelsAchievementResponse, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -188,7 +188,7 @@ func (aaa *AchievementsService) AdminUpdateAchievement(input *achievements.Admin
 	return ok.GetPayload(), nil
 }
 
-// Deprecated: Use AdminDeleteAchievementShort instead
+// deprecated(2022-01-10): please use AdminDeleteAchievementShort instead.
 func (aaa *AchievementsService) AdminDeleteAchievement(input *achievements.AdminDeleteAchievementParams) error {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -214,7 +214,7 @@ func (aaa *AchievementsService) AdminDeleteAchievement(input *achievements.Admin
 	return nil
 }
 
-// Deprecated: Use AdminUpdateAchievementListOrderShort instead
+// deprecated(2022-01-10): please use AdminUpdateAchievementListOrderShort instead.
 func (aaa *AchievementsService) AdminUpdateAchievementListOrder(input *achievements.AdminUpdateAchievementListOrderParams) error {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -240,7 +240,7 @@ func (aaa *AchievementsService) AdminUpdateAchievementListOrder(input *achieveme
 	return nil
 }
 
-// Deprecated: Use PublicListAchievementsShort instead
+// deprecated(2022-01-10): please use PublicListAchievementsShort instead.
 func (aaa *AchievementsService) PublicListAchievements(input *achievements.PublicListAchievementsParams) (*achievementclientmodels.ModelsPublicAchievementsResponse, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -266,7 +266,7 @@ func (aaa *AchievementsService) PublicListAchievements(input *achievements.Publi
 	return ok.GetPayload(), nil
 }
 
-// Deprecated: Use PublicGetAchievementShort instead
+// deprecated(2022-01-10): please use PublicGetAchievementShort instead.
 func (aaa *AchievementsService) PublicGetAchievement(input *achievements.PublicGetAchievementParams) (*achievementclientmodels.ModelsPublicAchievementResponse, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {

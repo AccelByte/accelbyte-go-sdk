@@ -39,7 +39,7 @@ func (aaa *PlayerService) GetAuthSession() auth.Session {
 	}
 }
 
-// Deprecated: Use AdminGetLobbyCCUShort instead
+// deprecated(2022-01-10): please use AdminGetLobbyCCUShort instead.
 func (aaa *PlayerService) AdminGetLobbyCCU(input *player.AdminGetLobbyCCUParams) (*lobbyclientmodels.ModelsGetLobbyCcuResponse, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -68,7 +68,7 @@ func (aaa *PlayerService) AdminGetLobbyCCU(input *player.AdminGetLobbyCCUParams)
 	return ok.GetPayload(), nil
 }
 
-// Deprecated: Use AdminGetAllPlayerSessionAttributeShort instead
+// deprecated(2022-01-10): please use AdminGetAllPlayerSessionAttributeShort instead.
 func (aaa *PlayerService) AdminGetAllPlayerSessionAttribute(input *player.AdminGetAllPlayerSessionAttributeParams) (*lobbyclientmodels.ModelsGetAllPlayerSessionAttributeResponse, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -91,7 +91,7 @@ func (aaa *PlayerService) AdminGetAllPlayerSessionAttribute(input *player.AdminG
 	return ok.GetPayload(), nil
 }
 
-// Deprecated: Use AdminSetPlayerSessionAttributeShort instead
+// deprecated(2022-01-10): please use AdminSetPlayerSessionAttributeShort instead.
 func (aaa *PlayerService) AdminSetPlayerSessionAttribute(input *player.AdminSetPlayerSessionAttributeParams) error {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -120,7 +120,7 @@ func (aaa *PlayerService) AdminSetPlayerSessionAttribute(input *player.AdminSetP
 	return nil
 }
 
-// Deprecated: Use AdminGetPlayerSessionAttributeShort instead
+// deprecated(2022-01-10): please use AdminGetPlayerSessionAttributeShort instead.
 func (aaa *PlayerService) AdminGetPlayerSessionAttribute(input *player.AdminGetPlayerSessionAttributeParams) (*lobbyclientmodels.ModelsGetPlayerSessionAttributeResponse, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -149,7 +149,7 @@ func (aaa *PlayerService) AdminGetPlayerSessionAttribute(input *player.AdminGetP
 	return ok.GetPayload(), nil
 }
 
-// Deprecated: Use AdminGetPlayerBlockedPlayersV1Short instead
+// deprecated(2022-01-10): please use AdminGetPlayerBlockedPlayersV1Short instead.
 func (aaa *PlayerService) AdminGetPlayerBlockedPlayersV1(input *player.AdminGetPlayerBlockedPlayersV1Params) (*lobbyclientmodels.ModelsGetAllPlayerBlockedUsersResponse, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -178,7 +178,7 @@ func (aaa *PlayerService) AdminGetPlayerBlockedPlayersV1(input *player.AdminGetP
 	return ok.GetPayload(), nil
 }
 
-// Deprecated: Use AdminGetPlayerBlockedByPlayersV1Short instead
+// deprecated(2022-01-10): please use AdminGetPlayerBlockedByPlayersV1Short instead.
 func (aaa *PlayerService) AdminGetPlayerBlockedByPlayersV1(input *player.AdminGetPlayerBlockedByPlayersV1Params) (*lobbyclientmodels.ModelsGetAllPlayerBlockedByUsersResponse, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -207,7 +207,7 @@ func (aaa *PlayerService) AdminGetPlayerBlockedByPlayersV1(input *player.AdminGe
 	return ok.GetPayload(), nil
 }
 
-// Deprecated: Use AdminBulkBlockPlayersV1Short instead
+// deprecated(2022-01-10): please use AdminBulkBlockPlayersV1Short instead.
 func (aaa *PlayerService) AdminBulkBlockPlayersV1(input *player.AdminBulkBlockPlayersV1Params) error {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -233,7 +233,7 @@ func (aaa *PlayerService) AdminBulkBlockPlayersV1(input *player.AdminBulkBlockPl
 	return nil
 }
 
-// Deprecated: Use PublicGetPlayerBlockedPlayersV1Short instead
+// deprecated(2022-01-10): please use PublicGetPlayerBlockedPlayersV1Short instead.
 func (aaa *PlayerService) PublicGetPlayerBlockedPlayersV1(input *player.PublicGetPlayerBlockedPlayersV1Params) (*lobbyclientmodels.ModelsGetAllPlayerBlockedUsersResponse, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -262,7 +262,7 @@ func (aaa *PlayerService) PublicGetPlayerBlockedPlayersV1(input *player.PublicGe
 	return ok.GetPayload(), nil
 }
 
-// Deprecated: Use PublicGetPlayerBlockedByPlayersV1Short instead
+// deprecated(2022-01-10): please use PublicGetPlayerBlockedByPlayersV1Short instead.
 func (aaa *PlayerService) PublicGetPlayerBlockedByPlayersV1(input *player.PublicGetPlayerBlockedByPlayersV1Params) (*lobbyclientmodels.ModelsGetAllPlayerBlockedByUsersResponse, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {

@@ -39,7 +39,7 @@ func (aaa *OAuthService) GetAuthSession() auth.Session {
 	}
 }
 
-// Deprecated: Use AuthorizationShort instead
+// deprecated(2022-01-10): please use AuthorizationShort instead.
 func (aaa *OAuthService) Authorization(input *o_auth.AuthorizationParams) (string, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -53,7 +53,7 @@ func (aaa *OAuthService) Authorization(input *o_auth.AuthorizationParams) (strin
 	return ok.Location, nil
 }
 
-// Deprecated: Use GetJWKSShort instead
+// deprecated(2022-01-10): please use GetJWKSShort instead.
 func (aaa *OAuthService) GetJWKS(input *o_auth.GetJWKSParams) (*iamclientmodels.OauthcommonJWKSet, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -67,7 +67,7 @@ func (aaa *OAuthService) GetJWKS(input *o_auth.GetJWKSParams) (*iamclientmodels.
 	return ok.GetPayload(), nil
 }
 
-// Deprecated: Use PlatformTokenRequestHandlerShort instead
+// deprecated(2022-01-10): please use PlatformTokenRequestHandlerShort instead.
 func (aaa *OAuthService) PlatformTokenRequestHandler(input *o_auth.PlatformTokenRequestHandlerParams) (*iamclientmodels.OauthmodelTokenResponse, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -87,7 +87,7 @@ func (aaa *OAuthService) PlatformTokenRequestHandler(input *o_auth.PlatformToken
 	return ok.GetPayload(), nil
 }
 
-// Deprecated: Use RevokeUserShort instead
+// deprecated(2022-01-10): please use RevokeUserShort instead.
 func (aaa *OAuthService) RevokeUser(input *o_auth.RevokeUserParams) error {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -104,7 +104,7 @@ func (aaa *OAuthService) RevokeUser(input *o_auth.RevokeUserParams) error {
 	return nil
 }
 
-// Deprecated: Use GetRevocationListShort instead
+// deprecated(2022-01-10): please use GetRevocationListShort instead.
 func (aaa *OAuthService) GetRevocationList(input *o_auth.GetRevocationListParams) (*iamclientmodels.OauthapiRevocationList, error) {
 	clientID := aaa.ConfigRepository.GetClientId()
 	clientSecret := aaa.ConfigRepository.GetClientSecret()
@@ -119,7 +119,7 @@ func (aaa *OAuthService) GetRevocationList(input *o_auth.GetRevocationListParams
 	return ok.GetPayload(), nil
 }
 
-// Deprecated: Use RevokeTokenShort instead
+// deprecated(2022-01-10): please use RevokeTokenShort instead.
 func (aaa *OAuthService) RevokeToken(input *o_auth.RevokeTokenParams) error {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -139,7 +139,7 @@ func (aaa *OAuthService) RevokeToken(input *o_auth.RevokeTokenParams) error {
 	return nil
 }
 
-// Deprecated: Use RevokeAUserShort instead
+// deprecated(2022-01-10): please use RevokeAUserShort instead.
 func (aaa *OAuthService) RevokeAUser(input *o_auth.RevokeAUserParams) error {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -159,7 +159,7 @@ func (aaa *OAuthService) RevokeAUser(input *o_auth.RevokeAUserParams) error {
 	return nil
 }
 
-// Deprecated: Use TokenGrantShort instead
+// deprecated(2022-01-10): please use TokenGrantShort instead.
 func (aaa *OAuthService) TokenGrant(input *o_auth.TokenGrantParams) (*iamclientmodels.OauthmodelTokenResponse, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -179,7 +179,7 @@ func (aaa *OAuthService) TokenGrant(input *o_auth.TokenGrantParams) (*iamclientm
 	return ok.GetPayload(), nil
 }
 
-// Deprecated: Use VerifyTokenShort instead
+// deprecated(2022-01-10): please use VerifyTokenShort instead.
 func (aaa *OAuthService) VerifyToken(input *o_auth.VerifyTokenParams) (*iamclientmodels.OauthmodelTokenResponse, error) {
 	clientID := aaa.ConfigRepository.GetClientId()
 	clientSecret := aaa.ConfigRepository.GetClientSecret()

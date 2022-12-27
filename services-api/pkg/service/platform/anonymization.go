@@ -38,7 +38,7 @@ func (aaa *AnonymizationService) GetAuthSession() auth.Session {
 	}
 }
 
-// Deprecated: Use AnonymizeCampaignShort instead
+// deprecated(2022-01-10): please use AnonymizeCampaignShort instead.
 func (aaa *AnonymizationService) AnonymizeCampaign(input *anonymization.AnonymizeCampaignParams) error {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -52,7 +52,7 @@ func (aaa *AnonymizationService) AnonymizeCampaign(input *anonymization.Anonymiz
 	return nil
 }
 
-// Deprecated: Use AnonymizeEntitlementShort instead
+// deprecated(2022-01-10): please use AnonymizeEntitlementShort instead.
 func (aaa *AnonymizationService) AnonymizeEntitlement(input *anonymization.AnonymizeEntitlementParams) error {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -66,7 +66,7 @@ func (aaa *AnonymizationService) AnonymizeEntitlement(input *anonymization.Anony
 	return nil
 }
 
-// Deprecated: Use AnonymizeFulfillmentShort instead
+// deprecated(2022-01-10): please use AnonymizeFulfillmentShort instead.
 func (aaa *AnonymizationService) AnonymizeFulfillment(input *anonymization.AnonymizeFulfillmentParams) error {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -80,7 +80,7 @@ func (aaa *AnonymizationService) AnonymizeFulfillment(input *anonymization.Anony
 	return nil
 }
 
-// Deprecated: Use AnonymizeIntegrationShort instead
+// deprecated(2022-01-10): please use AnonymizeIntegrationShort instead.
 func (aaa *AnonymizationService) AnonymizeIntegration(input *anonymization.AnonymizeIntegrationParams) error {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -94,7 +94,7 @@ func (aaa *AnonymizationService) AnonymizeIntegration(input *anonymization.Anony
 	return nil
 }
 
-// Deprecated: Use AnonymizeOrderShort instead
+// deprecated(2022-01-10): please use AnonymizeOrderShort instead.
 func (aaa *AnonymizationService) AnonymizeOrder(input *anonymization.AnonymizeOrderParams) error {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -108,7 +108,7 @@ func (aaa *AnonymizationService) AnonymizeOrder(input *anonymization.AnonymizeOr
 	return nil
 }
 
-// Deprecated: Use AnonymizePaymentShort instead
+// deprecated(2022-01-10): please use AnonymizePaymentShort instead.
 func (aaa *AnonymizationService) AnonymizePayment(input *anonymization.AnonymizePaymentParams) error {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -122,7 +122,7 @@ func (aaa *AnonymizationService) AnonymizePayment(input *anonymization.Anonymize
 	return nil
 }
 
-// Deprecated: Use AnonymizeSubscriptionShort instead
+// deprecated(2022-01-10): please use AnonymizeSubscriptionShort instead.
 func (aaa *AnonymizationService) AnonymizeSubscription(input *anonymization.AnonymizeSubscriptionParams) error {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -136,7 +136,7 @@ func (aaa *AnonymizationService) AnonymizeSubscription(input *anonymization.Anon
 	return nil
 }
 
-// Deprecated: Use AnonymizeWalletShort instead
+// deprecated(2022-01-10): please use AnonymizeWalletShort instead.
 func (aaa *AnonymizationService) AnonymizeWallet(input *anonymization.AnonymizeWalletParams) error {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {

@@ -39,7 +39,7 @@ func (aaa *GlobalStatisticService) GetAuthSession() auth.Session {
 	}
 }
 
-// Deprecated: Use GetGlobalStatItemsShort instead
+// deprecated(2022-01-10): please use GetGlobalStatItemsShort instead.
 func (aaa *GlobalStatisticService) GetGlobalStatItems(input *global_statistic.GetGlobalStatItemsParams) (*socialclientmodels.GlobalStatItemPagingSlicedResult, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {

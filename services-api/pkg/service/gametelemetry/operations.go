@@ -39,7 +39,7 @@ func (aaa *OperationsService) GetAuthSession() auth.Session {
 	}
 }
 
-// Deprecated: Use GetEventsGameTelemetryV1AdminNamespacesNamespaceEventsGetShort instead
+// deprecated(2022-01-10): please use GetEventsGameTelemetryV1AdminNamespacesNamespaceEventsGetShort instead.
 func (aaa *OperationsService) GetEventsGameTelemetryV1AdminNamespacesNamespaceEventsGet(input *operations.GetEventsGameTelemetryV1AdminNamespacesNamespaceEventsGetParams) error {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {

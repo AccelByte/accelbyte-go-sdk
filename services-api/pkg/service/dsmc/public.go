@@ -39,7 +39,7 @@ func (aaa *PublicService) GetAuthSession() auth.Session {
 	}
 }
 
-// Deprecated: Use GetDefaultProviderShort instead
+// deprecated(2022-01-10): please use GetDefaultProviderShort instead.
 func (aaa *PublicService) GetDefaultProvider(input *public.GetDefaultProviderParams) (*dsmcclientmodels.ModelsDefaultProvider, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -53,7 +53,7 @@ func (aaa *PublicService) GetDefaultProvider(input *public.GetDefaultProviderPar
 	return ok.GetPayload(), nil
 }
 
-// Deprecated: Use ListProvidersShort instead
+// deprecated(2022-01-10): please use ListProvidersShort instead.
 func (aaa *PublicService) ListProviders(input *public.ListProvidersParams) ([]string, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -67,7 +67,7 @@ func (aaa *PublicService) ListProviders(input *public.ListProvidersParams) ([]st
 	return ok.GetPayload(), nil
 }
 
-// Deprecated: Use ListProvidersByRegionShort instead
+// deprecated(2022-01-10): please use ListProvidersByRegionShort instead.
 func (aaa *PublicService) ListProvidersByRegion(input *public.ListProvidersByRegionParams) (*dsmcclientmodels.ModelsDefaultProvider, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {

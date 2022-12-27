@@ -39,7 +39,7 @@ func (aaa *EligibilitiesService) GetAuthSession() auth.Session {
 	}
 }
 
-// Deprecated: Use RetrieveEligibilitiesPublicShort instead
+// deprecated(2022-01-10): please use RetrieveEligibilitiesPublicShort instead.
 func (aaa *EligibilitiesService) RetrieveEligibilitiesPublic(input *eligibilities.RetrieveEligibilitiesPublicParams) ([]*legalclientmodels.RetrieveUserEligibilitiesResponse, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -59,7 +59,7 @@ func (aaa *EligibilitiesService) RetrieveEligibilitiesPublic(input *eligibilitie
 	return ok.GetPayload(), nil
 }
 
-// Deprecated: Use RetrieveEligibilitiesPublicIndirectShort instead
+// deprecated(2022-01-10): please use RetrieveEligibilitiesPublicIndirectShort instead.
 func (aaa *EligibilitiesService) RetrieveEligibilitiesPublicIndirect(input *eligibilities.RetrieveEligibilitiesPublicIndirectParams) (*legalclientmodels.RetrieveUserEligibilitiesIndirectResponse, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {

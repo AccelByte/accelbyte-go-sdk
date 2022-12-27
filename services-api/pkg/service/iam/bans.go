@@ -39,7 +39,7 @@ func (aaa *BansService) GetAuthSession() auth.Session {
 	}
 }
 
-// Deprecated: Use GetBansTypeShort instead
+// deprecated(2022-01-10): please use GetBansTypeShort instead.
 func (aaa *BansService) GetBansType(input *bans.GetBansTypeParams) (*iamclientmodels.AccountcommonBans, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -59,7 +59,7 @@ func (aaa *BansService) GetBansType(input *bans.GetBansTypeParams) (*iamclientmo
 	return ok.GetPayload(), nil
 }
 
-// Deprecated: Use GetListBanReasonShort instead
+// deprecated(2022-01-10): please use GetListBanReasonShort instead.
 func (aaa *BansService) GetListBanReason(input *bans.GetListBanReasonParams) (*iamclientmodels.AccountcommonBanReasons, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -79,7 +79,7 @@ func (aaa *BansService) GetListBanReason(input *bans.GetListBanReasonParams) (*i
 	return ok.GetPayload(), nil
 }
 
-// Deprecated: Use AdminGetBansTypeV3Short instead
+// deprecated(2022-01-10): please use AdminGetBansTypeV3Short instead.
 func (aaa *BansService) AdminGetBansTypeV3(input *bans.AdminGetBansTypeV3Params) (*iamclientmodels.AccountcommonBansV3, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -102,7 +102,7 @@ func (aaa *BansService) AdminGetBansTypeV3(input *bans.AdminGetBansTypeV3Params)
 	return ok.GetPayload(), nil
 }
 
-// Deprecated: Use AdminGetListBanReasonV3Short instead
+// deprecated(2022-01-10): please use AdminGetListBanReasonV3Short instead.
 func (aaa *BansService) AdminGetListBanReasonV3(input *bans.AdminGetListBanReasonV3Params) (*iamclientmodels.AccountcommonBanReasonsV3, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -125,7 +125,7 @@ func (aaa *BansService) AdminGetListBanReasonV3(input *bans.AdminGetListBanReaso
 	return ok.GetPayload(), nil
 }
 
-// Deprecated: Use AdminGetBannedUsersV3Short instead
+// deprecated(2022-01-10): please use AdminGetBannedUsersV3Short instead.
 func (aaa *BansService) AdminGetBannedUsersV3(input *bans.AdminGetBannedUsersV3Params) (*iamclientmodels.ModelGetUserBanV3Response, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -148,7 +148,7 @@ func (aaa *BansService) AdminGetBannedUsersV3(input *bans.AdminGetBannedUsersV3P
 	return ok.GetPayload(), nil
 }
 
-// Deprecated: Use AdminBanUserBulkV3Short instead
+// deprecated(2022-01-10): please use AdminBanUserBulkV3Short instead.
 func (aaa *BansService) AdminBanUserBulkV3(input *bans.AdminBanUserBulkV3Params) (*iamclientmodels.ModelListBulkUserBanResponseV3, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -177,7 +177,7 @@ func (aaa *BansService) AdminBanUserBulkV3(input *bans.AdminBanUserBulkV3Params)
 	return created.GetPayload(), nil
 }
 
-// Deprecated: Use AdminUnbanUserBulkV3Short instead
+// deprecated(2022-01-10): please use AdminUnbanUserBulkV3Short instead.
 func (aaa *BansService) AdminUnbanUserBulkV3(input *bans.AdminUnbanUserBulkV3Params) (*iamclientmodels.ModelListBulkUserBanResponseV3, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -206,7 +206,7 @@ func (aaa *BansService) AdminUnbanUserBulkV3(input *bans.AdminUnbanUserBulkV3Par
 	return created.GetPayload(), nil
 }
 
-// Deprecated: Use AdminGetBansTypeWithNamespaceV3Short instead
+// deprecated(2022-01-10): please use AdminGetBansTypeWithNamespaceV3Short instead.
 func (aaa *BansService) AdminGetBansTypeWithNamespaceV3(input *bans.AdminGetBansTypeWithNamespaceV3Params) (*iamclientmodels.AccountcommonBansV3, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {

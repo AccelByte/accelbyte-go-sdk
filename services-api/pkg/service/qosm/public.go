@@ -39,7 +39,7 @@ func (aaa *PublicService) GetAuthSession() auth.Session {
 	}
 }
 
-// Deprecated: Use ListServerPerNamespaceShort instead
+// deprecated(2022-01-10): please use ListServerPerNamespaceShort instead.
 func (aaa *PublicService) ListServerPerNamespace(input *public.ListServerPerNamespaceParams) (*qosmclientmodels.ModelsListServerResponse, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -56,7 +56,7 @@ func (aaa *PublicService) ListServerPerNamespace(input *public.ListServerPerName
 	return ok.GetPayload(), nil
 }
 
-// Deprecated: Use ListServerShort instead
+// deprecated(2022-01-10): please use ListServerShort instead.
 func (aaa *PublicService) ListServer(input *public.ListServerParams) (*qosmclientmodels.ModelsListServerResponse, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {

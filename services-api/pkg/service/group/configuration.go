@@ -39,7 +39,7 @@ func (aaa *ConfigurationService) GetAuthSession() auth.Session {
 	}
 }
 
-// Deprecated: Use ListGroupConfigurationAdminV1Short instead
+// deprecated(2022-01-10): please use ListGroupConfigurationAdminV1Short instead.
 func (aaa *ConfigurationService) ListGroupConfigurationAdminV1(input *configuration.ListGroupConfigurationAdminV1Params) (*groupclientmodels.ModelsListConfigurationResponseV1, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -68,7 +68,7 @@ func (aaa *ConfigurationService) ListGroupConfigurationAdminV1(input *configurat
 	return ok.GetPayload(), nil
 }
 
-// Deprecated: Use CreateGroupConfigurationAdminV1Short instead
+// deprecated(2022-01-10): please use CreateGroupConfigurationAdminV1Short instead.
 func (aaa *ConfigurationService) CreateGroupConfigurationAdminV1(input *configuration.CreateGroupConfigurationAdminV1Params) (*groupclientmodels.ModelsCreateGroupConfigurationResponseV1, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -97,7 +97,7 @@ func (aaa *ConfigurationService) CreateGroupConfigurationAdminV1(input *configur
 	return created.GetPayload(), nil
 }
 
-// Deprecated: Use InitiateGroupConfigurationAdminV1Short instead
+// deprecated(2022-01-10): please use InitiateGroupConfigurationAdminV1Short instead.
 func (aaa *ConfigurationService) InitiateGroupConfigurationAdminV1(input *configuration.InitiateGroupConfigurationAdminV1Params) (*groupclientmodels.ModelsCreateGroupConfigurationResponseV1, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -123,7 +123,7 @@ func (aaa *ConfigurationService) InitiateGroupConfigurationAdminV1(input *config
 	return created.GetPayload(), nil
 }
 
-// Deprecated: Use GetGroupConfigurationAdminV1Short instead
+// deprecated(2022-01-10): please use GetGroupConfigurationAdminV1Short instead.
 func (aaa *ConfigurationService) GetGroupConfigurationAdminV1(input *configuration.GetGroupConfigurationAdminV1Params) (*groupclientmodels.ModelsGetGroupConfigurationResponseV1, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -152,7 +152,7 @@ func (aaa *ConfigurationService) GetGroupConfigurationAdminV1(input *configurati
 	return ok.GetPayload(), nil
 }
 
-// Deprecated: Use DeleteGroupConfigurationV1Short instead
+// deprecated(2022-01-10): please use DeleteGroupConfigurationV1Short instead.
 func (aaa *ConfigurationService) DeleteGroupConfigurationV1(input *configuration.DeleteGroupConfigurationV1Params) error {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -181,7 +181,7 @@ func (aaa *ConfigurationService) DeleteGroupConfigurationV1(input *configuration
 	return nil
 }
 
-// Deprecated: Use UpdateGroupConfigurationAdminV1Short instead
+// deprecated(2022-01-10): please use UpdateGroupConfigurationAdminV1Short instead.
 func (aaa *ConfigurationService) UpdateGroupConfigurationAdminV1(input *configuration.UpdateGroupConfigurationAdminV1Params) (*groupclientmodels.ModelsUpdateGroupConfigurationResponseV1, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -210,7 +210,7 @@ func (aaa *ConfigurationService) UpdateGroupConfigurationAdminV1(input *configur
 	return ok.GetPayload(), nil
 }
 
-// Deprecated: Use UpdateGroupConfigurationGlobalRuleAdminV1Short instead
+// deprecated(2022-01-10): please use UpdateGroupConfigurationGlobalRuleAdminV1Short instead.
 func (aaa *ConfigurationService) UpdateGroupConfigurationGlobalRuleAdminV1(input *configuration.UpdateGroupConfigurationGlobalRuleAdminV1Params) (*groupclientmodels.ModelsUpdateGroupConfigurationResponseV1, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -239,7 +239,7 @@ func (aaa *ConfigurationService) UpdateGroupConfigurationGlobalRuleAdminV1(input
 	return ok.GetPayload(), nil
 }
 
-// Deprecated: Use DeleteGroupConfigurationGlobalRuleAdminV1Short instead
+// deprecated(2022-01-10): please use DeleteGroupConfigurationGlobalRuleAdminV1Short instead.
 func (aaa *ConfigurationService) DeleteGroupConfigurationGlobalRuleAdminV1(input *configuration.DeleteGroupConfigurationGlobalRuleAdminV1Params) (*groupclientmodels.ModelsUpdateGroupConfigurationResponseV1, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {

@@ -39,7 +39,7 @@ func (aaa *LeaderboardConfigurationService) GetAuthSession() auth.Session {
 	}
 }
 
-// Deprecated: Use GetLeaderboardConfigurationsAdminV1Short instead
+// deprecated(2022-01-10): please use GetLeaderboardConfigurationsAdminV1Short instead.
 func (aaa *LeaderboardConfigurationService) GetLeaderboardConfigurationsAdminV1(input *leaderboard_configuration.GetLeaderboardConfigurationsAdminV1Params) (*leaderboardclientmodels.ModelsGetAllLeaderboardConfigsResp, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -65,7 +65,7 @@ func (aaa *LeaderboardConfigurationService) GetLeaderboardConfigurationsAdminV1(
 	return ok.GetPayload(), nil
 }
 
-// Deprecated: Use CreateLeaderboardConfigurationAdminV1Short instead
+// deprecated(2022-01-10): please use CreateLeaderboardConfigurationAdminV1Short instead.
 func (aaa *LeaderboardConfigurationService) CreateLeaderboardConfigurationAdminV1(input *leaderboard_configuration.CreateLeaderboardConfigurationAdminV1Params) (*leaderboardclientmodels.ModelsLeaderboardConfigReq, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -94,7 +94,7 @@ func (aaa *LeaderboardConfigurationService) CreateLeaderboardConfigurationAdminV
 	return created.GetPayload(), nil
 }
 
-// Deprecated: Use DeleteBulkLeaderboardConfigurationAdminV1Short instead
+// deprecated(2022-01-10): please use DeleteBulkLeaderboardConfigurationAdminV1Short instead.
 func (aaa *LeaderboardConfigurationService) DeleteBulkLeaderboardConfigurationAdminV1(input *leaderboard_configuration.DeleteBulkLeaderboardConfigurationAdminV1Params) (*leaderboardclientmodels.ModelsDeleteBulkLeaderboardsResp, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -120,7 +120,7 @@ func (aaa *LeaderboardConfigurationService) DeleteBulkLeaderboardConfigurationAd
 	return ok.GetPayload(), nil
 }
 
-// Deprecated: Use GetLeaderboardConfigurationAdminV1Short instead
+// deprecated(2022-01-10): please use GetLeaderboardConfigurationAdminV1Short instead.
 func (aaa *LeaderboardConfigurationService) GetLeaderboardConfigurationAdminV1(input *leaderboard_configuration.GetLeaderboardConfigurationAdminV1Params) (*leaderboardclientmodels.ModelsGetLeaderboardConfigResp, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -149,7 +149,7 @@ func (aaa *LeaderboardConfigurationService) GetLeaderboardConfigurationAdminV1(i
 	return ok.GetPayload(), nil
 }
 
-// Deprecated: Use UpdateLeaderboardConfigurationAdminV1Short instead
+// deprecated(2022-01-10): please use UpdateLeaderboardConfigurationAdminV1Short instead.
 func (aaa *LeaderboardConfigurationService) UpdateLeaderboardConfigurationAdminV1(input *leaderboard_configuration.UpdateLeaderboardConfigurationAdminV1Params) (*leaderboardclientmodels.ModelsGetLeaderboardConfigResp, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -178,7 +178,7 @@ func (aaa *LeaderboardConfigurationService) UpdateLeaderboardConfigurationAdminV
 	return ok.GetPayload(), nil
 }
 
-// Deprecated: Use DeleteLeaderboardConfigurationAdminV1Short instead
+// deprecated(2022-01-10): please use DeleteLeaderboardConfigurationAdminV1Short instead.
 func (aaa *LeaderboardConfigurationService) DeleteLeaderboardConfigurationAdminV1(input *leaderboard_configuration.DeleteLeaderboardConfigurationAdminV1Params) error {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -207,7 +207,7 @@ func (aaa *LeaderboardConfigurationService) DeleteLeaderboardConfigurationAdminV
 	return nil
 }
 
-// Deprecated: Use GetLeaderboardConfigurationsPublicV1Short instead
+// deprecated(2022-01-10): please use GetLeaderboardConfigurationsPublicV1Short instead.
 func (aaa *LeaderboardConfigurationService) GetLeaderboardConfigurationsPublicV1(input *leaderboard_configuration.GetLeaderboardConfigurationsPublicV1Params) (*leaderboardclientmodels.ModelsGetAllLeaderboardConfigsPublicResp, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -233,7 +233,7 @@ func (aaa *LeaderboardConfigurationService) GetLeaderboardConfigurationsPublicV1
 	return ok.GetPayload(), nil
 }
 
-// Deprecated: Use CreateLeaderboardConfigurationPublicV1Short instead
+// deprecated(2022-01-10): please use CreateLeaderboardConfigurationPublicV1Short instead.
 func (aaa *LeaderboardConfigurationService) CreateLeaderboardConfigurationPublicV1(input *leaderboard_configuration.CreateLeaderboardConfigurationPublicV1Params) (*leaderboardclientmodels.ModelsLeaderboardConfigReq, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -262,7 +262,7 @@ func (aaa *LeaderboardConfigurationService) CreateLeaderboardConfigurationPublic
 	return created.GetPayload(), nil
 }
 
-// Deprecated: Use GetLeaderboardConfigurationsPublicV2Short instead
+// deprecated(2022-01-10): please use GetLeaderboardConfigurationsPublicV2Short instead.
 func (aaa *LeaderboardConfigurationService) GetLeaderboardConfigurationsPublicV2(input *leaderboard_configuration.GetLeaderboardConfigurationsPublicV2Params) (*leaderboardclientmodels.V2GetAllLeaderboardConfigsPublicResp, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {

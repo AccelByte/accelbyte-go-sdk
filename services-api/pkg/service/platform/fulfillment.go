@@ -39,7 +39,7 @@ func (aaa *FulfillmentService) GetAuthSession() auth.Session {
 	}
 }
 
-// Deprecated: Use QueryFulfillmentHistoriesShort instead
+// deprecated(2022-01-10): please use QueryFulfillmentHistoriesShort instead.
 func (aaa *FulfillmentService) QueryFulfillmentHistories(input *fulfillment.QueryFulfillmentHistoriesParams) (*platformclientmodels.FulfillmentHistoryPagingSlicedResult, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -53,7 +53,7 @@ func (aaa *FulfillmentService) QueryFulfillmentHistories(input *fulfillment.Quer
 	return ok.GetPayload(), nil
 }
 
-// Deprecated: Use FulfillItemShort instead
+// deprecated(2022-01-10): please use FulfillItemShort instead.
 func (aaa *FulfillmentService) FulfillItem(input *fulfillment.FulfillItemParams) (*platformclientmodels.FulfillmentResult, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -76,7 +76,7 @@ func (aaa *FulfillmentService) FulfillItem(input *fulfillment.FulfillItemParams)
 	return ok.GetPayload(), nil
 }
 
-// Deprecated: Use RedeemCodeShort instead
+// deprecated(2022-01-10): please use RedeemCodeShort instead.
 func (aaa *FulfillmentService) RedeemCode(input *fulfillment.RedeemCodeParams) (*platformclientmodels.FulfillmentResult, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -99,7 +99,7 @@ func (aaa *FulfillmentService) RedeemCode(input *fulfillment.RedeemCodeParams) (
 	return ok.GetPayload(), nil
 }
 
-// Deprecated: Use FulfillRewardsShort instead
+// deprecated(2022-01-10): please use FulfillRewardsShort instead.
 func (aaa *FulfillmentService) FulfillRewards(input *fulfillment.FulfillRewardsParams) error {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -122,7 +122,7 @@ func (aaa *FulfillmentService) FulfillRewards(input *fulfillment.FulfillRewardsP
 	return nil
 }
 
-// Deprecated: Use PublicRedeemCodeShort instead
+// deprecated(2022-01-10): please use PublicRedeemCodeShort instead.
 func (aaa *FulfillmentService) PublicRedeemCode(input *fulfillment.PublicRedeemCodeParams) (*platformclientmodels.FulfillmentResult, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {

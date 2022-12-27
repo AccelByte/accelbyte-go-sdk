@@ -39,7 +39,7 @@ func (aaa *GroupService) GetAuthSession() auth.Session {
 	}
 }
 
-// Deprecated: Use GetGroupListAdminV1Short instead
+// deprecated(2022-01-10): please use GetGroupListAdminV1Short instead.
 func (aaa *GroupService) GetGroupListAdminV1(input *group.GetGroupListAdminV1Params) (*groupclientmodels.ModelsGetGroupsListResponseV1, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -65,7 +65,7 @@ func (aaa *GroupService) GetGroupListAdminV1(input *group.GetGroupListAdminV1Par
 	return ok.GetPayload(), nil
 }
 
-// Deprecated: Use GetSingleGroupAdminV1Short instead
+// deprecated(2022-01-10): please use GetSingleGroupAdminV1Short instead.
 func (aaa *GroupService) GetSingleGroupAdminV1(input *group.GetSingleGroupAdminV1Params) (*groupclientmodels.ModelsGroupResponseV1, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -94,7 +94,7 @@ func (aaa *GroupService) GetSingleGroupAdminV1(input *group.GetSingleGroupAdminV
 	return ok.GetPayload(), nil
 }
 
-// Deprecated: Use DeleteGroupAdminV1Short instead
+// deprecated(2022-01-10): please use DeleteGroupAdminV1Short instead.
 func (aaa *GroupService) DeleteGroupAdminV1(input *group.DeleteGroupAdminV1Params) error {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -123,7 +123,7 @@ func (aaa *GroupService) DeleteGroupAdminV1(input *group.DeleteGroupAdminV1Param
 	return nil
 }
 
-// Deprecated: Use GetGroupListPublicV1Short instead
+// deprecated(2022-01-10): please use GetGroupListPublicV1Short instead.
 func (aaa *GroupService) GetGroupListPublicV1(input *group.GetGroupListPublicV1Params) (*groupclientmodels.ModelsGetGroupsListResponseV1, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -149,7 +149,7 @@ func (aaa *GroupService) GetGroupListPublicV1(input *group.GetGroupListPublicV1P
 	return ok.GetPayload(), nil
 }
 
-// Deprecated: Use CreateNewGroupPublicV1Short instead
+// deprecated(2022-01-10): please use CreateNewGroupPublicV1Short instead.
 func (aaa *GroupService) CreateNewGroupPublicV1(input *group.CreateNewGroupPublicV1Params) (*groupclientmodels.ModelsGroupResponseV1, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -178,7 +178,7 @@ func (aaa *GroupService) CreateNewGroupPublicV1(input *group.CreateNewGroupPubli
 	return created.GetPayload(), nil
 }
 
-// Deprecated: Use GetSingleGroupPublicV1Short instead
+// deprecated(2022-01-10): please use GetSingleGroupPublicV1Short instead.
 func (aaa *GroupService) GetSingleGroupPublicV1(input *group.GetSingleGroupPublicV1Params) (*groupclientmodels.ModelsGroupResponseV1, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -207,7 +207,7 @@ func (aaa *GroupService) GetSingleGroupPublicV1(input *group.GetSingleGroupPubli
 	return ok.GetPayload(), nil
 }
 
-// Deprecated: Use UpdateSingleGroupV1Short instead
+// deprecated(2022-01-10): please use UpdateSingleGroupV1Short instead.
 func (aaa *GroupService) UpdateSingleGroupV1(input *group.UpdateSingleGroupV1Params) (*groupclientmodels.ModelsGroupResponseV1, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -236,7 +236,7 @@ func (aaa *GroupService) UpdateSingleGroupV1(input *group.UpdateSingleGroupV1Par
 	return ok.GetPayload(), nil
 }
 
-// Deprecated: Use DeleteGroupPublicV1Short instead
+// deprecated(2022-01-10): please use DeleteGroupPublicV1Short instead.
 func (aaa *GroupService) DeleteGroupPublicV1(input *group.DeleteGroupPublicV1Params) error {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -265,7 +265,7 @@ func (aaa *GroupService) DeleteGroupPublicV1(input *group.DeleteGroupPublicV1Par
 	return nil
 }
 
-// Deprecated: Use UpdatePatchSingleGroupPublicV1Short instead
+// deprecated(2022-01-10): please use UpdatePatchSingleGroupPublicV1Short instead.
 func (aaa *GroupService) UpdatePatchSingleGroupPublicV1(input *group.UpdatePatchSingleGroupPublicV1Params) (*groupclientmodels.ModelsGroupResponseV1, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -294,7 +294,7 @@ func (aaa *GroupService) UpdatePatchSingleGroupPublicV1(input *group.UpdatePatch
 	return ok.GetPayload(), nil
 }
 
-// Deprecated: Use UpdateGroupCustomAttributesPublicV1Short instead
+// deprecated(2022-01-10): please use UpdateGroupCustomAttributesPublicV1Short instead.
 func (aaa *GroupService) UpdateGroupCustomAttributesPublicV1(input *group.UpdateGroupCustomAttributesPublicV1Params) (*groupclientmodels.ModelsGroupResponseV1, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -323,7 +323,7 @@ func (aaa *GroupService) UpdateGroupCustomAttributesPublicV1(input *group.Update
 	return ok.GetPayload(), nil
 }
 
-// Deprecated: Use UpdateGroupCustomRulePublicV1Short instead
+// deprecated(2022-01-10): please use UpdateGroupCustomRulePublicV1Short instead.
 func (aaa *GroupService) UpdateGroupCustomRulePublicV1(input *group.UpdateGroupCustomRulePublicV1Params) (*groupclientmodels.ModelsGroupResponseV1, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -352,7 +352,7 @@ func (aaa *GroupService) UpdateGroupCustomRulePublicV1(input *group.UpdateGroupC
 	return ok.GetPayload(), nil
 }
 
-// Deprecated: Use UpdateGroupPredefinedRulePublicV1Short instead
+// deprecated(2022-01-10): please use UpdateGroupPredefinedRulePublicV1Short instead.
 func (aaa *GroupService) UpdateGroupPredefinedRulePublicV1(input *group.UpdateGroupPredefinedRulePublicV1Params) (*groupclientmodels.ModelsGroupResponseV1, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -381,7 +381,7 @@ func (aaa *GroupService) UpdateGroupPredefinedRulePublicV1(input *group.UpdateGr
 	return ok.GetPayload(), nil
 }
 
-// Deprecated: Use DeleteGroupPredefinedRulePublicV1Short instead
+// deprecated(2022-01-10): please use DeleteGroupPredefinedRulePublicV1Short instead.
 func (aaa *GroupService) DeleteGroupPredefinedRulePublicV1(input *group.DeleteGroupPredefinedRulePublicV1Params) error {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {

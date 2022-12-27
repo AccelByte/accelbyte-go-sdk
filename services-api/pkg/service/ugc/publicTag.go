@@ -39,7 +39,7 @@ func (aaa *PublicTagService) GetAuthSession() auth.Session {
 	}
 }
 
-// Deprecated: Use GetTagShort instead
+// deprecated(2022-01-10): please use GetTagShort instead.
 func (aaa *PublicTagService) GetTag(input *public_tag.GetTagParams) (*ugcclientmodels.ModelsPaginatedGetTagResponse, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {

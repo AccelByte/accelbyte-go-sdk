@@ -39,7 +39,7 @@ func (aaa *PublicChannelService) GetAuthSession() auth.Session {
 	}
 }
 
-// Deprecated: Use GetChannelsShort instead
+// deprecated(2022-01-10): please use GetChannelsShort instead.
 func (aaa *PublicChannelService) GetChannels(input *public_channel.GetChannelsParams) (*ugcclientmodels.ModelsPaginatedGetChannelResponse, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -62,7 +62,7 @@ func (aaa *PublicChannelService) GetChannels(input *public_channel.GetChannelsPa
 	return ok.GetPayload(), nil
 }
 
-// Deprecated: Use CreateChannelShort instead
+// deprecated(2022-01-10): please use CreateChannelShort instead.
 func (aaa *PublicChannelService) CreateChannel(input *public_channel.CreateChannelParams) (*ugcclientmodels.ModelsChannelResponse, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -85,7 +85,7 @@ func (aaa *PublicChannelService) CreateChannel(input *public_channel.CreateChann
 	return created.GetPayload(), nil
 }
 
-// Deprecated: Use UpdateChannelShort instead
+// deprecated(2022-01-10): please use UpdateChannelShort instead.
 func (aaa *PublicChannelService) UpdateChannel(input *public_channel.UpdateChannelParams) (*ugcclientmodels.ModelsChannelResponse, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -111,7 +111,7 @@ func (aaa *PublicChannelService) UpdateChannel(input *public_channel.UpdateChann
 	return ok.GetPayload(), nil
 }
 
-// Deprecated: Use DeleteChannelShort instead
+// deprecated(2022-01-10): please use DeleteChannelShort instead.
 func (aaa *PublicChannelService) DeleteChannel(input *public_channel.DeleteChannelParams) error {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {

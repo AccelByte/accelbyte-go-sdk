@@ -39,7 +39,7 @@ func (aaa *PublicPlayerRecordService) GetAuthSession() auth.Session {
 	}
 }
 
-// Deprecated: Use BulkGetPlayerPublicRecordHandlerV1Short instead
+// deprecated(2022-01-10): please use BulkGetPlayerPublicRecordHandlerV1Short instead.
 func (aaa *PublicPlayerRecordService) BulkGetPlayerPublicRecordHandlerV1(input *public_player_record.BulkGetPlayerPublicRecordHandlerV1Params) (*cloudsaveclientmodels.ModelsBulkGetPlayerRecordResponse, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -65,7 +65,7 @@ func (aaa *PublicPlayerRecordService) BulkGetPlayerPublicRecordHandlerV1(input *
 	return ok.GetPayload(), nil
 }
 
-// Deprecated: Use PublicDeletePlayerPublicRecordHandlerV1Short instead
+// deprecated(2022-01-10): please use PublicDeletePlayerPublicRecordHandlerV1Short instead.
 func (aaa *PublicPlayerRecordService) PublicDeletePlayerPublicRecordHandlerV1(input *public_player_record.PublicDeletePlayerPublicRecordHandlerV1Params) error {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -91,7 +91,7 @@ func (aaa *PublicPlayerRecordService) PublicDeletePlayerPublicRecordHandlerV1(in
 	return nil
 }
 
-// Deprecated: Use GetPlayerRecordHandlerV1Short instead
+// deprecated(2022-01-10): please use GetPlayerRecordHandlerV1Short instead.
 func (aaa *PublicPlayerRecordService) GetPlayerRecordHandlerV1(input *public_player_record.GetPlayerRecordHandlerV1Params) (*cloudsaveclientmodels.ModelsPlayerRecordResponse, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -117,7 +117,7 @@ func (aaa *PublicPlayerRecordService) GetPlayerRecordHandlerV1(input *public_pla
 	return ok.GetPayload(), nil
 }
 
-// Deprecated: Use PutPlayerRecordHandlerV1Short instead
+// deprecated(2022-01-10): please use PutPlayerRecordHandlerV1Short instead.
 func (aaa *PublicPlayerRecordService) PutPlayerRecordHandlerV1(input *public_player_record.PutPlayerRecordHandlerV1Params) (*cloudsaveclientmodels.ModelsPlayerRecordResponse, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -143,7 +143,7 @@ func (aaa *PublicPlayerRecordService) PutPlayerRecordHandlerV1(input *public_pla
 	return ok.GetPayload(), nil
 }
 
-// Deprecated: Use PostPlayerRecordHandlerV1Short instead
+// deprecated(2022-01-10): please use PostPlayerRecordHandlerV1Short instead.
 func (aaa *PublicPlayerRecordService) PostPlayerRecordHandlerV1(input *public_player_record.PostPlayerRecordHandlerV1Params) (*cloudsaveclientmodels.ModelsPlayerRecordResponse, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -169,7 +169,7 @@ func (aaa *PublicPlayerRecordService) PostPlayerRecordHandlerV1(input *public_pl
 	return created.GetPayload(), nil
 }
 
-// Deprecated: Use DeletePlayerRecordHandlerV1Short instead
+// deprecated(2022-01-10): please use DeletePlayerRecordHandlerV1Short instead.
 func (aaa *PublicPlayerRecordService) DeletePlayerRecordHandlerV1(input *public_player_record.DeletePlayerRecordHandlerV1Params) error {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -195,7 +195,7 @@ func (aaa *PublicPlayerRecordService) DeletePlayerRecordHandlerV1(input *public_
 	return nil
 }
 
-// Deprecated: Use GetPlayerPublicRecordHandlerV1Short instead
+// deprecated(2022-01-10): please use GetPlayerPublicRecordHandlerV1Short instead.
 func (aaa *PublicPlayerRecordService) GetPlayerPublicRecordHandlerV1(input *public_player_record.GetPlayerPublicRecordHandlerV1Params) (*cloudsaveclientmodels.ModelsPlayerRecordResponse, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -218,7 +218,7 @@ func (aaa *PublicPlayerRecordService) GetPlayerPublicRecordHandlerV1(input *publ
 	return ok.GetPayload(), nil
 }
 
-// Deprecated: Use PutPlayerPublicRecordHandlerV1Short instead
+// deprecated(2022-01-10): please use PutPlayerPublicRecordHandlerV1Short instead.
 func (aaa *PublicPlayerRecordService) PutPlayerPublicRecordHandlerV1(input *public_player_record.PutPlayerPublicRecordHandlerV1Params) (*cloudsaveclientmodels.ModelsPlayerRecordResponse, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -241,7 +241,7 @@ func (aaa *PublicPlayerRecordService) PutPlayerPublicRecordHandlerV1(input *publ
 	return ok.GetPayload(), nil
 }
 
-// Deprecated: Use PostPlayerPublicRecordHandlerV1Short instead
+// deprecated(2022-01-10): please use PostPlayerPublicRecordHandlerV1Short instead.
 func (aaa *PublicPlayerRecordService) PostPlayerPublicRecordHandlerV1(input *public_player_record.PostPlayerPublicRecordHandlerV1Params) (*cloudsaveclientmodels.ModelsPlayerRecordResponse, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {

@@ -41,7 +41,7 @@ func (aaa *CampaignService) GetAuthSession() auth.Session {
 	}
 }
 
-// Deprecated: Use QueryCampaignsShort instead
+// deprecated(2022-01-10): please use QueryCampaignsShort instead.
 func (aaa *CampaignService) QueryCampaigns(input *campaign.QueryCampaignsParams) (*platformclientmodels.CampaignPagingSlicedResult, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -55,7 +55,7 @@ func (aaa *CampaignService) QueryCampaigns(input *campaign.QueryCampaignsParams)
 	return ok.GetPayload(), nil
 }
 
-// Deprecated: Use CreateCampaignShort instead
+// deprecated(2022-01-10): please use CreateCampaignShort instead.
 func (aaa *CampaignService) CreateCampaign(input *campaign.CreateCampaignParams) (*platformclientmodels.CampaignInfo, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -75,7 +75,7 @@ func (aaa *CampaignService) CreateCampaign(input *campaign.CreateCampaignParams)
 	return created.GetPayload(), nil
 }
 
-// Deprecated: Use GetCampaignShort instead
+// deprecated(2022-01-10): please use GetCampaignShort instead.
 func (aaa *CampaignService) GetCampaign(input *campaign.GetCampaignParams) (*platformclientmodels.CampaignInfo, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -92,7 +92,7 @@ func (aaa *CampaignService) GetCampaign(input *campaign.GetCampaignParams) (*pla
 	return ok.GetPayload(), nil
 }
 
-// Deprecated: Use UpdateCampaignShort instead
+// deprecated(2022-01-10): please use UpdateCampaignShort instead.
 func (aaa *CampaignService) UpdateCampaign(input *campaign.UpdateCampaignParams) (*platformclientmodels.CampaignInfo, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -115,7 +115,7 @@ func (aaa *CampaignService) UpdateCampaign(input *campaign.UpdateCampaignParams)
 	return ok.GetPayload(), nil
 }
 
-// Deprecated: Use GetCampaignDynamicShort instead
+// deprecated(2022-01-10): please use GetCampaignDynamicShort instead.
 func (aaa *CampaignService) GetCampaignDynamic(input *campaign.GetCampaignDynamicParams) (*platformclientmodels.CampaignDynamicInfo, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -132,7 +132,7 @@ func (aaa *CampaignService) GetCampaignDynamic(input *campaign.GetCampaignDynami
 	return ok.GetPayload(), nil
 }
 
-// Deprecated: Use QueryCodesShort instead
+// deprecated(2022-01-10): please use QueryCodesShort instead.
 func (aaa *CampaignService) QueryCodes(input *campaign.QueryCodesParams) (*platformclientmodels.CodeInfoPagingSlicedResult, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -146,7 +146,7 @@ func (aaa *CampaignService) QueryCodes(input *campaign.QueryCodesParams) (*platf
 	return ok.GetPayload(), nil
 }
 
-// Deprecated: Use CreateCodesShort instead
+// deprecated(2022-01-10): please use CreateCodesShort instead.
 func (aaa *CampaignService) CreateCodes(input *campaign.CreateCodesParams) (*platformclientmodels.CodeCreateResult, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -166,7 +166,7 @@ func (aaa *CampaignService) CreateCodes(input *campaign.CreateCodesParams) (*pla
 	return created.GetPayload(), nil
 }
 
-// Deprecated: Use DownloadShort instead
+// deprecated(2022-01-10): please use DownloadShort instead.
 func (aaa *CampaignService) Download(input *campaign.DownloadParams, writer io.Writer) (io.Writer, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -180,7 +180,7 @@ func (aaa *CampaignService) Download(input *campaign.DownloadParams, writer io.W
 	return ok.GetPayload(), nil
 }
 
-// Deprecated: Use BulkDisableCodesShort instead
+// deprecated(2022-01-10): please use BulkDisableCodesShort instead.
 func (aaa *CampaignService) BulkDisableCodes(input *campaign.BulkDisableCodesParams) (*platformclientmodels.BulkOperationResult, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -194,7 +194,7 @@ func (aaa *CampaignService) BulkDisableCodes(input *campaign.BulkDisableCodesPar
 	return ok.GetPayload(), nil
 }
 
-// Deprecated: Use BulkEnableCodesShort instead
+// deprecated(2022-01-10): please use BulkEnableCodesShort instead.
 func (aaa *CampaignService) BulkEnableCodes(input *campaign.BulkEnableCodesParams) (*platformclientmodels.BulkOperationResult, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -208,7 +208,7 @@ func (aaa *CampaignService) BulkEnableCodes(input *campaign.BulkEnableCodesParam
 	return ok.GetPayload(), nil
 }
 
-// Deprecated: Use QueryRedeemHistoryShort instead
+// deprecated(2022-01-10): please use QueryRedeemHistoryShort instead.
 func (aaa *CampaignService) QueryRedeemHistory(input *campaign.QueryRedeemHistoryParams) (*platformclientmodels.RedeemHistoryPagingSlicedResult, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -222,7 +222,7 @@ func (aaa *CampaignService) QueryRedeemHistory(input *campaign.QueryRedeemHistor
 	return ok.GetPayload(), nil
 }
 
-// Deprecated: Use GetCodeShort instead
+// deprecated(2022-01-10): please use GetCodeShort instead.
 func (aaa *CampaignService) GetCode(input *campaign.GetCodeParams) (*platformclientmodels.CodeInfo, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -242,7 +242,7 @@ func (aaa *CampaignService) GetCode(input *campaign.GetCodeParams) (*platformcli
 	return ok.GetPayload(), nil
 }
 
-// Deprecated: Use DisableCodeShort instead
+// deprecated(2022-01-10): please use DisableCodeShort instead.
 func (aaa *CampaignService) DisableCode(input *campaign.DisableCodeParams) (*platformclientmodels.CodeInfo, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -259,7 +259,7 @@ func (aaa *CampaignService) DisableCode(input *campaign.DisableCodeParams) (*pla
 	return ok.GetPayload(), nil
 }
 
-// Deprecated: Use EnableCodeShort instead
+// deprecated(2022-01-10): please use EnableCodeShort instead.
 func (aaa *CampaignService) EnableCode(input *campaign.EnableCodeParams) (*platformclientmodels.CodeInfo, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -276,7 +276,7 @@ func (aaa *CampaignService) EnableCode(input *campaign.EnableCodeParams) (*platf
 	return ok.GetPayload(), nil
 }
 
-// Deprecated: Use ApplyUserRedemptionShort instead
+// deprecated(2022-01-10): please use ApplyUserRedemptionShort instead.
 func (aaa *CampaignService) ApplyUserRedemption(input *campaign.ApplyUserRedemptionParams) (*platformclientmodels.RedeemResult, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {

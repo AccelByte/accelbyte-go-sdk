@@ -39,7 +39,7 @@ func (aaa *AdminService) GetAuthSession() auth.Session {
 	}
 }
 
-// Deprecated: Use GetServerLogsShort instead
+// deprecated(2022-01-10): please use GetServerLogsShort instead.
 func (aaa *AdminService) GetServerLogs(input *admin.GetServerLogsParams) (*dslogmanagerclientmodels.ModelsServerLogs, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {

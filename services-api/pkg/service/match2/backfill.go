@@ -38,7 +38,7 @@ func (aaa *BackfillService) GetAuthSession() auth.Session {
 	}
 }
 
-// Deprecated: Use CreateBackfillShort instead
+// deprecated(2022-01-10): please use CreateBackfillShort instead.
 func (aaa *BackfillService) CreateBackfill(input *backfill.CreateBackfillParams) error {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -70,7 +70,7 @@ func (aaa *BackfillService) CreateBackfill(input *backfill.CreateBackfillParams)
 	return nil
 }
 
-// Deprecated: Use AcceptBackfillShort instead
+// deprecated(2022-01-10): please use AcceptBackfillShort instead.
 func (aaa *BackfillService) AcceptBackfill(input *backfill.AcceptBackfillParams) error {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -99,7 +99,7 @@ func (aaa *BackfillService) AcceptBackfill(input *backfill.AcceptBackfillParams)
 	return nil
 }
 
-// Deprecated: Use RejectBackfillShort instead
+// deprecated(2022-01-10): please use RejectBackfillShort instead.
 func (aaa *BackfillService) RejectBackfill(input *backfill.RejectBackfillParams) error {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {

@@ -38,7 +38,7 @@ func (aaa *AnonymizationService) GetAuthSession() auth.Session {
 	}
 }
 
-// Deprecated: Use AnonymizeUserAgreementShort instead
+// deprecated(2022-01-10): please use AnonymizeUserAgreementShort instead.
 func (aaa *AnonymizationService) AnonymizeUserAgreement(input *anonymization.AnonymizeUserAgreementParams) error {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {

@@ -39,7 +39,7 @@ func (aaa *RuleSetsService) GetAuthSession() auth.Session {
 	}
 }
 
-// Deprecated: Use RuleSetListShort instead
+// deprecated(2022-01-10): please use RuleSetListShort instead.
 func (aaa *RuleSetsService) RuleSetList(input *rule_sets.RuleSetListParams) (*match2clientmodels.APIListRuleSetsResponse, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -62,7 +62,7 @@ func (aaa *RuleSetsService) RuleSetList(input *rule_sets.RuleSetListParams) (*ma
 	return ok.GetPayload(), nil
 }
 
-// Deprecated: Use CreateRuleSetShort instead
+// deprecated(2022-01-10): please use CreateRuleSetShort instead.
 func (aaa *RuleSetsService) CreateRuleSet(input *rule_sets.CreateRuleSetParams) error {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -91,7 +91,7 @@ func (aaa *RuleSetsService) CreateRuleSet(input *rule_sets.CreateRuleSetParams) 
 	return nil
 }
 
-// Deprecated: Use RuleSetDetailsShort instead
+// deprecated(2022-01-10): please use RuleSetDetailsShort instead.
 func (aaa *RuleSetsService) RuleSetDetails(input *rule_sets.RuleSetDetailsParams) (*match2clientmodels.APIMatchRuleSet, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -114,7 +114,7 @@ func (aaa *RuleSetsService) RuleSetDetails(input *rule_sets.RuleSetDetailsParams
 	return ok.GetPayload(), nil
 }
 
-// Deprecated: Use UpdateRuleSetShort instead
+// deprecated(2022-01-10): please use UpdateRuleSetShort instead.
 func (aaa *RuleSetsService) UpdateRuleSet(input *rule_sets.UpdateRuleSetParams) (*match2clientmodels.APIMatchRuleSet, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -143,7 +143,7 @@ func (aaa *RuleSetsService) UpdateRuleSet(input *rule_sets.UpdateRuleSetParams) 
 	return ok.GetPayload(), nil
 }
 
-// Deprecated: Use DeleteRuleSetShort instead
+// deprecated(2022-01-10): please use DeleteRuleSetShort instead.
 func (aaa *RuleSetsService) DeleteRuleSet(input *rule_sets.DeleteRuleSetParams) error {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {

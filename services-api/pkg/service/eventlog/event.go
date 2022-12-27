@@ -39,7 +39,7 @@ func (aaa *EventService) GetAuthSession() auth.Session {
 	}
 }
 
-// Deprecated: Use GetEventByNamespaceHandlerShort instead
+// deprecated(2022-01-10): please use GetEventByNamespaceHandlerShort instead.
 func (aaa *EventService) GetEventByNamespaceHandler(input *event.GetEventByNamespaceHandlerParams) (*eventlogclientmodels.ModelsEventResponse, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -68,7 +68,7 @@ func (aaa *EventService) GetEventByNamespaceHandler(input *event.GetEventByNames
 	return ok.GetPayload(), nil
 }
 
-// Deprecated: Use PostEventHandlerShort instead
+// deprecated(2022-01-10): please use PostEventHandlerShort instead.
 func (aaa *EventService) PostEventHandler(input *event.PostEventHandlerParams) error {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -94,7 +94,7 @@ func (aaa *EventService) PostEventHandler(input *event.PostEventHandlerParams) e
 	return nil
 }
 
-// Deprecated: Use GetEventByEventIDHandlerShort instead
+// deprecated(2022-01-10): please use GetEventByEventIDHandlerShort instead.
 func (aaa *EventService) GetEventByEventIDHandler(input *event.GetEventByEventIDHandlerParams) (*eventlogclientmodels.ModelsEventResponse, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -123,7 +123,7 @@ func (aaa *EventService) GetEventByEventIDHandler(input *event.GetEventByEventID
 	return ok.GetPayload(), nil
 }
 
-// Deprecated: Use GetEventByEventTypeHandlerShort instead
+// deprecated(2022-01-10): please use GetEventByEventTypeHandlerShort instead.
 func (aaa *EventService) GetEventByEventTypeHandler(input *event.GetEventByEventTypeHandlerParams) (*eventlogclientmodels.ModelsEventResponse, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -152,7 +152,7 @@ func (aaa *EventService) GetEventByEventTypeHandler(input *event.GetEventByEvent
 	return ok.GetPayload(), nil
 }
 
-// Deprecated: Use GetEventByEventTypeAndEventIDHandlerShort instead
+// deprecated(2022-01-10): please use GetEventByEventTypeAndEventIDHandlerShort instead.
 func (aaa *EventService) GetEventByEventTypeAndEventIDHandler(input *event.GetEventByEventTypeAndEventIDHandlerParams) (*eventlogclientmodels.ModelsEventResponse, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -181,7 +181,7 @@ func (aaa *EventService) GetEventByEventTypeAndEventIDHandler(input *event.GetEv
 	return ok.GetPayload(), nil
 }
 
-// Deprecated: Use GetEventByUserIDHandlerShort instead
+// deprecated(2022-01-10): please use GetEventByUserIDHandlerShort instead.
 func (aaa *EventService) GetEventByUserIDHandler(input *event.GetEventByUserIDHandlerParams) (*eventlogclientmodels.ModelsEventResponse, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -210,7 +210,7 @@ func (aaa *EventService) GetEventByUserIDHandler(input *event.GetEventByUserIDHa
 	return ok.GetPayload(), nil
 }
 
-// Deprecated: Use GetEventByUserIDAndEventIDHandlerShort instead
+// deprecated(2022-01-10): please use GetEventByUserIDAndEventIDHandlerShort instead.
 func (aaa *EventService) GetEventByUserIDAndEventIDHandler(input *event.GetEventByUserIDAndEventIDHandlerParams) (*eventlogclientmodels.ModelsEventResponse, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -239,7 +239,7 @@ func (aaa *EventService) GetEventByUserIDAndEventIDHandler(input *event.GetEvent
 	return ok.GetPayload(), nil
 }
 
-// Deprecated: Use GetEventByUserIDAndEventTypeHandlerShort instead
+// deprecated(2022-01-10): please use GetEventByUserIDAndEventTypeHandlerShort instead.
 func (aaa *EventService) GetEventByUserIDAndEventTypeHandler(input *event.GetEventByUserIDAndEventTypeHandlerParams) (*eventlogclientmodels.ModelsEventResponse, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -268,7 +268,7 @@ func (aaa *EventService) GetEventByUserIDAndEventTypeHandler(input *event.GetEve
 	return ok.GetPayload(), nil
 }
 
-// Deprecated: Use GetEventByUserEventIDAndEventTypeHandlerShort instead
+// deprecated(2022-01-10): please use GetEventByUserEventIDAndEventTypeHandlerShort instead.
 func (aaa *EventService) GetEventByUserEventIDAndEventTypeHandler(input *event.GetEventByUserEventIDAndEventTypeHandlerParams) (*eventlogclientmodels.ModelsEventResponse, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {

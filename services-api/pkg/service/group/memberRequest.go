@@ -39,7 +39,7 @@ func (aaa *MemberRequestService) GetAuthSession() auth.Session {
 	}
 }
 
-// Deprecated: Use GetGroupJoinRequestPublicV1Short instead
+// deprecated(2022-01-10): please use GetGroupJoinRequestPublicV1Short instead.
 func (aaa *MemberRequestService) GetGroupJoinRequestPublicV1(input *member_request.GetGroupJoinRequestPublicV1Params) (*groupclientmodels.ModelsGetMemberRequestsListResponseV1, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -65,7 +65,7 @@ func (aaa *MemberRequestService) GetGroupJoinRequestPublicV1(input *member_reque
 	return ok.GetPayload(), nil
 }
 
-// Deprecated: Use GetGroupInvitationRequestPublicV1Short instead
+// deprecated(2022-01-10): please use GetGroupInvitationRequestPublicV1Short instead.
 func (aaa *MemberRequestService) GetGroupInvitationRequestPublicV1(input *member_request.GetGroupInvitationRequestPublicV1Params) (*groupclientmodels.ModelsGetMemberRequestsListResponseV1, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {

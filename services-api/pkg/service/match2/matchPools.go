@@ -39,7 +39,7 @@ func (aaa *MatchPoolsService) GetAuthSession() auth.Session {
 	}
 }
 
-// Deprecated: Use MatchPoolListShort instead
+// deprecated(2022-01-10): please use MatchPoolListShort instead.
 func (aaa *MatchPoolsService) MatchPoolList(input *match_pools.MatchPoolListParams) (*match2clientmodels.APIListMatchPoolsResponse, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -62,7 +62,7 @@ func (aaa *MatchPoolsService) MatchPoolList(input *match_pools.MatchPoolListPara
 	return ok.GetPayload(), nil
 }
 
-// Deprecated: Use CreateMatchPoolShort instead
+// deprecated(2022-01-10): please use CreateMatchPoolShort instead.
 func (aaa *MatchPoolsService) CreateMatchPool(input *match_pools.CreateMatchPoolParams) error {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -91,7 +91,7 @@ func (aaa *MatchPoolsService) CreateMatchPool(input *match_pools.CreateMatchPool
 	return nil
 }
 
-// Deprecated: Use MatchPoolDetailsShort instead
+// deprecated(2022-01-10): please use MatchPoolDetailsShort instead.
 func (aaa *MatchPoolsService) MatchPoolDetails(input *match_pools.MatchPoolDetailsParams) (*match2clientmodels.APIMatchPool, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -114,7 +114,7 @@ func (aaa *MatchPoolsService) MatchPoolDetails(input *match_pools.MatchPoolDetai
 	return ok.GetPayload(), nil
 }
 
-// Deprecated: Use UpdateMatchPoolShort instead
+// deprecated(2022-01-10): please use UpdateMatchPoolShort instead.
 func (aaa *MatchPoolsService) UpdateMatchPool(input *match_pools.UpdateMatchPoolParams) (*match2clientmodels.APIMatchPool, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -143,7 +143,7 @@ func (aaa *MatchPoolsService) UpdateMatchPool(input *match_pools.UpdateMatchPool
 	return ok.GetPayload(), nil
 }
 
-// Deprecated: Use DeleteMatchPoolShort instead
+// deprecated(2022-01-10): please use DeleteMatchPoolShort instead.
 func (aaa *MatchPoolsService) DeleteMatchPool(input *match_pools.DeleteMatchPoolParams) error {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {

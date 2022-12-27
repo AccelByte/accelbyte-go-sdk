@@ -39,7 +39,7 @@ func (aaa *MatchFunctionsService) GetAuthSession() auth.Session {
 	}
 }
 
-// Deprecated: Use MatchFunctionListShort instead
+// deprecated(2022-01-10): please use MatchFunctionListShort instead.
 func (aaa *MatchFunctionsService) MatchFunctionList(input *match_functions.MatchFunctionListParams) (*match2clientmodels.APIListMatchFunctionsResponse, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -62,7 +62,7 @@ func (aaa *MatchFunctionsService) MatchFunctionList(input *match_functions.Match
 	return ok.GetPayload(), nil
 }
 
-// Deprecated: Use CreateMatchFunctionShort instead
+// deprecated(2022-01-10): please use CreateMatchFunctionShort instead.
 func (aaa *MatchFunctionsService) CreateMatchFunction(input *match_functions.CreateMatchFunctionParams) error {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -91,7 +91,7 @@ func (aaa *MatchFunctionsService) CreateMatchFunction(input *match_functions.Cre
 	return nil
 }
 
-// Deprecated: Use DeleteMatchFunctionShort instead
+// deprecated(2022-01-10): please use DeleteMatchFunctionShort instead.
 func (aaa *MatchFunctionsService) DeleteMatchFunction(input *match_functions.DeleteMatchFunctionParams) error {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {

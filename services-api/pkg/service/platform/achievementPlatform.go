@@ -39,7 +39,7 @@ func (aaa *AchievementPlatformService) GetAuthSession() auth.Session {
 	}
 }
 
-// Deprecated: Use UnlockSteamUserAchievementShort instead
+// deprecated(2022-01-10): please use UnlockSteamUserAchievementShort instead.
 func (aaa *AchievementPlatformService) UnlockSteamUserAchievement(input *achievement_platform.UnlockSteamUserAchievementParams) error {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -59,7 +59,7 @@ func (aaa *AchievementPlatformService) UnlockSteamUserAchievement(input *achieve
 	return nil
 }
 
-// Deprecated: Use GetXblUserAchievementsShort instead
+// deprecated(2022-01-10): please use GetXblUserAchievementsShort instead.
 func (aaa *AchievementPlatformService) GetXblUserAchievements(input *achievement_platform.GetXblUserAchievementsParams) (*platformclientmodels.ADTOObjectForQueryingXboxUserAchievements, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -76,7 +76,7 @@ func (aaa *AchievementPlatformService) GetXblUserAchievements(input *achievement
 	return ok.GetPayload(), nil
 }
 
-// Deprecated: Use UpdateXblUserAchievementShort instead
+// deprecated(2022-01-10): please use UpdateXblUserAchievementShort instead.
 func (aaa *AchievementPlatformService) UpdateXblUserAchievement(input *achievement_platform.UpdateXblUserAchievementParams) error {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {

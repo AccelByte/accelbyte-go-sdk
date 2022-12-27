@@ -39,7 +39,7 @@ func (aaa *PresenceService) GetAuthSession() auth.Session {
 	}
 }
 
-// Deprecated: Use UsersPresenceHandlerV1Short instead
+// deprecated(2022-01-10): please use UsersPresenceHandlerV1Short instead.
 func (aaa *PresenceService) UsersPresenceHandlerV1(input *presence.UsersPresenceHandlerV1Params) (*lobbyclientmodels.HandlersGetUsersPresenceResponse, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {

@@ -39,7 +39,7 @@ func (aaa *RewardService) GetAuthSession() auth.Session {
 	}
 }
 
-// Deprecated: Use QueryRewardsShort instead
+// deprecated(2022-01-10): please use QueryRewardsShort instead.
 func (aaa *RewardService) QueryRewards(input *reward.QueryRewardsParams) ([]*seasonpassclientmodels.RewardInfo, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -59,7 +59,7 @@ func (aaa *RewardService) QueryRewards(input *reward.QueryRewardsParams) ([]*sea
 	return ok.GetPayload(), nil
 }
 
-// Deprecated: Use CreateRewardShort instead
+// deprecated(2022-01-10): please use CreateRewardShort instead.
 func (aaa *RewardService) CreateReward(input *reward.CreateRewardParams) (*seasonpassclientmodels.RewardInfo, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -85,7 +85,7 @@ func (aaa *RewardService) CreateReward(input *reward.CreateRewardParams) (*seaso
 	return created.GetPayload(), nil
 }
 
-// Deprecated: Use GetRewardShort instead
+// deprecated(2022-01-10): please use GetRewardShort instead.
 func (aaa *RewardService) GetReward(input *reward.GetRewardParams) (*seasonpassclientmodels.RewardInfo, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -105,7 +105,7 @@ func (aaa *RewardService) GetReward(input *reward.GetRewardParams) (*seasonpassc
 	return ok.GetPayload(), nil
 }
 
-// Deprecated: Use DeleteRewardShort instead
+// deprecated(2022-01-10): please use DeleteRewardShort instead.
 func (aaa *RewardService) DeleteReward(input *reward.DeleteRewardParams) error {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -128,7 +128,7 @@ func (aaa *RewardService) DeleteReward(input *reward.DeleteRewardParams) error {
 	return nil
 }
 
-// Deprecated: Use UpdateRewardShort instead
+// deprecated(2022-01-10): please use UpdateRewardShort instead.
 func (aaa *RewardService) UpdateReward(input *reward.UpdateRewardParams) (*seasonpassclientmodels.RewardInfo, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -154,7 +154,7 @@ func (aaa *RewardService) UpdateReward(input *reward.UpdateRewardParams) (*seaso
 	return ok.GetPayload(), nil
 }
 
-// Deprecated: Use PublicClaimUserRewardShort instead
+// deprecated(2022-01-10): please use PublicClaimUserRewardShort instead.
 func (aaa *RewardService) PublicClaimUserReward(input *reward.PublicClaimUserRewardParams) (*seasonpassclientmodels.ClaimableRewards, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -177,7 +177,7 @@ func (aaa *RewardService) PublicClaimUserReward(input *reward.PublicClaimUserRew
 	return ok.GetPayload(), nil
 }
 
-// Deprecated: Use PublicBulkClaimUserRewardsShort instead
+// deprecated(2022-01-10): please use PublicBulkClaimUserRewardsShort instead.
 func (aaa *RewardService) PublicBulkClaimUserRewards(input *reward.PublicBulkClaimUserRewardsParams) (*seasonpassclientmodels.ClaimableRewards, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {

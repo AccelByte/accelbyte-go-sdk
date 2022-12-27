@@ -39,7 +39,7 @@ func (aaa *SubscriptionService) GetAuthSession() auth.Session {
 	}
 }
 
-// Deprecated: Use QuerySubscriptionsShort instead
+// deprecated(2022-01-10): please use QuerySubscriptionsShort instead.
 func (aaa *SubscriptionService) QuerySubscriptions(input *subscription.QuerySubscriptionsParams) (*platformclientmodels.SubscriptionPagingSlicedResult, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -53,7 +53,7 @@ func (aaa *SubscriptionService) QuerySubscriptions(input *subscription.QuerySubs
 	return ok.GetPayload(), nil
 }
 
-// Deprecated: Use RecurringChargeSubscriptionShort instead
+// deprecated(2022-01-10): please use RecurringChargeSubscriptionShort instead.
 func (aaa *SubscriptionService) RecurringChargeSubscription(input *subscription.RecurringChargeSubscriptionParams) (*platformclientmodels.RecurringChargeResult, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -67,7 +67,7 @@ func (aaa *SubscriptionService) RecurringChargeSubscription(input *subscription.
 	return ok.GetPayload(), nil
 }
 
-// Deprecated: Use QueryUserSubscriptionsShort instead
+// deprecated(2022-01-10): please use QueryUserSubscriptionsShort instead.
 func (aaa *SubscriptionService) QueryUserSubscriptions(input *subscription.QueryUserSubscriptionsParams) (*platformclientmodels.SubscriptionPagingSlicedResult, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -81,7 +81,7 @@ func (aaa *SubscriptionService) QueryUserSubscriptions(input *subscription.Query
 	return ok.GetPayload(), nil
 }
 
-// Deprecated: Use GetUserSubscriptionActivitiesShort instead
+// deprecated(2022-01-10): please use GetUserSubscriptionActivitiesShort instead.
 func (aaa *SubscriptionService) GetUserSubscriptionActivities(input *subscription.GetUserSubscriptionActivitiesParams) (*platformclientmodels.SubscriptionActivityPagingSlicedResult, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -95,7 +95,7 @@ func (aaa *SubscriptionService) GetUserSubscriptionActivities(input *subscriptio
 	return ok.GetPayload(), nil
 }
 
-// Deprecated: Use PlatformSubscribeSubscriptionShort instead
+// deprecated(2022-01-10): please use PlatformSubscribeSubscriptionShort instead.
 func (aaa *SubscriptionService) PlatformSubscribeSubscription(input *subscription.PlatformSubscribeSubscriptionParams) (*platformclientmodels.SubscriptionInfo, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -121,7 +121,7 @@ func (aaa *SubscriptionService) PlatformSubscribeSubscription(input *subscriptio
 	return ok.GetPayload(), nil
 }
 
-// Deprecated: Use CheckUserSubscriptionSubscribableByItemIDShort instead
+// deprecated(2022-01-10): please use CheckUserSubscriptionSubscribableByItemIDShort instead.
 func (aaa *SubscriptionService) CheckUserSubscriptionSubscribableByItemID(input *subscription.CheckUserSubscriptionSubscribableByItemIDParams) (*platformclientmodels.Subscribable, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -135,7 +135,7 @@ func (aaa *SubscriptionService) CheckUserSubscriptionSubscribableByItemID(input 
 	return ok.GetPayload(), nil
 }
 
-// Deprecated: Use GetUserSubscriptionShort instead
+// deprecated(2022-01-10): please use GetUserSubscriptionShort instead.
 func (aaa *SubscriptionService) GetUserSubscription(input *subscription.GetUserSubscriptionParams) (*platformclientmodels.SubscriptionInfo, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -152,7 +152,7 @@ func (aaa *SubscriptionService) GetUserSubscription(input *subscription.GetUserS
 	return ok.GetPayload(), nil
 }
 
-// Deprecated: Use DeleteUserSubscriptionShort instead
+// deprecated(2022-01-10): please use DeleteUserSubscriptionShort instead.
 func (aaa *SubscriptionService) DeleteUserSubscription(input *subscription.DeleteUserSubscriptionParams) error {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -166,7 +166,7 @@ func (aaa *SubscriptionService) DeleteUserSubscription(input *subscription.Delet
 	return nil
 }
 
-// Deprecated: Use CancelSubscriptionShort instead
+// deprecated(2022-01-10): please use CancelSubscriptionShort instead.
 func (aaa *SubscriptionService) CancelSubscription(input *subscription.CancelSubscriptionParams) (*platformclientmodels.SubscriptionInfo, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -186,7 +186,7 @@ func (aaa *SubscriptionService) CancelSubscription(input *subscription.CancelSub
 	return ok.GetPayload(), nil
 }
 
-// Deprecated: Use GrantDaysToSubscriptionShort instead
+// deprecated(2022-01-10): please use GrantDaysToSubscriptionShort instead.
 func (aaa *SubscriptionService) GrantDaysToSubscription(input *subscription.GrantDaysToSubscriptionParams) (*platformclientmodels.SubscriptionInfo, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -203,7 +203,7 @@ func (aaa *SubscriptionService) GrantDaysToSubscription(input *subscription.Gran
 	return ok.GetPayload(), nil
 }
 
-// Deprecated: Use GetUserSubscriptionBillingHistoriesShort instead
+// deprecated(2022-01-10): please use GetUserSubscriptionBillingHistoriesShort instead.
 func (aaa *SubscriptionService) GetUserSubscriptionBillingHistories(input *subscription.GetUserSubscriptionBillingHistoriesParams) (*platformclientmodels.BillingHistoryPagingSlicedResult, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -217,7 +217,7 @@ func (aaa *SubscriptionService) GetUserSubscriptionBillingHistories(input *subsc
 	return ok.GetPayload(), nil
 }
 
-// Deprecated: Use ProcessUserSubscriptionNotificationShort instead
+// deprecated(2022-01-10): please use ProcessUserSubscriptionNotificationShort instead.
 func (aaa *SubscriptionService) ProcessUserSubscriptionNotification(input *subscription.ProcessUserSubscriptionNotificationParams) error {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -234,7 +234,7 @@ func (aaa *SubscriptionService) ProcessUserSubscriptionNotification(input *subsc
 	return nil
 }
 
-// Deprecated: Use PublicQueryUserSubscriptionsShort instead
+// deprecated(2022-01-10): please use PublicQueryUserSubscriptionsShort instead.
 func (aaa *SubscriptionService) PublicQueryUserSubscriptions(input *subscription.PublicQueryUserSubscriptionsParams) (*platformclientmodels.SubscriptionPagingSlicedResult, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -248,7 +248,7 @@ func (aaa *SubscriptionService) PublicQueryUserSubscriptions(input *subscription
 	return ok.GetPayload(), nil
 }
 
-// Deprecated: Use PublicSubscribeSubscriptionShort instead
+// deprecated(2022-01-10): please use PublicSubscribeSubscriptionShort instead.
 func (aaa *SubscriptionService) PublicSubscribeSubscription(input *subscription.PublicSubscribeSubscriptionParams) error {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -277,7 +277,7 @@ func (aaa *SubscriptionService) PublicSubscribeSubscription(input *subscription.
 	return nil
 }
 
-// Deprecated: Use PublicCheckUserSubscriptionSubscribableByItemIDShort instead
+// deprecated(2022-01-10): please use PublicCheckUserSubscriptionSubscribableByItemIDShort instead.
 func (aaa *SubscriptionService) PublicCheckUserSubscriptionSubscribableByItemID(input *subscription.PublicCheckUserSubscriptionSubscribableByItemIDParams) (*platformclientmodels.Subscribable, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -291,7 +291,7 @@ func (aaa *SubscriptionService) PublicCheckUserSubscriptionSubscribableByItemID(
 	return ok.GetPayload(), nil
 }
 
-// Deprecated: Use PublicGetUserSubscriptionShort instead
+// deprecated(2022-01-10): please use PublicGetUserSubscriptionShort instead.
 func (aaa *SubscriptionService) PublicGetUserSubscription(input *subscription.PublicGetUserSubscriptionParams) (*platformclientmodels.SubscriptionInfo, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -308,7 +308,7 @@ func (aaa *SubscriptionService) PublicGetUserSubscription(input *subscription.Pu
 	return ok.GetPayload(), nil
 }
 
-// Deprecated: Use PublicChangeSubscriptionBillingAccountShort instead
+// deprecated(2022-01-10): please use PublicChangeSubscriptionBillingAccountShort instead.
 func (aaa *SubscriptionService) PublicChangeSubscriptionBillingAccount(input *subscription.PublicChangeSubscriptionBillingAccountParams) (*platformclientmodels.SubscriptionInfo, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -331,7 +331,7 @@ func (aaa *SubscriptionService) PublicChangeSubscriptionBillingAccount(input *su
 	return ok.GetPayload(), nil
 }
 
-// Deprecated: Use PublicCancelSubscriptionShort instead
+// deprecated(2022-01-10): please use PublicCancelSubscriptionShort instead.
 func (aaa *SubscriptionService) PublicCancelSubscription(input *subscription.PublicCancelSubscriptionParams) (*platformclientmodels.SubscriptionInfo, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -351,7 +351,7 @@ func (aaa *SubscriptionService) PublicCancelSubscription(input *subscription.Pub
 	return ok.GetPayload(), nil
 }
 
-// Deprecated: Use PublicGetUserSubscriptionBillingHistoriesShort instead
+// deprecated(2022-01-10): please use PublicGetUserSubscriptionBillingHistoriesShort instead.
 func (aaa *SubscriptionService) PublicGetUserSubscriptionBillingHistories(input *subscription.PublicGetUserSubscriptionBillingHistoriesParams) (*platformclientmodels.BillingHistoryPagingSlicedResult, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {

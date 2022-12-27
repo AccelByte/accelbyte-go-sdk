@@ -39,7 +39,7 @@ func (aaa *UtilityService) GetAuthSession() auth.Session {
 	}
 }
 
-// Deprecated: Use CheckReadinessShort instead
+// deprecated(2022-01-10): please use CheckReadinessShort instead.
 func (aaa *UtilityService) CheckReadiness(input *utility.CheckReadinessParams) (*legalclientmodels.LegalReadinessStatusResponse, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {

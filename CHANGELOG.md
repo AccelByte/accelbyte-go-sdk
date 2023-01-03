@@ -1,3 +1,18 @@
+<a name="v0.35.0"></a>
+## [v0.35.0] - 2022-01-04
+
+### Chore
+- regenerate op index to add deprecation marker
+- **sdk:** regenerate sdk, cli sample app, cli test, doc index for AccelByte Cloud 3.39
+- **spec:** update spec for AccelByte Cloud 3.39
+
+### Docs
+- update CHANGELOG.md for v0.35.0 release
+
+### Feat
+- implement RFC007 deprecation marker date
+
+
 <a name="v0.34.0"></a>
 ## [v0.34.0] - 2022-12-20
 
@@ -1081,6 +1096,7 @@ The wrapper have been refactored and has breaking change, these are the list:
 ### Fix
 - delete go.mod ([#1](https://github.com/AccelByte/accelbyte-go-sdk/issues/1))
 
+[v0.35.0]: https://github.com/AccelByte/accelbyte-go-sdk/compare/v0.34.0...v0.35.0
 [v0.34.0]: https://github.com/AccelByte/accelbyte-go-sdk/compare/v0.33.0...v0.34.0
 [v0.33.0]: https://github.com/AccelByte/accelbyte-go-sdk/compare/v0.32.0...v0.33.0
 [v0.32.0]: https://github.com/AccelByte/accelbyte-go-sdk/compare/v0.31.2...v0.32.0

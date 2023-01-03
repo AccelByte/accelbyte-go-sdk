@@ -860,7 +860,7 @@ func (a *Client) AdminGetClientsByNamespaceV3Short(params *AdminGetClientsByName
 /*
 Deprecated: Use AdminGetClientsbyNamespacebyIDV3Short instead.
 
-  AdminGetClientsbyNamespacebyIDV3 gets clients by namespace and client id if multi tenant mode is on and the client Id match withadmin portal client id env var it will ignore the namespace
+  AdminGetClientsbyNamespacebyIDV3 gets clients by namespace and client id multi tenant mode allows admin portal client to be accessible regardless of namespace path
 
   Required permission &#39;ADMIN:NAMESPACE:{namespace}:CLIENT [READ]&#39;&lt;br&gt;action code: 10309
 */
@@ -918,7 +918,7 @@ func (a *Client) AdminGetClientsbyNamespacebyIDV3(params *AdminGetClientsbyNames
 }
 
 /*
-  AdminGetClientsbyNamespacebyIDV3Short gets clients by namespace and client id if multi tenant mode is on and the client Id match withadmin portal client id env var it will ignore the namespace
+  AdminGetClientsbyNamespacebyIDV3Short gets clients by namespace and client id multi tenant mode allows admin portal client to be accessible regardless of namespace path
 
   Required permission &#39;ADMIN:NAMESPACE:{namespace}:CLIENT [READ]&#39;&lt;br&gt;action code: 10309
 */

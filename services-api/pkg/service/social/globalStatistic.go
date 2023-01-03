@@ -53,6 +53,54 @@ func (aaa *GlobalStatisticService) GetGlobalStatItems(input *global_statistic.Ge
 	return ok.GetPayload(), nil
 }
 
+// deprecated(2022-01-10): please use GetGlobalStatItemByStatCodeShort instead.
+func (aaa *GlobalStatisticService) GetGlobalStatItemByStatCode(input *global_statistic.GetGlobalStatItemByStatCodeParams) (*socialclientmodels.GlobalStatItemInfo, error) {
+	token, err := aaa.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, notFound, err := aaa.Client.GlobalStatistic.GetGlobalStatItemByStatCode(input, client.BearerToken(*token.AccessToken))
+	if notFound != nil {
+		return nil, notFound
+	}
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
+// deprecated(2022-01-10): please use GetGlobalStatItems1Short instead.
+func (aaa *GlobalStatisticService) GetGlobalStatItems1(input *global_statistic.GetGlobalStatItems1Params) (*socialclientmodels.GlobalStatItemPagingSlicedResult, error) {
+	token, err := aaa.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, err := aaa.Client.GlobalStatistic.GetGlobalStatItems1(input, client.BearerToken(*token.AccessToken))
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
+// deprecated(2022-01-10): please use GetGlobalStatItemByStatCode1Short instead.
+func (aaa *GlobalStatisticService) GetGlobalStatItemByStatCode1(input *global_statistic.GetGlobalStatItemByStatCode1Params) (*socialclientmodels.GlobalStatItemInfo, error) {
+	token, err := aaa.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, notFound, err := aaa.Client.GlobalStatistic.GetGlobalStatItemByStatCode1(input, client.BearerToken(*token.AccessToken))
+	if notFound != nil {
+		return nil, notFound
+	}
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
 func (aaa *GlobalStatisticService) GetGlobalStatItemsShort(input *global_statistic.GetGlobalStatItemsParams) (*socialclientmodels.GlobalStatItemPagingSlicedResult, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
@@ -71,6 +119,81 @@ func (aaa *GlobalStatisticService) GetGlobalStatItemsShort(input *global_statist
 	}
 
 	ok, err := aaa.Client.GlobalStatistic.GetGlobalStatItemsShort(input, authInfoWriter)
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
+func (aaa *GlobalStatisticService) GetGlobalStatItemByStatCodeShort(input *global_statistic.GetGlobalStatItemByStatCodeParams) (*socialclientmodels.GlobalStatItemInfo, error) {
+	authInfoWriter := input.AuthInfoWriter
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
+	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  aaa.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
+	ok, err := aaa.Client.GlobalStatistic.GetGlobalStatItemByStatCodeShort(input, authInfoWriter)
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
+func (aaa *GlobalStatisticService) GetGlobalStatItems1Short(input *global_statistic.GetGlobalStatItems1Params) (*socialclientmodels.GlobalStatItemPagingSlicedResult, error) {
+	authInfoWriter := input.AuthInfoWriter
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
+	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  aaa.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
+	ok, err := aaa.Client.GlobalStatistic.GetGlobalStatItems1Short(input, authInfoWriter)
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
+func (aaa *GlobalStatisticService) GetGlobalStatItemByStatCode1Short(input *global_statistic.GetGlobalStatItemByStatCode1Params) (*socialclientmodels.GlobalStatItemInfo, error) {
+	authInfoWriter := input.AuthInfoWriter
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
+	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  aaa.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
+	ok, err := aaa.Client.GlobalStatistic.GetGlobalStatItemByStatCode1Short(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}

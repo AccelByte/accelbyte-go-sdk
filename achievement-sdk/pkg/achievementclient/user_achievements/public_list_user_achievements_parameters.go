@@ -116,6 +116,11 @@ type PublicListUserAchievementsParams struct {
 
 	*/
 	PreferUnlocked *bool
+	/*SortBy
+	  sort by, allow values: [achievedAt, achievedAt:asc, achievedAt:desc, createdAt, createdAt:asc, createdAt:desc]
+
+	*/
+	SortBy *string
 	/*Tags
 	  tags
 
@@ -224,6 +229,17 @@ func (o *PublicListUserAchievementsParams) SetPreferUnlocked(preferUnlocked *boo
 	o.PreferUnlocked = preferUnlocked
 }
 
+// WithSortBy adds the sortBy to the public list user achievements params
+func (o *PublicListUserAchievementsParams) WithSortBy(sortBy *string) *PublicListUserAchievementsParams {
+	o.SetSortBy(sortBy)
+	return o
+}
+
+// SetSortBy adds the sortBy to the public list user achievements params
+func (o *PublicListUserAchievementsParams) SetSortBy(sortBy *string) {
+	o.SortBy = sortBy
+}
+
 // WithTags adds the tags to the public list user achievements params
 func (o *PublicListUserAchievementsParams) WithTags(tags []string) *PublicListUserAchievementsParams {
 	o.SetTags(tags)
@@ -301,6 +317,22 @@ func (o *PublicListUserAchievementsParams) WriteToRequest(r runtime.ClientReques
 		qPreferUnlocked := swag.FormatBool(qrPreferUnlocked)
 		if qPreferUnlocked != "" {
 			if err := r.SetQueryParam("preferUnlocked", qPreferUnlocked); err != nil {
+				return err
+			}
+		}
+
+	}
+
+	if o.SortBy != nil {
+
+		// query param sortBy
+		var qrSortBy string
+		if o.SortBy != nil {
+			qrSortBy = *o.SortBy
+		}
+		qSortBy := qrSortBy
+		if qSortBy != "" {
+			if err := r.SetQueryParam("sortBy", qSortBy); err != nil {
 				return err
 			}
 		}

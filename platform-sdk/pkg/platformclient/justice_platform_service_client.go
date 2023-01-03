@@ -40,9 +40,11 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclient/payment_dedicated"
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclient/payment_station"
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclient/reward"
+	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclient/section"
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclient/store"
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclient/subscription"
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclient/ticket"
+	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclient/view"
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclient/wallet"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils"
 )
@@ -117,9 +119,11 @@ func New(transport runtime.ClientTransport, runtime *httptransport.Runtime, form
 	cli.PaymentDedicated = payment_dedicated.New(transport, formats)
 	cli.PaymentStation = payment_station.New(transport, formats)
 	cli.Reward = reward.New(transport, formats)
+	cli.Section = section.New(transport, formats)
 	cli.Store = store.New(transport, formats)
 	cli.Subscription = subscription.New(transport, formats)
 	cli.Ticket = ticket.New(transport, formats)
+	cli.View = view.New(transport, formats)
 	cli.Wallet = wallet.New(transport, formats)
 
 	return cli
@@ -227,11 +231,15 @@ type JusticePlatformService struct {
 
 	Reward reward.ClientService
 
+	Section section.ClientService
+
 	Store store.ClientService
 
 	Subscription subscription.ClientService
 
 	Ticket ticket.ClientService
+
+	View view.ClientService
 
 	Wallet wallet.ClientService
 
@@ -265,8 +273,10 @@ func (c *JusticePlatformService) SetTransport(transport runtime.ClientTransport)
 	c.PaymentDedicated.SetTransport(transport)
 	c.PaymentStation.SetTransport(transport)
 	c.Reward.SetTransport(transport)
+	c.Section.SetTransport(transport)
 	c.Store.SetTransport(transport)
 	c.Subscription.SetTransport(transport)
 	c.Ticket.SetTransport(transport)
+	c.View.SetTransport(transport)
 	c.Wallet.SetTransport(transport)
 }

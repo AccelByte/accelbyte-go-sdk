@@ -19,6 +19,10 @@ import (
 // swagger:model handlers.GetUsersPresenceResponse
 type HandlersGetUsersPresenceResponse struct {
 
+	// away
+	// Required: true
+	Away *int32 `json:"away"`
+
 	// busy
 	// Required: true
 	Busy *int32 `json:"busy"`
@@ -44,6 +48,10 @@ type HandlersGetUsersPresenceResponse struct {
 func (m *HandlersGetUsersPresenceResponse) Validate(formats strfmt.Registry) error {
 	var res []error
 
+	if err := m.validateAway(formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.validateBusy(formats); err != nil {
 		res = append(res, err)
 	}
@@ -67,6 +75,15 @@ func (m *HandlersGetUsersPresenceResponse) Validate(formats strfmt.Registry) err
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
+	return nil
+}
+
+func (m *HandlersGetUsersPresenceResponse) validateAway(formats strfmt.Registry) error {
+
+	if err := validate.Required("away", "body", m.Away); err != nil {
+		return err
+	}
+
 	return nil
 }
 

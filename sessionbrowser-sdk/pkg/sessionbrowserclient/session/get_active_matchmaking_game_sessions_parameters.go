@@ -19,13 +19,19 @@ import (
 	"github.com/go-openapi/runtime"
 	cr "github.com/go-openapi/runtime/client"
 	"github.com/go-openapi/strfmt"
+	"github.com/go-openapi/swag"
 )
 
 // NewGetActiveMatchmakingGameSessionsParams creates a new GetActiveMatchmakingGameSessionsParams object
 // with the default values initialized.
 func NewGetActiveMatchmakingGameSessionsParams() *GetActiveMatchmakingGameSessionsParams {
-	var ()
+	var (
+		limitDefault  = int64(25)
+		offsetDefault = int64(0)
+	)
 	return &GetActiveMatchmakingGameSessionsParams{
+		Limit:  &limitDefault,
+		Offset: &offsetDefault,
 
 		timeout: cr.DefaultTimeout,
 	}
@@ -34,8 +40,13 @@ func NewGetActiveMatchmakingGameSessionsParams() *GetActiveMatchmakingGameSessio
 // NewGetActiveMatchmakingGameSessionsParamsWithTimeout creates a new GetActiveMatchmakingGameSessionsParams object
 // with the default values initialized, and the ability to set a timeout on a request
 func NewGetActiveMatchmakingGameSessionsParamsWithTimeout(timeout time.Duration) *GetActiveMatchmakingGameSessionsParams {
-	var ()
+	var (
+		limitDefault  = int64(25)
+		offsetDefault = int64(0)
+	)
 	return &GetActiveMatchmakingGameSessionsParams{
+		Limit:  &limitDefault,
+		Offset: &offsetDefault,
 
 		timeout: timeout,
 	}
@@ -44,8 +55,13 @@ func NewGetActiveMatchmakingGameSessionsParamsWithTimeout(timeout time.Duration)
 // NewGetActiveMatchmakingGameSessionsParamsWithContext creates a new GetActiveMatchmakingGameSessionsParams object
 // with the default values initialized, and the ability to set a context for a request
 func NewGetActiveMatchmakingGameSessionsParamsWithContext(ctx context.Context) *GetActiveMatchmakingGameSessionsParams {
-	var ()
+	var (
+		limitDefault  = int64(25)
+		offsetDefault = int64(0)
+	)
 	return &GetActiveMatchmakingGameSessionsParams{
+		Limit:  &limitDefault,
+		Offset: &offsetDefault,
 
 		Context: ctx,
 	}
@@ -54,8 +70,13 @@ func NewGetActiveMatchmakingGameSessionsParamsWithContext(ctx context.Context) *
 // NewGetActiveMatchmakingGameSessionsParamsWithHTTPClient creates a new GetActiveMatchmakingGameSessionsParams object
 // with the default values initialized, and the ability to set a custom HTTPClient for a request
 func NewGetActiveMatchmakingGameSessionsParamsWithHTTPClient(client *http.Client) *GetActiveMatchmakingGameSessionsParams {
-	var ()
+	var (
+		limitDefault  = int64(25)
+		offsetDefault = int64(0)
+	)
 	return &GetActiveMatchmakingGameSessionsParams{
+		Limit:      &limitDefault,
+		Offset:     &offsetDefault,
 		HTTPClient: client,
 	}
 }
@@ -67,6 +88,11 @@ type GetActiveMatchmakingGameSessionsParams struct {
 
 	/*RetryPolicy*/
 	RetryPolicy *utils.Retry
+	/*Limit
+	  max item to be returned
+
+	*/
+	Limit *int64
 	/*MatchID
 	  matchmaking ID
 
@@ -77,6 +103,11 @@ type GetActiveMatchmakingGameSessionsParams struct {
 
 	*/
 	Namespace string
+	/*Offset
+	  skip some item(s), offset=3, will skip 3 first items
+
+	*/
+	Offset *int64
 	/*ServerRegion
 	  server region
 
@@ -141,6 +172,17 @@ func (o *GetActiveMatchmakingGameSessionsParams) SetHTTPClientTransport(roundTri
 	}
 }
 
+// WithLimit adds the limit to the get active matchmaking game sessions params
+func (o *GetActiveMatchmakingGameSessionsParams) WithLimit(limit *int64) *GetActiveMatchmakingGameSessionsParams {
+	o.SetLimit(limit)
+	return o
+}
+
+// SetLimit adds the limit to the get active matchmaking game sessions params
+func (o *GetActiveMatchmakingGameSessionsParams) SetLimit(limit *int64) {
+	o.Limit = limit
+}
+
 // WithMatchID adds the matchID to the get active matchmaking game sessions params
 func (o *GetActiveMatchmakingGameSessionsParams) WithMatchID(matchID *string) *GetActiveMatchmakingGameSessionsParams {
 	o.SetMatchID(matchID)
@@ -161,6 +203,17 @@ func (o *GetActiveMatchmakingGameSessionsParams) WithNamespace(namespace string)
 // SetNamespace adds the namespace to the get active matchmaking game sessions params
 func (o *GetActiveMatchmakingGameSessionsParams) SetNamespace(namespace string) {
 	o.Namespace = namespace
+}
+
+// WithOffset adds the offset to the get active matchmaking game sessions params
+func (o *GetActiveMatchmakingGameSessionsParams) WithOffset(offset *int64) *GetActiveMatchmakingGameSessionsParams {
+	o.SetOffset(offset)
+	return o
+}
+
+// SetOffset adds the offset to the get active matchmaking game sessions params
+func (o *GetActiveMatchmakingGameSessionsParams) SetOffset(offset *int64) {
+	o.Offset = offset
 }
 
 // WithServerRegion adds the serverRegion to the get active matchmaking game sessions params
@@ -193,6 +246,22 @@ func (o *GetActiveMatchmakingGameSessionsParams) WriteToRequest(r runtime.Client
 	}
 	var res []error
 
+	if o.Limit != nil {
+
+		// query param limit
+		var qrLimit int64
+		if o.Limit != nil {
+			qrLimit = *o.Limit
+		}
+		qLimit := swag.FormatInt64(qrLimit)
+		if qLimit != "" {
+			if err := r.SetQueryParam("limit", qLimit); err != nil {
+				return err
+			}
+		}
+
+	}
+
 	if o.MatchID != nil {
 
 		// query param match_id
@@ -212,6 +281,22 @@ func (o *GetActiveMatchmakingGameSessionsParams) WriteToRequest(r runtime.Client
 	// path param namespace
 	if err := r.SetPathParam("namespace", o.Namespace); err != nil {
 		return err
+	}
+
+	if o.Offset != nil {
+
+		// query param offset
+		var qrOffset int64
+		if o.Offset != nil {
+			qrOffset = *o.Offset
+		}
+		qOffset := swag.FormatInt64(qrOffset)
+		if qOffset != "" {
+			if err := r.SetQueryParam("offset", qOffset); err != nil {
+				return err
+			}
+		}
+
 	}
 
 	if o.ServerRegion != nil {

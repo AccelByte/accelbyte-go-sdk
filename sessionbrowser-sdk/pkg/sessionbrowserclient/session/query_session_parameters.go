@@ -25,8 +25,13 @@ import (
 // NewQuerySessionParams creates a new QuerySessionParams object
 // with the default values initialized.
 func NewQuerySessionParams() *QuerySessionParams {
-	var ()
+	var (
+		limitDefault  = int64(25)
+		offsetDefault = int64(0)
+	)
 	return &QuerySessionParams{
+		Limit:  &limitDefault,
+		Offset: &offsetDefault,
 
 		timeout: cr.DefaultTimeout,
 	}
@@ -35,8 +40,13 @@ func NewQuerySessionParams() *QuerySessionParams {
 // NewQuerySessionParamsWithTimeout creates a new QuerySessionParams object
 // with the default values initialized, and the ability to set a timeout on a request
 func NewQuerySessionParamsWithTimeout(timeout time.Duration) *QuerySessionParams {
-	var ()
+	var (
+		limitDefault  = int64(25)
+		offsetDefault = int64(0)
+	)
 	return &QuerySessionParams{
+		Limit:  &limitDefault,
+		Offset: &offsetDefault,
 
 		timeout: timeout,
 	}
@@ -45,8 +55,13 @@ func NewQuerySessionParamsWithTimeout(timeout time.Duration) *QuerySessionParams
 // NewQuerySessionParamsWithContext creates a new QuerySessionParams object
 // with the default values initialized, and the ability to set a context for a request
 func NewQuerySessionParamsWithContext(ctx context.Context) *QuerySessionParams {
-	var ()
+	var (
+		limitDefault  = int64(25)
+		offsetDefault = int64(0)
+	)
 	return &QuerySessionParams{
+		Limit:  &limitDefault,
+		Offset: &offsetDefault,
 
 		Context: ctx,
 	}
@@ -55,8 +70,13 @@ func NewQuerySessionParamsWithContext(ctx context.Context) *QuerySessionParams {
 // NewQuerySessionParamsWithHTTPClient creates a new QuerySessionParams object
 // with the default values initialized, and the ability to set a custom HTTPClient for a request
 func NewQuerySessionParamsWithHTTPClient(client *http.Client) *QuerySessionParams {
-	var ()
+	var (
+		limitDefault  = int64(25)
+		offsetDefault = int64(0)
+	)
 	return &QuerySessionParams{
+		Limit:      &limitDefault,
+		Offset:     &offsetDefault,
 		HTTPClient: client,
 	}
 }

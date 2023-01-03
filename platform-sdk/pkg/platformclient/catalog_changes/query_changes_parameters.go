@@ -54,7 +54,9 @@ const (
 const (
 	QueryChangesCATEGORYConstant = "CATEGORY"
 	QueryChangesITEMConstant     = "ITEM"
+	QueryChangesSECTIONConstant  = "SECTION"
 	QueryChangesSTOREConstant    = "STORE"
+	QueryChangesVIEWConstant     = "VIEW"
 )
 
 // NewQueryChangesParams creates a new QueryChangesParams object

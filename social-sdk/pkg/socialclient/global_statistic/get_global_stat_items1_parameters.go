@@ -22,14 +22,14 @@ import (
 	"github.com/go-openapi/swag"
 )
 
-// NewGetGlobalStatItemsParams creates a new GetGlobalStatItemsParams object
+// NewGetGlobalStatItems1Params creates a new GetGlobalStatItems1Params object
 // with the default values initialized.
-func NewGetGlobalStatItemsParams() *GetGlobalStatItemsParams {
+func NewGetGlobalStatItems1Params() *GetGlobalStatItems1Params {
 	var (
 		limitDefault  = int32(20)
 		offsetDefault = int32(0)
 	)
-	return &GetGlobalStatItemsParams{
+	return &GetGlobalStatItems1Params{
 		Limit:  &limitDefault,
 		Offset: &offsetDefault,
 
@@ -37,14 +37,14 @@ func NewGetGlobalStatItemsParams() *GetGlobalStatItemsParams {
 	}
 }
 
-// NewGetGlobalStatItemsParamsWithTimeout creates a new GetGlobalStatItemsParams object
+// NewGetGlobalStatItems1ParamsWithTimeout creates a new GetGlobalStatItems1Params object
 // with the default values initialized, and the ability to set a timeout on a request
-func NewGetGlobalStatItemsParamsWithTimeout(timeout time.Duration) *GetGlobalStatItemsParams {
+func NewGetGlobalStatItems1ParamsWithTimeout(timeout time.Duration) *GetGlobalStatItems1Params {
 	var (
 		limitDefault  = int32(20)
 		offsetDefault = int32(0)
 	)
-	return &GetGlobalStatItemsParams{
+	return &GetGlobalStatItems1Params{
 		Limit:  &limitDefault,
 		Offset: &offsetDefault,
 
@@ -52,14 +52,14 @@ func NewGetGlobalStatItemsParamsWithTimeout(timeout time.Duration) *GetGlobalSta
 	}
 }
 
-// NewGetGlobalStatItemsParamsWithContext creates a new GetGlobalStatItemsParams object
+// NewGetGlobalStatItems1ParamsWithContext creates a new GetGlobalStatItems1Params object
 // with the default values initialized, and the ability to set a context for a request
-func NewGetGlobalStatItemsParamsWithContext(ctx context.Context) *GetGlobalStatItemsParams {
+func NewGetGlobalStatItems1ParamsWithContext(ctx context.Context) *GetGlobalStatItems1Params {
 	var (
 		limitDefault  = int32(20)
 		offsetDefault = int32(0)
 	)
-	return &GetGlobalStatItemsParams{
+	return &GetGlobalStatItems1Params{
 		Limit:  &limitDefault,
 		Offset: &offsetDefault,
 
@@ -67,24 +67,24 @@ func NewGetGlobalStatItemsParamsWithContext(ctx context.Context) *GetGlobalStatI
 	}
 }
 
-// NewGetGlobalStatItemsParamsWithHTTPClient creates a new GetGlobalStatItemsParams object
+// NewGetGlobalStatItems1ParamsWithHTTPClient creates a new GetGlobalStatItems1Params object
 // with the default values initialized, and the ability to set a custom HTTPClient for a request
-func NewGetGlobalStatItemsParamsWithHTTPClient(client *http.Client) *GetGlobalStatItemsParams {
+func NewGetGlobalStatItems1ParamsWithHTTPClient(client *http.Client) *GetGlobalStatItems1Params {
 	var (
 		limitDefault  = int32(20)
 		offsetDefault = int32(0)
 	)
-	return &GetGlobalStatItemsParams{
+	return &GetGlobalStatItems1Params{
 		Limit:      &limitDefault,
 		Offset:     &offsetDefault,
 		HTTPClient: client,
 	}
 }
 
-/*GetGlobalStatItemsParams contains all the parameters to send to the API endpoint
-for the get global stat items operation typically these are written to a http.Request
+/*GetGlobalStatItems1Params contains all the parameters to send to the API endpoint
+for the get global stat items 1 operation typically these are written to a http.Request
 */
-type GetGlobalStatItemsParams struct {
+type GetGlobalStatItems1Params struct {
 
 	/*RetryPolicy*/
 	RetryPolicy *utils.Retry
@@ -109,46 +109,46 @@ type GetGlobalStatItemsParams struct {
 	HTTPClient     *http.Client
 }
 
-// WithTimeout adds the timeout to the get global stat items params
-func (o *GetGlobalStatItemsParams) WithTimeout(timeout time.Duration) *GetGlobalStatItemsParams {
+// WithTimeout adds the timeout to the get global stat items 1 params
+func (o *GetGlobalStatItems1Params) WithTimeout(timeout time.Duration) *GetGlobalStatItems1Params {
 	o.SetTimeout(timeout)
 	return o
 }
 
-// SetTimeout adds the timeout to the get global stat items params
-func (o *GetGlobalStatItemsParams) SetTimeout(timeout time.Duration) {
+// SetTimeout adds the timeout to the get global stat items 1 params
+func (o *GetGlobalStatItems1Params) SetTimeout(timeout time.Duration) {
 	o.timeout = timeout
 }
 
-// WithContext adds the context to the get global stat items params
-func (o *GetGlobalStatItemsParams) WithContext(ctx context.Context) *GetGlobalStatItemsParams {
+// WithContext adds the context to the get global stat items 1 params
+func (o *GetGlobalStatItems1Params) WithContext(ctx context.Context) *GetGlobalStatItems1Params {
 	o.SetContext(ctx)
 	return o
 }
 
-// SetContext adds the context to the get global stat items params
-func (o *GetGlobalStatItemsParams) SetContext(ctx context.Context) {
+// SetContext adds the context to the get global stat items 1 params
+func (o *GetGlobalStatItems1Params) SetContext(ctx context.Context) {
 	o.Context = ctx
 }
 
-// SetAuthInfoWriter adds the authInfoWriter to the get global stat items params
-func (o *GetGlobalStatItemsParams) SetAuthInfoWriter(authInfoWriter runtime.ClientAuthInfoWriter) {
+// SetAuthInfoWriter adds the authInfoWriter to the get global stat items 1 params
+func (o *GetGlobalStatItems1Params) SetAuthInfoWriter(authInfoWriter runtime.ClientAuthInfoWriter) {
 	o.AuthInfoWriter = authInfoWriter
 }
 
-// WithHTTPClient adds the HTTPClient to the get global stat items params
-func (o *GetGlobalStatItemsParams) WithHTTPClient(client *http.Client) *GetGlobalStatItemsParams {
+// WithHTTPClient adds the HTTPClient to the get global stat items 1 params
+func (o *GetGlobalStatItems1Params) WithHTTPClient(client *http.Client) *GetGlobalStatItems1Params {
 	o.SetHTTPClient(client)
 	return o
 }
 
-// SetHTTPClient adds the HTTPClient to the get global stat items params
-func (o *GetGlobalStatItemsParams) SetHTTPClient(client *http.Client) {
+// SetHTTPClient adds the HTTPClient to the get global stat items 1 params
+func (o *GetGlobalStatItems1Params) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
-// SetHTTPClient adds the HTTPClient Transport to the get global stat items params
-func (o *GetGlobalStatItemsParams) SetHTTPClientTransport(roundTripper http.RoundTripper) {
+// SetHTTPClient adds the HTTPClient Transport to the get global stat items 1 params
+func (o *GetGlobalStatItems1Params) SetHTTPClientTransport(roundTripper http.RoundTripper) {
 	if o.HTTPClient != nil {
 		o.HTTPClient.Transport = roundTripper
 	} else {
@@ -156,52 +156,52 @@ func (o *GetGlobalStatItemsParams) SetHTTPClientTransport(roundTripper http.Roun
 	}
 }
 
-// WithLimit adds the limit to the get global stat items params
-func (o *GetGlobalStatItemsParams) WithLimit(limit *int32) *GetGlobalStatItemsParams {
+// WithLimit adds the limit to the get global stat items 1 params
+func (o *GetGlobalStatItems1Params) WithLimit(limit *int32) *GetGlobalStatItems1Params {
 	o.SetLimit(limit)
 	return o
 }
 
-// SetLimit adds the limit to the get global stat items params
-func (o *GetGlobalStatItemsParams) SetLimit(limit *int32) {
+// SetLimit adds the limit to the get global stat items 1 params
+func (o *GetGlobalStatItems1Params) SetLimit(limit *int32) {
 	o.Limit = limit
 }
 
-// WithNamespace adds the namespace to the get global stat items params
-func (o *GetGlobalStatItemsParams) WithNamespace(namespace string) *GetGlobalStatItemsParams {
+// WithNamespace adds the namespace to the get global stat items 1 params
+func (o *GetGlobalStatItems1Params) WithNamespace(namespace string) *GetGlobalStatItems1Params {
 	o.SetNamespace(namespace)
 	return o
 }
 
-// SetNamespace adds the namespace to the get global stat items params
-func (o *GetGlobalStatItemsParams) SetNamespace(namespace string) {
+// SetNamespace adds the namespace to the get global stat items 1 params
+func (o *GetGlobalStatItems1Params) SetNamespace(namespace string) {
 	o.Namespace = namespace
 }
 
-// WithOffset adds the offset to the get global stat items params
-func (o *GetGlobalStatItemsParams) WithOffset(offset *int32) *GetGlobalStatItemsParams {
+// WithOffset adds the offset to the get global stat items 1 params
+func (o *GetGlobalStatItems1Params) WithOffset(offset *int32) *GetGlobalStatItems1Params {
 	o.SetOffset(offset)
 	return o
 }
 
-// SetOffset adds the offset to the get global stat items params
-func (o *GetGlobalStatItemsParams) SetOffset(offset *int32) {
+// SetOffset adds the offset to the get global stat items 1 params
+func (o *GetGlobalStatItems1Params) SetOffset(offset *int32) {
 	o.Offset = offset
 }
 
-// WithStatCodes adds the statCodes to the get global stat items params
-func (o *GetGlobalStatItemsParams) WithStatCodes(statCodes *string) *GetGlobalStatItemsParams {
+// WithStatCodes adds the statCodes to the get global stat items 1 params
+func (o *GetGlobalStatItems1Params) WithStatCodes(statCodes *string) *GetGlobalStatItems1Params {
 	o.SetStatCodes(statCodes)
 	return o
 }
 
-// SetStatCodes adds the statCodes to the get global stat items params
-func (o *GetGlobalStatItemsParams) SetStatCodes(statCodes *string) {
+// SetStatCodes adds the statCodes to the get global stat items 1 params
+func (o *GetGlobalStatItems1Params) SetStatCodes(statCodes *string) {
 	o.StatCodes = statCodes
 }
 
 // WriteToRequest writes these params to a swagger request
-func (o *GetGlobalStatItemsParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.Registry) error {
+func (o *GetGlobalStatItems1Params) WriteToRequest(r runtime.ClientRequest, reg strfmt.Registry) error {
 
 	if err := r.SetTimeout(o.timeout); err != nil {
 		return err

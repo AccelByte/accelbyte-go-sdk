@@ -47,7 +47,9 @@ const (
 const (
 	GetStatisticCATEGORYConstant = "CATEGORY"
 	GetStatisticITEMConstant     = "ITEM"
+	GetStatisticSECTIONConstant  = "SECTION"
 	GetStatisticSTOREConstant    = "STORE"
+	GetStatisticVIEWConstant     = "VIEW"
 )
 
 // NewGetStatisticParams creates a new GetStatisticParams object

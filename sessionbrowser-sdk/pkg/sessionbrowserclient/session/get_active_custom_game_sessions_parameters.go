@@ -19,13 +19,19 @@ import (
 	"github.com/go-openapi/runtime"
 	cr "github.com/go-openapi/runtime/client"
 	"github.com/go-openapi/strfmt"
+	"github.com/go-openapi/swag"
 )
 
 // NewGetActiveCustomGameSessionsParams creates a new GetActiveCustomGameSessionsParams object
 // with the default values initialized.
 func NewGetActiveCustomGameSessionsParams() *GetActiveCustomGameSessionsParams {
-	var ()
+	var (
+		limitDefault  = int64(25)
+		offsetDefault = int64(0)
+	)
 	return &GetActiveCustomGameSessionsParams{
+		Limit:  &limitDefault,
+		Offset: &offsetDefault,
 
 		timeout: cr.DefaultTimeout,
 	}
@@ -34,8 +40,13 @@ func NewGetActiveCustomGameSessionsParams() *GetActiveCustomGameSessionsParams {
 // NewGetActiveCustomGameSessionsParamsWithTimeout creates a new GetActiveCustomGameSessionsParams object
 // with the default values initialized, and the ability to set a timeout on a request
 func NewGetActiveCustomGameSessionsParamsWithTimeout(timeout time.Duration) *GetActiveCustomGameSessionsParams {
-	var ()
+	var (
+		limitDefault  = int64(25)
+		offsetDefault = int64(0)
+	)
 	return &GetActiveCustomGameSessionsParams{
+		Limit:  &limitDefault,
+		Offset: &offsetDefault,
 
 		timeout: timeout,
 	}
@@ -44,8 +55,13 @@ func NewGetActiveCustomGameSessionsParamsWithTimeout(timeout time.Duration) *Get
 // NewGetActiveCustomGameSessionsParamsWithContext creates a new GetActiveCustomGameSessionsParams object
 // with the default values initialized, and the ability to set a context for a request
 func NewGetActiveCustomGameSessionsParamsWithContext(ctx context.Context) *GetActiveCustomGameSessionsParams {
-	var ()
+	var (
+		limitDefault  = int64(25)
+		offsetDefault = int64(0)
+	)
 	return &GetActiveCustomGameSessionsParams{
+		Limit:  &limitDefault,
+		Offset: &offsetDefault,
 
 		Context: ctx,
 	}
@@ -54,8 +70,13 @@ func NewGetActiveCustomGameSessionsParamsWithContext(ctx context.Context) *GetAc
 // NewGetActiveCustomGameSessionsParamsWithHTTPClient creates a new GetActiveCustomGameSessionsParams object
 // with the default values initialized, and the ability to set a custom HTTPClient for a request
 func NewGetActiveCustomGameSessionsParamsWithHTTPClient(client *http.Client) *GetActiveCustomGameSessionsParams {
-	var ()
+	var (
+		limitDefault  = int64(25)
+		offsetDefault = int64(0)
+	)
 	return &GetActiveCustomGameSessionsParams{
+		Limit:      &limitDefault,
+		Offset:     &offsetDefault,
 		HTTPClient: client,
 	}
 }
@@ -67,11 +88,21 @@ type GetActiveCustomGameSessionsParams struct {
 
 	/*RetryPolicy*/
 	RetryPolicy *utils.Retry
+	/*Limit
+	  max item to be returned
+
+	*/
+	Limit *int64
 	/*Namespace
 	  namespace
 
 	*/
 	Namespace string
+	/*Offset
+	  skip some item(s), offset=3, will skip 3 first items
+
+	*/
+	Offset *int64
 	/*ServerRegion
 	  server region
 
@@ -136,6 +167,17 @@ func (o *GetActiveCustomGameSessionsParams) SetHTTPClientTransport(roundTripper 
 	}
 }
 
+// WithLimit adds the limit to the get active custom game sessions params
+func (o *GetActiveCustomGameSessionsParams) WithLimit(limit *int64) *GetActiveCustomGameSessionsParams {
+	o.SetLimit(limit)
+	return o
+}
+
+// SetLimit adds the limit to the get active custom game sessions params
+func (o *GetActiveCustomGameSessionsParams) SetLimit(limit *int64) {
+	o.Limit = limit
+}
+
 // WithNamespace adds the namespace to the get active custom game sessions params
 func (o *GetActiveCustomGameSessionsParams) WithNamespace(namespace string) *GetActiveCustomGameSessionsParams {
 	o.SetNamespace(namespace)
@@ -145,6 +187,17 @@ func (o *GetActiveCustomGameSessionsParams) WithNamespace(namespace string) *Get
 // SetNamespace adds the namespace to the get active custom game sessions params
 func (o *GetActiveCustomGameSessionsParams) SetNamespace(namespace string) {
 	o.Namespace = namespace
+}
+
+// WithOffset adds the offset to the get active custom game sessions params
+func (o *GetActiveCustomGameSessionsParams) WithOffset(offset *int64) *GetActiveCustomGameSessionsParams {
+	o.SetOffset(offset)
+	return o
+}
+
+// SetOffset adds the offset to the get active custom game sessions params
+func (o *GetActiveCustomGameSessionsParams) SetOffset(offset *int64) {
+	o.Offset = offset
 }
 
 // WithServerRegion adds the serverRegion to the get active custom game sessions params
@@ -177,9 +230,41 @@ func (o *GetActiveCustomGameSessionsParams) WriteToRequest(r runtime.ClientReque
 	}
 	var res []error
 
+	if o.Limit != nil {
+
+		// query param limit
+		var qrLimit int64
+		if o.Limit != nil {
+			qrLimit = *o.Limit
+		}
+		qLimit := swag.FormatInt64(qrLimit)
+		if qLimit != "" {
+			if err := r.SetQueryParam("limit", qLimit); err != nil {
+				return err
+			}
+		}
+
+	}
+
 	// path param namespace
 	if err := r.SetPathParam("namespace", o.Namespace); err != nil {
 		return err
+	}
+
+	if o.Offset != nil {
+
+		// query param offset
+		var qrOffset int64
+		if o.Offset != nil {
+			qrOffset = *o.Offset
+		}
+		qOffset := swag.FormatInt64(qrOffset)
+		if qOffset != "" {
+			if err := r.SetQueryParam("offset", qOffset); err != nil {
+				return err
+			}
+		}
+
 	}
 
 	if o.ServerRegion != nil {

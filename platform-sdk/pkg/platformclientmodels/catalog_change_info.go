@@ -54,6 +54,9 @@ type CatalogChangeInfo struct {
 	// Format: date-time
 	PublishedAt *strfmt.DateTime `json:"publishedAt,omitempty"`
 
+	// section id, only exists when change type is section
+	SectionID string `json:"sectionId,omitempty"`
+
 	// if it is selected for partial publish
 	// Required: true
 	Selected *bool `json:"selected"`
@@ -74,13 +77,16 @@ type CatalogChangeInfo struct {
 	Title string `json:"title,omitempty"`
 
 	// change type
-	// Enum: [CATEGORY ITEM STORE]
+	// Enum: [CATEGORY ITEM SECTION STORE VIEW]
 	Type string `json:"type,omitempty"`
 
 	// updated time
 	// Required: true
 	// Format: date-time
 	UpdatedAt strfmt.DateTime `json:"updatedAt"`
+
+	// view id, only exists when change type is view
+	ViewID string `json:"viewId,omitempty"`
 }
 
 // Validate validates this catalog change info
@@ -362,7 +368,7 @@ var catalogChangeInfoTypeTypePropEnum []interface{}
 
 func init() {
 	var res []string
-	if err := json.Unmarshal([]byte(`["CATEGORY","ITEM","STORE"]`), &res); err != nil {
+	if err := json.Unmarshal([]byte(`["CATEGORY","ITEM","SECTION","STORE","VIEW"]`), &res); err != nil {
 		panic(err)
 	}
 	for _, v := range res {
@@ -378,8 +384,14 @@ const (
 	// CatalogChangeInfoTypeITEM captures enum value "ITEM"
 	CatalogChangeInfoTypeITEM string = "ITEM"
 
+	// CatalogChangeInfoTypeSECTION captures enum value "SECTION"
+	CatalogChangeInfoTypeSECTION string = "SECTION"
+
 	// CatalogChangeInfoTypeSTORE captures enum value "STORE"
 	CatalogChangeInfoTypeSTORE string = "STORE"
+
+	// CatalogChangeInfoTypeVIEW captures enum value "VIEW"
+	CatalogChangeInfoTypeVIEW string = "VIEW"
 )
 
 // prop value enum

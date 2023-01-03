@@ -115,6 +115,20 @@
             "type": "string"
           },
           {
+            "default": 25,
+            "description": "max item to be returned",
+            "in": "query",
+            "name": "limit",
+            "type": "integer"
+          },
+          {
+            "default": 0,
+            "description": "skip some item(s), offset=3, will skip 3 first items",
+            "in": "query",
+            "name": "offset",
+            "type": "integer"
+          },
+          {
             "description": "server region",
             "in": "query",
             "name": "server_region",
@@ -180,10 +194,24 @@
             "type": "string"
           },
           {
+            "default": 25,
+            "description": "max item to be returned",
+            "in": "query",
+            "name": "limit",
+            "type": "integer"
+          },
+          {
             "description": "matchmaking ID",
             "in": "query",
             "name": "match_id",
             "type": "string"
+          },
+          {
+            "default": 0,
+            "description": "skip some item(s), offset=3, will skip 3 first items",
+            "in": "query",
+            "name": "offset",
+            "type": "integer"
           },
           {
             "description": "server region",
@@ -373,7 +401,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "Required Permission: ADMIN:NAMESPACE:{namespace}:SESSION [Read]\n\t\nRequired Scope: social\n\t\nSearch sessions. Optimize the query by differentiating query with filter namespace only and filter with namespace \u0026amp; other filter (partyID, userID, matchID).\nQuery with filter namespace only will not group whole session data while query with filter namespace \u0026amp; other filter will include session data.",
+        "description": "Required Permission: ADMIN:NAMESPACE:{namespace}:SESSION [Read]\n\nRequired Scope: social\n\nSearch sessions. Optimize the query by differentiating query with filter namespace only and filter with namespace \u0026amp; other filter (partyID, userID, matchID).\nQuery with filter namespace only will not group whole session data while query with filter namespace \u0026amp; other filter will include session data.",
         "operationId": "AdminSearchSessionsV2",
         "parameters": [
           {
@@ -486,7 +514,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "Required Permission: ADMIN:NAMESPACE:{namespace}:SESSIONBROWSER:SESSION [Read]\n\t\nRequired Scope: social\n\t\nGet session history detailed.\n\nif party_id value empty/null, field will not show in response body.",
+        "description": "Required Permission: ADMIN:NAMESPACE:{namespace}:SESSIONBROWSER:SESSION [Read]\n\nRequired Scope: social\n\nGet session history detailed.\n\nif party_id value empty/null, field will not show in response body.",
         "operationId": "GetSessionHistoryDetailed",
         "parameters": [
           {
@@ -600,6 +628,7 @@
             "type": "string"
           },
           {
+            "default": 25,
             "description": "max item to be returned",
             "in": "query",
             "name": "limit",
@@ -618,6 +647,7 @@
             "type": "string"
           },
           {
+            "default": 0,
             "description": "skip some item(s), offset=3, will skip 3 first items",
             "in": "query",
             "name": "offset",

@@ -3,7 +3,7 @@
   "info": {
     "description": "Justice Achievement Service",
     "title": "justice-achievement-service",
-    "version": "2.12.3"
+    "version": "2.12.4"
   },
   "schemes": [
     "https"
@@ -814,6 +814,12 @@
             "x-omitempty": false
           },
           {
+            "description": "sort by, allow values: [achievedAt, achievedAt:asc, achievedAt:desc, createdAt, createdAt:asc, createdAt:desc]",
+            "in": "query",
+            "name": "sortBy",
+            "type": "string"
+          },
+          {
             "collectionFormat": "csv",
             "description": "tags",
             "in": "query",
@@ -1422,6 +1428,12 @@
             "name": "preferUnlocked",
             "type": "boolean",
             "x-omitempty": false
+          },
+          {
+            "description": "sort by, allow values: [achievedAt, achievedAt:asc, achievedAt:desc, createdAt, createdAt:asc, createdAt:desc]",
+            "in": "query",
+            "name": "sortBy",
+            "type": "string"
           },
           {
             "collectionFormat": "csv",

@@ -3,7 +3,7 @@
   "info": {
     "description": "Justice DSM Controller Service",
     "title": "justice-dsm-controller-service",
-    "version": "5.0.1"
+    "version": "6.0.0"
   },
   "schemes": [
     "https"
@@ -99,7 +99,7 @@
           "application/json"
         ],
         "deprecated": true,
-        "description": "```\nRequired permission: ADMIN:NAMESPACE:{namespace}:DSM:CONFIG [CREATE] \nRequired scope: social\n\nThis endpoint adds/modifies config. When there are ready servers and \nthe server version is updated, those servers will be replaced with newer version.\n\nPort is where your game listens for incoming UDP connection, if empty it\u0026#39;ll be set to 15000\n\nCPU and Memory limit / request are formatted with Kubernetes format, \ne.g. CPU of 1000m is 1 core, and Memory of 512Mi is 512 MB.\n\nThe creation/claim/session/unreachable/heartbeat timeouts are all in seconds. \nCreation timeout is time limit for DS to startup until registers itself. \nClaim timeout is time limit for game session manager to claim its ready DS. \nSession timeout is time limit for match session before deleted.\nUnreachable timeout is time limit for DS in UNREACHABLE state before deleted.\nHeartbeat timeout is time limit for DS to give heartbeat before marked as UNREACHABLE.\n\nSample config:\n{\n\t\u0026#34;namespace\u0026#34;: \u0026#34;accelbyte\u0026#34;,\n\t\u0026#34;providers\u0026#34;: [\n\t\u0026#34;aws\u0026#34;\n\t],\n\t\u0026#34;port\u0026#34;: 7777,\n\t\u0026#34;protocol\u0026#34;: \u0026#34;udp\u0026#34;,\n\t\u0026#34;creation_timeout\u0026#34;: 120,\n\t\u0026#34;claim_timeout\u0026#34;: 60,\n\t\u0026#34;session_timeout\u0026#34;: 1800,\n\t\u0026#34;heartbeat_timeout\u0026#34;: 30,\n\t\u0026#34;unreachable_timeout\u0026#34;: 30,\n\t\u0026#34;image_version_mapping\u0026#34;: {\n\t\t\u0026#34;1.4.0\u0026#34;: \u0026#34;accelbyte/sample-ds-go:1.4.0\u0026#34;\n\t},\n\t\u0026#34;default_version\u0026#34;: \u0026#34;1.4.0\u0026#34;,\n\t\u0026#34;cpu_limit\u0026#34;: \u0026#34;100\u0026#34;,\n\t\u0026#34;mem_limit\u0026#34;: \u0026#34;64\u0026#34;,\n\t\u0026#34;params\u0026#34;: \u0026#34;\u0026#34;,\n\t\u0026#34;min_count\u0026#34;: 0,\n\t\u0026#34;max_count\u0026#34;: 0,\n\t\u0026#34;buffer_count\u0026#34;: 0,\n\t\u0026#34;configurations\u0026#34;: {\n\t\t\u0026#34;1player\u0026#34;: {\n\t\t\t\u0026#34;cpu_limit\u0026#34;: \u0026#34;100\u0026#34;,\n\t\t\t\u0026#34;mem_limit\u0026#34;: \u0026#34;64\u0026#34;,\n\t\t\t\u0026#34;params\u0026#34;: \u0026#34;-gamemode 1p\u0026#34;,\n\t\t},\n\t\t\u0026#34;50players\u0026#34;: {\n\t\t\t\u0026#34;cpu_limit\u0026#34;: \u0026#34;200\u0026#34;,\n\t\t\t\u0026#34;mem_limit\u0026#34;: \u0026#34;512\u0026#34;,\n\t\t\t\u0026#34;params\u0026#34;: \u0026#34;-gamemode 50p\u0026#34;,\n\t\t}\n\t},\n\t\u0026#34;deployments\u0026#34;: {\n\t\t\u0026#34;global-1p\u0026#34;: {\n\t\t\t\u0026#34;game_version\u0026#34;: \u0026#34;1.4.0\u0026#34;\u0026#34;,\n\t\t\t\u0026#34;regions\u0026#34;: [\u0026#34;us-west\u0026#34;, \u0026#34;ap-southeast\u0026#34;],\n\t\t\t\u0026#34;configuration\u0026#34;: \u0026#34;1player\u0026#34;,\n\t\t\t\u0026#34;min_count\u0026#34;: 0,\n\t\t\t\u0026#34;max_count\u0026#34;: 0,\n\t\t\t\u0026#34;buffer_count\u0026#34;: 2\n\t\t},\n\t\t\u0026#34;us-50p\u0026#34;: {\n\t\t\t\u0026#34;game_version\u0026#34;: \u0026#34;1.4.0\u0026#34;\u0026#34;,\n\t\t\t\u0026#34;regions\u0026#34;: [\u0026#34;us-west\u0026#34;],\n\t\t\t\u0026#34;configuration\u0026#34;: \u0026#34;50players\u0026#34;,\n\t\t\t\u0026#34;min_count\u0026#34;: 0,\n\t\t\t\u0026#34;max_count\u0026#34;: 0,\n\t\t\t\u0026#34;buffer_count\u0026#34;: 5\n\t\t},\n\t},\n}\n```",
+        "description": "```\nRequired permission: ADMIN:NAMESPACE:{namespace}:DSM:CONFIG [CREATE]\nRequired scope: social\n\nThis endpoint adds/modifies config. When there are ready servers and\nthe server version is updated, those servers will be replaced with newer version.\n\nPort is where your game listens for incoming UDP connection, if empty it\u0026#39;ll be set to 15000\n\nCPU and Memory limit / request are formatted with Kubernetes format,\ne.g. CPU of 1000m is 1 core, and Memory of 512Mi is 512 MB.\n\nThe creation/claim/session/unreachable/heartbeat timeouts are all in seconds.\nCreation timeout is time limit for DS to startup until registers itself.\nClaim timeout is time limit for game session manager to claim its ready DS.\nSession timeout is time limit for match session before deleted.\nUnreachable timeout is time limit for DS in UNREACHABLE state before deleted.\nHeartbeat timeout is time limit for DS to give heartbeat before marked as UNREACHABLE.\n\nSample config:\n{\n\t\u0026#34;namespace\u0026#34;: \u0026#34;accelbyte\u0026#34;,\n\t\u0026#34;providers\u0026#34;: [\n\t\u0026#34;aws\u0026#34;\n\t],\n\t\u0026#34;port\u0026#34;: 7777,\n\t\u0026#34;protocol\u0026#34;: \u0026#34;udp\u0026#34;,\n\t\u0026#34;creation_timeout\u0026#34;: 120,\n\t\u0026#34;claim_timeout\u0026#34;: 60,\n\t\u0026#34;session_timeout\u0026#34;: 1800,\n\t\u0026#34;heartbeat_timeout\u0026#34;: 30,\n\t\u0026#34;unreachable_timeout\u0026#34;: 30,\n\t\u0026#34;image_version_mapping\u0026#34;: {\n\t\t\u0026#34;1.4.0\u0026#34;: \u0026#34;accelbyte/sample-ds-go:1.4.0\u0026#34;\n\t},\n\t\u0026#34;default_version\u0026#34;: \u0026#34;1.4.0\u0026#34;,\n\t\u0026#34;cpu_limit\u0026#34;: \u0026#34;100\u0026#34;,\n\t\u0026#34;mem_limit\u0026#34;: \u0026#34;64\u0026#34;,\n\t\u0026#34;params\u0026#34;: \u0026#34;\u0026#34;,\n\t\u0026#34;min_count\u0026#34;: 0,\n\t\u0026#34;max_count\u0026#34;: 0,\n\t\u0026#34;buffer_count\u0026#34;: 0,\n\t\u0026#34;configurations\u0026#34;: {\n\t\t\u0026#34;1player\u0026#34;: {\n\t\t\t\u0026#34;cpu_limit\u0026#34;: \u0026#34;100\u0026#34;,\n\t\t\t\u0026#34;mem_limit\u0026#34;: \u0026#34;64\u0026#34;,\n\t\t\t\u0026#34;params\u0026#34;: \u0026#34;-gamemode 1p\u0026#34;,\n\t\t},\n\t\t\u0026#34;50players\u0026#34;: {\n\t\t\t\u0026#34;cpu_limit\u0026#34;: \u0026#34;200\u0026#34;,\n\t\t\t\u0026#34;mem_limit\u0026#34;: \u0026#34;512\u0026#34;,\n\t\t\t\u0026#34;params\u0026#34;: \u0026#34;-gamemode 50p\u0026#34;,\n\t\t}\n\t},\n\t\u0026#34;deployments\u0026#34;: {\n\t\t\u0026#34;global-1p\u0026#34;: {\n\t\t\t\u0026#34;game_version\u0026#34;: \u0026#34;1.4.0\u0026#34;\u0026#34;,\n\t\t\t\u0026#34;regions\u0026#34;: [\u0026#34;us-west\u0026#34;, \u0026#34;ap-southeast\u0026#34;],\n\t\t\t\u0026#34;configuration\u0026#34;: \u0026#34;1player\u0026#34;,\n\t\t\t\u0026#34;min_count\u0026#34;: 0,\n\t\t\t\u0026#34;max_count\u0026#34;: 0,\n\t\t\t\u0026#34;buffer_count\u0026#34;: 2\n\t\t},\n\t\t\u0026#34;us-50p\u0026#34;: {\n\t\t\t\u0026#34;game_version\u0026#34;: \u0026#34;1.4.0\u0026#34;\u0026#34;,\n\t\t\t\u0026#34;regions\u0026#34;: [\u0026#34;us-west\u0026#34;],\n\t\t\t\u0026#34;configuration\u0026#34;: \u0026#34;50players\u0026#34;,\n\t\t\t\u0026#34;min_count\u0026#34;: 0,\n\t\t\t\u0026#34;max_count\u0026#34;: 0,\n\t\t\t\u0026#34;buffer_count\u0026#34;: 5\n\t\t},\n\t},\n}\n```",
         "operationId": "SaveConfig",
         "parameters": [
           {
@@ -159,7 +159,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "```\nRequired permission: ADMIN:NAMESPACE:{namespace}:DSM:CONFIG [CREATE] \nRequired scope: social\n\nThis endpoint will create image.\n\nSample image:\n{\n\t\u0026#34;namespace\u0026#34;:\u0026#34;dewa\u0026#34;,\n\t\u0026#34;version\u0026#34;:\u0026#34;1.0.0\u0026#34;,\n\t\u0026#34;image\u0026#34;:\u0026#34;144436415367.dkr.ecr.us-west-2.amazonaws.com/dewa:1.0.0\u0026#34;,\n\t\u0026#34;persistent\u0026#34;:false\n}\n```",
+        "description": "```\nRequired permission: ADMIN:NAMESPACE:{namespace}:DSM:CONFIG [CREATE]\nRequired scope: social\n\nThis endpoint will create image.\n\nSample image:\n{\n\t\u0026#34;namespace\u0026#34;:\u0026#34;dewa\u0026#34;,\n\t\u0026#34;version\u0026#34;:\u0026#34;1.0.0\u0026#34;,\n\t\u0026#34;image\u0026#34;:\u0026#34;144436415367.dkr.ecr.us-west-2.amazonaws.com/dewa:1.0.0\u0026#34;,\n\t\u0026#34;persistent\u0026#34;:false\n}\n```",
         "operationId": "CreateImage",
         "parameters": [
           {
@@ -223,7 +223,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "```\nRequired permission: ADMIN:NAMESPACE:{namespace}:DSM:CONFIG [UPDATE] \nRequired scope: social\n\nThis endpoint will update an image name and/or image persistent flag.\n\nSample image:\n{\n\t\u0026#34;namespace\u0026#34;:\u0026#34;dewa\u0026#34;,\n\t\u0026#34;version\u0026#34;:\u0026#34;1.0.0\u0026#34;,\n\t\u0026#34;image\u0026#34;:\u0026#34;144436415367.dkr.ecr.us-west-2.amazonaws.com/dewa:1.0.0\u0026#34;,\n\t\u0026#34;persistent\u0026#34;:false\n}\n```",
+        "description": "```\nRequired permission: ADMIN:NAMESPACE:{namespace}:DSM:CONFIG [UPDATE]\nRequired scope: social\n\nThis endpoint will update an image name and/or image persistent flag.\n\nSample image:\n{\n\t\u0026#34;namespace\u0026#34;:\u0026#34;dewa\u0026#34;,\n\t\u0026#34;version\u0026#34;:\u0026#34;1.0.0\u0026#34;,\n\t\u0026#34;image\u0026#34;:\u0026#34;144436415367.dkr.ecr.us-west-2.amazonaws.com/dewa:1.0.0\u0026#34;,\n\t\u0026#34;persistent\u0026#34;:false\n}\n```",
         "operationId": "UpdateImage",
         "parameters": [
           {
@@ -283,7 +283,7 @@
         "consumes": [
           "multipart/form-data"
         ],
-        "description": "Required permission: ADMIN:NAMESPACE:{namespace}:DSM:CONFIG [CREATE]\n\t\nRequired scope: social\n\t\nThis endpoint import a dedicated servers images in a namespace.\n\t\nThe image will be upsert. Existing version will be replaced with imported image, will create new one if not found.\n\nExample data inside imported file\n[\n  {\n\t\u0026#34;namespace\u0026#34;: \u0026#34;dewa\u0026#34;,\n\t\u0026#34;image\u0026#34;: \u0026#34;123456789.dkr.ecr.us-west-2.amazonaws.com/ds-dewa:0.0.1-alpha\u0026#34;,\n\t\u0026#34;version\u0026#34;: \u0026#34;0.0.1\u0026#34;,\n\t\u0026#34;persistent\u0026#34;: true\n  }\n]\n",
+        "description": "Required permission: ADMIN:NAMESPACE:{namespace}:DSM:CONFIG [CREATE]\n\nRequired scope: social\n\nThis endpoint import a dedicated servers images in a namespace.\n\nThe image will be upsert. Existing version will be replaced with imported image, will create new one if not found.\n\nExample data inside imported file\n[\n  {\n\t\u0026#34;namespace\u0026#34;: \u0026#34;dewa\u0026#34;,\n\t\u0026#34;image\u0026#34;: \u0026#34;123456789.dkr.ecr.us-west-2.amazonaws.com/ds-dewa:0.0.1-alpha\u0026#34;,\n\t\u0026#34;version\u0026#34;: \u0026#34;0.0.1\u0026#34;,\n\t\u0026#34;persistent\u0026#34;: true\n  }\n]\n",
         "operationId": "ImportImages",
         "parameters": [
           {
@@ -464,7 +464,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "```\nRequired permission: ADMIN:NAMESPACE:{namespace}:DSM:CONFIG [DELETE] \nRequired scope: social\n\nThis endpoint removes config. When there are ready servers, \nthose servers will be removed.\n```",
+        "description": "```\nRequired permission: ADMIN:NAMESPACE:{namespace}:DSM:CONFIG [DELETE]\nRequired scope: social\n\nThis endpoint removes config. When there are ready servers,\nthose servers will be removed.\n```",
         "operationId": "DeleteConfig",
         "parameters": [
           {
@@ -587,7 +587,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "```\nRequired permission: ADMIN:NAMESPACE:{namespace}:DSM:CONFIG [UPDATE] \nRequired scope: social\n\nThis endpoint modifies config. When there are ready servers and \nthe server version is updated, those servers will be replaced with newer version.\n\nPort is where your game listens for incoming UDP connection, if empty it\u0026#39;ll be set to 15000\n\nCPU and Memory limit / request are formatted with Kubernetes format, \ne.g. CPU of 1000m is 1 core, and Memory of 512Mi is 512 MB.\n\nThe creation/claim/session/unreachable/heartbeat timeouts are all in seconds. \nCreation timeout is time limit for DS to startup until registers itself. \nClaim timeout is time limit for game session manager to claim its ready DS. \nSession timeout is time limit for match session before deleted.\nUnreachable timeout is time limit for DS in UNREACHABLE state before deleted.\nHeartbeat timeout is time limit for DS to give heartbeat before marked as UNREACHABLE.\n\nSample config:\n{\n\t\u0026#34;namespace\u0026#34;: \u0026#34;accelbyte\u0026#34;,\n\t\u0026#34;providers\u0026#34;: [\n\t\u0026#34;aws\u0026#34;\n\t],\n\t\u0026#34;port\u0026#34;: 7777,\n\t\u0026#34;protocol\u0026#34;: \u0026#34;udp\u0026#34;,\n\t\u0026#34;creation_timeout\u0026#34;: 120,\n\t\u0026#34;claim_timeout\u0026#34;: 60,\n\t\u0026#34;session_timeout\u0026#34;: 1800,\n\t\u0026#34;heartbeat_timeout\u0026#34;: 30,\n\t\u0026#34;unreachable_timeout\u0026#34;: 30,\n}\n```",
+        "description": "```\nRequired permission: ADMIN:NAMESPACE:{namespace}:DSM:CONFIG [UPDATE]\nRequired scope: social\n\nThis endpoint modifies config. When there are ready servers and\nthe server version is updated, those servers will be replaced with newer version.\n\nPort is where your game listens for incoming UDP connection, if empty it\u0026#39;ll be set to 15000\n\nCPU and Memory limit / request are formatted with Kubernetes format,\ne.g. CPU of 1000m is 1 core, and Memory of 512Mi is 512 MB.\n\nThe creation/claim/session/unreachable/heartbeat timeouts are all in seconds.\nCreation timeout is time limit for DS to startup until registers itself.\nClaim timeout is time limit for game session manager to claim its ready DS.\nSession timeout is time limit for match session before deleted.\nUnreachable timeout is time limit for DS in UNREACHABLE state before deleted.\nHeartbeat timeout is time limit for DS to give heartbeat before marked as UNREACHABLE.\n\nSample config:\n{\n\t\u0026#34;namespace\u0026#34;: \u0026#34;accelbyte\u0026#34;,\n\t\u0026#34;providers\u0026#34;: [\n\t\u0026#34;aws\u0026#34;\n\t],\n\t\u0026#34;port\u0026#34;: 7777,\n\t\u0026#34;protocol\u0026#34;: \u0026#34;udp\u0026#34;,\n\t\u0026#34;creation_timeout\u0026#34;: 120,\n\t\u0026#34;claim_timeout\u0026#34;: 60,\n\t\u0026#34;session_timeout\u0026#34;: 1800,\n\t\u0026#34;heartbeat_timeout\u0026#34;: 30,\n\t\u0026#34;unreachable_timeout\u0026#34;: 30,\n}\n```",
         "operationId": "UpdateConfig",
         "parameters": [
           {
@@ -661,7 +661,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "```\nRequired permission: ADMIN:NAMESPACE:{namespace}:DSM:CONFIG [CREATE] \nRequired scope: social\n\nThis endpoint creates config.\n\nPort is where your game listens for incoming UDP connection, if empty it\u0026#39;ll be set to 15000\n\nCPU and Memory limit / request are formatted with Kubernetes format, \ne.g. CPU of 1000m is 1 core, and Memory of 512Mi is 512 MB.\n\nThe creation/claim/session/unreachable/heartbeat timeouts are all in seconds. \nCreation timeout is time limit for DS to startup until registers itself. \nClaim timeout is time limit for game session manager to claim its ready DS. \nSession timeout is time limit for match session before deleted.\nUnreachable timeout is time limit for DS in UNREACHABLE state before deleted.\nHeartbeat timeout is time limit for DS to give heartbeat before marked as UNREACHABLE.\n\nSample config:\n{\n\t\u0026#34;namespace\u0026#34;: \u0026#34;accelbyte\u0026#34;,\n\t\u0026#34;providers\u0026#34;: [\n\t\u0026#34;aws\u0026#34;\n\t],\n\t\u0026#34;port\u0026#34;: 7777,\n\t\u0026#34;protocol\u0026#34;: \u0026#34;udp\u0026#34;,\n\t\u0026#34;creation_timeout\u0026#34;: 120,\n\t\u0026#34;claim_timeout\u0026#34;: 60,\n\t\u0026#34;session_timeout\u0026#34;: 1800,\n\t\u0026#34;heartbeat_timeout\u0026#34;: 30,\n\t\u0026#34;unreachable_timeout\u0026#34;: 30,\n}\n```",
+        "description": "```\nRequired permission: ADMIN:NAMESPACE:{namespace}:DSM:CONFIG [CREATE]\nRequired scope: social\n\nThis endpoint creates config.\n\nPort is where your game listens for incoming UDP connection, if empty it\u0026#39;ll be set to 15000\n\nCPU and Memory limit / request are formatted with Kubernetes format,\ne.g. CPU of 1000m is 1 core, and Memory of 512Mi is 512 MB.\n\nThe creation/claim/session/unreachable/heartbeat timeouts are all in seconds.\nCreation timeout is time limit for DS to startup until registers itself.\nClaim timeout is time limit for game session manager to claim its ready DS.\nSession timeout is time limit for match session before deleted.\nUnreachable timeout is time limit for DS in UNREACHABLE state before deleted.\nHeartbeat timeout is time limit for DS to give heartbeat before marked as UNREACHABLE.\n\nSample config:\n{\n\t\u0026#34;namespace\u0026#34;: \u0026#34;accelbyte\u0026#34;,\n\t\u0026#34;providers\u0026#34;: [\n\t\u0026#34;aws\u0026#34;\n\t],\n\t\u0026#34;port\u0026#34;: 7777,\n\t\u0026#34;protocol\u0026#34;: \u0026#34;udp\u0026#34;,\n\t\u0026#34;creation_timeout\u0026#34;: 120,\n\t\u0026#34;claim_timeout\u0026#34;: 60,\n\t\u0026#34;session_timeout\u0026#34;: 1800,\n\t\u0026#34;heartbeat_timeout\u0026#34;: 30,\n\t\u0026#34;unreachable_timeout\u0026#34;: 30,\n}\n```",
         "operationId": "CreateConfig",
         "parameters": [
           {
@@ -2820,7 +2820,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "Required permission: ADMIN:NAMESPACE:{namespace}:DSM:CONFIG [READ]\n\nRequired scope: social\n\t\t\t\t\nThis endpoint export a dedicated servers images in a namespace.\n",
+        "description": "Required permission: ADMIN:NAMESPACE:{namespace}:DSM:CONFIG [READ]\n\nRequired scope: social\n\nThis endpoint export a dedicated servers images in a namespace.\n",
         "operationId": "ExportImages",
         "parameters": [
           {
@@ -3901,7 +3901,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "Required permission: ADMIN:NAMESPACE:{namespace}:DSM:CONFIG [READ]\n\nRequired scope: social\n\t\t\t\t\nThis endpoint export a dedicated servers config in a namespace.\n",
+        "description": "Required permission: ADMIN:NAMESPACE:{namespace}:DSM:CONFIG [READ]\n\nRequired scope: social\n\nThis endpoint export a dedicated servers config in a namespace.\n",
         "operationId": "exportConfigV1",
         "parameters": [
           {
@@ -4180,7 +4180,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "```\nRequired permission: NAMESPACE:{namespace}:DSM:SERVER [UPDATE]\nRequired scope: social\n\nThis endpoint is intended to be called by local dedicated server \nto let DSM know that it is shutting down.\n\nCalling this will remove the server records from DB.```",
+        "description": "```\nRequired permission: NAMESPACE:{namespace}:DSM:SERVER [UPDATE]\nRequired scope: social\n\nThis endpoint is intended to be called by local dedicated server\nto let DSM know that it is shutting down.\n\nCalling this will remove the server records from DB.```",
         "operationId": "DeregisterLocalServer",
         "parameters": [
           {
@@ -4247,7 +4247,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "```\nRequired permission: NAMESPACE:{namespace}:DSM:SERVER [UPDATE]\nRequired scope: social\n\nUse the alternative GET of the same endpoint to upgrade DS connection to DSM via websocket.\n\nThis endpoint is intended to be called by local dedicated server to let DSM know that it is ready for use.\nUse local DS only for development purposes since DSM wouldn\u0026#39;t be able to properly manage local DS in production.\nThis MUST be called by DS after it is ready to accept match data and incoming client connections.\n\nUpon successfully calling this endpoint, the dedicated \nserver is listed under READY local servers.```",
+        "description": "```\nRequired permission: NAMESPACE:{namespace}:DSM:SERVER [UPDATE]\nRequired scope: social\n\nUse the alternative GET of the same endpoint to upgrade DS connection to DSM via websocket.\n\nThis endpoint is intended to be called by local dedicated server to let DSM know that it is ready for use.\nUse local DS only for development purposes since DSM wouldn\u0026#39;t be able to properly manage local DS in production.\nThis MUST be called by DS after it is ready to accept match data and incoming client connections.\n\nUpon successfully calling this endpoint, the dedicated\nserver is listed under READY local servers.```",
         "operationId": "RegisterLocalServer",
         "parameters": [
           {
@@ -4323,7 +4323,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "```\nRequired permission: NAMESPACE:{namespace}:DSM:SERVER [UPDATE]\nRequired scope: social\n\nThis endpoint is intended to be called by dedicated server to let DSM know that it is ready for use.\nThis MUST be called by DS after it is ready to accept match data and incoming client connections.\n\nUpon successfully calling this endpoint, the dedicated \nserver is listed under READY servers.```",
+        "description": "```\nRequired permission: NAMESPACE:{namespace}:DSM:SERVER [UPDATE]\nRequired scope: social\n\nThis endpoint is intended to be called by dedicated server to let DSM know that it is ready for use.\nThis MUST be called by DS after it is ready to accept match data and incoming client connections.\n\nUpon successfully calling this endpoint, the dedicated\nserver is listed under READY servers.```",
         "operationId": "RegisterServer",
         "parameters": [
           {
@@ -4472,7 +4472,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "```\nRequired permission: NAMESPACE:{namespace}:DSM:SERVER [UPDATE]\nRequired scope: social\n\nThis endpoint is intended to be called by dedicated server \nto query its session ID.\nDS should call this when it first receive player connection,\nto see if it is actually claimed```",
+        "description": "```\nRequired permission: NAMESPACE:{namespace}:DSM:SERVER [UPDATE]\nRequired scope: social\n\nThis endpoint is intended to be called by dedicated server\nto query its session ID.\nDS should call this when it first receive player connection,\nto see if it is actually claimed```",
         "operationId": "GetServerSession",
         "parameters": [
           {

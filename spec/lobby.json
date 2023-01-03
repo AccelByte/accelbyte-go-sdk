@@ -7151,6 +7151,10 @@
   "definitions": {
     "handlers.GetUsersPresenceResponse": {
       "properties": {
+        "away": {
+          "format": "int32",
+          "type": "integer"
+        },
         "busy": {
           "format": "int32",
           "type": "integer"
@@ -7175,6 +7179,7 @@
         }
       },
       "required": [
+        "away",
         "busy",
         "data",
         "invisible",

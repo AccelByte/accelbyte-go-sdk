@@ -8,7 +8,7 @@
     },
     "description": "Justice IAM Service",
     "title": "justice-iam-service",
-    "version": "5.23.0"
+    "version": "5.24.0"
   },
   "schemes": [
     "https"
@@ -8318,7 +8318,7 @@
             "authorization": []
           }
         ],
-        "summary": "Get clients by namespace and client id. If multi tenant mode is on and the clientId match withadmin portal client id env var, it will ignore the namespace",
+        "summary": "Get clients by namespace and client id. Multi tenant mode allows admin portal client to be accessible regardless of namespace path.",
         "tags": [
           "Clients"
         ]

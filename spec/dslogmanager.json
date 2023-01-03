@@ -8,7 +8,7 @@
     },
     "description": "Justice DS Log Manager Service",
     "title": "justice-ds-log-manager-service",
-    "version": "2.8.0"
+    "version": "3.0.0"
   },
   "schemes": [
     "https"

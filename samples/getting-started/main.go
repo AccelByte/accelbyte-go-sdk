@@ -5,9 +5,10 @@
 package main
 
 import (
+	"fmt"
+
 	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclient/o_auth2_0_extension"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils/auth"
-	"github.com/sirupsen/logrus"
 
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/iam"
@@ -32,14 +33,14 @@ func main() {
 	// call the endpoint tokenGrantV3Short through the wrapper 'LoginClient'
 	err := oauth.LoginClient(&clientId, &clientSecret)
 	if err != nil {
-		logrus.Error("failed login client")
+		fmt.Println("failed login client")
 	} else {
-		logrus.Info("successful login")
+		fmt.Println("successful login")
 	}
 
 	// get the token
 	token, _ := oauth.TokenRepository.GetToken()
-	logrus.Infof("print %v", *token.AccessToken)
+	fmt.Printf("print %v\n", *token.AccessToken)
 
 	// prepare the IAM's Oauth 2.0 Extension service
 	oAuth20ExtensionService := &iam.OAuth20ExtensionService{
@@ -51,8 +52,8 @@ func main() {
 	// call an AccelByte Cloud API e.g. GetCountryLocationV3
 	ok, errLoc := oAuth20ExtensionService.GetCountryLocationV3Short(input)
 	if errLoc != nil {
-		logrus.Error(errLoc.Error())
+		fmt.Println(errLoc.Error())
 	} else {
-		logrus.Infof("Country name: %s", *ok.CountryName)
+		fmt.Printf("Country name: %s\n", *ok.CountryName)
 	}
 }

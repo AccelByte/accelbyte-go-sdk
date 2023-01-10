@@ -176,8 +176,6 @@ func RefreshTokenScheduler(session Session, loginType string) {
 			}()
 		}
 	})
-
-	fmt.Print("Token in token repository has expired, please re-login")
 }
 
 type OAuth20RefreshService struct {

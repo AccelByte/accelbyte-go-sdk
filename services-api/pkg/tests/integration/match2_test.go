@@ -17,6 +17,8 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/match2"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/tests/integration"
 	"github.com/AccelByte/accelbyte-go-sdk/session-sdk/pkg/sessionclient/game_session"
+	"github.com/AccelByte/accelbyte-go-sdk/session-sdk/pkg/sessionclient/party"
+	"github.com/AccelByte/accelbyte-go-sdk/session-sdk/pkg/sessionclientmodels"
 	"github.com/sirupsen/logrus"
 	"github.com/stretchr/testify/assert"
 )
@@ -132,8 +134,10 @@ func TestIntegrationMatchPool(t *testing.T) {
 	assert.Nil(t, errGetList, "err should be nil")
 	assert.NotNil(t, getList, "should not be nil")
 
-	sessionID := getSessionID()
-	defer deleteSessionID(sessionID)
+	player2Id := createPlayer2()
+	defer deletePlayer(player2Id)
+
+	sessionID := getSessionID(player2Id)
 
 	// CASE User create a match ticket
 	inputCreateTicket := &match_tickets.CreateMatchTicketParams{
@@ -233,7 +237,7 @@ func TestIntegrationMatchFunction(t *testing.T) {
 	assert.NotNil(t, getList, "should not be nil")
 }
 
-func getSessionID() string {
+func getSessionID(memberID string) string {
 	cfgName, _ := createCfgTemplate()
 	defer func(name string) {
 		err := deleteCfgTemplate(name)
@@ -242,11 +246,21 @@ func getSessionID() string {
 		}
 	}(cfgName)
 
-	inputCreate := &game_session.CreateGameSessionParams{
-		Body:      gameSessionBody,
-		Namespace: integration.NamespaceTest,
+	member := &sessionclientmodels.ApimodelsRequestMember{ID: &memberID}
+	bodyParty := &sessionclientmodels.ApimodelsCreatePartyRequest{
+		ConfigurationName: &cfgTemplateName,
+		InactiveTimeout:   &inactiveTimeout,
+		InviteTimeout:     &inviteTimeout,
+		Joinability:       &joinability,
+		MaxPlayers:        &maxNumber,
+		Members:           []*sessionclientmodels.ApimodelsRequestMember{member},
+		MinPlayers:        &minNumber,
+		Type:              &cfgTemplateType,
 	}
-	created, errCreated := gameSessionService.CreateGameSessionShort(inputCreate)
+	created, errCreated := partyService.PublicCreatePartyShort(&party.PublicCreatePartyParams{
+		Body:      bodyParty,
+		Namespace: integration.NamespaceTest,
+	})
 	if errCreated != nil {
 		logrus.Fatal(errCreated.Error())
 	}

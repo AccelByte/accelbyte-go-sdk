@@ -16,7 +16,6 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/match2"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/tests/integration"
-	"github.com/AccelByte/accelbyte-go-sdk/session-sdk/pkg/sessionclient/game_session"
 	"github.com/AccelByte/accelbyte-go-sdk/session-sdk/pkg/sessionclient/party"
 	"github.com/AccelByte/accelbyte-go-sdk/session-sdk/pkg/sessionclientmodels"
 	"github.com/sirupsen/logrus"
@@ -266,15 +265,4 @@ func getSessionID(memberID string) string {
 	}
 
 	return *created.ID
-}
-
-func deleteSessionID(sessionID string) {
-	inputDelete := &game_session.DeleteGameSessionParams{
-		Namespace: integration.NamespaceTest,
-		SessionID: sessionID,
-	}
-	errDeleted := gameSessionService.DeleteGameSessionShort(inputDelete)
-	if errDeleted != nil {
-		logrus.Fatal(errDeleted.Error())
-	}
 }

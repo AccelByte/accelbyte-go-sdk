@@ -2,7 +2,7 @@ module github.com/AccelByte/accelbyte-go-sdk
 
 go 1.16
 
-replace github.com/willf/bitset => github.com/bits-and-blooms/bitset v1.4.0
+replace github.com/willf/bitset v1.1.11 => github.com/bits-and-blooms/bitset v1.4.0
 
 require (
 	github.com/AccelByte/bloom v0.0.0-20180915202807-98c052463922
@@ -18,7 +18,7 @@ require (
 	github.com/sirupsen/logrus v1.8.1
 	github.com/spaolacci/murmur3 v1.1.0 // indirect
 	github.com/stretchr/testify v1.7.0
-	github.com/willf/bitset v0.0.0-00010101000000-000000000000 // indirect
+	github.com/willf/bitset v1.1.11 // indirect
 	go.opentelemetry.io/contrib/propagators/aws v1.4.0
 )
 

@@ -32,8 +32,8 @@ in [DEMO environment](https://demo.accelbyte.io) using AccelByte Go SDK.
 
 1. Open [template.yaml](template.yaml)
 
-2. Enter your AccelByte `CLIENT_ID` and `CLIENT_SECRET` under `APP_CLIENT_ID` 
-   and `APP_CLIENT_SECRET` environment variable respectively
+2. Enter your AccelByte `CLIENT_ID` and `CLIENT_SECRET` under `AB_CLIENT_ID` 
+   and `AB_CLIENT_SECRET` environment variable respectively
 
 3. Save it
 

@@ -10,9 +10,9 @@ Globals:
     Timeout: 15
     Environment:
       Variables:
-        ACCELBYTE_BASE_URL: https://demo.accelbyte.io
-        APP_CLIENT_ID: <Put your AccelByte Client ID here>
-        APP_CLIENT_SECRET: <Put your AccelByte Client Secret here>
+        AB_BASE_URL: https://demo.accelbyte.io
+        AB_CLIENT_ID: <Put your AccelByte Client ID here>
+        AB_CLIENT_SECRET: <Put your AccelByte Client Secret here>
 
 Resources:
   CreateUserStatsFunction:

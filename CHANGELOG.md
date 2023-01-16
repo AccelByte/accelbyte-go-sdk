@@ -1,5 +1,43 @@
+<a name="v0.36.0"></a>
+## [v0.36.0] - 2023-01-17
+
+### Chore
+- add unit test for utils function & remove invalid test
+- delete unnecessary re-login line
+- fix code linting
+- move and rename the validator folder
+- move integration login client to iam test
+- **samples:** update go mod tidy due to the filter bloom package module
+- **sdk:** regenerate sdk, cli sample app, cli test, doc index for AccelByte Cloud 3.40
+- **spec:** update spec for AccelByte Cloud 3.40
+
+### CI
+- add make version
+
+### Docs
+- update CHANGELOG.md for v0.36.0 release
+
+### Feat
+- **samples:** getting-started - remove logrus
+- **samples:** getting-started - use specific version of sdk
+- **sdk:** add auth validator
+- **test:** add auth validator
+
+### Fix
+- aws lambda example template
+- create achievement integration test error
+- restore indent makefile command
+- user agent string version update script
+- **envar:** update envar names
+- **envar:** update envar names in readme
+
+### Test
+- **integration:** match2 - fix create party session
+- **integration:** match2 - remove unused codes
+
+
 <a name="v0.35.0"></a>
-## [v0.35.0] - 2022-01-04
+## [v0.35.0] - 2023-01-04
 
 ### Chore
 - regenerate op index to add deprecation marker
@@ -1096,6 +1134,7 @@ The wrapper have been refactored and has breaking change, these are the list:
 ### Fix
 - delete go.mod ([#1](https://github.com/AccelByte/accelbyte-go-sdk/issues/1))
 
+[v0.36.0]: https://github.com/AccelByte/accelbyte-go-sdk/compare/v0.35.0...v0.36.0
 [v0.35.0]: https://github.com/AccelByte/accelbyte-go-sdk/compare/v0.34.0...v0.35.0
 [v0.34.0]: https://github.com/AccelByte/accelbyte-go-sdk/compare/v0.33.0...v0.34.0
 [v0.33.0]: https://github.com/AccelByte/accelbyte-go-sdk/compare/v0.32.0...v0.33.0

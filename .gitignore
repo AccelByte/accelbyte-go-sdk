@@ -204,3 +204,5 @@ modules.xml
 # MacOS
 .DS_Store
 .DS_Store?
+
+.aws-sam

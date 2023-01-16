@@ -37,44 +37,6 @@ in [DEMO environment](https://demo.accelbyte.io) using AccelByte Go SDK.
 
 3. Save it
 
-## Try locally
-
-1. Build Lambda service
-
-    ```
-    sam build
-    ```
-
-2. Run Lambda service locally
-
-    ```
-    sam local start-api
-    ```
-
-3. Test using postman
-
-    1. Import [postman_collection.json](postman_collection.json)
-    2. Create a new `Environment` and select it.
-    3. Open `01 get access token`
-
-        In `Authorization` tab, enter CLIENT_ID and CLIENT_SECRET as Username 
-        and Password and click `Send` button. If successful, `access_token` 
-        will be populated in the selected `Environment`.
-
-    4. Open `02 create user stat`
-
-        We are going to send a POST request to CreateUserStats endpoint. 
-        The test payload can be inspected in `Body` tab. Click `Send` button. 
-        If you see any error related to `createUserStatItemConflict`, this is 
-        expected when the stat code is already exists.
-
-    5. Open `03 get user stat`
-
-        We are going to send GET request GetUserStats endpoint. The test 
-        payload can be inspected in `Body` tab. Click `Send` button. 
-        If successful, it will return the stat codes for the given user id 
-        in JSON format. 
-
 ## Deploy to AWS
 
 1. Build Lambda service
@@ -87,6 +49,32 @@ in [DEMO environment](https://demo.accelbyte.io) using AccelByte Go SDK.
 
     ```
     sam deploy --guided
+   
+    # if successful the function url will be generated and displayed on terminal
+    ```
+
+3. Test Using Postman
+   - Import postman collection [deploy_aws_lambda_example.postman_collection.json](deploy_aws_lambda_example.postman_collection.json)
+   - Open `01 Get AccelByte Access Token` in headers `Authorization` you can put `AB_CLIENT_ID:AB_CLIENT_SECRET` encoded as base64
+   - Open `02 CreateUserStats` update url with previously generated url from deploy command. The test payload can be inspected in `Body` tab. Click `Send` button. If you see any error related to `createUserStatItemConflict`, this is
+      expected when the stat code is already exists.
+   - Open `03 GetUserStats` update url with previously generated url from deploy command. The test
+      payload can be inspected in `Body` tab. Click `Send` button. If successful, it will return the stat codes for the given user id
+      in JSON format.
+
+
+## Try locally
+
+1. Build Lambda service
+
+    ```
+    sam build
+    ```
+
+2. Run Lambda service locally
+
+    ```
+    sam local start-lambda
     ```
 
 ## References

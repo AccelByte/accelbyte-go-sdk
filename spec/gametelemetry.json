@@ -44,7 +44,7 @@
         "operationId": "get_events_game_telemetry_v1_admin_namespaces__namespace__events_get",
         "parameters": [
           {
-            "default": "2022-12-19T03:46:24Z",
+            "default": "2023-01-11T08:17:35Z",
             "description": "Start time of data to be queried. Default: Current time in UTC minus 1 day.",
             "in": "query",
             "name": "startTime",
@@ -52,7 +52,7 @@
             "type": "string"
           },
           {
-            "default": "2022-12-20T03:46:24Z",
+            "default": "2023-01-12T08:17:35Z",
             "description": "End time of data to be queried. Default: Current time in UTC.",
             "in": "query",
             "name": "endTime",

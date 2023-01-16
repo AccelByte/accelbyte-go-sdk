@@ -8,7 +8,7 @@
     },
     "description": "Justice DS Log Manager Service",
     "title": "justice-ds-log-manager-service",
-    "version": "3.0.0"
+    "version": "3.1.1"
   },
   "schemes": [
     "https"
@@ -959,6 +959,9 @@
             "$ref": "#/definitions/models.StatusHistory"
           },
           "type": "array"
+        },
+        "termination_reason": {
+          "type": "string"
         }
       },
       "required": [
@@ -985,7 +988,8 @@
         "region",
         "session_id",
         "status",
-        "status_history"
+        "status_history",
+        "termination_reason"
       ]
     },
     "models.ServerLogs": {

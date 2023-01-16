@@ -8,7 +8,7 @@
     },
     "description": "Justice IAM Service",
     "title": "justice-iam-service",
-    "version": "5.24.0"
+    "version": "5.25.4"
   },
   "schemes": [
     "https"
@@ -7373,7 +7373,7 @@
     },
     "/iam/v3/admin/namespaces/{namespace}/admins": {
       "get": {
-        "description": "This endpoint requires ADMIN:NAMESPACE:{namespace}:USER [READ] permission.\n\nList all users that has admin role (role that has admin_role attribute set to true). \n",
+        "description": "This endpoint requires ADMIN:NAMESPACE:{namespace}:USER [READ] permission.\n\nList all users that has admin role (role that has admin_role attribute set to true).\n\nThe endpoint will return all admin from all namespace when called from publisher namespace.\nWhen not called from publisher namespace, the endpoint will return all admin from the path namespace.\n",
         "operationId": "ListAdminsV3",
         "parameters": [
           {
@@ -22586,7 +22586,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "Required permission \u0026#39;ADMIN:USER:INVITE [CREATE]\n\nUse this endpoint to invite admin or non-admin user and assign role to them. The role must be scoped to namespace. An admin user can only\nassign role with namespaces that the admin user has required permission which is same as the required permission of endpoint: [AdminAddUserRoleV4].\nRole is optional, if not specified then it will only assign User role\n\nThe invited admin will also assigned with \u0026#34;User\u0026#34; role by default.\n",
+        "description": "Required permission \u0026#39;ADMIN:USER:INVITE [CREATE]\n\nUse this endpoint to invite admin or non-admin user and assign role to them. The role must be scoped to namespace. An admin user can only\nassign role with namespaces that the admin user has required permission which is same as the required permission of endpoint: [AdminAddUserRoleV4].\n\nDetail request body :\n- Assigned Namespaces is required, List of namespaces that will be assigned to the user.\n- Email Address is required, List of email addresses that will be invited\n- isAdmin is required, true if user is admin, false if user is not admin\n- Namespace is optional. Only works on multi tenant mode,\n\tif not specified then it will be assigned Publisher namespace, \n\tif specified, it will become that studio/publisher where user is invited to.\n- Role is optional, if not specified then it will only assign User role.\n\nThe invited admin will also assigned with \u0026#34;User\u0026#34; role by default.\n",
         "operationId": "AdminInviteUserV4",
         "parameters": [
           {
@@ -25920,6 +25920,9 @@
           "description": "valid time unit: SECONDS, MINUTES, HOURS or DAYS",
           "type": "string"
         },
+        "parentNamespace": {
+          "type": "string"
+        },
         "redirectUri": {
           "type": "string"
         },
@@ -26148,6 +26151,9 @@
           "type": "integer"
         },
         "oauthRefreshTokenExpirationTimeUnit": {
+          "type": "string"
+        },
+        "parentNamespace": {
           "type": "string"
         },
         "redirectUri": {
@@ -27161,6 +27167,10 @@
           "type": "boolean",
           "x-omitempty": false
         },
+        "namespace": {
+          "description": "multi tenant studio namespace",
+          "type": "string"
+        },
         "roles": {
           "items": {
             "type": "string"
@@ -27171,6 +27181,7 @@
       "required": [
         "emailAddresses",
         "isAdmin",
+        "namespace",
         "roles"
       ]
     },
@@ -27192,6 +27203,10 @@
           "type": "boolean",
           "x-omitempty": false
         },
+        "namespace": {
+          "description": "multi tenant studio namespace",
+          "type": "string"
+        },
         "roleId": {
           "type": "string"
         }
@@ -27200,6 +27215,7 @@
         "assignedNamespaces",
         "emailAddresses",
         "isAdmin",
+        "namespace",
         "roleId"
       ]
     },
@@ -29572,6 +29588,9 @@
         "id": {
           "type": "string"
         },
+        "namespace": {
+          "type": "string"
+        },
         "roles": {
           "items": {
             "$ref": "#/definitions/accountcommon.NamespaceRole"
@@ -29582,6 +29601,7 @@
       "required": [
         "email",
         "expiredAt",
+        "namespace",
         "roles"
       ]
     },

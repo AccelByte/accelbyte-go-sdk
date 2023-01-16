@@ -8,7 +8,7 @@
     },
     "description": "Justice Platform Service",
     "title": "justice-platform-service",
-    "version": "4.20.0"
+    "version": "4.21.0"
   },
   "schemes": [
     "https"
@@ -85,6 +85,9 @@
     },
     {
       "name": "Section"
+    },
+    {
+      "name": "ServicePluginConfig"
     },
     {
       "name": "Store"
@@ -2304,6 +2307,127 @@
         "x-authorization": {
           "action": "4",
           "resource": "ADMIN:NAMESPACE:{namespace}:CAMPAIGN"
+        }
+      }
+    },
+    "/platform/admin/namespaces/{namespace}/configs/servicePlugin": {
+      "delete": {
+        "description": "Delete service plugin config.\u0026lt;br\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=ADMIN:NAMESPACE:{namespace}:CONFIG:SERVICEPLUGIN, action=8 (DELETE)\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
+        "operationId": "deleteServicePluginConfig",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "204": {
+            "description": "Delete successfully"
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "summary": "Delete service plugin config",
+        "tags": [
+          "ServicePluginConfig"
+        ],
+        "x-authorization": {
+          "action": "8",
+          "resource": "ADMIN:NAMESPACE:{namespace}:CONFIG:SERVICEPLUGIN"
+        }
+      },
+      "get": {
+        "description": "Get service plugin config.\u0026lt;br\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026lt;b\u0026gt;ADMIN:NAMESPACE:{namespace}:CONFIG:SERVICEPLUGIN\u0026lt;/b\u0026gt;, action=2 \u0026lt;b\u0026gt;(READ)\u0026lt;/b\u0026gt;\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
+        "operationId": "getServicePluginConfig",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/ServicePluginConfigInfo"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "summary": "Get service plugin config",
+        "tags": [
+          "ServicePluginConfig"
+        ],
+        "x-authorization": {
+          "action": "2",
+          "resource": "ADMIN:NAMESPACE:{namespace}:CONFIG:SERVICEPLUGIN"
+        }
+      },
+      "put": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Update catalog config. Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=ADMIN:NAMESPACE:{namespace}:CONFIG:SERVICEPLUGIN, action=4 (UPDATE)\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: updated service plugin config\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
+        "operationId": "updateServicePluginConfig",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "required": false,
+            "schema": {
+              "$ref": "#/definitions/ServicePluginConfigUpdate"
+            }
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/ServicePluginConfigInfo"
+            }
+          },
+          "422": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eErrorCode\u003c/td\u003e\u003ctd\u003eErrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20002\u003c/td\u003e\u003ctd\u003evalidation error\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/ValidationErrorEntity"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "summary": "Update service plugin config service",
+        "tags": [
+          "ServicePluginConfig"
+        ],
+        "x-authorization": {
+          "action": "4",
+          "resource": "ADMIN:NAMESPACE:{namespace}:CONFIG:SERVICEPLUGIN"
         }
       }
     },
@@ -9628,7 +9752,7 @@
             }
           },
           "400": {
-            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20027\u003c/td\u003e\u003ctd\u003eInvalid time range\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e30021\u003c/td\u003e\u003ctd\u003eDefault language [{language}] required\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20027\u003c/td\u003e\u003ctd\u003eInvalid time range\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e30021\u003c/td\u003e\u003ctd\u003eDefault language [{language}] required\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e30023\u003c/td\u003e\u003ctd\u003eCatalog plugin grpc server address required\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/ErrorEntity"
             }
@@ -9899,7 +10023,7 @@
             }
           },
           "400": {
-            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20027\u003c/td\u003e\u003ctd\u003eInvalid time range\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e30021\u003c/td\u003e\u003ctd\u003eDefault language [{language}] required\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20027\u003c/td\u003e\u003ctd\u003eInvalid time range\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e30021\u003c/td\u003e\u003ctd\u003eDefault language [{language}] required\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e30023\u003c/td\u003e\u003ctd\u003eCatalog plugin grpc server address required\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/ErrorEntity"
             }
@@ -29526,13 +29650,21 @@
     },
     "FixedPeriodRotationConfig": {
       "properties": {
+        "backfillType": {
+          "description": "backfill type: NONE/CUSTOM, default is NONE",
+          "enum": [
+            "CUSTOM",
+            "NONE"
+          ],
+          "type": "string"
+        },
         "duration": {
           "description": "duration: rotation duration, unit is minutes, min duration is 1",
           "format": "int32",
           "type": "integer"
         },
         "itemCount": {
-          "description": "rotation item count, min is 1, default is 1",
+          "description": "returned item count, min is 1, default is 1",
           "format": "int32",
           "type": "integer"
         },
@@ -30498,6 +30630,7 @@
         "rotationType": {
           "description": "rotation type, default is NONE",
           "enum": [
+            "CUSTOM",
             "FIXED_PERIOD",
             "NONE"
           ],
@@ -30522,6 +30655,10 @@
         "viewId": {
           "description": "view id",
           "type": "string"
+        },
+        "viewName": {
+          "description": "view name",
+          "type": "string"
         }
       },
       "required": [
@@ -30534,7 +30671,8 @@
         "sectionId",
         "startDate",
         "updatedAt",
-        "viewId"
+        "viewId",
+        "viewName"
       ],
       "type": "object"
     },
@@ -36752,6 +36890,7 @@
         "rotationType": {
           "description": "rotation type, default is NONE",
           "enum": [
+            "CUSTOM",
             "FIXED_PERIOD",
             "NONE"
           ],
@@ -36784,7 +36923,7 @@
           "x-omitempty": false
         },
         "createdAt": {
-          "description": "view created time",
+          "description": "created time",
           "format": "date-time",
           "type": "string",
           "x-nullable": false
@@ -36816,6 +36955,13 @@
           "format": "date-time",
           "type": "string",
           "x-nullable": false
+        },
+        "ext": {
+          "additionalProperties": {
+            "type": "object"
+          },
+          "description": "customized section properties",
+          "type": "object"
         },
         "localExt": {
           "additionalProperties": {
@@ -36850,7 +36996,7 @@
           "type": "string"
         },
         "updatedAt": {
-          "description": "view updated time",
+          "description": "updated time",
           "format": "date-time",
           "type": "string",
           "x-nullable": false
@@ -36878,6 +37024,10 @@
       "properties": {
         "id": {
           "description": "item id",
+          "type": "string"
+        },
+        "sku": {
+          "description": "item sku",
           "type": "string"
         }
       },
@@ -36955,6 +37105,7 @@
         "rotationType": {
           "description": "rotation type, default is NONE",
           "enum": [
+            "CUSTOM",
             "FIXED_PERIOD",
             "NONE"
           ],
@@ -36977,6 +37128,28 @@
         "name",
         "startDate"
       ],
+      "type": "object"
+    },
+    "ServicePluginConfigInfo": {
+      "properties": {
+        "grpcServerAddress": {
+          "description": "plugin grpc server address: \u003chost\u003e:\u003cport\u003e",
+          "type": "string"
+        },
+        "namespace": {
+          "description": "namespace",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ServicePluginConfigUpdate": {
+      "properties": {
+        "grpcServerAddress": {
+          "description": "plugin grpc server address: \u003chost\u003e:\u003cport\u003e",
+          "type": "string"
+        }
+      },
       "type": "object"
     },
     "Slide": {

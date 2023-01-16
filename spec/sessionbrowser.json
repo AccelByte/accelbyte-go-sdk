@@ -43,6 +43,122 @@
   },
   "swagger": "2.0",
   "paths": {
+    "/sessionbrowser/admin/namespaces/{namespace}/gamesession": {
+      "get": {
+        "description": "Required permission: ADMIN:NAMESPACE:{namespace}:SESSIONBROWSER:SESSION [READ]\n\nRequired scope: social",
+        "operationId": "AdminQuerySession",
+        "parameters": [
+          {
+            "description": "namespace",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "Session type to query, value is 'p2p' or 'dedicated'",
+            "in": "query",
+            "name": "session_type",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "Game mode of the session to query",
+            "in": "query",
+            "name": "game_mode",
+            "type": "string"
+          },
+          {
+            "description": "Game version of the session to query",
+            "in": "query",
+            "name": "game_version",
+            "type": "string"
+          },
+          {
+            "description": "filter session if joinable or not, accept 'true' or 'false'",
+            "in": "query",
+            "name": "joinable",
+            "type": "string"
+          },
+          {
+            "default": 25,
+            "description": "max item to be returned",
+            "in": "query",
+            "name": "limit",
+            "type": "integer"
+          },
+          {
+            "description": "filter session by match existence, accept 'true' or 'false'",
+            "in": "query",
+            "name": "match_exist",
+            "type": "string"
+          },
+          {
+            "description": "filter session by matchmaking ID",
+            "in": "query",
+            "name": "match_id",
+            "type": "string"
+          },
+          {
+            "default": 0,
+            "description": "skip some item(s), offset=3, will skip 3 first items",
+            "in": "query",
+            "name": "offset",
+            "type": "integer"
+          },
+          {
+            "description": "filter session by server status (only for dedicated), accept CREATING,READY,BUSY,REMOVING,UNREACHABLE",
+            "in": "query",
+            "name": "server_status",
+            "type": "string"
+          },
+          {
+            "description": "Owner of the P2P session. Dedicated server does not have user_id",
+            "in": "query",
+            "name": "user_id",
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "session get",
+            "schema": {
+              "$ref": "#/definitions/models.SessionQueryResponse"
+            }
+          },
+          "400": {
+            "description": "malformed request",
+            "schema": {
+              "$ref": "#/definitions/restapi.ErrorResponseV2"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/restapi.ErrorResponseV2"
+            }
+          }
+        },
+        "security": [
+          {
+            "HasPermission": [
+              "ADMIN:NAMESPACE:{namespace}:SESSIONBROWSER:SESSION [READ]"
+            ],
+            "HasScope": [
+              "social"
+            ],
+            "authorization": []
+          }
+        ],
+        "summary": "Query to available game session",
+        "tags": [
+          "Session"
+        ]
+      }
+    },
     "/sessionbrowser/admin/namespaces/{namespace}/gamesession/active/count": {
       "get": {
         "description": "Required permission: ADMIN:NAMESPACE:{namespace}:SESSIONBROWSER:SESSION [READ]\n\nRequired scope: social",

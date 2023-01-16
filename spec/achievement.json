@@ -3,7 +3,7 @@
   "info": {
     "description": "Justice Achievement Service",
     "title": "justice-achievement-service",
-    "version": "2.12.4"
+    "version": "2.13.0"
   },
   "schemes": [
     "https"
@@ -200,6 +200,12 @@
               "$ref": "#/definitions/response.Error"
             }
           },
+          "429": {
+            "description": "Too Many Requests",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
           "500": {
             "description": "Internal Server Error",
             "schema": {
@@ -342,6 +348,12 @@
           },
           "403": {
             "description": "Forbidden",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "429": {
+            "description": "Too Many Requests",
             "schema": {
               "$ref": "#/definitions/response.Error"
             }

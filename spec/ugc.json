@@ -8,7 +8,7 @@
     },
     "description": "Justice UGC Service",
     "title": "justice-ugc-service",
-    "version": "2.6.2"
+    "version": "2.7.0"
   },
   "schemes": [
     "https"
@@ -945,6 +945,76 @@
           }
         ],
         "summary": "Get user's generated contents",
+        "tags": [
+          "Admin Content"
+        ]
+      }
+    },
+    "/ugc/v1/admin/namespaces/{namespace}/contents/bulk": {
+      "post": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Required permission \u0026lt;b\u0026gt;ADMIN:NAMESPACE:{namespace}:USER:*:CONTENT [READ]\u0026lt;/b\u0026gt;.\n\t\t\t\t\t\tMaximum contentId per request 100",
+        "operationId": "AdminGetContentBulk",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/models.AdminGetContentBulkRequest"
+            }
+          },
+          {
+            "description": "namespace of the game",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "items": {
+                "$ref": "#/definitions/models.ContentDownloadResponse"
+              },
+              "type": "array"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          }
+        },
+        "security": [
+          {
+            "HasPermission": [
+              "ADMIN:NAMESPACE:{namespace}:USER:*:CONTENT [READ]"
+            ],
+            "authorization": []
+          }
+        ],
+        "summary": "Bulk get content by content IDs",
         "tags": [
           "Admin Content"
         ]
@@ -7074,6 +7144,19 @@
         "contentId"
       ]
     },
+    "models.AdminGetContentBulkRequest": {
+      "properties": {
+        "contentIds": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "required": [
+        "contentIds"
+      ]
+    },
     "models.ChannelRequest": {
       "properties": {
         "name": {
@@ -7120,6 +7203,9 @@
         "creatorName": {
           "description": "Creator Name is deprecated",
           "type": "string"
+        },
+        "customAttributes": {
+          "type": "object"
         },
         "downloadCount": {
           "format": "int32",
@@ -7206,6 +7292,7 @@
         "createdTime",
         "creatorFollowState",
         "creatorName",
+        "customAttributes",
         "downloadCount",
         "fileExtension",
         "id",
@@ -7250,6 +7337,9 @@
     },
     "models.CreateContentRequest": {
       "properties": {
+        "customAttributes": {
+          "type": "object"
+        },
         "name": {
           "type": "string"
         },
@@ -7277,6 +7367,7 @@
         }
       },
       "required": [
+        "customAttributes",
         "name",
         "payload",
         "preview",
@@ -7290,6 +7381,9 @@
       "properties": {
         "contentType": {
           "type": "string"
+        },
+        "customAttributes": {
+          "type": "object"
         },
         "fileExtension": {
           "type": "string"
@@ -7319,6 +7413,7 @@
       },
       "required": [
         "contentType",
+        "customAttributes",
         "fileExtension",
         "name",
         "preview",
@@ -7342,6 +7437,9 @@
         "creatorName": {
           "description": "Creator Name is deprecated",
           "type": "string"
+        },
+        "customAttributes": {
+          "type": "object"
         },
         "fileExtension": {
           "type": "string"
@@ -7405,6 +7503,7 @@
         "channelId",
         "createdTime",
         "creatorName",
+        "customAttributes",
         "fileExtension",
         "id",
         "isHidden",

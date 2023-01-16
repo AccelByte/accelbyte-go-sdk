@@ -3,7 +3,7 @@
   "info": {
     "description": "Justice Session Service",
     "title": "justice-session-service",
-    "version": "2.3.2"
+    "version": "2.4.0"
   },
   "schemes": [
     "https"
@@ -519,6 +519,12 @@
             "description": "game session status to filter. supported status: NEED_TO_REQUEST,REQUESTED,AVAILABLE,FAILED_TO_REQUEST",
             "in": "query",
             "name": "status",
+            "type": "string"
+          },
+          {
+            "description": "game session status to filter. supported status: NEED_TO_REQUEST,REQUESTED,AVAILABLE,FAILED_TO_REQUEST,UNKNOWN,ENDED",
+            "in": "query",
+            "name": "statusV2",
             "type": "string"
           },
           {
@@ -3005,12 +3011,16 @@
         },
         "Status": {
           "type": "string"
+        },
+        "StatusV2": {
+          "type": "string"
         }
       },
       "required": [
         "RequestedAt",
         "Server",
-        "Status"
+        "Status",
+        "StatusV2"
       ]
     },
     "apimodels.GameSessionQueryResponse": {
@@ -3413,10 +3423,14 @@
       "properties": {
         "status": {
           "type": "string"
+        },
+        "statusV2": {
+          "type": "string"
         }
       },
       "required": [
-        "status"
+        "status",
+        "statusV2"
       ]
     },
     "apimodels.UpdateGameSessionRequest": {
@@ -3556,6 +3570,9 @@
         "status": {
           "type": "string"
         },
+        "statusV2": {
+          "type": "string"
+        },
         "updatedAt": {
           "type": "string"
         }
@@ -3565,6 +3582,7 @@
         "platformID",
         "platformUserID",
         "status",
+        "statusV2",
         "updatedAt"
       ]
     },
@@ -3652,9 +3670,12 @@
         "status"
       ]
     },
-    "models.Team": {
+    "models.PartyMembers": {
       "properties": {
-        "UserIDs": {
+        "partyID": {
+          "type": "string"
+        },
+        "userIDs": {
           "items": {
             "type": "string"
           },
@@ -3662,7 +3683,28 @@
         }
       },
       "required": [
-        "UserIDs"
+        "partyID",
+        "userIDs"
+      ]
+    },
+    "models.Team": {
+      "properties": {
+        "UserIDs": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "parties": {
+          "items": {
+            "$ref": "#/definitions/models.PartyMembers"
+          },
+          "type": "array"
+        }
+      },
+      "required": [
+        "UserIDs",
+        "parties"
       ]
     },
     "response.Error": {

@@ -3,7 +3,7 @@
   "info": {
     "description": "Justice Matchmaking Service",
     "title": "Justice Match Service v2",
-    "version": "1.5.0"
+    "version": "2.0.1"
   },
   "schemes": [
     "https"
@@ -641,7 +641,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "Required Permission: NAMESPACE:{namespace}:MATCHMAKING:POOL [CREATE]\n\nRequired Scope: social\n\nCreates a new matchmaking pool.\n\nA pool is isolated from other pools (i.e. tickets may be matched with other tickets in the same pool, but not with tickets in other pools).\nEach pool has its own matchmaking rules and/or logic.\n\nticket_expiration_seconds and backfill_ticket_expiration_seconds will be set to 300 seconds (5 minutes) by default if not filled.\n",
+        "description": "Required Permission: NAMESPACE:{namespace}:MATCHMAKING:POOL [CREATE]\n\nRequired Scope: social\n\nCreates a new matchmaking pool.\n\nA pool is isolated from other pools (i.e. tickets may be matched with other tickets in the same pool, but not with tickets in other pools).\nEach pool has its own matchmaking rules and/or logic.\n\nticket_expiration_seconds and backfill_ticket_expiration_seconds will be set to 300 seconds (5 minutes) by default if not filled.\n\nMatch Function holds information about the name of the match logic server that matchmaking can refers to. By default we provide (\u0026#34;default\u0026#34; and \u0026#34;basic\u0026#34;). \nMatch Function will be used as reference value for Match Function Overrides if not set.\nIn case Customer would like to use matchmaking service default match logic, then specify it in \u0026#34;match_function_overrides\u0026#34;.\t\t\t\t\nThis sample configuration will let matchmaking service will use \u0026#34;default\u0026#34; match logic for make matches, while validation will hit both \u0026#34;default\u0026#34; and \u0026#34;custom\u0026#34; match logics.\ne.g.\n{\n\t\u0026#34;match_function\u0026#34;: \u0026#34;custom\u0026#34;,\n\t\u0026#34;match_function_overrides\u0026#34;: {\n\t\t\u0026#34;validation\u0026#34;: []{\u0026#34;default\u0026#34;,\u0026#34;custom\u0026#34;},\n\t\t\u0026#34;make_matches\u0026#34;: \u0026#34;default\u0026#34;,\n\t}\n}\n",
         "operationId": "CreateMatchPool",
         "parameters": [
           {
@@ -857,7 +857,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "Required Permission: NAMESPACE:{namespace}:MATCHMAKING:POOL [UPDATE]\n\nRequired Scope: social\n\nUpdates an existing matchmaking pool.\n\nticket_expiration_seconds and backfill_ticket_expiration_seconds will be set to 300 seconds (5 minutes) by default if not filled.\n",
+        "description": "Required Permission: NAMESPACE:{namespace}:MATCHMAKING:POOL [UPDATE]\n\nRequired Scope: social\n\nUpdates an existing matchmaking pool.\n\nticket_expiration_seconds and backfill_ticket_expiration_seconds will be set to 300 seconds (5 minutes) by default if not filled.\n\nMatch Function holds information about the name of the match logic server that matchmaking can refers to. By default we provide (\u0026#34;default\u0026#34; and \u0026#34;basic\u0026#34;). \nMatch Function will be used as reference value for Match Function Overrides if not set.\nIn case Customer would like to use matchmaking service default match logic, then specify it in \u0026#34;match_function_overrides\u0026#34;.\t\t\t\t\nThis sample configuration will let matchmaking service will use \u0026#34;default\u0026#34; match logic for make matches, while validation will hit both \u0026#34;default\u0026#34; and \u0026#34;custom\u0026#34; match logics.\ne.g.\n{\n\t\u0026#34;match_function\u0026#34;: \u0026#34;custom\u0026#34;,\n\t\u0026#34;match_function_overrides\u0026#34;: {\n\t\t\u0026#34;validation\u0026#34;: []{\u0026#34;default\u0026#34;,\u0026#34;custom\u0026#34;},\n\t\t\u0026#34;make_matches\u0026#34;: \u0026#34;default\u0026#34;,\n\t}\n}\n",
         "operationId": "UpdateMatchPool",
         "parameters": [
           {
@@ -1671,6 +1671,34 @@
         "url"
       ]
     },
+    "api.MatchFunctionOverride": {
+      "properties": {
+        "backfill_matches": {
+          "type": "string"
+        },
+        "hydration": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "make_matches": {
+          "type": "string"
+        },
+        "stat_codes": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "validation": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      }
+    },
     "api.MatchFunctionRequest": {
       "properties": {
         "match_function": {
@@ -1694,6 +1722,9 @@
         "match_function": {
           "type": "string"
         },
+        "match_function_override": {
+          "$ref": "#/definitions/api.MatchFunctionOverride"
+        },
         "name": {
           "type": "string"
         },
@@ -1711,6 +1742,7 @@
       "required": [
         "backfill_ticket_expiration_seconds",
         "match_function",
+        "match_function_override",
         "name",
         "rule_set",
         "session_template",
@@ -1726,6 +1758,9 @@
         "match_function": {
           "type": "string"
         },
+        "match_function_override": {
+          "$ref": "#/definitions/api.MatchFunctionOverride"
+        },
         "rule_set": {
           "type": "string"
         },
@@ -1740,6 +1775,7 @@
       "required": [
         "backfill_ticket_expiration_seconds",
         "match_function",
+        "match_function_override",
         "rule_set",
         "session_template",
         "ticket_expiration_seconds"

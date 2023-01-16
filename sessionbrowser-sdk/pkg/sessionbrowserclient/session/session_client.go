@@ -39,6 +39,8 @@ type ClientService interface {
 	AdminDeleteSessionShort(params *AdminDeleteSessionParams, authInfo runtime.ClientAuthInfoWriter) (*AdminDeleteSessionOK, error)
 	AdminGetSession(params *AdminGetSessionParams, authInfo runtime.ClientAuthInfoWriter) (*AdminGetSessionOK, *AdminGetSessionNotFound, *AdminGetSessionInternalServerError, error)
 	AdminGetSessionShort(params *AdminGetSessionParams, authInfo runtime.ClientAuthInfoWriter) (*AdminGetSessionOK, error)
+	AdminQuerySession(params *AdminQuerySessionParams, authInfo runtime.ClientAuthInfoWriter) (*AdminQuerySessionOK, *AdminQuerySessionBadRequest, *AdminQuerySessionInternalServerError, error)
+	AdminQuerySessionShort(params *AdminQuerySessionParams, authInfo runtime.ClientAuthInfoWriter) (*AdminQuerySessionOK, error)
 	AdminSearchSessionsV2(params *AdminSearchSessionsV2Params, authInfo runtime.ClientAuthInfoWriter) (*AdminSearchSessionsV2OK, *AdminSearchSessionsV2BadRequest, *AdminSearchSessionsV2Unauthorized, *AdminSearchSessionsV2Forbidden, *AdminSearchSessionsV2InternalServerError, error)
 	AdminSearchSessionsV2Short(params *AdminSearchSessionsV2Params, authInfo runtime.ClientAuthInfoWriter) (*AdminSearchSessionsV2OK, error)
 	CreateSession(params *CreateSessionParams, authInfo runtime.ClientAuthInfoWriter) (*CreateSessionOK, *CreateSessionBadRequest, *CreateSessionForbidden, *CreateSessionConflict, *CreateSessionInternalServerError, error)
@@ -414,6 +416,114 @@ func (a *Client) AdminGetSessionShort(params *AdminGetSessionParams, authInfo ru
 	case *AdminGetSessionNotFound:
 		return nil, v
 	case *AdminGetSessionInternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+Deprecated: Use AdminQuerySessionShort instead.
+
+  AdminQuerySession queries to available game session
+
+  Required permission: ADMIN:NAMESPACE:{namespace}:SESSIONBROWSER:SESSION [READ]
+
+Required scope: social
+*/
+func (a *Client) AdminQuerySession(params *AdminQuerySessionParams, authInfo runtime.ClientAuthInfoWriter) (*AdminQuerySessionOK, *AdminQuerySessionBadRequest, *AdminQuerySessionInternalServerError, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewAdminQuerySessionParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "AdminQuerySession",
+		Method:             "GET",
+		PathPattern:        "/sessionbrowser/admin/namespaces/{namespace}/gamesession",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &AdminQuerySessionReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, nil, nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *AdminQuerySessionOK:
+		return v, nil, nil, nil
+
+	case *AdminQuerySessionBadRequest:
+		return nil, v, nil, nil
+
+	case *AdminQuerySessionInternalServerError:
+		return nil, nil, v, nil
+
+	default:
+		return nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+  AdminQuerySessionShort queries to available game session
+
+  Required permission: ADMIN:NAMESPACE:{namespace}:SESSIONBROWSER:SESSION [READ]
+
+Required scope: social
+*/
+func (a *Client) AdminQuerySessionShort(params *AdminQuerySessionParams, authInfo runtime.ClientAuthInfoWriter) (*AdminQuerySessionOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewAdminQuerySessionParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "AdminQuerySession",
+		Method:             "GET",
+		PathPattern:        "/sessionbrowser/admin/namespaces/{namespace}/gamesession",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &AdminQuerySessionReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *AdminQuerySessionOK:
+		return v, nil
+	case *AdminQuerySessionBadRequest:
+		return nil, v
+	case *AdminQuerySessionInternalServerError:
 		return nil, v
 
 	default:

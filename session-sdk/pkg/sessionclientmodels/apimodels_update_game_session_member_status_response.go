@@ -20,6 +20,10 @@ type ApimodelsUpdateGameSessionMemberStatusResponse struct {
 	// status
 	// Required: true
 	Status *string `json:"status"`
+
+	// status v2
+	// Required: true
+	StatusV2 *string `json:"statusV2"`
 }
 
 // Validate validates this apimodels update game session member status response
@@ -27,6 +31,10 @@ func (m *ApimodelsUpdateGameSessionMemberStatusResponse) Validate(formats strfmt
 	var res []error
 
 	if err := m.validateStatus(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateStatusV2(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -39,6 +47,15 @@ func (m *ApimodelsUpdateGameSessionMemberStatusResponse) Validate(formats strfmt
 func (m *ApimodelsUpdateGameSessionMemberStatusResponse) validateStatus(formats strfmt.Registry) error {
 
 	if err := validate.Required("status", "body", m.Status); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *ApimodelsUpdateGameSessionMemberStatusResponse) validateStatusV2(formats strfmt.Registry) error {
+
+	if err := validate.Required("statusV2", "body", m.StatusV2); err != nil {
 		return err
 	}
 

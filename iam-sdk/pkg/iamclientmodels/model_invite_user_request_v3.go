@@ -25,6 +25,10 @@ type ModelInviteUserRequestV3 struct {
 	// Required: true
 	IsAdmin *bool `json:"isAdmin"`
 
+	// multi tenant studio namespace
+	// Required: true
+	Namespace *string `json:"namespace"`
+
 	// roles
 	// Required: true
 	Roles []string `json:"roles"`
@@ -39,6 +43,10 @@ func (m *ModelInviteUserRequestV3) Validate(formats strfmt.Registry) error {
 	}
 
 	if err := m.validateIsAdmin(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateNamespace(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -64,6 +72,15 @@ func (m *ModelInviteUserRequestV3) validateEmailAddresses(formats strfmt.Registr
 func (m *ModelInviteUserRequestV3) validateIsAdmin(formats strfmt.Registry) error {
 
 	if err := validate.Required("isAdmin", "body", m.IsAdmin); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *ModelInviteUserRequestV3) validateNamespace(formats strfmt.Registry) error {
+
+	if err := validate.Required("namespace", "body", m.Namespace); err != nil {
 		return err
 	}
 

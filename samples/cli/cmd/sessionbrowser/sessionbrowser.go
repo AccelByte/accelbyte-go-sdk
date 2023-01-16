@@ -18,6 +18,7 @@ var SessionbrowserCmd = &cobra.Command{
 }
 
 func init() {
+	SessionbrowserCmd.AddCommand(session.AdminQuerySessionCmd)
 	SessionbrowserCmd.AddCommand(session.GetTotalActiveSessionCmd)
 	SessionbrowserCmd.AddCommand(session.GetActiveCustomGameSessionsCmd)
 	SessionbrowserCmd.AddCommand(session.GetActiveMatchmakingGameSessionsCmd)

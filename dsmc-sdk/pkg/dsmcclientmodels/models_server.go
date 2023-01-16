@@ -120,6 +120,10 @@ type ModelsServer struct {
 	// status history
 	// Required: true
 	StatusHistory []*ModelsStatusHistory `json:"status_history"`
+
+	// termination reason
+	// Required: true
+	TerminationReason *string `json:"termination_reason"`
 }
 
 // Validate validates this models server
@@ -223,6 +227,10 @@ func (m *ModelsServer) Validate(formats strfmt.Registry) error {
 	}
 
 	if err := m.validateStatusHistory(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateTerminationReason(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -488,6 +496,15 @@ func (m *ModelsServer) validateStatusHistory(formats strfmt.Registry) error {
 			}
 		}
 
+	}
+
+	return nil
+}
+
+func (m *ModelsServer) validateTerminationReason(formats strfmt.Registry) error {
+
+	if err := validate.Required("termination_reason", "body", m.TerminationReason); err != nil {
+		return err
 	}
 
 	return nil

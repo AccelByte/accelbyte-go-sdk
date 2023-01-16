@@ -37,6 +37,8 @@ type ClientService interface {
 	DeleteGameRecordHandlerV1Short(params *DeleteGameRecordHandlerV1Params, authInfo runtime.ClientAuthInfoWriter) (*DeleteGameRecordHandlerV1NoContent, error)
 	GetGameRecordHandlerV1(params *GetGameRecordHandlerV1Params, authInfo runtime.ClientAuthInfoWriter) (*GetGameRecordHandlerV1OK, *GetGameRecordHandlerV1Unauthorized, *GetGameRecordHandlerV1NotFound, *GetGameRecordHandlerV1InternalServerError, error)
 	GetGameRecordHandlerV1Short(params *GetGameRecordHandlerV1Params, authInfo runtime.ClientAuthInfoWriter) (*GetGameRecordHandlerV1OK, error)
+	GetGameRecordsBulk(params *GetGameRecordsBulkParams, authInfo runtime.ClientAuthInfoWriter) (*GetGameRecordsBulkOK, *GetGameRecordsBulkUnauthorized, *GetGameRecordsBulkForbidden, *GetGameRecordsBulkNotFound, *GetGameRecordsBulkInternalServerError, error)
+	GetGameRecordsBulkShort(params *GetGameRecordsBulkParams, authInfo runtime.ClientAuthInfoWriter) (*GetGameRecordsBulkOK, error)
 	PostGameRecordHandlerV1(params *PostGameRecordHandlerV1Params, authInfo runtime.ClientAuthInfoWriter) (*PostGameRecordHandlerV1Created, *PostGameRecordHandlerV1BadRequest, *PostGameRecordHandlerV1InternalServerError, error)
 	PostGameRecordHandlerV1Short(params *PostGameRecordHandlerV1Params, authInfo runtime.ClientAuthInfoWriter) (*PostGameRecordHandlerV1Created, error)
 	PutGameRecordHandlerV1(params *PutGameRecordHandlerV1Params, authInfo runtime.ClientAuthInfoWriter) (*PutGameRecordHandlerV1OK, *PutGameRecordHandlerV1BadRequest, *PutGameRecordHandlerV1InternalServerError, error)
@@ -306,6 +308,144 @@ func (a *Client) GetGameRecordHandlerV1Short(params *GetGameRecordHandlerV1Param
 	case *GetGameRecordHandlerV1NotFound:
 		return nil, v
 	case *GetGameRecordHandlerV1InternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+Deprecated: Use GetGameRecordsBulkShort instead.
+
+  GetGameRecordsBulk bulks get game records
+
+  &lt;table&gt;
+	&lt;tr&gt;
+		&lt;td&gt;Required Permission&lt;/td&gt;
+		&lt;td&gt;&lt;code&gt;NAMESPACE:{namespace}:CLOUDSAVE:RECORD [READ]&lt;/code&gt;&lt;/td&gt;
+	&lt;/tr&gt;
+	&lt;tr&gt;
+		&lt;td&gt;Required Scope&lt;/td&gt;
+		&lt;td&gt;&lt;code&gt;social&lt;/code&gt;&lt;/td&gt;
+	&lt;/tr&gt;
+&lt;/table&gt;
+&lt;br/&gt;
+
+Bulk get game records. Maximum key per request 20.
+*/
+func (a *Client) GetGameRecordsBulk(params *GetGameRecordsBulkParams, authInfo runtime.ClientAuthInfoWriter) (*GetGameRecordsBulkOK, *GetGameRecordsBulkUnauthorized, *GetGameRecordsBulkForbidden, *GetGameRecordsBulkNotFound, *GetGameRecordsBulkInternalServerError, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewGetGameRecordsBulkParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "getGameRecordsBulk",
+		Method:             "POST",
+		PathPattern:        "/cloudsave/v1/namespaces/{namespace}/records/bulk",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &GetGameRecordsBulkReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, nil, nil, nil, nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *GetGameRecordsBulkOK:
+		return v, nil, nil, nil, nil, nil
+
+	case *GetGameRecordsBulkUnauthorized:
+		return nil, v, nil, nil, nil, nil
+
+	case *GetGameRecordsBulkForbidden:
+		return nil, nil, v, nil, nil, nil
+
+	case *GetGameRecordsBulkNotFound:
+		return nil, nil, nil, v, nil, nil
+
+	case *GetGameRecordsBulkInternalServerError:
+		return nil, nil, nil, nil, v, nil
+
+	default:
+		return nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+  GetGameRecordsBulkShort bulks get game records
+
+  &lt;table&gt;
+	&lt;tr&gt;
+		&lt;td&gt;Required Permission&lt;/td&gt;
+		&lt;td&gt;&lt;code&gt;NAMESPACE:{namespace}:CLOUDSAVE:RECORD [READ]&lt;/code&gt;&lt;/td&gt;
+	&lt;/tr&gt;
+	&lt;tr&gt;
+		&lt;td&gt;Required Scope&lt;/td&gt;
+		&lt;td&gt;&lt;code&gt;social&lt;/code&gt;&lt;/td&gt;
+	&lt;/tr&gt;
+&lt;/table&gt;
+&lt;br/&gt;
+
+Bulk get game records. Maximum key per request 20.
+*/
+func (a *Client) GetGameRecordsBulkShort(params *GetGameRecordsBulkParams, authInfo runtime.ClientAuthInfoWriter) (*GetGameRecordsBulkOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewGetGameRecordsBulkParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "getGameRecordsBulk",
+		Method:             "POST",
+		PathPattern:        "/cloudsave/v1/namespaces/{namespace}/records/bulk",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &GetGameRecordsBulkReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *GetGameRecordsBulkOK:
+		return v, nil
+	case *GetGameRecordsBulkUnauthorized:
+		return nil, v
+	case *GetGameRecordsBulkForbidden:
+		return nil, v
+	case *GetGameRecordsBulkNotFound:
+		return nil, v
+	case *GetGameRecordsBulkInternalServerError:
 		return nil, v
 
 	default:

@@ -206,6 +206,29 @@ func (aaa *AdminContentService) SingleAdminGetContent(input *admin_content.Singl
 	return ok.GetPayload(), nil
 }
 
+// deprecated(2022-01-10): please use AdminGetContentBulkShort instead.
+func (aaa *AdminContentService) AdminGetContentBulk(input *admin_content.AdminGetContentBulkParams) ([]*ugcclientmodels.ModelsContentDownloadResponse, error) {
+	token, err := aaa.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, unauthorized, forbidden, internalServerError, err := aaa.Client.AdminContent.AdminGetContentBulk(input, client.BearerToken(*token.AccessToken))
+	if unauthorized != nil {
+		return nil, unauthorized
+	}
+	if forbidden != nil {
+		return nil, forbidden
+	}
+	if internalServerError != nil {
+		return nil, internalServerError
+	}
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
 // deprecated(2022-01-10): please use AdminSearchContentShort instead.
 func (aaa *AdminContentService) AdminSearchContent(input *admin_content.AdminSearchContentParams) (*ugcclientmodels.ModelsPaginatedContentDownloadResponse, error) {
 	token, err := aaa.TokenRepository.GetToken()
@@ -665,6 +688,31 @@ func (aaa *AdminContentService) SingleAdminGetContentShort(input *admin_content.
 	}
 
 	ok, err := aaa.Client.AdminContent.SingleAdminGetContentShort(input, authInfoWriter)
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
+func (aaa *AdminContentService) AdminGetContentBulkShort(input *admin_content.AdminGetContentBulkParams) ([]*ugcclientmodels.ModelsContentDownloadResponse, error) {
+	authInfoWriter := input.AuthInfoWriter
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
+	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  aaa.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
+	ok, err := aaa.Client.AdminContent.AdminGetContentBulkShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}

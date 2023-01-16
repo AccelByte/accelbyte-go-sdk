@@ -49,7 +49,7 @@ type SectionUpdate struct {
 	Name *string `json:"name"`
 
 	// rotation type, default is NONE
-	// Enum: [FIXED_PERIOD NONE]
+	// Enum: [CUSTOM FIXED_PERIOD NONE]
 	RotationType string `json:"rotationType,omitempty"`
 
 	// start date
@@ -186,7 +186,7 @@ var sectionUpdateTypeRotationTypePropEnum []interface{}
 
 func init() {
 	var res []string
-	if err := json.Unmarshal([]byte(`["FIXED_PERIOD","NONE"]`), &res); err != nil {
+	if err := json.Unmarshal([]byte(`["CUSTOM","FIXED_PERIOD","NONE"]`), &res); err != nil {
 		panic(err)
 	}
 	for _, v := range res {
@@ -195,6 +195,9 @@ func init() {
 }
 
 const (
+
+	// SectionUpdateRotationTypeCUSTOM captures enum value "CUSTOM"
+	SectionUpdateRotationTypeCUSTOM string = "CUSTOM"
 
 	// SectionUpdateRotationTypeFIXEDPERIOD captures enum value "FIXED_PERIOD"
 	SectionUpdateRotationTypeFIXEDPERIOD string = "FIXED_PERIOD"

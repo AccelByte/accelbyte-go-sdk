@@ -25,6 +25,10 @@ type APIMatchPool struct {
 	// Required: true
 	MatchFunction *string `json:"match_function"`
 
+	// match function override
+	// Required: true
+	MatchFunctionOverride *APIMatchFunctionOverride `json:"match_function_override"`
+
 	// name
 	// Required: true
 	Name *string `json:"name"`
@@ -51,6 +55,10 @@ func (m *APIMatchPool) Validate(formats strfmt.Registry) error {
 	}
 
 	if err := m.validateMatchFunction(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateMatchFunctionOverride(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -89,6 +97,24 @@ func (m *APIMatchPool) validateMatchFunction(formats strfmt.Registry) error {
 
 	if err := validate.Required("match_function", "body", m.MatchFunction); err != nil {
 		return err
+	}
+
+	return nil
+}
+
+func (m *APIMatchPool) validateMatchFunctionOverride(formats strfmt.Registry) error {
+
+	if err := validate.Required("match_function_override", "body", m.MatchFunctionOverride); err != nil {
+		return err
+	}
+
+	if m.MatchFunctionOverride != nil {
+		if err := m.MatchFunctionOverride.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("match_function_override")
+			}
+			return err
+		}
 	}
 
 	return nil

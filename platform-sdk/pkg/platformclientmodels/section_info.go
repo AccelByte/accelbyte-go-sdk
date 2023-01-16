@@ -23,7 +23,7 @@ type SectionInfo struct {
 	// Required: true
 	Active *bool `json:"active"`
 
-	// view created time
+	// created time
 	// Required: true
 	// Format: date-time
 	CreatedAt strfmt.DateTime `json:"createdAt"`
@@ -45,6 +45,9 @@ type SectionInfo struct {
 	// Required: true
 	// Format: date-time
 	EndDate strfmt.DateTime `json:"endDate"`
+
+	// customized section properties
+	Ext map[string]interface{} `json:"ext,omitempty"`
 
 	// local ext
 	LocalExt map[string]interface{} `json:"localExt,omitempty"`
@@ -73,7 +76,7 @@ type SectionInfo struct {
 	// Required: true
 	Title *string `json:"title"`
 
-	// view updated time
+	// updated time
 	// Required: true
 	// Format: date-time
 	UpdatedAt strfmt.DateTime `json:"updatedAt"`

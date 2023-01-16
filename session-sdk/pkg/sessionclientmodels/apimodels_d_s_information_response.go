@@ -28,6 +28,10 @@ type ApimodelsDSInformationResponse struct {
 	// status
 	// Required: true
 	Status *string `json:"Status"`
+
+	// status v2
+	// Required: true
+	StatusV2 *string `json:"StatusV2"`
 }
 
 // Validate validates this apimodels d s information response
@@ -43,6 +47,10 @@ func (m *ApimodelsDSInformationResponse) Validate(formats strfmt.Registry) error
 	}
 
 	if err := m.validateStatus(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateStatusV2(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -82,6 +90,15 @@ func (m *ApimodelsDSInformationResponse) validateServer(formats strfmt.Registry)
 func (m *ApimodelsDSInformationResponse) validateStatus(formats strfmt.Registry) error {
 
 	if err := validate.Required("Status", "body", m.Status); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *ApimodelsDSInformationResponse) validateStatusV2(formats strfmt.Registry) error {
+
+	if err := validate.Required("StatusV2", "body", m.StatusV2); err != nil {
 		return err
 	}
 

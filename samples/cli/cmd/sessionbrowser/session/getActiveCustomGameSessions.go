@@ -26,10 +26,14 @@ var GetActiveCustomGameSessionsCmd = &cobra.Command{
 			TokenRepository: &repository.TokenRepositoryImpl{},
 		}
 		namespace, _ := cmd.Flags().GetString("namespace")
+		limit, _ := cmd.Flags().GetInt64("limit")
+		offset, _ := cmd.Flags().GetInt64("offset")
 		serverRegion, _ := cmd.Flags().GetString("serverRegion")
 		sessionId, _ := cmd.Flags().GetString("sessionId")
 		input := &session.GetActiveCustomGameSessionsParams{
 			Namespace:    namespace,
+			Limit:        &limit,
+			Offset:       &offset,
 			ServerRegion: &serverRegion,
 			SessionID:    &sessionId,
 		}
@@ -49,6 +53,8 @@ var GetActiveCustomGameSessionsCmd = &cobra.Command{
 func init() {
 	GetActiveCustomGameSessionsCmd.Flags().String("namespace", "", "Namespace")
 	_ = GetActiveCustomGameSessionsCmd.MarkFlagRequired("namespace")
+	GetActiveCustomGameSessionsCmd.Flags().Int64("limit", 20, "Limit")
+	GetActiveCustomGameSessionsCmd.Flags().Int64("offset", 0, "Offset")
 	GetActiveCustomGameSessionsCmd.Flags().String("serverRegion", "", "Server region")
 	GetActiveCustomGameSessionsCmd.Flags().String("sessionId", "", "Session id")
 }

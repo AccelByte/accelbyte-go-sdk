@@ -63,6 +63,7 @@
 | `api.ListMatchPoolsResponse` | [ApiListMatchPoolsResponse ](../../match2-sdk/pkg/match2clientmodels/api_list_match_pools_response.go) |
 | `api.ListRuleSetsResponse` | [ApiListRuleSetsResponse ](../../match2-sdk/pkg/match2clientmodels/api_list_rule_sets_response.go) |
 | `api.MatchFunctionConfig` | [ApiMatchFunctionConfig ](../../match2-sdk/pkg/match2clientmodels/api_match_function_config.go) |
+| `api.MatchFunctionOverride` | [ApiMatchFunctionOverride ](../../match2-sdk/pkg/match2clientmodels/api_match_function_override.go) |
 | `api.MatchFunctionRequest` | [ApiMatchFunctionRequest ](../../match2-sdk/pkg/match2clientmodels/api_match_function_request.go) |
 | `api.MatchPool` | [ApiMatchPool ](../../match2-sdk/pkg/match2clientmodels/api_match_pool.go) |
 | `api.MatchPoolConfig` | [ApiMatchPoolConfig ](../../match2-sdk/pkg/match2clientmodels/api_match_pool_config.go) |

@@ -32,6 +32,7 @@ var PublicListUserAchievementsCmd = &cobra.Command{
 		limit, _ := cmd.Flags().GetInt64("limit")
 		offset, _ := cmd.Flags().GetInt64("offset")
 		preferUnlocked, _ := cmd.Flags().GetBool("preferUnlocked")
+		sortBy, _ := cmd.Flags().GetString("sortBy")
 		tagsString := cmd.Flag("tags").Value.String()
 		var tags []string
 		errTags := json.Unmarshal([]byte(tagsString), &tags)
@@ -44,6 +45,7 @@ var PublicListUserAchievementsCmd = &cobra.Command{
 			Limit:          &limit,
 			Offset:         &offset,
 			PreferUnlocked: &preferUnlocked,
+			SortBy:         &sortBy,
 			Tags:           tags,
 		}
 		ok, err := userAchievementsService.PublicListUserAchievementsShort(input)
@@ -67,5 +69,6 @@ func init() {
 	PublicListUserAchievementsCmd.Flags().Int64("limit", 20, "Limit")
 	PublicListUserAchievementsCmd.Flags().Int64("offset", 0, "Offset")
 	PublicListUserAchievementsCmd.Flags().Bool("preferUnlocked", false, "Prefer unlocked")
+	PublicListUserAchievementsCmd.Flags().String("sortBy", "", "Sort by")
 	PublicListUserAchievementsCmd.Flags().String("tags", "", "Tags")
 }

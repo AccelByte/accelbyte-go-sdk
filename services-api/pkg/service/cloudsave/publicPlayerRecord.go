@@ -65,6 +65,55 @@ func (aaa *PublicPlayerRecordService) BulkGetPlayerPublicRecordHandlerV1(input *
 	return ok.GetPayload(), nil
 }
 
+// deprecated(2022-01-10): please use RetrievePlayerRecordsShort instead.
+func (aaa *PublicPlayerRecordService) RetrievePlayerRecords(input *public_player_record.RetrievePlayerRecordsParams) (*cloudsaveclientmodels.ModelsListPlayerRecordKeysResponse, error) {
+	token, err := aaa.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, badRequest, unauthorized, internalServerError, err := aaa.Client.PublicPlayerRecord.RetrievePlayerRecords(input, client.BearerToken(*token.AccessToken))
+	if badRequest != nil {
+		return nil, badRequest
+	}
+	if unauthorized != nil {
+		return nil, unauthorized
+	}
+	if internalServerError != nil {
+		return nil, internalServerError
+	}
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
+// deprecated(2022-01-10): please use GetPlayerRecordsBulkHandlerV1Short instead.
+func (aaa *PublicPlayerRecordService) GetPlayerRecordsBulkHandlerV1(input *public_player_record.GetPlayerRecordsBulkHandlerV1Params) (*cloudsaveclientmodels.ModelsBulkGetPlayerRecordResponse, error) {
+	token, err := aaa.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, badRequest, unauthorized, forbidden, internalServerError, err := aaa.Client.PublicPlayerRecord.GetPlayerRecordsBulkHandlerV1(input, client.BearerToken(*token.AccessToken))
+	if badRequest != nil {
+		return nil, badRequest
+	}
+	if unauthorized != nil {
+		return nil, unauthorized
+	}
+	if forbidden != nil {
+		return nil, forbidden
+	}
+	if internalServerError != nil {
+		return nil, internalServerError
+	}
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
 // deprecated(2022-01-10): please use PublicDeletePlayerPublicRecordHandlerV1Short instead.
 func (aaa *PublicPlayerRecordService) PublicDeletePlayerPublicRecordHandlerV1(input *public_player_record.PublicDeletePlayerPublicRecordHandlerV1Params) error {
 	token, err := aaa.TokenRepository.GetToken()
@@ -282,6 +331,56 @@ func (aaa *PublicPlayerRecordService) BulkGetPlayerPublicRecordHandlerV1Short(in
 	}
 
 	ok, err := aaa.Client.PublicPlayerRecord.BulkGetPlayerPublicRecordHandlerV1Short(input, authInfoWriter)
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
+func (aaa *PublicPlayerRecordService) RetrievePlayerRecordsShort(input *public_player_record.RetrievePlayerRecordsParams) (*cloudsaveclientmodels.ModelsListPlayerRecordKeysResponse, error) {
+	authInfoWriter := input.AuthInfoWriter
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
+	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  aaa.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
+	ok, err := aaa.Client.PublicPlayerRecord.RetrievePlayerRecordsShort(input, authInfoWriter)
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
+func (aaa *PublicPlayerRecordService) GetPlayerRecordsBulkHandlerV1Short(input *public_player_record.GetPlayerRecordsBulkHandlerV1Params) (*cloudsaveclientmodels.ModelsBulkGetPlayerRecordResponse, error) {
+	authInfoWriter := input.AuthInfoWriter
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
+	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  aaa.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
+	ok, err := aaa.Client.PublicPlayerRecord.GetPlayerRecordsBulkHandlerV1Short(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}

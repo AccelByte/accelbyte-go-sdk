@@ -39,6 +39,32 @@ func (aaa *PublicGameRecordService) GetAuthSession() auth.Session {
 	}
 }
 
+// deprecated(2022-01-10): please use GetGameRecordsBulkShort instead.
+func (aaa *PublicGameRecordService) GetGameRecordsBulk(input *public_game_record.GetGameRecordsBulkParams) (*cloudsaveclientmodels.ModelsBulkGetGameRecordResponse, error) {
+	token, err := aaa.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, unauthorized, forbidden, notFound, internalServerError, err := aaa.Client.PublicGameRecord.GetGameRecordsBulk(input, client.BearerToken(*token.AccessToken))
+	if unauthorized != nil {
+		return nil, unauthorized
+	}
+	if forbidden != nil {
+		return nil, forbidden
+	}
+	if notFound != nil {
+		return nil, notFound
+	}
+	if internalServerError != nil {
+		return nil, internalServerError
+	}
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
 // deprecated(2022-01-10): please use GetGameRecordHandlerV1Short instead.
 func (aaa *PublicGameRecordService) GetGameRecordHandlerV1(input *public_game_record.GetGameRecordHandlerV1Params) (*cloudsaveclientmodels.ModelsGameRecordResponse, error) {
 	token, err := aaa.TokenRepository.GetToken()
@@ -123,6 +149,31 @@ func (aaa *PublicGameRecordService) DeleteGameRecordHandlerV1(input *public_game
 	}
 
 	return nil
+}
+
+func (aaa *PublicGameRecordService) GetGameRecordsBulkShort(input *public_game_record.GetGameRecordsBulkParams) (*cloudsaveclientmodels.ModelsBulkGetGameRecordResponse, error) {
+	authInfoWriter := input.AuthInfoWriter
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
+	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  aaa.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
+	ok, err := aaa.Client.PublicGameRecord.GetGameRecordsBulkShort(input, authInfoWriter)
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
 }
 
 func (aaa *PublicGameRecordService) GetGameRecordHandlerV1Short(input *public_game_record.GetGameRecordHandlerV1Params) (*cloudsaveclientmodels.ModelsGameRecordResponse, error) {

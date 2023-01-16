@@ -20,6 +20,9 @@ type SectionItem struct {
 	// item id
 	// Required: true
 	ID *string `json:"id"`
+
+	// item sku
+	Sku string `json:"sku,omitempty"`
 }
 
 // Validate validates this section item

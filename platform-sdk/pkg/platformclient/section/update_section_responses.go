@@ -131,7 +131,7 @@ func NewUpdateSectionBadRequest() *UpdateSectionBadRequest {
 
 /*UpdateSectionBadRequest handles this case with default header values.
 
-  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20027</td><td>Invalid time range</td></tr><tr><td>30021</td><td>Default language [{language}] required</td></tr></table>
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20027</td><td>Invalid time range</td></tr><tr><td>30021</td><td>Default language [{language}] required</td></tr><tr><td>30023</td><td>Catalog plugin grpc server address required</td></tr></table>
 */
 type UpdateSectionBadRequest struct {
 	Payload *platformclientmodels.ErrorEntity

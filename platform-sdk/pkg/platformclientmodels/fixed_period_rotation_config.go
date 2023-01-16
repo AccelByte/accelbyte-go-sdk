@@ -19,10 +19,14 @@ import (
 // swagger:model FixedPeriodRotationConfig
 type FixedPeriodRotationConfig struct {
 
+	// backfill type: NONE/CUSTOM, default is NONE
+	// Enum: [CUSTOM NONE]
+	BackfillType string `json:"backfillType,omitempty"`
+
 	// duration: rotation duration, unit is minutes, min duration is 1
 	Duration int32 `json:"duration,omitempty"`
 
-	// rotation item count, min is 1, default is 1
+	// returned item count, min is 1, default is 1
 	ItemCount int32 `json:"itemCount,omitempty"`
 
 	// rotation rule: SEQUENCE, default is SEQUENCE
@@ -34,6 +38,10 @@ type FixedPeriodRotationConfig struct {
 func (m *FixedPeriodRotationConfig) Validate(formats strfmt.Registry) error {
 	var res []error
 
+	if err := m.validateBackfillType(formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.validateRule(formats); err != nil {
 		res = append(res, err)
 	}
@@ -41,6 +49,49 @@ func (m *FixedPeriodRotationConfig) Validate(formats strfmt.Registry) error {
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
+	return nil
+}
+
+var fixedPeriodRotationConfigTypeBackfillTypePropEnum []interface{}
+
+func init() {
+	var res []string
+	if err := json.Unmarshal([]byte(`["CUSTOM","NONE"]`), &res); err != nil {
+		panic(err)
+	}
+	for _, v := range res {
+		fixedPeriodRotationConfigTypeBackfillTypePropEnum = append(fixedPeriodRotationConfigTypeBackfillTypePropEnum, v)
+	}
+}
+
+const (
+
+	// FixedPeriodRotationConfigBackfillTypeCUSTOM captures enum value "CUSTOM"
+	FixedPeriodRotationConfigBackfillTypeCUSTOM string = "CUSTOM"
+
+	// FixedPeriodRotationConfigBackfillTypeNONE captures enum value "NONE"
+	FixedPeriodRotationConfigBackfillTypeNONE string = "NONE"
+)
+
+// prop value enum
+func (m *FixedPeriodRotationConfig) validateBackfillTypeEnum(path, location string, value string) error {
+	if err := validate.EnumCase(path, location, value, fixedPeriodRotationConfigTypeBackfillTypePropEnum, true); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (m *FixedPeriodRotationConfig) validateBackfillType(formats strfmt.Registry) error {
+
+	if swag.IsZero(m.BackfillType) { // not required
+		return nil
+	}
+
+	// value enum
+	if err := m.validateBackfillTypeEnum("backfillType", "body", m.BackfillType); err != nil {
+		return err
+	}
+
 	return nil
 }
 

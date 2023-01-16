@@ -34,7 +34,7 @@ type Client struct {
 
 // ClientService is the interface for Client methods
 type ClientService interface {
-	AdminCreateNewAchievement(params *AdminCreateNewAchievementParams, authInfo runtime.ClientAuthInfoWriter) (*AdminCreateNewAchievementCreated, *AdminCreateNewAchievementBadRequest, *AdminCreateNewAchievementUnauthorized, *AdminCreateNewAchievementInternalServerError, error)
+	AdminCreateNewAchievement(params *AdminCreateNewAchievementParams, authInfo runtime.ClientAuthInfoWriter) (*AdminCreateNewAchievementCreated, *AdminCreateNewAchievementBadRequest, *AdminCreateNewAchievementUnauthorized, *AdminCreateNewAchievementTooManyRequests, *AdminCreateNewAchievementInternalServerError, error)
 	AdminCreateNewAchievementShort(params *AdminCreateNewAchievementParams, authInfo runtime.ClientAuthInfoWriter) (*AdminCreateNewAchievementCreated, error)
 	AdminDeleteAchievement(params *AdminDeleteAchievementParams, authInfo runtime.ClientAuthInfoWriter) (*AdminDeleteAchievementNoContent, *AdminDeleteAchievementBadRequest, *AdminDeleteAchievementUnauthorized, *AdminDeleteAchievementNotFound, *AdminDeleteAchievementInternalServerError, error)
 	AdminDeleteAchievementShort(params *AdminDeleteAchievementParams, authInfo runtime.ClientAuthInfoWriter) (*AdminDeleteAchievementNoContent, error)
@@ -48,7 +48,7 @@ type ClientService interface {
 	AdminUpdateAchievementListOrderShort(params *AdminUpdateAchievementListOrderParams, authInfo runtime.ClientAuthInfoWriter) (*AdminUpdateAchievementListOrderNoContent, error)
 	ExportAchievements(params *ExportAchievementsParams, authInfo runtime.ClientAuthInfoWriter, writer io.Writer) (*ExportAchievementsOK, *ExportAchievementsUnauthorized, *ExportAchievementsForbidden, *ExportAchievementsInternalServerError, error)
 	ExportAchievementsShort(params *ExportAchievementsParams, authInfo runtime.ClientAuthInfoWriter, writer io.Writer) (*ExportAchievementsOK, error)
-	ImportAchievements(params *ImportAchievementsParams, authInfo runtime.ClientAuthInfoWriter) (*ImportAchievementsOK, *ImportAchievementsUnauthorized, *ImportAchievementsForbidden, *ImportAchievementsInternalServerError, error)
+	ImportAchievements(params *ImportAchievementsParams, authInfo runtime.ClientAuthInfoWriter) (*ImportAchievementsOK, *ImportAchievementsUnauthorized, *ImportAchievementsForbidden, *ImportAchievementsTooManyRequests, *ImportAchievementsInternalServerError, error)
 	ImportAchievementsShort(params *ImportAchievementsParams, authInfo runtime.ClientAuthInfoWriter) (*ImportAchievementsOK, error)
 	PublicGetAchievement(params *PublicGetAchievementParams, authInfo runtime.ClientAuthInfoWriter) (*PublicGetAchievementOK, *PublicGetAchievementBadRequest, *PublicGetAchievementUnauthorized, *PublicGetAchievementNotFound, *PublicGetAchievementInternalServerError, error)
 	PublicGetAchievementShort(params *PublicGetAchievementParams, authInfo runtime.ClientAuthInfoWriter) (*PublicGetAchievementOK, error)
@@ -78,7 +78,7 @@ Deprecated: Use AdminCreateNewAchievementShort instead.
           - slug: specify the image they want to use, it can be file image name or something
 			to define the achievement icon.
 */
-func (a *Client) AdminCreateNewAchievement(params *AdminCreateNewAchievementParams, authInfo runtime.ClientAuthInfoWriter) (*AdminCreateNewAchievementCreated, *AdminCreateNewAchievementBadRequest, *AdminCreateNewAchievementUnauthorized, *AdminCreateNewAchievementInternalServerError, error) {
+func (a *Client) AdminCreateNewAchievement(params *AdminCreateNewAchievementParams, authInfo runtime.ClientAuthInfoWriter) (*AdminCreateNewAchievementCreated, *AdminCreateNewAchievementBadRequest, *AdminCreateNewAchievementUnauthorized, *AdminCreateNewAchievementTooManyRequests, *AdminCreateNewAchievementInternalServerError, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewAdminCreateNewAchievementParams()
@@ -106,25 +106,28 @@ func (a *Client) AdminCreateNewAchievement(params *AdminCreateNewAchievementPara
 		Client:             params.HTTPClient,
 	})
 	if err != nil {
-		return nil, nil, nil, nil, err
+		return nil, nil, nil, nil, nil, err
 	}
 
 	switch v := result.(type) {
 
 	case *AdminCreateNewAchievementCreated:
-		return v, nil, nil, nil, nil
+		return v, nil, nil, nil, nil, nil
 
 	case *AdminCreateNewAchievementBadRequest:
-		return nil, v, nil, nil, nil
+		return nil, v, nil, nil, nil, nil
 
 	case *AdminCreateNewAchievementUnauthorized:
-		return nil, nil, v, nil, nil
+		return nil, nil, v, nil, nil, nil
+
+	case *AdminCreateNewAchievementTooManyRequests:
+		return nil, nil, nil, v, nil, nil
 
 	case *AdminCreateNewAchievementInternalServerError:
-		return nil, nil, nil, v, nil
+		return nil, nil, nil, nil, v, nil
 
 	default:
-		return nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+		return nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
@@ -184,6 +187,8 @@ func (a *Client) AdminCreateNewAchievementShort(params *AdminCreateNewAchievemen
 	case *AdminCreateNewAchievementBadRequest:
 		return nil, v
 	case *AdminCreateNewAchievementUnauthorized:
+		return nil, v
+	case *AdminCreateNewAchievementTooManyRequests:
 		return nil, v
 	case *AdminCreateNewAchievementInternalServerError:
 		return nil, v
@@ -900,7 +905,7 @@ Deprecated: Use ImportAchievementsShort instead.
 				- replace: if achievement with same key exist, the imported achievement will be used and existing one will be removed
 
 */
-func (a *Client) ImportAchievements(params *ImportAchievementsParams, authInfo runtime.ClientAuthInfoWriter) (*ImportAchievementsOK, *ImportAchievementsUnauthorized, *ImportAchievementsForbidden, *ImportAchievementsInternalServerError, error) {
+func (a *Client) ImportAchievements(params *ImportAchievementsParams, authInfo runtime.ClientAuthInfoWriter) (*ImportAchievementsOK, *ImportAchievementsUnauthorized, *ImportAchievementsForbidden, *ImportAchievementsTooManyRequests, *ImportAchievementsInternalServerError, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewImportAchievementsParams()
@@ -928,25 +933,28 @@ func (a *Client) ImportAchievements(params *ImportAchievementsParams, authInfo r
 		Client:             params.HTTPClient,
 	})
 	if err != nil {
-		return nil, nil, nil, nil, err
+		return nil, nil, nil, nil, nil, err
 	}
 
 	switch v := result.(type) {
 
 	case *ImportAchievementsOK:
-		return v, nil, nil, nil, nil
+		return v, nil, nil, nil, nil, nil
 
 	case *ImportAchievementsUnauthorized:
-		return nil, v, nil, nil, nil
+		return nil, v, nil, nil, nil, nil
 
 	case *ImportAchievementsForbidden:
-		return nil, nil, v, nil, nil
+		return nil, nil, v, nil, nil, nil
+
+	case *ImportAchievementsTooManyRequests:
+		return nil, nil, nil, v, nil, nil
 
 	case *ImportAchievementsInternalServerError:
-		return nil, nil, nil, v, nil
+		return nil, nil, nil, nil, v, nil
 
 	default:
-		return nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+		return nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
@@ -1002,6 +1010,8 @@ func (a *Client) ImportAchievementsShort(params *ImportAchievementsParams, authI
 	case *ImportAchievementsUnauthorized:
 		return nil, v
 	case *ImportAchievementsForbidden:
+		return nil, v
+	case *ImportAchievementsTooManyRequests:
 		return nil, v
 	case *ImportAchievementsInternalServerError:
 		return nil, v

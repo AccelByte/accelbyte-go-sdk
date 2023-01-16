@@ -31,6 +31,10 @@ type ModelUserInvitationV3 struct {
 	// id
 	ID string `json:"id,omitempty"`
 
+	// namespace
+	// Required: true
+	Namespace *string `json:"namespace"`
+
 	// roles
 	// Required: true
 	Roles []*AccountcommonNamespaceRole `json:"roles"`
@@ -45,6 +49,10 @@ func (m *ModelUserInvitationV3) Validate(formats strfmt.Registry) error {
 	}
 
 	if err := m.validateExpiredAt(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateNamespace(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -74,6 +82,15 @@ func (m *ModelUserInvitationV3) validateExpiredAt(formats strfmt.Registry) error
 	}
 
 	if err := validate.FormatOf("expiredAt", "body", "date-time", m.ExpiredAt.String(), formats); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *ModelUserInvitationV3) validateNamespace(formats strfmt.Registry) error {
+
+	if err := validate.Required("namespace", "body", m.Namespace); err != nil {
 		return err
 	}
 

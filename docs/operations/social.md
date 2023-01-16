@@ -44,6 +44,9 @@
 | Endpoint | Method | ID | Class | Wrapper | Example |
 |---|---|---|---|---|---|
 | `/social/v1/admin/namespaces/{namespace}/globalstatitems` | GET | GetGlobalStatItemsShort | [GetGlobalStatItemsShort](../../social-sdk/pkg/socialclient/global_statistic/global_statistic_client.go) | [GetGlobalStatItemsShort](../../services-api/pkg/service/social/globalStatistic.go) | [GetGlobalStatItemsShort](../../samples/cli/cmd/social/globalStatistic/getGlobalStatItems.go) |
+| `/social/v1/admin/namespaces/{namespace}/globalstatitems/{statCode}` | GET | GetGlobalStatItemByStatCodeShort | [GetGlobalStatItemByStatCodeShort](../../social-sdk/pkg/socialclient/global_statistic/global_statistic_client.go) | [GetGlobalStatItemByStatCodeShort](../../services-api/pkg/service/social/globalStatistic.go) | [GetGlobalStatItemByStatCodeShort](../../samples/cli/cmd/social/globalStatistic/getGlobalStatItemByStatCode.go) |
+| `/social/v1/public/namespaces/{namespace}/globalstatitems` | GET | GetGlobalStatItems1Short | [GetGlobalStatItems1Short](../../social-sdk/pkg/socialclient/global_statistic/global_statistic_client.go) | [GetGlobalStatItems1Short](../../services-api/pkg/service/social/globalStatistic.go) | [GetGlobalStatItems1Short](../../samples/cli/cmd/social/globalStatistic/getGlobalStatItems1.go) |
+| `/social/v1/public/namespaces/{namespace}/globalstatitems/{statCode}` | GET | GetGlobalStatItemByStatCode1Short | [GetGlobalStatItemByStatCode1Short](../../social-sdk/pkg/socialclient/global_statistic/global_statistic_client.go) | [GetGlobalStatItemByStatCode1Short](../../services-api/pkg/service/social/globalStatistic.go) | [GetGlobalStatItemByStatCode1Short](../../samples/cli/cmd/social/globalStatistic/getGlobalStatItemByStatCode1.go) |
 
 ### UserStatistic Wrapper:  [UserStatistic](../../services-api/pkg/service/social/userStatistic.go)
 | Endpoint | Method | ID | Class | Wrapper | Example |

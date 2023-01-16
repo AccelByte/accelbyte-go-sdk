@@ -70,6 +70,9 @@ type ClientmodelClientCreationV3Request struct {
 	// valid time unit: SECONDS, MINUTES, HOURS or DAYS
 	OauthRefreshTokenExpirationTimeUnit string `json:"oauthRefreshTokenExpirationTimeUnit,omitempty"`
 
+	// parent namespace
+	ParentNamespace string `json:"parentNamespace,omitempty"`
+
 	// redirect Uri
 	// Required: true
 	RedirectURI *string `json:"redirectUri"`

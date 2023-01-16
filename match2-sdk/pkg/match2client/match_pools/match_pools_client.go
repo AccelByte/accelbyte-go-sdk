@@ -63,6 +63,19 @@ Each pool has its own matchmaking rules and/or logic.
 
 ticket_expiration_seconds and backfill_ticket_expiration_seconds will be set to 300 seconds (5 minutes) by default if not filled.
 
+Match Function holds information about the name of the match logic server that matchmaking can refers to. By default we provide (&#34;default&#34; and &#34;basic&#34;).
+Match Function will be used as reference value for Match Function Overrides if not set.
+In case Customer would like to use matchmaking service default match logic, then specify it in &#34;match_function_overrides&#34;.
+This sample configuration will let matchmaking service will use &#34;default&#34; match logic for make matches, while validation will hit both &#34;default&#34; and &#34;custom&#34; match logics.
+e.g.
+{
+	&#34;match_function&#34;: &#34;custom&#34;,
+	&#34;match_function_overrides&#34;: {
+		&#34;validation&#34;: []{&#34;default&#34;,&#34;custom&#34;},
+		&#34;make_matches&#34;: &#34;default&#34;,
+	}
+}
+
 */
 func (a *Client) CreateMatchPool(params *CreateMatchPoolParams, authInfo runtime.ClientAuthInfoWriter) (*CreateMatchPoolCreated, *CreateMatchPoolBadRequest, *CreateMatchPoolUnauthorized, *CreateMatchPoolForbidden, *CreateMatchPoolConflict, *CreateMatchPoolInternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -133,6 +146,19 @@ A pool is isolated from other pools (i.e. tickets may be matched with other tick
 Each pool has its own matchmaking rules and/or logic.
 
 ticket_expiration_seconds and backfill_ticket_expiration_seconds will be set to 300 seconds (5 minutes) by default if not filled.
+
+Match Function holds information about the name of the match logic server that matchmaking can refers to. By default we provide (&#34;default&#34; and &#34;basic&#34;).
+Match Function will be used as reference value for Match Function Overrides if not set.
+In case Customer would like to use matchmaking service default match logic, then specify it in &#34;match_function_overrides&#34;.
+This sample configuration will let matchmaking service will use &#34;default&#34; match logic for make matches, while validation will hit both &#34;default&#34; and &#34;custom&#34; match logics.
+e.g.
+{
+	&#34;match_function&#34;: &#34;custom&#34;,
+	&#34;match_function_overrides&#34;: {
+		&#34;validation&#34;: []{&#34;default&#34;,&#34;custom&#34;},
+		&#34;make_matches&#34;: &#34;default&#34;,
+	}
+}
 
 */
 func (a *Client) CreateMatchPoolShort(params *CreateMatchPoolParams, authInfo runtime.ClientAuthInfoWriter) (*CreateMatchPoolCreated, error) {
@@ -561,6 +587,19 @@ Updates an existing matchmaking pool.
 
 ticket_expiration_seconds and backfill_ticket_expiration_seconds will be set to 300 seconds (5 minutes) by default if not filled.
 
+Match Function holds information about the name of the match logic server that matchmaking can refers to. By default we provide (&#34;default&#34; and &#34;basic&#34;).
+Match Function will be used as reference value for Match Function Overrides if not set.
+In case Customer would like to use matchmaking service default match logic, then specify it in &#34;match_function_overrides&#34;.
+This sample configuration will let matchmaking service will use &#34;default&#34; match logic for make matches, while validation will hit both &#34;default&#34; and &#34;custom&#34; match logics.
+e.g.
+{
+	&#34;match_function&#34;: &#34;custom&#34;,
+	&#34;match_function_overrides&#34;: {
+		&#34;validation&#34;: []{&#34;default&#34;,&#34;custom&#34;},
+		&#34;make_matches&#34;: &#34;default&#34;,
+	}
+}
+
 */
 func (a *Client) UpdateMatchPool(params *UpdateMatchPoolParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateMatchPoolOK, *UpdateMatchPoolBadRequest, *UpdateMatchPoolUnauthorized, *UpdateMatchPoolForbidden, *UpdateMatchPoolNotFound, *UpdateMatchPoolInternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -628,6 +667,19 @@ Required Scope: social
 Updates an existing matchmaking pool.
 
 ticket_expiration_seconds and backfill_ticket_expiration_seconds will be set to 300 seconds (5 minutes) by default if not filled.
+
+Match Function holds information about the name of the match logic server that matchmaking can refers to. By default we provide (&#34;default&#34; and &#34;basic&#34;).
+Match Function will be used as reference value for Match Function Overrides if not set.
+In case Customer would like to use matchmaking service default match logic, then specify it in &#34;match_function_overrides&#34;.
+This sample configuration will let matchmaking service will use &#34;default&#34; match logic for make matches, while validation will hit both &#34;default&#34; and &#34;custom&#34; match logics.
+e.g.
+{
+	&#34;match_function&#34;: &#34;custom&#34;,
+	&#34;match_function_overrides&#34;: {
+		&#34;validation&#34;: []{&#34;default&#34;,&#34;custom&#34;},
+		&#34;make_matches&#34;: &#34;default&#34;,
+	}
+}
 
 */
 func (a *Client) UpdateMatchPoolShort(params *UpdateMatchPoolParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateMatchPoolOK, error) {

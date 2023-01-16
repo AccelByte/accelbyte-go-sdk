@@ -26,12 +26,16 @@ var GetActiveMatchmakingGameSessionsCmd = &cobra.Command{
 			TokenRepository: &repository.TokenRepositoryImpl{},
 		}
 		namespace, _ := cmd.Flags().GetString("namespace")
+		limit, _ := cmd.Flags().GetInt64("limit")
 		matchId, _ := cmd.Flags().GetString("matchId")
+		offset, _ := cmd.Flags().GetInt64("offset")
 		serverRegion, _ := cmd.Flags().GetString("serverRegion")
 		sessionId, _ := cmd.Flags().GetString("sessionId")
 		input := &session.GetActiveMatchmakingGameSessionsParams{
 			Namespace:    namespace,
+			Limit:        &limit,
 			MatchID:      &matchId,
+			Offset:       &offset,
 			ServerRegion: &serverRegion,
 			SessionID:    &sessionId,
 		}
@@ -51,7 +55,9 @@ var GetActiveMatchmakingGameSessionsCmd = &cobra.Command{
 func init() {
 	GetActiveMatchmakingGameSessionsCmd.Flags().String("namespace", "", "Namespace")
 	_ = GetActiveMatchmakingGameSessionsCmd.MarkFlagRequired("namespace")
+	GetActiveMatchmakingGameSessionsCmd.Flags().Int64("limit", 20, "Limit")
 	GetActiveMatchmakingGameSessionsCmd.Flags().String("matchId", "", "Match id")
+	GetActiveMatchmakingGameSessionsCmd.Flags().Int64("offset", 0, "Offset")
 	GetActiveMatchmakingGameSessionsCmd.Flags().String("serverRegion", "", "Server region")
 	GetActiveMatchmakingGameSessionsCmd.Flags().String("sessionId", "", "Session id")
 }

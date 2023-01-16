@@ -17,6 +17,10 @@ import (
 // swagger:model models.CreateContentRequest
 type ModelsCreateContentRequest struct {
 
+	// custom attributes
+	// Required: true
+	CustomAttributes interface{} `json:"customAttributes"`
+
 	// name
 	// Required: true
 	Name *string `json:"name"`
@@ -50,6 +54,10 @@ type ModelsCreateContentRequest struct {
 func (m *ModelsCreateContentRequest) Validate(formats strfmt.Registry) error {
 	var res []error
 
+	if err := m.validateCustomAttributes(formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.validateName(formats); err != nil {
 		res = append(res, err)
 	}
@@ -81,6 +89,15 @@ func (m *ModelsCreateContentRequest) Validate(formats strfmt.Registry) error {
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
+	return nil
+}
+
+func (m *ModelsCreateContentRequest) validateCustomAttributes(formats strfmt.Registry) error {
+
+	if err := validate.Required("customAttributes", "body", m.CustomAttributes); err != nil {
+		return err
+	}
+
 	return nil
 }
 

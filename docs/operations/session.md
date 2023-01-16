@@ -86,5 +86,6 @@
 | `apimodels.UpdatePartyRequest` | [ApimodelsUpdatePartyRequest ](../../session-sdk/pkg/sessionclientmodels/apimodels_update_party_request.go) |
 | `apimodels.UserResponse` | [ApimodelsUserResponse ](../../session-sdk/pkg/sessionclientmodels/apimodels_user_response.go) |
 | `models.GameServer` | [ModelsGameServer ](../../session-sdk/pkg/sessionclientmodels/models_game_server.go) |
+| `models.PartyMembers` | [ModelsPartyMembers ](../../session-sdk/pkg/sessionclientmodels/models_party_members.go) |
 | `models.Team` | [ModelsTeam ](../../session-sdk/pkg/sessionclientmodels/models_team.go) |
 | `response.Error` | [ResponseError ](../../session-sdk/pkg/sessionclientmodels/response_error.go) |

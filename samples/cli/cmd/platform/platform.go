@@ -30,9 +30,12 @@ import (
 	"github.com/AccelByte/sample-apps/cmd/platform/paymentDedicated"
 	"github.com/AccelByte/sample-apps/cmd/platform/paymentStation"
 	"github.com/AccelByte/sample-apps/cmd/platform/reward"
+	"github.com/AccelByte/sample-apps/cmd/platform/section"
+	"github.com/AccelByte/sample-apps/cmd/platform/servicePluginConfig"
 	"github.com/AccelByte/sample-apps/cmd/platform/store"
 	"github.com/AccelByte/sample-apps/cmd/platform/subscription"
 	"github.com/AccelByte/sample-apps/cmd/platform/ticket"
+	"github.com/AccelByte/sample-apps/cmd/platform/view"
 	"github.com/AccelByte/sample-apps/cmd/platform/wallet"
 	"github.com/spf13/cobra"
 )
@@ -78,6 +81,9 @@ func init() {
 	PlatformCmd.AddCommand(campaign.GetCodeCmd)
 	PlatformCmd.AddCommand(campaign.DisableCodeCmd)
 	PlatformCmd.AddCommand(campaign.EnableCodeCmd)
+	PlatformCmd.AddCommand(servicePluginConfig.GetServicePluginConfigCmd)
+	PlatformCmd.AddCommand(servicePluginConfig.UpdateServicePluginConfigCmd)
+	PlatformCmd.AddCommand(servicePluginConfig.DeleteServicePluginConfigCmd)
 	PlatformCmd.AddCommand(currency.ListCurrenciesCmd)
 	PlatformCmd.AddCommand(currency.CreateCurrencyCmd)
 	PlatformCmd.AddCommand(currency.UpdateCurrencyCmd)
@@ -187,6 +193,12 @@ func init() {
 	PlatformCmd.AddCommand(reward.DeleteRewardCmd)
 	PlatformCmd.AddCommand(reward.CheckEventConditionCmd)
 	PlatformCmd.AddCommand(reward.DeleteRewardConditionRecordCmd)
+	PlatformCmd.AddCommand(section.QuerySectionsCmd)
+	PlatformCmd.AddCommand(section.CreateSectionCmd)
+	PlatformCmd.AddCommand(section.PurgeExpiredSectionCmd)
+	PlatformCmd.AddCommand(section.GetSectionCmd)
+	PlatformCmd.AddCommand(section.UpdateSectionCmd)
+	PlatformCmd.AddCommand(section.DeleteSectionCmd)
 	PlatformCmd.AddCommand(store.ListStoresCmd)
 	PlatformCmd.AddCommand(store.CreateStoreCmd)
 	PlatformCmd.AddCommand(store.ImportStoreCmd)
@@ -287,6 +299,11 @@ func init() {
 	PlatformCmd.AddCommand(wallet.DisableUserWalletCmd)
 	PlatformCmd.AddCommand(wallet.EnableUserWalletCmd)
 	PlatformCmd.AddCommand(wallet.ListUserWalletTransactionsCmd)
+	PlatformCmd.AddCommand(view.ListViewsCmd)
+	PlatformCmd.AddCommand(view.CreateViewCmd)
+	PlatformCmd.AddCommand(view.GetViewCmd)
+	PlatformCmd.AddCommand(view.UpdateViewCmd)
+	PlatformCmd.AddCommand(view.DeleteViewCmd)
 	PlatformCmd.AddCommand(wallet.QueryWalletsCmd)
 	PlatformCmd.AddCommand(wallet.GetWalletCmd)
 	PlatformCmd.AddCommand(orderDedicated.SyncOrdersCmd)
@@ -395,6 +412,7 @@ func init() {
 	PlatformCmd.AddCommand(order.PublicDownloadUserOrderReceiptCmd)
 	PlatformCmd.AddCommand(paymentAccount.PublicGetPaymentAccountsCmd)
 	PlatformCmd.AddCommand(paymentAccount.PublicDeletePaymentAccountCmd)
+	PlatformCmd.AddCommand(section.PublicListActiveSectionsCmd)
 	PlatformCmd.AddCommand(subscription.PublicQueryUserSubscriptionsCmd)
 	PlatformCmd.AddCommand(subscription.PublicSubscribeSubscriptionCmd)
 	PlatformCmd.AddCommand(subscription.PublicCheckUserSubscriptionSubscribableByItemIdCmd)
@@ -402,6 +420,7 @@ func init() {
 	PlatformCmd.AddCommand(subscription.PublicChangeSubscriptionBillingAccountCmd)
 	PlatformCmd.AddCommand(subscription.PublicCancelSubscriptionCmd)
 	PlatformCmd.AddCommand(subscription.PublicGetUserSubscriptionBillingHistoriesCmd)
+	PlatformCmd.AddCommand(view.PublicListViewsCmd)
 	PlatformCmd.AddCommand(wallet.PublicGetWalletCmd)
 	PlatformCmd.AddCommand(wallet.PublicListUserWalletTransactionsCmd)
 	PlatformCmd.AddCommand(item.QueryItems1Cmd)

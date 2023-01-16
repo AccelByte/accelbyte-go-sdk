@@ -98,6 +98,13 @@
 | `/platform/public/namespaces/{namespace}/categories/{categoryPath}/children` | GET | PublicGetChildCategoriesShort | [PublicGetChildCategoriesShort](../../platform-sdk/pkg/platformclient/category/category_client.go) | [PublicGetChildCategoriesShort](../../services-api/pkg/service/platform/category.go) | [PublicGetChildCategoriesShort](../../samples/cli/cmd/platform/category/publicGetChildCategories.go) |
 | `/platform/public/namespaces/{namespace}/categories/{categoryPath}/descendants` | GET | PublicGetDescendantCategoriesShort | [PublicGetDescendantCategoriesShort](../../platform-sdk/pkg/platformclient/category/category_client.go) | [PublicGetDescendantCategoriesShort](../../services-api/pkg/service/platform/category.go) | [PublicGetDescendantCategoriesShort](../../samples/cli/cmd/platform/category/publicGetDescendantCategories.go) |
 
+### ServicePluginConfig Wrapper:  [ServicePluginConfig](../../services-api/pkg/service/platform/servicePluginConfig.go)
+| Endpoint | Method | ID | Class | Wrapper | Example |
+|---|---|---|---|---|---|
+| `/platform/admin/namespaces/{namespace}/configs/servicePlugin` | GET | GetServicePluginConfigShort | [GetServicePluginConfigShort](../../platform-sdk/pkg/platformclient/service_plugin_config/service_plugin_config_client.go) | [GetServicePluginConfigShort](../../services-api/pkg/service/platform/servicePluginConfig.go) | [GetServicePluginConfigShort](../../samples/cli/cmd/platform/servicePluginConfig/getServicePluginConfig.go) |
+| `/platform/admin/namespaces/{namespace}/configs/servicePlugin` | PUT | UpdateServicePluginConfigShort | [UpdateServicePluginConfigShort](../../platform-sdk/pkg/platformclient/service_plugin_config/service_plugin_config_client.go) | [UpdateServicePluginConfigShort](../../services-api/pkg/service/platform/servicePluginConfig.go) | [UpdateServicePluginConfigShort](../../samples/cli/cmd/platform/servicePluginConfig/updateServicePluginConfig.go) |
+| `/platform/admin/namespaces/{namespace}/configs/servicePlugin` | DELETE | DeleteServicePluginConfigShort | [DeleteServicePluginConfigShort](../../platform-sdk/pkg/platformclient/service_plugin_config/service_plugin_config_client.go) | [DeleteServicePluginConfigShort](../../services-api/pkg/service/platform/servicePluginConfig.go) | [DeleteServicePluginConfigShort](../../samples/cli/cmd/platform/servicePluginConfig/deleteServicePluginConfig.go) |
+
 ### Currency Wrapper:  [Currency](../../services-api/pkg/service/platform/currency.go)
 | Endpoint | Method | ID | Class | Wrapper | Example |
 |---|---|---|---|---|---|
@@ -330,6 +337,17 @@
 | `/platform/public/namespaces/{namespace}/rewards/byCriteria` | GET | QueryRewards1Short | [QueryRewards1Short](../../platform-sdk/pkg/platformclient/reward/reward_client.go) | [QueryRewards1Short](../../services-api/pkg/service/platform/reward.go) | [QueryRewards1Short](../../samples/cli/cmd/platform/reward/queryRewards1.go) |
 | `/platform/public/namespaces/{namespace}/rewards/{rewardId}` | GET | GetReward1Short | [GetReward1Short](../../platform-sdk/pkg/platformclient/reward/reward_client.go) | [GetReward1Short](../../services-api/pkg/service/platform/reward.go) | [GetReward1Short](../../samples/cli/cmd/platform/reward/getReward1.go) |
 
+### Section Wrapper:  [Section](../../services-api/pkg/service/platform/section.go)
+| Endpoint | Method | ID | Class | Wrapper | Example |
+|---|---|---|---|---|---|
+| `/platform/admin/namespaces/{namespace}/sections` | GET | QuerySectionsShort | [QuerySectionsShort](../../platform-sdk/pkg/platformclient/section/section_client.go) | [QuerySectionsShort](../../services-api/pkg/service/platform/section.go) | [QuerySectionsShort](../../samples/cli/cmd/platform/section/querySections.go) |
+| `/platform/admin/namespaces/{namespace}/sections` | POST | CreateSectionShort | [CreateSectionShort](../../platform-sdk/pkg/platformclient/section/section_client.go) | [CreateSectionShort](../../services-api/pkg/service/platform/section.go) | [CreateSectionShort](../../samples/cli/cmd/platform/section/createSection.go) |
+| `/platform/admin/namespaces/{namespace}/sections/purge/expired` | DELETE | PurgeExpiredSectionShort | [PurgeExpiredSectionShort](../../platform-sdk/pkg/platformclient/section/section_client.go) | [PurgeExpiredSectionShort](../../services-api/pkg/service/platform/section.go) | [PurgeExpiredSectionShort](../../samples/cli/cmd/platform/section/purgeExpiredSection.go) |
+| `/platform/admin/namespaces/{namespace}/sections/{sectionId}` | GET | GetSectionShort | [GetSectionShort](../../platform-sdk/pkg/platformclient/section/section_client.go) | [GetSectionShort](../../services-api/pkg/service/platform/section.go) | [GetSectionShort](../../samples/cli/cmd/platform/section/getSection.go) |
+| `/platform/admin/namespaces/{namespace}/sections/{sectionId}` | PUT | UpdateSectionShort | [UpdateSectionShort](../../platform-sdk/pkg/platformclient/section/section_client.go) | [UpdateSectionShort](../../services-api/pkg/service/platform/section.go) | [UpdateSectionShort](../../samples/cli/cmd/platform/section/updateSection.go) |
+| `/platform/admin/namespaces/{namespace}/sections/{sectionId}` | DELETE | DeleteSectionShort | [DeleteSectionShort](../../platform-sdk/pkg/platformclient/section/section_client.go) | [DeleteSectionShort](../../services-api/pkg/service/platform/section.go) | [DeleteSectionShort](../../samples/cli/cmd/platform/section/deleteSection.go) |
+| `/platform/public/namespaces/{namespace}/users/{userId}/sections` | GET | PublicListActiveSectionsShort | [PublicListActiveSectionsShort](../../platform-sdk/pkg/platformclient/section/section_client.go) | [PublicListActiveSectionsShort](../../services-api/pkg/service/platform/section.go) | [PublicListActiveSectionsShort](../../samples/cli/cmd/platform/section/publicListActiveSections.go) |
+
 ### Store Wrapper:  [Store](../../services-api/pkg/service/platform/store.go)
 | Endpoint | Method | ID | Class | Wrapper | Example |
 |---|---|---|---|---|---|
@@ -411,6 +429,16 @@
 | `/platform/admin/namespaces/{namespace}/users/{userId}/anonymization/payment` | DELETE | AnonymizePaymentShort | [AnonymizePaymentShort](../../platform-sdk/pkg/platformclient/anonymization/anonymization_client.go) | [AnonymizePaymentShort](../../services-api/pkg/service/platform/anonymization.go) | [AnonymizePaymentShort](../../samples/cli/cmd/platform/anonymization/anonymizePayment.go) |
 | `/platform/admin/namespaces/{namespace}/users/{userId}/anonymization/subscriptions` | DELETE | AnonymizeSubscriptionShort | [AnonymizeSubscriptionShort](../../platform-sdk/pkg/platformclient/anonymization/anonymization_client.go) | [AnonymizeSubscriptionShort](../../services-api/pkg/service/platform/anonymization.go) | [AnonymizeSubscriptionShort](../../samples/cli/cmd/platform/anonymization/anonymizeSubscription.go) |
 | `/platform/admin/namespaces/{namespace}/users/{userId}/anonymization/wallets` | DELETE | AnonymizeWalletShort | [AnonymizeWalletShort](../../platform-sdk/pkg/platformclient/anonymization/anonymization_client.go) | [AnonymizeWalletShort](../../services-api/pkg/service/platform/anonymization.go) | [AnonymizeWalletShort](../../samples/cli/cmd/platform/anonymization/anonymizeWallet.go) |
+
+### View Wrapper:  [View](../../services-api/pkg/service/platform/view.go)
+| Endpoint | Method | ID | Class | Wrapper | Example |
+|---|---|---|---|---|---|
+| `/platform/admin/namespaces/{namespace}/views` | GET | ListViewsShort | [ListViewsShort](../../platform-sdk/pkg/platformclient/view/view_client.go) | [ListViewsShort](../../services-api/pkg/service/platform/view.go) | [ListViewsShort](../../samples/cli/cmd/platform/view/listViews.go) |
+| `/platform/admin/namespaces/{namespace}/views` | POST | CreateViewShort | [CreateViewShort](../../platform-sdk/pkg/platformclient/view/view_client.go) | [CreateViewShort](../../services-api/pkg/service/platform/view.go) | [CreateViewShort](../../samples/cli/cmd/platform/view/createView.go) |
+| `/platform/admin/namespaces/{namespace}/views/{viewId}` | GET | GetViewShort | [GetViewShort](../../platform-sdk/pkg/platformclient/view/view_client.go) | [GetViewShort](../../services-api/pkg/service/platform/view.go) | [GetViewShort](../../samples/cli/cmd/platform/view/getView.go) |
+| `/platform/admin/namespaces/{namespace}/views/{viewId}` | PUT | UpdateViewShort | [UpdateViewShort](../../platform-sdk/pkg/platformclient/view/view_client.go) | [UpdateViewShort](../../services-api/pkg/service/platform/view.go) | [UpdateViewShort](../../samples/cli/cmd/platform/view/updateView.go) |
+| `/platform/admin/namespaces/{namespace}/views/{viewId}` | DELETE | DeleteViewShort | [DeleteViewShort](../../platform-sdk/pkg/platformclient/view/view_client.go) | [DeleteViewShort](../../services-api/pkg/service/platform/view.go) | [DeleteViewShort](../../samples/cli/cmd/platform/view/deleteView.go) |
+| `/platform/public/namespaces/{namespace}/users/{userId}/views` | GET | PublicListViewsShort | [PublicListViewsShort](../../platform-sdk/pkg/platformclient/view/view_client.go) | [PublicListViewsShort](../../services-api/pkg/service/platform/view.go) | [PublicListViewsShort](../../samples/cli/cmd/platform/view/publicListViews.go) |
 
 ### Order(Dedicated) Wrapper:  [OrderDedicated](../../services-api/pkg/service/platform/orderDedicated.go)
 | Endpoint | Method | ID | Class | Wrapper | Example |
@@ -567,6 +595,7 @@
 | `ExtensionFulfillmentSummary` | [ExtensionFulfillmentSummary ](../../platform-sdk/pkg/platformclientmodels/extension_fulfillment_summary.go) |
 | `ExternalPaymentOrderCreate` | [ExternalPaymentOrderCreate ](../../platform-sdk/pkg/platformclientmodels/external_payment_order_create.go) |
 | `FieldValidationError` | [FieldValidationError ](../../platform-sdk/pkg/platformclientmodels/field_validation_error.go) |
+| `FixedPeriodRotationConfig` | [FixedPeriodRotationConfig ](../../platform-sdk/pkg/platformclientmodels/fixed_period_rotation_config.go) |
 | `FulfillCodeRequest` | [FulfillCodeRequest ](../../platform-sdk/pkg/platformclientmodels/fulfill_code_request.go) |
 | `FulfillmentError` | [FulfillmentError ](../../platform-sdk/pkg/platformclientmodels/fulfillment_error.go) |
 | `FulfillmentHistoryInfo` | [FulfillmentHistoryInfo ](../../platform-sdk/pkg/platformclientmodels/fulfillment_history_info.go) |
@@ -584,6 +613,8 @@
 | `FullCategoryInfo` | [FullCategoryInfo ](../../platform-sdk/pkg/platformclientmodels/full_category_info.go) |
 | `FullItemInfo` | [FullItemInfo ](../../platform-sdk/pkg/platformclientmodels/full_item_info.go) |
 | `FullItemPagingSlicedResult` | [FullItemPagingSlicedResult ](../../platform-sdk/pkg/platformclientmodels/full_item_paging_sliced_result.go) |
+| `FullSectionInfo` | [FullSectionInfo ](../../platform-sdk/pkg/platformclientmodels/full_section_info.go) |
+| `FullViewInfo` | [FullViewInfo ](../../platform-sdk/pkg/platformclientmodels/full_view_info.go) |
 | `GoogleIAPConfigInfo` | [GoogleIAPConfigInfo ](../../platform-sdk/pkg/platformclientmodels/google_i_a_p_config_info.go) |
 | `GoogleIAPConfigRequest` | [GoogleIAPConfigRequest ](../../platform-sdk/pkg/platformclientmodels/google_i_a_p_config_request.go) |
 | `GoogleIAPReceipt` | [GoogleIAPReceipt ](../../platform-sdk/pkg/platformclientmodels/google_i_a_p_receipt.go) |
@@ -611,6 +642,7 @@
 | `ItemDynamicDataInfo` | [ItemDynamicDataInfo ](../../platform-sdk/pkg/platformclientmodels/item_dynamic_data_info.go) |
 | `ItemId` | [ItemId ](../../platform-sdk/pkg/platformclientmodels/item_id.go) |
 | `ItemInfo` | [ItemInfo ](../../platform-sdk/pkg/platformclientmodels/item_info.go) |
+| `ItemNaming` | [ItemNaming ](../../platform-sdk/pkg/platformclientmodels/item_naming.go) |
 | `ItemPagingSlicedResult` | [ItemPagingSlicedResult ](../../platform-sdk/pkg/platformclientmodels/item_paging_sliced_result.go) |
 | `ItemPurchaseConditionValidateRequest` | [ItemPurchaseConditionValidateRequest ](../../platform-sdk/pkg/platformclientmodels/item_purchase_condition_validate_request.go) |
 | `ItemPurchaseConditionValidateResult` | [ItemPurchaseConditionValidateResult ](../../platform-sdk/pkg/platformclientmodels/item_purchase_condition_validate_result.go) |
@@ -627,6 +659,7 @@
 | `KeyGroupUpdate` | [KeyGroupUpdate ](../../platform-sdk/pkg/platformclientmodels/key_group_update.go) |
 | `KeyInfo` | [KeyInfo ](../../platform-sdk/pkg/platformclientmodels/key_info.go) |
 | `KeyPagingSliceResult` | [KeyPagingSliceResult ](../../platform-sdk/pkg/platformclientmodels/key_paging_slice_result.go) |
+| `ListViewInfo` | [ListViewInfo ](../../platform-sdk/pkg/platformclientmodels/list_view_info.go) |
 | `Localization` | [Localization ](../../platform-sdk/pkg/platformclientmodels/localization.go) |
 | `LootBoxConfig` | [LootBoxConfig ](../../platform-sdk/pkg/platformclientmodels/loot_box_config.go) |
 | `LootBoxReward` | [LootBoxReward ](../../platform-sdk/pkg/platformclientmodels/loot_box_reward.go) |
@@ -720,6 +753,13 @@
 | `RewardPagingSlicedResult` | [RewardPagingSlicedResult ](../../platform-sdk/pkg/platformclientmodels/reward_paging_sliced_result.go) |
 | `RewardUpdate` | [RewardUpdate ](../../platform-sdk/pkg/platformclientmodels/reward_update.go) |
 | `RewardsRequest` | [RewardsRequest ](../../platform-sdk/pkg/platformclientmodels/rewards_request.go) |
+| `SectionCreate` | [SectionCreate ](../../platform-sdk/pkg/platformclientmodels/section_create.go) |
+| `SectionInfo` | [SectionInfo ](../../platform-sdk/pkg/platformclientmodels/section_info.go) |
+| `SectionItem` | [SectionItem ](../../platform-sdk/pkg/platformclientmodels/section_item.go) |
+| `SectionPagingSlicedResult` | [SectionPagingSlicedResult ](../../platform-sdk/pkg/platformclientmodels/section_paging_sliced_result.go) |
+| `SectionUpdate` | [SectionUpdate ](../../platform-sdk/pkg/platformclientmodels/section_update.go) |
+| `ServicePluginConfigInfo` | [ServicePluginConfigInfo ](../../platform-sdk/pkg/platformclientmodels/service_plugin_config_info.go) |
+| `ServicePluginConfigUpdate` | [ServicePluginConfigUpdate ](../../platform-sdk/pkg/platformclientmodels/service_plugin_config_update.go) |
 | `Slide` | [Slide ](../../platform-sdk/pkg/platformclientmodels/slide.go) |
 | `StackableEntitlementInfo` | [StackableEntitlementInfo ](../../platform-sdk/pkg/platformclientmodels/stackable_entitlement_info.go) |
 | `StadiaIAPConfigInfo` | [StadiaIAPConfigInfo ](../../platform-sdk/pkg/platformclientmodels/stadia_i_a_p_config_info.go) |
@@ -760,6 +800,9 @@
 | `TwitchSyncRequest` | [TwitchSyncRequest ](../../platform-sdk/pkg/platformclientmodels/twitch_sync_request.go) |
 | `UserDLC` | [UserDLC ](../../platform-sdk/pkg/platformclientmodels/user_d_l_c.go) |
 | `ValidationErrorEntity` | [ValidationErrorEntity ](../../platform-sdk/pkg/platformclientmodels/validation_error_entity.go) |
+| `ViewCreate` | [ViewCreate ](../../platform-sdk/pkg/platformclientmodels/view_create.go) |
+| `ViewInfo` | [ViewInfo ](../../platform-sdk/pkg/platformclientmodels/view_info.go) |
+| `ViewUpdate` | [ViewUpdate ](../../platform-sdk/pkg/platformclientmodels/view_update.go) |
 | `WalletInfo` | [WalletInfo ](../../platform-sdk/pkg/platformclientmodels/wallet_info.go) |
 | `WalletPagingSlicedResult` | [WalletPagingSlicedResult ](../../platform-sdk/pkg/platformclientmodels/wallet_paging_sliced_result.go) |
 | `WalletTransactionInfo` | [WalletTransactionInfo ](../../platform-sdk/pkg/platformclientmodels/wallet_transaction_info.go) |

@@ -39,6 +39,7 @@ var AdminQueryGameSessionsCmd = &cobra.Command{
 		orderBy, _ := cmd.Flags().GetString("orderBy")
 		sessionID, _ := cmd.Flags().GetString("sessionID")
 		status, _ := cmd.Flags().GetString("status")
+		statusV2, _ := cmd.Flags().GetString("statusV2")
 		toTime, _ := cmd.Flags().GetString("toTime")
 		input := &game_session.AdminQueryGameSessionsParams{
 			Namespace:         namespace,
@@ -55,6 +56,7 @@ var AdminQueryGameSessionsCmd = &cobra.Command{
 			OrderBy:           &orderBy,
 			SessionID:         &sessionID,
 			Status:            &status,
+			StatusV2:          &statusV2,
 			ToTime:            &toTime,
 		}
 		ok, err := gameSessionService.AdminQueryGameSessionsShort(input)
@@ -86,5 +88,6 @@ func init() {
 	AdminQueryGameSessionsCmd.Flags().String("orderBy", "", "Order by")
 	AdminQueryGameSessionsCmd.Flags().String("sessionID", "", "Session ID")
 	AdminQueryGameSessionsCmd.Flags().String("status", "", "Status")
+	AdminQueryGameSessionsCmd.Flags().String("statusV2", "", "Status V2")
 	AdminQueryGameSessionsCmd.Flags().String("toTime", "", "To time")
 }

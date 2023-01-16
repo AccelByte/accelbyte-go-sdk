@@ -62,7 +62,7 @@ type FullSectionInfo struct {
 	Namespace *string `json:"namespace"`
 
 	// rotation type, default is NONE
-	// Enum: [FIXED_PERIOD NONE]
+	// Enum: [CUSTOM FIXED_PERIOD NONE]
 	RotationType string `json:"rotationType,omitempty"`
 
 	// id
@@ -82,6 +82,10 @@ type FullSectionInfo struct {
 	// view id
 	// Required: true
 	ViewID *string `json:"viewId"`
+
+	// view name
+	// Required: true
+	ViewName *string `json:"viewName"`
 }
 
 // Validate validates this full section info
@@ -141,6 +145,10 @@ func (m *FullSectionInfo) Validate(formats strfmt.Registry) error {
 	}
 
 	if err := m.validateViewID(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateViewName(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -293,7 +301,7 @@ var fullSectionInfoTypeRotationTypePropEnum []interface{}
 
 func init() {
 	var res []string
-	if err := json.Unmarshal([]byte(`["FIXED_PERIOD","NONE"]`), &res); err != nil {
+	if err := json.Unmarshal([]byte(`["CUSTOM","FIXED_PERIOD","NONE"]`), &res); err != nil {
 		panic(err)
 	}
 	for _, v := range res {
@@ -302,6 +310,9 @@ func init() {
 }
 
 const (
+
+	// FullSectionInfoRotationTypeCUSTOM captures enum value "CUSTOM"
+	FullSectionInfoRotationTypeCUSTOM string = "CUSTOM"
 
 	// FullSectionInfoRotationTypeFIXEDPERIOD captures enum value "FIXED_PERIOD"
 	FullSectionInfoRotationTypeFIXEDPERIOD string = "FIXED_PERIOD"
@@ -370,6 +381,15 @@ func (m *FullSectionInfo) validateUpdatedAt(formats strfmt.Registry) error {
 func (m *FullSectionInfo) validateViewID(formats strfmt.Registry) error {
 
 	if err := validate.Required("viewId", "body", m.ViewID); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *FullSectionInfo) validateViewName(formats strfmt.Registry) error {
+
+	if err := validate.Required("viewName", "body", m.ViewName); err != nil {
 		return err
 	}
 

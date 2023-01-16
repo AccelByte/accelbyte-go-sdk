@@ -28,10 +28,12 @@ var GetGlobalStatItemsCmd = &cobra.Command{
 		namespace, _ := cmd.Flags().GetString("namespace")
 		limit, _ := cmd.Flags().GetInt32("limit")
 		offset, _ := cmd.Flags().GetInt32("offset")
+		statCodes, _ := cmd.Flags().GetString("statCodes")
 		input := &global_statistic.GetGlobalStatItemsParams{
 			Namespace: namespace,
 			Limit:     &limit,
 			Offset:    &offset,
+			StatCodes: &statCodes,
 		}
 		ok, err := globalStatisticService.GetGlobalStatItemsShort(input)
 		if err != nil {
@@ -51,4 +53,5 @@ func init() {
 	_ = GetGlobalStatItemsCmd.MarkFlagRequired("namespace")
 	GetGlobalStatItemsCmd.Flags().Int32("limit", 20, "Limit")
 	GetGlobalStatItemsCmd.Flags().Int32("offset", 0, "Offset")
+	GetGlobalStatItemsCmd.Flags().String("statCodes", "", "Stat codes")
 }

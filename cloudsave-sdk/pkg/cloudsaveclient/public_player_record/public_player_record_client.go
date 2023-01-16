@@ -33,6 +33,8 @@ type Client struct {
 
 // ClientService is the interface for Client methods
 type ClientService interface {
+	RetrievePlayerRecords(params *RetrievePlayerRecordsParams, authInfo runtime.ClientAuthInfoWriter) (*RetrievePlayerRecordsOK, *RetrievePlayerRecordsBadRequest, *RetrievePlayerRecordsUnauthorized, *RetrievePlayerRecordsInternalServerError, error)
+	RetrievePlayerRecordsShort(params *RetrievePlayerRecordsParams, authInfo runtime.ClientAuthInfoWriter) (*RetrievePlayerRecordsOK, error)
 	BulkGetPlayerPublicRecordHandlerV1(params *BulkGetPlayerPublicRecordHandlerV1Params, authInfo runtime.ClientAuthInfoWriter) (*BulkGetPlayerPublicRecordHandlerV1OK, *BulkGetPlayerPublicRecordHandlerV1BadRequest, *BulkGetPlayerPublicRecordHandlerV1Unauthorized, *BulkGetPlayerPublicRecordHandlerV1Forbidden, *BulkGetPlayerPublicRecordHandlerV1InternalServerError, error)
 	BulkGetPlayerPublicRecordHandlerV1Short(params *BulkGetPlayerPublicRecordHandlerV1Params, authInfo runtime.ClientAuthInfoWriter) (*BulkGetPlayerPublicRecordHandlerV1OK, error)
 	DeletePlayerRecordHandlerV1(params *DeletePlayerRecordHandlerV1Params, authInfo runtime.ClientAuthInfoWriter) (*DeletePlayerRecordHandlerV1NoContent, *DeletePlayerRecordHandlerV1BadRequest, *DeletePlayerRecordHandlerV1Unauthorized, *DeletePlayerRecordHandlerV1Forbidden, *DeletePlayerRecordHandlerV1InternalServerError, error)
@@ -41,6 +43,8 @@ type ClientService interface {
 	GetPlayerPublicRecordHandlerV1Short(params *GetPlayerPublicRecordHandlerV1Params, authInfo runtime.ClientAuthInfoWriter) (*GetPlayerPublicRecordHandlerV1OK, error)
 	GetPlayerRecordHandlerV1(params *GetPlayerRecordHandlerV1Params, authInfo runtime.ClientAuthInfoWriter) (*GetPlayerRecordHandlerV1OK, *GetPlayerRecordHandlerV1Unauthorized, *GetPlayerRecordHandlerV1Forbidden, *GetPlayerRecordHandlerV1NotFound, *GetPlayerRecordHandlerV1InternalServerError, error)
 	GetPlayerRecordHandlerV1Short(params *GetPlayerRecordHandlerV1Params, authInfo runtime.ClientAuthInfoWriter) (*GetPlayerRecordHandlerV1OK, error)
+	GetPlayerRecordsBulkHandlerV1(params *GetPlayerRecordsBulkHandlerV1Params, authInfo runtime.ClientAuthInfoWriter) (*GetPlayerRecordsBulkHandlerV1OK, *GetPlayerRecordsBulkHandlerV1BadRequest, *GetPlayerRecordsBulkHandlerV1Unauthorized, *GetPlayerRecordsBulkHandlerV1Forbidden, *GetPlayerRecordsBulkHandlerV1InternalServerError, error)
+	GetPlayerRecordsBulkHandlerV1Short(params *GetPlayerRecordsBulkHandlerV1Params, authInfo runtime.ClientAuthInfoWriter) (*GetPlayerRecordsBulkHandlerV1OK, error)
 	PostPlayerPublicRecordHandlerV1(params *PostPlayerPublicRecordHandlerV1Params, authInfo runtime.ClientAuthInfoWriter) (*PostPlayerPublicRecordHandlerV1Created, *PostPlayerPublicRecordHandlerV1BadRequest, *PostPlayerPublicRecordHandlerV1Unauthorized, *PostPlayerPublicRecordHandlerV1InternalServerError, error)
 	PostPlayerPublicRecordHandlerV1Short(params *PostPlayerPublicRecordHandlerV1Params, authInfo runtime.ClientAuthInfoWriter) (*PostPlayerPublicRecordHandlerV1Created, error)
 	PostPlayerRecordHandlerV1(params *PostPlayerRecordHandlerV1Params, authInfo runtime.ClientAuthInfoWriter) (*PostPlayerRecordHandlerV1Created, *PostPlayerRecordHandlerV1BadRequest, *PostPlayerRecordHandlerV1Unauthorized, *PostPlayerRecordHandlerV1Forbidden, *PostPlayerRecordHandlerV1InternalServerError, error)
@@ -53,6 +57,123 @@ type ClientService interface {
 	PutPlayerRecordHandlerV1Short(params *PutPlayerRecordHandlerV1Params, authInfo runtime.ClientAuthInfoWriter) (*PutPlayerRecordHandlerV1OK, error)
 
 	SetTransport(transport runtime.ClientTransport)
+}
+
+/*
+Deprecated: Use RetrievePlayerRecordsShort instead.
+
+  RetrievePlayerRecords queries player records key
+
+  Required valid user token
+
+Required scope: &lt;code&gt;social&lt;/code&gt;
+
+Retrieve list of player records key under given namespace.
+*/
+func (a *Client) RetrievePlayerRecords(params *RetrievePlayerRecordsParams, authInfo runtime.ClientAuthInfoWriter) (*RetrievePlayerRecordsOK, *RetrievePlayerRecordsBadRequest, *RetrievePlayerRecordsUnauthorized, *RetrievePlayerRecordsInternalServerError, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewRetrievePlayerRecordsParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "RetrievePlayerRecords",
+		Method:             "GET",
+		PathPattern:        "/cloudsave/v1/namespaces/{namespace}/users/me/records",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &RetrievePlayerRecordsReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, nil, nil, nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *RetrievePlayerRecordsOK:
+		return v, nil, nil, nil, nil
+
+	case *RetrievePlayerRecordsBadRequest:
+		return nil, v, nil, nil, nil
+
+	case *RetrievePlayerRecordsUnauthorized:
+		return nil, nil, v, nil, nil
+
+	case *RetrievePlayerRecordsInternalServerError:
+		return nil, nil, nil, v, nil
+
+	default:
+		return nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+  RetrievePlayerRecordsShort queries player records key
+
+  Required valid user token
+
+Required scope: &lt;code&gt;social&lt;/code&gt;
+
+Retrieve list of player records key under given namespace.
+*/
+func (a *Client) RetrievePlayerRecordsShort(params *RetrievePlayerRecordsParams, authInfo runtime.ClientAuthInfoWriter) (*RetrievePlayerRecordsOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewRetrievePlayerRecordsParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "RetrievePlayerRecords",
+		Method:             "GET",
+		PathPattern:        "/cloudsave/v1/namespaces/{namespace}/users/me/records",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &RetrievePlayerRecordsReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *RetrievePlayerRecordsOK:
+		return v, nil
+	case *RetrievePlayerRecordsBadRequest:
+		return nil, v
+	case *RetrievePlayerRecordsUnauthorized:
+		return nil, v
+	case *RetrievePlayerRecordsInternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
 }
 
 /*
@@ -609,6 +730,132 @@ func (a *Client) GetPlayerRecordHandlerV1Short(params *GetPlayerRecordHandlerV1P
 	case *GetPlayerRecordHandlerV1NotFound:
 		return nil, v
 	case *GetPlayerRecordHandlerV1InternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+Deprecated: Use GetPlayerRecordsBulkHandlerV1Short instead.
+
+  GetPlayerRecordsBulkHandlerV1 gets player records bulk
+
+  Required valid user token
+
+Required scope: &lt;code&gt;social&lt;/code&gt;
+
+Retrieve player record key and payload in bulk under given namespace.
+
+Maximum bulk key limit per request 20
+*/
+func (a *Client) GetPlayerRecordsBulkHandlerV1(params *GetPlayerRecordsBulkHandlerV1Params, authInfo runtime.ClientAuthInfoWriter) (*GetPlayerRecordsBulkHandlerV1OK, *GetPlayerRecordsBulkHandlerV1BadRequest, *GetPlayerRecordsBulkHandlerV1Unauthorized, *GetPlayerRecordsBulkHandlerV1Forbidden, *GetPlayerRecordsBulkHandlerV1InternalServerError, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewGetPlayerRecordsBulkHandlerV1Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "getPlayerRecordsBulkHandlerV1",
+		Method:             "POST",
+		PathPattern:        "/cloudsave/v1/namespaces/{namespace}/users/me/records/bulk",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &GetPlayerRecordsBulkHandlerV1Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, nil, nil, nil, nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *GetPlayerRecordsBulkHandlerV1OK:
+		return v, nil, nil, nil, nil, nil
+
+	case *GetPlayerRecordsBulkHandlerV1BadRequest:
+		return nil, v, nil, nil, nil, nil
+
+	case *GetPlayerRecordsBulkHandlerV1Unauthorized:
+		return nil, nil, v, nil, nil, nil
+
+	case *GetPlayerRecordsBulkHandlerV1Forbidden:
+		return nil, nil, nil, v, nil, nil
+
+	case *GetPlayerRecordsBulkHandlerV1InternalServerError:
+		return nil, nil, nil, nil, v, nil
+
+	default:
+		return nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+  GetPlayerRecordsBulkHandlerV1Short gets player records bulk
+
+  Required valid user token
+
+Required scope: &lt;code&gt;social&lt;/code&gt;
+
+Retrieve player record key and payload in bulk under given namespace.
+
+Maximum bulk key limit per request 20
+*/
+func (a *Client) GetPlayerRecordsBulkHandlerV1Short(params *GetPlayerRecordsBulkHandlerV1Params, authInfo runtime.ClientAuthInfoWriter) (*GetPlayerRecordsBulkHandlerV1OK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewGetPlayerRecordsBulkHandlerV1Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "getPlayerRecordsBulkHandlerV1",
+		Method:             "POST",
+		PathPattern:        "/cloudsave/v1/namespaces/{namespace}/users/me/records/bulk",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &GetPlayerRecordsBulkHandlerV1Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *GetPlayerRecordsBulkHandlerV1OK:
+		return v, nil
+	case *GetPlayerRecordsBulkHandlerV1BadRequest:
+		return nil, v
+	case *GetPlayerRecordsBulkHandlerV1Unauthorized:
+		return nil, v
+	case *GetPlayerRecordsBulkHandlerV1Forbidden:
+		return nil, v
+	case *GetPlayerRecordsBulkHandlerV1InternalServerError:
 		return nil, v
 
 	default:

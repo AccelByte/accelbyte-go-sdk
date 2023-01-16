@@ -41,6 +41,8 @@ type ClientService interface {
 	AdminDownloadContentPreviewShort(params *AdminDownloadContentPreviewParams, authInfo runtime.ClientAuthInfoWriter) (*AdminDownloadContentPreviewOK, error)
 	AdminGetContent(params *AdminGetContentParams, authInfo runtime.ClientAuthInfoWriter) (*AdminGetContentOK, *AdminGetContentUnauthorized, *AdminGetContentNotFound, *AdminGetContentInternalServerError, error)
 	AdminGetContentShort(params *AdminGetContentParams, authInfo runtime.ClientAuthInfoWriter) (*AdminGetContentOK, error)
+	AdminGetContentBulk(params *AdminGetContentBulkParams, authInfo runtime.ClientAuthInfoWriter) (*AdminGetContentBulkOK, *AdminGetContentBulkUnauthorized, *AdminGetContentBulkForbidden, *AdminGetContentBulkInternalServerError, error)
+	AdminGetContentBulkShort(params *AdminGetContentBulkParams, authInfo runtime.ClientAuthInfoWriter) (*AdminGetContentBulkOK, error)
 	AdminGetSpecificContent(params *AdminGetSpecificContentParams, authInfo runtime.ClientAuthInfoWriter) (*AdminGetSpecificContentOK, *AdminGetSpecificContentUnauthorized, *AdminGetSpecificContentNotFound, *AdminGetSpecificContentInternalServerError, error)
 	AdminGetSpecificContentShort(params *AdminGetSpecificContentParams, authInfo runtime.ClientAuthInfoWriter) (*AdminGetSpecificContentOK, error)
 	AdminGetUserContentByShareCode(params *AdminGetUserContentByShareCodeParams, authInfo runtime.ClientAuthInfoWriter) (*AdminGetUserContentByShareCodeOK, *AdminGetUserContentByShareCodeUnauthorized, *AdminGetUserContentByShareCodeNotFound, *AdminGetUserContentByShareCodeInternalServerError, error)
@@ -511,6 +513,117 @@ func (a *Client) AdminGetContentShort(params *AdminGetContentParams, authInfo ru
 	case *AdminGetContentNotFound:
 		return nil, v
 	case *AdminGetContentInternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+Deprecated: Use AdminGetContentBulkShort instead.
+
+  AdminGetContentBulk bulks get content by content i ds
+
+  Required permission &lt;b&gt;ADMIN:NAMESPACE:{namespace}:USER:*:CONTENT [READ]&lt;/b&gt;.
+						Maximum contentId per request 100
+*/
+func (a *Client) AdminGetContentBulk(params *AdminGetContentBulkParams, authInfo runtime.ClientAuthInfoWriter) (*AdminGetContentBulkOK, *AdminGetContentBulkUnauthorized, *AdminGetContentBulkForbidden, *AdminGetContentBulkInternalServerError, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewAdminGetContentBulkParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "AdminGetContentBulk",
+		Method:             "POST",
+		PathPattern:        "/ugc/v1/admin/namespaces/{namespace}/contents/bulk",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &AdminGetContentBulkReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, nil, nil, nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *AdminGetContentBulkOK:
+		return v, nil, nil, nil, nil
+
+	case *AdminGetContentBulkUnauthorized:
+		return nil, v, nil, nil, nil
+
+	case *AdminGetContentBulkForbidden:
+		return nil, nil, v, nil, nil
+
+	case *AdminGetContentBulkInternalServerError:
+		return nil, nil, nil, v, nil
+
+	default:
+		return nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+  AdminGetContentBulkShort bulks get content by content i ds
+
+  Required permission &lt;b&gt;ADMIN:NAMESPACE:{namespace}:USER:*:CONTENT [READ]&lt;/b&gt;.
+						Maximum contentId per request 100
+*/
+func (a *Client) AdminGetContentBulkShort(params *AdminGetContentBulkParams, authInfo runtime.ClientAuthInfoWriter) (*AdminGetContentBulkOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewAdminGetContentBulkParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "AdminGetContentBulk",
+		Method:             "POST",
+		PathPattern:        "/ugc/v1/admin/namespaces/{namespace}/contents/bulk",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &AdminGetContentBulkReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *AdminGetContentBulkOK:
+		return v, nil
+	case *AdminGetContentBulkUnauthorized:
+		return nil, v
+	case *AdminGetContentBulkForbidden:
+		return nil, v
+	case *AdminGetContentBulkInternalServerError:
 		return nil, v
 
 	default:

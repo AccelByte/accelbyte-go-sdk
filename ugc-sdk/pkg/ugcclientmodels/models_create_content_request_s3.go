@@ -21,6 +21,10 @@ type ModelsCreateContentRequestS3 struct {
 	// Required: true
 	ContentType *string `json:"contentType"`
 
+	// custom attributes
+	// Required: true
+	CustomAttributes interface{} `json:"customAttributes"`
+
 	// file extension
 	// Required: true
 	FileExtension *string `json:"fileExtension"`
@@ -55,6 +59,10 @@ func (m *ModelsCreateContentRequestS3) Validate(formats strfmt.Registry) error {
 	var res []error
 
 	if err := m.validateContentType(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateCustomAttributes(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -95,6 +103,15 @@ func (m *ModelsCreateContentRequestS3) Validate(formats strfmt.Registry) error {
 func (m *ModelsCreateContentRequestS3) validateContentType(formats strfmt.Registry) error {
 
 	if err := validate.Required("contentType", "body", m.ContentType); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *ModelsCreateContentRequestS3) validateCustomAttributes(formats strfmt.Registry) error {
+
+	if err := validate.Required("customAttributes", "body", m.CustomAttributes); err != nil {
 		return err
 	}
 

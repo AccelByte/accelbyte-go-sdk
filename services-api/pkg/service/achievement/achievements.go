@@ -73,12 +73,15 @@ func (aaa *AchievementsService) AdminCreateNewAchievement(input *achievements.Ad
 	if err != nil {
 		return nil, err
 	}
-	created, badRequest, unauthorized, internalServerError, err := aaa.Client.Achievements.AdminCreateNewAchievement(input, client.BearerToken(*token.AccessToken))
+	created, badRequest, unauthorized, tooManyRequests, internalServerError, err := aaa.Client.Achievements.AdminCreateNewAchievement(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
 	if unauthorized != nil {
 		return nil, unauthorized
+	}
+	if tooManyRequests != nil {
+		return nil, tooManyRequests
 	}
 	if internalServerError != nil {
 		return nil, internalServerError
@@ -119,12 +122,15 @@ func (aaa *AchievementsService) ImportAchievements(input *achievements.ImportAch
 	if err != nil {
 		return nil, err
 	}
-	ok, unauthorized, forbidden, internalServerError, err := aaa.Client.Achievements.ImportAchievements(input, client.BearerToken(*token.AccessToken))
+	ok, unauthorized, forbidden, tooManyRequests, internalServerError, err := aaa.Client.Achievements.ImportAchievements(input, client.BearerToken(*token.AccessToken))
 	if unauthorized != nil {
 		return nil, unauthorized
 	}
 	if forbidden != nil {
 		return nil, forbidden
+	}
+	if tooManyRequests != nil {
+		return nil, tooManyRequests
 	}
 	if internalServerError != nil {
 		return nil, internalServerError

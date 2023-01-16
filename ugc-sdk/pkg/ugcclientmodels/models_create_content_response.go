@@ -34,6 +34,10 @@ type ModelsCreateContentResponse struct {
 	// Required: true
 	CreatorName *string `json:"creatorName"`
 
+	// custom attributes
+	// Required: true
+	CustomAttributes interface{} `json:"customAttributes"`
+
 	// file extension
 	// Required: true
 	FileExtension *string `json:"fileExtension"`
@@ -106,6 +110,10 @@ func (m *ModelsCreateContentResponse) Validate(formats strfmt.Registry) error {
 	}
 
 	if err := m.validateCreatorName(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateCustomAttributes(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -196,6 +204,15 @@ func (m *ModelsCreateContentResponse) validateCreatedTime(formats strfmt.Registr
 func (m *ModelsCreateContentResponse) validateCreatorName(formats strfmt.Registry) error {
 
 	if err := validate.Required("creatorName", "body", m.CreatorName); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *ModelsCreateContentResponse) validateCustomAttributes(formats strfmt.Registry) error {
+
+	if err := validate.Required("customAttributes", "body", m.CustomAttributes); err != nil {
 		return err
 	}
 

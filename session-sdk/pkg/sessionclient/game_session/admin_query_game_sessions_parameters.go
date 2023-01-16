@@ -158,6 +158,11 @@ type AdminQueryGameSessionsParams struct {
 
 	*/
 	Status *string
+	/*StatusV2
+	  game session status to filter. supported status: NEED_TO_REQUEST,REQUESTED,AVAILABLE,FAILED_TO_REQUEST,UNKNOWN,ENDED
+
+	*/
+	StatusV2 *string
 	/*ToTime
 	  end of game session creation time range in RFC 3339 format e.g. 2022-10-21T07:20:50Z
 
@@ -369,6 +374,17 @@ func (o *AdminQueryGameSessionsParams) WithStatus(status *string) *AdminQueryGam
 // SetStatus adds the status to the admin query game sessions params
 func (o *AdminQueryGameSessionsParams) SetStatus(status *string) {
 	o.Status = status
+}
+
+// WithStatusV2 adds the statusV2 to the admin query game sessions params
+func (o *AdminQueryGameSessionsParams) WithStatusV2(statusV2 *string) *AdminQueryGameSessionsParams {
+	o.SetStatusV2(statusV2)
+	return o
+}
+
+// SetStatusV2 adds the statusV2 to the admin query game sessions params
+func (o *AdminQueryGameSessionsParams) SetStatusV2(statusV2 *string) {
+	o.StatusV2 = statusV2
 }
 
 // WithToTime adds the toTime to the admin query game sessions params
@@ -597,6 +613,22 @@ func (o *AdminQueryGameSessionsParams) WriteToRequest(r runtime.ClientRequest, r
 		qStatus := qrStatus
 		if qStatus != "" {
 			if err := r.SetQueryParam("status", qStatus); err != nil {
+				return err
+			}
+		}
+
+	}
+
+	if o.StatusV2 != nil {
+
+		// query param statusV2
+		var qrStatusV2 string
+		if o.StatusV2 != nil {
+			qrStatusV2 = *o.StatusV2
+		}
+		qStatusV2 := qrStatusV2
+		if qStatusV2 != "" {
+			if err := r.SetQueryParam("statusV2", qStatusV2); err != nil {
 				return err
 			}
 		}

@@ -43,6 +43,7 @@ func init() {
 	UgcCmd.AddCommand(adminContent.SingleAdminUpdateContentDirectCmd)
 	UgcCmd.AddCommand(adminContent.SingleAdminDeleteContentCmd)
 	UgcCmd.AddCommand(adminContent.SingleAdminGetContentCmd)
+	UgcCmd.AddCommand(adminContent.AdminGetContentBulkCmd)
 	UgcCmd.AddCommand(adminContent.AdminSearchContentCmd)
 	UgcCmd.AddCommand(adminContent.AdminGetUserContentByShareCodeCmd)
 	UgcCmd.AddCommand(adminContent.AdminGetSpecificContentCmd)

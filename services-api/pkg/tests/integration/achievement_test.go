@@ -69,6 +69,11 @@ func TestIntegrationAchievement(t *testing.T) {
 	name["EN"] = "Name"
 	tags = append(tags, "TAG")
 
+	// Arrange: delete existing achievement ignore if not exists
+	_ = achievementsService.AdminDeleteAchievementShort(&achievements.AdminDeleteAchievementParams{
+		AchievementCode: achievementCode, Namespace: integration.NamespaceTest,
+	})
+
 	// CASE Create an achievement
 	inputCreate := &achievements.AdminCreateNewAchievementParams{
 		Body:      bodyAchievement,

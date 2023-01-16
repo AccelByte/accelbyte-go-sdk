@@ -6,11 +6,12 @@ package auth
 
 import (
 	"fmt"
-	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/constant"
-	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils"
 	"os"
 	"sync"
 	"time"
+
+	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/constant"
+	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils"
 
 	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/repository"

@@ -5,13 +5,15 @@
 package auth_test
 
 import (
+	"testing"
+	"time"
+
+	"github.com/stretchr/testify/assert"
+
 	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/constant"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils/auth"
-	"github.com/stretchr/testify/assert"
-	"testing"
-	"time"
 )
 
 func TestDefaultConfigRepositoryImpl(t *testing.T) {

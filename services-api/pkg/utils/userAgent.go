@@ -19,5 +19,6 @@ func UserAgentGen() string {
 	if len(appName) > 0 {
 		return fmt.Sprintf("%v (%v)", UserAgentSDK, appName)
 	}
+
 	return UserAgentSDK
 }

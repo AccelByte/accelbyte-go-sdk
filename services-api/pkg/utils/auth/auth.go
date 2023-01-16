@@ -6,6 +6,8 @@ package auth
 
 import (
 	"fmt"
+	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/constant"
+	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils"
 	"os"
 	"sync"
 	"time"
@@ -30,7 +32,7 @@ func (t *TokenRepositoryImpl) Store(accessToken interface{}) error {
 	defer t.mu.Unlock()
 	t.mu.Lock()
 
-	timeNow := time.Now().UTC()
+	timeNow := utils.TimeNow().UTC()
 	t.IssuedTime = &timeNow
 
 	convertedToken, err := repository.ConvertInterfaceToModel(accessToken)
@@ -78,9 +80,9 @@ type ConfigRepositoryImpl struct {
 
 func DefaultConfigRepositoryImpl() *ConfigRepositoryImpl {
 	return &ConfigRepositoryImpl{
-		ClientId:     os.Getenv("AB_CLIENT_ID"),
-		ClientSecret: os.Getenv("AB_CLIENT_SECRET"),
-		BaseUrl:      os.Getenv("AB_BASE_URL"),
+		ClientId:     os.Getenv(constant.EnvClientID),
+		ClientSecret: os.Getenv(constant.EnvClientSecret),
+		BaseUrl:      os.Getenv(constant.EnvBaseURL),
 	}
 }
 

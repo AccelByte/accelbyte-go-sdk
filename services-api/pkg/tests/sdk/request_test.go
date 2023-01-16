@@ -16,8 +16,13 @@ import (
 	"github.com/stretchr/testify/require"
 )
 
+var (
+	ConstURL      = "http://localhost:8070"
+	ServiceClient = NewClientWithBasePath("localhost:8070", "")
+)
+
 func TestHttpBinRequest_BodyJson(t *testing.T) {
-	URL := ConfigRepo.GetJusticeBaseUrl()
+	URL := ConstURL
 	b := get(t, URL+"/get?foo=bar")
 	v := struct {
 		Args    map[string]interface{} `json:"args"`
@@ -152,7 +157,7 @@ func TestReqHeader_UserAgent(t *testing.T) {
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			ok, err := TestService.Client.TestOperations.Get(&tt.params)
+			ok, err := ServiceClient.TestOperations.Get(&tt.params)
 			if res.Header.Get("User-Agent") == "" {
 				assert.Errorf(t, err, "agent is nil, want %v", res.Header.Get("User-Agent"))
 			}
@@ -186,7 +191,7 @@ func TestReqHeader_AmazonTraceId(t *testing.T) {
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			ok, err := TestService.Client.TestOperations.Get(&tt.params)
+			ok, err := ServiceClient.TestOperations.Get(&tt.params)
 			if res.Header.Get("X-Amzn-Trace-Id") == "" {
 				assert.Errorf(t, err, "traceId is nil, want %v", res.Header.Get("X-Amzn-Trace-Id"))
 			}
@@ -215,7 +220,7 @@ func TestReq_PathParameter(t *testing.T) {
 			input := &GetParams{
 				Param: tt.params.Param,
 			}
-			ok, err := TestService.Client.TestOperations.Get(input)
+			ok, err := ServiceClient.TestOperations.Get(input)
 			assert.Nil(t, err, "error should be empty")
 			assert.NotNil(t, ok, "should not empty")
 		})

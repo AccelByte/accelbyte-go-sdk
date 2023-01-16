@@ -12,4 +12,8 @@ const (
 	BearerAuth = "bearer"
 	BasicAuth  = "basic"
 	CookieAuth = "cookie"
+
+	EnvClientID     = "AB_CLIENT_ID"
+	EnvClientSecret = "AB_CLIENT_SECRET"
+	EnvBaseURL      = "AB_BASE_URL"
 )

@@ -9,13 +9,12 @@ import (
 	"os"
 )
 
+var UserAgentSDK = "AccelByteGoSDK/v0.35.0"
+
 func UserAgentGen() string {
-	userAgent := "AccelByteGoSDK/v0.35.0"
 	appName := os.Getenv("APP_CLIENT_NAME")
-
 	if len(appName) > 0 {
-		userAgent = fmt.Sprintf("%v (%v)", userAgent, appName)
+		return fmt.Sprintf("%v (%v)", UserAgentSDK, appName)
 	}
-
-	return userAgent
+	return UserAgentSDK
 }

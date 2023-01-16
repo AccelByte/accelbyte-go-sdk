@@ -13,6 +13,11 @@ import (
 	"github.com/stretchr/testify/assert"
 )
 
+var (
+	ConstClientId     = "admin"
+	ConstClientSecret = "admin"
+)
+
 func TestAuthInfoWriterRefresh_withMockServer(t *testing.T) {
 	// 1. request with valid Token
 	err := oAuth20Service.LoginUser(ConstClientId, ConstClientSecret)

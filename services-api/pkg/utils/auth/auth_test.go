@@ -5,52 +5,95 @@
 package auth_test
 
 import (
-	"testing"
-
-	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclient/o_auth2_0_extension"
-	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
-	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/iam"
+	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclientmodels"
+	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/constant"
+	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils/auth"
+	"github.com/stretchr/testify/assert"
+	"testing"
+	"time"
 )
 
-var (
-	tokenRepo  = *auth.DefaultTokenRepositoryImpl()
-	configRepo = *auth.DefaultConfigRepositoryImpl()
-)
+func TestDefaultConfigRepositoryImpl(t *testing.T) {
+	clientID := "expected_ab_client_id"
+	clientSecret := "expected_ab_client_secret"
+	baseURL := "expected_ab_base_url"
 
-func TestDefaultAuth(t *testing.T) {
-	// prepare the IAM Oauth service
-	oauth := &iam.OAuth20Service{
-		Client:           factory.NewIamClient(&configRepo),
-		ConfigRepository: &configRepo,
-		TokenRepository:  &tokenRepo,
-	}
-	clientId := oauth.ConfigRepository.GetClientId()
-	clientSecret := oauth.ConfigRepository.GetClientSecret()
+	t.Setenv(constant.EnvClientID, clientID)
+	t.Setenv(constant.EnvClientSecret, clientSecret)
+	t.Setenv(constant.EnvBaseURL, baseURL)
 
-	// call the endpoint tokenGrantV3Short through the wrapper 'LoginClient'
-	err := oauth.LoginClient(&clientId, &clientSecret)
-	if err != nil {
-		t.Fatal("failed login client")
-	} else {
-		t.Log("successful login")
-	}
+	cfg := auth.DefaultConfigRepositoryImpl()
 
-	// get the token
-	token, _ = oauth.TokenRepository.GetToken()
-	t.Logf("print %v", *token.AccessToken)
+	assert.Equal(t, clientID, cfg.GetClientId())
+	assert.Equal(t, clientSecret, cfg.GetClientSecret())
+	assert.Equal(t, baseURL, cfg.GetJusticeBaseUrl())
+}
 
-	// call an AccelByte Cloud API e.g. GetCountryLocationV3
-	oAuth20ExtensionService := &iam.OAuth20ExtensionService{
-		Client:           factory.NewIamClient(&configRepo),
-		ConfigRepository: &configRepo, // remove
-		TokenRepository:  &tokenRepo,
-	}
-	input := &o_auth2_0_extension.GetCountryLocationV3Params{}
-	ok, _ := oAuth20ExtensionService.GetCountryLocationV3Short(input)
-	if err != nil {
-		t.Fatal(err.Error())
-	} else {
-		t.Logf("Country name: %s", *ok.CountryName)
-	}
+func TestTokenRepositoryImpl(t *testing.T) {
+	t.Run("New default token repository should return non-nil empty token", func(t *testing.T) {
+		tokenRepo := auth.DefaultTokenRepositoryImpl()
+		// default token repository return empty value token as default
+		tkn, err := tokenRepo.GetToken()
+		assert.NotNil(t, tkn)
+		assert.NoError(t, err)
+	})
+
+	t.Run("Invalid access token object", func(t *testing.T) {
+		tokenRepo := auth.DefaultTokenRepositoryImpl()
+
+		err := tokenRepo.Store("<string invalid access token object>")
+		assert.Error(t, err)
+
+		// existing token value not affected because Store operation failed
+		tkn, err := tokenRepo.GetToken()
+		assert.NoError(t, err)
+		assert.Equal(t, &iamclientmodels.OauthmodelTokenResponseV3{}, tkn)
+
+		err = tokenRepo.RemoveToken()
+		assert.NoError(t, err)
+
+		tkn, err = tokenRepo.GetToken()
+		assert.Error(t, err)
+		assert.Nil(t, tkn)
+	})
+
+	t.Run("Nil access token object", func(t *testing.T) {
+		tokenRepo := auth.DefaultTokenRepositoryImpl()
+
+		err := tokenRepo.Store(nil)
+		assert.NoError(t, err)
+
+		tkn, err := tokenRepo.GetToken()
+		assert.Error(t, err)
+		assert.Nil(t, tkn)
+	})
+
+	t.Run("Valid access token object", func(t *testing.T) {
+		tokenRepo := auth.DefaultTokenRepositoryImpl()
+		accessTokenStr := "<my-random-access-token-here>"
+		accessToken := &iamclientmodels.OauthmodelTokenResponseV3{
+			AccessToken: &accessTokenStr,
+			DisplayName: "accelbyte",
+		}
+
+		now := time.Now().UTC()
+		utils.SetTimeNowForTest(t, now)
+		err := tokenRepo.Store(accessToken)
+		assert.NoError(t, err)
+
+		tkn, err := tokenRepo.GetToken()
+		assert.NoError(t, err)
+		assert.Equal(t, accessToken, tkn)
+
+		issuedAt := tokenRepo.TokenIssuedTimeUTC()
+		assert.Equal(t, now, issuedAt)
+
+		err = tokenRepo.RemoveToken()
+		assert.NoError(t, err)
+
+		tkn, err = tokenRepo.GetToken()
+		assert.Error(t, err)
+		assert.Nil(t, tkn)
+	})
 }

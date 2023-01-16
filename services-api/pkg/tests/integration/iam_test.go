@@ -316,3 +316,27 @@ func TestIntegrationUser(t *testing.T) {
 	// Assert
 	assert.Nil(t, errDelete, "err should be nil")
 }
+
+func TestIntegrationLoginClient(t *testing.T) {
+	// prepare the IAM Oauth service
+	clientId := oAuth20Service.ConfigRepository.GetClientId()
+	clientSecret := oAuth20Service.ConfigRepository.GetClientSecret()
+
+	// call the endpoint tokenGrantV3Short through the wrapper 'LoginClient'
+	err := oAuth20Service.LoginClient(&clientId, &clientSecret)
+	assert.NoError(t, err)
+
+	// get the token
+	token, err := oAuth20Service.TokenRepository.GetToken()
+	// Assert
+	assert.NoError(t, err)
+	assert.NotNil(t, token, "response should not be nil")
+	t.Logf("Access token %v", *token.AccessToken)
+
+	// call an AccelByte Cloud API e.g. GetCountryLocationV3
+	input := &o_auth2_0_extension.GetCountryLocationV3Params{}
+	country, err := oAuth20ExtensionService.GetCountryLocationV3Short(input)
+	assert.NoError(t, err)
+	assert.NotNil(t, country)
+	t.Logf("Country name: %s", *country.CountryName)
+}

@@ -9,6 +9,9 @@ import (
 	"os"
 )
 
+// UserAgentSDK
+// attention: this var will be incremented automatically on `Makefile version` using regex
+// therefore the patterns need to comply
 var UserAgentSDK = "AccelByteGoSDK/v0.35.0"
 
 func UserAgentGen() string {

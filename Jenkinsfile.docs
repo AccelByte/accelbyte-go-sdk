@@ -1,0 +1,31 @@
+bitbucketCredentialsSsh = "build_account_bitbucket_key"
+
+pipeline {
+  agent{
+      label "justice-codegen-sdk"
+  }
+
+  stages {
+    stage("Broken Link Check") {
+      steps {
+        sshagent(credentials: [bitbucketCredentialsSsh]) {
+          sh "rm -rf .justice-codegen-sdk"
+          sh "git clone --depth 1 git@bitbucket.org:accelbyte/justice-codegen-sdk.git .justice-codegen-sdk"
+        }
+        sh "make test_broken_link SDK_MD_CRAWLER_PATH=.justice-codegen-sdk/tools/md-crawler"
+      }
+    }
+  }
+
+  post{
+    failure {
+      script {
+        message = """
+            :no_entry: <${env.BUILD_URL}|${env.JOB_NAME}-${env.BUILD_NUMBER}> *failed*
+            
+            |""".stripMargin()
+        slackSend(channel: "#activity-justice-server-sdks", color: '#FF0000', message: message)
+      }
+    }
+  }
+}

@@ -2,18 +2,16 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
-package auth_test
+package auth
 
 import (
 	"testing"
 
 	"github.com/stretchr/testify/assert"
-
-	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils/auth"
 )
 
 func TestDefaultRefreshTokenImpl(t *testing.T) {
-	refreshToken := auth.DefaultRefreshTokenImpl()
+	refreshToken := DefaultRefreshTokenImpl()
 
 	refreshToken.SetRefreshIsRunningInBackground(true)
 

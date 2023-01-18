@@ -2,7 +2,7 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
-package auth_test
+package auth
 
 import (
 	"fmt"
@@ -18,7 +18,6 @@ import (
 
 	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/constant"
-	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils/auth"
 )
 
 type mockTokenRepository struct {
@@ -83,7 +82,7 @@ const (
 func TestBearer(t *testing.T) {
 	t.Parallel()
 	req := &runtime.TestClientRequest{}
-	writer := auth.Bearer(accessToken)
+	writer := Bearer(accessToken)
 	err := writer.AuthenticateRequest(req, nil)
 
 	expectedAuthHeader := fmt.Sprintf("Bearer %s", accessToken)
@@ -94,7 +93,7 @@ func TestBearer(t *testing.T) {
 func TestBasic(t *testing.T) {
 	t.Parallel()
 	req := &runtime.TestClientRequest{}
-	writer := auth.Basic("admin", "admin")
+	writer := Basic("admin", "admin")
 	err := writer.AuthenticateRequest(req, nil)
 
 	assert.NoError(t, err)
@@ -105,7 +104,7 @@ func TestCookieValue(t *testing.T) {
 	t.Parallel()
 	req := &runtime.TestClientRequest{}
 
-	writer := auth.CookieValue("access_token", accessToken)
+	writer := CookieValue("access_token", accessToken)
 	err := writer.AuthenticateRequest(req, nil)
 
 	expectedCookie := fmt.Sprintf("access_token=%s", accessToken)
@@ -186,9 +185,8 @@ func TestAuthInfoWriterBearer_All(t *testing.T) {
 		testStr := strings.Replace(fmt.Sprintf("%+v", test), " ", ",", -1)
 		t.Run(fmt.Sprintf("Test case: %s\n", testStr), func(t *testing.T) {
 			// Arrange
-			session := auth.Session{Token: tokenRepo, Config: configRepo}
-			authWriter := auth.AuthInfoWriter(session, test.Security, "access_token")
-			//req := &runtime.TestClientRequest{}
+			session := Session{Token: tokenRepo, Config: configRepo}
+			authWriter := AuthInfoWriter(session, test.Security, "access_token")
 			req := &mockClientRequest{}
 			req.On("SetHeaderParam", mock.Anything, mock.Anything).Return(nil)
 

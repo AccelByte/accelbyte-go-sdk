@@ -2,7 +2,7 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
-package auth_test
+package auth
 
 import (
 	"testing"
@@ -13,7 +13,6 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/constant"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils"
-	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils/auth"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils/testutils"
 )
 
@@ -26,7 +25,7 @@ func TestDefaultConfigRepositoryImpl(t *testing.T) {
 	testutils.Setenv(t, constant.EnvClientSecret, clientSecret)
 	testutils.Setenv(t, constant.EnvBaseURL, baseURL)
 
-	cfg := auth.DefaultConfigRepositoryImpl()
+	cfg := DefaultConfigRepositoryImpl()
 
 	assert.Equal(t, clientID, cfg.GetClientId())
 	assert.Equal(t, clientSecret, cfg.GetClientSecret())
@@ -35,7 +34,7 @@ func TestDefaultConfigRepositoryImpl(t *testing.T) {
 
 func TestTokenRepositoryImpl(t *testing.T) {
 	t.Run("New default token repository should return non-nil empty token", func(t *testing.T) {
-		tokenRepo := auth.DefaultTokenRepositoryImpl()
+		tokenRepo := DefaultTokenRepositoryImpl()
 		// default token repository return empty value token as default
 		tkn, err := tokenRepo.GetToken()
 		assert.NotNil(t, tkn)
@@ -43,7 +42,7 @@ func TestTokenRepositoryImpl(t *testing.T) {
 	})
 
 	t.Run("Invalid access token object", func(t *testing.T) {
-		tokenRepo := auth.DefaultTokenRepositoryImpl()
+		tokenRepo := DefaultTokenRepositoryImpl()
 
 		err := tokenRepo.Store("<string invalid access token object>")
 		assert.Error(t, err)
@@ -62,7 +61,7 @@ func TestTokenRepositoryImpl(t *testing.T) {
 	})
 
 	t.Run("Nil access token object", func(t *testing.T) {
-		tokenRepo := auth.DefaultTokenRepositoryImpl()
+		tokenRepo := DefaultTokenRepositoryImpl()
 
 		err := tokenRepo.Store(nil)
 		assert.NoError(t, err)
@@ -73,7 +72,7 @@ func TestTokenRepositoryImpl(t *testing.T) {
 	})
 
 	t.Run("Valid access token object", func(t *testing.T) {
-		tokenRepo := auth.DefaultTokenRepositoryImpl()
+		tokenRepo := DefaultTokenRepositoryImpl()
 		accessTokenStr := "<my-random-access-token-here>"
 		accessToken := &iamclientmodels.OauthmodelTokenResponseV3{
 			AccessToken: &accessTokenStr,

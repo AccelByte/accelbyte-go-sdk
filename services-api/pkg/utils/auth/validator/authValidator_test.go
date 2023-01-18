@@ -2,7 +2,7 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
-package validator_test
+package validator
 
 import (
 	"fmt"
@@ -14,7 +14,6 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/iam"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils/auth"
-	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils/auth/validator"
 )
 
 func TestTokenValidator_ValidateToken(t *testing.T) {
@@ -46,12 +45,12 @@ func TestTokenValidator_ValidateToken(t *testing.T) {
 
 	namespace := "accelbyte"
 	resourceName := "MMV2GRPCSERVICE"
-	requiredPermission := validator.Permission{
+	requiredPermission := Permission{
 		Action:   2,
 		Resource: fmt.Sprintf("NAMESPACE:%s:%s", namespace, resourceName),
 	}
 
-	tokenValidator := validator.NewTokenValidator(authService, time.Hour)
+	tokenValidator := NewTokenValidator(authService, time.Hour)
 	tokenValidator.Initialize()
 
 	// Act

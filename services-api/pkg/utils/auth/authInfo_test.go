@@ -8,16 +8,18 @@ import (
 	"fmt"
 	"net/http"
 	"net/url"
-	"os"
 	"strings"
 	"testing"
 	"time"
 
-	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclientmodels"
-	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/repository"
-	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils/auth"
 	"github.com/go-openapi/runtime"
 	"github.com/stretchr/testify/assert"
+	"github.com/stretchr/testify/mock"
+
+	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclientmodels"
+	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/constant"
+	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/repository"
+	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils/auth"
 )
 
 var (
@@ -37,340 +39,200 @@ type dummyWrapperService struct {
 	RefreshRepository repository.RefreshTokenRepository
 }
 
-const dummyAccessToken = "foo"
-
-func TestAuthInfoWriterBearer(t *testing.T) {
-	t.Parallel()
-	r, err := newRequest("GET", "/", nil)
-	if err != nil {
-		assert.FailNow(t, "err should be nil")
-	}
-
-	// mockup client input value
-	accessToken := dummyAccessToken
-	token = &iamclientmodels.OauthmodelTokenResponseV3{AccessToken: &accessToken}
-	err = dummyService.TokenRepository.Store(*token)
-	if err != nil {
-		assert.FailNow(t, "fail to store the token")
-	}
-	tokenStored, errGetToken := dummyService.TokenRepository.GetToken()
-	if errGetToken != nil {
-		assert.FailNow(t, "fail to store the token")
-	}
-
-	// call the AuthInfoWriter
-	if authInfoWriter == nil {
-		security = [][]string{
-			{"bearer"},
-		}
-		authInfoWriter = auth.AuthInfoWriter(auth.Session{
-			Token:   auth.DefaultTokenRepositoryImpl(),
-			Config:  auth.DefaultConfigRepositoryImpl(),
-			Refresh: auth.DefaultRefreshTokenImpl(),
-		}, security, "")
-	}
-
-	writer := auth.AuthInfoWriter(auth.Session{
-		Token:   auth.DefaultTokenRepositoryImpl(),
-		Config:  auth.DefaultConfigRepositoryImpl(),
-		Refresh: auth.DefaultRefreshTokenImpl(),
-	}, security, "access_token")
-	err = writer.AuthenticateRequest(r, nil)
-	assert.Nil(t, err, "err should be nil")
-	assert.Equal(t, "Bearer foo", r.header.Get("Authorization"))
-	assert.Equal(t, tokenStored.AccessToken, token.AccessToken)
+type mockTokenRepository struct {
+	mock.Mock
 }
 
-func TestAuthInfoWriterBasic(t *testing.T) {
-	t.Parallel()
-	t.Skip()
-	r, err := newRequest("GET", "/", nil)
-	if err != nil {
-		assert.FailNow(t, "err should be nil")
-	}
+func (m *mockTokenRepository) Store(accessToken interface{}) error { return nil }
+func (m *mockTokenRepository) GetToken() (*iamclientmodels.OauthmodelTokenResponseV3, error) {
+	args := m.Called()
+	return args.Get(0).(*iamclientmodels.OauthmodelTokenResponseV3), args.Error(1)
+}
+func (m *mockTokenRepository) RemoveToken() error            { return nil }
+func (m *mockTokenRepository) TokenIssuedTimeUTC() time.Time { return time.Time{} }
 
-	// mockup client input value
-	clientID := dummyService.ConfigRepository.GetClientId()
-	if clientID == "" {
-		assert.FailNow(t, "empty ClientID")
-	}
-	clientSecret := dummyService.ConfigRepository.GetClientId()
-	if clientSecret == "" {
-		assert.FailNow(t, "empty ClientSecret")
-	}
-
-	// call the AuthInfoWriter
-	if authInfoWriter == nil {
-		security = [][]string{
-			{"basic"},
-		}
-		authInfoWriter = auth.AuthInfoWriter(auth.Session{
-			Token:   auth.DefaultTokenRepositoryImpl(),
-			Config:  auth.DefaultConfigRepositoryImpl(),
-			Refresh: auth.DefaultRefreshTokenImpl(),
-		}, security, "")
-	}
-
-	writer := auth.AuthInfoWriter(auth.Session{
-		Token:   auth.DefaultTokenRepositoryImpl(),
-		Config:  auth.DefaultConfigRepositoryImpl(),
-		Refresh: auth.DefaultRefreshTokenImpl(),
-	}, security, "access_token")
-	err = writer.AuthenticateRequest(r, nil)
-	assert.Nil(t, err, "err should be nil")
-	assert.Equal(t, "Basic YWRtaW46YWRtaW4=", r.header.Get("Authorization"))
+type mockConfigRepository struct {
+	mock.Mock
 }
 
-func TestAuthInfoWriterCookie(t *testing.T) {
-	t.Parallel()
-	r, err := newRequest("GET", "/", nil)
-	if err != nil {
-		assert.FailNow(t, "err should be nil")
-	}
-
-	// mockup client input value
-	accessToken := dummyAccessToken
-	token = &iamclientmodels.OauthmodelTokenResponseV3{AccessToken: &accessToken}
-	err = dummyService.TokenRepository.Store(*token)
-	if err != nil {
-		assert.FailNow(t, "fail to store the token")
-	}
-	tokenStored, _ := dummyService.TokenRepository.GetToken()
-
-	// call the AuthInfoWriter
-	if authInfoWriter == nil {
-		security = [][]string{
-			{"cookie"},
-		}
-		authInfoWriter = auth.AuthInfoWriter(auth.Session{
-			Token:   auth.DefaultTokenRepositoryImpl(),
-			Config:  auth.DefaultConfigRepositoryImpl(),
-			Refresh: auth.DefaultRefreshTokenImpl(),
-		}, security, "access_token")
-	}
-	writer := auth.AuthInfoWriter(auth.Session{
-		Token:   auth.DefaultTokenRepositoryImpl(),
-		Config:  auth.DefaultConfigRepositoryImpl(),
-		Refresh: auth.DefaultRefreshTokenImpl(),
-	}, security, "access_token")
-	err = writer.AuthenticateRequest(r, nil)
-
-	assert.NoError(t, err)
-	assert.Equal(t, tokenStored.AccessToken, token.AccessToken)
-	assert.Equal(t, "access_token=foo", r.header.Get("cookie"))
+func (m *mockConfigRepository) GetClientId() string {
+	return m.Called().Get(0).(string)
 }
 
-func TestAuthInfoWriterOptional(t *testing.T) {
-	t.Parallel()
-	r, err := newRequest("GET", "/", nil)
-	if err != nil {
-		assert.FailNow(t, "err should be nil")
-	}
-
-	// mockup client input value
-	accessToken := dummyAccessToken
-	token = &iamclientmodels.OauthmodelTokenResponseV3{AccessToken: &accessToken}
-	err = dummyService.TokenRepository.Store(*token)
-	if err != nil {
-		assert.FailNow(t, "fail to store the token")
-	}
-	tokenStored, _ := dummyService.TokenRepository.GetToken()
-
-	// call the AuthInfoWriter
-	if authInfoWriter == nil {
-		security = [][]string{
-			{"cookie"},
-			{"bearer"},
-		}
-		authInfoWriter = auth.AuthInfoWriter(auth.Session{
-			Token:   auth.DefaultTokenRepositoryImpl(),
-			Config:  auth.DefaultConfigRepositoryImpl(),
-			Refresh: auth.DefaultRefreshTokenImpl(),
-		}, security, "access_token")
-	}
-	writer := auth.AuthInfoWriter(auth.Session{
-		Token:   auth.DefaultTokenRepositoryImpl(),
-		Config:  auth.DefaultConfigRepositoryImpl(),
-		Refresh: auth.DefaultRefreshTokenImpl(),
-	}, security, "access_token")
-	err = writer.AuthenticateRequest(r, nil)
-
-	assert.NoError(t, err)
-	assert.Equal(t, tokenStored.AccessToken, token.AccessToken)
-	assert.Equal(t, "access_token=foo", r.header.Get("cookie"))
+func (m *mockConfigRepository) GetClientSecret() string {
+	return m.Called().Get(0).(string)
 }
+
+func (m *mockConfigRepository) GetJusticeBaseUrl() string {
+	return m.Called().Get(0).(string)
+}
+
+type mockClientRequest struct {
+	mock.Mock
+}
+
+func (m *mockClientRequest) SetHeaderParam(key string, values ...string) error {
+	err := m.Called(key, values[0]).Get(0)
+	if err != nil {
+		return err.(error)
+	}
+	return nil
+}
+func (m *mockClientRequest) GetHeaderParams() http.Header                          { return nil }
+func (m *mockClientRequest) SetQueryParam(string, ...string) error                 { return nil }
+func (m *mockClientRequest) SetFormParam(string, ...string) error                  { return nil }
+func (m *mockClientRequest) SetPathParam(string, string) error                     { return nil }
+func (m *mockClientRequest) GetQueryParams() url.Values                            { return nil }
+func (m *mockClientRequest) SetFileParam(string, ...runtime.NamedReadCloser) error { return nil }
+func (m *mockClientRequest) SetBodyParam(interface{}) error                        { return nil }
+func (m *mockClientRequest) SetTimeout(time.Duration) error                        { return nil }
+func (m *mockClientRequest) GetMethod() string                                     { return "" }
+func (m *mockClientRequest) GetPath() string                                       { return "" }
+func (m *mockClientRequest) GetBody() []byte                                       { return nil }
+func (m *mockClientRequest) GetBodyParam() interface{}                             { return nil }
+func (m *mockClientRequest) GetFileParam() map[string][]runtime.NamedReadCloser    { return nil }
 
 func TestBearer(t *testing.T) {
 	t.Parallel()
-	r, err := newRequest("GET", "/", nil)
-	if err != nil {
-		assert.FailNow(t, "err should be nil")
-	}
+	accessToken := "<some-random-access-token>"
+	req := &runtime.TestClientRequest{}
 
-	writer := auth.Bearer(dummyAccessToken)
-	err = writer.AuthenticateRequest(r, nil)
+	writer := auth.Bearer(accessToken)
+	err := writer.AuthenticateRequest(req, nil)
+
+	expectedAuthHeader := fmt.Sprintf("Bearer %s", accessToken)
 	assert.NoError(t, err)
-	assert.Equal(t, "Bearer foo", r.header.Get("Authorization"))
+	assert.Equal(t, expectedAuthHeader, req.GetHeaderParams().Get("Authorization"))
 }
 
 func TestBasic(t *testing.T) {
 	t.Parallel()
-	r, err := newRequest("GET", "/", nil)
-	if err != nil {
-		assert.FailNow(t, "err should be nil")
-	}
-
+	req := &runtime.TestClientRequest{}
 	writer := auth.Basic("admin", "admin")
-	err = writer.AuthenticateRequest(r, nil)
+	err := writer.AuthenticateRequest(req, nil)
+
 	assert.NoError(t, err)
-	assert.Equal(t, "Basic YWRtaW46YWRtaW4=", r.header.Get("Authorization"))
+	assert.Equal(t, "Basic YWRtaW46YWRtaW4=", req.GetHeaderParams().Get("Authorization"))
 }
 
 func TestCookieValue(t *testing.T) {
 	t.Parallel()
-	r, err := newRequest("GET", "/", nil)
-	if err != nil {
-		assert.FailNow(t, "err should be nil")
-	}
+	accessToken := "<some-random-access-token>"
+	req := &runtime.TestClientRequest{}
 
-	writer := auth.CookieValue("access_token", dummyAccessToken)
-	err = writer.AuthenticateRequest(r, nil)
+	writer := auth.CookieValue("access_token", accessToken)
+	err := writer.AuthenticateRequest(req, nil)
+
+	expectedCookie := fmt.Sprintf("access_token=%s", accessToken)
 	assert.NoError(t, err)
-	assert.Equal(t, "access_token=foo", r.header.Get("cookie"))
+	assert.Equal(t, expectedCookie, req.GetHeaderParams().Get("cookie"))
 }
 
-func newRequest(method, pathPattern string, writer runtime.ClientRequestWriter) (*request, error) {
-	return &request{
-		pathPattern: pathPattern,
-		method:      method,
-		writer:      writer,
-		header:      make(http.Header),
-		query:       make(url.Values),
-	}, nil
-}
-
-type request struct {
-	pathPattern string
-	method      string
-	writer      runtime.ClientRequestWriter
-	pathParams  map[string]string
-	header      http.Header
-	query       url.Values
-	formFields  url.Values
-	fileFields  map[string][]runtime.NamedReadCloser
-	payload     interface{}
-	timeout     time.Duration
-	getBody     func(r *request) []byte
-}
-
-func (r *request) GetMethod() string {
-	return r.method
-}
-
-func (r *request) GetPath() string {
-	path := r.pathPattern
-	for k, v := range r.pathParams {
-		path = strings.Replace(path, "{"+k+"}", v, -1)
+func TestAuthInfoWriterBearer_All(t *testing.T) {
+	type Security [][]string
+	testData := []struct {
+		Security Security
+	}{
+		{
+			Security: Security{},
+		},
+		{
+			Security: Security{
+				{},
+			},
+		},
+		{
+			Security: Security{
+				{"refresh"},
+			},
+		},
+		{
+			Security: Security{
+				{constant.BasicAuth},
+			},
+		},
+		{
+			Security: Security{
+				{constant.CookieAuth},
+				{constant.BearerAuth},
+			},
+		},
+		{
+			Security: Security{
+				{constant.BearerAuth, constant.BasicAuth, constant.CookieAuth},
+				{constant.BearerAuth},
+			},
+		},
+		{
+			Security: Security{
+				{constant.CookieAuth, "unknown"},
+			},
+		},
+		{
+			Security: Security{
+				{"not-secure", constant.BasicAuth},
+			},
+		},
+		{
+			Security: Security{
+				{"unknown", "not-secure"},
+				{constant.CookieAuth},
+			},
+		},
+		{
+			Security: Security{
+				{"unknown", "not-secure"},
+				{"unsecure", constant.BearerAuth},
+			},
+		},
 	}
 
-	return path
-}
+	accessToken := "<some-random-access-token>"
+	token := &iamclientmodels.OauthmodelTokenResponseV3{AccessToken: &accessToken}
+	tokenRepo := &mockTokenRepository{}
+	tokenRepo.On("GetToken").Return(token, nil)
 
-func (r *request) GetBody() []byte {
-	return r.getBody(r)
-}
+	configRepo := &mockConfigRepository{}
+	configRepo.On("GetClientId").Return("admin")
+	configRepo.On("GetClientSecret").Return("admin")
+	expectedEncodedBasicAuth := "YWRtaW46YWRtaW4=" // base64(admin:admin)
 
-func (r *request) SetHeaderParam(name string, values ...string) error {
-	if r.header == nil {
-		r.header = make(http.Header)
-	}
-	r.header[http.CanonicalHeaderKey(name)] = values
+	for _, test := range testData {
+		testStr := strings.Replace(fmt.Sprintf("%+v", test), " ", ",", -1)
+		t.Run(fmt.Sprintf("Test case: %s\n", testStr), func(t *testing.T) {
+			// Arrange
+			session := auth.Session{Token: tokenRepo, Config: configRepo}
+			authWriter := auth.AuthInfoWriter(session, test.Security, "access_token")
+			//req := &runtime.TestClientRequest{}
+			req := &mockClientRequest{}
+			req.On("SetHeaderParam", mock.Anything, mock.Anything).Return(nil)
 
-	return nil
-}
+			err := authWriter.AuthenticateRequest(req, nil)
 
-func (r *request) GetHeaderParams() http.Header {
-	return r.header
-}
-
-func (r *request) SetQueryParam(name string, values ...string) error {
-	if r.query == nil {
-		r.query = make(url.Values)
-	}
-	r.query[name] = values
-
-	return nil
-}
-
-func (r *request) GetQueryParams() url.Values {
-	var result = make(url.Values)
-	for key, value := range r.query {
-		result[key] = append([]string{}, value...)
-	}
-
-	return result
-}
-
-func (r *request) SetFormParam(name string, values ...string) error {
-	if r.formFields == nil {
-		r.formFields = make(url.Values)
-	}
-	r.formFields[name] = values
-
-	return nil
-}
-
-func (r *request) SetPathParam(name string, value string) error {
-	if r.pathParams == nil {
-		r.pathParams = make(map[string]string)
-	}
-
-	r.pathParams[name] = value
-
-	return nil
-}
-
-func (r *request) SetFileParam(name string, files ...runtime.NamedReadCloser) error {
-	for _, file := range files {
-		if actualFile, ok := file.(*os.File); ok {
-			fi, err := os.Stat(actualFile.Name())
-			if err != nil {
-				return err
+			// Assert
+			if test.Security == nil || len(test.Security) == 0 {
+				assert.Error(t, err)
+				return
 			}
-			if fi.IsDir() {
-				return fmt.Errorf("%q is a directory, only files are supported", file.Name())
+
+			if len(test.Security[0]) == 0 {
+				assert.NoError(t, err)
+				return
 			}
-		}
+
+			for _, authType := range test.Security[0] {
+				switch authType {
+				case constant.BasicAuth:
+					expectedAuthHeader := fmt.Sprintf("Basic %s", expectedEncodedBasicAuth)
+					req.AssertCalled(t, "SetHeaderParam", constant.Authorization, expectedAuthHeader)
+				case constant.CookieAuth:
+					expectedCookieHeader := fmt.Sprintf("access_token=%s", accessToken)
+					req.AssertCalled(t, "SetHeaderParam", constant.CookieAuth, expectedCookieHeader)
+				case constant.BearerAuth:
+					expectedAuthHeader := fmt.Sprintf("Bearer %s", accessToken)
+					req.AssertCalled(t, "SetHeaderParam", constant.Authorization, expectedAuthHeader)
+				}
+			}
+		})
 	}
-
-	if r.fileFields == nil {
-		r.fileFields = make(map[string][]runtime.NamedReadCloser)
-	}
-	if r.formFields == nil {
-		r.formFields = make(url.Values)
-	}
-
-	r.fileFields[name] = files
-
-	return nil
-}
-
-func (r *request) GetFileParam() map[string][]runtime.NamedReadCloser {
-	return r.fileFields
-}
-
-func (r *request) SetBodyParam(payload interface{}) error {
-	r.payload = payload
-
-	return nil
-}
-
-func (r *request) GetBodyParam() interface{} {
-	return r.payload
-}
-
-func (r *request) SetTimeout(timeout time.Duration) error {
-	r.timeout = timeout
-
-	return nil
 }

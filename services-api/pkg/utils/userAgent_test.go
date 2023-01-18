@@ -10,11 +10,13 @@ import (
 	"testing"
 
 	"github.com/stretchr/testify/assert"
+
+	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils/testutils"
 )
 
 func TestUserAgentGen(t *testing.T) {
 	t.Run("Empty app client name", func(t *testing.T) {
-		t.Setenv("APP_CLIENT_NAME", "")
+		testutils.Setenv(t, "APP_CLIENT_NAME", "")
 		userAgent := UserAgentGen()
 
 		assert.Equal(t, UserAgentSDK, userAgent)
@@ -22,7 +24,7 @@ func TestUserAgentGen(t *testing.T) {
 
 	t.Run("With proper app client name", func(t *testing.T) {
 		clientName := "my-game-client"
-		t.Setenv("APP_CLIENT_NAME", clientName)
+		testutils.Setenv(t, "APP_CLIENT_NAME", clientName)
 		userAgent := UserAgentGen()
 
 		assert.True(t, strings.HasPrefix(userAgent, UserAgentSDK))

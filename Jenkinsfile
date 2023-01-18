@@ -87,6 +87,11 @@ pipeline {
             label "justice-codegen-sdk"
           }
           stages {
+            stage('Unit Tests') {
+              steps {
+                sh 'make test_unit'
+              }
+            }
             stage('Core Tests') {
               steps {
                 sshagent(credentials: [bitbucketCredentialsSsh]) {

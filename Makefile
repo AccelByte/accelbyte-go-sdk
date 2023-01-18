@@ -37,6 +37,15 @@ samples:
 	done
 	[ ! -f samples.err ]
 
+test_unit:
+	docker run -t --rm -u $$(id -u):$$(id -g) -v $$(pwd):/src -w /src --network host \
+		-e GOCACHE=/src/.cache/go-build $(GOLANG_DOCKER_IMAGE) \
+		sh -c "go test -v \
+              		github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/model/... \
+              		github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/repository/... \
+              		github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service \
+              		github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils/..."
+
 test_core:
 	@test -n "$(SDK_MOCK_SERVER_PATH)" || (echo "SDK_MOCK_SERVER_PATH is not set" ; exit 1)
 	sed -i "s/\r//" "$(SDK_MOCK_SERVER_PATH)/mock-server.sh" && \

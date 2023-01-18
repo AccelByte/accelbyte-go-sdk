@@ -9,14 +9,18 @@ import (
 	"testing"
 	"time"
 
+	"github.com/stretchr/testify/assert"
+
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/iam"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils/auth"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils/auth/validator"
-	"github.com/stretchr/testify/assert"
 )
 
 func TestTokenValidator_ValidateToken(t *testing.T) {
+	// TODO should be move and run as integration test
+	t.Skip()
+
 	// Arrange
 	configRepo := auth.DefaultConfigRepositoryImpl()
 	tokenRepo := auth.DefaultTokenRepositoryImpl()

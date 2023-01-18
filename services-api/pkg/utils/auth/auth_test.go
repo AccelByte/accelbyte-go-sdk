@@ -14,6 +14,7 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/constant"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils/auth"
+	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils/testutils"
 )
 
 func TestDefaultConfigRepositoryImpl(t *testing.T) {
@@ -21,9 +22,9 @@ func TestDefaultConfigRepositoryImpl(t *testing.T) {
 	clientSecret := "expected_ab_client_secret"
 	baseURL := "expected_ab_base_url"
 
-	t.Setenv(constant.EnvClientID, clientID)
-	t.Setenv(constant.EnvClientSecret, clientSecret)
-	t.Setenv(constant.EnvBaseURL, baseURL)
+	testutils.Setenv(t, constant.EnvClientID, clientID)
+	testutils.Setenv(t, constant.EnvClientSecret, clientSecret)
+	testutils.Setenv(t, constant.EnvBaseURL, baseURL)
 
 	cfg := auth.DefaultConfigRepositoryImpl()
 

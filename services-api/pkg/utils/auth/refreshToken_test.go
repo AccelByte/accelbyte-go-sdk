@@ -7,22 +7,23 @@ package auth_test
 import (
 	"testing"
 
+	"github.com/go-openapi/runtime"
+	"github.com/stretchr/testify/assert"
+
 	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/repository"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils/auth"
-	"github.com/stretchr/testify/assert"
 )
 
+const dummyAccessToken = "foo"
+
 func TestAuthInfoWriterRefresh(t *testing.T) {
-	r, err := newRequest("GET", "/", nil)
-	if err != nil {
-		assert.FailNow(t, "err should be nil")
-	}
+	r := &runtime.TestClientRequest{}
 
 	// mockup client input value
 	refreshToken := dummyAccessToken
 	token = &iamclientmodels.OauthmodelTokenResponseV3{RefreshToken: refreshToken}
-	err = dummyService.TokenRepository.Store(*token)
+	err := dummyService.TokenRepository.Store(*token)
 	if err != nil {
 		assert.FailNow(t, "fail to store the token")
 	}
@@ -65,15 +66,12 @@ func TestAuthInfoWriter_RefreshToken(t *testing.T) {
 		},
 	}
 
-	r, err := newRequest("GET", "/", nil)
-	if err != nil {
-		assert.FailNow(t, "err should be nil")
-	}
+	r := &runtime.TestClientRequest{}
 
 	for _, tt := range tests {
 		t.Parallel()
 		t.Run(tt.name, func(t *testing.T) {
-			err = dummyService.TokenRepository.Store(tt.args)
+			err := dummyService.TokenRepository.Store(tt.args)
 			if err != nil {
 				assert.FailNow(t, "fail to store the token")
 			}
@@ -107,4 +105,14 @@ func TestAuthInfoWriter_RefreshToken(t *testing.T) {
 			assert.Equal(t, getRefreshToken, refreshToken)
 		})
 	}
+}
+
+func TestDefaultRefreshTokenImpl(t *testing.T) {
+	refreshToken := auth.DefaultRefreshTokenImpl()
+
+	refreshToken.SetRefreshIsRunningInBackground(true)
+
+	assert.True(t, refreshToken.DisableAutoRefresh())
+	assert.Equal(t, 1.0, refreshToken.GetRefreshRate())
+	assert.True(t, refreshToken.IsRefreshInProgress)
 }

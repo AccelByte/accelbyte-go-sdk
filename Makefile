@@ -37,24 +37,20 @@ samples:
 	done
 	[ ! -f samples.err ]
 
-test_unit:
-	docker run -t --rm -u $$(id -u):$$(id -g) -v $$(pwd):/src -w /src --network host \
-		-e GOCACHE=/src/.cache/go-build $(GOLANG_DOCKER_IMAGE) \
-		sh -c "go test -v \
-		            github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils/... \
-              		github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/model/... \
-              		github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/repository/... \
-              		github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service"
-
 test_core:
 	@test -n "$(SDK_MOCK_SERVER_PATH)" || (echo "SDK_MOCK_SERVER_PATH is not set" ; exit 1)
 	sed -i "s/\r//" "$(SDK_MOCK_SERVER_PATH)/mock-server.sh" && \
-			trap "docker stop justice-codegen-sdk-mock-server && docker rm -f mylocal_httpbin" EXIT && \
-			docker run -d --name mylocal_httpbin -p 8070:80 kennethreitz/httpbin && \
-			(bash "$(SDK_MOCK_SERVER_PATH)/mock-server.sh" -s /data/spec &) && \
-			(for i in $$(seq 1 10); do bash -c "timeout 1 echo > /dev/tcp/127.0.0.1/8080" 2>/dev/null && exit 0 || sleep 10; done; exit 1) && \
-			docker run -t --rm -u $$(id -u):$$(id -g) -v $$(pwd):/data/ -w /data/ --network host -e AB_HTTPBIN_URL=http://localhost -e GOCACHE=/data/.cache/go-build $(GOLANG_DOCKER_IMAGE) \
-						sh -c "go test -v -race github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/tests/sdk"
+	trap "docker stop justice-codegen-sdk-mock-server && docker rm -f mylocal_httpbin" EXIT && \
+	docker run -d --name mylocal_httpbin -p 8070:80 kennethreitz/httpbin && \
+	(bash "$(SDK_MOCK_SERVER_PATH)/mock-server.sh" -s /data/spec &) && \
+	(for i in $$(seq 1 10); do bash -c "timeout 1 echo > /dev/tcp/127.0.0.1/8080" 2>/dev/null && exit 0 || sleep 10; done; exit 1) && \
+	docker run -t --rm -u $$(id -u):$$(id -g) -v $$(pwd):/data/ -w /data/ --network host -e AB_HTTPBIN_URL=http://localhost -e GOCACHE=/data/.cache/go-build $(GOLANG_DOCKER_IMAGE) \
+		sh -c "go test -v -race \
+			github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils/... \
+            github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/model/... \
+            github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/repository/... \
+            github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service \
+			github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/tests/sdk"
 
 test_integration:
 	@test -n "$(ENV_FILE_PATH)" || (echo "ENV_FILE_PATH is not set" ; exit 1)

@@ -30,11 +30,6 @@ pipeline {
     }
     stage('Test') {
       parallel {
-        stage('Unit Tests') {
-          steps {
-            sh 'make test_unit'
-          }
-        }
         stage('CLI Tests') {
           steps {
             sshagent(credentials: [bitbucketCredentialsSsh]) {

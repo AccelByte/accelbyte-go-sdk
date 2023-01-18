@@ -18,26 +18,8 @@ import (
 
 	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/constant"
-	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/repository"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils/auth"
 )
-
-var (
-	authInfoWriter runtime.ClientAuthInfoWriter
-	security       [][]string
-	token          *iamclientmodels.OauthmodelTokenResponseV3
-	dummyService   = &dummyWrapperService{
-		ConfigRepository:  auth.DefaultConfigRepositoryImpl(),
-		TokenRepository:   auth.DefaultTokenRepositoryImpl(),
-		RefreshRepository: &auth.RefreshTokenImpl{},
-	}
-)
-
-type dummyWrapperService struct {
-	ConfigRepository  repository.ConfigRepository
-	TokenRepository   repository.TokenRepository
-	RefreshRepository repository.RefreshTokenRepository
-}
 
 type mockTokenRepository struct {
 	mock.Mock
@@ -46,6 +28,7 @@ type mockTokenRepository struct {
 func (m *mockTokenRepository) Store(accessToken interface{}) error { return nil }
 func (m *mockTokenRepository) GetToken() (*iamclientmodels.OauthmodelTokenResponseV3, error) {
 	args := m.Called()
+
 	return args.Get(0).(*iamclientmodels.OauthmodelTokenResponseV3), args.Error(1)
 }
 func (m *mockTokenRepository) RemoveToken() error            { return nil }
@@ -76,6 +59,7 @@ func (m *mockClientRequest) SetHeaderParam(key string, values ...string) error {
 	if err != nil {
 		return err.(error)
 	}
+
 	return nil
 }
 func (m *mockClientRequest) GetHeaderParams() http.Header                          { return nil }
@@ -92,11 +76,13 @@ func (m *mockClientRequest) GetBody() []byte                                    
 func (m *mockClientRequest) GetBodyParam() interface{}                             { return nil }
 func (m *mockClientRequest) GetFileParam() map[string][]runtime.NamedReadCloser    { return nil }
 
+const (
+	accessToken = "<some-random-access-token>"
+)
+
 func TestBearer(t *testing.T) {
 	t.Parallel()
-	accessToken := "<some-random-access-token>"
 	req := &runtime.TestClientRequest{}
-
 	writer := auth.Bearer(accessToken)
 	err := writer.AuthenticateRequest(req, nil)
 
@@ -117,7 +103,6 @@ func TestBasic(t *testing.T) {
 
 func TestCookieValue(t *testing.T) {
 	t.Parallel()
-	accessToken := "<some-random-access-token>"
 	req := &runtime.TestClientRequest{}
 
 	writer := auth.CookieValue("access_token", accessToken)
@@ -187,8 +172,8 @@ func TestAuthInfoWriterBearer_All(t *testing.T) {
 		},
 	}
 
-	accessToken := "<some-random-access-token>"
-	token := &iamclientmodels.OauthmodelTokenResponseV3{AccessToken: &accessToken}
+	accToken := accessToken
+	token := &iamclientmodels.OauthmodelTokenResponseV3{AccessToken: &accToken}
 	tokenRepo := &mockTokenRepository{}
 	tokenRepo.On("GetToken").Return(token, nil)
 
@@ -212,11 +197,13 @@ func TestAuthInfoWriterBearer_All(t *testing.T) {
 			// Assert
 			if test.Security == nil || len(test.Security) == 0 {
 				assert.Error(t, err)
+
 				return
 			}
 
 			if len(test.Security[0]) == 0 {
 				assert.NoError(t, err)
+
 				return
 			}
 

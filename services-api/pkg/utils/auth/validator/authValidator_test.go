@@ -18,7 +18,7 @@ import (
 )
 
 func TestTokenValidator_ValidateToken(t *testing.T) {
-	// TODO should be move and run as integration test
+	// should be moved and run as integration test, skip for now
 	t.Skip()
 
 	// Arrange

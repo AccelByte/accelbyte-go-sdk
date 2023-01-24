@@ -56,8 +56,11 @@ pipeline {
       steps {
         dir("justice-codegen-go-sdk") {
           sh "git branch ${sdkNewBranchName} && git checkout ${sdkNewBranchName}"
-
-          sh "make generate SDK_GEN_PATH=${sdkGenPath} SDK_SPEC_PATH=${sdkSpecPath}"
+        }
+        dir("justice-codegen-sdk") {
+          sh "make generate SDK_PATH=${sdkPath} SDK_SPEC_PATH=${sdkSpecPath}"
+        }
+        dir("justice-codegen-go-sdk") {
           sh "make version"
 
           sh "git add --all"

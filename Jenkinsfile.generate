@@ -1,0 +1,166 @@
+library(
+  identifier: 'jenkins-shared-library@master',
+  retriever: modernSCM(
+    [
+      $class: 'GitSCMSource',
+      remote: 'https://github.com/dhanarab/jenkins-pipeline-library.git'
+    ]
+  )
+)
+
+bitbucketCredentialsHttps = "Bitbucket_Build_AccelByte"
+bitbucketCredentialsSsh = "build_account_bitbucket_key"
+bitbucketCommitHref = null
+
+sdkNewBranchName = "rc-nightly"
+
+sdkSpecCommitHash = null
+sdkCommitHash = null
+
+sdkSpecPath = null
+sdkGenPath = null
+sdkPath = null
+
+def timeStamp() {
+  now = new Date()
+  return now.format("yyMMdd.HHmm", TimeZone.getTimeZone('UTC'))
+}
+
+pipeline {
+  agent {
+    label "justice-codegen-sdk"
+  }
+
+  stages {
+    // -------------------------------------- Prepare --------------------------------------
+    stage("Prepare") {
+      steps {
+        script {
+          sdkGenPath = "${env.WORKSPACE}/justice-codegen-sdk"
+          sdkSpecPath = "${env.WORKSPACE}/justice-codegen-sdk-spec"
+          sdkPath = "${env.WORKSPACE}/justice-codegen-go-sdk"
+
+          sh "rm -rf justice-codegen-sdk"
+          sh "rm -rf justice-codegen-sdk-spec"
+          sshagent(credentials: [bitbucketCredentialsSsh]) {
+            sh "git clone --depth 1 git@bitbucket.org:accelbyte/justice-codegen-sdk.git ${sdkGenPath}"
+            sh "git clone --depth 1 git@bitbucket.org:accelbyte/justice-codegen-sdk-spec.git ${sdkSpecPath}"
+          }
+
+          dir("justice-codegen-go-sdk") {
+            sh "git branch ${sdkNewBranchName} && git checkout ${sdkNewBranchName}"
+          }
+          // replace openapi specs inside sdk from spec repository
+          sh "rm -fv ${sdkPath}/spec/*"
+          sh "find ${sdkSpecPath}/spec/stage_main/ -maxdepth 1 -type f -exec cp -v -t ${sdkPath}/spec/ {} \\;"
+        
+          sdkSpecCommitHash = sh(returnStdout: true, script: "cd ${sdkSpecPath} && git rev-parse HEAD").trim()
+        }
+      }
+    }
+
+    // -------------------------------------- Generate --------------------------------------
+    stage("Generate SDK") {
+      steps {
+        // regenerate server sdk code
+        dir("justice-codegen-sdk") {
+          sh "make -f Makefile.sdk-go all beautify SDK_PATH=${sdkPath}"
+        }
+        
+        dir("justice-codegen-go-sdk") {
+          sh "make version"
+
+          sh "git add --all"
+          sh "git commit -m 'chore(sdk): generate go server sdk (${timeStamp()})' -m '- generated from source sdk spec commit: ${sdkSpecCommitHash}'"
+          sshagent(credentials: [bitbucketCredentialsSsh]) {
+            sh "git push --set-upstream origin +${sdkNewBranchName}:${sdkNewBranchName}"
+          }
+
+          script {
+            gitRepositoryName = git.getRepositoryName()
+            sdkCommitHash = git.getCommitHash()
+            bitbucketCommitHref = "https://api.bitbucket.org/2.0/repositories/accelbyte/${gitRepositoryName}/commit/${sdkCommitHash}"
+            bitbucket.setBuildStatus(bitbucketCredentialsHttps, bitbucketCommitHref, "INPROGRESS", env.JOB_NAME, "${env.JOB_NAME}-${env.BUILD_NUMBER}", "Jenkins", "${env.BUILD_URL}console")
+          }
+        }
+      }
+    }
+    
+    // -------------------------------------- Tests --------------------------------------
+    stage("Tests") {
+      parallel {
+        stage('Core Tests') {
+          steps {
+            dir("justice-codegen-go-sdk") {
+              sh "make test_core SDK_MOCK_SERVER_PATH=${sdkGenPath}/mock-server"
+            }
+          }
+        }
+
+        stage('CLI Tests') {
+          steps {
+            dir("justice-codegen-go-sdk") {
+              sh "make test_cli SDK_MOCK_SERVER_PATH=${sdkGenPath}/mock-server"
+            }
+          }
+          post {
+            always {
+              script {
+                archiveArtifacts artifacts: 'samples/cli/tests/*.tap'
+                step([$class: "TapPublisher", testResults: "samples/cli/tests/*.tap"])
+              }
+            }
+          }
+        }
+
+        stage('Integration Tests') {
+          options {
+            lock("justice-demo-serversdktest")
+          }
+          steps {
+            dir("justice-codegen-go-sdk") {
+              withCredentials([file(credentialsId: 'justice-codegen-sdk-integration-test-env', variable: 'ENV_FILE_PATH')]) {
+                sh 'make test_integration ENV_FILE_PATH=$ENV_FILE_PATH'
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+
+  post{
+    success {
+      script {
+        if (bitbucketCommitHref != null) {
+          bitbucket.setBuildStatus(bitbucketCredentialsHttps, bitbucketCommitHref, "SUCCESSFUL", env.JOB_NAME, "${env.JOB_NAME}-${env.BUILD_NUMBER}", "Jenkins", "${env.BUILD_URL}console")
+        }
+
+        specLink = "https://bitbucket.org/accelbyte/justice-codegen-sdk-spec/commits/${sdkSpecCommitHash}"
+        sdkLink = "https://bitbucket.org/accelbyte/justice-codegen-go-sdk/commits/${sdkCommitHash}"
+        message = """
+                  :white_check_mark: <${env.BUILD_URL}|${env.JOB_NAME}-${env.BUILD_NUMBER}> *Generate Go Server SDK Successful :gopher:*
+                
+                  |*Source SDK Spec:* <${specLink}|${sdkSpecCommitHash}>
+                  |*Generated SDK:* <${sdkLink}|${sdkCommitHash}>
+
+                  |<https://bitbucket.org/accelbyte/justice-codegen-go-sdk/pull-requests/new?source=${sdkNewBranchName}|Compare or Create Pull Request>
+                  |""".stripMargin()
+        slackSend(channel: "#activity-justice-server-sdks", color: '#36B37E', message: message)
+      }
+    }
+    failure {
+      script {
+        if (bitbucketCommitHref != null) {
+          bitbucket.setBuildStatus(bitbucketCredentialsHttps, bitbucketCommitHref, "FAILED", env.JOB_NAME, "${env.JOB_NAME}-${env.BUILD_NUMBER}", "Jenkins", "${env.BUILD_URL}console")
+        }
+
+        message = """
+            :no_entry: <${env.BUILD_URL}|${env.JOB_NAME}-${env.BUILD_NUMBER}> *failed*
+
+            |""".stripMargin()
+        slackSend(channel: "#activity-justice-server-sdks", color: '#FF0000', message: message)
+      }
+    }
+  }
+}

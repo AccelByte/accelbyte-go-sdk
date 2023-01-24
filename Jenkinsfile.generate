@@ -77,16 +77,15 @@ pipeline {
     }
     
     // -------------------------------------- Tests --------------------------------------
-    stage("Tests") {
-      parallel {
-        stage('Core Tests') {
-          steps {
-            dir("justice-codegen-go-sdk") {
-              sh "make test_core SDK_MOCK_SERVER_PATH=${sdkGenPath}/mock-server"
-            }
-          }
+    stage('Core Tests') {
+      steps {
+        dir("justice-codegen-go-sdk") {
+          sh "make test_core SDK_MOCK_SERVER_PATH=${sdkGenPath}/mock-server"
         }
-
+      }
+    }
+    stage("CLI/Integration Tests") {
+      parallel {
         stage('CLI Tests') {
           steps {
             dir("justice-codegen-go-sdk") {

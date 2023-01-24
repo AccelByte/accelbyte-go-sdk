@@ -46,14 +46,6 @@ pipeline {
             sh "git clone --depth 1 git@bitbucket.org:accelbyte/justice-codegen-sdk.git ${sdkGenPath}"
             sh "git clone --depth 1 git@bitbucket.org:accelbyte/justice-codegen-sdk-spec.git ${sdkSpecPath}"
           }
-
-          dir("justice-codegen-go-sdk") {
-            sh "git branch ${sdkNewBranchName} && git checkout ${sdkNewBranchName}"
-          }
-          // replace openapi specs inside sdk from spec repository
-          sh "rm -fv ${sdkPath}/spec/*"
-          sh "find ${sdkSpecPath}/spec/stage_main/ -maxdepth 1 -type f -exec cp -v -t ${sdkPath}/spec/ {} \\;"
-        
           sdkSpecCommitHash = sh(returnStdout: true, script: "cd ${sdkSpecPath} && git rev-parse HEAD").trim()
         }
       }
@@ -62,12 +54,10 @@ pipeline {
     // -------------------------------------- Generate --------------------------------------
     stage("Generate SDK") {
       steps {
-        // regenerate server sdk code
-        dir("justice-codegen-sdk") {
-          sh "make -f Makefile.sdk-go all beautify SDK_PATH=${sdkPath}"
-        }
-        
         dir("justice-codegen-go-sdk") {
+          sh "git branch ${sdkNewBranchName} && git checkout ${sdkNewBranchName}"
+
+          sh "make generate SDK_GEN_PATH=${sdkGenPath} SDK_SPEC_PATH=${sdkSpecPath}"
           sh "make version"
 
           sh "git add --all"
@@ -106,8 +96,10 @@ pipeline {
           post {
             always {
               script {
-                archiveArtifacts artifacts: 'samples/cli/tests/*.tap'
-                step([$class: "TapPublisher", testResults: "samples/cli/tests/*.tap"])
+                dir("justice-codegen-go-sdk") {
+                  archiveArtifacts artifacts: 'samples/cli/tests/*.tap'
+                  step([$class: "TapPublisher", testResults: "samples/cli/tests/*.tap"])
+                }
               }
             }
           }

@@ -103,3 +103,11 @@ version:
 			sed -i "s/UserAgentSDK = \"AccelByteGoSDK\/v[0-9]\+\.[0-9]\+\.[0-9]\+\"/UserAgentSDK = \"AccelByteGoSDK\/v$$VERSION_NEW\"/" services-api/pkg/utils/userAgent.go && \
 			sed -i "s/github.com\/AccelByte\/accelbyte-go-sdk v[0-9]\+\.[0-9]\+\.[0-9]\+/github.com\/AccelByte\/accelbyte-go-sdk v$$VERSION_OLD/" samples/getting-started/go.mod && \
 			docker run -t --rm -u $$(id -u):$$(id -g) -v $$(pwd):/data/ -w /data/ -e GOCACHE=/data/.cache/go-build $(GOLANG_DOCKER_IMAGE) sh -c "cd 'samples/getting-started' && go mod tidy"
+
+generate:
+	@if [ ! -d "$(SDK_GEN_PATH)" ]; then echo "please specify valid code generator path in SDK_GEN_PATH"; exit 1; fi
+	@if [ ! -d "$(SDK_SPEC_PATH)" ]; then echo "please specify valid openapi sdk spec path in SDK_SPEC_PATH"; exit 1; fi
+	export SDK_PATH=$$(pwd); \
+	rm -fv "$$SDK_PATH/spec/*"; \
+    find "$(SDK_SPEC_PATH)/spec/stage_main/" -maxdepth 1 -type f -exec cp -v -t "$$SDK_PATH/spec/" {} \;; \
+    cd "$(SDK_GEN_PATH)" && make -f Makefile.sdk-go all beautify SDK_PATH="$$SDK_PATH"; \

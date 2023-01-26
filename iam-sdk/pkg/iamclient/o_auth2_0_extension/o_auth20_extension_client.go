@@ -49,12 +49,12 @@ type ClientService interface {
 	RequestGameTokenResponseV3Short(params *RequestGameTokenResponseV3Params, authInfo runtime.ClientAuthInfoWriter) (*RequestGameTokenResponseV3OK, error)
 	RequestOneTimeLinkingCodeV3(params *RequestOneTimeLinkingCodeV3Params, authInfo runtime.ClientAuthInfoWriter) (*RequestOneTimeLinkingCodeV3OK, error)
 	RequestOneTimeLinkingCodeV3Short(params *RequestOneTimeLinkingCodeV3Params, authInfo runtime.ClientAuthInfoWriter) (*RequestOneTimeLinkingCodeV3OK, error)
-	RequestTokenByOneTimeLinkCodeResponseV3(params *RequestTokenByOneTimeLinkCodeResponseV3Params, authInfo runtime.ClientAuthInfoWriter) (*RequestTokenByOneTimeLinkCodeResponseV3OK, error)
-	RequestTokenByOneTimeLinkCodeResponseV3Short(params *RequestTokenByOneTimeLinkCodeResponseV3Params, authInfo runtime.ClientAuthInfoWriter) (*RequestTokenByOneTimeLinkCodeResponseV3OK, error)
+	RequestTokenByOneTimeLinkCodeResponseV3(params *RequestTokenByOneTimeLinkCodeResponseV3Params) (*RequestTokenByOneTimeLinkCodeResponseV3OK, error)
+	RequestTokenByOneTimeLinkCodeResponseV3Short(params *RequestTokenByOneTimeLinkCodeResponseV3Params) (*RequestTokenByOneTimeLinkCodeResponseV3OK, error)
 	UserAuthenticationV3(params *UserAuthenticationV3Params, authInfo runtime.ClientAuthInfoWriter) (*UserAuthenticationV3Found, error)
 	UserAuthenticationV3Short(params *UserAuthenticationV3Params, authInfo runtime.ClientAuthInfoWriter) (*UserAuthenticationV3Found, error)
-	ValidateOneTimeLinkingCodeV3(params *ValidateOneTimeLinkingCodeV3Params, authInfo runtime.ClientAuthInfoWriter) (*ValidateOneTimeLinkingCodeV3OK, error)
-	ValidateOneTimeLinkingCodeV3Short(params *ValidateOneTimeLinkingCodeV3Params, authInfo runtime.ClientAuthInfoWriter) (*ValidateOneTimeLinkingCodeV3OK, error)
+	ValidateOneTimeLinkingCodeV3(params *ValidateOneTimeLinkingCodeV3Params) (*ValidateOneTimeLinkingCodeV3OK, error)
+	ValidateOneTimeLinkingCodeV3Short(params *ValidateOneTimeLinkingCodeV3Params) (*ValidateOneTimeLinkingCodeV3OK, error)
 
 	SetTransport(transport runtime.ClientTransport)
 }
@@ -990,7 +990,7 @@ Deprecated: Use RequestTokenByOneTimeLinkCodeResponseV3Short instead.
 		It required a code which can be generated from &lt;strong&gt;/iam/v3/link/code/request&lt;/strong&gt;.&lt;br&gt;
 		&lt;/p&gt;
 */
-func (a *Client) RequestTokenByOneTimeLinkCodeResponseV3(params *RequestTokenByOneTimeLinkCodeResponseV3Params, authInfo runtime.ClientAuthInfoWriter) (*RequestTokenByOneTimeLinkCodeResponseV3OK, error) {
+func (a *Client) RequestTokenByOneTimeLinkCodeResponseV3(params *RequestTokenByOneTimeLinkCodeResponseV3Params) (*RequestTokenByOneTimeLinkCodeResponseV3OK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewRequestTokenByOneTimeLinkCodeResponseV3Params()
@@ -1013,7 +1013,6 @@ func (a *Client) RequestTokenByOneTimeLinkCodeResponseV3(params *RequestTokenByO
 		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &RequestTokenByOneTimeLinkCodeResponseV3Reader{formats: a.formats},
-		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
 	})
@@ -1039,7 +1038,7 @@ func (a *Client) RequestTokenByOneTimeLinkCodeResponseV3(params *RequestTokenByO
 		It required a code which can be generated from &lt;strong&gt;/iam/v3/link/code/request&lt;/strong&gt;.&lt;br&gt;
 		&lt;/p&gt;
 */
-func (a *Client) RequestTokenByOneTimeLinkCodeResponseV3Short(params *RequestTokenByOneTimeLinkCodeResponseV3Params, authInfo runtime.ClientAuthInfoWriter) (*RequestTokenByOneTimeLinkCodeResponseV3OK, error) {
+func (a *Client) RequestTokenByOneTimeLinkCodeResponseV3Short(params *RequestTokenByOneTimeLinkCodeResponseV3Params) (*RequestTokenByOneTimeLinkCodeResponseV3OK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewRequestTokenByOneTimeLinkCodeResponseV3Params()
@@ -1062,7 +1061,6 @@ func (a *Client) RequestTokenByOneTimeLinkCodeResponseV3Short(params *RequestTok
 		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &RequestTokenByOneTimeLinkCodeResponseV3Reader{formats: a.formats},
-		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
 	})
@@ -1205,7 +1203,7 @@ Deprecated: Use ValidateOneTimeLinkingCodeV3Short instead.
 		Current user should be a headless account.&lt;br&gt;
 		&lt;/p&gt;
 */
-func (a *Client) ValidateOneTimeLinkingCodeV3(params *ValidateOneTimeLinkingCodeV3Params, authInfo runtime.ClientAuthInfoWriter) (*ValidateOneTimeLinkingCodeV3OK, error) {
+func (a *Client) ValidateOneTimeLinkingCodeV3(params *ValidateOneTimeLinkingCodeV3Params) (*ValidateOneTimeLinkingCodeV3OK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewValidateOneTimeLinkingCodeV3Params()
@@ -1228,7 +1226,6 @@ func (a *Client) ValidateOneTimeLinkingCodeV3(params *ValidateOneTimeLinkingCode
 		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &ValidateOneTimeLinkingCodeV3Reader{formats: a.formats},
-		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
 	})
@@ -1255,7 +1252,7 @@ func (a *Client) ValidateOneTimeLinkingCodeV3(params *ValidateOneTimeLinkingCode
 		Current user should be a headless account.&lt;br&gt;
 		&lt;/p&gt;
 */
-func (a *Client) ValidateOneTimeLinkingCodeV3Short(params *ValidateOneTimeLinkingCodeV3Params, authInfo runtime.ClientAuthInfoWriter) (*ValidateOneTimeLinkingCodeV3OK, error) {
+func (a *Client) ValidateOneTimeLinkingCodeV3Short(params *ValidateOneTimeLinkingCodeV3Params) (*ValidateOneTimeLinkingCodeV3OK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewValidateOneTimeLinkingCodeV3Params()
@@ -1278,7 +1275,6 @@ func (a *Client) ValidateOneTimeLinkingCodeV3Short(params *ValidateOneTimeLinkin
 		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &ValidateOneTimeLinkingCodeV3Reader{formats: a.formats},
-		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
 	})

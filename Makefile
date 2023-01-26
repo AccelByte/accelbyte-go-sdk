@@ -54,18 +54,8 @@ test_core:
 
 test_integration:
 	@test -n "$(ENV_FILE_PATH)" || (echo "ENV_FILE_PATH is not set" ; exit 1)
-	docker run -t --rm -u $$(id -u):$$(id -g) -e AB_PHANTAUTH_URL="https://phantauth.rbs1518.net" --env-file $(ENV_FILE_PATH) -v $$(pwd):/data/ -w /data/ -e GOCACHE=/data/.cache/go-build $(GOLANG_DOCKER_IMAGE) \
+	docker run -t --rm -u $$(id -u):$$(id -g) --env-file $(ENV_FILE_PATH) -v $$(pwd):/data/ -w /data/ -e GOCACHE=/data/.cache/go-build $(GOLANG_DOCKER_IMAGE) \
 			sh -c "go test -v github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/tests/integration"
-
-test_integration_intercepted:
-	@test -n "$(ENV_FILE_PATH)" || (echo "ENV_FILE_PATH is not set" ; exit 1)
-	docker run -t --rm \
-		-e AB_PHANTAUTH_URL="https://phantauth.rbs1518.net" \
-		--env-file $(ENV_FILE_PATH) \
-		-v $$(pwd):/data/ -w /data/ \
-		-v /etc/ssl/certs/:/certs \
-		-e GOCACHE=/data/.cache/go-build $(GOLANG_DOCKER_IMAGE) \
-		sh -c "cp /certs/http-toolkit-ca-certificate.crt /etc/ssl/certs/http-toolkit-ca-certificate.crt && update-ca-certificates && go test -v github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/tests/integration"
 
 test_cli:
 	@test -n "$(SDK_MOCK_SERVER_PATH)" || (echo "SDK_MOCK_SERVER_PATH is not set" ; exit 1)

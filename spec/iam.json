@@ -14659,11 +14659,7 @@
             }
           }
         },
-        "security": [
-          {
-            "authorization": []
-          }
-        ],
+        "security": [],
         "summary": "Validate one time linking code",
         "tags": [
           "OAuth2.0 - Extension"
@@ -14704,11 +14700,7 @@
             }
           }
         },
-        "security": [
-          {
-            "authorization": []
-          }
-        ],
+        "security": [],
         "summary": "Generate publisher token by headless account's one time link code",
         "tags": [
           "OAuth2.0 - Extension"

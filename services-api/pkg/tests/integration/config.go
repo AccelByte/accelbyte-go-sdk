@@ -62,7 +62,7 @@ func (c *ConfigRepositoryPhantAuthImpl) GetClientSecret() string {
 }
 
 func (c *ConfigRepositoryPhantAuthImpl) GetJusticeBaseUrl() string {
-	return os.Getenv("AB_PHANTAUTH_URL")
+	return os.Getenv("AB_PHANTAUTH_BASE_URL")
 }
 
 func (t *TokenRepositoryPhantAuthImpl) Store(accessToken interface{}) error {

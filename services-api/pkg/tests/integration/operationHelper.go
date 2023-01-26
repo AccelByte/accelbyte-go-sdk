@@ -15,12 +15,13 @@ import (
 	"strings"
 	"time"
 
-	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/repository"
-	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils"
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/runtime"
 	httptransport "github.com/go-openapi/runtime/client"
 	"github.com/go-openapi/strfmt"
+
+	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/repository"
+	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils"
 )
 
 type TestWrapperService struct {
@@ -38,7 +39,7 @@ var (
 )
 
 func getPhantauthURL() string {
-	url := os.Getenv("AB_PHANTAUTH_URL")
+	url := os.Getenv("AB_PHANTAUTH_BASE_URL")
 	if strings.HasPrefix(strings.ToLower(url), "https://") {
 		phanauthURL := strings.TrimPrefix(url, "https://")
 

@@ -62,7 +62,8 @@ pipeline {
         // replace openapi specs inside sdk from spec repository
         sh "rm -fv ${sdkPath}/spec/*"
         sh "find ${sdkSpecPath}/spec/stage_main/ -maxdepth 1 -type f -exec cp -v -t ${sdkPath}/spec/ {} \\;"
-
+        sh "cp -v ${sdkSpecPath}/docs/openapi-2.0-vendor-extensions.md ${sdkPath}/spec/"
+        
         // regenerate server sdk code
         dir("justice-codegen-sdk") {
           sh "make -f Makefile.sdk-go all beautify SDK_PATH=${sdkPath}"

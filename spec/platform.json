@@ -8,7 +8,7 @@
     },
     "description": "Justice Platform Service",
     "title": "justice-platform-service",
-    "version": "4.21.0"
+    "version": "4.22.1"
   },
   "schemes": [
     "https"
@@ -32985,6 +32985,14 @@
             "$ref": "#/definitions/LootBoxReward"
           },
           "type": "array"
+        },
+        "rollFunction": {
+          "description": "roll function",
+          "enum": [
+            "CUSTOM",
+            "DEFAULT"
+          ],
+          "type": "string"
         }
       },
       "type": "object"
@@ -32992,7 +33000,7 @@
     "LootBoxReward": {
       "properties": {
         "lootBoxItems": {
-          "description": "reward items, if type is PROBABILITY_GROUP, will random get one of items in it, if type is REWARD_GROUP/REWARD, will grant all items to user when roll this reward",
+          "description": "reward items, if type is PROBABILITY_GROUP, will random get one of items in it, if type is REWARD, will grant all items to user when roll this reward",
           "items": {
             "$ref": "#/definitions/BoxItem"
           },

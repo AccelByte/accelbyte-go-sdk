@@ -29,6 +29,9 @@ type ModelsChannelResponse struct {
 	// Required: true
 	Namespace *string `json:"namespace"`
 
+	// parent namespace
+	ParentNamespace string `json:"parentNamespace,omitempty"`
+
 	// user Id
 	// Required: true
 	UserID *string `json:"userId"`

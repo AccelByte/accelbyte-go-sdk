@@ -303,25 +303,24 @@ Deprecated: Use CreateGameSessionShort instead.
 
   CreateGameSession creates a game session requires n a m e s p a c e namespace s e s s i o n g a m e c r e a t e
 
-  &lt;p&gt;Create a game session.
-        Session configuration name is mandatory, this API will refer following values from the session template if they&#39;re not provided in the request:&lt;/p&gt;
-		&lt;ul&gt;
-		   &lt;li&gt;type&lt;/li&gt;
-		   &lt;li&gt;joinability&lt;/li&gt;
-		   &lt;li&gt;minPlayers&lt;/li&gt;
-		   &lt;li&gt;maxPlayers&lt;/li&gt;
-		   &lt;li&gt;inviteTimeout&lt;/li&gt;
-		   &lt;li&gt;inactiveTimeout&lt;/li&gt;
-		&lt;/ul&gt;
-        &lt;p&gt;When the session type is a DS, a DS creation request will be sent to DSMC if number of active players reaches session&#39;s minPlayers.
-		Active user is a user who present within the session, has status CONNECTED/JOINED.
-        Session service has several DSInformation status to track DS request to DSMC:&lt;/p&gt;
-		&lt;ul&gt;
-		  &lt;li&gt;&lt;b&gt;NEED_TO_REQUEST&lt;/b&gt;: number of active players hasn&#39;t reached session&#39;s minPlayers therefore DS has not yet requested.&lt;/li&gt;
-		  &lt;li&gt;&lt;b&gt;REQUESTED&lt;/b&gt;: DS is being requested to DSMC.&lt;/li&gt;
-		  &lt;li&gt;&lt;b&gt;AVAILABLE&lt;/b&gt;: DS is ready to use. The DSMC status for this DS is either READY/BUSY.&lt;/li&gt;
-		  &lt;li&gt;&lt;b&gt;FAILED_TO_REQUEST&lt;/b&gt;: DSMC fails to create the DS.&lt;/li&gt;
-		&lt;/ul&gt;
+  Create a game session.
+      Session configuration name is mandatory, this API will refer following values from the session template if they&#39;re not provided in the request:
+   - type
+   - joinability
+   - minPlayers
+   - maxPlayers
+   - inviteTimeout
+   - inactiveTimeout
+
+      When the session type is a DS, a DS creation request will be sent to DSMC if number of active players reaches session&#39;s minPlayers.
+
+Active user is a user who present within the session, has status CONNECTED/JOINED.
+
+      Session service has several DSInformation status to track DS request to DSMC:
+   - NEED_TO_REQUEST: number of active players hasn&#39;t reached session&#39;s minPlayers therefore DS has not yet requested.
+   - REQUESTED: DS is being requested to DSMC.
+   - AVAILABLE: DS is ready to use. The DSMC status for this DS is either READY/BUSY.
+   - FAILED_TO_REQUEST: DSMC fails to create the DS.
 
 */
 func (a *Client) CreateGameSession(params *CreateGameSessionParams, authInfo runtime.ClientAuthInfoWriter) (*CreateGameSessionCreated, *CreateGameSessionBadRequest, *CreateGameSessionUnauthorized, *CreateGameSessionForbidden, *CreateGameSessionInternalServerError, error) {
@@ -380,25 +379,24 @@ func (a *Client) CreateGameSession(params *CreateGameSessionParams, authInfo run
 /*
   CreateGameSessionShort creates a game session requires n a m e s p a c e namespace s e s s i o n g a m e c r e a t e
 
-  &lt;p&gt;Create a game session.
-        Session configuration name is mandatory, this API will refer following values from the session template if they&#39;re not provided in the request:&lt;/p&gt;
-		&lt;ul&gt;
-		   &lt;li&gt;type&lt;/li&gt;
-		   &lt;li&gt;joinability&lt;/li&gt;
-		   &lt;li&gt;minPlayers&lt;/li&gt;
-		   &lt;li&gt;maxPlayers&lt;/li&gt;
-		   &lt;li&gt;inviteTimeout&lt;/li&gt;
-		   &lt;li&gt;inactiveTimeout&lt;/li&gt;
-		&lt;/ul&gt;
-        &lt;p&gt;When the session type is a DS, a DS creation request will be sent to DSMC if number of active players reaches session&#39;s minPlayers.
-		Active user is a user who present within the session, has status CONNECTED/JOINED.
-        Session service has several DSInformation status to track DS request to DSMC:&lt;/p&gt;
-		&lt;ul&gt;
-		  &lt;li&gt;&lt;b&gt;NEED_TO_REQUEST&lt;/b&gt;: number of active players hasn&#39;t reached session&#39;s minPlayers therefore DS has not yet requested.&lt;/li&gt;
-		  &lt;li&gt;&lt;b&gt;REQUESTED&lt;/b&gt;: DS is being requested to DSMC.&lt;/li&gt;
-		  &lt;li&gt;&lt;b&gt;AVAILABLE&lt;/b&gt;: DS is ready to use. The DSMC status for this DS is either READY/BUSY.&lt;/li&gt;
-		  &lt;li&gt;&lt;b&gt;FAILED_TO_REQUEST&lt;/b&gt;: DSMC fails to create the DS.&lt;/li&gt;
-		&lt;/ul&gt;
+  Create a game session.
+      Session configuration name is mandatory, this API will refer following values from the session template if they&#39;re not provided in the request:
+   - type
+   - joinability
+   - minPlayers
+   - maxPlayers
+   - inviteTimeout
+   - inactiveTimeout
+
+      When the session type is a DS, a DS creation request will be sent to DSMC if number of active players reaches session&#39;s minPlayers.
+
+Active user is a user who present within the session, has status CONNECTED/JOINED.
+
+      Session service has several DSInformation status to track DS request to DSMC:
+   - NEED_TO_REQUEST: number of active players hasn&#39;t reached session&#39;s minPlayers therefore DS has not yet requested.
+   - REQUESTED: DS is being requested to DSMC.
+   - AVAILABLE: DS is ready to use. The DSMC status for this DS is either READY/BUSY.
+   - FAILED_TO_REQUEST: DSMC fails to create the DS.
 
 */
 func (a *Client) CreateGameSessionShort(params *CreateGameSessionParams, authInfo runtime.ClientAuthInfoWriter) (*CreateGameSessionCreated, error) {
@@ -565,13 +563,11 @@ Deprecated: Use GetGameSessionShort instead.
   GetGameSession gets game session detail requires n a m e s p a c e namespace s e s s i o n g a m e r e a d
 
   Get game session detail.
-		Session service has several DSInformation status to track DS request to DSMC:
-		&lt;ul&gt;
-		  &lt;li&gt;&lt;b&gt;NEED_TO_REQUEST&lt;/b&gt;: number of active players hasn&#39;t reached session&#39;s minPlayers therefore DS has not yet requested.&lt;/li&gt;
-		  &lt;li&gt;&lt;b&gt;REQUESTED&lt;/b&gt;: DS is being requested to DSMC.&lt;/li&gt;
-		  &lt;li&gt;&lt;b&gt;AVAILABLE&lt;/b&gt;: DS is ready to use. The DSMC status for this DS is either READY/BUSY.&lt;/li&gt;
-		  &lt;li&gt;&lt;b&gt;FAILED_TO_REQUEST&lt;/b&gt;: DSMC fails to create the DS.&lt;/li&gt;
-		&lt;/ul&gt;
+Session service has several DSInformation status to track DS request to DSMC:
+   - NEED_TO_REQUEST: number of active players hasn&#39;t reached session&#39;s minPlayers therefore DS has not yet requested.
+   - REQUESTED: DS is being requested to DSMC.
+   - AVAILABLE: DS is ready to use. The DSMC status for this DS is either READY/BUSY.
+   - FAILED_TO_REQUEST: DSMC fails to create the DS.
 
 */
 func (a *Client) GetGameSession(params *GetGameSessionParams, authInfo runtime.ClientAuthInfoWriter) (*GetGameSessionOK, *GetGameSessionBadRequest, *GetGameSessionUnauthorized, *GetGameSessionForbidden, *GetGameSessionNotFound, *GetGameSessionInternalServerError, error) {
@@ -634,13 +630,11 @@ func (a *Client) GetGameSession(params *GetGameSessionParams, authInfo runtime.C
   GetGameSessionShort gets game session detail requires n a m e s p a c e namespace s e s s i o n g a m e r e a d
 
   Get game session detail.
-		Session service has several DSInformation status to track DS request to DSMC:
-		&lt;ul&gt;
-		  &lt;li&gt;&lt;b&gt;NEED_TO_REQUEST&lt;/b&gt;: number of active players hasn&#39;t reached session&#39;s minPlayers therefore DS has not yet requested.&lt;/li&gt;
-		  &lt;li&gt;&lt;b&gt;REQUESTED&lt;/b&gt;: DS is being requested to DSMC.&lt;/li&gt;
-		  &lt;li&gt;&lt;b&gt;AVAILABLE&lt;/b&gt;: DS is ready to use. The DSMC status for this DS is either READY/BUSY.&lt;/li&gt;
-		  &lt;li&gt;&lt;b&gt;FAILED_TO_REQUEST&lt;/b&gt;: DSMC fails to create the DS.&lt;/li&gt;
-		&lt;/ul&gt;
+Session service has several DSInformation status to track DS request to DSMC:
+   - NEED_TO_REQUEST: number of active players hasn&#39;t reached session&#39;s minPlayers therefore DS has not yet requested.
+   - REQUESTED: DS is being requested to DSMC.
+   - AVAILABLE: DS is ready to use. The DSMC status for this DS is either READY/BUSY.
+   - FAILED_TO_REQUEST: DSMC fails to create the DS.
 
 */
 func (a *Client) GetGameSessionShort(params *GetGameSessionParams, authInfo runtime.ClientAuthInfoWriter) (*GetGameSessionOK, error) {
@@ -700,13 +694,11 @@ Deprecated: Use GetGameSessionByPodNameShort instead.
   GetGameSessionByPodName gets game session detail requires n a m e s p a c e namespace s e s s i o n g a m e r e a d
 
   Get game session detail by podname.
-		Session service has several DSInformation status to track DS request to DSMC:
-		&lt;ul&gt;
-		  &lt;li&gt;&lt;b&gt;NEED_TO_REQUEST&lt;/b&gt;: number of active players hasn&#39;t reached session&#39;s minPlayers therefore DS has not yet requested.&lt;/li&gt;
-		  &lt;li&gt;&lt;b&gt;REQUESTED&lt;/b&gt;: DS is being requested to DSMC.&lt;/li&gt;
-		  &lt;li&gt;&lt;b&gt;AVAILABLE&lt;/b&gt;: DS is ready to use. The DSMC status for this DS is either READY/BUSY.&lt;/li&gt;
-		  &lt;li&gt;&lt;b&gt;FAILED_TO_REQUEST&lt;/b&gt;: DSMC fails to create the DS.&lt;/li&gt;
-		&lt;/ul&gt;
+Session service has several DSInformation status to track DS request to DSMC:
+   - NEED_TO_REQUEST: number of active players hasn&#39;t reached session&#39;s minPlayers therefore DS has not yet requested.
+   - REQUESTED: DS is being requested to DSMC.
+   - AVAILABLE: DS is ready to use. The DSMC status for this DS is either READY/BUSY.
+   - FAILED_TO_REQUEST: DSMC fails to create the DS.
 
 */
 func (a *Client) GetGameSessionByPodName(params *GetGameSessionByPodNameParams, authInfo runtime.ClientAuthInfoWriter) (*GetGameSessionByPodNameOK, *GetGameSessionByPodNameBadRequest, *GetGameSessionByPodNameUnauthorized, *GetGameSessionByPodNameForbidden, *GetGameSessionByPodNameNotFound, *GetGameSessionByPodNameInternalServerError, error) {
@@ -769,13 +761,11 @@ func (a *Client) GetGameSessionByPodName(params *GetGameSessionByPodNameParams, 
   GetGameSessionByPodNameShort gets game session detail requires n a m e s p a c e namespace s e s s i o n g a m e r e a d
 
   Get game session detail by podname.
-		Session service has several DSInformation status to track DS request to DSMC:
-		&lt;ul&gt;
-		  &lt;li&gt;&lt;b&gt;NEED_TO_REQUEST&lt;/b&gt;: number of active players hasn&#39;t reached session&#39;s minPlayers therefore DS has not yet requested.&lt;/li&gt;
-		  &lt;li&gt;&lt;b&gt;REQUESTED&lt;/b&gt;: DS is being requested to DSMC.&lt;/li&gt;
-		  &lt;li&gt;&lt;b&gt;AVAILABLE&lt;/b&gt;: DS is ready to use. The DSMC status for this DS is either READY/BUSY.&lt;/li&gt;
-		  &lt;li&gt;&lt;b&gt;FAILED_TO_REQUEST&lt;/b&gt;: DSMC fails to create the DS.&lt;/li&gt;
-		&lt;/ul&gt;
+Session service has several DSInformation status to track DS request to DSMC:
+   - NEED_TO_REQUEST: number of active players hasn&#39;t reached session&#39;s minPlayers therefore DS has not yet requested.
+   - REQUESTED: DS is being requested to DSMC.
+   - AVAILABLE: DS is ready to use. The DSMC status for this DS is either READY/BUSY.
+   - FAILED_TO_REQUEST: DSMC fails to create the DS.
 
 */
 func (a *Client) GetGameSessionByPodNameShort(params *GetGameSessionByPodNameParams, authInfo runtime.ClientAuthInfoWriter) (*GetGameSessionByPodNameOK, error) {
@@ -1430,14 +1420,13 @@ Deprecated: Use PublicQueryGameSessionsShort instead.
   PublicQueryGameSessions queries game sessions
 
   Query game sessions.
-		By default, API will return a list of available game sessions (joinability: open).
-		Session service has several DSInformation status to track DS request to DSMC:
-		&lt;ul&gt;
-		  &lt;li&gt;&lt;b&gt;NEED_TO_REQUEST&lt;/b&gt;: number of active players hasn&#39;t reached session&#39;s minPlayers therefore DS has not yet requested.&lt;/li&gt;
-		  &lt;li&gt;&lt;b&gt;REQUESTED&lt;/b&gt;: DS is being requested to DSMC.&lt;/li&gt;
-		  &lt;li&gt;&lt;b&gt;AVAILABLE&lt;/b&gt;: DS is ready to use. The DSMC status for this DS is either READY/BUSY.&lt;/li&gt;
-		  &lt;li&gt;&lt;b&gt;FAILED_TO_REQUEST&lt;/b&gt;: DSMC fails to create the DS.&lt;/li&gt;
-		&lt;/ul&gt;
+
+By default, API will return a list of available game sessions (joinability: open).
+Session service has several DSInformation status to track DS request to DSMC:
+   - NEED_TO_REQUEST: number of active players hasn&#39;t reached session&#39;s minPlayers therefore DS has not yet requested.
+   - REQUESTED: DS is being requested to DSMC.
+   - AVAILABLE: DS is ready to use. The DSMC status for this DS is either READY/BUSY.
+   - FAILED_TO_REQUEST: DSMC fails to create the DS.
 
 */
 func (a *Client) PublicQueryGameSessions(params *PublicQueryGameSessionsParams, authInfo runtime.ClientAuthInfoWriter) (*PublicQueryGameSessionsOK, *PublicQueryGameSessionsBadRequest, *PublicQueryGameSessionsUnauthorized, *PublicQueryGameSessionsForbidden, *PublicQueryGameSessionsInternalServerError, error) {
@@ -1497,14 +1486,13 @@ func (a *Client) PublicQueryGameSessions(params *PublicQueryGameSessionsParams, 
   PublicQueryGameSessionsShort queries game sessions
 
   Query game sessions.
-		By default, API will return a list of available game sessions (joinability: open).
-		Session service has several DSInformation status to track DS request to DSMC:
-		&lt;ul&gt;
-		  &lt;li&gt;&lt;b&gt;NEED_TO_REQUEST&lt;/b&gt;: number of active players hasn&#39;t reached session&#39;s minPlayers therefore DS has not yet requested.&lt;/li&gt;
-		  &lt;li&gt;&lt;b&gt;REQUESTED&lt;/b&gt;: DS is being requested to DSMC.&lt;/li&gt;
-		  &lt;li&gt;&lt;b&gt;AVAILABLE&lt;/b&gt;: DS is ready to use. The DSMC status for this DS is either READY/BUSY.&lt;/li&gt;
-		  &lt;li&gt;&lt;b&gt;FAILED_TO_REQUEST&lt;/b&gt;: DSMC fails to create the DS.&lt;/li&gt;
-		&lt;/ul&gt;
+
+By default, API will return a list of available game sessions (joinability: open).
+Session service has several DSInformation status to track DS request to DSMC:
+   - NEED_TO_REQUEST: number of active players hasn&#39;t reached session&#39;s minPlayers therefore DS has not yet requested.
+   - REQUESTED: DS is being requested to DSMC.
+   - AVAILABLE: DS is ready to use. The DSMC status for this DS is either READY/BUSY.
+   - FAILED_TO_REQUEST: DSMC fails to create the DS.
 
 */
 func (a *Client) PublicQueryGameSessionsShort(params *PublicQueryGameSessionsParams, authInfo runtime.ClientAuthInfoWriter) (*PublicQueryGameSessionsOK, error) {
@@ -1562,14 +1550,13 @@ Deprecated: Use PublicQueryMyGameSessionsShort instead.
   PublicQueryMyGameSessions queries user s game sessions
 
   Query user&#39;s game sessions.
-		By default, API will return a list of user&#39;s active game sessions (INVITED,JOINED,CONNECTED).
-		Session service has several DSInformation status to track DS request to DSMC:
-		&lt;ul&gt;
-		  &lt;li&gt;&lt;b&gt;NEED_TO_REQUEST&lt;/b&gt;: number of active players hasn&#39;t reached session&#39;s minPlayers therefore DS has not yet requested.&lt;/li&gt;
-		  &lt;li&gt;&lt;b&gt;REQUESTED&lt;/b&gt;: DS is being requested to DSMC.&lt;/li&gt;
-		  &lt;li&gt;&lt;b&gt;AVAILABLE&lt;/b&gt;: DS is ready to use. The DSMC status for this DS is either READY/BUSY.&lt;/li&gt;
-		  &lt;li&gt;&lt;b&gt;FAILED_TO_REQUEST&lt;/b&gt;: DSMC fails to create the DS.&lt;/li&gt;
-		&lt;/ul&gt;
+By default, API will return a list of user&#39;s active game sessions (INVITED,JOINED,CONNECTED).
+
+Session service has several DSInformation status to track DS request to DSMC:
+   - NEED_TO_REQUEST: number of active players hasn&#39;t reached session&#39;s minPlayers therefore DS has not yet requested.
+   - REQUESTED: DS is being requested to DSMC.
+   - AVAILABLE: DS is ready to use. The DSMC status for this DS is either READY/BUSY.
+   - FAILED_TO_REQUEST: DSMC fails to create the DS.
 
 */
 func (a *Client) PublicQueryMyGameSessions(params *PublicQueryMyGameSessionsParams, authInfo runtime.ClientAuthInfoWriter) (*PublicQueryMyGameSessionsOK, *PublicQueryMyGameSessionsBadRequest, *PublicQueryMyGameSessionsUnauthorized, *PublicQueryMyGameSessionsInternalServerError, error) {
@@ -1626,14 +1613,13 @@ func (a *Client) PublicQueryMyGameSessions(params *PublicQueryMyGameSessionsPara
   PublicQueryMyGameSessionsShort queries user s game sessions
 
   Query user&#39;s game sessions.
-		By default, API will return a list of user&#39;s active game sessions (INVITED,JOINED,CONNECTED).
-		Session service has several DSInformation status to track DS request to DSMC:
-		&lt;ul&gt;
-		  &lt;li&gt;&lt;b&gt;NEED_TO_REQUEST&lt;/b&gt;: number of active players hasn&#39;t reached session&#39;s minPlayers therefore DS has not yet requested.&lt;/li&gt;
-		  &lt;li&gt;&lt;b&gt;REQUESTED&lt;/b&gt;: DS is being requested to DSMC.&lt;/li&gt;
-		  &lt;li&gt;&lt;b&gt;AVAILABLE&lt;/b&gt;: DS is ready to use. The DSMC status for this DS is either READY/BUSY.&lt;/li&gt;
-		  &lt;li&gt;&lt;b&gt;FAILED_TO_REQUEST&lt;/b&gt;: DSMC fails to create the DS.&lt;/li&gt;
-		&lt;/ul&gt;
+By default, API will return a list of user&#39;s active game sessions (INVITED,JOINED,CONNECTED).
+
+Session service has several DSInformation status to track DS request to DSMC:
+   - NEED_TO_REQUEST: number of active players hasn&#39;t reached session&#39;s minPlayers therefore DS has not yet requested.
+   - REQUESTED: DS is being requested to DSMC.
+   - AVAILABLE: DS is ready to use. The DSMC status for this DS is either READY/BUSY.
+   - FAILED_TO_REQUEST: DSMC fails to create the DS.
 
 */
 func (a *Client) PublicQueryMyGameSessionsShort(params *PublicQueryMyGameSessionsParams, authInfo runtime.ClientAuthInfoWriter) (*PublicQueryMyGameSessionsOK, error) {
@@ -1689,7 +1675,9 @@ Deprecated: Use UpdateGameSessionShort instead.
   UpdateGameSession updates a game session requires n a m e s p a c e namespace s e s s i o n g a m e u p d a t e
 
   Updates a game session, this endpoint will override stored gamesession data.
-        To update only specified fields, please use &lt;code&gt; PATCH /session/v1/public/namespaces/{namespace}/gamesessions/{sessionId}&lt;/code&gt; endpoint.
+      To update only specified fields, please use following endpoint:
+  method : PATCH
+  API	 : /session/v1/public/namespaces/{namespace}/gamesessions/{sessionId}
 
 */
 func (a *Client) UpdateGameSession(params *UpdateGameSessionParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateGameSessionOK, *UpdateGameSessionBadRequest, *UpdateGameSessionUnauthorized, *UpdateGameSessionForbidden, *UpdateGameSessionNotFound, *UpdateGameSessionInternalServerError, error) {
@@ -1752,7 +1740,9 @@ func (a *Client) UpdateGameSession(params *UpdateGameSessionParams, authInfo run
   UpdateGameSessionShort updates a game session requires n a m e s p a c e namespace s e s s i o n g a m e u p d a t e
 
   Updates a game session, this endpoint will override stored gamesession data.
-        To update only specified fields, please use &lt;code&gt; PATCH /session/v1/public/namespaces/{namespace}/gamesessions/{sessionId}&lt;/code&gt; endpoint.
+      To update only specified fields, please use following endpoint:
+  method : PATCH
+  API	 : /session/v1/public/namespaces/{namespace}/gamesessions/{sessionId}
 
 */
 func (a *Client) UpdateGameSessionShort(params *UpdateGameSessionParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateGameSessionOK, error) {

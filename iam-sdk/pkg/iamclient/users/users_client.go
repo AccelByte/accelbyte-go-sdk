@@ -6064,6 +6064,14 @@ Deprecated: Use AdminSearchUserV3Short instead.
 &lt;li&gt;if platformBy parameter is defined and by parameter is using thirdparty, endpoint will search users based on the platformUserId or platformDisplayName they have linked to, example value: platformUserId or platformDisplayName&lt;/li&gt;
                &lt;li&gt;if limit is not defined, The default limit is 100&lt;/li&gt;
 &lt;/ul&gt;&lt;/p&gt;
+               &lt;p&gt;In multi tenant mode :
+&lt;ul&gt;
+&lt;li&gt;if super admin search in super admin namespace, the result will be all game admin user&lt;/li&gt;
+&lt;li&gt;if super admin search in game studio namespace, the result will be all game admin user and players under the game studio namespace&lt;/li&gt;
+&lt;li&gt;if super admin search in game namespace, the result will be all game admin users and players under the game namespace&lt;/li&gt;
+&lt;li&gt;if game admin search in their game studio namespace, the result will be all game admin user in the studio namespace&lt;/li&gt;
+&lt;li&gt;if game admin search in their game namespace, the result will be all player in the game namespace&lt;/li&gt;
+&lt;/ul&gt;&lt;/p&gt;
              &lt;br&gt;action code : 10133
 */
 func (a *Client) AdminSearchUserV3(params *AdminSearchUserV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminSearchUserV3OK, *AdminSearchUserV3BadRequest, *AdminSearchUserV3Unauthorized, *AdminSearchUserV3Forbidden, *AdminSearchUserV3InternalServerError, error) {
@@ -6133,6 +6141,14 @@ func (a *Client) AdminSearchUserV3(params *AdminSearchUserV3Params, authInfo run
 &lt;li&gt;if platformId parameter is defined and by parameter is using thirdparty, endpoint will search users based on the platformId they have linked to &lt;/li&gt;
 &lt;li&gt;if platformBy parameter is defined and by parameter is using thirdparty, endpoint will search users based on the platformUserId or platformDisplayName they have linked to, example value: platformUserId or platformDisplayName&lt;/li&gt;
                &lt;li&gt;if limit is not defined, The default limit is 100&lt;/li&gt;
+&lt;/ul&gt;&lt;/p&gt;
+               &lt;p&gt;In multi tenant mode :
+&lt;ul&gt;
+&lt;li&gt;if super admin search in super admin namespace, the result will be all game admin user&lt;/li&gt;
+&lt;li&gt;if super admin search in game studio namespace, the result will be all game admin user and players under the game studio namespace&lt;/li&gt;
+&lt;li&gt;if super admin search in game namespace, the result will be all game admin users and players under the game namespace&lt;/li&gt;
+&lt;li&gt;if game admin search in their game studio namespace, the result will be all game admin user in the studio namespace&lt;/li&gt;
+&lt;li&gt;if game admin search in their game namespace, the result will be all player in the game namespace&lt;/li&gt;
 &lt;/ul&gt;&lt;/p&gt;
              &lt;br&gt;action code : 10133
 */

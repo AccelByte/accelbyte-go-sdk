@@ -50,6 +50,9 @@ type OauthmodelErrorResponse struct {
 
 	// platform Id
 	PlatformID string `json:"platformId,omitempty"`
+
+	// user ban
+	UserBan *OauthmodelUserBan `json:"userBan,omitempty"`
 }
 
 // Validate validates this oauthmodel error response
@@ -57,6 +60,10 @@ func (m *OauthmodelErrorResponse) Validate(formats strfmt.Registry) error {
 	var res []error
 
 	if err := m.validateError(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateUserBan(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -70,6 +77,24 @@ func (m *OauthmodelErrorResponse) validateError(formats strfmt.Registry) error {
 
 	if err := validate.Required("error", "body", m.Error); err != nil {
 		return err
+	}
+
+	return nil
+}
+
+func (m *OauthmodelErrorResponse) validateUserBan(formats strfmt.Registry) error {
+
+	if swag.IsZero(m.UserBan) { // not required
+		return nil
+	}
+
+	if m.UserBan != nil {
+		if err := m.UserBan.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("userBan")
+			}
+			return err
+		}
 	}
 
 	return nil

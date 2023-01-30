@@ -35,28 +35,50 @@ type Client struct {
 type ClientService interface {
 	CancelGroupJoinRequestV1(params *CancelGroupJoinRequestV1Params, authInfo runtime.ClientAuthInfoWriter) (*CancelGroupJoinRequestV1OK, *CancelGroupJoinRequestV1BadRequest, *CancelGroupJoinRequestV1Unauthorized, *CancelGroupJoinRequestV1Forbidden, *CancelGroupJoinRequestV1NotFound, *CancelGroupJoinRequestV1InternalServerError, error)
 	CancelGroupJoinRequestV1Short(params *CancelGroupJoinRequestV1Params, authInfo runtime.ClientAuthInfoWriter) (*CancelGroupJoinRequestV1OK, error)
+	GetUserGroupStatusInformationV2(params *GetUserGroupStatusInformationV2Params, authInfo runtime.ClientAuthInfoWriter) (*GetUserGroupStatusInformationV2OK, *GetUserGroupStatusInformationV2Unauthorized, *GetUserGroupStatusInformationV2Forbidden, *GetUserGroupStatusInformationV2NotFound, *GetUserGroupStatusInformationV2InternalServerError, error)
+	GetUserGroupStatusInformationV2Short(params *GetUserGroupStatusInformationV2Params, authInfo runtime.ClientAuthInfoWriter) (*GetUserGroupStatusInformationV2OK, error)
 	JoinGroupV1(params *JoinGroupV1Params, authInfo runtime.ClientAuthInfoWriter) (*JoinGroupV1Created, *JoinGroupV1BadRequest, *JoinGroupV1Unauthorized, *JoinGroupV1Forbidden, *JoinGroupV1Conflict, *JoinGroupV1InternalServerError, error)
 	JoinGroupV1Short(params *JoinGroupV1Params, authInfo runtime.ClientAuthInfoWriter) (*JoinGroupV1Created, error)
+	JoinGroupV2(params *JoinGroupV2Params, authInfo runtime.ClientAuthInfoWriter) (*JoinGroupV2Created, *JoinGroupV2BadRequest, *JoinGroupV2Unauthorized, *JoinGroupV2Forbidden, *JoinGroupV2Conflict, *JoinGroupV2InternalServerError, error)
+	JoinGroupV2Short(params *JoinGroupV2Params, authInfo runtime.ClientAuthInfoWriter) (*JoinGroupV2Created, error)
 	AcceptGroupInvitationPublicV1(params *AcceptGroupInvitationPublicV1Params, authInfo runtime.ClientAuthInfoWriter) (*AcceptGroupInvitationPublicV1OK, *AcceptGroupInvitationPublicV1BadRequest, *AcceptGroupInvitationPublicV1Unauthorized, *AcceptGroupInvitationPublicV1Forbidden, *AcceptGroupInvitationPublicV1NotFound, *AcceptGroupInvitationPublicV1Conflict, *AcceptGroupInvitationPublicV1InternalServerError, error)
 	AcceptGroupInvitationPublicV1Short(params *AcceptGroupInvitationPublicV1Params, authInfo runtime.ClientAuthInfoWriter) (*AcceptGroupInvitationPublicV1OK, error)
+	AcceptGroupInvitationPublicV2(params *AcceptGroupInvitationPublicV2Params, authInfo runtime.ClientAuthInfoWriter) (*AcceptGroupInvitationPublicV2OK, *AcceptGroupInvitationPublicV2BadRequest, *AcceptGroupInvitationPublicV2Unauthorized, *AcceptGroupInvitationPublicV2Forbidden, *AcceptGroupInvitationPublicV2NotFound, *AcceptGroupInvitationPublicV2Conflict, *AcceptGroupInvitationPublicV2InternalServerError, error)
+	AcceptGroupInvitationPublicV2Short(params *AcceptGroupInvitationPublicV2Params, authInfo runtime.ClientAuthInfoWriter) (*AcceptGroupInvitationPublicV2OK, error)
 	AcceptGroupJoinRequestPublicV1(params *AcceptGroupJoinRequestPublicV1Params, authInfo runtime.ClientAuthInfoWriter) (*AcceptGroupJoinRequestPublicV1OK, *AcceptGroupJoinRequestPublicV1BadRequest, *AcceptGroupJoinRequestPublicV1Unauthorized, *AcceptGroupJoinRequestPublicV1Forbidden, *AcceptGroupJoinRequestPublicV1NotFound, *AcceptGroupJoinRequestPublicV1Conflict, *AcceptGroupJoinRequestPublicV1InternalServerError, error)
 	AcceptGroupJoinRequestPublicV1Short(params *AcceptGroupJoinRequestPublicV1Params, authInfo runtime.ClientAuthInfoWriter) (*AcceptGroupJoinRequestPublicV1OK, error)
+	AcceptGroupJoinRequestPublicV2(params *AcceptGroupJoinRequestPublicV2Params, authInfo runtime.ClientAuthInfoWriter) (*AcceptGroupJoinRequestPublicV2OK, *AcceptGroupJoinRequestPublicV2BadRequest, *AcceptGroupJoinRequestPublicV2Unauthorized, *AcceptGroupJoinRequestPublicV2Forbidden, *AcceptGroupJoinRequestPublicV2NotFound, *AcceptGroupJoinRequestPublicV2Conflict, *AcceptGroupJoinRequestPublicV2InternalServerError, error)
+	AcceptGroupJoinRequestPublicV2Short(params *AcceptGroupJoinRequestPublicV2Params, authInfo runtime.ClientAuthInfoWriter) (*AcceptGroupJoinRequestPublicV2OK, error)
 	GetGroupMembersListAdminV1(params *GetGroupMembersListAdminV1Params, authInfo runtime.ClientAuthInfoWriter) (*GetGroupMembersListAdminV1OK, *GetGroupMembersListAdminV1BadRequest, *GetGroupMembersListAdminV1Unauthorized, *GetGroupMembersListAdminV1Forbidden, *GetGroupMembersListAdminV1NotFound, *GetGroupMembersListAdminV1InternalServerError, error)
 	GetGroupMembersListAdminV1Short(params *GetGroupMembersListAdminV1Params, authInfo runtime.ClientAuthInfoWriter) (*GetGroupMembersListAdminV1OK, error)
 	GetGroupMembersListPublicV1(params *GetGroupMembersListPublicV1Params, authInfo runtime.ClientAuthInfoWriter) (*GetGroupMembersListPublicV1OK, *GetGroupMembersListPublicV1BadRequest, *GetGroupMembersListPublicV1Unauthorized, *GetGroupMembersListPublicV1Forbidden, *GetGroupMembersListPublicV1NotFound, *GetGroupMembersListPublicV1InternalServerError, error)
 	GetGroupMembersListPublicV1Short(params *GetGroupMembersListPublicV1Params, authInfo runtime.ClientAuthInfoWriter) (*GetGroupMembersListPublicV1OK, error)
 	GetUserGroupInformationPublicV1(params *GetUserGroupInformationPublicV1Params, authInfo runtime.ClientAuthInfoWriter) (*GetUserGroupInformationPublicV1OK, *GetUserGroupInformationPublicV1BadRequest, *GetUserGroupInformationPublicV1Unauthorized, *GetUserGroupInformationPublicV1Forbidden, *GetUserGroupInformationPublicV1NotFound, *GetUserGroupInformationPublicV1InternalServerError, error)
 	GetUserGroupInformationPublicV1Short(params *GetUserGroupInformationPublicV1Params, authInfo runtime.ClientAuthInfoWriter) (*GetUserGroupInformationPublicV1OK, error)
+	GetUserGroupInformationPublicV2(params *GetUserGroupInformationPublicV2Params, authInfo runtime.ClientAuthInfoWriter) (*GetUserGroupInformationPublicV2OK, *GetUserGroupInformationPublicV2BadRequest, *GetUserGroupInformationPublicV2Unauthorized, *GetUserGroupInformationPublicV2Forbidden, *GetUserGroupInformationPublicV2NotFound, *GetUserGroupInformationPublicV2InternalServerError, error)
+	GetUserGroupInformationPublicV2Short(params *GetUserGroupInformationPublicV2Params, authInfo runtime.ClientAuthInfoWriter) (*GetUserGroupInformationPublicV2OK, error)
+	GetUserJoinedGroupInformationPublicV2(params *GetUserJoinedGroupInformationPublicV2Params, authInfo runtime.ClientAuthInfoWriter) (*GetUserJoinedGroupInformationPublicV2OK, *GetUserJoinedGroupInformationPublicV2BadRequest, *GetUserJoinedGroupInformationPublicV2Unauthorized, *GetUserJoinedGroupInformationPublicV2Forbidden, *GetUserJoinedGroupInformationPublicV2NotFound, *GetUserJoinedGroupInformationPublicV2InternalServerError, error)
+	GetUserJoinedGroupInformationPublicV2Short(params *GetUserJoinedGroupInformationPublicV2Params, authInfo runtime.ClientAuthInfoWriter) (*GetUserJoinedGroupInformationPublicV2OK, error)
 	InviteGroupPublicV1(params *InviteGroupPublicV1Params, authInfo runtime.ClientAuthInfoWriter) (*InviteGroupPublicV1OK, *InviteGroupPublicV1BadRequest, *InviteGroupPublicV1Unauthorized, *InviteGroupPublicV1Forbidden, *InviteGroupPublicV1NotFound, *InviteGroupPublicV1Conflict, *InviteGroupPublicV1InternalServerError, error)
 	InviteGroupPublicV1Short(params *InviteGroupPublicV1Params, authInfo runtime.ClientAuthInfoWriter) (*InviteGroupPublicV1OK, error)
+	InviteGroupPublicV2(params *InviteGroupPublicV2Params, authInfo runtime.ClientAuthInfoWriter) (*InviteGroupPublicV2OK, *InviteGroupPublicV2BadRequest, *InviteGroupPublicV2Unauthorized, *InviteGroupPublicV2Forbidden, *InviteGroupPublicV2NotFound, *InviteGroupPublicV2Conflict, *InviteGroupPublicV2InternalServerError, error)
+	InviteGroupPublicV2Short(params *InviteGroupPublicV2Params, authInfo runtime.ClientAuthInfoWriter) (*InviteGroupPublicV2OK, error)
 	KickGroupMemberPublicV1(params *KickGroupMemberPublicV1Params, authInfo runtime.ClientAuthInfoWriter) (*KickGroupMemberPublicV1OK, *KickGroupMemberPublicV1BadRequest, *KickGroupMemberPublicV1Unauthorized, *KickGroupMemberPublicV1Forbidden, *KickGroupMemberPublicV1NotFound, *KickGroupMemberPublicV1InternalServerError, error)
 	KickGroupMemberPublicV1Short(params *KickGroupMemberPublicV1Params, authInfo runtime.ClientAuthInfoWriter) (*KickGroupMemberPublicV1OK, error)
+	KickGroupMemberPublicV2(params *KickGroupMemberPublicV2Params, authInfo runtime.ClientAuthInfoWriter) (*KickGroupMemberPublicV2OK, *KickGroupMemberPublicV2BadRequest, *KickGroupMemberPublicV2Unauthorized, *KickGroupMemberPublicV2Forbidden, *KickGroupMemberPublicV2NotFound, *KickGroupMemberPublicV2InternalServerError, error)
+	KickGroupMemberPublicV2Short(params *KickGroupMemberPublicV2Params, authInfo runtime.ClientAuthInfoWriter) (*KickGroupMemberPublicV2OK, error)
 	LeaveGroupPublicV1(params *LeaveGroupPublicV1Params, authInfo runtime.ClientAuthInfoWriter) (*LeaveGroupPublicV1OK, *LeaveGroupPublicV1BadRequest, *LeaveGroupPublicV1Unauthorized, *LeaveGroupPublicV1Forbidden, *LeaveGroupPublicV1NotFound, *LeaveGroupPublicV1InternalServerError, error)
 	LeaveGroupPublicV1Short(params *LeaveGroupPublicV1Params, authInfo runtime.ClientAuthInfoWriter) (*LeaveGroupPublicV1OK, error)
+	LeaveGroupPublicV2(params *LeaveGroupPublicV2Params, authInfo runtime.ClientAuthInfoWriter) (*LeaveGroupPublicV2OK, *LeaveGroupPublicV2BadRequest, *LeaveGroupPublicV2Unauthorized, *LeaveGroupPublicV2Forbidden, *LeaveGroupPublicV2NotFound, *LeaveGroupPublicV2InternalServerError, error)
+	LeaveGroupPublicV2Short(params *LeaveGroupPublicV2Params, authInfo runtime.ClientAuthInfoWriter) (*LeaveGroupPublicV2OK, error)
 	RejectGroupInvitationPublicV1(params *RejectGroupInvitationPublicV1Params, authInfo runtime.ClientAuthInfoWriter) (*RejectGroupInvitationPublicV1OK, *RejectGroupInvitationPublicV1BadRequest, *RejectGroupInvitationPublicV1Unauthorized, *RejectGroupInvitationPublicV1Forbidden, *RejectGroupInvitationPublicV1NotFound, *RejectGroupInvitationPublicV1Conflict, *RejectGroupInvitationPublicV1InternalServerError, error)
 	RejectGroupInvitationPublicV1Short(params *RejectGroupInvitationPublicV1Params, authInfo runtime.ClientAuthInfoWriter) (*RejectGroupInvitationPublicV1OK, error)
+	RejectGroupInvitationPublicV2(params *RejectGroupInvitationPublicV2Params, authInfo runtime.ClientAuthInfoWriter) (*RejectGroupInvitationPublicV2OK, *RejectGroupInvitationPublicV2BadRequest, *RejectGroupInvitationPublicV2Unauthorized, *RejectGroupInvitationPublicV2Forbidden, *RejectGroupInvitationPublicV2NotFound, *RejectGroupInvitationPublicV2Conflict, *RejectGroupInvitationPublicV2InternalServerError, error)
+	RejectGroupInvitationPublicV2Short(params *RejectGroupInvitationPublicV2Params, authInfo runtime.ClientAuthInfoWriter) (*RejectGroupInvitationPublicV2OK, error)
 	RejectGroupJoinRequestPublicV1(params *RejectGroupJoinRequestPublicV1Params, authInfo runtime.ClientAuthInfoWriter) (*RejectGroupJoinRequestPublicV1OK, *RejectGroupJoinRequestPublicV1BadRequest, *RejectGroupJoinRequestPublicV1Unauthorized, *RejectGroupJoinRequestPublicV1Forbidden, *RejectGroupJoinRequestPublicV1NotFound, *RejectGroupJoinRequestPublicV1Conflict, *RejectGroupJoinRequestPublicV1InternalServerError, error)
 	RejectGroupJoinRequestPublicV1Short(params *RejectGroupJoinRequestPublicV1Params, authInfo runtime.ClientAuthInfoWriter) (*RejectGroupJoinRequestPublicV1OK, error)
+	RejectGroupJoinRequestPublicV2(params *RejectGroupJoinRequestPublicV2Params, authInfo runtime.ClientAuthInfoWriter) (*RejectGroupJoinRequestPublicV2OK, *RejectGroupJoinRequestPublicV2BadRequest, *RejectGroupJoinRequestPublicV2Unauthorized, *RejectGroupJoinRequestPublicV2Forbidden, *RejectGroupJoinRequestPublicV2NotFound, *RejectGroupJoinRequestPublicV2Conflict, *RejectGroupJoinRequestPublicV2InternalServerError, error)
+	RejectGroupJoinRequestPublicV2Short(params *RejectGroupJoinRequestPublicV2Params, authInfo runtime.ClientAuthInfoWriter) (*RejectGroupJoinRequestPublicV2OK, error)
 
 	SetTransport(transport runtime.ClientTransport)
 }
@@ -179,6 +201,130 @@ func (a *Client) CancelGroupJoinRequestV1Short(params *CancelGroupJoinRequestV1P
 	case *CancelGroupJoinRequestV1NotFound:
 		return nil, v
 	case *CancelGroupJoinRequestV1InternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+Deprecated: Use GetUserGroupStatusInformationV2Short instead.
+
+  GetUserGroupStatusInformationV2 users group status information
+
+  &lt;p&gt;Required valid user authentication &lt;/p&gt;
+			&lt;p&gt;Required Member Role Permission: &#34;GROUP [READ]&#34;&lt;/p&gt;
+			&lt;p&gt;This endpoint is used to get user group status information.&lt;/p&gt;
+			&lt;p&gt;get user group status information. This endpoint will check the member and group information, and also the role permission of the the user who accesses this endpoint&lt;/p&gt;
+			&lt;p&gt;Action Code: 73409&lt;/p&gt;
+
+*/
+func (a *Client) GetUserGroupStatusInformationV2(params *GetUserGroupStatusInformationV2Params, authInfo runtime.ClientAuthInfoWriter) (*GetUserGroupStatusInformationV2OK, *GetUserGroupStatusInformationV2Unauthorized, *GetUserGroupStatusInformationV2Forbidden, *GetUserGroupStatusInformationV2NotFound, *GetUserGroupStatusInformationV2InternalServerError, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewGetUserGroupStatusInformationV2Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "GetUserGroupStatusInformationV2",
+		Method:             "GET",
+		PathPattern:        "/group/v2/public/namespaces/{namespace}/users/{userId}/groups/{groupId}/status",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &GetUserGroupStatusInformationV2Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, nil, nil, nil, nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *GetUserGroupStatusInformationV2OK:
+		return v, nil, nil, nil, nil, nil
+
+	case *GetUserGroupStatusInformationV2Unauthorized:
+		return nil, v, nil, nil, nil, nil
+
+	case *GetUserGroupStatusInformationV2Forbidden:
+		return nil, nil, v, nil, nil, nil
+
+	case *GetUserGroupStatusInformationV2NotFound:
+		return nil, nil, nil, v, nil, nil
+
+	case *GetUserGroupStatusInformationV2InternalServerError:
+		return nil, nil, nil, nil, v, nil
+
+	default:
+		return nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+  GetUserGroupStatusInformationV2Short users group status information
+
+  &lt;p&gt;Required valid user authentication &lt;/p&gt;
+			&lt;p&gt;Required Member Role Permission: &#34;GROUP [READ]&#34;&lt;/p&gt;
+			&lt;p&gt;This endpoint is used to get user group status information.&lt;/p&gt;
+			&lt;p&gt;get user group status information. This endpoint will check the member and group information, and also the role permission of the the user who accesses this endpoint&lt;/p&gt;
+			&lt;p&gt;Action Code: 73409&lt;/p&gt;
+
+*/
+func (a *Client) GetUserGroupStatusInformationV2Short(params *GetUserGroupStatusInformationV2Params, authInfo runtime.ClientAuthInfoWriter) (*GetUserGroupStatusInformationV2OK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewGetUserGroupStatusInformationV2Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "GetUserGroupStatusInformationV2",
+		Method:             "GET",
+		PathPattern:        "/group/v2/public/namespaces/{namespace}/users/{userId}/groups/{groupId}/status",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &GetUserGroupStatusInformationV2Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *GetUserGroupStatusInformationV2OK:
+		return v, nil
+	case *GetUserGroupStatusInformationV2Unauthorized:
+		return nil, v
+	case *GetUserGroupStatusInformationV2Forbidden:
+		return nil, v
+	case *GetUserGroupStatusInformationV2NotFound:
+		return nil, v
+	case *GetUserGroupStatusInformationV2InternalServerError:
 		return nil, v
 
 	default:
@@ -328,6 +474,147 @@ func (a *Client) JoinGroupV1Short(params *JoinGroupV1Params, authInfo runtime.Cl
 }
 
 /*
+Deprecated: Use JoinGroupV2Short instead.
+
+  JoinGroupV2 joins to group
+
+  &lt;p&gt;Required valid user authentication &lt;/p&gt;
+			&lt;p&gt;This endpoint is used to join as group member&lt;/p&gt;
+			&lt;p&gt;Join to the group. This endpoint will check the the the type of the group based on the groupID.&lt;/p&gt;
+			&lt;p&gt;Additional Information:&lt;/p&gt;
+			&lt;ul&gt;
+				&lt;li&gt;User cannot join to the group with PRIVATE type&lt;/li&gt;
+				&lt;li&gt;Joining PUBLIC group type will create join request and need approval from the privileged group member to accept the request to become the member&lt;/li&gt;
+				&lt;li&gt;Joining OPEN group type will make this user become member of that group immediately&lt;/li&gt;
+			&lt;/ul&gt;
+			&lt;p&gt;This endpoint will return status field to give information whether the user is JOINED or REQUESTED to join to the specific group&lt;/p&gt;
+			&lt;p&gt;Action Code: 73403&lt;/p&gt;
+
+*/
+func (a *Client) JoinGroupV2(params *JoinGroupV2Params, authInfo runtime.ClientAuthInfoWriter) (*JoinGroupV2Created, *JoinGroupV2BadRequest, *JoinGroupV2Unauthorized, *JoinGroupV2Forbidden, *JoinGroupV2Conflict, *JoinGroupV2InternalServerError, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewJoinGroupV2Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "JoinGroupV2",
+		Method:             "POST",
+		PathPattern:        "/group/v2/public/namespaces/{namespace}/groups/{groupId}/join",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &JoinGroupV2Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, nil, nil, nil, nil, nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *JoinGroupV2Created:
+		return v, nil, nil, nil, nil, nil, nil
+
+	case *JoinGroupV2BadRequest:
+		return nil, v, nil, nil, nil, nil, nil
+
+	case *JoinGroupV2Unauthorized:
+		return nil, nil, v, nil, nil, nil, nil
+
+	case *JoinGroupV2Forbidden:
+		return nil, nil, nil, v, nil, nil, nil
+
+	case *JoinGroupV2Conflict:
+		return nil, nil, nil, nil, v, nil, nil
+
+	case *JoinGroupV2InternalServerError:
+		return nil, nil, nil, nil, nil, v, nil
+
+	default:
+		return nil, nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+  JoinGroupV2Short joins to group
+
+  &lt;p&gt;Required valid user authentication &lt;/p&gt;
+			&lt;p&gt;This endpoint is used to join as group member&lt;/p&gt;
+			&lt;p&gt;Join to the group. This endpoint will check the the the type of the group based on the groupID.&lt;/p&gt;
+			&lt;p&gt;Additional Information:&lt;/p&gt;
+			&lt;ul&gt;
+				&lt;li&gt;User cannot join to the group with PRIVATE type&lt;/li&gt;
+				&lt;li&gt;Joining PUBLIC group type will create join request and need approval from the privileged group member to accept the request to become the member&lt;/li&gt;
+				&lt;li&gt;Joining OPEN group type will make this user become member of that group immediately&lt;/li&gt;
+			&lt;/ul&gt;
+			&lt;p&gt;This endpoint will return status field to give information whether the user is JOINED or REQUESTED to join to the specific group&lt;/p&gt;
+			&lt;p&gt;Action Code: 73403&lt;/p&gt;
+
+*/
+func (a *Client) JoinGroupV2Short(params *JoinGroupV2Params, authInfo runtime.ClientAuthInfoWriter) (*JoinGroupV2Created, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewJoinGroupV2Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "JoinGroupV2",
+		Method:             "POST",
+		PathPattern:        "/group/v2/public/namespaces/{namespace}/groups/{groupId}/join",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &JoinGroupV2Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *JoinGroupV2Created:
+		return v, nil
+	case *JoinGroupV2BadRequest:
+		return nil, v
+	case *JoinGroupV2Unauthorized:
+		return nil, v
+	case *JoinGroupV2Forbidden:
+		return nil, v
+	case *JoinGroupV2Conflict:
+		return nil, v
+	case *JoinGroupV2InternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
 Deprecated: Use AcceptGroupInvitationPublicV1Short instead.
 
   AcceptGroupInvitationPublicV1 accepts group invitation
@@ -466,6 +753,144 @@ func (a *Client) AcceptGroupInvitationPublicV1Short(params *AcceptGroupInvitatio
 }
 
 /*
+Deprecated: Use AcceptGroupInvitationPublicV2Short instead.
+
+  AcceptGroupInvitationPublicV2 accepts group invitation
+
+  &lt;p&gt;Required valid user authentication &lt;/p&gt;
+			&lt;p&gt;This endpoint is used to accept group invitation.&lt;/p&gt;
+			&lt;p&gt;Accept group invitation. If specific user is not invited in the specific group ID, it will show the the error to show if the user is not invited yet.&lt;/p&gt;
+			&lt;p&gt;This endpoint will also check if the user who access this endpoint is already joined to specific group&lt;/p&gt;
+			&lt;p&gt;Accessing this endpoint will make all requests (invite / join request) will be deleted for the user who access this endpoint&lt;/p&gt;
+			&lt;p&gt;Existing members will receive notification of newly accepted member.&lt;/p&gt;
+			&lt;p&gt;Action Code: 73401&lt;/p&gt;
+
+*/
+func (a *Client) AcceptGroupInvitationPublicV2(params *AcceptGroupInvitationPublicV2Params, authInfo runtime.ClientAuthInfoWriter) (*AcceptGroupInvitationPublicV2OK, *AcceptGroupInvitationPublicV2BadRequest, *AcceptGroupInvitationPublicV2Unauthorized, *AcceptGroupInvitationPublicV2Forbidden, *AcceptGroupInvitationPublicV2NotFound, *AcceptGroupInvitationPublicV2Conflict, *AcceptGroupInvitationPublicV2InternalServerError, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewAcceptGroupInvitationPublicV2Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "acceptGroupInvitationPublicV2",
+		Method:             "POST",
+		PathPattern:        "/group/v2/public/namespaces/{namespace}/groups/{groupId}/invite/accept",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &AcceptGroupInvitationPublicV2Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, nil, nil, nil, nil, nil, nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *AcceptGroupInvitationPublicV2OK:
+		return v, nil, nil, nil, nil, nil, nil, nil
+
+	case *AcceptGroupInvitationPublicV2BadRequest:
+		return nil, v, nil, nil, nil, nil, nil, nil
+
+	case *AcceptGroupInvitationPublicV2Unauthorized:
+		return nil, nil, v, nil, nil, nil, nil, nil
+
+	case *AcceptGroupInvitationPublicV2Forbidden:
+		return nil, nil, nil, v, nil, nil, nil, nil
+
+	case *AcceptGroupInvitationPublicV2NotFound:
+		return nil, nil, nil, nil, v, nil, nil, nil
+
+	case *AcceptGroupInvitationPublicV2Conflict:
+		return nil, nil, nil, nil, nil, v, nil, nil
+
+	case *AcceptGroupInvitationPublicV2InternalServerError:
+		return nil, nil, nil, nil, nil, nil, v, nil
+
+	default:
+		return nil, nil, nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+  AcceptGroupInvitationPublicV2Short accepts group invitation
+
+  &lt;p&gt;Required valid user authentication &lt;/p&gt;
+			&lt;p&gt;This endpoint is used to accept group invitation.&lt;/p&gt;
+			&lt;p&gt;Accept group invitation. If specific user is not invited in the specific group ID, it will show the the error to show if the user is not invited yet.&lt;/p&gt;
+			&lt;p&gt;This endpoint will also check if the user who access this endpoint is already joined to specific group&lt;/p&gt;
+			&lt;p&gt;Accessing this endpoint will make all requests (invite / join request) will be deleted for the user who access this endpoint&lt;/p&gt;
+			&lt;p&gt;Existing members will receive notification of newly accepted member.&lt;/p&gt;
+			&lt;p&gt;Action Code: 73401&lt;/p&gt;
+
+*/
+func (a *Client) AcceptGroupInvitationPublicV2Short(params *AcceptGroupInvitationPublicV2Params, authInfo runtime.ClientAuthInfoWriter) (*AcceptGroupInvitationPublicV2OK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewAcceptGroupInvitationPublicV2Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "acceptGroupInvitationPublicV2",
+		Method:             "POST",
+		PathPattern:        "/group/v2/public/namespaces/{namespace}/groups/{groupId}/invite/accept",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &AcceptGroupInvitationPublicV2Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *AcceptGroupInvitationPublicV2OK:
+		return v, nil
+	case *AcceptGroupInvitationPublicV2BadRequest:
+		return nil, v
+	case *AcceptGroupInvitationPublicV2Unauthorized:
+		return nil, v
+	case *AcceptGroupInvitationPublicV2Forbidden:
+		return nil, v
+	case *AcceptGroupInvitationPublicV2NotFound:
+		return nil, v
+	case *AcceptGroupInvitationPublicV2Conflict:
+		return nil, v
+	case *AcceptGroupInvitationPublicV2InternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
 Deprecated: Use AcceptGroupJoinRequestPublicV1Short instead.
 
   AcceptGroupJoinRequestPublicV1 accepts group join request
@@ -594,6 +1019,142 @@ func (a *Client) AcceptGroupJoinRequestPublicV1Short(params *AcceptGroupJoinRequ
 	case *AcceptGroupJoinRequestPublicV1Conflict:
 		return nil, v
 	case *AcceptGroupJoinRequestPublicV1InternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+Deprecated: Use AcceptGroupJoinRequestPublicV2Short instead.
+
+  AcceptGroupJoinRequestPublicV2 accepts group join request
+
+  &lt;p&gt;Required valid user authentication &lt;/p&gt;
+			&lt;p&gt;Required Member Role Permission: &#34;GROUP:JOIN [CREATE]&#34;&lt;/p&gt;
+			&lt;p&gt;This endpoint is used to accept group join request.&lt;/p&gt;
+			&lt;p&gt;Accept group join request. If specific user is not asked to join the specific group ID, it will show the the error to show if the user is not asked to join yet.&lt;/p&gt;
+			&lt;p&gt;This endpoint will also check if the specific user is already joined to specific group&lt;/p&gt;
+			&lt;p&gt;Action Code: 73407&lt;/p&gt;
+
+*/
+func (a *Client) AcceptGroupJoinRequestPublicV2(params *AcceptGroupJoinRequestPublicV2Params, authInfo runtime.ClientAuthInfoWriter) (*AcceptGroupJoinRequestPublicV2OK, *AcceptGroupJoinRequestPublicV2BadRequest, *AcceptGroupJoinRequestPublicV2Unauthorized, *AcceptGroupJoinRequestPublicV2Forbidden, *AcceptGroupJoinRequestPublicV2NotFound, *AcceptGroupJoinRequestPublicV2Conflict, *AcceptGroupJoinRequestPublicV2InternalServerError, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewAcceptGroupJoinRequestPublicV2Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "acceptGroupJoinRequestPublicV2",
+		Method:             "POST",
+		PathPattern:        "/group/v2/public/namespaces/{namespace}/users/{userId}/groups/{groupId}/join/accept",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &AcceptGroupJoinRequestPublicV2Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, nil, nil, nil, nil, nil, nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *AcceptGroupJoinRequestPublicV2OK:
+		return v, nil, nil, nil, nil, nil, nil, nil
+
+	case *AcceptGroupJoinRequestPublicV2BadRequest:
+		return nil, v, nil, nil, nil, nil, nil, nil
+
+	case *AcceptGroupJoinRequestPublicV2Unauthorized:
+		return nil, nil, v, nil, nil, nil, nil, nil
+
+	case *AcceptGroupJoinRequestPublicV2Forbidden:
+		return nil, nil, nil, v, nil, nil, nil, nil
+
+	case *AcceptGroupJoinRequestPublicV2NotFound:
+		return nil, nil, nil, nil, v, nil, nil, nil
+
+	case *AcceptGroupJoinRequestPublicV2Conflict:
+		return nil, nil, nil, nil, nil, v, nil, nil
+
+	case *AcceptGroupJoinRequestPublicV2InternalServerError:
+		return nil, nil, nil, nil, nil, nil, v, nil
+
+	default:
+		return nil, nil, nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+  AcceptGroupJoinRequestPublicV2Short accepts group join request
+
+  &lt;p&gt;Required valid user authentication &lt;/p&gt;
+			&lt;p&gt;Required Member Role Permission: &#34;GROUP:JOIN [CREATE]&#34;&lt;/p&gt;
+			&lt;p&gt;This endpoint is used to accept group join request.&lt;/p&gt;
+			&lt;p&gt;Accept group join request. If specific user is not asked to join the specific group ID, it will show the the error to show if the user is not asked to join yet.&lt;/p&gt;
+			&lt;p&gt;This endpoint will also check if the specific user is already joined to specific group&lt;/p&gt;
+			&lt;p&gt;Action Code: 73407&lt;/p&gt;
+
+*/
+func (a *Client) AcceptGroupJoinRequestPublicV2Short(params *AcceptGroupJoinRequestPublicV2Params, authInfo runtime.ClientAuthInfoWriter) (*AcceptGroupJoinRequestPublicV2OK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewAcceptGroupJoinRequestPublicV2Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "acceptGroupJoinRequestPublicV2",
+		Method:             "POST",
+		PathPattern:        "/group/v2/public/namespaces/{namespace}/users/{userId}/groups/{groupId}/join/accept",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &AcceptGroupJoinRequestPublicV2Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *AcceptGroupJoinRequestPublicV2OK:
+		return v, nil
+	case *AcceptGroupJoinRequestPublicV2BadRequest:
+		return nil, v
+	case *AcceptGroupJoinRequestPublicV2Unauthorized:
+		return nil, v
+	case *AcceptGroupJoinRequestPublicV2Forbidden:
+		return nil, v
+	case *AcceptGroupJoinRequestPublicV2NotFound:
+		return nil, v
+	case *AcceptGroupJoinRequestPublicV2Conflict:
+		return nil, v
+	case *AcceptGroupJoinRequestPublicV2InternalServerError:
 		return nil, v
 
 	default:
@@ -991,6 +1552,274 @@ func (a *Client) GetUserGroupInformationPublicV1Short(params *GetUserGroupInform
 }
 
 /*
+Deprecated: Use GetUserGroupInformationPublicV2Short instead.
+
+  GetUserGroupInformationPublicV2 gets user joined group information
+
+  &lt;p&gt;Required valid user authentication &lt;/p&gt;
+			&lt;p&gt;This endpoint is used to get user joined group information.&lt;/p&gt;
+			&lt;p&gt;Get user group joined information. If user does not belong to any group, it will return warning to give information about it&lt;/p&gt;
+			&lt;p&gt;Group Member Status:&lt;/p&gt;
+			&lt;ul&gt;
+				&lt;li&gt;JOINED: status of user already joined to a group&lt;/li&gt;
+			&lt;/ul&gt;
+			&lt;p&gt;Action Code: 73405&lt;/p&gt;
+
+*/
+func (a *Client) GetUserGroupInformationPublicV2(params *GetUserGroupInformationPublicV2Params, authInfo runtime.ClientAuthInfoWriter) (*GetUserGroupInformationPublicV2OK, *GetUserGroupInformationPublicV2BadRequest, *GetUserGroupInformationPublicV2Unauthorized, *GetUserGroupInformationPublicV2Forbidden, *GetUserGroupInformationPublicV2NotFound, *GetUserGroupInformationPublicV2InternalServerError, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewGetUserGroupInformationPublicV2Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "getUserGroupInformationPublicV2",
+		Method:             "GET",
+		PathPattern:        "/group/v2/public/namespaces/{namespace}/users/me/groups",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &GetUserGroupInformationPublicV2Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, nil, nil, nil, nil, nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *GetUserGroupInformationPublicV2OK:
+		return v, nil, nil, nil, nil, nil, nil
+
+	case *GetUserGroupInformationPublicV2BadRequest:
+		return nil, v, nil, nil, nil, nil, nil
+
+	case *GetUserGroupInformationPublicV2Unauthorized:
+		return nil, nil, v, nil, nil, nil, nil
+
+	case *GetUserGroupInformationPublicV2Forbidden:
+		return nil, nil, nil, v, nil, nil, nil
+
+	case *GetUserGroupInformationPublicV2NotFound:
+		return nil, nil, nil, nil, v, nil, nil
+
+	case *GetUserGroupInformationPublicV2InternalServerError:
+		return nil, nil, nil, nil, nil, v, nil
+
+	default:
+		return nil, nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+  GetUserGroupInformationPublicV2Short gets user joined group information
+
+  &lt;p&gt;Required valid user authentication &lt;/p&gt;
+			&lt;p&gt;This endpoint is used to get user joined group information.&lt;/p&gt;
+			&lt;p&gt;Get user group joined information. If user does not belong to any group, it will return warning to give information about it&lt;/p&gt;
+			&lt;p&gt;Group Member Status:&lt;/p&gt;
+			&lt;ul&gt;
+				&lt;li&gt;JOINED: status of user already joined to a group&lt;/li&gt;
+			&lt;/ul&gt;
+			&lt;p&gt;Action Code: 73405&lt;/p&gt;
+
+*/
+func (a *Client) GetUserGroupInformationPublicV2Short(params *GetUserGroupInformationPublicV2Params, authInfo runtime.ClientAuthInfoWriter) (*GetUserGroupInformationPublicV2OK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewGetUserGroupInformationPublicV2Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "getUserGroupInformationPublicV2",
+		Method:             "GET",
+		PathPattern:        "/group/v2/public/namespaces/{namespace}/users/me/groups",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &GetUserGroupInformationPublicV2Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *GetUserGroupInformationPublicV2OK:
+		return v, nil
+	case *GetUserGroupInformationPublicV2BadRequest:
+		return nil, v
+	case *GetUserGroupInformationPublicV2Unauthorized:
+		return nil, v
+	case *GetUserGroupInformationPublicV2Forbidden:
+		return nil, v
+	case *GetUserGroupInformationPublicV2NotFound:
+		return nil, v
+	case *GetUserGroupInformationPublicV2InternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+Deprecated: Use GetUserJoinedGroupInformationPublicV2Short instead.
+
+  GetUserJoinedGroupInformationPublicV2 gets user joined group information
+
+  &lt;p&gt;Required valid user authentication &lt;/p&gt;
+			&lt;p&gt;This endpoint is used to get user joined group information.&lt;/p&gt;
+			&lt;p&gt;Get user group joined information. If user does not belong to any group, it will return warning to give information about it&lt;/p&gt;
+			&lt;p&gt;Group Member Status:&lt;/p&gt;
+			&lt;ul&gt;
+				&lt;li&gt;JOINED: status of user already joined to a group&lt;/li&gt;
+			&lt;/ul&gt;
+
+*/
+func (a *Client) GetUserJoinedGroupInformationPublicV2(params *GetUserJoinedGroupInformationPublicV2Params, authInfo runtime.ClientAuthInfoWriter) (*GetUserJoinedGroupInformationPublicV2OK, *GetUserJoinedGroupInformationPublicV2BadRequest, *GetUserJoinedGroupInformationPublicV2Unauthorized, *GetUserJoinedGroupInformationPublicV2Forbidden, *GetUserJoinedGroupInformationPublicV2NotFound, *GetUserJoinedGroupInformationPublicV2InternalServerError, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewGetUserJoinedGroupInformationPublicV2Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "getUserJoinedGroupInformationPublicV2",
+		Method:             "GET",
+		PathPattern:        "/group/v2/admin/namespaces/{namespace}/users/{userId}/groups",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &GetUserJoinedGroupInformationPublicV2Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, nil, nil, nil, nil, nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *GetUserJoinedGroupInformationPublicV2OK:
+		return v, nil, nil, nil, nil, nil, nil
+
+	case *GetUserJoinedGroupInformationPublicV2BadRequest:
+		return nil, v, nil, nil, nil, nil, nil
+
+	case *GetUserJoinedGroupInformationPublicV2Unauthorized:
+		return nil, nil, v, nil, nil, nil, nil
+
+	case *GetUserJoinedGroupInformationPublicV2Forbidden:
+		return nil, nil, nil, v, nil, nil, nil
+
+	case *GetUserJoinedGroupInformationPublicV2NotFound:
+		return nil, nil, nil, nil, v, nil, nil
+
+	case *GetUserJoinedGroupInformationPublicV2InternalServerError:
+		return nil, nil, nil, nil, nil, v, nil
+
+	default:
+		return nil, nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+  GetUserJoinedGroupInformationPublicV2Short gets user joined group information
+
+  &lt;p&gt;Required valid user authentication &lt;/p&gt;
+			&lt;p&gt;This endpoint is used to get user joined group information.&lt;/p&gt;
+			&lt;p&gt;Get user group joined information. If user does not belong to any group, it will return warning to give information about it&lt;/p&gt;
+			&lt;p&gt;Group Member Status:&lt;/p&gt;
+			&lt;ul&gt;
+				&lt;li&gt;JOINED: status of user already joined to a group&lt;/li&gt;
+			&lt;/ul&gt;
+
+*/
+func (a *Client) GetUserJoinedGroupInformationPublicV2Short(params *GetUserJoinedGroupInformationPublicV2Params, authInfo runtime.ClientAuthInfoWriter) (*GetUserJoinedGroupInformationPublicV2OK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewGetUserJoinedGroupInformationPublicV2Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "getUserJoinedGroupInformationPublicV2",
+		Method:             "GET",
+		PathPattern:        "/group/v2/admin/namespaces/{namespace}/users/{userId}/groups",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &GetUserJoinedGroupInformationPublicV2Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *GetUserJoinedGroupInformationPublicV2OK:
+		return v, nil
+	case *GetUserJoinedGroupInformationPublicV2BadRequest:
+		return nil, v
+	case *GetUserJoinedGroupInformationPublicV2Unauthorized:
+		return nil, v
+	case *GetUserJoinedGroupInformationPublicV2Forbidden:
+		return nil, v
+	case *GetUserJoinedGroupInformationPublicV2NotFound:
+		return nil, v
+	case *GetUserJoinedGroupInformationPublicV2InternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
 Deprecated: Use InviteGroupPublicV1Short instead.
 
   InviteGroupPublicV1 invites user to group
@@ -1137,6 +1966,152 @@ func (a *Client) InviteGroupPublicV1Short(params *InviteGroupPublicV1Params, aut
 }
 
 /*
+Deprecated: Use InviteGroupPublicV2Short instead.
+
+  InviteGroupPublicV2 invites user to group
+
+  &lt;p&gt;Required valid user authentication &lt;/p&gt;
+			&lt;p&gt;Required Member Role Permission: &#34;GROUP:INVITE [CREATE]&#34;&lt;/p&gt;
+			&lt;p&gt;This endpoint is used to invite specific user to the group.&lt;/p&gt;
+			&lt;p&gt;invite specific user to the group. If specific user is already have the join request to the group, this endpoint will notify if this user already have join request that needs to be accepted / rejected&lt;/p&gt;
+			&lt;p&gt;Invited user will receive notification through lobby.&lt;/p&gt;
+			&lt;p&gt;Action Code: 73406&lt;/p&gt;
+			&lt;br&gt;
+			&lt;p&gt;memberRolePermissions example value :&lt;/p&gt;
+			&lt;p&gt;&#34;action&#34;: 1&lt;/p&gt;
+			&lt;p&gt;&#34;resourceName&#34;: &#34;GROUP:INVITE&#34;&lt;/p&gt;
+			&lt;p&gt;The invited user will have a permission to invite another user to the group&lt;p/&gt;
+
+*/
+func (a *Client) InviteGroupPublicV2(params *InviteGroupPublicV2Params, authInfo runtime.ClientAuthInfoWriter) (*InviteGroupPublicV2OK, *InviteGroupPublicV2BadRequest, *InviteGroupPublicV2Unauthorized, *InviteGroupPublicV2Forbidden, *InviteGroupPublicV2NotFound, *InviteGroupPublicV2Conflict, *InviteGroupPublicV2InternalServerError, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewInviteGroupPublicV2Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "inviteGroupPublicV2",
+		Method:             "POST",
+		PathPattern:        "/group/v2/public/namespaces/{namespace}/users/{userId}/groups/{groupId}/invite",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &InviteGroupPublicV2Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, nil, nil, nil, nil, nil, nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *InviteGroupPublicV2OK:
+		return v, nil, nil, nil, nil, nil, nil, nil
+
+	case *InviteGroupPublicV2BadRequest:
+		return nil, v, nil, nil, nil, nil, nil, nil
+
+	case *InviteGroupPublicV2Unauthorized:
+		return nil, nil, v, nil, nil, nil, nil, nil
+
+	case *InviteGroupPublicV2Forbidden:
+		return nil, nil, nil, v, nil, nil, nil, nil
+
+	case *InviteGroupPublicV2NotFound:
+		return nil, nil, nil, nil, v, nil, nil, nil
+
+	case *InviteGroupPublicV2Conflict:
+		return nil, nil, nil, nil, nil, v, nil, nil
+
+	case *InviteGroupPublicV2InternalServerError:
+		return nil, nil, nil, nil, nil, nil, v, nil
+
+	default:
+		return nil, nil, nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+  InviteGroupPublicV2Short invites user to group
+
+  &lt;p&gt;Required valid user authentication &lt;/p&gt;
+			&lt;p&gt;Required Member Role Permission: &#34;GROUP:INVITE [CREATE]&#34;&lt;/p&gt;
+			&lt;p&gt;This endpoint is used to invite specific user to the group.&lt;/p&gt;
+			&lt;p&gt;invite specific user to the group. If specific user is already have the join request to the group, this endpoint will notify if this user already have join request that needs to be accepted / rejected&lt;/p&gt;
+			&lt;p&gt;Invited user will receive notification through lobby.&lt;/p&gt;
+			&lt;p&gt;Action Code: 73406&lt;/p&gt;
+			&lt;br&gt;
+			&lt;p&gt;memberRolePermissions example value :&lt;/p&gt;
+			&lt;p&gt;&#34;action&#34;: 1&lt;/p&gt;
+			&lt;p&gt;&#34;resourceName&#34;: &#34;GROUP:INVITE&#34;&lt;/p&gt;
+			&lt;p&gt;The invited user will have a permission to invite another user to the group&lt;p/&gt;
+
+*/
+func (a *Client) InviteGroupPublicV2Short(params *InviteGroupPublicV2Params, authInfo runtime.ClientAuthInfoWriter) (*InviteGroupPublicV2OK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewInviteGroupPublicV2Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "inviteGroupPublicV2",
+		Method:             "POST",
+		PathPattern:        "/group/v2/public/namespaces/{namespace}/users/{userId}/groups/{groupId}/invite",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &InviteGroupPublicV2Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *InviteGroupPublicV2OK:
+		return v, nil
+	case *InviteGroupPublicV2BadRequest:
+		return nil, v
+	case *InviteGroupPublicV2Unauthorized:
+		return nil, v
+	case *InviteGroupPublicV2Forbidden:
+		return nil, v
+	case *InviteGroupPublicV2NotFound:
+		return nil, v
+	case *InviteGroupPublicV2Conflict:
+		return nil, v
+	case *InviteGroupPublicV2InternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
 Deprecated: Use KickGroupMemberPublicV1Short instead.
 
   KickGroupMemberPublicV1 kicks group member
@@ -1266,6 +2241,135 @@ func (a *Client) KickGroupMemberPublicV1Short(params *KickGroupMemberPublicV1Par
 }
 
 /*
+Deprecated: Use KickGroupMemberPublicV2Short instead.
+
+  KickGroupMemberPublicV2 kicks group member
+
+  &lt;p&gt;Required valid user authentication &lt;/p&gt;
+			&lt;p&gt;Required Member Role Permission: &#34;GROUP:KICK [CREATE]&#34;&lt;/p&gt;
+			&lt;p&gt;This endpoint is used to kick group member.&lt;/p&gt;
+			&lt;p&gt;Kick group member. This endpoint will check the member and group information, and also the role permission of the the user who accesses this endpoint&lt;/p&gt;
+			&lt;p&gt;Action Code: 73409&lt;/p&gt;
+
+*/
+func (a *Client) KickGroupMemberPublicV2(params *KickGroupMemberPublicV2Params, authInfo runtime.ClientAuthInfoWriter) (*KickGroupMemberPublicV2OK, *KickGroupMemberPublicV2BadRequest, *KickGroupMemberPublicV2Unauthorized, *KickGroupMemberPublicV2Forbidden, *KickGroupMemberPublicV2NotFound, *KickGroupMemberPublicV2InternalServerError, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewKickGroupMemberPublicV2Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "kickGroupMemberPublicV2",
+		Method:             "POST",
+		PathPattern:        "/group/v2/public/namespaces/{namespace}/users/{userId}/groups/{groupId}/kick",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &KickGroupMemberPublicV2Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, nil, nil, nil, nil, nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *KickGroupMemberPublicV2OK:
+		return v, nil, nil, nil, nil, nil, nil
+
+	case *KickGroupMemberPublicV2BadRequest:
+		return nil, v, nil, nil, nil, nil, nil
+
+	case *KickGroupMemberPublicV2Unauthorized:
+		return nil, nil, v, nil, nil, nil, nil
+
+	case *KickGroupMemberPublicV2Forbidden:
+		return nil, nil, nil, v, nil, nil, nil
+
+	case *KickGroupMemberPublicV2NotFound:
+		return nil, nil, nil, nil, v, nil, nil
+
+	case *KickGroupMemberPublicV2InternalServerError:
+		return nil, nil, nil, nil, nil, v, nil
+
+	default:
+		return nil, nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+  KickGroupMemberPublicV2Short kicks group member
+
+  &lt;p&gt;Required valid user authentication &lt;/p&gt;
+			&lt;p&gt;Required Member Role Permission: &#34;GROUP:KICK [CREATE]&#34;&lt;/p&gt;
+			&lt;p&gt;This endpoint is used to kick group member.&lt;/p&gt;
+			&lt;p&gt;Kick group member. This endpoint will check the member and group information, and also the role permission of the the user who accesses this endpoint&lt;/p&gt;
+			&lt;p&gt;Action Code: 73409&lt;/p&gt;
+
+*/
+func (a *Client) KickGroupMemberPublicV2Short(params *KickGroupMemberPublicV2Params, authInfo runtime.ClientAuthInfoWriter) (*KickGroupMemberPublicV2OK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewKickGroupMemberPublicV2Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "kickGroupMemberPublicV2",
+		Method:             "POST",
+		PathPattern:        "/group/v2/public/namespaces/{namespace}/users/{userId}/groups/{groupId}/kick",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &KickGroupMemberPublicV2Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *KickGroupMemberPublicV2OK:
+		return v, nil
+	case *KickGroupMemberPublicV2BadRequest:
+		return nil, v
+	case *KickGroupMemberPublicV2Unauthorized:
+		return nil, v
+	case *KickGroupMemberPublicV2Forbidden:
+		return nil, v
+	case *KickGroupMemberPublicV2NotFound:
+		return nil, v
+	case *KickGroupMemberPublicV2InternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
 Deprecated: Use LeaveGroupPublicV1Short instead.
 
   LeaveGroupPublicV1 leaves group
@@ -1385,6 +2489,133 @@ func (a *Client) LeaveGroupPublicV1Short(params *LeaveGroupPublicV1Params, authI
 	case *LeaveGroupPublicV1NotFound:
 		return nil, v
 	case *LeaveGroupPublicV1InternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+Deprecated: Use LeaveGroupPublicV2Short instead.
+
+  LeaveGroupPublicV2 leaves group
+
+  &lt;p&gt;Required valid user authentication &lt;/p&gt;
+			&lt;p&gt;This endpoint is used to leave from group.&lt;/p&gt;
+			&lt;p&gt;leave from group. Admin is not allowed to leave the group. This endpoint will also give response if the user does not belong to any group.&lt;/p&gt;
+			&lt;p&gt;Action Code: 73404&lt;/p&gt;
+
+*/
+func (a *Client) LeaveGroupPublicV2(params *LeaveGroupPublicV2Params, authInfo runtime.ClientAuthInfoWriter) (*LeaveGroupPublicV2OK, *LeaveGroupPublicV2BadRequest, *LeaveGroupPublicV2Unauthorized, *LeaveGroupPublicV2Forbidden, *LeaveGroupPublicV2NotFound, *LeaveGroupPublicV2InternalServerError, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewLeaveGroupPublicV2Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "leaveGroupPublicV2",
+		Method:             "POST",
+		PathPattern:        "/group/v2/public/namespaces/{namespace}/groups/{groupId}/leave",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &LeaveGroupPublicV2Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, nil, nil, nil, nil, nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *LeaveGroupPublicV2OK:
+		return v, nil, nil, nil, nil, nil, nil
+
+	case *LeaveGroupPublicV2BadRequest:
+		return nil, v, nil, nil, nil, nil, nil
+
+	case *LeaveGroupPublicV2Unauthorized:
+		return nil, nil, v, nil, nil, nil, nil
+
+	case *LeaveGroupPublicV2Forbidden:
+		return nil, nil, nil, v, nil, nil, nil
+
+	case *LeaveGroupPublicV2NotFound:
+		return nil, nil, nil, nil, v, nil, nil
+
+	case *LeaveGroupPublicV2InternalServerError:
+		return nil, nil, nil, nil, nil, v, nil
+
+	default:
+		return nil, nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+  LeaveGroupPublicV2Short leaves group
+
+  &lt;p&gt;Required valid user authentication &lt;/p&gt;
+			&lt;p&gt;This endpoint is used to leave from group.&lt;/p&gt;
+			&lt;p&gt;leave from group. Admin is not allowed to leave the group. This endpoint will also give response if the user does not belong to any group.&lt;/p&gt;
+			&lt;p&gt;Action Code: 73404&lt;/p&gt;
+
+*/
+func (a *Client) LeaveGroupPublicV2Short(params *LeaveGroupPublicV2Params, authInfo runtime.ClientAuthInfoWriter) (*LeaveGroupPublicV2OK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewLeaveGroupPublicV2Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "leaveGroupPublicV2",
+		Method:             "POST",
+		PathPattern:        "/group/v2/public/namespaces/{namespace}/groups/{groupId}/leave",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &LeaveGroupPublicV2Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *LeaveGroupPublicV2OK:
+		return v, nil
+	case *LeaveGroupPublicV2BadRequest:
+		return nil, v
+	case *LeaveGroupPublicV2Unauthorized:
+		return nil, v
+	case *LeaveGroupPublicV2Forbidden:
+		return nil, v
+	case *LeaveGroupPublicV2NotFound:
+		return nil, v
+	case *LeaveGroupPublicV2InternalServerError:
 		return nil, v
 
 	default:
@@ -1525,6 +2756,138 @@ func (a *Client) RejectGroupInvitationPublicV1Short(params *RejectGroupInvitatio
 }
 
 /*
+Deprecated: Use RejectGroupInvitationPublicV2Short instead.
+
+  RejectGroupInvitationPublicV2 rejects group invitation
+
+  &lt;p&gt;Required valid user authentication &lt;/p&gt;
+			&lt;p&gt;This endpoint is used to reject group invitation.&lt;/p&gt;
+			&lt;p&gt;Reject group invitation. If specific user is not invited in the specific group ID, it will show the the error to show if the user is not invited yet.&lt;/p&gt;
+			&lt;p&gt;Action Code: 73402&lt;/p&gt;
+
+*/
+func (a *Client) RejectGroupInvitationPublicV2(params *RejectGroupInvitationPublicV2Params, authInfo runtime.ClientAuthInfoWriter) (*RejectGroupInvitationPublicV2OK, *RejectGroupInvitationPublicV2BadRequest, *RejectGroupInvitationPublicV2Unauthorized, *RejectGroupInvitationPublicV2Forbidden, *RejectGroupInvitationPublicV2NotFound, *RejectGroupInvitationPublicV2Conflict, *RejectGroupInvitationPublicV2InternalServerError, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewRejectGroupInvitationPublicV2Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "rejectGroupInvitationPublicV2",
+		Method:             "POST",
+		PathPattern:        "/group/v2/public/namespaces/{namespace}/groups/{groupId}/invite/reject",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &RejectGroupInvitationPublicV2Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, nil, nil, nil, nil, nil, nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *RejectGroupInvitationPublicV2OK:
+		return v, nil, nil, nil, nil, nil, nil, nil
+
+	case *RejectGroupInvitationPublicV2BadRequest:
+		return nil, v, nil, nil, nil, nil, nil, nil
+
+	case *RejectGroupInvitationPublicV2Unauthorized:
+		return nil, nil, v, nil, nil, nil, nil, nil
+
+	case *RejectGroupInvitationPublicV2Forbidden:
+		return nil, nil, nil, v, nil, nil, nil, nil
+
+	case *RejectGroupInvitationPublicV2NotFound:
+		return nil, nil, nil, nil, v, nil, nil, nil
+
+	case *RejectGroupInvitationPublicV2Conflict:
+		return nil, nil, nil, nil, nil, v, nil, nil
+
+	case *RejectGroupInvitationPublicV2InternalServerError:
+		return nil, nil, nil, nil, nil, nil, v, nil
+
+	default:
+		return nil, nil, nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+  RejectGroupInvitationPublicV2Short rejects group invitation
+
+  &lt;p&gt;Required valid user authentication &lt;/p&gt;
+			&lt;p&gt;This endpoint is used to reject group invitation.&lt;/p&gt;
+			&lt;p&gt;Reject group invitation. If specific user is not invited in the specific group ID, it will show the the error to show if the user is not invited yet.&lt;/p&gt;
+			&lt;p&gt;Action Code: 73402&lt;/p&gt;
+
+*/
+func (a *Client) RejectGroupInvitationPublicV2Short(params *RejectGroupInvitationPublicV2Params, authInfo runtime.ClientAuthInfoWriter) (*RejectGroupInvitationPublicV2OK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewRejectGroupInvitationPublicV2Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "rejectGroupInvitationPublicV2",
+		Method:             "POST",
+		PathPattern:        "/group/v2/public/namespaces/{namespace}/groups/{groupId}/invite/reject",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &RejectGroupInvitationPublicV2Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *RejectGroupInvitationPublicV2OK:
+		return v, nil
+	case *RejectGroupInvitationPublicV2BadRequest:
+		return nil, v
+	case *RejectGroupInvitationPublicV2Unauthorized:
+		return nil, v
+	case *RejectGroupInvitationPublicV2Forbidden:
+		return nil, v
+	case *RejectGroupInvitationPublicV2NotFound:
+		return nil, v
+	case *RejectGroupInvitationPublicV2Conflict:
+		return nil, v
+	case *RejectGroupInvitationPublicV2InternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
 Deprecated: Use RejectGroupJoinRequestPublicV1Short instead.
 
   RejectGroupJoinRequestPublicV1 rejects group join request
@@ -1653,6 +3016,142 @@ func (a *Client) RejectGroupJoinRequestPublicV1Short(params *RejectGroupJoinRequ
 	case *RejectGroupJoinRequestPublicV1Conflict:
 		return nil, v
 	case *RejectGroupJoinRequestPublicV1InternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+Deprecated: Use RejectGroupJoinRequestPublicV2Short instead.
+
+  RejectGroupJoinRequestPublicV2 rejects group join request
+
+  &lt;p&gt;Required valid user authentication &lt;/p&gt;
+			&lt;p&gt;Required Member Role Permission: &#34;GROUP:JOIN [CREATE]&#34;&lt;/p&gt;
+			&lt;p&gt;This endpoint is used to reject group join request.&lt;/p&gt;
+			&lt;p&gt;Reject group join request. If specific user is not asked to join the specific group ID, it will show the the error to show if the user is not asked to join yet.&lt;/p&gt;
+			&lt;p&gt;This endpoint will also check if the specific user is already joined to specific group&lt;/p&gt;
+			&lt;p&gt;Action Code: 73408&lt;/p&gt;
+
+*/
+func (a *Client) RejectGroupJoinRequestPublicV2(params *RejectGroupJoinRequestPublicV2Params, authInfo runtime.ClientAuthInfoWriter) (*RejectGroupJoinRequestPublicV2OK, *RejectGroupJoinRequestPublicV2BadRequest, *RejectGroupJoinRequestPublicV2Unauthorized, *RejectGroupJoinRequestPublicV2Forbidden, *RejectGroupJoinRequestPublicV2NotFound, *RejectGroupJoinRequestPublicV2Conflict, *RejectGroupJoinRequestPublicV2InternalServerError, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewRejectGroupJoinRequestPublicV2Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "rejectGroupJoinRequestPublicV2",
+		Method:             "POST",
+		PathPattern:        "/group/v2/public/namespaces/{namespace}/users/{userId}/groups/{groupId}/join/reject",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &RejectGroupJoinRequestPublicV2Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, nil, nil, nil, nil, nil, nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *RejectGroupJoinRequestPublicV2OK:
+		return v, nil, nil, nil, nil, nil, nil, nil
+
+	case *RejectGroupJoinRequestPublicV2BadRequest:
+		return nil, v, nil, nil, nil, nil, nil, nil
+
+	case *RejectGroupJoinRequestPublicV2Unauthorized:
+		return nil, nil, v, nil, nil, nil, nil, nil
+
+	case *RejectGroupJoinRequestPublicV2Forbidden:
+		return nil, nil, nil, v, nil, nil, nil, nil
+
+	case *RejectGroupJoinRequestPublicV2NotFound:
+		return nil, nil, nil, nil, v, nil, nil, nil
+
+	case *RejectGroupJoinRequestPublicV2Conflict:
+		return nil, nil, nil, nil, nil, v, nil, nil
+
+	case *RejectGroupJoinRequestPublicV2InternalServerError:
+		return nil, nil, nil, nil, nil, nil, v, nil
+
+	default:
+		return nil, nil, nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+  RejectGroupJoinRequestPublicV2Short rejects group join request
+
+  &lt;p&gt;Required valid user authentication &lt;/p&gt;
+			&lt;p&gt;Required Member Role Permission: &#34;GROUP:JOIN [CREATE]&#34;&lt;/p&gt;
+			&lt;p&gt;This endpoint is used to reject group join request.&lt;/p&gt;
+			&lt;p&gt;Reject group join request. If specific user is not asked to join the specific group ID, it will show the the error to show if the user is not asked to join yet.&lt;/p&gt;
+			&lt;p&gt;This endpoint will also check if the specific user is already joined to specific group&lt;/p&gt;
+			&lt;p&gt;Action Code: 73408&lt;/p&gt;
+
+*/
+func (a *Client) RejectGroupJoinRequestPublicV2Short(params *RejectGroupJoinRequestPublicV2Params, authInfo runtime.ClientAuthInfoWriter) (*RejectGroupJoinRequestPublicV2OK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewRejectGroupJoinRequestPublicV2Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "rejectGroupJoinRequestPublicV2",
+		Method:             "POST",
+		PathPattern:        "/group/v2/public/namespaces/{namespace}/users/{userId}/groups/{groupId}/join/reject",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &RejectGroupJoinRequestPublicV2Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *RejectGroupJoinRequestPublicV2OK:
+		return v, nil
+	case *RejectGroupJoinRequestPublicV2BadRequest:
+		return nil, v
+	case *RejectGroupJoinRequestPublicV2Unauthorized:
+		return nil, v
+	case *RejectGroupJoinRequestPublicV2Forbidden:
+		return nil, v
+	case *RejectGroupJoinRequestPublicV2NotFound:
+		return nil, v
+	case *RejectGroupJoinRequestPublicV2Conflict:
+		return nil, v
+	case *RejectGroupJoinRequestPublicV2InternalServerError:
 		return nil, v
 
 	default:

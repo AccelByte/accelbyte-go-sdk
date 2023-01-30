@@ -21,7 +21,7 @@ type ModelsGetMemberRolesListResponseV1 struct {
 
 	// data
 	// Required: true
-	Data []*ModelsGetMemberRoleResponseV1 `json:"data"`
+	Data []*ModelsMemberRoleResponseV1 `json:"data"`
 
 	// paging
 	// Required: true

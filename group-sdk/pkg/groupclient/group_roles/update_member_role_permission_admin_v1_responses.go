@@ -87,7 +87,7 @@ func NewUpdateMemberRolePermissionAdminV1OK() *UpdateMemberRolePermissionAdminV1
   OK
 */
 type UpdateMemberRolePermissionAdminV1OK struct {
-	Payload *groupclientmodels.ModelsUpdateMemberRoleResponseV1
+	Payload *groupclientmodels.ModelsMemberRoleResponseV1
 }
 
 func (o *UpdateMemberRolePermissionAdminV1OK) Error() string {
@@ -109,7 +109,7 @@ func (o *UpdateMemberRolePermissionAdminV1OK) ToJSONString() string {
 	return fmt.Sprintf("%+v", string(b))
 }
 
-func (o *UpdateMemberRolePermissionAdminV1OK) GetPayload() *groupclientmodels.ModelsUpdateMemberRoleResponseV1 {
+func (o *UpdateMemberRolePermissionAdminV1OK) GetPayload() *groupclientmodels.ModelsMemberRoleResponseV1 {
 	return o.Payload
 }
 
@@ -120,7 +120,7 @@ func (o *UpdateMemberRolePermissionAdminV1OK) readResponse(response runtime.Clie
 		consumer = runtime.ByteStreamConsumer()
 	}
 
-	o.Payload = new(groupclientmodels.ModelsUpdateMemberRoleResponseV1)
+	o.Payload = new(groupclientmodels.ModelsMemberRoleResponseV1)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {

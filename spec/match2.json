@@ -3,7 +3,7 @@
   "info": {
     "description": "Justice Matchmaking Service",
     "title": "Justice Match Service v2",
-    "version": "2.0.1"
+    "version": "2.1.0"
   },
   "schemes": [
     "https"
@@ -14,7 +14,9 @@
       "flow": "accessCode",
       "scopes": {
         "NAMESPACE:{namespace}:MATCHMAKING:BACKFILL [CREATE]": "NAMESPACE:{namespace}:MATCHMAKING:BACKFILL [CREATE]",
+        "NAMESPACE:{namespace}:MATCHMAKING:BACKFILL [DELETE]": "NAMESPACE:{namespace}:MATCHMAKING:BACKFILL [DELETE]",
         "NAMESPACE:{namespace}:MATCHMAKING:BACKFILL [UPDATE]": "NAMESPACE:{namespace}:MATCHMAKING:BACKFILL [UPDATE]",
+        "NAMESPACE:{namespace}:MATCHMAKING:BACKFILL []": "NAMESPACE:{namespace}:MATCHMAKING:BACKFILL []",
         "NAMESPACE:{namespace}:MATCHMAKING:FUNCTIONS [CREATE]": "NAMESPACE:{namespace}:MATCHMAKING:FUNCTIONS [CREATE]",
         "NAMESPACE:{namespace}:MATCHMAKING:FUNCTIONS [DELETE]": "NAMESPACE:{namespace}:MATCHMAKING:FUNCTIONS [DELETE]",
         "NAMESPACE:{namespace}:MATCHMAKING:FUNCTIONS [READ]": "NAMESPACE:{namespace}:MATCHMAKING:FUNCTIONS [READ]",
@@ -161,7 +163,243 @@
         ],
         "summary": "Create a backfill ticket",
         "tags": [
-          "Backfill"
+          "Backfill",
+          "public"
+        ]
+      }
+    },
+    "/match2/v1/namespaces/{namespace}/backfill/proposal": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": " Required Permission: NAMESPACE:{namespace}:MATCHMAKING:BACKFILL [GET]\n\nRequired Scope: social\n\nGet backfill proposal\n",
+        "operationId": "GetBackfillProposal",
+        "parameters": [
+          {
+            "description": "namespace of the game",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "Session ID information",
+            "in": "query",
+            "name": "sessionID",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/api.BackfillProposalResponse"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          }
+        },
+        "security": [
+          {
+            "HasPermission": [
+              "NAMESPACE:{namespace}:MATCHMAKING:BACKFILL []"
+            ],
+            "HasScope": [
+              "social"
+            ],
+            "authorization": []
+          }
+        ],
+        "summary": "Get backfill proposal",
+        "tags": [
+          "Backfill",
+          "public"
+        ]
+      }
+    },
+    "/match2/v1/namespaces/{namespace}/backfill/{backfillID}": {
+      "delete": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": " Required Permission: NAMESPACE:{namespace}:MATCHMAKING:BACKFILL [DELETE]\n\nRequired Scope: social\n\nDelete backfill ticket\n",
+        "operationId": "DeleteBackfill",
+        "parameters": [
+          {
+            "description": "backfill Ticket ID",
+            "in": "path",
+            "name": "backfillID",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "namespace of the game",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "204": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          }
+        },
+        "security": [
+          {
+            "HasPermission": [
+              "NAMESPACE:{namespace}:MATCHMAKING:BACKFILL [DELETE]"
+            ],
+            "HasScope": [
+              "social"
+            ],
+            "authorization": []
+          }
+        ],
+        "summary": "Delete a backfill ticket",
+        "tags": [
+          "Backfill",
+          "public"
+        ]
+      },
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": " Required Permission: NAMESPACE:{namespace}:MATCHMAKING:BACKFILL [GET]\n\nRequired Scope: social\n\nGet backfill ticket by ID\n",
+        "operationId": "GetBackfill",
+        "parameters": [
+          {
+            "description": "backfill Ticket ID",
+            "in": "path",
+            "name": "backfillID",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "namespace of the game",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/api.BackfillGetResponse"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          }
+        },
+        "security": [
+          {
+            "HasPermission": [
+              "NAMESPACE:{namespace}:MATCHMAKING:BACKFILL []"
+            ],
+            "HasScope": [
+              "social"
+            ],
+            "authorization": []
+          }
+        ],
+        "summary": "Get a backfill ticket",
+        "tags": [
+          "Backfill",
+          "public"
         ]
       }
     },
@@ -247,7 +485,8 @@
         ],
         "summary": "Accept a backfill proposal",
         "tags": [
-          "Backfill"
+          "Backfill",
+          "public"
         ]
       }
     },
@@ -333,7 +572,8 @@
         ],
         "summary": "Reject a backfill proposal",
         "tags": [
-          "Backfill"
+          "Backfill",
+          "public"
         ]
       }
     },
@@ -409,7 +649,8 @@
         ],
         "summary": "List existing match functions",
         "tags": [
-          "Match-Functions"
+          "Match-Functions",
+          "admin"
         ]
       },
       "post": {
@@ -486,7 +727,8 @@
         ],
         "summary": "Create a match function",
         "tags": [
-          "Match-Functions"
+          "Match-Functions",
+          "admin"
         ]
       }
     },
@@ -558,7 +800,8 @@
         ],
         "summary": "Delete a match function",
         "tags": [
-          "Match-Functions"
+          "Match-Functions",
+          "admin"
         ]
       }
     },
@@ -634,7 +877,8 @@
         ],
         "summary": "List match pools",
         "tags": [
-          "Match-Pools"
+          "Match-Pools",
+          "admin"
         ]
       },
       "post": {
@@ -711,7 +955,8 @@
         ],
         "summary": "Create a match pool",
         "tags": [
-          "Match-Pools"
+          "Match-Pools",
+          "admin"
         ]
       }
     },
@@ -783,7 +1028,8 @@
         ],
         "summary": "Delete a match pool",
         "tags": [
-          "Match-Pools"
+          "Match-Pools",
+          "admin"
         ]
       },
       "get": {
@@ -850,7 +1096,8 @@
         ],
         "summary": "Get details for a specific match pool",
         "tags": [
-          "Match-Pools"
+          "Match-Pools",
+          "admin"
         ]
       },
       "put": {
@@ -937,7 +1184,8 @@
         ],
         "summary": "Update a match pool",
         "tags": [
-          "Match-Pools"
+          "Match-Pools",
+          "admin"
         ]
       }
     },
@@ -1025,7 +1273,8 @@
         ],
         "summary": "Create a matchmaking ticket",
         "tags": [
-          "Match-Tickets"
+          "Match-Tickets",
+          "public"
         ]
       }
     },
@@ -1097,7 +1346,8 @@
         ],
         "summary": "Delete a match ticket",
         "tags": [
-          "Match-Tickets"
+          "Match-Tickets",
+          "public"
         ]
       },
       "get": {
@@ -1170,7 +1420,8 @@
         ],
         "summary": "Get details for a specific match ticket",
         "tags": [
-          "Match-Tickets"
+          "Match-Tickets",
+          "public"
         ]
       }
     },
@@ -1246,7 +1497,8 @@
         ],
         "summary": "List existing rule sets",
         "tags": [
-          "Rule-Sets"
+          "Rule-Sets",
+          "admin"
         ]
       },
       "post": {
@@ -1323,7 +1575,8 @@
         ],
         "summary": "Create a match rule set",
         "tags": [
-          "Rule-Sets"
+          "Rule-Sets",
+          "admin"
         ]
       }
     },
@@ -1395,7 +1648,8 @@
         ],
         "summary": "Delete a rule set",
         "tags": [
-          "Rule-Sets"
+          "Rule-Sets",
+          "admin"
         ]
       },
       "get": {
@@ -1462,7 +1716,8 @@
         ],
         "summary": "Get details for a specific rule set",
         "tags": [
-          "Rule-Sets"
+          "Rule-Sets",
+          "admin"
         ]
       },
       "put": {
@@ -1549,7 +1804,8 @@
         ],
         "summary": "Update a match rule set",
         "tags": [
-          "Rule-Sets"
+          "Rule-Sets",
+          "admin"
         ]
       }
     },
@@ -1598,6 +1854,60 @@
         "matchPool",
         "sessionId"
       ]
+    },
+    "api.BackfillGetResponse": {
+      "properties": {
+        "createdAt": {
+          "format": "date-time",
+          "type": "string",
+          "x-nullable": true
+        },
+        "matchPool": {
+          "type": "string"
+        },
+        "matchSessionID": {
+          "type": "string"
+        },
+        "partialMatch": {
+          "$ref": "#/definitions/api.Match"
+        },
+        "ticketID": {
+          "type": "string"
+        }
+      }
+    },
+    "api.BackfillProposalResponse": {
+      "properties": {
+        "backfillTicketID": {
+          "type": "string"
+        },
+        "createdAt": {
+          "format": "date-time",
+          "type": "string",
+          "x-nullable": true
+        },
+        "matchPool": {
+          "type": "string"
+        },
+        "matchSessionID": {
+          "type": "string"
+        },
+        "proposalID": {
+          "type": "string"
+        },
+        "proposedTeams": {
+          "items": {
+            "$ref": "#/definitions/api.Team"
+          },
+          "type": "array"
+        },
+        "tickets": {
+          "items": {
+            "$ref": "#/definitions/api.Ticket"
+          },
+          "type": "array"
+        }
+      }
     },
     "api.ListMatchFunctionsResponse": {
       "properties": {
@@ -1657,6 +1967,41 @@
         "pagination"
       ]
     },
+    "api.Match": {
+      "properties": {
+        "backfill": {
+          "type": "boolean",
+          "x-omitempty": false
+        },
+        "clientVersion": {
+          "type": "string"
+        },
+        "matchAttributes": {
+          "type": "object"
+        },
+        "regionPreference": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "serverName": {
+          "type": "string"
+        },
+        "teams": {
+          "items": {
+            "$ref": "#/definitions/api.Team"
+          },
+          "type": "array"
+        },
+        "tickets": {
+          "items": {
+            "$ref": "#/definitions/api.Ticket"
+          },
+          "type": "array"
+        }
+      }
+    },
     "api.MatchFunctionConfig": {
       "properties": {
         "match_function": {
@@ -1715,6 +2060,14 @@
     },
     "api.MatchPool": {
       "properties": {
+        "auto_accept_backfill_proposal": {
+          "type": "boolean",
+          "x-omitempty": false
+        },
+        "backfill_proposal_expiration_seconds": {
+          "format": "int32",
+          "type": "integer"
+        },
         "backfill_ticket_expiration_seconds": {
           "format": "int32",
           "type": "integer"
@@ -1740,6 +2093,8 @@
         }
       },
       "required": [
+        "auto_accept_backfill_proposal",
+        "backfill_proposal_expiration_seconds",
         "backfill_ticket_expiration_seconds",
         "match_function",
         "match_function_override",
@@ -1751,6 +2106,14 @@
     },
     "api.MatchPoolConfig": {
       "properties": {
+        "auto_accept_backfill_proposal": {
+          "type": "boolean",
+          "x-omitempty": false
+        },
+        "backfill_proposal_expiration_seconds": {
+          "format": "int32",
+          "type": "integer"
+        },
         "backfill_ticket_expiration_seconds": {
           "format": "int32",
           "type": "integer"
@@ -1773,6 +2136,8 @@
         }
       },
       "required": [
+        "auto_accept_backfill_proposal",
+        "backfill_proposal_expiration_seconds",
         "backfill_ticket_expiration_seconds",
         "match_function",
         "match_function_override",
@@ -1856,6 +2221,9 @@
           "type": "boolean",
           "x-omitempty": false
         },
+        "proposedProposal": {
+          "$ref": "#/definitions/api.ProposedProposal"
+        },
         "sessionID": {
           "type": "string"
         }
@@ -1864,6 +2232,97 @@
         "matchFound",
         "sessionID"
       ]
+    },
+    "api.Party": {
+      "properties": {
+        "partyID": {
+          "type": "string"
+        },
+        "userIDs": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      }
+    },
+    "api.PlayerData": {
+      "properties": {
+        "attributes": {
+          "type": "object"
+        },
+        "partyID": {
+          "type": "string"
+        },
+        "playerID": {
+          "type": "string"
+        }
+      }
+    },
+    "api.ProposedProposal": {
+      "properties": {
+        "backfillID": {
+          "type": "string"
+        },
+        "proposalID": {
+          "type": "string"
+        },
+        "status": {
+          "type": "string"
+        }
+      }
+    },
+    "api.Team": {
+      "properties": {
+        "parties": {
+          "items": {
+            "$ref": "#/definitions/api.Party"
+          },
+          "type": "array"
+        },
+        "userIDs": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      }
+    },
+    "api.Ticket": {
+      "properties": {
+        "createdAt": {
+          "format": "date-time",
+          "type": "string",
+          "x-nullable": true
+        },
+        "latencies": {
+          "additionalProperties": {
+            "type": "integer"
+          },
+          "type": "object"
+        },
+        "matchPool": {
+          "type": "string"
+        },
+        "namespace": {
+          "type": "string"
+        },
+        "partySessionID": {
+          "type": "string"
+        },
+        "players": {
+          "items": {
+            "$ref": "#/definitions/api.PlayerData"
+          },
+          "type": "array"
+        },
+        "ticketAttributes": {
+          "type": "object"
+        },
+        "ticketID": {
+          "type": "string"
+        }
+      }
     },
     "api.backFillRejectRequest": {
       "properties": {

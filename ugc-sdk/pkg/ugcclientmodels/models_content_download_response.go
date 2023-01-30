@@ -36,8 +36,7 @@ type ModelsContentDownloadResponse struct {
 	CreatorName *string `json:"creatorName"`
 
 	// custom attributes
-	// Required: true
-	CustomAttributes interface{} `json:"customAttributes"`
+	CustomAttributes interface{} `json:"customAttributes,omitempty"`
 
 	// download count
 	// Required: true
@@ -131,10 +130,6 @@ func (m *ModelsContentDownloadResponse) Validate(formats strfmt.Registry) error 
 	}
 
 	if err := m.validateCreatorName(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.validateCustomAttributes(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -255,15 +250,6 @@ func (m *ModelsContentDownloadResponse) validateCreatorFollowState(formats strfm
 func (m *ModelsContentDownloadResponse) validateCreatorName(formats strfmt.Registry) error {
 
 	if err := validate.Required("creatorName", "body", m.CreatorName); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *ModelsContentDownloadResponse) validateCustomAttributes(formats strfmt.Registry) error {
-
-	if err := validate.Required("customAttributes", "body", m.CustomAttributes); err != nil {
 		return err
 	}
 

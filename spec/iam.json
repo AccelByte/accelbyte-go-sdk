@@ -8,7 +8,7 @@
     },
     "description": "Justice IAM Service",
     "title": "justice-iam-service",
-    "version": "5.25.4"
+    "version": "5.26.1"
   },
   "schemes": [
     "https"
@@ -8117,7 +8117,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "Add a new OAuth 2.0 client. Protected by the permission: ADMIN:NAMESPACE:{namespace}:CLIENT [CREATE]\u0026lt;br\u0026gt;\n\t\tA new client automatically granted with these scopes: commerce, account, analytics, publishing, social.\u0026lt;br\u0026gt;\n\t\taction code: 10301\u0026lt;br\u0026gt;\n\t\t\u0026lt;p\u0026gt;\u0026lt;strong\u0026gt;Fields Description:\u0026lt;/strong\u0026gt;\n\t\t\u0026lt;ul\u0026gt;\n\t\t\u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;clientId\u0026lt;/strong\u0026gt; : The client ID. e.g f815e5c44f364993961be3b3f26a7bf4\u0026lt;/li\u0026gt;\n\t\t\u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;clientName\u0026lt;/strong\u0026gt; : The client name. e.g E-commerce\u0026lt;/li\u0026gt;\n\t\t\u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;secret\u0026lt;/strong\u0026gt; : The client\u0026#39;s secret. It\u0026#39;s empty if the client\u0026#39;s type is a public client. Otherwise, the client secret is required\u0026lt;/li\u0026gt;\n\t\t\u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;namespace\u0026lt;/strong\u0026gt; : The namespace where the client lives. e.g sample-game\u0026lt;/li\u0026gt;\n\t\t\u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;redirectUri\u0026lt;/strong\u0026gt; : Contains the redirect URI used in OAuth callback. e.g https://example.net/platform\u0026lt;/li\u0026gt;\n\t\t\u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;oauthClientType\u0026lt;/strong\u0026gt; : The OAuth 2.0 client type. The client type determines whether the authorization needs Proof Of Key Exchange or not. \n\t\t\t\t\tA public client type doesn\u0026#39;t have a client secret and should use PKCE flow. \n\t\t\t\t\tA confidential client type has a client secret and don\u0026#39;t use PKCE flow\n\t\t\t\u0026lt;ul\u0026gt;Supported oAuthClientType :\n\t\t\t\t\u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;Public\u0026lt;/strong\u0026gt;\u0026lt;/li\u0026gt;\n\t\t\t\t\u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;Confidential\u0026lt;/strong\u0026gt;\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;\u0026lt;/li\u0026gt;\n\t\t\u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;audiences\u0026lt;/strong\u0026gt; : List of target client IDs who is intended to receive the token. e.g [\u0026#34;eaaa65618fe24293b00a61454182b435\u0026#34;, \u0026#34;40073ee9bc3446d3a051a71b48509a5d\u0026#34;]\u0026lt;/li\u0026gt;\n\t\t\u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;baseUri\u0026lt;/strong\u0026gt; : A base URI of the application. It is used for making sure the token is intended to be used by the client. e.g https://example.net/platform\u0026lt;/li\u0026gt;\n\t\t\u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;clientPermissions\u0026lt;/strong\u0026gt; : Contains the client\u0026#39;s permissions\u0026lt;/li\u0026gt;\n\t\t\u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;deletable\u0026lt;/strong\u0026gt; : The flag to identify whether client is deletable (optional). default value: true\u0026lt;/li\u0026gt;\n\t\t\u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;clientPlatform\u0026lt;/strong\u0026gt;: available client platform (optional). default value: \u0026#34;\u0026#34;\n  \t\t\t\u0026lt;ul\u0026gt;\n\t\t\t\t\u0026lt;li\u0026gt;Playstation\u0026lt;/li\u0026gt;\n\t\t\t\t\u0026lt;li\u0026gt;Xbox\u0026lt;/li\u0026gt;\n\t\t\t\t\u0026lt;li\u0026gt;Steam\u0026lt;/li\u0026gt;\n\t\t\t\t\u0026lt;li\u0026gt;Epic\u0026lt;/li\u0026gt;\n\t\t\t\t\u0026lt;li\u0026gt;IOS\u0026lt;/li\u0026gt;\n\t\t\t\t\u0026lt;li\u0026gt;GooglePlay\u0026lt;/li\u0026gt;\n\t\t\t\t\u0026lt;li\u0026gt;Nintendo\u0026lt;/li\u0026gt;\n\t\t\t\u0026lt;/ul\u0026gt;\n\t\t\u0026lt;/li\u0026gt;\n        \u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;twoFactorEnabled\u0026lt;/strong\u0026gt;: The flag to indicate whether 2FA validation is enable for this client. default value: false\u0026lt;/li\u0026gt;\n\t\t\u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;oauthAccessTokenExpiration\u0026lt;/strong\u0026gt;: a configurable expiration time for \u0026lt;strong\u0026gt;access_token\u0026lt;/strong\u0026gt;, default value: 0 (mean fetch value from environment variable) \u0026lt;/li\u0026gt;\n\t\t\u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;oauthRefreshTokenExpiration\u0026lt;/strong\u0026gt;: a configurable expiration time for \u0026lt;strong\u0026gt;refresh_token\u0026lt;/strong\u0026gt;, default value: 0 (mean fetch value from environment variable)\u0026lt;/li\u0026gt;\n\t\t\u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;oauthAccessTokenExpirationTimeUnit\u0026lt;/strong\u0026gt;: a configurable expiration time unit for \u0026lt;strong\u0026gt;access_token\u0026lt;/strong\u0026gt;, default value: SECONDS\u0026lt;/li\u0026gt;\n\t\t\u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;oauthRefreshTokenExpirationTimeUnit\u0026lt;/strong\u0026gt;: a configurable expiration time unit for \u0026lt;strong\u0026gt;refresh_token\u0026lt;/strong\u0026gt;, default value: SECONDS\u0026lt;/li\u0026gt;\n\t\t\u0026lt;/ul\u0026gt;\n\t\t\u0026lt;/p\u0026gt;\n\t\t",
+        "description": "Add a new OAuth 2.0 client. Protected by the permission: ADMIN:NAMESPACE:{namespace}:CLIENT [CREATE]\u0026lt;br\u0026gt;\n\t\tA new client automatically granted with these scopes: commerce, account, analytics, publishing, social.\u0026lt;br\u0026gt;\n\t\tIn multi tenant mode, new confidential client will have default client role assigned to it. The role will have all \n\t\t\tpermissions to access all APIs that\u0026#39;s supported by game server SDK and DS uploader. \u0026lt;br\u0026gt;\n\t\taction code: 10301\u0026lt;br\u0026gt;\n\t\t\u0026lt;p\u0026gt;\u0026lt;strong\u0026gt;Fields Description:\u0026lt;/strong\u0026gt;\n\t\t\u0026lt;ul\u0026gt;\n\t\t\u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;clientId\u0026lt;/strong\u0026gt; : The client ID. e.g f815e5c44f364993961be3b3f26a7bf4\u0026lt;/li\u0026gt;\n\t\t\u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;clientName\u0026lt;/strong\u0026gt; : The client name. e.g E-commerce\u0026lt;/li\u0026gt;\n\t\t\u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;secret\u0026lt;/strong\u0026gt; : The client\u0026#39;s secret. It\u0026#39;s empty if the client\u0026#39;s type is a public client. Otherwise, the client secret is required\u0026lt;/li\u0026gt;\n\t\t\u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;namespace\u0026lt;/strong\u0026gt; : The namespace where the client lives. e.g sample-game\u0026lt;/li\u0026gt;\n\t\t\u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;redirectUri\u0026lt;/strong\u0026gt; : Contains the redirect URI used in OAuth callback. e.g https://example.net/platform\u0026lt;/li\u0026gt;\n\t\t\u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;oauthClientType\u0026lt;/strong\u0026gt; : The OAuth 2.0 client type. The client type determines whether the authorization needs Proof Of Key Exchange or not. \n\t\t\t\t\tA public client type doesn\u0026#39;t have a client secret and should use PKCE flow. \n\t\t\t\t\tA confidential client type has a client secret and don\u0026#39;t use PKCE flow\n\t\t\t\u0026lt;ul\u0026gt;Supported oAuthClientType :\n\t\t\t\t\u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;Public\u0026lt;/strong\u0026gt;\u0026lt;/li\u0026gt;\n\t\t\t\t\u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;Confidential\u0026lt;/strong\u0026gt;\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;\u0026lt;/li\u0026gt;\n\t\t\u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;audiences\u0026lt;/strong\u0026gt; : List of target client IDs who is intended to receive the token. e.g [\u0026#34;eaaa65618fe24293b00a61454182b435\u0026#34;, \u0026#34;40073ee9bc3446d3a051a71b48509a5d\u0026#34;]\u0026lt;/li\u0026gt;\n\t\t\u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;baseUri\u0026lt;/strong\u0026gt; : A base URI of the application. It is used for making sure the token is intended to be used by the client. e.g https://example.net/platform\u0026lt;/li\u0026gt;\n\t\t\u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;clientPermissions\u0026lt;/strong\u0026gt; : Contains the client\u0026#39;s permissions\u0026lt;/li\u0026gt;\n\t\t\u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;deletable\u0026lt;/strong\u0026gt; : The flag to identify whether client is deletable (optional). default value: true\u0026lt;/li\u0026gt;\n\t\t\u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;clientPlatform\u0026lt;/strong\u0026gt;: available client platform (optional). default value: \u0026#34;\u0026#34;\n  \t\t\t\u0026lt;ul\u0026gt;\n\t\t\t\t\u0026lt;li\u0026gt;Playstation\u0026lt;/li\u0026gt;\n\t\t\t\t\u0026lt;li\u0026gt;Xbox\u0026lt;/li\u0026gt;\n\t\t\t\t\u0026lt;li\u0026gt;Steam\u0026lt;/li\u0026gt;\n\t\t\t\t\u0026lt;li\u0026gt;Epic\u0026lt;/li\u0026gt;\n\t\t\t\t\u0026lt;li\u0026gt;IOS\u0026lt;/li\u0026gt;\n\t\t\t\t\u0026lt;li\u0026gt;GooglePlay\u0026lt;/li\u0026gt;\n\t\t\t\t\u0026lt;li\u0026gt;Nintendo\u0026lt;/li\u0026gt;\n\t\t\t\u0026lt;/ul\u0026gt;\n\t\t\u0026lt;/li\u0026gt;\n        \u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;twoFactorEnabled\u0026lt;/strong\u0026gt;: The flag to indicate whether 2FA validation is enable for this client. default value: false\u0026lt;/li\u0026gt;\n\t\t\u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;oauthAccessTokenExpiration\u0026lt;/strong\u0026gt;: a configurable expiration time for \u0026lt;strong\u0026gt;access_token\u0026lt;/strong\u0026gt;, default value: 0 (mean fetch value from environment variable) \u0026lt;/li\u0026gt;\n\t\t\u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;oauthRefreshTokenExpiration\u0026lt;/strong\u0026gt;: a configurable expiration time for \u0026lt;strong\u0026gt;refresh_token\u0026lt;/strong\u0026gt;, default value: 0 (mean fetch value from environment variable)\u0026lt;/li\u0026gt;\n\t\t\u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;oauthAccessTokenExpirationTimeUnit\u0026lt;/strong\u0026gt;: a configurable expiration time unit for \u0026lt;strong\u0026gt;access_token\u0026lt;/strong\u0026gt;, default value: SECONDS\u0026lt;/li\u0026gt;\n\t\t\u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;oauthRefreshTokenExpirationTimeUnit\u0026lt;/strong\u0026gt;: a configurable expiration time unit for \u0026lt;strong\u0026gt;refresh_token\u0026lt;/strong\u0026gt;, default value: SECONDS\u0026lt;/li\u0026gt;\n\t\t\u0026lt;/ul\u0026gt;\n\t\t\u0026lt;/p\u0026gt;\n\t\t",
         "operationId": "AdminCreateClientV3",
         "parameters": [
           {
@@ -10183,7 +10183,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "\u0026lt;p\u0026gt;Required permission ADMIN:NAMESPACE:{namespace}:USER [READ]\u0026lt;/p\u0026gt;\n               \u0026lt;p\u0026gt;Endpoint behavior :\n               \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;by default this endpoint searches all users on the specified namespace\u0026lt;/li\u0026gt;\n               \u0026lt;li\u0026gt;if query parameter is defined, endpoint will search users whose email address, display name, username, or third party partially match with the query\u0026lt;/li\u0026gt;\n               \u0026lt;li\u0026gt;if startDate and endDate parameters is defined, endpoint will search users which created on the certain date range\u0026lt;/li\u0026gt;\n               \u0026lt;li\u0026gt;if query, startDate and endDate parameters are defined, endpoint will search users whose email address and display name match and created on the certain date range\u0026lt;/li\u0026gt;\n               \u0026lt;li\u0026gt;if startDate parameter is defined, endpoint will search users that created start from the defined date\u0026lt;/li\u0026gt;\n               \u0026lt;li\u0026gt;if endDate parameter is defined, endpoint will search users that created until the defined date\u0026lt;/li\u0026gt;\n\u0026lt;li\u0026gt;if platformId parameter is defined and by parameter is using thirdparty, endpoint will search users based on the platformId they have linked to \u0026lt;/li\u0026gt;\n\u0026lt;li\u0026gt;if platformBy parameter is defined and by parameter is using thirdparty, endpoint will search users based on the platformUserId or platformDisplayName they have linked to, example value: platformUserId or platformDisplayName\u0026lt;/li\u0026gt;\n               \u0026lt;li\u0026gt;if limit is not defined, The default limit is 100\u0026lt;/li\u0026gt;\n\u0026lt;/ul\u0026gt;\u0026lt;/p\u0026gt;\n             \u0026lt;br\u0026gt;action code : 10133",
+        "description": "\u0026lt;p\u0026gt;Required permission ADMIN:NAMESPACE:{namespace}:USER [READ]\u0026lt;/p\u0026gt;\n               \u0026lt;p\u0026gt;Endpoint behavior :\n               \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;by default this endpoint searches all users on the specified namespace\u0026lt;/li\u0026gt;\n               \u0026lt;li\u0026gt;if query parameter is defined, endpoint will search users whose email address, display name, username, or third party partially match with the query\u0026lt;/li\u0026gt;\n               \u0026lt;li\u0026gt;if startDate and endDate parameters is defined, endpoint will search users which created on the certain date range\u0026lt;/li\u0026gt;\n               \u0026lt;li\u0026gt;if query, startDate and endDate parameters are defined, endpoint will search users whose email address and display name match and created on the certain date range\u0026lt;/li\u0026gt;\n               \u0026lt;li\u0026gt;if startDate parameter is defined, endpoint will search users that created start from the defined date\u0026lt;/li\u0026gt;\n               \u0026lt;li\u0026gt;if endDate parameter is defined, endpoint will search users that created until the defined date\u0026lt;/li\u0026gt;\n\u0026lt;li\u0026gt;if platformId parameter is defined and by parameter is using thirdparty, endpoint will search users based on the platformId they have linked to \u0026lt;/li\u0026gt;\n\u0026lt;li\u0026gt;if platformBy parameter is defined and by parameter is using thirdparty, endpoint will search users based on the platformUserId or platformDisplayName they have linked to, example value: platformUserId or platformDisplayName\u0026lt;/li\u0026gt;\n               \u0026lt;li\u0026gt;if limit is not defined, The default limit is 100\u0026lt;/li\u0026gt;\n\u0026lt;/ul\u0026gt;\u0026lt;/p\u0026gt;\n               \u0026lt;p\u0026gt;In multi tenant mode :\n\u0026lt;ul\u0026gt;\n\u0026lt;li\u0026gt;if super admin search in super admin namespace, the result will be all game admin user\u0026lt;/li\u0026gt;\n\u0026lt;li\u0026gt;if super admin search in game studio namespace, the result will be all game admin user and players under the game studio namespace\u0026lt;/li\u0026gt;\n\u0026lt;li\u0026gt;if super admin search in game namespace, the result will be all game admin users and players under the game namespace\u0026lt;/li\u0026gt;\n\u0026lt;li\u0026gt;if game admin search in their game studio namespace, the result will be all game admin user in the studio namespace\u0026lt;/li\u0026gt;\n\u0026lt;li\u0026gt;if game admin search in their game namespace, the result will be all player in the game namespace\u0026lt;/li\u0026gt;\n\u0026lt;/ul\u0026gt;\u0026lt;/p\u0026gt;\n             \u0026lt;br\u0026gt;action code : 10133",
         "operationId": "AdminSearchUserV3",
         "parameters": [
           {
@@ -14580,6 +14580,24 @@
             "description": "Succeed to create headless account and response token info.",
             "schema": {
               "$ref": "#/definitions/oauthmodel.TokenResponseV3"
+            }
+          },
+          "400": {
+            "description": "Invalid platform linking token or clientID not match.",
+            "schema": {
+              "$ref": "#/definitions/rest.ErrorResponse"
+            }
+          },
+          "401": {
+            "description": "Invalid Basic header.",
+            "schema": {
+              "$ref": "#/definitions/rest.ErrorResponse"
+            }
+          },
+          "404": {
+            "description": "Platform linking token not found.",
+            "schema": {
+              "$ref": "#/definitions/rest.ErrorResponse"
             }
           }
         },
@@ -26151,6 +26169,12 @@
         "redirectUri": {
           "type": "string"
         },
+        "roles": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
         "scopes": {
           "items": {
             "type": "string"
@@ -30453,6 +30477,9 @@
         },
         "platformId": {
           "type": "string"
+        },
+        "userBan": {
+          "$ref": "#/definitions/oauthmodel.UserBan"
         }
       },
       "required": [
@@ -30808,6 +30835,25 @@
         "roles",
         "scope",
         "token_type"
+      ]
+    },
+    "oauthmodel.UserBan": {
+      "properties": {
+        "comment": {
+          "type": "string"
+        },
+        "endDate": {
+          "format": "int64",
+          "type": "integer"
+        },
+        "reason": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "comment",
+        "endDate",
+        "reason"
       ]
     },
     "rest.ErrorResponse": {

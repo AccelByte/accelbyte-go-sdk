@@ -20,7 +20,7 @@ import (
 // swagger:model LootBoxReward
 type LootBoxReward struct {
 
-	// reward items, if type is PROBABILITY_GROUP, will random get one of items in it, if type is REWARD_GROUP/REWARD, will grant all items to user when roll this reward
+	// reward items, if type is PROBABILITY_GROUP, will random get one of items in it, if type is REWARD, will grant all items to user when roll this reward
 	LootBoxItems []*BoxItem `json:"lootBoxItems"`
 
 	// reward name

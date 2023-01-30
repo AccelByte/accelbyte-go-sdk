@@ -26,7 +26,7 @@ func init() {
 	SessionbrowserCmd.AddCommand(session.AdminDeleteSessionCmd)
 	SessionbrowserCmd.AddCommand(session.AdminSearchSessionsV2Cmd)
 	SessionbrowserCmd.AddCommand(session.GetSessionHistoryDetailedCmd)
-	SessionbrowserCmd.AddCommand(session.QuerySessionCmd)
+	SessionbrowserCmd.AddCommand(session.UserQuerySessionCmd)
 	SessionbrowserCmd.AddCommand(session.CreateSessionCmd)
 	SessionbrowserCmd.AddCommand(session.GetSessionByUserIDsCmd)
 	SessionbrowserCmd.AddCommand(session.GetSessionCmd)

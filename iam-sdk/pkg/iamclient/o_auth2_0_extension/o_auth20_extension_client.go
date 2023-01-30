@@ -35,7 +35,7 @@ type Client struct {
 type ClientService interface {
 	AuthenticationWithPlatformLinkV3(params *AuthenticationWithPlatformLinkV3Params, authInfo runtime.ClientAuthInfoWriter) (*AuthenticationWithPlatformLinkV3OK, *AuthenticationWithPlatformLinkV3BadRequest, *AuthenticationWithPlatformLinkV3Unauthorized, *AuthenticationWithPlatformLinkV3Conflict, error)
 	AuthenticationWithPlatformLinkV3Short(params *AuthenticationWithPlatformLinkV3Params, authInfo runtime.ClientAuthInfoWriter) (*AuthenticationWithPlatformLinkV3OK, error)
-	GenerateTokenByNewHeadlessAccountV3(params *GenerateTokenByNewHeadlessAccountV3Params, authInfo runtime.ClientAuthInfoWriter) (*GenerateTokenByNewHeadlessAccountV3OK, error)
+	GenerateTokenByNewHeadlessAccountV3(params *GenerateTokenByNewHeadlessAccountV3Params, authInfo runtime.ClientAuthInfoWriter) (*GenerateTokenByNewHeadlessAccountV3OK, *GenerateTokenByNewHeadlessAccountV3BadRequest, *GenerateTokenByNewHeadlessAccountV3Unauthorized, *GenerateTokenByNewHeadlessAccountV3NotFound, error)
 	GenerateTokenByNewHeadlessAccountV3Short(params *GenerateTokenByNewHeadlessAccountV3Params, authInfo runtime.ClientAuthInfoWriter) (*GenerateTokenByNewHeadlessAccountV3OK, error)
 	GetCountryLocationV3(params *GetCountryLocationV3Params, authInfo runtime.ClientAuthInfoWriter) (*GetCountryLocationV3OK, error)
 	GetCountryLocationV3Short(params *GetCountryLocationV3Params, authInfo runtime.ClientAuthInfoWriter) (*GetCountryLocationV3OK, error)
@@ -193,7 +193,7 @@ Deprecated: Use GenerateTokenByNewHeadlessAccountV3Short instead.
 					The &#39;linkingToken&#39; in request body is received from &#34;/platforms/{platformId}/token&#34;
 					when 3rd platform account is not linked to justice account yet.&#39;&lt;/p&gt;
 */
-func (a *Client) GenerateTokenByNewHeadlessAccountV3(params *GenerateTokenByNewHeadlessAccountV3Params, authInfo runtime.ClientAuthInfoWriter) (*GenerateTokenByNewHeadlessAccountV3OK, error) {
+func (a *Client) GenerateTokenByNewHeadlessAccountV3(params *GenerateTokenByNewHeadlessAccountV3Params, authInfo runtime.ClientAuthInfoWriter) (*GenerateTokenByNewHeadlessAccountV3OK, *GenerateTokenByNewHeadlessAccountV3BadRequest, *GenerateTokenByNewHeadlessAccountV3Unauthorized, *GenerateTokenByNewHeadlessAccountV3NotFound, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewGenerateTokenByNewHeadlessAccountV3Params()
@@ -221,16 +221,25 @@ func (a *Client) GenerateTokenByNewHeadlessAccountV3(params *GenerateTokenByNewH
 		Client:             params.HTTPClient,
 	})
 	if err != nil {
-		return nil, err
+		return nil, nil, nil, nil, err
 	}
 
 	switch v := result.(type) {
 
 	case *GenerateTokenByNewHeadlessAccountV3OK:
-		return v, nil
+		return v, nil, nil, nil, nil
+
+	case *GenerateTokenByNewHeadlessAccountV3BadRequest:
+		return nil, v, nil, nil, nil
+
+	case *GenerateTokenByNewHeadlessAccountV3Unauthorized:
+		return nil, nil, v, nil, nil
+
+	case *GenerateTokenByNewHeadlessAccountV3NotFound:
+		return nil, nil, nil, v, nil
 
 	default:
-		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+		return nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
@@ -276,6 +285,12 @@ func (a *Client) GenerateTokenByNewHeadlessAccountV3Short(params *GenerateTokenB
 
 	case *GenerateTokenByNewHeadlessAccountV3OK:
 		return v, nil
+	case *GenerateTokenByNewHeadlessAccountV3BadRequest:
+		return nil, v
+	case *GenerateTokenByNewHeadlessAccountV3Unauthorized:
+		return nil, v
+	case *GenerateTokenByNewHeadlessAccountV3NotFound:
+		return nil, v
 
 	default:
 		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))

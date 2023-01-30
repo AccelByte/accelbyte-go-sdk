@@ -22,6 +22,7 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/session-sdk/pkg/sessionclient/game_session"
 	"github.com/AccelByte/accelbyte-go-sdk/session-sdk/pkg/sessionclient/operations"
 	"github.com/AccelByte/accelbyte-go-sdk/session-sdk/pkg/sessionclient/party"
+	"github.com/AccelByte/accelbyte-go-sdk/session-sdk/pkg/sessionclient/player"
 )
 
 // Default justice session service HTTP client.
@@ -75,6 +76,7 @@ func New(transport runtime.ClientTransport, runtime *httptransport.Runtime, form
 	cli.GameSession = game_session.New(transport, formats)
 	cli.Operations = operations.New(transport, formats)
 	cli.Party = party.New(transport, formats)
+	cli.Player = player.New(transport, formats)
 
 	return cli
 }
@@ -143,6 +145,8 @@ type JusticeSessionService struct {
 
 	Party party.ClientService
 
+	Player player.ClientService
+
 	Runtime   *httptransport.Runtime
 	Transport runtime.ClientTransport
 }
@@ -154,4 +158,5 @@ func (c *JusticeSessionService) SetTransport(transport runtime.ClientTransport) 
 	c.GameSession.SetTransport(transport)
 	c.Operations.SetTransport(transport)
 	c.Party.SetTransport(transport)
+	c.Player.SetTransport(transport)
 }

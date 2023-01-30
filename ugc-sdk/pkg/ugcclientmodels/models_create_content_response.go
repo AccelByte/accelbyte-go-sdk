@@ -35,8 +35,7 @@ type ModelsCreateContentResponse struct {
 	CreatorName *string `json:"creatorName"`
 
 	// custom attributes
-	// Required: true
-	CustomAttributes interface{} `json:"customAttributes"`
+	CustomAttributes interface{} `json:"customAttributes,omitempty"`
 
 	// file extension
 	// Required: true
@@ -61,6 +60,10 @@ type ModelsCreateContentResponse struct {
 	// namespace
 	// Required: true
 	Namespace *string `json:"namespace"`
+
+	// parent namespace
+	// Required: true
+	ParentNamespace *string `json:"parentNamespace"`
 
 	// payload URL
 	PayloadURL []*ModelsPayloadURL `json:"payloadURL"`
@@ -113,10 +116,6 @@ func (m *ModelsCreateContentResponse) Validate(formats strfmt.Registry) error {
 		res = append(res, err)
 	}
 
-	if err := m.validateCustomAttributes(formats); err != nil {
-		res = append(res, err)
-	}
-
 	if err := m.validateFileExtension(formats); err != nil {
 		res = append(res, err)
 	}
@@ -138,6 +137,10 @@ func (m *ModelsCreateContentResponse) Validate(formats strfmt.Registry) error {
 	}
 
 	if err := m.validateNamespace(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateParentNamespace(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -210,15 +213,6 @@ func (m *ModelsCreateContentResponse) validateCreatorName(formats strfmt.Registr
 	return nil
 }
 
-func (m *ModelsCreateContentResponse) validateCustomAttributes(formats strfmt.Registry) error {
-
-	if err := validate.Required("customAttributes", "body", m.CustomAttributes); err != nil {
-		return err
-	}
-
-	return nil
-}
-
 func (m *ModelsCreateContentResponse) validateFileExtension(formats strfmt.Registry) error {
 
 	if err := validate.Required("fileExtension", "body", m.FileExtension); err != nil {
@@ -267,6 +261,15 @@ func (m *ModelsCreateContentResponse) validateName(formats strfmt.Registry) erro
 func (m *ModelsCreateContentResponse) validateNamespace(formats strfmt.Registry) error {
 
 	if err := validate.Required("namespace", "body", m.Namespace); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *ModelsCreateContentResponse) validateParentNamespace(formats strfmt.Registry) error {
+
+	if err := validate.Required("parentNamespace", "body", m.ParentNamespace); err != nil {
 		return err
 	}
 

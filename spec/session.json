@@ -3,7 +3,7 @@
   "info": {
     "description": "Justice Session Service",
     "title": "justice-session-service",
-    "version": "2.4.0"
+    "version": "2.6.0"
   },
   "schemes": [
     "https"
@@ -265,7 +265,7 @@
             "authorization": []
           }
         ],
-        "summary": "Delete configuration template. Requires ADMIN:NAMESPACE:{namespace}:SESSION:CONFIGURATION [READ]",
+        "summary": "Delete configuration template. Requires ADMIN:NAMESPACE:{namespace}:SESSION:CONFIGURATION [DELETE]",
         "tags": [
           "Configuration Template"
         ]
@@ -420,7 +420,7 @@
             "authorization": []
           }
         ],
-        "summary": "Update configuration template. Requires ADMIN:NAMESPACE:{namespace}:SESSION:CONFIGURATION [CREATE]",
+        "summary": "Update configuration template. Requires ADMIN:NAMESPACE:{namespace}:SESSION:CONFIGURATION [UPDATE]",
         "tags": [
           "Configuration Template"
         ]
@@ -463,6 +463,12 @@
             "description": "game mode",
             "in": "query",
             "name": "gameMode",
+            "type": "string"
+          },
+          {
+            "description": "game session is soft deleted. supported: TRUE, FALSE",
+            "in": "query",
+            "name": "isSoftDeleted",
             "type": "string"
           },
           {
@@ -790,12 +796,152 @@
         ]
       }
     },
+    "/session/v1/admin/namespaces/{namespace}/users/attributes": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Admin get attributes of players.\n\nField descriptions:\n\t- userID           : user who owns the attributes.\n\t- crossplayEnabled : set to true if the player wants to enable crossplay to their session (default: false).\n\t- platforms        : list of the player\u0026#39;s 3rd party platform account information.\n\t\t- name   : platform name. supported platforms: STEAM\n\t\t- userID : platform userID\n\t- data             : other data that the player wants to store.\n",
+        "operationId": "adminQueryPlayerAttributes",
+        "parameters": [
+          {
+            "description": "namespace of the game",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "comma-separated userIDs ",
+            "in": "query",
+            "name": "users",
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "items": {
+                "$ref": "#/definitions/apimodels.PlayerAttributesResponseBody"
+              },
+              "type": "array"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "summary": "Query player attributes. Requires ADMIN:NAMESPACE:{namespace}:SESSION:PLAYER:{userId} [READ]",
+        "tags": [
+          "Player"
+        ]
+      }
+    },
+    "/session/v1/admin/namespaces/{namespace}/users/{userId}/attributes": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Admin get attributes of a player.\n\nField descriptions:\n\t- userID           : user who owns the attributes.\n\t- crossplayEnabled : set to true if the player wants to enable crossplay to their session (default: false).\n\t- platforms        : list of the player\u0026#39;s 3rd party platform account information.\n\t\t- name   : platform name. supported platforms: STEAM\n\t\t- userID : platform userID\n\t- data             : other data that the player wants to store.\n",
+        "operationId": "adminGetPlayerAttributes",
+        "parameters": [
+          {
+            "description": "namespace of the game",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "User ID",
+            "in": "path",
+            "name": "userId",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/apimodels.PlayerAttributesResponseBody"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "summary": "Get player attributes. Requires ADMIN:NAMESPACE:{namespace}:SESSION:PLAYER:{userId} [READ]",
+        "tags": [
+          "Player"
+        ]
+      }
+    },
     "/session/v1/public/namespaces/{namespace}/gamesession": {
       "post": {
         "consumes": [
           "application/json"
         ],
-        "description": "\u0026lt;p\u0026gt;Create a game session.\n        Session configuration name is mandatory, this API will refer following values from the session template if they\u0026#39;re not provided in the request:\u0026lt;/p\u0026gt;\n\t\t\u0026lt;ul\u0026gt;\n\t\t   \u0026lt;li\u0026gt;type\u0026lt;/li\u0026gt;\n\t\t   \u0026lt;li\u0026gt;joinability\u0026lt;/li\u0026gt;\n\t\t   \u0026lt;li\u0026gt;minPlayers\u0026lt;/li\u0026gt;\n\t\t   \u0026lt;li\u0026gt;maxPlayers\u0026lt;/li\u0026gt;\n\t\t   \u0026lt;li\u0026gt;inviteTimeout\u0026lt;/li\u0026gt;\n\t\t   \u0026lt;li\u0026gt;inactiveTimeout\u0026lt;/li\u0026gt;\n\t\t\u0026lt;/ul\u0026gt;\n        \u0026lt;p\u0026gt;When the session type is a DS, a DS creation request will be sent to DSMC if number of active players reaches session\u0026#39;s minPlayers.\n\t\tActive user is a user who present within the session, has status CONNECTED/JOINED. \n        Session service has several DSInformation status to track DS request to DSMC:\u0026lt;/p\u0026gt;\n\t\t\u0026lt;ul\u0026gt;\n\t\t  \u0026lt;li\u0026gt;\u0026lt;b\u0026gt;NEED_TO_REQUEST\u0026lt;/b\u0026gt;: number of active players hasn\u0026#39;t reached session\u0026#39;s minPlayers therefore DS has not yet requested.\u0026lt;/li\u0026gt;\n\t\t  \u0026lt;li\u0026gt;\u0026lt;b\u0026gt;REQUESTED\u0026lt;/b\u0026gt;: DS is being requested to DSMC.\u0026lt;/li\u0026gt;\n\t\t  \u0026lt;li\u0026gt;\u0026lt;b\u0026gt;AVAILABLE\u0026lt;/b\u0026gt;: DS is ready to use. The DSMC status for this DS is either READY/BUSY.\u0026lt;/li\u0026gt;\n\t\t  \u0026lt;li\u0026gt;\u0026lt;b\u0026gt;FAILED_TO_REQUEST\u0026lt;/b\u0026gt;: DSMC fails to create the DS.\u0026lt;/li\u0026gt;\n\t\t\u0026lt;/ul\u0026gt;          \n\t\t",
+        "description": "Create a game session.\n      Session configuration name is mandatory, this API will refer following values from the session template if they\u0026#39;re not provided in the request:\n   - type\n   - joinability\n   - minPlayers\n   - maxPlayers\n   - inviteTimeout\n   - inactiveTimeout\n\n      When the session type is a DS, a DS creation request will be sent to DSMC if number of active players reaches session\u0026#39;s minPlayers.\n\nActive user is a user who present within the session, has status CONNECTED/JOINED.\n\n      Session service has several DSInformation status to track DS request to DSMC:\n   - NEED_TO_REQUEST: number of active players hasn\u0026#39;t reached session\u0026#39;s minPlayers therefore DS has not yet requested.\n   - REQUESTED: DS is being requested to DSMC.\n   - AVAILABLE: DS is ready to use. The DSMC status for this DS is either READY/BUSY.\n   - FAILED_TO_REQUEST: DSMC fails to create the DS.\n",
         "operationId": "createGameSession",
         "parameters": [
           {
@@ -866,7 +1012,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "Query game sessions. \n\t\tBy default, API will return a list of available game sessions (joinability: open).\n\t\tSession service has several DSInformation status to track DS request to DSMC:\n\t\t\u0026lt;ul\u0026gt;\n\t\t  \u0026lt;li\u0026gt;\u0026lt;b\u0026gt;NEED_TO_REQUEST\u0026lt;/b\u0026gt;: number of active players hasn\u0026#39;t reached session\u0026#39;s minPlayers therefore DS has not yet requested.\u0026lt;/li\u0026gt;\n\t\t  \u0026lt;li\u0026gt;\u0026lt;b\u0026gt;REQUESTED\u0026lt;/b\u0026gt;: DS is being requested to DSMC.\u0026lt;/li\u0026gt;\n\t\t  \u0026lt;li\u0026gt;\u0026lt;b\u0026gt;AVAILABLE\u0026lt;/b\u0026gt;: DS is ready to use. The DSMC status for this DS is either READY/BUSY.\u0026lt;/li\u0026gt;\n\t\t  \u0026lt;li\u0026gt;\u0026lt;b\u0026gt;FAILED_TO_REQUEST\u0026lt;/b\u0026gt;: DSMC fails to create the DS.\u0026lt;/li\u0026gt;\n\t\t\u0026lt;/ul\u0026gt;\n\t\t",
+        "description": "Query game sessions. \n\nBy default, API will return a list of available game sessions (joinability: open).\nSession service has several DSInformation status to track DS request to DSMC:\n   - NEED_TO_REQUEST: number of active players hasn\u0026#39;t reached session\u0026#39;s minPlayers therefore DS has not yet requested.\n   - REQUESTED: DS is being requested to DSMC.\n   - AVAILABLE: DS is ready to use. The DSMC status for this DS is either READY/BUSY.\n   - FAILED_TO_REQUEST: DSMC fails to create the DS.\n",
         "operationId": "publicQueryGameSessions",
         "parameters": [
           {
@@ -937,7 +1083,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "Get game session detail by podname.\n\t\tSession service has several DSInformation status to track DS request to DSMC:\n\t\t\u0026lt;ul\u0026gt;\n\t\t  \u0026lt;li\u0026gt;\u0026lt;b\u0026gt;NEED_TO_REQUEST\u0026lt;/b\u0026gt;: number of active players hasn\u0026#39;t reached session\u0026#39;s minPlayers therefore DS has not yet requested.\u0026lt;/li\u0026gt;\n\t\t  \u0026lt;li\u0026gt;\u0026lt;b\u0026gt;REQUESTED\u0026lt;/b\u0026gt;: DS is being requested to DSMC.\u0026lt;/li\u0026gt;\n\t\t  \u0026lt;li\u0026gt;\u0026lt;b\u0026gt;AVAILABLE\u0026lt;/b\u0026gt;: DS is ready to use. The DSMC status for this DS is either READY/BUSY.\u0026lt;/li\u0026gt;\n\t\t  \u0026lt;li\u0026gt;\u0026lt;b\u0026gt;FAILED_TO_REQUEST\u0026lt;/b\u0026gt;: DSMC fails to create the DS.\u0026lt;/li\u0026gt;\n\t\t\u0026lt;/ul\u0026gt;\n\t\t",
+        "description": "Get game session detail by podname.\nSession service has several DSInformation status to track DS request to DSMC:\n   - NEED_TO_REQUEST: number of active players hasn\u0026#39;t reached session\u0026#39;s minPlayers therefore DS has not yet requested.\n   - REQUESTED: DS is being requested to DSMC.\n   - AVAILABLE: DS is ready to use. The DSMC status for this DS is either READY/BUSY.\n   - FAILED_TO_REQUEST: DSMC fails to create the DS.\n",
         "operationId": "getGameSessionByPodName",
         "parameters": [
           {
@@ -1070,7 +1216,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "Get game session detail.\n\t\tSession service has several DSInformation status to track DS request to DSMC:\n\t\t\u0026lt;ul\u0026gt;\n\t\t  \u0026lt;li\u0026gt;\u0026lt;b\u0026gt;NEED_TO_REQUEST\u0026lt;/b\u0026gt;: number of active players hasn\u0026#39;t reached session\u0026#39;s minPlayers therefore DS has not yet requested.\u0026lt;/li\u0026gt;\n\t\t  \u0026lt;li\u0026gt;\u0026lt;b\u0026gt;REQUESTED\u0026lt;/b\u0026gt;: DS is being requested to DSMC.\u0026lt;/li\u0026gt;\n\t\t  \u0026lt;li\u0026gt;\u0026lt;b\u0026gt;AVAILABLE\u0026lt;/b\u0026gt;: DS is ready to use. The DSMC status for this DS is either READY/BUSY.\u0026lt;/li\u0026gt;\n\t\t  \u0026lt;li\u0026gt;\u0026lt;b\u0026gt;FAILED_TO_REQUEST\u0026lt;/b\u0026gt;: DSMC fails to create the DS.\u0026lt;/li\u0026gt;\n\t\t\u0026lt;/ul\u0026gt;\n\t\t",
+        "description": "Get game session detail.\nSession service has several DSInformation status to track DS request to DSMC:\n   - NEED_TO_REQUEST: number of active players hasn\u0026#39;t reached session\u0026#39;s minPlayers therefore DS has not yet requested.\n   - REQUESTED: DS is being requested to DSMC.\n   - AVAILABLE: DS is ready to use. The DSMC status for this DS is either READY/BUSY.\n   - FAILED_TO_REQUEST: DSMC fails to create the DS.\n",
         "operationId": "getGameSession",
         "parameters": [
           {
@@ -1225,7 +1371,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "Updates a game session, this endpoint will override stored gamesession data.\n        To update only specified fields, please use \u0026lt;code\u0026gt; PATCH /session/v1/public/namespaces/{namespace}/gamesessions/{sessionId}\u0026lt;/code\u0026gt; endpoint.\n        ",
+        "description": "Updates a game session, this endpoint will override stored gamesession data.\n      To update only specified fields, please use following endpoint: \n  method : PATCH\n  API\t : /session/v1/public/namespaces/{namespace}/gamesessions/{sessionId}\n      ",
         "operationId": "updateGameSession",
         "parameters": [
           {
@@ -1820,7 +1966,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "Updates party blob, this endpoint will override stored party data. \n        To update only specified fields, please use \u0026lt;code\u0026gt;PATCH /session/v1/public/namespaces/{namespace}/parties/{partyId}\u0026lt;/code\u0026gt; endpoint. \n\t\tNote: Join type can only be updated by the party\u0026#39;s leader.",
+        "description": "Updates party blob, this endpoint will override stored party data. \n\nJoin type can only be updated by the party\u0026#39;s leader.\nTo update only specified fields, please use following endpoint: \n  method : PATCH\n  API\t : /session/v1/public/namespaces/{namespace}/gamesessions/{sessionId} \n",
         "operationId": "publicUpdateParty",
         "parameters": [
           {
@@ -2494,7 +2640,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "\u0026lt;p\u0026gt;A join code will be autogenerated if the party is joinable. \n\t\tCreator will be removed from previous party (if any) and automatically join into the created party as a leader.\n\t\tParty members will be sent invitation to join the party.\n        Session configuration name is mandatory, this API will refer following values from the session template if they\u0026#39;re not provided in the request:\u0026lt;/p\u0026gt;\n\t\t\u0026lt;ul\u0026gt;\n\t\t   \u0026lt;li\u0026gt;type\u0026lt;/li\u0026gt;\n\t\t   \u0026lt;li\u0026gt;joinability\u0026lt;/li\u0026gt;\n\t\t   \u0026lt;li\u0026gt;minPlayers\u0026lt;/li\u0026gt;\n\t\t   \u0026lt;li\u0026gt;maxPlayers\u0026lt;/li\u0026gt;\n\t\t   \u0026lt;li\u0026gt;inviteTimeout\u0026lt;/li\u0026gt;\n\t\t   \u0026lt;li\u0026gt;inactiveTimeout\u0026lt;/li\u0026gt;\n\t\t\u0026lt;/ul\u0026gt;\n\t\t\u0026lt;p\u0026gt;Supported platforms:\u0026lt;/p\u0026gt;\n        \u0026lt;ul\u0026gt;\n\t\t   \u0026lt;li\u0026gt;STEAM\u0026lt;/li\u0026gt;\n\t\t\u0026lt;/ul\u0026gt;.",
+        "description": "A join code will be autogenerated if the party is joinable. \nCreator will be removed from previous party (if any) and automatically join into the created party as a leader.\nParty members will be sent invitation to join the party.\n      Session configuration name is mandatory, this API will refer following values from the session template if they\u0026#39;re not provided in the request:\n   - type\n   - joinability\n   - minPlayers\n   - maxPlayers\n   - inviteTimeout\n   - inactiveTimeout\n\nSupported platforms:\n      1. STEAM",
         "operationId": "publicCreateParty",
         "parameters": [
           {
@@ -2554,12 +2700,188 @@
         ]
       }
     },
+    "/session/v1/public/namespaces/{namespace}/users/me/attributes": {
+      "delete": {
+        "description": "Reset player attributes.",
+        "operationId": "publicDeletePlayerAttributes",
+        "parameters": [
+          {
+            "description": "Namespace",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content"
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "summary": "Remove player attributes. Requires NAMESPACE:{namespace}:SESSION:PLAYER [DELETE]",
+        "tags": [
+          "Player"
+        ]
+      },
+      "get": {
+        "description": "Get player attributes.\n\nField descriptions:\n\t- userID           : user who owns the attributes.\n\t- crossplayEnabled : set to true if the player wants to enable crossplay to their session (default: false).\n\t- platforms        : list of the player\u0026#39;s 3rd party platform account information.\n\t\t- name   : platform name. supported platforms: STEAM\n\t\t- userID : platform userID\n\t- data             : other data that the player wants to store.\n",
+        "operationId": "publicGetPlayerAttributes",
+        "parameters": [
+          {
+            "description": "Namespace",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/apimodels.PlayerAttributesResponseBody"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "summary": "Get player attributes. Requires NAMESPACE:{namespace}:SESSION:PLAYER [READ]",
+        "tags": [
+          "Player"
+        ]
+      },
+      "post": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "This API behaves to upsert player\u0026#39;s attributes.\n\nField descriptions:\n\t- userID           : user who owns the attributes.\n\t- crossplayEnabled : set to true if the player wants to enable crossplay to their session (default: false).\n\t- platforms        : list of the player\u0026#39;s 3rd party platform account information.\n\t\t- name   : platform name. supported platforms: STEAM\n\t\t- userID : platform userID\n\t- data             : other data that the player wants to store.\n",
+        "operationId": "publicStorePlayerAttributes",
+        "parameters": [
+          {
+            "description": "Store player attributes",
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/apimodels.PlayerAttributesRequestBody"
+            }
+          },
+          {
+            "description": "Namespace",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/apimodels.PlayerAttributesResponseBody"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "summary": "Store player attributes. Requires NAMESPACE:{namespace}:SESSION:PLAYER [CREATE]",
+        "tags": [
+          "Player"
+        ]
+      }
+    },
     "/session/v1/public/namespaces/{namespace}/users/me/gamesessions": {
       "get": {
         "consumes": [
           "application/json"
         ],
-        "description": "Query user\u0026#39;s game sessions. \n\t\tBy default, API will return a list of user\u0026#39;s active game sessions (INVITED,JOINED,CONNECTED).\n\t\tSession service has several DSInformation status to track DS request to DSMC:\n\t\t\u0026lt;ul\u0026gt;\n\t\t  \u0026lt;li\u0026gt;\u0026lt;b\u0026gt;NEED_TO_REQUEST\u0026lt;/b\u0026gt;: number of active players hasn\u0026#39;t reached session\u0026#39;s minPlayers therefore DS has not yet requested.\u0026lt;/li\u0026gt;\n\t\t  \u0026lt;li\u0026gt;\u0026lt;b\u0026gt;REQUESTED\u0026lt;/b\u0026gt;: DS is being requested to DSMC.\u0026lt;/li\u0026gt;\n\t\t  \u0026lt;li\u0026gt;\u0026lt;b\u0026gt;AVAILABLE\u0026lt;/b\u0026gt;: DS is ready to use. The DSMC status for this DS is either READY/BUSY.\u0026lt;/li\u0026gt;\n\t\t  \u0026lt;li\u0026gt;\u0026lt;b\u0026gt;FAILED_TO_REQUEST\u0026lt;/b\u0026gt;: DSMC fails to create the DS.\u0026lt;/li\u0026gt;\n\t\t\u0026lt;/ul\u0026gt;\n\t\t",
+        "description": "Query user\u0026#39;s game sessions.\nBy default, API will return a list of user\u0026#39;s active game sessions (INVITED,JOINED,CONNECTED).\n\nSession service has several DSInformation status to track DS request to DSMC:\n   - NEED_TO_REQUEST: number of active players hasn\u0026#39;t reached session\u0026#39;s minPlayers therefore DS has not yet requested.\n   - REQUESTED: DS is being requested to DSMC.\n   - AVAILABLE: DS is ready to use. The DSMC status for this DS is either READY/BUSY.\n   - FAILED_TO_REQUEST: DSMC fails to create the DS.\n",
         "operationId": "publicQueryMyGameSessions",
         "parameters": [
           {
@@ -3265,6 +3587,54 @@
         "version"
       ]
     },
+    "apimodels.PlayerAttributesRequestBody": {
+      "properties": {
+        "crossplayEnabled": {
+          "type": "boolean",
+          "x-omitempty": false
+        },
+        "data": {
+          "type": "object"
+        },
+        "platforms": {
+          "items": {
+            "$ref": "#/definitions/models.UserPlatformInfo"
+          },
+          "type": "array"
+        }
+      },
+      "required": [
+        "crossplayEnabled",
+        "data",
+        "platforms"
+      ]
+    },
+    "apimodels.PlayerAttributesResponseBody": {
+      "properties": {
+        "crossplayEnabled": {
+          "type": "boolean",
+          "x-omitempty": false
+        },
+        "data": {
+          "type": "object"
+        },
+        "platforms": {
+          "items": {
+            "$ref": "#/definitions/models.UserPlatformInfo"
+          },
+          "type": "array"
+        },
+        "userID": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "crossplayEnabled",
+        "data",
+        "platforms",
+        "userID"
+      ]
+    },
     "apimodels.PromoteLeaderRequest": {
       "properties": {
         "leaderID": {
@@ -3705,6 +4075,20 @@
       "required": [
         "UserIDs",
         "parties"
+      ]
+    },
+    "models.UserPlatformInfo": {
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "userID": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "name",
+        "userID"
       ]
     },
     "response.Error": {

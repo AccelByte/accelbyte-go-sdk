@@ -169,7 +169,7 @@ func (a *Client) AdminCreateConfigurationTemplateV1Short(params *AdminCreateConf
 /*
 Deprecated: Use AdminDeleteConfigurationTemplateV1Short instead.
 
-  AdminDeleteConfigurationTemplateV1 deletes configuration template requires a d m i n n a m e s p a c e namespace s e s s i o n c o n f i g u r a t i o n r e a d
+  AdminDeleteConfigurationTemplateV1 deletes configuration template requires a d m i n n a m e s p a c e namespace s e s s i o n c o n f i g u r a t i o n d e l e t e
 
   Delete a template configuration.
 */
@@ -227,7 +227,7 @@ func (a *Client) AdminDeleteConfigurationTemplateV1(params *AdminDeleteConfigura
 }
 
 /*
-  AdminDeleteConfigurationTemplateV1Short deletes configuration template requires a d m i n n a m e s p a c e namespace s e s s i o n c o n f i g u r a t i o n r e a d
+  AdminDeleteConfigurationTemplateV1Short deletes configuration template requires a d m i n n a m e s p a c e namespace s e s s i o n c o n f i g u r a t i o n d e l e t e
 
   Delete a template configuration.
 */
@@ -516,7 +516,7 @@ func (a *Client) AdminGetConfigurationTemplateV1Short(params *AdminGetConfigurat
 /*
 Deprecated: Use AdminUpdateConfigurationTemplateV1Short instead.
 
-  AdminUpdateConfigurationTemplateV1 updates configuration template requires a d m i n n a m e s p a c e namespace s e s s i o n c o n f i g u r a t i o n c r e a t e
+  AdminUpdateConfigurationTemplateV1 updates configuration template requires a d m i n n a m e s p a c e namespace s e s s i o n c o n f i g u r a t i o n u p d a t e
 
   Update template configuration
 */
@@ -577,7 +577,7 @@ func (a *Client) AdminUpdateConfigurationTemplateV1(params *AdminUpdateConfigura
 }
 
 /*
-  AdminUpdateConfigurationTemplateV1Short updates configuration template requires a d m i n n a m e s p a c e namespace s e s s i o n c o n f i g u r a t i o n c r e a t e
+  AdminUpdateConfigurationTemplateV1Short updates configuration template requires a d m i n n a m e s p a c e namespace s e s s i o n c o n f i g u r a t i o n u p d a t e
 
   Update template configuration
 */

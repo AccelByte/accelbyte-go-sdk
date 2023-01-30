@@ -328,6 +328,8 @@ Deprecated: Use AdminCreateClientV3Short instead.
 
   Add a new OAuth 2.0 client. Protected by the permission: ADMIN:NAMESPACE:{namespace}:CLIENT [CREATE]&lt;br&gt;
 		A new client automatically granted with these scopes: commerce, account, analytics, publishing, social.&lt;br&gt;
+		In multi tenant mode, new confidential client will have default client role assigned to it. The role will have all
+			permissions to access all APIs that&#39;s supported by game server SDK and DS uploader. &lt;br&gt;
 		action code: 10301&lt;br&gt;
 		&lt;p&gt;&lt;strong&gt;Fields Description:&lt;/strong&gt;
 		&lt;ul&gt;
@@ -424,6 +426,8 @@ func (a *Client) AdminCreateClientV3(params *AdminCreateClientV3Params, authInfo
 
   Add a new OAuth 2.0 client. Protected by the permission: ADMIN:NAMESPACE:{namespace}:CLIENT [CREATE]&lt;br&gt;
 		A new client automatically granted with these scopes: commerce, account, analytics, publishing, social.&lt;br&gt;
+		In multi tenant mode, new confidential client will have default client role assigned to it. The role will have all
+			permissions to access all APIs that&#39;s supported by game server SDK and DS uploader. &lt;br&gt;
 		action code: 10301&lt;br&gt;
 		&lt;p&gt;&lt;strong&gt;Fields Description:&lt;/strong&gt;
 		&lt;ul&gt;

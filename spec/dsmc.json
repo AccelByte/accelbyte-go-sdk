@@ -6260,6 +6260,9 @@
         "deployment": {
           "type": "string"
         },
+        "deployment_override": {
+          "type": "string"
+        },
         "game_version": {
           "type": "string"
         },
@@ -6337,6 +6340,7 @@
         "created_at",
         "custom_attribute",
         "deployment",
+        "deployment_override",
         "game_version",
         "image_version",
         "ip",

@@ -33,12 +33,271 @@ type Client struct {
 
 // ClientService is the interface for Client methods
 type ClientService interface {
+	CancelInvitationGroupMemberV2(params *CancelInvitationGroupMemberV2Params, authInfo runtime.ClientAuthInfoWriter) (*CancelInvitationGroupMemberV2OK, *CancelInvitationGroupMemberV2BadRequest, *CancelInvitationGroupMemberV2Unauthorized, *CancelInvitationGroupMemberV2Forbidden, *CancelInvitationGroupMemberV2NotFound, *CancelInvitationGroupMemberV2InternalServerError, error)
+	CancelInvitationGroupMemberV2Short(params *CancelInvitationGroupMemberV2Params, authInfo runtime.ClientAuthInfoWriter) (*CancelInvitationGroupMemberV2OK, error)
+	GetMyGroupJoinRequestV2(params *GetMyGroupJoinRequestV2Params, authInfo runtime.ClientAuthInfoWriter) (*GetMyGroupJoinRequestV2OK, *GetMyGroupJoinRequestV2BadRequest, *GetMyGroupJoinRequestV2Unauthorized, *GetMyGroupJoinRequestV2Forbidden, *GetMyGroupJoinRequestV2InternalServerError, error)
+	GetMyGroupJoinRequestV2Short(params *GetMyGroupJoinRequestV2Params, authInfo runtime.ClientAuthInfoWriter) (*GetMyGroupJoinRequestV2OK, error)
 	GetGroupInvitationRequestPublicV1(params *GetGroupInvitationRequestPublicV1Params, authInfo runtime.ClientAuthInfoWriter) (*GetGroupInvitationRequestPublicV1OK, *GetGroupInvitationRequestPublicV1BadRequest, *GetGroupInvitationRequestPublicV1Unauthorized, *GetGroupInvitationRequestPublicV1Forbidden, *GetGroupInvitationRequestPublicV1InternalServerError, error)
 	GetGroupInvitationRequestPublicV1Short(params *GetGroupInvitationRequestPublicV1Params, authInfo runtime.ClientAuthInfoWriter) (*GetGroupInvitationRequestPublicV1OK, error)
+	GetGroupInviteRequestPublicV2(params *GetGroupInviteRequestPublicV2Params, authInfo runtime.ClientAuthInfoWriter) (*GetGroupInviteRequestPublicV2OK, *GetGroupInviteRequestPublicV2BadRequest, *GetGroupInviteRequestPublicV2Unauthorized, *GetGroupInviteRequestPublicV2Forbidden, *GetGroupInviteRequestPublicV2InternalServerError, error)
+	GetGroupInviteRequestPublicV2Short(params *GetGroupInviteRequestPublicV2Params, authInfo runtime.ClientAuthInfoWriter) (*GetGroupInviteRequestPublicV2OK, error)
 	GetGroupJoinRequestPublicV1(params *GetGroupJoinRequestPublicV1Params, authInfo runtime.ClientAuthInfoWriter) (*GetGroupJoinRequestPublicV1OK, *GetGroupJoinRequestPublicV1BadRequest, *GetGroupJoinRequestPublicV1Unauthorized, *GetGroupJoinRequestPublicV1Forbidden, *GetGroupJoinRequestPublicV1InternalServerError, error)
 	GetGroupJoinRequestPublicV1Short(params *GetGroupJoinRequestPublicV1Params, authInfo runtime.ClientAuthInfoWriter) (*GetGroupJoinRequestPublicV1OK, error)
+	GetGroupJoinRequestPublicV2(params *GetGroupJoinRequestPublicV2Params, authInfo runtime.ClientAuthInfoWriter) (*GetGroupJoinRequestPublicV2OK, *GetGroupJoinRequestPublicV2BadRequest, *GetGroupJoinRequestPublicV2Unauthorized, *GetGroupJoinRequestPublicV2Forbidden, *GetGroupJoinRequestPublicV2InternalServerError, error)
+	GetGroupJoinRequestPublicV2Short(params *GetGroupJoinRequestPublicV2Params, authInfo runtime.ClientAuthInfoWriter) (*GetGroupJoinRequestPublicV2OK, error)
 
 	SetTransport(transport runtime.ClientTransport)
+}
+
+/*
+Deprecated: Use CancelInvitationGroupMemberV2Short instead.
+
+  CancelInvitationGroupMemberV2 cancels invitation group member
+
+  &lt;p&gt;Required valid user authentication &lt;/p&gt;
+			&lt;p&gt;Required Member Role Permission: &#34;GROUP:INVITE [DELETE]&#34;&lt;/p&gt;
+			&lt;p&gt;This endpoint is used to cancel invitation group member.&lt;/p&gt;
+			&lt;p&gt;cancel invitation group member. This endpoint will cancel invitation to specific user, and also the role permission of the the user who accesses this endpoint&lt;/p&gt;
+			&lt;p&gt;Action Code: 73409&lt;/p&gt;
+
+*/
+func (a *Client) CancelInvitationGroupMemberV2(params *CancelInvitationGroupMemberV2Params, authInfo runtime.ClientAuthInfoWriter) (*CancelInvitationGroupMemberV2OK, *CancelInvitationGroupMemberV2BadRequest, *CancelInvitationGroupMemberV2Unauthorized, *CancelInvitationGroupMemberV2Forbidden, *CancelInvitationGroupMemberV2NotFound, *CancelInvitationGroupMemberV2InternalServerError, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewCancelInvitationGroupMemberV2Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "CancelInvitationGroupMemberV2",
+		Method:             "POST",
+		PathPattern:        "/group/v2/public/namespaces/{namespace}/users/{userId}/groups/{groupId}/invite/cancel",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &CancelInvitationGroupMemberV2Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, nil, nil, nil, nil, nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *CancelInvitationGroupMemberV2OK:
+		return v, nil, nil, nil, nil, nil, nil
+
+	case *CancelInvitationGroupMemberV2BadRequest:
+		return nil, v, nil, nil, nil, nil, nil
+
+	case *CancelInvitationGroupMemberV2Unauthorized:
+		return nil, nil, v, nil, nil, nil, nil
+
+	case *CancelInvitationGroupMemberV2Forbidden:
+		return nil, nil, nil, v, nil, nil, nil
+
+	case *CancelInvitationGroupMemberV2NotFound:
+		return nil, nil, nil, nil, v, nil, nil
+
+	case *CancelInvitationGroupMemberV2InternalServerError:
+		return nil, nil, nil, nil, nil, v, nil
+
+	default:
+		return nil, nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+  CancelInvitationGroupMemberV2Short cancels invitation group member
+
+  &lt;p&gt;Required valid user authentication &lt;/p&gt;
+			&lt;p&gt;Required Member Role Permission: &#34;GROUP:INVITE [DELETE]&#34;&lt;/p&gt;
+			&lt;p&gt;This endpoint is used to cancel invitation group member.&lt;/p&gt;
+			&lt;p&gt;cancel invitation group member. This endpoint will cancel invitation to specific user, and also the role permission of the the user who accesses this endpoint&lt;/p&gt;
+			&lt;p&gt;Action Code: 73409&lt;/p&gt;
+
+*/
+func (a *Client) CancelInvitationGroupMemberV2Short(params *CancelInvitationGroupMemberV2Params, authInfo runtime.ClientAuthInfoWriter) (*CancelInvitationGroupMemberV2OK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewCancelInvitationGroupMemberV2Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "CancelInvitationGroupMemberV2",
+		Method:             "POST",
+		PathPattern:        "/group/v2/public/namespaces/{namespace}/users/{userId}/groups/{groupId}/invite/cancel",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &CancelInvitationGroupMemberV2Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *CancelInvitationGroupMemberV2OK:
+		return v, nil
+	case *CancelInvitationGroupMemberV2BadRequest:
+		return nil, v
+	case *CancelInvitationGroupMemberV2Unauthorized:
+		return nil, v
+	case *CancelInvitationGroupMemberV2Forbidden:
+		return nil, v
+	case *CancelInvitationGroupMemberV2NotFound:
+		return nil, v
+	case *CancelInvitationGroupMemberV2InternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+Deprecated: Use GetMyGroupJoinRequestV2Short instead.
+
+  GetMyGroupJoinRequestV2 gets my join request to the groups
+
+  &lt;p&gt;Required valid user authentication &lt;/p&gt;
+			&lt;p&gt;This endpoint is used to Get My Join Request To The Groups&lt;/p&gt;
+			&lt;p&gt;Get My Join Request To The Groups for the user calling this endpoint. It will check any join request group for this user&lt;/p&gt;
+			&lt;p&gt;Action Code: 73502&lt;/p&gt;
+
+*/
+func (a *Client) GetMyGroupJoinRequestV2(params *GetMyGroupJoinRequestV2Params, authInfo runtime.ClientAuthInfoWriter) (*GetMyGroupJoinRequestV2OK, *GetMyGroupJoinRequestV2BadRequest, *GetMyGroupJoinRequestV2Unauthorized, *GetMyGroupJoinRequestV2Forbidden, *GetMyGroupJoinRequestV2InternalServerError, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewGetMyGroupJoinRequestV2Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "GetMyGroupJoinRequestV2",
+		Method:             "GET",
+		PathPattern:        "/group/v2/public/namespaces/{namespace}/users/me/join/request",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &GetMyGroupJoinRequestV2Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, nil, nil, nil, nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *GetMyGroupJoinRequestV2OK:
+		return v, nil, nil, nil, nil, nil
+
+	case *GetMyGroupJoinRequestV2BadRequest:
+		return nil, v, nil, nil, nil, nil
+
+	case *GetMyGroupJoinRequestV2Unauthorized:
+		return nil, nil, v, nil, nil, nil
+
+	case *GetMyGroupJoinRequestV2Forbidden:
+		return nil, nil, nil, v, nil, nil
+
+	case *GetMyGroupJoinRequestV2InternalServerError:
+		return nil, nil, nil, nil, v, nil
+
+	default:
+		return nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+  GetMyGroupJoinRequestV2Short gets my join request to the groups
+
+  &lt;p&gt;Required valid user authentication &lt;/p&gt;
+			&lt;p&gt;This endpoint is used to Get My Join Request To The Groups&lt;/p&gt;
+			&lt;p&gt;Get My Join Request To The Groups for the user calling this endpoint. It will check any join request group for this user&lt;/p&gt;
+			&lt;p&gt;Action Code: 73502&lt;/p&gt;
+
+*/
+func (a *Client) GetMyGroupJoinRequestV2Short(params *GetMyGroupJoinRequestV2Params, authInfo runtime.ClientAuthInfoWriter) (*GetMyGroupJoinRequestV2OK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewGetMyGroupJoinRequestV2Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "GetMyGroupJoinRequestV2",
+		Method:             "GET",
+		PathPattern:        "/group/v2/public/namespaces/{namespace}/users/me/join/request",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &GetMyGroupJoinRequestV2Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *GetMyGroupJoinRequestV2OK:
+		return v, nil
+	case *GetMyGroupJoinRequestV2BadRequest:
+		return nil, v
+	case *GetMyGroupJoinRequestV2Unauthorized:
+		return nil, v
+	case *GetMyGroupJoinRequestV2Forbidden:
+		return nil, v
+	case *GetMyGroupJoinRequestV2InternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
 }
 
 /*
@@ -164,6 +423,130 @@ func (a *Client) GetGroupInvitationRequestPublicV1Short(params *GetGroupInvitati
 }
 
 /*
+Deprecated: Use GetGroupInviteRequestPublicV2Short instead.
+
+  GetGroupInviteRequestPublicV2 gets group invite request list
+
+  &lt;p&gt;Required valid user authentication &lt;/p&gt;
+			&lt;p&gt;Required Member Role Permission: &#34;GROUP:JOIN [READ]&#34;&lt;/p&gt;
+			&lt;p&gt;This endpoint is used to Get Group Invite Request List&lt;/p&gt;
+			&lt;p&gt;Get Group Invite Request List for specific group. Group members needs to have permission and also belong to the group to access this endpoint&lt;/p&gt;
+			&lt;p&gt;Action Code: 73501&lt;/p&gt;
+
+*/
+func (a *Client) GetGroupInviteRequestPublicV2(params *GetGroupInviteRequestPublicV2Params, authInfo runtime.ClientAuthInfoWriter) (*GetGroupInviteRequestPublicV2OK, *GetGroupInviteRequestPublicV2BadRequest, *GetGroupInviteRequestPublicV2Unauthorized, *GetGroupInviteRequestPublicV2Forbidden, *GetGroupInviteRequestPublicV2InternalServerError, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewGetGroupInviteRequestPublicV2Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "getGroupInviteRequestPublicV2",
+		Method:             "GET",
+		PathPattern:        "/group/v2/public/namespaces/{namespace}/groups/{groupId}/invite/request",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &GetGroupInviteRequestPublicV2Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, nil, nil, nil, nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *GetGroupInviteRequestPublicV2OK:
+		return v, nil, nil, nil, nil, nil
+
+	case *GetGroupInviteRequestPublicV2BadRequest:
+		return nil, v, nil, nil, nil, nil
+
+	case *GetGroupInviteRequestPublicV2Unauthorized:
+		return nil, nil, v, nil, nil, nil
+
+	case *GetGroupInviteRequestPublicV2Forbidden:
+		return nil, nil, nil, v, nil, nil
+
+	case *GetGroupInviteRequestPublicV2InternalServerError:
+		return nil, nil, nil, nil, v, nil
+
+	default:
+		return nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+  GetGroupInviteRequestPublicV2Short gets group invite request list
+
+  &lt;p&gt;Required valid user authentication &lt;/p&gt;
+			&lt;p&gt;Required Member Role Permission: &#34;GROUP:JOIN [READ]&#34;&lt;/p&gt;
+			&lt;p&gt;This endpoint is used to Get Group Invite Request List&lt;/p&gt;
+			&lt;p&gt;Get Group Invite Request List for specific group. Group members needs to have permission and also belong to the group to access this endpoint&lt;/p&gt;
+			&lt;p&gt;Action Code: 73501&lt;/p&gt;
+
+*/
+func (a *Client) GetGroupInviteRequestPublicV2Short(params *GetGroupInviteRequestPublicV2Params, authInfo runtime.ClientAuthInfoWriter) (*GetGroupInviteRequestPublicV2OK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewGetGroupInviteRequestPublicV2Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "getGroupInviteRequestPublicV2",
+		Method:             "GET",
+		PathPattern:        "/group/v2/public/namespaces/{namespace}/groups/{groupId}/invite/request",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &GetGroupInviteRequestPublicV2Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *GetGroupInviteRequestPublicV2OK:
+		return v, nil
+	case *GetGroupInviteRequestPublicV2BadRequest:
+		return nil, v
+	case *GetGroupInviteRequestPublicV2Unauthorized:
+		return nil, v
+	case *GetGroupInviteRequestPublicV2Forbidden:
+		return nil, v
+	case *GetGroupInviteRequestPublicV2InternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
 Deprecated: Use GetGroupJoinRequestPublicV1Short instead.
 
   GetGroupJoinRequestPublicV1 gets group join request list
@@ -280,6 +663,130 @@ func (a *Client) GetGroupJoinRequestPublicV1Short(params *GetGroupJoinRequestPub
 	case *GetGroupJoinRequestPublicV1Forbidden:
 		return nil, v
 	case *GetGroupJoinRequestPublicV1InternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+Deprecated: Use GetGroupJoinRequestPublicV2Short instead.
+
+  GetGroupJoinRequestPublicV2 gets group join request list
+
+  &lt;p&gt;Required valid user authentication &lt;/p&gt;
+			&lt;p&gt;Required Member Role Permission: &#34;GROUP:JOIN [READ]&#34;&lt;/p&gt;
+			&lt;p&gt;This endpoint is used to Get Group Join Request List&lt;/p&gt;
+			&lt;p&gt;Get Group Join Request List for specific group. Group members needs to have permission and also belong to the group to access this endpoint&lt;/p&gt;
+			&lt;p&gt;Action Code: 73501&lt;/p&gt;
+
+*/
+func (a *Client) GetGroupJoinRequestPublicV2(params *GetGroupJoinRequestPublicV2Params, authInfo runtime.ClientAuthInfoWriter) (*GetGroupJoinRequestPublicV2OK, *GetGroupJoinRequestPublicV2BadRequest, *GetGroupJoinRequestPublicV2Unauthorized, *GetGroupJoinRequestPublicV2Forbidden, *GetGroupJoinRequestPublicV2InternalServerError, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewGetGroupJoinRequestPublicV2Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "getGroupJoinRequestPublicV2",
+		Method:             "GET",
+		PathPattern:        "/group/v2/public/namespaces/{namespace}/groups/{groupId}/join/request",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &GetGroupJoinRequestPublicV2Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, nil, nil, nil, nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *GetGroupJoinRequestPublicV2OK:
+		return v, nil, nil, nil, nil, nil
+
+	case *GetGroupJoinRequestPublicV2BadRequest:
+		return nil, v, nil, nil, nil, nil
+
+	case *GetGroupJoinRequestPublicV2Unauthorized:
+		return nil, nil, v, nil, nil, nil
+
+	case *GetGroupJoinRequestPublicV2Forbidden:
+		return nil, nil, nil, v, nil, nil
+
+	case *GetGroupJoinRequestPublicV2InternalServerError:
+		return nil, nil, nil, nil, v, nil
+
+	default:
+		return nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+  GetGroupJoinRequestPublicV2Short gets group join request list
+
+  &lt;p&gt;Required valid user authentication &lt;/p&gt;
+			&lt;p&gt;Required Member Role Permission: &#34;GROUP:JOIN [READ]&#34;&lt;/p&gt;
+			&lt;p&gt;This endpoint is used to Get Group Join Request List&lt;/p&gt;
+			&lt;p&gt;Get Group Join Request List for specific group. Group members needs to have permission and also belong to the group to access this endpoint&lt;/p&gt;
+			&lt;p&gt;Action Code: 73501&lt;/p&gt;
+
+*/
+func (a *Client) GetGroupJoinRequestPublicV2Short(params *GetGroupJoinRequestPublicV2Params, authInfo runtime.ClientAuthInfoWriter) (*GetGroupJoinRequestPublicV2OK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewGetGroupJoinRequestPublicV2Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "getGroupJoinRequestPublicV2",
+		Method:             "GET",
+		PathPattern:        "/group/v2/public/namespaces/{namespace}/groups/{groupId}/join/request",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &GetGroupJoinRequestPublicV2Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *GetGroupJoinRequestPublicV2OK:
+		return v, nil
+	case *GetGroupJoinRequestPublicV2BadRequest:
+		return nil, v
+	case *GetGroupJoinRequestPublicV2Unauthorized:
+		return nil, v
+	case *GetGroupJoinRequestPublicV2Forbidden:
+		return nil, v
+	case *GetGroupJoinRequestPublicV2InternalServerError:
 		return nil, v
 
 	default:

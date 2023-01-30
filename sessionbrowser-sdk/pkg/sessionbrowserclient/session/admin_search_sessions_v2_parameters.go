@@ -103,6 +103,16 @@ type AdminSearchSessionsV2Params struct {
 
 	*/
 	PartyID *string
+	/*SessionType
+	  Type of the session, value must be 'p2p' or 'dedicated'
+
+	*/
+	SessionType *string
+	/*Status
+	  Status of the session, value must be 'active' or 'deleted'. Only work with p2p session type
+
+	*/
+	Status *string
 	/*UserID
 	  ID of the user
 
@@ -239,6 +249,28 @@ func (o *AdminSearchSessionsV2Params) SetPartyID(partyID *string) {
 	o.PartyID = partyID
 }
 
+// WithSessionType adds the sessionType to the admin search sessions v2 params
+func (o *AdminSearchSessionsV2Params) WithSessionType(sessionType *string) *AdminSearchSessionsV2Params {
+	o.SetSessionType(sessionType)
+	return o
+}
+
+// SetSessionType adds the sessionType to the admin search sessions v2 params
+func (o *AdminSearchSessionsV2Params) SetSessionType(sessionType *string) {
+	o.SessionType = sessionType
+}
+
+// WithStatus adds the status to the admin search sessions v2 params
+func (o *AdminSearchSessionsV2Params) WithStatus(status *string) *AdminSearchSessionsV2Params {
+	o.SetStatus(status)
+	return o
+}
+
+// SetStatus adds the status to the admin search sessions v2 params
+func (o *AdminSearchSessionsV2Params) SetStatus(status *string) {
+	o.Status = status
+}
+
 // WithUserID adds the userID to the admin search sessions v2 params
 func (o *AdminSearchSessionsV2Params) WithUserID(userID *string) *AdminSearchSessionsV2Params {
 	o.SetUserID(userID)
@@ -339,6 +371,38 @@ func (o *AdminSearchSessionsV2Params) WriteToRequest(r runtime.ClientRequest, re
 		qPartyID := qrPartyID
 		if qPartyID != "" {
 			if err := r.SetQueryParam("partyID", qPartyID); err != nil {
+				return err
+			}
+		}
+
+	}
+
+	if o.SessionType != nil {
+
+		// query param sessionType
+		var qrSessionType string
+		if o.SessionType != nil {
+			qrSessionType = *o.SessionType
+		}
+		qSessionType := qrSessionType
+		if qSessionType != "" {
+			if err := r.SetQueryParam("sessionType", qSessionType); err != nil {
+				return err
+			}
+		}
+
+	}
+
+	if o.Status != nil {
+
+		// query param status
+		var qrStatus string
+		if o.Status != nil {
+			qrStatus = *o.Status
+		}
+		qStatus := qrStatus
+		if qStatus != "" {
+			if err := r.SetQueryParam("status", qStatus); err != nil {
 				return err
 			}
 		}

@@ -57,7 +57,7 @@ type ModelsGroupResponseV1 struct {
 
 	// group rules
 	// Required: true
-	GroupRules *ModelsGroupRule `json:"groupRules"`
+	GroupRules *ModelsGroupRuleResponseV1 `json:"groupRules"`
 
 	// group type
 	// Required: true

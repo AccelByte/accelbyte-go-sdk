@@ -21,6 +21,9 @@ type APIMatchTicketStatus struct {
 	// Required: true
 	MatchFound *bool `json:"matchFound"`
 
+	// proposed proposal
+	ProposedProposal *APIProposedProposal `json:"proposedProposal,omitempty"`
+
 	// session ID
 	// Required: true
 	SessionID *string `json:"sessionID"`
@@ -31,6 +34,10 @@ func (m *APIMatchTicketStatus) Validate(formats strfmt.Registry) error {
 	var res []error
 
 	if err := m.validateMatchFound(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateProposedProposal(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -48,6 +55,24 @@ func (m *APIMatchTicketStatus) validateMatchFound(formats strfmt.Registry) error
 
 	if err := validate.Required("matchFound", "body", m.MatchFound); err != nil {
 		return err
+	}
+
+	return nil
+}
+
+func (m *APIMatchTicketStatus) validateProposedProposal(formats strfmt.Registry) error {
+
+	if swag.IsZero(m.ProposedProposal) { // not required
+		return nil
+	}
+
+	if m.ProposedProposal != nil {
+		if err := m.ProposedProposal.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("proposedProposal")
+			}
+			return err
+		}
 	}
 
 	return nil

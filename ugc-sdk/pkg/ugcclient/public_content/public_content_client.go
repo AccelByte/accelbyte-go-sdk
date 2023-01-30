@@ -73,7 +73,7 @@ Deprecated: Use CreateContentDirectShort instead.
   CreateContentDirect uploads content to a channel
 
   Required permission &lt;b&gt;NAMESPACE:{namespace}:USER:{userId}:CONTENT [CREATE]&lt;/b&gt;.\n
-			All request body are required except preview and tags.
+			All request body are required except preview, tags and customAttributes.
 
 */
 func (a *Client) CreateContentDirect(params *CreateContentDirectParams, authInfo runtime.ClientAuthInfoWriter) (*CreateContentDirectCreated, *CreateContentDirectBadRequest, *CreateContentDirectUnauthorized, *CreateContentDirectInternalServerError, error) {
@@ -130,7 +130,7 @@ func (a *Client) CreateContentDirect(params *CreateContentDirectParams, authInfo
   CreateContentDirectShort uploads content to a channel
 
   Required permission &lt;b&gt;NAMESPACE:{namespace}:USER:{userId}:CONTENT [CREATE]&lt;/b&gt;.\n
-			All request body are required except preview and tags.
+			All request body are required except preview, tags and customAttributes.
 
 */
 func (a *Client) CreateContentDirectShort(params *CreateContentDirectParams, authInfo runtime.ClientAuthInfoWriter) (*CreateContentDirectCreated, error) {
@@ -186,7 +186,7 @@ Deprecated: Use CreateContentS3Short instead.
   CreateContentS3 uploads content to s3 bucket
 
   Required permission &lt;b&gt;NAMESPACE:{namespace}:USER:{userId}:CONTENT [CREATE]&lt;/b&gt;.\n
-				All request body are required except payload, preview, tags, and contentType.
+				All request body are required except payload, preview, tags, contentType and customAttributes.
 				contentType values is used to enforce the Content-Type header needed by the client to upload the content using the S3 presigned URL.
 				If not specified, it will use fileExtension value.
 				&lt;br&gt;&lt;p&gt;&lt;b&gt;NOTE: Preview is Legacy Code, please use Screenshot for better solution to display preview of a content&lt;/b&gt;&lt;/p&gt;
@@ -245,7 +245,7 @@ func (a *Client) CreateContentS3(params *CreateContentS3Params, authInfo runtime
   CreateContentS3Short uploads content to s3 bucket
 
   Required permission &lt;b&gt;NAMESPACE:{namespace}:USER:{userId}:CONTENT [CREATE]&lt;/b&gt;.\n
-				All request body are required except payload, preview, tags, and contentType.
+				All request body are required except payload, preview, tags, contentType and customAttributes.
 				contentType values is used to enforce the Content-Type header needed by the client to upload the content using the S3 presigned URL.
 				If not specified, it will use fileExtension value.
 				&lt;br&gt;&lt;p&gt;&lt;b&gt;NOTE: Preview is Legacy Code, please use Screenshot for better solution to display preview of a content&lt;/b&gt;&lt;/p&gt;
@@ -1373,7 +1373,7 @@ Deprecated: Use UpdateContentDirectShort instead.
   UpdateContentDirect updates content to a channel
 
   Required permission &lt;b&gt;NAMESPACE:{namespace}:USER:{userId}:CONTENT [UPDATE]&lt;/b&gt;.\n
-				All request body are required except preview and tags.
+				All request body are required except preview, tags and customAttributes.
 
 */
 func (a *Client) UpdateContentDirect(params *UpdateContentDirectParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateContentDirectOK, *UpdateContentDirectBadRequest, *UpdateContentDirectUnauthorized, *UpdateContentDirectNotFound, *UpdateContentDirectInternalServerError, error) {
@@ -1433,7 +1433,7 @@ func (a *Client) UpdateContentDirect(params *UpdateContentDirectParams, authInfo
   UpdateContentDirectShort updates content to a channel
 
   Required permission &lt;b&gt;NAMESPACE:{namespace}:USER:{userId}:CONTENT [UPDATE]&lt;/b&gt;.\n
-				All request body are required except preview and tags.
+				All request body are required except preview, tags and customAttributes.
 
 */
 func (a *Client) UpdateContentDirectShort(params *UpdateContentDirectParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateContentDirectOK, error) {
@@ -1490,10 +1490,11 @@ Deprecated: Use UpdateContentS3Short instead.
 
   UpdateContentS3 updates content to s3 bucket
 
-  Required permission &lt;b&gt;NAMESPACE:{namespace}:USER:{userId}:CONTENT [UPDATE]&lt;/b&gt;.\n
-				All request body are required except payload, preview, tags, and contentType.
+  Required permission &lt;b&gt;NAMESPACE:{namespace}:USER:{userId}:CONTENT [UPDATE]&lt;/b&gt;.
+				All request body are required except payload, preview, tags, contentType, updateContentFile and customAttributes.
 				contentType values is used to enforce the Content-Type header needed by the client to upload the content using the S3 presigned URL.
 				If not specified, it will use fileExtension value.
+				To update content&#39;s file, set &lt;code&gt;updateContentFile&lt;/code&gt; to &lt;code&gt;true&lt;/code&gt; and upload the file using URL in &lt;code&gt;payloadURL.url&lt;/code&gt; in response body.
 				&lt;br&gt;&lt;p&gt;&lt;b&gt;NOTE: Preview is Legacy Code, please use Screenshot for better solution to display preview of a content&lt;/b&gt;&lt;/p&gt;
 */
 func (a *Client) UpdateContentS3(params *UpdateContentS3Params, authInfo runtime.ClientAuthInfoWriter) (*UpdateContentS3OK, *UpdateContentS3BadRequest, *UpdateContentS3Unauthorized, *UpdateContentS3NotFound, *UpdateContentS3InternalServerError, error) {
@@ -1552,10 +1553,11 @@ func (a *Client) UpdateContentS3(params *UpdateContentS3Params, authInfo runtime
 /*
   UpdateContentS3Short updates content to s3 bucket
 
-  Required permission &lt;b&gt;NAMESPACE:{namespace}:USER:{userId}:CONTENT [UPDATE]&lt;/b&gt;.\n
-				All request body are required except payload, preview, tags, and contentType.
+  Required permission &lt;b&gt;NAMESPACE:{namespace}:USER:{userId}:CONTENT [UPDATE]&lt;/b&gt;.
+				All request body are required except payload, preview, tags, contentType, updateContentFile and customAttributes.
 				contentType values is used to enforce the Content-Type header needed by the client to upload the content using the S3 presigned URL.
 				If not specified, it will use fileExtension value.
+				To update content&#39;s file, set &lt;code&gt;updateContentFile&lt;/code&gt; to &lt;code&gt;true&lt;/code&gt; and upload the file using URL in &lt;code&gt;payloadURL.url&lt;/code&gt; in response body.
 				&lt;br&gt;&lt;p&gt;&lt;b&gt;NOTE: Preview is Legacy Code, please use Screenshot for better solution to display preview of a content&lt;/b&gt;&lt;/p&gt;
 */
 func (a *Client) UpdateContentS3Short(params *UpdateContentS3Params, authInfo runtime.ClientAuthInfoWriter) (*UpdateContentS3OK, error) {

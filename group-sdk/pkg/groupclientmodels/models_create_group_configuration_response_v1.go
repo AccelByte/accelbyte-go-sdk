@@ -19,6 +19,10 @@ import (
 // swagger:model models.CreateGroupConfigurationResponseV1
 type ModelsCreateGroupConfigurationResponseV1 struct {
 
+	// allow multiple
+	// Required: true
+	AllowMultiple *bool `json:"allowMultiple"`
+
 	// configuration code
 	// Required: true
 	ConfigurationCode *string `json:"configurationCode"`
@@ -29,7 +33,7 @@ type ModelsCreateGroupConfigurationResponseV1 struct {
 
 	// global rules
 	// Required: true
-	GlobalRules []*ModelsRule `json:"globalRules"`
+	GlobalRules []*ModelsRuleResponseV1 `json:"globalRules"`
 
 	// group admin role Id
 	// Required: true
@@ -51,6 +55,10 @@ type ModelsCreateGroupConfigurationResponseV1 struct {
 // Validate validates this models create group configuration response v1
 func (m *ModelsCreateGroupConfigurationResponseV1) Validate(formats strfmt.Registry) error {
 	var res []error
+
+	if err := m.validateAllowMultiple(formats); err != nil {
+		res = append(res, err)
+	}
 
 	if err := m.validateConfigurationCode(formats); err != nil {
 		res = append(res, err)
@@ -83,6 +91,15 @@ func (m *ModelsCreateGroupConfigurationResponseV1) Validate(formats strfmt.Regis
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
+	return nil
+}
+
+func (m *ModelsCreateGroupConfigurationResponseV1) validateAllowMultiple(formats strfmt.Registry) error {
+
+	if err := validate.Required("allowMultiple", "body", m.AllowMultiple); err != nil {
+		return err
+	}
+
 	return nil
 }
 

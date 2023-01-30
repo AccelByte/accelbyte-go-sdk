@@ -11,6 +11,7 @@ import (
 	"github.com/AccelByte/sample-apps/cmd/session/gameSession"
 	"github.com/AccelByte/sample-apps/cmd/session/operations"
 	"github.com/AccelByte/sample-apps/cmd/session/party"
+	"github.com/AccelByte/sample-apps/cmd/session/player"
 	"github.com/spf13/cobra"
 )
 
@@ -31,6 +32,8 @@ func init() {
 	SessionCmd.AddCommand(gameSession.AdminQueryGameSessionsCmd)
 	SessionCmd.AddCommand(gameSession.AdminUpdateGameSessionMemberCmd)
 	SessionCmd.AddCommand(party.AdminQueryPartiesCmd)
+	SessionCmd.AddCommand(player.AdminQueryPlayerAttributesCmd)
+	SessionCmd.AddCommand(player.AdminGetPlayerAttributesCmd)
 	SessionCmd.AddCommand(gameSession.CreateGameSessionCmd)
 	SessionCmd.AddCommand(gameSession.PublicQueryGameSessionsCmd)
 	SessionCmd.AddCommand(gameSession.GetGameSessionByPodNameCmd)
@@ -55,6 +58,9 @@ func init() {
 	SessionCmd.AddCommand(party.PublicPartyRejectCmd)
 	SessionCmd.AddCommand(party.PublicPartyKickCmd)
 	SessionCmd.AddCommand(party.PublicCreatePartyCmd)
+	SessionCmd.AddCommand(player.PublicGetPlayerAttributesCmd)
+	SessionCmd.AddCommand(player.PublicStorePlayerAttributesCmd)
+	SessionCmd.AddCommand(player.PublicDeletePlayerAttributesCmd)
 	SessionCmd.AddCommand(gameSession.PublicQueryMyGameSessionsCmd)
 	SessionCmd.AddCommand(party.PublicQueryMyPartiesCmd)
 }

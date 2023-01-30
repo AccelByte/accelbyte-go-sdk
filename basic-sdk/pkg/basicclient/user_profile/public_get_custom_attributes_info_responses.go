@@ -36,12 +36,6 @@ func (o *PublicGetCustomAttributesInfoReader) ReadResponse(response runtime.Clie
 			return nil, err
 		}
 		return result, nil
-	case 401:
-		result := NewPublicGetCustomAttributesInfoUnauthorized()
-		if err := result.readResponse(response, consumer, o.formats); err != nil {
-			return nil, err
-		}
-		return result, nil
 	case 404:
 		result := NewPublicGetCustomAttributesInfoNotFound()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -104,59 +98,6 @@ func (o *PublicGetCustomAttributesInfoOK) readResponse(response runtime.ClientRe
 
 	// response payload
 	if err := consumer.Consume(response.Body(), &o.Payload); err != nil && err != io.EOF {
-		return err
-	}
-
-	return nil
-}
-
-// NewPublicGetCustomAttributesInfoUnauthorized creates a PublicGetCustomAttributesInfoUnauthorized with default headers values
-func NewPublicGetCustomAttributesInfoUnauthorized() *PublicGetCustomAttributesInfoUnauthorized {
-	return &PublicGetCustomAttributesInfoUnauthorized{}
-}
-
-/*PublicGetCustomAttributesInfoUnauthorized handles this case with default header values.
-
-  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20001</td><td>unauthorized</td></tr></table>
-*/
-type PublicGetCustomAttributesInfoUnauthorized struct {
-	Payload *basicclientmodels.ErrorEntity
-}
-
-func (o *PublicGetCustomAttributesInfoUnauthorized) Error() string {
-	return fmt.Sprintf("[GET /basic/v1/public/namespaces/{namespace}/users/{userId}/profiles/customAttributes][%d] publicGetCustomAttributesInfoUnauthorized  %+v", 401, o.ToJSONString())
-}
-
-func (o *PublicGetCustomAttributesInfoUnauthorized) ToJSONString() string {
-	if o.Payload == nil {
-		return "{}"
-	}
-
-	b, err := json.Marshal(o.Payload)
-	if err != nil {
-		fmt.Println(err)
-
-		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
-	}
-
-	return fmt.Sprintf("%+v", string(b))
-}
-
-func (o *PublicGetCustomAttributesInfoUnauthorized) GetPayload() *basicclientmodels.ErrorEntity {
-	return o.Payload
-}
-
-func (o *PublicGetCustomAttributesInfoUnauthorized) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
-	// handle file responses
-	contentDisposition := response.GetHeader("Content-Disposition")
-	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
-		consumer = runtime.ByteStreamConsumer()
-	}
-
-	o.Payload = new(basicclientmodels.ErrorEntity)
-
-	// response payload
-	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
 		return err
 	}
 

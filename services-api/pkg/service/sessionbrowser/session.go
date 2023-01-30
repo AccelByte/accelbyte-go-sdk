@@ -214,13 +214,13 @@ func (aaa *SessionService) GetSessionHistoryDetailed(input *session.GetSessionHi
 	return ok.GetPayload(), nil
 }
 
-// deprecated(2022-01-10): please use QuerySessionShort instead.
-func (aaa *SessionService) QuerySession(input *session.QuerySessionParams) (*sessionbrowserclientmodels.ModelsSessionQueryResponse, error) {
+// deprecated(2022-01-10): please use UserQuerySessionShort instead.
+func (aaa *SessionService) UserQuerySession(input *session.UserQuerySessionParams) (*sessionbrowserclientmodels.ModelsSessionQueryResponse, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, badRequest, internalServerError, err := aaa.Client.Session.QuerySession(input, client.BearerToken(*token.AccessToken))
+	ok, badRequest, internalServerError, err := aaa.Client.Session.UserQuerySession(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -684,7 +684,7 @@ func (aaa *SessionService) GetSessionHistoryDetailedShort(input *session.GetSess
 	return ok.GetPayload(), nil
 }
 
-func (aaa *SessionService) QuerySessionShort(input *session.QuerySessionParams) (*sessionbrowserclientmodels.ModelsSessionQueryResponse, error) {
+func (aaa *SessionService) UserQuerySessionShort(input *session.UserQuerySessionParams) (*sessionbrowserclientmodels.ModelsSessionQueryResponse, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -701,7 +701,7 @@ func (aaa *SessionService) QuerySessionShort(input *session.QuerySessionParams) 
 		}
 	}
 
-	ok, err := aaa.Client.Session.QuerySessionShort(input, authInfoWriter)
+	ok, err := aaa.Client.Session.UserQuerySessionShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}

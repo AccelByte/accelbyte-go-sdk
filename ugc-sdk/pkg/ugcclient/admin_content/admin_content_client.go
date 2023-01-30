@@ -1262,7 +1262,7 @@ Deprecated: Use AdminUpdateContentDirectShort instead.
   AdminUpdateContentDirect updates content to a channel
 
   Required permission &lt;b&gt;ADMIN:NAMESPACE:{namespace}:USER:{userId}:CONTENT [UPDATE]&lt;/b&gt;.\n
-					All request body are required except preview and tags.
+					All request body are required except preview, tags and customAttributes.
 
 */
 func (a *Client) AdminUpdateContentDirect(params *AdminUpdateContentDirectParams, authInfo runtime.ClientAuthInfoWriter) (*AdminUpdateContentDirectOK, *AdminUpdateContentDirectBadRequest, *AdminUpdateContentDirectUnauthorized, *AdminUpdateContentDirectNotFound, *AdminUpdateContentDirectInternalServerError, error) {
@@ -1322,7 +1322,7 @@ func (a *Client) AdminUpdateContentDirect(params *AdminUpdateContentDirectParams
   AdminUpdateContentDirectShort updates content to a channel
 
   Required permission &lt;b&gt;ADMIN:NAMESPACE:{namespace}:USER:{userId}:CONTENT [UPDATE]&lt;/b&gt;.\n
-					All request body are required except preview and tags.
+					All request body are required except preview, tags and customAttributes.
 
 */
 func (a *Client) AdminUpdateContentDirectShort(params *AdminUpdateContentDirectParams, authInfo runtime.ClientAuthInfoWriter) (*AdminUpdateContentDirectOK, error) {
@@ -1379,10 +1379,11 @@ Deprecated: Use AdminUpdateContentS3Short instead.
 
   AdminUpdateContentS3 updates content to s3 bucket
 
-  Required permission &lt;b&gt;ADMIN:NAMESPACE:{namespace}:USER:{userId}:CONTENT [UPDATE]&lt;/b&gt;.\n
-				All request body are required except payload, preview, tags, and contentType.
+  Required permission &lt;b&gt;ADMIN:NAMESPACE:{namespace}:USER:{userId}:CONTENT [UPDATE]&lt;/b&gt;.
+				All request body are required except payload, preview, tags, contentType, updateContentFile and customAttributes.
 				contentType values is used to enforce the Content-Type header needed by the client to upload the content using the S3 presigned URL.
 				If not specified, it will use fileExtension value.
+				To update content&#39;s file, set &lt;code&gt;updateContentFile&lt;/code&gt; to &lt;code&gt;true&lt;/code&gt; and upload the file using URL in &lt;code&gt;payloadURL.url&lt;/code&gt; in response body.
 				&lt;br&gt;&lt;p&gt;&lt;b&gt;NOTE: Preview is Legacy Code, please use Screenshot for better solution to display preview of a content&lt;/b&gt;&lt;/p&gt;
 */
 func (a *Client) AdminUpdateContentS3(params *AdminUpdateContentS3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminUpdateContentS3OK, *AdminUpdateContentS3BadRequest, *AdminUpdateContentS3Unauthorized, *AdminUpdateContentS3NotFound, *AdminUpdateContentS3InternalServerError, error) {
@@ -1441,10 +1442,11 @@ func (a *Client) AdminUpdateContentS3(params *AdminUpdateContentS3Params, authIn
 /*
   AdminUpdateContentS3Short updates content to s3 bucket
 
-  Required permission &lt;b&gt;ADMIN:NAMESPACE:{namespace}:USER:{userId}:CONTENT [UPDATE]&lt;/b&gt;.\n
-				All request body are required except payload, preview, tags, and contentType.
+  Required permission &lt;b&gt;ADMIN:NAMESPACE:{namespace}:USER:{userId}:CONTENT [UPDATE]&lt;/b&gt;.
+				All request body are required except payload, preview, tags, contentType, updateContentFile and customAttributes.
 				contentType values is used to enforce the Content-Type header needed by the client to upload the content using the S3 presigned URL.
 				If not specified, it will use fileExtension value.
+				To update content&#39;s file, set &lt;code&gt;updateContentFile&lt;/code&gt; to &lt;code&gt;true&lt;/code&gt; and upload the file using URL in &lt;code&gt;payloadURL.url&lt;/code&gt; in response body.
 				&lt;br&gt;&lt;p&gt;&lt;b&gt;NOTE: Preview is Legacy Code, please use Screenshot for better solution to display preview of a content&lt;/b&gt;&lt;/p&gt;
 */
 func (a *Client) AdminUpdateContentS3Short(params *AdminUpdateContentS3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminUpdateContentS3OK, error) {
@@ -1620,7 +1622,7 @@ Deprecated: Use AdminUploadContentDirectShort instead.
   AdminUploadContentDirect uploads content to a channel
 
   Required permission &lt;b&gt;ADMIN:NAMESPACE:{namespace}:USER:{userId}:CONTENT [CREATE]&lt;/b&gt;.\n
-				All request body are required except preview and tags.
+				All request body are required except preview, tags and customAttributes.
 
 */
 func (a *Client) AdminUploadContentDirect(params *AdminUploadContentDirectParams, authInfo runtime.ClientAuthInfoWriter) (*AdminUploadContentDirectCreated, *AdminUploadContentDirectBadRequest, *AdminUploadContentDirectUnauthorized, *AdminUploadContentDirectInternalServerError, error) {
@@ -1677,7 +1679,7 @@ func (a *Client) AdminUploadContentDirect(params *AdminUploadContentDirectParams
   AdminUploadContentDirectShort uploads content to a channel
 
   Required permission &lt;b&gt;ADMIN:NAMESPACE:{namespace}:USER:{userId}:CONTENT [CREATE]&lt;/b&gt;.\n
-				All request body are required except preview and tags.
+				All request body are required except preview, tags and customAttributes.
 
 */
 func (a *Client) AdminUploadContentDirectShort(params *AdminUploadContentDirectParams, authInfo runtime.ClientAuthInfoWriter) (*AdminUploadContentDirectCreated, error) {
@@ -1733,7 +1735,7 @@ Deprecated: Use AdminUploadContentS3Short instead.
   AdminUploadContentS3 uploads content to s3 bucket
 
   Required permission &lt;b&gt;ADMIN:NAMESPACE:{namespace}:USER:{userId}:CONTENT [CREATE]&lt;/b&gt;.\n
-				All request body are required except preview, tags, and contentType.
+				All request body are required except preview, tags, contentType and customAttributes.
 				contentType values is used to enforce the Content-Type header needed by the client when uploading the content using the S3 presigned URL.
 				If not specified, it will use fileExtension value.
 				&lt;br&gt;&lt;p&gt;&lt;b&gt;NOTE: Preview is Legacy Code, please use Screenshot for better solution to display preview of a content&lt;/b&gt;&lt;/p&gt;
@@ -1792,7 +1794,7 @@ func (a *Client) AdminUploadContentS3(params *AdminUploadContentS3Params, authIn
   AdminUploadContentS3Short uploads content to s3 bucket
 
   Required permission &lt;b&gt;ADMIN:NAMESPACE:{namespace}:USER:{userId}:CONTENT [CREATE]&lt;/b&gt;.\n
-				All request body are required except preview, tags, and contentType.
+				All request body are required except preview, tags, contentType and customAttributes.
 				contentType values is used to enforce the Content-Type header needed by the client when uploading the content using the S3 presigned URL.
 				If not specified, it will use fileExtension value.
 				&lt;br&gt;&lt;p&gt;&lt;b&gt;NOTE: Preview is Legacy Code, please use Screenshot for better solution to display preview of a content&lt;/b&gt;&lt;/p&gt;
@@ -2194,7 +2196,7 @@ Deprecated: Use SingleAdminUpdateContentDirectShort instead.
   SingleAdminUpdateContentDirect updates content to a channel
 
   Required permission &lt;b&gt;ADMIN:NAMESPACE:{namespace}:USER:{userId}:CONTENT [UPDATE]&lt;/b&gt;.\n
-					All request body are required except preview and tags.
+					All request body are required except preview, tags and customAttributes.
 
 */
 func (a *Client) SingleAdminUpdateContentDirect(params *SingleAdminUpdateContentDirectParams, authInfo runtime.ClientAuthInfoWriter) (*SingleAdminUpdateContentDirectOK, *SingleAdminUpdateContentDirectBadRequest, *SingleAdminUpdateContentDirectUnauthorized, *SingleAdminUpdateContentDirectNotFound, *SingleAdminUpdateContentDirectInternalServerError, error) {
@@ -2254,7 +2256,7 @@ func (a *Client) SingleAdminUpdateContentDirect(params *SingleAdminUpdateContent
   SingleAdminUpdateContentDirectShort updates content to a channel
 
   Required permission &lt;b&gt;ADMIN:NAMESPACE:{namespace}:USER:{userId}:CONTENT [UPDATE]&lt;/b&gt;.\n
-					All request body are required except preview and tags.
+					All request body are required except preview, tags and customAttributes.
 
 */
 func (a *Client) SingleAdminUpdateContentDirectShort(params *SingleAdminUpdateContentDirectParams, authInfo runtime.ClientAuthInfoWriter) (*SingleAdminUpdateContentDirectOK, error) {
@@ -2311,10 +2313,11 @@ Deprecated: Use SingleAdminUpdateContentS3Short instead.
 
   SingleAdminUpdateContentS3 updates content to s3 bucket
 
-  Required permission &lt;b&gt;ADMIN:NAMESPACE:{namespace}:USER:{userId}:CONTENT [UPDATE]&lt;/b&gt;.\n
-					All request body are required except payload, preview, tags, and contentType.
+  Required permission &lt;b&gt;ADMIN:NAMESPACE:{namespace}:USER:{userId}:CONTENT [UPDATE]&lt;/b&gt;.
+					All request body are required except payload, preview, tags, contentType, updateContentFile and customAttributes.
 					contentType values is used to enforce the Content-Type header needed by the client to upload the content using the S3 presigned URL.
 					If not specified, it will use fileExtension value.
+					To update content&#39;s file, set &lt;code&gt;updateContentFile&lt;/code&gt; to &lt;code&gt;true&lt;/code&gt; and upload the file using URL in &lt;code&gt;payloadURL.url&lt;/code&gt; in response body.
 					&lt;br&gt;&lt;p&gt;&lt;b&gt;NOTE: Preview is Legacy Code, please use Screenshot for better solution to display preview of a content&lt;/b&gt;&lt;/p&gt;
 */
 func (a *Client) SingleAdminUpdateContentS3(params *SingleAdminUpdateContentS3Params, authInfo runtime.ClientAuthInfoWriter) (*SingleAdminUpdateContentS3OK, *SingleAdminUpdateContentS3BadRequest, *SingleAdminUpdateContentS3Unauthorized, *SingleAdminUpdateContentS3NotFound, *SingleAdminUpdateContentS3InternalServerError, error) {
@@ -2373,10 +2376,11 @@ func (a *Client) SingleAdminUpdateContentS3(params *SingleAdminUpdateContentS3Pa
 /*
   SingleAdminUpdateContentS3Short updates content to s3 bucket
 
-  Required permission &lt;b&gt;ADMIN:NAMESPACE:{namespace}:USER:{userId}:CONTENT [UPDATE]&lt;/b&gt;.\n
-					All request body are required except payload, preview, tags, and contentType.
+  Required permission &lt;b&gt;ADMIN:NAMESPACE:{namespace}:USER:{userId}:CONTENT [UPDATE]&lt;/b&gt;.
+					All request body are required except payload, preview, tags, contentType, updateContentFile and customAttributes.
 					contentType values is used to enforce the Content-Type header needed by the client to upload the content using the S3 presigned URL.
 					If not specified, it will use fileExtension value.
+					To update content&#39;s file, set &lt;code&gt;updateContentFile&lt;/code&gt; to &lt;code&gt;true&lt;/code&gt; and upload the file using URL in &lt;code&gt;payloadURL.url&lt;/code&gt; in response body.
 					&lt;br&gt;&lt;p&gt;&lt;b&gt;NOTE: Preview is Legacy Code, please use Screenshot for better solution to display preview of a content&lt;/b&gt;&lt;/p&gt;
 */
 func (a *Client) SingleAdminUpdateContentS3Short(params *SingleAdminUpdateContentS3Params, authInfo runtime.ClientAuthInfoWriter) (*SingleAdminUpdateContentS3OK, error) {

@@ -32,16 +32,20 @@ var AdminSearchSessionsV2Cmd = &cobra.Command{
 		deleted, _ := cmd.Flags().GetBool("deleted")
 		matchID, _ := cmd.Flags().GetString("matchID")
 		partyID, _ := cmd.Flags().GetString("partyID")
+		sessionType, _ := cmd.Flags().GetString("sessionType")
+		status, _ := cmd.Flags().GetString("status")
 		userID, _ := cmd.Flags().GetString("userID")
 		input := &session.AdminSearchSessionsV2Params{
-			Namespace: namespace,
-			Channel:   &channel,
-			Deleted:   &deleted,
-			MatchID:   &matchID,
-			PartyID:   &partyID,
-			UserID:    &userID,
-			Limit:     limit,
-			Offset:    offset,
+			Namespace:   namespace,
+			Channel:     &channel,
+			Deleted:     &deleted,
+			MatchID:     &matchID,
+			PartyID:     &partyID,
+			SessionType: &sessionType,
+			Status:      &status,
+			UserID:      &userID,
+			Limit:       limit,
+			Offset:      offset,
 		}
 		ok, err := sessionService.AdminSearchSessionsV2Short(input)
 		if err != nil {
@@ -63,6 +67,8 @@ func init() {
 	AdminSearchSessionsV2Cmd.Flags().Bool("deleted", false, "Deleted")
 	AdminSearchSessionsV2Cmd.Flags().String("matchID", "", "Match ID")
 	AdminSearchSessionsV2Cmd.Flags().String("partyID", "", "Party ID")
+	AdminSearchSessionsV2Cmd.Flags().String("sessionType", "", "Session type")
+	AdminSearchSessionsV2Cmd.Flags().String("status", "", "Status")
 	AdminSearchSessionsV2Cmd.Flags().String("userID", "", "User ID")
 	AdminSearchSessionsV2Cmd.Flags().Int64("limit", 20, "Limit")
 	_ = AdminSearchSessionsV2Cmd.MarkFlagRequired("limit")

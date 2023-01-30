@@ -37,6 +37,10 @@ type ModelsCreateGroupResponse struct {
 	// Required: true
 	Namespace *string `json:"namespace"`
 
+	// parent namespace
+	// Required: true
+	ParentNamespace *string `json:"parentNamespace"`
+
 	// user Id
 	// Required: true
 	UserID *string `json:"userId"`
@@ -63,6 +67,10 @@ func (m *ModelsCreateGroupResponse) Validate(formats strfmt.Registry) error {
 	}
 
 	if err := m.validateNamespace(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateParentNamespace(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -115,6 +123,15 @@ func (m *ModelsCreateGroupResponse) validateName(formats strfmt.Registry) error 
 func (m *ModelsCreateGroupResponse) validateNamespace(formats strfmt.Registry) error {
 
 	if err := validate.Required("namespace", "body", m.Namespace); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *ModelsCreateGroupResponse) validateParentNamespace(formats strfmt.Registry) error {
+
+	if err := validate.Required("parentNamespace", "body", m.ParentNamespace); err != nil {
 		return err
 	}
 

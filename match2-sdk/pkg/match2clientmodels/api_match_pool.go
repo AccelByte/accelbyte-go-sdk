@@ -17,6 +17,14 @@ import (
 // swagger:model api.MatchPool
 type APIMatchPool struct {
 
+	// auto accept backfill proposal
+	// Required: true
+	AutoAcceptBackfillProposal *bool `json:"auto_accept_backfill_proposal"`
+
+	// backfill proposal expiration seconds
+	// Required: true
+	BackfillProposalExpirationSeconds *int32 `json:"backfill_proposal_expiration_seconds"`
+
 	// backfill ticket expiration seconds
 	// Required: true
 	BackfillTicketExpirationSeconds *int32 `json:"backfill_ticket_expiration_seconds"`
@@ -50,6 +58,14 @@ type APIMatchPool struct {
 func (m *APIMatchPool) Validate(formats strfmt.Registry) error {
 	var res []error
 
+	if err := m.validateAutoAcceptBackfillProposal(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateBackfillProposalExpirationSeconds(formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.validateBackfillTicketExpirationSeconds(formats); err != nil {
 		res = append(res, err)
 	}
@@ -81,6 +97,24 @@ func (m *APIMatchPool) Validate(formats strfmt.Registry) error {
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
+	return nil
+}
+
+func (m *APIMatchPool) validateAutoAcceptBackfillProposal(formats strfmt.Registry) error {
+
+	if err := validate.Required("auto_accept_backfill_proposal", "body", m.AutoAcceptBackfillProposal); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *APIMatchPool) validateBackfillProposalExpirationSeconds(formats strfmt.Registry) error {
+
+	if err := validate.Required("backfill_proposal_expiration_seconds", "body", m.BackfillProposalExpirationSeconds); err != nil {
+		return err
+	}
+
 	return nil
 }
 

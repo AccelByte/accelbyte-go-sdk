@@ -55,8 +55,8 @@ type ClientService interface {
 	GetUserProfileInfoByPublicIDShort(params *GetUserProfileInfoByPublicIDParams, authInfo runtime.ClientAuthInfoWriter) (*GetUserProfileInfoByPublicIDOK, error)
 	PublicCreateUserProfile(params *PublicCreateUserProfileParams, authInfo runtime.ClientAuthInfoWriter) (*PublicCreateUserProfileCreated, *PublicCreateUserProfileBadRequest, *PublicCreateUserProfileUnauthorized, *PublicCreateUserProfileForbidden, *PublicCreateUserProfileConflict, error)
 	PublicCreateUserProfileShort(params *PublicCreateUserProfileParams, authInfo runtime.ClientAuthInfoWriter) (*PublicCreateUserProfileCreated, error)
-	PublicGetCustomAttributesInfo(params *PublicGetCustomAttributesInfoParams, authInfo runtime.ClientAuthInfoWriter) (*PublicGetCustomAttributesInfoOK, *PublicGetCustomAttributesInfoUnauthorized, *PublicGetCustomAttributesInfoNotFound, error)
-	PublicGetCustomAttributesInfoShort(params *PublicGetCustomAttributesInfoParams, authInfo runtime.ClientAuthInfoWriter) (*PublicGetCustomAttributesInfoOK, error)
+	PublicGetCustomAttributesInfo(params *PublicGetCustomAttributesInfoParams) (*PublicGetCustomAttributesInfoOK, *PublicGetCustomAttributesInfoNotFound, error)
+	PublicGetCustomAttributesInfoShort(params *PublicGetCustomAttributesInfoParams) (*PublicGetCustomAttributesInfoOK, error)
 	PublicGetUserProfileInfo(params *PublicGetUserProfileInfoParams, authInfo runtime.ClientAuthInfoWriter) (*PublicGetUserProfileInfoOK, *PublicGetUserProfileInfoBadRequest, *PublicGetUserProfileInfoUnauthorized, *PublicGetUserProfileInfoForbidden, *PublicGetUserProfileInfoNotFound, error)
 	PublicGetUserProfileInfoShort(params *PublicGetUserProfileInfoParams, authInfo runtime.ClientAuthInfoWriter) (*PublicGetUserProfileInfoOK, error)
 	PublicGetUserProfileInfoByPublicID(params *PublicGetUserProfileInfoByPublicIDParams) (*PublicGetUserProfileInfoByPublicIDOK, *PublicGetUserProfileInfoByPublicIDBadRequest, *PublicGetUserProfileInfoByPublicIDNotFound, error)
@@ -1313,9 +1313,9 @@ Deprecated: Use PublicGetCustomAttributesInfoShort instead.
 
   PublicGetCustomAttributesInfo gets custom attributes info
 
-  Get custom attributes info.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&lt;b&gt;&#34;NAMESPACE:{namespace}:USER:{userId}:PROFILE&#34;&lt;/b&gt;, action=2 &lt;b&gt;(READ)&lt;/b&gt;&lt;/li&gt;&lt;li&gt;&lt;i&gt;Action code&lt;/i&gt;: 11404&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: user custom attributes&lt;/li&gt;&lt;/ul&gt;
+  Get custom attributes info.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Action code&lt;/i&gt;: 11404&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: user custom attributes&lt;/li&gt;&lt;/ul&gt;
 */
-func (a *Client) PublicGetCustomAttributesInfo(params *PublicGetCustomAttributesInfoParams, authInfo runtime.ClientAuthInfoWriter) (*PublicGetCustomAttributesInfoOK, *PublicGetCustomAttributesInfoUnauthorized, *PublicGetCustomAttributesInfoNotFound, error) {
+func (a *Client) PublicGetCustomAttributesInfo(params *PublicGetCustomAttributesInfoParams) (*PublicGetCustomAttributesInfoOK, *PublicGetCustomAttributesInfoNotFound, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewPublicGetCustomAttributesInfoParams()
@@ -1338,36 +1338,32 @@ func (a *Client) PublicGetCustomAttributesInfo(params *PublicGetCustomAttributes
 		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &PublicGetCustomAttributesInfoReader{formats: a.formats},
-		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
 	})
 	if err != nil {
-		return nil, nil, nil, err
+		return nil, nil, err
 	}
 
 	switch v := result.(type) {
 
 	case *PublicGetCustomAttributesInfoOK:
-		return v, nil, nil, nil
-
-	case *PublicGetCustomAttributesInfoUnauthorized:
-		return nil, v, nil, nil
+		return v, nil, nil
 
 	case *PublicGetCustomAttributesInfoNotFound:
-		return nil, nil, v, nil
+		return nil, v, nil
 
 	default:
-		return nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+		return nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
 /*
   PublicGetCustomAttributesInfoShort gets custom attributes info
 
-  Get custom attributes info.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&lt;b&gt;&#34;NAMESPACE:{namespace}:USER:{userId}:PROFILE&#34;&lt;/b&gt;, action=2 &lt;b&gt;(READ)&lt;/b&gt;&lt;/li&gt;&lt;li&gt;&lt;i&gt;Action code&lt;/i&gt;: 11404&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: user custom attributes&lt;/li&gt;&lt;/ul&gt;
+  Get custom attributes info.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Action code&lt;/i&gt;: 11404&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: user custom attributes&lt;/li&gt;&lt;/ul&gt;
 */
-func (a *Client) PublicGetCustomAttributesInfoShort(params *PublicGetCustomAttributesInfoParams, authInfo runtime.ClientAuthInfoWriter) (*PublicGetCustomAttributesInfoOK, error) {
+func (a *Client) PublicGetCustomAttributesInfoShort(params *PublicGetCustomAttributesInfoParams) (*PublicGetCustomAttributesInfoOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewPublicGetCustomAttributesInfoParams()
@@ -1390,7 +1386,6 @@ func (a *Client) PublicGetCustomAttributesInfoShort(params *PublicGetCustomAttri
 		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &PublicGetCustomAttributesInfoReader{formats: a.formats},
-		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
 	})
@@ -1402,8 +1397,6 @@ func (a *Client) PublicGetCustomAttributesInfoShort(params *PublicGetCustomAttri
 
 	case *PublicGetCustomAttributesInfoOK:
 		return v, nil
-	case *PublicGetCustomAttributesInfoUnauthorized:
-		return nil, v
 	case *PublicGetCustomAttributesInfoNotFound:
 		return nil, v
 

@@ -8,7 +8,7 @@
     },
     "description": "Justice UGC Service",
     "title": "justice-ugc-service",
-    "version": "2.7.0"
+    "version": "2.8.1"
   },
   "schemes": [
     "https"
@@ -353,7 +353,7 @@
           "application/json"
         ],
         "deprecated": true,
-        "description": "Required permission \u0026lt;b\u0026gt;ADMIN:NAMESPACE:{namespace}:USER:{userId}:CONTENT [CREATE]\u0026lt;/b\u0026gt;.\\n \n\t\t\t\tAll request body are required except preview and tags.\n\t\t\t\t",
+        "description": "Required permission \u0026lt;b\u0026gt;ADMIN:NAMESPACE:{namespace}:USER:{userId}:CONTENT [CREATE]\u0026lt;/b\u0026gt;.\\n \n\t\t\t\tAll request body are required except preview, tags and customAttributes.\n\t\t\t\t",
         "operationId": "AdminUploadContentDirect",
         "parameters": [
           {
@@ -427,7 +427,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "Required permission \u0026lt;b\u0026gt;ADMIN:NAMESPACE:{namespace}:USER:{userId}:CONTENT [CREATE]\u0026lt;/b\u0026gt;.\\n \n\t\t\t\tAll request body are required except preview, tags, and contentType.\n\t\t\t\tcontentType values is used to enforce the Content-Type header needed by the client when uploading the content using the S3 presigned URL.\n\t\t\t\tIf not specified, it will use fileExtension value.\n\t\t\t\t\u0026lt;br\u0026gt;\u0026lt;p\u0026gt;\u0026lt;b\u0026gt;NOTE: Preview is Legacy Code, please use Screenshot for better solution to display preview of a content\u0026lt;/b\u0026gt;\u0026lt;/p\u0026gt;",
+        "description": "Required permission \u0026lt;b\u0026gt;ADMIN:NAMESPACE:{namespace}:USER:{userId}:CONTENT [CREATE]\u0026lt;/b\u0026gt;.\\n \n\t\t\t\tAll request body are required except preview, tags, contentType and customAttributes.\n\t\t\t\tcontentType values is used to enforce the Content-Type header needed by the client when uploading the content using the S3 presigned URL.\n\t\t\t\tIf not specified, it will use fileExtension value.\n\t\t\t\t\u0026lt;br\u0026gt;\u0026lt;p\u0026gt;\u0026lt;b\u0026gt;NOTE: Preview is Legacy Code, please use Screenshot for better solution to display preview of a content\u0026lt;/b\u0026gt;\u0026lt;/p\u0026gt;",
         "operationId": "AdminUploadContentS3",
         "parameters": [
           {
@@ -501,7 +501,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "Required permission \u0026lt;b\u0026gt;ADMIN:NAMESPACE:{namespace}:USER:{userId}:CONTENT [UPDATE]\u0026lt;/b\u0026gt;.\\n \n\t\t\t\t\tAll request body are required except payload, preview, tags, and contentType.\n\t\t\t\t\tcontentType values is used to enforce the Content-Type header needed by the client to upload the content using the S3 presigned URL.\n\t\t\t\t\tIf not specified, it will use fileExtension value.\n\t\t\t\t\t\u0026lt;br\u0026gt;\u0026lt;p\u0026gt;\u0026lt;b\u0026gt;NOTE: Preview is Legacy Code, please use Screenshot for better solution to display preview of a content\u0026lt;/b\u0026gt;\u0026lt;/p\u0026gt;",
+        "description": "Required permission \u0026lt;b\u0026gt;ADMIN:NAMESPACE:{namespace}:USER:{userId}:CONTENT [UPDATE]\u0026lt;/b\u0026gt;.\n\t\t\t\t\tAll request body are required except payload, preview, tags, contentType, updateContentFile and customAttributes.\n\t\t\t\t\tcontentType values is used to enforce the Content-Type header needed by the client to upload the content using the S3 presigned URL.\n\t\t\t\t\tIf not specified, it will use fileExtension value.\n\t\t\t\t\tTo update content\u0026#39;s file, set \u0026lt;code\u0026gt;updateContentFile\u0026lt;/code\u0026gt; to \u0026lt;code\u0026gt;true\u0026lt;/code\u0026gt; and upload the file using URL in \u0026lt;code\u0026gt;payloadURL.url\u0026lt;/code\u0026gt; in response body.\n\t\t\t\t\t\u0026lt;br\u0026gt;\u0026lt;p\u0026gt;\u0026lt;b\u0026gt;NOTE: Preview is Legacy Code, please use Screenshot for better solution to display preview of a content\u0026lt;/b\u0026gt;\u0026lt;/p\u0026gt;",
         "operationId": "SingleAdminUpdateContentS3",
         "parameters": [
           {
@@ -509,7 +509,7 @@
             "name": "body",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/models.CreateContentRequestS3"
+              "$ref": "#/definitions/models.ContentRequest"
             }
           },
           {
@@ -795,7 +795,7 @@
           "application/json"
         ],
         "deprecated": true,
-        "description": "Required permission \u0026lt;b\u0026gt;ADMIN:NAMESPACE:{namespace}:USER:{userId}:CONTENT [UPDATE]\u0026lt;/b\u0026gt;.\\n \n\t\t\t\t\tAll request body are required except preview and tags.\n\t\t\t\t\t",
+        "description": "Required permission \u0026lt;b\u0026gt;ADMIN:NAMESPACE:{namespace}:USER:{userId}:CONTENT [UPDATE]\u0026lt;/b\u0026gt;.\\n \n\t\t\t\t\tAll request body are required except preview, tags and customAttributes.\n\t\t\t\t\t",
         "operationId": "SingleAdminUpdateContentDirect",
         "parameters": [
           {
@@ -2889,7 +2889,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "Required permission \u0026lt;b\u0026gt;ADMIN:NAMESPACE:{namespace}:USER:{userId}:CONTENT [UPDATE]\u0026lt;/b\u0026gt;.\\n \n\t\t\t\tAll request body are required except payload, preview, tags, and contentType.\n\t\t\t\tcontentType values is used to enforce the Content-Type header needed by the client to upload the content using the S3 presigned URL.\n\t\t\t\tIf not specified, it will use fileExtension value.\n\t\t\t\t\u0026lt;br\u0026gt;\u0026lt;p\u0026gt;\u0026lt;b\u0026gt;NOTE: Preview is Legacy Code, please use Screenshot for better solution to display preview of a content\u0026lt;/b\u0026gt;\u0026lt;/p\u0026gt;",
+        "description": "Required permission \u0026lt;b\u0026gt;ADMIN:NAMESPACE:{namespace}:USER:{userId}:CONTENT [UPDATE]\u0026lt;/b\u0026gt;. \n\t\t\t\tAll request body are required except payload, preview, tags, contentType, updateContentFile and customAttributes.\n\t\t\t\tcontentType values is used to enforce the Content-Type header needed by the client to upload the content using the S3 presigned URL.\n\t\t\t\tIf not specified, it will use fileExtension value.\n\t\t\t\tTo update content\u0026#39;s file, set \u0026lt;code\u0026gt;updateContentFile\u0026lt;/code\u0026gt; to \u0026lt;code\u0026gt;true\u0026lt;/code\u0026gt; and upload the file using URL in \u0026lt;code\u0026gt;payloadURL.url\u0026lt;/code\u0026gt; in response body.\n\t\t\t\t\u0026lt;br\u0026gt;\u0026lt;p\u0026gt;\u0026lt;b\u0026gt;NOTE: Preview is Legacy Code, please use Screenshot for better solution to display preview of a content\u0026lt;/b\u0026gt;\u0026lt;/p\u0026gt;",
         "operationId": "AdminUpdateContentS3",
         "parameters": [
           {
@@ -2897,7 +2897,7 @@
             "name": "body",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/models.CreateContentRequestS3"
+              "$ref": "#/definitions/models.ContentRequest"
             }
           },
           {
@@ -3059,7 +3059,7 @@
           "application/json"
         ],
         "deprecated": true,
-        "description": "Required permission \u0026lt;b\u0026gt;ADMIN:NAMESPACE:{namespace}:USER:{userId}:CONTENT [UPDATE]\u0026lt;/b\u0026gt;.\\n \n\t\t\t\t\tAll request body are required except preview and tags.\n\t\t\t\t\t",
+        "description": "Required permission \u0026lt;b\u0026gt;ADMIN:NAMESPACE:{namespace}:USER:{userId}:CONTENT [UPDATE]\u0026lt;/b\u0026gt;.\\n \n\t\t\t\t\tAll request body are required except preview, tags and customAttributes.\n\t\t\t\t\t",
         "operationId": "AdminUpdateContentDirect",
         "parameters": [
           {
@@ -5483,7 +5483,7 @@
           "application/octet-stream"
         ],
         "deprecated": true,
-        "description": "Required permission \u0026lt;b\u0026gt;NAMESPACE:{namespace}:USER:{userId}:CONTENT [CREATE]\u0026lt;/b\u0026gt;.\\n \n\t\t\tAll request body are required except preview and tags.\n\t\t\t",
+        "description": "Required permission \u0026lt;b\u0026gt;NAMESPACE:{namespace}:USER:{userId}:CONTENT [CREATE]\u0026lt;/b\u0026gt;.\\n \n\t\t\tAll request body are required except preview, tags and customAttributes.\n\t\t\t",
         "operationId": "CreateContentDirect",
         "parameters": [
           {
@@ -5565,7 +5565,7 @@
           "application/json",
           "application/octet-stream"
         ],
-        "description": "Required permission \u0026lt;b\u0026gt;NAMESPACE:{namespace}:USER:{userId}:CONTENT [CREATE]\u0026lt;/b\u0026gt;.\\n \n\t\t\t\tAll request body are required except payload, preview, tags, and contentType.\n\t\t\t\tcontentType values is used to enforce the Content-Type header needed by the client to upload the content using the S3 presigned URL.\n\t\t\t\tIf not specified, it will use fileExtension value.\n\t\t\t\t\u0026lt;br\u0026gt;\u0026lt;p\u0026gt;\u0026lt;b\u0026gt;NOTE: Preview is Legacy Code, please use Screenshot for better solution to display preview of a content\u0026lt;/b\u0026gt;\u0026lt;/p\u0026gt;",
+        "description": "Required permission \u0026lt;b\u0026gt;NAMESPACE:{namespace}:USER:{userId}:CONTENT [CREATE]\u0026lt;/b\u0026gt;.\\n \n\t\t\t\tAll request body are required except payload, preview, tags, contentType and customAttributes.\n\t\t\t\tcontentType values is used to enforce the Content-Type header needed by the client to upload the content using the S3 presigned URL.\n\t\t\t\tIf not specified, it will use fileExtension value.\n\t\t\t\t\u0026lt;br\u0026gt;\u0026lt;p\u0026gt;\u0026lt;b\u0026gt;NOTE: Preview is Legacy Code, please use Screenshot for better solution to display preview of a content\u0026lt;/b\u0026gt;\u0026lt;/p\u0026gt;",
         "operationId": "CreateContentS3",
         "parameters": [
           {
@@ -5647,7 +5647,7 @@
           "application/json",
           "application/octet-stream"
         ],
-        "description": "Required permission \u0026lt;b\u0026gt;NAMESPACE:{namespace}:USER:{userId}:CONTENT [UPDATE]\u0026lt;/b\u0026gt;.\\n \n\t\t\t\tAll request body are required except payload, preview, tags, and contentType.\n\t\t\t\tcontentType values is used to enforce the Content-Type header needed by the client to upload the content using the S3 presigned URL.\n\t\t\t\tIf not specified, it will use fileExtension value.\n\t\t\t\t\u0026lt;br\u0026gt;\u0026lt;p\u0026gt;\u0026lt;b\u0026gt;NOTE: Preview is Legacy Code, please use Screenshot for better solution to display preview of a content\u0026lt;/b\u0026gt;\u0026lt;/p\u0026gt;",
+        "description": "Required permission \u0026lt;b\u0026gt;NAMESPACE:{namespace}:USER:{userId}:CONTENT [UPDATE]\u0026lt;/b\u0026gt;.\n\t\t\t\tAll request body are required except payload, preview, tags, contentType, updateContentFile and customAttributes.\n\t\t\t\tcontentType values is used to enforce the Content-Type header needed by the client to upload the content using the S3 presigned URL.\n\t\t\t\tIf not specified, it will use fileExtension value.\n\t\t\t\tTo update content\u0026#39;s file, set \u0026lt;code\u0026gt;updateContentFile\u0026lt;/code\u0026gt; to \u0026lt;code\u0026gt;true\u0026lt;/code\u0026gt; and upload the file using URL in \u0026lt;code\u0026gt;payloadURL.url\u0026lt;/code\u0026gt; in response body. \n\t\t\t\t\u0026lt;br\u0026gt;\u0026lt;p\u0026gt;\u0026lt;b\u0026gt;NOTE: Preview is Legacy Code, please use Screenshot for better solution to display preview of a content\u0026lt;/b\u0026gt;\u0026lt;/p\u0026gt;",
         "operationId": "UpdateContentS3",
         "parameters": [
           {
@@ -5655,7 +5655,7 @@
             "name": "body",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/models.CreateContentRequestS3"
+              "$ref": "#/definitions/models.ContentRequest"
             }
           },
           {
@@ -5819,7 +5819,7 @@
           "application/octet-stream"
         ],
         "deprecated": true,
-        "description": "Required permission \u0026lt;b\u0026gt;NAMESPACE:{namespace}:USER:{userId}:CONTENT [UPDATE]\u0026lt;/b\u0026gt;.\\n \n\t\t\t\tAll request body are required except preview and tags.\n\t\t\t\t",
+        "description": "Required permission \u0026lt;b\u0026gt;NAMESPACE:{namespace}:USER:{userId}:CONTENT [UPDATE]\u0026lt;/b\u0026gt;.\\n \n\t\t\t\tAll request body are required except preview, tags and customAttributes.\n\t\t\t\t",
         "operationId": "UpdateContentDirect",
         "parameters": [
           {
@@ -7178,6 +7178,9 @@
         "namespace": {
           "type": "string"
         },
+        "parentNamespace": {
+          "type": "string"
+        },
         "userId": {
           "type": "string"
         }
@@ -7292,7 +7295,6 @@
         "createdTime",
         "creatorFollowState",
         "creatorName",
-        "customAttributes",
         "downloadCount",
         "fileExtension",
         "id",
@@ -7333,6 +7335,61 @@
       "required": [
         "contentId",
         "likeStatus"
+      ]
+    },
+    "models.ContentRequest": {
+      "properties": {
+        "contentType": {
+          "type": "string"
+        },
+        "customAttributes": {
+          "type": "object"
+        },
+        "fileExtension": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "payload": {
+          "type": "string"
+        },
+        "preview": {
+          "description": "Preview is legacy code, please use Screenshot instead",
+          "type": "string"
+        },
+        "previewMetadata": {
+          "$ref": "#/definitions/models.previewMetadata"
+        },
+        "subType": {
+          "type": "string"
+        },
+        "tags": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "type": {
+          "type": "string"
+        },
+        "updateContentFile": {
+          "type": "boolean",
+          "x-omitempty": false
+        }
+      },
+      "required": [
+        "contentType",
+        "customAttributes",
+        "fileExtension",
+        "name",
+        "payload",
+        "preview",
+        "previewMetadata",
+        "subType",
+        "tags",
+        "type",
+        "updateContentFile"
       ]
     },
     "models.CreateContentRequest": {
@@ -7461,6 +7518,9 @@
         "namespace": {
           "type": "string"
         },
+        "parentNamespace": {
+          "type": "string"
+        },
         "payloadURL": {
           "items": {
             "$ref": "#/definitions/models.PayloadURL"
@@ -7503,13 +7563,13 @@
         "channelId",
         "createdTime",
         "creatorName",
-        "customAttributes",
         "fileExtension",
         "id",
         "isHidden",
         "isOfficial",
         "name",
         "namespace",
+        "parentNamespace",
         "preview",
         "shareCode",
         "subType",
@@ -7556,6 +7616,9 @@
         "namespace": {
           "type": "string"
         },
+        "parentNamespace": {
+          "type": "string"
+        },
         "userId": {
           "type": "string"
         }
@@ -7566,6 +7629,7 @@
         "id",
         "name",
         "namespace",
+        "parentNamespace",
         "userId"
       ]
     },
@@ -7648,6 +7712,9 @@
         "namespace": {
           "type": "string"
         },
+        "parentNamespace": {
+          "type": "string"
+        },
         "subtype": {
           "items": {
             "type": "string"
@@ -7661,6 +7728,7 @@
       "required": [
         "id",
         "namespace",
+        "parentNamespace",
         "subtype",
         "type"
       ]
@@ -7698,6 +7766,9 @@
         "namespace": {
           "type": "string"
         },
+        "parentNamespace": {
+          "type": "string"
+        },
         "totalLikedContent": {
           "description": "Total all other user's like to creator content",
           "format": "integer",
@@ -7709,6 +7780,7 @@
         "followingCount",
         "id",
         "namespace",
+        "parentNamespace",
         "totalLikedContent"
       ]
     },
@@ -7733,6 +7805,9 @@
         "namespace": {
           "type": "string"
         },
+        "parentNamespace": {
+          "type": "string"
+        },
         "totalLikedContent": {
           "description": "Total all other user's like to creator content",
           "format": "integer",
@@ -7745,6 +7820,7 @@
         "followingCount",
         "id",
         "namespace",
+        "parentNamespace",
         "totalLikedContent"
       ]
     },

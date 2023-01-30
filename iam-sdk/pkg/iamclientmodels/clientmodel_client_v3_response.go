@@ -84,6 +84,9 @@ type ClientmodelClientV3Response struct {
 	// Required: true
 	RedirectURI *string `json:"redirectUri"`
 
+	// roles
+	Roles []string `json:"roles"`
+
 	// scopes
 	// Required: true
 	Scopes []string `json:"scopes"`

@@ -19,6 +19,9 @@ import (
 // swagger:model NamespaceInfo
 type NamespaceInfo struct {
 
+	// clientId is only present on multi tenant mode with namespace is not publisher namespace
+	ClientID string `json:"clientId,omitempty"`
+
 	// created at
 	// Format: date-time
 	CreatedAt *strfmt.DateTime `json:"createdAt,omitempty"`

@@ -19,6 +19,10 @@ import (
 // swagger:model models.CreateGroupConfigurationRequestV1
 type ModelsCreateGroupConfigurationRequestV1 struct {
 
+	// allow multiple
+	// Required: true
+	AllowMultiple bool `json:"allowMultiple"`
+
 	// configuration code
 	// Required: true
 	ConfigurationCode *string `json:"configurationCode"`
@@ -52,6 +56,10 @@ type ModelsCreateGroupConfigurationRequestV1 struct {
 func (m *ModelsCreateGroupConfigurationRequestV1) Validate(formats strfmt.Registry) error {
 	var res []error
 
+	if err := m.validateAllowMultiple(formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.validateConfigurationCode(formats); err != nil {
 		res = append(res, err)
 	}
@@ -83,6 +91,15 @@ func (m *ModelsCreateGroupConfigurationRequestV1) Validate(formats strfmt.Regist
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
+	return nil
+}
+
+func (m *ModelsCreateGroupConfigurationRequestV1) validateAllowMultiple(formats strfmt.Registry) error {
+
+	if err := validate.Required("allowMultiple", "body", bool(m.AllowMultiple)); err != nil {
+		return err
+	}
+
 	return nil
 }
 

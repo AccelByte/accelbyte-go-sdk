@@ -70,7 +70,7 @@ type AdminUpdateContentS3Params struct {
 	/*RetryPolicy*/
 	RetryPolicy *utils.Retry
 	/*Body*/
-	Body *ugcclientmodels.ModelsCreateContentRequestS3
+	Body *ugcclientmodels.ModelsContentRequest
 	/*ChannelID
 	  channel ID
 
@@ -146,13 +146,13 @@ func (o *AdminUpdateContentS3Params) SetHTTPClientTransport(roundTripper http.Ro
 }
 
 // WithBody adds the body to the admin update content s3 params
-func (o *AdminUpdateContentS3Params) WithBody(body *ugcclientmodels.ModelsCreateContentRequestS3) *AdminUpdateContentS3Params {
+func (o *AdminUpdateContentS3Params) WithBody(body *ugcclientmodels.ModelsContentRequest) *AdminUpdateContentS3Params {
 	o.SetBody(body)
 	return o
 }
 
 // SetBody adds the body to the admin update content s3 params
-func (o *AdminUpdateContentS3Params) SetBody(body *ugcclientmodels.ModelsCreateContentRequestS3) {
+func (o *AdminUpdateContentS3Params) SetBody(body *ugcclientmodels.ModelsContentRequest) {
 	o.Body = body
 }
 

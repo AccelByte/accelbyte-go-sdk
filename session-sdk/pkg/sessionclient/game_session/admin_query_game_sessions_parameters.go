@@ -108,6 +108,11 @@ type AdminQueryGameSessionsParams struct {
 
 	*/
 	GameMode *string
+	/*IsSoftDeleted
+	  game session is soft deleted. supported: TRUE, FALSE
+
+	*/
+	IsSoftDeleted *string
 	/*Joinability
 	  game session joinability to filter. joinability types: OPEN,CLOSED,INVITE_ONLY
 
@@ -264,6 +269,17 @@ func (o *AdminQueryGameSessionsParams) WithGameMode(gameMode *string) *AdminQuer
 // SetGameMode adds the gameMode to the admin query game sessions params
 func (o *AdminQueryGameSessionsParams) SetGameMode(gameMode *string) {
 	o.GameMode = gameMode
+}
+
+// WithIsSoftDeleted adds the isSoftDeleted to the admin query game sessions params
+func (o *AdminQueryGameSessionsParams) WithIsSoftDeleted(isSoftDeleted *string) *AdminQueryGameSessionsParams {
+	o.SetIsSoftDeleted(isSoftDeleted)
+	return o
+}
+
+// SetIsSoftDeleted adds the isSoftDeleted to the admin query game sessions params
+func (o *AdminQueryGameSessionsParams) SetIsSoftDeleted(isSoftDeleted *string) {
+	o.IsSoftDeleted = isSoftDeleted
 }
 
 // WithJoinability adds the joinability to the admin query game sessions params
@@ -464,6 +480,22 @@ func (o *AdminQueryGameSessionsParams) WriteToRequest(r runtime.ClientRequest, r
 		qGameMode := qrGameMode
 		if qGameMode != "" {
 			if err := r.SetQueryParam("gameMode", qGameMode); err != nil {
+				return err
+			}
+		}
+
+	}
+
+	if o.IsSoftDeleted != nil {
+
+		// query param isSoftDeleted
+		var qrIsSoftDeleted string
+		if o.IsSoftDeleted != nil {
+			qrIsSoftDeleted = *o.IsSoftDeleted
+		}
+		qIsSoftDeleted := qrIsSoftDeleted
+		if qIsSoftDeleted != "" {
+			if err := r.SetQueryParam("isSoftDeleted", qIsSoftDeleted); err != nil {
 				return err
 			}
 		}

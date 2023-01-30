@@ -169,6 +169,7 @@
 | `models.ContentDownloadResponse` | [ModelsContentDownloadResponse ](../../ugc-sdk/pkg/ugcclientmodels/models_content_download_response.go) |
 | `models.ContentLikeRequest` | [ModelsContentLikeRequest ](../../ugc-sdk/pkg/ugcclientmodels/models_content_like_request.go) |
 | `models.ContentLikeResponse` | [ModelsContentLikeResponse ](../../ugc-sdk/pkg/ugcclientmodels/models_content_like_response.go) |
+| `models.ContentRequest` | [ModelsContentRequest ](../../ugc-sdk/pkg/ugcclientmodels/models_content_request.go) |
 | `models.CreateContentRequest` | [ModelsCreateContentRequest ](../../ugc-sdk/pkg/ugcclientmodels/models_create_content_request.go) |
 | `models.CreateContentRequestS3` | [ModelsCreateContentRequestS3 ](../../ugc-sdk/pkg/ugcclientmodels/models_create_content_request_s3.go) |
 | `models.CreateContentResponse` | [ModelsCreateContentResponse ](../../ugc-sdk/pkg/ugcclientmodels/models_create_content_response.go) |

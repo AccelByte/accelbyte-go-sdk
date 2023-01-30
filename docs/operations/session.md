@@ -56,6 +56,15 @@
 | `/session/v1/public/namespaces/{namespace}/party` | POST | PublicCreatePartyShort | [PublicCreatePartyShort](../../session-sdk/pkg/sessionclient/party/party_client.go) | [PublicCreatePartyShort](../../services-api/pkg/service/session/party.go) | [PublicCreatePartyShort](../../samples/cli/cmd/session/party/publicCreateParty.go) |
 | `/session/v1/public/namespaces/{namespace}/users/me/parties` | GET | PublicQueryMyPartiesShort | [PublicQueryMyPartiesShort](../../session-sdk/pkg/sessionclient/party/party_client.go) | [PublicQueryMyPartiesShort](../../services-api/pkg/service/session/party.go) | [PublicQueryMyPartiesShort](../../samples/cli/cmd/session/party/publicQueryMyParties.go) |
 
+### Player Wrapper:  [Player](../../services-api/pkg/service/session/player.go)
+| Endpoint | Method | ID | Class | Wrapper | Example |
+|---|---|---|---|---|---|
+| `/session/v1/admin/namespaces/{namespace}/users/attributes` | GET | AdminQueryPlayerAttributesShort | [AdminQueryPlayerAttributesShort](../../session-sdk/pkg/sessionclient/player/player_client.go) | [AdminQueryPlayerAttributesShort](../../services-api/pkg/service/session/player.go) | [AdminQueryPlayerAttributesShort](../../samples/cli/cmd/session/player/adminQueryPlayerAttributes.go) |
+| `/session/v1/admin/namespaces/{namespace}/users/{userId}/attributes` | GET | AdminGetPlayerAttributesShort | [AdminGetPlayerAttributesShort](../../session-sdk/pkg/sessionclient/player/player_client.go) | [AdminGetPlayerAttributesShort](../../services-api/pkg/service/session/player.go) | [AdminGetPlayerAttributesShort](../../samples/cli/cmd/session/player/adminGetPlayerAttributes.go) |
+| `/session/v1/public/namespaces/{namespace}/users/me/attributes` | GET | PublicGetPlayerAttributesShort | [PublicGetPlayerAttributesShort](../../session-sdk/pkg/sessionclient/player/player_client.go) | [PublicGetPlayerAttributesShort](../../services-api/pkg/service/session/player.go) | [PublicGetPlayerAttributesShort](../../samples/cli/cmd/session/player/publicGetPlayerAttributes.go) |
+| `/session/v1/public/namespaces/{namespace}/users/me/attributes` | POST | PublicStorePlayerAttributesShort | [PublicStorePlayerAttributesShort](../../session-sdk/pkg/sessionclient/player/player_client.go) | [PublicStorePlayerAttributesShort](../../services-api/pkg/service/session/player.go) | [PublicStorePlayerAttributesShort](../../samples/cli/cmd/session/player/publicStorePlayerAttributes.go) |
+| `/session/v1/public/namespaces/{namespace}/users/me/attributes` | DELETE | PublicDeletePlayerAttributesShort | [PublicDeletePlayerAttributesShort](../../session-sdk/pkg/sessionclient/player/player_client.go) | [PublicDeletePlayerAttributesShort](../../services-api/pkg/service/session/player.go) | [PublicDeletePlayerAttributesShort](../../samples/cli/cmd/session/player/publicDeletePlayerAttributes.go) |
+
 
 &nbsp;  
 
@@ -76,6 +85,8 @@
 | `apimodels.Pagination` | [ApimodelsPagination ](../../session-sdk/pkg/sessionclientmodels/apimodels_pagination.go) |
 | `apimodels.PartyQueryResponse` | [ApimodelsPartyQueryResponse ](../../session-sdk/pkg/sessionclientmodels/apimodels_party_query_response.go) |
 | `apimodels.PartySessionResponse` | [ApimodelsPartySessionResponse ](../../session-sdk/pkg/sessionclientmodels/apimodels_party_session_response.go) |
+| `apimodels.PlayerAttributesRequestBody` | [ApimodelsPlayerAttributesRequestBody ](../../session-sdk/pkg/sessionclientmodels/apimodels_player_attributes_request_body.go) |
+| `apimodels.PlayerAttributesResponseBody` | [ApimodelsPlayerAttributesResponseBody ](../../session-sdk/pkg/sessionclientmodels/apimodels_player_attributes_response_body.go) |
 | `apimodels.PromoteLeaderRequest` | [ApimodelsPromoteLeaderRequest ](../../session-sdk/pkg/sessionclientmodels/apimodels_promote_leader_request.go) |
 | `apimodels.PublicConfiguration` | [ApimodelsPublicConfiguration ](../../session-sdk/pkg/sessionclientmodels/apimodels_public_configuration.go) |
 | `apimodels.RequestMember` | [ApimodelsRequestMember ](../../session-sdk/pkg/sessionclientmodels/apimodels_request_member.go) |
@@ -88,4 +99,5 @@
 | `models.GameServer` | [ModelsGameServer ](../../session-sdk/pkg/sessionclientmodels/models_game_server.go) |
 | `models.PartyMembers` | [ModelsPartyMembers ](../../session-sdk/pkg/sessionclientmodels/models_party_members.go) |
 | `models.Team` | [ModelsTeam ](../../session-sdk/pkg/sessionclientmodels/models_team.go) |
+| `models.UserPlatformInfo` | [ModelsUserPlatformInfo ](../../session-sdk/pkg/sessionclientmodels/models_user_platform_info.go) |
 | `response.Error` | [ResponseError ](../../session-sdk/pkg/sessionclientmodels/response_error.go) |

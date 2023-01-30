@@ -39,10 +39,14 @@ type ClientService interface {
 	DeleteMemberRoleAdminV1Short(params *DeleteMemberRoleAdminV1Params, authInfo runtime.ClientAuthInfoWriter) (*DeleteMemberRoleAdminV1NoContent, error)
 	DeleteMemberRolePublicV1(params *DeleteMemberRolePublicV1Params, authInfo runtime.ClientAuthInfoWriter) (*DeleteMemberRolePublicV1NoContent, *DeleteMemberRolePublicV1BadRequest, *DeleteMemberRolePublicV1Unauthorized, *DeleteMemberRolePublicV1Forbidden, *DeleteMemberRolePublicV1NotFound, *DeleteMemberRolePublicV1UnprocessableEntity, *DeleteMemberRolePublicV1InternalServerError, error)
 	DeleteMemberRolePublicV1Short(params *DeleteMemberRolePublicV1Params, authInfo runtime.ClientAuthInfoWriter) (*DeleteMemberRolePublicV1NoContent, error)
+	DeleteMemberRolePublicV2(params *DeleteMemberRolePublicV2Params, authInfo runtime.ClientAuthInfoWriter) (*DeleteMemberRolePublicV2NoContent, *DeleteMemberRolePublicV2BadRequest, *DeleteMemberRolePublicV2Unauthorized, *DeleteMemberRolePublicV2Forbidden, *DeleteMemberRolePublicV2NotFound, *DeleteMemberRolePublicV2UnprocessableEntity, *DeleteMemberRolePublicV2InternalServerError, error)
+	DeleteMemberRolePublicV2Short(params *DeleteMemberRolePublicV2Params, authInfo runtime.ClientAuthInfoWriter) (*DeleteMemberRolePublicV2NoContent, error)
 	GetMemberRolesListAdminV1(params *GetMemberRolesListAdminV1Params, authInfo runtime.ClientAuthInfoWriter) (*GetMemberRolesListAdminV1OK, *GetMemberRolesListAdminV1BadRequest, *GetMemberRolesListAdminV1Unauthorized, *GetMemberRolesListAdminV1Forbidden, *GetMemberRolesListAdminV1InternalServerError, error)
 	GetMemberRolesListAdminV1Short(params *GetMemberRolesListAdminV1Params, authInfo runtime.ClientAuthInfoWriter) (*GetMemberRolesListAdminV1OK, error)
 	GetMemberRolesListPublicV1(params *GetMemberRolesListPublicV1Params, authInfo runtime.ClientAuthInfoWriter) (*GetMemberRolesListPublicV1OK, *GetMemberRolesListPublicV1BadRequest, *GetMemberRolesListPublicV1Unauthorized, *GetMemberRolesListPublicV1Forbidden, *GetMemberRolesListPublicV1InternalServerError, error)
 	GetMemberRolesListPublicV1Short(params *GetMemberRolesListPublicV1Params, authInfo runtime.ClientAuthInfoWriter) (*GetMemberRolesListPublicV1OK, error)
+	GetMemberRolesListPublicV2(params *GetMemberRolesListPublicV2Params, authInfo runtime.ClientAuthInfoWriter) (*GetMemberRolesListPublicV2OK, *GetMemberRolesListPublicV2BadRequest, *GetMemberRolesListPublicV2Unauthorized, *GetMemberRolesListPublicV2Forbidden, *GetMemberRolesListPublicV2InternalServerError, error)
+	GetMemberRolesListPublicV2Short(params *GetMemberRolesListPublicV2Params, authInfo runtime.ClientAuthInfoWriter) (*GetMemberRolesListPublicV2OK, error)
 	GetSingleMemberRoleAdminV1(params *GetSingleMemberRoleAdminV1Params, authInfo runtime.ClientAuthInfoWriter) (*GetSingleMemberRoleAdminV1OK, *GetSingleMemberRoleAdminV1BadRequest, *GetSingleMemberRoleAdminV1Unauthorized, *GetSingleMemberRoleAdminV1Forbidden, *GetSingleMemberRoleAdminV1NotFound, *GetSingleMemberRoleAdminV1InternalServerError, error)
 	GetSingleMemberRoleAdminV1Short(params *GetSingleMemberRoleAdminV1Params, authInfo runtime.ClientAuthInfoWriter) (*GetSingleMemberRoleAdminV1OK, error)
 	UpdateMemberRoleAdminV1(params *UpdateMemberRoleAdminV1Params, authInfo runtime.ClientAuthInfoWriter) (*UpdateMemberRoleAdminV1OK, *UpdateMemberRoleAdminV1BadRequest, *UpdateMemberRoleAdminV1Unauthorized, *UpdateMemberRoleAdminV1Forbidden, *UpdateMemberRoleAdminV1NotFound, *UpdateMemberRoleAdminV1InternalServerError, error)
@@ -51,6 +55,8 @@ type ClientService interface {
 	UpdateMemberRolePermissionAdminV1Short(params *UpdateMemberRolePermissionAdminV1Params, authInfo runtime.ClientAuthInfoWriter) (*UpdateMemberRolePermissionAdminV1OK, error)
 	UpdateMemberRolePublicV1(params *UpdateMemberRolePublicV1Params, authInfo runtime.ClientAuthInfoWriter) (*UpdateMemberRolePublicV1OK, *UpdateMemberRolePublicV1BadRequest, *UpdateMemberRolePublicV1Unauthorized, *UpdateMemberRolePublicV1Forbidden, *UpdateMemberRolePublicV1NotFound, *UpdateMemberRolePublicV1InternalServerError, error)
 	UpdateMemberRolePublicV1Short(params *UpdateMemberRolePublicV1Params, authInfo runtime.ClientAuthInfoWriter) (*UpdateMemberRolePublicV1OK, error)
+	UpdateMemberRolePublicV2(params *UpdateMemberRolePublicV2Params, authInfo runtime.ClientAuthInfoWriter) (*UpdateMemberRolePublicV2OK, *UpdateMemberRolePublicV2BadRequest, *UpdateMemberRolePublicV2Unauthorized, *UpdateMemberRolePublicV2Forbidden, *UpdateMemberRolePublicV2NotFound, *UpdateMemberRolePublicV2InternalServerError, error)
+	UpdateMemberRolePublicV2Short(params *UpdateMemberRolePublicV2Params, authInfo runtime.ClientAuthInfoWriter) (*UpdateMemberRolePublicV2OK, error)
 
 	SetTransport(transport runtime.ClientTransport)
 }
@@ -439,6 +445,134 @@ func (a *Client) DeleteMemberRolePublicV1Short(params *DeleteMemberRolePublicV1P
 }
 
 /*
+Deprecated: Use DeleteMemberRolePublicV2Short instead.
+
+  DeleteMemberRolePublicV2 removes role from group member
+
+  Required Member Role Permission: &#34;GROUP:ROLE [UPDATE]&#34;&lt;/p&gt;
+			&lt;p&gt;This endpoint is used to remove role from group member&lt;/p&gt;
+			&lt;p&gt;Action Code: 73204&lt;/p&gt;
+*/
+func (a *Client) DeleteMemberRolePublicV2(params *DeleteMemberRolePublicV2Params, authInfo runtime.ClientAuthInfoWriter) (*DeleteMemberRolePublicV2NoContent, *DeleteMemberRolePublicV2BadRequest, *DeleteMemberRolePublicV2Unauthorized, *DeleteMemberRolePublicV2Forbidden, *DeleteMemberRolePublicV2NotFound, *DeleteMemberRolePublicV2UnprocessableEntity, *DeleteMemberRolePublicV2InternalServerError, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewDeleteMemberRolePublicV2Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "deleteMemberRolePublicV2",
+		Method:             "DELETE",
+		PathPattern:        "/group/v2/public/namespaces/{namespace}/roles/{memberRoleId}/groups/{groupId}/members",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &DeleteMemberRolePublicV2Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, nil, nil, nil, nil, nil, nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *DeleteMemberRolePublicV2NoContent:
+		return v, nil, nil, nil, nil, nil, nil, nil
+
+	case *DeleteMemberRolePublicV2BadRequest:
+		return nil, v, nil, nil, nil, nil, nil, nil
+
+	case *DeleteMemberRolePublicV2Unauthorized:
+		return nil, nil, v, nil, nil, nil, nil, nil
+
+	case *DeleteMemberRolePublicV2Forbidden:
+		return nil, nil, nil, v, nil, nil, nil, nil
+
+	case *DeleteMemberRolePublicV2NotFound:
+		return nil, nil, nil, nil, v, nil, nil, nil
+
+	case *DeleteMemberRolePublicV2UnprocessableEntity:
+		return nil, nil, nil, nil, nil, v, nil, nil
+
+	case *DeleteMemberRolePublicV2InternalServerError:
+		return nil, nil, nil, nil, nil, nil, v, nil
+
+	default:
+		return nil, nil, nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+  DeleteMemberRolePublicV2Short removes role from group member
+
+  Required Member Role Permission: &#34;GROUP:ROLE [UPDATE]&#34;&lt;/p&gt;
+			&lt;p&gt;This endpoint is used to remove role from group member&lt;/p&gt;
+			&lt;p&gt;Action Code: 73204&lt;/p&gt;
+*/
+func (a *Client) DeleteMemberRolePublicV2Short(params *DeleteMemberRolePublicV2Params, authInfo runtime.ClientAuthInfoWriter) (*DeleteMemberRolePublicV2NoContent, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewDeleteMemberRolePublicV2Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "deleteMemberRolePublicV2",
+		Method:             "DELETE",
+		PathPattern:        "/group/v2/public/namespaces/{namespace}/roles/{memberRoleId}/groups/{groupId}/members",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &DeleteMemberRolePublicV2Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *DeleteMemberRolePublicV2NoContent:
+		return v, nil
+	case *DeleteMemberRolePublicV2BadRequest:
+		return nil, v
+	case *DeleteMemberRolePublicV2Unauthorized:
+		return nil, v
+	case *DeleteMemberRolePublicV2Forbidden:
+		return nil, v
+	case *DeleteMemberRolePublicV2NotFound:
+		return nil, v
+	case *DeleteMemberRolePublicV2UnprocessableEntity:
+		return nil, v
+	case *DeleteMemberRolePublicV2InternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
 Deprecated: Use GetMemberRolesListAdminV1Short instead.
 
   GetMemberRolesListAdminV1 gets all list of member roles
@@ -671,6 +805,124 @@ func (a *Client) GetMemberRolesListPublicV1Short(params *GetMemberRolesListPubli
 	case *GetMemberRolesListPublicV1Forbidden:
 		return nil, v
 	case *GetMemberRolesListPublicV1InternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+Deprecated: Use GetMemberRolesListPublicV2Short instead.
+
+  GetMemberRolesListPublicV2 gets all list of member roles
+
+  &lt;p&gt;This endpoint is used to get list of member roles&lt;/p&gt;
+			&lt;p&gt;Action Code: 73201&lt;/p&gt;
+
+*/
+func (a *Client) GetMemberRolesListPublicV2(params *GetMemberRolesListPublicV2Params, authInfo runtime.ClientAuthInfoWriter) (*GetMemberRolesListPublicV2OK, *GetMemberRolesListPublicV2BadRequest, *GetMemberRolesListPublicV2Unauthorized, *GetMemberRolesListPublicV2Forbidden, *GetMemberRolesListPublicV2InternalServerError, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewGetMemberRolesListPublicV2Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "getMemberRolesListPublicV2",
+		Method:             "GET",
+		PathPattern:        "/group/v2/public/namespaces/{namespace}/roles",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &GetMemberRolesListPublicV2Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, nil, nil, nil, nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *GetMemberRolesListPublicV2OK:
+		return v, nil, nil, nil, nil, nil
+
+	case *GetMemberRolesListPublicV2BadRequest:
+		return nil, v, nil, nil, nil, nil
+
+	case *GetMemberRolesListPublicV2Unauthorized:
+		return nil, nil, v, nil, nil, nil
+
+	case *GetMemberRolesListPublicV2Forbidden:
+		return nil, nil, nil, v, nil, nil
+
+	case *GetMemberRolesListPublicV2InternalServerError:
+		return nil, nil, nil, nil, v, nil
+
+	default:
+		return nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+  GetMemberRolesListPublicV2Short gets all list of member roles
+
+  &lt;p&gt;This endpoint is used to get list of member roles&lt;/p&gt;
+			&lt;p&gt;Action Code: 73201&lt;/p&gt;
+
+*/
+func (a *Client) GetMemberRolesListPublicV2Short(params *GetMemberRolesListPublicV2Params, authInfo runtime.ClientAuthInfoWriter) (*GetMemberRolesListPublicV2OK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewGetMemberRolesListPublicV2Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "getMemberRolesListPublicV2",
+		Method:             "GET",
+		PathPattern:        "/group/v2/public/namespaces/{namespace}/roles",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &GetMemberRolesListPublicV2Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *GetMemberRolesListPublicV2OK:
+		return v, nil
+	case *GetMemberRolesListPublicV2BadRequest:
+		return nil, v
+	case *GetMemberRolesListPublicV2Unauthorized:
+		return nil, v
+	case *GetMemberRolesListPublicV2Forbidden:
+		return nil, v
+	case *GetMemberRolesListPublicV2InternalServerError:
 		return nil, v
 
 	default:
@@ -1179,6 +1431,129 @@ func (a *Client) UpdateMemberRolePublicV1Short(params *UpdateMemberRolePublicV1P
 	case *UpdateMemberRolePublicV1NotFound:
 		return nil, v
 	case *UpdateMemberRolePublicV1InternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+Deprecated: Use UpdateMemberRolePublicV2Short instead.
+
+  UpdateMemberRolePublicV2 assigns role to group member
+
+  Required Member Role Permission: &#34;GROUP:ROLE [UPDATE]&lt;/p&gt;
+			&lt;p&gt;This endpoint is used to assign role to group member&lt;/p&gt;
+			&lt;p&gt;Action Code: 73204&lt;/p&gt;
+*/
+func (a *Client) UpdateMemberRolePublicV2(params *UpdateMemberRolePublicV2Params, authInfo runtime.ClientAuthInfoWriter) (*UpdateMemberRolePublicV2OK, *UpdateMemberRolePublicV2BadRequest, *UpdateMemberRolePublicV2Unauthorized, *UpdateMemberRolePublicV2Forbidden, *UpdateMemberRolePublicV2NotFound, *UpdateMemberRolePublicV2InternalServerError, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewUpdateMemberRolePublicV2Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "updateMemberRolePublicV2",
+		Method:             "POST",
+		PathPattern:        "/group/v2/public/namespaces/{namespace}/roles/{memberRoleId}/groups/{groupId}/members",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &UpdateMemberRolePublicV2Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, nil, nil, nil, nil, nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *UpdateMemberRolePublicV2OK:
+		return v, nil, nil, nil, nil, nil, nil
+
+	case *UpdateMemberRolePublicV2BadRequest:
+		return nil, v, nil, nil, nil, nil, nil
+
+	case *UpdateMemberRolePublicV2Unauthorized:
+		return nil, nil, v, nil, nil, nil, nil
+
+	case *UpdateMemberRolePublicV2Forbidden:
+		return nil, nil, nil, v, nil, nil, nil
+
+	case *UpdateMemberRolePublicV2NotFound:
+		return nil, nil, nil, nil, v, nil, nil
+
+	case *UpdateMemberRolePublicV2InternalServerError:
+		return nil, nil, nil, nil, nil, v, nil
+
+	default:
+		return nil, nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+  UpdateMemberRolePublicV2Short assigns role to group member
+
+  Required Member Role Permission: &#34;GROUP:ROLE [UPDATE]&lt;/p&gt;
+			&lt;p&gt;This endpoint is used to assign role to group member&lt;/p&gt;
+			&lt;p&gt;Action Code: 73204&lt;/p&gt;
+*/
+func (a *Client) UpdateMemberRolePublicV2Short(params *UpdateMemberRolePublicV2Params, authInfo runtime.ClientAuthInfoWriter) (*UpdateMemberRolePublicV2OK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewUpdateMemberRolePublicV2Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "updateMemberRolePublicV2",
+		Method:             "POST",
+		PathPattern:        "/group/v2/public/namespaces/{namespace}/roles/{memberRoleId}/groups/{groupId}/members",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &UpdateMemberRolePublicV2Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *UpdateMemberRolePublicV2OK:
+		return v, nil
+	case *UpdateMemberRolePublicV2BadRequest:
+		return nil, v
+	case *UpdateMemberRolePublicV2Unauthorized:
+		return nil, v
+	case *UpdateMemberRolePublicV2Forbidden:
+		return nil, v
+	case *UpdateMemberRolePublicV2NotFound:
+		return nil, v
+	case *UpdateMemberRolePublicV2InternalServerError:
 		return nil, v
 
 	default:

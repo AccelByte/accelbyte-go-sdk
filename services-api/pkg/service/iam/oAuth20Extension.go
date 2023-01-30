@@ -96,7 +96,16 @@ func (aaa *OAuth20ExtensionService) GenerateTokenByNewHeadlessAccountV3(input *o
 	if err != nil {
 		return nil, err
 	}
-	ok, err := aaa.Client.OAuth20Extension.GenerateTokenByNewHeadlessAccountV3(input, client.BearerToken(*token.AccessToken))
+	ok, badRequest, unauthorized, notFound, err := aaa.Client.OAuth20Extension.GenerateTokenByNewHeadlessAccountV3(input, client.BearerToken(*token.AccessToken))
+	if badRequest != nil {
+		return nil, badRequest
+	}
+	if unauthorized != nil {
+		return nil, unauthorized
+	}
+	if notFound != nil {
+		return nil, notFound
+	}
 	if err != nil {
 		return nil, err
 	}

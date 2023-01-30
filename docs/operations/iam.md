@@ -665,5 +665,6 @@
 | `oauthmodel.TokenResponseV3` | [OauthmodelTokenResponseV3 ](../../iam-sdk/pkg/iamclientmodels/oauthmodel_token_response_v3.go) |
 | `oauthmodel.TokenThirdPartyResponse` | [OauthmodelTokenThirdPartyResponse ](../../iam-sdk/pkg/iamclientmodels/oauthmodel_token_third_party_response.go) |
 | `oauthmodel.TokenWithDeviceCookieResponseV3` | [OauthmodelTokenWithDeviceCookieResponseV3 ](../../iam-sdk/pkg/iamclientmodels/oauthmodel_token_with_device_cookie_response_v3.go) |
+| `oauthmodel.UserBan` | [OauthmodelUserBan ](../../iam-sdk/pkg/iamclientmodels/oauthmodel_user_ban.go) |
 | `rest.ErrorResponse` | [RestErrorResponse ](../../iam-sdk/pkg/iamclientmodels/rest_error_response.go) |
 | `rest.ErrorResponseWithConflictedUserPlatformAccounts` | [RestErrorResponseWithConflictedUserPlatformAccounts ](../../iam-sdk/pkg/iamclientmodels/rest_error_response_with_conflicted_user_platform_accounts.go) |

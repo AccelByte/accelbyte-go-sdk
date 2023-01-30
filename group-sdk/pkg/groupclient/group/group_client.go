@@ -35,28 +35,46 @@ type Client struct {
 type ClientService interface {
 	CreateNewGroupPublicV1(params *CreateNewGroupPublicV1Params, authInfo runtime.ClientAuthInfoWriter) (*CreateNewGroupPublicV1Created, *CreateNewGroupPublicV1BadRequest, *CreateNewGroupPublicV1Unauthorized, *CreateNewGroupPublicV1Forbidden, *CreateNewGroupPublicV1Conflict, *CreateNewGroupPublicV1InternalServerError, error)
 	CreateNewGroupPublicV1Short(params *CreateNewGroupPublicV1Params, authInfo runtime.ClientAuthInfoWriter) (*CreateNewGroupPublicV1Created, error)
+	CreateNewGroupPublicV2(params *CreateNewGroupPublicV2Params, authInfo runtime.ClientAuthInfoWriter) (*CreateNewGroupPublicV2Created, *CreateNewGroupPublicV2BadRequest, *CreateNewGroupPublicV2Unauthorized, *CreateNewGroupPublicV2Forbidden, *CreateNewGroupPublicV2Conflict, *CreateNewGroupPublicV2InternalServerError, error)
+	CreateNewGroupPublicV2Short(params *CreateNewGroupPublicV2Params, authInfo runtime.ClientAuthInfoWriter) (*CreateNewGroupPublicV2Created, error)
 	DeleteGroupAdminV1(params *DeleteGroupAdminV1Params, authInfo runtime.ClientAuthInfoWriter) (*DeleteGroupAdminV1NoContent, *DeleteGroupAdminV1BadRequest, *DeleteGroupAdminV1Unauthorized, *DeleteGroupAdminV1Forbidden, *DeleteGroupAdminV1NotFound, *DeleteGroupAdminV1InternalServerError, error)
 	DeleteGroupAdminV1Short(params *DeleteGroupAdminV1Params, authInfo runtime.ClientAuthInfoWriter) (*DeleteGroupAdminV1NoContent, error)
 	DeleteGroupPredefinedRulePublicV1(params *DeleteGroupPredefinedRulePublicV1Params, authInfo runtime.ClientAuthInfoWriter) (*DeleteGroupPredefinedRulePublicV1NoContent, *DeleteGroupPredefinedRulePublicV1BadRequest, *DeleteGroupPredefinedRulePublicV1Unauthorized, *DeleteGroupPredefinedRulePublicV1Forbidden, *DeleteGroupPredefinedRulePublicV1NotFound, *DeleteGroupPredefinedRulePublicV1InternalServerError, error)
 	DeleteGroupPredefinedRulePublicV1Short(params *DeleteGroupPredefinedRulePublicV1Params, authInfo runtime.ClientAuthInfoWriter) (*DeleteGroupPredefinedRulePublicV1NoContent, error)
+	DeleteGroupPredefinedRulePublicV2(params *DeleteGroupPredefinedRulePublicV2Params, authInfo runtime.ClientAuthInfoWriter) (*DeleteGroupPredefinedRulePublicV2NoContent, *DeleteGroupPredefinedRulePublicV2BadRequest, *DeleteGroupPredefinedRulePublicV2Unauthorized, *DeleteGroupPredefinedRulePublicV2Forbidden, *DeleteGroupPredefinedRulePublicV2NotFound, *DeleteGroupPredefinedRulePublicV2InternalServerError, error)
+	DeleteGroupPredefinedRulePublicV2Short(params *DeleteGroupPredefinedRulePublicV2Params, authInfo runtime.ClientAuthInfoWriter) (*DeleteGroupPredefinedRulePublicV2NoContent, error)
 	DeleteGroupPublicV1(params *DeleteGroupPublicV1Params, authInfo runtime.ClientAuthInfoWriter) (*DeleteGroupPublicV1NoContent, *DeleteGroupPublicV1BadRequest, *DeleteGroupPublicV1Unauthorized, *DeleteGroupPublicV1Forbidden, *DeleteGroupPublicV1NotFound, *DeleteGroupPublicV1InternalServerError, error)
 	DeleteGroupPublicV1Short(params *DeleteGroupPublicV1Params, authInfo runtime.ClientAuthInfoWriter) (*DeleteGroupPublicV1NoContent, error)
+	DeleteGroupPublicV2(params *DeleteGroupPublicV2Params, authInfo runtime.ClientAuthInfoWriter) (*DeleteGroupPublicV2NoContent, *DeleteGroupPublicV2BadRequest, *DeleteGroupPublicV2Unauthorized, *DeleteGroupPublicV2Forbidden, *DeleteGroupPublicV2NotFound, *DeleteGroupPublicV2InternalServerError, error)
+	DeleteGroupPublicV2Short(params *DeleteGroupPublicV2Params, authInfo runtime.ClientAuthInfoWriter) (*DeleteGroupPublicV2NoContent, error)
 	GetGroupListAdminV1(params *GetGroupListAdminV1Params, authInfo runtime.ClientAuthInfoWriter) (*GetGroupListAdminV1OK, *GetGroupListAdminV1BadRequest, *GetGroupListAdminV1Unauthorized, *GetGroupListAdminV1Forbidden, *GetGroupListAdminV1InternalServerError, error)
 	GetGroupListAdminV1Short(params *GetGroupListAdminV1Params, authInfo runtime.ClientAuthInfoWriter) (*GetGroupListAdminV1OK, error)
 	GetGroupListPublicV1(params *GetGroupListPublicV1Params, authInfo runtime.ClientAuthInfoWriter) (*GetGroupListPublicV1OK, *GetGroupListPublicV1BadRequest, *GetGroupListPublicV1Unauthorized, *GetGroupListPublicV1Forbidden, *GetGroupListPublicV1InternalServerError, error)
 	GetGroupListPublicV1Short(params *GetGroupListPublicV1Params, authInfo runtime.ClientAuthInfoWriter) (*GetGroupListPublicV1OK, error)
+	GetListGroupByIDsV2(params *GetListGroupByIDsV2Params, authInfo runtime.ClientAuthInfoWriter) (*GetListGroupByIDsV2OK, *GetListGroupByIDsV2BadRequest, *GetListGroupByIDsV2Unauthorized, *GetListGroupByIDsV2Forbidden, *GetListGroupByIDsV2InternalServerError, error)
+	GetListGroupByIDsV2Short(params *GetListGroupByIDsV2Params, authInfo runtime.ClientAuthInfoWriter) (*GetListGroupByIDsV2OK, error)
 	GetSingleGroupAdminV1(params *GetSingleGroupAdminV1Params, authInfo runtime.ClientAuthInfoWriter) (*GetSingleGroupAdminV1OK, *GetSingleGroupAdminV1BadRequest, *GetSingleGroupAdminV1Unauthorized, *GetSingleGroupAdminV1Forbidden, *GetSingleGroupAdminV1NotFound, *GetSingleGroupAdminV1InternalServerError, error)
 	GetSingleGroupAdminV1Short(params *GetSingleGroupAdminV1Params, authInfo runtime.ClientAuthInfoWriter) (*GetSingleGroupAdminV1OK, error)
 	GetSingleGroupPublicV1(params *GetSingleGroupPublicV1Params, authInfo runtime.ClientAuthInfoWriter) (*GetSingleGroupPublicV1OK, *GetSingleGroupPublicV1BadRequest, *GetSingleGroupPublicV1Unauthorized, *GetSingleGroupPublicV1Forbidden, *GetSingleGroupPublicV1NotFound, *GetSingleGroupPublicV1InternalServerError, error)
 	GetSingleGroupPublicV1Short(params *GetSingleGroupPublicV1Params, authInfo runtime.ClientAuthInfoWriter) (*GetSingleGroupPublicV1OK, error)
 	UpdateGroupCustomAttributesPublicV1(params *UpdateGroupCustomAttributesPublicV1Params, authInfo runtime.ClientAuthInfoWriter) (*UpdateGroupCustomAttributesPublicV1OK, *UpdateGroupCustomAttributesPublicV1BadRequest, *UpdateGroupCustomAttributesPublicV1Unauthorized, *UpdateGroupCustomAttributesPublicV1Forbidden, *UpdateGroupCustomAttributesPublicV1NotFound, *UpdateGroupCustomAttributesPublicV1InternalServerError, error)
 	UpdateGroupCustomAttributesPublicV1Short(params *UpdateGroupCustomAttributesPublicV1Params, authInfo runtime.ClientAuthInfoWriter) (*UpdateGroupCustomAttributesPublicV1OK, error)
+	UpdateGroupCustomAttributesPublicV2(params *UpdateGroupCustomAttributesPublicV2Params, authInfo runtime.ClientAuthInfoWriter) (*UpdateGroupCustomAttributesPublicV2OK, *UpdateGroupCustomAttributesPublicV2BadRequest, *UpdateGroupCustomAttributesPublicV2Unauthorized, *UpdateGroupCustomAttributesPublicV2Forbidden, *UpdateGroupCustomAttributesPublicV2NotFound, *UpdateGroupCustomAttributesPublicV2InternalServerError, error)
+	UpdateGroupCustomAttributesPublicV2Short(params *UpdateGroupCustomAttributesPublicV2Params, authInfo runtime.ClientAuthInfoWriter) (*UpdateGroupCustomAttributesPublicV2OK, error)
 	UpdateGroupCustomRulePublicV1(params *UpdateGroupCustomRulePublicV1Params, authInfo runtime.ClientAuthInfoWriter) (*UpdateGroupCustomRulePublicV1OK, *UpdateGroupCustomRulePublicV1BadRequest, *UpdateGroupCustomRulePublicV1Unauthorized, *UpdateGroupCustomRulePublicV1Forbidden, *UpdateGroupCustomRulePublicV1NotFound, *UpdateGroupCustomRulePublicV1InternalServerError, error)
 	UpdateGroupCustomRulePublicV1Short(params *UpdateGroupCustomRulePublicV1Params, authInfo runtime.ClientAuthInfoWriter) (*UpdateGroupCustomRulePublicV1OK, error)
+	UpdateGroupCustomRulePublicV2(params *UpdateGroupCustomRulePublicV2Params, authInfo runtime.ClientAuthInfoWriter) (*UpdateGroupCustomRulePublicV2OK, *UpdateGroupCustomRulePublicV2BadRequest, *UpdateGroupCustomRulePublicV2Unauthorized, *UpdateGroupCustomRulePublicV2Forbidden, *UpdateGroupCustomRulePublicV2NotFound, *UpdateGroupCustomRulePublicV2InternalServerError, error)
+	UpdateGroupCustomRulePublicV2Short(params *UpdateGroupCustomRulePublicV2Params, authInfo runtime.ClientAuthInfoWriter) (*UpdateGroupCustomRulePublicV2OK, error)
 	UpdateGroupPredefinedRulePublicV1(params *UpdateGroupPredefinedRulePublicV1Params, authInfo runtime.ClientAuthInfoWriter) (*UpdateGroupPredefinedRulePublicV1OK, *UpdateGroupPredefinedRulePublicV1BadRequest, *UpdateGroupPredefinedRulePublicV1Unauthorized, *UpdateGroupPredefinedRulePublicV1Forbidden, *UpdateGroupPredefinedRulePublicV1NotFound, *UpdateGroupPredefinedRulePublicV1InternalServerError, error)
 	UpdateGroupPredefinedRulePublicV1Short(params *UpdateGroupPredefinedRulePublicV1Params, authInfo runtime.ClientAuthInfoWriter) (*UpdateGroupPredefinedRulePublicV1OK, error)
+	UpdateGroupPredefinedRulePublicV2(params *UpdateGroupPredefinedRulePublicV2Params, authInfo runtime.ClientAuthInfoWriter) (*UpdateGroupPredefinedRulePublicV2OK, *UpdateGroupPredefinedRulePublicV2BadRequest, *UpdateGroupPredefinedRulePublicV2Unauthorized, *UpdateGroupPredefinedRulePublicV2Forbidden, *UpdateGroupPredefinedRulePublicV2NotFound, *UpdateGroupPredefinedRulePublicV2InternalServerError, error)
+	UpdateGroupPredefinedRulePublicV2Short(params *UpdateGroupPredefinedRulePublicV2Params, authInfo runtime.ClientAuthInfoWriter) (*UpdateGroupPredefinedRulePublicV2OK, error)
 	UpdatePatchSingleGroupPublicV1(params *UpdatePatchSingleGroupPublicV1Params, authInfo runtime.ClientAuthInfoWriter) (*UpdatePatchSingleGroupPublicV1OK, *UpdatePatchSingleGroupPublicV1BadRequest, *UpdatePatchSingleGroupPublicV1Unauthorized, *UpdatePatchSingleGroupPublicV1Forbidden, *UpdatePatchSingleGroupPublicV1NotFound, *UpdatePatchSingleGroupPublicV1InternalServerError, error)
 	UpdatePatchSingleGroupPublicV1Short(params *UpdatePatchSingleGroupPublicV1Params, authInfo runtime.ClientAuthInfoWriter) (*UpdatePatchSingleGroupPublicV1OK, error)
+	UpdatePatchSingleGroupPublicV2(params *UpdatePatchSingleGroupPublicV2Params, authInfo runtime.ClientAuthInfoWriter) (*UpdatePatchSingleGroupPublicV2OK, *UpdatePatchSingleGroupPublicV2BadRequest, *UpdatePatchSingleGroupPublicV2Unauthorized, *UpdatePatchSingleGroupPublicV2Forbidden, *UpdatePatchSingleGroupPublicV2NotFound, *UpdatePatchSingleGroupPublicV2InternalServerError, error)
+	UpdatePatchSingleGroupPublicV2Short(params *UpdatePatchSingleGroupPublicV2Params, authInfo runtime.ClientAuthInfoWriter) (*UpdatePatchSingleGroupPublicV2OK, error)
+	UpdatePutSingleGroupPublicV2(params *UpdatePutSingleGroupPublicV2Params, authInfo runtime.ClientAuthInfoWriter) (*UpdatePutSingleGroupPublicV2OK, *UpdatePutSingleGroupPublicV2BadRequest, *UpdatePutSingleGroupPublicV2Unauthorized, *UpdatePutSingleGroupPublicV2Forbidden, *UpdatePutSingleGroupPublicV2NotFound, *UpdatePutSingleGroupPublicV2InternalServerError, error)
+	UpdatePutSingleGroupPublicV2Short(params *UpdatePutSingleGroupPublicV2Params, authInfo runtime.ClientAuthInfoWriter) (*UpdatePutSingleGroupPublicV2OK, error)
 	UpdateSingleGroupV1(params *UpdateSingleGroupV1Params, authInfo runtime.ClientAuthInfoWriter) (*UpdateSingleGroupV1OK, *UpdateSingleGroupV1BadRequest, *UpdateSingleGroupV1Unauthorized, *UpdateSingleGroupV1Forbidden, *UpdateSingleGroupV1NotFound, *UpdateSingleGroupV1InternalServerError, error)
 	UpdateSingleGroupV1Short(params *UpdateSingleGroupV1Params, authInfo runtime.ClientAuthInfoWriter) (*UpdateSingleGroupV1OK, error)
 
@@ -207,6 +225,157 @@ func (a *Client) CreateNewGroupPublicV1Short(params *CreateNewGroupPublicV1Param
 	case *CreateNewGroupPublicV1Conflict:
 		return nil, v
 	case *CreateNewGroupPublicV1InternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+Deprecated: Use CreateNewGroupPublicV2Short instead.
+
+  CreateNewGroupPublicV2 creates new group
+
+  &lt;p&gt;Required valid user authentication &lt;/p&gt;
+			&lt;p&gt;This endpoint is used to create new group&lt;/p&gt;
+			&lt;p&gt;There are some fields that needs to be fulfilled&lt;/p&gt;
+			&lt;ul&gt;
+				&lt;li&gt;&lt;b&gt;groupDescription&lt;/b&gt;: the description of the group (optional)&lt;/li&gt;
+				&lt;li&gt;&lt;b&gt;groupIcon&lt;/b&gt;: group icon URL link (optional)&lt;/li&gt;
+				&lt;li&gt;&lt;b&gt;groupName&lt;/b&gt;: name of the group&lt;/li&gt;
+				&lt;li&gt;&lt;b&gt;groupRegion&lt;/b&gt;: region of the group&lt;/li&gt;
+				&lt;li&gt;&lt;b&gt;groupRules&lt;/b&gt;: rules for specific group. It consists of groupCustomRule that can be used to save custom rule, and groupPredefinedRules that has similar usage with configuration, but this rule only works in specific group&lt;/li&gt;
+				&lt;li&gt;&lt;b&gt;allowedAction&lt;/b&gt;: available action in group service. It consist of joinGroup and inviteGroup&lt;/li&gt;
+				&lt;li&gt;&lt;b&gt;ruleAttribute&lt;/b&gt;: attribute of the player that needs to be checked&lt;/li&gt;
+				&lt;li&gt;&lt;b&gt;ruleCriteria&lt;/b&gt;: criteria of the value. The value will be in enum of EQUAL, MINIMUM, MAXIMUM&lt;/li&gt;
+				&lt;li&gt;&lt;b&gt;ruleValue&lt;/b&gt;: value that needs to be checked&lt;/li&gt;
+				&lt;li&gt;&lt;b&gt;customAttributes&lt;/b&gt;: additional custom group attributes (optional)&lt;/li&gt;
+			&lt;/ul&gt;
+			&lt;p&gt;Action Code: 73304&lt;/p&gt;
+
+*/
+func (a *Client) CreateNewGroupPublicV2(params *CreateNewGroupPublicV2Params, authInfo runtime.ClientAuthInfoWriter) (*CreateNewGroupPublicV2Created, *CreateNewGroupPublicV2BadRequest, *CreateNewGroupPublicV2Unauthorized, *CreateNewGroupPublicV2Forbidden, *CreateNewGroupPublicV2Conflict, *CreateNewGroupPublicV2InternalServerError, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewCreateNewGroupPublicV2Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "createNewGroupPublicV2",
+		Method:             "POST",
+		PathPattern:        "/group/v2/public/namespaces/{namespace}/groups",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &CreateNewGroupPublicV2Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, nil, nil, nil, nil, nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *CreateNewGroupPublicV2Created:
+		return v, nil, nil, nil, nil, nil, nil
+
+	case *CreateNewGroupPublicV2BadRequest:
+		return nil, v, nil, nil, nil, nil, nil
+
+	case *CreateNewGroupPublicV2Unauthorized:
+		return nil, nil, v, nil, nil, nil, nil
+
+	case *CreateNewGroupPublicV2Forbidden:
+		return nil, nil, nil, v, nil, nil, nil
+
+	case *CreateNewGroupPublicV2Conflict:
+		return nil, nil, nil, nil, v, nil, nil
+
+	case *CreateNewGroupPublicV2InternalServerError:
+		return nil, nil, nil, nil, nil, v, nil
+
+	default:
+		return nil, nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+  CreateNewGroupPublicV2Short creates new group
+
+  &lt;p&gt;Required valid user authentication &lt;/p&gt;
+			&lt;p&gt;This endpoint is used to create new group&lt;/p&gt;
+			&lt;p&gt;There are some fields that needs to be fulfilled&lt;/p&gt;
+			&lt;ul&gt;
+				&lt;li&gt;&lt;b&gt;groupDescription&lt;/b&gt;: the description of the group (optional)&lt;/li&gt;
+				&lt;li&gt;&lt;b&gt;groupIcon&lt;/b&gt;: group icon URL link (optional)&lt;/li&gt;
+				&lt;li&gt;&lt;b&gt;groupName&lt;/b&gt;: name of the group&lt;/li&gt;
+				&lt;li&gt;&lt;b&gt;groupRegion&lt;/b&gt;: region of the group&lt;/li&gt;
+				&lt;li&gt;&lt;b&gt;groupRules&lt;/b&gt;: rules for specific group. It consists of groupCustomRule that can be used to save custom rule, and groupPredefinedRules that has similar usage with configuration, but this rule only works in specific group&lt;/li&gt;
+				&lt;li&gt;&lt;b&gt;allowedAction&lt;/b&gt;: available action in group service. It consist of joinGroup and inviteGroup&lt;/li&gt;
+				&lt;li&gt;&lt;b&gt;ruleAttribute&lt;/b&gt;: attribute of the player that needs to be checked&lt;/li&gt;
+				&lt;li&gt;&lt;b&gt;ruleCriteria&lt;/b&gt;: criteria of the value. The value will be in enum of EQUAL, MINIMUM, MAXIMUM&lt;/li&gt;
+				&lt;li&gt;&lt;b&gt;ruleValue&lt;/b&gt;: value that needs to be checked&lt;/li&gt;
+				&lt;li&gt;&lt;b&gt;customAttributes&lt;/b&gt;: additional custom group attributes (optional)&lt;/li&gt;
+			&lt;/ul&gt;
+			&lt;p&gt;Action Code: 73304&lt;/p&gt;
+
+*/
+func (a *Client) CreateNewGroupPublicV2Short(params *CreateNewGroupPublicV2Params, authInfo runtime.ClientAuthInfoWriter) (*CreateNewGroupPublicV2Created, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewCreateNewGroupPublicV2Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "createNewGroupPublicV2",
+		Method:             "POST",
+		PathPattern:        "/group/v2/public/namespaces/{namespace}/groups",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &CreateNewGroupPublicV2Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *CreateNewGroupPublicV2Created:
+		return v, nil
+	case *CreateNewGroupPublicV2BadRequest:
+		return nil, v
+	case *CreateNewGroupPublicV2Unauthorized:
+		return nil, v
+	case *CreateNewGroupPublicV2Forbidden:
+		return nil, v
+	case *CreateNewGroupPublicV2Conflict:
+		return nil, v
+	case *CreateNewGroupPublicV2InternalServerError:
 		return nil, v
 
 	default:
@@ -471,6 +640,137 @@ func (a *Client) DeleteGroupPredefinedRulePublicV1Short(params *DeleteGroupPrede
 }
 
 /*
+Deprecated: Use DeleteGroupPredefinedRulePublicV2Short instead.
+
+  DeleteGroupPredefinedRulePublicV2 deletes group predefined rule
+
+  &lt;p&gt;Required valid user authentication &lt;/p&gt;
+			&lt;p&gt;Required Member Role Permission: &#34;GROUP [UPDATE]&#34;&lt;/p&gt;
+			&lt;p&gt;Delete group predefined rule based on the allowed action. This endpoint will check the group ID of the user based on the access token
+			and compare it with the group ID in path parameter. It will also check the member role of the user based on
+			the access token&lt;/p&gt;
+			&lt;p&gt;Action Code: 73309&lt;/p&gt;
+
+*/
+func (a *Client) DeleteGroupPredefinedRulePublicV2(params *DeleteGroupPredefinedRulePublicV2Params, authInfo runtime.ClientAuthInfoWriter) (*DeleteGroupPredefinedRulePublicV2NoContent, *DeleteGroupPredefinedRulePublicV2BadRequest, *DeleteGroupPredefinedRulePublicV2Unauthorized, *DeleteGroupPredefinedRulePublicV2Forbidden, *DeleteGroupPredefinedRulePublicV2NotFound, *DeleteGroupPredefinedRulePublicV2InternalServerError, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewDeleteGroupPredefinedRulePublicV2Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "deleteGroupPredefinedRulePublicV2",
+		Method:             "DELETE",
+		PathPattern:        "/group/v2/public/namespaces/{namespace}/groups/{groupId}/rules/defined/{allowedAction}",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &DeleteGroupPredefinedRulePublicV2Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, nil, nil, nil, nil, nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *DeleteGroupPredefinedRulePublicV2NoContent:
+		return v, nil, nil, nil, nil, nil, nil
+
+	case *DeleteGroupPredefinedRulePublicV2BadRequest:
+		return nil, v, nil, nil, nil, nil, nil
+
+	case *DeleteGroupPredefinedRulePublicV2Unauthorized:
+		return nil, nil, v, nil, nil, nil, nil
+
+	case *DeleteGroupPredefinedRulePublicV2Forbidden:
+		return nil, nil, nil, v, nil, nil, nil
+
+	case *DeleteGroupPredefinedRulePublicV2NotFound:
+		return nil, nil, nil, nil, v, nil, nil
+
+	case *DeleteGroupPredefinedRulePublicV2InternalServerError:
+		return nil, nil, nil, nil, nil, v, nil
+
+	default:
+		return nil, nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+  DeleteGroupPredefinedRulePublicV2Short deletes group predefined rule
+
+  &lt;p&gt;Required valid user authentication &lt;/p&gt;
+			&lt;p&gt;Required Member Role Permission: &#34;GROUP [UPDATE]&#34;&lt;/p&gt;
+			&lt;p&gt;Delete group predefined rule based on the allowed action. This endpoint will check the group ID of the user based on the access token
+			and compare it with the group ID in path parameter. It will also check the member role of the user based on
+			the access token&lt;/p&gt;
+			&lt;p&gt;Action Code: 73309&lt;/p&gt;
+
+*/
+func (a *Client) DeleteGroupPredefinedRulePublicV2Short(params *DeleteGroupPredefinedRulePublicV2Params, authInfo runtime.ClientAuthInfoWriter) (*DeleteGroupPredefinedRulePublicV2NoContent, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewDeleteGroupPredefinedRulePublicV2Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "deleteGroupPredefinedRulePublicV2",
+		Method:             "DELETE",
+		PathPattern:        "/group/v2/public/namespaces/{namespace}/groups/{groupId}/rules/defined/{allowedAction}",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &DeleteGroupPredefinedRulePublicV2Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *DeleteGroupPredefinedRulePublicV2NoContent:
+		return v, nil
+	case *DeleteGroupPredefinedRulePublicV2BadRequest:
+		return nil, v
+	case *DeleteGroupPredefinedRulePublicV2Unauthorized:
+		return nil, v
+	case *DeleteGroupPredefinedRulePublicV2Forbidden:
+		return nil, v
+	case *DeleteGroupPredefinedRulePublicV2NotFound:
+		return nil, v
+	case *DeleteGroupPredefinedRulePublicV2InternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
 Deprecated: Use DeleteGroupPublicV1Short instead.
 
   DeleteGroupPublicV1 deletes existing group
@@ -594,6 +894,137 @@ func (a *Client) DeleteGroupPublicV1Short(params *DeleteGroupPublicV1Params, aut
 	case *DeleteGroupPublicV1NotFound:
 		return nil, v
 	case *DeleteGroupPublicV1InternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+Deprecated: Use DeleteGroupPublicV2Short instead.
+
+  DeleteGroupPublicV2 deletes existing group
+
+  &lt;p&gt;Required valid user authentication &lt;/p&gt;
+			&lt;p&gt;Required Member Role Permission: &#34;GROUP [DELETE]&#34;&lt;/p&gt;
+			&lt;p&gt;Delete existing group. This endpoint will check the group ID of the user based on the access token
+			and compare it with the group ID in path parameter. It will also check the member role of the user based on
+			the access token&lt;/p&gt;
+			&lt;p&gt;Action Code: 73305&lt;/p&gt;
+
+*/
+func (a *Client) DeleteGroupPublicV2(params *DeleteGroupPublicV2Params, authInfo runtime.ClientAuthInfoWriter) (*DeleteGroupPublicV2NoContent, *DeleteGroupPublicV2BadRequest, *DeleteGroupPublicV2Unauthorized, *DeleteGroupPublicV2Forbidden, *DeleteGroupPublicV2NotFound, *DeleteGroupPublicV2InternalServerError, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewDeleteGroupPublicV2Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "deleteGroupPublicV2",
+		Method:             "DELETE",
+		PathPattern:        "/group/v2/public/namespaces/{namespace}/groups/{groupId}",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &DeleteGroupPublicV2Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, nil, nil, nil, nil, nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *DeleteGroupPublicV2NoContent:
+		return v, nil, nil, nil, nil, nil, nil
+
+	case *DeleteGroupPublicV2BadRequest:
+		return nil, v, nil, nil, nil, nil, nil
+
+	case *DeleteGroupPublicV2Unauthorized:
+		return nil, nil, v, nil, nil, nil, nil
+
+	case *DeleteGroupPublicV2Forbidden:
+		return nil, nil, nil, v, nil, nil, nil
+
+	case *DeleteGroupPublicV2NotFound:
+		return nil, nil, nil, nil, v, nil, nil
+
+	case *DeleteGroupPublicV2InternalServerError:
+		return nil, nil, nil, nil, nil, v, nil
+
+	default:
+		return nil, nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+  DeleteGroupPublicV2Short deletes existing group
+
+  &lt;p&gt;Required valid user authentication &lt;/p&gt;
+			&lt;p&gt;Required Member Role Permission: &#34;GROUP [DELETE]&#34;&lt;/p&gt;
+			&lt;p&gt;Delete existing group. This endpoint will check the group ID of the user based on the access token
+			and compare it with the group ID in path parameter. It will also check the member role of the user based on
+			the access token&lt;/p&gt;
+			&lt;p&gt;Action Code: 73305&lt;/p&gt;
+
+*/
+func (a *Client) DeleteGroupPublicV2Short(params *DeleteGroupPublicV2Params, authInfo runtime.ClientAuthInfoWriter) (*DeleteGroupPublicV2NoContent, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewDeleteGroupPublicV2Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "deleteGroupPublicV2",
+		Method:             "DELETE",
+		PathPattern:        "/group/v2/public/namespaces/{namespace}/groups/{groupId}",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &DeleteGroupPublicV2Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *DeleteGroupPublicV2NoContent:
+		return v, nil
+	case *DeleteGroupPublicV2BadRequest:
+		return nil, v
+	case *DeleteGroupPublicV2Unauthorized:
+		return nil, v
+	case *DeleteGroupPublicV2Forbidden:
+		return nil, v
+	case *DeleteGroupPublicV2NotFound:
+		return nil, v
+	case *DeleteGroupPublicV2InternalServerError:
 		return nil, v
 
 	default:
@@ -834,6 +1265,126 @@ func (a *Client) GetGroupListPublicV1Short(params *GetGroupListPublicV1Params, a
 	case *GetGroupListPublicV1Forbidden:
 		return nil, v
 	case *GetGroupListPublicV1InternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+Deprecated: Use GetListGroupByIDsV2Short instead.
+
+  GetListGroupByIDsV2 gets list of groups by group ids
+
+  &lt;p&gt;Required valid user authentication &lt;/p&gt;
+			&lt;p&gt;Get list of groups by group Ids.&lt;/p&gt;
+			&lt;p&gt;Action Code: 73303&lt;/p&gt;
+
+*/
+func (a *Client) GetListGroupByIDsV2(params *GetListGroupByIDsV2Params, authInfo runtime.ClientAuthInfoWriter) (*GetListGroupByIDsV2OK, *GetListGroupByIDsV2BadRequest, *GetListGroupByIDsV2Unauthorized, *GetListGroupByIDsV2Forbidden, *GetListGroupByIDsV2InternalServerError, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewGetListGroupByIDsV2Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "getListGroupByIDsV2",
+		Method:             "POST",
+		PathPattern:        "/group/v2/public/namespaces/{namespace}/groups/bulk",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &GetListGroupByIDsV2Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, nil, nil, nil, nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *GetListGroupByIDsV2OK:
+		return v, nil, nil, nil, nil, nil
+
+	case *GetListGroupByIDsV2BadRequest:
+		return nil, v, nil, nil, nil, nil
+
+	case *GetListGroupByIDsV2Unauthorized:
+		return nil, nil, v, nil, nil, nil
+
+	case *GetListGroupByIDsV2Forbidden:
+		return nil, nil, nil, v, nil, nil
+
+	case *GetListGroupByIDsV2InternalServerError:
+		return nil, nil, nil, nil, v, nil
+
+	default:
+		return nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+  GetListGroupByIDsV2Short gets list of groups by group ids
+
+  &lt;p&gt;Required valid user authentication &lt;/p&gt;
+			&lt;p&gt;Get list of groups by group Ids.&lt;/p&gt;
+			&lt;p&gt;Action Code: 73303&lt;/p&gt;
+
+*/
+func (a *Client) GetListGroupByIDsV2Short(params *GetListGroupByIDsV2Params, authInfo runtime.ClientAuthInfoWriter) (*GetListGroupByIDsV2OK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewGetListGroupByIDsV2Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "getListGroupByIDsV2",
+		Method:             "POST",
+		PathPattern:        "/group/v2/public/namespaces/{namespace}/groups/bulk",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &GetListGroupByIDsV2Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *GetListGroupByIDsV2OK:
+		return v, nil
+	case *GetListGroupByIDsV2BadRequest:
+		return nil, v
+	case *GetListGroupByIDsV2Unauthorized:
+		return nil, v
+	case *GetListGroupByIDsV2Forbidden:
+		return nil, v
+	case *GetListGroupByIDsV2InternalServerError:
 		return nil, v
 
 	default:
@@ -1223,6 +1774,137 @@ func (a *Client) UpdateGroupCustomAttributesPublicV1Short(params *UpdateGroupCus
 }
 
 /*
+Deprecated: Use UpdateGroupCustomAttributesPublicV2Short instead.
+
+  UpdateGroupCustomAttributesPublicV2 updates group custom attributes
+
+  &lt;p&gt;Requires valid user authentication &lt;/p&gt;
+			&lt;p&gt;Required Member Role Permission: &#34;GROUP [UPDATE]&#34;&lt;/p&gt;
+			&lt;p&gt;This endpoint replaces current group custom attributes entirely.
+			This endpoint will check the group ID of the user based on the access token and compare it with the group ID in path parameter.
+			It will also check the member role of the user based on the access token&lt;/p&gt;
+			&lt;p&gt;Action Code: 73311&lt;/p&gt;
+
+*/
+func (a *Client) UpdateGroupCustomAttributesPublicV2(params *UpdateGroupCustomAttributesPublicV2Params, authInfo runtime.ClientAuthInfoWriter) (*UpdateGroupCustomAttributesPublicV2OK, *UpdateGroupCustomAttributesPublicV2BadRequest, *UpdateGroupCustomAttributesPublicV2Unauthorized, *UpdateGroupCustomAttributesPublicV2Forbidden, *UpdateGroupCustomAttributesPublicV2NotFound, *UpdateGroupCustomAttributesPublicV2InternalServerError, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewUpdateGroupCustomAttributesPublicV2Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "updateGroupCustomAttributesPublicV2",
+		Method:             "PUT",
+		PathPattern:        "/group/v2/public/namespaces/{namespace}/groups/{groupId}/attributes/custom",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &UpdateGroupCustomAttributesPublicV2Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, nil, nil, nil, nil, nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *UpdateGroupCustomAttributesPublicV2OK:
+		return v, nil, nil, nil, nil, nil, nil
+
+	case *UpdateGroupCustomAttributesPublicV2BadRequest:
+		return nil, v, nil, nil, nil, nil, nil
+
+	case *UpdateGroupCustomAttributesPublicV2Unauthorized:
+		return nil, nil, v, nil, nil, nil, nil
+
+	case *UpdateGroupCustomAttributesPublicV2Forbidden:
+		return nil, nil, nil, v, nil, nil, nil
+
+	case *UpdateGroupCustomAttributesPublicV2NotFound:
+		return nil, nil, nil, nil, v, nil, nil
+
+	case *UpdateGroupCustomAttributesPublicV2InternalServerError:
+		return nil, nil, nil, nil, nil, v, nil
+
+	default:
+		return nil, nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+  UpdateGroupCustomAttributesPublicV2Short updates group custom attributes
+
+  &lt;p&gt;Requires valid user authentication &lt;/p&gt;
+			&lt;p&gt;Required Member Role Permission: &#34;GROUP [UPDATE]&#34;&lt;/p&gt;
+			&lt;p&gt;This endpoint replaces current group custom attributes entirely.
+			This endpoint will check the group ID of the user based on the access token and compare it with the group ID in path parameter.
+			It will also check the member role of the user based on the access token&lt;/p&gt;
+			&lt;p&gt;Action Code: 73311&lt;/p&gt;
+
+*/
+func (a *Client) UpdateGroupCustomAttributesPublicV2Short(params *UpdateGroupCustomAttributesPublicV2Params, authInfo runtime.ClientAuthInfoWriter) (*UpdateGroupCustomAttributesPublicV2OK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewUpdateGroupCustomAttributesPublicV2Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "updateGroupCustomAttributesPublicV2",
+		Method:             "PUT",
+		PathPattern:        "/group/v2/public/namespaces/{namespace}/groups/{groupId}/attributes/custom",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &UpdateGroupCustomAttributesPublicV2Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *UpdateGroupCustomAttributesPublicV2OK:
+		return v, nil
+	case *UpdateGroupCustomAttributesPublicV2BadRequest:
+		return nil, v
+	case *UpdateGroupCustomAttributesPublicV2Unauthorized:
+		return nil, v
+	case *UpdateGroupCustomAttributesPublicV2Forbidden:
+		return nil, v
+	case *UpdateGroupCustomAttributesPublicV2NotFound:
+		return nil, v
+	case *UpdateGroupCustomAttributesPublicV2InternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
 Deprecated: Use UpdateGroupCustomRulePublicV1Short instead.
 
   UpdateGroupCustomRulePublicV1 updates group custom rule
@@ -1344,6 +2026,135 @@ func (a *Client) UpdateGroupCustomRulePublicV1Short(params *UpdateGroupCustomRul
 	case *UpdateGroupCustomRulePublicV1NotFound:
 		return nil, v
 	case *UpdateGroupCustomRulePublicV1InternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+Deprecated: Use UpdateGroupCustomRulePublicV2Short instead.
+
+  UpdateGroupCustomRulePublicV2 updates group custom rule
+
+  &lt;p&gt;Required valid user authentication &lt;/p&gt;
+			&lt;p&gt;Update group custom rule. This endpoint will check the group ID of the user based on the access token
+			and compare it with the group ID in path parameter. It will also check the member role of the user based
+			on the access token&lt;/p&gt;
+			&lt;p&gt;Action Code: 73308&lt;/p&gt;
+
+*/
+func (a *Client) UpdateGroupCustomRulePublicV2(params *UpdateGroupCustomRulePublicV2Params, authInfo runtime.ClientAuthInfoWriter) (*UpdateGroupCustomRulePublicV2OK, *UpdateGroupCustomRulePublicV2BadRequest, *UpdateGroupCustomRulePublicV2Unauthorized, *UpdateGroupCustomRulePublicV2Forbidden, *UpdateGroupCustomRulePublicV2NotFound, *UpdateGroupCustomRulePublicV2InternalServerError, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewUpdateGroupCustomRulePublicV2Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "updateGroupCustomRulePublicV2",
+		Method:             "PUT",
+		PathPattern:        "/group/v2/public/namespaces/{namespace}/groups/{groupId}/rules/custom",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &UpdateGroupCustomRulePublicV2Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, nil, nil, nil, nil, nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *UpdateGroupCustomRulePublicV2OK:
+		return v, nil, nil, nil, nil, nil, nil
+
+	case *UpdateGroupCustomRulePublicV2BadRequest:
+		return nil, v, nil, nil, nil, nil, nil
+
+	case *UpdateGroupCustomRulePublicV2Unauthorized:
+		return nil, nil, v, nil, nil, nil, nil
+
+	case *UpdateGroupCustomRulePublicV2Forbidden:
+		return nil, nil, nil, v, nil, nil, nil
+
+	case *UpdateGroupCustomRulePublicV2NotFound:
+		return nil, nil, nil, nil, v, nil, nil
+
+	case *UpdateGroupCustomRulePublicV2InternalServerError:
+		return nil, nil, nil, nil, nil, v, nil
+
+	default:
+		return nil, nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+  UpdateGroupCustomRulePublicV2Short updates group custom rule
+
+  &lt;p&gt;Required valid user authentication &lt;/p&gt;
+			&lt;p&gt;Update group custom rule. This endpoint will check the group ID of the user based on the access token
+			and compare it with the group ID in path parameter. It will also check the member role of the user based
+			on the access token&lt;/p&gt;
+			&lt;p&gt;Action Code: 73308&lt;/p&gt;
+
+*/
+func (a *Client) UpdateGroupCustomRulePublicV2Short(params *UpdateGroupCustomRulePublicV2Params, authInfo runtime.ClientAuthInfoWriter) (*UpdateGroupCustomRulePublicV2OK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewUpdateGroupCustomRulePublicV2Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "updateGroupCustomRulePublicV2",
+		Method:             "PUT",
+		PathPattern:        "/group/v2/public/namespaces/{namespace}/groups/{groupId}/rules/custom",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &UpdateGroupCustomRulePublicV2Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *UpdateGroupCustomRulePublicV2OK:
+		return v, nil
+	case *UpdateGroupCustomRulePublicV2BadRequest:
+		return nil, v
+	case *UpdateGroupCustomRulePublicV2Unauthorized:
+		return nil, v
+	case *UpdateGroupCustomRulePublicV2Forbidden:
+		return nil, v
+	case *UpdateGroupCustomRulePublicV2NotFound:
+		return nil, v
+	case *UpdateGroupCustomRulePublicV2InternalServerError:
 		return nil, v
 
 	default:
@@ -1485,6 +2296,139 @@ func (a *Client) UpdateGroupPredefinedRulePublicV1Short(params *UpdateGroupPrede
 }
 
 /*
+Deprecated: Use UpdateGroupPredefinedRulePublicV2Short instead.
+
+  UpdateGroupPredefinedRulePublicV2 updates predefined group rule
+
+  &lt;p&gt;Required valid user authentication &lt;/p&gt;
+			&lt;p&gt;Required Member Role Permission: &#34;GROUP [UPDATE]&#34;&lt;/p&gt;
+			&lt;p&gt;Update predefined group rule. This endpoint will check the group ID of the user based on the access token
+			and compare it with the group ID in path parameter. It will also check the member role of the user based on
+			the access token&lt;/p&gt;
+			&lt;p&gt;If the rule action is not defined in the group, it will be added immediately to the predefined group rule&lt;/p&gt;
+			&lt;p&gt;Action Code: 73310&lt;/p&gt;
+
+*/
+func (a *Client) UpdateGroupPredefinedRulePublicV2(params *UpdateGroupPredefinedRulePublicV2Params, authInfo runtime.ClientAuthInfoWriter) (*UpdateGroupPredefinedRulePublicV2OK, *UpdateGroupPredefinedRulePublicV2BadRequest, *UpdateGroupPredefinedRulePublicV2Unauthorized, *UpdateGroupPredefinedRulePublicV2Forbidden, *UpdateGroupPredefinedRulePublicV2NotFound, *UpdateGroupPredefinedRulePublicV2InternalServerError, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewUpdateGroupPredefinedRulePublicV2Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "updateGroupPredefinedRulePublicV2",
+		Method:             "PUT",
+		PathPattern:        "/group/v2/public/namespaces/{namespace}/groups/{groupId}/rules/defined/{allowedAction}",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &UpdateGroupPredefinedRulePublicV2Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, nil, nil, nil, nil, nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *UpdateGroupPredefinedRulePublicV2OK:
+		return v, nil, nil, nil, nil, nil, nil
+
+	case *UpdateGroupPredefinedRulePublicV2BadRequest:
+		return nil, v, nil, nil, nil, nil, nil
+
+	case *UpdateGroupPredefinedRulePublicV2Unauthorized:
+		return nil, nil, v, nil, nil, nil, nil
+
+	case *UpdateGroupPredefinedRulePublicV2Forbidden:
+		return nil, nil, nil, v, nil, nil, nil
+
+	case *UpdateGroupPredefinedRulePublicV2NotFound:
+		return nil, nil, nil, nil, v, nil, nil
+
+	case *UpdateGroupPredefinedRulePublicV2InternalServerError:
+		return nil, nil, nil, nil, nil, v, nil
+
+	default:
+		return nil, nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+  UpdateGroupPredefinedRulePublicV2Short updates predefined group rule
+
+  &lt;p&gt;Required valid user authentication &lt;/p&gt;
+			&lt;p&gt;Required Member Role Permission: &#34;GROUP [UPDATE]&#34;&lt;/p&gt;
+			&lt;p&gt;Update predefined group rule. This endpoint will check the group ID of the user based on the access token
+			and compare it with the group ID in path parameter. It will also check the member role of the user based on
+			the access token&lt;/p&gt;
+			&lt;p&gt;If the rule action is not defined in the group, it will be added immediately to the predefined group rule&lt;/p&gt;
+			&lt;p&gt;Action Code: 73310&lt;/p&gt;
+
+*/
+func (a *Client) UpdateGroupPredefinedRulePublicV2Short(params *UpdateGroupPredefinedRulePublicV2Params, authInfo runtime.ClientAuthInfoWriter) (*UpdateGroupPredefinedRulePublicV2OK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewUpdateGroupPredefinedRulePublicV2Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "updateGroupPredefinedRulePublicV2",
+		Method:             "PUT",
+		PathPattern:        "/group/v2/public/namespaces/{namespace}/groups/{groupId}/rules/defined/{allowedAction}",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &UpdateGroupPredefinedRulePublicV2Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *UpdateGroupPredefinedRulePublicV2OK:
+		return v, nil
+	case *UpdateGroupPredefinedRulePublicV2BadRequest:
+		return nil, v
+	case *UpdateGroupPredefinedRulePublicV2Unauthorized:
+		return nil, v
+	case *UpdateGroupPredefinedRulePublicV2Forbidden:
+		return nil, v
+	case *UpdateGroupPredefinedRulePublicV2NotFound:
+		return nil, v
+	case *UpdateGroupPredefinedRulePublicV2InternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
 Deprecated: Use UpdatePatchSingleGroupPublicV1Short instead.
 
   UpdatePatchSingleGroupPublicV1 updates existing group
@@ -1606,6 +2550,264 @@ func (a *Client) UpdatePatchSingleGroupPublicV1Short(params *UpdatePatchSingleGr
 	case *UpdatePatchSingleGroupPublicV1NotFound:
 		return nil, v
 	case *UpdatePatchSingleGroupPublicV1InternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+Deprecated: Use UpdatePatchSingleGroupPublicV2Short instead.
+
+  UpdatePatchSingleGroupPublicV2 updates existing group
+
+  &lt;p&gt;Required valid user authentication &lt;/p&gt;
+			&lt;p&gt;Required Member Role Permission: &#34;GROUP [UPDATE]&#34;&lt;/p&gt;
+			&lt;p&gt;Update existing group. This endpoint supports partial update. This endpoint will check the group ID of the user based on the access token and compare it with the group ID in path parameter.
+			It will also check the member role of the user based on the access token&lt;/p&gt;
+			&lt;p&gt;Action Code: 73307&lt;/p&gt;
+
+*/
+func (a *Client) UpdatePatchSingleGroupPublicV2(params *UpdatePatchSingleGroupPublicV2Params, authInfo runtime.ClientAuthInfoWriter) (*UpdatePatchSingleGroupPublicV2OK, *UpdatePatchSingleGroupPublicV2BadRequest, *UpdatePatchSingleGroupPublicV2Unauthorized, *UpdatePatchSingleGroupPublicV2Forbidden, *UpdatePatchSingleGroupPublicV2NotFound, *UpdatePatchSingleGroupPublicV2InternalServerError, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewUpdatePatchSingleGroupPublicV2Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "updatePatchSingleGroupPublicV2",
+		Method:             "PATCH",
+		PathPattern:        "/group/v2/public/namespaces/{namespace}/groups/{groupId}",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &UpdatePatchSingleGroupPublicV2Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, nil, nil, nil, nil, nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *UpdatePatchSingleGroupPublicV2OK:
+		return v, nil, nil, nil, nil, nil, nil
+
+	case *UpdatePatchSingleGroupPublicV2BadRequest:
+		return nil, v, nil, nil, nil, nil, nil
+
+	case *UpdatePatchSingleGroupPublicV2Unauthorized:
+		return nil, nil, v, nil, nil, nil, nil
+
+	case *UpdatePatchSingleGroupPublicV2Forbidden:
+		return nil, nil, nil, v, nil, nil, nil
+
+	case *UpdatePatchSingleGroupPublicV2NotFound:
+		return nil, nil, nil, nil, v, nil, nil
+
+	case *UpdatePatchSingleGroupPublicV2InternalServerError:
+		return nil, nil, nil, nil, nil, v, nil
+
+	default:
+		return nil, nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+  UpdatePatchSingleGroupPublicV2Short updates existing group
+
+  &lt;p&gt;Required valid user authentication &lt;/p&gt;
+			&lt;p&gt;Required Member Role Permission: &#34;GROUP [UPDATE]&#34;&lt;/p&gt;
+			&lt;p&gt;Update existing group. This endpoint supports partial update. This endpoint will check the group ID of the user based on the access token and compare it with the group ID in path parameter.
+			It will also check the member role of the user based on the access token&lt;/p&gt;
+			&lt;p&gt;Action Code: 73307&lt;/p&gt;
+
+*/
+func (a *Client) UpdatePatchSingleGroupPublicV2Short(params *UpdatePatchSingleGroupPublicV2Params, authInfo runtime.ClientAuthInfoWriter) (*UpdatePatchSingleGroupPublicV2OK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewUpdatePatchSingleGroupPublicV2Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "updatePatchSingleGroupPublicV2",
+		Method:             "PATCH",
+		PathPattern:        "/group/v2/public/namespaces/{namespace}/groups/{groupId}",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &UpdatePatchSingleGroupPublicV2Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *UpdatePatchSingleGroupPublicV2OK:
+		return v, nil
+	case *UpdatePatchSingleGroupPublicV2BadRequest:
+		return nil, v
+	case *UpdatePatchSingleGroupPublicV2Unauthorized:
+		return nil, v
+	case *UpdatePatchSingleGroupPublicV2Forbidden:
+		return nil, v
+	case *UpdatePatchSingleGroupPublicV2NotFound:
+		return nil, v
+	case *UpdatePatchSingleGroupPublicV2InternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+Deprecated: Use UpdatePutSingleGroupPublicV2Short instead.
+
+  UpdatePutSingleGroupPublicV2 updates existing group
+
+  &lt;p&gt;Required valid user authentication &lt;/p&gt;
+			&lt;p&gt;Required Member Role Permission: &#34;GROUP [UPDATE]&#34;&lt;/p&gt;
+			&lt;p&gt;Update existing group. This endpoint supports partial update. This endpoint will check the group ID of the user based on the access token and compare it with the group ID in path parameter.
+			It will also check the member role of the user based on the access token&lt;/p&gt;
+			&lt;p&gt;Action Code: 73307&lt;/p&gt;
+
+*/
+func (a *Client) UpdatePutSingleGroupPublicV2(params *UpdatePutSingleGroupPublicV2Params, authInfo runtime.ClientAuthInfoWriter) (*UpdatePutSingleGroupPublicV2OK, *UpdatePutSingleGroupPublicV2BadRequest, *UpdatePutSingleGroupPublicV2Unauthorized, *UpdatePutSingleGroupPublicV2Forbidden, *UpdatePutSingleGroupPublicV2NotFound, *UpdatePutSingleGroupPublicV2InternalServerError, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewUpdatePutSingleGroupPublicV2Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "updatePutSingleGroupPublicV2",
+		Method:             "PUT",
+		PathPattern:        "/group/v2/public/namespaces/{namespace}/groups/{groupId}",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &UpdatePutSingleGroupPublicV2Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, nil, nil, nil, nil, nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *UpdatePutSingleGroupPublicV2OK:
+		return v, nil, nil, nil, nil, nil, nil
+
+	case *UpdatePutSingleGroupPublicV2BadRequest:
+		return nil, v, nil, nil, nil, nil, nil
+
+	case *UpdatePutSingleGroupPublicV2Unauthorized:
+		return nil, nil, v, nil, nil, nil, nil
+
+	case *UpdatePutSingleGroupPublicV2Forbidden:
+		return nil, nil, nil, v, nil, nil, nil
+
+	case *UpdatePutSingleGroupPublicV2NotFound:
+		return nil, nil, nil, nil, v, nil, nil
+
+	case *UpdatePutSingleGroupPublicV2InternalServerError:
+		return nil, nil, nil, nil, nil, v, nil
+
+	default:
+		return nil, nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+  UpdatePutSingleGroupPublicV2Short updates existing group
+
+  &lt;p&gt;Required valid user authentication &lt;/p&gt;
+			&lt;p&gt;Required Member Role Permission: &#34;GROUP [UPDATE]&#34;&lt;/p&gt;
+			&lt;p&gt;Update existing group. This endpoint supports partial update. This endpoint will check the group ID of the user based on the access token and compare it with the group ID in path parameter.
+			It will also check the member role of the user based on the access token&lt;/p&gt;
+			&lt;p&gt;Action Code: 73307&lt;/p&gt;
+
+*/
+func (a *Client) UpdatePutSingleGroupPublicV2Short(params *UpdatePutSingleGroupPublicV2Params, authInfo runtime.ClientAuthInfoWriter) (*UpdatePutSingleGroupPublicV2OK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewUpdatePutSingleGroupPublicV2Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "updatePutSingleGroupPublicV2",
+		Method:             "PUT",
+		PathPattern:        "/group/v2/public/namespaces/{namespace}/groups/{groupId}",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &UpdatePutSingleGroupPublicV2Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *UpdatePutSingleGroupPublicV2OK:
+		return v, nil
+	case *UpdatePutSingleGroupPublicV2BadRequest:
+		return nil, v
+	case *UpdatePutSingleGroupPublicV2Unauthorized:
+		return nil, v
+	case *UpdatePutSingleGroupPublicV2Forbidden:
+		return nil, v
+	case *UpdatePutSingleGroupPublicV2NotFound:
+		return nil, v
+	case *UpdatePutSingleGroupPublicV2InternalServerError:
 		return nil, v
 
 	default:

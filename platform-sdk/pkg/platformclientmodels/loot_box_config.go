@@ -6,11 +6,13 @@ package platformclientmodels
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"strconv"
 
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
+	"github.com/go-openapi/validate"
 )
 
 // LootBoxConfig loot box config
@@ -23,6 +25,10 @@ type LootBoxConfig struct {
 
 	// rewards
 	Rewards []*LootBoxReward `json:"rewards"`
+
+	// roll function
+	// Enum: [CUSTOM DEFAULT]
+	RollFunction string `json:"rollFunction,omitempty"`
 }
 
 // Validate validates this loot box config
@@ -30,6 +36,10 @@ func (m *LootBoxConfig) Validate(formats strfmt.Registry) error {
 	var res []error
 
 	if err := m.validateRewards(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateRollFunction(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -59,6 +69,49 @@ func (m *LootBoxConfig) validateRewards(formats strfmt.Registry) error {
 			}
 		}
 
+	}
+
+	return nil
+}
+
+var lootBoxConfigTypeRollFunctionPropEnum []interface{}
+
+func init() {
+	var res []string
+	if err := json.Unmarshal([]byte(`["CUSTOM","DEFAULT"]`), &res); err != nil {
+		panic(err)
+	}
+	for _, v := range res {
+		lootBoxConfigTypeRollFunctionPropEnum = append(lootBoxConfigTypeRollFunctionPropEnum, v)
+	}
+}
+
+const (
+
+	// LootBoxConfigRollFunctionCUSTOM captures enum value "CUSTOM"
+	LootBoxConfigRollFunctionCUSTOM string = "CUSTOM"
+
+	// LootBoxConfigRollFunctionDEFAULT captures enum value "DEFAULT"
+	LootBoxConfigRollFunctionDEFAULT string = "DEFAULT"
+)
+
+// prop value enum
+func (m *LootBoxConfig) validateRollFunctionEnum(path, location string, value string) error {
+	if err := validate.EnumCase(path, location, value, lootBoxConfigTypeRollFunctionPropEnum, true); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (m *LootBoxConfig) validateRollFunction(formats strfmt.Registry) error {
+
+	if swag.IsZero(m.RollFunction) { // not required
+		return nil
+	}
+
+	// value enum
+	if err := m.validateRollFunctionEnum("rollFunction", "body", m.RollFunction); err != nil {
+		return err
 	}
 
 	return nil

@@ -65,14 +65,14 @@ type ClientService interface {
 	GetTotalActiveSessionShort(params *GetTotalActiveSessionParams, authInfo runtime.ClientAuthInfoWriter) (*GetTotalActiveSessionOK, error)
 	JoinSession(params *JoinSessionParams, authInfo runtime.ClientAuthInfoWriter) (*JoinSessionOK, *JoinSessionBadRequest, *JoinSessionForbidden, *JoinSessionNotFound, *JoinSessionInternalServerError, error)
 	JoinSessionShort(params *JoinSessionParams, authInfo runtime.ClientAuthInfoWriter) (*JoinSessionOK, error)
-	QuerySession(params *QuerySessionParams, authInfo runtime.ClientAuthInfoWriter) (*QuerySessionOK, *QuerySessionBadRequest, *QuerySessionInternalServerError, error)
-	QuerySessionShort(params *QuerySessionParams, authInfo runtime.ClientAuthInfoWriter) (*QuerySessionOK, error)
 	RemovePlayerFromSession(params *RemovePlayerFromSessionParams, authInfo runtime.ClientAuthInfoWriter) (*RemovePlayerFromSessionOK, *RemovePlayerFromSessionBadRequest, *RemovePlayerFromSessionNotFound, *RemovePlayerFromSessionInternalServerError, error)
 	RemovePlayerFromSessionShort(params *RemovePlayerFromSessionParams, authInfo runtime.ClientAuthInfoWriter) (*RemovePlayerFromSessionOK, error)
 	UpdateSession(params *UpdateSessionParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateSessionOK, *UpdateSessionBadRequest, *UpdateSessionNotFound, *UpdateSessionInternalServerError, error)
 	UpdateSessionShort(params *UpdateSessionParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateSessionOK, error)
 	UpdateSettings(params *UpdateSettingsParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateSettingsOK, *UpdateSettingsBadRequest, *UpdateSettingsNotFound, *UpdateSettingsInternalServerError, error)
 	UpdateSettingsShort(params *UpdateSettingsParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateSettingsOK, error)
+	UserQuerySession(params *UserQuerySessionParams, authInfo runtime.ClientAuthInfoWriter) (*UserQuerySessionOK, *UserQuerySessionBadRequest, *UserQuerySessionInternalServerError, error)
+	UserQuerySessionShort(params *UserQuerySessionParams, authInfo runtime.ClientAuthInfoWriter) (*UserQuerySessionOK, error)
 
 	SetTransport(transport runtime.ClientTransport)
 }
@@ -1920,118 +1920,6 @@ func (a *Client) JoinSessionShort(params *JoinSessionParams, authInfo runtime.Cl
 }
 
 /*
-Deprecated: Use QuerySessionShort instead.
-
-  QuerySession queries to available game session
-
-  Required permission: NAMESPACE:{namespace}:SESSIONBROWSER:SESSION [READ]
-
-Required scope: social
-
-Query available game session
-*/
-func (a *Client) QuerySession(params *QuerySessionParams, authInfo runtime.ClientAuthInfoWriter) (*QuerySessionOK, *QuerySessionBadRequest, *QuerySessionInternalServerError, error) {
-	// TODO: Validate the params before sending
-	if params == nil {
-		params = NewQuerySessionParams()
-	}
-
-	if params.Context == nil {
-		params.Context = context.Background()
-	}
-
-	if params.RetryPolicy != nil {
-		params.SetHTTPClientTransport(params.RetryPolicy)
-	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
-		ID:                 "QuerySession",
-		Method:             "GET",
-		PathPattern:        "/sessionbrowser/namespaces/{namespace}/gamesession",
-		ProducesMediaTypes: []string{"application/json"},
-		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"https"},
-		Params:             params,
-		Reader:             &QuerySessionReader{formats: a.formats},
-		AuthInfo:           authInfo,
-		Context:            params.Context,
-		Client:             params.HTTPClient,
-	})
-	if err != nil {
-		return nil, nil, nil, err
-	}
-
-	switch v := result.(type) {
-
-	case *QuerySessionOK:
-		return v, nil, nil, nil
-
-	case *QuerySessionBadRequest:
-		return nil, v, nil, nil
-
-	case *QuerySessionInternalServerError:
-		return nil, nil, v, nil
-
-	default:
-		return nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
-	}
-}
-
-/*
-  QuerySessionShort queries to available game session
-
-  Required permission: NAMESPACE:{namespace}:SESSIONBROWSER:SESSION [READ]
-
-Required scope: social
-
-Query available game session
-*/
-func (a *Client) QuerySessionShort(params *QuerySessionParams, authInfo runtime.ClientAuthInfoWriter) (*QuerySessionOK, error) {
-	// TODO: Validate the params before sending
-	if params == nil {
-		params = NewQuerySessionParams()
-	}
-
-	if params.Context == nil {
-		params.Context = context.Background()
-	}
-
-	if params.RetryPolicy != nil {
-		params.SetHTTPClientTransport(params.RetryPolicy)
-	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
-		ID:                 "QuerySession",
-		Method:             "GET",
-		PathPattern:        "/sessionbrowser/namespaces/{namespace}/gamesession",
-		ProducesMediaTypes: []string{"application/json"},
-		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"https"},
-		Params:             params,
-		Reader:             &QuerySessionReader{formats: a.formats},
-		AuthInfo:           authInfo,
-		Context:            params.Context,
-		Client:             params.HTTPClient,
-	})
-	if err != nil {
-		return nil, err
-	}
-
-	switch v := result.(type) {
-
-	case *QuerySessionOK:
-		return v, nil
-	case *QuerySessionBadRequest:
-		return nil, v
-	case *QuerySessionInternalServerError:
-		return nil, v
-
-	default:
-		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
-	}
-}
-
-/*
 Deprecated: Use RemovePlayerFromSessionShort instead.
 
   RemovePlayerFromSession removes player from game session
@@ -2375,6 +2263,118 @@ func (a *Client) UpdateSettingsShort(params *UpdateSettingsParams, authInfo runt
 	case *UpdateSettingsNotFound:
 		return nil, v
 	case *UpdateSettingsInternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+Deprecated: Use UserQuerySessionShort instead.
+
+  UserQuerySession queries to available game session
+
+  Required permission: NAMESPACE:{namespace}:SESSIONBROWSER:SESSION [READ]
+
+Required scope: social
+
+Query available game session
+*/
+func (a *Client) UserQuerySession(params *UserQuerySessionParams, authInfo runtime.ClientAuthInfoWriter) (*UserQuerySessionOK, *UserQuerySessionBadRequest, *UserQuerySessionInternalServerError, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewUserQuerySessionParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "UserQuerySession",
+		Method:             "GET",
+		PathPattern:        "/sessionbrowser/namespaces/{namespace}/gamesession",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &UserQuerySessionReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, nil, nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *UserQuerySessionOK:
+		return v, nil, nil, nil
+
+	case *UserQuerySessionBadRequest:
+		return nil, v, nil, nil
+
+	case *UserQuerySessionInternalServerError:
+		return nil, nil, v, nil
+
+	default:
+		return nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+  UserQuerySessionShort queries to available game session
+
+  Required permission: NAMESPACE:{namespace}:SESSIONBROWSER:SESSION [READ]
+
+Required scope: social
+
+Query available game session
+*/
+func (a *Client) UserQuerySessionShort(params *UserQuerySessionParams, authInfo runtime.ClientAuthInfoWriter) (*UserQuerySessionOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewUserQuerySessionParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "UserQuerySession",
+		Method:             "GET",
+		PathPattern:        "/sessionbrowser/namespaces/{namespace}/gamesession",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &UserQuerySessionReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *UserQuerySessionOK:
+		return v, nil
+	case *UserQuerySessionBadRequest:
+		return nil, v
+	case *UserQuerySessionInternalServerError:
 		return nil, v
 
 	default:

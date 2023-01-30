@@ -566,14 +566,7 @@ func (aaa *UserProfileService) PublicCreateUserProfile(input *user_profile.Publi
 
 // deprecated(2022-01-10): please use PublicGetCustomAttributesInfoShort instead.
 func (aaa *UserProfileService) PublicGetCustomAttributesInfo(input *user_profile.PublicGetCustomAttributesInfoParams) (map[string]interface{}, error) {
-	token, err := aaa.TokenRepository.GetToken()
-	if err != nil {
-		return nil, err
-	}
-	ok, unauthorized, notFound, err := aaa.Client.UserProfile.PublicGetCustomAttributesInfo(input, client.BearerToken(*token.AccessToken))
-	if unauthorized != nil {
-		return nil, unauthorized
-	}
+	ok, notFound, err := aaa.Client.UserProfile.PublicGetCustomAttributesInfo(input)
 	if notFound != nil {
 		return nil, notFound
 	}
@@ -1171,23 +1164,7 @@ func (aaa *UserProfileService) PublicCreateUserProfileShort(input *user_profile.
 }
 
 func (aaa *UserProfileService) PublicGetCustomAttributesInfoShort(input *user_profile.PublicGetCustomAttributesInfoParams) (map[string]interface{}, error) {
-	authInfoWriter := input.AuthInfoWriter
-	if authInfoWriter == nil {
-		security := [][]string{
-			{"bearer"},
-		}
-		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
-	}
-	if input.RetryPolicy == nil {
-		input.RetryPolicy = &utils.Retry{
-			MaxTries:   utils.MaxTries,
-			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  aaa.Client.Runtime.Transport,
-			RetryCodes: utils.RetryCodes,
-		}
-	}
-
-	ok, err := aaa.Client.UserProfile.PublicGetCustomAttributesInfoShort(input, authInfoWriter)
+	ok, err := aaa.Client.UserProfile.PublicGetCustomAttributesInfoShort(input)
 	if err != nil {
 		return nil, err
 	}

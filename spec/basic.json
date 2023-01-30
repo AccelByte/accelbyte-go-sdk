@@ -8,7 +8,7 @@
     },
     "description": "Justice Basic Service",
     "title": "justice-basic-service",
-    "version": "2.4.1"
+    "version": "2.4.3"
   },
   "schemes": [
     "https"
@@ -155,7 +155,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "Create a namespace.\u0026lt;br\u0026gt;By default the namespace is enabled.\u0026lt;br\u0026gt;In multi tenant mode, parentNamespace will be automatically filled with requester namespace. \u0026lt;br\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026lt;b\u0026gt;\u0026#34;ADMIN:NAMESPACE\u0026#34;\u0026lt;/b\u0026gt;, action=1 \u0026lt;b\u0026gt;(CREATE)\u0026lt;/b\u0026gt;\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Action code\u0026lt;/i\u0026gt;: 11301\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: created namespace\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
+        "description": "Create a namespace.\u0026lt;br\u0026gt;By default the namespace is enabled.\u0026lt;br\u0026gt;In multi tenant mode, parentNamespace will be automatically filled with requester namespace if the requester is using studio or publisher token, and it will be filled with studio namespace if the requester uses game token. An oauth client will also be created and the id will be returned. \u0026lt;br\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026lt;b\u0026gt;\u0026#34;ADMIN:NAMESPACE\u0026#34;\u0026lt;/b\u0026gt;, action=1 \u0026lt;b\u0026gt;(CREATE)\u0026lt;/b\u0026gt;\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Action code\u0026lt;/i\u0026gt;: 11301\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: created namespace\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "createNamespace",
         "parameters": [
           {
@@ -4175,7 +4175,7 @@
     },
     "/basic/v1/public/namespaces/{namespace}/users/{userId}/profiles/customAttributes": {
       "get": {
-        "description": "Get custom attributes info.\u0026lt;br\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026lt;b\u0026gt;\u0026#34;NAMESPACE:{namespace}:USER:{userId}:PROFILE\u0026#34;\u0026lt;/b\u0026gt;, action=2 \u0026lt;b\u0026gt;(READ)\u0026lt;/b\u0026gt;\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Action code\u0026lt;/i\u0026gt;: 11404\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: user custom attributes\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
+        "description": "Get custom attributes info.\u0026lt;br\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Action code\u0026lt;/i\u0026gt;: 11404\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: user custom attributes\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "publicGetCustomAttributesInfo",
         "parameters": [
           {
@@ -4206,12 +4206,6 @@
               "type": "object"
             }
           },
-          "401": {
-            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20001\u003c/td\u003e\u003ctd\u003eunauthorized\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
-            "schema": {
-              "$ref": "#/definitions/ErrorEntity"
-            }
-          },
           "404": {
             "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e11440\u003c/td\u003e\u003ctd\u003eUnable to {action}: User profile not found in namespace [{namespace}]\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
@@ -4219,25 +4213,10 @@
             }
           }
         },
-        "security": [
-          {
-            "authorization": []
-          },
-          {
-            "HasPermission": [
-              "NAMESPACE:{namespace}:USER:{userId}:PROFILE [READ]"
-            ],
-            "authorization": []
-          }
-        ],
         "summary": "Get custom attributes info",
         "tags": [
           "UserProfile"
-        ],
-        "x-authorization": {
-          "action": "2",
-          "resource": "NAMESPACE:{namespace}:USER:{userId}:PROFILE"
-        }
+        ]
       },
       "put": {
         "consumes": [
@@ -4743,6 +4722,10 @@
     },
     "NamespaceInfo": {
       "properties": {
+        "clientId": {
+          "description": "clientId is only present on multi tenant mode with namespace is not publisher namespace",
+          "type": "string"
+        },
         "createdAt": {
           "format": "date-time",
           "type": "string",

@@ -567,6 +567,18 @@
             "type": "string"
           },
           {
+            "description": "Type of the session, value must be 'p2p' or 'dedicated'",
+            "in": "query",
+            "name": "sessionType",
+            "type": "string"
+          },
+          {
+            "description": "Status of the session, value must be 'active' or 'deleted'. Only work with p2p session type",
+            "in": "query",
+            "name": "status",
+            "type": "string"
+          },
+          {
             "description": "ID of the user",
             "in": "query",
             "name": "userID",
@@ -709,7 +721,7 @@
           "application/json"
         ],
         "description": "Required permission: NAMESPACE:{namespace}:SESSIONBROWSER:SESSION [READ]\n\nRequired scope: social\n\nQuery available game session",
-        "operationId": "QuerySession",
+        "operationId": "UserQuerySession",
         "parameters": [
           {
             "description": "namespace of the game",

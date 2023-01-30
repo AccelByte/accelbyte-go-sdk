@@ -33,6 +33,10 @@ type ModelsCreatorOverviewResponse struct {
 	// Required: true
 	Namespace *string `json:"namespace"`
 
+	// parent namespace
+	// Required: true
+	ParentNamespace *string `json:"parentNamespace"`
+
 	// Total all other user's like to creator content
 	// Required: true
 	TotalLikedContent *int64 `json:"totalLikedContent"`
@@ -55,6 +59,10 @@ func (m *ModelsCreatorOverviewResponse) Validate(formats strfmt.Registry) error 
 	}
 
 	if err := m.validateNamespace(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateParentNamespace(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -98,6 +106,15 @@ func (m *ModelsCreatorOverviewResponse) validateID(formats strfmt.Registry) erro
 func (m *ModelsCreatorOverviewResponse) validateNamespace(formats strfmt.Registry) error {
 
 	if err := validate.Required("namespace", "body", m.Namespace); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *ModelsCreatorOverviewResponse) validateParentNamespace(formats strfmt.Registry) error {
+
+	if err := validate.Required("parentNamespace", "body", m.ParentNamespace); err != nil {
 		return err
 	}
 

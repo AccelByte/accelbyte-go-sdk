@@ -8,7 +8,7 @@
     },
     "description": "Justice Group Service",
     "title": "justice-group-service",
-    "version": "2.13.0"
+    "version": "2.14.0"
   },
   "schemes": [
     "https"
@@ -30,8 +30,10 @@
         "ADMIN:NAMESPACE:{namespace}:GROUP:ROLE [UPDATE]": "ADMIN:NAMESPACE:{namespace}:GROUP:ROLE [UPDATE]",
         "ADMIN:NAMESPACE:{namespace}:GROUP:{groupId} [DELETE]": "ADMIN:NAMESPACE:{namespace}:GROUP:{groupId} [DELETE]",
         "GROUP [DELETE]": "GROUP [DELETE]",
+        "GROUP [READ]": "GROUP [READ]",
         "GROUP [UPDATE]": "GROUP [UPDATE]",
-        "GROUP:INVITE [CREATE]": "GROUP:INVITE [CREATE]"
+        "GROUP:INVITE [CREATE]": "GROUP:INVITE [CREATE]",
+        "GROUP:INVITE [DELETE]": "GROUP:INVITE [DELETE]"
       },
       "tokenUrl": "https://dumy.oauth.net/token",
       "type": "oauth2"
@@ -1105,7 +1107,7 @@
           "201": {
             "description": "Created",
             "schema": {
-              "$ref": "#/definitions/models.CreateMemberRoleResponseV1"
+              "$ref": "#/definitions/models.MemberRoleResponseV1"
             }
           },
           "400": {
@@ -1244,7 +1246,7 @@
           "200": {
             "description": "OK",
             "schema": {
-              "$ref": "#/definitions/models.GetMemberRoleResponseV1"
+              "$ref": "#/definitions/models.MemberRoleResponseV1"
             }
           },
           "400": {
@@ -1328,7 +1330,7 @@
           "200": {
             "description": "OK",
             "schema": {
-              "$ref": "#/definitions/models.UpdateMemberRoleResponseV1"
+              "$ref": "#/definitions/models.MemberRoleResponseV1"
             }
           },
           "400": {
@@ -1414,7 +1416,7 @@
           "200": {
             "description": "OK",
             "schema": {
-              "$ref": "#/definitions/models.UpdateMemberRoleResponseV1"
+              "$ref": "#/definitions/models.MemberRoleResponseV1"
             }
           },
           "400": {
@@ -3490,6 +3492,2166 @@
           "Group Member"
         ]
       }
+    },
+    "/group/v2/admin/namespaces/{namespace}/users/{userId}/groups": {
+      "get": {
+        "description": "\u0026lt;p\u0026gt;Required valid user authentication \u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;This endpoint is used to get user joined group information.\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;Get user group joined information. If user does not belong to any group, it will return warning to give information about it\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;Group Member Status:\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;ul\u0026gt;\n\t\t\t\t\u0026lt;li\u0026gt;JOINED: status of user already joined to a group\u0026lt;/li\u0026gt;\n\t\t\t\u0026lt;/ul\u0026gt;\n\t\t",
+        "operationId": "getUserJoinedGroupInformationPublicV2",
+        "parameters": [
+          {
+            "description": "namespace",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "User ID",
+            "in": "path",
+            "name": "userId",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "size of displayed data",
+            "in": "query",
+            "name": "limit",
+            "type": "integer"
+          },
+          {
+            "description": "The start position that points to query data",
+            "in": "query",
+            "name": "offset",
+            "type": "integer"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/models.GetGroupMemberListResponseV1"
+            }
+          },
+          "400": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20002\u003c/td\u003e\u003ctd\u003evalidation error\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "401": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20001\u003c/td\u003e\u003ctd\u003eunauthorized access\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "403": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20022\u003c/td\u003e\u003ctd\u003etoken is not user token\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "404": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e73034\u003c/td\u003e\u003ctd\u003euser not belong to any group\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "summary": "Get User Joined Group Information",
+        "tags": [
+          "Group Member"
+        ]
+      }
+    },
+    "/group/v2/public/namespaces/{namespace}/groups": {
+      "post": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "\u0026lt;p\u0026gt;Required valid user authentication \u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;This endpoint is used to create new group\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;There are some fields that needs to be fulfilled\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;ul\u0026gt;\n\t\t\t\t\u0026lt;li\u0026gt;\u0026lt;b\u0026gt;groupDescription\u0026lt;/b\u0026gt;: the description of the group (optional)\u0026lt;/li\u0026gt;\n\t\t\t\t\u0026lt;li\u0026gt;\u0026lt;b\u0026gt;groupIcon\u0026lt;/b\u0026gt;: group icon URL link (optional)\u0026lt;/li\u0026gt;\n\t\t\t\t\u0026lt;li\u0026gt;\u0026lt;b\u0026gt;groupName\u0026lt;/b\u0026gt;: name of the group\u0026lt;/li\u0026gt;\n\t\t\t\t\u0026lt;li\u0026gt;\u0026lt;b\u0026gt;groupRegion\u0026lt;/b\u0026gt;: region of the group\u0026lt;/li\u0026gt;\n\t\t\t\t\u0026lt;li\u0026gt;\u0026lt;b\u0026gt;groupRules\u0026lt;/b\u0026gt;: rules for specific group. It consists of groupCustomRule that can be used to save custom rule, and groupPredefinedRules that has similar usage with configuration, but this rule only works in specific group\u0026lt;/li\u0026gt;\n\t\t\t\t\u0026lt;li\u0026gt;\u0026lt;b\u0026gt;allowedAction\u0026lt;/b\u0026gt;: available action in group service. It consist of joinGroup and inviteGroup\u0026lt;/li\u0026gt;\n\t\t\t\t\u0026lt;li\u0026gt;\u0026lt;b\u0026gt;ruleAttribute\u0026lt;/b\u0026gt;: attribute of the player that needs to be checked\u0026lt;/li\u0026gt;\n\t\t\t\t\u0026lt;li\u0026gt;\u0026lt;b\u0026gt;ruleCriteria\u0026lt;/b\u0026gt;: criteria of the value. The value will be in enum of EQUAL, MINIMUM, MAXIMUM\u0026lt;/li\u0026gt;\n\t\t\t\t\u0026lt;li\u0026gt;\u0026lt;b\u0026gt;ruleValue\u0026lt;/b\u0026gt;: value that needs to be checked\u0026lt;/li\u0026gt;\n\t\t\t\t\u0026lt;li\u0026gt;\u0026lt;b\u0026gt;customAttributes\u0026lt;/b\u0026gt;: additional custom group attributes (optional)\u0026lt;/li\u0026gt;\n\t\t\t\u0026lt;/ul\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;Action Code: 73304\u0026lt;/p\u0026gt;\n\t\t",
+        "operationId": "createNewGroupPublicV2",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/models.PublicCreateNewGroupRequestV1"
+            }
+          },
+          {
+            "description": "namespace",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "201": {
+            "description": "Created",
+            "schema": {
+              "$ref": "#/definitions/models.GroupResponseV1"
+            }
+          },
+          "400": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20002\u003c/td\u003e\u003ctd\u003evalidation error\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "401": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20001\u003c/td\u003e\u003ctd\u003eunauthorized access\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "403": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20013\u003c/td\u003e\u003ctd\u003einsufficient permissions\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20022\u003c/td\u003e\u003ctd\u003etoken is not user token\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "409": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e73342\u003c/td\u003e\u003ctd\u003euser already joined group\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "summary": "create new group",
+        "tags": [
+          "Group"
+        ]
+      }
+    },
+    "/group/v2/public/namespaces/{namespace}/groups/bulk": {
+      "post": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "\u0026lt;p\u0026gt;Required valid user authentication \u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;Get list of groups by group Ids.\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;Action Code: 73303\u0026lt;/p\u0026gt;\n\t\t",
+        "operationId": "getListGroupByIDsV2",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/models.PublicGetGroupListRequestV2"
+            }
+          },
+          {
+            "description": "namespace",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/models.GetGroupsResponseV1"
+            }
+          },
+          "400": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20002\u003c/td\u003e\u003ctd\u003evalidation error\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "401": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20001\u003c/td\u003e\u003ctd\u003eunauthorized access\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "403": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20013\u003c/td\u003e\u003ctd\u003einsufficient permissions\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20022\u003c/td\u003e\u003ctd\u003etoken is not user token\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "summary": "get list of groups by group Ids",
+        "tags": [
+          "Group"
+        ]
+      }
+    },
+    "/group/v2/public/namespaces/{namespace}/groups/{groupId}": {
+      "delete": {
+        "description": "\u0026lt;p\u0026gt;Required valid user authentication \u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;Required Member Role Permission: \u0026#34;GROUP [DELETE]\u0026#34;\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;Delete existing group. This endpoint will check the group ID of the user based on the access token\n\t\t\tand compare it with the group ID in path parameter. It will also check the member role of the user based on \n\t\t\tthe access token\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;Action Code: 73305\u0026lt;/p\u0026gt;\n\t\t",
+        "operationId": "deleteGroupPublicV2",
+        "parameters": [
+          {
+            "description": "Group ID",
+            "in": "path",
+            "name": "groupId",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "namespace",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content"
+          },
+          "400": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20002\u003c/td\u003e\u003ctd\u003evalidation error\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "401": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20001\u003c/td\u003e\u003ctd\u003eunauthorized access\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "403": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20013\u003c/td\u003e\u003ctd\u003einsufficient permissions\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20022\u003c/td\u003e\u003ctd\u003etoken is not user token\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e73036\u003c/td\u003e\u003ctd\u003einsufficient member role permission\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "404": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e73333\u003c/td\u003e\u003ctd\u003egroup not found\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          }
+        },
+        "security": [
+          {
+            "HasPermission": [
+              "GROUP [DELETE]"
+            ],
+            "authorization": []
+          }
+        ],
+        "summary": "Delete existing group",
+        "tags": [
+          "Group"
+        ]
+      },
+      "patch": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "\u0026lt;p\u0026gt;Required valid user authentication \u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;Required Member Role Permission: \u0026#34;GROUP [UPDATE]\u0026#34;\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;Update existing group. This endpoint supports partial update. This endpoint will check the group ID of the user based on the access token and compare it with the group ID in path parameter. \n\t\t\tIt will also check the member role of the user based on the access token\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;Action Code: 73307\u0026lt;/p\u0026gt;\n\t\t",
+        "operationId": "updatePatchSingleGroupPublicV2",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/models.UpdateGroupRequestV1"
+            }
+          },
+          {
+            "description": "Group ID",
+            "in": "path",
+            "name": "groupId",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "namespace",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/models.GroupResponseV1"
+            }
+          },
+          "400": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20002\u003c/td\u003e\u003ctd\u003evalidation error\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "401": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20001\u003c/td\u003e\u003ctd\u003eunauthorized access\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "403": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20013\u003c/td\u003e\u003ctd\u003einsufficient permissions\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20022\u003c/td\u003e\u003ctd\u003etoken is not user token\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e73036\u003c/td\u003e\u003ctd\u003einsufficient member role permission\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "404": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e73333\u003c/td\u003e\u003ctd\u003egroup not found\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          }
+        },
+        "security": [
+          {
+            "HasPermission": [
+              "GROUP [UPDATE]"
+            ],
+            "authorization": []
+          }
+        ],
+        "summary": "update existing group",
+        "tags": [
+          "Group"
+        ]
+      },
+      "put": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "\u0026lt;p\u0026gt;Required valid user authentication \u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;Required Member Role Permission: \u0026#34;GROUP [UPDATE]\u0026#34;\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;Update existing group. This endpoint supports partial update. This endpoint will check the group ID of the user based on the access token and compare it with the group ID in path parameter. \n\t\t\tIt will also check the member role of the user based on the access token\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;Action Code: 73307\u0026lt;/p\u0026gt;\n\t\t",
+        "operationId": "updatePutSingleGroupPublicV2",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/models.UpdateGroupRequestV1"
+            }
+          },
+          {
+            "description": "Group ID",
+            "in": "path",
+            "name": "groupId",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "namespace",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/models.GroupResponseV1"
+            }
+          },
+          "400": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20002\u003c/td\u003e\u003ctd\u003evalidation error\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "401": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20001\u003c/td\u003e\u003ctd\u003eunauthorized access\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "403": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20013\u003c/td\u003e\u003ctd\u003einsufficient permissions\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20022\u003c/td\u003e\u003ctd\u003etoken is not user token\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e73036\u003c/td\u003e\u003ctd\u003einsufficient member role permission\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "404": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e73333\u003c/td\u003e\u003ctd\u003egroup not found\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          }
+        },
+        "security": [
+          {
+            "HasPermission": [
+              "GROUP [UPDATE]"
+            ],
+            "authorization": []
+          }
+        ],
+        "summary": "update existing group",
+        "tags": [
+          "Group"
+        ]
+      }
+    },
+    "/group/v2/public/namespaces/{namespace}/groups/{groupId}/attributes/custom": {
+      "put": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "\u0026lt;p\u0026gt;Requires valid user authentication \u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;Required Member Role Permission: \u0026#34;GROUP [UPDATE]\u0026#34;\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;This endpoint replaces current group custom attributes entirely.\n\t\t\tThis endpoint will check the group ID of the user based on the access token and compare it with the group ID in path parameter. \n\t\t\tIt will also check the member role of the user based on the access token\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;Action Code: 73311\u0026lt;/p\u0026gt;\n\t\t",
+        "operationId": "updateGroupCustomAttributesPublicV2",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/models.UpdateGroupCustomAttributesRequestV1"
+            }
+          },
+          {
+            "description": "Group ID",
+            "in": "path",
+            "name": "groupId",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "namespace",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/models.GroupResponseV1"
+            }
+          },
+          "400": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20002\u003c/td\u003e\u003ctd\u003evalidation error\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "401": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20001\u003c/td\u003e\u003ctd\u003eunauthorized access\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "403": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20013\u003c/td\u003e\u003ctd\u003einsufficient permissions\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20022\u003c/td\u003e\u003ctd\u003etoken is not user token\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e73036\u003c/td\u003e\u003ctd\u003einsufficient member role permission\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "404": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e73333\u003c/td\u003e\u003ctd\u003egroup not found\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          }
+        },
+        "security": [
+          {
+            "HasPermission": [
+              "GROUP [UPDATE]"
+            ],
+            "authorization": []
+          }
+        ],
+        "summary": "Update group custom attributes",
+        "tags": [
+          "Group"
+        ]
+      }
+    },
+    "/group/v2/public/namespaces/{namespace}/groups/{groupId}/invite/accept": {
+      "post": {
+        "description": "\u0026lt;p\u0026gt;Required valid user authentication \u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;This endpoint is used to accept group invitation.\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;Accept group invitation. If specific user is not invited in the specific group ID, it will show the the error to show if the user is not invited yet.\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;This endpoint will also check if the user who access this endpoint is already joined to specific group\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;Accessing this endpoint will make all requests (invite / join request) will be deleted for the user who access this endpoint\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;Existing members will receive notification of newly accepted member.\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;Action Code: 73401\u0026lt;/p\u0026gt;\n\t\t",
+        "operationId": "acceptGroupInvitationPublicV2",
+        "parameters": [
+          {
+            "description": "Group ID",
+            "in": "path",
+            "name": "groupId",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "namespace",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/models.MemberRequestGroupResponseV1"
+            }
+          },
+          "400": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20002\u003c/td\u003e\u003ctd\u003evalidation error\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "401": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20001\u003c/td\u003e\u003ctd\u003eunauthorized access\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "403": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20022\u003c/td\u003e\u003ctd\u003etoken is not user token\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "404": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e73443\u003c/td\u003e\u003ctd\u003emember request not found\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "409": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e73442\u003c/td\u003e\u003ctd\u003euser already joined in another group\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "summary": "Accept Group Invitation",
+        "tags": [
+          "Group Member"
+        ]
+      }
+    },
+    "/group/v2/public/namespaces/{namespace}/groups/{groupId}/invite/reject": {
+      "post": {
+        "description": "\u0026lt;p\u0026gt;Required valid user authentication \u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;This endpoint is used to reject group invitation.\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;Reject group invitation. If specific user is not invited in the specific group ID, it will show the the error to show if the user is not invited yet.\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;Action Code: 73402\u0026lt;/p\u0026gt;\n\t\t",
+        "operationId": "rejectGroupInvitationPublicV2",
+        "parameters": [
+          {
+            "description": "Group ID",
+            "in": "path",
+            "name": "groupId",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "namespace",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/models.MemberRequestGroupResponseV1"
+            }
+          },
+          "400": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20002\u003c/td\u003e\u003ctd\u003evalidation error\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "401": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20001\u003c/td\u003e\u003ctd\u003eunauthorized access\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "403": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20022\u003c/td\u003e\u003ctd\u003etoken is not user token\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "404": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e73443\u003c/td\u003e\u003ctd\u003emember request not found\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "409": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e73442\u003c/td\u003e\u003ctd\u003euser already joined in another group\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "summary": "Reject Group Invitation",
+        "tags": [
+          "Group Member"
+        ]
+      }
+    },
+    "/group/v2/public/namespaces/{namespace}/groups/{groupId}/invite/request": {
+      "get": {
+        "description": "\u0026lt;p\u0026gt;Required valid user authentication \u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;Required Member Role Permission: \u0026#34;GROUP:JOIN [READ]\u0026#34;\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;This endpoint is used to Get Group Invite Request List\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;Get Group Invite Request List for specific group. Group members needs to have permission and also belong to the group to access this endpoint\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;Action Code: 73501\u0026lt;/p\u0026gt;\n\t\t",
+        "operationId": "getGroupInviteRequestPublicV2",
+        "parameters": [
+          {
+            "description": "Group ID",
+            "in": "path",
+            "name": "groupId",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "namespace",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "size of displayed data",
+            "in": "query",
+            "name": "limit",
+            "type": "integer"
+          },
+          {
+            "description": "The start position that points to query data",
+            "in": "query",
+            "name": "offset",
+            "type": "integer"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/models.GetMemberRequestsListResponseV1"
+            }
+          },
+          "400": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20002\u003c/td\u003e\u003ctd\u003evalidation error\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "401": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20001\u003c/td\u003e\u003ctd\u003eunauthorized access\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "403": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20022\u003c/td\u003e\u003ctd\u003etoken is not user token\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e73036\u003c/td\u003e\u003ctd\u003einsufficient member role permission\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "summary": "Get Group Invite Request List",
+        "tags": [
+          "Member Request"
+        ]
+      }
+    },
+    "/group/v2/public/namespaces/{namespace}/groups/{groupId}/join": {
+      "post": {
+        "description": "\u0026lt;p\u0026gt;Required valid user authentication \u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;This endpoint is used to join as group member\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;Join to the group. This endpoint will check the the the type of the group based on the groupID.\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;Additional Information:\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;ul\u0026gt;\n\t\t\t\t\u0026lt;li\u0026gt;User cannot join to the group with PRIVATE type\u0026lt;/li\u0026gt;\n\t\t\t\t\u0026lt;li\u0026gt;Joining PUBLIC group type will create join request and need approval from the privileged group member to accept the request to become the member\u0026lt;/li\u0026gt;\n\t\t\t\t\u0026lt;li\u0026gt;Joining OPEN group type will make this user become member of that group immediately\u0026lt;/li\u0026gt;\n\t\t\t\u0026lt;/ul\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;This endpoint will return status field to give information whether the user is JOINED or REQUESTED to join to the specific group\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;Action Code: 73403\u0026lt;/p\u0026gt;\n\t\t",
+        "operationId": "JoinGroupV2",
+        "parameters": [
+          {
+            "description": "Group ID",
+            "in": "path",
+            "name": "groupId",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "namespace",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "201": {
+            "description": "Created",
+            "schema": {
+              "$ref": "#/definitions/models.JoinGroupResponseV1"
+            }
+          },
+          "400": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20002\u003c/td\u003e\u003ctd\u003evalidation error\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "401": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20001\u003c/td\u003e\u003ctd\u003eunauthorized access\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "403": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20022\u003c/td\u003e\u003ctd\u003etoken is not user token\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "409": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e73442\u003c/td\u003e\u003ctd\u003euser already joined in another group\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "summary": "Join to group",
+        "tags": [
+          "Group Member"
+        ]
+      }
+    },
+    "/group/v2/public/namespaces/{namespace}/groups/{groupId}/join/request": {
+      "get": {
+        "description": "\u0026lt;p\u0026gt;Required valid user authentication \u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;Required Member Role Permission: \u0026#34;GROUP:JOIN [READ]\u0026#34;\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;This endpoint is used to Get Group Join Request List\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;Get Group Join Request List for specific group. Group members needs to have permission and also belong to the group to access this endpoint\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;Action Code: 73501\u0026lt;/p\u0026gt;\n\t\t",
+        "operationId": "getGroupJoinRequestPublicV2",
+        "parameters": [
+          {
+            "description": "Group ID",
+            "in": "path",
+            "name": "groupId",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "namespace",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "size of displayed data",
+            "in": "query",
+            "name": "limit",
+            "type": "integer"
+          },
+          {
+            "description": "The start position that points to query data",
+            "in": "query",
+            "name": "offset",
+            "type": "integer"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/models.GetMemberRequestsListResponseV1"
+            }
+          },
+          "400": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20002\u003c/td\u003e\u003ctd\u003evalidation error\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "401": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20001\u003c/td\u003e\u003ctd\u003eunauthorized access\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "403": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20022\u003c/td\u003e\u003ctd\u003etoken is not user token\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e73036\u003c/td\u003e\u003ctd\u003einsufficient member role permission\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "summary": "Get Group Join Request List",
+        "tags": [
+          "Member Request"
+        ]
+      }
+    },
+    "/group/v2/public/namespaces/{namespace}/groups/{groupId}/leave": {
+      "post": {
+        "description": "\u0026lt;p\u0026gt;Required valid user authentication \u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;This endpoint is used to leave from group.\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;leave from group. Admin is not allowed to leave the group. This endpoint will also give response if the user does not belong to any group.\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;Action Code: 73404\u0026lt;/p\u0026gt;\n\t\t",
+        "operationId": "leaveGroupPublicV2",
+        "parameters": [
+          {
+            "description": "Group ID",
+            "in": "path",
+            "name": "groupId",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "namespace",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/models.LeaveGroupResponseV1"
+            }
+          },
+          "400": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20002\u003c/td\u003e\u003ctd\u003evalidation error\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e73440\u003c/td\u003e\u003ctd\u003egroup admin cannot leave group\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "401": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20001\u003c/td\u003e\u003ctd\u003eunauthorized access\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "403": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20022\u003c/td\u003e\u003ctd\u003etoken is not user token\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "404": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e73034\u003c/td\u003e\u003ctd\u003euser not belong to any group\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "summary": "Leave group",
+        "tags": [
+          "Group Member"
+        ]
+      }
+    },
+    "/group/v2/public/namespaces/{namespace}/groups/{groupId}/rules/custom": {
+      "put": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "\u0026lt;p\u0026gt;Required valid user authentication \u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;Update group custom rule. This endpoint will check the group ID of the user based on the access token \n\t\t\tand compare it with the group ID in path parameter. It will also check the member role of the user based \n\t\t\ton the access token\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;Action Code: 73308\u0026lt;/p\u0026gt;\n\t\t",
+        "operationId": "updateGroupCustomRulePublicV2",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/models.UpdateGroupCustomRuleRequestV1"
+            }
+          },
+          {
+            "description": "Group ID",
+            "in": "path",
+            "name": "groupId",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "namespace",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/models.GroupResponseV1"
+            }
+          },
+          "400": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20002\u003c/td\u003e\u003ctd\u003evalidation error\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20019\u003c/td\u003e\u003ctd\u003eunable to parse request body\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "401": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20001\u003c/td\u003e\u003ctd\u003eunauthorized access\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "403": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20013\u003c/td\u003e\u003ctd\u003einsufficient permissions\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20022\u003c/td\u003e\u003ctd\u003etoken is not user token\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e73036\u003c/td\u003e\u003ctd\u003einsufficient member role permission\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "404": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e73333\u003c/td\u003e\u003ctd\u003egroup not found\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "summary": "update group custom rule",
+        "tags": [
+          "Group"
+        ]
+      }
+    },
+    "/group/v2/public/namespaces/{namespace}/groups/{groupId}/rules/defined/{allowedAction}": {
+      "delete": {
+        "description": "\u0026lt;p\u0026gt;Required valid user authentication \u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;Required Member Role Permission: \u0026#34;GROUP [UPDATE]\u0026#34;\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;Delete group predefined rule based on the allowed action. This endpoint will check the group ID of the user based on the access token\n\t\t\tand compare it with the group ID in path parameter. It will also check the member role of the user based on \n\t\t\tthe access token\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;Action Code: 73309\u0026lt;/p\u0026gt;\n\t\t",
+        "operationId": "deleteGroupPredefinedRulePublicV2",
+        "parameters": [
+          {
+            "description": "Allowed action, any available action in service",
+            "in": "path",
+            "name": "allowedAction",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "Group ID",
+            "in": "path",
+            "name": "groupId",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "namespace",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content"
+          },
+          "400": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20002\u003c/td\u003e\u003ctd\u003evalidation error\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "401": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20001\u003c/td\u003e\u003ctd\u003eunauthorized access\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "403": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20013\u003c/td\u003e\u003ctd\u003einsufficient permissions\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20022\u003c/td\u003e\u003ctd\u003etoken is not user token\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e73036\u003c/td\u003e\u003ctd\u003einsufficient member role permission\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "404": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e73333\u003c/td\u003e\u003ctd\u003egroup not found\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          }
+        },
+        "security": [
+          {
+            "HasPermission": [
+              "GROUP [UPDATE]"
+            ],
+            "authorization": []
+          }
+        ],
+        "summary": "Delete group predefined rule",
+        "tags": [
+          "Group"
+        ]
+      },
+      "put": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "\u0026lt;p\u0026gt;Required valid user authentication \u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;Required Member Role Permission: \u0026#34;GROUP [UPDATE]\u0026#34;\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;Update predefined group rule. This endpoint will check the group ID of the user based on the access token \n\t\t\tand compare it with the group ID in path parameter. It will also check the member role of the user based on \n\t\t\tthe access token\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;If the rule action is not defined in the group, it will be added immediately to the predefined group rule\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;Action Code: 73310\u0026lt;/p\u0026gt;\n\t\t",
+        "operationId": "updateGroupPredefinedRulePublicV2",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/models.UpdateGroupPredefinedRuleRequestV1"
+            }
+          },
+          {
+            "description": "Allowed action, any available action in service",
+            "in": "path",
+            "name": "allowedAction",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "Group ID",
+            "in": "path",
+            "name": "groupId",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "namespace",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/models.GroupResponseV1"
+            }
+          },
+          "400": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20019\u003c/td\u003e\u003ctd\u003eunable to parse request body\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20002\u003c/td\u003e\u003ctd\u003evalidation error\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "401": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20001\u003c/td\u003e\u003ctd\u003eunauthorized access\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "403": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20013\u003c/td\u003e\u003ctd\u003einsufficient permissions\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20022\u003c/td\u003e\u003ctd\u003etoken is not user token\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e73036\u003c/td\u003e\u003ctd\u003einsufficient member role permission\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "404": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e73333\u003c/td\u003e\u003ctd\u003egroup not found\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          }
+        },
+        "security": [
+          {
+            "HasPermission": [
+              "GROUP [UPDATE]"
+            ],
+            "authorization": []
+          }
+        ],
+        "summary": "update predefined group rule",
+        "tags": [
+          "Group"
+        ]
+      }
+    },
+    "/group/v2/public/namespaces/{namespace}/roles": {
+      "get": {
+        "description": "\u0026lt;p\u0026gt;This endpoint is used to get list of member roles\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;Action Code: 73201\u0026lt;/p\u0026gt;\n\t\t",
+        "operationId": "getMemberRolesListPublicV2",
+        "parameters": [
+          {
+            "description": "namespace",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "size of displayed data",
+            "in": "query",
+            "name": "limit",
+            "type": "integer"
+          },
+          {
+            "description": "The start position that points to query data",
+            "in": "query",
+            "name": "offset",
+            "type": "integer"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/models.GetMemberRolesListResponseV1"
+            }
+          },
+          "400": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20002\u003c/td\u003e\u003ctd\u003evalidation error\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "401": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20001\u003c/td\u003e\u003ctd\u003eunauthorized access\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "403": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20013\u003c/td\u003e\u003ctd\u003einsufficient permissions\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "summary": "get all list of member roles",
+        "tags": [
+          "Group Roles"
+        ]
+      }
+    },
+    "/group/v2/public/namespaces/{namespace}/roles/{memberRoleId}/groups/{groupId}/members": {
+      "delete": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Required Member Role Permission: \u0026#34;GROUP:ROLE [UPDATE]\u0026#34;\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;This endpoint is used to remove role from group member\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;Action Code: 73204\u0026lt;/p\u0026gt;",
+        "operationId": "deleteMemberRolePublicV2",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/models.RemoveRoleFromMemberRequestV1"
+            }
+          },
+          {
+            "description": "Group ID",
+            "in": "path",
+            "name": "groupId",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "member Role ID",
+            "in": "path",
+            "name": "memberRoleId",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "namespace",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content"
+          },
+          "400": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20002\u003c/td\u003e\u003ctd\u003evalidation error\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20019\u003c/td\u003e\u003ctd\u003eunable to parse request body\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "401": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20001\u003c/td\u003e\u003ctd\u003eunauthorized access\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "403": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20022\u003c/td\u003e\u003ctd\u003etoken is not user token\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20013\u003c/td\u003e\u003ctd\u003einsufficient permissions\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "404": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e73232\u003c/td\u003e\u003ctd\u003emember role not found\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "422": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e73444\u003c/td\u003e\u003ctd\u003emember must have role\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "summary": "Remove role from group member",
+        "tags": [
+          "Group Roles"
+        ]
+      },
+      "post": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Required Member Role Permission: \u0026#34;GROUP:ROLE [UPDATE]\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;This endpoint is used to assign role to group member\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;Action Code: 73204\u0026lt;/p\u0026gt;",
+        "operationId": "updateMemberRolePublicV2",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/models.AssignRoleToMemberRequestV1"
+            }
+          },
+          {
+            "description": "Group ID",
+            "in": "path",
+            "name": "groupId",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "member Role ID",
+            "in": "path",
+            "name": "memberRoleId",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "namespace",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/models.GetUserGroupInformationResponseV1"
+            }
+          },
+          "400": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20002\u003c/td\u003e\u003ctd\u003evalidation error\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20019\u003c/td\u003e\u003ctd\u003eunable to parse request body\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "401": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20001\u003c/td\u003e\u003ctd\u003eunauthorized access\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "403": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20022\u003c/td\u003e\u003ctd\u003etoken is not user token\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20013\u003c/td\u003e\u003ctd\u003einsufficient permissions\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "404": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e73232\u003c/td\u003e\u003ctd\u003emember role not found\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "summary": "Assign role to group member",
+        "tags": [
+          "Group Roles"
+        ]
+      }
+    },
+    "/group/v2/public/namespaces/{namespace}/users/me/groups": {
+      "get": {
+        "description": "\u0026lt;p\u0026gt;Required valid user authentication \u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;This endpoint is used to get user joined group information.\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;Get user group joined information. If user does not belong to any group, it will return warning to give information about it\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;Group Member Status:\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;ul\u0026gt;\n\t\t\t\t\u0026lt;li\u0026gt;JOINED: status of user already joined to a group\u0026lt;/li\u0026gt;\n\t\t\t\u0026lt;/ul\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;Action Code: 73405\u0026lt;/p\u0026gt;\n\t\t",
+        "operationId": "getUserGroupInformationPublicV2",
+        "parameters": [
+          {
+            "description": "namespace",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "size of displayed data",
+            "in": "query",
+            "name": "limit",
+            "type": "integer"
+          },
+          {
+            "description": "The start position that points to query data",
+            "in": "query",
+            "name": "offset",
+            "type": "integer"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/models.GetGroupMemberListResponseV1"
+            }
+          },
+          "400": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20002\u003c/td\u003e\u003ctd\u003evalidation error\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "401": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20001\u003c/td\u003e\u003ctd\u003eunauthorized access\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "403": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20022\u003c/td\u003e\u003ctd\u003etoken is not user token\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "404": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e73034\u003c/td\u003e\u003ctd\u003euser not belong to any group\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "summary": "Get User Joined Group Information",
+        "tags": [
+          "Group Member"
+        ]
+      }
+    },
+    "/group/v2/public/namespaces/{namespace}/users/me/join/request": {
+      "get": {
+        "description": "\u0026lt;p\u0026gt;Required valid user authentication \u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;This endpoint is used to Get My Join Request To The Groups\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;Get My Join Request To The Groups for the user calling this endpoint. It will check any join request group for this user\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;Action Code: 73502\u0026lt;/p\u0026gt;\n\t\t",
+        "operationId": "GetMyGroupJoinRequestV2",
+        "parameters": [
+          {
+            "description": "namespace",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "size of displayed data",
+            "in": "query",
+            "name": "limit",
+            "type": "integer"
+          },
+          {
+            "description": "The start position that points to query data",
+            "in": "query",
+            "name": "offset",
+            "type": "integer"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/models.GetMemberRequestsListResponseV1"
+            }
+          },
+          "400": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20002\u003c/td\u003e\u003ctd\u003evalidation error\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "401": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20001\u003c/td\u003e\u003ctd\u003eunauthorized access\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "403": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20022\u003c/td\u003e\u003ctd\u003etoken is not user token\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "summary": "Get My Join Request To The Groups",
+        "tags": [
+          "Member Request"
+        ]
+      }
+    },
+    "/group/v2/public/namespaces/{namespace}/users/{userId}/groups/{groupId}/invite": {
+      "post": {
+        "description": "\u0026lt;p\u0026gt;Required valid user authentication \u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;Required Member Role Permission: \u0026#34;GROUP:INVITE [CREATE]\u0026#34;\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;This endpoint is used to invite specific user to the group.\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;invite specific user to the group. If specific user is already have the join request to the group, this endpoint will notify if this user already have join request that needs to be accepted / rejected\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;Invited user will receive notification through lobby.\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;Action Code: 73406\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;br\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;memberRolePermissions example value :\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;\u0026#34;action\u0026#34;: 1\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;\u0026#34;resourceName\u0026#34;: \u0026#34;GROUP:INVITE\u0026#34;\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;The invited user will have a permission to invite another user to the group\u0026lt;p/\u0026gt;\n\t\t",
+        "operationId": "inviteGroupPublicV2",
+        "parameters": [
+          {
+            "description": "Group ID",
+            "in": "path",
+            "name": "groupId",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "namespace",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "User ID",
+            "in": "path",
+            "name": "userId",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/models.UserInvitationResponseV1"
+            }
+          },
+          "400": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20002\u003c/td\u003e\u003ctd\u003evalidation error\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "401": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20001\u003c/td\u003e\u003ctd\u003eunauthorized access\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "403": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20022\u003c/td\u003e\u003ctd\u003etoken is not user token\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e73036\u003c/td\u003e\u003ctd\u003einsufficient member role permission\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "404": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e73034\u003c/td\u003e\u003ctd\u003euser not belong to any group\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "409": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e73442\u003c/td\u003e\u003ctd\u003euser already joined in another group\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e73437\u003c/td\u003e\u003ctd\u003euser already invited\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e73438\u003c/td\u003e\u003ctd\u003euser already requested to join\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          }
+        },
+        "security": [
+          {
+            "HasPermission": [
+              "GROUP:INVITE [CREATE]"
+            ],
+            "authorization": []
+          }
+        ],
+        "summary": "Invite user to group",
+        "tags": [
+          "Group Member"
+        ]
+      }
+    },
+    "/group/v2/public/namespaces/{namespace}/users/{userId}/groups/{groupId}/invite/cancel": {
+      "post": {
+        "description": "\u0026lt;p\u0026gt;Required valid user authentication \u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;Required Member Role Permission: \u0026#34;GROUP:INVITE [DELETE]\u0026#34;\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;This endpoint is used to cancel invitation group member.\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;cancel invitation group member. This endpoint will cancel invitation to specific user, and also the role permission of the the user who accesses this endpoint\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;Action Code: 73409\u0026lt;/p\u0026gt;\n\t\t",
+        "operationId": "CancelInvitationGroupMemberV2",
+        "parameters": [
+          {
+            "description": "Group ID",
+            "in": "path",
+            "name": "groupId",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "namespace",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "User ID",
+            "in": "path",
+            "name": "userId",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/models.CancelInvitationGroupResponseV2"
+            }
+          },
+          "400": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20002\u003c/td\u003e\u003ctd\u003evalidation error\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "401": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20001\u003c/td\u003e\u003ctd\u003eunauthorized access\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "403": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20022\u003c/td\u003e\u003ctd\u003etoken is not user token\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e73036\u003c/td\u003e\u003ctd\u003einsufficient member role permission\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "404": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e73433\u003c/td\u003e\u003ctd\u003emember group not found\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e73034\u003c/td\u003e\u003ctd\u003euser not belong to any group\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          }
+        },
+        "security": [
+          {
+            "HasPermission": [
+              "GROUP:INVITE [DELETE]"
+            ],
+            "authorization": []
+          }
+        ],
+        "summary": "Cancel Invitation Group Member",
+        "tags": [
+          "Member Request"
+        ]
+      }
+    },
+    "/group/v2/public/namespaces/{namespace}/users/{userId}/groups/{groupId}/join/accept": {
+      "post": {
+        "description": "\u0026lt;p\u0026gt;Required valid user authentication \u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;Required Member Role Permission: \u0026#34;GROUP:JOIN [CREATE]\u0026#34;\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;This endpoint is used to accept group join request.\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;Accept group join request. If specific user is not asked to join the specific group ID, it will show the the error to show if the user is not asked to join yet.\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;This endpoint will also check if the specific user is already joined to specific group\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;Action Code: 73407\u0026lt;/p\u0026gt;\n\t\t",
+        "operationId": "acceptGroupJoinRequestPublicV2",
+        "parameters": [
+          {
+            "description": "Group ID",
+            "in": "path",
+            "name": "groupId",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "namespace",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "User ID",
+            "in": "path",
+            "name": "userId",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/models.MemberRequestGroupResponseV1"
+            }
+          },
+          "400": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20002\u003c/td\u003e\u003ctd\u003evalidation error\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "401": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20001\u003c/td\u003e\u003ctd\u003eunauthorized access\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "403": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20022\u003c/td\u003e\u003ctd\u003etoken is not user token\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e73036\u003c/td\u003e\u003ctd\u003einsufficient member role permission\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "404": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e73443\u003c/td\u003e\u003ctd\u003emember request not found\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "409": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e73442\u003c/td\u003e\u003ctd\u003euser already joined in another group\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "summary": "Accept Group Join Request",
+        "tags": [
+          "Group Member"
+        ]
+      }
+    },
+    "/group/v2/public/namespaces/{namespace}/users/{userId}/groups/{groupId}/join/reject": {
+      "post": {
+        "description": "\u0026lt;p\u0026gt;Required valid user authentication \u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;Required Member Role Permission: \u0026#34;GROUP:JOIN [CREATE]\u0026#34;\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;This endpoint is used to reject group join request.\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;Reject group join request. If specific user is not asked to join the specific group ID, it will show the the error to show if the user is not asked to join yet.\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;This endpoint will also check if the specific user is already joined to specific group\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;Action Code: 73408\u0026lt;/p\u0026gt;\n\t\t",
+        "operationId": "rejectGroupJoinRequestPublicV2",
+        "parameters": [
+          {
+            "description": "Group ID",
+            "in": "path",
+            "name": "groupId",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "namespace",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "User ID",
+            "in": "path",
+            "name": "userId",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/models.MemberRequestGroupResponseV1"
+            }
+          },
+          "400": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20002\u003c/td\u003e\u003ctd\u003evalidation error\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "401": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20001\u003c/td\u003e\u003ctd\u003eunauthorized access\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "403": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20022\u003c/td\u003e\u003ctd\u003etoken is not user token\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e73036\u003c/td\u003e\u003ctd\u003einsufficient member role permission\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "404": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e73443\u003c/td\u003e\u003ctd\u003emember request not found\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "409": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e73442\u003c/td\u003e\u003ctd\u003euser already joined in another group\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "summary": "Reject Group Join Request",
+        "tags": [
+          "Group Member"
+        ]
+      }
+    },
+    "/group/v2/public/namespaces/{namespace}/users/{userId}/groups/{groupId}/kick": {
+      "post": {
+        "description": "\u0026lt;p\u0026gt;Required valid user authentication \u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;Required Member Role Permission: \u0026#34;GROUP:KICK [CREATE]\u0026#34;\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;This endpoint is used to kick group member.\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;Kick group member. This endpoint will check the member and group information, and also the role permission of the the user who accesses this endpoint\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;Action Code: 73409\u0026lt;/p\u0026gt;\n\t\t",
+        "operationId": "kickGroupMemberPublicV2",
+        "parameters": [
+          {
+            "description": "Group ID",
+            "in": "path",
+            "name": "groupId",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "namespace",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "User ID",
+            "in": "path",
+            "name": "userId",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/models.KickGroupMemberResponseV1"
+            }
+          },
+          "400": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20002\u003c/td\u003e\u003ctd\u003evalidation error\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "401": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20001\u003c/td\u003e\u003ctd\u003eunauthorized access\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "403": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20022\u003c/td\u003e\u003ctd\u003etoken is not user token\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e73036\u003c/td\u003e\u003ctd\u003einsufficient member role permission\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "404": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e73433\u003c/td\u003e\u003ctd\u003emember group not found\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e73034\u003c/td\u003e\u003ctd\u003euser not belong to any group\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "summary": "Kick Group Member",
+        "tags": [
+          "Group Member"
+        ]
+      }
+    },
+    "/group/v2/public/namespaces/{namespace}/users/{userId}/groups/{groupId}/status": {
+      "get": {
+        "description": "\u0026lt;p\u0026gt;Required valid user authentication \u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;Required Member Role Permission: \u0026#34;GROUP [READ]\u0026#34;\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;This endpoint is used to get user group status information.\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;get user group status information. This endpoint will check the member and group information, and also the role permission of the the user who accesses this endpoint\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;Action Code: 73409\u0026lt;/p\u0026gt;\n\t\t",
+        "operationId": "GetUserGroupStatusInformationV2",
+        "parameters": [
+          {
+            "description": "Group ID",
+            "in": "path",
+            "name": "groupId",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "namespace",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "User ID",
+            "in": "path",
+            "name": "userId",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/models.GetUserGroupInformationResponseV1"
+            }
+          },
+          "401": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20001\u003c/td\u003e\u003ctd\u003eunauthorized access\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "403": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20022\u003c/td\u003e\u003ctd\u003etoken is not user token\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e73036\u003c/td\u003e\u003ctd\u003einsufficient member role permission\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "404": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e73433\u003c/td\u003e\u003ctd\u003emember group not found\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e73034\u003c/td\u003e\u003ctd\u003euser not belong to any group\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          }
+        },
+        "security": [
+          {
+            "HasPermission": [
+              "GROUP [READ]"
+            ],
+            "authorization": []
+          }
+        ],
+        "summary": "User Group Status Information",
+        "tags": [
+          "Group Member"
+        ]
+      }
     }
   },
   "definitions": {
@@ -3503,8 +5665,27 @@
         "userId"
       ]
     },
+    "models.CancelInvitationGroupResponseV2": {
+      "properties": {
+        "groupId": {
+          "type": "string"
+        },
+        "userId": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "groupId",
+        "userId"
+      ]
+    },
     "models.CreateGroupConfigurationRequestV1": {
       "properties": {
+        "allowMultiple": {
+          "default": false,
+          "type": "boolean",
+          "x-omitempty": false
+        },
         "configurationCode": {
           "type": "string"
         },
@@ -3532,6 +5713,7 @@
         }
       },
       "required": [
+        "allowMultiple",
         "configurationCode",
         "description",
         "globalRules",
@@ -3543,6 +5725,10 @@
     },
     "models.CreateGroupConfigurationResponseV1": {
       "properties": {
+        "allowMultiple": {
+          "type": "boolean",
+          "x-omitempty": false
+        },
         "configurationCode": {
           "type": "string"
         },
@@ -3551,7 +5737,7 @@
         },
         "globalRules": {
           "items": {
-            "$ref": "#/definitions/models.Rule"
+            "$ref": "#/definitions/models.RuleResponseV1"
           },
           "type": "array"
         },
@@ -3570,6 +5756,7 @@
         }
       },
       "required": [
+        "allowMultiple",
         "configurationCode",
         "description",
         "globalRules",
@@ -3596,29 +5783,12 @@
         "memberRolePermissions"
       ]
     },
-    "models.CreateMemberRoleResponseV1": {
-      "properties": {
-        "memberRoleId": {
-          "type": "string"
-        },
-        "memberRoleName": {
-          "type": "string"
-        },
-        "memberRolePermissions": {
-          "items": {
-            "$ref": "#/definitions/models.RolePermission"
-          },
-          "type": "array"
-        }
-      },
-      "required": [
-        "memberRoleId",
-        "memberRoleName",
-        "memberRolePermissions"
-      ]
-    },
     "models.GetGroupConfigurationResponseV1": {
       "properties": {
+        "allowMultiple": {
+          "type": "boolean",
+          "x-omitempty": false
+        },
         "configurationCode": {
           "type": "string"
         },
@@ -3627,7 +5797,7 @@
         },
         "globalRules": {
           "items": {
-            "$ref": "#/definitions/models.Rule"
+            "$ref": "#/definitions/models.RuleResponseV1"
           },
           "type": "array"
         },
@@ -3649,6 +5819,7 @@
         }
       },
       "required": [
+        "allowMultiple",
         "configurationCode",
         "description",
         "globalRules",
@@ -3693,6 +5864,19 @@
         "paging"
       ]
     },
+    "models.GetGroupsResponseV1": {
+      "properties": {
+        "data": {
+          "items": {
+            "$ref": "#/definitions/models.GroupResponseV1"
+          },
+          "type": "array"
+        }
+      },
+      "required": [
+        "data"
+      ]
+    },
     "models.GetMemberRequestsListResponseV1": {
       "properties": {
         "data": {
@@ -3710,32 +5894,11 @@
         "paging"
       ]
     },
-    "models.GetMemberRoleResponseV1": {
-      "properties": {
-        "memberRoleId": {
-          "type": "string"
-        },
-        "memberRoleName": {
-          "type": "string"
-        },
-        "memberRolePermissions": {
-          "items": {
-            "$ref": "#/definitions/models.RolePermission"
-          },
-          "type": "array"
-        }
-      },
-      "required": [
-        "memberRoleId",
-        "memberRoleName",
-        "memberRolePermissions"
-      ]
-    },
     "models.GetMemberRolesListResponseV1": {
       "properties": {
         "data": {
           "items": {
-            "$ref": "#/definitions/models.GetMemberRoleResponseV1"
+            "$ref": "#/definitions/models.MemberRoleResponseV1"
           },
           "type": "array"
         },
@@ -3823,7 +5986,7 @@
           "type": "string"
         },
         "groupRules": {
-          "$ref": "#/definitions/models.GroupRule"
+          "$ref": "#/definitions/models.GroupRuleResponseV1"
         },
         "groupType": {
           "type": "string"
@@ -3861,6 +6024,24 @@
       ]
     },
     "models.GroupRule.groupCustomRule": {},
+    "models.GroupRuleResponseV1": {
+      "properties": {
+        "groupCustomRule": {
+          "$ref": "#/definitions/models.GroupRuleResponseV1.groupCustomRule"
+        },
+        "groupPredefinedRules": {
+          "items": {
+            "$ref": "#/definitions/models.RuleResponseV1"
+          },
+          "type": "array"
+        }
+      },
+      "required": [
+        "groupCustomRule",
+        "groupPredefinedRules"
+      ]
+    },
+    "models.GroupRuleResponseV1.groupCustomRule": {},
     "models.JoinGroupResponseV1": {
       "properties": {
         "groupId": {
@@ -3956,6 +6137,27 @@
         "userId"
       ]
     },
+    "models.MemberRoleResponseV1": {
+      "properties": {
+        "memberRoleId": {
+          "type": "string"
+        },
+        "memberRoleName": {
+          "type": "string"
+        },
+        "memberRolePermissions": {
+          "items": {
+            "$ref": "#/definitions/models.RolePermission"
+          },
+          "type": "array"
+        }
+      },
+      "required": [
+        "memberRoleId",
+        "memberRoleName",
+        "memberRolePermissions"
+      ]
+    },
     "models.Pagination": {
       "properties": {
         "first": {
@@ -4019,6 +6221,19 @@
         "groupRegion",
         "groupRules",
         "groupType"
+      ]
+    },
+    "models.PublicGetGroupListRequestV2": {
+      "properties": {
+        "groupIDs": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "required": [
+        "groupIDs"
       ]
     },
     "models.RemoveRoleFromMemberRequestV1": {
@@ -4087,6 +6302,23 @@
         "ruleValue"
       ]
     },
+    "models.RuleResponseV1": {
+      "properties": {
+        "allowedAction": {
+          "type": "string"
+        },
+        "ruleDetail": {
+          "items": {
+            "$ref": "#/definitions/models.RuleInformation"
+          },
+          "type": "array"
+        }
+      },
+      "required": [
+        "allowedAction",
+        "ruleDetail"
+      ]
+    },
     "models.UpdateGroupConfigurationGlobalRulesRequestV1": {
       "properties": {
         "ruleDetail": {
@@ -4121,6 +6353,10 @@
     },
     "models.UpdateGroupConfigurationResponseV1": {
       "properties": {
+        "allowMultiple": {
+          "type": "boolean",
+          "x-omitempty": false
+        },
         "configurationCode": {
           "type": "string"
         },
@@ -4129,7 +6365,7 @@
         },
         "globalRules": {
           "items": {
-            "$ref": "#/definitions/models.Rule"
+            "$ref": "#/definitions/models.RuleResponseV1"
           },
           "type": "array"
         },
@@ -4148,6 +6384,7 @@
         }
       },
       "required": [
+        "allowMultiple",
         "configurationCode",
         "description",
         "globalRules",
@@ -4244,27 +6481,6 @@
       },
       "required": [
         "memberRoleName"
-      ]
-    },
-    "models.UpdateMemberRoleResponseV1": {
-      "properties": {
-        "memberRoleId": {
-          "type": "string"
-        },
-        "memberRoleName": {
-          "type": "string"
-        },
-        "memberRolePermissions": {
-          "items": {
-            "$ref": "#/definitions/models.RolePermission"
-          },
-          "type": "array"
-        }
-      },
-      "required": [
-        "memberRoleId",
-        "memberRoleName",
-        "memberRolePermissions"
       ]
     },
     "models.UserInvitationResponseV1": {

@@ -70,7 +70,7 @@ type UpdateContentS3Params struct {
 	/*RetryPolicy*/
 	RetryPolicy *utils.Retry
 	/*Body*/
-	Body *ugcclientmodels.ModelsCreateContentRequestS3
+	Body *ugcclientmodels.ModelsContentRequest
 	/*ChannelID
 	  channel ID
 
@@ -146,13 +146,13 @@ func (o *UpdateContentS3Params) SetHTTPClientTransport(roundTripper http.RoundTr
 }
 
 // WithBody adds the body to the update content s3 params
-func (o *UpdateContentS3Params) WithBody(body *ugcclientmodels.ModelsCreateContentRequestS3) *UpdateContentS3Params {
+func (o *UpdateContentS3Params) WithBody(body *ugcclientmodels.ModelsContentRequest) *UpdateContentS3Params {
 	o.SetBody(body)
 	return o
 }
 
 // SetBody adds the body to the update content s3 params
-func (o *UpdateContentS3Params) SetBody(body *ugcclientmodels.ModelsCreateContentRequestS3) {
+func (o *UpdateContentS3Params) SetBody(body *ugcclientmodels.ModelsContentRequest) {
 	o.Body = body
 }
 

@@ -1,3 +1,37 @@
+<a name="v0.37.0"></a>
+## [v0.37.0] - 2023-01-31
+
+### Chore
+- include local unit test in core test
+- move generate from jenkinsfile
+- move generate target to codegen
+- move sdk name as variable
+- move to same package name for test
+- move unit testing for get refresh token
+- remove hardcoded envar
+- separate jenkins job for docs broken link check
+- specify make file for go
+- update generate pipeline
+- update lint error
+- update phantauth url name
+- **docs:** use second player token to join party with code
+- **sdk:** generate go server sdk (230130.0356)
+
+### Docs
+- added local token validation to readme
+- update CHANGELOG.md for v0.37.0 release
+- **migrations:** add migration-guide-v0.36-to-v0.37.md
+
+### Feat
+- add generate new sdk jenkins pipeline
+- add verify token in local token validation
+
+### Fix
+- fail unit testing & pipeline
+- separate core test from cli test
+- **test:** use second player token to join party with code
+
+
 <a name="v0.31.1"></a>
 ## [v0.36.1] - 2022-01-26
 
@@ -1147,6 +1181,7 @@ The wrapper have been refactored and has breaking change, these are the list:
 ### Fix
 - delete go.mod ([#1](https://github.com/AccelByte/accelbyte-go-sdk/issues/1))
 
+[v0.37.0]: https://github.com/AccelByte/accelbyte-go-sdk/compare/v0.36.1...v0.37.0
 [v0.36.1]: https://github.com/AccelByte/accelbyte-go-sdk/compare/v0.36.0...v0.36.1
 [v0.36.0]: https://github.com/AccelByte/accelbyte-go-sdk/compare/v0.35.0...v0.36.0
 [v0.35.0]: https://github.com/AccelByte/accelbyte-go-sdk/compare/v0.34.0...v0.35.0

@@ -9,6 +9,7 @@ import (
 	"crypto/rsa"
 	"encoding/base64"
 	"encoding/binary"
+	"fmt"
 	"math/big"
 	"strings"
 	"time"
@@ -32,13 +33,14 @@ type authTokenValidator struct {
 	authService     iam.OAuth20Service
 	refreshInterval time.Duration
 
-	filter       *bloom.Filter
-	jwkSet       *iamclientmodels.OauthcommonJWKSet
-	jwtClaims    JWTClaims
-	jwtEncoding  base64.Encoding
-	publicKeys   map[string]*rsa.PublicKey
-	revokedUsers map[string]time.Time
-	roles        map[string]*iamclientmodels.ModelRoleResponseV3
+	filter                *bloom.Filter
+	jwkSet                *iamclientmodels.OauthcommonJWKSet
+	jwtClaims             JWTClaims
+	jwtEncoding           base64.Encoding
+	localValidationActive bool
+	publicKeys            map[string]*rsa.PublicKey
+	revokedUsers          map[string]time.Time
+	roles                 map[string]*iamclientmodels.ModelRoleResponseV3
 }
 
 func (v *authTokenValidator) Initialize() {
@@ -92,6 +94,23 @@ func (v *authTokenValidator) Validate(token string, permission *Permission, name
 	err = jsonWebToken.Claims(publicKey, &v.jwtClaims)
 	if err != nil {
 		return err
+	}
+
+	if !v.localValidationActive {
+		input := &o_auth2_0.VerifyTokenV3Params{
+			Token: token,
+		}
+		_, errVerify := v.authService.VerifyTokenV3Short(input)
+		if errVerify != nil {
+			return errVerify
+		}
+		fmt.Print("token verified")
+
+		if !v.hasValidPermissions(v.jwtClaims, permission, namespace, userId) {
+			return errors.New("insufficient permissions")
+		}
+
+		return nil
 	}
 
 	err = v.jwtClaims.Validate()
@@ -463,13 +482,14 @@ func NewTokenValidator(authService iam.OAuth20Service, refreshInterval time.Dura
 		authService:     authService,
 		refreshInterval: refreshInterval,
 
-		filter:       nil,
-		jwkSet:       nil,
-		jwtClaims:    JWTClaims{},
-		jwtEncoding:  *base64.URLEncoding.WithPadding(base64.NoPadding),
-		publicKeys:   make(map[string]*rsa.PublicKey),
-		revokedUsers: make(map[string]time.Time),
-		roles:        make(map[string]*iamclientmodels.ModelRoleResponseV3),
+		filter:                nil,
+		jwkSet:                nil,
+		jwtClaims:             JWTClaims{},
+		jwtEncoding:           *base64.URLEncoding.WithPadding(base64.NoPadding),
+		publicKeys:            make(map[string]*rsa.PublicKey),
+		localValidationActive: false,
+		revokedUsers:          make(map[string]time.Time),
+		roles:                 make(map[string]*iamclientmodels.ModelRoleResponseV3),
 	}
 }
 

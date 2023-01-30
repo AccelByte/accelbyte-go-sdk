@@ -1332,7 +1332,7 @@ inputJoined := &partySession.PublicPartyJoinCodeParams{
 	Body:      &sessionclientmodels.ApimodelsJoinByCodeRequest{Code: &created.Code},
 	Namespace: integration.NamespaceTest,
 }
-joined, errJoined := partyService.PublicPartyJoinCodeShort(inputJoined)
+joined, errJoined := partyServiceFor2ndPlayer.PublicPartyJoinCodeShort(inputJoined)
 if errJoined != nil {
 	assert.FailNow(t, errJoined.Error())
 

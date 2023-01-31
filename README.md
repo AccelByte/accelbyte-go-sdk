@@ -83,6 +83,24 @@ oAuth20Service = &iam.OAuth20Service{
 ```
 Use the `repository` to access all functions for refresh token.
 
+#### Local Token Validation
+Local token validation is available since version 0.37. Currently only support for oauth client token.
+To enable it, import the package
+```go
+import (
+    ...
+    "github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils/auth/validator"
+    ...
+)
+```
+configure `authTokenValidator` struct or use the existing one `NewTokenValidator` with the default `localValidationActive` is false. Invoked them with
+```
+tokenValidator := validator.NewTokenValidator(authService, time.Hour)
+tokenValidator.Initialize()
+
+err = tokenValidator.Validate(accessToken, &requiredPermission, &namespace, nil)
+```
+
 ## Login
 
 ### Login Using Username and Password

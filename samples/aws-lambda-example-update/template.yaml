@@ -1,0 +1,84 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Description: >
+  aws-lambda-example
+
+  AccelByte Go SDK Lambda Example
+
+Globals:
+  Function:
+    Timeout: 15
+    Environment:
+      Variables:
+        AB_BASE_URL: https://demo.accelbyte.io
+        AB_CLIENT_ID: <Put your AccelByte Client ID here>
+        AB_CLIENT_SECRET: <Put your AccelByte Client Secret here>
+
+Resources:
+  CreateUserStatsFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: CreateUserStats
+      Handler: main
+      Runtime: go1.x
+  CreateUserStatsFunctionUrl:
+    Type: AWS::Lambda::Url
+    Properties:
+      AuthType: NONE
+      TargetFunctionArn:
+        Ref: CreateUserStatsFunction
+
+  DeleteUserStatsFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: DeleteUserStats
+      Handler: main
+      Runtime: go1.x
+  DeleteUserStatsFunctionUrl:
+    Type: AWS::Lambda::Url
+    Properties:
+      AuthType: NONE
+      TargetFunctionArn:
+        Ref: DeleteUserStatsFunction
+
+  GetUserStatsFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: GetUserStats
+      Handler: main
+      Runtime: go1.x
+  GetUserStatsFunctionUrl:
+    Type: AWS::Lambda::Url
+    Properties:
+      AuthType: NONE
+      TargetFunctionArn:
+        Ref: GetUserStatsFunction
+
+Outputs:
+  CreateUserStatsFunction:
+    Description: "Create User Stats Function ARN"
+    Value: !GetAtt CreateUserStatsFunction.Arn
+  CreateUserStatsFunctionUrlEndpoint:
+    Description: "Access CreateUserStats function with this URL"
+    Value: !GetAtt CreateUserStatsFunctionUrl.FunctionUrl
+  CreateUserStatsFunctionIamRole:
+    Description: "Implicit IAM Role created for Create User Stats Function"
+    Value: !GetAtt CreateUserStatsFunctionRole.Arn
+  DeleteUserStatsFunction:
+    Description: "Delete User Stats Function ARN"
+    Value: !GetAtt DeleteUserStatsFunction.Arn
+  DeleteUserStatsFunctionUrlEndpoint:
+    Description: "Access DeleteUserStats function with this URL"
+    Value: !GetAtt DeleteUserStatsFunctionUrl.FunctionUrl
+  DeleteUserStatsFunctionIamRole:
+    Description: "Implicit IAM Role created for Delete User Stats Function"
+    Value: DeleteUserStatsFunctionRole.Arn
+  GetUserStatsFunction:
+    Description: "Get User Stats Function ARN"
+    Value: !GetAtt GetUserStatsFunction.Arn
+  GetUserStatsFunctionUrlEndpoint:
+    Description: "Access GetUserStats function with this URL"
+    Value: !GetAtt GetUserStatsFunctionUrl.FunctionUrl
+  GetUserStatsFunctionIamRole:
+    Description: "Implicit IAM Role created for Get User Stats Function"
+    Value: !GetAtt GetUserStatsFunctionRole.Arn

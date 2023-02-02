@@ -1,0 +1,181 @@
+{
+	"info": {
+		"_postman_id": "a8ef6c3a-3681-461d-b6ca-881ea6289ae0",
+		"name": "aws-lambda-example-update",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "25409821"
+	},
+	"item": [
+		{
+			"name": "00 get user access token",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "{{client_secret}}",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "{{client_id}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "",
+						"value": "",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "grant_type",
+							"value": "password",
+							"type": "text"
+						},
+						{
+							"key": "username",
+							"value": "{{username}}",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "{{password}}",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{base_url}}/iam/v3/oauth/token",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"iam",
+						"v3",
+						"oauth",
+						"token"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "01 CreateUserStats",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "string",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"namespace\":\"string\",\n    \"userId\":\"string\",\n    \"statCode\":\"string\"\n}"
+				},
+				"url": {
+					"raw": "{{your-function-url}}",
+					"host": [
+						"{{your-function-url}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "02 GetUserStats",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "string",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"namespace\":\"string\",\n    \"userId\":\"string\",\n    \"statCode\":\"string\"\n}"
+				},
+				"url": {
+					"raw": "{{your-function-url}}",
+					"host": [
+						"{{your-function-url}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "03 DeleteUserStats",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "string",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"namespace\":\"string\",\n    \"userId\":\"string\",\n    \"statCode\":\"string\"\n}"
+				},
+				"url": {
+					"raw": "{{your_function_url}}",
+					"host": [
+						"{{your_function_url}}"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"variable": [
+		{
+			"key": "username",
+			"value": "string"
+		},
+		{
+			"key": "password",
+			"value": "string"
+		},
+		{
+			"key": "client_id",
+			"value": "string"
+		},
+		{
+			"key": "client_secret",
+			"value": "string"
+		},
+		{
+			"key": "your_function_url",
+			"value": "string"
+		}
+	]
+}

@@ -84,7 +84,7 @@ oAuth20Service = &iam.OAuth20Service{
 Use the `repository` to access all functions for refresh token.
 
 #### Local Token Validation
-Local token validation is available since version 0.37. Currently only support for oauth client token.
+Local token validation is available since version 0.37.0. 
 To enable it, import the package
 ```go
 import (

@@ -12,7 +12,7 @@ githubOwner = 'AccelByte'
 githubRepo = 'accelbyte-go-sdk'
 githubSsh = 'dhanarab-sdkbuild-ssh'
 githubPat = 'dhanarab-sdkbuild-pat-github'
-bitbucketSsh = 'build_account_bitbucket_key'
+bitbucketSsh = 'bitbucket-build-extend-ssh'
 
 githubUrl = "git@github.com:${githubOwner}/${githubRepo}.git"
 

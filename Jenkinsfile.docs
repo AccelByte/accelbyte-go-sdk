@@ -1,4 +1,4 @@
-bitbucketCredentialsSsh = "build_account_bitbucket_key"
+bitbucketCredentialsSsh = "bitbucket-build-extend-ssh"
 
 pipeline {
   agent{

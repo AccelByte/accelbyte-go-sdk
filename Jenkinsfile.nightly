@@ -8,8 +8,8 @@ library(
   )
 )
 
-bitbucketCredentialsHttps = "Bitbucket_Build_AccelByte"
-bitbucketCredentialsSsh = "build_account_bitbucket_key"
+bitbucketCredentialsHttps = "bitbucket-build-extend-https"
+bitbucketCredentialsSsh = "bitbucket-build-extend-ssh"
 
 bitbucketCommitHref = null
 

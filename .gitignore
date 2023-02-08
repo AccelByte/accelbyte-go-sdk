@@ -195,11 +195,15 @@ modules.xml
 *.tap
 
 # Output from "make samples"
-/samples/title-service-matchmaking/aws-lambda-functions/aws-lambda-functions
-/samples/aws-lambda-functions/createUserStats/main
-/samples/aws-lambda-functions/getUserStats/main
+/samples/aws-lambda-example/*/main
+/samples/aws-lambda-example-update/*/main
 /samples/cli/sample-apps
-/samples/title-service-matchmaking/test-client/sample-apps
+/samples/getting-started/golang-application
+/samples/oidc-web/oidc-web
+/samples/tic-tac-toe/aws-lambda/tic-tac-toe
+/samples/tic-tac-toe/client/client
+/samples/title-matchmaking/aws-lambda/aws-lambda
+/samples/title-matchmaking/client/sample-apps
 
 # MacOS
 .DS_Store

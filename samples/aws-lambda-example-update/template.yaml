@@ -72,7 +72,7 @@ Outputs:
     Value: !GetAtt DeleteUserStatsFunctionUrl.FunctionUrl
   DeleteUserStatsFunctionIamRole:
     Description: "Implicit IAM Role created for Delete User Stats Function"
-    Value: DeleteUserStatsFunctionRole.Arn
+    Value: !GetAtt DeleteUserStatsFunctionRole.Arn
   GetUserStatsFunction:
     Description: "Get User Stats Function ARN"
     Value: !GetAtt GetUserStatsFunction.Arn

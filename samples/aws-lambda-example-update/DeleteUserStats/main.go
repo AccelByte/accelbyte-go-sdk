@@ -15,7 +15,6 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/social"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils/auth"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils/auth/validator"
-	"github.com/AccelByte/accelbyte-go-sdk/social-sdk/pkg/socialclient/stat_configuration"
 	"github.com/AccelByte/accelbyte-go-sdk/social-sdk/pkg/socialclient/user_statistic"
 	"github.com/aws/aws-lambda-go/events"
 	"github.com/aws/aws-lambda-go/lambda"
@@ -31,10 +30,6 @@ var (
 		Client:           factory.NewIamClient(&configRepo),
 		ConfigRepository: &configRepo,
 		TokenRepository:  &tokenRepo,
-	}
-	statConfigService = social.StatConfigurationService{
-		Client:          factory.NewSocialClient(&configRepo),
-		TokenRepository: &tokenRepo,
 	}
 	userStatisticService = &social.UserStatisticService{
 		Client:          factory.NewSocialClient(&configRepo),
@@ -92,19 +87,6 @@ func Handler(evt events.LambdaFunctionURLRequest) (events.LambdaFunctionURLRespo
 		return events.LambdaFunctionURLResponse{}, errString
 	}
 
-	// delete stat configuration
-	inputDeleteTiedStat := &stat_configuration.DeleteTiedStatParams{
-		Namespace: request.Namespace,
-		StatCode:  request.StatCode,
-	}
-	errDeleteStat := statConfigService.DeleteTiedStat(inputDeleteTiedStat)
-	if errDeleteStat != nil {
-		errString := fmt.Errorf("failed to delete stat code config. %s", errDeleteStat.Error())
-		logrus.Error(errString)
-
-		return events.LambdaFunctionURLResponse{}, errString
-	}
-
 	// delete user stat item
 	inputDeleteUserStatItem := &user_statistic.DeleteUserStatItemsParams{
 		Namespace: request.Namespace,
@@ -120,8 +102,8 @@ func Handler(evt events.LambdaFunctionURLRequest) (events.LambdaFunctionURLRespo
 	}
 
 	return events.LambdaFunctionURLResponse{
-		StatusCode: 204,
-		Body:       "Successfully delete tied stat code configuration and it's stat item.",
+		StatusCode: 200,
+		Body:       "User stat code deleted successfully",
 	}, nil
 }
 
@@ -129,16 +111,6 @@ func validateToken(accessToken, namespace, userId string) error {
 	// initialize token validator
 	tokenValidator := validator.NewTokenValidator(oAuth20Service, time.Hour)
 	tokenValidator.Initialize()
-
-	// validate stat config
-	requiredPermissionStatConfig := validator.Permission{
-		Action:   8, // delete
-		Resource: fmt.Sprintf("ADMIN:NAMESPACE:%s:STAT", namespace),
-	}
-	errValidateStatConfig := tokenValidator.Validate(accessToken, &requiredPermissionStatConfig, &namespace, nil)
-	if errValidateStatConfig != nil {
-		return errValidateStatConfig
-	}
 
 	// validate stat item
 	requiredPermissionStatItem := validator.Permission{

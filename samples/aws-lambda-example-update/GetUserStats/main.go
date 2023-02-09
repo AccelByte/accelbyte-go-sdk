@@ -15,7 +15,6 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/social"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils/auth"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils/auth/validator"
-	"github.com/AccelByte/accelbyte-go-sdk/social-sdk/pkg/socialclient/stat_configuration"
 	"github.com/AccelByte/accelbyte-go-sdk/social-sdk/pkg/socialclient/user_statistic"
 	"github.com/aws/aws-lambda-go/events"
 	"github.com/aws/aws-lambda-go/lambda"
@@ -31,10 +30,6 @@ var (
 		Client:           factory.NewIamClient(&configRepo),
 		ConfigRepository: &configRepo,
 		TokenRepository:  &tokenRepo,
-	}
-	statConfigService = social.StatConfigurationService{
-		Client:          factory.NewSocialClient(&configRepo),
-		TokenRepository: &tokenRepo,
 	}
 	userStatisticService = &social.UserStatisticService{
 		Client:          factory.NewSocialClient(&configRepo),
@@ -94,19 +89,6 @@ func Handler(evt events.LambdaFunctionURLRequest) (events.LambdaFunctionURLRespo
 		return events.LambdaFunctionURLResponse{}, errString
 	}
 
-	// get stat configuration
-	inputStatCode := &stat_configuration.GetStatParams{
-		Namespace: request.Namespace,
-		StatCode:  request.StatCode,
-	}
-	_, errStatCode := statConfigService.GetStatShort(inputStatCode)
-	if errStatCode != nil {
-		errString := fmt.Errorf("failed to get stat code. %s", errStatCode.Error())
-		logrus.Error(errString)
-
-		return events.LambdaFunctionURLResponse{}, errString
-	}
-
 	// get user stat item
 	limit := int32(request.Limit)
 	offset := int32(request.Offset)
@@ -145,16 +127,6 @@ func validateToken(accessToken, namespace, userId string) error {
 	// initialize token validator
 	tokenValidator := validator.NewTokenValidator(oAuth20Service, time.Hour)
 	tokenValidator.Initialize()
-
-	// validate stat config
-	requiredPermissionStatConfig := validator.Permission{
-		Action:   2, // read
-		Resource: fmt.Sprintf("ADMIN:NAMESPACE:%s:STAT", namespace),
-	}
-	errValidateStatConfig := tokenValidator.Validate(accessToken, &requiredPermissionStatConfig, &namespace, nil)
-	if errValidateStatConfig != nil {
-		return errValidateStatConfig
-	}
 
 	// validate stat item
 	requiredPermissionStatItem := validator.Permission{

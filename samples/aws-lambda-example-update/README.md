@@ -22,9 +22,14 @@ This update is using lambda function url and token validation inside.
     Required permissions:
 
     - Resource : ADMIN:NAMESPACE:{namespace}:USER:*:STATITEM
-	- Action : create and read
+	- Action : create, read, delete
 
-6. `AWS_ACCESS_KEY_ID` and `AWS_SECRET_ACCESS_KEY`
+6. An existing `Stat Code`
+
+    [Create a statistic configuration](https://docs.accelbyte.io/guides/storage/statistic.html#create-a-new-statistic-configuration)
+    if you do not have it yet. 
+
+7. `AWS_ACCESS_KEY_ID` and `AWS_SECRET_ACCESS_KEY`
 
     This is required only if you want to deploy this example to AWS.
     It needs to have the correct permissions to perform sam deploy. 
@@ -56,13 +61,13 @@ This update is using lambda function url and token validation inside.
 
 3. Test Using Postman
    - Import postman collection [aws_lambda_example.postman_collection.json](aws-lambda-example-update.postman_collection.json)
-   - Open `00 get user access token` and fill up the variables needed to get the user access token.
+   - Open `00 GetAccessToken` and fill up the variables needed to get the user access token.
    - Open `01 CreateUserStats` update url with previously generated url from deploy command. Copy the user access token previously for the Authorization `Bearer xxxx`. The test
      payload can be inspected in `Body` tab. Click `Send` button.
    - Open `02 GetUserStats` update url with previously generated url from deploy command. Copy the user access token previously for the Authorization `Bearer xxxx`. The test
      payload can be inspected in `Body` tab. Click `Send` button.
    - Open `03 DeleteUserStats` update url with previously generated url from deploy command. Copy the user access token previously for the Authorization `Bearer xxxx` and fill up the raw body. The test
-     payload can be inspected in `Body` tab. Click `Send` button. If successful, it will return nothing but 204 code.
+     payload can be inspected in `Body` tab. Click `Send` button.
 
 
 ## Try locally

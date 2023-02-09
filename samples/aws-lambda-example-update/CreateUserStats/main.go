@@ -15,9 +15,7 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/social"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils/auth"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils/auth/validator"
-	"github.com/AccelByte/accelbyte-go-sdk/social-sdk/pkg/socialclient/stat_configuration"
 	"github.com/AccelByte/accelbyte-go-sdk/social-sdk/pkg/socialclient/user_statistic"
-	"github.com/AccelByte/accelbyte-go-sdk/social-sdk/pkg/socialclientmodels"
 	"github.com/aws/aws-lambda-go/events"
 	"github.com/aws/aws-lambda-go/lambda"
 	"github.com/sirupsen/logrus"
@@ -33,17 +31,10 @@ var (
 		ConfigRepository: &configRepo,
 		TokenRepository:  &tokenRepo,
 	}
-	statConfigService = social.StatConfigurationService{
-		Client:          factory.NewSocialClient(&configRepo),
-		TokenRepository: &tokenRepo,
-	}
 	userStatisticService = &social.UserStatisticService{
 		Client:          factory.NewSocialClient(&configRepo),
 		TokenRepository: &tokenRepo,
 	}
-
-	setBy        = socialclientmodels.StatCreateSetBySERVER
-	defaultValue = 0.1
 )
 
 type Request struct {
@@ -95,30 +86,6 @@ func Handler(evt events.LambdaFunctionURLRequest) (events.LambdaFunctionURLRespo
 		return events.LambdaFunctionURLResponse{}, errString
 	}
 
-	// create stat configuration
-	inputStatCode := &stat_configuration.CreateStatParams{
-		Body: &socialclientmodels.StatCreate{
-			DefaultValue:  &defaultValue,
-			Description:   "test for lambda",
-			IncrementOnly: true,
-			Maximum:       101,
-			Minimum:       defaultValue,
-			Name:          &request.StatCode,
-			SetAsGlobal:   true,
-			SetBy:         &setBy,
-			StatCode:      &request.StatCode,
-			Tags:          nil,
-		},
-		Namespace: request.Namespace,
-	}
-	createdStatCode, errStatCode := statConfigService.CreateStatShort(inputStatCode)
-	if errStatCode != nil {
-		errString := fmt.Errorf("failed to create stat code. %s", errStatCode.Error())
-		logrus.Error(errString)
-
-		return events.LambdaFunctionURLResponse{}, errString
-	}
-
 	// create user stat item
 	inputUserStatItem := &user_statistic.CreateUserStatItemParams{
 		Namespace: request.Namespace,
@@ -134,8 +101,8 @@ func Handler(evt events.LambdaFunctionURLRequest) (events.LambdaFunctionURLRespo
 	}
 
 	return events.LambdaFunctionURLResponse{
-		StatusCode: 201,
-		Body:       fmt.Sprintf("Successfully create statCode %v", *createdStatCode.StatCode),
+		StatusCode: 200,
+		Body:       "User stat code added successfully",
 	}, nil
 }
 
@@ -143,16 +110,6 @@ func validateToken(accessToken, namespace, userId string) error {
 	// initialize token validator
 	tokenValidator := validator.NewTokenValidator(oAuth20Service, time.Hour)
 	tokenValidator.Initialize()
-
-	// validate stat config
-	requiredPermissionStatConfig := validator.Permission{
-		Action:   1, // create
-		Resource: fmt.Sprintf("ADMIN:NAMESPACE:%s:STAT", namespace),
-	}
-	errValidateStatConfig := tokenValidator.Validate(accessToken, &requiredPermissionStatConfig, &namespace, nil)
-	if errValidateStatConfig != nil {
-		return errValidateStatConfig
-	}
 
 	// validate stat item
 	requiredPermissionStatItem := validator.Permission{

@@ -8,9 +8,11 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/AccelByte/sample-apps/cmd/match2"
-	"github.com/AccelByte/sample-apps/cmd/session"
 	"github.com/spf13/cobra"
+
+	"github.com/AccelByte/sample-apps/cmd/match2"
+	"github.com/AccelByte/sample-apps/cmd/reporting"
+	"github.com/AccelByte/sample-apps/cmd/session"
 
 	"github.com/AccelByte/sample-apps/cmd/achievement"
 	"github.com/AccelByte/sample-apps/cmd/basic"
@@ -98,6 +100,7 @@ func init() {
 	RootCmd.AddCommand(sessionbrowser.SessionbrowserCmd)
 	RootCmd.AddCommand(social.SocialCmd)
 	RootCmd.AddCommand(ugc.UgcCmd)
+	RootCmd.AddCommand(reporting.ReportingCmd)
 }
 
 // initConfig reads in config file and ENV variables if set.

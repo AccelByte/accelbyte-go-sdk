@@ -7,6 +7,9 @@ package integration_test
 import (
 	"testing"
 
+	"github.com/sirupsen/logrus"
+	"github.com/stretchr/testify/assert"
+
 	"github.com/AccelByte/accelbyte-go-sdk/match2-sdk/pkg/match2client/match_functions"
 	"github.com/AccelByte/accelbyte-go-sdk/match2-sdk/pkg/match2client/match_pools"
 	"github.com/AccelByte/accelbyte-go-sdk/match2-sdk/pkg/match2client/match_tickets"
@@ -18,8 +21,6 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/tests/integration"
 	"github.com/AccelByte/accelbyte-go-sdk/session-sdk/pkg/sessionclient/party"
 	"github.com/AccelByte/accelbyte-go-sdk/session-sdk/pkg/sessionclientmodels"
-	"github.com/sirupsen/logrus"
-	"github.com/stretchr/testify/assert"
 )
 
 var (
@@ -82,7 +83,7 @@ func TestIntegrationMatchPool(t *testing.T) {
 
 	// CASE Create a match rule set
 	inputCreateRule := &rule_sets.CreateRuleSetParams{
-		Body: &match2clientmodels.APIMatchRuleSet{
+		Body: &match2clientmodels.APIRuleSetPayload{
 			Data: &data,
 			Name: &ruleSetName,
 		},

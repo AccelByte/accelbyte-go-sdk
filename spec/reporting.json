@@ -1,0 +1,3224 @@
+{
+  "host": "demo.accelbyte.io",
+  "info": {
+    "contact": {
+      "email": "engineering@accelbyte.io",
+      "name": "Engineering Team at AccelByte",
+      "url": "https://accelbyte.io"
+    },
+    "description": "Justice Reporting Service",
+    "title": "justice-reporting-service",
+    "version": "0.1.23"
+  },
+  "schemes": [
+    "https"
+  ],
+  "securityDefinitions": {
+    "HasPermission": {
+      "authorizationUrl": "https://dummy.oauth.net/auth",
+      "flow": "accessCode",
+      "scopes": {
+        "ADMIN:NAMESPACE:{namespace}:REASON [CREATE]": "ADMIN:NAMESPACE:{namespace}:REASON [CREATE]",
+        "ADMIN:NAMESPACE:{namespace}:REASON [DELETE]": "ADMIN:NAMESPACE:{namespace}:REASON [DELETE]",
+        "ADMIN:NAMESPACE:{namespace}:REASON [READ]": "ADMIN:NAMESPACE:{namespace}:REASON [READ]",
+        "ADMIN:NAMESPACE:{namespace}:REASON [UPDATE]": "ADMIN:NAMESPACE:{namespace}:REASON [UPDATE]",
+        "ADMIN:NAMESPACE:{namespace}:REPORTINGCONFIG [CREATE]": "ADMIN:NAMESPACE:{namespace}:REPORTINGCONFIG [CREATE]",
+        "ADMIN:NAMESPACE:{namespace}:REPORTINGCONFIG [READ]": "ADMIN:NAMESPACE:{namespace}:REPORTINGCONFIG [READ]",
+        "ADMIN:NAMESPACE:{namespace}:RULE [CREATE]": "ADMIN:NAMESPACE:{namespace}:RULE [CREATE]",
+        "ADMIN:NAMESPACE:{namespace}:RULE [DELETE]": "ADMIN:NAMESPACE:{namespace}:RULE [DELETE]",
+        "ADMIN:NAMESPACE:{namespace}:RULE [READ]": "ADMIN:NAMESPACE:{namespace}:RULE [READ]",
+        "ADMIN:NAMESPACE:{namespace}:RULE [UPDATE]": "ADMIN:NAMESPACE:{namespace}:RULE [UPDATE]",
+        "ADMIN:NAMESPACE:{namespace}:TICKET [CREATE]": "ADMIN:NAMESPACE:{namespace}:TICKET [CREATE]",
+        "ADMIN:NAMESPACE:{namespace}:TICKET [DELETE]": "ADMIN:NAMESPACE:{namespace}:TICKET [DELETE]",
+        "ADMIN:NAMESPACE:{namespace}:TICKET [READ]": "ADMIN:NAMESPACE:{namespace}:TICKET [READ]",
+        "ADMIN:NAMESPACE:{namespace}:TICKET [UPDATE]": "ADMIN:NAMESPACE:{namespace}:TICKET [UPDATE]",
+        "ADMIN:REPORTINGCONFIG [CREATE]": "ADMIN:REPORTINGCONFIG [CREATE]",
+        "ADMIN:REPORTINGCONFIG [READ]": "ADMIN:REPORTINGCONFIG [READ]"
+      },
+      "tokenUrl": "https://dumy.oauth.net/token",
+      "type": "oauth2"
+    },
+    "HasScope": {
+      "authorizationUrl": "https://dummy.oauth.net/auth",
+      "flow": "accessCode",
+      "scopes": {},
+      "tokenUrl": "https://dumy.oauth.net/token",
+      "type": "oauth2"
+    },
+    "authorization": {
+      "in": "header",
+      "name": "Authorization",
+      "type": "apiKey"
+    }
+  },
+  "swagger": "2.0",
+  "paths": {
+    "/reporting/v1/admin/extensionActions": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Required permission: ADMIN:REPORTINGCONFIG [READ]\nGet a list of auto moderation actions",
+        "operationId": "adminFindActionList",
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/restapi.actionListApiResponse"
+            }
+          },
+          "400": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/restapi.errorResponse"
+            }
+          },
+          "500": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/restapi.errorResponse"
+            }
+          }
+        },
+        "security": [
+          {
+            "HasPermission": [
+              "ADMIN:REPORTINGCONFIG [READ]"
+            ],
+            "authorization": []
+          }
+        ],
+        "summary": "Find Auto Moderation Action List",
+        "tags": [
+          "Admin Extension Categories and Auto Moderation Actions"
+        ]
+      },
+      "post": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Required permission: ADMIN:REPORTINGCONFIG [CREATE]\nCreate auto moderation action",
+        "operationId": "adminCreateModAction",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/restapi.actionApiRequest"
+            }
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "201": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/restapi.actionApiResponse"
+            }
+          },
+          "400": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/restapi.errorResponse"
+            }
+          },
+          "500": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/restapi.errorResponse"
+            }
+          }
+        },
+        "security": [
+          {
+            "HasPermission": [
+              "ADMIN:REPORTINGCONFIG [CREATE]"
+            ],
+            "authorization": []
+          }
+        ],
+        "summary": "Create Auto Moderation Action data",
+        "tags": [
+          "Admin Extension Categories and Auto Moderation Actions"
+        ]
+      }
+    },
+    "/reporting/v1/admin/extensionCategories": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Required permission: ADMIN:REPORTINGCONFIG [READ]\nGet a list of extension category data with the specified name",
+        "operationId": "adminFindExtensionCategoryList",
+        "parameters": [
+          {
+            "default": "asc",
+            "description": "data order, asc or desc (default: asc)",
+            "enum": [
+              "asc",
+              "ascending",
+              "desc",
+              "descending"
+            ],
+            "in": "query",
+            "name": "order",
+            "type": "string"
+          },
+          {
+            "default": "extensionCategory",
+            "description": "data order key, valid key : 'extensionCategory', and 'extensionCategoryName'",
+            "enum": [
+              "extensionCategory",
+              "extensionCategoryName"
+            ],
+            "in": "query",
+            "name": "sortBy",
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/restapi.extensionCategoryListApiResponse"
+            }
+          },
+          "400": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/restapi.errorResponse"
+            }
+          },
+          "500": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/restapi.errorResponse"
+            }
+          }
+        },
+        "security": [
+          {
+            "HasPermission": [
+              "ADMIN:REPORTINGCONFIG [READ]"
+            ],
+            "authorization": []
+          }
+        ],
+        "summary": "Find Extension Category List",
+        "tags": [
+          "Admin Extension Categories and Auto Moderation Actions"
+        ]
+      },
+      "post": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Required permission: ADMIN:REPORTINGCONFIG [CREATE]\nCreate extension category data",
+        "operationId": "adminCreateExtensionCategory",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/restapi.extensionCategoryApiRequest"
+            }
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "201": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/restapi.extensionCategoryApiResponse"
+            }
+          },
+          "400": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/restapi.errorResponse"
+            }
+          },
+          "500": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/restapi.errorResponse"
+            }
+          }
+        },
+        "security": [
+          {
+            "HasPermission": [
+              "ADMIN:REPORTINGCONFIG [CREATE]"
+            ],
+            "authorization": []
+          }
+        ],
+        "summary": "Create Extension Category",
+        "tags": [
+          "Admin Extension Categories and Auto Moderation Actions"
+        ]
+      }
+    },
+    "/reporting/v1/admin/namespaces/{namespace}/configurations": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Required permission: ADMIN:NAMESPACE:{namespace}:REPORTINGCONFIG [READ]\nTimeInterval is in nanoseconds.\nWhen there\u0026#39;s no configuration set, the response is the default value (configurable through envar).\n",
+        "operationId": "Get",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "configuration category flag.\n\t\t\tset this to 'all' to retrieve all category configurations\n\t\t\tset this to 'extension' to retrieve [EXTENSION] category configurations\n\t\t\tleave it blank to retrieve core categories [UGC,USER,CHAT] configurations\n\t\t\t ",
+            "enum": [
+              "all",
+              "extension"
+            ],
+            "in": "query",
+            "name": "category",
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/restapi.configResponse"
+            }
+          },
+          "500": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/restapi.errorResponse"
+            }
+          }
+        },
+        "security": [
+          {
+            "HasPermission": [
+              "ADMIN:NAMESPACE:{namespace}:REPORTINGCONFIG [READ]"
+            ],
+            "authorization": []
+          }
+        ],
+        "summary": "Get configuration",
+        "tags": [
+          "Admin Configurations"
+        ]
+      },
+      "post": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Required permission: ADMIN:NAMESPACE:{namespace}:REPORTINGCONFIG [CREATE]\nThe behaviour of this endpoint is upsert based on the namespace.\nSo, you can use this for both creating \u0026amp; updating the configuration.\nTimeInterval is in nanoseconds.\n",
+        "operationId": "Upsert",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/restapi.reportingLimit"
+            }
+          },
+          {
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/restapi.configResponse"
+            }
+          },
+          "400": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/restapi.errorResponse"
+            }
+          },
+          "500": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/restapi.errorResponse"
+            }
+          }
+        },
+        "security": [
+          {
+            "HasPermission": [
+              "ADMIN:NAMESPACE:{namespace}:REPORTINGCONFIG [CREATE]"
+            ],
+            "authorization": []
+          }
+        ],
+        "summary": "Create/Update configuration",
+        "tags": [
+          "Admin Configurations"
+        ]
+      }
+    },
+    "/reporting/v1/admin/namespaces/{namespace}/reasonGroups": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Required permission: ADMIN:NAMESPACE:{namespace}:REASON [READ]\nReturn list of reason groups ID and title under given namespace. To fetch the reasons inside a group, use get reason group endpoint.",
+        "operationId": "adminListReasonGroups",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "number of data requested (default 25)",
+            "in": "query",
+            "name": "limit",
+            "type": "integer"
+          },
+          {
+            "description": "number of data offset (default 0)",
+            "in": "query",
+            "name": "offset",
+            "type": "integer"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/restapi.reasonGroupListResponse"
+            }
+          },
+          "500": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/restapi.errorResponse"
+            }
+          }
+        },
+        "security": [
+          {
+            "HasPermission": [
+              "ADMIN:NAMESPACE:{namespace}:REASON [READ]"
+            ],
+            "authorization": []
+          }
+        ],
+        "summary": "List reason groups under a namespace",
+        "tags": [
+          "Admin Reasons"
+        ]
+      },
+      "post": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Required permission: ADMIN:NAMESPACE:{namespace}:REASON [CREATE]\nCreate a reason group for easier query. You can query reasons by specifying the group title in the list reasons query.\nReason group title is case insensitive, meaning you can\u0026#39;t have \u0026lt;b\u0026gt;reason\u0026lt;/b\u0026gt; if you already create a reason titled \u0026lt;b\u0026gt;Reason\u0026lt;/b\u0026gt;",
+        "operationId": "createReasonGroup",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/restapi.createReasonGroupRequest"
+            }
+          },
+          {
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "201": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/restapi.reasonGroupResponse"
+            }
+          },
+          "400": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/restapi.errorResponse"
+            }
+          },
+          "409": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/restapi.errorResponse"
+            }
+          },
+          "500": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/restapi.errorResponse"
+            }
+          }
+        },
+        "security": [
+          {
+            "HasPermission": [
+              "ADMIN:NAMESPACE:{namespace}:REASON [CREATE]"
+            ],
+            "authorization": []
+          }
+        ],
+        "summary": "Create a reason group",
+        "tags": [
+          "Admin Reasons"
+        ]
+      }
+    },
+    "/reporting/v1/admin/namespaces/{namespace}/reasonGroups/{groupId}": {
+      "delete": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Required permission: ADMIN:NAMESPACE:{namespace}:REASON [DELETE]",
+        "operationId": "deleteReasonGroup",
+        "parameters": [
+          {
+            "description": "Reason group ID",
+            "in": "path",
+            "name": "groupId",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "204": {
+            "description": ""
+          },
+          "500": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/restapi.errorResponse"
+            }
+          }
+        },
+        "security": [
+          {
+            "HasPermission": [
+              "ADMIN:NAMESPACE:{namespace}:REASON [DELETE]"
+            ],
+            "authorization": []
+          }
+        ],
+        "summary": "Delete a reason group",
+        "tags": [
+          "Admin Reasons"
+        ]
+      },
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Required permission: ADMIN:NAMESPACE:{namespace}:REASON [READ]",
+        "operationId": "getReasonGroup",
+        "parameters": [
+          {
+            "description": "Reason group ID",
+            "in": "path",
+            "name": "groupId",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/restapi.reasonGroupResponse"
+            }
+          },
+          "404": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/restapi.errorResponse"
+            }
+          },
+          "500": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/restapi.errorResponse"
+            }
+          }
+        },
+        "security": [
+          {
+            "HasPermission": [
+              "ADMIN:NAMESPACE:{namespace}:REASON [READ]"
+            ],
+            "authorization": []
+          }
+        ],
+        "summary": "Get reason group",
+        "tags": [
+          "Admin Reasons"
+        ]
+      },
+      "patch": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Required permission: ADMIN:NAMESPACE:{namespace}:REASON [UPDATE]\nReason group title is case insensitive, meaning you can\u0026#39;t have \u0026lt;b\u0026gt;reason\u0026lt;/b\u0026gt; if you already create a reason titled \u0026lt;b\u0026gt;Reason\u0026lt;/b\u0026gt;\nIf no reasonIds passed when updating, the current reasons under the reason group will be kept (reasons will not be removed from the group).",
+        "operationId": "updateReasonGroup",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/restapi.updateReasonGroupRequest"
+            }
+          },
+          {
+            "description": "Reason group ID",
+            "in": "path",
+            "name": "groupId",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/restapi.reasonGroupResponse"
+            }
+          },
+          "400": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/restapi.errorResponse"
+            }
+          },
+          "409": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/restapi.errorResponse"
+            }
+          },
+          "500": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/restapi.errorResponse"
+            }
+          }
+        },
+        "security": [
+          {
+            "HasPermission": [
+              "ADMIN:NAMESPACE:{namespace}:REASON [UPDATE]"
+            ],
+            "authorization": []
+          }
+        ],
+        "summary": "Update a reason group",
+        "tags": [
+          "Admin Reasons"
+        ]
+      }
+    },
+    "/reporting/v1/admin/namespaces/{namespace}/reasons": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "operationId": "adminGetReasons",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "query reasons under specified reason group",
+            "in": "query",
+            "name": "group",
+            "type": "string"
+          },
+          {
+            "description": "number of data requested (default 25)",
+            "in": "query",
+            "name": "limit",
+            "type": "integer"
+          },
+          {
+            "description": "number of data offset (default 0)",
+            "in": "query",
+            "name": "offset",
+            "type": "integer"
+          },
+          {
+            "description": "query reason(s) by title",
+            "in": "query",
+            "name": "title",
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/restapi.adminReasonListResponse"
+            }
+          },
+          "404": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/restapi.errorResponse"
+            }
+          },
+          "500": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/restapi.errorResponse"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "summary": "Get list of reasons",
+        "tags": [
+          "Admin Reasons"
+        ]
+      },
+      "post": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Required permission: ADMIN:NAMESPACE:{namespace}:REASON [CREATE]",
+        "operationId": "createReason",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/restapi.createReasonRequest"
+            }
+          },
+          {
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "201": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/restapi.adminReasonResponse"
+            }
+          },
+          "400": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/restapi.errorResponse"
+            }
+          },
+          "409": {
+            "description": "Conflict",
+            "schema": {
+              "$ref": "#/definitions/restapi.errorResponse"
+            }
+          },
+          "500": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/restapi.errorResponse"
+            }
+          }
+        },
+        "security": [
+          {
+            "HasPermission": [
+              "ADMIN:NAMESPACE:{namespace}:REASON [CREATE]"
+            ],
+            "authorization": []
+          }
+        ],
+        "summary": "Create a report reason",
+        "tags": [
+          "Admin Reasons"
+        ]
+      }
+    },
+    "/reporting/v1/admin/namespaces/{namespace}/reasons/all": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "\u0026lt;p\u0026gt;This endpoint get all reasons without pagination.\u0026lt;/p\u0026gt;\n\u0026lt;p\u0026gt; Required Permission: ADMIN:NAMESPACE:{namespace}:REASON [READ]\u0026lt;/p\u0026gt;",
+        "operationId": "adminGetAllReasons",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/restapi.AdminAllReasonsResponse"
+            }
+          },
+          "500": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/restapi.errorResponse"
+            }
+          }
+        },
+        "security": [
+          {
+            "HasPermission": [
+              "ADMIN:NAMESPACE:{namespace}:REASON [READ]"
+            ],
+            "authorization": []
+          }
+        ],
+        "summary": "Get all reasons",
+        "tags": [
+          "Admin Reasons"
+        ]
+      }
+    },
+    "/reporting/v1/admin/namespaces/{namespace}/reasons/unused": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "\u0026lt;p\u0026gt;This endpoint get reasons not used by moderation rules.\u0026lt;/p\u0026gt;\n\u0026lt;p\u0026gt; Required Permission: ADMIN:NAMESPACE:{namespace}:REASON [READ]\u0026lt;/p\u0026gt;",
+        "operationId": "adminGetUnusedReasons",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "category",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "extensionCategory",
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/restapi.UnusedReasonListResponse"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/restapi.errorResponse"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/restapi.errorResponse"
+            }
+          }
+        },
+        "security": [
+          {
+            "HasPermission": [
+              "ADMIN:NAMESPACE:{namespace}:REASON [READ]"
+            ],
+            "authorization": []
+          }
+        ],
+        "summary": "Get list of reasons that not used by moderation rules",
+        "tags": [
+          "Admin Reasons"
+        ]
+      }
+    },
+    "/reporting/v1/admin/namespaces/{namespace}/reasons/{reasonId}": {
+      "delete": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Required permission: ADMIN:NAMESPACE:{namespace}:REASON [DELETE]",
+        "operationId": "deleteReason",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "path",
+            "name": "reasonId",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "204": {
+            "description": ""
+          },
+          "500": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/restapi.errorResponse"
+            }
+          }
+        },
+        "security": [
+          {
+            "HasPermission": [
+              "ADMIN:NAMESPACE:{namespace}:REASON [DELETE]"
+            ],
+            "authorization": []
+          }
+        ],
+        "summary": "Delete a report reason",
+        "tags": [
+          "Admin Reasons"
+        ]
+      },
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Required permission: ADMIN:NAMESPACE:{namespace}:REASON [READ]",
+        "operationId": "adminGetReason",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "path",
+            "name": "reasonId",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/restapi.adminReasonResponse"
+            }
+          },
+          "404": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/restapi.errorResponse"
+            }
+          },
+          "500": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/restapi.errorResponse"
+            }
+          }
+        },
+        "security": [
+          {
+            "HasPermission": [
+              "ADMIN:NAMESPACE:{namespace}:REASON [READ]"
+            ],
+            "authorization": []
+          }
+        ],
+        "summary": "Get a single reason",
+        "tags": [
+          "Admin Reasons"
+        ]
+      },
+      "patch": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Required permission: ADMIN:NAMESPACE:{namespace}:REASON [UPDATE]",
+        "operationId": "updateReason",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/restapi.createReasonRequest"
+            }
+          },
+          {
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "path",
+            "name": "reasonId",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/restapi.adminReasonResponse"
+            }
+          },
+          "400": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/restapi.errorResponse"
+            }
+          },
+          "409": {
+            "description": "Conflict",
+            "schema": {
+              "$ref": "#/definitions/restapi.errorResponse"
+            }
+          },
+          "500": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/restapi.errorResponse"
+            }
+          }
+        },
+        "security": [
+          {
+            "HasPermission": [
+              "ADMIN:NAMESPACE:{namespace}:REASON [UPDATE]"
+            ],
+            "authorization": []
+          }
+        ],
+        "summary": "Update a report reason",
+        "tags": [
+          "Admin Reasons"
+        ]
+      }
+    },
+    "/reporting/v1/admin/namespaces/{namespace}/reports": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Required permission: ADMIN:NAMESPACE:{namespace}:TICKET [READ]\nReports list can be ordered by:\n- createdAt\n- updatedAt",
+        "operationId": "listReports",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "filter reports by category",
+            "in": "query",
+            "name": "category",
+            "type": "string"
+          },
+          {
+            "description": "number of data requested (default 25)",
+            "in": "query",
+            "name": "limit",
+            "type": "integer"
+          },
+          {
+            "description": "number of data offset (default 0)",
+            "in": "query",
+            "name": "offset",
+            "type": "integer"
+          },
+          {
+            "description": "filter reports by reportedUserId",
+            "in": "query",
+            "name": "reportedUserId",
+            "type": "string"
+          },
+          {
+            "default": "createdAt:desc",
+            "description": "Only support one level of sortBy; default createdAt:desc",
+            "in": "query",
+            "name": "sortBy",
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/restapi.reportListResponse"
+            }
+          },
+          "500": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/restapi.errorResponse"
+            }
+          }
+        },
+        "security": [
+          {
+            "HasPermission": [
+              "ADMIN:NAMESPACE:{namespace}:TICKET [READ]"
+            ],
+            "authorization": []
+          }
+        ],
+        "summary": "List reports",
+        "tags": [
+          "Admin Reports"
+        ]
+      },
+      "post": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Required permission: ADMIN:NAMESPACE:{namespace}:TICKET [CREATE]\nSubmit a report and will return ticket for reported object.\nNew ticket will be created if no OPEN ticket present for reported object (based by objectId and objectType) in a namespace.\n\nAdmin can only submit report once for each different user / object reported in the same OPEN ticket. \nReporting the same user / object in the same OPEN ticket will return HTTP code 409 (conflict).\n\nFill the \u0026#39;reason\u0026#39; field with a \u0026#39;reason title\u0026#39;\nSupported category: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;UGC\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;USER\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;CHAT\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;EXTENSION\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
+        "operationId": "adminSubmitReport",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/restapi.submitReportRequest"
+            }
+          },
+          {
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "201": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/restapi.submitReportResponse"
+            }
+          },
+          "400": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/restapi.errorResponse"
+            }
+          },
+          "409": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/restapi.errorResponse"
+            }
+          },
+          "500": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/restapi.errorResponse"
+            }
+          }
+        },
+        "security": [
+          {
+            "HasPermission": [
+              "ADMIN:NAMESPACE:{namespace}:TICKET [CREATE]"
+            ],
+            "authorization": []
+          }
+        ],
+        "summary": "Submit a report by admin",
+        "tags": [
+          "Admin Reports"
+        ]
+      }
+    },
+    "/reporting/v1/admin/namespaces/{namespace}/rule": {
+      "post": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "\u0026lt;p\u0026gt;This endpoint create moderation rule.\u0026lt;/p\u0026gt;\n\u0026lt;p\u0026gt; Required Permission: ADMIN:NAMESPACE:{namespace}:RULE [CREATE]\u0026lt;/p\u0026gt;\n\u0026lt;p\u0026gt; Supported Category: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;UGC\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;USER\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;CHAT\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;EXTENSION\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;\u0026lt;/p\u0026gt;\n\u0026lt;p\u0026gt; Supported Action (GOING TO DEPRECATE, for replacement please use \u0026#34;actions\u0026#34;):\u0026lt;/p\u0026gt;\n\u0026lt;ul\u0026gt;\n  \u0026lt;li\u0026gt;HideContent\u0026lt;/li\u0026gt;\n\u0026lt;/ul\u0026gt;\n\u0026lt;p\u0026gt; Supported Actions:\u0026lt;/p\u0026gt;\n\u0026lt;ul\u0026gt;\n  \u0026lt;li\u0026gt;\u0026lt;b\u0026gt;hideContent\u0026lt;/b\u0026gt;: Hide the content\u0026lt;/li\u0026gt;\n  \u0026lt;li\u0026gt;\u0026lt;b\u0026gt;banAccount\u0026lt;/b\u0026gt;: Ban the user account\u0026lt;/li\u0026gt;\n  \u0026lt;li\u0026gt;\u0026lt;b\u0026gt;deleteChat\u0026lt;/b\u0026gt;: Delete chat\u0026lt;/li\u0026gt;\n\u0026lt;/ul\u0026gt;",
+        "operationId": "createModerationRule",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/restapi.ModerationRuleRequest"
+            }
+          },
+          {
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "201": {
+            "description": "Created"
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/restapi.errorResponse"
+            }
+          },
+          "409": {
+            "description": "Conflict",
+            "schema": {
+              "$ref": "#/definitions/restapi.errorResponse"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/restapi.errorResponse"
+            }
+          }
+        },
+        "security": [
+          {
+            "HasPermission": [
+              "ADMIN:NAMESPACE:{namespace}:RULE [CREATE]"
+            ],
+            "authorization": []
+          }
+        ],
+        "summary": "Create auto moderation rule",
+        "tags": [
+          "Admin Moderation Rule"
+        ]
+      }
+    },
+    "/reporting/v1/admin/namespaces/{namespace}/rule/{ruleId}": {
+      "delete": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "\u0026lt;p\u0026gt;This endpoint delete moderation rule.\u0026lt;/p\u0026gt;\n\u0026lt;p\u0026gt; Required Permission: ADMIN:NAMESPACE:{namespace}:RULE [DELETE]",
+        "operationId": "deleteModerationRule",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "path",
+            "name": "ruleId",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content"
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/restapi.errorResponse"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/restapi.errorResponse"
+            }
+          }
+        },
+        "security": [
+          {
+            "HasPermission": [
+              "ADMIN:NAMESPACE:{namespace}:RULE [DELETE]"
+            ],
+            "authorization": []
+          }
+        ],
+        "summary": "Delete auto moderation rule",
+        "tags": [
+          "Admin Moderation Rule"
+        ]
+      },
+      "put": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "\u0026lt;p\u0026gt;This endpoint update moderation rule.\u0026lt;/p\u0026gt;\n\u0026lt;p\u0026gt; Required Permission: ADMIN:NAMESPACE:{namespace}:RULE [UPDATE]\n\u0026lt;p\u0026gt; Supported Category:\u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;UGC\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;USER\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;CHAT\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;EXTENSION\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;\u0026lt;/p\u0026gt;\n\u0026lt;p\u0026gt; Supported Action (GOING TO DEPRECATE, for replacement please use \u0026#34;actions\u0026#34;):\u0026lt;/p\u0026gt;\n\u0026lt;ul\u0026gt;\n  \u0026lt;li\u0026gt;HideContent\u0026lt;/li\u0026gt;\n\u0026lt;/ul\u0026gt;\n\u0026lt;p\u0026gt; Supported Actions:\u0026lt;/p\u0026gt;\n\u0026lt;ul\u0026gt;\n  \u0026lt;li\u0026gt;\u0026lt;b\u0026gt;hideContent\u0026lt;/b\u0026gt;: Hide the content\u0026lt;/li\u0026gt;\n  \u0026lt;li\u0026gt;\u0026lt;b\u0026gt;banAccount\u0026lt;/b\u0026gt;: Ban the user account\u0026lt;/li\u0026gt;\n  \u0026lt;li\u0026gt;\u0026lt;b\u0026gt;deleteChat\u0026lt;/b\u0026gt;: Delete chat\u0026lt;/li\u0026gt;\n\u0026lt;/ul\u0026gt;",
+        "operationId": "updateModerationRule",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/restapi.ModerationRuleRequest"
+            }
+          },
+          {
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "path",
+            "name": "ruleId",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/restapi.ModerationRuleResponse"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/restapi.errorResponse"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/restapi.errorResponse"
+            }
+          },
+          "409": {
+            "description": "Conflict",
+            "schema": {
+              "$ref": "#/definitions/restapi.errorResponse"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/restapi.errorResponse"
+            }
+          }
+        },
+        "security": [
+          {
+            "HasPermission": [
+              "ADMIN:NAMESPACE:{namespace}:RULE [UPDATE]"
+            ],
+            "authorization": []
+          }
+        ],
+        "summary": "Update auto moderation rule",
+        "tags": [
+          "Admin Moderation Rule"
+        ]
+      }
+    },
+    "/reporting/v1/admin/namespaces/{namespace}/rule/{ruleId}/status": {
+      "put": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "\u0026lt;p\u0026gt;This endpoint enable/disable moderation rule status.\u0026lt;/p\u0026gt;\n\u0026lt;p\u0026gt; Required Permission: ADMIN:NAMESPACE:{namespace}:RULE [UPDATE]",
+        "operationId": "updateModerationRuleStatus",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/restapi.ModerationRuleActiveRequest"
+            }
+          },
+          {
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "path",
+            "name": "ruleId",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content"
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/restapi.errorResponse"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/restapi.errorResponse"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/restapi.errorResponse"
+            }
+          }
+        },
+        "security": [
+          {
+            "HasPermission": [
+              "ADMIN:NAMESPACE:{namespace}:RULE [UPDATE]"
+            ],
+            "authorization": []
+          }
+        ],
+        "summary": "Enable/Disable auto moderation rule",
+        "tags": [
+          "Admin Moderation Rule"
+        ]
+      }
+    },
+    "/reporting/v1/admin/namespaces/{namespace}/rules": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "\u0026lt;p\u0026gt;This endpoint get moderation rules.\u0026lt;/p\u0026gt;\n\u0026lt;p\u0026gt; Required Permission: ADMIN:NAMESPACE:{namespace}:RULE [READ]",
+        "operationId": "getModerationRules",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "filter rules by category",
+            "in": "query",
+            "name": "category",
+            "type": "string"
+          },
+          {
+            "description": "filter rules by extension category",
+            "in": "query",
+            "name": "extensionCategory",
+            "type": "string"
+          },
+          {
+            "description": "number of data requested (default 25)",
+            "in": "query",
+            "name": "limit",
+            "type": "integer"
+          },
+          {
+            "description": "number of data offset (default 0)",
+            "in": "query",
+            "name": "offset",
+            "type": "integer"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/restapi.ModerationRulesList"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/restapi.errorResponse"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/restapi.errorResponse"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/restapi.errorResponse"
+            }
+          }
+        },
+        "security": [
+          {
+            "HasPermission": [
+              "ADMIN:NAMESPACE:{namespace}:RULE [READ]"
+            ],
+            "authorization": []
+          }
+        ],
+        "summary": "Get auto moderation rules",
+        "tags": [
+          "Admin Moderation Rule"
+        ]
+      }
+    },
+    "/reporting/v1/admin/namespaces/{namespace}/rules/{ruleId}": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "\u0026lt;p\u0026gt;This endpoint get moderation rule.\u0026lt;/p\u0026gt;\n\u0026lt;p\u0026gt; Required Permission: ADMIN:NAMESPACE:{namespace}:RULE [READ]",
+        "operationId": "getModerationRuleDetails",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "path",
+            "name": "ruleId",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/restapi.ModerationRuleResponse"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/restapi.errorResponse"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/restapi.errorResponse"
+            }
+          }
+        },
+        "security": [
+          {
+            "HasPermission": [
+              "ADMIN:NAMESPACE:{namespace}:RULE [READ]"
+            ],
+            "authorization": []
+          }
+        ],
+        "summary": "Get auto moderation rule",
+        "tags": [
+          "Admin Moderation Rule"
+        ]
+      }
+    },
+    "/reporting/v1/admin/namespaces/{namespace}/tickets": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Required permission: ADMIN:NAMESPACE:{namespace}:TICKET [READ]\nTickets list can be ordered by:\n- createdAt\n- reportsCount\n- status (currently there are OPEN, AUTO_MODERATED and CLOSED statuses, desc order will put ticket with CLOSED status at the top)",
+        "operationId": "listTickets",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "filter tickets by category",
+            "in": "query",
+            "name": "category",
+            "type": "string"
+          },
+          {
+            "description": "filter tickets by extension category",
+            "in": "query",
+            "name": "extensionCategory",
+            "type": "string"
+          },
+          {
+            "description": "number of data requested (default 25)",
+            "in": "query",
+            "name": "limit",
+            "type": "integer"
+          },
+          {
+            "description": "number of data offset (default 0)",
+            "in": "query",
+            "name": "offset",
+            "type": "integer"
+          },
+          {
+            "description": "data order, asc or desc (default: desc)",
+            "in": "query",
+            "name": "order",
+            "type": "string"
+          },
+          {
+            "description": "filter reports by reportedUserId",
+            "in": "query",
+            "name": "reportedUserId",
+            "type": "string"
+          },
+          {
+            "description": "data order key, valid keys are createdAt, reportsCount, and status (default: createdAt)",
+            "in": "query",
+            "name": "sortBy",
+            "type": "string"
+          },
+          {
+            "description": "filter tickets by status (OPEN, AUTO_MODERATED or CLOSED)",
+            "in": "query",
+            "name": "status",
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/restapi.ticketListResponse"
+            }
+          },
+          "500": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/restapi.errorResponse"
+            }
+          }
+        },
+        "security": [
+          {
+            "HasPermission": [
+              "ADMIN:NAMESPACE:{namespace}:TICKET [READ]"
+            ],
+            "authorization": []
+          }
+        ],
+        "summary": "List report tickets",
+        "tags": [
+          "Admin Tickets"
+        ]
+      }
+    },
+    "/reporting/v1/admin/namespaces/{namespace}/tickets/statistic": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Required permission: ADMIN:NAMESPACE:{namespace}:TICKET [READ]",
+        "operationId": "ticketStatistic",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "filter statistic by category",
+            "in": "query",
+            "name": "category",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "filter statistic by extension category",
+            "in": "query",
+            "name": "extensionCategory",
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/restapi.ticketStatisticResponse"
+            }
+          },
+          "500": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/restapi.errorResponse"
+            }
+          }
+        },
+        "security": [
+          {
+            "HasPermission": [
+              "ADMIN:NAMESPACE:{namespace}:TICKET [READ]"
+            ],
+            "authorization": []
+          }
+        ],
+        "summary": "Ticket statistic",
+        "tags": [
+          "Admin Tickets"
+        ]
+      }
+    },
+    "/reporting/v1/admin/namespaces/{namespace}/tickets/{ticketId}": {
+      "delete": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Required permission: ADMIN:NAMESPACE:{namespace}:TICKET [DELETE]\nThis endpoint will delete ticket and all its reports.\n",
+        "operationId": "deleteTicket",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "path",
+            "name": "ticketId",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "204": {
+            "description": ""
+          },
+          "404": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/restapi.errorResponse"
+            }
+          },
+          "500": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/restapi.errorResponse"
+            }
+          }
+        },
+        "security": [
+          {
+            "HasPermission": [
+              "ADMIN:NAMESPACE:{namespace}:TICKET [DELETE]"
+            ],
+            "authorization": []
+          }
+        ],
+        "summary": "Delete single ticket",
+        "tags": [
+          "Admin Tickets"
+        ]
+      },
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Required permission: ADMIN:NAMESPACE:{namespace}:TICKET [READ]",
+        "operationId": "getTicketDetail",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "path",
+            "name": "ticketId",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/restapi.ticketResponse"
+            }
+          },
+          "404": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/restapi.errorResponse"
+            }
+          },
+          "500": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/restapi.errorResponse"
+            }
+          }
+        },
+        "security": [
+          {
+            "HasPermission": [
+              "ADMIN:NAMESPACE:{namespace}:TICKET [READ]"
+            ],
+            "authorization": []
+          }
+        ],
+        "summary": "Get single ticket",
+        "tags": [
+          "Admin Tickets"
+        ]
+      }
+    },
+    "/reporting/v1/admin/namespaces/{namespace}/tickets/{ticketId}/reports": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Required permission: ADMIN:NAMESPACE:{namespace}:TICKET [READ]\nList reports ordered by createdAt in descending order.",
+        "operationId": "getReportsByTicket",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "path",
+            "name": "ticketId",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "number of data requested (default 25)",
+            "in": "query",
+            "name": "limit",
+            "type": "integer"
+          },
+          {
+            "description": "number of data offset (default 0)",
+            "in": "query",
+            "name": "offset",
+            "type": "integer"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/restapi.reportListResponse"
+            }
+          },
+          "500": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/restapi.errorResponse"
+            }
+          }
+        },
+        "security": [
+          {
+            "HasPermission": [
+              "ADMIN:NAMESPACE:{namespace}:TICKET [READ]"
+            ],
+            "authorization": []
+          }
+        ],
+        "summary": "Get reports by ticket ID",
+        "tags": [
+          "Admin Tickets"
+        ]
+      }
+    },
+    "/reporting/v1/admin/namespaces/{namespace}/tickets/{ticketId}/resolutions": {
+      "post": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Required permission: ADMIN:NAMESPACE:{namespace}:TICKET [UPDATE]\nUpdate ticket resolution status to either OPEN or CLOSED. It is mandatory to provide notes",
+        "operationId": "updateTicketResolutions",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/restapi.updateTicketResolutionsRequest"
+            }
+          },
+          {
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "path",
+            "name": "ticketId",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/restapi.ticketResponse"
+            }
+          },
+          "500": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/restapi.errorResponse"
+            }
+          }
+        },
+        "security": [
+          {
+            "HasPermission": [
+              "ADMIN:NAMESPACE:{namespace}:TICKET [UPDATE]"
+            ],
+            "authorization": []
+          }
+        ],
+        "summary": "Update ticket resolution to a given status",
+        "tags": [
+          "Admin Tickets"
+        ]
+      }
+    },
+    "/reporting/v1/public/namespaces/{namespace}/reasonGroups": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Return list of reason groups ID and title under given namespace.",
+        "operationId": "publicListReasonGroups",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "number of data requested (default 25)",
+            "in": "query",
+            "name": "limit",
+            "type": "integer"
+          },
+          {
+            "description": "number of data offset (default 0)",
+            "in": "query",
+            "name": "offset",
+            "type": "integer"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/restapi.reasonGroupListResponse"
+            }
+          },
+          "500": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/restapi.errorResponse"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "summary": "List reason groups under a namespace",
+        "tags": [
+          "Public Reasons"
+        ]
+      }
+    },
+    "/reporting/v1/public/namespaces/{namespace}/reasons": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "operationId": "publicGetReasons",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "query reasons under specified reason group",
+            "in": "query",
+            "name": "group",
+            "type": "string"
+          },
+          {
+            "description": "number of data requested (default 25)",
+            "in": "query",
+            "name": "limit",
+            "type": "integer"
+          },
+          {
+            "description": "number of data offset (default 0)",
+            "in": "query",
+            "name": "offset",
+            "type": "integer"
+          },
+          {
+            "description": "query reason(s) by title",
+            "in": "query",
+            "name": "title",
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/restapi.publicReasonListResponse"
+            }
+          },
+          "404": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/restapi.errorResponse"
+            }
+          },
+          "500": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/restapi.errorResponse"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "summary": "Get list of reasons",
+        "tags": [
+          "Public Reasons"
+        ]
+      }
+    },
+    "/reporting/v1/public/namespaces/{namespace}/reports": {
+      "post": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "User need to be authenticated to access this endpoint.\nSubmit a report and will return ticket for reported object.\nNew ticket will be created if no OPEN ticket present for reported object (based by objectId and objectType) in a namespace.\n\nUser can only submit report once for each different user / object reported in the same OPEN ticket. \nReporting the same user / object in the same OPEN ticket will return HTTP code 409 (conflict).\n\nFill the \u0026#39;reason\u0026#39; field with a \u0026#39;reason title\u0026#39;\nSupported category: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;UGC\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;USER\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;CHAT\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;EXTENSION\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
+        "operationId": "submitReport",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/restapi.submitReportRequest"
+            }
+          },
+          {
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "201": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/restapi.submitReportResponse"
+            }
+          },
+          "400": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/restapi.errorResponse"
+            }
+          },
+          "409": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/restapi.errorResponse"
+            }
+          },
+          "429": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/restapi.errorResponse"
+            }
+          },
+          "500": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/restapi.errorResponse"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "summary": "Submit a report",
+        "tags": [
+          "Public Reports"
+        ]
+      }
+    }
+  },
+  "definitions": {
+    "restapi.AdminAllReasonsResponse": {
+      "properties": {
+        "data": {
+          "items": {
+            "$ref": "#/definitions/restapi.publicReasonResponse"
+          },
+          "type": "array"
+        }
+      },
+      "required": [
+        "data"
+      ]
+    },
+    "restapi.BanAccountActionRequest": {
+      "properties": {
+        "comment": {
+          "description": "Ban comment",
+          "type": "string"
+        },
+        "duration": {
+          "description": "Ban duration in minutes, -1 means unlimited duration",
+          "format": "int32",
+          "type": "integer"
+        },
+        "reason": {
+          "description": "Ban reason",
+          "type": "string"
+        },
+        "skipNotif": {
+          "default": false,
+          "description": "Skip notification for banned user (e.g. email notification)",
+          "type": "boolean",
+          "x-omitempty": false
+        },
+        "type": {
+          "description": "Ban type",
+          "type": "string"
+        }
+      },
+      "required": [
+        "duration",
+        "reason",
+        "skipNotif",
+        "type"
+      ]
+    },
+    "restapi.BanAccountActionResponse": {
+      "properties": {
+        "comment": {
+          "description": "Ban comment",
+          "type": "string"
+        },
+        "duration": {
+          "description": "Ban duration in minutes, -1 means unlimited duration",
+          "format": "int32",
+          "type": "integer"
+        },
+        "reason": {
+          "description": "Ban reason",
+          "type": "string"
+        },
+        "skipNotif": {
+          "default": false,
+          "description": "Skip notification for banned user (e.g. email notification)",
+          "type": "boolean",
+          "x-omitempty": false
+        },
+        "type": {
+          "description": "Ban type",
+          "type": "string"
+        }
+      },
+      "required": [
+        "duration",
+        "reason",
+        "skipNotif",
+        "type"
+      ]
+    },
+    "restapi.ModerationRuleActionsRequest": {
+      "properties": {
+        "banAccount": {
+          "$ref": "#/definitions/restapi.BanAccountActionRequest",
+          "description": "Ban account action configuration"
+        },
+        "deleteChat": {
+          "description": "Enable delete chat action",
+          "type": "boolean",
+          "x-omitempty": false
+        },
+        "extensionActionIds": {
+          "description": "Custom services moderation actions",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "hideContent": {
+          "description": "Enable hide content action",
+          "type": "boolean",
+          "x-omitempty": false
+        }
+      }
+    },
+    "restapi.ModerationRuleActionsResponse": {
+      "properties": {
+        "banAccount": {
+          "$ref": "#/definitions/restapi.BanAccountActionResponse",
+          "description": "Ban account action configuration"
+        },
+        "deleteChat": {
+          "description": "Enable delete chat action",
+          "type": "boolean",
+          "x-omitempty": false
+        },
+        "extensionActionIds": {
+          "description": "custom service mod actions",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "hideContent": {
+          "description": "Enable hide content action",
+          "type": "boolean",
+          "x-omitempty": false
+        }
+      }
+    },
+    "restapi.ModerationRuleActiveRequest": {
+      "properties": {
+        "active": {
+          "type": "boolean",
+          "x-omitempty": false
+        }
+      },
+      "required": [
+        "active"
+      ]
+    },
+    "restapi.ModerationRuleRequest": {
+      "properties": {
+        "action": {
+          "description": "GOING TO DEPRECATE, PLEASE DO NOT USE, for replacement use the \"actions\" field",
+          "enum": [
+            "HideContent"
+          ],
+          "type": "string"
+        },
+        "actions": {
+          "$ref": "#/definitions/restapi.ModerationRuleActionsRequest",
+          "description": "Action configurations for moderation rule"
+        },
+        "active": {
+          "description": "status of this rule",
+          "type": "boolean",
+          "x-omitempty": false
+        },
+        "category": {
+          "description": "Report category, must select from pre defined list",
+          "enum": [
+            "CHAT",
+            "EXTENSION",
+            "UGC",
+            "USER"
+          ],
+          "type": "string"
+        },
+        "extensionCategory": {
+          "description": "Report extension category, consist of custom services sub-category (eg. salesItem,challenge,etc)",
+          "type": "string"
+        },
+        "reason": {
+          "description": "Reason of report, can select from pre defined list, max 128 chars",
+          "type": "string"
+        },
+        "threshold": {
+          "description": "the threshold to trigger auto moderation",
+          "format": "int32",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "active",
+        "category",
+        "reason",
+        "threshold"
+      ]
+    },
+    "restapi.ModerationRuleResponse": {
+      "properties": {
+        "action": {
+          "description": "GOING TO DEPRECATE, PLEASE DO NOT USE, for replacement use the \"actions\" field",
+          "type": "string"
+        },
+        "actions": {
+          "$ref": "#/definitions/restapi.ModerationRuleActionsResponse",
+          "description": "Action configurations for moderation rule"
+        },
+        "active": {
+          "type": "boolean",
+          "x-omitempty": false
+        },
+        "category": {
+          "type": "string"
+        },
+        "createdAt": {
+          "format": "date-time",
+          "type": "string",
+          "x-nullable": false
+        },
+        "extensionCategory": {
+          "type": "string"
+        },
+        "id": {
+          "type": "string"
+        },
+        "namespace": {
+          "type": "string"
+        },
+        "reason": {
+          "type": "string"
+        },
+        "threshold": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "updatedAt": {
+          "format": "date-time",
+          "type": "string",
+          "x-nullable": true
+        }
+      },
+      "required": [
+        "actions",
+        "active",
+        "category",
+        "createdAt",
+        "id",
+        "namespace",
+        "reason",
+        "threshold"
+      ]
+    },
+    "restapi.ModerationRulesList": {
+      "properties": {
+        "data": {
+          "items": {
+            "$ref": "#/definitions/restapi.ModerationRuleResponse"
+          },
+          "type": "array"
+        },
+        "paging": {
+          "$ref": "#/definitions/restapi.pagination"
+        }
+      },
+      "required": [
+        "data",
+        "paging"
+      ]
+    },
+    "restapi.UnusedReasonListResponse": {
+      "properties": {
+        "reasons": {
+          "items": {
+            "$ref": "#/definitions/restapi.publicReasonResponse"
+          },
+          "type": "array"
+        }
+      },
+      "required": [
+        "reasons"
+      ]
+    },
+    "restapi.actionApiRequest": {
+      "properties": {
+        "actionId": {
+          "description": "Auto mod action ID",
+          "type": "string"
+        },
+        "actionName": {
+          "description": "Auto mod action display name",
+          "type": "string"
+        },
+        "eventName": {
+          "description": "Kafka publish event name",
+          "type": "string"
+        }
+      },
+      "required": [
+        "actionId",
+        "actionName",
+        "eventName"
+      ]
+    },
+    "restapi.actionApiResponse": {
+      "properties": {
+        "actionId": {
+          "type": "string"
+        },
+        "actionName": {
+          "type": "string"
+        },
+        "eventName": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "actionId",
+        "actionName",
+        "eventName"
+      ]
+    },
+    "restapi.actionListApiResponse": {
+      "properties": {
+        "data": {
+          "items": {
+            "$ref": "#/definitions/restapi.actionApiResponse"
+          },
+          "type": "array"
+        }
+      },
+      "required": [
+        "data"
+      ]
+    },
+    "restapi.adminReasonListResponse": {
+      "properties": {
+        "data": {
+          "items": {
+            "$ref": "#/definitions/restapi.adminReasonResponse"
+          },
+          "type": "array"
+        },
+        "paging": {
+          "$ref": "#/definitions/restapi.pagination"
+        }
+      },
+      "required": [
+        "data",
+        "paging"
+      ]
+    },
+    "restapi.adminReasonResponse": {
+      "properties": {
+        "createdAt": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "groups": {
+          "items": {
+            "$ref": "#/definitions/restapi.publicReasonGroupResponse"
+          },
+          "type": "array"
+        },
+        "id": {
+          "type": "string"
+        },
+        "namespace": {
+          "type": "string"
+        },
+        "title": {
+          "type": "string"
+        },
+        "updatedAt": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "createdAt",
+        "description",
+        "id",
+        "namespace",
+        "title",
+        "updatedAt"
+      ]
+    },
+    "restapi.categoryLimit": {
+      "properties": {
+        "extensionCategory": {
+          "type": "string"
+        },
+        "maxReportPerTicket": {
+          "description": "must between 1 to 2147483647",
+          "format": "int32",
+          "type": "integer"
+        },
+        "name": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "maxReportPerTicket",
+        "name"
+      ]
+    },
+    "restapi.configResponse": {
+      "properties": {
+        "namespace": {
+          "type": "string"
+        },
+        "reportingLimit": {
+          "$ref": "#/definitions/restapi.reportingLimit"
+        },
+        "updatedAt": {
+          "format": "date-time",
+          "type": "string",
+          "x-nullable": false
+        }
+      },
+      "required": [
+        "namespace",
+        "reportingLimit",
+        "updatedAt"
+      ]
+    },
+    "restapi.createReasonGroupRequest": {
+      "properties": {
+        "reasonIds": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "title": {
+          "description": "max 256 chars",
+          "type": "string"
+        }
+      },
+      "required": [
+        "title"
+      ]
+    },
+    "restapi.createReasonRequest": {
+      "properties": {
+        "description": {
+          "description": "max 280 chars",
+          "type": "string"
+        },
+        "groupIds": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "title": {
+          "description": "max 256 chars",
+          "type": "string"
+        }
+      },
+      "required": [
+        "description",
+        "groupIds",
+        "title"
+      ]
+    },
+    "restapi.errorResponse": {
+      "properties": {
+        "errorCode": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "errorMessage": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "errorCode",
+        "errorMessage"
+      ]
+    },
+    "restapi.extensionCategoryApiRequest": {
+      "properties": {
+        "extensionCategory": {
+          "description": "Report extension category, consist of custom services sub-category (eg. salesItem,challenge,etc)",
+          "type": "string"
+        },
+        "extensionCategoryName": {
+          "description": "Report extension category display name)",
+          "type": "string"
+        },
+        "serviceSource": {
+          "description": "Extension category service source (eg. service source 'marketplace' for extension category 'salesItem')",
+          "type": "string"
+        }
+      },
+      "required": [
+        "extensionCategory",
+        "extensionCategoryName",
+        "serviceSource"
+      ]
+    },
+    "restapi.extensionCategoryApiResponse": {
+      "properties": {
+        "extensionCategory": {
+          "type": "string"
+        },
+        "extensionCategoryName": {
+          "type": "string"
+        },
+        "serviceSource": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "extensionCategory",
+        "extensionCategoryName",
+        "serviceSource"
+      ]
+    },
+    "restapi.extensionCategoryListApiResponse": {
+      "properties": {
+        "data": {
+          "items": {
+            "$ref": "#/definitions/restapi.extensionCategoryApiResponse"
+          },
+          "type": "array"
+        }
+      },
+      "required": [
+        "data"
+      ]
+    },
+    "restapi.pagination": {
+      "properties": {
+        "first": {
+          "type": "string"
+        },
+        "last": {
+          "type": "string"
+        },
+        "next": {
+          "type": "string"
+        },
+        "previous": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "first",
+        "last",
+        "next",
+        "previous"
+      ]
+    },
+    "restapi.publicReasonGroupResponse": {
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "title": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "id",
+        "title"
+      ]
+    },
+    "restapi.publicReasonListResponse": {
+      "properties": {
+        "data": {
+          "items": {
+            "$ref": "#/definitions/restapi.publicReasonResponse"
+          },
+          "type": "array"
+        },
+        "paging": {
+          "$ref": "#/definitions/restapi.pagination"
+        }
+      },
+      "required": [
+        "data",
+        "paging"
+      ]
+    },
+    "restapi.publicReasonResponse": {
+      "properties": {
+        "description": {
+          "type": "string"
+        },
+        "title": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "description",
+        "title"
+      ]
+    },
+    "restapi.reasonGroupListResponse": {
+      "properties": {
+        "data": {
+          "items": {
+            "$ref": "#/definitions/restapi.publicReasonGroupResponse"
+          },
+          "type": "array"
+        },
+        "paging": {
+          "$ref": "#/definitions/restapi.pagination"
+        }
+      },
+      "required": [
+        "data",
+        "paging"
+      ]
+    },
+    "restapi.reasonGroupResponse": {
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "reasons": {
+          "items": {
+            "$ref": "#/definitions/restapi.adminReasonResponse"
+          },
+          "type": "array"
+        },
+        "title": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "id",
+        "title"
+      ]
+    },
+    "restapi.reportListResponse": {
+      "properties": {
+        "data": {
+          "items": {
+            "$ref": "#/definitions/restapi.reportResponse"
+          },
+          "type": "array"
+        },
+        "paging": {
+          "$ref": "#/definitions/restapi.pagination"
+        }
+      },
+      "required": [
+        "data",
+        "paging"
+      ]
+    },
+    "restapi.reportResponse": {
+      "properties": {
+        "additionalInfo": {
+          "type": "object"
+        },
+        "category": {
+          "enum": [
+            "CHAT",
+            "EXTENSION",
+            "UGC",
+            "USER"
+          ],
+          "type": "string"
+        },
+        "comment": {
+          "type": "string"
+        },
+        "createdAt": {
+          "type": "string"
+        },
+        "extensionCategory": {
+          "type": "string"
+        },
+        "id": {
+          "type": "string"
+        },
+        "namespace": {
+          "type": "string"
+        },
+        "objectId": {
+          "type": "string"
+        },
+        "objectType": {
+          "type": "string"
+        },
+        "reason": {
+          "type": "string"
+        },
+        "reporterId": {
+          "type": "string"
+        },
+        "ticketId": {
+          "type": "string"
+        },
+        "updatedAt": {
+          "type": "string"
+        },
+        "userId": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "additionalInfo",
+        "category",
+        "comment",
+        "createdAt",
+        "id",
+        "namespace",
+        "objectId",
+        "objectType",
+        "reason",
+        "reporterId",
+        "ticketId",
+        "updatedAt",
+        "userId"
+      ]
+    },
+    "restapi.reportingLimit": {
+      "properties": {
+        "categoryLimits": {
+          "items": {
+            "$ref": "#/definitions/restapi.categoryLimit"
+          },
+          "type": "array"
+        },
+        "timeInterval": {
+          "description": "the unit is nanoseconds, must between 1 to 6000000 seconds",
+          "format": "int64",
+          "type": "integer"
+        },
+        "userMaxReportPerTimeInterval": {
+          "description": "must between 1 to 2147483647",
+          "format": "int32",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "categoryLimits",
+        "timeInterval",
+        "userMaxReportPerTimeInterval"
+      ]
+    },
+    "restapi.submitReportRequest": {
+      "properties": {
+        "additionalInfo": {
+          "description": "Additional info regarding reported user / content, JSON formatted",
+          "type": "object"
+        },
+        "category": {
+          "description": "Report category, must select from pre defined list",
+          "enum": [
+            "CHAT",
+            "EXTENSION",
+            "UGC",
+            "USER"
+          ],
+          "type": "string"
+        },
+        "comment": {
+          "description": "Additional comment if any, max 280 chars",
+          "type": "string"
+        },
+        "extensionCategory": {
+          "description": "Report extension category, must select from pre defined list",
+          "type": "string"
+        },
+        "objectId": {
+          "description": "ID of content being reported, uuid4WithoutHyphens. Required for UGC category",
+          "type": "string"
+        },
+        "objectType": {
+          "description": "Type of content being reported, max 64 chars. Required for UGC category",
+          "type": "string"
+        },
+        "reason": {
+          "description": "Reason of report, can select from pre defined list, max 128 chars",
+          "type": "string"
+        },
+        "userId": {
+          "description": "User ID being reported, in UUID4 format",
+          "type": "string"
+        }
+      },
+      "required": [
+        "category",
+        "reason",
+        "userId"
+      ]
+    },
+    "restapi.submitReportResponse": {
+      "properties": {
+        "category": {
+          "enum": [
+            "CHAT",
+            "EXTENSION",
+            "UGC",
+            "USER"
+          ],
+          "type": "string"
+        },
+        "createdAt": {
+          "type": "string"
+        },
+        "extensionCategory": {
+          "type": "string"
+        },
+        "namespace": {
+          "type": "string"
+        },
+        "objectId": {
+          "type": "string"
+        },
+        "objectType": {
+          "type": "string"
+        },
+        "status": {
+          "enum": [
+            "AUTO_MODERATED",
+            "CLOSED",
+            "OPEN",
+            "UNKNOWN"
+          ],
+          "type": "string"
+        },
+        "ticketId": {
+          "type": "string"
+        },
+        "updatedAt": {
+          "type": "string"
+        },
+        "userId": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "category",
+        "createdAt",
+        "namespace",
+        "objectId",
+        "objectType",
+        "status",
+        "ticketId",
+        "updatedAt",
+        "userId"
+      ]
+    },
+    "restapi.ticketListResponse": {
+      "properties": {
+        "data": {
+          "items": {
+            "$ref": "#/definitions/restapi.ticketResponse"
+          },
+          "type": "array"
+        },
+        "paging": {
+          "$ref": "#/definitions/restapi.pagination"
+        }
+      },
+      "required": [
+        "data",
+        "paging"
+      ]
+    },
+    "restapi.ticketResponse": {
+      "properties": {
+        "category": {
+          "enum": [
+            "CHAT",
+            "EXTENSION",
+            "UGC",
+            "USER"
+          ],
+          "type": "string"
+        },
+        "createdAt": {
+          "type": "string"
+        },
+        "extensionCategory": {
+          "type": "string"
+        },
+        "id": {
+          "type": "string"
+        },
+        "namespace": {
+          "type": "string"
+        },
+        "notes": {
+          "type": "string"
+        },
+        "objectId": {
+          "type": "string"
+        },
+        "objectType": {
+          "type": "string"
+        },
+        "reportsCount": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "status": {
+          "enum": [
+            "AUTO_MODERATED",
+            "CLOSED",
+            "OPEN",
+            "UNKNOWN"
+          ],
+          "type": "string"
+        },
+        "updatedAt": {
+          "type": "string"
+        },
+        "userId": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "category",
+        "createdAt",
+        "id",
+        "namespace",
+        "notes",
+        "objectId",
+        "objectType",
+        "reportsCount",
+        "status",
+        "updatedAt",
+        "userId"
+      ]
+    },
+    "restapi.ticketStatisticResponse": {
+      "properties": {
+        "moderatedCount": {
+          "format": "int64",
+          "type": "integer"
+        },
+        "openCount": {
+          "format": "int64",
+          "type": "integer"
+        },
+        "totalCount": {
+          "format": "int64",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "moderatedCount",
+        "openCount",
+        "totalCount"
+      ]
+    },
+    "restapi.updateReasonGroupRequest": {
+      "properties": {
+        "reasonIds": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "title": {
+          "description": "max 256 chars",
+          "type": "string"
+        }
+      },
+      "required": [
+        "title"
+      ]
+    },
+    "restapi.updateTicketResolutionsRequest": {
+      "properties": {
+        "notes": {
+          "description": "Info regarding the resolution status, max 280 chars",
+          "type": "string"
+        },
+        "status": {
+          "description": "Ticket status is open, closed, auto moderated",
+          "enum": [
+            "AUTO_MODERATED",
+            "CLOSED",
+            "OPEN",
+            "UNKNOWN"
+          ],
+          "type": "string"
+        }
+      },
+      "required": [
+        "notes",
+        "status"
+      ]
+    }
+  }
+}

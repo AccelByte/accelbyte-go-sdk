@@ -70,12 +70,13 @@ func NewRuleSetDetailsOK() *RuleSetDetailsOK {
 	return &RuleSetDetailsOK{}
 }
 
-/*RuleSetDetailsOK handles this case with default header values.
+/*
+RuleSetDetailsOK handles this case with default header values.
 
-  Created
+	Created
 */
 type RuleSetDetailsOK struct {
-	Payload *match2clientmodels.APIMatchRuleSet
+	Payload *match2clientmodels.APIRuleSetPayload
 }
 
 func (o *RuleSetDetailsOK) Error() string {
@@ -97,7 +98,7 @@ func (o *RuleSetDetailsOK) ToJSONString() string {
 	return fmt.Sprintf("%+v", string(b))
 }
 
-func (o *RuleSetDetailsOK) GetPayload() *match2clientmodels.APIMatchRuleSet {
+func (o *RuleSetDetailsOK) GetPayload() *match2clientmodels.APIRuleSetPayload {
 	return o.Payload
 }
 
@@ -108,7 +109,7 @@ func (o *RuleSetDetailsOK) readResponse(response runtime.ClientResponse, consume
 		consumer = runtime.ByteStreamConsumer()
 	}
 
-	o.Payload = new(match2clientmodels.APIMatchRuleSet)
+	o.Payload = new(match2clientmodels.APIRuleSetPayload)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
@@ -123,9 +124,10 @@ func NewRuleSetDetailsUnauthorized() *RuleSetDetailsUnauthorized {
 	return &RuleSetDetailsUnauthorized{}
 }
 
-/*RuleSetDetailsUnauthorized handles this case with default header values.
+/*
+RuleSetDetailsUnauthorized handles this case with default header values.
 
-  Unauthorized
+	Unauthorized
 */
 type RuleSetDetailsUnauthorized struct {
 	Payload *match2clientmodels.ResponseError
@@ -176,9 +178,10 @@ func NewRuleSetDetailsForbidden() *RuleSetDetailsForbidden {
 	return &RuleSetDetailsForbidden{}
 }
 
-/*RuleSetDetailsForbidden handles this case with default header values.
+/*
+RuleSetDetailsForbidden handles this case with default header values.
 
-  Forbidden
+	Forbidden
 */
 type RuleSetDetailsForbidden struct {
 	Payload *match2clientmodels.ResponseError
@@ -229,9 +232,10 @@ func NewRuleSetDetailsInternalServerError() *RuleSetDetailsInternalServerError {
 	return &RuleSetDetailsInternalServerError{}
 }
 
-/*RuleSetDetailsInternalServerError handles this case with default header values.
+/*
+RuleSetDetailsInternalServerError handles this case with default header values.
 
-  Internal Server Error
+	Internal Server Error
 */
 type RuleSetDetailsInternalServerError struct {
 	Payload *match2clientmodels.ResponseError

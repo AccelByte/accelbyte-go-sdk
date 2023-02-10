@@ -50,9 +50,9 @@ type ClientService interface {
 /*
 Deprecated: Use CreateRuleSetShort instead.
 
-  CreateRuleSet creates a match rule set
+	CreateRuleSet creates a match rule set
 
-  Required Permission: NAMESPACE:{namespace}:MATCHMAKING:RULES [CREATE]
+	Required Permission: NAMESPACE:{namespace}:MATCHMAKING:RULES [CREATE]
 
 Required Scope: social
 
@@ -61,6 +61,7 @@ Creates a new rules set.
 A rule set has a name and contains arbitrary data which is meaningful to some particular match function(s)
 The name is used for a match pool to select the ruleset data that should be sent to the match function when matchmaking in that pool.
 
+To use custom rules set please set enable_custom_match_function=true. Default (false).
 */
 func (a *Client) CreateRuleSet(params *CreateRuleSetParams, authInfo runtime.ClientAuthInfoWriter) (*CreateRuleSetCreated, *CreateRuleSetBadRequest, *CreateRuleSetUnauthorized, *CreateRuleSetForbidden, *CreateRuleSetConflict, *CreateRuleSetInternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -119,9 +120,9 @@ func (a *Client) CreateRuleSet(params *CreateRuleSetParams, authInfo runtime.Cli
 }
 
 /*
-  CreateRuleSetShort creates a match rule set
+	CreateRuleSetShort creates a match rule set
 
-  Required Permission: NAMESPACE:{namespace}:MATCHMAKING:RULES [CREATE]
+	Required Permission: NAMESPACE:{namespace}:MATCHMAKING:RULES [CREATE]
 
 Required Scope: social
 
@@ -130,6 +131,7 @@ Creates a new rules set.
 A rule set has a name and contains arbitrary data which is meaningful to some particular match function(s)
 The name is used for a match pool to select the ruleset data that should be sent to the match function when matchmaking in that pool.
 
+To use custom rules set please set enable_custom_match_function=true. Default (false).
 */
 func (a *Client) CreateRuleSetShort(params *CreateRuleSetParams, authInfo runtime.ClientAuthInfoWriter) (*CreateRuleSetCreated, error) {
 	// TODO: Validate the params before sending
@@ -185,14 +187,13 @@ func (a *Client) CreateRuleSetShort(params *CreateRuleSetParams, authInfo runtim
 /*
 Deprecated: Use DeleteRuleSetShort instead.
 
-  DeleteRuleSet deletes a rule set
+	DeleteRuleSet deletes a rule set
 
-  Required Permission: NAMESPACE:{namespace}:MATCHMAKING:RULES [DELETE]
+	Required Permission: NAMESPACE:{namespace}:MATCHMAKING:RULES [DELETE]
 
 Required Scope: social
 
 Deletes an existing rule set.
-
 */
 func (a *Client) DeleteRuleSet(params *DeleteRuleSetParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteRuleSetNoContent, *DeleteRuleSetUnauthorized, *DeleteRuleSetForbidden, *DeleteRuleSetNotFound, *DeleteRuleSetInternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -248,14 +249,13 @@ func (a *Client) DeleteRuleSet(params *DeleteRuleSetParams, authInfo runtime.Cli
 }
 
 /*
-  DeleteRuleSetShort deletes a rule set
+	DeleteRuleSetShort deletes a rule set
 
-  Required Permission: NAMESPACE:{namespace}:MATCHMAKING:RULES [DELETE]
+	Required Permission: NAMESPACE:{namespace}:MATCHMAKING:RULES [DELETE]
 
 Required Scope: social
 
 Deletes an existing rule set.
-
 */
 func (a *Client) DeleteRuleSetShort(params *DeleteRuleSetParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteRuleSetNoContent, error) {
 	// TODO: Validate the params before sending
@@ -309,14 +309,13 @@ func (a *Client) DeleteRuleSetShort(params *DeleteRuleSetParams, authInfo runtim
 /*
 Deprecated: Use RuleSetDetailsShort instead.
 
-  RuleSetDetails gets details for a specific rule set
+	RuleSetDetails gets details for a specific rule set
 
-  Required Permission: NAMESPACE:{namespace}:MATCHMAKING:RULES [READ]
+	Required Permission: NAMESPACE:{namespace}:MATCHMAKING:RULES [READ]
 
 Required Scope: social
 
 Get details for a specific rule set
-
 */
 func (a *Client) RuleSetDetails(params *RuleSetDetailsParams, authInfo runtime.ClientAuthInfoWriter) (*RuleSetDetailsOK, *RuleSetDetailsUnauthorized, *RuleSetDetailsForbidden, *RuleSetDetailsInternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -369,14 +368,13 @@ func (a *Client) RuleSetDetails(params *RuleSetDetailsParams, authInfo runtime.C
 }
 
 /*
-  RuleSetDetailsShort gets details for a specific rule set
+	RuleSetDetailsShort gets details for a specific rule set
 
-  Required Permission: NAMESPACE:{namespace}:MATCHMAKING:RULES [READ]
+	Required Permission: NAMESPACE:{namespace}:MATCHMAKING:RULES [READ]
 
 Required Scope: social
 
 Get details for a specific rule set
-
 */
 func (a *Client) RuleSetDetailsShort(params *RuleSetDetailsParams, authInfo runtime.ClientAuthInfoWriter) (*RuleSetDetailsOK, error) {
 	// TODO: Validate the params before sending
@@ -428,14 +426,13 @@ func (a *Client) RuleSetDetailsShort(params *RuleSetDetailsParams, authInfo runt
 /*
 Deprecated: Use RuleSetListShort instead.
 
-  RuleSetList lists existing rule sets
+	RuleSetList lists existing rule sets
 
-  Required Permission: NAMESPACE:{namespace}:MATCHMAKING:RULES [READ]
+	Required Permission: NAMESPACE:{namespace}:MATCHMAKING:RULES [READ]
 
 Required Scope: social
 
 List rule sets.
-
 */
 func (a *Client) RuleSetList(params *RuleSetListParams, authInfo runtime.ClientAuthInfoWriter) (*RuleSetListOK, *RuleSetListUnauthorized, *RuleSetListForbidden, *RuleSetListInternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -488,14 +485,13 @@ func (a *Client) RuleSetList(params *RuleSetListParams, authInfo runtime.ClientA
 }
 
 /*
-  RuleSetListShort lists existing rule sets
+	RuleSetListShort lists existing rule sets
 
-  Required Permission: NAMESPACE:{namespace}:MATCHMAKING:RULES [READ]
+	Required Permission: NAMESPACE:{namespace}:MATCHMAKING:RULES [READ]
 
 Required Scope: social
 
 List rule sets.
-
 */
 func (a *Client) RuleSetListShort(params *RuleSetListParams, authInfo runtime.ClientAuthInfoWriter) (*RuleSetListOK, error) {
 	// TODO: Validate the params before sending
@@ -547,14 +543,15 @@ func (a *Client) RuleSetListShort(params *RuleSetListParams, authInfo runtime.Cl
 /*
 Deprecated: Use UpdateRuleSetShort instead.
 
-  UpdateRuleSet updates a match rule set
+	UpdateRuleSet updates a match rule set
 
-  Required Permission: NAMESPACE:{namespace}:MATCHMAKING:RULES [UPDATE]
+	Required Permission: NAMESPACE:{namespace}:MATCHMAKING:RULES [UPDATE]
 
 Required Scope: social
 
 Updates an existing matchmaking rule set.
 
+To use custom rules set please set enable_custom_match_function=true. Default (false).
 */
 func (a *Client) UpdateRuleSet(params *UpdateRuleSetParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateRuleSetOK, *UpdateRuleSetBadRequest, *UpdateRuleSetUnauthorized, *UpdateRuleSetForbidden, *UpdateRuleSetNotFound, *UpdateRuleSetInternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -613,14 +610,15 @@ func (a *Client) UpdateRuleSet(params *UpdateRuleSetParams, authInfo runtime.Cli
 }
 
 /*
-  UpdateRuleSetShort updates a match rule set
+	UpdateRuleSetShort updates a match rule set
 
-  Required Permission: NAMESPACE:{namespace}:MATCHMAKING:RULES [UPDATE]
+	Required Permission: NAMESPACE:{namespace}:MATCHMAKING:RULES [UPDATE]
 
 Required Scope: social
 
 Updates an existing matchmaking rule set.
 
+To use custom rules set please set enable_custom_match_function=true. Default (false).
 */
 func (a *Client) UpdateRuleSetShort(params *UpdateRuleSetParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateRuleSetOK, error) {
 	// TODO: Validate the params before sending

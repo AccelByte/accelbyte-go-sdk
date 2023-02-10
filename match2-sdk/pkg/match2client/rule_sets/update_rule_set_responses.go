@@ -82,12 +82,13 @@ func NewUpdateRuleSetOK() *UpdateRuleSetOK {
 	return &UpdateRuleSetOK{}
 }
 
-/*UpdateRuleSetOK handles this case with default header values.
+/*
+UpdateRuleSetOK handles this case with default header values.
 
-  OK
+	OK
 */
 type UpdateRuleSetOK struct {
-	Payload *match2clientmodels.APIMatchRuleSet
+	Payload *match2clientmodels.APIRuleSetPayload
 }
 
 func (o *UpdateRuleSetOK) Error() string {
@@ -109,7 +110,7 @@ func (o *UpdateRuleSetOK) ToJSONString() string {
 	return fmt.Sprintf("%+v", string(b))
 }
 
-func (o *UpdateRuleSetOK) GetPayload() *match2clientmodels.APIMatchRuleSet {
+func (o *UpdateRuleSetOK) GetPayload() *match2clientmodels.APIRuleSetPayload {
 	return o.Payload
 }
 
@@ -120,7 +121,7 @@ func (o *UpdateRuleSetOK) readResponse(response runtime.ClientResponse, consumer
 		consumer = runtime.ByteStreamConsumer()
 	}
 
-	o.Payload = new(match2clientmodels.APIMatchRuleSet)
+	o.Payload = new(match2clientmodels.APIRuleSetPayload)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
@@ -135,9 +136,10 @@ func NewUpdateRuleSetBadRequest() *UpdateRuleSetBadRequest {
 	return &UpdateRuleSetBadRequest{}
 }
 
-/*UpdateRuleSetBadRequest handles this case with default header values.
+/*
+UpdateRuleSetBadRequest handles this case with default header values.
 
-  Bad Request
+	Bad Request
 */
 type UpdateRuleSetBadRequest struct {
 	Payload *match2clientmodels.ResponseError
@@ -188,9 +190,10 @@ func NewUpdateRuleSetUnauthorized() *UpdateRuleSetUnauthorized {
 	return &UpdateRuleSetUnauthorized{}
 }
 
-/*UpdateRuleSetUnauthorized handles this case with default header values.
+/*
+UpdateRuleSetUnauthorized handles this case with default header values.
 
-  Unauthorized
+	Unauthorized
 */
 type UpdateRuleSetUnauthorized struct {
 	Payload *match2clientmodels.ResponseError
@@ -241,9 +244,10 @@ func NewUpdateRuleSetForbidden() *UpdateRuleSetForbidden {
 	return &UpdateRuleSetForbidden{}
 }
 
-/*UpdateRuleSetForbidden handles this case with default header values.
+/*
+UpdateRuleSetForbidden handles this case with default header values.
 
-  Forbidden
+	Forbidden
 */
 type UpdateRuleSetForbidden struct {
 	Payload *match2clientmodels.ResponseError
@@ -294,9 +298,10 @@ func NewUpdateRuleSetNotFound() *UpdateRuleSetNotFound {
 	return &UpdateRuleSetNotFound{}
 }
 
-/*UpdateRuleSetNotFound handles this case with default header values.
+/*
+UpdateRuleSetNotFound handles this case with default header values.
 
-  Forbidden
+	Forbidden
 */
 type UpdateRuleSetNotFound struct {
 	Payload *match2clientmodels.ResponseError
@@ -347,9 +352,10 @@ func NewUpdateRuleSetInternalServerError() *UpdateRuleSetInternalServerError {
 	return &UpdateRuleSetInternalServerError{}
 }
 
-/*UpdateRuleSetInternalServerError handles this case with default header values.
+/*
+UpdateRuleSetInternalServerError handles this case with default header values.
 
-  Internal Server Error
+	Internal Server Error
 */
 type UpdateRuleSetInternalServerError struct {
 	Payload *match2clientmodels.ResponseError

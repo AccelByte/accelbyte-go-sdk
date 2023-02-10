@@ -92,7 +92,7 @@ func (aaa *RuleSetsService) CreateRuleSet(input *rule_sets.CreateRuleSetParams) 
 }
 
 // deprecated(2022-01-10): please use RuleSetDetailsShort instead.
-func (aaa *RuleSetsService) RuleSetDetails(input *rule_sets.RuleSetDetailsParams) (*match2clientmodels.APIMatchRuleSet, error) {
+func (aaa *RuleSetsService) RuleSetDetails(input *rule_sets.RuleSetDetailsParams) (*match2clientmodels.APIRuleSetPayload, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
@@ -115,7 +115,7 @@ func (aaa *RuleSetsService) RuleSetDetails(input *rule_sets.RuleSetDetailsParams
 }
 
 // deprecated(2022-01-10): please use UpdateRuleSetShort instead.
-func (aaa *RuleSetsService) UpdateRuleSet(input *rule_sets.UpdateRuleSetParams) (*match2clientmodels.APIMatchRuleSet, error) {
+func (aaa *RuleSetsService) UpdateRuleSet(input *rule_sets.UpdateRuleSetParams) (*match2clientmodels.APIRuleSetPayload, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
@@ -219,7 +219,7 @@ func (aaa *RuleSetsService) CreateRuleSetShort(input *rule_sets.CreateRuleSetPar
 	return nil
 }
 
-func (aaa *RuleSetsService) RuleSetDetailsShort(input *rule_sets.RuleSetDetailsParams) (*match2clientmodels.APIMatchRuleSet, error) {
+func (aaa *RuleSetsService) RuleSetDetailsShort(input *rule_sets.RuleSetDetailsParams) (*match2clientmodels.APIRuleSetPayload, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -244,7 +244,7 @@ func (aaa *RuleSetsService) RuleSetDetailsShort(input *rule_sets.RuleSetDetailsP
 	return ok.GetPayload(), nil
 }
 
-func (aaa *RuleSetsService) UpdateRuleSetShort(input *rule_sets.UpdateRuleSetParams) (*match2clientmodels.APIMatchRuleSet, error) {
+func (aaa *RuleSetsService) UpdateRuleSetShort(input *rule_sets.UpdateRuleSetParams) (*match2clientmodels.APIRuleSetPayload, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{

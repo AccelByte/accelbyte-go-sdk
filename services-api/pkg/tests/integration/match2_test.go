@@ -83,7 +83,7 @@ func TestIntegrationMatchPool(t *testing.T) {
 
 	// CASE Create a match rule set
 	inputCreateRule := &rule_sets.CreateRuleSetParams{
-		Body: &match2clientmodels.APIMatchRuleSet{
+		Body: &match2clientmodels.APIRuleSetPayload{
 			Data: &data,
 			Name: &ruleSetName,
 		},

@@ -12,25 +12,33 @@ import (
 	"github.com/go-openapi/validate"
 )
 
-// APIMatchRuleSet api match rule set
+// APIRuleSetPayload api rule set payload
 //
-// swagger:model api.MatchRuleSet
-type APIMatchRuleSet struct {
+// swagger:model api.RuleSetPayload
+type APIRuleSetPayload struct {
 
 	// data
 	// Required: true
-	Data *string `json:"data"`
+	Data interface{} `json:"data"`
+
+	// enable custom match function
+	// Required: true
+	EnableCustomMatchFunction *bool `json:"enable_custom_match_function"`
 
 	// name
 	// Required: true
 	Name *string `json:"name"`
 }
 
-// Validate validates this api match rule set
-func (m *APIMatchRuleSet) Validate(formats strfmt.Registry) error {
+// Validate validates this api rule set payload
+func (m *APIRuleSetPayload) Validate(formats strfmt.Registry) error {
 	var res []error
 
 	if err := m.validateData(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateEnableCustomMatchFunction(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -44,7 +52,7 @@ func (m *APIMatchRuleSet) Validate(formats strfmt.Registry) error {
 	return nil
 }
 
-func (m *APIMatchRuleSet) validateData(formats strfmt.Registry) error {
+func (m *APIRuleSetPayload) validateData(formats strfmt.Registry) error {
 
 	if err := validate.Required("data", "body", m.Data); err != nil {
 		return err
@@ -53,7 +61,16 @@ func (m *APIMatchRuleSet) validateData(formats strfmt.Registry) error {
 	return nil
 }
 
-func (m *APIMatchRuleSet) validateName(formats strfmt.Registry) error {
+func (m *APIRuleSetPayload) validateEnableCustomMatchFunction(formats strfmt.Registry) error {
+
+	if err := validate.Required("enable_custom_match_function", "body", m.EnableCustomMatchFunction); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *APIRuleSetPayload) validateName(formats strfmt.Registry) error {
 
 	if err := validate.Required("name", "body", m.Name); err != nil {
 		return err
@@ -63,7 +80,7 @@ func (m *APIMatchRuleSet) validateName(formats strfmt.Registry) error {
 }
 
 // MarshalBinary interface implementation
-func (m *APIMatchRuleSet) MarshalBinary() ([]byte, error) {
+func (m *APIRuleSetPayload) MarshalBinary() ([]byte, error) {
 	if m == nil {
 		return nil, nil
 	}
@@ -71,8 +88,8 @@ func (m *APIMatchRuleSet) MarshalBinary() ([]byte, error) {
 }
 
 // UnmarshalBinary interface implementation
-func (m *APIMatchRuleSet) UnmarshalBinary(b []byte) error {
-	var res APIMatchRuleSet
+func (m *APIRuleSetPayload) UnmarshalBinary(b []byte) error {
+	var res APIRuleSetPayload
 	if err := swag.ReadJSON(b, &res); err != nil {
 		return err
 	}

@@ -3,7 +3,7 @@
   "info": {
     "description": "Justice Matchmaking Service",
     "title": "Justice Match Service v2",
-    "version": "2.1.0"
+    "version": "2.1.1"
   },
   "schemes": [
     "https"
@@ -885,7 +885,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "Required Permission: NAMESPACE:{namespace}:MATCHMAKING:POOL [CREATE]\n\nRequired Scope: social\n\nCreates a new matchmaking pool.\n\nA pool is isolated from other pools (i.e. tickets may be matched with other tickets in the same pool, but not with tickets in other pools).\nEach pool has its own matchmaking rules and/or logic.\n\nticket_expiration_seconds and backfill_ticket_expiration_seconds will be set to 300 seconds (5 minutes) by default if not filled.\n\nMatch Function holds information about the name of the match logic server that matchmaking can refers to. By default we provide (\u0026#34;default\u0026#34; and \u0026#34;basic\u0026#34;). \nMatch Function will be used as reference value for Match Function Overrides if not set.\nIn case Customer would like to use matchmaking service default match logic, then specify it in \u0026#34;match_function_overrides\u0026#34;.\t\t\t\t\nThis sample configuration will let matchmaking service will use \u0026#34;default\u0026#34; match logic for make matches, while validation will hit both \u0026#34;default\u0026#34; and \u0026#34;custom\u0026#34; match logics.\ne.g.\n{\n\t\u0026#34;match_function\u0026#34;: \u0026#34;custom\u0026#34;,\n\t\u0026#34;match_function_overrides\u0026#34;: {\n\t\t\u0026#34;validation\u0026#34;: []{\u0026#34;default\u0026#34;,\u0026#34;custom\u0026#34;},\n\t\t\u0026#34;make_matches\u0026#34;: \u0026#34;default\u0026#34;,\n\t}\n}\n",
+        "description": "Required Permission: NAMESPACE:{namespace}:MATCHMAKING:POOL [CREATE]\n\nRequired Scope: social\n\nCreates a new matchmaking pool.\n\nA pool is isolated from other pools (i.e. tickets may be matched with other tickets in the same pool, but not with tickets in other pools).\nEach pool has its own matchmaking rules and/or logic.\n\nticket_expiration_seconds and backfill_ticket_expiration_seconds will be set to 300 seconds (5 minutes) by default if not filled.\n\nMatch Function holds information about the name of the match logic server that matchmaking can refers to. By default we provide (\u0026#34;default\u0026#34; and \u0026#34;basic\u0026#34;). \nMatch Function will be used as reference value for Match Function Overrides if not set.\nIn case Customer would like to use matchmaking service default match logic, then specify it in \u0026#34;match_function_overrides\u0026#34;.\t\t\t\t\nThis sample configuration will let matchmaking service will use \u0026#34;default\u0026#34; match logic for make matches, while validation will hit both \u0026#34;default\u0026#34; and \u0026#34;custom\u0026#34; match logics.\ne.g.\n{ \n              \u0026#34;match_function\u0026#34;: \u0026#34;custom\u0026#34;,\n  \u0026#34;match_function_overrides\u0026#34;: {\n    \u0026#34;validation\u0026#34;: []{\u0026#34;default\u0026#34;,\u0026#34;custom\u0026#34;},\n                \u0026#34;make_matches\u0026#34;: \u0026#34;default\u0026#34;,\n              }\n}\n",
         "operationId": "CreateMatchPool",
         "parameters": [
           {
@@ -1505,7 +1505,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "Required Permission: NAMESPACE:{namespace}:MATCHMAKING:RULES [CREATE]\n\nRequired Scope: social\n\nCreates a new rules set.\n\nA rule set has a name and contains arbitrary data which is meaningful to some particular match function(s)\nThe name is used for a match pool to select the ruleset data that should be sent to the match function when matchmaking in that pool.\n",
+        "description": "Required Permission: NAMESPACE:{namespace}:MATCHMAKING:RULES [CREATE]\n\nRequired Scope: social\n\nCreates a new rules set.\n\nA rule set has a name and contains arbitrary data which is meaningful to some particular match function(s)\nThe name is used for a match pool to select the ruleset data that should be sent to the match function when matchmaking in that pool.\n\nTo use custom rules set please set enable_custom_match_function=true. Default (false).\n",
         "operationId": "CreateRuleSet",
         "parameters": [
           {
@@ -1513,7 +1513,7 @@
             "name": "body",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/api.MatchRuleSet"
+              "$ref": "#/definitions/api.RuleSetPayload"
             }
           },
           {
@@ -1681,7 +1681,7 @@
           "200": {
             "description": "Created",
             "schema": {
-              "$ref": "#/definitions/api.MatchRuleSet"
+              "$ref": "#/definitions/api.RuleSetPayload"
             }
           },
           "401": {
@@ -1724,7 +1724,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "Required Permission: NAMESPACE:{namespace}:MATCHMAKING:RULES [UPDATE]\n\nRequired Scope: social\n\nUpdates an existing matchmaking rule set.\n",
+        "description": "Required Permission: NAMESPACE:{namespace}:MATCHMAKING:RULES [UPDATE]\n\nRequired Scope: social\n\nUpdates an existing matchmaking rule set.\n\t\nTo use custom rules set please set enable_custom_match_function=true. Default (false).\n",
         "operationId": "UpdateRuleSet",
         "parameters": [
           {
@@ -1732,7 +1732,7 @@
             "name": "body",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/api.MatchRuleSetData"
+              "$ref": "#/definitions/api.RuleSetPayload"
             }
           },
           {
@@ -1757,7 +1757,7 @@
           "200": {
             "description": "OK",
             "schema": {
-              "$ref": "#/definitions/api.MatchRuleSet"
+              "$ref": "#/definitions/api.RuleSetPayload"
             }
           },
           "400": {
@@ -2146,30 +2146,6 @@
         "ticket_expiration_seconds"
       ]
     },
-    "api.MatchRuleSet": {
-      "properties": {
-        "data": {
-          "type": "string"
-        },
-        "name": {
-          "type": "string"
-        }
-      },
-      "required": [
-        "data",
-        "name"
-      ]
-    },
-    "api.MatchRuleSetData": {
-      "properties": {
-        "data": {
-          "type": "string"
-        }
-      },
-      "required": [
-        "data"
-      ]
-    },
     "api.MatchRuleSetNameData": {
       "properties": {
         "name": {
@@ -2271,6 +2247,25 @@
           "type": "string"
         }
       }
+    },
+    "api.RuleSetPayload": {
+      "properties": {
+        "data": {
+          "type": "object"
+        },
+        "enable_custom_match_function": {
+          "type": "boolean",
+          "x-omitempty": false
+        },
+        "name": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "data",
+        "enable_custom_match_function",
+        "name"
+      ]
     },
     "api.Team": {
       "properties": {

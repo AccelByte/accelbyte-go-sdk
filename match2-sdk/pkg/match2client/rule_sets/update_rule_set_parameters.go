@@ -62,7 +62,8 @@ func NewUpdateRuleSetParamsWithHTTPClient(client *http.Client) *UpdateRuleSetPar
 	}
 }
 
-/*UpdateRuleSetParams contains all the parameters to send to the API endpoint
+/*
+UpdateRuleSetParams contains all the parameters to send to the API endpoint
 for the update rule set operation typically these are written to a http.Request
 */
 type UpdateRuleSetParams struct {
@@ -70,7 +71,7 @@ type UpdateRuleSetParams struct {
 	/*RetryPolicy*/
 	RetryPolicy *utils.Retry
 	/*Body*/
-	Body *match2clientmodels.APIMatchRuleSetData
+	Body *match2clientmodels.APIRuleSetPayload
 	/*Namespace
 	  namespace of the game
 
@@ -136,13 +137,13 @@ func (o *UpdateRuleSetParams) SetHTTPClientTransport(roundTripper http.RoundTrip
 }
 
 // WithBody adds the body to the update rule set params
-func (o *UpdateRuleSetParams) WithBody(body *match2clientmodels.APIMatchRuleSetData) *UpdateRuleSetParams {
+func (o *UpdateRuleSetParams) WithBody(body *match2clientmodels.APIRuleSetPayload) *UpdateRuleSetParams {
 	o.SetBody(body)
 	return o
 }
 
 // SetBody adds the body to the update rule set params
-func (o *UpdateRuleSetParams) SetBody(body *match2clientmodels.APIMatchRuleSetData) {
+func (o *UpdateRuleSetParams) SetBody(body *match2clientmodels.APIRuleSetPayload) {
 	o.Body = body
 }
 

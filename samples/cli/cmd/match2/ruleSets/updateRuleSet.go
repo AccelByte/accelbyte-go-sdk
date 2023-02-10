@@ -29,7 +29,7 @@ var UpdateRuleSetCmd = &cobra.Command{
 			TokenRepository: &repository.TokenRepositoryImpl{},
 		}
 		bodyString := cmd.Flag("body").Value.String()
-		var body *match2clientmodels.APIMatchRuleSetData
+		var body *match2clientmodels.APIRuleSetPayload
 		errBody := json.Unmarshal([]byte(bodyString), &body)
 		if errBody != nil {
 			return errBody

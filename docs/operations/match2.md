@@ -73,8 +73,6 @@
 | `api.MatchFunctionRequest` | [ApiMatchFunctionRequest ](../../match2-sdk/pkg/match2clientmodels/api_match_function_request.go) |
 | `api.MatchPool` | [ApiMatchPool ](../../match2-sdk/pkg/match2clientmodels/api_match_pool.go) |
 | `api.MatchPoolConfig` | [ApiMatchPoolConfig ](../../match2-sdk/pkg/match2clientmodels/api_match_pool_config.go) |
-| `api.MatchRuleSet` | [ApiMatchRuleSet ](../../match2-sdk/pkg/match2clientmodels/api_match_rule_set.go) |
-| `api.MatchRuleSetData` | [ApiMatchRuleSetData ](../../match2-sdk/pkg/match2clientmodels/api_match_rule_set_data.go) |
 | `api.MatchRuleSetNameData` | [ApiMatchRuleSetNameData ](../../match2-sdk/pkg/match2clientmodels/api_match_rule_set_name_data.go) |
 | `api.MatchTicketRequest` | [ApiMatchTicketRequest ](../../match2-sdk/pkg/match2clientmodels/api_match_ticket_request.go) |
 | `api.MatchTicketResponse` | [ApiMatchTicketResponse ](../../match2-sdk/pkg/match2clientmodels/api_match_ticket_response.go) |
@@ -82,6 +80,7 @@
 | `api.Party` | [ApiParty ](../../match2-sdk/pkg/match2clientmodels/api_party.go) |
 | `api.PlayerData` | [ApiPlayerData ](../../match2-sdk/pkg/match2clientmodels/api_player_data.go) |
 | `api.ProposedProposal` | [ApiProposedProposal ](../../match2-sdk/pkg/match2clientmodels/api_proposed_proposal.go) |
+| `api.RuleSetPayload` | [ApiRuleSetPayload ](../../match2-sdk/pkg/match2clientmodels/api_rule_set_payload.go) |
 | `api.Team` | [ApiTeam ](../../match2-sdk/pkg/match2clientmodels/api_team.go) |
 | `api.Ticket` | [ApiTicket ](../../match2-sdk/pkg/match2clientmodels/api_ticket.go) |
 | `api.backFillRejectRequest` | [ApiBackFillRejectRequest ](../../match2-sdk/pkg/match2clientmodels/api_back_fill_reject_request.go) |

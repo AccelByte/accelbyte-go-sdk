@@ -1,3 +1,26 @@
+<a name="unreleased"></a>
+## [v0.38.0] - 2023-02-13
+
+### Chore
+- adjust pipeline credentials
+- ignore binary from samples app build
+- **samples:** remove unnecessary functions
+- **samples:** login client and directly validate the user token
+- **samples:** add missing reference in yaml template
+
+### Docs
+- **readme:** remove ambiguous line
+
+### Feat
+- add initial support for reporting service
+- add code level breaking changes check in pipeline
+- **samples:** add aws lambda sample app update version
+
+### Fix
+- regenerate partially for match2 breaking spec change
+- update match2 model name
+
+
 <a name="v0.37.0"></a>
 ## [v0.37.0] - 2023-01-31
 

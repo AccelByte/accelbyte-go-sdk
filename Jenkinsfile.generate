@@ -74,6 +74,7 @@ pipeline {
           make -f Makefile.sdk-go sdk_all SDK_PATH=${sdkPath};
           """, label: "Generate Server SDK"
 
+        // check code breaking changes, by compiling all samples against newly generated sdk code
         catchError(buildResult: 'SUCCESS') {
           sh script: """
             cd ${sdkPath};
@@ -163,7 +164,7 @@ pipeline {
         if (!isBreakingChangeCheckPass) {
           breakingChangeInfo = """
           |
-          | :warning: Possbible Breaking Changes Detected: <${env.BUILD_URL}/flowGraphTable/|${env.JOB_NAME}-${env.BUILD_NUMBER}/flowGraphTable>
+          | :warning: Possible Breaking Changes Detected: <${env.BUILD_URL}/flowGraphTable/|${env.JOB_NAME}-${env.BUILD_NUMBER}/flowGraphTable>
           """
         }
         specLink = "https://bitbucket.org/accelbyte/justice-codegen-sdk-spec/commits/${sdkSpecCommitHash}"

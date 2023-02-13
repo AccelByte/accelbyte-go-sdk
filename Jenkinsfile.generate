@@ -163,7 +163,7 @@ pipeline {
         if (!isBreakingChangeCheckPass) {
           breakingChangeInfo = """
           |
-          | :warning: Possbible Breaking Changes Detected: <${env.BUILD_URL}/flowGraphTable/|${env.JOB_NAME}-${env.BUILD_NUMBER}/flowGraphTable>
+          | :warning: Possible Breaking Changes Detected: <${env.BUILD_URL}/flowGraphTable/|${env.JOB_NAME}-${env.BUILD_NUMBER}/flowGraphTable>
           """
         }
         specLink = "https://bitbucket.org/accelbyte/justice-codegen-sdk-spec/commits/${sdkSpecCommitHash}"

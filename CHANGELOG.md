@@ -1204,6 +1204,7 @@ The wrapper have been refactored and has breaking change, these are the list:
 ### Fix
 - delete go.mod ([#1](https://github.com/AccelByte/accelbyte-go-sdk/issues/1))
 
+[v0.38.0]: https://github.com/AccelByte/accelbyte-go-sdk/compare/v0.37.0...v0.38.0
 [v0.37.0]: https://github.com/AccelByte/accelbyte-go-sdk/compare/v0.36.1...v0.37.0
 [v0.36.1]: https://github.com/AccelByte/accelbyte-go-sdk/compare/v0.36.0...v0.36.1
 [v0.36.0]: https://github.com/AccelByte/accelbyte-go-sdk/compare/v0.35.0...v0.36.0

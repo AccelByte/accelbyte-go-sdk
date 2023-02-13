@@ -60,8 +60,7 @@ func NewGetReasonGroupParamsWithHTTPClient(client *http.Client) *GetReasonGroupP
 	}
 }
 
-/*
-GetReasonGroupParams contains all the parameters to send to the API endpoint
+/*GetReasonGroupParams contains all the parameters to send to the API endpoint
 for the get reason group operation typically these are written to a http.Request
 */
 type GetReasonGroupParams struct {

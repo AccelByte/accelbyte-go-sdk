@@ -1,5 +1,5 @@
-github.com/AccelByte/accelbyte-go-sdk v0.36.0 h1:Igh1Z2CExoxYk831t+3wuSBcA2V5zlZiiIwAZGuAzaY=
-github.com/AccelByte/accelbyte-go-sdk v0.36.0/go.mod h1:kiotGkUlL9yNSSTI++O1dnZUKimPiQbgEMecg3hjDys=
+github.com/AccelByte/accelbyte-go-sdk v0.37.0 h1:Q9sv1hdD5oAHM+hFiFRDbABhnHUKVEuUEfPAIXJzaMo=
+github.com/AccelByte/accelbyte-go-sdk v0.37.0/go.mod h1:kiotGkUlL9yNSSTI++O1dnZUKimPiQbgEMecg3hjDys=
 github.com/AccelByte/bloom v0.0.0-20180915202807-98c052463922/go.mod h1:njjI8ZR5oAhtMq8ODchl6GBz8enKQJt+D9WqLn96hLI=
 github.com/AccelByte/go-jose v2.1.4+incompatible/go.mod h1:X9vkgMrcPILJ7qhUruCaKHnslOhBTTpsC5DjiFpmmSc=
 github.com/BurntSushi/toml v0.3.1/go.mod h1:xHWCNGjB5oqiDr8zfno3MHue2Ht5sIBksp03qcyfWMU=
@@ -222,6 +222,7 @@ github.com/spf13/cobra v0.0.3/go.mod h1:1l0Ry5zgKvJasoi3XT1TypsSe7PqH0Sj9dhYf7v3
 github.com/spf13/pflag v1.0.3/go.mod h1:DYY7MBk1bdzusC3SYhjObp+wFpr4gzcvqqNjLnInEg4=
 github.com/stretchr/objx v0.1.0/go.mod h1:HFkY916IF+rwdDfMAkV7OtwuqBVzrE8GR6GFx+wExME=
 github.com/stretchr/objx v0.1.1/go.mod h1:HFkY916IF+rwdDfMAkV7OtwuqBVzrE8GR6GFx+wExME=
+github.com/stretchr/objx v0.2.0 h1:Hbg2NidpLE8veEBkEZTL3CvlkUIVzuU9jDplZO54c48=
 github.com/stretchr/objx v0.2.0/go.mod h1:qt09Ya8vawLte6SNmTgCsAVtYtaKzEcn8ATUoHMkEqE=
 github.com/stretchr/testify v1.2.2/go.mod h1:a8OnRcib4nhh0OaRAV+Yts87kKdq0PP7pXfy6kDkUVs=
 github.com/stretchr/testify v1.3.0/go.mod h1:M5WIy9Dh21IEIfnGCwXGc5bZfKNJtfHm1UVUgZn+9EI=

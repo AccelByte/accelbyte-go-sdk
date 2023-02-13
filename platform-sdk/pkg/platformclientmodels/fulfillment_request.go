@@ -42,7 +42,7 @@ type FulfillmentRequest struct {
 	OrderNo string `json:"orderNo,omitempty"`
 
 	// origin
-	// Enum: [Epic GooglePlay IOS Nintendo Other Playstation Stadia Steam System Twitch Xbox]
+	// Enum: [Epic GooglePlay IOS Nintendo Other Playstation Steam System Twitch Xbox]
 	Origin string `json:"origin,omitempty"`
 
 	// quantity
@@ -133,7 +133,7 @@ var fulfillmentRequestTypeOriginPropEnum []interface{}
 
 func init() {
 	var res []string
-	if err := json.Unmarshal([]byte(`["Epic","GooglePlay","IOS","Nintendo","Other","Playstation","Stadia","Steam","System","Twitch","Xbox"]`), &res); err != nil {
+	if err := json.Unmarshal([]byte(`["Epic","GooglePlay","IOS","Nintendo","Other","Playstation","Steam","System","Twitch","Xbox"]`), &res); err != nil {
 		panic(err)
 	}
 	for _, v := range res {
@@ -160,9 +160,6 @@ const (
 
 	// FulfillmentRequestOriginPlaystation captures enum value "Playstation"
 	FulfillmentRequestOriginPlaystation string = "Playstation"
-
-	// FulfillmentRequestOriginStadia captures enum value "Stadia"
-	FulfillmentRequestOriginStadia string = "Stadia"
 
 	// FulfillmentRequestOriginSteam captures enum value "Steam"
 	FulfillmentRequestOriginSteam string = "Steam"

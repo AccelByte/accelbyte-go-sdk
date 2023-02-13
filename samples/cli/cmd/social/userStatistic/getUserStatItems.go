@@ -29,6 +29,7 @@ var GetUserStatItemsCmd = &cobra.Command{
 		userId, _ := cmd.Flags().GetString("userId")
 		limit, _ := cmd.Flags().GetInt32("limit")
 		offset, _ := cmd.Flags().GetInt32("offset")
+		sortBy, _ := cmd.Flags().GetString("sortBy")
 		statCodes, _ := cmd.Flags().GetString("statCodes")
 		tags, _ := cmd.Flags().GetString("tags")
 		input := &user_statistic.GetUserStatItemsParams{
@@ -36,6 +37,7 @@ var GetUserStatItemsCmd = &cobra.Command{
 			UserID:    userId,
 			Limit:     &limit,
 			Offset:    &offset,
+			SortBy:    &sortBy,
 			StatCodes: &statCodes,
 			Tags:      &tags,
 		}
@@ -59,6 +61,7 @@ func init() {
 	_ = GetUserStatItemsCmd.MarkFlagRequired("userId")
 	GetUserStatItemsCmd.Flags().Int32("limit", 20, "Limit")
 	GetUserStatItemsCmd.Flags().Int32("offset", 0, "Offset")
+	GetUserStatItemsCmd.Flags().String("sortBy", "", "Sort by")
 	GetUserStatItemsCmd.Flags().String("statCodes", "", "Stat codes")
 	GetUserStatItemsCmd.Flags().String("tags", "", "Tags")
 }

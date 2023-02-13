@@ -28,6 +28,7 @@ var AdminListAchievementsCmd = &cobra.Command{
 			TokenRepository: &repository.TokenRepositoryImpl{},
 		}
 		namespace, _ := cmd.Flags().GetString("namespace")
+		global, _ := cmd.Flags().GetBool("global")
 		limit, _ := cmd.Flags().GetInt64("limit")
 		offset, _ := cmd.Flags().GetInt64("offset")
 		sortBy, _ := cmd.Flags().GetString("sortBy")
@@ -39,6 +40,7 @@ var AdminListAchievementsCmd = &cobra.Command{
 		}
 		input := &achievements.AdminListAchievementsParams{
 			Namespace: namespace,
+			Global:    &global,
 			Limit:     &limit,
 			Offset:    &offset,
 			SortBy:    &sortBy,
@@ -60,6 +62,7 @@ var AdminListAchievementsCmd = &cobra.Command{
 func init() {
 	AdminListAchievementsCmd.Flags().String("namespace", "", "Namespace")
 	_ = AdminListAchievementsCmd.MarkFlagRequired("namespace")
+	AdminListAchievementsCmd.Flags().Bool("global", false, "Global")
 	AdminListAchievementsCmd.Flags().Int64("limit", 20, "Limit")
 	AdminListAchievementsCmd.Flags().Int64("offset", 0, "Offset")
 	AdminListAchievementsCmd.Flags().String("sortBy", "", "Sort by")

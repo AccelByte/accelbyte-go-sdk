@@ -8,7 +8,7 @@
     },
     "description": "Justice Legal Service",
     "title": "justice-legal-service",
-    "version": "1.25.5"
+    "version": "1.26.0"
   },
   "schemes": [
     "https"
@@ -24,10 +24,16 @@
       "name": "Agreement"
     },
     {
+      "name": "Agreement With Namespace"
+    },
+    {
       "name": "Anonymization"
     },
     {
       "name": "Base Legal Policies"
+    },
+    {
+      "name": "Base Legal Policies With Namespace"
     },
     {
       "name": "Eligibilities"
@@ -36,10 +42,19 @@
       "name": "Localized Policy Versions"
     },
     {
+      "name": "Localized Policy Versions With Namespace"
+    },
+    {
       "name": "Policies"
     },
     {
+      "name": "Policies With Namespace"
+    },
+    {
       "name": "Policy Versions"
+    },
+    {
+      "name": "Policy Versions With Namespace"
     },
     {
       "name": "UserInfo"
@@ -57,6 +72,8 @@
         "ADMIN:NAMESPACE:*:LEGAL [DELETE]": "ADMIN:NAMESPACE:*:LEGAL [DELETE]",
         "ADMIN:NAMESPACE:*:LEGAL [READ]": "ADMIN:NAMESPACE:*:LEGAL [READ]",
         "ADMIN:NAMESPACE:*:LEGAL [UPDATE]": "ADMIN:NAMESPACE:*:LEGAL [UPDATE]",
+        "ADMIN:NAMESPACE:{namespace}:LEGAL [CREATE]": "ADMIN:NAMESPACE:{namespace}:LEGAL [CREATE]",
+        "ADMIN:NAMESPACE:{namespace}:LEGAL [READ]": "ADMIN:NAMESPACE:{namespace}:LEGAL [READ]",
         "ADMIN:NAMESPACE:{namespace}:LEGAL [UPDATE]": "ADMIN:NAMESPACE:{namespace}:LEGAL [UPDATE]",
         "ADMIN:NAMESPACE:{namespace}:USER:{userId}:LEGAL [CREATE]": "ADMIN:NAMESPACE:{namespace}:USER:{userId}:LEGAL [CREATE]",
         "ADMIN:NAMESPACE:{namespace}:USER:{userId}:LEGAL [READ]": "ADMIN:NAMESPACE:{namespace}:USER:{userId}:LEGAL [READ]",
@@ -835,6 +852,1212 @@
         ]
       }
     },
+    "/agreement/admin/namespaces/{namespace}/agreements/policies/users/{userId}": {
+      "get": {
+        "description": "This API will return all accepted Legal Agreements for specified user. Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;ADMIN:NAMESPACE:{namespace}:LEGAL\u0026#34;, action=2 (READ)\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
+        "operationId": "retrieveAcceptedAgreements_1",
+        "parameters": [
+          {
+            "description": "Namespace",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "User Id",
+            "in": "path",
+            "name": "userId",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "items": {
+                "$ref": "#/definitions/RetrieveAcceptedAgreementResponse"
+              },
+              "type": "array"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          },
+          {
+            "HasPermission": [
+              "ADMIN:NAMESPACE:{namespace}:LEGAL [READ]"
+            ],
+            "authorization": []
+          }
+        ],
+        "summary": "Retrieve Accepted Legal Agreements",
+        "tags": [
+          "Agreement With Namespace"
+        ]
+      }
+    },
+    "/agreement/admin/namespaces/{namespace}/agreements/policy-versions/users": {
+      "get": {
+        "description": "This API will return all users who has accepted a specific policy version.Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;ADMIN:NAMESPACE:{namespace}:LEGAL\u0026#34;, action=2 (READ)\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
+        "operationId": "retrieveAllUsersByPolicyVersion_1",
+        "parameters": [
+          {
+            "description": "Namespace",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "policyVersionId",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "display name or email or username",
+            "in": "query",
+            "name": "keyword",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "default": 20,
+            "description": "limit",
+            "format": "int32",
+            "in": "query",
+            "name": "limit",
+            "required": false,
+            "type": "integer"
+          },
+          {
+            "default": 0,
+            "description": "offset",
+            "format": "int32",
+            "in": "query",
+            "name": "offset",
+            "required": false,
+            "type": "integer"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "items": {
+                "$ref": "#/definitions/PagedRetrieveUserAcceptedAgreementResponse"
+              },
+              "type": "array"
+            }
+          },
+          "404": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eNumericErrorCode\u003c/td\u003e\u003ctd\u003eErrorCode\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e40035\u003c/td\u003e\u003ctd\u003eerrors.net.accelbyte.platform.legal.policy_version_not_found\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/ErrorEntity"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          },
+          {
+            "HasPermission": [
+              "ADMIN:NAMESPACE:{namespace}:LEGAL [READ]"
+            ],
+            "authorization": []
+          }
+        ],
+        "summary": "Retrieve All Users Accepting Legal Agreements",
+        "tags": [
+          "Agreement With Namespace"
+        ]
+      }
+    },
+    "/agreement/admin/namespaces/{namespace}/base-policies": {
+      "get": {
+        "description": "Retrieve all base policies in the namespace.\u0026lt;br\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;ADMIN:NAMESPACE:{namespace}:LEGAL\u0026#34;, action=2 (READ)\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
+        "operationId": "retrieveAllLegalPoliciesByNamespace",
+        "parameters": [
+          {
+            "description": "Namespace",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "items": {
+                "$ref": "#/definitions/RetrieveBasePolicyResponse"
+              },
+              "type": "array"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          },
+          {
+            "HasPermission": [
+              "ADMIN:NAMESPACE:{namespace}:LEGAL [READ]"
+            ],
+            "authorization": []
+          }
+        ],
+        "summary": "Retrieve All Base Legal Policy in the namespace",
+        "tags": [
+          "Base Legal Policies With Namespace"
+        ]
+      },
+      "post": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Create a legal policy.\u0026lt;br\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;ADMIN:NAMESPACE:{namespace}:LEGAL\u0026#34;, action=1 (CREATE)\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
+        "operationId": "createPolicy_1",
+        "parameters": [
+          {
+            "description": "Namespace",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "required": false,
+            "schema": {
+              "$ref": "#/definitions/CreateBasePolicyRequestV2"
+            }
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "201": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/CreateBasePolicyResponse"
+            }
+          },
+          "400": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eNumericErrorCode\u003c/td\u003e\u003ctd\u003eErrorCode\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e40032\u003c/td\u003e\u003ctd\u003eerrors.net.accelbyte.platform.legal.base_policy_namespace_not_match\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/ErrorEntity"
+            }
+          },
+          "409": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eNumericErrorCode\u003c/td\u003e\u003ctd\u003eErrorCode\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e40030\u003c/td\u003e\u003ctd\u003eerrors.net.accelbyte.platform.legal.invalid_policy_type\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/ErrorEntity"
+            }
+          },
+          "422": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eErrorCode\u003c/td\u003e\u003ctd\u003eErrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20002\u003c/td\u003e\u003ctd\u003evalidation error\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/ValidationErrorEntity"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          },
+          {
+            "HasPermission": [
+              "ADMIN:NAMESPACE:{namespace}:LEGAL [CREATE]"
+            ],
+            "authorization": []
+          }
+        ],
+        "summary": "Create a Base Legal Policy",
+        "tags": [
+          "Base Legal Policies With Namespace"
+        ]
+      }
+    },
+    "/agreement/admin/namespaces/{namespace}/base-policies/{basePolicyId}": {
+      "get": {
+        "description": "Retrieve a base policy.\u0026lt;br\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;ADMIN:NAMESPACE:{namespace}:LEGAL\u0026#34;, action=2 (READ)\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
+        "operationId": "retrieveSinglePolicy_1",
+        "parameters": [
+          {
+            "description": "BasePolicy Id",
+            "in": "path",
+            "name": "basePolicyId",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "Namespace",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/RetrieveBasePolicyResponse"
+            }
+          },
+          "404": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eNumericErrorCode\u003c/td\u003e\u003ctd\u003eErrorCode\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e40041\u003c/td\u003e\u003ctd\u003eerrors.net.accelbyte.platform.legal.policy_not_found\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/ErrorEntity"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          },
+          {
+            "HasPermission": [
+              "ADMIN:NAMESPACE:{namespace}:LEGAL [READ]"
+            ],
+            "authorization": []
+          }
+        ],
+        "summary": "Retrieve a Base Legal Policy",
+        "tags": [
+          "Base Legal Policies With Namespace"
+        ]
+      },
+      "patch": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Update an existing base policy.\u0026lt;br\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;ADMIN:NAMESPACE:{namespace}:LEGAL\u0026#34;, action=4 (UPDATE)\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
+        "operationId": "partialUpdatePolicy_1",
+        "parameters": [
+          {
+            "description": "BasePolicy Id",
+            "in": "path",
+            "name": "basePolicyId",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "Namespace",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "required": false,
+            "schema": {
+              "$ref": "#/definitions/UpdateBasePolicyRequestV2"
+            }
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/UpdateBasePolicyResponse"
+            }
+          },
+          "400": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eNumericErrorCode\u003c/td\u003e\u003ctd\u003eErrorCode\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e40032\u003c/td\u003e\u003ctd\u003eerrors.net.accelbyte.platform.legal.invalid_base_policy\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/ErrorEntity"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          },
+          {
+            "HasPermission": [
+              "ADMIN:NAMESPACE:{namespace}:LEGAL [UPDATE]"
+            ],
+            "authorization": []
+          }
+        ],
+        "summary": "Update Base Legal Policy",
+        "tags": [
+          "Base Legal Policies With Namespace"
+        ]
+      }
+    },
+    "/agreement/admin/namespaces/{namespace}/base-policies/{basePolicyId}/countries/{countryCode}": {
+      "get": {
+        "description": "Retrieve a Base Legal Policy based on a Particular Country.\u0026lt;br\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;ADMIN:NAMESPACE:{namespace}:LEGAL\u0026#34;, action=2 (READ)\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
+        "operationId": "retrievePolicyCountry_1",
+        "parameters": [
+          {
+            "description": "BasePolicy Id",
+            "in": "path",
+            "name": "basePolicyId",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "Country Code",
+            "in": "path",
+            "name": "countryCode",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "Namespace",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/RetrievePolicyResponse"
+            }
+          },
+          "404": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eNumericErrorCode\u003c/td\u003e\u003ctd\u003eErrorCode\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e40031\u003c/td\u003e\u003ctd\u003eerrors.net.accelbyte.platform.legal.base_policy_not_found\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/ErrorEntity"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          },
+          {
+            "HasPermission": [
+              "ADMIN:NAMESPACE:{namespace}:LEGAL [READ]"
+            ],
+            "authorization": []
+          }
+        ],
+        "summary": "Retrieve a Base Legal Policy based on a Particular Country",
+        "tags": [
+          "Base Legal Policies With Namespace"
+        ]
+      }
+    },
+    "/agreement/admin/namespaces/{namespace}/localized-policy-versions/versions/{policyVersionId}": {
+      "get": {
+        "description": "Retrieve versions of a particular country-specific policy.\u0026lt;br\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;ADMIN:NAMESPACE:{namespace}:LEGAL\u0026#34;, action=2 (READ)\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
+        "operationId": "retrieveLocalizedPolicyVersions_1",
+        "parameters": [
+          {
+            "description": "Namespace",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "Policy Version Id",
+            "in": "path",
+            "name": "policyVersionId",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "items": {
+                "$ref": "#/definitions/RetrieveLocalizedPolicyVersionResponse"
+              },
+              "type": "array"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          },
+          {
+            "HasPermission": [
+              "ADMIN:NAMESPACE:{namespace}:LEGAL [READ]"
+            ],
+            "authorization": []
+          }
+        ],
+        "summary": "Retrieve Versions from Country-Specific Policy",
+        "tags": [
+          "Localized Policy Versions With Namespace"
+        ]
+      },
+      "post": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Create a version of a particular country-specific policy.\u0026lt;br\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;ADMIN:NAMESPACE:{namespace}:LEGAL\u0026#34;, action=1 (CREATE)\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
+        "operationId": "createLocalizedPolicyVersion_1",
+        "parameters": [
+          {
+            "description": "Namespace",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "Policy Version Id",
+            "in": "path",
+            "name": "policyVersionId",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "required": false,
+            "schema": {
+              "$ref": "#/definitions/CreateLocalizedPolicyVersionRequest"
+            }
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "201": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/CreateLocalizedPolicyVersionResponse"
+            }
+          },
+          "400": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eNumericErrorCode\u003c/td\u003e\u003ctd\u003eErrorCode\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e40033\u003c/td\u003e\u003ctd\u003eerrors.net.accelbyte.platform.legal.invalid_policy_version\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/ErrorEntity"
+            }
+          },
+          "409": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eNumericErrorCode\u003c/td\u003e\u003ctd\u003eErrorCode\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e40044\u003c/td\u003e\u003ctd\u003eerrors.net.accelbyte.platform.legal.localized_policy_version_already_exist\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/ErrorEntity"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          },
+          {
+            "HasPermission": [
+              "ADMIN:NAMESPACE:{namespace}:LEGAL [CREATE]"
+            ],
+            "authorization": []
+          }
+        ],
+        "summary": "Create a Localized Version from Country-Specific Policy",
+        "tags": [
+          "Localized Policy Versions With Namespace"
+        ]
+      }
+    },
+    "/agreement/admin/namespaces/{namespace}/localized-policy-versions/{localizedPolicyVersionId}": {
+      "get": {
+        "description": "Retrieve a version of a particular country-specific policy.\u0026lt;br\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;ADMIN:NAMESPACE:{namespace}:LEGAL\u0026#34;, action=2 (READ)\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
+        "operationId": "retrieveSingleLocalizedPolicyVersion_1",
+        "parameters": [
+          {
+            "description": "Localized Policy Version Id",
+            "in": "path",
+            "name": "localizedPolicyVersionId",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "Namespace",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/RetrieveLocalizedPolicyVersionResponse"
+            }
+          },
+          "404": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eNumericErrorCode\u003c/td\u003e\u003ctd\u003eErrorCode\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e2912\u003c/td\u003e\u003ctd\u003eerrors.net.accelbyte.platform.legal.policy_version_not_found\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/ErrorEntity"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          },
+          {
+            "HasPermission": [
+              "ADMIN:NAMESPACE:{namespace}:LEGAL [READ]"
+            ],
+            "authorization": []
+          }
+        ],
+        "summary": "Retrieve a Localized Version from Country-Specific Policy",
+        "tags": [
+          "Localized Policy Versions With Namespace"
+        ]
+      },
+      "put": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Update a version of a particular country-specific policy.\u0026lt;br\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;ADMIN:NAMESPACE:{namespace}:LEGAL\u0026#34;, action=4 (UPDATE)\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
+        "operationId": "updateLocalizedPolicyVersion_1",
+        "parameters": [
+          {
+            "description": "Localized Policy Version Id",
+            "in": "path",
+            "name": "localizedPolicyVersionId",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "Namespace",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "required": false,
+            "schema": {
+              "$ref": "#/definitions/UpdateLocalizedPolicyVersionRequest"
+            }
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/UpdateLocalizedPolicyVersionResponse"
+            }
+          },
+          "400": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eNumericErrorCode\u003c/td\u003e\u003ctd\u003eErrorCode\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e40035\u003c/td\u003e\u003ctd\u003eerrors.net.accelbyte.platform.legal.invalid_policy_version\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/ErrorEntity"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          },
+          {
+            "HasPermission": [
+              "ADMIN:NAMESPACE:{namespace}:LEGAL [UPDATE]"
+            ],
+            "authorization": []
+          }
+        ],
+        "summary": "Update a Localized Version from Country-Specific Policy",
+        "tags": [
+          "Localized Policy Versions With Namespace"
+        ]
+      }
+    },
+    "/agreement/admin/namespaces/{namespace}/localized-policy-versions/{localizedPolicyVersionId}/attachments": {
+      "post": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Request presigned URL for  upload attachment for a particular localized version of base policy.\u0026lt;br\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;ADMIN:NAMESPACE:{namespace}:LEGAL\u0026#34;, action=1 (CREATE)\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
+        "operationId": "requestPresignedURL_1",
+        "parameters": [
+          {
+            "description": "Localized Policy Version Id",
+            "in": "path",
+            "name": "localizedPolicyVersionId",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "Namespace",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "required": false,
+            "schema": {
+              "$ref": "#/definitions/UploadPolicyVersionAttachmentRequest"
+            }
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "201": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/UploadLocalizedPolicyVersionAttachmentResponse"
+            }
+          },
+          "400": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eNumericErrorCode\u003c/td\u003e\u003ctd\u003eErrorCode\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e40034\u003c/td\u003e\u003ctd\u003eerrors.net.accelbyte.platform.legal.invalid_file_type\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e40037\u003c/td\u003e\u003ctd\u003eerrors.net.accelbyte.platform.legal.invalid_localized_policy_version\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e40042\u003c/td\u003e\u003ctd\u003eerrors.net.accelbyte.platform.legal.policy_version_freezed\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/ErrorEntity"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          },
+          {
+            "HasPermission": [
+              "ADMIN:NAMESPACE:{namespace}:LEGAL [CREATE]"
+            ],
+            "authorization": []
+          }
+        ],
+        "summary": "Request Presigned URL for Upload Document",
+        "tags": [
+          "Localized Policy Versions With Namespace"
+        ]
+      }
+    },
+    "/agreement/admin/namespaces/{namespace}/localized-policy-versions/{localizedPolicyVersionId}/default": {
+      "patch": {
+        "description": "Update a localized version policy to be the default.\u0026lt;br\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;ADMIN:NAMESPACE:{namespace}:LEGAL\u0026#34;, action=4 (UPDATE)\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
+        "operationId": "setDefaultPolicy_1",
+        "parameters": [
+          {
+            "description": "Localized Policy Version Id",
+            "in": "path",
+            "name": "localizedPolicyVersionId",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "Namespace",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation"
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          },
+          {
+            "HasPermission": [
+              "ADMIN:NAMESPACE:{namespace}:LEGAL [UPDATE]"
+            ],
+            "authorization": []
+          }
+        ],
+        "summary": "Set Default Localized Policy",
+        "tags": [
+          "Localized Policy Versions With Namespace"
+        ]
+      }
+    },
+    "/agreement/admin/namespaces/{namespace}/policies/versions/{policyVersionId}": {
+      "patch": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Update a particular policy version.\u0026lt;br\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;ADMIN:NAMESPACE:*:LEGAL\u0026#34;, action=4 (UPDATE)\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
+        "operationId": "updatePolicyVersion_1",
+        "parameters": [
+          {
+            "description": "Namespace",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "Policy Version Id",
+            "in": "path",
+            "name": "policyVersionId",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "required": false,
+            "schema": {
+              "$ref": "#/definitions/UpdatePolicyVersionRequest"
+            }
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/UpdatePolicyVersionResponse"
+            }
+          },
+          "400": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eNumericErrorCode\u003c/td\u003e\u003ctd\u003eErrorCode\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e40035\u003c/td\u003e\u003ctd\u003eerrors.net.accelbyte.platform.legal.invalid_policy_version\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e40042\u003c/td\u003e\u003ctd\u003eerrors.net.accelbyte.platform.legal.policy_version_freezed\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/ErrorEntity"
+            }
+          },
+          "409": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eNumericErrorCode\u003c/td\u003e\u003ctd\u003eErrorCode\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e40043\u003c/td\u003e\u003ctd\u003eerrors.net.accelbyte.platform.legal.localized_policy_version_already_exist\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/ErrorEntity"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          },
+          {
+            "HasPermission": [
+              "ADMIN:NAMESPACE:*:LEGAL [UPDATE]"
+            ],
+            "authorization": []
+          }
+        ],
+        "summary": "Update a Version of Policy",
+        "tags": [
+          "Policy Versions With Namespace"
+        ]
+      }
+    },
+    "/agreement/admin/namespaces/{namespace}/policies/versions/{policyVersionId}/latest": {
+      "patch": {
+        "description": "Manually publish a version of a particular country-specific policy.\u0026lt;br\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;ADMIN:NAMESPACE:*:LEGAL\u0026#34;, action=4 (UPDATE)\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
+        "operationId": "publishPolicyVersion_1",
+        "parameters": [
+          {
+            "description": "Namespace",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "Policy Version Id",
+            "in": "path",
+            "name": "policyVersionId",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "default": true,
+            "description": "Should Notify",
+            "in": "query",
+            "name": "shouldNotify",
+            "required": false,
+            "type": "boolean",
+            "x-omitempty": false
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "operation successful"
+          },
+          "400": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eNumericErrorCode\u003c/td\u003e\u003ctd\u003eErrorCode\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e40035\u003c/td\u003e\u003ctd\u003eerrors.net.accelbyte.platform.legal.invalid_policy_version\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e40046\u003c/td\u003e\u003ctd\u003eerrors.net.accelbyte.platform.legal.default_selection_not_provided\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e40030\u003c/td\u003e\u003ctd\u003eerrors.net.accelbyte.platform.legal.localized_policy_version_not_provided\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/ErrorEntity"
+            }
+          },
+          "409": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eNumericErrorCode\u003c/td\u003e\u003ctd\u003eErrorCode\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e40039\u003c/td\u003e\u003ctd\u003eerrors.net.accelbyte.platform.legal.localized_policy_version_already_latest\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e40043\u003c/td\u003e\u003ctd\u003eerrors.net.accelbyte.platform.legal.localized_policy_version_already_publish\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/ErrorEntity"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          },
+          {
+            "HasPermission": [
+              "ADMIN:NAMESPACE:*:LEGAL [UPDATE]"
+            ],
+            "authorization": []
+          }
+        ],
+        "summary": "Manually Publish a Version from Country-Specific Policy",
+        "tags": [
+          "Policy Versions With Namespace"
+        ]
+      }
+    },
+    "/agreement/admin/namespaces/{namespace}/policies/{policyId}": {
+      "patch": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Update country-specific policy.\u0026lt;br\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;ADMIN:NAMESPACE:{namespace}:LEGAL\u0026#34;, action=4 (UPDATE)\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
+        "operationId": "updatePolicy_1",
+        "parameters": [
+          {
+            "description": "Namespace",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "Policy Id",
+            "in": "path",
+            "name": "policyId",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "required": false,
+            "schema": {
+              "$ref": "#/definitions/UpdatePolicyRequest"
+            }
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "operation successful"
+          },
+          "400": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eNumericErrorCode\u003c/td\u003e\u003ctd\u003eErrorCode\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e40033\u003c/td\u003e\u003ctd\u003eerrors.net.accelbyte.platform.legal.invalid_policy_id\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/ErrorEntity"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          },
+          {
+            "HasPermission": [
+              "ADMIN:NAMESPACE:{namespace}:LEGAL [UPDATE]"
+            ],
+            "authorization": []
+          }
+        ],
+        "summary": "Update Country-Specific Policy",
+        "tags": [
+          "Policies With Namespace"
+        ]
+      }
+    },
+    "/agreement/admin/namespaces/{namespace}/policies/{policyId}/default": {
+      "patch": {
+        "description": "Update a policy to be the default.\u0026lt;br\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;ADMIN:NAMESPACE:{namespace}:LEGAL\u0026#34;, action=4 (UPDATE)\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
+        "operationId": "setDefaultPolicy_3",
+        "parameters": [
+          {
+            "description": "Namespace",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "Policy Id",
+            "in": "path",
+            "name": "policyId",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "operation successful"
+          },
+          "400": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eNumericErrorCode\u003c/td\u003e\u003ctd\u003eErrorCode\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e40033\u003c/td\u003e\u003ctd\u003eerrors.net.accelbyte.platform.legal.invalid_policy_id\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/ErrorEntity"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          },
+          {
+            "HasPermission": [
+              "ADMIN:NAMESPACE:{namespace}:LEGAL [UPDATE]"
+            ],
+            "authorization": []
+          }
+        ],
+        "summary": "Set Default Policy",
+        "tags": [
+          "Policies With Namespace"
+        ]
+      }
+    },
+    "/agreement/admin/namespaces/{namespace}/policies/{policyId}/versions": {
+      "get": {
+        "description": "Retrieve a version of a particular country specific policy. If version is not provided, the Legal Service will assume caller requesting all versions from country-specific policy.\u0026lt;br\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;ADMIN:NAMESPACE:*:LEGAL\u0026#34;, action=2 (READ)\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
+        "operationId": "retrieveSinglePolicyVersion_1",
+        "parameters": [
+          {
+            "description": "Namespace",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "Policy Id",
+            "in": "path",
+            "name": "policyId",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "Version Id",
+            "in": "query",
+            "name": "versionId",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "items": {
+                "$ref": "#/definitions/RetrievePolicyVersionResponse"
+              },
+              "type": "array"
+            }
+          },
+          "404": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eNumericErrorCode\u003c/td\u003e\u003ctd\u003eErrorCode\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e40036\u003c/td\u003e\u003ctd\u003eerrors.net.accelbyte.platform.legal.policy_version_id_not_found\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/ErrorEntity"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          },
+          {
+            "HasPermission": [
+              "ADMIN:NAMESPACE:*:LEGAL [READ]"
+            ],
+            "authorization": []
+          }
+        ],
+        "summary": "Retrieve a Version from Country-Specific Policy",
+        "tags": [
+          "Policy Versions With Namespace"
+        ]
+      },
+      "post": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Create a version of a particular country-specific policy.\u0026lt;br\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;ADMIN:NAMESPACE:*:LEGAL\u0026#34;, action=1 (CREATE)\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
+        "operationId": "createPolicyVersion_1",
+        "parameters": [
+          {
+            "description": "Namespace",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "Policy Id",
+            "in": "path",
+            "name": "policyId",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "required": false,
+            "schema": {
+              "$ref": "#/definitions/CreatePolicyVersionRequest"
+            }
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "201": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/CreatePolicyVersionResponse"
+            }
+          },
+          "400": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eNumericErrorCode\u003c/td\u003e\u003ctd\u003eErrorCode\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e40033\u003c/td\u003e\u003ctd\u003eerrors.net.accelbyte.platform.legal.invalid_policy\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/ErrorEntity"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          },
+          {
+            "HasPermission": [
+              "ADMIN:NAMESPACE:*:LEGAL [CREATE]"
+            ],
+            "authorization": []
+          }
+        ],
+        "summary": "Create a Version from Country-Specific Policy",
+        "tags": [
+          "Policy Versions With Namespace"
+        ]
+      }
+    },
+    "/agreement/admin/namespaces/{namespace}/policy-types": {
+      "get": {
+        "description": "Retrieve all supported policy types.\u0026lt;br\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;ADMIN:NAMESPACE:{namespace}:LEGAL\u0026#34;, action=2 (READ)\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
+        "operationId": "retrieveAllPolicyTypes_1",
+        "parameters": [
+          {
+            "description": "Namespace",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "Limit",
+            "format": "int32",
+            "in": "query",
+            "name": "limit",
+            "required": true,
+            "type": "integer"
+          },
+          {
+            "description": "Offset",
+            "format": "int32",
+            "in": "query",
+            "name": "offset",
+            "required": false,
+            "type": "integer"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "items": {
+                "$ref": "#/definitions/RetrievePolicyTypeResponse"
+              },
+              "type": "array"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          },
+          {
+            "HasPermission": [
+              "ADMIN:NAMESPACE:{namespace}:LEGAL [READ]"
+            ],
+            "authorization": []
+          }
+        ],
+        "summary": "Retrieve All Policy Type",
+        "tags": [
+          "Base Legal Policies With Namespace"
+        ]
+      }
+    },
     "/agreement/admin/namespaces/{namespace}/users/{userId}/agreements/policies": {
       "post": {
         "consumes": [
@@ -1218,7 +2441,7 @@
     "/agreement/admin/policies/{policyId}/default": {
       "patch": {
         "description": "Update a policy to be the default.\u0026lt;br\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;ADMIN:NAMESPACE:*:LEGAL\u0026#34;, action=4 (UPDATE)\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
-        "operationId": "setDefaultPolicy_1",
+        "operationId": "setDefaultPolicy_2",
         "parameters": [
           {
             "description": "Policy Id",
@@ -1997,7 +3220,7 @@
     "/agreement/public/localized-policy-versions/{localizedPolicyVersionId}": {
       "get": {
         "description": "Retrieve specific localized policy version including the policy version and base policy version where the localized policy version located.\u0026lt;br\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;/ul\u0026gt;",
-        "operationId": "retrieveSingleLocalizedPolicyVersion_1",
+        "operationId": "retrieveSingleLocalizedPolicyVersion_2",
         "parameters": [
           {
             "description": "Localized Policy Version Id",
@@ -2027,6 +3250,49 @@
         "summary": "Retrieve a Localized Version",
         "tags": [
           "Localized Policy Versions"
+        ]
+      }
+    },
+    "/agreement/public/namespaces/{namespace}/localized-policy-versions/{localizedPolicyVersionId}": {
+      "get": {
+        "description": "Retrieve specific localized policy version including the policy version and base policy version where the localized policy version located.\u0026lt;br\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;/ul\u0026gt;",
+        "operationId": "retrieveSingleLocalizedPolicyVersion_3",
+        "parameters": [
+          {
+            "description": "Localized Policy Version Id",
+            "in": "path",
+            "name": "localizedPolicyVersionId",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "Namespace",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/RetrieveLocalizedPolicyVersionPublicResponse"
+            }
+          },
+          "404": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eNumericErrorCode\u003c/td\u003e\u003ctd\u003eErrorCode\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e40038\u003c/td\u003e\u003ctd\u003eerrors.net.accelbyte.platform.legal.localized_policy_version_not_found\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/ErrorEntity"
+            }
+          }
+        },
+        "summary": "Retrieve a Localized Version",
+        "tags": [
+          "Localized Policy Versions With Namespace"
         ]
       }
     },
@@ -2352,6 +3618,41 @@
           "type": "string"
         },
         "namespace": {
+          "type": "string"
+        },
+        "tags": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array",
+          "uniqueItems": true
+        },
+        "typeId": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "CreateBasePolicyRequestV2": {
+      "properties": {
+        "affectedClientIds": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array",
+          "uniqueItems": true
+        },
+        "affectedCountries": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array",
+          "uniqueItems": true
+        },
+        "basePolicyName": {
+          "type": "string"
+        },
+        "description": {
           "type": "string"
         },
         "tags": {
@@ -3460,6 +4761,38 @@
           "type": "string"
         },
         "namespace": {
+          "type": "string"
+        },
+        "tags": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array",
+          "uniqueItems": true
+        }
+      },
+      "type": "object"
+    },
+    "UpdateBasePolicyRequestV2": {
+      "properties": {
+        "affectedClientIds": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array",
+          "uniqueItems": true
+        },
+        "affectedCountries": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array",
+          "uniqueItems": true
+        },
+        "basePolicyName": {
+          "type": "string"
+        },
+        "description": {
           "type": "string"
         },
         "tags": {

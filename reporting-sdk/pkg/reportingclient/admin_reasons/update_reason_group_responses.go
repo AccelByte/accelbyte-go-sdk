@@ -70,10 +70,9 @@ func NewUpdateReasonGroupOK() *UpdateReasonGroupOK {
 	return &UpdateReasonGroupOK{}
 }
 
-/*
-UpdateReasonGroupOK handles this case with default header values.
+/*UpdateReasonGroupOK handles this case with default header values.
 
-	UpdateReasonGroupOK update reason group o k
+  UpdateReasonGroupOK update reason group o k
 */
 type UpdateReasonGroupOK struct {
 	Payload *reportingclientmodels.RestapiReasonGroupResponse
@@ -124,10 +123,9 @@ func NewUpdateReasonGroupBadRequest() *UpdateReasonGroupBadRequest {
 	return &UpdateReasonGroupBadRequest{}
 }
 
-/*
-UpdateReasonGroupBadRequest handles this case with default header values.
+/*UpdateReasonGroupBadRequest handles this case with default header values.
 
-	UpdateReasonGroupBadRequest update reason group bad request
+  UpdateReasonGroupBadRequest update reason group bad request
 */
 type UpdateReasonGroupBadRequest struct {
 	Payload *reportingclientmodels.RestapiErrorResponse
@@ -178,10 +176,9 @@ func NewUpdateReasonGroupConflict() *UpdateReasonGroupConflict {
 	return &UpdateReasonGroupConflict{}
 }
 
-/*
-UpdateReasonGroupConflict handles this case with default header values.
+/*UpdateReasonGroupConflict handles this case with default header values.
 
-	UpdateReasonGroupConflict update reason group conflict
+  UpdateReasonGroupConflict update reason group conflict
 */
 type UpdateReasonGroupConflict struct {
 	Payload *reportingclientmodels.RestapiErrorResponse
@@ -232,10 +229,9 @@ func NewUpdateReasonGroupInternalServerError() *UpdateReasonGroupInternalServerE
 	return &UpdateReasonGroupInternalServerError{}
 }
 
-/*
-UpdateReasonGroupInternalServerError handles this case with default header values.
+/*UpdateReasonGroupInternalServerError handles this case with default header values.
 
-	UpdateReasonGroupInternalServerError update reason group internal server error
+  UpdateReasonGroupInternalServerError update reason group internal server error
 */
 type UpdateReasonGroupInternalServerError struct {
 	Payload *reportingclientmodels.RestapiErrorResponse

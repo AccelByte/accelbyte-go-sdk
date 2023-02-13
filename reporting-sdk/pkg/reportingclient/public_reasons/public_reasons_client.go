@@ -44,7 +44,7 @@ type ClientService interface {
 /*
 Deprecated: Use PublicGetReasonsShort instead.
 
-	PublicGetReasons gets list of reasons
+  PublicGetReasons gets list of reasons
 */
 func (a *Client) PublicGetReasons(params *PublicGetReasonsParams, authInfo runtime.ClientAuthInfoWriter) (*PublicGetReasonsOK, *PublicGetReasonsNotFound, *PublicGetReasonsInternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -94,7 +94,7 @@ func (a *Client) PublicGetReasons(params *PublicGetReasonsParams, authInfo runti
 }
 
 /*
-PublicGetReasonsShort gets list of reasons
+  PublicGetReasonsShort gets list of reasons
 */
 func (a *Client) PublicGetReasonsShort(params *PublicGetReasonsParams, authInfo runtime.ClientAuthInfoWriter) (*PublicGetReasonsOK, error) {
 	// TODO: Validate the params before sending
@@ -144,9 +144,9 @@ func (a *Client) PublicGetReasonsShort(params *PublicGetReasonsParams, authInfo 
 /*
 Deprecated: Use PublicListReasonGroupsShort instead.
 
-	PublicListReasonGroups lists reason groups under a namespace
+  PublicListReasonGroups lists reason groups under a namespace
 
-	Return list of reason groups ID and title under given namespace.
+  Return list of reason groups ID and title under given namespace.
 */
 func (a *Client) PublicListReasonGroups(params *PublicListReasonGroupsParams, authInfo runtime.ClientAuthInfoWriter) (*PublicListReasonGroupsOK, *PublicListReasonGroupsInternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -193,9 +193,9 @@ func (a *Client) PublicListReasonGroups(params *PublicListReasonGroupsParams, au
 }
 
 /*
-PublicListReasonGroupsShort lists reason groups under a namespace
+  PublicListReasonGroupsShort lists reason groups under a namespace
 
-Return list of reason groups ID and title under given namespace.
+  Return list of reason groups ID and title under given namespace.
 */
 func (a *Client) PublicListReasonGroupsShort(params *PublicListReasonGroupsParams, authInfo runtime.ClientAuthInfoWriter) (*PublicListReasonGroupsOK, error) {
 	// TODO: Validate the params before sending

@@ -35,6 +35,8 @@ type Client struct {
 type ClientService interface {
 	CancelGroupJoinRequestV1(params *CancelGroupJoinRequestV1Params, authInfo runtime.ClientAuthInfoWriter) (*CancelGroupJoinRequestV1OK, *CancelGroupJoinRequestV1BadRequest, *CancelGroupJoinRequestV1Unauthorized, *CancelGroupJoinRequestV1Forbidden, *CancelGroupJoinRequestV1NotFound, *CancelGroupJoinRequestV1InternalServerError, error)
 	CancelGroupJoinRequestV1Short(params *CancelGroupJoinRequestV1Params, authInfo runtime.ClientAuthInfoWriter) (*CancelGroupJoinRequestV1OK, error)
+	CancelInvitationGroupMemberV2(params *CancelInvitationGroupMemberV2Params, authInfo runtime.ClientAuthInfoWriter) (*CancelInvitationGroupMemberV2OK, *CancelInvitationGroupMemberV2BadRequest, *CancelInvitationGroupMemberV2Unauthorized, *CancelInvitationGroupMemberV2Forbidden, *CancelInvitationGroupMemberV2NotFound, *CancelInvitationGroupMemberV2InternalServerError, error)
+	CancelInvitationGroupMemberV2Short(params *CancelInvitationGroupMemberV2Params, authInfo runtime.ClientAuthInfoWriter) (*CancelInvitationGroupMemberV2OK, error)
 	GetUserGroupStatusInformationV2(params *GetUserGroupStatusInformationV2Params, authInfo runtime.ClientAuthInfoWriter) (*GetUserGroupStatusInformationV2OK, *GetUserGroupStatusInformationV2Unauthorized, *GetUserGroupStatusInformationV2Forbidden, *GetUserGroupStatusInformationV2NotFound, *GetUserGroupStatusInformationV2InternalServerError, error)
 	GetUserGroupStatusInformationV2Short(params *GetUserGroupStatusInformationV2Params, authInfo runtime.ClientAuthInfoWriter) (*GetUserGroupStatusInformationV2OK, error)
 	JoinGroupV1(params *JoinGroupV1Params, authInfo runtime.ClientAuthInfoWriter) (*JoinGroupV1Created, *JoinGroupV1BadRequest, *JoinGroupV1Unauthorized, *JoinGroupV1Forbidden, *JoinGroupV1Conflict, *JoinGroupV1InternalServerError, error)
@@ -201,6 +203,135 @@ func (a *Client) CancelGroupJoinRequestV1Short(params *CancelGroupJoinRequestV1P
 	case *CancelGroupJoinRequestV1NotFound:
 		return nil, v
 	case *CancelGroupJoinRequestV1InternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+Deprecated: Use CancelInvitationGroupMemberV2Short instead.
+
+  CancelInvitationGroupMemberV2 cancels invitation group member
+
+  &lt;p&gt;Required valid user authentication &lt;/p&gt;
+			&lt;p&gt;Required Member Role Permission: &#34;GROUP:INVITE [DELETE]&#34;&lt;/p&gt;
+			&lt;p&gt;This endpoint is used to cancel invitation group member.&lt;/p&gt;
+			&lt;p&gt;cancel invitation group member. This endpoint will cancel invitation to specific user, and also the role permission of the the user who accesses this endpoint&lt;/p&gt;
+			&lt;p&gt;Action Code: 73409&lt;/p&gt;
+
+*/
+func (a *Client) CancelInvitationGroupMemberV2(params *CancelInvitationGroupMemberV2Params, authInfo runtime.ClientAuthInfoWriter) (*CancelInvitationGroupMemberV2OK, *CancelInvitationGroupMemberV2BadRequest, *CancelInvitationGroupMemberV2Unauthorized, *CancelInvitationGroupMemberV2Forbidden, *CancelInvitationGroupMemberV2NotFound, *CancelInvitationGroupMemberV2InternalServerError, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewCancelInvitationGroupMemberV2Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "CancelInvitationGroupMemberV2",
+		Method:             "POST",
+		PathPattern:        "/group/v2/public/namespaces/{namespace}/users/{userId}/groups/{groupId}/invite/cancel",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &CancelInvitationGroupMemberV2Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, nil, nil, nil, nil, nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *CancelInvitationGroupMemberV2OK:
+		return v, nil, nil, nil, nil, nil, nil
+
+	case *CancelInvitationGroupMemberV2BadRequest:
+		return nil, v, nil, nil, nil, nil, nil
+
+	case *CancelInvitationGroupMemberV2Unauthorized:
+		return nil, nil, v, nil, nil, nil, nil
+
+	case *CancelInvitationGroupMemberV2Forbidden:
+		return nil, nil, nil, v, nil, nil, nil
+
+	case *CancelInvitationGroupMemberV2NotFound:
+		return nil, nil, nil, nil, v, nil, nil
+
+	case *CancelInvitationGroupMemberV2InternalServerError:
+		return nil, nil, nil, nil, nil, v, nil
+
+	default:
+		return nil, nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+  CancelInvitationGroupMemberV2Short cancels invitation group member
+
+  &lt;p&gt;Required valid user authentication &lt;/p&gt;
+			&lt;p&gt;Required Member Role Permission: &#34;GROUP:INVITE [DELETE]&#34;&lt;/p&gt;
+			&lt;p&gt;This endpoint is used to cancel invitation group member.&lt;/p&gt;
+			&lt;p&gt;cancel invitation group member. This endpoint will cancel invitation to specific user, and also the role permission of the the user who accesses this endpoint&lt;/p&gt;
+			&lt;p&gt;Action Code: 73409&lt;/p&gt;
+
+*/
+func (a *Client) CancelInvitationGroupMemberV2Short(params *CancelInvitationGroupMemberV2Params, authInfo runtime.ClientAuthInfoWriter) (*CancelInvitationGroupMemberV2OK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewCancelInvitationGroupMemberV2Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "CancelInvitationGroupMemberV2",
+		Method:             "POST",
+		PathPattern:        "/group/v2/public/namespaces/{namespace}/users/{userId}/groups/{groupId}/invite/cancel",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &CancelInvitationGroupMemberV2Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *CancelInvitationGroupMemberV2OK:
+		return v, nil
+	case *CancelInvitationGroupMemberV2BadRequest:
+		return nil, v
+	case *CancelInvitationGroupMemberV2Unauthorized:
+		return nil, v
+	case *CancelInvitationGroupMemberV2Forbidden:
+		return nil, v
+	case *CancelInvitationGroupMemberV2NotFound:
+		return nil, v
+	case *CancelInvitationGroupMemberV2InternalServerError:
 		return nil, v
 
 	default:

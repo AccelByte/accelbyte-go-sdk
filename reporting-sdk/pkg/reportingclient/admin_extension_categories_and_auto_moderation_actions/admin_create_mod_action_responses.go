@@ -64,10 +64,9 @@ func NewAdminCreateModActionCreated() *AdminCreateModActionCreated {
 	return &AdminCreateModActionCreated{}
 }
 
-/*
-AdminCreateModActionCreated handles this case with default header values.
+/*AdminCreateModActionCreated handles this case with default header values.
 
-	AdminCreateModActionCreated admin create mod action created
+  AdminCreateModActionCreated admin create mod action created
 */
 type AdminCreateModActionCreated struct {
 	Payload *reportingclientmodels.RestapiActionAPIResponse
@@ -118,10 +117,9 @@ func NewAdminCreateModActionBadRequest() *AdminCreateModActionBadRequest {
 	return &AdminCreateModActionBadRequest{}
 }
 
-/*
-AdminCreateModActionBadRequest handles this case with default header values.
+/*AdminCreateModActionBadRequest handles this case with default header values.
 
-	AdminCreateModActionBadRequest admin create mod action bad request
+  AdminCreateModActionBadRequest admin create mod action bad request
 */
 type AdminCreateModActionBadRequest struct {
 	Payload *reportingclientmodels.RestapiErrorResponse
@@ -172,10 +170,9 @@ func NewAdminCreateModActionInternalServerError() *AdminCreateModActionInternalS
 	return &AdminCreateModActionInternalServerError{}
 }
 
-/*
-AdminCreateModActionInternalServerError handles this case with default header values.
+/*AdminCreateModActionInternalServerError handles this case with default header values.
 
-	AdminCreateModActionInternalServerError admin create mod action internal server error
+  AdminCreateModActionInternalServerError admin create mod action internal server error
 */
 type AdminCreateModActionInternalServerError struct {
 	Payload *reportingclientmodels.RestapiErrorResponse

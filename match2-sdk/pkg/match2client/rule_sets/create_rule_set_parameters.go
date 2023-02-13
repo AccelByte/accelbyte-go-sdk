@@ -62,8 +62,7 @@ func NewCreateRuleSetParamsWithHTTPClient(client *http.Client) *CreateRuleSetPar
 	}
 }
 
-/*
-CreateRuleSetParams contains all the parameters to send to the API endpoint
+/*CreateRuleSetParams contains all the parameters to send to the API endpoint
 for the create rule set operation typically these are written to a http.Request
 */
 type CreateRuleSetParams struct {

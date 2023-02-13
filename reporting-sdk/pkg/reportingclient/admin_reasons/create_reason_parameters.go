@@ -62,8 +62,7 @@ func NewCreateReasonParamsWithHTTPClient(client *http.Client) *CreateReasonParam
 	}
 }
 
-/*
-CreateReasonParams contains all the parameters to send to the API endpoint
+/*CreateReasonParams contains all the parameters to send to the API endpoint
 for the create reason operation typically these are written to a http.Request
 */
 type CreateReasonParams struct {

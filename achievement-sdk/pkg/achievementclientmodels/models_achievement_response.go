@@ -36,6 +36,10 @@ type ModelsAchievementResponse struct {
 	// Required: true
 	Description map[string]string `json:"description"`
 
+	// global
+	// Required: true
+	Global *bool `json:"global"`
+
 	// goal value
 	GoalValue float64 `json:"goalValue,omitempty"`
 
@@ -97,6 +101,10 @@ func (m *ModelsAchievementResponse) Validate(formats strfmt.Registry) error {
 	}
 
 	if err := m.validateDescription(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateGlobal(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -174,6 +182,15 @@ func (m *ModelsAchievementResponse) validateDefaultLanguage(formats strfmt.Regis
 }
 
 func (m *ModelsAchievementResponse) validateDescription(formats strfmt.Registry) error {
+
+	return nil
+}
+
+func (m *ModelsAchievementResponse) validateGlobal(formats strfmt.Registry) error {
+
+	if err := validate.Required("global", "body", m.Global); err != nil {
+		return err
+	}
 
 	return nil
 }

@@ -41,8 +41,8 @@ type ClientService interface {
 	RetrieveLocalizedPolicyVersionsShort(params *RetrieveLocalizedPolicyVersionsParams, authInfo runtime.ClientAuthInfoWriter) (*RetrieveLocalizedPolicyVersionsOK, error)
 	RetrieveSingleLocalizedPolicyVersion(params *RetrieveSingleLocalizedPolicyVersionParams, authInfo runtime.ClientAuthInfoWriter) (*RetrieveSingleLocalizedPolicyVersionOK, *RetrieveSingleLocalizedPolicyVersionNotFound, error)
 	RetrieveSingleLocalizedPolicyVersionShort(params *RetrieveSingleLocalizedPolicyVersionParams, authInfo runtime.ClientAuthInfoWriter) (*RetrieveSingleLocalizedPolicyVersionOK, error)
-	RetrieveSingleLocalizedPolicyVersion1(params *RetrieveSingleLocalizedPolicyVersion1Params) (*RetrieveSingleLocalizedPolicyVersion1OK, *RetrieveSingleLocalizedPolicyVersion1NotFound, error)
-	RetrieveSingleLocalizedPolicyVersion1Short(params *RetrieveSingleLocalizedPolicyVersion1Params) (*RetrieveSingleLocalizedPolicyVersion1OK, error)
+	RetrieveSingleLocalizedPolicyVersion2(params *RetrieveSingleLocalizedPolicyVersion2Params) (*RetrieveSingleLocalizedPolicyVersion2OK, *RetrieveSingleLocalizedPolicyVersion2NotFound, error)
+	RetrieveSingleLocalizedPolicyVersion2Short(params *RetrieveSingleLocalizedPolicyVersion2Params) (*RetrieveSingleLocalizedPolicyVersion2OK, error)
 	SetDefaultPolicy(params *SetDefaultPolicyParams, authInfo runtime.ClientAuthInfoWriter) (*SetDefaultPolicyOK, *SetDefaultPolicyBadRequest, error)
 	SetDefaultPolicyShort(params *SetDefaultPolicyParams, authInfo runtime.ClientAuthInfoWriter) (*SetDefaultPolicyOK, error)
 	UpdateLocalizedPolicyVersion(params *UpdateLocalizedPolicyVersionParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateLocalizedPolicyVersionOK, *UpdateLocalizedPolicyVersionBadRequest, error)
@@ -448,16 +448,16 @@ func (a *Client) RetrieveSingleLocalizedPolicyVersionShort(params *RetrieveSingl
 }
 
 /*
-Deprecated: Use RetrieveSingleLocalizedPolicyVersion1Short instead.
+Deprecated: Use RetrieveSingleLocalizedPolicyVersion2Short instead.
 
-  RetrieveSingleLocalizedPolicyVersion1 retrieves a localized version
+  RetrieveSingleLocalizedPolicyVersion2 retrieves a localized version
 
   Retrieve specific localized policy version including the policy version and base policy version where the localized policy version located.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;/ul&gt;
 */
-func (a *Client) RetrieveSingleLocalizedPolicyVersion1(params *RetrieveSingleLocalizedPolicyVersion1Params) (*RetrieveSingleLocalizedPolicyVersion1OK, *RetrieveSingleLocalizedPolicyVersion1NotFound, error) {
+func (a *Client) RetrieveSingleLocalizedPolicyVersion2(params *RetrieveSingleLocalizedPolicyVersion2Params) (*RetrieveSingleLocalizedPolicyVersion2OK, *RetrieveSingleLocalizedPolicyVersion2NotFound, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
-		params = NewRetrieveSingleLocalizedPolicyVersion1Params()
+		params = NewRetrieveSingleLocalizedPolicyVersion2Params()
 	}
 
 	if params.Context == nil {
@@ -469,14 +469,14 @@ func (a *Client) RetrieveSingleLocalizedPolicyVersion1(params *RetrieveSingleLoc
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
-		ID:                 "retrieveSingleLocalizedPolicyVersion_1",
+		ID:                 "retrieveSingleLocalizedPolicyVersion_2",
 		Method:             "GET",
 		PathPattern:        "/agreement/public/localized-policy-versions/{localizedPolicyVersionId}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
 		Params:             params,
-		Reader:             &RetrieveSingleLocalizedPolicyVersion1Reader{formats: a.formats},
+		Reader:             &RetrieveSingleLocalizedPolicyVersion2Reader{formats: a.formats},
 		Context:            params.Context,
 		Client:             params.HTTPClient,
 	})
@@ -486,10 +486,10 @@ func (a *Client) RetrieveSingleLocalizedPolicyVersion1(params *RetrieveSingleLoc
 
 	switch v := result.(type) {
 
-	case *RetrieveSingleLocalizedPolicyVersion1OK:
+	case *RetrieveSingleLocalizedPolicyVersion2OK:
 		return v, nil, nil
 
-	case *RetrieveSingleLocalizedPolicyVersion1NotFound:
+	case *RetrieveSingleLocalizedPolicyVersion2NotFound:
 		return nil, v, nil
 
 	default:
@@ -498,14 +498,14 @@ func (a *Client) RetrieveSingleLocalizedPolicyVersion1(params *RetrieveSingleLoc
 }
 
 /*
-  RetrieveSingleLocalizedPolicyVersion1Short retrieves a localized version
+  RetrieveSingleLocalizedPolicyVersion2Short retrieves a localized version
 
   Retrieve specific localized policy version including the policy version and base policy version where the localized policy version located.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;/ul&gt;
 */
-func (a *Client) RetrieveSingleLocalizedPolicyVersion1Short(params *RetrieveSingleLocalizedPolicyVersion1Params) (*RetrieveSingleLocalizedPolicyVersion1OK, error) {
+func (a *Client) RetrieveSingleLocalizedPolicyVersion2Short(params *RetrieveSingleLocalizedPolicyVersion2Params) (*RetrieveSingleLocalizedPolicyVersion2OK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
-		params = NewRetrieveSingleLocalizedPolicyVersion1Params()
+		params = NewRetrieveSingleLocalizedPolicyVersion2Params()
 	}
 
 	if params.Context == nil {
@@ -517,14 +517,14 @@ func (a *Client) RetrieveSingleLocalizedPolicyVersion1Short(params *RetrieveSing
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
-		ID:                 "retrieveSingleLocalizedPolicyVersion_1",
+		ID:                 "retrieveSingleLocalizedPolicyVersion_2",
 		Method:             "GET",
 		PathPattern:        "/agreement/public/localized-policy-versions/{localizedPolicyVersionId}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
 		Params:             params,
-		Reader:             &RetrieveSingleLocalizedPolicyVersion1Reader{formats: a.formats},
+		Reader:             &RetrieveSingleLocalizedPolicyVersion2Reader{formats: a.formats},
 		Context:            params.Context,
 		Client:             params.HTTPClient,
 	})
@@ -534,9 +534,9 @@ func (a *Client) RetrieveSingleLocalizedPolicyVersion1Short(params *RetrieveSing
 
 	switch v := result.(type) {
 
-	case *RetrieveSingleLocalizedPolicyVersion1OK:
+	case *RetrieveSingleLocalizedPolicyVersion2OK:
 		return v, nil
-	case *RetrieveSingleLocalizedPolicyVersion1NotFound:
+	case *RetrieveSingleLocalizedPolicyVersion2NotFound:
 		return nil, v
 
 	default:

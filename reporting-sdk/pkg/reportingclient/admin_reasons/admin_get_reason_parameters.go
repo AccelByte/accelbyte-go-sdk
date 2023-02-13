@@ -60,8 +60,7 @@ func NewAdminGetReasonParamsWithHTTPClient(client *http.Client) *AdminGetReasonP
 	}
 }
 
-/*
-AdminGetReasonParams contains all the parameters to send to the API endpoint
+/*AdminGetReasonParams contains all the parameters to send to the API endpoint
 for the admin get reason operation typically these are written to a http.Request
 */
 type AdminGetReasonParams struct {

@@ -50,9 +50,9 @@ type ClientService interface {
 /*
 Deprecated: Use CreateMatchPoolShort instead.
 
-	CreateMatchPool creates a match pool
+  CreateMatchPool creates a match pool
 
-	Required Permission: NAMESPACE:{namespace}:MATCHMAKING:POOL [CREATE]
+  Required Permission: NAMESPACE:{namespace}:MATCHMAKING:POOL [CREATE]
 
 Required Scope: social
 
@@ -68,14 +68,14 @@ Match Function will be used as reference value for Match Function Overrides if n
 In case Customer would like to use matchmaking service default match logic, then specify it in &#34;match_function_overrides&#34;.
 This sample configuration will let matchmaking service will use &#34;default&#34; match logic for make matches, while validation will hit both &#34;default&#34; and &#34;custom&#34; match logics.
 e.g.
+{
+              &#34;match_function&#34;: &#34;custom&#34;,
+  &#34;match_function_overrides&#34;: {
+    &#34;validation&#34;: []{&#34;default&#34;,&#34;custom&#34;},
+                &#34;make_matches&#34;: &#34;default&#34;,
+              }
+}
 
-	{
-	              &#34;match_function&#34;: &#34;custom&#34;,
-	  &#34;match_function_overrides&#34;: {
-	    &#34;validation&#34;: []{&#34;default&#34;,&#34;custom&#34;},
-	                &#34;make_matches&#34;: &#34;default&#34;,
-	              }
-	}
 */
 func (a *Client) CreateMatchPool(params *CreateMatchPoolParams, authInfo runtime.ClientAuthInfoWriter) (*CreateMatchPoolCreated, *CreateMatchPoolBadRequest, *CreateMatchPoolUnauthorized, *CreateMatchPoolForbidden, *CreateMatchPoolConflict, *CreateMatchPoolInternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -134,9 +134,9 @@ func (a *Client) CreateMatchPool(params *CreateMatchPoolParams, authInfo runtime
 }
 
 /*
-	CreateMatchPoolShort creates a match pool
+  CreateMatchPoolShort creates a match pool
 
-	Required Permission: NAMESPACE:{namespace}:MATCHMAKING:POOL [CREATE]
+  Required Permission: NAMESPACE:{namespace}:MATCHMAKING:POOL [CREATE]
 
 Required Scope: social
 
@@ -152,14 +152,14 @@ Match Function will be used as reference value for Match Function Overrides if n
 In case Customer would like to use matchmaking service default match logic, then specify it in &#34;match_function_overrides&#34;.
 This sample configuration will let matchmaking service will use &#34;default&#34; match logic for make matches, while validation will hit both &#34;default&#34; and &#34;custom&#34; match logics.
 e.g.
+{
+              &#34;match_function&#34;: &#34;custom&#34;,
+  &#34;match_function_overrides&#34;: {
+    &#34;validation&#34;: []{&#34;default&#34;,&#34;custom&#34;},
+                &#34;make_matches&#34;: &#34;default&#34;,
+              }
+}
 
-	{
-	              &#34;match_function&#34;: &#34;custom&#34;,
-	  &#34;match_function_overrides&#34;: {
-	    &#34;validation&#34;: []{&#34;default&#34;,&#34;custom&#34;},
-	                &#34;make_matches&#34;: &#34;default&#34;,
-	              }
-	}
 */
 func (a *Client) CreateMatchPoolShort(params *CreateMatchPoolParams, authInfo runtime.ClientAuthInfoWriter) (*CreateMatchPoolCreated, error) {
 	// TODO: Validate the params before sending
@@ -215,13 +215,14 @@ func (a *Client) CreateMatchPoolShort(params *CreateMatchPoolParams, authInfo ru
 /*
 Deprecated: Use DeleteMatchPoolShort instead.
 
-	DeleteMatchPool deletes a match pool
+  DeleteMatchPool deletes a match pool
 
-	Required Permission: NAMESPACE:{namespace}:MATCHMAKING:POOL [DELETE]
+  Required Permission: NAMESPACE:{namespace}:MATCHMAKING:POOL [DELETE]
 
 Required Scope: social
 
 Deletes an existing matchmaking pool.
+
 */
 func (a *Client) DeleteMatchPool(params *DeleteMatchPoolParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteMatchPoolNoContent, *DeleteMatchPoolUnauthorized, *DeleteMatchPoolForbidden, *DeleteMatchPoolNotFound, *DeleteMatchPoolInternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -277,13 +278,14 @@ func (a *Client) DeleteMatchPool(params *DeleteMatchPoolParams, authInfo runtime
 }
 
 /*
-	DeleteMatchPoolShort deletes a match pool
+  DeleteMatchPoolShort deletes a match pool
 
-	Required Permission: NAMESPACE:{namespace}:MATCHMAKING:POOL [DELETE]
+  Required Permission: NAMESPACE:{namespace}:MATCHMAKING:POOL [DELETE]
 
 Required Scope: social
 
 Deletes an existing matchmaking pool.
+
 */
 func (a *Client) DeleteMatchPoolShort(params *DeleteMatchPoolParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteMatchPoolNoContent, error) {
 	// TODO: Validate the params before sending
@@ -337,13 +339,14 @@ func (a *Client) DeleteMatchPoolShort(params *DeleteMatchPoolParams, authInfo ru
 /*
 Deprecated: Use MatchPoolDetailsShort instead.
 
-	MatchPoolDetails gets details for a specific match pool
+  MatchPoolDetails gets details for a specific match pool
 
-	Required Permission: NAMESPACE:{namespace}:MATCHMAKING:POOL [READ]
+  Required Permission: NAMESPACE:{namespace}:MATCHMAKING:POOL [READ]
 
 Required Scope: social
 
 Get details for a specific match pool
+
 */
 func (a *Client) MatchPoolDetails(params *MatchPoolDetailsParams, authInfo runtime.ClientAuthInfoWriter) (*MatchPoolDetailsOK, *MatchPoolDetailsUnauthorized, *MatchPoolDetailsForbidden, *MatchPoolDetailsInternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -396,13 +399,14 @@ func (a *Client) MatchPoolDetails(params *MatchPoolDetailsParams, authInfo runti
 }
 
 /*
-	MatchPoolDetailsShort gets details for a specific match pool
+  MatchPoolDetailsShort gets details for a specific match pool
 
-	Required Permission: NAMESPACE:{namespace}:MATCHMAKING:POOL [READ]
+  Required Permission: NAMESPACE:{namespace}:MATCHMAKING:POOL [READ]
 
 Required Scope: social
 
 Get details for a specific match pool
+
 */
 func (a *Client) MatchPoolDetailsShort(params *MatchPoolDetailsParams, authInfo runtime.ClientAuthInfoWriter) (*MatchPoolDetailsOK, error) {
 	// TODO: Validate the params before sending
@@ -454,13 +458,14 @@ func (a *Client) MatchPoolDetailsShort(params *MatchPoolDetailsParams, authInfo 
 /*
 Deprecated: Use MatchPoolListShort instead.
 
-	MatchPoolList lists match pools
+  MatchPoolList lists match pools
 
-	Required Permission: NAMESPACE:{namespace}:MATCHMAKING:POOL [READ]
+  Required Permission: NAMESPACE:{namespace}:MATCHMAKING:POOL [READ]
 
 Required Scope: social
 
 List matchmaking pools.
+
 */
 func (a *Client) MatchPoolList(params *MatchPoolListParams, authInfo runtime.ClientAuthInfoWriter) (*MatchPoolListOK, *MatchPoolListUnauthorized, *MatchPoolListForbidden, *MatchPoolListInternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -513,13 +518,14 @@ func (a *Client) MatchPoolList(params *MatchPoolListParams, authInfo runtime.Cli
 }
 
 /*
-	MatchPoolListShort lists match pools
+  MatchPoolListShort lists match pools
 
-	Required Permission: NAMESPACE:{namespace}:MATCHMAKING:POOL [READ]
+  Required Permission: NAMESPACE:{namespace}:MATCHMAKING:POOL [READ]
 
 Required Scope: social
 
 List matchmaking pools.
+
 */
 func (a *Client) MatchPoolListShort(params *MatchPoolListParams, authInfo runtime.ClientAuthInfoWriter) (*MatchPoolListOK, error) {
 	// TODO: Validate the params before sending
@@ -571,9 +577,9 @@ func (a *Client) MatchPoolListShort(params *MatchPoolListParams, authInfo runtim
 /*
 Deprecated: Use UpdateMatchPoolShort instead.
 
-	UpdateMatchPool updates a match pool
+  UpdateMatchPool updates a match pool
 
-	Required Permission: NAMESPACE:{namespace}:MATCHMAKING:POOL [UPDATE]
+  Required Permission: NAMESPACE:{namespace}:MATCHMAKING:POOL [UPDATE]
 
 Required Scope: social
 
@@ -586,14 +592,14 @@ Match Function will be used as reference value for Match Function Overrides if n
 In case Customer would like to use matchmaking service default match logic, then specify it in &#34;match_function_overrides&#34;.
 This sample configuration will let matchmaking service will use &#34;default&#34; match logic for make matches, while validation will hit both &#34;default&#34; and &#34;custom&#34; match logics.
 e.g.
-
-	{
-		&#34;match_function&#34;: &#34;custom&#34;,
-		&#34;match_function_overrides&#34;: {
-			&#34;validation&#34;: []{&#34;default&#34;,&#34;custom&#34;},
-			&#34;make_matches&#34;: &#34;default&#34;,
-		}
+{
+	&#34;match_function&#34;: &#34;custom&#34;,
+	&#34;match_function_overrides&#34;: {
+		&#34;validation&#34;: []{&#34;default&#34;,&#34;custom&#34;},
+		&#34;make_matches&#34;: &#34;default&#34;,
 	}
+}
+
 */
 func (a *Client) UpdateMatchPool(params *UpdateMatchPoolParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateMatchPoolOK, *UpdateMatchPoolBadRequest, *UpdateMatchPoolUnauthorized, *UpdateMatchPoolForbidden, *UpdateMatchPoolNotFound, *UpdateMatchPoolInternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -652,9 +658,9 @@ func (a *Client) UpdateMatchPool(params *UpdateMatchPoolParams, authInfo runtime
 }
 
 /*
-	UpdateMatchPoolShort updates a match pool
+  UpdateMatchPoolShort updates a match pool
 
-	Required Permission: NAMESPACE:{namespace}:MATCHMAKING:POOL [UPDATE]
+  Required Permission: NAMESPACE:{namespace}:MATCHMAKING:POOL [UPDATE]
 
 Required Scope: social
 
@@ -667,14 +673,14 @@ Match Function will be used as reference value for Match Function Overrides if n
 In case Customer would like to use matchmaking service default match logic, then specify it in &#34;match_function_overrides&#34;.
 This sample configuration will let matchmaking service will use &#34;default&#34; match logic for make matches, while validation will hit both &#34;default&#34; and &#34;custom&#34; match logics.
 e.g.
-
-	{
-		&#34;match_function&#34;: &#34;custom&#34;,
-		&#34;match_function_overrides&#34;: {
-			&#34;validation&#34;: []{&#34;default&#34;,&#34;custom&#34;},
-			&#34;make_matches&#34;: &#34;default&#34;,
-		}
+{
+	&#34;match_function&#34;: &#34;custom&#34;,
+	&#34;match_function_overrides&#34;: {
+		&#34;validation&#34;: []{&#34;default&#34;,&#34;custom&#34;},
+		&#34;make_matches&#34;: &#34;default&#34;,
 	}
+}
+
 */
 func (a *Client) UpdateMatchPoolShort(params *UpdateMatchPoolParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateMatchPoolOK, error) {
 	// TODO: Validate the params before sending

@@ -6,6 +6,8 @@ package sessionbrowserclientmodels
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"strconv"
+
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
@@ -34,6 +36,10 @@ type ModelsGetSessionHistorySearchResponseItemV2 struct {
 	// Required: true
 	Joinable bool `json:"joinable"`
 
+	// joining
+	// Required: true
+	Joining []*ModelsSessionPlayerJoining `json:"joining"`
+
 	// match id
 	// Required: true
 	MatchID string `json:"match_id"`
@@ -41,6 +47,18 @@ type ModelsGetSessionHistorySearchResponseItemV2 struct {
 	// namespace
 	// Required: true
 	Namespace string `json:"namespace"`
+
+	// players
+	// Required: true
+	Players []*ModelsSessionPlayerHistory `json:"players"`
+
+	// removed reason
+	// Required: true
+	RemovedReason *string `json:"removed_reason"`
+
+	// session type
+	// Required: true
+	SessionType *string `json:"session_type"`
 
 	// status
 	// Required: true
@@ -71,11 +89,27 @@ func (m *ModelsGetSessionHistorySearchResponseItemV2) Validate(formats strfmt.Re
 		res = append(res, err)
 	}
 
+	if err := m.validateJoining(formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.validateMatchID(formats); err != nil {
 		res = append(res, err)
 	}
 
 	if err := m.validateNamespace(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validatePlayers(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateRemovedReason(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateSessionType(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -133,6 +167,31 @@ func (m *ModelsGetSessionHistorySearchResponseItemV2) validateJoinable(formats s
 	return nil
 }
 
+func (m *ModelsGetSessionHistorySearchResponseItemV2) validateJoining(formats strfmt.Registry) error {
+
+	if err := validate.Required("joining", "body", m.Joining); err != nil {
+		return err
+	}
+
+	for i := 0; i < len(m.Joining); i++ {
+		if swag.IsZero(m.Joining[i]) { // not required
+			continue
+		}
+
+		if m.Joining[i] != nil {
+			if err := m.Joining[i].Validate(formats); err != nil {
+				if ve, ok := err.(*errors.Validation); ok {
+					return ve.ValidateName("joining" + "." + strconv.Itoa(i))
+				}
+				return err
+			}
+		}
+
+	}
+
+	return nil
+}
+
 func (m *ModelsGetSessionHistorySearchResponseItemV2) validateMatchID(formats strfmt.Registry) error {
 
 	if err := validate.RequiredString("match_id", "body", string(m.MatchID)); err != nil {
@@ -145,6 +204,49 @@ func (m *ModelsGetSessionHistorySearchResponseItemV2) validateMatchID(formats st
 func (m *ModelsGetSessionHistorySearchResponseItemV2) validateNamespace(formats strfmt.Registry) error {
 
 	if err := validate.RequiredString("namespace", "body", string(m.Namespace)); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *ModelsGetSessionHistorySearchResponseItemV2) validatePlayers(formats strfmt.Registry) error {
+
+	if err := validate.Required("players", "body", m.Players); err != nil {
+		return err
+	}
+
+	for i := 0; i < len(m.Players); i++ {
+		if swag.IsZero(m.Players[i]) { // not required
+			continue
+		}
+
+		if m.Players[i] != nil {
+			if err := m.Players[i].Validate(formats); err != nil {
+				if ve, ok := err.(*errors.Validation); ok {
+					return ve.ValidateName("players" + "." + strconv.Itoa(i))
+				}
+				return err
+			}
+		}
+
+	}
+
+	return nil
+}
+
+func (m *ModelsGetSessionHistorySearchResponseItemV2) validateRemovedReason(formats strfmt.Registry) error {
+
+	if err := validate.Required("removed_reason", "body", m.RemovedReason); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *ModelsGetSessionHistorySearchResponseItemV2) validateSessionType(formats strfmt.Registry) error {
+
+	if err := validate.Required("session_type", "body", m.SessionType); err != nil {
 		return err
 	}
 

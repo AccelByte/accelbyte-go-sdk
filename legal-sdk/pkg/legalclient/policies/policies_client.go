@@ -41,8 +41,8 @@ type ClientService interface {
 	RetrieveLatestPoliciesPublicShort(params *RetrieveLatestPoliciesPublicParams, authInfo runtime.ClientAuthInfoWriter) (*RetrieveLatestPoliciesPublicOK, error)
 	RetrievePolicies(params *RetrievePoliciesParams, authInfo runtime.ClientAuthInfoWriter) (*RetrievePoliciesOK, error)
 	RetrievePoliciesShort(params *RetrievePoliciesParams, authInfo runtime.ClientAuthInfoWriter) (*RetrievePoliciesOK, error)
-	SetDefaultPolicy1(params *SetDefaultPolicy1Params, authInfo runtime.ClientAuthInfoWriter) (*SetDefaultPolicy1OK, *SetDefaultPolicy1BadRequest, error)
-	SetDefaultPolicy1Short(params *SetDefaultPolicy1Params, authInfo runtime.ClientAuthInfoWriter) (*SetDefaultPolicy1OK, error)
+	SetDefaultPolicy2(params *SetDefaultPolicy2Params, authInfo runtime.ClientAuthInfoWriter) (*SetDefaultPolicy2OK, *SetDefaultPolicy2BadRequest, error)
+	SetDefaultPolicy2Short(params *SetDefaultPolicy2Params, authInfo runtime.ClientAuthInfoWriter) (*SetDefaultPolicy2OK, error)
 	UpdatePolicy(params *UpdatePolicyParams, authInfo runtime.ClientAuthInfoWriter) (*UpdatePolicyOK, *UpdatePolicyBadRequest, error)
 	UpdatePolicyShort(params *UpdatePolicyParams, authInfo runtime.ClientAuthInfoWriter) (*UpdatePolicyOK, error)
 
@@ -427,16 +427,16 @@ func (a *Client) RetrievePoliciesShort(params *RetrievePoliciesParams, authInfo 
 }
 
 /*
-Deprecated: Use SetDefaultPolicy1Short instead.
+Deprecated: Use SetDefaultPolicy2Short instead.
 
-  SetDefaultPolicy1 sets default policy
+  SetDefaultPolicy2 sets default policy
 
   Update a policy to be the default.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:*:LEGAL&#34;, action=4 (UPDATE)&lt;/li&gt;&lt;/ul&gt;
 */
-func (a *Client) SetDefaultPolicy1(params *SetDefaultPolicy1Params, authInfo runtime.ClientAuthInfoWriter) (*SetDefaultPolicy1OK, *SetDefaultPolicy1BadRequest, error) {
+func (a *Client) SetDefaultPolicy2(params *SetDefaultPolicy2Params, authInfo runtime.ClientAuthInfoWriter) (*SetDefaultPolicy2OK, *SetDefaultPolicy2BadRequest, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
-		params = NewSetDefaultPolicy1Params()
+		params = NewSetDefaultPolicy2Params()
 	}
 
 	if params.Context == nil {
@@ -448,14 +448,14 @@ func (a *Client) SetDefaultPolicy1(params *SetDefaultPolicy1Params, authInfo run
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
-		ID:                 "setDefaultPolicy_1",
+		ID:                 "setDefaultPolicy_2",
 		Method:             "PATCH",
 		PathPattern:        "/agreement/admin/policies/{policyId}/default",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
 		Params:             params,
-		Reader:             &SetDefaultPolicy1Reader{formats: a.formats},
+		Reader:             &SetDefaultPolicy2Reader{formats: a.formats},
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
@@ -466,10 +466,10 @@ func (a *Client) SetDefaultPolicy1(params *SetDefaultPolicy1Params, authInfo run
 
 	switch v := result.(type) {
 
-	case *SetDefaultPolicy1OK:
+	case *SetDefaultPolicy2OK:
 		return v, nil, nil
 
-	case *SetDefaultPolicy1BadRequest:
+	case *SetDefaultPolicy2BadRequest:
 		return nil, v, nil
 
 	default:
@@ -478,14 +478,14 @@ func (a *Client) SetDefaultPolicy1(params *SetDefaultPolicy1Params, authInfo run
 }
 
 /*
-  SetDefaultPolicy1Short sets default policy
+  SetDefaultPolicy2Short sets default policy
 
   Update a policy to be the default.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:*:LEGAL&#34;, action=4 (UPDATE)&lt;/li&gt;&lt;/ul&gt;
 */
-func (a *Client) SetDefaultPolicy1Short(params *SetDefaultPolicy1Params, authInfo runtime.ClientAuthInfoWriter) (*SetDefaultPolicy1OK, error) {
+func (a *Client) SetDefaultPolicy2Short(params *SetDefaultPolicy2Params, authInfo runtime.ClientAuthInfoWriter) (*SetDefaultPolicy2OK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
-		params = NewSetDefaultPolicy1Params()
+		params = NewSetDefaultPolicy2Params()
 	}
 
 	if params.Context == nil {
@@ -497,14 +497,14 @@ func (a *Client) SetDefaultPolicy1Short(params *SetDefaultPolicy1Params, authInf
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
-		ID:                 "setDefaultPolicy_1",
+		ID:                 "setDefaultPolicy_2",
 		Method:             "PATCH",
 		PathPattern:        "/agreement/admin/policies/{policyId}/default",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
 		Params:             params,
-		Reader:             &SetDefaultPolicy1Reader{formats: a.formats},
+		Reader:             &SetDefaultPolicy2Reader{formats: a.formats},
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
@@ -515,9 +515,9 @@ func (a *Client) SetDefaultPolicy1Short(params *SetDefaultPolicy1Params, authInf
 
 	switch v := result.(type) {
 
-	case *SetDefaultPolicy1OK:
+	case *SetDefaultPolicy2OK:
 		return v, nil
-	case *SetDefaultPolicy1BadRequest:
+	case *SetDefaultPolicy2BadRequest:
 		return nil, v
 
 	default:

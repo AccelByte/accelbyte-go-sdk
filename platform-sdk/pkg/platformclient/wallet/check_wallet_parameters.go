@@ -29,7 +29,6 @@ const (
 	CheckWalletNintendoConstant    = "Nintendo"
 	CheckWalletOtherConstant       = "Other"
 	CheckWalletPlaystationConstant = "Playstation"
-	CheckWalletStadiaConstant      = "Stadia"
 	CheckWalletSteamConstant       = "Steam"
 	CheckWalletSystemConstant      = "System"
 	CheckWalletTwitchConstant      = "Twitch"

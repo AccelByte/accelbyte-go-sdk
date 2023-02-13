@@ -42,10 +42,9 @@ type ClientService interface {
 /*
 Deprecated: Use SubmitReportShort instead.
 
-	SubmitReport submits a report
+  SubmitReport submits a report
 
-	User need to be authenticated to access this endpoint.
-
+  User need to be authenticated to access this endpoint.
 Submit a report and will return ticket for reported object.
 New ticket will be created if no OPEN ticket present for reported object (based by objectId and objectType) in a namespace.
 
@@ -109,10 +108,9 @@ func (a *Client) SubmitReport(params *SubmitReportParams, authInfo runtime.Clien
 }
 
 /*
-	SubmitReportShort submits a report
+  SubmitReportShort submits a report
 
-	User need to be authenticated to access this endpoint.
-
+  User need to be authenticated to access this endpoint.
 Submit a report and will return ticket for reported object.
 New ticket will be created if no OPEN ticket present for reported object (based by objectId and objectType) in a namespace.
 

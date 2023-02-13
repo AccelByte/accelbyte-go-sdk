@@ -141,9 +141,9 @@ func (aaa *LocalizedPolicyVersionsService) SetDefaultPolicy(input *localized_pol
 	return nil
 }
 
-// deprecated(2022-01-10): please use RetrieveSingleLocalizedPolicyVersion1Short instead.
-func (aaa *LocalizedPolicyVersionsService) RetrieveSingleLocalizedPolicyVersion1(input *localized_policy_versions.RetrieveSingleLocalizedPolicyVersion1Params) (*legalclientmodels.RetrieveLocalizedPolicyVersionPublicResponse, error) {
-	ok, notFound, err := aaa.Client.LocalizedPolicyVersions.RetrieveSingleLocalizedPolicyVersion1(input)
+// deprecated(2022-01-10): please use RetrieveSingleLocalizedPolicyVersion2Short instead.
+func (aaa *LocalizedPolicyVersionsService) RetrieveSingleLocalizedPolicyVersion2(input *localized_policy_versions.RetrieveSingleLocalizedPolicyVersion2Params) (*legalclientmodels.RetrieveLocalizedPolicyVersionPublicResponse, error) {
+	ok, notFound, err := aaa.Client.LocalizedPolicyVersions.RetrieveSingleLocalizedPolicyVersion2(input)
 	if notFound != nil {
 		return nil, notFound
 	}
@@ -304,8 +304,8 @@ func (aaa *LocalizedPolicyVersionsService) SetDefaultPolicyShort(input *localize
 	return nil
 }
 
-func (aaa *LocalizedPolicyVersionsService) RetrieveSingleLocalizedPolicyVersion1Short(input *localized_policy_versions.RetrieveSingleLocalizedPolicyVersion1Params) (*legalclientmodels.RetrieveLocalizedPolicyVersionPublicResponse, error) {
-	ok, err := aaa.Client.LocalizedPolicyVersions.RetrieveSingleLocalizedPolicyVersion1Short(input)
+func (aaa *LocalizedPolicyVersionsService) RetrieveSingleLocalizedPolicyVersion2Short(input *localized_policy_versions.RetrieveSingleLocalizedPolicyVersion2Params) (*legalclientmodels.RetrieveLocalizedPolicyVersionPublicResponse, error) {
+	ok, err := aaa.Client.LocalizedPolicyVersions.RetrieveSingleLocalizedPolicyVersion2Short(input)
 	if err != nil {
 		return nil, err
 	}

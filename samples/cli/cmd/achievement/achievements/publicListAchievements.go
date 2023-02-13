@@ -29,6 +29,7 @@ var PublicListAchievementsCmd = &cobra.Command{
 		}
 		namespace, _ := cmd.Flags().GetString("namespace")
 		language, _ := cmd.Flags().GetString("language")
+		global, _ := cmd.Flags().GetBool("global")
 		limit, _ := cmd.Flags().GetInt64("limit")
 		offset, _ := cmd.Flags().GetInt64("offset")
 		sortBy, _ := cmd.Flags().GetString("sortBy")
@@ -40,6 +41,7 @@ var PublicListAchievementsCmd = &cobra.Command{
 		}
 		input := &achievements.PublicListAchievementsParams{
 			Namespace: namespace,
+			Global:    &global,
 			Limit:     &limit,
 			Offset:    &offset,
 			SortBy:    &sortBy,
@@ -62,6 +64,7 @@ var PublicListAchievementsCmd = &cobra.Command{
 func init() {
 	PublicListAchievementsCmd.Flags().String("namespace", "", "Namespace")
 	_ = PublicListAchievementsCmd.MarkFlagRequired("namespace")
+	PublicListAchievementsCmd.Flags().Bool("global", false, "Global")
 	PublicListAchievementsCmd.Flags().Int64("limit", 20, "Limit")
 	PublicListAchievementsCmd.Flags().Int64("offset", 0, "Offset")
 	PublicListAchievementsCmd.Flags().String("sortBy", "", "Sort by")

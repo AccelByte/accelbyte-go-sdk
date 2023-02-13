@@ -70,10 +70,9 @@ func NewCreateReasonGroupCreated() *CreateReasonGroupCreated {
 	return &CreateReasonGroupCreated{}
 }
 
-/*
-CreateReasonGroupCreated handles this case with default header values.
+/*CreateReasonGroupCreated handles this case with default header values.
 
-	CreateReasonGroupCreated create reason group created
+  CreateReasonGroupCreated create reason group created
 */
 type CreateReasonGroupCreated struct {
 	Payload *reportingclientmodels.RestapiReasonGroupResponse
@@ -124,10 +123,9 @@ func NewCreateReasonGroupBadRequest() *CreateReasonGroupBadRequest {
 	return &CreateReasonGroupBadRequest{}
 }
 
-/*
-CreateReasonGroupBadRequest handles this case with default header values.
+/*CreateReasonGroupBadRequest handles this case with default header values.
 
-	CreateReasonGroupBadRequest create reason group bad request
+  CreateReasonGroupBadRequest create reason group bad request
 */
 type CreateReasonGroupBadRequest struct {
 	Payload *reportingclientmodels.RestapiErrorResponse
@@ -178,10 +176,9 @@ func NewCreateReasonGroupConflict() *CreateReasonGroupConflict {
 	return &CreateReasonGroupConflict{}
 }
 
-/*
-CreateReasonGroupConflict handles this case with default header values.
+/*CreateReasonGroupConflict handles this case with default header values.
 
-	CreateReasonGroupConflict create reason group conflict
+  CreateReasonGroupConflict create reason group conflict
 */
 type CreateReasonGroupConflict struct {
 	Payload *reportingclientmodels.RestapiErrorResponse
@@ -232,10 +229,9 @@ func NewCreateReasonGroupInternalServerError() *CreateReasonGroupInternalServerE
 	return &CreateReasonGroupInternalServerError{}
 }
 
-/*
-CreateReasonGroupInternalServerError handles this case with default header values.
+/*CreateReasonGroupInternalServerError handles this case with default header values.
 
-	CreateReasonGroupInternalServerError create reason group internal server error
+  CreateReasonGroupInternalServerError create reason group internal server error
 */
 type CreateReasonGroupInternalServerError struct {
 	Payload *reportingclientmodels.RestapiErrorResponse

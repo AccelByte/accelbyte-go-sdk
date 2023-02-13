@@ -614,6 +614,35 @@ func (aaa *GroupMemberService) InviteGroupPublicV2(input *group_member.InviteGro
 	return ok.GetPayload(), nil
 }
 
+// deprecated(2022-01-10): please use CancelInvitationGroupMemberV2Short instead.
+func (aaa *GroupMemberService) CancelInvitationGroupMemberV2(input *group_member.CancelInvitationGroupMemberV2Params) (*groupclientmodels.ModelsCancelInvitationGroupResponseV2, error) {
+	token, err := aaa.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, badRequest, unauthorized, forbidden, notFound, internalServerError, err := aaa.Client.GroupMember.CancelInvitationGroupMemberV2(input, client.BearerToken(*token.AccessToken))
+	if badRequest != nil {
+		return nil, badRequest
+	}
+	if unauthorized != nil {
+		return nil, unauthorized
+	}
+	if forbidden != nil {
+		return nil, forbidden
+	}
+	if notFound != nil {
+		return nil, notFound
+	}
+	if internalServerError != nil {
+		return nil, internalServerError
+	}
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
 // deprecated(2022-01-10): please use AcceptGroupJoinRequestPublicV2Short instead.
 func (aaa *GroupMemberService) AcceptGroupJoinRequestPublicV2(input *group_member.AcceptGroupJoinRequestPublicV2Params) (*groupclientmodels.ModelsMemberRequestGroupResponseV1, error) {
 	token, err := aaa.TokenRepository.GetToken()
@@ -1201,6 +1230,31 @@ func (aaa *GroupMemberService) InviteGroupPublicV2Short(input *group_member.Invi
 	}
 
 	ok, err := aaa.Client.GroupMember.InviteGroupPublicV2Short(input, authInfoWriter)
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
+func (aaa *GroupMemberService) CancelInvitationGroupMemberV2Short(input *group_member.CancelInvitationGroupMemberV2Params) (*groupclientmodels.ModelsCancelInvitationGroupResponseV2, error) {
+	authInfoWriter := input.AuthInfoWriter
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
+	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  aaa.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
+	ok, err := aaa.Client.GroupMember.CancelInvitationGroupMemberV2Short(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}

@@ -37,11 +37,11 @@ type ClientService interface {
 	AdminListUserAchievementsShort(params *AdminListUserAchievementsParams, authInfo runtime.ClientAuthInfoWriter) (*AdminListUserAchievementsOK, error)
 	AdminResetAchievement(params *AdminResetAchievementParams, authInfo runtime.ClientAuthInfoWriter) (*AdminResetAchievementNoContent, *AdminResetAchievementBadRequest, *AdminResetAchievementUnauthorized, *AdminResetAchievementNotFound, *AdminResetAchievementInternalServerError, error)
 	AdminResetAchievementShort(params *AdminResetAchievementParams, authInfo runtime.ClientAuthInfoWriter) (*AdminResetAchievementNoContent, error)
-	AdminUnlockAchievement(params *AdminUnlockAchievementParams, authInfo runtime.ClientAuthInfoWriter) (*AdminUnlockAchievementNoContent, *AdminUnlockAchievementBadRequest, *AdminUnlockAchievementUnauthorized, *AdminUnlockAchievementInternalServerError, error)
+	AdminUnlockAchievement(params *AdminUnlockAchievementParams, authInfo runtime.ClientAuthInfoWriter) (*AdminUnlockAchievementNoContent, *AdminUnlockAchievementBadRequest, *AdminUnlockAchievementUnauthorized, *AdminUnlockAchievementUnprocessableEntity, *AdminUnlockAchievementInternalServerError, error)
 	AdminUnlockAchievementShort(params *AdminUnlockAchievementParams, authInfo runtime.ClientAuthInfoWriter) (*AdminUnlockAchievementNoContent, error)
 	PublicListUserAchievements(params *PublicListUserAchievementsParams, authInfo runtime.ClientAuthInfoWriter) (*PublicListUserAchievementsOK, *PublicListUserAchievementsBadRequest, *PublicListUserAchievementsUnauthorized, *PublicListUserAchievementsNotFound, *PublicListUserAchievementsInternalServerError, error)
 	PublicListUserAchievementsShort(params *PublicListUserAchievementsParams, authInfo runtime.ClientAuthInfoWriter) (*PublicListUserAchievementsOK, error)
-	PublicUnlockAchievement(params *PublicUnlockAchievementParams, authInfo runtime.ClientAuthInfoWriter) (*PublicUnlockAchievementNoContent, *PublicUnlockAchievementBadRequest, *PublicUnlockAchievementUnauthorized, *PublicUnlockAchievementInternalServerError, error)
+	PublicUnlockAchievement(params *PublicUnlockAchievementParams, authInfo runtime.ClientAuthInfoWriter) (*PublicUnlockAchievementNoContent, *PublicUnlockAchievementBadRequest, *PublicUnlockAchievementUnauthorized, *PublicUnlockAchievementUnprocessableEntity, *PublicUnlockAchievementInternalServerError, error)
 	PublicUnlockAchievementShort(params *PublicUnlockAchievementParams, authInfo runtime.ClientAuthInfoWriter) (*PublicUnlockAchievementNoContent, error)
 
 	SetTransport(transport runtime.ClientTransport)
@@ -297,7 +297,7 @@ Deprecated: Use AdminUnlockAchievementShort instead.
   &lt;p&gt;Required permission
 &lt;code&gt;ADMIN:NAMESPACE:{namespace}:USER:{userId}:ACHIEVEMENT [UPDATE]&lt;/code&gt; and scope &lt;code&gt;social&lt;/code&gt;&lt;/p&gt;
 */
-func (a *Client) AdminUnlockAchievement(params *AdminUnlockAchievementParams, authInfo runtime.ClientAuthInfoWriter) (*AdminUnlockAchievementNoContent, *AdminUnlockAchievementBadRequest, *AdminUnlockAchievementUnauthorized, *AdminUnlockAchievementInternalServerError, error) {
+func (a *Client) AdminUnlockAchievement(params *AdminUnlockAchievementParams, authInfo runtime.ClientAuthInfoWriter) (*AdminUnlockAchievementNoContent, *AdminUnlockAchievementBadRequest, *AdminUnlockAchievementUnauthorized, *AdminUnlockAchievementUnprocessableEntity, *AdminUnlockAchievementInternalServerError, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewAdminUnlockAchievementParams()
@@ -325,25 +325,28 @@ func (a *Client) AdminUnlockAchievement(params *AdminUnlockAchievementParams, au
 		Client:             params.HTTPClient,
 	})
 	if err != nil {
-		return nil, nil, nil, nil, err
+		return nil, nil, nil, nil, nil, err
 	}
 
 	switch v := result.(type) {
 
 	case *AdminUnlockAchievementNoContent:
-		return v, nil, nil, nil, nil
+		return v, nil, nil, nil, nil, nil
 
 	case *AdminUnlockAchievementBadRequest:
-		return nil, v, nil, nil, nil
+		return nil, v, nil, nil, nil, nil
 
 	case *AdminUnlockAchievementUnauthorized:
-		return nil, nil, v, nil, nil
+		return nil, nil, v, nil, nil, nil
+
+	case *AdminUnlockAchievementUnprocessableEntity:
+		return nil, nil, nil, v, nil, nil
 
 	case *AdminUnlockAchievementInternalServerError:
-		return nil, nil, nil, v, nil
+		return nil, nil, nil, nil, v, nil
 
 	default:
-		return nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+		return nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
@@ -391,6 +394,8 @@ func (a *Client) AdminUnlockAchievementShort(params *AdminUnlockAchievementParam
 	case *AdminUnlockAchievementBadRequest:
 		return nil, v
 	case *AdminUnlockAchievementUnauthorized:
+		return nil, v
+	case *AdminUnlockAchievementUnprocessableEntity:
 		return nil, v
 	case *AdminUnlockAchievementInternalServerError:
 		return nil, v
@@ -530,7 +535,7 @@ Deprecated: Use PublicUnlockAchievementShort instead.
   &lt;p&gt;Required permission
 &lt;code&gt;NAMESPACE:{namespace}:USER:{userId}:ACHIEVEMENT [UPDATE]&lt;/code&gt; and scope &lt;code&gt;social&lt;/code&gt;&lt;/p&gt;
 */
-func (a *Client) PublicUnlockAchievement(params *PublicUnlockAchievementParams, authInfo runtime.ClientAuthInfoWriter) (*PublicUnlockAchievementNoContent, *PublicUnlockAchievementBadRequest, *PublicUnlockAchievementUnauthorized, *PublicUnlockAchievementInternalServerError, error) {
+func (a *Client) PublicUnlockAchievement(params *PublicUnlockAchievementParams, authInfo runtime.ClientAuthInfoWriter) (*PublicUnlockAchievementNoContent, *PublicUnlockAchievementBadRequest, *PublicUnlockAchievementUnauthorized, *PublicUnlockAchievementUnprocessableEntity, *PublicUnlockAchievementInternalServerError, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewPublicUnlockAchievementParams()
@@ -558,25 +563,28 @@ func (a *Client) PublicUnlockAchievement(params *PublicUnlockAchievementParams, 
 		Client:             params.HTTPClient,
 	})
 	if err != nil {
-		return nil, nil, nil, nil, err
+		return nil, nil, nil, nil, nil, err
 	}
 
 	switch v := result.(type) {
 
 	case *PublicUnlockAchievementNoContent:
-		return v, nil, nil, nil, nil
+		return v, nil, nil, nil, nil, nil
 
 	case *PublicUnlockAchievementBadRequest:
-		return nil, v, nil, nil, nil
+		return nil, v, nil, nil, nil, nil
 
 	case *PublicUnlockAchievementUnauthorized:
-		return nil, nil, v, nil, nil
+		return nil, nil, v, nil, nil, nil
+
+	case *PublicUnlockAchievementUnprocessableEntity:
+		return nil, nil, nil, v, nil, nil
 
 	case *PublicUnlockAchievementInternalServerError:
-		return nil, nil, nil, v, nil
+		return nil, nil, nil, nil, v, nil
 
 	default:
-		return nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+		return nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
@@ -624,6 +632,8 @@ func (a *Client) PublicUnlockAchievementShort(params *PublicUnlockAchievementPar
 	case *PublicUnlockAchievementBadRequest:
 		return nil, v
 	case *PublicUnlockAchievementUnauthorized:
+		return nil, v
+	case *PublicUnlockAchievementUnprocessableEntity:
 		return nil, v
 	case *PublicUnlockAchievementInternalServerError:
 		return nil, v

@@ -35,6 +35,10 @@ type ModelsMatchingParty struct {
 	// Required: true
 	PartyMembers []*ModelsPartyMember `json:"party_members"`
 
+	// ticket created at
+	// Required: true
+	TicketCreatedAt *int64 `json:"ticket_created_at"`
+
 	// ticket id
 	// Required: true
 	TicketID string `json:"ticket_id"`
@@ -57,6 +61,10 @@ func (m *ModelsMatchingParty) Validate(formats strfmt.Registry) error {
 	}
 
 	if err := m.validatePartyMembers(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateTicketCreatedAt(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -117,6 +125,15 @@ func (m *ModelsMatchingParty) validatePartyMembers(formats strfmt.Registry) erro
 			}
 		}
 
+	}
+
+	return nil
+}
+
+func (m *ModelsMatchingParty) validateTicketCreatedAt(formats strfmt.Registry) error {
+
+	if err := validate.Required("ticket_created_at", "body", m.TicketCreatedAt); err != nil {
+		return err
 	}
 
 	return nil

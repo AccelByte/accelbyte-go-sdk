@@ -64,10 +64,9 @@ func NewDeleteTicketNoContent() *DeleteTicketNoContent {
 	return &DeleteTicketNoContent{}
 }
 
-/*
-DeleteTicketNoContent handles this case with default header values.
+/*DeleteTicketNoContent handles this case with default header values.
 
-	DeleteTicketNoContent delete ticket no content
+  DeleteTicketNoContent delete ticket no content
 */
 type DeleteTicketNoContent struct {
 }
@@ -91,10 +90,9 @@ func NewDeleteTicketNotFound() *DeleteTicketNotFound {
 	return &DeleteTicketNotFound{}
 }
 
-/*
-DeleteTicketNotFound handles this case with default header values.
+/*DeleteTicketNotFound handles this case with default header values.
 
-	DeleteTicketNotFound delete ticket not found
+  DeleteTicketNotFound delete ticket not found
 */
 type DeleteTicketNotFound struct {
 	Payload *reportingclientmodels.RestapiErrorResponse
@@ -145,10 +143,9 @@ func NewDeleteTicketInternalServerError() *DeleteTicketInternalServerError {
 	return &DeleteTicketInternalServerError{}
 }
 
-/*
-DeleteTicketInternalServerError handles this case with default header values.
+/*DeleteTicketInternalServerError handles this case with default header values.
 
-	DeleteTicketInternalServerError delete ticket internal server error
+  DeleteTicketInternalServerError delete ticket internal server error
 */
 type DeleteTicketInternalServerError struct {
 	Payload *reportingclientmodels.RestapiErrorResponse

@@ -61,8 +61,7 @@ func NewPublicGetReasonsParamsWithHTTPClient(client *http.Client) *PublicGetReas
 	}
 }
 
-/*
-PublicGetReasonsParams contains all the parameters to send to the API endpoint
+/*PublicGetReasonsParams contains all the parameters to send to the API endpoint
 for the public get reasons operation typically these are written to a http.Request
 */
 type PublicGetReasonsParams struct {

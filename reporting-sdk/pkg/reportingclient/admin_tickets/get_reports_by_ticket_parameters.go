@@ -61,8 +61,7 @@ func NewGetReportsByTicketParamsWithHTTPClient(client *http.Client) *GetReportsB
 	}
 }
 
-/*
-GetReportsByTicketParams contains all the parameters to send to the API endpoint
+/*GetReportsByTicketParams contains all the parameters to send to the API endpoint
 for the get reports by ticket operation typically these are written to a http.Request
 */
 type GetReportsByTicketParams struct {

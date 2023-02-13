@@ -88,7 +88,7 @@ func init() {
 	GroupCmd.AddCommand(groupMember.GetUserGroupInformationPublicV2Cmd)
 	GroupCmd.AddCommand(memberRequest.GetMyGroupJoinRequestV2Cmd)
 	GroupCmd.AddCommand(groupMember.InviteGroupPublicV2Cmd)
-	GroupCmd.AddCommand(memberRequest.CancelInvitationGroupMemberV2Cmd)
+	GroupCmd.AddCommand(groupMember.CancelInvitationGroupMemberV2Cmd)
 	GroupCmd.AddCommand(groupMember.AcceptGroupJoinRequestPublicV2Cmd)
 	GroupCmd.AddCommand(groupMember.RejectGroupJoinRequestPublicV2Cmd)
 	GroupCmd.AddCommand(groupMember.KickGroupMemberPublicV2Cmd)

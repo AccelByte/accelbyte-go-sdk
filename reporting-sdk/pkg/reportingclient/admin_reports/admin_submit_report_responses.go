@@ -70,10 +70,9 @@ func NewAdminSubmitReportCreated() *AdminSubmitReportCreated {
 	return &AdminSubmitReportCreated{}
 }
 
-/*
-AdminSubmitReportCreated handles this case with default header values.
+/*AdminSubmitReportCreated handles this case with default header values.
 
-	AdminSubmitReportCreated admin submit report created
+  AdminSubmitReportCreated admin submit report created
 */
 type AdminSubmitReportCreated struct {
 	Payload *reportingclientmodels.RestapiSubmitReportResponse
@@ -124,10 +123,9 @@ func NewAdminSubmitReportBadRequest() *AdminSubmitReportBadRequest {
 	return &AdminSubmitReportBadRequest{}
 }
 
-/*
-AdminSubmitReportBadRequest handles this case with default header values.
+/*AdminSubmitReportBadRequest handles this case with default header values.
 
-	AdminSubmitReportBadRequest admin submit report bad request
+  AdminSubmitReportBadRequest admin submit report bad request
 */
 type AdminSubmitReportBadRequest struct {
 	Payload *reportingclientmodels.RestapiErrorResponse
@@ -178,10 +176,9 @@ func NewAdminSubmitReportConflict() *AdminSubmitReportConflict {
 	return &AdminSubmitReportConflict{}
 }
 
-/*
-AdminSubmitReportConflict handles this case with default header values.
+/*AdminSubmitReportConflict handles this case with default header values.
 
-	AdminSubmitReportConflict admin submit report conflict
+  AdminSubmitReportConflict admin submit report conflict
 */
 type AdminSubmitReportConflict struct {
 	Payload *reportingclientmodels.RestapiErrorResponse
@@ -232,10 +229,9 @@ func NewAdminSubmitReportInternalServerError() *AdminSubmitReportInternalServerE
 	return &AdminSubmitReportInternalServerError{}
 }
 
-/*
-AdminSubmitReportInternalServerError handles this case with default header values.
+/*AdminSubmitReportInternalServerError handles this case with default header values.
 
-	AdminSubmitReportInternalServerError admin submit report internal server error
+  AdminSubmitReportInternalServerError admin submit report internal server error
 */
 type AdminSubmitReportInternalServerError struct {
 	Payload *reportingclientmodels.RestapiErrorResponse

@@ -76,10 +76,9 @@ func NewSubmitReportCreated() *SubmitReportCreated {
 	return &SubmitReportCreated{}
 }
 
-/*
-SubmitReportCreated handles this case with default header values.
+/*SubmitReportCreated handles this case with default header values.
 
-	SubmitReportCreated submit report created
+  SubmitReportCreated submit report created
 */
 type SubmitReportCreated struct {
 	Payload *reportingclientmodels.RestapiSubmitReportResponse
@@ -130,10 +129,9 @@ func NewSubmitReportBadRequest() *SubmitReportBadRequest {
 	return &SubmitReportBadRequest{}
 }
 
-/*
-SubmitReportBadRequest handles this case with default header values.
+/*SubmitReportBadRequest handles this case with default header values.
 
-	SubmitReportBadRequest submit report bad request
+  SubmitReportBadRequest submit report bad request
 */
 type SubmitReportBadRequest struct {
 	Payload *reportingclientmodels.RestapiErrorResponse
@@ -184,10 +182,9 @@ func NewSubmitReportConflict() *SubmitReportConflict {
 	return &SubmitReportConflict{}
 }
 
-/*
-SubmitReportConflict handles this case with default header values.
+/*SubmitReportConflict handles this case with default header values.
 
-	SubmitReportConflict submit report conflict
+  SubmitReportConflict submit report conflict
 */
 type SubmitReportConflict struct {
 	Payload *reportingclientmodels.RestapiErrorResponse
@@ -238,10 +235,9 @@ func NewSubmitReportTooManyRequests() *SubmitReportTooManyRequests {
 	return &SubmitReportTooManyRequests{}
 }
 
-/*
-SubmitReportTooManyRequests handles this case with default header values.
+/*SubmitReportTooManyRequests handles this case with default header values.
 
-	SubmitReportTooManyRequests submit report too many requests
+  SubmitReportTooManyRequests submit report too many requests
 */
 type SubmitReportTooManyRequests struct {
 	Payload *reportingclientmodels.RestapiErrorResponse
@@ -292,10 +288,9 @@ func NewSubmitReportInternalServerError() *SubmitReportInternalServerError {
 	return &SubmitReportInternalServerError{}
 }
 
-/*
-SubmitReportInternalServerError handles this case with default header values.
+/*SubmitReportInternalServerError handles this case with default header values.
 
-	SubmitReportInternalServerError submit report internal server error
+  SubmitReportInternalServerError submit report internal server error
 */
 type SubmitReportInternalServerError struct {
 	Payload *reportingclientmodels.RestapiErrorResponse

@@ -10,12 +10,17 @@ import (
 	"github.com/AccelByte/sample-apps/cmd/legal/adminUserAgreement"
 	"github.com/AccelByte/sample-apps/cmd/legal/adminUserEligibilities"
 	"github.com/AccelByte/sample-apps/cmd/legal/agreement"
+	"github.com/AccelByte/sample-apps/cmd/legal/agreementWithNamespace"
 	"github.com/AccelByte/sample-apps/cmd/legal/anonymization"
 	"github.com/AccelByte/sample-apps/cmd/legal/baseLegalPolicies"
+	"github.com/AccelByte/sample-apps/cmd/legal/baseLegalPoliciesWithNamespace"
 	"github.com/AccelByte/sample-apps/cmd/legal/eligibilities"
 	"github.com/AccelByte/sample-apps/cmd/legal/localizedPolicyVersions"
+	"github.com/AccelByte/sample-apps/cmd/legal/localizedPolicyVersionsWithNamespace"
 	"github.com/AccelByte/sample-apps/cmd/legal/policies"
+	"github.com/AccelByte/sample-apps/cmd/legal/policiesWithNamespace"
 	"github.com/AccelByte/sample-apps/cmd/legal/policyVersions"
+	"github.com/AccelByte/sample-apps/cmd/legal/policyVersionsWithNamespace"
 	"github.com/AccelByte/sample-apps/cmd/legal/userInfo"
 	"github.com/AccelByte/sample-apps/cmd/legal/utility"
 	"github.com/spf13/cobra"
@@ -42,13 +47,33 @@ func init() {
 	LegalCmd.AddCommand(localizedPolicyVersions.UpdateLocalizedPolicyVersionCmd)
 	LegalCmd.AddCommand(localizedPolicyVersions.RequestPresignedURLCmd)
 	LegalCmd.AddCommand(localizedPolicyVersions.SetDefaultPolicyCmd)
+	LegalCmd.AddCommand(agreementWithNamespace.RetrieveAcceptedAgreements1Cmd)
+	LegalCmd.AddCommand(agreementWithNamespace.RetrieveAllUsersByPolicyVersion1Cmd)
+	LegalCmd.AddCommand(baseLegalPoliciesWithNamespace.RetrieveAllLegalPoliciesByNamespaceCmd)
+	LegalCmd.AddCommand(baseLegalPoliciesWithNamespace.CreatePolicy1Cmd)
+	LegalCmd.AddCommand(baseLegalPoliciesWithNamespace.RetrieveSinglePolicy1Cmd)
+	LegalCmd.AddCommand(baseLegalPoliciesWithNamespace.PartialUpdatePolicy1Cmd)
+	LegalCmd.AddCommand(baseLegalPoliciesWithNamespace.RetrievePolicyCountry1Cmd)
+	LegalCmd.AddCommand(localizedPolicyVersionsWithNamespace.RetrieveLocalizedPolicyVersions1Cmd)
+	LegalCmd.AddCommand(localizedPolicyVersionsWithNamespace.CreateLocalizedPolicyVersion1Cmd)
+	LegalCmd.AddCommand(localizedPolicyVersionsWithNamespace.RetrieveSingleLocalizedPolicyVersion1Cmd)
+	LegalCmd.AddCommand(localizedPolicyVersionsWithNamespace.UpdateLocalizedPolicyVersion1Cmd)
+	LegalCmd.AddCommand(localizedPolicyVersionsWithNamespace.RequestPresignedURL1Cmd)
+	LegalCmd.AddCommand(localizedPolicyVersionsWithNamespace.SetDefaultPolicy1Cmd)
+	LegalCmd.AddCommand(policyVersionsWithNamespace.UpdatePolicyVersion1Cmd)
+	LegalCmd.AddCommand(policyVersionsWithNamespace.PublishPolicyVersion1Cmd)
+	LegalCmd.AddCommand(policiesWithNamespace.UpdatePolicy1Cmd)
+	LegalCmd.AddCommand(policiesWithNamespace.SetDefaultPolicy3Cmd)
+	LegalCmd.AddCommand(policyVersionsWithNamespace.RetrieveSinglePolicyVersion1Cmd)
+	LegalCmd.AddCommand(policyVersionsWithNamespace.CreatePolicyVersion1Cmd)
+	LegalCmd.AddCommand(baseLegalPoliciesWithNamespace.RetrieveAllPolicyTypes1Cmd)
 	LegalCmd.AddCommand(adminUserAgreement.IndirectBulkAcceptVersionedPolicyCmd)
 	LegalCmd.AddCommand(adminUserEligibilities.AdminRetrieveEligibilitiesCmd)
 	LegalCmd.AddCommand(policies.RetrievePoliciesCmd)
 	LegalCmd.AddCommand(policyVersions.UpdatePolicyVersionCmd)
 	LegalCmd.AddCommand(policyVersions.PublishPolicyVersionCmd)
 	LegalCmd.AddCommand(policies.UpdatePolicyCmd)
-	LegalCmd.AddCommand(policies.SetDefaultPolicy1Cmd)
+	LegalCmd.AddCommand(policies.SetDefaultPolicy2Cmd)
 	LegalCmd.AddCommand(policyVersions.RetrieveSinglePolicyVersionCmd)
 	LegalCmd.AddCommand(policyVersions.CreatePolicyVersionCmd)
 	LegalCmd.AddCommand(baseLegalPolicies.RetrieveAllPolicyTypesCmd)
@@ -64,7 +89,8 @@ func init() {
 	LegalCmd.AddCommand(agreement.IndirectBulkAcceptVersionedPolicy1Cmd)
 	LegalCmd.AddCommand(eligibilities.RetrieveEligibilitiesPublicCmd)
 	LegalCmd.AddCommand(eligibilities.RetrieveEligibilitiesPublicIndirectCmd)
-	LegalCmd.AddCommand(localizedPolicyVersions.RetrieveSingleLocalizedPolicyVersion1Cmd)
+	LegalCmd.AddCommand(localizedPolicyVersions.RetrieveSingleLocalizedPolicyVersion2Cmd)
+	LegalCmd.AddCommand(localizedPolicyVersionsWithNamespace.RetrieveSingleLocalizedPolicyVersion3Cmd)
 	LegalCmd.AddCommand(policies.RetrieveLatestPoliciesCmd)
 	LegalCmd.AddCommand(policies.RetrieveLatestPoliciesPublicCmd)
 	LegalCmd.AddCommand(policies.RetrieveLatestPoliciesByNamespaceAndCountryPublicCmd)

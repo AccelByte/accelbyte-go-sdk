@@ -28,10 +28,12 @@ func NewGetUserStatItemsParams() *GetUserStatItemsParams {
 	var (
 		limitDefault  = int32(20)
 		offsetDefault = int32(0)
+		sortByDefault = string("updatedAt:asc")
 	)
 	return &GetUserStatItemsParams{
 		Limit:  &limitDefault,
 		Offset: &offsetDefault,
+		SortBy: &sortByDefault,
 
 		timeout: cr.DefaultTimeout,
 	}
@@ -43,10 +45,12 @@ func NewGetUserStatItemsParamsWithTimeout(timeout time.Duration) *GetUserStatIte
 	var (
 		limitDefault  = int32(20)
 		offsetDefault = int32(0)
+		sortByDefault = string("updatedAt:asc")
 	)
 	return &GetUserStatItemsParams{
 		Limit:  &limitDefault,
 		Offset: &offsetDefault,
+		SortBy: &sortByDefault,
 
 		timeout: timeout,
 	}
@@ -58,10 +62,12 @@ func NewGetUserStatItemsParamsWithContext(ctx context.Context) *GetUserStatItems
 	var (
 		limitDefault  = int32(20)
 		offsetDefault = int32(0)
+		sortByDefault = string("updatedAt:asc")
 	)
 	return &GetUserStatItemsParams{
 		Limit:  &limitDefault,
 		Offset: &offsetDefault,
+		SortBy: &sortByDefault,
 
 		Context: ctx,
 	}
@@ -73,10 +79,12 @@ func NewGetUserStatItemsParamsWithHTTPClient(client *http.Client) *GetUserStatIt
 	var (
 		limitDefault  = int32(20)
 		offsetDefault = int32(0)
+		sortByDefault = string("updatedAt:asc")
 	)
 	return &GetUserStatItemsParams{
 		Limit:      &limitDefault,
 		Offset:     &offsetDefault,
+		SortBy:     &sortByDefault,
 		HTTPClient: client,
 	}
 }
@@ -97,6 +105,11 @@ type GetUserStatItemsParams struct {
 	Namespace string
 	/*Offset*/
 	Offset *int32
+	/*SortBy
+	  default is updatedAt:asc, allow values: [statCode, statCode:asc, statCode:desc, createdAt, createdAt:asc, createdAt:desc, updatedAt, updatedAt:asc, updatedAt:desc],and support sort group, eg: sortBy=statCode:asc,createdAt:desc.
+
+	*/
+	SortBy *string
 	/*StatCodes
 	  stat codes
 
@@ -199,6 +212,17 @@ func (o *GetUserStatItemsParams) SetOffset(offset *int32) {
 	o.Offset = offset
 }
 
+// WithSortBy adds the sortBy to the get user stat items params
+func (o *GetUserStatItemsParams) WithSortBy(sortBy *string) *GetUserStatItemsParams {
+	o.SetSortBy(sortBy)
+	return o
+}
+
+// SetSortBy adds the sortBy to the get user stat items params
+func (o *GetUserStatItemsParams) SetSortBy(sortBy *string) {
+	o.SortBy = sortBy
+}
+
 // WithStatCodes adds the statCodes to the get user stat items params
 func (o *GetUserStatItemsParams) WithStatCodes(statCodes *string) *GetUserStatItemsParams {
 	o.SetStatCodes(statCodes)
@@ -271,6 +295,22 @@ func (o *GetUserStatItemsParams) WriteToRequest(r runtime.ClientRequest, reg str
 		qOffset := swag.FormatInt32(qrOffset)
 		if qOffset != "" {
 			if err := r.SetQueryParam("offset", qOffset); err != nil {
+				return err
+			}
+		}
+
+	}
+
+	if o.SortBy != nil {
+
+		// query param sortBy
+		var qrSortBy string
+		if o.SortBy != nil {
+			qrSortBy = *o.SortBy
+		}
+		qSortBy := qrSortBy
+		if qSortBy != "" {
+			if err := r.SetQueryParam("sortBy", qSortBy); err != nil {
 				return err
 			}
 		}

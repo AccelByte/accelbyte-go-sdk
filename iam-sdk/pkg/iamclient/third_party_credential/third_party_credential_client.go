@@ -74,8 +74,6 @@ Deprecated: Use AddThirdPartyLoginPlatformCredentialV3Short instead.
 					 &lt;p&gt;No secret for &lt;strong&gt;netflix&lt;/strong&gt;, we configure the Root, Public, Private Key certificate pem file and target environment; value: [sandbox, production]&lt;/p&gt;
 					 &lt;p&gt;The secret for &lt;strong&gt;oculus&lt;/strong&gt; is app secret of the oculus app.&lt;/p&gt;
 					 &lt;p&gt;The secret for &lt;strong&gt;ps4, ps5, and ps4web&lt;/strong&gt; is client secret of the psn web server.&lt;/p&gt;
-					 &lt;p&gt;The secret for &lt;strong&gt;stadia&lt;/strong&gt; is the google cloud service account in base64 encode JSON format.&lt;/p&gt;
-					 &lt;p&gt;The secret for &lt;strong&gt;stadiaweb&lt;/strong&gt; is client secret of the google OAuth client.&lt;/p&gt;
 					 &lt;p&gt;The secret for &lt;strong&gt;steam&lt;/strong&gt; is the Steam Web API Key.&lt;/p&gt;
 					 &lt;p&gt;The secret for &lt;strong&gt;steamopenid&lt;/strong&gt; is the Steam Web API Key.&lt;/p&gt;
 					 &lt;p&gt;The secret for &lt;strong&gt;twitch&lt;/strong&gt; is client secret of the twitch client.&lt;/p&gt;
@@ -158,8 +156,6 @@ func (a *Client) AddThirdPartyLoginPlatformCredentialV3(params *AddThirdPartyLog
 					 &lt;p&gt;No secret for &lt;strong&gt;netflix&lt;/strong&gt;, we configure the Root, Public, Private Key certificate pem file and target environment; value: [sandbox, production]&lt;/p&gt;
 					 &lt;p&gt;The secret for &lt;strong&gt;oculus&lt;/strong&gt; is app secret of the oculus app.&lt;/p&gt;
 					 &lt;p&gt;The secret for &lt;strong&gt;ps4, ps5, and ps4web&lt;/strong&gt; is client secret of the psn web server.&lt;/p&gt;
-					 &lt;p&gt;The secret for &lt;strong&gt;stadia&lt;/strong&gt; is the google cloud service account in base64 encode JSON format.&lt;/p&gt;
-					 &lt;p&gt;The secret for &lt;strong&gt;stadiaweb&lt;/strong&gt; is client secret of the google OAuth client.&lt;/p&gt;
 					 &lt;p&gt;The secret for &lt;strong&gt;steam&lt;/strong&gt; is the Steam Web API Key.&lt;/p&gt;
 					 &lt;p&gt;The secret for &lt;strong&gt;steamopenid&lt;/strong&gt; is the Steam Web API Key.&lt;/p&gt;
 					 &lt;p&gt;The secret for &lt;strong&gt;twitch&lt;/strong&gt; is client secret of the twitch client.&lt;/p&gt;
@@ -1037,8 +1033,6 @@ Deprecated: Use UpdateThirdPartyLoginPlatformCredentialV3Short instead.
 					 &lt;p&gt;No secret for &lt;strong&gt;netflix&lt;/strong&gt;, we configure the Root, Public, Private Key certificate pem file and target environment; value: [sandbox, production]&lt;/p&gt;
 					 &lt;p&gt;The secret for &lt;strong&gt;oculus&lt;/strong&gt; is app secret of the oculus app.&lt;/p&gt;
 					 &lt;p&gt;The secret for &lt;strong&gt;ps4, ps5, and ps4web&lt;/strong&gt; is client secret of the psn web server.&lt;/p&gt;
-					 &lt;p&gt;The secret for &lt;strong&gt;stadia&lt;/strong&gt; is the google cloud service account in base64 encode JSON format.&lt;/p&gt;
-					 &lt;p&gt;The secret for &lt;strong&gt;stadiaweb&lt;/strong&gt; is client secret of the google OAuth client.&lt;/p&gt;
 					 &lt;p&gt;The secret for &lt;strong&gt;steam&lt;/strong&gt; is the Steam Web API Key.&lt;/p&gt;
 					 &lt;p&gt;The secret for &lt;strong&gt;steamopenid&lt;/strong&gt; is the Steam Web API Key.&lt;/p&gt;
 					 &lt;p&gt;The secret for &lt;strong&gt;twitch&lt;/strong&gt; is client secret of the twitch client.&lt;/p&gt;
@@ -1124,8 +1118,6 @@ func (a *Client) UpdateThirdPartyLoginPlatformCredentialV3(params *UpdateThirdPa
 					 &lt;p&gt;No secret for &lt;strong&gt;netflix&lt;/strong&gt;, we configure the Root, Public, Private Key certificate pem file and target environment; value: [sandbox, production]&lt;/p&gt;
 					 &lt;p&gt;The secret for &lt;strong&gt;oculus&lt;/strong&gt; is app secret of the oculus app.&lt;/p&gt;
 					 &lt;p&gt;The secret for &lt;strong&gt;ps4, ps5, and ps4web&lt;/strong&gt; is client secret of the psn web server.&lt;/p&gt;
-					 &lt;p&gt;The secret for &lt;strong&gt;stadia&lt;/strong&gt; is the google cloud service account in base64 encode JSON format.&lt;/p&gt;
-					 &lt;p&gt;The secret for &lt;strong&gt;stadiaweb&lt;/strong&gt; is client secret of the google OAuth client.&lt;/p&gt;
 					 &lt;p&gt;The secret for &lt;strong&gt;steam&lt;/strong&gt; is the Steam Web API Key.&lt;/p&gt;
 					 &lt;p&gt;The secret for &lt;strong&gt;steamopenid&lt;/strong&gt; is the Steam Web API Key.&lt;/p&gt;
 					 &lt;p&gt;The secret for &lt;strong&gt;twitch&lt;/strong&gt; is client secret of the twitch client.&lt;/p&gt;

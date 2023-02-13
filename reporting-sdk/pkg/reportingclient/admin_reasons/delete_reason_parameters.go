@@ -60,8 +60,7 @@ func NewDeleteReasonParamsWithHTTPClient(client *http.Client) *DeleteReasonParam
 	}
 }
 
-/*
-DeleteReasonParams contains all the parameters to send to the API endpoint
+/*DeleteReasonParams contains all the parameters to send to the API endpoint
 for the delete reason operation typically these are written to a http.Request
 */
 type DeleteReasonParams struct {

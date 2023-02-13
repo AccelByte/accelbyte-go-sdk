@@ -3,7 +3,7 @@
   "info": {
     "description": "Justice Session Service",
     "title": "justice-session-service",
-    "version": "2.6.0"
+    "version": "2.6.1"
   },
   "schemes": [
     "https"

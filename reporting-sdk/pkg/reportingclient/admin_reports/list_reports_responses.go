@@ -58,10 +58,9 @@ func NewListReportsOK() *ListReportsOK {
 	return &ListReportsOK{}
 }
 
-/*
-ListReportsOK handles this case with default header values.
+/*ListReportsOK handles this case with default header values.
 
-	ListReportsOK list reports o k
+  ListReportsOK list reports o k
 */
 type ListReportsOK struct {
 	Payload *reportingclientmodels.RestapiReportListResponse
@@ -112,10 +111,9 @@ func NewListReportsInternalServerError() *ListReportsInternalServerError {
 	return &ListReportsInternalServerError{}
 }
 
-/*
-ListReportsInternalServerError handles this case with default header values.
+/*ListReportsInternalServerError handles this case with default header values.
 
-	ListReportsInternalServerError list reports internal server error
+  ListReportsInternalServerError list reports internal server error
 */
 type ListReportsInternalServerError struct {
 	Payload *reportingclientmodels.RestapiErrorResponse

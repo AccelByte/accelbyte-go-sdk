@@ -61,8 +61,7 @@ func NewListTicketsParamsWithHTTPClient(client *http.Client) *ListTicketsParams 
 	}
 }
 
-/*
-ListTicketsParams contains all the parameters to send to the API endpoint
+/*ListTicketsParams contains all the parameters to send to the API endpoint
 for the list tickets operation typically these are written to a http.Request
 */
 type ListTicketsParams struct {

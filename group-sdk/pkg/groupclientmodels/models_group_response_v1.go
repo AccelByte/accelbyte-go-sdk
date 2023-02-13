@@ -6,6 +6,7 @@ package groupclientmodels
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"strconv"
 
 	"github.com/go-openapi/errors"
@@ -61,6 +62,7 @@ type ModelsGroupResponseV1 struct {
 
 	// group type
 	// Required: true
+	// Enum: [OPEN PRIVATE PUBLIC]
 	GroupType *string `json:"groupType"`
 }
 
@@ -233,9 +235,46 @@ func (m *ModelsGroupResponseV1) validateGroupRules(formats strfmt.Registry) erro
 	return nil
 }
 
+var modelsGroupResponseV1TypeGroupTypePropEnum []interface{}
+
+func init() {
+	var res []string
+	if err := json.Unmarshal([]byte(`["OPEN","PRIVATE","PUBLIC"]`), &res); err != nil {
+		panic(err)
+	}
+	for _, v := range res {
+		modelsGroupResponseV1TypeGroupTypePropEnum = append(modelsGroupResponseV1TypeGroupTypePropEnum, v)
+	}
+}
+
+const (
+
+	// ModelsGroupResponseV1GroupTypeOPEN captures enum value "OPEN"
+	ModelsGroupResponseV1GroupTypeOPEN string = "OPEN"
+
+	// ModelsGroupResponseV1GroupTypePRIVATE captures enum value "PRIVATE"
+	ModelsGroupResponseV1GroupTypePRIVATE string = "PRIVATE"
+
+	// ModelsGroupResponseV1GroupTypePUBLIC captures enum value "PUBLIC"
+	ModelsGroupResponseV1GroupTypePUBLIC string = "PUBLIC"
+)
+
+// prop value enum
+func (m *ModelsGroupResponseV1) validateGroupTypeEnum(path, location string, value string) error {
+	if err := validate.EnumCase(path, location, value, modelsGroupResponseV1TypeGroupTypePropEnum, true); err != nil {
+		return err
+	}
+	return nil
+}
+
 func (m *ModelsGroupResponseV1) validateGroupType(formats strfmt.Registry) error {
 
 	if err := validate.Required("groupType", "body", m.GroupType); err != nil {
+		return err
+	}
+
+	// value enum
+	if err := m.validateGroupTypeEnum("groupType", "body", *m.GroupType); err != nil {
 		return err
 	}
 

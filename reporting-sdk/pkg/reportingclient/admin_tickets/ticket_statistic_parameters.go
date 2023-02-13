@@ -60,8 +60,7 @@ func NewTicketStatisticParamsWithHTTPClient(client *http.Client) *TicketStatisti
 	}
 }
 
-/*
-TicketStatisticParams contains all the parameters to send to the API endpoint
+/*TicketStatisticParams contains all the parameters to send to the API endpoint
 for the ticket statistic operation typically these are written to a http.Request
 */
 type TicketStatisticParams struct {

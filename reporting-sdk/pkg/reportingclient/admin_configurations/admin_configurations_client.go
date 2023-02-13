@@ -44,12 +44,12 @@ type ClientService interface {
 /*
 Deprecated: Use GetShort instead.
 
-	Get gets configuration
+  Get gets configuration
 
-	Required permission: ADMIN:NAMESPACE:{namespace}:REPORTINGCONFIG [READ]
-
+  Required permission: ADMIN:NAMESPACE:{namespace}:REPORTINGCONFIG [READ]
 TimeInterval is in nanoseconds.
 When there&#39;s no configuration set, the response is the default value (configurable through envar).
+
 */
 func (a *Client) Get(params *GetParams, authInfo runtime.ClientAuthInfoWriter) (*GetOK, *GetInternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -96,12 +96,12 @@ func (a *Client) Get(params *GetParams, authInfo runtime.ClientAuthInfoWriter) (
 }
 
 /*
-	GetShort gets configuration
+  GetShort gets configuration
 
-	Required permission: ADMIN:NAMESPACE:{namespace}:REPORTINGCONFIG [READ]
-
+  Required permission: ADMIN:NAMESPACE:{namespace}:REPORTINGCONFIG [READ]
 TimeInterval is in nanoseconds.
 When there&#39;s no configuration set, the response is the default value (configurable through envar).
+
 */
 func (a *Client) GetShort(params *GetParams, authInfo runtime.ClientAuthInfoWriter) (*GetOK, error) {
 	// TODO: Validate the params before sending
@@ -149,13 +149,13 @@ func (a *Client) GetShort(params *GetParams, authInfo runtime.ClientAuthInfoWrit
 /*
 Deprecated: Use UpsertShort instead.
 
-	Upsert creates update configuration
+  Upsert creates update configuration
 
-	Required permission: ADMIN:NAMESPACE:{namespace}:REPORTINGCONFIG [CREATE]
-
+  Required permission: ADMIN:NAMESPACE:{namespace}:REPORTINGCONFIG [CREATE]
 The behaviour of this endpoint is upsert based on the namespace.
 So, you can use this for both creating &amp; updating the configuration.
 TimeInterval is in nanoseconds.
+
 */
 func (a *Client) Upsert(params *UpsertParams, authInfo runtime.ClientAuthInfoWriter) (*UpsertOK, *UpsertBadRequest, *UpsertInternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -205,13 +205,13 @@ func (a *Client) Upsert(params *UpsertParams, authInfo runtime.ClientAuthInfoWri
 }
 
 /*
-	UpsertShort creates update configuration
+  UpsertShort creates update configuration
 
-	Required permission: ADMIN:NAMESPACE:{namespace}:REPORTINGCONFIG [CREATE]
-
+  Required permission: ADMIN:NAMESPACE:{namespace}:REPORTINGCONFIG [CREATE]
 The behaviour of this endpoint is upsert based on the namespace.
 So, you can use this for both creating &amp; updating the configuration.
 TimeInterval is in nanoseconds.
+
 */
 func (a *Client) UpsertShort(params *UpsertParams, authInfo runtime.ClientAuthInfoWriter) (*UpsertOK, error) {
 	// TODO: Validate the params before sending

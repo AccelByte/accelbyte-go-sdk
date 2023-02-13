@@ -73,8 +73,7 @@ func NewListReportsParamsWithHTTPClient(client *http.Client) *ListReportsParams 
 	}
 }
 
-/*
-ListReportsParams contains all the parameters to send to the API endpoint
+/*ListReportsParams contains all the parameters to send to the API endpoint
 for the list reports operation typically these are written to a http.Request
 */
 type ListReportsParams struct {

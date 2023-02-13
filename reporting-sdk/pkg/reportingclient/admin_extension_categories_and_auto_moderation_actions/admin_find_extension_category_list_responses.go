@@ -64,10 +64,9 @@ func NewAdminFindExtensionCategoryListOK() *AdminFindExtensionCategoryListOK {
 	return &AdminFindExtensionCategoryListOK{}
 }
 
-/*
-AdminFindExtensionCategoryListOK handles this case with default header values.
+/*AdminFindExtensionCategoryListOK handles this case with default header values.
 
-	AdminFindExtensionCategoryListOK admin find extension category list o k
+  AdminFindExtensionCategoryListOK admin find extension category list o k
 */
 type AdminFindExtensionCategoryListOK struct {
 	Payload *reportingclientmodels.RestapiExtensionCategoryListAPIResponse
@@ -118,10 +117,9 @@ func NewAdminFindExtensionCategoryListBadRequest() *AdminFindExtensionCategoryLi
 	return &AdminFindExtensionCategoryListBadRequest{}
 }
 
-/*
-AdminFindExtensionCategoryListBadRequest handles this case with default header values.
+/*AdminFindExtensionCategoryListBadRequest handles this case with default header values.
 
-	AdminFindExtensionCategoryListBadRequest admin find extension category list bad request
+  AdminFindExtensionCategoryListBadRequest admin find extension category list bad request
 */
 type AdminFindExtensionCategoryListBadRequest struct {
 	Payload *reportingclientmodels.RestapiErrorResponse
@@ -172,10 +170,9 @@ func NewAdminFindExtensionCategoryListInternalServerError() *AdminFindExtensionC
 	return &AdminFindExtensionCategoryListInternalServerError{}
 }
 
-/*
-AdminFindExtensionCategoryListInternalServerError handles this case with default header values.
+/*AdminFindExtensionCategoryListInternalServerError handles this case with default header values.
 
-	AdminFindExtensionCategoryListInternalServerError admin find extension category list internal server error
+  AdminFindExtensionCategoryListInternalServerError admin find extension category list internal server error
 */
 type AdminFindExtensionCategoryListInternalServerError struct {
 	Payload *reportingclientmodels.RestapiErrorResponse

@@ -70,13 +70,13 @@ func (aaa *PoliciesService) UpdatePolicy(input *policies.UpdatePolicyParams) err
 	return nil
 }
 
-// deprecated(2022-01-10): please use SetDefaultPolicy1Short instead.
-func (aaa *PoliciesService) SetDefaultPolicy1(input *policies.SetDefaultPolicy1Params) error {
+// deprecated(2022-01-10): please use SetDefaultPolicy2Short instead.
+func (aaa *PoliciesService) SetDefaultPolicy2(input *policies.SetDefaultPolicy2Params) error {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	_, badRequest, err := aaa.Client.Policies.SetDefaultPolicy1(input, client.BearerToken(*token.AccessToken))
+	_, badRequest, err := aaa.Client.Policies.SetDefaultPolicy2(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return badRequest
 	}
@@ -174,7 +174,7 @@ func (aaa *PoliciesService) UpdatePolicyShort(input *policies.UpdatePolicyParams
 	return nil
 }
 
-func (aaa *PoliciesService) SetDefaultPolicy1Short(input *policies.SetDefaultPolicy1Params) error {
+func (aaa *PoliciesService) SetDefaultPolicy2Short(input *policies.SetDefaultPolicy2Params) error {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -191,7 +191,7 @@ func (aaa *PoliciesService) SetDefaultPolicy1Short(input *policies.SetDefaultPol
 		}
 	}
 
-	_, err := aaa.Client.Policies.SetDefaultPolicy1Short(input, authInfoWriter)
+	_, err := aaa.Client.Policies.SetDefaultPolicy2Short(input, authInfoWriter)
 	if err != nil {
 		return err
 	}

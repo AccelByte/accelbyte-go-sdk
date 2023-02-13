@@ -122,6 +122,20 @@ func (aaa *AnonymizationService) AnonymizePayment(input *anonymization.Anonymize
 	return nil
 }
 
+// deprecated(2022-01-10): please use AnonymizeRevocationShort instead.
+func (aaa *AnonymizationService) AnonymizeRevocation(input *anonymization.AnonymizeRevocationParams) error {
+	token, err := aaa.TokenRepository.GetToken()
+	if err != nil {
+		return err
+	}
+	_, err = aaa.Client.Anonymization.AnonymizeRevocation(input, client.BearerToken(*token.AccessToken))
+	if err != nil {
+		return err
+	}
+
+	return nil
+}
+
 // deprecated(2022-01-10): please use AnonymizeSubscriptionShort instead.
 func (aaa *AnonymizationService) AnonymizeSubscription(input *anonymization.AnonymizeSubscriptionParams) error {
 	token, err := aaa.TokenRepository.GetToken()
@@ -293,6 +307,31 @@ func (aaa *AnonymizationService) AnonymizePaymentShort(input *anonymization.Anon
 	}
 
 	_, err := aaa.Client.Anonymization.AnonymizePaymentShort(input, authInfoWriter)
+	if err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (aaa *AnonymizationService) AnonymizeRevocationShort(input *anonymization.AnonymizeRevocationParams) error {
+	authInfoWriter := input.AuthInfoWriter
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
+	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  aaa.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
+	_, err := aaa.Client.Anonymization.AnonymizeRevocationShort(input, authInfoWriter)
 	if err != nil {
 		return err
 	}

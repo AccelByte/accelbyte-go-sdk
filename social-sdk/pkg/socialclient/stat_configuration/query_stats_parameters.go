@@ -88,6 +88,11 @@ type QueryStatsParams struct {
 
 	/*RetryPolicy*/
 	RetryPolicy *utils.Retry
+	/*IsGlobal
+	  flag to filter global statcode
+
+	*/
+	IsGlobal *bool
 	/*Keyword
 	  keyword
 
@@ -156,6 +161,17 @@ func (o *QueryStatsParams) SetHTTPClientTransport(roundTripper http.RoundTripper
 	}
 }
 
+// WithIsGlobal adds the isGlobal to the query stats params
+func (o *QueryStatsParams) WithIsGlobal(isGlobal *bool) *QueryStatsParams {
+	o.SetIsGlobal(isGlobal)
+	return o
+}
+
+// SetIsGlobal adds the isGlobal to the query stats params
+func (o *QueryStatsParams) SetIsGlobal(isGlobal *bool) {
+	o.IsGlobal = isGlobal
+}
+
 // WithKeyword adds the keyword to the query stats params
 func (o *QueryStatsParams) WithKeyword(keyword string) *QueryStatsParams {
 	o.SetKeyword(keyword)
@@ -207,6 +223,22 @@ func (o *QueryStatsParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.Re
 		return err
 	}
 	var res []error
+
+	if o.IsGlobal != nil {
+
+		// query param isGlobal
+		var qrIsGlobal bool
+		if o.IsGlobal != nil {
+			qrIsGlobal = *o.IsGlobal
+		}
+		qIsGlobal := swag.FormatBool(qrIsGlobal)
+		if qIsGlobal != "" {
+			if err := r.SetQueryParam("isGlobal", qIsGlobal); err != nil {
+				return err
+			}
+		}
+
+	}
 
 	// query param keyword
 	qrKeyword := o.Keyword

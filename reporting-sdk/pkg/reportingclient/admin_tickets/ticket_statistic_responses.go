@@ -58,10 +58,9 @@ func NewTicketStatisticOK() *TicketStatisticOK {
 	return &TicketStatisticOK{}
 }
 
-/*
-TicketStatisticOK handles this case with default header values.
+/*TicketStatisticOK handles this case with default header values.
 
-	TicketStatisticOK ticket statistic o k
+  TicketStatisticOK ticket statistic o k
 */
 type TicketStatisticOK struct {
 	Payload *reportingclientmodels.RestapiTicketStatisticResponse
@@ -112,10 +111,9 @@ func NewTicketStatisticInternalServerError() *TicketStatisticInternalServerError
 	return &TicketStatisticInternalServerError{}
 }
 
-/*
-TicketStatisticInternalServerError handles this case with default header values.
+/*TicketStatisticInternalServerError handles this case with default header values.
 
-	TicketStatisticInternalServerError ticket statistic internal server error
+  TicketStatisticInternalServerError ticket statistic internal server error
 */
 type TicketStatisticInternalServerError struct {
 	Payload *reportingclientmodels.RestapiErrorResponse

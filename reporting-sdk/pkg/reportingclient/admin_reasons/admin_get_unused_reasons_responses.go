@@ -64,10 +64,9 @@ func NewAdminGetUnusedReasonsOK() *AdminGetUnusedReasonsOK {
 	return &AdminGetUnusedReasonsOK{}
 }
 
-/*
-AdminGetUnusedReasonsOK handles this case with default header values.
+/*AdminGetUnusedReasonsOK handles this case with default header values.
 
-	OK
+  OK
 */
 type AdminGetUnusedReasonsOK struct {
 	Payload *reportingclientmodels.RestapiUnusedReasonListResponse
@@ -118,10 +117,9 @@ func NewAdminGetUnusedReasonsNotFound() *AdminGetUnusedReasonsNotFound {
 	return &AdminGetUnusedReasonsNotFound{}
 }
 
-/*
-AdminGetUnusedReasonsNotFound handles this case with default header values.
+/*AdminGetUnusedReasonsNotFound handles this case with default header values.
 
-	Not Found
+  Not Found
 */
 type AdminGetUnusedReasonsNotFound struct {
 	Payload *reportingclientmodels.RestapiErrorResponse
@@ -172,10 +170,9 @@ func NewAdminGetUnusedReasonsInternalServerError() *AdminGetUnusedReasonsInterna
 	return &AdminGetUnusedReasonsInternalServerError{}
 }
 
-/*
-AdminGetUnusedReasonsInternalServerError handles this case with default header values.
+/*AdminGetUnusedReasonsInternalServerError handles this case with default header values.
 
-	Internal Server Error
+  Internal Server Error
 */
 type AdminGetUnusedReasonsInternalServerError struct {
 	Payload *reportingclientmodels.RestapiErrorResponse

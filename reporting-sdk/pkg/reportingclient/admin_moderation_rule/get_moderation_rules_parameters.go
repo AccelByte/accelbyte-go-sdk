@@ -61,8 +61,7 @@ func NewGetModerationRulesParamsWithHTTPClient(client *http.Client) *GetModerati
 	}
 }
 
-/*
-GetModerationRulesParams contains all the parameters to send to the API endpoint
+/*GetModerationRulesParams contains all the parameters to send to the API endpoint
 for the get moderation rules operation typically these are written to a http.Request
 */
 type GetModerationRulesParams struct {

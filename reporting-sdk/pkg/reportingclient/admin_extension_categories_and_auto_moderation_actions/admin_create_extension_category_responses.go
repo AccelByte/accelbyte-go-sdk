@@ -64,10 +64,9 @@ func NewAdminCreateExtensionCategoryCreated() *AdminCreateExtensionCategoryCreat
 	return &AdminCreateExtensionCategoryCreated{}
 }
 
-/*
-AdminCreateExtensionCategoryCreated handles this case with default header values.
+/*AdminCreateExtensionCategoryCreated handles this case with default header values.
 
-	AdminCreateExtensionCategoryCreated admin create extension category created
+  AdminCreateExtensionCategoryCreated admin create extension category created
 */
 type AdminCreateExtensionCategoryCreated struct {
 	Payload *reportingclientmodels.RestapiExtensionCategoryAPIResponse
@@ -118,10 +117,9 @@ func NewAdminCreateExtensionCategoryBadRequest() *AdminCreateExtensionCategoryBa
 	return &AdminCreateExtensionCategoryBadRequest{}
 }
 
-/*
-AdminCreateExtensionCategoryBadRequest handles this case with default header values.
+/*AdminCreateExtensionCategoryBadRequest handles this case with default header values.
 
-	AdminCreateExtensionCategoryBadRequest admin create extension category bad request
+  AdminCreateExtensionCategoryBadRequest admin create extension category bad request
 */
 type AdminCreateExtensionCategoryBadRequest struct {
 	Payload *reportingclientmodels.RestapiErrorResponse
@@ -172,10 +170,9 @@ func NewAdminCreateExtensionCategoryInternalServerError() *AdminCreateExtensionC
 	return &AdminCreateExtensionCategoryInternalServerError{}
 }
 
-/*
-AdminCreateExtensionCategoryInternalServerError handles this case with default header values.
+/*AdminCreateExtensionCategoryInternalServerError handles this case with default header values.
 
-	AdminCreateExtensionCategoryInternalServerError admin create extension category internal server error
+  AdminCreateExtensionCategoryInternalServerError admin create extension category internal server error
 */
 type AdminCreateExtensionCategoryInternalServerError struct {
 	Payload *reportingclientmodels.RestapiErrorResponse

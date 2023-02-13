@@ -26,10 +26,12 @@ var GetStatsCmd = &cobra.Command{
 			TokenRepository: &repository.TokenRepositoryImpl{},
 		}
 		namespace, _ := cmd.Flags().GetString("namespace")
+		isGlobal, _ := cmd.Flags().GetBool("isGlobal")
 		limit, _ := cmd.Flags().GetInt32("limit")
 		offset, _ := cmd.Flags().GetInt32("offset")
 		input := &stat_configuration.GetStatsParams{
 			Namespace: namespace,
+			IsGlobal:  &isGlobal,
 			Limit:     &limit,
 			Offset:    &offset,
 		}
@@ -49,6 +51,7 @@ var GetStatsCmd = &cobra.Command{
 func init() {
 	GetStatsCmd.Flags().String("namespace", "", "Namespace")
 	_ = GetStatsCmd.MarkFlagRequired("namespace")
+	GetStatsCmd.Flags().Bool("isGlobal", false, "Is global")
 	GetStatsCmd.Flags().Int32("limit", 20, "Limit")
 	GetStatsCmd.Flags().Int32("offset", 0, "Offset")
 }

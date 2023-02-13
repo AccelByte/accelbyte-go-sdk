@@ -64,10 +64,9 @@ func NewGetReasonGroupOK() *GetReasonGroupOK {
 	return &GetReasonGroupOK{}
 }
 
-/*
-GetReasonGroupOK handles this case with default header values.
+/*GetReasonGroupOK handles this case with default header values.
 
-	GetReasonGroupOK get reason group o k
+  GetReasonGroupOK get reason group o k
 */
 type GetReasonGroupOK struct {
 	Payload *reportingclientmodels.RestapiReasonGroupResponse
@@ -118,10 +117,9 @@ func NewGetReasonGroupNotFound() *GetReasonGroupNotFound {
 	return &GetReasonGroupNotFound{}
 }
 
-/*
-GetReasonGroupNotFound handles this case with default header values.
+/*GetReasonGroupNotFound handles this case with default header values.
 
-	GetReasonGroupNotFound get reason group not found
+  GetReasonGroupNotFound get reason group not found
 */
 type GetReasonGroupNotFound struct {
 	Payload *reportingclientmodels.RestapiErrorResponse
@@ -172,10 +170,9 @@ func NewGetReasonGroupInternalServerError() *GetReasonGroupInternalServerError {
 	return &GetReasonGroupInternalServerError{}
 }
 
-/*
-GetReasonGroupInternalServerError handles this case with default header values.
+/*GetReasonGroupInternalServerError handles this case with default header values.
 
-	GetReasonGroupInternalServerError get reason group internal server error
+  GetReasonGroupInternalServerError get reason group internal server error
 */
 type GetReasonGroupInternalServerError struct {
 	Payload *reportingclientmodels.RestapiErrorResponse

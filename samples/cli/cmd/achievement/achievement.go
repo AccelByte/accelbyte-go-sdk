@@ -9,6 +9,7 @@ package achievement
 import (
 	"github.com/AccelByte/sample-apps/cmd/achievement/achievements"
 	"github.com/AccelByte/sample-apps/cmd/achievement/anonymization"
+	"github.com/AccelByte/sample-apps/cmd/achievement/globalAchievements"
 	"github.com/AccelByte/sample-apps/cmd/achievement/tags"
 	"github.com/AccelByte/sample-apps/cmd/achievement/userAchievements"
 	"github.com/spf13/cobra"
@@ -36,7 +37,9 @@ func init() {
 	AchievementCmd.AddCommand(anonymization.AdminAnonymizeUserAchievementCmd)
 	AchievementCmd.AddCommand(achievements.PublicListAchievementsCmd)
 	AchievementCmd.AddCommand(achievements.PublicGetAchievementCmd)
+	AchievementCmd.AddCommand(globalAchievements.PublicListGlobalAchievementsCmd)
 	AchievementCmd.AddCommand(tags.PublicListTagsCmd)
 	AchievementCmd.AddCommand(userAchievements.PublicListUserAchievementsCmd)
 	AchievementCmd.AddCommand(userAchievements.PublicUnlockAchievementCmd)
+	AchievementCmd.AddCommand(globalAchievements.ClaimGlobalAchievementRewardCmd)
 }

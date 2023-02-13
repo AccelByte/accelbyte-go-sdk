@@ -874,7 +874,6 @@ Deprecated: Use PlatformTokenGrantV3Short instead.
 				&lt;li&gt;&lt;strong&gt;device&lt;/strong&gt;: Every device that does’nt run Android and iOS is categorized as a device. The device_id is the device’s ID.&lt;/li&gt;
 				&lt;li&gt;&lt;strong&gt;justice&lt;/strong&gt;: The platform_token’s value is the designated user’s access token.&lt;/li&gt;
 				&lt;li&gt;&lt;strong&gt;epicgames&lt;/strong&gt;: The platform_token’s value is an access-token obtained from Epicgames EOS Account Service.&lt;/li&gt;
-                &lt;li&gt;&lt;strong&gt;stadia&lt;/strong&gt;: The platform_token&#39;s value is a JWT Token, which can be obtained after calling the Stadia SDK&#39;s function.&lt;/li&gt;
 				&lt;li&gt;&lt;strong&gt;ps4&lt;/strong&gt;: The platform_token’s value is the authorization code returned by Sony OAuth.&lt;/li&gt;
 				&lt;li&gt;&lt;strong&gt;ps5&lt;/strong&gt;: The platform_token’s value is the authorization code returned by Sony OAuth.&lt;/li&gt;
 				&lt;li&gt;&lt;strong&gt;nintendo&lt;/strong&gt;: The platform_token’s value is the authorization code(id_token) returned by Nintendo OAuth.&lt;/li&gt;
@@ -1014,7 +1013,6 @@ func (a *Client) PlatformTokenGrantV3(params *PlatformTokenGrantV3Params, authIn
 				&lt;li&gt;&lt;strong&gt;device&lt;/strong&gt;: Every device that does’nt run Android and iOS is categorized as a device. The device_id is the device’s ID.&lt;/li&gt;
 				&lt;li&gt;&lt;strong&gt;justice&lt;/strong&gt;: The platform_token’s value is the designated user’s access token.&lt;/li&gt;
 				&lt;li&gt;&lt;strong&gt;epicgames&lt;/strong&gt;: The platform_token’s value is an access-token obtained from Epicgames EOS Account Service.&lt;/li&gt;
-                &lt;li&gt;&lt;strong&gt;stadia&lt;/strong&gt;: The platform_token&#39;s value is a JWT Token, which can be obtained after calling the Stadia SDK&#39;s function.&lt;/li&gt;
 				&lt;li&gt;&lt;strong&gt;ps4&lt;/strong&gt;: The platform_token’s value is the authorization code returned by Sony OAuth.&lt;/li&gt;
 				&lt;li&gt;&lt;strong&gt;ps5&lt;/strong&gt;: The platform_token’s value is the authorization code returned by Sony OAuth.&lt;/li&gt;
 				&lt;li&gt;&lt;strong&gt;nintendo&lt;/strong&gt;: The platform_token’s value is the authorization code(id_token) returned by Nintendo OAuth.&lt;/li&gt;

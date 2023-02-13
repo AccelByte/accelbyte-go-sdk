@@ -58,10 +58,9 @@ func NewUpdateTicketResolutionsOK() *UpdateTicketResolutionsOK {
 	return &UpdateTicketResolutionsOK{}
 }
 
-/*
-UpdateTicketResolutionsOK handles this case with default header values.
+/*UpdateTicketResolutionsOK handles this case with default header values.
 
-	UpdateTicketResolutionsOK update ticket resolutions o k
+  UpdateTicketResolutionsOK update ticket resolutions o k
 */
 type UpdateTicketResolutionsOK struct {
 	Payload *reportingclientmodels.RestapiTicketResponse
@@ -112,10 +111,9 @@ func NewUpdateTicketResolutionsInternalServerError() *UpdateTicketResolutionsInt
 	return &UpdateTicketResolutionsInternalServerError{}
 }
 
-/*
-UpdateTicketResolutionsInternalServerError handles this case with default header values.
+/*UpdateTicketResolutionsInternalServerError handles this case with default header values.
 
-	UpdateTicketResolutionsInternalServerError update ticket resolutions internal server error
+  UpdateTicketResolutionsInternalServerError update ticket resolutions internal server error
 */
 type UpdateTicketResolutionsInternalServerError struct {
 	Payload *reportingclientmodels.RestapiErrorResponse

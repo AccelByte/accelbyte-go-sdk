@@ -60,8 +60,7 @@ func NewDeleteTicketParamsWithHTTPClient(client *http.Client) *DeleteTicketParam
 	}
 }
 
-/*
-DeleteTicketParams contains all the parameters to send to the API endpoint
+/*DeleteTicketParams contains all the parameters to send to the API endpoint
 for the delete ticket operation typically these are written to a http.Request
 */
 type DeleteTicketParams struct {

@@ -45,6 +45,8 @@ type ClientService interface {
 	AnonymizeOrderShort(params *AnonymizeOrderParams, authInfo runtime.ClientAuthInfoWriter) (*AnonymizeOrderNoContent, error)
 	AnonymizePayment(params *AnonymizePaymentParams, authInfo runtime.ClientAuthInfoWriter) (*AnonymizePaymentNoContent, error)
 	AnonymizePaymentShort(params *AnonymizePaymentParams, authInfo runtime.ClientAuthInfoWriter) (*AnonymizePaymentNoContent, error)
+	AnonymizeRevocation(params *AnonymizeRevocationParams, authInfo runtime.ClientAuthInfoWriter) (*AnonymizeRevocationNoContent, error)
+	AnonymizeRevocationShort(params *AnonymizeRevocationParams, authInfo runtime.ClientAuthInfoWriter) (*AnonymizeRevocationNoContent, error)
 	AnonymizeSubscription(params *AnonymizeSubscriptionParams, authInfo runtime.ClientAuthInfoWriter) (*AnonymizeSubscriptionNoContent, error)
 	AnonymizeSubscriptionShort(params *AnonymizeSubscriptionParams, authInfo runtime.ClientAuthInfoWriter) (*AnonymizeSubscriptionNoContent, error)
 	AnonymizeWallet(params *AnonymizeWalletParams, authInfo runtime.ClientAuthInfoWriter) (*AnonymizeWalletNoContent, error)
@@ -610,6 +612,100 @@ func (a *Client) AnonymizePaymentShort(params *AnonymizePaymentParams, authInfo 
 	switch v := result.(type) {
 
 	case *AnonymizePaymentNoContent:
+		return v, nil
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+Deprecated: Use AnonymizeRevocationShort instead.
+
+  AnonymizeRevocation anonymizes revocation
+
+  Anonymize revocation. At current it will only anonymize revocation history.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=ADMIN:NAMESPACE:{namespace}:USER:{userId}:ANONYMIZATION, action=8 (DELETE)&lt;/li&gt;&lt;/ul&gt;
+*/
+func (a *Client) AnonymizeRevocation(params *AnonymizeRevocationParams, authInfo runtime.ClientAuthInfoWriter) (*AnonymizeRevocationNoContent, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewAnonymizeRevocationParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "anonymizeRevocation",
+		Method:             "DELETE",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/users/{userId}/anonymization/revocation",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &AnonymizeRevocationReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *AnonymizeRevocationNoContent:
+		return v, nil
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+  AnonymizeRevocationShort anonymizes revocation
+
+  Anonymize revocation. At current it will only anonymize revocation history.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=ADMIN:NAMESPACE:{namespace}:USER:{userId}:ANONYMIZATION, action=8 (DELETE)&lt;/li&gt;&lt;/ul&gt;
+*/
+func (a *Client) AnonymizeRevocationShort(params *AnonymizeRevocationParams, authInfo runtime.ClientAuthInfoWriter) (*AnonymizeRevocationNoContent, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewAnonymizeRevocationParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "anonymizeRevocation",
+		Method:             "DELETE",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/users/{userId}/anonymization/revocation",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &AnonymizeRevocationReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *AnonymizeRevocationNoContent:
 		return v, nil
 
 	default:

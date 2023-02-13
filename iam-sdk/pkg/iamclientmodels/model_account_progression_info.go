@@ -23,7 +23,7 @@ type ModelAccountProgressionInfo struct {
 	// email
 	Email string `json:"email,omitempty"`
 
-	// linked games
+	// For headlessAccount: list of all namespaces from this headless account. For currentAccount: list of all namespaces that conflict with headlessAccount
 	// Required: true
 	LinkedGames []string `json:"linkedGames"`
 

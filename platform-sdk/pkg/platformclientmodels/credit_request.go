@@ -29,7 +29,7 @@ type CreditRequest struct {
 	ExpireAt *strfmt.DateTime `json:"expireAt,omitempty"`
 
 	// origin, balance origin decided on the type of wallet, default is System
-	// Enum: [Epic GooglePlay IOS Nintendo Other Playstation Stadia Steam System Twitch Xbox]
+	// Enum: [Epic GooglePlay IOS Nintendo Other Playstation Steam System Twitch Xbox]
 	Origin string `json:"origin,omitempty"`
 
 	// reason, max length is 127
@@ -96,7 +96,7 @@ var creditRequestTypeOriginPropEnum []interface{}
 
 func init() {
 	var res []string
-	if err := json.Unmarshal([]byte(`["Epic","GooglePlay","IOS","Nintendo","Other","Playstation","Stadia","Steam","System","Twitch","Xbox"]`), &res); err != nil {
+	if err := json.Unmarshal([]byte(`["Epic","GooglePlay","IOS","Nintendo","Other","Playstation","Steam","System","Twitch","Xbox"]`), &res); err != nil {
 		panic(err)
 	}
 	for _, v := range res {
@@ -123,9 +123,6 @@ const (
 
 	// CreditRequestOriginPlaystation captures enum value "Playstation"
 	CreditRequestOriginPlaystation string = "Playstation"
-
-	// CreditRequestOriginStadia captures enum value "Stadia"
-	CreditRequestOriginStadia string = "Stadia"
 
 	// CreditRequestOriginSteam captures enum value "Steam"
 	CreditRequestOriginSteam string = "Steam"

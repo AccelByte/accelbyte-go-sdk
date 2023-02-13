@@ -64,10 +64,9 @@ func NewGetModerationRuleDetailsOK() *GetModerationRuleDetailsOK {
 	return &GetModerationRuleDetailsOK{}
 }
 
-/*
-GetModerationRuleDetailsOK handles this case with default header values.
+/*GetModerationRuleDetailsOK handles this case with default header values.
 
-	OK
+  OK
 */
 type GetModerationRuleDetailsOK struct {
 	Payload *reportingclientmodels.RestapiModerationRuleResponse
@@ -118,10 +117,9 @@ func NewGetModerationRuleDetailsNotFound() *GetModerationRuleDetailsNotFound {
 	return &GetModerationRuleDetailsNotFound{}
 }
 
-/*
-GetModerationRuleDetailsNotFound handles this case with default header values.
+/*GetModerationRuleDetailsNotFound handles this case with default header values.
 
-	Not Found
+  Not Found
 */
 type GetModerationRuleDetailsNotFound struct {
 	Payload *reportingclientmodels.RestapiErrorResponse
@@ -172,10 +170,9 @@ func NewGetModerationRuleDetailsInternalServerError() *GetModerationRuleDetailsI
 	return &GetModerationRuleDetailsInternalServerError{}
 }
 
-/*
-GetModerationRuleDetailsInternalServerError handles this case with default header values.
+/*GetModerationRuleDetailsInternalServerError handles this case with default header values.
 
-	Internal Server Error
+  Internal Server Error
 */
 type GetModerationRuleDetailsInternalServerError struct {
 	Payload *reportingclientmodels.RestapiErrorResponse

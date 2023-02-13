@@ -38,6 +38,12 @@
 |---|---|---|---|---|---|
 | `/achievement/v1/admin/namespaces/{namespace}/users/{userId}/anonymization/achievements` | DELETE | AdminAnonymizeUserAchievementShort | [AdminAnonymizeUserAchievementShort](../../achievement-sdk/pkg/achievementclient/anonymization/anonymization_client.go) | [AdminAnonymizeUserAchievementShort](../../services-api/pkg/service/achievement/anonymization.go) | [AdminAnonymizeUserAchievementShort](../../samples/cli/cmd/achievement/anonymization/adminAnonymizeUserAchievement.go) |
 
+### Global Achievements Wrapper:  [GlobalAchievements](../../services-api/pkg/service/achievement/globalAchievements.go)
+| Endpoint | Method | ID | Class | Wrapper | Example |
+|---|---|---|---|---|---|
+| `/achievement/v1/public/namespaces/{namespace}/global/achievements` | GET | PublicListGlobalAchievementsShort | [PublicListGlobalAchievementsShort](../../achievement-sdk/pkg/achievementclient/global_achievements/global_achievements_client.go) | [PublicListGlobalAchievementsShort](../../services-api/pkg/service/achievement/globalAchievements.go) | [PublicListGlobalAchievementsShort](../../samples/cli/cmd/achievement/globalAchievements/publicListGlobalAchievements.go) |
+| `/achievement/v1/public/namespaces/{namespace}/users/{userId}/global/achievements/{achievementCode}/claim` | POST | ClaimGlobalAchievementRewardShort | [ClaimGlobalAchievementRewardShort](../../achievement-sdk/pkg/achievementclient/global_achievements/global_achievements_client.go) | [ClaimGlobalAchievementRewardShort](../../services-api/pkg/service/achievement/globalAchievements.go) | [ClaimGlobalAchievementRewardShort](../../samples/cli/cmd/achievement/globalAchievements/claimGlobalAchievementReward.go) |
+
 
 &nbsp;  
 
@@ -50,8 +56,10 @@
 | `models.AchievementResponse` | [ModelsAchievementResponse ](../../achievement-sdk/pkg/achievementclientmodels/models_achievement_response.go) |
 | `models.AchievementUpdateRequest` | [ModelsAchievementUpdateRequest ](../../achievement-sdk/pkg/achievementclientmodels/models_achievement_update_request.go) |
 | `models.AdditionalInfo` | [ModelsAdditionalInfo ](../../achievement-sdk/pkg/achievementclientmodels/models_additional_info.go) |
+| `models.GlobalAchievementResponse` | [ModelsGlobalAchievementResponse ](../../achievement-sdk/pkg/achievementclientmodels/models_global_achievement_response.go) |
 | `models.Icon` | [ModelsIcon ](../../achievement-sdk/pkg/achievementclientmodels/models_icon.go) |
 | `models.PaginatedAchievementResponse` | [ModelsPaginatedAchievementResponse ](../../achievement-sdk/pkg/achievementclientmodels/models_paginated_achievement_response.go) |
+| `models.PaginatedGlobalAchievementResponse` | [ModelsPaginatedGlobalAchievementResponse ](../../achievement-sdk/pkg/achievementclientmodels/models_paginated_global_achievement_response.go) |
 | `models.PaginatedTagResponse` | [ModelsPaginatedTagResponse ](../../achievement-sdk/pkg/achievementclientmodels/models_paginated_tag_response.go) |
 | `models.PaginatedUserAchievementResponse` | [ModelsPaginatedUserAchievementResponse ](../../achievement-sdk/pkg/achievementclientmodels/models_paginated_user_achievement_response.go) |
 | `models.Pagination` | [ModelsPagination ](../../achievement-sdk/pkg/achievementclientmodels/models_pagination.go) |

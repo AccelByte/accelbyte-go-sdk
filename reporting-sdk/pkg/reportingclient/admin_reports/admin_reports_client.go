@@ -44,10 +44,9 @@ type ClientService interface {
 /*
 Deprecated: Use AdminSubmitReportShort instead.
 
-	AdminSubmitReport submits a report by admin
+  AdminSubmitReport submits a report by admin
 
-	Required permission: ADMIN:NAMESPACE:{namespace}:TICKET [CREATE]
-
+  Required permission: ADMIN:NAMESPACE:{namespace}:TICKET [CREATE]
 Submit a report and will return ticket for reported object.
 New ticket will be created if no OPEN ticket present for reported object (based by objectId and objectType) in a namespace.
 
@@ -108,10 +107,9 @@ func (a *Client) AdminSubmitReport(params *AdminSubmitReportParams, authInfo run
 }
 
 /*
-	AdminSubmitReportShort submits a report by admin
+  AdminSubmitReportShort submits a report by admin
 
-	Required permission: ADMIN:NAMESPACE:{namespace}:TICKET [CREATE]
-
+  Required permission: ADMIN:NAMESPACE:{namespace}:TICKET [CREATE]
 Submit a report and will return ticket for reported object.
 New ticket will be created if no OPEN ticket present for reported object (based by objectId and objectType) in a namespace.
 
@@ -171,10 +169,9 @@ func (a *Client) AdminSubmitReportShort(params *AdminSubmitReportParams, authInf
 /*
 Deprecated: Use ListReportsShort instead.
 
-	ListReports lists reports
+  ListReports lists reports
 
-	Required permission: ADMIN:NAMESPACE:{namespace}:TICKET [READ]
-
+  Required permission: ADMIN:NAMESPACE:{namespace}:TICKET [READ]
 Reports list can be ordered by:
 - createdAt
 - updatedAt
@@ -224,10 +221,9 @@ func (a *Client) ListReports(params *ListReportsParams, authInfo runtime.ClientA
 }
 
 /*
-	ListReportsShort lists reports
+  ListReportsShort lists reports
 
-	Required permission: ADMIN:NAMESPACE:{namespace}:TICKET [READ]
-
+  Required permission: ADMIN:NAMESPACE:{namespace}:TICKET [READ]
 Reports list can be ordered by:
 - createdAt
 - updatedAt

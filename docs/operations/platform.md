@@ -204,9 +204,6 @@
 | `/platform/admin/namespaces/{namespace}/iap/config/playstation` | GET | GetPlayStationIAPConfigShort | [GetPlayStationIAPConfigShort](../../platform-sdk/pkg/platformclient/i_a_p/iap_client.go) | [GetPlayStationIAPConfigShort](../../services-api/pkg/service/platform/iap.go) | [GetPlayStationIAPConfigShort](../../samples/cli/cmd/platform/iap/getPlayStationIAPConfig.go) |
 | `/platform/admin/namespaces/{namespace}/iap/config/playstation` | PUT | UpdatePlaystationIAPConfigShort | [UpdatePlaystationIAPConfigShort](../../platform-sdk/pkg/platformclient/i_a_p/iap_client.go) | [UpdatePlaystationIAPConfigShort](../../services-api/pkg/service/platform/iap.go) | [UpdatePlaystationIAPConfigShort](../../samples/cli/cmd/platform/iap/updatePlaystationIAPConfig.go) |
 | `/platform/admin/namespaces/{namespace}/iap/config/playstation` | DELETE | DeletePlaystationIAPConfigShort | [DeletePlaystationIAPConfigShort](../../platform-sdk/pkg/platformclient/i_a_p/iap_client.go) | [DeletePlaystationIAPConfigShort](../../services-api/pkg/service/platform/iap.go) | [DeletePlaystationIAPConfigShort](../../samples/cli/cmd/platform/iap/deletePlaystationIAPConfig.go) |
-| `/platform/admin/namespaces/{namespace}/iap/config/stadia` | GET | GetStadiaIAPConfigShort | [GetStadiaIAPConfigShort](../../platform-sdk/pkg/platformclient/i_a_p/iap_client.go) | [GetStadiaIAPConfigShort](../../services-api/pkg/service/platform/iap.go) | [GetStadiaIAPConfigShort](../../samples/cli/cmd/platform/iap/getStadiaIAPConfig.go) |
-| `/platform/admin/namespaces/{namespace}/iap/config/stadia` | DELETE | DeleteStadiaIAPConfigShort | [DeleteStadiaIAPConfigShort](../../platform-sdk/pkg/platformclient/i_a_p/iap_client.go) | [DeleteStadiaIAPConfigShort](../../services-api/pkg/service/platform/iap.go) | [DeleteStadiaIAPConfigShort](../../samples/cli/cmd/platform/iap/deleteStadiaIAPConfig.go) |
-| `/platform/admin/namespaces/{namespace}/iap/config/stadia/cert` | PUT | UpdateStadiaJsonConfigFileShort | [UpdateStadiaJsonConfigFileShort](../../platform-sdk/pkg/platformclient/i_a_p/iap_client.go) | [UpdateStadiaJsonConfigFileShort](../../services-api/pkg/service/platform/iap.go) | [UpdateStadiaJsonConfigFileShort](../../samples/cli/cmd/platform/iap/updateStadiaJsonConfigFile.go) |
 | `/platform/admin/namespaces/{namespace}/iap/config/steam` | GET | GetSteamIAPConfigShort | [GetSteamIAPConfigShort](../../platform-sdk/pkg/platformclient/i_a_p/iap_client.go) | [GetSteamIAPConfigShort](../../services-api/pkg/service/platform/iap.go) | [GetSteamIAPConfigShort](../../samples/cli/cmd/platform/iap/getSteamIAPConfig.go) |
 | `/platform/admin/namespaces/{namespace}/iap/config/steam` | PUT | UpdateSteamIAPConfigShort | [UpdateSteamIAPConfigShort](../../platform-sdk/pkg/platformclient/i_a_p/iap_client.go) | [UpdateSteamIAPConfigShort](../../services-api/pkg/service/platform/iap.go) | [UpdateSteamIAPConfigShort](../../samples/cli/cmd/platform/iap/updateSteamIAPConfig.go) |
 | `/platform/admin/namespaces/{namespace}/iap/config/steam` | DELETE | DeleteSteamIAPConfigShort | [DeleteSteamIAPConfigShort](../../platform-sdk/pkg/platformclient/i_a_p/iap_client.go) | [DeleteSteamIAPConfigShort](../../services-api/pkg/service/platform/iap.go) | [DeleteSteamIAPConfigShort](../../samples/cli/cmd/platform/iap/deleteSteamIAPConfig.go) |
@@ -226,7 +223,6 @@
 | `/platform/public/namespaces/{namespace}/users/{userId}/iap/google/receipt` | PUT | PublicFulfillGoogleIAPItemShort | [PublicFulfillGoogleIAPItemShort](../../platform-sdk/pkg/platformclient/i_a_p/iap_client.go) | [PublicFulfillGoogleIAPItemShort](../../services-api/pkg/service/platform/iap.go) | [PublicFulfillGoogleIAPItemShort](../../samples/cli/cmd/platform/iap/publicFulfillGoogleIAPItem.go) |
 | `/platform/public/namespaces/{namespace}/users/{userId}/iap/psn/sync` | PUT | PublicReconcilePlayStationStoreShort | [PublicReconcilePlayStationStoreShort](../../platform-sdk/pkg/platformclient/i_a_p/iap_client.go) | [PublicReconcilePlayStationStoreShort](../../services-api/pkg/service/platform/iap.go) | [PublicReconcilePlayStationStoreShort](../../samples/cli/cmd/platform/iap/publicReconcilePlayStationStore.go) |
 | `/platform/public/namespaces/{namespace}/users/{userId}/iap/psn/sync/multiServiceLabels` | PUT | PublicReconcilePlayStationStoreWithMultipleServiceLabelsShort | [PublicReconcilePlayStationStoreWithMultipleServiceLabelsShort](../../platform-sdk/pkg/platformclient/i_a_p/iap_client.go) | [PublicReconcilePlayStationStoreWithMultipleServiceLabelsShort](../../services-api/pkg/service/platform/iap.go) | [PublicReconcilePlayStationStoreWithMultipleServiceLabelsShort](../../samples/cli/cmd/platform/iap/publicReconcilePlayStationStoreWithMultipleServiceLabels.go) |
-| `/platform/public/namespaces/{namespace}/users/{userId}/iap/stadia/sync` | PUT | SyncStadiaEntitlementShort | [SyncStadiaEntitlementShort](../../platform-sdk/pkg/platformclient/i_a_p/iap_client.go) | [SyncStadiaEntitlementShort](../../services-api/pkg/service/platform/iap.go) | [SyncStadiaEntitlementShort](../../samples/cli/cmd/platform/iap/syncStadiaEntitlement.go) |
 | `/platform/public/namespaces/{namespace}/users/{userId}/iap/steam/sync` | PUT | SyncSteamInventoryShort | [SyncSteamInventoryShort](../../platform-sdk/pkg/platformclient/i_a_p/iap_client.go) | [SyncSteamInventoryShort](../../services-api/pkg/service/platform/iap.go) | [SyncSteamInventoryShort](../../samples/cli/cmd/platform/iap/syncSteamInventory.go) |
 | `/platform/public/namespaces/{namespace}/users/{userId}/iap/twitch/sync` | PUT | SyncTwitchDropsEntitlementShort | [SyncTwitchDropsEntitlementShort](../../platform-sdk/pkg/platformclient/i_a_p/iap_client.go) | [SyncTwitchDropsEntitlementShort](../../services-api/pkg/service/platform/iap.go) | [SyncTwitchDropsEntitlementShort](../../samples/cli/cmd/platform/iap/syncTwitchDropsEntitlement.go) |
 | `/platform/public/namespaces/{namespace}/users/{userId}/iap/xbl/sync` | PUT | SyncXboxInventoryShort | [SyncXboxInventoryShort](../../platform-sdk/pkg/platformclient/i_a_p/iap_client.go) | [SyncXboxInventoryShort](../../services-api/pkg/service/platform/iap.go) | [SyncXboxInventoryShort](../../samples/cli/cmd/platform/iap/syncXboxInventory.go) |
@@ -306,6 +302,7 @@
 | `/platform/admin/namespaces/{namespace}/platforms/{platform}/wallet/config` | PUT | UpdatePlatformWalletConfigShort | [UpdatePlatformWalletConfigShort](../../platform-sdk/pkg/platformclient/wallet/wallet_client.go) | [UpdatePlatformWalletConfigShort](../../services-api/pkg/service/platform/wallet.go) | [UpdatePlatformWalletConfigShort](../../samples/cli/cmd/platform/wallet/updatePlatformWalletConfig.go) |
 | `/platform/admin/namespaces/{namespace}/platforms/{platform}/wallet/config/reset` | PUT | ResetPlatformWalletConfigShort | [ResetPlatformWalletConfigShort](../../platform-sdk/pkg/platformclient/wallet/wallet_client.go) | [ResetPlatformWalletConfigShort](../../services-api/pkg/service/platform/wallet.go) | [ResetPlatformWalletConfigShort](../../samples/cli/cmd/platform/wallet/resetPlatformWalletConfig.go) |
 | `/platform/admin/namespaces/{namespace}/users/{userId}/wallets/currencies/summary` | GET | QueryUserCurrencyWalletsShort | [QueryUserCurrencyWalletsShort](../../platform-sdk/pkg/platformclient/wallet/wallet_client.go) | [QueryUserCurrencyWalletsShort](../../services-api/pkg/service/platform/wallet.go) | [QueryUserCurrencyWalletsShort](../../samples/cli/cmd/platform/wallet/queryUserCurrencyWallets.go) |
+| `/platform/admin/namespaces/{namespace}/users/{userId}/wallets/currencies/{currencyCode}/debit` | PUT | DebitUserWalletByCurrencyCodeShort | [DebitUserWalletByCurrencyCodeShort](../../platform-sdk/pkg/platformclient/wallet/wallet_client.go) | [DebitUserWalletByCurrencyCodeShort](../../services-api/pkg/service/platform/wallet.go) | [DebitUserWalletByCurrencyCodeShort](../../samples/cli/cmd/platform/wallet/debitUserWalletByCurrencyCode.go) |
 | `/platform/admin/namespaces/{namespace}/users/{userId}/wallets/currencies/{currencyCode}/transactions` | GET | ListUserCurrencyTransactionsShort | [ListUserCurrencyTransactionsShort](../../platform-sdk/pkg/platformclient/wallet/wallet_client.go) | [ListUserCurrencyTransactionsShort](../../services-api/pkg/service/platform/wallet.go) | [ListUserCurrencyTransactionsShort](../../samples/cli/cmd/platform/wallet/listUserCurrencyTransactions.go) |
 | [DEPRECATED] `/platform/admin/namespaces/{namespace}/users/{userId}/wallets/{currencyCode}/check` | GET | CheckWalletShort | [CheckWalletShort](../../platform-sdk/pkg/platformclient/wallet/wallet_client.go) | [CheckWalletShort](../../services-api/pkg/service/platform/wallet.go) | [CheckWalletShort](../../samples/cli/cmd/platform/wallet/checkWallet.go) |
 | `/platform/admin/namespaces/{namespace}/users/{userId}/wallets/{currencyCode}/credit` | PUT | CreditUserWalletShort | [CreditUserWalletShort](../../platform-sdk/pkg/platformclient/wallet/wallet_client.go) | [CreditUserWalletShort](../../services-api/pkg/service/platform/wallet.go) | [CreditUserWalletShort](../../samples/cli/cmd/platform/wallet/creditUserWallet.go) |
@@ -320,6 +317,15 @@
 | `/platform/public/namespaces/{namespace}/users/me/wallets/{currencyCode}` | GET | PublicGetMyWalletShort | [PublicGetMyWalletShort](../../platform-sdk/pkg/platformclient/wallet/wallet_client.go) | [PublicGetMyWalletShort](../../services-api/pkg/service/platform/wallet.go) | [PublicGetMyWalletShort](../../samples/cli/cmd/platform/wallet/publicGetMyWallet.go) |
 | `/platform/public/namespaces/{namespace}/users/{userId}/wallets/{currencyCode}` | GET | PublicGetWalletShort | [PublicGetWalletShort](../../platform-sdk/pkg/platformclient/wallet/wallet_client.go) | [PublicGetWalletShort](../../services-api/pkg/service/platform/wallet.go) | [PublicGetWalletShort](../../samples/cli/cmd/platform/wallet/publicGetWallet.go) |
 | `/platform/public/namespaces/{namespace}/users/{userId}/wallets/{currencyCode}/transactions` | GET | PublicListUserWalletTransactionsShort | [PublicListUserWalletTransactionsShort](../../platform-sdk/pkg/platformclient/wallet/wallet_client.go) | [PublicListUserWalletTransactionsShort](../../services-api/pkg/service/platform/wallet.go) | [PublicListUserWalletTransactionsShort](../../samples/cli/cmd/platform/wallet/publicListUserWalletTransactions.go) |
+
+### Revocation Wrapper:  [Revocation](../../services-api/pkg/service/platform/revocation.go)
+| Endpoint | Method | ID | Class | Wrapper | Example |
+|---|---|---|---|---|---|
+| `/platform/admin/namespaces/{namespace}/revocation/config` | GET | GetPaymentCallbackConfig1Short | [GetPaymentCallbackConfig1Short](../../platform-sdk/pkg/platformclient/revocation/revocation_client.go) | [GetPaymentCallbackConfig1Short](../../services-api/pkg/service/platform/revocation.go) | [GetPaymentCallbackConfig1Short](../../samples/cli/cmd/platform/revocation/getPaymentCallbackConfig1.go) |
+| `/platform/admin/namespaces/{namespace}/revocation/config` | PUT | UpdateRevocationConfigShort | [UpdateRevocationConfigShort](../../platform-sdk/pkg/platformclient/revocation/revocation_client.go) | [UpdateRevocationConfigShort](../../services-api/pkg/service/platform/revocation.go) | [UpdateRevocationConfigShort](../../samples/cli/cmd/platform/revocation/updateRevocationConfig.go) |
+| `/platform/admin/namespaces/{namespace}/revocation/config` | DELETE | DeleteRevocationConfigShort | [DeleteRevocationConfigShort](../../platform-sdk/pkg/platformclient/revocation/revocation_client.go) | [DeleteRevocationConfigShort](../../services-api/pkg/service/platform/revocation.go) | [DeleteRevocationConfigShort](../../samples/cli/cmd/platform/revocation/deleteRevocationConfig.go) |
+| `/platform/admin/namespaces/{namespace}/revocation/history` | GET | QueryRevocationHistoriesShort | [QueryRevocationHistoriesShort](../../platform-sdk/pkg/platformclient/revocation/revocation_client.go) | [QueryRevocationHistoriesShort](../../services-api/pkg/service/platform/revocation.go) | [QueryRevocationHistoriesShort](../../samples/cli/cmd/platform/revocation/queryRevocationHistories.go) |
+| `/platform/admin/namespaces/{namespace}/users/{userId}/revocation` | PUT | DoRevocationShort | [DoRevocationShort](../../platform-sdk/pkg/platformclient/revocation/revocation_client.go) | [DoRevocationShort](../../services-api/pkg/service/platform/revocation.go) | [DoRevocationShort](../../samples/cli/cmd/platform/revocation/doRevocation.go) |
 
 ### Reward Wrapper:  [Reward](../../services-api/pkg/service/platform/reward.go)
 | Endpoint | Method | ID | Class | Wrapper | Example |
@@ -427,6 +433,7 @@
 | `/platform/admin/namespaces/{namespace}/users/{userId}/anonymization/integrations` | DELETE | AnonymizeIntegrationShort | [AnonymizeIntegrationShort](../../platform-sdk/pkg/platformclient/anonymization/anonymization_client.go) | [AnonymizeIntegrationShort](../../services-api/pkg/service/platform/anonymization.go) | [AnonymizeIntegrationShort](../../samples/cli/cmd/platform/anonymization/anonymizeIntegration.go) |
 | `/platform/admin/namespaces/{namespace}/users/{userId}/anonymization/orders` | DELETE | AnonymizeOrderShort | [AnonymizeOrderShort](../../platform-sdk/pkg/platformclient/anonymization/anonymization_client.go) | [AnonymizeOrderShort](../../services-api/pkg/service/platform/anonymization.go) | [AnonymizeOrderShort](../../samples/cli/cmd/platform/anonymization/anonymizeOrder.go) |
 | `/platform/admin/namespaces/{namespace}/users/{userId}/anonymization/payment` | DELETE | AnonymizePaymentShort | [AnonymizePaymentShort](../../platform-sdk/pkg/platformclient/anonymization/anonymization_client.go) | [AnonymizePaymentShort](../../services-api/pkg/service/platform/anonymization.go) | [AnonymizePaymentShort](../../samples/cli/cmd/platform/anonymization/anonymizePayment.go) |
+| `/platform/admin/namespaces/{namespace}/users/{userId}/anonymization/revocation` | DELETE | AnonymizeRevocationShort | [AnonymizeRevocationShort](../../platform-sdk/pkg/platformclient/anonymization/anonymization_client.go) | [AnonymizeRevocationShort](../../services-api/pkg/service/platform/anonymization.go) | [AnonymizeRevocationShort](../../samples/cli/cmd/platform/anonymization/anonymizeRevocation.go) |
 | `/platform/admin/namespaces/{namespace}/users/{userId}/anonymization/subscriptions` | DELETE | AnonymizeSubscriptionShort | [AnonymizeSubscriptionShort](../../platform-sdk/pkg/platformclient/anonymization/anonymization_client.go) | [AnonymizeSubscriptionShort](../../services-api/pkg/service/platform/anonymization.go) | [AnonymizeSubscriptionShort](../../samples/cli/cmd/platform/anonymization/anonymizeSubscription.go) |
 | `/platform/admin/namespaces/{namespace}/users/{userId}/anonymization/wallets` | DELETE | AnonymizeWalletShort | [AnonymizeWalletShort](../../platform-sdk/pkg/platformclient/anonymization/anonymization_client.go) | [AnonymizeWalletShort](../../services-api/pkg/service/platform/anonymization.go) | [AnonymizeWalletShort](../../samples/cli/cmd/platform/anonymization/anonymizeWallet.go) |
 
@@ -558,6 +565,7 @@
 | `ConditionMatchResult` | [ConditionMatchResult ](../../platform-sdk/pkg/platformclientmodels/condition_match_result.go) |
 | `ConsumeItem` | [ConsumeItem ](../../platform-sdk/pkg/platformclientmodels/consume_item.go) |
 | `CreditRequest` | [CreditRequest ](../../platform-sdk/pkg/platformclientmodels/credit_request.go) |
+| `CreditRevocation` | [CreditRevocation ](../../platform-sdk/pkg/platformclientmodels/credit_revocation.go) |
 | `CreditSummary` | [CreditSummary ](../../platform-sdk/pkg/platformclientmodels/credit_summary.go) |
 | `CurrencyConfig` | [CurrencyConfig ](../../platform-sdk/pkg/platformclientmodels/currency_config.go) |
 | `CurrencyCreate` | [CurrencyCreate ](../../platform-sdk/pkg/platformclientmodels/currency_create.go) |
@@ -570,10 +578,12 @@
 | `DLCItemConfigInfo` | [DLCItemConfigInfo ](../../platform-sdk/pkg/platformclientmodels/d_l_c_item_config_info.go) |
 | `DLCItemConfigUpdate` | [DLCItemConfigUpdate ](../../platform-sdk/pkg/platformclientmodels/d_l_c_item_config_update.go) |
 | `DLCRecord` | [DLCRecord ](../../platform-sdk/pkg/platformclientmodels/d_l_c_record.go) |
+| `DebitByCurrencyCodeRequest` | [DebitByCurrencyCodeRequest ](../../platform-sdk/pkg/platformclientmodels/debit_by_currency_code_request.go) |
 | `DebitRequest` | [DebitRequest ](../../platform-sdk/pkg/platformclientmodels/debit_request.go) |
 | `DeleteRewardConditionRequest` | [DeleteRewardConditionRequest ](../../platform-sdk/pkg/platformclientmodels/delete_reward_condition_request.go) |
 | `DetailedWalletTransactionInfo` | [DetailedWalletTransactionInfo ](../../platform-sdk/pkg/platformclientmodels/detailed_wallet_transaction_info.go) |
 | `DetailedWalletTransactionPagingSlicedResult` | [DetailedWalletTransactionPagingSlicedResult ](../../platform-sdk/pkg/platformclientmodels/detailed_wallet_transaction_paging_sliced_result.go) |
+| `DurableEntitlementRevocationConfig` | [DurableEntitlementRevocationConfig ](../../platform-sdk/pkg/platformclientmodels/durable_entitlement_revocation_config.go) |
 | `EntitlementDecrement` | [EntitlementDecrement ](../../platform-sdk/pkg/platformclientmodels/entitlement_decrement.go) |
 | `EntitlementDecrementResult` | [EntitlementDecrementResult ](../../platform-sdk/pkg/platformclientmodels/entitlement_decrement_result.go) |
 | `EntitlementGrant` | [EntitlementGrant ](../../platform-sdk/pkg/platformclientmodels/entitlement_grant.go) |
@@ -582,6 +592,8 @@
 | `EntitlementLootBoxReward` | [EntitlementLootBoxReward ](../../platform-sdk/pkg/platformclientmodels/entitlement_loot_box_reward.go) |
 | `EntitlementOwnership` | [EntitlementOwnership ](../../platform-sdk/pkg/platformclientmodels/entitlement_ownership.go) |
 | `EntitlementPagingSlicedResult` | [EntitlementPagingSlicedResult ](../../platform-sdk/pkg/platformclientmodels/entitlement_paging_sliced_result.go) |
+| `EntitlementRevocation` | [EntitlementRevocation ](../../platform-sdk/pkg/platformclientmodels/entitlement_revocation.go) |
+| `EntitlementRevocationConfig` | [EntitlementRevocationConfig ](../../platform-sdk/pkg/platformclientmodels/entitlement_revocation_config.go) |
 | `EntitlementSummary` | [EntitlementSummary ](../../platform-sdk/pkg/platformclientmodels/entitlement_summary.go) |
 | `EntitlementUpdate` | [EntitlementUpdate ](../../platform-sdk/pkg/platformclientmodels/entitlement_update.go) |
 | `EpicGamesDLCSyncRequest` | [EpicGamesDLCSyncRequest ](../../platform-sdk/pkg/platformclientmodels/epic_games_d_l_c_sync_request.go) |
@@ -647,6 +659,7 @@
 | `ItemPurchaseConditionValidateRequest` | [ItemPurchaseConditionValidateRequest ](../../platform-sdk/pkg/platformclientmodels/item_purchase_condition_validate_request.go) |
 | `ItemPurchaseConditionValidateResult` | [ItemPurchaseConditionValidateResult ](../../platform-sdk/pkg/platformclientmodels/item_purchase_condition_validate_result.go) |
 | `ItemReturnRequest` | [ItemReturnRequest ](../../platform-sdk/pkg/platformclientmodels/item_return_request.go) |
+| `ItemRevocation` | [ItemRevocation ](../../platform-sdk/pkg/platformclientmodels/item_revocation.go) |
 | `ItemSnapshot` | [ItemSnapshot ](../../platform-sdk/pkg/platformclientmodels/item_snapshot.go) |
 | `ItemTypeConfigCreate` | [ItemTypeConfigCreate ](../../platform-sdk/pkg/platformclientmodels/item_type_config_create.go) |
 | `ItemTypeConfigInfo` | [ItemTypeConfigInfo ](../../platform-sdk/pkg/platformclientmodels/item_type_config_info.go) |
@@ -744,6 +757,16 @@
 | `RegionDataItem` | [RegionDataItem ](../../platform-sdk/pkg/platformclientmodels/region_data_item.go) |
 | `RequestHistory` | [RequestHistory ](../../platform-sdk/pkg/platformclientmodels/request_history.go) |
 | `Requirement` | [Requirement ](../../platform-sdk/pkg/platformclientmodels/requirement.go) |
+| `RevocationConfigInfo` | [RevocationConfigInfo ](../../platform-sdk/pkg/platformclientmodels/revocation_config_info.go) |
+| `RevocationConfigUpdate` | [RevocationConfigUpdate ](../../platform-sdk/pkg/platformclientmodels/revocation_config_update.go) |
+| `RevocationHistoryInfo` | [RevocationHistoryInfo ](../../platform-sdk/pkg/platformclientmodels/revocation_history_info.go) |
+| `RevocationHistoryPagingSlicedResult` | [RevocationHistoryPagingSlicedResult ](../../platform-sdk/pkg/platformclientmodels/revocation_history_paging_sliced_result.go) |
+| `RevocationRequest` | [RevocationRequest ](../../platform-sdk/pkg/platformclientmodels/revocation_request.go) |
+| `RevocationResult` | [RevocationResult ](../../platform-sdk/pkg/platformclientmodels/revocation_result.go) |
+| `RevokeCurrency` | [RevokeCurrency ](../../platform-sdk/pkg/platformclientmodels/revoke_currency.go) |
+| `RevokeEntitlement` | [RevokeEntitlement ](../../platform-sdk/pkg/platformclientmodels/revoke_entitlement.go) |
+| `RevokeEntry` | [RevokeEntry ](../../platform-sdk/pkg/platformclientmodels/revoke_entry.go) |
+| `RevokeItem` | [RevokeItem ](../../platform-sdk/pkg/platformclientmodels/revoke_item.go) |
 | `RevokeItemSummary` | [RevokeItemSummary ](../../platform-sdk/pkg/platformclientmodels/revoke_item_summary.go) |
 | `RevokeResult` | [RevokeResult ](../../platform-sdk/pkg/platformclientmodels/revoke_result.go) |
 | `RewardCondition` | [RewardCondition ](../../platform-sdk/pkg/platformclientmodels/reward_condition.go) |
@@ -762,8 +785,6 @@
 | `ServicePluginConfigUpdate` | [ServicePluginConfigUpdate ](../../platform-sdk/pkg/platformclientmodels/service_plugin_config_update.go) |
 | `Slide` | [Slide ](../../platform-sdk/pkg/platformclientmodels/slide.go) |
 | `StackableEntitlementInfo` | [StackableEntitlementInfo ](../../platform-sdk/pkg/platformclientmodels/stackable_entitlement_info.go) |
-| `StadiaIAPConfigInfo` | [StadiaIAPConfigInfo ](../../platform-sdk/pkg/platformclientmodels/stadia_i_a_p_config_info.go) |
-| `StadiaSyncRequest` | [StadiaSyncRequest ](../../platform-sdk/pkg/platformclientmodels/stadia_sync_request.go) |
 | `SteamDLCSyncRequest` | [SteamDLCSyncRequest ](../../platform-sdk/pkg/platformclientmodels/steam_d_l_c_sync_request.go) |
 | `SteamIAPConfig` | [SteamIAPConfig ](../../platform-sdk/pkg/platformclientmodels/steam_i_a_p_config.go) |
 | `SteamIAPConfigInfo` | [SteamIAPConfigInfo ](../../platform-sdk/pkg/platformclientmodels/steam_i_a_p_config_info.go) |
@@ -805,6 +826,7 @@
 | `ViewUpdate` | [ViewUpdate ](../../platform-sdk/pkg/platformclientmodels/view_update.go) |
 | `WalletInfo` | [WalletInfo ](../../platform-sdk/pkg/platformclientmodels/wallet_info.go) |
 | `WalletPagingSlicedResult` | [WalletPagingSlicedResult ](../../platform-sdk/pkg/platformclientmodels/wallet_paging_sliced_result.go) |
+| `WalletRevocationConfig` | [WalletRevocationConfig ](../../platform-sdk/pkg/platformclientmodels/wallet_revocation_config.go) |
 | `WalletTransactionInfo` | [WalletTransactionInfo ](../../platform-sdk/pkg/platformclientmodels/wallet_transaction_info.go) |
 | `WalletTransactionPagingSlicedResult` | [WalletTransactionPagingSlicedResult ](../../platform-sdk/pkg/platformclientmodels/wallet_transaction_paging_sliced_result.go) |
 | `WxPayConfigInfo` | [WxPayConfigInfo ](../../platform-sdk/pkg/platformclientmodels/wx_pay_config_info.go) |

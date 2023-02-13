@@ -60,8 +60,7 @@ func NewAdminFindActionListParamsWithHTTPClient(client *http.Client) *AdminFindA
 	}
 }
 
-/*
-AdminFindActionListParams contains all the parameters to send to the API endpoint
+/*AdminFindActionListParams contains all the parameters to send to the API endpoint
 for the admin find action list operation typically these are written to a http.Request
 */
 type AdminFindActionListParams struct {

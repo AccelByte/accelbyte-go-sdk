@@ -2093,6 +2093,12 @@
           "x-nullable": false,
           "x-omitempty": false
         },
+        "joining": {
+          "items": {
+            "$ref": "#/definitions/models.SessionPlayerJoining"
+          },
+          "type": "array"
+        },
         "match_id": {
           "type": "string",
           "x-nullable": false
@@ -2100,6 +2106,18 @@
         "namespace": {
           "type": "string",
           "x-nullable": false
+        },
+        "players": {
+          "items": {
+            "$ref": "#/definitions/models.SessionPlayerHistory"
+          },
+          "type": "array"
+        },
+        "removed_reason": {
+          "type": "string"
+        },
+        "session_type": {
+          "type": "string"
         },
         "status": {
           "type": "string",
@@ -2117,8 +2135,12 @@
         "created_at",
         "game_mode",
         "joinable",
+        "joining",
         "match_id",
         "namespace",
+        "players",
+        "removed_reason",
+        "session_type",
         "status",
         "sub_game_mode"
       ]
@@ -2512,6 +2534,46 @@
       },
       "required": [
         "data"
+      ]
+    },
+    "models.SessionPlayerHistory": {
+      "properties": {
+        "Action": {
+          "type": "string"
+        },
+        "Date": {
+          "format": "date-time",
+          "type": "string",
+          "x-nullable": false
+        },
+        "UserID": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "Action",
+        "Date",
+        "UserID"
+      ]
+    },
+    "models.SessionPlayerJoining": {
+      "properties": {
+        "Date": {
+          "format": "date-time",
+          "type": "string",
+          "x-nullable": false
+        },
+        "State": {
+          "type": "string"
+        },
+        "UserID": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "Date",
+        "State",
+        "UserID"
       ]
     },
     "models.SessionQueryResponse": {

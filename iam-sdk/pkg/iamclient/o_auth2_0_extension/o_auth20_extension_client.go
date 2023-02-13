@@ -867,7 +867,6 @@ Deprecated: Use RequestOneTimeLinkingCodeV3Short instead.
 				&lt;li&gt;&lt;strong&gt;device&lt;/strong&gt;&lt;/li&gt;
 				&lt;li&gt;&lt;strong&gt;justice&lt;/strong&gt;&lt;/li&gt;
 				&lt;li&gt;&lt;strong&gt;epicgames&lt;/strong&gt;&lt;/li&gt;
-                &lt;li&gt;&lt;strong&gt;stadia&lt;/strong&gt;&lt;/li&gt;
 				&lt;li&gt;&lt;strong&gt;ps4&lt;/strong&gt;&lt;/li&gt;
 				&lt;li&gt;&lt;strong&gt;ps5&lt;/strong&gt;&lt;/li&gt;
 				&lt;li&gt;&lt;strong&gt;nintendo&lt;/strong&gt;&lt;/li&gt;
@@ -942,7 +941,6 @@ func (a *Client) RequestOneTimeLinkingCodeV3(params *RequestOneTimeLinkingCodeV3
 				&lt;li&gt;&lt;strong&gt;device&lt;/strong&gt;&lt;/li&gt;
 				&lt;li&gt;&lt;strong&gt;justice&lt;/strong&gt;&lt;/li&gt;
 				&lt;li&gt;&lt;strong&gt;epicgames&lt;/strong&gt;&lt;/li&gt;
-                &lt;li&gt;&lt;strong&gt;stadia&lt;/strong&gt;&lt;/li&gt;
 				&lt;li&gt;&lt;strong&gt;ps4&lt;/strong&gt;&lt;/li&gt;
 				&lt;li&gt;&lt;strong&gt;ps5&lt;/strong&gt;&lt;/li&gt;
 				&lt;li&gt;&lt;strong&gt;nintendo&lt;/strong&gt;&lt;/li&gt;
@@ -1212,11 +1210,7 @@ Deprecated: Use ValidateOneTimeLinkingCodeV3Short instead.
 
   ValidateOneTimeLinkingCodeV3 validates one time linking code
 
-  &lt;p&gt;This endpoint is being used to validate one time link code.&lt;br&gt;
-		It require a valid user token.&lt;br&gt;
-		Should specify the target platform id and current user should already linked to this platform.&lt;br&gt;
-		Current user should be a headless account.&lt;br&gt;
-		&lt;/p&gt;
+  &lt;p&gt;This endpoint is being used to validate one time link code.&lt;br&gt;&lt;/p&gt;
 */
 func (a *Client) ValidateOneTimeLinkingCodeV3(params *ValidateOneTimeLinkingCodeV3Params) (*ValidateOneTimeLinkingCodeV3OK, error) {
 	// TODO: Validate the params before sending
@@ -1261,11 +1255,7 @@ func (a *Client) ValidateOneTimeLinkingCodeV3(params *ValidateOneTimeLinkingCode
 /*
   ValidateOneTimeLinkingCodeV3Short validates one time linking code
 
-  &lt;p&gt;This endpoint is being used to validate one time link code.&lt;br&gt;
-		It require a valid user token.&lt;br&gt;
-		Should specify the target platform id and current user should already linked to this platform.&lt;br&gt;
-		Current user should be a headless account.&lt;br&gt;
-		&lt;/p&gt;
+  &lt;p&gt;This endpoint is being used to validate one time link code.&lt;br&gt;&lt;/p&gt;
 */
 func (a *Client) ValidateOneTimeLinkingCodeV3Short(params *ValidateOneTimeLinkingCodeV3Params) (*ValidateOneTimeLinkingCodeV3OK, error) {
 	// TODO: Validate the params before sending

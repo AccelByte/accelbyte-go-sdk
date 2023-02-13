@@ -88,6 +88,11 @@ type GetStatsParams struct {
 
 	/*RetryPolicy*/
 	RetryPolicy *utils.Retry
+	/*IsGlobal
+	  flag to filter global statcode
+
+	*/
+	IsGlobal *bool
 	/*Limit*/
 	Limit *int32
 	/*Namespace
@@ -151,6 +156,17 @@ func (o *GetStatsParams) SetHTTPClientTransport(roundTripper http.RoundTripper) 
 	}
 }
 
+// WithIsGlobal adds the isGlobal to the get stats params
+func (o *GetStatsParams) WithIsGlobal(isGlobal *bool) *GetStatsParams {
+	o.SetIsGlobal(isGlobal)
+	return o
+}
+
+// SetIsGlobal adds the isGlobal to the get stats params
+func (o *GetStatsParams) SetIsGlobal(isGlobal *bool) {
+	o.IsGlobal = isGlobal
+}
+
 // WithLimit adds the limit to the get stats params
 func (o *GetStatsParams) WithLimit(limit *int32) *GetStatsParams {
 	o.SetLimit(limit)
@@ -191,6 +207,22 @@ func (o *GetStatsParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.Regi
 		return err
 	}
 	var res []error
+
+	if o.IsGlobal != nil {
+
+		// query param isGlobal
+		var qrIsGlobal bool
+		if o.IsGlobal != nil {
+			qrIsGlobal = *o.IsGlobal
+		}
+		qIsGlobal := swag.FormatBool(qrIsGlobal)
+		if qIsGlobal != "" {
+			if err := r.SetQueryParam("isGlobal", qIsGlobal); err != nil {
+				return err
+			}
+		}
+
+	}
 
 	if o.Limit != nil {
 

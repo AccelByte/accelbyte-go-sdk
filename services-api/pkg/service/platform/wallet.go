@@ -95,6 +95,29 @@ func (aaa *WalletService) QueryUserCurrencyWallets(input *wallet.QueryUserCurren
 	return ok.GetPayload(), nil
 }
 
+// deprecated(2022-01-10): please use DebitUserWalletByCurrencyCodeShort instead.
+func (aaa *WalletService) DebitUserWalletByCurrencyCode(input *wallet.DebitUserWalletByCurrencyCodeParams) (*platformclientmodels.WalletInfo, error) {
+	token, err := aaa.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, badRequest, conflict, unprocessableEntity, err := aaa.Client.Wallet.DebitUserWalletByCurrencyCode(input, client.BearerToken(*token.AccessToken))
+	if badRequest != nil {
+		return nil, badRequest
+	}
+	if conflict != nil {
+		return nil, conflict
+	}
+	if unprocessableEntity != nil {
+		return nil, unprocessableEntity
+	}
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
 // deprecated(2022-01-10): please use ListUserCurrencyTransactionsShort instead.
 func (aaa *WalletService) ListUserCurrencyTransactions(input *wallet.ListUserCurrencyTransactionsParams) (*platformclientmodels.WalletTransactionPagingSlicedResult, error) {
 	token, err := aaa.TokenRepository.GetToken()
@@ -441,6 +464,31 @@ func (aaa *WalletService) QueryUserCurrencyWalletsShort(input *wallet.QueryUserC
 	}
 
 	ok, err := aaa.Client.Wallet.QueryUserCurrencyWalletsShort(input, authInfoWriter)
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
+func (aaa *WalletService) DebitUserWalletByCurrencyCodeShort(input *wallet.DebitUserWalletByCurrencyCodeParams) (*platformclientmodels.WalletInfo, error) {
+	authInfoWriter := input.AuthInfoWriter
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
+	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  aaa.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
+	ok, err := aaa.Client.Wallet.DebitUserWalletByCurrencyCodeShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}

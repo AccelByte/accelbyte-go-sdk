@@ -62,8 +62,7 @@ func NewAdminCreateExtensionCategoryParamsWithHTTPClient(client *http.Client) *A
 	}
 }
 
-/*
-AdminCreateExtensionCategoryParams contains all the parameters to send to the API endpoint
+/*AdminCreateExtensionCategoryParams contains all the parameters to send to the API endpoint
 for the admin create extension category operation typically these are written to a http.Request
 */
 type AdminCreateExtensionCategoryParams struct {

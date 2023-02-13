@@ -8,7 +8,7 @@
     },
     "description": "Justice Platform Service",
     "title": "justice-platform-service",
-    "version": "4.22.1"
+    "version": "4.23.0"
   },
   "schemes": [
     "https"
@@ -79,6 +79,9 @@
     },
     {
       "name": "PaymentStation"
+    },
+    {
+      "name": "Revocation"
     },
     {
       "name": "Reward"
@@ -4101,142 +4104,6 @@
           }
         ],
         "summary": "Update playstation iap config",
-        "tags": [
-          "IAP"
-        ],
-        "x-authorization": {
-          "action": "4",
-          "resource": "ADMIN:NAMESPACE:{namespace}:IAP:CONFIG"
-        }
-      }
-    },
-    "/platform/admin/namespaces/{namespace}/iap/config/stadia": {
-      "delete": {
-        "description": "Delete stadia iap config.\u0026lt;br\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;ADMIN:NAMESPACE:{namespace}:IAP:CONFIG\u0026#34;, action=8 (DELETE)\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
-        "operationId": "deleteStadiaIAPConfig",
-        "parameters": [
-          {
-            "in": "path",
-            "name": "namespace",
-            "required": true,
-            "type": "string"
-          }
-        ],
-        "produces": [
-          "application/json"
-        ],
-        "responses": {
-          "204": {
-            "description": "Delete successfully"
-          }
-        },
-        "security": [
-          {
-            "authorization": []
-          },
-          {
-            "HasPermission": [
-              "ADMIN:NAMESPACE:{namespace}:IAP:CONFIG [DELETE]"
-            ],
-            "authorization": []
-          }
-        ],
-        "summary": "Delete stadia iap config",
-        "tags": [
-          "IAP"
-        ],
-        "x-authorization": {
-          "action": "8",
-          "resource": "ADMIN:NAMESPACE:{namespace}:IAP:CONFIG"
-        }
-      },
-      "get": {
-        "description": "Get stadia iap config.\u0026lt;br\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;ADMIN:NAMESPACE:{namespace}:IAP:CONFIG\u0026#34;, action=2 (READ)\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: stadia iap config\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
-        "operationId": "getStadiaIAPConfig",
-        "parameters": [
-          {
-            "in": "path",
-            "name": "namespace",
-            "required": true,
-            "type": "string"
-          }
-        ],
-        "produces": [
-          "application/json"
-        ],
-        "responses": {
-          "200": {
-            "description": "successful operation",
-            "schema": {
-              "$ref": "#/definitions/StadiaIAPConfigInfo"
-            }
-          }
-        },
-        "security": [
-          {
-            "authorization": []
-          },
-          {
-            "HasPermission": [
-              "ADMIN:NAMESPACE:{namespace}:IAP:CONFIG [READ]"
-            ],
-            "authorization": []
-          }
-        ],
-        "summary": "Get stadia iap config",
-        "tags": [
-          "IAP"
-        ],
-        "x-authorization": {
-          "action": "2",
-          "resource": "ADMIN:NAMESPACE:{namespace}:IAP:CONFIG"
-        }
-      }
-    },
-    "/platform/admin/namespaces/{namespace}/iap/config/stadia/cert": {
-      "put": {
-        "consumes": [
-          "multipart/form-data"
-        ],
-        "description": "Upload stadia json config file.\u0026lt;br\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;ADMIN:NAMESPACE:{namespace}:IAP:CONFIG\u0026#34;, action=4 (UPDATE)\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: updated stadia iap config\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
-        "operationId": "updateStadiaJsonConfigFile",
-        "parameters": [
-          {
-            "in": "path",
-            "name": "namespace",
-            "required": true,
-            "type": "string"
-          },
-          {
-            "in": "formData",
-            "name": "file",
-            "required": false,
-            "type": "file"
-          }
-        ],
-        "produces": [
-          "application/json"
-        ],
-        "responses": {
-          "200": {
-            "description": "successful operation",
-            "schema": {
-              "$ref": "#/definitions/StadiaIAPConfigInfo"
-            }
-          }
-        },
-        "security": [
-          {
-            "authorization": []
-          },
-          {
-            "HasPermission": [
-              "ADMIN:NAMESPACE:{namespace}:IAP:CONFIG [UPDATE]"
-            ],
-            "authorization": []
-          }
-        ],
-        "summary": "Upload stadia json config file",
         "tags": [
           "IAP"
         ],
@@ -9024,6 +8891,234 @@
         }
       }
     },
+    "/platform/admin/namespaces/{namespace}/revocation/config": {
+      "delete": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Delete revocation config.\u0026lt;br\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=ADMIN:NAMESPACE:{namespace}:REVOCATION, action=8 (DELETE)\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
+        "operationId": "deleteRevocationConfig",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "204": {
+            "description": "Delete successfully"
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "summary": "Delete revocation config",
+        "tags": [
+          "Revocation"
+        ],
+        "x-authorization": {
+          "action": "8",
+          "resource": "ADMIN:NAMESPACE:{namespace}:REVOCATION"
+        }
+      },
+      "get": {
+        "description": "Get revocation configuration.\u0026lt;br\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=ADMIN:NAMESPACE:{namespace}:REVOCATION, action=2 (READ)\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: Revocation config\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
+        "operationId": "getPaymentCallbackConfig_1",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/RevocationConfigInfo"
+            }
+          },
+          "404": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eErrorCode\u003c/td\u003e\u003ctd\u003eErrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e33243\u003c/td\u003e\u003ctd\u003ePayment callback config for [{namespace}] does not exist\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/ErrorEntity"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "summary": "Get revocation configuration",
+        "tags": [
+          "Revocation"
+        ],
+        "x-authorization": {
+          "action": "2",
+          "resource": "ADMIN:NAMESPACE:{namespace}:REVOCATION"
+        }
+      },
+      "put": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Update revocation configuration.\u0026lt;br\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=ADMIN:NAMESPACE:{namespace}:REVOCATION, action=4 (UPDATE)\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: Revocation config\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
+        "operationId": "updateRevocationConfig",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "required": false,
+            "schema": {
+              "$ref": "#/definitions/RevocationConfigUpdate"
+            }
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/RevocationConfigInfo"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "summary": "Update revocation configuration",
+        "tags": [
+          "Revocation"
+        ],
+        "x-authorization": {
+          "action": "4",
+          "resource": "ADMIN:NAMESPACE:{namespace}:REVOCATION"
+        }
+      }
+    },
+    "/platform/admin/namespaces/{namespace}/revocation/history": {
+      "get": {
+        "description": "Query revocation histories in a namespace.\u0026lt;br\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=ADMIN:NAMESPACE:{namespace}:REVOCATION, action=2 (READ)\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: query revocation history\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
+        "operationId": "queryRevocationHistories",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "end time is exclusive, using ISO 8601 format e.g. yyyy-MM-dd'T'HH:mm:ssZ",
+            "in": "query",
+            "name": "endTime",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "default": 20,
+            "format": "int32",
+            "in": "query",
+            "name": "limit",
+            "required": false,
+            "type": "integer"
+          },
+          {
+            "default": 0,
+            "format": "int32",
+            "in": "query",
+            "name": "offset",
+            "required": false,
+            "type": "integer"
+          },
+          {
+            "enum": [
+              "DLC",
+              "ORDER",
+              "OTHER"
+            ],
+            "in": "query",
+            "name": "source",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "start time is inclusive, using ISO 8601 format e.g. yyyy-MM-dd'T'HH:mm:ssZ",
+            "in": "query",
+            "name": "startTime",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "enum": [
+              "FAIL",
+              "SUCCESS"
+            ],
+            "in": "query",
+            "name": "status",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "transactionId",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "userId",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/RevocationHistoryPagingSlicedResult"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "summary": "Query revocation histories",
+        "tags": [
+          "Revocation"
+        ],
+        "x-authorization": {
+          "action": "2",
+          "resource": "ADMIN:NAMESPACE:{namespace}:REVOCATION"
+        }
+      }
+    },
     "/platform/admin/namespaces/{namespace}/rewards": {
       "post": {
         "consumes": [
@@ -12352,6 +12447,50 @@
         }
       }
     },
+    "/platform/admin/namespaces/{namespace}/users/{userId}/anonymization/revocation": {
+      "delete": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Anonymize revocation. At current it will only anonymize revocation history.\u0026lt;br\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=ADMIN:NAMESPACE:{namespace}:USER:{userId}:ANONYMIZATION, action=8 (DELETE)\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
+        "operationId": "anonymizeRevocation",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "path",
+            "name": "userId",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "204": {
+            "description": "Anonymize successfully"
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "summary": "anonymize revocation",
+        "tags": [
+          "Anonymization"
+        ],
+        "x-authorization": {
+          "action": "8",
+          "resource": "ADMIN:NAMESPACE:{namespace}:USER:{userId}:ANONYMIZATION"
+        }
+      }
+    },
     "/platform/admin/namespaces/{namespace}/users/{userId}/anonymization/subscriptions": {
       "delete": {
         "consumes": [
@@ -15595,6 +15734,61 @@
         }
       }
     },
+    "/platform/admin/namespaces/{namespace}/users/{userId}/revocation": {
+      "put": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Do revocation.\u0026lt;br\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=ADMIN:NAMESPACE:{namespace}:USER:{userId}:REVOCATION, action=4 (UPDATE)\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: revocation results\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
+        "operationId": "doRevocation",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "path",
+            "name": "userId",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "required": false,
+            "schema": {
+              "$ref": "#/definitions/RevocationRequest"
+            }
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/RevocationResult"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "summary": "Do revocation.",
+        "tags": [
+          "Revocation"
+        ],
+        "x-authorization": {
+          "action": "4",
+          "resource": "ADMIN:NAMESPACE:{namespace}:USER:{userId}:REVOCATION"
+        }
+      }
+    },
     "/platform/admin/namespaces/{namespace}/users/{userId}/subscriptions": {
       "get": {
         "consumes": [
@@ -16498,6 +16692,93 @@
         }
       }
     },
+    "/platform/admin/namespaces/{namespace}/users/{userId}/wallets/currencies/{currencyCode}/debit": {
+      "put": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Debit a user wallet by currency code, default is debit system wallet.\u0026lt;br\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;ADMIN:NAMESPACE:{namespace}:USER:{userId}:WALLET\u0026#34;, action=4 (UPDATE)\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
+        "operationId": "debitUserWalletByCurrencyCode",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "currencyCode",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "namespace",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "userId",
+            "in": "path",
+            "name": "userId",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "required": false,
+            "schema": {
+              "$ref": "#/definitions/DebitByCurrencyCodeRequest"
+            }
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/WalletInfo"
+            }
+          },
+          "400": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eErrorCode\u003c/td\u003e\u003ctd\u003eErrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e35124\u003c/td\u003e\u003ctd\u003eWallet [{currencyCode}] has insufficient balance\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/ErrorEntity"
+            }
+          },
+          "409": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eErrorCode\u003c/td\u003e\u003ctd\u003eErrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20006\u003c/td\u003e\u003ctd\u003eoptimistic lock\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/ErrorEntity"
+            }
+          },
+          "422": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eErrorCode\u003c/td\u003e\u003ctd\u003eErrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20002\u003c/td\u003e\u003ctd\u003evalidation error\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/ValidationErrorEntity"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          },
+          {
+            "HasPermission": [
+              "ADMIN:NAMESPACE:{namespace}:USER:{userId}:WALLET [UPDATE]"
+            ],
+            "authorization": []
+          }
+        ],
+        "summary": "Debit a user wallet by currency code",
+        "tags": [
+          "Wallet"
+        ],
+        "x-authorization": {
+          "action": "4",
+          "resource": "ADMIN:NAMESPACE:{namespace}:USER:{userId}:WALLET"
+        }
+      }
+    },
     "/platform/admin/namespaces/{namespace}/users/{userId}/wallets/currencies/{currencyCode}/transactions": {
       "get": {
         "consumes": [
@@ -16619,7 +16900,6 @@
               "Nintendo",
               "Other",
               "Playstation",
-              "Stadia",
               "Steam",
               "System",
               "Twitch",
@@ -17646,7 +17926,6 @@
               "Nintendo",
               "Other",
               "Playstation",
-              "Stadia",
               "Steam",
               "System",
               "Twitch",
@@ -23883,64 +24162,6 @@
         }
       }
     },
-    "/platform/public/namespaces/{namespace}/users/{userId}/iap/stadia/sync": {
-      "put": {
-        "consumes": [
-          "application/json"
-        ],
-        "description": "Sync stadia entitlements.\u0026lt;p\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;NAMESPACE:{namespace}:USER:{userId}:IAP\u0026#34;, action=4 (UPDATE)\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: \u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
-        "operationId": "syncStadiaEntitlement",
-        "parameters": [
-          {
-            "in": "path",
-            "name": "namespace",
-            "required": true,
-            "type": "string"
-          },
-          {
-            "in": "path",
-            "name": "userId",
-            "required": true,
-            "type": "string"
-          },
-          {
-            "in": "body",
-            "name": "body",
-            "required": false,
-            "schema": {
-              "$ref": "#/definitions/StadiaSyncRequest"
-            }
-          }
-        ],
-        "produces": [
-          "application/json"
-        ],
-        "responses": {
-          "204": {
-            "description": "Successful operation"
-          }
-        },
-        "security": [
-          {
-            "authorization": []
-          },
-          {
-            "HasPermission": [
-              "NAMESPACE:{namespace}:USER:{userId}:IAP [UPDATE]"
-            ],
-            "authorization": []
-          }
-        ],
-        "summary": "Sync stadia inventory.",
-        "tags": [
-          "IAP"
-        ],
-        "x-authorization": {
-          "action": "4",
-          "resource": "NAMESPACE:{namespace}:USER:{userId}:IAP"
-        }
-      }
-    },
     "/platform/public/namespaces/{namespace}/users/{userId}/iap/steam/sync": {
       "put": {
         "consumes": [
@@ -28149,7 +28370,6 @@
             "Nintendo",
             "Other",
             "Playstation",
-            "Stadia",
             "Steam",
             "System",
             "Twitch",
@@ -28182,6 +28402,41 @@
       "required": [
         "amount"
       ],
+      "type": "object"
+    },
+    "CreditRevocation": {
+      "properties": {
+        "amount": {
+          "format": "int64",
+          "type": "integer"
+        },
+        "balanceOrigin": {
+          "type": "string"
+        },
+        "currencyCode": {
+          "type": "string"
+        },
+        "reason": {
+          "type": "string"
+        },
+        "revocationStrategy": {
+          "type": "string"
+        },
+        "skipped": {
+          "type": "boolean",
+          "x-omitempty": false
+        },
+        "status": {
+          "enum": [
+            "FAIL",
+            "SUCCESS"
+          ],
+          "type": "string"
+        },
+        "walletId": {
+          "type": "string"
+        }
+      },
       "type": "object"
     },
     "CreditSummary": {
@@ -28476,6 +28731,9 @@
           "type": "string",
           "x-nullable": true
         },
+        "revocationResult": {
+          "$ref": "#/definitions/RevocationResult"
+        },
         "revokeResults": {
           "items": {
             "$ref": "#/definitions/RevokeResult"
@@ -28503,11 +28761,59 @@
         "status": {
           "enum": [
             "FULFILLED",
-            "REVOKED"
+            "REVOKED",
+            "REVOKE_FAILED"
           ],
+          "type": "string"
+        },
+        "transactionId": {
+          "type": "string"
+        },
+        "version": {
+          "format": "int32",
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "DebitByCurrencyCodeRequest": {
+      "description": "A DTO for wallet's debit",
+      "properties": {
+        "allowOverdraft": {
+          "description": "allow to debit wallet balance to negative value",
+          "type": "boolean",
+          "x-omitempty": false
+        },
+        "amount": {
+          "description": "amount",
+          "format": "int64",
+          "minimum": 1,
+          "type": "integer"
+        },
+        "balanceOrigin": {
+          "description": "balance origin",
+          "enum": [
+            "Epic",
+            "GooglePlay",
+            "IOS",
+            "Nintendo",
+            "Other",
+            "Playstation",
+            "Steam",
+            "System",
+            "Twitch",
+            "Xbox"
+          ],
+          "type": "string"
+        },
+        "reason": {
+          "description": "reason",
           "type": "string"
         }
       },
+      "required": [
+        "amount"
+      ],
       "type": "object"
     },
     "DebitRequest": {
@@ -28626,6 +28932,23 @@
       "required": [
         "data"
       ],
+      "type": "object"
+    },
+    "DurableEntitlementRevocationConfig": {
+      "properties": {
+        "enabled": {
+          "description": "will do revocation if enabled, otherwise will skip do revocation.",
+          "type": "boolean",
+          "x-omitempty": false
+        },
+        "strategy": {
+          "description": "durable entitlement revocation strategy",
+          "enum": [
+            "REVOKE_OR_REPORT"
+          ],
+          "type": "string"
+        }
+      },
       "type": "object"
     },
     "EntitlementDecrement": {
@@ -29174,6 +29497,50 @@
         },
         "paging": {
           "$ref": "#/definitions/Paging"
+        }
+      },
+      "type": "object"
+    },
+    "EntitlementRevocation": {
+      "properties": {
+        "entitlementId": {
+          "type": "string"
+        },
+        "itemId": {
+          "type": "string"
+        },
+        "itemSku": {
+          "type": "string"
+        },
+        "quantity": {
+          "format": "int64",
+          "type": "integer"
+        },
+        "reason": {
+          "type": "string"
+        },
+        "revocationStrategy": {
+          "type": "string"
+        },
+        "skipped": {
+          "type": "boolean",
+          "x-omitempty": false
+        },
+        "status": {
+          "enum": [
+            "FAIL",
+            "SUCCESS"
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "EntitlementRevocationConfig": {
+      "properties": {
+        "durable": {
+          "$ref": "#/definitions/DurableEntitlementRevocationConfig",
+          "description": "durable entitlement revocation config"
         }
       },
       "type": "object"
@@ -29922,7 +30289,6 @@
             "Nintendo",
             "Other",
             "Playstation",
-            "Stadia",
             "Steam",
             "System",
             "Twitch",
@@ -32111,6 +32477,66 @@
       "required": [
         "orderNo"
       ],
+      "type": "object"
+    },
+    "ItemRevocation": {
+      "properties": {
+        "creditRevocations": {
+          "items": {
+            "$ref": "#/definitions/CreditRevocation"
+          },
+          "type": "array"
+        },
+        "entitlementRevocations": {
+          "items": {
+            "$ref": "#/definitions/EntitlementRevocation"
+          },
+          "type": "array"
+        },
+        "itemId": {
+          "type": "string"
+        },
+        "itemRevocations": {
+          "items": {
+            "$ref": "#/definitions/ItemRevocation"
+          },
+          "type": "array"
+        },
+        "itemSku": {
+          "type": "string"
+        },
+        "itemType": {
+          "enum": [
+            "APP",
+            "BUNDLE",
+            "CODE",
+            "COINS",
+            "EXTENSION",
+            "INGAMEITEM",
+            "LOOTBOX",
+            "MEDIA",
+            "OPTIONBOX",
+            "SEASON",
+            "SUBSCRIPTION"
+          ],
+          "type": "string"
+        },
+        "quantity": {
+          "format": "int64",
+          "type": "integer"
+        },
+        "skipped": {
+          "type": "boolean",
+          "x-omitempty": false
+        },
+        "status": {
+          "enum": [
+            "FAIL",
+            "SUCCESS"
+          ],
+          "type": "string"
+        }
+      },
       "type": "object"
     },
     "ItemSnapshot": {
@@ -35721,7 +36147,6 @@
               "Nintendo",
               "Other",
               "Playstation",
-              "Stadia",
               "Steam",
               "System",
               "Twitch",
@@ -36543,6 +36968,324 @@
       ],
       "type": "object"
     },
+    "RevocationConfigInfo": {
+      "properties": {
+        "entitlement": {
+          "$ref": "#/definitions/EntitlementRevocationConfig"
+        },
+        "namespace": {
+          "type": "string"
+        },
+        "wallet": {
+          "$ref": "#/definitions/WalletRevocationConfig"
+        }
+      },
+      "type": "object"
+    },
+    "RevocationConfigUpdate": {
+      "properties": {
+        "entitlement": {
+          "$ref": "#/definitions/EntitlementRevocationConfig",
+          "description": "entitlement revocation config"
+        },
+        "wallet": {
+          "$ref": "#/definitions/WalletRevocationConfig",
+          "description": "wallet revocation config"
+        }
+      },
+      "type": "object"
+    },
+    "RevocationHistoryInfo": {
+      "properties": {
+        "createdAt": {
+          "description": "created at",
+          "format": "date-time",
+          "type": "string",
+          "x-nullable": true
+        },
+        "creditRevocations": {
+          "description": "credit revocations",
+          "items": {
+            "$ref": "#/definitions/CreditRevocation"
+          },
+          "type": "array"
+        },
+        "entitlementRevocations": {
+          "description": "entitlement revocations",
+          "items": {
+            "$ref": "#/definitions/EntitlementRevocation"
+          },
+          "type": "array"
+        },
+        "id": {
+          "description": "id",
+          "type": "string"
+        },
+        "itemRevocations": {
+          "description": "item revocations",
+          "items": {
+            "$ref": "#/definitions/ItemRevocation"
+          },
+          "type": "array"
+        },
+        "meta": {
+          "additionalProperties": {
+            "type": "object"
+          },
+          "description": "meta",
+          "type": "object"
+        },
+        "namespace": {
+          "description": "namespace",
+          "type": "string"
+        },
+        "revokeEntries": {
+          "description": "revoke entries",
+          "items": {
+            "$ref": "#/definitions/RevokeEntry"
+          },
+          "type": "array"
+        },
+        "source": {
+          "description": "source",
+          "type": "string"
+        },
+        "status": {
+          "description": "status",
+          "enum": [
+            "FAIL",
+            "SUCCESS"
+          ],
+          "type": "string"
+        },
+        "updatedAt": {
+          "description": "updated at",
+          "format": "date-time",
+          "type": "string",
+          "x-nullable": true
+        },
+        "userId": {
+          "description": "userId",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "RevocationHistoryPagingSlicedResult": {
+      "properties": {
+        "data": {
+          "description": "data",
+          "items": {
+            "$ref": "#/definitions/RevocationHistoryInfo"
+          },
+          "type": "array"
+        },
+        "paging": {
+          "$ref": "#/definitions/Paging"
+        }
+      },
+      "required": [
+        "data"
+      ],
+      "type": "object"
+    },
+    "RevocationRequest": {
+      "properties": {
+        "meta": {
+          "additionalProperties": {
+            "type": "object"
+          },
+          "description": "source meta info, like DLC transaction id, order no.",
+          "type": "object"
+        },
+        "revokeEntries": {
+          "description": "revoke entries",
+          "items": {
+            "$ref": "#/definitions/RevokeEntry"
+          },
+          "type": "array"
+        },
+        "source": {
+          "description": "revoke source",
+          "enum": [
+            "DLC",
+            "ORDER",
+            "OTHER"
+          ],
+          "type": "string"
+        },
+        "transactionId": {
+          "description": "transaction id: DLC Order No, Order No.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "RevocationResult": {
+      "properties": {
+        "creditRevocations": {
+          "description": "credit revocations",
+          "items": {
+            "$ref": "#/definitions/CreditRevocation"
+          },
+          "type": "array"
+        },
+        "entitlementRevocations": {
+          "description": "entitlement revocations",
+          "items": {
+            "$ref": "#/definitions/EntitlementRevocation"
+          },
+          "type": "array"
+        },
+        "id": {
+          "description": "revocation history id",
+          "type": "string"
+        },
+        "itemRevocations": {
+          "description": "item revocations",
+          "items": {
+            "$ref": "#/definitions/ItemRevocation"
+          },
+          "type": "array"
+        },
+        "status": {
+          "description": "revocation status",
+          "enum": [
+            "FAIL",
+            "SUCCESS"
+          ],
+          "type": "string"
+        }
+      },
+      "required": [
+        "id",
+        "status"
+      ],
+      "type": "object"
+    },
+    "RevokeCurrency": {
+      "properties": {
+        "balanceOrigin": {
+          "description": "balance origin",
+          "enum": [
+            "Epic",
+            "GooglePlay",
+            "IOS",
+            "Nintendo",
+            "Other",
+            "Playstation",
+            "Steam",
+            "System",
+            "Twitch",
+            "Xbox"
+          ],
+          "type": "string"
+        },
+        "currencyCode": {
+          "description": "currency code",
+          "type": "string"
+        },
+        "namespace": {
+          "description": "currency namespace",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "RevokeEntitlement": {
+      "properties": {
+        "clazz": {
+          "description": "entitlement clazz",
+          "enum": [
+            "APP",
+            "CODE",
+            "ENTITLEMENT",
+            "LOOTBOX",
+            "MEDIA",
+            "OPTIONBOX",
+            "SUBSCRIPTION"
+          ],
+          "type": "string"
+        },
+        "entitlementId": {
+          "description": "entitlement id",
+          "type": "string"
+        },
+        "type": {
+          "description": "entitlement type",
+          "enum": [
+            "CONSUMABLE",
+            "DURABLE"
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "RevokeEntry": {
+      "properties": {
+        "currency": {
+          "$ref": "#/definitions/RevokeCurrency",
+          "description": "revoke currency"
+        },
+        "entitlement": {
+          "$ref": "#/definitions/RevokeEntitlement",
+          "description": "revoke entitlement"
+        },
+        "item": {
+          "$ref": "#/definitions/RevokeItem",
+          "description": "revoke item"
+        },
+        "quantity": {
+          "description": "revoke quantity",
+          "format": "int32",
+          "type": "integer"
+        },
+        "type": {
+          "description": "revoke entry type",
+          "enum": [
+            "CURRENCY",
+            "ENTITLEMENT",
+            "ITEM"
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "RevokeItem": {
+      "properties": {
+        "itemIdentity": {
+          "description": "item identity",
+          "type": "string"
+        },
+        "itemIdentityType": {
+          "description": "item identity type",
+          "enum": [
+            "ITEM_ID",
+            "ITEM_SKU"
+          ],
+          "type": "string"
+        },
+        "origin": {
+          "description": "balance origin, it is used to debit the wallet of the specified balance origin, only available in COINS item",
+          "enum": [
+            "Epic",
+            "GooglePlay",
+            "IOS",
+            "Nintendo",
+            "Other",
+            "Playstation",
+            "Steam",
+            "System",
+            "Twitch",
+            "Xbox"
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "RevokeItemSummary": {
       "properties": {
         "itemId": {
@@ -36810,7 +37553,6 @@
             "Nintendo",
             "Other",
             "Playstation",
-            "Stadia",
             "Steam",
             "System",
             "Twitch",
@@ -37368,48 +38110,6 @@
         "type",
         "updatedAt",
         "userId"
-      ],
-      "type": "object"
-    },
-    "StadiaIAPConfigInfo": {
-      "properties": {
-        "jsonFile": {
-          "description": "jsonFile",
-          "type": "string"
-        },
-        "namespace": {
-          "description": "namespace",
-          "type": "string"
-        }
-      },
-      "required": [
-        "namespace"
-      ],
-      "type": "object"
-    },
-    "StadiaSyncRequest": {
-      "properties": {
-        "appId": {
-          "description": "app id",
-          "type": "string"
-        },
-        "language": {
-          "description": "language value from language tag, allowed format: en, en-US.\u003cp\u003eSupported language tag : [RFC5646](https://gist.github.com/msikma/8912e62ed866778ff8cd) and [IETF](https://datahub.io/core/language-codes#resource-ietf-language-tags)\u003c/p\u003e",
-          "pattern": "^[A-Za-z]{2,4}([_-][A-Za-z]{4})?([_-]([A-Za-z]{2}|[0-9]{3}))?$",
-          "type": "string"
-        },
-        "region": {
-          "description": "country value from ISO countries",
-          "type": "string"
-        },
-        "stadiaPlayerId": {
-          "description": "Stadia player id",
-          "type": "string"
-        }
-      },
-      "required": [
-        "appId",
-        "stadiaPlayerId"
       ],
       "type": "object"
     },
@@ -39118,6 +39818,24 @@
       "required": [
         "data"
       ],
+      "type": "object"
+    },
+    "WalletRevocationConfig": {
+      "properties": {
+        "enabled": {
+          "description": "will do revocation if enabled, otherwise will skip do revocation.",
+          "type": "boolean",
+          "x-omitempty": false
+        },
+        "strategy": {
+          "description": "wallet revocation strategy",
+          "enum": [
+            "ALWAYS_REVOKE",
+            "REVOKE_OR_REPORT"
+          ],
+          "type": "string"
+        }
+      },
       "type": "object"
     },
     "WalletTransactionInfo": {

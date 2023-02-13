@@ -21,7 +21,7 @@ import (
 type RewardsRequest struct {
 
 	// origin, if rewards contains item icon, it will credit into related origin wallet. if not set, it will be credit into System wallet
-	// Enum: [Epic GooglePlay IOS Nintendo Other Playstation Stadia Steam System Twitch Xbox]
+	// Enum: [Epic GooglePlay IOS Nintendo Other Playstation Steam System Twitch Xbox]
 	Origin string `json:"origin,omitempty"`
 
 	// reward
@@ -59,7 +59,7 @@ var rewardsRequestTypeOriginPropEnum []interface{}
 
 func init() {
 	var res []string
-	if err := json.Unmarshal([]byte(`["Epic","GooglePlay","IOS","Nintendo","Other","Playstation","Stadia","Steam","System","Twitch","Xbox"]`), &res); err != nil {
+	if err := json.Unmarshal([]byte(`["Epic","GooglePlay","IOS","Nintendo","Other","Playstation","Steam","System","Twitch","Xbox"]`), &res); err != nil {
 		panic(err)
 	}
 	for _, v := range res {
@@ -86,9 +86,6 @@ const (
 
 	// RewardsRequestOriginPlaystation captures enum value "Playstation"
 	RewardsRequestOriginPlaystation string = "Playstation"
-
-	// RewardsRequestOriginStadia captures enum value "Stadia"
-	RewardsRequestOriginStadia string = "Stadia"
 
 	// RewardsRequestOriginSteam captures enum value "Steam"
 	RewardsRequestOriginSteam string = "Steam"

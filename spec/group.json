@@ -8,7 +8,7 @@
     },
     "description": "Justice Group Service",
     "title": "justice-group-service",
-    "version": "2.14.0"
+    "version": "2.15.0"
   },
   "schemes": [
     "https"
@@ -5324,7 +5324,7 @@
         ],
         "summary": "Cancel Invitation Group Member",
         "tags": [
-          "Member Request"
+          "Group Member"
         ]
       }
     },
@@ -5989,6 +5989,11 @@
           "$ref": "#/definitions/models.GroupRuleResponseV1"
         },
         "groupType": {
+          "enum": [
+            "OPEN",
+            "PRIVATE",
+            "PUBLIC"
+          ],
           "type": "string"
         }
       },

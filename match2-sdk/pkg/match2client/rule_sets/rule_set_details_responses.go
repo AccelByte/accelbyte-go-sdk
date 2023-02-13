@@ -70,10 +70,9 @@ func NewRuleSetDetailsOK() *RuleSetDetailsOK {
 	return &RuleSetDetailsOK{}
 }
 
-/*
-RuleSetDetailsOK handles this case with default header values.
+/*RuleSetDetailsOK handles this case with default header values.
 
-	Created
+  Created
 */
 type RuleSetDetailsOK struct {
 	Payload *match2clientmodels.APIRuleSetPayload
@@ -124,10 +123,9 @@ func NewRuleSetDetailsUnauthorized() *RuleSetDetailsUnauthorized {
 	return &RuleSetDetailsUnauthorized{}
 }
 
-/*
-RuleSetDetailsUnauthorized handles this case with default header values.
+/*RuleSetDetailsUnauthorized handles this case with default header values.
 
-	Unauthorized
+  Unauthorized
 */
 type RuleSetDetailsUnauthorized struct {
 	Payload *match2clientmodels.ResponseError
@@ -178,10 +176,9 @@ func NewRuleSetDetailsForbidden() *RuleSetDetailsForbidden {
 	return &RuleSetDetailsForbidden{}
 }
 
-/*
-RuleSetDetailsForbidden handles this case with default header values.
+/*RuleSetDetailsForbidden handles this case with default header values.
 
-	Forbidden
+  Forbidden
 */
 type RuleSetDetailsForbidden struct {
 	Payload *match2clientmodels.ResponseError
@@ -232,10 +229,9 @@ func NewRuleSetDetailsInternalServerError() *RuleSetDetailsInternalServerError {
 	return &RuleSetDetailsInternalServerError{}
 }
 
-/*
-RuleSetDetailsInternalServerError handles this case with default header values.
+/*RuleSetDetailsInternalServerError handles this case with default header values.
 
-	Internal Server Error
+  Internal Server Error
 */
 type RuleSetDetailsInternalServerError struct {
 	Payload *match2clientmodels.ResponseError

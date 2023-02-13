@@ -32,6 +32,10 @@ type ModelsPublicAchievementResponse struct {
 	// Required: true
 	Description *string `json:"description"`
 
+	// global
+	// Required: true
+	Global *bool `json:"global"`
+
 	// goal value
 	GoalValue float64 `json:"goalValue,omitempty"`
 
@@ -89,6 +93,10 @@ func (m *ModelsPublicAchievementResponse) Validate(formats strfmt.Registry) erro
 	}
 
 	if err := m.validateDescription(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateGlobal(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -159,6 +167,15 @@ func (m *ModelsPublicAchievementResponse) validateCreatedAt(formats strfmt.Regis
 func (m *ModelsPublicAchievementResponse) validateDescription(formats strfmt.Registry) error {
 
 	if err := validate.Required("description", "body", m.Description); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *ModelsPublicAchievementResponse) validateGlobal(formats strfmt.Registry) error {
+
+	if err := validate.Required("global", "body", m.Global); err != nil {
 		return err
 	}
 

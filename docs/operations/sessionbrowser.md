@@ -60,6 +60,8 @@
 | `models.RecentPlayerQueryResponse` | [ModelsRecentPlayerQueryResponse ](../../sessionbrowser-sdk/pkg/sessionbrowserclientmodels/models_recent_player_query_response.go) |
 | `models.Server` | [ModelsServer ](../../sessionbrowser-sdk/pkg/sessionbrowserclientmodels/models_server.go) |
 | `models.SessionByUserIDsResponse` | [ModelsSessionByUserIDsResponse ](../../sessionbrowser-sdk/pkg/sessionbrowserclientmodels/models_session_by_user_i_ds_response.go) |
+| `models.SessionPlayerHistory` | [ModelsSessionPlayerHistory ](../../sessionbrowser-sdk/pkg/sessionbrowserclientmodels/models_session_player_history.go) |
+| `models.SessionPlayerJoining` | [ModelsSessionPlayerJoining ](../../sessionbrowser-sdk/pkg/sessionbrowserclientmodels/models_session_player_joining.go) |
 | `models.SessionQueryResponse` | [ModelsSessionQueryResponse ](../../sessionbrowser-sdk/pkg/sessionbrowserclientmodels/models_session_query_response.go) |
 | `models.SessionResponse` | [ModelsSessionResponse ](../../sessionbrowser-sdk/pkg/sessionbrowserclientmodels/models_session_response.go) |
 | `models.StatusHistory` | [ModelsStatusHistory ](../../sessionbrowser-sdk/pkg/sessionbrowserclientmodels/models_status_history.go) |

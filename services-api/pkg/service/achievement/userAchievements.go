@@ -97,12 +97,15 @@ func (aaa *UserAchievementsService) AdminUnlockAchievement(input *user_achieveme
 	if err != nil {
 		return err
 	}
-	_, badRequest, unauthorized, internalServerError, err := aaa.Client.UserAchievements.AdminUnlockAchievement(input, client.BearerToken(*token.AccessToken))
+	_, badRequest, unauthorized, unprocessableEntity, internalServerError, err := aaa.Client.UserAchievements.AdminUnlockAchievement(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return badRequest
 	}
 	if unauthorized != nil {
 		return unauthorized
+	}
+	if unprocessableEntity != nil {
+		return unprocessableEntity
 	}
 	if internalServerError != nil {
 		return internalServerError
@@ -146,12 +149,15 @@ func (aaa *UserAchievementsService) PublicUnlockAchievement(input *user_achievem
 	if err != nil {
 		return err
 	}
-	_, badRequest, unauthorized, internalServerError, err := aaa.Client.UserAchievements.PublicUnlockAchievement(input, client.BearerToken(*token.AccessToken))
+	_, badRequest, unauthorized, unprocessableEntity, internalServerError, err := aaa.Client.UserAchievements.PublicUnlockAchievement(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return badRequest
 	}
 	if unauthorized != nil {
 		return unauthorized
+	}
+	if unprocessableEntity != nil {
+		return unprocessableEntity
 	}
 	if internalServerError != nil {
 		return internalServerError

@@ -61,8 +61,7 @@ func NewPublicListReasonGroupsParamsWithHTTPClient(client *http.Client) *PublicL
 	}
 }
 
-/*
-PublicListReasonGroupsParams contains all the parameters to send to the API endpoint
+/*PublicListReasonGroupsParams contains all the parameters to send to the API endpoint
 for the public list reason groups operation typically these are written to a http.Request
 */
 type PublicListReasonGroupsParams struct {

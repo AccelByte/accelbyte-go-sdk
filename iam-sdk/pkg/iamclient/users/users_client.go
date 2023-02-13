@@ -3217,7 +3217,6 @@ linked with the corresponding user id.
 	&lt;li&gt;&lt;strong&gt;device&lt;/strong&gt;: Every device that does’nt run Android and iOS is categorized as a device. The device_id is the device’s ID.&lt;/li&gt;
 	&lt;li&gt;&lt;strong&gt;justice&lt;/strong&gt;: The platform_token’s value is the designated user’s access token.&lt;/li&gt;
 	&lt;li&gt;&lt;strong&gt;epicgames&lt;/strong&gt;: The platform_token’s value is an access-token obtained from Epicgames EOS Account Service.&lt;/li&gt;
-             &lt;li&gt;&lt;strong&gt;stadia&lt;/strong&gt;: The platform_token&#39;s value is a JWT Token, which can be obtained after calling the Stadia SDK&#39;s function.&lt;/li&gt;
 	&lt;li&gt;&lt;strong&gt;ps4&lt;/strong&gt;: The platform_token’s value is the authorization code returned by Sony OAuth.&lt;/li&gt;
 	&lt;li&gt;&lt;strong&gt;ps5&lt;/strong&gt;: The platform_token’s value is the authorization code returned by Sony OAuth.&lt;/li&gt;
 	&lt;li&gt;&lt;strong&gt;nintendo&lt;/strong&gt;: The platform_token’s value is the authorization code(id_token) returned by Nintendo OAuth.&lt;/li&gt;
@@ -3312,7 +3311,6 @@ linked with the corresponding user id.
 	&lt;li&gt;&lt;strong&gt;device&lt;/strong&gt;: Every device that does’nt run Android and iOS is categorized as a device. The device_id is the device’s ID.&lt;/li&gt;
 	&lt;li&gt;&lt;strong&gt;justice&lt;/strong&gt;: The platform_token’s value is the designated user’s access token.&lt;/li&gt;
 	&lt;li&gt;&lt;strong&gt;epicgames&lt;/strong&gt;: The platform_token’s value is an access-token obtained from Epicgames EOS Account Service.&lt;/li&gt;
-             &lt;li&gt;&lt;strong&gt;stadia&lt;/strong&gt;: The platform_token&#39;s value is a JWT Token, which can be obtained after calling the Stadia SDK&#39;s function.&lt;/li&gt;
 	&lt;li&gt;&lt;strong&gt;ps4&lt;/strong&gt;: The platform_token’s value is the authorization code returned by Sony OAuth.&lt;/li&gt;
 	&lt;li&gt;&lt;strong&gt;ps5&lt;/strong&gt;: The platform_token’s value is the authorization code returned by Sony OAuth.&lt;/li&gt;
 	&lt;li&gt;&lt;strong&gt;nintendo&lt;/strong&gt;: The platform_token’s value is the authorization code(id_token) returned by Nintendo OAuth.&lt;/li&gt;
@@ -5105,7 +5103,6 @@ Deprecated: Use AdminPlatformLinkV3Short instead.
 				&lt;li&gt;&lt;strong&gt;awscognito&lt;/strong&gt;: The ticket’s value is the aws cognito access token (JWT).&lt;/li&gt;
 				&lt;li&gt;&lt;strong&gt;epicgames&lt;/strong&gt;: The ticket’s value is an access-token obtained from Epicgames EOS Account Service.&lt;/li&gt;
 				&lt;li&gt;&lt;strong&gt;nintendo&lt;/strong&gt;: The ticket’s value is the authorization code(id_token) returned by Nintendo OAuth.&lt;/li&gt;
-				&lt;li&gt;&lt;strong&gt;stadia&lt;/strong&gt;: The ticket’s value is a JWT Token, which can be obtained after calling the Stadia SDK&#39;s function.&lt;/li&gt;
 			&lt;/ul&gt;
 */
 func (a *Client) AdminPlatformLinkV3(params *AdminPlatformLinkV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminPlatformLinkV3NoContent, *AdminPlatformLinkV3BadRequest, *AdminPlatformLinkV3Unauthorized, *AdminPlatformLinkV3Forbidden, *AdminPlatformLinkV3NotFound, *AdminPlatformLinkV3Conflict, *AdminPlatformLinkV3InternalServerError, error) {
@@ -5188,7 +5185,6 @@ func (a *Client) AdminPlatformLinkV3(params *AdminPlatformLinkV3Params, authInfo
 				&lt;li&gt;&lt;strong&gt;awscognito&lt;/strong&gt;: The ticket’s value is the aws cognito access token (JWT).&lt;/li&gt;
 				&lt;li&gt;&lt;strong&gt;epicgames&lt;/strong&gt;: The ticket’s value is an access-token obtained from Epicgames EOS Account Service.&lt;/li&gt;
 				&lt;li&gt;&lt;strong&gt;nintendo&lt;/strong&gt;: The ticket’s value is the authorization code(id_token) returned by Nintendo OAuth.&lt;/li&gt;
-				&lt;li&gt;&lt;strong&gt;stadia&lt;/strong&gt;: The ticket’s value is a JWT Token, which can be obtained after calling the Stadia SDK&#39;s function.&lt;/li&gt;
 			&lt;/ul&gt;
 */
 func (a *Client) AdminPlatformLinkV3Short(params *AdminPlatformLinkV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminPlatformLinkV3NoContent, error) {
@@ -5266,7 +5262,6 @@ Deprecated: Use AdminPlatformUnlinkV3Short instead.
 				&lt;li&gt;&lt;strong&gt;awscognito&lt;/strong&gt;&lt;/li&gt;
 				&lt;li&gt;&lt;strong&gt;epicgames&lt;/strong&gt;&lt;/li&gt;
 				&lt;li&gt;&lt;strong&gt;nintendo&lt;/strong&gt;&lt;/li&gt;
-				&lt;li&gt;&lt;strong&gt;stadia&lt;/strong&gt;&lt;/li&gt;
 				&lt;li&gt;&lt;strong&gt;snapchat&lt;/strong&gt;&lt;/li&gt;
 			&lt;/ul&gt;
 			&lt;p&gt;Unlink user&#39;s account from a specific platform. &#39;justice&#39; platform might have multiple accounts from different namespaces linked.
@@ -5354,7 +5349,6 @@ func (a *Client) AdminPlatformUnlinkV3(params *AdminPlatformUnlinkV3Params, auth
 				&lt;li&gt;&lt;strong&gt;awscognito&lt;/strong&gt;&lt;/li&gt;
 				&lt;li&gt;&lt;strong&gt;epicgames&lt;/strong&gt;&lt;/li&gt;
 				&lt;li&gt;&lt;strong&gt;nintendo&lt;/strong&gt;&lt;/li&gt;
-				&lt;li&gt;&lt;strong&gt;stadia&lt;/strong&gt;&lt;/li&gt;
 				&lt;li&gt;&lt;strong&gt;snapchat&lt;/strong&gt;&lt;/li&gt;
 			&lt;/ul&gt;
 			&lt;p&gt;Unlink user&#39;s account from a specific platform. &#39;justice&#39; platform might have multiple accounts from different namespaces linked.
@@ -13341,7 +13335,6 @@ Deprecated: Use PublicForcePlatformLinkV3Short instead.
 				&lt;li&gt;&lt;strong&gt;device&lt;/strong&gt;: Every device that does’nt run Android and iOS is categorized as a device. The device_id is the device’s ID.&lt;/li&gt;
 				&lt;li&gt;&lt;strong&gt;justice&lt;/strong&gt;: The platform_token’s value is the designated user’s access token.&lt;/li&gt;
 				&lt;li&gt;&lt;strong&gt;epicgames&lt;/strong&gt;: The platform_token’s value is an access-token obtained from Epicgames EOS Account Service.&lt;/li&gt;
-                &lt;li&gt;&lt;strong&gt;stadia&lt;/strong&gt;: The platform_token&#39;s value is a JWT Token, which can be obtained after calling the Stadia SDK&#39;s function.&lt;/li&gt;
 				&lt;li&gt;&lt;strong&gt;ps4&lt;/strong&gt;: The platform_token’s value is the authorization code returned by Sony OAuth.&lt;/li&gt;
 				&lt;li&gt;&lt;strong&gt;ps5&lt;/strong&gt;: The platform_token’s value is the authorization code returned by Sony OAuth.&lt;/li&gt;
 				&lt;li&gt;&lt;strong&gt;nintendo&lt;/strong&gt;: The platform_token’s value is the authorization code(id_token) returned by Nintendo OAuth.&lt;/li&gt;
@@ -13430,7 +13423,6 @@ func (a *Client) PublicForcePlatformLinkV3(params *PublicForcePlatformLinkV3Para
 				&lt;li&gt;&lt;strong&gt;device&lt;/strong&gt;: Every device that does’nt run Android and iOS is categorized as a device. The device_id is the device’s ID.&lt;/li&gt;
 				&lt;li&gt;&lt;strong&gt;justice&lt;/strong&gt;: The platform_token’s value is the designated user’s access token.&lt;/li&gt;
 				&lt;li&gt;&lt;strong&gt;epicgames&lt;/strong&gt;: The platform_token’s value is an access-token obtained from Epicgames EOS Account Service.&lt;/li&gt;
-                &lt;li&gt;&lt;strong&gt;stadia&lt;/strong&gt;: The platform_token&#39;s value is a JWT Token, which can be obtained after calling the Stadia SDK&#39;s function.&lt;/li&gt;
 				&lt;li&gt;&lt;strong&gt;ps4&lt;/strong&gt;: The platform_token’s value is the authorization code returned by Sony OAuth.&lt;/li&gt;
 				&lt;li&gt;&lt;strong&gt;ps5&lt;/strong&gt;: The platform_token’s value is the authorization code returned by Sony OAuth.&lt;/li&gt;
 				&lt;li&gt;&lt;strong&gt;nintendo&lt;/strong&gt;: The platform_token’s value is the authorization code(id_token) returned by Nintendo OAuth.&lt;/li&gt;
@@ -14079,6 +14071,9 @@ Deprecated: Use PublicGetLinkHeadlessAccountToMyAccountConflictV3Short instead.
   Note:&lt;br&gt;
 1. My account should be full account
 2. My account not linked to request headless account&#39;s third platform.
+
+After client resolving the conflict, it will call endpoint &lt;b&gt;/iam/v3/public/users/me/headless/linkWithProgression [POST]&lt;/p&gt;
+
 */
 func (a *Client) PublicGetLinkHeadlessAccountToMyAccountConflictV3(params *PublicGetLinkHeadlessAccountToMyAccountConflictV3Params, authInfo runtime.ClientAuthInfoWriter) (*PublicGetLinkHeadlessAccountToMyAccountConflictV3OK, *PublicGetLinkHeadlessAccountToMyAccountConflictV3BadRequest, *PublicGetLinkHeadlessAccountToMyAccountConflictV3Unauthorized, *PublicGetLinkHeadlessAccountToMyAccountConflictV3Forbidden, *PublicGetLinkHeadlessAccountToMyAccountConflictV3InternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -14139,6 +14134,9 @@ func (a *Client) PublicGetLinkHeadlessAccountToMyAccountConflictV3(params *Publi
   Note:&lt;br&gt;
 1. My account should be full account
 2. My account not linked to request headless account&#39;s third platform.
+
+After client resolving the conflict, it will call endpoint &lt;b&gt;/iam/v3/public/users/me/headless/linkWithProgression [POST]&lt;/p&gt;
+
 */
 func (a *Client) PublicGetLinkHeadlessAccountToMyAccountConflictV3Short(params *PublicGetLinkHeadlessAccountToMyAccountConflictV3Params, authInfo runtime.ClientAuthInfoWriter) (*PublicGetLinkHeadlessAccountToMyAccountConflictV3OK, error) {
 	// TODO: Validate the params before sending
@@ -16178,7 +16176,6 @@ Deprecated: Use PublicPlatformLinkV3Short instead.
 				&lt;li&gt;&lt;strong&gt;awscognito&lt;/strong&gt;: The ticket’s value is the aws cognito access token (JWT).&lt;/li&gt;
 				&lt;li&gt;&lt;strong&gt;epicgames&lt;/strong&gt;: The ticket’s value is an access-token obtained from Epicgames EOS Account Service.&lt;/li&gt;
 				&lt;li&gt;&lt;strong&gt;nintendo&lt;/strong&gt;: The ticket’s value is the authorization code(id_token) returned by Nintendo OAuth.&lt;/li&gt;
-				&lt;li&gt;&lt;strong&gt;stadia&lt;/strong&gt;: The ticket’s value is a JWT Token, which can be obtained after calling the Stadia SDK&#39;s function.&lt;/li&gt;
 			&lt;/ul&gt;
 		&lt;br&gt;action code : 10144
 */
@@ -16262,7 +16259,6 @@ func (a *Client) PublicPlatformLinkV3(params *PublicPlatformLinkV3Params, authIn
 				&lt;li&gt;&lt;strong&gt;awscognito&lt;/strong&gt;: The ticket’s value is the aws cognito access token (JWT).&lt;/li&gt;
 				&lt;li&gt;&lt;strong&gt;epicgames&lt;/strong&gt;: The ticket’s value is an access-token obtained from Epicgames EOS Account Service.&lt;/li&gt;
 				&lt;li&gt;&lt;strong&gt;nintendo&lt;/strong&gt;: The ticket’s value is the authorization code(id_token) returned by Nintendo OAuth.&lt;/li&gt;
-				&lt;li&gt;&lt;strong&gt;stadia&lt;/strong&gt;: The ticket’s value is a JWT Token, which can be obtained after calling the Stadia SDK&#39;s function.&lt;/li&gt;
 			&lt;/ul&gt;
 		&lt;br&gt;action code : 10144
 */
@@ -16455,7 +16451,6 @@ Deprecated: Use PublicPlatformUnlinkV3Short instead.
 				&lt;li&gt;&lt;strong&gt;awscognito&lt;/strong&gt;&lt;/li&gt;
 				&lt;li&gt;&lt;strong&gt;epicgames&lt;/strong&gt;&lt;/li&gt;
 				&lt;li&gt;&lt;strong&gt;nintendo&lt;/strong&gt;&lt;/li&gt;
-				&lt;li&gt;&lt;strong&gt;stadia&lt;/strong&gt;&lt;/li&gt;
 			&lt;/ul&gt;
 			&lt;p&gt;Unlink user&#39;s account from a specific platform. &#39;justice&#39; platform might have multiple accounts from different namespaces linked.
 			&lt;br&gt;&lt;i&gt;platformNamespace&lt;/i&gt; need to be specified when the platform ID is &#39;justice&#39;.
@@ -16539,7 +16534,6 @@ func (a *Client) PublicPlatformUnlinkV3(params *PublicPlatformUnlinkV3Params, au
 				&lt;li&gt;&lt;strong&gt;awscognito&lt;/strong&gt;&lt;/li&gt;
 				&lt;li&gt;&lt;strong&gt;epicgames&lt;/strong&gt;&lt;/li&gt;
 				&lt;li&gt;&lt;strong&gt;nintendo&lt;/strong&gt;&lt;/li&gt;
-				&lt;li&gt;&lt;strong&gt;stadia&lt;/strong&gt;&lt;/li&gt;
 			&lt;/ul&gt;
 			&lt;p&gt;Unlink user&#39;s account from a specific platform. &#39;justice&#39; platform might have multiple accounts from different namespaces linked.
 			&lt;br&gt;&lt;i&gt;platformNamespace&lt;/i&gt; need to be specified when the platform ID is &#39;justice&#39;.

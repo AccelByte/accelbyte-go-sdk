@@ -94,8 +94,7 @@ func NewAdminFindExtensionCategoryListParamsWithHTTPClient(client *http.Client) 
 	}
 }
 
-/*
-AdminFindExtensionCategoryListParams contains all the parameters to send to the API endpoint
+/*AdminFindExtensionCategoryListParams contains all the parameters to send to the API endpoint
 for the admin find extension category list operation typically these are written to a http.Request
 */
 type AdminFindExtensionCategoryListParams struct {

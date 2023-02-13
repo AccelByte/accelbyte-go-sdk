@@ -3,7 +3,7 @@
   "info": {
     "description": "Justice Matchmaking Service",
     "title": "Justice Matchmaking Service",
-    "version": "2.20.1"
+    "version": "2.20.2"
   },
   "schemes": [
     "https"
@@ -2865,6 +2865,10 @@
           },
           "type": "array"
         },
+        "ticket_created_at": {
+          "format": "int64",
+          "type": "integer"
+        },
         "ticket_id": {
           "type": "string",
           "x-nullable": false
@@ -2875,6 +2879,7 @@
         "party_attributes",
         "party_id",
         "party_members",
+        "ticket_created_at",
         "ticket_id"
       ]
     },

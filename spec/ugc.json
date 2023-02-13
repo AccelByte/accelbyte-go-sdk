@@ -8,7 +8,7 @@
     },
     "description": "Justice UGC Service",
     "title": "justice-ugc-service",
-    "version": "2.8.1"
+    "version": "2.9.0"
   },
   "schemes": [
     "https"

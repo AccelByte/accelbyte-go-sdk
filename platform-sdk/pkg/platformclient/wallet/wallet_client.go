@@ -39,6 +39,8 @@ type ClientService interface {
 	CreditUserWalletShort(params *CreditUserWalletParams, authInfo runtime.ClientAuthInfoWriter) (*CreditUserWalletOK, error)
 	DebitUserWallet(params *DebitUserWalletParams, authInfo runtime.ClientAuthInfoWriter) (*DebitUserWalletOK, *DebitUserWalletBadRequest, *DebitUserWalletNotFound, *DebitUserWalletConflict, *DebitUserWalletUnprocessableEntity, error)
 	DebitUserWalletShort(params *DebitUserWalletParams, authInfo runtime.ClientAuthInfoWriter) (*DebitUserWalletOK, error)
+	DebitUserWalletByCurrencyCode(params *DebitUserWalletByCurrencyCodeParams, authInfo runtime.ClientAuthInfoWriter) (*DebitUserWalletByCurrencyCodeOK, *DebitUserWalletByCurrencyCodeBadRequest, *DebitUserWalletByCurrencyCodeConflict, *DebitUserWalletByCurrencyCodeUnprocessableEntity, error)
+	DebitUserWalletByCurrencyCodeShort(params *DebitUserWalletByCurrencyCodeParams, authInfo runtime.ClientAuthInfoWriter) (*DebitUserWalletByCurrencyCodeOK, error)
 	DisableUserWallet(params *DisableUserWalletParams, authInfo runtime.ClientAuthInfoWriter) (*DisableUserWalletNoContent, *DisableUserWalletNotFound, *DisableUserWalletConflict, error)
 	DisableUserWalletShort(params *DisableUserWalletParams, authInfo runtime.ClientAuthInfoWriter) (*DisableUserWalletNoContent, error)
 	EnableUserWallet(params *EnableUserWalletParams, authInfo runtime.ClientAuthInfoWriter) (*EnableUserWalletNoContent, *EnableUserWalletNotFound, *EnableUserWalletConflict, error)
@@ -393,6 +395,115 @@ func (a *Client) DebitUserWalletShort(params *DebitUserWalletParams, authInfo ru
 	case *DebitUserWalletConflict:
 		return nil, v
 	case *DebitUserWalletUnprocessableEntity:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+Deprecated: Use DebitUserWalletByCurrencyCodeShort instead.
+
+  DebitUserWalletByCurrencyCode debits a user wallet by currency code
+
+  Debit a user wallet by currency code, default is debit system wallet.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:USER:{userId}:WALLET&#34;, action=4 (UPDATE)&lt;/li&gt;&lt;/ul&gt;
+*/
+func (a *Client) DebitUserWalletByCurrencyCode(params *DebitUserWalletByCurrencyCodeParams, authInfo runtime.ClientAuthInfoWriter) (*DebitUserWalletByCurrencyCodeOK, *DebitUserWalletByCurrencyCodeBadRequest, *DebitUserWalletByCurrencyCodeConflict, *DebitUserWalletByCurrencyCodeUnprocessableEntity, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewDebitUserWalletByCurrencyCodeParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "debitUserWalletByCurrencyCode",
+		Method:             "PUT",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/users/{userId}/wallets/currencies/{currencyCode}/debit",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &DebitUserWalletByCurrencyCodeReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, nil, nil, nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *DebitUserWalletByCurrencyCodeOK:
+		return v, nil, nil, nil, nil
+
+	case *DebitUserWalletByCurrencyCodeBadRequest:
+		return nil, v, nil, nil, nil
+
+	case *DebitUserWalletByCurrencyCodeConflict:
+		return nil, nil, v, nil, nil
+
+	case *DebitUserWalletByCurrencyCodeUnprocessableEntity:
+		return nil, nil, nil, v, nil
+
+	default:
+		return nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+  DebitUserWalletByCurrencyCodeShort debits a user wallet by currency code
+
+  Debit a user wallet by currency code, default is debit system wallet.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:USER:{userId}:WALLET&#34;, action=4 (UPDATE)&lt;/li&gt;&lt;/ul&gt;
+*/
+func (a *Client) DebitUserWalletByCurrencyCodeShort(params *DebitUserWalletByCurrencyCodeParams, authInfo runtime.ClientAuthInfoWriter) (*DebitUserWalletByCurrencyCodeOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewDebitUserWalletByCurrencyCodeParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "debitUserWalletByCurrencyCode",
+		Method:             "PUT",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/users/{userId}/wallets/currencies/{currencyCode}/debit",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &DebitUserWalletByCurrencyCodeReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *DebitUserWalletByCurrencyCodeOK:
+		return v, nil
+	case *DebitUserWalletByCurrencyCodeBadRequest:
+		return nil, v
+	case *DebitUserWalletByCurrencyCodeConflict:
+		return nil, v
+	case *DebitUserWalletByCurrencyCodeUnprocessableEntity:
 		return nil, v
 
 	default:

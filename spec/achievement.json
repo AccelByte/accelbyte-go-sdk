@@ -3,7 +3,7 @@
   "info": {
     "description": "Justice Achievement Service",
     "title": "justice-achievement-service",
-    "version": "2.13.1"
+    "version": "2.14.0"
   },
   "schemes": [
     "https"
@@ -60,6 +60,13 @@
             "name": "namespace",
             "required": true,
             "type": "string"
+          },
+          {
+            "description": "filter by global achievement flag",
+            "in": "query",
+            "name": "global",
+            "type": "boolean",
+            "x-omitempty": false
           },
           {
             "default": 10,
@@ -1022,6 +1029,12 @@
               "$ref": "#/definitions/response.Error"
             }
           },
+          "422": {
+            "description": "Unprocessable Entity",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
           "500": {
             "description": "Internal Server Error",
             "schema": {
@@ -1124,6 +1137,13 @@
             "name": "language",
             "required": true,
             "type": "string"
+          },
+          {
+            "description": "filter by global achievement flag",
+            "in": "query",
+            "name": "global",
+            "type": "boolean",
+            "x-omitempty": false
           },
           {
             "default": 10,
@@ -1299,6 +1319,100 @@
         "summary": "Get an achievement",
         "tags": [
           "Achievements"
+        ]
+      }
+    },
+    "/achievement/v1/public/namespaces/{namespace}/global/achievements": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "\u0026lt;p\u0026gt;Required permission \n\t\t\t\u0026lt;code\u0026gt;NAMESPACE:{namespace}:ACHIEVEMENT [READ]\u0026lt;/code\u0026gt; and scope \u0026lt;code\u0026gt;social\u0026lt;/code\u0026gt;\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;Note:\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt; Global achievement status value mean: \u0026lt;code\u0026gt;status = 1 (in progress)\u0026lt;/code\u0026gt; and \u0026lt;code\u0026gt;status = 2 (unlocked)\u0026lt;/code\u0026gt;\u0026lt;/p\u0026gt;",
+        "operationId": "PublicListGlobalAchievements",
+        "parameters": [
+          {
+            "description": "namespace of the game",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "filter by achievement code",
+            "in": "query",
+            "name": "achievementCode",
+            "type": "string"
+          },
+          {
+            "default": 10,
+            "description": "the maximum number of data that may be returned (1...100)",
+            "in": "query",
+            "name": "limit",
+            "type": "integer"
+          },
+          {
+            "default": 0,
+            "description": "offset",
+            "in": "query",
+            "name": "offset",
+            "type": "integer"
+          },
+          {
+            "description": "sort by, allow values: [achievedAt, achievedAt:asc, achievedAt:desc, createdAt, createdAt:asc, createdAt:desc]",
+            "in": "query",
+            "name": "sortBy",
+            "type": "string"
+          },
+          {
+            "description": "filter by status. available value: [in_progress, unlocked]",
+            "in": "query",
+            "name": "status",
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/models.PaginatedGlobalAchievementResponse"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          }
+        },
+        "security": [
+          {
+            "HasPermission": [
+              "NAMESPACE:{namespace}:ACHIEVEMENT [READ]"
+            ],
+            "HasScope": [
+              "social"
+            ],
+            "authorization": []
+          }
+        ],
+        "summary": "Query global achievements [include achieved and in-progress]",
+        "tags": [
+          "Global Achievements"
         ]
       }
     },
@@ -1559,6 +1673,12 @@
               "$ref": "#/definitions/response.Error"
             }
           },
+          "422": {
+            "description": "Unprocessable Entity",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
           "500": {
             "description": "Internal Server Error",
             "schema": {
@@ -1580,6 +1700,79 @@
         "summary": "Unlock an achievement",
         "tags": [
           "User Achievements"
+        ]
+      }
+    },
+    "/achievement/v1/public/namespaces/{namespace}/users/{userId}/global/achievements/{achievementCode}/claim": {
+      "post": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "\u0026lt;p\u0026gt;Required permission \n\t\t\t\u0026lt;code\u0026gt;NAMESPACE:{namespace}:USER:{userId}:ACHIEVEMENT [READ]\u0026lt;/code\u0026gt; and scope \u0026lt;code\u0026gt;social\u0026lt;/code\u0026gt;\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;Note:\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt; Global achievement should be unlocked to claim the reward. Only contributor of global achievement are eligible for rewards",
+        "operationId": "ClaimGlobalAchievementReward",
+        "parameters": [
+          {
+            "description": "achievement code",
+            "in": "path",
+            "name": "achievementCode",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "namespace of the game",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "user ID",
+            "in": "path",
+            "name": "userId",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "202": {
+            "description": "Accepted"
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          }
+        },
+        "security": [
+          {
+            "HasPermission": [
+              "NAMESPACE:{namespace}:USER:{userId}:ACHIEVEMENT [READ]"
+            ],
+            "HasScope": [
+              "social"
+            ],
+            "authorization": []
+          }
+        ],
+        "summary": "Claim global achievement reward",
+        "tags": [
+          "Global Achievements"
         ]
       }
     }
@@ -1609,6 +1802,10 @@
             "type": "string"
           },
           "type": "object"
+        },
+        "global": {
+          "type": "boolean",
+          "x-omitempty": false
         },
         "goalValue": {
           "format": "double",
@@ -1683,6 +1880,10 @@
           },
           "type": "object"
         },
+        "global": {
+          "type": "boolean",
+          "x-omitempty": false
+        },
         "goalValue": {
           "format": "double",
           "type": "number"
@@ -1740,6 +1941,7 @@
         "createdAt",
         "defaultLanguage",
         "description",
+        "global",
         "hidden",
         "incremental",
         "listOrder",
@@ -1836,6 +2038,57 @@
         "numberOfVisibleAchievements"
       ]
     },
+    "models.GlobalAchievementResponse": {
+      "properties": {
+        "achievedAt": {
+          "format": "date-time",
+          "type": "string",
+          "x-nullable": true
+        },
+        "achievementCode": {
+          "type": "string"
+        },
+        "createdAt": {
+          "format": "date-time",
+          "type": "string",
+          "x-nullable": false
+        },
+        "id": {
+          "type": "string"
+        },
+        "latestValue": {
+          "format": "double",
+          "type": "number"
+        },
+        "name": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "type": "object"
+        },
+        "namespace": {
+          "type": "string"
+        },
+        "status": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "updatedAt": {
+          "format": "date-time",
+          "type": "string",
+          "x-nullable": true
+        }
+      },
+      "required": [
+        "achievementCode",
+        "createdAt",
+        "id",
+        "latestValue",
+        "name",
+        "namespace",
+        "status"
+      ]
+    },
     "models.Icon": {
       "properties": {
         "slug": {
@@ -1855,6 +2108,23 @@
         "data": {
           "items": {
             "$ref": "#/definitions/models.AchievementResponse"
+          },
+          "type": "array"
+        },
+        "paging": {
+          "$ref": "#/definitions/models.Pagination"
+        }
+      },
+      "required": [
+        "data",
+        "paging"
+      ]
+    },
+    "models.PaginatedGlobalAchievementResponse": {
+      "properties": {
+        "data": {
+          "items": {
+            "$ref": "#/definitions/models.GlobalAchievementResponse"
           },
           "type": "array"
         },
@@ -1932,6 +2202,10 @@
         "description": {
           "type": "string"
         },
+        "global": {
+          "type": "boolean",
+          "x-omitempty": false
+        },
         "goalValue": {
           "format": "double",
           "type": "number"
@@ -1985,6 +2259,7 @@
         "achievementCode",
         "createdAt",
         "description",
+        "global",
         "hidden",
         "incremental",
         "listOrder",

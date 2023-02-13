@@ -29,6 +29,7 @@ import (
 	"github.com/AccelByte/sample-apps/cmd/platform/paymentConfig"
 	"github.com/AccelByte/sample-apps/cmd/platform/paymentDedicated"
 	"github.com/AccelByte/sample-apps/cmd/platform/paymentStation"
+	"github.com/AccelByte/sample-apps/cmd/platform/revocation"
 	"github.com/AccelByte/sample-apps/cmd/platform/reward"
 	"github.com/AccelByte/sample-apps/cmd/platform/section"
 	"github.com/AccelByte/sample-apps/cmd/platform/servicePluginConfig"
@@ -115,9 +116,6 @@ func init() {
 	PlatformCmd.AddCommand(iap.GetPlayStationIAPConfigCmd)
 	PlatformCmd.AddCommand(iap.UpdatePlaystationIAPConfigCmd)
 	PlatformCmd.AddCommand(iap.DeletePlaystationIAPConfigCmd)
-	PlatformCmd.AddCommand(iap.GetStadiaIAPConfigCmd)
-	PlatformCmd.AddCommand(iap.DeleteStadiaIAPConfigCmd)
-	PlatformCmd.AddCommand(iap.UpdateStadiaJsonConfigFileCmd)
 	PlatformCmd.AddCommand(iap.GetSteamIAPConfigCmd)
 	PlatformCmd.AddCommand(iap.UpdateSteamIAPConfigCmd)
 	PlatformCmd.AddCommand(iap.DeleteSteamIAPConfigCmd)
@@ -184,6 +182,10 @@ func init() {
 	PlatformCmd.AddCommand(wallet.GetPlatformWalletConfigCmd)
 	PlatformCmd.AddCommand(wallet.UpdatePlatformWalletConfigCmd)
 	PlatformCmd.AddCommand(wallet.ResetPlatformWalletConfigCmd)
+	PlatformCmd.AddCommand(revocation.GetPaymentCallbackConfig1Cmd)
+	PlatformCmd.AddCommand(revocation.UpdateRevocationConfigCmd)
+	PlatformCmd.AddCommand(revocation.DeleteRevocationConfigCmd)
+	PlatformCmd.AddCommand(revocation.QueryRevocationHistoriesCmd)
 	PlatformCmd.AddCommand(reward.CreateRewardCmd)
 	PlatformCmd.AddCommand(reward.QueryRewardsCmd)
 	PlatformCmd.AddCommand(reward.ExportRewardsCmd)
@@ -234,6 +236,7 @@ func init() {
 	PlatformCmd.AddCommand(anonymization.AnonymizeIntegrationCmd)
 	PlatformCmd.AddCommand(anonymization.AnonymizeOrderCmd)
 	PlatformCmd.AddCommand(anonymization.AnonymizePaymentCmd)
+	PlatformCmd.AddCommand(anonymization.AnonymizeRevocationCmd)
 	PlatformCmd.AddCommand(anonymization.AnonymizeSubscriptionCmd)
 	PlatformCmd.AddCommand(anonymization.AnonymizeWalletCmd)
 	PlatformCmd.AddCommand(dlc.GetUserDLCCmd)
@@ -278,6 +281,7 @@ func init() {
 	PlatformCmd.AddCommand(payment.CreateUserPaymentOrderCmd)
 	PlatformCmd.AddCommand(payment.RefundUserPaymentOrderCmd)
 	PlatformCmd.AddCommand(campaign.ApplyUserRedemptionCmd)
+	PlatformCmd.AddCommand(revocation.DoRevocationCmd)
 	PlatformCmd.AddCommand(subscription.QueryUserSubscriptionsCmd)
 	PlatformCmd.AddCommand(subscription.GetUserSubscriptionActivitiesCmd)
 	PlatformCmd.AddCommand(subscription.PlatformSubscribeSubscriptionCmd)
@@ -290,6 +294,7 @@ func init() {
 	PlatformCmd.AddCommand(subscription.ProcessUserSubscriptionNotificationCmd)
 	PlatformCmd.AddCommand(ticket.AcquireUserTicketCmd)
 	PlatformCmd.AddCommand(wallet.QueryUserCurrencyWalletsCmd)
+	PlatformCmd.AddCommand(wallet.DebitUserWalletByCurrencyCodeCmd)
 	PlatformCmd.AddCommand(wallet.ListUserCurrencyTransactionsCmd)
 	PlatformCmd.AddCommand(wallet.CheckWalletCmd)
 	PlatformCmd.AddCommand(wallet.CreditUserWalletCmd)
@@ -400,7 +405,6 @@ func init() {
 	PlatformCmd.AddCommand(iap.PublicFulfillGoogleIAPItemCmd)
 	PlatformCmd.AddCommand(iap.PublicReconcilePlayStationStoreCmd)
 	PlatformCmd.AddCommand(iap.PublicReconcilePlayStationStoreWithMultipleServiceLabelsCmd)
-	PlatformCmd.AddCommand(iap.SyncStadiaEntitlementCmd)
 	PlatformCmd.AddCommand(iap.SyncSteamInventoryCmd)
 	PlatformCmd.AddCommand(iap.SyncTwitchDropsEntitlementCmd)
 	PlatformCmd.AddCommand(iap.SyncXboxInventoryCmd)

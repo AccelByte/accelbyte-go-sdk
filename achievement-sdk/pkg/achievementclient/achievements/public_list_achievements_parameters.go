@@ -109,6 +109,11 @@ type PublicListAchievementsParams struct {
 
 	/*RetryPolicy*/
 	RetryPolicy *utils.Retry
+	/*Global
+	  filter by global achievement flag
+
+	*/
+	Global *bool
 	/*Language
 	  language, if the selected language not exist in achievement,it use default language
 
@@ -193,6 +198,17 @@ func (o *PublicListAchievementsParams) SetHTTPClientTransport(roundTripper http.
 	}
 }
 
+// WithGlobal adds the global to the public list achievements params
+func (o *PublicListAchievementsParams) WithGlobal(global *bool) *PublicListAchievementsParams {
+	o.SetGlobal(global)
+	return o
+}
+
+// SetGlobal adds the global to the public list achievements params
+func (o *PublicListAchievementsParams) SetGlobal(global *bool) {
+	o.Global = global
+}
+
 // WithLanguage adds the language to the public list achievements params
 func (o *PublicListAchievementsParams) WithLanguage(language string) *PublicListAchievementsParams {
 	o.SetLanguage(language)
@@ -266,6 +282,22 @@ func (o *PublicListAchievementsParams) WriteToRequest(r runtime.ClientRequest, r
 		return err
 	}
 	var res []error
+
+	if o.Global != nil {
+
+		// query param global
+		var qrGlobal bool
+		if o.Global != nil {
+			qrGlobal = *o.Global
+		}
+		qGlobal := swag.FormatBool(qrGlobal)
+		if qGlobal != "" {
+			if err := r.SetQueryParam("global", qGlobal); err != nil {
+				return err
+			}
+		}
+
+	}
 
 	// query param language
 	qrLanguage := o.Language

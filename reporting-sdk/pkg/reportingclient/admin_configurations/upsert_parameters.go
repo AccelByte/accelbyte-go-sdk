@@ -62,8 +62,7 @@ func NewUpsertParamsWithHTTPClient(client *http.Client) *UpsertParams {
 	}
 }
 
-/*
-UpsertParams contains all the parameters to send to the API endpoint
+/*UpsertParams contains all the parameters to send to the API endpoint
 for the upsert operation typically these are written to a http.Request
 */
 type UpsertParams struct {

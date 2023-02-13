@@ -48,6 +48,12 @@ func (o *AdminUnlockAchievementReader) ReadResponse(response runtime.ClientRespo
 			return nil, err
 		}
 		return result, nil
+	case 422:
+		result := NewAdminUnlockAchievementUnprocessableEntity()
+		if err := result.readResponse(response, consumer, o.formats); err != nil {
+			return nil, err
+		}
+		return result, nil
 	case 500:
 		result := NewAdminUnlockAchievementInternalServerError()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -181,6 +187,59 @@ func (o *AdminUnlockAchievementUnauthorized) GetPayload() *achievementclientmode
 }
 
 func (o *AdminUnlockAchievementUnauthorized) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+	// handle file responses
+	contentDisposition := response.GetHeader("Content-Disposition")
+	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
+		consumer = runtime.ByteStreamConsumer()
+	}
+
+	o.Payload = new(achievementclientmodels.ResponseError)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
+	}
+
+	return nil
+}
+
+// NewAdminUnlockAchievementUnprocessableEntity creates a AdminUnlockAchievementUnprocessableEntity with default headers values
+func NewAdminUnlockAchievementUnprocessableEntity() *AdminUnlockAchievementUnprocessableEntity {
+	return &AdminUnlockAchievementUnprocessableEntity{}
+}
+
+/*AdminUnlockAchievementUnprocessableEntity handles this case with default header values.
+
+  Unprocessable Entity
+*/
+type AdminUnlockAchievementUnprocessableEntity struct {
+	Payload *achievementclientmodels.ResponseError
+}
+
+func (o *AdminUnlockAchievementUnprocessableEntity) Error() string {
+	return fmt.Sprintf("[PUT /achievement/v1/admin/namespaces/{namespace}/users/{userId}/achievements/{achievementCode}/unlock][%d] adminUnlockAchievementUnprocessableEntity  %+v", 422, o.ToJSONString())
+}
+
+func (o *AdminUnlockAchievementUnprocessableEntity) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
+}
+
+func (o *AdminUnlockAchievementUnprocessableEntity) GetPayload() *achievementclientmodels.ResponseError {
+	return o.Payload
+}
+
+func (o *AdminUnlockAchievementUnprocessableEntity) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {

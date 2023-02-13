@@ -28,10 +28,12 @@ func NewPublicQueryUserStatItemsParams() *PublicQueryUserStatItemsParams {
 	var (
 		limitDefault  = int32(20)
 		offsetDefault = int32(0)
+		sortByDefault = string("updatedAt:asc")
 	)
 	return &PublicQueryUserStatItemsParams{
 		Limit:  &limitDefault,
 		Offset: &offsetDefault,
+		SortBy: &sortByDefault,
 
 		timeout: cr.DefaultTimeout,
 	}
@@ -43,10 +45,12 @@ func NewPublicQueryUserStatItemsParamsWithTimeout(timeout time.Duration) *Public
 	var (
 		limitDefault  = int32(20)
 		offsetDefault = int32(0)
+		sortByDefault = string("updatedAt:asc")
 	)
 	return &PublicQueryUserStatItemsParams{
 		Limit:  &limitDefault,
 		Offset: &offsetDefault,
+		SortBy: &sortByDefault,
 
 		timeout: timeout,
 	}
@@ -58,10 +62,12 @@ func NewPublicQueryUserStatItemsParamsWithContext(ctx context.Context) *PublicQu
 	var (
 		limitDefault  = int32(20)
 		offsetDefault = int32(0)
+		sortByDefault = string("updatedAt:asc")
 	)
 	return &PublicQueryUserStatItemsParams{
 		Limit:  &limitDefault,
 		Offset: &offsetDefault,
+		SortBy: &sortByDefault,
 
 		Context: ctx,
 	}
@@ -73,10 +79,12 @@ func NewPublicQueryUserStatItemsParamsWithHTTPClient(client *http.Client) *Publi
 	var (
 		limitDefault  = int32(20)
 		offsetDefault = int32(0)
+		sortByDefault = string("updatedAt:asc")
 	)
 	return &PublicQueryUserStatItemsParams{
 		Limit:      &limitDefault,
 		Offset:     &offsetDefault,
+		SortBy:     &sortByDefault,
 		HTTPClient: client,
 	}
 }
@@ -97,6 +105,11 @@ type PublicQueryUserStatItemsParams struct {
 	Namespace string
 	/*Offset*/
 	Offset *int32
+	/*SortBy
+	  default is updatedAt:asc, allow values: [statCode, statCode:asc, statCode:desc, createdAt, createdAt:asc, createdAt:desc, updatedAt, updatedAt:asc, updatedAt:desc],and support sort group, eg: sortBy=statCode:asc,createdAt:desc.
+
+	*/
+	SortBy *string
 	/*StatCodes
 	  stat codes
 
@@ -199,6 +212,17 @@ func (o *PublicQueryUserStatItemsParams) SetOffset(offset *int32) {
 	o.Offset = offset
 }
 
+// WithSortBy adds the sortBy to the public query user stat items params
+func (o *PublicQueryUserStatItemsParams) WithSortBy(sortBy *string) *PublicQueryUserStatItemsParams {
+	o.SetSortBy(sortBy)
+	return o
+}
+
+// SetSortBy adds the sortBy to the public query user stat items params
+func (o *PublicQueryUserStatItemsParams) SetSortBy(sortBy *string) {
+	o.SortBy = sortBy
+}
+
 // WithStatCodes adds the statCodes to the public query user stat items params
 func (o *PublicQueryUserStatItemsParams) WithStatCodes(statCodes *string) *PublicQueryUserStatItemsParams {
 	o.SetStatCodes(statCodes)
@@ -271,6 +295,22 @@ func (o *PublicQueryUserStatItemsParams) WriteToRequest(r runtime.ClientRequest,
 		qOffset := swag.FormatInt32(qrOffset)
 		if qOffset != "" {
 			if err := r.SetQueryParam("offset", qOffset); err != nil {
+				return err
+			}
+		}
+
+	}
+
+	if o.SortBy != nil {
+
+		// query param sortBy
+		var qrSortBy string
+		if o.SortBy != nil {
+			qrSortBy = *o.SortBy
+		}
+		qSortBy := qrSortBy
+		if qSortBy != "" {
+			if err := r.SetQueryParam("sortBy", qSortBy); err != nil {
 				return err
 			}
 		}

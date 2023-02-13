@@ -62,8 +62,7 @@ func NewAdminSubmitReportParamsWithHTTPClient(client *http.Client) *AdminSubmitR
 	}
 }
 
-/*
-AdminSubmitReportParams contains all the parameters to send to the API endpoint
+/*AdminSubmitReportParams contains all the parameters to send to the API endpoint
 for the admin submit report operation typically these are written to a http.Request
 */
 type AdminSubmitReportParams struct {

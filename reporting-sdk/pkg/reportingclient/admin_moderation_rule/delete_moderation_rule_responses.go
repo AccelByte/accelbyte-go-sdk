@@ -64,10 +64,9 @@ func NewDeleteModerationRuleNoContent() *DeleteModerationRuleNoContent {
 	return &DeleteModerationRuleNoContent{}
 }
 
-/*
-DeleteModerationRuleNoContent handles this case with default header values.
+/*DeleteModerationRuleNoContent handles this case with default header values.
 
-	No Content
+  No Content
 */
 type DeleteModerationRuleNoContent struct {
 }
@@ -91,10 +90,9 @@ func NewDeleteModerationRuleBadRequest() *DeleteModerationRuleBadRequest {
 	return &DeleteModerationRuleBadRequest{}
 }
 
-/*
-DeleteModerationRuleBadRequest handles this case with default header values.
+/*DeleteModerationRuleBadRequest handles this case with default header values.
 
-	Bad Request
+  Bad Request
 */
 type DeleteModerationRuleBadRequest struct {
 	Payload *reportingclientmodels.RestapiErrorResponse
@@ -145,10 +143,9 @@ func NewDeleteModerationRuleInternalServerError() *DeleteModerationRuleInternalS
 	return &DeleteModerationRuleInternalServerError{}
 }
 
-/*
-DeleteModerationRuleInternalServerError handles this case with default header values.
+/*DeleteModerationRuleInternalServerError handles this case with default header values.
 
-	Internal Server Error
+  Internal Server Error
 */
 type DeleteModerationRuleInternalServerError struct {
 	Payload *reportingclientmodels.RestapiErrorResponse

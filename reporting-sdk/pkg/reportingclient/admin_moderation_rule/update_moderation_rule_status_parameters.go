@@ -62,8 +62,7 @@ func NewUpdateModerationRuleStatusParamsWithHTTPClient(client *http.Client) *Upd
 	}
 }
 
-/*
-UpdateModerationRuleStatusParams contains all the parameters to send to the API endpoint
+/*UpdateModerationRuleStatusParams contains all the parameters to send to the API endpoint
 for the update moderation rule status operation typically these are written to a http.Request
 */
 type UpdateModerationRuleStatusParams struct {

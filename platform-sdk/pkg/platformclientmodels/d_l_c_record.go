@@ -27,6 +27,9 @@ type DLCRecord struct {
 	// Format: date-time
 	ObtainedAt *strfmt.DateTime `json:"obtainedAt,omitempty"`
 
+	// revocation result
+	RevocationResult *RevocationResult `json:"revocationResult,omitempty"`
+
 	// revoke results
 	RevokeResults []*RevokeResult `json:"revokeResults"`
 
@@ -42,8 +45,14 @@ type DLCRecord struct {
 	Sources []string `json:"sources"`
 
 	// status
-	// Enum: [FULFILLED REVOKED]
+	// Enum: [FULFILLED REVOKED REVOKE_FAILED]
 	Status string `json:"status,omitempty"`
+
+	// transaction Id
+	TransactionID string `json:"transactionId,omitempty"`
+
+	// version
+	Version int32 `json:"version,omitempty"`
 }
 
 // Validate validates this d l c record
@@ -51,6 +60,10 @@ func (m *DLCRecord) Validate(formats strfmt.Registry) error {
 	var res []error
 
 	if err := m.validateObtainedAt(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateRevocationResult(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -88,6 +101,24 @@ func (m *DLCRecord) validateObtainedAt(formats strfmt.Registry) error {
 
 	if err := validate.FormatOf("obtainedAt", "body", "date-time", m.ObtainedAt.String(), formats); err != nil {
 		return err
+	}
+
+	return nil
+}
+
+func (m *DLCRecord) validateRevocationResult(formats strfmt.Registry) error {
+
+	if swag.IsZero(m.RevocationResult) { // not required
+		return nil
+	}
+
+	if m.RevocationResult != nil {
+		if err := m.RevocationResult.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("revocationResult")
+			}
+			return err
+		}
 	}
 
 	return nil
@@ -173,7 +204,7 @@ var dLCRecordTypeStatusPropEnum []interface{}
 
 func init() {
 	var res []string
-	if err := json.Unmarshal([]byte(`["FULFILLED","REVOKED"]`), &res); err != nil {
+	if err := json.Unmarshal([]byte(`["FULFILLED","REVOKED","REVOKE_FAILED"]`), &res); err != nil {
 		panic(err)
 	}
 	for _, v := range res {
@@ -188,6 +219,9 @@ const (
 
 	// DLCRecordStatusREVOKED captures enum value "REVOKED"
 	DLCRecordStatusREVOKED string = "REVOKED"
+
+	// DLCRecordStatusREVOKEFAILED captures enum value "REVOKE_FAILED"
+	DLCRecordStatusREVOKEFAILED string = "REVOKE_FAILED"
 )
 
 // prop value enum

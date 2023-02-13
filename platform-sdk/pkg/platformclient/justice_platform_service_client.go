@@ -39,6 +39,7 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclient/payment_config"
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclient/payment_dedicated"
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclient/payment_station"
+	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclient/revocation"
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclient/reward"
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclient/section"
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclient/service_plugin_config"
@@ -119,6 +120,7 @@ func New(transport runtime.ClientTransport, runtime *httptransport.Runtime, form
 	cli.PaymentConfig = payment_config.New(transport, formats)
 	cli.PaymentDedicated = payment_dedicated.New(transport, formats)
 	cli.PaymentStation = payment_station.New(transport, formats)
+	cli.Revocation = revocation.New(transport, formats)
 	cli.Reward = reward.New(transport, formats)
 	cli.Section = section.New(transport, formats)
 	cli.ServicePluginConfig = service_plugin_config.New(transport, formats)
@@ -231,6 +233,8 @@ type JusticePlatformService struct {
 
 	PaymentStation payment_station.ClientService
 
+	Revocation revocation.ClientService
+
 	Reward reward.ClientService
 
 	Section section.ClientService
@@ -276,6 +280,7 @@ func (c *JusticePlatformService) SetTransport(transport runtime.ClientTransport)
 	c.PaymentConfig.SetTransport(transport)
 	c.PaymentDedicated.SetTransport(transport)
 	c.PaymentStation.SetTransport(transport)
+	c.Revocation.SetTransport(transport)
 	c.Reward.SetTransport(transport)
 	c.Section.SetTransport(transport)
 	c.ServicePluginConfig.SetTransport(transport)

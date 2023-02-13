@@ -20,12 +20,17 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/legal-sdk/pkg/legalclient/admin_user_agreement"
 	"github.com/AccelByte/accelbyte-go-sdk/legal-sdk/pkg/legalclient/admin_user_eligibilities"
 	"github.com/AccelByte/accelbyte-go-sdk/legal-sdk/pkg/legalclient/agreement"
+	"github.com/AccelByte/accelbyte-go-sdk/legal-sdk/pkg/legalclient/agreement_with_namespace"
 	"github.com/AccelByte/accelbyte-go-sdk/legal-sdk/pkg/legalclient/anonymization"
 	"github.com/AccelByte/accelbyte-go-sdk/legal-sdk/pkg/legalclient/base_legal_policies"
+	"github.com/AccelByte/accelbyte-go-sdk/legal-sdk/pkg/legalclient/base_legal_policies_with_namespace"
 	"github.com/AccelByte/accelbyte-go-sdk/legal-sdk/pkg/legalclient/eligibilities"
 	"github.com/AccelByte/accelbyte-go-sdk/legal-sdk/pkg/legalclient/localized_policy_versions"
+	"github.com/AccelByte/accelbyte-go-sdk/legal-sdk/pkg/legalclient/localized_policy_versions_with_namespace"
 	"github.com/AccelByte/accelbyte-go-sdk/legal-sdk/pkg/legalclient/policies"
+	"github.com/AccelByte/accelbyte-go-sdk/legal-sdk/pkg/legalclient/policies_with_namespace"
 	"github.com/AccelByte/accelbyte-go-sdk/legal-sdk/pkg/legalclient/policy_versions"
+	"github.com/AccelByte/accelbyte-go-sdk/legal-sdk/pkg/legalclient/policy_versions_with_namespace"
 	"github.com/AccelByte/accelbyte-go-sdk/legal-sdk/pkg/legalclient/user_info"
 	"github.com/AccelByte/accelbyte-go-sdk/legal-sdk/pkg/legalclient/utility"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils"
@@ -81,12 +86,17 @@ func New(transport runtime.ClientTransport, runtime *httptransport.Runtime, form
 	cli.AdminUserAgreement = admin_user_agreement.New(transport, formats)
 	cli.AdminUserEligibilities = admin_user_eligibilities.New(transport, formats)
 	cli.Agreement = agreement.New(transport, formats)
+	cli.AgreementWithNamespace = agreement_with_namespace.New(transport, formats)
 	cli.Anonymization = anonymization.New(transport, formats)
 	cli.BaseLegalPolicies = base_legal_policies.New(transport, formats)
+	cli.BaseLegalPoliciesWithNamespace = base_legal_policies_with_namespace.New(transport, formats)
 	cli.Eligibilities = eligibilities.New(transport, formats)
 	cli.LocalizedPolicyVersions = localized_policy_versions.New(transport, formats)
+	cli.LocalizedPolicyVersionsWithNamespace = localized_policy_versions_with_namespace.New(transport, formats)
 	cli.Policies = policies.New(transport, formats)
+	cli.PoliciesWithNamespace = policies_with_namespace.New(transport, formats)
 	cli.PolicyVersions = policy_versions.New(transport, formats)
+	cli.PolicyVersionsWithNamespace = policy_versions_with_namespace.New(transport, formats)
 	cli.UserInfo = user_info.New(transport, formats)
 	cli.Utility = utility.New(transport, formats)
 
@@ -155,17 +165,27 @@ type JusticeLegalService struct {
 
 	Agreement agreement.ClientService
 
+	AgreementWithNamespace agreement_with_namespace.ClientService
+
 	Anonymization anonymization.ClientService
 
 	BaseLegalPolicies base_legal_policies.ClientService
+
+	BaseLegalPoliciesWithNamespace base_legal_policies_with_namespace.ClientService
 
 	Eligibilities eligibilities.ClientService
 
 	LocalizedPolicyVersions localized_policy_versions.ClientService
 
+	LocalizedPolicyVersionsWithNamespace localized_policy_versions_with_namespace.ClientService
+
 	Policies policies.ClientService
 
+	PoliciesWithNamespace policies_with_namespace.ClientService
+
 	PolicyVersions policy_versions.ClientService
+
+	PolicyVersionsWithNamespace policy_versions_with_namespace.ClientService
 
 	UserInfo user_info.ClientService
 
@@ -181,12 +201,17 @@ func (c *JusticeLegalService) SetTransport(transport runtime.ClientTransport) {
 	c.AdminUserAgreement.SetTransport(transport)
 	c.AdminUserEligibilities.SetTransport(transport)
 	c.Agreement.SetTransport(transport)
+	c.AgreementWithNamespace.SetTransport(transport)
 	c.Anonymization.SetTransport(transport)
 	c.BaseLegalPolicies.SetTransport(transport)
+	c.BaseLegalPoliciesWithNamespace.SetTransport(transport)
 	c.Eligibilities.SetTransport(transport)
 	c.LocalizedPolicyVersions.SetTransport(transport)
+	c.LocalizedPolicyVersionsWithNamespace.SetTransport(transport)
 	c.Policies.SetTransport(transport)
+	c.PoliciesWithNamespace.SetTransport(transport)
 	c.PolicyVersions.SetTransport(transport)
+	c.PolicyVersionsWithNamespace.SetTransport(transport)
 	c.UserInfo.SetTransport(transport)
 	c.Utility.SetTransport(transport)
 }

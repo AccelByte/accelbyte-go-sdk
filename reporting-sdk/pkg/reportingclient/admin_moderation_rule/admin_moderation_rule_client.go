@@ -52,25 +52,20 @@ type ClientService interface {
 /*
 Deprecated: Use CreateModerationRuleShort instead.
 
-	CreateModerationRule creates auto moderation rule
+  CreateModerationRule creates auto moderation rule
 
-	&lt;p&gt;This endpoint create moderation rule.&lt;/p&gt;
-
+  &lt;p&gt;This endpoint create moderation rule.&lt;/p&gt;
 &lt;p&gt; Required Permission: ADMIN:NAMESPACE:{namespace}:RULE [CREATE]&lt;/p&gt;
 &lt;p&gt; Supported Category: &lt;ul&gt;&lt;li&gt;UGC&lt;/li&gt;&lt;li&gt;USER&lt;/li&gt;&lt;li&gt;CHAT&lt;/li&gt;&lt;li&gt;EXTENSION&lt;/li&gt;&lt;/ul&gt;&lt;/p&gt;
 &lt;p&gt; Supported Action (GOING TO DEPRECATE, for replacement please use &#34;actions&#34;):&lt;/p&gt;
 &lt;ul&gt;
-
-	&lt;li&gt;HideContent&lt;/li&gt;
-
+  &lt;li&gt;HideContent&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt; Supported Actions:&lt;/p&gt;
 &lt;ul&gt;
-
-	&lt;li&gt;&lt;b&gt;hideContent&lt;/b&gt;: Hide the content&lt;/li&gt;
-	&lt;li&gt;&lt;b&gt;banAccount&lt;/b&gt;: Ban the user account&lt;/li&gt;
-	&lt;li&gt;&lt;b&gt;deleteChat&lt;/b&gt;: Delete chat&lt;/li&gt;
-
+  &lt;li&gt;&lt;b&gt;hideContent&lt;/b&gt;: Hide the content&lt;/li&gt;
+  &lt;li&gt;&lt;b&gt;banAccount&lt;/b&gt;: Ban the user account&lt;/li&gt;
+  &lt;li&gt;&lt;b&gt;deleteChat&lt;/b&gt;: Delete chat&lt;/li&gt;
 &lt;/ul&gt;
 */
 func (a *Client) CreateModerationRule(params *CreateModerationRuleParams, authInfo runtime.ClientAuthInfoWriter) (*CreateModerationRuleCreated, *CreateModerationRuleBadRequest, *CreateModerationRuleConflict, *CreateModerationRuleInternalServerError, error) {
@@ -124,25 +119,20 @@ func (a *Client) CreateModerationRule(params *CreateModerationRuleParams, authIn
 }
 
 /*
-	CreateModerationRuleShort creates auto moderation rule
+  CreateModerationRuleShort creates auto moderation rule
 
-	&lt;p&gt;This endpoint create moderation rule.&lt;/p&gt;
-
+  &lt;p&gt;This endpoint create moderation rule.&lt;/p&gt;
 &lt;p&gt; Required Permission: ADMIN:NAMESPACE:{namespace}:RULE [CREATE]&lt;/p&gt;
 &lt;p&gt; Supported Category: &lt;ul&gt;&lt;li&gt;UGC&lt;/li&gt;&lt;li&gt;USER&lt;/li&gt;&lt;li&gt;CHAT&lt;/li&gt;&lt;li&gt;EXTENSION&lt;/li&gt;&lt;/ul&gt;&lt;/p&gt;
 &lt;p&gt; Supported Action (GOING TO DEPRECATE, for replacement please use &#34;actions&#34;):&lt;/p&gt;
 &lt;ul&gt;
-
-	&lt;li&gt;HideContent&lt;/li&gt;
-
+  &lt;li&gt;HideContent&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt; Supported Actions:&lt;/p&gt;
 &lt;ul&gt;
-
-	&lt;li&gt;&lt;b&gt;hideContent&lt;/b&gt;: Hide the content&lt;/li&gt;
-	&lt;li&gt;&lt;b&gt;banAccount&lt;/b&gt;: Ban the user account&lt;/li&gt;
-	&lt;li&gt;&lt;b&gt;deleteChat&lt;/b&gt;: Delete chat&lt;/li&gt;
-
+  &lt;li&gt;&lt;b&gt;hideContent&lt;/b&gt;: Hide the content&lt;/li&gt;
+  &lt;li&gt;&lt;b&gt;banAccount&lt;/b&gt;: Ban the user account&lt;/li&gt;
+  &lt;li&gt;&lt;b&gt;deleteChat&lt;/b&gt;: Delete chat&lt;/li&gt;
 &lt;/ul&gt;
 */
 func (a *Client) CreateModerationRuleShort(params *CreateModerationRuleParams, authInfo runtime.ClientAuthInfoWriter) (*CreateModerationRuleCreated, error) {
@@ -195,10 +185,9 @@ func (a *Client) CreateModerationRuleShort(params *CreateModerationRuleParams, a
 /*
 Deprecated: Use DeleteModerationRuleShort instead.
 
-	DeleteModerationRule deletes auto moderation rule
+  DeleteModerationRule deletes auto moderation rule
 
-	&lt;p&gt;This endpoint delete moderation rule.&lt;/p&gt;
-
+  &lt;p&gt;This endpoint delete moderation rule.&lt;/p&gt;
 &lt;p&gt; Required Permission: ADMIN:NAMESPACE:{namespace}:RULE [DELETE]
 */
 func (a *Client) DeleteModerationRule(params *DeleteModerationRuleParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteModerationRuleNoContent, *DeleteModerationRuleBadRequest, *DeleteModerationRuleInternalServerError, error) {
@@ -249,10 +238,9 @@ func (a *Client) DeleteModerationRule(params *DeleteModerationRuleParams, authIn
 }
 
 /*
-	DeleteModerationRuleShort deletes auto moderation rule
+  DeleteModerationRuleShort deletes auto moderation rule
 
-	&lt;p&gt;This endpoint delete moderation rule.&lt;/p&gt;
-
+  &lt;p&gt;This endpoint delete moderation rule.&lt;/p&gt;
 &lt;p&gt; Required Permission: ADMIN:NAMESPACE:{namespace}:RULE [DELETE]
 */
 func (a *Client) DeleteModerationRuleShort(params *DeleteModerationRuleParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteModerationRuleNoContent, error) {
@@ -303,10 +291,9 @@ func (a *Client) DeleteModerationRuleShort(params *DeleteModerationRuleParams, a
 /*
 Deprecated: Use GetModerationRuleDetailsShort instead.
 
-	GetModerationRuleDetails gets auto moderation rule
+  GetModerationRuleDetails gets auto moderation rule
 
-	&lt;p&gt;This endpoint get moderation rule.&lt;/p&gt;
-
+  &lt;p&gt;This endpoint get moderation rule.&lt;/p&gt;
 &lt;p&gt; Required Permission: ADMIN:NAMESPACE:{namespace}:RULE [READ]
 */
 func (a *Client) GetModerationRuleDetails(params *GetModerationRuleDetailsParams, authInfo runtime.ClientAuthInfoWriter) (*GetModerationRuleDetailsOK, *GetModerationRuleDetailsNotFound, *GetModerationRuleDetailsInternalServerError, error) {
@@ -357,10 +344,9 @@ func (a *Client) GetModerationRuleDetails(params *GetModerationRuleDetailsParams
 }
 
 /*
-	GetModerationRuleDetailsShort gets auto moderation rule
+  GetModerationRuleDetailsShort gets auto moderation rule
 
-	&lt;p&gt;This endpoint get moderation rule.&lt;/p&gt;
-
+  &lt;p&gt;This endpoint get moderation rule.&lt;/p&gt;
 &lt;p&gt; Required Permission: ADMIN:NAMESPACE:{namespace}:RULE [READ]
 */
 func (a *Client) GetModerationRuleDetailsShort(params *GetModerationRuleDetailsParams, authInfo runtime.ClientAuthInfoWriter) (*GetModerationRuleDetailsOK, error) {
@@ -411,10 +397,9 @@ func (a *Client) GetModerationRuleDetailsShort(params *GetModerationRuleDetailsP
 /*
 Deprecated: Use GetModerationRulesShort instead.
 
-	GetModerationRules gets auto moderation rules
+  GetModerationRules gets auto moderation rules
 
-	&lt;p&gt;This endpoint get moderation rules.&lt;/p&gt;
-
+  &lt;p&gt;This endpoint get moderation rules.&lt;/p&gt;
 &lt;p&gt; Required Permission: ADMIN:NAMESPACE:{namespace}:RULE [READ]
 */
 func (a *Client) GetModerationRules(params *GetModerationRulesParams, authInfo runtime.ClientAuthInfoWriter) (*GetModerationRulesOK, *GetModerationRulesBadRequest, *GetModerationRulesNotFound, *GetModerationRulesInternalServerError, error) {
@@ -468,10 +453,9 @@ func (a *Client) GetModerationRules(params *GetModerationRulesParams, authInfo r
 }
 
 /*
-	GetModerationRulesShort gets auto moderation rules
+  GetModerationRulesShort gets auto moderation rules
 
-	&lt;p&gt;This endpoint get moderation rules.&lt;/p&gt;
-
+  &lt;p&gt;This endpoint get moderation rules.&lt;/p&gt;
 &lt;p&gt; Required Permission: ADMIN:NAMESPACE:{namespace}:RULE [READ]
 */
 func (a *Client) GetModerationRulesShort(params *GetModerationRulesParams, authInfo runtime.ClientAuthInfoWriter) (*GetModerationRulesOK, error) {
@@ -524,25 +508,20 @@ func (a *Client) GetModerationRulesShort(params *GetModerationRulesParams, authI
 /*
 Deprecated: Use UpdateModerationRuleShort instead.
 
-	UpdateModerationRule updates auto moderation rule
+  UpdateModerationRule updates auto moderation rule
 
-	&lt;p&gt;This endpoint update moderation rule.&lt;/p&gt;
-
+  &lt;p&gt;This endpoint update moderation rule.&lt;/p&gt;
 &lt;p&gt; Required Permission: ADMIN:NAMESPACE:{namespace}:RULE [UPDATE]
 &lt;p&gt; Supported Category:&lt;ul&gt;&lt;li&gt;UGC&lt;/li&gt;&lt;li&gt;USER&lt;/li&gt;&lt;li&gt;CHAT&lt;/li&gt;&lt;li&gt;EXTENSION&lt;/li&gt;&lt;/ul&gt;&lt;/p&gt;
 &lt;p&gt; Supported Action (GOING TO DEPRECATE, for replacement please use &#34;actions&#34;):&lt;/p&gt;
 &lt;ul&gt;
-
-	&lt;li&gt;HideContent&lt;/li&gt;
-
+  &lt;li&gt;HideContent&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt; Supported Actions:&lt;/p&gt;
 &lt;ul&gt;
-
-	&lt;li&gt;&lt;b&gt;hideContent&lt;/b&gt;: Hide the content&lt;/li&gt;
-	&lt;li&gt;&lt;b&gt;banAccount&lt;/b&gt;: Ban the user account&lt;/li&gt;
-	&lt;li&gt;&lt;b&gt;deleteChat&lt;/b&gt;: Delete chat&lt;/li&gt;
-
+  &lt;li&gt;&lt;b&gt;hideContent&lt;/b&gt;: Hide the content&lt;/li&gt;
+  &lt;li&gt;&lt;b&gt;banAccount&lt;/b&gt;: Ban the user account&lt;/li&gt;
+  &lt;li&gt;&lt;b&gt;deleteChat&lt;/b&gt;: Delete chat&lt;/li&gt;
 &lt;/ul&gt;
 */
 func (a *Client) UpdateModerationRule(params *UpdateModerationRuleParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateModerationRuleOK, *UpdateModerationRuleBadRequest, *UpdateModerationRuleNotFound, *UpdateModerationRuleConflict, *UpdateModerationRuleInternalServerError, error) {
@@ -599,25 +578,20 @@ func (a *Client) UpdateModerationRule(params *UpdateModerationRuleParams, authIn
 }
 
 /*
-	UpdateModerationRuleShort updates auto moderation rule
+  UpdateModerationRuleShort updates auto moderation rule
 
-	&lt;p&gt;This endpoint update moderation rule.&lt;/p&gt;
-
+  &lt;p&gt;This endpoint update moderation rule.&lt;/p&gt;
 &lt;p&gt; Required Permission: ADMIN:NAMESPACE:{namespace}:RULE [UPDATE]
 &lt;p&gt; Supported Category:&lt;ul&gt;&lt;li&gt;UGC&lt;/li&gt;&lt;li&gt;USER&lt;/li&gt;&lt;li&gt;CHAT&lt;/li&gt;&lt;li&gt;EXTENSION&lt;/li&gt;&lt;/ul&gt;&lt;/p&gt;
 &lt;p&gt; Supported Action (GOING TO DEPRECATE, for replacement please use &#34;actions&#34;):&lt;/p&gt;
 &lt;ul&gt;
-
-	&lt;li&gt;HideContent&lt;/li&gt;
-
+  &lt;li&gt;HideContent&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt; Supported Actions:&lt;/p&gt;
 &lt;ul&gt;
-
-	&lt;li&gt;&lt;b&gt;hideContent&lt;/b&gt;: Hide the content&lt;/li&gt;
-	&lt;li&gt;&lt;b&gt;banAccount&lt;/b&gt;: Ban the user account&lt;/li&gt;
-	&lt;li&gt;&lt;b&gt;deleteChat&lt;/b&gt;: Delete chat&lt;/li&gt;
-
+  &lt;li&gt;&lt;b&gt;hideContent&lt;/b&gt;: Hide the content&lt;/li&gt;
+  &lt;li&gt;&lt;b&gt;banAccount&lt;/b&gt;: Ban the user account&lt;/li&gt;
+  &lt;li&gt;&lt;b&gt;deleteChat&lt;/b&gt;: Delete chat&lt;/li&gt;
 &lt;/ul&gt;
 */
 func (a *Client) UpdateModerationRuleShort(params *UpdateModerationRuleParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateModerationRuleOK, error) {
@@ -672,10 +646,9 @@ func (a *Client) UpdateModerationRuleShort(params *UpdateModerationRuleParams, a
 /*
 Deprecated: Use UpdateModerationRuleStatusShort instead.
 
-	UpdateModerationRuleStatus enables disable auto moderation rule
+  UpdateModerationRuleStatus enables disable auto moderation rule
 
-	&lt;p&gt;This endpoint enable/disable moderation rule status.&lt;/p&gt;
-
+  &lt;p&gt;This endpoint enable/disable moderation rule status.&lt;/p&gt;
 &lt;p&gt; Required Permission: ADMIN:NAMESPACE:{namespace}:RULE [UPDATE]
 */
 func (a *Client) UpdateModerationRuleStatus(params *UpdateModerationRuleStatusParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateModerationRuleStatusNoContent, *UpdateModerationRuleStatusBadRequest, *UpdateModerationRuleStatusNotFound, *UpdateModerationRuleStatusInternalServerError, error) {
@@ -729,10 +702,9 @@ func (a *Client) UpdateModerationRuleStatus(params *UpdateModerationRuleStatusPa
 }
 
 /*
-	UpdateModerationRuleStatusShort enables disable auto moderation rule
+  UpdateModerationRuleStatusShort enables disable auto moderation rule
 
-	&lt;p&gt;This endpoint enable/disable moderation rule status.&lt;/p&gt;
-
+  &lt;p&gt;This endpoint enable/disable moderation rule status.&lt;/p&gt;
 &lt;p&gt; Required Permission: ADMIN:NAMESPACE:{namespace}:RULE [UPDATE]
 */
 func (a *Client) UpdateModerationRuleStatusShort(params *UpdateModerationRuleStatusParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateModerationRuleStatusNoContent, error) {

@@ -30,7 +30,6 @@ const (
 	QueryWalletsNintendoConstant    = "Nintendo"
 	QueryWalletsOtherConstant       = "Other"
 	QueryWalletsPlaystationConstant = "Playstation"
-	QueryWalletsStadiaConstant      = "Stadia"
 	QueryWalletsSteamConstant       = "Steam"
 	QueryWalletsSystemConstant      = "System"
 	QueryWalletsTwitchConstant      = "Twitch"

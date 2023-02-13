@@ -109,6 +109,11 @@ type AdminListAchievementsParams struct {
 
 	/*RetryPolicy*/
 	RetryPolicy *utils.Retry
+	/*Global
+	  filter by global achievement flag
+
+	*/
+	Global *bool
 	/*Limit
 	  the maximum number of data that may be returned (1...100)
 
@@ -188,6 +193,17 @@ func (o *AdminListAchievementsParams) SetHTTPClientTransport(roundTripper http.R
 	}
 }
 
+// WithGlobal adds the global to the admin list achievements params
+func (o *AdminListAchievementsParams) WithGlobal(global *bool) *AdminListAchievementsParams {
+	o.SetGlobal(global)
+	return o
+}
+
+// SetGlobal adds the global to the admin list achievements params
+func (o *AdminListAchievementsParams) SetGlobal(global *bool) {
+	o.Global = global
+}
+
 // WithLimit adds the limit to the admin list achievements params
 func (o *AdminListAchievementsParams) WithLimit(limit *int64) *AdminListAchievementsParams {
 	o.SetLimit(limit)
@@ -250,6 +266,22 @@ func (o *AdminListAchievementsParams) WriteToRequest(r runtime.ClientRequest, re
 		return err
 	}
 	var res []error
+
+	if o.Global != nil {
+
+		// query param global
+		var qrGlobal bool
+		if o.Global != nil {
+			qrGlobal = *o.Global
+		}
+		qGlobal := swag.FormatBool(qrGlobal)
+		if qGlobal != "" {
+			if err := r.SetQueryParam("global", qGlobal); err != nil {
+				return err
+			}
+		}
+
+	}
 
 	if o.Limit != nil {
 

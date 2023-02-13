@@ -70,10 +70,9 @@ func NewGetModerationRulesOK() *GetModerationRulesOK {
 	return &GetModerationRulesOK{}
 }
 
-/*
-GetModerationRulesOK handles this case with default header values.
+/*GetModerationRulesOK handles this case with default header values.
 
-	OK
+  OK
 */
 type GetModerationRulesOK struct {
 	Payload *reportingclientmodels.RestapiModerationRulesList
@@ -124,10 +123,9 @@ func NewGetModerationRulesBadRequest() *GetModerationRulesBadRequest {
 	return &GetModerationRulesBadRequest{}
 }
 
-/*
-GetModerationRulesBadRequest handles this case with default header values.
+/*GetModerationRulesBadRequest handles this case with default header values.
 
-	Bad Request
+  Bad Request
 */
 type GetModerationRulesBadRequest struct {
 	Payload *reportingclientmodels.RestapiErrorResponse
@@ -178,10 +176,9 @@ func NewGetModerationRulesNotFound() *GetModerationRulesNotFound {
 	return &GetModerationRulesNotFound{}
 }
 
-/*
-GetModerationRulesNotFound handles this case with default header values.
+/*GetModerationRulesNotFound handles this case with default header values.
 
-	Not Found
+  Not Found
 */
 type GetModerationRulesNotFound struct {
 	Payload *reportingclientmodels.RestapiErrorResponse
@@ -232,10 +229,9 @@ func NewGetModerationRulesInternalServerError() *GetModerationRulesInternalServe
 	return &GetModerationRulesInternalServerError{}
 }
 
-/*
-GetModerationRulesInternalServerError handles this case with default header values.
+/*GetModerationRulesInternalServerError handles this case with default header values.
 
-	Internal Server Error
+  Internal Server Error
 */
 type GetModerationRulesInternalServerError struct {
 	Payload *reportingclientmodels.RestapiErrorResponse

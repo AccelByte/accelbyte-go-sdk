@@ -52,11 +52,11 @@ type ClientService interface {
 /*
 Deprecated: Use DeleteTicketShort instead.
 
-	DeleteTicket deletes single ticket
+  DeleteTicket deletes single ticket
 
-	Required permission: ADMIN:NAMESPACE:{namespace}:TICKET [DELETE]
-
+  Required permission: ADMIN:NAMESPACE:{namespace}:TICKET [DELETE]
 This endpoint will delete ticket and all its reports.
+
 */
 func (a *Client) DeleteTicket(params *DeleteTicketParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteTicketNoContent, *DeleteTicketNotFound, *DeleteTicketInternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -106,11 +106,11 @@ func (a *Client) DeleteTicket(params *DeleteTicketParams, authInfo runtime.Clien
 }
 
 /*
-	DeleteTicketShort deletes single ticket
+  DeleteTicketShort deletes single ticket
 
-	Required permission: ADMIN:NAMESPACE:{namespace}:TICKET [DELETE]
-
+  Required permission: ADMIN:NAMESPACE:{namespace}:TICKET [DELETE]
 This endpoint will delete ticket and all its reports.
+
 */
 func (a *Client) DeleteTicketShort(params *DeleteTicketParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteTicketNoContent, error) {
 	// TODO: Validate the params before sending
@@ -160,10 +160,9 @@ func (a *Client) DeleteTicketShort(params *DeleteTicketParams, authInfo runtime.
 /*
 Deprecated: Use GetReportsByTicketShort instead.
 
-	GetReportsByTicket gets reports by ticket ID
+  GetReportsByTicket gets reports by ticket ID
 
-	Required permission: ADMIN:NAMESPACE:{namespace}:TICKET [READ]
-
+  Required permission: ADMIN:NAMESPACE:{namespace}:TICKET [READ]
 List reports ordered by createdAt in descending order.
 */
 func (a *Client) GetReportsByTicket(params *GetReportsByTicketParams, authInfo runtime.ClientAuthInfoWriter) (*GetReportsByTicketOK, *GetReportsByTicketInternalServerError, error) {
@@ -211,10 +210,9 @@ func (a *Client) GetReportsByTicket(params *GetReportsByTicketParams, authInfo r
 }
 
 /*
-	GetReportsByTicketShort gets reports by ticket ID
+  GetReportsByTicketShort gets reports by ticket ID
 
-	Required permission: ADMIN:NAMESPACE:{namespace}:TICKET [READ]
-
+  Required permission: ADMIN:NAMESPACE:{namespace}:TICKET [READ]
 List reports ordered by createdAt in descending order.
 */
 func (a *Client) GetReportsByTicketShort(params *GetReportsByTicketParams, authInfo runtime.ClientAuthInfoWriter) (*GetReportsByTicketOK, error) {
@@ -263,9 +261,9 @@ func (a *Client) GetReportsByTicketShort(params *GetReportsByTicketParams, authI
 /*
 Deprecated: Use GetTicketDetailShort instead.
 
-	GetTicketDetail gets single ticket
+  GetTicketDetail gets single ticket
 
-	Required permission: ADMIN:NAMESPACE:{namespace}:TICKET [READ]
+  Required permission: ADMIN:NAMESPACE:{namespace}:TICKET [READ]
 */
 func (a *Client) GetTicketDetail(params *GetTicketDetailParams, authInfo runtime.ClientAuthInfoWriter) (*GetTicketDetailOK, *GetTicketDetailNotFound, *GetTicketDetailInternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -315,9 +313,9 @@ func (a *Client) GetTicketDetail(params *GetTicketDetailParams, authInfo runtime
 }
 
 /*
-GetTicketDetailShort gets single ticket
+  GetTicketDetailShort gets single ticket
 
-Required permission: ADMIN:NAMESPACE:{namespace}:TICKET [READ]
+  Required permission: ADMIN:NAMESPACE:{namespace}:TICKET [READ]
 */
 func (a *Client) GetTicketDetailShort(params *GetTicketDetailParams, authInfo runtime.ClientAuthInfoWriter) (*GetTicketDetailOK, error) {
 	// TODO: Validate the params before sending
@@ -367,10 +365,9 @@ func (a *Client) GetTicketDetailShort(params *GetTicketDetailParams, authInfo ru
 /*
 Deprecated: Use ListTicketsShort instead.
 
-	ListTickets lists report tickets
+  ListTickets lists report tickets
 
-	Required permission: ADMIN:NAMESPACE:{namespace}:TICKET [READ]
-
+  Required permission: ADMIN:NAMESPACE:{namespace}:TICKET [READ]
 Tickets list can be ordered by:
 - createdAt
 - reportsCount
@@ -421,10 +418,9 @@ func (a *Client) ListTickets(params *ListTicketsParams, authInfo runtime.ClientA
 }
 
 /*
-	ListTicketsShort lists report tickets
+  ListTicketsShort lists report tickets
 
-	Required permission: ADMIN:NAMESPACE:{namespace}:TICKET [READ]
-
+  Required permission: ADMIN:NAMESPACE:{namespace}:TICKET [READ]
 Tickets list can be ordered by:
 - createdAt
 - reportsCount
@@ -476,9 +472,9 @@ func (a *Client) ListTicketsShort(params *ListTicketsParams, authInfo runtime.Cl
 /*
 Deprecated: Use TicketStatisticShort instead.
 
-	TicketStatistic tickets statistic
+  TicketStatistic tickets statistic
 
-	Required permission: ADMIN:NAMESPACE:{namespace}:TICKET [READ]
+  Required permission: ADMIN:NAMESPACE:{namespace}:TICKET [READ]
 */
 func (a *Client) TicketStatistic(params *TicketStatisticParams, authInfo runtime.ClientAuthInfoWriter) (*TicketStatisticOK, *TicketStatisticInternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -525,9 +521,9 @@ func (a *Client) TicketStatistic(params *TicketStatisticParams, authInfo runtime
 }
 
 /*
-TicketStatisticShort tickets statistic
+  TicketStatisticShort tickets statistic
 
-Required permission: ADMIN:NAMESPACE:{namespace}:TICKET [READ]
+  Required permission: ADMIN:NAMESPACE:{namespace}:TICKET [READ]
 */
 func (a *Client) TicketStatisticShort(params *TicketStatisticParams, authInfo runtime.ClientAuthInfoWriter) (*TicketStatisticOK, error) {
 	// TODO: Validate the params before sending
@@ -575,10 +571,9 @@ func (a *Client) TicketStatisticShort(params *TicketStatisticParams, authInfo ru
 /*
 Deprecated: Use UpdateTicketResolutionsShort instead.
 
-	UpdateTicketResolutions updates ticket resolution to a given status
+  UpdateTicketResolutions updates ticket resolution to a given status
 
-	Required permission: ADMIN:NAMESPACE:{namespace}:TICKET [UPDATE]
-
+  Required permission: ADMIN:NAMESPACE:{namespace}:TICKET [UPDATE]
 Update ticket resolution status to either OPEN or CLOSED. It is mandatory to provide notes
 */
 func (a *Client) UpdateTicketResolutions(params *UpdateTicketResolutionsParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateTicketResolutionsOK, *UpdateTicketResolutionsInternalServerError, error) {
@@ -626,10 +621,9 @@ func (a *Client) UpdateTicketResolutions(params *UpdateTicketResolutionsParams, 
 }
 
 /*
-	UpdateTicketResolutionsShort updates ticket resolution to a given status
+  UpdateTicketResolutionsShort updates ticket resolution to a given status
 
-	Required permission: ADMIN:NAMESPACE:{namespace}:TICKET [UPDATE]
-
+  Required permission: ADMIN:NAMESPACE:{namespace}:TICKET [UPDATE]
 Update ticket resolution status to either OPEN or CLOSED. It is mandatory to provide notes
 */
 func (a *Client) UpdateTicketResolutionsShort(params *UpdateTicketResolutionsParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateTicketResolutionsOK, error) {

@@ -60,8 +60,7 @@ func NewAdminGetUnusedReasonsParamsWithHTTPClient(client *http.Client) *AdminGet
 	}
 }
 
-/*
-AdminGetUnusedReasonsParams contains all the parameters to send to the API endpoint
+/*AdminGetUnusedReasonsParams contains all the parameters to send to the API endpoint
 for the admin get unused reasons operation typically these are written to a http.Request
 */
 type AdminGetUnusedReasonsParams struct {

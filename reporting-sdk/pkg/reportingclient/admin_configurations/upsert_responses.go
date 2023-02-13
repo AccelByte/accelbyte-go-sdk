@@ -64,10 +64,9 @@ func NewUpsertOK() *UpsertOK {
 	return &UpsertOK{}
 }
 
-/*
-UpsertOK handles this case with default header values.
+/*UpsertOK handles this case with default header values.
 
-	UpsertOK upsert o k
+  UpsertOK upsert o k
 */
 type UpsertOK struct {
 	Payload *reportingclientmodels.RestapiConfigResponse
@@ -118,10 +117,9 @@ func NewUpsertBadRequest() *UpsertBadRequest {
 	return &UpsertBadRequest{}
 }
 
-/*
-UpsertBadRequest handles this case with default header values.
+/*UpsertBadRequest handles this case with default header values.
 
-	UpsertBadRequest upsert bad request
+  UpsertBadRequest upsert bad request
 */
 type UpsertBadRequest struct {
 	Payload *reportingclientmodels.RestapiErrorResponse
@@ -172,10 +170,9 @@ func NewUpsertInternalServerError() *UpsertInternalServerError {
 	return &UpsertInternalServerError{}
 }
 
-/*
-UpsertInternalServerError handles this case with default header values.
+/*UpsertInternalServerError handles this case with default header values.
 
-	UpsertInternalServerError upsert internal server error
+  UpsertInternalServerError upsert internal server error
 */
 type UpsertInternalServerError struct {
 	Payload *reportingclientmodels.RestapiErrorResponse

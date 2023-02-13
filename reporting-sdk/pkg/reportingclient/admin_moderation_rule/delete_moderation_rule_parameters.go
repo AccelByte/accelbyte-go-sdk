@@ -60,8 +60,7 @@ func NewDeleteModerationRuleParamsWithHTTPClient(client *http.Client) *DeleteMod
 	}
 }
 
-/*
-DeleteModerationRuleParams contains all the parameters to send to the API endpoint
+/*DeleteModerationRuleParams contains all the parameters to send to the API endpoint
 for the delete moderation rule operation typically these are written to a http.Request
 */
 type DeleteModerationRuleParams struct {

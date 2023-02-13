@@ -64,10 +64,9 @@ type ClientService interface {
 /*
 Deprecated: Use AdminGetAllReasonsShort instead.
 
-	AdminGetAllReasons gets all reasons
+  AdminGetAllReasons gets all reasons
 
-	&lt;p&gt;This endpoint get all reasons without pagination.&lt;/p&gt;
-
+  &lt;p&gt;This endpoint get all reasons without pagination.&lt;/p&gt;
 &lt;p&gt; Required Permission: ADMIN:NAMESPACE:{namespace}:REASON [READ]&lt;/p&gt;
 */
 func (a *Client) AdminGetAllReasons(params *AdminGetAllReasonsParams, authInfo runtime.ClientAuthInfoWriter) (*AdminGetAllReasonsOK, *AdminGetAllReasonsInternalServerError, error) {
@@ -115,10 +114,9 @@ func (a *Client) AdminGetAllReasons(params *AdminGetAllReasonsParams, authInfo r
 }
 
 /*
-	AdminGetAllReasonsShort gets all reasons
+  AdminGetAllReasonsShort gets all reasons
 
-	&lt;p&gt;This endpoint get all reasons without pagination.&lt;/p&gt;
-
+  &lt;p&gt;This endpoint get all reasons without pagination.&lt;/p&gt;
 &lt;p&gt; Required Permission: ADMIN:NAMESPACE:{namespace}:REASON [READ]&lt;/p&gt;
 */
 func (a *Client) AdminGetAllReasonsShort(params *AdminGetAllReasonsParams, authInfo runtime.ClientAuthInfoWriter) (*AdminGetAllReasonsOK, error) {
@@ -167,9 +165,9 @@ func (a *Client) AdminGetAllReasonsShort(params *AdminGetAllReasonsParams, authI
 /*
 Deprecated: Use AdminGetReasonShort instead.
 
-	AdminGetReason gets a single reason
+  AdminGetReason gets a single reason
 
-	Required permission: ADMIN:NAMESPACE:{namespace}:REASON [READ]
+  Required permission: ADMIN:NAMESPACE:{namespace}:REASON [READ]
 */
 func (a *Client) AdminGetReason(params *AdminGetReasonParams, authInfo runtime.ClientAuthInfoWriter) (*AdminGetReasonOK, *AdminGetReasonNotFound, *AdminGetReasonInternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -219,9 +217,9 @@ func (a *Client) AdminGetReason(params *AdminGetReasonParams, authInfo runtime.C
 }
 
 /*
-AdminGetReasonShort gets a single reason
+  AdminGetReasonShort gets a single reason
 
-Required permission: ADMIN:NAMESPACE:{namespace}:REASON [READ]
+  Required permission: ADMIN:NAMESPACE:{namespace}:REASON [READ]
 */
 func (a *Client) AdminGetReasonShort(params *AdminGetReasonParams, authInfo runtime.ClientAuthInfoWriter) (*AdminGetReasonOK, error) {
 	// TODO: Validate the params before sending
@@ -271,7 +269,7 @@ func (a *Client) AdminGetReasonShort(params *AdminGetReasonParams, authInfo runt
 /*
 Deprecated: Use AdminGetReasonsShort instead.
 
-	AdminGetReasons gets list of reasons
+  AdminGetReasons gets list of reasons
 */
 func (a *Client) AdminGetReasons(params *AdminGetReasonsParams, authInfo runtime.ClientAuthInfoWriter) (*AdminGetReasonsOK, *AdminGetReasonsNotFound, *AdminGetReasonsInternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -321,7 +319,7 @@ func (a *Client) AdminGetReasons(params *AdminGetReasonsParams, authInfo runtime
 }
 
 /*
-AdminGetReasonsShort gets list of reasons
+  AdminGetReasonsShort gets list of reasons
 */
 func (a *Client) AdminGetReasonsShort(params *AdminGetReasonsParams, authInfo runtime.ClientAuthInfoWriter) (*AdminGetReasonsOK, error) {
 	// TODO: Validate the params before sending
@@ -371,10 +369,9 @@ func (a *Client) AdminGetReasonsShort(params *AdminGetReasonsParams, authInfo ru
 /*
 Deprecated: Use AdminGetUnusedReasonsShort instead.
 
-	AdminGetUnusedReasons gets list of reasons that not used by moderation rules
+  AdminGetUnusedReasons gets list of reasons that not used by moderation rules
 
-	&lt;p&gt;This endpoint get reasons not used by moderation rules.&lt;/p&gt;
-
+  &lt;p&gt;This endpoint get reasons not used by moderation rules.&lt;/p&gt;
 &lt;p&gt; Required Permission: ADMIN:NAMESPACE:{namespace}:REASON [READ]&lt;/p&gt;
 */
 func (a *Client) AdminGetUnusedReasons(params *AdminGetUnusedReasonsParams, authInfo runtime.ClientAuthInfoWriter) (*AdminGetUnusedReasonsOK, *AdminGetUnusedReasonsNotFound, *AdminGetUnusedReasonsInternalServerError, error) {
@@ -425,10 +422,9 @@ func (a *Client) AdminGetUnusedReasons(params *AdminGetUnusedReasonsParams, auth
 }
 
 /*
-	AdminGetUnusedReasonsShort gets list of reasons that not used by moderation rules
+  AdminGetUnusedReasonsShort gets list of reasons that not used by moderation rules
 
-	&lt;p&gt;This endpoint get reasons not used by moderation rules.&lt;/p&gt;
-
+  &lt;p&gt;This endpoint get reasons not used by moderation rules.&lt;/p&gt;
 &lt;p&gt; Required Permission: ADMIN:NAMESPACE:{namespace}:REASON [READ]&lt;/p&gt;
 */
 func (a *Client) AdminGetUnusedReasonsShort(params *AdminGetUnusedReasonsParams, authInfo runtime.ClientAuthInfoWriter) (*AdminGetUnusedReasonsOK, error) {
@@ -479,10 +475,9 @@ func (a *Client) AdminGetUnusedReasonsShort(params *AdminGetUnusedReasonsParams,
 /*
 Deprecated: Use AdminListReasonGroupsShort instead.
 
-	AdminListReasonGroups lists reason groups under a namespace
+  AdminListReasonGroups lists reason groups under a namespace
 
-	Required permission: ADMIN:NAMESPACE:{namespace}:REASON [READ]
-
+  Required permission: ADMIN:NAMESPACE:{namespace}:REASON [READ]
 Return list of reason groups ID and title under given namespace. To fetch the reasons inside a group, use get reason group endpoint.
 */
 func (a *Client) AdminListReasonGroups(params *AdminListReasonGroupsParams, authInfo runtime.ClientAuthInfoWriter) (*AdminListReasonGroupsOK, *AdminListReasonGroupsInternalServerError, error) {
@@ -530,10 +525,9 @@ func (a *Client) AdminListReasonGroups(params *AdminListReasonGroupsParams, auth
 }
 
 /*
-	AdminListReasonGroupsShort lists reason groups under a namespace
+  AdminListReasonGroupsShort lists reason groups under a namespace
 
-	Required permission: ADMIN:NAMESPACE:{namespace}:REASON [READ]
-
+  Required permission: ADMIN:NAMESPACE:{namespace}:REASON [READ]
 Return list of reason groups ID and title under given namespace. To fetch the reasons inside a group, use get reason group endpoint.
 */
 func (a *Client) AdminListReasonGroupsShort(params *AdminListReasonGroupsParams, authInfo runtime.ClientAuthInfoWriter) (*AdminListReasonGroupsOK, error) {
@@ -582,9 +576,9 @@ func (a *Client) AdminListReasonGroupsShort(params *AdminListReasonGroupsParams,
 /*
 Deprecated: Use CreateReasonShort instead.
 
-	CreateReason creates a report reason
+  CreateReason creates a report reason
 
-	Required permission: ADMIN:NAMESPACE:{namespace}:REASON [CREATE]
+  Required permission: ADMIN:NAMESPACE:{namespace}:REASON [CREATE]
 */
 func (a *Client) CreateReason(params *CreateReasonParams, authInfo runtime.ClientAuthInfoWriter) (*CreateReasonCreated, *CreateReasonBadRequest, *CreateReasonConflict, *CreateReasonInternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -637,9 +631,9 @@ func (a *Client) CreateReason(params *CreateReasonParams, authInfo runtime.Clien
 }
 
 /*
-CreateReasonShort creates a report reason
+  CreateReasonShort creates a report reason
 
-Required permission: ADMIN:NAMESPACE:{namespace}:REASON [CREATE]
+  Required permission: ADMIN:NAMESPACE:{namespace}:REASON [CREATE]
 */
 func (a *Client) CreateReasonShort(params *CreateReasonParams, authInfo runtime.ClientAuthInfoWriter) (*CreateReasonCreated, error) {
 	// TODO: Validate the params before sending
@@ -691,10 +685,9 @@ func (a *Client) CreateReasonShort(params *CreateReasonParams, authInfo runtime.
 /*
 Deprecated: Use CreateReasonGroupShort instead.
 
-	CreateReasonGroup creates a reason group
+  CreateReasonGroup creates a reason group
 
-	Required permission: ADMIN:NAMESPACE:{namespace}:REASON [CREATE]
-
+  Required permission: ADMIN:NAMESPACE:{namespace}:REASON [CREATE]
 Create a reason group for easier query. You can query reasons by specifying the group title in the list reasons query.
 Reason group title is case insensitive, meaning you can&#39;t have &lt;b&gt;reason&lt;/b&gt; if you already create a reason titled &lt;b&gt;Reason&lt;/b&gt;
 */
@@ -749,10 +742,9 @@ func (a *Client) CreateReasonGroup(params *CreateReasonGroupParams, authInfo run
 }
 
 /*
-	CreateReasonGroupShort creates a reason group
+  CreateReasonGroupShort creates a reason group
 
-	Required permission: ADMIN:NAMESPACE:{namespace}:REASON [CREATE]
-
+  Required permission: ADMIN:NAMESPACE:{namespace}:REASON [CREATE]
 Create a reason group for easier query. You can query reasons by specifying the group title in the list reasons query.
 Reason group title is case insensitive, meaning you can&#39;t have &lt;b&gt;reason&lt;/b&gt; if you already create a reason titled &lt;b&gt;Reason&lt;/b&gt;
 */
@@ -806,9 +798,9 @@ func (a *Client) CreateReasonGroupShort(params *CreateReasonGroupParams, authInf
 /*
 Deprecated: Use DeleteReasonShort instead.
 
-	DeleteReason deletes a report reason
+  DeleteReason deletes a report reason
 
-	Required permission: ADMIN:NAMESPACE:{namespace}:REASON [DELETE]
+  Required permission: ADMIN:NAMESPACE:{namespace}:REASON [DELETE]
 */
 func (a *Client) DeleteReason(params *DeleteReasonParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteReasonNoContent, *DeleteReasonInternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -855,9 +847,9 @@ func (a *Client) DeleteReason(params *DeleteReasonParams, authInfo runtime.Clien
 }
 
 /*
-DeleteReasonShort deletes a report reason
+  DeleteReasonShort deletes a report reason
 
-Required permission: ADMIN:NAMESPACE:{namespace}:REASON [DELETE]
+  Required permission: ADMIN:NAMESPACE:{namespace}:REASON [DELETE]
 */
 func (a *Client) DeleteReasonShort(params *DeleteReasonParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteReasonNoContent, error) {
 	// TODO: Validate the params before sending
@@ -905,9 +897,9 @@ func (a *Client) DeleteReasonShort(params *DeleteReasonParams, authInfo runtime.
 /*
 Deprecated: Use DeleteReasonGroupShort instead.
 
-	DeleteReasonGroup deletes a reason group
+  DeleteReasonGroup deletes a reason group
 
-	Required permission: ADMIN:NAMESPACE:{namespace}:REASON [DELETE]
+  Required permission: ADMIN:NAMESPACE:{namespace}:REASON [DELETE]
 */
 func (a *Client) DeleteReasonGroup(params *DeleteReasonGroupParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteReasonGroupNoContent, *DeleteReasonGroupInternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -954,9 +946,9 @@ func (a *Client) DeleteReasonGroup(params *DeleteReasonGroupParams, authInfo run
 }
 
 /*
-DeleteReasonGroupShort deletes a reason group
+  DeleteReasonGroupShort deletes a reason group
 
-Required permission: ADMIN:NAMESPACE:{namespace}:REASON [DELETE]
+  Required permission: ADMIN:NAMESPACE:{namespace}:REASON [DELETE]
 */
 func (a *Client) DeleteReasonGroupShort(params *DeleteReasonGroupParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteReasonGroupNoContent, error) {
 	// TODO: Validate the params before sending
@@ -1004,9 +996,9 @@ func (a *Client) DeleteReasonGroupShort(params *DeleteReasonGroupParams, authInf
 /*
 Deprecated: Use GetReasonGroupShort instead.
 
-	GetReasonGroup gets reason group
+  GetReasonGroup gets reason group
 
-	Required permission: ADMIN:NAMESPACE:{namespace}:REASON [READ]
+  Required permission: ADMIN:NAMESPACE:{namespace}:REASON [READ]
 */
 func (a *Client) GetReasonGroup(params *GetReasonGroupParams, authInfo runtime.ClientAuthInfoWriter) (*GetReasonGroupOK, *GetReasonGroupNotFound, *GetReasonGroupInternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -1056,9 +1048,9 @@ func (a *Client) GetReasonGroup(params *GetReasonGroupParams, authInfo runtime.C
 }
 
 /*
-GetReasonGroupShort gets reason group
+  GetReasonGroupShort gets reason group
 
-Required permission: ADMIN:NAMESPACE:{namespace}:REASON [READ]
+  Required permission: ADMIN:NAMESPACE:{namespace}:REASON [READ]
 */
 func (a *Client) GetReasonGroupShort(params *GetReasonGroupParams, authInfo runtime.ClientAuthInfoWriter) (*GetReasonGroupOK, error) {
 	// TODO: Validate the params before sending
@@ -1108,9 +1100,9 @@ func (a *Client) GetReasonGroupShort(params *GetReasonGroupParams, authInfo runt
 /*
 Deprecated: Use UpdateReasonShort instead.
 
-	UpdateReason updates a report reason
+  UpdateReason updates a report reason
 
-	Required permission: ADMIN:NAMESPACE:{namespace}:REASON [UPDATE]
+  Required permission: ADMIN:NAMESPACE:{namespace}:REASON [UPDATE]
 */
 func (a *Client) UpdateReason(params *UpdateReasonParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateReasonOK, *UpdateReasonBadRequest, *UpdateReasonConflict, *UpdateReasonInternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -1163,9 +1155,9 @@ func (a *Client) UpdateReason(params *UpdateReasonParams, authInfo runtime.Clien
 }
 
 /*
-UpdateReasonShort updates a report reason
+  UpdateReasonShort updates a report reason
 
-Required permission: ADMIN:NAMESPACE:{namespace}:REASON [UPDATE]
+  Required permission: ADMIN:NAMESPACE:{namespace}:REASON [UPDATE]
 */
 func (a *Client) UpdateReasonShort(params *UpdateReasonParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateReasonOK, error) {
 	// TODO: Validate the params before sending
@@ -1217,10 +1209,9 @@ func (a *Client) UpdateReasonShort(params *UpdateReasonParams, authInfo runtime.
 /*
 Deprecated: Use UpdateReasonGroupShort instead.
 
-	UpdateReasonGroup updates a reason group
+  UpdateReasonGroup updates a reason group
 
-	Required permission: ADMIN:NAMESPACE:{namespace}:REASON [UPDATE]
-
+  Required permission: ADMIN:NAMESPACE:{namespace}:REASON [UPDATE]
 Reason group title is case insensitive, meaning you can&#39;t have &lt;b&gt;reason&lt;/b&gt; if you already create a reason titled &lt;b&gt;Reason&lt;/b&gt;
 If no reasonIds passed when updating, the current reasons under the reason group will be kept (reasons will not be removed from the group).
 */
@@ -1275,10 +1266,9 @@ func (a *Client) UpdateReasonGroup(params *UpdateReasonGroupParams, authInfo run
 }
 
 /*
-	UpdateReasonGroupShort updates a reason group
+  UpdateReasonGroupShort updates a reason group
 
-	Required permission: ADMIN:NAMESPACE:{namespace}:REASON [UPDATE]
-
+  Required permission: ADMIN:NAMESPACE:{namespace}:REASON [UPDATE]
 Reason group title is case insensitive, meaning you can&#39;t have &lt;b&gt;reason&lt;/b&gt; if you already create a reason titled &lt;b&gt;Reason&lt;/b&gt;
 If no reasonIds passed when updating, the current reasons under the reason group will be kept (reasons will not be removed from the group).
 */

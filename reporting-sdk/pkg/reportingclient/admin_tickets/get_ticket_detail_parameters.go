@@ -60,8 +60,7 @@ func NewGetTicketDetailParamsWithHTTPClient(client *http.Client) *GetTicketDetai
 	}
 }
 
-/*
-GetTicketDetailParams contains all the parameters to send to the API endpoint
+/*GetTicketDetailParams contains all the parameters to send to the API endpoint
 for the get ticket detail operation typically these are written to a http.Request
 */
 type GetTicketDetailParams struct {

@@ -48,10 +48,9 @@ type ClientService interface {
 /*
 Deprecated: Use AdminCreateExtensionCategoryShort instead.
 
-	AdminCreateExtensionCategory creates extension category
+  AdminCreateExtensionCategory creates extension category
 
-	Required permission: ADMIN:REPORTINGCONFIG [CREATE]
-
+  Required permission: ADMIN:REPORTINGCONFIG [CREATE]
 Create extension category data
 */
 func (a *Client) AdminCreateExtensionCategory(params *AdminCreateExtensionCategoryParams, authInfo runtime.ClientAuthInfoWriter) (*AdminCreateExtensionCategoryCreated, *AdminCreateExtensionCategoryBadRequest, *AdminCreateExtensionCategoryInternalServerError, error) {
@@ -102,10 +101,9 @@ func (a *Client) AdminCreateExtensionCategory(params *AdminCreateExtensionCatego
 }
 
 /*
-	AdminCreateExtensionCategoryShort creates extension category
+  AdminCreateExtensionCategoryShort creates extension category
 
-	Required permission: ADMIN:REPORTINGCONFIG [CREATE]
-
+  Required permission: ADMIN:REPORTINGCONFIG [CREATE]
 Create extension category data
 */
 func (a *Client) AdminCreateExtensionCategoryShort(params *AdminCreateExtensionCategoryParams, authInfo runtime.ClientAuthInfoWriter) (*AdminCreateExtensionCategoryCreated, error) {
@@ -156,10 +154,9 @@ func (a *Client) AdminCreateExtensionCategoryShort(params *AdminCreateExtensionC
 /*
 Deprecated: Use AdminCreateModActionShort instead.
 
-	AdminCreateModAction creates auto moderation action data
+  AdminCreateModAction creates auto moderation action data
 
-	Required permission: ADMIN:REPORTINGCONFIG [CREATE]
-
+  Required permission: ADMIN:REPORTINGCONFIG [CREATE]
 Create auto moderation action
 */
 func (a *Client) AdminCreateModAction(params *AdminCreateModActionParams, authInfo runtime.ClientAuthInfoWriter) (*AdminCreateModActionCreated, *AdminCreateModActionBadRequest, *AdminCreateModActionInternalServerError, error) {
@@ -210,10 +207,9 @@ func (a *Client) AdminCreateModAction(params *AdminCreateModActionParams, authIn
 }
 
 /*
-	AdminCreateModActionShort creates auto moderation action data
+  AdminCreateModActionShort creates auto moderation action data
 
-	Required permission: ADMIN:REPORTINGCONFIG [CREATE]
-
+  Required permission: ADMIN:REPORTINGCONFIG [CREATE]
 Create auto moderation action
 */
 func (a *Client) AdminCreateModActionShort(params *AdminCreateModActionParams, authInfo runtime.ClientAuthInfoWriter) (*AdminCreateModActionCreated, error) {
@@ -264,10 +260,9 @@ func (a *Client) AdminCreateModActionShort(params *AdminCreateModActionParams, a
 /*
 Deprecated: Use AdminFindActionListShort instead.
 
-	AdminFindActionList finds auto moderation action list
+  AdminFindActionList finds auto moderation action list
 
-	Required permission: ADMIN:REPORTINGCONFIG [READ]
-
+  Required permission: ADMIN:REPORTINGCONFIG [READ]
 Get a list of auto moderation actions
 */
 func (a *Client) AdminFindActionList(params *AdminFindActionListParams, authInfo runtime.ClientAuthInfoWriter) (*AdminFindActionListOK, *AdminFindActionListBadRequest, *AdminFindActionListInternalServerError, error) {
@@ -318,10 +313,9 @@ func (a *Client) AdminFindActionList(params *AdminFindActionListParams, authInfo
 }
 
 /*
-	AdminFindActionListShort finds auto moderation action list
+  AdminFindActionListShort finds auto moderation action list
 
-	Required permission: ADMIN:REPORTINGCONFIG [READ]
-
+  Required permission: ADMIN:REPORTINGCONFIG [READ]
 Get a list of auto moderation actions
 */
 func (a *Client) AdminFindActionListShort(params *AdminFindActionListParams, authInfo runtime.ClientAuthInfoWriter) (*AdminFindActionListOK, error) {
@@ -372,10 +366,9 @@ func (a *Client) AdminFindActionListShort(params *AdminFindActionListParams, aut
 /*
 Deprecated: Use AdminFindExtensionCategoryListShort instead.
 
-	AdminFindExtensionCategoryList finds extension category list
+  AdminFindExtensionCategoryList finds extension category list
 
-	Required permission: ADMIN:REPORTINGCONFIG [READ]
-
+  Required permission: ADMIN:REPORTINGCONFIG [READ]
 Get a list of extension category data with the specified name
 */
 func (a *Client) AdminFindExtensionCategoryList(params *AdminFindExtensionCategoryListParams, authInfo runtime.ClientAuthInfoWriter) (*AdminFindExtensionCategoryListOK, *AdminFindExtensionCategoryListBadRequest, *AdminFindExtensionCategoryListInternalServerError, error) {
@@ -426,10 +419,9 @@ func (a *Client) AdminFindExtensionCategoryList(params *AdminFindExtensionCatego
 }
 
 /*
-	AdminFindExtensionCategoryListShort finds extension category list
+  AdminFindExtensionCategoryListShort finds extension category list
 
-	Required permission: ADMIN:REPORTINGCONFIG [READ]
-
+  Required permission: ADMIN:REPORTINGCONFIG [READ]
 Get a list of extension category data with the specified name
 */
 func (a *Client) AdminFindExtensionCategoryListShort(params *AdminFindExtensionCategoryListParams, authInfo runtime.ClientAuthInfoWriter) (*AdminFindExtensionCategoryListOK, error) {

@@ -43,8 +43,6 @@ type ClientService interface {
 	DeleteIAPItemConfigShort(params *DeleteIAPItemConfigParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteIAPItemConfigNoContent, error)
 	DeletePlaystationIAPConfig(params *DeletePlaystationIAPConfigParams, authInfo runtime.ClientAuthInfoWriter) (*DeletePlaystationIAPConfigNoContent, error)
 	DeletePlaystationIAPConfigShort(params *DeletePlaystationIAPConfigParams, authInfo runtime.ClientAuthInfoWriter) (*DeletePlaystationIAPConfigNoContent, error)
-	DeleteStadiaIAPConfig(params *DeleteStadiaIAPConfigParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteStadiaIAPConfigNoContent, error)
-	DeleteStadiaIAPConfigShort(params *DeleteStadiaIAPConfigParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteStadiaIAPConfigNoContent, error)
 	DeleteSteamIAPConfig(params *DeleteSteamIAPConfigParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteSteamIAPConfigNoContent, error)
 	DeleteSteamIAPConfigShort(params *DeleteSteamIAPConfigParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteSteamIAPConfigNoContent, error)
 	DeleteTwitchIAPConfig(params *DeleteTwitchIAPConfigParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteTwitchIAPConfigNoContent, error)
@@ -61,8 +59,6 @@ type ClientService interface {
 	GetIAPItemConfigShort(params *GetIAPItemConfigParams, authInfo runtime.ClientAuthInfoWriter) (*GetIAPItemConfigOK, error)
 	GetPlayStationIAPConfig(params *GetPlayStationIAPConfigParams, authInfo runtime.ClientAuthInfoWriter) (*GetPlayStationIAPConfigOK, error)
 	GetPlayStationIAPConfigShort(params *GetPlayStationIAPConfigParams, authInfo runtime.ClientAuthInfoWriter) (*GetPlayStationIAPConfigOK, error)
-	GetStadiaIAPConfig(params *GetStadiaIAPConfigParams, authInfo runtime.ClientAuthInfoWriter) (*GetStadiaIAPConfigOK, error)
-	GetStadiaIAPConfigShort(params *GetStadiaIAPConfigParams, authInfo runtime.ClientAuthInfoWriter) (*GetStadiaIAPConfigOK, error)
 	GetSteamIAPConfig(params *GetSteamIAPConfigParams, authInfo runtime.ClientAuthInfoWriter) (*GetSteamIAPConfigOK, error)
 	GetSteamIAPConfigShort(params *GetSteamIAPConfigParams, authInfo runtime.ClientAuthInfoWriter) (*GetSteamIAPConfigOK, error)
 	GetTwitchIAPConfig(params *GetTwitchIAPConfigParams, authInfo runtime.ClientAuthInfoWriter) (*GetTwitchIAPConfigOK, error)
@@ -87,8 +83,6 @@ type ClientService interface {
 	QueryUserIAPOrdersShort(params *QueryUserIAPOrdersParams, authInfo runtime.ClientAuthInfoWriter) (*QueryUserIAPOrdersOK, error)
 	SyncEpicGamesInventory(params *SyncEpicGamesInventoryParams, authInfo runtime.ClientAuthInfoWriter) (*SyncEpicGamesInventoryOK, *SyncEpicGamesInventoryBadRequest, error)
 	SyncEpicGamesInventoryShort(params *SyncEpicGamesInventoryParams, authInfo runtime.ClientAuthInfoWriter) (*SyncEpicGamesInventoryOK, error)
-	SyncStadiaEntitlement(params *SyncStadiaEntitlementParams, authInfo runtime.ClientAuthInfoWriter) (*SyncStadiaEntitlementNoContent, error)
-	SyncStadiaEntitlementShort(params *SyncStadiaEntitlementParams, authInfo runtime.ClientAuthInfoWriter) (*SyncStadiaEntitlementNoContent, error)
 	SyncSteamInventory(params *SyncSteamInventoryParams, authInfo runtime.ClientAuthInfoWriter) (*SyncSteamInventoryNoContent, *SyncSteamInventoryBadRequest, error)
 	SyncSteamInventoryShort(params *SyncSteamInventoryParams, authInfo runtime.ClientAuthInfoWriter) (*SyncSteamInventoryNoContent, error)
 	SyncTwitchDropsEntitlement(params *SyncTwitchDropsEntitlementParams, authInfo runtime.ClientAuthInfoWriter) (*SyncTwitchDropsEntitlementNoContent, *SyncTwitchDropsEntitlementBadRequest, error)
@@ -107,8 +101,6 @@ type ClientService interface {
 	UpdateIAPItemConfigShort(params *UpdateIAPItemConfigParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateIAPItemConfigOK, error)
 	UpdatePlaystationIAPConfig(params *UpdatePlaystationIAPConfigParams, authInfo runtime.ClientAuthInfoWriter) (*UpdatePlaystationIAPConfigOK, error)
 	UpdatePlaystationIAPConfigShort(params *UpdatePlaystationIAPConfigParams, authInfo runtime.ClientAuthInfoWriter) (*UpdatePlaystationIAPConfigOK, error)
-	UpdateStadiaJSONConfigFile(params *UpdateStadiaJSONConfigFileParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateStadiaJSONConfigFileOK, error)
-	UpdateStadiaJSONConfigFileShort(params *UpdateStadiaJSONConfigFileParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateStadiaJSONConfigFileOK, error)
 	UpdateSteamIAPConfig(params *UpdateSteamIAPConfigParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateSteamIAPConfigOK, error)
 	UpdateSteamIAPConfigShort(params *UpdateSteamIAPConfigParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateSteamIAPConfigOK, error)
 	UpdateTwitchIAPConfig(params *UpdateTwitchIAPConfigParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateTwitchIAPConfigOK, error)
@@ -584,100 +576,6 @@ func (a *Client) DeletePlaystationIAPConfigShort(params *DeletePlaystationIAPCon
 	switch v := result.(type) {
 
 	case *DeletePlaystationIAPConfigNoContent:
-		return v, nil
-
-	default:
-		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
-	}
-}
-
-/*
-Deprecated: Use DeleteStadiaIAPConfigShort instead.
-
-  DeleteStadiaIAPConfig deletes stadia iap config
-
-  Delete stadia iap config.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:IAP:CONFIG&#34;, action=8 (DELETE)&lt;/li&gt;&lt;/ul&gt;
-*/
-func (a *Client) DeleteStadiaIAPConfig(params *DeleteStadiaIAPConfigParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteStadiaIAPConfigNoContent, error) {
-	// TODO: Validate the params before sending
-	if params == nil {
-		params = NewDeleteStadiaIAPConfigParams()
-	}
-
-	if params.Context == nil {
-		params.Context = context.Background()
-	}
-
-	if params.RetryPolicy != nil {
-		params.SetHTTPClientTransport(params.RetryPolicy)
-	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
-		ID:                 "deleteStadiaIAPConfig",
-		Method:             "DELETE",
-		PathPattern:        "/platform/admin/namespaces/{namespace}/iap/config/stadia",
-		ProducesMediaTypes: []string{"application/json"},
-		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"https"},
-		Params:             params,
-		Reader:             &DeleteStadiaIAPConfigReader{formats: a.formats},
-		AuthInfo:           authInfo,
-		Context:            params.Context,
-		Client:             params.HTTPClient,
-	})
-	if err != nil {
-		return nil, err
-	}
-
-	switch v := result.(type) {
-
-	case *DeleteStadiaIAPConfigNoContent:
-		return v, nil
-
-	default:
-		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
-	}
-}
-
-/*
-  DeleteStadiaIAPConfigShort deletes stadia iap config
-
-  Delete stadia iap config.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:IAP:CONFIG&#34;, action=8 (DELETE)&lt;/li&gt;&lt;/ul&gt;
-*/
-func (a *Client) DeleteStadiaIAPConfigShort(params *DeleteStadiaIAPConfigParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteStadiaIAPConfigNoContent, error) {
-	// TODO: Validate the params before sending
-	if params == nil {
-		params = NewDeleteStadiaIAPConfigParams()
-	}
-
-	if params.Context == nil {
-		params.Context = context.Background()
-	}
-
-	if params.RetryPolicy != nil {
-		params.SetHTTPClientTransport(params.RetryPolicy)
-	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
-		ID:                 "deleteStadiaIAPConfig",
-		Method:             "DELETE",
-		PathPattern:        "/platform/admin/namespaces/{namespace}/iap/config/stadia",
-		ProducesMediaTypes: []string{"application/json"},
-		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"https"},
-		Params:             params,
-		Reader:             &DeleteStadiaIAPConfigReader{formats: a.formats},
-		AuthInfo:           authInfo,
-		Context:            params.Context,
-		Client:             params.HTTPClient,
-	})
-	if err != nil {
-		return nil, err
-	}
-
-	switch v := result.(type) {
-
-	case *DeleteStadiaIAPConfigNoContent:
 		return v, nil
 
 	default:
@@ -1435,100 +1333,6 @@ func (a *Client) GetPlayStationIAPConfigShort(params *GetPlayStationIAPConfigPar
 	switch v := result.(type) {
 
 	case *GetPlayStationIAPConfigOK:
-		return v, nil
-
-	default:
-		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
-	}
-}
-
-/*
-Deprecated: Use GetStadiaIAPConfigShort instead.
-
-  GetStadiaIAPConfig gets stadia iap config
-
-  Get stadia iap config.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:IAP:CONFIG&#34;, action=2 (READ)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: stadia iap config&lt;/li&gt;&lt;/ul&gt;
-*/
-func (a *Client) GetStadiaIAPConfig(params *GetStadiaIAPConfigParams, authInfo runtime.ClientAuthInfoWriter) (*GetStadiaIAPConfigOK, error) {
-	// TODO: Validate the params before sending
-	if params == nil {
-		params = NewGetStadiaIAPConfigParams()
-	}
-
-	if params.Context == nil {
-		params.Context = context.Background()
-	}
-
-	if params.RetryPolicy != nil {
-		params.SetHTTPClientTransport(params.RetryPolicy)
-	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
-		ID:                 "getStadiaIAPConfig",
-		Method:             "GET",
-		PathPattern:        "/platform/admin/namespaces/{namespace}/iap/config/stadia",
-		ProducesMediaTypes: []string{"application/json"},
-		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"https"},
-		Params:             params,
-		Reader:             &GetStadiaIAPConfigReader{formats: a.formats},
-		AuthInfo:           authInfo,
-		Context:            params.Context,
-		Client:             params.HTTPClient,
-	})
-	if err != nil {
-		return nil, err
-	}
-
-	switch v := result.(type) {
-
-	case *GetStadiaIAPConfigOK:
-		return v, nil
-
-	default:
-		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
-	}
-}
-
-/*
-  GetStadiaIAPConfigShort gets stadia iap config
-
-  Get stadia iap config.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:IAP:CONFIG&#34;, action=2 (READ)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: stadia iap config&lt;/li&gt;&lt;/ul&gt;
-*/
-func (a *Client) GetStadiaIAPConfigShort(params *GetStadiaIAPConfigParams, authInfo runtime.ClientAuthInfoWriter) (*GetStadiaIAPConfigOK, error) {
-	// TODO: Validate the params before sending
-	if params == nil {
-		params = NewGetStadiaIAPConfigParams()
-	}
-
-	if params.Context == nil {
-		params.Context = context.Background()
-	}
-
-	if params.RetryPolicy != nil {
-		params.SetHTTPClientTransport(params.RetryPolicy)
-	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
-		ID:                 "getStadiaIAPConfig",
-		Method:             "GET",
-		PathPattern:        "/platform/admin/namespaces/{namespace}/iap/config/stadia",
-		ProducesMediaTypes: []string{"application/json"},
-		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"https"},
-		Params:             params,
-		Reader:             &GetStadiaIAPConfigReader{formats: a.formats},
-		AuthInfo:           authInfo,
-		Context:            params.Context,
-		Client:             params.HTTPClient,
-	})
-	if err != nil {
-		return nil, err
-	}
-
-	switch v := result.(type) {
-
-	case *GetStadiaIAPConfigOK:
 		return v, nil
 
 	default:
@@ -2725,100 +2529,6 @@ func (a *Client) SyncEpicGamesInventoryShort(params *SyncEpicGamesInventoryParam
 }
 
 /*
-Deprecated: Use SyncStadiaEntitlementShort instead.
-
-  SyncStadiaEntitlement syncs stadia inventory
-
-  Sync stadia entitlements.&lt;p&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;NAMESPACE:{namespace}:USER:{userId}:IAP&#34;, action=4 (UPDATE)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: &lt;/li&gt;&lt;/ul&gt;
-*/
-func (a *Client) SyncStadiaEntitlement(params *SyncStadiaEntitlementParams, authInfo runtime.ClientAuthInfoWriter) (*SyncStadiaEntitlementNoContent, error) {
-	// TODO: Validate the params before sending
-	if params == nil {
-		params = NewSyncStadiaEntitlementParams()
-	}
-
-	if params.Context == nil {
-		params.Context = context.Background()
-	}
-
-	if params.RetryPolicy != nil {
-		params.SetHTTPClientTransport(params.RetryPolicy)
-	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
-		ID:                 "syncStadiaEntitlement",
-		Method:             "PUT",
-		PathPattern:        "/platform/public/namespaces/{namespace}/users/{userId}/iap/stadia/sync",
-		ProducesMediaTypes: []string{"application/json"},
-		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"https"},
-		Params:             params,
-		Reader:             &SyncStadiaEntitlementReader{formats: a.formats},
-		AuthInfo:           authInfo,
-		Context:            params.Context,
-		Client:             params.HTTPClient,
-	})
-	if err != nil {
-		return nil, err
-	}
-
-	switch v := result.(type) {
-
-	case *SyncStadiaEntitlementNoContent:
-		return v, nil
-
-	default:
-		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
-	}
-}
-
-/*
-  SyncStadiaEntitlementShort syncs stadia inventory
-
-  Sync stadia entitlements.&lt;p&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;NAMESPACE:{namespace}:USER:{userId}:IAP&#34;, action=4 (UPDATE)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: &lt;/li&gt;&lt;/ul&gt;
-*/
-func (a *Client) SyncStadiaEntitlementShort(params *SyncStadiaEntitlementParams, authInfo runtime.ClientAuthInfoWriter) (*SyncStadiaEntitlementNoContent, error) {
-	// TODO: Validate the params before sending
-	if params == nil {
-		params = NewSyncStadiaEntitlementParams()
-	}
-
-	if params.Context == nil {
-		params.Context = context.Background()
-	}
-
-	if params.RetryPolicy != nil {
-		params.SetHTTPClientTransport(params.RetryPolicy)
-	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
-		ID:                 "syncStadiaEntitlement",
-		Method:             "PUT",
-		PathPattern:        "/platform/public/namespaces/{namespace}/users/{userId}/iap/stadia/sync",
-		ProducesMediaTypes: []string{"application/json"},
-		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"https"},
-		Params:             params,
-		Reader:             &SyncStadiaEntitlementReader{formats: a.formats},
-		AuthInfo:           authInfo,
-		Context:            params.Context,
-		Client:             params.HTTPClient,
-	})
-	if err != nil {
-		return nil, err
-	}
-
-	switch v := result.(type) {
-
-	case *SyncStadiaEntitlementNoContent:
-		return v, nil
-
-	default:
-		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
-	}
-}
-
-/*
 Deprecated: Use SyncSteamInventoryShort instead.
 
   SyncSteamInventory syncs steam inventory
@@ -3677,100 +3387,6 @@ func (a *Client) UpdatePlaystationIAPConfigShort(params *UpdatePlaystationIAPCon
 	switch v := result.(type) {
 
 	case *UpdatePlaystationIAPConfigOK:
-		return v, nil
-
-	default:
-		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
-	}
-}
-
-/*
-Deprecated: Use UpdateStadiaJSONConfigFileShort instead.
-
-  UpdateStadiaJSONConfigFile uploads stadia json config file
-
-  Upload stadia json config file.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:IAP:CONFIG&#34;, action=4 (UPDATE)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: updated stadia iap config&lt;/li&gt;&lt;/ul&gt;
-*/
-func (a *Client) UpdateStadiaJSONConfigFile(params *UpdateStadiaJSONConfigFileParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateStadiaJSONConfigFileOK, error) {
-	// TODO: Validate the params before sending
-	if params == nil {
-		params = NewUpdateStadiaJSONConfigFileParams()
-	}
-
-	if params.Context == nil {
-		params.Context = context.Background()
-	}
-
-	if params.RetryPolicy != nil {
-		params.SetHTTPClientTransport(params.RetryPolicy)
-	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
-		ID:                 "updateStadiaJsonConfigFile",
-		Method:             "PUT",
-		PathPattern:        "/platform/admin/namespaces/{namespace}/iap/config/stadia/cert",
-		ProducesMediaTypes: []string{"application/json"},
-		ConsumesMediaTypes: []string{"multipart/form-data"},
-		Schemes:            []string{"https"},
-		Params:             params,
-		Reader:             &UpdateStadiaJSONConfigFileReader{formats: a.formats},
-		AuthInfo:           authInfo,
-		Context:            params.Context,
-		Client:             params.HTTPClient,
-	})
-	if err != nil {
-		return nil, err
-	}
-
-	switch v := result.(type) {
-
-	case *UpdateStadiaJSONConfigFileOK:
-		return v, nil
-
-	default:
-		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
-	}
-}
-
-/*
-  UpdateStadiaJSONConfigFileShort uploads stadia json config file
-
-  Upload stadia json config file.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:IAP:CONFIG&#34;, action=4 (UPDATE)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: updated stadia iap config&lt;/li&gt;&lt;/ul&gt;
-*/
-func (a *Client) UpdateStadiaJSONConfigFileShort(params *UpdateStadiaJSONConfigFileParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateStadiaJSONConfigFileOK, error) {
-	// TODO: Validate the params before sending
-	if params == nil {
-		params = NewUpdateStadiaJSONConfigFileParams()
-	}
-
-	if params.Context == nil {
-		params.Context = context.Background()
-	}
-
-	if params.RetryPolicy != nil {
-		params.SetHTTPClientTransport(params.RetryPolicy)
-	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
-		ID:                 "updateStadiaJsonConfigFile",
-		Method:             "PUT",
-		PathPattern:        "/platform/admin/namespaces/{namespace}/iap/config/stadia/cert",
-		ProducesMediaTypes: []string{"application/json"},
-		ConsumesMediaTypes: []string{"multipart/form-data"},
-		Schemes:            []string{"https"},
-		Params:             params,
-		Reader:             &UpdateStadiaJSONConfigFileReader{formats: a.formats},
-		AuthInfo:           authInfo,
-		Context:            params.Context,
-		Client:             params.HTTPClient,
-	})
-	if err != nil {
-		return nil, err
-	}
-
-	switch v := result.(type) {
-
-	case *UpdateStadiaJSONConfigFileOK:
 		return v, nil
 
 	default:

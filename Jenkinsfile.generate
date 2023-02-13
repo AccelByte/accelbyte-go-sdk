@@ -74,6 +74,7 @@ pipeline {
           make -f Makefile.sdk-go sdk_all SDK_PATH=${sdkPath};
           """, label: "Generate Server SDK"
 
+        // check code breaking changes, by compiling all samples against newly generated sdk code
         catchError(buildResult: 'SUCCESS') {
           sh script: """
             cd ${sdkPath};

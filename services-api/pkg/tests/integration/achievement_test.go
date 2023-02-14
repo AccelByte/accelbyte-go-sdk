@@ -7,8 +7,9 @@ package integration_test
 import (
 	"testing"
 
-	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils/auth"
 	"github.com/stretchr/testify/assert"
+
+	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils/auth"
 
 	"github.com/AccelByte/accelbyte-go-sdk/achievement-sdk/pkg/achievementclient/achievements"
 	"github.com/AccelByte/accelbyte-go-sdk/achievement-sdk/pkg/achievementclientmodels"

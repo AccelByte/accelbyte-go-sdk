@@ -17,6 +17,7 @@ import (
 	httptransport "github.com/go-openapi/runtime/client"
 	"github.com/go-openapi/strfmt"
 
+	"github.com/AccelByte/accelbyte-go-sdk/lobby-sdk/pkg/lobbyclient/admin"
 	"github.com/AccelByte/accelbyte-go-sdk/lobby-sdk/pkg/lobbyclient/chat"
 	"github.com/AccelByte/accelbyte-go-sdk/lobby-sdk/pkg/lobbyclient/config"
 	"github.com/AccelByte/accelbyte-go-sdk/lobby-sdk/pkg/lobbyclient/friends"
@@ -77,6 +78,7 @@ func New(transport runtime.ClientTransport, runtime *httptransport.Runtime, form
 	cli := new(JusticeLobbyService)
 	cli.Transport = transport
 	cli.Runtime = runtime
+	cli.Admin = admin.New(transport, formats)
 	cli.Chat = chat.New(transport, formats)
 	cli.Config = config.New(transport, formats)
 	cli.Friends = friends.New(transport, formats)
@@ -147,6 +149,8 @@ func (cfg *TransportConfig) WithSchemes(schemes []string) *TransportConfig {
 
 // JusticeLobbyService is a client for justice lobby service
 type JusticeLobbyService struct {
+	Admin admin.ClientService
+
 	Chat chat.ClientService
 
 	Config config.ClientService
@@ -174,6 +178,7 @@ type JusticeLobbyService struct {
 // SetTransport changes the transport on the client and all its subresources
 func (c *JusticeLobbyService) SetTransport(transport runtime.ClientTransport) {
 	c.Transport = transport
+	c.Admin.SetTransport(transport)
 	c.Chat.SetTransport(transport)
 	c.Config.SetTransport(transport)
 	c.Friends.SetTransport(transport)

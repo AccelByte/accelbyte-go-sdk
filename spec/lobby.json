@@ -144,7 +144,8 @@
         ],
         "summary": "get list of friends",
         "tags": [
-          "friends"
+          "friends",
+          "public"
         ]
       }
     },
@@ -211,7 +212,8 @@
         ],
         "summary": "get list of incoming friends",
         "tags": [
-          "friends"
+          "friends",
+          "public"
         ]
       }
     },
@@ -278,7 +280,8 @@
         ],
         "summary": "get list of outgoing friends",
         "tags": [
-          "friends"
+          "friends",
+          "public"
         ]
       }
     },
@@ -358,7 +361,8 @@
         ],
         "summary": "user add friend",
         "tags": [
-          "friends"
+          "friends",
+          "public"
         ]
       }
     },
@@ -431,7 +435,8 @@
         ],
         "summary": "user accept friend",
         "tags": [
-          "friends"
+          "friends",
+          "public"
         ]
       }
     },
@@ -504,7 +509,8 @@
         ],
         "summary": "user cancel a friend request",
         "tags": [
-          "friends"
+          "friends",
+          "public"
         ]
       }
     },
@@ -577,7 +583,8 @@
         ],
         "summary": "user reject a friend request",
         "tags": [
-          "friends"
+          "friends",
+          "public"
         ]
       }
     },
@@ -642,7 +649,8 @@
         ],
         "summary": "user get friendship status",
         "tags": [
-          "friends"
+          "friends",
+          "public"
         ]
       }
     },
@@ -715,7 +723,8 @@
         ],
         "summary": "user unfriend a friend",
         "tags": [
-          "friends"
+          "friends",
+          "public"
         ]
       }
     },
@@ -796,7 +805,8 @@
         ],
         "summary": "Add friends without confirmation",
         "tags": [
-          "friends"
+          "friends",
+          "public"
         ]
       }
     },
@@ -887,7 +897,8 @@
         ],
         "summary": "load personal chat history",
         "tags": [
-          "chat"
+          "chat",
+          "public"
         ]
       }
     },
@@ -5896,6 +5907,7 @@
         ],
         "summary": "send freeform notification to a user",
         "tags": [
+          "admin",
           "notification"
         ]
       }
@@ -5970,6 +5982,7 @@
         ],
         "summary": "send notification to a user with template",
         "tags": [
+          "admin",
           "notification"
         ]
       }
@@ -6041,6 +6054,7 @@
         ],
         "summary": "get all notification template in a namespace",
         "tags": [
+          "admin",
           "notification"
         ]
       },
@@ -6113,6 +6127,7 @@
         ],
         "summary": "create new notification template",
         "tags": [
+          "admin",
           "notification"
         ]
       }
@@ -6185,6 +6200,7 @@
         ],
         "summary": "delete template localization",
         "tags": [
+          "admin",
           "notification"
         ]
       },
@@ -6276,6 +6292,7 @@
         ],
         "summary": "get all notification template in a slug",
         "tags": [
+          "admin",
           "notification"
         ]
       }
@@ -6355,6 +6372,7 @@
         ],
         "summary": "delete template localization",
         "tags": [
+          "admin",
           "notification"
         ]
       },
@@ -6435,6 +6453,7 @@
         ],
         "summary": "get a template localization",
         "tags": [
+          "admin",
           "notification"
         ]
       },
@@ -6520,6 +6539,7 @@
         ],
         "summary": "update template draft",
         "tags": [
+          "admin",
           "notification"
         ]
       }
@@ -6599,6 +6619,7 @@
         ],
         "summary": "publish draft template",
         "tags": [
+          "admin",
           "notification"
         ]
       }
@@ -6685,7 +6706,8 @@
         ],
         "summary": "get topic by namespace",
         "tags": [
-          "notification"
+          "notification",
+          "public"
         ]
       },
       "post": {
@@ -6757,7 +6779,8 @@
         ],
         "summary": "create new notification topic",
         "tags": [
-          "notification"
+          "notification",
+          "public"
         ]
       }
     },
@@ -6829,7 +6852,8 @@
         ],
         "summary": "delete topic information by topic name",
         "tags": [
-          "notification"
+          "notification",
+          "public"
         ]
       },
       "get": {
@@ -6902,7 +6926,8 @@
         ],
         "summary": "get topic information by topic name",
         "tags": [
-          "notification"
+          "notification",
+          "public"
         ]
       },
       "put": {
@@ -6981,7 +7006,8 @@
         ],
         "summary": "update topic information by topic name",
         "tags": [
-          "notification"
+          "notification",
+          "public"
         ]
       }
     },
@@ -7062,7 +7088,8 @@
         ],
         "summary": "send freeform notification to a user",
         "tags": [
-          "notification"
+          "notification",
+          "public"
         ]
       }
     },
@@ -7143,7 +7170,8 @@
         ],
         "summary": "send notification to a user with template",
         "tags": [
-          "notification"
+          "notification",
+          "public"
         ]
       }
     }

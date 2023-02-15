@@ -7,6 +7,7 @@
 package lobby
 
 import (
+	"github.com/AccelByte/sample-apps/cmd/lobby/admin"
 	"github.com/AccelByte/sample-apps/cmd/lobby/chat"
 	"github.com/AccelByte/sample-apps/cmd/lobby/config"
 	"github.com/AccelByte/sample-apps/cmd/lobby/friends"
@@ -101,16 +102,16 @@ func init() {
 	LobbyCmd.AddCommand(player.PublicGetPlayerBlockedPlayersV1Cmd)
 	LobbyCmd.AddCommand(player.PublicGetPlayerBlockedByPlayersV1Cmd)
 	LobbyCmd.AddCommand(presence.UsersPresenceHandlerV1Cmd)
-	LobbyCmd.AddCommand(notification.FreeFormNotificationCmd)
-	LobbyCmd.AddCommand(notification.NotificationWithTemplateCmd)
-	LobbyCmd.AddCommand(notification.GetGameTemplateCmd)
-	LobbyCmd.AddCommand(notification.CreateTemplateCmd)
-	LobbyCmd.AddCommand(notification.GetSlugTemplateCmd)
-	LobbyCmd.AddCommand(notification.DeleteTemplateSlugCmd)
-	LobbyCmd.AddCommand(notification.GetLocalizationTemplateCmd)
-	LobbyCmd.AddCommand(notification.UpdateLocalizationTemplateCmd)
-	LobbyCmd.AddCommand(notification.DeleteTemplateLocalizationCmd)
-	LobbyCmd.AddCommand(notification.PublishTemplateCmd)
+	LobbyCmd.AddCommand(admin.FreeFormNotificationCmd)
+	LobbyCmd.AddCommand(admin.NotificationWithTemplateCmd)
+	LobbyCmd.AddCommand(admin.GetGameTemplateCmd)
+	LobbyCmd.AddCommand(admin.CreateTemplateCmd)
+	LobbyCmd.AddCommand(admin.GetSlugTemplateCmd)
+	LobbyCmd.AddCommand(admin.DeleteTemplateSlugCmd)
+	LobbyCmd.AddCommand(admin.GetLocalizationTemplateCmd)
+	LobbyCmd.AddCommand(admin.UpdateLocalizationTemplateCmd)
+	LobbyCmd.AddCommand(admin.DeleteTemplateLocalizationCmd)
+	LobbyCmd.AddCommand(admin.PublishTemplateCmd)
 	LobbyCmd.AddCommand(notification.GetTopicByNamespaceCmd)
 	LobbyCmd.AddCommand(notification.CreateTopicCmd)
 	LobbyCmd.AddCommand(notification.GetTopicByTopicNameCmd)

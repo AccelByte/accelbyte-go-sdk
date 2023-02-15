@@ -37,52 +37,34 @@ type ClientService interface {
 	CreateNotificationTemplateV1AdminShort(params *CreateNotificationTemplateV1AdminParams, authInfo runtime.ClientAuthInfoWriter) (*CreateNotificationTemplateV1AdminNoContent, error)
 	CreateNotificationTopicV1Admin(params *CreateNotificationTopicV1AdminParams, authInfo runtime.ClientAuthInfoWriter) (*CreateNotificationTopicV1AdminNoContent, *CreateNotificationTopicV1AdminBadRequest, *CreateNotificationTopicV1AdminUnauthorized, *CreateNotificationTopicV1AdminForbidden, error)
 	CreateNotificationTopicV1AdminShort(params *CreateNotificationTopicV1AdminParams, authInfo runtime.ClientAuthInfoWriter) (*CreateNotificationTopicV1AdminNoContent, error)
-	CreateTemplate(params *CreateTemplateParams, authInfo runtime.ClientAuthInfoWriter) (*CreateTemplateNoContent, *CreateTemplateBadRequest, *CreateTemplateUnauthorized, *CreateTemplateForbidden, *CreateTemplateNotFound, error)
-	CreateTemplateShort(params *CreateTemplateParams, authInfo runtime.ClientAuthInfoWriter) (*CreateTemplateNoContent, error)
 	CreateTopic(params *CreateTopicParams, authInfo runtime.ClientAuthInfoWriter) (*CreateTopicCreated, *CreateTopicBadRequest, *CreateTopicUnauthorized, *CreateTopicForbidden, *CreateTopicConflict, error)
 	CreateTopicShort(params *CreateTopicParams, authInfo runtime.ClientAuthInfoWriter) (*CreateTopicCreated, error)
 	DeleteNotificationTemplateSlugV1Admin(params *DeleteNotificationTemplateSlugV1AdminParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteNotificationTemplateSlugV1AdminNoContent, *DeleteNotificationTemplateSlugV1AdminBadRequest, *DeleteNotificationTemplateSlugV1AdminUnauthorized, *DeleteNotificationTemplateSlugV1AdminForbidden, *DeleteNotificationTemplateSlugV1AdminNotFound, error)
 	DeleteNotificationTemplateSlugV1AdminShort(params *DeleteNotificationTemplateSlugV1AdminParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteNotificationTemplateSlugV1AdminNoContent, error)
 	DeleteNotificationTopicV1Admin(params *DeleteNotificationTopicV1AdminParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteNotificationTopicV1AdminNoContent, *DeleteNotificationTopicV1AdminUnauthorized, *DeleteNotificationTopicV1AdminForbidden, *DeleteNotificationTopicV1AdminNotFound, *DeleteNotificationTopicV1AdminInternalServerError, error)
 	DeleteNotificationTopicV1AdminShort(params *DeleteNotificationTopicV1AdminParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteNotificationTopicV1AdminNoContent, error)
-	DeleteTemplateLocalization(params *DeleteTemplateLocalizationParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteTemplateLocalizationNoContent, *DeleteTemplateLocalizationBadRequest, *DeleteTemplateLocalizationUnauthorized, *DeleteTemplateLocalizationForbidden, *DeleteTemplateLocalizationNotFound, error)
-	DeleteTemplateLocalizationShort(params *DeleteTemplateLocalizationParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteTemplateLocalizationNoContent, error)
 	DeleteTemplateLocalizationV1Admin(params *DeleteTemplateLocalizationV1AdminParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteTemplateLocalizationV1AdminNoContent, *DeleteTemplateLocalizationV1AdminUnauthorized, *DeleteTemplateLocalizationV1AdminForbidden, *DeleteTemplateLocalizationV1AdminNotFound, *DeleteTemplateLocalizationV1AdminInternalServerError, error)
 	DeleteTemplateLocalizationV1AdminShort(params *DeleteTemplateLocalizationV1AdminParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteTemplateLocalizationV1AdminNoContent, error)
-	DeleteTemplateSlug(params *DeleteTemplateSlugParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteTemplateSlugNoContent, *DeleteTemplateSlugBadRequest, *DeleteTemplateSlugUnauthorized, *DeleteTemplateSlugForbidden, *DeleteTemplateSlugNotFound, error)
-	DeleteTemplateSlugShort(params *DeleteTemplateSlugParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteTemplateSlugNoContent, error)
 	DeleteTopicByTopicName(params *DeleteTopicByTopicNameParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteTopicByTopicNameNoContent, *DeleteTopicByTopicNameUnauthorized, *DeleteTopicByTopicNameForbidden, *DeleteTopicByTopicNameNotFound, *DeleteTopicByTopicNameInternalServerError, error)
 	DeleteTopicByTopicNameShort(params *DeleteTopicByTopicNameParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteTopicByTopicNameNoContent, error)
-	FreeFormNotification(params *FreeFormNotificationParams, authInfo runtime.ClientAuthInfoWriter) (*FreeFormNotificationAccepted, *FreeFormNotificationBadRequest, *FreeFormNotificationUnauthorized, *FreeFormNotificationForbidden, *FreeFormNotificationNotFound, error)
-	FreeFormNotificationShort(params *FreeFormNotificationParams, authInfo runtime.ClientAuthInfoWriter) (*FreeFormNotificationAccepted, error)
 	FreeFormNotificationByUserID(params *FreeFormNotificationByUserIDParams, authInfo runtime.ClientAuthInfoWriter) (*FreeFormNotificationByUserIDNoContent, *FreeFormNotificationByUserIDBadRequest, *FreeFormNotificationByUserIDUnauthorized, *FreeFormNotificationByUserIDForbidden, *FreeFormNotificationByUserIDNotFound, error)
 	FreeFormNotificationByUserIDShort(params *FreeFormNotificationByUserIDParams, authInfo runtime.ClientAuthInfoWriter) (*FreeFormNotificationByUserIDNoContent, error)
 	GetAllNotificationTemplatesV1Admin(params *GetAllNotificationTemplatesV1AdminParams, authInfo runtime.ClientAuthInfoWriter) (*GetAllNotificationTemplatesV1AdminOK, *GetAllNotificationTemplatesV1AdminBadRequest, *GetAllNotificationTemplatesV1AdminUnauthorized, *GetAllNotificationTemplatesV1AdminForbidden, *GetAllNotificationTemplatesV1AdminNotFound, *GetAllNotificationTemplatesV1AdminInternalServerError, error)
 	GetAllNotificationTemplatesV1AdminShort(params *GetAllNotificationTemplatesV1AdminParams, authInfo runtime.ClientAuthInfoWriter) (*GetAllNotificationTemplatesV1AdminOK, error)
 	GetAllNotificationTopicsV1Admin(params *GetAllNotificationTopicsV1AdminParams, authInfo runtime.ClientAuthInfoWriter) (*GetAllNotificationTopicsV1AdminOK, *GetAllNotificationTopicsV1AdminUnauthorized, *GetAllNotificationTopicsV1AdminForbidden, *GetAllNotificationTopicsV1AdminNotFound, *GetAllNotificationTopicsV1AdminInternalServerError, error)
 	GetAllNotificationTopicsV1AdminShort(params *GetAllNotificationTopicsV1AdminParams, authInfo runtime.ClientAuthInfoWriter) (*GetAllNotificationTopicsV1AdminOK, error)
-	GetGameTemplate(params *GetGameTemplateParams, authInfo runtime.ClientAuthInfoWriter) (*GetGameTemplateOK, *GetGameTemplateBadRequest, *GetGameTemplateUnauthorized, *GetGameTemplateForbidden, *GetGameTemplateNotFound, error)
-	GetGameTemplateShort(params *GetGameTemplateParams, authInfo runtime.ClientAuthInfoWriter) (*GetGameTemplateOK, error)
-	GetLocalizationTemplate(params *GetLocalizationTemplateParams, authInfo runtime.ClientAuthInfoWriter) (*GetLocalizationTemplateOK, *GetLocalizationTemplateBadRequest, *GetLocalizationTemplateUnauthorized, *GetLocalizationTemplateForbidden, *GetLocalizationTemplateNotFound, error)
-	GetLocalizationTemplateShort(params *GetLocalizationTemplateParams, authInfo runtime.ClientAuthInfoWriter) (*GetLocalizationTemplateOK, error)
 	GetNotificationTopicV1Admin(params *GetNotificationTopicV1AdminParams, authInfo runtime.ClientAuthInfoWriter) (*GetNotificationTopicV1AdminOK, *GetNotificationTopicV1AdminUnauthorized, *GetNotificationTopicV1AdminForbidden, *GetNotificationTopicV1AdminNotFound, *GetNotificationTopicV1AdminInternalServerError, error)
 	GetNotificationTopicV1AdminShort(params *GetNotificationTopicV1AdminParams, authInfo runtime.ClientAuthInfoWriter) (*GetNotificationTopicV1AdminOK, error)
 	GetSingleTemplateLocalizationV1Admin(params *GetSingleTemplateLocalizationV1AdminParams, authInfo runtime.ClientAuthInfoWriter) (*GetSingleTemplateLocalizationV1AdminOK, *GetSingleTemplateLocalizationV1AdminUnauthorized, *GetSingleTemplateLocalizationV1AdminForbidden, *GetSingleTemplateLocalizationV1AdminNotFound, *GetSingleTemplateLocalizationV1AdminInternalServerError, error)
 	GetSingleTemplateLocalizationV1AdminShort(params *GetSingleTemplateLocalizationV1AdminParams, authInfo runtime.ClientAuthInfoWriter) (*GetSingleTemplateLocalizationV1AdminOK, error)
-	GetSlugTemplate(params *GetSlugTemplateParams, authInfo runtime.ClientAuthInfoWriter) (*GetSlugTemplateOK, *GetSlugTemplateBadRequest, *GetSlugTemplateUnauthorized, *GetSlugTemplateForbidden, *GetSlugTemplateNotFound, error)
-	GetSlugTemplateShort(params *GetSlugTemplateParams, authInfo runtime.ClientAuthInfoWriter) (*GetSlugTemplateOK, error)
 	GetTemplateSlugLocalizationsTemplateV1Admin(params *GetTemplateSlugLocalizationsTemplateV1AdminParams, authInfo runtime.ClientAuthInfoWriter) (*GetTemplateSlugLocalizationsTemplateV1AdminOK, *GetTemplateSlugLocalizationsTemplateV1AdminBadRequest, *GetTemplateSlugLocalizationsTemplateV1AdminUnauthorized, *GetTemplateSlugLocalizationsTemplateV1AdminForbidden, *GetTemplateSlugLocalizationsTemplateV1AdminNotFound, error)
 	GetTemplateSlugLocalizationsTemplateV1AdminShort(params *GetTemplateSlugLocalizationsTemplateV1AdminParams, authInfo runtime.ClientAuthInfoWriter) (*GetTemplateSlugLocalizationsTemplateV1AdminOK, error)
 	GetTopicByNamespace(params *GetTopicByNamespaceParams, authInfo runtime.ClientAuthInfoWriter) (*GetTopicByNamespaceOK, *GetTopicByNamespaceUnauthorized, *GetTopicByNamespaceForbidden, *GetTopicByNamespaceNotFound, *GetTopicByNamespaceInternalServerError, error)
 	GetTopicByNamespaceShort(params *GetTopicByNamespaceParams, authInfo runtime.ClientAuthInfoWriter) (*GetTopicByNamespaceOK, error)
 	GetTopicByTopicName(params *GetTopicByTopicNameParams, authInfo runtime.ClientAuthInfoWriter) (*GetTopicByTopicNameOK, *GetTopicByTopicNameUnauthorized, *GetTopicByTopicNameForbidden, *GetTopicByTopicNameNotFound, *GetTopicByTopicNameInternalServerError, error)
 	GetTopicByTopicNameShort(params *GetTopicByTopicNameParams, authInfo runtime.ClientAuthInfoWriter) (*GetTopicByTopicNameOK, error)
-	NotificationWithTemplate(params *NotificationWithTemplateParams, authInfo runtime.ClientAuthInfoWriter) (*NotificationWithTemplateAccepted, *NotificationWithTemplateBadRequest, *NotificationWithTemplateUnauthorized, *NotificationWithTemplateForbidden, *NotificationWithTemplateNotFound, error)
-	NotificationWithTemplateShort(params *NotificationWithTemplateParams, authInfo runtime.ClientAuthInfoWriter) (*NotificationWithTemplateAccepted, error)
 	NotificationWithTemplateByUserID(params *NotificationWithTemplateByUserIDParams, authInfo runtime.ClientAuthInfoWriter) (*NotificationWithTemplateByUserIDNoContent, *NotificationWithTemplateByUserIDBadRequest, *NotificationWithTemplateByUserIDUnauthorized, *NotificationWithTemplateByUserIDForbidden, *NotificationWithTemplateByUserIDNotFound, error)
 	NotificationWithTemplateByUserIDShort(params *NotificationWithTemplateByUserIDParams, authInfo runtime.ClientAuthInfoWriter) (*NotificationWithTemplateByUserIDNoContent, error)
-	PublishTemplate(params *PublishTemplateParams, authInfo runtime.ClientAuthInfoWriter) (*PublishTemplateNoContent, *PublishTemplateBadRequest, *PublishTemplateUnauthorized, *PublishTemplateForbidden, *PublishTemplateNotFound, error)
-	PublishTemplateShort(params *PublishTemplateParams, authInfo runtime.ClientAuthInfoWriter) (*PublishTemplateNoContent, error)
 	PublishTemplateLocalizationV1Admin(params *PublishTemplateLocalizationV1AdminParams, authInfo runtime.ClientAuthInfoWriter) (*PublishTemplateLocalizationV1AdminNoContent, *PublishTemplateLocalizationV1AdminUnauthorized, *PublishTemplateLocalizationV1AdminForbidden, *PublishTemplateLocalizationV1AdminNotFound, *PublishTemplateLocalizationV1AdminInternalServerError, error)
 	PublishTemplateLocalizationV1AdminShort(params *PublishTemplateLocalizationV1AdminParams, authInfo runtime.ClientAuthInfoWriter) (*PublishTemplateLocalizationV1AdminNoContent, error)
 	SendMultipleUsersFreeformNotificationV1Admin(params *SendMultipleUsersFreeformNotificationV1AdminParams, authInfo runtime.ClientAuthInfoWriter) (*SendMultipleUsersFreeformNotificationV1AdminNoContent, *SendMultipleUsersFreeformNotificationV1AdminBadRequest, *SendMultipleUsersFreeformNotificationV1AdminUnauthorized, *SendMultipleUsersFreeformNotificationV1AdminForbidden, error)
@@ -99,8 +81,6 @@ type ClientService interface {
 	SendUsersFreeformNotificationV1AdminShort(params *SendUsersFreeformNotificationV1AdminParams, authInfo runtime.ClientAuthInfoWriter) (*SendUsersFreeformNotificationV1AdminAccepted, error)
 	SendUsersTemplatedNotificationV1Admin(params *SendUsersTemplatedNotificationV1AdminParams, authInfo runtime.ClientAuthInfoWriter) (*SendUsersTemplatedNotificationV1AdminAccepted, *SendUsersTemplatedNotificationV1AdminBadRequest, *SendUsersTemplatedNotificationV1AdminUnauthorized, *SendUsersTemplatedNotificationV1AdminForbidden, *SendUsersTemplatedNotificationV1AdminNotFound, error)
 	SendUsersTemplatedNotificationV1AdminShort(params *SendUsersTemplatedNotificationV1AdminParams, authInfo runtime.ClientAuthInfoWriter) (*SendUsersTemplatedNotificationV1AdminAccepted, error)
-	UpdateLocalizationTemplate(params *UpdateLocalizationTemplateParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateLocalizationTemplateNoContent, *UpdateLocalizationTemplateBadRequest, *UpdateLocalizationTemplateUnauthorized, *UpdateLocalizationTemplateForbidden, *UpdateLocalizationTemplateNotFound, error)
-	UpdateLocalizationTemplateShort(params *UpdateLocalizationTemplateParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateLocalizationTemplateNoContent, error)
 	UpdateNotificationTopicV1Admin(params *UpdateNotificationTopicV1AdminParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateNotificationTopicV1AdminNoContent, *UpdateNotificationTopicV1AdminBadRequest, *UpdateNotificationTopicV1AdminUnauthorized, *UpdateNotificationTopicV1AdminForbidden, *UpdateNotificationTopicV1AdminNotFound, *UpdateNotificationTopicV1AdminInternalServerError, error)
 	UpdateNotificationTopicV1AdminShort(params *UpdateNotificationTopicV1AdminParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateNotificationTopicV1AdminNoContent, error)
 	UpdateTemplateLocalizationV1Admin(params *UpdateTemplateLocalizationV1AdminParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateTemplateLocalizationV1AdminNoContent, *UpdateTemplateLocalizationV1AdminBadRequest, *UpdateTemplateLocalizationV1AdminUnauthorized, *UpdateTemplateLocalizationV1AdminForbidden, *UpdateTemplateLocalizationV1AdminNotFound, *UpdateTemplateLocalizationV1AdminInternalServerError, error)
@@ -114,14 +94,14 @@ type ClientService interface {
 /*
 Deprecated: Use CreateNotificationTemplateV1AdminShort instead.
 
-  CreateNotificationTemplateV1Admin creates new notification template
+	  CreateNotificationTemplateV1Admin creates new notification template
 
-  Required permission : &lt;code&gt;ADMIN:NAMESPACE:{namespace}:NOTIFICATION [CREATE]&lt;/code&gt; with scope &lt;code&gt;social&lt;/code&gt;
-			&lt;br&gt;Create new notification template. Include handlebars {{key}} for replaceable contexts. The key inside
-			handlebars will be the key to be replaced when sending notification. Already existing template with the same
-			slug and language can not be created.
-			&lt;br&gt;Check model description for detailed input restrictions.&lt;br&gt;
-			Action Code: 50204
+	  Required permission : &lt;code&gt;ADMIN:NAMESPACE:{namespace}:NOTIFICATION [CREATE]&lt;/code&gt; with scope &lt;code&gt;social&lt;/code&gt;
+				&lt;br&gt;Create new notification template. Include handlebars {{key}} for replaceable contexts. The key inside
+				handlebars will be the key to be replaced when sending notification. Already existing template with the same
+				slug and language can not be created.
+				&lt;br&gt;Check model description for detailed input restrictions.&lt;br&gt;
+				Action Code: 50204
 */
 func (a *Client) CreateNotificationTemplateV1Admin(params *CreateNotificationTemplateV1AdminParams, authInfo runtime.ClientAuthInfoWriter) (*CreateNotificationTemplateV1AdminNoContent, *CreateNotificationTemplateV1AdminBadRequest, *CreateNotificationTemplateV1AdminUnauthorized, *CreateNotificationTemplateV1AdminForbidden, *CreateNotificationTemplateV1AdminNotFound, *CreateNotificationTemplateV1AdminConflict, error) {
 	// TODO: Validate the params before sending
@@ -180,14 +160,14 @@ func (a *Client) CreateNotificationTemplateV1Admin(params *CreateNotificationTem
 }
 
 /*
-  CreateNotificationTemplateV1AdminShort creates new notification template
+	  CreateNotificationTemplateV1AdminShort creates new notification template
 
-  Required permission : &lt;code&gt;ADMIN:NAMESPACE:{namespace}:NOTIFICATION [CREATE]&lt;/code&gt; with scope &lt;code&gt;social&lt;/code&gt;
-			&lt;br&gt;Create new notification template. Include handlebars {{key}} for replaceable contexts. The key inside
-			handlebars will be the key to be replaced when sending notification. Already existing template with the same
-			slug and language can not be created.
-			&lt;br&gt;Check model description for detailed input restrictions.&lt;br&gt;
-			Action Code: 50204
+	  Required permission : &lt;code&gt;ADMIN:NAMESPACE:{namespace}:NOTIFICATION [CREATE]&lt;/code&gt; with scope &lt;code&gt;social&lt;/code&gt;
+				&lt;br&gt;Create new notification template. Include handlebars {{key}} for replaceable contexts. The key inside
+				handlebars will be the key to be replaced when sending notification. Already existing template with the same
+				slug and language can not be created.
+				&lt;br&gt;Check model description for detailed input restrictions.&lt;br&gt;
+				Action Code: 50204
 */
 func (a *Client) CreateNotificationTemplateV1AdminShort(params *CreateNotificationTemplateV1AdminParams, authInfo runtime.ClientAuthInfoWriter) (*CreateNotificationTemplateV1AdminNoContent, error) {
 	// TODO: Validate the params before sending
@@ -243,13 +223,13 @@ func (a *Client) CreateNotificationTemplateV1AdminShort(params *CreateNotificati
 /*
 Deprecated: Use CreateNotificationTopicV1AdminShort instead.
 
-  CreateNotificationTopicV1Admin creates new notification topic
+	  CreateNotificationTopicV1Admin creates new notification topic
 
-  Required permission : &lt;code&gt;ADMIN:NAMESPACE:{namespace}:NOTIFICATION [CREATE]&lt;/code&gt; with scope &lt;code&gt;social&lt;/code&gt;
-			&lt;br&gt;Create new notification topic.
-			&lt;br&gt;topic should be alphabets, no special char except underscore, uppercase and no spacing. for example: TOPIC_TEST.
-			Already existing topic can not be created&lt;br/&gt;
-			Action Code: 50214
+	  Required permission : &lt;code&gt;ADMIN:NAMESPACE:{namespace}:NOTIFICATION [CREATE]&lt;/code&gt; with scope &lt;code&gt;social&lt;/code&gt;
+				&lt;br&gt;Create new notification topic.
+				&lt;br&gt;topic should be alphabets, no special char except underscore, uppercase and no spacing. for example: TOPIC_TEST.
+				Already existing topic can not be created&lt;br/&gt;
+				Action Code: 50214
 */
 func (a *Client) CreateNotificationTopicV1Admin(params *CreateNotificationTopicV1AdminParams, authInfo runtime.ClientAuthInfoWriter) (*CreateNotificationTopicV1AdminNoContent, *CreateNotificationTopicV1AdminBadRequest, *CreateNotificationTopicV1AdminUnauthorized, *CreateNotificationTopicV1AdminForbidden, error) {
 	// TODO: Validate the params before sending
@@ -302,13 +282,13 @@ func (a *Client) CreateNotificationTopicV1Admin(params *CreateNotificationTopicV
 }
 
 /*
-  CreateNotificationTopicV1AdminShort creates new notification topic
+	  CreateNotificationTopicV1AdminShort creates new notification topic
 
-  Required permission : &lt;code&gt;ADMIN:NAMESPACE:{namespace}:NOTIFICATION [CREATE]&lt;/code&gt; with scope &lt;code&gt;social&lt;/code&gt;
-			&lt;br&gt;Create new notification topic.
-			&lt;br&gt;topic should be alphabets, no special char except underscore, uppercase and no spacing. for example: TOPIC_TEST.
-			Already existing topic can not be created&lt;br/&gt;
-			Action Code: 50214
+	  Required permission : &lt;code&gt;ADMIN:NAMESPACE:{namespace}:NOTIFICATION [CREATE]&lt;/code&gt; with scope &lt;code&gt;social&lt;/code&gt;
+				&lt;br&gt;Create new notification topic.
+				&lt;br&gt;topic should be alphabets, no special char except underscore, uppercase and no spacing. for example: TOPIC_TEST.
+				Already existing topic can not be created&lt;br/&gt;
+				Action Code: 50214
 */
 func (a *Client) CreateNotificationTopicV1AdminShort(params *CreateNotificationTopicV1AdminParams, authInfo runtime.ClientAuthInfoWriter) (*CreateNotificationTopicV1AdminNoContent, error) {
 	// TODO: Validate the params before sending
@@ -358,136 +338,14 @@ func (a *Client) CreateNotificationTopicV1AdminShort(params *CreateNotificationT
 }
 
 /*
-Deprecated: Use CreateTemplateShort instead.
-
-  CreateTemplate creates new notification template
-
-  Required permission : &lt;code&gt;NAMESPACE:{namespace}:TEMPLATE [CREATE]&lt;/code&gt; with scope &lt;code&gt;social&lt;/code&gt;
-			&lt;br&gt;Create new notification template. Include handlebars {{key}} for replaceable contexts. The the key inside
-			handlebars will be the key to be replaced when sending notification. Already existing template with the same
-			slug and language can not be created.
-			&lt;br&gt;Check model description for detailed input restrictions.
-*/
-func (a *Client) CreateTemplate(params *CreateTemplateParams, authInfo runtime.ClientAuthInfoWriter) (*CreateTemplateNoContent, *CreateTemplateBadRequest, *CreateTemplateUnauthorized, *CreateTemplateForbidden, *CreateTemplateNotFound, error) {
-	// TODO: Validate the params before sending
-	if params == nil {
-		params = NewCreateTemplateParams()
-	}
-
-	if params.Context == nil {
-		params.Context = context.Background()
-	}
-
-	if params.RetryPolicy != nil {
-		params.SetHTTPClientTransport(params.RetryPolicy)
-	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
-		ID:                 "createTemplate",
-		Method:             "POST",
-		PathPattern:        "/notification/namespaces/{namespace}/templates",
-		ProducesMediaTypes: []string{"application/json"},
-		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"https"},
-		Params:             params,
-		Reader:             &CreateTemplateReader{formats: a.formats},
-		AuthInfo:           authInfo,
-		Context:            params.Context,
-		Client:             params.HTTPClient,
-	})
-	if err != nil {
-		return nil, nil, nil, nil, nil, err
-	}
-
-	switch v := result.(type) {
-
-	case *CreateTemplateNoContent:
-		return v, nil, nil, nil, nil, nil
-
-	case *CreateTemplateBadRequest:
-		return nil, v, nil, nil, nil, nil
-
-	case *CreateTemplateUnauthorized:
-		return nil, nil, v, nil, nil, nil
-
-	case *CreateTemplateForbidden:
-		return nil, nil, nil, v, nil, nil
-
-	case *CreateTemplateNotFound:
-		return nil, nil, nil, nil, v, nil
-
-	default:
-		return nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
-	}
-}
-
-/*
-  CreateTemplateShort creates new notification template
-
-  Required permission : &lt;code&gt;NAMESPACE:{namespace}:TEMPLATE [CREATE]&lt;/code&gt; with scope &lt;code&gt;social&lt;/code&gt;
-			&lt;br&gt;Create new notification template. Include handlebars {{key}} for replaceable contexts. The the key inside
-			handlebars will be the key to be replaced when sending notification. Already existing template with the same
-			slug and language can not be created.
-			&lt;br&gt;Check model description for detailed input restrictions.
-*/
-func (a *Client) CreateTemplateShort(params *CreateTemplateParams, authInfo runtime.ClientAuthInfoWriter) (*CreateTemplateNoContent, error) {
-	// TODO: Validate the params before sending
-	if params == nil {
-		params = NewCreateTemplateParams()
-	}
-
-	if params.Context == nil {
-		params.Context = context.Background()
-	}
-
-	if params.RetryPolicy != nil {
-		params.SetHTTPClientTransport(params.RetryPolicy)
-	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
-		ID:                 "createTemplate",
-		Method:             "POST",
-		PathPattern:        "/notification/namespaces/{namespace}/templates",
-		ProducesMediaTypes: []string{"application/json"},
-		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"https"},
-		Params:             params,
-		Reader:             &CreateTemplateReader{formats: a.formats},
-		AuthInfo:           authInfo,
-		Context:            params.Context,
-		Client:             params.HTTPClient,
-	})
-	if err != nil {
-		return nil, err
-	}
-
-	switch v := result.(type) {
-
-	case *CreateTemplateNoContent:
-		return v, nil
-	case *CreateTemplateBadRequest:
-		return nil, v
-	case *CreateTemplateUnauthorized:
-		return nil, v
-	case *CreateTemplateForbidden:
-		return nil, v
-	case *CreateTemplateNotFound:
-		return nil, v
-
-	default:
-		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
-	}
-}
-
-/*
 Deprecated: Use CreateTopicShort instead.
 
-  CreateTopic creates new notification topic
+	  CreateTopic creates new notification topic
 
-  Required permission : &lt;code&gt;NAMESPACE:{namespace}:TOPIC [CREATE]&lt;/code&gt; with scope &lt;code&gt;social&lt;/code&gt;
-			&lt;br&gt;Create new notification topic.
-			&lt;br&gt;topic should be alphabets, no special char except underscore, uppercase and no spacing. for example: TOPIC_TEST.
-			Already existing topic can not be created
+	  Required permission : &lt;code&gt;NAMESPACE:{namespace}:TOPIC [CREATE]&lt;/code&gt; with scope &lt;code&gt;social&lt;/code&gt;
+				&lt;br&gt;Create new notification topic.
+				&lt;br&gt;topic should be alphabets, no special char except underscore, uppercase and no spacing. for example: TOPIC_TEST.
+				Already existing topic can not be created
 */
 func (a *Client) CreateTopic(params *CreateTopicParams, authInfo runtime.ClientAuthInfoWriter) (*CreateTopicCreated, *CreateTopicBadRequest, *CreateTopicUnauthorized, *CreateTopicForbidden, *CreateTopicConflict, error) {
 	// TODO: Validate the params before sending
@@ -543,12 +401,12 @@ func (a *Client) CreateTopic(params *CreateTopicParams, authInfo runtime.ClientA
 }
 
 /*
-  CreateTopicShort creates new notification topic
+	  CreateTopicShort creates new notification topic
 
-  Required permission : &lt;code&gt;NAMESPACE:{namespace}:TOPIC [CREATE]&lt;/code&gt; with scope &lt;code&gt;social&lt;/code&gt;
-			&lt;br&gt;Create new notification topic.
-			&lt;br&gt;topic should be alphabets, no special char except underscore, uppercase and no spacing. for example: TOPIC_TEST.
-			Already existing topic can not be created
+	  Required permission : &lt;code&gt;NAMESPACE:{namespace}:TOPIC [CREATE]&lt;/code&gt; with scope &lt;code&gt;social&lt;/code&gt;
+				&lt;br&gt;Create new notification topic.
+				&lt;br&gt;topic should be alphabets, no special char except underscore, uppercase and no spacing. for example: TOPIC_TEST.
+				Already existing topic can not be created
 */
 func (a *Client) CreateTopicShort(params *CreateTopicParams, authInfo runtime.ClientAuthInfoWriter) (*CreateTopicCreated, error) {
 	// TODO: Validate the params before sending
@@ -602,11 +460,11 @@ func (a *Client) CreateTopicShort(params *CreateTopicParams, authInfo runtime.Cl
 /*
 Deprecated: Use DeleteNotificationTemplateSlugV1AdminShort instead.
 
-  DeleteNotificationTemplateSlugV1Admin deletes template slug in notification template
+	  DeleteNotificationTemplateSlugV1Admin deletes template slug in notification template
 
-  Required permission : &lt;code&gt;ADMIN:NAMESPACE:{namespace}:NOTIFICATION [DELETE]&lt;/code&gt; with scope &lt;code&gt;social&lt;/code&gt;
-			&lt;br&gt;Delete template slug in notification template&lt;br&gt;
-			Action Code: 50206
+	  Required permission : &lt;code&gt;ADMIN:NAMESPACE:{namespace}:NOTIFICATION [DELETE]&lt;/code&gt; with scope &lt;code&gt;social&lt;/code&gt;
+				&lt;br&gt;Delete template slug in notification template&lt;br&gt;
+				Action Code: 50206
 */
 func (a *Client) DeleteNotificationTemplateSlugV1Admin(params *DeleteNotificationTemplateSlugV1AdminParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteNotificationTemplateSlugV1AdminNoContent, *DeleteNotificationTemplateSlugV1AdminBadRequest, *DeleteNotificationTemplateSlugV1AdminUnauthorized, *DeleteNotificationTemplateSlugV1AdminForbidden, *DeleteNotificationTemplateSlugV1AdminNotFound, error) {
 	// TODO: Validate the params before sending
@@ -662,11 +520,11 @@ func (a *Client) DeleteNotificationTemplateSlugV1Admin(params *DeleteNotificatio
 }
 
 /*
-  DeleteNotificationTemplateSlugV1AdminShort deletes template slug in notification template
+	  DeleteNotificationTemplateSlugV1AdminShort deletes template slug in notification template
 
-  Required permission : &lt;code&gt;ADMIN:NAMESPACE:{namespace}:NOTIFICATION [DELETE]&lt;/code&gt; with scope &lt;code&gt;social&lt;/code&gt;
-			&lt;br&gt;Delete template slug in notification template&lt;br&gt;
-			Action Code: 50206
+	  Required permission : &lt;code&gt;ADMIN:NAMESPACE:{namespace}:NOTIFICATION [DELETE]&lt;/code&gt; with scope &lt;code&gt;social&lt;/code&gt;
+				&lt;br&gt;Delete template slug in notification template&lt;br&gt;
+				Action Code: 50206
 */
 func (a *Client) DeleteNotificationTemplateSlugV1AdminShort(params *DeleteNotificationTemplateSlugV1AdminParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteNotificationTemplateSlugV1AdminNoContent, error) {
 	// TODO: Validate the params before sending
@@ -720,13 +578,13 @@ func (a *Client) DeleteNotificationTemplateSlugV1AdminShort(params *DeleteNotifi
 /*
 Deprecated: Use DeleteNotificationTopicV1AdminShort instead.
 
-  DeleteNotificationTopicV1Admin deletes topic information by topic name
+	  DeleteNotificationTopicV1Admin deletes topic information by topic name
 
-  Required permission : &lt;code&gt;ADMIN:NAMESPACE:{namespace}:NOTIFICATION [DELETE]&lt;/code&gt; with scope &lt;code&gt;social&lt;/code&gt;
-			&lt;br&gt;delete topic information by topic name.
-			&lt;br&gt;topic should be alphabets, no special char except underscore, uppercase and no spacing. for example: TOPIC_TEST.
-			Already existing topic can not be created &lt;br/&gt;
-			Action Code: 50217
+	  Required permission : &lt;code&gt;ADMIN:NAMESPACE:{namespace}:NOTIFICATION [DELETE]&lt;/code&gt; with scope &lt;code&gt;social&lt;/code&gt;
+				&lt;br&gt;delete topic information by topic name.
+				&lt;br&gt;topic should be alphabets, no special char except underscore, uppercase and no spacing. for example: TOPIC_TEST.
+				Already existing topic can not be created &lt;br/&gt;
+				Action Code: 50217
 */
 func (a *Client) DeleteNotificationTopicV1Admin(params *DeleteNotificationTopicV1AdminParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteNotificationTopicV1AdminNoContent, *DeleteNotificationTopicV1AdminUnauthorized, *DeleteNotificationTopicV1AdminForbidden, *DeleteNotificationTopicV1AdminNotFound, *DeleteNotificationTopicV1AdminInternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -782,13 +640,13 @@ func (a *Client) DeleteNotificationTopicV1Admin(params *DeleteNotificationTopicV
 }
 
 /*
-  DeleteNotificationTopicV1AdminShort deletes topic information by topic name
+	  DeleteNotificationTopicV1AdminShort deletes topic information by topic name
 
-  Required permission : &lt;code&gt;ADMIN:NAMESPACE:{namespace}:NOTIFICATION [DELETE]&lt;/code&gt; with scope &lt;code&gt;social&lt;/code&gt;
-			&lt;br&gt;delete topic information by topic name.
-			&lt;br&gt;topic should be alphabets, no special char except underscore, uppercase and no spacing. for example: TOPIC_TEST.
-			Already existing topic can not be created &lt;br/&gt;
-			Action Code: 50217
+	  Required permission : &lt;code&gt;ADMIN:NAMESPACE:{namespace}:NOTIFICATION [DELETE]&lt;/code&gt; with scope &lt;code&gt;social&lt;/code&gt;
+				&lt;br&gt;delete topic information by topic name.
+				&lt;br&gt;topic should be alphabets, no special char except underscore, uppercase and no spacing. for example: TOPIC_TEST.
+				Already existing topic can not be created &lt;br/&gt;
+				Action Code: 50217
 */
 func (a *Client) DeleteNotificationTopicV1AdminShort(params *DeleteNotificationTopicV1AdminParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteNotificationTopicV1AdminNoContent, error) {
 	// TODO: Validate the params before sending
@@ -840,129 +698,13 @@ func (a *Client) DeleteNotificationTopicV1AdminShort(params *DeleteNotificationT
 }
 
 /*
-Deprecated: Use DeleteTemplateLocalizationShort instead.
-
-  DeleteTemplateLocalization deletes template localization
-
-  Required permission : &lt;code&gt;NAMESPACE:{namespace}:TEMPLATE [DELETE]&lt;/code&gt; with scope &lt;code&gt;social&lt;/code&gt;
-			&lt;br&gt;Delete all template in a slug
-*/
-func (a *Client) DeleteTemplateLocalization(params *DeleteTemplateLocalizationParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteTemplateLocalizationNoContent, *DeleteTemplateLocalizationBadRequest, *DeleteTemplateLocalizationUnauthorized, *DeleteTemplateLocalizationForbidden, *DeleteTemplateLocalizationNotFound, error) {
-	// TODO: Validate the params before sending
-	if params == nil {
-		params = NewDeleteTemplateLocalizationParams()
-	}
-
-	if params.Context == nil {
-		params.Context = context.Background()
-	}
-
-	if params.RetryPolicy != nil {
-		params.SetHTTPClientTransport(params.RetryPolicy)
-	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
-		ID:                 "deleteTemplateLocalization",
-		Method:             "DELETE",
-		PathPattern:        "/notification/namespaces/{namespace}/templates/{templateSlug}/languages/{templateLanguage}",
-		ProducesMediaTypes: []string{"application/json"},
-		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"https"},
-		Params:             params,
-		Reader:             &DeleteTemplateLocalizationReader{formats: a.formats},
-		AuthInfo:           authInfo,
-		Context:            params.Context,
-		Client:             params.HTTPClient,
-	})
-	if err != nil {
-		return nil, nil, nil, nil, nil, err
-	}
-
-	switch v := result.(type) {
-
-	case *DeleteTemplateLocalizationNoContent:
-		return v, nil, nil, nil, nil, nil
-
-	case *DeleteTemplateLocalizationBadRequest:
-		return nil, v, nil, nil, nil, nil
-
-	case *DeleteTemplateLocalizationUnauthorized:
-		return nil, nil, v, nil, nil, nil
-
-	case *DeleteTemplateLocalizationForbidden:
-		return nil, nil, nil, v, nil, nil
-
-	case *DeleteTemplateLocalizationNotFound:
-		return nil, nil, nil, nil, v, nil
-
-	default:
-		return nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
-	}
-}
-
-/*
-  DeleteTemplateLocalizationShort deletes template localization
-
-  Required permission : &lt;code&gt;NAMESPACE:{namespace}:TEMPLATE [DELETE]&lt;/code&gt; with scope &lt;code&gt;social&lt;/code&gt;
-			&lt;br&gt;Delete all template in a slug
-*/
-func (a *Client) DeleteTemplateLocalizationShort(params *DeleteTemplateLocalizationParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteTemplateLocalizationNoContent, error) {
-	// TODO: Validate the params before sending
-	if params == nil {
-		params = NewDeleteTemplateLocalizationParams()
-	}
-
-	if params.Context == nil {
-		params.Context = context.Background()
-	}
-
-	if params.RetryPolicy != nil {
-		params.SetHTTPClientTransport(params.RetryPolicy)
-	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
-		ID:                 "deleteTemplateLocalization",
-		Method:             "DELETE",
-		PathPattern:        "/notification/namespaces/{namespace}/templates/{templateSlug}/languages/{templateLanguage}",
-		ProducesMediaTypes: []string{"application/json"},
-		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"https"},
-		Params:             params,
-		Reader:             &DeleteTemplateLocalizationReader{formats: a.formats},
-		AuthInfo:           authInfo,
-		Context:            params.Context,
-		Client:             params.HTTPClient,
-	})
-	if err != nil {
-		return nil, err
-	}
-
-	switch v := result.(type) {
-
-	case *DeleteTemplateLocalizationNoContent:
-		return v, nil
-	case *DeleteTemplateLocalizationBadRequest:
-		return nil, v
-	case *DeleteTemplateLocalizationUnauthorized:
-		return nil, v
-	case *DeleteTemplateLocalizationForbidden:
-		return nil, v
-	case *DeleteTemplateLocalizationNotFound:
-		return nil, v
-
-	default:
-		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
-	}
-}
-
-/*
 Deprecated: Use DeleteTemplateLocalizationV1AdminShort instead.
 
-  DeleteTemplateLocalizationV1Admin deletes template localization
+	  DeleteTemplateLocalizationV1Admin deletes template localization
 
-  Required permission : &lt;code&gt;ADMIN:NAMESPACE:{namespace}:NOTIFICATION [DELETE]&lt;/code&gt; with scope &lt;code&gt;social&lt;/code&gt;
-			&lt;br&gt;delete template localization&lt;br/&gt;
-			Action Code: 50209
+	  Required permission : &lt;code&gt;ADMIN:NAMESPACE:{namespace}:NOTIFICATION [DELETE]&lt;/code&gt; with scope &lt;code&gt;social&lt;/code&gt;
+				&lt;br&gt;delete template localization&lt;br/&gt;
+				Action Code: 50209
 */
 func (a *Client) DeleteTemplateLocalizationV1Admin(params *DeleteTemplateLocalizationV1AdminParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteTemplateLocalizationV1AdminNoContent, *DeleteTemplateLocalizationV1AdminUnauthorized, *DeleteTemplateLocalizationV1AdminForbidden, *DeleteTemplateLocalizationV1AdminNotFound, *DeleteTemplateLocalizationV1AdminInternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -1018,11 +760,11 @@ func (a *Client) DeleteTemplateLocalizationV1Admin(params *DeleteTemplateLocaliz
 }
 
 /*
-  DeleteTemplateLocalizationV1AdminShort deletes template localization
+	  DeleteTemplateLocalizationV1AdminShort deletes template localization
 
-  Required permission : &lt;code&gt;ADMIN:NAMESPACE:{namespace}:NOTIFICATION [DELETE]&lt;/code&gt; with scope &lt;code&gt;social&lt;/code&gt;
-			&lt;br&gt;delete template localization&lt;br/&gt;
-			Action Code: 50209
+	  Required permission : &lt;code&gt;ADMIN:NAMESPACE:{namespace}:NOTIFICATION [DELETE]&lt;/code&gt; with scope &lt;code&gt;social&lt;/code&gt;
+				&lt;br&gt;delete template localization&lt;br/&gt;
+				Action Code: 50209
 */
 func (a *Client) DeleteTemplateLocalizationV1AdminShort(params *DeleteTemplateLocalizationV1AdminParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteTemplateLocalizationV1AdminNoContent, error) {
 	// TODO: Validate the params before sending
@@ -1074,130 +816,14 @@ func (a *Client) DeleteTemplateLocalizationV1AdminShort(params *DeleteTemplateLo
 }
 
 /*
-Deprecated: Use DeleteTemplateSlugShort instead.
-
-  DeleteTemplateSlug deletes template localization
-
-  Required permission : &lt;code&gt;NAMESPACE:{namespace}:TEMPLATE [DELETE]&lt;/code&gt; with scope &lt;code&gt;social&lt;/code&gt;
-			&lt;br&gt;Delete localization template
-*/
-func (a *Client) DeleteTemplateSlug(params *DeleteTemplateSlugParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteTemplateSlugNoContent, *DeleteTemplateSlugBadRequest, *DeleteTemplateSlugUnauthorized, *DeleteTemplateSlugForbidden, *DeleteTemplateSlugNotFound, error) {
-	// TODO: Validate the params before sending
-	if params == nil {
-		params = NewDeleteTemplateSlugParams()
-	}
-
-	if params.Context == nil {
-		params.Context = context.Background()
-	}
-
-	if params.RetryPolicy != nil {
-		params.SetHTTPClientTransport(params.RetryPolicy)
-	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
-		ID:                 "deleteTemplateSlug",
-		Method:             "DELETE",
-		PathPattern:        "/notification/namespaces/{namespace}/templates/{templateSlug}",
-		ProducesMediaTypes: []string{"application/json"},
-		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"https"},
-		Params:             params,
-		Reader:             &DeleteTemplateSlugReader{formats: a.formats},
-		AuthInfo:           authInfo,
-		Context:            params.Context,
-		Client:             params.HTTPClient,
-	})
-	if err != nil {
-		return nil, nil, nil, nil, nil, err
-	}
-
-	switch v := result.(type) {
-
-	case *DeleteTemplateSlugNoContent:
-		return v, nil, nil, nil, nil, nil
-
-	case *DeleteTemplateSlugBadRequest:
-		return nil, v, nil, nil, nil, nil
-
-	case *DeleteTemplateSlugUnauthorized:
-		return nil, nil, v, nil, nil, nil
-
-	case *DeleteTemplateSlugForbidden:
-		return nil, nil, nil, v, nil, nil
-
-	case *DeleteTemplateSlugNotFound:
-		return nil, nil, nil, nil, v, nil
-
-	default:
-		return nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
-	}
-}
-
-/*
-  DeleteTemplateSlugShort deletes template localization
-
-  Required permission : &lt;code&gt;NAMESPACE:{namespace}:TEMPLATE [DELETE]&lt;/code&gt; with scope &lt;code&gt;social&lt;/code&gt;
-			&lt;br&gt;Delete localization template
-*/
-func (a *Client) DeleteTemplateSlugShort(params *DeleteTemplateSlugParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteTemplateSlugNoContent, error) {
-	// TODO: Validate the params before sending
-	if params == nil {
-		params = NewDeleteTemplateSlugParams()
-	}
-
-	if params.Context == nil {
-		params.Context = context.Background()
-	}
-
-	if params.RetryPolicy != nil {
-		params.SetHTTPClientTransport(params.RetryPolicy)
-	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
-		ID:                 "deleteTemplateSlug",
-		Method:             "DELETE",
-		PathPattern:        "/notification/namespaces/{namespace}/templates/{templateSlug}",
-		ProducesMediaTypes: []string{"application/json"},
-		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"https"},
-		Params:             params,
-		Reader:             &DeleteTemplateSlugReader{formats: a.formats},
-		AuthInfo:           authInfo,
-		Context:            params.Context,
-		Client:             params.HTTPClient,
-	})
-	if err != nil {
-		return nil, err
-	}
-
-	switch v := result.(type) {
-
-	case *DeleteTemplateSlugNoContent:
-		return v, nil
-	case *DeleteTemplateSlugBadRequest:
-		return nil, v
-	case *DeleteTemplateSlugUnauthorized:
-		return nil, v
-	case *DeleteTemplateSlugForbidden:
-		return nil, v
-	case *DeleteTemplateSlugNotFound:
-		return nil, v
-
-	default:
-		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
-	}
-}
-
-/*
 Deprecated: Use DeleteTopicByTopicNameShort instead.
 
-  DeleteTopicByTopicName deletes topic information by topic name
+	  DeleteTopicByTopicName deletes topic information by topic name
 
-  Required permission : &lt;code&gt;NAMESPACE:{namespace}:TOPIC [DELETE]&lt;/code&gt; with scope &lt;code&gt;social&lt;/code&gt;
-			&lt;br&gt;delete topic information by topic name.
-			&lt;br&gt;topic should be alphabets, no special char except underscore, uppercase and no spacing. for example: TOPIC_TEST.
-			Already existing topic can not be created
+	  Required permission : &lt;code&gt;NAMESPACE:{namespace}:TOPIC [DELETE]&lt;/code&gt; with scope &lt;code&gt;social&lt;/code&gt;
+				&lt;br&gt;delete topic information by topic name.
+				&lt;br&gt;topic should be alphabets, no special char except underscore, uppercase and no spacing. for example: TOPIC_TEST.
+				Already existing topic can not be created
 */
 func (a *Client) DeleteTopicByTopicName(params *DeleteTopicByTopicNameParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteTopicByTopicNameNoContent, *DeleteTopicByTopicNameUnauthorized, *DeleteTopicByTopicNameForbidden, *DeleteTopicByTopicNameNotFound, *DeleteTopicByTopicNameInternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -1253,12 +879,12 @@ func (a *Client) DeleteTopicByTopicName(params *DeleteTopicByTopicNameParams, au
 }
 
 /*
-  DeleteTopicByTopicNameShort deletes topic information by topic name
+	  DeleteTopicByTopicNameShort deletes topic information by topic name
 
-  Required permission : &lt;code&gt;NAMESPACE:{namespace}:TOPIC [DELETE]&lt;/code&gt; with scope &lt;code&gt;social&lt;/code&gt;
-			&lt;br&gt;delete topic information by topic name.
-			&lt;br&gt;topic should be alphabets, no special char except underscore, uppercase and no spacing. for example: TOPIC_TEST.
-			Already existing topic can not be created
+	  Required permission : &lt;code&gt;NAMESPACE:{namespace}:TOPIC [DELETE]&lt;/code&gt; with scope &lt;code&gt;social&lt;/code&gt;
+				&lt;br&gt;delete topic information by topic name.
+				&lt;br&gt;topic should be alphabets, no special char except underscore, uppercase and no spacing. for example: TOPIC_TEST.
+				Already existing topic can not be created
 */
 func (a *Client) DeleteTopicByTopicNameShort(params *DeleteTopicByTopicNameParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteTopicByTopicNameNoContent, error) {
 	// TODO: Validate the params before sending
@@ -1310,128 +936,12 @@ func (a *Client) DeleteTopicByTopicNameShort(params *DeleteTopicByTopicNameParam
 }
 
 /*
-Deprecated: Use FreeFormNotificationShort instead.
-
-  FreeFormNotification sends freeform notification to a user
-
-  Required permission : &lt;code&gt;NAMESPACE:{namespace}:NOTIFICATION [CREATE]&lt;/code&gt; with scope &lt;code&gt;social&lt;/code&gt;
-			&lt;br&gt;Sends notification to all connected users in a namespace.
-*/
-func (a *Client) FreeFormNotification(params *FreeFormNotificationParams, authInfo runtime.ClientAuthInfoWriter) (*FreeFormNotificationAccepted, *FreeFormNotificationBadRequest, *FreeFormNotificationUnauthorized, *FreeFormNotificationForbidden, *FreeFormNotificationNotFound, error) {
-	// TODO: Validate the params before sending
-	if params == nil {
-		params = NewFreeFormNotificationParams()
-	}
-
-	if params.Context == nil {
-		params.Context = context.Background()
-	}
-
-	if params.RetryPolicy != nil {
-		params.SetHTTPClientTransport(params.RetryPolicy)
-	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
-		ID:                 "freeFormNotification",
-		Method:             "POST",
-		PathPattern:        "/notification/namespaces/{namespace}/freeform",
-		ProducesMediaTypes: []string{"application/json"},
-		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"https"},
-		Params:             params,
-		Reader:             &FreeFormNotificationReader{formats: a.formats},
-		AuthInfo:           authInfo,
-		Context:            params.Context,
-		Client:             params.HTTPClient,
-	})
-	if err != nil {
-		return nil, nil, nil, nil, nil, err
-	}
-
-	switch v := result.(type) {
-
-	case *FreeFormNotificationAccepted:
-		return v, nil, nil, nil, nil, nil
-
-	case *FreeFormNotificationBadRequest:
-		return nil, v, nil, nil, nil, nil
-
-	case *FreeFormNotificationUnauthorized:
-		return nil, nil, v, nil, nil, nil
-
-	case *FreeFormNotificationForbidden:
-		return nil, nil, nil, v, nil, nil
-
-	case *FreeFormNotificationNotFound:
-		return nil, nil, nil, nil, v, nil
-
-	default:
-		return nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
-	}
-}
-
-/*
-  FreeFormNotificationShort sends freeform notification to a user
-
-  Required permission : &lt;code&gt;NAMESPACE:{namespace}:NOTIFICATION [CREATE]&lt;/code&gt; with scope &lt;code&gt;social&lt;/code&gt;
-			&lt;br&gt;Sends notification to all connected users in a namespace.
-*/
-func (a *Client) FreeFormNotificationShort(params *FreeFormNotificationParams, authInfo runtime.ClientAuthInfoWriter) (*FreeFormNotificationAccepted, error) {
-	// TODO: Validate the params before sending
-	if params == nil {
-		params = NewFreeFormNotificationParams()
-	}
-
-	if params.Context == nil {
-		params.Context = context.Background()
-	}
-
-	if params.RetryPolicy != nil {
-		params.SetHTTPClientTransport(params.RetryPolicy)
-	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
-		ID:                 "freeFormNotification",
-		Method:             "POST",
-		PathPattern:        "/notification/namespaces/{namespace}/freeform",
-		ProducesMediaTypes: []string{"application/json"},
-		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"https"},
-		Params:             params,
-		Reader:             &FreeFormNotificationReader{formats: a.formats},
-		AuthInfo:           authInfo,
-		Context:            params.Context,
-		Client:             params.HTTPClient,
-	})
-	if err != nil {
-		return nil, err
-	}
-
-	switch v := result.(type) {
-
-	case *FreeFormNotificationAccepted:
-		return v, nil
-	case *FreeFormNotificationBadRequest:
-		return nil, v
-	case *FreeFormNotificationUnauthorized:
-		return nil, v
-	case *FreeFormNotificationForbidden:
-		return nil, v
-	case *FreeFormNotificationNotFound:
-		return nil, v
-
-	default:
-		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
-	}
-}
-
-/*
 Deprecated: Use FreeFormNotificationByUserIDShort instead.
 
-  FreeFormNotificationByUserID sends freeform notification to a user
+	  FreeFormNotificationByUserID sends freeform notification to a user
 
-  Required permission : &lt;code&gt;NAMESPACE:{namespace}:USER:{userId}:NOTIFICATION [CREATE]&lt;/code&gt; with scope &lt;code&gt;social&lt;/code&gt;
-			&lt;br&gt;Sends notification to a user.
+	  Required permission : &lt;code&gt;NAMESPACE:{namespace}:USER:{userId}:NOTIFICATION [CREATE]&lt;/code&gt; with scope &lt;code&gt;social&lt;/code&gt;
+				&lt;br&gt;Sends notification to a user.
 */
 func (a *Client) FreeFormNotificationByUserID(params *FreeFormNotificationByUserIDParams, authInfo runtime.ClientAuthInfoWriter) (*FreeFormNotificationByUserIDNoContent, *FreeFormNotificationByUserIDBadRequest, *FreeFormNotificationByUserIDUnauthorized, *FreeFormNotificationByUserIDForbidden, *FreeFormNotificationByUserIDNotFound, error) {
 	// TODO: Validate the params before sending
@@ -1487,10 +997,10 @@ func (a *Client) FreeFormNotificationByUserID(params *FreeFormNotificationByUser
 }
 
 /*
-  FreeFormNotificationByUserIDShort sends freeform notification to a user
+	  FreeFormNotificationByUserIDShort sends freeform notification to a user
 
-  Required permission : &lt;code&gt;NAMESPACE:{namespace}:USER:{userId}:NOTIFICATION [CREATE]&lt;/code&gt; with scope &lt;code&gt;social&lt;/code&gt;
-			&lt;br&gt;Sends notification to a user.
+	  Required permission : &lt;code&gt;NAMESPACE:{namespace}:USER:{userId}:NOTIFICATION [CREATE]&lt;/code&gt; with scope &lt;code&gt;social&lt;/code&gt;
+				&lt;br&gt;Sends notification to a user.
 */
 func (a *Client) FreeFormNotificationByUserIDShort(params *FreeFormNotificationByUserIDParams, authInfo runtime.ClientAuthInfoWriter) (*FreeFormNotificationByUserIDNoContent, error) {
 	// TODO: Validate the params before sending
@@ -1544,11 +1054,11 @@ func (a *Client) FreeFormNotificationByUserIDShort(params *FreeFormNotificationB
 /*
 Deprecated: Use GetAllNotificationTemplatesV1AdminShort instead.
 
-  GetAllNotificationTemplatesV1Admin gets all notification template in a namespace
+	  GetAllNotificationTemplatesV1Admin gets all notification template in a namespace
 
-  Required permission : &lt;code&gt;ADMIN:NAMESPACE:{namespace}:NOTIFICATION [READ]&lt;/code&gt; with scope &lt;code&gt;social&lt;/code&gt;
-			&lt;br&gt;Get all templates in a namespace&lt;br&gt;
-			Action Code: 50203
+	  Required permission : &lt;code&gt;ADMIN:NAMESPACE:{namespace}:NOTIFICATION [READ]&lt;/code&gt; with scope &lt;code&gt;social&lt;/code&gt;
+				&lt;br&gt;Get all templates in a namespace&lt;br&gt;
+				Action Code: 50203
 */
 func (a *Client) GetAllNotificationTemplatesV1Admin(params *GetAllNotificationTemplatesV1AdminParams, authInfo runtime.ClientAuthInfoWriter) (*GetAllNotificationTemplatesV1AdminOK, *GetAllNotificationTemplatesV1AdminBadRequest, *GetAllNotificationTemplatesV1AdminUnauthorized, *GetAllNotificationTemplatesV1AdminForbidden, *GetAllNotificationTemplatesV1AdminNotFound, *GetAllNotificationTemplatesV1AdminInternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -1607,11 +1117,11 @@ func (a *Client) GetAllNotificationTemplatesV1Admin(params *GetAllNotificationTe
 }
 
 /*
-  GetAllNotificationTemplatesV1AdminShort gets all notification template in a namespace
+	  GetAllNotificationTemplatesV1AdminShort gets all notification template in a namespace
 
-  Required permission : &lt;code&gt;ADMIN:NAMESPACE:{namespace}:NOTIFICATION [READ]&lt;/code&gt; with scope &lt;code&gt;social&lt;/code&gt;
-			&lt;br&gt;Get all templates in a namespace&lt;br&gt;
-			Action Code: 50203
+	  Required permission : &lt;code&gt;ADMIN:NAMESPACE:{namespace}:NOTIFICATION [READ]&lt;/code&gt; with scope &lt;code&gt;social&lt;/code&gt;
+				&lt;br&gt;Get all templates in a namespace&lt;br&gt;
+				Action Code: 50203
 */
 func (a *Client) GetAllNotificationTemplatesV1AdminShort(params *GetAllNotificationTemplatesV1AdminParams, authInfo runtime.ClientAuthInfoWriter) (*GetAllNotificationTemplatesV1AdminOK, error) {
 	// TODO: Validate the params before sending
@@ -1667,11 +1177,11 @@ func (a *Client) GetAllNotificationTemplatesV1AdminShort(params *GetAllNotificat
 /*
 Deprecated: Use GetAllNotificationTopicsV1AdminShort instead.
 
-  GetAllNotificationTopicsV1Admin gets topic by namespace
+	  GetAllNotificationTopicsV1Admin gets topic by namespace
 
-  Required permission : &lt;code&gt;ADMIN:NAMESPACE:{namespace}:NOTIFICATION [READ]&lt;/code&gt; with scope &lt;code&gt;social&lt;/code&gt;
-			&lt;br&gt;get topic by namespace.&lt;br/&gt;
-			Action Code: 50213
+	  Required permission : &lt;code&gt;ADMIN:NAMESPACE:{namespace}:NOTIFICATION [READ]&lt;/code&gt; with scope &lt;code&gt;social&lt;/code&gt;
+				&lt;br&gt;get topic by namespace.&lt;br/&gt;
+				Action Code: 50213
 */
 func (a *Client) GetAllNotificationTopicsV1Admin(params *GetAllNotificationTopicsV1AdminParams, authInfo runtime.ClientAuthInfoWriter) (*GetAllNotificationTopicsV1AdminOK, *GetAllNotificationTopicsV1AdminUnauthorized, *GetAllNotificationTopicsV1AdminForbidden, *GetAllNotificationTopicsV1AdminNotFound, *GetAllNotificationTopicsV1AdminInternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -1727,11 +1237,11 @@ func (a *Client) GetAllNotificationTopicsV1Admin(params *GetAllNotificationTopic
 }
 
 /*
-  GetAllNotificationTopicsV1AdminShort gets topic by namespace
+	  GetAllNotificationTopicsV1AdminShort gets topic by namespace
 
-  Required permission : &lt;code&gt;ADMIN:NAMESPACE:{namespace}:NOTIFICATION [READ]&lt;/code&gt; with scope &lt;code&gt;social&lt;/code&gt;
-			&lt;br&gt;get topic by namespace.&lt;br/&gt;
-			Action Code: 50213
+	  Required permission : &lt;code&gt;ADMIN:NAMESPACE:{namespace}:NOTIFICATION [READ]&lt;/code&gt; with scope &lt;code&gt;social&lt;/code&gt;
+				&lt;br&gt;get topic by namespace.&lt;br/&gt;
+				Action Code: 50213
 */
 func (a *Client) GetAllNotificationTopicsV1AdminShort(params *GetAllNotificationTopicsV1AdminParams, authInfo runtime.ClientAuthInfoWriter) (*GetAllNotificationTopicsV1AdminOK, error) {
 	// TODO: Validate the params before sending
@@ -1783,245 +1293,13 @@ func (a *Client) GetAllNotificationTopicsV1AdminShort(params *GetAllNotification
 }
 
 /*
-Deprecated: Use GetGameTemplateShort instead.
-
-  GetGameTemplate gets all notification template in a namespace
-
-  Required permission : &lt;code&gt;NAMESPACE:{namespace}:TEMPLATE [READ]&lt;/code&gt; with scope &lt;code&gt;social&lt;/code&gt;
-			&lt;br&gt;Get all templates in a namespace
-*/
-func (a *Client) GetGameTemplate(params *GetGameTemplateParams, authInfo runtime.ClientAuthInfoWriter) (*GetGameTemplateOK, *GetGameTemplateBadRequest, *GetGameTemplateUnauthorized, *GetGameTemplateForbidden, *GetGameTemplateNotFound, error) {
-	// TODO: Validate the params before sending
-	if params == nil {
-		params = NewGetGameTemplateParams()
-	}
-
-	if params.Context == nil {
-		params.Context = context.Background()
-	}
-
-	if params.RetryPolicy != nil {
-		params.SetHTTPClientTransport(params.RetryPolicy)
-	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
-		ID:                 "getGameTemplate",
-		Method:             "GET",
-		PathPattern:        "/notification/namespaces/{namespace}/templates",
-		ProducesMediaTypes: []string{"application/json"},
-		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"https"},
-		Params:             params,
-		Reader:             &GetGameTemplateReader{formats: a.formats},
-		AuthInfo:           authInfo,
-		Context:            params.Context,
-		Client:             params.HTTPClient,
-	})
-	if err != nil {
-		return nil, nil, nil, nil, nil, err
-	}
-
-	switch v := result.(type) {
-
-	case *GetGameTemplateOK:
-		return v, nil, nil, nil, nil, nil
-
-	case *GetGameTemplateBadRequest:
-		return nil, v, nil, nil, nil, nil
-
-	case *GetGameTemplateUnauthorized:
-		return nil, nil, v, nil, nil, nil
-
-	case *GetGameTemplateForbidden:
-		return nil, nil, nil, v, nil, nil
-
-	case *GetGameTemplateNotFound:
-		return nil, nil, nil, nil, v, nil
-
-	default:
-		return nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
-	}
-}
-
-/*
-  GetGameTemplateShort gets all notification template in a namespace
-
-  Required permission : &lt;code&gt;NAMESPACE:{namespace}:TEMPLATE [READ]&lt;/code&gt; with scope &lt;code&gt;social&lt;/code&gt;
-			&lt;br&gt;Get all templates in a namespace
-*/
-func (a *Client) GetGameTemplateShort(params *GetGameTemplateParams, authInfo runtime.ClientAuthInfoWriter) (*GetGameTemplateOK, error) {
-	// TODO: Validate the params before sending
-	if params == nil {
-		params = NewGetGameTemplateParams()
-	}
-
-	if params.Context == nil {
-		params.Context = context.Background()
-	}
-
-	if params.RetryPolicy != nil {
-		params.SetHTTPClientTransport(params.RetryPolicy)
-	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
-		ID:                 "getGameTemplate",
-		Method:             "GET",
-		PathPattern:        "/notification/namespaces/{namespace}/templates",
-		ProducesMediaTypes: []string{"application/json"},
-		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"https"},
-		Params:             params,
-		Reader:             &GetGameTemplateReader{formats: a.formats},
-		AuthInfo:           authInfo,
-		Context:            params.Context,
-		Client:             params.HTTPClient,
-	})
-	if err != nil {
-		return nil, err
-	}
-
-	switch v := result.(type) {
-
-	case *GetGameTemplateOK:
-		return v, nil
-	case *GetGameTemplateBadRequest:
-		return nil, v
-	case *GetGameTemplateUnauthorized:
-		return nil, v
-	case *GetGameTemplateForbidden:
-		return nil, v
-	case *GetGameTemplateNotFound:
-		return nil, v
-
-	default:
-		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
-	}
-}
-
-/*
-Deprecated: Use GetLocalizationTemplateShort instead.
-
-  GetLocalizationTemplate gets a template localization
-
-  Required permission : &lt;code&gt;NAMESPACE:{namespace}:TEMPLATE [READ]&lt;/code&gt; with scope &lt;code&gt;social&lt;/code&gt;
-			&lt;br&gt;Get a template localization
-*/
-func (a *Client) GetLocalizationTemplate(params *GetLocalizationTemplateParams, authInfo runtime.ClientAuthInfoWriter) (*GetLocalizationTemplateOK, *GetLocalizationTemplateBadRequest, *GetLocalizationTemplateUnauthorized, *GetLocalizationTemplateForbidden, *GetLocalizationTemplateNotFound, error) {
-	// TODO: Validate the params before sending
-	if params == nil {
-		params = NewGetLocalizationTemplateParams()
-	}
-
-	if params.Context == nil {
-		params.Context = context.Background()
-	}
-
-	if params.RetryPolicy != nil {
-		params.SetHTTPClientTransport(params.RetryPolicy)
-	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
-		ID:                 "getLocalizationTemplate",
-		Method:             "GET",
-		PathPattern:        "/notification/namespaces/{namespace}/templates/{templateSlug}/languages/{templateLanguage}",
-		ProducesMediaTypes: []string{"application/json"},
-		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"https"},
-		Params:             params,
-		Reader:             &GetLocalizationTemplateReader{formats: a.formats},
-		AuthInfo:           authInfo,
-		Context:            params.Context,
-		Client:             params.HTTPClient,
-	})
-	if err != nil {
-		return nil, nil, nil, nil, nil, err
-	}
-
-	switch v := result.(type) {
-
-	case *GetLocalizationTemplateOK:
-		return v, nil, nil, nil, nil, nil
-
-	case *GetLocalizationTemplateBadRequest:
-		return nil, v, nil, nil, nil, nil
-
-	case *GetLocalizationTemplateUnauthorized:
-		return nil, nil, v, nil, nil, nil
-
-	case *GetLocalizationTemplateForbidden:
-		return nil, nil, nil, v, nil, nil
-
-	case *GetLocalizationTemplateNotFound:
-		return nil, nil, nil, nil, v, nil
-
-	default:
-		return nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
-	}
-}
-
-/*
-  GetLocalizationTemplateShort gets a template localization
-
-  Required permission : &lt;code&gt;NAMESPACE:{namespace}:TEMPLATE [READ]&lt;/code&gt; with scope &lt;code&gt;social&lt;/code&gt;
-			&lt;br&gt;Get a template localization
-*/
-func (a *Client) GetLocalizationTemplateShort(params *GetLocalizationTemplateParams, authInfo runtime.ClientAuthInfoWriter) (*GetLocalizationTemplateOK, error) {
-	// TODO: Validate the params before sending
-	if params == nil {
-		params = NewGetLocalizationTemplateParams()
-	}
-
-	if params.Context == nil {
-		params.Context = context.Background()
-	}
-
-	if params.RetryPolicy != nil {
-		params.SetHTTPClientTransport(params.RetryPolicy)
-	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
-		ID:                 "getLocalizationTemplate",
-		Method:             "GET",
-		PathPattern:        "/notification/namespaces/{namespace}/templates/{templateSlug}/languages/{templateLanguage}",
-		ProducesMediaTypes: []string{"application/json"},
-		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"https"},
-		Params:             params,
-		Reader:             &GetLocalizationTemplateReader{formats: a.formats},
-		AuthInfo:           authInfo,
-		Context:            params.Context,
-		Client:             params.HTTPClient,
-	})
-	if err != nil {
-		return nil, err
-	}
-
-	switch v := result.(type) {
-
-	case *GetLocalizationTemplateOK:
-		return v, nil
-	case *GetLocalizationTemplateBadRequest:
-		return nil, v
-	case *GetLocalizationTemplateUnauthorized:
-		return nil, v
-	case *GetLocalizationTemplateForbidden:
-		return nil, v
-	case *GetLocalizationTemplateNotFound:
-		return nil, v
-
-	default:
-		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
-	}
-}
-
-/*
 Deprecated: Use GetNotificationTopicV1AdminShort instead.
 
-  GetNotificationTopicV1Admin gets topic information by topic name
+	  GetNotificationTopicV1Admin gets topic information by topic name
 
-  Required permission : &lt;code&gt;ADMIN:NAMESPACE:{namespace}:NOTIFICATION [READ]&lt;/code&gt; with scope &lt;code&gt;social&lt;/code&gt;
-			&lt;br&gt;get topic information by topic name.&lt;br/&gt;
-			Action Code: 50215
+	  Required permission : &lt;code&gt;ADMIN:NAMESPACE:{namespace}:NOTIFICATION [READ]&lt;/code&gt; with scope &lt;code&gt;social&lt;/code&gt;
+				&lt;br&gt;get topic information by topic name.&lt;br/&gt;
+				Action Code: 50215
 */
 func (a *Client) GetNotificationTopicV1Admin(params *GetNotificationTopicV1AdminParams, authInfo runtime.ClientAuthInfoWriter) (*GetNotificationTopicV1AdminOK, *GetNotificationTopicV1AdminUnauthorized, *GetNotificationTopicV1AdminForbidden, *GetNotificationTopicV1AdminNotFound, *GetNotificationTopicV1AdminInternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -2077,11 +1355,11 @@ func (a *Client) GetNotificationTopicV1Admin(params *GetNotificationTopicV1Admin
 }
 
 /*
-  GetNotificationTopicV1AdminShort gets topic information by topic name
+	  GetNotificationTopicV1AdminShort gets topic information by topic name
 
-  Required permission : &lt;code&gt;ADMIN:NAMESPACE:{namespace}:NOTIFICATION [READ]&lt;/code&gt; with scope &lt;code&gt;social&lt;/code&gt;
-			&lt;br&gt;get topic information by topic name.&lt;br/&gt;
-			Action Code: 50215
+	  Required permission : &lt;code&gt;ADMIN:NAMESPACE:{namespace}:NOTIFICATION [READ]&lt;/code&gt; with scope &lt;code&gt;social&lt;/code&gt;
+				&lt;br&gt;get topic information by topic name.&lt;br/&gt;
+				Action Code: 50215
 */
 func (a *Client) GetNotificationTopicV1AdminShort(params *GetNotificationTopicV1AdminParams, authInfo runtime.ClientAuthInfoWriter) (*GetNotificationTopicV1AdminOK, error) {
 	// TODO: Validate the params before sending
@@ -2135,11 +1413,11 @@ func (a *Client) GetNotificationTopicV1AdminShort(params *GetNotificationTopicV1
 /*
 Deprecated: Use GetSingleTemplateLocalizationV1AdminShort instead.
 
-  GetSingleTemplateLocalizationV1Admin gets a template localization
+	  GetSingleTemplateLocalizationV1Admin gets a template localization
 
-  Required permission : &lt;code&gt;ADMIN:NAMESPACE:{namespace}:NOTIFICATION [READ]&lt;/code&gt; with scope &lt;code&gt;social&lt;/code&gt;
-			&lt;br&gt;Get a template localization&lt;br/&gt;
-			Action Code: 50207
+	  Required permission : &lt;code&gt;ADMIN:NAMESPACE:{namespace}:NOTIFICATION [READ]&lt;/code&gt; with scope &lt;code&gt;social&lt;/code&gt;
+				&lt;br&gt;Get a template localization&lt;br/&gt;
+				Action Code: 50207
 */
 func (a *Client) GetSingleTemplateLocalizationV1Admin(params *GetSingleTemplateLocalizationV1AdminParams, authInfo runtime.ClientAuthInfoWriter) (*GetSingleTemplateLocalizationV1AdminOK, *GetSingleTemplateLocalizationV1AdminUnauthorized, *GetSingleTemplateLocalizationV1AdminForbidden, *GetSingleTemplateLocalizationV1AdminNotFound, *GetSingleTemplateLocalizationV1AdminInternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -2195,11 +1473,11 @@ func (a *Client) GetSingleTemplateLocalizationV1Admin(params *GetSingleTemplateL
 }
 
 /*
-  GetSingleTemplateLocalizationV1AdminShort gets a template localization
+	  GetSingleTemplateLocalizationV1AdminShort gets a template localization
 
-  Required permission : &lt;code&gt;ADMIN:NAMESPACE:{namespace}:NOTIFICATION [READ]&lt;/code&gt; with scope &lt;code&gt;social&lt;/code&gt;
-			&lt;br&gt;Get a template localization&lt;br/&gt;
-			Action Code: 50207
+	  Required permission : &lt;code&gt;ADMIN:NAMESPACE:{namespace}:NOTIFICATION [READ]&lt;/code&gt; with scope &lt;code&gt;social&lt;/code&gt;
+				&lt;br&gt;Get a template localization&lt;br/&gt;
+				Action Code: 50207
 */
 func (a *Client) GetSingleTemplateLocalizationV1AdminShort(params *GetSingleTemplateLocalizationV1AdminParams, authInfo runtime.ClientAuthInfoWriter) (*GetSingleTemplateLocalizationV1AdminOK, error) {
 	// TODO: Validate the params before sending
@@ -2251,129 +1529,13 @@ func (a *Client) GetSingleTemplateLocalizationV1AdminShort(params *GetSingleTemp
 }
 
 /*
-Deprecated: Use GetSlugTemplateShort instead.
-
-  GetSlugTemplate gets all notification template in a slug
-
-  Required permission : &lt;code&gt;NAMESPACE:{namespace}:TEMPLATE [READ]&lt;/code&gt; with scope &lt;code&gt;social&lt;/code&gt;
-			&lt;br&gt;Get all templates in a namespace
-*/
-func (a *Client) GetSlugTemplate(params *GetSlugTemplateParams, authInfo runtime.ClientAuthInfoWriter) (*GetSlugTemplateOK, *GetSlugTemplateBadRequest, *GetSlugTemplateUnauthorized, *GetSlugTemplateForbidden, *GetSlugTemplateNotFound, error) {
-	// TODO: Validate the params before sending
-	if params == nil {
-		params = NewGetSlugTemplateParams()
-	}
-
-	if params.Context == nil {
-		params.Context = context.Background()
-	}
-
-	if params.RetryPolicy != nil {
-		params.SetHTTPClientTransport(params.RetryPolicy)
-	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
-		ID:                 "getSlugTemplate",
-		Method:             "GET",
-		PathPattern:        "/notification/namespaces/{namespace}/templates/{templateSlug}",
-		ProducesMediaTypes: []string{"application/json"},
-		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"https"},
-		Params:             params,
-		Reader:             &GetSlugTemplateReader{formats: a.formats},
-		AuthInfo:           authInfo,
-		Context:            params.Context,
-		Client:             params.HTTPClient,
-	})
-	if err != nil {
-		return nil, nil, nil, nil, nil, err
-	}
-
-	switch v := result.(type) {
-
-	case *GetSlugTemplateOK:
-		return v, nil, nil, nil, nil, nil
-
-	case *GetSlugTemplateBadRequest:
-		return nil, v, nil, nil, nil, nil
-
-	case *GetSlugTemplateUnauthorized:
-		return nil, nil, v, nil, nil, nil
-
-	case *GetSlugTemplateForbidden:
-		return nil, nil, nil, v, nil, nil
-
-	case *GetSlugTemplateNotFound:
-		return nil, nil, nil, nil, v, nil
-
-	default:
-		return nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
-	}
-}
-
-/*
-  GetSlugTemplateShort gets all notification template in a slug
-
-  Required permission : &lt;code&gt;NAMESPACE:{namespace}:TEMPLATE [READ]&lt;/code&gt; with scope &lt;code&gt;social&lt;/code&gt;
-			&lt;br&gt;Get all templates in a namespace
-*/
-func (a *Client) GetSlugTemplateShort(params *GetSlugTemplateParams, authInfo runtime.ClientAuthInfoWriter) (*GetSlugTemplateOK, error) {
-	// TODO: Validate the params before sending
-	if params == nil {
-		params = NewGetSlugTemplateParams()
-	}
-
-	if params.Context == nil {
-		params.Context = context.Background()
-	}
-
-	if params.RetryPolicy != nil {
-		params.SetHTTPClientTransport(params.RetryPolicy)
-	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
-		ID:                 "getSlugTemplate",
-		Method:             "GET",
-		PathPattern:        "/notification/namespaces/{namespace}/templates/{templateSlug}",
-		ProducesMediaTypes: []string{"application/json"},
-		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"https"},
-		Params:             params,
-		Reader:             &GetSlugTemplateReader{formats: a.formats},
-		AuthInfo:           authInfo,
-		Context:            params.Context,
-		Client:             params.HTTPClient,
-	})
-	if err != nil {
-		return nil, err
-	}
-
-	switch v := result.(type) {
-
-	case *GetSlugTemplateOK:
-		return v, nil
-	case *GetSlugTemplateBadRequest:
-		return nil, v
-	case *GetSlugTemplateUnauthorized:
-		return nil, v
-	case *GetSlugTemplateForbidden:
-		return nil, v
-	case *GetSlugTemplateNotFound:
-		return nil, v
-
-	default:
-		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
-	}
-}
-
-/*
 Deprecated: Use GetTemplateSlugLocalizationsTemplateV1AdminShort instead.
 
-  GetTemplateSlugLocalizationsTemplateV1Admin gets all notification template localization in a slug
+	  GetTemplateSlugLocalizationsTemplateV1Admin gets all notification template localization in a slug
 
-  Required permission : &lt;code&gt;ADMIN:NAMESPACE:{namespace}:NOTIFICATION [READ]&lt;/code&gt; with scope &lt;code&gt;social&lt;/code&gt;
-			&lt;br&gt;Get all templates in a namespace&lt;br&gt;
-			Action Code: 50205
+	  Required permission : &lt;code&gt;ADMIN:NAMESPACE:{namespace}:NOTIFICATION [READ]&lt;/code&gt; with scope &lt;code&gt;social&lt;/code&gt;
+				&lt;br&gt;Get all templates in a namespace&lt;br&gt;
+				Action Code: 50205
 */
 func (a *Client) GetTemplateSlugLocalizationsTemplateV1Admin(params *GetTemplateSlugLocalizationsTemplateV1AdminParams, authInfo runtime.ClientAuthInfoWriter) (*GetTemplateSlugLocalizationsTemplateV1AdminOK, *GetTemplateSlugLocalizationsTemplateV1AdminBadRequest, *GetTemplateSlugLocalizationsTemplateV1AdminUnauthorized, *GetTemplateSlugLocalizationsTemplateV1AdminForbidden, *GetTemplateSlugLocalizationsTemplateV1AdminNotFound, error) {
 	// TODO: Validate the params before sending
@@ -2429,11 +1591,11 @@ func (a *Client) GetTemplateSlugLocalizationsTemplateV1Admin(params *GetTemplate
 }
 
 /*
-  GetTemplateSlugLocalizationsTemplateV1AdminShort gets all notification template localization in a slug
+	  GetTemplateSlugLocalizationsTemplateV1AdminShort gets all notification template localization in a slug
 
-  Required permission : &lt;code&gt;ADMIN:NAMESPACE:{namespace}:NOTIFICATION [READ]&lt;/code&gt; with scope &lt;code&gt;social&lt;/code&gt;
-			&lt;br&gt;Get all templates in a namespace&lt;br&gt;
-			Action Code: 50205
+	  Required permission : &lt;code&gt;ADMIN:NAMESPACE:{namespace}:NOTIFICATION [READ]&lt;/code&gt; with scope &lt;code&gt;social&lt;/code&gt;
+				&lt;br&gt;Get all templates in a namespace&lt;br&gt;
+				Action Code: 50205
 */
 func (a *Client) GetTemplateSlugLocalizationsTemplateV1AdminShort(params *GetTemplateSlugLocalizationsTemplateV1AdminParams, authInfo runtime.ClientAuthInfoWriter) (*GetTemplateSlugLocalizationsTemplateV1AdminOK, error) {
 	// TODO: Validate the params before sending
@@ -2487,10 +1649,10 @@ func (a *Client) GetTemplateSlugLocalizationsTemplateV1AdminShort(params *GetTem
 /*
 Deprecated: Use GetTopicByNamespaceShort instead.
 
-  GetTopicByNamespace gets topic by namespace
+	  GetTopicByNamespace gets topic by namespace
 
-  Required permission : &lt;code&gt;NAMESPACE:{namespace}:TOPIC [READ]&lt;/code&gt; with scope &lt;code&gt;social&lt;/code&gt;
-			&lt;br&gt;get topic by namespace.
+	  Required permission : &lt;code&gt;NAMESPACE:{namespace}:TOPIC [READ]&lt;/code&gt; with scope &lt;code&gt;social&lt;/code&gt;
+				&lt;br&gt;get topic by namespace.
 */
 func (a *Client) GetTopicByNamespace(params *GetTopicByNamespaceParams, authInfo runtime.ClientAuthInfoWriter) (*GetTopicByNamespaceOK, *GetTopicByNamespaceUnauthorized, *GetTopicByNamespaceForbidden, *GetTopicByNamespaceNotFound, *GetTopicByNamespaceInternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -2546,10 +1708,10 @@ func (a *Client) GetTopicByNamespace(params *GetTopicByNamespaceParams, authInfo
 }
 
 /*
-  GetTopicByNamespaceShort gets topic by namespace
+	  GetTopicByNamespaceShort gets topic by namespace
 
-  Required permission : &lt;code&gt;NAMESPACE:{namespace}:TOPIC [READ]&lt;/code&gt; with scope &lt;code&gt;social&lt;/code&gt;
-			&lt;br&gt;get topic by namespace.
+	  Required permission : &lt;code&gt;NAMESPACE:{namespace}:TOPIC [READ]&lt;/code&gt; with scope &lt;code&gt;social&lt;/code&gt;
+				&lt;br&gt;get topic by namespace.
 */
 func (a *Client) GetTopicByNamespaceShort(params *GetTopicByNamespaceParams, authInfo runtime.ClientAuthInfoWriter) (*GetTopicByNamespaceOK, error) {
 	// TODO: Validate the params before sending
@@ -2603,10 +1765,10 @@ func (a *Client) GetTopicByNamespaceShort(params *GetTopicByNamespaceParams, aut
 /*
 Deprecated: Use GetTopicByTopicNameShort instead.
 
-  GetTopicByTopicName gets topic information by topic name
+	  GetTopicByTopicName gets topic information by topic name
 
-  Required permission : &lt;code&gt;NAMESPACE:{namespace}:TOPIC [READ]&lt;/code&gt; with scope &lt;code&gt;social&lt;/code&gt;
-			&lt;br&gt;get topic information by topic name.
+	  Required permission : &lt;code&gt;NAMESPACE:{namespace}:TOPIC [READ]&lt;/code&gt; with scope &lt;code&gt;social&lt;/code&gt;
+				&lt;br&gt;get topic information by topic name.
 */
 func (a *Client) GetTopicByTopicName(params *GetTopicByTopicNameParams, authInfo runtime.ClientAuthInfoWriter) (*GetTopicByTopicNameOK, *GetTopicByTopicNameUnauthorized, *GetTopicByTopicNameForbidden, *GetTopicByTopicNameNotFound, *GetTopicByTopicNameInternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -2662,10 +1824,10 @@ func (a *Client) GetTopicByTopicName(params *GetTopicByTopicNameParams, authInfo
 }
 
 /*
-  GetTopicByTopicNameShort gets topic information by topic name
+	  GetTopicByTopicNameShort gets topic information by topic name
 
-  Required permission : &lt;code&gt;NAMESPACE:{namespace}:TOPIC [READ]&lt;/code&gt; with scope &lt;code&gt;social&lt;/code&gt;
-			&lt;br&gt;get topic information by topic name.
+	  Required permission : &lt;code&gt;NAMESPACE:{namespace}:TOPIC [READ]&lt;/code&gt; with scope &lt;code&gt;social&lt;/code&gt;
+				&lt;br&gt;get topic information by topic name.
 */
 func (a *Client) GetTopicByTopicNameShort(params *GetTopicByTopicNameParams, authInfo runtime.ClientAuthInfoWriter) (*GetTopicByTopicNameOK, error) {
 	// TODO: Validate the params before sending
@@ -2717,137 +1879,15 @@ func (a *Client) GetTopicByTopicNameShort(params *GetTopicByTopicNameParams, aut
 }
 
 /*
-Deprecated: Use NotificationWithTemplateShort instead.
-
-  NotificationWithTemplate sends notification to a user with template
-
-  Required permission : &lt;code&gt;NAMESPACE:{namespace}:NOTIFICATION [CREATE]&lt;/code&gt; with scope &lt;code&gt;social&lt;/code&gt;
-			&lt;br&gt;Sends notification to all connected users in a namespace with predefined template.
-			&lt;br&gt;In the request body, specify which template slug (template identifier) to use and the template language.
-			&lt;br&gt;NotificationTemplate context is the key-value pair defining the value of each handlebar specified in the template content.
-			Template need to be published before it can be use to send notifications
-*/
-func (a *Client) NotificationWithTemplate(params *NotificationWithTemplateParams, authInfo runtime.ClientAuthInfoWriter) (*NotificationWithTemplateAccepted, *NotificationWithTemplateBadRequest, *NotificationWithTemplateUnauthorized, *NotificationWithTemplateForbidden, *NotificationWithTemplateNotFound, error) {
-	// TODO: Validate the params before sending
-	if params == nil {
-		params = NewNotificationWithTemplateParams()
-	}
-
-	if params.Context == nil {
-		params.Context = context.Background()
-	}
-
-	if params.RetryPolicy != nil {
-		params.SetHTTPClientTransport(params.RetryPolicy)
-	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
-		ID:                 "notificationWithTemplate",
-		Method:             "POST",
-		PathPattern:        "/notification/namespaces/{namespace}/templated",
-		ProducesMediaTypes: []string{"application/json"},
-		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"https"},
-		Params:             params,
-		Reader:             &NotificationWithTemplateReader{formats: a.formats},
-		AuthInfo:           authInfo,
-		Context:            params.Context,
-		Client:             params.HTTPClient,
-	})
-	if err != nil {
-		return nil, nil, nil, nil, nil, err
-	}
-
-	switch v := result.(type) {
-
-	case *NotificationWithTemplateAccepted:
-		return v, nil, nil, nil, nil, nil
-
-	case *NotificationWithTemplateBadRequest:
-		return nil, v, nil, nil, nil, nil
-
-	case *NotificationWithTemplateUnauthorized:
-		return nil, nil, v, nil, nil, nil
-
-	case *NotificationWithTemplateForbidden:
-		return nil, nil, nil, v, nil, nil
-
-	case *NotificationWithTemplateNotFound:
-		return nil, nil, nil, nil, v, nil
-
-	default:
-		return nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
-	}
-}
-
-/*
-  NotificationWithTemplateShort sends notification to a user with template
-
-  Required permission : &lt;code&gt;NAMESPACE:{namespace}:NOTIFICATION [CREATE]&lt;/code&gt; with scope &lt;code&gt;social&lt;/code&gt;
-			&lt;br&gt;Sends notification to all connected users in a namespace with predefined template.
-			&lt;br&gt;In the request body, specify which template slug (template identifier) to use and the template language.
-			&lt;br&gt;NotificationTemplate context is the key-value pair defining the value of each handlebar specified in the template content.
-			Template need to be published before it can be use to send notifications
-*/
-func (a *Client) NotificationWithTemplateShort(params *NotificationWithTemplateParams, authInfo runtime.ClientAuthInfoWriter) (*NotificationWithTemplateAccepted, error) {
-	// TODO: Validate the params before sending
-	if params == nil {
-		params = NewNotificationWithTemplateParams()
-	}
-
-	if params.Context == nil {
-		params.Context = context.Background()
-	}
-
-	if params.RetryPolicy != nil {
-		params.SetHTTPClientTransport(params.RetryPolicy)
-	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
-		ID:                 "notificationWithTemplate",
-		Method:             "POST",
-		PathPattern:        "/notification/namespaces/{namespace}/templated",
-		ProducesMediaTypes: []string{"application/json"},
-		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"https"},
-		Params:             params,
-		Reader:             &NotificationWithTemplateReader{formats: a.formats},
-		AuthInfo:           authInfo,
-		Context:            params.Context,
-		Client:             params.HTTPClient,
-	})
-	if err != nil {
-		return nil, err
-	}
-
-	switch v := result.(type) {
-
-	case *NotificationWithTemplateAccepted:
-		return v, nil
-	case *NotificationWithTemplateBadRequest:
-		return nil, v
-	case *NotificationWithTemplateUnauthorized:
-		return nil, v
-	case *NotificationWithTemplateForbidden:
-		return nil, v
-	case *NotificationWithTemplateNotFound:
-		return nil, v
-
-	default:
-		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
-	}
-}
-
-/*
 Deprecated: Use NotificationWithTemplateByUserIDShort instead.
 
-  NotificationWithTemplateByUserID sends notification to a user with template
+	  NotificationWithTemplateByUserID sends notification to a user with template
 
-  Required permission : &lt;code&gt;NAMESPACE:{namespace}:USER:{userId}:NOTIFICATION [CREATE]&lt;/code&gt; with scope &lt;code&gt;social&lt;/code&gt;
-			&lt;br&gt;Sends notification to a user with predefined template.
-			&lt;br&gt;In the request body, specify which template slug (template identifier) to use and the template language.
-			&lt;br&gt;NotificationTemplate context is the key-value pair defining the value of each handlebar specified in the template content.
-			Template need to be published before it can be use to send notifications
+	  Required permission : &lt;code&gt;NAMESPACE:{namespace}:USER:{userId}:NOTIFICATION [CREATE]&lt;/code&gt; with scope &lt;code&gt;social&lt;/code&gt;
+				&lt;br&gt;Sends notification to a user with predefined template.
+				&lt;br&gt;In the request body, specify which template slug (template identifier) to use and the template language.
+				&lt;br&gt;NotificationTemplate context is the key-value pair defining the value of each handlebar specified in the template content.
+				Template need to be published before it can be use to send notifications
 */
 func (a *Client) NotificationWithTemplateByUserID(params *NotificationWithTemplateByUserIDParams, authInfo runtime.ClientAuthInfoWriter) (*NotificationWithTemplateByUserIDNoContent, *NotificationWithTemplateByUserIDBadRequest, *NotificationWithTemplateByUserIDUnauthorized, *NotificationWithTemplateByUserIDForbidden, *NotificationWithTemplateByUserIDNotFound, error) {
 	// TODO: Validate the params before sending
@@ -2903,13 +1943,13 @@ func (a *Client) NotificationWithTemplateByUserID(params *NotificationWithTempla
 }
 
 /*
-  NotificationWithTemplateByUserIDShort sends notification to a user with template
+	  NotificationWithTemplateByUserIDShort sends notification to a user with template
 
-  Required permission : &lt;code&gt;NAMESPACE:{namespace}:USER:{userId}:NOTIFICATION [CREATE]&lt;/code&gt; with scope &lt;code&gt;social&lt;/code&gt;
-			&lt;br&gt;Sends notification to a user with predefined template.
-			&lt;br&gt;In the request body, specify which template slug (template identifier) to use and the template language.
-			&lt;br&gt;NotificationTemplate context is the key-value pair defining the value of each handlebar specified in the template content.
-			Template need to be published before it can be use to send notifications
+	  Required permission : &lt;code&gt;NAMESPACE:{namespace}:USER:{userId}:NOTIFICATION [CREATE]&lt;/code&gt; with scope &lt;code&gt;social&lt;/code&gt;
+				&lt;br&gt;Sends notification to a user with predefined template.
+				&lt;br&gt;In the request body, specify which template slug (template identifier) to use and the template language.
+				&lt;br&gt;NotificationTemplate context is the key-value pair defining the value of each handlebar specified in the template content.
+				Template need to be published before it can be use to send notifications
 */
 func (a *Client) NotificationWithTemplateByUserIDShort(params *NotificationWithTemplateByUserIDParams, authInfo runtime.ClientAuthInfoWriter) (*NotificationWithTemplateByUserIDNoContent, error) {
 	// TODO: Validate the params before sending
@@ -2961,129 +2001,13 @@ func (a *Client) NotificationWithTemplateByUserIDShort(params *NotificationWithT
 }
 
 /*
-Deprecated: Use PublishTemplateShort instead.
-
-  PublishTemplate publishes draft template
-
-  Required permission : &lt;code&gt;NAMESPACE:{namespace}:TEMPLATE [CREATE]&lt;/code&gt; with scope &lt;code&gt;social&lt;/code&gt;
-			&lt;br&gt;Publish notification template draft. Empty draft can not be published.
-*/
-func (a *Client) PublishTemplate(params *PublishTemplateParams, authInfo runtime.ClientAuthInfoWriter) (*PublishTemplateNoContent, *PublishTemplateBadRequest, *PublishTemplateUnauthorized, *PublishTemplateForbidden, *PublishTemplateNotFound, error) {
-	// TODO: Validate the params before sending
-	if params == nil {
-		params = NewPublishTemplateParams()
-	}
-
-	if params.Context == nil {
-		params.Context = context.Background()
-	}
-
-	if params.RetryPolicy != nil {
-		params.SetHTTPClientTransport(params.RetryPolicy)
-	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
-		ID:                 "publishTemplate",
-		Method:             "POST",
-		PathPattern:        "/notification/namespaces/{namespace}/templates/{templateSlug}/languages/{templateLanguage}/publish",
-		ProducesMediaTypes: []string{"application/json"},
-		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"https"},
-		Params:             params,
-		Reader:             &PublishTemplateReader{formats: a.formats},
-		AuthInfo:           authInfo,
-		Context:            params.Context,
-		Client:             params.HTTPClient,
-	})
-	if err != nil {
-		return nil, nil, nil, nil, nil, err
-	}
-
-	switch v := result.(type) {
-
-	case *PublishTemplateNoContent:
-		return v, nil, nil, nil, nil, nil
-
-	case *PublishTemplateBadRequest:
-		return nil, v, nil, nil, nil, nil
-
-	case *PublishTemplateUnauthorized:
-		return nil, nil, v, nil, nil, nil
-
-	case *PublishTemplateForbidden:
-		return nil, nil, nil, v, nil, nil
-
-	case *PublishTemplateNotFound:
-		return nil, nil, nil, nil, v, nil
-
-	default:
-		return nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
-	}
-}
-
-/*
-  PublishTemplateShort publishes draft template
-
-  Required permission : &lt;code&gt;NAMESPACE:{namespace}:TEMPLATE [CREATE]&lt;/code&gt; with scope &lt;code&gt;social&lt;/code&gt;
-			&lt;br&gt;Publish notification template draft. Empty draft can not be published.
-*/
-func (a *Client) PublishTemplateShort(params *PublishTemplateParams, authInfo runtime.ClientAuthInfoWriter) (*PublishTemplateNoContent, error) {
-	// TODO: Validate the params before sending
-	if params == nil {
-		params = NewPublishTemplateParams()
-	}
-
-	if params.Context == nil {
-		params.Context = context.Background()
-	}
-
-	if params.RetryPolicy != nil {
-		params.SetHTTPClientTransport(params.RetryPolicy)
-	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
-		ID:                 "publishTemplate",
-		Method:             "POST",
-		PathPattern:        "/notification/namespaces/{namespace}/templates/{templateSlug}/languages/{templateLanguage}/publish",
-		ProducesMediaTypes: []string{"application/json"},
-		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"https"},
-		Params:             params,
-		Reader:             &PublishTemplateReader{formats: a.formats},
-		AuthInfo:           authInfo,
-		Context:            params.Context,
-		Client:             params.HTTPClient,
-	})
-	if err != nil {
-		return nil, err
-	}
-
-	switch v := result.(type) {
-
-	case *PublishTemplateNoContent:
-		return v, nil
-	case *PublishTemplateBadRequest:
-		return nil, v
-	case *PublishTemplateUnauthorized:
-		return nil, v
-	case *PublishTemplateForbidden:
-		return nil, v
-	case *PublishTemplateNotFound:
-		return nil, v
-
-	default:
-		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
-	}
-}
-
-/*
 Deprecated: Use PublishTemplateLocalizationV1AdminShort instead.
 
-  PublishTemplateLocalizationV1Admin publishes template localization draft
+	  PublishTemplateLocalizationV1Admin publishes template localization draft
 
-  Required permission : &lt;code&gt;ADMIN:NAMESPACE:{namespace}:NOTIFICATION [CREATE]&lt;/code&gt; with scope &lt;code&gt;social&lt;/code&gt;
-			&lt;br&gt;Publish notification template draft. Empty draft can not be published.&lt;br/&gt;
-			Action Code: 50210
+	  Required permission : &lt;code&gt;ADMIN:NAMESPACE:{namespace}:NOTIFICATION [CREATE]&lt;/code&gt; with scope &lt;code&gt;social&lt;/code&gt;
+				&lt;br&gt;Publish notification template draft. Empty draft can not be published.&lt;br/&gt;
+				Action Code: 50210
 */
 func (a *Client) PublishTemplateLocalizationV1Admin(params *PublishTemplateLocalizationV1AdminParams, authInfo runtime.ClientAuthInfoWriter) (*PublishTemplateLocalizationV1AdminNoContent, *PublishTemplateLocalizationV1AdminUnauthorized, *PublishTemplateLocalizationV1AdminForbidden, *PublishTemplateLocalizationV1AdminNotFound, *PublishTemplateLocalizationV1AdminInternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -3139,11 +2063,11 @@ func (a *Client) PublishTemplateLocalizationV1Admin(params *PublishTemplateLocal
 }
 
 /*
-  PublishTemplateLocalizationV1AdminShort publishes template localization draft
+	  PublishTemplateLocalizationV1AdminShort publishes template localization draft
 
-  Required permission : &lt;code&gt;ADMIN:NAMESPACE:{namespace}:NOTIFICATION [CREATE]&lt;/code&gt; with scope &lt;code&gt;social&lt;/code&gt;
-			&lt;br&gt;Publish notification template draft. Empty draft can not be published.&lt;br/&gt;
-			Action Code: 50210
+	  Required permission : &lt;code&gt;ADMIN:NAMESPACE:{namespace}:NOTIFICATION [CREATE]&lt;/code&gt; with scope &lt;code&gt;social&lt;/code&gt;
+				&lt;br&gt;Publish notification template draft. Empty draft can not be published.&lt;br/&gt;
+				Action Code: 50210
 */
 func (a *Client) PublishTemplateLocalizationV1AdminShort(params *PublishTemplateLocalizationV1AdminParams, authInfo runtime.ClientAuthInfoWriter) (*PublishTemplateLocalizationV1AdminNoContent, error) {
 	// TODO: Validate the params before sending
@@ -3197,11 +2121,11 @@ func (a *Client) PublishTemplateLocalizationV1AdminShort(params *PublishTemplate
 /*
 Deprecated: Use SendMultipleUsersFreeformNotificationV1AdminShort instead.
 
-  SendMultipleUsersFreeformNotificationV1Admin sends freeform notification to multiple users
+	  SendMultipleUsersFreeformNotificationV1Admin sends freeform notification to multiple users
 
-  Required permission : &lt;code&gt;ADMIN:NAMESPACE:{namespace}:NOTIFICATION [CREATE]&lt;/code&gt; with scope &lt;code&gt;social&lt;/code&gt;
-			&lt;br&gt;Sends notification to multiple user.
-			Action Code: 50211
+	  Required permission : &lt;code&gt;ADMIN:NAMESPACE:{namespace}:NOTIFICATION [CREATE]&lt;/code&gt; with scope &lt;code&gt;social&lt;/code&gt;
+				&lt;br&gt;Sends notification to multiple user.
+				Action Code: 50211
 */
 func (a *Client) SendMultipleUsersFreeformNotificationV1Admin(params *SendMultipleUsersFreeformNotificationV1AdminParams, authInfo runtime.ClientAuthInfoWriter) (*SendMultipleUsersFreeformNotificationV1AdminNoContent, *SendMultipleUsersFreeformNotificationV1AdminBadRequest, *SendMultipleUsersFreeformNotificationV1AdminUnauthorized, *SendMultipleUsersFreeformNotificationV1AdminForbidden, error) {
 	// TODO: Validate the params before sending
@@ -3254,11 +2178,11 @@ func (a *Client) SendMultipleUsersFreeformNotificationV1Admin(params *SendMultip
 }
 
 /*
-  SendMultipleUsersFreeformNotificationV1AdminShort sends freeform notification to multiple users
+	  SendMultipleUsersFreeformNotificationV1AdminShort sends freeform notification to multiple users
 
-  Required permission : &lt;code&gt;ADMIN:NAMESPACE:{namespace}:NOTIFICATION [CREATE]&lt;/code&gt; with scope &lt;code&gt;social&lt;/code&gt;
-			&lt;br&gt;Sends notification to multiple user.
-			Action Code: 50211
+	  Required permission : &lt;code&gt;ADMIN:NAMESPACE:{namespace}:NOTIFICATION [CREATE]&lt;/code&gt; with scope &lt;code&gt;social&lt;/code&gt;
+				&lt;br&gt;Sends notification to multiple user.
+				Action Code: 50211
 */
 func (a *Client) SendMultipleUsersFreeformNotificationV1AdminShort(params *SendMultipleUsersFreeformNotificationV1AdminParams, authInfo runtime.ClientAuthInfoWriter) (*SendMultipleUsersFreeformNotificationV1AdminNoContent, error) {
 	// TODO: Validate the params before sending
@@ -3310,10 +2234,10 @@ func (a *Client) SendMultipleUsersFreeformNotificationV1AdminShort(params *SendM
 /*
 Deprecated: Use SendPartyFreeformNotificationV1AdminShort instead.
 
-  SendPartyFreeformNotificationV1Admin sends freeform notification to a party
+	  SendPartyFreeformNotificationV1Admin sends freeform notification to a party
 
-  Required permission : &lt;code&gt;ADMIN:NAMESPACE:{namespace}:NOTIFICATION [CREATE]&lt;/code&gt; with scope &lt;code&gt;social&lt;/code&gt;
-					&lt;br&gt;Sends notification to a party.
+	  Required permission : &lt;code&gt;ADMIN:NAMESPACE:{namespace}:NOTIFICATION [CREATE]&lt;/code&gt; with scope &lt;code&gt;social&lt;/code&gt;
+						&lt;br&gt;Sends notification to a party.
 */
 func (a *Client) SendPartyFreeformNotificationV1Admin(params *SendPartyFreeformNotificationV1AdminParams, authInfo runtime.ClientAuthInfoWriter) (*SendPartyFreeformNotificationV1AdminNoContent, *SendPartyFreeformNotificationV1AdminBadRequest, *SendPartyFreeformNotificationV1AdminUnauthorized, *SendPartyFreeformNotificationV1AdminForbidden, *SendPartyFreeformNotificationV1AdminNotFound, error) {
 	// TODO: Validate the params before sending
@@ -3369,10 +2293,10 @@ func (a *Client) SendPartyFreeformNotificationV1Admin(params *SendPartyFreeformN
 }
 
 /*
-  SendPartyFreeformNotificationV1AdminShort sends freeform notification to a party
+	  SendPartyFreeformNotificationV1AdminShort sends freeform notification to a party
 
-  Required permission : &lt;code&gt;ADMIN:NAMESPACE:{namespace}:NOTIFICATION [CREATE]&lt;/code&gt; with scope &lt;code&gt;social&lt;/code&gt;
-					&lt;br&gt;Sends notification to a party.
+	  Required permission : &lt;code&gt;ADMIN:NAMESPACE:{namespace}:NOTIFICATION [CREATE]&lt;/code&gt; with scope &lt;code&gt;social&lt;/code&gt;
+						&lt;br&gt;Sends notification to a party.
 */
 func (a *Client) SendPartyFreeformNotificationV1AdminShort(params *SendPartyFreeformNotificationV1AdminParams, authInfo runtime.ClientAuthInfoWriter) (*SendPartyFreeformNotificationV1AdminNoContent, error) {
 	// TODO: Validate the params before sending
@@ -3426,13 +2350,13 @@ func (a *Client) SendPartyFreeformNotificationV1AdminShort(params *SendPartyFree
 /*
 Deprecated: Use SendPartyTemplatedNotificationV1AdminShort instead.
 
-  SendPartyTemplatedNotificationV1Admin sends templated notification to a party
+	  SendPartyTemplatedNotificationV1Admin sends templated notification to a party
 
-  Required permission : &lt;code&gt;ADMIN:NAMESPACE:{namespace}:NOTIFICATION [CREATE]&lt;/code&gt; with scope &lt;code&gt;social&lt;/code&gt;
-					&lt;br&gt;Sends templated notification to a party.
-					&lt;br&gt;In the request body, specify which template slug (template identifier) to use and the template language.
-					&lt;br&gt;NotificationTemplate context is the key-value pair defining the value of each handlebar specified in the template content.
-					Template need to be published before it can be use to send notifications&lt;br&gt;
+	  Required permission : &lt;code&gt;ADMIN:NAMESPACE:{namespace}:NOTIFICATION [CREATE]&lt;/code&gt; with scope &lt;code&gt;social&lt;/code&gt;
+						&lt;br&gt;Sends templated notification to a party.
+						&lt;br&gt;In the request body, specify which template slug (template identifier) to use and the template language.
+						&lt;br&gt;NotificationTemplate context is the key-value pair defining the value of each handlebar specified in the template content.
+						Template need to be published before it can be use to send notifications&lt;br&gt;
 */
 func (a *Client) SendPartyTemplatedNotificationV1Admin(params *SendPartyTemplatedNotificationV1AdminParams, authInfo runtime.ClientAuthInfoWriter) (*SendPartyTemplatedNotificationV1AdminNoContent, *SendPartyTemplatedNotificationV1AdminBadRequest, *SendPartyTemplatedNotificationV1AdminUnauthorized, *SendPartyTemplatedNotificationV1AdminForbidden, *SendPartyTemplatedNotificationV1AdminNotFound, error) {
 	// TODO: Validate the params before sending
@@ -3488,13 +2412,13 @@ func (a *Client) SendPartyTemplatedNotificationV1Admin(params *SendPartyTemplate
 }
 
 /*
-  SendPartyTemplatedNotificationV1AdminShort sends templated notification to a party
+	  SendPartyTemplatedNotificationV1AdminShort sends templated notification to a party
 
-  Required permission : &lt;code&gt;ADMIN:NAMESPACE:{namespace}:NOTIFICATION [CREATE]&lt;/code&gt; with scope &lt;code&gt;social&lt;/code&gt;
-					&lt;br&gt;Sends templated notification to a party.
-					&lt;br&gt;In the request body, specify which template slug (template identifier) to use and the template language.
-					&lt;br&gt;NotificationTemplate context is the key-value pair defining the value of each handlebar specified in the template content.
-					Template need to be published before it can be use to send notifications&lt;br&gt;
+	  Required permission : &lt;code&gt;ADMIN:NAMESPACE:{namespace}:NOTIFICATION [CREATE]&lt;/code&gt; with scope &lt;code&gt;social&lt;/code&gt;
+						&lt;br&gt;Sends templated notification to a party.
+						&lt;br&gt;In the request body, specify which template slug (template identifier) to use and the template language.
+						&lt;br&gt;NotificationTemplate context is the key-value pair defining the value of each handlebar specified in the template content.
+						Template need to be published before it can be use to send notifications&lt;br&gt;
 */
 func (a *Client) SendPartyTemplatedNotificationV1AdminShort(params *SendPartyTemplatedNotificationV1AdminParams, authInfo runtime.ClientAuthInfoWriter) (*SendPartyTemplatedNotificationV1AdminNoContent, error) {
 	// TODO: Validate the params before sending
@@ -3548,11 +2472,11 @@ func (a *Client) SendPartyTemplatedNotificationV1AdminShort(params *SendPartyTem
 /*
 Deprecated: Use SendSpecificUserFreeformNotificationV1AdminShort instead.
 
-  SendSpecificUserFreeformNotificationV1Admin sends freeform notification to a user
+	  SendSpecificUserFreeformNotificationV1Admin sends freeform notification to a user
 
-  Required permission : &lt;code&gt;ADMIN:NAMESPACE:{namespace}:NOTIFICATION [CREATE]&lt;/code&gt; with scope &lt;code&gt;social&lt;/code&gt;
-			&lt;br&gt;Sends notification to a user.
-			Action Code: 50211
+	  Required permission : &lt;code&gt;ADMIN:NAMESPACE:{namespace}:NOTIFICATION [CREATE]&lt;/code&gt; with scope &lt;code&gt;social&lt;/code&gt;
+				&lt;br&gt;Sends notification to a user.
+				Action Code: 50211
 */
 func (a *Client) SendSpecificUserFreeformNotificationV1Admin(params *SendSpecificUserFreeformNotificationV1AdminParams, authInfo runtime.ClientAuthInfoWriter) (*SendSpecificUserFreeformNotificationV1AdminNoContent, *SendSpecificUserFreeformNotificationV1AdminBadRequest, *SendSpecificUserFreeformNotificationV1AdminUnauthorized, *SendSpecificUserFreeformNotificationV1AdminForbidden, *SendSpecificUserFreeformNotificationV1AdminNotFound, error) {
 	// TODO: Validate the params before sending
@@ -3608,11 +2532,11 @@ func (a *Client) SendSpecificUserFreeformNotificationV1Admin(params *SendSpecifi
 }
 
 /*
-  SendSpecificUserFreeformNotificationV1AdminShort sends freeform notification to a user
+	  SendSpecificUserFreeformNotificationV1AdminShort sends freeform notification to a user
 
-  Required permission : &lt;code&gt;ADMIN:NAMESPACE:{namespace}:NOTIFICATION [CREATE]&lt;/code&gt; with scope &lt;code&gt;social&lt;/code&gt;
-			&lt;br&gt;Sends notification to a user.
-			Action Code: 50211
+	  Required permission : &lt;code&gt;ADMIN:NAMESPACE:{namespace}:NOTIFICATION [CREATE]&lt;/code&gt; with scope &lt;code&gt;social&lt;/code&gt;
+				&lt;br&gt;Sends notification to a user.
+				Action Code: 50211
 */
 func (a *Client) SendSpecificUserFreeformNotificationV1AdminShort(params *SendSpecificUserFreeformNotificationV1AdminParams, authInfo runtime.ClientAuthInfoWriter) (*SendSpecificUserFreeformNotificationV1AdminNoContent, error) {
 	// TODO: Validate the params before sending
@@ -3666,14 +2590,14 @@ func (a *Client) SendSpecificUserFreeformNotificationV1AdminShort(params *SendSp
 /*
 Deprecated: Use SendSpecificUserTemplatedNotificationV1AdminShort instead.
 
-  SendSpecificUserTemplatedNotificationV1Admin sends templated notification to specific user
+	  SendSpecificUserTemplatedNotificationV1Admin sends templated notification to specific user
 
-  Required permission : &lt;code&gt;ADMIN:NAMESPACE:{namespace}:NOTIFICATION [CREATE]&lt;/code&gt; with scope &lt;code&gt;social&lt;/code&gt;
-			&lt;br&gt;Sends templated notification to a user.
-			&lt;br&gt;In the request body, specify which template slug (template identifier) to use and the template language.
-			&lt;br&gt;NotificationTemplate context is the key-value pair defining the value of each handlebar specified in the template content.
-			Template need to be published before it can be use to send notifications&lt;br&gt;
-			Action Code: 50212
+	  Required permission : &lt;code&gt;ADMIN:NAMESPACE:{namespace}:NOTIFICATION [CREATE]&lt;/code&gt; with scope &lt;code&gt;social&lt;/code&gt;
+				&lt;br&gt;Sends templated notification to a user.
+				&lt;br&gt;In the request body, specify which template slug (template identifier) to use and the template language.
+				&lt;br&gt;NotificationTemplate context is the key-value pair defining the value of each handlebar specified in the template content.
+				Template need to be published before it can be use to send notifications&lt;br&gt;
+				Action Code: 50212
 */
 func (a *Client) SendSpecificUserTemplatedNotificationV1Admin(params *SendSpecificUserTemplatedNotificationV1AdminParams, authInfo runtime.ClientAuthInfoWriter) (*SendSpecificUserTemplatedNotificationV1AdminNoContent, *SendSpecificUserTemplatedNotificationV1AdminBadRequest, *SendSpecificUserTemplatedNotificationV1AdminUnauthorized, *SendSpecificUserTemplatedNotificationV1AdminForbidden, *SendSpecificUserTemplatedNotificationV1AdminNotFound, error) {
 	// TODO: Validate the params before sending
@@ -3729,14 +2653,14 @@ func (a *Client) SendSpecificUserTemplatedNotificationV1Admin(params *SendSpecif
 }
 
 /*
-  SendSpecificUserTemplatedNotificationV1AdminShort sends templated notification to specific user
+	  SendSpecificUserTemplatedNotificationV1AdminShort sends templated notification to specific user
 
-  Required permission : &lt;code&gt;ADMIN:NAMESPACE:{namespace}:NOTIFICATION [CREATE]&lt;/code&gt; with scope &lt;code&gt;social&lt;/code&gt;
-			&lt;br&gt;Sends templated notification to a user.
-			&lt;br&gt;In the request body, specify which template slug (template identifier) to use and the template language.
-			&lt;br&gt;NotificationTemplate context is the key-value pair defining the value of each handlebar specified in the template content.
-			Template need to be published before it can be use to send notifications&lt;br&gt;
-			Action Code: 50212
+	  Required permission : &lt;code&gt;ADMIN:NAMESPACE:{namespace}:NOTIFICATION [CREATE]&lt;/code&gt; with scope &lt;code&gt;social&lt;/code&gt;
+				&lt;br&gt;Sends templated notification to a user.
+				&lt;br&gt;In the request body, specify which template slug (template identifier) to use and the template language.
+				&lt;br&gt;NotificationTemplate context is the key-value pair defining the value of each handlebar specified in the template content.
+				Template need to be published before it can be use to send notifications&lt;br&gt;
+				Action Code: 50212
 */
 func (a *Client) SendSpecificUserTemplatedNotificationV1AdminShort(params *SendSpecificUserTemplatedNotificationV1AdminParams, authInfo runtime.ClientAuthInfoWriter) (*SendSpecificUserTemplatedNotificationV1AdminNoContent, error) {
 	// TODO: Validate the params before sending
@@ -3790,11 +2714,11 @@ func (a *Client) SendSpecificUserTemplatedNotificationV1AdminShort(params *SendS
 /*
 Deprecated: Use SendUsersFreeformNotificationV1AdminShort instead.
 
-  SendUsersFreeformNotificationV1Admin sends freeform notification to connected users
+	  SendUsersFreeformNotificationV1Admin sends freeform notification to connected users
 
-  Required permission : &lt;code&gt;ADMIN:NAMESPACE:{namespace}:NOTIFICATION [CREATE]&lt;/code&gt; with scope &lt;code&gt;social&lt;/code&gt;
-			&lt;br&gt;Sends notification to all connected users in a namespace.&lt;br&gt;
-			Action Code: 50201
+	  Required permission : &lt;code&gt;ADMIN:NAMESPACE:{namespace}:NOTIFICATION [CREATE]&lt;/code&gt; with scope &lt;code&gt;social&lt;/code&gt;
+				&lt;br&gt;Sends notification to all connected users in a namespace.&lt;br&gt;
+				Action Code: 50201
 */
 func (a *Client) SendUsersFreeformNotificationV1Admin(params *SendUsersFreeformNotificationV1AdminParams, authInfo runtime.ClientAuthInfoWriter) (*SendUsersFreeformNotificationV1AdminAccepted, *SendUsersFreeformNotificationV1AdminBadRequest, *SendUsersFreeformNotificationV1AdminUnauthorized, *SendUsersFreeformNotificationV1AdminForbidden, *SendUsersFreeformNotificationV1AdminNotFound, error) {
 	// TODO: Validate the params before sending
@@ -3850,11 +2774,11 @@ func (a *Client) SendUsersFreeformNotificationV1Admin(params *SendUsersFreeformN
 }
 
 /*
-  SendUsersFreeformNotificationV1AdminShort sends freeform notification to connected users
+	  SendUsersFreeformNotificationV1AdminShort sends freeform notification to connected users
 
-  Required permission : &lt;code&gt;ADMIN:NAMESPACE:{namespace}:NOTIFICATION [CREATE]&lt;/code&gt; with scope &lt;code&gt;social&lt;/code&gt;
-			&lt;br&gt;Sends notification to all connected users in a namespace.&lt;br&gt;
-			Action Code: 50201
+	  Required permission : &lt;code&gt;ADMIN:NAMESPACE:{namespace}:NOTIFICATION [CREATE]&lt;/code&gt; with scope &lt;code&gt;social&lt;/code&gt;
+				&lt;br&gt;Sends notification to all connected users in a namespace.&lt;br&gt;
+				Action Code: 50201
 */
 func (a *Client) SendUsersFreeformNotificationV1AdminShort(params *SendUsersFreeformNotificationV1AdminParams, authInfo runtime.ClientAuthInfoWriter) (*SendUsersFreeformNotificationV1AdminAccepted, error) {
 	// TODO: Validate the params before sending
@@ -3908,14 +2832,14 @@ func (a *Client) SendUsersFreeformNotificationV1AdminShort(params *SendUsersFree
 /*
 Deprecated: Use SendUsersTemplatedNotificationV1AdminShort instead.
 
-  SendUsersTemplatedNotificationV1Admin sends notification to connected users with template
+	  SendUsersTemplatedNotificationV1Admin sends notification to connected users with template
 
-  Required permission : &lt;code&gt;ADMIN:NAMESPACE:{namespace}:NOTIFICATION [CREATE]&lt;/code&gt; with scope &lt;code&gt;social&lt;/code&gt;
-			&lt;br&gt;Sends notification to all connected users in a namespace with predefined template.
-			&lt;br&gt;In the request body, specify which template slug (template identifier) to use and the template language.
-			&lt;br&gt;NotificationTemplate context is the key-value pair defining the value of each handlebar specified in the template content.
-			Template need to be published before it can be use to send notifications&lt;br/&gt;
-			Action Code: 50202
+	  Required permission : &lt;code&gt;ADMIN:NAMESPACE:{namespace}:NOTIFICATION [CREATE]&lt;/code&gt; with scope &lt;code&gt;social&lt;/code&gt;
+				&lt;br&gt;Sends notification to all connected users in a namespace with predefined template.
+				&lt;br&gt;In the request body, specify which template slug (template identifier) to use and the template language.
+				&lt;br&gt;NotificationTemplate context is the key-value pair defining the value of each handlebar specified in the template content.
+				Template need to be published before it can be use to send notifications&lt;br/&gt;
+				Action Code: 50202
 */
 func (a *Client) SendUsersTemplatedNotificationV1Admin(params *SendUsersTemplatedNotificationV1AdminParams, authInfo runtime.ClientAuthInfoWriter) (*SendUsersTemplatedNotificationV1AdminAccepted, *SendUsersTemplatedNotificationV1AdminBadRequest, *SendUsersTemplatedNotificationV1AdminUnauthorized, *SendUsersTemplatedNotificationV1AdminForbidden, *SendUsersTemplatedNotificationV1AdminNotFound, error) {
 	// TODO: Validate the params before sending
@@ -3971,14 +2895,14 @@ func (a *Client) SendUsersTemplatedNotificationV1Admin(params *SendUsersTemplate
 }
 
 /*
-  SendUsersTemplatedNotificationV1AdminShort sends notification to connected users with template
+	  SendUsersTemplatedNotificationV1AdminShort sends notification to connected users with template
 
-  Required permission : &lt;code&gt;ADMIN:NAMESPACE:{namespace}:NOTIFICATION [CREATE]&lt;/code&gt; with scope &lt;code&gt;social&lt;/code&gt;
-			&lt;br&gt;Sends notification to all connected users in a namespace with predefined template.
-			&lt;br&gt;In the request body, specify which template slug (template identifier) to use and the template language.
-			&lt;br&gt;NotificationTemplate context is the key-value pair defining the value of each handlebar specified in the template content.
-			Template need to be published before it can be use to send notifications&lt;br/&gt;
-			Action Code: 50202
+	  Required permission : &lt;code&gt;ADMIN:NAMESPACE:{namespace}:NOTIFICATION [CREATE]&lt;/code&gt; with scope &lt;code&gt;social&lt;/code&gt;
+				&lt;br&gt;Sends notification to all connected users in a namespace with predefined template.
+				&lt;br&gt;In the request body, specify which template slug (template identifier) to use and the template language.
+				&lt;br&gt;NotificationTemplate context is the key-value pair defining the value of each handlebar specified in the template content.
+				Template need to be published before it can be use to send notifications&lt;br/&gt;
+				Action Code: 50202
 */
 func (a *Client) SendUsersTemplatedNotificationV1AdminShort(params *SendUsersTemplatedNotificationV1AdminParams, authInfo runtime.ClientAuthInfoWriter) (*SendUsersTemplatedNotificationV1AdminAccepted, error) {
 	// TODO: Validate the params before sending
@@ -4030,131 +2954,15 @@ func (a *Client) SendUsersTemplatedNotificationV1AdminShort(params *SendUsersTem
 }
 
 /*
-Deprecated: Use UpdateLocalizationTemplateShort instead.
-
-  UpdateLocalizationTemplate updates template draft
-
-  Required permission : &lt;code&gt;NAMESPACE:{namespace}:TEMPLATE [UPDATE]&lt;/code&gt; with scope &lt;code&gt;social&lt;/code&gt;
-			&lt;br&gt;Modify draft template
-*/
-func (a *Client) UpdateLocalizationTemplate(params *UpdateLocalizationTemplateParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateLocalizationTemplateNoContent, *UpdateLocalizationTemplateBadRequest, *UpdateLocalizationTemplateUnauthorized, *UpdateLocalizationTemplateForbidden, *UpdateLocalizationTemplateNotFound, error) {
-	// TODO: Validate the params before sending
-	if params == nil {
-		params = NewUpdateLocalizationTemplateParams()
-	}
-
-	if params.Context == nil {
-		params.Context = context.Background()
-	}
-
-	if params.RetryPolicy != nil {
-		params.SetHTTPClientTransport(params.RetryPolicy)
-	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
-		ID:                 "updateLocalizationTemplate",
-		Method:             "PUT",
-		PathPattern:        "/notification/namespaces/{namespace}/templates/{templateSlug}/languages/{templateLanguage}",
-		ProducesMediaTypes: []string{"application/json"},
-		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"https"},
-		Params:             params,
-		Reader:             &UpdateLocalizationTemplateReader{formats: a.formats},
-		AuthInfo:           authInfo,
-		Context:            params.Context,
-		Client:             params.HTTPClient,
-	})
-	if err != nil {
-		return nil, nil, nil, nil, nil, err
-	}
-
-	switch v := result.(type) {
-
-	case *UpdateLocalizationTemplateNoContent:
-		return v, nil, nil, nil, nil, nil
-
-	case *UpdateLocalizationTemplateBadRequest:
-		return nil, v, nil, nil, nil, nil
-
-	case *UpdateLocalizationTemplateUnauthorized:
-		return nil, nil, v, nil, nil, nil
-
-	case *UpdateLocalizationTemplateForbidden:
-		return nil, nil, nil, v, nil, nil
-
-	case *UpdateLocalizationTemplateNotFound:
-		return nil, nil, nil, nil, v, nil
-
-	default:
-		return nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
-	}
-}
-
-/*
-  UpdateLocalizationTemplateShort updates template draft
-
-  Required permission : &lt;code&gt;NAMESPACE:{namespace}:TEMPLATE [UPDATE]&lt;/code&gt; with scope &lt;code&gt;social&lt;/code&gt;
-			&lt;br&gt;Modify draft template
-*/
-func (a *Client) UpdateLocalizationTemplateShort(params *UpdateLocalizationTemplateParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateLocalizationTemplateNoContent, error) {
-	// TODO: Validate the params before sending
-	if params == nil {
-		params = NewUpdateLocalizationTemplateParams()
-	}
-
-	if params.Context == nil {
-		params.Context = context.Background()
-	}
-
-	if params.RetryPolicy != nil {
-		params.SetHTTPClientTransport(params.RetryPolicy)
-	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
-		ID:                 "updateLocalizationTemplate",
-		Method:             "PUT",
-		PathPattern:        "/notification/namespaces/{namespace}/templates/{templateSlug}/languages/{templateLanguage}",
-		ProducesMediaTypes: []string{"application/json"},
-		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"https"},
-		Params:             params,
-		Reader:             &UpdateLocalizationTemplateReader{formats: a.formats},
-		AuthInfo:           authInfo,
-		Context:            params.Context,
-		Client:             params.HTTPClient,
-	})
-	if err != nil {
-		return nil, err
-	}
-
-	switch v := result.(type) {
-
-	case *UpdateLocalizationTemplateNoContent:
-		return v, nil
-	case *UpdateLocalizationTemplateBadRequest:
-		return nil, v
-	case *UpdateLocalizationTemplateUnauthorized:
-		return nil, v
-	case *UpdateLocalizationTemplateForbidden:
-		return nil, v
-	case *UpdateLocalizationTemplateNotFound:
-		return nil, v
-
-	default:
-		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
-	}
-}
-
-/*
 Deprecated: Use UpdateNotificationTopicV1AdminShort instead.
 
-  UpdateNotificationTopicV1Admin updates topic information by topic name
+	  UpdateNotificationTopicV1Admin updates topic information by topic name
 
-  Required permission : &lt;code&gt;ADMIN:NAMESPACE:{namespace}:NOTIFICATION [UPDATE]&lt;/code&gt; with scope &lt;code&gt;social&lt;/code&gt;
-			&lt;br&gt;update topic information by topic name.
-			&lt;br&gt;topic should be alphabets, no special char except underscore, uppercase and no spacing. for example: TOPIC_TEST.
-			Already existing topic can not be created &lt;br/&gt;
-			Action Code: 50216
+	  Required permission : &lt;code&gt;ADMIN:NAMESPACE:{namespace}:NOTIFICATION [UPDATE]&lt;/code&gt; with scope &lt;code&gt;social&lt;/code&gt;
+				&lt;br&gt;update topic information by topic name.
+				&lt;br&gt;topic should be alphabets, no special char except underscore, uppercase and no spacing. for example: TOPIC_TEST.
+				Already existing topic can not be created &lt;br/&gt;
+				Action Code: 50216
 */
 func (a *Client) UpdateNotificationTopicV1Admin(params *UpdateNotificationTopicV1AdminParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateNotificationTopicV1AdminNoContent, *UpdateNotificationTopicV1AdminBadRequest, *UpdateNotificationTopicV1AdminUnauthorized, *UpdateNotificationTopicV1AdminForbidden, *UpdateNotificationTopicV1AdminNotFound, *UpdateNotificationTopicV1AdminInternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -4213,13 +3021,13 @@ func (a *Client) UpdateNotificationTopicV1Admin(params *UpdateNotificationTopicV
 }
 
 /*
-  UpdateNotificationTopicV1AdminShort updates topic information by topic name
+	  UpdateNotificationTopicV1AdminShort updates topic information by topic name
 
-  Required permission : &lt;code&gt;ADMIN:NAMESPACE:{namespace}:NOTIFICATION [UPDATE]&lt;/code&gt; with scope &lt;code&gt;social&lt;/code&gt;
-			&lt;br&gt;update topic information by topic name.
-			&lt;br&gt;topic should be alphabets, no special char except underscore, uppercase and no spacing. for example: TOPIC_TEST.
-			Already existing topic can not be created &lt;br/&gt;
-			Action Code: 50216
+	  Required permission : &lt;code&gt;ADMIN:NAMESPACE:{namespace}:NOTIFICATION [UPDATE]&lt;/code&gt; with scope &lt;code&gt;social&lt;/code&gt;
+				&lt;br&gt;update topic information by topic name.
+				&lt;br&gt;topic should be alphabets, no special char except underscore, uppercase and no spacing. for example: TOPIC_TEST.
+				Already existing topic can not be created &lt;br/&gt;
+				Action Code: 50216
 */
 func (a *Client) UpdateNotificationTopicV1AdminShort(params *UpdateNotificationTopicV1AdminParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateNotificationTopicV1AdminNoContent, error) {
 	// TODO: Validate the params before sending
@@ -4275,11 +3083,11 @@ func (a *Client) UpdateNotificationTopicV1AdminShort(params *UpdateNotificationT
 /*
 Deprecated: Use UpdateTemplateLocalizationV1AdminShort instead.
 
-  UpdateTemplateLocalizationV1Admin updates template localization
+	  UpdateTemplateLocalizationV1Admin updates template localization
 
-  Required permission : &lt;code&gt;ADMIN:NAMESPACE:{namespace}:NOTIFICATION [UPDATE]&lt;/code&gt; with scope &lt;code&gt;social&lt;/code&gt;
-			&lt;br/&gt;update template localization&lt;br/&gt;
-			Action Code: 50208
+	  Required permission : &lt;code&gt;ADMIN:NAMESPACE:{namespace}:NOTIFICATION [UPDATE]&lt;/code&gt; with scope &lt;code&gt;social&lt;/code&gt;
+				&lt;br/&gt;update template localization&lt;br/&gt;
+				Action Code: 50208
 */
 func (a *Client) UpdateTemplateLocalizationV1Admin(params *UpdateTemplateLocalizationV1AdminParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateTemplateLocalizationV1AdminNoContent, *UpdateTemplateLocalizationV1AdminBadRequest, *UpdateTemplateLocalizationV1AdminUnauthorized, *UpdateTemplateLocalizationV1AdminForbidden, *UpdateTemplateLocalizationV1AdminNotFound, *UpdateTemplateLocalizationV1AdminInternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -4338,11 +3146,11 @@ func (a *Client) UpdateTemplateLocalizationV1Admin(params *UpdateTemplateLocaliz
 }
 
 /*
-  UpdateTemplateLocalizationV1AdminShort updates template localization
+	  UpdateTemplateLocalizationV1AdminShort updates template localization
 
-  Required permission : &lt;code&gt;ADMIN:NAMESPACE:{namespace}:NOTIFICATION [UPDATE]&lt;/code&gt; with scope &lt;code&gt;social&lt;/code&gt;
-			&lt;br/&gt;update template localization&lt;br/&gt;
-			Action Code: 50208
+	  Required permission : &lt;code&gt;ADMIN:NAMESPACE:{namespace}:NOTIFICATION [UPDATE]&lt;/code&gt; with scope &lt;code&gt;social&lt;/code&gt;
+				&lt;br/&gt;update template localization&lt;br/&gt;
+				Action Code: 50208
 */
 func (a *Client) UpdateTemplateLocalizationV1AdminShort(params *UpdateTemplateLocalizationV1AdminParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateTemplateLocalizationV1AdminNoContent, error) {
 	// TODO: Validate the params before sending
@@ -4398,12 +3206,12 @@ func (a *Client) UpdateTemplateLocalizationV1AdminShort(params *UpdateTemplateLo
 /*
 Deprecated: Use UpdateTopicByTopicNameShort instead.
 
-  UpdateTopicByTopicName updates topic information by topic name
+	  UpdateTopicByTopicName updates topic information by topic name
 
-  Required permission : &lt;code&gt;NAMESPACE:{namespace}:TOPIC [UPDATE]&lt;/code&gt; with scope &lt;code&gt;social&lt;/code&gt;
-			&lt;br&gt;update topic information by topic name.
-			&lt;br&gt;topic should be alphabets, no special char except underscore, uppercase and no spacing. for example: TOPIC_TEST.
-			Already existing topic can not be created
+	  Required permission : &lt;code&gt;NAMESPACE:{namespace}:TOPIC [UPDATE]&lt;/code&gt; with scope &lt;code&gt;social&lt;/code&gt;
+				&lt;br&gt;update topic information by topic name.
+				&lt;br&gt;topic should be alphabets, no special char except underscore, uppercase and no spacing. for example: TOPIC_TEST.
+				Already existing topic can not be created
 */
 func (a *Client) UpdateTopicByTopicName(params *UpdateTopicByTopicNameParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateTopicByTopicNameNoContent, *UpdateTopicByTopicNameUnauthorized, *UpdateTopicByTopicNameForbidden, *UpdateTopicByTopicNameNotFound, *UpdateTopicByTopicNameInternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -4459,12 +3267,12 @@ func (a *Client) UpdateTopicByTopicName(params *UpdateTopicByTopicNameParams, au
 }
 
 /*
-  UpdateTopicByTopicNameShort updates topic information by topic name
+	  UpdateTopicByTopicNameShort updates topic information by topic name
 
-  Required permission : &lt;code&gt;NAMESPACE:{namespace}:TOPIC [UPDATE]&lt;/code&gt; with scope &lt;code&gt;social&lt;/code&gt;
-			&lt;br&gt;update topic information by topic name.
-			&lt;br&gt;topic should be alphabets, no special char except underscore, uppercase and no spacing. for example: TOPIC_TEST.
-			Already existing topic can not be created
+	  Required permission : &lt;code&gt;NAMESPACE:{namespace}:TOPIC [UPDATE]&lt;/code&gt; with scope &lt;code&gt;social&lt;/code&gt;
+				&lt;br&gt;update topic information by topic name.
+				&lt;br&gt;topic should be alphabets, no special char except underscore, uppercase and no spacing. for example: TOPIC_TEST.
+				Already existing topic can not be created
 */
 func (a *Client) UpdateTopicByTopicNameShort(params *UpdateTopicByTopicNameParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateTopicByTopicNameNoContent, error) {
 	// TODO: Validate the params before sending

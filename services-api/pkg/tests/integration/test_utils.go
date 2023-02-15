@@ -38,9 +38,6 @@ func LoginUser(t *testing.T) *iam.OAuth20Service {
 			t.Fatal(fmt.Errorf("store token failed: %w", err))
 		}
 	}
-	return oAuth20Service
-}
 
-func PStr(str string) *string {
-	return &str
+	return oAuth20Service
 }

@@ -90,6 +90,6 @@ version:
 			VERSION_OLD=$$(cat version.txt | tr -d '\n') && \
 			VERSION_NEW=$$(awk -v part=$$VERSION_PART -F. "{OFS=\".\"; \$$part+=1; print \$$0}" version.txt) && \
 			echo $${VERSION_NEW} > version.txt && \
-			sed -i "s/UserAgentSDK = \"AccelByteGoSDK\/v[0-9]\+\.[0-9]\+\.[0-9]\+\"/UserAgentSDK = \"AccelByteGoSDK\/v$$VERSION_NEW\"/" services-api/pkg/utils/userAgent.go && \
+			sed -i "s/UserAgentSDK = \"AccelByteGoSDK\/v[0-9]\+\.[0-9]\+\.[0-9]\+\"/UserAgentSDK = \"AccelByteGoSDK\/v$$VERSION_NEW\"/" services-api/pkg/utils/user_agent.go && \
 			sed -i "s/github.com\/AccelByte\/accelbyte-go-sdk v[0-9]\+\.[0-9]\+\.[0-9]\+/github.com\/AccelByte\/accelbyte-go-sdk v$$VERSION_OLD/" samples/getting-started/go.mod && \
 			docker run -t --rm -u $$(id -u):$$(id -g) -v $$(pwd):/data/ -w /data/ -e GOCACHE=/data/.cache/go-build $(GOLANG_DOCKER_IMAGE) sh -c "cd 'samples/getting-started' && go mod tidy"

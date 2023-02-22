@@ -116,7 +116,6 @@ func (o *OAuth20Service) GrantTokenAuthorizationCode(code, codeVerifier, redirec
 }
 
 func (o *OAuth20Service) Authenticate(requestID, username, password string) (string, error) {
-	logrus.Infof("Invoke authenticate: %s %s %s", requestID, username, password)
 	clientID := o.ConfigRepository.GetClientId()
 	clientSecret := o.ConfigRepository.GetClientSecret()
 	if len(clientID) == 0 {

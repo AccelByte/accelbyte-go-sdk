@@ -25,9 +25,9 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclient/o_auth2_0"
 	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclient/o_auth2_0_extension"
 	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclient/roles"
-	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclient/s_s_o"
-	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclient/s_s_o_credential"
-	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclient/s_s_o_s_a_m_l_2_0"
+	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclient/sso"
+	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclient/sso_credential"
+	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclient/sso_saml_2_0"
 	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclient/third_party_credential"
 	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclient/users"
 	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclient/users_v4"
@@ -89,9 +89,9 @@ func New(transport runtime.ClientTransport, runtime *httptransport.Runtime, form
 	cli.OAuth20 = o_auth2_0.New(transport, formats)
 	cli.OAuth20Extension = o_auth2_0_extension.New(transport, formats)
 	cli.Roles = roles.New(transport, formats)
-	cli.Sso = s_s_o.New(transport, formats)
-	cli.SsoCredential = s_s_o_credential.New(transport, formats)
-	cli.Ssosaml20 = s_s_o_s_a_m_l_2_0.New(transport, formats)
+	cli.SSO = sso.New(transport, formats)
+	cli.SSOCredential = sso_credential.New(transport, formats)
+	cli.SSOSAML20 = sso_saml_2_0.New(transport, formats)
 	cli.ThirdPartyCredential = third_party_credential.New(transport, formats)
 	cli.Users = users.New(transport, formats)
 	cli.UsersV4 = users_v4.New(transport, formats)
@@ -171,11 +171,11 @@ type JusticeIamService struct {
 
 	Roles roles.ClientService
 
-	Sso s_s_o.ClientService
+	SSO sso.ClientService
 
-	SsoCredential s_s_o_credential.ClientService
+	SSOCredential sso_credential.ClientService
 
-	Ssosaml20 s_s_o_s_a_m_l_2_0.ClientService
+	SSOSAML20 sso_saml_2_0.ClientService
 
 	ThirdPartyCredential third_party_credential.ClientService
 
@@ -198,9 +198,9 @@ func (c *JusticeIamService) SetTransport(transport runtime.ClientTransport) {
 	c.OAuth20.SetTransport(transport)
 	c.OAuth20Extension.SetTransport(transport)
 	c.Roles.SetTransport(transport)
-	c.Sso.SetTransport(transport)
-	c.SsoCredential.SetTransport(transport)
-	c.Ssosaml20.SetTransport(transport)
+	c.SSO.SetTransport(transport)
+	c.SSOCredential.SetTransport(transport)
+	c.SSOSAML20.SetTransport(transport)
 	c.ThirdPartyCredential.SetTransport(transport)
 	c.Users.SetTransport(transport)
 	c.UsersV4.SetTransport(transport)

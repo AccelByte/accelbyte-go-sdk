@@ -8,7 +8,7 @@ package iam
 
 import (
 	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclient"
-	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclient/s_s_o_credential"
+	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclient/sso_credential"
 	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/repository"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils"
@@ -40,12 +40,12 @@ func (aaa *SSOCredentialService) GetAuthSession() auth.Session {
 }
 
 // deprecated(2022-01-10): please use RetrieveAllSSOLoginPlatformCredentialV3Short instead.
-func (aaa *SSOCredentialService) RetrieveAllSSOLoginPlatformCredentialV3(input *s_s_o_credential.RetrieveAllSSOLoginPlatformCredentialV3Params) ([]*iamclientmodels.ModelSSOPlatformCredentialResponse, error) {
+func (aaa *SSOCredentialService) RetrieveAllSSOLoginPlatformCredentialV3(input *sso_credential.RetrieveAllSSOLoginPlatformCredentialV3Params) ([]*iamclientmodels.ModelSSOPlatformCredentialResponse, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, unauthorized, forbidden, notFound, internalServerError, err := aaa.Client.SsoCredential.RetrieveAllSSOLoginPlatformCredentialV3(input, client.BearerToken(*token.AccessToken))
+	ok, unauthorized, forbidden, notFound, internalServerError, err := aaa.Client.SSOCredential.RetrieveAllSSOLoginPlatformCredentialV3(input, client.BearerToken(*token.AccessToken))
 	if unauthorized != nil {
 		return nil, unauthorized
 	}
@@ -66,12 +66,12 @@ func (aaa *SSOCredentialService) RetrieveAllSSOLoginPlatformCredentialV3(input *
 }
 
 // deprecated(2022-01-10): please use RetrieveSSOLoginPlatformCredentialShort instead.
-func (aaa *SSOCredentialService) RetrieveSSOLoginPlatformCredential(input *s_s_o_credential.RetrieveSSOLoginPlatformCredentialParams) (*iamclientmodels.ModelSSOPlatformCredentialResponse, error) {
+func (aaa *SSOCredentialService) RetrieveSSOLoginPlatformCredential(input *sso_credential.RetrieveSSOLoginPlatformCredentialParams) (*iamclientmodels.ModelSSOPlatformCredentialResponse, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, badRequest, unauthorized, forbidden, notFound, internalServerError, err := aaa.Client.SsoCredential.RetrieveSSOLoginPlatformCredential(input, client.BearerToken(*token.AccessToken))
+	ok, badRequest, unauthorized, forbidden, notFound, internalServerError, err := aaa.Client.SSOCredential.RetrieveSSOLoginPlatformCredential(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -95,12 +95,12 @@ func (aaa *SSOCredentialService) RetrieveSSOLoginPlatformCredential(input *s_s_o
 }
 
 // deprecated(2022-01-10): please use AddSSOLoginPlatformCredentialShort instead.
-func (aaa *SSOCredentialService) AddSSOLoginPlatformCredential(input *s_s_o_credential.AddSSOLoginPlatformCredentialParams) (*iamclientmodels.ModelSSOPlatformCredentialResponse, error) {
+func (aaa *SSOCredentialService) AddSSOLoginPlatformCredential(input *sso_credential.AddSSOLoginPlatformCredentialParams) (*iamclientmodels.ModelSSOPlatformCredentialResponse, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	created, badRequest, unauthorized, forbidden, internalServerError, err := aaa.Client.SsoCredential.AddSSOLoginPlatformCredential(input, client.BearerToken(*token.AccessToken))
+	created, badRequest, unauthorized, forbidden, internalServerError, err := aaa.Client.SSOCredential.AddSSOLoginPlatformCredential(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -121,12 +121,12 @@ func (aaa *SSOCredentialService) AddSSOLoginPlatformCredential(input *s_s_o_cred
 }
 
 // deprecated(2022-01-10): please use DeleteSSOLoginPlatformCredentialV3Short instead.
-func (aaa *SSOCredentialService) DeleteSSOLoginPlatformCredentialV3(input *s_s_o_credential.DeleteSSOLoginPlatformCredentialV3Params) error {
+func (aaa *SSOCredentialService) DeleteSSOLoginPlatformCredentialV3(input *sso_credential.DeleteSSOLoginPlatformCredentialV3Params) error {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	_, badRequest, unauthorized, forbidden, notFound, internalServerError, err := aaa.Client.SsoCredential.DeleteSSOLoginPlatformCredentialV3(input, client.BearerToken(*token.AccessToken))
+	_, badRequest, unauthorized, forbidden, notFound, internalServerError, err := aaa.Client.SSOCredential.DeleteSSOLoginPlatformCredentialV3(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return badRequest
 	}
@@ -150,12 +150,12 @@ func (aaa *SSOCredentialService) DeleteSSOLoginPlatformCredentialV3(input *s_s_o
 }
 
 // deprecated(2022-01-10): please use UpdateSSOPlatformCredentialShort instead.
-func (aaa *SSOCredentialService) UpdateSSOPlatformCredential(input *s_s_o_credential.UpdateSSOPlatformCredentialParams) (*iamclientmodels.ModelSSOPlatformCredentialResponse, error) {
+func (aaa *SSOCredentialService) UpdateSSOPlatformCredential(input *sso_credential.UpdateSSOPlatformCredentialParams) (*iamclientmodels.ModelSSOPlatformCredentialResponse, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, badRequest, unauthorized, forbidden, notFound, internalServerError, err := aaa.Client.SsoCredential.UpdateSSOPlatformCredential(input, client.BearerToken(*token.AccessToken))
+	ok, badRequest, unauthorized, forbidden, notFound, internalServerError, err := aaa.Client.SSOCredential.UpdateSSOPlatformCredential(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -178,7 +178,7 @@ func (aaa *SSOCredentialService) UpdateSSOPlatformCredential(input *s_s_o_creden
 	return ok.GetPayload(), nil
 }
 
-func (aaa *SSOCredentialService) RetrieveAllSSOLoginPlatformCredentialV3Short(input *s_s_o_credential.RetrieveAllSSOLoginPlatformCredentialV3Params) ([]*iamclientmodels.ModelSSOPlatformCredentialResponse, error) {
+func (aaa *SSOCredentialService) RetrieveAllSSOLoginPlatformCredentialV3Short(input *sso_credential.RetrieveAllSSOLoginPlatformCredentialV3Params) ([]*iamclientmodels.ModelSSOPlatformCredentialResponse, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -195,7 +195,7 @@ func (aaa *SSOCredentialService) RetrieveAllSSOLoginPlatformCredentialV3Short(in
 		}
 	}
 
-	ok, err := aaa.Client.SsoCredential.RetrieveAllSSOLoginPlatformCredentialV3Short(input, authInfoWriter)
+	ok, err := aaa.Client.SSOCredential.RetrieveAllSSOLoginPlatformCredentialV3Short(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -203,7 +203,7 @@ func (aaa *SSOCredentialService) RetrieveAllSSOLoginPlatformCredentialV3Short(in
 	return ok.GetPayload(), nil
 }
 
-func (aaa *SSOCredentialService) RetrieveSSOLoginPlatformCredentialShort(input *s_s_o_credential.RetrieveSSOLoginPlatformCredentialParams) (*iamclientmodels.ModelSSOPlatformCredentialResponse, error) {
+func (aaa *SSOCredentialService) RetrieveSSOLoginPlatformCredentialShort(input *sso_credential.RetrieveSSOLoginPlatformCredentialParams) (*iamclientmodels.ModelSSOPlatformCredentialResponse, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -220,7 +220,7 @@ func (aaa *SSOCredentialService) RetrieveSSOLoginPlatformCredentialShort(input *
 		}
 	}
 
-	ok, err := aaa.Client.SsoCredential.RetrieveSSOLoginPlatformCredentialShort(input, authInfoWriter)
+	ok, err := aaa.Client.SSOCredential.RetrieveSSOLoginPlatformCredentialShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -228,7 +228,7 @@ func (aaa *SSOCredentialService) RetrieveSSOLoginPlatformCredentialShort(input *
 	return ok.GetPayload(), nil
 }
 
-func (aaa *SSOCredentialService) AddSSOLoginPlatformCredentialShort(input *s_s_o_credential.AddSSOLoginPlatformCredentialParams) (*iamclientmodels.ModelSSOPlatformCredentialResponse, error) {
+func (aaa *SSOCredentialService) AddSSOLoginPlatformCredentialShort(input *sso_credential.AddSSOLoginPlatformCredentialParams) (*iamclientmodels.ModelSSOPlatformCredentialResponse, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -245,7 +245,7 @@ func (aaa *SSOCredentialService) AddSSOLoginPlatformCredentialShort(input *s_s_o
 		}
 	}
 
-	created, err := aaa.Client.SsoCredential.AddSSOLoginPlatformCredentialShort(input, authInfoWriter)
+	created, err := aaa.Client.SSOCredential.AddSSOLoginPlatformCredentialShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -253,7 +253,7 @@ func (aaa *SSOCredentialService) AddSSOLoginPlatformCredentialShort(input *s_s_o
 	return created.GetPayload(), nil
 }
 
-func (aaa *SSOCredentialService) DeleteSSOLoginPlatformCredentialV3Short(input *s_s_o_credential.DeleteSSOLoginPlatformCredentialV3Params) error {
+func (aaa *SSOCredentialService) DeleteSSOLoginPlatformCredentialV3Short(input *sso_credential.DeleteSSOLoginPlatformCredentialV3Params) error {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -270,7 +270,7 @@ func (aaa *SSOCredentialService) DeleteSSOLoginPlatformCredentialV3Short(input *
 		}
 	}
 
-	_, err := aaa.Client.SsoCredential.DeleteSSOLoginPlatformCredentialV3Short(input, authInfoWriter)
+	_, err := aaa.Client.SSOCredential.DeleteSSOLoginPlatformCredentialV3Short(input, authInfoWriter)
 	if err != nil {
 		return err
 	}
@@ -278,7 +278,7 @@ func (aaa *SSOCredentialService) DeleteSSOLoginPlatformCredentialV3Short(input *
 	return nil
 }
 
-func (aaa *SSOCredentialService) UpdateSSOPlatformCredentialShort(input *s_s_o_credential.UpdateSSOPlatformCredentialParams) (*iamclientmodels.ModelSSOPlatformCredentialResponse, error) {
+func (aaa *SSOCredentialService) UpdateSSOPlatformCredentialShort(input *sso_credential.UpdateSSOPlatformCredentialParams) (*iamclientmodels.ModelSSOPlatformCredentialResponse, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -295,7 +295,7 @@ func (aaa *SSOCredentialService) UpdateSSOPlatformCredentialShort(input *s_s_o_c
 		}
 	}
 
-	ok, err := aaa.Client.SsoCredential.UpdateSSOPlatformCredentialShort(input, authInfoWriter)
+	ok, err := aaa.Client.SSOCredential.UpdateSSOPlatformCredentialShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}

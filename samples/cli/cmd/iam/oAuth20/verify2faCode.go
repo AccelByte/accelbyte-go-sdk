@@ -39,7 +39,7 @@ var Verify2faCodeCmd = &cobra.Command{
 		input := &o_auth2_0.Verify2FACodeParams{
 			Code:           code,
 			Factor:         factor,
-			MfaToken:       mfaToken,
+			MFAToken:       mfaToken,
 			RememberDevice: rememberDevice,
 			HTTPClient:     httpClient,
 		}

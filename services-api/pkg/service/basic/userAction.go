@@ -7,13 +7,14 @@
 package basic
 
 import (
+	"github.com/go-openapi/runtime/client"
+
 	"github.com/AccelByte/accelbyte-go-sdk/basic-sdk/pkg/basicclient"
 	"github.com/AccelByte/accelbyte-go-sdk/basic-sdk/pkg/basicclient/user_action"
 	"github.com/AccelByte/accelbyte-go-sdk/basic-sdk/pkg/basicclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/repository"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils/auth"
-	"github.com/go-openapi/runtime/client"
 )
 
 type UserActionService struct {
@@ -89,7 +90,7 @@ func (aaa *UserActionService) BanUsers(input *user_action.BanUsersParams) error 
 }
 
 // deprecated(2022-01-10): please use GetBannedUsersShort instead.
-func (aaa *UserActionService) GetBannedUsers(input *user_action.GetBannedUsersParams) ([]*basicclientmodels.ADTOObjectForEqu8UserBanStatus, error) {
+func (aaa *UserActionService) GetBannedUsers(input *user_action.GetBannedUsersParams) ([]*basicclientmodels.ADTOObjectForEQU8UserBanStatus, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
@@ -132,7 +133,7 @@ func (aaa *UserActionService) ReportUser(input *user_action.ReportUserParams) er
 }
 
 // deprecated(2022-01-10): please use GetUserStatusShort instead.
-func (aaa *UserActionService) GetUserStatus(input *user_action.GetUserStatusParams) (*basicclientmodels.ADTOObjectForEqu8UserStatus, error) {
+func (aaa *UserActionService) GetUserStatus(input *user_action.GetUserStatusParams) (*basicclientmodels.ADTOObjectForEQU8UserStatus, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
@@ -253,7 +254,7 @@ func (aaa *UserActionService) BanUsersShort(input *user_action.BanUsersParams) e
 	return nil
 }
 
-func (aaa *UserActionService) GetBannedUsersShort(input *user_action.GetBannedUsersParams) ([]*basicclientmodels.ADTOObjectForEqu8UserBanStatus, error) {
+func (aaa *UserActionService) GetBannedUsersShort(input *user_action.GetBannedUsersParams) ([]*basicclientmodels.ADTOObjectForEQU8UserBanStatus, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -303,7 +304,7 @@ func (aaa *UserActionService) ReportUserShort(input *user_action.ReportUserParam
 	return nil
 }
 
-func (aaa *UserActionService) GetUserStatusShort(input *user_action.GetUserStatusParams) (*basicclientmodels.ADTOObjectForEqu8UserStatus, error) {
+func (aaa *UserActionService) GetUserStatusShort(input *user_action.GetUserStatusParams) (*basicclientmodels.ADTOObjectForEQU8UserStatus, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{

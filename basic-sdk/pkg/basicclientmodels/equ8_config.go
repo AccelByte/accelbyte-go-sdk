@@ -10,10 +10,10 @@ import (
 	"github.com/go-openapi/swag"
 )
 
-// Equ8Config equ8 config
+// EQU8Config Equ8 config
 //
 // swagger:model Equ8Config
-type Equ8Config struct {
+type EQU8Config struct {
 
 	// api key
 	APIKey string `json:"apiKey,omitempty"`
@@ -22,13 +22,13 @@ type Equ8Config struct {
 	Namespace string `json:"namespace,omitempty"`
 }
 
-// Validate validates this equ8 config
-func (m *Equ8Config) Validate(formats strfmt.Registry) error {
+// Validate validates this Equ8 config
+func (m *EQU8Config) Validate(formats strfmt.Registry) error {
 	return nil
 }
 
 // MarshalBinary interface implementation
-func (m *Equ8Config) MarshalBinary() ([]byte, error) {
+func (m *EQU8Config) MarshalBinary() ([]byte, error) {
 	if m == nil {
 		return nil, nil
 	}
@@ -36,8 +36,8 @@ func (m *Equ8Config) MarshalBinary() ([]byte, error) {
 }
 
 // UnmarshalBinary interface implementation
-func (m *Equ8Config) UnmarshalBinary(b []byte) error {
-	var res Equ8Config
+func (m *EQU8Config) UnmarshalBinary(b []byte) error {
+	var res EQU8Config
 	if err := swag.ReadJSON(b, &res); err != nil {
 		return err
 	}

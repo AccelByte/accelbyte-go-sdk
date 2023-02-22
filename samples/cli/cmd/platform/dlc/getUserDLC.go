@@ -7,7 +7,7 @@
 package dlc
 
 import (
-	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclient/d_l_c"
+	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclient/dlc"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/platform"
 	"github.com/AccelByte/sample-apps/pkg/repository"
@@ -28,7 +28,7 @@ var GetUserDLCCmd = &cobra.Command{
 		namespace, _ := cmd.Flags().GetString("namespace")
 		userId, _ := cmd.Flags().GetString("userId")
 		type_, _ := cmd.Flags().GetString("type")
-		input := &d_l_c.GetUserDLCParams{
+		input := &dlc.GetUserDLCParams{
 			Namespace: namespace,
 			UserID:    userId,
 			Type:      type_,

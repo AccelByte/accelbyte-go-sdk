@@ -36,7 +36,7 @@ var Change2faMethodCmd = &cobra.Command{
 		}
 		input := &o_auth2_0.Change2FAMethodParams{
 			Factor:     factor,
-			MfaToken:   mfaToken,
+			MFAToken:   mfaToken,
 			HTTPClient: httpClient,
 		}
 		errInput := oAuth20Service.Change2FAMethodShort(input)

@@ -9,7 +9,7 @@ package equ8Config
 import (
 	"encoding/json"
 
-	"github.com/AccelByte/accelbyte-go-sdk/basic-sdk/pkg/basicclient/e_q_u8_config"
+	"github.com/AccelByte/accelbyte-go-sdk/basic-sdk/pkg/basicclient/equ8_config"
 	"github.com/AccelByte/accelbyte-go-sdk/basic-sdk/pkg/basicclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/basic"
@@ -30,12 +30,12 @@ var UpdateConfigCmd = &cobra.Command{
 		}
 		namespace, _ := cmd.Flags().GetString("namespace")
 		bodyString := cmd.Flag("body").Value.String()
-		var body *basicclientmodels.ADTOForUpdateEqu8ConfigAPICall
+		var body *basicclientmodels.ADTOForUpdateEQU8ConfigAPICall
 		errBody := json.Unmarshal([]byte(bodyString), &body)
 		if errBody != nil {
 			return errBody
 		}
-		input := &e_q_u8_config.UpdateConfigParams{
+		input := &equ8_config.UpdateConfigParams{
 			Body:      body,
 			Namespace: namespace,
 		}

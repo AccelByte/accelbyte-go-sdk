@@ -9,7 +9,7 @@ package iap
 import (
 	"encoding/json"
 
-	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclient/i_a_p"
+	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclient/iap"
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/platform"
@@ -36,7 +36,7 @@ var SyncSteamInventoryCmd = &cobra.Command{
 		if errBody != nil {
 			return errBody
 		}
-		input := &i_a_p.SyncSteamInventoryParams{
+		input := &iap.SyncSteamInventoryParams{
 			Body:      body,
 			Namespace: namespace,
 			UserID:    userId,

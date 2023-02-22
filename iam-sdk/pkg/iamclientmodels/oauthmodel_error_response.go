@@ -46,7 +46,7 @@ type OauthmodelErrorResponse struct {
 	MessageVariables map[string]string `json:"messageVariables,omitempty"`
 
 	// mfa token
-	MfaToken string `json:"mfa_token,omitempty"`
+	MFAToken string `json:"mfa_token,omitempty"`
 
 	// platform Id
 	PlatformID string `json:"platformId,omitempty"`

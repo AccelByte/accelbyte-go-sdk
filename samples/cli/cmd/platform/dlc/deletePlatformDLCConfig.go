@@ -7,7 +7,7 @@
 package dlc
 
 import (
-	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclient/d_l_c"
+	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclient/dlc"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/platform"
 	"github.com/AccelByte/sample-apps/pkg/repository"
@@ -26,7 +26,7 @@ var DeletePlatformDLCConfigCmd = &cobra.Command{
 			TokenRepository: &repository.TokenRepositoryImpl{},
 		}
 		namespace, _ := cmd.Flags().GetString("namespace")
-		input := &d_l_c.DeletePlatformDLCConfigParams{
+		input := &dlc.DeletePlatformDLCConfigParams{
 			Namespace: namespace,
 		}
 		errInput := dlcService.DeletePlatformDLCConfigShort(input)

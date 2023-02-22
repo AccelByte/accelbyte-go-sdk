@@ -7,7 +7,7 @@
 package iap
 
 import (
-	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclient/i_a_p"
+	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclient/iap"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/platform"
 	"github.com/AccelByte/sample-apps/pkg/repository"
@@ -34,7 +34,7 @@ var QueryUserIAPOrdersCmd = &cobra.Command{
 		startTime, _ := cmd.Flags().GetString("startTime")
 		status, _ := cmd.Flags().GetString("status")
 		type_, _ := cmd.Flags().GetString("type")
-		input := &i_a_p.QueryUserIAPOrdersParams{
+		input := &iap.QueryUserIAPOrdersParams{
 			Namespace: namespace,
 			UserID:    userId,
 			EndTime:   &endTime,

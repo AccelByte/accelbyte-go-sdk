@@ -7,7 +7,7 @@
 package iap
 
 import (
-	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclient/i_a_p"
+	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclient/iap"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/platform"
 	"github.com/AccelByte/sample-apps/pkg/repository"
@@ -27,7 +27,7 @@ var QueryAllUserIAPOrdersCmd = &cobra.Command{
 		}
 		namespace, _ := cmd.Flags().GetString("namespace")
 		userId, _ := cmd.Flags().GetString("userId")
-		input := &i_a_p.QueryAllUserIAPOrdersParams{
+		input := &iap.QueryAllUserIAPOrdersParams{
 			Namespace: namespace,
 			UserID:    userId,
 		}

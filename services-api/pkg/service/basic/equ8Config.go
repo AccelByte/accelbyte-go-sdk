@@ -7,13 +7,14 @@
 package basic
 
 import (
+	"github.com/go-openapi/runtime/client"
+
 	"github.com/AccelByte/accelbyte-go-sdk/basic-sdk/pkg/basicclient"
-	"github.com/AccelByte/accelbyte-go-sdk/basic-sdk/pkg/basicclient/e_q_u8_config"
+	"github.com/AccelByte/accelbyte-go-sdk/basic-sdk/pkg/basicclient/equ8_config"
 	"github.com/AccelByte/accelbyte-go-sdk/basic-sdk/pkg/basicclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/repository"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils/auth"
-	"github.com/go-openapi/runtime/client"
 )
 
 type EQU8ConfigService struct {
@@ -40,12 +41,12 @@ func (aaa *EQU8ConfigService) GetAuthSession() auth.Session {
 }
 
 // deprecated(2022-01-10): please use GetConfigShort instead.
-func (aaa *EQU8ConfigService) GetConfig(input *e_q_u8_config.GetConfigParams) (*basicclientmodels.Equ8Config, error) {
+func (aaa *EQU8ConfigService) GetConfig(input *equ8_config.GetConfigParams) (*basicclientmodels.EQU8Config, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, notFound, internalServerError, err := aaa.Client.EqU8Config.GetConfig(input, client.BearerToken(*token.AccessToken))
+	ok, notFound, internalServerError, err := aaa.Client.EQU8Config.GetConfig(input, client.BearerToken(*token.AccessToken))
 	if notFound != nil {
 		return nil, notFound
 	}
@@ -60,12 +61,12 @@ func (aaa *EQU8ConfigService) GetConfig(input *e_q_u8_config.GetConfigParams) (*
 }
 
 // deprecated(2022-01-10): please use DeleteConfigShort instead.
-func (aaa *EQU8ConfigService) DeleteConfig(input *e_q_u8_config.DeleteConfigParams) error {
+func (aaa *EQU8ConfigService) DeleteConfig(input *equ8_config.DeleteConfigParams) error {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	_, err = aaa.Client.EqU8Config.DeleteConfig(input, client.BearerToken(*token.AccessToken))
+	_, err = aaa.Client.EQU8Config.DeleteConfig(input, client.BearerToken(*token.AccessToken))
 	if err != nil {
 		return err
 	}
@@ -74,12 +75,12 @@ func (aaa *EQU8ConfigService) DeleteConfig(input *e_q_u8_config.DeleteConfigPara
 }
 
 // deprecated(2022-01-10): please use UpdateConfigShort instead.
-func (aaa *EQU8ConfigService) UpdateConfig(input *e_q_u8_config.UpdateConfigParams) (*basicclientmodels.Equ8Config, error) {
+func (aaa *EQU8ConfigService) UpdateConfig(input *equ8_config.UpdateConfigParams) (*basicclientmodels.EQU8Config, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, badRequest, internalServerError, err := aaa.Client.EqU8Config.UpdateConfig(input, client.BearerToken(*token.AccessToken))
+	ok, badRequest, internalServerError, err := aaa.Client.EQU8Config.UpdateConfig(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -93,7 +94,7 @@ func (aaa *EQU8ConfigService) UpdateConfig(input *e_q_u8_config.UpdateConfigPara
 	return ok.GetPayload(), nil
 }
 
-func (aaa *EQU8ConfigService) GetConfigShort(input *e_q_u8_config.GetConfigParams) (*basicclientmodels.Equ8Config, error) {
+func (aaa *EQU8ConfigService) GetConfigShort(input *equ8_config.GetConfigParams) (*basicclientmodels.EQU8Config, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -110,7 +111,7 @@ func (aaa *EQU8ConfigService) GetConfigShort(input *e_q_u8_config.GetConfigParam
 		}
 	}
 
-	ok, err := aaa.Client.EqU8Config.GetConfigShort(input, authInfoWriter)
+	ok, err := aaa.Client.EQU8Config.GetConfigShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -118,7 +119,7 @@ func (aaa *EQU8ConfigService) GetConfigShort(input *e_q_u8_config.GetConfigParam
 	return ok.GetPayload(), nil
 }
 
-func (aaa *EQU8ConfigService) DeleteConfigShort(input *e_q_u8_config.DeleteConfigParams) error {
+func (aaa *EQU8ConfigService) DeleteConfigShort(input *equ8_config.DeleteConfigParams) error {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -135,7 +136,7 @@ func (aaa *EQU8ConfigService) DeleteConfigShort(input *e_q_u8_config.DeleteConfi
 		}
 	}
 
-	_, err := aaa.Client.EqU8Config.DeleteConfigShort(input, authInfoWriter)
+	_, err := aaa.Client.EQU8Config.DeleteConfigShort(input, authInfoWriter)
 	if err != nil {
 		return err
 	}
@@ -143,7 +144,7 @@ func (aaa *EQU8ConfigService) DeleteConfigShort(input *e_q_u8_config.DeleteConfi
 	return nil
 }
 
-func (aaa *EQU8ConfigService) UpdateConfigShort(input *e_q_u8_config.UpdateConfigParams) (*basicclientmodels.Equ8Config, error) {
+func (aaa *EQU8ConfigService) UpdateConfigShort(input *equ8_config.UpdateConfigParams) (*basicclientmodels.EQU8Config, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -160,7 +161,7 @@ func (aaa *EQU8ConfigService) UpdateConfigShort(input *e_q_u8_config.UpdateConfi
 		}
 	}
 
-	ok, err := aaa.Client.EqU8Config.UpdateConfigShort(input, authInfoWriter)
+	ok, err := aaa.Client.EQU8Config.UpdateConfigShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}

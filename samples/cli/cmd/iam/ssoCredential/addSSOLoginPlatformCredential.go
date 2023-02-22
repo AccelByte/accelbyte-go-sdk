@@ -9,7 +9,7 @@ package ssoCredential
 import (
 	"encoding/json"
 
-	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclient/s_s_o_credential"
+	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclient/sso_credential"
 	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/iam"
@@ -36,7 +36,7 @@ var AddSSOLoginPlatformCredentialCmd = &cobra.Command{
 		}
 		namespace, _ := cmd.Flags().GetString("namespace")
 		platformId, _ := cmd.Flags().GetString("platformId")
-		input := &s_s_o_credential.AddSSOLoginPlatformCredentialParams{
+		input := &sso_credential.AddSSOLoginPlatformCredentialParams{
 			Body:       body,
 			Namespace:  namespace,
 			PlatformID: platformId,

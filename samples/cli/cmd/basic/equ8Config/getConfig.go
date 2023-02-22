@@ -7,7 +7,7 @@
 package equ8Config
 
 import (
-	"github.com/AccelByte/accelbyte-go-sdk/basic-sdk/pkg/basicclient/e_q_u8_config"
+	"github.com/AccelByte/accelbyte-go-sdk/basic-sdk/pkg/basicclient/equ8_config"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/basic"
 	"github.com/AccelByte/sample-apps/pkg/repository"
@@ -26,7 +26,7 @@ var GetConfigCmd = &cobra.Command{
 			TokenRepository: &repository.TokenRepositoryImpl{},
 		}
 		namespace, _ := cmd.Flags().GetString("namespace")
-		input := &e_q_u8_config.GetConfigParams{
+		input := &equ8_config.GetConfigParams{
 			Namespace: namespace,
 		}
 		ok, err := equ8ConfigService.GetConfigShort(input)

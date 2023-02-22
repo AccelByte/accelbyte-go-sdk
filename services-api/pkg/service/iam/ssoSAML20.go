@@ -8,7 +8,7 @@ package iam
 
 import (
 	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclient"
-	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclient/s_s_o_s_a_m_l_2_0"
+	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclient/sso_saml_2_0"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/repository"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils/auth"
@@ -39,12 +39,12 @@ func (aaa *SSOSAML20Service) GetAuthSession() auth.Session {
 }
 
 // deprecated(2022-01-10): please use PlatformAuthenticateSAMLV3HandlerShort instead.
-func (aaa *SSOSAML20Service) PlatformAuthenticateSAMLV3Handler(input *s_s_o_s_a_m_l_2_0.PlatformAuthenticateSAMLV3HandlerParams) (string, error) {
+func (aaa *SSOSAML20Service) PlatformAuthenticateSAMLV3Handler(input *sso_saml_2_0.PlatformAuthenticateSAMLV3HandlerParams) (string, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return "", err
 	}
-	ok, err := aaa.Client.Ssosaml20.PlatformAuthenticateSAMLV3Handler(input, client.BearerToken(*token.AccessToken))
+	ok, err := aaa.Client.SSOSAML20.PlatformAuthenticateSAMLV3Handler(input, client.BearerToken(*token.AccessToken))
 	if err != nil {
 		return "", err
 	}
@@ -52,7 +52,7 @@ func (aaa *SSOSAML20Service) PlatformAuthenticateSAMLV3Handler(input *s_s_o_s_a_
 	return ok.Location, nil
 }
 
-func (aaa *SSOSAML20Service) PlatformAuthenticateSAMLV3HandlerShort(input *s_s_o_s_a_m_l_2_0.PlatformAuthenticateSAMLV3HandlerParams) (string, error) {
+func (aaa *SSOSAML20Service) PlatformAuthenticateSAMLV3HandlerShort(input *sso_saml_2_0.PlatformAuthenticateSAMLV3HandlerParams) (string, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -69,7 +69,7 @@ func (aaa *SSOSAML20Service) PlatformAuthenticateSAMLV3HandlerShort(input *s_s_o
 		}
 	}
 
-	ok, err := aaa.Client.Ssosaml20.PlatformAuthenticateSAMLV3HandlerShort(input, authInfoWriter)
+	ok, err := aaa.Client.SSOSAML20.PlatformAuthenticateSAMLV3HandlerShort(input, authInfoWriter)
 	if err != nil {
 		return "", err
 	}

@@ -9,7 +9,7 @@ package ssoSAML20
 import (
 	"net/http"
 
-	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclient/s_s_o_s_a_m_l_2_0"
+	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclient/sso_saml_2_0"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/iam"
 	"github.com/AccelByte/sample-apps/pkg/repository"
@@ -36,7 +36,7 @@ var PlatformAuthenticateSAMLV3HandlerCmd = &cobra.Command{
 				return http.ErrUseLastResponse
 			},
 		}
-		input := &s_s_o_s_a_m_l_2_0.PlatformAuthenticateSAMLV3HandlerParams{
+		input := &sso_saml_2_0.PlatformAuthenticateSAMLV3HandlerParams{
 			PlatformID: platformId,
 			Code:       &code,
 			Error:      &error_,

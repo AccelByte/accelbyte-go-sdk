@@ -7,7 +7,7 @@
 package sso
 
 import (
-	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclient/s_s_o"
+	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclient/sso"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/iam"
 	"github.com/AccelByte/sample-apps/pkg/repository"
@@ -27,7 +27,7 @@ var LoginSSOClientCmd = &cobra.Command{
 		}
 		platformId, _ := cmd.Flags().GetString("platformId")
 		payload, _ := cmd.Flags().GetString("payload")
-		input := &s_s_o.LoginSSOClientParams{
+		input := &sso.LoginSSOClientParams{
 			PlatformID: platformId,
 			Payload:    &payload,
 		}

@@ -8,7 +8,7 @@ package platform
 
 import (
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclient"
-	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclient/i_a_p"
+	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclient/iap"
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/repository"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils"
@@ -40,12 +40,12 @@ func (aaa *IAPService) GetAuthSession() auth.Session {
 }
 
 // deprecated(2022-01-10): please use GetAppleIAPConfigShort instead.
-func (aaa *IAPService) GetAppleIAPConfig(input *i_a_p.GetAppleIAPConfigParams) (*platformclientmodels.AppleIAPConfigInfo, error) {
+func (aaa *IAPService) GetAppleIAPConfig(input *iap.GetAppleIAPConfigParams) (*platformclientmodels.AppleIAPConfigInfo, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, err := aaa.Client.Iap.GetAppleIAPConfig(input, client.BearerToken(*token.AccessToken))
+	ok, err := aaa.Client.IAP.GetAppleIAPConfig(input, client.BearerToken(*token.AccessToken))
 	if err != nil {
 		return nil, err
 	}
@@ -54,12 +54,12 @@ func (aaa *IAPService) GetAppleIAPConfig(input *i_a_p.GetAppleIAPConfigParams) (
 }
 
 // deprecated(2022-01-10): please use UpdateAppleIAPConfigShort instead.
-func (aaa *IAPService) UpdateAppleIAPConfig(input *i_a_p.UpdateAppleIAPConfigParams) (*platformclientmodels.AppleIAPConfigInfo, error) {
+func (aaa *IAPService) UpdateAppleIAPConfig(input *iap.UpdateAppleIAPConfigParams) (*platformclientmodels.AppleIAPConfigInfo, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, err := aaa.Client.Iap.UpdateAppleIAPConfig(input, client.BearerToken(*token.AccessToken))
+	ok, err := aaa.Client.IAP.UpdateAppleIAPConfig(input, client.BearerToken(*token.AccessToken))
 	if err != nil {
 		return nil, err
 	}
@@ -68,12 +68,12 @@ func (aaa *IAPService) UpdateAppleIAPConfig(input *i_a_p.UpdateAppleIAPConfigPar
 }
 
 // deprecated(2022-01-10): please use DeleteAppleIAPConfigShort instead.
-func (aaa *IAPService) DeleteAppleIAPConfig(input *i_a_p.DeleteAppleIAPConfigParams) error {
+func (aaa *IAPService) DeleteAppleIAPConfig(input *iap.DeleteAppleIAPConfigParams) error {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	_, err = aaa.Client.Iap.DeleteAppleIAPConfig(input, client.BearerToken(*token.AccessToken))
+	_, err = aaa.Client.IAP.DeleteAppleIAPConfig(input, client.BearerToken(*token.AccessToken))
 	if err != nil {
 		return err
 	}
@@ -82,12 +82,12 @@ func (aaa *IAPService) DeleteAppleIAPConfig(input *i_a_p.DeleteAppleIAPConfigPar
 }
 
 // deprecated(2022-01-10): please use GetEpicGamesIAPConfigShort instead.
-func (aaa *IAPService) GetEpicGamesIAPConfig(input *i_a_p.GetEpicGamesIAPConfigParams) (*platformclientmodels.EpicGamesIAPConfigInfo, error) {
+func (aaa *IAPService) GetEpicGamesIAPConfig(input *iap.GetEpicGamesIAPConfigParams) (*platformclientmodels.EpicGamesIAPConfigInfo, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, err := aaa.Client.Iap.GetEpicGamesIAPConfig(input, client.BearerToken(*token.AccessToken))
+	ok, err := aaa.Client.IAP.GetEpicGamesIAPConfig(input, client.BearerToken(*token.AccessToken))
 	if err != nil {
 		return nil, err
 	}
@@ -96,12 +96,12 @@ func (aaa *IAPService) GetEpicGamesIAPConfig(input *i_a_p.GetEpicGamesIAPConfigP
 }
 
 // deprecated(2022-01-10): please use UpdateEpicGamesIAPConfigShort instead.
-func (aaa *IAPService) UpdateEpicGamesIAPConfig(input *i_a_p.UpdateEpicGamesIAPConfigParams) (*platformclientmodels.EpicGamesIAPConfigInfo, error) {
+func (aaa *IAPService) UpdateEpicGamesIAPConfig(input *iap.UpdateEpicGamesIAPConfigParams) (*platformclientmodels.EpicGamesIAPConfigInfo, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, err := aaa.Client.Iap.UpdateEpicGamesIAPConfig(input, client.BearerToken(*token.AccessToken))
+	ok, err := aaa.Client.IAP.UpdateEpicGamesIAPConfig(input, client.BearerToken(*token.AccessToken))
 	if err != nil {
 		return nil, err
 	}
@@ -110,12 +110,12 @@ func (aaa *IAPService) UpdateEpicGamesIAPConfig(input *i_a_p.UpdateEpicGamesIAPC
 }
 
 // deprecated(2022-01-10): please use DeleteEpicGamesIAPConfigShort instead.
-func (aaa *IAPService) DeleteEpicGamesIAPConfig(input *i_a_p.DeleteEpicGamesIAPConfigParams) error {
+func (aaa *IAPService) DeleteEpicGamesIAPConfig(input *iap.DeleteEpicGamesIAPConfigParams) error {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	_, err = aaa.Client.Iap.DeleteEpicGamesIAPConfig(input, client.BearerToken(*token.AccessToken))
+	_, err = aaa.Client.IAP.DeleteEpicGamesIAPConfig(input, client.BearerToken(*token.AccessToken))
 	if err != nil {
 		return err
 	}
@@ -124,12 +124,12 @@ func (aaa *IAPService) DeleteEpicGamesIAPConfig(input *i_a_p.DeleteEpicGamesIAPC
 }
 
 // deprecated(2022-01-10): please use GetGoogleIAPConfigShort instead.
-func (aaa *IAPService) GetGoogleIAPConfig(input *i_a_p.GetGoogleIAPConfigParams) (*platformclientmodels.GoogleIAPConfigInfo, error) {
+func (aaa *IAPService) GetGoogleIAPConfig(input *iap.GetGoogleIAPConfigParams) (*platformclientmodels.GoogleIAPConfigInfo, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, err := aaa.Client.Iap.GetGoogleIAPConfig(input, client.BearerToken(*token.AccessToken))
+	ok, err := aaa.Client.IAP.GetGoogleIAPConfig(input, client.BearerToken(*token.AccessToken))
 	if err != nil {
 		return nil, err
 	}
@@ -138,12 +138,12 @@ func (aaa *IAPService) GetGoogleIAPConfig(input *i_a_p.GetGoogleIAPConfigParams)
 }
 
 // deprecated(2022-01-10): please use UpdateGoogleIAPConfigShort instead.
-func (aaa *IAPService) UpdateGoogleIAPConfig(input *i_a_p.UpdateGoogleIAPConfigParams) (*platformclientmodels.GoogleIAPConfigInfo, error) {
+func (aaa *IAPService) UpdateGoogleIAPConfig(input *iap.UpdateGoogleIAPConfigParams) (*platformclientmodels.GoogleIAPConfigInfo, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, err := aaa.Client.Iap.UpdateGoogleIAPConfig(input, client.BearerToken(*token.AccessToken))
+	ok, err := aaa.Client.IAP.UpdateGoogleIAPConfig(input, client.BearerToken(*token.AccessToken))
 	if err != nil {
 		return nil, err
 	}
@@ -152,12 +152,12 @@ func (aaa *IAPService) UpdateGoogleIAPConfig(input *i_a_p.UpdateGoogleIAPConfigP
 }
 
 // deprecated(2022-01-10): please use DeleteGoogleIAPConfigShort instead.
-func (aaa *IAPService) DeleteGoogleIAPConfig(input *i_a_p.DeleteGoogleIAPConfigParams) error {
+func (aaa *IAPService) DeleteGoogleIAPConfig(input *iap.DeleteGoogleIAPConfigParams) error {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	_, err = aaa.Client.Iap.DeleteGoogleIAPConfig(input, client.BearerToken(*token.AccessToken))
+	_, err = aaa.Client.IAP.DeleteGoogleIAPConfig(input, client.BearerToken(*token.AccessToken))
 	if err != nil {
 		return err
 	}
@@ -166,12 +166,12 @@ func (aaa *IAPService) DeleteGoogleIAPConfig(input *i_a_p.DeleteGoogleIAPConfigP
 }
 
 // deprecated(2022-01-10): please use UpdateGoogleP12FileShort instead.
-func (aaa *IAPService) UpdateGoogleP12File(input *i_a_p.UpdateGoogleP12FileParams) (*platformclientmodels.GoogleIAPConfigInfo, error) {
+func (aaa *IAPService) UpdateGoogleP12File(input *iap.UpdateGoogleP12FileParams) (*platformclientmodels.GoogleIAPConfigInfo, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, err := aaa.Client.Iap.UpdateGoogleP12File(input, client.BearerToken(*token.AccessToken))
+	ok, err := aaa.Client.IAP.UpdateGoogleP12File(input, client.BearerToken(*token.AccessToken))
 	if err != nil {
 		return nil, err
 	}
@@ -180,12 +180,12 @@ func (aaa *IAPService) UpdateGoogleP12File(input *i_a_p.UpdateGoogleP12FileParam
 }
 
 // deprecated(2022-01-10): please use GetIAPItemConfigShort instead.
-func (aaa *IAPService) GetIAPItemConfig(input *i_a_p.GetIAPItemConfigParams) (*platformclientmodels.IAPItemConfigInfo, error) {
+func (aaa *IAPService) GetIAPItemConfig(input *iap.GetIAPItemConfigParams) (*platformclientmodels.IAPItemConfigInfo, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, notFound, err := aaa.Client.Iap.GetIAPItemConfig(input, client.BearerToken(*token.AccessToken))
+	ok, notFound, err := aaa.Client.IAP.GetIAPItemConfig(input, client.BearerToken(*token.AccessToken))
 	if notFound != nil {
 		return nil, notFound
 	}
@@ -197,12 +197,12 @@ func (aaa *IAPService) GetIAPItemConfig(input *i_a_p.GetIAPItemConfigParams) (*p
 }
 
 // deprecated(2022-01-10): please use UpdateIAPItemConfigShort instead.
-func (aaa *IAPService) UpdateIAPItemConfig(input *i_a_p.UpdateIAPItemConfigParams) (*platformclientmodels.IAPItemConfigInfo, error) {
+func (aaa *IAPService) UpdateIAPItemConfig(input *iap.UpdateIAPItemConfigParams) (*platformclientmodels.IAPItemConfigInfo, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, unprocessableEntity, err := aaa.Client.Iap.UpdateIAPItemConfig(input, client.BearerToken(*token.AccessToken))
+	ok, unprocessableEntity, err := aaa.Client.IAP.UpdateIAPItemConfig(input, client.BearerToken(*token.AccessToken))
 	if unprocessableEntity != nil {
 		return nil, unprocessableEntity
 	}
@@ -214,12 +214,12 @@ func (aaa *IAPService) UpdateIAPItemConfig(input *i_a_p.UpdateIAPItemConfigParam
 }
 
 // deprecated(2022-01-10): please use DeleteIAPItemConfigShort instead.
-func (aaa *IAPService) DeleteIAPItemConfig(input *i_a_p.DeleteIAPItemConfigParams) error {
+func (aaa *IAPService) DeleteIAPItemConfig(input *iap.DeleteIAPItemConfigParams) error {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	_, err = aaa.Client.Iap.DeleteIAPItemConfig(input, client.BearerToken(*token.AccessToken))
+	_, err = aaa.Client.IAP.DeleteIAPItemConfig(input, client.BearerToken(*token.AccessToken))
 	if err != nil {
 		return err
 	}
@@ -228,12 +228,12 @@ func (aaa *IAPService) DeleteIAPItemConfig(input *i_a_p.DeleteIAPItemConfigParam
 }
 
 // deprecated(2022-01-10): please use GetPlayStationIAPConfigShort instead.
-func (aaa *IAPService) GetPlayStationIAPConfig(input *i_a_p.GetPlayStationIAPConfigParams) (*platformclientmodels.PlayStationIAPConfigInfo, error) {
+func (aaa *IAPService) GetPlayStationIAPConfig(input *iap.GetPlayStationIAPConfigParams) (*platformclientmodels.PlayStationIAPConfigInfo, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, err := aaa.Client.Iap.GetPlayStationIAPConfig(input, client.BearerToken(*token.AccessToken))
+	ok, err := aaa.Client.IAP.GetPlayStationIAPConfig(input, client.BearerToken(*token.AccessToken))
 	if err != nil {
 		return nil, err
 	}
@@ -242,12 +242,12 @@ func (aaa *IAPService) GetPlayStationIAPConfig(input *i_a_p.GetPlayStationIAPCon
 }
 
 // deprecated(2022-01-10): please use UpdatePlaystationIAPConfigShort instead.
-func (aaa *IAPService) UpdatePlaystationIAPConfig(input *i_a_p.UpdatePlaystationIAPConfigParams) (*platformclientmodels.PlayStationIAPConfigInfo, error) {
+func (aaa *IAPService) UpdatePlaystationIAPConfig(input *iap.UpdatePlaystationIAPConfigParams) (*platformclientmodels.PlayStationIAPConfigInfo, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, err := aaa.Client.Iap.UpdatePlaystationIAPConfig(input, client.BearerToken(*token.AccessToken))
+	ok, err := aaa.Client.IAP.UpdatePlaystationIAPConfig(input, client.BearerToken(*token.AccessToken))
 	if err != nil {
 		return nil, err
 	}
@@ -256,12 +256,12 @@ func (aaa *IAPService) UpdatePlaystationIAPConfig(input *i_a_p.UpdatePlaystation
 }
 
 // deprecated(2022-01-10): please use DeletePlaystationIAPConfigShort instead.
-func (aaa *IAPService) DeletePlaystationIAPConfig(input *i_a_p.DeletePlaystationIAPConfigParams) error {
+func (aaa *IAPService) DeletePlaystationIAPConfig(input *iap.DeletePlaystationIAPConfigParams) error {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	_, err = aaa.Client.Iap.DeletePlaystationIAPConfig(input, client.BearerToken(*token.AccessToken))
+	_, err = aaa.Client.IAP.DeletePlaystationIAPConfig(input, client.BearerToken(*token.AccessToken))
 	if err != nil {
 		return err
 	}
@@ -270,12 +270,12 @@ func (aaa *IAPService) DeletePlaystationIAPConfig(input *i_a_p.DeletePlaystation
 }
 
 // deprecated(2022-01-10): please use GetSteamIAPConfigShort instead.
-func (aaa *IAPService) GetSteamIAPConfig(input *i_a_p.GetSteamIAPConfigParams) (*platformclientmodels.SteamIAPConfig, error) {
+func (aaa *IAPService) GetSteamIAPConfig(input *iap.GetSteamIAPConfigParams) (*platformclientmodels.SteamIAPConfig, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, err := aaa.Client.Iap.GetSteamIAPConfig(input, client.BearerToken(*token.AccessToken))
+	ok, err := aaa.Client.IAP.GetSteamIAPConfig(input, client.BearerToken(*token.AccessToken))
 	if err != nil {
 		return nil, err
 	}
@@ -284,12 +284,12 @@ func (aaa *IAPService) GetSteamIAPConfig(input *i_a_p.GetSteamIAPConfigParams) (
 }
 
 // deprecated(2022-01-10): please use UpdateSteamIAPConfigShort instead.
-func (aaa *IAPService) UpdateSteamIAPConfig(input *i_a_p.UpdateSteamIAPConfigParams) (*platformclientmodels.SteamIAPConfigInfo, error) {
+func (aaa *IAPService) UpdateSteamIAPConfig(input *iap.UpdateSteamIAPConfigParams) (*platformclientmodels.SteamIAPConfigInfo, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, err := aaa.Client.Iap.UpdateSteamIAPConfig(input, client.BearerToken(*token.AccessToken))
+	ok, err := aaa.Client.IAP.UpdateSteamIAPConfig(input, client.BearerToken(*token.AccessToken))
 	if err != nil {
 		return nil, err
 	}
@@ -298,12 +298,12 @@ func (aaa *IAPService) UpdateSteamIAPConfig(input *i_a_p.UpdateSteamIAPConfigPar
 }
 
 // deprecated(2022-01-10): please use DeleteSteamIAPConfigShort instead.
-func (aaa *IAPService) DeleteSteamIAPConfig(input *i_a_p.DeleteSteamIAPConfigParams) error {
+func (aaa *IAPService) DeleteSteamIAPConfig(input *iap.DeleteSteamIAPConfigParams) error {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	_, err = aaa.Client.Iap.DeleteSteamIAPConfig(input, client.BearerToken(*token.AccessToken))
+	_, err = aaa.Client.IAP.DeleteSteamIAPConfig(input, client.BearerToken(*token.AccessToken))
 	if err != nil {
 		return err
 	}
@@ -312,12 +312,12 @@ func (aaa *IAPService) DeleteSteamIAPConfig(input *i_a_p.DeleteSteamIAPConfigPar
 }
 
 // deprecated(2022-01-10): please use GetTwitchIAPConfigShort instead.
-func (aaa *IAPService) GetTwitchIAPConfig(input *i_a_p.GetTwitchIAPConfigParams) (*platformclientmodels.TwitchIAPConfigInfo, error) {
+func (aaa *IAPService) GetTwitchIAPConfig(input *iap.GetTwitchIAPConfigParams) (*platformclientmodels.TwitchIAPConfigInfo, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, err := aaa.Client.Iap.GetTwitchIAPConfig(input, client.BearerToken(*token.AccessToken))
+	ok, err := aaa.Client.IAP.GetTwitchIAPConfig(input, client.BearerToken(*token.AccessToken))
 	if err != nil {
 		return nil, err
 	}
@@ -326,12 +326,12 @@ func (aaa *IAPService) GetTwitchIAPConfig(input *i_a_p.GetTwitchIAPConfigParams)
 }
 
 // deprecated(2022-01-10): please use UpdateTwitchIAPConfigShort instead.
-func (aaa *IAPService) UpdateTwitchIAPConfig(input *i_a_p.UpdateTwitchIAPConfigParams) (*platformclientmodels.TwitchIAPConfigInfo, error) {
+func (aaa *IAPService) UpdateTwitchIAPConfig(input *iap.UpdateTwitchIAPConfigParams) (*platformclientmodels.TwitchIAPConfigInfo, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, err := aaa.Client.Iap.UpdateTwitchIAPConfig(input, client.BearerToken(*token.AccessToken))
+	ok, err := aaa.Client.IAP.UpdateTwitchIAPConfig(input, client.BearerToken(*token.AccessToken))
 	if err != nil {
 		return nil, err
 	}
@@ -340,12 +340,12 @@ func (aaa *IAPService) UpdateTwitchIAPConfig(input *i_a_p.UpdateTwitchIAPConfigP
 }
 
 // deprecated(2022-01-10): please use DeleteTwitchIAPConfigShort instead.
-func (aaa *IAPService) DeleteTwitchIAPConfig(input *i_a_p.DeleteTwitchIAPConfigParams) error {
+func (aaa *IAPService) DeleteTwitchIAPConfig(input *iap.DeleteTwitchIAPConfigParams) error {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	_, err = aaa.Client.Iap.DeleteTwitchIAPConfig(input, client.BearerToken(*token.AccessToken))
+	_, err = aaa.Client.IAP.DeleteTwitchIAPConfig(input, client.BearerToken(*token.AccessToken))
 	if err != nil {
 		return err
 	}
@@ -354,12 +354,12 @@ func (aaa *IAPService) DeleteTwitchIAPConfig(input *i_a_p.DeleteTwitchIAPConfigP
 }
 
 // deprecated(2022-01-10): please use GetXblIAPConfigShort instead.
-func (aaa *IAPService) GetXblIAPConfig(input *i_a_p.GetXblIAPConfigParams) (*platformclientmodels.XblIAPConfigInfo, error) {
+func (aaa *IAPService) GetXblIAPConfig(input *iap.GetXblIAPConfigParams) (*platformclientmodels.XblIAPConfigInfo, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, err := aaa.Client.Iap.GetXblIAPConfig(input, client.BearerToken(*token.AccessToken))
+	ok, err := aaa.Client.IAP.GetXblIAPConfig(input, client.BearerToken(*token.AccessToken))
 	if err != nil {
 		return nil, err
 	}
@@ -368,12 +368,12 @@ func (aaa *IAPService) GetXblIAPConfig(input *i_a_p.GetXblIAPConfigParams) (*pla
 }
 
 // deprecated(2022-01-10): please use UpdateXblIAPConfigShort instead.
-func (aaa *IAPService) UpdateXblIAPConfig(input *i_a_p.UpdateXblIAPConfigParams) (*platformclientmodels.XblIAPConfigInfo, error) {
+func (aaa *IAPService) UpdateXblIAPConfig(input *iap.UpdateXblIAPConfigParams) (*platformclientmodels.XblIAPConfigInfo, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, err := aaa.Client.Iap.UpdateXblIAPConfig(input, client.BearerToken(*token.AccessToken))
+	ok, err := aaa.Client.IAP.UpdateXblIAPConfig(input, client.BearerToken(*token.AccessToken))
 	if err != nil {
 		return nil, err
 	}
@@ -382,12 +382,12 @@ func (aaa *IAPService) UpdateXblIAPConfig(input *i_a_p.UpdateXblIAPConfigParams)
 }
 
 // deprecated(2022-01-10): please use DeleteXblAPConfigShort instead.
-func (aaa *IAPService) DeleteXblAPConfig(input *i_a_p.DeleteXblAPConfigParams) error {
+func (aaa *IAPService) DeleteXblAPConfig(input *iap.DeleteXblAPConfigParams) error {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	_, err = aaa.Client.Iap.DeleteXblAPConfig(input, client.BearerToken(*token.AccessToken))
+	_, err = aaa.Client.IAP.DeleteXblAPConfig(input, client.BearerToken(*token.AccessToken))
 	if err != nil {
 		return err
 	}
@@ -396,12 +396,12 @@ func (aaa *IAPService) DeleteXblAPConfig(input *i_a_p.DeleteXblAPConfigParams) e
 }
 
 // deprecated(2022-01-10): please use UpdateXblBPCertFileShort instead.
-func (aaa *IAPService) UpdateXblBPCertFile(input *i_a_p.UpdateXblBPCertFileParams) (*platformclientmodels.XblIAPConfigInfo, error) {
+func (aaa *IAPService) UpdateXblBPCertFile(input *iap.UpdateXblBPCertFileParams) (*platformclientmodels.XblIAPConfigInfo, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, err := aaa.Client.Iap.UpdateXblBPCertFile(input, client.BearerToken(*token.AccessToken))
+	ok, err := aaa.Client.IAP.UpdateXblBPCertFile(input, client.BearerToken(*token.AccessToken))
 	if err != nil {
 		return nil, err
 	}
@@ -410,12 +410,12 @@ func (aaa *IAPService) UpdateXblBPCertFile(input *i_a_p.UpdateXblBPCertFileParam
 }
 
 // deprecated(2022-01-10): please use QueryUserIAPOrdersShort instead.
-func (aaa *IAPService) QueryUserIAPOrders(input *i_a_p.QueryUserIAPOrdersParams) (*platformclientmodels.IAPOrderPagingSlicedResult, error) {
+func (aaa *IAPService) QueryUserIAPOrders(input *iap.QueryUserIAPOrdersParams) (*platformclientmodels.IAPOrderPagingSlicedResult, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, err := aaa.Client.Iap.QueryUserIAPOrders(input, client.BearerToken(*token.AccessToken))
+	ok, err := aaa.Client.IAP.QueryUserIAPOrders(input, client.BearerToken(*token.AccessToken))
 	if err != nil {
 		return nil, err
 	}
@@ -424,12 +424,12 @@ func (aaa *IAPService) QueryUserIAPOrders(input *i_a_p.QueryUserIAPOrdersParams)
 }
 
 // deprecated(2022-01-10): please use QueryAllUserIAPOrdersShort instead.
-func (aaa *IAPService) QueryAllUserIAPOrders(input *i_a_p.QueryAllUserIAPOrdersParams) (*platformclientmodels.IAPOrderPagingSlicedResult, error) {
+func (aaa *IAPService) QueryAllUserIAPOrders(input *iap.QueryAllUserIAPOrdersParams) (*platformclientmodels.IAPOrderPagingSlicedResult, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, err := aaa.Client.Iap.QueryAllUserIAPOrders(input, client.BearerToken(*token.AccessToken))
+	ok, err := aaa.Client.IAP.QueryAllUserIAPOrders(input, client.BearerToken(*token.AccessToken))
 	if err != nil {
 		return nil, err
 	}
@@ -438,12 +438,12 @@ func (aaa *IAPService) QueryAllUserIAPOrders(input *i_a_p.QueryAllUserIAPOrdersP
 }
 
 // deprecated(2022-01-10): please use QueryUserIAPConsumeHistoryShort instead.
-func (aaa *IAPService) QueryUserIAPConsumeHistory(input *i_a_p.QueryUserIAPConsumeHistoryParams) (*platformclientmodels.IAPConsumeHistoryPagingSlicedResult, error) {
+func (aaa *IAPService) QueryUserIAPConsumeHistory(input *iap.QueryUserIAPConsumeHistoryParams) (*platformclientmodels.IAPConsumeHistoryPagingSlicedResult, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, err := aaa.Client.Iap.QueryUserIAPConsumeHistory(input, client.BearerToken(*token.AccessToken))
+	ok, err := aaa.Client.IAP.QueryUserIAPConsumeHistory(input, client.BearerToken(*token.AccessToken))
 	if err != nil {
 		return nil, err
 	}
@@ -452,12 +452,12 @@ func (aaa *IAPService) QueryUserIAPConsumeHistory(input *i_a_p.QueryUserIAPConsu
 }
 
 // deprecated(2022-01-10): please use MockFulfillIAPItemShort instead.
-func (aaa *IAPService) MockFulfillIAPItem(input *i_a_p.MockFulfillIAPItemParams) error {
+func (aaa *IAPService) MockFulfillIAPItem(input *iap.MockFulfillIAPItemParams) error {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	_, badRequest, notFound, conflict, err := aaa.Client.Iap.MockFulfillIAPItem(input, client.BearerToken(*token.AccessToken))
+	_, badRequest, notFound, conflict, err := aaa.Client.IAP.MockFulfillIAPItem(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return badRequest
 	}
@@ -475,12 +475,12 @@ func (aaa *IAPService) MockFulfillIAPItem(input *i_a_p.MockFulfillIAPItemParams)
 }
 
 // deprecated(2022-01-10): please use PublicFulfillAppleIAPItemShort instead.
-func (aaa *IAPService) PublicFulfillAppleIAPItem(input *i_a_p.PublicFulfillAppleIAPItemParams) error {
+func (aaa *IAPService) PublicFulfillAppleIAPItem(input *iap.PublicFulfillAppleIAPItemParams) error {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	_, badRequest, notFound, conflict, err := aaa.Client.Iap.PublicFulfillAppleIAPItem(input, client.BearerToken(*token.AccessToken))
+	_, badRequest, notFound, conflict, err := aaa.Client.IAP.PublicFulfillAppleIAPItem(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return badRequest
 	}
@@ -498,12 +498,12 @@ func (aaa *IAPService) PublicFulfillAppleIAPItem(input *i_a_p.PublicFulfillApple
 }
 
 // deprecated(2022-01-10): please use SyncEpicGamesInventoryShort instead.
-func (aaa *IAPService) SyncEpicGamesInventory(input *i_a_p.SyncEpicGamesInventoryParams) ([]*platformclientmodels.EpicGamesReconcileResult, error) {
+func (aaa *IAPService) SyncEpicGamesInventory(input *iap.SyncEpicGamesInventoryParams) ([]*platformclientmodels.EpicGamesReconcileResult, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, badRequest, err := aaa.Client.Iap.SyncEpicGamesInventory(input, client.BearerToken(*token.AccessToken))
+	ok, badRequest, err := aaa.Client.IAP.SyncEpicGamesInventory(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -515,12 +515,12 @@ func (aaa *IAPService) SyncEpicGamesInventory(input *i_a_p.SyncEpicGamesInventor
 }
 
 // deprecated(2022-01-10): please use PublicFulfillGoogleIAPItemShort instead.
-func (aaa *IAPService) PublicFulfillGoogleIAPItem(input *i_a_p.PublicFulfillGoogleIAPItemParams) (*platformclientmodels.GoogleReceiptResolveResult, error) {
+func (aaa *IAPService) PublicFulfillGoogleIAPItem(input *iap.PublicFulfillGoogleIAPItemParams) (*platformclientmodels.GoogleReceiptResolveResult, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, badRequest, notFound, conflict, err := aaa.Client.Iap.PublicFulfillGoogleIAPItem(input, client.BearerToken(*token.AccessToken))
+	ok, badRequest, notFound, conflict, err := aaa.Client.IAP.PublicFulfillGoogleIAPItem(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -538,12 +538,12 @@ func (aaa *IAPService) PublicFulfillGoogleIAPItem(input *i_a_p.PublicFulfillGoog
 }
 
 // deprecated(2022-01-10): please use PublicReconcilePlayStationStoreShort instead.
-func (aaa *IAPService) PublicReconcilePlayStationStore(input *i_a_p.PublicReconcilePlayStationStoreParams) ([]*platformclientmodels.PlayStationReconcileResult, error) {
+func (aaa *IAPService) PublicReconcilePlayStationStore(input *iap.PublicReconcilePlayStationStoreParams) ([]*platformclientmodels.PlayStationReconcileResult, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, badRequest, err := aaa.Client.Iap.PublicReconcilePlayStationStore(input, client.BearerToken(*token.AccessToken))
+	ok, badRequest, err := aaa.Client.IAP.PublicReconcilePlayStationStore(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -555,12 +555,12 @@ func (aaa *IAPService) PublicReconcilePlayStationStore(input *i_a_p.PublicReconc
 }
 
 // deprecated(2022-01-10): please use PublicReconcilePlayStationStoreWithMultipleServiceLabelsShort instead.
-func (aaa *IAPService) PublicReconcilePlayStationStoreWithMultipleServiceLabels(input *i_a_p.PublicReconcilePlayStationStoreWithMultipleServiceLabelsParams) ([]*platformclientmodels.PlayStationReconcileResult, error) {
+func (aaa *IAPService) PublicReconcilePlayStationStoreWithMultipleServiceLabels(input *iap.PublicReconcilePlayStationStoreWithMultipleServiceLabelsParams) ([]*platformclientmodels.PlayStationReconcileResult, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, badRequest, err := aaa.Client.Iap.PublicReconcilePlayStationStoreWithMultipleServiceLabels(input, client.BearerToken(*token.AccessToken))
+	ok, badRequest, err := aaa.Client.IAP.PublicReconcilePlayStationStoreWithMultipleServiceLabels(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -572,12 +572,12 @@ func (aaa *IAPService) PublicReconcilePlayStationStoreWithMultipleServiceLabels(
 }
 
 // deprecated(2022-01-10): please use SyncSteamInventoryShort instead.
-func (aaa *IAPService) SyncSteamInventory(input *i_a_p.SyncSteamInventoryParams) error {
+func (aaa *IAPService) SyncSteamInventory(input *iap.SyncSteamInventoryParams) error {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	_, badRequest, err := aaa.Client.Iap.SyncSteamInventory(input, client.BearerToken(*token.AccessToken))
+	_, badRequest, err := aaa.Client.IAP.SyncSteamInventory(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return badRequest
 	}
@@ -589,12 +589,12 @@ func (aaa *IAPService) SyncSteamInventory(input *i_a_p.SyncSteamInventoryParams)
 }
 
 // deprecated(2022-01-10): please use SyncTwitchDropsEntitlementShort instead.
-func (aaa *IAPService) SyncTwitchDropsEntitlement(input *i_a_p.SyncTwitchDropsEntitlementParams) error {
+func (aaa *IAPService) SyncTwitchDropsEntitlement(input *iap.SyncTwitchDropsEntitlementParams) error {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	_, badRequest, err := aaa.Client.Iap.SyncTwitchDropsEntitlement(input, client.BearerToken(*token.AccessToken))
+	_, badRequest, err := aaa.Client.IAP.SyncTwitchDropsEntitlement(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return badRequest
 	}
@@ -606,12 +606,12 @@ func (aaa *IAPService) SyncTwitchDropsEntitlement(input *i_a_p.SyncTwitchDropsEn
 }
 
 // deprecated(2022-01-10): please use SyncXboxInventoryShort instead.
-func (aaa *IAPService) SyncXboxInventory(input *i_a_p.SyncXboxInventoryParams) ([]*platformclientmodels.XblReconcileResult, error) {
+func (aaa *IAPService) SyncXboxInventory(input *iap.SyncXboxInventoryParams) ([]*platformclientmodels.XblReconcileResult, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, badRequest, err := aaa.Client.Iap.SyncXboxInventory(input, client.BearerToken(*token.AccessToken))
+	ok, badRequest, err := aaa.Client.IAP.SyncXboxInventory(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -622,7 +622,7 @@ func (aaa *IAPService) SyncXboxInventory(input *i_a_p.SyncXboxInventoryParams) (
 	return ok.GetPayload(), nil
 }
 
-func (aaa *IAPService) GetAppleIAPConfigShort(input *i_a_p.GetAppleIAPConfigParams) (*platformclientmodels.AppleIAPConfigInfo, error) {
+func (aaa *IAPService) GetAppleIAPConfigShort(input *iap.GetAppleIAPConfigParams) (*platformclientmodels.AppleIAPConfigInfo, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -639,7 +639,7 @@ func (aaa *IAPService) GetAppleIAPConfigShort(input *i_a_p.GetAppleIAPConfigPara
 		}
 	}
 
-	ok, err := aaa.Client.Iap.GetAppleIAPConfigShort(input, authInfoWriter)
+	ok, err := aaa.Client.IAP.GetAppleIAPConfigShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -647,7 +647,7 @@ func (aaa *IAPService) GetAppleIAPConfigShort(input *i_a_p.GetAppleIAPConfigPara
 	return ok.GetPayload(), nil
 }
 
-func (aaa *IAPService) UpdateAppleIAPConfigShort(input *i_a_p.UpdateAppleIAPConfigParams) (*platformclientmodels.AppleIAPConfigInfo, error) {
+func (aaa *IAPService) UpdateAppleIAPConfigShort(input *iap.UpdateAppleIAPConfigParams) (*platformclientmodels.AppleIAPConfigInfo, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -664,7 +664,7 @@ func (aaa *IAPService) UpdateAppleIAPConfigShort(input *i_a_p.UpdateAppleIAPConf
 		}
 	}
 
-	ok, err := aaa.Client.Iap.UpdateAppleIAPConfigShort(input, authInfoWriter)
+	ok, err := aaa.Client.IAP.UpdateAppleIAPConfigShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -672,7 +672,7 @@ func (aaa *IAPService) UpdateAppleIAPConfigShort(input *i_a_p.UpdateAppleIAPConf
 	return ok.GetPayload(), nil
 }
 
-func (aaa *IAPService) DeleteAppleIAPConfigShort(input *i_a_p.DeleteAppleIAPConfigParams) error {
+func (aaa *IAPService) DeleteAppleIAPConfigShort(input *iap.DeleteAppleIAPConfigParams) error {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -689,7 +689,7 @@ func (aaa *IAPService) DeleteAppleIAPConfigShort(input *i_a_p.DeleteAppleIAPConf
 		}
 	}
 
-	_, err := aaa.Client.Iap.DeleteAppleIAPConfigShort(input, authInfoWriter)
+	_, err := aaa.Client.IAP.DeleteAppleIAPConfigShort(input, authInfoWriter)
 	if err != nil {
 		return err
 	}
@@ -697,7 +697,7 @@ func (aaa *IAPService) DeleteAppleIAPConfigShort(input *i_a_p.DeleteAppleIAPConf
 	return nil
 }
 
-func (aaa *IAPService) GetEpicGamesIAPConfigShort(input *i_a_p.GetEpicGamesIAPConfigParams) (*platformclientmodels.EpicGamesIAPConfigInfo, error) {
+func (aaa *IAPService) GetEpicGamesIAPConfigShort(input *iap.GetEpicGamesIAPConfigParams) (*platformclientmodels.EpicGamesIAPConfigInfo, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -714,7 +714,7 @@ func (aaa *IAPService) GetEpicGamesIAPConfigShort(input *i_a_p.GetEpicGamesIAPCo
 		}
 	}
 
-	ok, err := aaa.Client.Iap.GetEpicGamesIAPConfigShort(input, authInfoWriter)
+	ok, err := aaa.Client.IAP.GetEpicGamesIAPConfigShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -722,7 +722,7 @@ func (aaa *IAPService) GetEpicGamesIAPConfigShort(input *i_a_p.GetEpicGamesIAPCo
 	return ok.GetPayload(), nil
 }
 
-func (aaa *IAPService) UpdateEpicGamesIAPConfigShort(input *i_a_p.UpdateEpicGamesIAPConfigParams) (*platformclientmodels.EpicGamesIAPConfigInfo, error) {
+func (aaa *IAPService) UpdateEpicGamesIAPConfigShort(input *iap.UpdateEpicGamesIAPConfigParams) (*platformclientmodels.EpicGamesIAPConfigInfo, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -739,7 +739,7 @@ func (aaa *IAPService) UpdateEpicGamesIAPConfigShort(input *i_a_p.UpdateEpicGame
 		}
 	}
 
-	ok, err := aaa.Client.Iap.UpdateEpicGamesIAPConfigShort(input, authInfoWriter)
+	ok, err := aaa.Client.IAP.UpdateEpicGamesIAPConfigShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -747,7 +747,7 @@ func (aaa *IAPService) UpdateEpicGamesIAPConfigShort(input *i_a_p.UpdateEpicGame
 	return ok.GetPayload(), nil
 }
 
-func (aaa *IAPService) DeleteEpicGamesIAPConfigShort(input *i_a_p.DeleteEpicGamesIAPConfigParams) error {
+func (aaa *IAPService) DeleteEpicGamesIAPConfigShort(input *iap.DeleteEpicGamesIAPConfigParams) error {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -764,7 +764,7 @@ func (aaa *IAPService) DeleteEpicGamesIAPConfigShort(input *i_a_p.DeleteEpicGame
 		}
 	}
 
-	_, err := aaa.Client.Iap.DeleteEpicGamesIAPConfigShort(input, authInfoWriter)
+	_, err := aaa.Client.IAP.DeleteEpicGamesIAPConfigShort(input, authInfoWriter)
 	if err != nil {
 		return err
 	}
@@ -772,7 +772,7 @@ func (aaa *IAPService) DeleteEpicGamesIAPConfigShort(input *i_a_p.DeleteEpicGame
 	return nil
 }
 
-func (aaa *IAPService) GetGoogleIAPConfigShort(input *i_a_p.GetGoogleIAPConfigParams) (*platformclientmodels.GoogleIAPConfigInfo, error) {
+func (aaa *IAPService) GetGoogleIAPConfigShort(input *iap.GetGoogleIAPConfigParams) (*platformclientmodels.GoogleIAPConfigInfo, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -789,7 +789,7 @@ func (aaa *IAPService) GetGoogleIAPConfigShort(input *i_a_p.GetGoogleIAPConfigPa
 		}
 	}
 
-	ok, err := aaa.Client.Iap.GetGoogleIAPConfigShort(input, authInfoWriter)
+	ok, err := aaa.Client.IAP.GetGoogleIAPConfigShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -797,7 +797,7 @@ func (aaa *IAPService) GetGoogleIAPConfigShort(input *i_a_p.GetGoogleIAPConfigPa
 	return ok.GetPayload(), nil
 }
 
-func (aaa *IAPService) UpdateGoogleIAPConfigShort(input *i_a_p.UpdateGoogleIAPConfigParams) (*platformclientmodels.GoogleIAPConfigInfo, error) {
+func (aaa *IAPService) UpdateGoogleIAPConfigShort(input *iap.UpdateGoogleIAPConfigParams) (*platformclientmodels.GoogleIAPConfigInfo, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -814,7 +814,7 @@ func (aaa *IAPService) UpdateGoogleIAPConfigShort(input *i_a_p.UpdateGoogleIAPCo
 		}
 	}
 
-	ok, err := aaa.Client.Iap.UpdateGoogleIAPConfigShort(input, authInfoWriter)
+	ok, err := aaa.Client.IAP.UpdateGoogleIAPConfigShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -822,7 +822,7 @@ func (aaa *IAPService) UpdateGoogleIAPConfigShort(input *i_a_p.UpdateGoogleIAPCo
 	return ok.GetPayload(), nil
 }
 
-func (aaa *IAPService) DeleteGoogleIAPConfigShort(input *i_a_p.DeleteGoogleIAPConfigParams) error {
+func (aaa *IAPService) DeleteGoogleIAPConfigShort(input *iap.DeleteGoogleIAPConfigParams) error {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -839,7 +839,7 @@ func (aaa *IAPService) DeleteGoogleIAPConfigShort(input *i_a_p.DeleteGoogleIAPCo
 		}
 	}
 
-	_, err := aaa.Client.Iap.DeleteGoogleIAPConfigShort(input, authInfoWriter)
+	_, err := aaa.Client.IAP.DeleteGoogleIAPConfigShort(input, authInfoWriter)
 	if err != nil {
 		return err
 	}
@@ -847,7 +847,7 @@ func (aaa *IAPService) DeleteGoogleIAPConfigShort(input *i_a_p.DeleteGoogleIAPCo
 	return nil
 }
 
-func (aaa *IAPService) UpdateGoogleP12FileShort(input *i_a_p.UpdateGoogleP12FileParams) (*platformclientmodels.GoogleIAPConfigInfo, error) {
+func (aaa *IAPService) UpdateGoogleP12FileShort(input *iap.UpdateGoogleP12FileParams) (*platformclientmodels.GoogleIAPConfigInfo, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -864,7 +864,7 @@ func (aaa *IAPService) UpdateGoogleP12FileShort(input *i_a_p.UpdateGoogleP12File
 		}
 	}
 
-	ok, err := aaa.Client.Iap.UpdateGoogleP12FileShort(input, authInfoWriter)
+	ok, err := aaa.Client.IAP.UpdateGoogleP12FileShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -872,7 +872,7 @@ func (aaa *IAPService) UpdateGoogleP12FileShort(input *i_a_p.UpdateGoogleP12File
 	return ok.GetPayload(), nil
 }
 
-func (aaa *IAPService) GetIAPItemConfigShort(input *i_a_p.GetIAPItemConfigParams) (*platformclientmodels.IAPItemConfigInfo, error) {
+func (aaa *IAPService) GetIAPItemConfigShort(input *iap.GetIAPItemConfigParams) (*platformclientmodels.IAPItemConfigInfo, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -889,7 +889,7 @@ func (aaa *IAPService) GetIAPItemConfigShort(input *i_a_p.GetIAPItemConfigParams
 		}
 	}
 
-	ok, err := aaa.Client.Iap.GetIAPItemConfigShort(input, authInfoWriter)
+	ok, err := aaa.Client.IAP.GetIAPItemConfigShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -897,7 +897,7 @@ func (aaa *IAPService) GetIAPItemConfigShort(input *i_a_p.GetIAPItemConfigParams
 	return ok.GetPayload(), nil
 }
 
-func (aaa *IAPService) UpdateIAPItemConfigShort(input *i_a_p.UpdateIAPItemConfigParams) (*platformclientmodels.IAPItemConfigInfo, error) {
+func (aaa *IAPService) UpdateIAPItemConfigShort(input *iap.UpdateIAPItemConfigParams) (*platformclientmodels.IAPItemConfigInfo, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -914,7 +914,7 @@ func (aaa *IAPService) UpdateIAPItemConfigShort(input *i_a_p.UpdateIAPItemConfig
 		}
 	}
 
-	ok, err := aaa.Client.Iap.UpdateIAPItemConfigShort(input, authInfoWriter)
+	ok, err := aaa.Client.IAP.UpdateIAPItemConfigShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -922,7 +922,7 @@ func (aaa *IAPService) UpdateIAPItemConfigShort(input *i_a_p.UpdateIAPItemConfig
 	return ok.GetPayload(), nil
 }
 
-func (aaa *IAPService) DeleteIAPItemConfigShort(input *i_a_p.DeleteIAPItemConfigParams) error {
+func (aaa *IAPService) DeleteIAPItemConfigShort(input *iap.DeleteIAPItemConfigParams) error {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -939,7 +939,7 @@ func (aaa *IAPService) DeleteIAPItemConfigShort(input *i_a_p.DeleteIAPItemConfig
 		}
 	}
 
-	_, err := aaa.Client.Iap.DeleteIAPItemConfigShort(input, authInfoWriter)
+	_, err := aaa.Client.IAP.DeleteIAPItemConfigShort(input, authInfoWriter)
 	if err != nil {
 		return err
 	}
@@ -947,7 +947,7 @@ func (aaa *IAPService) DeleteIAPItemConfigShort(input *i_a_p.DeleteIAPItemConfig
 	return nil
 }
 
-func (aaa *IAPService) GetPlayStationIAPConfigShort(input *i_a_p.GetPlayStationIAPConfigParams) (*platformclientmodels.PlayStationIAPConfigInfo, error) {
+func (aaa *IAPService) GetPlayStationIAPConfigShort(input *iap.GetPlayStationIAPConfigParams) (*platformclientmodels.PlayStationIAPConfigInfo, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -964,7 +964,7 @@ func (aaa *IAPService) GetPlayStationIAPConfigShort(input *i_a_p.GetPlayStationI
 		}
 	}
 
-	ok, err := aaa.Client.Iap.GetPlayStationIAPConfigShort(input, authInfoWriter)
+	ok, err := aaa.Client.IAP.GetPlayStationIAPConfigShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -972,7 +972,7 @@ func (aaa *IAPService) GetPlayStationIAPConfigShort(input *i_a_p.GetPlayStationI
 	return ok.GetPayload(), nil
 }
 
-func (aaa *IAPService) UpdatePlaystationIAPConfigShort(input *i_a_p.UpdatePlaystationIAPConfigParams) (*platformclientmodels.PlayStationIAPConfigInfo, error) {
+func (aaa *IAPService) UpdatePlaystationIAPConfigShort(input *iap.UpdatePlaystationIAPConfigParams) (*platformclientmodels.PlayStationIAPConfigInfo, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -989,7 +989,7 @@ func (aaa *IAPService) UpdatePlaystationIAPConfigShort(input *i_a_p.UpdatePlayst
 		}
 	}
 
-	ok, err := aaa.Client.Iap.UpdatePlaystationIAPConfigShort(input, authInfoWriter)
+	ok, err := aaa.Client.IAP.UpdatePlaystationIAPConfigShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -997,7 +997,7 @@ func (aaa *IAPService) UpdatePlaystationIAPConfigShort(input *i_a_p.UpdatePlayst
 	return ok.GetPayload(), nil
 }
 
-func (aaa *IAPService) DeletePlaystationIAPConfigShort(input *i_a_p.DeletePlaystationIAPConfigParams) error {
+func (aaa *IAPService) DeletePlaystationIAPConfigShort(input *iap.DeletePlaystationIAPConfigParams) error {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -1014,7 +1014,7 @@ func (aaa *IAPService) DeletePlaystationIAPConfigShort(input *i_a_p.DeletePlayst
 		}
 	}
 
-	_, err := aaa.Client.Iap.DeletePlaystationIAPConfigShort(input, authInfoWriter)
+	_, err := aaa.Client.IAP.DeletePlaystationIAPConfigShort(input, authInfoWriter)
 	if err != nil {
 		return err
 	}
@@ -1022,7 +1022,7 @@ func (aaa *IAPService) DeletePlaystationIAPConfigShort(input *i_a_p.DeletePlayst
 	return nil
 }
 
-func (aaa *IAPService) GetSteamIAPConfigShort(input *i_a_p.GetSteamIAPConfigParams) (*platformclientmodels.SteamIAPConfig, error) {
+func (aaa *IAPService) GetSteamIAPConfigShort(input *iap.GetSteamIAPConfigParams) (*platformclientmodels.SteamIAPConfig, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -1039,7 +1039,7 @@ func (aaa *IAPService) GetSteamIAPConfigShort(input *i_a_p.GetSteamIAPConfigPara
 		}
 	}
 
-	ok, err := aaa.Client.Iap.GetSteamIAPConfigShort(input, authInfoWriter)
+	ok, err := aaa.Client.IAP.GetSteamIAPConfigShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -1047,7 +1047,7 @@ func (aaa *IAPService) GetSteamIAPConfigShort(input *i_a_p.GetSteamIAPConfigPara
 	return ok.GetPayload(), nil
 }
 
-func (aaa *IAPService) UpdateSteamIAPConfigShort(input *i_a_p.UpdateSteamIAPConfigParams) (*platformclientmodels.SteamIAPConfigInfo, error) {
+func (aaa *IAPService) UpdateSteamIAPConfigShort(input *iap.UpdateSteamIAPConfigParams) (*platformclientmodels.SteamIAPConfigInfo, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -1064,7 +1064,7 @@ func (aaa *IAPService) UpdateSteamIAPConfigShort(input *i_a_p.UpdateSteamIAPConf
 		}
 	}
 
-	ok, err := aaa.Client.Iap.UpdateSteamIAPConfigShort(input, authInfoWriter)
+	ok, err := aaa.Client.IAP.UpdateSteamIAPConfigShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -1072,7 +1072,7 @@ func (aaa *IAPService) UpdateSteamIAPConfigShort(input *i_a_p.UpdateSteamIAPConf
 	return ok.GetPayload(), nil
 }
 
-func (aaa *IAPService) DeleteSteamIAPConfigShort(input *i_a_p.DeleteSteamIAPConfigParams) error {
+func (aaa *IAPService) DeleteSteamIAPConfigShort(input *iap.DeleteSteamIAPConfigParams) error {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -1089,7 +1089,7 @@ func (aaa *IAPService) DeleteSteamIAPConfigShort(input *i_a_p.DeleteSteamIAPConf
 		}
 	}
 
-	_, err := aaa.Client.Iap.DeleteSteamIAPConfigShort(input, authInfoWriter)
+	_, err := aaa.Client.IAP.DeleteSteamIAPConfigShort(input, authInfoWriter)
 	if err != nil {
 		return err
 	}
@@ -1097,7 +1097,7 @@ func (aaa *IAPService) DeleteSteamIAPConfigShort(input *i_a_p.DeleteSteamIAPConf
 	return nil
 }
 
-func (aaa *IAPService) GetTwitchIAPConfigShort(input *i_a_p.GetTwitchIAPConfigParams) (*platformclientmodels.TwitchIAPConfigInfo, error) {
+func (aaa *IAPService) GetTwitchIAPConfigShort(input *iap.GetTwitchIAPConfigParams) (*platformclientmodels.TwitchIAPConfigInfo, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -1114,7 +1114,7 @@ func (aaa *IAPService) GetTwitchIAPConfigShort(input *i_a_p.GetTwitchIAPConfigPa
 		}
 	}
 
-	ok, err := aaa.Client.Iap.GetTwitchIAPConfigShort(input, authInfoWriter)
+	ok, err := aaa.Client.IAP.GetTwitchIAPConfigShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -1122,7 +1122,7 @@ func (aaa *IAPService) GetTwitchIAPConfigShort(input *i_a_p.GetTwitchIAPConfigPa
 	return ok.GetPayload(), nil
 }
 
-func (aaa *IAPService) UpdateTwitchIAPConfigShort(input *i_a_p.UpdateTwitchIAPConfigParams) (*platformclientmodels.TwitchIAPConfigInfo, error) {
+func (aaa *IAPService) UpdateTwitchIAPConfigShort(input *iap.UpdateTwitchIAPConfigParams) (*platformclientmodels.TwitchIAPConfigInfo, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -1139,7 +1139,7 @@ func (aaa *IAPService) UpdateTwitchIAPConfigShort(input *i_a_p.UpdateTwitchIAPCo
 		}
 	}
 
-	ok, err := aaa.Client.Iap.UpdateTwitchIAPConfigShort(input, authInfoWriter)
+	ok, err := aaa.Client.IAP.UpdateTwitchIAPConfigShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -1147,7 +1147,7 @@ func (aaa *IAPService) UpdateTwitchIAPConfigShort(input *i_a_p.UpdateTwitchIAPCo
 	return ok.GetPayload(), nil
 }
 
-func (aaa *IAPService) DeleteTwitchIAPConfigShort(input *i_a_p.DeleteTwitchIAPConfigParams) error {
+func (aaa *IAPService) DeleteTwitchIAPConfigShort(input *iap.DeleteTwitchIAPConfigParams) error {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -1164,7 +1164,7 @@ func (aaa *IAPService) DeleteTwitchIAPConfigShort(input *i_a_p.DeleteTwitchIAPCo
 		}
 	}
 
-	_, err := aaa.Client.Iap.DeleteTwitchIAPConfigShort(input, authInfoWriter)
+	_, err := aaa.Client.IAP.DeleteTwitchIAPConfigShort(input, authInfoWriter)
 	if err != nil {
 		return err
 	}
@@ -1172,7 +1172,7 @@ func (aaa *IAPService) DeleteTwitchIAPConfigShort(input *i_a_p.DeleteTwitchIAPCo
 	return nil
 }
 
-func (aaa *IAPService) GetXblIAPConfigShort(input *i_a_p.GetXblIAPConfigParams) (*platformclientmodels.XblIAPConfigInfo, error) {
+func (aaa *IAPService) GetXblIAPConfigShort(input *iap.GetXblIAPConfigParams) (*platformclientmodels.XblIAPConfigInfo, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -1189,7 +1189,7 @@ func (aaa *IAPService) GetXblIAPConfigShort(input *i_a_p.GetXblIAPConfigParams) 
 		}
 	}
 
-	ok, err := aaa.Client.Iap.GetXblIAPConfigShort(input, authInfoWriter)
+	ok, err := aaa.Client.IAP.GetXblIAPConfigShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -1197,7 +1197,7 @@ func (aaa *IAPService) GetXblIAPConfigShort(input *i_a_p.GetXblIAPConfigParams) 
 	return ok.GetPayload(), nil
 }
 
-func (aaa *IAPService) UpdateXblIAPConfigShort(input *i_a_p.UpdateXblIAPConfigParams) (*platformclientmodels.XblIAPConfigInfo, error) {
+func (aaa *IAPService) UpdateXblIAPConfigShort(input *iap.UpdateXblIAPConfigParams) (*platformclientmodels.XblIAPConfigInfo, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -1214,7 +1214,7 @@ func (aaa *IAPService) UpdateXblIAPConfigShort(input *i_a_p.UpdateXblIAPConfigPa
 		}
 	}
 
-	ok, err := aaa.Client.Iap.UpdateXblIAPConfigShort(input, authInfoWriter)
+	ok, err := aaa.Client.IAP.UpdateXblIAPConfigShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -1222,7 +1222,7 @@ func (aaa *IAPService) UpdateXblIAPConfigShort(input *i_a_p.UpdateXblIAPConfigPa
 	return ok.GetPayload(), nil
 }
 
-func (aaa *IAPService) DeleteXblAPConfigShort(input *i_a_p.DeleteXblAPConfigParams) error {
+func (aaa *IAPService) DeleteXblAPConfigShort(input *iap.DeleteXblAPConfigParams) error {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -1239,7 +1239,7 @@ func (aaa *IAPService) DeleteXblAPConfigShort(input *i_a_p.DeleteXblAPConfigPara
 		}
 	}
 
-	_, err := aaa.Client.Iap.DeleteXblAPConfigShort(input, authInfoWriter)
+	_, err := aaa.Client.IAP.DeleteXblAPConfigShort(input, authInfoWriter)
 	if err != nil {
 		return err
 	}
@@ -1247,7 +1247,7 @@ func (aaa *IAPService) DeleteXblAPConfigShort(input *i_a_p.DeleteXblAPConfigPara
 	return nil
 }
 
-func (aaa *IAPService) UpdateXblBPCertFileShort(input *i_a_p.UpdateXblBPCertFileParams) (*platformclientmodels.XblIAPConfigInfo, error) {
+func (aaa *IAPService) UpdateXblBPCertFileShort(input *iap.UpdateXblBPCertFileParams) (*platformclientmodels.XblIAPConfigInfo, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -1264,7 +1264,7 @@ func (aaa *IAPService) UpdateXblBPCertFileShort(input *i_a_p.UpdateXblBPCertFile
 		}
 	}
 
-	ok, err := aaa.Client.Iap.UpdateXblBPCertFileShort(input, authInfoWriter)
+	ok, err := aaa.Client.IAP.UpdateXblBPCertFileShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -1272,7 +1272,7 @@ func (aaa *IAPService) UpdateXblBPCertFileShort(input *i_a_p.UpdateXblBPCertFile
 	return ok.GetPayload(), nil
 }
 
-func (aaa *IAPService) QueryUserIAPOrdersShort(input *i_a_p.QueryUserIAPOrdersParams) (*platformclientmodels.IAPOrderPagingSlicedResult, error) {
+func (aaa *IAPService) QueryUserIAPOrdersShort(input *iap.QueryUserIAPOrdersParams) (*platformclientmodels.IAPOrderPagingSlicedResult, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -1289,7 +1289,7 @@ func (aaa *IAPService) QueryUserIAPOrdersShort(input *i_a_p.QueryUserIAPOrdersPa
 		}
 	}
 
-	ok, err := aaa.Client.Iap.QueryUserIAPOrdersShort(input, authInfoWriter)
+	ok, err := aaa.Client.IAP.QueryUserIAPOrdersShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -1297,7 +1297,7 @@ func (aaa *IAPService) QueryUserIAPOrdersShort(input *i_a_p.QueryUserIAPOrdersPa
 	return ok.GetPayload(), nil
 }
 
-func (aaa *IAPService) QueryAllUserIAPOrdersShort(input *i_a_p.QueryAllUserIAPOrdersParams) (*platformclientmodels.IAPOrderPagingSlicedResult, error) {
+func (aaa *IAPService) QueryAllUserIAPOrdersShort(input *iap.QueryAllUserIAPOrdersParams) (*platformclientmodels.IAPOrderPagingSlicedResult, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -1314,7 +1314,7 @@ func (aaa *IAPService) QueryAllUserIAPOrdersShort(input *i_a_p.QueryAllUserIAPOr
 		}
 	}
 
-	ok, err := aaa.Client.Iap.QueryAllUserIAPOrdersShort(input, authInfoWriter)
+	ok, err := aaa.Client.IAP.QueryAllUserIAPOrdersShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -1322,7 +1322,7 @@ func (aaa *IAPService) QueryAllUserIAPOrdersShort(input *i_a_p.QueryAllUserIAPOr
 	return ok.GetPayload(), nil
 }
 
-func (aaa *IAPService) QueryUserIAPConsumeHistoryShort(input *i_a_p.QueryUserIAPConsumeHistoryParams) (*platformclientmodels.IAPConsumeHistoryPagingSlicedResult, error) {
+func (aaa *IAPService) QueryUserIAPConsumeHistoryShort(input *iap.QueryUserIAPConsumeHistoryParams) (*platformclientmodels.IAPConsumeHistoryPagingSlicedResult, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -1339,7 +1339,7 @@ func (aaa *IAPService) QueryUserIAPConsumeHistoryShort(input *i_a_p.QueryUserIAP
 		}
 	}
 
-	ok, err := aaa.Client.Iap.QueryUserIAPConsumeHistoryShort(input, authInfoWriter)
+	ok, err := aaa.Client.IAP.QueryUserIAPConsumeHistoryShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -1347,7 +1347,7 @@ func (aaa *IAPService) QueryUserIAPConsumeHistoryShort(input *i_a_p.QueryUserIAP
 	return ok.GetPayload(), nil
 }
 
-func (aaa *IAPService) MockFulfillIAPItemShort(input *i_a_p.MockFulfillIAPItemParams) error {
+func (aaa *IAPService) MockFulfillIAPItemShort(input *iap.MockFulfillIAPItemParams) error {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -1364,7 +1364,7 @@ func (aaa *IAPService) MockFulfillIAPItemShort(input *i_a_p.MockFulfillIAPItemPa
 		}
 	}
 
-	_, err := aaa.Client.Iap.MockFulfillIAPItemShort(input, authInfoWriter)
+	_, err := aaa.Client.IAP.MockFulfillIAPItemShort(input, authInfoWriter)
 	if err != nil {
 		return err
 	}
@@ -1372,7 +1372,7 @@ func (aaa *IAPService) MockFulfillIAPItemShort(input *i_a_p.MockFulfillIAPItemPa
 	return nil
 }
 
-func (aaa *IAPService) PublicFulfillAppleIAPItemShort(input *i_a_p.PublicFulfillAppleIAPItemParams) error {
+func (aaa *IAPService) PublicFulfillAppleIAPItemShort(input *iap.PublicFulfillAppleIAPItemParams) error {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -1389,7 +1389,7 @@ func (aaa *IAPService) PublicFulfillAppleIAPItemShort(input *i_a_p.PublicFulfill
 		}
 	}
 
-	_, err := aaa.Client.Iap.PublicFulfillAppleIAPItemShort(input, authInfoWriter)
+	_, err := aaa.Client.IAP.PublicFulfillAppleIAPItemShort(input, authInfoWriter)
 	if err != nil {
 		return err
 	}
@@ -1397,7 +1397,7 @@ func (aaa *IAPService) PublicFulfillAppleIAPItemShort(input *i_a_p.PublicFulfill
 	return nil
 }
 
-func (aaa *IAPService) SyncEpicGamesInventoryShort(input *i_a_p.SyncEpicGamesInventoryParams) ([]*platformclientmodels.EpicGamesReconcileResult, error) {
+func (aaa *IAPService) SyncEpicGamesInventoryShort(input *iap.SyncEpicGamesInventoryParams) ([]*platformclientmodels.EpicGamesReconcileResult, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -1414,7 +1414,7 @@ func (aaa *IAPService) SyncEpicGamesInventoryShort(input *i_a_p.SyncEpicGamesInv
 		}
 	}
 
-	ok, err := aaa.Client.Iap.SyncEpicGamesInventoryShort(input, authInfoWriter)
+	ok, err := aaa.Client.IAP.SyncEpicGamesInventoryShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -1422,7 +1422,7 @@ func (aaa *IAPService) SyncEpicGamesInventoryShort(input *i_a_p.SyncEpicGamesInv
 	return ok.GetPayload(), nil
 }
 
-func (aaa *IAPService) PublicFulfillGoogleIAPItemShort(input *i_a_p.PublicFulfillGoogleIAPItemParams) (*platformclientmodels.GoogleReceiptResolveResult, error) {
+func (aaa *IAPService) PublicFulfillGoogleIAPItemShort(input *iap.PublicFulfillGoogleIAPItemParams) (*platformclientmodels.GoogleReceiptResolveResult, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -1439,7 +1439,7 @@ func (aaa *IAPService) PublicFulfillGoogleIAPItemShort(input *i_a_p.PublicFulfil
 		}
 	}
 
-	ok, err := aaa.Client.Iap.PublicFulfillGoogleIAPItemShort(input, authInfoWriter)
+	ok, err := aaa.Client.IAP.PublicFulfillGoogleIAPItemShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -1447,7 +1447,7 @@ func (aaa *IAPService) PublicFulfillGoogleIAPItemShort(input *i_a_p.PublicFulfil
 	return ok.GetPayload(), nil
 }
 
-func (aaa *IAPService) PublicReconcilePlayStationStoreShort(input *i_a_p.PublicReconcilePlayStationStoreParams) ([]*platformclientmodels.PlayStationReconcileResult, error) {
+func (aaa *IAPService) PublicReconcilePlayStationStoreShort(input *iap.PublicReconcilePlayStationStoreParams) ([]*platformclientmodels.PlayStationReconcileResult, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -1464,7 +1464,7 @@ func (aaa *IAPService) PublicReconcilePlayStationStoreShort(input *i_a_p.PublicR
 		}
 	}
 
-	ok, err := aaa.Client.Iap.PublicReconcilePlayStationStoreShort(input, authInfoWriter)
+	ok, err := aaa.Client.IAP.PublicReconcilePlayStationStoreShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -1472,7 +1472,7 @@ func (aaa *IAPService) PublicReconcilePlayStationStoreShort(input *i_a_p.PublicR
 	return ok.GetPayload(), nil
 }
 
-func (aaa *IAPService) PublicReconcilePlayStationStoreWithMultipleServiceLabelsShort(input *i_a_p.PublicReconcilePlayStationStoreWithMultipleServiceLabelsParams) ([]*platformclientmodels.PlayStationReconcileResult, error) {
+func (aaa *IAPService) PublicReconcilePlayStationStoreWithMultipleServiceLabelsShort(input *iap.PublicReconcilePlayStationStoreWithMultipleServiceLabelsParams) ([]*platformclientmodels.PlayStationReconcileResult, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -1489,7 +1489,7 @@ func (aaa *IAPService) PublicReconcilePlayStationStoreWithMultipleServiceLabelsS
 		}
 	}
 
-	ok, err := aaa.Client.Iap.PublicReconcilePlayStationStoreWithMultipleServiceLabelsShort(input, authInfoWriter)
+	ok, err := aaa.Client.IAP.PublicReconcilePlayStationStoreWithMultipleServiceLabelsShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -1497,7 +1497,7 @@ func (aaa *IAPService) PublicReconcilePlayStationStoreWithMultipleServiceLabelsS
 	return ok.GetPayload(), nil
 }
 
-func (aaa *IAPService) SyncSteamInventoryShort(input *i_a_p.SyncSteamInventoryParams) error {
+func (aaa *IAPService) SyncSteamInventoryShort(input *iap.SyncSteamInventoryParams) error {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -1514,7 +1514,7 @@ func (aaa *IAPService) SyncSteamInventoryShort(input *i_a_p.SyncSteamInventoryPa
 		}
 	}
 
-	_, err := aaa.Client.Iap.SyncSteamInventoryShort(input, authInfoWriter)
+	_, err := aaa.Client.IAP.SyncSteamInventoryShort(input, authInfoWriter)
 	if err != nil {
 		return err
 	}
@@ -1522,7 +1522,7 @@ func (aaa *IAPService) SyncSteamInventoryShort(input *i_a_p.SyncSteamInventoryPa
 	return nil
 }
 
-func (aaa *IAPService) SyncTwitchDropsEntitlementShort(input *i_a_p.SyncTwitchDropsEntitlementParams) error {
+func (aaa *IAPService) SyncTwitchDropsEntitlementShort(input *iap.SyncTwitchDropsEntitlementParams) error {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -1539,7 +1539,7 @@ func (aaa *IAPService) SyncTwitchDropsEntitlementShort(input *i_a_p.SyncTwitchDr
 		}
 	}
 
-	_, err := aaa.Client.Iap.SyncTwitchDropsEntitlementShort(input, authInfoWriter)
+	_, err := aaa.Client.IAP.SyncTwitchDropsEntitlementShort(input, authInfoWriter)
 	if err != nil {
 		return err
 	}
@@ -1547,7 +1547,7 @@ func (aaa *IAPService) SyncTwitchDropsEntitlementShort(input *i_a_p.SyncTwitchDr
 	return nil
 }
 
-func (aaa *IAPService) SyncXboxInventoryShort(input *i_a_p.SyncXboxInventoryParams) ([]*platformclientmodels.XblReconcileResult, error) {
+func (aaa *IAPService) SyncXboxInventoryShort(input *iap.SyncXboxInventoryParams) ([]*platformclientmodels.XblReconcileResult, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -1564,7 +1564,7 @@ func (aaa *IAPService) SyncXboxInventoryShort(input *i_a_p.SyncXboxInventoryPara
 		}
 	}
 
-	ok, err := aaa.Client.Iap.SyncXboxInventoryShort(input, authInfoWriter)
+	ok, err := aaa.Client.IAP.SyncXboxInventoryShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}

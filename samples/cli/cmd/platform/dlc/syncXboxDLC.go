@@ -9,7 +9,7 @@ package dlc
 import (
 	"encoding/json"
 
-	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclient/d_l_c"
+	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclient/dlc"
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/platform"
@@ -36,7 +36,7 @@ var SyncXboxDLCCmd = &cobra.Command{
 		if errBody != nil {
 			return errBody
 		}
-		input := &d_l_c.SyncXboxDLCParams{
+		input := &dlc.SyncXboxDLCParams{
 			Body:      body,
 			Namespace: namespace,
 			UserID:    userId,

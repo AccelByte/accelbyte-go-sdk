@@ -7,14 +7,13 @@
 package lobby
 
 import (
-	"github.com/go-openapi/runtime/client"
-
 	"github.com/AccelByte/accelbyte-go-sdk/lobby-sdk/pkg/lobbyclient"
 	"github.com/AccelByte/accelbyte-go-sdk/lobby-sdk/pkg/lobbyclient/admin"
 	"github.com/AccelByte/accelbyte-go-sdk/lobby-sdk/pkg/lobbyclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/repository"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils/auth"
+	"github.com/go-openapi/runtime/client"
 )
 
 type AdminService struct {

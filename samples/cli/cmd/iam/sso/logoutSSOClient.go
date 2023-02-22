@@ -7,7 +7,7 @@
 package sso
 
 import (
-	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclient/s_s_o"
+	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclient/sso"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/iam"
 	"github.com/AccelByte/sample-apps/pkg/repository"
@@ -26,7 +26,7 @@ var LogoutSSOClientCmd = &cobra.Command{
 			TokenRepository: &repository.TokenRepositoryImpl{},
 		}
 		platformId, _ := cmd.Flags().GetString("platformId")
-		input := &s_s_o.LogoutSSOClientParams{
+		input := &sso.LogoutSSOClientParams{
 			PlatformID: platformId,
 		}
 		errInput := ssoService.LogoutSSOClientShort(input)

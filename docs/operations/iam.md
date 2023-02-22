@@ -290,11 +290,11 @@
 ### SSO Credential Wrapper:  [SSOCredential](../../services-api/pkg/service/iam/ssoCredential.go)
 | Endpoint | Method | ID | Class | Wrapper | Example |
 |---|---|---|---|---|---|
-| `/iam/v3/admin/namespaces/{namespace}/platforms/sso` | GET | RetrieveAllSSOLoginPlatformCredentialV3Short | [RetrieveAllSSOLoginPlatformCredentialV3Short](../../iam-sdk/pkg/iamclient/s_s_o_credential/sso_credential_client.go) | [RetrieveAllSSOLoginPlatformCredentialV3Short](../../services-api/pkg/service/iam/ssoCredential.go) | [RetrieveAllSSOLoginPlatformCredentialV3Short](../../samples/cli/cmd/iam/ssoCredential/retrieveAllSSOLoginPlatformCredentialV3.go) |
-| `/iam/v3/admin/namespaces/{namespace}/platforms/{platformId}/sso` | GET | RetrieveSSOLoginPlatformCredentialShort | [RetrieveSSOLoginPlatformCredentialShort](../../iam-sdk/pkg/iamclient/s_s_o_credential/sso_credential_client.go) | [RetrieveSSOLoginPlatformCredentialShort](../../services-api/pkg/service/iam/ssoCredential.go) | [RetrieveSSOLoginPlatformCredentialShort](../../samples/cli/cmd/iam/ssoCredential/retrieveSSOLoginPlatformCredential.go) |
-| `/iam/v3/admin/namespaces/{namespace}/platforms/{platformId}/sso` | POST | AddSSOLoginPlatformCredentialShort | [AddSSOLoginPlatformCredentialShort](../../iam-sdk/pkg/iamclient/s_s_o_credential/sso_credential_client.go) | [AddSSOLoginPlatformCredentialShort](../../services-api/pkg/service/iam/ssoCredential.go) | [AddSSOLoginPlatformCredentialShort](../../samples/cli/cmd/iam/ssoCredential/addSSOLoginPlatformCredential.go) |
-| `/iam/v3/admin/namespaces/{namespace}/platforms/{platformId}/sso` | DELETE | DeleteSSOLoginPlatformCredentialV3Short | [DeleteSSOLoginPlatformCredentialV3Short](../../iam-sdk/pkg/iamclient/s_s_o_credential/sso_credential_client.go) | [DeleteSSOLoginPlatformCredentialV3Short](../../services-api/pkg/service/iam/ssoCredential.go) | [DeleteSSOLoginPlatformCredentialV3Short](../../samples/cli/cmd/iam/ssoCredential/deleteSSOLoginPlatformCredentialV3.go) |
-| `/iam/v3/admin/namespaces/{namespace}/platforms/{platformId}/sso` | PATCH | UpdateSSOPlatformCredentialShort | [UpdateSSOPlatformCredentialShort](../../iam-sdk/pkg/iamclient/s_s_o_credential/sso_credential_client.go) | [UpdateSSOPlatformCredentialShort](../../services-api/pkg/service/iam/ssoCredential.go) | [UpdateSSOPlatformCredentialShort](../../samples/cli/cmd/iam/ssoCredential/updateSSOPlatformCredential.go) |
+| `/iam/v3/admin/namespaces/{namespace}/platforms/sso` | GET | RetrieveAllSSOLoginPlatformCredentialV3Short | [RetrieveAllSSOLoginPlatformCredentialV3Short](../../iam-sdk/pkg/iamclient/sso_credential/sso_credential_client.go) | [RetrieveAllSSOLoginPlatformCredentialV3Short](../../services-api/pkg/service/iam/ssoCredential.go) | [RetrieveAllSSOLoginPlatformCredentialV3Short](../../samples/cli/cmd/iam/ssoCredential/retrieveAllSSOLoginPlatformCredentialV3.go) |
+| `/iam/v3/admin/namespaces/{namespace}/platforms/{platformId}/sso` | GET | RetrieveSSOLoginPlatformCredentialShort | [RetrieveSSOLoginPlatformCredentialShort](../../iam-sdk/pkg/iamclient/sso_credential/sso_credential_client.go) | [RetrieveSSOLoginPlatformCredentialShort](../../services-api/pkg/service/iam/ssoCredential.go) | [RetrieveSSOLoginPlatformCredentialShort](../../samples/cli/cmd/iam/ssoCredential/retrieveSSOLoginPlatformCredential.go) |
+| `/iam/v3/admin/namespaces/{namespace}/platforms/{platformId}/sso` | POST | AddSSOLoginPlatformCredentialShort | [AddSSOLoginPlatformCredentialShort](../../iam-sdk/pkg/iamclient/sso_credential/sso_credential_client.go) | [AddSSOLoginPlatformCredentialShort](../../services-api/pkg/service/iam/ssoCredential.go) | [AddSSOLoginPlatformCredentialShort](../../samples/cli/cmd/iam/ssoCredential/addSSOLoginPlatformCredential.go) |
+| `/iam/v3/admin/namespaces/{namespace}/platforms/{platformId}/sso` | DELETE | DeleteSSOLoginPlatformCredentialV3Short | [DeleteSSOLoginPlatformCredentialV3Short](../../iam-sdk/pkg/iamclient/sso_credential/sso_credential_client.go) | [DeleteSSOLoginPlatformCredentialV3Short](../../services-api/pkg/service/iam/ssoCredential.go) | [DeleteSSOLoginPlatformCredentialV3Short](../../samples/cli/cmd/iam/ssoCredential/deleteSSOLoginPlatformCredentialV3.go) |
+| `/iam/v3/admin/namespaces/{namespace}/platforms/{platformId}/sso` | PATCH | UpdateSSOPlatformCredentialShort | [UpdateSSOPlatformCredentialShort](../../iam-sdk/pkg/iamclient/sso_credential/sso_credential_client.go) | [UpdateSSOPlatformCredentialShort](../../services-api/pkg/service/iam/ssoCredential.go) | [UpdateSSOPlatformCredentialShort](../../samples/cli/cmd/iam/ssoCredential/updateSSOPlatformCredential.go) |
 
 ### OAuth2.0 - Extension Wrapper:  [OAuth20Extension](../../services-api/pkg/service/iam/oAuth20Extension.go)
 | Endpoint | Method | ID | Class | Wrapper | Example |
@@ -333,13 +333,13 @@
 ### SSO SAML 2.0 Wrapper:  [SSOSAML20](../../services-api/pkg/service/iam/ssoSAML20.go)
 | Endpoint | Method | ID | Class | Wrapper | Example |
 |---|---|---|---|---|---|
-| `/iam/v3/sso/saml/platforms/{platformId}/authenticate` | POST | PlatformAuthenticateSAMLV3HandlerShort | [PlatformAuthenticateSAMLV3HandlerShort](../../iam-sdk/pkg/iamclient/s_s_o_s_a_m_l_2_0/ssosaml20_client.go) | [PlatformAuthenticateSAMLV3HandlerShort](../../services-api/pkg/service/iam/ssoSAML20.go) | [PlatformAuthenticateSAMLV3HandlerShort](../../samples/cli/cmd/iam/ssoSAML20/platformAuthenticateSAMLV3Handler.go) |
+| `/iam/v3/sso/saml/platforms/{platformId}/authenticate` | POST | PlatformAuthenticateSAMLV3HandlerShort | [PlatformAuthenticateSAMLV3HandlerShort](../../iam-sdk/pkg/iamclient/sso_saml_2_0/sso_saml_20_client.go) | [PlatformAuthenticateSAMLV3HandlerShort](../../services-api/pkg/service/iam/ssoSAML20.go) | [PlatformAuthenticateSAMLV3HandlerShort](../../samples/cli/cmd/iam/ssoSAML20/platformAuthenticateSAMLV3Handler.go) |
 
 ### SSO Wrapper:  [SSO](../../services-api/pkg/service/iam/sso.go)
 | Endpoint | Method | ID | Class | Wrapper | Example |
 |---|---|---|---|---|---|
-| `/iam/v3/sso/{platformId}` | GET | LoginSSOClientShort | [LoginSSOClientShort](../../iam-sdk/pkg/iamclient/s_s_o/sso_client.go) | [LoginSSOClientShort](../../services-api/pkg/service/iam/sso.go) | [LoginSSOClientShort](../../samples/cli/cmd/iam/sso/loginSSOClient.go) |
-| `/iam/v3/sso/{platformId}/logout` | POST | LogoutSSOClientShort | [LogoutSSOClientShort](../../iam-sdk/pkg/iamclient/s_s_o/sso_client.go) | [LogoutSSOClientShort](../../services-api/pkg/service/iam/sso.go) | [LogoutSSOClientShort](../../samples/cli/cmd/iam/sso/logoutSSOClient.go) |
+| `/iam/v3/sso/{platformId}` | GET | LoginSSOClientShort | [LoginSSOClientShort](../../iam-sdk/pkg/iamclient/sso/sso_client.go) | [LoginSSOClientShort](../../services-api/pkg/service/iam/sso.go) | [LoginSSOClientShort](../../samples/cli/cmd/iam/sso/loginSSOClient.go) |
+| `/iam/v3/sso/{platformId}/logout` | POST | LogoutSSOClientShort | [LogoutSSOClientShort](../../iam-sdk/pkg/iamclient/sso/sso_client.go) | [LogoutSSOClientShort](../../services-api/pkg/service/iam/sso.go) | [LogoutSSOClientShort](../../samples/cli/cmd/iam/sso/logoutSSOClient.go) |
 
 ### Devices V4 Wrapper:  [DevicesV4](../../services-api/pkg/service/iam/devicesV4.go)
 | Endpoint | Method | ID | Class | Wrapper | Example |
@@ -597,8 +597,8 @@
 | `model.RoleUpdateRequestV3` | [ModelRoleUpdateRequestV3 ](../../iam-sdk/pkg/iamclientmodels/model_role_update_request_v3.go) |
 | `model.RoleV4Request` | [ModelRoleV4Request ](../../iam-sdk/pkg/iamclientmodels/model_role_v4_request.go) |
 | `model.RoleV4Response` | [ModelRoleV4Response ](../../iam-sdk/pkg/iamclientmodels/model_role_v4_response.go) |
-| `model.SSOPlatformCredentialRequest` | [ModelSSOPlatformCredentialRequest ](../../iam-sdk/pkg/iamclientmodels/model_s_s_o_platform_credential_request.go) |
-| `model.SSOPlatformCredentialResponse` | [ModelSSOPlatformCredentialResponse ](../../iam-sdk/pkg/iamclientmodels/model_s_s_o_platform_credential_response.go) |
+| `model.SSOPlatformCredentialRequest` | [ModelSSOPlatformCredentialRequest ](../../iam-sdk/pkg/iamclientmodels/model_sso_platform_credential_request.go) |
+| `model.SSOPlatformCredentialResponse` | [ModelSSOPlatformCredentialResponse ](../../iam-sdk/pkg/iamclientmodels/model_sso_platform_credential_response.go) |
 | `model.SearchUsersByPlatformIDResponse` | [ModelSearchUsersByPlatformIDResponse ](../../iam-sdk/pkg/iamclientmodels/model_search_users_by_platform_id_response.go) |
 | `model.SearchUsersResponse` | [ModelSearchUsersResponse ](../../iam-sdk/pkg/iamclientmodels/model_search_users_response.go) |
 | `model.SearchUsersResponseWithPaginationV3` | [ModelSearchUsersResponseWithPaginationV3 ](../../iam-sdk/pkg/iamclientmodels/model_search_users_response_with_pagination_v3.go) |

@@ -7,7 +7,7 @@
 package ssoCredential
 
 import (
-	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclient/s_s_o_credential"
+	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclient/sso_credential"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/iam"
 	"github.com/AccelByte/sample-apps/pkg/repository"
@@ -27,7 +27,7 @@ var DeleteSSOLoginPlatformCredentialV3Cmd = &cobra.Command{
 		}
 		namespace, _ := cmd.Flags().GetString("namespace")
 		platformId, _ := cmd.Flags().GetString("platformId")
-		input := &s_s_o_credential.DeleteSSOLoginPlatformCredentialV3Params{
+		input := &sso_credential.DeleteSSOLoginPlatformCredentialV3Params{
 			Namespace:  namespace,
 			PlatformID: platformId,
 		}

@@ -76,12 +76,13 @@ func NewGetUserStatusOK() *GetUserStatusOK {
 	return &GetUserStatusOK{}
 }
 
-/*GetUserStatusOK handles this case with default header values.
+/*
+GetUserStatusOK handles this case with default header values.
 
-  successful operation
+	successful operation
 */
 type GetUserStatusOK struct {
-	Payload *basicclientmodels.ADTOObjectForEqu8UserStatus
+	Payload *basicclientmodels.ADTOObjectForEQU8UserStatus
 }
 
 func (o *GetUserStatusOK) Error() string {
@@ -103,7 +104,7 @@ func (o *GetUserStatusOK) ToJSONString() string {
 	return fmt.Sprintf("%+v", string(b))
 }
 
-func (o *GetUserStatusOK) GetPayload() *basicclientmodels.ADTOObjectForEqu8UserStatus {
+func (o *GetUserStatusOK) GetPayload() *basicclientmodels.ADTOObjectForEQU8UserStatus {
 	return o.Payload
 }
 
@@ -114,7 +115,7 @@ func (o *GetUserStatusOK) readResponse(response runtime.ClientResponse, consumer
 		consumer = runtime.ByteStreamConsumer()
 	}
 
-	o.Payload = new(basicclientmodels.ADTOObjectForEqu8UserStatus)
+	o.Payload = new(basicclientmodels.ADTOObjectForEQU8UserStatus)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
@@ -129,9 +130,10 @@ func NewGetUserStatusBadRequest() *GetUserStatusBadRequest {
 	return &GetUserStatusBadRequest{}
 }
 
-/*GetUserStatusBadRequest handles this case with default header values.
+/*
+GetUserStatusBadRequest handles this case with default header values.
 
-  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>11621</td><td>Invalid EQU8 api key in namespace [{namespace}]</td></tr></table>
+	<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>11621</td><td>Invalid EQU8 api key in namespace [{namespace}]</td></tr></table>
 */
 type GetUserStatusBadRequest struct {
 	Payload *basicclientmodels.ErrorEntity
@@ -182,9 +184,10 @@ func NewGetUserStatusNotFound() *GetUserStatusNotFound {
 	return &GetUserStatusNotFound{}
 }
 
-/*GetUserStatusNotFound handles this case with default header values.
+/*
+GetUserStatusNotFound handles this case with default header values.
 
-  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>11641</td><td>Equ8 config not found in namespace [{namespace}]</td></tr></table>
+	<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>11641</td><td>Equ8 config not found in namespace [{namespace}]</td></tr></table>
 */
 type GetUserStatusNotFound struct {
 	Payload *basicclientmodels.ErrorEntity
@@ -235,9 +238,10 @@ func NewGetUserStatusUnprocessableEntity() *GetUserStatusUnprocessableEntity {
 	return &GetUserStatusUnprocessableEntity{}
 }
 
-/*GetUserStatusUnprocessableEntity handles this case with default header values.
+/*
+GetUserStatusUnprocessableEntity handles this case with default header values.
 
-  <table><tr><td>ErrorCode</td><td>ErrorMessage</td></tr><tr><td>20002</td><td>validation error</td></tr></table>
+	<table><tr><td>ErrorCode</td><td>ErrorMessage</td></tr><tr><td>20002</td><td>validation error</td></tr></table>
 */
 type GetUserStatusUnprocessableEntity struct {
 	Payload *basicclientmodels.ValidationErrorEntity
@@ -288,9 +292,10 @@ func NewGetUserStatusInternalServerError() *GetUserStatusInternalServerError {
 	return &GetUserStatusInternalServerError{}
 }
 
-/*GetUserStatusInternalServerError handles this case with default header values.
+/*
+GetUserStatusInternalServerError handles this case with default header values.
 
-  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20000</td><td>internal server error</td></tr></table>
+	<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20000</td><td>internal server error</td></tr></table>
 */
 type GetUserStatusInternalServerError struct {
 	Payload *basicclientmodels.ErrorEntity

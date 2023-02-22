@@ -8,7 +8,7 @@ package platform
 
 import (
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclient"
-	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclient/d_l_c"
+	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclient/dlc"
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/repository"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils"
@@ -40,12 +40,12 @@ func (aaa *DLCService) GetAuthSession() auth.Session {
 }
 
 // deprecated(2022-01-10): please use GetDLCItemConfigShort instead.
-func (aaa *DLCService) GetDLCItemConfig(input *d_l_c.GetDLCItemConfigParams) (*platformclientmodels.DLCItemConfigInfo, error) {
+func (aaa *DLCService) GetDLCItemConfig(input *dlc.GetDLCItemConfigParams) (*platformclientmodels.DLCItemConfigInfo, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, notFound, err := aaa.Client.Dlc.GetDLCItemConfig(input, client.BearerToken(*token.AccessToken))
+	ok, notFound, err := aaa.Client.DLC.GetDLCItemConfig(input, client.BearerToken(*token.AccessToken))
 	if notFound != nil {
 		return nil, notFound
 	}
@@ -57,12 +57,12 @@ func (aaa *DLCService) GetDLCItemConfig(input *d_l_c.GetDLCItemConfigParams) (*p
 }
 
 // deprecated(2022-01-10): please use UpdateDLCItemConfigShort instead.
-func (aaa *DLCService) UpdateDLCItemConfig(input *d_l_c.UpdateDLCItemConfigParams) (*platformclientmodels.DLCItemConfigInfo, error) {
+func (aaa *DLCService) UpdateDLCItemConfig(input *dlc.UpdateDLCItemConfigParams) (*platformclientmodels.DLCItemConfigInfo, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, conflict, unprocessableEntity, err := aaa.Client.Dlc.UpdateDLCItemConfig(input, client.BearerToken(*token.AccessToken))
+	ok, conflict, unprocessableEntity, err := aaa.Client.DLC.UpdateDLCItemConfig(input, client.BearerToken(*token.AccessToken))
 	if conflict != nil {
 		return nil, conflict
 	}
@@ -77,12 +77,12 @@ func (aaa *DLCService) UpdateDLCItemConfig(input *d_l_c.UpdateDLCItemConfigParam
 }
 
 // deprecated(2022-01-10): please use DeleteDLCItemConfigShort instead.
-func (aaa *DLCService) DeleteDLCItemConfig(input *d_l_c.DeleteDLCItemConfigParams) error {
+func (aaa *DLCService) DeleteDLCItemConfig(input *dlc.DeleteDLCItemConfigParams) error {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	_, err = aaa.Client.Dlc.DeleteDLCItemConfig(input, client.BearerToken(*token.AccessToken))
+	_, err = aaa.Client.DLC.DeleteDLCItemConfig(input, client.BearerToken(*token.AccessToken))
 	if err != nil {
 		return err
 	}
@@ -91,12 +91,12 @@ func (aaa *DLCService) DeleteDLCItemConfig(input *d_l_c.DeleteDLCItemConfigParam
 }
 
 // deprecated(2022-01-10): please use GetPlatformDLCConfigShort instead.
-func (aaa *DLCService) GetPlatformDLCConfig(input *d_l_c.GetPlatformDLCConfigParams) (*platformclientmodels.PlatformDLCConfigInfo, error) {
+func (aaa *DLCService) GetPlatformDLCConfig(input *dlc.GetPlatformDLCConfigParams) (*platformclientmodels.PlatformDLCConfigInfo, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, notFound, err := aaa.Client.Dlc.GetPlatformDLCConfig(input, client.BearerToken(*token.AccessToken))
+	ok, notFound, err := aaa.Client.DLC.GetPlatformDLCConfig(input, client.BearerToken(*token.AccessToken))
 	if notFound != nil {
 		return nil, notFound
 	}
@@ -108,12 +108,12 @@ func (aaa *DLCService) GetPlatformDLCConfig(input *d_l_c.GetPlatformDLCConfigPar
 }
 
 // deprecated(2022-01-10): please use UpdatePlatformDLCConfigShort instead.
-func (aaa *DLCService) UpdatePlatformDLCConfig(input *d_l_c.UpdatePlatformDLCConfigParams) (*platformclientmodels.PlatformDLCConfigInfo, error) {
+func (aaa *DLCService) UpdatePlatformDLCConfig(input *dlc.UpdatePlatformDLCConfigParams) (*platformclientmodels.PlatformDLCConfigInfo, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, unprocessableEntity, err := aaa.Client.Dlc.UpdatePlatformDLCConfig(input, client.BearerToken(*token.AccessToken))
+	ok, unprocessableEntity, err := aaa.Client.DLC.UpdatePlatformDLCConfig(input, client.BearerToken(*token.AccessToken))
 	if unprocessableEntity != nil {
 		return nil, unprocessableEntity
 	}
@@ -125,12 +125,12 @@ func (aaa *DLCService) UpdatePlatformDLCConfig(input *d_l_c.UpdatePlatformDLCCon
 }
 
 // deprecated(2022-01-10): please use DeletePlatformDLCConfigShort instead.
-func (aaa *DLCService) DeletePlatformDLCConfig(input *d_l_c.DeletePlatformDLCConfigParams) error {
+func (aaa *DLCService) DeletePlatformDLCConfig(input *dlc.DeletePlatformDLCConfigParams) error {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	_, err = aaa.Client.Dlc.DeletePlatformDLCConfig(input, client.BearerToken(*token.AccessToken))
+	_, err = aaa.Client.DLC.DeletePlatformDLCConfig(input, client.BearerToken(*token.AccessToken))
 	if err != nil {
 		return err
 	}
@@ -139,12 +139,12 @@ func (aaa *DLCService) DeletePlatformDLCConfig(input *d_l_c.DeletePlatformDLCCon
 }
 
 // deprecated(2022-01-10): please use GetUserDLCShort instead.
-func (aaa *DLCService) GetUserDLC(input *d_l_c.GetUserDLCParams) (*platformclientmodels.UserDLC, error) {
+func (aaa *DLCService) GetUserDLC(input *dlc.GetUserDLCParams) (*platformclientmodels.UserDLC, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, err := aaa.Client.Dlc.GetUserDLC(input, client.BearerToken(*token.AccessToken))
+	ok, err := aaa.Client.DLC.GetUserDLC(input, client.BearerToken(*token.AccessToken))
 	if err != nil {
 		return nil, err
 	}
@@ -153,12 +153,12 @@ func (aaa *DLCService) GetUserDLC(input *d_l_c.GetUserDLCParams) (*platformclien
 }
 
 // deprecated(2022-01-10): please use SyncEpicGameDLCShort instead.
-func (aaa *DLCService) SyncEpicGameDLC(input *d_l_c.SyncEpicGameDLCParams) error {
+func (aaa *DLCService) SyncEpicGameDLC(input *dlc.SyncEpicGameDLCParams) error {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	_, badRequest, err := aaa.Client.Dlc.SyncEpicGameDLC(input, client.BearerToken(*token.AccessToken))
+	_, badRequest, err := aaa.Client.DLC.SyncEpicGameDLC(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return badRequest
 	}
@@ -169,13 +169,13 @@ func (aaa *DLCService) SyncEpicGameDLC(input *d_l_c.SyncEpicGameDLCParams) error
 	return nil
 }
 
-// deprecated(2022-01-10): please use PublicSyncPsnDlcInventoryShort instead.
-func (aaa *DLCService) PublicSyncPsnDlcInventory(input *d_l_c.PublicSyncPsnDlcInventoryParams) error {
+// deprecated(2022-01-10): please use PublicSyncPsnDLCInventoryShort instead.
+func (aaa *DLCService) PublicSyncPsnDLCInventory(input *dlc.PublicSyncPsnDLCInventoryParams) error {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	_, badRequest, err := aaa.Client.Dlc.PublicSyncPsnDlcInventory(input, client.BearerToken(*token.AccessToken))
+	_, badRequest, err := aaa.Client.DLC.PublicSyncPsnDLCInventory(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return badRequest
 	}
@@ -186,13 +186,13 @@ func (aaa *DLCService) PublicSyncPsnDlcInventory(input *d_l_c.PublicSyncPsnDlcIn
 	return nil
 }
 
-// deprecated(2022-01-10): please use PublicSyncPsnDlcInventoryWithMultipleServiceLabelsShort instead.
-func (aaa *DLCService) PublicSyncPsnDlcInventoryWithMultipleServiceLabels(input *d_l_c.PublicSyncPsnDlcInventoryWithMultipleServiceLabelsParams) error {
+// deprecated(2022-01-10): please use PublicSyncPsnDLCInventoryWithMultipleServiceLabelsShort instead.
+func (aaa *DLCService) PublicSyncPsnDLCInventoryWithMultipleServiceLabels(input *dlc.PublicSyncPsnDLCInventoryWithMultipleServiceLabelsParams) error {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	_, badRequest, err := aaa.Client.Dlc.PublicSyncPsnDlcInventoryWithMultipleServiceLabels(input, client.BearerToken(*token.AccessToken))
+	_, badRequest, err := aaa.Client.DLC.PublicSyncPsnDLCInventoryWithMultipleServiceLabels(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return badRequest
 	}
@@ -204,12 +204,12 @@ func (aaa *DLCService) PublicSyncPsnDlcInventoryWithMultipleServiceLabels(input 
 }
 
 // deprecated(2022-01-10): please use SyncSteamDLCShort instead.
-func (aaa *DLCService) SyncSteamDLC(input *d_l_c.SyncSteamDLCParams) error {
+func (aaa *DLCService) SyncSteamDLC(input *dlc.SyncSteamDLCParams) error {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	_, badRequest, err := aaa.Client.Dlc.SyncSteamDLC(input, client.BearerToken(*token.AccessToken))
+	_, badRequest, err := aaa.Client.DLC.SyncSteamDLC(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return badRequest
 	}
@@ -221,12 +221,12 @@ func (aaa *DLCService) SyncSteamDLC(input *d_l_c.SyncSteamDLCParams) error {
 }
 
 // deprecated(2022-01-10): please use SyncXboxDLCShort instead.
-func (aaa *DLCService) SyncXboxDLC(input *d_l_c.SyncXboxDLCParams) error {
+func (aaa *DLCService) SyncXboxDLC(input *dlc.SyncXboxDLCParams) error {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	_, badRequest, err := aaa.Client.Dlc.SyncXboxDLC(input, client.BearerToken(*token.AccessToken))
+	_, badRequest, err := aaa.Client.DLC.SyncXboxDLC(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return badRequest
 	}
@@ -237,7 +237,7 @@ func (aaa *DLCService) SyncXboxDLC(input *d_l_c.SyncXboxDLCParams) error {
 	return nil
 }
 
-func (aaa *DLCService) GetDLCItemConfigShort(input *d_l_c.GetDLCItemConfigParams) (*platformclientmodels.DLCItemConfigInfo, error) {
+func (aaa *DLCService) GetDLCItemConfigShort(input *dlc.GetDLCItemConfigParams) (*platformclientmodels.DLCItemConfigInfo, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -254,7 +254,7 @@ func (aaa *DLCService) GetDLCItemConfigShort(input *d_l_c.GetDLCItemConfigParams
 		}
 	}
 
-	ok, err := aaa.Client.Dlc.GetDLCItemConfigShort(input, authInfoWriter)
+	ok, err := aaa.Client.DLC.GetDLCItemConfigShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -262,7 +262,7 @@ func (aaa *DLCService) GetDLCItemConfigShort(input *d_l_c.GetDLCItemConfigParams
 	return ok.GetPayload(), nil
 }
 
-func (aaa *DLCService) UpdateDLCItemConfigShort(input *d_l_c.UpdateDLCItemConfigParams) (*platformclientmodels.DLCItemConfigInfo, error) {
+func (aaa *DLCService) UpdateDLCItemConfigShort(input *dlc.UpdateDLCItemConfigParams) (*platformclientmodels.DLCItemConfigInfo, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -279,7 +279,7 @@ func (aaa *DLCService) UpdateDLCItemConfigShort(input *d_l_c.UpdateDLCItemConfig
 		}
 	}
 
-	ok, err := aaa.Client.Dlc.UpdateDLCItemConfigShort(input, authInfoWriter)
+	ok, err := aaa.Client.DLC.UpdateDLCItemConfigShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -287,7 +287,7 @@ func (aaa *DLCService) UpdateDLCItemConfigShort(input *d_l_c.UpdateDLCItemConfig
 	return ok.GetPayload(), nil
 }
 
-func (aaa *DLCService) DeleteDLCItemConfigShort(input *d_l_c.DeleteDLCItemConfigParams) error {
+func (aaa *DLCService) DeleteDLCItemConfigShort(input *dlc.DeleteDLCItemConfigParams) error {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -304,7 +304,7 @@ func (aaa *DLCService) DeleteDLCItemConfigShort(input *d_l_c.DeleteDLCItemConfig
 		}
 	}
 
-	_, err := aaa.Client.Dlc.DeleteDLCItemConfigShort(input, authInfoWriter)
+	_, err := aaa.Client.DLC.DeleteDLCItemConfigShort(input, authInfoWriter)
 	if err != nil {
 		return err
 	}
@@ -312,7 +312,7 @@ func (aaa *DLCService) DeleteDLCItemConfigShort(input *d_l_c.DeleteDLCItemConfig
 	return nil
 }
 
-func (aaa *DLCService) GetPlatformDLCConfigShort(input *d_l_c.GetPlatformDLCConfigParams) (*platformclientmodels.PlatformDLCConfigInfo, error) {
+func (aaa *DLCService) GetPlatformDLCConfigShort(input *dlc.GetPlatformDLCConfigParams) (*platformclientmodels.PlatformDLCConfigInfo, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -329,7 +329,7 @@ func (aaa *DLCService) GetPlatformDLCConfigShort(input *d_l_c.GetPlatformDLCConf
 		}
 	}
 
-	ok, err := aaa.Client.Dlc.GetPlatformDLCConfigShort(input, authInfoWriter)
+	ok, err := aaa.Client.DLC.GetPlatformDLCConfigShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -337,7 +337,7 @@ func (aaa *DLCService) GetPlatformDLCConfigShort(input *d_l_c.GetPlatformDLCConf
 	return ok.GetPayload(), nil
 }
 
-func (aaa *DLCService) UpdatePlatformDLCConfigShort(input *d_l_c.UpdatePlatformDLCConfigParams) (*platformclientmodels.PlatformDLCConfigInfo, error) {
+func (aaa *DLCService) UpdatePlatformDLCConfigShort(input *dlc.UpdatePlatformDLCConfigParams) (*platformclientmodels.PlatformDLCConfigInfo, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -354,7 +354,7 @@ func (aaa *DLCService) UpdatePlatformDLCConfigShort(input *d_l_c.UpdatePlatformD
 		}
 	}
 
-	ok, err := aaa.Client.Dlc.UpdatePlatformDLCConfigShort(input, authInfoWriter)
+	ok, err := aaa.Client.DLC.UpdatePlatformDLCConfigShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -362,7 +362,7 @@ func (aaa *DLCService) UpdatePlatformDLCConfigShort(input *d_l_c.UpdatePlatformD
 	return ok.GetPayload(), nil
 }
 
-func (aaa *DLCService) DeletePlatformDLCConfigShort(input *d_l_c.DeletePlatformDLCConfigParams) error {
+func (aaa *DLCService) DeletePlatformDLCConfigShort(input *dlc.DeletePlatformDLCConfigParams) error {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -379,7 +379,7 @@ func (aaa *DLCService) DeletePlatformDLCConfigShort(input *d_l_c.DeletePlatformD
 		}
 	}
 
-	_, err := aaa.Client.Dlc.DeletePlatformDLCConfigShort(input, authInfoWriter)
+	_, err := aaa.Client.DLC.DeletePlatformDLCConfigShort(input, authInfoWriter)
 	if err != nil {
 		return err
 	}
@@ -387,7 +387,7 @@ func (aaa *DLCService) DeletePlatformDLCConfigShort(input *d_l_c.DeletePlatformD
 	return nil
 }
 
-func (aaa *DLCService) GetUserDLCShort(input *d_l_c.GetUserDLCParams) (*platformclientmodels.UserDLC, error) {
+func (aaa *DLCService) GetUserDLCShort(input *dlc.GetUserDLCParams) (*platformclientmodels.UserDLC, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -404,7 +404,7 @@ func (aaa *DLCService) GetUserDLCShort(input *d_l_c.GetUserDLCParams) (*platform
 		}
 	}
 
-	ok, err := aaa.Client.Dlc.GetUserDLCShort(input, authInfoWriter)
+	ok, err := aaa.Client.DLC.GetUserDLCShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -412,7 +412,7 @@ func (aaa *DLCService) GetUserDLCShort(input *d_l_c.GetUserDLCParams) (*platform
 	return ok.GetPayload(), nil
 }
 
-func (aaa *DLCService) SyncEpicGameDLCShort(input *d_l_c.SyncEpicGameDLCParams) error {
+func (aaa *DLCService) SyncEpicGameDLCShort(input *dlc.SyncEpicGameDLCParams) error {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -429,7 +429,7 @@ func (aaa *DLCService) SyncEpicGameDLCShort(input *d_l_c.SyncEpicGameDLCParams) 
 		}
 	}
 
-	_, err := aaa.Client.Dlc.SyncEpicGameDLCShort(input, authInfoWriter)
+	_, err := aaa.Client.DLC.SyncEpicGameDLCShort(input, authInfoWriter)
 	if err != nil {
 		return err
 	}
@@ -437,7 +437,7 @@ func (aaa *DLCService) SyncEpicGameDLCShort(input *d_l_c.SyncEpicGameDLCParams) 
 	return nil
 }
 
-func (aaa *DLCService) PublicSyncPsnDlcInventoryShort(input *d_l_c.PublicSyncPsnDlcInventoryParams) error {
+func (aaa *DLCService) PublicSyncPsnDLCInventoryShort(input *dlc.PublicSyncPsnDLCInventoryParams) error {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -454,7 +454,7 @@ func (aaa *DLCService) PublicSyncPsnDlcInventoryShort(input *d_l_c.PublicSyncPsn
 		}
 	}
 
-	_, err := aaa.Client.Dlc.PublicSyncPsnDlcInventoryShort(input, authInfoWriter)
+	_, err := aaa.Client.DLC.PublicSyncPsnDLCInventoryShort(input, authInfoWriter)
 	if err != nil {
 		return err
 	}
@@ -462,7 +462,7 @@ func (aaa *DLCService) PublicSyncPsnDlcInventoryShort(input *d_l_c.PublicSyncPsn
 	return nil
 }
 
-func (aaa *DLCService) PublicSyncPsnDlcInventoryWithMultipleServiceLabelsShort(input *d_l_c.PublicSyncPsnDlcInventoryWithMultipleServiceLabelsParams) error {
+func (aaa *DLCService) PublicSyncPsnDLCInventoryWithMultipleServiceLabelsShort(input *dlc.PublicSyncPsnDLCInventoryWithMultipleServiceLabelsParams) error {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -479,7 +479,7 @@ func (aaa *DLCService) PublicSyncPsnDlcInventoryWithMultipleServiceLabelsShort(i
 		}
 	}
 
-	_, err := aaa.Client.Dlc.PublicSyncPsnDlcInventoryWithMultipleServiceLabelsShort(input, authInfoWriter)
+	_, err := aaa.Client.DLC.PublicSyncPsnDLCInventoryWithMultipleServiceLabelsShort(input, authInfoWriter)
 	if err != nil {
 		return err
 	}
@@ -487,7 +487,7 @@ func (aaa *DLCService) PublicSyncPsnDlcInventoryWithMultipleServiceLabelsShort(i
 	return nil
 }
 
-func (aaa *DLCService) SyncSteamDLCShort(input *d_l_c.SyncSteamDLCParams) error {
+func (aaa *DLCService) SyncSteamDLCShort(input *dlc.SyncSteamDLCParams) error {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -504,7 +504,7 @@ func (aaa *DLCService) SyncSteamDLCShort(input *d_l_c.SyncSteamDLCParams) error 
 		}
 	}
 
-	_, err := aaa.Client.Dlc.SyncSteamDLCShort(input, authInfoWriter)
+	_, err := aaa.Client.DLC.SyncSteamDLCShort(input, authInfoWriter)
 	if err != nil {
 		return err
 	}
@@ -512,7 +512,7 @@ func (aaa *DLCService) SyncSteamDLCShort(input *d_l_c.SyncSteamDLCParams) error 
 	return nil
 }
 
-func (aaa *DLCService) SyncXboxDLCShort(input *d_l_c.SyncXboxDLCParams) error {
+func (aaa *DLCService) SyncXboxDLCShort(input *dlc.SyncXboxDLCParams) error {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -529,7 +529,7 @@ func (aaa *DLCService) SyncXboxDLCShort(input *d_l_c.SyncXboxDLCParams) error {
 		}
 	}
 
-	_, err := aaa.Client.Dlc.SyncXboxDLCShort(input, authInfoWriter)
+	_, err := aaa.Client.DLC.SyncXboxDLCShort(input, authInfoWriter)
 	if err != nil {
 		return err
 	}

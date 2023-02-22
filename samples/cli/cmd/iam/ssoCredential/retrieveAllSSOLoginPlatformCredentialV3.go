@@ -7,7 +7,7 @@
 package ssoCredential
 
 import (
-	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclient/s_s_o_credential"
+	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclient/sso_credential"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/iam"
 	"github.com/AccelByte/sample-apps/pkg/repository"
@@ -28,7 +28,7 @@ var RetrieveAllSSOLoginPlatformCredentialV3Cmd = &cobra.Command{
 		namespace, _ := cmd.Flags().GetString("namespace")
 		limit, _ := cmd.Flags().GetInt64("limit")
 		offset, _ := cmd.Flags().GetInt64("offset")
-		input := &s_s_o_credential.RetrieveAllSSOLoginPlatformCredentialV3Params{
+		input := &sso_credential.RetrieveAllSSOLoginPlatformCredentialV3Params{
 			Namespace: namespace,
 			Limit:     &limit,
 			Offset:    &offset,

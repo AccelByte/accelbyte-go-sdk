@@ -14,21 +14,21 @@ import (
 	"github.com/go-openapi/validate"
 )
 
-// PlatformDlcEntry platform dlc entry
+// PlatformDLCEntry platform Dlc entry
 //
 // swagger:model PlatformDlcEntry
-type PlatformDlcEntry struct {
+type PlatformDLCEntry struct {
 
 	// platform: PSN, STEAM, XBOX, EPICGAMES
 	// Enum: [EPICGAMES PSN STEAM XBOX]
 	Platform string `json:"platform,omitempty"`
 
 	// key is platform product id, value is dlc id
-	PlatformDlcIDMap map[string]string `json:"platformDlcIdMap,omitempty"`
+	PlatformDLCIDMap map[string]string `json:"platformDlcIdMap,omitempty"`
 }
 
-// Validate validates this platform dlc entry
-func (m *PlatformDlcEntry) Validate(formats strfmt.Registry) error {
+// Validate validates this platform Dlc entry
+func (m *PlatformDLCEntry) Validate(formats strfmt.Registry) error {
 	var res []error
 
 	if err := m.validatePlatform(formats); err != nil {
@@ -55,28 +55,28 @@ func init() {
 
 const (
 
-	// PlatformDlcEntryPlatformEPICGAMES captures enum value "EPICGAMES"
-	PlatformDlcEntryPlatformEPICGAMES string = "EPICGAMES"
+	// PlatformDLCEntryPlatformEPICGAMES captures enum value "EPICGAMES"
+	PlatformDLCEntryPlatformEPICGAMES string = "EPICGAMES"
 
-	// PlatformDlcEntryPlatformPSN captures enum value "PSN"
-	PlatformDlcEntryPlatformPSN string = "PSN"
+	// PlatformDLCEntryPlatformPSN captures enum value "PSN"
+	PlatformDLCEntryPlatformPSN string = "PSN"
 
-	// PlatformDlcEntryPlatformSTEAM captures enum value "STEAM"
-	PlatformDlcEntryPlatformSTEAM string = "STEAM"
+	// PlatformDLCEntryPlatformSTEAM captures enum value "STEAM"
+	PlatformDLCEntryPlatformSTEAM string = "STEAM"
 
-	// PlatformDlcEntryPlatformXBOX captures enum value "XBOX"
-	PlatformDlcEntryPlatformXBOX string = "XBOX"
+	// PlatformDLCEntryPlatformXBOX captures enum value "XBOX"
+	PlatformDLCEntryPlatformXBOX string = "XBOX"
 )
 
 // prop value enum
-func (m *PlatformDlcEntry) validatePlatformEnum(path, location string, value string) error {
+func (m *PlatformDLCEntry) validatePlatformEnum(path, location string, value string) error {
 	if err := validate.EnumCase(path, location, value, platformDlcEntryTypePlatformPropEnum, true); err != nil {
 		return err
 	}
 	return nil
 }
 
-func (m *PlatformDlcEntry) validatePlatform(formats strfmt.Registry) error {
+func (m *PlatformDLCEntry) validatePlatform(formats strfmt.Registry) error {
 
 	if swag.IsZero(m.Platform) { // not required
 		return nil
@@ -91,7 +91,7 @@ func (m *PlatformDlcEntry) validatePlatform(formats strfmt.Registry) error {
 }
 
 // MarshalBinary interface implementation
-func (m *PlatformDlcEntry) MarshalBinary() ([]byte, error) {
+func (m *PlatformDLCEntry) MarshalBinary() ([]byte, error) {
 	if m == nil {
 		return nil, nil
 	}
@@ -99,8 +99,8 @@ func (m *PlatformDlcEntry) MarshalBinary() ([]byte, error) {
 }
 
 // UnmarshalBinary interface implementation
-func (m *PlatformDlcEntry) UnmarshalBinary(b []byte) error {
-	var res PlatformDlcEntry
+func (m *PlatformDLCEntry) UnmarshalBinary(b []byte) error {
+	var res PlatformDLCEntry
 	if err := swag.ReadJSON(b, &res); err != nil {
 		return err
 	}

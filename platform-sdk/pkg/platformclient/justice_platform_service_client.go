@@ -23,11 +23,11 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclient/catalog_changes"
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclient/category"
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclient/currency"
-	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclient/d_l_c"
+	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclient/dlc"
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclient/entitlement"
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclient/fulfillment"
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclient/fulfillment_script"
-	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclient/i_a_p"
+	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclient/iap"
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclient/invoice"
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclient/item"
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclient/key_group"
@@ -104,11 +104,11 @@ func New(transport runtime.ClientTransport, runtime *httptransport.Runtime, form
 	cli.CatalogChanges = catalog_changes.New(transport, formats)
 	cli.Category = category.New(transport, formats)
 	cli.Currency = currency.New(transport, formats)
-	cli.Dlc = d_l_c.New(transport, formats)
+	cli.DLC = dlc.New(transport, formats)
 	cli.Entitlement = entitlement.New(transport, formats)
 	cli.Fulfillment = fulfillment.New(transport, formats)
 	cli.FulfillmentScript = fulfillment_script.New(transport, formats)
-	cli.Iap = i_a_p.New(transport, formats)
+	cli.IAP = iap.New(transport, formats)
 	cli.Invoice = invoice.New(transport, formats)
 	cli.Item = item.New(transport, formats)
 	cli.KeyGroup = key_group.New(transport, formats)
@@ -201,7 +201,7 @@ type JusticePlatformService struct {
 
 	Currency currency.ClientService
 
-	Dlc d_l_c.ClientService
+	DLC dlc.ClientService
 
 	Entitlement entitlement.ClientService
 
@@ -209,7 +209,7 @@ type JusticePlatformService struct {
 
 	FulfillmentScript fulfillment_script.ClientService
 
-	Iap i_a_p.ClientService
+	IAP iap.ClientService
 
 	Invoice invoice.ClientService
 
@@ -264,11 +264,11 @@ func (c *JusticePlatformService) SetTransport(transport runtime.ClientTransport)
 	c.CatalogChanges.SetTransport(transport)
 	c.Category.SetTransport(transport)
 	c.Currency.SetTransport(transport)
-	c.Dlc.SetTransport(transport)
+	c.DLC.SetTransport(transport)
 	c.Entitlement.SetTransport(transport)
 	c.Fulfillment.SetTransport(transport)
 	c.FulfillmentScript.SetTransport(transport)
-	c.Iap.SetTransport(transport)
+	c.IAP.SetTransport(transport)
 	c.Invoice.SetTransport(transport)
 	c.Item.SetTransport(transport)
 	c.KeyGroup.SetTransport(transport)

@@ -8,7 +8,7 @@ package iam
 
 import (
 	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclient"
-	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclient/s_s_o"
+	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclient/sso"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/repository"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils/auth"
@@ -39,12 +39,12 @@ func (aaa *SSOService) GetAuthSession() auth.Session {
 }
 
 // deprecated(2022-01-10): please use LoginSSOClientShort instead.
-func (aaa *SSOService) LoginSSOClient(input *s_s_o.LoginSSOClientParams) error {
+func (aaa *SSOService) LoginSSOClient(input *sso.LoginSSOClientParams) error {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	_, err = aaa.Client.Sso.LoginSSOClient(input, client.BearerToken(*token.AccessToken))
+	_, err = aaa.Client.SSO.LoginSSOClient(input, client.BearerToken(*token.AccessToken))
 	if err != nil {
 		return err
 	}
@@ -53,12 +53,12 @@ func (aaa *SSOService) LoginSSOClient(input *s_s_o.LoginSSOClientParams) error {
 }
 
 // deprecated(2022-01-10): please use LogoutSSOClientShort instead.
-func (aaa *SSOService) LogoutSSOClient(input *s_s_o.LogoutSSOClientParams) error {
+func (aaa *SSOService) LogoutSSOClient(input *sso.LogoutSSOClientParams) error {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	_, notFound, unprocessableEntity, internalServerError, err := aaa.Client.Sso.LogoutSSOClient(input, client.BearerToken(*token.AccessToken))
+	_, notFound, unprocessableEntity, internalServerError, err := aaa.Client.SSO.LogoutSSOClient(input, client.BearerToken(*token.AccessToken))
 	if notFound != nil {
 		return notFound
 	}
@@ -75,7 +75,7 @@ func (aaa *SSOService) LogoutSSOClient(input *s_s_o.LogoutSSOClientParams) error
 	return nil
 }
 
-func (aaa *SSOService) LoginSSOClientShort(input *s_s_o.LoginSSOClientParams) error {
+func (aaa *SSOService) LoginSSOClientShort(input *sso.LoginSSOClientParams) error {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -92,7 +92,7 @@ func (aaa *SSOService) LoginSSOClientShort(input *s_s_o.LoginSSOClientParams) er
 		}
 	}
 
-	_, err := aaa.Client.Sso.LoginSSOClientShort(input, authInfoWriter)
+	_, err := aaa.Client.SSO.LoginSSOClientShort(input, authInfoWriter)
 	if err != nil {
 		return err
 	}
@@ -100,7 +100,7 @@ func (aaa *SSOService) LoginSSOClientShort(input *s_s_o.LoginSSOClientParams) er
 	return nil
 }
 
-func (aaa *SSOService) LogoutSSOClientShort(input *s_s_o.LogoutSSOClientParams) error {
+func (aaa *SSOService) LogoutSSOClientShort(input *sso.LogoutSSOClientParams) error {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -117,7 +117,7 @@ func (aaa *SSOService) LogoutSSOClientShort(input *s_s_o.LogoutSSOClientParams) 
 		}
 	}
 
-	_, err := aaa.Client.Sso.LogoutSSOClientShort(input, authInfoWriter)
+	_, err := aaa.Client.SSO.LogoutSSOClientShort(input, authInfoWriter)
 	if err != nil {
 		return err
 	}

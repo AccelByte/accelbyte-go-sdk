@@ -12,13 +12,14 @@ import (
 	"os"
 	"testing"
 
+	"github.com/sirupsen/logrus"
+	"github.com/stretchr/testify/assert"
+
 	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclient/users"
 	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclient/users_v4"
 	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/tests/integration"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils/auth"
-	"github.com/sirupsen/logrus"
-	"github.com/stretchr/testify/assert"
 
 	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclient/o_auth2_0"
 	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclient/o_auth2_0_extension"

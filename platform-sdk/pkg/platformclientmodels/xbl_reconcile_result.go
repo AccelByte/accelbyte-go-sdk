@@ -21,7 +21,7 @@ type XblReconcileResult struct {
 
 	// iap order status
 	// Enum: [FAILED FULFILLED VERIFIED]
-	IapOrderStatus string `json:"iapOrderStatus,omitempty"`
+	IAPOrderStatus string `json:"iapOrderStatus,omitempty"`
 
 	// item Id
 	ItemID string `json:"itemId,omitempty"`
@@ -40,7 +40,7 @@ type XblReconcileResult struct {
 func (m *XblReconcileResult) Validate(formats strfmt.Registry) error {
 	var res []error
 
-	if err := m.validateIapOrderStatus(formats); err != nil {
+	if err := m.validateIAPOrderStatus(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -50,7 +50,7 @@ func (m *XblReconcileResult) Validate(formats strfmt.Registry) error {
 	return nil
 }
 
-var xblReconcileResultTypeIapOrderStatusPropEnum []interface{}
+var xblReconcileResultTypeIAPOrderStatusPropEnum []interface{}
 
 func init() {
 	var res []string
@@ -58,38 +58,38 @@ func init() {
 		panic(err)
 	}
 	for _, v := range res {
-		xblReconcileResultTypeIapOrderStatusPropEnum = append(xblReconcileResultTypeIapOrderStatusPropEnum, v)
+		xblReconcileResultTypeIAPOrderStatusPropEnum = append(xblReconcileResultTypeIAPOrderStatusPropEnum, v)
 	}
 }
 
 const (
 
-	// XblReconcileResultIapOrderStatusFAILED captures enum value "FAILED"
-	XblReconcileResultIapOrderStatusFAILED string = "FAILED"
+	// XblReconcileResultIAPOrderStatusFAILED captures enum value "FAILED"
+	XblReconcileResultIAPOrderStatusFAILED string = "FAILED"
 
-	// XblReconcileResultIapOrderStatusFULFILLED captures enum value "FULFILLED"
-	XblReconcileResultIapOrderStatusFULFILLED string = "FULFILLED"
+	// XblReconcileResultIAPOrderStatusFULFILLED captures enum value "FULFILLED"
+	XblReconcileResultIAPOrderStatusFULFILLED string = "FULFILLED"
 
-	// XblReconcileResultIapOrderStatusVERIFIED captures enum value "VERIFIED"
-	XblReconcileResultIapOrderStatusVERIFIED string = "VERIFIED"
+	// XblReconcileResultIAPOrderStatusVERIFIED captures enum value "VERIFIED"
+	XblReconcileResultIAPOrderStatusVERIFIED string = "VERIFIED"
 )
 
 // prop value enum
-func (m *XblReconcileResult) validateIapOrderStatusEnum(path, location string, value string) error {
-	if err := validate.EnumCase(path, location, value, xblReconcileResultTypeIapOrderStatusPropEnum, true); err != nil {
+func (m *XblReconcileResult) validateIAPOrderStatusEnum(path, location string, value string) error {
+	if err := validate.EnumCase(path, location, value, xblReconcileResultTypeIAPOrderStatusPropEnum, true); err != nil {
 		return err
 	}
 	return nil
 }
 
-func (m *XblReconcileResult) validateIapOrderStatus(formats strfmt.Registry) error {
+func (m *XblReconcileResult) validateIAPOrderStatus(formats strfmt.Registry) error {
 
-	if swag.IsZero(m.IapOrderStatus) { // not required
+	if swag.IsZero(m.IAPOrderStatus) { // not required
 		return nil
 	}
 
 	// value enum
-	if err := m.validateIapOrderStatusEnum("iapOrderStatus", "body", m.IapOrderStatus); err != nil {
+	if err := m.validateIAPOrderStatusEnum("iapOrderStatus", "body", m.IAPOrderStatus); err != nil {
 		return err
 	}
 

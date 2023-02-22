@@ -7,13 +7,12 @@ package service
 import (
 	"fmt"
 
-	"github.com/gorilla/websocket"
-	"github.com/sirupsen/logrus"
-
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/model"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/repository"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils/connectionutils"
+	"github.com/gorilla/websocket"
+	"github.com/sirupsen/logrus"
 )
 
 type LobbyServiceWebsocket struct {

@@ -38,7 +38,7 @@ var SendMFAAuthenticationCodeCmd = &cobra.Command{
 		input := &o_auth2_0.SendMFAAuthenticationCodeParams{
 			ClientID:   clientId,
 			Factor:     factor,
-			MfaToken:   mfaToken,
+			MFAToken:   mfaToken,
 			HTTPClient: httpClient,
 		}
 		errInput := oAuth20Service.SendMFAAuthenticationCodeShort(input)

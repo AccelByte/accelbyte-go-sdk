@@ -11,74 +11,35 @@ Globals:
     Environment:
       Variables:
         AB_BASE_URL: 'https://demo.accelbyte.io'
-        AB_CLIENT_ID: 'Put Your Client Id'
-        AB_CLIENT_SECRET: 'Put Your Client Secret'
+        AB_CLIENT_ID: '693478c898014d97ae4d34fb84f66861'
+        AB_CLIENT_SECRET: 'AgNypp)RiT0&Gs1v!-!V_hwA)18YDnBF'
 
 Resources:
-  CreateUserStatsFunction:
+  UserStatsFunction:
     Type: AWS::Serverless::Function
     Properties:
-      CodeUri: CreateUserStats
-      Handler: main
+      CodeUri: UserStatsFunction
+      Handler: main.go
       Runtime: go1.x
-  CreateUserStatsFunctionUrl:
-    Type: AWS::Lambda::Url
-    Properties:
-      AuthType: NONE
-      TargetFunctionArn:
-        Ref: CreateUserStatsFunction
-
-  DeleteUserStatsFunction:
-    Type: AWS::Serverless::Function
-    Properties:
-      CodeUri: DeleteUserStats
-      Handler: main
-      Runtime: go1.x
-  DeleteUserStatsFunctionUrl:
-    Type: AWS::Lambda::Url
-    Properties:
-      AuthType: NONE
-      TargetFunctionArn:
-        Ref: DeleteUserStatsFunction
-
-  GetUserStatsFunction:
-    Type: AWS::Serverless::Function
-    Properties:
-      CodeUri: GetUserStats
-      Handler: main
-      Runtime: go1.x
-  GetUserStatsFunctionUrl:
-    Type: AWS::Lambda::Url
-    Properties:
-      AuthType: NONE
-      TargetFunctionArn:
-        Ref: GetUserStatsFunction
+      MemorySize: 512
+      FunctionUrlConfig: # https://docs.aws.amazon.com/lambda/latest/dg/urls-tutorial.html
+        AuthType: NONE # Change to "AWS_IAM" based on your needs https://docs.aws.amazon.com/lambda/latest/dg/urls-auth.html
+        Cors:
+          AllowOrigins:
+            - "*"
+          AllowHeaders:
+            - "*"
+          AllowMethods:
+            - "*"
 
 Outputs:
-  CreateUserStatsFunction:
-    Description: "Create User Stats Function ARN"
-    Value: !GetAtt CreateUserStatsFunction.Arn
-  CreateUserStatsFunctionUrlEndpoint:
-    Description: "Access CreateUserStats function with this URL"
-    Value: !GetAtt CreateUserStatsFunctionUrl.FunctionUrl
-  CreateUserStatsFunctionIamRole:
-    Description: "Implicit IAM Role created for Create User Stats Function"
-    Value: !GetAtt CreateUserStatsFunctionRole.Arn
-  DeleteUserStatsFunction:
-    Description: "Delete User Stats Function ARN"
-    Value: !GetAtt DeleteUserStatsFunction.Arn
-  DeleteUserStatsFunctionUrlEndpoint:
-    Description: "Access DeleteUserStats function with this URL"
-    Value: !GetAtt DeleteUserStatsFunctionUrl.FunctionUrl
-  DeleteUserStatsFunctionIamRole:
-    Description: "Implicit IAM Role created for Delete User Stats Function"
-    Value: !GetAtt DeleteUserStatsFunctionRole.Arn
-  GetUserStatsFunction:
-    Description: "Get User Stats Function ARN"
-    Value: !GetAtt GetUserStatsFunction.Arn
-  GetUserStatsFunctionUrlEndpoint:
-    Description: "Access GetUserStats function with this URL"
-    Value: !GetAtt GetUserStatsFunctionUrl.FunctionUrl
-  GetUserStatsFunctionIamRole:
-    Description: "Implicit IAM Role created for Get User Stats Function"
-    Value: !GetAtt GetUserStatsFunctionRole.Arn
+  UserStatsFunction:
+    Description: "Lambda Function ARN"
+    Value: !GetAtt UserStatsFunction.Arn
+  UserStatsFunctionIamRole:
+    Description: "Implicit IAM Role created for Hello World function"
+    Value: !GetAtt UserStatsFunctionRole.Arn
+  UserStatsFunctionUrlEndpoint:
+    Description: "Golang Simple App Lambda Function URL Endpoint"
+    Value:
+      Fn::GetAtt: UserStatsFunctionUrl.FunctionUrl # {Function Name}Url.FunctionUrl

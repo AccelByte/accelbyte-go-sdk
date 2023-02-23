@@ -5,12 +5,12 @@
 package main
 
 import (
+	"context"
 	"encoding/json"
 	"fmt"
 	"strings"
 	"time"
 
-	"context"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/iam"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/social"
@@ -43,11 +43,9 @@ func main() {
 }
 
 func Handler(ctx context.Context, evt events.LambdaFunctionURLRequest) (events.LambdaFunctionURLResponse, error) {
-
 	reqToken := evt.Headers["authorization"]
 	splitToken := strings.Split(reqToken, "Bearer ")
 	if len(splitToken) == 1 || len(splitToken) > 2 {
-
 		return events.LambdaFunctionURLResponse{
 			Body:       "invalid token. Token split \"Bearer\" and token authorization",
 			StatusCode: 400,

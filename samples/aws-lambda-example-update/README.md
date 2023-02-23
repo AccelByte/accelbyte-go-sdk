@@ -101,7 +101,7 @@ Start the lambda, in this case, locally for testing purpose.
     sam build
     ```
 
-3. Run the following command and replace `httpMethod` with POST_AND_PUT/GET/DELETE.
+3. Run the following command and replace `httpMethod` with POST/GET/DELETE.
 
     ```bash
     sam local invoke UserStatsFunction --event ./{httpMethod}.json

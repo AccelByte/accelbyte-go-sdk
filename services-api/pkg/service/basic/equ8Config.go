@@ -7,14 +7,13 @@
 package basic
 
 import (
-	"github.com/go-openapi/runtime/client"
-
 	"github.com/AccelByte/accelbyte-go-sdk/basic-sdk/pkg/basicclient"
 	"github.com/AccelByte/accelbyte-go-sdk/basic-sdk/pkg/basicclient/equ8_config"
 	"github.com/AccelByte/accelbyte-go-sdk/basic-sdk/pkg/basicclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/repository"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils/auth"
+	"github.com/go-openapi/runtime/client"
 )
 
 type EQU8ConfigService struct {

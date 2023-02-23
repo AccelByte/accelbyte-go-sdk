@@ -12,7 +12,7 @@ import (
 	"github.com/go-openapi/validate"
 )
 
-// ADTOObjectForEQU8UserBanStatus a d t o object for equ8 user ban status
+// ADTOObjectForEQU8UserBanStatus a DTO object for equ8 user ban status
 //
 // swagger:model A DTO object for equ8 user ban status
 type ADTOObjectForEQU8UserBanStatus struct {
@@ -25,7 +25,7 @@ type ADTOObjectForEQU8UserBanStatus struct {
 	UserID string `json:"userId,omitempty"`
 }
 
-// Validate validates this a d t o object for equ8 user ban status
+// Validate validates this a DTO object for equ8 user ban status
 func (m *ADTOObjectForEQU8UserBanStatus) Validate(formats strfmt.Registry) error {
 	var res []error
 

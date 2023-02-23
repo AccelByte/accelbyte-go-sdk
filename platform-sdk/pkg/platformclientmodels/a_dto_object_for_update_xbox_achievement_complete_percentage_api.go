@@ -13,20 +13,26 @@ import (
 	"github.com/go-openapi/swag"
 )
 
-// ADTOObjectForUnlockSteamAchievementAPI a d t o object for unlock steam achievement API
+// ADTOObjectForUpdateXboxAchievementCompletePercentageAPI a DTO object for update xbox achievement complete percentage API
 //
-// swagger:model A DTO object for unlock steam achievement API
-type ADTOObjectForUnlockSteamAchievementAPI struct {
+// swagger:model A DTO object for update xbox achievement complete percentage API
+type ADTOObjectForUpdateXboxAchievementCompletePercentageAPI struct {
 
 	// achievements to be updated
-	Achievements []*SteamAchievementRequest `json:"achievements"`
+	Achievements []*XboxAchievementRequest `json:"achievements"`
 
-	// steam user id
-	SteamUserID string `json:"steamUserId,omitempty"`
+	// service config Id
+	ServiceConfigID string `json:"serviceConfigId,omitempty"`
+
+	// title Id
+	TitleID string `json:"titleId,omitempty"`
+
+	// xbox live user id
+	XboxUserID string `json:"xboxUserId,omitempty"`
 }
 
-// Validate validates this a d t o object for unlock steam achievement API
-func (m *ADTOObjectForUnlockSteamAchievementAPI) Validate(formats strfmt.Registry) error {
+// Validate validates this a DTO object for update xbox achievement complete percentage API
+func (m *ADTOObjectForUpdateXboxAchievementCompletePercentageAPI) Validate(formats strfmt.Registry) error {
 	var res []error
 
 	if err := m.validateAchievements(formats); err != nil {
@@ -39,7 +45,7 @@ func (m *ADTOObjectForUnlockSteamAchievementAPI) Validate(formats strfmt.Registr
 	return nil
 }
 
-func (m *ADTOObjectForUnlockSteamAchievementAPI) validateAchievements(formats strfmt.Registry) error {
+func (m *ADTOObjectForUpdateXboxAchievementCompletePercentageAPI) validateAchievements(formats strfmt.Registry) error {
 
 	if swag.IsZero(m.Achievements) { // not required
 		return nil
@@ -65,7 +71,7 @@ func (m *ADTOObjectForUnlockSteamAchievementAPI) validateAchievements(formats st
 }
 
 // MarshalBinary interface implementation
-func (m *ADTOObjectForUnlockSteamAchievementAPI) MarshalBinary() ([]byte, error) {
+func (m *ADTOObjectForUpdateXboxAchievementCompletePercentageAPI) MarshalBinary() ([]byte, error) {
 	if m == nil {
 		return nil, nil
 	}
@@ -73,8 +79,8 @@ func (m *ADTOObjectForUnlockSteamAchievementAPI) MarshalBinary() ([]byte, error)
 }
 
 // UnmarshalBinary interface implementation
-func (m *ADTOObjectForUnlockSteamAchievementAPI) UnmarshalBinary(b []byte) error {
-	var res ADTOObjectForUnlockSteamAchievementAPI
+func (m *ADTOObjectForUpdateXboxAchievementCompletePercentageAPI) UnmarshalBinary(b []byte) error {
+	var res ADTOObjectForUpdateXboxAchievementCompletePercentageAPI
 	if err := swag.ReadJSON(b, &res); err != nil {
 		return err
 	}

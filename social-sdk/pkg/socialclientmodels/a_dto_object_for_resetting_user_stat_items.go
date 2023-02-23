@@ -12,7 +12,7 @@ import (
 	"github.com/go-openapi/validate"
 )
 
-// ADTOObjectForResettingUserStatItems a d t o object for resetting user stat items
+// ADTOObjectForResettingUserStatItems a DTO object for resetting user stat items
 //
 // swagger:model A DTO object for resetting user stat items
 type ADTOObjectForResettingUserStatItems struct {
@@ -25,7 +25,7 @@ type ADTOObjectForResettingUserStatItems struct {
 	StatCode *string `json:"statCode"`
 }
 
-// Validate validates this a d t o object for resetting user stat items
+// Validate validates this a DTO object for resetting user stat items
 func (m *ADTOObjectForResettingUserStatItems) Validate(formats strfmt.Registry) error {
 	var res []error
 

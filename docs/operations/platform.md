@@ -517,10 +517,10 @@
 
 | Model Struct | Class |
 |---|---|
-| `A DTO object for order creation options` | [ADTOObjectForOrderCreationOptions ](../../platform-sdk/pkg/platformclientmodels/a_d_t_o_object_for_order_creation_options.go) |
-| `A DTO object for querying xbox user achievements` | [ADTOObjectForQueryingXboxUserAchievements ](../../platform-sdk/pkg/platformclientmodels/a_d_t_o_object_for_querying_xbox_user_achievements.go) |
-| `A DTO object for unlock steam achievement API` | [ADTOObjectForUnlockSteamAchievementAPI ](../../platform-sdk/pkg/platformclientmodels/a_d_t_o_object_for_unlock_steam_achievement_api.go) |
-| `A DTO object for update xbox achievement complete percentage API` | [ADTOObjectForUpdateXboxAchievementCompletePercentageAPI ](../../platform-sdk/pkg/platformclientmodels/a_d_t_o_object_for_update_xbox_achievement_complete_percentage_api.go) |
+| `A DTO object for order creation options` | [ADTOObjectForOrderCreationOptions ](../../platform-sdk/pkg/platformclientmodels/a_dto_object_for_order_creation_options.go) |
+| `A DTO object for querying xbox user achievements` | [ADTOObjectForQueryingXboxUserAchievements ](../../platform-sdk/pkg/platformclientmodels/a_dto_object_for_querying_xbox_user_achievements.go) |
+| `A DTO object for unlock steam achievement API` | [ADTOObjectForUnlockSteamAchievementAPI ](../../platform-sdk/pkg/platformclientmodels/a_dto_object_for_unlock_steam_achievement_api.go) |
+| `A DTO object for update xbox achievement complete percentage API` | [ADTOObjectForUpdateXboxAchievementCompletePercentageAPI ](../../platform-sdk/pkg/platformclientmodels/a_dto_object_for_update_xbox_achievement_complete_percentage_api.go) |
 | `AchievementInfo` | [AchievementInfo ](../../platform-sdk/pkg/platformclientmodels/achievement_info.go) |
 | `AdditionalData` | [AdditionalData ](../../platform-sdk/pkg/platformclientmodels/additional_data.go) |
 | `AdminOrderCreate` | [AdminOrderCreate ](../../platform-sdk/pkg/platformclientmodels/admin_order_create.go) |

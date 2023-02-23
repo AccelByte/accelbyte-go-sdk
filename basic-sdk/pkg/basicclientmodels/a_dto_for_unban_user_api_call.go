@@ -12,7 +12,7 @@ import (
 	"github.com/go-openapi/validate"
 )
 
-// ADTOForUnbanUserAPICall a d t o for unban user API call
+// ADTOForUnbanUserAPICall a DTO for unban user API call
 //
 // swagger:model A DTO for unban user API call.
 type ADTOForUnbanUserAPICall struct {
@@ -25,7 +25,7 @@ type ADTOForUnbanUserAPICall struct {
 	UserIds []string `json:"userIds"`
 }
 
-// Validate validates this a d t o for unban user API call
+// Validate validates this a DTO for unban user API call
 func (m *ADTOForUnbanUserAPICall) Validate(formats strfmt.Registry) error {
 	var res []error
 

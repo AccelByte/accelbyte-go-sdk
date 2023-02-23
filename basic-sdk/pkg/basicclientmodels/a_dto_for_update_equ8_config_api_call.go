@@ -10,7 +10,7 @@ import (
 	"github.com/go-openapi/swag"
 )
 
-// ADTOForUpdateEQU8ConfigAPICall a d t o for update equ8 config API call
+// ADTOForUpdateEQU8ConfigAPICall a DTO for update equ8 config API call
 //
 // swagger:model A DTO for update equ8 config API call.
 type ADTOForUpdateEQU8ConfigAPICall struct {
@@ -19,7 +19,7 @@ type ADTOForUpdateEQU8ConfigAPICall struct {
 	APIKey string `json:"apiKey,omitempty"`
 }
 
-// Validate validates this a d t o for update equ8 config API call
+// Validate validates this a DTO for update equ8 config API call
 func (m *ADTOForUpdateEQU8ConfigAPICall) Validate(formats strfmt.Registry) error {
 	return nil
 }

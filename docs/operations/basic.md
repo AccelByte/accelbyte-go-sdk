@@ -101,10 +101,10 @@
 
 | Model Struct | Class |
 |---|---|
-| `A DTO for unban user API call.` | [ADTOForUnbanUserAPICall ](../../basic-sdk/pkg/basicclientmodels/a_d_t_o_for_unban_user_api_call.go) |
-| `A DTO for update equ8 config API call.` | [ADTOForUpdateEqu8ConfigAPICall ](../../basic-sdk/pkg/basicclientmodels/a_d_t_o_for_update_equ8_config_api_call.go) |
-| `A DTO object for equ8 user ban status` | [ADTOObjectForEqu8UserBanStatus ](../../basic-sdk/pkg/basicclientmodels/a_d_t_o_object_for_equ8_user_ban_status.go) |
-| `A DTO object for equ8 user status` | [ADTOObjectForEqu8UserStatus ](../../basic-sdk/pkg/basicclientmodels/a_d_t_o_object_for_equ8_user_status.go) |
+| `A DTO for unban user API call.` | [ADTOForUnbanUserAPICall ](../../basic-sdk/pkg/basicclientmodels/a_dto_for_unban_user_api_call.go) |
+| `A DTO for update equ8 config API call.` | [ADTOForUpdateEqu8ConfigAPICall ](../../basic-sdk/pkg/basicclientmodels/a_dto_for_update_equ8_config_api_call.go) |
+| `A DTO object for equ8 user ban status` | [ADTOObjectForEqu8UserBanStatus ](../../basic-sdk/pkg/basicclientmodels/a_dto_object_for_equ8_user_ban_status.go) |
+| `A DTO object for equ8 user status` | [ADTOObjectForEqu8UserStatus ](../../basic-sdk/pkg/basicclientmodels/a_dto_object_for_equ8_user_status.go) |
 | `Action` | [Action ](../../basic-sdk/pkg/basicclientmodels/action.go) |
 | `AddCountryGroupRequest` | [AddCountryGroupRequest ](../../basic-sdk/pkg/basicclientmodels/add_country_group_request.go) |
 | `AddCountryGroupResponse` | [AddCountryGroupResponse ](../../basic-sdk/pkg/basicclientmodels/add_country_group_response.go) |

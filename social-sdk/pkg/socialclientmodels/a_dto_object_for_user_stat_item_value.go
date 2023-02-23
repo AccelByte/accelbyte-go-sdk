@@ -10,7 +10,7 @@ import (
 	"github.com/go-openapi/swag"
 )
 
-// ADTOObjectForUserStatItemValue a d t o object for user stat item value
+// ADTOObjectForUserStatItemValue a DTO object for user stat item value
 //
 // swagger:model A DTO object for user stat item value
 type ADTOObjectForUserStatItemValue struct {
@@ -25,7 +25,7 @@ type ADTOObjectForUserStatItemValue struct {
 	Value float64 `json:"value,omitempty"`
 }
 
-// Validate validates this a d t o object for user stat item value
+// Validate validates this a DTO object for user stat item value
 func (m *ADTOObjectForUserStatItemValue) Validate(formats strfmt.Registry) error {
 	return nil
 }

@@ -10,7 +10,7 @@ import (
 	"github.com/go-openapi/swag"
 )
 
-// ADTOObjectForOrderCreationOptions a d t o object for order creation options
+// ADTOObjectForOrderCreationOptions a DTO object for order creation options
 //
 // swagger:model A DTO object for order creation options
 type ADTOObjectForOrderCreationOptions struct {
@@ -19,7 +19,7 @@ type ADTOObjectForOrderCreationOptions struct {
 	SkipPriceValidation bool `json:"skipPriceValidation"`
 }
 
-// Validate validates this a d t o object for order creation options
+// Validate validates this a DTO object for order creation options
 func (m *ADTOObjectForOrderCreationOptions) Validate(formats strfmt.Registry) error {
 	return nil
 }

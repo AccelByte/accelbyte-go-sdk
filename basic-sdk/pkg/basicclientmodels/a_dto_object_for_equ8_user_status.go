@@ -12,7 +12,7 @@ import (
 	"github.com/go-openapi/validate"
 )
 
-// ADTOObjectForEQU8UserStatus a d t o object for equ8 user status
+// ADTOObjectForEQU8UserStatus a DTO object for equ8 user status
 //
 // swagger:model A DTO object for equ8 user status
 type ADTOObjectForEQU8UserStatus struct {
@@ -35,7 +35,7 @@ type ADTOObjectForEQU8UserStatus struct {
 	When *strfmt.DateTime `json:"when,omitempty"`
 }
 
-// Validate validates this a d t o object for equ8 user status
+// Validate validates this a DTO object for equ8 user status
 func (m *ADTOObjectForEQU8UserStatus) Validate(formats strfmt.Registry) error {
 	var res []error
 

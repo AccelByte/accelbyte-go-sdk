@@ -11,8 +11,8 @@ Globals:
     Environment:
       Variables:
         AB_BASE_URL: 'https://demo.accelbyte.io'
-        AB_CLIENT_ID: '693478c898014d97ae4d34fb84f66861'
-        AB_CLIENT_SECRET: 'AgNypp)RiT0&Gs1v!-!V_hwA)18YDnBF'
+        AB_CLIENT_ID: 'xxxxxxxxxxxxxxxxxx'
+        AB_CLIENT_SECRET: 'xxxxxxxxxxxxxxxxxx'
 
 Resources:
   UserStatsFunction:

@@ -59,29 +59,52 @@ This update is using lambda function url and token validation inside.
     # if successful the function url will be generated and displayed on terminal
     ```
 
-3. Test Using Postman
-   - Import postman collection [aws_lambda_example.postman_collection.json](aws-lambda-example-update.postman_collection.json)
-   - Open `00 GetAccessToken` and fill up the variables needed to get the user access token.
-   - Open `01 CreateUserStats` update url with previously generated url from deploy command. Copy the user access token previously for the Authorization `Bearer xxxx`. The test
-     payload can be inspected in `Body` tab. Click `Send` button.
-   - Open `02 GetUserStats` update url with previously generated url from deploy command. Copy the user access token previously for the Authorization `Bearer xxxx`. The test
-     payload can be inspected in `Body` tab. Click `Send` button.
-   - Open `03 DeleteUserStats` update url with previously generated url from deploy command. Copy the user access token previously for the Authorization `Bearer xxxx` and fill up the raw body. The test
-     payload can be inspected in `Body` tab. Click `Send` button.
-
-
-## Try locally
-
-1. Build Lambda service
-
+3. Test Using Your Information
+    ```bash
+    # Add a statistic to a user
+    curl -X POST '{FunctionURL}?namespace={namespace}&userId={user_id}&statCode={stat_code}' \
+    --header 'Content-Type: application/json' \
+    --header 'Authorization: Bearer {access token}'
+    
+    # Get a list of statistics of a user
+    curl '{FunctionURL}?namespace={Namespace}&userId={user_id}' \
+    --header 'Content-Type: application/json' \
+    --header 'Authorization: Bearer {access token}'
+    
+    # Delete a statistic from a user
+    curl -X DELETE '{FunctionURL}?namespace={Namespace}&userId={user_id}&statCode={stat_code}' \
+    --header 'Content-Type: application/json' \
+    --header 'Authorization: Bearer {access token}'
     ```
+
+
+## Build and Test Locally
+
+Start the lambda, in this case, locally for testing purpose.
+
+1. Input credentials in `POST.json`, `GET.json`, `DELETE.json` files.
+
+    ```json
+    "headers": {
+        "Content-Type": "application/json",
+        "authorization": "Bearer xxxxxxxxxxxxxxxxxx"
+    },
+    "queryStringParameters": {
+        "namespace": "xxxxxxxxxxxxxxxxxx",
+        "userId": "xxxxxxxxxxxxxxxxxx",
+        "statCode": "xxxxxxxxxxxxxxxxxx"
+    }
+    ```
+2. Build lambda.
+
+    ```bash
     sam build
     ```
 
-2. Run Lambda service locally
+3. Run the following command and replace `httpMethod` with POST_AND_PUT/GET/DELETE.
 
-    ```
-    sam local start-lambda
+    ```bash
+    sam local invoke UserStatsFunction --event ./{httpMethod}.json
     ```
 
 ## Troubleshooting

@@ -154,7 +154,6 @@ func deleteRequest(evt events.LambdaFunctionURLRequest) (events.LambdaFunctionUR
 
 func postRequest(evt events.LambdaFunctionURLRequest) (events.LambdaFunctionURLResponse, error) {
 	// create user stat item
-	logrus.Print("Got to post") ///////////////////////////////////comment
 	inputUserStatItem := &user_statistic.CreateUserStatItemParams{
 		Namespace: evt.QueryStringParameters["namespace"],
 		StatCode:  evt.QueryStringParameters["statCode"],
@@ -183,11 +182,6 @@ func validateToken(accessToken string, namespace string, userId string, httpRequ
 	tokenValidator.Initialize()
 
 	// validate stat item
-	logrus.Print(accessToken)
-	logrus.Print(namespace)
-	logrus.Print(userId)
-	logrus.Print(httpRequest)
-
 	var action int
 	switch httpRequest {
 	case "GET":

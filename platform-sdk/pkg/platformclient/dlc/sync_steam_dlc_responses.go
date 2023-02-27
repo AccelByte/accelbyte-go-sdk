@@ -58,10 +58,9 @@ func NewSyncSteamDLCNoContent() *SyncSteamDLCNoContent {
 	return &SyncSteamDLCNoContent{}
 }
 
-/*
-SyncSteamDLCNoContent handles this case with default header values.
+/*SyncSteamDLCNoContent handles this case with default header values.
 
-	Successful operation
+  Successful operation
 */
 type SyncSteamDLCNoContent struct {
 }
@@ -85,10 +84,9 @@ func NewSyncSteamDLCBadRequest() *SyncSteamDLCBadRequest {
 	return &SyncSteamDLCBadRequest{}
 }
 
-/*
-SyncSteamDLCBadRequest handles this case with default header values.
+/*SyncSteamDLCBadRequest handles this case with default header values.
 
-	<table><tr><td>ErrorCode</td><td>ErrorMessage</td></tr><tr><td>39124</td><td>IAP request platform [{platformId}] user id is not linked with current user</td></tr>
+  <table><tr><td>ErrorCode</td><td>ErrorMessage</td></tr><tr><td>39124</td><td>IAP request platform [{platformId}] user id is not linked with current user</td></tr>
 */
 type SyncSteamDLCBadRequest struct {
 	Payload *platformclientmodels.ErrorEntity

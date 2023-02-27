@@ -60,8 +60,7 @@ func NewGetPlatformDLCConfigParamsWithHTTPClient(client *http.Client) *GetPlatfo
 	}
 }
 
-/*
-GetPlatformDLCConfigParams contains all the parameters to send to the API endpoint
+/*GetPlatformDLCConfigParams contains all the parameters to send to the API endpoint
 for the get platform DLC config operation typically these are written to a http.Request
 */
 type GetPlatformDLCConfigParams struct {

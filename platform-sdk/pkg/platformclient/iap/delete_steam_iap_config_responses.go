@@ -48,10 +48,9 @@ func NewDeleteSteamIAPConfigNoContent() *DeleteSteamIAPConfigNoContent {
 	return &DeleteSteamIAPConfigNoContent{}
 }
 
-/*
-DeleteSteamIAPConfigNoContent handles this case with default header values.
+/*DeleteSteamIAPConfigNoContent handles this case with default header values.
 
-	Delete successfully
+  Delete successfully
 */
 type DeleteSteamIAPConfigNoContent struct {
 }

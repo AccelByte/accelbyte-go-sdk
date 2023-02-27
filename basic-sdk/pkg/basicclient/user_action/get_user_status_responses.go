@@ -76,10 +76,9 @@ func NewGetUserStatusOK() *GetUserStatusOK {
 	return &GetUserStatusOK{}
 }
 
-/*
-GetUserStatusOK handles this case with default header values.
+/*GetUserStatusOK handles this case with default header values.
 
-	successful operation
+  successful operation
 */
 type GetUserStatusOK struct {
 	Payload *basicclientmodels.ADTOObjectForEQU8UserStatus
@@ -130,10 +129,9 @@ func NewGetUserStatusBadRequest() *GetUserStatusBadRequest {
 	return &GetUserStatusBadRequest{}
 }
 
-/*
-GetUserStatusBadRequest handles this case with default header values.
+/*GetUserStatusBadRequest handles this case with default header values.
 
-	<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>11621</td><td>Invalid EQU8 api key in namespace [{namespace}]</td></tr></table>
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>11621</td><td>Invalid EQU8 api key in namespace [{namespace}]</td></tr></table>
 */
 type GetUserStatusBadRequest struct {
 	Payload *basicclientmodels.ErrorEntity
@@ -184,10 +182,9 @@ func NewGetUserStatusNotFound() *GetUserStatusNotFound {
 	return &GetUserStatusNotFound{}
 }
 
-/*
-GetUserStatusNotFound handles this case with default header values.
+/*GetUserStatusNotFound handles this case with default header values.
 
-	<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>11641</td><td>Equ8 config not found in namespace [{namespace}]</td></tr></table>
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>11641</td><td>Equ8 config not found in namespace [{namespace}]</td></tr></table>
 */
 type GetUserStatusNotFound struct {
 	Payload *basicclientmodels.ErrorEntity
@@ -238,10 +235,9 @@ func NewGetUserStatusUnprocessableEntity() *GetUserStatusUnprocessableEntity {
 	return &GetUserStatusUnprocessableEntity{}
 }
 
-/*
-GetUserStatusUnprocessableEntity handles this case with default header values.
+/*GetUserStatusUnprocessableEntity handles this case with default header values.
 
-	<table><tr><td>ErrorCode</td><td>ErrorMessage</td></tr><tr><td>20002</td><td>validation error</td></tr></table>
+  <table><tr><td>ErrorCode</td><td>ErrorMessage</td></tr><tr><td>20002</td><td>validation error</td></tr></table>
 */
 type GetUserStatusUnprocessableEntity struct {
 	Payload *basicclientmodels.ValidationErrorEntity
@@ -292,10 +288,9 @@ func NewGetUserStatusInternalServerError() *GetUserStatusInternalServerError {
 	return &GetUserStatusInternalServerError{}
 }
 
-/*
-GetUserStatusInternalServerError handles this case with default header values.
+/*GetUserStatusInternalServerError handles this case with default header values.
 
-	<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20000</td><td>internal server error</td></tr></table>
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20000</td><td>internal server error</td></tr></table>
 */
 type GetUserStatusInternalServerError struct {
 	Payload *basicclientmodels.ErrorEntity

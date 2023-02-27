@@ -93,10 +93,30 @@ func NewCreateBackfillCreated() *CreateBackfillCreated {
   Created
 */
 type CreateBackfillCreated struct {
+	Payload *match2clientmodels.APIBackfillCreateResponse
 }
 
 func (o *CreateBackfillCreated) Error() string {
-	return fmt.Sprintf("[POST /match2/v1/namespaces/{namespace}/backfill][%d] createBackfillCreated ", 201)
+	return fmt.Sprintf("[POST /match2/v1/namespaces/{namespace}/backfill][%d] createBackfillCreated  %+v", 201, o.ToJSONString())
+}
+
+func (o *CreateBackfillCreated) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
+}
+
+func (o *CreateBackfillCreated) GetPayload() *match2clientmodels.APIBackfillCreateResponse {
+	return o.Payload
 }
 
 func (o *CreateBackfillCreated) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -104,6 +124,13 @@ func (o *CreateBackfillCreated) readResponse(response runtime.ClientResponse, co
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
 		consumer = runtime.ByteStreamConsumer()
+	}
+
+	o.Payload = new(match2clientmodels.APIBackfillCreateResponse)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
 	}
 
 	return nil

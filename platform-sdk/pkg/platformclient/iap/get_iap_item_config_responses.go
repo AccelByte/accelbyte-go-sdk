@@ -58,10 +58,9 @@ func NewGetIAPItemConfigOK() *GetIAPItemConfigOK {
 	return &GetIAPItemConfigOK{}
 }
 
-/*
-GetIAPItemConfigOK handles this case with default header values.
+/*GetIAPItemConfigOK handles this case with default header values.
 
-	successful operation
+  successful operation
 */
 type GetIAPItemConfigOK struct {
 	Payload *platformclientmodels.IAPItemConfigInfo
@@ -112,10 +111,9 @@ func NewGetIAPItemConfigNotFound() *GetIAPItemConfigNotFound {
 	return &GetIAPItemConfigNotFound{}
 }
 
-/*
-GetIAPItemConfigNotFound handles this case with default header values.
+/*GetIAPItemConfigNotFound handles this case with default header values.
 
-	<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>39341</td><td>IAP item config cannot be found in namespace [{namespace}]</td></tr></table>
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>39341</td><td>IAP item config cannot be found in namespace [{namespace}]</td></tr></table>
 */
 type GetIAPItemConfigNotFound struct {
 	Payload *platformclientmodels.ErrorEntity

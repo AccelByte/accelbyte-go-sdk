@@ -60,8 +60,7 @@ func NewPlatformAuthenticateSAMLV3HandlerParamsWithHTTPClient(client *http.Clien
 	}
 }
 
-/*
-PlatformAuthenticateSAMLV3HandlerParams contains all the parameters to send to the API endpoint
+/*PlatformAuthenticateSAMLV3HandlerParams contains all the parameters to send to the API endpoint
 for the platform authenticate SAML v3 handler operation typically these are written to a http.Request
 */
 type PlatformAuthenticateSAMLV3HandlerParams struct {

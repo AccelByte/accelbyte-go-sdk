@@ -64,10 +64,9 @@ func NewUpdateConfigOK() *UpdateConfigOK {
 	return &UpdateConfigOK{}
 }
 
-/*
-UpdateConfigOK handles this case with default header values.
+/*UpdateConfigOK handles this case with default header values.
 
-	successful operation
+  successful operation
 */
 type UpdateConfigOK struct {
 	Payload *basicclientmodels.EQU8Config
@@ -118,10 +117,9 @@ func NewUpdateConfigBadRequest() *UpdateConfigBadRequest {
 	return &UpdateConfigBadRequest{}
 }
 
-/*
-UpdateConfigBadRequest handles this case with default header values.
+/*UpdateConfigBadRequest handles this case with default header values.
 
-	<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>11621</td><td>Invalid EQU8 api key in namespace [{namespace}]</td></tr></table>
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>11621</td><td>Invalid EQU8 api key in namespace [{namespace}]</td></tr></table>
 */
 type UpdateConfigBadRequest struct {
 	Payload *basicclientmodels.ErrorEntity
@@ -172,10 +170,9 @@ func NewUpdateConfigInternalServerError() *UpdateConfigInternalServerError {
 	return &UpdateConfigInternalServerError{}
 }
 
-/*
-UpdateConfigInternalServerError handles this case with default header values.
+/*UpdateConfigInternalServerError handles this case with default header values.
 
-	<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20000</td><td>internal server error</td></tr></table>
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20000</td><td>internal server error</td></tr></table>
 */
 type UpdateConfigInternalServerError struct {
 	Payload *basicclientmodels.ErrorEntity

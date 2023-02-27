@@ -63,7 +63,7 @@ func NewBulkCreateUserStatItemsOK() *BulkCreateUserStatItemsOK {
   successful operation
 */
 type BulkCreateUserStatItemsOK struct {
-	Payload []*socialclientmodels.BulkStatItemOperationResult
+	Payload []*socialclientmodels.BulkStatOperationResult
 }
 
 func (o *BulkCreateUserStatItemsOK) Error() string {
@@ -85,7 +85,7 @@ func (o *BulkCreateUserStatItemsOK) ToJSONString() string {
 	return fmt.Sprintf("%+v", string(b))
 }
 
-func (o *BulkCreateUserStatItemsOK) GetPayload() []*socialclientmodels.BulkStatItemOperationResult {
+func (o *BulkCreateUserStatItemsOK) GetPayload() []*socialclientmodels.BulkStatOperationResult {
 	return o.Payload
 }
 

@@ -19,6 +19,10 @@ import (
 // swagger:model StatCreate
 type StatCreate struct {
 
+	// cycle ids
+	// Unique: true
+	CycleIds []string `json:"cycleIds"`
+
 	// default value
 	// Required: true
 	DefaultValue *float64 `json:"defaultValue"`
@@ -60,6 +64,10 @@ type StatCreate struct {
 func (m *StatCreate) Validate(formats strfmt.Registry) error {
 	var res []error
 
+	if err := m.validateCycleIds(formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.validateDefaultValue(formats); err != nil {
 		res = append(res, err)
 	}
@@ -83,6 +91,19 @@ func (m *StatCreate) Validate(formats strfmt.Registry) error {
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
+	return nil
+}
+
+func (m *StatCreate) validateCycleIds(formats strfmt.Registry) error {
+
+	if swag.IsZero(m.CycleIds) { // not required
+		return nil
+	}
+
+	if err := validate.UniqueItems("cycleIds", "body", m.CycleIds); err != nil {
+		return err
+	}
+
 	return nil
 }
 

@@ -22,8 +22,7 @@ type ModelsContentRequest struct {
 	ContentType *string `json:"contentType"`
 
 	// custom attributes
-	// Required: true
-	CustomAttributes interface{} `json:"customAttributes"`
+	CustomAttributes interface{} `json:"customAttributes,omitempty"`
 
 	// file extension
 	// Required: true
@@ -42,8 +41,7 @@ type ModelsContentRequest struct {
 	Preview *string `json:"preview"`
 
 	// preview metadata
-	// Required: true
-	PreviewMetadata *ModelsPreviewMetadata `json:"previewMetadata"`
+	PreviewMetadata *ModelsPreviewMetadata `json:"previewMetadata,omitempty"`
 
 	// sub type
 	// Required: true
@@ -67,10 +65,6 @@ func (m *ModelsContentRequest) Validate(formats strfmt.Registry) error {
 	var res []error
 
 	if err := m.validateContentType(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.validateCustomAttributes(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -125,15 +119,6 @@ func (m *ModelsContentRequest) validateContentType(formats strfmt.Registry) erro
 	return nil
 }
 
-func (m *ModelsContentRequest) validateCustomAttributes(formats strfmt.Registry) error {
-
-	if err := validate.Required("customAttributes", "body", m.CustomAttributes); err != nil {
-		return err
-	}
-
-	return nil
-}
-
 func (m *ModelsContentRequest) validateFileExtension(formats strfmt.Registry) error {
 
 	if err := validate.Required("fileExtension", "body", m.FileExtension); err != nil {
@@ -172,8 +157,8 @@ func (m *ModelsContentRequest) validatePreview(formats strfmt.Registry) error {
 
 func (m *ModelsContentRequest) validatePreviewMetadata(formats strfmt.Registry) error {
 
-	if err := validate.Required("previewMetadata", "body", m.PreviewMetadata); err != nil {
-		return err
+	if swag.IsZero(m.PreviewMetadata) { // not required
+		return nil
 	}
 
 	if m.PreviewMetadata != nil {

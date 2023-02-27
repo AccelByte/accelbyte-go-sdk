@@ -336,7 +336,7 @@ func (aaa *ItemService) BulkGetLocaleItems(input *item.BulkGetLocaleItemsParams)
 }
 
 // deprecated(2022-01-10): please use GetAvailablePredicateTypesShort instead.
-func (aaa *ItemService) GetAvailablePredicateTypes(input *item.GetAvailablePredicateTypesParams) ([]*platformclientmodels.AvailablePredicateObject, error) {
+func (aaa *ItemService) GetAvailablePredicateTypes(input *item.GetAvailablePredicateTypesParams) ([]*platformclientmodels.AvailablePredicate, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
@@ -1252,7 +1252,7 @@ func (aaa *ItemService) BulkGetLocaleItemsShort(input *item.BulkGetLocaleItemsPa
 	return ok.GetPayload(), nil
 }
 
-func (aaa *ItemService) GetAvailablePredicateTypesShort(input *item.GetAvailablePredicateTypesParams) ([]*platformclientmodels.AvailablePredicateObject, error) {
+func (aaa *ItemService) GetAvailablePredicateTypesShort(input *item.GetAvailablePredicateTypesParams) ([]*platformclientmodels.AvailablePredicate, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{

@@ -60,8 +60,7 @@ func NewUpdateGoogleP12FileParamsWithHTTPClient(client *http.Client) *UpdateGoog
 	}
 }
 
-/*
-UpdateGoogleP12FileParams contains all the parameters to send to the API endpoint
+/*UpdateGoogleP12FileParams contains all the parameters to send to the API endpoint
 for the update google p12 file operation typically these are written to a http.Request
 */
 type UpdateGoogleP12FileParams struct {

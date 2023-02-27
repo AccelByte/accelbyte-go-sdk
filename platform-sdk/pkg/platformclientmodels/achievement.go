@@ -10,25 +10,25 @@ import (
 	"github.com/go-openapi/swag"
 )
 
-// XboxAchievementRequest xbox achievement request
+// Achievement steam achievement request
 //
-// swagger:model xbox achievement request
-type XboxAchievementRequest struct {
+// swagger:model Achievement
+type Achievement struct {
 
-	// achievement id
+	// id
 	ID string `json:"id,omitempty"`
 
-	// complete percentage
-	PercentComplete int64 `json:"percentComplete,omitempty"`
+	// value
+	Value int64 `json:"value,omitempty"`
 }
 
-// Validate validates this xbox achievement request
-func (m *XboxAchievementRequest) Validate(formats strfmt.Registry) error {
+// Validate validates this achievement
+func (m *Achievement) Validate(formats strfmt.Registry) error {
 	return nil
 }
 
 // MarshalBinary interface implementation
-func (m *XboxAchievementRequest) MarshalBinary() ([]byte, error) {
+func (m *Achievement) MarshalBinary() ([]byte, error) {
 	if m == nil {
 		return nil, nil
 	}
@@ -36,8 +36,8 @@ func (m *XboxAchievementRequest) MarshalBinary() ([]byte, error) {
 }
 
 // UnmarshalBinary interface implementation
-func (m *XboxAchievementRequest) UnmarshalBinary(b []byte) error {
-	var res XboxAchievementRequest
+func (m *Achievement) UnmarshalBinary(b []byte) error {
+	var res Achievement
 	if err := swag.ReadJSON(b, &res); err != nil {
 		return err
 	}

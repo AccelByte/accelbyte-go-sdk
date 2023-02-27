@@ -28,12 +28,10 @@ func NewPublicQueryUserStatItemsParams() *PublicQueryUserStatItemsParams {
 	var (
 		limitDefault  = int32(20)
 		offsetDefault = int32(0)
-		sortByDefault = string("updatedAt:asc")
 	)
 	return &PublicQueryUserStatItemsParams{
 		Limit:  &limitDefault,
 		Offset: &offsetDefault,
-		SortBy: &sortByDefault,
 
 		timeout: cr.DefaultTimeout,
 	}
@@ -45,12 +43,10 @@ func NewPublicQueryUserStatItemsParamsWithTimeout(timeout time.Duration) *Public
 	var (
 		limitDefault  = int32(20)
 		offsetDefault = int32(0)
-		sortByDefault = string("updatedAt:asc")
 	)
 	return &PublicQueryUserStatItemsParams{
 		Limit:  &limitDefault,
 		Offset: &offsetDefault,
-		SortBy: &sortByDefault,
 
 		timeout: timeout,
 	}
@@ -62,12 +58,10 @@ func NewPublicQueryUserStatItemsParamsWithContext(ctx context.Context) *PublicQu
 	var (
 		limitDefault  = int32(20)
 		offsetDefault = int32(0)
-		sortByDefault = string("updatedAt:asc")
 	)
 	return &PublicQueryUserStatItemsParams{
 		Limit:  &limitDefault,
 		Offset: &offsetDefault,
-		SortBy: &sortByDefault,
 
 		Context: ctx,
 	}
@@ -79,12 +73,10 @@ func NewPublicQueryUserStatItemsParamsWithHTTPClient(client *http.Client) *Publi
 	var (
 		limitDefault  = int32(20)
 		offsetDefault = int32(0)
-		sortByDefault = string("updatedAt:asc")
 	)
 	return &PublicQueryUserStatItemsParams{
 		Limit:      &limitDefault,
 		Offset:     &offsetDefault,
-		SortBy:     &sortByDefault,
 		HTTPClient: client,
 	}
 }
@@ -106,7 +98,7 @@ type PublicQueryUserStatItemsParams struct {
 	/*Offset*/
 	Offset *int32
 	/*SortBy
-	  default is updatedAt:asc, allow values: [statCode, statCode:asc, statCode:desc, createdAt, createdAt:asc, createdAt:desc, updatedAt, updatedAt:asc, updatedAt:desc],and support sort group, eg: sortBy=statCode:asc,createdAt:desc.
+	  default is unsorted, allow values: [statCode, statCode:asc, statCode:desc, createdAt, createdAt:asc, createdAt:desc, updatedAt, updatedAt:asc, updatedAt:desc],and support sort group, eg: sortBy=statCode:asc,createdAt:desc.
 
 	*/
 	SortBy *string

@@ -25,7 +25,7 @@ type ConditionGroup struct {
 	Operator string `json:"operator,omitempty"`
 
 	// predicate list
-	Predicates []*PredicateObject `json:"predicates"`
+	Predicates []*Predicate `json:"predicates"`
 }
 
 // Validate validates this condition group

@@ -60,8 +60,7 @@ func NewPublicSendMyMFAEmailCodeV4ParamsWithHTTPClient(client *http.Client) *Pub
 	}
 }
 
-/*
-PublicSendMyMFAEmailCodeV4Params contains all the parameters to send to the API endpoint
+/*PublicSendMyMFAEmailCodeV4Params contains all the parameters to send to the API endpoint
 for the public send my MFA email code v4 operation typically these are written to a http.Request
 */
 type PublicSendMyMFAEmailCodeV4Params struct {

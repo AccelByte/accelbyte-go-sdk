@@ -3,7 +3,7 @@
   "info": {
     "description": "Justice Matchmaking Service",
     "title": "Justice Match Service v2",
-    "version": "2.1.1"
+    "version": "2.2.0"
   },
   "schemes": [
     "https"
@@ -24,6 +24,7 @@
         "NAMESPACE:{namespace}:MATCHMAKING:POOL [DELETE]": "NAMESPACE:{namespace}:MATCHMAKING:POOL [DELETE]",
         "NAMESPACE:{namespace}:MATCHMAKING:POOL [READ]": "NAMESPACE:{namespace}:MATCHMAKING:POOL [READ]",
         "NAMESPACE:{namespace}:MATCHMAKING:POOL [UPDATE]": "NAMESPACE:{namespace}:MATCHMAKING:POOL [UPDATE]",
+        "NAMESPACE:{namespace}:MATCHMAKING:POOL:METRICS [READ]": "NAMESPACE:{namespace}:MATCHMAKING:POOL:METRICS [READ]",
         "NAMESPACE:{namespace}:MATCHMAKING:RULES [CREATE]": "NAMESPACE:{namespace}:MATCHMAKING:RULES [CREATE]",
         "NAMESPACE:{namespace}:MATCHMAKING:RULES [DELETE]": "NAMESPACE:{namespace}:MATCHMAKING:RULES [DELETE]",
         "NAMESPACE:{namespace}:MATCHMAKING:RULES [READ]": "NAMESPACE:{namespace}:MATCHMAKING:RULES [READ]",
@@ -111,7 +112,10 @@
         ],
         "responses": {
           "201": {
-            "description": "Created"
+            "description": "Created",
+            "schema": {
+              "$ref": "#/definitions/api.BackfillCreateResponse"
+            }
           },
           "400": {
             "description": "Bad Request",
@@ -1189,6 +1193,82 @@
         ]
       }
     },
+    "/match2/v1/namespaces/{namespace}/match-pools/{pool}/metrics": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Required Permission: NAMESPACE:{namespace}:MATCHMAKING:POOL:METRICS [READ]\n\nRequired Scope: social\n\nGet metric for a specific match pool\n\nResult: queueTime in seconds\n",
+        "operationId": "MatchPoolMetric",
+        "parameters": [
+          {
+            "description": "namespace of the game",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "Name of the match pool",
+            "in": "path",
+            "name": "pool",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "Created",
+            "schema": {
+              "$ref": "#/definitions/api.TicketMetricResultRecord"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          }
+        },
+        "security": [
+          {
+            "HasPermission": [
+              "NAMESPACE:{namespace}:MATCHMAKING:POOL:METRICS [READ]"
+            ],
+            "HasScope": [
+              "social"
+            ],
+            "authorization": []
+          }
+        ],
+        "summary": "Get metrics for a specific match pool",
+        "tags": [
+          "Match-Pools",
+          "public"
+        ]
+      }
+    },
     "/match2/v1/namespaces/{namespace}/match-tickets": {
       "post": {
         "consumes": [
@@ -1855,6 +1935,16 @@
         "sessionId"
       ]
     },
+    "api.BackfillCreateResponse": {
+      "properties": {
+        "id": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "id"
+      ]
+    },
     "api.BackfillGetResponse": {
       "properties": {
         "createdAt": {
@@ -2318,6 +2408,17 @@
           "type": "string"
         }
       }
+    },
+    "api.TicketMetricResultRecord": {
+      "properties": {
+        "queueTime": {
+          "format": "int32",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "queueTime"
+      ]
     },
     "api.backFillRejectRequest": {
       "properties": {

@@ -40,9 +40,8 @@ type ModelUserResponseV3 struct {
 	CreatedAt strfmt.DateTime `json:"createdAt"`
 
 	// date of birth
-	// Required: true
 	// Format: date-time
-	DateOfBirth strfmt.DateTime `json:"dateOfBirth"`
+	DateOfBirth *strfmt.DateTime `json:"dateOfBirth,omitempty"`
 
 	// deletion status
 	// Required: true
@@ -268,8 +267,8 @@ func (m *ModelUserResponseV3) validateCreatedAt(formats strfmt.Registry) error {
 
 func (m *ModelUserResponseV3) validateDateOfBirth(formats strfmt.Registry) error {
 
-	if err := validate.Required("dateOfBirth", "body", strfmt.DateTime(m.DateOfBirth)); err != nil {
-		return err
+	if swag.IsZero(m.DateOfBirth) { // not required
+		return nil
 	}
 
 	if err := validate.FormatOf("dateOfBirth", "body", "date-time", m.DateOfBirth.String(), formats); err != nil {

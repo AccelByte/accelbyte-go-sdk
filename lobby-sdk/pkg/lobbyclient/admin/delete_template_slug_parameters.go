@@ -60,8 +60,7 @@ func NewDeleteTemplateSlugParamsWithHTTPClient(client *http.Client) *DeleteTempl
 	}
 }
 
-/*
-DeleteTemplateSlugParams contains all the parameters to send to the API endpoint
+/*DeleteTemplateSlugParams contains all the parameters to send to the API endpoint
 for the delete template slug operation typically these are written to a http.Request
 */
 type DeleteTemplateSlugParams struct {

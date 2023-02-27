@@ -70,7 +70,7 @@ type UnlockSteamUserAchievementParams struct {
 	/*RetryPolicy*/
 	RetryPolicy *utils.Retry
 	/*Body*/
-	Body *platformclientmodels.ADTOObjectForUnlockSteamAchievementAPI
+	Body *platformclientmodels.SteamAchievementUpdateRequest
 	/*Namespace*/
 	Namespace string
 	/*UserID*/
@@ -130,13 +130,13 @@ func (o *UnlockSteamUserAchievementParams) SetHTTPClientTransport(roundTripper h
 }
 
 // WithBody adds the body to the unlock steam user achievement params
-func (o *UnlockSteamUserAchievementParams) WithBody(body *platformclientmodels.ADTOObjectForUnlockSteamAchievementAPI) *UnlockSteamUserAchievementParams {
+func (o *UnlockSteamUserAchievementParams) WithBody(body *platformclientmodels.SteamAchievementUpdateRequest) *UnlockSteamUserAchievementParams {
 	o.SetBody(body)
 	return o
 }
 
 // SetBody adds the body to the unlock steam user achievement params
-func (o *UnlockSteamUserAchievementParams) SetBody(body *platformclientmodels.ADTOObjectForUnlockSteamAchievementAPI) {
+func (o *UnlockSteamUserAchievementParams) SetBody(body *platformclientmodels.SteamAchievementUpdateRequest) {
 	o.Body = body
 }
 

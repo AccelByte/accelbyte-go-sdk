@@ -70,6 +70,9 @@ type ModelsAchievementResponse struct {
 	// stat code
 	StatCode string `json:"statCode,omitempty"`
 
+	// Achievement progression status: [INIT, TIED]
+	Status string `json:"status,omitempty"`
+
 	// tags
 	// Required: true
 	Tags []string `json:"tags"`

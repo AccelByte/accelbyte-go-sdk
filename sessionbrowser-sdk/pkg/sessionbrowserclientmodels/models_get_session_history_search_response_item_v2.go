@@ -67,6 +67,10 @@ type ModelsGetSessionHistorySearchResponseItemV2 struct {
 	// sub game mode
 	// Required: true
 	SubGameMode []string `json:"sub_game_mode"`
+
+	// user id
+	// Required: true
+	UserID *string `json:"user_id"`
 }
 
 // Validate validates this models get session history search response item v2
@@ -118,6 +122,10 @@ func (m *ModelsGetSessionHistorySearchResponseItemV2) Validate(formats strfmt.Re
 	}
 
 	if err := m.validateSubGameMode(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateUserID(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -265,6 +273,15 @@ func (m *ModelsGetSessionHistorySearchResponseItemV2) validateStatus(formats str
 func (m *ModelsGetSessionHistorySearchResponseItemV2) validateSubGameMode(formats strfmt.Registry) error {
 
 	if err := validate.Required("sub_game_mode", "body", m.SubGameMode); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *ModelsGetSessionHistorySearchResponseItemV2) validateUserID(formats strfmt.Registry) error {
+
+	if err := validate.Required("user_id", "body", m.UserID); err != nil {
 		return err
 	}
 

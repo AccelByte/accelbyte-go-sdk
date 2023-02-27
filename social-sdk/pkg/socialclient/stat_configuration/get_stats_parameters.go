@@ -88,6 +88,11 @@ type GetStatsParams struct {
 
 	/*RetryPolicy*/
 	RetryPolicy *utils.Retry
+	/*CycleIds
+	  comma separated cycleId
+
+	*/
+	CycleIds *string
 	/*IsGlobal
 	  flag to filter global statcode
 
@@ -156,6 +161,17 @@ func (o *GetStatsParams) SetHTTPClientTransport(roundTripper http.RoundTripper) 
 	}
 }
 
+// WithCycleIds adds the cycleIds to the get stats params
+func (o *GetStatsParams) WithCycleIds(cycleIds *string) *GetStatsParams {
+	o.SetCycleIds(cycleIds)
+	return o
+}
+
+// SetCycleIds adds the cycleIds to the get stats params
+func (o *GetStatsParams) SetCycleIds(cycleIds *string) {
+	o.CycleIds = cycleIds
+}
+
 // WithIsGlobal adds the isGlobal to the get stats params
 func (o *GetStatsParams) WithIsGlobal(isGlobal *bool) *GetStatsParams {
 	o.SetIsGlobal(isGlobal)
@@ -207,6 +223,22 @@ func (o *GetStatsParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.Regi
 		return err
 	}
 	var res []error
+
+	if o.CycleIds != nil {
+
+		// query param cycleIds
+		var qrCycleIds string
+		if o.CycleIds != nil {
+			qrCycleIds = *o.CycleIds
+		}
+		qCycleIds := qrCycleIds
+		if qCycleIds != "" {
+			if err := r.SetQueryParam("cycleIds", qCycleIds); err != nil {
+				return err
+			}
+		}
+
+	}
 
 	if o.IsGlobal != nil {
 

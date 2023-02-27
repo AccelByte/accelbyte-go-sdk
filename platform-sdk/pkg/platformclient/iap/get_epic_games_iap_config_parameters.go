@@ -60,8 +60,7 @@ func NewGetEpicGamesIAPConfigParamsWithHTTPClient(client *http.Client) *GetEpicG
 	}
 }
 
-/*
-GetEpicGamesIAPConfigParams contains all the parameters to send to the API endpoint
+/*GetEpicGamesIAPConfigParams contains all the parameters to send to the API endpoint
 for the get epic games IAP config operation typically these are written to a http.Request
 */
 type GetEpicGamesIAPConfigParams struct {

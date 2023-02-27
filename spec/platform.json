@@ -8,7 +8,7 @@
     },
     "description": "Justice Platform Service",
     "title": "justice-platform-service",
-    "version": "4.23.0"
+    "version": "4.24.0"
   },
   "schemes": [
     "https"
@@ -5686,7 +5686,7 @@
             "description": "successful operation",
             "schema": {
               "items": {
-                "$ref": "#/definitions/available predicate object"
+                "$ref": "#/definitions/AvailablePredicate"
               },
               "type": "array"
             }
@@ -11993,7 +11993,7 @@
             "name": "body",
             "required": false,
             "schema": {
-              "$ref": "#/definitions/A DTO object for unlock steam achievement API"
+              "$ref": "#/definitions/SteamAchievementUpdateRequest"
             }
           }
         ],
@@ -12066,7 +12066,7 @@
           "200": {
             "description": "OK",
             "schema": {
-              "$ref": "#/definitions/A DTO object for querying xbox user achievements"
+              "$ref": "#/definitions/XblUserAchievements"
             }
           },
           "400": {
@@ -12114,7 +12114,7 @@
             "name": "body",
             "required": false,
             "schema": {
-              "$ref": "#/definitions/A DTO object for update xbox achievement complete percentage API"
+              "$ref": "#/definitions/XblAchievementUpdateRequest"
             }
           }
         ],
@@ -26123,62 +26123,15 @@
     }
   },
   "definitions": {
-    "A DTO object for order creation options": {
+    "Achievement": {
+      "description": "steam achievement request",
       "properties": {
-        "skipPriceValidation": {
-          "description": "skip price validation",
-          "type": "boolean",
-          "x-omitempty": false
-        }
-      },
-      "type": "object"
-    },
-    "A DTO object for querying xbox user achievements": {
-      "properties": {
-        "achievements": {
-          "description": "user achievements, including unlocked and in progress",
-          "items": {
-            "$ref": "#/definitions/AchievementInfo"
-          },
-          "type": "array"
-        }
-      },
-      "type": "object"
-    },
-    "A DTO object for unlock steam achievement API": {
-      "properties": {
-        "achievements": {
-          "description": "achievements to be updated",
-          "items": {
-            "$ref": "#/definitions/steam achievement request"
-          },
-          "type": "array"
-        },
-        "steamUserId": {
-          "description": "steam user id",
-          "type": "string"
-        }
-      },
-      "type": "object"
-    },
-    "A DTO object for update xbox achievement complete percentage API": {
-      "properties": {
-        "achievements": {
-          "description": "achievements to be updated",
-          "items": {
-            "$ref": "#/definitions/xbox achievement request"
-          },
-          "type": "array"
-        },
-        "serviceConfigId": {
+        "id": {
           "type": "string"
         },
-        "titleId": {
-          "type": "string"
-        },
-        "xboxUserId": {
-          "description": "xbox live user id",
-          "type": "string"
+        "value": {
+          "format": "int64",
+          "type": "integer"
         }
       },
       "type": "object"
@@ -26250,7 +26203,7 @@
           "type": "string"
         },
         "options": {
-          "$ref": "#/definitions/A DTO object for order creation options",
+          "$ref": "#/definitions/OrderCreationOptions",
           "description": "Creation options"
         },
         "platform": {
@@ -26819,6 +26772,66 @@
         "receiptData",
         "transactionId"
       ],
+      "type": "object"
+    },
+    "AvailableComparison": {
+      "description": "available comparison object",
+      "properties": {
+        "comparison": {
+          "description": "available comparison",
+          "enum": [
+            "excludes",
+            "includes",
+            "is",
+            "isGreaterThan",
+            "isGreaterThanOrEqual",
+            "isLessThan",
+            "isLessThanOrEqual",
+            "isNot"
+          ],
+          "type": "string"
+        },
+        "text": {
+          "description": "comparison text",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "AvailablePredicate": {
+      "description": "available predicate object",
+      "properties": {
+        "availableComparisons": {
+          "description": "available comparison list",
+          "items": {
+            "$ref": "#/definitions/AvailableComparison"
+          },
+          "type": "array"
+        },
+        "predicateType": {
+          "description": "available predicate type",
+          "enum": [
+            "EntitlementPredicate",
+            "SeasonPassPredicate",
+            "SeasonTierPredicate"
+          ],
+          "type": "string"
+        },
+        "showAnyOf": {
+          "description": "whether show any of on config page",
+          "type": "boolean",
+          "x-omitempty": false
+        },
+        "valueType": {
+          "description": "predicate value type",
+          "enum": [
+            "List",
+            "Number",
+            "String"
+          ],
+          "type": "string"
+        }
+      },
       "type": "object"
     },
     "BasicCategoryInfo": {
@@ -28291,7 +28304,7 @@
         "predicates": {
           "description": "predicate list",
           "items": {
-            "$ref": "#/definitions/predicate object"
+            "$ref": "#/definitions/Predicate"
           },
           "type": "array"
         }
@@ -33580,7 +33593,7 @@
           "x-nullable": true
         },
         "creationOptions": {
-          "$ref": "#/definitions/A DTO object for order creation options"
+          "$ref": "#/definitions/OrderCreationOptions"
         },
         "currency": {
           "$ref": "#/definitions/CurrencySummary"
@@ -33794,6 +33807,17 @@
       ],
       "type": "object"
     },
+    "OrderCreationOptions": {
+      "description": "A DTO object for order creation options",
+      "properties": {
+        "skipPriceValidation": {
+          "description": "skip price validation",
+          "type": "boolean",
+          "x-omitempty": false
+        }
+      },
+      "type": "object"
+    },
     "OrderGrantInfo": {
       "properties": {
         "credits": {
@@ -33910,7 +33934,7 @@
           "x-nullable": true
         },
         "creationOptions": {
-          "$ref": "#/definitions/A DTO object for order creation options",
+          "$ref": "#/definitions/OrderCreationOptions",
           "description": "The creation options of this order"
         },
         "currency": {
@@ -36570,6 +36594,56 @@
       ],
       "type": "object"
     },
+    "Predicate": {
+      "description": "predicate object",
+      "properties": {
+        "anyOf": {
+          "description": "anyOf, only available if comparison is includes or excludes",
+          "format": "int32",
+          "type": "integer"
+        },
+        "comparison": {
+          "description": "comparison",
+          "enum": [
+            "excludes",
+            "includes",
+            "is",
+            "isGreaterThan",
+            "isGreaterThanOrEqual",
+            "isLessThan",
+            "isLessThanOrEqual",
+            "isNot"
+          ],
+          "type": "string"
+        },
+        "name": {
+          "description": "predicate name",
+          "type": "string"
+        },
+        "predicateType": {
+          "description": "predicate type",
+          "enum": [
+            "EntitlementPredicate",
+            "SeasonPassPredicate",
+            "SeasonTierPredicate"
+          ],
+          "type": "string"
+        },
+        "value": {
+          "description": "value, pass check value when predicateType is SeasonTierPredicate",
+          "type": "string"
+        },
+        "values": {
+          "description": "values, pass check value when predicateType is EntitlementPredicate or SeasonPassPredicateEntitlementPredicate requires item sku list, SeasonPassPredicate requires pass code list",
+          "items": {
+            "type": "string"
+          },
+          "type": "array",
+          "uniqueItems": true
+        }
+      },
+      "type": "object"
+    },
     "PredicateValidateResult": {
       "properties": {
         "matched": {
@@ -38111,6 +38185,23 @@
         "updatedAt",
         "userId"
       ],
+      "type": "object"
+    },
+    "SteamAchievementUpdateRequest": {
+      "description": "A DTO object for unlock steam achievement API",
+      "properties": {
+        "achievements": {
+          "description": "achievements to be updated",
+          "items": {
+            "$ref": "#/definitions/Achievement"
+          },
+          "type": "array"
+        },
+        "steamUserId": {
+          "description": "steam user id",
+          "type": "string"
+        }
+      },
       "type": "object"
     },
     "SteamDLCSyncRequest": {
@@ -39976,6 +40067,29 @@
       },
       "type": "object"
     },
+    "XblAchievementUpdateRequest": {
+      "description": "A DTO object for update xbox achievement complete percentage API",
+      "properties": {
+        "achievements": {
+          "description": "achievements to be updated",
+          "items": {
+            "$ref": "#/definitions/Achievement"
+          },
+          "type": "array"
+        },
+        "serviceConfigId": {
+          "type": "string"
+        },
+        "titleId": {
+          "type": "string"
+        },
+        "xboxUserId": {
+          "description": "xbox live user id",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "XblDLCSyncRequest": {
       "properties": {
         "xstsToken": {
@@ -40064,6 +40178,19 @@
         },
         "xboxProductId": {
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "XblUserAchievements": {
+      "description": "A DTO object for querying xbox user achievements",
+      "properties": {
+        "achievements": {
+          "description": "user achievements, including unlocked and in progress",
+          "items": {
+            "$ref": "#/definitions/AchievementInfo"
+          },
+          "type": "array"
         }
       },
       "type": "object"
@@ -40170,139 +40297,6 @@
             "DEFAULT_DARK"
           ],
           "type": "string"
-        }
-      },
-      "type": "object"
-    },
-    "available comparison object": {
-      "properties": {
-        "comparison": {
-          "description": "available comparison",
-          "enum": [
-            "excludes",
-            "includes",
-            "is",
-            "isGreaterThan",
-            "isGreaterThanOrEqual",
-            "isLessThan",
-            "isLessThanOrEqual",
-            "isNot"
-          ],
-          "type": "string"
-        },
-        "text": {
-          "description": "comparison text",
-          "type": "string"
-        }
-      },
-      "type": "object"
-    },
-    "available predicate object": {
-      "properties": {
-        "availableComparisons": {
-          "description": "available comparison list",
-          "items": {
-            "$ref": "#/definitions/available comparison object"
-          },
-          "type": "array"
-        },
-        "predicateType": {
-          "description": "available predicate type",
-          "enum": [
-            "EntitlementPredicate",
-            "SeasonPassPredicate",
-            "SeasonTierPredicate"
-          ],
-          "type": "string"
-        },
-        "showAnyOf": {
-          "description": "whether show any of on config page",
-          "type": "boolean",
-          "x-omitempty": false
-        },
-        "valueType": {
-          "description": "predicate value type",
-          "enum": [
-            "List",
-            "Number",
-            "String"
-          ],
-          "type": "string"
-        }
-      },
-      "type": "object"
-    },
-    "predicate object": {
-      "properties": {
-        "anyOf": {
-          "description": "anyOf, only available if comparison is includes or excludes",
-          "format": "int32",
-          "type": "integer"
-        },
-        "comparison": {
-          "description": "comparison",
-          "enum": [
-            "excludes",
-            "includes",
-            "is",
-            "isGreaterThan",
-            "isGreaterThanOrEqual",
-            "isLessThan",
-            "isLessThanOrEqual",
-            "isNot"
-          ],
-          "type": "string"
-        },
-        "name": {
-          "description": "predicate name",
-          "type": "string"
-        },
-        "predicateType": {
-          "description": "predicate type",
-          "enum": [
-            "EntitlementPredicate",
-            "SeasonPassPredicate",
-            "SeasonTierPredicate"
-          ],
-          "type": "string"
-        },
-        "value": {
-          "description": "value, pass check value when predicateType is SeasonTierPredicate",
-          "type": "string"
-        },
-        "values": {
-          "description": "values, pass check value when predicateType is EntitlementPredicate or SeasonPassPredicateEntitlementPredicate requires item sku list, SeasonPassPredicate requires pass code list",
-          "items": {
-            "type": "string"
-          },
-          "type": "array",
-          "uniqueItems": true
-        }
-      },
-      "type": "object"
-    },
-    "steam achievement request": {
-      "properties": {
-        "id": {
-          "type": "string"
-        },
-        "value": {
-          "format": "int64",
-          "type": "integer"
-        }
-      },
-      "type": "object"
-    },
-    "xbox achievement request": {
-      "properties": {
-        "id": {
-          "description": "achievement id",
-          "type": "string"
-        },
-        "percentComplete": {
-          "description": "complete percentage",
-          "format": "int64",
-          "type": "integer"
         }
       },
       "type": "object"

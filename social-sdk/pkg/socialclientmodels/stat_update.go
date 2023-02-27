@@ -17,6 +17,10 @@ import (
 // swagger:model StatUpdate
 type StatUpdate struct {
 
+	// cycle ids
+	// Unique: true
+	CycleIds []string `json:"cycleIds"`
+
 	// default value
 	DefaultValue float64 `json:"defaultValue,omitempty"`
 
@@ -35,6 +39,10 @@ type StatUpdate struct {
 func (m *StatUpdate) Validate(formats strfmt.Registry) error {
 	var res []error
 
+	if err := m.validateCycleIds(formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.validateTags(formats); err != nil {
 		res = append(res, err)
 	}
@@ -42,6 +50,19 @@ func (m *StatUpdate) Validate(formats strfmt.Registry) error {
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
+	return nil
+}
+
+func (m *StatUpdate) validateCycleIds(formats strfmt.Registry) error {
+
+	if swag.IsZero(m.CycleIds) { // not required
+		return nil
+	}
+
+	if err := validate.UniqueItems("cycleIds", "body", m.CycleIds); err != nil {
+		return err
+	}
+
 	return nil
 }
 

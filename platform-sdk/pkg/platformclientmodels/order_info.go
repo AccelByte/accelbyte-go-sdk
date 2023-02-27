@@ -41,7 +41,7 @@ type OrderInfo struct {
 	CreatedTime *strfmt.DateTime `json:"createdTime,omitempty"`
 
 	// The creation options of this order
-	CreationOptions *ADTOObjectForOrderCreationOptions `json:"creationOptions,omitempty"`
+	CreationOptions *OrderCreationOptions `json:"creationOptions,omitempty"`
 
 	// Order currency info
 	// Required: true

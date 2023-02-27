@@ -70,10 +70,9 @@ func NewMockFulfillIAPItemNoContent() *MockFulfillIAPItemNoContent {
 	return &MockFulfillIAPItemNoContent{}
 }
 
-/*
-MockFulfillIAPItemNoContent handles this case with default header values.
+/*MockFulfillIAPItemNoContent handles this case with default header values.
 
-	Fulfill item successfully
+  Fulfill item successfully
 */
 type MockFulfillIAPItemNoContent struct {
 }
@@ -97,10 +96,9 @@ func NewMockFulfillIAPItemBadRequest() *MockFulfillIAPItemBadRequest {
 	return &MockFulfillIAPItemBadRequest{}
 }
 
-/*
-MockFulfillIAPItemBadRequest handles this case with default header values.
+/*MockFulfillIAPItemBadRequest handles this case with default header values.
 
-	<table><tr><td>ErrorCode</td><td>ErrorMessage</td></tr><tr><td>35123</td><td>Wallet [{walletId}] is inactive</td></tr><tr><td>38121</td><td>Duplicate permanent item exists</td></tr><tr><td>38122</td><td>Subscription endDate required</td></tr></table>
+  <table><tr><td>ErrorCode</td><td>ErrorMessage</td></tr><tr><td>35123</td><td>Wallet [{walletId}] is inactive</td></tr><tr><td>38121</td><td>Duplicate permanent item exists</td></tr><tr><td>38122</td><td>Subscription endDate required</td></tr></table>
 */
 type MockFulfillIAPItemBadRequest struct {
 	Payload *platformclientmodels.ErrorEntity
@@ -151,10 +149,9 @@ func NewMockFulfillIAPItemNotFound() *MockFulfillIAPItemNotFound {
 	return &MockFulfillIAPItemNotFound{}
 }
 
-/*
-MockFulfillIAPItemNotFound handles this case with default header values.
+/*MockFulfillIAPItemNotFound handles this case with default header values.
 
-	<table><tr><td>ErrorCode</td><td>ErrorMessage</td></tr><tr><td>30341</td><td>Item [{itemId}] does not exist in namespace [{namespace}]</td></tr></table>
+  <table><tr><td>ErrorCode</td><td>ErrorMessage</td></tr><tr><td>30341</td><td>Item [{itemId}] does not exist in namespace [{namespace}]</td></tr></table>
 */
 type MockFulfillIAPItemNotFound struct {
 	Payload *platformclientmodels.ErrorEntity
@@ -205,10 +202,9 @@ func NewMockFulfillIAPItemConflict() *MockFulfillIAPItemConflict {
 	return &MockFulfillIAPItemConflict{}
 }
 
-/*
-MockFulfillIAPItemConflict handles this case with default header values.
+/*MockFulfillIAPItemConflict handles this case with default header values.
 
-	<table><tr><td>ErrorCode</td><td>ErrorMessage</td></tr><tr><td>20006</td><td>optimistic lock</td></tr></table>
+  <table><tr><td>ErrorCode</td><td>ErrorMessage</td></tr><tr><td>20006</td><td>optimistic lock</td></tr></table>
 */
 type MockFulfillIAPItemConflict struct {
 	Payload *platformclientmodels.ErrorEntity

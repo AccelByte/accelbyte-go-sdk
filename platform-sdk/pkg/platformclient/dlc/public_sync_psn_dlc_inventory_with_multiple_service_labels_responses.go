@@ -58,10 +58,9 @@ func NewPublicSyncPsnDLCInventoryWithMultipleServiceLabelsNoContent() *PublicSyn
 	return &PublicSyncPsnDLCInventoryWithMultipleServiceLabelsNoContent{}
 }
 
-/*
-PublicSyncPsnDLCInventoryWithMultipleServiceLabelsNoContent handles this case with default header values.
+/*PublicSyncPsnDLCInventoryWithMultipleServiceLabelsNoContent handles this case with default header values.
 
-	Successful operation
+  Successful operation
 */
 type PublicSyncPsnDLCInventoryWithMultipleServiceLabelsNoContent struct {
 }
@@ -85,10 +84,9 @@ func NewPublicSyncPsnDLCInventoryWithMultipleServiceLabelsBadRequest() *PublicSy
 	return &PublicSyncPsnDLCInventoryWithMultipleServiceLabelsBadRequest{}
 }
 
-/*
-PublicSyncPsnDLCInventoryWithMultipleServiceLabelsBadRequest handles this case with default header values.
+/*PublicSyncPsnDLCInventoryWithMultipleServiceLabelsBadRequest handles this case with default header values.
 
-	<table><tr><td>ErrorCode</td><td>ErrorMessage</td></tr><tr><td>39125</td><td>Invalid platform [{platformId}] user token</td></tr><tr><td>39126</td><td>User id [{}] in namespace [{}] doesn't link platform [{}]</td></tr><tr><td>39127</td><td>Invalid service label [{serviceLabel}]</td></tr>
+  <table><tr><td>ErrorCode</td><td>ErrorMessage</td></tr><tr><td>39125</td><td>Invalid platform [{platformId}] user token</td></tr><tr><td>39126</td><td>User id [{}] in namespace [{}] doesn't link platform [{}]</td></tr><tr><td>39127</td><td>Invalid service label [{serviceLabel}]</td></tr>
 */
 type PublicSyncPsnDLCInventoryWithMultipleServiceLabelsBadRequest struct {
 	Payload *platformclientmodels.ErrorEntity

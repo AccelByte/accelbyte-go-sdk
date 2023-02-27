@@ -517,10 +517,7 @@
 
 | Model Struct | Class |
 |---|---|
-| `A DTO object for order creation options` | [ADTOObjectForOrderCreationOptions ](../../platform-sdk/pkg/platformclientmodels/a_dto_object_for_order_creation_options.go) |
-| `A DTO object for querying xbox user achievements` | [ADTOObjectForQueryingXboxUserAchievements ](../../platform-sdk/pkg/platformclientmodels/a_dto_object_for_querying_xbox_user_achievements.go) |
-| `A DTO object for unlock steam achievement API` | [ADTOObjectForUnlockSteamAchievementAPI ](../../platform-sdk/pkg/platformclientmodels/a_dto_object_for_unlock_steam_achievement_api.go) |
-| `A DTO object for update xbox achievement complete percentage API` | [ADTOObjectForUpdateXboxAchievementCompletePercentageAPI ](../../platform-sdk/pkg/platformclientmodels/a_dto_object_for_update_xbox_achievement_complete_percentage_api.go) |
+| `Achievement` | [Achievement ](../../platform-sdk/pkg/platformclientmodels/achievement.go) |
 | `AchievementInfo` | [AchievementInfo ](../../platform-sdk/pkg/platformclientmodels/achievement_info.go) |
 | `AdditionalData` | [AdditionalData ](../../platform-sdk/pkg/platformclientmodels/additional_data.go) |
 | `AdminOrderCreate` | [AdminOrderCreate ](../../platform-sdk/pkg/platformclientmodels/admin_order_create.go) |
@@ -534,6 +531,8 @@
 | `AppleIAPConfigInfo` | [AppleIAPConfigInfo ](../../platform-sdk/pkg/platformclientmodels/apple_iap_config_info.go) |
 | `AppleIAPConfigRequest` | [AppleIAPConfigRequest ](../../platform-sdk/pkg/platformclientmodels/apple_iap_config_request.go) |
 | `AppleIAPReceipt` | [AppleIAPReceipt ](../../platform-sdk/pkg/platformclientmodels/apple_iap_receipt.go) |
+| `AvailableComparison` | [AvailableComparison ](../../platform-sdk/pkg/platformclientmodels/available_comparison.go) |
+| `AvailablePredicate` | [AvailablePredicate ](../../platform-sdk/pkg/platformclientmodels/available_predicate.go) |
 | `BasicCategoryInfo` | [BasicCategoryInfo ](../../platform-sdk/pkg/platformclientmodels/basic_category_info.go) |
 | `BasicItem` | [BasicItem ](../../platform-sdk/pkg/platformclientmodels/basic_item.go) |
 | `BillingAccount` | [BillingAccount ](../../platform-sdk/pkg/platformclientmodels/billing_account.go) |
@@ -681,6 +680,7 @@
 | `OptionBoxConfig` | [OptionBoxConfig ](../../platform-sdk/pkg/platformclientmodels/option_box_config.go) |
 | `Order` | [Order ](../../platform-sdk/pkg/platformclientmodels/order.go) |
 | `OrderCreate` | [OrderCreate ](../../platform-sdk/pkg/platformclientmodels/order_create.go) |
+| `OrderCreationOptions` | [OrderCreationOptions ](../../platform-sdk/pkg/platformclientmodels/order_creation_options.go) |
 | `OrderGrantInfo` | [OrderGrantInfo ](../../platform-sdk/pkg/platformclientmodels/order_grant_info.go) |
 | `OrderHistoryInfo` | [OrderHistoryInfo ](../../platform-sdk/pkg/platformclientmodels/order_history_info.go) |
 | `OrderInfo` | [OrderInfo ](../../platform-sdk/pkg/platformclientmodels/order_info.go) |
@@ -743,6 +743,7 @@
 | `PlayStationReconcileResult` | [PlayStationReconcileResult ](../../platform-sdk/pkg/platformclientmodels/play_station_reconcile_result.go) |
 | `PlaystationIAPConfigRequest` | [PlaystationIAPConfigRequest ](../../platform-sdk/pkg/platformclientmodels/playstation_iap_config_request.go) |
 | `PopulatedItemInfo` | [PopulatedItemInfo ](../../platform-sdk/pkg/platformclientmodels/populated_item_info.go) |
+| `Predicate` | [Predicate ](../../platform-sdk/pkg/platformclientmodels/predicate.go) |
 | `PredicateValidateResult` | [PredicateValidateResult ](../../platform-sdk/pkg/platformclientmodels/predicate_validate_result.go) |
 | `PurchaseCondition` | [PurchaseCondition ](../../platform-sdk/pkg/platformclientmodels/purchase_condition.go) |
 | `PurchaseConditionUpdate` | [PurchaseConditionUpdate ](../../platform-sdk/pkg/platformclientmodels/purchase_condition_update.go) |
@@ -785,6 +786,7 @@
 | `ServicePluginConfigUpdate` | [ServicePluginConfigUpdate ](../../platform-sdk/pkg/platformclientmodels/service_plugin_config_update.go) |
 | `Slide` | [Slide ](../../platform-sdk/pkg/platformclientmodels/slide.go) |
 | `StackableEntitlementInfo` | [StackableEntitlementInfo ](../../platform-sdk/pkg/platformclientmodels/stackable_entitlement_info.go) |
+| `SteamAchievementUpdateRequest` | [SteamAchievementUpdateRequest ](../../platform-sdk/pkg/platformclientmodels/steam_achievement_update_request.go) |
 | `SteamDLCSyncRequest` | [SteamDLCSyncRequest ](../../platform-sdk/pkg/platformclientmodels/steam_dlc_sync_request.go) |
 | `SteamIAPConfig` | [SteamIAPConfig ](../../platform-sdk/pkg/platformclientmodels/steam_iap_config.go) |
 | `SteamIAPConfigInfo` | [SteamIAPConfigInfo ](../../platform-sdk/pkg/platformclientmodels/steam_iap_config_info.go) |
@@ -831,16 +833,13 @@
 | `WalletTransactionPagingSlicedResult` | [WalletTransactionPagingSlicedResult ](../../platform-sdk/pkg/platformclientmodels/wallet_transaction_paging_sliced_result.go) |
 | `WxPayConfigInfo` | [WxPayConfigInfo ](../../platform-sdk/pkg/platformclientmodels/wx_pay_config_info.go) |
 | `WxPayConfigRequest` | [WxPayConfigRequest ](../../platform-sdk/pkg/platformclientmodels/wx_pay_config_request.go) |
+| `XblAchievementUpdateRequest` | [XblAchievementUpdateRequest ](../../platform-sdk/pkg/platformclientmodels/xbl_achievement_update_request.go) |
 | `XblDLCSyncRequest` | [XblDLCSyncRequest ](../../platform-sdk/pkg/platformclientmodels/xbl_dlc_sync_request.go) |
 | `XblIAPConfigInfo` | [XblIAPConfigInfo ](../../platform-sdk/pkg/platformclientmodels/xbl_iap_config_info.go) |
 | `XblIAPConfigRequest` | [XblIAPConfigRequest ](../../platform-sdk/pkg/platformclientmodels/xbl_iap_config_request.go) |
 | `XblReconcileRequest` | [XblReconcileRequest ](../../platform-sdk/pkg/platformclientmodels/xbl_reconcile_request.go) |
 | `XblReconcileResult` | [XblReconcileResult ](../../platform-sdk/pkg/platformclientmodels/xbl_reconcile_result.go) |
+| `XblUserAchievements` | [XblUserAchievements ](../../platform-sdk/pkg/platformclientmodels/xbl_user_achievements.go) |
 | `XsollaConfig` | [XsollaConfig ](../../platform-sdk/pkg/platformclientmodels/xsolla_config.go) |
 | `XsollaPaywallConfig` | [XsollaPaywallConfig ](../../platform-sdk/pkg/platformclientmodels/xsolla_paywall_config.go) |
 | `XsollaPaywallConfigRequest` | [XsollaPaywallConfigRequest ](../../platform-sdk/pkg/platformclientmodels/xsolla_paywall_config_request.go) |
-| `available comparison object` | [AvailableComparisonObject ](../../platform-sdk/pkg/platformclientmodels/available_comparison_object.go) |
-| `available predicate object` | [AvailablePredicateObject ](../../platform-sdk/pkg/platformclientmodels/available_predicate_object.go) |
-| `predicate object` | [PredicateObject ](../../platform-sdk/pkg/platformclientmodels/predicate_object.go) |
-| `steam achievement request` | [SteamAchievementRequest ](../../platform-sdk/pkg/platformclientmodels/steam_achievement_request.go) |
-| `xbox achievement request` | [XboxAchievementRequest ](../../platform-sdk/pkg/platformclientmodels/xbox_achievement_request.go) |

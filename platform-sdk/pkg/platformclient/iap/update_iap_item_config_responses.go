@@ -58,10 +58,9 @@ func NewUpdateIAPItemConfigOK() *UpdateIAPItemConfigOK {
 	return &UpdateIAPItemConfigOK{}
 }
 
-/*
-UpdateIAPItemConfigOK handles this case with default header values.
+/*UpdateIAPItemConfigOK handles this case with default header values.
 
-	successful operation
+  successful operation
 */
 type UpdateIAPItemConfigOK struct {
 	Payload *platformclientmodels.IAPItemConfigInfo
@@ -112,10 +111,9 @@ func NewUpdateIAPItemConfigUnprocessableEntity() *UpdateIAPItemConfigUnprocessab
 	return &UpdateIAPItemConfigUnprocessableEntity{}
 }
 
-/*
-UpdateIAPItemConfigUnprocessableEntity handles this case with default header values.
+/*UpdateIAPItemConfigUnprocessableEntity handles this case with default header values.
 
-	<table><tr><td>ErrorCode</td><td>ErrorMessage</td></tr><tr><td>20002</td><td>validation error</td></tr></table>
+  <table><tr><td>ErrorCode</td><td>ErrorMessage</td></tr><tr><td>20002</td><td>validation error</td></tr></table>
 */
 type UpdateIAPItemConfigUnprocessableEntity struct {
 	Payload *platformclientmodels.ValidationErrorEntity

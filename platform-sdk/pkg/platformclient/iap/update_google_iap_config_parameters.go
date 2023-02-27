@@ -62,8 +62,7 @@ func NewUpdateGoogleIAPConfigParamsWithHTTPClient(client *http.Client) *UpdateGo
 	}
 }
 
-/*
-UpdateGoogleIAPConfigParams contains all the parameters to send to the API endpoint
+/*UpdateGoogleIAPConfigParams contains all the parameters to send to the API endpoint
 for the update google IAP config operation typically these are written to a http.Request
 */
 type UpdateGoogleIAPConfigParams struct {

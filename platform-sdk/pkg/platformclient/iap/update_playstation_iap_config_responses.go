@@ -52,10 +52,9 @@ func NewUpdatePlaystationIAPConfigOK() *UpdatePlaystationIAPConfigOK {
 	return &UpdatePlaystationIAPConfigOK{}
 }
 
-/*
-UpdatePlaystationIAPConfigOK handles this case with default header values.
+/*UpdatePlaystationIAPConfigOK handles this case with default header values.
 
-	successful operation
+  successful operation
 */
 type UpdatePlaystationIAPConfigOK struct {
 	Payload *platformclientmodels.PlayStationIAPConfigInfo

@@ -18,8 +18,7 @@ import (
 type ModelsCreateContentRequest struct {
 
 	// custom attributes
-	// Required: true
-	CustomAttributes interface{} `json:"customAttributes"`
+	CustomAttributes interface{} `json:"customAttributes,omitempty"`
 
 	// name
 	// Required: true
@@ -34,8 +33,7 @@ type ModelsCreateContentRequest struct {
 	Preview *string `json:"preview"`
 
 	// preview metadata
-	// Required: true
-	PreviewMetadata *ModelsPreviewMetadata `json:"previewMetadata"`
+	PreviewMetadata *ModelsPreviewMetadata `json:"previewMetadata,omitempty"`
 
 	// sub type
 	// Required: true
@@ -53,10 +51,6 @@ type ModelsCreateContentRequest struct {
 // Validate validates this models create content request
 func (m *ModelsCreateContentRequest) Validate(formats strfmt.Registry) error {
 	var res []error
-
-	if err := m.validateCustomAttributes(formats); err != nil {
-		res = append(res, err)
-	}
 
 	if err := m.validateName(formats); err != nil {
 		res = append(res, err)
@@ -92,15 +86,6 @@ func (m *ModelsCreateContentRequest) Validate(formats strfmt.Registry) error {
 	return nil
 }
 
-func (m *ModelsCreateContentRequest) validateCustomAttributes(formats strfmt.Registry) error {
-
-	if err := validate.Required("customAttributes", "body", m.CustomAttributes); err != nil {
-		return err
-	}
-
-	return nil
-}
-
 func (m *ModelsCreateContentRequest) validateName(formats strfmt.Registry) error {
 
 	if err := validate.Required("name", "body", m.Name); err != nil {
@@ -130,8 +115,8 @@ func (m *ModelsCreateContentRequest) validatePreview(formats strfmt.Registry) er
 
 func (m *ModelsCreateContentRequest) validatePreviewMetadata(formats strfmt.Registry) error {
 
-	if err := validate.Required("previewMetadata", "body", m.PreviewMetadata); err != nil {
-		return err
+	if swag.IsZero(m.PreviewMetadata) { // not required
+		return nil
 	}
 
 	if m.PreviewMetadata != nil {

@@ -58,10 +58,9 @@ func NewSyncXboxDLCNoContent() *SyncXboxDLCNoContent {
 	return &SyncXboxDLCNoContent{}
 }
 
-/*
-SyncXboxDLCNoContent handles this case with default header values.
+/*SyncXboxDLCNoContent handles this case with default header values.
 
-	Successful operation
+  Successful operation
 */
 type SyncXboxDLCNoContent struct {
 }
@@ -85,10 +84,9 @@ func NewSyncXboxDLCBadRequest() *SyncXboxDLCBadRequest {
 	return &SyncXboxDLCBadRequest{}
 }
 
-/*
-SyncXboxDLCBadRequest handles this case with default header values.
+/*SyncXboxDLCBadRequest handles this case with default header values.
 
-	<table><tr><td>ErrorCode</td><td>ErrorMessage</td></tr><tr><td>39125</td><td>Invalid platform [{platformId}] user token</td></tr><tr><td>39126</td><td>User id [{}] in namespace [{}] doesn't link platform [{}]</td></tr>
+  <table><tr><td>ErrorCode</td><td>ErrorMessage</td></tr><tr><td>39125</td><td>Invalid platform [{platformId}] user token</td></tr><tr><td>39126</td><td>User id [{}] in namespace [{}] doesn't link platform [{}]</td></tr>
 */
 type SyncXboxDLCBadRequest struct {
 	Payload *platformclientmodels.ErrorEntity

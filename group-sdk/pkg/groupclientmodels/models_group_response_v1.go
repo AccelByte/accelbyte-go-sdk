@@ -24,6 +24,11 @@ type ModelsGroupResponseV1 struct {
 	// Required: true
 	ConfigurationCode *string `json:"configurationCode"`
 
+	// created at
+	// Required: true
+	// Format: date-time
+	CreatedAt strfmt.DateTime `json:"createdAt"`
+
 	// custom attributes
 	// Required: true
 	CustomAttributes interface{} `json:"customAttributes"`
@@ -71,6 +76,10 @@ func (m *ModelsGroupResponseV1) Validate(formats strfmt.Registry) error {
 	var res []error
 
 	if err := m.validateConfigurationCode(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateCreatedAt(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -123,6 +132,19 @@ func (m *ModelsGroupResponseV1) Validate(formats strfmt.Registry) error {
 func (m *ModelsGroupResponseV1) validateConfigurationCode(formats strfmt.Registry) error {
 
 	if err := validate.Required("configurationCode", "body", m.ConfigurationCode); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *ModelsGroupResponseV1) validateCreatedAt(formats strfmt.Registry) error {
+
+	if err := validate.Required("createdAt", "body", strfmt.DateTime(m.CreatedAt)); err != nil {
+		return err
+	}
+
+	if err := validate.FormatOf("createdAt", "body", "date-time", m.CreatedAt.String(), formats); err != nil {
 		return err
 	}
 

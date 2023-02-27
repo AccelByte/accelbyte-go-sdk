@@ -48,10 +48,9 @@ func NewDeleteDLCItemConfigNoContent() *DeleteDLCItemConfigNoContent {
 	return &DeleteDLCItemConfigNoContent{}
 }
 
-/*
-DeleteDLCItemConfigNoContent handles this case with default header values.
+/*DeleteDLCItemConfigNoContent handles this case with default header values.
 
-	Delete successfully
+  Delete successfully
 */
 type DeleteDLCItemConfigNoContent struct {
 }

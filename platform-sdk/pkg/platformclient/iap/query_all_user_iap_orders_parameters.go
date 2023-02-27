@@ -60,8 +60,7 @@ func NewQueryAllUserIAPOrdersParamsWithHTTPClient(client *http.Client) *QueryAll
 	}
 }
 
-/*
-QueryAllUserIAPOrdersParams contains all the parameters to send to the API endpoint
+/*QueryAllUserIAPOrdersParams contains all the parameters to send to the API endpoint
 for the query all user IAP orders operation typically these are written to a http.Request
 */
 type QueryAllUserIAPOrdersParams struct {

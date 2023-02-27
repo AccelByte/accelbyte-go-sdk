@@ -48,10 +48,9 @@ func NewDeletePlaystationIAPConfigNoContent() *DeletePlaystationIAPConfigNoConte
 	return &DeletePlaystationIAPConfigNoContent{}
 }
 
-/*
-DeletePlaystationIAPConfigNoContent handles this case with default header values.
+/*DeletePlaystationIAPConfigNoContent handles this case with default header values.
 
-	Delete successfully
+  Delete successfully
 */
 type DeletePlaystationIAPConfigNoContent struct {
 }

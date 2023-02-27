@@ -64,10 +64,9 @@ func NewGetConfigOK() *GetConfigOK {
 	return &GetConfigOK{}
 }
 
-/*
-GetConfigOK handles this case with default header values.
+/*GetConfigOK handles this case with default header values.
 
-	successful operation
+  successful operation
 */
 type GetConfigOK struct {
 	Payload *basicclientmodels.EQU8Config
@@ -118,10 +117,9 @@ func NewGetConfigNotFound() *GetConfigNotFound {
 	return &GetConfigNotFound{}
 }
 
-/*
-GetConfigNotFound handles this case with default header values.
+/*GetConfigNotFound handles this case with default header values.
 
-	<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>11641</td><td>Equ8 config not found in namespace [{namespace}]</td></tr></table>
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>11641</td><td>Equ8 config not found in namespace [{namespace}]</td></tr></table>
 */
 type GetConfigNotFound struct {
 	Payload *basicclientmodels.ErrorEntity
@@ -172,10 +170,9 @@ func NewGetConfigInternalServerError() *GetConfigInternalServerError {
 	return &GetConfigInternalServerError{}
 }
 
-/*
-GetConfigInternalServerError handles this case with default header values.
+/*GetConfigInternalServerError handles this case with default header values.
 
-	<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20000</td><td>internal server error</td></tr></table>
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20000</td><td>internal server error</td></tr></table>
 */
 type GetConfigInternalServerError struct {
 	Payload *basicclientmodels.ErrorEntity

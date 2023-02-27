@@ -62,8 +62,7 @@ func NewPublicFulfillAppleIAPItemParamsWithHTTPClient(client *http.Client) *Publ
 	}
 }
 
-/*
-PublicFulfillAppleIAPItemParams contains all the parameters to send to the API endpoint
+/*PublicFulfillAppleIAPItemParams contains all the parameters to send to the API endpoint
 for the public fulfill apple IAP item operation typically these are written to a http.Request
 */
 type PublicFulfillAppleIAPItemParams struct {

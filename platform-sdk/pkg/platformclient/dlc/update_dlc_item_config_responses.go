@@ -64,10 +64,9 @@ func NewUpdateDLCItemConfigOK() *UpdateDLCItemConfigOK {
 	return &UpdateDLCItemConfigOK{}
 }
 
-/*
-UpdateDLCItemConfigOK handles this case with default header values.
+/*UpdateDLCItemConfigOK handles this case with default header values.
 
-	successful operation
+  successful operation
 */
 type UpdateDLCItemConfigOK struct {
 	Payload *platformclientmodels.DLCItemConfigInfo
@@ -118,10 +117,9 @@ func NewUpdateDLCItemConfigConflict() *UpdateDLCItemConfigConflict {
 	return &UpdateDLCItemConfigConflict{}
 }
 
-/*
-UpdateDLCItemConfigConflict handles this case with default header values.
+/*UpdateDLCItemConfigConflict handles this case with default header values.
 
-	<table><tr><td>ErrorCode</td><td>ErrorMessage</td></tr><tr><td>39471</td><td>Duplicated dlc reward id [{dlcRewardId}] in namespace [{namespace}] </td></tr></table>
+  <table><tr><td>ErrorCode</td><td>ErrorMessage</td></tr><tr><td>39471</td><td>Duplicated dlc reward id [{dlcRewardId}] in namespace [{namespace}] </td></tr></table>
 */
 type UpdateDLCItemConfigConflict struct {
 	Payload *platformclientmodels.ErrorEntity
@@ -172,10 +170,9 @@ func NewUpdateDLCItemConfigUnprocessableEntity() *UpdateDLCItemConfigUnprocessab
 	return &UpdateDLCItemConfigUnprocessableEntity{}
 }
 
-/*
-UpdateDLCItemConfigUnprocessableEntity handles this case with default header values.
+/*UpdateDLCItemConfigUnprocessableEntity handles this case with default header values.
 
-	<table><tr><td>ErrorCode</td><td>ErrorMessage</td></tr><tr><td>20002</td><td>validation error</td></tr></table>
+  <table><tr><td>ErrorCode</td><td>ErrorMessage</td></tr><tr><td>20002</td><td>validation error</td></tr></table>
 */
 type UpdateDLCItemConfigUnprocessableEntity struct {
 	Payload *platformclientmodels.ValidationErrorEntity

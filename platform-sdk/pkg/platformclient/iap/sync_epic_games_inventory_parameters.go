@@ -62,8 +62,7 @@ func NewSyncEpicGamesInventoryParamsWithHTTPClient(client *http.Client) *SyncEpi
 	}
 }
 
-/*
-SyncEpicGamesInventoryParams contains all the parameters to send to the API endpoint
+/*SyncEpicGamesInventoryParams contains all the parameters to send to the API endpoint
 for the sync epic games inventory operation typically these are written to a http.Request
 */
 type SyncEpicGamesInventoryParams struct {

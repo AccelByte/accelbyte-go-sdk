@@ -70,7 +70,7 @@ type GetListGroupByIDsV2Params struct {
 	/*RetryPolicy*/
 	RetryPolicy *utils.Retry
 	/*Body*/
-	Body *groupclientmodels.ModelsPublicGetGroupListRequestV2
+	Body *groupclientmodels.ModelsGetGroupListRequestV2
 	/*Namespace
 	  namespace
 
@@ -131,13 +131,13 @@ func (o *GetListGroupByIDsV2Params) SetHTTPClientTransport(roundTripper http.Rou
 }
 
 // WithBody adds the body to the get list group by i ds v2 params
-func (o *GetListGroupByIDsV2Params) WithBody(body *groupclientmodels.ModelsPublicGetGroupListRequestV2) *GetListGroupByIDsV2Params {
+func (o *GetListGroupByIDsV2Params) WithBody(body *groupclientmodels.ModelsGetGroupListRequestV2) *GetListGroupByIDsV2Params {
 	o.SetBody(body)
 	return o
 }
 
 // SetBody adds the body to the get list group by i ds v2 params
-func (o *GetListGroupByIDsV2Params) SetBody(body *groupclientmodels.ModelsPublicGetGroupListRequestV2) {
+func (o *GetListGroupByIDsV2Params) SetBody(body *groupclientmodels.ModelsGetGroupListRequestV2) {
 	o.Body = body
 }
 

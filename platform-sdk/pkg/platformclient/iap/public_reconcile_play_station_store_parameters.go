@@ -62,8 +62,7 @@ func NewPublicReconcilePlayStationStoreParamsWithHTTPClient(client *http.Client)
 	}
 }
 
-/*
-PublicReconcilePlayStationStoreParams contains all the parameters to send to the API endpoint
+/*PublicReconcilePlayStationStoreParams contains all the parameters to send to the API endpoint
 for the public reconcile play station store operation typically these are written to a http.Request
 */
 type PublicReconcilePlayStationStoreParams struct {

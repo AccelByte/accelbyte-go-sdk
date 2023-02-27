@@ -13,20 +13,20 @@ import (
 	"github.com/go-openapi/swag"
 )
 
-// ADTOObjectForUnlockSteamAchievementAPI a DTO object for unlock steam achievement API
+// SteamAchievementUpdateRequest A DTO object for unlock steam achievement API
 //
-// swagger:model A DTO object for unlock steam achievement API
-type ADTOObjectForUnlockSteamAchievementAPI struct {
+// swagger:model SteamAchievementUpdateRequest
+type SteamAchievementUpdateRequest struct {
 
 	// achievements to be updated
-	Achievements []*SteamAchievementRequest `json:"achievements"`
+	Achievements []*Achievement `json:"achievements"`
 
 	// steam user id
 	SteamUserID string `json:"steamUserId,omitempty"`
 }
 
-// Validate validates this a DTO object for unlock steam achievement API
-func (m *ADTOObjectForUnlockSteamAchievementAPI) Validate(formats strfmt.Registry) error {
+// Validate validates this steam achievement update request
+func (m *SteamAchievementUpdateRequest) Validate(formats strfmt.Registry) error {
 	var res []error
 
 	if err := m.validateAchievements(formats); err != nil {
@@ -39,7 +39,7 @@ func (m *ADTOObjectForUnlockSteamAchievementAPI) Validate(formats strfmt.Registr
 	return nil
 }
 
-func (m *ADTOObjectForUnlockSteamAchievementAPI) validateAchievements(formats strfmt.Registry) error {
+func (m *SteamAchievementUpdateRequest) validateAchievements(formats strfmt.Registry) error {
 
 	if swag.IsZero(m.Achievements) { // not required
 		return nil
@@ -65,7 +65,7 @@ func (m *ADTOObjectForUnlockSteamAchievementAPI) validateAchievements(formats st
 }
 
 // MarshalBinary interface implementation
-func (m *ADTOObjectForUnlockSteamAchievementAPI) MarshalBinary() ([]byte, error) {
+func (m *SteamAchievementUpdateRequest) MarshalBinary() ([]byte, error) {
 	if m == nil {
 		return nil, nil
 	}
@@ -73,8 +73,8 @@ func (m *ADTOObjectForUnlockSteamAchievementAPI) MarshalBinary() ([]byte, error)
 }
 
 // UnmarshalBinary interface implementation
-func (m *ADTOObjectForUnlockSteamAchievementAPI) UnmarshalBinary(b []byte) error {
-	var res ADTOObjectForUnlockSteamAchievementAPI
+func (m *SteamAchievementUpdateRequest) UnmarshalBinary(b []byte) error {
+	var res SteamAchievementUpdateRequest
 	if err := swag.ReadJSON(b, &res); err != nil {
 		return err
 	}

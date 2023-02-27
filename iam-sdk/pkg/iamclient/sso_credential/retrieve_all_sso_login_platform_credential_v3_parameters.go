@@ -61,8 +61,7 @@ func NewRetrieveAllSSOLoginPlatformCredentialV3ParamsWithHTTPClient(client *http
 	}
 }
 
-/*
-RetrieveAllSSOLoginPlatformCredentialV3Params contains all the parameters to send to the API endpoint
+/*RetrieveAllSSOLoginPlatformCredentialV3Params contains all the parameters to send to the API endpoint
 for the retrieve all SSO login platform credential v3 operation typically these are written to a http.Request
 */
 type RetrieveAllSSOLoginPlatformCredentialV3Params struct {

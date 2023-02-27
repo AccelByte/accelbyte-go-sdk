@@ -12,18 +12,18 @@ import (
 	"github.com/go-openapi/validate"
 )
 
-// ModelsPublicGetGroupListRequestV2 models public get group list request v2
+// ModelsGetGroupListRequestV2 models get group list request v2
 //
-// swagger:model models.PublicGetGroupListRequestV2
-type ModelsPublicGetGroupListRequestV2 struct {
+// swagger:model models.GetGroupListRequestV2
+type ModelsGetGroupListRequestV2 struct {
 
 	// group i ds
 	// Required: true
 	GroupIDs []string `json:"groupIDs"`
 }
 
-// Validate validates this models public get group list request v2
-func (m *ModelsPublicGetGroupListRequestV2) Validate(formats strfmt.Registry) error {
+// Validate validates this models get group list request v2
+func (m *ModelsGetGroupListRequestV2) Validate(formats strfmt.Registry) error {
 	var res []error
 
 	if err := m.validateGroupIDs(formats); err != nil {
@@ -36,7 +36,7 @@ func (m *ModelsPublicGetGroupListRequestV2) Validate(formats strfmt.Registry) er
 	return nil
 }
 
-func (m *ModelsPublicGetGroupListRequestV2) validateGroupIDs(formats strfmt.Registry) error {
+func (m *ModelsGetGroupListRequestV2) validateGroupIDs(formats strfmt.Registry) error {
 
 	if err := validate.Required("groupIDs", "body", m.GroupIDs); err != nil {
 		return err
@@ -46,7 +46,7 @@ func (m *ModelsPublicGetGroupListRequestV2) validateGroupIDs(formats strfmt.Regi
 }
 
 // MarshalBinary interface implementation
-func (m *ModelsPublicGetGroupListRequestV2) MarshalBinary() ([]byte, error) {
+func (m *ModelsGetGroupListRequestV2) MarshalBinary() ([]byte, error) {
 	if m == nil {
 		return nil, nil
 	}
@@ -54,8 +54,8 @@ func (m *ModelsPublicGetGroupListRequestV2) MarshalBinary() ([]byte, error) {
 }
 
 // UnmarshalBinary interface implementation
-func (m *ModelsPublicGetGroupListRequestV2) UnmarshalBinary(b []byte) error {
-	var res ModelsPublicGetGroupListRequestV2
+func (m *ModelsGetGroupListRequestV2) UnmarshalBinary(b []byte) error {
+	var res ModelsGetGroupListRequestV2
 	if err := swag.ReadJSON(b, &res); err != nil {
 		return err
 	}

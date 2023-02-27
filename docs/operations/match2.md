@@ -36,6 +36,7 @@
 | `/match2/v1/namespaces/{namespace}/match-pools/{pool}` | GET | MatchPoolDetailsShort | [MatchPoolDetailsShort](../../match2-sdk/pkg/match2client/match_pools/match_pools_client.go) | [MatchPoolDetailsShort](../../services-api/pkg/service/match2/matchPools.go) | [MatchPoolDetailsShort](../../samples/cli/cmd/match2/matchPools/matchPoolDetails.go) |
 | `/match2/v1/namespaces/{namespace}/match-pools/{pool}` | PUT | UpdateMatchPoolShort | [UpdateMatchPoolShort](../../match2-sdk/pkg/match2client/match_pools/match_pools_client.go) | [UpdateMatchPoolShort](../../services-api/pkg/service/match2/matchPools.go) | [UpdateMatchPoolShort](../../samples/cli/cmd/match2/matchPools/updateMatchPool.go) |
 | `/match2/v1/namespaces/{namespace}/match-pools/{pool}` | DELETE | DeleteMatchPoolShort | [DeleteMatchPoolShort](../../match2-sdk/pkg/match2client/match_pools/match_pools_client.go) | [DeleteMatchPoolShort](../../services-api/pkg/service/match2/matchPools.go) | [DeleteMatchPoolShort](../../samples/cli/cmd/match2/matchPools/deleteMatchPool.go) |
+| `/match2/v1/namespaces/{namespace}/match-pools/{pool}/metrics` | GET | MatchPoolMetricShort | [MatchPoolMetricShort](../../match2-sdk/pkg/match2client/match_pools/match_pools_client.go) | [MatchPoolMetricShort](../../services-api/pkg/service/match2/matchPools.go) | [MatchPoolMetricShort](../../samples/cli/cmd/match2/matchPools/matchPoolMetric.go) |
 
 ### Match-Tickets Wrapper:  [MatchTickets](../../services-api/pkg/service/match2/matchTickets.go)
 | Endpoint | Method | ID | Class | Wrapper | Example |
@@ -62,6 +63,7 @@
 |---|---|
 | `api.BackFillAcceptRequest` | [ApiBackFillAcceptRequest ](../../match2-sdk/pkg/match2clientmodels/api_back_fill_accept_request.go) |
 | `api.BackFillCreateRequest` | [ApiBackFillCreateRequest ](../../match2-sdk/pkg/match2clientmodels/api_back_fill_create_request.go) |
+| `api.BackfillCreateResponse` | [ApiBackfillCreateResponse ](../../match2-sdk/pkg/match2clientmodels/api_backfill_create_response.go) |
 | `api.BackfillGetResponse` | [ApiBackfillGetResponse ](../../match2-sdk/pkg/match2clientmodels/api_backfill_get_response.go) |
 | `api.BackfillProposalResponse` | [ApiBackfillProposalResponse ](../../match2-sdk/pkg/match2clientmodels/api_backfill_proposal_response.go) |
 | `api.ListMatchFunctionsResponse` | [ApiListMatchFunctionsResponse ](../../match2-sdk/pkg/match2clientmodels/api_list_match_functions_response.go) |
@@ -83,6 +85,7 @@
 | `api.RuleSetPayload` | [ApiRuleSetPayload ](../../match2-sdk/pkg/match2clientmodels/api_rule_set_payload.go) |
 | `api.Team` | [ApiTeam ](../../match2-sdk/pkg/match2clientmodels/api_team.go) |
 | `api.Ticket` | [ApiTicket ](../../match2-sdk/pkg/match2clientmodels/api_ticket.go) |
+| `api.TicketMetricResultRecord` | [ApiTicketMetricResultRecord ](../../match2-sdk/pkg/match2clientmodels/api_ticket_metric_result_record.go) |
 | `api.backFillRejectRequest` | [ApiBackFillRejectRequest ](../../match2-sdk/pkg/match2clientmodels/api_back_fill_reject_request.go) |
 | `models.Pagination` | [ModelsPagination ](../../match2-sdk/pkg/match2clientmodels/models_pagination.go) |
 | `response.Error` | [ResponseError ](../../match2-sdk/pkg/match2clientmodels/response_error.go) |

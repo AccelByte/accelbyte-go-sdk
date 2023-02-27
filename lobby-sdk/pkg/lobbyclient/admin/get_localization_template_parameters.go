@@ -60,8 +60,7 @@ func NewGetLocalizationTemplateParamsWithHTTPClient(client *http.Client) *GetLoc
 	}
 }
 
-/*
-GetLocalizationTemplateParams contains all the parameters to send to the API endpoint
+/*GetLocalizationTemplateParams contains all the parameters to send to the API endpoint
 for the get localization template operation typically these are written to a http.Request
 */
 type GetLocalizationTemplateParams struct {

@@ -39,11 +39,13 @@ var CreateBackfillCmd = &cobra.Command{
 			Body:      body,
 			Namespace: namespace,
 		}
-		errInput := backfillService.CreateBackfillShort(input)
-		if errInput != nil {
-			logrus.Error(errInput)
+		ok, err := backfillService.CreateBackfillShort(input)
+		if err != nil {
+			logrus.Error(err)
 
-			return errInput
+			return err
+		} else {
+			logrus.Infof("Response CLI success: %+v", ok)
 		}
 
 		return nil

@@ -18,16 +18,13 @@ import (
 type ModelsCreateContentRequestS3 struct {
 
 	// content type
-	// Required: true
-	ContentType *string `json:"contentType"`
+	ContentType string `json:"contentType,omitempty"`
 
 	// custom attributes
-	// Required: true
-	CustomAttributes interface{} `json:"customAttributes"`
+	CustomAttributes interface{} `json:"customAttributes,omitempty"`
 
 	// file extension
-	// Required: true
-	FileExtension *string `json:"fileExtension"`
+	FileExtension string `json:"fileExtension,omitempty"`
 
 	// name
 	// Required: true
@@ -38,8 +35,7 @@ type ModelsCreateContentRequestS3 struct {
 	Preview *string `json:"preview"`
 
 	// preview metadata
-	// Required: true
-	PreviewMetadata *ModelsPreviewMetadata `json:"previewMetadata"`
+	PreviewMetadata *ModelsPreviewMetadata `json:"previewMetadata,omitempty"`
 
 	// sub type
 	// Required: true
@@ -57,18 +53,6 @@ type ModelsCreateContentRequestS3 struct {
 // Validate validates this models create content request s3
 func (m *ModelsCreateContentRequestS3) Validate(formats strfmt.Registry) error {
 	var res []error
-
-	if err := m.validateContentType(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.validateCustomAttributes(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.validateFileExtension(formats); err != nil {
-		res = append(res, err)
-	}
 
 	if err := m.validateName(formats); err != nil {
 		res = append(res, err)
@@ -100,33 +84,6 @@ func (m *ModelsCreateContentRequestS3) Validate(formats strfmt.Registry) error {
 	return nil
 }
 
-func (m *ModelsCreateContentRequestS3) validateContentType(formats strfmt.Registry) error {
-
-	if err := validate.Required("contentType", "body", m.ContentType); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *ModelsCreateContentRequestS3) validateCustomAttributes(formats strfmt.Registry) error {
-
-	if err := validate.Required("customAttributes", "body", m.CustomAttributes); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *ModelsCreateContentRequestS3) validateFileExtension(formats strfmt.Registry) error {
-
-	if err := validate.Required("fileExtension", "body", m.FileExtension); err != nil {
-		return err
-	}
-
-	return nil
-}
-
 func (m *ModelsCreateContentRequestS3) validateName(formats strfmt.Registry) error {
 
 	if err := validate.Required("name", "body", m.Name); err != nil {
@@ -147,8 +104,8 @@ func (m *ModelsCreateContentRequestS3) validatePreview(formats strfmt.Registry) 
 
 func (m *ModelsCreateContentRequestS3) validatePreviewMetadata(formats strfmt.Registry) error {
 
-	if err := validate.Required("previewMetadata", "body", m.PreviewMetadata); err != nil {
-		return err
+	if swag.IsZero(m.PreviewMetadata) { // not required
+		return nil
 	}
 
 	if m.PreviewMetadata != nil {

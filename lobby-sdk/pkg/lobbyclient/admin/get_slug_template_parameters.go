@@ -61,8 +61,7 @@ func NewGetSlugTemplateParamsWithHTTPClient(client *http.Client) *GetSlugTemplat
 	}
 }
 
-/*
-GetSlugTemplateParams contains all the parameters to send to the API endpoint
+/*GetSlugTemplateParams contains all the parameters to send to the API endpoint
 for the get slug template operation typically these are written to a http.Request
 */
 type GetSlugTemplateParams struct {

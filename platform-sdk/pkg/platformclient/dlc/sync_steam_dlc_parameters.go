@@ -62,8 +62,7 @@ func NewSyncSteamDLCParamsWithHTTPClient(client *http.Client) *SyncSteamDLCParam
 	}
 }
 
-/*
-SyncSteamDLCParams contains all the parameters to send to the API endpoint
+/*SyncSteamDLCParams contains all the parameters to send to the API endpoint
 for the sync steam DLC operation typically these are written to a http.Request
 */
 type SyncSteamDLCParams struct {

@@ -70,7 +70,7 @@ type UpdateXblUserAchievementParams struct {
 	/*RetryPolicy*/
 	RetryPolicy *utils.Retry
 	/*Body*/
-	Body *platformclientmodels.ADTOObjectForUpdateXboxAchievementCompletePercentageAPI
+	Body *platformclientmodels.XblAchievementUpdateRequest
 	/*Namespace*/
 	Namespace string
 	/*UserID*/
@@ -130,13 +130,13 @@ func (o *UpdateXblUserAchievementParams) SetHTTPClientTransport(roundTripper htt
 }
 
 // WithBody adds the body to the update xbl user achievement params
-func (o *UpdateXblUserAchievementParams) WithBody(body *platformclientmodels.ADTOObjectForUpdateXboxAchievementCompletePercentageAPI) *UpdateXblUserAchievementParams {
+func (o *UpdateXblUserAchievementParams) WithBody(body *platformclientmodels.XblAchievementUpdateRequest) *UpdateXblUserAchievementParams {
 	o.SetBody(body)
 	return o
 }
 
 // SetBody adds the body to the update xbl user achievement params
-func (o *UpdateXblUserAchievementParams) SetBody(body *platformclientmodels.ADTOObjectForUpdateXboxAchievementCompletePercentageAPI) {
+func (o *UpdateXblUserAchievementParams) SetBody(body *platformclientmodels.XblAchievementUpdateRequest) {
 	o.Body = body
 }
 

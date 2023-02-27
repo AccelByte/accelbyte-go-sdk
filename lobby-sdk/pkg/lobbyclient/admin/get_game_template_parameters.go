@@ -60,8 +60,7 @@ func NewGetGameTemplateParamsWithHTTPClient(client *http.Client) *GetGameTemplat
 	}
 }
 
-/*
-GetGameTemplateParams contains all the parameters to send to the API endpoint
+/*GetGameTemplateParams contains all the parameters to send to the API endpoint
 for the get game template operation typically these are written to a http.Request
 */
 type GetGameTemplateParams struct {

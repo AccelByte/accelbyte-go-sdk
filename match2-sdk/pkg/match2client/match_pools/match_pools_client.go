@@ -41,6 +41,8 @@ type ClientService interface {
 	MatchPoolDetailsShort(params *MatchPoolDetailsParams, authInfo runtime.ClientAuthInfoWriter) (*MatchPoolDetailsOK, error)
 	MatchPoolList(params *MatchPoolListParams, authInfo runtime.ClientAuthInfoWriter) (*MatchPoolListOK, *MatchPoolListUnauthorized, *MatchPoolListForbidden, *MatchPoolListInternalServerError, error)
 	MatchPoolListShort(params *MatchPoolListParams, authInfo runtime.ClientAuthInfoWriter) (*MatchPoolListOK, error)
+	MatchPoolMetric(params *MatchPoolMetricParams, authInfo runtime.ClientAuthInfoWriter) (*MatchPoolMetricOK, *MatchPoolMetricUnauthorized, *MatchPoolMetricForbidden, *MatchPoolMetricNotFound, *MatchPoolMetricInternalServerError, error)
+	MatchPoolMetricShort(params *MatchPoolMetricParams, authInfo runtime.ClientAuthInfoWriter) (*MatchPoolMetricOK, error)
 	UpdateMatchPool(params *UpdateMatchPoolParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateMatchPoolOK, *UpdateMatchPoolBadRequest, *UpdateMatchPoolUnauthorized, *UpdateMatchPoolForbidden, *UpdateMatchPoolNotFound, *UpdateMatchPoolInternalServerError, error)
 	UpdateMatchPoolShort(params *UpdateMatchPoolParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateMatchPoolOK, error)
 
@@ -567,6 +569,134 @@ func (a *Client) MatchPoolListShort(params *MatchPoolListParams, authInfo runtim
 	case *MatchPoolListForbidden:
 		return nil, v
 	case *MatchPoolListInternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+Deprecated: Use MatchPoolMetricShort instead.
+
+  MatchPoolMetric gets metrics for a specific match pool
+
+  Required Permission: NAMESPACE:{namespace}:MATCHMAKING:POOL:METRICS [READ]
+
+Required Scope: social
+
+Get metric for a specific match pool
+
+Result: queueTime in seconds
+
+*/
+func (a *Client) MatchPoolMetric(params *MatchPoolMetricParams, authInfo runtime.ClientAuthInfoWriter) (*MatchPoolMetricOK, *MatchPoolMetricUnauthorized, *MatchPoolMetricForbidden, *MatchPoolMetricNotFound, *MatchPoolMetricInternalServerError, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewMatchPoolMetricParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "MatchPoolMetric",
+		Method:             "GET",
+		PathPattern:        "/match2/v1/namespaces/{namespace}/match-pools/{pool}/metrics",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &MatchPoolMetricReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, nil, nil, nil, nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *MatchPoolMetricOK:
+		return v, nil, nil, nil, nil, nil
+
+	case *MatchPoolMetricUnauthorized:
+		return nil, v, nil, nil, nil, nil
+
+	case *MatchPoolMetricForbidden:
+		return nil, nil, v, nil, nil, nil
+
+	case *MatchPoolMetricNotFound:
+		return nil, nil, nil, v, nil, nil
+
+	case *MatchPoolMetricInternalServerError:
+		return nil, nil, nil, nil, v, nil
+
+	default:
+		return nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+  MatchPoolMetricShort gets metrics for a specific match pool
+
+  Required Permission: NAMESPACE:{namespace}:MATCHMAKING:POOL:METRICS [READ]
+
+Required Scope: social
+
+Get metric for a specific match pool
+
+Result: queueTime in seconds
+
+*/
+func (a *Client) MatchPoolMetricShort(params *MatchPoolMetricParams, authInfo runtime.ClientAuthInfoWriter) (*MatchPoolMetricOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewMatchPoolMetricParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "MatchPoolMetric",
+		Method:             "GET",
+		PathPattern:        "/match2/v1/namespaces/{namespace}/match-pools/{pool}/metrics",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &MatchPoolMetricReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *MatchPoolMetricOK:
+		return v, nil
+	case *MatchPoolMetricUnauthorized:
+		return nil, v
+	case *MatchPoolMetricForbidden:
+		return nil, v
+	case *MatchPoolMetricNotFound:
+		return nil, v
+	case *MatchPoolMetricInternalServerError:
 		return nil, v
 
 	default:

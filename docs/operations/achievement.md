@@ -18,6 +18,18 @@
 | `/achievement/v1/public/namespaces/{namespace}/achievements` | GET | PublicListAchievementsShort | [PublicListAchievementsShort](../../achievement-sdk/pkg/achievementclient/achievements/achievements_client.go) | [PublicListAchievementsShort](../../services-api/pkg/service/achievement/achievements.go) | [PublicListAchievementsShort](../../samples/cli/cmd/achievement/achievements/publicListAchievements.go) |
 | `/achievement/v1/public/namespaces/{namespace}/achievements/{achievementCode}` | GET | PublicGetAchievementShort | [PublicGetAchievementShort](../../achievement-sdk/pkg/achievementclient/achievements/achievements_client.go) | [PublicGetAchievementShort](../../services-api/pkg/service/achievement/achievements.go) | [PublicGetAchievementShort](../../samples/cli/cmd/achievement/achievements/publicGetAchievement.go) |
 
+### Global Achievements Wrapper:  [GlobalAchievements](../../services-api/pkg/service/achievement/globalAchievements.go)
+| Endpoint | Method | ID | Class | Wrapper | Example |
+|---|---|---|---|---|---|
+| `/achievement/v1/admin/namespaces/{namespace}/global/achievements` | GET | AdminListGlobalAchievementsShort | [AdminListGlobalAchievementsShort](../../achievement-sdk/pkg/achievementclient/global_achievements/global_achievements_client.go) | [AdminListGlobalAchievementsShort](../../services-api/pkg/service/achievement/globalAchievements.go) | [AdminListGlobalAchievementsShort](../../samples/cli/cmd/achievement/globalAchievements/adminListGlobalAchievements.go) |
+| `/achievement/v1/admin/namespaces/{namespace}/global/achievements/{achievementCode}/contributors` | GET | AdminListGlobalAchievementContributorsShort | [AdminListGlobalAchievementContributorsShort](../../achievement-sdk/pkg/achievementclient/global_achievements/global_achievements_client.go) | [AdminListGlobalAchievementContributorsShort](../../services-api/pkg/service/achievement/globalAchievements.go) | [AdminListGlobalAchievementContributorsShort](../../samples/cli/cmd/achievement/globalAchievements/adminListGlobalAchievementContributors.go) |
+| `/achievement/v1/admin/namespaces/{namespace}/global/achievements/{achievementCode}/reset` | DELETE | ResetGlobalAchievementShort | [ResetGlobalAchievementShort](../../achievement-sdk/pkg/achievementclient/global_achievements/global_achievements_client.go) | [ResetGlobalAchievementShort](../../services-api/pkg/service/achievement/globalAchievements.go) | [ResetGlobalAchievementShort](../../samples/cli/cmd/achievement/globalAchievements/resetGlobalAchievement.go) |
+| `/achievement/v1/admin/namespaces/{namespace}/users/{userId}/global/achievements` | GET | AdminListUserContributionsShort | [AdminListUserContributionsShort](../../achievement-sdk/pkg/achievementclient/global_achievements/global_achievements_client.go) | [AdminListUserContributionsShort](../../services-api/pkg/service/achievement/globalAchievements.go) | [AdminListUserContributionsShort](../../samples/cli/cmd/achievement/globalAchievements/adminListUserContributions.go) |
+| `/achievement/v1/public/namespaces/{namespace}/global/achievements` | GET | PublicListGlobalAchievementsShort | [PublicListGlobalAchievementsShort](../../achievement-sdk/pkg/achievementclient/global_achievements/global_achievements_client.go) | [PublicListGlobalAchievementsShort](../../services-api/pkg/service/achievement/globalAchievements.go) | [PublicListGlobalAchievementsShort](../../samples/cli/cmd/achievement/globalAchievements/publicListGlobalAchievements.go) |
+| `/achievement/v1/public/namespaces/{namespace}/global/achievements/{achievementCode}/contributors` | GET | ListGlobalAchievementContributorsShort | [ListGlobalAchievementContributorsShort](../../achievement-sdk/pkg/achievementclient/global_achievements/global_achievements_client.go) | [ListGlobalAchievementContributorsShort](../../services-api/pkg/service/achievement/globalAchievements.go) | [ListGlobalAchievementContributorsShort](../../samples/cli/cmd/achievement/globalAchievements/listGlobalAchievementContributors.go) |
+| `/achievement/v1/public/namespaces/{namespace}/users/{userId}/global/achievements` | GET | ListUserContributionsShort | [ListUserContributionsShort](../../achievement-sdk/pkg/achievementclient/global_achievements/global_achievements_client.go) | [ListUserContributionsShort](../../services-api/pkg/service/achievement/globalAchievements.go) | [ListUserContributionsShort](../../samples/cli/cmd/achievement/globalAchievements/listUserContributions.go) |
+| `/achievement/v1/public/namespaces/{namespace}/users/{userId}/global/achievements/{achievementCode}/claim` | POST | ClaimGlobalAchievementRewardShort | [ClaimGlobalAchievementRewardShort](../../achievement-sdk/pkg/achievementclient/global_achievements/global_achievements_client.go) | [ClaimGlobalAchievementRewardShort](../../services-api/pkg/service/achievement/globalAchievements.go) | [ClaimGlobalAchievementRewardShort](../../samples/cli/cmd/achievement/globalAchievements/claimGlobalAchievementReward.go) |
+
 ### Tags Wrapper:  [Tags](../../services-api/pkg/service/achievement/tags.go)
 | Endpoint | Method | ID | Class | Wrapper | Example |
 |---|---|---|---|---|---|
@@ -38,12 +50,6 @@
 |---|---|---|---|---|---|
 | `/achievement/v1/admin/namespaces/{namespace}/users/{userId}/anonymization/achievements` | DELETE | AdminAnonymizeUserAchievementShort | [AdminAnonymizeUserAchievementShort](../../achievement-sdk/pkg/achievementclient/anonymization/anonymization_client.go) | [AdminAnonymizeUserAchievementShort](../../services-api/pkg/service/achievement/anonymization.go) | [AdminAnonymizeUserAchievementShort](../../samples/cli/cmd/achievement/anonymization/adminAnonymizeUserAchievement.go) |
 
-### Global Achievements Wrapper:  [GlobalAchievements](../../services-api/pkg/service/achievement/globalAchievements.go)
-| Endpoint | Method | ID | Class | Wrapper | Example |
-|---|---|---|---|---|---|
-| `/achievement/v1/public/namespaces/{namespace}/global/achievements` | GET | PublicListGlobalAchievementsShort | [PublicListGlobalAchievementsShort](../../achievement-sdk/pkg/achievementclient/global_achievements/global_achievements_client.go) | [PublicListGlobalAchievementsShort](../../services-api/pkg/service/achievement/globalAchievements.go) | [PublicListGlobalAchievementsShort](../../samples/cli/cmd/achievement/globalAchievements/publicListGlobalAchievements.go) |
-| `/achievement/v1/public/namespaces/{namespace}/users/{userId}/global/achievements/{achievementCode}/claim` | POST | ClaimGlobalAchievementRewardShort | [ClaimGlobalAchievementRewardShort](../../achievement-sdk/pkg/achievementclient/global_achievements/global_achievements_client.go) | [ClaimGlobalAchievementRewardShort](../../services-api/pkg/service/achievement/globalAchievements.go) | [ClaimGlobalAchievementRewardShort](../../samples/cli/cmd/achievement/globalAchievements/claimGlobalAchievementReward.go) |
-
 
 &nbsp;  
 
@@ -56,16 +62,20 @@
 | `models.AchievementResponse` | [ModelsAchievementResponse ](../../achievement-sdk/pkg/achievementclientmodels/models_achievement_response.go) |
 | `models.AchievementUpdateRequest` | [ModelsAchievementUpdateRequest ](../../achievement-sdk/pkg/achievementclientmodels/models_achievement_update_request.go) |
 | `models.AdditionalInfo` | [ModelsAdditionalInfo ](../../achievement-sdk/pkg/achievementclientmodels/models_additional_info.go) |
+| `models.ContributorResponse` | [ModelsContributorResponse ](../../achievement-sdk/pkg/achievementclientmodels/models_contributor_response.go) |
 | `models.GlobalAchievementResponse` | [ModelsGlobalAchievementResponse ](../../achievement-sdk/pkg/achievementclientmodels/models_global_achievement_response.go) |
 | `models.Icon` | [ModelsIcon ](../../achievement-sdk/pkg/achievementclientmodels/models_icon.go) |
 | `models.PaginatedAchievementResponse` | [ModelsPaginatedAchievementResponse ](../../achievement-sdk/pkg/achievementclientmodels/models_paginated_achievement_response.go) |
+| `models.PaginatedContributorResponse` | [ModelsPaginatedContributorResponse ](../../achievement-sdk/pkg/achievementclientmodels/models_paginated_contributor_response.go) |
 | `models.PaginatedGlobalAchievementResponse` | [ModelsPaginatedGlobalAchievementResponse ](../../achievement-sdk/pkg/achievementclientmodels/models_paginated_global_achievement_response.go) |
 | `models.PaginatedTagResponse` | [ModelsPaginatedTagResponse ](../../achievement-sdk/pkg/achievementclientmodels/models_paginated_tag_response.go) |
 | `models.PaginatedUserAchievementResponse` | [ModelsPaginatedUserAchievementResponse ](../../achievement-sdk/pkg/achievementclientmodels/models_paginated_user_achievement_response.go) |
+| `models.PaginatedUserContributionResponse` | [ModelsPaginatedUserContributionResponse ](../../achievement-sdk/pkg/achievementclientmodels/models_paginated_user_contribution_response.go) |
 | `models.Pagination` | [ModelsPagination ](../../achievement-sdk/pkg/achievementclientmodels/models_pagination.go) |
 | `models.PublicAchievementResponse` | [ModelsPublicAchievementResponse ](../../achievement-sdk/pkg/achievementclientmodels/models_public_achievement_response.go) |
 | `models.PublicAchievementsResponse` | [ModelsPublicAchievementsResponse ](../../achievement-sdk/pkg/achievementclientmodels/models_public_achievements_response.go) |
 | `models.TagResponse` | [ModelsTagResponse ](../../achievement-sdk/pkg/achievementclientmodels/models_tag_response.go) |
 | `models.UserAchievementResponse` | [ModelsUserAchievementResponse ](../../achievement-sdk/pkg/achievementclientmodels/models_user_achievement_response.go) |
+| `models.UserContributionResponse` | [ModelsUserContributionResponse ](../../achievement-sdk/pkg/achievementclientmodels/models_user_contribution_response.go) |
 | `response.Error` | [ResponseError ](../../achievement-sdk/pkg/achievementclientmodels/response_error.go) |
 | `service.ImportConfigResponse` | [ServiceImportConfigResponse ](../../achievement-sdk/pkg/achievementclientmodels/service_import_config_response.go) |

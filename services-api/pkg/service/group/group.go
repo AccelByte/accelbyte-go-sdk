@@ -410,6 +410,32 @@ func (aaa *GroupService) DeleteGroupPredefinedRulePublicV1(input *group.DeleteGr
 	return nil
 }
 
+// deprecated(2022-01-10): please use GetListGroupByIDsAdminV2Short instead.
+func (aaa *GroupService) GetListGroupByIDsAdminV2(input *group.GetListGroupByIDsAdminV2Params) (*groupclientmodels.ModelsGetGroupsResponseV1, error) {
+	token, err := aaa.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, badRequest, unauthorized, forbidden, internalServerError, err := aaa.Client.Group.GetListGroupByIDsAdminV2(input, client.BearerToken(*token.AccessToken))
+	if badRequest != nil {
+		return nil, badRequest
+	}
+	if unauthorized != nil {
+		return nil, unauthorized
+	}
+	if forbidden != nil {
+		return nil, forbidden
+	}
+	if internalServerError != nil {
+		return nil, internalServerError
+	}
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
 // deprecated(2022-01-10): please use CreateNewGroupPublicV2Short instead.
 func (aaa *GroupService) CreateNewGroupPublicV2(input *group.CreateNewGroupPublicV2Params) (*groupclientmodels.ModelsGroupResponseV1, error) {
 	token, err := aaa.TokenRepository.GetToken()
@@ -991,6 +1017,31 @@ func (aaa *GroupService) DeleteGroupPredefinedRulePublicV1Short(input *group.Del
 	}
 
 	return nil
+}
+
+func (aaa *GroupService) GetListGroupByIDsAdminV2Short(input *group.GetListGroupByIDsAdminV2Params) (*groupclientmodels.ModelsGetGroupsResponseV1, error) {
+	authInfoWriter := input.AuthInfoWriter
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
+	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  aaa.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
+	ok, err := aaa.Client.Group.GetListGroupByIDsAdminV2Short(input, authInfoWriter)
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
 }
 
 func (aaa *GroupService) CreateNewGroupPublicV2Short(input *group.CreateNewGroupPublicV2Params) (*groupclientmodels.ModelsGroupResponseV1, error) {

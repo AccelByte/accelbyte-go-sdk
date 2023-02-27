@@ -52,10 +52,9 @@ func NewUpdateSteamIAPConfigOK() *UpdateSteamIAPConfigOK {
 	return &UpdateSteamIAPConfigOK{}
 }
 
-/*
-UpdateSteamIAPConfigOK handles this case with default header values.
+/*UpdateSteamIAPConfigOK handles this case with default header values.
 
-	successful operation
+  successful operation
 */
 type UpdateSteamIAPConfigOK struct {
 	Payload *platformclientmodels.SteamIAPConfigInfo

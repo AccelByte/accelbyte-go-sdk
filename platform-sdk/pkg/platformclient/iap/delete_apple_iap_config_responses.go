@@ -48,10 +48,9 @@ func NewDeleteAppleIAPConfigNoContent() *DeleteAppleIAPConfigNoContent {
 	return &DeleteAppleIAPConfigNoContent{}
 }
 
-/*
-DeleteAppleIAPConfigNoContent handles this case with default header values.
+/*DeleteAppleIAPConfigNoContent handles this case with default header values.
 
-	Delete successfully
+  Delete successfully
 */
 type DeleteAppleIAPConfigNoContent struct {
 }

@@ -29,7 +29,7 @@ var GetListGroupByIDsV2Cmd = &cobra.Command{
 			TokenRepository: &repository.TokenRepositoryImpl{},
 		}
 		bodyString := cmd.Flag("body").Value.String()
-		var body *groupclientmodels.ModelsPublicGetGroupListRequestV2
+		var body *groupclientmodels.ModelsGetGroupListRequestV2
 		errBody := json.Unmarshal([]byte(bodyString), &body)
 		if errBody != nil {
 			return errBody

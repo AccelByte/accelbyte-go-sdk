@@ -82,10 +82,9 @@ func NewSendMFAAuthenticationCodeNoContent() *SendMFAAuthenticationCodeNoContent
 	return &SendMFAAuthenticationCodeNoContent{}
 }
 
-/*
-SendMFAAuthenticationCodeNoContent handles this case with default header values.
+/*SendMFAAuthenticationCodeNoContent handles this case with default header values.
 
-	Code sent
+  Code sent
 */
 type SendMFAAuthenticationCodeNoContent struct {
 }
@@ -109,10 +108,9 @@ func NewSendMFAAuthenticationCodeBadRequest() *SendMFAAuthenticationCodeBadReque
 	return &SendMFAAuthenticationCodeBadRequest{}
 }
 
-/*
-SendMFAAuthenticationCodeBadRequest handles this case with default header values.
+/*SendMFAAuthenticationCodeBadRequest handles this case with default header values.
 
-	<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20002</td><td>validation error</td></tr><tr><td>10189</td><td>invalid factor</td></tr></table>
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20002</td><td>validation error</td></tr><tr><td>10189</td><td>invalid factor</td></tr></table>
 */
 type SendMFAAuthenticationCodeBadRequest struct {
 	Payload *iamclientmodels.RestErrorResponse
@@ -163,10 +161,9 @@ func NewSendMFAAuthenticationCodeForbidden() *SendMFAAuthenticationCodeForbidden
 	return &SendMFAAuthenticationCodeForbidden{}
 }
 
-/*
-SendMFAAuthenticationCodeForbidden handles this case with default header values.
+/*SendMFAAuthenticationCodeForbidden handles this case with default header values.
 
-	<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20003</td><td>forbidden access</td></tr></table>
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20003</td><td>forbidden access</td></tr></table>
 */
 type SendMFAAuthenticationCodeForbidden struct {
 	Payload *iamclientmodels.RestErrorResponse
@@ -217,10 +214,9 @@ func NewSendMFAAuthenticationCodeNotFound() *SendMFAAuthenticationCodeNotFound {
 	return &SendMFAAuthenticationCodeNotFound{}
 }
 
-/*
-SendMFAAuthenticationCodeNotFound handles this case with default header values.
+/*SendMFAAuthenticationCodeNotFound handles this case with default header values.
 
-	<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20008</td><td>user not found</td></tr></table>
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20008</td><td>user not found</td></tr></table>
 */
 type SendMFAAuthenticationCodeNotFound struct {
 	Payload *iamclientmodels.RestErrorResponse
@@ -271,10 +267,9 @@ func NewSendMFAAuthenticationCodeTooManyRequests() *SendMFAAuthenticationCodeToo
 	return &SendMFAAuthenticationCodeTooManyRequests{}
 }
 
-/*
-SendMFAAuthenticationCodeTooManyRequests handles this case with default header values.
+/*SendMFAAuthenticationCodeTooManyRequests handles this case with default header values.
 
-	<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20007</td><td>too many requests</td></tr></table>
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20007</td><td>too many requests</td></tr></table>
 */
 type SendMFAAuthenticationCodeTooManyRequests struct {
 	Payload *iamclientmodels.RestErrorResponse
@@ -325,10 +320,9 @@ func NewSendMFAAuthenticationCodeInternalServerError() *SendMFAAuthenticationCod
 	return &SendMFAAuthenticationCodeInternalServerError{}
 }
 
-/*
-SendMFAAuthenticationCodeInternalServerError handles this case with default header values.
+/*SendMFAAuthenticationCodeInternalServerError handles this case with default header values.
 
-	<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20000</td><td>internal server error</td></tr></table>
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20000</td><td>internal server error</td></tr></table>
 */
 type SendMFAAuthenticationCodeInternalServerError struct {
 	Payload *iamclientmodels.RestErrorResponse

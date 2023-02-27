@@ -52,10 +52,9 @@ func NewQueryUserIAPOrdersOK() *QueryUserIAPOrdersOK {
 	return &QueryUserIAPOrdersOK{}
 }
 
-/*
-QueryUserIAPOrdersOK handles this case with default header values.
+/*QueryUserIAPOrdersOK handles this case with default header values.
 
-	successful operation
+  successful operation
 */
 type QueryUserIAPOrdersOK struct {
 	Payload *platformclientmodels.IAPOrderPagingSlicedResult

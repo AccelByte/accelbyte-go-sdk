@@ -41,7 +41,7 @@ type AdminOrderCreate struct {
 	Language string `json:"language,omitempty"`
 
 	// Creation options
-	Options *ADTOObjectForOrderCreationOptions `json:"options,omitempty"`
+	Options *OrderCreationOptions `json:"options,omitempty"`
 
 	// platform
 	// Enum: [Epic GooglePlay IOS Nintendo Other Playstation Steam Xbox]

@@ -10,25 +10,22 @@ import (
 	"github.com/go-openapi/swag"
 )
 
-// SteamAchievementRequest steam achievement request
+// OrderCreationOptions A DTO object for order creation options
 //
-// swagger:model steam achievement request
-type SteamAchievementRequest struct {
+// swagger:model OrderCreationOptions
+type OrderCreationOptions struct {
 
-	// id
-	ID string `json:"id,omitempty"`
-
-	// value
-	Value int64 `json:"value,omitempty"`
+	// skip price validation
+	SkipPriceValidation bool `json:"skipPriceValidation"`
 }
 
-// Validate validates this steam achievement request
-func (m *SteamAchievementRequest) Validate(formats strfmt.Registry) error {
+// Validate validates this order creation options
+func (m *OrderCreationOptions) Validate(formats strfmt.Registry) error {
 	return nil
 }
 
 // MarshalBinary interface implementation
-func (m *SteamAchievementRequest) MarshalBinary() ([]byte, error) {
+func (m *OrderCreationOptions) MarshalBinary() ([]byte, error) {
 	if m == nil {
 		return nil, nil
 	}
@@ -36,8 +33,8 @@ func (m *SteamAchievementRequest) MarshalBinary() ([]byte, error) {
 }
 
 // UnmarshalBinary interface implementation
-func (m *SteamAchievementRequest) UnmarshalBinary(b []byte) error {
-	var res SteamAchievementRequest
+func (m *OrderCreationOptions) UnmarshalBinary(b []byte) error {
+	var res OrderCreationOptions
 	if err := swag.ReadJSON(b, &res); err != nil {
 		return err
 	}

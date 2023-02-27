@@ -40,35 +40,35 @@ func (aaa *BackfillService) GetAuthSession() auth.Session {
 }
 
 // deprecated(2022-01-10): please use CreateBackfillShort instead.
-func (aaa *BackfillService) CreateBackfill(input *backfill.CreateBackfillParams) error {
+func (aaa *BackfillService) CreateBackfill(input *backfill.CreateBackfillParams) (*match2clientmodels.APIBackfillCreateResponse, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
-		return err
+		return nil, err
 	}
-	_, badRequest, unauthorized, forbidden, notFound, conflict, internalServerError, err := aaa.Client.Backfill.CreateBackfill(input, client.BearerToken(*token.AccessToken))
+	created, badRequest, unauthorized, forbidden, notFound, conflict, internalServerError, err := aaa.Client.Backfill.CreateBackfill(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
-		return badRequest
+		return nil, badRequest
 	}
 	if unauthorized != nil {
-		return unauthorized
+		return nil, unauthorized
 	}
 	if forbidden != nil {
-		return forbidden
+		return nil, forbidden
 	}
 	if notFound != nil {
-		return notFound
+		return nil, notFound
 	}
 	if conflict != nil {
-		return conflict
+		return nil, conflict
 	}
 	if internalServerError != nil {
-		return internalServerError
+		return nil, internalServerError
 	}
 	if err != nil {
-		return err
+		return nil, err
 	}
 
-	return nil
+	return created.GetPayload(), nil
 }
 
 // deprecated(2022-01-10): please use GetBackfillProposalShort instead.
@@ -213,7 +213,7 @@ func (aaa *BackfillService) RejectBackfill(input *backfill.RejectBackfillParams)
 	return nil
 }
 
-func (aaa *BackfillService) CreateBackfillShort(input *backfill.CreateBackfillParams) error {
+func (aaa *BackfillService) CreateBackfillShort(input *backfill.CreateBackfillParams) (*match2clientmodels.APIBackfillCreateResponse, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -230,12 +230,12 @@ func (aaa *BackfillService) CreateBackfillShort(input *backfill.CreateBackfillPa
 		}
 	}
 
-	_, err := aaa.Client.Backfill.CreateBackfillShort(input, authInfoWriter)
+	created, err := aaa.Client.Backfill.CreateBackfillShort(input, authInfoWriter)
 	if err != nil {
-		return err
+		return nil, err
 	}
 
-	return nil
+	return created.GetPayload(), nil
 }
 
 func (aaa *BackfillService) GetBackfillProposalShort(input *backfill.GetBackfillProposalParams) (*match2clientmodels.APIBackfillProposalResponse, error) {

@@ -60,8 +60,7 @@ func NewDeletePlatformDLCConfigParamsWithHTTPClient(client *http.Client) *Delete
 	}
 }
 
-/*
-DeletePlatformDLCConfigParams contains all the parameters to send to the API endpoint
+/*DeletePlatformDLCConfigParams contains all the parameters to send to the API endpoint
 for the delete platform DLC config operation typically these are written to a http.Request
 */
 type DeletePlatformDLCConfigParams struct {

@@ -70,10 +70,9 @@ func NewLogoutSSOClientNoContent() *LogoutSSOClientNoContent {
 	return &LogoutSSOClientNoContent{}
 }
 
-/*
-LogoutSSOClientNoContent handles this case with default header values.
+/*LogoutSSOClientNoContent handles this case with default header values.
 
-	No Content
+  No Content
 */
 type LogoutSSOClientNoContent struct {
 }
@@ -97,10 +96,9 @@ func NewLogoutSSOClientNotFound() *LogoutSSOClientNotFound {
 	return &LogoutSSOClientNotFound{}
 }
 
-/*
-LogoutSSOClientNotFound handles this case with default header values.
+/*LogoutSSOClientNotFound handles this case with default header values.
 
-	Not Found
+  Not Found
 */
 type LogoutSSOClientNotFound struct {
 	Payload *iamclientmodels.RestErrorResponse
@@ -151,10 +149,9 @@ func NewLogoutSSOClientUnprocessableEntity() *LogoutSSOClientUnprocessableEntity
 	return &LogoutSSOClientUnprocessableEntity{}
 }
 
-/*
-LogoutSSOClientUnprocessableEntity handles this case with default header values.
+/*LogoutSSOClientUnprocessableEntity handles this case with default header values.
 
-	Unprocessable Entity
+  Unprocessable Entity
 */
 type LogoutSSOClientUnprocessableEntity struct {
 	Payload *iamclientmodels.RestErrorResponse
@@ -205,10 +202,9 @@ func NewLogoutSSOClientInternalServerError() *LogoutSSOClientInternalServerError
 	return &LogoutSSOClientInternalServerError{}
 }
 
-/*
-LogoutSSOClientInternalServerError handles this case with default header values.
+/*LogoutSSOClientInternalServerError handles this case with default header values.
 
-	<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20000</td><td>internal server error</td></tr></table>
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20000</td><td>internal server error</td></tr></table>
 */
 type LogoutSSOClientInternalServerError struct {
 	Payload *iamclientmodels.RestErrorResponse

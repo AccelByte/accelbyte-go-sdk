@@ -60,8 +60,7 @@ func NewDeleteSSOLoginPlatformCredentialV3ParamsWithHTTPClient(client *http.Clie
 	}
 }
 
-/*
-DeleteSSOLoginPlatformCredentialV3Params contains all the parameters to send to the API endpoint
+/*DeleteSSOLoginPlatformCredentialV3Params contains all the parameters to send to the API endpoint
 for the delete SSO login platform credential v3 operation typically these are written to a http.Request
 */
 type DeleteSSOLoginPlatformCredentialV3Params struct {

@@ -62,8 +62,7 @@ func NewUpdatePlatformDLCConfigParamsWithHTTPClient(client *http.Client) *Update
 	}
 }
 
-/*
-UpdatePlatformDLCConfigParams contains all the parameters to send to the API endpoint
+/*UpdatePlatformDLCConfigParams contains all the parameters to send to the API endpoint
 for the update platform DLC config operation typically these are written to a http.Request
 */
 type UpdatePlatformDLCConfigParams struct {

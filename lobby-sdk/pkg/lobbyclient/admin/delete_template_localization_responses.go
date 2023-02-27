@@ -76,10 +76,9 @@ func NewDeleteTemplateLocalizationNoContent() *DeleteTemplateLocalizationNoConte
 	return &DeleteTemplateLocalizationNoContent{}
 }
 
-/*
-DeleteTemplateLocalizationNoContent handles this case with default header values.
+/*DeleteTemplateLocalizationNoContent handles this case with default header values.
 
-	No Content
+  No Content
 */
 type DeleteTemplateLocalizationNoContent struct {
 }
@@ -103,10 +102,9 @@ func NewDeleteTemplateLocalizationBadRequest() *DeleteTemplateLocalizationBadReq
 	return &DeleteTemplateLocalizationBadRequest{}
 }
 
-/*
-DeleteTemplateLocalizationBadRequest handles this case with default header values.
+/*DeleteTemplateLocalizationBadRequest handles this case with default header values.
 
-	Bad Request
+  Bad Request
 */
 type DeleteTemplateLocalizationBadRequest struct {
 	Payload *lobbyclientmodels.RestapiErrorResponseBody
@@ -157,10 +155,9 @@ func NewDeleteTemplateLocalizationUnauthorized() *DeleteTemplateLocalizationUnau
 	return &DeleteTemplateLocalizationUnauthorized{}
 }
 
-/*
-DeleteTemplateLocalizationUnauthorized handles this case with default header values.
+/*DeleteTemplateLocalizationUnauthorized handles this case with default header values.
 
-	Unauthorized
+  Unauthorized
 */
 type DeleteTemplateLocalizationUnauthorized struct {
 	Payload *lobbyclientmodels.RestapiErrorResponseBody
@@ -211,10 +208,9 @@ func NewDeleteTemplateLocalizationForbidden() *DeleteTemplateLocalizationForbidd
 	return &DeleteTemplateLocalizationForbidden{}
 }
 
-/*
-DeleteTemplateLocalizationForbidden handles this case with default header values.
+/*DeleteTemplateLocalizationForbidden handles this case with default header values.
 
-	Forbidden
+  Forbidden
 */
 type DeleteTemplateLocalizationForbidden struct {
 	Payload *lobbyclientmodels.RestapiErrorResponseBody
@@ -265,10 +261,9 @@ func NewDeleteTemplateLocalizationNotFound() *DeleteTemplateLocalizationNotFound
 	return &DeleteTemplateLocalizationNotFound{}
 }
 
-/*
-DeleteTemplateLocalizationNotFound handles this case with default header values.
+/*DeleteTemplateLocalizationNotFound handles this case with default header values.
 
-	Not Found
+  Not Found
 */
 type DeleteTemplateLocalizationNotFound struct {
 	Payload *lobbyclientmodels.RestapiErrorResponseBody

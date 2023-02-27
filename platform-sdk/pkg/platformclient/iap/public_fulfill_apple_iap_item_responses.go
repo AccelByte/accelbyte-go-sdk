@@ -70,10 +70,9 @@ func NewPublicFulfillAppleIAPItemNoContent() *PublicFulfillAppleIAPItemNoContent
 	return &PublicFulfillAppleIAPItemNoContent{}
 }
 
-/*
-PublicFulfillAppleIAPItemNoContent handles this case with default header values.
+/*PublicFulfillAppleIAPItemNoContent handles this case with default header values.
 
-	Fulfill item successfully
+  Fulfill item successfully
 */
 type PublicFulfillAppleIAPItemNoContent struct {
 }
@@ -97,10 +96,9 @@ func NewPublicFulfillAppleIAPItemBadRequest() *PublicFulfillAppleIAPItemBadReque
 	return &PublicFulfillAppleIAPItemBadRequest{}
 }
 
-/*
-PublicFulfillAppleIAPItemBadRequest handles this case with default header values.
+/*PublicFulfillAppleIAPItemBadRequest handles this case with default header values.
 
-	<table><tr><td>ErrorCode</td><td>ErrorMessage</td></tr><tr><td>39121</td><td>Apple iap receipt verify failed with status code [{statusCode}]</td></tr><tr><td>35123</td><td>Wallet [{walletId}] is inactive</td></tr><tr><td>38121</td><td>Duplicate permanent item exists</td></tr><tr><td>38122</td><td>Subscription endDate required</td></tr></table>
+  <table><tr><td>ErrorCode</td><td>ErrorMessage</td></tr><tr><td>39121</td><td>Apple iap receipt verify failed with status code [{statusCode}]</td></tr><tr><td>35123</td><td>Wallet [{walletId}] is inactive</td></tr><tr><td>38121</td><td>Duplicate permanent item exists</td></tr><tr><td>38122</td><td>Subscription endDate required</td></tr></table>
 */
 type PublicFulfillAppleIAPItemBadRequest struct {
 	Payload *platformclientmodels.ErrorEntity
@@ -151,10 +149,9 @@ func NewPublicFulfillAppleIAPItemNotFound() *PublicFulfillAppleIAPItemNotFound {
 	return &PublicFulfillAppleIAPItemNotFound{}
 }
 
-/*
-PublicFulfillAppleIAPItemNotFound handles this case with default header values.
+/*PublicFulfillAppleIAPItemNotFound handles this case with default header values.
 
-	<table><tr><td>ErrorCode</td><td>ErrorMessage</td></tr><tr><td>39141</td><td>Apple iap receipt of transaction [{transactionId}] for productId [{}] does not exist</td></tr><tr><td>30341</td><td>Item [{itemId}] does not exist in namespace [{namespace}]</td></tr></table>
+  <table><tr><td>ErrorCode</td><td>ErrorMessage</td></tr><tr><td>39141</td><td>Apple iap receipt of transaction [{transactionId}] for productId [{}] does not exist</td></tr><tr><td>30341</td><td>Item [{itemId}] does not exist in namespace [{namespace}]</td></tr></table>
 */
 type PublicFulfillAppleIAPItemNotFound struct {
 	Payload *platformclientmodels.ErrorEntity
@@ -205,10 +202,9 @@ func NewPublicFulfillAppleIAPItemConflict() *PublicFulfillAppleIAPItemConflict {
 	return &PublicFulfillAppleIAPItemConflict{}
 }
 
-/*
-PublicFulfillAppleIAPItemConflict handles this case with default header values.
+/*PublicFulfillAppleIAPItemConflict handles this case with default header values.
 
-	<table><tr><td>ErrorCode</td><td>ErrorMessage</td></tr><tr><td>39171</td><td>The bundle id in namespace [{namespace}] expect [{expected}] but was [{actual}]</td></tr><tr><td>20006</td><td>optimistic lock</td></tr></table>
+  <table><tr><td>ErrorCode</td><td>ErrorMessage</td></tr><tr><td>39171</td><td>The bundle id in namespace [{namespace}] expect [{expected}] but was [{actual}]</td></tr><tr><td>20006</td><td>optimistic lock</td></tr></table>
 */
 type PublicFulfillAppleIAPItemConflict struct {
 	Payload *platformclientmodels.ErrorEntity

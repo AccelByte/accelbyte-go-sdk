@@ -88,10 +88,9 @@ func NewPublicSendMyMFAEmailCodeV4NoContent() *PublicSendMyMFAEmailCodeV4NoConte
 	return &PublicSendMyMFAEmailCodeV4NoContent{}
 }
 
-/*
-PublicSendMyMFAEmailCodeV4NoContent handles this case with default header values.
+/*PublicSendMyMFAEmailCodeV4NoContent handles this case with default header values.
 
-	code sent
+  code sent
 */
 type PublicSendMyMFAEmailCodeV4NoContent struct {
 }
@@ -115,10 +114,9 @@ func NewPublicSendMyMFAEmailCodeV4BadRequest() *PublicSendMyMFAEmailCodeV4BadReq
 	return &PublicSendMyMFAEmailCodeV4BadRequest{}
 }
 
-/*
-PublicSendMyMFAEmailCodeV4BadRequest handles this case with default header values.
+/*PublicSendMyMFAEmailCodeV4BadRequest handles this case with default header values.
 
-	<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>10191</td><td>email address not verified</td></tr><tr><td>10171</td><td>email address not found</td></tr></table>
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>10191</td><td>email address not verified</td></tr><tr><td>10171</td><td>email address not found</td></tr></table>
 */
 type PublicSendMyMFAEmailCodeV4BadRequest struct {
 	Payload *iamclientmodels.RestErrorResponse
@@ -169,10 +167,9 @@ func NewPublicSendMyMFAEmailCodeV4Unauthorized() *PublicSendMyMFAEmailCodeV4Unau
 	return &PublicSendMyMFAEmailCodeV4Unauthorized{}
 }
 
-/*
-PublicSendMyMFAEmailCodeV4Unauthorized handles this case with default header values.
+/*PublicSendMyMFAEmailCodeV4Unauthorized handles this case with default header values.
 
-	<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20001</td><td>unauthorized access</td></tr></table>
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20001</td><td>unauthorized access</td></tr></table>
 */
 type PublicSendMyMFAEmailCodeV4Unauthorized struct {
 	Payload *iamclientmodels.RestErrorResponse
@@ -223,10 +220,9 @@ func NewPublicSendMyMFAEmailCodeV4Forbidden() *PublicSendMyMFAEmailCodeV4Forbidd
 	return &PublicSendMyMFAEmailCodeV4Forbidden{}
 }
 
-/*
-PublicSendMyMFAEmailCodeV4Forbidden handles this case with default header values.
+/*PublicSendMyMFAEmailCodeV4Forbidden handles this case with default header values.
 
-	<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20003</td><td>forbidden access</td></tr></table>
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20003</td><td>forbidden access</td></tr></table>
 */
 type PublicSendMyMFAEmailCodeV4Forbidden struct {
 	Payload *iamclientmodels.RestErrorResponse
@@ -277,10 +273,9 @@ func NewPublicSendMyMFAEmailCodeV4NotFound() *PublicSendMyMFAEmailCodeV4NotFound
 	return &PublicSendMyMFAEmailCodeV4NotFound{}
 }
 
-/*
-PublicSendMyMFAEmailCodeV4NotFound handles this case with default header values.
+/*PublicSendMyMFAEmailCodeV4NotFound handles this case with default header values.
 
-	<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>10139</td><td>platform account not found</td></tr><tr><td>20008</td><td>user not found</td></tr></table>
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>10139</td><td>platform account not found</td></tr><tr><td>20008</td><td>user not found</td></tr></table>
 */
 type PublicSendMyMFAEmailCodeV4NotFound struct {
 	Payload *iamclientmodels.RestErrorResponse
@@ -331,10 +326,9 @@ func NewPublicSendMyMFAEmailCodeV4TooManyRequests() *PublicSendMyMFAEmailCodeV4T
 	return &PublicSendMyMFAEmailCodeV4TooManyRequests{}
 }
 
-/*
-PublicSendMyMFAEmailCodeV4TooManyRequests handles this case with default header values.
+/*PublicSendMyMFAEmailCodeV4TooManyRequests handles this case with default header values.
 
-	<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20007</td><td>too many requests</td></tr></table>
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20007</td><td>too many requests</td></tr></table>
 */
 type PublicSendMyMFAEmailCodeV4TooManyRequests struct {
 	Payload *iamclientmodels.RestErrorResponse
@@ -385,10 +379,9 @@ func NewPublicSendMyMFAEmailCodeV4InternalServerError() *PublicSendMyMFAEmailCod
 	return &PublicSendMyMFAEmailCodeV4InternalServerError{}
 }
 
-/*
-PublicSendMyMFAEmailCodeV4InternalServerError handles this case with default header values.
+/*PublicSendMyMFAEmailCodeV4InternalServerError handles this case with default header values.
 
-	<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20000</td><td>internal server error</td></tr></table>
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20000</td><td>internal server error</td></tr></table>
 */
 type PublicSendMyMFAEmailCodeV4InternalServerError struct {
 	Payload *iamclientmodels.RestErrorResponse

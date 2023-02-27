@@ -52,7 +52,7 @@ type Order struct {
 	CreatedTime *strfmt.DateTime `json:"createdTime,omitempty"`
 
 	// creation options
-	CreationOptions *ADTOObjectForOrderCreationOptions `json:"creationOptions,omitempty"`
+	CreationOptions *OrderCreationOptions `json:"creationOptions,omitempty"`
 
 	// currency
 	Currency *CurrencySummary `json:"currency,omitempty"`

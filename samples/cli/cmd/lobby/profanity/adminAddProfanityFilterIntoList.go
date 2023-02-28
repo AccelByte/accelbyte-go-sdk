@@ -41,12 +41,14 @@ var AdminAddProfanityFilterIntoListCmd = &cobra.Command{
 			List:      list_,
 			Namespace: namespace,
 		}
-		errInput := profanityService.AdminAddProfanityFilterIntoListShort(input)
-		if errInput != nil {
-			logrus.Error(errInput)
+		errOK := profanityService.AdminAddProfanityFilterIntoListShort(input)
+		if errOK != nil {
+			logrus.Error(errOK)
 
-			return errInput
+			return errOK
 		}
+
+		logrus.Infof("Response CLI success.")
 
 		return nil
 	},

@@ -33,14 +33,14 @@ var GetSectionCmd = &cobra.Command{
 			SectionID: sectionId,
 			StoreID:   &storeId,
 		}
-		ok, err := sectionService.GetSectionShort(input)
-		if err != nil {
-			logrus.Error(err)
+		ok, errOK := sectionService.GetSectionShort(input)
+		if errOK != nil {
+			logrus.Error(errOK)
 
-			return err
-		} else {
-			logrus.Infof("Response CLI success: %+v", ok)
+			return errOK
 		}
+
+		logrus.Infof("Response CLI success: %+v", ok)
 
 		return nil
 	},

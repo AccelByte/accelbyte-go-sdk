@@ -29,12 +29,14 @@ var DeleteEpicGamesIAPConfigCmd = &cobra.Command{
 		input := &iap.DeleteEpicGamesIAPConfigParams{
 			Namespace: namespace,
 		}
-		errInput := iapService.DeleteEpicGamesIAPConfigShort(input)
-		if errInput != nil {
-			logrus.Error(errInput)
+		errNoContent := iapService.DeleteEpicGamesIAPConfigShort(input)
+		if errNoContent != nil {
+			logrus.Error(errNoContent)
 
-			return errInput
+			return errNoContent
 		}
+
+		logrus.Infof("Response CLI success.")
 
 		return nil
 	},

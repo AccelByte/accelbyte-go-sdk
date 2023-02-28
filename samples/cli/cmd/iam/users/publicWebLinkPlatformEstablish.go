@@ -41,12 +41,14 @@ var PublicWebLinkPlatformEstablishCmd = &cobra.Command{
 			State:      state,
 			HTTPClient: httpClient,
 		}
-		_, errInput := usersService.PublicWebLinkPlatformEstablishShort(input)
-		if errInput != nil {
-			logrus.Error(errInput)
+		_, errFound := usersService.PublicWebLinkPlatformEstablishShort(input)
+		if errFound != nil {
+			logrus.Error(errFound)
 
-			return errInput
+			return errFound
 		}
+
+		logrus.Infof("Response CLI success.")
 
 		return nil
 	},

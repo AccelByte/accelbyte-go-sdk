@@ -31,14 +31,14 @@ var PublicGetPartyCmd = &cobra.Command{
 			Namespace: namespace,
 			PartyID:   partyId,
 		}
-		ok, err := partyService.PublicGetPartyShort(input)
-		if err != nil {
-			logrus.Error(err)
+		ok, errOK := partyService.PublicGetPartyShort(input)
+		if errOK != nil {
+			logrus.Error(errOK)
 
-			return err
-		} else {
-			logrus.Infof("Response CLI success: %+v", ok)
+			return errOK
 		}
+
+		logrus.Infof("Response CLI success: %+v", ok)
 
 		return nil
 	},

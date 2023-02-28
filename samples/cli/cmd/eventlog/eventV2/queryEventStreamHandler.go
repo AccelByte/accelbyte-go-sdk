@@ -47,14 +47,14 @@ var QueryEventStreamHandlerCmd = &cobra.Command{
 			PageSize:  &pageSize,
 			StartDate: &startDate,
 		}
-		ok, err := eventV2Service.QueryEventStreamHandlerShort(input)
-		if err != nil {
-			logrus.Error(err)
+		ok, errOK := eventV2Service.QueryEventStreamHandlerShort(input)
+		if errOK != nil {
+			logrus.Error(errOK)
 
-			return err
-		} else {
-			logrus.Infof("Response CLI success: %+v", ok)
+			return errOK
 		}
+
+		logrus.Infof("Response CLI success: %+v", ok)
 
 		return nil
 	},

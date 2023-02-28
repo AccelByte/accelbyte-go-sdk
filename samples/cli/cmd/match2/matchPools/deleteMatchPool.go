@@ -31,12 +31,14 @@ var DeleteMatchPoolCmd = &cobra.Command{
 			Namespace: namespace,
 			Pool:      pool,
 		}
-		errInput := matchPoolsService.DeleteMatchPoolShort(input)
-		if errInput != nil {
-			logrus.Error(errInput)
+		errNoContent := matchPoolsService.DeleteMatchPoolShort(input)
+		if errNoContent != nil {
+			logrus.Error(errNoContent)
 
-			return errInput
+			return errNoContent
 		}
+
+		logrus.Infof("Response CLI success.")
 
 		return nil
 	},

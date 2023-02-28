@@ -41,14 +41,14 @@ var PublicRedeemCodeCmd = &cobra.Command{
 			Namespace: namespace,
 			UserID:    userId,
 		}
-		ok, err := fulfillmentService.PublicRedeemCodeShort(input)
-		if err != nil {
-			logrus.Error(err)
+		ok, errOK := fulfillmentService.PublicRedeemCodeShort(input)
+		if errOK != nil {
+			logrus.Error(errOK)
 
-			return err
-		} else {
-			logrus.Infof("Response CLI success: %+v", ok)
+			return errOK
 		}
+
+		logrus.Infof("Response CLI success: %+v", ok)
 
 		return nil
 	},

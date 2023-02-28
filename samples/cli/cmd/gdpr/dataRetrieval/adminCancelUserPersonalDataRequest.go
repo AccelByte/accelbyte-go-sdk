@@ -33,12 +33,14 @@ var AdminCancelUserPersonalDataRequestCmd = &cobra.Command{
 			RequestDate: requestDate,
 			UserID:      userId,
 		}
-		errInput := dataRetrievalService.AdminCancelUserPersonalDataRequestShort(input)
-		if errInput != nil {
-			logrus.Error(errInput)
+		errNoContent := dataRetrievalService.AdminCancelUserPersonalDataRequestShort(input)
+		if errNoContent != nil {
+			logrus.Error(errNoContent)
 
-			return errInput
+			return errNoContent
 		}
+
+		logrus.Infof("Response CLI success.")
 
 		return nil
 	},

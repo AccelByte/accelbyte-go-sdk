@@ -39,12 +39,14 @@ var CreateRuleSetCmd = &cobra.Command{
 			Body:      body,
 			Namespace: namespace,
 		}
-		errInput := ruleSetsService.CreateRuleSetShort(input)
-		if errInput != nil {
-			logrus.Error(errInput)
+		errCreated := ruleSetsService.CreateRuleSetShort(input)
+		if errCreated != nil {
+			logrus.Error(errCreated)
 
-			return errInput
+			return errCreated
 		}
+
+		logrus.Infof("Response CLI success.")
 
 		return nil
 	},

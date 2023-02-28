@@ -29,14 +29,14 @@ var AdminDeleteThirdPartyConfigCmd = &cobra.Command{
 		input := &third_party.AdminDeleteThirdPartyConfigParams{
 			Namespace: namespace,
 		}
-		ok, err := thirdPartyService.AdminDeleteThirdPartyConfigShort(input)
-		if err != nil {
-			logrus.Error(err)
+		noContent, errNoContent := thirdPartyService.AdminDeleteThirdPartyConfigShort(input)
+		if errNoContent != nil {
+			logrus.Error(errNoContent)
 
-			return err
-		} else {
-			logrus.Infof("Response CLI success: %+v", ok)
+			return errNoContent
 		}
+
+		logrus.Infof("Response CLI success: %+v", noContent)
 
 		return nil
 	},

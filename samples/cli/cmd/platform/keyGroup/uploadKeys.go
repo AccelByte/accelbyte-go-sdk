@@ -7,7 +7,6 @@
 package keyGroup
 
 import (
-	"net/http"
 	"os"
 
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclient/key_group"
@@ -36,25 +35,19 @@ var UploadKeysCmd = &cobra.Command{
 		if err != nil {
 			return err
 		}
-		httpClient := &http.Client{
-			CheckRedirect: func(req *http.Request, via []*http.Request) error {
-				return http.ErrUseLastResponse
-			},
-		}
 		input := &key_group.UploadKeysParams{
 			File:       file,
 			KeyGroupID: keyGroupId,
 			Namespace:  namespace,
-			HTTPClient: httpClient,
 		}
-		ok, err := keyGroupService.UploadKeysShort(input)
-		if err != nil {
-			logrus.Error(err)
+		ok, errOK := keyGroupService.UploadKeysShort(input)
+		if errOK != nil {
+			logrus.Error(errOK)
 
-			return err
-		} else {
-			logrus.Infof("Response CLI success: %+v", ok)
+			return errOK
 		}
+
+		logrus.Infof("Response CLI success: %+v", ok)
 
 		return nil
 	},

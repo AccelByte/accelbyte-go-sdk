@@ -35,14 +35,14 @@ var AdminListAssignedUsersV4Cmd = &cobra.Command{
 			Before: &before,
 			Limit:  &limit,
 		}
-		ok, err := rolesService.AdminListAssignedUsersV4Short(input)
-		if err != nil {
-			logrus.Error(err)
+		ok, errOK := rolesService.AdminListAssignedUsersV4Short(input)
+		if errOK != nil {
+			logrus.Error(errOK)
 
-			return err
-		} else {
-			logrus.Infof("Response CLI success: %+v", ok)
+			return errOK
 		}
+
+		logrus.Infof("Response CLI success: %+v", ok)
 
 		return nil
 	},

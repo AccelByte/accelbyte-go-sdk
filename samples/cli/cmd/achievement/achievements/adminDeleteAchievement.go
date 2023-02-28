@@ -31,12 +31,14 @@ var AdminDeleteAchievementCmd = &cobra.Command{
 			AchievementCode: achievementCode,
 			Namespace:       namespace,
 		}
-		errInput := achievementsService.AdminDeleteAchievementShort(input)
-		if errInput != nil {
-			logrus.Error(errInput)
+		errNoContent := achievementsService.AdminDeleteAchievementShort(input)
+		if errNoContent != nil {
+			logrus.Error(errNoContent)
 
-			return errInput
+			return errNoContent
 		}
+
+		logrus.Infof("Response CLI success.")
 
 		return nil
 	},

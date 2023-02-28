@@ -29,12 +29,14 @@ var PublicDisableMyAuthenticatorV4Cmd = &cobra.Command{
 		input := &users_v4.PublicDisableMyAuthenticatorV4Params{
 			Namespace: namespace,
 		}
-		errInput := usersV4Service.PublicDisableMyAuthenticatorV4Short(input)
-		if errInput != nil {
-			logrus.Error(errInput)
+		errNoContent := usersV4Service.PublicDisableMyAuthenticatorV4Short(input)
+		if errNoContent != nil {
+			logrus.Error(errNoContent)
 
-			return errInput
+			return errNoContent
 		}
+
+		logrus.Infof("Response CLI success.")
 
 		return nil
 	},

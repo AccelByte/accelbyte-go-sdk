@@ -39,14 +39,14 @@ var AdminListUserIDByUserIDsV3Cmd = &cobra.Command{
 			Body:      body,
 			Namespace: namespace,
 		}
-		ok, err := usersService.AdminListUserIDByUserIDsV3Short(input)
-		if err != nil {
-			logrus.Error(err)
+		ok, errOK := usersService.AdminListUserIDByUserIDsV3Short(input)
+		if errOK != nil {
+			logrus.Error(errOK)
 
-			return err
-		} else {
-			logrus.Infof("Response CLI success: %+v", ok)
+			return errOK
 		}
+
+		logrus.Infof("Response CLI success: %+v", ok)
 
 		return nil
 	},

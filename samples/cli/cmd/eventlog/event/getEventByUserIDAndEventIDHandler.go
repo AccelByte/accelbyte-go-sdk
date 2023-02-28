@@ -41,14 +41,14 @@ var GetEventByUserIDAndEventIDHandlerCmd = &cobra.Command{
 			PageSize:  pageSize,
 			StartDate: startDate,
 		}
-		ok, err := eventService.GetEventByUserIDAndEventIDHandlerShort(input)
-		if err != nil {
-			logrus.Error(err)
+		ok, errOK := eventService.GetEventByUserIDAndEventIDHandlerShort(input)
+		if errOK != nil {
+			logrus.Error(errOK)
 
-			return err
-		} else {
-			logrus.Infof("Response CLI success: %+v", ok)
+			return errOK
 		}
+
+		logrus.Infof("Response CLI success: %+v", ok)
 
 		return nil
 	},

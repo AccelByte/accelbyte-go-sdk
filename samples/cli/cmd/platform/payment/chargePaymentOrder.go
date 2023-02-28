@@ -41,14 +41,14 @@ var ChargePaymentOrderCmd = &cobra.Command{
 			Namespace:      namespace,
 			PaymentOrderNo: paymentOrderNo,
 		}
-		ok, err := paymentService.ChargePaymentOrderShort(input)
-		if err != nil {
-			logrus.Error(err)
+		ok, errOK := paymentService.ChargePaymentOrderShort(input)
+		if errOK != nil {
+			logrus.Error(errOK)
 
-			return err
-		} else {
-			logrus.Infof("Response CLI success: %+v", ok)
+			return errOK
 		}
+
+		logrus.Infof("Response CLI success: %+v", ok)
 
 		return nil
 	},

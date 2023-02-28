@@ -41,12 +41,14 @@ var SendPartyTemplatedNotificationV1AdminCmd = &cobra.Command{
 			Namespace: namespace,
 			PartyID:   partyId,
 		}
-		errInput := notificationService.SendPartyTemplatedNotificationV1AdminShort(input)
-		if errInput != nil {
-			logrus.Error(errInput)
+		errNoContent := notificationService.SendPartyTemplatedNotificationV1AdminShort(input)
+		if errNoContent != nil {
+			logrus.Error(errNoContent)
 
-			return errInput
+			return errNoContent
 		}
+
+		logrus.Infof("Response CLI success.")
 
 		return nil
 	},

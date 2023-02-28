@@ -41,14 +41,14 @@ var QueryCodesCmd = &cobra.Command{
 			Limit:      &limit,
 			Offset:     &offset,
 		}
-		ok, err := campaignService.QueryCodesShort(input)
-		if err != nil {
-			logrus.Error(err)
+		ok, errOK := campaignService.QueryCodesShort(input)
+		if errOK != nil {
+			logrus.Error(errOK)
 
-			return err
-		} else {
-			logrus.Infof("Response CLI success: %+v", ok)
+			return errOK
 		}
+
+		logrus.Infof("Response CLI success: %+v", ok)
 
 		return nil
 	},

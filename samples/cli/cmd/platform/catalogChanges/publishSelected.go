@@ -31,14 +31,14 @@ var PublishSelectedCmd = &cobra.Command{
 			Namespace: namespace,
 			StoreID:   storeId,
 		}
-		ok, err := catalogChangesService.PublishSelectedShort(input)
-		if err != nil {
-			logrus.Error(err)
+		ok, errOK := catalogChangesService.PublishSelectedShort(input)
+		if errOK != nil {
+			logrus.Error(errOK)
 
-			return err
-		} else {
-			logrus.Infof("Response CLI success: %+v", ok)
+			return errOK
 		}
+
+		logrus.Infof("Response CLI success: %+v", ok)
 
 		return nil
 	},

@@ -29,12 +29,14 @@ var DeleteSteamIAPConfigCmd = &cobra.Command{
 		input := &iap.DeleteSteamIAPConfigParams{
 			Namespace: namespace,
 		}
-		errInput := iapService.DeleteSteamIAPConfigShort(input)
-		if errInput != nil {
-			logrus.Error(errInput)
+		errNoContent := iapService.DeleteSteamIAPConfigShort(input)
+		if errNoContent != nil {
+			logrus.Error(errNoContent)
 
-			return errInput
+			return errNoContent
 		}
+
+		logrus.Infof("Response CLI success.")
 
 		return nil
 	},

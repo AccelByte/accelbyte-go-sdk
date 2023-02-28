@@ -29,12 +29,14 @@ var InvalidateUserInfoCacheCmd = &cobra.Command{
 		input := &user_info.InvalidateUserInfoCacheParams{
 			Namespace: &namespace,
 		}
-		errInput := userInfoService.InvalidateUserInfoCacheShort(input)
-		if errInput != nil {
-			logrus.Error(errInput)
+		errNoContent := userInfoService.InvalidateUserInfoCacheShort(input)
+		if errNoContent != nil {
+			logrus.Error(errNoContent)
 
-			return errInput
+			return errNoContent
 		}
+
+		logrus.Infof("Response CLI success.")
 
 		return nil
 	},

@@ -31,12 +31,14 @@ var DeleteCountryGroupCmd = &cobra.Command{
 			CountryGroupCode: countryGroupCode,
 			Namespace:        namespace,
 		}
-		errInput := miscService.DeleteCountryGroupShort(input)
-		if errInput != nil {
-			logrus.Error(errInput)
+		errOK := miscService.DeleteCountryGroupShort(input)
+		if errOK != nil {
+			logrus.Error(errOK)
 
-			return errInput
+			return errOK
 		}
+
+		logrus.Infof("Response CLI success.")
 
 		return nil
 	},

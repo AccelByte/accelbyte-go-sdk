@@ -31,12 +31,14 @@ var PublishPolicyVersionCmd = &cobra.Command{
 			PolicyVersionID: policyVersionId,
 			ShouldNotify:    &shouldNotify,
 		}
-		errInput := policyVersionsService.PublishPolicyVersionShort(input)
-		if errInput != nil {
-			logrus.Error(errInput)
+		errOK := policyVersionsService.PublishPolicyVersionShort(input)
+		if errOK != nil {
+			logrus.Error(errOK)
 
-			return errInput
+			return errOK
 		}
+
+		logrus.Infof("Response CLI success.")
 
 		return nil
 	},

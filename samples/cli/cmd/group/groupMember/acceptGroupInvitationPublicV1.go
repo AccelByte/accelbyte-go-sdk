@@ -31,14 +31,14 @@ var AcceptGroupInvitationPublicV1Cmd = &cobra.Command{
 			GroupID:   groupId,
 			Namespace: namespace,
 		}
-		ok, err := groupMemberService.AcceptGroupInvitationPublicV1Short(input)
-		if err != nil {
-			logrus.Error(err)
+		ok, errOK := groupMemberService.AcceptGroupInvitationPublicV1Short(input)
+		if errOK != nil {
+			logrus.Error(errOK)
 
-			return err
-		} else {
-			logrus.Infof("Response CLI success: %+v", ok)
+			return errOK
 		}
+
+		logrus.Infof("Response CLI success: %+v", ok)
 
 		return nil
 	},

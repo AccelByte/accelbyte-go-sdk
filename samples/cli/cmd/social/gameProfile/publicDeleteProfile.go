@@ -33,12 +33,14 @@ var PublicDeleteProfileCmd = &cobra.Command{
 			ProfileID: profileId,
 			UserID:    userId,
 		}
-		errInput := gameProfileService.PublicDeleteProfileShort(input)
-		if errInput != nil {
-			logrus.Error(errInput)
+		errNoContent := gameProfileService.PublicDeleteProfileShort(input)
+		if errNoContent != nil {
+			logrus.Error(errNoContent)
 
-			return errInput
+			return errNoContent
 		}
+
+		logrus.Infof("Response CLI success.")
 
 		return nil
 	},

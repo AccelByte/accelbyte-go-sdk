@@ -7,7 +7,6 @@
 package iap
 
 import (
-	"net/http"
 	"os"
 
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclient/iap"
@@ -35,24 +34,18 @@ var UpdateGoogleP12FileCmd = &cobra.Command{
 		if err != nil {
 			return err
 		}
-		httpClient := &http.Client{
-			CheckRedirect: func(req *http.Request, via []*http.Request) error {
-				return http.ErrUseLastResponse
-			},
-		}
 		input := &iap.UpdateGoogleP12FileParams{
-			File:       file,
-			Namespace:  namespace,
-			HTTPClient: httpClient,
+			File:      file,
+			Namespace: namespace,
 		}
-		ok, err := iapService.UpdateGoogleP12FileShort(input)
-		if err != nil {
-			logrus.Error(err)
+		ok, errOK := iapService.UpdateGoogleP12FileShort(input)
+		if errOK != nil {
+			logrus.Error(errOK)
 
-			return err
-		} else {
-			logrus.Infof("Response CLI success: %+v", ok)
+			return errOK
 		}
+
+		logrus.Infof("Response CLI success: %+v", ok)
 
 		return nil
 	},

@@ -33,12 +33,14 @@ var DeleteSectionCmd = &cobra.Command{
 			SectionID: sectionId,
 			StoreID:   storeId,
 		}
-		errInput := sectionService.DeleteSectionShort(input)
-		if errInput != nil {
-			logrus.Error(errInput)
+		errNoContent := sectionService.DeleteSectionShort(input)
+		if errNoContent != nil {
+			logrus.Error(errNoContent)
 
-			return errInput
+			return errNoContent
 		}
+
+		logrus.Infof("Response CLI success.")
 
 		return nil
 	},

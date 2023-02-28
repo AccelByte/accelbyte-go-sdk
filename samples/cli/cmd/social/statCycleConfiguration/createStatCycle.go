@@ -39,14 +39,14 @@ var CreateStatCycleCmd = &cobra.Command{
 			Body:      body,
 			Namespace: namespace,
 		}
-		ok, err := statCycleConfigurationService.CreateStatCycleShort(input)
-		if err != nil {
-			logrus.Error(err)
+		created, errCreated := statCycleConfigurationService.CreateStatCycleShort(input)
+		if errCreated != nil {
+			logrus.Error(errCreated)
 
-			return err
-		} else {
-			logrus.Infof("Response CLI success: %+v", ok)
+			return errCreated
 		}
+
+		logrus.Infof("Response CLI success: %+v", created)
 
 		return nil
 	},

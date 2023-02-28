@@ -31,12 +31,14 @@ var PublicPartyRejectCmd = &cobra.Command{
 			Namespace: namespace,
 			PartyID:   partyId,
 		}
-		errInput := partyService.PublicPartyRejectShort(input)
-		if errInput != nil {
-			logrus.Error(errInput)
+		errNoContent := partyService.PublicPartyRejectShort(input)
+		if errNoContent != nil {
+			logrus.Error(errNoContent)
 
-			return errInput
+			return errNoContent
 		}
+
+		logrus.Infof("Response CLI success.")
 
 		return nil
 	},

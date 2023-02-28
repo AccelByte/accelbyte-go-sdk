@@ -39,12 +39,14 @@ var SendUsersFreeformNotificationV1AdminCmd = &cobra.Command{
 			Body:      body,
 			Namespace: namespace,
 		}
-		errInput := notificationService.SendUsersFreeformNotificationV1AdminShort(input)
-		if errInput != nil {
-			logrus.Error(errInput)
+		errAccepted := notificationService.SendUsersFreeformNotificationV1AdminShort(input)
+		if errAccepted != nil {
+			logrus.Error(errAccepted)
 
-			return errInput
+			return errAccepted
 		}
+
+		logrus.Infof("Response CLI success.")
 
 		return nil
 	},

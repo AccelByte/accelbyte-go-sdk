@@ -47,14 +47,14 @@ var QueryPaymentNotificationsCmd = &cobra.Command{
 			StartDate:          &startDate,
 			Status:             &status,
 		}
-		ok, err := paymentService.QueryPaymentNotificationsShort(input)
-		if err != nil {
-			logrus.Error(err)
+		ok, errOK := paymentService.QueryPaymentNotificationsShort(input)
+		if errOK != nil {
+			logrus.Error(errOK)
 
-			return err
-		} else {
-			logrus.Infof("Response CLI success: %+v", ok)
+			return errOK
 		}
+
+		logrus.Infof("Response CLI success: %+v", ok)
 
 		return nil
 	},

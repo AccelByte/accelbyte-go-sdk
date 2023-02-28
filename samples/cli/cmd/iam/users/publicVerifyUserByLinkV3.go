@@ -37,12 +37,14 @@ var PublicVerifyUserByLinkV3Cmd = &cobra.Command{
 			Code:       &code,
 			HTTPClient: httpClient,
 		}
-		errInput := usersService.PublicVerifyUserByLinkV3Short(input)
-		if errInput != nil {
-			logrus.Error(errInput)
+		_, errFound := usersService.PublicVerifyUserByLinkV3Short(input)
+		if errFound != nil {
+			logrus.Error(errFound)
 
-			return errInput
+			return errFound
 		}
+
+		logrus.Infof("Response CLI success.")
 
 		return nil
 	},

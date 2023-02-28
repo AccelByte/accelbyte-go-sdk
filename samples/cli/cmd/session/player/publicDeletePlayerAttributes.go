@@ -29,12 +29,14 @@ var PublicDeletePlayerAttributesCmd = &cobra.Command{
 		input := &player.PublicDeletePlayerAttributesParams{
 			Namespace: namespace,
 		}
-		errInput := playerService.PublicDeletePlayerAttributesShort(input)
-		if errInput != nil {
-			logrus.Error(errInput)
+		errNoContent := playerService.PublicDeletePlayerAttributesShort(input)
+		if errNoContent != nil {
+			logrus.Error(errNoContent)
 
-			return errInput
+			return errNoContent
 		}
+
+		logrus.Infof("Response CLI success.")
 
 		return nil
 	},

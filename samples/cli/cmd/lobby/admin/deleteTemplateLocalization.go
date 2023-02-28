@@ -33,12 +33,14 @@ var DeleteTemplateLocalizationCmd = &cobra.Command{
 			TemplateLanguage: templateLanguage,
 			TemplateSlug:     templateSlug,
 		}
-		errInput := adminService.DeleteTemplateLocalizationShort(input)
-		if errInput != nil {
-			logrus.Error(errInput)
+		errNoContent := adminService.DeleteTemplateLocalizationShort(input)
+		if errNoContent != nil {
+			logrus.Error(errNoContent)
 
-			return errInput
+			return errNoContent
 		}
+
+		logrus.Infof("Response CLI success.")
 
 		return nil
 	},

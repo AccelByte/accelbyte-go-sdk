@@ -31,12 +31,14 @@ var LoginSSOClientCmd = &cobra.Command{
 			PlatformID: platformId,
 			Payload:    &payload,
 		}
-		errInput := ssoService.LoginSSOClientShort(input)
-		if errInput != nil {
-			logrus.Error(errInput)
+		errOK := ssoService.LoginSSOClientShort(input)
+		if errOK != nil {
+			logrus.Error(errOK)
 
-			return errInput
+			return errOK
 		}
+
+		logrus.Infof("Response CLI success.")
 
 		return nil
 	},

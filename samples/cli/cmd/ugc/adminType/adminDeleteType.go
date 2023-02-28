@@ -31,12 +31,14 @@ var AdminDeleteTypeCmd = &cobra.Command{
 			Namespace: namespace,
 			TypeID:    typeId,
 		}
-		errInput := adminTypeService.AdminDeleteTypeShort(input)
-		if errInput != nil {
-			logrus.Error(errInput)
+		errNoContent := adminTypeService.AdminDeleteTypeShort(input)
+		if errNoContent != nil {
+			logrus.Error(errNoContent)
 
-			return errInput
+			return errNoContent
 		}
+
+		logrus.Infof("Response CLI success.")
 
 		return nil
 	},

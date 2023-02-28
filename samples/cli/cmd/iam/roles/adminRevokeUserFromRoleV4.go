@@ -39,12 +39,14 @@ var AdminRevokeUserFromRoleV4Cmd = &cobra.Command{
 			Body:   body,
 			RoleID: roleId,
 		}
-		errInput := rolesService.AdminRevokeUserFromRoleV4Short(input)
-		if errInput != nil {
-			logrus.Error(errInput)
+		errNoContent := rolesService.AdminRevokeUserFromRoleV4Short(input)
+		if errNoContent != nil {
+			logrus.Error(errNoContent)
 
-			return errInput
+			return errNoContent
 		}
+
+		logrus.Infof("Response CLI success.")
 
 		return nil
 	},

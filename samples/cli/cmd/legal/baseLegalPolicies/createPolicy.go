@@ -37,14 +37,14 @@ var CreatePolicyCmd = &cobra.Command{
 		input := &base_legal_policies.CreatePolicyParams{
 			Body: body,
 		}
-		ok, err := baseLegalPoliciesService.CreatePolicyShort(input)
-		if err != nil {
-			logrus.Error(err)
+		created, errCreated := baseLegalPoliciesService.CreatePolicyShort(input)
+		if errCreated != nil {
+			logrus.Error(errCreated)
 
-			return err
-		} else {
-			logrus.Infof("Response CLI success: %+v", ok)
+			return errCreated
 		}
+
+		logrus.Infof("Response CLI success: %+v", created)
 
 		return nil
 	},

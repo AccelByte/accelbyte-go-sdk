@@ -41,12 +41,14 @@ var AdminUpdateDeviceBanV4Cmd = &cobra.Command{
 			BanID:     banId,
 			Namespace: namespace,
 		}
-		errInput := devicesV4Service.AdminUpdateDeviceBanV4Short(input)
-		if errInput != nil {
-			logrus.Error(errInput)
+		errNoContent := devicesV4Service.AdminUpdateDeviceBanV4Short(input)
+		if errNoContent != nil {
+			logrus.Error(errNoContent)
 
-			return errInput
+			return errNoContent
 		}
+
+		logrus.Infof("Response CLI success.")
 
 		return nil
 	},

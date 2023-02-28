@@ -39,12 +39,14 @@ var RemoveRoleMembersCmd = &cobra.Command{
 			Body:   body,
 			RoleID: roleId,
 		}
-		errInput := rolesService.RemoveRoleMembersShort(input)
-		if errInput != nil {
-			logrus.Error(errInput)
+		errNoContent := rolesService.RemoveRoleMembersShort(input)
+		if errNoContent != nil {
+			logrus.Error(errNoContent)
 
-			return errInput
+			return errNoContent
 		}
+
+		logrus.Infof("Response CLI success.")
 
 		return nil
 	},

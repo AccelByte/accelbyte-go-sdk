@@ -31,14 +31,14 @@ var GetServerCmd = &cobra.Command{
 			Namespace: namespace,
 			PodName:   podName,
 		}
-		ok, err := adminService.GetServerShort(input)
-		if err != nil {
-			logrus.Error(err)
+		ok, errOK := adminService.GetServerShort(input)
+		if errOK != nil {
+			logrus.Error(errOK)
 
-			return err
-		} else {
-			logrus.Infof("Response CLI success: %+v", ok)
+			return errOK
 		}
+
+		logrus.Infof("Response CLI success: %+v", ok)
 
 		return nil
 	},

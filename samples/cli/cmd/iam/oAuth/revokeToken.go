@@ -7,8 +7,6 @@
 package oAuth
 
 import (
-	"net/http"
-
 	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclient/o_auth"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/iam"
@@ -28,21 +26,17 @@ var RevokeTokenCmd = &cobra.Command{
 			TokenRepository: &repository.TokenRepositoryImpl{},
 		}
 		token, _ := cmd.Flags().GetString("token")
-		httpClient := &http.Client{
-			CheckRedirect: func(req *http.Request, via []*http.Request) error {
-				return http.ErrUseLastResponse
-			},
-		}
 		input := &o_auth.RevokeTokenParams{
-			Token:      token,
-			HTTPClient: httpClient,
+			Token: token,
 		}
-		errInput := oAuthService.RevokeTokenShort(input)
-		if errInput != nil {
-			logrus.Error(errInput)
+		errOK := oAuthService.RevokeTokenShort(input)
+		if errOK != nil {
+			logrus.Error(errOK)
 
-			return errInput
+			return errOK
 		}
+
+		logrus.Infof("Response CLI success.")
 
 		return nil
 	},

@@ -41,14 +41,14 @@ var CreateCategoryCmd = &cobra.Command{
 			Namespace: namespace,
 			StoreID:   storeId,
 		}
-		ok, err := categoryService.CreateCategoryShort(input)
-		if err != nil {
-			logrus.Error(err)
+		created, errCreated := categoryService.CreateCategoryShort(input)
+		if errCreated != nil {
+			logrus.Error(errCreated)
 
-			return err
-		} else {
-			logrus.Infof("Response CLI success: %+v", ok)
+			return errCreated
 		}
+
+		logrus.Infof("Response CLI success: %+v", created)
 
 		return nil
 	},

@@ -31,12 +31,14 @@ var DeleteChannelHandlerCmd = &cobra.Command{
 			Channel:   channel,
 			Namespace: namespace,
 		}
-		errInput := matchmakingService.DeleteChannelHandlerShort(input)
-		if errInput != nil {
-			logrus.Error(errInput)
+		errNoContent := matchmakingService.DeleteChannelHandlerShort(input)
+		if errNoContent != nil {
+			logrus.Error(errNoContent)
 
-			return errInput
+			return errNoContent
 		}
+
+		logrus.Infof("Response CLI success.")
 
 		return nil
 	},

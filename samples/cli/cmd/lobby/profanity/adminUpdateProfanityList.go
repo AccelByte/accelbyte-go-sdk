@@ -41,12 +41,14 @@ var AdminUpdateProfanityListCmd = &cobra.Command{
 			List:      list_,
 			Namespace: namespace,
 		}
-		errInput := profanityService.AdminUpdateProfanityListShort(input)
-		if errInput != nil {
-			logrus.Error(errInput)
+		errOK := profanityService.AdminUpdateProfanityListShort(input)
+		if errOK != nil {
+			logrus.Error(errOK)
 
-			return errInput
+			return errOK
 		}
+
+		logrus.Infof("Response CLI success.")
 
 		return nil
 	},

@@ -41,14 +41,14 @@ var AdminUploadContentS3Cmd = &cobra.Command{
 			ChannelID: channelId,
 			Namespace: namespace,
 		}
-		ok, err := adminContentService.AdminUploadContentS3Short(input)
-		if err != nil {
-			logrus.Error(err)
+		created, errCreated := adminContentService.AdminUploadContentS3Short(input)
+		if errCreated != nil {
+			logrus.Error(errCreated)
 
-			return err
-		} else {
-			logrus.Infof("Response CLI success: %+v", ok)
+			return errCreated
 		}
+
+		logrus.Infof("Response CLI success: %+v", created)
 
 		return nil
 	},

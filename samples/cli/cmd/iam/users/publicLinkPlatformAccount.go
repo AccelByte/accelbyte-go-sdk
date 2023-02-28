@@ -41,12 +41,14 @@ var PublicLinkPlatformAccountCmd = &cobra.Command{
 			Namespace: namespace,
 			UserID:    userId,
 		}
-		errInput := usersService.PublicLinkPlatformAccountShort(input)
-		if errInput != nil {
-			logrus.Error(errInput)
+		errNoContent := usersService.PublicLinkPlatformAccountShort(input)
+		if errNoContent != nil {
+			logrus.Error(errNoContent)
 
-			return errInput
+			return errNoContent
 		}
+
+		logrus.Infof("Response CLI success.")
 
 		return nil
 	},

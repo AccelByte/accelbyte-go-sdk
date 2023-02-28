@@ -7,7 +7,6 @@
 package iap
 
 import (
-	"net/http"
 	"os"
 
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclient/iap"
@@ -36,25 +35,19 @@ var UpdateXblBPCertFileCmd = &cobra.Command{
 			return err
 		}
 		password, _ := cmd.Flags().GetString("password")
-		httpClient := &http.Client{
-			CheckRedirect: func(req *http.Request, via []*http.Request) error {
-				return http.ErrUseLastResponse
-			},
-		}
 		input := &iap.UpdateXblBPCertFileParams{
-			File:       file,
-			Password:   &password,
-			Namespace:  namespace,
-			HTTPClient: httpClient,
+			File:      file,
+			Password:  &password,
+			Namespace: namespace,
 		}
-		ok, err := iapService.UpdateXblBPCertFileShort(input)
-		if err != nil {
-			logrus.Error(err)
+		ok, errOK := iapService.UpdateXblBPCertFileShort(input)
+		if errOK != nil {
+			logrus.Error(errOK)
 
-			return err
-		} else {
-			logrus.Infof("Response CLI success: %+v", ok)
+			return errOK
 		}
+
+		logrus.Infof("Response CLI success: %+v", ok)
 
 		return nil
 	},

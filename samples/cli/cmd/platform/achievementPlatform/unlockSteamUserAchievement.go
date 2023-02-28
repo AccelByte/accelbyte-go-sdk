@@ -41,12 +41,14 @@ var UnlockSteamUserAchievementCmd = &cobra.Command{
 			Namespace: namespace,
 			UserID:    userId,
 		}
-		errInput := achievementPlatformService.UnlockSteamUserAchievementShort(input)
-		if errInput != nil {
-			logrus.Error(errInput)
+		errNoContent := achievementPlatformService.UnlockSteamUserAchievementShort(input)
+		if errNoContent != nil {
+			logrus.Error(errNoContent)
 
-			return errInput
+			return errNoContent
 		}
+
+		logrus.Infof("Response CLI success.")
 
 		return nil
 	},

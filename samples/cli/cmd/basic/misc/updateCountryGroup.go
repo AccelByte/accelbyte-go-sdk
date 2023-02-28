@@ -41,14 +41,14 @@ var UpdateCountryGroupCmd = &cobra.Command{
 			CountryGroupCode: countryGroupCode,
 			Namespace:        namespace,
 		}
-		ok, err := miscService.UpdateCountryGroupShort(input)
-		if err != nil {
-			logrus.Error(err)
+		ok, errOK := miscService.UpdateCountryGroupShort(input)
+		if errOK != nil {
+			logrus.Error(errOK)
 
-			return err
-		} else {
-			logrus.Infof("Response CLI success: %+v", ok)
+			return errOK
 		}
+
+		logrus.Infof("Response CLI success: %+v", ok)
 
 		return nil
 	},

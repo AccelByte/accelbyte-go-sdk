@@ -31,12 +31,14 @@ var DeleteBackfillCmd = &cobra.Command{
 			BackfillID: backfillID,
 			Namespace:  namespace,
 		}
-		errInput := backfillService.DeleteBackfillShort(input)
-		if errInput != nil {
-			logrus.Error(errInput)
+		errNoContent := backfillService.DeleteBackfillShort(input)
+		if errNoContent != nil {
+			logrus.Error(errNoContent)
 
-			return errInput
+			return errNoContent
 		}
+
+		logrus.Infof("Response CLI success.")
 
 		return nil
 	},

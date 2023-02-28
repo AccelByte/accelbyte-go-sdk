@@ -31,12 +31,14 @@ var UnselectAllRecordsCmd = &cobra.Command{
 			Namespace: namespace,
 			StoreID:   storeId,
 		}
-		errInput := catalogChangesService.UnselectAllRecordsShort(input)
-		if errInput != nil {
-			logrus.Error(errInput)
+		errNoContent := catalogChangesService.UnselectAllRecordsShort(input)
+		if errNoContent != nil {
+			logrus.Error(errNoContent)
 
-			return errInput
+			return errNoContent
 		}
+
+		logrus.Infof("Response CLI success.")
 
 		return nil
 	},

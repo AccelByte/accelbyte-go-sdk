@@ -26,12 +26,14 @@ var GetHealthcheckInfoV1Cmd = &cobra.Command{
 			TokenRepository: &repository.TokenRepositoryImpl{},
 		}
 		input := &operations.GetHealthcheckInfoV1Params{}
-		errInput := operationsService.GetHealthcheckInfoV1Short(input)
-		if errInput != nil {
-			logrus.Error(errInput)
+		errOK := operationsService.GetHealthcheckInfoV1Short(input)
+		if errOK != nil {
+			logrus.Error(errOK)
 
-			return errInput
+			return errOK
 		}
+
+		logrus.Infof("Response CLI success.")
 
 		return nil
 	},

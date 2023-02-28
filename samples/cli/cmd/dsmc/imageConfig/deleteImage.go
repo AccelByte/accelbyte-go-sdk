@@ -33,12 +33,14 @@ var DeleteImageCmd = &cobra.Command{
 			ImageURI:  imageURI,
 			Version:   version,
 		}
-		errInput := imageConfigService.DeleteImageShort(input)
-		if errInput != nil {
-			logrus.Error(errInput)
+		errNoContent := imageConfigService.DeleteImageShort(input)
+		if errNoContent != nil {
+			logrus.Error(errNoContent)
 
-			return errInput
+			return errNoContent
 		}
+
+		logrus.Infof("Response CLI success.")
 
 		return nil
 	},

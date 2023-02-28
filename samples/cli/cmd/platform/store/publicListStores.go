@@ -29,14 +29,14 @@ var PublicListStoresCmd = &cobra.Command{
 		input := &store.PublicListStoresParams{
 			Namespace: namespace,
 		}
-		ok, err := storeService.PublicListStoresShort(input)
-		if err != nil {
-			logrus.Error(err)
+		ok, errOK := storeService.PublicListStoresShort(input)
+		if errOK != nil {
+			logrus.Error(errOK)
 
-			return err
-		} else {
-			logrus.Infof("Response CLI success: %+v", ok)
+			return errOK
 		}
+
+		logrus.Infof("Response CLI success: %+v", ok)
 
 		return nil
 	},

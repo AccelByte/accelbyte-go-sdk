@@ -31,12 +31,14 @@ var ResetGlobalAchievementCmd = &cobra.Command{
 			AchievementCode: achievementCode,
 			Namespace:       namespace,
 		}
-		errInput := globalAchievementsService.ResetGlobalAchievementShort(input)
-		if errInput != nil {
-			logrus.Error(errInput)
+		errNoContent := globalAchievementsService.ResetGlobalAchievementShort(input)
+		if errNoContent != nil {
+			logrus.Error(errNoContent)
 
-			return errInput
+			return errNoContent
 		}
+
+		logrus.Infof("Response CLI success.")
 
 		return nil
 	},

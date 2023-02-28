@@ -7,8 +7,6 @@
 package usersV4
 
 import (
-	"net/http"
-
 	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclient/users_v4"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/iam"
@@ -28,21 +26,17 @@ var AdminEnableMyEmailV4Cmd = &cobra.Command{
 			TokenRepository: &repository.TokenRepositoryImpl{},
 		}
 		code, _ := cmd.Flags().GetString("code")
-		httpClient := &http.Client{
-			CheckRedirect: func(req *http.Request, via []*http.Request) error {
-				return http.ErrUseLastResponse
-			},
-		}
 		input := &users_v4.AdminEnableMyEmailV4Params{
-			Code:       code,
-			HTTPClient: httpClient,
+			Code: code,
 		}
-		errInput := usersV4Service.AdminEnableMyEmailV4Short(input)
-		if errInput != nil {
-			logrus.Error(errInput)
+		errNoContent := usersV4Service.AdminEnableMyEmailV4Short(input)
+		if errNoContent != nil {
+			logrus.Error(errNoContent)
 
-			return errInput
+			return errNoContent
 		}
+
+		logrus.Infof("Response CLI success.")
 
 		return nil
 	},

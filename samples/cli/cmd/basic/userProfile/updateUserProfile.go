@@ -41,14 +41,14 @@ var UpdateUserProfileCmd = &cobra.Command{
 			Namespace: namespace,
 			UserID:    userId,
 		}
-		ok, err := userProfileService.UpdateUserProfileShort(input)
-		if err != nil {
-			logrus.Error(err)
+		ok, errOK := userProfileService.UpdateUserProfileShort(input)
+		if errOK != nil {
+			logrus.Error(errOK)
 
-			return err
-		} else {
-			logrus.Infof("Response CLI success: %+v", ok)
+			return errOK
 		}
+
+		logrus.Infof("Response CLI success: %+v", ok)
 
 		return nil
 	},

@@ -35,12 +35,14 @@ var DeleteContentScreenshotCmd = &cobra.Command{
 			ScreenshotID: screenshotId,
 			UserID:       userId,
 		}
-		errInput := publicContentService.DeleteContentScreenshotShort(input)
-		if errInput != nil {
-			logrus.Error(errInput)
+		errNoContent := publicContentService.DeleteContentScreenshotShort(input)
+		if errNoContent != nil {
+			logrus.Error(errNoContent)
 
-			return errInput
+			return errNoContent
 		}
+
+		logrus.Infof("Response CLI success.")
 
 		return nil
 	},

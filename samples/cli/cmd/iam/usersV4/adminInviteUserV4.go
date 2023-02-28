@@ -37,14 +37,14 @@ var AdminInviteUserV4Cmd = &cobra.Command{
 		input := &users_v4.AdminInviteUserV4Params{
 			Body: body,
 		}
-		ok, err := usersV4Service.AdminInviteUserV4Short(input)
-		if err != nil {
-			logrus.Error(err)
+		created, errCreated := usersV4Service.AdminInviteUserV4Short(input)
+		if errCreated != nil {
+			logrus.Error(errCreated)
 
-			return err
-		} else {
-			logrus.Infof("Response CLI success: %+v", ok)
+			return errCreated
 		}
+
+		logrus.Infof("Response CLI success: %+v", created)
 
 		return nil
 	},

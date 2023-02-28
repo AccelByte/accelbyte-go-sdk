@@ -31,14 +31,14 @@ var RetrieveSSOLoginPlatformCredentialCmd = &cobra.Command{
 			Namespace:  namespace,
 			PlatformID: platformId,
 		}
-		ok, err := ssoCredentialService.RetrieveSSOLoginPlatformCredentialShort(input)
-		if err != nil {
-			logrus.Error(err)
+		ok, errOK := ssoCredentialService.RetrieveSSOLoginPlatformCredentialShort(input)
+		if errOK != nil {
+			logrus.Error(errOK)
 
-			return err
-		} else {
-			logrus.Infof("Response CLI success: %+v", ok)
+			return errOK
 		}
+
+		logrus.Infof("Response CLI success: %+v", ok)
 
 		return nil
 	},

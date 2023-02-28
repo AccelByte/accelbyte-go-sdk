@@ -35,12 +35,14 @@ var AdminGenerateReportV4Cmd = &cobra.Command{
 			StartDate:  &startDate,
 			DeviceType: deviceType,
 		}
-		errInput := devicesV4Service.AdminGenerateReportV4Short(input)
-		if errInput != nil {
-			logrus.Error(errInput)
+		errOK := devicesV4Service.AdminGenerateReportV4Short(input)
+		if errOK != nil {
+			logrus.Error(errOK)
 
-			return errInput
+			return errOK
 		}
+
+		logrus.Infof("Response CLI success.")
 
 		return nil
 	},

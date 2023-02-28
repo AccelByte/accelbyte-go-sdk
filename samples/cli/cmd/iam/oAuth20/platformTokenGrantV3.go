@@ -7,8 +7,6 @@
 package oAuth20
 
 import (
-	"net/http"
-
 	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclient/o_auth2_0"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/iam"
@@ -34,11 +32,6 @@ var PlatformTokenGrantV3Cmd = &cobra.Command{
 		deviceId, _ := cmd.Flags().GetString("deviceId")
 		macAddress, _ := cmd.Flags().GetString("macAddress")
 		platformToken, _ := cmd.Flags().GetString("platformToken")
-		httpClient := &http.Client{
-			CheckRedirect: func(req *http.Request, via []*http.Request) error {
-				return http.ErrUseLastResponse
-			},
-		}
 		input := &o_auth2_0.PlatformTokenGrantV3Params{
 			ClientID:       &clientId,
 			CreateHeadless: &createHeadless,
@@ -46,16 +39,15 @@ var PlatformTokenGrantV3Cmd = &cobra.Command{
 			MacAddress:     &macAddress,
 			PlatformToken:  &platformToken,
 			PlatformID:     platformId,
-			HTTPClient:     httpClient,
 		}
-		ok, err := oAuth20Service.PlatformTokenGrantV3Short(input)
-		if err != nil {
-			logrus.Error(err)
+		ok, errOK := oAuth20Service.PlatformTokenGrantV3Short(input)
+		if errOK != nil {
+			logrus.Error(errOK)
 
-			return err
-		} else {
-			logrus.Infof("Response CLI success: %+v", ok)
+			return errOK
 		}
+
+		logrus.Infof("Response CLI success: %+v", ok)
 
 		return nil
 	},

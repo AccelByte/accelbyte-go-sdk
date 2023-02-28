@@ -37,12 +37,14 @@ var SaveConfigCmd = &cobra.Command{
 		input := &config.SaveConfigParams{
 			Body: body,
 		}
-		errInput := configService.SaveConfigShort(input)
-		if errInput != nil {
-			logrus.Error(errInput)
+		errNoContent := configService.SaveConfigShort(input)
+		if errNoContent != nil {
+			logrus.Error(errNoContent)
 
-			return errInput
+			return errNoContent
 		}
+
+		logrus.Infof("Response CLI success.")
 
 		return nil
 	},

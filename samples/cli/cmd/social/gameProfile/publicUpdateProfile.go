@@ -43,14 +43,14 @@ var PublicUpdateProfileCmd = &cobra.Command{
 			ProfileID: profileId,
 			UserID:    userId,
 		}
-		ok, err := gameProfileService.PublicUpdateProfileShort(input)
-		if err != nil {
-			logrus.Error(err)
+		ok, errOK := gameProfileService.PublicUpdateProfileShort(input)
+		if errOK != nil {
+			logrus.Error(errOK)
 
-			return err
-		} else {
-			logrus.Infof("Response CLI success: %+v", ok)
+			return errOK
 		}
+
+		logrus.Infof("Response CLI success: %+v", ok)
 
 		return nil
 	},

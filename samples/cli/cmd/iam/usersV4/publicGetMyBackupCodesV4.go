@@ -29,14 +29,14 @@ var PublicGetMyBackupCodesV4Cmd = &cobra.Command{
 		input := &users_v4.PublicGetMyBackupCodesV4Params{
 			Namespace: namespace,
 		}
-		ok, err := usersV4Service.PublicGetMyBackupCodesV4Short(input)
-		if err != nil {
-			logrus.Error(err)
+		ok, errOK := usersV4Service.PublicGetMyBackupCodesV4Short(input)
+		if errOK != nil {
+			logrus.Error(errOK)
 
-			return err
-		} else {
-			logrus.Infof("Response CLI success: %+v", ok)
+			return errOK
 		}
+
+		logrus.Infof("Response CLI success: %+v", ok)
 
 		return nil
 	},

@@ -31,14 +31,14 @@ var PublicGetUserProfileInfoByPublicIdCmd = &cobra.Command{
 			Namespace: namespace,
 			PublicID:  publicId,
 		}
-		ok, err := userProfileService.PublicGetUserProfileInfoByPublicIDShort(input)
-		if err != nil {
-			logrus.Error(err)
+		ok, errOK := userProfileService.PublicGetUserProfileInfoByPublicIDShort(input)
+		if errOK != nil {
+			logrus.Error(errOK)
 
-			return err
-		} else {
-			logrus.Infof("Response CLI success: %+v", ok)
+			return errOK
 		}
+
+		logrus.Infof("Response CLI success: %+v", ok)
 
 		return nil
 	},

@@ -39,12 +39,14 @@ var AdminAddRoleManagersV3Cmd = &cobra.Command{
 			Body:   body,
 			RoleID: roleId,
 		}
-		errInput := rolesService.AdminAddRoleManagersV3Short(input)
-		if errInput != nil {
-			logrus.Error(errInput)
+		errNoContent := rolesService.AdminAddRoleManagersV3Short(input)
+		if errNoContent != nil {
+			logrus.Error(errNoContent)
 
-			return errInput
+			return errNoContent
 		}
+
+		logrus.Infof("Response CLI success.")
 
 		return nil
 	},

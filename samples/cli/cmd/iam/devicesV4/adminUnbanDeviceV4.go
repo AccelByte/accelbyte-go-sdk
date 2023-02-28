@@ -31,12 +31,14 @@ var AdminUnbanDeviceV4Cmd = &cobra.Command{
 			DeviceID:  deviceId,
 			Namespace: namespace,
 		}
-		errInput := devicesV4Service.AdminUnbanDeviceV4Short(input)
-		if errInput != nil {
-			logrus.Error(errInput)
+		errNoContent := devicesV4Service.AdminUnbanDeviceV4Short(input)
+		if errNoContent != nil {
+			logrus.Error(errNoContent)
 
-			return errInput
+			return errNoContent
 		}
+
+		logrus.Infof("Response CLI success.")
 
 		return nil
 	},

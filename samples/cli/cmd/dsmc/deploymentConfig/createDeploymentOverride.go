@@ -43,14 +43,14 @@ var CreateDeploymentOverrideCmd = &cobra.Command{
 			Namespace:  namespace,
 			Version:    version,
 		}
-		ok, err := deploymentConfigService.CreateDeploymentOverrideShort(input)
-		if err != nil {
-			logrus.Error(err)
+		created, errCreated := deploymentConfigService.CreateDeploymentOverrideShort(input)
+		if errCreated != nil {
+			logrus.Error(errCreated)
 
-			return err
-		} else {
-			logrus.Infof("Response CLI success: %+v", ok)
+			return errCreated
 		}
+
+		logrus.Infof("Response CLI success: %+v", created)
 
 		return nil
 	},

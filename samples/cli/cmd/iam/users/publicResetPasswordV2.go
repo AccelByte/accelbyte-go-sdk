@@ -39,12 +39,14 @@ var PublicResetPasswordV2Cmd = &cobra.Command{
 			Body:      body,
 			Namespace: namespace,
 		}
-		errInput := usersService.PublicResetPasswordV2Short(input)
-		if errInput != nil {
-			logrus.Error(errInput)
+		errNoContent := usersService.PublicResetPasswordV2Short(input)
+		if errNoContent != nil {
+			logrus.Error(errNoContent)
 
-			return errInput
+			return errNoContent
 		}
+
+		logrus.Infof("Response CLI success.")
 
 		return nil
 	},

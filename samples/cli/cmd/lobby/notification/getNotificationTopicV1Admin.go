@@ -31,14 +31,14 @@ var GetNotificationTopicV1AdminCmd = &cobra.Command{
 			Namespace: namespace,
 			TopicName: topicName,
 		}
-		ok, err := notificationService.GetNotificationTopicV1AdminShort(input)
-		if err != nil {
-			logrus.Error(err)
+		ok, errOK := notificationService.GetNotificationTopicV1AdminShort(input)
+		if errOK != nil {
+			logrus.Error(errOK)
 
-			return err
-		} else {
-			logrus.Infof("Response CLI success: %+v", ok)
+			return errOK
 		}
+
+		logrus.Infof("Response CLI success: %+v", ok)
 
 		return nil
 	},

@@ -29,14 +29,14 @@ var GetClientCmd = &cobra.Command{
 		input := &clients.GetClientParams{
 			ClientID: clientId,
 		}
-		ok, err := clientsService.GetClientShort(input)
-		if err != nil {
-			logrus.Error(err)
+		ok, errOK := clientsService.GetClientShort(input)
+		if errOK != nil {
+			logrus.Error(errOK)
 
-			return err
-		} else {
-			logrus.Infof("Response CLI success: %+v", ok)
+			return errOK
 		}
+
+		logrus.Infof("Response CLI success: %+v", ok)
 
 		return nil
 	},

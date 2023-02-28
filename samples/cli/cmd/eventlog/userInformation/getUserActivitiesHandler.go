@@ -35,14 +35,14 @@ var GetUserActivitiesHandlerCmd = &cobra.Command{
 			Offset:    &offset,
 			PageSize:  pageSize,
 		}
-		ok, err := userInformationService.GetUserActivitiesHandlerShort(input)
-		if err != nil {
-			logrus.Error(err)
+		ok, errOK := userInformationService.GetUserActivitiesHandlerShort(input)
+		if errOK != nil {
+			logrus.Error(errOK)
 
-			return err
-		} else {
-			logrus.Infof("Response CLI success: %+v", ok)
+			return errOK
 		}
+
+		logrus.Infof("Response CLI success: %+v", ok)
 
 		return nil
 	},

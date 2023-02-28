@@ -41,14 +41,14 @@ var CreateDeploymentCmd = &cobra.Command{
 			Deployment: deployment,
 			Namespace:  namespace,
 		}
-		ok, err := deploymentConfigService.CreateDeploymentShort(input)
-		if err != nil {
-			logrus.Error(err)
+		created, errCreated := deploymentConfigService.CreateDeploymentShort(input)
+		if errCreated != nil {
+			logrus.Error(errCreated)
 
-			return err
-		} else {
-			logrus.Infof("Response CLI success: %+v", ok)
+			return errCreated
 		}
+
+		logrus.Infof("Response CLI success: %+v", created)
 
 		return nil
 	},

@@ -29,12 +29,14 @@ var SyncUserInfoCmd = &cobra.Command{
 		input := &user_info.SyncUserInfoParams{
 			Namespace: namespace,
 		}
-		errInput := userInfoService.SyncUserInfoShort(input)
-		if errInput != nil {
-			logrus.Error(errInput)
+		errOK := userInfoService.SyncUserInfoShort(input)
+		if errOK != nil {
+			logrus.Error(errOK)
 
-			return errInput
+			return errOK
 		}
+
+		logrus.Infof("Response CLI success.")
 
 		return nil
 	},

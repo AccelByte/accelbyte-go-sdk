@@ -7,8 +7,6 @@
 package users
 
 import (
-	"net/http"
-
 	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclient/users"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/iam"
@@ -29,22 +27,18 @@ var AdminEnableUserV2Cmd = &cobra.Command{
 		}
 		namespace, _ := cmd.Flags().GetString("namespace")
 		userId, _ := cmd.Flags().GetString("userId")
-		httpClient := &http.Client{
-			CheckRedirect: func(req *http.Request, via []*http.Request) error {
-				return http.ErrUseLastResponse
-			},
-		}
 		input := &users.AdminEnableUserV2Params{
-			Namespace:  namespace,
-			UserID:     userId,
-			HTTPClient: httpClient,
+			Namespace: namespace,
+			UserID:    userId,
 		}
-		errInput := usersService.AdminEnableUserV2Short(input)
-		if errInput != nil {
-			logrus.Error(errInput)
+		errNoContent := usersService.AdminEnableUserV2Short(input)
+		if errNoContent != nil {
+			logrus.Error(errNoContent)
 
-			return errInput
+			return errNoContent
 		}
+
+		logrus.Infof("Response CLI success.")
 
 		return nil
 	},

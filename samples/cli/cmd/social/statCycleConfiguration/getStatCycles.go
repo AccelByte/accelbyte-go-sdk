@@ -39,14 +39,14 @@ var GetStatCyclesCmd = &cobra.Command{
 			Offset:    &offset,
 			Status:    &status,
 		}
-		ok, err := statCycleConfigurationService.GetStatCyclesShort(input)
-		if err != nil {
-			logrus.Error(err)
+		ok, errOK := statCycleConfigurationService.GetStatCyclesShort(input)
+		if errOK != nil {
+			logrus.Error(errOK)
 
-			return err
-		} else {
-			logrus.Infof("Response CLI success: %+v", ok)
+			return errOK
 		}
+
+		logrus.Infof("Response CLI success: %+v", ok)
 
 		return nil
 	},

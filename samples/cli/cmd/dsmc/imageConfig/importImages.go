@@ -7,7 +7,6 @@
 package imageConfig
 
 import (
-	"net/http"
 	"os"
 
 	"github.com/AccelByte/accelbyte-go-sdk/dsmc-sdk/pkg/dsmcclient/image_config"
@@ -34,23 +33,17 @@ var ImportImagesCmd = &cobra.Command{
 		if err != nil {
 			return err
 		}
-		httpClient := &http.Client{
-			CheckRedirect: func(req *http.Request, via []*http.Request) error {
-				return http.ErrUseLastResponse
-			},
-		}
 		input := &image_config.ImportImagesParams{
-			File:       file,
-			HTTPClient: httpClient,
+			File: file,
 		}
-		ok, err := imageConfigService.ImportImagesShort(input)
-		if err != nil {
-			logrus.Error(err)
+		ok, errOK := imageConfigService.ImportImagesShort(input)
+		if errOK != nil {
+			logrus.Error(errOK)
 
-			return err
-		} else {
-			logrus.Infof("Response CLI success: %+v", ok)
+			return errOK
 		}
+
+		logrus.Infof("Response CLI success: %+v", ok)
 
 		return nil
 	},

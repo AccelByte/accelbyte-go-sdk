@@ -29,14 +29,14 @@ var GetCurrentSeasonCmd = &cobra.Command{
 		input := &season.GetCurrentSeasonParams{
 			Namespace: namespace,
 		}
-		ok, err := seasonService.GetCurrentSeasonShort(input)
-		if err != nil {
-			logrus.Error(err)
+		ok, errOK := seasonService.GetCurrentSeasonShort(input)
+		if errOK != nil {
+			logrus.Error(errOK)
 
-			return err
-		} else {
-			logrus.Infof("Response CLI success: %+v", ok)
+			return errOK
 		}
+
+		logrus.Infof("Response CLI success: %+v", ok)
 
 		return nil
 	},

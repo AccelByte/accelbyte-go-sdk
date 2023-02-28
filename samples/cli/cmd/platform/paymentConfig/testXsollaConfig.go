@@ -37,14 +37,14 @@ var TestXsollaConfigCmd = &cobra.Command{
 		input := &payment_config.TestXsollaConfigParams{
 			Body: body,
 		}
-		ok, err := paymentConfigService.TestXsollaConfigShort(input)
-		if err != nil {
-			logrus.Error(err)
+		ok, errOK := paymentConfigService.TestXsollaConfigShort(input)
+		if errOK != nil {
+			logrus.Error(errOK)
 
-			return err
-		} else {
-			logrus.Infof("Response CLI success: %+v", ok)
+			return errOK
 		}
+
+		logrus.Infof("Response CLI success: %+v", ok)
 
 		return nil
 	},

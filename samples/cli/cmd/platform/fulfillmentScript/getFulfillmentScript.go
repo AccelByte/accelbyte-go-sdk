@@ -29,14 +29,14 @@ var GetFulfillmentScriptCmd = &cobra.Command{
 		input := &fulfillment_script.GetFulfillmentScriptParams{
 			ID: id_,
 		}
-		ok, err := fulfillmentScriptService.GetFulfillmentScriptShort(input)
-		if err != nil {
-			logrus.Error(err)
+		ok, errOK := fulfillmentScriptService.GetFulfillmentScriptShort(input)
+		if errOK != nil {
+			logrus.Error(errOK)
 
-			return err
-		} else {
-			logrus.Infof("Response CLI success: %+v", ok)
+			return errOK
 		}
+
+		logrus.Infof("Response CLI success: %+v", ok)
 
 		return nil
 	},

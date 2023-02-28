@@ -29,12 +29,14 @@ var DeleteItemTypeConfigCmd = &cobra.Command{
 		input := &item.DeleteItemTypeConfigParams{
 			ID: id_,
 		}
-		errInput := itemService.DeleteItemTypeConfigShort(input)
-		if errInput != nil {
-			logrus.Error(errInput)
+		errNoContent := itemService.DeleteItemTypeConfigShort(input)
+		if errNoContent != nil {
+			logrus.Error(errNoContent)
 
-			return errInput
+			return errNoContent
 		}
+
+		logrus.Infof("Response CLI success.")
 
 		return nil
 	},

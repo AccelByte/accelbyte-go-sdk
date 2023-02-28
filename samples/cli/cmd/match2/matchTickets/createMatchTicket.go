@@ -39,14 +39,14 @@ var CreateMatchTicketCmd = &cobra.Command{
 			Body:      body,
 			Namespace: namespace,
 		}
-		ok, err := matchTicketsService.CreateMatchTicketShort(input)
-		if err != nil {
-			logrus.Error(err)
+		created, errCreated := matchTicketsService.CreateMatchTicketShort(input)
+		if errCreated != nil {
+			logrus.Error(errCreated)
 
-			return err
-		} else {
-			logrus.Infof("Response CLI success: %+v", ok)
+			return errCreated
 		}
+
+		logrus.Infof("Response CLI success: %+v", created)
 
 		return nil
 	},

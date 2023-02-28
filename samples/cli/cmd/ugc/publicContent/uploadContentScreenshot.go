@@ -43,14 +43,14 @@ var UploadContentScreenshotCmd = &cobra.Command{
 			Namespace: namespace,
 			UserID:    userId,
 		}
-		ok, err := publicContentService.UploadContentScreenshotShort(input)
-		if err != nil {
-			logrus.Error(err)
+		created, errCreated := publicContentService.UploadContentScreenshotShort(input)
+		if errCreated != nil {
+			logrus.Error(errCreated)
 
-			return err
-		} else {
-			logrus.Infof("Response CLI success: %+v", ok)
+			return errCreated
 		}
+
+		logrus.Infof("Response CLI success: %+v", created)
 
 		return nil
 	},

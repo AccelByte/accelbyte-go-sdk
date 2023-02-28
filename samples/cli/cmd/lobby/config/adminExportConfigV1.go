@@ -8,6 +8,7 @@ package config
 
 import (
 	"bytes"
+	"os"
 
 	"github.com/AccelByte/accelbyte-go-sdk/lobby-sdk/pkg/lobbyclient/config"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
@@ -28,18 +29,23 @@ var AdminExportConfigV1Cmd = &cobra.Command{
 			TokenRepository: &repository.TokenRepositoryImpl{},
 		}
 		namespace, _ := cmd.Flags().GetString("namespace")
+		file, errFile := os.Create("file")
+		logrus.Infof("Output %v", file)
+		if errFile != nil {
+			return errFile
+		}
+		writer := bytes.NewBuffer(nil)
 		input := &config.AdminExportConfigV1Params{
 			Namespace: namespace,
 		}
-		writer := bytes.NewBuffer(nil)
-		ok, err := configService.AdminExportConfigV1Short(input, writer)
-		if err != nil {
-			logrus.Error(err)
+		ok, errOK := configService.AdminExportConfigV1Short(input, writer)
+		if errOK != nil {
+			logrus.Error(errOK)
 
-			return err
-		} else {
-			logrus.Infof("Response CLI success: %+v", ok)
+			return errOK
 		}
+
+		logrus.Infof("Response CLI success: %+v", ok)
 
 		return nil
 	},

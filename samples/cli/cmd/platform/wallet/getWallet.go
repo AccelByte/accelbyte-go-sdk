@@ -31,14 +31,14 @@ var GetWalletCmd = &cobra.Command{
 			Namespace: namespace,
 			WalletID:  walletId,
 		}
-		ok, err := walletService.GetWalletShort(input)
-		if err != nil {
-			logrus.Error(err)
+		ok, errOK := walletService.GetWalletShort(input)
+		if errOK != nil {
+			logrus.Error(errOK)
 
-			return err
-		} else {
-			logrus.Infof("Response CLI success: %+v", ok)
+			return errOK
 		}
+
+		logrus.Infof("Response CLI success: %+v", ok)
 
 		return nil
 	},

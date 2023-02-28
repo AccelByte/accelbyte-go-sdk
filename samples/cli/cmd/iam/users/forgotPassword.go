@@ -40,12 +40,14 @@ var ForgotPasswordCmd = &cobra.Command{
 			Body:      body,
 			Namespace: namespace,
 		}
-		errInput := usersService.ForgotPasswordShort(input)
-		if errInput != nil {
-			logrus.Error(errInput)
+		errNoContent := usersService.ForgotPasswordShort(input)
+		if errNoContent != nil {
+			logrus.Error(errNoContent)
 
-			return errInput
+			return errNoContent
 		}
+
+		logrus.Infof("Response CLI success.")
 
 		return nil
 	},

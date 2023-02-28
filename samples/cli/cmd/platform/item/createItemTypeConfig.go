@@ -37,12 +37,14 @@ var CreateItemTypeConfigCmd = &cobra.Command{
 		input := &item.CreateItemTypeConfigParams{
 			Body: body,
 		}
-		errInput := itemService.CreateItemTypeConfigShort(input)
-		if errInput != nil {
-			logrus.Error(errInput)
+		errCreated := itemService.CreateItemTypeConfigShort(input)
+		if errCreated != nil {
+			logrus.Error(errCreated)
 
-			return errInput
+			return errCreated
 		}
+
+		logrus.Infof("Response CLI success.")
 
 		return nil
 	},

@@ -29,14 +29,14 @@ var DeleteNamespaceCmd = &cobra.Command{
 		input := &namespace_.DeleteNamespaceParams{
 			Namespace: namespace,
 		}
-		ok, err := namespaceService.DeleteNamespaceShort(input)
-		if err != nil {
-			logrus.Error(err)
+		ok, errOK := namespaceService.DeleteNamespaceShort(input)
+		if errOK != nil {
+			logrus.Error(errOK)
 
-			return err
-		} else {
-			logrus.Infof("Response CLI success: %+v", ok)
+			return errOK
 		}
+
+		logrus.Infof("Response CLI success: %+v", ok)
 
 		return nil
 	},

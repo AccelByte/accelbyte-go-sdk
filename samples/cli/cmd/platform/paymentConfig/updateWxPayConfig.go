@@ -41,14 +41,14 @@ var UpdateWxPayConfigCmd = &cobra.Command{
 			ID:       id_,
 			Validate: &validate,
 		}
-		ok, err := paymentConfigService.UpdateWxPayConfigShort(input)
-		if err != nil {
-			logrus.Error(err)
+		ok, errOK := paymentConfigService.UpdateWxPayConfigShort(input)
+		if errOK != nil {
+			logrus.Error(errOK)
 
-			return err
-		} else {
-			logrus.Infof("Response CLI success: %+v", ok)
+			return errOK
 		}
+
+		logrus.Infof("Response CLI success: %+v", ok)
 
 		return nil
 	},

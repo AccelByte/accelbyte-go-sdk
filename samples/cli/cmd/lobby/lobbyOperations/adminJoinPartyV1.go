@@ -33,12 +33,14 @@ var AdminJoinPartyV1Cmd = &cobra.Command{
 			PartyID:   partyId,
 			UserID:    userId,
 		}
-		errInput := lobbyOperationsService.AdminJoinPartyV1Short(input)
-		if errInput != nil {
-			logrus.Error(errInput)
+		errAccepted := lobbyOperationsService.AdminJoinPartyV1Short(input)
+		if errAccepted != nil {
+			logrus.Error(errAccepted)
 
-			return errInput
+			return errAccepted
 		}
+
+		logrus.Infof("Response CLI success.")
 
 		return nil
 	},

@@ -39,14 +39,14 @@ var UpdateConfigCmd = &cobra.Command{
 			Body:      body,
 			Namespace: namespace,
 		}
-		ok, err := equ8ConfigService.UpdateConfigShort(input)
-		if err != nil {
-			logrus.Error(err)
+		ok, errOK := equ8ConfigService.UpdateConfigShort(input)
+		if errOK != nil {
+			logrus.Error(errOK)
 
-			return err
-		} else {
-			logrus.Infof("Response CLI success: %+v", ok)
+			return errOK
 		}
+
+		logrus.Infof("Response CLI success: %+v", ok)
 
 		return nil
 	},

@@ -37,14 +37,14 @@ var PublicSearchUserV3Cmd = &cobra.Command{
 			Offset:    &offset,
 			Query:     &query,
 		}
-		ok, err := usersService.PublicSearchUserV3Short(input)
-		if err != nil {
-			logrus.Error(err)
+		ok, errOK := usersService.PublicSearchUserV3Short(input)
+		if errOK != nil {
+			logrus.Error(errOK)
 
-			return err
-		} else {
-			logrus.Infof("Response CLI success: %+v", ok)
+			return errOK
 		}
+
+		logrus.Infof("Response CLI success: %+v", ok)
 
 		return nil
 	},

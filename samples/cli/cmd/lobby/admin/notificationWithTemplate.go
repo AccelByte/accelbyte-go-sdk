@@ -39,12 +39,14 @@ var NotificationWithTemplateCmd = &cobra.Command{
 			Body:      body,
 			Namespace: namespace,
 		}
-		errInput := adminService.NotificationWithTemplateShort(input)
-		if errInput != nil {
-			logrus.Error(errInput)
+		errAccepted := adminService.NotificationWithTemplateShort(input)
+		if errAccepted != nil {
+			logrus.Error(errAccepted)
 
-			return errInput
+			return errAccepted
 		}
+
+		logrus.Infof("Response CLI success.")
 
 		return nil
 	},

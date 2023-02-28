@@ -41,12 +41,14 @@ var AdminBulkBlockPlayersV1Cmd = &cobra.Command{
 			Namespace: namespace,
 			UserID:    userId,
 		}
-		errInput := playerService.AdminBulkBlockPlayersV1Short(input)
-		if errInput != nil {
-			logrus.Error(errInput)
+		errNoContent := playerService.AdminBulkBlockPlayersV1Short(input)
+		if errNoContent != nil {
+			logrus.Error(errNoContent)
 
-			return errInput
+			return errNoContent
 		}
+
+		logrus.Infof("Response CLI success.")
 
 		return nil
 	},

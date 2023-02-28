@@ -33,12 +33,14 @@ var AdminUnlockAchievementCmd = &cobra.Command{
 			Namespace:       namespace,
 			UserID:          userId,
 		}
-		errInput := userAchievementsService.AdminUnlockAchievementShort(input)
-		if errInput != nil {
-			logrus.Error(errInput)
+		errNoContent := userAchievementsService.AdminUnlockAchievementShort(input)
+		if errNoContent != nil {
+			logrus.Error(errNoContent)
 
-			return errInput
+			return errNoContent
 		}
+
+		logrus.Infof("Response CLI success.")
 
 		return nil
 	},

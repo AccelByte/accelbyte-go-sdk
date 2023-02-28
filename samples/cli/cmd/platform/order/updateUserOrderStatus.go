@@ -43,14 +43,14 @@ var UpdateUserOrderStatusCmd = &cobra.Command{
 			OrderNo:   orderNo,
 			UserID:    userId,
 		}
-		ok, err := orderService.UpdateUserOrderStatusShort(input)
-		if err != nil {
-			logrus.Error(err)
+		ok, errOK := orderService.UpdateUserOrderStatusShort(input)
+		if errOK != nil {
+			logrus.Error(errOK)
 
-			return err
-		} else {
-			logrus.Infof("Response CLI success: %+v", ok)
+			return errOK
 		}
+
+		logrus.Infof("Response CLI success: %+v", ok)
 
 		return nil
 	},

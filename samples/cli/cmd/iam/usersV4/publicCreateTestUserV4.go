@@ -39,14 +39,14 @@ var PublicCreateTestUserV4Cmd = &cobra.Command{
 			Body:      body,
 			Namespace: namespace,
 		}
-		ok, err := usersV4Service.PublicCreateTestUserV4Short(input)
-		if err != nil {
-			logrus.Error(err)
+		created, errCreated := usersV4Service.PublicCreateTestUserV4Short(input)
+		if errCreated != nil {
+			logrus.Error(errCreated)
 
-			return err
-		} else {
-			logrus.Infof("Response CLI success: %+v", ok)
+			return errCreated
 		}
+
+		logrus.Infof("Response CLI success: %+v", created)
 
 		return nil
 	},

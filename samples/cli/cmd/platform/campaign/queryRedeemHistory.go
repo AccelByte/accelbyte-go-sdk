@@ -39,14 +39,14 @@ var QueryRedeemHistoryCmd = &cobra.Command{
 			Offset:     &offset,
 			UserID:     &userId,
 		}
-		ok, err := campaignService.QueryRedeemHistoryShort(input)
-		if err != nil {
-			logrus.Error(err)
+		ok, errOK := campaignService.QueryRedeemHistoryShort(input)
+		if errOK != nil {
+			logrus.Error(errOK)
 
-			return err
-		} else {
-			logrus.Infof("Response CLI success: %+v", ok)
+			return errOK
 		}
+
+		logrus.Infof("Response CLI success: %+v", ok)
 
 		return nil
 	},

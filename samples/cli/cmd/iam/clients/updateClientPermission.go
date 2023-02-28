@@ -39,12 +39,14 @@ var UpdateClientPermissionCmd = &cobra.Command{
 			Body:     body,
 			ClientID: clientId,
 		}
-		errInput := clientsService.UpdateClientPermissionShort(input)
-		if errInput != nil {
-			logrus.Error(errInput)
+		errNoContent := clientsService.UpdateClientPermissionShort(input)
+		if errNoContent != nil {
+			logrus.Error(errNoContent)
 
-			return errInput
+			return errNoContent
 		}
+
+		logrus.Infof("Response CLI success.")
 
 		return nil
 	},

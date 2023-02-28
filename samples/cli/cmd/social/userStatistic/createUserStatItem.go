@@ -33,12 +33,14 @@ var CreateUserStatItemCmd = &cobra.Command{
 			StatCode:  statCode,
 			UserID:    userId,
 		}
-		errInput := userStatisticService.CreateUserStatItemShort(input)
-		if errInput != nil {
-			logrus.Error(errInput)
+		errCreated := userStatisticService.CreateUserStatItemShort(input)
+		if errCreated != nil {
+			logrus.Error(errCreated)
 
-			return errInput
+			return errCreated
 		}
+
+		logrus.Infof("Response CLI success.")
 
 		return nil
 	},

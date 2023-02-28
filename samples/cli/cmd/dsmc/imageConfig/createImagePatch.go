@@ -37,12 +37,14 @@ var CreateImagePatchCmd = &cobra.Command{
 		input := &image_config.CreateImagePatchParams{
 			Body: body,
 		}
-		errInput := imageConfigService.CreateImagePatchShort(input)
-		if errInput != nil {
-			logrus.Error(errInput)
+		errCreated := imageConfigService.CreateImagePatchShort(input)
+		if errCreated != nil {
+			logrus.Error(errCreated)
 
-			return errInput
+			return errCreated
 		}
+
+		logrus.Infof("Response CLI success.")
 
 		return nil
 	},

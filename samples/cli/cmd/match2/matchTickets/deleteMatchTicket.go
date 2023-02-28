@@ -31,12 +31,14 @@ var DeleteMatchTicketCmd = &cobra.Command{
 			Namespace: namespace,
 			Ticketid:  ticketid,
 		}
-		errInput := matchTicketsService.DeleteMatchTicketShort(input)
-		if errInput != nil {
-			logrus.Error(errInput)
+		errNoContent := matchTicketsService.DeleteMatchTicketShort(input)
+		if errNoContent != nil {
+			logrus.Error(errNoContent)
 
-			return errInput
+			return errNoContent
 		}
+
+		logrus.Infof("Response CLI success.")
 
 		return nil
 	},

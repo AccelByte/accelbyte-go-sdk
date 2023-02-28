@@ -31,12 +31,14 @@ var AnonymizeWalletCmd = &cobra.Command{
 			Namespace: namespace,
 			UserID:    userId,
 		}
-		errInput := anonymizationService.AnonymizeWalletShort(input)
-		if errInput != nil {
-			logrus.Error(errInput)
+		errNoContent := anonymizationService.AnonymizeWalletShort(input)
+		if errNoContent != nil {
+			logrus.Error(errNoContent)
 
-			return errInput
+			return errNoContent
 		}
+
+		logrus.Infof("Response CLI success.")
 
 		return nil
 	},

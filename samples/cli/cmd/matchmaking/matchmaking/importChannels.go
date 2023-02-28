@@ -7,7 +7,6 @@
 package matchmaking
 
 import (
-	"net/http"
 	"os"
 
 	matchmaking_ "github.com/AccelByte/accelbyte-go-sdk/matchmaking-sdk/pkg/matchmakingclient/matchmaking"
@@ -36,25 +35,19 @@ var ImportChannelsCmd = &cobra.Command{
 			return err
 		}
 		strategy, _ := cmd.Flags().GetString("strategy")
-		httpClient := &http.Client{
-			CheckRedirect: func(req *http.Request, via []*http.Request) error {
-				return http.ErrUseLastResponse
-			},
-		}
 		input := &matchmaking_.ImportChannelsParams{
-			File:       file,
-			Strategy:   &strategy,
-			Namespace:  namespace,
-			HTTPClient: httpClient,
+			File:      file,
+			Strategy:  &strategy,
+			Namespace: namespace,
 		}
-		ok, err := matchmakingService.ImportChannelsShort(input)
-		if err != nil {
-			logrus.Error(err)
+		ok, errOK := matchmakingService.ImportChannelsShort(input)
+		if errOK != nil {
+			logrus.Error(errOK)
 
-			return err
-		} else {
-			logrus.Infof("Response CLI success: %+v", ok)
+			return errOK
 		}
+
+		logrus.Infof("Response CLI success: %+v", ok)
 
 		return nil
 	},

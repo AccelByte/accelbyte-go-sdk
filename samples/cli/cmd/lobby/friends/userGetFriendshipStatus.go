@@ -31,14 +31,14 @@ var UserGetFriendshipStatusCmd = &cobra.Command{
 			FriendID:  friendId,
 			Namespace: namespace,
 		}
-		ok, err := friendsService.UserGetFriendshipStatusShort(input)
-		if err != nil {
-			logrus.Error(err)
+		ok, errOK := friendsService.UserGetFriendshipStatusShort(input)
+		if errOK != nil {
+			logrus.Error(errOK)
 
-			return err
-		} else {
-			logrus.Infof("Response CLI success: %+v", ok)
+			return errOK
 		}
+
+		logrus.Infof("Response CLI success: %+v", ok)
 
 		return nil
 	},

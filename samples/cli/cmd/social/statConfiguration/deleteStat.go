@@ -31,12 +31,14 @@ var DeleteStatCmd = &cobra.Command{
 			Namespace: namespace,
 			StatCode:  statCode,
 		}
-		errInput := statConfigurationService.DeleteStatShort(input)
-		if errInput != nil {
-			logrus.Error(errInput)
+		errNoContent := statConfigurationService.DeleteStatShort(input)
+		if errNoContent != nil {
+			logrus.Error(errNoContent)
 
-			return errInput
+			return errNoContent
 		}
+
+		logrus.Infof("Response CLI success.")
 
 		return nil
 	},

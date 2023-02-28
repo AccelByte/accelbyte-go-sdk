@@ -39,12 +39,14 @@ var CreateMatchPoolCmd = &cobra.Command{
 			Body:      body,
 			Namespace: namespace,
 		}
-		errInput := matchPoolsService.CreateMatchPoolShort(input)
-		if errInput != nil {
-			logrus.Error(errInput)
+		errCreated := matchPoolsService.CreateMatchPoolShort(input)
+		if errCreated != nil {
+			logrus.Error(errCreated)
 
-			return errInput
+			return errCreated
 		}
+
+		logrus.Infof("Response CLI success.")
 
 		return nil
 	},

@@ -37,14 +37,14 @@ var UpdatePaymentTaxConfigCmd = &cobra.Command{
 		input := &payment_config.UpdatePaymentTaxConfigParams{
 			Body: body,
 		}
-		ok, err := paymentConfigService.UpdatePaymentTaxConfigShort(input)
-		if err != nil {
-			logrus.Error(err)
+		ok, errOK := paymentConfigService.UpdatePaymentTaxConfigShort(input)
+		if errOK != nil {
+			logrus.Error(errOK)
 
-			return err
-		} else {
-			logrus.Infof("Response CLI success: %+v", ok)
+			return errOK
 		}
+
+		logrus.Infof("Response CLI success: %+v", ok)
 
 		return nil
 	},

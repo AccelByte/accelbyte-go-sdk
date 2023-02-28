@@ -41,12 +41,14 @@ var UpdateXblUserAchievementCmd = &cobra.Command{
 			Namespace: namespace,
 			UserID:    userId,
 		}
-		errInput := achievementPlatformService.UpdateXblUserAchievementShort(input)
-		if errInput != nil {
-			logrus.Error(errInput)
+		errNoContent := achievementPlatformService.UpdateXblUserAchievementShort(input)
+		if errNoContent != nil {
+			logrus.Error(errNoContent)
 
-			return errInput
+			return errNoContent
 		}
+
+		logrus.Infof("Response CLI success.")
 
 		return nil
 	},

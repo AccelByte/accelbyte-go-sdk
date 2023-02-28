@@ -31,12 +31,14 @@ var DeleteTemplateSlugCmd = &cobra.Command{
 			Namespace:    namespace,
 			TemplateSlug: templateSlug,
 		}
-		errInput := adminService.DeleteTemplateSlugShort(input)
-		if errInput != nil {
-			logrus.Error(errInput)
+		errNoContent := adminService.DeleteTemplateSlugShort(input)
+		if errNoContent != nil {
+			logrus.Error(errNoContent)
 
-			return errInput
+			return errNoContent
 		}
+
+		logrus.Infof("Response CLI success.")
 
 		return nil
 	},

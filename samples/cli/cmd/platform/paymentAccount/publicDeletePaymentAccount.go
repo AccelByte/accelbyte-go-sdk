@@ -35,12 +35,14 @@ var PublicDeletePaymentAccountCmd = &cobra.Command{
 			Type:      type_,
 			UserID:    userId,
 		}
-		errInput := paymentAccountService.PublicDeletePaymentAccountShort(input)
-		if errInput != nil {
-			logrus.Error(errInput)
+		errNoContent := paymentAccountService.PublicDeletePaymentAccountShort(input)
+		if errNoContent != nil {
+			logrus.Error(errNoContent)
 
-			return errInput
+			return errNoContent
 		}
+
+		logrus.Infof("Response CLI success.")
 
 		return nil
 	},

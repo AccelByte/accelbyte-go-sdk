@@ -41,12 +41,14 @@ var SyncTwitchDropsEntitlementCmd = &cobra.Command{
 			Namespace: namespace,
 			UserID:    userId,
 		}
-		errInput := iapService.SyncTwitchDropsEntitlementShort(input)
-		if errInput != nil {
-			logrus.Error(errInput)
+		errNoContent := iapService.SyncTwitchDropsEntitlementShort(input)
+		if errNoContent != nil {
+			logrus.Error(errNoContent)
 
-			return errInput
+			return errNoContent
 		}
+
+		logrus.Infof("Response CLI success.")
 
 		return nil
 	},

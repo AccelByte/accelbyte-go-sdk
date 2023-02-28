@@ -31,12 +31,14 @@ var AdminDeleteProfanityListCmd = &cobra.Command{
 			List:      list_,
 			Namespace: namespace,
 		}
-		errInput := profanityService.AdminDeleteProfanityListShort(input)
-		if errInput != nil {
-			logrus.Error(errInput)
+		errOK := profanityService.AdminDeleteProfanityListShort(input)
+		if errOK != nil {
+			logrus.Error(errOK)
 
-			return errInput
+			return errOK
 		}
+
+		logrus.Infof("Response CLI success.")
 
 		return nil
 	},

@@ -31,14 +31,14 @@ var GetSingleMemberRoleAdminV1Cmd = &cobra.Command{
 			MemberRoleID: memberRoleId,
 			Namespace:    namespace,
 		}
-		ok, err := groupRolesService.GetSingleMemberRoleAdminV1Short(input)
-		if err != nil {
-			logrus.Error(err)
+		ok, errOK := groupRolesService.GetSingleMemberRoleAdminV1Short(input)
+		if errOK != nil {
+			logrus.Error(errOK)
 
-			return err
-		} else {
-			logrus.Infof("Response CLI success: %+v", ok)
+			return errOK
 		}
+
+		logrus.Infof("Response CLI success: %+v", ok)
 
 		return nil
 	},

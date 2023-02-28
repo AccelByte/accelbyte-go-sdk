@@ -31,12 +31,14 @@ var DeleteReasonGroupCmd = &cobra.Command{
 			GroupID:   groupId,
 			Namespace: namespace,
 		}
-		errInput := adminReasonsService.DeleteReasonGroupShort(input)
-		if errInput != nil {
-			logrus.Error(errInput)
+		errNoContent := adminReasonsService.DeleteReasonGroupShort(input)
+		if errNoContent != nil {
+			logrus.Error(errNoContent)
 
-			return errInput
+			return errNoContent
 		}
+
+		logrus.Infof("Response CLI success.")
 
 		return nil
 	},

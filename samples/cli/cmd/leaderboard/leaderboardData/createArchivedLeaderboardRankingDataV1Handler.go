@@ -39,12 +39,14 @@ var CreateArchivedLeaderboardRankingDataV1HandlerCmd = &cobra.Command{
 			Body:      body,
 			Namespace: namespace,
 		}
-		errInput := leaderboardDataService.CreateArchivedLeaderboardRankingDataV1HandlerShort(input)
-		if errInput != nil {
-			logrus.Error(errInput)
+		errCreated := leaderboardDataService.CreateArchivedLeaderboardRankingDataV1HandlerShort(input)
+		if errCreated != nil {
+			logrus.Error(errCreated)
 
-			return errInput
+			return errCreated
 		}
+
+		logrus.Infof("Response CLI success.")
 
 		return nil
 	},

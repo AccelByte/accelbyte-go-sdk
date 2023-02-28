@@ -33,14 +33,14 @@ var PublicGetUserSubscriptionCmd = &cobra.Command{
 			SubscriptionID: subscriptionId,
 			UserID:         userId,
 		}
-		ok, err := subscriptionService.PublicGetUserSubscriptionShort(input)
-		if err != nil {
-			logrus.Error(err)
+		ok, errOK := subscriptionService.PublicGetUserSubscriptionShort(input)
+		if errOK != nil {
+			logrus.Error(errOK)
 
-			return err
-		} else {
-			logrus.Infof("Response CLI success: %+v", ok)
+			return errOK
 		}
+
+		logrus.Infof("Response CLI success: %+v", ok)
 
 		return nil
 	},

@@ -31,14 +31,14 @@ var GetRecentPlayerCmd = &cobra.Command{
 			Namespace: namespace,
 			UserID:    userID,
 		}
-		ok, err := sessionService.GetRecentPlayerShort(input)
-		if err != nil {
-			logrus.Error(err)
+		ok, errOK := sessionService.GetRecentPlayerShort(input)
+		if errOK != nil {
+			logrus.Error(errOK)
 
-			return err
-		} else {
-			logrus.Infof("Response CLI success: %+v", ok)
+			return errOK
 		}
+
+		logrus.Infof("Response CLI success: %+v", ok)
 
 		return nil
 	},

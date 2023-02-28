@@ -41,12 +41,14 @@ var PublicCreateProfileCmd = &cobra.Command{
 			Namespace: namespace,
 			UserID:    userId,
 		}
-		errInput := gameProfileService.PublicCreateProfileShort(input)
-		if errInput != nil {
-			logrus.Error(errInput)
+		errCreated := gameProfileService.PublicCreateProfileShort(input)
+		if errCreated != nil {
+			logrus.Error(errCreated)
 
-			return errInput
+			return errCreated
 		}
+
+		logrus.Infof("Response CLI success.")
 
 		return nil
 	},

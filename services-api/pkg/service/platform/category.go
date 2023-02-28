@@ -441,6 +441,15 @@ func (aaa *CategoryService) GetDescendantCategoriesShort(input *category.GetDesc
 }
 
 func (aaa *CategoryService) PublicGetRootCategoriesShort(input *category.PublicGetRootCategoriesParams) ([]*platformclientmodels.CategoryInfo, error) {
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  aaa.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := aaa.Client.Category.PublicGetRootCategoriesShort(input)
 	if err != nil {
 		return nil, err
@@ -450,6 +459,15 @@ func (aaa *CategoryService) PublicGetRootCategoriesShort(input *category.PublicG
 }
 
 func (aaa *CategoryService) DownloadCategoriesShort(input *category.DownloadCategoriesParams) ([]*platformclientmodels.HierarchicalCategoryInfo, error) {
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  aaa.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := aaa.Client.Category.DownloadCategoriesShort(input)
 	if err != nil {
 		return nil, err
@@ -459,6 +477,15 @@ func (aaa *CategoryService) DownloadCategoriesShort(input *category.DownloadCate
 }
 
 func (aaa *CategoryService) PublicGetCategoryShort(input *category.PublicGetCategoryParams) (*platformclientmodels.CategoryInfo, error) {
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  aaa.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := aaa.Client.Category.PublicGetCategoryShort(input)
 	if err != nil {
 		return nil, err
@@ -468,6 +495,15 @@ func (aaa *CategoryService) PublicGetCategoryShort(input *category.PublicGetCate
 }
 
 func (aaa *CategoryService) PublicGetChildCategoriesShort(input *category.PublicGetChildCategoriesParams) ([]*platformclientmodels.CategoryInfo, error) {
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  aaa.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := aaa.Client.Category.PublicGetChildCategoriesShort(input)
 	if err != nil {
 		return nil, err
@@ -477,6 +513,15 @@ func (aaa *CategoryService) PublicGetChildCategoriesShort(input *category.Public
 }
 
 func (aaa *CategoryService) PublicGetDescendantCategoriesShort(input *category.PublicGetDescendantCategoriesParams) ([]*platformclientmodels.CategoryInfo, error) {
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  aaa.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := aaa.Client.Category.PublicGetDescendantCategoriesShort(input)
 	if err != nil {
 		return nil, err

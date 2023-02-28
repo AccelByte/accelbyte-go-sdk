@@ -305,6 +305,15 @@ func (aaa *CurrencyService) GetCurrencySummaryShort(input *currency.GetCurrencyS
 }
 
 func (aaa *CurrencyService) PublicListCurrenciesShort(input *currency.PublicListCurrenciesParams) ([]*platformclientmodels.CurrencyInfo, error) {
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  aaa.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := aaa.Client.Currency.PublicListCurrenciesShort(input)
 	if err != nil {
 		return nil, err

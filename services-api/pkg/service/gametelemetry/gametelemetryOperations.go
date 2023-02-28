@@ -121,8 +121,9 @@ func (aaa *GametelemetryOperationsService) ProtectedGetPlaytimeGameTelemetryV1Pr
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
+			{"cookie"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, constant.AccessToken)
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{

@@ -92,11 +92,12 @@ func (aaa *OAuth20Service) RevokeUserV3(input *o_auth2_0.RevokeUserV3Params) err
 func (aaa *OAuth20Service) AuthorizeV3(input *o_auth2_0.AuthorizeV3Params) (string, error) {
 	clientID := aaa.ConfigRepository.GetClientId()
 	clientSecret := aaa.ConfigRepository.GetClientSecret()
-	ok, err := aaa.Client.OAuth20.AuthorizeV3(input, client.BasicAuth(clientID, clientSecret))
+	found, err := aaa.Client.OAuth20.AuthorizeV3(input, client.BasicAuth(clientID, clientSecret))
 	if err != nil {
 		return "", err
 	}
-	parsedURL, err := url.Parse(ok.Location)
+
+	parsedURL, err := url.Parse(found.Location)
 	if err != nil {
 		return "", err
 	}
@@ -236,12 +237,12 @@ func (aaa *OAuth20Service) AuthCodeRequestV3(input *o_auth2_0.AuthCodeRequestV3P
 	if err != nil {
 		return "", err
 	}
-	ok, err := aaa.Client.OAuth20.AuthCodeRequestV3(input, client.BearerToken(*token.AccessToken))
+	found, err := aaa.Client.OAuth20.AuthCodeRequestV3(input, client.BearerToken(*token.AccessToken))
 	if err != nil {
 		return "", err
 	}
 
-	return ok.Location, nil
+	return found.Location, nil
 }
 
 // deprecated(2022-01-10): please use PlatformTokenGrantV3Short instead.
@@ -319,6 +320,13 @@ func (aaa *OAuth20Service) TokenGrantV3(input *o_auth2_0.TokenGrantV3Params) (*i
 		return nil, err
 	}
 
+	if ok == nil {
+		return nil, errors.New("empty access token")
+	}
+	err = aaa.TokenRepository.Store(*ok.GetPayload())
+	if err != nil {
+		return nil, err
+	}
 	return ok.GetPayload(), nil
 }
 
@@ -404,11 +412,12 @@ func (aaa *OAuth20Service) AuthorizeV3Short(input *o_auth2_0.AuthorizeV3Params) 
 		}
 	}
 
-	ok, err := aaa.Client.OAuth20.AuthorizeV3Short(input, authInfoWriter)
+	found, err := aaa.Client.OAuth20.AuthorizeV3Short(input, authInfoWriter)
 	if err != nil {
 		return "", err
 	}
-	parsedURL, err := url.Parse(ok.Location)
+
+	parsedURL, err := url.Parse(found.Location)
 	if err != nil {
 		return "", err
 	}
@@ -425,8 +434,8 @@ func (aaa *OAuth20Service) TokenIntrospectionV3Short(input *o_auth2_0.TokenIntro
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
-			{"basic"},
 			{"bearer"},
+			{"basic"},
 		}
 		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
@@ -589,12 +598,12 @@ func (aaa *OAuth20Service) AuthCodeRequestV3Short(input *o_auth2_0.AuthCodeReque
 		}
 	}
 
-	ok, err := aaa.Client.OAuth20.AuthCodeRequestV3Short(input, authInfoWriter)
+	found, err := aaa.Client.OAuth20.AuthCodeRequestV3Short(input, authInfoWriter)
 	if err != nil {
 		return "", err
 	}
 
-	return ok.Location, nil
+	return found.Location, nil
 }
 
 func (aaa *OAuth20Service) PlatformTokenGrantV3Short(input *o_auth2_0.PlatformTokenGrantV3Params) (*iamclientmodels.OauthmodelTokenResponse, error) {
@@ -693,6 +702,7 @@ func (aaa *OAuth20Service) TokenGrantV3Short(input *o_auth2_0.TokenGrantV3Params
 	if err != nil {
 		return nil, err
 	}
+
 	if ok == nil {
 		return nil, errors.New("empty access token")
 	}
@@ -700,7 +710,6 @@ func (aaa *OAuth20Service) TokenGrantV3Short(input *o_auth2_0.TokenGrantV3Params
 	if err != nil {
 		return nil, err
 	}
-
 	return ok.GetPayload(), nil
 }
 

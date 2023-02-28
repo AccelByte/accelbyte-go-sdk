@@ -45,12 +45,12 @@ func (aaa *OAuthService) Authorization(input *o_auth.AuthorizationParams) (strin
 	if err != nil {
 		return "", err
 	}
-	ok, err := aaa.Client.OAuth.Authorization(input, client.BearerToken(*token.AccessToken))
+	found, err := aaa.Client.OAuth.Authorization(input, client.BearerToken(*token.AccessToken))
 	if err != nil {
 		return "", err
 	}
 
-	return ok.Location, nil
+	return found.Location, nil
 }
 
 // deprecated(2022-01-10): please use GetJWKSShort instead.
@@ -211,12 +211,12 @@ func (aaa *OAuthService) AuthorizationShort(input *o_auth.AuthorizationParams) (
 		}
 	}
 
-	ok, err := aaa.Client.OAuth.AuthorizationShort(input, authInfoWriter)
+	found, err := aaa.Client.OAuth.AuthorizationShort(input, authInfoWriter)
 	if err != nil {
 		return "", err
 	}
 
-	return ok.Location, nil
+	return found.Location, nil
 }
 
 func (aaa *OAuthService) GetJWKSShort(input *o_auth.GetJWKSParams) (*iamclientmodels.OauthcommonJWKSet, error) {

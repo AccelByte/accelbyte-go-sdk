@@ -608,6 +608,15 @@ func (aaa *StoreService) ExportStoreShort(input *store.ExportStoreParams, writer
 }
 
 func (aaa *StoreService) PublicListStoresShort(input *store.PublicListStoresParams) ([]*platformclientmodels.StoreInfo, error) {
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  aaa.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := aaa.Client.Store.PublicListStoresShort(input)
 	if err != nil {
 		return nil, err

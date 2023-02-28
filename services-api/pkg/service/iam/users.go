@@ -3663,12 +3663,12 @@ func (aaa *UsersService) PublicWebLinkPlatformEstablish(input *users.PublicWebLi
 	if err != nil {
 		return "", err
 	}
-	ok, err := aaa.Client.Users.PublicWebLinkPlatformEstablish(input, client.BearerToken(*token.AccessToken))
+	found, err := aaa.Client.Users.PublicWebLinkPlatformEstablish(input, client.BearerToken(*token.AccessToken))
 	if err != nil {
 		return "", err
 	}
 
-	return ok.Location, nil
+	return found.Location, nil
 }
 
 // deprecated(2022-01-10): please use ResetPasswordV3Short instead.
@@ -4088,17 +4088,17 @@ func (aaa *UsersService) PublicSendVerificationLinkV3(input *users.PublicSendVer
 }
 
 // deprecated(2022-01-10): please use PublicVerifyUserByLinkV3Short instead.
-func (aaa *UsersService) PublicVerifyUserByLinkV3(input *users.PublicVerifyUserByLinkV3Params) error {
+func (aaa *UsersService) PublicVerifyUserByLinkV3(input *users.PublicVerifyUserByLinkV3Params) (string, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
-		return err
+		return "", err
 	}
-	_, err = aaa.Client.Users.PublicVerifyUserByLinkV3(input, client.BearerToken(*token.AccessToken))
+	found, err := aaa.Client.Users.PublicVerifyUserByLinkV3(input, client.BearerToken(*token.AccessToken))
 	if err != nil {
-		return err
+		return "", err
 	}
 
-	return nil
+	return found.Location, nil
 }
 
 func (aaa *UsersService) CreateUserShort(input *users.CreateUserParams) (*iamclientmodels.ModelUserCreateResponse, error) {
@@ -4205,6 +4205,7 @@ func (aaa *UsersService) ForgotPasswordShort(input *users.ForgotPasswordParams) 
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
+			{"bearer"},
 			{"basic"},
 		}
 		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
@@ -4255,6 +4256,7 @@ func (aaa *UsersService) ResetPasswordShort(input *users.ResetPasswordParams) er
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
+			{"bearer"},
 			{"basic"},
 		}
 		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
@@ -7543,12 +7545,12 @@ func (aaa *UsersService) PublicWebLinkPlatformEstablishShort(input *users.Public
 		}
 	}
 
-	ok, err := aaa.Client.Users.PublicWebLinkPlatformEstablishShort(input, authInfoWriter)
+	found, err := aaa.Client.Users.PublicWebLinkPlatformEstablishShort(input, authInfoWriter)
 	if err != nil {
 		return "", err
 	}
 
-	return ok.Location, nil
+	return found.Location, nil
 }
 
 func (aaa *UsersService) ResetPasswordV3Short(input *users.ResetPasswordV3Params) error {
@@ -7951,7 +7953,7 @@ func (aaa *UsersService) PublicSendVerificationLinkV3Short(input *users.PublicSe
 	return nil
 }
 
-func (aaa *UsersService) PublicVerifyUserByLinkV3Short(input *users.PublicVerifyUserByLinkV3Params) error {
+func (aaa *UsersService) PublicVerifyUserByLinkV3Short(input *users.PublicVerifyUserByLinkV3Params) (string, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -7968,10 +7970,10 @@ func (aaa *UsersService) PublicVerifyUserByLinkV3Short(input *users.PublicVerify
 		}
 	}
 
-	_, err := aaa.Client.Users.PublicVerifyUserByLinkV3Short(input, authInfoWriter)
+	found, err := aaa.Client.Users.PublicVerifyUserByLinkV3Short(input, authInfoWriter)
 	if err != nil {
-		return err
+		return "", err
 	}
 
-	return nil
+	return found.Location, nil
 }

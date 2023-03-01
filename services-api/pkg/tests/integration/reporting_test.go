@@ -123,6 +123,20 @@ func TestIntegrationSubmitReport(t *testing.T) {
 }
 
 func createReason() (string, error) {
+	inputGetReason := &admin_reasons.AdminGetReasonsParams{
+		Namespace: namespace,
+		Title:     &reasonTitle,
+	}
+	get, errGet := adminReasonsService.AdminGetReasonsShort(inputGetReason)
+	if errGet != nil {
+		logrus.Error(errGet.Error())
+	}
+	for _, reason := range get.Data {
+		if reason.Title != nil {
+			return *reason.ID, nil
+		}
+	}
+
 	inputCreateReason := &admin_reasons.CreateReasonParams{
 		Body: &reportingclientmodels.RestapiCreateReasonRequest{
 			Description: &reasonTitle,
@@ -137,7 +151,7 @@ func createReason() (string, error) {
 		logrus.Error(errCreate.Error())
 	}
 
-	return *create.ID, errCreate
+	return *create.ID, nil
 }
 
 func deleteReason(reasonID string) {

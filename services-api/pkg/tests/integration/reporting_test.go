@@ -25,15 +25,13 @@ var (
 	}
 	publicReportsService = &reporting.PublicReportsService{
 		Client:          factory.NewReportingClient(auth.DefaultConfigRepositoryImpl()),
-		TokenRepository: tokenRepository,
+		TokenRepository: tokenRepository2ndPlayer,
 	}
-	reasonTitle = "reason_title_go"
-	categoryUGC = "UGC"
+	reasonTitle = "reason_title_go" + RandStringBytes(4)
+	categoryUGC = reportingclientmodels.RestapiReportResponseCategoryUGC
 )
 
 func TestIntegrationCreateReason(t *testing.T) {
-	t.Parallel()
-
 	// Login User - Arrange
 	Init()
 
@@ -59,8 +57,6 @@ func TestIntegrationCreateReason(t *testing.T) {
 }
 
 func TestIntegrationDeleteReason(t *testing.T) {
-	t.Parallel()
-
 	// Login User - Arrange
 	Init()
 
@@ -84,11 +80,11 @@ func TestIntegrationDeleteReason(t *testing.T) {
 }
 
 func TestIntegrationSubmitReport(t *testing.T) {
-	t.Parallel()
+	// Create temp user and login - Arrange
+	userID = createPlayer2()
+	defer deletePlayer(userID)
 
-	// Login User - Arrange
-	Init()
-	userID = GetUserID()
+	// Create reason - Arrange
 	reasonID, err := createReason()
 	if err != nil {
 		assert.Nil(t, err.Error(), "should be nil")

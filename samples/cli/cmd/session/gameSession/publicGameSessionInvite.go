@@ -41,12 +41,14 @@ var PublicGameSessionInviteCmd = &cobra.Command{
 			Namespace: namespace,
 			SessionID: sessionId,
 		}
-		errInput := gameSessionService.PublicGameSessionInviteShort(input)
-		if errInput != nil {
-			logrus.Error(errInput)
+		errCreated := gameSessionService.PublicGameSessionInviteShort(input)
+		if errCreated != nil {
+			logrus.Error(errCreated)
 
-			return errInput
+			return errCreated
 		}
+
+		logrus.Infof("Response CLI success.")
 
 		return nil
 	},

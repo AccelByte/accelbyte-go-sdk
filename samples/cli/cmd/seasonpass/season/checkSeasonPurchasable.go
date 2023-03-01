@@ -41,12 +41,14 @@ var CheckSeasonPurchasableCmd = &cobra.Command{
 			Namespace: namespace,
 			UserID:    userId,
 		}
-		errInput := seasonService.CheckSeasonPurchasableShort(input)
-		if errInput != nil {
-			logrus.Error(errInput)
+		errNoContent := seasonService.CheckSeasonPurchasableShort(input)
+		if errNoContent != nil {
+			logrus.Error(errNoContent)
 
-			return errInput
+			return errNoContent
 		}
+
+		logrus.Infof("Response CLI success.")
 
 		return nil
 	},

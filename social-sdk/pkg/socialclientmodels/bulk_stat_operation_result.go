@@ -10,10 +10,10 @@ import (
 	"github.com/go-openapi/swag"
 )
 
-// BulkStatItemOperationResult bulk stat item operation result
+// BulkStatOperationResult bulk stat operation result
 //
-// swagger:model BulkStatItemOperationResult
-type BulkStatItemOperationResult struct {
+// swagger:model BulkStatOperationResult
+type BulkStatOperationResult struct {
 
 	// details
 	Details interface{} `json:"details,omitempty"`
@@ -25,13 +25,13 @@ type BulkStatItemOperationResult struct {
 	Success bool `json:"success"`
 }
 
-// Validate validates this bulk stat item operation result
-func (m *BulkStatItemOperationResult) Validate(formats strfmt.Registry) error {
+// Validate validates this bulk stat operation result
+func (m *BulkStatOperationResult) Validate(formats strfmt.Registry) error {
 	return nil
 }
 
 // MarshalBinary interface implementation
-func (m *BulkStatItemOperationResult) MarshalBinary() ([]byte, error) {
+func (m *BulkStatOperationResult) MarshalBinary() ([]byte, error) {
 	if m == nil {
 		return nil, nil
 	}
@@ -39,8 +39,8 @@ func (m *BulkStatItemOperationResult) MarshalBinary() ([]byte, error) {
 }
 
 // UnmarshalBinary interface implementation
-func (m *BulkStatItemOperationResult) UnmarshalBinary(b []byte) error {
-	var res BulkStatItemOperationResult
+func (m *BulkStatOperationResult) UnmarshalBinary(b []byte) error {
+	var res BulkStatOperationResult
 	if err := swag.ReadJSON(b, &res); err != nil {
 		return err
 	}

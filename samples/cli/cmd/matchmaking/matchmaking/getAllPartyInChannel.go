@@ -31,14 +31,14 @@ var GetAllPartyInChannelCmd = &cobra.Command{
 			ChannelName: channelName,
 			Namespace:   namespace,
 		}
-		ok, err := matchmakingService.GetAllPartyInChannelShort(input)
-		if err != nil {
-			logrus.Error(err)
+		ok, errOK := matchmakingService.GetAllPartyInChannelShort(input)
+		if errOK != nil {
+			logrus.Error(errOK)
 
-			return err
-		} else {
-			logrus.Infof("Response CLI success: %+v", ok)
+			return errOK
 		}
+
+		logrus.Infof("Response CLI success: %+v", ok)
 
 		return nil
 	},

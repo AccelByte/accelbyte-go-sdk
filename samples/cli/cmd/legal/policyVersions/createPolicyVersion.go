@@ -39,14 +39,14 @@ var CreatePolicyVersionCmd = &cobra.Command{
 			Body:     body,
 			PolicyID: policyId,
 		}
-		ok, err := policyVersionsService.CreatePolicyVersionShort(input)
-		if err != nil {
-			logrus.Error(err)
+		created, errCreated := policyVersionsService.CreatePolicyVersionShort(input)
+		if errCreated != nil {
+			logrus.Error(errCreated)
 
-			return err
-		} else {
-			logrus.Infof("Response CLI success: %+v", ok)
+			return errCreated
 		}
+
+		logrus.Infof("Response CLI success: %+v", created)
 
 		return nil
 	},

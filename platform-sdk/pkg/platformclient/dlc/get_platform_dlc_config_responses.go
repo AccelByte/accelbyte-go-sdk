@@ -58,10 +58,9 @@ func NewGetPlatformDLCConfigOK() *GetPlatformDLCConfigOK {
 	return &GetPlatformDLCConfigOK{}
 }
 
-/*
-GetPlatformDLCConfigOK handles this case with default header values.
+/*GetPlatformDLCConfigOK handles this case with default header values.
 
-	successful operation
+  successful operation
 */
 type GetPlatformDLCConfigOK struct {
 	Payload *platformclientmodels.PlatformDLCConfigInfo
@@ -112,10 +111,9 @@ func NewGetPlatformDLCConfigNotFound() *GetPlatformDLCConfigNotFound {
 	return &GetPlatformDLCConfigNotFound{}
 }
 
-/*
-GetPlatformDLCConfigNotFound handles this case with default header values.
+/*GetPlatformDLCConfigNotFound handles this case with default header values.
 
-	<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>39341</td><td>Platform DLC config cannot be found in namespace [{namespace}]</td></tr></table>
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>39341</td><td>Platform DLC config cannot be found in namespace [{namespace}]</td></tr></table>
 */
 type GetPlatformDLCConfigNotFound struct {
 	Payload *platformclientmodels.ErrorEntity

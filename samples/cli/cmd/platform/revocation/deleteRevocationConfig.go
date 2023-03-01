@@ -29,12 +29,14 @@ var DeleteRevocationConfigCmd = &cobra.Command{
 		input := &revocation.DeleteRevocationConfigParams{
 			Namespace: namespace,
 		}
-		errInput := revocationService.DeleteRevocationConfigShort(input)
-		if errInput != nil {
-			logrus.Error(errInput)
+		errNoContent := revocationService.DeleteRevocationConfigShort(input)
+		if errNoContent != nil {
+			logrus.Error(errNoContent)
 
-			return errInput
+			return errNoContent
 		}
+
+		logrus.Infof("Response CLI success.")
 
 		return nil
 	},

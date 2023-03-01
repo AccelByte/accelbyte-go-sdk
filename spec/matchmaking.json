@@ -3,7 +3,7 @@
   "info": {
     "description": "Justice Matchmaking Service",
     "title": "Justice Matchmaking Service",
-    "version": "2.20.2"
+    "version": "2.21.2"
   },
   "schemes": [
     "https"
@@ -166,7 +166,8 @@
         ],
         "summary": "Get all channels",
         "tags": [
-          "Matchmaking"
+          "Matchmaking",
+          "admin"
         ]
       },
       "post": {
@@ -246,7 +247,8 @@
         ],
         "summary": "Create a channel",
         "tags": [
-          "Matchmaking"
+          "Matchmaking",
+          "admin"
         ]
       }
     },
@@ -312,7 +314,8 @@
         ],
         "summary": "Delete a channel",
         "tags": [
-          "Matchmaking"
+          "Matchmaking",
+          "admin"
         ]
       }
     },
@@ -388,7 +391,8 @@
         ],
         "summary": "Store match result",
         "tags": [
-          "Matchmaking"
+          "Matchmaking",
+          "public"
         ]
       }
     },
@@ -470,7 +474,8 @@
         ],
         "summary": "Rebalance Matchmaking based on MMR",
         "tags": [
-          "Matchmaking"
+          "Matchmaking",
+          "public"
         ]
       }
     },
@@ -543,7 +548,8 @@
         ],
         "summary": "Queue joinable session",
         "tags": [
-          "Matchmaking"
+          "Matchmaking",
+          "public"
         ]
       }
     },
@@ -622,7 +628,8 @@
         ],
         "summary": "Dequeue joinable session",
         "tags": [
-          "Matchmaking"
+          "Matchmaking",
+          "public"
         ]
       }
     },
@@ -703,7 +710,8 @@
         ],
         "summary": "Query joinable session status",
         "tags": [
-          "Matchmaking"
+          "Matchmaking",
+          "public"
         ]
       }
     },

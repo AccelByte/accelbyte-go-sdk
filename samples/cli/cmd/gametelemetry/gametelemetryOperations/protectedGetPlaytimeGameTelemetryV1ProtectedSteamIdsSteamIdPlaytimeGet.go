@@ -31,14 +31,14 @@ var ProtectedGetPlaytimeGameTelemetryV1ProtectedSteamIdsSteamIdPlaytimeGetCmd = 
 			Cookie:  &cookie,
 			SteamID: steamId,
 		}
-		ok, err := gametelemetryOperationsService.ProtectedGetPlaytimeGameTelemetryV1ProtectedSteamIdsSteamIDPlaytimeGetShort(input)
-		if err != nil {
-			logrus.Error(err)
+		ok, errOK := gametelemetryOperationsService.ProtectedGetPlaytimeGameTelemetryV1ProtectedSteamIdsSteamIDPlaytimeGetShort(input)
+		if errOK != nil {
+			logrus.Error(errOK)
 
-			return err
-		} else {
-			logrus.Infof("Response CLI success: %+v", ok)
+			return errOK
 		}
+
+		logrus.Infof("Response CLI success: %+v", ok)
 
 		return nil
 	},

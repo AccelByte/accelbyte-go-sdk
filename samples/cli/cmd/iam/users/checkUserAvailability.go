@@ -33,12 +33,14 @@ var CheckUserAvailabilityCmd = &cobra.Command{
 			Field:     field,
 			Query:     query,
 		}
-		errInput := usersService.CheckUserAvailabilityShort(input)
-		if errInput != nil {
-			logrus.Error(errInput)
+		errNoContent := usersService.CheckUserAvailabilityShort(input)
+		if errNoContent != nil {
+			logrus.Error(errNoContent)
 
-			return errInput
+			return errNoContent
 		}
+
+		logrus.Infof("Response CLI success.")
 
 		return nil
 	},

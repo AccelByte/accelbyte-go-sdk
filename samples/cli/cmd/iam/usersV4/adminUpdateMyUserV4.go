@@ -37,14 +37,14 @@ var AdminUpdateMyUserV4Cmd = &cobra.Command{
 		input := &users_v4.AdminUpdateMyUserV4Params{
 			Body: body,
 		}
-		ok, err := usersV4Service.AdminUpdateMyUserV4Short(input)
-		if err != nil {
-			logrus.Error(err)
+		ok, errOK := usersV4Service.AdminUpdateMyUserV4Short(input)
+		if errOK != nil {
+			logrus.Error(errOK)
 
-			return err
-		} else {
-			logrus.Infof("Response CLI success: %+v", ok)
+			return errOK
 		}
+
+		logrus.Infof("Response CLI success: %+v", ok)
 
 		return nil
 	},

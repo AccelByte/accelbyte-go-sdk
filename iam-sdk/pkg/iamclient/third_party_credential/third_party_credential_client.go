@@ -81,10 +81,10 @@ Deprecated: Use AddThirdPartyLoginPlatformCredentialV3Short instead.
 					 &lt;p&gt;The secret for &lt;strong&gt;xblwebapi&lt;/strong&gt; is client secret of the xbl client.&lt;/p&gt;
 					 &lt;p&gt;If generic oauth flow is set to true: &lt;/p&gt;
 					 &lt;ul&gt;
-					 &lt;li&gt;Current supported value for TokenAuthenticationType is &lt;strong&gt;idToken&lt;/strong&gt;&lt;/li&gt;
-					 &lt;li&gt;&lt;code&gt;TokenClaimsMapping&lt;/code&gt; is used to extract user info from idToken claims.
+					 &lt;li&gt;Current supported value for TokenAuthenticationType are &lt;strong&gt;code, idToken and bearerToken&lt;/strong&gt;&lt;/li&gt;
+					 &lt;li&gt;&lt;code&gt;TokenClaimsMapping&lt;/code&gt; is used to extract user info from idToken claims or user info endpoint response accessed using bearerToken.
 					 Its a JSON format with key should be &lt;code&gt;name&lt;/code&gt;, &lt;code&gt;email&lt;/code&gt; and &lt;code&gt;avatarUrl&lt;/code&gt;
-					 since IAM will look up for these key when extracting user info.&lt;/li&gt;
+					 since IAM will look up for these key when extracting user info. &lt;strong&gt;default claims keys : userIdentity/sub, name, email and avatarUrl/picture&lt;/strong&gt;&lt;/li&gt;
 					 &lt;/ul&gt;
 
 */
@@ -163,10 +163,10 @@ func (a *Client) AddThirdPartyLoginPlatformCredentialV3(params *AddThirdPartyLog
 					 &lt;p&gt;The secret for &lt;strong&gt;xblwebapi&lt;/strong&gt; is client secret of the xbl client.&lt;/p&gt;
 					 &lt;p&gt;If generic oauth flow is set to true: &lt;/p&gt;
 					 &lt;ul&gt;
-					 &lt;li&gt;Current supported value for TokenAuthenticationType is &lt;strong&gt;idToken&lt;/strong&gt;&lt;/li&gt;
-					 &lt;li&gt;&lt;code&gt;TokenClaimsMapping&lt;/code&gt; is used to extract user info from idToken claims.
+					 &lt;li&gt;Current supported value for TokenAuthenticationType are &lt;strong&gt;code, idToken and bearerToken&lt;/strong&gt;&lt;/li&gt;
+					 &lt;li&gt;&lt;code&gt;TokenClaimsMapping&lt;/code&gt; is used to extract user info from idToken claims or user info endpoint response accessed using bearerToken.
 					 Its a JSON format with key should be &lt;code&gt;name&lt;/code&gt;, &lt;code&gt;email&lt;/code&gt; and &lt;code&gt;avatarUrl&lt;/code&gt;
-					 since IAM will look up for these key when extracting user info.&lt;/li&gt;
+					 since IAM will look up for these key when extracting user info. &lt;strong&gt;default claims keys : userIdentity/sub, name, email and avatarUrl/picture&lt;/strong&gt;&lt;/li&gt;
 					 &lt;/ul&gt;
 
 */
@@ -1040,10 +1040,10 @@ Deprecated: Use UpdateThirdPartyLoginPlatformCredentialV3Short instead.
 					 &lt;p&gt;The secret for &lt;strong&gt;xblwebapi&lt;/strong&gt; is client secret of the xbl client.&lt;/p&gt;
 					 &lt;p&gt;If generic oauth flow is set to true: &lt;/p&gt;
 					 &lt;ul&gt;
-					 &lt;li&gt;Current supported value for TokenAuthenticationType is &lt;strong&gt;idToken&lt;/strong&gt;&lt;/li&gt;
-					 &lt;li&gt;&lt;code&gt;TokenClaimsMapping&lt;/code&gt; is used to extract user info from idToken claims.
+					 &lt;li&gt;Current supported value for TokenAuthenticationType is &lt;strong&gt;code, idToken and bearerToken&lt;/strong&gt;&lt;/li&gt;
+					 &lt;li&gt;&lt;code&gt;TokenClaimsMapping&lt;/code&gt; is used to extract user info from idToken claims or user info endpoint response accessed using bearerToken.
 					 Its a JSON format with key should be &lt;code&gt;name&lt;/code&gt;, &lt;code&gt;email&lt;/code&gt; and &lt;code&gt;avatarUrl&lt;/code&gt;
-					 since IAM will look up for these key when extracting user info.&lt;/li&gt;
+					 since IAM will look up for these key when extracting user info.&lt;strong&gt;default claims keys : userIdentity/sub, name, email and avatarUrl/picture&lt;/strong&gt;&lt;/li&gt;
 					 &lt;/ul&gt;
 
 */
@@ -1125,10 +1125,10 @@ func (a *Client) UpdateThirdPartyLoginPlatformCredentialV3(params *UpdateThirdPa
 					 &lt;p&gt;The secret for &lt;strong&gt;xblwebapi&lt;/strong&gt; is client secret of the xbl client.&lt;/p&gt;
 					 &lt;p&gt;If generic oauth flow is set to true: &lt;/p&gt;
 					 &lt;ul&gt;
-					 &lt;li&gt;Current supported value for TokenAuthenticationType is &lt;strong&gt;idToken&lt;/strong&gt;&lt;/li&gt;
-					 &lt;li&gt;&lt;code&gt;TokenClaimsMapping&lt;/code&gt; is used to extract user info from idToken claims.
+					 &lt;li&gt;Current supported value for TokenAuthenticationType is &lt;strong&gt;code, idToken and bearerToken&lt;/strong&gt;&lt;/li&gt;
+					 &lt;li&gt;&lt;code&gt;TokenClaimsMapping&lt;/code&gt; is used to extract user info from idToken claims or user info endpoint response accessed using bearerToken.
 					 Its a JSON format with key should be &lt;code&gt;name&lt;/code&gt;, &lt;code&gt;email&lt;/code&gt; and &lt;code&gt;avatarUrl&lt;/code&gt;
-					 since IAM will look up for these key when extracting user info.&lt;/li&gt;
+					 since IAM will look up for these key when extracting user info.&lt;strong&gt;default claims keys : userIdentity/sub, name, email and avatarUrl/picture&lt;/strong&gt;&lt;/li&gt;
 					 &lt;/ul&gt;
 
 */

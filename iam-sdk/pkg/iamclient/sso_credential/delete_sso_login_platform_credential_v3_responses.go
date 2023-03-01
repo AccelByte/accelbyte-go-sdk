@@ -82,10 +82,9 @@ func NewDeleteSSOLoginPlatformCredentialV3NoContent() *DeleteSSOLoginPlatformCre
 	return &DeleteSSOLoginPlatformCredentialV3NoContent{}
 }
 
-/*
-DeleteSSOLoginPlatformCredentialV3NoContent handles this case with default header values.
+/*DeleteSSOLoginPlatformCredentialV3NoContent handles this case with default header values.
 
-	Delete Process Successful
+  Delete Process Successful
 */
 type DeleteSSOLoginPlatformCredentialV3NoContent struct {
 }
@@ -109,10 +108,9 @@ func NewDeleteSSOLoginPlatformCredentialV3BadRequest() *DeleteSSOLoginPlatformCr
 	return &DeleteSSOLoginPlatformCredentialV3BadRequest{}
 }
 
-/*
-DeleteSSOLoginPlatformCredentialV3BadRequest handles this case with default header values.
+/*DeleteSSOLoginPlatformCredentialV3BadRequest handles this case with default header values.
 
-	Invalid request
+  Invalid request
 */
 type DeleteSSOLoginPlatformCredentialV3BadRequest struct {
 	Payload *iamclientmodels.RestErrorResponse
@@ -163,10 +161,9 @@ func NewDeleteSSOLoginPlatformCredentialV3Unauthorized() *DeleteSSOLoginPlatform
 	return &DeleteSSOLoginPlatformCredentialV3Unauthorized{}
 }
 
-/*
-DeleteSSOLoginPlatformCredentialV3Unauthorized handles this case with default header values.
+/*DeleteSSOLoginPlatformCredentialV3Unauthorized handles this case with default header values.
 
-	<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20001</td><td>unauthorized access</td></tr></table>
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20001</td><td>unauthorized access</td></tr></table>
 */
 type DeleteSSOLoginPlatformCredentialV3Unauthorized struct {
 	Payload *iamclientmodels.RestErrorResponse
@@ -217,10 +214,9 @@ func NewDeleteSSOLoginPlatformCredentialV3Forbidden() *DeleteSSOLoginPlatformCre
 	return &DeleteSSOLoginPlatformCredentialV3Forbidden{}
 }
 
-/*
-DeleteSSOLoginPlatformCredentialV3Forbidden handles this case with default header values.
+/*DeleteSSOLoginPlatformCredentialV3Forbidden handles this case with default header values.
 
-	<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20013</td><td>insufficient permissions</td></tr></table>
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20013</td><td>insufficient permissions</td></tr></table>
 */
 type DeleteSSOLoginPlatformCredentialV3Forbidden struct {
 	Payload *iamclientmodels.RestErrorResponse
@@ -271,10 +267,9 @@ func NewDeleteSSOLoginPlatformCredentialV3NotFound() *DeleteSSOLoginPlatformCred
 	return &DeleteSSOLoginPlatformCredentialV3NotFound{}
 }
 
-/*
-DeleteSSOLoginPlatformCredentialV3NotFound handles this case with default header values.
+/*DeleteSSOLoginPlatformCredentialV3NotFound handles this case with default header values.
 
-	<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>10175</td><td>third party credential not found</td></tr></table>
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>10175</td><td>third party credential not found</td></tr></table>
 */
 type DeleteSSOLoginPlatformCredentialV3NotFound struct {
 	Payload *iamclientmodels.RestErrorResponse
@@ -325,10 +320,9 @@ func NewDeleteSSOLoginPlatformCredentialV3InternalServerError() *DeleteSSOLoginP
 	return &DeleteSSOLoginPlatformCredentialV3InternalServerError{}
 }
 
-/*
-DeleteSSOLoginPlatformCredentialV3InternalServerError handles this case with default header values.
+/*DeleteSSOLoginPlatformCredentialV3InternalServerError handles this case with default header values.
 
-	<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20000</td><td>internal server error</td></tr></table>
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20000</td><td>internal server error</td></tr></table>
 */
 type DeleteSSOLoginPlatformCredentialV3InternalServerError struct {
 	Payload *iamclientmodels.RestErrorResponse

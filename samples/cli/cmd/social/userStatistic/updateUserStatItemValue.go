@@ -45,14 +45,14 @@ var UpdateUserStatItemValueCmd = &cobra.Command{
 			UserID:        userId,
 			AdditionalKey: &additionalKey,
 		}
-		ok, err := userStatisticService.UpdateUserStatItemValueShort(input)
-		if err != nil {
-			logrus.Error(err)
+		ok, errOK := userStatisticService.UpdateUserStatItemValueShort(input)
+		if errOK != nil {
+			logrus.Error(errOK)
 
-			return err
-		} else {
-			logrus.Infof("Response CLI success: %+v", ok)
+			return errOK
 		}
+
+		logrus.Infof("Response CLI success: %+v", ok)
 
 		return nil
 	},

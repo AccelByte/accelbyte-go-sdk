@@ -29,14 +29,14 @@ var GetUserOutgoingFriendsCmd = &cobra.Command{
 		input := &friends.GetUserOutgoingFriendsParams{
 			Namespace: namespace,
 		}
-		ok, err := friendsService.GetUserOutgoingFriendsShort(input)
-		if err != nil {
-			logrus.Error(err)
+		ok, errOK := friendsService.GetUserOutgoingFriendsShort(input)
+		if errOK != nil {
+			logrus.Error(errOK)
 
-			return err
-		} else {
-			logrus.Infof("Response CLI success: %+v", ok)
+			return errOK
 		}
+
+		logrus.Infof("Response CLI success: %+v", ok)
 
 		return nil
 	},

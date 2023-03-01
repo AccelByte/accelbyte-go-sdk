@@ -31,7 +31,7 @@ var UpdateXblUserAchievementCmd = &cobra.Command{
 		namespace, _ := cmd.Flags().GetString("namespace")
 		userId, _ := cmd.Flags().GetString("userId")
 		bodyString := cmd.Flag("body").Value.String()
-		var body *platformclientmodels.ADTOObjectForUpdateXboxAchievementCompletePercentageAPI
+		var body *platformclientmodels.XblAchievementUpdateRequest
 		errBody := json.Unmarshal([]byte(bodyString), &body)
 		if errBody != nil {
 			return errBody
@@ -41,12 +41,14 @@ var UpdateXblUserAchievementCmd = &cobra.Command{
 			Namespace: namespace,
 			UserID:    userId,
 		}
-		errInput := achievementPlatformService.UpdateXblUserAchievementShort(input)
-		if errInput != nil {
-			logrus.Error(errInput)
+		errNoContent := achievementPlatformService.UpdateXblUserAchievementShort(input)
+		if errNoContent != nil {
+			logrus.Error(errNoContent)
 
-			return errInput
+			return errNoContent
 		}
+
+		logrus.Infof("Response CLI success.")
 
 		return nil
 	},

@@ -60,8 +60,7 @@ func NewChange2FAMethodParamsWithHTTPClient(client *http.Client) *Change2FAMetho
 	}
 }
 
-/*
-Change2FAMethodParams contains all the parameters to send to the API endpoint
+/*Change2FAMethodParams contains all the parameters to send to the API endpoint
 for the change 2FA method operation typically these are written to a http.Request
 */
 type Change2FAMethodParams struct {

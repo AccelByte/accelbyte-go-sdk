@@ -31,14 +31,14 @@ var PublicGetUserNamespaceSlotsCmd = &cobra.Command{
 			Namespace: namespace,
 			UserID:    userId,
 		}
-		ok, err := slotService.PublicGetUserNamespaceSlotsShort(input)
-		if err != nil {
-			logrus.Error(err)
+		ok, errOK := slotService.PublicGetUserNamespaceSlotsShort(input)
+		if errOK != nil {
+			logrus.Error(errOK)
 
-			return err
-		} else {
-			logrus.Infof("Response CLI success: %+v", ok)
+			return errOK
 		}
+
+		logrus.Infof("Response CLI success: %+v", ok)
 
 		return nil
 	},

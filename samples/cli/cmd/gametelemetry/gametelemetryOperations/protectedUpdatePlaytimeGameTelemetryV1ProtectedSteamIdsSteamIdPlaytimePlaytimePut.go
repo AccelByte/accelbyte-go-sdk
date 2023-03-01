@@ -33,12 +33,14 @@ var ProtectedUpdatePlaytimeGameTelemetryV1ProtectedSteamIdsSteamIdPlaytimePlayti
 			Playtime: playtime,
 			SteamID:  steamId,
 		}
-		errInput := gametelemetryOperationsService.ProtectedUpdatePlaytimeGameTelemetryV1ProtectedSteamIdsSteamIDPlaytimePlaytimePutShort(input)
-		if errInput != nil {
-			logrus.Error(errInput)
+		errOK := gametelemetryOperationsService.ProtectedUpdatePlaytimeGameTelemetryV1ProtectedSteamIdsSteamIDPlaytimePlaytimePutShort(input)
+		if errOK != nil {
+			logrus.Error(errOK)
 
-			return errInput
+			return errOK
 		}
+
+		logrus.Infof("Response CLI success.")
 
 		return nil
 	},

@@ -33,14 +33,14 @@ var AdminGetArchivedLeaderboardRankingDataV1HandlerCmd = &cobra.Command{
 			Slug:             &slug,
 			LeaderboardCodes: leaderboardCodes,
 		}
-		ok, err := leaderboardDataService.AdminGetArchivedLeaderboardRankingDataV1HandlerShort(input)
-		if err != nil {
-			logrus.Error(err)
+		ok, errOK := leaderboardDataService.AdminGetArchivedLeaderboardRankingDataV1HandlerShort(input)
+		if errOK != nil {
+			logrus.Error(errOK)
 
-			return err
-		} else {
-			logrus.Infof("Response CLI success: %+v", ok)
+			return errOK
 		}
+
+		logrus.Infof("Response CLI success: %+v", ok)
 
 		return nil
 	},

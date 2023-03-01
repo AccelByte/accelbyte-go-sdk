@@ -33,14 +33,14 @@ var PublicGetUserAppEntitlementOwnershipByAppIdCmd = &cobra.Command{
 			UserID:    userId,
 			AppID:     appId,
 		}
-		ok, err := entitlementService.PublicGetUserAppEntitlementOwnershipByAppIDShort(input)
-		if err != nil {
-			logrus.Error(err)
+		ok, errOK := entitlementService.PublicGetUserAppEntitlementOwnershipByAppIDShort(input)
+		if errOK != nil {
+			logrus.Error(errOK)
 
-			return err
-		} else {
-			logrus.Infof("Response CLI success: %+v", ok)
+			return errOK
 		}
+
+		logrus.Infof("Response CLI success: %+v", ok)
 
 		return nil
 	},

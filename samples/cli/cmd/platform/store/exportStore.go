@@ -8,6 +8,7 @@ package store
 
 import (
 	"bytes"
+	"os"
 
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclient/store"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
@@ -29,19 +30,24 @@ var ExportStoreCmd = &cobra.Command{
 		}
 		namespace, _ := cmd.Flags().GetString("namespace")
 		storeId, _ := cmd.Flags().GetString("storeId")
+		file, errFile := os.Create("file")
+		logrus.Infof("Output %v", file)
+		if errFile != nil {
+			return errFile
+		}
+		writer := bytes.NewBuffer(nil)
 		input := &store.ExportStoreParams{
 			Namespace: namespace,
 			StoreID:   storeId,
 		}
-		writer := bytes.NewBuffer(nil)
-		ok, err := storeService.ExportStoreShort(input, writer)
-		if err != nil {
-			logrus.Error(err)
+		ok, errOK := storeService.ExportStoreShort(input, writer)
+		if errOK != nil {
+			logrus.Error(errOK)
 
-			return err
-		} else {
-			logrus.Infof("Response CLI success: %+v", ok)
+			return errOK
 		}
+
+		logrus.Infof("Response CLI success: %+v", ok)
 
 		return nil
 	},

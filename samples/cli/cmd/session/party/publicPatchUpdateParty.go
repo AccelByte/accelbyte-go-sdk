@@ -41,14 +41,14 @@ var PublicPatchUpdatePartyCmd = &cobra.Command{
 			Namespace: namespace,
 			PartyID:   partyId,
 		}
-		ok, err := partyService.PublicPatchUpdatePartyShort(input)
-		if err != nil {
-			logrus.Error(err)
+		ok, errOK := partyService.PublicPatchUpdatePartyShort(input)
+		if errOK != nil {
+			logrus.Error(errOK)
 
-			return err
-		} else {
-			logrus.Infof("Response CLI success: %+v", ok)
+			return errOK
 		}
+
+		logrus.Infof("Response CLI success: %+v", ok)
 
 		return nil
 	},

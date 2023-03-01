@@ -60,13 +60,13 @@ type ClientService interface {
 /*
 Deprecated: Use CreateTemplateShort instead.
 
-	  CreateTemplate creates new notification template
+  CreateTemplate creates new notification template
 
-	  Required permission : &lt;code&gt;NAMESPACE:{namespace}:TEMPLATE [CREATE]&lt;/code&gt; with scope &lt;code&gt;social&lt;/code&gt;
-				&lt;br&gt;Create new notification template. Include handlebars {{key}} for replaceable contexts. The the key inside
-				handlebars will be the key to be replaced when sending notification. Already existing template with the same
-				slug and language can not be created.
-				&lt;br&gt;Check model description for detailed input restrictions.
+  Required permission : &lt;code&gt;NAMESPACE:{namespace}:TEMPLATE [CREATE]&lt;/code&gt; with scope &lt;code&gt;social&lt;/code&gt;
+			&lt;br&gt;Create new notification template. Include handlebars {{key}} for replaceable contexts. The the key inside
+			handlebars will be the key to be replaced when sending notification. Already existing template with the same
+			slug and language can not be created.
+			&lt;br&gt;Check model description for detailed input restrictions.
 */
 func (a *Client) CreateTemplate(params *CreateTemplateParams, authInfo runtime.ClientAuthInfoWriter) (*CreateTemplateNoContent, *CreateTemplateBadRequest, *CreateTemplateUnauthorized, *CreateTemplateForbidden, *CreateTemplateNotFound, error) {
 	// TODO: Validate the params before sending
@@ -122,13 +122,13 @@ func (a *Client) CreateTemplate(params *CreateTemplateParams, authInfo runtime.C
 }
 
 /*
-	  CreateTemplateShort creates new notification template
+  CreateTemplateShort creates new notification template
 
-	  Required permission : &lt;code&gt;NAMESPACE:{namespace}:TEMPLATE [CREATE]&lt;/code&gt; with scope &lt;code&gt;social&lt;/code&gt;
-				&lt;br&gt;Create new notification template. Include handlebars {{key}} for replaceable contexts. The the key inside
-				handlebars will be the key to be replaced when sending notification. Already existing template with the same
-				slug and language can not be created.
-				&lt;br&gt;Check model description for detailed input restrictions.
+  Required permission : &lt;code&gt;NAMESPACE:{namespace}:TEMPLATE [CREATE]&lt;/code&gt; with scope &lt;code&gt;social&lt;/code&gt;
+			&lt;br&gt;Create new notification template. Include handlebars {{key}} for replaceable contexts. The the key inside
+			handlebars will be the key to be replaced when sending notification. Already existing template with the same
+			slug and language can not be created.
+			&lt;br&gt;Check model description for detailed input restrictions.
 */
 func (a *Client) CreateTemplateShort(params *CreateTemplateParams, authInfo runtime.ClientAuthInfoWriter) (*CreateTemplateNoContent, error) {
 	// TODO: Validate the params before sending
@@ -182,10 +182,10 @@ func (a *Client) CreateTemplateShort(params *CreateTemplateParams, authInfo runt
 /*
 Deprecated: Use DeleteTemplateLocalizationShort instead.
 
-	  DeleteTemplateLocalization deletes template localization
+  DeleteTemplateLocalization deletes template localization
 
-	  Required permission : &lt;code&gt;NAMESPACE:{namespace}:TEMPLATE [DELETE]&lt;/code&gt; with scope &lt;code&gt;social&lt;/code&gt;
-				&lt;br&gt;Delete all template in a slug
+  Required permission : &lt;code&gt;NAMESPACE:{namespace}:TEMPLATE [DELETE]&lt;/code&gt; with scope &lt;code&gt;social&lt;/code&gt;
+			&lt;br&gt;Delete all template in a slug
 */
 func (a *Client) DeleteTemplateLocalization(params *DeleteTemplateLocalizationParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteTemplateLocalizationNoContent, *DeleteTemplateLocalizationBadRequest, *DeleteTemplateLocalizationUnauthorized, *DeleteTemplateLocalizationForbidden, *DeleteTemplateLocalizationNotFound, error) {
 	// TODO: Validate the params before sending
@@ -241,10 +241,10 @@ func (a *Client) DeleteTemplateLocalization(params *DeleteTemplateLocalizationPa
 }
 
 /*
-	  DeleteTemplateLocalizationShort deletes template localization
+  DeleteTemplateLocalizationShort deletes template localization
 
-	  Required permission : &lt;code&gt;NAMESPACE:{namespace}:TEMPLATE [DELETE]&lt;/code&gt; with scope &lt;code&gt;social&lt;/code&gt;
-				&lt;br&gt;Delete all template in a slug
+  Required permission : &lt;code&gt;NAMESPACE:{namespace}:TEMPLATE [DELETE]&lt;/code&gt; with scope &lt;code&gt;social&lt;/code&gt;
+			&lt;br&gt;Delete all template in a slug
 */
 func (a *Client) DeleteTemplateLocalizationShort(params *DeleteTemplateLocalizationParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteTemplateLocalizationNoContent, error) {
 	// TODO: Validate the params before sending
@@ -298,10 +298,10 @@ func (a *Client) DeleteTemplateLocalizationShort(params *DeleteTemplateLocalizat
 /*
 Deprecated: Use DeleteTemplateSlugShort instead.
 
-	  DeleteTemplateSlug deletes template localization
+  DeleteTemplateSlug deletes template localization
 
-	  Required permission : &lt;code&gt;NAMESPACE:{namespace}:TEMPLATE [DELETE]&lt;/code&gt; with scope &lt;code&gt;social&lt;/code&gt;
-				&lt;br&gt;Delete localization template
+  Required permission : &lt;code&gt;NAMESPACE:{namespace}:TEMPLATE [DELETE]&lt;/code&gt; with scope &lt;code&gt;social&lt;/code&gt;
+			&lt;br&gt;Delete localization template
 */
 func (a *Client) DeleteTemplateSlug(params *DeleteTemplateSlugParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteTemplateSlugNoContent, *DeleteTemplateSlugBadRequest, *DeleteTemplateSlugUnauthorized, *DeleteTemplateSlugForbidden, *DeleteTemplateSlugNotFound, error) {
 	// TODO: Validate the params before sending
@@ -357,10 +357,10 @@ func (a *Client) DeleteTemplateSlug(params *DeleteTemplateSlugParams, authInfo r
 }
 
 /*
-	  DeleteTemplateSlugShort deletes template localization
+  DeleteTemplateSlugShort deletes template localization
 
-	  Required permission : &lt;code&gt;NAMESPACE:{namespace}:TEMPLATE [DELETE]&lt;/code&gt; with scope &lt;code&gt;social&lt;/code&gt;
-				&lt;br&gt;Delete localization template
+  Required permission : &lt;code&gt;NAMESPACE:{namespace}:TEMPLATE [DELETE]&lt;/code&gt; with scope &lt;code&gt;social&lt;/code&gt;
+			&lt;br&gt;Delete localization template
 */
 func (a *Client) DeleteTemplateSlugShort(params *DeleteTemplateSlugParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteTemplateSlugNoContent, error) {
 	// TODO: Validate the params before sending
@@ -414,10 +414,10 @@ func (a *Client) DeleteTemplateSlugShort(params *DeleteTemplateSlugParams, authI
 /*
 Deprecated: Use FreeFormNotificationShort instead.
 
-	  FreeFormNotification sends freeform notification to a user
+  FreeFormNotification sends freeform notification to a user
 
-	  Required permission : &lt;code&gt;NAMESPACE:{namespace}:NOTIFICATION [CREATE]&lt;/code&gt; with scope &lt;code&gt;social&lt;/code&gt;
-				&lt;br&gt;Sends notification to all connected users in a namespace.
+  Required permission : &lt;code&gt;NAMESPACE:{namespace}:NOTIFICATION [CREATE]&lt;/code&gt; with scope &lt;code&gt;social&lt;/code&gt;
+			&lt;br&gt;Sends notification to all connected users in a namespace.
 */
 func (a *Client) FreeFormNotification(params *FreeFormNotificationParams, authInfo runtime.ClientAuthInfoWriter) (*FreeFormNotificationAccepted, *FreeFormNotificationBadRequest, *FreeFormNotificationUnauthorized, *FreeFormNotificationForbidden, *FreeFormNotificationNotFound, error) {
 	// TODO: Validate the params before sending
@@ -473,10 +473,10 @@ func (a *Client) FreeFormNotification(params *FreeFormNotificationParams, authIn
 }
 
 /*
-	  FreeFormNotificationShort sends freeform notification to a user
+  FreeFormNotificationShort sends freeform notification to a user
 
-	  Required permission : &lt;code&gt;NAMESPACE:{namespace}:NOTIFICATION [CREATE]&lt;/code&gt; with scope &lt;code&gt;social&lt;/code&gt;
-				&lt;br&gt;Sends notification to all connected users in a namespace.
+  Required permission : &lt;code&gt;NAMESPACE:{namespace}:NOTIFICATION [CREATE]&lt;/code&gt; with scope &lt;code&gt;social&lt;/code&gt;
+			&lt;br&gt;Sends notification to all connected users in a namespace.
 */
 func (a *Client) FreeFormNotificationShort(params *FreeFormNotificationParams, authInfo runtime.ClientAuthInfoWriter) (*FreeFormNotificationAccepted, error) {
 	// TODO: Validate the params before sending
@@ -530,10 +530,10 @@ func (a *Client) FreeFormNotificationShort(params *FreeFormNotificationParams, a
 /*
 Deprecated: Use GetGameTemplateShort instead.
 
-	  GetGameTemplate gets all notification template in a namespace
+  GetGameTemplate gets all notification template in a namespace
 
-	  Required permission : &lt;code&gt;NAMESPACE:{namespace}:TEMPLATE [READ]&lt;/code&gt; with scope &lt;code&gt;social&lt;/code&gt;
-				&lt;br&gt;Get all templates in a namespace
+  Required permission : &lt;code&gt;NAMESPACE:{namespace}:TEMPLATE [READ]&lt;/code&gt; with scope &lt;code&gt;social&lt;/code&gt;
+			&lt;br&gt;Get all templates in a namespace
 */
 func (a *Client) GetGameTemplate(params *GetGameTemplateParams, authInfo runtime.ClientAuthInfoWriter) (*GetGameTemplateOK, *GetGameTemplateBadRequest, *GetGameTemplateUnauthorized, *GetGameTemplateForbidden, *GetGameTemplateNotFound, error) {
 	// TODO: Validate the params before sending
@@ -589,10 +589,10 @@ func (a *Client) GetGameTemplate(params *GetGameTemplateParams, authInfo runtime
 }
 
 /*
-	  GetGameTemplateShort gets all notification template in a namespace
+  GetGameTemplateShort gets all notification template in a namespace
 
-	  Required permission : &lt;code&gt;NAMESPACE:{namespace}:TEMPLATE [READ]&lt;/code&gt; with scope &lt;code&gt;social&lt;/code&gt;
-				&lt;br&gt;Get all templates in a namespace
+  Required permission : &lt;code&gt;NAMESPACE:{namespace}:TEMPLATE [READ]&lt;/code&gt; with scope &lt;code&gt;social&lt;/code&gt;
+			&lt;br&gt;Get all templates in a namespace
 */
 func (a *Client) GetGameTemplateShort(params *GetGameTemplateParams, authInfo runtime.ClientAuthInfoWriter) (*GetGameTemplateOK, error) {
 	// TODO: Validate the params before sending
@@ -646,10 +646,10 @@ func (a *Client) GetGameTemplateShort(params *GetGameTemplateParams, authInfo ru
 /*
 Deprecated: Use GetLocalizationTemplateShort instead.
 
-	  GetLocalizationTemplate gets a template localization
+  GetLocalizationTemplate gets a template localization
 
-	  Required permission : &lt;code&gt;NAMESPACE:{namespace}:TEMPLATE [READ]&lt;/code&gt; with scope &lt;code&gt;social&lt;/code&gt;
-				&lt;br&gt;Get a template localization
+  Required permission : &lt;code&gt;NAMESPACE:{namespace}:TEMPLATE [READ]&lt;/code&gt; with scope &lt;code&gt;social&lt;/code&gt;
+			&lt;br&gt;Get a template localization
 */
 func (a *Client) GetLocalizationTemplate(params *GetLocalizationTemplateParams, authInfo runtime.ClientAuthInfoWriter) (*GetLocalizationTemplateOK, *GetLocalizationTemplateBadRequest, *GetLocalizationTemplateUnauthorized, *GetLocalizationTemplateForbidden, *GetLocalizationTemplateNotFound, error) {
 	// TODO: Validate the params before sending
@@ -705,10 +705,10 @@ func (a *Client) GetLocalizationTemplate(params *GetLocalizationTemplateParams, 
 }
 
 /*
-	  GetLocalizationTemplateShort gets a template localization
+  GetLocalizationTemplateShort gets a template localization
 
-	  Required permission : &lt;code&gt;NAMESPACE:{namespace}:TEMPLATE [READ]&lt;/code&gt; with scope &lt;code&gt;social&lt;/code&gt;
-				&lt;br&gt;Get a template localization
+  Required permission : &lt;code&gt;NAMESPACE:{namespace}:TEMPLATE [READ]&lt;/code&gt; with scope &lt;code&gt;social&lt;/code&gt;
+			&lt;br&gt;Get a template localization
 */
 func (a *Client) GetLocalizationTemplateShort(params *GetLocalizationTemplateParams, authInfo runtime.ClientAuthInfoWriter) (*GetLocalizationTemplateOK, error) {
 	// TODO: Validate the params before sending
@@ -762,10 +762,10 @@ func (a *Client) GetLocalizationTemplateShort(params *GetLocalizationTemplatePar
 /*
 Deprecated: Use GetSlugTemplateShort instead.
 
-	  GetSlugTemplate gets all notification template in a slug
+  GetSlugTemplate gets all notification template in a slug
 
-	  Required permission : &lt;code&gt;NAMESPACE:{namespace}:TEMPLATE [READ]&lt;/code&gt; with scope &lt;code&gt;social&lt;/code&gt;
-				&lt;br&gt;Get all templates in a namespace
+  Required permission : &lt;code&gt;NAMESPACE:{namespace}:TEMPLATE [READ]&lt;/code&gt; with scope &lt;code&gt;social&lt;/code&gt;
+			&lt;br&gt;Get all templates in a namespace
 */
 func (a *Client) GetSlugTemplate(params *GetSlugTemplateParams, authInfo runtime.ClientAuthInfoWriter) (*GetSlugTemplateOK, *GetSlugTemplateBadRequest, *GetSlugTemplateUnauthorized, *GetSlugTemplateForbidden, *GetSlugTemplateNotFound, error) {
 	// TODO: Validate the params before sending
@@ -821,10 +821,10 @@ func (a *Client) GetSlugTemplate(params *GetSlugTemplateParams, authInfo runtime
 }
 
 /*
-	  GetSlugTemplateShort gets all notification template in a slug
+  GetSlugTemplateShort gets all notification template in a slug
 
-	  Required permission : &lt;code&gt;NAMESPACE:{namespace}:TEMPLATE [READ]&lt;/code&gt; with scope &lt;code&gt;social&lt;/code&gt;
-				&lt;br&gt;Get all templates in a namespace
+  Required permission : &lt;code&gt;NAMESPACE:{namespace}:TEMPLATE [READ]&lt;/code&gt; with scope &lt;code&gt;social&lt;/code&gt;
+			&lt;br&gt;Get all templates in a namespace
 */
 func (a *Client) GetSlugTemplateShort(params *GetSlugTemplateParams, authInfo runtime.ClientAuthInfoWriter) (*GetSlugTemplateOK, error) {
 	// TODO: Validate the params before sending
@@ -878,13 +878,13 @@ func (a *Client) GetSlugTemplateShort(params *GetSlugTemplateParams, authInfo ru
 /*
 Deprecated: Use NotificationWithTemplateShort instead.
 
-	  NotificationWithTemplate sends notification to a user with template
+  NotificationWithTemplate sends notification to a user with template
 
-	  Required permission : &lt;code&gt;NAMESPACE:{namespace}:NOTIFICATION [CREATE]&lt;/code&gt; with scope &lt;code&gt;social&lt;/code&gt;
-				&lt;br&gt;Sends notification to all connected users in a namespace with predefined template.
-				&lt;br&gt;In the request body, specify which template slug (template identifier) to use and the template language.
-				&lt;br&gt;NotificationTemplate context is the key-value pair defining the value of each handlebar specified in the template content.
-				Template need to be published before it can be use to send notifications
+  Required permission : &lt;code&gt;NAMESPACE:{namespace}:NOTIFICATION [CREATE]&lt;/code&gt; with scope &lt;code&gt;social&lt;/code&gt;
+			&lt;br&gt;Sends notification to all connected users in a namespace with predefined template.
+			&lt;br&gt;In the request body, specify which template slug (template identifier) to use and the template language.
+			&lt;br&gt;NotificationTemplate context is the key-value pair defining the value of each handlebar specified in the template content.
+			Template need to be published before it can be use to send notifications
 */
 func (a *Client) NotificationWithTemplate(params *NotificationWithTemplateParams, authInfo runtime.ClientAuthInfoWriter) (*NotificationWithTemplateAccepted, *NotificationWithTemplateBadRequest, *NotificationWithTemplateUnauthorized, *NotificationWithTemplateForbidden, *NotificationWithTemplateNotFound, error) {
 	// TODO: Validate the params before sending
@@ -940,13 +940,13 @@ func (a *Client) NotificationWithTemplate(params *NotificationWithTemplateParams
 }
 
 /*
-	  NotificationWithTemplateShort sends notification to a user with template
+  NotificationWithTemplateShort sends notification to a user with template
 
-	  Required permission : &lt;code&gt;NAMESPACE:{namespace}:NOTIFICATION [CREATE]&lt;/code&gt; with scope &lt;code&gt;social&lt;/code&gt;
-				&lt;br&gt;Sends notification to all connected users in a namespace with predefined template.
-				&lt;br&gt;In the request body, specify which template slug (template identifier) to use and the template language.
-				&lt;br&gt;NotificationTemplate context is the key-value pair defining the value of each handlebar specified in the template content.
-				Template need to be published before it can be use to send notifications
+  Required permission : &lt;code&gt;NAMESPACE:{namespace}:NOTIFICATION [CREATE]&lt;/code&gt; with scope &lt;code&gt;social&lt;/code&gt;
+			&lt;br&gt;Sends notification to all connected users in a namespace with predefined template.
+			&lt;br&gt;In the request body, specify which template slug (template identifier) to use and the template language.
+			&lt;br&gt;NotificationTemplate context is the key-value pair defining the value of each handlebar specified in the template content.
+			Template need to be published before it can be use to send notifications
 */
 func (a *Client) NotificationWithTemplateShort(params *NotificationWithTemplateParams, authInfo runtime.ClientAuthInfoWriter) (*NotificationWithTemplateAccepted, error) {
 	// TODO: Validate the params before sending
@@ -1000,10 +1000,10 @@ func (a *Client) NotificationWithTemplateShort(params *NotificationWithTemplateP
 /*
 Deprecated: Use PublishTemplateShort instead.
 
-	  PublishTemplate publishes draft template
+  PublishTemplate publishes draft template
 
-	  Required permission : &lt;code&gt;NAMESPACE:{namespace}:TEMPLATE [CREATE]&lt;/code&gt; with scope &lt;code&gt;social&lt;/code&gt;
-				&lt;br&gt;Publish notification template draft. Empty draft can not be published.
+  Required permission : &lt;code&gt;NAMESPACE:{namespace}:TEMPLATE [CREATE]&lt;/code&gt; with scope &lt;code&gt;social&lt;/code&gt;
+			&lt;br&gt;Publish notification template draft. Empty draft can not be published.
 */
 func (a *Client) PublishTemplate(params *PublishTemplateParams, authInfo runtime.ClientAuthInfoWriter) (*PublishTemplateNoContent, *PublishTemplateBadRequest, *PublishTemplateUnauthorized, *PublishTemplateForbidden, *PublishTemplateNotFound, error) {
 	// TODO: Validate the params before sending
@@ -1059,10 +1059,10 @@ func (a *Client) PublishTemplate(params *PublishTemplateParams, authInfo runtime
 }
 
 /*
-	  PublishTemplateShort publishes draft template
+  PublishTemplateShort publishes draft template
 
-	  Required permission : &lt;code&gt;NAMESPACE:{namespace}:TEMPLATE [CREATE]&lt;/code&gt; with scope &lt;code&gt;social&lt;/code&gt;
-				&lt;br&gt;Publish notification template draft. Empty draft can not be published.
+  Required permission : &lt;code&gt;NAMESPACE:{namespace}:TEMPLATE [CREATE]&lt;/code&gt; with scope &lt;code&gt;social&lt;/code&gt;
+			&lt;br&gt;Publish notification template draft. Empty draft can not be published.
 */
 func (a *Client) PublishTemplateShort(params *PublishTemplateParams, authInfo runtime.ClientAuthInfoWriter) (*PublishTemplateNoContent, error) {
 	// TODO: Validate the params before sending
@@ -1116,10 +1116,10 @@ func (a *Client) PublishTemplateShort(params *PublishTemplateParams, authInfo ru
 /*
 Deprecated: Use UpdateLocalizationTemplateShort instead.
 
-	  UpdateLocalizationTemplate updates template draft
+  UpdateLocalizationTemplate updates template draft
 
-	  Required permission : &lt;code&gt;NAMESPACE:{namespace}:TEMPLATE [UPDATE]&lt;/code&gt; with scope &lt;code&gt;social&lt;/code&gt;
-				&lt;br&gt;Modify draft template
+  Required permission : &lt;code&gt;NAMESPACE:{namespace}:TEMPLATE [UPDATE]&lt;/code&gt; with scope &lt;code&gt;social&lt;/code&gt;
+			&lt;br&gt;Modify draft template
 */
 func (a *Client) UpdateLocalizationTemplate(params *UpdateLocalizationTemplateParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateLocalizationTemplateNoContent, *UpdateLocalizationTemplateBadRequest, *UpdateLocalizationTemplateUnauthorized, *UpdateLocalizationTemplateForbidden, *UpdateLocalizationTemplateNotFound, error) {
 	// TODO: Validate the params before sending
@@ -1175,10 +1175,10 @@ func (a *Client) UpdateLocalizationTemplate(params *UpdateLocalizationTemplatePa
 }
 
 /*
-	  UpdateLocalizationTemplateShort updates template draft
+  UpdateLocalizationTemplateShort updates template draft
 
-	  Required permission : &lt;code&gt;NAMESPACE:{namespace}:TEMPLATE [UPDATE]&lt;/code&gt; with scope &lt;code&gt;social&lt;/code&gt;
-				&lt;br&gt;Modify draft template
+  Required permission : &lt;code&gt;NAMESPACE:{namespace}:TEMPLATE [UPDATE]&lt;/code&gt; with scope &lt;code&gt;social&lt;/code&gt;
+			&lt;br&gt;Modify draft template
 */
 func (a *Client) UpdateLocalizationTemplateShort(params *UpdateLocalizationTemplateParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateLocalizationTemplateNoContent, error) {
 	// TODO: Validate the params before sending

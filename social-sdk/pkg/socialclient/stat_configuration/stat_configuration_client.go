@@ -34,7 +34,7 @@ type Client struct {
 
 // ClientService is the interface for Client methods
 type ClientService interface {
-	CreateStat(params *CreateStatParams, authInfo runtime.ClientAuthInfoWriter) (*CreateStatCreated, *CreateStatConflict, error)
+	CreateStat(params *CreateStatParams, authInfo runtime.ClientAuthInfoWriter) (*CreateStatCreated, *CreateStatNotFound, *CreateStatConflict, error)
 	CreateStatShort(params *CreateStatParams, authInfo runtime.ClientAuthInfoWriter) (*CreateStatCreated, error)
 	CreateStat1(params *CreateStat1Params, authInfo runtime.ClientAuthInfoWriter) (*CreateStat1Created, *CreateStat1Conflict, error)
 	CreateStat1Short(params *CreateStat1Params, authInfo runtime.ClientAuthInfoWriter) (*CreateStat1Created, error)
@@ -65,7 +65,7 @@ Deprecated: Use CreateStatShort instead.
 
   Create stat.&lt;br&gt;Other detail info:&lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:STAT&#34;, action=1 (CREATE)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: created stat template&lt;/li&gt;&lt;li&gt;default minimum value is 0&lt;/li&gt;&lt;li&gt;default maximum value is 1.7976931348623157e+308&lt;/li&gt;&lt;/ul&gt;
 */
-func (a *Client) CreateStat(params *CreateStatParams, authInfo runtime.ClientAuthInfoWriter) (*CreateStatCreated, *CreateStatConflict, error) {
+func (a *Client) CreateStat(params *CreateStatParams, authInfo runtime.ClientAuthInfoWriter) (*CreateStatCreated, *CreateStatNotFound, *CreateStatConflict, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewCreateStatParams()
@@ -93,19 +93,22 @@ func (a *Client) CreateStat(params *CreateStatParams, authInfo runtime.ClientAut
 		Client:             params.HTTPClient,
 	})
 	if err != nil {
-		return nil, nil, err
+		return nil, nil, nil, err
 	}
 
 	switch v := result.(type) {
 
 	case *CreateStatCreated:
-		return v, nil, nil
+		return v, nil, nil, nil
+
+	case *CreateStatNotFound:
+		return nil, v, nil, nil
 
 	case *CreateStatConflict:
-		return nil, v, nil
+		return nil, nil, v, nil
 
 	default:
-		return nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+		return nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
@@ -149,6 +152,8 @@ func (a *Client) CreateStatShort(params *CreateStatParams, authInfo runtime.Clie
 
 	case *CreateStatCreated:
 		return v, nil
+	case *CreateStatNotFound:
+		return nil, v
 	case *CreateStatConflict:
 		return nil, v
 

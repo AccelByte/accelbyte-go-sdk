@@ -58,10 +58,9 @@ func NewSyncXboxInventoryOK() *SyncXboxInventoryOK {
 	return &SyncXboxInventoryOK{}
 }
 
-/*
-SyncXboxInventoryOK handles this case with default header values.
+/*SyncXboxInventoryOK handles this case with default header values.
 
-	successful operation
+  successful operation
 */
 type SyncXboxInventoryOK struct {
 	Payload []*platformclientmodels.XblReconcileResult
@@ -110,10 +109,9 @@ func NewSyncXboxInventoryBadRequest() *SyncXboxInventoryBadRequest {
 	return &SyncXboxInventoryBadRequest{}
 }
 
-/*
-SyncXboxInventoryBadRequest handles this case with default header values.
+/*SyncXboxInventoryBadRequest handles this case with default header values.
 
-	<table><tr><td>ErrorCode</td><td>ErrorMessage</td></tr><tr><td>39125</td><td>Invalid platform [{platformId}] user token</td></tr><tr><td>39126</td><td>User id [{}] in namespace [{}] doesn't link platform [{}]</td></tr>
+  <table><tr><td>ErrorCode</td><td>ErrorMessage</td></tr><tr><td>39125</td><td>Invalid platform [{platformId}] user token</td></tr><tr><td>39126</td><td>User id [{}] in namespace [{}] doesn't link platform [{}]</td></tr>
 */
 type SyncXboxInventoryBadRequest struct {
 	Payload *platformclientmodels.ErrorEntity

@@ -8,6 +8,7 @@ package invoice
 
 import (
 	"bytes"
+	"os"
 
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclient/invoice"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
@@ -33,6 +34,12 @@ var DownloadInvoiceDetailsCmd = &cobra.Command{
 		feature, _ := cmd.Flags().GetString("feature")
 		itemId, _ := cmd.Flags().GetString("itemId")
 		itemType, _ := cmd.Flags().GetString("itemType")
+		file, errFile := os.Create("file")
+		logrus.Infof("Output %v", file)
+		if errFile != nil {
+			return errFile
+		}
+		writer := bytes.NewBuffer(nil)
 		input := &invoice.DownloadInvoiceDetailsParams{
 			Namespace: namespace,
 			Feature:   &feature,
@@ -41,15 +48,14 @@ var DownloadInvoiceDetailsCmd = &cobra.Command{
 			EndTime:   endTime,
 			StartTime: startTime,
 		}
-		writer := bytes.NewBuffer(nil)
-		ok, err := invoiceService.DownloadInvoiceDetailsShort(input, writer)
-		if err != nil {
-			logrus.Error(err)
+		ok, errOK := invoiceService.DownloadInvoiceDetailsShort(input, writer)
+		if errOK != nil {
+			logrus.Error(errOK)
 
-			return err
-		} else {
-			logrus.Infof("Response CLI success: %+v", ok)
+			return errOK
 		}
+
+		logrus.Infof("Response CLI success: %+v", ok)
 
 		return nil
 	},

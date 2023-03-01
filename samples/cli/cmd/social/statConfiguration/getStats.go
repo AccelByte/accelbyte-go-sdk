@@ -26,23 +26,25 @@ var GetStatsCmd = &cobra.Command{
 			TokenRepository: &repository.TokenRepositoryImpl{},
 		}
 		namespace, _ := cmd.Flags().GetString("namespace")
+		cycleIds, _ := cmd.Flags().GetString("cycleIds")
 		isGlobal, _ := cmd.Flags().GetBool("isGlobal")
 		limit, _ := cmd.Flags().GetInt32("limit")
 		offset, _ := cmd.Flags().GetInt32("offset")
 		input := &stat_configuration.GetStatsParams{
 			Namespace: namespace,
+			CycleIds:  &cycleIds,
 			IsGlobal:  &isGlobal,
 			Limit:     &limit,
 			Offset:    &offset,
 		}
-		ok, err := statConfigurationService.GetStatsShort(input)
-		if err != nil {
-			logrus.Error(err)
+		ok, errOK := statConfigurationService.GetStatsShort(input)
+		if errOK != nil {
+			logrus.Error(errOK)
 
-			return err
-		} else {
-			logrus.Infof("Response CLI success: %+v", ok)
+			return errOK
 		}
+
+		logrus.Infof("Response CLI success: %+v", ok)
 
 		return nil
 	},
@@ -51,6 +53,7 @@ var GetStatsCmd = &cobra.Command{
 func init() {
 	GetStatsCmd.Flags().String("namespace", "", "Namespace")
 	_ = GetStatsCmd.MarkFlagRequired("namespace")
+	GetStatsCmd.Flags().String("cycleIds", "", "Cycle ids")
 	GetStatsCmd.Flags().Bool("isGlobal", false, "Is global")
 	GetStatsCmd.Flags().Int32("limit", 20, "Limit")
 	GetStatsCmd.Flags().Int32("offset", 0, "Offset")

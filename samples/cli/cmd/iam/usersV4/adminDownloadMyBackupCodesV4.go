@@ -8,6 +8,7 @@ package usersV4
 
 import (
 	"bytes"
+	"os"
 
 	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclient/users_v4"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
@@ -27,16 +28,21 @@ var AdminDownloadMyBackupCodesV4Cmd = &cobra.Command{
 			Client:          factory.NewIamClient(&repository.ConfigRepositoryImpl{}),
 			TokenRepository: &repository.TokenRepositoryImpl{},
 		}
-		input := &users_v4.AdminDownloadMyBackupCodesV4Params{}
-		writer := bytes.NewBuffer(nil)
-		ok, err := usersV4Service.AdminDownloadMyBackupCodesV4Short(input, writer)
-		if err != nil {
-			logrus.Error(err)
-
-			return err
-		} else {
-			logrus.Infof("Response CLI success: %+v", ok)
+		file, errFile := os.Create("file")
+		logrus.Infof("Output %v", file)
+		if errFile != nil {
+			return errFile
 		}
+		writer := bytes.NewBuffer(nil)
+		input := &users_v4.AdminDownloadMyBackupCodesV4Params{}
+		ok, errOK := usersV4Service.AdminDownloadMyBackupCodesV4Short(input, writer)
+		if errOK != nil {
+			logrus.Error(errOK)
+
+			return errOK
+		}
+
+		logrus.Infof("Response CLI success: %+v", ok)
 
 		return nil
 	},

@@ -1,4 +1,38 @@
-<a name="unreleased"></a>
+<a name="v0.39.0"></a>
+## [v0.39.0] - 2023-02-28
+
+### Chore
+- rename to snake case file
+- remove sensitive log message
+- add compare link between versions
+- remove unnecessary file
+- update changelog for new release
+- add comment in pipeline step
+- update additional initialism for go swagger generator
+
+### Feat
+- add integration test for lobby service
+- add support for reporting service
+- **docs:** add common use case docs for reporting service
+- **samples:** add aws lambda sample app update version
+- **samples:** getting-started - remove logrus
+- **samples:** getting-started - use specific version of sdk
+- **sdk:** add auth validator
+- **test:** add auth validator
+- **test:** add integration test for reporting service
+
+### Fix
+- updated lobby notification model
+- **sdk:** generate notification typo
+
+
+<a name="v0.35.1"></a>
+## [v0.35.1] - 2023-02-22
+### Chore
+- remove sensitive log message
+
+
+<a name="v0.38.0"></a>
 ## [v0.38.0] - 2023-02-13
 
 ### Chore

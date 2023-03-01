@@ -41,14 +41,14 @@ var SingleAdminUpdateChannelCmd = &cobra.Command{
 			ChannelID: channelId,
 			Namespace: namespace,
 		}
-		ok, err := adminChannelService.SingleAdminUpdateChannelShort(input)
-		if err != nil {
-			logrus.Error(err)
+		ok, errOK := adminChannelService.SingleAdminUpdateChannelShort(input)
+		if errOK != nil {
+			logrus.Error(errOK)
 
-			return err
-		} else {
-			logrus.Infof("Response CLI success: %+v", ok)
+			return errOK
 		}
+
+		logrus.Infof("Response CLI success: %+v", ok)
 
 		return nil
 	},

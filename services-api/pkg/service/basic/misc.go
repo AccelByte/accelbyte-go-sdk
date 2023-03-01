@@ -428,6 +428,15 @@ func (aaa *MiscService) GetTimeZonesShort(input *misc.GetTimeZonesParams) ([]str
 }
 
 func (aaa *MiscService) PublicGetTimeShort(input *misc.PublicGetTimeParams) (*basicclientmodels.RetrieveTimeResponse, error) {
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  aaa.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := aaa.Client.Misc.PublicGetTimeShort(input)
 	if err != nil {
 		return nil, err
@@ -437,6 +446,15 @@ func (aaa *MiscService) PublicGetTimeShort(input *misc.PublicGetTimeParams) (*ba
 }
 
 func (aaa *MiscService) PublicGetCountriesShort(input *misc.PublicGetCountriesParams) ([]*basicclientmodels.CountryObject, error) {
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  aaa.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := aaa.Client.Misc.PublicGetCountriesShort(input)
 	if err != nil {
 		return nil, err
@@ -446,6 +464,15 @@ func (aaa *MiscService) PublicGetCountriesShort(input *misc.PublicGetCountriesPa
 }
 
 func (aaa *MiscService) PublicGetLanguagesShort(input *misc.PublicGetLanguagesParams) (map[string]interface{}, error) {
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  aaa.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := aaa.Client.Misc.PublicGetLanguagesShort(input)
 	if err != nil {
 		return nil, err
@@ -455,6 +482,15 @@ func (aaa *MiscService) PublicGetLanguagesShort(input *misc.PublicGetLanguagesPa
 }
 
 func (aaa *MiscService) PublicGetTimeZonesShort(input *misc.PublicGetTimeZonesParams) ([]string, error) {
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  aaa.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := aaa.Client.Misc.PublicGetTimeZonesShort(input)
 	if err != nil {
 		return nil, err

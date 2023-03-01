@@ -7,8 +7,6 @@
 package users
 
 import (
-	"net/http"
-
 	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclient/users"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/iam"
@@ -30,23 +28,19 @@ var PublicForcePlatformLinkV3Cmd = &cobra.Command{
 		ticket, _ := cmd.Flags().GetString("ticket")
 		namespace, _ := cmd.Flags().GetString("namespace")
 		platformId, _ := cmd.Flags().GetString("platformId")
-		httpClient := &http.Client{
-			CheckRedirect: func(req *http.Request, via []*http.Request) error {
-				return http.ErrUseLastResponse
-			},
-		}
 		input := &users.PublicForcePlatformLinkV3Params{
 			Ticket:     ticket,
 			Namespace:  namespace,
 			PlatformID: platformId,
-			HTTPClient: httpClient,
 		}
-		errInput := usersService.PublicForcePlatformLinkV3Short(input)
-		if errInput != nil {
-			logrus.Error(errInput)
+		errNoContent := usersService.PublicForcePlatformLinkV3Short(input)
+		if errNoContent != nil {
+			logrus.Error(errNoContent)
 
-			return errInput
+			return errNoContent
 		}
+
+		logrus.Infof("Response CLI success.")
 
 		return nil
 	},

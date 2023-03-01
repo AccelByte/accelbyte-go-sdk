@@ -31,12 +31,14 @@ var DeleteNotificationTemplateSlugV1AdminCmd = &cobra.Command{
 			Namespace:    namespace,
 			TemplateSlug: templateSlug,
 		}
-		errInput := notificationService.DeleteNotificationTemplateSlugV1AdminShort(input)
-		if errInput != nil {
-			logrus.Error(errInput)
+		errNoContent := notificationService.DeleteNotificationTemplateSlugV1AdminShort(input)
+		if errNoContent != nil {
+			logrus.Error(errNoContent)
 
-			return errInput
+			return errNoContent
 		}
+
+		logrus.Infof("Response CLI success.")
 
 		return nil
 	},

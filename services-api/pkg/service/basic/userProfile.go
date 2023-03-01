@@ -896,6 +896,15 @@ func (aaa *UserProfileService) UpdateUserProfileStatusShort(input *user_profile.
 }
 
 func (aaa *UserProfileService) PublicGetUserProfilePublicInfoByIdsShort(input *user_profile.PublicGetUserProfilePublicInfoByIdsParams) ([]*basicclientmodels.UserProfilePublicInfo, error) {
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  aaa.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := aaa.Client.UserProfile.PublicGetUserProfilePublicInfoByIdsShort(input)
 	if err != nil {
 		return nil, err
@@ -905,6 +914,15 @@ func (aaa *UserProfileService) PublicGetUserProfilePublicInfoByIdsShort(input *u
 }
 
 func (aaa *UserProfileService) PublicGetUserProfileInfoByPublicIDShort(input *user_profile.PublicGetUserProfileInfoByPublicIDParams) (*basicclientmodels.UserProfilePublicInfo, error) {
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  aaa.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := aaa.Client.UserProfile.PublicGetUserProfileInfoByPublicIDShort(input)
 	if err != nil {
 		return nil, err
@@ -1164,6 +1182,15 @@ func (aaa *UserProfileService) PublicCreateUserProfileShort(input *user_profile.
 }
 
 func (aaa *UserProfileService) PublicGetCustomAttributesInfoShort(input *user_profile.PublicGetCustomAttributesInfoParams) (map[string]interface{}, error) {
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  aaa.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := aaa.Client.UserProfile.PublicGetCustomAttributesInfoShort(input)
 	if err != nil {
 		return nil, err
@@ -1198,6 +1225,15 @@ func (aaa *UserProfileService) PublicUpdateCustomAttributesPartiallyShort(input 
 }
 
 func (aaa *UserProfileService) PublicGetUserProfilePublicInfoShort(input *user_profile.PublicGetUserProfilePublicInfoParams) (*basicclientmodels.UserProfilePublicInfo, error) {
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  aaa.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := aaa.Client.UserProfile.PublicGetUserProfilePublicInfoShort(input)
 	if err != nil {
 		return nil, err

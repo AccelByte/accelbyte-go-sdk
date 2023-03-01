@@ -31,12 +31,14 @@ var AnonymizeFulfillmentCmd = &cobra.Command{
 			Namespace: namespace,
 			UserID:    userId,
 		}
-		errInput := anonymizationService.AnonymizeFulfillmentShort(input)
-		if errInput != nil {
-			logrus.Error(errInput)
+		errNoContent := anonymizationService.AnonymizeFulfillmentShort(input)
+		if errNoContent != nil {
+			logrus.Error(errNoContent)
 
-			return errInput
+			return errNoContent
 		}
+
+		logrus.Infof("Response CLI success.")
 
 		return nil
 	},

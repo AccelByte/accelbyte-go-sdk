@@ -60,8 +60,7 @@ func NewGetSteamIAPConfigParamsWithHTTPClient(client *http.Client) *GetSteamIAPC
 	}
 }
 
-/*
-GetSteamIAPConfigParams contains all the parameters to send to the API endpoint
+/*GetSteamIAPConfigParams contains all the parameters to send to the API endpoint
 for the get steam IAP config operation typically these are written to a http.Request
 */
 type GetSteamIAPConfigParams struct {

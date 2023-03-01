@@ -41,12 +41,14 @@ var PublicPlatformUnlinkV3Cmd = &cobra.Command{
 			Namespace:  namespace,
 			PlatformID: platformId,
 		}
-		errInput := usersService.PublicPlatformUnlinkV3Short(input)
-		if errInput != nil {
-			logrus.Error(errInput)
+		errNoContent := usersService.PublicPlatformUnlinkV3Short(input)
+		if errNoContent != nil {
+			logrus.Error(errNoContent)
 
-			return errInput
+			return errNoContent
 		}
+
+		logrus.Infof("Response CLI success.")
 
 		return nil
 	},

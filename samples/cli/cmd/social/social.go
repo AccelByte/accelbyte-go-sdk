@@ -12,6 +12,7 @@ import (
 	"github.com/AccelByte/sample-apps/cmd/social/slot"
 	"github.com/AccelByte/sample-apps/cmd/social/slotConfig"
 	"github.com/AccelByte/sample-apps/cmd/social/statConfiguration"
+	"github.com/AccelByte/sample-apps/cmd/social/statCycleConfiguration"
 	"github.com/AccelByte/sample-apps/cmd/social/userStatistic"
 	"github.com/spf13/cobra"
 )
@@ -49,6 +50,12 @@ func init() {
 	SocialCmd.AddCommand(slot.PublicUpdateUserNamespaceSlotMetadataCmd)
 	SocialCmd.AddCommand(globalStatistic.GetGlobalStatItemsCmd)
 	SocialCmd.AddCommand(globalStatistic.GetGlobalStatItemByStatCodeCmd)
+	SocialCmd.AddCommand(statCycleConfiguration.GetStatCyclesCmd)
+	SocialCmd.AddCommand(statCycleConfiguration.CreateStatCycleCmd)
+	SocialCmd.AddCommand(statCycleConfiguration.GetStatCycleCmd)
+	SocialCmd.AddCommand(statCycleConfiguration.UpdateStatCycleCmd)
+	SocialCmd.AddCommand(statCycleConfiguration.DeleteStatCycleCmd)
+	SocialCmd.AddCommand(statCycleConfiguration.BulkAddStatsCmd)
 	SocialCmd.AddCommand(userStatistic.BulkFetchStatItemsCmd)
 	SocialCmd.AddCommand(userStatistic.BulkIncUserStatItemCmd)
 	SocialCmd.AddCommand(userStatistic.BulkIncUserStatItemValueCmd)
@@ -74,6 +81,8 @@ func init() {
 	SocialCmd.AddCommand(userStatistic.ResetUserStatItemValueCmd)
 	SocialCmd.AddCommand(globalStatistic.GetGlobalStatItems1Cmd)
 	SocialCmd.AddCommand(globalStatistic.GetGlobalStatItemByStatCode1Cmd)
+	SocialCmd.AddCommand(statCycleConfiguration.GetStatCycles1Cmd)
+	SocialCmd.AddCommand(statCycleConfiguration.GetStatCycle1Cmd)
 	SocialCmd.AddCommand(userStatistic.BulkFetchStatItems1Cmd)
 	SocialCmd.AddCommand(userStatistic.PublicBulkIncUserStatItemCmd)
 	SocialCmd.AddCommand(userStatistic.PublicBulkIncUserStatItemValueCmd)

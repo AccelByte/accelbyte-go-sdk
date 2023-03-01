@@ -60,8 +60,7 @@ func NewPublishTemplateParamsWithHTTPClient(client *http.Client) *PublishTemplat
 	}
 }
 
-/*
-PublishTemplateParams contains all the parameters to send to the API endpoint
+/*PublishTemplateParams contains all the parameters to send to the API endpoint
 for the publish template operation typically these are written to a http.Request
 */
 type PublishTemplateParams struct {

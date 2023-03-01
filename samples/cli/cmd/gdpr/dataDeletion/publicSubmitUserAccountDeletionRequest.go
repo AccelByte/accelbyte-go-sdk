@@ -7,8 +7,6 @@
 package dataDeletion
 
 import (
-	"net/http"
-
 	"github.com/AccelByte/accelbyte-go-sdk/gdpr-sdk/pkg/gdprclient/data_deletion"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/gdpr"
@@ -30,25 +28,19 @@ var PublicSubmitUserAccountDeletionRequestCmd = &cobra.Command{
 		password, _ := cmd.Flags().GetString("password")
 		namespace, _ := cmd.Flags().GetString("namespace")
 		userId, _ := cmd.Flags().GetString("userId")
-		httpClient := &http.Client{
-			CheckRedirect: func(req *http.Request, via []*http.Request) error {
-				return http.ErrUseLastResponse
-			},
-		}
 		input := &data_deletion.PublicSubmitUserAccountDeletionRequestParams{
-			Password:   password,
-			Namespace:  namespace,
-			UserID:     userId,
-			HTTPClient: httpClient,
+			Password:  password,
+			Namespace: namespace,
+			UserID:    userId,
 		}
-		ok, err := dataDeletionService.PublicSubmitUserAccountDeletionRequestShort(input)
-		if err != nil {
-			logrus.Error(err)
+		created, errCreated := dataDeletionService.PublicSubmitUserAccountDeletionRequestShort(input)
+		if errCreated != nil {
+			logrus.Error(errCreated)
 
-			return err
-		} else {
-			logrus.Infof("Response CLI success: %+v", ok)
+			return errCreated
 		}
+
+		logrus.Infof("Response CLI success: %+v", created)
 
 		return nil
 	},

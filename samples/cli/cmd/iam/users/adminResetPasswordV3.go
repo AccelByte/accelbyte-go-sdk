@@ -41,12 +41,14 @@ var AdminResetPasswordV3Cmd = &cobra.Command{
 			Namespace: namespace,
 			UserID:    userId,
 		}
-		errInput := usersService.AdminResetPasswordV3Short(input)
-		if errInput != nil {
-			logrus.Error(errInput)
+		errNoContent := usersService.AdminResetPasswordV3Short(input)
+		if errNoContent != nil {
+			logrus.Error(errNoContent)
 
-			return errInput
+			return errNoContent
 		}
+
+		logrus.Infof("Response CLI success.")
 
 		return nil
 	},

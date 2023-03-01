@@ -43,12 +43,14 @@ var GetEventsGameTelemetryV1AdminNamespacesNamespaceEventsGetCmd = &cobra.Comman
 			Offset:       &offset,
 			StartTime:    &startTime,
 		}
-		errInput := telemetryService.GetEventsGameTelemetryV1AdminNamespacesNamespaceEventsGetShort(input)
-		if errInput != nil {
-			logrus.Error(errInput)
+		errOK := telemetryService.GetEventsGameTelemetryV1AdminNamespacesNamespaceEventsGetShort(input)
+		if errOK != nil {
+			logrus.Error(errOK)
 
-			return errInput
+			return errOK
 		}
+
+		logrus.Infof("Response CLI success.")
 
 		return nil
 	},

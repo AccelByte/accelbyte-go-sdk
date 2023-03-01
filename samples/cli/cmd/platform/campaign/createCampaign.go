@@ -39,14 +39,14 @@ var CreateCampaignCmd = &cobra.Command{
 			Body:      body,
 			Namespace: namespace,
 		}
-		ok, err := campaignService.CreateCampaignShort(input)
-		if err != nil {
-			logrus.Error(err)
+		created, errCreated := campaignService.CreateCampaignShort(input)
+		if errCreated != nil {
+			logrus.Error(errCreated)
 
-			return err
-		} else {
-			logrus.Infof("Response CLI success: %+v", ok)
+			return errCreated
 		}
+
+		logrus.Infof("Response CLI success: %+v", created)
 
 		return nil
 	},

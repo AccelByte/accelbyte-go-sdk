@@ -61,7 +61,10 @@ func (aaa *StatConfigurationService) CreateStat(input *stat_configuration.Create
 	if err != nil {
 		return nil, err
 	}
-	created, conflict, err := aaa.Client.StatConfiguration.CreateStat(input, client.BearerToken(*token.AccessToken))
+	created, notFound, conflict, err := aaa.Client.StatConfiguration.CreateStat(input, client.BearerToken(*token.AccessToken))
+	if notFound != nil {
+		return nil, notFound
+	}
 	if conflict != nil {
 		return nil, conflict
 	}

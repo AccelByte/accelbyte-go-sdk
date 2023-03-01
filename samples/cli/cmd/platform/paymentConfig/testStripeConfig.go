@@ -39,14 +39,14 @@ var TestStripeConfigCmd = &cobra.Command{
 			Body:    body,
 			Sandbox: &sandbox,
 		}
-		ok, err := paymentConfigService.TestStripeConfigShort(input)
-		if err != nil {
-			logrus.Error(err)
+		ok, errOK := paymentConfigService.TestStripeConfigShort(input)
+		if errOK != nil {
+			logrus.Error(errOK)
 
-			return err
-		} else {
-			logrus.Infof("Response CLI success: %+v", ok)
+			return errOK
 		}
+
+		logrus.Infof("Response CLI success: %+v", ok)
 
 		return nil
 	},

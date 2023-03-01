@@ -29,14 +29,14 @@ var AdminGetRoleAdminStatusV3Cmd = &cobra.Command{
 		input := &roles.AdminGetRoleAdminStatusV3Params{
 			RoleID: roleId,
 		}
-		ok, err := rolesService.AdminGetRoleAdminStatusV3Short(input)
-		if err != nil {
-			logrus.Error(err)
+		ok, errOK := rolesService.AdminGetRoleAdminStatusV3Short(input)
+		if errOK != nil {
+			logrus.Error(errOK)
 
-			return err
-		} else {
-			logrus.Infof("Response CLI success: %+v", ok)
+			return errOK
 		}
+
+		logrus.Infof("Response CLI success: %+v", ok)
 
 		return nil
 	},

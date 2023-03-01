@@ -29,12 +29,14 @@ var SetDefaultPolicy2Cmd = &cobra.Command{
 		input := &policies.SetDefaultPolicy2Params{
 			PolicyID: policyId,
 		}
-		errInput := policiesService.SetDefaultPolicy2Short(input)
-		if errInput != nil {
-			logrus.Error(errInput)
+		errOK := policiesService.SetDefaultPolicy2Short(input)
+		if errOK != nil {
+			logrus.Error(errOK)
 
-			return errInput
+			return errOK
 		}
+
+		logrus.Infof("Response CLI success.")
 
 		return nil
 	},

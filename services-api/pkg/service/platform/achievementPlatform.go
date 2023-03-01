@@ -60,7 +60,7 @@ func (aaa *AchievementPlatformService) UnlockSteamUserAchievement(input *achieve
 }
 
 // deprecated(2022-01-10): please use GetXblUserAchievementsShort instead.
-func (aaa *AchievementPlatformService) GetXblUserAchievements(input *achievement_platform.GetXblUserAchievementsParams) (*platformclientmodels.ADTOObjectForQueryingXboxUserAchievements, error) {
+func (aaa *AchievementPlatformService) GetXblUserAchievements(input *achievement_platform.GetXblUserAchievementsParams) (*platformclientmodels.XblUserAchievements, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
@@ -118,7 +118,7 @@ func (aaa *AchievementPlatformService) UnlockSteamUserAchievementShort(input *ac
 	return nil
 }
 
-func (aaa *AchievementPlatformService) GetXblUserAchievementsShort(input *achievement_platform.GetXblUserAchievementsParams) (*platformclientmodels.ADTOObjectForQueryingXboxUserAchievements, error) {
+func (aaa *AchievementPlatformService) GetXblUserAchievementsShort(input *achievement_platform.GetXblUserAchievementsParams) (*platformclientmodels.XblUserAchievements, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{

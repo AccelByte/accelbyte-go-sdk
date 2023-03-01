@@ -76,10 +76,9 @@ func NewPublishTemplateNoContent() *PublishTemplateNoContent {
 	return &PublishTemplateNoContent{}
 }
 
-/*
-PublishTemplateNoContent handles this case with default header values.
+/*PublishTemplateNoContent handles this case with default header values.
 
-	No Content
+  No Content
 */
 type PublishTemplateNoContent struct {
 }
@@ -103,10 +102,9 @@ func NewPublishTemplateBadRequest() *PublishTemplateBadRequest {
 	return &PublishTemplateBadRequest{}
 }
 
-/*
-PublishTemplateBadRequest handles this case with default header values.
+/*PublishTemplateBadRequest handles this case with default header values.
 
-	Bad Request
+  Bad Request
 */
 type PublishTemplateBadRequest struct {
 	Payload *lobbyclientmodels.RestapiErrorResponseBody
@@ -157,10 +155,9 @@ func NewPublishTemplateUnauthorized() *PublishTemplateUnauthorized {
 	return &PublishTemplateUnauthorized{}
 }
 
-/*
-PublishTemplateUnauthorized handles this case with default header values.
+/*PublishTemplateUnauthorized handles this case with default header values.
 
-	Unauthorized
+  Unauthorized
 */
 type PublishTemplateUnauthorized struct {
 	Payload *lobbyclientmodels.RestapiErrorResponseBody
@@ -211,10 +208,9 @@ func NewPublishTemplateForbidden() *PublishTemplateForbidden {
 	return &PublishTemplateForbidden{}
 }
 
-/*
-PublishTemplateForbidden handles this case with default header values.
+/*PublishTemplateForbidden handles this case with default header values.
 
-	Forbidden
+  Forbidden
 */
 type PublishTemplateForbidden struct {
 	Payload *lobbyclientmodels.RestapiErrorResponseBody
@@ -265,10 +261,9 @@ func NewPublishTemplateNotFound() *PublishTemplateNotFound {
 	return &PublishTemplateNotFound{}
 }
 
-/*
-PublishTemplateNotFound handles this case with default header values.
+/*PublishTemplateNotFound handles this case with default header values.
 
-	Not Found
+  Not Found
 */
 type PublishTemplateNotFound struct {
 	Payload *lobbyclientmodels.RestapiErrorResponseBody

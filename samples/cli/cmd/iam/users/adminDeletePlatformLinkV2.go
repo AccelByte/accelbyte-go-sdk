@@ -7,8 +7,6 @@
 package users
 
 import (
-	"net/http"
-
 	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclient/users"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/iam"
@@ -31,24 +29,20 @@ var AdminDeletePlatformLinkV2Cmd = &cobra.Command{
 		platformId, _ := cmd.Flags().GetString("platformId")
 		userId, _ := cmd.Flags().GetString("userId")
 		platformNamespace, _ := cmd.Flags().GetString("platformNamespace")
-		httpClient := &http.Client{
-			CheckRedirect: func(req *http.Request, via []*http.Request) error {
-				return http.ErrUseLastResponse
-			},
-		}
 		input := &users.AdminDeletePlatformLinkV2Params{
 			PlatformNamespace: &platformNamespace,
 			Namespace:         namespace,
 			PlatformID:        platformId,
 			UserID:            userId,
-			HTTPClient:        httpClient,
 		}
-		errInput := usersService.AdminDeletePlatformLinkV2Short(input)
-		if errInput != nil {
-			logrus.Error(errInput)
+		errNoContent := usersService.AdminDeletePlatformLinkV2Short(input)
+		if errNoContent != nil {
+			logrus.Error(errNoContent)
 
-			return errInput
+			return errNoContent
 		}
+
+		logrus.Infof("Response CLI success.")
 
 		return nil
 	},

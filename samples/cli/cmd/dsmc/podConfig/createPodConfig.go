@@ -41,14 +41,14 @@ var CreatePodConfigCmd = &cobra.Command{
 			Name:      name,
 			Namespace: namespace,
 		}
-		ok, err := podConfigService.CreatePodConfigShort(input)
-		if err != nil {
-			logrus.Error(err)
+		created, errCreated := podConfigService.CreatePodConfigShort(input)
+		if errCreated != nil {
+			logrus.Error(errCreated)
 
-			return err
-		} else {
-			logrus.Infof("Response CLI success: %+v", ok)
+			return errCreated
 		}
+
+		logrus.Infof("Response CLI success: %+v", created)
 
 		return nil
 	},

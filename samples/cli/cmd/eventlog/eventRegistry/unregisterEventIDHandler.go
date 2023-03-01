@@ -29,12 +29,14 @@ var UnregisterEventIDHandlerCmd = &cobra.Command{
 		input := &event_registry.UnregisterEventIDHandlerParams{
 			EventID: eventId,
 		}
-		errInput := eventRegistryService.UnregisterEventIDHandlerShort(input)
-		if errInput != nil {
-			logrus.Error(errInput)
+		errNoContent := eventRegistryService.UnregisterEventIDHandlerShort(input)
+		if errNoContent != nil {
+			logrus.Error(errNoContent)
 
-			return errInput
+			return errNoContent
 		}
+
+		logrus.Infof("Response CLI success.")
 
 		return nil
 	},

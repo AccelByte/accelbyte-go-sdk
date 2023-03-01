@@ -29,12 +29,14 @@ var DeleteGoogleIAPConfigCmd = &cobra.Command{
 		input := &iap.DeleteGoogleIAPConfigParams{
 			Namespace: namespace,
 		}
-		errInput := iapService.DeleteGoogleIAPConfigShort(input)
-		if errInput != nil {
-			logrus.Error(errInput)
+		errNoContent := iapService.DeleteGoogleIAPConfigShort(input)
+		if errNoContent != nil {
+			logrus.Error(errNoContent)
 
-			return errInput
+			return errNoContent
 		}
+
+		logrus.Infof("Response CLI success.")
 
 		return nil
 	},

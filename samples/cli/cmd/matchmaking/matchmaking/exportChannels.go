@@ -8,6 +8,7 @@ package matchmaking
 
 import (
 	"bytes"
+	"os"
 
 	matchmaking_ "github.com/AccelByte/accelbyte-go-sdk/matchmaking-sdk/pkg/matchmakingclient/matchmaking"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
@@ -28,18 +29,23 @@ var ExportChannelsCmd = &cobra.Command{
 			TokenRepository: &repository.TokenRepositoryImpl{},
 		}
 		namespace, _ := cmd.Flags().GetString("namespace")
+		file, errFile := os.Create("file")
+		logrus.Infof("Output %v", file)
+		if errFile != nil {
+			return errFile
+		}
+		writer := bytes.NewBuffer(nil)
 		input := &matchmaking_.ExportChannelsParams{
 			Namespace: namespace,
 		}
-		writer := bytes.NewBuffer(nil)
-		ok, err := matchmakingService.ExportChannelsShort(input, writer)
-		if err != nil {
-			logrus.Error(err)
+		ok, errOK := matchmakingService.ExportChannelsShort(input, writer)
+		if errOK != nil {
+			logrus.Error(errOK)
 
-			return err
-		} else {
-			logrus.Infof("Response CLI success: %+v", ok)
+			return errOK
 		}
+
+		logrus.Infof("Response CLI success: %+v", ok)
 
 		return nil
 	},

@@ -29,14 +29,14 @@ var GetTimeZonesCmd = &cobra.Command{
 		input := &misc.GetTimeZonesParams{
 			Namespace: namespace,
 		}
-		ok, err := miscService.GetTimeZonesShort(input)
-		if err != nil {
-			logrus.Error(err)
+		ok, errOK := miscService.GetTimeZonesShort(input)
+		if errOK != nil {
+			logrus.Error(errOK)
 
-			return err
-		} else {
-			logrus.Infof("Response CLI success: %+v", ok)
+			return errOK
 		}
+
+		logrus.Infof("Response CLI success: %+v", ok)
 
 		return nil
 	},

@@ -1005,6 +1005,15 @@ func (aaa *SeasonService) GetUserSeasonShort(input *season.GetUserSeasonParams) 
 }
 
 func (aaa *SeasonService) PublicGetCurrentSeasonShort(input *season.PublicGetCurrentSeasonParams) (*seasonpassclientmodels.LocalizedSeasonInfo, error) {
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  aaa.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := aaa.Client.Season.PublicGetCurrentSeasonShort(input)
 	if err != nil {
 		return nil, err

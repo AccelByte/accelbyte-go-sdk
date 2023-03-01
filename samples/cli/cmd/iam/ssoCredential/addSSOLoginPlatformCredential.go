@@ -41,14 +41,14 @@ var AddSSOLoginPlatformCredentialCmd = &cobra.Command{
 			Namespace:  namespace,
 			PlatformID: platformId,
 		}
-		ok, err := ssoCredentialService.AddSSOLoginPlatformCredentialShort(input)
-		if err != nil {
-			logrus.Error(err)
+		created, errCreated := ssoCredentialService.AddSSOLoginPlatformCredentialShort(input)
+		if errCreated != nil {
+			logrus.Error(errCreated)
 
-			return err
-		} else {
-			logrus.Infof("Response CLI success: %+v", ok)
+			return errCreated
 		}
+
+		logrus.Infof("Response CLI success: %+v", created)
 
 		return nil
 	},

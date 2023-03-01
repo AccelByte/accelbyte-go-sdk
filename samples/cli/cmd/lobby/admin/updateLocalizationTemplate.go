@@ -43,12 +43,14 @@ var UpdateLocalizationTemplateCmd = &cobra.Command{
 			TemplateLanguage: templateLanguage,
 			TemplateSlug:     templateSlug,
 		}
-		errInput := adminService.UpdateLocalizationTemplateShort(input)
-		if errInput != nil {
-			logrus.Error(errInput)
+		errNoContent := adminService.UpdateLocalizationTemplateShort(input)
+		if errNoContent != nil {
+			logrus.Error(errNoContent)
 
-			return errInput
+			return errNoContent
 		}
+
+		logrus.Infof("Response CLI success.")
 
 		return nil
 	},

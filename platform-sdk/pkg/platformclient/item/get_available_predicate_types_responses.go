@@ -63,7 +63,7 @@ func NewGetAvailablePredicateTypesOK() *GetAvailablePredicateTypesOK {
   successful operation
 */
 type GetAvailablePredicateTypesOK struct {
-	Payload []*platformclientmodels.AvailablePredicateObject
+	Payload []*platformclientmodels.AvailablePredicate
 }
 
 func (o *GetAvailablePredicateTypesOK) Error() string {
@@ -85,7 +85,7 @@ func (o *GetAvailablePredicateTypesOK) ToJSONString() string {
 	return fmt.Sprintf("%+v", string(b))
 }
 
-func (o *GetAvailablePredicateTypesOK) GetPayload() []*platformclientmodels.AvailablePredicateObject {
+func (o *GetAvailablePredicateTypesOK) GetPayload() []*platformclientmodels.AvailablePredicate {
 	return o.Payload
 }
 

@@ -48,10 +48,9 @@ func NewDeleteConfigNoContent() *DeleteConfigNoContent {
 	return &DeleteConfigNoContent{}
 }
 
-/*
-DeleteConfigNoContent handles this case with default header values.
+/*DeleteConfigNoContent handles this case with default header values.
 
-	Delete equ8 config successfully
+  Delete equ8 config successfully
 */
 type DeleteConfigNoContent struct {
 }

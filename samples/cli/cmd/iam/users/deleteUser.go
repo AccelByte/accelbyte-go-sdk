@@ -31,12 +31,14 @@ var DeleteUserCmd = &cobra.Command{
 			Namespace: namespace,
 			UserID:    userId,
 		}
-		errInput := usersService.DeleteUserShort(input)
-		if errInput != nil {
-			logrus.Error(errInput)
+		errNoContent := usersService.DeleteUserShort(input)
+		if errNoContent != nil {
+			logrus.Error(errNoContent)
 
-			return errInput
+			return errNoContent
 		}
+
+		logrus.Infof("Response CLI success.")
 
 		return nil
 	},

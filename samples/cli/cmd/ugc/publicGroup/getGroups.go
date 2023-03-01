@@ -35,14 +35,14 @@ var GetGroupsCmd = &cobra.Command{
 			Limit:     &limit,
 			Offset:    &offset,
 		}
-		ok, err := publicGroupService.GetGroupsShort(input)
-		if err != nil {
-			logrus.Error(err)
+		ok, errOK := publicGroupService.GetGroupsShort(input)
+		if errOK != nil {
+			logrus.Error(errOK)
 
-			return err
-		} else {
-			logrus.Infof("Response CLI success: %+v", ok)
+			return errOK
 		}
+
+		logrus.Infof("Response CLI success: %+v", ok)
 
 		return nil
 	},

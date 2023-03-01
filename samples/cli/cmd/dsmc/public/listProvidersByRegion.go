@@ -29,14 +29,14 @@ var ListProvidersByRegionCmd = &cobra.Command{
 		input := &public.ListProvidersByRegionParams{
 			Region: region,
 		}
-		ok, err := publicService.ListProvidersByRegionShort(input)
-		if err != nil {
-			logrus.Error(err)
+		ok, errOK := publicService.ListProvidersByRegionShort(input)
+		if errOK != nil {
+			logrus.Error(errOK)
 
-			return err
-		} else {
-			logrus.Infof("Response CLI success: %+v", ok)
+			return errOK
 		}
+
+		logrus.Infof("Response CLI success: %+v", ok)
 
 		return nil
 	},

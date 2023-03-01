@@ -59,12 +59,14 @@ var PublicNormalizePaymentReturnUrlCmd = &cobra.Command{
 			PaymentProvider: paymentProvider,
 			ReturnURL:       returnUrl,
 		}
-		errInput := paymentStationService.PublicNormalizePaymentReturnURLShort(input)
-		if errInput != nil {
-			logrus.Error(errInput)
+		errNoContent := paymentStationService.PublicNormalizePaymentReturnURLShort(input)
+		if errNoContent != nil {
+			logrus.Error(errNoContent)
 
-			return errInput
+			return errNoContent
 		}
+
+		logrus.Infof("Response CLI success.")
 
 		return nil
 	},

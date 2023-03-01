@@ -31,12 +31,14 @@ var SingleAdminDeleteChannelCmd = &cobra.Command{
 			ChannelID: channelId,
 			Namespace: namespace,
 		}
-		errInput := adminChannelService.SingleAdminDeleteChannelShort(input)
-		if errInput != nil {
-			logrus.Error(errInput)
+		errNoContent := adminChannelService.SingleAdminDeleteChannelShort(input)
+		if errNoContent != nil {
+			logrus.Error(errNoContent)
 
-			return errInput
+			return errNoContent
 		}
+
+		logrus.Infof("Response CLI success.")
 
 		return nil
 	},

@@ -31,12 +31,14 @@ var PublicPartyLeaveCmd = &cobra.Command{
 			Namespace: namespace,
 			PartyID:   partyId,
 		}
-		errInput := partyService.PublicPartyLeaveShort(input)
-		if errInput != nil {
-			logrus.Error(errInput)
+		errNoContent := partyService.PublicPartyLeaveShort(input)
+		if errNoContent != nil {
+			logrus.Error(errNoContent)
 
-			return errInput
+			return errNoContent
 		}
+
+		logrus.Infof("Response CLI success.")
 
 		return nil
 	},

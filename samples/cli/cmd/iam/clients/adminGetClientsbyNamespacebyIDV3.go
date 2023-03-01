@@ -31,14 +31,14 @@ var AdminGetClientsbyNamespacebyIDV3Cmd = &cobra.Command{
 			ClientID:  clientId,
 			Namespace: namespace,
 		}
-		ok, err := clientsService.AdminGetClientsbyNamespacebyIDV3Short(input)
-		if err != nil {
-			logrus.Error(err)
+		ok, errOK := clientsService.AdminGetClientsbyNamespacebyIDV3Short(input)
+		if errOK != nil {
+			logrus.Error(errOK)
 
-			return err
-		} else {
-			logrus.Infof("Response CLI success: %+v", ok)
+			return errOK
 		}
+
+		logrus.Infof("Response CLI success: %+v", ok)
 
 		return nil
 	},

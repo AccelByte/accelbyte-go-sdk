@@ -51,6 +51,8 @@ type ClientService interface {
 	GetGroupListAdminV1Short(params *GetGroupListAdminV1Params, authInfo runtime.ClientAuthInfoWriter) (*GetGroupListAdminV1OK, error)
 	GetGroupListPublicV1(params *GetGroupListPublicV1Params, authInfo runtime.ClientAuthInfoWriter) (*GetGroupListPublicV1OK, *GetGroupListPublicV1BadRequest, *GetGroupListPublicV1Unauthorized, *GetGroupListPublicV1Forbidden, *GetGroupListPublicV1InternalServerError, error)
 	GetGroupListPublicV1Short(params *GetGroupListPublicV1Params, authInfo runtime.ClientAuthInfoWriter) (*GetGroupListPublicV1OK, error)
+	GetListGroupByIDsAdminV2(params *GetListGroupByIDsAdminV2Params, authInfo runtime.ClientAuthInfoWriter) (*GetListGroupByIDsAdminV2OK, *GetListGroupByIDsAdminV2BadRequest, *GetListGroupByIDsAdminV2Unauthorized, *GetListGroupByIDsAdminV2Forbidden, *GetListGroupByIDsAdminV2InternalServerError, error)
+	GetListGroupByIDsAdminV2Short(params *GetListGroupByIDsAdminV2Params, authInfo runtime.ClientAuthInfoWriter) (*GetListGroupByIDsAdminV2OK, error)
 	GetListGroupByIDsV2(params *GetListGroupByIDsV2Params, authInfo runtime.ClientAuthInfoWriter) (*GetListGroupByIDsV2OK, *GetListGroupByIDsV2BadRequest, *GetListGroupByIDsV2Unauthorized, *GetListGroupByIDsV2Forbidden, *GetListGroupByIDsV2InternalServerError, error)
 	GetListGroupByIDsV2Short(params *GetListGroupByIDsV2Params, authInfo runtime.ClientAuthInfoWriter) (*GetListGroupByIDsV2OK, error)
 	GetSingleGroupAdminV1(params *GetSingleGroupAdminV1Params, authInfo runtime.ClientAuthInfoWriter) (*GetSingleGroupAdminV1OK, *GetSingleGroupAdminV1BadRequest, *GetSingleGroupAdminV1Unauthorized, *GetSingleGroupAdminV1Forbidden, *GetSingleGroupAdminV1NotFound, *GetSingleGroupAdminV1InternalServerError, error)
@@ -1265,6 +1267,126 @@ func (a *Client) GetGroupListPublicV1Short(params *GetGroupListPublicV1Params, a
 	case *GetGroupListPublicV1Forbidden:
 		return nil, v
 	case *GetGroupListPublicV1InternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+Deprecated: Use GetListGroupByIDsAdminV2Short instead.
+
+  GetListGroupByIDsAdminV2 gets list of groups by group ids
+
+  &lt;p&gt;Required valid user authentication &lt;/p&gt;
+			&lt;p&gt;Get list of groups by group Ids.&lt;/p&gt;
+			&lt;p&gt;Action Code: 73303&lt;/p&gt;
+
+*/
+func (a *Client) GetListGroupByIDsAdminV2(params *GetListGroupByIDsAdminV2Params, authInfo runtime.ClientAuthInfoWriter) (*GetListGroupByIDsAdminV2OK, *GetListGroupByIDsAdminV2BadRequest, *GetListGroupByIDsAdminV2Unauthorized, *GetListGroupByIDsAdminV2Forbidden, *GetListGroupByIDsAdminV2InternalServerError, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewGetListGroupByIDsAdminV2Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "getListGroupByIDsAdminV2",
+		Method:             "POST",
+		PathPattern:        "/group/v2/admin/namespaces/{namespace}/groups/bulk",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &GetListGroupByIDsAdminV2Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, nil, nil, nil, nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *GetListGroupByIDsAdminV2OK:
+		return v, nil, nil, nil, nil, nil
+
+	case *GetListGroupByIDsAdminV2BadRequest:
+		return nil, v, nil, nil, nil, nil
+
+	case *GetListGroupByIDsAdminV2Unauthorized:
+		return nil, nil, v, nil, nil, nil
+
+	case *GetListGroupByIDsAdminV2Forbidden:
+		return nil, nil, nil, v, nil, nil
+
+	case *GetListGroupByIDsAdminV2InternalServerError:
+		return nil, nil, nil, nil, v, nil
+
+	default:
+		return nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+  GetListGroupByIDsAdminV2Short gets list of groups by group ids
+
+  &lt;p&gt;Required valid user authentication &lt;/p&gt;
+			&lt;p&gt;Get list of groups by group Ids.&lt;/p&gt;
+			&lt;p&gt;Action Code: 73303&lt;/p&gt;
+
+*/
+func (a *Client) GetListGroupByIDsAdminV2Short(params *GetListGroupByIDsAdminV2Params, authInfo runtime.ClientAuthInfoWriter) (*GetListGroupByIDsAdminV2OK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewGetListGroupByIDsAdminV2Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "getListGroupByIDsAdminV2",
+		Method:             "POST",
+		PathPattern:        "/group/v2/admin/namespaces/{namespace}/groups/bulk",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &GetListGroupByIDsAdminV2Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *GetListGroupByIDsAdminV2OK:
+		return v, nil
+	case *GetListGroupByIDsAdminV2BadRequest:
+		return nil, v
+	case *GetListGroupByIDsAdminV2Unauthorized:
+		return nil, v
+	case *GetListGroupByIDsAdminV2Forbidden:
+		return nil, v
+	case *GetListGroupByIDsAdminV2InternalServerError:
 		return nil, v
 
 	default:

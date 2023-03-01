@@ -33,14 +33,14 @@ var PublicGetAchievementCmd = &cobra.Command{
 			Namespace:       namespace,
 			Language:        language,
 		}
-		ok, err := achievementsService.PublicGetAchievementShort(input)
-		if err != nil {
-			logrus.Error(err)
+		ok, errOK := achievementsService.PublicGetAchievementShort(input)
+		if errOK != nil {
+			logrus.Error(errOK)
 
-			return err
-		} else {
-			logrus.Infof("Response CLI success: %+v", ok)
+			return errOK
 		}
+
+		logrus.Infof("Response CLI success: %+v", ok)
 
 		return nil
 	},

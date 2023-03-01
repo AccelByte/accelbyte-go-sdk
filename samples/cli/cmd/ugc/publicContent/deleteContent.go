@@ -35,12 +35,14 @@ var DeleteContentCmd = &cobra.Command{
 			Namespace: namespace,
 			UserID:    userId,
 		}
-		errInput := publicContentService.DeleteContentShort(input)
-		if errInput != nil {
-			logrus.Error(errInput)
+		errNoContent := publicContentService.DeleteContentShort(input)
+		if errNoContent != nil {
+			logrus.Error(errNoContent)
 
-			return errInput
+			return errNoContent
 		}
+
+		logrus.Infof("Response CLI success.")
 
 		return nil
 	},

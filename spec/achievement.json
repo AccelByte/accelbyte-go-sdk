@@ -3,7 +3,7 @@
   "info": {
     "description": "Justice Achievement Service",
     "title": "justice-achievement-service",
-    "version": "2.14.0"
+    "version": "2.15.0"
   },
   "schemes": [
     "https"
@@ -693,6 +693,266 @@
         ]
       }
     },
+    "/achievement/v1/admin/namespaces/{namespace}/global/achievements": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "\u0026lt;p\u0026gt;Required permission \n\t\t\t\u0026lt;code\u0026gt;ADMIN:NAMESPACE:{namespace}:ACHIEVEMENT [READ]\u0026lt;/code\u0026gt; and scope \u0026lt;code\u0026gt;social\u0026lt;/code\u0026gt;\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;Note:\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt; Global achievement status value mean: \u0026lt;code\u0026gt;status = 1 (in progress)\u0026lt;/code\u0026gt; and \u0026lt;code\u0026gt;status = 2 (unlocked)\u0026lt;/code\u0026gt;\u0026lt;/p\u0026gt;",
+        "operationId": "AdminListGlobalAchievements",
+        "parameters": [
+          {
+            "description": "namespace of the game",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "filter by achievement codes. multiple value separated by comma",
+            "in": "query",
+            "name": "achievementCodes",
+            "type": "string"
+          },
+          {
+            "default": 10,
+            "description": "the maximum number of data that may be returned (1...100)",
+            "in": "query",
+            "name": "limit",
+            "type": "integer"
+          },
+          {
+            "default": 0,
+            "description": "offset",
+            "in": "query",
+            "name": "offset",
+            "type": "integer"
+          },
+          {
+            "description": "sort by, allow values: [achievedAt, achievedAt:asc, achievedAt:desc, createdAt, createdAt:asc, createdAt:desc]",
+            "in": "query",
+            "name": "sortBy",
+            "type": "string"
+          },
+          {
+            "description": "filter by status. available value: [in_progress, unlocked]",
+            "in": "query",
+            "name": "status",
+            "type": "string"
+          },
+          {
+            "collectionFormat": "csv",
+            "description": "tags",
+            "in": "query",
+            "items": {
+              "type": "string"
+            },
+            "name": "tags",
+            "type": "array"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/models.PaginatedGlobalAchievementResponse"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          }
+        },
+        "security": [
+          {
+            "HasPermission": [
+              "ADMIN:NAMESPACE:{namespace}:ACHIEVEMENT [READ]"
+            ],
+            "HasScope": [
+              "social"
+            ],
+            "authorization": []
+          }
+        ],
+        "summary": "Admin query global achievements [include achieved and in-progress]",
+        "tags": [
+          "Global Achievements"
+        ]
+      }
+    },
+    "/achievement/v1/admin/namespaces/{namespace}/global/achievements/{achievementCode}/contributors": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "\u0026lt;p\u0026gt;Required permission \n\t\t\t\u0026lt;code\u0026gt;ADMIN:NAMESPACE:{namespace}:ACHIEVEMENT [READ]\u0026lt;/code\u0026gt; and scope \u0026lt;code\u0026gt;social\u0026lt;/code\u0026gt;\u0026lt;/p\u0026gt;",
+        "operationId": "AdminListGlobalAchievementContributors",
+        "parameters": [
+          {
+            "description": "achievement code",
+            "in": "path",
+            "name": "achievementCode",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "namespace of the game",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "default": 10,
+            "description": "the maximum number of data that may be returned (1...100)",
+            "in": "query",
+            "name": "limit",
+            "type": "integer"
+          },
+          {
+            "default": 0,
+            "description": "offset",
+            "in": "query",
+            "name": "offset",
+            "type": "integer"
+          },
+          {
+            "default": "contributedValue:desc",
+            "description": "sort by, default is 'contributedValue:desc', allow values: [contributedValue, contributedValue:asc, contributedValue:desc]",
+            "in": "query",
+            "name": "sortBy",
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/models.PaginatedContributorResponse"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          }
+        },
+        "security": [
+          {
+            "HasPermission": [
+              "ADMIN:NAMESPACE:{namespace}:ACHIEVEMENT [READ]"
+            ],
+            "HasScope": [
+              "social"
+            ],
+            "authorization": []
+          }
+        ],
+        "summary": "Admin list contributors of global achievement",
+        "tags": [
+          "Global Achievements"
+        ]
+      }
+    },
+    "/achievement/v1/admin/namespaces/{namespace}/global/achievements/{achievementCode}/reset": {
+      "delete": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "\u0026lt;p\u0026gt;[TEST FACILITY ONLY]\u0026lt;/p\u0026gt;\n                         \u0026lt;p\u0026gt;Required permission \n                         \u0026lt;code\u0026gt;ADMIN:NAMESPACE:{namespace}:ACHIEVEMENT [DELETE]\u0026lt;/code\u0026gt; and scope \u0026lt;code\u0026gt;social\u0026lt;/code\u0026gt;\n                  \u0026lt;/p\u0026gt;",
+        "operationId": "ResetGlobalAchievement",
+        "parameters": [
+          {
+            "description": "achievement code",
+            "in": "path",
+            "name": "achievementCode",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "namespace of the game",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content"
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          }
+        },
+        "security": [
+          {
+            "HasPermission": [
+              "ADMIN:NAMESPACE:{namespace}:ACHIEVEMENT [DELETE]"
+            ],
+            "HasScope": [
+              "social"
+            ],
+            "authorization": []
+          }
+        ],
+        "summary": "Reset global achievement",
+        "tags": [
+          "Global Achievements"
+        ]
+      }
+    },
     "/achievement/v1/admin/namespaces/{namespace}/tags": {
       "get": {
         "consumes": [
@@ -1116,6 +1376,112 @@
         ]
       }
     },
+    "/achievement/v1/admin/namespaces/{namespace}/users/{userId}/global/achievements": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "\u0026lt;p\u0026gt;Required permission \n\t\t\t\u0026lt;code\u0026gt;ADMIN:NAMESPACE:{namespace}:USER:{userId}:ACHIEVEMENT [READ]\u0026lt;/code\u0026gt; and scope \u0026lt;code\u0026gt;social\u0026lt;/code\u0026gt;\u0026lt;/p\u0026gt;",
+        "operationId": "AdminListUserContributions",
+        "parameters": [
+          {
+            "description": "namespace of the game",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "user ID",
+            "in": "path",
+            "name": "userId",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "achievement codes. multiple value separated by comma",
+            "in": "query",
+            "name": "achievementCodes",
+            "type": "string"
+          },
+          {
+            "default": 10,
+            "description": "the maximum number of data that may be returned (1...100)",
+            "in": "query",
+            "name": "limit",
+            "type": "integer"
+          },
+          {
+            "default": 0,
+            "description": "offset",
+            "in": "query",
+            "name": "offset",
+            "type": "integer"
+          },
+          {
+            "default": "contributedValue:desc",
+            "description": "sort by, default is 'contributedValue:desc', allow values: [contributedValue, contributedValue:asc, contributedValue:desc]",
+            "in": "query",
+            "name": "sortBy",
+            "type": "string"
+          },
+          {
+            "collectionFormat": "csv",
+            "description": "tags",
+            "in": "query",
+            "items": {
+              "type": "string"
+            },
+            "name": "tags",
+            "type": "array"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/models.PaginatedUserContributionResponse"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          }
+        },
+        "security": [
+          {
+            "HasPermission": [
+              "ADMIN:NAMESPACE:{namespace}:USER:{userId}:ACHIEVEMENT [READ]"
+            ],
+            "HasScope": [
+              "social"
+            ],
+            "authorization": []
+          }
+        ],
+        "summary": "Admin list of global achievements that has been contributed by the user",
+        "tags": [
+          "Global Achievements"
+        ]
+      }
+    },
     "/achievement/v1/public/namespaces/{namespace}/achievements": {
       "get": {
         "consumes": [
@@ -1338,9 +1704,9 @@
             "type": "string"
           },
           {
-            "description": "filter by achievement code",
+            "description": "filter by achievement codes. multiple value separated by comma",
             "in": "query",
-            "name": "achievementCode",
+            "name": "achievementCodes",
             "type": "string"
           },
           {
@@ -1368,6 +1734,16 @@
             "in": "query",
             "name": "status",
             "type": "string"
+          },
+          {
+            "collectionFormat": "csv",
+            "description": "tags",
+            "in": "query",
+            "items": {
+              "type": "string"
+            },
+            "name": "tags",
+            "type": "array"
           }
         ],
         "produces": [
@@ -1411,6 +1787,96 @@
           }
         ],
         "summary": "Query global achievements [include achieved and in-progress]",
+        "tags": [
+          "Global Achievements"
+        ]
+      }
+    },
+    "/achievement/v1/public/namespaces/{namespace}/global/achievements/{achievementCode}/contributors": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "\u0026lt;p\u0026gt;Required permission \n\t\t\t\u0026lt;code\u0026gt;NAMESPACE:{namespace}:ACHIEVEMENT [READ]\u0026lt;/code\u0026gt; and scope \u0026lt;code\u0026gt;social\u0026lt;/code\u0026gt;\u0026lt;/p\u0026gt;",
+        "operationId": "ListGlobalAchievementContributors",
+        "parameters": [
+          {
+            "description": "achievement code",
+            "in": "path",
+            "name": "achievementCode",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "namespace of the game",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "default": 10,
+            "description": "the maximum number of data that may be returned (1...100)",
+            "in": "query",
+            "name": "limit",
+            "type": "integer"
+          },
+          {
+            "default": 0,
+            "description": "offset",
+            "in": "query",
+            "name": "offset",
+            "type": "integer"
+          },
+          {
+            "default": "contributedValue:desc",
+            "description": "sort by, default is 'contributedValue:desc', allow values: [contributedValue, contributedValue:asc, contributedValue:desc]",
+            "in": "query",
+            "name": "sortBy",
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/models.PaginatedContributorResponse"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          }
+        },
+        "security": [
+          {
+            "HasPermission": [
+              "NAMESPACE:{namespace}:ACHIEVEMENT [READ]"
+            ],
+            "HasScope": [
+              "social"
+            ],
+            "authorization": []
+          }
+        ],
+        "summary": "List contributors of global achievement",
         "tags": [
           "Global Achievements"
         ]
@@ -1703,6 +2169,112 @@
         ]
       }
     },
+    "/achievement/v1/public/namespaces/{namespace}/users/{userId}/global/achievements": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "\u0026lt;p\u0026gt;Required permission \n\t\t\t\u0026lt;code\u0026gt;NAMESPACE:{namespace}:USER:{userId}:ACHIEVEMENT [READ]\u0026lt;/code\u0026gt; and scope \u0026lt;code\u0026gt;social\u0026lt;/code\u0026gt;\u0026lt;/p\u0026gt;",
+        "operationId": "ListUserContributions",
+        "parameters": [
+          {
+            "description": "namespace of the game",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "user ID",
+            "in": "path",
+            "name": "userId",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "achievement codes. multiple value separated by comma",
+            "in": "query",
+            "name": "achievementCodes",
+            "type": "string"
+          },
+          {
+            "default": 10,
+            "description": "the maximum number of data that may be returned (1...100)",
+            "in": "query",
+            "name": "limit",
+            "type": "integer"
+          },
+          {
+            "default": 0,
+            "description": "offset",
+            "in": "query",
+            "name": "offset",
+            "type": "integer"
+          },
+          {
+            "default": "contributedValue:desc",
+            "description": "sort by, default is 'contributedValue:desc', allow values: [contributedValue, contributedValue:asc, contributedValue:desc]",
+            "in": "query",
+            "name": "sortBy",
+            "type": "string"
+          },
+          {
+            "collectionFormat": "csv",
+            "description": "tags",
+            "in": "query",
+            "items": {
+              "type": "string"
+            },
+            "name": "tags",
+            "type": "array"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/models.PaginatedUserContributionResponse"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          }
+        },
+        "security": [
+          {
+            "HasPermission": [
+              "NAMESPACE:{namespace}:USER:{userId}:ACHIEVEMENT [READ]"
+            ],
+            "HasScope": [
+              "social"
+            ],
+            "authorization": []
+          }
+        ],
+        "summary": "List of global achievements that has been contributed by the user",
+        "tags": [
+          "Global Achievements"
+        ]
+      }
+    },
     "/achievement/v1/public/namespaces/{namespace}/users/{userId}/global/achievements/{achievementCode}/claim": {
       "post": {
         "consumes": [
@@ -1918,6 +2490,10 @@
         "statCode": {
           "type": "string"
         },
+        "status": {
+          "description": "Achievement progression status: [INIT, TIED]",
+          "type": "string"
+        },
         "tags": {
           "items": {
             "type": "string"
@@ -1963,6 +2539,10 @@
             "type": "string"
           },
           "type": "object"
+        },
+        "global": {
+          "type": "boolean",
+          "x-omitempty": false
         },
         "goalValue": {
           "format": "double",
@@ -2036,6 +2616,44 @@
         "numberOfAchievements",
         "numberOfHiddenAchievements",
         "numberOfVisibleAchievements"
+      ]
+    },
+    "models.ContributorResponse": {
+      "properties": {
+        "achievementCode": {
+          "type": "string"
+        },
+        "contributedValue": {
+          "format": "double",
+          "type": "number"
+        },
+        "createdAt": {
+          "format": "date-time",
+          "type": "string",
+          "x-nullable": false
+        },
+        "id": {
+          "type": "string"
+        },
+        "namespace": {
+          "type": "string"
+        },
+        "updatedAt": {
+          "format": "date-time",
+          "type": "string",
+          "x-nullable": true
+        },
+        "userId": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "achievementCode",
+        "contributedValue",
+        "createdAt",
+        "id",
+        "namespace",
+        "userId"
       ]
     },
     "models.GlobalAchievementResponse": {
@@ -2120,6 +2738,23 @@
         "paging"
       ]
     },
+    "models.PaginatedContributorResponse": {
+      "properties": {
+        "data": {
+          "items": {
+            "$ref": "#/definitions/models.ContributorResponse"
+          },
+          "type": "array"
+        },
+        "paging": {
+          "$ref": "#/definitions/models.Pagination"
+        }
+      },
+      "required": [
+        "data",
+        "paging"
+      ]
+    },
     "models.PaginatedGlobalAchievementResponse": {
       "properties": {
         "data": {
@@ -2171,6 +2806,23 @@
       },
       "required": [
         "countInfo",
+        "data",
+        "paging"
+      ]
+    },
+    "models.PaginatedUserContributionResponse": {
+      "properties": {
+        "data": {
+          "items": {
+            "$ref": "#/definitions/models.UserContributionResponse"
+          },
+          "type": "array"
+        },
+        "paging": {
+          "$ref": "#/definitions/models.Pagination"
+        }
+      },
+      "required": [
         "data",
         "paging"
       ]
@@ -2235,6 +2887,10 @@
           "type": "string"
         },
         "statCode": {
+          "type": "string"
+        },
+        "status": {
+          "description": "Achievement progression status: [INIT, TIED]",
           "type": "string"
         },
         "tags": {
@@ -2343,6 +2999,47 @@
         "latestValue",
         "name",
         "status"
+      ]
+    },
+    "models.UserContributionResponse": {
+      "properties": {
+        "achievementCode": {
+          "type": "string"
+        },
+        "canClaimReward": {
+          "description": "CanClaimReward is a flag whether the user can claim the reward of not",
+          "type": "boolean",
+          "x-omitempty": false
+        },
+        "contributedValue": {
+          "format": "double",
+          "type": "number"
+        },
+        "id": {
+          "type": "string"
+        },
+        "name": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "Name is achievement name",
+          "type": "object"
+        },
+        "namespace": {
+          "type": "string"
+        },
+        "userId": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "achievementCode",
+        "canClaimReward",
+        "contributedValue",
+        "id",
+        "name",
+        "namespace",
+        "userId"
       ]
     },
     "response.Error": {

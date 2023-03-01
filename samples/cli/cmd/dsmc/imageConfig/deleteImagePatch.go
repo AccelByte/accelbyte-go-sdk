@@ -35,12 +35,14 @@ var DeleteImagePatchCmd = &cobra.Command{
 			Version:      version,
 			VersionPatch: versionPatch,
 		}
-		errInput := imageConfigService.DeleteImagePatchShort(input)
-		if errInput != nil {
-			logrus.Error(errInput)
+		errNoContent := imageConfigService.DeleteImagePatchShort(input)
+		if errNoContent != nil {
+			logrus.Error(errNoContent)
 
-			return errInput
+			return errNoContent
 		}
+
+		logrus.Infof("Response CLI success.")
 
 		return nil
 	},

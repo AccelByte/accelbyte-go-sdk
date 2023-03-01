@@ -76,10 +76,9 @@ func NewUpdateLocalizationTemplateNoContent() *UpdateLocalizationTemplateNoConte
 	return &UpdateLocalizationTemplateNoContent{}
 }
 
-/*
-UpdateLocalizationTemplateNoContent handles this case with default header values.
+/*UpdateLocalizationTemplateNoContent handles this case with default header values.
 
-	No Content
+  No Content
 */
 type UpdateLocalizationTemplateNoContent struct {
 }
@@ -103,10 +102,9 @@ func NewUpdateLocalizationTemplateBadRequest() *UpdateLocalizationTemplateBadReq
 	return &UpdateLocalizationTemplateBadRequest{}
 }
 
-/*
-UpdateLocalizationTemplateBadRequest handles this case with default header values.
+/*UpdateLocalizationTemplateBadRequest handles this case with default header values.
 
-	Bad Request
+  Bad Request
 */
 type UpdateLocalizationTemplateBadRequest struct {
 	Payload *lobbyclientmodels.RestapiErrorResponseBody
@@ -157,10 +155,9 @@ func NewUpdateLocalizationTemplateUnauthorized() *UpdateLocalizationTemplateUnau
 	return &UpdateLocalizationTemplateUnauthorized{}
 }
 
-/*
-UpdateLocalizationTemplateUnauthorized handles this case with default header values.
+/*UpdateLocalizationTemplateUnauthorized handles this case with default header values.
 
-	Unauthorized
+  Unauthorized
 */
 type UpdateLocalizationTemplateUnauthorized struct {
 	Payload *lobbyclientmodels.RestapiErrorResponseBody
@@ -211,10 +208,9 @@ func NewUpdateLocalizationTemplateForbidden() *UpdateLocalizationTemplateForbidd
 	return &UpdateLocalizationTemplateForbidden{}
 }
 
-/*
-UpdateLocalizationTemplateForbidden handles this case with default header values.
+/*UpdateLocalizationTemplateForbidden handles this case with default header values.
 
-	Forbidden
+  Forbidden
 */
 type UpdateLocalizationTemplateForbidden struct {
 	Payload *lobbyclientmodels.RestapiErrorResponseBody
@@ -265,10 +261,9 @@ func NewUpdateLocalizationTemplateNotFound() *UpdateLocalizationTemplateNotFound
 	return &UpdateLocalizationTemplateNotFound{}
 }
 
-/*
-UpdateLocalizationTemplateNotFound handles this case with default header values.
+/*UpdateLocalizationTemplateNotFound handles this case with default header values.
 
-	Not Found
+  Not Found
 */
 type UpdateLocalizationTemplateNotFound struct {
 	Payload *lobbyclientmodels.RestapiErrorResponseBody

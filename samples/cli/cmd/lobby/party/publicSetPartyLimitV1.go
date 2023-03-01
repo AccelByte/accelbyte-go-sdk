@@ -41,12 +41,14 @@ var PublicSetPartyLimitV1Cmd = &cobra.Command{
 			Namespace: namespace,
 			PartyID:   partyId,
 		}
-		errInput := partyService.PublicSetPartyLimitV1Short(input)
-		if errInput != nil {
-			logrus.Error(errInput)
+		errOK := partyService.PublicSetPartyLimitV1Short(input)
+		if errOK != nil {
+			logrus.Error(errOK)
 
-			return errInput
+			return errOK
 		}
+
+		logrus.Infof("Response CLI success.")
 
 		return nil
 	},

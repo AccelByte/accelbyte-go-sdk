@@ -39,12 +39,14 @@ var CreateMatchFunctionCmd = &cobra.Command{
 			Body:      body,
 			Namespace: namespace,
 		}
-		errInput := matchFunctionsService.CreateMatchFunctionShort(input)
-		if errInput != nil {
-			logrus.Error(errInput)
+		errCreated := matchFunctionsService.CreateMatchFunctionShort(input)
+		if errCreated != nil {
+			logrus.Error(errCreated)
 
-			return errInput
+			return errCreated
 		}
+
+		logrus.Infof("Response CLI success.")
 
 		return nil
 	},

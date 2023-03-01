@@ -60,8 +60,7 @@ func NewDeletePlaystationIAPConfigParamsWithHTTPClient(client *http.Client) *Del
 	}
 }
 
-/*
-DeletePlaystationIAPConfigParams contains all the parameters to send to the API endpoint
+/*DeletePlaystationIAPConfigParams contains all the parameters to send to the API endpoint
 for the delete playstation IAP config operation typically these are written to a http.Request
 */
 type DeletePlaystationIAPConfigParams struct {

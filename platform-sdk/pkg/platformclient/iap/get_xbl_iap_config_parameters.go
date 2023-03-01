@@ -60,8 +60,7 @@ func NewGetXblIAPConfigParamsWithHTTPClient(client *http.Client) *GetXblIAPConfi
 	}
 }
 
-/*
-GetXblIAPConfigParams contains all the parameters to send to the API endpoint
+/*GetXblIAPConfigParams contains all the parameters to send to the API endpoint
 for the get xbl IAP config operation typically these are written to a http.Request
 */
 type GetXblIAPConfigParams struct {

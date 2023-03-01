@@ -64,10 +64,9 @@ func NewChange2faMethodNoContent() *Change2faMethodNoContent {
 	return &Change2faMethodNoContent{}
 }
 
-/*
-Change2faMethodNoContent handles this case with default header values.
+/*Change2faMethodNoContent handles this case with default header values.
 
-	Method changed
+  Method changed
 */
 type Change2faMethodNoContent struct {
 }
@@ -91,10 +90,9 @@ func NewChange2faMethodBadRequest() *Change2faMethodBadRequest {
 	return &Change2faMethodBadRequest{}
 }
 
-/*
-Change2faMethodBadRequest handles this case with default header values.
+/*Change2faMethodBadRequest handles this case with default header values.
 
-	<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>10189</td><td>invalid factor</td></tr><tr><td>20002</td><td>validation error</td></tr></table>
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>10189</td><td>invalid factor</td></tr><tr><td>20002</td><td>validation error</td></tr></table>
 */
 type Change2faMethodBadRequest struct {
 	Payload *iamclientmodels.RestErrorResponse
@@ -145,10 +143,9 @@ func NewChange2faMethodInternalServerError() *Change2faMethodInternalServerError
 	return &Change2faMethodInternalServerError{}
 }
 
-/*
-Change2faMethodInternalServerError handles this case with default header values.
+/*Change2faMethodInternalServerError handles this case with default header values.
 
-	<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20000</td><td>internal server error</td></tr></table>
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20000</td><td>internal server error</td></tr></table>
 */
 type Change2faMethodInternalServerError struct {
 	Payload *iamclientmodels.RestErrorResponse

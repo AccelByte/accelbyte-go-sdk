@@ -39,12 +39,14 @@ var PublicSendRegistrationCodeCmd = &cobra.Command{
 			Body:      body,
 			Namespace: namespace,
 		}
-		errInput := usersService.PublicSendRegistrationCodeShort(input)
-		if errInput != nil {
-			logrus.Error(errInput)
+		errNoContent := usersService.PublicSendRegistrationCodeShort(input)
+		if errNoContent != nil {
+			logrus.Error(errNoContent)
 
-			return errInput
+			return errNoContent
 		}
+
+		logrus.Infof("Response CLI success.")
 
 		return nil
 	},

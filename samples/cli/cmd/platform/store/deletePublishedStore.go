@@ -29,14 +29,14 @@ var DeletePublishedStoreCmd = &cobra.Command{
 		input := &store.DeletePublishedStoreParams{
 			Namespace: namespace,
 		}
-		ok, err := storeService.DeletePublishedStoreShort(input)
-		if err != nil {
-			logrus.Error(err)
+		ok, errOK := storeService.DeletePublishedStoreShort(input)
+		if errOK != nil {
+			logrus.Error(errOK)
 
-			return err
-		} else {
-			logrus.Infof("Response CLI success: %+v", ok)
+			return errOK
 		}
+
+		logrus.Infof("Response CLI success: %+v", ok)
 
 		return nil
 	},

@@ -8,7 +8,7 @@
     },
     "description": "Justice UGC Service",
     "title": "justice-ugc-service",
-    "version": "2.9.0"
+    "version": "2.9.1"
   },
   "schemes": [
     "https"
@@ -7380,12 +7380,10 @@
       },
       "required": [
         "contentType",
-        "customAttributes",
         "fileExtension",
         "name",
         "payload",
         "preview",
-        "previewMetadata",
         "subType",
         "tags",
         "type",
@@ -7424,11 +7422,9 @@
         }
       },
       "required": [
-        "customAttributes",
         "name",
         "payload",
         "preview",
-        "previewMetadata",
         "subType",
         "tags",
         "type"
@@ -7469,12 +7465,8 @@
         }
       },
       "required": [
-        "contentType",
-        "customAttributes",
-        "fileExtension",
         "name",
         "preview",
-        "previewMetadata",
         "subType",
         "tags",
         "type"

@@ -41,14 +41,14 @@ var UpdateStatCmd = &cobra.Command{
 			Namespace: namespace,
 			StatCode:  statCode,
 		}
-		ok, err := statConfigurationService.UpdateStatShort(input)
-		if err != nil {
-			logrus.Error(err)
+		ok, errOK := statConfigurationService.UpdateStatShort(input)
+		if errOK != nil {
+			logrus.Error(errOK)
 
-			return err
-		} else {
-			logrus.Infof("Response CLI success: %+v", ok)
+			return errOK
 		}
+
+		logrus.Infof("Response CLI success: %+v", ok)
 
 		return nil
 	},

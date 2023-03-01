@@ -8,7 +8,6 @@ package slot
 
 import (
 	"encoding/json"
-	"net/http"
 	"os"
 
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
@@ -47,11 +46,6 @@ var PublicUpdateUserNamespaceSlotCmd = &cobra.Command{
 		if errTags != nil {
 			return errTags
 		}
-		httpClient := &http.Client{
-			CheckRedirect: func(req *http.Request, via []*http.Request) error {
-				return http.ErrUseLastResponse
-			},
-		}
 		input := &slot.PublicUpdateUserNamespaceSlotParams{
 			Checksum:        &checksum,
 			CustomAttribute: &customAttribute,
@@ -61,16 +55,15 @@ var PublicUpdateUserNamespaceSlotCmd = &cobra.Command{
 			UserID:          userId,
 			Label:           &label,
 			Tags:            tags,
-			HTTPClient:      httpClient,
 		}
-		ok, err := slotService.PublicUpdateUserNamespaceSlotShort(input)
-		if err != nil {
-			logrus.Error(err)
+		ok, errOK := slotService.PublicUpdateUserNamespaceSlotShort(input)
+		if errOK != nil {
+			logrus.Error(errOK)
 
-			return err
-		} else {
-			logrus.Infof("Response CLI success: %+v", ok)
+			return errOK
 		}
+
+		logrus.Infof("Response CLI success: %+v", ok)
 
 		return nil
 	},

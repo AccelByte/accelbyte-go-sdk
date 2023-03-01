@@ -13,6 +13,7 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclient/payment_station"
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/repository"
+	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils/auth"
 )
 
@@ -179,6 +180,15 @@ func (aaa *PaymentStationService) GetPaymentTaxValue(input *payment_station.GetP
 }
 
 func (aaa *PaymentStationService) GetPaymentCustomizationShort(input *payment_station.GetPaymentCustomizationParams) (*platformclientmodels.Customization, error) {
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  aaa.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := aaa.Client.PaymentStation.GetPaymentCustomizationShort(input)
 	if err != nil {
 		return nil, err
@@ -188,6 +198,15 @@ func (aaa *PaymentStationService) GetPaymentCustomizationShort(input *payment_st
 }
 
 func (aaa *PaymentStationService) PublicGetPaymentURLShort(input *payment_station.PublicGetPaymentURLParams) (*platformclientmodels.PaymentURL, error) {
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  aaa.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := aaa.Client.PaymentStation.PublicGetPaymentURLShort(input)
 	if err != nil {
 		return nil, err
@@ -197,6 +216,15 @@ func (aaa *PaymentStationService) PublicGetPaymentURLShort(input *payment_statio
 }
 
 func (aaa *PaymentStationService) PublicGetPaymentMethodsShort(input *payment_station.PublicGetPaymentMethodsParams) ([]*platformclientmodels.PaymentMethod, error) {
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  aaa.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := aaa.Client.PaymentStation.PublicGetPaymentMethodsShort(input)
 	if err != nil {
 		return nil, err
@@ -206,6 +234,15 @@ func (aaa *PaymentStationService) PublicGetPaymentMethodsShort(input *payment_st
 }
 
 func (aaa *PaymentStationService) PublicGetUnpaidPaymentOrderShort(input *payment_station.PublicGetUnpaidPaymentOrderParams) (*platformclientmodels.PaymentOrderDetails, error) {
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  aaa.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := aaa.Client.PaymentStation.PublicGetUnpaidPaymentOrderShort(input)
 	if err != nil {
 		return nil, err
@@ -215,6 +252,15 @@ func (aaa *PaymentStationService) PublicGetUnpaidPaymentOrderShort(input *paymen
 }
 
 func (aaa *PaymentStationService) PayShort(input *payment_station.PayParams) (*platformclientmodels.PaymentProcessResult, error) {
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  aaa.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := aaa.Client.PaymentStation.PayShort(input)
 	if err != nil {
 		return nil, err
@@ -224,6 +270,15 @@ func (aaa *PaymentStationService) PayShort(input *payment_station.PayParams) (*p
 }
 
 func (aaa *PaymentStationService) PublicCheckPaymentOrderPaidStatusShort(input *payment_station.PublicCheckPaymentOrderPaidStatusParams) (*platformclientmodels.PaymentOrderPaidResult, error) {
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  aaa.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := aaa.Client.PaymentStation.PublicCheckPaymentOrderPaidStatusShort(input)
 	if err != nil {
 		return nil, err
@@ -233,6 +288,15 @@ func (aaa *PaymentStationService) PublicCheckPaymentOrderPaidStatusShort(input *
 }
 
 func (aaa *PaymentStationService) GetPaymentPublicConfigShort(input *payment_station.GetPaymentPublicConfigParams) (map[string]interface{}, error) {
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  aaa.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := aaa.Client.PaymentStation.GetPaymentPublicConfigShort(input)
 	if err != nil {
 		return nil, err
@@ -242,6 +306,15 @@ func (aaa *PaymentStationService) GetPaymentPublicConfigShort(input *payment_sta
 }
 
 func (aaa *PaymentStationService) PublicGetQRCodeShort(input *payment_station.PublicGetQRCodeParams, writer io.Writer) (io.Writer, error) {
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  aaa.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := aaa.Client.PaymentStation.PublicGetQRCodeShort(input, writer)
 	if err != nil {
 		return nil, err
@@ -251,6 +324,15 @@ func (aaa *PaymentStationService) PublicGetQRCodeShort(input *payment_station.Pu
 }
 
 func (aaa *PaymentStationService) PublicNormalizePaymentReturnURLShort(input *payment_station.PublicNormalizePaymentReturnURLParams) error {
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  aaa.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	_, err := aaa.Client.PaymentStation.PublicNormalizePaymentReturnURLShort(input)
 	if err != nil {
 		return err
@@ -260,6 +342,15 @@ func (aaa *PaymentStationService) PublicNormalizePaymentReturnURLShort(input *pa
 }
 
 func (aaa *PaymentStationService) GetPaymentTaxValueShort(input *payment_station.GetPaymentTaxValueParams) (*platformclientmodels.TaxResult, error) {
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  aaa.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := aaa.Client.PaymentStation.GetPaymentTaxValueShort(input)
 	if err != nil {
 		return nil, err

@@ -41,12 +41,14 @@ var SendSpecificUserFreeformNotificationV1AdminCmd = &cobra.Command{
 			Namespace: namespace,
 			UserID:    userId,
 		}
-		errInput := notificationService.SendSpecificUserFreeformNotificationV1AdminShort(input)
-		if errInput != nil {
-			logrus.Error(errInput)
+		errNoContent := notificationService.SendSpecificUserFreeformNotificationV1AdminShort(input)
+		if errNoContent != nil {
+			logrus.Error(errNoContent)
 
-			return errInput
+			return errNoContent
 		}
+
+		logrus.Infof("Response CLI success.")
 
 		return nil
 	},

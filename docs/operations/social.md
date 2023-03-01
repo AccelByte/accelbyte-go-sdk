@@ -48,6 +48,18 @@
 | `/social/v1/public/namespaces/{namespace}/globalstatitems` | GET | GetGlobalStatItems1Short | [GetGlobalStatItems1Short](../../social-sdk/pkg/socialclient/global_statistic/global_statistic_client.go) | [GetGlobalStatItems1Short](../../services-api/pkg/service/social/globalStatistic.go) | [GetGlobalStatItems1Short](../../samples/cli/cmd/social/globalStatistic/getGlobalStatItems1.go) |
 | `/social/v1/public/namespaces/{namespace}/globalstatitems/{statCode}` | GET | GetGlobalStatItemByStatCode1Short | [GetGlobalStatItemByStatCode1Short](../../social-sdk/pkg/socialclient/global_statistic/global_statistic_client.go) | [GetGlobalStatItemByStatCode1Short](../../services-api/pkg/service/social/globalStatistic.go) | [GetGlobalStatItemByStatCode1Short](../../samples/cli/cmd/social/globalStatistic/getGlobalStatItemByStatCode1.go) |
 
+### StatCycleConfiguration Wrapper:  [StatCycleConfiguration](../../services-api/pkg/service/social/statCycleConfiguration.go)
+| Endpoint | Method | ID | Class | Wrapper | Example |
+|---|---|---|---|---|---|
+| `/social/v1/admin/namespaces/{namespace}/statCycles` | GET | GetStatCyclesShort | [GetStatCyclesShort](../../social-sdk/pkg/socialclient/stat_cycle_configuration/stat_cycle_configuration_client.go) | [GetStatCyclesShort](../../services-api/pkg/service/social/statCycleConfiguration.go) | [GetStatCyclesShort](../../samples/cli/cmd/social/statCycleConfiguration/getStatCycles.go) |
+| `/social/v1/admin/namespaces/{namespace}/statCycles` | POST | CreateStatCycleShort | [CreateStatCycleShort](../../social-sdk/pkg/socialclient/stat_cycle_configuration/stat_cycle_configuration_client.go) | [CreateStatCycleShort](../../services-api/pkg/service/social/statCycleConfiguration.go) | [CreateStatCycleShort](../../samples/cli/cmd/social/statCycleConfiguration/createStatCycle.go) |
+| `/social/v1/admin/namespaces/{namespace}/statCycles/{cycleId}` | GET | GetStatCycleShort | [GetStatCycleShort](../../social-sdk/pkg/socialclient/stat_cycle_configuration/stat_cycle_configuration_client.go) | [GetStatCycleShort](../../services-api/pkg/service/social/statCycleConfiguration.go) | [GetStatCycleShort](../../samples/cli/cmd/social/statCycleConfiguration/getStatCycle.go) |
+| `/social/v1/admin/namespaces/{namespace}/statCycles/{cycleId}` | PUT | UpdateStatCycleShort | [UpdateStatCycleShort](../../social-sdk/pkg/socialclient/stat_cycle_configuration/stat_cycle_configuration_client.go) | [UpdateStatCycleShort](../../services-api/pkg/service/social/statCycleConfiguration.go) | [UpdateStatCycleShort](../../samples/cli/cmd/social/statCycleConfiguration/updateStatCycle.go) |
+| `/social/v1/admin/namespaces/{namespace}/statCycles/{cycleId}` | DELETE | DeleteStatCycleShort | [DeleteStatCycleShort](../../social-sdk/pkg/socialclient/stat_cycle_configuration/stat_cycle_configuration_client.go) | [DeleteStatCycleShort](../../services-api/pkg/service/social/statCycleConfiguration.go) | [DeleteStatCycleShort](../../samples/cli/cmd/social/statCycleConfiguration/deleteStatCycle.go) |
+| `/social/v1/admin/namespaces/{namespace}/statCycles/{cycleId}/stats/add/bulk` | POST | BulkAddStatsShort | [BulkAddStatsShort](../../social-sdk/pkg/socialclient/stat_cycle_configuration/stat_cycle_configuration_client.go) | [BulkAddStatsShort](../../services-api/pkg/service/social/statCycleConfiguration.go) | [BulkAddStatsShort](../../samples/cli/cmd/social/statCycleConfiguration/bulkAddStats.go) |
+| `/social/v1/public/namespaces/{namespace}/statCycles` | GET | GetStatCycles1Short | [GetStatCycles1Short](../../social-sdk/pkg/socialclient/stat_cycle_configuration/stat_cycle_configuration_client.go) | [GetStatCycles1Short](../../services-api/pkg/service/social/statCycleConfiguration.go) | [GetStatCycles1Short](../../samples/cli/cmd/social/statCycleConfiguration/getStatCycles1.go) |
+| `/social/v1/public/namespaces/{namespace}/statCycles/{cycleId}` | GET | GetStatCycle1Short | [GetStatCycle1Short](../../social-sdk/pkg/socialclient/stat_cycle_configuration/stat_cycle_configuration_client.go) | [GetStatCycle1Short](../../services-api/pkg/service/social/statCycleConfiguration.go) | [GetStatCycle1Short](../../samples/cli/cmd/social/statCycleConfiguration/getStatCycle1.go) |
+
 ### UserStatistic Wrapper:  [UserStatistic](../../services-api/pkg/service/social/userStatistic.go)
 | Endpoint | Method | ID | Class | Wrapper | Example |
 |---|---|---|---|---|---|
@@ -115,11 +127,12 @@
 | `A DTO object for resetting user stat items` | [ADTOObjectForResettingUserStatItems ](../../social-sdk/pkg/socialclientmodels/a_dto_object_for_resetting_user_stat_items.go) |
 | `A DTO object for user stat item value` | [ADTOObjectForUserStatItemValue ](../../social-sdk/pkg/socialclientmodels/a_dto_object_for_user_stat_item_value.go) |
 | `Attribute` | [Attribute ](../../social-sdk/pkg/socialclientmodels/attribute.go) |
+| `BulkCycleStatsAdd` | [BulkCycleStatsAdd ](../../social-sdk/pkg/socialclientmodels/bulk_cycle_stats_add.go) |
 | `BulkStatItemCreate` | [BulkStatItemCreate ](../../social-sdk/pkg/socialclientmodels/bulk_stat_item_create.go) |
 | `BulkStatItemInc` | [BulkStatItemInc ](../../social-sdk/pkg/socialclientmodels/bulk_stat_item_inc.go) |
-| `BulkStatItemOperationResult` | [BulkStatItemOperationResult ](../../social-sdk/pkg/socialclientmodels/bulk_stat_item_operation_result.go) |
 | `BulkStatItemReset` | [BulkStatItemReset ](../../social-sdk/pkg/socialclientmodels/bulk_stat_item_reset.go) |
 | `BulkStatItemUpdate` | [BulkStatItemUpdate ](../../social-sdk/pkg/socialclientmodels/bulk_stat_item_update.go) |
+| `BulkStatOperationResult` | [BulkStatOperationResult ](../../social-sdk/pkg/socialclientmodels/bulk_stat_operation_result.go) |
 | `BulkUserStatItemInc` | [BulkUserStatItemInc ](../../social-sdk/pkg/socialclientmodels/bulk_user_stat_item_inc.go) |
 | `BulkUserStatItemReset` | [BulkUserStatItemReset ](../../social-sdk/pkg/socialclientmodels/bulk_user_stat_item_reset.go) |
 | `BulkUserStatItemUpdate` | [BulkUserStatItemUpdate ](../../social-sdk/pkg/socialclientmodels/bulk_user_stat_item_update.go) |
@@ -137,6 +150,10 @@
 | `SlotInfo` | [SlotInfo ](../../social-sdk/pkg/socialclientmodels/slot_info.go) |
 | `SlotMetadataUpdate` | [SlotMetadataUpdate ](../../social-sdk/pkg/socialclientmodels/slot_metadata_update.go) |
 | `StatCreate` | [StatCreate ](../../social-sdk/pkg/socialclientmodels/stat_create.go) |
+| `StatCycleCreate` | [StatCycleCreate ](../../social-sdk/pkg/socialclientmodels/stat_cycle_create.go) |
+| `StatCycleInfo` | [StatCycleInfo ](../../social-sdk/pkg/socialclientmodels/stat_cycle_info.go) |
+| `StatCyclePagingSlicedResult` | [StatCyclePagingSlicedResult ](../../social-sdk/pkg/socialclientmodels/stat_cycle_paging_sliced_result.go) |
+| `StatCycleUpdate` | [StatCycleUpdate ](../../social-sdk/pkg/socialclientmodels/stat_cycle_update.go) |
 | `StatImportInfo` | [StatImportInfo ](../../social-sdk/pkg/socialclientmodels/stat_import_info.go) |
 | `StatInfo` | [StatInfo ](../../social-sdk/pkg/socialclientmodels/stat_info.go) |
 | `StatItemInc` | [StatItemInc ](../../social-sdk/pkg/socialclientmodels/stat_item_inc.go) |

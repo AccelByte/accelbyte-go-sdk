@@ -58,10 +58,9 @@ func NewSyncEpicGameDLCNoContent() *SyncEpicGameDLCNoContent {
 	return &SyncEpicGameDLCNoContent{}
 }
 
-/*
-SyncEpicGameDLCNoContent handles this case with default header values.
+/*SyncEpicGameDLCNoContent handles this case with default header values.
 
-	Successful operation
+  Successful operation
 */
 type SyncEpicGameDLCNoContent struct {
 }
@@ -85,10 +84,9 @@ func NewSyncEpicGameDLCBadRequest() *SyncEpicGameDLCBadRequest {
 	return &SyncEpicGameDLCBadRequest{}
 }
 
-/*
-SyncEpicGameDLCBadRequest handles this case with default header values.
+/*SyncEpicGameDLCBadRequest handles this case with default header values.
 
-	<table><tr><td>ErrorCode</td><td>ErrorMessage</td></tr><tr><td>39125</td><td>Invalid platform [{platformId}] user token</td></tr><tr><td>39126</td><td>User id [{}] in namespace [{}] doesn't link platform [{}]</td></tr>
+  <table><tr><td>ErrorCode</td><td>ErrorMessage</td></tr><tr><td>39125</td><td>Invalid platform [{platformId}] user token</td></tr><tr><td>39126</td><td>User id [{}] in namespace [{}] doesn't link platform [{}]</td></tr>
 */
 type SyncEpicGameDLCBadRequest struct {
 	Payload *platformclientmodels.ErrorEntity

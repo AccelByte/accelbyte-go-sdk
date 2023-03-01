@@ -31,12 +31,14 @@ var DeleteMatchFunctionCmd = &cobra.Command{
 			Name:      name,
 			Namespace: namespace,
 		}
-		errInput := matchFunctionsService.DeleteMatchFunctionShort(input)
-		if errInput != nil {
-			logrus.Error(errInput)
+		errOK := matchFunctionsService.DeleteMatchFunctionShort(input)
+		if errOK != nil {
+			logrus.Error(errOK)
 
-			return errInput
+			return errOK
 		}
+
+		logrus.Infof("Response CLI success.")
 
 		return nil
 	},

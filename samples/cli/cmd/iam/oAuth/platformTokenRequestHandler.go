@@ -7,8 +7,6 @@
 package oAuth
 
 import (
-	"net/http"
-
 	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclient/o_auth"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/iam"
@@ -32,27 +30,21 @@ var PlatformTokenRequestHandlerCmd = &cobra.Command{
 		deviceId, _ := cmd.Flags().GetString("deviceId")
 		macAddress, _ := cmd.Flags().GetString("macAddress")
 		platformToken, _ := cmd.Flags().GetString("platformToken")
-		httpClient := &http.Client{
-			CheckRedirect: func(req *http.Request, via []*http.Request) error {
-				return http.ErrUseLastResponse
-			},
-		}
 		input := &o_auth.PlatformTokenRequestHandlerParams{
 			DeviceID:      &deviceId,
 			MacAddress:    &macAddress,
 			PlatformToken: &platformToken,
 			Namespace:     namespace,
 			PlatformID:    platformId,
-			HTTPClient:    httpClient,
 		}
-		ok, err := oAuthService.PlatformTokenRequestHandlerShort(input)
-		if err != nil {
-			logrus.Error(err)
+		ok, errOK := oAuthService.PlatformTokenRequestHandlerShort(input)
+		if errOK != nil {
+			logrus.Error(errOK)
 
-			return err
-		} else {
-			logrus.Infof("Response CLI success: %+v", ok)
+			return errOK
 		}
+
+		logrus.Infof("Response CLI success: %+v", ok)
 
 		return nil
 	},

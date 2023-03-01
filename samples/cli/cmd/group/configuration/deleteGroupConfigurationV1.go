@@ -31,12 +31,14 @@ var DeleteGroupConfigurationV1Cmd = &cobra.Command{
 			ConfigurationCode: configurationCode,
 			Namespace:         namespace,
 		}
-		errInput := configurationService.DeleteGroupConfigurationV1Short(input)
-		if errInput != nil {
-			logrus.Error(errInput)
+		errNoContent := configurationService.DeleteGroupConfigurationV1Short(input)
+		if errNoContent != nil {
+			logrus.Error(errNoContent)
 
-			return errInput
+			return errNoContent
 		}
+
+		logrus.Infof("Response CLI success.")
 
 		return nil
 	},

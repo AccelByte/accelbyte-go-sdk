@@ -52,10 +52,9 @@ func NewUpdateGoogleP12FileOK() *UpdateGoogleP12FileOK {
 	return &UpdateGoogleP12FileOK{}
 }
 
-/*
-UpdateGoogleP12FileOK handles this case with default header values.
+/*UpdateGoogleP12FileOK handles this case with default header values.
 
-	successful operation
+  successful operation
 */
 type UpdateGoogleP12FileOK struct {
 	Payload *platformclientmodels.GoogleIAPConfigInfo

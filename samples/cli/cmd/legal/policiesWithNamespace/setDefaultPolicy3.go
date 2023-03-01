@@ -31,12 +31,14 @@ var SetDefaultPolicy3Cmd = &cobra.Command{
 			Namespace: namespace,
 			PolicyID:  policyId,
 		}
-		errInput := policiesWithNamespaceService.SetDefaultPolicy3Short(input)
-		if errInput != nil {
-			logrus.Error(errInput)
+		errOK := policiesWithNamespaceService.SetDefaultPolicy3Short(input)
+		if errOK != nil {
+			logrus.Error(errOK)
 
-			return errInput
+			return errOK
 		}
+
+		logrus.Infof("Response CLI success.")
 
 		return nil
 	},

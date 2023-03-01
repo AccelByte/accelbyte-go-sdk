@@ -39,12 +39,14 @@ var UpdateEventRegistryHandlerCmd = &cobra.Command{
 			Body:    body,
 			EventID: eventId,
 		}
-		errInput := eventRegistryService.UpdateEventRegistryHandlerShort(input)
-		if errInput != nil {
-			logrus.Error(errInput)
+		errNoContent := eventRegistryService.UpdateEventRegistryHandlerShort(input)
+		if errNoContent != nil {
+			logrus.Error(errNoContent)
 
-			return errInput
+			return errNoContent
 		}
+
+		logrus.Infof("Response CLI success.")
 
 		return nil
 	},

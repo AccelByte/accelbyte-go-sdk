@@ -29,14 +29,14 @@ var AdminGetAllReasonsCmd = &cobra.Command{
 		input := &admin_reasons.AdminGetAllReasonsParams{
 			Namespace: namespace,
 		}
-		ok, err := adminReasonsService.AdminGetAllReasonsShort(input)
-		if err != nil {
-			logrus.Error(err)
+		ok, errOK := adminReasonsService.AdminGetAllReasonsShort(input)
+		if errOK != nil {
+			logrus.Error(errOK)
 
-			return err
-		} else {
-			logrus.Infof("Response CLI success: %+v", ok)
+			return errOK
 		}
+
+		logrus.Infof("Response CLI success: %+v", ok)
 
 		return nil
 	},

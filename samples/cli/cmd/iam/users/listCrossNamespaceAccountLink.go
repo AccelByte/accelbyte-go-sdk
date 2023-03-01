@@ -7,8 +7,6 @@
 package users
 
 import (
-	"net/http"
-
 	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclient/users"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/iam"
@@ -31,24 +29,20 @@ var ListCrossNamespaceAccountLinkCmd = &cobra.Command{
 		namespace, _ := cmd.Flags().GetString("namespace")
 		userId, _ := cmd.Flags().GetString("userId")
 		platformId, _ := cmd.Flags().GetString("platformId")
-		httpClient := &http.Client{
-			CheckRedirect: func(req *http.Request, via []*http.Request) error {
-				return http.ErrUseLastResponse
-			},
-		}
 		input := &users.ListCrossNamespaceAccountLinkParams{
 			PlatformID:   &platformId,
 			LinkingToken: linkingToken,
 			Namespace:    namespace,
 			UserID:       userId,
-			HTTPClient:   httpClient,
 		}
-		errInput := usersService.ListCrossNamespaceAccountLinkShort(input)
-		if errInput != nil {
-			logrus.Error(errInput)
+		errOK := usersService.ListCrossNamespaceAccountLinkShort(input)
+		if errOK != nil {
+			logrus.Error(errOK)
 
-			return errInput
+			return errOK
 		}
+
+		logrus.Infof("Response CLI success.")
 
 		return nil
 	},

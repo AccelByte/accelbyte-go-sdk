@@ -29,14 +29,14 @@ var GetMyPrivateCustomAttributesInfoCmd = &cobra.Command{
 		input := &user_profile.GetMyPrivateCustomAttributesInfoParams{
 			Namespace: namespace,
 		}
-		ok, err := userProfileService.GetMyPrivateCustomAttributesInfoShort(input)
-		if err != nil {
-			logrus.Error(err)
+		ok, errOK := userProfileService.GetMyPrivateCustomAttributesInfoShort(input)
+		if errOK != nil {
+			logrus.Error(errOK)
 
-			return err
-		} else {
-			logrus.Infof("Response CLI success: %+v", ok)
+			return errOK
 		}
+
+		logrus.Infof("Response CLI success: %+v", ok)
 
 		return nil
 	},

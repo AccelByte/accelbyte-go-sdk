@@ -63,7 +63,7 @@ func NewGetXblUserAchievementsOK() *GetXblUserAchievementsOK {
   OK
 */
 type GetXblUserAchievementsOK struct {
-	Payload *platformclientmodels.ADTOObjectForQueryingXboxUserAchievements
+	Payload *platformclientmodels.XblUserAchievements
 }
 
 func (o *GetXblUserAchievementsOK) Error() string {
@@ -85,7 +85,7 @@ func (o *GetXblUserAchievementsOK) ToJSONString() string {
 	return fmt.Sprintf("%+v", string(b))
 }
 
-func (o *GetXblUserAchievementsOK) GetPayload() *platformclientmodels.ADTOObjectForQueryingXboxUserAchievements {
+func (o *GetXblUserAchievementsOK) GetPayload() *platformclientmodels.XblUserAchievements {
 	return o.Payload
 }
 
@@ -96,7 +96,7 @@ func (o *GetXblUserAchievementsOK) readResponse(response runtime.ClientResponse,
 		consumer = runtime.ByteStreamConsumer()
 	}
 
-	o.Payload = new(platformclientmodels.ADTOObjectForQueryingXboxUserAchievements)
+	o.Payload = new(platformclientmodels.XblUserAchievements)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {

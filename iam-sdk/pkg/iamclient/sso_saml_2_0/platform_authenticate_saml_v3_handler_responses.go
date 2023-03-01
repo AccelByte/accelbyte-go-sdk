@@ -48,10 +48,9 @@ func NewPlatformAuthenticateSAMLV3HandlerFound() *PlatformAuthenticateSAMLV3Hand
 	return &PlatformAuthenticateSAMLV3HandlerFound{}
 }
 
-/*
-PlatformAuthenticateSAMLV3HandlerFound handles this case with default header values.
+/*PlatformAuthenticateSAMLV3HandlerFound handles this case with default header values.
 
-	Found. Redirect to clients redirection URL with either code or error on the query parameter
+  Found. Redirect to clients redirection URL with either code or error on the query parameter
 */
 type PlatformAuthenticateSAMLV3HandlerFound struct {
 	/*The Location header

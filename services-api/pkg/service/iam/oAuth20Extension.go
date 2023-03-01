@@ -7,7 +7,6 @@
 package iam
 
 import (
-	"errors"
 	"net/url"
 
 	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclient"
@@ -46,21 +45,18 @@ func (aaa *OAuth20ExtensionService) GetAuthSession() auth.Session {
 func (aaa *OAuth20ExtensionService) UserAuthenticationV3(input *o_auth2_0_extension.UserAuthenticationV3Params) (string, error) {
 	clientID := aaa.ConfigRepository.GetClientId()
 	clientSecret := aaa.ConfigRepository.GetClientSecret()
-	ok, err := aaa.Client.OAuth20Extension.UserAuthenticationV3(input, client.BasicAuth(clientID, clientSecret))
+	found, err := aaa.Client.OAuth20Extension.UserAuthenticationV3(input, client.BasicAuth(clientID, clientSecret))
 	if err != nil {
 		return "", err
 	}
-	parsedURL, err := url.Parse(ok.Location)
+
+	parsedURL, err := url.Parse(found.Location)
 	if err != nil {
 		return "", err
 	}
 	query, err := url.ParseQuery(parsedURL.RawQuery)
 	if err != nil {
 		return "", err
-	}
-	errorDescParam := query["error_description"]
-	if errorDescParam != nil {
-		return "", errors.New(errorDescParam[0])
 	}
 	code := query["code"][0]
 
@@ -195,12 +191,12 @@ func (aaa *OAuth20ExtensionService) PlatformAuthenticationV3(input *o_auth2_0_ex
 	if err != nil {
 		return "", err
 	}
-	ok, err := aaa.Client.OAuth20Extension.PlatformAuthenticationV3(input, client.BearerToken(*token.AccessToken))
+	found, err := aaa.Client.OAuth20Extension.PlatformAuthenticationV3(input, client.BearerToken(*token.AccessToken))
 	if err != nil {
 		return "", err
 	}
 
-	return ok.Location, nil
+	return found.Location, nil
 }
 
 // deprecated(2022-01-10): please use RequestGameTokenResponseV3Short instead.
@@ -234,21 +230,18 @@ func (aaa *OAuth20ExtensionService) UserAuthenticationV3Short(input *o_auth2_0_e
 		}
 	}
 
-	ok, err := aaa.Client.OAuth20Extension.UserAuthenticationV3Short(input, authInfoWriter)
+	found, err := aaa.Client.OAuth20Extension.UserAuthenticationV3Short(input, authInfoWriter)
 	if err != nil {
 		return "", err
 	}
-	parsedURL, err := url.Parse(ok.Location)
+
+	parsedURL, err := url.Parse(found.Location)
 	if err != nil {
 		return "", err
 	}
 	query, err := url.ParseQuery(parsedURL.RawQuery)
 	if err != nil {
 		return "", err
-	}
-	errorDescParam := query["error_description"]
-	if errorDescParam != nil {
-		return "", errors.New(errorDescParam[0])
 	}
 	code := query["code"][0]
 
@@ -458,12 +451,12 @@ func (aaa *OAuth20ExtensionService) PlatformAuthenticationV3Short(input *o_auth2
 		}
 	}
 
-	ok, err := aaa.Client.OAuth20Extension.PlatformAuthenticationV3Short(input, authInfoWriter)
+	found, err := aaa.Client.OAuth20Extension.PlatformAuthenticationV3Short(input, authInfoWriter)
 	if err != nil {
 		return "", err
 	}
 
-	return ok.Location, nil
+	return found.Location, nil
 }
 
 func (aaa *OAuth20ExtensionService) RequestGameTokenResponseV3Short(input *o_auth2_0_extension.RequestGameTokenResponseV3Params) (*iamclientmodels.OauthmodelTokenResponseV3, error) {

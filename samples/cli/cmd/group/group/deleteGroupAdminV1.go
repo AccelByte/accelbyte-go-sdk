@@ -31,12 +31,14 @@ var DeleteGroupAdminV1Cmd = &cobra.Command{
 			GroupID:   groupId,
 			Namespace: namespace,
 		}
-		errInput := groupService.DeleteGroupAdminV1Short(input)
-		if errInput != nil {
-			logrus.Error(errInput)
+		errNoContent := groupService.DeleteGroupAdminV1Short(input)
+		if errNoContent != nil {
+			logrus.Error(errNoContent)
 
-			return errInput
+			return errNoContent
 		}
+
+		logrus.Infof("Response CLI success.")
 
 		return nil
 	},

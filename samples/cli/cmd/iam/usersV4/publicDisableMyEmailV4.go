@@ -29,12 +29,14 @@ var PublicDisableMyEmailV4Cmd = &cobra.Command{
 		input := &users_v4.PublicDisableMyEmailV4Params{
 			Namespace: namespace,
 		}
-		errInput := usersV4Service.PublicDisableMyEmailV4Short(input)
-		if errInput != nil {
-			logrus.Error(errInput)
+		errNoContent := usersV4Service.PublicDisableMyEmailV4Short(input)
+		if errNoContent != nil {
+			logrus.Error(errNoContent)
 
-			return errInput
+			return errNoContent
 		}
+
+		logrus.Infof("Response CLI success.")
 
 		return nil
 	},

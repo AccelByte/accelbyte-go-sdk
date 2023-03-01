@@ -39,14 +39,14 @@ var UpdateItemTypeConfigCmd = &cobra.Command{
 			Body: body,
 			ID:   id_,
 		}
-		ok, err := itemService.UpdateItemTypeConfigShort(input)
-		if err != nil {
-			logrus.Error(err)
+		ok, errOK := itemService.UpdateItemTypeConfigShort(input)
+		if errOK != nil {
+			logrus.Error(errOK)
 
-			return err
-		} else {
-			logrus.Infof("Response CLI success: %+v", ok)
+			return errOK
 		}
+
+		logrus.Infof("Response CLI success: %+v", ok)
 
 		return nil
 	},

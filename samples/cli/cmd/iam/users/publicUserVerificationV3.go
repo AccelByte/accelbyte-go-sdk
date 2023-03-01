@@ -39,12 +39,14 @@ var PublicUserVerificationV3Cmd = &cobra.Command{
 			Body:      body,
 			Namespace: namespace,
 		}
-		errInput := usersService.PublicUserVerificationV3Short(input)
-		if errInput != nil {
-			logrus.Error(errInput)
+		errNoContent := usersService.PublicUserVerificationV3Short(input)
+		if errNoContent != nil {
+			logrus.Error(errNoContent)
 
-			return errInput
+			return errNoContent
 		}
+
+		logrus.Infof("Response CLI success.")
 
 		return nil
 	},

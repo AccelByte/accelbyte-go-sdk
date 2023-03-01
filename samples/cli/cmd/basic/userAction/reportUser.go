@@ -39,12 +39,14 @@ var ReportUserCmd = &cobra.Command{
 			Body:      body,
 			Namespace: namespace,
 		}
-		errInput := userActionService.ReportUserShort(input)
-		if errInput != nil {
-			logrus.Error(errInput)
+		errCreated := userActionService.ReportUserShort(input)
+		if errCreated != nil {
+			logrus.Error(errCreated)
 
-			return errInput
+			return errCreated
 		}
+
+		logrus.Infof("Response CLI success.")
 
 		return nil
 	},

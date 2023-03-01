@@ -31,12 +31,14 @@ var DeleteSessionCmd = &cobra.Command{
 			Namespace: namespace,
 			SessionID: sessionID,
 		}
-		errInput := adminService.DeleteSessionShort(input)
-		if errInput != nil {
-			logrus.Error(errInput)
+		errNoContent := adminService.DeleteSessionShort(input)
+		if errNoContent != nil {
+			logrus.Error(errNoContent)
 
-			return errInput
+			return errNoContent
 		}
+
+		logrus.Infof("Response CLI success.")
 
 		return nil
 	},

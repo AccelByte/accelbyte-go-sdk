@@ -76,10 +76,9 @@ func NewNotificationWithTemplateAccepted() *NotificationWithTemplateAccepted {
 	return &NotificationWithTemplateAccepted{}
 }
 
-/*
-NotificationWithTemplateAccepted handles this case with default header values.
+/*NotificationWithTemplateAccepted handles this case with default header values.
 
-	Accepted
+  Accepted
 */
 type NotificationWithTemplateAccepted struct {
 }
@@ -103,10 +102,9 @@ func NewNotificationWithTemplateBadRequest() *NotificationWithTemplateBadRequest
 	return &NotificationWithTemplateBadRequest{}
 }
 
-/*
-NotificationWithTemplateBadRequest handles this case with default header values.
+/*NotificationWithTemplateBadRequest handles this case with default header values.
 
-	Bad Request
+  Bad Request
 */
 type NotificationWithTemplateBadRequest struct {
 	Payload *lobbyclientmodels.RestapiErrorResponseBody
@@ -157,10 +155,9 @@ func NewNotificationWithTemplateUnauthorized() *NotificationWithTemplateUnauthor
 	return &NotificationWithTemplateUnauthorized{}
 }
 
-/*
-NotificationWithTemplateUnauthorized handles this case with default header values.
+/*NotificationWithTemplateUnauthorized handles this case with default header values.
 
-	Unauthorized
+  Unauthorized
 */
 type NotificationWithTemplateUnauthorized struct {
 	Payload *lobbyclientmodels.RestapiErrorResponseBody
@@ -211,10 +208,9 @@ func NewNotificationWithTemplateForbidden() *NotificationWithTemplateForbidden {
 	return &NotificationWithTemplateForbidden{}
 }
 
-/*
-NotificationWithTemplateForbidden handles this case with default header values.
+/*NotificationWithTemplateForbidden handles this case with default header values.
 
-	Forbidden
+  Forbidden
 */
 type NotificationWithTemplateForbidden struct {
 	Payload *lobbyclientmodels.RestapiErrorResponseBody
@@ -265,10 +261,9 @@ func NewNotificationWithTemplateNotFound() *NotificationWithTemplateNotFound {
 	return &NotificationWithTemplateNotFound{}
 }
 
-/*
-NotificationWithTemplateNotFound handles this case with default header values.
+/*NotificationWithTemplateNotFound handles this case with default header values.
 
-	Not Found
+  Not Found
 */
 type NotificationWithTemplateNotFound struct {
 	Payload *lobbyclientmodels.RestapiErrorResponseBody

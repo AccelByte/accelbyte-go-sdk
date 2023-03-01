@@ -8,7 +8,6 @@ package paymentStation
 
 import (
 	"bytes"
-	"io"
 	"os"
 
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclient/payment_station"
@@ -31,28 +30,24 @@ var PublicGetQRCodeCmd = &cobra.Command{
 		}
 		namespace, _ := cmd.Flags().GetString("namespace")
 		code, _ := cmd.Flags().GetString("code")
-		file, err := os.Create("file")
+		file, errFile := os.Create("file")
 		logrus.Infof("Output %v", file)
-		if err != nil {
-			return err
+		if errFile != nil {
+			return errFile
 		}
 		writer := bytes.NewBuffer(nil)
 		input := &payment_station.PublicGetQRCodeParams{
 			Namespace: namespace,
 			Code:      code,
 		}
-		ok, err := paymentStationService.PublicGetQRCodeShort(input, writer)
-		if err != nil {
-			logrus.Error(err)
+		ok, errOK := paymentStationService.PublicGetQRCodeShort(input, writer)
+		if errOK != nil {
+			logrus.Error(errOK)
 
-			return err
-		} else {
-			logrus.Infof("Response CLI success: %+v", ok)
+			return errOK
 		}
-		_, err = io.Copy(file, writer)
-		if err != nil {
-			return err
-		}
+
+		logrus.Infof("Response CLI success: %+v", ok)
 
 		return nil
 	},

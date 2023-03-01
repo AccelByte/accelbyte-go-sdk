@@ -29,14 +29,14 @@ var PublicGetAllMatchmakingChannelCmd = &cobra.Command{
 		input := &matchmaking_.PublicGetAllMatchmakingChannelParams{
 			Namespace: namespace,
 		}
-		ok, err := matchmakingService.PublicGetAllMatchmakingChannelShort(input)
-		if err != nil {
-			logrus.Error(err)
+		ok, errOK := matchmakingService.PublicGetAllMatchmakingChannelShort(input)
+		if errOK != nil {
+			logrus.Error(errOK)
 
-			return err
-		} else {
-			logrus.Infof("Response CLI success: %+v", ok)
+			return errOK
 		}
+
+		logrus.Infof("Response CLI success: %+v", ok)
 
 		return nil
 	},

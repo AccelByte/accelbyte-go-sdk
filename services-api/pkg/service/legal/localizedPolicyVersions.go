@@ -305,6 +305,15 @@ func (aaa *LocalizedPolicyVersionsService) SetDefaultPolicyShort(input *localize
 }
 
 func (aaa *LocalizedPolicyVersionsService) RetrieveSingleLocalizedPolicyVersion2Short(input *localized_policy_versions.RetrieveSingleLocalizedPolicyVersion2Params) (*legalclientmodels.RetrieveLocalizedPolicyVersionPublicResponse, error) {
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  aaa.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := aaa.Client.LocalizedPolicyVersions.RetrieveSingleLocalizedPolicyVersion2Short(input)
 	if err != nil {
 		return nil, err

@@ -62,8 +62,7 @@ func NewPublicSyncPsnDLCInventoryWithMultipleServiceLabelsParamsWithHTTPClient(c
 	}
 }
 
-/*
-PublicSyncPsnDLCInventoryWithMultipleServiceLabelsParams contains all the parameters to send to the API endpoint
+/*PublicSyncPsnDLCInventoryWithMultipleServiceLabelsParams contains all the parameters to send to the API endpoint
 for the public sync psn Dlc inventory with multiple service labels operation typically these are written to a http.Request
 */
 type PublicSyncPsnDLCInventoryWithMultipleServiceLabelsParams struct {

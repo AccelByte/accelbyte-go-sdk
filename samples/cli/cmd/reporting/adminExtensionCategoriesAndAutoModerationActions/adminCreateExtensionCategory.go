@@ -37,14 +37,14 @@ var AdminCreateExtensionCategoryCmd = &cobra.Command{
 		input := &admin_extension_categories_and_auto_moderation_actions.AdminCreateExtensionCategoryParams{
 			Body: body,
 		}
-		ok, err := adminExtensionCategoriesAndAutoModerationActionsService.AdminCreateExtensionCategoryShort(input)
-		if err != nil {
-			logrus.Error(err)
+		created, errCreated := adminExtensionCategoriesAndAutoModerationActionsService.AdminCreateExtensionCategoryShort(input)
+		if errCreated != nil {
+			logrus.Error(errCreated)
 
-			return err
-		} else {
-			logrus.Infof("Response CLI success: %+v", ok)
+			return errCreated
 		}
+
+		logrus.Infof("Response CLI success: %+v", created)
 
 		return nil
 	},

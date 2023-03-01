@@ -8,7 +8,7 @@
     },
     "description": "Justice Social Service",
     "title": "justice-social-service",
-    "version": "1.33.0"
+    "version": "2.0.0"
   },
   "schemes": [
     "https"
@@ -28,6 +28,9 @@
     },
     {
       "name": "StatConfiguration"
+    },
+    {
+      "name": "StatCycleConfiguration"
     },
     {
       "name": "UserStatistic"
@@ -58,6 +61,7 @@
         "ADMIN:NAMESPACE:{namespace}:USER:{userId}:STATITEM [UPDATE]": "ADMIN:NAMESPACE:{namespace}:USER:{userId}:STATITEM [UPDATE]",
         "NAMESPACE:{namespace}:GAMEPROFILE [READ]": "NAMESPACE:{namespace}:GAMEPROFILE [READ]",
         "NAMESPACE:{namespace}:STAT [CREATE]": "NAMESPACE:{namespace}:STAT [CREATE]",
+        "NAMESPACE:{namespace}:STAT [READ]": "NAMESPACE:{namespace}:STAT [READ]",
         "NAMESPACE:{namespace}:STATITEM [READ]": "NAMESPACE:{namespace}:STATITEM [READ]",
         "NAMESPACE:{namespace}:STATITEM [UPDATE]": "NAMESPACE:{namespace}:STATITEM [UPDATE]",
         "NAMESPACE:{namespace}:USER:{userId}:GAMEPROFILE [CREATE]": "NAMESPACE:{namespace}:USER:{userId}:GAMEPROFILE [CREATE]",
@@ -1763,6 +1767,417 @@
         }
       }
     },
+    "/social/v1/admin/namespaces/{namespace}/statCycles": {
+      "get": {
+        "description": "List stat cycles by pagination.\u0026lt;br\u0026gt;Other detail info:\u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;ADMIN:NAMESPACE:{namespace}:STAT\u0026#34;, action=2 (READ)\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: stat cycles\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
+        "operationId": "getStatCycles",
+        "parameters": [
+          {
+            "description": "namespace",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "enum": [
+              "ANNUALLY",
+              "DAILY",
+              "MONTHLY",
+              "SEASONAL",
+              "WEEKLY"
+            ],
+            "in": "query",
+            "name": "cycleType",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "default": 20,
+            "format": "int32",
+            "in": "query",
+            "name": "limit",
+            "required": false,
+            "type": "integer"
+          },
+          {
+            "description": "name",
+            "in": "query",
+            "name": "name",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "default": 0,
+            "format": "int32",
+            "in": "query",
+            "name": "offset",
+            "required": false,
+            "type": "integer"
+          },
+          {
+            "enum": [
+              "ACTIVE",
+              "INIT",
+              "STOPPED"
+            ],
+            "in": "query",
+            "name": "status",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/StatCyclePagingSlicedResult"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          },
+          {
+            "HasPermission": [
+              "ADMIN:NAMESPACE:{namespace}:STAT [READ]"
+            ],
+            "authorization": []
+          }
+        ],
+        "summary": "List stat cycles",
+        "tags": [
+          "StatCycleConfiguration"
+        ],
+        "x-authorization": {
+          "action": "2",
+          "resource": "ADMIN:NAMESPACE:{namespace}:STAT"
+        }
+      },
+      "post": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Create stat cycle.\u0026lt;br\u0026gt;Other detail info:\u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;ADMIN:NAMESPACE:{namespace}:STAT\u0026#34;, action=1 (CREATE)\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: created stat cycle\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
+        "operationId": "createStatCycle",
+        "parameters": [
+          {
+            "description": "namespace",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "required": false,
+            "schema": {
+              "$ref": "#/definitions/StatCycleCreate"
+            }
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "201": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/StatCycleInfo"
+            }
+          },
+          "400": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eErrorCode\u003c/td\u003e\u003ctd\u003eErrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e12225\u003c/td\u003e\u003ctd\u003eInvalid time range\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e12226\u003c/td\u003e\u003ctd\u003eInvalid date [{date}] of month [{month}]\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/ErrorEntity"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          },
+          {
+            "HasPermission": [
+              "ADMIN:NAMESPACE:{namespace}:STAT [CREATE]"
+            ],
+            "authorization": []
+          }
+        ],
+        "summary": "Create stat cycle",
+        "tags": [
+          "StatCycleConfiguration"
+        ],
+        "x-authorization": {
+          "action": "1",
+          "resource": "ADMIN:NAMESPACE:{namespace}:STAT"
+        }
+      }
+    },
+    "/social/v1/admin/namespaces/{namespace}/statCycles/{cycleId}": {
+      "delete": {
+        "description": "Deletes stat cycle.\u0026lt;br\u0026gt;Other detail info:\u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;ADMIN:NAMESPACE:{namespace}:STAT\u0026#34;, action=8 (DELETE)\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
+        "operationId": "deleteStatCycle",
+        "parameters": [
+          {
+            "description": "cycle id",
+            "in": "path",
+            "name": "cycleId",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "namespace",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Successful operation"
+          },
+          "404": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eErrorCode\u003c/td\u003e\u003ctd\u003eErrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e12245\u003c/td\u003e\u003ctd\u003eStat cycle [{id}] cannot be found in namespace [{namespace}]\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/ErrorEntity"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          },
+          {
+            "HasPermission": [
+              "ADMIN:NAMESPACE:{namespace}:STAT [DELETE]"
+            ],
+            "authorization": []
+          }
+        ],
+        "summary": "Deletes stat cycle",
+        "tags": [
+          "StatCycleConfiguration"
+        ],
+        "x-authorization": {
+          "action": "8",
+          "resource": "ADMIN:NAMESPACE:{namespace}:STAT"
+        }
+      },
+      "get": {
+        "description": "Get stat cycle.\u0026lt;br\u0026gt;Other detail info:\u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;ADMIN:NAMESPACE:{namespace}:STAT\u0026#34;, action=2 (READ)\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: stat cycle info\u0026lt;/ul\u0026gt;",
+        "operationId": "getStatCycle",
+        "parameters": [
+          {
+            "description": "cycle id",
+            "in": "path",
+            "name": "cycleId",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "namespace",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/StatCycleInfo"
+            }
+          },
+          "404": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eErrorCode\u003c/td\u003e\u003ctd\u003eErrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e12245\u003c/td\u003e\u003ctd\u003eStat cycle [{id}] cannot be found in namespace [{namespace}]\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/ErrorEntity"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          },
+          {
+            "HasPermission": [
+              "ADMIN:NAMESPACE:{namespace}:STAT [READ]"
+            ],
+            "authorization": []
+          }
+        ],
+        "summary": "Get stat cycle",
+        "tags": [
+          "StatCycleConfiguration"
+        ],
+        "x-authorization": {
+          "action": "2",
+          "resource": "ADMIN:NAMESPACE:{namespace}:STAT"
+        }
+      },
+      "put": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Update stat cycle.\u0026lt;br\u0026gt;Other detail info:\u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;ADMIN:NAMESPACE:{namespace}:STAT\u0026#34;, action=4 (UPDATE)\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: updated stat cycle\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
+        "operationId": "updateStatCycle",
+        "parameters": [
+          {
+            "description": "cycle id",
+            "in": "path",
+            "name": "cycleId",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "namespace",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "required": false,
+            "schema": {
+              "$ref": "#/definitions/StatCycleUpdate"
+            }
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/StatCycleInfo"
+            }
+          },
+          "400": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eErrorCode\u003c/td\u003e\u003ctd\u003eErrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e12225\u003c/td\u003e\u003ctd\u003eInvalid time range\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e12226\u003c/td\u003e\u003ctd\u003eInvalid date [{date}] of month [{month}]\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/ErrorEntity"
+            }
+          },
+          "404": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eErrorCode\u003c/td\u003e\u003ctd\u003eErrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e12245\u003c/td\u003e\u003ctd\u003eStat cycle [{id}] cannot be found in namespace [{namespace}]\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/ErrorEntity"
+            }
+          },
+          "409": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eErrorCode\u003c/td\u003e\u003ctd\u003eErrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e12277\u003c/td\u003e\u003ctd\u003eStat cycle [{id}] in namespace [{namespace}] with status [{status}] cannot be updated\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/ErrorEntity"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          },
+          {
+            "HasPermission": [
+              "ADMIN:NAMESPACE:{namespace}:STAT [UPDATE]"
+            ],
+            "authorization": []
+          }
+        ],
+        "summary": "Update stat cycle",
+        "tags": [
+          "StatCycleConfiguration"
+        ],
+        "x-authorization": {
+          "action": "4",
+          "resource": "ADMIN:NAMESPACE:{namespace}:STAT"
+        }
+      }
+    },
+    "/social/v1/admin/namespaces/{namespace}/statCycles/{cycleId}/stats/add/bulk": {
+      "post": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Bulk add stat cycle to stats.\u0026lt;br\u0026gt;Other detail info:\u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;ADMIN:NAMESPACE:{namespace}:STAT\u0026#34;, action=1 (CREATE)\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
+        "operationId": "bulkAddStats",
+        "parameters": [
+          {
+            "description": "cycle id",
+            "in": "path",
+            "name": "cycleId",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "namespace",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "required": false,
+            "schema": {
+              "$ref": "#/definitions/BulkCycleStatsAdd"
+            }
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "items": {
+                "$ref": "#/definitions/BulkStatOperationResult"
+              },
+              "type": "array"
+            }
+          },
+          "404": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eErrorCode\u003c/td\u003e\u003ctd\u003eErrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e12245\u003c/td\u003e\u003ctd\u003eStat cycle [{id}] cannot be found in namespace [{namespace}]\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/ErrorEntity"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          },
+          {
+            "HasPermission": [
+              "ADMIN:NAMESPACE:{namespace}:STAT [CREATE]"
+            ],
+            "authorization": []
+          }
+        ],
+        "summary": "Bulk add stat cycle to stats",
+        "tags": [
+          "StatCycleConfiguration"
+        ],
+        "x-authorization": {
+          "action": "1",
+          "resource": "ADMIN:NAMESPACE:{namespace}:STAT"
+        }
+      }
+    },
     "/social/v1/admin/namespaces/{namespace}/statitems/bulk": {
       "get": {
         "description": "Bulk fetch multiple user\u0026#39;s statitem value for a given namespace and statCode.  \nOther detail info:\n+ *Required permission*: resource=\u0026#34;ADMIN:NAMESPACE:{namespace}:STATITEM\u0026#34;, action=2 (READ)\n+ *Returns*: list of user\u0026#39;s statItem",
@@ -1866,7 +2281,7 @@
             "description": "successful operation",
             "schema": {
               "items": {
-                "$ref": "#/definitions/BulkStatItemOperationResult"
+                "$ref": "#/definitions/BulkStatOperationResult"
               },
               "type": "array"
             }
@@ -1932,7 +2347,7 @@
             "description": "successful operation",
             "schema": {
               "items": {
-                "$ref": "#/definitions/BulkStatItemOperationResult"
+                "$ref": "#/definitions/BulkStatOperationResult"
               },
               "type": "array"
             }
@@ -2072,7 +2487,7 @@
             "description": "successful operation",
             "schema": {
               "items": {
-                "$ref": "#/definitions/BulkStatItemOperationResult"
+                "$ref": "#/definitions/BulkStatOperationResult"
               },
               "type": "array"
             }
@@ -2115,6 +2530,13 @@
             "in": "path",
             "name": "namespace",
             "required": true,
+            "type": "string"
+          },
+          {
+            "description": "comma separated cycleId",
+            "in": "query",
+            "name": "cycleIds",
+            "required": false,
             "type": "string"
           },
           {
@@ -2204,6 +2626,12 @@
             "description": "Create stat successfully",
             "schema": {
               "$ref": "#/definitions/StatInfo"
+            }
+          },
+          "404": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eErrorCode\u003c/td\u003e\u003ctd\u003eErrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e12245\u003c/td\u003e\u003ctd\u003eStat cycle [{id}] cannot be found in namespace [{namespace}]\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/ErrorEntity"
             }
           },
           "409": {
@@ -2571,7 +2999,7 @@
             }
           },
           "404": {
-            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eErrorCode\u003c/td\u003e\u003ctd\u003eErrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e12241\u003c/td\u003e\u003ctd\u003eStat [{statCode}] cannot be found in namespace [{namespace}]\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eErrorCode\u003c/td\u003e\u003ctd\u003eErrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e12241\u003c/td\u003e\u003ctd\u003eStat [{statCode}] cannot be found in namespace [{namespace}]\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e12245\u003c/td\u003e\u003ctd\u003eStat cycle [{id}] cannot be found in namespace [{namespace}]\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/ErrorEntity"
             }
@@ -2782,7 +3210,7 @@
             "description": "successful operation",
             "schema": {
               "items": {
-                "$ref": "#/definitions/BulkStatItemOperationResult"
+                "$ref": "#/definitions/BulkStatOperationResult"
               },
               "type": "array"
             }
@@ -2857,7 +3285,7 @@
             "description": "successful operation",
             "schema": {
               "items": {
-                "$ref": "#/definitions/BulkStatItemOperationResult"
+                "$ref": "#/definitions/BulkStatOperationResult"
               },
               "type": "array"
             }
@@ -2930,7 +3358,7 @@
             "description": "successful operation",
             "schema": {
               "items": {
-                "$ref": "#/definitions/BulkStatItemOperationResult"
+                "$ref": "#/definitions/BulkStatOperationResult"
               },
               "type": "array"
             }
@@ -3005,7 +3433,7 @@
             "description": "successful operation",
             "schema": {
               "items": {
-                "$ref": "#/definitions/BulkStatItemOperationResult"
+                "$ref": "#/definitions/BulkStatOperationResult"
               },
               "type": "array"
             }
@@ -3484,6 +3912,156 @@
         }
       }
     },
+    "/social/v1/public/namespaces/{namespace}/statCycles": {
+      "get": {
+        "description": "List stat cycles by pagination.\u0026lt;br\u0026gt;Other detail info:\u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;NAMESPACE:{namespace}:STAT\u0026#34;, action=2 (READ)\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: stat cycles\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
+        "operationId": "getStatCycles_1",
+        "parameters": [
+          {
+            "description": "namespace",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "enum": [
+              "ANNUALLY",
+              "DAILY",
+              "MONTHLY",
+              "SEASONAL",
+              "WEEKLY"
+            ],
+            "in": "query",
+            "name": "cycleType",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "default": 20,
+            "format": "int32",
+            "in": "query",
+            "name": "limit",
+            "required": false,
+            "type": "integer"
+          },
+          {
+            "description": "name",
+            "in": "query",
+            "name": "name",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "default": 0,
+            "format": "int32",
+            "in": "query",
+            "name": "offset",
+            "required": false,
+            "type": "integer"
+          },
+          {
+            "enum": [
+              "ACTIVE",
+              "INIT",
+              "STOPPED"
+            ],
+            "in": "query",
+            "name": "status",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/StatCyclePagingSlicedResult"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          },
+          {
+            "HasPermission": [
+              "NAMESPACE:{namespace}:STAT [READ]"
+            ],
+            "authorization": []
+          }
+        ],
+        "summary": "List stat cycles",
+        "tags": [
+          "StatCycleConfiguration"
+        ],
+        "x-authorization": {
+          "action": "2",
+          "resource": "NAMESPACE:{namespace}:STAT"
+        }
+      }
+    },
+    "/social/v1/public/namespaces/{namespace}/statCycles/{cycleId}": {
+      "get": {
+        "description": "Get stat cycle.\u0026lt;br\u0026gt;Other detail info:\u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;NAMESPACE:{namespace}:STAT\u0026#34;, action=2 (READ)\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: stat cycle info\u0026lt;/ul\u0026gt;",
+        "operationId": "getStatCycle_1",
+        "parameters": [
+          {
+            "description": "cycle id",
+            "in": "path",
+            "name": "cycleId",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "namespace",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/StatCycleInfo"
+            }
+          },
+          "404": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eErrorCode\u003c/td\u003e\u003ctd\u003eErrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e12245\u003c/td\u003e\u003ctd\u003eStat cycle [{id}] cannot be found in namespace [{namespace}]\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/ErrorEntity"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          },
+          {
+            "HasPermission": [
+              "NAMESPACE:{namespace}:STAT [READ]"
+            ],
+            "authorization": []
+          }
+        ],
+        "summary": "Get stat cycle",
+        "tags": [
+          "StatCycleConfiguration"
+        ],
+        "x-authorization": {
+          "action": "2",
+          "resource": "NAMESPACE:{namespace}:STAT"
+        }
+      }
+    },
     "/social/v1/public/namespaces/{namespace}/statitems/bulk": {
       "get": {
         "description": "Public bulk fetch multiple user\u0026#39;s statitem value for a given namespace and statCode.  \nOther detail info:\n+ *Required permission*: resource=\u0026#34;NAMESPACE:{namespace}:STATITEM\u0026#34;, action=2 (READ)\n+ *Returns*: list of user\u0026#39;s statItem",
@@ -3587,7 +4165,7 @@
             "description": "successful operation",
             "schema": {
               "items": {
-                "$ref": "#/definitions/BulkStatItemOperationResult"
+                "$ref": "#/definitions/BulkStatOperationResult"
               },
               "type": "array"
             }
@@ -3653,7 +4231,7 @@
             "description": "successful operation",
             "schema": {
               "items": {
-                "$ref": "#/definitions/BulkStatItemOperationResult"
+                "$ref": "#/definitions/BulkStatOperationResult"
               },
               "type": "array"
             }
@@ -3721,7 +4299,7 @@
             "description": "successful operation",
             "schema": {
               "items": {
-                "$ref": "#/definitions/BulkStatItemOperationResult"
+                "$ref": "#/definitions/BulkStatOperationResult"
               },
               "type": "array"
             }
@@ -3852,8 +4430,7 @@
             "type": "integer"
           },
           {
-            "default": "updatedAt:asc",
-            "description": "default is updatedAt:asc, allow values: [statCode, statCode:asc, statCode:desc, createdAt, createdAt:asc, createdAt:desc, updatedAt, updatedAt:asc, updatedAt:desc],and support sort group, eg: sortBy=statCode:asc,createdAt:desc.",
+            "description": "default is unsorted, allow values: [statCode, statCode:asc, statCode:desc, createdAt, createdAt:asc, createdAt:desc, updatedAt, updatedAt:asc, updatedAt:desc],and support sort group, eg: sortBy=statCode:asc,createdAt:desc.",
             "in": "query",
             "name": "sortBy",
             "required": false,
@@ -3948,7 +4525,7 @@
             "description": "successful operation",
             "schema": {
               "items": {
-                "$ref": "#/definitions/BulkStatItemOperationResult"
+                "$ref": "#/definitions/BulkStatOperationResult"
               },
               "type": "array"
             }
@@ -4116,7 +4693,7 @@
             "description": "successful operation",
             "schema": {
               "items": {
-                "$ref": "#/definitions/BulkStatItemOperationResult"
+                "$ref": "#/definitions/BulkStatOperationResult"
               },
               "type": "array"
             }
@@ -4189,7 +4766,7 @@
             "description": "successful operation",
             "schema": {
               "items": {
-                "$ref": "#/definitions/BulkStatItemOperationResult"
+                "$ref": "#/definitions/BulkStatOperationResult"
               },
               "type": "array"
             }
@@ -4264,7 +4841,7 @@
             "description": "successful operation",
             "schema": {
               "items": {
-                "$ref": "#/definitions/BulkStatItemOperationResult"
+                "$ref": "#/definitions/BulkStatOperationResult"
               },
               "type": "array"
             }
@@ -4723,7 +5300,7 @@
             "description": "successful operation",
             "schema": {
               "items": {
-                "$ref": "#/definitions/BulkStatItemOperationResult"
+                "$ref": "#/definitions/BulkStatOperationResult"
               },
               "type": "array"
             }
@@ -4884,7 +5461,7 @@
             "description": "successful operation",
             "schema": {
               "items": {
-                "$ref": "#/definitions/BulkStatItemOperationResult"
+                "$ref": "#/definitions/BulkStatOperationResult"
               },
               "type": "array"
             }
@@ -4966,7 +5543,7 @@
             "description": "successful operation",
             "schema": {
               "items": {
-                "$ref": "#/definitions/BulkStatItemOperationResult"
+                "$ref": "#/definitions/BulkStatOperationResult"
               },
               "type": "array"
             }
@@ -5216,7 +5793,7 @@
             "description": "successful operation",
             "schema": {
               "items": {
-                "$ref": "#/definitions/BulkStatItemOperationResult"
+                "$ref": "#/definitions/BulkStatOperationResult"
               },
               "type": "array"
             }
@@ -5398,7 +5975,7 @@
             "description": "successful operation",
             "schema": {
               "items": {
-                "$ref": "#/definitions/BulkStatItemOperationResult"
+                "$ref": "#/definitions/BulkStatOperationResult"
               },
               "type": "array"
             }
@@ -5582,6 +6159,20 @@
       },
       "type": "object"
     },
+    "BulkCycleStatsAdd": {
+      "properties": {
+        "statCodes": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "required": [
+        "statCodes"
+      ],
+      "type": "object"
+    },
     "BulkStatItemCreate": {
       "properties": {
         "statCode": {
@@ -5606,21 +6197,6 @@
       "required": [
         "statCode"
       ],
-      "type": "object"
-    },
-    "BulkStatItemOperationResult": {
-      "properties": {
-        "details": {
-          "type": "object"
-        },
-        "statCode": {
-          "type": "string"
-        },
-        "success": {
-          "type": "boolean",
-          "x-omitempty": false
-        }
-      },
       "type": "object"
     },
     "BulkStatItemReset": {
@@ -5665,6 +6241,21 @@
         "updateStrategy",
         "value"
       ],
+      "type": "object"
+    },
+    "BulkStatOperationResult": {
+      "properties": {
+        "details": {
+          "type": "object"
+        },
+        "statCode": {
+          "type": "string"
+        },
+        "success": {
+          "type": "boolean",
+          "x-omitempty": false
+        }
+      },
       "type": "object"
     },
     "BulkUserStatItemInc": {
@@ -6114,6 +6705,13 @@
     },
     "StatCreate": {
       "properties": {
+        "cycleIds": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array",
+          "uniqueItems": true
+        },
         "defaultValue": {
           "format": "double",
           "type": "number"
@@ -6168,6 +6766,244 @@
       ],
       "type": "object"
     },
+    "StatCycleCreate": {
+      "properties": {
+        "cycleType": {
+          "description": "Cycle Type",
+          "enum": [
+            "ANNUALLY",
+            "DAILY",
+            "MONTHLY",
+            "SEASONAL",
+            "WEEKLY"
+          ],
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "end": {
+          "description": "end date time",
+          "format": "date-time",
+          "type": "string",
+          "x-nullable": true
+        },
+        "name": {
+          "type": "string"
+        },
+        "resetDate": {
+          "description": "reset date",
+          "format": "int32",
+          "type": "integer"
+        },
+        "resetDay": {
+          "description": "reset day of week",
+          "format": "int32",
+          "type": "integer"
+        },
+        "resetMonth": {
+          "description": "reset month",
+          "format": "int32",
+          "type": "integer"
+        },
+        "resetTime": {
+          "type": "string"
+        },
+        "seasonPeriod": {
+          "description": "reset month",
+          "format": "int32",
+          "type": "integer"
+        },
+        "start": {
+          "description": "start date time",
+          "format": "date-time",
+          "type": "string",
+          "x-nullable": false
+        }
+      },
+      "required": [
+        "cycleType",
+        "name",
+        "resetTime",
+        "start"
+      ],
+      "type": "object"
+    },
+    "StatCycleInfo": {
+      "properties": {
+        "createdAt": {
+          "format": "date-time",
+          "type": "string",
+          "x-nullable": false
+        },
+        "currentVersion": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "cycleType": {
+          "enum": [
+            "ANNUALLY",
+            "DAILY",
+            "MONTHLY",
+            "SEASONAL",
+            "WEEKLY"
+          ],
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "end": {
+          "format": "date-time",
+          "type": "string",
+          "x-nullable": true
+        },
+        "id": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "namespace": {
+          "type": "string"
+        },
+        "nextReset": {
+          "format": "date-time",
+          "type": "string",
+          "x-nullable": true
+        },
+        "resetDate": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "resetDay": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "resetMonth": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "resetTime": {
+          "type": "string"
+        },
+        "seasonPeriod": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "start": {
+          "format": "date-time",
+          "type": "string",
+          "x-nullable": false
+        },
+        "status": {
+          "enum": [
+            "ACTIVE",
+            "INIT",
+            "STOPPED"
+          ],
+          "type": "string"
+        },
+        "updatedAt": {
+          "format": "date-time",
+          "type": "string",
+          "x-nullable": false
+        }
+      },
+      "required": [
+        "createdAt",
+        "currentVersion",
+        "cycleType",
+        "id",
+        "name",
+        "namespace",
+        "resetTime",
+        "start",
+        "status",
+        "updatedAt"
+      ],
+      "type": "object"
+    },
+    "StatCyclePagingSlicedResult": {
+      "properties": {
+        "data": {
+          "items": {
+            "$ref": "#/definitions/StatCycleInfo"
+          },
+          "type": "array"
+        },
+        "paging": {
+          "$ref": "#/definitions/Paging"
+        }
+      },
+      "required": [
+        "data"
+      ],
+      "type": "object"
+    },
+    "StatCycleUpdate": {
+      "properties": {
+        "cycleType": {
+          "description": "Cycle Type",
+          "enum": [
+            "ANNUALLY",
+            "DAILY",
+            "MONTHLY",
+            "SEASONAL",
+            "WEEKLY"
+          ],
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "end": {
+          "description": "end date time",
+          "format": "date-time",
+          "type": "string",
+          "x-nullable": true
+        },
+        "name": {
+          "type": "string"
+        },
+        "resetDate": {
+          "description": "reset date",
+          "format": "int32",
+          "type": "integer"
+        },
+        "resetDay": {
+          "description": "reset day of week",
+          "format": "int32",
+          "type": "integer"
+        },
+        "resetMonth": {
+          "description": "reset month",
+          "format": "int32",
+          "type": "integer"
+        },
+        "resetTime": {
+          "type": "string"
+        },
+        "seasonPeriod": {
+          "description": "reset month",
+          "format": "int32",
+          "type": "integer"
+        },
+        "start": {
+          "description": "start date time",
+          "format": "date-time",
+          "type": "string",
+          "x-nullable": false
+        }
+      },
+      "required": [
+        "cycleType",
+        "name",
+        "resetTime",
+        "start"
+      ],
+      "type": "object"
+    },
     "StatImportInfo": {
       "properties": {
         "failedConfigs": {
@@ -6209,6 +7045,13 @@
           "format": "date-time",
           "type": "string",
           "x-nullable": false
+        },
+        "cycleIds": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array",
+          "uniqueItems": true
         },
         "defaultValue": {
           "format": "double",
@@ -6364,6 +7207,13 @@
     },
     "StatUpdate": {
       "properties": {
+        "cycleIds": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array",
+          "uniqueItems": true
+        },
         "defaultValue": {
           "format": "double",
           "type": "number"

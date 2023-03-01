@@ -37,14 +37,14 @@ var TestFulfillmentScriptEvalCmd = &cobra.Command{
 		input := &fulfillment_script.TestFulfillmentScriptEvalParams{
 			Body: body,
 		}
-		ok, err := fulfillmentScriptService.TestFulfillmentScriptEvalShort(input)
-		if err != nil {
-			logrus.Error(err)
+		ok, errOK := fulfillmentScriptService.TestFulfillmentScriptEvalShort(input)
+		if errOK != nil {
+			logrus.Error(errOK)
 
-			return err
-		} else {
-			logrus.Infof("Response CLI success: %+v", ok)
+			return errOK
 		}
+
+		logrus.Infof("Response CLI success: %+v", ok)
 
 		return nil
 	},

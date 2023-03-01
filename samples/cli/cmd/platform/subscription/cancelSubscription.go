@@ -45,14 +45,14 @@ var CancelSubscriptionCmd = &cobra.Command{
 			UserID:         userId,
 			Force:          &force,
 		}
-		ok, err := subscriptionService.CancelSubscriptionShort(input)
-		if err != nil {
-			logrus.Error(err)
+		ok, errOK := subscriptionService.CancelSubscriptionShort(input)
+		if errOK != nil {
+			logrus.Error(errOK)
 
-			return err
-		} else {
-			logrus.Infof("Response CLI success: %+v", ok)
+			return errOK
 		}
+
+		logrus.Infof("Response CLI success: %+v", ok)
 
 		return nil
 	},

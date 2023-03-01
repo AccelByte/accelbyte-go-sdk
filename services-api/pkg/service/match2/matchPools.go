@@ -169,6 +169,32 @@ func (aaa *MatchPoolsService) DeleteMatchPool(input *match_pools.DeleteMatchPool
 	return nil
 }
 
+// deprecated(2022-01-10): please use MatchPoolMetricShort instead.
+func (aaa *MatchPoolsService) MatchPoolMetric(input *match_pools.MatchPoolMetricParams) (*match2clientmodels.APITicketMetricResultRecord, error) {
+	token, err := aaa.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, unauthorized, forbidden, notFound, internalServerError, err := aaa.Client.MatchPools.MatchPoolMetric(input, client.BearerToken(*token.AccessToken))
+	if unauthorized != nil {
+		return nil, unauthorized
+	}
+	if forbidden != nil {
+		return nil, forbidden
+	}
+	if notFound != nil {
+		return nil, notFound
+	}
+	if internalServerError != nil {
+		return nil, internalServerError
+	}
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
 func (aaa *MatchPoolsService) MatchPoolListShort(input *match_pools.MatchPoolListParams) (*match2clientmodels.APIListMatchPoolsResponse, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
@@ -292,4 +318,29 @@ func (aaa *MatchPoolsService) DeleteMatchPoolShort(input *match_pools.DeleteMatc
 	}
 
 	return nil
+}
+
+func (aaa *MatchPoolsService) MatchPoolMetricShort(input *match_pools.MatchPoolMetricParams) (*match2clientmodels.APITicketMetricResultRecord, error) {
+	authInfoWriter := input.AuthInfoWriter
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
+	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  aaa.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
+	ok, err := aaa.Client.MatchPools.MatchPoolMetricShort(input, authInfoWriter)
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
 }

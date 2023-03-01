@@ -33,14 +33,14 @@ var GetUserSeasonCmd = &cobra.Command{
 			SeasonID:  seasonId,
 			UserID:    userId,
 		}
-		ok, err := seasonService.GetUserSeasonShort(input)
-		if err != nil {
-			logrus.Error(err)
+		ok, errOK := seasonService.GetUserSeasonShort(input)
+		if errOK != nil {
+			logrus.Error(errOK)
 
-			return err
-		} else {
-			logrus.Infof("Response CLI success: %+v", ok)
+			return errOK
 		}
+
+		logrus.Infof("Response CLI success: %+v", ok)
 
 		return nil
 	},

@@ -105,16 +105,22 @@ type ModelThirdPartyLoginPlatformCredentialResponse struct {
 	// Required: true
 	TeamID *string `json:"TeamID"`
 
-	// Token authentication type indicating what token will be used to authenticate 3rd party user. Currently support: idToken. Used for generic oauth flow.
+	// Token authentication type indicating what token will be used to authenticate 3rd party user. Currently support: idToken, code and bearerToken. Used for generic oauth flow.
 	// Required: true
 	TokenAuthenticationType *string `json:"TokenAuthenticationType"`
 
-	// A JSON containing how IAM service retrieve value from id token claims. Used for generic oauth flow.
+	// A JSON containing how IAM service retrieve value from id token claims or userInfo endpoint. Used for generic oauth flow.
 	// Required: true
 	TokenClaimsMapping map[string]string `json:"TokenClaimsMapping"`
 
 	// third party token endpoint to obtain token
 	TokenEndpoint string `json:"TokenEndpoint,omitempty"`
+
+	// third party user info endpoint to validate 3rd party user profile using third party user token. Used for generic oauth flow.
+	UserInfoEndpoint string `json:"UserInfoEndpoint,omitempty"`
+
+	// http method to call third party user info endpoint to validate 3rd party user profile using third party user token. Used for generic oauth flow.
+	UserInfoHTTPMethod string `json:"UserInfoHTTPMethod,omitempty"`
 
 	// registered domains
 	// Required: true

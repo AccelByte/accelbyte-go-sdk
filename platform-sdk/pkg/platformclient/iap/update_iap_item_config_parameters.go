@@ -62,8 +62,7 @@ func NewUpdateIAPItemConfigParamsWithHTTPClient(client *http.Client) *UpdateIAPI
 	}
 }
 
-/*
-UpdateIAPItemConfigParams contains all the parameters to send to the API endpoint
+/*UpdateIAPItemConfigParams contains all the parameters to send to the API endpoint
 for the update IAP item config operation typically these are written to a http.Request
 */
 type UpdateIAPItemConfigParams struct {

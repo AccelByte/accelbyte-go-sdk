@@ -7,7 +7,6 @@
 package reward
 
 import (
-	"net/http"
 	"os"
 
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclient/reward"
@@ -36,23 +35,19 @@ var ImportRewardsCmd = &cobra.Command{
 		if err != nil {
 			return err
 		}
-		httpClient := &http.Client{
-			CheckRedirect: func(req *http.Request, via []*http.Request) error {
-				return http.ErrUseLastResponse
-			},
-		}
 		input := &reward.ImportRewardsParams{
 			File:            file,
 			Namespace:       namespace,
 			ReplaceExisting: replaceExisting,
-			HTTPClient:      httpClient,
 		}
-		errInput := rewardService.ImportRewardsShort(input)
-		if errInput != nil {
-			logrus.Error(errInput)
+		errOK := rewardService.ImportRewardsShort(input)
+		if errOK != nil {
+			logrus.Error(errOK)
 
-			return errInput
+			return errOK
 		}
+
+		logrus.Infof("Response CLI success.")
 
 		return nil
 	},

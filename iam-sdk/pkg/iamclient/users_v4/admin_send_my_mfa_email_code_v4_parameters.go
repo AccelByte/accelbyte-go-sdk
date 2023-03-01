@@ -60,8 +60,7 @@ func NewAdminSendMyMFAEmailCodeV4ParamsWithHTTPClient(client *http.Client) *Admi
 	}
 }
 
-/*
-AdminSendMyMFAEmailCodeV4Params contains all the parameters to send to the API endpoint
+/*AdminSendMyMFAEmailCodeV4Params contains all the parameters to send to the API endpoint
 for the admin send my MFA email code v4 operation typically these are written to a http.Request
 */
 type AdminSendMyMFAEmailCodeV4Params struct {

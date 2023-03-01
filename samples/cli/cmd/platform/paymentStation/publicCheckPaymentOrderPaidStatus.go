@@ -31,14 +31,14 @@ var PublicCheckPaymentOrderPaidStatusCmd = &cobra.Command{
 			Namespace:      namespace,
 			PaymentOrderNo: paymentOrderNo,
 		}
-		ok, err := paymentStationService.PublicCheckPaymentOrderPaidStatusShort(input)
-		if err != nil {
-			logrus.Error(err)
+		ok, errOK := paymentStationService.PublicCheckPaymentOrderPaidStatusShort(input)
+		if errOK != nil {
+			logrus.Error(errOK)
 
-			return err
-		} else {
-			logrus.Infof("Response CLI success: %+v", ok)
+			return errOK
 		}
+
+		logrus.Infof("Response CLI success: %+v", ok)
 
 		return nil
 	},

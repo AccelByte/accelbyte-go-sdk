@@ -7,8 +7,6 @@
 package oAuth20Extension
 
 import (
-	"net/http"
-
 	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclient/o_auth2_0_extension"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/iam"
@@ -27,20 +25,15 @@ var LogoutCmd = &cobra.Command{
 			Client:          factory.NewIamClient(&repository.ConfigRepositoryImpl{}),
 			TokenRepository: &repository.TokenRepositoryImpl{},
 		}
-		httpClient := &http.Client{
-			CheckRedirect: func(req *http.Request, via []*http.Request) error {
-				return http.ErrUseLastResponse
-			},
-		}
-		input := &o_auth2_0_extension.LogoutParams{
-			HTTPClient: httpClient,
-		}
-		errInput := oAuth20ExtensionService.LogoutShort(input)
-		if errInput != nil {
-			logrus.Error(errInput)
+		input := &o_auth2_0_extension.LogoutParams{}
+		errNoContent := oAuth20ExtensionService.LogoutShort(input)
+		if errNoContent != nil {
+			logrus.Error(errNoContent)
 
-			return errInput
+			return errNoContent
 		}
+
+		logrus.Infof("Response CLI success.")
 
 		return nil
 	},

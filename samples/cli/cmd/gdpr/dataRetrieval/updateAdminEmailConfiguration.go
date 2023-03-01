@@ -38,12 +38,14 @@ var UpdateAdminEmailConfigurationCmd = &cobra.Command{
 			Body:      body,
 			Namespace: namespace,
 		}
-		errInput := dataRetrievalService.UpdateAdminEmailConfigurationShort(input)
-		if errInput != nil {
-			logrus.Error(errInput)
+		errNoContent := dataRetrievalService.UpdateAdminEmailConfigurationShort(input)
+		if errNoContent != nil {
+			logrus.Error(errNoContent)
 
-			return errInput
+			return errNoContent
 		}
+
+		logrus.Infof("Response CLI success.")
 
 		return nil
 	},

@@ -37,14 +37,14 @@ var AdminGetUserLoginHistoriesV3Cmd = &cobra.Command{
 			Before:    &before,
 			Limit:     &limit,
 		}
-		ok, err := usersService.AdminGetUserLoginHistoriesV3Short(input)
-		if err != nil {
-			logrus.Error(err)
+		ok, errOK := usersService.AdminGetUserLoginHistoriesV3Short(input)
+		if errOK != nil {
+			logrus.Error(errOK)
 
-			return err
-		} else {
-			logrus.Infof("Response CLI success: %+v", ok)
+			return errOK
 		}
+
+		logrus.Infof("Response CLI success: %+v", ok)
 
 		return nil
 	},

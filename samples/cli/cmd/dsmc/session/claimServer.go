@@ -39,12 +39,14 @@ var ClaimServerCmd = &cobra.Command{
 			Body:      body,
 			Namespace: namespace,
 		}
-		errInput := sessionService.ClaimServerShort(input)
-		if errInput != nil {
-			logrus.Error(errInput)
+		errNoContent := sessionService.ClaimServerShort(input)
+		if errNoContent != nil {
+			logrus.Error(errNoContent)
 
-			return errInput
+			return errNoContent
 		}
+
+		logrus.Infof("Response CLI success.")
 
 		return nil
 	},

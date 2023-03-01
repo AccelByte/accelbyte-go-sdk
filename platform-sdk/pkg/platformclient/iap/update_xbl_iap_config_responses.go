@@ -52,10 +52,9 @@ func NewUpdateXblIAPConfigOK() *UpdateXblIAPConfigOK {
 	return &UpdateXblIAPConfigOK{}
 }
 
-/*
-UpdateXblIAPConfigOK handles this case with default header values.
+/*UpdateXblIAPConfigOK handles this case with default header values.
 
-	successful operation
+  successful operation
 */
 type UpdateXblIAPConfigOK struct {
 	Payload *platformclientmodels.XblIAPConfigInfo

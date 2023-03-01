@@ -31,12 +31,14 @@ var DeleteDeploymentCmd = &cobra.Command{
 			Deployment: deployment,
 			Namespace:  namespace,
 		}
-		errInput := deploymentConfigService.DeleteDeploymentShort(input)
-		if errInput != nil {
-			logrus.Error(errInput)
+		errNoContent := deploymentConfigService.DeleteDeploymentShort(input)
+		if errNoContent != nil {
+			logrus.Error(errNoContent)
 
-			return errInput
+			return errNoContent
 		}
+
+		logrus.Infof("Response CLI success.")
 
 		return nil
 	},

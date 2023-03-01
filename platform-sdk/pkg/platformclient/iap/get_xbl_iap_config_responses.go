@@ -52,10 +52,9 @@ func NewGetXblIAPConfigOK() *GetXblIAPConfigOK {
 	return &GetXblIAPConfigOK{}
 }
 
-/*
-GetXblIAPConfigOK handles this case with default header values.
+/*GetXblIAPConfigOK handles this case with default header values.
 
-	successful operation
+  successful operation
 */
 type GetXblIAPConfigOK struct {
 	Payload *platformclientmodels.XblIAPConfigInfo

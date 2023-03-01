@@ -29,14 +29,14 @@ var SpecificAgentTypeDescriptionHandlerCmd = &cobra.Command{
 		input := &event_descriptions.SpecificAgentTypeDescriptionHandlerParams{
 			AgentTypes: &agentTypes,
 		}
-		ok, err := eventDescriptionsService.SpecificAgentTypeDescriptionHandlerShort(input)
-		if err != nil {
-			logrus.Error(err)
+		ok, errOK := eventDescriptionsService.SpecificAgentTypeDescriptionHandlerShort(input)
+		if errOK != nil {
+			logrus.Error(errOK)
 
-			return err
-		} else {
-			logrus.Infof("Response CLI success: %+v", ok)
+			return errOK
 		}
+
+		logrus.Infof("Response CLI success: %+v", ok)
 
 		return nil
 	},

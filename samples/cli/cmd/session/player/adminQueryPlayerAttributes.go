@@ -31,14 +31,14 @@ var AdminQueryPlayerAttributesCmd = &cobra.Command{
 			Namespace: namespace,
 			Users:     &users,
 		}
-		ok, err := playerService.AdminQueryPlayerAttributesShort(input)
-		if err != nil {
-			logrus.Error(err)
+		ok, errOK := playerService.AdminQueryPlayerAttributesShort(input)
+		if errOK != nil {
+			logrus.Error(errOK)
 
-			return err
-		} else {
-			logrus.Infof("Response CLI success: %+v", ok)
+			return errOK
 		}
+
+		logrus.Infof("Response CLI success: %+v", ok)
 
 		return nil
 	},

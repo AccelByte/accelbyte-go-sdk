@@ -31,12 +31,14 @@ var DeleteLocalServerCmd = &cobra.Command{
 			Name:      name,
 			Namespace: namespace,
 		}
-		errInput := adminService.DeleteLocalServerShort(input)
-		if errInput != nil {
-			logrus.Error(errInput)
+		errNoContent := adminService.DeleteLocalServerShort(input)
+		if errNoContent != nil {
+			logrus.Error(errNoContent)
 
-			return errInput
+			return errNoContent
 		}
+
+		logrus.Infof("Response CLI success.")
 
 		return nil
 	},

@@ -44,12 +44,12 @@ func (aaa *SSOSAML20Service) PlatformAuthenticateSAMLV3Handler(input *sso_saml_2
 	if err != nil {
 		return "", err
 	}
-	ok, err := aaa.Client.SSOSAML20.PlatformAuthenticateSAMLV3Handler(input, client.BearerToken(*token.AccessToken))
+	found, err := aaa.Client.SSOSAML20.PlatformAuthenticateSAMLV3Handler(input, client.BearerToken(*token.AccessToken))
 	if err != nil {
 		return "", err
 	}
 
-	return ok.Location, nil
+	return found.Location, nil
 }
 
 func (aaa *SSOSAML20Service) PlatformAuthenticateSAMLV3HandlerShort(input *sso_saml_2_0.PlatformAuthenticateSAMLV3HandlerParams) (string, error) {
@@ -69,10 +69,10 @@ func (aaa *SSOSAML20Service) PlatformAuthenticateSAMLV3HandlerShort(input *sso_s
 		}
 	}
 
-	ok, err := aaa.Client.SSOSAML20.PlatformAuthenticateSAMLV3HandlerShort(input, authInfoWriter)
+	found, err := aaa.Client.SSOSAML20.PlatformAuthenticateSAMLV3HandlerShort(input, authInfoWriter)
 	if err != nil {
 		return "", err
 	}
 
-	return ok.Location, nil
+	return found.Location, nil
 }

@@ -15,13 +15,13 @@ import (
 	"github.com/go-openapi/validate"
 )
 
-// AvailablePredicateObject available predicate object
+// AvailablePredicate available predicate object
 //
-// swagger:model available predicate object
-type AvailablePredicateObject struct {
+// swagger:model AvailablePredicate
+type AvailablePredicate struct {
 
 	// available comparison list
-	AvailableComparisons []*AvailableComparisonObject `json:"availableComparisons"`
+	AvailableComparisons []*AvailableComparison `json:"availableComparisons"`
 
 	// available predicate type
 	// Enum: [EntitlementPredicate SeasonPassPredicate SeasonTierPredicate]
@@ -35,8 +35,8 @@ type AvailablePredicateObject struct {
 	ValueType string `json:"valueType,omitempty"`
 }
 
-// Validate validates this available predicate object
-func (m *AvailablePredicateObject) Validate(formats strfmt.Registry) error {
+// Validate validates this available predicate
+func (m *AvailablePredicate) Validate(formats strfmt.Registry) error {
 	var res []error
 
 	if err := m.validateAvailableComparisons(formats); err != nil {
@@ -57,7 +57,7 @@ func (m *AvailablePredicateObject) Validate(formats strfmt.Registry) error {
 	return nil
 }
 
-func (m *AvailablePredicateObject) validateAvailableComparisons(formats strfmt.Registry) error {
+func (m *AvailablePredicate) validateAvailableComparisons(formats strfmt.Registry) error {
 
 	if swag.IsZero(m.AvailableComparisons) { // not required
 		return nil
@@ -82,7 +82,7 @@ func (m *AvailablePredicateObject) validateAvailableComparisons(formats strfmt.R
 	return nil
 }
 
-var availablePredicateObjectTypePredicateTypePropEnum []interface{}
+var availablePredicateTypePredicateTypePropEnum []interface{}
 
 func init() {
 	var res []string
@@ -90,31 +90,31 @@ func init() {
 		panic(err)
 	}
 	for _, v := range res {
-		availablePredicateObjectTypePredicateTypePropEnum = append(availablePredicateObjectTypePredicateTypePropEnum, v)
+		availablePredicateTypePredicateTypePropEnum = append(availablePredicateTypePredicateTypePropEnum, v)
 	}
 }
 
 const (
 
-	// AvailablePredicateObjectPredicateTypeEntitlementPredicate captures enum value "EntitlementPredicate"
-	AvailablePredicateObjectPredicateTypeEntitlementPredicate string = "EntitlementPredicate"
+	// AvailablePredicatePredicateTypeEntitlementPredicate captures enum value "EntitlementPredicate"
+	AvailablePredicatePredicateTypeEntitlementPredicate string = "EntitlementPredicate"
 
-	// AvailablePredicateObjectPredicateTypeSeasonPassPredicate captures enum value "SeasonPassPredicate"
-	AvailablePredicateObjectPredicateTypeSeasonPassPredicate string = "SeasonPassPredicate"
+	// AvailablePredicatePredicateTypeSeasonPassPredicate captures enum value "SeasonPassPredicate"
+	AvailablePredicatePredicateTypeSeasonPassPredicate string = "SeasonPassPredicate"
 
-	// AvailablePredicateObjectPredicateTypeSeasonTierPredicate captures enum value "SeasonTierPredicate"
-	AvailablePredicateObjectPredicateTypeSeasonTierPredicate string = "SeasonTierPredicate"
+	// AvailablePredicatePredicateTypeSeasonTierPredicate captures enum value "SeasonTierPredicate"
+	AvailablePredicatePredicateTypeSeasonTierPredicate string = "SeasonTierPredicate"
 )
 
 // prop value enum
-func (m *AvailablePredicateObject) validatePredicateTypeEnum(path, location string, value string) error {
-	if err := validate.EnumCase(path, location, value, availablePredicateObjectTypePredicateTypePropEnum, true); err != nil {
+func (m *AvailablePredicate) validatePredicateTypeEnum(path, location string, value string) error {
+	if err := validate.EnumCase(path, location, value, availablePredicateTypePredicateTypePropEnum, true); err != nil {
 		return err
 	}
 	return nil
 }
 
-func (m *AvailablePredicateObject) validatePredicateType(formats strfmt.Registry) error {
+func (m *AvailablePredicate) validatePredicateType(formats strfmt.Registry) error {
 
 	if swag.IsZero(m.PredicateType) { // not required
 		return nil
@@ -128,7 +128,7 @@ func (m *AvailablePredicateObject) validatePredicateType(formats strfmt.Registry
 	return nil
 }
 
-var availablePredicateObjectTypeValueTypePropEnum []interface{}
+var availablePredicateTypeValueTypePropEnum []interface{}
 
 func init() {
 	var res []string
@@ -136,31 +136,31 @@ func init() {
 		panic(err)
 	}
 	for _, v := range res {
-		availablePredicateObjectTypeValueTypePropEnum = append(availablePredicateObjectTypeValueTypePropEnum, v)
+		availablePredicateTypeValueTypePropEnum = append(availablePredicateTypeValueTypePropEnum, v)
 	}
 }
 
 const (
 
-	// AvailablePredicateObjectValueTypeList captures enum value "List"
-	AvailablePredicateObjectValueTypeList string = "List"
+	// AvailablePredicateValueTypeList captures enum value "List"
+	AvailablePredicateValueTypeList string = "List"
 
-	// AvailablePredicateObjectValueTypeNumber captures enum value "Number"
-	AvailablePredicateObjectValueTypeNumber string = "Number"
+	// AvailablePredicateValueTypeNumber captures enum value "Number"
+	AvailablePredicateValueTypeNumber string = "Number"
 
-	// AvailablePredicateObjectValueTypeString captures enum value "String"
-	AvailablePredicateObjectValueTypeString string = "String"
+	// AvailablePredicateValueTypeString captures enum value "String"
+	AvailablePredicateValueTypeString string = "String"
 )
 
 // prop value enum
-func (m *AvailablePredicateObject) validateValueTypeEnum(path, location string, value string) error {
-	if err := validate.EnumCase(path, location, value, availablePredicateObjectTypeValueTypePropEnum, true); err != nil {
+func (m *AvailablePredicate) validateValueTypeEnum(path, location string, value string) error {
+	if err := validate.EnumCase(path, location, value, availablePredicateTypeValueTypePropEnum, true); err != nil {
 		return err
 	}
 	return nil
 }
 
-func (m *AvailablePredicateObject) validateValueType(formats strfmt.Registry) error {
+func (m *AvailablePredicate) validateValueType(formats strfmt.Registry) error {
 
 	if swag.IsZero(m.ValueType) { // not required
 		return nil
@@ -175,7 +175,7 @@ func (m *AvailablePredicateObject) validateValueType(formats strfmt.Registry) er
 }
 
 // MarshalBinary interface implementation
-func (m *AvailablePredicateObject) MarshalBinary() ([]byte, error) {
+func (m *AvailablePredicate) MarshalBinary() ([]byte, error) {
 	if m == nil {
 		return nil, nil
 	}
@@ -183,8 +183,8 @@ func (m *AvailablePredicateObject) MarshalBinary() ([]byte, error) {
 }
 
 // UnmarshalBinary interface implementation
-func (m *AvailablePredicateObject) UnmarshalBinary(b []byte) error {
-	var res AvailablePredicateObject
+func (m *AvailablePredicate) UnmarshalBinary(b []byte) error {
+	var res AvailablePredicate
 	if err := swag.ReadJSON(b, &res); err != nil {
 		return err
 	}

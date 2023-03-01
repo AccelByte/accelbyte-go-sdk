@@ -60,8 +60,7 @@ func NewLoginSSOClientParamsWithHTTPClient(client *http.Client) *LoginSSOClientP
 	}
 }
 
-/*
-LoginSSOClientParams contains all the parameters to send to the API endpoint
+/*LoginSSOClientParams contains all the parameters to send to the API endpoint
 for the login SSO client operation typically these are written to a http.Request
 */
 type LoginSSOClientParams struct {

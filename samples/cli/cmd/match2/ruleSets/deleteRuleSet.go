@@ -31,12 +31,14 @@ var DeleteRuleSetCmd = &cobra.Command{
 			Namespace: namespace,
 			Ruleset:   ruleset,
 		}
-		errInput := ruleSetsService.DeleteRuleSetShort(input)
-		if errInput != nil {
-			logrus.Error(errInput)
+		errNoContent := ruleSetsService.DeleteRuleSetShort(input)
+		if errNoContent != nil {
+			logrus.Error(errNoContent)
 
-			return errInput
+			return errNoContent
 		}
+
+		logrus.Infof("Response CLI success.")
 
 		return nil
 	},

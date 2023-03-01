@@ -60,8 +60,7 @@ func NewUpdateXblBPCertFileParamsWithHTTPClient(client *http.Client) *UpdateXblB
 	}
 }
 
-/*
-UpdateXblBPCertFileParams contains all the parameters to send to the API endpoint
+/*UpdateXblBPCertFileParams contains all the parameters to send to the API endpoint
 for the update xbl b p cert file operation typically these are written to a http.Request
 */
 type UpdateXblBPCertFileParams struct {

@@ -33,14 +33,14 @@ var GetLocalizationTemplateCmd = &cobra.Command{
 			TemplateLanguage: templateLanguage,
 			TemplateSlug:     templateSlug,
 		}
-		ok, err := adminService.GetLocalizationTemplateShort(input)
-		if err != nil {
-			logrus.Error(err)
+		ok, errOK := adminService.GetLocalizationTemplateShort(input)
+		if errOK != nil {
+			logrus.Error(errOK)
 
-			return err
-		} else {
-			logrus.Infof("Response CLI success: %+v", ok)
+			return errOK
 		}
+
+		logrus.Infof("Response CLI success: %+v", ok)
 
 		return nil
 	},

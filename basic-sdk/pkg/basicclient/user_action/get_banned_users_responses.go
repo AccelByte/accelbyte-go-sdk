@@ -76,10 +76,9 @@ func NewGetBannedUsersOK() *GetBannedUsersOK {
 	return &GetBannedUsersOK{}
 }
 
-/*
-GetBannedUsersOK handles this case with default header values.
+/*GetBannedUsersOK handles this case with default header values.
 
-	successful operation
+  successful operation
 */
 type GetBannedUsersOK struct {
 	Payload []*basicclientmodels.ADTOObjectForEQU8UserBanStatus
@@ -128,10 +127,9 @@ func NewGetBannedUsersBadRequest() *GetBannedUsersBadRequest {
 	return &GetBannedUsersBadRequest{}
 }
 
-/*
-GetBannedUsersBadRequest handles this case with default header values.
+/*GetBannedUsersBadRequest handles this case with default header values.
 
-	<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>11621</td><td>Invalid EQU8 api key in namespace [{namespace}]</td></tr></table>
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>11621</td><td>Invalid EQU8 api key in namespace [{namespace}]</td></tr></table>
 */
 type GetBannedUsersBadRequest struct {
 	Payload *basicclientmodels.ErrorEntity
@@ -182,10 +180,9 @@ func NewGetBannedUsersNotFound() *GetBannedUsersNotFound {
 	return &GetBannedUsersNotFound{}
 }
 
-/*
-GetBannedUsersNotFound handles this case with default header values.
+/*GetBannedUsersNotFound handles this case with default header values.
 
-	<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>11641</td><td>Equ8 config not found in namespace [{namespace}]</td></tr></table>
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>11641</td><td>Equ8 config not found in namespace [{namespace}]</td></tr></table>
 */
 type GetBannedUsersNotFound struct {
 	Payload *basicclientmodels.ErrorEntity
@@ -236,10 +233,9 @@ func NewGetBannedUsersUnprocessableEntity() *GetBannedUsersUnprocessableEntity {
 	return &GetBannedUsersUnprocessableEntity{}
 }
 
-/*
-GetBannedUsersUnprocessableEntity handles this case with default header values.
+/*GetBannedUsersUnprocessableEntity handles this case with default header values.
 
-	<table><tr><td>ErrorCode</td><td>ErrorMessage</td></tr><tr><td>20002</td><td>validation error</td></tr></table>
+  <table><tr><td>ErrorCode</td><td>ErrorMessage</td></tr><tr><td>20002</td><td>validation error</td></tr></table>
 */
 type GetBannedUsersUnprocessableEntity struct {
 	Payload *basicclientmodels.ValidationErrorEntity
@@ -290,10 +286,9 @@ func NewGetBannedUsersInternalServerError() *GetBannedUsersInternalServerError {
 	return &GetBannedUsersInternalServerError{}
 }
 
-/*
-GetBannedUsersInternalServerError handles this case with default header values.
+/*GetBannedUsersInternalServerError handles this case with default header values.
 
-	<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20000</td><td>internal server error</td></tr></table>
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20000</td><td>internal server error</td></tr></table>
 */
 type GetBannedUsersInternalServerError struct {
 	Payload *basicclientmodels.ErrorEntity

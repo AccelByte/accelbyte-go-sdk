@@ -7,8 +7,6 @@
 package oAuth20Extension
 
 import (
-	"net/http"
-
 	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclient/o_auth2_0_extension"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/iam"
@@ -32,27 +30,21 @@ var AuthenticationWithPlatformLinkV3Cmd = &cobra.Command{
 		password, _ := cmd.Flags().GetString("password")
 		username, _ := cmd.Flags().GetString("username")
 		extendExp, _ := cmd.Flags().GetBool("extendExp")
-		httpClient := &http.Client{
-			CheckRedirect: func(req *http.Request, via []*http.Request) error {
-				return http.ErrUseLastResponse
-			},
-		}
 		input := &o_auth2_0_extension.AuthenticationWithPlatformLinkV3Params{
 			ExtendExp:    &extendExp,
 			ClientID:     clientId,
 			LinkingToken: linkingToken,
 			Password:     password,
 			Username:     username,
-			HTTPClient:   httpClient,
 		}
-		ok, err := oAuth20ExtensionService.AuthenticationWithPlatformLinkV3Short(input)
-		if err != nil {
-			logrus.Error(err)
+		ok, errOK := oAuth20ExtensionService.AuthenticationWithPlatformLinkV3Short(input)
+		if errOK != nil {
+			logrus.Error(errOK)
 
-			return err
-		} else {
-			logrus.Infof("Response CLI success: %+v", ok)
+			return errOK
 		}
+
+		logrus.Infof("Response CLI success: %+v", ok)
 
 		return nil
 	},

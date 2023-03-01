@@ -88,11 +88,11 @@ type PublicListGlobalAchievementsParams struct {
 
 	/*RetryPolicy*/
 	RetryPolicy *utils.Retry
-	/*AchievementCode
-	  filter by achievement code
+	/*AchievementCodes
+	  filter by achievement codes. multiple value separated by comma
 
 	*/
-	AchievementCode *string
+	AchievementCodes *string
 	/*Limit
 	  the maximum number of data that may be returned (1...100)
 
@@ -118,6 +118,11 @@ type PublicListGlobalAchievementsParams struct {
 
 	*/
 	Status *string
+	/*Tags
+	  tags
+
+	*/
+	Tags []string
 
 	timeout        time.Duration
 	AuthInfoWriter runtime.ClientAuthInfoWriter
@@ -172,15 +177,15 @@ func (o *PublicListGlobalAchievementsParams) SetHTTPClientTransport(roundTripper
 	}
 }
 
-// WithAchievementCode adds the achievementCode to the public list global achievements params
-func (o *PublicListGlobalAchievementsParams) WithAchievementCode(achievementCode *string) *PublicListGlobalAchievementsParams {
-	o.SetAchievementCode(achievementCode)
+// WithAchievementCodes adds the achievementCodes to the public list global achievements params
+func (o *PublicListGlobalAchievementsParams) WithAchievementCodes(achievementCodes *string) *PublicListGlobalAchievementsParams {
+	o.SetAchievementCodes(achievementCodes)
 	return o
 }
 
-// SetAchievementCode adds the achievementCode to the public list global achievements params
-func (o *PublicListGlobalAchievementsParams) SetAchievementCode(achievementCode *string) {
-	o.AchievementCode = achievementCode
+// SetAchievementCodes adds the achievementCodes to the public list global achievements params
+func (o *PublicListGlobalAchievementsParams) SetAchievementCodes(achievementCodes *string) {
+	o.AchievementCodes = achievementCodes
 }
 
 // WithLimit adds the limit to the public list global achievements params
@@ -238,6 +243,17 @@ func (o *PublicListGlobalAchievementsParams) SetStatus(status *string) {
 	o.Status = status
 }
 
+// WithTags adds the tags to the public list global achievements params
+func (o *PublicListGlobalAchievementsParams) WithTags(tags []string) *PublicListGlobalAchievementsParams {
+	o.SetTags(tags)
+	return o
+}
+
+// SetTags adds the tags to the public list global achievements params
+func (o *PublicListGlobalAchievementsParams) SetTags(tags []string) {
+	o.Tags = tags
+}
+
 // WriteToRequest writes these params to a swagger request
 func (o *PublicListGlobalAchievementsParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.Registry) error {
 
@@ -246,16 +262,16 @@ func (o *PublicListGlobalAchievementsParams) WriteToRequest(r runtime.ClientRequ
 	}
 	var res []error
 
-	if o.AchievementCode != nil {
+	if o.AchievementCodes != nil {
 
-		// query param achievementCode
-		var qrAchievementCode string
-		if o.AchievementCode != nil {
-			qrAchievementCode = *o.AchievementCode
+		// query param achievementCodes
+		var qrAchievementCodes string
+		if o.AchievementCodes != nil {
+			qrAchievementCodes = *o.AchievementCodes
 		}
-		qAchievementCode := qrAchievementCode
-		if qAchievementCode != "" {
-			if err := r.SetQueryParam("achievementCode", qAchievementCode); err != nil {
+		qAchievementCodes := qrAchievementCodes
+		if qAchievementCodes != "" {
+			if err := r.SetQueryParam("achievementCodes", qAchievementCodes); err != nil {
 				return err
 			}
 		}
@@ -329,6 +345,14 @@ func (o *PublicListGlobalAchievementsParams) WriteToRequest(r runtime.ClientRequ
 			}
 		}
 
+	}
+
+	valuesTags := o.Tags
+
+	joinedTags := swag.JoinByFormat(valuesTags, "csv")
+	// query array param tags
+	if err := r.SetQueryParam("tags", joinedTags...); err != nil {
+		return err
 	}
 
 	// setting the default header value

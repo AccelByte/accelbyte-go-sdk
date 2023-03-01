@@ -60,8 +60,7 @@ func NewDeleteGoogleIAPConfigParamsWithHTTPClient(client *http.Client) *DeleteGo
 	}
 }
 
-/*
-DeleteGoogleIAPConfigParams contains all the parameters to send to the API endpoint
+/*DeleteGoogleIAPConfigParams contains all the parameters to send to the API endpoint
 for the delete google IAP config operation typically these are written to a http.Request
 */
 type DeleteGoogleIAPConfigParams struct {

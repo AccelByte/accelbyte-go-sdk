@@ -52,10 +52,9 @@ func NewGetUserDLCOK() *GetUserDLCOK {
 	return &GetUserDLCOK{}
 }
 
-/*
-GetUserDLCOK handles this case with default header values.
+/*GetUserDLCOK handles this case with default header values.
 
-	successful operation
+  successful operation
 */
 type GetUserDLCOK struct {
 	Payload *platformclientmodels.UserDLC

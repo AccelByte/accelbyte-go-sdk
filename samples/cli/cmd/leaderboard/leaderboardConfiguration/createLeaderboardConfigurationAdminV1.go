@@ -39,14 +39,14 @@ var CreateLeaderboardConfigurationAdminV1Cmd = &cobra.Command{
 			Body:      body,
 			Namespace: namespace,
 		}
-		ok, err := leaderboardConfigurationService.CreateLeaderboardConfigurationAdminV1Short(input)
-		if err != nil {
-			logrus.Error(err)
+		created, errCreated := leaderboardConfigurationService.CreateLeaderboardConfigurationAdminV1Short(input)
+		if errCreated != nil {
+			logrus.Error(errCreated)
 
-			return err
-		} else {
-			logrus.Infof("Response CLI success: %+v", ok)
+			return errCreated
 		}
+
+		logrus.Infof("Response CLI success: %+v", created)
 
 		return nil
 	},

@@ -8,7 +8,6 @@ package slot
 
 import (
 	"bytes"
-	"io"
 	"os"
 
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
@@ -32,10 +31,10 @@ var PublicGetSlotDataCmd = &cobra.Command{
 		namespace, _ := cmd.Flags().GetString("namespace")
 		slotId, _ := cmd.Flags().GetString("slotId")
 		userId, _ := cmd.Flags().GetString("userId")
-		file, err := os.Create("file")
+		file, errFile := os.Create("file")
 		logrus.Infof("Output %v", file)
-		if err != nil {
-			return err
+		if errFile != nil {
+			return errFile
 		}
 		writer := bytes.NewBuffer(nil)
 		input := &slot.PublicGetSlotDataParams{
@@ -43,18 +42,14 @@ var PublicGetSlotDataCmd = &cobra.Command{
 			SlotID:    slotId,
 			UserID:    userId,
 		}
-		ok, err := slotService.PublicGetSlotDataShort(input, writer)
-		if err != nil {
-			logrus.Error(err)
+		ok, errOK := slotService.PublicGetSlotDataShort(input, writer)
+		if errOK != nil {
+			logrus.Error(errOK)
 
-			return err
-		} else {
-			logrus.Infof("Response CLI success: %+v", ok)
+			return errOK
 		}
-		_, err = io.Copy(file, writer)
-		if err != nil {
-			return err
-		}
+
+		logrus.Infof("Response CLI success: %+v", ok)
 
 		return nil
 	},

@@ -41,14 +41,14 @@ var GetPublicEditHistoryCmd = &cobra.Command{
 			StartDate: &startDate,
 			Type:      &type_,
 		}
-		ok, err := eventV2Service.GetPublicEditHistoryShort(input)
-		if err != nil {
-			logrus.Error(err)
+		ok, errOK := eventV2Service.GetPublicEditHistoryShort(input)
+		if errOK != nil {
+			logrus.Error(errOK)
 
-			return err
-		} else {
-			logrus.Infof("Response CLI success: %+v", ok)
+			return errOK
 		}
+
+		logrus.Infof("Response CLI success: %+v", ok)
 
 		return nil
 	},

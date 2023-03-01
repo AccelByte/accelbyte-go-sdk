@@ -31,7 +31,7 @@ var UnlockSteamUserAchievementCmd = &cobra.Command{
 		namespace, _ := cmd.Flags().GetString("namespace")
 		userId, _ := cmd.Flags().GetString("userId")
 		bodyString := cmd.Flag("body").Value.String()
-		var body *platformclientmodels.ADTOObjectForUnlockSteamAchievementAPI
+		var body *platformclientmodels.SteamAchievementUpdateRequest
 		errBody := json.Unmarshal([]byte(bodyString), &body)
 		if errBody != nil {
 			return errBody
@@ -41,12 +41,14 @@ var UnlockSteamUserAchievementCmd = &cobra.Command{
 			Namespace: namespace,
 			UserID:    userId,
 		}
-		errInput := achievementPlatformService.UnlockSteamUserAchievementShort(input)
-		if errInput != nil {
-			logrus.Error(errInput)
+		errNoContent := achievementPlatformService.UnlockSteamUserAchievementShort(input)
+		if errNoContent != nil {
+			logrus.Error(errNoContent)
 
-			return errInput
+			return errNoContent
 		}
+
+		logrus.Infof("Response CLI success.")
 
 		return nil
 	},

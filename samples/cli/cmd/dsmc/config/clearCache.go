@@ -29,12 +29,14 @@ var ClearCacheCmd = &cobra.Command{
 		input := &config.ClearCacheParams{
 			Namespace: namespace,
 		}
-		errInput := configService.ClearCacheShort(input)
-		if errInput != nil {
-			logrus.Error(errInput)
+		errNoContent := configService.ClearCacheShort(input)
+		if errNoContent != nil {
+			logrus.Error(errNoContent)
 
-			return errInput
+			return errNoContent
 		}
+
+		logrus.Infof("Response CLI success.")
 
 		return nil
 	},

@@ -52,10 +52,9 @@ func NewUpdateTwitchIAPConfigOK() *UpdateTwitchIAPConfigOK {
 	return &UpdateTwitchIAPConfigOK{}
 }
 
-/*
-UpdateTwitchIAPConfigOK handles this case with default header values.
+/*UpdateTwitchIAPConfigOK handles this case with default header values.
 
-	successful operation
+  successful operation
 */
 type UpdateTwitchIAPConfigOK struct {
 	Payload *platformclientmodels.TwitchIAPConfigInfo

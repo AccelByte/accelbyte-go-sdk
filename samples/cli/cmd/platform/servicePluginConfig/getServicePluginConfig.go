@@ -29,14 +29,14 @@ var GetServicePluginConfigCmd = &cobra.Command{
 		input := &service_plugin_config.GetServicePluginConfigParams{
 			Namespace: namespace,
 		}
-		ok, err := servicePluginConfigService.GetServicePluginConfigShort(input)
-		if err != nil {
-			logrus.Error(err)
+		ok, errOK := servicePluginConfigService.GetServicePluginConfigShort(input)
+		if errOK != nil {
+			logrus.Error(errOK)
 
-			return err
-		} else {
-			logrus.Infof("Response CLI success: %+v", ok)
+			return errOK
 		}
+
+		logrus.Infof("Response CLI success: %+v", ok)
 
 		return nil
 	},

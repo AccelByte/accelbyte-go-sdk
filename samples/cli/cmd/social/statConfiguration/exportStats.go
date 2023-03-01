@@ -8,6 +8,7 @@ package statConfiguration
 
 import (
 	"bytes"
+	"os"
 
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/social"
@@ -28,18 +29,23 @@ var ExportStatsCmd = &cobra.Command{
 			TokenRepository: &repository.TokenRepositoryImpl{},
 		}
 		namespace, _ := cmd.Flags().GetString("namespace")
+		file, errFile := os.Create("file")
+		logrus.Infof("Output %v", file)
+		if errFile != nil {
+			return errFile
+		}
+		writer := bytes.NewBuffer(nil)
 		input := &stat_configuration.ExportStatsParams{
 			Namespace: namespace,
 		}
-		writer := bytes.NewBuffer(nil)
-		ok, err := statConfigurationService.ExportStatsShort(input, writer)
-		if err != nil {
-			logrus.Error(err)
+		ok, errOK := statConfigurationService.ExportStatsShort(input, writer)
+		if errOK != nil {
+			logrus.Error(errOK)
 
-			return err
-		} else {
-			logrus.Infof("Response CLI success: %+v", ok)
+			return errOK
 		}
+
+		logrus.Infof("Response CLI success: %+v", ok)
 
 		return nil
 	},

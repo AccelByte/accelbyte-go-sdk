@@ -7,8 +7,6 @@
 package clients
 
 import (
-	"net/http"
-
 	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclient/clients"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/iam"
@@ -30,23 +28,19 @@ var AddClientPermissionCmd = &cobra.Command{
 		action, _ := cmd.Flags().GetInt64("action")
 		clientId, _ := cmd.Flags().GetString("clientId")
 		resource, _ := cmd.Flags().GetString("resource")
-		httpClient := &http.Client{
-			CheckRedirect: func(req *http.Request, via []*http.Request) error {
-				return http.ErrUseLastResponse
-			},
-		}
 		input := &clients.AddClientPermissionParams{
-			Action:     action,
-			ClientID:   clientId,
-			Resource:   resource,
-			HTTPClient: httpClient,
+			Action:   action,
+			ClientID: clientId,
+			Resource: resource,
 		}
-		errInput := clientsService.AddClientPermissionShort(input)
-		if errInput != nil {
-			logrus.Error(errInput)
+		errNoContent := clientsService.AddClientPermissionShort(input)
+		if errNoContent != nil {
+			logrus.Error(errNoContent)
 
-			return errInput
+			return errNoContent
 		}
+
+		logrus.Infof("Response CLI success.")
 
 		return nil
 	},

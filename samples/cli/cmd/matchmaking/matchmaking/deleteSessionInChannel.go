@@ -33,12 +33,14 @@ var DeleteSessionInChannelCmd = &cobra.Command{
 			MatchID:     matchID,
 			Namespace:   namespace,
 		}
-		errInput := matchmakingService.DeleteSessionInChannelShort(input)
-		if errInput != nil {
-			logrus.Error(errInput)
+		errNoContent := matchmakingService.DeleteSessionInChannelShort(input)
+		if errNoContent != nil {
+			logrus.Error(errNoContent)
 
-			return errInput
+			return errNoContent
 		}
+
+		logrus.Infof("Response CLI success.")
 
 		return nil
 	},

@@ -41,12 +41,14 @@ var UpdateModerationRuleStatusCmd = &cobra.Command{
 			Namespace: namespace,
 			RuleID:    ruleId,
 		}
-		errInput := adminModerationRuleService.UpdateModerationRuleStatusShort(input)
-		if errInput != nil {
-			logrus.Error(errInput)
+		errNoContent := adminModerationRuleService.UpdateModerationRuleStatusShort(input)
+		if errNoContent != nil {
+			logrus.Error(errNoContent)
 
-			return errInput
+			return errNoContent
 		}
+
+		logrus.Infof("Response CLI success.")
 
 		return nil
 	},

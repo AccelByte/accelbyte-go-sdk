@@ -37,14 +37,14 @@ var QueryKeyGroupsCmd = &cobra.Command{
 			Offset:    &offset,
 			Tag:       &tag,
 		}
-		ok, err := keyGroupService.QueryKeyGroupsShort(input)
-		if err != nil {
-			logrus.Error(err)
+		ok, errOK := keyGroupService.QueryKeyGroupsShort(input)
+		if errOK != nil {
+			logrus.Error(errOK)
 
-			return err
-		} else {
-			logrus.Infof("Response CLI success: %+v", ok)
+			return errOK
 		}
+
+		logrus.Infof("Response CLI success: %+v", ok)
 
 		return nil
 	},

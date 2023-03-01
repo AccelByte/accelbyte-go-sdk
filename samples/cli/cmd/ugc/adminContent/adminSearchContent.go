@@ -58,14 +58,14 @@ var AdminSearchContentCmd = &cobra.Command{
 			Type:       &type_,
 			UserID:     &userId,
 		}
-		ok, err := adminContentService.AdminSearchContentShort(input)
-		if err != nil {
-			logrus.Error(err)
+		ok, errOK := adminContentService.AdminSearchContentShort(input)
+		if errOK != nil {
+			logrus.Error(errOK)
 
-			return err
-		} else {
-			logrus.Infof("Response CLI success: %+v", ok)
+			return errOK
 		}
+
+		logrus.Infof("Response CLI success: %+v", ok)
 
 		return nil
 	},

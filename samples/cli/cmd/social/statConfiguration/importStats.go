@@ -7,7 +7,6 @@
 package statConfiguration
 
 import (
-	"net/http"
 	"os"
 
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
@@ -36,25 +35,19 @@ var ImportStatsCmd = &cobra.Command{
 			return err
 		}
 		replaceExisting, _ := cmd.Flags().GetBool("replaceExisting")
-		httpClient := &http.Client{
-			CheckRedirect: func(req *http.Request, via []*http.Request) error {
-				return http.ErrUseLastResponse
-			},
-		}
 		input := &stat_configuration.ImportStatsParams{
 			File:            file,
 			Namespace:       namespace,
 			ReplaceExisting: &replaceExisting,
-			HTTPClient:      httpClient,
 		}
-		ok, err := statConfigurationService.ImportStatsShort(input)
-		if err != nil {
-			logrus.Error(err)
+		created, errCreated := statConfigurationService.ImportStatsShort(input)
+		if errCreated != nil {
+			logrus.Error(errCreated)
 
-			return err
-		} else {
-			logrus.Infof("Response CLI success: %+v", ok)
+			return errCreated
 		}
+
+		logrus.Infof("Response CLI success: %+v", created)
 
 		return nil
 	},

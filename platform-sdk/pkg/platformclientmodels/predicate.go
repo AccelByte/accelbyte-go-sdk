@@ -14,10 +14,10 @@ import (
 	"github.com/go-openapi/validate"
 )
 
-// PredicateObject predicate object
+// Predicate predicate object
 //
-// swagger:model predicate object
-type PredicateObject struct {
+// swagger:model Predicate
+type Predicate struct {
 
 	// anyOf, only available if comparison is includes or excludes
 	AnyOf int32 `json:"anyOf,omitempty"`
@@ -41,8 +41,8 @@ type PredicateObject struct {
 	Values []string `json:"values"`
 }
 
-// Validate validates this predicate object
-func (m *PredicateObject) Validate(formats strfmt.Registry) error {
+// Validate validates this predicate
+func (m *Predicate) Validate(formats strfmt.Registry) error {
 	var res []error
 
 	if err := m.validateComparison(formats); err != nil {
@@ -63,7 +63,7 @@ func (m *PredicateObject) Validate(formats strfmt.Registry) error {
 	return nil
 }
 
-var predicateObjectTypeComparisonPropEnum []interface{}
+var predicateTypeComparisonPropEnum []interface{}
 
 func init() {
 	var res []string
@@ -71,46 +71,46 @@ func init() {
 		panic(err)
 	}
 	for _, v := range res {
-		predicateObjectTypeComparisonPropEnum = append(predicateObjectTypeComparisonPropEnum, v)
+		predicateTypeComparisonPropEnum = append(predicateTypeComparisonPropEnum, v)
 	}
 }
 
 const (
 
-	// PredicateObjectComparisonExcludes captures enum value "excludes"
-	PredicateObjectComparisonExcludes string = "excludes"
+	// PredicateComparisonExcludes captures enum value "excludes"
+	PredicateComparisonExcludes string = "excludes"
 
-	// PredicateObjectComparisonIncludes captures enum value "includes"
-	PredicateObjectComparisonIncludes string = "includes"
+	// PredicateComparisonIncludes captures enum value "includes"
+	PredicateComparisonIncludes string = "includes"
 
-	// PredicateObjectComparisonIs captures enum value "is"
-	PredicateObjectComparisonIs string = "is"
+	// PredicateComparisonIs captures enum value "is"
+	PredicateComparisonIs string = "is"
 
-	// PredicateObjectComparisonIsGreaterThan captures enum value "isGreaterThan"
-	PredicateObjectComparisonIsGreaterThan string = "isGreaterThan"
+	// PredicateComparisonIsGreaterThan captures enum value "isGreaterThan"
+	PredicateComparisonIsGreaterThan string = "isGreaterThan"
 
-	// PredicateObjectComparisonIsGreaterThanOrEqual captures enum value "isGreaterThanOrEqual"
-	PredicateObjectComparisonIsGreaterThanOrEqual string = "isGreaterThanOrEqual"
+	// PredicateComparisonIsGreaterThanOrEqual captures enum value "isGreaterThanOrEqual"
+	PredicateComparisonIsGreaterThanOrEqual string = "isGreaterThanOrEqual"
 
-	// PredicateObjectComparisonIsLessThan captures enum value "isLessThan"
-	PredicateObjectComparisonIsLessThan string = "isLessThan"
+	// PredicateComparisonIsLessThan captures enum value "isLessThan"
+	PredicateComparisonIsLessThan string = "isLessThan"
 
-	// PredicateObjectComparisonIsLessThanOrEqual captures enum value "isLessThanOrEqual"
-	PredicateObjectComparisonIsLessThanOrEqual string = "isLessThanOrEqual"
+	// PredicateComparisonIsLessThanOrEqual captures enum value "isLessThanOrEqual"
+	PredicateComparisonIsLessThanOrEqual string = "isLessThanOrEqual"
 
-	// PredicateObjectComparisonIsNot captures enum value "isNot"
-	PredicateObjectComparisonIsNot string = "isNot"
+	// PredicateComparisonIsNot captures enum value "isNot"
+	PredicateComparisonIsNot string = "isNot"
 )
 
 // prop value enum
-func (m *PredicateObject) validateComparisonEnum(path, location string, value string) error {
-	if err := validate.EnumCase(path, location, value, predicateObjectTypeComparisonPropEnum, true); err != nil {
+func (m *Predicate) validateComparisonEnum(path, location string, value string) error {
+	if err := validate.EnumCase(path, location, value, predicateTypeComparisonPropEnum, true); err != nil {
 		return err
 	}
 	return nil
 }
 
-func (m *PredicateObject) validateComparison(formats strfmt.Registry) error {
+func (m *Predicate) validateComparison(formats strfmt.Registry) error {
 
 	if swag.IsZero(m.Comparison) { // not required
 		return nil
@@ -124,7 +124,7 @@ func (m *PredicateObject) validateComparison(formats strfmt.Registry) error {
 	return nil
 }
 
-var predicateObjectTypePredicateTypePropEnum []interface{}
+var predicateTypePredicateTypePropEnum []interface{}
 
 func init() {
 	var res []string
@@ -132,31 +132,31 @@ func init() {
 		panic(err)
 	}
 	for _, v := range res {
-		predicateObjectTypePredicateTypePropEnum = append(predicateObjectTypePredicateTypePropEnum, v)
+		predicateTypePredicateTypePropEnum = append(predicateTypePredicateTypePropEnum, v)
 	}
 }
 
 const (
 
-	// PredicateObjectPredicateTypeEntitlementPredicate captures enum value "EntitlementPredicate"
-	PredicateObjectPredicateTypeEntitlementPredicate string = "EntitlementPredicate"
+	// PredicatePredicateTypeEntitlementPredicate captures enum value "EntitlementPredicate"
+	PredicatePredicateTypeEntitlementPredicate string = "EntitlementPredicate"
 
-	// PredicateObjectPredicateTypeSeasonPassPredicate captures enum value "SeasonPassPredicate"
-	PredicateObjectPredicateTypeSeasonPassPredicate string = "SeasonPassPredicate"
+	// PredicatePredicateTypeSeasonPassPredicate captures enum value "SeasonPassPredicate"
+	PredicatePredicateTypeSeasonPassPredicate string = "SeasonPassPredicate"
 
-	// PredicateObjectPredicateTypeSeasonTierPredicate captures enum value "SeasonTierPredicate"
-	PredicateObjectPredicateTypeSeasonTierPredicate string = "SeasonTierPredicate"
+	// PredicatePredicateTypeSeasonTierPredicate captures enum value "SeasonTierPredicate"
+	PredicatePredicateTypeSeasonTierPredicate string = "SeasonTierPredicate"
 )
 
 // prop value enum
-func (m *PredicateObject) validatePredicateTypeEnum(path, location string, value string) error {
-	if err := validate.EnumCase(path, location, value, predicateObjectTypePredicateTypePropEnum, true); err != nil {
+func (m *Predicate) validatePredicateTypeEnum(path, location string, value string) error {
+	if err := validate.EnumCase(path, location, value, predicateTypePredicateTypePropEnum, true); err != nil {
 		return err
 	}
 	return nil
 }
 
-func (m *PredicateObject) validatePredicateType(formats strfmt.Registry) error {
+func (m *Predicate) validatePredicateType(formats strfmt.Registry) error {
 
 	if swag.IsZero(m.PredicateType) { // not required
 		return nil
@@ -170,7 +170,7 @@ func (m *PredicateObject) validatePredicateType(formats strfmt.Registry) error {
 	return nil
 }
 
-func (m *PredicateObject) validateValues(formats strfmt.Registry) error {
+func (m *Predicate) validateValues(formats strfmt.Registry) error {
 
 	if swag.IsZero(m.Values) { // not required
 		return nil
@@ -184,7 +184,7 @@ func (m *PredicateObject) validateValues(formats strfmt.Registry) error {
 }
 
 // MarshalBinary interface implementation
-func (m *PredicateObject) MarshalBinary() ([]byte, error) {
+func (m *Predicate) MarshalBinary() ([]byte, error) {
 	if m == nil {
 		return nil, nil
 	}
@@ -192,8 +192,8 @@ func (m *PredicateObject) MarshalBinary() ([]byte, error) {
 }
 
 // UnmarshalBinary interface implementation
-func (m *PredicateObject) UnmarshalBinary(b []byte) error {
-	var res PredicateObject
+func (m *Predicate) UnmarshalBinary(b []byte) error {
+	var res Predicate
 	if err := swag.ReadJSON(b, &res); err != nil {
 		return err
 	}

@@ -29,14 +29,14 @@ var GetRegisteredEventIDHandlerCmd = &cobra.Command{
 		input := &event_registry.GetRegisteredEventIDHandlerParams{
 			EventID: eventId,
 		}
-		ok, err := eventRegistryService.GetRegisteredEventIDHandlerShort(input)
-		if err != nil {
-			logrus.Error(err)
+		ok, errOK := eventRegistryService.GetRegisteredEventIDHandlerShort(input)
+		if errOK != nil {
+			logrus.Error(errOK)
 
-			return err
-		} else {
-			logrus.Infof("Response CLI success: %+v", ok)
+			return errOK
 		}
+
+		logrus.Infof("Response CLI success: %+v", ok)
 
 		return nil
 	},

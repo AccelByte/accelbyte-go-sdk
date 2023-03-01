@@ -7,6 +7,8 @@
 package globalAchievements
 
 import (
+	"encoding/json"
+
 	"github.com/AccelByte/accelbyte-go-sdk/achievement-sdk/pkg/achievementclient/global_achievements"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/achievement"
@@ -26,27 +28,34 @@ var PublicListGlobalAchievementsCmd = &cobra.Command{
 			TokenRepository: &repository.TokenRepositoryImpl{},
 		}
 		namespace, _ := cmd.Flags().GetString("namespace")
-		achievementCode, _ := cmd.Flags().GetString("achievementCode")
+		achievementCodes, _ := cmd.Flags().GetString("achievementCodes")
 		limit, _ := cmd.Flags().GetInt64("limit")
 		offset, _ := cmd.Flags().GetInt64("offset")
 		sortBy, _ := cmd.Flags().GetString("sortBy")
 		status, _ := cmd.Flags().GetString("status")
+		tagsString := cmd.Flag("tags").Value.String()
+		var tags []string
+		errTags := json.Unmarshal([]byte(tagsString), &tags)
+		if errTags != nil {
+			return errTags
+		}
 		input := &global_achievements.PublicListGlobalAchievementsParams{
-			Namespace:       namespace,
-			AchievementCode: &achievementCode,
-			Limit:           &limit,
-			Offset:          &offset,
-			SortBy:          &sortBy,
-			Status:          &status,
+			Namespace:        namespace,
+			AchievementCodes: &achievementCodes,
+			Limit:            &limit,
+			Offset:           &offset,
+			SortBy:           &sortBy,
+			Status:           &status,
+			Tags:             tags,
 		}
-		ok, err := globalAchievementsService.PublicListGlobalAchievementsShort(input)
-		if err != nil {
-			logrus.Error(err)
+		ok, errOK := globalAchievementsService.PublicListGlobalAchievementsShort(input)
+		if errOK != nil {
+			logrus.Error(errOK)
 
-			return err
-		} else {
-			logrus.Infof("Response CLI success: %+v", ok)
+			return errOK
 		}
+
+		logrus.Infof("Response CLI success: %+v", ok)
 
 		return nil
 	},
@@ -55,9 +64,10 @@ var PublicListGlobalAchievementsCmd = &cobra.Command{
 func init() {
 	PublicListGlobalAchievementsCmd.Flags().String("namespace", "", "Namespace")
 	_ = PublicListGlobalAchievementsCmd.MarkFlagRequired("namespace")
-	PublicListGlobalAchievementsCmd.Flags().String("achievementCode", "", "Achievement code")
+	PublicListGlobalAchievementsCmd.Flags().String("achievementCodes", "", "Achievement codes")
 	PublicListGlobalAchievementsCmd.Flags().Int64("limit", 20, "Limit")
 	PublicListGlobalAchievementsCmd.Flags().Int64("offset", 0, "Offset")
 	PublicListGlobalAchievementsCmd.Flags().String("sortBy", "", "Sort by")
 	PublicListGlobalAchievementsCmd.Flags().String("status", "", "Status")
+	PublicListGlobalAchievementsCmd.Flags().String("tags", "", "Tags")
 }

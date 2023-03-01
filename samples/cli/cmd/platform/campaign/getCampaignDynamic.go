@@ -31,14 +31,14 @@ var GetCampaignDynamicCmd = &cobra.Command{
 			CampaignID: campaignId,
 			Namespace:  namespace,
 		}
-		ok, err := campaignService.GetCampaignDynamicShort(input)
-		if err != nil {
-			logrus.Error(err)
+		ok, errOK := campaignService.GetCampaignDynamicShort(input)
+		if errOK != nil {
+			logrus.Error(errOK)
 
-			return err
-		} else {
-			logrus.Infof("Response CLI success: %+v", ok)
+			return errOK
 		}
+
+		logrus.Infof("Response CLI success: %+v", ok)
 
 		return nil
 	},

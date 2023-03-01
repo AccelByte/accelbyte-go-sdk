@@ -60,8 +60,7 @@ func NewGetAppleIAPConfigParamsWithHTTPClient(client *http.Client) *GetAppleIAPC
 	}
 }
 
-/*
-GetAppleIAPConfigParams contains all the parameters to send to the API endpoint
+/*GetAppleIAPConfigParams contains all the parameters to send to the API endpoint
 for the get apple IAP config operation typically these are written to a http.Request
 */
 type GetAppleIAPConfigParams struct {

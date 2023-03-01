@@ -33,14 +33,14 @@ var PublicGetProfileCmd = &cobra.Command{
 			ProfileID: profileId,
 			UserID:    userId,
 		}
-		ok, err := gameProfileService.PublicGetProfileShort(input)
-		if err != nil {
-			logrus.Error(err)
+		ok, errOK := gameProfileService.PublicGetProfileShort(input)
+		if errOK != nil {
+			logrus.Error(errOK)
 
-			return err
-		} else {
-			logrus.Infof("Response CLI success: %+v", ok)
+			return errOK
 		}
+
+		logrus.Infof("Response CLI success: %+v", ok)
 
 		return nil
 	},

@@ -41,12 +41,14 @@ var DeleteThirdPartyLoginPlatformDomainV3Cmd = &cobra.Command{
 			Namespace:  namespace,
 			PlatformID: platformId,
 		}
-		errInput := thirdPartyCredentialService.DeleteThirdPartyLoginPlatformDomainV3Short(input)
-		if errInput != nil {
-			logrus.Error(errInput)
+		errNoContent := thirdPartyCredentialService.DeleteThirdPartyLoginPlatformDomainV3Short(input)
+		if errNoContent != nil {
+			logrus.Error(errNoContent)
 
-			return errInput
+			return errNoContent
 		}
+
+		logrus.Infof("Response CLI success.")
 
 		return nil
 	},

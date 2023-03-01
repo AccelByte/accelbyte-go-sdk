@@ -48,10 +48,9 @@ func NewDeleteGoogleIAPConfigNoContent() *DeleteGoogleIAPConfigNoContent {
 	return &DeleteGoogleIAPConfigNoContent{}
 }
 
-/*
-DeleteGoogleIAPConfigNoContent handles this case with default header values.
+/*DeleteGoogleIAPConfigNoContent handles this case with default header values.
 
-	Delete successfully
+  Delete successfully
 */
 type DeleteGoogleIAPConfigNoContent struct {
 }

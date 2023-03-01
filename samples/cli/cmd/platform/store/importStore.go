@@ -7,7 +7,6 @@
 package store
 
 import (
-	"net/http"
 	"os"
 
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclient/store"
@@ -36,25 +35,19 @@ var ImportStoreCmd = &cobra.Command{
 			return err
 		}
 		storeId, _ := cmd.Flags().GetString("storeId")
-		httpClient := &http.Client{
-			CheckRedirect: func(req *http.Request, via []*http.Request) error {
-				return http.ErrUseLastResponse
-			},
-		}
 		input := &store.ImportStoreParams{
-			File:       file,
-			Namespace:  namespace,
-			StoreID:    &storeId,
-			HTTPClient: httpClient,
+			File:      file,
+			Namespace: namespace,
+			StoreID:   &storeId,
 		}
-		ok, err := storeService.ImportStoreShort(input)
-		if err != nil {
-			logrus.Error(err)
+		ok, errOK := storeService.ImportStoreShort(input)
+		if errOK != nil {
+			logrus.Error(errOK)
 
-			return err
-		} else {
-			logrus.Infof("Response CLI success: %+v", ok)
+			return errOK
 		}
+
+		logrus.Infof("Response CLI success: %+v", ok)
 
 		return nil
 	},

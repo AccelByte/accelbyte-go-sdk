@@ -57,7 +57,7 @@ func (aaa *UserStatisticService) BulkFetchStatItems(input *user_statistic.BulkFe
 }
 
 // deprecated(2022-01-10): please use BulkIncUserStatItemShort instead.
-func (aaa *UserStatisticService) BulkIncUserStatItem(input *user_statistic.BulkIncUserStatItemParams) ([]*socialclientmodels.BulkStatItemOperationResult, error) {
+func (aaa *UserStatisticService) BulkIncUserStatItem(input *user_statistic.BulkIncUserStatItemParams) ([]*socialclientmodels.BulkStatOperationResult, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
@@ -74,7 +74,7 @@ func (aaa *UserStatisticService) BulkIncUserStatItem(input *user_statistic.BulkI
 }
 
 // deprecated(2022-01-10): please use BulkIncUserStatItemValueShort instead.
-func (aaa *UserStatisticService) BulkIncUserStatItemValue(input *user_statistic.BulkIncUserStatItemValueParams) ([]*socialclientmodels.BulkStatItemOperationResult, error) {
+func (aaa *UserStatisticService) BulkIncUserStatItemValue(input *user_statistic.BulkIncUserStatItemValueParams) ([]*socialclientmodels.BulkStatOperationResult, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
@@ -111,7 +111,7 @@ func (aaa *UserStatisticService) BulkFetchOrDefaultStatItems(input *user_statist
 }
 
 // deprecated(2022-01-10): please use BulkResetUserStatItemShort instead.
-func (aaa *UserStatisticService) BulkResetUserStatItem(input *user_statistic.BulkResetUserStatItemParams) ([]*socialclientmodels.BulkStatItemOperationResult, error) {
+func (aaa *UserStatisticService) BulkResetUserStatItem(input *user_statistic.BulkResetUserStatItemParams) ([]*socialclientmodels.BulkStatOperationResult, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
@@ -142,7 +142,7 @@ func (aaa *UserStatisticService) GetUserStatItems(input *user_statistic.GetUserS
 }
 
 // deprecated(2022-01-10): please use BulkCreateUserStatItemsShort instead.
-func (aaa *UserStatisticService) BulkCreateUserStatItems(input *user_statistic.BulkCreateUserStatItemsParams) ([]*socialclientmodels.BulkStatItemOperationResult, error) {
+func (aaa *UserStatisticService) BulkCreateUserStatItems(input *user_statistic.BulkCreateUserStatItemsParams) ([]*socialclientmodels.BulkStatOperationResult, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
@@ -159,7 +159,7 @@ func (aaa *UserStatisticService) BulkCreateUserStatItems(input *user_statistic.B
 }
 
 // deprecated(2022-01-10): please use BulkIncUserStatItem1Short instead.
-func (aaa *UserStatisticService) BulkIncUserStatItem1(input *user_statistic.BulkIncUserStatItem1Params) ([]*socialclientmodels.BulkStatItemOperationResult, error) {
+func (aaa *UserStatisticService) BulkIncUserStatItem1(input *user_statistic.BulkIncUserStatItem1Params) ([]*socialclientmodels.BulkStatOperationResult, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
@@ -176,7 +176,7 @@ func (aaa *UserStatisticService) BulkIncUserStatItem1(input *user_statistic.Bulk
 }
 
 // deprecated(2022-01-10): please use BulkIncUserStatItemValue1Short instead.
-func (aaa *UserStatisticService) BulkIncUserStatItemValue1(input *user_statistic.BulkIncUserStatItemValue1Params) ([]*socialclientmodels.BulkStatItemOperationResult, error) {
+func (aaa *UserStatisticService) BulkIncUserStatItemValue1(input *user_statistic.BulkIncUserStatItemValue1Params) ([]*socialclientmodels.BulkStatOperationResult, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
@@ -193,7 +193,7 @@ func (aaa *UserStatisticService) BulkIncUserStatItemValue1(input *user_statistic
 }
 
 // deprecated(2022-01-10): please use BulkResetUserStatItem1Short instead.
-func (aaa *UserStatisticService) BulkResetUserStatItem1(input *user_statistic.BulkResetUserStatItem1Params) ([]*socialclientmodels.BulkStatItemOperationResult, error) {
+func (aaa *UserStatisticService) BulkResetUserStatItem1(input *user_statistic.BulkResetUserStatItem1Params) ([]*socialclientmodels.BulkStatOperationResult, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
@@ -313,7 +313,7 @@ func (aaa *UserStatisticService) BulkFetchStatItems1(input *user_statistic.BulkF
 }
 
 // deprecated(2022-01-10): please use PublicBulkIncUserStatItemShort instead.
-func (aaa *UserStatisticService) PublicBulkIncUserStatItem(input *user_statistic.PublicBulkIncUserStatItemParams) ([]*socialclientmodels.BulkStatItemOperationResult, error) {
+func (aaa *UserStatisticService) PublicBulkIncUserStatItem(input *user_statistic.PublicBulkIncUserStatItemParams) ([]*socialclientmodels.BulkStatOperationResult, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
@@ -330,7 +330,7 @@ func (aaa *UserStatisticService) PublicBulkIncUserStatItem(input *user_statistic
 }
 
 // deprecated(2022-01-10): please use PublicBulkIncUserStatItemValueShort instead.
-func (aaa *UserStatisticService) PublicBulkIncUserStatItemValue(input *user_statistic.PublicBulkIncUserStatItemValueParams) ([]*socialclientmodels.BulkStatItemOperationResult, error) {
+func (aaa *UserStatisticService) PublicBulkIncUserStatItemValue(input *user_statistic.PublicBulkIncUserStatItemValueParams) ([]*socialclientmodels.BulkStatOperationResult, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
@@ -347,7 +347,7 @@ func (aaa *UserStatisticService) PublicBulkIncUserStatItemValue(input *user_stat
 }
 
 // deprecated(2022-01-10): please use BulkResetUserStatItem2Short instead.
-func (aaa *UserStatisticService) BulkResetUserStatItem2(input *user_statistic.BulkResetUserStatItem2Params) ([]*socialclientmodels.BulkStatItemOperationResult, error) {
+func (aaa *UserStatisticService) BulkResetUserStatItem2(input *user_statistic.BulkResetUserStatItem2Params) ([]*socialclientmodels.BulkStatOperationResult, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
@@ -378,7 +378,7 @@ func (aaa *UserStatisticService) PublicQueryUserStatItems(input *user_statistic.
 }
 
 // deprecated(2022-01-10): please use PublicBulkCreateUserStatItemsShort instead.
-func (aaa *UserStatisticService) PublicBulkCreateUserStatItems(input *user_statistic.PublicBulkCreateUserStatItemsParams) ([]*socialclientmodels.BulkStatItemOperationResult, error) {
+func (aaa *UserStatisticService) PublicBulkCreateUserStatItems(input *user_statistic.PublicBulkCreateUserStatItemsParams) ([]*socialclientmodels.BulkStatOperationResult, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
@@ -418,7 +418,7 @@ func (aaa *UserStatisticService) PublicQueryUserStatItems1(input *user_statistic
 }
 
 // deprecated(2022-01-10): please use PublicBulkIncUserStatItem1Short instead.
-func (aaa *UserStatisticService) PublicBulkIncUserStatItem1(input *user_statistic.PublicBulkIncUserStatItem1Params) ([]*socialclientmodels.BulkStatItemOperationResult, error) {
+func (aaa *UserStatisticService) PublicBulkIncUserStatItem1(input *user_statistic.PublicBulkIncUserStatItem1Params) ([]*socialclientmodels.BulkStatOperationResult, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
@@ -435,7 +435,7 @@ func (aaa *UserStatisticService) PublicBulkIncUserStatItem1(input *user_statisti
 }
 
 // deprecated(2022-01-10): please use BulkIncUserStatItemValue2Short instead.
-func (aaa *UserStatisticService) BulkIncUserStatItemValue2(input *user_statistic.BulkIncUserStatItemValue2Params) ([]*socialclientmodels.BulkStatItemOperationResult, error) {
+func (aaa *UserStatisticService) BulkIncUserStatItemValue2(input *user_statistic.BulkIncUserStatItemValue2Params) ([]*socialclientmodels.BulkStatOperationResult, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
@@ -452,7 +452,7 @@ func (aaa *UserStatisticService) BulkIncUserStatItemValue2(input *user_statistic
 }
 
 // deprecated(2022-01-10): please use BulkResetUserStatItem3Short instead.
-func (aaa *UserStatisticService) BulkResetUserStatItem3(input *user_statistic.BulkResetUserStatItem3Params) ([]*socialclientmodels.BulkStatItemOperationResult, error) {
+func (aaa *UserStatisticService) BulkResetUserStatItem3(input *user_statistic.BulkResetUserStatItem3Params) ([]*socialclientmodels.BulkStatOperationResult, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
@@ -578,7 +578,7 @@ func (aaa *UserStatisticService) ResetUserStatItemValue1(input *user_statistic.R
 }
 
 // deprecated(2022-01-10): please use BulkUpdateUserStatItemV2Short instead.
-func (aaa *UserStatisticService) BulkUpdateUserStatItemV2(input *user_statistic.BulkUpdateUserStatItemV2Params) ([]*socialclientmodels.BulkStatItemOperationResult, error) {
+func (aaa *UserStatisticService) BulkUpdateUserStatItemV2(input *user_statistic.BulkUpdateUserStatItemV2Params) ([]*socialclientmodels.BulkStatOperationResult, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
@@ -615,7 +615,7 @@ func (aaa *UserStatisticService) BulkFetchOrDefaultStatItems1(input *user_statis
 }
 
 // deprecated(2022-01-10): please use BulkUpdateUserStatItemShort instead.
-func (aaa *UserStatisticService) BulkUpdateUserStatItem(input *user_statistic.BulkUpdateUserStatItemParams) ([]*socialclientmodels.BulkStatItemOperationResult, error) {
+func (aaa *UserStatisticService) BulkUpdateUserStatItem(input *user_statistic.BulkUpdateUserStatItemParams) ([]*socialclientmodels.BulkStatOperationResult, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
@@ -632,7 +632,7 @@ func (aaa *UserStatisticService) BulkUpdateUserStatItem(input *user_statistic.Bu
 }
 
 // deprecated(2022-01-10): please use BulkResetUserStatItemValuesShort instead.
-func (aaa *UserStatisticService) BulkResetUserStatItemValues(input *user_statistic.BulkResetUserStatItemValuesParams) ([]*socialclientmodels.BulkStatItemOperationResult, error) {
+func (aaa *UserStatisticService) BulkResetUserStatItemValues(input *user_statistic.BulkResetUserStatItemValuesParams) ([]*socialclientmodels.BulkStatOperationResult, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
@@ -698,7 +698,7 @@ func (aaa *UserStatisticService) UpdateUserStatItemValue(input *user_statistic.U
 }
 
 // deprecated(2022-01-10): please use BulkUpdateUserStatItem1Short instead.
-func (aaa *UserStatisticService) BulkUpdateUserStatItem1(input *user_statistic.BulkUpdateUserStatItem1Params) ([]*socialclientmodels.BulkStatItemOperationResult, error) {
+func (aaa *UserStatisticService) BulkUpdateUserStatItem1(input *user_statistic.BulkUpdateUserStatItem1Params) ([]*socialclientmodels.BulkStatOperationResult, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
@@ -738,7 +738,7 @@ func (aaa *UserStatisticService) PublicQueryUserStatItems2(input *user_statistic
 }
 
 // deprecated(2022-01-10): please use BulkUpdateUserStatItem2Short instead.
-func (aaa *UserStatisticService) BulkUpdateUserStatItem2(input *user_statistic.BulkUpdateUserStatItem2Params) ([]*socialclientmodels.BulkStatItemOperationResult, error) {
+func (aaa *UserStatisticService) BulkUpdateUserStatItem2(input *user_statistic.BulkUpdateUserStatItem2Params) ([]*socialclientmodels.BulkStatOperationResult, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
@@ -805,7 +805,7 @@ func (aaa *UserStatisticService) BulkFetchStatItemsShort(input *user_statistic.B
 	return ok.GetPayload(), nil
 }
 
-func (aaa *UserStatisticService) BulkIncUserStatItemShort(input *user_statistic.BulkIncUserStatItemParams) ([]*socialclientmodels.BulkStatItemOperationResult, error) {
+func (aaa *UserStatisticService) BulkIncUserStatItemShort(input *user_statistic.BulkIncUserStatItemParams) ([]*socialclientmodels.BulkStatOperationResult, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -830,7 +830,7 @@ func (aaa *UserStatisticService) BulkIncUserStatItemShort(input *user_statistic.
 	return ok.GetPayload(), nil
 }
 
-func (aaa *UserStatisticService) BulkIncUserStatItemValueShort(input *user_statistic.BulkIncUserStatItemValueParams) ([]*socialclientmodels.BulkStatItemOperationResult, error) {
+func (aaa *UserStatisticService) BulkIncUserStatItemValueShort(input *user_statistic.BulkIncUserStatItemValueParams) ([]*socialclientmodels.BulkStatOperationResult, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -880,7 +880,7 @@ func (aaa *UserStatisticService) BulkFetchOrDefaultStatItemsShort(input *user_st
 	return ok.GetPayload(), nil
 }
 
-func (aaa *UserStatisticService) BulkResetUserStatItemShort(input *user_statistic.BulkResetUserStatItemParams) ([]*socialclientmodels.BulkStatItemOperationResult, error) {
+func (aaa *UserStatisticService) BulkResetUserStatItemShort(input *user_statistic.BulkResetUserStatItemParams) ([]*socialclientmodels.BulkStatOperationResult, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -930,7 +930,7 @@ func (aaa *UserStatisticService) GetUserStatItemsShort(input *user_statistic.Get
 	return ok.GetPayload(), nil
 }
 
-func (aaa *UserStatisticService) BulkCreateUserStatItemsShort(input *user_statistic.BulkCreateUserStatItemsParams) ([]*socialclientmodels.BulkStatItemOperationResult, error) {
+func (aaa *UserStatisticService) BulkCreateUserStatItemsShort(input *user_statistic.BulkCreateUserStatItemsParams) ([]*socialclientmodels.BulkStatOperationResult, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -955,7 +955,7 @@ func (aaa *UserStatisticService) BulkCreateUserStatItemsShort(input *user_statis
 	return ok.GetPayload(), nil
 }
 
-func (aaa *UserStatisticService) BulkIncUserStatItem1Short(input *user_statistic.BulkIncUserStatItem1Params) ([]*socialclientmodels.BulkStatItemOperationResult, error) {
+func (aaa *UserStatisticService) BulkIncUserStatItem1Short(input *user_statistic.BulkIncUserStatItem1Params) ([]*socialclientmodels.BulkStatOperationResult, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -980,7 +980,7 @@ func (aaa *UserStatisticService) BulkIncUserStatItem1Short(input *user_statistic
 	return ok.GetPayload(), nil
 }
 
-func (aaa *UserStatisticService) BulkIncUserStatItemValue1Short(input *user_statistic.BulkIncUserStatItemValue1Params) ([]*socialclientmodels.BulkStatItemOperationResult, error) {
+func (aaa *UserStatisticService) BulkIncUserStatItemValue1Short(input *user_statistic.BulkIncUserStatItemValue1Params) ([]*socialclientmodels.BulkStatOperationResult, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -1005,7 +1005,7 @@ func (aaa *UserStatisticService) BulkIncUserStatItemValue1Short(input *user_stat
 	return ok.GetPayload(), nil
 }
 
-func (aaa *UserStatisticService) BulkResetUserStatItem1Short(input *user_statistic.BulkResetUserStatItem1Params) ([]*socialclientmodels.BulkStatItemOperationResult, error) {
+func (aaa *UserStatisticService) BulkResetUserStatItem1Short(input *user_statistic.BulkResetUserStatItem1Params) ([]*socialclientmodels.BulkStatOperationResult, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -1155,7 +1155,7 @@ func (aaa *UserStatisticService) BulkFetchStatItems1Short(input *user_statistic.
 	return ok.GetPayload(), nil
 }
 
-func (aaa *UserStatisticService) PublicBulkIncUserStatItemShort(input *user_statistic.PublicBulkIncUserStatItemParams) ([]*socialclientmodels.BulkStatItemOperationResult, error) {
+func (aaa *UserStatisticService) PublicBulkIncUserStatItemShort(input *user_statistic.PublicBulkIncUserStatItemParams) ([]*socialclientmodels.BulkStatOperationResult, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -1180,7 +1180,7 @@ func (aaa *UserStatisticService) PublicBulkIncUserStatItemShort(input *user_stat
 	return ok.GetPayload(), nil
 }
 
-func (aaa *UserStatisticService) PublicBulkIncUserStatItemValueShort(input *user_statistic.PublicBulkIncUserStatItemValueParams) ([]*socialclientmodels.BulkStatItemOperationResult, error) {
+func (aaa *UserStatisticService) PublicBulkIncUserStatItemValueShort(input *user_statistic.PublicBulkIncUserStatItemValueParams) ([]*socialclientmodels.BulkStatOperationResult, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -1205,7 +1205,7 @@ func (aaa *UserStatisticService) PublicBulkIncUserStatItemValueShort(input *user
 	return ok.GetPayload(), nil
 }
 
-func (aaa *UserStatisticService) BulkResetUserStatItem2Short(input *user_statistic.BulkResetUserStatItem2Params) ([]*socialclientmodels.BulkStatItemOperationResult, error) {
+func (aaa *UserStatisticService) BulkResetUserStatItem2Short(input *user_statistic.BulkResetUserStatItem2Params) ([]*socialclientmodels.BulkStatOperationResult, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -1255,7 +1255,7 @@ func (aaa *UserStatisticService) PublicQueryUserStatItemsShort(input *user_stati
 	return ok.GetPayload(), nil
 }
 
-func (aaa *UserStatisticService) PublicBulkCreateUserStatItemsShort(input *user_statistic.PublicBulkCreateUserStatItemsParams) ([]*socialclientmodels.BulkStatItemOperationResult, error) {
+func (aaa *UserStatisticService) PublicBulkCreateUserStatItemsShort(input *user_statistic.PublicBulkCreateUserStatItemsParams) ([]*socialclientmodels.BulkStatOperationResult, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -1305,7 +1305,7 @@ func (aaa *UserStatisticService) PublicQueryUserStatItems1Short(input *user_stat
 	return ok.GetPayload(), nil
 }
 
-func (aaa *UserStatisticService) PublicBulkIncUserStatItem1Short(input *user_statistic.PublicBulkIncUserStatItem1Params) ([]*socialclientmodels.BulkStatItemOperationResult, error) {
+func (aaa *UserStatisticService) PublicBulkIncUserStatItem1Short(input *user_statistic.PublicBulkIncUserStatItem1Params) ([]*socialclientmodels.BulkStatOperationResult, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -1330,7 +1330,7 @@ func (aaa *UserStatisticService) PublicBulkIncUserStatItem1Short(input *user_sta
 	return ok.GetPayload(), nil
 }
 
-func (aaa *UserStatisticService) BulkIncUserStatItemValue2Short(input *user_statistic.BulkIncUserStatItemValue2Params) ([]*socialclientmodels.BulkStatItemOperationResult, error) {
+func (aaa *UserStatisticService) BulkIncUserStatItemValue2Short(input *user_statistic.BulkIncUserStatItemValue2Params) ([]*socialclientmodels.BulkStatOperationResult, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -1355,7 +1355,7 @@ func (aaa *UserStatisticService) BulkIncUserStatItemValue2Short(input *user_stat
 	return ok.GetPayload(), nil
 }
 
-func (aaa *UserStatisticService) BulkResetUserStatItem3Short(input *user_statistic.BulkResetUserStatItem3Params) ([]*socialclientmodels.BulkStatItemOperationResult, error) {
+func (aaa *UserStatisticService) BulkResetUserStatItem3Short(input *user_statistic.BulkResetUserStatItem3Params) ([]*socialclientmodels.BulkStatOperationResult, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -1505,7 +1505,7 @@ func (aaa *UserStatisticService) ResetUserStatItemValue1Short(input *user_statis
 	return ok.GetPayload(), nil
 }
 
-func (aaa *UserStatisticService) BulkUpdateUserStatItemV2Short(input *user_statistic.BulkUpdateUserStatItemV2Params) ([]*socialclientmodels.BulkStatItemOperationResult, error) {
+func (aaa *UserStatisticService) BulkUpdateUserStatItemV2Short(input *user_statistic.BulkUpdateUserStatItemV2Params) ([]*socialclientmodels.BulkStatOperationResult, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -1555,7 +1555,7 @@ func (aaa *UserStatisticService) BulkFetchOrDefaultStatItems1Short(input *user_s
 	return ok.GetPayload(), nil
 }
 
-func (aaa *UserStatisticService) BulkUpdateUserStatItemShort(input *user_statistic.BulkUpdateUserStatItemParams) ([]*socialclientmodels.BulkStatItemOperationResult, error) {
+func (aaa *UserStatisticService) BulkUpdateUserStatItemShort(input *user_statistic.BulkUpdateUserStatItemParams) ([]*socialclientmodels.BulkStatOperationResult, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -1580,7 +1580,7 @@ func (aaa *UserStatisticService) BulkUpdateUserStatItemShort(input *user_statist
 	return ok.GetPayload(), nil
 }
 
-func (aaa *UserStatisticService) BulkResetUserStatItemValuesShort(input *user_statistic.BulkResetUserStatItemValuesParams) ([]*socialclientmodels.BulkStatItemOperationResult, error) {
+func (aaa *UserStatisticService) BulkResetUserStatItemValuesShort(input *user_statistic.BulkResetUserStatItemValuesParams) ([]*socialclientmodels.BulkStatOperationResult, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -1655,7 +1655,7 @@ func (aaa *UserStatisticService) UpdateUserStatItemValueShort(input *user_statis
 	return ok.GetPayload(), nil
 }
 
-func (aaa *UserStatisticService) BulkUpdateUserStatItem1Short(input *user_statistic.BulkUpdateUserStatItem1Params) ([]*socialclientmodels.BulkStatItemOperationResult, error) {
+func (aaa *UserStatisticService) BulkUpdateUserStatItem1Short(input *user_statistic.BulkUpdateUserStatItem1Params) ([]*socialclientmodels.BulkStatOperationResult, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -1705,7 +1705,7 @@ func (aaa *UserStatisticService) PublicQueryUserStatItems2Short(input *user_stat
 	return ok.GetPayload(), nil
 }
 
-func (aaa *UserStatisticService) BulkUpdateUserStatItem2Short(input *user_statistic.BulkUpdateUserStatItem2Params) ([]*socialclientmodels.BulkStatItemOperationResult, error) {
+func (aaa *UserStatisticService) BulkUpdateUserStatItem2Short(input *user_statistic.BulkUpdateUserStatItem2Params) ([]*socialclientmodels.BulkStatOperationResult, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{

@@ -52,10 +52,9 @@ func NewUpdateGoogleIAPConfigOK() *UpdateGoogleIAPConfigOK {
 	return &UpdateGoogleIAPConfigOK{}
 }
 
-/*
-UpdateGoogleIAPConfigOK handles this case with default header values.
+/*UpdateGoogleIAPConfigOK handles this case with default header values.
 
-	successful operation
+  successful operation
 */
 type UpdateGoogleIAPConfigOK struct {
 	Payload *platformclientmodels.GoogleIAPConfigInfo

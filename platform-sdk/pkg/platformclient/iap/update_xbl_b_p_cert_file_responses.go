@@ -52,10 +52,9 @@ func NewUpdateXblBPCertFileOK() *UpdateXblBPCertFileOK {
 	return &UpdateXblBPCertFileOK{}
 }
 
-/*
-UpdateXblBPCertFileOK handles this case with default header values.
+/*UpdateXblBPCertFileOK handles this case with default header values.
 
-	successful operation
+  successful operation
 */
 type UpdateXblBPCertFileOK struct {
 	Payload *platformclientmodels.XblIAPConfigInfo

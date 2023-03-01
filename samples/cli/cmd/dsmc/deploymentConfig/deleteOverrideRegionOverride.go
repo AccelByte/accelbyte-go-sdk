@@ -35,14 +35,14 @@ var DeleteOverrideRegionOverrideCmd = &cobra.Command{
 			Region:     region,
 			Version:    version,
 		}
-		ok, err := deploymentConfigService.DeleteOverrideRegionOverrideShort(input)
-		if err != nil {
-			logrus.Error(err)
+		ok, errOK := deploymentConfigService.DeleteOverrideRegionOverrideShort(input)
+		if errOK != nil {
+			logrus.Error(errOK)
 
-			return err
-		} else {
-			logrus.Infof("Response CLI success: %+v", ok)
+			return errOK
 		}
+
+		logrus.Infof("Response CLI success: %+v", ok)
 
 		return nil
 	},

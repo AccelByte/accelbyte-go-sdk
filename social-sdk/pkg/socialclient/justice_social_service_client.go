@@ -23,6 +23,7 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/social-sdk/pkg/socialclient/slot"
 	"github.com/AccelByte/accelbyte-go-sdk/social-sdk/pkg/socialclient/slot_config"
 	"github.com/AccelByte/accelbyte-go-sdk/social-sdk/pkg/socialclient/stat_configuration"
+	"github.com/AccelByte/accelbyte-go-sdk/social-sdk/pkg/socialclient/stat_cycle_configuration"
 	"github.com/AccelByte/accelbyte-go-sdk/social-sdk/pkg/socialclient/user_statistic"
 )
 
@@ -78,6 +79,7 @@ func New(transport runtime.ClientTransport, runtime *httptransport.Runtime, form
 	cli.Slot = slot.New(transport, formats)
 	cli.SlotConfig = slot_config.New(transport, formats)
 	cli.StatConfiguration = stat_configuration.New(transport, formats)
+	cli.StatCycleConfiguration = stat_cycle_configuration.New(transport, formats)
 	cli.UserStatistic = user_statistic.New(transport, formats)
 
 	return cli
@@ -149,6 +151,8 @@ type JusticeSocialService struct {
 
 	StatConfiguration stat_configuration.ClientService
 
+	StatCycleConfiguration stat_cycle_configuration.ClientService
+
 	UserStatistic user_statistic.ClientService
 
 	Runtime   *httptransport.Runtime
@@ -163,5 +167,6 @@ func (c *JusticeSocialService) SetTransport(transport runtime.ClientTransport) {
 	c.Slot.SetTransport(transport)
 	c.SlotConfig.SetTransport(transport)
 	c.StatConfiguration.SetTransport(transport)
+	c.StatCycleConfiguration.SetTransport(transport)
 	c.UserStatistic.SetTransport(transport)
 }

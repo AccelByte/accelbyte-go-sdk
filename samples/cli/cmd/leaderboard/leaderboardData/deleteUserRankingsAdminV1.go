@@ -40,12 +40,14 @@ var DeleteUserRankingsAdminV1Cmd = &cobra.Command{
 			UserID:          userId,
 			LeaderboardCode: leaderboardCode,
 		}
-		errInput := leaderboardDataService.DeleteUserRankingsAdminV1Short(input)
-		if errInput != nil {
-			logrus.Error(errInput)
+		errNoContent := leaderboardDataService.DeleteUserRankingsAdminV1Short(input)
+		if errNoContent != nil {
+			logrus.Error(errNoContent)
 
-			return errInput
+			return errNoContent
 		}
+
+		logrus.Infof("Response CLI success.")
 
 		return nil
 	},

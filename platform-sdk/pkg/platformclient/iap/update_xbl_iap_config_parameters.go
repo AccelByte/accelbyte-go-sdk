@@ -62,8 +62,7 @@ func NewUpdateXblIAPConfigParamsWithHTTPClient(client *http.Client) *UpdateXblIA
 	}
 }
 
-/*
-UpdateXblIAPConfigParams contains all the parameters to send to the API endpoint
+/*UpdateXblIAPConfigParams contains all the parameters to send to the API endpoint
 for the update xbl IAP config operation typically these are written to a http.Request
 */
 type UpdateXblIAPConfigParams struct {

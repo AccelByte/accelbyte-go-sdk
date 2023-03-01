@@ -58,10 +58,9 @@ func NewSyncEpicGamesInventoryOK() *SyncEpicGamesInventoryOK {
 	return &SyncEpicGamesInventoryOK{}
 }
 
-/*
-SyncEpicGamesInventoryOK handles this case with default header values.
+/*SyncEpicGamesInventoryOK handles this case with default header values.
 
-	successful operation
+  successful operation
 */
 type SyncEpicGamesInventoryOK struct {
 	Payload []*platformclientmodels.EpicGamesReconcileResult
@@ -110,10 +109,9 @@ func NewSyncEpicGamesInventoryBadRequest() *SyncEpicGamesInventoryBadRequest {
 	return &SyncEpicGamesInventoryBadRequest{}
 }
 
-/*
-SyncEpicGamesInventoryBadRequest handles this case with default header values.
+/*SyncEpicGamesInventoryBadRequest handles this case with default header values.
 
-	<table><tr><td>ErrorCode</td><td>ErrorMessage</td></tr><tr><td>39125</td><td>Invalid platform [{platformId}] user token</td></tr><tr><td>39126</td><td>User id [{}] in namespace [{}] doesn't link platform [{}]</td></tr>
+  <table><tr><td>ErrorCode</td><td>ErrorMessage</td></tr><tr><td>39125</td><td>Invalid platform [{platformId}] user token</td></tr><tr><td>39126</td><td>User id [{}] in namespace [{}] doesn't link platform [{}]</td></tr>
 */
 type SyncEpicGamesInventoryBadRequest struct {
 	Payload *platformclientmodels.ErrorEntity

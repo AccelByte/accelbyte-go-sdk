@@ -7,8 +7,6 @@
 package oAuth20
 
 import (
-	"net/http"
-
 	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclient/o_auth2_0"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/iam"
@@ -29,22 +27,18 @@ var Change2faMethodCmd = &cobra.Command{
 		}
 		factor, _ := cmd.Flags().GetString("factor")
 		mfaToken, _ := cmd.Flags().GetString("mfaToken")
-		httpClient := &http.Client{
-			CheckRedirect: func(req *http.Request, via []*http.Request) error {
-				return http.ErrUseLastResponse
-			},
-		}
 		input := &o_auth2_0.Change2FAMethodParams{
-			Factor:     factor,
-			MFAToken:   mfaToken,
-			HTTPClient: httpClient,
+			Factor:   factor,
+			MFAToken: mfaToken,
 		}
-		errInput := oAuth20Service.Change2FAMethodShort(input)
-		if errInput != nil {
-			logrus.Error(errInput)
+		errNoContent := oAuth20Service.Change2FAMethodShort(input)
+		if errNoContent != nil {
+			logrus.Error(errNoContent)
 
-			return errInput
+			return errNoContent
 		}
+
+		logrus.Infof("Response CLI success.")
 
 		return nil
 	},

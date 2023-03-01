@@ -830,7 +830,8 @@
         ],
         "summary": "Query to available game session",
         "tags": [
-          "Session"
+          "Session",
+          "public"
         ]
       },
       "post": {
@@ -904,7 +905,8 @@
         ],
         "summary": "Register a new game session",
         "tags": [
-          "Session"
+          "Session",
+          "public"
         ]
       }
     },
@@ -967,7 +969,8 @@
         ],
         "summary": "Query game sessions by comma separated user ids",
         "tags": [
-          "Session"
+          "Session",
+          "public"
         ]
       }
     },
@@ -1036,7 +1039,8 @@
         ],
         "summary": "Delete specified (p2p) session by session ID",
         "tags": [
-          "Session"
+          "Session",
+          "public"
         ]
       },
       "get": {
@@ -1097,7 +1101,8 @@
         ],
         "summary": "Get specified session by session ID",
         "tags": [
-          "Session"
+          "Session",
+          "public"
         ]
       },
       "put": {
@@ -1172,7 +1177,8 @@
         ],
         "summary": "Update session",
         "tags": [
-          "Session"
+          "Session",
+          "public"
         ]
       }
     },
@@ -1255,7 +1261,8 @@
         ],
         "summary": "Join specified session by session ID",
         "tags": [
-          "Session"
+          "Session",
+          "public"
         ]
       }
     },
@@ -1324,7 +1331,8 @@
         ],
         "summary": "Only use for local DS entry, will error when calling non local DS entry",
         "tags": [
-          "Session"
+          "Session",
+          "public"
         ]
       }
     },
@@ -1401,7 +1409,8 @@
         ],
         "summary": "Add player to game session",
         "tags": [
-          "Session"
+          "Session",
+          "public"
         ]
       }
     },
@@ -1477,7 +1486,8 @@
         ],
         "summary": "remove player from game session",
         "tags": [
-          "Session"
+          "Session",
+          "public"
         ]
       }
     },
@@ -1554,7 +1564,8 @@
         ],
         "summary": "Update settings",
         "tags": [
-          "Session"
+          "Session",
+          "public"
         ]
       }
     },
@@ -1617,7 +1628,8 @@
         ],
         "summary": "Query recent players with given user id",
         "tags": [
-          "Session"
+          "Session",
+          "public"
         ]
       }
     }
@@ -2128,6 +2140,9 @@
             "type": "string"
           },
           "type": "array"
+        },
+        "user_id": {
+          "type": "string"
         }
       },
       "required": [
@@ -2142,7 +2157,8 @@
         "removed_reason",
         "session_type",
         "status",
-        "sub_game_mode"
+        "sub_game_mode",
+        "user_id"
       ]
     },
     "models.GetSessionHistorySearchResponseV2": {

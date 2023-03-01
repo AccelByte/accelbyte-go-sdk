@@ -103,17 +103,25 @@ type ModelThirdPartyLoginPlatformCredentialRequest struct {
 	// Required: true
 	TeamID *string `json:"TeamID"`
 
-	// Token authentication type indicating what token will be used to authenticate 3rd party user. Currently support: idToken. Used for generic oauth flow.
+	// Token authentication type indicating what token will be used to authenticate 3rd party user. Currently support: idToken, code and bearerToken. Used for generic oauth flow.
 	// Required: true
 	TokenAuthenticationType *string `json:"TokenAuthenticationType"`
 
-	// A JSON containing how IAM service retrieve value from id token claims. Used for generic oauth flow. Currently allowed fields list [userIdentity, name, email, avatarUrl]
+	// A JSON containing how IAM service retrieve value from id token claims or userInfo endpoint. Used for generic oauth flow. Currently allowed fields list [userIdentity, name, email, avatarUrl]
 	// Required: true
 	TokenClaimsMapping map[string]string `json:"TokenClaimsMapping"`
 
 	// third party token endpoint to obtain token
 	// Required: true
 	TokenEndpoint *string `json:"TokenEndpoint"`
+
+	// third party user info endpoint to validate 3rd party user profile using third party user token. Used for generic oauth flow.
+	// Required: true
+	UserInfoEndpoint *string `json:"UserInfoEndpoint"`
+
+	// http method to call third party user info endpoint to validate 3rd party user profile using third party user token. Used for generic oauth flow.
+	// Required: true
+	UserInfoHTTPMethod *string `json:"UserInfoHTTPMethod"`
 
 	// scopes for generic OAuth Authorization code flow. Default is [openid, profile, email]
 	// Required: true
@@ -217,6 +225,14 @@ func (m *ModelThirdPartyLoginPlatformCredentialRequest) Validate(formats strfmt.
 	}
 
 	if err := m.validateTokenEndpoint(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateUserInfoEndpoint(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateUserInfoHTTPMethod(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -461,6 +477,24 @@ func (m *ModelThirdPartyLoginPlatformCredentialRequest) validateTokenClaimsMappi
 func (m *ModelThirdPartyLoginPlatformCredentialRequest) validateTokenEndpoint(formats strfmt.Registry) error {
 
 	if err := validate.Required("TokenEndpoint", "body", m.TokenEndpoint); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *ModelThirdPartyLoginPlatformCredentialRequest) validateUserInfoEndpoint(formats strfmt.Registry) error {
+
+	if err := validate.Required("UserInfoEndpoint", "body", m.UserInfoEndpoint); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *ModelThirdPartyLoginPlatformCredentialRequest) validateUserInfoHTTPMethod(formats strfmt.Registry) error {
+
+	if err := validate.Required("UserInfoHTTPMethod", "body", m.UserInfoHTTPMethod); err != nil {
 		return err
 	}
 

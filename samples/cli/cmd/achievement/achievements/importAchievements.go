@@ -7,7 +7,6 @@
 package achievements
 
 import (
-	"net/http"
 	"os"
 
 	"github.com/AccelByte/accelbyte-go-sdk/achievement-sdk/pkg/achievementclient/achievements"
@@ -36,25 +35,19 @@ var ImportAchievementsCmd = &cobra.Command{
 			return err
 		}
 		strategy, _ := cmd.Flags().GetString("strategy")
-		httpClient := &http.Client{
-			CheckRedirect: func(req *http.Request, via []*http.Request) error {
-				return http.ErrUseLastResponse
-			},
-		}
 		input := &achievements.ImportAchievementsParams{
-			File:       file,
-			Strategy:   &strategy,
-			Namespace:  namespace,
-			HTTPClient: httpClient,
+			File:      file,
+			Strategy:  &strategy,
+			Namespace: namespace,
 		}
-		ok, err := achievementsService.ImportAchievementsShort(input)
-		if err != nil {
-			logrus.Error(err)
+		ok, errOK := achievementsService.ImportAchievementsShort(input)
+		if errOK != nil {
+			logrus.Error(errOK)
 
-			return err
-		} else {
-			logrus.Infof("Response CLI success: %+v", ok)
+			return errOK
 		}
+
+		logrus.Infof("Response CLI success: %+v", ok)
 
 		return nil
 	},

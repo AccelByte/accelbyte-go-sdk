@@ -29,12 +29,14 @@ var DeleteDLCItemConfigCmd = &cobra.Command{
 		input := &dlc.DeleteDLCItemConfigParams{
 			Namespace: namespace,
 		}
-		errInput := dlcService.DeleteDLCItemConfigShort(input)
-		if errInput != nil {
-			logrus.Error(errInput)
+		errNoContent := dlcService.DeleteDLCItemConfigShort(input)
+		if errNoContent != nil {
+			logrus.Error(errNoContent)
 
-			return errInput
+			return errNoContent
 		}
+
+		logrus.Infof("Response CLI success.")
 
 		return nil
 	},

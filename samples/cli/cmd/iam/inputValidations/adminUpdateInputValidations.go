@@ -37,12 +37,14 @@ var AdminUpdateInputValidationsCmd = &cobra.Command{
 		input := &input_validations.AdminUpdateInputValidationsParams{
 			Body: body,
 		}
-		errInput := inputValidationsService.AdminUpdateInputValidationsShort(input)
-		if errInput != nil {
-			logrus.Error(errInput)
+		errNoContent := inputValidationsService.AdminUpdateInputValidationsShort(input)
+		if errNoContent != nil {
+			logrus.Error(errNoContent)
 
-			return errInput
+			return errNoContent
 		}
+
+		logrus.Infof("Response CLI success.")
 
 		return nil
 	},

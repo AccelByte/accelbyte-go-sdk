@@ -29,14 +29,14 @@ var RetrievePoliciesCmd = &cobra.Command{
 		input := &policies.RetrievePoliciesParams{
 			CountryCode: countryCode,
 		}
-		ok, err := policiesService.RetrievePoliciesShort(input)
-		if err != nil {
-			logrus.Error(err)
+		ok, errOK := policiesService.RetrievePoliciesShort(input)
+		if errOK != nil {
+			logrus.Error(errOK)
 
-			return err
-		} else {
-			logrus.Infof("Response CLI success: %+v", ok)
+			return errOK
 		}
+
+		logrus.Infof("Response CLI success: %+v", ok)
 
 		return nil
 	},

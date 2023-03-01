@@ -62,8 +62,7 @@ func NewPublicFulfillGoogleIAPItemParamsWithHTTPClient(client *http.Client) *Pub
 	}
 }
 
-/*
-PublicFulfillGoogleIAPItemParams contains all the parameters to send to the API endpoint
+/*PublicFulfillGoogleIAPItemParams contains all the parameters to send to the API endpoint
 for the public fulfill google IAP item operation typically these are written to a http.Request
 */
 type PublicFulfillGoogleIAPItemParams struct {

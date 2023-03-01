@@ -29,14 +29,14 @@ var RetrieveSingleLocalizedPolicyVersion2Cmd = &cobra.Command{
 		input := &localized_policy_versions.RetrieveSingleLocalizedPolicyVersion2Params{
 			LocalizedPolicyVersionID: localizedPolicyVersionId,
 		}
-		ok, err := localizedPolicyVersionsService.RetrieveSingleLocalizedPolicyVersion2Short(input)
-		if err != nil {
-			logrus.Error(err)
+		ok, errOK := localizedPolicyVersionsService.RetrieveSingleLocalizedPolicyVersion2Short(input)
+		if errOK != nil {
+			logrus.Error(errOK)
 
-			return err
-		} else {
-			logrus.Infof("Response CLI success: %+v", ok)
+			return errOK
 		}
+
+		logrus.Infof("Response CLI success: %+v", ok)
 
 		return nil
 	},

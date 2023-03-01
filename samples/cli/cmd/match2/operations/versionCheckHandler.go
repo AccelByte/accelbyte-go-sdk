@@ -26,12 +26,14 @@ var VersionCheckHandlerCmd = &cobra.Command{
 			TokenRepository: &repository.TokenRepositoryImpl{},
 		}
 		input := &operations.VersionCheckHandlerParams{}
-		errInput := operationsService.VersionCheckHandlerShort(input)
-		if errInput != nil {
-			logrus.Error(errInput)
+		errOK := operationsService.VersionCheckHandlerShort(input)
+		if errOK != nil {
+			logrus.Error(errOK)
 
-			return errInput
+			return errOK
 		}
+
+		logrus.Infof("Response CLI success.")
 
 		return nil
 	},

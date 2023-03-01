@@ -39,14 +39,14 @@ var AdminUpdateRoleV4Cmd = &cobra.Command{
 			Body:   body,
 			RoleID: roleId,
 		}
-		ok, err := rolesService.AdminUpdateRoleV4Short(input)
-		if err != nil {
-			logrus.Error(err)
+		ok, errOK := rolesService.AdminUpdateRoleV4Short(input)
+		if errOK != nil {
+			logrus.Error(errOK)
 
-			return err
-		} else {
-			logrus.Infof("Response CLI success: %+v", ok)
+			return errOK
 		}
+
+		logrus.Infof("Response CLI success: %+v", ok)
 
 		return nil
 	},

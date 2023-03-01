@@ -66,6 +66,7 @@ func init() {
 	GroupCmd.AddCommand(groupMember.AcceptGroupJoinRequestPublicV1Cmd)
 	GroupCmd.AddCommand(groupMember.RejectGroupJoinRequestPublicV1Cmd)
 	GroupCmd.AddCommand(groupMember.KickGroupMemberPublicV1Cmd)
+	GroupCmd.AddCommand(group.GetListGroupByIDsAdminV2Cmd)
 	GroupCmd.AddCommand(groupMember.GetUserJoinedGroupInformationPublicV2Cmd)
 	GroupCmd.AddCommand(group.CreateNewGroupPublicV2Cmd)
 	GroupCmd.AddCommand(group.GetListGroupByIDsV2Cmd)

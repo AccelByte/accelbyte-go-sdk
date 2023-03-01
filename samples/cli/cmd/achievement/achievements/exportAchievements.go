@@ -9,6 +9,7 @@ package achievements
 import (
 	"bytes"
 	"encoding/json"
+	"os"
 
 	"github.com/AccelByte/accelbyte-go-sdk/achievement-sdk/pkg/achievementclient/achievements"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
@@ -35,19 +36,24 @@ var ExportAchievementsCmd = &cobra.Command{
 		if errTags != nil {
 			return errTags
 		}
+		file, errFile := os.Create("file")
+		logrus.Infof("Output %v", file)
+		if errFile != nil {
+			return errFile
+		}
+		writer := bytes.NewBuffer(nil)
 		input := &achievements.ExportAchievementsParams{
 			Namespace: namespace,
 			Tags:      tags,
 		}
-		writer := bytes.NewBuffer(nil)
-		ok, err := achievementsService.ExportAchievementsShort(input, writer)
-		if err != nil {
-			logrus.Error(err)
+		ok, errOK := achievementsService.ExportAchievementsShort(input, writer)
+		if errOK != nil {
+			logrus.Error(errOK)
 
-			return err
-		} else {
-			logrus.Infof("Response CLI success: %+v", ok)
+			return errOK
 		}
+
+		logrus.Infof("Response CLI success: %+v", ok)
 
 		return nil
 	},

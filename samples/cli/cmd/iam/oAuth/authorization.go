@@ -49,12 +49,14 @@ var AuthorizationCmd = &cobra.Command{
 			ResponseType: responseType,
 			HTTPClient:   httpClient,
 		}
-		_, errInput := oAuthService.AuthorizationShort(input)
-		if errInput != nil {
-			logrus.Error(errInput)
+		_, errFound := oAuthService.AuthorizationShort(input)
+		if errFound != nil {
+			logrus.Error(errFound)
 
-			return errInput
+			return errFound
 		}
+
+		logrus.Infof("Response CLI success.")
 
 		return nil
 	},

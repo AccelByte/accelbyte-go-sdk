@@ -7,8 +7,6 @@
 package dataRetrieval
 
 import (
-	"net/http"
-
 	"github.com/AccelByte/accelbyte-go-sdk/gdpr-sdk/pkg/gdprclient/data_retrieval"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/gdpr"
@@ -30,25 +28,19 @@ var AdminRequestDataRetrievalCmd = &cobra.Command{
 		namespace, _ := cmd.Flags().GetString("namespace")
 		userId, _ := cmd.Flags().GetString("userId")
 		password, _ := cmd.Flags().GetString("password")
-		httpClient := &http.Client{
-			CheckRedirect: func(req *http.Request, via []*http.Request) error {
-				return http.ErrUseLastResponse
-			},
-		}
 		input := &data_retrieval.AdminRequestDataRetrievalParams{
-			Password:   &password,
-			Namespace:  namespace,
-			UserID:     userId,
-			HTTPClient: httpClient,
+			Password:  &password,
+			Namespace: namespace,
+			UserID:    userId,
 		}
-		ok, err := dataRetrievalService.AdminRequestDataRetrievalShort(input)
-		if err != nil {
-			logrus.Error(err)
+		created, errCreated := dataRetrievalService.AdminRequestDataRetrievalShort(input)
+		if errCreated != nil {
+			logrus.Error(errCreated)
 
-			return err
-		} else {
-			logrus.Infof("Response CLI success: %+v", ok)
+			return errCreated
 		}
+
+		logrus.Infof("Response CLI success: %+v", created)
 
 		return nil
 	},

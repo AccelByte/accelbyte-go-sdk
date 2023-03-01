@@ -8,7 +8,7 @@
     },
     "description": "Justice Group Service",
     "title": "justice-group-service",
-    "version": "2.15.0"
+    "version": "2.15.1"
   },
   "schemes": [
     "https"
@@ -3493,6 +3493,76 @@
         ]
       }
     },
+    "/group/v2/admin/namespaces/{namespace}/groups/bulk": {
+      "post": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "\u0026lt;p\u0026gt;Required valid user authentication \u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;Get list of groups by group Ids.\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;Action Code: 73303\u0026lt;/p\u0026gt;\n\t\t",
+        "operationId": "getListGroupByIDsAdminV2",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/models.GetGroupListRequestV2"
+            }
+          },
+          {
+            "description": "namespace",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/models.GetGroupsResponseV1"
+            }
+          },
+          "400": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20002\u003c/td\u003e\u003ctd\u003evalidation error\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "401": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20001\u003c/td\u003e\u003ctd\u003eunauthorized access\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "403": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20013\u003c/td\u003e\u003ctd\u003einsufficient permissions\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20022\u003c/td\u003e\u003ctd\u003etoken is not user token\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "summary": "get list of groups by group Ids",
+        "tags": [
+          "Group"
+        ]
+      }
+    },
     "/group/v2/admin/namespaces/{namespace}/users/{userId}/groups": {
       "get": {
         "description": "\u0026lt;p\u0026gt;Required valid user authentication \u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;This endpoint is used to get user joined group information.\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;Get user group joined information. If user does not belong to any group, it will return warning to give information about it\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;Group Member Status:\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;ul\u0026gt;\n\t\t\t\t\u0026lt;li\u0026gt;JOINED: status of user already joined to a group\u0026lt;/li\u0026gt;\n\t\t\t\u0026lt;/ul\u0026gt;\n\t\t",
@@ -3666,7 +3736,7 @@
             "name": "body",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/models.PublicGetGroupListRequestV2"
+              "$ref": "#/definitions/models.GetGroupListRequestV2"
             }
           },
           {
@@ -5830,6 +5900,19 @@
         "namespace"
       ]
     },
+    "models.GetGroupListRequestV2": {
+      "properties": {
+        "groupIDs": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "required": [
+        "groupIDs"
+      ]
+    },
     "models.GetGroupMemberListResponseV1": {
       "properties": {
         "data": {
@@ -5916,6 +5999,11 @@
         "groupId": {
           "type": "string"
         },
+        "joinedAt": {
+          "format": "date-time",
+          "type": "string",
+          "x-nullable": false
+        },
         "memberRoleId": {
           "items": {
             "type": "string"
@@ -5931,6 +6019,7 @@
       },
       "required": [
         "groupId",
+        "joinedAt",
         "memberRoleId",
         "userId"
       ]
@@ -5956,6 +6045,11 @@
       "properties": {
         "configurationCode": {
           "type": "string"
+        },
+        "createdAt": {
+          "format": "date-time",
+          "type": "string",
+          "x-nullable": false
         },
         "customAttributes": {
           "type": "object"
@@ -5999,6 +6093,7 @@
       },
       "required": [
         "configurationCode",
+        "createdAt",
         "customAttributes",
         "groupDescription",
         "groupIcon",
@@ -6213,6 +6308,11 @@
           "$ref": "#/definitions/models.GroupRule"
         },
         "groupType": {
+          "enum": [
+            "OPEN",
+            "PRIVATE",
+            "PUBLIC"
+          ],
           "type": "string"
         }
       },
@@ -6226,19 +6326,6 @@
         "groupRegion",
         "groupRules",
         "groupType"
-      ]
-    },
-    "models.PublicGetGroupListRequestV2": {
-      "properties": {
-        "groupIDs": {
-          "items": {
-            "type": "string"
-          },
-          "type": "array"
-        }
-      },
-      "required": [
-        "groupIDs"
       ]
     },
     "models.RemoveRoleFromMemberRequestV1": {
@@ -6450,6 +6537,11 @@
           "type": "string"
         },
         "groupType": {
+          "enum": [
+            "OPEN",
+            "PRIVATE",
+            "PUBLIC"
+          ],
           "type": "string"
         }
       },

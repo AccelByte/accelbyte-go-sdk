@@ -31,12 +31,14 @@ var DeleteGameRecordHandlerV1Cmd = &cobra.Command{
 			Key:       key,
 			Namespace: namespace,
 		}
-		errInput := publicGameRecordService.DeleteGameRecordHandlerV1Short(input)
-		if errInput != nil {
-			logrus.Error(errInput)
+		errNoContent := publicGameRecordService.DeleteGameRecordHandlerV1Short(input)
+		if errNoContent != nil {
+			logrus.Error(errNoContent)
 
-			return errInput
+			return errNoContent
 		}
+
+		logrus.Infof("Response CLI success.")
 
 		return nil
 	},

@@ -33,14 +33,14 @@ var TicketStatisticCmd = &cobra.Command{
 			ExtensionCategory: &extensionCategory,
 			Category:          category,
 		}
-		ok, err := adminTicketsService.TicketStatisticShort(input)
-		if err != nil {
-			logrus.Error(err)
+		ok, errOK := adminTicketsService.TicketStatisticShort(input)
+		if errOK != nil {
+			logrus.Error(errOK)
 
-			return err
-		} else {
-			logrus.Infof("Response CLI success: %+v", ok)
+			return errOK
 		}
+
+		logrus.Infof("Response CLI success: %+v", ok)
 
 		return nil
 	},

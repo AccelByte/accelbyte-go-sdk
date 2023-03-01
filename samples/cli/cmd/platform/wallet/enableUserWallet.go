@@ -33,12 +33,14 @@ var EnableUserWalletCmd = &cobra.Command{
 			UserID:    userId,
 			WalletID:  walletId,
 		}
-		errInput := walletService.EnableUserWalletShort(input)
-		if errInput != nil {
-			logrus.Error(errInput)
+		errNoContent := walletService.EnableUserWalletShort(input)
+		if errNoContent != nil {
+			logrus.Error(errNoContent)
 
-			return errInput
+			return errNoContent
 		}
+
+		logrus.Infof("Response CLI success.")
 
 		return nil
 	},

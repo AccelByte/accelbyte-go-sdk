@@ -31,12 +31,14 @@ var DeleteModerationRuleCmd = &cobra.Command{
 			Namespace: namespace,
 			RuleID:    ruleId,
 		}
-		errInput := adminModerationRuleService.DeleteModerationRuleShort(input)
-		if errInput != nil {
-			logrus.Error(errInput)
+		errNoContent := adminModerationRuleService.DeleteModerationRuleShort(input)
+		if errNoContent != nil {
+			logrus.Error(errNoContent)
 
-			return errInput
+			return errNoContent
 		}
+
+		logrus.Infof("Response CLI success.")
 
 		return nil
 	},

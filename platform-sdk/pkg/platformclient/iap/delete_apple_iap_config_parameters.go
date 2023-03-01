@@ -60,8 +60,7 @@ func NewDeleteAppleIAPConfigParamsWithHTTPClient(client *http.Client) *DeleteApp
 	}
 }
 
-/*
-DeleteAppleIAPConfigParams contains all the parameters to send to the API endpoint
+/*DeleteAppleIAPConfigParams contains all the parameters to send to the API endpoint
 for the delete apple IAP config operation typically these are written to a http.Request
 */
 type DeleteAppleIAPConfigParams struct {

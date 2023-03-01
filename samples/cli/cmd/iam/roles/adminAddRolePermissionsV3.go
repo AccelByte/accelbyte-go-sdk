@@ -39,12 +39,14 @@ var AdminAddRolePermissionsV3Cmd = &cobra.Command{
 			Body:   body,
 			RoleID: roleId,
 		}
-		errInput := rolesService.AdminAddRolePermissionsV3Short(input)
-		if errInput != nil {
-			logrus.Error(errInput)
+		errNoContent := rolesService.AdminAddRolePermissionsV3Short(input)
+		if errNoContent != nil {
+			logrus.Error(errNoContent)
 
-			return errInput
+			return errNoContent
 		}
+
+		logrus.Infof("Response CLI success.")
 
 		return nil
 	},

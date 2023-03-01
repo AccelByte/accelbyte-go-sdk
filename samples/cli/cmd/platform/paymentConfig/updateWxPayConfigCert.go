@@ -7,7 +7,6 @@
 package paymentConfig
 
 import (
-	"net/http"
 	"os"
 
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclient/payment_config"
@@ -35,24 +34,18 @@ var UpdateWxPayConfigCertCmd = &cobra.Command{
 		if err != nil {
 			return err
 		}
-		httpClient := &http.Client{
-			CheckRedirect: func(req *http.Request, via []*http.Request) error {
-				return http.ErrUseLastResponse
-			},
-		}
 		input := &payment_config.UpdateWxPayConfigCertParams{
-			File:       file,
-			ID:         id_,
-			HTTPClient: httpClient,
+			File: file,
+			ID:   id_,
 		}
-		ok, err := paymentConfigService.UpdateWxPayConfigCertShort(input)
-		if err != nil {
-			logrus.Error(err)
+		ok, errOK := paymentConfigService.UpdateWxPayConfigCertShort(input)
+		if errOK != nil {
+			logrus.Error(errOK)
 
-			return err
-		} else {
-			logrus.Infof("Response CLI success: %+v", ok)
+			return errOK
 		}
+
+		logrus.Infof("Response CLI success: %+v", ok)
 
 		return nil
 	},

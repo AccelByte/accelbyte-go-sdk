@@ -48,10 +48,9 @@ func NewDeleteEpicGamesIAPConfigNoContent() *DeleteEpicGamesIAPConfigNoContent {
 	return &DeleteEpicGamesIAPConfigNoContent{}
 }
 
-/*
-DeleteEpicGamesIAPConfigNoContent handles this case with default header values.
+/*DeleteEpicGamesIAPConfigNoContent handles this case with default header values.
 
-	Delete successfully
+  Delete successfully
 */
 type DeleteEpicGamesIAPConfigNoContent struct {
 }

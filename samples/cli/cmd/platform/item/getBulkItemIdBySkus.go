@@ -40,14 +40,14 @@ var GetBulkItemIdBySkusCmd = &cobra.Command{
 			Sku:       sku,
 			StoreID:   &storeId,
 		}
-		ok, err := itemService.GetBulkItemIDBySkusShort(input)
-		if err != nil {
-			logrus.Error(err)
+		ok, errOK := itemService.GetBulkItemIDBySkusShort(input)
+		if errOK != nil {
+			logrus.Error(errOK)
 
-			return err
-		} else {
-			logrus.Infof("Response CLI success: %+v", ok)
+			return errOK
 		}
+
+		logrus.Infof("Response CLI success: %+v", ok)
 
 		return nil
 	},

@@ -41,14 +41,14 @@ var AdminCreateUserOrderCmd = &cobra.Command{
 			Namespace: namespace,
 			UserID:    userId,
 		}
-		ok, err := orderService.AdminCreateUserOrderShort(input)
-		if err != nil {
-			logrus.Error(err)
+		created, errCreated := orderService.AdminCreateUserOrderShort(input)
+		if errCreated != nil {
+			logrus.Error(errCreated)
 
-			return err
-		} else {
-			logrus.Infof("Response CLI success: %+v", ok)
+			return errCreated
 		}
+
+		logrus.Infof("Response CLI success: %+v", created)
 
 		return nil
 	},

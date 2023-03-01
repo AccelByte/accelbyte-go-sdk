@@ -31,14 +31,14 @@ var MatchTicketDetailsCmd = &cobra.Command{
 			Namespace: namespace,
 			Ticketid:  ticketid,
 		}
-		ok, err := matchTicketsService.MatchTicketDetailsShort(input)
-		if err != nil {
-			logrus.Error(err)
+		ok, errOK := matchTicketsService.MatchTicketDetailsShort(input)
+		if errOK != nil {
+			logrus.Error(errOK)
 
-			return err
-		} else {
-			logrus.Infof("Response CLI success: %+v", ok)
+			return errOK
 		}
+
+		logrus.Infof("Response CLI success: %+v", ok)
 
 		return nil
 	},

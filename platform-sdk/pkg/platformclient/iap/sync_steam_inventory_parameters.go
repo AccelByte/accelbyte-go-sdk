@@ -62,8 +62,7 @@ func NewSyncSteamInventoryParamsWithHTTPClient(client *http.Client) *SyncSteamIn
 	}
 }
 
-/*
-SyncSteamInventoryParams contains all the parameters to send to the API endpoint
+/*SyncSteamInventoryParams contains all the parameters to send to the API endpoint
 for the sync steam inventory operation typically these are written to a http.Request
 */
 type SyncSteamInventoryParams struct {

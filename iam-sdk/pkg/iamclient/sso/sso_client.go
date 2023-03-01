@@ -44,7 +44,7 @@ type ClientService interface {
 /*
 Deprecated: Use LoginSSOClientShort instead.
 
-	LoginSSOClient logins to SSO client with provided platform Id
+  LoginSSOClient logins to SSO client with provided platform Id
 */
 func (a *Client) LoginSSOClient(params *LoginSSOClientParams, authInfo runtime.ClientAuthInfoWriter) (*LoginSSOClientOK, error) {
 	// TODO: Validate the params before sending
@@ -88,7 +88,7 @@ func (a *Client) LoginSSOClient(params *LoginSSOClientParams, authInfo runtime.C
 }
 
 /*
-LoginSSOClientShort logins to SSO client with provided platform Id
+  LoginSSOClientShort logins to SSO client with provided platform Id
 */
 func (a *Client) LoginSSOClientShort(params *LoginSSOClientParams, authInfo runtime.ClientAuthInfoWriter) (*LoginSSOClientOK, error) {
 	// TODO: Validate the params before sending
@@ -134,12 +134,13 @@ func (a *Client) LoginSSOClientShort(params *LoginSSOClientParams, authInfo runt
 /*
 Deprecated: Use LogoutSSOClientShort instead.
 
-	LogoutSSOClient logouts
+  LogoutSSOClient logouts
 
-	Logout user&#39;s session on platform that logged in using SSO.
+  Logout user&#39;s session on platform that logged in using SSO.
 
 Supported platforms:
 - discourse
+
 */
 func (a *Client) LogoutSSOClient(params *LogoutSSOClientParams, authInfo runtime.ClientAuthInfoWriter) (*LogoutSSOClientNoContent, *LogoutSSOClientNotFound, *LogoutSSOClientUnprocessableEntity, *LogoutSSOClientInternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -192,12 +193,13 @@ func (a *Client) LogoutSSOClient(params *LogoutSSOClientParams, authInfo runtime
 }
 
 /*
-	LogoutSSOClientShort logouts
+  LogoutSSOClientShort logouts
 
-	Logout user&#39;s session on platform that logged in using SSO.
+  Logout user&#39;s session on platform that logged in using SSO.
 
 Supported platforms:
 - discourse
+
 */
 func (a *Client) LogoutSSOClientShort(params *LogoutSSOClientParams, authInfo runtime.ClientAuthInfoWriter) (*LogoutSSOClientNoContent, error) {
 	// TODO: Validate the params before sending

@@ -29,12 +29,14 @@ var AdminDeleteRoleV3Cmd = &cobra.Command{
 		input := &roles.AdminDeleteRoleV3Params{
 			RoleID: roleId,
 		}
-		errInput := rolesService.AdminDeleteRoleV3Short(input)
-		if errInput != nil {
-			logrus.Error(errInput)
+		errNoContent := rolesService.AdminDeleteRoleV3Short(input)
+		if errNoContent != nil {
+			logrus.Error(errNoContent)
 
-			return errInput
+			return errNoContent
 		}
+
+		logrus.Infof("Response CLI success.")
 
 		return nil
 	},

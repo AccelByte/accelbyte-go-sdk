@@ -33,12 +33,14 @@ var AddUserRoleCmd = &cobra.Command{
 			RoleID:    roleId,
 			UserID:    userId,
 		}
-		errInput := usersService.AddUserRoleShort(input)
-		if errInput != nil {
-			logrus.Error(errInput)
+		errNoContent := usersService.AddUserRoleShort(input)
+		if errNoContent != nil {
+			logrus.Error(errNoContent)
 
-			return errInput
+			return errNoContent
 		}
+
+		logrus.Infof("Response CLI success.")
 
 		return nil
 	},

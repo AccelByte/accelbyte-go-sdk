@@ -41,12 +41,14 @@ var AdminUpdateClientSecretV3Cmd = &cobra.Command{
 			ClientID:  clientId,
 			Namespace: namespace,
 		}
-		errInput := clientsService.AdminUpdateClientSecretV3Short(input)
-		if errInput != nil {
-			logrus.Error(errInput)
+		errNoContent := clientsService.AdminUpdateClientSecretV3Short(input)
+		if errNoContent != nil {
+			logrus.Error(errNoContent)
 
-			return errInput
+			return errNoContent
 		}
+
+		logrus.Infof("Response CLI success.")
 
 		return nil
 	},

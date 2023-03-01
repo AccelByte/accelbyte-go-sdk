@@ -33,14 +33,14 @@ var PublicCheckUserSubscriptionSubscribableByItemIdCmd = &cobra.Command{
 			UserID:    userId,
 			ItemID:    itemId,
 		}
-		ok, err := subscriptionService.PublicCheckUserSubscriptionSubscribableByItemIDShort(input)
-		if err != nil {
-			logrus.Error(err)
+		ok, errOK := subscriptionService.PublicCheckUserSubscriptionSubscribableByItemIDShort(input)
+		if errOK != nil {
+			logrus.Error(errOK)
 
-			return err
-		} else {
-			logrus.Infof("Response CLI success: %+v", ok)
+			return errOK
 		}
+
+		logrus.Infof("Response CLI success: %+v", ok)
 
 		return nil
 	},

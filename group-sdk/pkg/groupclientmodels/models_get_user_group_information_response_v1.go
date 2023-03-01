@@ -21,6 +21,11 @@ type ModelsGetUserGroupInformationResponseV1 struct {
 	// Required: true
 	GroupID *string `json:"groupId"`
 
+	// joined at
+	// Required: true
+	// Format: date-time
+	JoinedAt strfmt.DateTime `json:"joinedAt"`
+
 	// member role Id
 	// Required: true
 	MemberRoleID []string `json:"memberRoleId"`
@@ -41,6 +46,10 @@ func (m *ModelsGetUserGroupInformationResponseV1) Validate(formats strfmt.Regist
 		res = append(res, err)
 	}
 
+	if err := m.validateJoinedAt(formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.validateMemberRoleID(formats); err != nil {
 		res = append(res, err)
 	}
@@ -58,6 +67,19 @@ func (m *ModelsGetUserGroupInformationResponseV1) Validate(formats strfmt.Regist
 func (m *ModelsGetUserGroupInformationResponseV1) validateGroupID(formats strfmt.Registry) error {
 
 	if err := validate.Required("groupId", "body", m.GroupID); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *ModelsGetUserGroupInformationResponseV1) validateJoinedAt(formats strfmt.Registry) error {
+
+	if err := validate.Required("joinedAt", "body", strfmt.DateTime(m.JoinedAt)); err != nil {
+		return err
+	}
+
+	if err := validate.FormatOf("joinedAt", "body", "date-time", m.JoinedAt.String(), formats); err != nil {
 		return err
 	}
 

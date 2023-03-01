@@ -29,7 +29,7 @@ var GetListGroupByIDsV2Cmd = &cobra.Command{
 			TokenRepository: &repository.TokenRepositoryImpl{},
 		}
 		bodyString := cmd.Flag("body").Value.String()
-		var body *groupclientmodels.ModelsPublicGetGroupListRequestV2
+		var body *groupclientmodels.ModelsGetGroupListRequestV2
 		errBody := json.Unmarshal([]byte(bodyString), &body)
 		if errBody != nil {
 			return errBody
@@ -39,14 +39,14 @@ var GetListGroupByIDsV2Cmd = &cobra.Command{
 			Body:      body,
 			Namespace: namespace,
 		}
-		ok, err := groupService.GetListGroupByIDsV2Short(input)
-		if err != nil {
-			logrus.Error(err)
+		ok, errOK := groupService.GetListGroupByIDsV2Short(input)
+		if errOK != nil {
+			logrus.Error(errOK)
 
-			return err
-		} else {
-			logrus.Infof("Response CLI success: %+v", ok)
+			return errOK
 		}
+
+		logrus.Infof("Response CLI success: %+v", ok)
 
 		return nil
 	},

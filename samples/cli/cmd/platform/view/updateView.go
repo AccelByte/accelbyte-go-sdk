@@ -43,14 +43,14 @@ var UpdateViewCmd = &cobra.Command{
 			ViewID:    viewId,
 			StoreID:   storeId,
 		}
-		ok, err := viewService.UpdateViewShort(input)
-		if err != nil {
-			logrus.Error(err)
+		ok, errOK := viewService.UpdateViewShort(input)
+		if errOK != nil {
+			logrus.Error(errOK)
 
-			return err
-		} else {
-			logrus.Infof("Response CLI success: %+v", ok)
+			return errOK
 		}
+
+		logrus.Infof("Response CLI success: %+v", ok)
 
 		return nil
 	},

@@ -41,14 +41,14 @@ var UpdatePolicyVersion1Cmd = &cobra.Command{
 			Namespace:       namespace,
 			PolicyVersionID: policyVersionId,
 		}
-		ok, err := policyVersionsWithNamespaceService.UpdatePolicyVersion1Short(input)
-		if err != nil {
-			logrus.Error(err)
+		ok, errOK := policyVersionsWithNamespaceService.UpdatePolicyVersion1Short(input)
+		if errOK != nil {
+			logrus.Error(errOK)
 
-			return err
-		} else {
-			logrus.Infof("Response CLI success: %+v", ok)
+			return errOK
 		}
+
+		logrus.Infof("Response CLI success: %+v", ok)
 
 		return nil
 	},

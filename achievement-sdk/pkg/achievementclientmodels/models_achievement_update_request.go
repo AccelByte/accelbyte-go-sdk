@@ -27,6 +27,9 @@ type ModelsAchievementUpdateRequest struct {
 	// Required: true
 	Description map[string]string `json:"description"`
 
+	// global
+	Global bool `json:"global"`
+
 	// goal value
 	// Required: true
 	GoalValue *float64 `json:"goalValue"`

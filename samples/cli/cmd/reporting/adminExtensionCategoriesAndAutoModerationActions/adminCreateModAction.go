@@ -37,14 +37,14 @@ var AdminCreateModActionCmd = &cobra.Command{
 		input := &admin_extension_categories_and_auto_moderation_actions.AdminCreateModActionParams{
 			Body: body,
 		}
-		ok, err := adminExtensionCategoriesAndAutoModerationActionsService.AdminCreateModActionShort(input)
-		if err != nil {
-			logrus.Error(err)
+		created, errCreated := adminExtensionCategoriesAndAutoModerationActionsService.AdminCreateModActionShort(input)
+		if errCreated != nil {
+			logrus.Error(errCreated)
 
-			return err
-		} else {
-			logrus.Infof("Response CLI success: %+v", ok)
+			return errCreated
 		}
+
+		logrus.Infof("Response CLI success: %+v", created)
 
 		return nil
 	},

@@ -7,7 +7,6 @@
 package config
 
 import (
-	"net/http"
 	"os"
 
 	"github.com/AccelByte/accelbyte-go-sdk/lobby-sdk/pkg/lobbyclient/config"
@@ -35,24 +34,18 @@ var AdminImportConfigV1Cmd = &cobra.Command{
 		if err != nil {
 			return err
 		}
-		httpClient := &http.Client{
-			CheckRedirect: func(req *http.Request, via []*http.Request) error {
-				return http.ErrUseLastResponse
-			},
-		}
 		input := &config.AdminImportConfigV1Params{
-			File:       file,
-			Namespace:  namespace,
-			HTTPClient: httpClient,
+			File:      file,
+			Namespace: namespace,
 		}
-		ok, err := configService.AdminImportConfigV1Short(input)
-		if err != nil {
-			logrus.Error(err)
+		ok, errOK := configService.AdminImportConfigV1Short(input)
+		if errOK != nil {
+			logrus.Error(errOK)
 
-			return err
-		} else {
-			logrus.Infof("Response CLI success: %+v", ok)
+			return errOK
 		}
+
+		logrus.Infof("Response CLI success: %+v", ok)
 
 		return nil
 	},

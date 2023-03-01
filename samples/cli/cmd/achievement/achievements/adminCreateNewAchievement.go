@@ -39,14 +39,14 @@ var AdminCreateNewAchievementCmd = &cobra.Command{
 			Body:      body,
 			Namespace: namespace,
 		}
-		ok, err := achievementsService.AdminCreateNewAchievementShort(input)
-		if err != nil {
-			logrus.Error(err)
+		created, errCreated := achievementsService.AdminCreateNewAchievementShort(input)
+		if errCreated != nil {
+			logrus.Error(errCreated)
 
-			return err
-		} else {
-			logrus.Infof("Response CLI success: %+v", ok)
+			return errCreated
 		}
+
+		logrus.Infof("Response CLI success: %+v", created)
 
 		return nil
 	},

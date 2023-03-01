@@ -33,14 +33,14 @@ var PublicGetUserByPlatformUserIDV3Cmd = &cobra.Command{
 			PlatformID:     platformId,
 			PlatformUserID: platformUserId,
 		}
-		ok, err := usersService.PublicGetUserByPlatformUserIDV3Short(input)
-		if err != nil {
-			logrus.Error(err)
+		ok, errOK := usersService.PublicGetUserByPlatformUserIDV3Short(input)
+		if errOK != nil {
+			logrus.Error(errOK)
 
-			return err
-		} else {
-			logrus.Infof("Response CLI success: %+v", ok)
+			return errOK
 		}
+
+		logrus.Infof("Response CLI success: %+v", ok)
 
 		return nil
 	},

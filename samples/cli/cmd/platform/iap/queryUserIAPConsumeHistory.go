@@ -43,14 +43,14 @@ var QueryUserIAPConsumeHistoryCmd = &cobra.Command{
 			Status:    &status,
 			Type:      &type_,
 		}
-		ok, err := iapService.QueryUserIAPConsumeHistoryShort(input)
-		if err != nil {
-			logrus.Error(err)
+		ok, errOK := iapService.QueryUserIAPConsumeHistoryShort(input)
+		if errOK != nil {
+			logrus.Error(errOK)
 
-			return err
-		} else {
-			logrus.Infof("Response CLI success: %+v", ok)
+			return errOK
 		}
+
+		logrus.Infof("Response CLI success: %+v", ok)
 
 		return nil
 	},

@@ -45,14 +45,14 @@ var QueryUserIAPOrdersCmd = &cobra.Command{
 			Status:    &status,
 			Type:      &type_,
 		}
-		ok, err := iapService.QueryUserIAPOrdersShort(input)
-		if err != nil {
-			logrus.Error(err)
+		ok, errOK := iapService.QueryUserIAPOrdersShort(input)
+		if errOK != nil {
+			logrus.Error(errOK)
 
-			return err
-		} else {
-			logrus.Infof("Response CLI success: %+v", ok)
+			return errOK
 		}
+
+		logrus.Infof("Response CLI success: %+v", ok)
 
 		return nil
 	},

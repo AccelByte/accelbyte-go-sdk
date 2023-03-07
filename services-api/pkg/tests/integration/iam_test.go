@@ -63,7 +63,7 @@ var (
 	clientID            = oAuth20Service.ConfigRepository.GetClientId()
 	authType            = "EMAILPASSWD"
 	country             = "US"
-	displayName         = "Go Server SDK Test"
+	displayName         = "Go Extend SDK Test"
 	pwd                 = "q!w@e#r$azsxdcfv1"
 	dynamicUsername     = RandStringBytes(5)
 	emailAdd            = fmt.Sprint(dynamicUsername + "@test.com")
@@ -334,7 +334,7 @@ func TestIntegrationLoginClient(t *testing.T) {
 	assert.NotNil(t, token, "response should not be nil")
 	t.Logf("Access token %v", *token.AccessToken)
 
-	// call an AccelByte Cloud API e.g. GetCountryLocationV3
+	// call an AccelByte Gaming Services API e.g. GetCountryLocationV3
 	input := &o_auth2_0_extension.GetCountryLocationV3Params{}
 	country, err := oAuth20ExtensionService.GetCountryLocationV3Short(input)
 	assert.NoError(t, err)

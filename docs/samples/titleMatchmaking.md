@@ -1,14 +1,14 @@
-# Title Matchmaking Using AccelByte Go Server SDK
+# Title Matchmaking Using AccelByte Go Extend SDK
 
 ## Overview
 
-We can perform a simple matchmaking with AccelByte Cloud services and AWS Lambda developed using AccelByte Go Server SDK. 
+We can perform a simple matchmaking with AccelByte Gaming Services services and AWS Lambda developed using AccelByte Go Extend SDK. 
 
 The sample app consists of two parts: the lambda itself and the client app that is used by players.
 
 ## Sample App
 
-1. Clone [AccelByte Go Server SDK](https://github.com/AccelByte/accelbyte-go-sdk) 
+1. Clone [AccelByte Go Extend SDK](https://github.com/AccelByte/accelbyte-go-sdk) 
 2. Go to [samples/title-matchmaking](https://github.com/AccelByte/accelbyte-go-sdk/tree/main/samples/title-matchmaking) folder
 3. Follow the [README.md](https://github.com/AccelByte/accelbyte-go-sdk/blob/main/samples/title-matchmaking#readme) to setup and use the sample application
 

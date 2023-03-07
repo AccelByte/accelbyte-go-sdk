@@ -95,10 +95,10 @@ func main() {
 			return
 		}
 
-		// Login Platform from AccelByte Cloud
+		// Login Platform from AccelByte Gaming Services
 		loginPlatform(*response.IDToken)
 
-		// Try to call AccelByte Cloud after login success
+		// Try to call AccelByte Gaming Services after login success
 		getCountryLocation()
 
 		w.WriteHeader(http.StatusOK)
@@ -113,7 +113,7 @@ func main() {
 	log.Fatal(http.ListenAndServe("127.0.0.1:8080", mux))
 }
 
-// login platform using Go Server SDK wrapper
+// login platform using Go Extend SDK wrapper
 func loginPlatform(platformToken string) {
 	input := &o_auth2_0.PlatformTokenGrantV3Params{
 		ClientID:       &clientIDPhantAuth,
@@ -131,7 +131,7 @@ func loginPlatform(platformToken string) {
 	}
 }
 
-// get country location using Go Server SDK wrapper
+// get country location using Go Extend SDK wrapper
 func getCountryLocation() {
 	input := &o_auth2_0_extension.GetCountryLocationV3Params{}
 	ok, err := oAuth20ExtensionService.GetCountryLocationV3Short(input)

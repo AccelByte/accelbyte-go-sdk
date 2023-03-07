@@ -10,9 +10,10 @@ import (
 	"testing"
 	"time"
 
+	"github.com/google/uuid"
+
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclient/category"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils/auth"
-	"github.com/google/uuid"
 
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclient/item"
 
@@ -42,7 +43,7 @@ var (
 		Client:          seasonpassClient,
 		TokenRepository: tokenRepository,
 	}
-	storeTitle            = "Go Server SDK Season Store"
+	storeTitle            = "Go Extend SDK Season Store"
 	seasonCategoryService = &platform.CategoryService{
 		Client:          seasonpassPlatformClient,
 		TokenRepository: tokenRepository,

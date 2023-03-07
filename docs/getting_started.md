@@ -1,10 +1,10 @@
-# Getting Started Guide for AccelByte Golang Server SDK
+# Getting Started Guide for AccelByte Golang Extend SDK
 
-This guide will show you how to create an application which uses Golang Server SDK from scratch.
+This guide will show you how to create an application which uses Golang Extend SDK from scratch.
 
 ## Prerequisites
 
-* AccelByte Cloud (demo environment):
+* AccelByte Gaming Services (demo environment):
     * Use https://demo.accelbyte.io for `AB_BASE_URL` environment variable.
     * [Create an Oauth Client](https://docs.accelbyte.io/guides/access/iam-client.html#create-a-client) with client type `Confidential`.
         * Use `Client ID` value for `AB_CLIENT_ID` environment variable.
@@ -30,7 +30,7 @@ Add the required configuration in `go.mod`.
 
 Replace `{VERSION}` with a specific release version tag from [releases](https://github.com/AccelByte/accelbyte-go-sdk/releases) and run `go mod tidy`.
 
-It is recommended to use the matching Golang Server SDK version for the given AccelByte Cloud version.
+It is recommended to use the matching Golang Extend SDK version for the given AccelByte Gaming Services version.
 
 ```go
 module golang-application
@@ -44,7 +44,7 @@ require (
 
 ### 3. Use in 
 
-Create an SDK instance, login using client credentials, and call an AccelByte Cloud API in `main.go`.
+Create an SDK instance, login using client credentials, and call an AccelByte Gaming Services API in `main.go`.
 
 Create file `main.go` inside the project directory
 
@@ -97,7 +97,7 @@ func main() {
 	}
 	input := &o_auth2_0_extension.GetCountryLocationV3Params{}
 
-	// call an AccelByte Cloud API e.g. GetCountryLocationV3
+	// call an AccelByte Gaming Services API e.g. GetCountryLocationV3
 	ok, errLoc := oAuth20ExtensionService.GetCountryLocationV3Short(input)
 	if errLoc != nil {
 		logrus.Error(errLoc.Error())
@@ -112,17 +112,17 @@ func main() {
 Set the required environment variables and run the code using `go run main.go`.
 
 ```bash
-$ export AB_BASE_URL="https://demo.accelbyte.io"              # AccelByte Cloud Base URL e.g. demo environment
-$ export AB_CLIENT_ID="xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"      # AccelByte Cloud OAuth Client ID
-$ export AB_CLIENT_SECRET="xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"  # AccelByte Cloud OAuth Client Secret
+$ export AB_BASE_URL="https://demo.accelbyte.io"              # AccelByte Gaming Services Base URL e.g. demo environment
+$ export AB_CLIENT_ID="xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"      # AccelByte Gaming Services OAuth Client ID
+$ export AB_CLIENT_SECRET="xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"  # AccelByte Gaming Services OAuth Client Secret
 $ go run main.go
 ```
 
 ## Follow Up Resources
 
-* Golang Server SDK [README.md](https://github.com/AccelByte/accelbyte-go-sdk/blob/main/README.md)
-* Reference documentation on AccelByte Cloud endpoints, their corresponding Golang Server SDK API, and short examples on how to use them is available in [docs](https://github.com/AccelByte/accelbyte-go-sdk/blob/main/docs)
-* Sample apps which show some practical usage of Golang Server SDK are available in [samples](https://github.com/AccelByte/accelbyte-go-sdk/blob/main/samples)
+* Golang Extend SDK [README.md](https://github.com/AccelByte/accelbyte-go-sdk/blob/main/README.md)
+* Reference documentation on AccelByte Gaming Services endpoints, their corresponding Golang Extend SDK API, and short examples on how to use them is available in [docs](https://github.com/AccelByte/accelbyte-go-sdk/blob/main/docs)
+* Sample apps which show some practical usage of Golang Extend SDK are available in [samples](https://github.com/AccelByte/accelbyte-go-sdk/blob/main/samples)
 
 ## FAQ
 
@@ -130,6 +130,6 @@ $ go run main.go
 
 Yes. You just need to implement the interface accordingly.
 
-### 2. How can I use more advanced features of Golang Server SDK e.g. HTTP retry and automatic token refresh? 
+### 2. How can I use more advanced features of Golang Extend SDK e.g. HTTP retry and automatic token refresh? 
 
 See [README.md](https://github.com/AccelByte/accelbyte-go-sdk/blob/main/README.md)

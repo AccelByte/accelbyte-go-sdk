@@ -1,7 +1,7 @@
-# Tic Tac Toe using AccelByte Go Server SDK
+# Tic Tac Toe using AccelByte Go Extend SDK
 
 ## Overview
-This tutorial will explain on how to use AccelByte Go Server SDK to create simple Tic Tac Toe backend service and game client. This tutorial also will explain on how to configure and run the provided local server sample as well as AWS Lambda sample.
+This tutorial will explain on how to use AccelByte Go Extend SDK to create simple Tic Tac Toe backend service and game client. This tutorial also will explain on how to configure and run the provided local server sample as well as AWS Lambda sample.
 
 ## Prerequisites
 - [Create a Game Namespace](https://docs.accelbyte.io/esg/uam/namespaces.html#tutorials) if you don't have one yet. Be sure to keep the namespace's **ID** as you will need it later.
@@ -11,7 +11,7 @@ This tutorial will explain on how to use AccelByte Go Server SDK to create simpl
 - Download the latest [Go SDK](https://github.com/AccelByte/accelbyte-go-sdk)
 - Read [Go SDK Getting Started Guide](https://docs.accelbyte.io/guides/customization/golang-sdk-guide.html) on how to integrate SDK into your project.
 - AWS account with enough permission to deploy Lambda function (optional).
-- At least two username registered in AccelByte Cloud for testing purpose.
+- At least two username registered in AccelByte Gaming Services for testing purpose.
 
 ## How it Works (Server-Side)
 ### Architecture for Local Server
@@ -19,7 +19,7 @@ This tutorial will explain on how to use AccelByte Go Server SDK to create simpl
 graph TB
 	C[Client]
 	M[Tic Tac Toe Local Server]
-	subgraph ABC[AccelByte Cloud]
+	subgraph ABC[AccelByte Gaming Services]
 		direction RL
 		S1[IAM]
 		S2[Lobby]
@@ -47,7 +47,7 @@ graph TB
 			R[Redis]
 		end
 	end
-	subgraph ABC[AccelByte Cloud]
+	subgraph ABC[AccelByte Gaming Services]
 		direction RL
 		S1[IAM]
 		S2[Lobby]		
@@ -143,7 +143,7 @@ sequenceDiagram
 
 ### Game Client (AWS Lambda)
 - For matchmaking client sample application, go to `samples/tic-tac-toe/client` directory.
-- Configure environment variables for AccelByte Cloud connection or use JSON config file as mentioned in project's [README](../../samples/tic-tac-toe/README.md).
+- Configure environment variables for AccelByte Gaming Services connection or use JSON config file as mentioned in project's [README](../../samples/tic-tac-toe/README.md).
 - You can choose to configure user's credentials directly using JSON file or command line options. Refer to the README on how to use it.
 - Make sure you deploy Tic-Tac-Toe Lambda function first either on AWS or local.
 - Export the url `TIC_TAC_TOE_ENDPOINT`. eg. `http://127.0.0.1:3000` without `/{proxy+}`
@@ -153,7 +153,7 @@ sequenceDiagram
 1. Follow above Game Client steps.
 2. For example:
 ```bash
-# with assumption that AccelByte Cloud config is available in environment variables
+# with assumption that AccelByte Gaming Services config is available in environment variables
 $ go run main.go
 ```
 3. You will be presented with a simple menu similar to this:
@@ -166,7 +166,7 @@ c: User info
 d: Logout
 e: Get game stat
 ```
-4. Type `a` and hit `enter` to login to AccelByte Cloud.
+4. Type `a` and hit `enter` to login to AccelByte Gaming Services.
 5. After succesfully logged in, you will be back to main menu.
 ```bash
 Commands:
@@ -252,7 +252,7 @@ INFO[0140] You lose
 ## Code Behind
 
 ### Game Client
-- Initializing Accelbyte Cloud SDK
+- Initializing AccelByte Gaming Services SDK
 ```go
 configImpl    = *auth.DefaultConfigRepositoryImpl()
 tokenImpl     = *auth.DefaultTokenRepositoryImpl()

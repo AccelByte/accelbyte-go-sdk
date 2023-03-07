@@ -49,7 +49,7 @@ func main() {
 	}
 	input := &o_auth2_0_extension.GetCountryLocationV3Params{}
 
-	// call an AccelByte Cloud API e.g. GetCountryLocationV3
+	// call an AccelByte Gaming Services API e.g. GetCountryLocationV3
 	ok, errLoc := oAuth20ExtensionService.GetCountryLocationV3Short(input)
 	if errLoc != nil {
 		fmt.Println(errLoc.Error())

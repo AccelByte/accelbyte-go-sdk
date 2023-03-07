@@ -3,7 +3,7 @@
 
 ### BREAKING CHANGE
 
-Following changes in AccelByte Cloud OpenAPI specification:
+Following changes in AccelByte Gaming Services OpenAPI specification:
 - Model `TrackedEntitlementInfo` is replaced with `EntitlementDecrementResult`
 
 The new model(s) above are compatible with the models it is replacing. If you are affected, a simple rename should be sufficient; i.e. rename `TrackedEntitlementInfo` with `EntitlementDecrementResult`.

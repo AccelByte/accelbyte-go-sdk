@@ -68,11 +68,11 @@ pipeline {
           cp -v ${sdkSpecPath}/docs/openapi-2.0-vendor-extensions.md ${sdkPath}/spec/;
           """, label: "Prepare: Copy Latest SDK Specs"
         
-        // regenerate server sdk code
+        // regenerate extend sdk code
         sh script: """
           cd ${sdkGenPath};
           make -f Makefile.sdk-go sdk_all SDK_PATH=${sdkPath};
-          """, label: "Generate Server SDK"
+          """, label: "Generate Extend SDK"
 
         // check code breaking changes, by compiling all samples against newly generated sdk code
         catchError(buildResult: 'SUCCESS') {
@@ -95,7 +95,7 @@ pipeline {
           sh "make version"
 
           sh "git add --all"
-          sh "git commit -m 'chore(sdk): generate go server sdk (${timeStamp()})' -m '- generated from source sdk spec commit: ${sdkSpecCommitHash}'"
+          sh "git commit -m 'chore(sdk): generate go extend sdk (${timeStamp()})' -m '- generated from source sdk spec commit: ${sdkSpecCommitHash}'"
           sshagent(credentials: [bitbucketCredentialsSsh]) {
             sh "git push --set-upstream origin +${sdkNewBranchName}:${sdkNewBranchName}"
           }
@@ -170,7 +170,7 @@ pipeline {
         specLink = "https://bitbucket.org/accelbyte/justice-codegen-sdk-spec/commits/${sdkSpecCommitHash}"
         sdkLink = "https://bitbucket.org/accelbyte/${sdkRepoName}/commits/${sdkCommitHash}"
         message = """
-                  :white_check_mark: <${env.BUILD_URL}|${env.JOB_NAME}-${env.BUILD_NUMBER}> *Generate Go Server SDK Successful :gopher:*
+                  :white_check_mark: <${env.BUILD_URL}|${env.JOB_NAME}-${env.BUILD_NUMBER}> *Generate Go Extend SDK Successful :gopher:*
                 
                   |*Source SDK Spec:* <${specLink}|${sdkSpecCommitHash}>
                   |*Generated SDK:* <${sdkLink}|${sdkCommitHash}>

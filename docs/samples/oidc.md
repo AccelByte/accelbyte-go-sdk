@@ -1,12 +1,12 @@
-# AccelByte Cloud and 3rd Party OpenID Connect Login Integration Using AccelByte Go Server SDK
+# AccelByte Gaming Services and 3rd Party OpenID Connect Login Integration Using AccelByte Go Extend SDK
 
 ## Overview
 
-AccelByte Cloud provides [integration with OpenID Connect providers](https://docs.accelbyte.io/guides/access/3rd-party-platform-integration.html#openid-connect) as one of the 3rd party login integration options. Any OpenID Connect providers should work. The following sample app will show you how to do this with AccelByte Go Server SDK and [PhantAuth](https://www.phantauth.net/), an OpenID Connect provider to simplify testing.
+AccelByte Gaming Services provides [integration with OpenID Connect providers](https://docs.accelbyte.io/guides/access/3rd-party-platform-integration.html#openid-connect) as one of the 3rd party login integration options. Any OpenID Connect providers should work. The following sample app will show you how to do this with AccelByte Go Extend SDK and [PhantAuth](https://www.phantauth.net/), an OpenID Connect provider to simplify testing.
 
 ## Sample App
 
-1. Clone [AccelByte Go Server SDK](https://github.com/AccelByte/accelbyte-go-sdk)
+1. Clone [AccelByte Go Extend SDK](https://github.com/AccelByte/accelbyte-go-sdk)
 2. Go to [samples/oidc-web](https://github.com/AccelByte/accelbyte-go-sdk/tree/main/samples/oidc-web) folder
 3. Follow the [README.md](https://github.com/AccelByte/accelbyte-go-sdk/blob/main/samples/oidc-web#readme) to setup and use the sample application
 
@@ -20,7 +20,7 @@ AccelByte Cloud provides [integration with OpenID Connect providers](https://doc
 3. In `/callback` endpoint:
     - Get auth token from `PhantAuth` with `code` from the query string
     - Perform login platform using `Platform ID` and `ID Token` from `PhantAuth` auth token
-    - After login platform is successful, we can try to call some AccelByte Cloud endpoints
+    - After login platform is successful, we can try to call some AccelByte Gaming Services endpoints
 
 ```mermaid
 sequenceDiagram
@@ -138,7 +138,7 @@ mux.HandleFunc("/config", func(w http.ResponseWriter, r *http.Request) {
 
 #### Endpoint `/callback`
 
-Get auth token from `PhantAuth` with `code` from the query string and perform login platform using Platform ID and ID Token from PhantAuth auth token. After login platform is successful, we can try to call some AccelByte Cloud endpoints.
+Get auth token from `PhantAuth` with `code` from the query string and perform login platform using Platform ID and ID Token from PhantAuth auth token. After login platform is successful, we can try to call some AccelByte Gaming Services endpoints.
 
 ```go
 // Handler for callback from PhantAuth
@@ -164,10 +164,10 @@ mux.HandleFunc("/callback", func(w http.ResponseWriter, r *http.Request) {
 			return
 		}
 
-		// Login Platform from AccelByte Cloud
+		// Login Platform from AccelByte Gaming Services
 		loginPlatform(*response.IDToken)
 
-		// Try to call AccelByte Cloud after login success
+		// Try to call AccelByte Gaming Services after login success
 		getCountryLocation()
 
 		w.WriteHeader(http.StatusOK)

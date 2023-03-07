@@ -9,7 +9,7 @@ If you are new to AccelByte Go SDK, start here. It shows you the basics in one g
 
 1. Creating a project from scratch and adding AccelByte Go SDK dependency to it
 2. Instantiating AccelByte Go SDK
-3. Using AccelByte Go SDK to call an AccelByte Cloud endpoint
+3. Using AccelByte Go SDK to call an AccelByte Gaming Services endpoint
 
 For more advanced usage, do not forget to read the [README.md](../README.md) in the top level directory.
 
@@ -19,7 +19,7 @@ After you got the basics, this document shows you code examples on how to achiev
 
 ## [Operations](operations)
 
-If you know which AccelByte Cloud endpoints that you need to call and you want to call them using AccelByte Go SDK, the documents in this folder provide you with code examples on how to call each and every endpoints on all supported AccelByte Cloud services.
+If you know which AccelByte Gaming Services endpoints that you need to call and you want to call them using AccelByte Go SDK, the documents in this folder provide you with code examples on how to call each and every endpoints on all supported AccelByte Gaming Services services.
 
 ## [Samples](samples)
 

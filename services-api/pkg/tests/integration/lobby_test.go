@@ -101,7 +101,7 @@ func TestIntegrationLobbyFreeFormNotification(t *testing.T) {
 	}
 
 	topic := "go_server_sdk_integration_test"
-	message := "This is a Go Server SDK integration test"
+	message := "This is a Go Extend SDK integration test"
 
 	err := lobbyAdminSvc.FreeFormNotificationShort(&lobbyAdminNotification.FreeFormNotificationParams{
 		Body: &lobbyclientmodels.ModelFreeFormNotificationRequest{

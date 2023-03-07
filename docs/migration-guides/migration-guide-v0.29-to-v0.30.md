@@ -61,7 +61,7 @@ func main() {
 	token, _ := oauth.TokenRepository.GetToken()
 	logrus.Infof("print %v", *token.AccessToken)
 
-	// call an AccelByte Cloud API e.g. GetCountryLocationV3
+	// call an AccelByte Gaming Services API e.g. GetCountryLocationV3
 	oAuth20ExtensionService := &iam.OAuth20ExtensionService{
 		Client:          factory.NewIamClient(&configRepo),
 		TokenRepository: &tokenRepo,
@@ -193,7 +193,7 @@ func main() {
 	token, _ := oauth.TokenRepository.GetToken()
 	logrus.Infof("print %v", *token.AccessToken)
 
-	// call an AccelByte Cloud API e.g. GetCountryLocationV3
+	// call an AccelByte Gaming Services API e.g. GetCountryLocationV3
 	oAuth20ExtensionService := &iam.OAuth20ExtensionService{
 		Client:          factory.NewIamClient(&configRepo),
 		TokenRepository: &tokenRepo,

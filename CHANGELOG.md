@@ -72,7 +72,7 @@
 - update lint error
 - update phantauth url name
 - **docs:** use second player token to join party with code
-- **sdk:** generate go extend sdk (230130.0356)
+- **sdk:** generate go server sdk (230130.0356)
 
 ### Docs
 - added local token validation to readme
@@ -112,8 +112,8 @@
 - move and rename the validator folder
 - move integration login client to iam test
 - **samples:** update go mod tidy due to the filter bloom package module
-- **sdk:** regenerate sdk, cli sample app, cli test, doc index for AccelByte Gaming Services 3.40
-- **spec:** update spec for AccelByte Gaming Services 3.40
+- **sdk:** regenerate sdk, cli sample app, cli test, doc index for AccelByte Cloud 3.40
+- **spec:** update spec for AccelByte Cloud 3.40
 
 ### CI
 - add make version
@@ -145,8 +145,8 @@
 
 ### Chore
 - regenerate op index to add deprecation marker
-- **sdk:** regenerate sdk, cli sample app, cli test, doc index for AccelByte Gaming Services 3.39
-- **spec:** update spec for AccelByte Gaming Services 3.39
+- **sdk:** regenerate sdk, cli sample app, cli test, doc index for AccelByte Cloud 3.39
+- **spec:** update spec for AccelByte Cloud 3.39
 
 ### Docs
 - update CHANGELOG.md for v0.35.0 release
@@ -159,8 +159,8 @@
 ## [v0.34.0] - 2022-12-20
 
 ### Chore
-- **sdk:** regenerate sdk, cli sample app, cli test, doc index for AccelByte Gaming Services 3.38
-- **spec:** update spec for AccelByte Gaming Services 3.38
+- **sdk:** regenerate sdk, cli sample app, cli test, doc index for AccelByte Cloud 3.38
+- **spec:** update spec for AccelByte Cloud 3.38
 - **test:** renaming envar for the phanthauth url
 
 ### Docs
@@ -177,8 +177,8 @@
 
 ### Chore
 - disable changelog broken link test for now
-- **sdk:** regenerate sdk, cli sample app, cli test, doc index for AccelByte Gaming Services 3.37
-- **spec:** update spec for AccelByte Gaming Services 3.37
+- **sdk:** regenerate sdk, cli sample app, cli test, doc index for AccelByte Cloud 3.37
+- **spec:** update spec for AccelByte Cloud 3.37
 - **test:** move to one file
 
 ### CI
@@ -213,9 +213,9 @@
 ## [v0.32.0] - 2022-11-22
 
 ### Chore
-- **sdk:** regenerate sdk, cli sample app, cli test, doc index for AccelByte Gaming Services 3.36
+- **sdk:** regenerate sdk, cli sample app, cli test, doc index for AccelByte Cloud 3.36
 - **sdk:** regenerate sdk, cli sample app, cli test, doc index for session and match2 service
-- **spec:** update spec for AccelByte Gaming Services 3.36
+- **spec:** update spec for AccelByte Cloud 3.36
 
 ### Docs
 - add migration guide
@@ -263,8 +263,8 @@
 ## [v0.31.0] - 2022-11-08
 
 ### Chore
-- **sdk:** regenerate sdk, cli sample app, cli test, doc index for AccelByte Gaming Services 3.35
-- **spec:** update spec for AccelByte Gaming Services 3.35
+- **sdk:** regenerate sdk, cli sample app, cli test, doc index for AccelByte Cloud 3.35
+- **spec:** update spec for AccelByte Cloud 3.35
 
 ### Docs
 - fix create oauth client link in getting started doc
@@ -280,8 +280,8 @@
 - **integration-tests:** add skip when failing to claim server
 - **sdk:** add utils and custom transport to support export file
 - **sdk:** refactor converted file utils
-- **sdk:** regenerate sdk, cli sample app, cli test, doc index for AccelByte Gaming Services 3.34
-- **spec:** update spec for AccelByte Gaming Services 3.34
+- **sdk:** regenerate sdk, cli sample app, cli test, doc index for AccelByte Cloud 3.34
+- **spec:** update spec for AccelByte Cloud 3.34
 - **test:** add integration test for export store
 - **test:** adjust file test on platform and social
 - **test:** refactor export import test in social and platform service
@@ -298,8 +298,8 @@
 ## [v0.29.0] - 2022-10-11
 
 ### Chore
-- **sdk:** regenerate sdk, cli sample app, cli test, doc index for AccelByte Gaming Services 3.33
-- **spec:** update spec for AccelByte Gaming Services 3.33
+- **sdk:** regenerate sdk, cli sample app, cli test, doc index for AccelByte Cloud 3.33
+- **spec:** update spec for AccelByte Cloud 3.33
 
 ### Docs
 - doc folder adjustments
@@ -314,8 +314,8 @@
 
 ### Chore
 - **makefile:** add docker httpbin for test
-- **sdk:** regenerate sdk, cli sample app, cli test, doc index for AccelByte Gaming Services 3.32
-- **spec:** update spec for AccelByte Gaming Services 3.32
+- **sdk:** regenerate sdk, cli sample app, cli test, doc index for AccelByte Cloud 3.32
+- **spec:** update spec for AccelByte Cloud 3.32
 - **test:** add utils to read in chunks and fix port for core test
 - **test:** delete the game current player params from session browser
 - **test:** use 1gb file streamed by chunks
@@ -337,8 +337,8 @@
 - **samples:** synchronize the service name after converting to use go sdk local directory
 - **samples:** use default config and token repository implementation
 - **samples:** use go sdk local directory
-- **sdk:** regenerate sdk, cli sample app, cli test, doc index for AccelByte Gaming Services 3.31
-- **spec:** update spec for AccelByte Gaming Services 3.31
+- **sdk:** regenerate sdk, cli sample app, cli test, doc index for AccelByte Cloud 3.31
+- **spec:** update spec for AccelByte Cloud 3.31
 - **test:** add random seed for username
 - **test:** run the test in sequence due to 403 error when delete user
 - **tests:** add markers for codegen to pick up
@@ -366,8 +366,8 @@
 - **samples:** remove iam go sdk
 - **samples:** refactoring title matchmaking sample apps
 - **sdk:** regenerate IAM service for verify token
-- **sdk:** regenerate sdk, cli sample app, cli test, doc index for AccelByte Gaming Services 3.30
-- **spec:** update spec for AccelByte Gaming Services 3.30
+- **sdk:** regenerate sdk, cli sample app, cli test, doc index for AccelByte Cloud 3.30
+- **spec:** update spec for AccelByte Cloud 3.30
 
 ### Docs
 - update CHANGELOG.md for v0.26.0 release
@@ -396,17 +396,17 @@ There is a commit to **use interface instead of directly using OauthmodelTokenRe
 - **sdk:** migrate wrappers in auth to use the operation with suffix short
 - **sdk:** print error string
 - **sdk:** regenerate by adding comment for client operation short
-- **sdk:** regenerate sdk, cli sample app, cli test, doc index for AccelByte Gaming Services 3.29 (again)
-- **sdk:** regenerate sdk, cli sample app, cli test, doc index for AccelByte Gaming Services 3.29
-- **spec:** update spec for AccelByte Gaming Services 3.29 (again)
-- **spec:** update spec for AccelByte Gaming Services 3.29
+- **sdk:** regenerate sdk, cli sample app, cli test, doc index for AccelByte Cloud 3.29 (again)
+- **sdk:** regenerate sdk, cli sample app, cli test, doc index for AccelByte Cloud 3.29
+- **spec:** update spec for AccelByte Cloud 3.29 (again)
+- **spec:** update spec for AccelByte Cloud 3.29
 - **test:** add cli cookie value
 
 ### CI
 - updated mock server path
 
 ### Docs
-- remove references to Justice and replaced it with AccelByte Gaming Services
+- remove references to Justice and replaced it with AccelByte Cloud
 - update CHANGELOG.md for v0.25.0 release (again)
 - update CHANGELOG.md for v0.25.0 release
 

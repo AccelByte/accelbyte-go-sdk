@@ -2,10 +2,10 @@
 
 ## Background
 
-Majority of Go Server SDK codes are generated from [specification files](../spec) using codegen tools.
-Any attempt to customize Go Server SDK must avoid editing files that are marked as `DO NOT EDIT`.
-Also, it is best practice to extend the functionality of Go Server SDK by inherit the base classes or add new
-implementation for partial classes to ensure less complications when upgrading Go Server SDK.
+Majority of Go Extend SDK codes are generated from [specification files](../spec) using codegen tools.
+Any attempt to customize Go Extend SDK must avoid editing files that are marked as `DO NOT EDIT`.
+Also, it is best practice to extend the functionality of Go Extend SDK by inherit the base classes or add new
+implementation for partial classes to ensure less complications when upgrading Go Extend SDK.
 
 ## How to Create a Custom Operation
 

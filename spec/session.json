@@ -3,7 +3,7 @@
   "info": {
     "description": "Justice Session Service",
     "title": "justice-session-service",
-    "version": "2.6.8"
+    "version": "2.6.9"
   },
   "schemes": [
     "https"
@@ -68,7 +68,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "Create template configuration to be applied across party and session.",
+        "description": "Create template configuration to be applied across party and session.\nSession configuration mandatory :\n- name\n- joinability (example value : OPEN, CLOSED, INVITE_ONLY)\n- Type (example value : P2P, DS, NONE) if type empty, type will be assign to NONE\n- MinPlayers (must greather or equal 0)\n- MaxPlayers (must greather than 0)\n- InviteTimeout (must greather or equal 0) if InviteTimeout equal 0 will be use default DefaultTimeoutSecond (60s)\n- InactiveTimeout (must greather or equal 0) if InactiveTimeout equal 0 will be use default DefaultTimeoutSecond (60s)\n- Persistent Flag only can use with type DS (example value true or false)\n",
         "operationId": "adminCreateConfigurationTemplateV1",
         "parameters": [
           {
@@ -347,7 +347,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "Update template configuration",
+        "description": "Update template configuration\nSession configuration mandatory :\n- name\n- joinability (example value : OPEN, CLOSED, INVITE_ONLY)\n- Type (example value : P2P, DS, NONE) if type empty, type will be assign to NONE\n- MinPlayers (must greather or equal 0)\n- MaxPlayers (must greather than 0)\n- InviteTimeout (must greather or equal 0) if InviteTimeout equal 0 will be use default DefaultTimeoutSecond (60s)\n- InactiveTimeout (must greather or equal 0) if InactiveTimeout equal 0 will be use default DefaultTimeoutSecond (60s)\n",
         "operationId": "adminUpdateConfigurationTemplateV1",
         "parameters": [
           {
@@ -1371,7 +1371,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "Updates a game session, this endpoint will override stored gamesession data.\n      To update only specified fields, please use following endpoint: \n  method : PATCH\n  API\t : /session/v1/public/namespaces/{namespace}/gamesessions/{sessionId}\n      ",
+        "description": "Updates a game session, this endpoint will override stored gamesession data.\n      To update only specified fields, please use following endpoint: \n  method : PATCH\n  API\t : /session/v1/public/namespaces/{namespace}/gamesessions/{sessionId}\n\nTo update DS attributes (clientVersion, deployment, requestedRegions) it will only be applied only as long as no DS has been requested, otherwise ignored.\n      ",
         "operationId": "updateGameSession",
         "parameters": [
           {
@@ -1445,6 +1445,84 @@
           }
         ],
         "summary": "Update a game session. Requires NAMESPACE:{namespace}:SESSION:GAME [UPDATE]",
+        "tags": [
+          "Game Session"
+        ]
+      }
+    },
+    "/session/v1/public/namespaces/{namespace}/gamesessions/{sessionId}/backfill": {
+      "put": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Update game session backfill ticket id. Will override game session backfill ticket based on given request parameter",
+        "operationId": "updateGameSessionBackfillTicketID",
+        "parameters": [
+          {
+            "description": "Update game session backfill ticket id request",
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/apimodels.UpdateGameSessionBackfillRequest"
+            }
+          },
+          {
+            "description": "Namespace",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "session ID",
+            "in": "path",
+            "name": "sessionId",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/apimodels.GameSessionResponse"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "summary": "Update game session backfill ticket id . Requires NAMESPACE:{namespace}:SESSION:GAME [UPDATE]",
         "tags": [
           "Game Session"
         ]
@@ -3071,6 +3149,10 @@
         "namespace": {
           "type": "string"
         },
+        "persistent": {
+          "type": "boolean",
+          "x-omitempty": false
+        },
         "requestedRegions": {
           "items": {
             "type": "string"
@@ -3100,6 +3182,7 @@
         "minPlayers",
         "name",
         "namespace",
+        "persistent",
         "requestedRegions",
         "textChat",
         "type",
@@ -3152,6 +3235,14 @@
         },
         "name": {
           "type": "string"
+        },
+        "persistent": {
+          "type": "boolean",
+          "x-omitempty": false
+        },
+        "persistentTTL": {
+          "format": "int32",
+          "type": "integer"
         },
         "requestedRegions": {
           "items": {
@@ -3217,6 +3308,14 @@
           "type": "integer"
         },
         "minPlayers": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "persistent": {
+          "type": "boolean",
+          "x-omitempty": false
+        },
+        "persistentTTL": {
           "format": "int32",
           "type": "integer"
         },
@@ -3411,6 +3510,10 @@
         "namespace": {
           "type": "string"
         },
+        "persistent": {
+          "type": "boolean",
+          "x-omitempty": false
+        },
         "teams": {
           "items": {
             "$ref": "#/definitions/models.Team"
@@ -3445,6 +3548,7 @@
         "matchPool",
         "members",
         "namespace",
+        "persistent",
         "teams",
         "ticketIDs",
         "updatedAt",
@@ -3564,6 +3668,10 @@
         "namespace": {
           "type": "string"
         },
+        "persistent": {
+          "type": "boolean",
+          "x-omitempty": false
+        },
         "updatedAt": {
           "type": "string"
         },
@@ -3583,6 +3691,7 @@
         "leaderID",
         "members",
         "namespace",
+        "persistent",
         "updatedAt",
         "version"
       ]
@@ -3675,6 +3784,10 @@
         "name": {
           "type": "string"
         },
+        "persistent": {
+          "type": "boolean",
+          "x-omitempty": false
+        },
         "requestedRegions": {
           "items": {
             "type": "string"
@@ -3698,6 +3811,7 @@
         "maxPlayers",
         "minPlayers",
         "name",
+        "persistent",
         "requestedRegions",
         "textChat",
         "type"
@@ -3787,6 +3901,16 @@
         "requestedRegions",
         "textChat",
         "type"
+      ]
+    },
+    "apimodels.UpdateGameSessionBackfillRequest": {
+      "properties": {
+        "backfillTicketID": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "backfillTicketID"
       ]
     },
     "apimodels.UpdateGameSessionMemberStatusResponse": {

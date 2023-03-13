@@ -14,6 +14,7 @@ import (
 	"github.com/AccelByte/sample-apps/cmd/social/statConfiguration"
 	"github.com/AccelByte/sample-apps/cmd/social/statCycleConfiguration"
 	"github.com/AccelByte/sample-apps/cmd/social/userStatistic"
+	"github.com/AccelByte/sample-apps/cmd/social/userStatisticCycle"
 	"github.com/spf13/cobra"
 )
 
@@ -70,6 +71,7 @@ func init() {
 	SocialCmd.AddCommand(statConfiguration.DeleteStatCmd)
 	SocialCmd.AddCommand(statConfiguration.UpdateStatCmd)
 	SocialCmd.AddCommand(statConfiguration.DeleteTiedStatCmd)
+	SocialCmd.AddCommand(userStatisticCycle.GetUserStatCycleItemsCmd)
 	SocialCmd.AddCommand(userStatistic.GetUserStatItemsCmd)
 	SocialCmd.AddCommand(userStatistic.BulkCreateUserStatItemsCmd)
 	SocialCmd.AddCommand(userStatistic.BulkIncUserStatItem1Cmd)
@@ -88,6 +90,7 @@ func init() {
 	SocialCmd.AddCommand(userStatistic.PublicBulkIncUserStatItemValueCmd)
 	SocialCmd.AddCommand(userStatistic.BulkResetUserStatItem2Cmd)
 	SocialCmd.AddCommand(statConfiguration.CreateStat1Cmd)
+	SocialCmd.AddCommand(userStatisticCycle.GetUserStatCycleItems1Cmd)
 	SocialCmd.AddCommand(userStatistic.PublicQueryUserStatItemsCmd)
 	SocialCmd.AddCommand(userStatistic.PublicBulkCreateUserStatItemsCmd)
 	SocialCmd.AddCommand(userStatistic.PublicQueryUserStatItems1Cmd)

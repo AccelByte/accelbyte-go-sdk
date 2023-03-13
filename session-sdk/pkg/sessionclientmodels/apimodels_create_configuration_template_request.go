@@ -49,6 +49,12 @@ type ApimodelsCreateConfigurationTemplateRequest struct {
 	// Required: true
 	Name *string `json:"name"`
 
+	// persistent
+	Persistent bool `json:"persistent"`
+
+	// persistent TTL
+	PersistentTTL int32 `json:"persistentTTL,omitempty"`
+
 	// requested regions
 	// Required: true
 	RequestedRegions []string `json:"requestedRegions"`

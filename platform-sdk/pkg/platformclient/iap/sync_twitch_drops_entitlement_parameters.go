@@ -73,8 +73,6 @@ type SyncTwitchDropsEntitlementParams struct {
 	Body *platformclientmodels.TwitchSyncRequest
 	/*Namespace*/
 	Namespace string
-	/*UserID*/
-	UserID string
 
 	timeout        time.Duration
 	AuthInfoWriter runtime.ClientAuthInfoWriter
@@ -151,17 +149,6 @@ func (o *SyncTwitchDropsEntitlementParams) SetNamespace(namespace string) {
 	o.Namespace = namespace
 }
 
-// WithUserID adds the userID to the sync twitch drops entitlement params
-func (o *SyncTwitchDropsEntitlementParams) WithUserID(userID string) *SyncTwitchDropsEntitlementParams {
-	o.SetUserID(userID)
-	return o
-}
-
-// SetUserID adds the userId to the sync twitch drops entitlement params
-func (o *SyncTwitchDropsEntitlementParams) SetUserID(userID string) {
-	o.UserID = userID
-}
-
 // WriteToRequest writes these params to a swagger request
 func (o *SyncTwitchDropsEntitlementParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.Registry) error {
 
@@ -178,11 +165,6 @@ func (o *SyncTwitchDropsEntitlementParams) WriteToRequest(r runtime.ClientReques
 
 	// path param namespace
 	if err := r.SetPathParam("namespace", o.Namespace); err != nil {
-		return err
-	}
-
-	// path param userId
-	if err := r.SetPathParam("userId", o.UserID); err != nil {
 		return err
 	}
 

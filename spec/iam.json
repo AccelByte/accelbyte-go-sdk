@@ -8,7 +8,7 @@
     },
     "description": "Justice IAM Service",
     "title": "justice-iam-service",
-    "version": "5.28.0"
+    "version": "5.29.0"
   },
   "schemes": [
     "https"
@@ -15270,6 +15270,12 @@
               "$ref": "#/definitions/rest.ErrorResponse"
             }
           },
+          "429": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20007\u003c/td\u003e\u003ctd\u003etoo many requests\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/rest.ErrorResponse"
+            }
+          },
           "500": {
             "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20000\u003c/td\u003e\u003ctd\u003einternal server error\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
@@ -24133,6 +24139,69 @@
           "Users V4"
         ]
       }
+    },
+    "/iam/v4/public/users/invite": {
+      "post": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "This endpoint is used to invite a game studio admin user with new namespace in multi tenant mode.\nIt will return error if the service multi tenant mode is set to false.\n\nRequest body details:\n- emailAddress: email address of the user to be invited\n- namespace: new namespace of the user to be created\n- namespaceDisplayName: display name of the new namespace\n\nThe invited users will also be assigned with \u0026#34;User\u0026#34; role by default.\n",
+        "operationId": "PublicInviteUserV4",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/model.PublicInviteUserRequestV4"
+            }
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "201": {
+            "description": "Created",
+            "schema": {
+              "$ref": "#/definitions/model.InviteUserResponseV3"
+            }
+          },
+          "400": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20019\u003c/td\u003e\u003ctd\u003eunable to parse request body\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20002\u003c/td\u003e\u003ctd\u003evalidation error\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/rest.ErrorResponse"
+            }
+          },
+          "409": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/rest.ErrorResponse"
+            }
+          },
+          "422": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e10183\u003c/td\u003e\u003ctd\u003eunprocessable entity\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/rest.ErrorResponse"
+            }
+          },
+          "500": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20000\u003c/td\u003e\u003ctd\u003einternal server error\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/rest.ErrorResponse"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "summary": "Public invite admin user v4",
+        "tags": [
+          "Users V4"
+        ]
+      }
     }
   },
   "definitions": {
@@ -26441,8 +26510,7 @@
         }
       },
       "required": [
-        "generatedAt",
-        "validCodes"
+        "generatedAt"
       ]
     },
     "model.BanCreateRequest": {
@@ -27232,7 +27300,6 @@
         "assignedNamespaces",
         "emailAddresses",
         "isAdmin",
-        "namespace",
         "roleId"
       ]
     },
@@ -27667,6 +27734,24 @@
         "Namespace",
         "PlatformID",
         "PlatformUserID"
+      ]
+    },
+    "model.PublicInviteUserRequestV4": {
+      "properties": {
+        "emailAddress": {
+          "type": "string"
+        },
+        "namespace": {
+          "type": "string"
+        },
+        "namespaceDisplayName": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "emailAddress",
+        "namespace",
+        "namespaceDisplayName"
       ]
     },
     "model.PublicThirdPartyPlatformInfo": {
@@ -28795,7 +28880,6 @@
         "ACSURL",
         "AWSCognitoRegion",
         "AWSCognitoUserPool",
-        "AllowedClients",
         "AppId",
         "AuthorizationEndpoint",
         "ClientId",
@@ -28814,7 +28898,6 @@
         "Secret",
         "TeamID",
         "TokenAuthenticationType",
-        "TokenClaimsMapping",
         "TokenEndpoint",
         "UserInfoEndpoint",
         "UserInfoHTTPMethod",
@@ -28946,7 +29029,6 @@
         "ACSURL",
         "AWSCognitoRegion",
         "AWSCognitoUserPool",
-        "AllowedClients",
         "AppId",
         "ClientId",
         "Environment",
@@ -28963,9 +29045,7 @@
         "RedirectUri",
         "Secret",
         "TeamID",
-        "TokenAuthenticationType",
-        "TokenClaimsMapping",
-        "registeredDomains"
+        "TokenAuthenticationType"
       ]
     },
     "model.TokenThirdPartyLinkStatusResponse": {
@@ -29626,6 +29706,9 @@
         "namespace": {
           "type": "string"
         },
+        "namespaceDisplayName": {
+          "type": "string"
+        },
         "roles": {
           "items": {
             "$ref": "#/definitions/accountcommon.NamespaceRole"
@@ -29636,7 +29719,6 @@
       "required": [
         "email",
         "expiredAt",
-        "namespace",
         "roles"
       ]
     },
@@ -29991,7 +30073,6 @@
         "lastEnabledChangedTime",
         "namespace",
         "namespaceRoles",
-        "oldEmailAddress",
         "permissions",
         "phoneVerified",
         "roles",

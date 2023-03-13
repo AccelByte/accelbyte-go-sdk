@@ -36,6 +36,12 @@ func (o *UpdateIAPItemConfigReader) ReadResponse(response runtime.ClientResponse
 			return nil, err
 		}
 		return result, nil
+	case 409:
+		result := NewUpdateIAPItemConfigConflict()
+		if err := result.readResponse(response, consumer, o.formats); err != nil {
+			return nil, err
+		}
+		return result, nil
 	case 422:
 		result := NewUpdateIAPItemConfigUnprocessableEntity()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -97,6 +103,59 @@ func (o *UpdateIAPItemConfigOK) readResponse(response runtime.ClientResponse, co
 	}
 
 	o.Payload = new(platformclientmodels.IAPItemConfigInfo)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
+	}
+
+	return nil
+}
+
+// NewUpdateIAPItemConfigConflict creates a UpdateIAPItemConfigConflict with default headers values
+func NewUpdateIAPItemConfigConflict() *UpdateIAPItemConfigConflict {
+	return &UpdateIAPItemConfigConflict{}
+}
+
+/*UpdateIAPItemConfigConflict handles this case with default header values.
+
+  <table><tr><td>ErrorCode</td><td>ErrorMessage</td></tr><tr><td>39175</td><td>Duplicate IAP item mapping, IAPType: [{iapType}] and id: [{iapId}]</td></tr></table>
+*/
+type UpdateIAPItemConfigConflict struct {
+	Payload *platformclientmodels.ValidationErrorEntity
+}
+
+func (o *UpdateIAPItemConfigConflict) Error() string {
+	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/iap/config/item][%d] updateIapItemConfigConflict  %+v", 409, o.ToJSONString())
+}
+
+func (o *UpdateIAPItemConfigConflict) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
+}
+
+func (o *UpdateIAPItemConfigConflict) GetPayload() *platformclientmodels.ValidationErrorEntity {
+	return o.Payload
+}
+
+func (o *UpdateIAPItemConfigConflict) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+	// handle file responses
+	contentDisposition := response.GetHeader("Content-Disposition")
+	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
+		consumer = runtime.ByteStreamConsumer()
+	}
+
+	o.Payload = new(platformclientmodels.ValidationErrorEntity)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {

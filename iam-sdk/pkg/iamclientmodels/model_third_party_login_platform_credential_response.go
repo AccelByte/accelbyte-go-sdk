@@ -32,7 +32,6 @@ type ModelThirdPartyLoginPlatformCredentialResponse struct {
 	AWSCognitoUserPool *string `json:"AWSCognitoUserPool"`
 
 	// allowed clients that can show this login method
-	// Required: true
 	AllowedClients []string `json:"AllowedClients"`
 
 	// app Id
@@ -110,8 +109,7 @@ type ModelThirdPartyLoginPlatformCredentialResponse struct {
 	TokenAuthenticationType *string `json:"TokenAuthenticationType"`
 
 	// A JSON containing how IAM service retrieve value from id token claims or userInfo endpoint. Used for generic oauth flow.
-	// Required: true
-	TokenClaimsMapping map[string]string `json:"TokenClaimsMapping"`
+	TokenClaimsMapping map[string]string `json:"TokenClaimsMapping,omitempty"`
 
 	// third party token endpoint to obtain token
 	TokenEndpoint string `json:"TokenEndpoint,omitempty"`
@@ -123,7 +121,6 @@ type ModelThirdPartyLoginPlatformCredentialResponse struct {
 	UserInfoHTTPMethod string `json:"UserInfoHTTPMethod,omitempty"`
 
 	// registered domains
-	// Required: true
 	RegisteredDomains []*AccountcommonRegisteredDomain `json:"registeredDomains"`
 
 	// scopes for generic OAuth Authorization code flow
@@ -143,10 +140,6 @@ func (m *ModelThirdPartyLoginPlatformCredentialResponse) Validate(formats strfmt
 	}
 
 	if err := m.validateAWSCognitoUserPool(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.validateAllowedClients(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -222,10 +215,6 @@ func (m *ModelThirdPartyLoginPlatformCredentialResponse) Validate(formats strfmt
 		res = append(res, err)
 	}
 
-	if err := m.validateTokenClaimsMapping(formats); err != nil {
-		res = append(res, err)
-	}
-
 	if err := m.validateRegisteredDomains(formats); err != nil {
 		res = append(res, err)
 	}
@@ -257,15 +246,6 @@ func (m *ModelThirdPartyLoginPlatformCredentialResponse) validateAWSCognitoRegio
 func (m *ModelThirdPartyLoginPlatformCredentialResponse) validateAWSCognitoUserPool(formats strfmt.Registry) error {
 
 	if err := validate.Required("AWSCognitoUserPool", "body", m.AWSCognitoUserPool); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *ModelThirdPartyLoginPlatformCredentialResponse) validateAllowedClients(formats strfmt.Registry) error {
-
-	if err := validate.Required("AllowedClients", "body", m.AllowedClients); err != nil {
 		return err
 	}
 
@@ -443,15 +423,10 @@ func (m *ModelThirdPartyLoginPlatformCredentialResponse) validateTokenAuthentica
 	return nil
 }
 
-func (m *ModelThirdPartyLoginPlatformCredentialResponse) validateTokenClaimsMapping(formats strfmt.Registry) error {
-
-	return nil
-}
-
 func (m *ModelThirdPartyLoginPlatformCredentialResponse) validateRegisteredDomains(formats strfmt.Registry) error {
 
-	if err := validate.Required("registeredDomains", "body", m.RegisteredDomains); err != nil {
-		return err
+	if swag.IsZero(m.RegisteredDomains) { // not required
+		return nil
 	}
 
 	for i := 0; i < len(m.RegisteredDomains); i++ {

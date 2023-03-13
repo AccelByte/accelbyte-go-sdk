@@ -30,6 +30,7 @@ var GetStatCycles1Cmd = &cobra.Command{
 		limit, _ := cmd.Flags().GetInt32("limit")
 		name, _ := cmd.Flags().GetString("name")
 		offset, _ := cmd.Flags().GetInt32("offset")
+		sortBy, _ := cmd.Flags().GetString("sortBy")
 		status, _ := cmd.Flags().GetString("status")
 		input := &stat_cycle_configuration.GetStatCycles1Params{
 			Namespace: namespace,
@@ -37,6 +38,7 @@ var GetStatCycles1Cmd = &cobra.Command{
 			Limit:     &limit,
 			Name:      &name,
 			Offset:    &offset,
+			SortBy:    &sortBy,
 			Status:    &status,
 		}
 		ok, errOK := statCycleConfigurationService.GetStatCycles1Short(input)
@@ -59,5 +61,6 @@ func init() {
 	GetStatCycles1Cmd.Flags().Int32("limit", 20, "Limit")
 	GetStatCycles1Cmd.Flags().String("name", "", "Name")
 	GetStatCycles1Cmd.Flags().Int32("offset", 0, "Offset")
+	GetStatCycles1Cmd.Flags().String("sortBy", "", "Sort by")
 	GetStatCycles1Cmd.Flags().String("status", "", "Status")
 }

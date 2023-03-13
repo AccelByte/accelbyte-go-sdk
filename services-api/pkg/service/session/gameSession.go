@@ -285,6 +285,32 @@ func (aaa *GameSessionService) PatchUpdateGameSession(input *game_session.PatchU
 	return ok.GetPayload(), nil
 }
 
+// deprecated(2022-01-10): please use UpdateGameSessionBackfillTicketIDShort instead.
+func (aaa *GameSessionService) UpdateGameSessionBackfillTicketID(input *game_session.UpdateGameSessionBackfillTicketIDParams) (*sessionclientmodels.ApimodelsGameSessionResponse, error) {
+	token, err := aaa.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, unauthorized, forbidden, notFound, internalServerError, err := aaa.Client.GameSession.UpdateGameSessionBackfillTicketID(input, client.BearerToken(*token.AccessToken))
+	if unauthorized != nil {
+		return nil, unauthorized
+	}
+	if forbidden != nil {
+		return nil, forbidden
+	}
+	if notFound != nil {
+		return nil, notFound
+	}
+	if internalServerError != nil {
+		return nil, internalServerError
+	}
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
 // deprecated(2022-01-10): please use PublicGameSessionInviteShort instead.
 func (aaa *GameSessionService) PublicGameSessionInvite(input *game_session.PublicGameSessionInviteParams) error {
 	token, err := aaa.TokenRepository.GetToken()
@@ -642,6 +668,31 @@ func (aaa *GameSessionService) PatchUpdateGameSessionShort(input *game_session.P
 	}
 
 	ok, err := aaa.Client.GameSession.PatchUpdateGameSessionShort(input, authInfoWriter)
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
+func (aaa *GameSessionService) UpdateGameSessionBackfillTicketIDShort(input *game_session.UpdateGameSessionBackfillTicketIDParams) (*sessionclientmodels.ApimodelsGameSessionResponse, error) {
+	authInfoWriter := input.AuthInfoWriter
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
+	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  aaa.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
+	ok, err := aaa.Client.GameSession.UpdateGameSessionBackfillTicketIDShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}

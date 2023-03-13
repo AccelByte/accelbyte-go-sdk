@@ -61,6 +61,8 @@ type ClientService interface {
 	PublicQueryMyGameSessionsShort(params *PublicQueryMyGameSessionsParams, authInfo runtime.ClientAuthInfoWriter) (*PublicQueryMyGameSessionsOK, error)
 	UpdateGameSession(params *UpdateGameSessionParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateGameSessionOK, *UpdateGameSessionBadRequest, *UpdateGameSessionUnauthorized, *UpdateGameSessionForbidden, *UpdateGameSessionNotFound, *UpdateGameSessionInternalServerError, error)
 	UpdateGameSessionShort(params *UpdateGameSessionParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateGameSessionOK, error)
+	UpdateGameSessionBackfillTicketID(params *UpdateGameSessionBackfillTicketIDParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateGameSessionBackfillTicketIDOK, *UpdateGameSessionBackfillTicketIDUnauthorized, *UpdateGameSessionBackfillTicketIDForbidden, *UpdateGameSessionBackfillTicketIDNotFound, *UpdateGameSessionBackfillTicketIDInternalServerError, error)
+	UpdateGameSessionBackfillTicketIDShort(params *UpdateGameSessionBackfillTicketIDParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateGameSessionBackfillTicketIDOK, error)
 
 	SetTransport(transport runtime.ClientTransport)
 }
@@ -1679,6 +1681,8 @@ Deprecated: Use UpdateGameSessionShort instead.
   method : PATCH
   API	 : /session/v1/public/namespaces/{namespace}/gamesessions/{sessionId}
 
+To update DS attributes (clientVersion, deployment, requestedRegions) it will only be applied only as long as no DS has been requested, otherwise ignored.
+
 */
 func (a *Client) UpdateGameSession(params *UpdateGameSessionParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateGameSessionOK, *UpdateGameSessionBadRequest, *UpdateGameSessionUnauthorized, *UpdateGameSessionForbidden, *UpdateGameSessionNotFound, *UpdateGameSessionInternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -1744,6 +1748,8 @@ func (a *Client) UpdateGameSession(params *UpdateGameSessionParams, authInfo run
   method : PATCH
   API	 : /session/v1/public/namespaces/{namespace}/gamesessions/{sessionId}
 
+To update DS attributes (clientVersion, deployment, requestedRegions) it will only be applied only as long as no DS has been requested, otherwise ignored.
+
 */
 func (a *Client) UpdateGameSessionShort(params *UpdateGameSessionParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateGameSessionOK, error) {
 	// TODO: Validate the params before sending
@@ -1789,6 +1795,120 @@ func (a *Client) UpdateGameSessionShort(params *UpdateGameSessionParams, authInf
 	case *UpdateGameSessionNotFound:
 		return nil, v
 	case *UpdateGameSessionInternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+Deprecated: Use UpdateGameSessionBackfillTicketIDShort instead.
+
+  UpdateGameSessionBackfillTicketID updates game session backfill ticket id requires n a m e s p a c e namespace s e s s i o n g a m e u p d a t e
+
+  Update game session backfill ticket id. Will override game session backfill ticket based on given request parameter
+*/
+func (a *Client) UpdateGameSessionBackfillTicketID(params *UpdateGameSessionBackfillTicketIDParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateGameSessionBackfillTicketIDOK, *UpdateGameSessionBackfillTicketIDUnauthorized, *UpdateGameSessionBackfillTicketIDForbidden, *UpdateGameSessionBackfillTicketIDNotFound, *UpdateGameSessionBackfillTicketIDInternalServerError, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewUpdateGameSessionBackfillTicketIDParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "updateGameSessionBackfillTicketID",
+		Method:             "PUT",
+		PathPattern:        "/session/v1/public/namespaces/{namespace}/gamesessions/{sessionId}/backfill",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &UpdateGameSessionBackfillTicketIDReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, nil, nil, nil, nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *UpdateGameSessionBackfillTicketIDOK:
+		return v, nil, nil, nil, nil, nil
+
+	case *UpdateGameSessionBackfillTicketIDUnauthorized:
+		return nil, v, nil, nil, nil, nil
+
+	case *UpdateGameSessionBackfillTicketIDForbidden:
+		return nil, nil, v, nil, nil, nil
+
+	case *UpdateGameSessionBackfillTicketIDNotFound:
+		return nil, nil, nil, v, nil, nil
+
+	case *UpdateGameSessionBackfillTicketIDInternalServerError:
+		return nil, nil, nil, nil, v, nil
+
+	default:
+		return nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+  UpdateGameSessionBackfillTicketIDShort updates game session backfill ticket id requires n a m e s p a c e namespace s e s s i o n g a m e u p d a t e
+
+  Update game session backfill ticket id. Will override game session backfill ticket based on given request parameter
+*/
+func (a *Client) UpdateGameSessionBackfillTicketIDShort(params *UpdateGameSessionBackfillTicketIDParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateGameSessionBackfillTicketIDOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewUpdateGameSessionBackfillTicketIDParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "updateGameSessionBackfillTicketID",
+		Method:             "PUT",
+		PathPattern:        "/session/v1/public/namespaces/{namespace}/gamesessions/{sessionId}/backfill",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &UpdateGameSessionBackfillTicketIDReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *UpdateGameSessionBackfillTicketIDOK:
+		return v, nil
+	case *UpdateGameSessionBackfillTicketIDUnauthorized:
+		return nil, v
+	case *UpdateGameSessionBackfillTicketIDForbidden:
+		return nil, v
+	case *UpdateGameSessionBackfillTicketIDNotFound:
+		return nil, v
+	case *UpdateGameSessionBackfillTicketIDInternalServerError:
 		return nil, v
 
 	default:

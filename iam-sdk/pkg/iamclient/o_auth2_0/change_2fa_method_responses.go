@@ -42,6 +42,12 @@ func (o *Change2FAMethodReader) ReadResponse(response runtime.ClientResponse, co
 			return nil, err
 		}
 		return result, nil
+	case 429:
+		result := NewChange2faMethodTooManyRequests()
+		if err := result.readResponse(response, consumer, o.formats); err != nil {
+			return nil, err
+		}
+		return result, nil
 	case 500:
 		result := NewChange2faMethodInternalServerError()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -122,6 +128,59 @@ func (o *Change2faMethodBadRequest) GetPayload() *iamclientmodels.RestErrorRespo
 }
 
 func (o *Change2faMethodBadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+	// handle file responses
+	contentDisposition := response.GetHeader("Content-Disposition")
+	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
+		consumer = runtime.ByteStreamConsumer()
+	}
+
+	o.Payload = new(iamclientmodels.RestErrorResponse)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
+	}
+
+	return nil
+}
+
+// NewChange2faMethodTooManyRequests creates a Change2faMethodTooManyRequests with default headers values
+func NewChange2faMethodTooManyRequests() *Change2faMethodTooManyRequests {
+	return &Change2faMethodTooManyRequests{}
+}
+
+/*Change2faMethodTooManyRequests handles this case with default header values.
+
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20007</td><td>too many requests</td></tr></table>
+*/
+type Change2faMethodTooManyRequests struct {
+	Payload *iamclientmodels.RestErrorResponse
+}
+
+func (o *Change2faMethodTooManyRequests) Error() string {
+	return fmt.Sprintf("[POST /iam/v3/oauth/mfa/factor/change][%d] change2faMethodTooManyRequests  %+v", 429, o.ToJSONString())
+}
+
+func (o *Change2faMethodTooManyRequests) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
+}
+
+func (o *Change2faMethodTooManyRequests) GetPayload() *iamclientmodels.RestErrorResponse {
+	return o.Payload
+}
+
+func (o *Change2faMethodTooManyRequests) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {

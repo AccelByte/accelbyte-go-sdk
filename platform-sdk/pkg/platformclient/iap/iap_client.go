@@ -57,6 +57,8 @@ type ClientService interface {
 	GetGoogleIAPConfigShort(params *GetGoogleIAPConfigParams, authInfo runtime.ClientAuthInfoWriter) (*GetGoogleIAPConfigOK, error)
 	GetIAPItemConfig(params *GetIAPItemConfigParams, authInfo runtime.ClientAuthInfoWriter) (*GetIAPItemConfigOK, *GetIAPItemConfigNotFound, error)
 	GetIAPItemConfigShort(params *GetIAPItemConfigParams, authInfo runtime.ClientAuthInfoWriter) (*GetIAPItemConfigOK, error)
+	GetIAPItemMapping(params *GetIAPItemMappingParams, authInfo runtime.ClientAuthInfoWriter) (*GetIAPItemMappingOK, *GetIAPItemMappingNotFound, error)
+	GetIAPItemMappingShort(params *GetIAPItemMappingParams, authInfo runtime.ClientAuthInfoWriter) (*GetIAPItemMappingOK, error)
 	GetPlayStationIAPConfig(params *GetPlayStationIAPConfigParams, authInfo runtime.ClientAuthInfoWriter) (*GetPlayStationIAPConfigOK, error)
 	GetPlayStationIAPConfigShort(params *GetPlayStationIAPConfigParams, authInfo runtime.ClientAuthInfoWriter) (*GetPlayStationIAPConfigOK, error)
 	GetSteamIAPConfig(params *GetSteamIAPConfigParams, authInfo runtime.ClientAuthInfoWriter) (*GetSteamIAPConfigOK, error)
@@ -85,8 +87,10 @@ type ClientService interface {
 	SyncEpicGamesInventoryShort(params *SyncEpicGamesInventoryParams, authInfo runtime.ClientAuthInfoWriter) (*SyncEpicGamesInventoryOK, error)
 	SyncSteamInventory(params *SyncSteamInventoryParams, authInfo runtime.ClientAuthInfoWriter) (*SyncSteamInventoryNoContent, *SyncSteamInventoryBadRequest, error)
 	SyncSteamInventoryShort(params *SyncSteamInventoryParams, authInfo runtime.ClientAuthInfoWriter) (*SyncSteamInventoryNoContent, error)
-	SyncTwitchDropsEntitlement(params *SyncTwitchDropsEntitlementParams, authInfo runtime.ClientAuthInfoWriter) (*SyncTwitchDropsEntitlementNoContent, *SyncTwitchDropsEntitlementBadRequest, error)
-	SyncTwitchDropsEntitlementShort(params *SyncTwitchDropsEntitlementParams, authInfo runtime.ClientAuthInfoWriter) (*SyncTwitchDropsEntitlementNoContent, error)
+	SyncTwitchDropsEntitlement(params *SyncTwitchDropsEntitlementParams, authInfo runtime.ClientAuthInfoWriter) (*SyncTwitchDropsEntitlementOK, *SyncTwitchDropsEntitlementBadRequest, error)
+	SyncTwitchDropsEntitlementShort(params *SyncTwitchDropsEntitlementParams, authInfo runtime.ClientAuthInfoWriter) (*SyncTwitchDropsEntitlementOK, error)
+	SyncTwitchDropsEntitlement1(params *SyncTwitchDropsEntitlement1Params, authInfo runtime.ClientAuthInfoWriter) (*SyncTwitchDropsEntitlement1NoContent, *SyncTwitchDropsEntitlement1BadRequest, error)
+	SyncTwitchDropsEntitlement1Short(params *SyncTwitchDropsEntitlement1Params, authInfo runtime.ClientAuthInfoWriter) (*SyncTwitchDropsEntitlement1NoContent, error)
 	SyncXboxInventory(params *SyncXboxInventoryParams, authInfo runtime.ClientAuthInfoWriter) (*SyncXboxInventoryOK, *SyncXboxInventoryBadRequest, error)
 	SyncXboxInventoryShort(params *SyncXboxInventoryParams, authInfo runtime.ClientAuthInfoWriter) (*SyncXboxInventoryOK, error)
 	UpdateAppleIAPConfig(params *UpdateAppleIAPConfigParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateAppleIAPConfigOK, error)
@@ -97,7 +101,7 @@ type ClientService interface {
 	UpdateGoogleIAPConfigShort(params *UpdateGoogleIAPConfigParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateGoogleIAPConfigOK, error)
 	UpdateGoogleP12File(params *UpdateGoogleP12FileParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateGoogleP12FileOK, error)
 	UpdateGoogleP12FileShort(params *UpdateGoogleP12FileParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateGoogleP12FileOK, error)
-	UpdateIAPItemConfig(params *UpdateIAPItemConfigParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateIAPItemConfigOK, *UpdateIAPItemConfigUnprocessableEntity, error)
+	UpdateIAPItemConfig(params *UpdateIAPItemConfigParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateIAPItemConfigOK, *UpdateIAPItemConfigConflict, *UpdateIAPItemConfigUnprocessableEntity, error)
 	UpdateIAPItemConfigShort(params *UpdateIAPItemConfigParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateIAPItemConfigOK, error)
 	UpdatePlaystationIAPConfig(params *UpdatePlaystationIAPConfigParams, authInfo runtime.ClientAuthInfoWriter) (*UpdatePlaystationIAPConfigOK, error)
 	UpdatePlaystationIAPConfigShort(params *UpdatePlaystationIAPConfigParams, authInfo runtime.ClientAuthInfoWriter) (*UpdatePlaystationIAPConfigOK, error)
@@ -1239,6 +1243,105 @@ func (a *Client) GetIAPItemConfigShort(params *GetIAPItemConfigParams, authInfo 
 	case *GetIAPItemConfigOK:
 		return v, nil
 	case *GetIAPItemConfigNotFound:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+Deprecated: Use GetIAPItemMappingShort instead.
+
+  GetIAPItemMapping gets iap item mapping
+
+  Get iap item mapping.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;/ul&gt;
+*/
+func (a *Client) GetIAPItemMapping(params *GetIAPItemMappingParams, authInfo runtime.ClientAuthInfoWriter) (*GetIAPItemMappingOK, *GetIAPItemMappingNotFound, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewGetIAPItemMappingParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "getIAPItemMapping",
+		Method:             "GET",
+		PathPattern:        "/platform/public/namespaces/{namespace}/iap/item/mapping",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &GetIAPItemMappingReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *GetIAPItemMappingOK:
+		return v, nil, nil
+
+	case *GetIAPItemMappingNotFound:
+		return nil, v, nil
+
+	default:
+		return nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+  GetIAPItemMappingShort gets iap item mapping
+
+  Get iap item mapping.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;/ul&gt;
+*/
+func (a *Client) GetIAPItemMappingShort(params *GetIAPItemMappingParams, authInfo runtime.ClientAuthInfoWriter) (*GetIAPItemMappingOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewGetIAPItemMappingParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "getIAPItemMapping",
+		Method:             "GET",
+		PathPattern:        "/platform/public/namespaces/{namespace}/iap/item/mapping",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &GetIAPItemMappingReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *GetIAPItemMappingOK:
+		return v, nil
+	case *GetIAPItemMappingNotFound:
 		return nil, v
 
 	default:
@@ -2630,11 +2733,11 @@ func (a *Client) SyncSteamInventoryShort(params *SyncSteamInventoryParams, authI
 /*
 Deprecated: Use SyncTwitchDropsEntitlementShort instead.
 
-  SyncTwitchDropsEntitlement syncs twitch drops entitlements
+  SyncTwitchDropsEntitlement syncs my game twitch drops entitlements
 
-  Sync twitch drops entitlements.&lt;p&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;NAMESPACE:{namespace}:USER:{userId}:IAP&#34;, action=4 (UPDATE)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: &lt;/li&gt;&lt;/ul&gt;
+  Sync my game twitch drops entitlements.&lt;p&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=NAMESPACE:{namespace}:IAP, action=4 (UPDATE)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: &lt;/li&gt;&lt;/ul&gt;
 */
-func (a *Client) SyncTwitchDropsEntitlement(params *SyncTwitchDropsEntitlementParams, authInfo runtime.ClientAuthInfoWriter) (*SyncTwitchDropsEntitlementNoContent, *SyncTwitchDropsEntitlementBadRequest, error) {
+func (a *Client) SyncTwitchDropsEntitlement(params *SyncTwitchDropsEntitlementParams, authInfo runtime.ClientAuthInfoWriter) (*SyncTwitchDropsEntitlementOK, *SyncTwitchDropsEntitlementBadRequest, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewSyncTwitchDropsEntitlementParams()
@@ -2651,7 +2754,7 @@ func (a *Client) SyncTwitchDropsEntitlement(params *SyncTwitchDropsEntitlementPa
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "syncTwitchDropsEntitlement",
 		Method:             "PUT",
-		PathPattern:        "/platform/public/namespaces/{namespace}/users/{userId}/iap/twitch/sync",
+		PathPattern:        "/platform/public/namespaces/{namespace}/users/me/iap/twitch/sync",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -2667,7 +2770,7 @@ func (a *Client) SyncTwitchDropsEntitlement(params *SyncTwitchDropsEntitlementPa
 
 	switch v := result.(type) {
 
-	case *SyncTwitchDropsEntitlementNoContent:
+	case *SyncTwitchDropsEntitlementOK:
 		return v, nil, nil
 
 	case *SyncTwitchDropsEntitlementBadRequest:
@@ -2679,11 +2782,11 @@ func (a *Client) SyncTwitchDropsEntitlement(params *SyncTwitchDropsEntitlementPa
 }
 
 /*
-  SyncTwitchDropsEntitlementShort syncs twitch drops entitlements
+  SyncTwitchDropsEntitlementShort syncs my game twitch drops entitlements
 
-  Sync twitch drops entitlements.&lt;p&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;NAMESPACE:{namespace}:USER:{userId}:IAP&#34;, action=4 (UPDATE)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: &lt;/li&gt;&lt;/ul&gt;
+  Sync my game twitch drops entitlements.&lt;p&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=NAMESPACE:{namespace}:IAP, action=4 (UPDATE)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: &lt;/li&gt;&lt;/ul&gt;
 */
-func (a *Client) SyncTwitchDropsEntitlementShort(params *SyncTwitchDropsEntitlementParams, authInfo runtime.ClientAuthInfoWriter) (*SyncTwitchDropsEntitlementNoContent, error) {
+func (a *Client) SyncTwitchDropsEntitlementShort(params *SyncTwitchDropsEntitlementParams, authInfo runtime.ClientAuthInfoWriter) (*SyncTwitchDropsEntitlementOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewSyncTwitchDropsEntitlementParams()
@@ -2700,7 +2803,7 @@ func (a *Client) SyncTwitchDropsEntitlementShort(params *SyncTwitchDropsEntitlem
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "syncTwitchDropsEntitlement",
 		Method:             "PUT",
-		PathPattern:        "/platform/public/namespaces/{namespace}/users/{userId}/iap/twitch/sync",
+		PathPattern:        "/platform/public/namespaces/{namespace}/users/me/iap/twitch/sync",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -2716,9 +2819,108 @@ func (a *Client) SyncTwitchDropsEntitlementShort(params *SyncTwitchDropsEntitlem
 
 	switch v := result.(type) {
 
-	case *SyncTwitchDropsEntitlementNoContent:
+	case *SyncTwitchDropsEntitlementOK:
 		return v, nil
 	case *SyncTwitchDropsEntitlementBadRequest:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+Deprecated: Use SyncTwitchDropsEntitlement1Short instead.
+
+  SyncTwitchDropsEntitlement1 syncs twitch drops entitlements
+
+  Sync twitch drops entitlements.&lt;p&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;NAMESPACE:{namespace}:USER:{userId}:IAP&#34;, action=4 (UPDATE)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: &lt;/li&gt;&lt;/ul&gt;
+*/
+func (a *Client) SyncTwitchDropsEntitlement1(params *SyncTwitchDropsEntitlement1Params, authInfo runtime.ClientAuthInfoWriter) (*SyncTwitchDropsEntitlement1NoContent, *SyncTwitchDropsEntitlement1BadRequest, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewSyncTwitchDropsEntitlement1Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "syncTwitchDropsEntitlement_1",
+		Method:             "PUT",
+		PathPattern:        "/platform/public/namespaces/{namespace}/users/{userId}/iap/twitch/sync",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &SyncTwitchDropsEntitlement1Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *SyncTwitchDropsEntitlement1NoContent:
+		return v, nil, nil
+
+	case *SyncTwitchDropsEntitlement1BadRequest:
+		return nil, v, nil
+
+	default:
+		return nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+  SyncTwitchDropsEntitlement1Short syncs twitch drops entitlements
+
+  Sync twitch drops entitlements.&lt;p&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;NAMESPACE:{namespace}:USER:{userId}:IAP&#34;, action=4 (UPDATE)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: &lt;/li&gt;&lt;/ul&gt;
+*/
+func (a *Client) SyncTwitchDropsEntitlement1Short(params *SyncTwitchDropsEntitlement1Params, authInfo runtime.ClientAuthInfoWriter) (*SyncTwitchDropsEntitlement1NoContent, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewSyncTwitchDropsEntitlement1Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "syncTwitchDropsEntitlement_1",
+		Method:             "PUT",
+		PathPattern:        "/platform/public/namespaces/{namespace}/users/{userId}/iap/twitch/sync",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &SyncTwitchDropsEntitlement1Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *SyncTwitchDropsEntitlement1NoContent:
+		return v, nil
+	case *SyncTwitchDropsEntitlement1BadRequest:
 		return nil, v
 
 	default:
@@ -3208,7 +3410,7 @@ Deprecated: Use UpdateIAPItemConfigShort instead.
 
   Update iap item config. Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:IAP:CONFIG&#34;, action=4 (UPDATE)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: updated iap item config&lt;/li&gt;&lt;/ul&gt;
 */
-func (a *Client) UpdateIAPItemConfig(params *UpdateIAPItemConfigParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateIAPItemConfigOK, *UpdateIAPItemConfigUnprocessableEntity, error) {
+func (a *Client) UpdateIAPItemConfig(params *UpdateIAPItemConfigParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateIAPItemConfigOK, *UpdateIAPItemConfigConflict, *UpdateIAPItemConfigUnprocessableEntity, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewUpdateIAPItemConfigParams()
@@ -3236,19 +3438,22 @@ func (a *Client) UpdateIAPItemConfig(params *UpdateIAPItemConfigParams, authInfo
 		Client:             params.HTTPClient,
 	})
 	if err != nil {
-		return nil, nil, err
+		return nil, nil, nil, err
 	}
 
 	switch v := result.(type) {
 
 	case *UpdateIAPItemConfigOK:
-		return v, nil, nil
+		return v, nil, nil, nil
+
+	case *UpdateIAPItemConfigConflict:
+		return nil, v, nil, nil
 
 	case *UpdateIAPItemConfigUnprocessableEntity:
-		return nil, v, nil
+		return nil, nil, v, nil
 
 	default:
-		return nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+		return nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
@@ -3292,6 +3497,8 @@ func (a *Client) UpdateIAPItemConfigShort(params *UpdateIAPItemConfigParams, aut
 
 	case *UpdateIAPItemConfigOK:
 		return v, nil
+	case *UpdateIAPItemConfigConflict:
+		return nil, v
 	case *UpdateIAPItemConfigUnprocessableEntity:
 		return nil, v
 

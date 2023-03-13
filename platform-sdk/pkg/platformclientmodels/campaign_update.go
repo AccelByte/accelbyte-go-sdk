@@ -43,11 +43,11 @@ type CampaignUpdate struct {
 	// Required: true
 	Name *string `json:"name"`
 
-	// redeem end time in yyyy-MM-dd'T'HH:mm:ss.SSS'Z'
+	// redeem end time in yyyy-MM-dd'T'HH:mm:ss.SSS'Z', will delete this value if pass null or not pass this field
 	// Format: date-time
 	RedeemEnd *strfmt.DateTime `json:"redeemEnd,omitempty"`
 
-	// redeem start time in yyyy-MM-dd'T'HH:mm:ss.SSS'Z'
+	// redeem start time in yyyy-MM-dd'T'HH:mm:ss.SSS'Z', will delete this value if pass null or not pass this field
 	// Format: date-time
 	RedeemStart *strfmt.DateTime `json:"redeemStart,omitempty"`
 

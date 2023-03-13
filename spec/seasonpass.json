@@ -8,7 +8,7 @@
     },
     "description": "Justice SeasonPass Service",
     "title": "justice-seasonpass-service",
-    "version": "1.18.1"
+    "version": "1.18.2"
   },
   "schemes": [
     "https"

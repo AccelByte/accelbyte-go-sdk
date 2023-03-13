@@ -41,6 +41,7 @@
 ### Agreement With Namespace Wrapper:  [AgreementWithNamespace](../../services-api/pkg/service/legal/agreementWithNamespace.go)
 | Endpoint | Method | ID | Class | Wrapper | Example |
 |---|---|---|---|---|---|
+| `/agreement/admin/namespaces/{namespace}/agreements` | POST | RetrieveAcceptedAgreementsForMultiUsersShort | [RetrieveAcceptedAgreementsForMultiUsersShort](../../legal-sdk/pkg/legalclient/agreement_with_namespace/agreement_with_namespace_client.go) | [RetrieveAcceptedAgreementsForMultiUsersShort](../../services-api/pkg/service/legal/agreementWithNamespace.go) | [RetrieveAcceptedAgreementsForMultiUsersShort](../../samples/cli/cmd/legal/agreementWithNamespace/retrieveAcceptedAgreementsForMultiUsers.go) |
 | `/agreement/admin/namespaces/{namespace}/agreements/policies/users/{userId}` | GET | RetrieveAcceptedAgreements1Short | [RetrieveAcceptedAgreements1Short](../../legal-sdk/pkg/legalclient/agreement_with_namespace/agreement_with_namespace_client.go) | [RetrieveAcceptedAgreements1Short](../../services-api/pkg/service/legal/agreementWithNamespace.go) | [RetrieveAcceptedAgreements1Short](../../samples/cli/cmd/legal/agreementWithNamespace/retrieveAcceptedAgreements1.go) |
 | `/agreement/admin/namespaces/{namespace}/agreements/policy-versions/users` | GET | RetrieveAllUsersByPolicyVersion1Short | [RetrieveAllUsersByPolicyVersion1Short](../../legal-sdk/pkg/legalclient/agreement_with_namespace/agreement_with_namespace_client.go) | [RetrieveAllUsersByPolicyVersion1Short](../../services-api/pkg/service/legal/agreementWithNamespace.go) | [RetrieveAllUsersByPolicyVersion1Short](../../samples/cli/cmd/legal/agreementWithNamespace/retrieveAllUsersByPolicyVersion1.go) |
 
@@ -177,4 +178,6 @@
 | `UpdatePolicyVersionResponse` | [UpdatePolicyVersionResponse ](../../legal-sdk/pkg/legalclientmodels/update_policy_version_response.go) |
 | `UploadLocalizedPolicyVersionAttachmentResponse` | [UploadLocalizedPolicyVersionAttachmentResponse ](../../legal-sdk/pkg/legalclientmodels/upload_localized_policy_version_attachment_response.go) |
 | `UploadPolicyVersionAttachmentRequest` | [UploadPolicyVersionAttachmentRequest ](../../legal-sdk/pkg/legalclientmodels/upload_policy_version_attachment_request.go) |
+| `UserAgreementsResponse` | [UserAgreementsResponse ](../../legal-sdk/pkg/legalclientmodels/user_agreements_response.go) |
+| `UsersAgreementsRequest` | [UsersAgreementsRequest ](../../legal-sdk/pkg/legalclientmodels/users_agreements_request.go) |
 | `ValidationErrorEntity` | [ValidationErrorEntity ](../../legal-sdk/pkg/legalclientmodels/validation_error_entity.go) |

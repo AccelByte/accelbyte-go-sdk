@@ -135,47 +135,47 @@ eval_tap 0 29 'GetRegisteredEventsByEventTypeHandler # SKIP deprecated' test.out
 #- 30 QueryEventStreamHandler
 samples/cli/sample-apps Eventlog queryEventStreamHandler \
     --namespace $AB_NAMESPACE \
-    --endDate 'UCu8WhPi' \
-    --offset '91' \
-    --pageSize '85' \
-    --startDate 'uuuH3g4H' \
-    --body '{"clientId": "qSOcpQtf", "eventName": "uJCHFPcv", "payloadQuery": {"Jiwxxm5v": {}, "B2q3lFiu": {}, "4OM90tdD": {}}, "sessionId": "Xn6fOYAH", "traceId": "uMd4SPcP", "userId": "o1Y4kicb", "version": 78}' \
+    --endDate 'EAxcVpFr' \
+    --offset '40' \
+    --pageSize '71' \
+    --startDate 'tufHIRdH' \
+    --body '{"clientId": "9UzVRiXb", "eventName": "qlAw7r6W", "payloadQuery": {"2ktQG0h5": {}, "JAav5kRa": {}, "62WopBJH": {}}, "sessionId": "PtcDs8bB", "traceId": "ZLCXLx8b", "userId": "bgorQeFb", "version": 87}' \
     > test.out 2>&1
 eval_tap $? 30 'QueryEventStreamHandler' test.out
 
 #- 31 GetEventSpecificUserV2Handler
 samples/cli/sample-apps Eventlog getEventSpecificUserV2Handler \
     --namespace $AB_NAMESPACE \
-    --userId 'Fr3pUH8t' \
-    --endDate 'bCYohH6N' \
-    --eventName 'AnpETLyu' \
-    --offset '88' \
-    --pageSize '67' \
-    --startDate 'JIjL9KMf' \
+    --userId 'hkspInrA' \
+    --endDate 'ip6lyzSx' \
+    --eventName 'wElFHHdg' \
+    --offset '38' \
+    --pageSize '31' \
+    --startDate '21Jub74C' \
     > test.out 2>&1
 eval_tap $? 31 'GetEventSpecificUserV2Handler' test.out
 
 #- 32 GetPublicEditHistory
 samples/cli/sample-apps Eventlog getPublicEditHistory \
     --namespace $AB_NAMESPACE \
-    --userId 'wWkokI67' \
-    --endDate 'THYY4ChR' \
-    --offset '22' \
-    --pageSize '100' \
-    --startDate 'oyhlir4p' \
-    --type 'xa3aWu7V' \
+    --userId 'UkNmKJfh' \
+    --endDate '5pUkHODp' \
+    --offset '29' \
+    --pageSize '6' \
+    --startDate 'MF78NY4Y' \
+    --type 'kHs1cnz1' \
     > test.out 2>&1
 eval_tap $? 32 'GetPublicEditHistory' test.out
 
 #- 33 GetUserEventsV2Public
 samples/cli/sample-apps Eventlog getUserEventsV2Public \
     --namespace $AB_NAMESPACE \
-    --userId '55bSitZa' \
-    --endDate '7AXIVZes' \
-    --eventName 'nsc9H4wy' \
-    --offset '16' \
-    --pageSize '69' \
-    --startDate 'ae1XAaxO' \
+    --userId 'JSDgY1TX' \
+    --endDate 'p38zsCTC' \
+    --eventName 'rbCbPOyN' \
+    --offset '86' \
+    --pageSize '23' \
+    --startDate 'kT7NvyE3' \
     > test.out 2>&1
 eval_tap $? 33 'GetUserEventsV2Public' test.out
 

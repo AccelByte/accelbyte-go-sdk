@@ -25,6 +25,7 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/social-sdk/pkg/socialclient/stat_configuration"
 	"github.com/AccelByte/accelbyte-go-sdk/social-sdk/pkg/socialclient/stat_cycle_configuration"
 	"github.com/AccelByte/accelbyte-go-sdk/social-sdk/pkg/socialclient/user_statistic"
+	"github.com/AccelByte/accelbyte-go-sdk/social-sdk/pkg/socialclient/user_statistic_cycle"
 )
 
 // Default justice social service HTTP client.
@@ -81,6 +82,7 @@ func New(transport runtime.ClientTransport, runtime *httptransport.Runtime, form
 	cli.StatConfiguration = stat_configuration.New(transport, formats)
 	cli.StatCycleConfiguration = stat_cycle_configuration.New(transport, formats)
 	cli.UserStatistic = user_statistic.New(transport, formats)
+	cli.UserStatisticCycle = user_statistic_cycle.New(transport, formats)
 
 	return cli
 }
@@ -155,6 +157,8 @@ type JusticeSocialService struct {
 
 	UserStatistic user_statistic.ClientService
 
+	UserStatisticCycle user_statistic_cycle.ClientService
+
 	Runtime   *httptransport.Runtime
 	Transport runtime.ClientTransport
 }
@@ -169,4 +173,5 @@ func (c *JusticeSocialService) SetTransport(transport runtime.ClientTransport) {
 	c.StatConfiguration.SetTransport(transport)
 	c.StatCycleConfiguration.SetTransport(transport)
 	c.UserStatistic.SetTransport(transport)
+	c.UserStatisticCycle.SetTransport(transport)
 }

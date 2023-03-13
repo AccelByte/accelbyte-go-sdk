@@ -39,7 +39,7 @@ type ClientService interface {
 	AuthCodeRequestV3Short(params *AuthCodeRequestV3Params, authInfo runtime.ClientAuthInfoWriter) (*AuthCodeRequestV3Found, error)
 	AuthorizeV3(params *AuthorizeV3Params, authInfo runtime.ClientAuthInfoWriter) (*AuthorizeV3Found, error)
 	AuthorizeV3Short(params *AuthorizeV3Params, authInfo runtime.ClientAuthInfoWriter) (*AuthorizeV3Found, error)
-	Change2FAMethod(params *Change2FAMethodParams, authInfo runtime.ClientAuthInfoWriter) (*Change2faMethodNoContent, *Change2faMethodBadRequest, *Change2faMethodInternalServerError, error)
+	Change2FAMethod(params *Change2FAMethodParams, authInfo runtime.ClientAuthInfoWriter) (*Change2faMethodNoContent, *Change2faMethodBadRequest, *Change2faMethodTooManyRequests, *Change2faMethodInternalServerError, error)
 	Change2FAMethodShort(params *Change2FAMethodParams, authInfo runtime.ClientAuthInfoWriter) (*Change2faMethodNoContent, error)
 	GetJWKSV3(params *GetJWKSV3Params, authInfo runtime.ClientAuthInfoWriter) (*GetJWKSV3OK, error)
 	GetJWKSV3Short(params *GetJWKSV3Params, authInfo runtime.ClientAuthInfoWriter) (*GetJWKSV3OK, error)
@@ -529,7 +529,7 @@ Deprecated: Use Change2FAMethodShort instead.
 &lt;/ul&gt;
 
 */
-func (a *Client) Change2FAMethod(params *Change2FAMethodParams, authInfo runtime.ClientAuthInfoWriter) (*Change2faMethodNoContent, *Change2faMethodBadRequest, *Change2faMethodInternalServerError, error) {
+func (a *Client) Change2FAMethod(params *Change2FAMethodParams, authInfo runtime.ClientAuthInfoWriter) (*Change2faMethodNoContent, *Change2faMethodBadRequest, *Change2faMethodTooManyRequests, *Change2faMethodInternalServerError, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewChange2FAMethodParams()
@@ -557,22 +557,25 @@ func (a *Client) Change2FAMethod(params *Change2FAMethodParams, authInfo runtime
 		Client:             params.HTTPClient,
 	})
 	if err != nil {
-		return nil, nil, nil, err
+		return nil, nil, nil, nil, err
 	}
 
 	switch v := result.(type) {
 
 	case *Change2faMethodNoContent:
-		return v, nil, nil, nil
+		return v, nil, nil, nil, nil
 
 	case *Change2faMethodBadRequest:
-		return nil, v, nil, nil
+		return nil, v, nil, nil, nil
+
+	case *Change2faMethodTooManyRequests:
+		return nil, nil, v, nil, nil
 
 	case *Change2faMethodInternalServerError:
-		return nil, nil, v, nil
+		return nil, nil, nil, v, nil
 
 	default:
-		return nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+		return nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
@@ -625,6 +628,8 @@ func (a *Client) Change2FAMethodShort(params *Change2FAMethodParams, authInfo ru
 	case *Change2faMethodNoContent:
 		return v, nil
 	case *Change2faMethodBadRequest:
+		return nil, v
+	case *Change2faMethodTooManyRequests:
 		return nil, v
 	case *Change2faMethodInternalServerError:
 		return nil, v

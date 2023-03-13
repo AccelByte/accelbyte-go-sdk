@@ -33,12 +33,108 @@ type Client struct {
 
 // ClientService is the interface for Client methods
 type ClientService interface {
+	RetrieveAcceptedAgreementsForMultiUsers(params *RetrieveAcceptedAgreementsForMultiUsersParams, authInfo runtime.ClientAuthInfoWriter) (*RetrieveAcceptedAgreementsForMultiUsersOK, error)
+	RetrieveAcceptedAgreementsForMultiUsersShort(params *RetrieveAcceptedAgreementsForMultiUsersParams, authInfo runtime.ClientAuthInfoWriter) (*RetrieveAcceptedAgreementsForMultiUsersOK, error)
 	RetrieveAcceptedAgreements1(params *RetrieveAcceptedAgreements1Params, authInfo runtime.ClientAuthInfoWriter) (*RetrieveAcceptedAgreements1OK, error)
 	RetrieveAcceptedAgreements1Short(params *RetrieveAcceptedAgreements1Params, authInfo runtime.ClientAuthInfoWriter) (*RetrieveAcceptedAgreements1OK, error)
 	RetrieveAllUsersByPolicyVersion1(params *RetrieveAllUsersByPolicyVersion1Params, authInfo runtime.ClientAuthInfoWriter) (*RetrieveAllUsersByPolicyVersion1OK, *RetrieveAllUsersByPolicyVersion1NotFound, error)
 	RetrieveAllUsersByPolicyVersion1Short(params *RetrieveAllUsersByPolicyVersion1Params, authInfo runtime.ClientAuthInfoWriter) (*RetrieveAllUsersByPolicyVersion1OK, error)
 
 	SetTransport(transport runtime.ClientTransport)
+}
+
+/*
+Deprecated: Use RetrieveAcceptedAgreementsForMultiUsersShort instead.
+
+  RetrieveAcceptedAgreementsForMultiUsers retrieves accepted legal agreements for multi users
+
+  This API will return all accepted Legal Agreements for each user, including agreements of game users if publisher user has corresponding game accountOther detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:LEGAL&#34;, action=2 (READ)&lt;/li&gt;&lt;/ul&gt;
+*/
+func (a *Client) RetrieveAcceptedAgreementsForMultiUsers(params *RetrieveAcceptedAgreementsForMultiUsersParams, authInfo runtime.ClientAuthInfoWriter) (*RetrieveAcceptedAgreementsForMultiUsersOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewRetrieveAcceptedAgreementsForMultiUsersParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "retrieveAcceptedAgreementsForMultiUsers",
+		Method:             "POST",
+		PathPattern:        "/agreement/admin/namespaces/{namespace}/agreements",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &RetrieveAcceptedAgreementsForMultiUsersReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *RetrieveAcceptedAgreementsForMultiUsersOK:
+		return v, nil
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+  RetrieveAcceptedAgreementsForMultiUsersShort retrieves accepted legal agreements for multi users
+
+  This API will return all accepted Legal Agreements for each user, including agreements of game users if publisher user has corresponding game accountOther detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:LEGAL&#34;, action=2 (READ)&lt;/li&gt;&lt;/ul&gt;
+*/
+func (a *Client) RetrieveAcceptedAgreementsForMultiUsersShort(params *RetrieveAcceptedAgreementsForMultiUsersParams, authInfo runtime.ClientAuthInfoWriter) (*RetrieveAcceptedAgreementsForMultiUsersOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewRetrieveAcceptedAgreementsForMultiUsersParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "retrieveAcceptedAgreementsForMultiUsers",
+		Method:             "POST",
+		PathPattern:        "/agreement/admin/namespaces/{namespace}/agreements",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &RetrieveAcceptedAgreementsForMultiUsersReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *RetrieveAcceptedAgreementsForMultiUsersOK:
+		return v, nil
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
 }
 
 /*

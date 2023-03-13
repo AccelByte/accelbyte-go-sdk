@@ -117,6 +117,12 @@
 | `/social/v1/admin/namespaces/{namespace}/stats/{statCode}/tied` | DELETE | DeleteTiedStatShort | [DeleteTiedStatShort](../../social-sdk/pkg/socialclient/stat_configuration/stat_configuration_client.go) | [DeleteTiedStatShort](../../services-api/pkg/service/social/statConfiguration.go) | [DeleteTiedStatShort](../../samples/cli/cmd/social/statConfiguration/deleteTiedStat.go) |
 | `/social/v1/public/namespaces/{namespace}/stats` | POST | CreateStat1Short | [CreateStat1Short](../../social-sdk/pkg/socialclient/stat_configuration/stat_configuration_client.go) | [CreateStat1Short](../../services-api/pkg/service/social/statConfiguration.go) | [CreateStat1Short](../../samples/cli/cmd/social/statConfiguration/createStat1.go) |
 
+### UserStatisticCycle Wrapper:  [UserStatisticCycle](../../services-api/pkg/service/social/userStatisticCycle.go)
+| Endpoint | Method | ID | Class | Wrapper | Example |
+|---|---|---|---|---|---|
+| `/social/v1/admin/namespaces/{namespace}/users/{userId}/statCycles/{cycleId}/statCycleitems` | GET | GetUserStatCycleItemsShort | [GetUserStatCycleItemsShort](../../social-sdk/pkg/socialclient/user_statistic_cycle/user_statistic_cycle_client.go) | [GetUserStatCycleItemsShort](../../services-api/pkg/service/social/userStatisticCycle.go) | [GetUserStatCycleItemsShort](../../samples/cli/cmd/social/userStatisticCycle/getUserStatCycleItems.go) |
+| `/social/v1/public/namespaces/{namespace}/users/{userId}/statCycles/{cycleId}/statCycleitems` | GET | GetUserStatCycleItems1Short | [GetUserStatCycleItems1Short](../../social-sdk/pkg/socialclient/user_statistic_cycle/user_statistic_cycle_client.go) | [GetUserStatCycleItems1Short](../../services-api/pkg/service/social/userStatisticCycle.go) | [GetUserStatCycleItems1Short](../../samples/cli/cmd/social/userStatisticCycle/getUserStatCycleItems1.go) |
+
 
 &nbsp;  
 
@@ -164,6 +170,8 @@
 | `StatUpdate` | [StatUpdate ](../../social-sdk/pkg/socialclientmodels/stat_update.go) |
 | `UserGameProfiles` | [UserGameProfiles ](../../social-sdk/pkg/socialclientmodels/user_game_profiles.go) |
 | `UserSlotConfigInfo` | [UserSlotConfigInfo ](../../social-sdk/pkg/socialclientmodels/user_slot_config_info.go) |
+| `UserStatCycleItemInfo` | [UserStatCycleItemInfo ](../../social-sdk/pkg/socialclientmodels/user_stat_cycle_item_info.go) |
+| `UserStatCycleItemPagingSlicedResult` | [UserStatCycleItemPagingSlicedResult ](../../social-sdk/pkg/socialclientmodels/user_stat_cycle_item_paging_sliced_result.go) |
 | `UserStatItemInfo` | [UserStatItemInfo ](../../social-sdk/pkg/socialclientmodels/user_stat_item_info.go) |
 | `UserStatItemPagingSlicedResult` | [UserStatItemPagingSlicedResult ](../../social-sdk/pkg/socialclientmodels/user_stat_item_paging_sliced_result.go) |
 | `ValidationErrorEntity` | [ValidationErrorEntity ](../../social-sdk/pkg/socialclientmodels/validation_error_entity.go) |

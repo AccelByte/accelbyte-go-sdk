@@ -217,6 +217,74 @@
         ]
       }
     },
+    "/friends/namespaces/{namespace}/me/incoming-time": {
+      "get": {
+        "operationId": "getUserIncomingFriendsWithTime",
+        "parameters": [
+          {
+            "description": "namespace",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "items": {
+                "$ref": "#/definitions/model.LoadIncomingFriendsWithTimeResponse"
+              },
+              "type": "array"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/restapi.ErrorResponseV1"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/restapi.ErrorResponseV1"
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "schema": {
+              "$ref": "#/definitions/restapi.ErrorResponseV1"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/restapi.ErrorResponseV1"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/restapi.ErrorResponseV1"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "summary": "get list of incoming friends with requested time info",
+        "tags": [
+          "friends",
+          "public"
+        ]
+      }
+    },
     "/friends/namespaces/{namespace}/me/outgoing": {
       "get": {
         "operationId": "getUserOutgoingFriends",
@@ -279,6 +347,74 @@
           }
         ],
         "summary": "get list of outgoing friends",
+        "tags": [
+          "friends",
+          "public"
+        ]
+      }
+    },
+    "/friends/namespaces/{namespace}/me/outgoing-time": {
+      "get": {
+        "operationId": "getUserOutgoingFriendsWithTime",
+        "parameters": [
+          {
+            "description": "namespace",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "items": {
+                "$ref": "#/definitions/model.LoadOutgoingFriendsWithTimeResponse"
+              },
+              "type": "array"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/restapi.ErrorResponseV1"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/restapi.ErrorResponseV1"
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "schema": {
+              "$ref": "#/definitions/restapi.ErrorResponseV1"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/restapi.ErrorResponseV1"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/restapi.ErrorResponseV1"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "summary": "get list of outgoing friends with requested time info",
         "tags": [
           "friends",
           "public"
@@ -7521,6 +7657,56 @@
         "paging"
       ]
     },
+    "model.IncomingFriendsWithTimeData": {
+      "properties": {
+        "friendId": {
+          "type": "string"
+        },
+        "requestedAt": {
+          "format": "date-time",
+          "type": "string",
+          "x-nullable": false
+        }
+      },
+      "required": [
+        "friendId",
+        "requestedAt"
+      ]
+    },
+    "model.LoadIncomingFriendsWithTimeResponse": {
+      "properties": {
+        "data": {
+          "items": {
+            "$ref": "#/definitions/model.IncomingFriendsWithTimeData"
+          },
+          "type": "array"
+        },
+        "paging": {
+          "$ref": "#/definitions/model.Pagination"
+        }
+      },
+      "required": [
+        "data",
+        "paging"
+      ]
+    },
+    "model.LoadOutgoingFriendsWithTimeResponse": {
+      "properties": {
+        "data": {
+          "items": {
+            "$ref": "#/definitions/model.OutgoingFriendsWithTimeData"
+          },
+          "type": "array"
+        },
+        "paging": {
+          "$ref": "#/definitions/model.Pagination"
+        }
+      },
+      "required": [
+        "data",
+        "paging"
+      ]
+    },
     "model.Localization": {
       "properties": {
         "lastDraftAt": {
@@ -7656,6 +7842,22 @@
         "templateLanguage",
         "templateSlug",
         "topicName"
+      ]
+    },
+    "model.OutgoingFriendsWithTimeData": {
+      "properties": {
+        "friendId": {
+          "type": "string"
+        },
+        "requestedAt": {
+          "format": "date-time",
+          "type": "string",
+          "x-nullable": false
+        }
+      },
+      "required": [
+        "friendId",
+        "requestedAt"
       ]
     },
     "model.Pagination": {

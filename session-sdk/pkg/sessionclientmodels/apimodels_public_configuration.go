@@ -49,6 +49,10 @@ type ApimodelsPublicConfiguration struct {
 	// Required: true
 	Name *string `json:"name"`
 
+	// persistent
+	// Required: true
+	Persistent *bool `json:"persistent"`
+
 	// requested regions
 	// Required: true
 	RequestedRegions []string `json:"requestedRegions"`
@@ -95,6 +99,10 @@ func (m *ApimodelsPublicConfiguration) Validate(formats strfmt.Registry) error {
 	}
 
 	if err := m.validateName(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validatePersistent(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -182,6 +190,15 @@ func (m *ApimodelsPublicConfiguration) validateMinPlayers(formats strfmt.Registr
 func (m *ApimodelsPublicConfiguration) validateName(formats strfmt.Registry) error {
 
 	if err := validate.Required("name", "body", m.Name); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *ApimodelsPublicConfiguration) validatePersistent(formats strfmt.Registry) error {
+
+	if err := validate.Required("persistent", "body", m.Persistent); err != nil {
 		return err
 	}
 

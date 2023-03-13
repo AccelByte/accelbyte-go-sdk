@@ -405,6 +405,7 @@
 | `/iam/v4/public/namespaces/{namespace}/users/me/mfa/email/enable` | POST | PublicEnableMyEmailV4Short | [PublicEnableMyEmailV4Short](../../iam-sdk/pkg/iamclient/users_v4/users_v4_client.go) | [PublicEnableMyEmailV4Short](../../services-api/pkg/service/iam/usersV4.go) | [PublicEnableMyEmailV4Short](../../samples/cli/cmd/iam/usersV4/publicEnableMyEmailV4.go) |
 | `/iam/v4/public/namespaces/{namespace}/users/me/mfa/factor` | GET | PublicGetMyEnabledFactorsV4Short | [PublicGetMyEnabledFactorsV4Short](../../iam-sdk/pkg/iamclient/users_v4/users_v4_client.go) | [PublicGetMyEnabledFactorsV4Short](../../services-api/pkg/service/iam/usersV4.go) | [PublicGetMyEnabledFactorsV4Short](../../samples/cli/cmd/iam/usersV4/publicGetMyEnabledFactorsV4.go) |
 | `/iam/v4/public/namespaces/{namespace}/users/me/mfa/factor` | POST | PublicMakeFactorMyDefaultV4Short | [PublicMakeFactorMyDefaultV4Short](../../iam-sdk/pkg/iamclient/users_v4/users_v4_client.go) | [PublicMakeFactorMyDefaultV4Short](../../services-api/pkg/service/iam/usersV4.go) | [PublicMakeFactorMyDefaultV4Short](../../samples/cli/cmd/iam/usersV4/publicMakeFactorMyDefaultV4.go) |
+| `/iam/v4/public/users/invite` | POST | PublicInviteUserV4Short | [PublicInviteUserV4Short](../../iam-sdk/pkg/iamclient/users_v4/users_v4_client.go) | [PublicInviteUserV4Short](../../services-api/pkg/service/iam/usersV4.go) | [PublicInviteUserV4Short](../../samples/cli/cmd/iam/usersV4/publicInviteUserV4.go) |
 
 
 &nbsp;  
@@ -565,6 +566,7 @@
 | `model.PlatformDomainUpdateRequest` | [ModelPlatformDomainUpdateRequest ](../../iam-sdk/pkg/iamclientmodels/model_platform_domain_update_request.go) |
 | `model.PlatformUserIDRequest` | [ModelPlatformUserIDRequest ](../../iam-sdk/pkg/iamclientmodels/model_platform_user_id_request.go) |
 | `model.PlatformUserInformation` | [ModelPlatformUserInformation ](../../iam-sdk/pkg/iamclientmodels/model_platform_user_information.go) |
+| `model.PublicInviteUserRequestV4` | [ModelPublicInviteUserRequestV4 ](../../iam-sdk/pkg/iamclientmodels/model_public_invite_user_request_v4.go) |
 | `model.PublicThirdPartyPlatformInfo` | [ModelPublicThirdPartyPlatformInfo ](../../iam-sdk/pkg/iamclientmodels/model_public_third_party_platform_info.go) |
 | `model.PublicUserInformationResponseV3` | [ModelPublicUserInformationResponseV3 ](../../iam-sdk/pkg/iamclientmodels/model_public_user_information_response_v3.go) |
 | `model.PublicUserInformationV3` | [ModelPublicUserInformationV3 ](../../iam-sdk/pkg/iamclientmodels/model_public_user_information_v3.go) |

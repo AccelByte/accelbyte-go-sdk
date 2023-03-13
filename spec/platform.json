@@ -8,7 +8,7 @@
     },
     "description": "Justice Platform Service",
     "title": "justice-platform-service",
-    "version": "4.24.0"
+    "version": "4.25.0"
   },
   "schemes": [
     "https"
@@ -3947,6 +3947,12 @@
             "description": "successful operation",
             "schema": {
               "$ref": "#/definitions/IAPItemConfigInfo"
+            }
+          },
+          "409": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eErrorCode\u003c/td\u003e\u003ctd\u003eErrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e39175\u003c/td\u003e\u003ctd\u003eDuplicate IAP item mapping, IAPType: [{iapType}] and id: [{iapId}]\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/ValidationErrorEntity"
             }
           },
           "422": {
@@ -20519,6 +20525,59 @@
         ]
       }
     },
+    "/platform/public/namespaces/{namespace}/iap/item/mapping": {
+      "get": {
+        "description": "Get iap item mapping.\u0026lt;br\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;/ul\u0026gt;",
+        "operationId": "getIAPItemMapping",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "enum": [
+              "APPLE",
+              "EPICGAMES",
+              "GOOGLE",
+              "PLAYSTATION",
+              "STADIA",
+              "STEAM",
+              "TWITCH",
+              "XBOX"
+            ],
+            "in": "query",
+            "name": "platform",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/IAPItemMappingInfo"
+            }
+          },
+          "404": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e39341\u003c/td\u003e\u003ctd\u003eIAP item config cannot be found in namespace [{namespace}]\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/ErrorEntity"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "summary": "Get iap item mapping",
+        "tags": [
+          "IAP"
+        ]
+      }
+    },
     "/platform/public/namespaces/{namespace}/items/byAppId": {
       "get": {
         "description": "This API is used to get item by appId.\u0026lt;p\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Optional permission\u0026lt;/i\u0026gt;: resource=\u0026#34;PREVIEW\u0026#34;, action=1(CREATE) (user with this permission can view draft store item)\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Optional permission\u0026lt;/i\u0026gt;: resource=\u0026#34;SANDBOX\u0026#34;, action=1(CREATE) (user with this permission can view draft store item)\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: the item with that appId\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
@@ -22473,6 +22532,64 @@
         }
       }
     },
+    "/platform/public/namespaces/{namespace}/users/me/iap/twitch/sync": {
+      "put": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Sync my game twitch drops entitlements.\u0026lt;p\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=NAMESPACE:{namespace}:IAP, action=4 (UPDATE)\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: \u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
+        "operationId": "syncTwitchDropsEntitlement",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "required": false,
+            "schema": {
+              "$ref": "#/definitions/TwitchSyncRequest"
+            }
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "items": {
+                "$ref": "#/definitions/TwitchSyncResult"
+              },
+              "type": "array"
+            }
+          },
+          "400": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eErrorCode\u003c/td\u003e\u003ctd\u003eErrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e39125\u003c/td\u003e\u003ctd\u003eInvalid platform [{platformId}] user token\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e39126\u003c/td\u003e\u003ctd\u003eUser id [{}] in namespace [{}] doesn't link platform [{}]\u003c/td\u003e\u003c/tr\u003e",
+            "schema": {
+              "$ref": "#/definitions/ErrorEntity"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "summary": "Sync my game twitch drops entitlements.",
+        "tags": [
+          "IAP"
+        ],
+        "x-authorization": {
+          "action": "4",
+          "resource": "NAMESPACE:{namespace}:IAP"
+        }
+      }
+    },
     "/platform/public/namespaces/{namespace}/users/me/wallets/{currencyCode}": {
       "get": {
         "consumes": [
@@ -24232,7 +24349,7 @@
           "application/json"
         ],
         "description": "Sync twitch drops entitlements.\u0026lt;p\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;NAMESPACE:{namespace}:USER:{userId}:IAP\u0026#34;, action=4 (UPDATE)\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: \u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
-        "operationId": "syncTwitchDropsEntitlement",
+        "operationId": "syncTwitchDropsEntitlement_1",
         "parameters": [
           {
             "in": "path",
@@ -27789,13 +27906,13 @@
           "type": "string"
         },
         "redeemEnd": {
-          "description": "redeem end time in yyyy-MM-dd'T'HH:mm:ss.SSS'Z'",
+          "description": "redeem end time in yyyy-MM-dd'T'HH:mm:ss.SSS'Z', will delete this value if pass null or not pass this field",
           "format": "date-time",
           "type": "string",
           "x-nullable": true
         },
         "redeemStart": {
-          "description": "redeem start time in yyyy-MM-dd'T'HH:mm:ss.SSS'Z'",
+          "description": "redeem start time in yyyy-MM-dd'T'HH:mm:ss.SSS'Z', will delete this value if pass null or not pass this field",
           "format": "date-time",
           "type": "string",
           "x-nullable": true
@@ -28458,6 +28575,10 @@
           "description": "amount",
           "format": "int64",
           "type": "integer"
+        },
+        "currencyCode": {
+          "description": "currency code",
+          "type": "string"
         },
         "namespace": {
           "description": "namespace",
@@ -29595,6 +29716,10 @@
         },
         "itemId": {
           "description": "item id",
+          "type": "string"
+        },
+        "name": {
+          "description": "entitlement name. Most of the time entitlement name is the same as the item name.",
           "type": "string"
         },
         "namespace": {
@@ -31389,6 +31514,52 @@
           },
           "description": "IAP Platform production ids related item id",
           "type": "object"
+        }
+      },
+      "type": "object"
+    },
+    "IAPItemFlatEntry": {
+      "properties": {
+        "itemIdentity": {
+          "description": "item id or sku",
+          "type": "string"
+        },
+        "itemIdentityType": {
+          "description": "item identity type",
+          "enum": [
+            "ITEM_ID",
+            "ITEM_SKU"
+          ],
+          "type": "string"
+        },
+        "platform": {
+          "description": "iap platform",
+          "enum": [
+            "APPLE",
+            "EPICGAMES",
+            "GOOGLE",
+            "PLAYSTATION",
+            "STADIA",
+            "STEAM",
+            "TWITCH",
+            "XBOX"
+          ],
+          "type": "string"
+        },
+        "platformProductId": {
+          "description": "IAP Platform production id related item id",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "IAPItemMappingInfo": {
+      "properties": {
+        "data": {
+          "items": {
+            "$ref": "#/definitions/IAPItemFlatEntry"
+          },
+          "type": "array"
         }
       },
       "type": "object"
@@ -37268,29 +37439,8 @@
     },
     "RevokeEntitlement": {
       "properties": {
-        "clazz": {
-          "description": "entitlement clazz",
-          "enum": [
-            "APP",
-            "CODE",
-            "ENTITLEMENT",
-            "LOOTBOX",
-            "MEDIA",
-            "OPTIONBOX",
-            "SUBSCRIPTION"
-          ],
-          "type": "string"
-        },
         "entitlementId": {
           "description": "entitlement id",
-          "type": "string"
-        },
-        "type": {
-          "description": "entitlement type",
-          "enum": [
-            "CONSUMABLE",
-            "DURABLE"
-          ],
           "type": "string"
         }
       },
@@ -39625,6 +39775,28 @@
         },
         "region": {
           "description": "country value from ISO countries",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "TwitchSyncResult": {
+      "properties": {
+        "iapOrderStatus": {
+          "description": "order status",
+          "enum": [
+            "FAILED",
+            "FULFILLED",
+            "VERIFIED"
+          ],
+          "type": "string"
+        },
+        "itemSku": {
+          "description": "Item sku",
+          "type": "string"
+        },
+        "transactionId": {
+          "description": "Twitch entitlement id",
           "type": "string"
         }
       },

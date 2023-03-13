@@ -30,7 +30,9 @@ var LobbyCmd = &cobra.Command{
 func init() {
 	LobbyCmd.AddCommand(friends.GetUserFriendsUpdatedCmd)
 	LobbyCmd.AddCommand(friends.GetUserIncomingFriendsCmd)
+	LobbyCmd.AddCommand(friends.GetUserIncomingFriendsWithTimeCmd)
 	LobbyCmd.AddCommand(friends.GetUserOutgoingFriendsCmd)
+	LobbyCmd.AddCommand(friends.GetUserOutgoingFriendsWithTimeCmd)
 	LobbyCmd.AddCommand(friends.UserRequestFriendCmd)
 	LobbyCmd.AddCommand(friends.UserAcceptFriendRequestCmd)
 	LobbyCmd.AddCommand(friends.UserCancelFriendRequestCmd)

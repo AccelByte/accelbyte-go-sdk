@@ -47,6 +47,7 @@ func init() {
 	LegalCmd.AddCommand(localizedPolicyVersions.UpdateLocalizedPolicyVersionCmd)
 	LegalCmd.AddCommand(localizedPolicyVersions.RequestPresignedURLCmd)
 	LegalCmd.AddCommand(localizedPolicyVersions.SetDefaultPolicyCmd)
+	LegalCmd.AddCommand(agreementWithNamespace.RetrieveAcceptedAgreementsForMultiUsersCmd)
 	LegalCmd.AddCommand(agreementWithNamespace.RetrieveAcceptedAgreements1Cmd)
 	LegalCmd.AddCommand(agreementWithNamespace.RetrieveAllUsersByPolicyVersion1Cmd)
 	LegalCmd.AddCommand(baseLegalPoliciesWithNamespace.RetrieveAllLegalPoliciesByNamespaceCmd)

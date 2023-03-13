@@ -8,7 +8,7 @@
     },
     "description": "Justice Legal Service",
     "title": "justice-legal-service",
-    "version": "1.27.0"
+    "version": "1.27.1"
   },
   "schemes": [
     "https"
@@ -849,6 +849,61 @@
         "summary": "Set Default Localized Policy",
         "tags": [
           "Localized Policy Versions"
+        ]
+      }
+    },
+    "/agreement/admin/namespaces/{namespace}/agreements": {
+      "post": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "This API will return all accepted Legal Agreements for each user, including agreements of game users if publisher user has corresponding game accountOther detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;ADMIN:NAMESPACE:{namespace}:LEGAL\u0026#34;, action=2 (READ)\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
+        "operationId": "retrieveAcceptedAgreementsForMultiUsers",
+        "parameters": [
+          {
+            "description": "Namespace",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "required": false,
+            "schema": {
+              "$ref": "#/definitions/UsersAgreementsRequest"
+            }
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "items": {
+                "$ref": "#/definitions/UserAgreementsResponse"
+              },
+              "type": "array"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          },
+          {
+            "HasPermission": [
+              "ADMIN:NAMESPACE:{namespace}:LEGAL [READ]"
+            ],
+            "authorization": []
+          }
+        ],
+        "summary": "Retrieve Accepted Legal Agreements For Multi Users",
+        "tags": [
+          "Agreement With Namespace"
         ]
       }
     },
@@ -4344,7 +4399,6 @@
       "required": [
         "id",
         "localeCode",
-        "policy",
         "policyVersion"
       ],
       "type": "object"
@@ -4590,8 +4644,7 @@
         "displayVersion",
         "id",
         "isCommitted",
-        "isInEffect",
-        "policyId"
+        "isInEffect"
       ],
       "type": "object"
     },
@@ -5038,6 +5091,40 @@
           "type": "string"
         }
       },
+      "type": "object"
+    },
+    "UserAgreementsResponse": {
+      "description": "A DTO object for user agreements response",
+      "properties": {
+        "agreements": {
+          "description": "agreement records",
+          "items": {
+            "$ref": "#/definitions/RetrieveAcceptedAgreementResponse"
+          },
+          "type": "array"
+        },
+        "userId": {
+          "description": "user id",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "UsersAgreementsRequest": {
+      "description": "A DTO object for retrieving agreements of multi users",
+      "properties": {
+        "userIds": {
+          "description": "user ids, min size: 1, max size: 100",
+          "items": {
+            "type": "string"
+          },
+          "type": "array",
+          "uniqueItems": true
+        }
+      },
+      "required": [
+        "userIds"
+      ],
       "type": "object"
     },
     "ValidationErrorEntity": {

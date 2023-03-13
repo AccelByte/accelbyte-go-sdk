@@ -48,8 +48,7 @@ type RetrieveLocalizedPolicyVersionResponse struct {
 	LocaleCode *string `json:"localeCode"`
 
 	// policy
-	// Required: true
-	Policy *PolicyObject `json:"policy"`
+	Policy *PolicyObject `json:"policy,omitempty"`
 
 	// policy version
 	// Required: true
@@ -127,8 +126,8 @@ func (m *RetrieveLocalizedPolicyVersionResponse) validateLocaleCode(formats strf
 
 func (m *RetrieveLocalizedPolicyVersionResponse) validatePolicy(formats strfmt.Registry) error {
 
-	if err := validate.Required("policy", "body", m.Policy); err != nil {
-		return err
+	if swag.IsZero(m.Policy) { // not required
+		return nil
 	}
 
 	if m.Policy != nil {

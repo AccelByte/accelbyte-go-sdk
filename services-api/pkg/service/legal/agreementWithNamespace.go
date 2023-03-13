@@ -39,6 +39,20 @@ func (aaa *AgreementWithNamespaceService) GetAuthSession() auth.Session {
 	}
 }
 
+// deprecated(2022-01-10): please use RetrieveAcceptedAgreementsForMultiUsersShort instead.
+func (aaa *AgreementWithNamespaceService) RetrieveAcceptedAgreementsForMultiUsers(input *agreement_with_namespace.RetrieveAcceptedAgreementsForMultiUsersParams) ([]*legalclientmodels.UserAgreementsResponse, error) {
+	token, err := aaa.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, err := aaa.Client.AgreementWithNamespace.RetrieveAcceptedAgreementsForMultiUsers(input, client.BearerToken(*token.AccessToken))
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
 // deprecated(2022-01-10): please use RetrieveAcceptedAgreements1Short instead.
 func (aaa *AgreementWithNamespaceService) RetrieveAcceptedAgreements1(input *agreement_with_namespace.RetrieveAcceptedAgreements1Params) ([]*legalclientmodels.RetrieveAcceptedAgreementResponse, error) {
 	token, err := aaa.TokenRepository.GetToken()
@@ -63,6 +77,31 @@ func (aaa *AgreementWithNamespaceService) RetrieveAllUsersByPolicyVersion1(input
 	if notFound != nil {
 		return nil, notFound
 	}
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
+func (aaa *AgreementWithNamespaceService) RetrieveAcceptedAgreementsForMultiUsersShort(input *agreement_with_namespace.RetrieveAcceptedAgreementsForMultiUsersParams) ([]*legalclientmodels.UserAgreementsResponse, error) {
+	authInfoWriter := input.AuthInfoWriter
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
+	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  aaa.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
+	ok, err := aaa.Client.AgreementWithNamespace.RetrieveAcceptedAgreementsForMultiUsersShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}

@@ -377,4 +377,5 @@ func init() {
 	IamCmd.AddCommand(usersV4.PublicEnableMyEmailV4Cmd)
 	IamCmd.AddCommand(usersV4.PublicGetMyEnabledFactorsV4Cmd)
 	IamCmd.AddCommand(usersV4.PublicMakeFactorMyDefaultV4Cmd)
+	IamCmd.AddCommand(usersV4.PublicInviteUserV4Cmd)
 }

@@ -202,7 +202,10 @@ func (aaa *IAPService) UpdateIAPItemConfig(input *iap.UpdateIAPItemConfigParams)
 	if err != nil {
 		return nil, err
 	}
-	ok, unprocessableEntity, err := aaa.Client.IAP.UpdateIAPItemConfig(input, client.BearerToken(*token.AccessToken))
+	ok, conflict, unprocessableEntity, err := aaa.Client.IAP.UpdateIAPItemConfig(input, client.BearerToken(*token.AccessToken))
+	if conflict != nil {
+		return nil, conflict
+	}
 	if unprocessableEntity != nil {
 		return nil, unprocessableEntity
 	}
@@ -474,6 +477,40 @@ func (aaa *IAPService) MockFulfillIAPItem(input *iap.MockFulfillIAPItemParams) e
 	return nil
 }
 
+// deprecated(2022-01-10): please use GetIAPItemMappingShort instead.
+func (aaa *IAPService) GetIAPItemMapping(input *iap.GetIAPItemMappingParams) (*platformclientmodels.IAPItemMappingInfo, error) {
+	token, err := aaa.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, notFound, err := aaa.Client.IAP.GetIAPItemMapping(input, client.BearerToken(*token.AccessToken))
+	if notFound != nil {
+		return nil, notFound
+	}
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
+// deprecated(2022-01-10): please use SyncTwitchDropsEntitlementShort instead.
+func (aaa *IAPService) SyncTwitchDropsEntitlement(input *iap.SyncTwitchDropsEntitlementParams) ([]*platformclientmodels.TwitchSyncResult, error) {
+	token, err := aaa.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, badRequest, err := aaa.Client.IAP.SyncTwitchDropsEntitlement(input, client.BearerToken(*token.AccessToken))
+	if badRequest != nil {
+		return nil, badRequest
+	}
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
 // deprecated(2022-01-10): please use PublicFulfillAppleIAPItemShort instead.
 func (aaa *IAPService) PublicFulfillAppleIAPItem(input *iap.PublicFulfillAppleIAPItemParams) error {
 	token, err := aaa.TokenRepository.GetToken()
@@ -588,13 +625,13 @@ func (aaa *IAPService) SyncSteamInventory(input *iap.SyncSteamInventoryParams) e
 	return nil
 }
 
-// deprecated(2022-01-10): please use SyncTwitchDropsEntitlementShort instead.
-func (aaa *IAPService) SyncTwitchDropsEntitlement(input *iap.SyncTwitchDropsEntitlementParams) error {
+// deprecated(2022-01-10): please use SyncTwitchDropsEntitlement1Short instead.
+func (aaa *IAPService) SyncTwitchDropsEntitlement1(input *iap.SyncTwitchDropsEntitlement1Params) error {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	_, badRequest, err := aaa.Client.IAP.SyncTwitchDropsEntitlement(input, client.BearerToken(*token.AccessToken))
+	_, badRequest, err := aaa.Client.IAP.SyncTwitchDropsEntitlement1(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return badRequest
 	}
@@ -1372,6 +1409,56 @@ func (aaa *IAPService) MockFulfillIAPItemShort(input *iap.MockFulfillIAPItemPara
 	return nil
 }
 
+func (aaa *IAPService) GetIAPItemMappingShort(input *iap.GetIAPItemMappingParams) (*platformclientmodels.IAPItemMappingInfo, error) {
+	authInfoWriter := input.AuthInfoWriter
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
+	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  aaa.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
+	ok, err := aaa.Client.IAP.GetIAPItemMappingShort(input, authInfoWriter)
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
+func (aaa *IAPService) SyncTwitchDropsEntitlementShort(input *iap.SyncTwitchDropsEntitlementParams) ([]*platformclientmodels.TwitchSyncResult, error) {
+	authInfoWriter := input.AuthInfoWriter
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
+	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  aaa.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
+	ok, err := aaa.Client.IAP.SyncTwitchDropsEntitlementShort(input, authInfoWriter)
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
 func (aaa *IAPService) PublicFulfillAppleIAPItemShort(input *iap.PublicFulfillAppleIAPItemParams) error {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
@@ -1522,7 +1609,7 @@ func (aaa *IAPService) SyncSteamInventoryShort(input *iap.SyncSteamInventoryPara
 	return nil
 }
 
-func (aaa *IAPService) SyncTwitchDropsEntitlementShort(input *iap.SyncTwitchDropsEntitlementParams) error {
+func (aaa *IAPService) SyncTwitchDropsEntitlement1Short(input *iap.SyncTwitchDropsEntitlement1Params) error {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -1539,7 +1626,7 @@ func (aaa *IAPService) SyncTwitchDropsEntitlementShort(input *iap.SyncTwitchDrop
 		}
 	}
 
-	_, err := aaa.Client.IAP.SyncTwitchDropsEntitlementShort(input, authInfoWriter)
+	_, err := aaa.Client.IAP.SyncTwitchDropsEntitlement1Short(input, authInfoWriter)
 	if err != nil {
 		return err
 	}

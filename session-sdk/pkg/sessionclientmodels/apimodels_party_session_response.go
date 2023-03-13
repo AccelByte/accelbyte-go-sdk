@@ -65,6 +65,10 @@ type ApimodelsPartySessionResponse struct {
 	// Required: true
 	Namespace *string `json:"namespace"`
 
+	// persistent
+	// Required: true
+	Persistent *bool `json:"persistent"`
+
 	// updated at
 	// Required: true
 	UpdatedAt *string `json:"updatedAt"`
@@ -115,6 +119,10 @@ func (m *ApimodelsPartySessionResponse) Validate(formats strfmt.Registry) error 
 	}
 
 	if err := m.validateNamespace(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validatePersistent(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -241,6 +249,15 @@ func (m *ApimodelsPartySessionResponse) validateMembers(formats strfmt.Registry)
 func (m *ApimodelsPartySessionResponse) validateNamespace(formats strfmt.Registry) error {
 
 	if err := validate.Required("namespace", "body", m.Namespace); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *ApimodelsPartySessionResponse) validatePersistent(formats strfmt.Registry) error {
+
+	if err := validate.Required("persistent", "body", m.Persistent); err != nil {
 		return err
 	}
 

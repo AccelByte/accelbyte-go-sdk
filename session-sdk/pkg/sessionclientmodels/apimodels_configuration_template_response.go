@@ -61,6 +61,10 @@ type ApimodelsConfigurationTemplateResponse struct {
 	// Required: true
 	Namespace *string `json:"namespace"`
 
+	// persistent
+	// Required: true
+	Persistent *bool `json:"persistent"`
+
 	// requested regions
 	// Required: true
 	RequestedRegions []string `json:"requestedRegions"`
@@ -123,6 +127,10 @@ func (m *ApimodelsConfigurationTemplateResponse) Validate(formats strfmt.Registr
 	}
 
 	if err := m.validateNamespace(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validatePersistent(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -241,6 +249,15 @@ func (m *ApimodelsConfigurationTemplateResponse) validateName(formats strfmt.Reg
 func (m *ApimodelsConfigurationTemplateResponse) validateNamespace(formats strfmt.Registry) error {
 
 	if err := validate.Required("namespace", "body", m.Namespace); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *ApimodelsConfigurationTemplateResponse) validatePersistent(formats strfmt.Registry) error {
+
+	if err := validate.Required("persistent", "body", m.Persistent); err != nil {
 		return err
 	}
 

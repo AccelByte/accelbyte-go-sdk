@@ -29,6 +29,14 @@
 | `/basic/v1/admin/namespaces/{namespace}/actions/unban` | POST | UnBanUsersShort | [UnBanUsersShort](../../basic-sdk/pkg/basicclient/user_action/user_action_client.go) | [UnBanUsersShort](../../services-api/pkg/service/basic/userAction.go) | [UnBanUsersShort](../../samples/cli/cmd/basic/userAction/unBanUsers.go) |
 | `/basic/v1/public/namespaces/{namespace}/users/{userId}/actions/report` | POST | PublicReportUserShort | [PublicReportUserShort](../../basic-sdk/pkg/basicclient/user_action/user_action_client.go) | [PublicReportUserShort](../../services-api/pkg/service/basic/userAction.go) | [PublicReportUserShort](../../samples/cli/cmd/basic/userAction/publicReportUser.go) |
 
+### Config Wrapper:  [Config](../../services-api/pkg/service/basic/config.go)
+| Endpoint | Method | ID | Class | Wrapper | Example |
+|---|---|---|---|---|---|
+| `/basic/v1/admin/namespaces/{namespace}/configs` | POST | CreateConfigShort | [CreateConfigShort](../../basic-sdk/pkg/basicclient/config/config_client.go) | [CreateConfigShort](../../services-api/pkg/service/basic/config.go) | [CreateConfigShort](../../samples/cli/cmd/basic/config/createConfig.go) |
+| `/basic/v1/admin/namespaces/{namespace}/configs/{configKey}` | GET | GetConfig1Short | [GetConfig1Short](../../basic-sdk/pkg/basicclient/config/config_client.go) | [GetConfig1Short](../../services-api/pkg/service/basic/config.go) | [GetConfig1Short](../../samples/cli/cmd/basic/config/getConfig1.go) |
+| `/basic/v1/admin/namespaces/{namespace}/configs/{configKey}` | DELETE | DeleteConfig1Short | [DeleteConfig1Short](../../basic-sdk/pkg/basicclient/config/config_client.go) | [DeleteConfig1Short](../../services-api/pkg/service/basic/config.go) | [DeleteConfig1Short](../../samples/cli/cmd/basic/config/deleteConfig1.go) |
+| `/basic/v1/admin/namespaces/{namespace}/configs/{configKey}` | PATCH | UpdateConfig1Short | [UpdateConfig1Short](../../basic-sdk/pkg/basicclient/config/config_client.go) | [UpdateConfig1Short](../../services-api/pkg/service/basic/config.go) | [UpdateConfig1Short](../../samples/cli/cmd/basic/config/updateConfig1.go) |
+
 ### EQU8Config Wrapper:  [EQU8Config](../../services-api/pkg/service/basic/equ8Config.go)
 | Endpoint | Method | ID | Class | Wrapper | Example |
 |---|---|---|---|---|---|
@@ -108,6 +116,9 @@
 | `Action` | [Action ](../../basic-sdk/pkg/basicclientmodels/action.go) |
 | `AddCountryGroupRequest` | [AddCountryGroupRequest ](../../basic-sdk/pkg/basicclientmodels/add_country_group_request.go) |
 | `AddCountryGroupResponse` | [AddCountryGroupResponse ](../../basic-sdk/pkg/basicclientmodels/add_country_group_response.go) |
+| `ConfigCreate` | [ConfigCreate ](../../basic-sdk/pkg/basicclientmodels/config_create.go) |
+| `ConfigInfo` | [ConfigInfo ](../../basic-sdk/pkg/basicclientmodels/config_info.go) |
+| `ConfigUpdate` | [ConfigUpdate ](../../basic-sdk/pkg/basicclientmodels/config_update.go) |
 | `CountryGroupObject` | [CountryGroupObject ](../../basic-sdk/pkg/basicclientmodels/country_group_object.go) |
 | `CountryObject` | [CountryObject ](../../basic-sdk/pkg/basicclientmodels/country_object.go) |
 | `Equ8Config` | [Equ8Config ](../../basic-sdk/pkg/basicclientmodels/equ8_config.go) |

@@ -1361,6 +1361,32 @@ func (aaa *UsersV4Service) PublicMakeFactorMyDefaultV4(input *users_v4.PublicMak
 	return nil
 }
 
+// deprecated(2022-01-10): please use PublicInviteUserV4Short instead.
+func (aaa *UsersV4Service) PublicInviteUserV4(input *users_v4.PublicInviteUserV4Params) (*iamclientmodels.ModelInviteUserResponseV3, error) {
+	token, err := aaa.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	created, badRequest, conflict, unprocessableEntity, internalServerError, err := aaa.Client.UsersV4.PublicInviteUserV4(input, client.BearerToken(*token.AccessToken))
+	if badRequest != nil {
+		return nil, badRequest
+	}
+	if conflict != nil {
+		return nil, conflict
+	}
+	if unprocessableEntity != nil {
+		return nil, unprocessableEntity
+	}
+	if internalServerError != nil {
+		return nil, internalServerError
+	}
+	if err != nil {
+		return nil, err
+	}
+
+	return created.GetPayload(), nil
+}
+
 func (aaa *UsersV4Service) AdminCreateTestUsersV4Short(input *users_v4.AdminCreateTestUsersV4Params) (*iamclientmodels.AccountCreateTestUsersResponseV4, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
@@ -2484,4 +2510,29 @@ func (aaa *UsersV4Service) PublicMakeFactorMyDefaultV4Short(input *users_v4.Publ
 	}
 
 	return nil
+}
+
+func (aaa *UsersV4Service) PublicInviteUserV4Short(input *users_v4.PublicInviteUserV4Params) (*iamclientmodels.ModelInviteUserResponseV3, error) {
+	authInfoWriter := input.AuthInfoWriter
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
+	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  aaa.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
+	created, err := aaa.Client.UsersV4.PublicInviteUserV4Short(input, authInfoWriter)
+	if err != nil {
+		return nil, err
+	}
+
+	return created.GetPayload(), nil
 }

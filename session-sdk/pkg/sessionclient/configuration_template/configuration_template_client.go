@@ -53,6 +53,16 @@ Deprecated: Use AdminCreateConfigurationTemplateV1Short instead.
   AdminCreateConfigurationTemplateV1 creates configuration template requires a d m i n n a m e s p a c e namespace s e s s i o n c o n f i g u r a t i o n c r e a t e
 
   Create template configuration to be applied across party and session.
+Session configuration mandatory :
+- name
+- joinability (example value : OPEN, CLOSED, INVITE_ONLY)
+- Type (example value : P2P, DS, NONE) if type empty, type will be assign to NONE
+- MinPlayers (must greather or equal 0)
+- MaxPlayers (must greather than 0)
+- InviteTimeout (must greather or equal 0) if InviteTimeout equal 0 will be use default DefaultTimeoutSecond (60s)
+- InactiveTimeout (must greather or equal 0) if InactiveTimeout equal 0 will be use default DefaultTimeoutSecond (60s)
+- Persistent Flag only can use with type DS (example value true or false)
+
 */
 func (a *Client) AdminCreateConfigurationTemplateV1(params *AdminCreateConfigurationTemplateV1Params, authInfo runtime.ClientAuthInfoWriter) (*AdminCreateConfigurationTemplateV1Created, *AdminCreateConfigurationTemplateV1BadRequest, *AdminCreateConfigurationTemplateV1Unauthorized, *AdminCreateConfigurationTemplateV1Forbidden, *AdminCreateConfigurationTemplateV1Conflict, *AdminCreateConfigurationTemplateV1InternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -114,6 +124,16 @@ func (a *Client) AdminCreateConfigurationTemplateV1(params *AdminCreateConfigura
   AdminCreateConfigurationTemplateV1Short creates configuration template requires a d m i n n a m e s p a c e namespace s e s s i o n c o n f i g u r a t i o n c r e a t e
 
   Create template configuration to be applied across party and session.
+Session configuration mandatory :
+- name
+- joinability (example value : OPEN, CLOSED, INVITE_ONLY)
+- Type (example value : P2P, DS, NONE) if type empty, type will be assign to NONE
+- MinPlayers (must greather or equal 0)
+- MaxPlayers (must greather than 0)
+- InviteTimeout (must greather or equal 0) if InviteTimeout equal 0 will be use default DefaultTimeoutSecond (60s)
+- InactiveTimeout (must greather or equal 0) if InactiveTimeout equal 0 will be use default DefaultTimeoutSecond (60s)
+- Persistent Flag only can use with type DS (example value true or false)
+
 */
 func (a *Client) AdminCreateConfigurationTemplateV1Short(params *AdminCreateConfigurationTemplateV1Params, authInfo runtime.ClientAuthInfoWriter) (*AdminCreateConfigurationTemplateV1Created, error) {
 	// TODO: Validate the params before sending
@@ -519,6 +539,15 @@ Deprecated: Use AdminUpdateConfigurationTemplateV1Short instead.
   AdminUpdateConfigurationTemplateV1 updates configuration template requires a d m i n n a m e s p a c e namespace s e s s i o n c o n f i g u r a t i o n u p d a t e
 
   Update template configuration
+Session configuration mandatory :
+- name
+- joinability (example value : OPEN, CLOSED, INVITE_ONLY)
+- Type (example value : P2P, DS, NONE) if type empty, type will be assign to NONE
+- MinPlayers (must greather or equal 0)
+- MaxPlayers (must greather than 0)
+- InviteTimeout (must greather or equal 0) if InviteTimeout equal 0 will be use default DefaultTimeoutSecond (60s)
+- InactiveTimeout (must greather or equal 0) if InactiveTimeout equal 0 will be use default DefaultTimeoutSecond (60s)
+
 */
 func (a *Client) AdminUpdateConfigurationTemplateV1(params *AdminUpdateConfigurationTemplateV1Params, authInfo runtime.ClientAuthInfoWriter) (*AdminUpdateConfigurationTemplateV1OK, *AdminUpdateConfigurationTemplateV1BadRequest, *AdminUpdateConfigurationTemplateV1Unauthorized, *AdminUpdateConfigurationTemplateV1Forbidden, *AdminUpdateConfigurationTemplateV1NotFound, *AdminUpdateConfigurationTemplateV1InternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -580,6 +609,15 @@ func (a *Client) AdminUpdateConfigurationTemplateV1(params *AdminUpdateConfigura
   AdminUpdateConfigurationTemplateV1Short updates configuration template requires a d m i n n a m e s p a c e namespace s e s s i o n c o n f i g u r a t i o n u p d a t e
 
   Update template configuration
+Session configuration mandatory :
+- name
+- joinability (example value : OPEN, CLOSED, INVITE_ONLY)
+- Type (example value : P2P, DS, NONE) if type empty, type will be assign to NONE
+- MinPlayers (must greather or equal 0)
+- MaxPlayers (must greather than 0)
+- InviteTimeout (must greather or equal 0) if InviteTimeout equal 0 will be use default DefaultTimeoutSecond (60s)
+- InactiveTimeout (must greather or equal 0) if InactiveTimeout equal 0 will be use default DefaultTimeoutSecond (60s)
+
 */
 func (a *Client) AdminUpdateConfigurationTemplateV1Short(params *AdminUpdateConfigurationTemplateV1Params, authInfo runtime.ClientAuthInfoWriter) (*AdminUpdateConfigurationTemplateV1OK, error) {
 	// TODO: Validate the params before sending

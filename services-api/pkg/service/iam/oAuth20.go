@@ -177,9 +177,12 @@ func (aaa *OAuth20Service) Change2FAMethod(input *o_auth2_0.Change2FAMethodParam
 	if err != nil {
 		return err
 	}
-	_, badRequest, internalServerError, err := aaa.Client.OAuth20.Change2FAMethod(input, client.BearerToken(*token.AccessToken))
+	_, badRequest, tooManyRequests, internalServerError, err := aaa.Client.OAuth20.Change2FAMethod(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return badRequest
+	}
+	if tooManyRequests != nil {
+		return tooManyRequests
 	}
 	if internalServerError != nil {
 		return internalServerError

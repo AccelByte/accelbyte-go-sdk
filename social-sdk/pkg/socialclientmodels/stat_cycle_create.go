@@ -48,7 +48,7 @@ type StatCycleCreate struct {
 	// Required: true
 	ResetTime *string `json:"resetTime"`
 
-	// reset month
+	// season period
 	SeasonPeriod int32 `json:"seasonPeriod,omitempty"`
 
 	// start date time

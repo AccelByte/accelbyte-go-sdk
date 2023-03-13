@@ -43,6 +43,9 @@ type EntitlementSummary struct {
 	// item id
 	ItemID string `json:"itemId,omitempty"`
 
+	// entitlement name. Most of the time entitlement name is the same as the item name.
+	Name string `json:"name,omitempty"`
+
 	// entitlement namespace
 	// Required: true
 	Namespace *string `json:"namespace"`

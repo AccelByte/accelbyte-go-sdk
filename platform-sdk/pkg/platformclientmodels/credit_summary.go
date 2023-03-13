@@ -21,6 +21,9 @@ type CreditSummary struct {
 	// Required: true
 	Amount *int64 `json:"amount"`
 
+	// currency code
+	CurrencyCode string `json:"currencyCode,omitempty"`
+
 	// namespace
 	// Required: true
 	Namespace *string `json:"namespace"`

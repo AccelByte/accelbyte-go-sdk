@@ -41,8 +41,12 @@ type ClientService interface {
 	GetUserFriendsUpdatedShort(params *GetUserFriendsUpdatedParams, authInfo runtime.ClientAuthInfoWriter) (*GetUserFriendsUpdatedOK, error)
 	GetUserIncomingFriends(params *GetUserIncomingFriendsParams, authInfo runtime.ClientAuthInfoWriter) (*GetUserIncomingFriendsOK, *GetUserIncomingFriendsBadRequest, *GetUserIncomingFriendsUnauthorized, *GetUserIncomingFriendsForbidden, *GetUserIncomingFriendsNotFound, *GetUserIncomingFriendsInternalServerError, error)
 	GetUserIncomingFriendsShort(params *GetUserIncomingFriendsParams, authInfo runtime.ClientAuthInfoWriter) (*GetUserIncomingFriendsOK, error)
+	GetUserIncomingFriendsWithTime(params *GetUserIncomingFriendsWithTimeParams, authInfo runtime.ClientAuthInfoWriter) (*GetUserIncomingFriendsWithTimeOK, *GetUserIncomingFriendsWithTimeBadRequest, *GetUserIncomingFriendsWithTimeUnauthorized, *GetUserIncomingFriendsWithTimeForbidden, *GetUserIncomingFriendsWithTimeNotFound, *GetUserIncomingFriendsWithTimeInternalServerError, error)
+	GetUserIncomingFriendsWithTimeShort(params *GetUserIncomingFriendsWithTimeParams, authInfo runtime.ClientAuthInfoWriter) (*GetUserIncomingFriendsWithTimeOK, error)
 	GetUserOutgoingFriends(params *GetUserOutgoingFriendsParams, authInfo runtime.ClientAuthInfoWriter) (*GetUserOutgoingFriendsOK, *GetUserOutgoingFriendsBadRequest, *GetUserOutgoingFriendsUnauthorized, *GetUserOutgoingFriendsForbidden, *GetUserOutgoingFriendsNotFound, *GetUserOutgoingFriendsInternalServerError, error)
 	GetUserOutgoingFriendsShort(params *GetUserOutgoingFriendsParams, authInfo runtime.ClientAuthInfoWriter) (*GetUserOutgoingFriendsOK, error)
+	GetUserOutgoingFriendsWithTime(params *GetUserOutgoingFriendsWithTimeParams, authInfo runtime.ClientAuthInfoWriter) (*GetUserOutgoingFriendsWithTimeOK, *GetUserOutgoingFriendsWithTimeBadRequest, *GetUserOutgoingFriendsWithTimeUnauthorized, *GetUserOutgoingFriendsWithTimeForbidden, *GetUserOutgoingFriendsWithTimeNotFound, *GetUserOutgoingFriendsWithTimeInternalServerError, error)
+	GetUserOutgoingFriendsWithTimeShort(params *GetUserOutgoingFriendsWithTimeParams, authInfo runtime.ClientAuthInfoWriter) (*GetUserOutgoingFriendsWithTimeOK, error)
 	UserAcceptFriendRequest(params *UserAcceptFriendRequestParams, authInfo runtime.ClientAuthInfoWriter) (*UserAcceptFriendRequestNoContent, *UserAcceptFriendRequestBadRequest, *UserAcceptFriendRequestUnauthorized, *UserAcceptFriendRequestForbidden, *UserAcceptFriendRequestNotFound, *UserAcceptFriendRequestInternalServerError, error)
 	UserAcceptFriendRequestShort(params *UserAcceptFriendRequestParams, authInfo runtime.ClientAuthInfoWriter) (*UserAcceptFriendRequestNoContent, error)
 	UserCancelFriendRequest(params *UserCancelFriendRequestParams, authInfo runtime.ClientAuthInfoWriter) (*UserCancelFriendRequestNoContent, *UserCancelFriendRequestBadRequest, *UserCancelFriendRequestUnauthorized, *UserCancelFriendRequestForbidden, *UserCancelFriendRequestNotFound, *UserCancelFriendRequestInternalServerError, error)
@@ -522,6 +526,121 @@ func (a *Client) GetUserIncomingFriendsShort(params *GetUserIncomingFriendsParam
 }
 
 /*
+Deprecated: Use GetUserIncomingFriendsWithTimeShort instead.
+
+  GetUserIncomingFriendsWithTime gets list of incoming friends with requested time info
+*/
+func (a *Client) GetUserIncomingFriendsWithTime(params *GetUserIncomingFriendsWithTimeParams, authInfo runtime.ClientAuthInfoWriter) (*GetUserIncomingFriendsWithTimeOK, *GetUserIncomingFriendsWithTimeBadRequest, *GetUserIncomingFriendsWithTimeUnauthorized, *GetUserIncomingFriendsWithTimeForbidden, *GetUserIncomingFriendsWithTimeNotFound, *GetUserIncomingFriendsWithTimeInternalServerError, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewGetUserIncomingFriendsWithTimeParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "getUserIncomingFriendsWithTime",
+		Method:             "GET",
+		PathPattern:        "/friends/namespaces/{namespace}/me/incoming-time",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &GetUserIncomingFriendsWithTimeReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, nil, nil, nil, nil, nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *GetUserIncomingFriendsWithTimeOK:
+		return v, nil, nil, nil, nil, nil, nil
+
+	case *GetUserIncomingFriendsWithTimeBadRequest:
+		return nil, v, nil, nil, nil, nil, nil
+
+	case *GetUserIncomingFriendsWithTimeUnauthorized:
+		return nil, nil, v, nil, nil, nil, nil
+
+	case *GetUserIncomingFriendsWithTimeForbidden:
+		return nil, nil, nil, v, nil, nil, nil
+
+	case *GetUserIncomingFriendsWithTimeNotFound:
+		return nil, nil, nil, nil, v, nil, nil
+
+	case *GetUserIncomingFriendsWithTimeInternalServerError:
+		return nil, nil, nil, nil, nil, v, nil
+
+	default:
+		return nil, nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+  GetUserIncomingFriendsWithTimeShort gets list of incoming friends with requested time info
+*/
+func (a *Client) GetUserIncomingFriendsWithTimeShort(params *GetUserIncomingFriendsWithTimeParams, authInfo runtime.ClientAuthInfoWriter) (*GetUserIncomingFriendsWithTimeOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewGetUserIncomingFriendsWithTimeParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "getUserIncomingFriendsWithTime",
+		Method:             "GET",
+		PathPattern:        "/friends/namespaces/{namespace}/me/incoming-time",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &GetUserIncomingFriendsWithTimeReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *GetUserIncomingFriendsWithTimeOK:
+		return v, nil
+	case *GetUserIncomingFriendsWithTimeBadRequest:
+		return nil, v
+	case *GetUserIncomingFriendsWithTimeUnauthorized:
+		return nil, v
+	case *GetUserIncomingFriendsWithTimeForbidden:
+		return nil, v
+	case *GetUserIncomingFriendsWithTimeNotFound:
+		return nil, v
+	case *GetUserIncomingFriendsWithTimeInternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
 Deprecated: Use GetUserOutgoingFriendsShort instead.
 
   GetUserOutgoingFriends gets list of outgoing friends
@@ -629,6 +748,121 @@ func (a *Client) GetUserOutgoingFriendsShort(params *GetUserOutgoingFriendsParam
 	case *GetUserOutgoingFriendsNotFound:
 		return nil, v
 	case *GetUserOutgoingFriendsInternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+Deprecated: Use GetUserOutgoingFriendsWithTimeShort instead.
+
+  GetUserOutgoingFriendsWithTime gets list of outgoing friends with requested time info
+*/
+func (a *Client) GetUserOutgoingFriendsWithTime(params *GetUserOutgoingFriendsWithTimeParams, authInfo runtime.ClientAuthInfoWriter) (*GetUserOutgoingFriendsWithTimeOK, *GetUserOutgoingFriendsWithTimeBadRequest, *GetUserOutgoingFriendsWithTimeUnauthorized, *GetUserOutgoingFriendsWithTimeForbidden, *GetUserOutgoingFriendsWithTimeNotFound, *GetUserOutgoingFriendsWithTimeInternalServerError, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewGetUserOutgoingFriendsWithTimeParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "getUserOutgoingFriendsWithTime",
+		Method:             "GET",
+		PathPattern:        "/friends/namespaces/{namespace}/me/outgoing-time",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &GetUserOutgoingFriendsWithTimeReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, nil, nil, nil, nil, nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *GetUserOutgoingFriendsWithTimeOK:
+		return v, nil, nil, nil, nil, nil, nil
+
+	case *GetUserOutgoingFriendsWithTimeBadRequest:
+		return nil, v, nil, nil, nil, nil, nil
+
+	case *GetUserOutgoingFriendsWithTimeUnauthorized:
+		return nil, nil, v, nil, nil, nil, nil
+
+	case *GetUserOutgoingFriendsWithTimeForbidden:
+		return nil, nil, nil, v, nil, nil, nil
+
+	case *GetUserOutgoingFriendsWithTimeNotFound:
+		return nil, nil, nil, nil, v, nil, nil
+
+	case *GetUserOutgoingFriendsWithTimeInternalServerError:
+		return nil, nil, nil, nil, nil, v, nil
+
+	default:
+		return nil, nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+  GetUserOutgoingFriendsWithTimeShort gets list of outgoing friends with requested time info
+*/
+func (a *Client) GetUserOutgoingFriendsWithTimeShort(params *GetUserOutgoingFriendsWithTimeParams, authInfo runtime.ClientAuthInfoWriter) (*GetUserOutgoingFriendsWithTimeOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewGetUserOutgoingFriendsWithTimeParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "getUserOutgoingFriendsWithTime",
+		Method:             "GET",
+		PathPattern:        "/friends/namespaces/{namespace}/me/outgoing-time",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &GetUserOutgoingFriendsWithTimeReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *GetUserOutgoingFriendsWithTimeOK:
+		return v, nil
+	case *GetUserOutgoingFriendsWithTimeBadRequest:
+		return nil, v
+	case *GetUserOutgoingFriendsWithTimeUnauthorized:
+		return nil, v
+	case *GetUserOutgoingFriendsWithTimeForbidden:
+		return nil, v
+	case *GetUserOutgoingFriendsWithTimeNotFound:
+		return nil, v
+	case *GetUserOutgoingFriendsWithTimeInternalServerError:
 		return nil, v
 
 	default:

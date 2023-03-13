@@ -30,8 +30,8 @@ type SyncTwitchDropsEntitlementReader struct {
 // ReadResponse reads a server response into the received o.
 func (o *SyncTwitchDropsEntitlementReader) ReadResponse(response runtime.ClientResponse, consumer runtime.Consumer) (interface{}, error) {
 	switch response.Code() {
-	case 204:
-		result := NewSyncTwitchDropsEntitlementNoContent()
+	case 200:
+		result := NewSyncTwitchDropsEntitlementOK()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
@@ -49,31 +49,56 @@ func (o *SyncTwitchDropsEntitlementReader) ReadResponse(response runtime.ClientR
 			return nil, err
 		}
 
-		return nil, fmt.Errorf("Requested PUT /platform/public/namespaces/{namespace}/users/{userId}/iap/twitch/sync returns an error %d: %s", response.Code(), string(data))
+		return nil, fmt.Errorf("Requested PUT /platform/public/namespaces/{namespace}/users/me/iap/twitch/sync returns an error %d: %s", response.Code(), string(data))
 	}
 }
 
-// NewSyncTwitchDropsEntitlementNoContent creates a SyncTwitchDropsEntitlementNoContent with default headers values
-func NewSyncTwitchDropsEntitlementNoContent() *SyncTwitchDropsEntitlementNoContent {
-	return &SyncTwitchDropsEntitlementNoContent{}
+// NewSyncTwitchDropsEntitlementOK creates a SyncTwitchDropsEntitlementOK with default headers values
+func NewSyncTwitchDropsEntitlementOK() *SyncTwitchDropsEntitlementOK {
+	return &SyncTwitchDropsEntitlementOK{}
 }
 
-/*SyncTwitchDropsEntitlementNoContent handles this case with default header values.
+/*SyncTwitchDropsEntitlementOK handles this case with default header values.
 
-  Sync Successful
+  successful operation
 */
-type SyncTwitchDropsEntitlementNoContent struct {
+type SyncTwitchDropsEntitlementOK struct {
+	Payload []*platformclientmodels.TwitchSyncResult
 }
 
-func (o *SyncTwitchDropsEntitlementNoContent) Error() string {
-	return fmt.Sprintf("[PUT /platform/public/namespaces/{namespace}/users/{userId}/iap/twitch/sync][%d] syncTwitchDropsEntitlementNoContent ", 204)
+func (o *SyncTwitchDropsEntitlementOK) Error() string {
+	return fmt.Sprintf("[PUT /platform/public/namespaces/{namespace}/users/me/iap/twitch/sync][%d] syncTwitchDropsEntitlementOK  %+v", 200, o.ToJSONString())
 }
 
-func (o *SyncTwitchDropsEntitlementNoContent) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+func (o *SyncTwitchDropsEntitlementOK) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
+}
+
+func (o *SyncTwitchDropsEntitlementOK) GetPayload() []*platformclientmodels.TwitchSyncResult {
+	return o.Payload
+}
+
+func (o *SyncTwitchDropsEntitlementOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
 		consumer = runtime.ByteStreamConsumer()
+	}
+
+	// response payload
+	if err := consumer.Consume(response.Body(), &o.Payload); err != nil && err != io.EOF {
+		return err
 	}
 
 	return nil
@@ -93,7 +118,7 @@ type SyncTwitchDropsEntitlementBadRequest struct {
 }
 
 func (o *SyncTwitchDropsEntitlementBadRequest) Error() string {
-	return fmt.Sprintf("[PUT /platform/public/namespaces/{namespace}/users/{userId}/iap/twitch/sync][%d] syncTwitchDropsEntitlementBadRequest  %+v", 400, o.ToJSONString())
+	return fmt.Sprintf("[PUT /platform/public/namespaces/{namespace}/users/me/iap/twitch/sync][%d] syncTwitchDropsEntitlementBadRequest  %+v", 400, o.ToJSONString())
 }
 
 func (o *SyncTwitchDropsEntitlementBadRequest) ToJSONString() string {

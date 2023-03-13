@@ -97,6 +97,35 @@ func (aaa *FriendsService) GetUserIncomingFriends(input *friends.GetUserIncoming
 	return ok.GetPayload(), nil
 }
 
+// deprecated(2022-01-10): please use GetUserIncomingFriendsWithTimeShort instead.
+func (aaa *FriendsService) GetUserIncomingFriendsWithTime(input *friends.GetUserIncomingFriendsWithTimeParams) ([]*lobbyclientmodels.ModelLoadIncomingFriendsWithTimeResponse, error) {
+	token, err := aaa.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, badRequest, unauthorized, forbidden, notFound, internalServerError, err := aaa.Client.Friends.GetUserIncomingFriendsWithTime(input, client.BearerToken(*token.AccessToken))
+	if badRequest != nil {
+		return nil, badRequest
+	}
+	if unauthorized != nil {
+		return nil, unauthorized
+	}
+	if forbidden != nil {
+		return nil, forbidden
+	}
+	if notFound != nil {
+		return nil, notFound
+	}
+	if internalServerError != nil {
+		return nil, internalServerError
+	}
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
 // deprecated(2022-01-10): please use GetUserOutgoingFriendsShort instead.
 func (aaa *FriendsService) GetUserOutgoingFriends(input *friends.GetUserOutgoingFriendsParams) ([]*lobbyclientmodels.ModelGetUserOutgoingFriendsResponse, error) {
 	token, err := aaa.TokenRepository.GetToken()
@@ -104,6 +133,35 @@ func (aaa *FriendsService) GetUserOutgoingFriends(input *friends.GetUserOutgoing
 		return nil, err
 	}
 	ok, badRequest, unauthorized, forbidden, notFound, internalServerError, err := aaa.Client.Friends.GetUserOutgoingFriends(input, client.BearerToken(*token.AccessToken))
+	if badRequest != nil {
+		return nil, badRequest
+	}
+	if unauthorized != nil {
+		return nil, unauthorized
+	}
+	if forbidden != nil {
+		return nil, forbidden
+	}
+	if notFound != nil {
+		return nil, notFound
+	}
+	if internalServerError != nil {
+		return nil, internalServerError
+	}
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
+// deprecated(2022-01-10): please use GetUserOutgoingFriendsWithTimeShort instead.
+func (aaa *FriendsService) GetUserOutgoingFriendsWithTime(input *friends.GetUserOutgoingFriendsWithTimeParams) ([]*lobbyclientmodels.ModelLoadOutgoingFriendsWithTimeResponse, error) {
+	token, err := aaa.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, badRequest, unauthorized, forbidden, notFound, internalServerError, err := aaa.Client.Friends.GetUserOutgoingFriendsWithTime(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -402,6 +460,31 @@ func (aaa *FriendsService) GetUserIncomingFriendsShort(input *friends.GetUserInc
 	return ok.GetPayload(), nil
 }
 
+func (aaa *FriendsService) GetUserIncomingFriendsWithTimeShort(input *friends.GetUserIncomingFriendsWithTimeParams) ([]*lobbyclientmodels.ModelLoadIncomingFriendsWithTimeResponse, error) {
+	authInfoWriter := input.AuthInfoWriter
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
+	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  aaa.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
+	ok, err := aaa.Client.Friends.GetUserIncomingFriendsWithTimeShort(input, authInfoWriter)
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
 func (aaa *FriendsService) GetUserOutgoingFriendsShort(input *friends.GetUserOutgoingFriendsParams) ([]*lobbyclientmodels.ModelGetUserOutgoingFriendsResponse, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
@@ -420,6 +503,31 @@ func (aaa *FriendsService) GetUserOutgoingFriendsShort(input *friends.GetUserOut
 	}
 
 	ok, err := aaa.Client.Friends.GetUserOutgoingFriendsShort(input, authInfoWriter)
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
+func (aaa *FriendsService) GetUserOutgoingFriendsWithTimeShort(input *friends.GetUserOutgoingFriendsWithTimeParams) ([]*lobbyclientmodels.ModelLoadOutgoingFriendsWithTimeResponse, error) {
+	authInfoWriter := input.AuthInfoWriter
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
+	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  aaa.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
+	ok, err := aaa.Client.Friends.GetUserOutgoingFriendsWithTimeShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}

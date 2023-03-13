@@ -8,6 +8,7 @@ package basic
 
 import (
 	"github.com/AccelByte/sample-apps/cmd/basic/anonymization"
+	"github.com/AccelByte/sample-apps/cmd/basic/config"
 	"github.com/AccelByte/sample-apps/cmd/basic/equ8Config"
 	"github.com/AccelByte/sample-apps/cmd/basic/fileUpload"
 	"github.com/AccelByte/sample-apps/cmd/basic/misc"
@@ -35,6 +36,10 @@ func init() {
 	BasicCmd.AddCommand(userAction.GetUserStatusCmd)
 	BasicCmd.AddCommand(userAction.UnBanUsersCmd)
 	BasicCmd.AddCommand(namespace.UpdateNamespaceCmd)
+	BasicCmd.AddCommand(config.CreateConfigCmd)
+	BasicCmd.AddCommand(config.GetConfig1Cmd)
+	BasicCmd.AddCommand(config.DeleteConfig1Cmd)
+	BasicCmd.AddCommand(config.UpdateConfig1Cmd)
 	BasicCmd.AddCommand(equ8Config.GetConfigCmd)
 	BasicCmd.AddCommand(equ8Config.DeleteConfigCmd)
 	BasicCmd.AddCommand(equ8Config.UpdateConfigCmd)

@@ -25,7 +25,6 @@ type ModelBackupCodesResponseV4 struct {
 	InvalidCodes []string `json:"invalidCodes"`
 
 	// valid codes
-	// Required: true
 	ValidCodes []string `json:"validCodes"`
 }
 
@@ -34,10 +33,6 @@ func (m *ModelBackupCodesResponseV4) Validate(formats strfmt.Registry) error {
 	var res []error
 
 	if err := m.validateGeneratedAt(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.validateValidCodes(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -50,15 +45,6 @@ func (m *ModelBackupCodesResponseV4) Validate(formats strfmt.Registry) error {
 func (m *ModelBackupCodesResponseV4) validateGeneratedAt(formats strfmt.Registry) error {
 
 	if err := validate.Required("generatedAt", "body", m.GeneratedAt); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *ModelBackupCodesResponseV4) validateValidCodes(formats strfmt.Registry) error {
-
-	if err := validate.Required("validCodes", "body", m.ValidCodes); err != nil {
 		return err
 	}
 

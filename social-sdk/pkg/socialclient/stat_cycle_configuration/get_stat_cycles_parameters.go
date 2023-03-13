@@ -120,6 +120,11 @@ type GetStatCyclesParams struct {
 	Namespace string
 	/*Offset*/
 	Offset *int32
+	/*SortBy
+	  default is unsorted, allow values: [start, start:asc, start:desc, createdAt, createdAt:asc, createdAt:desc, updatedAt, updatedAt:asc, updatedAt:desc],and support sort group, eg: sortBy=start:asc,createdAt:desc.
+
+	*/
+	SortBy *string
 	/*Status*/
 	Status *string
 
@@ -231,6 +236,17 @@ func (o *GetStatCyclesParams) SetOffset(offset *int32) {
 	o.Offset = offset
 }
 
+// WithSortBy adds the sortBy to the get stat cycles params
+func (o *GetStatCyclesParams) WithSortBy(sortBy *string) *GetStatCyclesParams {
+	o.SetSortBy(sortBy)
+	return o
+}
+
+// SetSortBy adds the sortBy to the get stat cycles params
+func (o *GetStatCyclesParams) SetSortBy(sortBy *string) {
+	o.SortBy = sortBy
+}
+
 // WithStatus adds the status to the get stat cycles params
 func (o *GetStatCyclesParams) WithStatus(status *string) *GetStatCyclesParams {
 	o.SetStatus(status)
@@ -313,6 +329,22 @@ func (o *GetStatCyclesParams) WriteToRequest(r runtime.ClientRequest, reg strfmt
 		qOffset := swag.FormatInt32(qrOffset)
 		if qOffset != "" {
 			if err := r.SetQueryParam("offset", qOffset); err != nil {
+				return err
+			}
+		}
+
+	}
+
+	if o.SortBy != nil {
+
+		// query param sortBy
+		var qrSortBy string
+		if o.SortBy != nil {
+			qrSortBy = *o.SortBy
+		}
+		qSortBy := qrSortBy
+		if qSortBy != "" {
+			if err := r.SetQueryParam("sortBy", qSortBy); err != nil {
 				return err
 			}
 		}

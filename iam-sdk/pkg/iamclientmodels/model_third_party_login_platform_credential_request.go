@@ -32,7 +32,6 @@ type ModelThirdPartyLoginPlatformCredentialRequest struct {
 	AWSCognitoUserPool *string `json:"AWSCognitoUserPool"`
 
 	// allowed clients that can show this login method
-	// Required: true
 	AllowedClients []string `json:"AllowedClients"`
 
 	// app Id
@@ -108,8 +107,7 @@ type ModelThirdPartyLoginPlatformCredentialRequest struct {
 	TokenAuthenticationType *string `json:"TokenAuthenticationType"`
 
 	// A JSON containing how IAM service retrieve value from id token claims or userInfo endpoint. Used for generic oauth flow. Currently allowed fields list [userIdentity, name, email, avatarUrl]
-	// Required: true
-	TokenClaimsMapping map[string]string `json:"TokenClaimsMapping"`
+	TokenClaimsMapping map[string]string `json:"TokenClaimsMapping,omitempty"`
 
 	// third party token endpoint to obtain token
 	// Required: true
@@ -141,10 +139,6 @@ func (m *ModelThirdPartyLoginPlatformCredentialRequest) Validate(formats strfmt.
 	}
 
 	if err := m.validateAWSCognitoUserPool(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.validateAllowedClients(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -220,10 +214,6 @@ func (m *ModelThirdPartyLoginPlatformCredentialRequest) Validate(formats strfmt.
 		res = append(res, err)
 	}
 
-	if err := m.validateTokenClaimsMapping(formats); err != nil {
-		res = append(res, err)
-	}
-
 	if err := m.validateTokenEndpoint(formats); err != nil {
 		res = append(res, err)
 	}
@@ -267,15 +257,6 @@ func (m *ModelThirdPartyLoginPlatformCredentialRequest) validateAWSCognitoRegion
 func (m *ModelThirdPartyLoginPlatformCredentialRequest) validateAWSCognitoUserPool(formats strfmt.Registry) error {
 
 	if err := validate.Required("AWSCognitoUserPool", "body", m.AWSCognitoUserPool); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *ModelThirdPartyLoginPlatformCredentialRequest) validateAllowedClients(formats strfmt.Registry) error {
-
-	if err := validate.Required("AllowedClients", "body", m.AllowedClients); err != nil {
 		return err
 	}
 
@@ -465,11 +446,6 @@ func (m *ModelThirdPartyLoginPlatformCredentialRequest) validateTokenAuthenticat
 	if err := validate.Required("TokenAuthenticationType", "body", m.TokenAuthenticationType); err != nil {
 		return err
 	}
-
-	return nil
-}
-
-func (m *ModelThirdPartyLoginPlatformCredentialRequest) validateTokenClaimsMapping(formats strfmt.Registry) error {
 
 	return nil
 }

@@ -85,8 +85,7 @@ type ModelUserResponseV3 struct {
 	NewEmailAddress string `json:"newEmailAddress,omitempty"`
 
 	// old email address
-	// Required: true
-	OldEmailAddress *string `json:"oldEmailAddress"`
+	OldEmailAddress string `json:"oldEmailAddress,omitempty"`
 
 	// permissions
 	// Required: true
@@ -180,10 +179,6 @@ func (m *ModelUserResponseV3) Validate(formats strfmt.Registry) error {
 	}
 
 	if err := m.validateNamespaceRoles(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.validateOldEmailAddress(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -378,15 +373,6 @@ func (m *ModelUserResponseV3) validateNamespaceRoles(formats strfmt.Registry) er
 			}
 		}
 
-	}
-
-	return nil
-}
-
-func (m *ModelUserResponseV3) validateOldEmailAddress(formats strfmt.Registry) error {
-
-	if err := validate.Required("oldEmailAddress", "body", m.OldEmailAddress); err != nil {
-		return err
 	}
 
 	return nil

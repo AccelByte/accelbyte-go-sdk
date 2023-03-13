@@ -6,12 +6,8 @@ package platformclientmodels
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
-	"encoding/json"
-
-	"github.com/go-openapi/errors"
 	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
-	"github.com/go-openapi/validate"
 )
 
 // RevokeEntitlement revoke entitlement
@@ -19,134 +15,12 @@ import (
 // swagger:model RevokeEntitlement
 type RevokeEntitlement struct {
 
-	// entitlement clazz
-	// Enum: [APP CODE ENTITLEMENT LOOTBOX MEDIA OPTIONBOX SUBSCRIPTION]
-	Clazz string `json:"clazz,omitempty"`
-
 	// entitlement id
 	EntitlementID string `json:"entitlementId,omitempty"`
-
-	// entitlement type
-	// Enum: [CONSUMABLE DURABLE]
-	Type string `json:"type,omitempty"`
 }
 
 // Validate validates this revoke entitlement
 func (m *RevokeEntitlement) Validate(formats strfmt.Registry) error {
-	var res []error
-
-	if err := m.validateClazz(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.validateType(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if len(res) > 0 {
-		return errors.CompositeValidationError(res...)
-	}
-	return nil
-}
-
-var revokeEntitlementTypeClazzPropEnum []interface{}
-
-func init() {
-	var res []string
-	if err := json.Unmarshal([]byte(`["APP","CODE","ENTITLEMENT","LOOTBOX","MEDIA","OPTIONBOX","SUBSCRIPTION"]`), &res); err != nil {
-		panic(err)
-	}
-	for _, v := range res {
-		revokeEntitlementTypeClazzPropEnum = append(revokeEntitlementTypeClazzPropEnum, v)
-	}
-}
-
-const (
-
-	// RevokeEntitlementClazzAPP captures enum value "APP"
-	RevokeEntitlementClazzAPP string = "APP"
-
-	// RevokeEntitlementClazzCODE captures enum value "CODE"
-	RevokeEntitlementClazzCODE string = "CODE"
-
-	// RevokeEntitlementClazzENTITLEMENT captures enum value "ENTITLEMENT"
-	RevokeEntitlementClazzENTITLEMENT string = "ENTITLEMENT"
-
-	// RevokeEntitlementClazzLOOTBOX captures enum value "LOOTBOX"
-	RevokeEntitlementClazzLOOTBOX string = "LOOTBOX"
-
-	// RevokeEntitlementClazzMEDIA captures enum value "MEDIA"
-	RevokeEntitlementClazzMEDIA string = "MEDIA"
-
-	// RevokeEntitlementClazzOPTIONBOX captures enum value "OPTIONBOX"
-	RevokeEntitlementClazzOPTIONBOX string = "OPTIONBOX"
-
-	// RevokeEntitlementClazzSUBSCRIPTION captures enum value "SUBSCRIPTION"
-	RevokeEntitlementClazzSUBSCRIPTION string = "SUBSCRIPTION"
-)
-
-// prop value enum
-func (m *RevokeEntitlement) validateClazzEnum(path, location string, value string) error {
-	if err := validate.EnumCase(path, location, value, revokeEntitlementTypeClazzPropEnum, true); err != nil {
-		return err
-	}
-	return nil
-}
-
-func (m *RevokeEntitlement) validateClazz(formats strfmt.Registry) error {
-
-	if swag.IsZero(m.Clazz) { // not required
-		return nil
-	}
-
-	// value enum
-	if err := m.validateClazzEnum("clazz", "body", m.Clazz); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-var revokeEntitlementTypeTypePropEnum []interface{}
-
-func init() {
-	var res []string
-	if err := json.Unmarshal([]byte(`["CONSUMABLE","DURABLE"]`), &res); err != nil {
-		panic(err)
-	}
-	for _, v := range res {
-		revokeEntitlementTypeTypePropEnum = append(revokeEntitlementTypeTypePropEnum, v)
-	}
-}
-
-const (
-
-	// RevokeEntitlementTypeCONSUMABLE captures enum value "CONSUMABLE"
-	RevokeEntitlementTypeCONSUMABLE string = "CONSUMABLE"
-
-	// RevokeEntitlementTypeDURABLE captures enum value "DURABLE"
-	RevokeEntitlementTypeDURABLE string = "DURABLE"
-)
-
-// prop value enum
-func (m *RevokeEntitlement) validateTypeEnum(path, location string, value string) error {
-	if err := validate.EnumCase(path, location, value, revokeEntitlementTypeTypePropEnum, true); err != nil {
-		return err
-	}
-	return nil
-}
-
-func (m *RevokeEntitlement) validateType(formats strfmt.Registry) error {
-
-	if swag.IsZero(m.Type) { // not required
-		return nil
-	}
-
-	// value enum
-	if err := m.validateTypeEnum("type", "body", m.Type); err != nil {
-		return err
-	}
-
 	return nil
 }
 

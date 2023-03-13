@@ -50,8 +50,7 @@ type RetrievePolicyVersionResponse struct {
 	LocalizedPolicyVersions []*LocalizedPolicyVersionObject `json:"localizedPolicyVersions"`
 
 	// policy Id
-	// Required: true
-	PolicyID *string `json:"policyId"`
+	PolicyID string `json:"policyId,omitempty"`
 
 	// published date
 	// Format: date-time
@@ -90,10 +89,6 @@ func (m *RetrievePolicyVersionResponse) Validate(formats strfmt.Registry) error 
 	}
 
 	if err := m.validateLocalizedPolicyVersions(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.validatePolicyID(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -180,15 +175,6 @@ func (m *RetrievePolicyVersionResponse) validateLocalizedPolicyVersions(formats 
 			}
 		}
 
-	}
-
-	return nil
-}
-
-func (m *RetrievePolicyVersionResponse) validatePolicyID(formats strfmt.Registry) error {
-
-	if err := validate.Required("policyId", "body", m.PolicyID); err != nil {
-		return err
 	}
 
 	return nil

@@ -41,6 +41,7 @@ func init() {
 	SessionCmd.AddCommand(gameSession.UpdateGameSessionCmd)
 	SessionCmd.AddCommand(gameSession.DeleteGameSessionCmd)
 	SessionCmd.AddCommand(gameSession.PatchUpdateGameSessionCmd)
+	SessionCmd.AddCommand(gameSession.UpdateGameSessionBackfillTicketIDCmd)
 	SessionCmd.AddCommand(gameSession.PublicGameSessionInviteCmd)
 	SessionCmd.AddCommand(gameSession.JoinGameSessionCmd)
 	SessionCmd.AddCommand(gameSession.LeaveGameSessionCmd)

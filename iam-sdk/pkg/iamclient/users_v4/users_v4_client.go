@@ -110,6 +110,8 @@ type ClientService interface {
 	PublicGetMyBackupCodesV4Short(params *PublicGetMyBackupCodesV4Params, authInfo runtime.ClientAuthInfoWriter) (*PublicGetMyBackupCodesV4OK, error)
 	PublicGetMyEnabledFactorsV4(params *PublicGetMyEnabledFactorsV4Params, authInfo runtime.ClientAuthInfoWriter) (*PublicGetMyEnabledFactorsV4OK, *PublicGetMyEnabledFactorsV4BadRequest, *PublicGetMyEnabledFactorsV4Unauthorized, *PublicGetMyEnabledFactorsV4Forbidden, *PublicGetMyEnabledFactorsV4NotFound, *PublicGetMyEnabledFactorsV4InternalServerError, error)
 	PublicGetMyEnabledFactorsV4Short(params *PublicGetMyEnabledFactorsV4Params, authInfo runtime.ClientAuthInfoWriter) (*PublicGetMyEnabledFactorsV4OK, error)
+	PublicInviteUserV4(params *PublicInviteUserV4Params, authInfo runtime.ClientAuthInfoWriter) (*PublicInviteUserV4Created, *PublicInviteUserV4BadRequest, *PublicInviteUserV4Conflict, *PublicInviteUserV4UnprocessableEntity, *PublicInviteUserV4InternalServerError, error)
+	PublicInviteUserV4Short(params *PublicInviteUserV4Params, authInfo runtime.ClientAuthInfoWriter) (*PublicInviteUserV4Created, error)
 	PublicMakeFactorMyDefaultV4(params *PublicMakeFactorMyDefaultV4Params, authInfo runtime.ClientAuthInfoWriter) (*PublicMakeFactorMyDefaultV4NoContent, *PublicMakeFactorMyDefaultV4BadRequest, *PublicMakeFactorMyDefaultV4Unauthorized, *PublicMakeFactorMyDefaultV4Forbidden, *PublicMakeFactorMyDefaultV4NotFound, *PublicMakeFactorMyDefaultV4InternalServerError, error)
 	PublicMakeFactorMyDefaultV4Short(params *PublicMakeFactorMyDefaultV4Params, authInfo runtime.ClientAuthInfoWriter) (*PublicMakeFactorMyDefaultV4NoContent, error)
 	PublicRemoveTrustedDeviceV4(params *PublicRemoveTrustedDeviceV4Params, authInfo runtime.ClientAuthInfoWriter) (*PublicRemoveTrustedDeviceV4NoContent, *PublicRemoveTrustedDeviceV4BadRequest, *PublicRemoveTrustedDeviceV4Unauthorized, *PublicRemoveTrustedDeviceV4Forbidden, *PublicRemoveTrustedDeviceV4NotFound, *PublicRemoveTrustedDeviceV4InternalServerError, error)
@@ -4959,6 +4961,138 @@ func (a *Client) PublicGetMyEnabledFactorsV4Short(params *PublicGetMyEnabledFact
 	case *PublicGetMyEnabledFactorsV4NotFound:
 		return nil, v
 	case *PublicGetMyEnabledFactorsV4InternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+Deprecated: Use PublicInviteUserV4Short instead.
+
+  PublicInviteUserV4 publics invite admin user v4
+
+  This endpoint is used to invite a game studio admin user with new namespace in multi tenant mode.
+It will return error if the service multi tenant mode is set to false.
+
+Request body details:
+- emailAddress: email address of the user to be invited
+- namespace: new namespace of the user to be created
+- namespaceDisplayName: display name of the new namespace
+
+The invited users will also be assigned with &#34;User&#34; role by default.
+
+*/
+func (a *Client) PublicInviteUserV4(params *PublicInviteUserV4Params, authInfo runtime.ClientAuthInfoWriter) (*PublicInviteUserV4Created, *PublicInviteUserV4BadRequest, *PublicInviteUserV4Conflict, *PublicInviteUserV4UnprocessableEntity, *PublicInviteUserV4InternalServerError, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewPublicInviteUserV4Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "PublicInviteUserV4",
+		Method:             "POST",
+		PathPattern:        "/iam/v4/public/users/invite",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &PublicInviteUserV4Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, nil, nil, nil, nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *PublicInviteUserV4Created:
+		return v, nil, nil, nil, nil, nil
+
+	case *PublicInviteUserV4BadRequest:
+		return nil, v, nil, nil, nil, nil
+
+	case *PublicInviteUserV4Conflict:
+		return nil, nil, v, nil, nil, nil
+
+	case *PublicInviteUserV4UnprocessableEntity:
+		return nil, nil, nil, v, nil, nil
+
+	case *PublicInviteUserV4InternalServerError:
+		return nil, nil, nil, nil, v, nil
+
+	default:
+		return nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+  PublicInviteUserV4Short publics invite admin user v4
+
+  This endpoint is used to invite a game studio admin user with new namespace in multi tenant mode.
+It will return error if the service multi tenant mode is set to false.
+
+Request body details:
+- emailAddress: email address of the user to be invited
+- namespace: new namespace of the user to be created
+- namespaceDisplayName: display name of the new namespace
+
+The invited users will also be assigned with &#34;User&#34; role by default.
+
+*/
+func (a *Client) PublicInviteUserV4Short(params *PublicInviteUserV4Params, authInfo runtime.ClientAuthInfoWriter) (*PublicInviteUserV4Created, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewPublicInviteUserV4Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "PublicInviteUserV4",
+		Method:             "POST",
+		PathPattern:        "/iam/v4/public/users/invite",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &PublicInviteUserV4Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *PublicInviteUserV4Created:
+		return v, nil
+	case *PublicInviteUserV4BadRequest:
+		return nil, v
+	case *PublicInviteUserV4Conflict:
+		return nil, v
+	case *PublicInviteUserV4UnprocessableEntity:
+		return nil, v
+	case *PublicInviteUserV4InternalServerError:
 		return nil, v
 
 	default:

@@ -8,7 +8,7 @@
     },
     "description": "Justice Social Service",
     "title": "justice-social-service",
-    "version": "2.0.0"
+    "version": "2.1.0"
   },
   "schemes": [
     "https"
@@ -34,6 +34,9 @@
     },
     {
       "name": "UserStatistic"
+    },
+    {
+      "name": "UserStatisticCycle"
     }
   ],
   "securityDefinitions": {
@@ -1816,6 +1819,13 @@
             "type": "integer"
           },
           {
+            "description": "default is unsorted, allow values: [start, start:asc, start:desc, createdAt, createdAt:asc, createdAt:desc, updatedAt, updatedAt:asc, updatedAt:desc],and support sort group, eg: sortBy=start:asc,createdAt:desc.",
+            "in": "query",
+            "name": "sortBy",
+            "required": false,
+            "type": "string"
+          },
+          {
             "enum": [
               "ACTIVE",
               "INIT",
@@ -1862,7 +1872,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "Create stat cycle.\u0026lt;br\u0026gt;Other detail info:\u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;ADMIN:NAMESPACE:{namespace}:STAT\u0026#34;, action=1 (CREATE)\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: created stat cycle\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
+        "description": "Create stat cycle.\u0026lt;br\u0026gt;Fields:\u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;name: Cycle name, maximum length is 128 characters. \u0026lt;b\u0026gt;(required)\u0026lt;/b\u0026gt;.\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;resetTime: Reset time must follow \u0026lt;b\u0026gt;hours:minutes\u0026lt;/b\u0026gt; in 24 hours format e.g. 01:30, 23:15. \u0026lt;b\u0026gt;(required)\u0026lt;/b\u0026gt;\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;resetDay: Reset Day follows the ISO-8601 standard, from 1 (Monday) to 7 (Sunday). Required when cycleType is WEEKLY.\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;resetDate: Reset Date must be a number 1 - 31. Required when cycleType is MONTHLY or ANNUALLY.\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;resetMonth: Reset Month must be a number 1 - 12. Required when cycleType is ANNUALLY.\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;seasonPeriod: Season period must be a number greater than or equal to 1 (days). Required when cycleType is SEASONAL.\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;start: Start time must follow RFC3339 standard. e.g. 2023-02-24T05:10:24.865Z. \u0026lt;b\u0026gt;(required)\u0026lt;/b\u0026gt;\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;end: End time must follow RFC3339 standard. e.g. 2023-02-24T05:10:24.865Z.\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;Other detail info:\u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;ADMIN:NAMESPACE:{namespace}:STAT\u0026#34;, action=1 (CREATE)\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: created stat cycle\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "createStatCycle",
         "parameters": [
           {
@@ -2777,7 +2787,7 @@
     },
     "/social/v1/admin/namespaces/{namespace}/stats/search": {
       "get": {
-        "description": "Query stats stats by keyword.\u0026lt;br\u0026gt;Other detail info:\u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;ADMIN:NAMESPACE:{namespace}:STAT\u0026#34;, action=2 (READ)\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;i\u0026gt;: stats\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
+        "description": "Query stats by keyword.\u0026lt;br\u0026gt;Other detail info:\u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;ADMIN:NAMESPACE:{namespace}:STAT\u0026#34;, action=2 (READ)\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;i\u0026gt;: stats\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "queryStats",
         "parameters": [
           {
@@ -3075,6 +3085,94 @@
         "x-authorization": {
           "action": "8",
           "resource": "ADMIN:NAMESPACE:{namespace}:STAT"
+        }
+      }
+    },
+    "/social/v1/admin/namespaces/{namespace}/users/{userId}/statCycles/{cycleId}/statCycleitems": {
+      "get": {
+        "description": "List user\u0026#39;s statCycleItems by statCycle.\u0026lt;br\u0026gt;Other detail info:\u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;ADMIN:NAMESPACE:{namespace}:USER:{userId}:STATITEM\u0026#34;, action=2 (READ)\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: stat cycle items\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
+        "operationId": "getUserStatCycleItems",
+        "parameters": [
+          {
+            "description": "cycle id",
+            "in": "path",
+            "name": "cycleId",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "namespace",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "user ID",
+            "in": "path",
+            "name": "userId",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "default": 20,
+            "format": "int32",
+            "in": "query",
+            "name": "limit",
+            "required": false,
+            "type": "integer"
+          },
+          {
+            "default": 0,
+            "format": "int32",
+            "in": "query",
+            "name": "offset",
+            "required": false,
+            "type": "integer"
+          },
+          {
+            "description": "comma separated stat codes",
+            "in": "query",
+            "name": "statCodes",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/UserStatCycleItemPagingSlicedResult"
+            }
+          },
+          "404": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eErrorCode\u003c/td\u003e\u003ctd\u003eErrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e12245\u003c/td\u003e\u003ctd\u003eStat cycle [{id}] cannot be found in namespace [{namespace}]\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/ErrorEntity"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          },
+          {
+            "HasPermission": [
+              "ADMIN:NAMESPACE:{namespace}:USER:{userId}:STATITEM [READ]"
+            ],
+            "authorization": []
+          }
+        ],
+        "summary": "List user's statCycleItems by statCycle",
+        "tags": [
+          "UserStatisticCycle"
+        ],
+        "x-authorization": {
+          "action": "2",
+          "resource": "ADMIN:NAMESPACE:{namespace}:USER:{userId}:STATITEM"
         }
       }
     },
@@ -3961,6 +4059,13 @@
             "type": "integer"
           },
           {
+            "description": "default is unsorted, allow values: [start, start:asc, start:desc, createdAt, createdAt:asc, createdAt:desc, updatedAt, updatedAt:asc, updatedAt:desc],and support sort group, eg: sortBy=start:asc,createdAt:desc.",
+            "in": "query",
+            "name": "sortBy",
+            "required": false,
+            "type": "string"
+          },
+          {
             "enum": [
               "ACTIVE",
               "INIT",
@@ -4366,6 +4471,12 @@
               "$ref": "#/definitions/StatInfo"
             }
           },
+          "404": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eErrorCode\u003c/td\u003e\u003ctd\u003eErrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e12245\u003c/td\u003e\u003ctd\u003eStat cycle [{id}] cannot be found in namespace [{namespace}]\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/ErrorEntity"
+            }
+          },
           "409": {
             "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eErrorCode\u003c/td\u003e\u003ctd\u003eErrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e12271\u003c/td\u003e\u003ctd\u003eStat template with code [{statCode}] already exists in namespace [{namespace}]\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
@@ -4391,6 +4502,94 @@
         "x-authorization": {
           "action": "1",
           "resource": "NAMESPACE:{namespace}:STAT"
+        }
+      }
+    },
+    "/social/v1/public/namespaces/{namespace}/users/{userId}/statCycles/{cycleId}/statCycleitems": {
+      "get": {
+        "description": "List user\u0026#39;s statCycleItems by statCycle.\u0026lt;br\u0026gt;Other detail info:\u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;NAMESPACE:{namespace}:USER:{userId}:STATITEM\u0026#34;, action=2 (READ)\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: stat cycle items\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
+        "operationId": "getUserStatCycleItems_1",
+        "parameters": [
+          {
+            "description": "cycle id",
+            "in": "path",
+            "name": "cycleId",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "namespace",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "user ID",
+            "in": "path",
+            "name": "userId",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "default": 20,
+            "format": "int32",
+            "in": "query",
+            "name": "limit",
+            "required": false,
+            "type": "integer"
+          },
+          {
+            "default": 0,
+            "format": "int32",
+            "in": "query",
+            "name": "offset",
+            "required": false,
+            "type": "integer"
+          },
+          {
+            "description": "comma separated stat codes",
+            "in": "query",
+            "name": "statCodes",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/UserStatCycleItemPagingSlicedResult"
+            }
+          },
+          "404": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eErrorCode\u003c/td\u003e\u003ctd\u003eErrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e12245\u003c/td\u003e\u003ctd\u003eStat cycle [{id}] cannot be found in namespace [{namespace}]\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/ErrorEntity"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          },
+          {
+            "HasPermission": [
+              "NAMESPACE:{namespace}:USER:{userId}:STATITEM [READ]"
+            ],
+            "authorization": []
+          }
+        ],
+        "summary": "List user's statCycleItems by statCycle",
+        "tags": [
+          "UserStatisticCycle"
+        ],
+        "x-authorization": {
+          "action": "2",
+          "resource": "NAMESPACE:{namespace}:USER:{userId}:STATITEM"
         }
       }
     },
@@ -6810,7 +7009,7 @@
           "type": "string"
         },
         "seasonPeriod": {
-          "description": "reset month",
+          "description": "season period",
           "format": "int32",
           "type": "integer"
         },
@@ -6985,7 +7184,7 @@
           "type": "string"
         },
         "seasonPeriod": {
-          "description": "reset month",
+          "description": "season period",
           "format": "int32",
           "type": "integer"
         },
@@ -7265,6 +7464,83 @@
           "type": "string"
         }
       },
+      "type": "object"
+    },
+    "UserStatCycleItemInfo": {
+      "properties": {
+        "createdAt": {
+          "format": "date-time",
+          "type": "string",
+          "x-nullable": false
+        },
+        "cycleId": {
+          "type": "string"
+        },
+        "cycleName": {
+          "type": "string"
+        },
+        "cycleVersion": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "namespace": {
+          "type": "string"
+        },
+        "statCode": {
+          "type": "string"
+        },
+        "statName": {
+          "type": "string"
+        },
+        "tags": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array",
+          "uniqueItems": true
+        },
+        "updatedAt": {
+          "format": "date-time",
+          "type": "string",
+          "x-nullable": false
+        },
+        "userId": {
+          "type": "string"
+        },
+        "value": {
+          "format": "double",
+          "type": "number"
+        }
+      },
+      "required": [
+        "createdAt",
+        "cycleId",
+        "cycleName",
+        "cycleVersion",
+        "namespace",
+        "statCode",
+        "statName",
+        "updatedAt",
+        "userId",
+        "value"
+      ],
+      "type": "object"
+    },
+    "UserStatCycleItemPagingSlicedResult": {
+      "properties": {
+        "data": {
+          "items": {
+            "$ref": "#/definitions/UserStatCycleItemInfo"
+          },
+          "type": "array"
+        },
+        "paging": {
+          "$ref": "#/definitions/Paging"
+        }
+      },
+      "required": [
+        "data"
+      ],
       "type": "object"
     },
     "UserStatItemInfo": {

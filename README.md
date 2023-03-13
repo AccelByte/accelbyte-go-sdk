@@ -6,7 +6,7 @@ This SDK was generated from OpenAPI specification documents included in the [spe
 
 ## Setup
 
-This SDK requires `go 1.16` or newer version to be installed.
+This SDK requires `go 1.18` or newer version to be installed.
 
 ### Import SDK Project
 

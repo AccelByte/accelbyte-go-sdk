@@ -10,7 +10,7 @@ This update is using lambda function url and token validation inside.
 
 2. [Docker](https://docs.docker.com/engine/install/)
 
-3. [Go 1.16](https://go.dev/dl/) 
+3. [Go 1.18](https://go.dev/dl/) 
 
 4. [Postman](https://www.postman.com/downloads/)
 

@@ -10,3 +10,7 @@
 
    - removed `UserID` field from `github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclient/iap.SyncTwitchDropsEntitlementParams`
    - function `github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/platform.IAPService.SyncTwitchDropsEntitlementShort()` now return 2 values
+
+#### Go Version Updated to 1.18
+
+Required go version to build the project >= **go 1.18**

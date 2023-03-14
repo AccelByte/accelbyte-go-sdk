@@ -1,3 +1,23 @@
+<a name="v0.40.0"></a>
+## [v0.40.0] - 2023-03-14
+
+### Chore
+- upgrade go version to 1.18
+- **aws-lambda-exmaple-update:** fix typo in README.md
+- **cli:** regenerate with new free hard coding template
+- **docs:** rename AccelByte Cloud to AccelByte Gaming Services & Server SDK to Extend SDK
+- **wrapper:** regenerate with new free hard coding template
+
+### Feat
+- **aws-lambda-example:** functionURL working without access token validation
+- **aws-lambda-example_update:** allow both local test and function url invocation
+- **custom:** examples quick customization
+
+### Fix
+- **test:** using temp user in reporting integration test
+- **test:** checking conflict reason in reporting integration test
+
+
 <a name="v0.39.0"></a>
 ## [v0.39.0] - 2023-02-28
 

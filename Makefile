@@ -10,7 +10,7 @@ GOLANG_DOCKER_IMAGE := golang:1.18
 
 lint:
 	rm -f lint.err
-	find -type f -iname go.mod -not -path "*/.justice-codegen-sdk/*" -exec dirname {} \; | while read DIRECTORY; do \
+	find -type f -iname go.mod -not -path "*/.justice-codegen-sdk/*" -not -path "*/.cache/*" -exec dirname {} \; | while read DIRECTORY; do \
 		echo "# $$DIRECTORY"; \
 		docker run -t --rm -u $$(id -u):$$(id -g) -v $$(pwd):/data/ -w /data/ -e GOCACHE=/data/.cache/go-build -e GOLANGCI_LINT_CACHE=/data/.cache/go-lint golangci/golangci-lint:v1.42.1\
 				sh -c "cd $$DIRECTORY && golangci-lint -v --timeout 5m --max-same-issues 0 --max-issues-per-linter 0 --color never run || touch /data/lint.err"; \

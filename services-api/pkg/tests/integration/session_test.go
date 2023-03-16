@@ -167,7 +167,7 @@ func TestIntegrationConfigurationTemplate(t *testing.T) {
 		Name:      *created.Name,
 		Namespace: integration.NamespaceTest,
 	}
-	deleted, errDeleted := configService.AdminDeleteConfigurationTemplateV1Short(inputDelete)
+	errDeleted := configService.AdminDeleteConfigurationTemplateV1Short(inputDelete)
 	if errDeleted != nil {
 		assert.FailNow(t, errDeleted.Error())
 
@@ -176,7 +176,7 @@ func TestIntegrationConfigurationTemplate(t *testing.T) {
 	// ESAC
 
 	// Assert
-	assert.NotNil(t, deleted, "should not be nil")
+	assert.Nil(t, errDeleted, "should be nil")
 }
 
 func TestIntegrationGameSession(t *testing.T) {
@@ -397,7 +397,7 @@ func deleteCfgTemplate(name string) error {
 		Name:      name,
 		Namespace: integration.NamespaceTest,
 	}
-	_, errDeleted := configService.AdminDeleteConfigurationTemplateV1Short(inputDelete)
+	errDeleted := configService.AdminDeleteConfigurationTemplateV1Short(inputDelete)
 	if errDeleted != nil {
 		logrus.Fatal(errDeleted.Error())
 

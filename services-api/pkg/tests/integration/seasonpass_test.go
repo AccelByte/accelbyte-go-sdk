@@ -138,7 +138,6 @@ func getStoreTierItemID(storeID string) (*string, error) {
 
 	// Create Store Item (SEASON TIER)
 	itemCurrencyType := platformclientmodels.RegionDataItemCurrencyTypeREAL
-	itemPrice := int32(0)
 	itemName := "Item_SEASON_Tier1"
 	itemEntitlementType := platformclientmodels.ItemCreateEntitlementTypeDURABLE
 	itemLocalization := make(map[string]platformclientmodels.Localization)
@@ -151,7 +150,7 @@ func getStoreTierItemID(storeID string) (*string, error) {
 			CurrencyCode:      &accelbyteCurrencyCode,
 			CurrencyNamespace: &accelbyteNamespace,
 			CurrencyType:      &itemCurrencyType,
-			Price:             &itemPrice,
+			Price:             int32(0),
 		},
 	}
 	itemSeasonType := platformclientmodels.ItemCreateSeasonTypeTIER

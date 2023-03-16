@@ -31,14 +31,14 @@ var AdminDeleteConfigurationTemplateV1Cmd = &cobra.Command{
 			Name:      name,
 			Namespace: namespace,
 		}
-		noContent, errNoContent := configurationTemplateService.AdminDeleteConfigurationTemplateV1Short(input)
+		errNoContent := configurationTemplateService.AdminDeleteConfigurationTemplateV1Short(input)
 		if errNoContent != nil {
 			logrus.Error(errNoContent)
 
 			return errNoContent
 		}
 
-		logrus.Infof("Response CLI success: %+v", noContent)
+		logrus.Infof("Response CLI success.")
 
 		return nil
 	},

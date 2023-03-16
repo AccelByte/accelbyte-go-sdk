@@ -81,30 +81,10 @@ func NewAdminDeleteConfigurationTemplateV1NoContent() *AdminDeleteConfigurationT
   No Content
 */
 type AdminDeleteConfigurationTemplateV1NoContent struct {
-	Payload *sessionclientmodels.ResponseError
 }
 
 func (o *AdminDeleteConfigurationTemplateV1NoContent) Error() string {
-	return fmt.Sprintf("[DELETE /session/v1/admin/namespaces/{namespace}/configurations/{name}][%d] adminDeleteConfigurationTemplateV1NoContent  %+v", 204, o.ToJSONString())
-}
-
-func (o *AdminDeleteConfigurationTemplateV1NoContent) ToJSONString() string {
-	if o.Payload == nil {
-		return "{}"
-	}
-
-	b, err := json.Marshal(o.Payload)
-	if err != nil {
-		fmt.Println(err)
-
-		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
-	}
-
-	return fmt.Sprintf("%+v", string(b))
-}
-
-func (o *AdminDeleteConfigurationTemplateV1NoContent) GetPayload() *sessionclientmodels.ResponseError {
-	return o.Payload
+	return fmt.Sprintf("[DELETE /session/v1/admin/namespaces/{namespace}/configurations/{name}][%d] adminDeleteConfigurationTemplateV1NoContent ", 204)
 }
 
 func (o *AdminDeleteConfigurationTemplateV1NoContent) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -112,13 +92,6 @@ func (o *AdminDeleteConfigurationTemplateV1NoContent) readResponse(response runt
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
 		consumer = runtime.ByteStreamConsumer()
-	}
-
-	o.Payload = new(sessionclientmodels.ResponseError)
-
-	// response payload
-	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
-		return err
 	}
 
 	return nil

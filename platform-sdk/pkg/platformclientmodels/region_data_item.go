@@ -57,8 +57,7 @@ type RegionDataItem struct {
 	ExpireAt *strfmt.DateTime `json:"expireAt,omitempty"`
 
 	// price value, set to 0 if it's free
-	// Required: true
-	Price *int32 `json:"price"`
+	Price int32 `json:"price,omitempty"`
 
 	// PurchaseAt
 	// Format: date-time
@@ -101,10 +100,6 @@ func (m *RegionDataItem) Validate(formats strfmt.Registry) error {
 	}
 
 	if err := m.validateExpireAt(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.validatePrice(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -242,15 +237,6 @@ func (m *RegionDataItem) validateExpireAt(formats strfmt.Registry) error {
 	}
 
 	if err := validate.FormatOf("expireAt", "body", "date-time", m.ExpireAt.String(), formats); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *RegionDataItem) validatePrice(formats strfmt.Registry) error {
-
-	if err := validate.Required("price", "body", m.Price); err != nil {
 		return err
 	}
 

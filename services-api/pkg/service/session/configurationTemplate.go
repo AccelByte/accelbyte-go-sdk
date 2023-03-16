@@ -153,29 +153,29 @@ func (aaa *ConfigurationTemplateService) AdminUpdateConfigurationTemplateV1(inpu
 }
 
 // deprecated(2022-01-10): please use AdminDeleteConfigurationTemplateV1Short instead.
-func (aaa *ConfigurationTemplateService) AdminDeleteConfigurationTemplateV1(input *configuration_template.AdminDeleteConfigurationTemplateV1Params) (*sessionclientmodels.ResponseError, error) {
+func (aaa *ConfigurationTemplateService) AdminDeleteConfigurationTemplateV1(input *configuration_template.AdminDeleteConfigurationTemplateV1Params) error {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
-		return nil, err
+		return err
 	}
-	noContent, badRequest, unauthorized, forbidden, internalServerError, err := aaa.Client.ConfigurationTemplate.AdminDeleteConfigurationTemplateV1(input, client.BearerToken(*token.AccessToken))
+	_, badRequest, unauthorized, forbidden, internalServerError, err := aaa.Client.ConfigurationTemplate.AdminDeleteConfigurationTemplateV1(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
-		return nil, badRequest
+		return badRequest
 	}
 	if unauthorized != nil {
-		return nil, unauthorized
+		return unauthorized
 	}
 	if forbidden != nil {
-		return nil, forbidden
+		return forbidden
 	}
 	if internalServerError != nil {
-		return nil, internalServerError
+		return internalServerError
 	}
 	if err != nil {
-		return nil, err
+		return err
 	}
 
-	return noContent.GetPayload(), nil
+	return nil
 }
 
 func (aaa *ConfigurationTemplateService) AdminCreateConfigurationTemplateV1Short(input *configuration_template.AdminCreateConfigurationTemplateV1Params) (*sessionclientmodels.ApimodelsConfigurationTemplateResponse, error) {
@@ -278,7 +278,7 @@ func (aaa *ConfigurationTemplateService) AdminUpdateConfigurationTemplateV1Short
 	return ok.GetPayload(), nil
 }
 
-func (aaa *ConfigurationTemplateService) AdminDeleteConfigurationTemplateV1Short(input *configuration_template.AdminDeleteConfigurationTemplateV1Params) (*sessionclientmodels.ResponseError, error) {
+func (aaa *ConfigurationTemplateService) AdminDeleteConfigurationTemplateV1Short(input *configuration_template.AdminDeleteConfigurationTemplateV1Params) error {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -295,10 +295,10 @@ func (aaa *ConfigurationTemplateService) AdminDeleteConfigurationTemplateV1Short
 		}
 	}
 
-	noContent, err := aaa.Client.ConfigurationTemplate.AdminDeleteConfigurationTemplateV1Short(input, authInfoWriter)
+	_, err := aaa.Client.ConfigurationTemplate.AdminDeleteConfigurationTemplateV1Short(input, authInfoWriter)
 	if err != nil {
-		return nil, err
+		return err
 	}
 
-	return noContent.GetPayload(), nil
+	return nil
 }

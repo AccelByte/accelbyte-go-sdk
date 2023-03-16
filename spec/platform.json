@@ -37134,8 +37134,7 @@
       "required": [
         "currencyCode",
         "currencyNamespace",
-        "currencyType",
-        "price"
+        "currencyType"
       ],
       "type": "object"
     },

@@ -175,15 +175,15 @@ if errOk != nil {
 }
 ```
 
-### Update a game record
+### Delete a game record
 
 ```go
-inputDelete := &public_game_record.DeleteGameRecordHandlerV1Params{
+input := &public_game_record.DeleteGameRecordHandlerV1Params{
 	Key:       key,
 	Namespace: integration.NamespaceTest,
 }
 
-errDelete := publicGameRecordService.DeleteGameRecordHandlerV1Short(inputDelete)
+err := publicGameRecordService.DeleteGameRecordHandlerV1Short(input)
 if err != nil {
 	assert.FailNow(t, err.Error())
 }
@@ -605,7 +605,7 @@ inputGet := &users.AdminGetUserByUserIDV3Params{
 }
 
 get, errGet := userService.AdminGetUserByUserIDV3Short(inputGet)
-if errUpdate != nil {
+if errGet != nil {
 	assert.FailNow(t, errGet.Error())
 }
 ```
@@ -1370,7 +1370,6 @@ inputCreated := &partySession.PublicCreatePartyParams{
 created, errCreated := partyService.PublicCreatePartyShort(inputCreated)
 if errCreated != nil {
 	assert.Error(t, errCreated)
-	t.Skip("skip due to UserIsNotInSession error")
 
 	return
 }
@@ -1409,12 +1408,12 @@ if errGet != nil {
 ### User leave a party
 
 ```go
-inputLeave := &partySession.PublicGetPartyParams{
+inputLeave := &partySession.PublicPartyLeaveParams{
 	Namespace: integration.NamespaceTest,
 	PartyID:   *joined.ID,
 }
-leave, errLeave := partyService.PublicGetPartyShort(inputLeave)
-if errGet != nil {
+errLeave := partyServiceFor2ndPlayer.PublicPartyLeave(inputLeave)
+if errLeave != nil {
 	assert.FailNow(t, errLeave.Error())
 
 	return

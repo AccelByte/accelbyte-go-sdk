@@ -25,7 +25,7 @@ var (
 	empty           = "-"
 	defaultGameMode = "go_sdk"
 	criteria        = "distance"
-	maxNumber       = int32(2)
+	maxNumber       = int32(3)
 	minNumber       = int32(2)
 	alliance        = &matchmakingclientmodels.ModelsAllianceRule{
 		MaxNumber:       &maxNumber,

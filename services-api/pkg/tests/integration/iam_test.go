@@ -294,7 +294,7 @@ func TestIntegrationUser(t *testing.T) {
 	}
 
 	get, errGet := userService.AdminGetUserByUserIDV3Short(inputGet)
-	if errUpdate != nil {
+	if errGet != nil {
 		assert.FailNow(t, errGet.Error())
 	}
 	// ESAC

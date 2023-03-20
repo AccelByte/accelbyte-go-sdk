@@ -249,7 +249,7 @@ func getSessionID(t *testing.T, memberID string) string {
 	}(cfgName)
 
 	member := &sessionclientmodels.ApimodelsRequestMember{ID: &memberID}
-	bodyParty := &sessionclientmodels.ApimodelsCreatePartyRequest{
+	bodyParty = &sessionclientmodels.ApimodelsCreatePartyRequest{
 		ConfigurationName: &cfgTemplateName,
 		InactiveTimeout:   &inactiveTimeout,
 		InviteTimeout:     &inviteTimeout,
@@ -265,7 +265,6 @@ func getSessionID(t *testing.T, memberID string) string {
 	})
 	if errCreated != nil {
 		logrus.Error(errCreated.Error())
-		t.Skip("skip due to UserIsNotInSession error")
 
 		return ""
 	}

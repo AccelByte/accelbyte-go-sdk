@@ -229,7 +229,7 @@ func TestIntegrationGameSession(t *testing.T) {
 
 	// Assert
 	assert.NotNil(t, joined, "should not be nil")
-	assert.Equal(t, int(maxNumber), len(joined.Members))
+	assert.Equal(t, 2, len(joined.Members))
 	t.Logf("joined P2 %s for session id: %s", player2Id, *joined.ID)
 
 	// CASE Leave a Game Session
@@ -303,8 +303,6 @@ func TestIntegrationParty(t *testing.T) {
 
 	// Login User - Arrange
 	player2Id := createPlayer2()
-	member := &sessionclientmodels.ApimodelsRequestMember{ID: &player2Id}
-	bodyParty.Members = append(bodyParty.Members, member)
 	defer deletePlayer(player2Id)
 
 	// CASE Create a party
@@ -315,7 +313,6 @@ func TestIntegrationParty(t *testing.T) {
 	created, errCreated := partyService.PublicCreatePartyShort(inputCreated)
 	if errCreated != nil {
 		assert.Error(t, errCreated)
-		t.Skip("skip due to UserIsNotInSession error")
 
 		return
 	}
@@ -360,12 +357,12 @@ func TestIntegrationParty(t *testing.T) {
 	assert.NotNil(t, get, "should not be nil")
 
 	// CASE User leave a party
-	inputLeave := &partySession.PublicGetPartyParams{
+	inputLeave := &partySession.PublicPartyLeaveParams{
 		Namespace: integration.NamespaceTest,
 		PartyID:   *joined.ID,
 	}
-	leave, errLeave := partyService.PublicGetPartyShort(inputLeave)
-	if errGet != nil {
+	errLeave := partyServiceFor2ndPlayer.PublicPartyLeave(inputLeave)
+	if errLeave != nil {
 		assert.FailNow(t, errLeave.Error())
 
 		return
@@ -374,7 +371,6 @@ func TestIntegrationParty(t *testing.T) {
 
 	// Assert
 	assert.Nil(t, errLeave, "err should be nil")
-	assert.NotNil(t, leave, "should not be nil")
 }
 
 func createCfgTemplate() (string, error) {

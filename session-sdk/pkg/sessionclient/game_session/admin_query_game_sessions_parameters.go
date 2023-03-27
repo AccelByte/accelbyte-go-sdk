@@ -108,6 +108,11 @@ type AdminQueryGameSessionsParams struct {
 
 	*/
 	GameMode *string
+	/*IsPersistent
+	  game session is Persistent. supported: TRUE, FALSE
+
+	*/
+	IsPersistent *string
 	/*IsSoftDeleted
 	  game session is soft deleted. supported: TRUE, FALSE
 
@@ -269,6 +274,17 @@ func (o *AdminQueryGameSessionsParams) WithGameMode(gameMode *string) *AdminQuer
 // SetGameMode adds the gameMode to the admin query game sessions params
 func (o *AdminQueryGameSessionsParams) SetGameMode(gameMode *string) {
 	o.GameMode = gameMode
+}
+
+// WithIsPersistent adds the isPersistent to the admin query game sessions params
+func (o *AdminQueryGameSessionsParams) WithIsPersistent(isPersistent *string) *AdminQueryGameSessionsParams {
+	o.SetIsPersistent(isPersistent)
+	return o
+}
+
+// SetIsPersistent adds the isPersistent to the admin query game sessions params
+func (o *AdminQueryGameSessionsParams) SetIsPersistent(isPersistent *string) {
+	o.IsPersistent = isPersistent
 }
 
 // WithIsSoftDeleted adds the isSoftDeleted to the admin query game sessions params
@@ -480,6 +496,22 @@ func (o *AdminQueryGameSessionsParams) WriteToRequest(r runtime.ClientRequest, r
 		qGameMode := qrGameMode
 		if qGameMode != "" {
 			if err := r.SetQueryParam("gameMode", qGameMode); err != nil {
+				return err
+			}
+		}
+
+	}
+
+	if o.IsPersistent != nil {
+
+		// query param isPersistent
+		var qrIsPersistent string
+		if o.IsPersistent != nil {
+			qrIsPersistent = *o.IsPersistent
+		}
+		qIsPersistent := qrIsPersistent
+		if qIsPersistent != "" {
+			if err := r.SetQueryParam("isPersistent", qIsPersistent); err != nil {
 				return err
 			}
 		}

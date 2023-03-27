@@ -427,6 +427,32 @@ func (aaa *GameSessionService) PublicGameSessionReject(input *game_session.Publi
 	return nil
 }
 
+// deprecated(2022-01-10): please use AppendTeamGameSessionShort instead.
+func (aaa *GameSessionService) AppendTeamGameSession(input *game_session.AppendTeamGameSessionParams) (*sessionclientmodels.ApimodelsGameSessionResponse, error) {
+	token, err := aaa.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, unauthorized, forbidden, notFound, internalServerError, err := aaa.Client.GameSession.AppendTeamGameSession(input, client.BearerToken(*token.AccessToken))
+	if unauthorized != nil {
+		return nil, unauthorized
+	}
+	if forbidden != nil {
+		return nil, forbidden
+	}
+	if notFound != nil {
+		return nil, notFound
+	}
+	if internalServerError != nil {
+		return nil, internalServerError
+	}
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
 // deprecated(2022-01-10): please use PublicQueryMyGameSessionsShort instead.
 func (aaa *GameSessionService) PublicQueryMyGameSessions(input *game_session.PublicQueryMyGameSessionsParams) ([]*sessionclientmodels.ApimodelsGameSessionResponse, error) {
 	token, err := aaa.TokenRepository.GetToken()
@@ -798,6 +824,31 @@ func (aaa *GameSessionService) PublicGameSessionRejectShort(input *game_session.
 	}
 
 	return nil
+}
+
+func (aaa *GameSessionService) AppendTeamGameSessionShort(input *game_session.AppendTeamGameSessionParams) (*sessionclientmodels.ApimodelsGameSessionResponse, error) {
+	authInfoWriter := input.AuthInfoWriter
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
+	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  aaa.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
+	ok, err := aaa.Client.GameSession.AppendTeamGameSessionShort(input, authInfoWriter)
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
 }
 
 func (aaa *GameSessionService) PublicQueryMyGameSessionsShort(input *game_session.PublicQueryMyGameSessionsParams) ([]*sessionclientmodels.ApimodelsGameSessionResponse, error) {

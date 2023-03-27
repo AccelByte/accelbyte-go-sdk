@@ -35,9 +35,11 @@ var PublicVerifyHeadlessAccountV3Cmd = &cobra.Command{
 			return errBody
 		}
 		namespace, _ := cmd.Flags().GetString("namespace")
+		needVerificationCode, _ := cmd.Flags().GetBool("needVerificationCode")
 		input := &users.PublicVerifyHeadlessAccountV3Params{
-			Body:      body,
-			Namespace: namespace,
+			Body:                 body,
+			Namespace:            namespace,
+			NeedVerificationCode: &needVerificationCode,
 		}
 		ok, errOK := usersService.PublicVerifyHeadlessAccountV3Short(input)
 		if errOK != nil {
@@ -57,4 +59,5 @@ func init() {
 	_ = PublicVerifyHeadlessAccountV3Cmd.MarkFlagRequired("body")
 	PublicVerifyHeadlessAccountV3Cmd.Flags().String("namespace", "", "Namespace")
 	_ = PublicVerifyHeadlessAccountV3Cmd.MarkFlagRequired("namespace")
+	PublicVerifyHeadlessAccountV3Cmd.Flags().Bool("needVerificationCode", false, "Need verification code")
 }

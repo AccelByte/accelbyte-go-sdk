@@ -39,6 +39,8 @@ type ClientService interface {
 	DeleteConfig1Short(params *DeleteConfig1Params, authInfo runtime.ClientAuthInfoWriter) (*DeleteConfig1NoContent, error)
 	GetConfig1(params *GetConfig1Params, authInfo runtime.ClientAuthInfoWriter) (*GetConfig1OK, *GetConfig1BadRequest, *GetConfig1Unauthorized, *GetConfig1Forbidden, *GetConfig1NotFound, error)
 	GetConfig1Short(params *GetConfig1Params, authInfo runtime.ClientAuthInfoWriter) (*GetConfig1OK, error)
+	GetPublisherConfig(params *GetPublisherConfigParams, authInfo runtime.ClientAuthInfoWriter) (*GetPublisherConfigOK, *GetPublisherConfigBadRequest, *GetPublisherConfigUnauthorized, *GetPublisherConfigForbidden, *GetPublisherConfigNotFound, error)
+	GetPublisherConfigShort(params *GetPublisherConfigParams, authInfo runtime.ClientAuthInfoWriter) (*GetPublisherConfigOK, error)
 	UpdateConfig1(params *UpdateConfig1Params, authInfo runtime.ClientAuthInfoWriter) (*UpdateConfig1Created, *UpdateConfig1BadRequest, *UpdateConfig1Unauthorized, *UpdateConfig1Forbidden, *UpdateConfig1NotFound, error)
 	UpdateConfig1Short(params *UpdateConfig1Params, authInfo runtime.ClientAuthInfoWriter) (*UpdateConfig1Created, error)
 
@@ -50,7 +52,7 @@ Deprecated: Use CreateConfigShort instead.
 
   CreateConfig creates a config
 
-  Create a config.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&lt;b&gt;&#34;ADMIN:NAMESPACE:{namespace}:CONFIG&#34;&lt;/b&gt;, action=1 &lt;b&gt;(CREATE)&lt;/b&gt;&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: created config&lt;/li&gt;&lt;/ul&gt;
+  Create a config.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&lt;b&gt;&#34;ADMIN:NAMESPACE:{namespace}:BASIC:CONFIG&#34;&lt;/b&gt;, action=1 &lt;b&gt;(CREATE)&lt;/b&gt;&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: created config&lt;/li&gt;&lt;/ul&gt;
 */
 func (a *Client) CreateConfig(params *CreateConfigParams, authInfo runtime.ClientAuthInfoWriter) (*CreateConfigCreated, *CreateConfigBadRequest, *CreateConfigUnauthorized, *CreateConfigForbidden, *CreateConfigConflict, error) {
 	// TODO: Validate the params before sending
@@ -108,7 +110,7 @@ func (a *Client) CreateConfig(params *CreateConfigParams, authInfo runtime.Clien
 /*
   CreateConfigShort creates a config
 
-  Create a config.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&lt;b&gt;&#34;ADMIN:NAMESPACE:{namespace}:CONFIG&#34;&lt;/b&gt;, action=1 &lt;b&gt;(CREATE)&lt;/b&gt;&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: created config&lt;/li&gt;&lt;/ul&gt;
+  Create a config.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&lt;b&gt;&#34;ADMIN:NAMESPACE:{namespace}:BASIC:CONFIG&#34;&lt;/b&gt;, action=1 &lt;b&gt;(CREATE)&lt;/b&gt;&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: created config&lt;/li&gt;&lt;/ul&gt;
 */
 func (a *Client) CreateConfigShort(params *CreateConfigParams, authInfo runtime.ClientAuthInfoWriter) (*CreateConfigCreated, error) {
 	// TODO: Validate the params before sending
@@ -164,7 +166,7 @@ Deprecated: Use DeleteConfig1Short instead.
 
   DeleteConfig1 deletes a config
 
-  Delete a config.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&lt;b&gt;&#34;ADMIN:NAMESPACE:{namespace}:CONFIG&#34;&lt;/b&gt;, action=8 &lt;b&gt;(DELETE)&lt;/b&gt;&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: created config&lt;/li&gt;&lt;/ul&gt;
+  Delete a config.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&lt;b&gt;&#34;ADMIN:NAMESPACE:{namespace}:BASIC:CONFIG&#34;&lt;/b&gt;, action=8 &lt;b&gt;(DELETE)&lt;/b&gt;&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: created config&lt;/li&gt;&lt;/ul&gt;
 */
 func (a *Client) DeleteConfig1(params *DeleteConfig1Params, authInfo runtime.ClientAuthInfoWriter) (*DeleteConfig1NoContent, *DeleteConfig1BadRequest, *DeleteConfig1Unauthorized, *DeleteConfig1Forbidden, *DeleteConfig1NotFound, error) {
 	// TODO: Validate the params before sending
@@ -222,7 +224,7 @@ func (a *Client) DeleteConfig1(params *DeleteConfig1Params, authInfo runtime.Cli
 /*
   DeleteConfig1Short deletes a config
 
-  Delete a config.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&lt;b&gt;&#34;ADMIN:NAMESPACE:{namespace}:CONFIG&#34;&lt;/b&gt;, action=8 &lt;b&gt;(DELETE)&lt;/b&gt;&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: created config&lt;/li&gt;&lt;/ul&gt;
+  Delete a config.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&lt;b&gt;&#34;ADMIN:NAMESPACE:{namespace}:BASIC:CONFIG&#34;&lt;/b&gt;, action=8 &lt;b&gt;(DELETE)&lt;/b&gt;&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: created config&lt;/li&gt;&lt;/ul&gt;
 */
 func (a *Client) DeleteConfig1Short(params *DeleteConfig1Params, authInfo runtime.ClientAuthInfoWriter) (*DeleteConfig1NoContent, error) {
 	// TODO: Validate the params before sending
@@ -278,7 +280,7 @@ Deprecated: Use GetConfig1Short instead.
 
   GetConfig1 gets a config
 
-  Get a config.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&lt;b&gt;&#34;ADMIN:NAMESPACE:{namespace}:CONFIG&#34;&lt;/b&gt;, action=2 &lt;b&gt;(READ)&lt;/b&gt;&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: config&lt;/li&gt;&lt;/ul&gt;
+  Get a config.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&lt;b&gt;&#34;ADMIN:NAMESPACE:{namespace}:BASIC:CONFIG&#34;&lt;/b&gt;, action=2 &lt;b&gt;(READ)&lt;/b&gt;&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: config&lt;/li&gt;&lt;/ul&gt;
 */
 func (a *Client) GetConfig1(params *GetConfig1Params, authInfo runtime.ClientAuthInfoWriter) (*GetConfig1OK, *GetConfig1BadRequest, *GetConfig1Unauthorized, *GetConfig1Forbidden, *GetConfig1NotFound, error) {
 	// TODO: Validate the params before sending
@@ -336,7 +338,7 @@ func (a *Client) GetConfig1(params *GetConfig1Params, authInfo runtime.ClientAut
 /*
   GetConfig1Short gets a config
 
-  Get a config.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&lt;b&gt;&#34;ADMIN:NAMESPACE:{namespace}:CONFIG&#34;&lt;/b&gt;, action=2 &lt;b&gt;(READ)&lt;/b&gt;&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: config&lt;/li&gt;&lt;/ul&gt;
+  Get a config.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&lt;b&gt;&#34;ADMIN:NAMESPACE:{namespace}:BASIC:CONFIG&#34;&lt;/b&gt;, action=2 &lt;b&gt;(READ)&lt;/b&gt;&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: config&lt;/li&gt;&lt;/ul&gt;
 */
 func (a *Client) GetConfig1Short(params *GetConfig1Params, authInfo runtime.ClientAuthInfoWriter) (*GetConfig1OK, error) {
 	// TODO: Validate the params before sending
@@ -388,11 +390,125 @@ func (a *Client) GetConfig1Short(params *GetConfig1Params, authInfo runtime.Clie
 }
 
 /*
+Deprecated: Use GetPublisherConfigShort instead.
+
+  GetPublisherConfig gets a publisher config
+
+  Get a publisher config.&lt;br&gt;It will return a publisher namespace config of the given namespace and key.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&lt;b&gt;&#34;ADMIN:NAMESPACE:{namespace}:BASIC:CONFIG&#34;&lt;/b&gt;, action=2 &lt;b&gt;(READ)&lt;/b&gt;&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: config&lt;/li&gt;&lt;/ul&gt;
+*/
+func (a *Client) GetPublisherConfig(params *GetPublisherConfigParams, authInfo runtime.ClientAuthInfoWriter) (*GetPublisherConfigOK, *GetPublisherConfigBadRequest, *GetPublisherConfigUnauthorized, *GetPublisherConfigForbidden, *GetPublisherConfigNotFound, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewGetPublisherConfigParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "getPublisherConfig",
+		Method:             "GET",
+		PathPattern:        "/basic/v1/admin/namespaces/{namespace}/publisher/configs/{configKey}",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &GetPublisherConfigReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, nil, nil, nil, nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *GetPublisherConfigOK:
+		return v, nil, nil, nil, nil, nil
+
+	case *GetPublisherConfigBadRequest:
+		return nil, v, nil, nil, nil, nil
+
+	case *GetPublisherConfigUnauthorized:
+		return nil, nil, v, nil, nil, nil
+
+	case *GetPublisherConfigForbidden:
+		return nil, nil, nil, v, nil, nil
+
+	case *GetPublisherConfigNotFound:
+		return nil, nil, nil, nil, v, nil
+
+	default:
+		return nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+  GetPublisherConfigShort gets a publisher config
+
+  Get a publisher config.&lt;br&gt;It will return a publisher namespace config of the given namespace and key.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&lt;b&gt;&#34;ADMIN:NAMESPACE:{namespace}:BASIC:CONFIG&#34;&lt;/b&gt;, action=2 &lt;b&gt;(READ)&lt;/b&gt;&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: config&lt;/li&gt;&lt;/ul&gt;
+*/
+func (a *Client) GetPublisherConfigShort(params *GetPublisherConfigParams, authInfo runtime.ClientAuthInfoWriter) (*GetPublisherConfigOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewGetPublisherConfigParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "getPublisherConfig",
+		Method:             "GET",
+		PathPattern:        "/basic/v1/admin/namespaces/{namespace}/publisher/configs/{configKey}",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &GetPublisherConfigReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *GetPublisherConfigOK:
+		return v, nil
+	case *GetPublisherConfigBadRequest:
+		return nil, v
+	case *GetPublisherConfigUnauthorized:
+		return nil, v
+	case *GetPublisherConfigForbidden:
+		return nil, v
+	case *GetPublisherConfigNotFound:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
 Deprecated: Use UpdateConfig1Short instead.
 
   UpdateConfig1 updates a config
 
-  Update a config.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&lt;b&gt;&#34;ADMIN:NAMESPACE:{namespace}:CONFIG&#34;&lt;/b&gt;, action=4 &lt;b&gt;(UPDATE)&lt;/b&gt;&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: created config&lt;/li&gt;&lt;/ul&gt;
+  Update a config.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&lt;b&gt;&#34;ADMIN:NAMESPACE:{namespace}:BASIC:CONFIG&#34;&lt;/b&gt;, action=4 &lt;b&gt;(UPDATE)&lt;/b&gt;&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: created config&lt;/li&gt;&lt;/ul&gt;
 */
 func (a *Client) UpdateConfig1(params *UpdateConfig1Params, authInfo runtime.ClientAuthInfoWriter) (*UpdateConfig1Created, *UpdateConfig1BadRequest, *UpdateConfig1Unauthorized, *UpdateConfig1Forbidden, *UpdateConfig1NotFound, error) {
 	// TODO: Validate the params before sending
@@ -450,7 +566,7 @@ func (a *Client) UpdateConfig1(params *UpdateConfig1Params, authInfo runtime.Cli
 /*
   UpdateConfig1Short updates a config
 
-  Update a config.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&lt;b&gt;&#34;ADMIN:NAMESPACE:{namespace}:CONFIG&#34;&lt;/b&gt;, action=4 &lt;b&gt;(UPDATE)&lt;/b&gt;&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: created config&lt;/li&gt;&lt;/ul&gt;
+  Update a config.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&lt;b&gt;&#34;ADMIN:NAMESPACE:{namespace}:BASIC:CONFIG&#34;&lt;/b&gt;, action=4 &lt;b&gt;(UPDATE)&lt;/b&gt;&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: created config&lt;/li&gt;&lt;/ul&gt;
 */
 func (a *Client) UpdateConfig1Short(params *UpdateConfig1Params, authInfo runtime.ClientAuthInfoWriter) (*UpdateConfig1Created, error) {
 	// TODO: Validate the params before sending

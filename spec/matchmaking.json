@@ -3,7 +3,7 @@
   "info": {
     "description": "Justice Matchmaking Service",
     "title": "Justice Matchmaking Service",
-    "version": "2.21.4"
+    "version": "2.22.0"
   },
   "schemes": [
     "https"
@@ -2389,6 +2389,10 @@
         "namespace": {
           "type": "string"
         },
+        "region_expansion_rate_ms": {
+          "format": "int32",
+          "type": "integer"
+        },
         "ruleset": {
           "$ref": "#/definitions/models.RuleSet"
         },
@@ -2419,6 +2423,7 @@
         "joinable",
         "max_delay_ms",
         "namespace",
+        "region_expansion_rate_ms",
         "ruleset",
         "session_queue_timeout_seconds",
         "slug",
@@ -2455,6 +2460,10 @@
           "format": "int32",
           "type": "integer",
           "x-nullable": false
+        },
+        "region_expansion_rate_ms": {
+          "format": "int32",
+          "type": "integer"
         },
         "rule_set": {
           "$ref": "#/definitions/models.RuleSet",
@@ -2512,6 +2521,10 @@
         "namespace": {
           "type": "string"
         },
+        "region_expansion_rate_ms": {
+          "format": "int32",
+          "type": "integer"
+        },
         "ruleSet": {
           "$ref": "#/definitions/models.RuleSetV1"
         },
@@ -2542,6 +2555,7 @@
         "joinable",
         "max_delay_ms",
         "namespace",
+        "region_expansion_rate_ms",
         "ruleSet",
         "sessionQueueTimeoutSeconds",
         "slug",
@@ -2629,6 +2643,10 @@
         "namespace": {
           "type": "string"
         },
+        "region_expansion_rate_ms": {
+          "format": "int32",
+          "type": "integer"
+        },
         "ruleset": {
           "$ref": "#/definitions/models.RuleSet"
         },
@@ -2659,6 +2677,7 @@
         "joinable",
         "max_delay_ms",
         "namespace",
+        "region_expansion_rate_ms",
         "ruleset",
         "session_queue_timeout_seconds",
         "slug",
@@ -3302,6 +3321,10 @@
           "format": "int32",
           "type": "integer",
           "x-nullable": true
+        },
+        "region_expansion_rate_ms": {
+          "format": "int32",
+          "type": "integer"
         },
         "ruleSet": {
           "$ref": "#/definitions/models.UpdateRuleset",

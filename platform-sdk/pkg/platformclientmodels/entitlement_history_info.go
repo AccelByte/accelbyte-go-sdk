@@ -21,7 +21,7 @@ type EntitlementHistoryInfo struct {
 
 	// The action of entitlement, like GRANT, REVOKE
 	// Required: true
-	// Enum: [DECREMENT DISABLE ENABLE GRANT REVOKE UPDATE]
+	// Enum: [DECREMENT DISABLE ENABLE GRANT REVOKE SELL_BACK UPDATE]
 	Action *string `json:"action"`
 
 	// History create time
@@ -96,7 +96,7 @@ var entitlementHistoryInfoTypeActionPropEnum []interface{}
 
 func init() {
 	var res []string
-	if err := json.Unmarshal([]byte(`["DECREMENT","DISABLE","ENABLE","GRANT","REVOKE","UPDATE"]`), &res); err != nil {
+	if err := json.Unmarshal([]byte(`["DECREMENT","DISABLE","ENABLE","GRANT","REVOKE","SELL_BACK","UPDATE"]`), &res); err != nil {
 		panic(err)
 	}
 	for _, v := range res {
@@ -120,6 +120,9 @@ const (
 
 	// EntitlementHistoryInfoActionREVOKE captures enum value "REVOKE"
 	EntitlementHistoryInfoActionREVOKE string = "REVOKE"
+
+	// EntitlementHistoryInfoActionSELLBACK captures enum value "SELL_BACK"
+	EntitlementHistoryInfoActionSELLBACK string = "SELL_BACK"
 
 	// EntitlementHistoryInfoActionUPDATE captures enum value "UPDATE"
 	EntitlementHistoryInfoActionUPDATE string = "UPDATE"

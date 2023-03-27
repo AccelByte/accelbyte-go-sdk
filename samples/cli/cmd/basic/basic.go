@@ -55,6 +55,7 @@ func init() {
 	BasicCmd.AddCommand(userProfile.GetUserProfileInfoByPublicIdCmd)
 	BasicCmd.AddCommand(userProfile.AdminGetUserProfilePublicInfoByIdsCmd)
 	BasicCmd.AddCommand(namespace.GetNamespacePublisherCmd)
+	BasicCmd.AddCommand(config.GetPublisherConfigCmd)
 	BasicCmd.AddCommand(namespace.ChangeNamespaceStatusCmd)
 	BasicCmd.AddCommand(anonymization.AnonymizeUserProfileCmd)
 	BasicCmd.AddCommand(fileUpload.GeneratedUserUploadContentUrlCmd)

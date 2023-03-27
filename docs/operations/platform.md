@@ -35,6 +35,7 @@
 | `/platform/admin/namespaces/{namespace}/items/locale/byIds` | GET | BulkGetLocaleItemsShort | [BulkGetLocaleItemsShort](../../platform-sdk/pkg/platformclient/item/item_client.go) | [BulkGetLocaleItemsShort](../../services-api/pkg/service/platform/item.go) | [BulkGetLocaleItemsShort](../../samples/cli/cmd/platform/item/bulkGetLocaleItems.go) |
 | `/platform/admin/namespaces/{namespace}/items/predicate/types` | GET | GetAvailablePredicateTypesShort | [GetAvailablePredicateTypesShort](../../platform-sdk/pkg/platformclient/item/item_client.go) | [GetAvailablePredicateTypesShort](../../services-api/pkg/service/platform/item.go) | [GetAvailablePredicateTypesShort](../../samples/cli/cmd/platform/item/getAvailablePredicateTypes.go) |
 | `/platform/admin/namespaces/{namespace}/items/purchase/conditions/validate` | POST | ValidateItemPurchaseConditionShort | [ValidateItemPurchaseConditionShort](../../platform-sdk/pkg/platformclient/item/item_client.go) | [ValidateItemPurchaseConditionShort](../../services-api/pkg/service/platform/item.go) | [ValidateItemPurchaseConditionShort](../../samples/cli/cmd/platform/item/validateItemPurchaseCondition.go) |
+| `/platform/admin/namespaces/{namespace}/items/regiondata` | PUT | BulkUpdateRegionDataShort | [BulkUpdateRegionDataShort](../../platform-sdk/pkg/platformclient/item/item_client.go) | [BulkUpdateRegionDataShort](../../services-api/pkg/service/platform/item.go) | [BulkUpdateRegionDataShort](../../samples/cli/cmd/platform/item/bulkUpdateRegionData.go) |
 | `/platform/admin/namespaces/{namespace}/items/search` | GET | SearchItemsShort | [SearchItemsShort](../../platform-sdk/pkg/platformclient/item/item_client.go) | [SearchItemsShort](../../services-api/pkg/service/platform/item.go) | [SearchItemsShort](../../samples/cli/cmd/platform/item/searchItems.go) |
 | `/platform/admin/namespaces/{namespace}/items/uncategorized` | GET | QueryUncategorizedItemsShort | [QueryUncategorizedItemsShort](../../platform-sdk/pkg/platformclient/item/item_client.go) | [QueryUncategorizedItemsShort](../../services-api/pkg/service/platform/item.go) | [QueryUncategorizedItemsShort](../../samples/cli/cmd/platform/item/queryUncategorizedItems.go) |
 | `/platform/admin/namespaces/{namespace}/items/{itemId}` | GET | GetItemShort | [GetItemShort](../../platform-sdk/pkg/platformclient/item/item_client.go) | [GetItemShort](../../services-api/pkg/service/platform/item.go) | [GetItemShort](../../samples/cli/cmd/platform/item/getItem.go) |
@@ -158,6 +159,7 @@
 | `/platform/admin/namespaces/{namespace}/users/{userId}/entitlements/{entitlementId}/enable` | PUT | EnableUserEntitlementShort | [EnableUserEntitlementShort](../../platform-sdk/pkg/platformclient/entitlement/entitlement_client.go) | [EnableUserEntitlementShort](../../services-api/pkg/service/platform/entitlement.go) | [EnableUserEntitlementShort](../../samples/cli/cmd/platform/entitlement/enableUserEntitlement.go) |
 | `/platform/admin/namespaces/{namespace}/users/{userId}/entitlements/{entitlementId}/history` | GET | GetUserEntitlementHistoriesShort | [GetUserEntitlementHistoriesShort](../../platform-sdk/pkg/platformclient/entitlement/entitlement_client.go) | [GetUserEntitlementHistoriesShort](../../services-api/pkg/service/platform/entitlement.go) | [GetUserEntitlementHistoriesShort](../../samples/cli/cmd/platform/entitlement/getUserEntitlementHistories.go) |
 | `/platform/admin/namespaces/{namespace}/users/{userId}/entitlements/{entitlementId}/revoke` | PUT | RevokeUserEntitlementShort | [RevokeUserEntitlementShort](../../platform-sdk/pkg/platformclient/entitlement/entitlement_client.go) | [RevokeUserEntitlementShort](../../services-api/pkg/service/platform/entitlement.go) | [RevokeUserEntitlementShort](../../samples/cli/cmd/platform/entitlement/revokeUserEntitlement.go) |
+| `/platform/admin/namespaces/{namespace}/users/{userId}/entitlements/{entitlementId}/sell` | PUT | SellUserEntitlementShort | [SellUserEntitlementShort](../../platform-sdk/pkg/platformclient/entitlement/entitlement_client.go) | [SellUserEntitlementShort](../../services-api/pkg/service/platform/entitlement.go) | [SellUserEntitlementShort](../../samples/cli/cmd/platform/entitlement/sellUserEntitlement.go) |
 | `/platform/public/namespaces/{namespace}/users/me/entitlements/ownership/any` | GET | PublicExistsAnyMyActiveEntitlementShort | [PublicExistsAnyMyActiveEntitlementShort](../../platform-sdk/pkg/platformclient/entitlement/entitlement_client.go) | [PublicExistsAnyMyActiveEntitlementShort](../../services-api/pkg/service/platform/entitlement.go) | [PublicExistsAnyMyActiveEntitlementShort](../../samples/cli/cmd/platform/entitlement/publicExistsAnyMyActiveEntitlement.go) |
 | `/platform/public/namespaces/{namespace}/users/me/entitlements/ownership/byAppId` | GET | PublicGetMyAppEntitlementOwnershipByAppIdShort | [PublicGetMyAppEntitlementOwnershipByAppIdShort](../../platform-sdk/pkg/platformclient/entitlement/entitlement_client.go) | [PublicGetMyAppEntitlementOwnershipByAppIdShort](../../services-api/pkg/service/platform/entitlement.go) | [PublicGetMyAppEntitlementOwnershipByAppIdShort](../../samples/cli/cmd/platform/entitlement/publicGetMyAppEntitlementOwnershipByAppId.go) |
 | `/platform/public/namespaces/{namespace}/users/me/entitlements/ownership/byItemId` | GET | PublicGetMyEntitlementOwnershipByItemIdShort | [PublicGetMyEntitlementOwnershipByItemIdShort](../../platform-sdk/pkg/platformclient/entitlement/entitlement_client.go) | [PublicGetMyEntitlementOwnershipByItemIdShort](../../services-api/pkg/service/platform/entitlement.go) | [PublicGetMyEntitlementOwnershipByItemIdShort](../../samples/cli/cmd/platform/entitlement/publicGetMyEntitlementOwnershipByItemId.go) |
@@ -175,6 +177,7 @@
 | `/platform/public/namespaces/{namespace}/users/{userId}/entitlements/ownership/bySku` | GET | PublicGetUserEntitlementOwnershipBySkuShort | [PublicGetUserEntitlementOwnershipBySkuShort](../../platform-sdk/pkg/platformclient/entitlement/entitlement_client.go) | [PublicGetUserEntitlementOwnershipBySkuShort](../../services-api/pkg/service/platform/entitlement.go) | [PublicGetUserEntitlementOwnershipBySkuShort](../../samples/cli/cmd/platform/entitlement/publicGetUserEntitlementOwnershipBySku.go) |
 | `/platform/public/namespaces/{namespace}/users/{userId}/entitlements/{entitlementId}` | GET | PublicGetUserEntitlementShort | [PublicGetUserEntitlementShort](../../platform-sdk/pkg/platformclient/entitlement/entitlement_client.go) | [PublicGetUserEntitlementShort](../../services-api/pkg/service/platform/entitlement.go) | [PublicGetUserEntitlementShort](../../samples/cli/cmd/platform/entitlement/publicGetUserEntitlement.go) |
 | `/platform/public/namespaces/{namespace}/users/{userId}/entitlements/{entitlementId}/decrement` | PUT | PublicConsumeUserEntitlementShort | [PublicConsumeUserEntitlementShort](../../platform-sdk/pkg/platformclient/entitlement/entitlement_client.go) | [PublicConsumeUserEntitlementShort](../../services-api/pkg/service/platform/entitlement.go) | [PublicConsumeUserEntitlementShort](../../samples/cli/cmd/platform/entitlement/publicConsumeUserEntitlement.go) |
+| `/platform/public/namespaces/{namespace}/users/{userId}/entitlements/{entitlementId}/sell` | PUT | PublicSellUserEntitlementShort | [PublicSellUserEntitlementShort](../../platform-sdk/pkg/platformclient/entitlement/entitlement_client.go) | [PublicSellUserEntitlementShort](../../services-api/pkg/service/platform/entitlement.go) | [PublicSellUserEntitlementShort](../../samples/cli/cmd/platform/entitlement/publicSellUserEntitlement.go) |
 
 ### Fulfillment Wrapper:  [Fulfillment](../../services-api/pkg/service/platform/fulfillment.go)
 | Endpoint | Method | ID | Class | Wrapper | Example |
@@ -542,6 +545,7 @@
 | `BillingHistoryPagingSlicedResult` | [BillingHistoryPagingSlicedResult ](../../platform-sdk/pkg/platformclientmodels/billing_history_paging_sliced_result.go) |
 | `BoxItem` | [BoxItem ](../../platform-sdk/pkg/platformclientmodels/box_item.go) |
 | `BulkOperationResult` | [BulkOperationResult ](../../platform-sdk/pkg/platformclientmodels/bulk_operation_result.go) |
+| `BulkRegionDataChangeRequest` | [BulkRegionDataChangeRequest ](../../platform-sdk/pkg/platformclientmodels/bulk_region_data_change_request.go) |
 | `BundledItemInfo` | [BundledItemInfo ](../../platform-sdk/pkg/platformclientmodels/bundled_item_info.go) |
 | `CampaignCreate` | [CampaignCreate ](../../platform-sdk/pkg/platformclientmodels/campaign_create.go) |
 | `CampaignDynamicInfo` | [CampaignDynamicInfo ](../../platform-sdk/pkg/platformclientmodels/campaign_dynamic_info.go) |
@@ -595,6 +599,8 @@
 | `EntitlementPagingSlicedResult` | [EntitlementPagingSlicedResult ](../../platform-sdk/pkg/platformclientmodels/entitlement_paging_sliced_result.go) |
 | `EntitlementRevocation` | [EntitlementRevocation ](../../platform-sdk/pkg/platformclientmodels/entitlement_revocation.go) |
 | `EntitlementRevocationConfig` | [EntitlementRevocationConfig ](../../platform-sdk/pkg/platformclientmodels/entitlement_revocation_config.go) |
+| `EntitlementSoldRequest` | [EntitlementSoldRequest ](../../platform-sdk/pkg/platformclientmodels/entitlement_sold_request.go) |
+| `EntitlementSoldResult` | [EntitlementSoldResult ](../../platform-sdk/pkg/platformclientmodels/entitlement_sold_result.go) |
 | `EntitlementSummary` | [EntitlementSummary ](../../platform-sdk/pkg/platformclientmodels/entitlement_summary.go) |
 | `EntitlementUpdate` | [EntitlementUpdate ](../../platform-sdk/pkg/platformclientmodels/entitlement_update.go) |
 | `EpicGamesDLCSyncRequest` | [EpicGamesDLCSyncRequest ](../../platform-sdk/pkg/platformclientmodels/epic_games_dlc_sync_request.go) |
@@ -759,6 +765,7 @@
 | `RedeemRequest` | [RedeemRequest ](../../platform-sdk/pkg/platformclientmodels/redeem_request.go) |
 | `RedeemResult` | [RedeemResult ](../../platform-sdk/pkg/platformclientmodels/redeem_result.go) |
 | `RedeemableItem` | [RedeemableItem ](../../platform-sdk/pkg/platformclientmodels/redeemable_item.go) |
+| `RegionDataChange` | [RegionDataChange ](../../platform-sdk/pkg/platformclientmodels/region_data_change.go) |
 | `RegionDataItem` | [RegionDataItem ](../../platform-sdk/pkg/platformclientmodels/region_data_item.go) |
 | `RequestHistory` | [RequestHistory ](../../platform-sdk/pkg/platformclientmodels/request_history.go) |
 | `Requirement` | [Requirement ](../../platform-sdk/pkg/platformclientmodels/requirement.go) |
@@ -781,6 +788,7 @@
 | `RewardPagingSlicedResult` | [RewardPagingSlicedResult ](../../platform-sdk/pkg/platformclientmodels/reward_paging_sliced_result.go) |
 | `RewardUpdate` | [RewardUpdate ](../../platform-sdk/pkg/platformclientmodels/reward_update.go) |
 | `RewardsRequest` | [RewardsRequest ](../../platform-sdk/pkg/platformclientmodels/rewards_request.go) |
+| `SaleConfig` | [SaleConfig ](../../platform-sdk/pkg/platformclientmodels/sale_config.go) |
 | `SectionCreate` | [SectionCreate ](../../platform-sdk/pkg/platformclientmodels/section_create.go) |
 | `SectionInfo` | [SectionInfo ](../../platform-sdk/pkg/platformclientmodels/section_info.go) |
 | `SectionItem` | [SectionItem ](../../platform-sdk/pkg/platformclientmodels/section_item.go) |

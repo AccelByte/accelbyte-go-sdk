@@ -98,9 +98,15 @@ type ItemUpdate struct {
 	// region data map, key is region, value is region data list
 	RegionData map[string][]RegionDataItem `json:"regionData,omitempty"`
 
+	// sale config, required if sellable is true
+	SaleConfig *SaleConfig `json:"saleConfig,omitempty"`
+
 	// seasonType
 	// Enum: [PASS TIER]
 	SeasonType string `json:"seasonType,omitempty"`
+
+	// sellable, whether allow to sell back to store
+	Sellable bool `json:"sellable"`
 
 	// sku, allowed characters from a-zA-Z0-9_:- and start/end in alphanumeric, max length is 127
 	Sku string `json:"sku,omitempty"`
@@ -170,6 +176,10 @@ func (m *ItemUpdate) Validate(formats strfmt.Registry) error {
 	}
 
 	if err := m.validateRegionData(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateSaleConfig(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -490,6 +500,24 @@ func (m *ItemUpdate) validateRegionData(formats strfmt.Registry) error {
 
 		}
 
+	}
+
+	return nil
+}
+
+func (m *ItemUpdate) validateSaleConfig(formats strfmt.Registry) error {
+
+	if swag.IsZero(m.SaleConfig) { // not required
+		return nil
+	}
+
+	if m.SaleConfig != nil {
+		if err := m.SaleConfig.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("saleConfig")
+			}
+			return err
+		}
 	}
 
 	return nil

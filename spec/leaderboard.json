@@ -8,7 +8,7 @@
     },
     "description": "Justice Leaderboard Service",
     "title": "justice-leaderboard-service",
-    "version": "2.19.3"
+    "version": "2.19.5"
   },
   "schemes": [
     "https"
@@ -23,6 +23,7 @@
         "ADMIN:NAMESPACE:{namespace}:LEADERBOARD [READ]": "ADMIN:NAMESPACE:{namespace}:LEADERBOARD [READ]",
         "ADMIN:NAMESPACE:{namespace}:LEADERBOARD [UPDATE]": "ADMIN:NAMESPACE:{namespace}:LEADERBOARD [UPDATE]",
         "ADMIN:NAMESPACE:{namespace}:LEADERBOARD:USER [DELETE]": "ADMIN:NAMESPACE:{namespace}:LEADERBOARD:USER [DELETE]",
+        "ADMIN:NAMESPACE:{namespace}:USER:{userId}:ANONYMIZATION [DELETE]": "ADMIN:NAMESPACE:{namespace}:USER:{userId}:ANONYMIZATION [DELETE]",
         "NAMESPACE:{namespace}:LEADERBOARD [CREATE]": "NAMESPACE:{namespace}:LEADERBOARD [CREATE]",
         "NAMESPACE:{namespace}:LEADERBOARD:USER:{userId} [DELETE]": "NAMESPACE:{namespace}:LEADERBOARD:USER:{userId} [DELETE]"
       },
@@ -1416,6 +1417,75 @@
         "summary": "Delete user ranking across leaderboard(s)",
         "tags": [
           "LeaderboardData"
+        ]
+      }
+    },
+    "/leaderboard/v1/admin/namespaces/{namespace}/users/{userId}/anonymization/leaderboards": {
+      "delete": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "\u0026lt;p\u0026gt;This API will delete specified user leaderboard\u0026lt;p\u0026gt;\n\u0026lt;p\u0026gt;Required permission\n\u0026lt;code\u0026gt;ADMIN:NAMESPACE:{namespace}:USER:{userId}:ANONYMIZATION [DELETE]\u0026lt;/code\u0026gt;\n\u0026lt;/p\u0026gt; \n",
+        "operationId": "adminAnonymizeUserLeaderboardAdminV1",
+        "parameters": [
+          {
+            "description": "namespace of the game",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "User ID used for leaderboard entry",
+            "in": "path",
+            "name": "userId",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content"
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          }
+        },
+        "security": [
+          {
+            "HasPermission": [
+              "ADMIN:NAMESPACE:{namespace}:USER:{userId}:ANONYMIZATION [DELETE]"
+            ],
+            "authorization": []
+          }
+        ],
+        "summary": "Anonymize user's leaderboard",
+        "tags": [
+          "Anonymization"
         ]
       }
     },

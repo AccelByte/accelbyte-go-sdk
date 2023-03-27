@@ -45,7 +45,7 @@ type ClientService interface {
 	GetJWKSV3Short(params *GetJWKSV3Params, authInfo runtime.ClientAuthInfoWriter) (*GetJWKSV3OK, error)
 	GetRevocationListV3(params *GetRevocationListV3Params, authInfo runtime.ClientAuthInfoWriter) (*GetRevocationListV3OK, *GetRevocationListV3Unauthorized, error)
 	GetRevocationListV3Short(params *GetRevocationListV3Params, authInfo runtime.ClientAuthInfoWriter) (*GetRevocationListV3OK, error)
-	PlatformTokenGrantV3(params *PlatformTokenGrantV3Params, authInfo runtime.ClientAuthInfoWriter) (*PlatformTokenGrantV3OK, *PlatformTokenGrantV3BadRequest, *PlatformTokenGrantV3Unauthorized, *PlatformTokenGrantV3Forbidden, error)
+	PlatformTokenGrantV3(params *PlatformTokenGrantV3Params, authInfo runtime.ClientAuthInfoWriter) (*PlatformTokenGrantV3OK, *PlatformTokenGrantV3BadRequest, *PlatformTokenGrantV3Unauthorized, *PlatformTokenGrantV3Forbidden, *PlatformTokenGrantV3ServiceUnavailable, error)
 	PlatformTokenGrantV3Short(params *PlatformTokenGrantV3Params, authInfo runtime.ClientAuthInfoWriter) (*PlatformTokenGrantV3OK, error)
 	RetrieveUserThirdPartyPlatformTokenV3(params *RetrieveUserThirdPartyPlatformTokenV3Params, authInfo runtime.ClientAuthInfoWriter) (*RetrieveUserThirdPartyPlatformTokenV3OK, *RetrieveUserThirdPartyPlatformTokenV3Unauthorized, *RetrieveUserThirdPartyPlatformTokenV3Forbidden, *RetrieveUserThirdPartyPlatformTokenV3NotFound, error)
 	RetrieveUserThirdPartyPlatformTokenV3Short(params *RetrieveUserThirdPartyPlatformTokenV3Params, authInfo runtime.ClientAuthInfoWriter) (*RetrieveUserThirdPartyPlatformTokenV3OK, error)
@@ -944,7 +944,7 @@ Deprecated: Use PlatformTokenGrantV3Short instead.
 			&lt;p&gt;The JWT contains user&#39;s active bans with its expiry date. List of ban types can be obtained from /bans.&lt;/p&gt;
 			&lt;br&gt;action code : 10704
 */
-func (a *Client) PlatformTokenGrantV3(params *PlatformTokenGrantV3Params, authInfo runtime.ClientAuthInfoWriter) (*PlatformTokenGrantV3OK, *PlatformTokenGrantV3BadRequest, *PlatformTokenGrantV3Unauthorized, *PlatformTokenGrantV3Forbidden, error) {
+func (a *Client) PlatformTokenGrantV3(params *PlatformTokenGrantV3Params, authInfo runtime.ClientAuthInfoWriter) (*PlatformTokenGrantV3OK, *PlatformTokenGrantV3BadRequest, *PlatformTokenGrantV3Unauthorized, *PlatformTokenGrantV3Forbidden, *PlatformTokenGrantV3ServiceUnavailable, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewPlatformTokenGrantV3Params()
@@ -972,25 +972,28 @@ func (a *Client) PlatformTokenGrantV3(params *PlatformTokenGrantV3Params, authIn
 		Client:             params.HTTPClient,
 	})
 	if err != nil {
-		return nil, nil, nil, nil, err
+		return nil, nil, nil, nil, nil, err
 	}
 
 	switch v := result.(type) {
 
 	case *PlatformTokenGrantV3OK:
-		return v, nil, nil, nil, nil
+		return v, nil, nil, nil, nil, nil
 
 	case *PlatformTokenGrantV3BadRequest:
-		return nil, v, nil, nil, nil
+		return nil, v, nil, nil, nil, nil
 
 	case *PlatformTokenGrantV3Unauthorized:
-		return nil, nil, v, nil, nil
+		return nil, nil, v, nil, nil, nil
 
 	case *PlatformTokenGrantV3Forbidden:
-		return nil, nil, nil, v, nil
+		return nil, nil, nil, v, nil, nil
+
+	case *PlatformTokenGrantV3ServiceUnavailable:
+		return nil, nil, nil, nil, v, nil
 
 	default:
-		return nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+		return nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
@@ -1124,6 +1127,8 @@ func (a *Client) PlatformTokenGrantV3Short(params *PlatformTokenGrantV3Params, a
 	case *PlatformTokenGrantV3Unauthorized:
 		return nil, v
 	case *PlatformTokenGrantV3Forbidden:
+		return nil, v
+	case *PlatformTokenGrantV3ServiceUnavailable:
 		return nil, v
 
 	default:

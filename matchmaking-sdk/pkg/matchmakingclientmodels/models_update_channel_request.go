@@ -37,6 +37,9 @@ type ModelsUpdateChannelRequest struct {
 	// Required: true
 	MaxDelayMs *int32 `json:"max_delay_ms"`
 
+	// region expansion rate ms
+	RegionExpansionRateMs int32 `json:"region_expansion_rate_ms,omitempty"`
+
 	// rule set
 	// Required: true
 	RuleSet *ModelsUpdateRuleset `json:"ruleSet"`

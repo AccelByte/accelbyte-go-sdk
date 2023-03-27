@@ -137,7 +137,7 @@ func NewAdminGetThirdPartyPlatformTokenLinkStatusV3BadRequest() *AdminGetThirdPa
 
 /*AdminGetThirdPartyPlatformTokenLinkStatusV3BadRequest handles this case with default header values.
 
-  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20002</td><td>validation error</td></tr></table>
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20002</td><td>validation error</td></tr><tr><td>10208</td><td>platform token expired</td></tr></table>
 */
 type AdminGetThirdPartyPlatformTokenLinkStatusV3BadRequest struct {
 	Payload *iamclientmodels.RestErrorResponse

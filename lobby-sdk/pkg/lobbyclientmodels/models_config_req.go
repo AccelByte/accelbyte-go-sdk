@@ -6,8 +6,10 @@ package lobbyclientmodels
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"github.com/go-openapi/errors"
 	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
+	"github.com/go-openapi/validate"
 )
 
 // ModelsConfigReq models config req
@@ -71,10 +73,32 @@ type ModelsConfigReq struct {
 
 	// ready consent timeout
 	ReadyConsentTimeout int64 `json:"readyConsentTimeout,omitempty"`
+
+	// unregister delay
+	// Required: true
+	UnregisterDelay *int64 `json:"unregisterDelay"`
 }
 
 // Validate validates this models config req
 func (m *ModelsConfigReq) Validate(formats strfmt.Registry) error {
+	var res []error
+
+	if err := m.validateUnregisterDelay(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if len(res) > 0 {
+		return errors.CompositeValidationError(res...)
+	}
+	return nil
+}
+
+func (m *ModelsConfigReq) validateUnregisterDelay(formats strfmt.Registry) error {
+
+	if err := validate.Required("unregisterDelay", "body", m.UnregisterDelay); err != nil {
+		return err
+	}
+
 	return nil
 }
 

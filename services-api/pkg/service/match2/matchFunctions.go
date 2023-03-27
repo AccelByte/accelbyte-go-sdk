@@ -91,6 +91,35 @@ func (aaa *MatchFunctionsService) CreateMatchFunction(input *match_functions.Cre
 	return nil
 }
 
+// deprecated(2022-01-10): please use UpdateMatchFunctionShort instead.
+func (aaa *MatchFunctionsService) UpdateMatchFunction(input *match_functions.UpdateMatchFunctionParams) (*match2clientmodels.APIMatchFunctionConfig, error) {
+	token, err := aaa.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, badRequest, unauthorized, notFound, conflict, internalServerError, err := aaa.Client.MatchFunctions.UpdateMatchFunction(input, client.BearerToken(*token.AccessToken))
+	if badRequest != nil {
+		return nil, badRequest
+	}
+	if unauthorized != nil {
+		return nil, unauthorized
+	}
+	if notFound != nil {
+		return nil, notFound
+	}
+	if conflict != nil {
+		return nil, conflict
+	}
+	if internalServerError != nil {
+		return nil, internalServerError
+	}
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
 // deprecated(2022-01-10): please use DeleteMatchFunctionShort instead.
 func (aaa *MatchFunctionsService) DeleteMatchFunction(input *match_functions.DeleteMatchFunctionParams) error {
 	token, err := aaa.TokenRepository.GetToken()
@@ -165,6 +194,31 @@ func (aaa *MatchFunctionsService) CreateMatchFunctionShort(input *match_function
 	}
 
 	return nil
+}
+
+func (aaa *MatchFunctionsService) UpdateMatchFunctionShort(input *match_functions.UpdateMatchFunctionParams) (*match2clientmodels.APIMatchFunctionConfig, error) {
+	authInfoWriter := input.AuthInfoWriter
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
+	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  aaa.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
+	ok, err := aaa.Client.MatchFunctions.UpdateMatchFunctionShort(input, authInfoWriter)
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
 }
 
 func (aaa *MatchFunctionsService) DeleteMatchFunctionShort(input *match_functions.DeleteMatchFunctionParams) error {

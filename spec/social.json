@@ -8,7 +8,7 @@
     },
     "description": "Justice Social Service",
     "title": "justice-social-service",
-    "version": "2.1.0"
+    "version": "2.3.0"
   },
   "schemes": [
     "https"
@@ -2188,6 +2188,73 @@
         }
       }
     },
+    "/social/v1/admin/namespaces/{namespace}/statCycles/{cycleId}/stop": {
+      "put": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Stop stat cycle.\u0026lt;br\u0026gt;Other detail info:\u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;ADMIN:NAMESPACE:{namespace}:STAT\u0026#34;, action=4 (UPDATE)\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: updated stat cycle\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
+        "operationId": "stopStatCycle",
+        "parameters": [
+          {
+            "description": "cycle id",
+            "in": "path",
+            "name": "cycleId",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "namespace",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/StatCycleInfo"
+            }
+          },
+          "404": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eErrorCode\u003c/td\u003e\u003ctd\u003eErrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e12245\u003c/td\u003e\u003ctd\u003eStat cycle [{id}] cannot be found in namespace [{namespace}]\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/ErrorEntity"
+            }
+          },
+          "409": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eErrorCode\u003c/td\u003e\u003ctd\u003eErrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e12279\u003c/td\u003e\u003ctd\u003eInvalid stat cycle status: Stat cycle [{id}], namespace [{namespace}], status [{status}]\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/ErrorEntity"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          },
+          {
+            "HasPermission": [
+              "ADMIN:NAMESPACE:{namespace}:STAT [UPDATE]"
+            ],
+            "authorization": []
+          }
+        ],
+        "summary": "Stop stat cycle",
+        "tags": [
+          "StatCycleConfiguration"
+        ],
+        "x-authorization": {
+          "action": "4",
+          "resource": "ADMIN:NAMESPACE:{namespace}:STAT"
+        }
+      }
+    },
     "/social/v1/admin/namespaces/{namespace}/statitems/bulk": {
       "get": {
         "description": "Bulk fetch multiple user\u0026#39;s statitem value for a given namespace and statCode.  \nOther detail info:\n+ *Required permission*: resource=\u0026#34;ADMIN:NAMESPACE:{namespace}:STATITEM\u0026#34;, action=2 (READ)\n+ *Returns*: list of user\u0026#39;s statItem",
@@ -3129,6 +3196,13 @@
             "name": "offset",
             "required": false,
             "type": "integer"
+          },
+          {
+            "description": "default is unsorted, allow values: [statCode, statCode:asc, statCode:desc, createdAt, createdAt:asc, createdAt:desc, updatedAt, updatedAt:asc, updatedAt:desc],and support sort group, eg: sortBy=statCode:asc,createdAt:desc.",
+            "in": "query",
+            "name": "sortBy",
+            "required": false,
+            "type": "string"
           },
           {
             "description": "comma separated stat codes",
@@ -4546,6 +4620,13 @@
             "name": "offset",
             "required": false,
             "type": "integer"
+          },
+          {
+            "description": "default is unsorted, allow values: [statCode, statCode:asc, statCode:desc, createdAt, createdAt:asc, createdAt:desc, updatedAt, updatedAt:asc, updatedAt:desc],and support sort group, eg: sortBy=statCode:asc,createdAt:desc.",
+            "in": "query",
+            "name": "sortBy",
+            "required": false,
+            "type": "string"
           },
           {
             "description": "comma separated stat codes",

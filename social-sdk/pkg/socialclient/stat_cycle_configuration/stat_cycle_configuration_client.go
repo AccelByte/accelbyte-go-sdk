@@ -47,6 +47,8 @@ type ClientService interface {
 	GetStatCyclesShort(params *GetStatCyclesParams, authInfo runtime.ClientAuthInfoWriter) (*GetStatCyclesOK, error)
 	GetStatCycles1(params *GetStatCycles1Params, authInfo runtime.ClientAuthInfoWriter) (*GetStatCycles1OK, error)
 	GetStatCycles1Short(params *GetStatCycles1Params, authInfo runtime.ClientAuthInfoWriter) (*GetStatCycles1OK, error)
+	StopStatCycle(params *StopStatCycleParams, authInfo runtime.ClientAuthInfoWriter) (*StopStatCycleOK, *StopStatCycleNotFound, *StopStatCycleConflict, error)
+	StopStatCycleShort(params *StopStatCycleParams, authInfo runtime.ClientAuthInfoWriter) (*StopStatCycleOK, error)
 	UpdateStatCycle(params *UpdateStatCycleParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateStatCycleOK, *UpdateStatCycleBadRequest, *UpdateStatCycleNotFound, *UpdateStatCycleConflict, error)
 	UpdateStatCycleShort(params *UpdateStatCycleParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateStatCycleOK, error)
 
@@ -730,6 +732,110 @@ func (a *Client) GetStatCycles1Short(params *GetStatCycles1Params, authInfo runt
 
 	case *GetStatCycles1OK:
 		return v, nil
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+Deprecated: Use StopStatCycleShort instead.
+
+  StopStatCycle stops stat cycle
+
+  Stop stat cycle.&lt;br&gt;Other detail info:&lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:STAT&#34;, action=4 (UPDATE)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: updated stat cycle&lt;/li&gt;&lt;/ul&gt;
+*/
+func (a *Client) StopStatCycle(params *StopStatCycleParams, authInfo runtime.ClientAuthInfoWriter) (*StopStatCycleOK, *StopStatCycleNotFound, *StopStatCycleConflict, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewStopStatCycleParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "stopStatCycle",
+		Method:             "PUT",
+		PathPattern:        "/social/v1/admin/namespaces/{namespace}/statCycles/{cycleId}/stop",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &StopStatCycleReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, nil, nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *StopStatCycleOK:
+		return v, nil, nil, nil
+
+	case *StopStatCycleNotFound:
+		return nil, v, nil, nil
+
+	case *StopStatCycleConflict:
+		return nil, nil, v, nil
+
+	default:
+		return nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+  StopStatCycleShort stops stat cycle
+
+  Stop stat cycle.&lt;br&gt;Other detail info:&lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:STAT&#34;, action=4 (UPDATE)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: updated stat cycle&lt;/li&gt;&lt;/ul&gt;
+*/
+func (a *Client) StopStatCycleShort(params *StopStatCycleParams, authInfo runtime.ClientAuthInfoWriter) (*StopStatCycleOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewStopStatCycleParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "stopStatCycle",
+		Method:             "PUT",
+		PathPattern:        "/social/v1/admin/namespaces/{namespace}/statCycles/{cycleId}/stop",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &StopStatCycleReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *StopStatCycleOK:
+		return v, nil
+	case *StopStatCycleNotFound:
+		return nil, v
+	case *StopStatCycleConflict:
+		return nil, v
 
 	default:
 		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))

@@ -7,6 +7,7 @@
 package leaderboard
 
 import (
+	"github.com/AccelByte/sample-apps/cmd/leaderboard/anonymization"
 	"github.com/AccelByte/sample-apps/cmd/leaderboard/leaderboardConfiguration"
 	"github.com/AccelByte/sample-apps/cmd/leaderboard/leaderboardData"
 	"github.com/AccelByte/sample-apps/cmd/leaderboard/userData"
@@ -38,6 +39,7 @@ func init() {
 	LeaderboardCmd.AddCommand(leaderboardData.DeleteUserRankingAdminV1Cmd)
 	LeaderboardCmd.AddCommand(leaderboardData.GetCurrentWeekLeaderboardRankingAdminV1Cmd)
 	LeaderboardCmd.AddCommand(leaderboardData.DeleteUserRankingsAdminV1Cmd)
+	LeaderboardCmd.AddCommand(anonymization.AdminAnonymizeUserLeaderboardAdminV1Cmd)
 	LeaderboardCmd.AddCommand(userData.GetUserLeaderboardRankingsAdminV1Cmd)
 	LeaderboardCmd.AddCommand(leaderboardConfiguration.GetLeaderboardConfigurationsPublicV1Cmd)
 	LeaderboardCmd.AddCommand(leaderboardConfiguration.CreateLeaderboardConfigurationPublicV1Cmd)

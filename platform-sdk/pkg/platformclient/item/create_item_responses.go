@@ -237,7 +237,7 @@ func NewCreateItemConflict() *CreateItemConflict {
 
 /*CreateItemConflict handles this case with default header values.
 
-  <table><tr><td>ErrorCode</td><td>ErrorMessage</td></tr><tr><td>30173</td><td>Published store can't modify content</td></tr><tr><td>30373</td><td>ItemType [{itemType}] is not allowed in namespace [{namespace}]</td></tr></table>
+  <table><tr><td>ErrorCode</td><td>ErrorMessage</td></tr><tr><td>30173</td><td>Published store can't modify content</td></tr><tr><td>30373</td><td>ItemType [{itemType}] is not allowed in namespace [{namespace}]</td></tr><tr><td>30376</td><td>Publisher namespace don’t allow sellback item</td></tr><tr><td>30377</td><td>This item type [{itemType}] don’t allow sellback</td></tr><tr><td>30378</td><td>Sale price don’t allow real currency [{currencyCode}]</td></tr></table>
 */
 type CreateItemConflict struct {
 	Payload *platformclientmodels.ErrorEntity

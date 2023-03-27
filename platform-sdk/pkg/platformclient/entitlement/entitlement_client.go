@@ -101,6 +101,8 @@ type ClientService interface {
 	PublicQueryUserEntitlementsShort(params *PublicQueryUserEntitlementsParams, authInfo runtime.ClientAuthInfoWriter) (*PublicQueryUserEntitlementsOK, error)
 	PublicQueryUserEntitlementsByAppType(params *PublicQueryUserEntitlementsByAppTypeParams, authInfo runtime.ClientAuthInfoWriter) (*PublicQueryUserEntitlementsByAppTypeOK, error)
 	PublicQueryUserEntitlementsByAppTypeShort(params *PublicQueryUserEntitlementsByAppTypeParams, authInfo runtime.ClientAuthInfoWriter) (*PublicQueryUserEntitlementsByAppTypeOK, error)
+	PublicSellUserEntitlement(params *PublicSellUserEntitlementParams, authInfo runtime.ClientAuthInfoWriter) (*PublicSellUserEntitlementOK, *PublicSellUserEntitlementNotFound, *PublicSellUserEntitlementConflict, error)
+	PublicSellUserEntitlementShort(params *PublicSellUserEntitlementParams, authInfo runtime.ClientAuthInfoWriter) (*PublicSellUserEntitlementOK, error)
 	QueryEntitlements(params *QueryEntitlementsParams, authInfo runtime.ClientAuthInfoWriter) (*QueryEntitlementsOK, error)
 	QueryEntitlementsShort(params *QueryEntitlementsParams, authInfo runtime.ClientAuthInfoWriter) (*QueryEntitlementsOK, error)
 	QueryUserEntitlements(params *QueryUserEntitlementsParams, authInfo runtime.ClientAuthInfoWriter) (*QueryUserEntitlementsOK, error)
@@ -111,6 +113,8 @@ type ClientService interface {
 	RevokeUserEntitlementShort(params *RevokeUserEntitlementParams, authInfo runtime.ClientAuthInfoWriter) (*RevokeUserEntitlementOK, error)
 	RevokeUserEntitlements(params *RevokeUserEntitlementsParams, authInfo runtime.ClientAuthInfoWriter) (*RevokeUserEntitlementsOK, error)
 	RevokeUserEntitlementsShort(params *RevokeUserEntitlementsParams, authInfo runtime.ClientAuthInfoWriter) (*RevokeUserEntitlementsOK, error)
+	SellUserEntitlement(params *SellUserEntitlementParams, authInfo runtime.ClientAuthInfoWriter) (*SellUserEntitlementOK, *SellUserEntitlementNotFound, *SellUserEntitlementConflict, error)
+	SellUserEntitlementShort(params *SellUserEntitlementParams, authInfo runtime.ClientAuthInfoWriter) (*SellUserEntitlementOK, error)
 	UpdateUserEntitlement(params *UpdateUserEntitlementParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateUserEntitlementOK, *UpdateUserEntitlementNotFound, *UpdateUserEntitlementConflict, *UpdateUserEntitlementUnprocessableEntity, error)
 	UpdateUserEntitlementShort(params *UpdateUserEntitlementParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateUserEntitlementOK, error)
 
@@ -3472,6 +3476,110 @@ func (a *Client) PublicQueryUserEntitlementsByAppTypeShort(params *PublicQueryUs
 }
 
 /*
+Deprecated: Use PublicSellUserEntitlementShort instead.
+
+  PublicSellUserEntitlement sells user entitlement
+
+  Sell user entitlement. If the entitlement is consumable, useCount is 0, the status will be CONSUMED. If the entitlement is durable, the status will be SOLD. Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;NAMESPACE:{namespace}:USER:{userId}:ENTITLEMENT&#34;, action=4 (UPDATE)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: entitlement&lt;/li&gt;&lt;/ul&gt;
+*/
+func (a *Client) PublicSellUserEntitlement(params *PublicSellUserEntitlementParams, authInfo runtime.ClientAuthInfoWriter) (*PublicSellUserEntitlementOK, *PublicSellUserEntitlementNotFound, *PublicSellUserEntitlementConflict, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewPublicSellUserEntitlementParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "publicSellUserEntitlement",
+		Method:             "PUT",
+		PathPattern:        "/platform/public/namespaces/{namespace}/users/{userId}/entitlements/{entitlementId}/sell",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &PublicSellUserEntitlementReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, nil, nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *PublicSellUserEntitlementOK:
+		return v, nil, nil, nil
+
+	case *PublicSellUserEntitlementNotFound:
+		return nil, v, nil, nil
+
+	case *PublicSellUserEntitlementConflict:
+		return nil, nil, v, nil
+
+	default:
+		return nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+  PublicSellUserEntitlementShort sells user entitlement
+
+  Sell user entitlement. If the entitlement is consumable, useCount is 0, the status will be CONSUMED. If the entitlement is durable, the status will be SOLD. Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;NAMESPACE:{namespace}:USER:{userId}:ENTITLEMENT&#34;, action=4 (UPDATE)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: entitlement&lt;/li&gt;&lt;/ul&gt;
+*/
+func (a *Client) PublicSellUserEntitlementShort(params *PublicSellUserEntitlementParams, authInfo runtime.ClientAuthInfoWriter) (*PublicSellUserEntitlementOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewPublicSellUserEntitlementParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "publicSellUserEntitlement",
+		Method:             "PUT",
+		PathPattern:        "/platform/public/namespaces/{namespace}/users/{userId}/entitlements/{entitlementId}/sell",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &PublicSellUserEntitlementReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *PublicSellUserEntitlementOK:
+		return v, nil
+	case *PublicSellUserEntitlementNotFound:
+		return nil, v
+	case *PublicSellUserEntitlementConflict:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
 Deprecated: Use QueryEntitlementsShort instead.
 
   QueryEntitlements queries entitlements
@@ -3940,6 +4048,110 @@ func (a *Client) RevokeUserEntitlementsShort(params *RevokeUserEntitlementsParam
 
 	case *RevokeUserEntitlementsOK:
 		return v, nil
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+Deprecated: Use SellUserEntitlementShort instead.
+
+  SellUserEntitlement sells user entitlement
+
+  Sell user entitlement. If the entitlement is consumable, useCount is 0, the status will be CONSUMED. If the entitlement is durable, the status will be SOLD. Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=ADMIN:NAMESPACE:{namespace}:USER:{userId}:ENTITLEMENT, action=4 (UPDATE)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: entitlement&lt;/li&gt;&lt;/ul&gt;
+*/
+func (a *Client) SellUserEntitlement(params *SellUserEntitlementParams, authInfo runtime.ClientAuthInfoWriter) (*SellUserEntitlementOK, *SellUserEntitlementNotFound, *SellUserEntitlementConflict, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewSellUserEntitlementParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "sellUserEntitlement",
+		Method:             "PUT",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/users/{userId}/entitlements/{entitlementId}/sell",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &SellUserEntitlementReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, nil, nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *SellUserEntitlementOK:
+		return v, nil, nil, nil
+
+	case *SellUserEntitlementNotFound:
+		return nil, v, nil, nil
+
+	case *SellUserEntitlementConflict:
+		return nil, nil, v, nil
+
+	default:
+		return nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+  SellUserEntitlementShort sells user entitlement
+
+  Sell user entitlement. If the entitlement is consumable, useCount is 0, the status will be CONSUMED. If the entitlement is durable, the status will be SOLD. Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=ADMIN:NAMESPACE:{namespace}:USER:{userId}:ENTITLEMENT, action=4 (UPDATE)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: entitlement&lt;/li&gt;&lt;/ul&gt;
+*/
+func (a *Client) SellUserEntitlementShort(params *SellUserEntitlementParams, authInfo runtime.ClientAuthInfoWriter) (*SellUserEntitlementOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewSellUserEntitlementParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "sellUserEntitlement",
+		Method:             "PUT",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/users/{userId}/entitlements/{entitlementId}/sell",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &SellUserEntitlementReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *SellUserEntitlementOK:
+		return v, nil
+	case *SellUserEntitlementNotFound:
+		return nil, v
+	case *SellUserEntitlementConflict:
+		return nil, v
 
 	default:
 		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))

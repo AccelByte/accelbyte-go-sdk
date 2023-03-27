@@ -30,6 +30,7 @@ var GetUserStatCycleItemsCmd = &cobra.Command{
 		userId, _ := cmd.Flags().GetString("userId")
 		limit, _ := cmd.Flags().GetInt32("limit")
 		offset, _ := cmd.Flags().GetInt32("offset")
+		sortBy, _ := cmd.Flags().GetString("sortBy")
 		statCodes, _ := cmd.Flags().GetString("statCodes")
 		input := &user_statistic_cycle.GetUserStatCycleItemsParams{
 			CycleID:   cycleId,
@@ -37,6 +38,7 @@ var GetUserStatCycleItemsCmd = &cobra.Command{
 			UserID:    userId,
 			Limit:     &limit,
 			Offset:    &offset,
+			SortBy:    &sortBy,
 			StatCodes: &statCodes,
 		}
 		ok, errOK := userStatisticCycleService.GetUserStatCycleItemsShort(input)
@@ -61,5 +63,6 @@ func init() {
 	_ = GetUserStatCycleItemsCmd.MarkFlagRequired("userId")
 	GetUserStatCycleItemsCmd.Flags().Int32("limit", 20, "Limit")
 	GetUserStatCycleItemsCmd.Flags().Int32("offset", 0, "Offset")
+	GetUserStatCycleItemsCmd.Flags().String("sortBy", "", "Sort by")
 	GetUserStatCycleItemsCmd.Flags().String("statCodes", "", "Stat codes")
 }

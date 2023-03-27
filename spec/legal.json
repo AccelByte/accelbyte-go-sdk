@@ -8,7 +8,7 @@
     },
     "description": "Justice Legal Service",
     "title": "justice-legal-service",
-    "version": "1.27.1"
+    "version": "1.28.1"
   },
   "schemes": [
     "https"
@@ -4208,6 +4208,12 @@
           "type": "string",
           "x-nullable": true
         },
+        "tags": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
         "updatedAt": {
           "format": "date-time",
           "type": "string",
@@ -5113,6 +5119,11 @@
     "UsersAgreementsRequest": {
       "description": "A DTO object for retrieving agreements of multi users",
       "properties": {
+        "currentPublishedOnly": {
+          "description": "if true, the result will only include the status of current published policies, default: false",
+          "type": "boolean",
+          "x-omitempty": false
+        },
         "userIds": {
           "description": "user ids, min size: 1, max size: 100",
           "items": {

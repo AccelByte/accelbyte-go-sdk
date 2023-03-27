@@ -18028,6 +18028,8 @@ Deprecated: Use PublicVerifyHeadlessAccountV3Short instead.
   PublicVerifyHeadlessAccountV3 upgrades user account to full account with email
 
   &lt;p&gt;Require valid user authorization&lt;br&gt;action code : 10124 &lt;/p&gt;
+			&lt;p&gt;if set NeedVerificationCode = true, IAM will send verification code into email&lt;/p&gt;
+			&lt;p&gt;user can use that verification code to verify user through /iam/v3/public/namespaces/{namespace}/users/me/code/verify
 */
 func (a *Client) PublicVerifyHeadlessAccountV3(params *PublicVerifyHeadlessAccountV3Params, authInfo runtime.ClientAuthInfoWriter) (*PublicVerifyHeadlessAccountV3OK, *PublicVerifyHeadlessAccountV3BadRequest, *PublicVerifyHeadlessAccountV3Unauthorized, *PublicVerifyHeadlessAccountV3NotFound, *PublicVerifyHeadlessAccountV3Conflict, *PublicVerifyHeadlessAccountV3InternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -18089,6 +18091,8 @@ func (a *Client) PublicVerifyHeadlessAccountV3(params *PublicVerifyHeadlessAccou
   PublicVerifyHeadlessAccountV3Short upgrades user account to full account with email
 
   &lt;p&gt;Require valid user authorization&lt;br&gt;action code : 10124 &lt;/p&gt;
+			&lt;p&gt;if set NeedVerificationCode = true, IAM will send verification code into email&lt;/p&gt;
+			&lt;p&gt;user can use that verification code to verify user through /iam/v3/public/namespaces/{namespace}/users/me/code/verify
 */
 func (a *Client) PublicVerifyHeadlessAccountV3Short(params *PublicVerifyHeadlessAccountV3Params, authInfo runtime.ClientAuthInfoWriter) (*PublicVerifyHeadlessAccountV3OK, error) {
 	// TODO: Validate the params before sending

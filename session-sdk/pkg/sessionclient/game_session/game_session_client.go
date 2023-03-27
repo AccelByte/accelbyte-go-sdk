@@ -37,6 +37,8 @@ type ClientService interface {
 	AdminQueryGameSessionsShort(params *AdminQueryGameSessionsParams, authInfo runtime.ClientAuthInfoWriter) (*AdminQueryGameSessionsOK, error)
 	AdminUpdateGameSessionMember(params *AdminUpdateGameSessionMemberParams, authInfo runtime.ClientAuthInfoWriter) (*AdminUpdateGameSessionMemberOK, *AdminUpdateGameSessionMemberBadRequest, *AdminUpdateGameSessionMemberUnauthorized, *AdminUpdateGameSessionMemberForbidden, *AdminUpdateGameSessionMemberNotFound, *AdminUpdateGameSessionMemberInternalServerError, error)
 	AdminUpdateGameSessionMemberShort(params *AdminUpdateGameSessionMemberParams, authInfo runtime.ClientAuthInfoWriter) (*AdminUpdateGameSessionMemberOK, error)
+	AppendTeamGameSession(params *AppendTeamGameSessionParams, authInfo runtime.ClientAuthInfoWriter) (*AppendTeamGameSessionOK, *AppendTeamGameSessionUnauthorized, *AppendTeamGameSessionForbidden, *AppendTeamGameSessionNotFound, *AppendTeamGameSessionInternalServerError, error)
+	AppendTeamGameSessionShort(params *AppendTeamGameSessionParams, authInfo runtime.ClientAuthInfoWriter) (*AppendTeamGameSessionOK, error)
 	CreateGameSession(params *CreateGameSessionParams, authInfo runtime.ClientAuthInfoWriter) (*CreateGameSessionCreated, *CreateGameSessionBadRequest, *CreateGameSessionUnauthorized, *CreateGameSessionForbidden, *CreateGameSessionInternalServerError, error)
 	CreateGameSessionShort(params *CreateGameSessionParams, authInfo runtime.ClientAuthInfoWriter) (*CreateGameSessionCreated, error)
 	DeleteGameSession(params *DeleteGameSessionParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteGameSessionNoContent, *DeleteGameSessionUnauthorized, *DeleteGameSessionForbidden, *DeleteGameSessionInternalServerError, error)
@@ -293,6 +295,120 @@ func (a *Client) AdminUpdateGameSessionMemberShort(params *AdminUpdateGameSessio
 	case *AdminUpdateGameSessionMemberNotFound:
 		return nil, v
 	case *AdminUpdateGameSessionMemberInternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+Deprecated: Use AppendTeamGameSessionShort instead.
+
+  AppendTeamGameSession appends new member or team to session requires n a m e s p a c e namespace s e s s i o n g a m e u p d a t e
+
+  Append new member or team to session
+*/
+func (a *Client) AppendTeamGameSession(params *AppendTeamGameSessionParams, authInfo runtime.ClientAuthInfoWriter) (*AppendTeamGameSessionOK, *AppendTeamGameSessionUnauthorized, *AppendTeamGameSessionForbidden, *AppendTeamGameSessionNotFound, *AppendTeamGameSessionInternalServerError, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewAppendTeamGameSessionParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "appendTeamGameSession",
+		Method:             "POST",
+		PathPattern:        "/session/v1/public/namespaces/{namespace}/gamesessions/{sessionId}/teams",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &AppendTeamGameSessionReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, nil, nil, nil, nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *AppendTeamGameSessionOK:
+		return v, nil, nil, nil, nil, nil
+
+	case *AppendTeamGameSessionUnauthorized:
+		return nil, v, nil, nil, nil, nil
+
+	case *AppendTeamGameSessionForbidden:
+		return nil, nil, v, nil, nil, nil
+
+	case *AppendTeamGameSessionNotFound:
+		return nil, nil, nil, v, nil, nil
+
+	case *AppendTeamGameSessionInternalServerError:
+		return nil, nil, nil, nil, v, nil
+
+	default:
+		return nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+  AppendTeamGameSessionShort appends new member or team to session requires n a m e s p a c e namespace s e s s i o n g a m e u p d a t e
+
+  Append new member or team to session
+*/
+func (a *Client) AppendTeamGameSessionShort(params *AppendTeamGameSessionParams, authInfo runtime.ClientAuthInfoWriter) (*AppendTeamGameSessionOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewAppendTeamGameSessionParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "appendTeamGameSession",
+		Method:             "POST",
+		PathPattern:        "/session/v1/public/namespaces/{namespace}/gamesessions/{sessionId}/teams",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &AppendTeamGameSessionReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *AppendTeamGameSessionOK:
+		return v, nil
+	case *AppendTeamGameSessionUnauthorized:
+		return nil, v
+	case *AppendTeamGameSessionForbidden:
+		return nil, v
+	case *AppendTeamGameSessionNotFound:
+		return nil, v
+	case *AppendTeamGameSessionInternalServerError:
 		return nil, v
 
 	default:

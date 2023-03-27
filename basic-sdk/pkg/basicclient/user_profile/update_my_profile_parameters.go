@@ -70,7 +70,7 @@ type UpdateMyProfileParams struct {
 	/*RetryPolicy*/
 	RetryPolicy *utils.Retry
 	/*Body*/
-	Body *basicclientmodels.UserProfilePrivateUpdate
+	Body *basicclientmodels.UserProfileUpdate
 	/*Namespace
 	  namespace, only accept alphabet and numeric
 
@@ -131,13 +131,13 @@ func (o *UpdateMyProfileParams) SetHTTPClientTransport(roundTripper http.RoundTr
 }
 
 // WithBody adds the body to the update my profile params
-func (o *UpdateMyProfileParams) WithBody(body *basicclientmodels.UserProfilePrivateUpdate) *UpdateMyProfileParams {
+func (o *UpdateMyProfileParams) WithBody(body *basicclientmodels.UserProfileUpdate) *UpdateMyProfileParams {
 	o.SetBody(body)
 	return o
 }
 
 // SetBody adds the body to the update my profile params
-func (o *UpdateMyProfileParams) SetBody(body *basicclientmodels.UserProfilePrivateUpdate) {
+func (o *UpdateMyProfileParams) SetBody(body *basicclientmodels.UserProfileUpdate) {
 	o.Body = body
 }
 

@@ -41,6 +41,10 @@ type ClientService interface {
 	AdminGetAllConfigurationTemplatesV1Short(params *AdminGetAllConfigurationTemplatesV1Params, authInfo runtime.ClientAuthInfoWriter) (*AdminGetAllConfigurationTemplatesV1OK, error)
 	AdminGetConfigurationTemplateV1(params *AdminGetConfigurationTemplateV1Params, authInfo runtime.ClientAuthInfoWriter) (*AdminGetConfigurationTemplateV1OK, *AdminGetConfigurationTemplateV1BadRequest, *AdminGetConfigurationTemplateV1Unauthorized, *AdminGetConfigurationTemplateV1Forbidden, *AdminGetConfigurationTemplateV1NotFound, *AdminGetConfigurationTemplateV1InternalServerError, error)
 	AdminGetConfigurationTemplateV1Short(params *AdminGetConfigurationTemplateV1Params, authInfo runtime.ClientAuthInfoWriter) (*AdminGetConfigurationTemplateV1OK, error)
+	AdminGetDSMCConfiguration(params *AdminGetDSMCConfigurationParams, authInfo runtime.ClientAuthInfoWriter) (*AdminGetDSMCConfigurationOK, *AdminGetDSMCConfigurationBadRequest, *AdminGetDSMCConfigurationUnauthorized, *AdminGetDSMCConfigurationForbidden, *AdminGetDSMCConfigurationNotFound, *AdminGetDSMCConfigurationInternalServerError, error)
+	AdminGetDSMCConfigurationShort(params *AdminGetDSMCConfigurationParams, authInfo runtime.ClientAuthInfoWriter) (*AdminGetDSMCConfigurationOK, error)
+	AdminSyncDSMCConfiguration(params *AdminSyncDSMCConfigurationParams, authInfo runtime.ClientAuthInfoWriter) (*AdminSyncDSMCConfigurationOK, *AdminSyncDSMCConfigurationBadRequest, *AdminSyncDSMCConfigurationUnauthorized, *AdminSyncDSMCConfigurationForbidden, *AdminSyncDSMCConfigurationNotFound, *AdminSyncDSMCConfigurationInternalServerError, error)
+	AdminSyncDSMCConfigurationShort(params *AdminSyncDSMCConfigurationParams, authInfo runtime.ClientAuthInfoWriter) (*AdminSyncDSMCConfigurationOK, error)
 	AdminUpdateConfigurationTemplateV1(params *AdminUpdateConfigurationTemplateV1Params, authInfo runtime.ClientAuthInfoWriter) (*AdminUpdateConfigurationTemplateV1OK, *AdminUpdateConfigurationTemplateV1BadRequest, *AdminUpdateConfigurationTemplateV1Unauthorized, *AdminUpdateConfigurationTemplateV1Forbidden, *AdminUpdateConfigurationTemplateV1NotFound, *AdminUpdateConfigurationTemplateV1InternalServerError, error)
 	AdminUpdateConfigurationTemplateV1Short(params *AdminUpdateConfigurationTemplateV1Params, authInfo runtime.ClientAuthInfoWriter) (*AdminUpdateConfigurationTemplateV1OK, error)
 
@@ -62,6 +66,9 @@ Session configuration mandatory :
 - InviteTimeout (must greather or equal 0) if InviteTimeout equal 0 will be use default DefaultTimeoutSecond (60s)
 - InactiveTimeout (must greather or equal 0) if InactiveTimeout equal 0 will be use default DefaultTimeoutSecond (60s)
 - Persistent Flag only can use with type DS (example value true or false)
+- If Persistent True the session always active even DS removing or terminate and Session will be request DS again until DS Ready or Busy.
+- To Stop Session Not request again to DS or want Delete Session can Delete Session using endpoint DELETE /session/v1/public/namespaces/{namespace}/gamesessions/{sessionId}
+- If Persistent False the session will be inactive if all member left and DS terminate or removing
 
 */
 func (a *Client) AdminCreateConfigurationTemplateV1(params *AdminCreateConfigurationTemplateV1Params, authInfo runtime.ClientAuthInfoWriter) (*AdminCreateConfigurationTemplateV1Created, *AdminCreateConfigurationTemplateV1BadRequest, *AdminCreateConfigurationTemplateV1Unauthorized, *AdminCreateConfigurationTemplateV1Forbidden, *AdminCreateConfigurationTemplateV1Conflict, *AdminCreateConfigurationTemplateV1InternalServerError, error) {
@@ -133,6 +140,9 @@ Session configuration mandatory :
 - InviteTimeout (must greather or equal 0) if InviteTimeout equal 0 will be use default DefaultTimeoutSecond (60s)
 - InactiveTimeout (must greather or equal 0) if InactiveTimeout equal 0 will be use default DefaultTimeoutSecond (60s)
 - Persistent Flag only can use with type DS (example value true or false)
+- If Persistent True the session always active even DS removing or terminate and Session will be request DS again until DS Ready or Busy.
+- To Stop Session Not request again to DS or want Delete Session can Delete Session using endpoint DELETE /session/v1/public/namespaces/{namespace}/gamesessions/{sessionId}
+- If Persistent False the session will be inactive if all member left and DS terminate or removing
 
 */
 func (a *Client) AdminCreateConfigurationTemplateV1Short(params *AdminCreateConfigurationTemplateV1Params, authInfo runtime.ClientAuthInfoWriter) (*AdminCreateConfigurationTemplateV1Created, error) {
@@ -534,6 +544,244 @@ func (a *Client) AdminGetConfigurationTemplateV1Short(params *AdminGetConfigurat
 }
 
 /*
+Deprecated: Use AdminGetDSMCConfigurationShort instead.
+
+  AdminGetDSMCConfiguration gets dsmc configuration requires a d m i n n a m e s p a c e namespace s e s s i o n c o n f i g u r a t i o n r e a d
+
+  Get a dsmc configuration.
+*/
+func (a *Client) AdminGetDSMCConfiguration(params *AdminGetDSMCConfigurationParams, authInfo runtime.ClientAuthInfoWriter) (*AdminGetDSMCConfigurationOK, *AdminGetDSMCConfigurationBadRequest, *AdminGetDSMCConfigurationUnauthorized, *AdminGetDSMCConfigurationForbidden, *AdminGetDSMCConfigurationNotFound, *AdminGetDSMCConfigurationInternalServerError, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewAdminGetDSMCConfigurationParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "adminGetDSMCConfiguration",
+		Method:             "GET",
+		PathPattern:        "/session/v1/admin/namespaces/{namespace}/dsconfigs",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &AdminGetDSMCConfigurationReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, nil, nil, nil, nil, nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *AdminGetDSMCConfigurationOK:
+		return v, nil, nil, nil, nil, nil, nil
+
+	case *AdminGetDSMCConfigurationBadRequest:
+		return nil, v, nil, nil, nil, nil, nil
+
+	case *AdminGetDSMCConfigurationUnauthorized:
+		return nil, nil, v, nil, nil, nil, nil
+
+	case *AdminGetDSMCConfigurationForbidden:
+		return nil, nil, nil, v, nil, nil, nil
+
+	case *AdminGetDSMCConfigurationNotFound:
+		return nil, nil, nil, nil, v, nil, nil
+
+	case *AdminGetDSMCConfigurationInternalServerError:
+		return nil, nil, nil, nil, nil, v, nil
+
+	default:
+		return nil, nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+  AdminGetDSMCConfigurationShort gets dsmc configuration requires a d m i n n a m e s p a c e namespace s e s s i o n c o n f i g u r a t i o n r e a d
+
+  Get a dsmc configuration.
+*/
+func (a *Client) AdminGetDSMCConfigurationShort(params *AdminGetDSMCConfigurationParams, authInfo runtime.ClientAuthInfoWriter) (*AdminGetDSMCConfigurationOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewAdminGetDSMCConfigurationParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "adminGetDSMCConfiguration",
+		Method:             "GET",
+		PathPattern:        "/session/v1/admin/namespaces/{namespace}/dsconfigs",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &AdminGetDSMCConfigurationReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *AdminGetDSMCConfigurationOK:
+		return v, nil
+	case *AdminGetDSMCConfigurationBadRequest:
+		return nil, v
+	case *AdminGetDSMCConfigurationUnauthorized:
+		return nil, v
+	case *AdminGetDSMCConfigurationForbidden:
+		return nil, v
+	case *AdminGetDSMCConfigurationNotFound:
+		return nil, v
+	case *AdminGetDSMCConfigurationInternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+Deprecated: Use AdminSyncDSMCConfigurationShort instead.
+
+  AdminSyncDSMCConfiguration syncs dsmc configuration requires a d m i n n a m e s p a c e namespace s e s s i o n c o n f i g u r a t i o n r e a d
+
+  sync dsmc configuration.
+*/
+func (a *Client) AdminSyncDSMCConfiguration(params *AdminSyncDSMCConfigurationParams, authInfo runtime.ClientAuthInfoWriter) (*AdminSyncDSMCConfigurationOK, *AdminSyncDSMCConfigurationBadRequest, *AdminSyncDSMCConfigurationUnauthorized, *AdminSyncDSMCConfigurationForbidden, *AdminSyncDSMCConfigurationNotFound, *AdminSyncDSMCConfigurationInternalServerError, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewAdminSyncDSMCConfigurationParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "adminSyncDSMCConfiguration",
+		Method:             "GET",
+		PathPattern:        "/session/v1/admin/namespaces/{namespace}/dsconfigs/sync",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &AdminSyncDSMCConfigurationReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, nil, nil, nil, nil, nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *AdminSyncDSMCConfigurationOK:
+		return v, nil, nil, nil, nil, nil, nil
+
+	case *AdminSyncDSMCConfigurationBadRequest:
+		return nil, v, nil, nil, nil, nil, nil
+
+	case *AdminSyncDSMCConfigurationUnauthorized:
+		return nil, nil, v, nil, nil, nil, nil
+
+	case *AdminSyncDSMCConfigurationForbidden:
+		return nil, nil, nil, v, nil, nil, nil
+
+	case *AdminSyncDSMCConfigurationNotFound:
+		return nil, nil, nil, nil, v, nil, nil
+
+	case *AdminSyncDSMCConfigurationInternalServerError:
+		return nil, nil, nil, nil, nil, v, nil
+
+	default:
+		return nil, nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+  AdminSyncDSMCConfigurationShort syncs dsmc configuration requires a d m i n n a m e s p a c e namespace s e s s i o n c o n f i g u r a t i o n r e a d
+
+  sync dsmc configuration.
+*/
+func (a *Client) AdminSyncDSMCConfigurationShort(params *AdminSyncDSMCConfigurationParams, authInfo runtime.ClientAuthInfoWriter) (*AdminSyncDSMCConfigurationOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewAdminSyncDSMCConfigurationParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "adminSyncDSMCConfiguration",
+		Method:             "GET",
+		PathPattern:        "/session/v1/admin/namespaces/{namespace}/dsconfigs/sync",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &AdminSyncDSMCConfigurationReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *AdminSyncDSMCConfigurationOK:
+		return v, nil
+	case *AdminSyncDSMCConfigurationBadRequest:
+		return nil, v
+	case *AdminSyncDSMCConfigurationUnauthorized:
+		return nil, v
+	case *AdminSyncDSMCConfigurationForbidden:
+		return nil, v
+	case *AdminSyncDSMCConfigurationNotFound:
+		return nil, v
+	case *AdminSyncDSMCConfigurationInternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
 Deprecated: Use AdminUpdateConfigurationTemplateV1Short instead.
 
   AdminUpdateConfigurationTemplateV1 updates configuration template requires a d m i n n a m e s p a c e namespace s e s s i o n c o n f i g u r a t i o n u p d a t e
@@ -547,6 +795,10 @@ Session configuration mandatory :
 - MaxPlayers (must greather than 0)
 - InviteTimeout (must greather or equal 0) if InviteTimeout equal 0 will be use default DefaultTimeoutSecond (60s)
 - InactiveTimeout (must greather or equal 0) if InactiveTimeout equal 0 will be use default DefaultTimeoutSecond (60s)
+- Persistent Flag only can use with type DS (example value true or false)
+- If Persistent True the session always active even DS removing or terminate and Session will be request DS again until DS Ready or Busy.
+- To Stop Session Not request again to DS or want Delete Session can Delete Session using endpoint DELETE /session/v1/public/namespaces/{namespace}/gamesessions/{sessionId}
+- If Persistent False the session will be inactive if all member left and DS terminate or removing
 
 */
 func (a *Client) AdminUpdateConfigurationTemplateV1(params *AdminUpdateConfigurationTemplateV1Params, authInfo runtime.ClientAuthInfoWriter) (*AdminUpdateConfigurationTemplateV1OK, *AdminUpdateConfigurationTemplateV1BadRequest, *AdminUpdateConfigurationTemplateV1Unauthorized, *AdminUpdateConfigurationTemplateV1Forbidden, *AdminUpdateConfigurationTemplateV1NotFound, *AdminUpdateConfigurationTemplateV1InternalServerError, error) {
@@ -617,6 +869,10 @@ Session configuration mandatory :
 - MaxPlayers (must greather than 0)
 - InviteTimeout (must greather or equal 0) if InviteTimeout equal 0 will be use default DefaultTimeoutSecond (60s)
 - InactiveTimeout (must greather or equal 0) if InactiveTimeout equal 0 will be use default DefaultTimeoutSecond (60s)
+- Persistent Flag only can use with type DS (example value true or false)
+- If Persistent True the session always active even DS removing or terminate and Session will be request DS again until DS Ready or Busy.
+- To Stop Session Not request again to DS or want Delete Session can Delete Session using endpoint DELETE /session/v1/public/namespaces/{namespace}/gamesessions/{sessionId}
+- If Persistent False the session will be inactive if all member left and DS terminate or removing
 
 */
 func (a *Client) AdminUpdateConfigurationTemplateV1Short(params *AdminUpdateConfigurationTemplateV1Params, authInfo runtime.ClientAuthInfoWriter) (*AdminUpdateConfigurationTemplateV1OK, error) {

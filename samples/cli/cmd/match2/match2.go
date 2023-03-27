@@ -33,6 +33,7 @@ func init() {
 	Match2Cmd.AddCommand(backfill.RejectBackfillCmd)
 	Match2Cmd.AddCommand(matchFunctions.MatchFunctionListCmd)
 	Match2Cmd.AddCommand(matchFunctions.CreateMatchFunctionCmd)
+	Match2Cmd.AddCommand(matchFunctions.UpdateMatchFunctionCmd)
 	Match2Cmd.AddCommand(matchFunctions.DeleteMatchFunctionCmd)
 	Match2Cmd.AddCommand(matchPools.MatchPoolListCmd)
 	Match2Cmd.AddCommand(matchPools.CreateMatchPoolCmd)

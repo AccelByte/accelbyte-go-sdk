@@ -22,8 +22,7 @@ type ApimodelsDSInformationResponse struct {
 	RequestedAt *string `json:"RequestedAt"`
 
 	// server
-	// Required: true
-	Server *ModelsGameServer `json:"Server"`
+	Server *ModelsGameServer `json:"Server,omitempty"`
 
 	// status
 	// Required: true
@@ -71,8 +70,8 @@ func (m *ApimodelsDSInformationResponse) validateRequestedAt(formats strfmt.Regi
 
 func (m *ApimodelsDSInformationResponse) validateServer(formats strfmt.Registry) error {
 
-	if err := validate.Required("Server", "body", m.Server); err != nil {
-		return err
+	if swag.IsZero(m.Server) { // not required
+		return nil
 	}
 
 	if m.Server != nil {

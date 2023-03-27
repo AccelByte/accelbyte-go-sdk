@@ -49,6 +49,10 @@ type ApimodelsUpdateConfigurationTemplateRequest struct {
 	// Required: true
 	Name *string `json:"name"`
 
+	// persistent
+	// Required: true
+	Persistent *bool `json:"persistent"`
+
 	// requested regions
 	// Required: true
 	RequestedRegions []string `json:"requestedRegions"`
@@ -95,6 +99,10 @@ func (m *ApimodelsUpdateConfigurationTemplateRequest) Validate(formats strfmt.Re
 	}
 
 	if err := m.validateName(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validatePersistent(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -182,6 +190,15 @@ func (m *ApimodelsUpdateConfigurationTemplateRequest) validateMinPlayers(formats
 func (m *ApimodelsUpdateConfigurationTemplateRequest) validateName(formats strfmt.Registry) error {
 
 	if err := validate.Required("name", "body", m.Name); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *ApimodelsUpdateConfigurationTemplateRequest) validatePersistent(formats strfmt.Registry) error {
+
+	if err := validate.Required("persistent", "body", m.Persistent); err != nil {
 		return err
 	}
 

@@ -45,6 +45,9 @@ type UserProfileAdmin struct {
 	// last name
 	LastName string `json:"lastName,omitempty"`
 
+	// private custom attributes
+	PrivateCustomAttributes map[string]interface{} `json:"privateCustomAttributes,omitempty"`
+
 	// status
 	// Enum: [ACTIVE INACTIVE]
 	Status string `json:"status,omitempty"`

@@ -290,7 +290,7 @@ func NewCreateConfigConflict() *CreateConfigConflict {
 
 /*CreateConfigConflict handles this case with default header values.
 
-  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>12336</td><td>Unable to {action}: Config already exists</td></tr></table>
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>11771</td><td>Unable to {action}: Config already exists</td></tr></table>
 */
 type CreateConfigConflict struct {
 	Payload *basicclientmodels.ErrorEntity

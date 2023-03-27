@@ -22,8 +22,7 @@ type ModelUpdateUserStatusRequest struct {
 	Enabled *bool `json:"enabled"`
 
 	// reason
-	// Required: true
-	Reason *string `json:"reason"`
+	Reason string `json:"reason,omitempty"`
 }
 
 // Validate validates this model update user status request
@@ -31,10 +30,6 @@ func (m *ModelUpdateUserStatusRequest) Validate(formats strfmt.Registry) error {
 	var res []error
 
 	if err := m.validateEnabled(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.validateReason(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -47,15 +42,6 @@ func (m *ModelUpdateUserStatusRequest) Validate(formats strfmt.Registry) error {
 func (m *ModelUpdateUserStatusRequest) validateEnabled(formats strfmt.Registry) error {
 
 	if err := validate.Required("enabled", "body", m.Enabled); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *ModelUpdateUserStatusRequest) validateReason(formats strfmt.Registry) error {
-
-	if err := validate.Required("reason", "body", m.Reason); err != nil {
 		return err
 	}
 

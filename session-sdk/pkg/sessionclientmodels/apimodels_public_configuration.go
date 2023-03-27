@@ -54,7 +54,6 @@ type ApimodelsPublicConfiguration struct {
 	Persistent *bool `json:"persistent"`
 
 	// requested regions
-	// Required: true
 	RequestedRegions []string `json:"requestedRegions"`
 
 	// text chat
@@ -103,10 +102,6 @@ func (m *ApimodelsPublicConfiguration) Validate(formats strfmt.Registry) error {
 	}
 
 	if err := m.validatePersistent(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.validateRequestedRegions(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -199,15 +194,6 @@ func (m *ApimodelsPublicConfiguration) validateName(formats strfmt.Registry) err
 func (m *ApimodelsPublicConfiguration) validatePersistent(formats strfmt.Registry) error {
 
 	if err := validate.Required("persistent", "body", m.Persistent); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *ApimodelsPublicConfiguration) validateRequestedRegions(formats strfmt.Registry) error {
-
-	if err := validate.Required("requestedRegions", "body", m.RequestedRegions); err != nil {
 		return err
 	}
 

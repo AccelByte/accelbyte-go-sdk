@@ -36,7 +36,7 @@ type CreditRequest struct {
 	Reason string `json:"reason,omitempty"`
 
 	// source, purchase for default
-	// Enum: [ACHIEVEMENT DLC GIFT IAP OTHER PROMOTION PURCHASE REDEEM_CODE REFERRAL_BONUS REFUND REWARD]
+	// Enum: [ACHIEVEMENT DLC GIFT IAP OTHER PROMOTION PURCHASE REDEEM_CODE REFERRAL_BONUS REFUND REWARD SELL_BACK]
 	Source string `json:"source,omitempty"`
 }
 
@@ -163,7 +163,7 @@ var creditRequestTypeSourcePropEnum []interface{}
 
 func init() {
 	var res []string
-	if err := json.Unmarshal([]byte(`["ACHIEVEMENT","DLC","GIFT","IAP","OTHER","PROMOTION","PURCHASE","REDEEM_CODE","REFERRAL_BONUS","REFUND","REWARD"]`), &res); err != nil {
+	if err := json.Unmarshal([]byte(`["ACHIEVEMENT","DLC","GIFT","IAP","OTHER","PROMOTION","PURCHASE","REDEEM_CODE","REFERRAL_BONUS","REFUND","REWARD","SELL_BACK"]`), &res); err != nil {
 		panic(err)
 	}
 	for _, v := range res {
@@ -205,6 +205,9 @@ const (
 
 	// CreditRequestSourceREWARD captures enum value "REWARD"
 	CreditRequestSourceREWARD string = "REWARD"
+
+	// CreditRequestSourceSELLBACK captures enum value "SELL_BACK"
+	CreditRequestSourceSELLBACK string = "SELL_BACK"
 )
 
 // prop value enum

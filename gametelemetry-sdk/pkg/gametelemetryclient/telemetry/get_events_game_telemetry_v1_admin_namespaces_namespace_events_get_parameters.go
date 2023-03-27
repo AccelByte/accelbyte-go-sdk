@@ -26,10 +26,10 @@ import (
 // with the default values initialized.
 func NewGetEventsGameTelemetryV1AdminNamespacesNamespaceEventsGetParams() *GetEventsGameTelemetryV1AdminNamespacesNamespaceEventsGetParams {
 	var (
-		endTimeDefault   = string("2023-03-07T06:19:46Z")
+		endTimeDefault   = string("2023-03-14T03:00:30Z")
 		limitDefault     = int64(100)
 		offsetDefault    = int64(0)
-		startTimeDefault = string("2023-03-06T06:19:46Z")
+		startTimeDefault = string("2023-03-13T03:00:30Z")
 	)
 	return &GetEventsGameTelemetryV1AdminNamespacesNamespaceEventsGetParams{
 		EndTime:   &endTimeDefault,
@@ -45,10 +45,10 @@ func NewGetEventsGameTelemetryV1AdminNamespacesNamespaceEventsGetParams() *GetEv
 // with the default values initialized, and the ability to set a timeout on a request
 func NewGetEventsGameTelemetryV1AdminNamespacesNamespaceEventsGetParamsWithTimeout(timeout time.Duration) *GetEventsGameTelemetryV1AdminNamespacesNamespaceEventsGetParams {
 	var (
-		endTimeDefault   = string("2023-03-07T06:19:46Z")
+		endTimeDefault   = string("2023-03-14T03:00:30Z")
 		limitDefault     = int64(100)
 		offsetDefault    = int64(0)
-		startTimeDefault = string("2023-03-06T06:19:46Z")
+		startTimeDefault = string("2023-03-13T03:00:30Z")
 	)
 	return &GetEventsGameTelemetryV1AdminNamespacesNamespaceEventsGetParams{
 		EndTime:   &endTimeDefault,
@@ -64,10 +64,10 @@ func NewGetEventsGameTelemetryV1AdminNamespacesNamespaceEventsGetParamsWithTimeo
 // with the default values initialized, and the ability to set a context for a request
 func NewGetEventsGameTelemetryV1AdminNamespacesNamespaceEventsGetParamsWithContext(ctx context.Context) *GetEventsGameTelemetryV1AdminNamespacesNamespaceEventsGetParams {
 	var (
-		endTimeDefault   = string("2023-03-07T06:19:46Z")
+		endTimeDefault   = string("2023-03-14T03:00:30Z")
 		limitDefault     = int64(100)
 		offsetDefault    = int64(0)
-		startTimeDefault = string("2023-03-06T06:19:46Z")
+		startTimeDefault = string("2023-03-13T03:00:30Z")
 	)
 	return &GetEventsGameTelemetryV1AdminNamespacesNamespaceEventsGetParams{
 		EndTime:   &endTimeDefault,
@@ -83,10 +83,10 @@ func NewGetEventsGameTelemetryV1AdminNamespacesNamespaceEventsGetParamsWithConte
 // with the default values initialized, and the ability to set a custom HTTPClient for a request
 func NewGetEventsGameTelemetryV1AdminNamespacesNamespaceEventsGetParamsWithHTTPClient(client *http.Client) *GetEventsGameTelemetryV1AdminNamespacesNamespaceEventsGetParams {
 	var (
-		endTimeDefault   = string("2023-03-07T06:19:46Z")
+		endTimeDefault   = string("2023-03-14T03:00:30Z")
 		limitDefault     = int64(100)
 		offsetDefault    = int64(0)
-		startTimeDefault = string("2023-03-06T06:19:46Z")
+		startTimeDefault = string("2023-03-13T03:00:30Z")
 	)
 	return &GetEventsGameTelemetryV1AdminNamespacesNamespaceEventsGetParams{
 		EndTime:    &endTimeDefault,

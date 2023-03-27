@@ -56,6 +56,9 @@ type RetrieveAcceptedAgreementResponse struct {
 	// Format: date-time
 	SigningDate *strfmt.DateTime `json:"signingDate,omitempty"`
 
+	// tags
+	Tags []string `json:"tags"`
+
 	// updated at
 	// Format: date-time
 	UpdatedAt *strfmt.DateTime `json:"updatedAt,omitempty"`

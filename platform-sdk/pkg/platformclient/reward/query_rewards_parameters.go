@@ -111,7 +111,7 @@ type QueryRewardsParams struct {
 	*/
 	Offset *int32
 	/*SortBy
-	  default is namespace:asc,rewardCode:asc, allow values: [namespace, namespace:asc, namespace:desc, rewardCode, rewardCode:asc, rewardCode:desc],and support sort group, eg: sortBy=namespace:asc,rewardCode:asc
+	  default is namespace:asc,rewardCode:asc, allow values: [namespace, namespace:asc, namespace:desc, rewardCode, rewardCode:asc, rewardCode:desc, createdAt:asc, createdAt:desc],and support sort group, eg: sortBy=namespace:asc,rewardCode:asc
 
 	*/
 	SortBy []string

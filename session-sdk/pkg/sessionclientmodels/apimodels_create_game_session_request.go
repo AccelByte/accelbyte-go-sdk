@@ -63,12 +63,6 @@ type ApimodelsCreateGameSessionRequest struct {
 	// Required: true
 	MinPlayers *int32 `json:"minPlayers"`
 
-	// persistent
-	Persistent bool `json:"persistent"`
-
-	// persistent TTL
-	PersistentTTL int32 `json:"persistentTTL,omitempty"`
-
 	// requested regions
 	// Required: true
 	RequestedRegions []string `json:"requestedRegions"`

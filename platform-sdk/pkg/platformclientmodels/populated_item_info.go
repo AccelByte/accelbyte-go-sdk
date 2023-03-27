@@ -140,9 +140,15 @@ type PopulatedItemInfo struct {
 	// Region data
 	RegionData []*RegionDataItem `json:"regionData"`
 
+	// sale config
+	SaleConfig *SaleConfig `json:"saleConfig,omitempty"`
+
 	// Season type, required while itemType is SEASON
 	// Enum: [PASS TIER]
 	SeasonType string `json:"seasonType,omitempty"`
+
+	// whether allow to sell back to store
+	Sellable bool `json:"sellable"`
 
 	// Sku
 	Sku string `json:"sku,omitempty"`
@@ -261,6 +267,10 @@ func (m *PopulatedItemInfo) Validate(formats strfmt.Registry) error {
 	}
 
 	if err := m.validateRegionData(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateSaleConfig(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -687,6 +697,24 @@ func (m *PopulatedItemInfo) validateRegionData(formats strfmt.Registry) error {
 			}
 		}
 
+	}
+
+	return nil
+}
+
+func (m *PopulatedItemInfo) validateSaleConfig(formats strfmt.Registry) error {
+
+	if swag.IsZero(m.SaleConfig) { // not required
+		return nil
+	}
+
+	if m.SaleConfig != nil {
+		if err := m.SaleConfig.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("saleConfig")
+			}
+			return err
+		}
 	}
 
 	return nil

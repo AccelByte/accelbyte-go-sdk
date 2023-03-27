@@ -102,9 +102,15 @@ type ItemCreate struct {
 	// Required: true
 	RegionData map[string][]RegionDataItem `json:"regionData"`
 
+	// sale config, required if sellable is true
+	SaleConfig *SaleConfig `json:"saleConfig,omitempty"`
+
 	// seasonType
 	// Enum: [PASS TIER]
 	SeasonType string `json:"seasonType,omitempty"`
+
+	// sellable, whether allow to sell back to store
+	Sellable bool `json:"sellable"`
 
 	// sku, allowed characters from a-zA-Z0-9_:- and start/end in alphanumeric, max length is 127
 	Sku string `json:"sku,omitempty"`
@@ -183,6 +189,10 @@ func (m *ItemCreate) Validate(formats strfmt.Registry) error {
 	}
 
 	if err := m.validateRegionData(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateSaleConfig(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -513,6 +523,24 @@ func (m *ItemCreate) validateRegionData(formats strfmt.Registry) error {
 
 		}
 
+	}
+
+	return nil
+}
+
+func (m *ItemCreate) validateSaleConfig(formats strfmt.Registry) error {
+
+	if swag.IsZero(m.SaleConfig) { // not required
+		return nil
+	}
+
+	if m.SaleConfig != nil {
+		if err := m.SaleConfig.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("saleConfig")
+			}
+			return err
+		}
 	}
 
 	return nil

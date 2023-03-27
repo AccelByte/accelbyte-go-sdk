@@ -19,6 +19,7 @@ import (
 	"github.com/go-openapi/runtime"
 	cr "github.com/go-openapi/runtime/client"
 	"github.com/go-openapi/strfmt"
+	"github.com/go-openapi/swag"
 
 	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclientmodels"
 )
@@ -26,8 +27,11 @@ import (
 // NewPublicVerifyHeadlessAccountV3Params creates a new PublicVerifyHeadlessAccountV3Params object
 // with the default values initialized.
 func NewPublicVerifyHeadlessAccountV3Params() *PublicVerifyHeadlessAccountV3Params {
-	var ()
+	var (
+		needVerificationCodeDefault = bool(false)
+	)
 	return &PublicVerifyHeadlessAccountV3Params{
+		NeedVerificationCode: &needVerificationCodeDefault,
 
 		timeout: cr.DefaultTimeout,
 	}
@@ -36,8 +40,11 @@ func NewPublicVerifyHeadlessAccountV3Params() *PublicVerifyHeadlessAccountV3Para
 // NewPublicVerifyHeadlessAccountV3ParamsWithTimeout creates a new PublicVerifyHeadlessAccountV3Params object
 // with the default values initialized, and the ability to set a timeout on a request
 func NewPublicVerifyHeadlessAccountV3ParamsWithTimeout(timeout time.Duration) *PublicVerifyHeadlessAccountV3Params {
-	var ()
+	var (
+		needVerificationCodeDefault = bool(false)
+	)
 	return &PublicVerifyHeadlessAccountV3Params{
+		NeedVerificationCode: &needVerificationCodeDefault,
 
 		timeout: timeout,
 	}
@@ -46,8 +53,11 @@ func NewPublicVerifyHeadlessAccountV3ParamsWithTimeout(timeout time.Duration) *P
 // NewPublicVerifyHeadlessAccountV3ParamsWithContext creates a new PublicVerifyHeadlessAccountV3Params object
 // with the default values initialized, and the ability to set a context for a request
 func NewPublicVerifyHeadlessAccountV3ParamsWithContext(ctx context.Context) *PublicVerifyHeadlessAccountV3Params {
-	var ()
+	var (
+		needVerificationCodeDefault = bool(false)
+	)
 	return &PublicVerifyHeadlessAccountV3Params{
+		NeedVerificationCode: &needVerificationCodeDefault,
 
 		Context: ctx,
 	}
@@ -56,9 +66,12 @@ func NewPublicVerifyHeadlessAccountV3ParamsWithContext(ctx context.Context) *Pub
 // NewPublicVerifyHeadlessAccountV3ParamsWithHTTPClient creates a new PublicVerifyHeadlessAccountV3Params object
 // with the default values initialized, and the ability to set a custom HTTPClient for a request
 func NewPublicVerifyHeadlessAccountV3ParamsWithHTTPClient(client *http.Client) *PublicVerifyHeadlessAccountV3Params {
-	var ()
+	var (
+		needVerificationCodeDefault = bool(false)
+	)
 	return &PublicVerifyHeadlessAccountV3Params{
-		HTTPClient: client,
+		NeedVerificationCode: &needVerificationCodeDefault,
+		HTTPClient:           client,
 	}
 }
 
@@ -76,6 +89,11 @@ type PublicVerifyHeadlessAccountV3Params struct {
 
 	*/
 	Namespace string
+	/*NeedVerificationCode
+	  default false, will send verification code to email if true
+
+	*/
+	NeedVerificationCode *bool
 
 	timeout        time.Duration
 	AuthInfoWriter runtime.ClientAuthInfoWriter
@@ -152,6 +170,17 @@ func (o *PublicVerifyHeadlessAccountV3Params) SetNamespace(namespace string) {
 	o.Namespace = namespace
 }
 
+// WithNeedVerificationCode adds the needVerificationCode to the public verify headless account v3 params
+func (o *PublicVerifyHeadlessAccountV3Params) WithNeedVerificationCode(needVerificationCode *bool) *PublicVerifyHeadlessAccountV3Params {
+	o.SetNeedVerificationCode(needVerificationCode)
+	return o
+}
+
+// SetNeedVerificationCode adds the needVerificationCode to the public verify headless account v3 params
+func (o *PublicVerifyHeadlessAccountV3Params) SetNeedVerificationCode(needVerificationCode *bool) {
+	o.NeedVerificationCode = needVerificationCode
+}
+
 // WriteToRequest writes these params to a swagger request
 func (o *PublicVerifyHeadlessAccountV3Params) WriteToRequest(r runtime.ClientRequest, reg strfmt.Registry) error {
 
@@ -169,6 +198,22 @@ func (o *PublicVerifyHeadlessAccountV3Params) WriteToRequest(r runtime.ClientReq
 	// path param namespace
 	if err := r.SetPathParam("namespace", o.Namespace); err != nil {
 		return err
+	}
+
+	if o.NeedVerificationCode != nil {
+
+		// query param needVerificationCode
+		var qrNeedVerificationCode bool
+		if o.NeedVerificationCode != nil {
+			qrNeedVerificationCode = *o.NeedVerificationCode
+		}
+		qNeedVerificationCode := swag.FormatBool(qrNeedVerificationCode)
+		if qNeedVerificationCode != "" {
+			if err := r.SetQueryParam("needVerificationCode", qNeedVerificationCode); err != nil {
+				return err
+			}
+		}
+
 	}
 
 	// setting the default header value

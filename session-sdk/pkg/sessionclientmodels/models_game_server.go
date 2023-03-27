@@ -18,7 +18,6 @@ import (
 type ModelsGameServer struct {
 
 	// alternate ips
-	// Required: true
 	AlternateIps []string `json:"alternate_ips"`
 
 	// custom attribute
@@ -91,10 +90,6 @@ type ModelsGameServer struct {
 func (m *ModelsGameServer) Validate(formats strfmt.Registry) error {
 	var res []error
 
-	if err := m.validateAlternateIps(formats); err != nil {
-		res = append(res, err)
-	}
-
 	if err := m.validateCustomAttribute(formats); err != nil {
 		res = append(res, err)
 	}
@@ -162,15 +157,6 @@ func (m *ModelsGameServer) Validate(formats strfmt.Registry) error {
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
-	return nil
-}
-
-func (m *ModelsGameServer) validateAlternateIps(formats strfmt.Registry) error {
-
-	if err := validate.Required("alternate_ips", "body", m.AlternateIps); err != nil {
-		return err
-	}
-
 	return nil
 }
 

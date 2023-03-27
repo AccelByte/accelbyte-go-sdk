@@ -10,6 +10,11 @@
 | `/healthz` | GET | GetHealthcheckInfoShort | [GetHealthcheckInfoShort](../../session-sdk/pkg/sessionclient/operations/operations_client.go) | [GetHealthcheckInfoShort](../../services-api/pkg/service/session/operations.go) | [GetHealthcheckInfoShort](../../samples/cli/cmd/session/operations/getHealthcheckInfo.go) |
 | `/session/healthz` | GET | GetHealthcheckInfoV1Short | [GetHealthcheckInfoV1Short](../../session-sdk/pkg/sessionclient/operations/operations_client.go) | [GetHealthcheckInfoV1Short](../../services-api/pkg/service/session/operations.go) | [GetHealthcheckInfoV1Short](../../samples/cli/cmd/session/operations/getHealthcheckInfoV1.go) |
 
+### DSMC Default Configuration Wrapper:  [DSMCDefaultConfiguration](../../services-api/pkg/service/session/dsmcDefaultConfiguration.go)
+| Endpoint | Method | ID | Class | Wrapper | Example |
+|---|---|---|---|---|---|
+| `/session/v1/admin/dsconfigs/default` | GET | AdminGetDSMCConfigurationDefaultShort | [AdminGetDSMCConfigurationDefaultShort](../../session-sdk/pkg/sessionclient/d_s_m_c_default_configuration/dsmc_default_configuration_client.go) | [AdminGetDSMCConfigurationDefaultShort](../../services-api/pkg/service/session/dsmcDefaultConfiguration.go) | [AdminGetDSMCConfigurationDefaultShort](../../samples/cli/cmd/session/dsmcDefaultConfiguration/adminGetDSMCConfigurationDefault.go) |
+
 ### Configuration Template Wrapper:  [ConfigurationTemplate](../../services-api/pkg/service/session/configurationTemplate.go)
 | Endpoint | Method | ID | Class | Wrapper | Example |
 |---|---|---|---|---|---|
@@ -18,6 +23,8 @@
 | `/session/v1/admin/namespaces/{namespace}/configurations/{name}` | GET | AdminGetConfigurationTemplateV1Short | [AdminGetConfigurationTemplateV1Short](../../session-sdk/pkg/sessionclient/configuration_template/configuration_template_client.go) | [AdminGetConfigurationTemplateV1Short](../../services-api/pkg/service/session/configurationTemplate.go) | [AdminGetConfigurationTemplateV1Short](../../samples/cli/cmd/session/configurationTemplate/adminGetConfigurationTemplateV1.go) |
 | `/session/v1/admin/namespaces/{namespace}/configurations/{name}` | PUT | AdminUpdateConfigurationTemplateV1Short | [AdminUpdateConfigurationTemplateV1Short](../../session-sdk/pkg/sessionclient/configuration_template/configuration_template_client.go) | [AdminUpdateConfigurationTemplateV1Short](../../services-api/pkg/service/session/configurationTemplate.go) | [AdminUpdateConfigurationTemplateV1Short](../../samples/cli/cmd/session/configurationTemplate/adminUpdateConfigurationTemplateV1.go) |
 | `/session/v1/admin/namespaces/{namespace}/configurations/{name}` | DELETE | AdminDeleteConfigurationTemplateV1Short | [AdminDeleteConfigurationTemplateV1Short](../../session-sdk/pkg/sessionclient/configuration_template/configuration_template_client.go) | [AdminDeleteConfigurationTemplateV1Short](../../services-api/pkg/service/session/configurationTemplate.go) | [AdminDeleteConfigurationTemplateV1Short](../../samples/cli/cmd/session/configurationTemplate/adminDeleteConfigurationTemplateV1.go) |
+| `/session/v1/admin/namespaces/{namespace}/dsconfigs` | GET | AdminGetDSMCConfigurationShort | [AdminGetDSMCConfigurationShort](../../session-sdk/pkg/sessionclient/configuration_template/configuration_template_client.go) | [AdminGetDSMCConfigurationShort](../../services-api/pkg/service/session/configurationTemplate.go) | [AdminGetDSMCConfigurationShort](../../samples/cli/cmd/session/configurationTemplate/adminGetDSMCConfiguration.go) |
+| `/session/v1/admin/namespaces/{namespace}/dsconfigs/sync` | GET | AdminSyncDSMCConfigurationShort | [AdminSyncDSMCConfigurationShort](../../session-sdk/pkg/sessionclient/configuration_template/configuration_template_client.go) | [AdminSyncDSMCConfigurationShort](../../services-api/pkg/service/session/configurationTemplate.go) | [AdminSyncDSMCConfigurationShort](../../samples/cli/cmd/session/configurationTemplate/adminSyncDSMCConfiguration.go) |
 
 ### Game Session Wrapper:  [GameSession](../../services-api/pkg/service/session/gameSession.go)
 | Endpoint | Method | ID | Class | Wrapper | Example |
@@ -36,6 +43,7 @@
 | `/session/v1/public/namespaces/{namespace}/gamesessions/{sessionId}/join` | POST | JoinGameSessionShort | [JoinGameSessionShort](../../session-sdk/pkg/sessionclient/game_session/game_session_client.go) | [JoinGameSessionShort](../../services-api/pkg/service/session/gameSession.go) | [JoinGameSessionShort](../../samples/cli/cmd/session/gameSession/joinGameSession.go) |
 | `/session/v1/public/namespaces/{namespace}/gamesessions/{sessionId}/leave` | DELETE | LeaveGameSessionShort | [LeaveGameSessionShort](../../session-sdk/pkg/sessionclient/game_session/game_session_client.go) | [LeaveGameSessionShort](../../services-api/pkg/service/session/gameSession.go) | [LeaveGameSessionShort](../../samples/cli/cmd/session/gameSession/leaveGameSession.go) |
 | `/session/v1/public/namespaces/{namespace}/gamesessions/{sessionId}/reject` | DELETE | PublicGameSessionRejectShort | [PublicGameSessionRejectShort](../../session-sdk/pkg/sessionclient/game_session/game_session_client.go) | [PublicGameSessionRejectShort](../../services-api/pkg/service/session/gameSession.go) | [PublicGameSessionRejectShort](../../samples/cli/cmd/session/gameSession/publicGameSessionReject.go) |
+| `/session/v1/public/namespaces/{namespace}/gamesessions/{sessionId}/teams` | POST | AppendTeamGameSessionShort | [AppendTeamGameSessionShort](../../session-sdk/pkg/sessionclient/game_session/game_session_client.go) | [AppendTeamGameSessionShort](../../services-api/pkg/service/session/gameSession.go) | [AppendTeamGameSessionShort](../../samples/cli/cmd/session/gameSession/appendTeamGameSession.go) |
 | `/session/v1/public/namespaces/{namespace}/users/me/gamesessions` | GET | PublicQueryMyGameSessionsShort | [PublicQueryMyGameSessionsShort](../../session-sdk/pkg/sessionclient/game_session/game_session_client.go) | [PublicQueryMyGameSessionsShort](../../services-api/pkg/service/session/gameSession.go) | [PublicQueryMyGameSessionsShort](../../samples/cli/cmd/session/gameSession/publicQueryMyGameSessions.go) |
 
 ### Party Wrapper:  [Party](../../services-api/pkg/service/session/party.go)
@@ -73,6 +81,7 @@
 
 | Model Struct | Class |
 |---|---|
+| `apimodels.AppendTeamGameSessionRequest` | [ApimodelsAppendTeamGameSessionRequest ](../../session-sdk/pkg/sessionclientmodels/apimodels_append_team_game_session_request.go) |
 | `apimodels.ConfigurationTemplateResponse` | [ApimodelsConfigurationTemplateResponse ](../../session-sdk/pkg/sessionclientmodels/apimodels_configuration_template_response.go) |
 | `apimodels.ConfigurationTemplatesResponse` | [ApimodelsConfigurationTemplatesResponse ](../../session-sdk/pkg/sessionclientmodels/apimodels_configuration_templates_response.go) |
 | `apimodels.CreateConfigurationTemplateRequest` | [ApimodelsCreateConfigurationTemplateRequest ](../../session-sdk/pkg/sessionclientmodels/apimodels_create_configuration_template_request.go) |
@@ -98,6 +107,8 @@
 | `apimodels.UpdateGameSessionRequest` | [ApimodelsUpdateGameSessionRequest ](../../session-sdk/pkg/sessionclientmodels/apimodels_update_game_session_request.go) |
 | `apimodels.UpdatePartyRequest` | [ApimodelsUpdatePartyRequest ](../../session-sdk/pkg/sessionclientmodels/apimodels_update_party_request.go) |
 | `apimodels.UserResponse` | [ApimodelsUserResponse ](../../session-sdk/pkg/sessionclientmodels/apimodels_user_response.go) |
+| `models.DSMConfigRecord` | [ModelsDSMConfigRecord ](../../session-sdk/pkg/sessionclientmodels/models_d_s_m_config_record.go) |
+| `models.DefaultDSMCConfig` | [ModelsDefaultDSMCConfig ](../../session-sdk/pkg/sessionclientmodels/models_default_d_s_m_c_config.go) |
 | `models.GameServer` | [ModelsGameServer ](../../session-sdk/pkg/sessionclientmodels/models_game_server.go) |
 | `models.PartyMembers` | [ModelsPartyMembers ](../../session-sdk/pkg/sessionclientmodels/models_party_members.go) |
 | `models.Team` | [ModelsTeam ](../../session-sdk/pkg/sessionclientmodels/models_team.go) |

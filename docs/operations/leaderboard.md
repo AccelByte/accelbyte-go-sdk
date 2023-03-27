@@ -41,6 +41,11 @@
 | `/leaderboard/v1/public/namespaces/{namespace}/leaderboards/{leaderboardCode}/week` | GET | GetCurrentWeekLeaderboardRankingPublicV1Short | [GetCurrentWeekLeaderboardRankingPublicV1Short](../../leaderboard-sdk/pkg/leaderboardclient/leaderboard_data/leaderboard_data_client.go) | [GetCurrentWeekLeaderboardRankingPublicV1Short](../../services-api/pkg/service/leaderboard/leaderboardData.go) | [GetCurrentWeekLeaderboardRankingPublicV1Short](../../samples/cli/cmd/leaderboard/leaderboardData/getCurrentWeekLeaderboardRankingPublicV1.go) |
 | `/leaderboard/v2/public/namespaces/{namespace}/leaderboards/{leaderboardCode}/alltime` | GET | GetAllTimeLeaderboardRankingPublicV2Short | [GetAllTimeLeaderboardRankingPublicV2Short](../../leaderboard-sdk/pkg/leaderboardclient/leaderboard_data/leaderboard_data_client.go) | [GetAllTimeLeaderboardRankingPublicV2Short](../../services-api/pkg/service/leaderboard/leaderboardData.go) | [GetAllTimeLeaderboardRankingPublicV2Short](../../samples/cli/cmd/leaderboard/leaderboardData/getAllTimeLeaderboardRankingPublicV2.go) |
 
+### Anonymization Wrapper:  [Anonymization](../../services-api/pkg/service/leaderboard/anonymization.go)
+| Endpoint | Method | ID | Class | Wrapper | Example |
+|---|---|---|---|---|---|
+| `/leaderboard/v1/admin/namespaces/{namespace}/users/{userId}/anonymization/leaderboards` | DELETE | AdminAnonymizeUserLeaderboardAdminV1Short | [AdminAnonymizeUserLeaderboardAdminV1Short](../../leaderboard-sdk/pkg/leaderboardclient/anonymization/anonymization_client.go) | [AdminAnonymizeUserLeaderboardAdminV1Short](../../services-api/pkg/service/leaderboard/anonymization.go) | [AdminAnonymizeUserLeaderboardAdminV1Short](../../samples/cli/cmd/leaderboard/anonymization/adminAnonymizeUserLeaderboardAdminV1.go) |
+
 ### UserData Wrapper:  [UserData](../../services-api/pkg/service/leaderboard/userData.go)
 | Endpoint | Method | ID | Class | Wrapper | Example |
 |---|---|---|---|---|---|

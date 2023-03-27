@@ -20,6 +20,7 @@
         "NAMESPACE:{namespace}:MATCHMAKING:FUNCTIONS [CREATE]": "NAMESPACE:{namespace}:MATCHMAKING:FUNCTIONS [CREATE]",
         "NAMESPACE:{namespace}:MATCHMAKING:FUNCTIONS [DELETE]": "NAMESPACE:{namespace}:MATCHMAKING:FUNCTIONS [DELETE]",
         "NAMESPACE:{namespace}:MATCHMAKING:FUNCTIONS [READ]": "NAMESPACE:{namespace}:MATCHMAKING:FUNCTIONS [READ]",
+        "NAMESPACE:{namespace}:MATCHMAKING:FUNCTIONS [UPDATE]": "NAMESPACE:{namespace}:MATCHMAKING:FUNCTIONS [UPDATE]",
         "NAMESPACE:{namespace}:MATCHMAKING:POOL [CREATE]": "NAMESPACE:{namespace}:MATCHMAKING:POOL [CREATE]",
         "NAMESPACE:{namespace}:MATCHMAKING:POOL [DELETE]": "NAMESPACE:{namespace}:MATCHMAKING:POOL [DELETE]",
         "NAMESPACE:{namespace}:MATCHMAKING:POOL [READ]": "NAMESPACE:{namespace}:MATCHMAKING:POOL [READ]",
@@ -803,6 +804,94 @@
           }
         ],
         "summary": "Delete a match function",
+        "tags": [
+          "Match-Functions",
+          "admin"
+        ]
+      },
+      "put": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": " Required Permission: NAMESPACE:{namespace}:MATCHMAKING:FUNCTIONS [UPDATE]\n\nRequired Scope: social\n\nUpdate existing matchmaking function.\n",
+        "operationId": "UpdateMatchFunction",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/api.MatchFunctionRequest"
+            }
+          },
+          {
+            "description": "name of the match function",
+            "in": "path",
+            "name": "name",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "namespace of the game",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/api.MatchFunctionConfig"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "409": {
+            "description": "Conflict",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          }
+        },
+        "security": [
+          {
+            "HasPermission": [
+              "NAMESPACE:{namespace}:MATCHMAKING:FUNCTIONS [UPDATE]"
+            ],
+            "HasScope": [
+              "social"
+            ],
+            "authorization": []
+          }
+        ],
+        "summary": "Update a match function",
         "tags": [
           "Match-Functions",
           "admin"
@@ -2111,7 +2200,7 @@
         "backfill_matches": {
           "type": "string"
         },
-        "hydration": {
+        "enrichment": {
           "items": {
             "type": "string"
           },
@@ -2275,10 +2364,15 @@
       "properties": {
         "matchTicketID": {
           "type": "string"
+        },
+        "queueTime": {
+          "format": "int32",
+          "type": "integer"
         }
       },
       "required": [
-        "matchTicketID"
+        "matchTicketID",
+        "queueTime"
       ]
     },
     "api.MatchTicketStatus": {

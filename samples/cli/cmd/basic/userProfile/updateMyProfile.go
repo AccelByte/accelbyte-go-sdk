@@ -30,7 +30,7 @@ var UpdateMyProfileCmd = &cobra.Command{
 		}
 		namespace, _ := cmd.Flags().GetString("namespace")
 		bodyString := cmd.Flag("body").Value.String()
-		var body *basicclientmodels.UserProfilePrivateUpdate
+		var body *basicclientmodels.UserProfileUpdate
 		errBody := json.Unmarshal([]byte(bodyString), &body)
 		if errBody != nil {
 			return errBody

@@ -263,7 +263,7 @@ func NewDeleteConfig1NotFound() *DeleteConfig1NotFound {
 
 /*DeleteConfig1NotFound handles this case with default header values.
 
-  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>12337</td><td>Unable to {action}: Config not found</td></tr></table>
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>11741</td><td>Unable to {action}: Config not found</td></tr></table>
 */
 type DeleteConfig1NotFound struct {
 	Payload *basicclientmodels.ErrorEntity

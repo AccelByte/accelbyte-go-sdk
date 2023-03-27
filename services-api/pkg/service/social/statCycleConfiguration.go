@@ -144,6 +144,26 @@ func (aaa *StatCycleConfigurationService) BulkAddStats(input *stat_cycle_configu
 	return ok.GetPayload(), nil
 }
 
+// deprecated(2022-01-10): please use StopStatCycleShort instead.
+func (aaa *StatCycleConfigurationService) StopStatCycle(input *stat_cycle_configuration.StopStatCycleParams) (*socialclientmodels.StatCycleInfo, error) {
+	token, err := aaa.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, notFound, conflict, err := aaa.Client.StatCycleConfiguration.StopStatCycle(input, client.BearerToken(*token.AccessToken))
+	if notFound != nil {
+		return nil, notFound
+	}
+	if conflict != nil {
+		return nil, conflict
+	}
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
 // deprecated(2022-01-10): please use GetStatCycles1Short instead.
 func (aaa *StatCycleConfigurationService) GetStatCycles1(input *stat_cycle_configuration.GetStatCycles1Params) (*socialclientmodels.StatCyclePagingSlicedResult, error) {
 	token, err := aaa.TokenRepository.GetToken()
@@ -318,6 +338,31 @@ func (aaa *StatCycleConfigurationService) BulkAddStatsShort(input *stat_cycle_co
 	}
 
 	ok, err := aaa.Client.StatCycleConfiguration.BulkAddStatsShort(input, authInfoWriter)
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
+func (aaa *StatCycleConfigurationService) StopStatCycleShort(input *stat_cycle_configuration.StopStatCycleParams) (*socialclientmodels.StatCycleInfo, error) {
+	authInfoWriter := input.AuthInfoWriter
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
+	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  aaa.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
+	ok, err := aaa.Client.StatCycleConfiguration.StopStatCycleShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}

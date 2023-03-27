@@ -51,70 +51,70 @@ touch "tmp.dat"
 #- 2 GetServerLogs
 samples/cli/sample-apps Dslogmanager getServerLogs \
     --namespace $AB_NAMESPACE \
-    --podName 'EAxcVpFr' \
-    --logType 'ttufHIRd' \
-    --offset '68' \
-    --origin 'Dc09nIW0' \
+    --podName 'gDMtsb2s' \
+    --logType 'u7Vpaa3W' \
+    --offset '47' \
+    --origin 'mwfajqM7' \
     > test.out 2>&1
 eval_tap $? 2 'GetServerLogs' test.out
 
 #- 3 ListTerminatedServers
 samples/cli/sample-apps Dslogmanager listTerminatedServers \
     --namespace $AB_NAMESPACE \
-    --deployment 'Oaiw9B0D' \
-    --endDate '7eHpzSn3' \
-    --gameMode 'ZPUdc0qh' \
-    --limit '27' \
-    --next '2WopBJHP' \
-    --partyId 'tcDs8bBZ' \
-    --podName 'LCXLx8bb' \
-    --previous 'gorQeFbQ' \
-    --provider '1g7qbPng' \
-    --region 'UNB1vRod' \
-    --sessionId 'wpzS6DaD' \
-    --startDate 'pv8N7ZQV' \
-    --status 'qGj6oDLj' \
-    --userId 'WjkY1aXl' \
+    --deployment 'aEP5vDAr' \
+    --endDate 'YYcTCM4a' \
+    --gameMode 'ziIpXX3d' \
+    --limit '49' \
+    --next 'LfI6LVYu' \
+    --partyId 'EvXyp0JO' \
+    --podName 'BOOZ5TBP' \
+    --previous 'Qy7sYrSz' \
+    --provider 'AIxYH1dn' \
+    --region 'QmHVNVDu' \
+    --sessionId 'UQDnCpdD' \
+    --startDate 'WGTGcS5s' \
+    --status 'IaP74eA3' \
+    --userId '3thiDc0h' \
     > test.out 2>&1
 eval_tap $? 3 'ListTerminatedServers' test.out
 
 #- 4 DownloadServerLogs
 samples/cli/sample-apps Dslogmanager downloadServerLogs \
     --namespace $AB_NAMESPACE \
-    --podName 'FcDtgOjc' \
+    --podName '31Eij6AY' \
     > test.out 2>&1
 eval_tap $? 4 'DownloadServerLogs' test.out
 
 #- 5 CheckServerLogs
 samples/cli/sample-apps Dslogmanager checkServerLogs \
     --namespace $AB_NAMESPACE \
-    --podName 'hIua5tWE' \
+    --podName 'rBNYIYYu' \
     > test.out 2>&1
 eval_tap $? 5 'CheckServerLogs' test.out
 
 #- 6 BatchDownloadServerLogs
 samples/cli/sample-apps Dslogmanager batchDownloadServerLogs \
-    --body '{"Downloads": [{"alloc_id": "IC32ogW7", "namespace": "olvbTgrh", "pod_name": "RTcPiSuL"}, {"alloc_id": "0Sly6XM4", "namespace": "OI18mAQL", "pod_name": "nzjMf8GZ"}, {"alloc_id": "2WBZqxYG", "namespace": "3aREAu2D", "pod_name": "6QVKNCWP"}]}' \
+    --body '{"Downloads": [{"alloc_id": "TRozamoN", "namespace": "WTms9ZRJ", "pod_name": "hMCCPKtp"}, {"alloc_id": "Mu7dNW6l", "namespace": "dCmg0Cdu", "pod_name": "DPQKBFhI"}, {"alloc_id": "Vl3XHSYp", "namespace": "kGEJDT5H", "pod_name": "bc9IwvNL"}]}' \
     > test.out 2>&1
 eval_tap $? 6 'BatchDownloadServerLogs' test.out
 
 #- 7 ListAllTerminatedServers
 samples/cli/sample-apps Dslogmanager listAllTerminatedServers \
-    --deployment '75TB0i7p' \
-    --endDate 'KxR8dl0z' \
-    --gameMode 'RVW4EZG9' \
-    --limit '25' \
-    --namespace 'Z4U68su8' \
-    --next 'XfqlqNiT' \
-    --partyId 'vB6SdAdI' \
-    --podName 'hUDrwoZ5' \
-    --previous 'MecdKi5r' \
-    --provider '6QEa1ysL' \
-    --region 'Ezth6mXh' \
-    --sessionId 'zkzWkFeZ' \
-    --startDate 'SoEAcBdW' \
-    --status '19m4eu6d' \
-    --userId '5tA5jUmi' \
+    --deployment '6mfnCn19' \
+    --endDate '0DbWKFWh' \
+    --gameMode '8e4nhyi0' \
+    --limit '21' \
+    --namespace 'ng4XqCqm' \
+    --next 'wD2ByrDp' \
+    --partyId 'agdCqAdX' \
+    --podName 'M9RXJrXz' \
+    --previous 'ShsdTn7A' \
+    --provider 'goToKBJE' \
+    --region 'tLPXtxMa' \
+    --sessionId 'yjmUlAJx' \
+    --startDate 'GfWGwutM' \
+    --status 'FeLius6s' \
+    --userId 'qpY4ELIQ' \
     > test.out 2>&1
 eval_tap $? 7 'ListAllTerminatedServers' test.out
 

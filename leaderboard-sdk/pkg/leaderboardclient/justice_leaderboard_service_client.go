@@ -17,6 +17,7 @@ import (
 	httptransport "github.com/go-openapi/runtime/client"
 	"github.com/go-openapi/strfmt"
 
+	"github.com/AccelByte/accelbyte-go-sdk/leaderboard-sdk/pkg/leaderboardclient/anonymization"
 	"github.com/AccelByte/accelbyte-go-sdk/leaderboard-sdk/pkg/leaderboardclient/leaderboard_configuration"
 	"github.com/AccelByte/accelbyte-go-sdk/leaderboard-sdk/pkg/leaderboardclient/leaderboard_data"
 	"github.com/AccelByte/accelbyte-go-sdk/leaderboard-sdk/pkg/leaderboardclient/user_data"
@@ -71,6 +72,7 @@ func New(transport runtime.ClientTransport, runtime *httptransport.Runtime, form
 	cli := new(JusticeLeaderboardService)
 	cli.Transport = transport
 	cli.Runtime = runtime
+	cli.Anonymization = anonymization.New(transport, formats)
 	cli.LeaderboardConfiguration = leaderboard_configuration.New(transport, formats)
 	cli.LeaderboardData = leaderboard_data.New(transport, formats)
 	cli.UserData = user_data.New(transport, formats)
@@ -135,6 +137,8 @@ func (cfg *TransportConfig) WithSchemes(schemes []string) *TransportConfig {
 
 // JusticeLeaderboardService is a client for justice leaderboard service
 type JusticeLeaderboardService struct {
+	Anonymization anonymization.ClientService
+
 	LeaderboardConfiguration leaderboard_configuration.ClientService
 
 	LeaderboardData leaderboard_data.ClientService
@@ -150,6 +154,7 @@ type JusticeLeaderboardService struct {
 // SetTransport changes the transport on the client and all its subresources
 func (c *JusticeLeaderboardService) SetTransport(transport runtime.ClientTransport) {
 	c.Transport = transport
+	c.Anonymization.SetTransport(transport)
 	c.LeaderboardConfiguration.SetTransport(transport)
 	c.LeaderboardData.SetTransport(transport)
 	c.UserData.SetTransport(transport)

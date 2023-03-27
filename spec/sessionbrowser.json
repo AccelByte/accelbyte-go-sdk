@@ -2036,6 +2036,12 @@
           "x-nullable": false,
           "x-omitempty": false
         },
+        "joining": {
+          "items": {
+            "$ref": "#/definitions/models.SessionPlayerJoining"
+          },
+          "type": "array"
+        },
         "match_id": {
           "type": "string",
           "x-nullable": false
@@ -2055,17 +2061,32 @@
           "type": "string",
           "x-nullable": false
         },
+        "players": {
+          "items": {
+            "$ref": "#/definitions/models.SessionPlayerHistory"
+          },
+          "type": "array"
+        },
         "region": {
           "type": "string",
           "x-nullable": false
+        },
+        "removed_reason": {
+          "type": "string"
         },
         "server_name": {
           "type": "string",
           "x-nullable": false
         },
+        "session_type": {
+          "type": "string"
+        },
         "status": {
           "type": "string",
           "x-nullable": false
+        },
+        "user_id": {
+          "type": "string"
         }
       },
       "required": [
@@ -2077,12 +2098,17 @@
         "event_name",
         "game_mode",
         "joinable",
+        "joining",
         "match_id",
         "matching_allies",
         "namespace",
+        "players",
         "region",
+        "removed_reason",
         "server_name",
-        "status"
+        "session_type",
+        "status",
+        "user_id"
       ]
     },
     "models.GetSessionHistorySearchResponseItemV2": {

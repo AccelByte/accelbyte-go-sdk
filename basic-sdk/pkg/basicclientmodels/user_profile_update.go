@@ -43,6 +43,9 @@ type UserProfileUpdate struct {
 	// last name
 	LastName string `json:"lastName,omitempty"`
 
+	// private custom attributes
+	PrivateCustomAttributes map[string]interface{} `json:"privateCustomAttributes,omitempty"`
+
 	// time zone, allowed IANA time zone, e.g.Asia/Shanghai
 	TimeZone string `json:"timeZone,omitempty"`
 

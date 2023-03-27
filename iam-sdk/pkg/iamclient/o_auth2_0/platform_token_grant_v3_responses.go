@@ -54,6 +54,12 @@ func (o *PlatformTokenGrantV3Reader) ReadResponse(response runtime.ClientRespons
 			return nil, err
 		}
 		return result, nil
+	case 503:
+		result := NewPlatformTokenGrantV3ServiceUnavailable()
+		if err := result.readResponse(response, consumer, o.formats); err != nil {
+			return nil, err
+		}
+		return result, nil
 
 	default:
 		data, err := ioutil.ReadAll(response.Body())
@@ -261,6 +267,59 @@ func (o *PlatformTokenGrantV3Forbidden) GetPayload() *iamclientmodels.Oauthmodel
 }
 
 func (o *PlatformTokenGrantV3Forbidden) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+	// handle file responses
+	contentDisposition := response.GetHeader("Content-Disposition")
+	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
+		consumer = runtime.ByteStreamConsumer()
+	}
+
+	o.Payload = new(iamclientmodels.OauthmodelErrorResponse)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
+	}
+
+	return nil
+}
+
+// NewPlatformTokenGrantV3ServiceUnavailable creates a PlatformTokenGrantV3ServiceUnavailable with default headers values
+func NewPlatformTokenGrantV3ServiceUnavailable() *PlatformTokenGrantV3ServiceUnavailable {
+	return &PlatformTokenGrantV3ServiceUnavailable{}
+}
+
+/*PlatformTokenGrantV3ServiceUnavailable handles this case with default header values.
+
+  Third Party Server timeout or unavailable
+*/
+type PlatformTokenGrantV3ServiceUnavailable struct {
+	Payload *iamclientmodels.OauthmodelErrorResponse
+}
+
+func (o *PlatformTokenGrantV3ServiceUnavailable) Error() string {
+	return fmt.Sprintf("[POST /iam/v3/oauth/platforms/{platformId}/token][%d] platformTokenGrantV3ServiceUnavailable  %+v", 503, o.ToJSONString())
+}
+
+func (o *PlatformTokenGrantV3ServiceUnavailable) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
+}
+
+func (o *PlatformTokenGrantV3ServiceUnavailable) GetPayload() *iamclientmodels.OauthmodelErrorResponse {
+	return o.Payload
+}
+
+func (o *PlatformTokenGrantV3ServiceUnavailable) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {

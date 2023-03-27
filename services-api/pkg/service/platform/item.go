@@ -369,6 +369,32 @@ func (aaa *ItemService) ValidateItemPurchaseCondition(input *item.ValidateItemPu
 	return ok.GetPayload(), nil
 }
 
+// deprecated(2022-01-10): please use BulkUpdateRegionDataShort instead.
+func (aaa *ItemService) BulkUpdateRegionData(input *item.BulkUpdateRegionDataParams) error {
+	token, err := aaa.TokenRepository.GetToken()
+	if err != nil {
+		return err
+	}
+	_, badRequest, notFound, conflict, unprocessableEntity, err := aaa.Client.Item.BulkUpdateRegionData(input, client.BearerToken(*token.AccessToken))
+	if badRequest != nil {
+		return badRequest
+	}
+	if notFound != nil {
+		return notFound
+	}
+	if conflict != nil {
+		return conflict
+	}
+	if unprocessableEntity != nil {
+		return unprocessableEntity
+	}
+	if err != nil {
+		return err
+	}
+
+	return nil
+}
+
 // deprecated(2022-01-10): please use SearchItemsShort instead.
 func (aaa *ItemService) SearchItems(input *item.SearchItemsParams) (*platformclientmodels.FullItemPagingSlicedResult, error) {
 	token, err := aaa.TokenRepository.GetToken()
@@ -1300,6 +1326,31 @@ func (aaa *ItemService) ValidateItemPurchaseConditionShort(input *item.ValidateI
 	}
 
 	return ok.GetPayload(), nil
+}
+
+func (aaa *ItemService) BulkUpdateRegionDataShort(input *item.BulkUpdateRegionDataParams) error {
+	authInfoWriter := input.AuthInfoWriter
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
+	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  aaa.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
+	_, err := aaa.Client.Item.BulkUpdateRegionDataShort(input, authInfoWriter)
+	if err != nil {
+		return err
+	}
+
+	return nil
 }
 
 func (aaa *ItemService) SearchItemsShort(input *item.SearchItemsParams) (*platformclientmodels.FullItemPagingSlicedResult, error) {

@@ -54,7 +54,7 @@ type AppEntitlementInfo struct {
 
 	// entitlement status
 	// Required: true
-	// Enum: [ACTIVE CONSUMED INACTIVE REVOKED]
+	// Enum: [ACTIVE CONSUMED INACTIVE REVOKED SOLD]
 	Status *string `json:"status"`
 
 	// item store id, null if published store
@@ -226,7 +226,7 @@ var appEntitlementInfoTypeStatusPropEnum []interface{}
 
 func init() {
 	var res []string
-	if err := json.Unmarshal([]byte(`["ACTIVE","CONSUMED","INACTIVE","REVOKED"]`), &res); err != nil {
+	if err := json.Unmarshal([]byte(`["ACTIVE","CONSUMED","INACTIVE","REVOKED","SOLD"]`), &res); err != nil {
 		panic(err)
 	}
 	for _, v := range res {
@@ -247,6 +247,9 @@ const (
 
 	// AppEntitlementInfoStatusREVOKED captures enum value "REVOKED"
 	AppEntitlementInfoStatusREVOKED string = "REVOKED"
+
+	// AppEntitlementInfoStatusSOLD captures enum value "SOLD"
+	AppEntitlementInfoStatusSOLD string = "SOLD"
 )
 
 // prop value enum

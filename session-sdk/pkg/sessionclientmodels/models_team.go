@@ -24,7 +24,6 @@ type ModelsTeam struct {
 	UserIDs []string `json:"UserIDs"`
 
 	// parties
-	// Required: true
 	Parties []*ModelsPartyMembers `json:"parties"`
 }
 
@@ -57,8 +56,8 @@ func (m *ModelsTeam) validateUserIDs(formats strfmt.Registry) error {
 
 func (m *ModelsTeam) validateParties(formats strfmt.Registry) error {
 
-	if err := validate.Required("parties", "body", m.Parties); err != nil {
-		return err
+	if swag.IsZero(m.Parties) { // not required
+		return nil
 	}
 
 	for i := 0; i < len(m.Parties); i++ {

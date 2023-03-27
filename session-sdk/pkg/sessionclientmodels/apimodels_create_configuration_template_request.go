@@ -50,10 +50,8 @@ type ApimodelsCreateConfigurationTemplateRequest struct {
 	Name *string `json:"name"`
 
 	// persistent
-	Persistent bool `json:"persistent"`
-
-	// persistent TTL
-	PersistentTTL int32 `json:"persistentTTL,omitempty"`
+	// Required: true
+	Persistent *bool `json:"persistent"`
 
 	// requested regions
 	// Required: true
@@ -101,6 +99,10 @@ func (m *ApimodelsCreateConfigurationTemplateRequest) Validate(formats strfmt.Re
 	}
 
 	if err := m.validateName(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validatePersistent(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -188,6 +190,15 @@ func (m *ApimodelsCreateConfigurationTemplateRequest) validateMinPlayers(formats
 func (m *ApimodelsCreateConfigurationTemplateRequest) validateName(formats strfmt.Registry) error {
 
 	if err := validate.Required("name", "body", m.Name); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *ApimodelsCreateConfigurationTemplateRequest) validatePersistent(formats strfmt.Registry) error {
+
+	if err := validate.Required("persistent", "body", m.Persistent); err != nil {
 		return err
 	}
 

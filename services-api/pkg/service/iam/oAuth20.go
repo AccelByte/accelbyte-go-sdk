@@ -252,7 +252,7 @@ func (aaa *OAuth20Service) AuthCodeRequestV3(input *o_auth2_0.AuthCodeRequestV3P
 func (aaa *OAuth20Service) PlatformTokenGrantV3(input *o_auth2_0.PlatformTokenGrantV3Params) (*iamclientmodels.OauthmodelTokenResponse, error) {
 	clientID := aaa.ConfigRepository.GetClientId()
 	clientSecret := aaa.ConfigRepository.GetClientSecret()
-	ok, badRequest, unauthorized, forbidden, err := aaa.Client.OAuth20.PlatformTokenGrantV3(input, client.BasicAuth(clientID, clientSecret))
+	ok, badRequest, unauthorized, forbidden, serviceUnavailable, err := aaa.Client.OAuth20.PlatformTokenGrantV3(input, client.BasicAuth(clientID, clientSecret))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -261,6 +261,9 @@ func (aaa *OAuth20Service) PlatformTokenGrantV3(input *o_auth2_0.PlatformTokenGr
 	}
 	if forbidden != nil {
 		return nil, forbidden
+	}
+	if serviceUnavailable != nil {
+		return nil, serviceUnavailable
 	}
 	if err != nil {
 		return nil, err

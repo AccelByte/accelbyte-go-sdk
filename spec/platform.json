@@ -8,7 +8,7 @@
     },
     "description": "Justice Platform Service",
     "title": "justice-platform-service",
-    "version": "4.25.0"
+    "version": "4.27.0"
   },
   "schemes": [
     "https"
@@ -4823,7 +4823,7 @@
             }
           },
           "409": {
-            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eErrorCode\u003c/td\u003e\u003ctd\u003eErrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e30173\u003c/td\u003e\u003ctd\u003ePublished store can't modify content\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e30373\u003c/td\u003e\u003ctd\u003eItemType [{itemType}] is not allowed in namespace [{namespace}]\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eErrorCode\u003c/td\u003e\u003ctd\u003eErrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e30173\u003c/td\u003e\u003ctd\u003ePublished store can't modify content\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e30373\u003c/td\u003e\u003ctd\u003eItemType [{itemType}] is not allowed in namespace [{namespace}]\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e30376\u003c/td\u003e\u003ctd\u003ePublisher namespace don’t allow sellback item\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e30377\u003c/td\u003e\u003ctd\u003eThis item type [{itemType}] don’t allow sellback\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e30378\u003c/td\u003e\u003ctd\u003eSale price don’t allow real currency [{currencyCode}]\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/ErrorEntity"
             }
@@ -5783,6 +5783,88 @@
         }
       }
     },
+    "/platform/admin/namespaces/{namespace}/items/regiondata": {
+      "put": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "This API is used to update region data of items in bulk \u0026lt;br /\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;ADMIN:NAMESPACE:{namespace}:ITEM\u0026#34;, action=4 (UPDATE)\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
+        "operationId": "bulkUpdateRegionData",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "storeId",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "required": false,
+            "schema": {
+              "$ref": "#/definitions/BulkRegionDataChangeRequest"
+            }
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content"
+          },
+          "400": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eErrorCode\u003c/td\u003e\u003ctd\u003eErrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e30022\u003c/td\u003e\u003ctd\u003eDefault region [{region}] is required\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e30321\u003c/td\u003e\u003ctd\u003eInvalid item discount amount\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e30327\u003c/td\u003e\u003ctd\u003eInvalid item trial price\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e30330\u003c/td\u003e\u003ctd\u003eInvalid item region price currency namespace [{namespace}]\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/ErrorEntity"
+            }
+          },
+          "404": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eErrorCode\u003c/td\u003e\u003ctd\u003eErrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e30141\u003c/td\u003e\u003ctd\u003eStore [{storeId}] does not exist in namespace [{namespace}]\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e30341\u003c/td\u003e\u003ctd\u003eItem [{itemId}] does not exist in namespace [{namespace}]\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e30343\u003c/td\u003e\u003ctd\u003eItem of sku [{sku}] does not exist\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/ErrorEntity"
+            }
+          },
+          "409": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eErrorCode\u003c/td\u003e\u003ctd\u003eErrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e30173\u003c/td\u003e\u003ctd\u003ePublished store can't modify content\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/ErrorEntity"
+            }
+          },
+          "422": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eErrorCode\u003c/td\u003e\u003ctd\u003eErrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20002\u003c/td\u003e\u003ctd\u003evalidation error\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/ValidationErrorEntity"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          },
+          {
+            "HasPermission": [
+              "ADMIN:NAMESPACE:{namespace}:ITEM [UPDATE]"
+            ],
+            "authorization": []
+          }
+        ],
+        "summary": "Update item's region data in bulk",
+        "tags": [
+          "Item"
+        ],
+        "x-authorization": {
+          "action": "4",
+          "resource": "ADMIN:NAMESPACE:{namespace}:ITEM"
+        }
+      }
+    },
     "/platform/admin/namespaces/{namespace}/items/search": {
       "get": {
         "description": "This API is used to search items by keyword in title, description and long description within a store.\u0026lt;p\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;ADMIN:NAMESPACE:{namespace}:ITEM\u0026#34;, action=2 (READ)\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: the list of items\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
@@ -6218,7 +6300,7 @@
             }
           },
           "409": {
-            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eErrorCode\u003c/td\u003e\u003ctd\u003eErrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e30173\u003c/td\u003e\u003ctd\u003ePublished store can't modify content\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e30371\u003c/td\u003e\u003ctd\u003eItem maxCount not allow reduce\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e30372\u003c/td\u003e\u003ctd\u003eItemType is not updatable\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eErrorCode\u003c/td\u003e\u003ctd\u003eErrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e30173\u003c/td\u003e\u003ctd\u003ePublished store can't modify content\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e30371\u003c/td\u003e\u003ctd\u003eItem maxCount not allow reduce\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e30372\u003c/td\u003e\u003ctd\u003eItemType is not updatable\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e30376\u003c/td\u003e\u003ctd\u003ePublisher namespace don’t allow sellback item\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e30377\u003c/td\u003e\u003ctd\u003eThis item type [{itemType}] don’t allow sellback\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e30378\u003c/td\u003e\u003ctd\u003eSale price don’t allow real currency [{currencyCode}]\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/ErrorEntity"
             }
@@ -9238,7 +9320,7 @@
               "namespace:asc",
               "rewardCode:asc"
             ],
-            "description": "default is namespace:asc,rewardCode:asc, allow values: [namespace, namespace:asc, namespace:desc, rewardCode, rewardCode:asc, rewardCode:desc],and support sort group, eg: sortBy=namespace:asc,rewardCode:asc",
+            "description": "default is namespace:asc,rewardCode:asc, allow values: [namespace, namespace:asc, namespace:desc, rewardCode, rewardCode:asc, rewardCode:desc, createdAt:asc, createdAt:desc],and support sort group, eg: sortBy=namespace:asc,rewardCode:asc",
             "in": "query",
             "items": {
               "enum": [
@@ -14182,6 +14264,79 @@
           }
         ],
         "summary": "Revoke user entitlement",
+        "tags": [
+          "Entitlement"
+        ],
+        "x-authorization": {
+          "action": "4",
+          "resource": "ADMIN:NAMESPACE:{namespace}:USER:{userId}:ENTITLEMENT"
+        }
+      }
+    },
+    "/platform/admin/namespaces/{namespace}/users/{userId}/entitlements/{entitlementId}/sell": {
+      "put": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Sell user entitlement. If the entitlement is consumable, useCount is 0, the status will be CONSUMED. If the entitlement is durable, the status will be SOLD. Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=ADMIN:NAMESPACE:{namespace}:USER:{userId}:ENTITLEMENT, action=4 (UPDATE)\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: entitlement\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
+        "operationId": "sellUserEntitlement",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "entitlementId",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "path",
+            "name": "userId",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "required": false,
+            "schema": {
+              "$ref": "#/definitions/EntitlementSoldRequest"
+            }
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/EntitlementSoldResult"
+            }
+          },
+          "404": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eErrorCode\u003c/td\u003e\u003ctd\u003eErrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e31141\u003c/td\u003e\u003ctd\u003eEntitlement [{entitlementId}] does not exist in namespace [{namespace}]\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/ErrorEntity"
+            }
+          },
+          "409": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eErrorCode\u003c/td\u003e\u003ctd\u003eErrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e31171\u003c/td\u003e\u003ctd\u003eEntitlement [{entitlementId}] already revoked\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e31172\u003c/td\u003e\u003ctd\u003eEntitlement [{entitlementId}] not active\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e31174\u003c/td\u003e\u003ctd\u003eEntitlement [{entitlementId}] already consumed\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e31176\u003c/td\u003e\u003ctd\u003eEntitlement [{entitlementId}] use count is insufficient\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e31178\u003c/td\u003e\u003ctd\u003eEntitlement [{entitlementId}] out of time range\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e31180\u003c/td\u003e\u003ctd\u003eDuplicate request id: [{requestId}]\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e31181\u003c/td\u003e\u003ctd\u003eEntitlement [{entitlementId}] is not sellable\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e31182\u003c/td\u003e\u003ctd\u003eEntitlement [{entitlementId}] already sold\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20006\u003c/td\u003e\u003ctd\u003eoptimistic lock\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/ErrorEntity"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "summary": "Sell user entitlement",
         "tags": [
           "Entitlement"
         ],
@@ -23835,6 +23990,85 @@
         }
       }
     },
+    "/platform/public/namespaces/{namespace}/users/{userId}/entitlements/{entitlementId}/sell": {
+      "put": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Sell user entitlement. If the entitlement is consumable, useCount is 0, the status will be CONSUMED. If the entitlement is durable, the status will be SOLD. Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;NAMESPACE:{namespace}:USER:{userId}:ENTITLEMENT\u0026#34;, action=4 (UPDATE)\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: entitlement\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
+        "operationId": "publicSellUserEntitlement",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "entitlementId",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "path",
+            "name": "userId",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "required": false,
+            "schema": {
+              "$ref": "#/definitions/EntitlementSoldRequest"
+            }
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/EntitlementSoldResult"
+            }
+          },
+          "404": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eErrorCode\u003c/td\u003e\u003ctd\u003eErrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e31141\u003c/td\u003e\u003ctd\u003eEntitlement [{entitlementId}] does not exist in namespace [{namespace}]\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/ErrorEntity"
+            }
+          },
+          "409": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eErrorCode\u003c/td\u003e\u003ctd\u003eErrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e31171\u003c/td\u003e\u003ctd\u003eEntitlement [{entitlementId}] already revoked\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e31172\u003c/td\u003e\u003ctd\u003eEntitlement [{entitlementId}] not active\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e31174\u003c/td\u003e\u003ctd\u003eEntitlement [{entitlementId}] already consumed\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e31176\u003c/td\u003e\u003ctd\u003eEntitlement [{entitlementId}] use count is insufficient\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e31178\u003c/td\u003e\u003ctd\u003eEntitlement [{entitlementId}] out of time range\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e31180\u003c/td\u003e\u003ctd\u003eDuplicate request id: [{requestId}]\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e31181\u003c/td\u003e\u003ctd\u003eEntitlement [{entitlementId}] is not sellable\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e31182\u003c/td\u003e\u003ctd\u003eEntitlement [{entitlementId}] already sold\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20006\u003c/td\u003e\u003ctd\u003eoptimistic lock\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/ErrorEntity"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          },
+          {
+            "HasPermission": [
+              "NAMESPACE:{namespace}:USER:{userId}:ENTITLEMENT [UPDATE]"
+            ],
+            "authorization": []
+          }
+        ],
+        "summary": "Sell user entitlement",
+        "tags": [
+          "Entitlement"
+        ],
+        "x-authorization": {
+          "action": "4",
+          "resource": "NAMESPACE:{namespace}:USER:{userId}:ENTITLEMENT"
+        }
+      }
+    },
     "/platform/public/namespaces/{namespace}/users/{userId}/fulfillment/code": {
       "post": {
         "consumes": [
@@ -26515,7 +26749,8 @@
             "ACTIVE",
             "CONSUMED",
             "INACTIVE",
-            "REVOKED"
+            "REVOKED",
+            "SOLD"
           ],
           "type": "string"
         },
@@ -27327,6 +27562,17 @@
       },
       "type": "object"
     },
+    "BulkRegionDataChangeRequest": {
+      "properties": {
+        "changes": {
+          "items": {
+            "$ref": "#/definitions/RegionDataChange"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
     "BundledItemInfo": {
       "properties": {
         "appId": {
@@ -27526,6 +27772,10 @@
           },
           "type": "array"
         },
+        "saleConfig": {
+          "$ref": "#/definitions/SaleConfig",
+          "description": "sale config"
+        },
         "seasonType": {
           "description": "Season type, required while itemType is SEASON",
           "enum": [
@@ -27533,6 +27783,11 @@
             "TIER"
           ],
           "type": "string"
+        },
+        "sellable": {
+          "description": "whether allow to sell back to store",
+          "type": "boolean",
+          "x-omitempty": false
         },
         "sku": {
           "description": "Sku",
@@ -28524,7 +28779,8 @@
             "REDEEM_CODE",
             "REFERRAL_BONUS",
             "REFUND",
-            "REWARD"
+            "REWARD",
+            "SELL_BACK"
           ],
           "type": "string"
         }
@@ -29024,7 +29280,7 @@
           "type": "string"
         },
         "walletAction": {
-          "description": "Action type",
+          "description": "Action type, remove expired limited time balance will not have wallet action.",
           "enum": [
             "CREDIT",
             "DEBIT",
@@ -29045,7 +29301,6 @@
         "operator",
         "updatedAt",
         "userId",
-        "walletAction",
         "walletId"
       ],
       "type": "object"
@@ -29242,7 +29497,8 @@
             "ACTIVE",
             "CONSUMED",
             "INACTIVE",
-            "REVOKED"
+            "REVOKED",
+            "SOLD"
           ],
           "type": "string"
         },
@@ -29369,6 +29625,7 @@
             "ENABLE",
             "GRANT",
             "REVOKE",
+            "SELL_BACK",
             "UPDATE"
           ],
           "type": "string"
@@ -29537,7 +29794,8 @@
             "ACTIVE",
             "CONSUMED",
             "INACTIVE",
-            "REVOKED"
+            "REVOKED",
+            "SOLD"
           ],
           "type": "string"
         },
@@ -29679,6 +29937,46 @@
       },
       "type": "object"
     },
+    "EntitlementSoldRequest": {
+      "description": "A DTO object for sell entitlement.",
+      "properties": {
+        "requestId": {
+          "description": "Request id(Optional), client should provide a unique request id to perform at most once execution, When a request id is resubmitted, it will return original successful response",
+          "type": "string"
+        },
+        "useCount": {
+          "description": "the use count to sell, 1 for default, durable entitlement only allow 1",
+          "format": "int32",
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "EntitlementSoldResult": {
+      "properties": {
+        "creditSummaries": {
+          "description": "creditSummaries, The money from the sale",
+          "items": {
+            "$ref": "#/definitions/CreditSummary"
+          },
+          "type": "array"
+        },
+        "entitlementInfo": {
+          "$ref": "#/definitions/EntitlementInfo",
+          "description": "The entitlement information after the sale"
+        },
+        "replayed": {
+          "description": "replayed, if true,the response is original successful response. This will not be included in response if client have not pass request id.",
+          "type": "boolean",
+          "x-omitempty": false
+        },
+        "requestId": {
+          "description": "request id",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "EntitlementSummary": {
       "properties": {
         "clazz": {
@@ -29804,7 +30102,8 @@
             "ACTIVE",
             "CONSUMED",
             "INACTIVE",
-            "REVOKED"
+            "REVOKED",
+            "SOLD"
           ],
           "type": "string"
         },
@@ -30973,6 +31272,10 @@
           "description": "Item region data",
           "type": "object"
         },
+        "saleConfig": {
+          "$ref": "#/definitions/SaleConfig",
+          "description": "saleConfig"
+        },
         "seasonType": {
           "description": "Season type, required while itemType is SEASON",
           "enum": [
@@ -30980,6 +31283,11 @@
             "TIER"
           ],
           "type": "string"
+        },
+        "sellable": {
+          "description": "sellable",
+          "type": "boolean",
+          "x-omitempty": false
         },
         "sku": {
           "description": "Sku",
@@ -32136,6 +32444,10 @@
           "description": "region data map, key is region, value is region data list",
           "type": "object"
         },
+        "saleConfig": {
+          "$ref": "#/definitions/SaleConfig",
+          "description": "sale config, required if sellable is true"
+        },
         "seasonType": {
           "description": "seasonType",
           "enum": [
@@ -32143,6 +32455,11 @@
             "TIER"
           ],
           "type": "string"
+        },
+        "sellable": {
+          "description": "sellable, whether allow to sell back to store",
+          "type": "boolean",
+          "x-omitempty": false
         },
         "sku": {
           "description": "sku, allowed characters from a-zA-Z0-9_:- and start/end in alphanumeric, max length is 127",
@@ -32452,6 +32769,10 @@
           },
           "type": "array"
         },
+        "saleConfig": {
+          "$ref": "#/definitions/SaleConfig",
+          "description": "sale config"
+        },
         "seasonType": {
           "description": "Season type, required while itemType is SEASON",
           "enum": [
@@ -32459,6 +32780,11 @@
             "TIER"
           ],
           "type": "string"
+        },
+        "sellable": {
+          "description": "whether allow to sell back to store",
+          "type": "boolean",
+          "x-omitempty": false
         },
         "sku": {
           "description": "Sku",
@@ -32861,6 +33187,10 @@
           "$ref": "#/definitions/RegionDataItem",
           "description": "Region data"
         },
+        "saleConfig": {
+          "$ref": "#/definitions/SaleConfig",
+          "description": "sale config"
+        },
         "seasonType": {
           "description": "Season type, required while itemType is SEASON",
           "enum": [
@@ -32868,6 +33198,11 @@
             "TIER"
           ],
           "type": "string"
+        },
+        "sellable": {
+          "description": "whether allow to sell back to store",
+          "type": "boolean",
+          "x-omitempty": false
         },
         "sku": {
           "description": "Sku",
@@ -33208,6 +33543,10 @@
           "description": "region data map, key is region, value is region data list",
           "type": "object"
         },
+        "saleConfig": {
+          "$ref": "#/definitions/SaleConfig",
+          "description": "sale config, required if sellable is true"
+        },
         "seasonType": {
           "description": "seasonType",
           "enum": [
@@ -33215,6 +33554,11 @@
             "TIER"
           ],
           "type": "string"
+        },
+        "sellable": {
+          "description": "sellable, whether allow to sell back to store",
+          "type": "boolean",
+          "x-omitempty": false
         },
         "sku": {
           "description": "sku, allowed characters from a-zA-Z0-9_:- and start/end in alphanumeric, max length is 127",
@@ -36684,6 +37028,10 @@
           },
           "type": "array"
         },
+        "saleConfig": {
+          "$ref": "#/definitions/SaleConfig",
+          "description": "sale config"
+        },
         "seasonType": {
           "description": "Season type, required while itemType is SEASON",
           "enum": [
@@ -36691,6 +37039,11 @@
             "TIER"
           ],
           "type": "string"
+        },
+        "sellable": {
+          "description": "whether allow to sell back to store",
+          "type": "boolean",
+          "x-omitempty": false
         },
         "sku": {
           "description": "Sku",
@@ -37056,6 +37409,38 @@
       "required": [
         "itemId",
         "itemName"
+      ],
+      "type": "object"
+    },
+    "RegionDataChange": {
+      "properties": {
+        "itemIdentities": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "itemIdentityType": {
+          "description": "Item Identity Type",
+          "enum": [
+            "ITEM_ID",
+            "ITEM_SKU"
+          ],
+          "type": "string"
+        },
+        "regionData": {
+          "additionalProperties": {
+            "items": {
+              "$ref": "#/definitions/RegionDataItem"
+            },
+            "type": "array"
+          },
+          "description": "region data map, key is region, value is region data list (This map will override existing keys instead of entire map)",
+          "type": "object"
+        }
+      },
+      "required": [
+        "itemIdentityType"
       ],
       "type": "object"
     },
@@ -37812,6 +38197,24 @@
       ],
       "type": "object"
     },
+    "SaleConfig": {
+      "properties": {
+        "currencyCode": {
+          "description": "currency code, only allow to use current namespace virtual currency",
+          "type": "string"
+        },
+        "price": {
+          "description": "price value",
+          "format": "int32",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "currencyCode",
+        "price"
+      ],
+      "type": "object"
+    },
     "SectionCreate": {
       "description": "A DTO object for creating section API call.",
       "properties": {
@@ -38287,7 +38690,8 @@
             "ACTIVE",
             "CONSUMED",
             "INACTIVE",
-            "REVOKED"
+            "REVOKED",
+            "SOLD"
           ],
           "type": "string"
         },
@@ -40151,7 +40555,7 @@
           "type": "string"
         },
         "walletAction": {
-          "description": "Action type",
+          "description": "Action type, remove expired limited time balance will not have wallet action.",
           "enum": [
             "CREDIT",
             "DEBIT",
@@ -40167,8 +40571,7 @@
         "namespace",
         "operator",
         "updatedAt",
-        "userId",
-        "walletAction"
+        "userId"
       ],
       "type": "object"
     },

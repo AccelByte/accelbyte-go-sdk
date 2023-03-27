@@ -19,13 +19,19 @@ import (
 	"github.com/go-openapi/runtime"
 	cr "github.com/go-openapi/runtime/client"
 	"github.com/go-openapi/strfmt"
+	"github.com/go-openapi/swag"
 )
 
 // NewAdminGetAllConfigurationTemplatesV1Params creates a new AdminGetAllConfigurationTemplatesV1Params object
 // with the default values initialized.
 func NewAdminGetAllConfigurationTemplatesV1Params() *AdminGetAllConfigurationTemplatesV1Params {
-	var ()
+	var (
+		limitDefault  = int64(20)
+		offsetDefault = int64(0)
+	)
 	return &AdminGetAllConfigurationTemplatesV1Params{
+		Limit:  &limitDefault,
+		Offset: &offsetDefault,
 
 		timeout: cr.DefaultTimeout,
 	}
@@ -34,8 +40,13 @@ func NewAdminGetAllConfigurationTemplatesV1Params() *AdminGetAllConfigurationTem
 // NewAdminGetAllConfigurationTemplatesV1ParamsWithTimeout creates a new AdminGetAllConfigurationTemplatesV1Params object
 // with the default values initialized, and the ability to set a timeout on a request
 func NewAdminGetAllConfigurationTemplatesV1ParamsWithTimeout(timeout time.Duration) *AdminGetAllConfigurationTemplatesV1Params {
-	var ()
+	var (
+		limitDefault  = int64(20)
+		offsetDefault = int64(0)
+	)
 	return &AdminGetAllConfigurationTemplatesV1Params{
+		Limit:  &limitDefault,
+		Offset: &offsetDefault,
 
 		timeout: timeout,
 	}
@@ -44,8 +55,13 @@ func NewAdminGetAllConfigurationTemplatesV1ParamsWithTimeout(timeout time.Durati
 // NewAdminGetAllConfigurationTemplatesV1ParamsWithContext creates a new AdminGetAllConfigurationTemplatesV1Params object
 // with the default values initialized, and the ability to set a context for a request
 func NewAdminGetAllConfigurationTemplatesV1ParamsWithContext(ctx context.Context) *AdminGetAllConfigurationTemplatesV1Params {
-	var ()
+	var (
+		limitDefault  = int64(20)
+		offsetDefault = int64(0)
+	)
 	return &AdminGetAllConfigurationTemplatesV1Params{
+		Limit:  &limitDefault,
+		Offset: &offsetDefault,
 
 		Context: ctx,
 	}
@@ -54,8 +70,13 @@ func NewAdminGetAllConfigurationTemplatesV1ParamsWithContext(ctx context.Context
 // NewAdminGetAllConfigurationTemplatesV1ParamsWithHTTPClient creates a new AdminGetAllConfigurationTemplatesV1Params object
 // with the default values initialized, and the ability to set a custom HTTPClient for a request
 func NewAdminGetAllConfigurationTemplatesV1ParamsWithHTTPClient(client *http.Client) *AdminGetAllConfigurationTemplatesV1Params {
-	var ()
+	var (
+		limitDefault  = int64(20)
+		offsetDefault = int64(0)
+	)
 	return &AdminGetAllConfigurationTemplatesV1Params{
+		Limit:      &limitDefault,
+		Offset:     &offsetDefault,
 		HTTPClient: client,
 	}
 }
@@ -67,11 +88,21 @@ type AdminGetAllConfigurationTemplatesV1Params struct {
 
 	/*RetryPolicy*/
 	RetryPolicy *utils.Retry
+	/*Limit
+	  Pagination limit
+
+	*/
+	Limit *int64
 	/*Namespace
 	  namespace of the game
 
 	*/
 	Namespace string
+	/*Offset
+	  Pagination offset
+
+	*/
+	Offset *int64
 
 	timeout        time.Duration
 	AuthInfoWriter runtime.ClientAuthInfoWriter
@@ -126,6 +157,17 @@ func (o *AdminGetAllConfigurationTemplatesV1Params) SetHTTPClientTransport(round
 	}
 }
 
+// WithLimit adds the limit to the admin get all configuration templates v1 params
+func (o *AdminGetAllConfigurationTemplatesV1Params) WithLimit(limit *int64) *AdminGetAllConfigurationTemplatesV1Params {
+	o.SetLimit(limit)
+	return o
+}
+
+// SetLimit adds the limit to the admin get all configuration templates v1 params
+func (o *AdminGetAllConfigurationTemplatesV1Params) SetLimit(limit *int64) {
+	o.Limit = limit
+}
+
 // WithNamespace adds the namespace to the admin get all configuration templates v1 params
 func (o *AdminGetAllConfigurationTemplatesV1Params) WithNamespace(namespace string) *AdminGetAllConfigurationTemplatesV1Params {
 	o.SetNamespace(namespace)
@@ -137,6 +179,17 @@ func (o *AdminGetAllConfigurationTemplatesV1Params) SetNamespace(namespace strin
 	o.Namespace = namespace
 }
 
+// WithOffset adds the offset to the admin get all configuration templates v1 params
+func (o *AdminGetAllConfigurationTemplatesV1Params) WithOffset(offset *int64) *AdminGetAllConfigurationTemplatesV1Params {
+	o.SetOffset(offset)
+	return o
+}
+
+// SetOffset adds the offset to the admin get all configuration templates v1 params
+func (o *AdminGetAllConfigurationTemplatesV1Params) SetOffset(offset *int64) {
+	o.Offset = offset
+}
+
 // WriteToRequest writes these params to a swagger request
 func (o *AdminGetAllConfigurationTemplatesV1Params) WriteToRequest(r runtime.ClientRequest, reg strfmt.Registry) error {
 
@@ -145,9 +198,41 @@ func (o *AdminGetAllConfigurationTemplatesV1Params) WriteToRequest(r runtime.Cli
 	}
 	var res []error
 
+	if o.Limit != nil {
+
+		// query param limit
+		var qrLimit int64
+		if o.Limit != nil {
+			qrLimit = *o.Limit
+		}
+		qLimit := swag.FormatInt64(qrLimit)
+		if qLimit != "" {
+			if err := r.SetQueryParam("limit", qLimit); err != nil {
+				return err
+			}
+		}
+
+	}
+
 	// path param namespace
 	if err := r.SetPathParam("namespace", o.Namespace); err != nil {
 		return err
+	}
+
+	if o.Offset != nil {
+
+		// query param offset
+		var qrOffset int64
+		if o.Offset != nil {
+			qrOffset = *o.Offset
+		}
+		qOffset := swag.FormatInt64(qrOffset)
+		if qOffset != "" {
+			if err := r.SetQueryParam("offset", qOffset); err != nil {
+				return err
+			}
+		}
+
 	}
 
 	// setting the default header value

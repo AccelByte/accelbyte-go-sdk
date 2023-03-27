@@ -8,7 +8,7 @@
     },
     "description": "Justice IAM Service",
     "title": "justice-iam-service",
-    "version": "5.29.0"
+    "version": "5.31.0"
   },
   "schemes": [
     "https"
@@ -12428,7 +12428,7 @@
             }
           },
           "400": {
-            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20002\u003c/td\u003e\u003ctd\u003evalidation error\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20002\u003c/td\u003e\u003ctd\u003evalidation error\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e10208\u003c/td\u003e\u003ctd\u003eplatform token expired\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/rest.ErrorResponse"
             }
@@ -15566,6 +15566,12 @@
             "schema": {
               "$ref": "#/definitions/oauthmodel.ErrorResponse"
             }
+          },
+          "503": {
+            "description": "Third Party Server timeout or unavailable",
+            "schema": {
+              "$ref": "#/definitions/oauthmodel.ErrorResponse"
+            }
           }
         },
         "summary": "OAuth2 access token generation specific to platform",
@@ -17285,7 +17291,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "\u0026lt;p\u0026gt;Require valid user authorization\u0026lt;br\u0026gt;action code : 10124 \u0026lt;/p\u0026gt;",
+        "description": "\u0026lt;p\u0026gt;Require valid user authorization\u0026lt;br\u0026gt;action code : 10124 \u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;if set NeedVerificationCode = true, IAM will send verification code into email\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;user can use that verification code to verify user through /iam/v3/public/namespaces/{namespace}/users/me/code/verify",
         "operationId": "PublicVerifyHeadlessAccountV3",
         "parameters": [
           {
@@ -17302,6 +17308,14 @@
             "name": "namespace",
             "required": true,
             "type": "string"
+          },
+          {
+            "default": false,
+            "description": "default false, will send verification code to email if true",
+            "in": "query",
+            "name": "needVerificationCode",
+            "type": "boolean",
+            "x-omitempty": false
           }
         ],
         "produces": [
@@ -29105,8 +29119,7 @@
         }
       },
       "required": [
-        "enabled",
-        "reason"
+        "enabled"
       ]
     },
     "model.UpgradeHeadlessAccountRequest": {

@@ -178,6 +178,64 @@ func (aaa *ConfigurationTemplateService) AdminDeleteConfigurationTemplateV1(inpu
 	return nil
 }
 
+// deprecated(2022-01-10): please use AdminGetDSMCConfigurationShort instead.
+func (aaa *ConfigurationTemplateService) AdminGetDSMCConfiguration(input *configuration_template.AdminGetDSMCConfigurationParams) (*sessionclientmodels.ModelsDSMConfigRecord, error) {
+	token, err := aaa.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, badRequest, unauthorized, forbidden, notFound, internalServerError, err := aaa.Client.ConfigurationTemplate.AdminGetDSMCConfiguration(input, client.BearerToken(*token.AccessToken))
+	if badRequest != nil {
+		return nil, badRequest
+	}
+	if unauthorized != nil {
+		return nil, unauthorized
+	}
+	if forbidden != nil {
+		return nil, forbidden
+	}
+	if notFound != nil {
+		return nil, notFound
+	}
+	if internalServerError != nil {
+		return nil, internalServerError
+	}
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
+// deprecated(2022-01-10): please use AdminSyncDSMCConfigurationShort instead.
+func (aaa *ConfigurationTemplateService) AdminSyncDSMCConfiguration(input *configuration_template.AdminSyncDSMCConfigurationParams) (*sessionclientmodels.ModelsDSMConfigRecord, error) {
+	token, err := aaa.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, badRequest, unauthorized, forbidden, notFound, internalServerError, err := aaa.Client.ConfigurationTemplate.AdminSyncDSMCConfiguration(input, client.BearerToken(*token.AccessToken))
+	if badRequest != nil {
+		return nil, badRequest
+	}
+	if unauthorized != nil {
+		return nil, unauthorized
+	}
+	if forbidden != nil {
+		return nil, forbidden
+	}
+	if notFound != nil {
+		return nil, notFound
+	}
+	if internalServerError != nil {
+		return nil, internalServerError
+	}
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
 func (aaa *ConfigurationTemplateService) AdminCreateConfigurationTemplateV1Short(input *configuration_template.AdminCreateConfigurationTemplateV1Params) (*sessionclientmodels.ApimodelsConfigurationTemplateResponse, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
@@ -301,4 +359,54 @@ func (aaa *ConfigurationTemplateService) AdminDeleteConfigurationTemplateV1Short
 	}
 
 	return nil
+}
+
+func (aaa *ConfigurationTemplateService) AdminGetDSMCConfigurationShort(input *configuration_template.AdminGetDSMCConfigurationParams) (*sessionclientmodels.ModelsDSMConfigRecord, error) {
+	authInfoWriter := input.AuthInfoWriter
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
+	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  aaa.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
+	ok, err := aaa.Client.ConfigurationTemplate.AdminGetDSMCConfigurationShort(input, authInfoWriter)
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
+func (aaa *ConfigurationTemplateService) AdminSyncDSMCConfigurationShort(input *configuration_template.AdminSyncDSMCConfigurationParams) (*sessionclientmodels.ModelsDSMConfigRecord, error) {
+	authInfoWriter := input.AuthInfoWriter
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
+	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  aaa.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
+	ok, err := aaa.Client.ConfigurationTemplate.AdminSyncDSMCConfigurationShort(input, authInfoWriter)
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
 }

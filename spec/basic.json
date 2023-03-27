@@ -8,7 +8,7 @@
     },
     "description": "Justice Basic Service",
     "title": "justice-basic-service",
-    "version": "2.6.1"
+    "version": "2.8.0"
   },
   "schemes": [
     "https"
@@ -49,10 +49,10 @@
         "ADMIN:NAMESPACE:{namespace}:ACTION [CREATE]": "ADMIN:NAMESPACE:{namespace}:ACTION [CREATE]",
         "ADMIN:NAMESPACE:{namespace}:ACTION [READ]": "ADMIN:NAMESPACE:{namespace}:ACTION [READ]",
         "ADMIN:NAMESPACE:{namespace}:ACTION [UPDATE]": "ADMIN:NAMESPACE:{namespace}:ACTION [UPDATE]",
-        "ADMIN:NAMESPACE:{namespace}:CONFIG [CREATE]": "ADMIN:NAMESPACE:{namespace}:CONFIG [CREATE]",
-        "ADMIN:NAMESPACE:{namespace}:CONFIG [DELETE]": "ADMIN:NAMESPACE:{namespace}:CONFIG [DELETE]",
-        "ADMIN:NAMESPACE:{namespace}:CONFIG [READ]": "ADMIN:NAMESPACE:{namespace}:CONFIG [READ]",
-        "ADMIN:NAMESPACE:{namespace}:CONFIG [UPDATE]": "ADMIN:NAMESPACE:{namespace}:CONFIG [UPDATE]",
+        "ADMIN:NAMESPACE:{namespace}:BASIC:CONFIG [CREATE]": "ADMIN:NAMESPACE:{namespace}:BASIC:CONFIG [CREATE]",
+        "ADMIN:NAMESPACE:{namespace}:BASIC:CONFIG [DELETE]": "ADMIN:NAMESPACE:{namespace}:BASIC:CONFIG [DELETE]",
+        "ADMIN:NAMESPACE:{namespace}:BASIC:CONFIG [READ]": "ADMIN:NAMESPACE:{namespace}:BASIC:CONFIG [READ]",
+        "ADMIN:NAMESPACE:{namespace}:BASIC:CONFIG [UPDATE]": "ADMIN:NAMESPACE:{namespace}:BASIC:CONFIG [UPDATE]",
         "ADMIN:NAMESPACE:{namespace}:FILEUPLOAD [CREATE]": "ADMIN:NAMESPACE:{namespace}:FILEUPLOAD [CREATE]",
         "ADMIN:NAMESPACE:{namespace}:MISC [CREATE]": "ADMIN:NAMESPACE:{namespace}:MISC [CREATE]",
         "ADMIN:NAMESPACE:{namespace}:MISC [DELETE]": "ADMIN:NAMESPACE:{namespace}:MISC [DELETE]",
@@ -910,7 +910,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "Create a config.\u0026lt;br\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026lt;b\u0026gt;\u0026#34;ADMIN:NAMESPACE:{namespace}:CONFIG\u0026#34;\u0026lt;/b\u0026gt;, action=1 \u0026lt;b\u0026gt;(CREATE)\u0026lt;/b\u0026gt;\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: created config\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
+        "description": "Create a config.\u0026lt;br\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026lt;b\u0026gt;\u0026#34;ADMIN:NAMESPACE:{namespace}:BASIC:CONFIG\u0026#34;\u0026lt;/b\u0026gt;, action=1 \u0026lt;b\u0026gt;(CREATE)\u0026lt;/b\u0026gt;\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: created config\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "createConfig",
         "parameters": [
           {
@@ -957,7 +957,7 @@
             }
           },
           "409": {
-            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e12336\u003c/td\u003e\u003ctd\u003eUnable to {action}: Config already exists\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e11771\u003c/td\u003e\u003ctd\u003eUnable to {action}: Config already exists\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/ErrorEntity"
             }
@@ -969,7 +969,7 @@
           },
           {
             "HasPermission": [
-              "ADMIN:NAMESPACE:{namespace}:CONFIG [CREATE]"
+              "ADMIN:NAMESPACE:{namespace}:BASIC:CONFIG [CREATE]"
             ],
             "authorization": []
           }
@@ -980,7 +980,7 @@
         ],
         "x-authorization": {
           "action": "1",
-          "resource": "ADMIN:NAMESPACE:{namespace}:CONFIG"
+          "resource": "ADMIN:NAMESPACE:{namespace}:BASIC:CONFIG"
         }
       }
     },
@@ -989,7 +989,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "Delete a config.\u0026lt;br\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026lt;b\u0026gt;\u0026#34;ADMIN:NAMESPACE:{namespace}:CONFIG\u0026#34;\u0026lt;/b\u0026gt;, action=8 \u0026lt;b\u0026gt;(DELETE)\u0026lt;/b\u0026gt;\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: created config\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
+        "description": "Delete a config.\u0026lt;br\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026lt;b\u0026gt;\u0026#34;ADMIN:NAMESPACE:{namespace}:BASIC:CONFIG\u0026#34;\u0026lt;/b\u0026gt;, action=8 \u0026lt;b\u0026gt;(DELETE)\u0026lt;/b\u0026gt;\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: created config\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "deleteConfig_1",
         "parameters": [
           {
@@ -1031,7 +1031,7 @@
             }
           },
           "404": {
-            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e12337\u003c/td\u003e\u003ctd\u003eUnable to {action}: Config not found\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e11741\u003c/td\u003e\u003ctd\u003eUnable to {action}: Config not found\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/ErrorEntity"
             }
@@ -1043,7 +1043,7 @@
           },
           {
             "HasPermission": [
-              "ADMIN:NAMESPACE:{namespace}:CONFIG [DELETE]"
+              "ADMIN:NAMESPACE:{namespace}:BASIC:CONFIG [DELETE]"
             ],
             "authorization": []
           }
@@ -1054,11 +1054,11 @@
         ],
         "x-authorization": {
           "action": "8",
-          "resource": "ADMIN:NAMESPACE:{namespace}:CONFIG"
+          "resource": "ADMIN:NAMESPACE:{namespace}:BASIC:CONFIG"
         }
       },
       "get": {
-        "description": "Get a config.\u0026lt;br\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026lt;b\u0026gt;\u0026#34;ADMIN:NAMESPACE:{namespace}:CONFIG\u0026#34;\u0026lt;/b\u0026gt;, action=2 \u0026lt;b\u0026gt;(READ)\u0026lt;/b\u0026gt;\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: config\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
+        "description": "Get a config.\u0026lt;br\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026lt;b\u0026gt;\u0026#34;ADMIN:NAMESPACE:{namespace}:BASIC:CONFIG\u0026#34;\u0026lt;/b\u0026gt;, action=2 \u0026lt;b\u0026gt;(READ)\u0026lt;/b\u0026gt;\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: config\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "getConfig_1",
         "parameters": [
           {
@@ -1104,7 +1104,7 @@
             }
           },
           "404": {
-            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e12337\u003c/td\u003e\u003ctd\u003eUnable to {action}: Config not found\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e11741\u003c/td\u003e\u003ctd\u003eUnable to {action}: Config not found\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/ErrorEntity"
             }
@@ -1116,7 +1116,7 @@
           },
           {
             "HasPermission": [
-              "ADMIN:NAMESPACE:{namespace}:CONFIG [READ]"
+              "ADMIN:NAMESPACE:{namespace}:BASIC:CONFIG [READ]"
             ],
             "authorization": []
           }
@@ -1127,14 +1127,14 @@
         ],
         "x-authorization": {
           "action": "2",
-          "resource": "ADMIN:NAMESPACE:{namespace}:CONFIG"
+          "resource": "ADMIN:NAMESPACE:{namespace}:BASIC:CONFIG"
         }
       },
       "patch": {
         "consumes": [
           "application/json"
         ],
-        "description": "Update a config.\u0026lt;br\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026lt;b\u0026gt;\u0026#34;ADMIN:NAMESPACE:{namespace}:CONFIG\u0026#34;\u0026lt;/b\u0026gt;, action=4 \u0026lt;b\u0026gt;(UPDATE)\u0026lt;/b\u0026gt;\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: created config\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
+        "description": "Update a config.\u0026lt;br\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026lt;b\u0026gt;\u0026#34;ADMIN:NAMESPACE:{namespace}:BASIC:CONFIG\u0026#34;\u0026lt;/b\u0026gt;, action=4 \u0026lt;b\u0026gt;(UPDATE)\u0026lt;/b\u0026gt;\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: created config\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "updateConfig_1",
         "parameters": [
           {
@@ -1187,7 +1187,7 @@
             }
           },
           "404": {
-            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e12337\u003c/td\u003e\u003ctd\u003eUnable to {action}: Config not found\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e11741\u003c/td\u003e\u003ctd\u003eUnable to {action}: Config not found\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/ErrorEntity"
             }
@@ -1199,7 +1199,7 @@
           },
           {
             "HasPermission": [
-              "ADMIN:NAMESPACE:{namespace}:CONFIG [UPDATE]"
+              "ADMIN:NAMESPACE:{namespace}:BASIC:CONFIG [UPDATE]"
             ],
             "authorization": []
           }
@@ -1210,7 +1210,7 @@
         ],
         "x-authorization": {
           "action": "4",
-          "resource": "ADMIN:NAMESPACE:{namespace}:CONFIG"
+          "resource": "ADMIN:NAMESPACE:{namespace}:BASIC:CONFIG"
         }
       }
     },
@@ -2197,6 +2197,81 @@
         "x-authorization": {
           "action": "2",
           "resource": "ADMIN:NAMESPACE:{namespace}:NAMESPACE"
+        }
+      }
+    },
+    "/basic/v1/admin/namespaces/{namespace}/publisher/configs/{configKey}": {
+      "get": {
+        "description": "Get a publisher config.\u0026lt;br\u0026gt;It will return a publisher namespace config of the given namespace and key.\u0026lt;br\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026lt;b\u0026gt;\u0026#34;ADMIN:NAMESPACE:{namespace}:BASIC:CONFIG\u0026#34;\u0026lt;/b\u0026gt;, action=2 \u0026lt;b\u0026gt;(READ)\u0026lt;/b\u0026gt;\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: config\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
+        "operationId": "getPublisherConfig",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "configKey",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "namespace, only accept alphabet and numeric",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "schema": {
+              "$ref": "#/definitions/ConfigInfo"
+            }
+          },
+          "400": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20002\u003c/td\u003e\u003ctd\u003evalidation error\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/ValidationErrorEntity"
+            }
+          },
+          "401": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20001\u003c/td\u003e\u003ctd\u003eunauthorized\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/ErrorEntity"
+            }
+          },
+          "403": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20013\u003c/td\u003e\u003ctd\u003einsufficient permission\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/ErrorEntity"
+            }
+          },
+          "404": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e11741\u003c/td\u003e\u003ctd\u003eUnable to {action}: Config not found\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/ErrorEntity"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          },
+          {
+            "HasPermission": [
+              "ADMIN:NAMESPACE:{namespace}:BASIC:CONFIG [READ]"
+            ],
+            "authorization": []
+          }
+        ],
+        "summary": "Get a publisher config",
+        "tags": [
+          "Config"
+        ],
+        "x-authorization": {
+          "action": "2",
+          "resource": "ADMIN:NAMESPACE:{namespace}:BASIC:CONFIG"
         }
       }
     },
@@ -3732,7 +3807,7 @@
             "name": "body",
             "required": false,
             "schema": {
-              "$ref": "#/definitions/UserProfilePrivateUpdate"
+              "$ref": "#/definitions/UserProfileUpdate"
             }
           }
         ],
@@ -5273,6 +5348,12 @@
         "lastName": {
           "type": "string"
         },
+        "privateCustomAttributes": {
+          "additionalProperties": {
+            "type": "object"
+          },
+          "type": "object"
+        },
         "status": {
           "enum": [
             "ACTIVE",
@@ -5521,62 +5602,6 @@
       },
       "type": "object"
     },
-    "UserProfilePrivateUpdate": {
-      "description": "A DTO object for updating user profile API call.",
-      "properties": {
-        "avatarLargeUrl": {
-          "description": "should be comply with OWASP url format",
-          "type": "string"
-        },
-        "avatarSmallUrl": {
-          "description": "should be comply with OWASP url format",
-          "type": "string"
-        },
-        "avatarUrl": {
-          "description": "should be comply with OWASP url format",
-          "type": "string"
-        },
-        "customAttributes": {
-          "additionalProperties": {
-            "type": "object"
-          },
-          "type": "object"
-        },
-        "dateOfBirth": {
-          "description": "date of birth, allowed format: yyyy-MM-dd, valid date range from 1905-01-01 until present",
-          "format": "date",
-          "pattern": "^(\\d{4})-(0[1-9]|1[0-2])-(0[1-9]|[12][0-9]|3[01])$",
-          "type": "string",
-          "x-nullable": true
-        },
-        "firstName": {
-          "type": "string"
-        },
-        "language": {
-          "description": "language value from language tag, allowed format: en, en-US.\u003cp\u003eSupported language tag : [RFC5646](https://gist.github.com/msikma/8912e62ed866778ff8cd) and [IETF](https://datahub.io/core/language-codes#resource-ietf-language-tags)\u003c/p\u003e",
-          "pattern": "^[A-Za-z]{2,4}([_-][A-Za-z]{4})?([_-]([A-Za-z]{2}|[0-9]{3}))?$",
-          "type": "string"
-        },
-        "lastName": {
-          "type": "string"
-        },
-        "privateCustomAttributes": {
-          "additionalProperties": {
-            "type": "object"
-          },
-          "type": "object"
-        },
-        "timeZone": {
-          "description": "time zone, allowed IANA time zone, e.g.Asia/Shanghai",
-          "type": "string"
-        },
-        "zipCode": {
-          "description": "zip code",
-          "type": "string"
-        }
-      },
-      "type": "object"
-    },
     "UserProfilePublicInfo": {
       "properties": {
         "avatarLargeUrl": {
@@ -5664,6 +5689,12 @@
         },
         "lastName": {
           "type": "string"
+        },
+        "privateCustomAttributes": {
+          "additionalProperties": {
+            "type": "object"
+          },
+          "type": "object"
         },
         "timeZone": {
           "description": "time zone, allowed IANA time zone, e.g.Asia/Shanghai",

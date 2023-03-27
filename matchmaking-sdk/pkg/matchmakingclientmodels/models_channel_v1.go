@@ -45,6 +45,10 @@ type ModelsChannelV1 struct {
 	// Required: true
 	Namespace *string `json:"namespace"`
 
+	// region expansion rate ms
+	// Required: true
+	RegionExpansionRateMs *int32 `json:"region_expansion_rate_ms"`
+
 	// rule set
 	// Required: true
 	RuleSet *ModelsRuleSetV1 `json:"ruleSet"`
@@ -99,6 +103,10 @@ func (m *ModelsChannelV1) Validate(formats strfmt.Registry) error {
 	}
 
 	if err := m.validateNamespace(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateRegionExpansionRateMs(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -189,6 +197,15 @@ func (m *ModelsChannelV1) validateMaxDelayMs(formats strfmt.Registry) error {
 func (m *ModelsChannelV1) validateNamespace(formats strfmt.Registry) error {
 
 	if err := validate.Required("namespace", "body", m.Namespace); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *ModelsChannelV1) validateRegionExpansionRateMs(formats strfmt.Registry) error {
+
+	if err := validate.Required("region_expansion_rate_ms", "body", m.RegionExpansionRateMs); err != nil {
 		return err
 	}
 

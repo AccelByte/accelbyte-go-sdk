@@ -20,8 +20,7 @@ import (
 type ApimodelsPartySessionResponse struct {
 
 	// attributes
-	// Required: true
-	Attributes interface{} `json:"attributes"`
+	Attributes interface{} `json:"attributes,omitempty"`
 
 	// code
 	Code string `json:"code,omitempty"`
@@ -65,10 +64,6 @@ type ApimodelsPartySessionResponse struct {
 	// Required: true
 	Namespace *string `json:"namespace"`
 
-	// persistent
-	// Required: true
-	Persistent *bool `json:"persistent"`
-
 	// updated at
 	// Required: true
 	UpdatedAt *string `json:"updatedAt"`
@@ -81,10 +76,6 @@ type ApimodelsPartySessionResponse struct {
 // Validate validates this apimodels party session response
 func (m *ApimodelsPartySessionResponse) Validate(formats strfmt.Registry) error {
 	var res []error
-
-	if err := m.validateAttributes(formats); err != nil {
-		res = append(res, err)
-	}
 
 	if err := m.validateConfiguration(formats); err != nil {
 		res = append(res, err)
@@ -122,10 +113,6 @@ func (m *ApimodelsPartySessionResponse) Validate(formats strfmt.Registry) error 
 		res = append(res, err)
 	}
 
-	if err := m.validatePersistent(formats); err != nil {
-		res = append(res, err)
-	}
-
 	if err := m.validateUpdatedAt(formats); err != nil {
 		res = append(res, err)
 	}
@@ -137,15 +124,6 @@ func (m *ApimodelsPartySessionResponse) Validate(formats strfmt.Registry) error 
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
-	return nil
-}
-
-func (m *ApimodelsPartySessionResponse) validateAttributes(formats strfmt.Registry) error {
-
-	if err := validate.Required("attributes", "body", m.Attributes); err != nil {
-		return err
-	}
-
 	return nil
 }
 
@@ -249,15 +227,6 @@ func (m *ApimodelsPartySessionResponse) validateMembers(formats strfmt.Registry)
 func (m *ApimodelsPartySessionResponse) validateNamespace(formats strfmt.Registry) error {
 
 	if err := validate.Required("namespace", "body", m.Namespace); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *ApimodelsPartySessionResponse) validatePersistent(formats strfmt.Registry) error {
-
-	if err := validate.Required("persistent", "body", m.Persistent); err != nil {
 		return err
 	}
 

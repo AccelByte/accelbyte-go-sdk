@@ -39,6 +39,8 @@ type ClientService interface {
 	DeleteMatchFunctionShort(params *DeleteMatchFunctionParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteMatchFunctionOK, error)
 	MatchFunctionList(params *MatchFunctionListParams, authInfo runtime.ClientAuthInfoWriter) (*MatchFunctionListOK, *MatchFunctionListUnauthorized, *MatchFunctionListForbidden, *MatchFunctionListInternalServerError, error)
 	MatchFunctionListShort(params *MatchFunctionListParams, authInfo runtime.ClientAuthInfoWriter) (*MatchFunctionListOK, error)
+	UpdateMatchFunction(params *UpdateMatchFunctionParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateMatchFunctionOK, *UpdateMatchFunctionBadRequest, *UpdateMatchFunctionUnauthorized, *UpdateMatchFunctionNotFound, *UpdateMatchFunctionConflict, *UpdateMatchFunctionInternalServerError, error)
+	UpdateMatchFunctionShort(params *UpdateMatchFunctionParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateMatchFunctionOK, error)
 
 	SetTransport(transport runtime.ClientTransport)
 }
@@ -408,6 +410,135 @@ func (a *Client) MatchFunctionListShort(params *MatchFunctionListParams, authInf
 	case *MatchFunctionListForbidden:
 		return nil, v
 	case *MatchFunctionListInternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+Deprecated: Use UpdateMatchFunctionShort instead.
+
+  UpdateMatchFunction updates a match function
+
+   Required Permission: NAMESPACE:{namespace}:MATCHMAKING:FUNCTIONS [UPDATE]
+
+Required Scope: social
+
+Update existing matchmaking function.
+
+*/
+func (a *Client) UpdateMatchFunction(params *UpdateMatchFunctionParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateMatchFunctionOK, *UpdateMatchFunctionBadRequest, *UpdateMatchFunctionUnauthorized, *UpdateMatchFunctionNotFound, *UpdateMatchFunctionConflict, *UpdateMatchFunctionInternalServerError, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewUpdateMatchFunctionParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "UpdateMatchFunction",
+		Method:             "PUT",
+		PathPattern:        "/match2/v1/namespaces/{namespace}/match-functions/{name}",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &UpdateMatchFunctionReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, nil, nil, nil, nil, nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *UpdateMatchFunctionOK:
+		return v, nil, nil, nil, nil, nil, nil
+
+	case *UpdateMatchFunctionBadRequest:
+		return nil, v, nil, nil, nil, nil, nil
+
+	case *UpdateMatchFunctionUnauthorized:
+		return nil, nil, v, nil, nil, nil, nil
+
+	case *UpdateMatchFunctionNotFound:
+		return nil, nil, nil, v, nil, nil, nil
+
+	case *UpdateMatchFunctionConflict:
+		return nil, nil, nil, nil, v, nil, nil
+
+	case *UpdateMatchFunctionInternalServerError:
+		return nil, nil, nil, nil, nil, v, nil
+
+	default:
+		return nil, nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+  UpdateMatchFunctionShort updates a match function
+
+   Required Permission: NAMESPACE:{namespace}:MATCHMAKING:FUNCTIONS [UPDATE]
+
+Required Scope: social
+
+Update existing matchmaking function.
+
+*/
+func (a *Client) UpdateMatchFunctionShort(params *UpdateMatchFunctionParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateMatchFunctionOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewUpdateMatchFunctionParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "UpdateMatchFunction",
+		Method:             "PUT",
+		PathPattern:        "/match2/v1/namespaces/{namespace}/match-functions/{name}",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &UpdateMatchFunctionReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *UpdateMatchFunctionOK:
+		return v, nil
+	case *UpdateMatchFunctionBadRequest:
+		return nil, v
+	case *UpdateMatchFunctionUnauthorized:
+		return nil, v
+	case *UpdateMatchFunctionNotFound:
+		return nil, v
+	case *UpdateMatchFunctionConflict:
+		return nil, v
+	case *UpdateMatchFunctionInternalServerError:
 		return nil, v
 
 	default:

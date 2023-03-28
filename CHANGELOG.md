@@ -1,3 +1,18 @@
+<a name="v0.41.0"></a>
+## [v0.41.0] - 2023-03-28
+
+### Chore
+- adjust session and platform integration test
+- regenerate sdk and cli for session and platform
+- **docs:** remove phantauth link
+- **integration-test:** remove skip marker
+- **integration-tests:** add skip when failing to create a party
+- **makefile:** exclude cache folder
+- **samples:** delete title matchmaking sample app
+- **sdk:** generate go extend sdk (230327.2046)
+- **spec:** update the session and platform from commit 1912e6804a39978cf386b5fe30321450daf5bce2
+
+
 <a name="v0.40.0"></a>
 ## [v0.40.0] - 2023-03-14
 
@@ -1258,6 +1273,7 @@ The wrapper have been refactored and has breaking change, these are the list:
 ### Fix
 - delete go.mod ([#1](https://github.com/AccelByte/accelbyte-go-sdk/issues/1))
 
+[v0.41.0]: https://github.com/AccelByte/accelbyte-go-sdk/compare/v0.40.0...v0.41.0
 [v0.40.0]: https://github.com/AccelByte/accelbyte-go-sdk/compare/v0.39.0...v0.40.0
 [v0.39.0]: https://github.com/AccelByte/accelbyte-go-sdk/compare/v0.38.0...v0.39.0
 [v0.35.1]: https://github.com/AccelByte/accelbyte-go-sdk/compare/v0.35.0...v0.35.1

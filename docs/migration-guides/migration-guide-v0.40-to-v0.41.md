@@ -10,3 +10,6 @@
    - field `price` inside `RegionDataItem` definitions is removed from the `required` schema. So, SDK can use value directly without pointer.
 2. Session Service
    - error response schema is removed from `204` response field. So, only one return response is needed for the wrapper.
+
+3. Basic Service
+   - renamed `basic-sdk/pkg/basicclientmodels/{UserProfilePrivateUpdate -> UserProfileUpdate}`

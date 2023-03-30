@@ -178,7 +178,7 @@ pipeline {
                   |<https://bitbucket.org/accelbyte/${sdkRepoName}/pull-requests/new?source=${sdkNewBranchName}|Compare or Create Pull Request>
                   ${breakingChangeInfo}
                   |""".stripMargin()
-        slackSend(channel: "#activity-justice-server-sdks", color: '#36B37E', message: message)
+        slackSend(channel: "#activity-justice-codegen-sdk", color: '#36B37E', message: message)
       }
     }
     failure {
@@ -191,7 +191,7 @@ pipeline {
             :no_entry: <${env.BUILD_URL}|${env.JOB_NAME}-${env.BUILD_NUMBER}> *failed*
 
             |""".stripMargin()
-        slackSend(channel: "#activity-justice-server-sdks", color: '#FF0000', message: message)
+        slackSend(channel: "#activity-justice-codegen-sdk", color: '#FF0000', message: message)
       }
     }
   }

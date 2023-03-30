@@ -24,7 +24,7 @@ pipeline {
             :no_entry: <${env.BUILD_URL}|${env.JOB_NAME}-${env.BUILD_NUMBER}> *failed*
             
             |""".stripMargin()
-        slackSend(channel: "#activity-justice-server-sdks", color: '#FF0000', message: message)
+        slackSend(channel: "#activity-justice-codegen-sdk", color: '#FF0000', message: message)
       }
     }
   }

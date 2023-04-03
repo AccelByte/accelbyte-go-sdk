@@ -360,6 +360,13 @@
 - update CHANGELOG.md for v0.28.0 release
 
 
+<a name="v0.27.1"></a>
+## [v0.27.1] - 2023-04-03
+
+### Chore
+
+- Add `GetHeaders` func in `utils.ABResponse` for forward compatibility with openapi runtime library
+
 <a name="v0.27.0"></a>
 ## [v0.27.0] - 2022-09-12
 
@@ -1291,6 +1298,7 @@ The wrapper have been refactored and has breaking change, these are the list:
 [v0.30.0]: https://github.com/AccelByte/accelbyte-go-sdk/compare/v0.29.0...v0.30.0
 [v0.29.0]: https://github.com/AccelByte/accelbyte-go-sdk/compare/v0.28.0...v0.29.0
 [v0.28.0]: https://github.com/AccelByte/accelbyte-go-sdk/compare/v0.27.0...v0.28.0
+[v0.27.1]: https://github.com/AccelByte/accelbyte-go-sdk/compare/v0.27.0...v0.27.1
 [v0.27.0]: https://github.com/AccelByte/accelbyte-go-sdk/compare/v0.26.0...v0.27.0
 [v0.26.0]: https://github.com/AccelByte/accelbyte-go-sdk/compare/v0.25.0...v0.26.0
 [v0.25.0]: https://github.com/AccelByte/accelbyte-go-sdk/compare/v0.24.0...v0.25.0

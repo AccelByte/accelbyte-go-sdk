@@ -788,6 +788,10 @@ func (r ABResponse) Message() string {
 	return r.response.Status
 }
 
+func (r ABResponse) GetHeaders(name string) []string {
+	return r.response.Header.Values(name)
+}
+
 //#endregion ABResponse (runtime.ClientResponse)
 
 //#endregion ABResponse

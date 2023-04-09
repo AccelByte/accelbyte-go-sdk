@@ -63,7 +63,7 @@ type ClientService interface {
 }
 
 /*
-Deprecated: Use CheckEventConditionShort instead.
+Deprecated: 2022-08-10 - Use CheckEventConditionShort instead.
 
   CheckEventCondition checks if event payload match reward condition
 
@@ -162,7 +162,7 @@ func (a *Client) CheckEventConditionShort(params *CheckEventConditionParams, aut
 }
 
 /*
-Deprecated: Use CreateRewardShort instead.
+Deprecated: 2022-08-10 - Use CreateRewardShort instead.
 
   CreateReward creates a reward
 
@@ -271,7 +271,7 @@ func (a *Client) CreateRewardShort(params *CreateRewardParams, authInfo runtime.
 }
 
 /*
-Deprecated: Use DeleteRewardShort instead.
+Deprecated: 2022-08-10 - Use DeleteRewardShort instead.
 
   DeleteReward deletes a reward
 
@@ -370,7 +370,7 @@ func (a *Client) DeleteRewardShort(params *DeleteRewardParams, authInfo runtime.
 }
 
 /*
-Deprecated: Use DeleteRewardConditionRecordShort instead.
+Deprecated: 2022-08-10 - Use DeleteRewardConditionRecordShort instead.
 
   DeleteRewardConditionRecord deletes a reward condition record
 
@@ -464,7 +464,7 @@ func (a *Client) DeleteRewardConditionRecordShort(params *DeleteRewardConditionR
 }
 
 /*
-Deprecated: Use ExportRewardsShort instead.
+Deprecated: 2022-08-10 - Use ExportRewardsShort instead.
 
   ExportRewards exports all reward configurations
 
@@ -558,7 +558,7 @@ func (a *Client) ExportRewardsShort(params *ExportRewardsParams, authInfo runtim
 }
 
 /*
-Deprecated: Use GetRewardShort instead.
+Deprecated: 2022-08-10 - Use GetRewardShort instead.
 
   GetReward gets a reward
 
@@ -657,7 +657,7 @@ func (a *Client) GetRewardShort(params *GetRewardParams, authInfo runtime.Client
 }
 
 /*
-Deprecated: Use GetRewardByCodeShort instead.
+Deprecated: 2022-08-10 - Use GetRewardByCodeShort instead.
 
   GetRewardByCode gets a reward by code
 
@@ -756,7 +756,7 @@ func (a *Client) GetRewardByCodeShort(params *GetRewardByCodeParams, authInfo ru
 }
 
 /*
-Deprecated: Use GetReward1Short instead.
+Deprecated: 2022-08-10 - Use GetReward1Short instead.
 
   GetReward1 gets a reward
 
@@ -855,7 +855,7 @@ func (a *Client) GetReward1Short(params *GetReward1Params, authInfo runtime.Clie
 }
 
 /*
-Deprecated: Use ImportRewardsShort instead.
+Deprecated: 2022-08-10 - Use ImportRewardsShort instead.
 
   ImportRewards imports reward configurations
 
@@ -954,7 +954,7 @@ func (a *Client) ImportRewardsShort(params *ImportRewardsParams, authInfo runtim
 }
 
 /*
-Deprecated: Use QueryRewardsShort instead.
+Deprecated: 2022-08-10 - Use QueryRewardsShort instead.
 
   QueryRewards queries rewards by criteria
 
@@ -1053,7 +1053,7 @@ func (a *Client) QueryRewardsShort(params *QueryRewardsParams, authInfo runtime.
 }
 
 /*
-Deprecated: Use QueryRewards1Short instead.
+Deprecated: 2022-08-10 - Use QueryRewards1Short instead.
 
   QueryRewards1 queries rewards by criteria
 
@@ -1152,7 +1152,7 @@ func (a *Client) QueryRewards1Short(params *QueryRewards1Params, authInfo runtim
 }
 
 /*
-Deprecated: Use UpdateRewardShort instead.
+Deprecated: 2022-08-10 - Use UpdateRewardShort instead.
 
   UpdateReward updates a reward
 

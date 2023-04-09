@@ -26,11 +26,13 @@ type NamespaceInfo struct {
 	// Format: date-time
 	CreatedAt *strfmt.DateTime `json:"createdAt,omitempty"`
 
-	// display name
-	DisplayName string `json:"displayName,omitempty"`
+	// namespace display name
+	// Required: true
+	DisplayName *string `json:"displayName"`
 
 	// namespace
-	Namespace string `json:"namespace,omitempty"`
+	// Required: true
+	Namespace *string `json:"namespace"`
 
 	// parentNamespace is only present in multi tenant mode
 	ParentNamespace string `json:"parentNamespace,omitempty"`
@@ -49,6 +51,14 @@ func (m *NamespaceInfo) Validate(formats strfmt.Registry) error {
 	var res []error
 
 	if err := m.validateCreatedAt(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateDisplayName(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateNamespace(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -73,6 +83,24 @@ func (m *NamespaceInfo) validateCreatedAt(formats strfmt.Registry) error {
 	}
 
 	if err := validate.FormatOf("createdAt", "body", "date-time", m.CreatedAt.String(), formats); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *NamespaceInfo) validateDisplayName(formats strfmt.Registry) error {
+
+	if err := validate.Required("displayName", "body", m.DisplayName); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *NamespaceInfo) validateNamespace(formats strfmt.Registry) error {
+
+	if err := validate.Required("namespace", "body", m.Namespace); err != nil {
 		return err
 	}
 

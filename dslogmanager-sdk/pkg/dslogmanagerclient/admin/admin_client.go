@@ -40,7 +40,7 @@ type ClientService interface {
 }
 
 /*
-Deprecated: Use GetServerLogsShort instead.
+Deprecated: 2022-08-10 - Use GetServerLogsShort instead.
 
   GetServerLogs queries server logs
 

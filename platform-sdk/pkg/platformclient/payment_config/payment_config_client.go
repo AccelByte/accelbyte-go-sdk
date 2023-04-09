@@ -106,7 +106,7 @@ type ClientService interface {
 }
 
 /*
-Deprecated: Use CreatePaymentProviderConfigShort instead.
+Deprecated: 2022-08-10 - Use CreatePaymentProviderConfigShort instead.
 
   CreatePaymentProviderConfig creates payment provider config
 
@@ -215,7 +215,7 @@ func (a *Client) CreatePaymentProviderConfigShort(params *CreatePaymentProviderC
 }
 
 /*
-Deprecated: Use DebugMatchedPaymentMerchantConfigShort instead.
+Deprecated: 2022-08-10 - Use DebugMatchedPaymentMerchantConfigShort instead.
 
   DebugMatchedPaymentMerchantConfig debugs matched payment merchant config internal
 
@@ -314,7 +314,7 @@ func (a *Client) DebugMatchedPaymentMerchantConfigShort(params *DebugMatchedPaym
 }
 
 /*
-Deprecated: Use DebugMatchedPaymentProviderConfigShort instead.
+Deprecated: 2022-08-10 - Use DebugMatchedPaymentProviderConfigShort instead.
 
   DebugMatchedPaymentProviderConfig debugs matched payment provider config internal
 
@@ -413,7 +413,7 @@ func (a *Client) DebugMatchedPaymentProviderConfigShort(params *DebugMatchedPaym
 }
 
 /*
-Deprecated: Use DeletePaymentProviderConfigShort instead.
+Deprecated: 2022-08-10 - Use DeletePaymentProviderConfigShort instead.
 
   DeletePaymentProviderConfig deletes payment provider config
 
@@ -512,7 +512,7 @@ func (a *Client) DeletePaymentProviderConfigShort(params *DeletePaymentProviderC
 }
 
 /*
-Deprecated: Use GetAggregatePaymentProvidersShort instead.
+Deprecated: 2022-08-10 - Use GetAggregatePaymentProvidersShort instead.
 
   GetAggregatePaymentProviders gets aggregate payment providers
 
@@ -606,7 +606,7 @@ func (a *Client) GetAggregatePaymentProvidersShort(params *GetAggregatePaymentPr
 }
 
 /*
-Deprecated: Use GetPaymentMerchantConfigShort instead.
+Deprecated: 2022-08-10 - Use GetPaymentMerchantConfigShort instead.
 
   GetPaymentMerchantConfig gets payment merchant config
 
@@ -705,7 +705,7 @@ func (a *Client) GetPaymentMerchantConfigShort(params *GetPaymentMerchantConfigP
 }
 
 /*
-Deprecated: Use GetPaymentTaxConfigShort instead.
+Deprecated: 2022-08-10 - Use GetPaymentTaxConfigShort instead.
 
   GetPaymentTaxConfig gets payment global tax config
 
@@ -799,7 +799,7 @@ func (a *Client) GetPaymentTaxConfigShort(params *GetPaymentTaxConfigParams, aut
 }
 
 /*
-Deprecated: Use GetSpecialPaymentProvidersShort instead.
+Deprecated: 2022-08-10 - Use GetSpecialPaymentProvidersShort instead.
 
   GetSpecialPaymentProviders gets special payment providers
 
@@ -893,7 +893,7 @@ func (a *Client) GetSpecialPaymentProvidersShort(params *GetSpecialPaymentProvid
 }
 
 /*
-Deprecated: Use QueryPaymentProviderConfigShort instead.
+Deprecated: 2022-08-10 - Use QueryPaymentProviderConfigShort instead.
 
   QueryPaymentProviderConfig queries payment provider config
 
@@ -987,7 +987,7 @@ func (a *Client) QueryPaymentProviderConfigShort(params *QueryPaymentProviderCon
 }
 
 /*
-Deprecated: Use TestAdyenConfigShort instead.
+Deprecated: 2022-08-10 - Use TestAdyenConfigShort instead.
 
   TestAdyenConfig tests adyen configuration
 
@@ -1081,7 +1081,7 @@ func (a *Client) TestAdyenConfigShort(params *TestAdyenConfigParams, authInfo ru
 }
 
 /*
-Deprecated: Use TestAdyenConfigByIDShort instead.
+Deprecated: 2022-08-10 - Use TestAdyenConfigByIDShort instead.
 
   TestAdyenConfigByID tests adyen configuration by id
 
@@ -1180,7 +1180,7 @@ func (a *Client) TestAdyenConfigByIDShort(params *TestAdyenConfigByIDParams, aut
 }
 
 /*
-Deprecated: Use TestAliPayConfigShort instead.
+Deprecated: 2022-08-10 - Use TestAliPayConfigShort instead.
 
   TestAliPayConfig tests alipay configuration
 
@@ -1274,7 +1274,7 @@ func (a *Client) TestAliPayConfigShort(params *TestAliPayConfigParams, authInfo 
 }
 
 /*
-Deprecated: Use TestAliPayConfigByIDShort instead.
+Deprecated: 2022-08-10 - Use TestAliPayConfigByIDShort instead.
 
   TestAliPayConfigByID tests alipay configuration by id
 
@@ -1373,7 +1373,7 @@ func (a *Client) TestAliPayConfigByIDShort(params *TestAliPayConfigByIDParams, a
 }
 
 /*
-Deprecated: Use TestCheckoutConfigShort instead.
+Deprecated: 2022-08-10 - Use TestCheckoutConfigShort instead.
 
   TestCheckoutConfig tests checkout com configuration
 
@@ -1467,7 +1467,7 @@ func (a *Client) TestCheckoutConfigShort(params *TestCheckoutConfigParams, authI
 }
 
 /*
-Deprecated: Use TestCheckoutConfigByIDShort instead.
+Deprecated: 2022-08-10 - Use TestCheckoutConfigByIDShort instead.
 
   TestCheckoutConfigByID tests checkout com configuration by id
 
@@ -1566,7 +1566,7 @@ func (a *Client) TestCheckoutConfigByIDShort(params *TestCheckoutConfigByIDParam
 }
 
 /*
-Deprecated: Use TestPayPalConfigShort instead.
+Deprecated: 2022-08-10 - Use TestPayPalConfigShort instead.
 
   TestPayPalConfig tests pay pal configuration
 
@@ -1660,7 +1660,7 @@ func (a *Client) TestPayPalConfigShort(params *TestPayPalConfigParams, authInfo 
 }
 
 /*
-Deprecated: Use TestPayPalConfigByIDShort instead.
+Deprecated: 2022-08-10 - Use TestPayPalConfigByIDShort instead.
 
   TestPayPalConfigByID tests pay pal configuration by id
 
@@ -1759,7 +1759,7 @@ func (a *Client) TestPayPalConfigByIDShort(params *TestPayPalConfigByIDParams, a
 }
 
 /*
-Deprecated: Use TestStripeConfigShort instead.
+Deprecated: 2022-08-10 - Use TestStripeConfigShort instead.
 
   TestStripeConfig tests stripe configuration
 
@@ -1853,7 +1853,7 @@ func (a *Client) TestStripeConfigShort(params *TestStripeConfigParams, authInfo 
 }
 
 /*
-Deprecated: Use TestStripeConfigByIDShort instead.
+Deprecated: 2022-08-10 - Use TestStripeConfigByIDShort instead.
 
   TestStripeConfigByID tests stripe configuration by id
 
@@ -1952,7 +1952,7 @@ func (a *Client) TestStripeConfigByIDShort(params *TestStripeConfigByIDParams, a
 }
 
 /*
-Deprecated: Use TestWxPayConfigShort instead.
+Deprecated: 2022-08-10 - Use TestWxPayConfigShort instead.
 
   TestWxPayConfig tests wx pay configuration
 
@@ -2046,7 +2046,7 @@ func (a *Client) TestWxPayConfigShort(params *TestWxPayConfigParams, authInfo ru
 }
 
 /*
-Deprecated: Use TestWxPayConfigByIDShort instead.
+Deprecated: 2022-08-10 - Use TestWxPayConfigByIDShort instead.
 
   TestWxPayConfigByID tests wx pay configuration by id
 
@@ -2145,7 +2145,7 @@ func (a *Client) TestWxPayConfigByIDShort(params *TestWxPayConfigByIDParams, aut
 }
 
 /*
-Deprecated: Use TestXsollaConfigShort instead.
+Deprecated: 2022-08-10 - Use TestXsollaConfigShort instead.
 
   TestXsollaConfig tests xsolla configuration
 
@@ -2239,7 +2239,7 @@ func (a *Client) TestXsollaConfigShort(params *TestXsollaConfigParams, authInfo 
 }
 
 /*
-Deprecated: Use TestXsollaConfigByIDShort instead.
+Deprecated: 2022-08-10 - Use TestXsollaConfigByIDShort instead.
 
   TestXsollaConfigByID tests xsolla configuration by id
 
@@ -2338,7 +2338,7 @@ func (a *Client) TestXsollaConfigByIDShort(params *TestXsollaConfigByIDParams, a
 }
 
 /*
-Deprecated: Use UpdateAdyenConfigShort instead.
+Deprecated: 2022-08-10 - Use UpdateAdyenConfigShort instead.
 
   UpdateAdyenConfig updates adyen config
 
@@ -2437,7 +2437,7 @@ func (a *Client) UpdateAdyenConfigShort(params *UpdateAdyenConfigParams, authInf
 }
 
 /*
-Deprecated: Use UpdateAliPayConfigShort instead.
+Deprecated: 2022-08-10 - Use UpdateAliPayConfigShort instead.
 
   UpdateAliPayConfig updates alipay configuration
 
@@ -2536,7 +2536,7 @@ func (a *Client) UpdateAliPayConfigShort(params *UpdateAliPayConfigParams, authI
 }
 
 /*
-Deprecated: Use UpdateCheckoutConfigShort instead.
+Deprecated: 2022-08-10 - Use UpdateCheckoutConfigShort instead.
 
   UpdateCheckoutConfig updates checkout com config
 
@@ -2635,7 +2635,7 @@ func (a *Client) UpdateCheckoutConfigShort(params *UpdateCheckoutConfigParams, a
 }
 
 /*
-Deprecated: Use UpdatePayPalConfigShort instead.
+Deprecated: 2022-08-10 - Use UpdatePayPalConfigShort instead.
 
   UpdatePayPalConfig updates pay pal config
 
@@ -2734,7 +2734,7 @@ func (a *Client) UpdatePayPalConfigShort(params *UpdatePayPalConfigParams, authI
 }
 
 /*
-Deprecated: Use UpdatePaymentProviderConfigShort instead.
+Deprecated: 2022-08-10 - Use UpdatePaymentProviderConfigShort instead.
 
   UpdatePaymentProviderConfig updates payment provider config
 
@@ -2848,7 +2848,7 @@ func (a *Client) UpdatePaymentProviderConfigShort(params *UpdatePaymentProviderC
 }
 
 /*
-Deprecated: Use UpdatePaymentTaxConfigShort instead.
+Deprecated: 2022-08-10 - Use UpdatePaymentTaxConfigShort instead.
 
   UpdatePaymentTaxConfig updates payment global tax config
 
@@ -2952,7 +2952,7 @@ func (a *Client) UpdatePaymentTaxConfigShort(params *UpdatePaymentTaxConfigParam
 }
 
 /*
-Deprecated: Use UpdateStripeConfigShort instead.
+Deprecated: 2022-08-10 - Use UpdateStripeConfigShort instead.
 
   UpdateStripeConfig updates stripe config
 
@@ -3051,7 +3051,7 @@ func (a *Client) UpdateStripeConfigShort(params *UpdateStripeConfigParams, authI
 }
 
 /*
-Deprecated: Use UpdateWxPayConfigShort instead.
+Deprecated: 2022-08-10 - Use UpdateWxPayConfigShort instead.
 
   UpdateWxPayConfig updates wxpay configuration
 
@@ -3150,7 +3150,7 @@ func (a *Client) UpdateWxPayConfigShort(params *UpdateWxPayConfigParams, authInf
 }
 
 /*
-Deprecated: Use UpdateWxPayConfigCertShort instead.
+Deprecated: 2022-08-10 - Use UpdateWxPayConfigCertShort instead.
 
   UpdateWxPayConfigCert uploads wxpay cert file
 
@@ -3249,7 +3249,7 @@ func (a *Client) UpdateWxPayConfigCertShort(params *UpdateWxPayConfigCertParams,
 }
 
 /*
-Deprecated: Use UpdateXsollaConfigShort instead.
+Deprecated: 2022-08-10 - Use UpdateXsollaConfigShort instead.
 
   UpdateXsollaConfig updates xsolla configuration
 
@@ -3348,7 +3348,7 @@ func (a *Client) UpdateXsollaConfigShort(params *UpdateXsollaConfigParams, authI
 }
 
 /*
-Deprecated: Use UpdateXsollaUIConfigShort instead.
+Deprecated: 2022-08-10 - Use UpdateXsollaUIConfigShort instead.
 
   UpdateXsollaUIConfig updates xsolla UI configuration
 

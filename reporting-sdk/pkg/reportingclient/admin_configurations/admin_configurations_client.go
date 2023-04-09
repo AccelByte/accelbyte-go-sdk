@@ -42,7 +42,7 @@ type ClientService interface {
 }
 
 /*
-Deprecated: Use GetShort instead.
+Deprecated: 2022-08-10 - Use GetShort instead.
 
   Get gets configuration
 
@@ -147,7 +147,7 @@ func (a *Client) GetShort(params *GetParams, authInfo runtime.ClientAuthInfoWrit
 }
 
 /*
-Deprecated: Use UpsertShort instead.
+Deprecated: 2022-08-10 - Use UpsertShort instead.
 
   Upsert creates update configuration
 

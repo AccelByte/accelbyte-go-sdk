@@ -108,6 +108,10 @@
       "name": "Wallet"
     }
   ],
+  "externalDocs": {
+    "description": "API Docs",
+    "url": "https://stage.accelbyte.io/platform"
+  },
   "securityDefinitions": {
     "HasPermission": {
       "authorizationUrl": "https://dummy.oauth.net/auth",
@@ -6300,7 +6304,7 @@
             }
           },
           "409": {
-            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eErrorCode\u003c/td\u003e\u003ctd\u003eErrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e30173\u003c/td\u003e\u003ctd\u003ePublished store can't modify content\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e30371\u003c/td\u003e\u003ctd\u003eItem maxCount not allow reduce\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e30372\u003c/td\u003e\u003ctd\u003eItemType is not updatable\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e30376\u003c/td\u003e\u003ctd\u003ePublisher namespace don’t allow sellback item\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e30377\u003c/td\u003e\u003ctd\u003eThis item type [{itemType}] don’t allow sellback\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e30378\u003c/td\u003e\u003ctd\u003eSale price don’t allow real currency [{currencyCode}]\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eErrorCode\u003c/td\u003e\u003ctd\u003eErrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e30371\u003c/td\u003e\u003ctd\u003eItem maxCount not allow reduce\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e30372\u003c/td\u003e\u003ctd\u003eItemType is not updatable\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e30173\u003c/td\u003e\u003ctd\u003ePublished store can't modify content\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e30374\u003c/td\u003e\u003ctd\u003eItem sku [{sku}] already exists in namespace [{namespace}]\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e30376\u003c/td\u003e\u003ctd\u003ePublisher namespace don’t allow sellback item\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e30377\u003c/td\u003e\u003ctd\u003eThis item type [{itemType}] don’t allow sellback\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e30378\u003c/td\u003e\u003ctd\u003eSale price don’t allow real currency [{currencyCode}]\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e30379\u003c/td\u003e\u003ctd\u003eItem sku is not updatable\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/ErrorEntity"
             }
@@ -9018,7 +9022,7 @@
       },
       "get": {
         "description": "Get revocation configuration.\u0026lt;br\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=ADMIN:NAMESPACE:{namespace}:REVOCATION, action=2 (READ)\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: Revocation config\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
-        "operationId": "getPaymentCallbackConfig_1",
+        "operationId": "getRevocationConfig",
         "parameters": [
           {
             "in": "path",
@@ -10984,10 +10988,7 @@
           "200": {
             "description": "successful operation",
             "schema": {
-              "items": {
-                "$ref": "#/definitions/CatalogChangePagingSlicedResult"
-              },
-              "type": "array"
+              "$ref": "#/definitions/CatalogChangePagingSlicedResult"
             }
           }
         },
@@ -13735,6 +13736,56 @@
         }
       }
     },
+    "/platform/admin/namespaces/{namespace}/users/{userId}/entitlements/revoke": {
+      "put": {
+        "description": "Revoke all entitlements of a user (This API is for testing purpose only)\u0026lt;br\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;ADMIN:NAMESPACE:{namespace}:USER:{userId}:ENTITLEMENT\u0026#34;, action=4 (UPDATE)\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: revoked entitlements count\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
+        "operationId": "revokeAllEntitlements",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "path",
+            "name": "userId",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/BulkOperationResult"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          },
+          {
+            "HasPermission": [
+              "ADMIN:NAMESPACE:{namespace}:USER:{userId}:ENTITLEMENT [UPDATE]"
+            ],
+            "authorization": []
+          }
+        ],
+        "summary": "Revoke all entitlements of a user (This API is for testing purpose only)",
+        "tags": [
+          "Entitlement"
+        ],
+        "x-authorization": {
+          "action": "4",
+          "resource": "ADMIN:NAMESPACE:{namespace}:USER:{userId}:ENTITLEMENT"
+        }
+      }
+    },
     "/platform/admin/namespaces/{namespace}/users/{userId}/entitlements/revoke/byIds": {
       "put": {
         "description": "Revoke user\u0026#39;s entitlements by ids.\u0026lt;br\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;ADMIN:NAMESPACE:{namespace}:USER:{userId}:ENTITLEMENT\u0026#34;, action=4 (UPDATE)\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: revoke entitlements count\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
@@ -14264,6 +14315,79 @@
           }
         ],
         "summary": "Revoke user entitlement",
+        "tags": [
+          "Entitlement"
+        ],
+        "x-authorization": {
+          "action": "4",
+          "resource": "ADMIN:NAMESPACE:{namespace}:USER:{userId}:ENTITLEMENT"
+        }
+      }
+    },
+    "/platform/admin/namespaces/{namespace}/users/{userId}/entitlements/{entitlementId}/revokeByUseCount": {
+      "put": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Revoke specified use count of user entitlement.\u0026lt;br\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;ADMIN:NAMESPACE:{namespace}:USER:{userId}:ENTITLEMENT\u0026#34;, action=4 (UPDATE)\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: revoke entitlement\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
+        "operationId": "revokeUseCount",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "entitlementId",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "path",
+            "name": "userId",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "required": false,
+            "schema": {
+              "$ref": "#/definitions/RevokeUseCountRequest"
+            }
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/EntitlementInfo"
+            }
+          },
+          "404": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eErrorCode\u003c/td\u003e\u003ctd\u003eErrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e31141\u003c/td\u003e\u003ctd\u003eEntitlement [{entitlementId}] does not exist in namespace [{namespace}]\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/ErrorEntity"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          },
+          {
+            "HasPermission": [
+              "ADMIN:NAMESPACE:{namespace}:USER:{userId}:ENTITLEMENT [UPDATE]"
+            ],
+            "authorization": []
+          }
+        ],
+        "summary": "Revoke specified use count of user entitlement",
         "tags": [
           "Entitlement"
         ],
@@ -27069,7 +27193,6 @@
         }
       },
       "required": [
-        "bundleId",
         "namespace"
       ],
       "type": "object"
@@ -28713,6 +28836,24 @@
       },
       "type": "object"
     },
+    "ConsumableEntitlementRevocationConfig": {
+      "properties": {
+        "enabled": {
+          "description": "will do revocation if enabled, otherwise will skip do revocation.",
+          "type": "boolean",
+          "x-omitempty": false
+        },
+        "strategy": {
+          "description": "consumable entitlement revocation strategy",
+          "enum": [
+            "CUSTOM",
+            "REVOKE_OR_REPORT"
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "ConsumeItem": {
       "properties": {
         "extItemId": {
@@ -28801,6 +28942,9 @@
         },
         "currencyCode": {
           "type": "string"
+        },
+        "customRevocation": {
+          "type": "object"
         },
         "reason": {
           "type": "string"
@@ -29333,6 +29477,7 @@
         "strategy": {
           "description": "durable entitlement revocation strategy",
           "enum": [
+            "CUSTOM",
             "REVOKE_OR_REPORT"
           ],
           "type": "string"
@@ -29648,6 +29793,10 @@
           "description": "The operator",
           "type": "string"
         },
+        "reason": {
+          "description": "reason",
+          "type": "string"
+        },
         "updatedAt": {
           "description": "History update time",
           "format": "date-time",
@@ -29655,7 +29804,12 @@
           "x-nullable": false
         },
         "useCount": {
-          "description": "The use count of a consumable entitlement.",
+          "description": "The reminder use count of a consumable entitlement.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "useCountChange": {
+          "description": "changed use count.",
           "format": "int32",
           "type": "integer"
         },
@@ -29895,6 +30049,9 @@
     },
     "EntitlementRevocation": {
       "properties": {
+        "customRevocation": {
+          "type": "object"
+        },
         "entitlementId": {
           "type": "string"
         },
@@ -29930,6 +30087,10 @@
     },
     "EntitlementRevocationConfig": {
       "properties": {
+        "consumable": {
+          "$ref": "#/definitions/ConsumableEntitlementRevocationConfig",
+          "description": "consumable entitlement revocation config"
+        },
         "durable": {
           "$ref": "#/definitions/DurableEntitlementRevocationConfig",
           "description": "durable entitlement revocation config"
@@ -30136,8 +30297,7 @@
         }
       },
       "required": [
-        "namespace",
-        "sandboxId"
+        "namespace"
       ],
       "type": "object"
     },
@@ -31482,9 +31642,7 @@
         "namespace",
         "sectionId",
         "startDate",
-        "updatedAt",
-        "viewId",
-        "viewName"
+        "updatedAt"
       ],
       "type": "object"
     },
@@ -32997,6 +33155,9 @@
           },
           "type": "array"
         },
+        "customRevocation": {
+          "type": "object"
+        },
         "entitlementRevocations": {
           "items": {
             "$ref": "#/definitions/EntitlementRevocation"
@@ -33035,6 +33196,9 @@
           "format": "int64",
           "type": "integer"
         },
+        "reason": {
+          "type": "string"
+        },
         "skipped": {
           "type": "boolean",
           "x-omitempty": false
@@ -33044,6 +33208,9 @@
             "FAIL",
             "SUCCESS"
           ],
+          "type": "string"
+        },
+        "strategy": {
           "type": "string"
         }
       },
@@ -34465,7 +34632,7 @@
           "description": "payment expire time",
           "format": "date-time",
           "type": "string",
-          "x-nullable": false
+          "x-nullable": true
         },
         "ext": {
           "additionalProperties": {
@@ -34632,7 +34799,6 @@
         "createdAt",
         "currency",
         "discountedPrice",
-        "expireTime",
         "itemId",
         "namespace",
         "orderNo",
@@ -35904,7 +36070,6 @@
         "extOrderNo",
         "namespace",
         "paymentOrderNo",
-        "paymentProvider",
         "price",
         "sandbox",
         "status",
@@ -36239,7 +36404,6 @@
       "required": [
         "id",
         "namespace",
-        "paymentMerchantConfigId",
         "region"
       ],
       "type": "object"
@@ -36734,7 +36898,6 @@
         }
       },
       "required": [
-        "environment",
         "namespace"
       ],
       "type": "object"
@@ -37624,6 +37787,25 @@
       },
       "type": "object"
     },
+    "RevocationError": {
+      "properties": {
+        "code": {
+          "description": "error code",
+          "format": "int32",
+          "type": "integer"
+        },
+        "httpStatus": {
+          "description": "http status",
+          "format": "int32",
+          "type": "integer"
+        },
+        "message": {
+          "description": "error message",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "RevocationHistoryInfo": {
       "properties": {
         "createdAt": {
@@ -37668,6 +37850,13 @@
           "description": "namespace",
           "type": "string"
         },
+        "revocationErrors": {
+          "description": "revocation errors",
+          "items": {
+            "$ref": "#/definitions/RevocationError"
+          },
+          "type": "array"
+        },
         "revokeEntries": {
           "description": "revoke entries",
           "items": {
@@ -37685,6 +37874,10 @@
             "FAIL",
             "SUCCESS"
           ],
+          "type": "string"
+        },
+        "transactionId": {
+          "description": "transactionId, Order No, DLC Order No.",
           "type": "string"
         },
         "updatedAt": {
@@ -37932,6 +38125,20 @@
             "SKIPPED"
           ],
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "RevokeUseCountRequest": {
+      "properties": {
+        "reason": {
+          "description": "reason",
+          "type": "string"
+        },
+        "useCount": {
+          "description": "use count",
+          "format": "int32",
+          "type": "integer"
         }
       },
       "type": "object"
@@ -40497,6 +40704,7 @@
           "description": "wallet revocation strategy",
           "enum": [
             "ALWAYS_REVOKE",
+            "CUSTOM",
             "REVOKE_OR_REPORT"
           ],
           "type": "string"
@@ -40875,5 +41083,24 @@
       },
       "type": "object"
     }
+  },
+  "x-docs": {
+    "alias": "platform",
+    "host": "https://stage.accelbyte.io",
+    "path": "/platform/swagger.json"
+  },
+  "x-version": {
+    "buildBy": "Gradle 6.9.1",
+    "buildDate": "2023-04-07T05:43:45+00:00",
+    "buildID": "4.27.0",
+    "buildJDK": "1.8.0_232 (Eclipse OpenJ9 openj9-0.17.0)",
+    "buildOS": "Linux amd64 5.13.0-1021-aws",
+    "gitBranchName": "release-candidate",
+    "gitHash": "886bd0733c",
+    "gitTag": "3.31.0",
+    "name": "justice-platform-service",
+    "realm": "staging",
+    "version": "4.27.0",
+    "version-roles-seeding": "0.0.8"
   }
 }

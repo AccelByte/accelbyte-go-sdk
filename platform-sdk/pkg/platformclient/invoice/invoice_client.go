@@ -43,7 +43,7 @@ type ClientService interface {
 }
 
 /*
-Deprecated: Use DownloadInvoiceDetailsShort instead.
+Deprecated: 2022-08-10 - Use DownloadInvoiceDetailsShort instead.
 
   DownloadInvoiceDetails downloads invoice details
 
@@ -137,7 +137,7 @@ func (a *Client) DownloadInvoiceDetailsShort(params *DownloadInvoiceDetailsParam
 }
 
 /*
-Deprecated: Use GenerateInvoiceSummaryShort instead.
+Deprecated: 2022-08-10 - Use GenerateInvoiceSummaryShort instead.
 
   GenerateInvoiceSummary generates invoice summary
 

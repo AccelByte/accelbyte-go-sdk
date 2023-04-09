@@ -43,7 +43,7 @@ type ClientService interface {
 }
 
 /*
-Deprecated: Use BatchDownloadServerLogsShort instead.
+Deprecated: 2022-08-10 - Use BatchDownloadServerLogsShort instead.
 
   BatchDownloadServerLogs batches download dedicated server log files
 
@@ -155,7 +155,7 @@ func (a *Client) BatchDownloadServerLogsShort(params *BatchDownloadServerLogsPar
 }
 
 /*
-Deprecated: Use ListAllTerminatedServersShort instead.
+Deprecated: 2022-08-10 - Use ListAllTerminatedServersShort instead.
 
   ListAllTerminatedServers retrieves all terminated servers
 

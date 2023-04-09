@@ -42,7 +42,7 @@ type ClientService interface {
 }
 
 /*
-Deprecated: Use SetDefaultPolicy3Short instead.
+Deprecated: 2022-08-10 - Use SetDefaultPolicy3Short instead.
 
   SetDefaultPolicy3 sets default policy
 
@@ -141,7 +141,7 @@ func (a *Client) SetDefaultPolicy3Short(params *SetDefaultPolicy3Params, authInf
 }
 
 /*
-Deprecated: Use UpdatePolicy1Short instead.
+Deprecated: 2022-08-10 - Use UpdatePolicy1Short instead.
 
   UpdatePolicy1 updates country specific policy
 

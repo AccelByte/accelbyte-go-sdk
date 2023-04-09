@@ -50,7 +50,7 @@ type ClientService interface {
 }
 
 /*
-Deprecated: Use CreateFulfillmentScriptShort instead.
+Deprecated: 2022-08-10 - Use CreateFulfillmentScriptShort instead.
 
   CreateFulfillmentScript creates fulfillment script
 
@@ -149,7 +149,7 @@ func (a *Client) CreateFulfillmentScriptShort(params *CreateFulfillmentScriptPar
 }
 
 /*
-Deprecated: Use DeleteFulfillmentScriptShort instead.
+Deprecated: 2022-08-10 - Use DeleteFulfillmentScriptShort instead.
 
   DeleteFulfillmentScript deletes fulfillment script
 
@@ -243,7 +243,7 @@ func (a *Client) DeleteFulfillmentScriptShort(params *DeleteFulfillmentScriptPar
 }
 
 /*
-Deprecated: Use GetFulfillmentScriptShort instead.
+Deprecated: 2022-08-10 - Use GetFulfillmentScriptShort instead.
 
   GetFulfillmentScript gets fulfillment script by id
 
@@ -342,7 +342,7 @@ func (a *Client) GetFulfillmentScriptShort(params *GetFulfillmentScriptParams, a
 }
 
 /*
-Deprecated: Use ListFulfillmentScriptsShort instead.
+Deprecated: 2022-08-10 - Use ListFulfillmentScriptsShort instead.
 
   ListFulfillmentScripts lists all fulfillment scripts
 
@@ -436,7 +436,7 @@ func (a *Client) ListFulfillmentScriptsShort(params *ListFulfillmentScriptsParam
 }
 
 /*
-Deprecated: Use TestFulfillmentScriptEvalShort instead.
+Deprecated: 2022-08-10 - Use TestFulfillmentScriptEvalShort instead.
 
   TestFulfillmentScriptEval tests eval fulfillment script
 
@@ -530,7 +530,7 @@ func (a *Client) TestFulfillmentScriptEvalShort(params *TestFulfillmentScriptEva
 }
 
 /*
-Deprecated: Use UpdateFulfillmentScriptShort instead.
+Deprecated: 2022-08-10 - Use UpdateFulfillmentScriptShort instead.
 
   UpdateFulfillmentScript updates fulfillment script
 

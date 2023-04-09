@@ -54,7 +54,7 @@ type ClientService interface {
 }
 
 /*
-Deprecated: Use GetStatisticShort instead.
+Deprecated: 2022-08-10 - Use GetStatisticShort instead.
 
   GetStatistic gets catalog changes statistics
 
@@ -148,7 +148,7 @@ func (a *Client) GetStatisticShort(params *GetStatisticParams, authInfo runtime.
 }
 
 /*
-Deprecated: Use PublishAllShort instead.
+Deprecated: 2022-08-10 - Use PublishAllShort instead.
 
   PublishAll publishes all unpublished changes
 
@@ -252,7 +252,7 @@ func (a *Client) PublishAllShort(params *PublishAllParams, authInfo runtime.Clie
 }
 
 /*
-Deprecated: Use PublishSelectedShort instead.
+Deprecated: 2022-08-10 - Use PublishSelectedShort instead.
 
   PublishSelected publishes selected unpublished changes
 
@@ -361,7 +361,7 @@ func (a *Client) PublishSelectedShort(params *PublishSelectedParams, authInfo ru
 }
 
 /*
-Deprecated: Use QueryChangesShort instead.
+Deprecated: 2022-08-10 - Use QueryChangesShort instead.
 
   QueryChanges queries catalog changes
 
@@ -455,7 +455,7 @@ func (a *Client) QueryChangesShort(params *QueryChangesParams, authInfo runtime.
 }
 
 /*
-Deprecated: Use SelectAllRecordsShort instead.
+Deprecated: 2022-08-10 - Use SelectAllRecordsShort instead.
 
   SelectAllRecords selects all changes
 
@@ -554,7 +554,7 @@ func (a *Client) SelectAllRecordsShort(params *SelectAllRecordsParams, authInfo 
 }
 
 /*
-Deprecated: Use SelectRecordShort instead.
+Deprecated: 2022-08-10 - Use SelectRecordShort instead.
 
   SelectRecord selects a change
 
@@ -653,7 +653,7 @@ func (a *Client) SelectRecordShort(params *SelectRecordParams, authInfo runtime.
 }
 
 /*
-Deprecated: Use UnselectAllRecordsShort instead.
+Deprecated: 2022-08-10 - Use UnselectAllRecordsShort instead.
 
   UnselectAllRecords unselects all changes
 
@@ -752,7 +752,7 @@ func (a *Client) UnselectAllRecordsShort(params *UnselectAllRecordsParams, authI
 }
 
 /*
-Deprecated: Use UnselectRecordShort instead.
+Deprecated: 2022-08-10 - Use UnselectRecordShort instead.
 
   UnselectRecord unselects a change
 

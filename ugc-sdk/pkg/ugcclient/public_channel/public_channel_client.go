@@ -33,12 +33,12 @@ type Client struct {
 
 // ClientService is the interface for Client methods
 type ClientService interface {
-	CreateChannel(params *CreateChannelParams, authInfo runtime.ClientAuthInfoWriter) (*CreateChannelCreated, *CreateChannelBadRequest, *CreateChannelUnauthorized, *CreateChannelInternalServerError, error)
-	CreateChannelShort(params *CreateChannelParams, authInfo runtime.ClientAuthInfoWriter) (*CreateChannelCreated, error)
 	DeleteChannel(params *DeleteChannelParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteChannelNoContent, *DeleteChannelUnauthorized, *DeleteChannelNotFound, *DeleteChannelInternalServerError, error)
 	DeleteChannelShort(params *DeleteChannelParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteChannelNoContent, error)
 	GetChannels(params *GetChannelsParams, authInfo runtime.ClientAuthInfoWriter) (*GetChannelsOK, *GetChannelsUnauthorized, *GetChannelsNotFound, *GetChannelsInternalServerError, error)
 	GetChannelsShort(params *GetChannelsParams, authInfo runtime.ClientAuthInfoWriter) (*GetChannelsOK, error)
+	PublicCreateChannel(params *PublicCreateChannelParams, authInfo runtime.ClientAuthInfoWriter) (*PublicCreateChannelCreated, *PublicCreateChannelBadRequest, *PublicCreateChannelUnauthorized, *PublicCreateChannelInternalServerError, error)
+	PublicCreateChannelShort(params *PublicCreateChannelParams, authInfo runtime.ClientAuthInfoWriter) (*PublicCreateChannelCreated, error)
 	UpdateChannel(params *UpdateChannelParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateChannelOK, *UpdateChannelBadRequest, *UpdateChannelUnauthorized, *UpdateChannelNotFound, *UpdateChannelInternalServerError, error)
 	UpdateChannelShort(params *UpdateChannelParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateChannelOK, error)
 
@@ -46,116 +46,7 @@ type ClientService interface {
 }
 
 /*
-Deprecated: Use CreateChannelShort instead.
-
-  CreateChannel creates channel
-
-  Required permission &lt;b&gt;NAMESPACE:{namespace}:USER:{userId}:CHANNEL [CREATE]&lt;/b&gt;
-*/
-func (a *Client) CreateChannel(params *CreateChannelParams, authInfo runtime.ClientAuthInfoWriter) (*CreateChannelCreated, *CreateChannelBadRequest, *CreateChannelUnauthorized, *CreateChannelInternalServerError, error) {
-	// TODO: Validate the params before sending
-	if params == nil {
-		params = NewCreateChannelParams()
-	}
-
-	if params.Context == nil {
-		params.Context = context.Background()
-	}
-
-	if params.RetryPolicy != nil {
-		params.SetHTTPClientTransport(params.RetryPolicy)
-	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
-		ID:                 "CreateChannel",
-		Method:             "POST",
-		PathPattern:        "/ugc/v1/public/namespaces/{namespace}/users/{userId}/channels",
-		ProducesMediaTypes: []string{"application/json"},
-		ConsumesMediaTypes: []string{"application/json", "application/octet-stream"},
-		Schemes:            []string{"https"},
-		Params:             params,
-		Reader:             &CreateChannelReader{formats: a.formats},
-		AuthInfo:           authInfo,
-		Context:            params.Context,
-		Client:             params.HTTPClient,
-	})
-	if err != nil {
-		return nil, nil, nil, nil, err
-	}
-
-	switch v := result.(type) {
-
-	case *CreateChannelCreated:
-		return v, nil, nil, nil, nil
-
-	case *CreateChannelBadRequest:
-		return nil, v, nil, nil, nil
-
-	case *CreateChannelUnauthorized:
-		return nil, nil, v, nil, nil
-
-	case *CreateChannelInternalServerError:
-		return nil, nil, nil, v, nil
-
-	default:
-		return nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
-	}
-}
-
-/*
-  CreateChannelShort creates channel
-
-  Required permission &lt;b&gt;NAMESPACE:{namespace}:USER:{userId}:CHANNEL [CREATE]&lt;/b&gt;
-*/
-func (a *Client) CreateChannelShort(params *CreateChannelParams, authInfo runtime.ClientAuthInfoWriter) (*CreateChannelCreated, error) {
-	// TODO: Validate the params before sending
-	if params == nil {
-		params = NewCreateChannelParams()
-	}
-
-	if params.Context == nil {
-		params.Context = context.Background()
-	}
-
-	if params.RetryPolicy != nil {
-		params.SetHTTPClientTransport(params.RetryPolicy)
-	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
-		ID:                 "CreateChannel",
-		Method:             "POST",
-		PathPattern:        "/ugc/v1/public/namespaces/{namespace}/users/{userId}/channels",
-		ProducesMediaTypes: []string{"application/json"},
-		ConsumesMediaTypes: []string{"application/json", "application/octet-stream"},
-		Schemes:            []string{"https"},
-		Params:             params,
-		Reader:             &CreateChannelReader{formats: a.formats},
-		AuthInfo:           authInfo,
-		Context:            params.Context,
-		Client:             params.HTTPClient,
-	})
-	if err != nil {
-		return nil, err
-	}
-
-	switch v := result.(type) {
-
-	case *CreateChannelCreated:
-		return v, nil
-	case *CreateChannelBadRequest:
-		return nil, v
-	case *CreateChannelUnauthorized:
-		return nil, v
-	case *CreateChannelInternalServerError:
-		return nil, v
-
-	default:
-		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
-	}
-}
-
-/*
-Deprecated: Use DeleteChannelShort instead.
+Deprecated: 2022-08-10 - Use DeleteChannelShort instead.
 
   DeleteChannel deletes channel
 
@@ -264,7 +155,7 @@ func (a *Client) DeleteChannelShort(params *DeleteChannelParams, authInfo runtim
 }
 
 /*
-Deprecated: Use GetChannelsShort instead.
+Deprecated: 2022-08-10 - Use GetChannelsShort instead.
 
   GetChannels gets channels
 
@@ -373,7 +264,116 @@ func (a *Client) GetChannelsShort(params *GetChannelsParams, authInfo runtime.Cl
 }
 
 /*
-Deprecated: Use UpdateChannelShort instead.
+Deprecated: 2022-08-10 - Use PublicCreateChannelShort instead.
+
+  PublicCreateChannel creates channel
+
+  Required permission &lt;b&gt;NAMESPACE:{namespace}:USER:{userId}:CHANNEL [CREATE]&lt;/b&gt;
+*/
+func (a *Client) PublicCreateChannel(params *PublicCreateChannelParams, authInfo runtime.ClientAuthInfoWriter) (*PublicCreateChannelCreated, *PublicCreateChannelBadRequest, *PublicCreateChannelUnauthorized, *PublicCreateChannelInternalServerError, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewPublicCreateChannelParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "PublicCreateChannel",
+		Method:             "POST",
+		PathPattern:        "/ugc/v1/public/namespaces/{namespace}/users/{userId}/channels",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json", "application/octet-stream"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &PublicCreateChannelReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, nil, nil, nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *PublicCreateChannelCreated:
+		return v, nil, nil, nil, nil
+
+	case *PublicCreateChannelBadRequest:
+		return nil, v, nil, nil, nil
+
+	case *PublicCreateChannelUnauthorized:
+		return nil, nil, v, nil, nil
+
+	case *PublicCreateChannelInternalServerError:
+		return nil, nil, nil, v, nil
+
+	default:
+		return nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+  PublicCreateChannelShort creates channel
+
+  Required permission &lt;b&gt;NAMESPACE:{namespace}:USER:{userId}:CHANNEL [CREATE]&lt;/b&gt;
+*/
+func (a *Client) PublicCreateChannelShort(params *PublicCreateChannelParams, authInfo runtime.ClientAuthInfoWriter) (*PublicCreateChannelCreated, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewPublicCreateChannelParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "PublicCreateChannel",
+		Method:             "POST",
+		PathPattern:        "/ugc/v1/public/namespaces/{namespace}/users/{userId}/channels",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json", "application/octet-stream"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &PublicCreateChannelReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *PublicCreateChannelCreated:
+		return v, nil
+	case *PublicCreateChannelBadRequest:
+		return nil, v
+	case *PublicCreateChannelUnauthorized:
+		return nil, v
+	case *PublicCreateChannelInternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+Deprecated: 2022-08-10 - Use UpdateChannelShort instead.
 
   UpdateChannel updates channel
 

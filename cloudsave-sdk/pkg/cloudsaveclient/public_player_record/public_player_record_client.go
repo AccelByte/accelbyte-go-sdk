@@ -60,7 +60,7 @@ type ClientService interface {
 }
 
 /*
-Deprecated: Use RetrievePlayerRecordsShort instead.
+Deprecated: 2022-08-10 - Use RetrievePlayerRecordsShort instead.
 
   RetrievePlayerRecords queries player records key
 
@@ -177,7 +177,7 @@ func (a *Client) RetrievePlayerRecordsShort(params *RetrievePlayerRecordsParams,
 }
 
 /*
-Deprecated: Use BulkGetPlayerPublicRecordHandlerV1Short instead.
+Deprecated: 2022-08-10 - Use BulkGetPlayerPublicRecordHandlerV1Short instead.
 
   BulkGetPlayerPublicRecordHandlerV1 bulks get player public records
 
@@ -319,7 +319,7 @@ func (a *Client) BulkGetPlayerPublicRecordHandlerV1Short(params *BulkGetPlayerPu
 }
 
 /*
-Deprecated: Use DeletePlayerRecordHandlerV1Short instead.
+Deprecated: 2022-08-10 - Use DeletePlayerRecordHandlerV1Short instead.
 
   DeletePlayerRecordHandlerV1 deletes player record
 
@@ -461,7 +461,7 @@ func (a *Client) DeletePlayerRecordHandlerV1Short(params *DeletePlayerRecordHand
 }
 
 /*
-Deprecated: Use GetPlayerPublicRecordHandlerV1Short instead.
+Deprecated: 2022-08-10 - Use GetPlayerPublicRecordHandlerV1Short instead.
 
   GetPlayerPublicRecordHandlerV1 gets player public record
 
@@ -598,7 +598,7 @@ func (a *Client) GetPlayerPublicRecordHandlerV1Short(params *GetPlayerPublicReco
 }
 
 /*
-Deprecated: Use GetPlayerRecordHandlerV1Short instead.
+Deprecated: 2022-08-10 - Use GetPlayerRecordHandlerV1Short instead.
 
   GetPlayerRecordHandlerV1 gets player record
 
@@ -738,7 +738,7 @@ func (a *Client) GetPlayerRecordHandlerV1Short(params *GetPlayerRecordHandlerV1P
 }
 
 /*
-Deprecated: Use GetPlayerRecordsBulkHandlerV1Short instead.
+Deprecated: 2022-08-10 - Use GetPlayerRecordsBulkHandlerV1Short instead.
 
   GetPlayerRecordsBulkHandlerV1 gets player records bulk
 
@@ -864,7 +864,7 @@ func (a *Client) GetPlayerRecordsBulkHandlerV1Short(params *GetPlayerRecordsBulk
 }
 
 /*
-Deprecated: Use PostPlayerPublicRecordHandlerV1Short instead.
+Deprecated: 2022-08-10 - Use PostPlayerPublicRecordHandlerV1Short instead.
 
   PostPlayerPublicRecordHandlerV1 creates or append player public record
 
@@ -1095,7 +1095,7 @@ func (a *Client) PostPlayerPublicRecordHandlerV1Short(params *PostPlayerPublicRe
 }
 
 /*
-Deprecated: Use PostPlayerRecordHandlerV1Short instead.
+Deprecated: 2022-08-10 - Use PostPlayerRecordHandlerV1Short instead.
 
   PostPlayerRecordHandlerV1 creates or append player record
 
@@ -1323,7 +1323,7 @@ func (a *Client) PostPlayerRecordHandlerV1Short(params *PostPlayerRecordHandlerV
 }
 
 /*
-Deprecated: Use PublicDeletePlayerPublicRecordHandlerV1Short instead.
+Deprecated: 2022-08-10 - Use PublicDeletePlayerPublicRecordHandlerV1Short instead.
 
   PublicDeletePlayerPublicRecordHandlerV1 deletes player public record
 
@@ -1465,7 +1465,7 @@ func (a *Client) PublicDeletePlayerPublicRecordHandlerV1Short(params *PublicDele
 }
 
 /*
-Deprecated: Use PutPlayerPublicRecordHandlerV1Short instead.
+Deprecated: 2022-08-10 - Use PutPlayerPublicRecordHandlerV1Short instead.
 
   PutPlayerPublicRecordHandlerV1 creates or replace player public record
 
@@ -1682,7 +1682,7 @@ func (a *Client) PutPlayerPublicRecordHandlerV1Short(params *PutPlayerPublicReco
 }
 
 /*
-Deprecated: Use PutPlayerRecordHandlerV1Short instead.
+Deprecated: 2022-08-10 - Use PutPlayerRecordHandlerV1Short instead.
 
   PutPlayerRecordHandlerV1 creates or replace player record
 

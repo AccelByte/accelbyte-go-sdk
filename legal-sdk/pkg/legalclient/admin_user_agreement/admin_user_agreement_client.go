@@ -40,7 +40,7 @@ type ClientService interface {
 }
 
 /*
-Deprecated: Use IndirectBulkAcceptVersionedPolicyShort instead.
+Deprecated: 2022-08-10 - Use IndirectBulkAcceptVersionedPolicyShort instead.
 
   IndirectBulkAcceptVersionedPolicy admins bulk accept policy versions
 

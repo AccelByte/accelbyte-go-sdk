@@ -19,6 +19,9 @@ import (
 // swagger:model EntitlementRevocation
 type EntitlementRevocation struct {
 
+	// custom revocation
+	CustomRevocation interface{} `json:"customRevocation,omitempty"`
+
 	// entitlement Id
 	EntitlementID string `json:"entitlementId,omitempty"`
 

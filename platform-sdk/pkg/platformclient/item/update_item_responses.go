@@ -237,7 +237,7 @@ func NewUpdateItemConflict() *UpdateItemConflict {
 
 /*UpdateItemConflict handles this case with default header values.
 
-  <table><tr><td>ErrorCode</td><td>ErrorMessage</td></tr><tr><td>30173</td><td>Published store can't modify content</td></tr><tr><td>30371</td><td>Item maxCount not allow reduce</td></tr><tr><td>30372</td><td>ItemType is not updatable</td></tr><tr><td>30376</td><td>Publisher namespace don’t allow sellback item</td></tr><tr><td>30377</td><td>This item type [{itemType}] don’t allow sellback</td></tr><tr><td>30378</td><td>Sale price don’t allow real currency [{currencyCode}]</td></tr></table>
+  <table><tr><td>ErrorCode</td><td>ErrorMessage</td></tr><tr><td>30371</td><td>Item maxCount not allow reduce</td></tr><tr><td>30372</td><td>ItemType is not updatable</td></tr><tr><td>30173</td><td>Published store can't modify content</td></tr><tr><td>30374</td><td>Item sku [{sku}] already exists in namespace [{namespace}]</td></tr><tr><td>30376</td><td>Publisher namespace don’t allow sellback item</td></tr><tr><td>30377</td><td>This item type [{itemType}] don’t allow sellback</td></tr><tr><td>30378</td><td>Sale price don’t allow real currency [{currencyCode}]</td></tr><tr><td>30379</td><td>Item sku is not updatable</td></tr></table>
 */
 type UpdateItemConflict struct {
 	Payload *platformclientmodels.ErrorEntity

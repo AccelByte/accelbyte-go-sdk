@@ -4,10 +4,10 @@
 
 // Code generated. DO NOT EDIT.
 
-package revocation
+package entitlement
 
 import (
-	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclient/revocation"
+	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclient/entitlement"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/platform"
 	"github.com/AccelByte/sample-apps/pkg/repository"
@@ -15,21 +15,23 @@ import (
 	"github.com/spf13/cobra"
 )
 
-// GetPaymentCallbackConfig1Cmd represents the GetPaymentCallbackConfig1 command
-var GetPaymentCallbackConfig1Cmd = &cobra.Command{
-	Use:   "getPaymentCallbackConfig1",
-	Short: "Get payment callback config 1",
-	Long:  `Get payment callback config 1`,
+// RevokeAllEntitlementsCmd represents the RevokeAllEntitlements command
+var RevokeAllEntitlementsCmd = &cobra.Command{
+	Use:   "revokeAllEntitlements",
+	Short: "Revoke all entitlements",
+	Long:  `Revoke all entitlements`,
 	RunE: func(cmd *cobra.Command, args []string) error {
-		revocationService := &platform.RevocationService{
+		entitlementService := &platform.EntitlementService{
 			Client:          factory.NewPlatformClient(&repository.ConfigRepositoryImpl{}),
 			TokenRepository: &repository.TokenRepositoryImpl{},
 		}
 		namespace, _ := cmd.Flags().GetString("namespace")
-		input := &revocation.GetPaymentCallbackConfig1Params{
+		userId, _ := cmd.Flags().GetString("userId")
+		input := &entitlement.RevokeAllEntitlementsParams{
 			Namespace: namespace,
+			UserID:    userId,
 		}
-		ok, errOK := revocationService.GetPaymentCallbackConfig1Short(input)
+		ok, errOK := entitlementService.RevokeAllEntitlementsShort(input)
 		if errOK != nil {
 			logrus.Error(errOK)
 
@@ -43,6 +45,8 @@ var GetPaymentCallbackConfig1Cmd = &cobra.Command{
 }
 
 func init() {
-	GetPaymentCallbackConfig1Cmd.Flags().String("namespace", "", "Namespace")
-	_ = GetPaymentCallbackConfig1Cmd.MarkFlagRequired("namespace")
+	RevokeAllEntitlementsCmd.Flags().String("namespace", "", "Namespace")
+	_ = RevokeAllEntitlementsCmd.MarkFlagRequired("namespace")
+	RevokeAllEntitlementsCmd.Flags().String("userId", "", "User id")
+	_ = RevokeAllEntitlementsCmd.MarkFlagRequired("userId")
 }

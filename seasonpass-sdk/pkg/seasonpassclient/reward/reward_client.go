@@ -52,7 +52,7 @@ type ClientService interface {
 }
 
 /*
-Deprecated: Use CreateRewardShort instead.
+Deprecated: 2022-08-10 - Use CreateRewardShort instead.
 
   CreateReward creates a reward
 
@@ -166,7 +166,7 @@ func (a *Client) CreateRewardShort(params *CreateRewardParams, authInfo runtime.
 }
 
 /*
-Deprecated: Use DeleteRewardShort instead.
+Deprecated: 2022-08-10 - Use DeleteRewardShort instead.
 
   DeleteReward deletes a reward
 
@@ -275,7 +275,7 @@ func (a *Client) DeleteRewardShort(params *DeleteRewardParams, authInfo runtime.
 }
 
 /*
-Deprecated: Use GetRewardShort instead.
+Deprecated: 2022-08-10 - Use GetRewardShort instead.
 
   GetReward gets a reward
 
@@ -379,7 +379,7 @@ func (a *Client) GetRewardShort(params *GetRewardParams, authInfo runtime.Client
 }
 
 /*
-Deprecated: Use PublicBulkClaimUserRewardsShort instead.
+Deprecated: 2022-08-10 - Use PublicBulkClaimUserRewardsShort instead.
 
   PublicBulkClaimUserRewards bulks claim all remained rewards
 
@@ -483,7 +483,7 @@ func (a *Client) PublicBulkClaimUserRewardsShort(params *PublicBulkClaimUserRewa
 }
 
 /*
-Deprecated: Use PublicClaimUserRewardShort instead.
+Deprecated: 2022-08-10 - Use PublicClaimUserRewardShort instead.
 
   PublicClaimUserReward claims tier reward
 
@@ -592,7 +592,7 @@ func (a *Client) PublicClaimUserRewardShort(params *PublicClaimUserRewardParams,
 }
 
 /*
-Deprecated: Use QueryRewardsShort instead.
+Deprecated: 2022-08-10 - Use QueryRewardsShort instead.
 
   QueryRewards queries all rewards for a season
 
@@ -696,7 +696,7 @@ func (a *Client) QueryRewardsShort(params *QueryRewardsParams, authInfo runtime.
 }
 
 /*
-Deprecated: Use UpdateRewardShort instead.
+Deprecated: 2022-08-10 - Use UpdateRewardShort instead.
 
   UpdateReward updates a reward
 

@@ -64,7 +64,7 @@ type ClientService interface {
 }
 
 /*
-Deprecated: Use AddFriendsWithoutConfirmationShort instead.
+Deprecated: 2022-08-10 - Use AddFriendsWithoutConfirmationShort instead.
 
   AddFriendsWithoutConfirmation adds friends without confirmation
 
@@ -180,7 +180,7 @@ func (a *Client) AddFriendsWithoutConfirmationShort(params *AddFriendsWithoutCon
 }
 
 /*
-Deprecated: Use GetListOfFriendsShort instead.
+Deprecated: 2022-08-10 - Use GetListOfFriendsShort instead.
 
   GetListOfFriends gets list of friends
 
@@ -296,7 +296,7 @@ func (a *Client) GetListOfFriendsShort(params *GetListOfFriendsParams, authInfo 
 }
 
 /*
-Deprecated: Use GetUserFriendsUpdatedShort instead.
+Deprecated: 2022-08-10 - Use GetUserFriendsUpdatedShort instead.
 
   GetUserFriendsUpdated gets list of friends
 */
@@ -411,7 +411,7 @@ func (a *Client) GetUserFriendsUpdatedShort(params *GetUserFriendsUpdatedParams,
 }
 
 /*
-Deprecated: Use GetUserIncomingFriendsShort instead.
+Deprecated: 2022-08-10 - Use GetUserIncomingFriendsShort instead.
 
   GetUserIncomingFriends gets list of incoming friends
 */
@@ -526,7 +526,7 @@ func (a *Client) GetUserIncomingFriendsShort(params *GetUserIncomingFriendsParam
 }
 
 /*
-Deprecated: Use GetUserIncomingFriendsWithTimeShort instead.
+Deprecated: 2022-08-10 - Use GetUserIncomingFriendsWithTimeShort instead.
 
   GetUserIncomingFriendsWithTime gets list of incoming friends with requested time info
 */
@@ -641,7 +641,7 @@ func (a *Client) GetUserIncomingFriendsWithTimeShort(params *GetUserIncomingFrie
 }
 
 /*
-Deprecated: Use GetUserOutgoingFriendsShort instead.
+Deprecated: 2022-08-10 - Use GetUserOutgoingFriendsShort instead.
 
   GetUserOutgoingFriends gets list of outgoing friends
 */
@@ -756,7 +756,7 @@ func (a *Client) GetUserOutgoingFriendsShort(params *GetUserOutgoingFriendsParam
 }
 
 /*
-Deprecated: Use GetUserOutgoingFriendsWithTimeShort instead.
+Deprecated: 2022-08-10 - Use GetUserOutgoingFriendsWithTimeShort instead.
 
   GetUserOutgoingFriendsWithTime gets list of outgoing friends with requested time info
 */
@@ -871,7 +871,7 @@ func (a *Client) GetUserOutgoingFriendsWithTimeShort(params *GetUserOutgoingFrie
 }
 
 /*
-Deprecated: Use UserAcceptFriendRequestShort instead.
+Deprecated: 2022-08-10 - Use UserAcceptFriendRequestShort instead.
 
   UserAcceptFriendRequest users accept friend
 */
@@ -986,7 +986,7 @@ func (a *Client) UserAcceptFriendRequestShort(params *UserAcceptFriendRequestPar
 }
 
 /*
-Deprecated: Use UserCancelFriendRequestShort instead.
+Deprecated: 2022-08-10 - Use UserCancelFriendRequestShort instead.
 
   UserCancelFriendRequest users cancel a friend request
 */
@@ -1101,7 +1101,7 @@ func (a *Client) UserCancelFriendRequestShort(params *UserCancelFriendRequestPar
 }
 
 /*
-Deprecated: Use UserGetFriendshipStatusShort instead.
+Deprecated: 2022-08-10 - Use UserGetFriendshipStatusShort instead.
 
   UserGetFriendshipStatus users get friendship status
 */
@@ -1211,7 +1211,7 @@ func (a *Client) UserGetFriendshipStatusShort(params *UserGetFriendshipStatusPar
 }
 
 /*
-Deprecated: Use UserRejectFriendRequestShort instead.
+Deprecated: 2022-08-10 - Use UserRejectFriendRequestShort instead.
 
   UserRejectFriendRequest users reject a friend request
 */
@@ -1326,7 +1326,7 @@ func (a *Client) UserRejectFriendRequestShort(params *UserRejectFriendRequestPar
 }
 
 /*
-Deprecated: Use UserRequestFriendShort instead.
+Deprecated: 2022-08-10 - Use UserRequestFriendShort instead.
 
   UserRequestFriend users add friend
 
@@ -1450,7 +1450,7 @@ func (a *Client) UserRequestFriendShort(params *UserRequestFriendParams, authInf
 }
 
 /*
-Deprecated: Use UserUnfriendRequestShort instead.
+Deprecated: 2022-08-10 - Use UserUnfriendRequestShort instead.
 
   UserUnfriendRequest users unfriend a friend
 */

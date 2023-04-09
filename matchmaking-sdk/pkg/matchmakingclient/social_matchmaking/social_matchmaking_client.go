@@ -40,7 +40,7 @@ type ClientService interface {
 }
 
 /*
-Deprecated: Use UpdatePlayTimeWeightShort instead.
+Deprecated: 2022-08-10 - Use UpdatePlayTimeWeightShort instead.
 
   UpdatePlayTimeWeight updates player playtime connection weight
 

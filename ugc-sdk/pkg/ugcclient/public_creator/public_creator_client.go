@@ -42,7 +42,7 @@ type ClientService interface {
 }
 
 /*
-Deprecated: Use PublicGetCreatorShort instead.
+Deprecated: 2022-08-10 - Use PublicGetCreatorShort instead.
 
   PublicGetCreator gets creator stats number of total like by other user number of total following and follower user
 
@@ -151,7 +151,7 @@ func (a *Client) PublicGetCreatorShort(params *PublicGetCreatorParams, authInfo 
 }
 
 /*
-Deprecated: Use PublicSearchCreatorShort instead.
+Deprecated: 2022-08-10 - Use PublicSearchCreatorShort instead.
 
   PublicSearchCreator searches creator
 

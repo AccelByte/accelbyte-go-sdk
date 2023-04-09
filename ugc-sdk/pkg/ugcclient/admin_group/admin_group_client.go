@@ -60,7 +60,7 @@ type ClientService interface {
 }
 
 /*
-Deprecated: Use AdminCreateGroupShort instead.
+Deprecated: 2022-08-10 - Use AdminCreateGroupShort instead.
 
   AdminCreateGroup creates groups
 
@@ -169,7 +169,7 @@ func (a *Client) AdminCreateGroupShort(params *AdminCreateGroupParams, authInfo 
 }
 
 /*
-Deprecated: Use AdminDeleteGroupShort instead.
+Deprecated: 2022-08-10 - Use AdminDeleteGroupShort instead.
 
   AdminDeleteGroup deletes group
 
@@ -278,7 +278,7 @@ func (a *Client) AdminDeleteGroupShort(params *AdminDeleteGroupParams, authInfo 
 }
 
 /*
-Deprecated: Use AdminGetAllGroupsShort instead.
+Deprecated: 2022-08-10 - Use AdminGetAllGroupsShort instead.
 
   AdminGetAllGroups gets all user groups
 
@@ -387,7 +387,7 @@ func (a *Client) AdminGetAllGroupsShort(params *AdminGetAllGroupsParams, authInf
 }
 
 /*
-Deprecated: Use AdminGetGroupShort instead.
+Deprecated: 2022-08-10 - Use AdminGetGroupShort instead.
 
   AdminGetGroup gets specific user group
 
@@ -496,7 +496,7 @@ func (a *Client) AdminGetGroupShort(params *AdminGetGroupParams, authInfo runtim
 }
 
 /*
-Deprecated: Use AdminGetGroupContentsShort instead.
+Deprecated: 2022-08-10 - Use AdminGetGroupContentsShort instead.
 
   AdminGetGroupContents gets contents belong to a group
 
@@ -605,7 +605,7 @@ func (a *Client) AdminGetGroupContentsShort(params *AdminGetGroupContentsParams,
 }
 
 /*
-Deprecated: Use AdminUpdateGroupShort instead.
+Deprecated: 2022-08-10 - Use AdminUpdateGroupShort instead.
 
   AdminUpdateGroup updates group
 
@@ -721,7 +721,7 @@ func (a *Client) AdminUpdateGroupShort(params *AdminUpdateGroupParams, authInfo 
 }
 
 /*
-Deprecated: Use SingleAdminDeleteGroupShort instead.
+Deprecated: 2022-08-10 - Use SingleAdminDeleteGroupShort instead.
 
   SingleAdminDeleteGroup deletes group
 
@@ -830,7 +830,7 @@ func (a *Client) SingleAdminDeleteGroupShort(params *SingleAdminDeleteGroupParam
 }
 
 /*
-Deprecated: Use SingleAdminGetAllGroupsShort instead.
+Deprecated: 2022-08-10 - Use SingleAdminGetAllGroupsShort instead.
 
   SingleAdminGetAllGroups gets all user groups
 
@@ -939,7 +939,7 @@ func (a *Client) SingleAdminGetAllGroupsShort(params *SingleAdminGetAllGroupsPar
 }
 
 /*
-Deprecated: Use SingleAdminGetGroupShort instead.
+Deprecated: 2022-08-10 - Use SingleAdminGetGroupShort instead.
 
   SingleAdminGetGroup gets specific user group
 
@@ -1048,7 +1048,7 @@ func (a *Client) SingleAdminGetGroupShort(params *SingleAdminGetGroupParams, aut
 }
 
 /*
-Deprecated: Use SingleAdminGetGroupContentsShort instead.
+Deprecated: 2022-08-10 - Use SingleAdminGetGroupContentsShort instead.
 
   SingleAdminGetGroupContents gets contents belong to a group
 
@@ -1157,7 +1157,7 @@ func (a *Client) SingleAdminGetGroupContentsShort(params *SingleAdminGetGroupCon
 }
 
 /*
-Deprecated: Use SingleAdminUpdateGroupShort instead.
+Deprecated: 2022-08-10 - Use SingleAdminUpdateGroupShort instead.
 
   SingleAdminUpdateGroup updates group
 

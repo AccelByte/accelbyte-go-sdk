@@ -44,7 +44,7 @@ type ClientService interface {
 }
 
 /*
-Deprecated: Use AdminJoinPartyV1Short instead.
+Deprecated: 2022-08-10 - Use AdminJoinPartyV1Short instead.
 
   AdminJoinPartyV1 admins join a player into a party
 
@@ -170,7 +170,7 @@ func (a *Client) AdminJoinPartyV1Short(params *AdminJoinPartyV1Params, authInfo 
 }
 
 /*
-Deprecated: Use AdminUpdatePartyAttributesV1Short instead.
+Deprecated: 2022-08-10 - Use AdminUpdatePartyAttributesV1Short instead.
 
   AdminUpdatePartyAttributesV1 admins update party attributes
 
@@ -296,7 +296,7 @@ func (a *Client) AdminUpdatePartyAttributesV1Short(params *AdminUpdatePartyAttri
 }
 
 /*
-Deprecated: Use PublicGetMessagesShort instead.
+Deprecated: 2022-08-10 - Use PublicGetMessagesShort instead.
 
   PublicGetMessages gets service messages
 

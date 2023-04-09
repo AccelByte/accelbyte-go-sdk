@@ -341,6 +341,7 @@ func init() {
 	IamCmd.AddCommand(roles.AdminListAssignedUsersV4Cmd)
 	IamCmd.AddCommand(roles.AdminAssignUserToRoleV4Cmd)
 	IamCmd.AddCommand(roles.AdminRevokeUserFromRoleV4Cmd)
+	IamCmd.AddCommand(usersV4.AdminInviteUserNewV4Cmd)
 	IamCmd.AddCommand(usersV4.AdminUpdateMyUserV4Cmd)
 	IamCmd.AddCommand(usersV4.AdminDisableMyAuthenticatorV4Cmd)
 	IamCmd.AddCommand(usersV4.AdminEnableMyAuthenticatorV4Cmd)

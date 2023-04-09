@@ -40,7 +40,7 @@ type ClientService interface {
 }
 
 /*
-Deprecated: Use GetTypeShort instead.
+Deprecated: 2022-08-10 - Use GetTypeShort instead.
 
   GetType gets types
 

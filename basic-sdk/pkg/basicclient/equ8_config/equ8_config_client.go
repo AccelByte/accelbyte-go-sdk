@@ -44,7 +44,7 @@ type ClientService interface {
 }
 
 /*
-Deprecated: Use DeleteConfigShort instead.
+Deprecated: 2022-08-10 - Use DeleteConfigShort instead.
 
   DeleteConfig deletes equ8 config
 
@@ -138,7 +138,7 @@ func (a *Client) DeleteConfigShort(params *DeleteConfigParams, authInfo runtime.
 }
 
 /*
-Deprecated: Use GetConfigShort instead.
+Deprecated: 2022-08-10 - Use GetConfigShort instead.
 
   GetConfig gets equ8 config
 
@@ -242,7 +242,7 @@ func (a *Client) GetConfigShort(params *GetConfigParams, authInfo runtime.Client
 }
 
 /*
-Deprecated: Use UpdateConfigShort instead.
+Deprecated: 2022-08-10 - Use UpdateConfigShort instead.
 
   UpdateConfig creates or update equ8 config
 

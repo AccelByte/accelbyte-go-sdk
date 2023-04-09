@@ -64,7 +64,7 @@ type ClientService interface {
 }
 
 /*
-Deprecated: Use CreateCategoryShort instead.
+Deprecated: 2022-08-10 - Use CreateCategoryShort instead.
 
   CreateCategory creates category
 
@@ -184,7 +184,7 @@ func (a *Client) CreateCategoryShort(params *CreateCategoryParams, authInfo runt
 }
 
 /*
-Deprecated: Use DeleteCategoryShort instead.
+Deprecated: 2022-08-10 - Use DeleteCategoryShort instead.
 
   DeleteCategory deletes category
 
@@ -288,7 +288,7 @@ func (a *Client) DeleteCategoryShort(params *DeleteCategoryParams, authInfo runt
 }
 
 /*
-Deprecated: Use DownloadCategoriesShort instead.
+Deprecated: 2022-08-10 - Use DownloadCategoriesShort instead.
 
   DownloadCategories downloads store s structured categories
 
@@ -385,7 +385,7 @@ func (a *Client) DownloadCategoriesShort(params *DownloadCategoriesParams) (*Dow
 }
 
 /*
-Deprecated: Use GetCategoryShort instead.
+Deprecated: 2022-08-10 - Use GetCategoryShort instead.
 
   GetCategory gets category
 
@@ -484,7 +484,7 @@ func (a *Client) GetCategoryShort(params *GetCategoryParams, authInfo runtime.Cl
 }
 
 /*
-Deprecated: Use GetChildCategoriesShort instead.
+Deprecated: 2022-08-10 - Use GetChildCategoriesShort instead.
 
   GetChildCategories gets child categories
 
@@ -578,7 +578,7 @@ func (a *Client) GetChildCategoriesShort(params *GetChildCategoriesParams, authI
 }
 
 /*
-Deprecated: Use GetDescendantCategoriesShort instead.
+Deprecated: 2022-08-10 - Use GetDescendantCategoriesShort instead.
 
   GetDescendantCategories gets descendant categories
 
@@ -672,7 +672,7 @@ func (a *Client) GetDescendantCategoriesShort(params *GetDescendantCategoriesPar
 }
 
 /*
-Deprecated: Use GetRootCategoriesShort instead.
+Deprecated: 2022-08-10 - Use GetRootCategoriesShort instead.
 
   GetRootCategories gets root categories
 
@@ -766,7 +766,7 @@ func (a *Client) GetRootCategoriesShort(params *GetRootCategoriesParams, authInf
 }
 
 /*
-Deprecated: Use ListCategoriesBasicShort instead.
+Deprecated: 2022-08-10 - Use ListCategoriesBasicShort instead.
 
   ListCategoriesBasic lists categories basic info
 
@@ -860,7 +860,7 @@ func (a *Client) ListCategoriesBasicShort(params *ListCategoriesBasicParams, aut
 }
 
 /*
-Deprecated: Use PublicGetCategoryShort instead.
+Deprecated: 2022-08-10 - Use PublicGetCategoryShort instead.
 
   PublicGetCategory gets category
 
@@ -957,7 +957,7 @@ func (a *Client) PublicGetCategoryShort(params *PublicGetCategoryParams) (*Publi
 }
 
 /*
-Deprecated: Use PublicGetChildCategoriesShort instead.
+Deprecated: 2022-08-10 - Use PublicGetChildCategoriesShort instead.
 
   PublicGetChildCategories gets child categories
 
@@ -1049,7 +1049,7 @@ func (a *Client) PublicGetChildCategoriesShort(params *PublicGetChildCategoriesP
 }
 
 /*
-Deprecated: Use PublicGetDescendantCategoriesShort instead.
+Deprecated: 2022-08-10 - Use PublicGetDescendantCategoriesShort instead.
 
   PublicGetDescendantCategories gets descendant categories
 
@@ -1141,7 +1141,7 @@ func (a *Client) PublicGetDescendantCategoriesShort(params *PublicGetDescendantC
 }
 
 /*
-Deprecated: Use PublicGetRootCategoriesShort instead.
+Deprecated: 2022-08-10 - Use PublicGetRootCategoriesShort instead.
 
   PublicGetRootCategories gets root categories
 
@@ -1233,7 +1233,7 @@ func (a *Client) PublicGetRootCategoriesShort(params *PublicGetRootCategoriesPar
 }
 
 /*
-Deprecated: Use UpdateCategoryShort instead.
+Deprecated: 2022-08-10 - Use UpdateCategoryShort instead.
 
   UpdateCategory updates category
 

@@ -69,7 +69,7 @@ type ClientService interface {
 }
 
 /*
-Deprecated: Use ApplyUserRedemptionShort instead.
+Deprecated: 2022-08-10 - Use ApplyUserRedemptionShort instead.
 
   ApplyUserRedemption redeems code
 
@@ -178,7 +178,7 @@ func (a *Client) ApplyUserRedemptionShort(params *ApplyUserRedemptionParams, aut
 }
 
 /*
-Deprecated: Use BulkDisableCodesShort instead.
+Deprecated: 2022-08-10 - Use BulkDisableCodesShort instead.
 
   BulkDisableCodes bulks disable codes
 
@@ -272,7 +272,7 @@ func (a *Client) BulkDisableCodesShort(params *BulkDisableCodesParams, authInfo 
 }
 
 /*
-Deprecated: Use BulkEnableCodesShort instead.
+Deprecated: 2022-08-10 - Use BulkEnableCodesShort instead.
 
   BulkEnableCodes bulks enable codes
 
@@ -366,7 +366,7 @@ func (a *Client) BulkEnableCodesShort(params *BulkEnableCodesParams, authInfo ru
 }
 
 /*
-Deprecated: Use CreateCampaignShort instead.
+Deprecated: 2022-08-10 - Use CreateCampaignShort instead.
 
   CreateCampaign creates campaign
 
@@ -470,7 +470,7 @@ func (a *Client) CreateCampaignShort(params *CreateCampaignParams, authInfo runt
 }
 
 /*
-Deprecated: Use CreateCodesShort instead.
+Deprecated: 2022-08-10 - Use CreateCodesShort instead.
 
   CreateCodes creates campaign codes
 
@@ -574,7 +574,7 @@ func (a *Client) CreateCodesShort(params *CreateCodesParams, authInfo runtime.Cl
 }
 
 /*
-Deprecated: Use DisableCodeShort instead.
+Deprecated: 2022-08-10 - Use DisableCodeShort instead.
 
   DisableCode disables code
 
@@ -673,7 +673,7 @@ func (a *Client) DisableCodeShort(params *DisableCodeParams, authInfo runtime.Cl
 }
 
 /*
-Deprecated: Use DownloadShort instead.
+Deprecated: 2022-08-10 - Use DownloadShort instead.
 
   Download downloads codes
 
@@ -767,7 +767,7 @@ func (a *Client) DownloadShort(params *DownloadParams, authInfo runtime.ClientAu
 }
 
 /*
-Deprecated: Use EnableCodeShort instead.
+Deprecated: 2022-08-10 - Use EnableCodeShort instead.
 
   EnableCode enables code
 
@@ -866,7 +866,7 @@ func (a *Client) EnableCodeShort(params *EnableCodeParams, authInfo runtime.Clie
 }
 
 /*
-Deprecated: Use GetCampaignShort instead.
+Deprecated: 2022-08-10 - Use GetCampaignShort instead.
 
   GetCampaign gets campaign
 
@@ -965,7 +965,7 @@ func (a *Client) GetCampaignShort(params *GetCampaignParams, authInfo runtime.Cl
 }
 
 /*
-Deprecated: Use GetCampaignDynamicShort instead.
+Deprecated: 2022-08-10 - Use GetCampaignDynamicShort instead.
 
   GetCampaignDynamic gets campaign dynamic
 
@@ -1064,7 +1064,7 @@ func (a *Client) GetCampaignDynamicShort(params *GetCampaignDynamicParams, authI
 }
 
 /*
-Deprecated: Use GetCodeShort instead.
+Deprecated: 2022-08-10 - Use GetCodeShort instead.
 
   GetCode gets code info
 
@@ -1168,7 +1168,7 @@ func (a *Client) GetCodeShort(params *GetCodeParams, authInfo runtime.ClientAuth
 }
 
 /*
-Deprecated: Use QueryCampaignsShort instead.
+Deprecated: 2022-08-10 - Use QueryCampaignsShort instead.
 
   QueryCampaigns queries campaigns
 
@@ -1262,7 +1262,7 @@ func (a *Client) QueryCampaignsShort(params *QueryCampaignsParams, authInfo runt
 }
 
 /*
-Deprecated: Use QueryCodesShort instead.
+Deprecated: 2022-08-10 - Use QueryCodesShort instead.
 
   QueryCodes queries codes
 
@@ -1356,7 +1356,7 @@ func (a *Client) QueryCodesShort(params *QueryCodesParams, authInfo runtime.Clie
 }
 
 /*
-Deprecated: Use QueryRedeemHistoryShort instead.
+Deprecated: 2022-08-10 - Use QueryRedeemHistoryShort instead.
 
   QueryRedeemHistory queries redeem history
 
@@ -1450,7 +1450,7 @@ func (a *Client) QueryRedeemHistoryShort(params *QueryRedeemHistoryParams, authI
 }
 
 /*
-Deprecated: Use UpdateCampaignShort instead.
+Deprecated: 2022-08-10 - Use UpdateCampaignShort instead.
 
   UpdateCampaign updates campaign
 

@@ -22,8 +22,7 @@ type EpicGamesIAPConfigInfo struct {
 	Namespace *string `json:"namespace"`
 
 	// epic games sandbox id
-	// Required: true
-	SandboxID *string `json:"sandboxId"`
+	SandboxID string `json:"sandboxId,omitempty"`
 }
 
 // Validate validates this epic games IAP config info
@@ -31,10 +30,6 @@ func (m *EpicGamesIAPConfigInfo) Validate(formats strfmt.Registry) error {
 	var res []error
 
 	if err := m.validateNamespace(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.validateSandboxID(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -47,15 +42,6 @@ func (m *EpicGamesIAPConfigInfo) Validate(formats strfmt.Registry) error {
 func (m *EpicGamesIAPConfigInfo) validateNamespace(formats strfmt.Registry) error {
 
 	if err := validate.Required("namespace", "body", m.Namespace); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *EpicGamesIAPConfigInfo) validateSandboxID(formats strfmt.Registry) error {
-
-	if err := validate.Required("sandboxId", "body", m.SandboxID); err != nil {
 		return err
 	}
 

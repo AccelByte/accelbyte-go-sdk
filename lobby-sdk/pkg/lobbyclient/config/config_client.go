@@ -49,7 +49,7 @@ type ClientService interface {
 }
 
 /*
-Deprecated: Use AdminExportConfigV1Short instead.
+Deprecated: 2022-08-10 - Use AdminExportConfigV1Short instead.
 
   AdminExportConfigV1 exports lobby config to a json file
 
@@ -174,7 +174,7 @@ func (a *Client) AdminExportConfigV1Short(params *AdminExportConfigV1Params, aut
 }
 
 /*
-Deprecated: Use AdminGetAllConfigV1Short instead.
+Deprecated: 2022-08-10 - Use AdminGetAllConfigV1Short instead.
 
   AdminGetAllConfigV1 admins get all namespaces config
 
@@ -295,7 +295,7 @@ func (a *Client) AdminGetAllConfigV1Short(params *AdminGetAllConfigV1Params, aut
 }
 
 /*
-Deprecated: Use AdminGetConfigV1Short instead.
+Deprecated: 2022-08-10 - Use AdminGetConfigV1Short instead.
 
   AdminGetConfigV1 admins get namespace config
 
@@ -416,7 +416,7 @@ func (a *Client) AdminGetConfigV1Short(params *AdminGetConfigV1Params, authInfo 
 }
 
 /*
-Deprecated: Use AdminImportConfigV1Short instead.
+Deprecated: 2022-08-10 - Use AdminImportConfigV1Short instead.
 
   AdminImportConfigV1 imports lobby config from a json file
 
@@ -543,7 +543,7 @@ func (a *Client) AdminImportConfigV1Short(params *AdminImportConfigV1Params, aut
 }
 
 /*
-Deprecated: Use AdminUpdateConfigV1Short instead.
+Deprecated: 2022-08-10 - Use AdminUpdateConfigV1Short instead.
 
   AdminUpdateConfigV1 admins update namespace config
 

@@ -39,7 +39,7 @@ func (aaa *PublicGroupService) GetAuthSession() auth.Session {
 	}
 }
 
-// deprecated(2022-01-10): please use GetGroupsShort instead.
+// Deprecated: 2022-01-10 - please use GetGroupsShort instead.
 func (aaa *PublicGroupService) GetGroups(input *public_group.GetGroupsParams) (*ugcclientmodels.ModelsPaginatedGroupResponse, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -62,7 +62,7 @@ func (aaa *PublicGroupService) GetGroups(input *public_group.GetGroupsParams) (*
 	return ok.GetPayload(), nil
 }
 
-// deprecated(2022-01-10): please use CreateGroupShort instead.
+// Deprecated: 2022-01-10 - please use CreateGroupShort instead.
 func (aaa *PublicGroupService) CreateGroup(input *public_group.CreateGroupParams) (*ugcclientmodels.ModelsCreateGroupResponse, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -85,7 +85,7 @@ func (aaa *PublicGroupService) CreateGroup(input *public_group.CreateGroupParams
 	return created.GetPayload(), nil
 }
 
-// deprecated(2022-01-10): please use GetGroupShort instead.
+// Deprecated: 2022-01-10 - please use GetGroupShort instead.
 func (aaa *PublicGroupService) GetGroup(input *public_group.GetGroupParams) (*ugcclientmodels.ModelsCreateGroupResponse, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -108,7 +108,7 @@ func (aaa *PublicGroupService) GetGroup(input *public_group.GetGroupParams) (*ug
 	return ok.GetPayload(), nil
 }
 
-// deprecated(2022-01-10): please use UpdateGroupShort instead.
+// Deprecated: 2022-01-10 - please use UpdateGroupShort instead.
 func (aaa *PublicGroupService) UpdateGroup(input *public_group.UpdateGroupParams) (*ugcclientmodels.ModelsCreateGroupResponse, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -134,7 +134,7 @@ func (aaa *PublicGroupService) UpdateGroup(input *public_group.UpdateGroupParams
 	return ok.GetPayload(), nil
 }
 
-// deprecated(2022-01-10): please use DeleteGroupShort instead.
+// Deprecated: 2022-01-10 - please use DeleteGroupShort instead.
 func (aaa *PublicGroupService) DeleteGroup(input *public_group.DeleteGroupParams) error {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -157,7 +157,7 @@ func (aaa *PublicGroupService) DeleteGroup(input *public_group.DeleteGroupParams
 	return nil
 }
 
-// deprecated(2022-01-10): please use GetGroupContentShort instead.
+// Deprecated: 2022-01-10 - please use GetGroupContentShort instead.
 func (aaa *PublicGroupService) GetGroupContent(input *public_group.GetGroupContentParams) (*ugcclientmodels.ModelsPaginatedContentDownloadResponse, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {

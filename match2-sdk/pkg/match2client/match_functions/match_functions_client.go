@@ -46,7 +46,7 @@ type ClientService interface {
 }
 
 /*
-Deprecated: Use CreateMatchFunctionShort instead.
+Deprecated: 2022-08-10 - Use CreateMatchFunctionShort instead.
 
   CreateMatchFunction creates a match function
 
@@ -175,7 +175,7 @@ func (a *Client) CreateMatchFunctionShort(params *CreateMatchFunctionParams, aut
 }
 
 /*
-Deprecated: Use DeleteMatchFunctionShort instead.
+Deprecated: 2022-08-10 - Use DeleteMatchFunctionShort instead.
 
   DeleteMatchFunction deletes a match function
 
@@ -299,7 +299,7 @@ func (a *Client) DeleteMatchFunctionShort(params *DeleteMatchFunctionParams, aut
 }
 
 /*
-Deprecated: Use MatchFunctionListShort instead.
+Deprecated: 2022-08-10 - Use MatchFunctionListShort instead.
 
   MatchFunctionList lists existing match functions
 
@@ -418,7 +418,7 @@ func (a *Client) MatchFunctionListShort(params *MatchFunctionListParams, authInf
 }
 
 /*
-Deprecated: Use UpdateMatchFunctionShort instead.
+Deprecated: 2022-08-10 - Use UpdateMatchFunctionShort instead.
 
   UpdateMatchFunction updates a match function
 

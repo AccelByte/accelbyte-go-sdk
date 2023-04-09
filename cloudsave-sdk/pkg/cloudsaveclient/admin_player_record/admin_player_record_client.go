@@ -62,7 +62,7 @@ type ClientService interface {
 }
 
 /*
-Deprecated: Use AdminRetrievePlayerRecordsShort instead.
+Deprecated: 2022-08-10 - Use AdminRetrievePlayerRecordsShort instead.
 
   AdminRetrievePlayerRecords queries player records
 
@@ -179,7 +179,7 @@ func (a *Client) AdminRetrievePlayerRecordsShort(params *AdminRetrievePlayerReco
 }
 
 /*
-Deprecated: Use AdminDeletePlayerPublicRecordHandlerV1Short instead.
+Deprecated: 2022-08-10 - Use AdminDeletePlayerPublicRecordHandlerV1Short instead.
 
   AdminDeletePlayerPublicRecordHandlerV1 deletes player public record
 
@@ -332,7 +332,7 @@ func (a *Client) AdminDeletePlayerPublicRecordHandlerV1Short(params *AdminDelete
 }
 
 /*
-Deprecated: Use AdminDeletePlayerRecordHandlerV1Short instead.
+Deprecated: 2022-08-10 - Use AdminDeletePlayerRecordHandlerV1Short instead.
 
   AdminDeletePlayerRecordHandlerV1 deletes player record
 
@@ -444,7 +444,7 @@ func (a *Client) AdminDeletePlayerRecordHandlerV1Short(params *AdminDeletePlayer
 }
 
 /*
-Deprecated: Use AdminGetPlayerPublicRecordHandlerV1Short instead.
+Deprecated: 2022-08-10 - Use AdminGetPlayerPublicRecordHandlerV1Short instead.
 
   AdminGetPlayerPublicRecordHandlerV1 gets player public record
 
@@ -561,7 +561,7 @@ func (a *Client) AdminGetPlayerPublicRecordHandlerV1Short(params *AdminGetPlayer
 }
 
 /*
-Deprecated: Use AdminGetPlayerRecordHandlerV1Short instead.
+Deprecated: 2022-08-10 - Use AdminGetPlayerRecordHandlerV1Short instead.
 
   AdminGetPlayerRecordHandlerV1 gets player record
 
@@ -678,7 +678,7 @@ func (a *Client) AdminGetPlayerRecordHandlerV1Short(params *AdminGetPlayerRecord
 }
 
 /*
-Deprecated: Use AdminGetPlayerRecordSizeHandlerV1Short instead.
+Deprecated: 2022-08-10 - Use AdminGetPlayerRecordSizeHandlerV1Short instead.
 
   AdminGetPlayerRecordSizeHandlerV1 gets player record size
 
@@ -795,7 +795,7 @@ func (a *Client) AdminGetPlayerRecordSizeHandlerV1Short(params *AdminGetPlayerRe
 }
 
 /*
-Deprecated: Use AdminPostPlayerPublicRecordHandlerV1Short instead.
+Deprecated: 2022-08-10 - Use AdminPostPlayerPublicRecordHandlerV1Short instead.
 
   AdminPostPlayerPublicRecordHandlerV1 creates or append player public record
 
@@ -992,7 +992,7 @@ func (a *Client) AdminPostPlayerPublicRecordHandlerV1Short(params *AdminPostPlay
 }
 
 /*
-Deprecated: Use AdminPostPlayerRecordHandlerV1Short instead.
+Deprecated: 2022-08-10 - Use AdminPostPlayerRecordHandlerV1Short instead.
 
   AdminPostPlayerRecordHandlerV1 creates or append player record
 
@@ -1218,7 +1218,7 @@ func (a *Client) AdminPostPlayerRecordHandlerV1Short(params *AdminPostPlayerReco
 }
 
 /*
-Deprecated: Use AdminPutPlayerPublicRecordHandlerV1Short instead.
+Deprecated: 2022-08-10 - Use AdminPutPlayerPublicRecordHandlerV1Short instead.
 
   AdminPutPlayerPublicRecordHandlerV1 creates or replace player public record
 
@@ -1419,7 +1419,7 @@ func (a *Client) AdminPutPlayerPublicRecordHandlerV1Short(params *AdminPutPlayer
 }
 
 /*
-Deprecated: Use AdminPutPlayerRecordHandlerV1Short instead.
+Deprecated: 2022-08-10 - Use AdminPutPlayerRecordHandlerV1Short instead.
 
   AdminPutPlayerRecordHandlerV1 creates or replace player record
 
@@ -1631,7 +1631,7 @@ func (a *Client) AdminPutPlayerRecordHandlerV1Short(params *AdminPutPlayerRecord
 }
 
 /*
-Deprecated: Use BulkGetPlayerRecordSizeHandlerV1Short instead.
+Deprecated: 2022-08-10 - Use BulkGetPlayerRecordSizeHandlerV1Short instead.
 
   BulkGetPlayerRecordSizeHandlerV1 bulks get player records size
 
@@ -1771,7 +1771,7 @@ func (a *Client) BulkGetPlayerRecordSizeHandlerV1Short(params *BulkGetPlayerReco
 }
 
 /*
-Deprecated: Use ListPlayerRecordHandlerV1Short instead.
+Deprecated: 2022-08-10 - Use ListPlayerRecordHandlerV1Short instead.
 
   ListPlayerRecordHandlerV1 retrieves list of public player records
 

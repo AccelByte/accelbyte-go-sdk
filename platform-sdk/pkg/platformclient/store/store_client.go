@@ -69,7 +69,7 @@ type ClientService interface {
 }
 
 /*
-Deprecated: Use CloneStoreShort instead.
+Deprecated: 2022-08-10 - Use CloneStoreShort instead.
 
   CloneStore clones a store
 
@@ -173,7 +173,7 @@ func (a *Client) CloneStoreShort(params *CloneStoreParams, authInfo runtime.Clie
 }
 
 /*
-Deprecated: Use CreateStoreShort instead.
+Deprecated: 2022-08-10 - Use CreateStoreShort instead.
 
   CreateStore creates a store
 
@@ -277,7 +277,7 @@ func (a *Client) CreateStoreShort(params *CreateStoreParams, authInfo runtime.Cl
 }
 
 /*
-Deprecated: Use DeletePublishedStoreShort instead.
+Deprecated: 2022-08-10 - Use DeletePublishedStoreShort instead.
 
   DeletePublishedStore deletes published store
 
@@ -376,7 +376,7 @@ func (a *Client) DeletePublishedStoreShort(params *DeletePublishedStoreParams, a
 }
 
 /*
-Deprecated: Use DeleteStoreShort instead.
+Deprecated: 2022-08-10 - Use DeleteStoreShort instead.
 
   DeleteStore deletes a store
 
@@ -480,7 +480,7 @@ func (a *Client) DeleteStoreShort(params *DeleteStoreParams, authInfo runtime.Cl
 }
 
 /*
-Deprecated: Use ExportStoreShort instead.
+Deprecated: 2022-08-10 - Use ExportStoreShort instead.
 
   ExportStore exports a store
 
@@ -579,7 +579,7 @@ func (a *Client) ExportStoreShort(params *ExportStoreParams, authInfo runtime.Cl
 }
 
 /*
-Deprecated: Use ExportStore1Short instead.
+Deprecated: 2022-08-10 - Use ExportStore1Short instead.
 
   ExportStore1 exports a store
 
@@ -678,7 +678,7 @@ func (a *Client) ExportStore1Short(params *ExportStore1Params, authInfo runtime.
 }
 
 /*
-Deprecated: Use GetPublishedStoreShort instead.
+Deprecated: 2022-08-10 - Use GetPublishedStoreShort instead.
 
   GetPublishedStore gets published store
 
@@ -777,7 +777,7 @@ func (a *Client) GetPublishedStoreShort(params *GetPublishedStoreParams, authInf
 }
 
 /*
-Deprecated: Use GetPublishedStoreBackupShort instead.
+Deprecated: 2022-08-10 - Use GetPublishedStoreBackupShort instead.
 
   GetPublishedStoreBackup gets a published store s backup
 
@@ -876,7 +876,7 @@ func (a *Client) GetPublishedStoreBackupShort(params *GetPublishedStoreBackupPar
 }
 
 /*
-Deprecated: Use GetStoreShort instead.
+Deprecated: 2022-08-10 - Use GetStoreShort instead.
 
   GetStore gets a store
 
@@ -975,7 +975,7 @@ func (a *Client) GetStoreShort(params *GetStoreParams, authInfo runtime.ClientAu
 }
 
 /*
-Deprecated: Use ImportStoreShort instead.
+Deprecated: 2022-08-10 - Use ImportStoreShort instead.
 
   ImportStore imports a store
 
@@ -1079,7 +1079,7 @@ func (a *Client) ImportStoreShort(params *ImportStoreParams, authInfo runtime.Cl
 }
 
 /*
-Deprecated: Use ImportStore1Short instead.
+Deprecated: 2022-08-10 - Use ImportStore1Short instead.
 
   ImportStore1 imports a store
 
@@ -1183,7 +1183,7 @@ func (a *Client) ImportStore1Short(params *ImportStore1Params, authInfo runtime.
 }
 
 /*
-Deprecated: Use ListStoresShort instead.
+Deprecated: 2022-08-10 - Use ListStoresShort instead.
 
   ListStores lists stores
 
@@ -1277,7 +1277,7 @@ func (a *Client) ListStoresShort(params *ListStoresParams, authInfo runtime.Clie
 }
 
 /*
-Deprecated: Use PublicListStoresShort instead.
+Deprecated: 2022-08-10 - Use PublicListStoresShort instead.
 
   PublicListStores lists all stores
 
@@ -1369,7 +1369,7 @@ func (a *Client) PublicListStoresShort(params *PublicListStoresParams) (*PublicL
 }
 
 /*
-Deprecated: Use RollbackPublishedStoreShort instead.
+Deprecated: 2022-08-10 - Use RollbackPublishedStoreShort instead.
 
   RollbackPublishedStore rollbacks a published store
 
@@ -1468,7 +1468,7 @@ func (a *Client) RollbackPublishedStoreShort(params *RollbackPublishedStoreParam
 }
 
 /*
-Deprecated: Use UpdateStoreShort instead.
+Deprecated: 2022-08-10 - Use UpdateStoreShort instead.
 
   UpdateStore updates a store
 

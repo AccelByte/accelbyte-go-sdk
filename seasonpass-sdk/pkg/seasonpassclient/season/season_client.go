@@ -84,7 +84,7 @@ type ClientService interface {
 }
 
 /*
-Deprecated: Use BulkGetUserSeasonProgressionShort instead.
+Deprecated: 2022-08-10 - Use BulkGetUserSeasonProgressionShort instead.
 
   BulkGetUserSeasonProgression bulks get user current season progression
 
@@ -188,7 +188,7 @@ func (a *Client) BulkGetUserSeasonProgressionShort(params *BulkGetUserSeasonProg
 }
 
 /*
-Deprecated: Use CheckSeasonPurchasableShort instead.
+Deprecated: 2022-08-10 - Use CheckSeasonPurchasableShort instead.
 
   CheckSeasonPurchasable checks pass or tier purchasable
 
@@ -297,7 +297,7 @@ func (a *Client) CheckSeasonPurchasableShort(params *CheckSeasonPurchasableParam
 }
 
 /*
-Deprecated: Use CloneSeasonShort instead.
+Deprecated: 2022-08-10 - Use CloneSeasonShort instead.
 
   CloneSeason clones a season
 
@@ -406,7 +406,7 @@ func (a *Client) CloneSeasonShort(params *CloneSeasonParams, authInfo runtime.Cl
 }
 
 /*
-Deprecated: Use CreateSeasonShort instead.
+Deprecated: 2022-08-10 - Use CreateSeasonShort instead.
 
   CreateSeason creates a season
 
@@ -515,7 +515,7 @@ func (a *Client) CreateSeasonShort(params *CreateSeasonParams, authInfo runtime.
 }
 
 /*
-Deprecated: Use DeleteSeasonShort instead.
+Deprecated: 2022-08-10 - Use DeleteSeasonShort instead.
 
   DeleteSeason deletes a season
 
@@ -624,7 +624,7 @@ func (a *Client) DeleteSeasonShort(params *DeleteSeasonParams, authInfo runtime.
 }
 
 /*
-Deprecated: Use ExistsAnyPassByPassCodesShort instead.
+Deprecated: 2022-08-10 - Use ExistsAnyPassByPassCodesShort instead.
 
   ExistsAnyPassByPassCodes gets ownership for any pass codes
 
@@ -723,7 +723,7 @@ func (a *Client) ExistsAnyPassByPassCodesShort(params *ExistsAnyPassByPassCodesP
 }
 
 /*
-Deprecated: Use GetCurrentSeasonShort instead.
+Deprecated: 2022-08-10 - Use GetCurrentSeasonShort instead.
 
   GetCurrentSeason gets current published season summary
 
@@ -827,7 +827,7 @@ func (a *Client) GetCurrentSeasonShort(params *GetCurrentSeasonParams, authInfo 
 }
 
 /*
-Deprecated: Use GetCurrentUserSeasonProgressionShort instead.
+Deprecated: 2022-08-10 - Use GetCurrentUserSeasonProgressionShort instead.
 
   GetCurrentUserSeasonProgression gets current user season progression
 
@@ -931,7 +931,7 @@ func (a *Client) GetCurrentUserSeasonProgressionShort(params *GetCurrentUserSeas
 }
 
 /*
-Deprecated: Use GetFullSeasonShort instead.
+Deprecated: 2022-08-10 - Use GetFullSeasonShort instead.
 
   GetFullSeason gets a season full content
 
@@ -1035,7 +1035,7 @@ func (a *Client) GetFullSeasonShort(params *GetFullSeasonParams, authInfo runtim
 }
 
 /*
-Deprecated: Use GetSeasonShort instead.
+Deprecated: 2022-08-10 - Use GetSeasonShort instead.
 
   GetSeason gets a season
 
@@ -1139,7 +1139,7 @@ func (a *Client) GetSeasonShort(params *GetSeasonParams, authInfo runtime.Client
 }
 
 /*
-Deprecated: Use GetUserParticipatedSeasonsShort instead.
+Deprecated: 2022-08-10 - Use GetUserParticipatedSeasonsShort instead.
 
   GetUserParticipatedSeasons gets user participated season data
 
@@ -1238,7 +1238,7 @@ func (a *Client) GetUserParticipatedSeasonsShort(params *GetUserParticipatedSeas
 }
 
 /*
-Deprecated: Use GetUserSeasonShort instead.
+Deprecated: 2022-08-10 - Use GetUserSeasonShort instead.
 
   GetUserSeason gets user season data
 
@@ -1342,7 +1342,7 @@ func (a *Client) GetUserSeasonShort(params *GetUserSeasonParams, authInfo runtim
 }
 
 /*
-Deprecated: Use PublicGetCurrentSeasonShort instead.
+Deprecated: 2022-08-10 - Use PublicGetCurrentSeasonShort instead.
 
   PublicGetCurrentSeason gets current published season
 
@@ -1444,7 +1444,7 @@ func (a *Client) PublicGetCurrentSeasonShort(params *PublicGetCurrentSeasonParam
 }
 
 /*
-Deprecated: Use PublicGetCurrentUserSeasonShort instead.
+Deprecated: 2022-08-10 - Use PublicGetCurrentUserSeasonShort instead.
 
   PublicGetCurrentUserSeason gets current user season data
 
@@ -1548,7 +1548,7 @@ func (a *Client) PublicGetCurrentUserSeasonShort(params *PublicGetCurrentUserSea
 }
 
 /*
-Deprecated: Use PublicGetUserSeasonShort instead.
+Deprecated: 2022-08-10 - Use PublicGetUserSeasonShort instead.
 
   PublicGetUserSeason gets user season data
 
@@ -1652,7 +1652,7 @@ func (a *Client) PublicGetUserSeasonShort(params *PublicGetUserSeasonParams, aut
 }
 
 /*
-Deprecated: Use PublishSeasonShort instead.
+Deprecated: 2022-08-10 - Use PublishSeasonShort instead.
 
   PublishSeason publishes a season
 
@@ -1761,7 +1761,7 @@ func (a *Client) PublishSeasonShort(params *PublishSeasonParams, authInfo runtim
 }
 
 /*
-Deprecated: Use QuerySeasonsShort instead.
+Deprecated: 2022-08-10 - Use QuerySeasonsShort instead.
 
   QuerySeasons queries seasons
 
@@ -1860,7 +1860,7 @@ func (a *Client) QuerySeasonsShort(params *QuerySeasonsParams, authInfo runtime.
 }
 
 /*
-Deprecated: Use QueryUserExpGrantHistoryShort instead.
+Deprecated: 2022-08-10 - Use QueryUserExpGrantHistoryShort instead.
 
   QueryUserExpGrantHistory queries user season exp acquisition history
 
@@ -1959,7 +1959,7 @@ func (a *Client) QueryUserExpGrantHistoryShort(params *QueryUserExpGrantHistoryP
 }
 
 /*
-Deprecated: Use QueryUserExpGrantHistoryTagShort instead.
+Deprecated: 2022-08-10 - Use QueryUserExpGrantHistoryTagShort instead.
 
   QueryUserExpGrantHistoryTag queries user season exp acquisition history s reason tag list
 
@@ -2058,7 +2058,7 @@ func (a *Client) QueryUserExpGrantHistoryTagShort(params *QueryUserExpGrantHisto
 }
 
 /*
-Deprecated: Use ResetUserSeasonShort instead.
+Deprecated: 2022-08-10 - Use ResetUserSeasonShort instead.
 
   ResetUserSeason resets user data in current season
 
@@ -2157,7 +2157,7 @@ func (a *Client) ResetUserSeasonShort(params *ResetUserSeasonParams, authInfo ru
 }
 
 /*
-Deprecated: Use RetireSeasonShort instead.
+Deprecated: 2022-08-10 - Use RetireSeasonShort instead.
 
   RetireSeason retires a season
 
@@ -2266,7 +2266,7 @@ func (a *Client) RetireSeasonShort(params *RetireSeasonParams, authInfo runtime.
 }
 
 /*
-Deprecated: Use UnpublishSeasonShort instead.
+Deprecated: 2022-08-10 - Use UnpublishSeasonShort instead.
 
   UnpublishSeason unpublishes a season
 
@@ -2375,7 +2375,7 @@ func (a *Client) UnpublishSeasonShort(params *UnpublishSeasonParams, authInfo ru
 }
 
 /*
-Deprecated: Use UpdateSeasonShort instead.
+Deprecated: 2022-08-10 - Use UpdateSeasonShort instead.
 
   UpdateSeason updates a season
 

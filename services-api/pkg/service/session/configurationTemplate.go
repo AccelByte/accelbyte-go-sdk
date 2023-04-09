@@ -39,7 +39,7 @@ func (aaa *ConfigurationTemplateService) GetAuthSession() auth.Session {
 	}
 }
 
-// deprecated(2022-01-10): please use AdminCreateConfigurationTemplateV1Short instead.
+// Deprecated: 2022-01-10 - please use AdminCreateConfigurationTemplateV1Short instead.
 func (aaa *ConfigurationTemplateService) AdminCreateConfigurationTemplateV1(input *configuration_template.AdminCreateConfigurationTemplateV1Params) (*sessionclientmodels.ApimodelsConfigurationTemplateResponse, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -68,7 +68,7 @@ func (aaa *ConfigurationTemplateService) AdminCreateConfigurationTemplateV1(inpu
 	return created.GetPayload(), nil
 }
 
-// deprecated(2022-01-10): please use AdminGetAllConfigurationTemplatesV1Short instead.
+// Deprecated: 2022-01-10 - please use AdminGetAllConfigurationTemplatesV1Short instead.
 func (aaa *ConfigurationTemplateService) AdminGetAllConfigurationTemplatesV1(input *configuration_template.AdminGetAllConfigurationTemplatesV1Params) (*sessionclientmodels.ApimodelsConfigurationTemplatesResponse, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -94,7 +94,7 @@ func (aaa *ConfigurationTemplateService) AdminGetAllConfigurationTemplatesV1(inp
 	return ok.GetPayload(), nil
 }
 
-// deprecated(2022-01-10): please use AdminGetConfigurationTemplateV1Short instead.
+// Deprecated: 2022-01-10 - please use AdminGetConfigurationTemplateV1Short instead.
 func (aaa *ConfigurationTemplateService) AdminGetConfigurationTemplateV1(input *configuration_template.AdminGetConfigurationTemplateV1Params) (*sessionclientmodels.ApimodelsConfigurationTemplateResponse, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -123,7 +123,7 @@ func (aaa *ConfigurationTemplateService) AdminGetConfigurationTemplateV1(input *
 	return ok.GetPayload(), nil
 }
 
-// deprecated(2022-01-10): please use AdminUpdateConfigurationTemplateV1Short instead.
+// Deprecated: 2022-01-10 - please use AdminUpdateConfigurationTemplateV1Short instead.
 func (aaa *ConfigurationTemplateService) AdminUpdateConfigurationTemplateV1(input *configuration_template.AdminUpdateConfigurationTemplateV1Params) (*sessionclientmodels.ApimodelsConfigurationTemplateResponse, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -152,7 +152,7 @@ func (aaa *ConfigurationTemplateService) AdminUpdateConfigurationTemplateV1(inpu
 	return ok.GetPayload(), nil
 }
 
-// deprecated(2022-01-10): please use AdminDeleteConfigurationTemplateV1Short instead.
+// Deprecated: 2022-01-10 - please use AdminDeleteConfigurationTemplateV1Short instead.
 func (aaa *ConfigurationTemplateService) AdminDeleteConfigurationTemplateV1(input *configuration_template.AdminDeleteConfigurationTemplateV1Params) error {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -178,7 +178,7 @@ func (aaa *ConfigurationTemplateService) AdminDeleteConfigurationTemplateV1(inpu
 	return nil
 }
 
-// deprecated(2022-01-10): please use AdminGetDSMCConfigurationShort instead.
+// Deprecated: 2022-01-10 - please use AdminGetDSMCConfigurationShort instead.
 func (aaa *ConfigurationTemplateService) AdminGetDSMCConfiguration(input *configuration_template.AdminGetDSMCConfigurationParams) (*sessionclientmodels.ModelsDSMConfigRecord, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -207,7 +207,7 @@ func (aaa *ConfigurationTemplateService) AdminGetDSMCConfiguration(input *config
 	return ok.GetPayload(), nil
 }
 
-// deprecated(2022-01-10): please use AdminSyncDSMCConfigurationShort instead.
+// Deprecated: 2022-01-10 - please use AdminSyncDSMCConfigurationShort instead.
 func (aaa *ConfigurationTemplateService) AdminSyncDSMCConfiguration(input *configuration_template.AdminSyncDSMCConfigurationParams) (*sessionclientmodels.ModelsDSMConfigRecord, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {

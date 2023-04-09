@@ -90,7 +90,7 @@ type ClientService interface {
 }
 
 /*
-Deprecated: Use AdminGetUserProfilePublicInfoByIdsShort instead.
+Deprecated: 2022-08-10 - Use AdminGetUserProfilePublicInfoByIdsShort instead.
 
   AdminGetUserProfilePublicInfoByIds admins get user profile public info by ids
 
@@ -189,7 +189,7 @@ func (a *Client) AdminGetUserProfilePublicInfoByIdsShort(params *AdminGetUserPro
 }
 
 /*
-Deprecated: Use CreateMyProfileShort instead.
+Deprecated: 2022-08-10 - Use CreateMyProfileShort instead.
 
   CreateMyProfile creates my profile
 
@@ -308,7 +308,7 @@ func (a *Client) CreateMyProfileShort(params *CreateMyProfileParams, authInfo ru
 }
 
 /*
-Deprecated: Use DeleteUserProfileShort instead.
+Deprecated: 2022-08-10 - Use DeleteUserProfileShort instead.
 
   DeleteUserProfile deletes user profile
 
@@ -422,7 +422,7 @@ func (a *Client) DeleteUserProfileShort(params *DeleteUserProfileParams, authInf
 }
 
 /*
-Deprecated: Use GetCustomAttributesInfoShort instead.
+Deprecated: 2022-08-10 - Use GetCustomAttributesInfoShort instead.
 
   GetCustomAttributesInfo gets user custom attributes
 
@@ -531,7 +531,7 @@ func (a *Client) GetCustomAttributesInfoShort(params *GetCustomAttributesInfoPar
 }
 
 /*
-Deprecated: Use GetMyPrivateCustomAttributesInfoShort instead.
+Deprecated: 2022-08-10 - Use GetMyPrivateCustomAttributesInfoShort instead.
 
   GetMyPrivateCustomAttributesInfo gets my private custom attributes
 
@@ -640,7 +640,7 @@ func (a *Client) GetMyPrivateCustomAttributesInfoShort(params *GetMyPrivateCusto
 }
 
 /*
-Deprecated: Use GetMyProfileInfoShort instead.
+Deprecated: 2022-08-10 - Use GetMyProfileInfoShort instead.
 
   GetMyProfileInfo gets my profile
 
@@ -754,7 +754,7 @@ func (a *Client) GetMyProfileInfoShort(params *GetMyProfileInfoParams, authInfo 
 }
 
 /*
-Deprecated: Use GetMyZipCodeShort instead.
+Deprecated: 2022-08-10 - Use GetMyZipCodeShort instead.
 
   GetMyZipCode gets my zip code
 
@@ -858,7 +858,7 @@ func (a *Client) GetMyZipCodeShort(params *GetMyZipCodeParams, authInfo runtime.
 }
 
 /*
-Deprecated: Use GetPrivateCustomAttributesInfoShort instead.
+Deprecated: 2022-08-10 - Use GetPrivateCustomAttributesInfoShort instead.
 
   GetPrivateCustomAttributesInfo gets user private custom attributes
 
@@ -967,7 +967,7 @@ func (a *Client) GetPrivateCustomAttributesInfoShort(params *GetPrivateCustomAtt
 }
 
 /*
-Deprecated: Use GetUserProfileInfoShort instead.
+Deprecated: 2022-08-10 - Use GetUserProfileInfoShort instead.
 
   GetUserProfileInfo gets user profile
 
@@ -1081,7 +1081,7 @@ func (a *Client) GetUserProfileInfoShort(params *GetUserProfileInfoParams, authI
 }
 
 /*
-Deprecated: Use GetUserProfileInfoByPublicIDShort instead.
+Deprecated: 2022-08-10 - Use GetUserProfileInfoByPublicIDShort instead.
 
   GetUserProfileInfoByPublicID gets user profile info by public id
 
@@ -1195,7 +1195,7 @@ func (a *Client) GetUserProfileInfoByPublicIDShort(params *GetUserProfileInfoByP
 }
 
 /*
-Deprecated: Use PublicCreateUserProfileShort instead.
+Deprecated: 2022-08-10 - Use PublicCreateUserProfileShort instead.
 
   PublicCreateUserProfile creates user profile
 
@@ -1309,7 +1309,7 @@ func (a *Client) PublicCreateUserProfileShort(params *PublicCreateUserProfilePar
 }
 
 /*
-Deprecated: Use PublicGetCustomAttributesInfoShort instead.
+Deprecated: 2022-08-10 - Use PublicGetCustomAttributesInfoShort instead.
 
   PublicGetCustomAttributesInfo gets custom attributes info
 
@@ -1406,7 +1406,7 @@ func (a *Client) PublicGetCustomAttributesInfoShort(params *PublicGetCustomAttri
 }
 
 /*
-Deprecated: Use PublicGetUserProfileInfoShort instead.
+Deprecated: 2022-08-10 - Use PublicGetUserProfileInfoShort instead.
 
   PublicGetUserProfileInfo gets user profile
 
@@ -1520,7 +1520,7 @@ func (a *Client) PublicGetUserProfileInfoShort(params *PublicGetUserProfileInfoP
 }
 
 /*
-Deprecated: Use PublicGetUserProfileInfoByPublicIDShort instead.
+Deprecated: 2022-08-10 - Use PublicGetUserProfileInfoByPublicIDShort instead.
 
   PublicGetUserProfileInfoByPublicID gets user profile public info by public id
 
@@ -1622,7 +1622,7 @@ func (a *Client) PublicGetUserProfileInfoByPublicIDShort(params *PublicGetUserPr
 }
 
 /*
-Deprecated: Use PublicGetUserProfilePublicInfoShort instead.
+Deprecated: 2022-08-10 - Use PublicGetUserProfilePublicInfoShort instead.
 
   PublicGetUserProfilePublicInfo gets user profile public info
 
@@ -1724,7 +1724,7 @@ func (a *Client) PublicGetUserProfilePublicInfoShort(params *PublicGetUserProfil
 }
 
 /*
-Deprecated: Use PublicGetUserProfilePublicInfoByIdsShort instead.
+Deprecated: 2022-08-10 - Use PublicGetUserProfilePublicInfoByIdsShort instead.
 
   PublicGetUserProfilePublicInfoByIds gets user profile public info by ids
 
@@ -1821,7 +1821,7 @@ func (a *Client) PublicGetUserProfilePublicInfoByIdsShort(params *PublicGetUserP
 }
 
 /*
-Deprecated: Use PublicUpdateCustomAttributesPartiallyShort instead.
+Deprecated: 2022-08-10 - Use PublicUpdateCustomAttributesPartiallyShort instead.
 
   PublicUpdateCustomAttributesPartially updates partially custom attributes tied to user id
 
@@ -1935,7 +1935,7 @@ func (a *Client) PublicUpdateCustomAttributesPartiallyShort(params *PublicUpdate
 }
 
 /*
-Deprecated: Use PublicUpdateUserProfileShort instead.
+Deprecated: 2022-08-10 - Use PublicUpdateUserProfileShort instead.
 
   PublicUpdateUserProfile updates user profile
 
@@ -2049,7 +2049,7 @@ func (a *Client) PublicUpdateUserProfileShort(params *PublicUpdateUserProfilePar
 }
 
 /*
-Deprecated: Use PublicUpdateUserProfileStatusShort instead.
+Deprecated: 2022-08-10 - Use PublicUpdateUserProfileStatusShort instead.
 
   PublicUpdateUserProfileStatus updates user profile status
 
@@ -2163,7 +2163,7 @@ func (a *Client) PublicUpdateUserProfileStatusShort(params *PublicUpdateUserProf
 }
 
 /*
-Deprecated: Use UpdateCustomAttributesPartiallyShort instead.
+Deprecated: 2022-08-10 - Use UpdateCustomAttributesPartiallyShort instead.
 
   UpdateCustomAttributesPartially updates partially custom attributes tied to the user id
 
@@ -2277,7 +2277,7 @@ func (a *Client) UpdateCustomAttributesPartiallyShort(params *UpdateCustomAttrib
 }
 
 /*
-Deprecated: Use UpdateMyPrivateCustomAttributesPartiallyShort instead.
+Deprecated: 2022-08-10 - Use UpdateMyPrivateCustomAttributesPartiallyShort instead.
 
   UpdateMyPrivateCustomAttributesPartially updates partially private custom attributes tied to me
 
@@ -2391,7 +2391,7 @@ func (a *Client) UpdateMyPrivateCustomAttributesPartiallyShort(params *UpdateMyP
 }
 
 /*
-Deprecated: Use UpdateMyProfileShort instead.
+Deprecated: 2022-08-10 - Use UpdateMyProfileShort instead.
 
   UpdateMyProfile updates my profile
 
@@ -2505,7 +2505,7 @@ func (a *Client) UpdateMyProfileShort(params *UpdateMyProfileParams, authInfo ru
 }
 
 /*
-Deprecated: Use UpdateMyZipCodeShort instead.
+Deprecated: 2022-08-10 - Use UpdateMyZipCodeShort instead.
 
   UpdateMyZipCode updates my zip code
 
@@ -2614,7 +2614,7 @@ func (a *Client) UpdateMyZipCodeShort(params *UpdateMyZipCodeParams, authInfo ru
 }
 
 /*
-Deprecated: Use UpdatePrivateCustomAttributesPartiallyShort instead.
+Deprecated: 2022-08-10 - Use UpdatePrivateCustomAttributesPartiallyShort instead.
 
   UpdatePrivateCustomAttributesPartially updates partially private custom attributes tied to the user id
 
@@ -2728,7 +2728,7 @@ func (a *Client) UpdatePrivateCustomAttributesPartiallyShort(params *UpdatePriva
 }
 
 /*
-Deprecated: Use UpdateUserProfileShort instead.
+Deprecated: 2022-08-10 - Use UpdateUserProfileShort instead.
 
   UpdateUserProfile updates user profile
 
@@ -2842,7 +2842,7 @@ func (a *Client) UpdateUserProfileShort(params *UpdateUserProfileParams, authInf
 }
 
 /*
-Deprecated: Use UpdateUserProfileStatusShort instead.
+Deprecated: 2022-08-10 - Use UpdateUserProfileStatusShort instead.
 
   UpdateUserProfileStatus updates user profile status
 

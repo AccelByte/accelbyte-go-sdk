@@ -44,7 +44,7 @@ type ClientService interface {
 }
 
 /*
-Deprecated: Use AdminPutGameRecordConcurrentHandlerV1Short instead.
+Deprecated: 2022-08-10 - Use AdminPutGameRecordConcurrentHandlerV1Short instead.
 
   AdminPutGameRecordConcurrentHandlerV1 creates or replace game record
 
@@ -300,7 +300,7 @@ func (a *Client) AdminPutGameRecordConcurrentHandlerV1Short(params *AdminPutGame
 }
 
 /*
-Deprecated: Use AdminPutPlayerPublicRecordConcurrentHandlerV1Short instead.
+Deprecated: 2022-08-10 - Use AdminPutPlayerPublicRecordConcurrentHandlerV1Short instead.
 
   AdminPutPlayerPublicRecordConcurrentHandlerV1 creates or replace player public record
 
@@ -558,7 +558,7 @@ func (a *Client) AdminPutPlayerPublicRecordConcurrentHandlerV1Short(params *Admi
 }
 
 /*
-Deprecated: Use AdminPutPlayerRecordConcurrentHandlerV1Short instead.
+Deprecated: 2022-08-10 - Use AdminPutPlayerRecordConcurrentHandlerV1Short instead.
 
   AdminPutPlayerRecordConcurrentHandlerV1 creates or replace player private record
 

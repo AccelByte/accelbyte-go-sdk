@@ -39,7 +39,7 @@ func (aaa *PaymentAccountService) GetAuthSession() auth.Session {
 	}
 }
 
-// deprecated(2022-01-10): please use PublicGetPaymentAccountsShort instead.
+// Deprecated: 2022-01-10 - please use PublicGetPaymentAccountsShort instead.
 func (aaa *PaymentAccountService) PublicGetPaymentAccounts(input *payment_account.PublicGetPaymentAccountsParams) ([]*platformclientmodels.PaymentAccount, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -53,7 +53,7 @@ func (aaa *PaymentAccountService) PublicGetPaymentAccounts(input *payment_accoun
 	return ok.GetPayload(), nil
 }
 
-// deprecated(2022-01-10): please use PublicDeletePaymentAccountShort instead.
+// Deprecated: 2022-01-10 - please use PublicDeletePaymentAccountShort instead.
 func (aaa *PaymentAccountService) PublicDeletePaymentAccount(input *payment_account.PublicDeletePaymentAccountParams) error {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {

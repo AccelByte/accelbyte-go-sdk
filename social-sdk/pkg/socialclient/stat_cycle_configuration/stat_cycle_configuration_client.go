@@ -56,7 +56,7 @@ type ClientService interface {
 }
 
 /*
-Deprecated: Use BulkAddStatsShort instead.
+Deprecated: 2022-08-10 - Use BulkAddStatsShort instead.
 
   BulkAddStats bulks add stat cycle to stats
 
@@ -155,7 +155,7 @@ func (a *Client) BulkAddStatsShort(params *BulkAddStatsParams, authInfo runtime.
 }
 
 /*
-Deprecated: Use CreateStatCycleShort instead.
+Deprecated: 2022-08-10 - Use CreateStatCycleShort instead.
 
   CreateStatCycle creates stat cycle
 
@@ -254,7 +254,7 @@ func (a *Client) CreateStatCycleShort(params *CreateStatCycleParams, authInfo ru
 }
 
 /*
-Deprecated: Use DeleteStatCycleShort instead.
+Deprecated: 2022-08-10 - Use DeleteStatCycleShort instead.
 
   DeleteStatCycle deletes stat cycle
 
@@ -353,7 +353,7 @@ func (a *Client) DeleteStatCycleShort(params *DeleteStatCycleParams, authInfo ru
 }
 
 /*
-Deprecated: Use GetStatCycleShort instead.
+Deprecated: 2022-08-10 - Use GetStatCycleShort instead.
 
   GetStatCycle gets stat cycle
 
@@ -452,7 +452,7 @@ func (a *Client) GetStatCycleShort(params *GetStatCycleParams, authInfo runtime.
 }
 
 /*
-Deprecated: Use GetStatCycle1Short instead.
+Deprecated: 2022-08-10 - Use GetStatCycle1Short instead.
 
   GetStatCycle1 gets stat cycle
 
@@ -551,7 +551,7 @@ func (a *Client) GetStatCycle1Short(params *GetStatCycle1Params, authInfo runtim
 }
 
 /*
-Deprecated: Use GetStatCyclesShort instead.
+Deprecated: 2022-08-10 - Use GetStatCyclesShort instead.
 
   GetStatCycles lists stat cycles
 
@@ -645,7 +645,7 @@ func (a *Client) GetStatCyclesShort(params *GetStatCyclesParams, authInfo runtim
 }
 
 /*
-Deprecated: Use GetStatCycles1Short instead.
+Deprecated: 2022-08-10 - Use GetStatCycles1Short instead.
 
   GetStatCycles1 lists stat cycles
 
@@ -739,7 +739,7 @@ func (a *Client) GetStatCycles1Short(params *GetStatCycles1Params, authInfo runt
 }
 
 /*
-Deprecated: Use StopStatCycleShort instead.
+Deprecated: 2022-08-10 - Use StopStatCycleShort instead.
 
   StopStatCycle stops stat cycle
 
@@ -843,7 +843,7 @@ func (a *Client) StopStatCycleShort(params *StopStatCycleParams, authInfo runtim
 }
 
 /*
-Deprecated: Use UpdateStatCycleShort instead.
+Deprecated: 2022-08-10 - Use UpdateStatCycleShort instead.
 
   UpdateStatCycle updates stat cycle
 

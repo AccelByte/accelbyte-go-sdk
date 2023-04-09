@@ -40,7 +40,7 @@ type ClientService interface {
 }
 
 /*
-Deprecated: Use AnonymizeUserAgreementShort instead.
+Deprecated: 2022-08-10 - Use AnonymizeUserAgreementShort instead.
 
   AnonymizeUserAgreement anonymizes user s agreement record
 

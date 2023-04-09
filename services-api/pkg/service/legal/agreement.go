@@ -39,7 +39,7 @@ func (aaa *AgreementService) GetAuthSession() auth.Session {
 	}
 }
 
-// deprecated(2022-01-10): please use ChangePreferenceConsentShort instead.
+// Deprecated: 2022-01-10 - please use ChangePreferenceConsentShort instead.
 func (aaa *AgreementService) ChangePreferenceConsent(input *agreement.ChangePreferenceConsentParams) error {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -56,7 +56,7 @@ func (aaa *AgreementService) ChangePreferenceConsent(input *agreement.ChangePref
 	return nil
 }
 
-// deprecated(2022-01-10): please use RetrieveAcceptedAgreementsShort instead.
+// Deprecated: 2022-01-10 - please use RetrieveAcceptedAgreementsShort instead.
 func (aaa *AgreementService) RetrieveAcceptedAgreements(input *agreement.RetrieveAcceptedAgreementsParams) ([]*legalclientmodels.RetrieveAcceptedAgreementResponse, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -70,8 +70,8 @@ func (aaa *AgreementService) RetrieveAcceptedAgreements(input *agreement.Retriev
 	return ok.GetPayload(), nil
 }
 
-// deprecated(2022-01-10): please use RetrieveAllUsersByPolicyVersionShort instead.
-func (aaa *AgreementService) RetrieveAllUsersByPolicyVersion(input *agreement.RetrieveAllUsersByPolicyVersionParams) ([]*legalclientmodels.PagedRetrieveUserAcceptedAgreementResponse, error) {
+// Deprecated: 2022-01-10 - please use RetrieveAllUsersByPolicyVersionShort instead.
+func (aaa *AgreementService) RetrieveAllUsersByPolicyVersion(input *agreement.RetrieveAllUsersByPolicyVersionParams) (*legalclientmodels.PagedRetrieveUserAcceptedAgreementResponse, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
@@ -87,7 +87,7 @@ func (aaa *AgreementService) RetrieveAllUsersByPolicyVersion(input *agreement.Re
 	return ok.GetPayload(), nil
 }
 
-// deprecated(2022-01-10): please use ChangePreferenceConsent1Short instead.
+// Deprecated: 2022-01-10 - please use ChangePreferenceConsent1Short instead.
 func (aaa *AgreementService) ChangePreferenceConsent1(input *agreement.ChangePreferenceConsent1Params) error {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -104,7 +104,7 @@ func (aaa *AgreementService) ChangePreferenceConsent1(input *agreement.ChangePre
 	return nil
 }
 
-// deprecated(2022-01-10): please use AcceptVersionedPolicyShort instead.
+// Deprecated: 2022-01-10 - please use AcceptVersionedPolicyShort instead.
 func (aaa *AgreementService) AcceptVersionedPolicy(input *agreement.AcceptVersionedPolicyParams) error {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -121,7 +121,7 @@ func (aaa *AgreementService) AcceptVersionedPolicy(input *agreement.AcceptVersio
 	return nil
 }
 
-// deprecated(2022-01-10): please use RetrieveAgreementsPublicShort instead.
+// Deprecated: 2022-01-10 - please use RetrieveAgreementsPublicShort instead.
 func (aaa *AgreementService) RetrieveAgreementsPublic(input *agreement.RetrieveAgreementsPublicParams) ([]*legalclientmodels.RetrieveAcceptedAgreementResponse, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -138,7 +138,7 @@ func (aaa *AgreementService) RetrieveAgreementsPublic(input *agreement.RetrieveA
 	return ok.GetPayload(), nil
 }
 
-// deprecated(2022-01-10): please use BulkAcceptVersionedPolicyShort instead.
+// Deprecated: 2022-01-10 - please use BulkAcceptVersionedPolicyShort instead.
 func (aaa *AgreementService) BulkAcceptVersionedPolicy(input *agreement.BulkAcceptVersionedPolicyParams) (*legalclientmodels.AcceptAgreementResponse, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -155,7 +155,7 @@ func (aaa *AgreementService) BulkAcceptVersionedPolicy(input *agreement.BulkAcce
 	return created.GetPayload(), nil
 }
 
-// deprecated(2022-01-10): please use IndirectBulkAcceptVersionedPolicyV2Short instead.
+// Deprecated: 2022-01-10 - please use IndirectBulkAcceptVersionedPolicyV2Short instead.
 func (aaa *AgreementService) IndirectBulkAcceptVersionedPolicyV2(input *agreement.IndirectBulkAcceptVersionedPolicyV2Params) (*legalclientmodels.AcceptAgreementResponse, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -169,7 +169,7 @@ func (aaa *AgreementService) IndirectBulkAcceptVersionedPolicyV2(input *agreemen
 	return created.GetPayload(), nil
 }
 
-// deprecated(2022-01-10): please use IndirectBulkAcceptVersionedPolicy1Short instead.
+// Deprecated: 2022-01-10 - please use IndirectBulkAcceptVersionedPolicy1Short instead.
 func (aaa *AgreementService) IndirectBulkAcceptVersionedPolicy1(input *agreement.IndirectBulkAcceptVersionedPolicy1Params) (*legalclientmodels.AcceptAgreementResponse, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -236,7 +236,7 @@ func (aaa *AgreementService) RetrieveAcceptedAgreementsShort(input *agreement.Re
 	return ok.GetPayload(), nil
 }
 
-func (aaa *AgreementService) RetrieveAllUsersByPolicyVersionShort(input *agreement.RetrieveAllUsersByPolicyVersionParams) ([]*legalclientmodels.PagedRetrieveUserAcceptedAgreementResponse, error) {
+func (aaa *AgreementService) RetrieveAllUsersByPolicyVersionShort(input *agreement.RetrieveAllUsersByPolicyVersionParams) (*legalclientmodels.PagedRetrieveUserAcceptedAgreementResponse, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{

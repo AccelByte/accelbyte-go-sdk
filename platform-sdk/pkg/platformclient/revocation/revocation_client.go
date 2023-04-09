@@ -37,8 +37,8 @@ type ClientService interface {
 	DeleteRevocationConfigShort(params *DeleteRevocationConfigParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteRevocationConfigNoContent, error)
 	DoRevocation(params *DoRevocationParams, authInfo runtime.ClientAuthInfoWriter) (*DoRevocationOK, error)
 	DoRevocationShort(params *DoRevocationParams, authInfo runtime.ClientAuthInfoWriter) (*DoRevocationOK, error)
-	GetPaymentCallbackConfig1(params *GetPaymentCallbackConfig1Params, authInfo runtime.ClientAuthInfoWriter) (*GetPaymentCallbackConfig1OK, *GetPaymentCallbackConfig1NotFound, error)
-	GetPaymentCallbackConfig1Short(params *GetPaymentCallbackConfig1Params, authInfo runtime.ClientAuthInfoWriter) (*GetPaymentCallbackConfig1OK, error)
+	GetRevocationConfig(params *GetRevocationConfigParams, authInfo runtime.ClientAuthInfoWriter) (*GetRevocationConfigOK, *GetRevocationConfigNotFound, error)
+	GetRevocationConfigShort(params *GetRevocationConfigParams, authInfo runtime.ClientAuthInfoWriter) (*GetRevocationConfigOK, error)
 	QueryRevocationHistories(params *QueryRevocationHistoriesParams, authInfo runtime.ClientAuthInfoWriter) (*QueryRevocationHistoriesOK, error)
 	QueryRevocationHistoriesShort(params *QueryRevocationHistoriesParams, authInfo runtime.ClientAuthInfoWriter) (*QueryRevocationHistoriesOK, error)
 	UpdateRevocationConfig(params *UpdateRevocationConfigParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateRevocationConfigOK, error)
@@ -48,7 +48,7 @@ type ClientService interface {
 }
 
 /*
-Deprecated: Use DeleteRevocationConfigShort instead.
+Deprecated: 2022-08-10 - Use DeleteRevocationConfigShort instead.
 
   DeleteRevocationConfig deletes revocation config
 
@@ -142,7 +142,7 @@ func (a *Client) DeleteRevocationConfigShort(params *DeleteRevocationConfigParam
 }
 
 /*
-Deprecated: Use DoRevocationShort instead.
+Deprecated: 2022-08-10 - Use DoRevocationShort instead.
 
   DoRevocation dos revocation
 
@@ -236,16 +236,16 @@ func (a *Client) DoRevocationShort(params *DoRevocationParams, authInfo runtime.
 }
 
 /*
-Deprecated: Use GetPaymentCallbackConfig1Short instead.
+Deprecated: 2022-08-10 - Use GetRevocationConfigShort instead.
 
-  GetPaymentCallbackConfig1 gets revocation configuration
+  GetRevocationConfig gets revocation configuration
 
   Get revocation configuration.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=ADMIN:NAMESPACE:{namespace}:REVOCATION, action=2 (READ)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: Revocation config&lt;/li&gt;&lt;/ul&gt;
 */
-func (a *Client) GetPaymentCallbackConfig1(params *GetPaymentCallbackConfig1Params, authInfo runtime.ClientAuthInfoWriter) (*GetPaymentCallbackConfig1OK, *GetPaymentCallbackConfig1NotFound, error) {
+func (a *Client) GetRevocationConfig(params *GetRevocationConfigParams, authInfo runtime.ClientAuthInfoWriter) (*GetRevocationConfigOK, *GetRevocationConfigNotFound, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
-		params = NewGetPaymentCallbackConfig1Params()
+		params = NewGetRevocationConfigParams()
 	}
 
 	if params.Context == nil {
@@ -257,14 +257,14 @@ func (a *Client) GetPaymentCallbackConfig1(params *GetPaymentCallbackConfig1Para
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
-		ID:                 "getPaymentCallbackConfig_1",
+		ID:                 "getRevocationConfig",
 		Method:             "GET",
 		PathPattern:        "/platform/admin/namespaces/{namespace}/revocation/config",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
 		Params:             params,
-		Reader:             &GetPaymentCallbackConfig1Reader{formats: a.formats},
+		Reader:             &GetRevocationConfigReader{formats: a.formats},
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
@@ -275,10 +275,10 @@ func (a *Client) GetPaymentCallbackConfig1(params *GetPaymentCallbackConfig1Para
 
 	switch v := result.(type) {
 
-	case *GetPaymentCallbackConfig1OK:
+	case *GetRevocationConfigOK:
 		return v, nil, nil
 
-	case *GetPaymentCallbackConfig1NotFound:
+	case *GetRevocationConfigNotFound:
 		return nil, v, nil
 
 	default:
@@ -287,14 +287,14 @@ func (a *Client) GetPaymentCallbackConfig1(params *GetPaymentCallbackConfig1Para
 }
 
 /*
-  GetPaymentCallbackConfig1Short gets revocation configuration
+  GetRevocationConfigShort gets revocation configuration
 
   Get revocation configuration.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=ADMIN:NAMESPACE:{namespace}:REVOCATION, action=2 (READ)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: Revocation config&lt;/li&gt;&lt;/ul&gt;
 */
-func (a *Client) GetPaymentCallbackConfig1Short(params *GetPaymentCallbackConfig1Params, authInfo runtime.ClientAuthInfoWriter) (*GetPaymentCallbackConfig1OK, error) {
+func (a *Client) GetRevocationConfigShort(params *GetRevocationConfigParams, authInfo runtime.ClientAuthInfoWriter) (*GetRevocationConfigOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
-		params = NewGetPaymentCallbackConfig1Params()
+		params = NewGetRevocationConfigParams()
 	}
 
 	if params.Context == nil {
@@ -306,14 +306,14 @@ func (a *Client) GetPaymentCallbackConfig1Short(params *GetPaymentCallbackConfig
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
-		ID:                 "getPaymentCallbackConfig_1",
+		ID:                 "getRevocationConfig",
 		Method:             "GET",
 		PathPattern:        "/platform/admin/namespaces/{namespace}/revocation/config",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
 		Params:             params,
-		Reader:             &GetPaymentCallbackConfig1Reader{formats: a.formats},
+		Reader:             &GetRevocationConfigReader{formats: a.formats},
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
@@ -324,9 +324,9 @@ func (a *Client) GetPaymentCallbackConfig1Short(params *GetPaymentCallbackConfig
 
 	switch v := result.(type) {
 
-	case *GetPaymentCallbackConfig1OK:
+	case *GetRevocationConfigOK:
 		return v, nil
-	case *GetPaymentCallbackConfig1NotFound:
+	case *GetRevocationConfigNotFound:
 		return nil, v
 
 	default:
@@ -335,7 +335,7 @@ func (a *Client) GetPaymentCallbackConfig1Short(params *GetPaymentCallbackConfig
 }
 
 /*
-Deprecated: Use QueryRevocationHistoriesShort instead.
+Deprecated: 2022-08-10 - Use QueryRevocationHistoriesShort instead.
 
   QueryRevocationHistories queries revocation histories
 
@@ -429,7 +429,7 @@ func (a *Client) QueryRevocationHistoriesShort(params *QueryRevocationHistoriesP
 }
 
 /*
-Deprecated: Use UpdateRevocationConfigShort instead.
+Deprecated: 2022-08-10 - Use UpdateRevocationConfigShort instead.
 
   UpdateRevocationConfig updates revocation configuration
 

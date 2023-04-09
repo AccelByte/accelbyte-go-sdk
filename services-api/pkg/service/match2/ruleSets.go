@@ -39,7 +39,7 @@ func (aaa *RuleSetsService) GetAuthSession() auth.Session {
 	}
 }
 
-// deprecated(2022-01-10): please use RuleSetListShort instead.
+// Deprecated: 2022-01-10 - please use RuleSetListShort instead.
 func (aaa *RuleSetsService) RuleSetList(input *rule_sets.RuleSetListParams) (*match2clientmodels.APIListRuleSetsResponse, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -62,7 +62,7 @@ func (aaa *RuleSetsService) RuleSetList(input *rule_sets.RuleSetListParams) (*ma
 	return ok.GetPayload(), nil
 }
 
-// deprecated(2022-01-10): please use CreateRuleSetShort instead.
+// Deprecated: 2022-01-10 - please use CreateRuleSetShort instead.
 func (aaa *RuleSetsService) CreateRuleSet(input *rule_sets.CreateRuleSetParams) error {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -91,7 +91,7 @@ func (aaa *RuleSetsService) CreateRuleSet(input *rule_sets.CreateRuleSetParams) 
 	return nil
 }
 
-// deprecated(2022-01-10): please use RuleSetDetailsShort instead.
+// Deprecated: 2022-01-10 - please use RuleSetDetailsShort instead.
 func (aaa *RuleSetsService) RuleSetDetails(input *rule_sets.RuleSetDetailsParams) (*match2clientmodels.APIRuleSetPayload, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -114,7 +114,7 @@ func (aaa *RuleSetsService) RuleSetDetails(input *rule_sets.RuleSetDetailsParams
 	return ok.GetPayload(), nil
 }
 
-// deprecated(2022-01-10): please use UpdateRuleSetShort instead.
+// Deprecated: 2022-01-10 - please use UpdateRuleSetShort instead.
 func (aaa *RuleSetsService) UpdateRuleSet(input *rule_sets.UpdateRuleSetParams) (*match2clientmodels.APIRuleSetPayload, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -143,7 +143,7 @@ func (aaa *RuleSetsService) UpdateRuleSet(input *rule_sets.UpdateRuleSetParams) 
 	return ok.GetPayload(), nil
 }
 
-// deprecated(2022-01-10): please use DeleteRuleSetShort instead.
+// Deprecated: 2022-01-10 - please use DeleteRuleSetShort instead.
 func (aaa *RuleSetsService) DeleteRuleSet(input *rule_sets.DeleteRuleSetParams) error {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {

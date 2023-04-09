@@ -12,10 +12,10 @@ import (
 	"github.com/go-openapi/validate"
 )
 
-// ModelsContentRequest models content request
+// ModelsUpdateContentRequest models update content request
 //
-// swagger:model models.ContentRequest
-type ModelsContentRequest struct {
+// swagger:model models.UpdateContentRequest
+type ModelsUpdateContentRequest struct {
 
 	// content type
 	// Required: true
@@ -60,8 +60,8 @@ type ModelsContentRequest struct {
 	UpdateContentFile *bool `json:"updateContentFile"`
 }
 
-// Validate validates this models content request
-func (m *ModelsContentRequest) Validate(formats strfmt.Registry) error {
+// Validate validates this models update content request
+func (m *ModelsUpdateContentRequest) Validate(formats strfmt.Registry) error {
 	var res []error
 
 	if err := m.validateContentType(formats); err != nil {
@@ -110,7 +110,7 @@ func (m *ModelsContentRequest) Validate(formats strfmt.Registry) error {
 	return nil
 }
 
-func (m *ModelsContentRequest) validateContentType(formats strfmt.Registry) error {
+func (m *ModelsUpdateContentRequest) validateContentType(formats strfmt.Registry) error {
 
 	if err := validate.Required("contentType", "body", m.ContentType); err != nil {
 		return err
@@ -119,7 +119,7 @@ func (m *ModelsContentRequest) validateContentType(formats strfmt.Registry) erro
 	return nil
 }
 
-func (m *ModelsContentRequest) validateFileExtension(formats strfmt.Registry) error {
+func (m *ModelsUpdateContentRequest) validateFileExtension(formats strfmt.Registry) error {
 
 	if err := validate.Required("fileExtension", "body", m.FileExtension); err != nil {
 		return err
@@ -128,7 +128,7 @@ func (m *ModelsContentRequest) validateFileExtension(formats strfmt.Registry) er
 	return nil
 }
 
-func (m *ModelsContentRequest) validateName(formats strfmt.Registry) error {
+func (m *ModelsUpdateContentRequest) validateName(formats strfmt.Registry) error {
 
 	if err := validate.Required("name", "body", m.Name); err != nil {
 		return err
@@ -137,7 +137,7 @@ func (m *ModelsContentRequest) validateName(formats strfmt.Registry) error {
 	return nil
 }
 
-func (m *ModelsContentRequest) validatePayload(formats strfmt.Registry) error {
+func (m *ModelsUpdateContentRequest) validatePayload(formats strfmt.Registry) error {
 
 	if err := validate.Required("payload", "body", m.Payload); err != nil {
 		return err
@@ -146,7 +146,7 @@ func (m *ModelsContentRequest) validatePayload(formats strfmt.Registry) error {
 	return nil
 }
 
-func (m *ModelsContentRequest) validatePreview(formats strfmt.Registry) error {
+func (m *ModelsUpdateContentRequest) validatePreview(formats strfmt.Registry) error {
 
 	if err := validate.Required("preview", "body", m.Preview); err != nil {
 		return err
@@ -155,7 +155,7 @@ func (m *ModelsContentRequest) validatePreview(formats strfmt.Registry) error {
 	return nil
 }
 
-func (m *ModelsContentRequest) validatePreviewMetadata(formats strfmt.Registry) error {
+func (m *ModelsUpdateContentRequest) validatePreviewMetadata(formats strfmt.Registry) error {
 
 	if swag.IsZero(m.PreviewMetadata) { // not required
 		return nil
@@ -173,7 +173,7 @@ func (m *ModelsContentRequest) validatePreviewMetadata(formats strfmt.Registry) 
 	return nil
 }
 
-func (m *ModelsContentRequest) validateSubType(formats strfmt.Registry) error {
+func (m *ModelsUpdateContentRequest) validateSubType(formats strfmt.Registry) error {
 
 	if err := validate.Required("subType", "body", m.SubType); err != nil {
 		return err
@@ -182,7 +182,7 @@ func (m *ModelsContentRequest) validateSubType(formats strfmt.Registry) error {
 	return nil
 }
 
-func (m *ModelsContentRequest) validateTags(formats strfmt.Registry) error {
+func (m *ModelsUpdateContentRequest) validateTags(formats strfmt.Registry) error {
 
 	if err := validate.Required("tags", "body", m.Tags); err != nil {
 		return err
@@ -191,7 +191,7 @@ func (m *ModelsContentRequest) validateTags(formats strfmt.Registry) error {
 	return nil
 }
 
-func (m *ModelsContentRequest) validateType(formats strfmt.Registry) error {
+func (m *ModelsUpdateContentRequest) validateType(formats strfmt.Registry) error {
 
 	if err := validate.Required("type", "body", m.Type); err != nil {
 		return err
@@ -200,7 +200,7 @@ func (m *ModelsContentRequest) validateType(formats strfmt.Registry) error {
 	return nil
 }
 
-func (m *ModelsContentRequest) validateUpdateContentFile(formats strfmt.Registry) error {
+func (m *ModelsUpdateContentRequest) validateUpdateContentFile(formats strfmt.Registry) error {
 
 	if err := validate.Required("updateContentFile", "body", m.UpdateContentFile); err != nil {
 		return err
@@ -210,7 +210,7 @@ func (m *ModelsContentRequest) validateUpdateContentFile(formats strfmt.Registry
 }
 
 // MarshalBinary interface implementation
-func (m *ModelsContentRequest) MarshalBinary() ([]byte, error) {
+func (m *ModelsUpdateContentRequest) MarshalBinary() ([]byte, error) {
 	if m == nil {
 		return nil, nil
 	}
@@ -218,8 +218,8 @@ func (m *ModelsContentRequest) MarshalBinary() ([]byte, error) {
 }
 
 // UnmarshalBinary interface implementation
-func (m *ModelsContentRequest) UnmarshalBinary(b []byte) error {
-	var res ModelsContentRequest
+func (m *ModelsUpdateContentRequest) UnmarshalBinary(b []byte) error {
+	var res ModelsUpdateContentRequest
 	if err := swag.ReadJSON(b, &res); err != nil {
 		return err
 	}

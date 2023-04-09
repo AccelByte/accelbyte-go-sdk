@@ -52,7 +52,7 @@ type ClientService interface {
 }
 
 /*
-Deprecated: Use AdminCreateConfigurationTemplateV1Short instead.
+Deprecated: 2022-08-10 - Use AdminCreateConfigurationTemplateV1Short instead.
 
   AdminCreateConfigurationTemplateV1 creates configuration template requires a d m i n n a m e s p a c e namespace s e s s i o n c o n f i g u r a t i o n c r e a t e
 
@@ -197,7 +197,7 @@ func (a *Client) AdminCreateConfigurationTemplateV1Short(params *AdminCreateConf
 }
 
 /*
-Deprecated: Use AdminDeleteConfigurationTemplateV1Short instead.
+Deprecated: 2022-08-10 - Use AdminDeleteConfigurationTemplateV1Short instead.
 
   AdminDeleteConfigurationTemplateV1 deletes configuration template requires a d m i n n a m e s p a c e namespace s e s s i o n c o n f i g u r a t i o n d e l e t e
 
@@ -311,7 +311,7 @@ func (a *Client) AdminDeleteConfigurationTemplateV1Short(params *AdminDeleteConf
 }
 
 /*
-Deprecated: Use AdminGetAllConfigurationTemplatesV1Short instead.
+Deprecated: 2022-08-10 - Use AdminGetAllConfigurationTemplatesV1Short instead.
 
   AdminGetAllConfigurationTemplatesV1 gets configuration templates requires a d m i n n a m e s p a c e namespace s e s s i o n c o n f i g u r a t i o n r e a d
 
@@ -425,7 +425,7 @@ func (a *Client) AdminGetAllConfigurationTemplatesV1Short(params *AdminGetAllCon
 }
 
 /*
-Deprecated: Use AdminGetConfigurationTemplateV1Short instead.
+Deprecated: 2022-08-10 - Use AdminGetConfigurationTemplateV1Short instead.
 
   AdminGetConfigurationTemplateV1 gets configuration template requires a d m i n n a m e s p a c e namespace s e s s i o n c o n f i g u r a t i o n r e a d
 
@@ -544,7 +544,7 @@ func (a *Client) AdminGetConfigurationTemplateV1Short(params *AdminGetConfigurat
 }
 
 /*
-Deprecated: Use AdminGetDSMCConfigurationShort instead.
+Deprecated: 2022-08-10 - Use AdminGetDSMCConfigurationShort instead.
 
   AdminGetDSMCConfiguration gets dsmc configuration requires a d m i n n a m e s p a c e namespace s e s s i o n c o n f i g u r a t i o n r e a d
 
@@ -663,7 +663,7 @@ func (a *Client) AdminGetDSMCConfigurationShort(params *AdminGetDSMCConfiguratio
 }
 
 /*
-Deprecated: Use AdminSyncDSMCConfigurationShort instead.
+Deprecated: 2022-08-10 - Use AdminSyncDSMCConfigurationShort instead.
 
   AdminSyncDSMCConfiguration syncs dsmc configuration requires a d m i n n a m e s p a c e namespace s e s s i o n c o n f i g u r a t i o n r e a d
 
@@ -782,7 +782,7 @@ func (a *Client) AdminSyncDSMCConfigurationShort(params *AdminSyncDSMCConfigurat
 }
 
 /*
-Deprecated: Use AdminUpdateConfigurationTemplateV1Short instead.
+Deprecated: 2022-08-10 - Use AdminUpdateConfigurationTemplateV1Short instead.
 
   AdminUpdateConfigurationTemplateV1 updates configuration template requires a d m i n n a m e s p a c e namespace s e s s i o n c o n f i g u r a t i o n u p d a t e
 

@@ -39,7 +39,7 @@ func (aaa *ItemService) GetAuthSession() auth.Session {
 	}
 }
 
-// deprecated(2022-01-10): please use ListItemTypeConfigsShort instead.
+// Deprecated: 2022-01-10 - please use ListItemTypeConfigsShort instead.
 func (aaa *ItemService) ListItemTypeConfigs(input *item.ListItemTypeConfigsParams) ([]*platformclientmodels.ItemTypeConfigInfo, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -53,7 +53,7 @@ func (aaa *ItemService) ListItemTypeConfigs(input *item.ListItemTypeConfigsParam
 	return ok.GetPayload(), nil
 }
 
-// deprecated(2022-01-10): please use CreateItemTypeConfigShort instead.
+// Deprecated: 2022-01-10 - please use CreateItemTypeConfigShort instead.
 func (aaa *ItemService) CreateItemTypeConfig(input *item.CreateItemTypeConfigParams) error {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -76,7 +76,7 @@ func (aaa *ItemService) CreateItemTypeConfig(input *item.CreateItemTypeConfigPar
 	return nil
 }
 
-// deprecated(2022-01-10): please use SearchItemTypeConfigShort instead.
+// Deprecated: 2022-01-10 - please use SearchItemTypeConfigShort instead.
 func (aaa *ItemService) SearchItemTypeConfig(input *item.SearchItemTypeConfigParams) (*platformclientmodels.ItemTypeConfigInfo, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -93,7 +93,7 @@ func (aaa *ItemService) SearchItemTypeConfig(input *item.SearchItemTypeConfigPar
 	return ok.GetPayload(), nil
 }
 
-// deprecated(2022-01-10): please use GetItemTypeConfigShort instead.
+// Deprecated: 2022-01-10 - please use GetItemTypeConfigShort instead.
 func (aaa *ItemService) GetItemTypeConfig(input *item.GetItemTypeConfigParams) (*platformclientmodels.ItemTypeConfigInfo, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -110,7 +110,7 @@ func (aaa *ItemService) GetItemTypeConfig(input *item.GetItemTypeConfigParams) (
 	return ok.GetPayload(), nil
 }
 
-// deprecated(2022-01-10): please use UpdateItemTypeConfigShort instead.
+// Deprecated: 2022-01-10 - please use UpdateItemTypeConfigShort instead.
 func (aaa *ItemService) UpdateItemTypeConfig(input *item.UpdateItemTypeConfigParams) (*platformclientmodels.ItemTypeConfigInfo, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -133,7 +133,7 @@ func (aaa *ItemService) UpdateItemTypeConfig(input *item.UpdateItemTypeConfigPar
 	return ok.GetPayload(), nil
 }
 
-// deprecated(2022-01-10): please use DeleteItemTypeConfigShort instead.
+// Deprecated: 2022-01-10 - please use DeleteItemTypeConfigShort instead.
 func (aaa *ItemService) DeleteItemTypeConfig(input *item.DeleteItemTypeConfigParams) error {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -150,7 +150,7 @@ func (aaa *ItemService) DeleteItemTypeConfig(input *item.DeleteItemTypeConfigPar
 	return nil
 }
 
-// deprecated(2022-01-10): please use SyncInGameItemShort instead.
+// Deprecated: 2022-01-10 - please use SyncInGameItemShort instead.
 func (aaa *ItemService) SyncInGameItem(input *item.SyncInGameItemParams) (*platformclientmodels.FullItemInfo, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -176,7 +176,7 @@ func (aaa *ItemService) SyncInGameItem(input *item.SyncInGameItemParams) (*platf
 	return ok.GetPayload(), nil
 }
 
-// deprecated(2022-01-10): please use CreateItemShort instead.
+// Deprecated: 2022-01-10 - please use CreateItemShort instead.
 func (aaa *ItemService) CreateItem(input *item.CreateItemParams) (*platformclientmodels.FullItemInfo, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -202,7 +202,7 @@ func (aaa *ItemService) CreateItem(input *item.CreateItemParams) (*platformclien
 	return created.GetPayload(), nil
 }
 
-// deprecated(2022-01-10): please use GetItemByAppIDShort instead.
+// Deprecated: 2022-01-10 - please use GetItemByAppIDShort instead.
 func (aaa *ItemService) GetItemByAppID(input *item.GetItemByAppIDParams) (*platformclientmodels.FullItemInfo, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -219,7 +219,7 @@ func (aaa *ItemService) GetItemByAppID(input *item.GetItemByAppIDParams) (*platf
 	return ok.GetPayload(), nil
 }
 
-// deprecated(2022-01-10): please use QueryItemsShort instead.
+// Deprecated: 2022-01-10 - please use QueryItemsShort instead.
 func (aaa *ItemService) QueryItems(input *item.QueryItemsParams) (*platformclientmodels.FullItemPagingSlicedResult, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -239,7 +239,7 @@ func (aaa *ItemService) QueryItems(input *item.QueryItemsParams) (*platformclien
 	return ok.GetPayload(), nil
 }
 
-// deprecated(2022-01-10): please use ListBasicItemsByFeaturesShort instead.
+// Deprecated: 2022-01-10 - please use ListBasicItemsByFeaturesShort instead.
 func (aaa *ItemService) ListBasicItemsByFeatures(input *item.ListBasicItemsByFeaturesParams) ([]*platformclientmodels.BasicItem, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -253,7 +253,7 @@ func (aaa *ItemService) ListBasicItemsByFeatures(input *item.ListBasicItemsByFea
 	return ok.GetPayload(), nil
 }
 
-// deprecated(2022-01-10): please use GetItemBySkuShort instead.
+// Deprecated: 2022-01-10 - please use GetItemBySkuShort instead.
 func (aaa *ItemService) GetItemBySku(input *item.GetItemBySkuParams) (*platformclientmodels.FullItemInfo, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -270,7 +270,7 @@ func (aaa *ItemService) GetItemBySku(input *item.GetItemBySkuParams) (*platformc
 	return ok.GetPayload(), nil
 }
 
-// deprecated(2022-01-10): please use GetLocaleItemBySkuShort instead.
+// Deprecated: 2022-01-10 - please use GetLocaleItemBySkuShort instead.
 func (aaa *ItemService) GetLocaleItemBySku(input *item.GetLocaleItemBySkuParams) (*platformclientmodels.PopulatedItemInfo, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -287,7 +287,7 @@ func (aaa *ItemService) GetLocaleItemBySku(input *item.GetLocaleItemBySkuParams)
 	return ok.GetPayload(), nil
 }
 
-// deprecated(2022-01-10): please use GetItemIDBySkuShort instead.
+// Deprecated: 2022-01-10 - please use GetItemIDBySkuShort instead.
 func (aaa *ItemService) GetItemIDBySku(input *item.GetItemIDBySkuParams) (*platformclientmodels.ItemID, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -304,7 +304,7 @@ func (aaa *ItemService) GetItemIDBySku(input *item.GetItemIDBySkuParams) (*platf
 	return ok.GetPayload(), nil
 }
 
-// deprecated(2022-01-10): please use GetBulkItemIDBySkusShort instead.
+// Deprecated: 2022-01-10 - please use GetBulkItemIDBySkusShort instead.
 func (aaa *ItemService) GetBulkItemIDBySkus(input *item.GetBulkItemIDBySkusParams) ([]*platformclientmodels.ItemID, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -318,7 +318,7 @@ func (aaa *ItemService) GetBulkItemIDBySkus(input *item.GetBulkItemIDBySkusParam
 	return ok.GetPayload(), nil
 }
 
-// deprecated(2022-01-10): please use BulkGetLocaleItemsShort instead.
+// Deprecated: 2022-01-10 - please use BulkGetLocaleItemsShort instead.
 func (aaa *ItemService) BulkGetLocaleItems(input *item.BulkGetLocaleItemsParams) ([]*platformclientmodels.ItemInfo, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -335,7 +335,7 @@ func (aaa *ItemService) BulkGetLocaleItems(input *item.BulkGetLocaleItemsParams)
 	return ok.GetPayload(), nil
 }
 
-// deprecated(2022-01-10): please use GetAvailablePredicateTypesShort instead.
+// Deprecated: 2022-01-10 - please use GetAvailablePredicateTypesShort instead.
 func (aaa *ItemService) GetAvailablePredicateTypes(input *item.GetAvailablePredicateTypesParams) ([]*platformclientmodels.AvailablePredicate, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -352,7 +352,7 @@ func (aaa *ItemService) GetAvailablePredicateTypes(input *item.GetAvailablePredi
 	return ok.GetPayload(), nil
 }
 
-// deprecated(2022-01-10): please use ValidateItemPurchaseConditionShort instead.
+// Deprecated: 2022-01-10 - please use ValidateItemPurchaseConditionShort instead.
 func (aaa *ItemService) ValidateItemPurchaseCondition(input *item.ValidateItemPurchaseConditionParams) ([]*platformclientmodels.ItemPurchaseConditionValidateResult, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -369,7 +369,7 @@ func (aaa *ItemService) ValidateItemPurchaseCondition(input *item.ValidateItemPu
 	return ok.GetPayload(), nil
 }
 
-// deprecated(2022-01-10): please use BulkUpdateRegionDataShort instead.
+// Deprecated: 2022-01-10 - please use BulkUpdateRegionDataShort instead.
 func (aaa *ItemService) BulkUpdateRegionData(input *item.BulkUpdateRegionDataParams) error {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -395,7 +395,7 @@ func (aaa *ItemService) BulkUpdateRegionData(input *item.BulkUpdateRegionDataPar
 	return nil
 }
 
-// deprecated(2022-01-10): please use SearchItemsShort instead.
+// Deprecated: 2022-01-10 - please use SearchItemsShort instead.
 func (aaa *ItemService) SearchItems(input *item.SearchItemsParams) (*platformclientmodels.FullItemPagingSlicedResult, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -412,7 +412,7 @@ func (aaa *ItemService) SearchItems(input *item.SearchItemsParams) (*platformcli
 	return ok.GetPayload(), nil
 }
 
-// deprecated(2022-01-10): please use QueryUncategorizedItemsShort instead.
+// Deprecated: 2022-01-10 - please use QueryUncategorizedItemsShort instead.
 func (aaa *ItemService) QueryUncategorizedItems(input *item.QueryUncategorizedItemsParams) (*platformclientmodels.FullItemPagingSlicedResult, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -432,7 +432,7 @@ func (aaa *ItemService) QueryUncategorizedItems(input *item.QueryUncategorizedIt
 	return ok.GetPayload(), nil
 }
 
-// deprecated(2022-01-10): please use GetItemShort instead.
+// Deprecated: 2022-01-10 - please use GetItemShort instead.
 func (aaa *ItemService) GetItem(input *item.GetItemParams) (*platformclientmodels.FullItemInfo, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -449,7 +449,7 @@ func (aaa *ItemService) GetItem(input *item.GetItemParams) (*platformclientmodel
 	return ok.GetPayload(), nil
 }
 
-// deprecated(2022-01-10): please use UpdateItemShort instead.
+// Deprecated: 2022-01-10 - please use UpdateItemShort instead.
 func (aaa *ItemService) UpdateItem(input *item.UpdateItemParams) (*platformclientmodels.FullItemInfo, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -475,7 +475,7 @@ func (aaa *ItemService) UpdateItem(input *item.UpdateItemParams) (*platformclien
 	return ok.GetPayload(), nil
 }
 
-// deprecated(2022-01-10): please use DeleteItemShort instead.
+// Deprecated: 2022-01-10 - please use DeleteItemShort instead.
 func (aaa *ItemService) DeleteItem(input *item.DeleteItemParams) error {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -492,7 +492,7 @@ func (aaa *ItemService) DeleteItem(input *item.DeleteItemParams) error {
 	return nil
 }
 
-// deprecated(2022-01-10): please use AcquireItemShort instead.
+// Deprecated: 2022-01-10 - please use AcquireItemShort instead.
 func (aaa *ItemService) AcquireItem(input *item.AcquireItemParams) (*platformclientmodels.ItemAcquireResult, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -509,7 +509,7 @@ func (aaa *ItemService) AcquireItem(input *item.AcquireItemParams) (*platformcli
 	return ok.GetPayload(), nil
 }
 
-// deprecated(2022-01-10): please use GetAppShort instead.
+// Deprecated: 2022-01-10 - please use GetAppShort instead.
 func (aaa *ItemService) GetApp(input *item.GetAppParams) (*platformclientmodels.FullAppInfo, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -523,7 +523,7 @@ func (aaa *ItemService) GetApp(input *item.GetAppParams) (*platformclientmodels.
 	return ok.GetPayload(), nil
 }
 
-// deprecated(2022-01-10): please use UpdateAppShort instead.
+// Deprecated: 2022-01-10 - please use UpdateAppShort instead.
 func (aaa *ItemService) UpdateApp(input *item.UpdateAppParams) (*platformclientmodels.FullAppInfo, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -546,7 +546,7 @@ func (aaa *ItemService) UpdateApp(input *item.UpdateAppParams) (*platformclientm
 	return ok.GetPayload(), nil
 }
 
-// deprecated(2022-01-10): please use DisableItemShort instead.
+// Deprecated: 2022-01-10 - please use DisableItemShort instead.
 func (aaa *ItemService) DisableItem(input *item.DisableItemParams) (*platformclientmodels.FullItemInfo, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -566,7 +566,7 @@ func (aaa *ItemService) DisableItem(input *item.DisableItemParams) (*platformcli
 	return ok.GetPayload(), nil
 }
 
-// deprecated(2022-01-10): please use GetItemDynamicDataShort instead.
+// Deprecated: 2022-01-10 - please use GetItemDynamicDataShort instead.
 func (aaa *ItemService) GetItemDynamicData(input *item.GetItemDynamicDataParams) (*platformclientmodels.ItemDynamicDataInfo, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -583,7 +583,7 @@ func (aaa *ItemService) GetItemDynamicData(input *item.GetItemDynamicDataParams)
 	return ok.GetPayload(), nil
 }
 
-// deprecated(2022-01-10): please use EnableItemShort instead.
+// Deprecated: 2022-01-10 - please use EnableItemShort instead.
 func (aaa *ItemService) EnableItem(input *item.EnableItemParams) (*platformclientmodels.FullItemInfo, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -603,7 +603,7 @@ func (aaa *ItemService) EnableItem(input *item.EnableItemParams) (*platformclien
 	return ok.GetPayload(), nil
 }
 
-// deprecated(2022-01-10): please use FeatureItemShort instead.
+// Deprecated: 2022-01-10 - please use FeatureItemShort instead.
 func (aaa *ItemService) FeatureItem(input *item.FeatureItemParams) (*platformclientmodels.FullItemInfo, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -623,7 +623,7 @@ func (aaa *ItemService) FeatureItem(input *item.FeatureItemParams) (*platformcli
 	return ok.GetPayload(), nil
 }
 
-// deprecated(2022-01-10): please use DefeatureItemShort instead.
+// Deprecated: 2022-01-10 - please use DefeatureItemShort instead.
 func (aaa *ItemService) DefeatureItem(input *item.DefeatureItemParams) (*platformclientmodels.FullItemInfo, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -643,7 +643,7 @@ func (aaa *ItemService) DefeatureItem(input *item.DefeatureItemParams) (*platfor
 	return ok.GetPayload(), nil
 }
 
-// deprecated(2022-01-10): please use GetLocaleItemShort instead.
+// Deprecated: 2022-01-10 - please use GetLocaleItemShort instead.
 func (aaa *ItemService) GetLocaleItem(input *item.GetLocaleItemParams) (*platformclientmodels.PopulatedItemInfo, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -660,7 +660,7 @@ func (aaa *ItemService) GetLocaleItem(input *item.GetLocaleItemParams) (*platfor
 	return ok.GetPayload(), nil
 }
 
-// deprecated(2022-01-10): please use UpdateItemPurchaseConditionShort instead.
+// Deprecated: 2022-01-10 - please use UpdateItemPurchaseConditionShort instead.
 func (aaa *ItemService) UpdateItemPurchaseCondition(input *item.UpdateItemPurchaseConditionParams) (*platformclientmodels.FullItemInfo, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -686,7 +686,7 @@ func (aaa *ItemService) UpdateItemPurchaseCondition(input *item.UpdateItemPurcha
 	return ok.GetPayload(), nil
 }
 
-// deprecated(2022-01-10): please use ReturnItemShort instead.
+// Deprecated: 2022-01-10 - please use ReturnItemShort instead.
 func (aaa *ItemService) ReturnItem(input *item.ReturnItemParams) error {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -706,7 +706,7 @@ func (aaa *ItemService) ReturnItem(input *item.ReturnItemParams) error {
 	return nil
 }
 
-// deprecated(2022-01-10): please use PublicGetItemByAppIDShort instead.
+// Deprecated: 2022-01-10 - please use PublicGetItemByAppIDShort instead.
 func (aaa *ItemService) PublicGetItemByAppID(input *item.PublicGetItemByAppIDParams) (*platformclientmodels.ItemInfo, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -723,7 +723,7 @@ func (aaa *ItemService) PublicGetItemByAppID(input *item.PublicGetItemByAppIDPar
 	return ok.GetPayload(), nil
 }
 
-// deprecated(2022-01-10): please use PublicQueryItemsShort instead.
+// Deprecated: 2022-01-10 - please use PublicQueryItemsShort instead.
 func (aaa *ItemService) PublicQueryItems(input *item.PublicQueryItemsParams) (*platformclientmodels.ItemPagingSlicedResult, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -743,7 +743,7 @@ func (aaa *ItemService) PublicQueryItems(input *item.PublicQueryItemsParams) (*p
 	return ok.GetPayload(), nil
 }
 
-// deprecated(2022-01-10): please use PublicGetItemBySkuShort instead.
+// Deprecated: 2022-01-10 - please use PublicGetItemBySkuShort instead.
 func (aaa *ItemService) PublicGetItemBySku(input *item.PublicGetItemBySkuParams) (*platformclientmodels.ItemInfo, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -760,7 +760,7 @@ func (aaa *ItemService) PublicGetItemBySku(input *item.PublicGetItemBySkuParams)
 	return ok.GetPayload(), nil
 }
 
-// deprecated(2022-01-10): please use PublicBulkGetItemsShort instead.
+// Deprecated: 2022-01-10 - please use PublicBulkGetItemsShort instead.
 func (aaa *ItemService) PublicBulkGetItems(input *item.PublicBulkGetItemsParams) ([]*platformclientmodels.ItemInfo, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -777,7 +777,7 @@ func (aaa *ItemService) PublicBulkGetItems(input *item.PublicBulkGetItemsParams)
 	return ok.GetPayload(), nil
 }
 
-// deprecated(2022-01-10): please use PublicValidateItemPurchaseConditionShort instead.
+// Deprecated: 2022-01-10 - please use PublicValidateItemPurchaseConditionShort instead.
 func (aaa *ItemService) PublicValidateItemPurchaseCondition(input *item.PublicValidateItemPurchaseConditionParams) ([]*platformclientmodels.ItemPurchaseConditionValidateResult, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -794,7 +794,7 @@ func (aaa *ItemService) PublicValidateItemPurchaseCondition(input *item.PublicVa
 	return ok.GetPayload(), nil
 }
 
-// deprecated(2022-01-10): please use PublicSearchItemsShort instead.
+// Deprecated: 2022-01-10 - please use PublicSearchItemsShort instead.
 func (aaa *ItemService) PublicSearchItems(input *item.PublicSearchItemsParams) (*platformclientmodels.ItemPagingSlicedResult, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -811,7 +811,7 @@ func (aaa *ItemService) PublicSearchItems(input *item.PublicSearchItemsParams) (
 	return ok.GetPayload(), nil
 }
 
-// deprecated(2022-01-10): please use PublicGetAppShort instead.
+// Deprecated: 2022-01-10 - please use PublicGetAppShort instead.
 func (aaa *ItemService) PublicGetApp(input *item.PublicGetAppParams) (*platformclientmodels.AppInfo, error) {
 	ok, notFound, err := aaa.Client.Item.PublicGetApp(input)
 	if notFound != nil {
@@ -824,7 +824,7 @@ func (aaa *ItemService) PublicGetApp(input *item.PublicGetAppParams) (*platformc
 	return ok.GetPayload(), nil
 }
 
-// deprecated(2022-01-10): please use PublicGetItemDynamicDataShort instead.
+// Deprecated: 2022-01-10 - please use PublicGetItemDynamicDataShort instead.
 func (aaa *ItemService) PublicGetItemDynamicData(input *item.PublicGetItemDynamicDataParams) (*platformclientmodels.ItemDynamicDataInfo, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -841,7 +841,7 @@ func (aaa *ItemService) PublicGetItemDynamicData(input *item.PublicGetItemDynami
 	return ok.GetPayload(), nil
 }
 
-// deprecated(2022-01-10): please use PublicGetItemShort instead.
+// Deprecated: 2022-01-10 - please use PublicGetItemShort instead.
 func (aaa *ItemService) PublicGetItem(input *item.PublicGetItemParams) (*platformclientmodels.PopulatedItemInfo, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -858,7 +858,7 @@ func (aaa *ItemService) PublicGetItem(input *item.PublicGetItemParams) (*platfor
 	return ok.GetPayload(), nil
 }
 
-// deprecated(2022-01-10): please use QueryItems1Short instead.
+// Deprecated: 2022-01-10 - please use QueryItems1Short instead.
 func (aaa *ItemService) QueryItems1(input *item.QueryItems1Params) (*platformclientmodels.FullItemPagingSlicedResult, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {

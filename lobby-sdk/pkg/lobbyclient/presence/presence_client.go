@@ -40,7 +40,7 @@ type ClientService interface {
 }
 
 /*
-Deprecated: Use UsersPresenceHandlerV1Short instead.
+Deprecated: 2022-08-10 - Use UsersPresenceHandlerV1Short instead.
 
   UsersPresenceHandlerV1 queries users presence
 

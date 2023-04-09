@@ -92,7 +92,7 @@ type ClientService interface {
 }
 
 /*
-Deprecated: Use CreateNotificationTemplateV1AdminShort instead.
+Deprecated: 2022-08-10 - Use CreateNotificationTemplateV1AdminShort instead.
 
   CreateNotificationTemplateV1Admin creates new notification template
 
@@ -221,7 +221,7 @@ func (a *Client) CreateNotificationTemplateV1AdminShort(params *CreateNotificati
 }
 
 /*
-Deprecated: Use CreateNotificationTopicV1AdminShort instead.
+Deprecated: 2022-08-10 - Use CreateNotificationTopicV1AdminShort instead.
 
   CreateNotificationTopicV1Admin creates new notification topic
 
@@ -338,7 +338,7 @@ func (a *Client) CreateNotificationTopicV1AdminShort(params *CreateNotificationT
 }
 
 /*
-Deprecated: Use CreateTopicShort instead.
+Deprecated: 2022-08-10 - Use CreateTopicShort instead.
 
   CreateTopic creates new notification topic
 
@@ -458,7 +458,7 @@ func (a *Client) CreateTopicShort(params *CreateTopicParams, authInfo runtime.Cl
 }
 
 /*
-Deprecated: Use DeleteNotificationTemplateSlugV1AdminShort instead.
+Deprecated: 2022-08-10 - Use DeleteNotificationTemplateSlugV1AdminShort instead.
 
   DeleteNotificationTemplateSlugV1Admin deletes template slug in notification template
 
@@ -576,7 +576,7 @@ func (a *Client) DeleteNotificationTemplateSlugV1AdminShort(params *DeleteNotifi
 }
 
 /*
-Deprecated: Use DeleteNotificationTopicV1AdminShort instead.
+Deprecated: 2022-08-10 - Use DeleteNotificationTopicV1AdminShort instead.
 
   DeleteNotificationTopicV1Admin deletes topic information by topic name
 
@@ -698,7 +698,7 @@ func (a *Client) DeleteNotificationTopicV1AdminShort(params *DeleteNotificationT
 }
 
 /*
-Deprecated: Use DeleteTemplateLocalizationV1AdminShort instead.
+Deprecated: 2022-08-10 - Use DeleteTemplateLocalizationV1AdminShort instead.
 
   DeleteTemplateLocalizationV1Admin deletes template localization
 
@@ -816,7 +816,7 @@ func (a *Client) DeleteTemplateLocalizationV1AdminShort(params *DeleteTemplateLo
 }
 
 /*
-Deprecated: Use DeleteTopicByTopicNameShort instead.
+Deprecated: 2022-08-10 - Use DeleteTopicByTopicNameShort instead.
 
   DeleteTopicByTopicName deletes topic information by topic name
 
@@ -936,7 +936,7 @@ func (a *Client) DeleteTopicByTopicNameShort(params *DeleteTopicByTopicNameParam
 }
 
 /*
-Deprecated: Use FreeFormNotificationByUserIDShort instead.
+Deprecated: 2022-08-10 - Use FreeFormNotificationByUserIDShort instead.
 
   FreeFormNotificationByUserID sends freeform notification to a user
 
@@ -1052,7 +1052,7 @@ func (a *Client) FreeFormNotificationByUserIDShort(params *FreeFormNotificationB
 }
 
 /*
-Deprecated: Use GetAllNotificationTemplatesV1AdminShort instead.
+Deprecated: 2022-08-10 - Use GetAllNotificationTemplatesV1AdminShort instead.
 
   GetAllNotificationTemplatesV1Admin gets all notification template in a namespace
 
@@ -1175,7 +1175,7 @@ func (a *Client) GetAllNotificationTemplatesV1AdminShort(params *GetAllNotificat
 }
 
 /*
-Deprecated: Use GetAllNotificationTopicsV1AdminShort instead.
+Deprecated: 2022-08-10 - Use GetAllNotificationTopicsV1AdminShort instead.
 
   GetAllNotificationTopicsV1Admin gets topic by namespace
 
@@ -1293,7 +1293,7 @@ func (a *Client) GetAllNotificationTopicsV1AdminShort(params *GetAllNotification
 }
 
 /*
-Deprecated: Use GetNotificationTopicV1AdminShort instead.
+Deprecated: 2022-08-10 - Use GetNotificationTopicV1AdminShort instead.
 
   GetNotificationTopicV1Admin gets topic information by topic name
 
@@ -1411,7 +1411,7 @@ func (a *Client) GetNotificationTopicV1AdminShort(params *GetNotificationTopicV1
 }
 
 /*
-Deprecated: Use GetSingleTemplateLocalizationV1AdminShort instead.
+Deprecated: 2022-08-10 - Use GetSingleTemplateLocalizationV1AdminShort instead.
 
   GetSingleTemplateLocalizationV1Admin gets a template localization
 
@@ -1529,7 +1529,7 @@ func (a *Client) GetSingleTemplateLocalizationV1AdminShort(params *GetSingleTemp
 }
 
 /*
-Deprecated: Use GetTemplateSlugLocalizationsTemplateV1AdminShort instead.
+Deprecated: 2022-08-10 - Use GetTemplateSlugLocalizationsTemplateV1AdminShort instead.
 
   GetTemplateSlugLocalizationsTemplateV1Admin gets all notification template localization in a slug
 
@@ -1647,7 +1647,7 @@ func (a *Client) GetTemplateSlugLocalizationsTemplateV1AdminShort(params *GetTem
 }
 
 /*
-Deprecated: Use GetTopicByNamespaceShort instead.
+Deprecated: 2022-08-10 - Use GetTopicByNamespaceShort instead.
 
   GetTopicByNamespace gets topic by namespace
 
@@ -1763,7 +1763,7 @@ func (a *Client) GetTopicByNamespaceShort(params *GetTopicByNamespaceParams, aut
 }
 
 /*
-Deprecated: Use GetTopicByTopicNameShort instead.
+Deprecated: 2022-08-10 - Use GetTopicByTopicNameShort instead.
 
   GetTopicByTopicName gets topic information by topic name
 
@@ -1879,7 +1879,7 @@ func (a *Client) GetTopicByTopicNameShort(params *GetTopicByTopicNameParams, aut
 }
 
 /*
-Deprecated: Use NotificationWithTemplateByUserIDShort instead.
+Deprecated: 2022-08-10 - Use NotificationWithTemplateByUserIDShort instead.
 
   NotificationWithTemplateByUserID sends notification to a user with template
 
@@ -2001,7 +2001,7 @@ func (a *Client) NotificationWithTemplateByUserIDShort(params *NotificationWithT
 }
 
 /*
-Deprecated: Use PublishTemplateLocalizationV1AdminShort instead.
+Deprecated: 2022-08-10 - Use PublishTemplateLocalizationV1AdminShort instead.
 
   PublishTemplateLocalizationV1Admin publishes template localization draft
 
@@ -2119,7 +2119,7 @@ func (a *Client) PublishTemplateLocalizationV1AdminShort(params *PublishTemplate
 }
 
 /*
-Deprecated: Use SendMultipleUsersFreeformNotificationV1AdminShort instead.
+Deprecated: 2022-08-10 - Use SendMultipleUsersFreeformNotificationV1AdminShort instead.
 
   SendMultipleUsersFreeformNotificationV1Admin sends freeform notification to multiple users
 
@@ -2232,7 +2232,7 @@ func (a *Client) SendMultipleUsersFreeformNotificationV1AdminShort(params *SendM
 }
 
 /*
-Deprecated: Use SendPartyFreeformNotificationV1AdminShort instead.
+Deprecated: 2022-08-10 - Use SendPartyFreeformNotificationV1AdminShort instead.
 
   SendPartyFreeformNotificationV1Admin sends freeform notification to a party
 
@@ -2348,7 +2348,7 @@ func (a *Client) SendPartyFreeformNotificationV1AdminShort(params *SendPartyFree
 }
 
 /*
-Deprecated: Use SendPartyTemplatedNotificationV1AdminShort instead.
+Deprecated: 2022-08-10 - Use SendPartyTemplatedNotificationV1AdminShort instead.
 
   SendPartyTemplatedNotificationV1Admin sends templated notification to a party
 
@@ -2470,7 +2470,7 @@ func (a *Client) SendPartyTemplatedNotificationV1AdminShort(params *SendPartyTem
 }
 
 /*
-Deprecated: Use SendSpecificUserFreeformNotificationV1AdminShort instead.
+Deprecated: 2022-08-10 - Use SendSpecificUserFreeformNotificationV1AdminShort instead.
 
   SendSpecificUserFreeformNotificationV1Admin sends freeform notification to a user
 
@@ -2588,7 +2588,7 @@ func (a *Client) SendSpecificUserFreeformNotificationV1AdminShort(params *SendSp
 }
 
 /*
-Deprecated: Use SendSpecificUserTemplatedNotificationV1AdminShort instead.
+Deprecated: 2022-08-10 - Use SendSpecificUserTemplatedNotificationV1AdminShort instead.
 
   SendSpecificUserTemplatedNotificationV1Admin sends templated notification to specific user
 
@@ -2712,7 +2712,7 @@ func (a *Client) SendSpecificUserTemplatedNotificationV1AdminShort(params *SendS
 }
 
 /*
-Deprecated: Use SendUsersFreeformNotificationV1AdminShort instead.
+Deprecated: 2022-08-10 - Use SendUsersFreeformNotificationV1AdminShort instead.
 
   SendUsersFreeformNotificationV1Admin sends freeform notification to connected users
 
@@ -2830,7 +2830,7 @@ func (a *Client) SendUsersFreeformNotificationV1AdminShort(params *SendUsersFree
 }
 
 /*
-Deprecated: Use SendUsersTemplatedNotificationV1AdminShort instead.
+Deprecated: 2022-08-10 - Use SendUsersTemplatedNotificationV1AdminShort instead.
 
   SendUsersTemplatedNotificationV1Admin sends notification to connected users with template
 
@@ -2954,7 +2954,7 @@ func (a *Client) SendUsersTemplatedNotificationV1AdminShort(params *SendUsersTem
 }
 
 /*
-Deprecated: Use UpdateNotificationTopicV1AdminShort instead.
+Deprecated: 2022-08-10 - Use UpdateNotificationTopicV1AdminShort instead.
 
   UpdateNotificationTopicV1Admin updates topic information by topic name
 
@@ -3081,7 +3081,7 @@ func (a *Client) UpdateNotificationTopicV1AdminShort(params *UpdateNotificationT
 }
 
 /*
-Deprecated: Use UpdateTemplateLocalizationV1AdminShort instead.
+Deprecated: 2022-08-10 - Use UpdateTemplateLocalizationV1AdminShort instead.
 
   UpdateTemplateLocalizationV1Admin updates template localization
 
@@ -3204,7 +3204,7 @@ func (a *Client) UpdateTemplateLocalizationV1AdminShort(params *UpdateTemplateLo
 }
 
 /*
-Deprecated: Use UpdateTopicByTopicNameShort instead.
+Deprecated: 2022-08-10 - Use UpdateTopicByTopicNameShort instead.
 
   UpdateTopicByTopicName updates topic information by topic name
 

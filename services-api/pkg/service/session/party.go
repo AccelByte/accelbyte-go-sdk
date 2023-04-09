@@ -39,7 +39,7 @@ func (aaa *PartyService) GetAuthSession() auth.Session {
 	}
 }
 
-// deprecated(2022-01-10): please use AdminQueryPartiesShort instead.
+// Deprecated: 2022-01-10 - please use AdminQueryPartiesShort instead.
 func (aaa *PartyService) AdminQueryParties(input *party.AdminQueryPartiesParams) (*sessionclientmodels.ApimodelsPartyQueryResponse, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -62,7 +62,7 @@ func (aaa *PartyService) AdminQueryParties(input *party.AdminQueryPartiesParams)
 	return ok.GetPayload(), nil
 }
 
-// deprecated(2022-01-10): please use PublicPartyJoinCodeShort instead.
+// Deprecated: 2022-01-10 - please use PublicPartyJoinCodeShort instead.
 func (aaa *PartyService) PublicPartyJoinCode(input *party.PublicPartyJoinCodeParams) (*sessionclientmodels.ApimodelsPartySessionResponse, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -91,7 +91,7 @@ func (aaa *PartyService) PublicPartyJoinCode(input *party.PublicPartyJoinCodePar
 	return ok.GetPayload(), nil
 }
 
-// deprecated(2022-01-10): please use PublicGetPartyShort instead.
+// Deprecated: 2022-01-10 - please use PublicGetPartyShort instead.
 func (aaa *PartyService) PublicGetParty(input *party.PublicGetPartyParams) (*sessionclientmodels.ApimodelsPartySessionResponse, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -114,7 +114,7 @@ func (aaa *PartyService) PublicGetParty(input *party.PublicGetPartyParams) (*ses
 	return ok.GetPayload(), nil
 }
 
-// deprecated(2022-01-10): please use PublicUpdatePartyShort instead.
+// Deprecated: 2022-01-10 - please use PublicUpdatePartyShort instead.
 func (aaa *PartyService) PublicUpdateParty(input *party.PublicUpdatePartyParams) (*sessionclientmodels.ApimodelsPartySessionResponse, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -143,7 +143,7 @@ func (aaa *PartyService) PublicUpdateParty(input *party.PublicUpdatePartyParams)
 	return ok.GetPayload(), nil
 }
 
-// deprecated(2022-01-10): please use PublicPatchUpdatePartyShort instead.
+// Deprecated: 2022-01-10 - please use PublicPatchUpdatePartyShort instead.
 func (aaa *PartyService) PublicPatchUpdateParty(input *party.PublicPatchUpdatePartyParams) (*sessionclientmodels.ApimodelsPartySessionResponse, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -172,7 +172,7 @@ func (aaa *PartyService) PublicPatchUpdateParty(input *party.PublicPatchUpdatePa
 	return ok.GetPayload(), nil
 }
 
-// deprecated(2022-01-10): please use PublicGeneratePartyCodeShort instead.
+// Deprecated: 2022-01-10 - please use PublicGeneratePartyCodeShort instead.
 func (aaa *PartyService) PublicGeneratePartyCode(input *party.PublicGeneratePartyCodeParams) (*sessionclientmodels.ApimodelsPartySessionResponse, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -201,7 +201,7 @@ func (aaa *PartyService) PublicGeneratePartyCode(input *party.PublicGeneratePart
 	return ok.GetPayload(), nil
 }
 
-// deprecated(2022-01-10): please use PublicRevokePartyCodeShort instead.
+// Deprecated: 2022-01-10 - please use PublicRevokePartyCodeShort instead.
 func (aaa *PartyService) PublicRevokePartyCode(input *party.PublicRevokePartyCodeParams) (*sessionclientmodels.ApimodelsPartySessionResponse, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -230,7 +230,7 @@ func (aaa *PartyService) PublicRevokePartyCode(input *party.PublicRevokePartyCod
 	return ok.GetPayload(), nil
 }
 
-// deprecated(2022-01-10): please use PublicPartyInviteShort instead.
+// Deprecated: 2022-01-10 - please use PublicPartyInviteShort instead.
 func (aaa *PartyService) PublicPartyInvite(input *party.PublicPartyInviteParams) error {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -259,7 +259,7 @@ func (aaa *PartyService) PublicPartyInvite(input *party.PublicPartyInviteParams)
 	return nil
 }
 
-// deprecated(2022-01-10): please use PublicPromotePartyLeaderShort instead.
+// Deprecated: 2022-01-10 - please use PublicPromotePartyLeaderShort instead.
 func (aaa *PartyService) PublicPromotePartyLeader(input *party.PublicPromotePartyLeaderParams) (*sessionclientmodels.ApimodelsPartySessionResponse, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -288,7 +288,7 @@ func (aaa *PartyService) PublicPromotePartyLeader(input *party.PublicPromotePart
 	return ok.GetPayload(), nil
 }
 
-// deprecated(2022-01-10): please use PublicPartyJoinShort instead.
+// Deprecated: 2022-01-10 - please use PublicPartyJoinShort instead.
 func (aaa *PartyService) PublicPartyJoin(input *party.PublicPartyJoinParams) (*sessionclientmodels.ApimodelsPartySessionResponse, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -317,7 +317,7 @@ func (aaa *PartyService) PublicPartyJoin(input *party.PublicPartyJoinParams) (*s
 	return ok.GetPayload(), nil
 }
 
-// deprecated(2022-01-10): please use PublicPartyLeaveShort instead.
+// Deprecated: 2022-01-10 - please use PublicPartyLeaveShort instead.
 func (aaa *PartyService) PublicPartyLeave(input *party.PublicPartyLeaveParams) error {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -340,7 +340,7 @@ func (aaa *PartyService) PublicPartyLeave(input *party.PublicPartyLeaveParams) e
 	return nil
 }
 
-// deprecated(2022-01-10): please use PublicPartyRejectShort instead.
+// Deprecated: 2022-01-10 - please use PublicPartyRejectShort instead.
 func (aaa *PartyService) PublicPartyReject(input *party.PublicPartyRejectParams) error {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -369,7 +369,7 @@ func (aaa *PartyService) PublicPartyReject(input *party.PublicPartyRejectParams)
 	return nil
 }
 
-// deprecated(2022-01-10): please use PublicPartyKickShort instead.
+// Deprecated: 2022-01-10 - please use PublicPartyKickShort instead.
 func (aaa *PartyService) PublicPartyKick(input *party.PublicPartyKickParams) (*sessionclientmodels.ApimodelsKickResponse, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -398,7 +398,7 @@ func (aaa *PartyService) PublicPartyKick(input *party.PublicPartyKickParams) (*s
 	return ok.GetPayload(), nil
 }
 
-// deprecated(2022-01-10): please use PublicCreatePartyShort instead.
+// Deprecated: 2022-01-10 - please use PublicCreatePartyShort instead.
 func (aaa *PartyService) PublicCreateParty(input *party.PublicCreatePartyParams) (*sessionclientmodels.ApimodelsPartySessionResponse, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -421,7 +421,7 @@ func (aaa *PartyService) PublicCreateParty(input *party.PublicCreatePartyParams)
 	return ok.GetPayload(), nil
 }
 
-// deprecated(2022-01-10): please use PublicQueryMyPartiesShort instead.
+// Deprecated: 2022-01-10 - please use PublicQueryMyPartiesShort instead.
 func (aaa *PartyService) PublicQueryMyParties(input *party.PublicQueryMyPartiesParams) ([]*sessionclientmodels.ApimodelsPartySessionResponse, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {

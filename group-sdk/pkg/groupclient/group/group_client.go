@@ -84,7 +84,7 @@ type ClientService interface {
 }
 
 /*
-Deprecated: Use CreateNewGroupPublicV1Short instead.
+Deprecated: 2022-08-10 - Use CreateNewGroupPublicV1Short instead.
 
   CreateNewGroupPublicV1 creates new group
 
@@ -235,7 +235,7 @@ func (a *Client) CreateNewGroupPublicV1Short(params *CreateNewGroupPublicV1Param
 }
 
 /*
-Deprecated: Use CreateNewGroupPublicV2Short instead.
+Deprecated: 2022-08-10 - Use CreateNewGroupPublicV2Short instead.
 
   CreateNewGroupPublicV2 creates new group
 
@@ -386,7 +386,7 @@ func (a *Client) CreateNewGroupPublicV2Short(params *CreateNewGroupPublicV2Param
 }
 
 /*
-Deprecated: Use DeleteGroupAdminV1Short instead.
+Deprecated: 2022-08-10 - Use DeleteGroupAdminV1Short instead.
 
   DeleteGroupAdminV1 deletes existing group
 
@@ -511,7 +511,7 @@ func (a *Client) DeleteGroupAdminV1Short(params *DeleteGroupAdminV1Params, authI
 }
 
 /*
-Deprecated: Use DeleteGroupPredefinedRulePublicV1Short instead.
+Deprecated: 2022-08-10 - Use DeleteGroupPredefinedRulePublicV1Short instead.
 
   DeleteGroupPredefinedRulePublicV1 deletes group predefined rule
 
@@ -642,7 +642,7 @@ func (a *Client) DeleteGroupPredefinedRulePublicV1Short(params *DeleteGroupPrede
 }
 
 /*
-Deprecated: Use DeleteGroupPredefinedRulePublicV2Short instead.
+Deprecated: 2022-08-10 - Use DeleteGroupPredefinedRulePublicV2Short instead.
 
   DeleteGroupPredefinedRulePublicV2 deletes group predefined rule
 
@@ -773,7 +773,7 @@ func (a *Client) DeleteGroupPredefinedRulePublicV2Short(params *DeleteGroupPrede
 }
 
 /*
-Deprecated: Use DeleteGroupPublicV1Short instead.
+Deprecated: 2022-08-10 - Use DeleteGroupPublicV1Short instead.
 
   DeleteGroupPublicV1 deletes existing group
 
@@ -904,7 +904,7 @@ func (a *Client) DeleteGroupPublicV1Short(params *DeleteGroupPublicV1Params, aut
 }
 
 /*
-Deprecated: Use DeleteGroupPublicV2Short instead.
+Deprecated: 2022-08-10 - Use DeleteGroupPublicV2Short instead.
 
   DeleteGroupPublicV2 deletes existing group
 
@@ -1035,7 +1035,7 @@ func (a *Client) DeleteGroupPublicV2Short(params *DeleteGroupPublicV2Params, aut
 }
 
 /*
-Deprecated: Use GetGroupListAdminV1Short instead.
+Deprecated: 2022-08-10 - Use GetGroupListAdminV1Short instead.
 
   GetGroupListAdminV1 gets list of groups
 
@@ -1155,7 +1155,7 @@ func (a *Client) GetGroupListAdminV1Short(params *GetGroupListAdminV1Params, aut
 }
 
 /*
-Deprecated: Use GetGroupListPublicV1Short instead.
+Deprecated: 2022-08-10 - Use GetGroupListPublicV1Short instead.
 
   GetGroupListPublicV1 gets list of groups
 
@@ -1275,7 +1275,7 @@ func (a *Client) GetGroupListPublicV1Short(params *GetGroupListPublicV1Params, a
 }
 
 /*
-Deprecated: Use GetListGroupByIDsAdminV2Short instead.
+Deprecated: 2022-08-10 - Use GetListGroupByIDsAdminV2Short instead.
 
   GetListGroupByIDsAdminV2 gets list of groups by group ids
 
@@ -1395,7 +1395,7 @@ func (a *Client) GetListGroupByIDsAdminV2Short(params *GetListGroupByIDsAdminV2P
 }
 
 /*
-Deprecated: Use GetListGroupByIDsV2Short instead.
+Deprecated: 2022-08-10 - Use GetListGroupByIDsV2Short instead.
 
   GetListGroupByIDsV2 gets list of groups by group ids
 
@@ -1515,7 +1515,7 @@ func (a *Client) GetListGroupByIDsV2Short(params *GetListGroupByIDsV2Params, aut
 }
 
 /*
-Deprecated: Use GetSingleGroupAdminV1Short instead.
+Deprecated: 2022-08-10 - Use GetSingleGroupAdminV1Short instead.
 
   GetSingleGroupAdminV1 gets single group
 
@@ -1640,7 +1640,7 @@ func (a *Client) GetSingleGroupAdminV1Short(params *GetSingleGroupAdminV1Params,
 }
 
 /*
-Deprecated: Use GetSingleGroupPublicV1Short instead.
+Deprecated: 2022-08-10 - Use GetSingleGroupPublicV1Short instead.
 
   GetSingleGroupPublicV1 gets single group
 
@@ -1765,7 +1765,7 @@ func (a *Client) GetSingleGroupPublicV1Short(params *GetSingleGroupPublicV1Param
 }
 
 /*
-Deprecated: Use UpdateGroupCustomAttributesPublicV1Short instead.
+Deprecated: 2022-08-10 - Use UpdateGroupCustomAttributesPublicV1Short instead.
 
   UpdateGroupCustomAttributesPublicV1 updates group custom attributes
 
@@ -1896,7 +1896,7 @@ func (a *Client) UpdateGroupCustomAttributesPublicV1Short(params *UpdateGroupCus
 }
 
 /*
-Deprecated: Use UpdateGroupCustomAttributesPublicV2Short instead.
+Deprecated: 2022-08-10 - Use UpdateGroupCustomAttributesPublicV2Short instead.
 
   UpdateGroupCustomAttributesPublicV2 updates group custom attributes
 
@@ -2027,7 +2027,7 @@ func (a *Client) UpdateGroupCustomAttributesPublicV2Short(params *UpdateGroupCus
 }
 
 /*
-Deprecated: Use UpdateGroupCustomRulePublicV1Short instead.
+Deprecated: 2022-08-10 - Use UpdateGroupCustomRulePublicV1Short instead.
 
   UpdateGroupCustomRulePublicV1 updates group custom rule
 
@@ -2156,7 +2156,7 @@ func (a *Client) UpdateGroupCustomRulePublicV1Short(params *UpdateGroupCustomRul
 }
 
 /*
-Deprecated: Use UpdateGroupCustomRulePublicV2Short instead.
+Deprecated: 2022-08-10 - Use UpdateGroupCustomRulePublicV2Short instead.
 
   UpdateGroupCustomRulePublicV2 updates group custom rule
 
@@ -2285,7 +2285,7 @@ func (a *Client) UpdateGroupCustomRulePublicV2Short(params *UpdateGroupCustomRul
 }
 
 /*
-Deprecated: Use UpdateGroupPredefinedRulePublicV1Short instead.
+Deprecated: 2022-08-10 - Use UpdateGroupPredefinedRulePublicV1Short instead.
 
   UpdateGroupPredefinedRulePublicV1 updates predefined group rule
 
@@ -2418,7 +2418,7 @@ func (a *Client) UpdateGroupPredefinedRulePublicV1Short(params *UpdateGroupPrede
 }
 
 /*
-Deprecated: Use UpdateGroupPredefinedRulePublicV2Short instead.
+Deprecated: 2022-08-10 - Use UpdateGroupPredefinedRulePublicV2Short instead.
 
   UpdateGroupPredefinedRulePublicV2 updates predefined group rule
 
@@ -2551,7 +2551,7 @@ func (a *Client) UpdateGroupPredefinedRulePublicV2Short(params *UpdateGroupPrede
 }
 
 /*
-Deprecated: Use UpdatePatchSingleGroupPublicV1Short instead.
+Deprecated: 2022-08-10 - Use UpdatePatchSingleGroupPublicV1Short instead.
 
   UpdatePatchSingleGroupPublicV1 updates existing group
 
@@ -2680,7 +2680,7 @@ func (a *Client) UpdatePatchSingleGroupPublicV1Short(params *UpdatePatchSingleGr
 }
 
 /*
-Deprecated: Use UpdatePatchSingleGroupPublicV2Short instead.
+Deprecated: 2022-08-10 - Use UpdatePatchSingleGroupPublicV2Short instead.
 
   UpdatePatchSingleGroupPublicV2 updates existing group
 
@@ -2809,7 +2809,7 @@ func (a *Client) UpdatePatchSingleGroupPublicV2Short(params *UpdatePatchSingleGr
 }
 
 /*
-Deprecated: Use UpdatePutSingleGroupPublicV2Short instead.
+Deprecated: 2022-08-10 - Use UpdatePutSingleGroupPublicV2Short instead.
 
   UpdatePutSingleGroupPublicV2 updates existing group
 
@@ -2938,7 +2938,7 @@ func (a *Client) UpdatePutSingleGroupPublicV2Short(params *UpdatePutSingleGroupP
 }
 
 /*
-Deprecated: Use UpdateSingleGroupV1Short instead.
+Deprecated: 2022-08-10 - Use UpdateSingleGroupV1Short instead.
 
   UpdateSingleGroupV1 updates existing group
 

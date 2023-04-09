@@ -23,7 +23,7 @@ type DurableEntitlementRevocationConfig struct {
 	Enabled bool `json:"enabled"`
 
 	// durable entitlement revocation strategy
-	// Enum: [REVOKE_OR_REPORT]
+	// Enum: [CUSTOM REVOKE_OR_REPORT]
 	Strategy string `json:"strategy,omitempty"`
 }
 
@@ -45,7 +45,7 @@ var durableEntitlementRevocationConfigTypeStrategyPropEnum []interface{}
 
 func init() {
 	var res []string
-	if err := json.Unmarshal([]byte(`["REVOKE_OR_REPORT"]`), &res); err != nil {
+	if err := json.Unmarshal([]byte(`["CUSTOM","REVOKE_OR_REPORT"]`), &res); err != nil {
 		panic(err)
 	}
 	for _, v := range res {
@@ -54,6 +54,9 @@ func init() {
 }
 
 const (
+
+	// DurableEntitlementRevocationConfigStrategyCUSTOM captures enum value "CUSTOM"
+	DurableEntitlementRevocationConfigStrategyCUSTOM string = "CUSTOM"
 
 	// DurableEntitlementRevocationConfigStrategyREVOKEORREPORT captures enum value "REVOKE_OR_REPORT"
 	DurableEntitlementRevocationConfigStrategyREVOKEORREPORT string = "REVOKE_OR_REPORT"

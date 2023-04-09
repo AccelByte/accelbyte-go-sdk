@@ -39,7 +39,7 @@ func (aaa *MatchPoolsService) GetAuthSession() auth.Session {
 	}
 }
 
-// deprecated(2022-01-10): please use MatchPoolListShort instead.
+// Deprecated: 2022-01-10 - please use MatchPoolListShort instead.
 func (aaa *MatchPoolsService) MatchPoolList(input *match_pools.MatchPoolListParams) (*match2clientmodels.APIListMatchPoolsResponse, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -62,7 +62,7 @@ func (aaa *MatchPoolsService) MatchPoolList(input *match_pools.MatchPoolListPara
 	return ok.GetPayload(), nil
 }
 
-// deprecated(2022-01-10): please use CreateMatchPoolShort instead.
+// Deprecated: 2022-01-10 - please use CreateMatchPoolShort instead.
 func (aaa *MatchPoolsService) CreateMatchPool(input *match_pools.CreateMatchPoolParams) error {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -91,7 +91,7 @@ func (aaa *MatchPoolsService) CreateMatchPool(input *match_pools.CreateMatchPool
 	return nil
 }
 
-// deprecated(2022-01-10): please use MatchPoolDetailsShort instead.
+// Deprecated: 2022-01-10 - please use MatchPoolDetailsShort instead.
 func (aaa *MatchPoolsService) MatchPoolDetails(input *match_pools.MatchPoolDetailsParams) (*match2clientmodels.APIMatchPool, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -114,7 +114,7 @@ func (aaa *MatchPoolsService) MatchPoolDetails(input *match_pools.MatchPoolDetai
 	return ok.GetPayload(), nil
 }
 
-// deprecated(2022-01-10): please use UpdateMatchPoolShort instead.
+// Deprecated: 2022-01-10 - please use UpdateMatchPoolShort instead.
 func (aaa *MatchPoolsService) UpdateMatchPool(input *match_pools.UpdateMatchPoolParams) (*match2clientmodels.APIMatchPool, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -143,7 +143,7 @@ func (aaa *MatchPoolsService) UpdateMatchPool(input *match_pools.UpdateMatchPool
 	return ok.GetPayload(), nil
 }
 
-// deprecated(2022-01-10): please use DeleteMatchPoolShort instead.
+// Deprecated: 2022-01-10 - please use DeleteMatchPoolShort instead.
 func (aaa *MatchPoolsService) DeleteMatchPool(input *match_pools.DeleteMatchPoolParams) error {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -169,13 +169,39 @@ func (aaa *MatchPoolsService) DeleteMatchPool(input *match_pools.DeleteMatchPool
 	return nil
 }
 
-// deprecated(2022-01-10): please use MatchPoolMetricShort instead.
+// Deprecated: 2022-01-10 - please use MatchPoolMetricShort instead.
 func (aaa *MatchPoolsService) MatchPoolMetric(input *match_pools.MatchPoolMetricParams) (*match2clientmodels.APITicketMetricResultRecord, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
 	ok, unauthorized, forbidden, notFound, internalServerError, err := aaa.Client.MatchPools.MatchPoolMetric(input, client.BearerToken(*token.AccessToken))
+	if unauthorized != nil {
+		return nil, unauthorized
+	}
+	if forbidden != nil {
+		return nil, forbidden
+	}
+	if notFound != nil {
+		return nil, notFound
+	}
+	if internalServerError != nil {
+		return nil, internalServerError
+	}
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
+// Deprecated: 2022-01-10 - please use GetPlayerMetricShort instead.
+func (aaa *MatchPoolsService) GetPlayerMetric(input *match_pools.GetPlayerMetricParams) (*match2clientmodels.APIPlayerMetricRecord, error) {
+	token, err := aaa.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, unauthorized, forbidden, notFound, internalServerError, err := aaa.Client.MatchPools.GetPlayerMetric(input, client.BearerToken(*token.AccessToken))
 	if unauthorized != nil {
 		return nil, unauthorized
 	}
@@ -338,6 +364,31 @@ func (aaa *MatchPoolsService) MatchPoolMetricShort(input *match_pools.MatchPoolM
 	}
 
 	ok, err := aaa.Client.MatchPools.MatchPoolMetricShort(input, authInfoWriter)
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
+func (aaa *MatchPoolsService) GetPlayerMetricShort(input *match_pools.GetPlayerMetricParams) (*match2clientmodels.APIPlayerMetricRecord, error) {
+	authInfoWriter := input.AuthInfoWriter
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
+	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  aaa.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
+	ok, err := aaa.Client.MatchPools.GetPlayerMetricShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}

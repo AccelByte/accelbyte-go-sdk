@@ -50,7 +50,7 @@ type ClientService interface {
 }
 
 /*
-Deprecated: Use AcceptBackfillShort instead.
+Deprecated: 2022-08-10 - Use AcceptBackfillShort instead.
 
   AcceptBackfill accepts a backfill proposal
 
@@ -179,7 +179,7 @@ func (a *Client) AcceptBackfillShort(params *AcceptBackfillParams, authInfo runt
 }
 
 /*
-Deprecated: Use CreateBackfillShort instead.
+Deprecated: 2022-08-10 - Use CreateBackfillShort instead.
 
   CreateBackfill creates a backfill ticket
 
@@ -313,7 +313,7 @@ func (a *Client) CreateBackfillShort(params *CreateBackfillParams, authInfo runt
 }
 
 /*
-Deprecated: Use DeleteBackfillShort instead.
+Deprecated: 2022-08-10 - Use DeleteBackfillShort instead.
 
   DeleteBackfill deletes a backfill ticket
 
@@ -437,7 +437,7 @@ func (a *Client) DeleteBackfillShort(params *DeleteBackfillParams, authInfo runt
 }
 
 /*
-Deprecated: Use GetBackfillShort instead.
+Deprecated: 2022-08-10 - Use GetBackfillShort instead.
 
   GetBackfill gets a backfill ticket
 
@@ -566,7 +566,7 @@ func (a *Client) GetBackfillShort(params *GetBackfillParams, authInfo runtime.Cl
 }
 
 /*
-Deprecated: Use GetBackfillProposalShort instead.
+Deprecated: 2022-08-10 - Use GetBackfillProposalShort instead.
 
   GetBackfillProposal gets backfill proposal
 
@@ -695,7 +695,7 @@ func (a *Client) GetBackfillProposalShort(params *GetBackfillProposalParams, aut
 }
 
 /*
-Deprecated: Use RejectBackfillShort instead.
+Deprecated: 2022-08-10 - Use RejectBackfillShort instead.
 
   RejectBackfill rejects a backfill proposal
 

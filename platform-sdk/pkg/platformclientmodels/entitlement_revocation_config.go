@@ -16,6 +16,9 @@ import (
 // swagger:model EntitlementRevocationConfig
 type EntitlementRevocationConfig struct {
 
+	// consumable entitlement revocation config
+	Consumable *ConsumableEntitlementRevocationConfig `json:"consumable,omitempty"`
+
 	// durable entitlement revocation config
 	Durable *DurableEntitlementRevocationConfig `json:"durable,omitempty"`
 }
@@ -24,6 +27,10 @@ type EntitlementRevocationConfig struct {
 func (m *EntitlementRevocationConfig) Validate(formats strfmt.Registry) error {
 	var res []error
 
+	if err := m.validateConsumable(formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.validateDurable(formats); err != nil {
 		res = append(res, err)
 	}
@@ -31,6 +38,24 @@ func (m *EntitlementRevocationConfig) Validate(formats strfmt.Registry) error {
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
+	return nil
+}
+
+func (m *EntitlementRevocationConfig) validateConsumable(formats strfmt.Registry) error {
+
+	if swag.IsZero(m.Consumable) { // not required
+		return nil
+	}
+
+	if m.Consumable != nil {
+		if err := m.Consumable.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("consumable")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 

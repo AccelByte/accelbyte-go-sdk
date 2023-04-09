@@ -40,7 +40,7 @@ type ClientService interface {
 }
 
 /*
-Deprecated: Use GetUserLeaderboardRankingsAdminV1Short instead.
+Deprecated: 2022-08-10 - Use GetUserLeaderboardRankingsAdminV1Short instead.
 
   GetUserLeaderboardRankingsAdminV1 gets user rankings
 

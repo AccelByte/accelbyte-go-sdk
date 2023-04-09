@@ -70,7 +70,7 @@ type AdminUpdateChannelParams struct {
 	/*RetryPolicy*/
 	RetryPolicy *utils.Retry
 	/*Body*/
-	Body *ugcclientmodels.ModelsChannelRequest
+	Body *ugcclientmodels.ModelsUpdateChannelRequest
 	/*ChannelID
 	  channelID
 
@@ -141,13 +141,13 @@ func (o *AdminUpdateChannelParams) SetHTTPClientTransport(roundTripper http.Roun
 }
 
 // WithBody adds the body to the admin update channel params
-func (o *AdminUpdateChannelParams) WithBody(body *ugcclientmodels.ModelsChannelRequest) *AdminUpdateChannelParams {
+func (o *AdminUpdateChannelParams) WithBody(body *ugcclientmodels.ModelsUpdateChannelRequest) *AdminUpdateChannelParams {
 	o.SetBody(body)
 	return o
 }
 
 // SetBody adds the body to the admin update channel params
-func (o *AdminUpdateChannelParams) SetBody(body *ugcclientmodels.ModelsChannelRequest) {
+func (o *AdminUpdateChannelParams) SetBody(body *ugcclientmodels.ModelsUpdateChannelRequest) {
 	o.Body = body
 }
 

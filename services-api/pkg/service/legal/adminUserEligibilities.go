@@ -39,7 +39,7 @@ func (aaa *AdminUserEligibilitiesService) GetAuthSession() auth.Session {
 	}
 }
 
-// deprecated(2022-01-10): please use AdminRetrieveEligibilitiesShort instead.
+// Deprecated: 2022-01-10 - please use AdminRetrieveEligibilitiesShort instead.
 func (aaa *AdminUserEligibilitiesService) AdminRetrieveEligibilities(input *admin_user_eligibilities.AdminRetrieveEligibilitiesParams) (*legalclientmodels.RetrieveUserEligibilitiesIndirectResponse, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {

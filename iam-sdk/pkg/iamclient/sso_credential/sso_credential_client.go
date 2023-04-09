@@ -48,7 +48,7 @@ type ClientService interface {
 }
 
 /*
-Deprecated: Use AddSSOLoginPlatformCredentialShort instead.
+Deprecated: 2022-08-10 - Use AddSSOLoginPlatformCredentialShort instead.
 
   AddSSOLoginPlatformCredential adds SSO platform credential
 
@@ -172,7 +172,7 @@ func (a *Client) AddSSOLoginPlatformCredentialShort(params *AddSSOLoginPlatformC
 }
 
 /*
-Deprecated: Use DeleteSSOLoginPlatformCredentialV3Short instead.
+Deprecated: 2022-08-10 - Use DeleteSSOLoginPlatformCredentialV3Short instead.
 
   DeleteSSOLoginPlatformCredentialV3 deletes SSO platform credential
 
@@ -291,7 +291,7 @@ func (a *Client) DeleteSSOLoginPlatformCredentialV3Short(params *DeleteSSOLoginP
 }
 
 /*
-Deprecated: Use RetrieveAllSSOLoginPlatformCredentialV3Short instead.
+Deprecated: 2022-08-10 - Use RetrieveAllSSOLoginPlatformCredentialV3Short instead.
 
   RetrieveAllSSOLoginPlatformCredentialV3 gets all SSO platform credential
 
@@ -405,7 +405,7 @@ func (a *Client) RetrieveAllSSOLoginPlatformCredentialV3Short(params *RetrieveAl
 }
 
 /*
-Deprecated: Use RetrieveSSOLoginPlatformCredentialShort instead.
+Deprecated: 2022-08-10 - Use RetrieveSSOLoginPlatformCredentialShort instead.
 
   RetrieveSSOLoginPlatformCredential retrieves SSO platform credential
 
@@ -524,7 +524,7 @@ func (a *Client) RetrieveSSOLoginPlatformCredentialShort(params *RetrieveSSOLogi
 }
 
 /*
-Deprecated: Use UpdateSSOPlatformCredentialShort instead.
+Deprecated: 2022-08-10 - Use UpdateSSOPlatformCredentialShort instead.
 
   UpdateSSOPlatformCredential updates SSO platform credential
 

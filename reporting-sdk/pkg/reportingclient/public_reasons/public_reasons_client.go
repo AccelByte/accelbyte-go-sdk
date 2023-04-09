@@ -42,7 +42,7 @@ type ClientService interface {
 }
 
 /*
-Deprecated: Use PublicGetReasonsShort instead.
+Deprecated: 2022-08-10 - Use PublicGetReasonsShort instead.
 
   PublicGetReasons gets list of reasons
 */
@@ -142,7 +142,7 @@ func (a *Client) PublicGetReasonsShort(params *PublicGetReasonsParams, authInfo 
 }
 
 /*
-Deprecated: Use PublicListReasonGroupsShort instead.
+Deprecated: 2022-08-10 - Use PublicListReasonGroupsShort instead.
 
   PublicListReasonGroups lists reason groups under a namespace
 

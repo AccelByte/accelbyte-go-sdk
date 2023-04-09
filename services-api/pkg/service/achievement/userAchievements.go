@@ -39,7 +39,7 @@ func (aaa *UserAchievementsService) GetAuthSession() auth.Session {
 	}
 }
 
-// deprecated(2022-01-10): please use AdminListUserAchievementsShort instead.
+// Deprecated: 2022-01-10 - please use AdminListUserAchievementsShort instead.
 func (aaa *UserAchievementsService) AdminListUserAchievements(input *user_achievements.AdminListUserAchievementsParams) (*achievementclientmodels.ModelsPaginatedUserAchievementResponse, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -65,7 +65,7 @@ func (aaa *UserAchievementsService) AdminListUserAchievements(input *user_achiev
 	return ok.GetPayload(), nil
 }
 
-// deprecated(2022-01-10): please use AdminResetAchievementShort instead.
+// Deprecated: 2022-01-10 - please use AdminResetAchievementShort instead.
 func (aaa *UserAchievementsService) AdminResetAchievement(input *user_achievements.AdminResetAchievementParams) error {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -91,7 +91,7 @@ func (aaa *UserAchievementsService) AdminResetAchievement(input *user_achievemen
 	return nil
 }
 
-// deprecated(2022-01-10): please use AdminUnlockAchievementShort instead.
+// Deprecated: 2022-01-10 - please use AdminUnlockAchievementShort instead.
 func (aaa *UserAchievementsService) AdminUnlockAchievement(input *user_achievements.AdminUnlockAchievementParams) error {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -117,7 +117,7 @@ func (aaa *UserAchievementsService) AdminUnlockAchievement(input *user_achieveme
 	return nil
 }
 
-// deprecated(2022-01-10): please use PublicListUserAchievementsShort instead.
+// Deprecated: 2022-01-10 - please use PublicListUserAchievementsShort instead.
 func (aaa *UserAchievementsService) PublicListUserAchievements(input *user_achievements.PublicListUserAchievementsParams) (*achievementclientmodels.ModelsPaginatedUserAchievementResponse, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -143,7 +143,7 @@ func (aaa *UserAchievementsService) PublicListUserAchievements(input *user_achie
 	return ok.GetPayload(), nil
 }
 
-// deprecated(2022-01-10): please use PublicUnlockAchievementShort instead.
+// Deprecated: 2022-01-10 - please use PublicUnlockAchievementShort instead.
 func (aaa *UserAchievementsService) PublicUnlockAchievement(input *user_achievements.PublicUnlockAchievementParams) error {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {

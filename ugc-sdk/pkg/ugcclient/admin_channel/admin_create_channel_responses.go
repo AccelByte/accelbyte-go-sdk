@@ -48,6 +48,12 @@ func (o *AdminCreateChannelReader) ReadResponse(response runtime.ClientResponse,
 			return nil, err
 		}
 		return result, nil
+	case 409:
+		result := NewAdminCreateChannelConflict()
+		if err := result.readResponse(response, consumer, o.formats); err != nil {
+			return nil, err
+		}
+		return result, nil
 	case 500:
 		result := NewAdminCreateChannelInternalServerError()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -208,6 +214,59 @@ func (o *AdminCreateChannelUnauthorized) GetPayload() *ugcclientmodels.ResponseE
 }
 
 func (o *AdminCreateChannelUnauthorized) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+	// handle file responses
+	contentDisposition := response.GetHeader("Content-Disposition")
+	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
+		consumer = runtime.ByteStreamConsumer()
+	}
+
+	o.Payload = new(ugcclientmodels.ResponseError)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
+	}
+
+	return nil
+}
+
+// NewAdminCreateChannelConflict creates a AdminCreateChannelConflict with default headers values
+func NewAdminCreateChannelConflict() *AdminCreateChannelConflict {
+	return &AdminCreateChannelConflict{}
+}
+
+/*AdminCreateChannelConflict handles this case with default header values.
+
+  Conflict
+*/
+type AdminCreateChannelConflict struct {
+	Payload *ugcclientmodels.ResponseError
+}
+
+func (o *AdminCreateChannelConflict) Error() string {
+	return fmt.Sprintf("[POST /ugc/v1/admin/namespaces/{namespace}/channels][%d] adminCreateChannelConflict  %+v", 409, o.ToJSONString())
+}
+
+func (o *AdminCreateChannelConflict) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
+}
+
+func (o *AdminCreateChannelConflict) GetPayload() *ugcclientmodels.ResponseError {
+	return o.Payload
+}
+
+func (o *AdminCreateChannelConflict) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {

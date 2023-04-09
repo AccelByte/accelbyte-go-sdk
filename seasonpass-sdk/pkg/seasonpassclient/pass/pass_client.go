@@ -50,7 +50,7 @@ type ClientService interface {
 }
 
 /*
-Deprecated: Use CreatePassShort instead.
+Deprecated: 2022-08-10 - Use CreatePassShort instead.
 
   CreatePass creates a pass
 
@@ -164,7 +164,7 @@ func (a *Client) CreatePassShort(params *CreatePassParams, authInfo runtime.Clie
 }
 
 /*
-Deprecated: Use DeletePassShort instead.
+Deprecated: 2022-08-10 - Use DeletePassShort instead.
 
   DeletePass deletes a pass
 
@@ -273,7 +273,7 @@ func (a *Client) DeletePassShort(params *DeletePassParams, authInfo runtime.Clie
 }
 
 /*
-Deprecated: Use GetPassShort instead.
+Deprecated: 2022-08-10 - Use GetPassShort instead.
 
   GetPass gets a pass
 
@@ -377,7 +377,7 @@ func (a *Client) GetPassShort(params *GetPassParams, authInfo runtime.ClientAuth
 }
 
 /*
-Deprecated: Use GrantUserPassShort instead.
+Deprecated: 2022-08-10 - Use GrantUserPassShort instead.
 
   GrantUserPass grants pass to user
 
@@ -476,7 +476,7 @@ func (a *Client) GrantUserPassShort(params *GrantUserPassParams, authInfo runtim
 }
 
 /*
-Deprecated: Use QueryPassesShort instead.
+Deprecated: 2022-08-10 - Use QueryPassesShort instead.
 
   QueryPasses queries all passes for a season
 
@@ -580,7 +580,7 @@ func (a *Client) QueryPassesShort(params *QueryPassesParams, authInfo runtime.Cl
 }
 
 /*
-Deprecated: Use UpdatePassShort instead.
+Deprecated: 2022-08-10 - Use UpdatePassShort instead.
 
   UpdatePass updates a pass
 

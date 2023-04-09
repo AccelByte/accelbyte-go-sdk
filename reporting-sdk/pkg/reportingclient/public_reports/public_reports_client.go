@@ -40,7 +40,7 @@ type ClientService interface {
 }
 
 /*
-Deprecated: Use SubmitReportShort instead.
+Deprecated: 2022-08-10 - Use SubmitReportShort instead.
 
   SubmitReport submits a report
 

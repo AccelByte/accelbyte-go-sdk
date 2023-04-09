@@ -98,7 +98,7 @@ func init() {
 	UgcCmd.AddCommand(publicFollow.GetFollowedUsersCmd)
 	UgcCmd.AddCommand(publicCreator.PublicGetCreatorCmd)
 	UgcCmd.AddCommand(publicChannel.GetChannelsCmd)
-	UgcCmd.AddCommand(publicChannel.CreateChannelCmd)
+	UgcCmd.AddCommand(publicChannel.PublicCreateChannelCmd)
 	UgcCmd.AddCommand(anonymization.DeleteAllUserChannelCmd)
 	UgcCmd.AddCommand(publicChannel.UpdateChannelCmd)
 	UgcCmd.AddCommand(publicChannel.DeleteChannelCmd)

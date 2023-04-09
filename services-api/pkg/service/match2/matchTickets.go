@@ -39,7 +39,7 @@ func (aaa *MatchTicketsService) GetAuthSession() auth.Session {
 	}
 }
 
-// deprecated(2022-01-10): please use CreateMatchTicketShort instead.
+// Deprecated: 2022-01-10 - please use CreateMatchTicketShort instead.
 func (aaa *MatchTicketsService) CreateMatchTicket(input *match_tickets.CreateMatchTicketParams) (*match2clientmodels.APIMatchTicketResponse, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -71,7 +71,7 @@ func (aaa *MatchTicketsService) CreateMatchTicket(input *match_tickets.CreateMat
 	return created.GetPayload(), nil
 }
 
-// deprecated(2022-01-10): please use MatchTicketDetailsShort instead.
+// Deprecated: 2022-01-10 - please use MatchTicketDetailsShort instead.
 func (aaa *MatchTicketsService) MatchTicketDetails(input *match_tickets.MatchTicketDetailsParams) (*match2clientmodels.APIMatchTicketStatus, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -97,7 +97,7 @@ func (aaa *MatchTicketsService) MatchTicketDetails(input *match_tickets.MatchTic
 	return ok.GetPayload(), nil
 }
 
-// deprecated(2022-01-10): please use DeleteMatchTicketShort instead.
+// Deprecated: 2022-01-10 - please use DeleteMatchTicketShort instead.
 func (aaa *MatchTicketsService) DeleteMatchTicket(input *match_tickets.DeleteMatchTicketParams) error {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {

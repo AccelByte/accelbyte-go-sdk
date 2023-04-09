@@ -50,7 +50,7 @@ type ClientService interface {
 }
 
 /*
-Deprecated: Use DeleteNamespaceSlotConfigShort instead.
+Deprecated: 2022-08-10 - Use DeleteNamespaceSlotConfigShort instead.
 
   DeleteNamespaceSlotConfig deletes a namespace slot configuration
 
@@ -144,7 +144,7 @@ func (a *Client) DeleteNamespaceSlotConfigShort(params *DeleteNamespaceSlotConfi
 }
 
 /*
-Deprecated: Use DeleteUserSlotConfigShort instead.
+Deprecated: 2022-08-10 - Use DeleteUserSlotConfigShort instead.
 
   DeleteUserSlotConfig deletes a user slot configuration
 
@@ -238,7 +238,7 @@ func (a *Client) DeleteUserSlotConfigShort(params *DeleteUserSlotConfigParams, a
 }
 
 /*
-Deprecated: Use GetNamespaceSlotConfigShort instead.
+Deprecated: 2022-08-10 - Use GetNamespaceSlotConfigShort instead.
 
   GetNamespaceSlotConfig returns a namespace slot configuration
 
@@ -332,7 +332,7 @@ func (a *Client) GetNamespaceSlotConfigShort(params *GetNamespaceSlotConfigParam
 }
 
 /*
-Deprecated: Use GetUserSlotConfigShort instead.
+Deprecated: 2022-08-10 - Use GetUserSlotConfigShort instead.
 
   GetUserSlotConfig returns a user slot configuration
 
@@ -426,7 +426,7 @@ func (a *Client) GetUserSlotConfigShort(params *GetUserSlotConfigParams, authInf
 }
 
 /*
-Deprecated: Use UpdateNamespaceSlotConfigShort instead.
+Deprecated: 2022-08-10 - Use UpdateNamespaceSlotConfigShort instead.
 
   UpdateNamespaceSlotConfig updates a namespace slot configuration
 
@@ -520,7 +520,7 @@ func (a *Client) UpdateNamespaceSlotConfigShort(params *UpdateNamespaceSlotConfi
 }
 
 /*
-Deprecated: Use UpdateUserSlotConfigShort instead.
+Deprecated: 2022-08-10 - Use UpdateUserSlotConfigShort instead.
 
   UpdateUserSlotConfig updates a user slot configuration
 

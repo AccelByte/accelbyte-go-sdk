@@ -59,9 +59,9 @@ type ClientService interface {
 	AdminUpdateContentS3Short(params *AdminUpdateContentS3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminUpdateContentS3OK, error)
 	AdminUpdateScreenshots(params *AdminUpdateScreenshotsParams, authInfo runtime.ClientAuthInfoWriter) (*AdminUpdateScreenshotsOK, *AdminUpdateScreenshotsBadRequest, *AdminUpdateScreenshotsUnauthorized, *AdminUpdateScreenshotsNotFound, *AdminUpdateScreenshotsInternalServerError, error)
 	AdminUpdateScreenshotsShort(params *AdminUpdateScreenshotsParams, authInfo runtime.ClientAuthInfoWriter) (*AdminUpdateScreenshotsOK, error)
-	AdminUploadContentDirect(params *AdminUploadContentDirectParams, authInfo runtime.ClientAuthInfoWriter) (*AdminUploadContentDirectCreated, *AdminUploadContentDirectBadRequest, *AdminUploadContentDirectUnauthorized, *AdminUploadContentDirectInternalServerError, error)
+	AdminUploadContentDirect(params *AdminUploadContentDirectParams, authInfo runtime.ClientAuthInfoWriter) (*AdminUploadContentDirectCreated, *AdminUploadContentDirectBadRequest, *AdminUploadContentDirectUnauthorized, *AdminUploadContentDirectConflict, *AdminUploadContentDirectInternalServerError, error)
 	AdminUploadContentDirectShort(params *AdminUploadContentDirectParams, authInfo runtime.ClientAuthInfoWriter) (*AdminUploadContentDirectCreated, error)
-	AdminUploadContentS3(params *AdminUploadContentS3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminUploadContentS3Created, *AdminUploadContentS3BadRequest, *AdminUploadContentS3Unauthorized, *AdminUploadContentS3InternalServerError, error)
+	AdminUploadContentS3(params *AdminUploadContentS3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminUploadContentS3Created, *AdminUploadContentS3BadRequest, *AdminUploadContentS3Unauthorized, *AdminUploadContentS3Conflict, *AdminUploadContentS3InternalServerError, error)
 	AdminUploadContentS3Short(params *AdminUploadContentS3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminUploadContentS3Created, error)
 	AdminUploadContentScreenshot(params *AdminUploadContentScreenshotParams, authInfo runtime.ClientAuthInfoWriter) (*AdminUploadContentScreenshotCreated, *AdminUploadContentScreenshotBadRequest, *AdminUploadContentScreenshotUnauthorized, *AdminUploadContentScreenshotNotFound, *AdminUploadContentScreenshotInternalServerError, error)
 	AdminUploadContentScreenshotShort(params *AdminUploadContentScreenshotParams, authInfo runtime.ClientAuthInfoWriter) (*AdminUploadContentScreenshotCreated, error)
@@ -78,7 +78,7 @@ type ClientService interface {
 }
 
 /*
-Deprecated: Use AdminDeleteContentShort instead.
+Deprecated: 2022-08-10 - Use AdminDeleteContentShort instead.
 
   AdminDeleteContent deletes content
 
@@ -187,7 +187,7 @@ func (a *Client) AdminDeleteContentShort(params *AdminDeleteContentParams, authI
 }
 
 /*
-Deprecated: Use AdminDeleteContentScreenshotShort instead.
+Deprecated: 2022-08-10 - Use AdminDeleteContentScreenshotShort instead.
 
   AdminDeleteContentScreenshot deletes screenshots content
 
@@ -303,7 +303,7 @@ func (a *Client) AdminDeleteContentScreenshotShort(params *AdminDeleteContentScr
 }
 
 /*
-Deprecated: Use AdminDownloadContentPreviewShort instead.
+Deprecated: 2022-08-10 - Use AdminDownloadContentPreviewShort instead.
 
   AdminDownloadContentPreview gets content preview
 
@@ -412,7 +412,7 @@ func (a *Client) AdminDownloadContentPreviewShort(params *AdminDownloadContentPr
 }
 
 /*
-Deprecated: Use AdminGetContentShort instead.
+Deprecated: 2022-08-10 - Use AdminGetContentShort instead.
 
   AdminGetContent gets user s generated contents
 
@@ -521,7 +521,7 @@ func (a *Client) AdminGetContentShort(params *AdminGetContentParams, authInfo ru
 }
 
 /*
-Deprecated: Use AdminGetContentBulkShort instead.
+Deprecated: 2022-08-10 - Use AdminGetContentBulkShort instead.
 
   AdminGetContentBulk bulks get content by content i ds
 
@@ -632,7 +632,7 @@ func (a *Client) AdminGetContentBulkShort(params *AdminGetContentBulkParams, aut
 }
 
 /*
-Deprecated: Use AdminGetSpecificContentShort instead.
+Deprecated: 2022-08-10 - Use AdminGetSpecificContentShort instead.
 
   AdminGetSpecificContent gets user specific content
 
@@ -741,7 +741,7 @@ func (a *Client) AdminGetSpecificContentShort(params *AdminGetSpecificContentPar
 }
 
 /*
-Deprecated: Use AdminGetUserContentByShareCodeShort instead.
+Deprecated: 2022-08-10 - Use AdminGetUserContentByShareCodeShort instead.
 
   AdminGetUserContentByShareCode gets content by sharecode
 
@@ -850,7 +850,7 @@ func (a *Client) AdminGetUserContentByShareCodeShort(params *AdminGetUserContent
 }
 
 /*
-Deprecated: Use AdminHideUserContentShort instead.
+Deprecated: 2022-08-10 - Use AdminHideUserContentShort instead.
 
   AdminHideUserContent hides unhide user s generated contents
 
@@ -959,7 +959,7 @@ func (a *Client) AdminHideUserContentShort(params *AdminHideUserContentParams, a
 }
 
 /*
-Deprecated: Use AdminSearchChannelSpecificContentShort instead.
+Deprecated: 2022-08-10 - Use AdminSearchChannelSpecificContentShort instead.
 
   AdminSearchChannelSpecificContent searches contents specific to a channel
 
@@ -1108,7 +1108,7 @@ func (a *Client) AdminSearchChannelSpecificContentShort(params *AdminSearchChann
 }
 
 /*
-Deprecated: Use AdminSearchContentShort instead.
+Deprecated: 2022-08-10 - Use AdminSearchContentShort instead.
 
   AdminSearchContent searches contents
 
@@ -1257,7 +1257,7 @@ func (a *Client) AdminSearchContentShort(params *AdminSearchContentParams, authI
 }
 
 /*
-Deprecated: Use AdminUpdateContentDirectShort instead.
+Deprecated: 2022-08-10 - Use AdminUpdateContentDirectShort instead.
 
   AdminUpdateContentDirect updates content to a channel
 
@@ -1375,7 +1375,7 @@ func (a *Client) AdminUpdateContentDirectShort(params *AdminUpdateContentDirectP
 }
 
 /*
-Deprecated: Use AdminUpdateContentS3Short instead.
+Deprecated: 2022-08-10 - Use AdminUpdateContentS3Short instead.
 
   AdminUpdateContentS3 updates content to s3 bucket
 
@@ -1499,7 +1499,7 @@ func (a *Client) AdminUpdateContentS3Short(params *AdminUpdateContentS3Params, a
 }
 
 /*
-Deprecated: Use AdminUpdateScreenshotsShort instead.
+Deprecated: 2022-08-10 - Use AdminUpdateScreenshotsShort instead.
 
   AdminUpdateScreenshots updates screenshot of content
 
@@ -1617,7 +1617,7 @@ func (a *Client) AdminUpdateScreenshotsShort(params *AdminUpdateScreenshotsParam
 }
 
 /*
-Deprecated: Use AdminUploadContentDirectShort instead.
+Deprecated: 2022-08-10 - Use AdminUploadContentDirectShort instead.
 
   AdminUploadContentDirect uploads content to a channel
 
@@ -1625,7 +1625,7 @@ Deprecated: Use AdminUploadContentDirectShort instead.
 				All request body are required except preview, tags and customAttributes.
 
 */
-func (a *Client) AdminUploadContentDirect(params *AdminUploadContentDirectParams, authInfo runtime.ClientAuthInfoWriter) (*AdminUploadContentDirectCreated, *AdminUploadContentDirectBadRequest, *AdminUploadContentDirectUnauthorized, *AdminUploadContentDirectInternalServerError, error) {
+func (a *Client) AdminUploadContentDirect(params *AdminUploadContentDirectParams, authInfo runtime.ClientAuthInfoWriter) (*AdminUploadContentDirectCreated, *AdminUploadContentDirectBadRequest, *AdminUploadContentDirectUnauthorized, *AdminUploadContentDirectConflict, *AdminUploadContentDirectInternalServerError, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewAdminUploadContentDirectParams()
@@ -1653,25 +1653,28 @@ func (a *Client) AdminUploadContentDirect(params *AdminUploadContentDirectParams
 		Client:             params.HTTPClient,
 	})
 	if err != nil {
-		return nil, nil, nil, nil, err
+		return nil, nil, nil, nil, nil, err
 	}
 
 	switch v := result.(type) {
 
 	case *AdminUploadContentDirectCreated:
-		return v, nil, nil, nil, nil
+		return v, nil, nil, nil, nil, nil
 
 	case *AdminUploadContentDirectBadRequest:
-		return nil, v, nil, nil, nil
+		return nil, v, nil, nil, nil, nil
 
 	case *AdminUploadContentDirectUnauthorized:
-		return nil, nil, v, nil, nil
+		return nil, nil, v, nil, nil, nil
+
+	case *AdminUploadContentDirectConflict:
+		return nil, nil, nil, v, nil, nil
 
 	case *AdminUploadContentDirectInternalServerError:
-		return nil, nil, nil, v, nil
+		return nil, nil, nil, nil, v, nil
 
 	default:
-		return nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+		return nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
@@ -1721,6 +1724,8 @@ func (a *Client) AdminUploadContentDirectShort(params *AdminUploadContentDirectP
 		return nil, v
 	case *AdminUploadContentDirectUnauthorized:
 		return nil, v
+	case *AdminUploadContentDirectConflict:
+		return nil, v
 	case *AdminUploadContentDirectInternalServerError:
 		return nil, v
 
@@ -1730,7 +1735,7 @@ func (a *Client) AdminUploadContentDirectShort(params *AdminUploadContentDirectP
 }
 
 /*
-Deprecated: Use AdminUploadContentS3Short instead.
+Deprecated: 2022-08-10 - Use AdminUploadContentS3Short instead.
 
   AdminUploadContentS3 uploads content to s3 bucket
 
@@ -1740,7 +1745,7 @@ Deprecated: Use AdminUploadContentS3Short instead.
 				If not specified, it will use fileExtension value.
 				&lt;br&gt;&lt;p&gt;&lt;b&gt;NOTE: Preview is Legacy Code, please use Screenshot for better solution to display preview of a content&lt;/b&gt;&lt;/p&gt;
 */
-func (a *Client) AdminUploadContentS3(params *AdminUploadContentS3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminUploadContentS3Created, *AdminUploadContentS3BadRequest, *AdminUploadContentS3Unauthorized, *AdminUploadContentS3InternalServerError, error) {
+func (a *Client) AdminUploadContentS3(params *AdminUploadContentS3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminUploadContentS3Created, *AdminUploadContentS3BadRequest, *AdminUploadContentS3Unauthorized, *AdminUploadContentS3Conflict, *AdminUploadContentS3InternalServerError, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewAdminUploadContentS3Params()
@@ -1768,25 +1773,28 @@ func (a *Client) AdminUploadContentS3(params *AdminUploadContentS3Params, authIn
 		Client:             params.HTTPClient,
 	})
 	if err != nil {
-		return nil, nil, nil, nil, err
+		return nil, nil, nil, nil, nil, err
 	}
 
 	switch v := result.(type) {
 
 	case *AdminUploadContentS3Created:
-		return v, nil, nil, nil, nil
+		return v, nil, nil, nil, nil, nil
 
 	case *AdminUploadContentS3BadRequest:
-		return nil, v, nil, nil, nil
+		return nil, v, nil, nil, nil, nil
 
 	case *AdminUploadContentS3Unauthorized:
-		return nil, nil, v, nil, nil
+		return nil, nil, v, nil, nil, nil
+
+	case *AdminUploadContentS3Conflict:
+		return nil, nil, nil, v, nil, nil
 
 	case *AdminUploadContentS3InternalServerError:
-		return nil, nil, nil, v, nil
+		return nil, nil, nil, nil, v, nil
 
 	default:
-		return nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+		return nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
@@ -1838,6 +1846,8 @@ func (a *Client) AdminUploadContentS3Short(params *AdminUploadContentS3Params, a
 		return nil, v
 	case *AdminUploadContentS3Unauthorized:
 		return nil, v
+	case *AdminUploadContentS3Conflict:
+		return nil, v
 	case *AdminUploadContentS3InternalServerError:
 		return nil, v
 
@@ -1847,7 +1857,7 @@ func (a *Client) AdminUploadContentS3Short(params *AdminUploadContentS3Params, a
 }
 
 /*
-Deprecated: Use AdminUploadContentScreenshotShort instead.
+Deprecated: 2022-08-10 - Use AdminUploadContentScreenshotShort instead.
 
   AdminUploadContentScreenshot uploads screenshots for content
 
@@ -1973,7 +1983,7 @@ func (a *Client) AdminUploadContentScreenshotShort(params *AdminUploadContentScr
 }
 
 /*
-Deprecated: Use SingleAdminDeleteContentShort instead.
+Deprecated: 2022-08-10 - Use SingleAdminDeleteContentShort instead.
 
   SingleAdminDeleteContent deletes content
 
@@ -2082,7 +2092,7 @@ func (a *Client) SingleAdminDeleteContentShort(params *SingleAdminDeleteContentP
 }
 
 /*
-Deprecated: Use SingleAdminGetContentShort instead.
+Deprecated: 2022-08-10 - Use SingleAdminGetContentShort instead.
 
   SingleAdminGetContent gets user s generated contents
 
@@ -2191,7 +2201,7 @@ func (a *Client) SingleAdminGetContentShort(params *SingleAdminGetContentParams,
 }
 
 /*
-Deprecated: Use SingleAdminUpdateContentDirectShort instead.
+Deprecated: 2022-08-10 - Use SingleAdminUpdateContentDirectShort instead.
 
   SingleAdminUpdateContentDirect updates content to a channel
 
@@ -2309,7 +2319,7 @@ func (a *Client) SingleAdminUpdateContentDirectShort(params *SingleAdminUpdateCo
 }
 
 /*
-Deprecated: Use SingleAdminUpdateContentS3Short instead.
+Deprecated: 2022-08-10 - Use SingleAdminUpdateContentS3Short instead.
 
   SingleAdminUpdateContentS3 updates content to s3 bucket
 

@@ -37,6 +37,8 @@ type ClientService interface {
 	CreateMatchPoolShort(params *CreateMatchPoolParams, authInfo runtime.ClientAuthInfoWriter) (*CreateMatchPoolCreated, error)
 	DeleteMatchPool(params *DeleteMatchPoolParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteMatchPoolNoContent, *DeleteMatchPoolUnauthorized, *DeleteMatchPoolForbidden, *DeleteMatchPoolNotFound, *DeleteMatchPoolInternalServerError, error)
 	DeleteMatchPoolShort(params *DeleteMatchPoolParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteMatchPoolNoContent, error)
+	GetPlayerMetric(params *GetPlayerMetricParams, authInfo runtime.ClientAuthInfoWriter) (*GetPlayerMetricOK, *GetPlayerMetricUnauthorized, *GetPlayerMetricForbidden, *GetPlayerMetricNotFound, *GetPlayerMetricInternalServerError, error)
+	GetPlayerMetricShort(params *GetPlayerMetricParams, authInfo runtime.ClientAuthInfoWriter) (*GetPlayerMetricOK, error)
 	MatchPoolDetails(params *MatchPoolDetailsParams, authInfo runtime.ClientAuthInfoWriter) (*MatchPoolDetailsOK, *MatchPoolDetailsUnauthorized, *MatchPoolDetailsForbidden, *MatchPoolDetailsInternalServerError, error)
 	MatchPoolDetailsShort(params *MatchPoolDetailsParams, authInfo runtime.ClientAuthInfoWriter) (*MatchPoolDetailsOK, error)
 	MatchPoolList(params *MatchPoolListParams, authInfo runtime.ClientAuthInfoWriter) (*MatchPoolListOK, *MatchPoolListUnauthorized, *MatchPoolListForbidden, *MatchPoolListInternalServerError, error)
@@ -50,7 +52,7 @@ type ClientService interface {
 }
 
 /*
-Deprecated: Use CreateMatchPoolShort instead.
+Deprecated: 2022-08-10 - Use CreateMatchPoolShort instead.
 
   CreateMatchPool creates a match pool
 
@@ -215,7 +217,7 @@ func (a *Client) CreateMatchPoolShort(params *CreateMatchPoolParams, authInfo ru
 }
 
 /*
-Deprecated: Use DeleteMatchPoolShort instead.
+Deprecated: 2022-08-10 - Use DeleteMatchPoolShort instead.
 
   DeleteMatchPool deletes a match pool
 
@@ -339,7 +341,131 @@ func (a *Client) DeleteMatchPoolShort(params *DeleteMatchPoolParams, authInfo ru
 }
 
 /*
-Deprecated: Use MatchPoolDetailsShort instead.
+Deprecated: 2022-08-10 - Use GetPlayerMetricShort instead.
+
+  GetPlayerMetric gets metrics player for a specific match pool
+
+  Required Permission: ADMIN:NAMESPACE:{namespace}:MATCHMAKING:POOL:METRICS [READ]
+
+Required Scope: social
+
+Get player metric for a specific match pool
+
+*/
+func (a *Client) GetPlayerMetric(params *GetPlayerMetricParams, authInfo runtime.ClientAuthInfoWriter) (*GetPlayerMetricOK, *GetPlayerMetricUnauthorized, *GetPlayerMetricForbidden, *GetPlayerMetricNotFound, *GetPlayerMetricInternalServerError, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewGetPlayerMetricParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "GetPlayerMetric",
+		Method:             "GET",
+		PathPattern:        "/match2/v1/namespaces/{namespace}/match-pools/{pool}/metrics/player",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &GetPlayerMetricReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, nil, nil, nil, nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *GetPlayerMetricOK:
+		return v, nil, nil, nil, nil, nil
+
+	case *GetPlayerMetricUnauthorized:
+		return nil, v, nil, nil, nil, nil
+
+	case *GetPlayerMetricForbidden:
+		return nil, nil, v, nil, nil, nil
+
+	case *GetPlayerMetricNotFound:
+		return nil, nil, nil, v, nil, nil
+
+	case *GetPlayerMetricInternalServerError:
+		return nil, nil, nil, nil, v, nil
+
+	default:
+		return nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+  GetPlayerMetricShort gets metrics player for a specific match pool
+
+  Required Permission: ADMIN:NAMESPACE:{namespace}:MATCHMAKING:POOL:METRICS [READ]
+
+Required Scope: social
+
+Get player metric for a specific match pool
+
+*/
+func (a *Client) GetPlayerMetricShort(params *GetPlayerMetricParams, authInfo runtime.ClientAuthInfoWriter) (*GetPlayerMetricOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewGetPlayerMetricParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "GetPlayerMetric",
+		Method:             "GET",
+		PathPattern:        "/match2/v1/namespaces/{namespace}/match-pools/{pool}/metrics/player",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &GetPlayerMetricReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *GetPlayerMetricOK:
+		return v, nil
+	case *GetPlayerMetricUnauthorized:
+		return nil, v
+	case *GetPlayerMetricForbidden:
+		return nil, v
+	case *GetPlayerMetricNotFound:
+		return nil, v
+	case *GetPlayerMetricInternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+Deprecated: 2022-08-10 - Use MatchPoolDetailsShort instead.
 
   MatchPoolDetails gets details for a specific match pool
 
@@ -458,7 +584,7 @@ func (a *Client) MatchPoolDetailsShort(params *MatchPoolDetailsParams, authInfo 
 }
 
 /*
-Deprecated: Use MatchPoolListShort instead.
+Deprecated: 2022-08-10 - Use MatchPoolListShort instead.
 
   MatchPoolList lists match pools
 
@@ -577,7 +703,7 @@ func (a *Client) MatchPoolListShort(params *MatchPoolListParams, authInfo runtim
 }
 
 /*
-Deprecated: Use MatchPoolMetricShort instead.
+Deprecated: 2022-08-10 - Use MatchPoolMetricShort instead.
 
   MatchPoolMetric gets metrics for a specific match pool
 
@@ -705,7 +831,7 @@ func (a *Client) MatchPoolMetricShort(params *MatchPoolMetricParams, authInfo ru
 }
 
 /*
-Deprecated: Use UpdateMatchPoolShort instead.
+Deprecated: 2022-08-10 - Use UpdateMatchPoolShort instead.
 
   UpdateMatchPool updates a match pool
 

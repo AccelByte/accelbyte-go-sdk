@@ -42,7 +42,7 @@ type ClientService interface {
 }
 
 /*
-Deprecated: Use LoginSSOClientShort instead.
+Deprecated: 2022-08-10 - Use LoginSSOClientShort instead.
 
   LoginSSOClient logins to SSO client with provided platform Id
 */
@@ -132,7 +132,7 @@ func (a *Client) LoginSSOClientShort(params *LoginSSOClientParams, authInfo runt
 }
 
 /*
-Deprecated: Use LogoutSSOClientShort instead.
+Deprecated: 2022-08-10 - Use LogoutSSOClientShort instead.
 
   LogoutSSOClient logouts
 

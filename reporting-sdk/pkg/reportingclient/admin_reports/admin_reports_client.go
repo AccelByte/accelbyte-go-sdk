@@ -42,7 +42,7 @@ type ClientService interface {
 }
 
 /*
-Deprecated: Use AdminSubmitReportShort instead.
+Deprecated: 2022-08-10 - Use AdminSubmitReportShort instead.
 
   AdminSubmitReport submits a report by admin
 
@@ -167,7 +167,7 @@ func (a *Client) AdminSubmitReportShort(params *AdminSubmitReportParams, authInf
 }
 
 /*
-Deprecated: Use ListReportsShort instead.
+Deprecated: 2022-08-10 - Use ListReportsShort instead.
 
   ListReports lists reports
 

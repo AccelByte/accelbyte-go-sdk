@@ -128,7 +128,7 @@ type ClientService interface {
 }
 
 /*
-Deprecated: Use AcquireItemShort instead.
+Deprecated: 2022-08-10 - Use AcquireItemShort instead.
 
   AcquireItem acquires item
 
@@ -227,7 +227,7 @@ func (a *Client) AcquireItemShort(params *AcquireItemParams, authInfo runtime.Cl
 }
 
 /*
-Deprecated: Use BulkGetLocaleItemsShort instead.
+Deprecated: 2022-08-10 - Use BulkGetLocaleItemsShort instead.
 
   BulkGetLocaleItems bulks get locale items
 
@@ -326,7 +326,7 @@ func (a *Client) BulkGetLocaleItemsShort(params *BulkGetLocaleItemsParams, authI
 }
 
 /*
-Deprecated: Use BulkUpdateRegionDataShort instead.
+Deprecated: 2022-08-10 - Use BulkUpdateRegionDataShort instead.
 
   BulkUpdateRegionData updates item s region data in bulk
 
@@ -440,7 +440,7 @@ func (a *Client) BulkUpdateRegionDataShort(params *BulkUpdateRegionDataParams, a
 }
 
 /*
-Deprecated: Use CreateItemShort instead.
+Deprecated: 2022-08-10 - Use CreateItemShort instead.
 
   CreateItem creates an item
 
@@ -762,7 +762,7 @@ func (a *Client) CreateItemShort(params *CreateItemParams, authInfo runtime.Clie
 }
 
 /*
-Deprecated: Use CreateItemTypeConfigShort instead.
+Deprecated: 2022-08-10 - Use CreateItemTypeConfigShort instead.
 
   CreateItemTypeConfig creates an item type config
 
@@ -871,7 +871,7 @@ func (a *Client) CreateItemTypeConfigShort(params *CreateItemTypeConfigParams, a
 }
 
 /*
-Deprecated: Use DefeatureItemShort instead.
+Deprecated: 2022-08-10 - Use DefeatureItemShort instead.
 
   DefeatureItem defeatures an item
 
@@ -975,7 +975,7 @@ func (a *Client) DefeatureItemShort(params *DefeatureItemParams, authInfo runtim
 }
 
 /*
-Deprecated: Use DeleteItemShort instead.
+Deprecated: 2022-08-10 - Use DeleteItemShort instead.
 
   DeleteItem deletes an item
 
@@ -1074,7 +1074,7 @@ func (a *Client) DeleteItemShort(params *DeleteItemParams, authInfo runtime.Clie
 }
 
 /*
-Deprecated: Use DeleteItemTypeConfigShort instead.
+Deprecated: 2022-08-10 - Use DeleteItemTypeConfigShort instead.
 
   DeleteItemTypeConfig deletes an item type config
 
@@ -1173,7 +1173,7 @@ func (a *Client) DeleteItemTypeConfigShort(params *DeleteItemTypeConfigParams, a
 }
 
 /*
-Deprecated: Use DisableItemShort instead.
+Deprecated: 2022-08-10 - Use DisableItemShort instead.
 
   DisableItem disables an item
 
@@ -1277,7 +1277,7 @@ func (a *Client) DisableItemShort(params *DisableItemParams, authInfo runtime.Cl
 }
 
 /*
-Deprecated: Use EnableItemShort instead.
+Deprecated: 2022-08-10 - Use EnableItemShort instead.
 
   EnableItem enables an item
 
@@ -1381,7 +1381,7 @@ func (a *Client) EnableItemShort(params *EnableItemParams, authInfo runtime.Clie
 }
 
 /*
-Deprecated: Use FeatureItemShort instead.
+Deprecated: 2022-08-10 - Use FeatureItemShort instead.
 
   FeatureItem features an item
 
@@ -1485,7 +1485,7 @@ func (a *Client) FeatureItemShort(params *FeatureItemParams, authInfo runtime.Cl
 }
 
 /*
-Deprecated: Use GetAppShort instead.
+Deprecated: 2022-08-10 - Use GetAppShort instead.
 
   GetApp gets an app info
 
@@ -1579,7 +1579,7 @@ func (a *Client) GetAppShort(params *GetAppParams, authInfo runtime.ClientAuthIn
 }
 
 /*
-Deprecated: Use GetAvailablePredicateTypesShort instead.
+Deprecated: 2022-08-10 - Use GetAvailablePredicateTypesShort instead.
 
   GetAvailablePredicateTypes gets available predicate types
 
@@ -1678,7 +1678,7 @@ func (a *Client) GetAvailablePredicateTypesShort(params *GetAvailablePredicateTy
 }
 
 /*
-Deprecated: Use GetBulkItemIDBySkusShort instead.
+Deprecated: 2022-08-10 - Use GetBulkItemIDBySkusShort instead.
 
   GetBulkItemIDBySkus gets multiple item Id by sku
 
@@ -1772,7 +1772,7 @@ func (a *Client) GetBulkItemIDBySkusShort(params *GetBulkItemIDBySkusParams, aut
 }
 
 /*
-Deprecated: Use GetItemShort instead.
+Deprecated: 2022-08-10 - Use GetItemShort instead.
 
   GetItem gets an item
 
@@ -1871,7 +1871,7 @@ func (a *Client) GetItemShort(params *GetItemParams, authInfo runtime.ClientAuth
 }
 
 /*
-Deprecated: Use GetItemByAppIDShort instead.
+Deprecated: 2022-08-10 - Use GetItemByAppIDShort instead.
 
   GetItemByAppID gets item by app Id
 
@@ -1970,7 +1970,7 @@ func (a *Client) GetItemByAppIDShort(params *GetItemByAppIDParams, authInfo runt
 }
 
 /*
-Deprecated: Use GetItemBySkuShort instead.
+Deprecated: 2022-08-10 - Use GetItemBySkuShort instead.
 
   GetItemBySku gets item by sku
 
@@ -2069,7 +2069,7 @@ func (a *Client) GetItemBySkuShort(params *GetItemBySkuParams, authInfo runtime.
 }
 
 /*
-Deprecated: Use GetItemDynamicDataShort instead.
+Deprecated: 2022-08-10 - Use GetItemDynamicDataShort instead.
 
   GetItemDynamicData gets item dynamic data
 
@@ -2168,7 +2168,7 @@ func (a *Client) GetItemDynamicDataShort(params *GetItemDynamicDataParams, authI
 }
 
 /*
-Deprecated: Use GetItemIDBySkuShort instead.
+Deprecated: 2022-08-10 - Use GetItemIDBySkuShort instead.
 
   GetItemIDBySku gets item Id by sku
 
@@ -2267,7 +2267,7 @@ func (a *Client) GetItemIDBySkuShort(params *GetItemIDBySkuParams, authInfo runt
 }
 
 /*
-Deprecated: Use GetItemTypeConfigShort instead.
+Deprecated: 2022-08-10 - Use GetItemTypeConfigShort instead.
 
   GetItemTypeConfig gets an item type config
 
@@ -2366,7 +2366,7 @@ func (a *Client) GetItemTypeConfigShort(params *GetItemTypeConfigParams, authInf
 }
 
 /*
-Deprecated: Use GetLocaleItemShort instead.
+Deprecated: 2022-08-10 - Use GetLocaleItemShort instead.
 
   GetLocaleItem gets an item in locale
 
@@ -2465,7 +2465,7 @@ func (a *Client) GetLocaleItemShort(params *GetLocaleItemParams, authInfo runtim
 }
 
 /*
-Deprecated: Use GetLocaleItemBySkuShort instead.
+Deprecated: 2022-08-10 - Use GetLocaleItemBySkuShort instead.
 
   GetLocaleItemBySku gets an item by sku in locale
 
@@ -2564,7 +2564,7 @@ func (a *Client) GetLocaleItemBySkuShort(params *GetLocaleItemBySkuParams, authI
 }
 
 /*
-Deprecated: Use ListBasicItemsByFeaturesShort instead.
+Deprecated: 2022-08-10 - Use ListBasicItemsByFeaturesShort instead.
 
   ListBasicItemsByFeatures lists basic items by features
 
@@ -2658,7 +2658,7 @@ func (a *Client) ListBasicItemsByFeaturesShort(params *ListBasicItemsByFeaturesP
 }
 
 /*
-Deprecated: Use ListItemTypeConfigsShort instead.
+Deprecated: 2022-08-10 - Use ListItemTypeConfigsShort instead.
 
   ListItemTypeConfigs gets all item type configs
 
@@ -2752,7 +2752,7 @@ func (a *Client) ListItemTypeConfigsShort(params *ListItemTypeConfigsParams, aut
 }
 
 /*
-Deprecated: Use PublicBulkGetItemsShort instead.
+Deprecated: 2022-08-10 - Use PublicBulkGetItemsShort instead.
 
   PublicBulkGetItems bulks get locale items
 
@@ -2851,7 +2851,7 @@ func (a *Client) PublicBulkGetItemsShort(params *PublicBulkGetItemsParams, authI
 }
 
 /*
-Deprecated: Use PublicGetAppShort instead.
+Deprecated: 2022-08-10 - Use PublicGetAppShort instead.
 
   PublicGetApp gets an app in locale
 
@@ -2948,7 +2948,7 @@ func (a *Client) PublicGetAppShort(params *PublicGetAppParams) (*PublicGetAppOK,
 }
 
 /*
-Deprecated: Use PublicGetItemShort instead.
+Deprecated: 2022-08-10 - Use PublicGetItemShort instead.
 
   PublicGetItem gets an item in locale
 
@@ -3047,7 +3047,7 @@ func (a *Client) PublicGetItemShort(params *PublicGetItemParams, authInfo runtim
 }
 
 /*
-Deprecated: Use PublicGetItemByAppIDShort instead.
+Deprecated: 2022-08-10 - Use PublicGetItemByAppIDShort instead.
 
   PublicGetItemByAppID gets item by app Id
 
@@ -3146,7 +3146,7 @@ func (a *Client) PublicGetItemByAppIDShort(params *PublicGetItemByAppIDParams, a
 }
 
 /*
-Deprecated: Use PublicGetItemBySkuShort instead.
+Deprecated: 2022-08-10 - Use PublicGetItemBySkuShort instead.
 
   PublicGetItemBySku gets item by sku
 
@@ -3245,7 +3245,7 @@ func (a *Client) PublicGetItemBySkuShort(params *PublicGetItemBySkuParams, authI
 }
 
 /*
-Deprecated: Use PublicGetItemDynamicDataShort instead.
+Deprecated: 2022-08-10 - Use PublicGetItemDynamicDataShort instead.
 
   PublicGetItemDynamicData gets item dynamic data
 
@@ -3344,7 +3344,7 @@ func (a *Client) PublicGetItemDynamicDataShort(params *PublicGetItemDynamicDataP
 }
 
 /*
-Deprecated: Use PublicQueryItemsShort instead.
+Deprecated: 2022-08-10 - Use PublicQueryItemsShort instead.
 
   PublicQueryItems queries items by criteria
 
@@ -3448,7 +3448,7 @@ func (a *Client) PublicQueryItemsShort(params *PublicQueryItemsParams, authInfo 
 }
 
 /*
-Deprecated: Use PublicSearchItemsShort instead.
+Deprecated: 2022-08-10 - Use PublicSearchItemsShort instead.
 
   PublicSearchItems searches items by keyword
 
@@ -3547,7 +3547,7 @@ func (a *Client) PublicSearchItemsShort(params *PublicSearchItemsParams, authInf
 }
 
 /*
-Deprecated: Use PublicValidateItemPurchaseConditionShort instead.
+Deprecated: 2022-08-10 - Use PublicValidateItemPurchaseConditionShort instead.
 
   PublicValidateItemPurchaseCondition validates user item purchase condition
 
@@ -3646,7 +3646,7 @@ func (a *Client) PublicValidateItemPurchaseConditionShort(params *PublicValidate
 }
 
 /*
-Deprecated: Use QueryItemsShort instead.
+Deprecated: 2022-08-10 - Use QueryItemsShort instead.
 
   QueryItems queries items by criteria
 
@@ -3750,7 +3750,7 @@ func (a *Client) QueryItemsShort(params *QueryItemsParams, authInfo runtime.Clie
 }
 
 /*
-Deprecated: Use QueryItems1Short instead.
+Deprecated: 2022-08-10 - Use QueryItems1Short instead.
 
   QueryItems1 queries items by criteria
 
@@ -3854,7 +3854,7 @@ func (a *Client) QueryItems1Short(params *QueryItems1Params, authInfo runtime.Cl
 }
 
 /*
-Deprecated: Use QueryUncategorizedItemsShort instead.
+Deprecated: 2022-08-10 - Use QueryUncategorizedItemsShort instead.
 
   QueryUncategorizedItems queries uncategorized items
 
@@ -3958,7 +3958,7 @@ func (a *Client) QueryUncategorizedItemsShort(params *QueryUncategorizedItemsPar
 }
 
 /*
-Deprecated: Use ReturnItemShort instead.
+Deprecated: 2022-08-10 - Use ReturnItemShort instead.
 
   ReturnItem returns item
 
@@ -4062,7 +4062,7 @@ func (a *Client) ReturnItemShort(params *ReturnItemParams, authInfo runtime.Clie
 }
 
 /*
-Deprecated: Use SearchItemTypeConfigShort instead.
+Deprecated: 2022-08-10 - Use SearchItemTypeConfigShort instead.
 
   SearchItemTypeConfig gets an item type config
 
@@ -4161,7 +4161,7 @@ func (a *Client) SearchItemTypeConfigShort(params *SearchItemTypeConfigParams, a
 }
 
 /*
-Deprecated: Use SearchItemsShort instead.
+Deprecated: 2022-08-10 - Use SearchItemsShort instead.
 
   SearchItems searches items by keyword
 
@@ -4260,7 +4260,7 @@ func (a *Client) SearchItemsShort(params *SearchItemsParams, authInfo runtime.Cl
 }
 
 /*
-Deprecated: Use SyncInGameItemShort instead.
+Deprecated: 2022-08-10 - Use SyncInGameItemShort instead.
 
   SyncInGameItem syncs an in game item
 
@@ -4374,7 +4374,7 @@ func (a *Client) SyncInGameItemShort(params *SyncInGameItemParams, authInfo runt
 }
 
 /*
-Deprecated: Use UpdateAppShort instead.
+Deprecated: 2022-08-10 - Use UpdateAppShort instead.
 
   UpdateApp updates an app
 
@@ -4565,7 +4565,7 @@ func (a *Client) UpdateAppShort(params *UpdateAppParams, authInfo runtime.Client
 }
 
 /*
-Deprecated: Use UpdateItemShort instead.
+Deprecated: 2022-08-10 - Use UpdateItemShort instead.
 
   UpdateItem updates an item
 
@@ -4889,7 +4889,7 @@ func (a *Client) UpdateItemShort(params *UpdateItemParams, authInfo runtime.Clie
 }
 
 /*
-Deprecated: Use UpdateItemPurchaseConditionShort instead.
+Deprecated: 2022-08-10 - Use UpdateItemPurchaseConditionShort instead.
 
   UpdateItemPurchaseCondition updates item purchase condition
 
@@ -5003,7 +5003,7 @@ func (a *Client) UpdateItemPurchaseConditionShort(params *UpdateItemPurchaseCond
 }
 
 /*
-Deprecated: Use UpdateItemTypeConfigShort instead.
+Deprecated: 2022-08-10 - Use UpdateItemTypeConfigShort instead.
 
   UpdateItemTypeConfig updates an item type config
 
@@ -5112,7 +5112,7 @@ func (a *Client) UpdateItemTypeConfigShort(params *UpdateItemTypeConfigParams, a
 }
 
 /*
-Deprecated: Use ValidateItemPurchaseConditionShort instead.
+Deprecated: 2022-08-10 - Use ValidateItemPurchaseConditionShort instead.
 
   ValidateItemPurchaseCondition validates user purchase condition
 

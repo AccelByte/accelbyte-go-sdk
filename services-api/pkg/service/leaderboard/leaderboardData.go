@@ -39,7 +39,7 @@ func (aaa *LeaderboardDataService) GetAuthSession() auth.Session {
 	}
 }
 
-// deprecated(2022-01-10): please use AdminGetArchivedLeaderboardRankingDataV1HandlerShort instead.
+// Deprecated: 2022-01-10 - please use AdminGetArchivedLeaderboardRankingDataV1HandlerShort instead.
 func (aaa *LeaderboardDataService) AdminGetArchivedLeaderboardRankingDataV1Handler(input *leaderboard_data.AdminGetArchivedLeaderboardRankingDataV1HandlerParams) ([]*leaderboardclientmodels.ModelsArchiveLeaderboardSignedURLResponse, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -68,7 +68,7 @@ func (aaa *LeaderboardDataService) AdminGetArchivedLeaderboardRankingDataV1Handl
 	return ok.GetPayload(), nil
 }
 
-// deprecated(2022-01-10): please use CreateArchivedLeaderboardRankingDataV1HandlerShort instead.
+// Deprecated: 2022-01-10 - please use CreateArchivedLeaderboardRankingDataV1HandlerShort instead.
 func (aaa *LeaderboardDataService) CreateArchivedLeaderboardRankingDataV1Handler(input *leaderboard_data.CreateArchivedLeaderboardRankingDataV1HandlerParams) error {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -97,7 +97,7 @@ func (aaa *LeaderboardDataService) CreateArchivedLeaderboardRankingDataV1Handler
 	return nil
 }
 
-// deprecated(2022-01-10): please use GetAllTimeLeaderboardRankingAdminV1Short instead.
+// Deprecated: 2022-01-10 - please use GetAllTimeLeaderboardRankingAdminV1Short instead.
 func (aaa *LeaderboardDataService) GetAllTimeLeaderboardRankingAdminV1(input *leaderboard_data.GetAllTimeLeaderboardRankingAdminV1Params) (*leaderboardclientmodels.ModelsGetLeaderboardRankingResp, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -126,7 +126,7 @@ func (aaa *LeaderboardDataService) GetAllTimeLeaderboardRankingAdminV1(input *le
 	return ok.GetPayload(), nil
 }
 
-// deprecated(2022-01-10): please use GetCurrentMonthLeaderboardRankingAdminV1Short instead.
+// Deprecated: 2022-01-10 - please use GetCurrentMonthLeaderboardRankingAdminV1Short instead.
 func (aaa *LeaderboardDataService) GetCurrentMonthLeaderboardRankingAdminV1(input *leaderboard_data.GetCurrentMonthLeaderboardRankingAdminV1Params) (*leaderboardclientmodels.ModelsGetLeaderboardRankingResp, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -155,7 +155,33 @@ func (aaa *LeaderboardDataService) GetCurrentMonthLeaderboardRankingAdminV1(inpu
 	return ok.GetPayload(), nil
 }
 
-// deprecated(2022-01-10): please use GetCurrentSeasonLeaderboardRankingAdminV1Short instead.
+// Deprecated: 2022-01-10 - please use DeleteUserRankingByLeaderboardCodeAdminV1Short instead.
+func (aaa *LeaderboardDataService) DeleteUserRankingByLeaderboardCodeAdminV1(input *leaderboard_data.DeleteUserRankingByLeaderboardCodeAdminV1Params) error {
+	token, err := aaa.TokenRepository.GetToken()
+	if err != nil {
+		return err
+	}
+	_, unauthorized, forbidden, notFound, internalServerError, err := aaa.Client.LeaderboardData.DeleteUserRankingByLeaderboardCodeAdminV1(input, client.BearerToken(*token.AccessToken))
+	if unauthorized != nil {
+		return unauthorized
+	}
+	if forbidden != nil {
+		return forbidden
+	}
+	if notFound != nil {
+		return notFound
+	}
+	if internalServerError != nil {
+		return internalServerError
+	}
+	if err != nil {
+		return err
+	}
+
+	return nil
+}
+
+// Deprecated: 2022-01-10 - please use GetCurrentSeasonLeaderboardRankingAdminV1Short instead.
 func (aaa *LeaderboardDataService) GetCurrentSeasonLeaderboardRankingAdminV1(input *leaderboard_data.GetCurrentSeasonLeaderboardRankingAdminV1Params) (*leaderboardclientmodels.ModelsGetLeaderboardRankingResp, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -184,7 +210,7 @@ func (aaa *LeaderboardDataService) GetCurrentSeasonLeaderboardRankingAdminV1(inp
 	return ok.GetPayload(), nil
 }
 
-// deprecated(2022-01-10): please use GetTodayLeaderboardRankingAdminV1Short instead.
+// Deprecated: 2022-01-10 - please use GetTodayLeaderboardRankingAdminV1Short instead.
 func (aaa *LeaderboardDataService) GetTodayLeaderboardRankingAdminV1(input *leaderboard_data.GetTodayLeaderboardRankingAdminV1Params) (*leaderboardclientmodels.ModelsGetLeaderboardRankingResp, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -213,7 +239,7 @@ func (aaa *LeaderboardDataService) GetTodayLeaderboardRankingAdminV1(input *lead
 	return ok.GetPayload(), nil
 }
 
-// deprecated(2022-01-10): please use GetUserRankingAdminV1Short instead.
+// Deprecated: 2022-01-10 - please use GetUserRankingAdminV1Short instead.
 func (aaa *LeaderboardDataService) GetUserRankingAdminV1(input *leaderboard_data.GetUserRankingAdminV1Params) (*leaderboardclientmodels.ModelsUserRankingResponse, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -239,7 +265,7 @@ func (aaa *LeaderboardDataService) GetUserRankingAdminV1(input *leaderboard_data
 	return ok.GetPayload(), nil
 }
 
-// deprecated(2022-01-10): please use UpdateUserPointAdminV1Short instead.
+// Deprecated: 2022-01-10 - please use UpdateUserPointAdminV1Short instead.
 func (aaa *LeaderboardDataService) UpdateUserPointAdminV1(input *leaderboard_data.UpdateUserPointAdminV1Params) (*leaderboardclientmodels.ModelsUpdateUserPointAdminV1Response, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -268,7 +294,7 @@ func (aaa *LeaderboardDataService) UpdateUserPointAdminV1(input *leaderboard_dat
 	return ok.GetPayload(), nil
 }
 
-// deprecated(2022-01-10): please use DeleteUserRankingAdminV1Short instead.
+// Deprecated: 2022-01-10 - please use DeleteUserRankingAdminV1Short instead.
 func (aaa *LeaderboardDataService) DeleteUserRankingAdminV1(input *leaderboard_data.DeleteUserRankingAdminV1Params) error {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -294,7 +320,7 @@ func (aaa *LeaderboardDataService) DeleteUserRankingAdminV1(input *leaderboard_d
 	return nil
 }
 
-// deprecated(2022-01-10): please use GetCurrentWeekLeaderboardRankingAdminV1Short instead.
+// Deprecated: 2022-01-10 - please use GetCurrentWeekLeaderboardRankingAdminV1Short instead.
 func (aaa *LeaderboardDataService) GetCurrentWeekLeaderboardRankingAdminV1(input *leaderboard_data.GetCurrentWeekLeaderboardRankingAdminV1Params) (*leaderboardclientmodels.ModelsGetLeaderboardRankingResp, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -323,7 +349,7 @@ func (aaa *LeaderboardDataService) GetCurrentWeekLeaderboardRankingAdminV1(input
 	return ok.GetPayload(), nil
 }
 
-// deprecated(2022-01-10): please use DeleteUserRankingsAdminV1Short instead.
+// Deprecated: 2022-01-10 - please use DeleteUserRankingsAdminV1Short instead.
 func (aaa *LeaderboardDataService) DeleteUserRankingsAdminV1(input *leaderboard_data.DeleteUserRankingsAdminV1Params) error {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -349,7 +375,7 @@ func (aaa *LeaderboardDataService) DeleteUserRankingsAdminV1(input *leaderboard_
 	return nil
 }
 
-// deprecated(2022-01-10): please use GetAllTimeLeaderboardRankingPublicV1Short instead.
+// Deprecated: 2022-01-10 - please use GetAllTimeLeaderboardRankingPublicV1Short instead.
 func (aaa *LeaderboardDataService) GetAllTimeLeaderboardRankingPublicV1(input *leaderboard_data.GetAllTimeLeaderboardRankingPublicV1Params) (*leaderboardclientmodels.ModelsGetLeaderboardRankingResp, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -372,7 +398,7 @@ func (aaa *LeaderboardDataService) GetAllTimeLeaderboardRankingPublicV1(input *l
 	return ok.GetPayload(), nil
 }
 
-// deprecated(2022-01-10): please use GetArchivedLeaderboardRankingDataV1HandlerShort instead.
+// Deprecated: 2022-01-10 - please use GetArchivedLeaderboardRankingDataV1HandlerShort instead.
 func (aaa *LeaderboardDataService) GetArchivedLeaderboardRankingDataV1Handler(input *leaderboard_data.GetArchivedLeaderboardRankingDataV1HandlerParams) ([]*leaderboardclientmodels.ModelsArchiveLeaderboardSignedURLResponse, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -401,7 +427,7 @@ func (aaa *LeaderboardDataService) GetArchivedLeaderboardRankingDataV1Handler(in
 	return ok.GetPayload(), nil
 }
 
-// deprecated(2022-01-10): please use GetCurrentMonthLeaderboardRankingPublicV1Short instead.
+// Deprecated: 2022-01-10 - please use GetCurrentMonthLeaderboardRankingPublicV1Short instead.
 func (aaa *LeaderboardDataService) GetCurrentMonthLeaderboardRankingPublicV1(input *leaderboard_data.GetCurrentMonthLeaderboardRankingPublicV1Params) (*leaderboardclientmodels.ModelsGetLeaderboardRankingResp, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -424,7 +450,7 @@ func (aaa *LeaderboardDataService) GetCurrentMonthLeaderboardRankingPublicV1(inp
 	return ok.GetPayload(), nil
 }
 
-// deprecated(2022-01-10): please use GetCurrentSeasonLeaderboardRankingPublicV1Short instead.
+// Deprecated: 2022-01-10 - please use GetCurrentSeasonLeaderboardRankingPublicV1Short instead.
 func (aaa *LeaderboardDataService) GetCurrentSeasonLeaderboardRankingPublicV1(input *leaderboard_data.GetCurrentSeasonLeaderboardRankingPublicV1Params) (*leaderboardclientmodels.ModelsGetLeaderboardRankingResp, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -447,7 +473,7 @@ func (aaa *LeaderboardDataService) GetCurrentSeasonLeaderboardRankingPublicV1(in
 	return ok.GetPayload(), nil
 }
 
-// deprecated(2022-01-10): please use GetTodayLeaderboardRankingPublicV1Short instead.
+// Deprecated: 2022-01-10 - please use GetTodayLeaderboardRankingPublicV1Short instead.
 func (aaa *LeaderboardDataService) GetTodayLeaderboardRankingPublicV1(input *leaderboard_data.GetTodayLeaderboardRankingPublicV1Params) (*leaderboardclientmodels.ModelsGetLeaderboardRankingResp, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -470,7 +496,7 @@ func (aaa *LeaderboardDataService) GetTodayLeaderboardRankingPublicV1(input *lea
 	return ok.GetPayload(), nil
 }
 
-// deprecated(2022-01-10): please use GetUserRankingPublicV1Short instead.
+// Deprecated: 2022-01-10 - please use GetUserRankingPublicV1Short instead.
 func (aaa *LeaderboardDataService) GetUserRankingPublicV1(input *leaderboard_data.GetUserRankingPublicV1Params) (*leaderboardclientmodels.ModelsUserRankingResponse, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -496,7 +522,7 @@ func (aaa *LeaderboardDataService) GetUserRankingPublicV1(input *leaderboard_dat
 	return ok.GetPayload(), nil
 }
 
-// deprecated(2022-01-10): please use DeleteUserRankingPublicV1Short instead.
+// Deprecated: 2022-01-10 - please use DeleteUserRankingPublicV1Short instead.
 func (aaa *LeaderboardDataService) DeleteUserRankingPublicV1(input *leaderboard_data.DeleteUserRankingPublicV1Params) error {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -522,7 +548,7 @@ func (aaa *LeaderboardDataService) DeleteUserRankingPublicV1(input *leaderboard_
 	return nil
 }
 
-// deprecated(2022-01-10): please use GetCurrentWeekLeaderboardRankingPublicV1Short instead.
+// Deprecated: 2022-01-10 - please use GetCurrentWeekLeaderboardRankingPublicV1Short instead.
 func (aaa *LeaderboardDataService) GetCurrentWeekLeaderboardRankingPublicV1(input *leaderboard_data.GetCurrentWeekLeaderboardRankingPublicV1Params) (*leaderboardclientmodels.ModelsGetLeaderboardRankingResp, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -545,7 +571,7 @@ func (aaa *LeaderboardDataService) GetCurrentWeekLeaderboardRankingPublicV1(inpu
 	return ok.GetPayload(), nil
 }
 
-// deprecated(2022-01-10): please use GetAllTimeLeaderboardRankingPublicV2Short instead.
+// Deprecated: 2022-01-10 - please use GetAllTimeLeaderboardRankingPublicV2Short instead.
 func (aaa *LeaderboardDataService) GetAllTimeLeaderboardRankingPublicV2(input *leaderboard_data.GetAllTimeLeaderboardRankingPublicV2Params) (*leaderboardclientmodels.V2GetPublicLeaderboardRankingResponse, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -672,6 +698,31 @@ func (aaa *LeaderboardDataService) GetCurrentMonthLeaderboardRankingAdminV1Short
 	}
 
 	return ok.GetPayload(), nil
+}
+
+func (aaa *LeaderboardDataService) DeleteUserRankingByLeaderboardCodeAdminV1Short(input *leaderboard_data.DeleteUserRankingByLeaderboardCodeAdminV1Params) error {
+	authInfoWriter := input.AuthInfoWriter
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
+	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  aaa.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
+	_, err := aaa.Client.LeaderboardData.DeleteUserRankingByLeaderboardCodeAdminV1Short(input, authInfoWriter)
+	if err != nil {
+		return err
+	}
+
+	return nil
 }
 
 func (aaa *LeaderboardDataService) GetCurrentSeasonLeaderboardRankingAdminV1Short(input *leaderboard_data.GetCurrentSeasonLeaderboardRankingAdminV1Params) (*leaderboardclientmodels.ModelsGetLeaderboardRankingResp, error) {

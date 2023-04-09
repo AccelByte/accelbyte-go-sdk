@@ -101,9 +101,8 @@ type PaymentOrderInfo struct {
 	PaymentOrderNo *string `json:"paymentOrderNo"`
 
 	// Payment provider
-	// Required: true
 	// Enum: [ADYEN ALIPAY CHECKOUT PAYPAL STRIPE WALLET WXPAY XSOLLA]
-	PaymentProvider *string `json:"paymentProvider"`
+	PaymentProvider string `json:"paymentProvider,omitempty"`
 
 	// Payment provider fee
 	PaymentProviderFee int32 `json:"paymentProviderFee,omitempty"`
@@ -566,12 +565,12 @@ func (m *PaymentOrderInfo) validatePaymentProviderEnum(path, location string, va
 
 func (m *PaymentOrderInfo) validatePaymentProvider(formats strfmt.Registry) error {
 
-	if err := validate.Required("paymentProvider", "body", m.PaymentProvider); err != nil {
-		return err
+	if swag.IsZero(m.PaymentProvider) { // not required
+		return nil
 	}
 
 	// value enum
-	if err := m.validatePaymentProviderEnum("paymentProvider", "body", *m.PaymentProvider); err != nil {
+	if err := m.validatePaymentProviderEnum("paymentProvider", "body", m.PaymentProvider); err != nil {
 		return err
 	}
 

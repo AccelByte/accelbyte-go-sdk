@@ -38,7 +38,7 @@ func (aaa *ConcurrentRecordService) GetAuthSession() auth.Session {
 	}
 }
 
-// deprecated(2022-01-10): please use PutGameRecordConcurrentHandlerV1Short instead.
+// Deprecated: 2022-01-10 - please use PutGameRecordConcurrentHandlerV1Short instead.
 func (aaa *ConcurrentRecordService) PutGameRecordConcurrentHandlerV1(input *concurrent_record.PutGameRecordConcurrentHandlerV1Params) error {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -64,7 +64,7 @@ func (aaa *ConcurrentRecordService) PutGameRecordConcurrentHandlerV1(input *conc
 	return nil
 }
 
-// deprecated(2022-01-10): please use PutPlayerRecordConcurrentHandlerV1Short instead.
+// Deprecated: 2022-01-10 - please use PutPlayerRecordConcurrentHandlerV1Short instead.
 func (aaa *ConcurrentRecordService) PutPlayerRecordConcurrentHandlerV1(input *concurrent_record.PutPlayerRecordConcurrentHandlerV1Params) error {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -90,7 +90,7 @@ func (aaa *ConcurrentRecordService) PutPlayerRecordConcurrentHandlerV1(input *co
 	return nil
 }
 
-// deprecated(2022-01-10): please use PutPlayerPublicRecordConcurrentHandlerV1Short instead.
+// Deprecated: 2022-01-10 - please use PutPlayerPublicRecordConcurrentHandlerV1Short instead.
 func (aaa *ConcurrentRecordService) PutPlayerPublicRecordConcurrentHandlerV1(input *concurrent_record.PutPlayerPublicRecordConcurrentHandlerV1Params) error {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {

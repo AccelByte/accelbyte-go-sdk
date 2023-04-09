@@ -48,7 +48,7 @@ type ClientService interface {
 }
 
 /*
-Deprecated: Use AdminDeleteGameRecordHandlerV1Short instead.
+Deprecated: 2022-08-10 - Use AdminDeleteGameRecordHandlerV1Short instead.
 
   AdminDeleteGameRecordHandlerV1 deletes game record
 
@@ -160,7 +160,7 @@ func (a *Client) AdminDeleteGameRecordHandlerV1Short(params *AdminDeleteGameReco
 }
 
 /*
-Deprecated: Use AdminGetGameRecordHandlerV1Short instead.
+Deprecated: 2022-08-10 - Use AdminGetGameRecordHandlerV1Short instead.
 
   AdminGetGameRecordHandlerV1 gets game record
 
@@ -277,7 +277,7 @@ func (a *Client) AdminGetGameRecordHandlerV1Short(params *AdminGetGameRecordHand
 }
 
 /*
-Deprecated: Use AdminPostGameRecordHandlerV1Short instead.
+Deprecated: 2022-08-10 - Use AdminPostGameRecordHandlerV1Short instead.
 
   AdminPostGameRecordHandlerV1 creates or append game record
 
@@ -497,7 +497,7 @@ func (a *Client) AdminPostGameRecordHandlerV1Short(params *AdminPostGameRecordHa
 }
 
 /*
-Deprecated: Use AdminPutGameRecordHandlerV1Short instead.
+Deprecated: 2022-08-10 - Use AdminPutGameRecordHandlerV1Short instead.
 
   AdminPutGameRecordHandlerV1 creates or replace game record
 
@@ -703,7 +703,7 @@ func (a *Client) AdminPutGameRecordHandlerV1Short(params *AdminPutGameRecordHand
 }
 
 /*
-Deprecated: Use ListGameRecordsHandlerV1Short instead.
+Deprecated: 2022-08-10 - Use ListGameRecordsHandlerV1Short instead.
 
   ListGameRecordsHandlerV1 queries game records
 

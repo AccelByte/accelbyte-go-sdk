@@ -3,16 +3,21 @@
   "info": {
     "description": "Justice Matchmaking Service",
     "title": "Justice Match Service v2",
-    "version": "2.2.1"
+    "version": "2.3.0"
   },
   "schemes": [
     "https"
   ],
+  "externalDocs": {
+    "description": "API Docs",
+    "url": "https://stage.accelbyte.io/match2/apidocs"
+  },
   "securityDefinitions": {
     "HasPermission": {
       "authorizationUrl": "https://dummy.oauth.net/auth",
       "flow": "accessCode",
       "scopes": {
+        "ADMIN:NAMESPACE:{namespace}:MATCHMAKING:POOL:METRICS [READ]": "ADMIN:NAMESPACE:{namespace}:MATCHMAKING:POOL:METRICS [READ]",
         "NAMESPACE:{namespace}:MATCHMAKING:BACKFILL [CREATE]": "NAMESPACE:{namespace}:MATCHMAKING:BACKFILL [CREATE]",
         "NAMESPACE:{namespace}:MATCHMAKING:BACKFILL [DELETE]": "NAMESPACE:{namespace}:MATCHMAKING:BACKFILL [DELETE]",
         "NAMESPACE:{namespace}:MATCHMAKING:BACKFILL [UPDATE]": "NAMESPACE:{namespace}:MATCHMAKING:BACKFILL [UPDATE]",
@@ -1358,6 +1363,82 @@
         ]
       }
     },
+    "/match2/v1/namespaces/{namespace}/match-pools/{pool}/metrics/player": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Required Permission: ADMIN:NAMESPACE:{namespace}:MATCHMAKING:POOL:METRICS [READ]\n\nRequired Scope: social\n\nGet player metric for a specific match pool\n",
+        "operationId": "GetPlayerMetric",
+        "parameters": [
+          {
+            "description": "namespace of the game",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "Name of the match pool",
+            "in": "path",
+            "name": "pool",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "Created",
+            "schema": {
+              "$ref": "#/definitions/api.PlayerMetricRecord"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          }
+        },
+        "security": [
+          {
+            "HasPermission": [
+              "ADMIN:NAMESPACE:{namespace}:MATCHMAKING:POOL:METRICS [READ]"
+            ],
+            "HasScope": [
+              "social"
+            ],
+            "authorization": []
+          }
+        ],
+        "summary": "Get metrics player for a specific match pool",
+        "tags": [
+          "Match-Pools",
+          "admin"
+        ]
+      }
+    },
     "/match2/v1/namespaces/{namespace}/match-tickets": {
       "post": {
         "consumes": [
@@ -2419,6 +2500,17 @@
         }
       }
     },
+    "api.PlayerMetricRecord": {
+      "properties": {
+        "playerInQueue": {
+          "format": "int32",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "playerInQueue"
+      ]
+    },
     "api.ProposedProposal": {
       "properties": {
         "backfillID": {
@@ -2568,5 +2660,16 @@
         "ErrorMessage"
       ]
     }
+  },
+  "x-docs": {
+    "alias": "match2",
+    "host": "https://stage.accelbyte.io",
+    "path": "/match2/apidocs/api.json"
+  },
+  "x-version": {
+    "buildDate": "2023-04-06T04:52:19+00:00",
+    "gitHash": "8abea129d348cfc7b8bffaf1749665142ec51e1c",
+    "rolesSeedingVersion": "0.0.20",
+    "version": "2.3.0"
   }
 }

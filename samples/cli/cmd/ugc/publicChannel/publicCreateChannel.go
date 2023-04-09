@@ -18,30 +18,30 @@ import (
 	"github.com/spf13/cobra"
 )
 
-// CreateChannelCmd represents the CreateChannel command
-var CreateChannelCmd = &cobra.Command{
-	Use:   "createChannel",
-	Short: "Create channel",
-	Long:  `Create channel`,
+// PublicCreateChannelCmd represents the PublicCreateChannel command
+var PublicCreateChannelCmd = &cobra.Command{
+	Use:   "publicCreateChannel",
+	Short: "Public create channel",
+	Long:  `Public create channel`,
 	RunE: func(cmd *cobra.Command, args []string) error {
 		publicChannelService := &ugc.PublicChannelService{
 			Client:          factory.NewUgcClient(&repository.ConfigRepositoryImpl{}),
 			TokenRepository: &repository.TokenRepositoryImpl{},
 		}
 		bodyString := cmd.Flag("body").Value.String()
-		var body *ugcclientmodels.ModelsChannelRequest
+		var body *ugcclientmodels.ModelsPublicChannelRequest
 		errBody := json.Unmarshal([]byte(bodyString), &body)
 		if errBody != nil {
 			return errBody
 		}
 		namespace, _ := cmd.Flags().GetString("namespace")
 		userId, _ := cmd.Flags().GetString("userId")
-		input := &public_channel.CreateChannelParams{
+		input := &public_channel.PublicCreateChannelParams{
 			Body:      body,
 			Namespace: namespace,
 			UserID:    userId,
 		}
-		created, errCreated := publicChannelService.CreateChannelShort(input)
+		created, errCreated := publicChannelService.PublicCreateChannelShort(input)
 		if errCreated != nil {
 			logrus.Error(errCreated)
 
@@ -55,10 +55,10 @@ var CreateChannelCmd = &cobra.Command{
 }
 
 func init() {
-	CreateChannelCmd.Flags().String("body", "", "Body")
-	_ = CreateChannelCmd.MarkFlagRequired("body")
-	CreateChannelCmd.Flags().String("namespace", "", "Namespace")
-	_ = CreateChannelCmd.MarkFlagRequired("namespace")
-	CreateChannelCmd.Flags().String("userId", "", "User id")
-	_ = CreateChannelCmd.MarkFlagRequired("userId")
+	PublicCreateChannelCmd.Flags().String("body", "", "Body")
+	_ = PublicCreateChannelCmd.MarkFlagRequired("body")
+	PublicCreateChannelCmd.Flags().String("namespace", "", "Namespace")
+	_ = PublicCreateChannelCmd.MarkFlagRequired("namespace")
+	PublicCreateChannelCmd.Flags().String("userId", "", "User id")
+	_ = PublicCreateChannelCmd.MarkFlagRequired("userId")
 }

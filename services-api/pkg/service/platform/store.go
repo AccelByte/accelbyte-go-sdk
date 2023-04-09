@@ -41,7 +41,7 @@ func (aaa *StoreService) GetAuthSession() auth.Session {
 	}
 }
 
-// deprecated(2022-01-10): please use ListStoresShort instead.
+// Deprecated: 2022-01-10 - please use ListStoresShort instead.
 func (aaa *StoreService) ListStores(input *store.ListStoresParams) ([]*platformclientmodels.StoreInfo, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -55,7 +55,7 @@ func (aaa *StoreService) ListStores(input *store.ListStoresParams) ([]*platformc
 	return ok.GetPayload(), nil
 }
 
-// deprecated(2022-01-10): please use CreateStoreShort instead.
+// Deprecated: 2022-01-10 - please use CreateStoreShort instead.
 func (aaa *StoreService) CreateStore(input *store.CreateStoreParams) (*platformclientmodels.StoreInfo, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -75,7 +75,7 @@ func (aaa *StoreService) CreateStore(input *store.CreateStoreParams) (*platformc
 	return created.GetPayload(), nil
 }
 
-// deprecated(2022-01-10): please use ImportStoreShort instead.
+// Deprecated: 2022-01-10 - please use ImportStoreShort instead.
 func (aaa *StoreService) ImportStore(input *store.ImportStoreParams) (*platformclientmodels.StoreInfo, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -95,7 +95,7 @@ func (aaa *StoreService) ImportStore(input *store.ImportStoreParams) (*platformc
 	return ok.GetPayload(), nil
 }
 
-// deprecated(2022-01-10): please use GetPublishedStoreShort instead.
+// Deprecated: 2022-01-10 - please use GetPublishedStoreShort instead.
 func (aaa *StoreService) GetPublishedStore(input *store.GetPublishedStoreParams) (*platformclientmodels.StoreInfo, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -112,7 +112,7 @@ func (aaa *StoreService) GetPublishedStore(input *store.GetPublishedStoreParams)
 	return ok.GetPayload(), nil
 }
 
-// deprecated(2022-01-10): please use DeletePublishedStoreShort instead.
+// Deprecated: 2022-01-10 - please use DeletePublishedStoreShort instead.
 func (aaa *StoreService) DeletePublishedStore(input *store.DeletePublishedStoreParams) (*platformclientmodels.StoreInfo, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -129,7 +129,7 @@ func (aaa *StoreService) DeletePublishedStore(input *store.DeletePublishedStoreP
 	return ok.GetPayload(), nil
 }
 
-// deprecated(2022-01-10): please use GetPublishedStoreBackupShort instead.
+// Deprecated: 2022-01-10 - please use GetPublishedStoreBackupShort instead.
 func (aaa *StoreService) GetPublishedStoreBackup(input *store.GetPublishedStoreBackupParams) (*platformclientmodels.StoreBackupInfo, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -146,7 +146,7 @@ func (aaa *StoreService) GetPublishedStoreBackup(input *store.GetPublishedStoreB
 	return ok.GetPayload(), nil
 }
 
-// deprecated(2022-01-10): please use RollbackPublishedStoreShort instead.
+// Deprecated: 2022-01-10 - please use RollbackPublishedStoreShort instead.
 func (aaa *StoreService) RollbackPublishedStore(input *store.RollbackPublishedStoreParams) (*platformclientmodels.StoreInfo, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -163,7 +163,7 @@ func (aaa *StoreService) RollbackPublishedStore(input *store.RollbackPublishedSt
 	return ok.GetPayload(), nil
 }
 
-// deprecated(2022-01-10): please use GetStoreShort instead.
+// Deprecated: 2022-01-10 - please use GetStoreShort instead.
 func (aaa *StoreService) GetStore(input *store.GetStoreParams) (*platformclientmodels.StoreInfo, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -180,7 +180,7 @@ func (aaa *StoreService) GetStore(input *store.GetStoreParams) (*platformclientm
 	return ok.GetPayload(), nil
 }
 
-// deprecated(2022-01-10): please use UpdateStoreShort instead.
+// Deprecated: 2022-01-10 - please use UpdateStoreShort instead.
 func (aaa *StoreService) UpdateStore(input *store.UpdateStoreParams) (*platformclientmodels.StoreInfo, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -203,7 +203,7 @@ func (aaa *StoreService) UpdateStore(input *store.UpdateStoreParams) (*platformc
 	return ok.GetPayload(), nil
 }
 
-// deprecated(2022-01-10): please use DeleteStoreShort instead.
+// Deprecated: 2022-01-10 - please use DeleteStoreShort instead.
 func (aaa *StoreService) DeleteStore(input *store.DeleteStoreParams) (*platformclientmodels.StoreInfo, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -223,7 +223,7 @@ func (aaa *StoreService) DeleteStore(input *store.DeleteStoreParams) (*platformc
 	return ok.GetPayload(), nil
 }
 
-// deprecated(2022-01-10): please use CloneStoreShort instead.
+// Deprecated: 2022-01-10 - please use CloneStoreShort instead.
 func (aaa *StoreService) CloneStore(input *store.CloneStoreParams) (*platformclientmodels.StoreInfo, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -243,7 +243,7 @@ func (aaa *StoreService) CloneStore(input *store.CloneStoreParams) (*platformcli
 	return ok.GetPayload(), nil
 }
 
-// deprecated(2022-01-10): please use ExportStoreShort instead.
+// Deprecated: 2022-01-10 - please use ExportStoreShort instead.
 func (aaa *StoreService) ExportStore(input *store.ExportStoreParams, writer io.Writer) (io.Writer, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -260,7 +260,7 @@ func (aaa *StoreService) ExportStore(input *store.ExportStoreParams, writer io.W
 	return ok.GetPayload(), nil
 }
 
-// deprecated(2022-01-10): please use PublicListStoresShort instead.
+// Deprecated: 2022-01-10 - please use PublicListStoresShort instead.
 func (aaa *StoreService) PublicListStores(input *store.PublicListStoresParams) ([]*platformclientmodels.StoreInfo, error) {
 	ok, err := aaa.Client.Store.PublicListStores(input)
 	if err != nil {
@@ -270,7 +270,7 @@ func (aaa *StoreService) PublicListStores(input *store.PublicListStoresParams) (
 	return ok.GetPayload(), nil
 }
 
-// deprecated(2022-01-10): please use ImportStore1Short instead.
+// Deprecated: 2022-01-10 - please use ImportStore1Short instead.
 func (aaa *StoreService) ImportStore1(input *store.ImportStore1Params) (*platformclientmodels.ImportStoreResult, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -290,7 +290,7 @@ func (aaa *StoreService) ImportStore1(input *store.ImportStore1Params) (*platfor
 	return ok.GetPayload(), nil
 }
 
-// deprecated(2022-01-10): please use ExportStore1Short instead.
+// Deprecated: 2022-01-10 - please use ExportStore1Short instead.
 func (aaa *StoreService) ExportStore1(input *store.ExportStore1Params, writer io.Writer) (io.Writer, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {

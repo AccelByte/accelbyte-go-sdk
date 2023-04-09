@@ -58,7 +58,7 @@ type ClientService interface {
 }
 
 /*
-Deprecated: Use AgentTypeDescriptionHandlerShort instead.
+Deprecated: 2022-08-10 - Use AgentTypeDescriptionHandlerShort instead.
 
   AgentTypeDescriptionHandler gets list of agent type and the descriptions
 */
@@ -148,7 +148,7 @@ func (a *Client) AgentTypeDescriptionHandlerShort(params *AgentTypeDescriptionHa
 }
 
 /*
-Deprecated: Use EventIDDescriptionHandlerShort instead.
+Deprecated: 2022-08-10 - Use EventIDDescriptionHandlerShort instead.
 
   EventIDDescriptionHandler gets list of event ID and the descriptions
 */
@@ -238,7 +238,7 @@ func (a *Client) EventIDDescriptionHandlerShort(params *EventIDDescriptionHandle
 }
 
 /*
-Deprecated: Use EventLevelDescriptionHandlerShort instead.
+Deprecated: 2022-08-10 - Use EventLevelDescriptionHandlerShort instead.
 
   EventLevelDescriptionHandler gets list of event level and the descriptions
 */
@@ -328,7 +328,7 @@ func (a *Client) EventLevelDescriptionHandlerShort(params *EventLevelDescription
 }
 
 /*
-Deprecated: Use EventTypeDescriptionHandlerShort instead.
+Deprecated: 2022-08-10 - Use EventTypeDescriptionHandlerShort instead.
 
   EventTypeDescriptionHandler gets list of event type and the descriptions
 */
@@ -418,7 +418,7 @@ func (a *Client) EventTypeDescriptionHandlerShort(params *EventTypeDescriptionHa
 }
 
 /*
-Deprecated: Use SpecificAgentTypeDescriptionHandlerShort instead.
+Deprecated: 2022-08-10 - Use SpecificAgentTypeDescriptionHandlerShort instead.
 
   SpecificAgentTypeDescriptionHandler gets specific list of agent type and the descriptions by comma separated value of agent types
 */
@@ -518,7 +518,7 @@ func (a *Client) SpecificAgentTypeDescriptionHandlerShort(params *SpecificAgentT
 }
 
 /*
-Deprecated: Use SpecificEventIDDescriptionHandlerShort instead.
+Deprecated: 2022-08-10 - Use SpecificEventIDDescriptionHandlerShort instead.
 
   SpecificEventIDDescriptionHandler gets specific list of event ID and the descriptions by comma separated value of event i ds
 */
@@ -618,7 +618,7 @@ func (a *Client) SpecificEventIDDescriptionHandlerShort(params *SpecificEventIDD
 }
 
 /*
-Deprecated: Use SpecificEventLevelDescriptionHandlerShort instead.
+Deprecated: 2022-08-10 - Use SpecificEventLevelDescriptionHandlerShort instead.
 
   SpecificEventLevelDescriptionHandler gets specific list of event level and the descriptions by comma separated value of event levels
 */
@@ -718,7 +718,7 @@ func (a *Client) SpecificEventLevelDescriptionHandlerShort(params *SpecificEvent
 }
 
 /*
-Deprecated: Use SpecificEventTypeDescriptionHandlerShort instead.
+Deprecated: 2022-08-10 - Use SpecificEventTypeDescriptionHandlerShort instead.
 
   SpecificEventTypeDescriptionHandler gets specific list of event type and the descriptions by comma separated value of event types
 */
@@ -818,7 +818,7 @@ func (a *Client) SpecificEventTypeDescriptionHandlerShort(params *SpecificEventT
 }
 
 /*
-Deprecated: Use SpecificUXDescriptionHandlerShort instead.
+Deprecated: 2022-08-10 - Use SpecificUXDescriptionHandlerShort instead.
 
   SpecificUXDescriptionHandler gets specific list of u x and the descriptions by comma separated value of u x
 */
@@ -918,7 +918,7 @@ func (a *Client) SpecificUXDescriptionHandlerShort(params *SpecificUXDescription
 }
 
 /*
-Deprecated: Use UXNameDescriptionHandlerShort instead.
+Deprecated: 2022-08-10 - Use UXNameDescriptionHandlerShort instead.
 
   UXNameDescriptionHandler gets list of ux name and the descriptions
 */

@@ -62,7 +62,7 @@ type ClientService interface {
 }
 
 /*
-Deprecated: Use CreateMemberRoleAdminV1Short instead.
+Deprecated: 2022-08-10 - Use CreateMemberRoleAdminV1Short instead.
 
   CreateMemberRoleAdminV1 creates new member role
 
@@ -192,7 +192,7 @@ func (a *Client) CreateMemberRoleAdminV1Short(params *CreateMemberRoleAdminV1Par
 }
 
 /*
-Deprecated: Use DeleteMemberRoleAdminV1Short instead.
+Deprecated: 2022-08-10 - Use DeleteMemberRoleAdminV1Short instead.
 
   DeleteMemberRoleAdminV1 deletes member role
 
@@ -317,7 +317,7 @@ func (a *Client) DeleteMemberRoleAdminV1Short(params *DeleteMemberRoleAdminV1Par
 }
 
 /*
-Deprecated: Use DeleteMemberRolePublicV1Short instead.
+Deprecated: 2022-08-10 - Use DeleteMemberRolePublicV1Short instead.
 
   DeleteMemberRolePublicV1 removes role from group member
 
@@ -445,7 +445,7 @@ func (a *Client) DeleteMemberRolePublicV1Short(params *DeleteMemberRolePublicV1P
 }
 
 /*
-Deprecated: Use DeleteMemberRolePublicV2Short instead.
+Deprecated: 2022-08-10 - Use DeleteMemberRolePublicV2Short instead.
 
   DeleteMemberRolePublicV2 removes role from group member
 
@@ -573,7 +573,7 @@ func (a *Client) DeleteMemberRolePublicV2Short(params *DeleteMemberRolePublicV2P
 }
 
 /*
-Deprecated: Use GetMemberRolesListAdminV1Short instead.
+Deprecated: 2022-08-10 - Use GetMemberRolesListAdminV1Short instead.
 
   GetMemberRolesListAdminV1 gets all list of member roles
 
@@ -693,7 +693,7 @@ func (a *Client) GetMemberRolesListAdminV1Short(params *GetMemberRolesListAdminV
 }
 
 /*
-Deprecated: Use GetMemberRolesListPublicV1Short instead.
+Deprecated: 2022-08-10 - Use GetMemberRolesListPublicV1Short instead.
 
   GetMemberRolesListPublicV1 gets all list of member roles
 
@@ -813,7 +813,7 @@ func (a *Client) GetMemberRolesListPublicV1Short(params *GetMemberRolesListPubli
 }
 
 /*
-Deprecated: Use GetMemberRolesListPublicV2Short instead.
+Deprecated: 2022-08-10 - Use GetMemberRolesListPublicV2Short instead.
 
   GetMemberRolesListPublicV2 gets all list of member roles
 
@@ -931,7 +931,7 @@ func (a *Client) GetMemberRolesListPublicV2Short(params *GetMemberRolesListPubli
 }
 
 /*
-Deprecated: Use GetSingleMemberRoleAdminV1Short instead.
+Deprecated: 2022-08-10 - Use GetSingleMemberRoleAdminV1Short instead.
 
   GetSingleMemberRoleAdminV1 gets member role
 
@@ -1056,7 +1056,7 @@ func (a *Client) GetSingleMemberRoleAdminV1Short(params *GetSingleMemberRoleAdmi
 }
 
 /*
-Deprecated: Use UpdateMemberRoleAdminV1Short instead.
+Deprecated: 2022-08-10 - Use UpdateMemberRoleAdminV1Short instead.
 
   UpdateMemberRoleAdminV1 updates member role
 
@@ -1181,7 +1181,7 @@ func (a *Client) UpdateMemberRoleAdminV1Short(params *UpdateMemberRoleAdminV1Par
 }
 
 /*
-Deprecated: Use UpdateMemberRolePermissionAdminV1Short instead.
+Deprecated: 2022-08-10 - Use UpdateMemberRolePermissionAdminV1Short instead.
 
   UpdateMemberRolePermissionAdminV1 updates member role permission
 
@@ -1316,7 +1316,7 @@ func (a *Client) UpdateMemberRolePermissionAdminV1Short(params *UpdateMemberRole
 }
 
 /*
-Deprecated: Use UpdateMemberRolePublicV1Short instead.
+Deprecated: 2022-08-10 - Use UpdateMemberRolePublicV1Short instead.
 
   UpdateMemberRolePublicV1 assigns role to group member
 
@@ -1439,7 +1439,7 @@ func (a *Client) UpdateMemberRolePublicV1Short(params *UpdateMemberRolePublicV1P
 }
 
 /*
-Deprecated: Use UpdateMemberRolePublicV2Short instead.
+Deprecated: 2022-08-10 - Use UpdateMemberRolePublicV2Short instead.
 
   UpdateMemberRolePublicV2 assigns role to group member
 

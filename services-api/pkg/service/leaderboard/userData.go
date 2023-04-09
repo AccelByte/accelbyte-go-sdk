@@ -39,7 +39,7 @@ func (aaa *UserDataService) GetAuthSession() auth.Session {
 	}
 }
 
-// deprecated(2022-01-10): please use GetUserLeaderboardRankingsAdminV1Short instead.
+// Deprecated: 2022-01-10 - please use GetUserLeaderboardRankingsAdminV1Short instead.
 func (aaa *UserDataService) GetUserLeaderboardRankingsAdminV1(input *user_data.GetUserLeaderboardRankingsAdminV1Params) (*leaderboardclientmodels.ModelsGetAllUserLeaderboardsResp, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {

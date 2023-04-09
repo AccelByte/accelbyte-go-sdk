@@ -39,7 +39,7 @@ func (aaa *GlobalStatisticService) GetAuthSession() auth.Session {
 	}
 }
 
-// deprecated(2022-01-10): please use GetGlobalStatItemsShort instead.
+// Deprecated: 2022-01-10 - please use GetGlobalStatItemsShort instead.
 func (aaa *GlobalStatisticService) GetGlobalStatItems(input *global_statistic.GetGlobalStatItemsParams) (*socialclientmodels.GlobalStatItemPagingSlicedResult, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -53,7 +53,7 @@ func (aaa *GlobalStatisticService) GetGlobalStatItems(input *global_statistic.Ge
 	return ok.GetPayload(), nil
 }
 
-// deprecated(2022-01-10): please use GetGlobalStatItemByStatCodeShort instead.
+// Deprecated: 2022-01-10 - please use GetGlobalStatItemByStatCodeShort instead.
 func (aaa *GlobalStatisticService) GetGlobalStatItemByStatCode(input *global_statistic.GetGlobalStatItemByStatCodeParams) (*socialclientmodels.GlobalStatItemInfo, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -70,7 +70,7 @@ func (aaa *GlobalStatisticService) GetGlobalStatItemByStatCode(input *global_sta
 	return ok.GetPayload(), nil
 }
 
-// deprecated(2022-01-10): please use GetGlobalStatItems1Short instead.
+// Deprecated: 2022-01-10 - please use GetGlobalStatItems1Short instead.
 func (aaa *GlobalStatisticService) GetGlobalStatItems1(input *global_statistic.GetGlobalStatItems1Params) (*socialclientmodels.GlobalStatItemPagingSlicedResult, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -84,7 +84,7 @@ func (aaa *GlobalStatisticService) GetGlobalStatItems1(input *global_statistic.G
 	return ok.GetPayload(), nil
 }
 
-// deprecated(2022-01-10): please use GetGlobalStatItemByStatCode1Short instead.
+// Deprecated: 2022-01-10 - please use GetGlobalStatItemByStatCode1Short instead.
 func (aaa *GlobalStatisticService) GetGlobalStatItemByStatCode1(input *global_statistic.GetGlobalStatItemByStatCode1Params) (*socialclientmodels.GlobalStatItemInfo, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {

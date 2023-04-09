@@ -39,7 +39,7 @@ func (aaa *ProfanityService) GetAuthSession() auth.Session {
 	}
 }
 
-// deprecated(2022-01-10): please use AdminDebugProfanityFiltersShort instead.
+// Deprecated: 2022-01-10 - please use AdminDebugProfanityFiltersShort instead.
 func (aaa *ProfanityService) AdminDebugProfanityFilters(input *profanity.AdminDebugProfanityFiltersParams) ([]*lobbyclientmodels.ModelsProfanityFilter, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -68,7 +68,7 @@ func (aaa *ProfanityService) AdminDebugProfanityFilters(input *profanity.AdminDe
 	return ok.GetPayload(), nil
 }
 
-// deprecated(2022-01-10): please use AdminGetProfanityListFiltersV1Short instead.
+// Deprecated: 2022-01-10 - please use AdminGetProfanityListFiltersV1Short instead.
 func (aaa *ProfanityService) AdminGetProfanityListFiltersV1(input *profanity.AdminGetProfanityListFiltersV1Params) (*lobbyclientmodels.ModelsAdminGetProfanityListFiltersV1Response, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -97,7 +97,7 @@ func (aaa *ProfanityService) AdminGetProfanityListFiltersV1(input *profanity.Adm
 	return ok.GetPayload(), nil
 }
 
-// deprecated(2022-01-10): please use AdminAddProfanityFilterIntoListShort instead.
+// Deprecated: 2022-01-10 - please use AdminAddProfanityFilterIntoListShort instead.
 func (aaa *ProfanityService) AdminAddProfanityFilterIntoList(input *profanity.AdminAddProfanityFilterIntoListParams) error {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -126,7 +126,7 @@ func (aaa *ProfanityService) AdminAddProfanityFilterIntoList(input *profanity.Ad
 	return nil
 }
 
-// deprecated(2022-01-10): please use AdminAddProfanityFiltersShort instead.
+// Deprecated: 2022-01-10 - please use AdminAddProfanityFiltersShort instead.
 func (aaa *ProfanityService) AdminAddProfanityFilters(input *profanity.AdminAddProfanityFiltersParams) error {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -155,7 +155,7 @@ func (aaa *ProfanityService) AdminAddProfanityFilters(input *profanity.AdminAddP
 	return nil
 }
 
-// deprecated(2022-01-10): please use AdminImportProfanityFiltersFromFileShort instead.
+// Deprecated: 2022-01-10 - please use AdminImportProfanityFiltersFromFileShort instead.
 func (aaa *ProfanityService) AdminImportProfanityFiltersFromFile(input *profanity.AdminImportProfanityFiltersFromFileParams) error {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -184,7 +184,7 @@ func (aaa *ProfanityService) AdminImportProfanityFiltersFromFile(input *profanit
 	return nil
 }
 
-// deprecated(2022-01-10): please use AdminDeleteProfanityFilterShort instead.
+// Deprecated: 2022-01-10 - please use AdminDeleteProfanityFilterShort instead.
 func (aaa *ProfanityService) AdminDeleteProfanityFilter(input *profanity.AdminDeleteProfanityFilterParams) ([]*lobbyclientmodels.ModelsProfanityFilter, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -213,7 +213,7 @@ func (aaa *ProfanityService) AdminDeleteProfanityFilter(input *profanity.AdminDe
 	return ok.GetPayload(), nil
 }
 
-// deprecated(2022-01-10): please use AdminGetProfanityListsShort instead.
+// Deprecated: 2022-01-10 - please use AdminGetProfanityListsShort instead.
 func (aaa *ProfanityService) AdminGetProfanityLists(input *profanity.AdminGetProfanityListsParams) ([]*lobbyclientmodels.ModelsAdminGetProfanityListsListResponse, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -242,7 +242,7 @@ func (aaa *ProfanityService) AdminGetProfanityLists(input *profanity.AdminGetPro
 	return ok.GetPayload(), nil
 }
 
-// deprecated(2022-01-10): please use AdminCreateProfanityListShort instead.
+// Deprecated: 2022-01-10 - please use AdminCreateProfanityListShort instead.
 func (aaa *ProfanityService) AdminCreateProfanityList(input *profanity.AdminCreateProfanityListParams) error {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -271,7 +271,7 @@ func (aaa *ProfanityService) AdminCreateProfanityList(input *profanity.AdminCrea
 	return nil
 }
 
-// deprecated(2022-01-10): please use AdminUpdateProfanityListShort instead.
+// Deprecated: 2022-01-10 - please use AdminUpdateProfanityListShort instead.
 func (aaa *ProfanityService) AdminUpdateProfanityList(input *profanity.AdminUpdateProfanityListParams) error {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -300,7 +300,7 @@ func (aaa *ProfanityService) AdminUpdateProfanityList(input *profanity.AdminUpda
 	return nil
 }
 
-// deprecated(2022-01-10): please use AdminDeleteProfanityListShort instead.
+// Deprecated: 2022-01-10 - please use AdminDeleteProfanityListShort instead.
 func (aaa *ProfanityService) AdminDeleteProfanityList(input *profanity.AdminDeleteProfanityListParams) error {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -329,7 +329,7 @@ func (aaa *ProfanityService) AdminDeleteProfanityList(input *profanity.AdminDele
 	return nil
 }
 
-// deprecated(2022-01-10): please use AdminGetProfanityRuleShort instead.
+// Deprecated: 2022-01-10 - please use AdminGetProfanityRuleShort instead.
 func (aaa *ProfanityService) AdminGetProfanityRule(input *profanity.AdminGetProfanityRuleParams) (*lobbyclientmodels.ModelsProfanityRule, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -358,7 +358,7 @@ func (aaa *ProfanityService) AdminGetProfanityRule(input *profanity.AdminGetProf
 	return ok.GetPayload(), nil
 }
 
-// deprecated(2022-01-10): please use AdminSetProfanityRuleForNamespaceShort instead.
+// Deprecated: 2022-01-10 - please use AdminSetProfanityRuleForNamespaceShort instead.
 func (aaa *ProfanityService) AdminSetProfanityRuleForNamespace(input *profanity.AdminSetProfanityRuleForNamespaceParams) error {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -387,7 +387,7 @@ func (aaa *ProfanityService) AdminSetProfanityRuleForNamespace(input *profanity.
 	return nil
 }
 
-// deprecated(2022-01-10): please use AdminVerifyMessageProfanityResponseShort instead.
+// Deprecated: 2022-01-10 - please use AdminVerifyMessageProfanityResponseShort instead.
 func (aaa *ProfanityService) AdminVerifyMessageProfanityResponse(input *profanity.AdminVerifyMessageProfanityResponseParams) (*lobbyclientmodels.ModelsAdminVerifyMessageProfanityResponse, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {

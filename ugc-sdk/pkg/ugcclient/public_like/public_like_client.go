@@ -42,7 +42,7 @@ type ClientService interface {
 }
 
 /*
-Deprecated: Use GetLikedContentShort instead.
+Deprecated: 2022-08-10 - Use GetLikedContentShort instead.
 
   GetLikedContent gets liked contents
 
@@ -191,7 +191,7 @@ func (a *Client) GetLikedContentShort(params *GetLikedContentParams, authInfo ru
 }
 
 /*
-Deprecated: Use UpdateContentLikeStatusShort instead.
+Deprecated: 2022-08-10 - Use UpdateContentLikeStatusShort instead.
 
   UpdateContentLikeStatus updates like unlike status to a content
 

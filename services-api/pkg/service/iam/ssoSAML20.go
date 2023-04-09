@@ -38,7 +38,7 @@ func (aaa *SSOSAML20Service) GetAuthSession() auth.Session {
 	}
 }
 
-// deprecated(2022-01-10): please use PlatformAuthenticateSAMLV3HandlerShort instead.
+// Deprecated: 2022-01-10 - please use PlatformAuthenticateSAMLV3HandlerShort instead.
 func (aaa *SSOSAML20Service) PlatformAuthenticateSAMLV3Handler(input *sso_saml_2_0.PlatformAuthenticateSAMLV3HandlerParams) (string, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {

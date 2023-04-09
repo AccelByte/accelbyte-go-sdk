@@ -39,7 +39,7 @@ func (aaa *PaymentCallbackConfigService) GetAuthSession() auth.Session {
 	}
 }
 
-// deprecated(2022-01-10): please use GetPaymentCallbackConfigShort instead.
+// Deprecated: 2022-01-10 - please use GetPaymentCallbackConfigShort instead.
 func (aaa *PaymentCallbackConfigService) GetPaymentCallbackConfig(input *payment_callback_config.GetPaymentCallbackConfigParams) (*platformclientmodels.PaymentCallbackConfigInfo, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -56,7 +56,7 @@ func (aaa *PaymentCallbackConfigService) GetPaymentCallbackConfig(input *payment
 	return ok.GetPayload(), nil
 }
 
-// deprecated(2022-01-10): please use UpdatePaymentCallbackConfigShort instead.
+// Deprecated: 2022-01-10 - please use UpdatePaymentCallbackConfigShort instead.
 func (aaa *PaymentCallbackConfigService) UpdatePaymentCallbackConfig(input *payment_callback_config.UpdatePaymentCallbackConfigParams) (*platformclientmodels.PaymentCallbackConfigInfo, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {

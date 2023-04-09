@@ -41,7 +41,7 @@ func (aaa *ConfigService) GetAuthSession() auth.Session {
 	}
 }
 
-// deprecated(2022-01-10): please use AdminGetAllConfigV1Short instead.
+// Deprecated: 2022-01-10 - please use AdminGetAllConfigV1Short instead.
 func (aaa *ConfigService) AdminGetAllConfigV1(input *config.AdminGetAllConfigV1Params) (*lobbyclientmodels.ModelsConfigList, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -70,7 +70,7 @@ func (aaa *ConfigService) AdminGetAllConfigV1(input *config.AdminGetAllConfigV1P
 	return ok.GetPayload(), nil
 }
 
-// deprecated(2022-01-10): please use AdminGetConfigV1Short instead.
+// Deprecated: 2022-01-10 - please use AdminGetConfigV1Short instead.
 func (aaa *ConfigService) AdminGetConfigV1(input *config.AdminGetConfigV1Params) (*lobbyclientmodels.ModelsConfigReq, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -99,7 +99,7 @@ func (aaa *ConfigService) AdminGetConfigV1(input *config.AdminGetConfigV1Params)
 	return ok.GetPayload(), nil
 }
 
-// deprecated(2022-01-10): please use AdminUpdateConfigV1Short instead.
+// Deprecated: 2022-01-10 - please use AdminUpdateConfigV1Short instead.
 func (aaa *ConfigService) AdminUpdateConfigV1(input *config.AdminUpdateConfigV1Params) (*lobbyclientmodels.ModelsConfigReq, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -131,7 +131,7 @@ func (aaa *ConfigService) AdminUpdateConfigV1(input *config.AdminUpdateConfigV1P
 	return ok.GetPayload(), nil
 }
 
-// deprecated(2022-01-10): please use AdminExportConfigV1Short instead.
+// Deprecated: 2022-01-10 - please use AdminExportConfigV1Short instead.
 func (aaa *ConfigService) AdminExportConfigV1(input *config.AdminExportConfigV1Params, writer io.Writer) (io.Writer, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -154,7 +154,7 @@ func (aaa *ConfigService) AdminExportConfigV1(input *config.AdminExportConfigV1P
 	return ok.GetPayload(), nil
 }
 
-// deprecated(2022-01-10): please use AdminImportConfigV1Short instead.
+// Deprecated: 2022-01-10 - please use AdminImportConfigV1Short instead.
 func (aaa *ConfigService) AdminImportConfigV1(input *config.AdminImportConfigV1Params) (*lobbyclientmodels.ModelsImportConfigResponse, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {

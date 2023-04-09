@@ -44,7 +44,7 @@ type ClientService interface {
 }
 
 /*
-Deprecated: Use DeleteServicePluginConfigShort instead.
+Deprecated: 2022-08-10 - Use DeleteServicePluginConfigShort instead.
 
   DeleteServicePluginConfig deletes service plugin config
 
@@ -138,7 +138,7 @@ func (a *Client) DeleteServicePluginConfigShort(params *DeleteServicePluginConfi
 }
 
 /*
-Deprecated: Use GetServicePluginConfigShort instead.
+Deprecated: 2022-08-10 - Use GetServicePluginConfigShort instead.
 
   GetServicePluginConfig gets service plugin config
 
@@ -232,7 +232,7 @@ func (a *Client) GetServicePluginConfigShort(params *GetServicePluginConfigParam
 }
 
 /*
-Deprecated: Use UpdateServicePluginConfigShort instead.
+Deprecated: 2022-08-10 - Use UpdateServicePluginConfigShort instead.
 
   UpdateServicePluginConfig updates service plugin config service
 

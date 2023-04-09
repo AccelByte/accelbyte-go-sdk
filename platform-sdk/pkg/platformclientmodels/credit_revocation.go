@@ -28,6 +28,9 @@ type CreditRevocation struct {
 	// currency code
 	CurrencyCode string `json:"currencyCode,omitempty"`
 
+	// custom revocation
+	CustomRevocation interface{} `json:"customRevocation,omitempty"`
+
 	// reason
 	Reason string `json:"reason,omitempty"`
 

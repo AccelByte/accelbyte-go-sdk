@@ -48,7 +48,7 @@ type ClientService interface {
 }
 
 /*
-Deprecated: Use GetMyGroupJoinRequestV2Short instead.
+Deprecated: 2022-08-10 - Use GetMyGroupJoinRequestV2Short instead.
 
   GetMyGroupJoinRequestV2 gets my join request to the groups
 
@@ -170,7 +170,7 @@ func (a *Client) GetMyGroupJoinRequestV2Short(params *GetMyGroupJoinRequestV2Par
 }
 
 /*
-Deprecated: Use GetGroupInvitationRequestPublicV1Short instead.
+Deprecated: 2022-08-10 - Use GetGroupInvitationRequestPublicV1Short instead.
 
   GetGroupInvitationRequestPublicV1 gets group invitation request list
 
@@ -292,7 +292,7 @@ func (a *Client) GetGroupInvitationRequestPublicV1Short(params *GetGroupInvitati
 }
 
 /*
-Deprecated: Use GetGroupInviteRequestPublicV2Short instead.
+Deprecated: 2022-08-10 - Use GetGroupInviteRequestPublicV2Short instead.
 
   GetGroupInviteRequestPublicV2 gets group invite request list
 
@@ -416,7 +416,7 @@ func (a *Client) GetGroupInviteRequestPublicV2Short(params *GetGroupInviteReques
 }
 
 /*
-Deprecated: Use GetGroupJoinRequestPublicV1Short instead.
+Deprecated: 2022-08-10 - Use GetGroupJoinRequestPublicV1Short instead.
 
   GetGroupJoinRequestPublicV1 gets group join request list
 
@@ -540,7 +540,7 @@ func (a *Client) GetGroupJoinRequestPublicV1Short(params *GetGroupJoinRequestPub
 }
 
 /*
-Deprecated: Use GetGroupJoinRequestPublicV2Short instead.
+Deprecated: 2022-08-10 - Use GetGroupJoinRequestPublicV2Short instead.
 
   GetGroupJoinRequestPublicV2 gets group join request list
 

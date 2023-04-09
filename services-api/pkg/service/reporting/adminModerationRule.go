@@ -39,7 +39,7 @@ func (aaa *AdminModerationRuleService) GetAuthSession() auth.Session {
 	}
 }
 
-// deprecated(2022-01-10): please use CreateModerationRuleShort instead.
+// Deprecated: 2022-01-10 - please use CreateModerationRuleShort instead.
 func (aaa *AdminModerationRuleService) CreateModerationRule(input *admin_moderation_rule.CreateModerationRuleParams) error {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -62,7 +62,7 @@ func (aaa *AdminModerationRuleService) CreateModerationRule(input *admin_moderat
 	return nil
 }
 
-// deprecated(2022-01-10): please use UpdateModerationRuleShort instead.
+// Deprecated: 2022-01-10 - please use UpdateModerationRuleShort instead.
 func (aaa *AdminModerationRuleService) UpdateModerationRule(input *admin_moderation_rule.UpdateModerationRuleParams) (*reportingclientmodels.RestapiModerationRuleResponse, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -88,7 +88,7 @@ func (aaa *AdminModerationRuleService) UpdateModerationRule(input *admin_moderat
 	return ok.GetPayload(), nil
 }
 
-// deprecated(2022-01-10): please use DeleteModerationRuleShort instead.
+// Deprecated: 2022-01-10 - please use DeleteModerationRuleShort instead.
 func (aaa *AdminModerationRuleService) DeleteModerationRule(input *admin_moderation_rule.DeleteModerationRuleParams) error {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -108,7 +108,7 @@ func (aaa *AdminModerationRuleService) DeleteModerationRule(input *admin_moderat
 	return nil
 }
 
-// deprecated(2022-01-10): please use UpdateModerationRuleStatusShort instead.
+// Deprecated: 2022-01-10 - please use UpdateModerationRuleStatusShort instead.
 func (aaa *AdminModerationRuleService) UpdateModerationRuleStatus(input *admin_moderation_rule.UpdateModerationRuleStatusParams) error {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -131,7 +131,7 @@ func (aaa *AdminModerationRuleService) UpdateModerationRuleStatus(input *admin_m
 	return nil
 }
 
-// deprecated(2022-01-10): please use GetModerationRulesShort instead.
+// Deprecated: 2022-01-10 - please use GetModerationRulesShort instead.
 func (aaa *AdminModerationRuleService) GetModerationRules(input *admin_moderation_rule.GetModerationRulesParams) (*reportingclientmodels.RestapiModerationRulesList, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -154,7 +154,7 @@ func (aaa *AdminModerationRuleService) GetModerationRules(input *admin_moderatio
 	return ok.GetPayload(), nil
 }
 
-// deprecated(2022-01-10): please use GetModerationRuleDetailsShort instead.
+// Deprecated: 2022-01-10 - please use GetModerationRuleDetailsShort instead.
 func (aaa *AdminModerationRuleService) GetModerationRuleDetails(input *admin_moderation_rule.GetModerationRuleDetailsParams) (*reportingclientmodels.RestapiModerationRuleResponse, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {

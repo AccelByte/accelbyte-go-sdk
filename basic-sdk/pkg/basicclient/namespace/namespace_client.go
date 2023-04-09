@@ -58,7 +58,7 @@ type ClientService interface {
 }
 
 /*
-Deprecated: Use ChangeNamespaceStatusShort instead.
+Deprecated: 2022-08-10 - Use ChangeNamespaceStatusShort instead.
 
   ChangeNamespaceStatus changes namespace status
 
@@ -177,7 +177,7 @@ func (a *Client) ChangeNamespaceStatusShort(params *ChangeNamespaceStatusParams,
 }
 
 /*
-Deprecated: Use CreateNamespaceShort instead.
+Deprecated: 2022-08-10 - Use CreateNamespaceShort instead.
 
   CreateNamespace creates a namespace
 
@@ -291,7 +291,7 @@ func (a *Client) CreateNamespaceShort(params *CreateNamespaceParams, authInfo ru
 }
 
 /*
-Deprecated: Use DeleteNamespaceShort instead.
+Deprecated: 2022-08-10 - Use DeleteNamespaceShort instead.
 
   DeleteNamespace deletes a namespace
 
@@ -410,7 +410,7 @@ func (a *Client) DeleteNamespaceShort(params *DeleteNamespaceParams, authInfo ru
 }
 
 /*
-Deprecated: Use GetGameNamespacesShort instead.
+Deprecated: 2022-08-10 - Use GetGameNamespacesShort instead.
 
   GetGameNamespaces gets game namespaces
 
@@ -514,7 +514,7 @@ func (a *Client) GetGameNamespacesShort(params *GetGameNamespacesParams, authInf
 }
 
 /*
-Deprecated: Use GetNamespaceShort instead.
+Deprecated: 2022-08-10 - Use GetNamespaceShort instead.
 
   GetNamespace gets a namespace
 
@@ -628,7 +628,7 @@ func (a *Client) GetNamespaceShort(params *GetNamespaceParams, authInfo runtime.
 }
 
 /*
-Deprecated: Use GetNamespacePublisherShort instead.
+Deprecated: 2022-08-10 - Use GetNamespacePublisherShort instead.
 
   GetNamespacePublisher gets namespace info related publisher namespace
 
@@ -742,7 +742,7 @@ func (a *Client) GetNamespacePublisherShort(params *GetNamespacePublisherParams,
 }
 
 /*
-Deprecated: Use GetNamespacesShort instead.
+Deprecated: 2022-08-10 - Use GetNamespacesShort instead.
 
   GetNamespaces gets all namespaces
 
@@ -846,7 +846,7 @@ func (a *Client) GetNamespacesShort(params *GetNamespacesParams, authInfo runtim
 }
 
 /*
-Deprecated: Use PublicGetNamespacePublisherShort instead.
+Deprecated: 2022-08-10 - Use PublicGetNamespacePublisherShort instead.
 
   PublicGetNamespacePublisher gets namespace info related publisher namespace
 
@@ -960,7 +960,7 @@ func (a *Client) PublicGetNamespacePublisherShort(params *PublicGetNamespacePubl
 }
 
 /*
-Deprecated: Use PublicGetNamespacesShort instead.
+Deprecated: 2022-08-10 - Use PublicGetNamespacesShort instead.
 
   PublicGetNamespaces gets all namespaces
 
@@ -1059,7 +1059,7 @@ func (a *Client) PublicGetNamespacesShort(params *PublicGetNamespacesParams, aut
 }
 
 /*
-Deprecated: Use UpdateNamespaceShort instead.
+Deprecated: 2022-08-10 - Use UpdateNamespaceShort instead.
 
   UpdateNamespace updates namespace basic info
 

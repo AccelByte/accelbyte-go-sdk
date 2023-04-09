@@ -38,7 +38,7 @@ func (aaa *AnonymizationService) GetAuthSession() auth.Session {
 	}
 }
 
-// deprecated(2022-01-10): please use AdminAnonymizeUserLeaderboardAdminV1Short instead.
+// Deprecated: 2022-01-10 - please use AdminAnonymizeUserLeaderboardAdminV1Short instead.
 func (aaa *AnonymizationService) AdminAnonymizeUserLeaderboardAdminV1(input *anonymization.AdminAnonymizeUserLeaderboardAdminV1Params) error {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {

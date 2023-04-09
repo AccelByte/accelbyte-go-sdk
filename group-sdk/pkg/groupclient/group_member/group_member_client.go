@@ -86,7 +86,7 @@ type ClientService interface {
 }
 
 /*
-Deprecated: Use CancelGroupJoinRequestV1Short instead.
+Deprecated: 2022-08-10 - Use CancelGroupJoinRequestV1Short instead.
 
   CancelGroupJoinRequestV1 cancels request to join group
 
@@ -211,7 +211,7 @@ func (a *Client) CancelGroupJoinRequestV1Short(params *CancelGroupJoinRequestV1P
 }
 
 /*
-Deprecated: Use CancelInvitationGroupMemberV2Short instead.
+Deprecated: 2022-08-10 - Use CancelInvitationGroupMemberV2Short instead.
 
   CancelInvitationGroupMemberV2 cancels invitation group member
 
@@ -340,7 +340,7 @@ func (a *Client) CancelInvitationGroupMemberV2Short(params *CancelInvitationGrou
 }
 
 /*
-Deprecated: Use GetUserGroupStatusInformationV2Short instead.
+Deprecated: 2022-08-10 - Use GetUserGroupStatusInformationV2Short instead.
 
   GetUserGroupStatusInformationV2 users group status information
 
@@ -464,7 +464,7 @@ func (a *Client) GetUserGroupStatusInformationV2Short(params *GetUserGroupStatus
 }
 
 /*
-Deprecated: Use JoinGroupV1Short instead.
+Deprecated: 2022-08-10 - Use JoinGroupV1Short instead.
 
   JoinGroupV1 joins to group
 
@@ -605,7 +605,7 @@ func (a *Client) JoinGroupV1Short(params *JoinGroupV1Params, authInfo runtime.Cl
 }
 
 /*
-Deprecated: Use JoinGroupV2Short instead.
+Deprecated: 2022-08-10 - Use JoinGroupV2Short instead.
 
   JoinGroupV2 joins to group
 
@@ -746,7 +746,7 @@ func (a *Client) JoinGroupV2Short(params *JoinGroupV2Params, authInfo runtime.Cl
 }
 
 /*
-Deprecated: Use AcceptGroupInvitationPublicV1Short instead.
+Deprecated: 2022-08-10 - Use AcceptGroupInvitationPublicV1Short instead.
 
   AcceptGroupInvitationPublicV1 accepts group invitation
 
@@ -884,7 +884,7 @@ func (a *Client) AcceptGroupInvitationPublicV1Short(params *AcceptGroupInvitatio
 }
 
 /*
-Deprecated: Use AcceptGroupInvitationPublicV2Short instead.
+Deprecated: 2022-08-10 - Use AcceptGroupInvitationPublicV2Short instead.
 
   AcceptGroupInvitationPublicV2 accepts group invitation
 
@@ -1022,7 +1022,7 @@ func (a *Client) AcceptGroupInvitationPublicV2Short(params *AcceptGroupInvitatio
 }
 
 /*
-Deprecated: Use AcceptGroupJoinRequestPublicV1Short instead.
+Deprecated: 2022-08-10 - Use AcceptGroupJoinRequestPublicV1Short instead.
 
   AcceptGroupJoinRequestPublicV1 accepts group join request
 
@@ -1158,7 +1158,7 @@ func (a *Client) AcceptGroupJoinRequestPublicV1Short(params *AcceptGroupJoinRequ
 }
 
 /*
-Deprecated: Use AcceptGroupJoinRequestPublicV2Short instead.
+Deprecated: 2022-08-10 - Use AcceptGroupJoinRequestPublicV2Short instead.
 
   AcceptGroupJoinRequestPublicV2 accepts group join request
 
@@ -1294,7 +1294,7 @@ func (a *Client) AcceptGroupJoinRequestPublicV2Short(params *AcceptGroupJoinRequ
 }
 
 /*
-Deprecated: Use GetGroupMembersListAdminV1Short instead.
+Deprecated: 2022-08-10 - Use GetGroupMembersListAdminV1Short instead.
 
   GetGroupMembersListAdminV1 gets list of group members
 
@@ -1419,7 +1419,7 @@ func (a *Client) GetGroupMembersListAdminV1Short(params *GetGroupMembersListAdmi
 }
 
 /*
-Deprecated: Use GetGroupMembersListPublicV1Short instead.
+Deprecated: 2022-08-10 - Use GetGroupMembersListPublicV1Short instead.
 
   GetGroupMembersListPublicV1 gets list of group members
 
@@ -1544,7 +1544,7 @@ func (a *Client) GetGroupMembersListPublicV1Short(params *GetGroupMembersListPub
 }
 
 /*
-Deprecated: Use GetUserGroupInformationPublicV1Short instead.
+Deprecated: 2022-08-10 - Use GetUserGroupInformationPublicV1Short instead.
 
   GetUserGroupInformationPublicV1 gets user group information
 
@@ -1683,7 +1683,7 @@ func (a *Client) GetUserGroupInformationPublicV1Short(params *GetUserGroupInform
 }
 
 /*
-Deprecated: Use GetUserGroupInformationPublicV2Short instead.
+Deprecated: 2022-08-10 - Use GetUserGroupInformationPublicV2Short instead.
 
   GetUserGroupInformationPublicV2 gets user joined group information
 
@@ -1818,7 +1818,7 @@ func (a *Client) GetUserGroupInformationPublicV2Short(params *GetUserGroupInform
 }
 
 /*
-Deprecated: Use GetUserJoinedGroupInformationPublicV2Short instead.
+Deprecated: 2022-08-10 - Use GetUserJoinedGroupInformationPublicV2Short instead.
 
   GetUserJoinedGroupInformationPublicV2 gets user joined group information
 
@@ -1951,7 +1951,7 @@ func (a *Client) GetUserJoinedGroupInformationPublicV2Short(params *GetUserJoine
 }
 
 /*
-Deprecated: Use InviteGroupPublicV1Short instead.
+Deprecated: 2022-08-10 - Use InviteGroupPublicV1Short instead.
 
   InviteGroupPublicV1 invites user to group
 
@@ -2097,7 +2097,7 @@ func (a *Client) InviteGroupPublicV1Short(params *InviteGroupPublicV1Params, aut
 }
 
 /*
-Deprecated: Use InviteGroupPublicV2Short instead.
+Deprecated: 2022-08-10 - Use InviteGroupPublicV2Short instead.
 
   InviteGroupPublicV2 invites user to group
 
@@ -2243,7 +2243,7 @@ func (a *Client) InviteGroupPublicV2Short(params *InviteGroupPublicV2Params, aut
 }
 
 /*
-Deprecated: Use KickGroupMemberPublicV1Short instead.
+Deprecated: 2022-08-10 - Use KickGroupMemberPublicV1Short instead.
 
   KickGroupMemberPublicV1 kicks group member
 
@@ -2372,7 +2372,7 @@ func (a *Client) KickGroupMemberPublicV1Short(params *KickGroupMemberPublicV1Par
 }
 
 /*
-Deprecated: Use KickGroupMemberPublicV2Short instead.
+Deprecated: 2022-08-10 - Use KickGroupMemberPublicV2Short instead.
 
   KickGroupMemberPublicV2 kicks group member
 
@@ -2501,7 +2501,7 @@ func (a *Client) KickGroupMemberPublicV2Short(params *KickGroupMemberPublicV2Par
 }
 
 /*
-Deprecated: Use LeaveGroupPublicV1Short instead.
+Deprecated: 2022-08-10 - Use LeaveGroupPublicV1Short instead.
 
   LeaveGroupPublicV1 leaves group
 
@@ -2628,7 +2628,7 @@ func (a *Client) LeaveGroupPublicV1Short(params *LeaveGroupPublicV1Params, authI
 }
 
 /*
-Deprecated: Use LeaveGroupPublicV2Short instead.
+Deprecated: 2022-08-10 - Use LeaveGroupPublicV2Short instead.
 
   LeaveGroupPublicV2 leaves group
 
@@ -2755,7 +2755,7 @@ func (a *Client) LeaveGroupPublicV2Short(params *LeaveGroupPublicV2Params, authI
 }
 
 /*
-Deprecated: Use RejectGroupInvitationPublicV1Short instead.
+Deprecated: 2022-08-10 - Use RejectGroupInvitationPublicV1Short instead.
 
   RejectGroupInvitationPublicV1 rejects group invitation
 
@@ -2887,7 +2887,7 @@ func (a *Client) RejectGroupInvitationPublicV1Short(params *RejectGroupInvitatio
 }
 
 /*
-Deprecated: Use RejectGroupInvitationPublicV2Short instead.
+Deprecated: 2022-08-10 - Use RejectGroupInvitationPublicV2Short instead.
 
   RejectGroupInvitationPublicV2 rejects group invitation
 
@@ -3019,7 +3019,7 @@ func (a *Client) RejectGroupInvitationPublicV2Short(params *RejectGroupInvitatio
 }
 
 /*
-Deprecated: Use RejectGroupJoinRequestPublicV1Short instead.
+Deprecated: 2022-08-10 - Use RejectGroupJoinRequestPublicV1Short instead.
 
   RejectGroupJoinRequestPublicV1 rejects group join request
 
@@ -3155,7 +3155,7 @@ func (a *Client) RejectGroupJoinRequestPublicV1Short(params *RejectGroupJoinRequ
 }
 
 /*
-Deprecated: Use RejectGroupJoinRequestPublicV2Short instead.
+Deprecated: 2022-08-10 - Use RejectGroupJoinRequestPublicV2Short instead.
 
   RejectGroupJoinRequestPublicV2 rejects group join request
 

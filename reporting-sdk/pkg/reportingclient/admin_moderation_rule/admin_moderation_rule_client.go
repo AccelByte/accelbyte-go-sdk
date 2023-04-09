@@ -50,7 +50,7 @@ type ClientService interface {
 }
 
 /*
-Deprecated: Use CreateModerationRuleShort instead.
+Deprecated: 2022-08-10 - Use CreateModerationRuleShort instead.
 
   CreateModerationRule creates auto moderation rule
 
@@ -183,7 +183,7 @@ func (a *Client) CreateModerationRuleShort(params *CreateModerationRuleParams, a
 }
 
 /*
-Deprecated: Use DeleteModerationRuleShort instead.
+Deprecated: 2022-08-10 - Use DeleteModerationRuleShort instead.
 
   DeleteModerationRule deletes auto moderation rule
 
@@ -289,7 +289,7 @@ func (a *Client) DeleteModerationRuleShort(params *DeleteModerationRuleParams, a
 }
 
 /*
-Deprecated: Use GetModerationRuleDetailsShort instead.
+Deprecated: 2022-08-10 - Use GetModerationRuleDetailsShort instead.
 
   GetModerationRuleDetails gets auto moderation rule
 
@@ -395,7 +395,7 @@ func (a *Client) GetModerationRuleDetailsShort(params *GetModerationRuleDetailsP
 }
 
 /*
-Deprecated: Use GetModerationRulesShort instead.
+Deprecated: 2022-08-10 - Use GetModerationRulesShort instead.
 
   GetModerationRules gets auto moderation rules
 
@@ -506,7 +506,7 @@ func (a *Client) GetModerationRulesShort(params *GetModerationRulesParams, authI
 }
 
 /*
-Deprecated: Use UpdateModerationRuleShort instead.
+Deprecated: 2022-08-10 - Use UpdateModerationRuleShort instead.
 
   UpdateModerationRule updates auto moderation rule
 
@@ -644,7 +644,7 @@ func (a *Client) UpdateModerationRuleShort(params *UpdateModerationRuleParams, a
 }
 
 /*
-Deprecated: Use UpdateModerationRuleStatusShort instead.
+Deprecated: 2022-08-10 - Use UpdateModerationRuleStatusShort instead.
 
   UpdateModerationRuleStatus enables disable auto moderation rule
 

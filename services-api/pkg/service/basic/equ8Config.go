@@ -39,7 +39,7 @@ func (aaa *EQU8ConfigService) GetAuthSession() auth.Session {
 	}
 }
 
-// deprecated(2022-01-10): please use GetConfigShort instead.
+// Deprecated: 2022-01-10 - please use GetConfigShort instead.
 func (aaa *EQU8ConfigService) GetConfig(input *equ8_config.GetConfigParams) (*basicclientmodels.EQU8Config, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -59,7 +59,7 @@ func (aaa *EQU8ConfigService) GetConfig(input *equ8_config.GetConfigParams) (*ba
 	return ok.GetPayload(), nil
 }
 
-// deprecated(2022-01-10): please use DeleteConfigShort instead.
+// Deprecated: 2022-01-10 - please use DeleteConfigShort instead.
 func (aaa *EQU8ConfigService) DeleteConfig(input *equ8_config.DeleteConfigParams) error {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -73,7 +73,7 @@ func (aaa *EQU8ConfigService) DeleteConfig(input *equ8_config.DeleteConfigParams
 	return nil
 }
 
-// deprecated(2022-01-10): please use UpdateConfigShort instead.
+// Deprecated: 2022-01-10 - please use UpdateConfigShort instead.
 func (aaa *EQU8ConfigService) UpdateConfig(input *equ8_config.UpdateConfigParams) (*basicclientmodels.EQU8Config, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {

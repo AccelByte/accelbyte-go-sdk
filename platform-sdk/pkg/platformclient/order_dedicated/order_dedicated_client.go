@@ -40,7 +40,7 @@ type ClientService interface {
 }
 
 /*
-Deprecated: Use SyncOrdersShort instead.
+Deprecated: 2022-08-10 - Use SyncOrdersShort instead.
 
   SyncOrders syncs orders
 

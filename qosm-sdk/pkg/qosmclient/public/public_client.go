@@ -42,7 +42,7 @@ type ClientService interface {
 }
 
 /*
-Deprecated: Use ListServerShort instead.
+Deprecated: 2022-08-10 - Use ListServerShort instead.
 
   ListServer gets list of qo s services
 
@@ -173,7 +173,7 @@ func (a *Client) ListServerShort(params *ListServerParams, authInfo runtime.Clie
 }
 
 /*
-Deprecated: Use ListServerPerNamespaceShort instead.
+Deprecated: 2022-08-10 - Use ListServerPerNamespaceShort instead.
 
   ListServerPerNamespace gets list of qo s services per region
 

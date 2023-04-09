@@ -39,7 +39,7 @@ func (aaa *SocialMatchmakingService) GetAuthSession() auth.Session {
 	}
 }
 
-// deprecated(2022-01-10): please use UpdatePlayTimeWeightShort instead.
+// Deprecated: 2022-01-10 - please use UpdatePlayTimeWeightShort instead.
 func (aaa *SocialMatchmakingService) UpdatePlayTimeWeight(input *social_matchmaking.UpdatePlayTimeWeightParams) (*matchmakingclientmodels.ModelsUpdatePlayerPlaytimeWeightResponse, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {

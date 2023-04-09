@@ -52,7 +52,7 @@ type ClientService interface {
 }
 
 /*
-Deprecated: Use CreateTierShort instead.
+Deprecated: 2022-08-10 - Use CreateTierShort instead.
 
   CreateTier creates tier
 
@@ -166,7 +166,7 @@ func (a *Client) CreateTierShort(params *CreateTierParams, authInfo runtime.Clie
 }
 
 /*
-Deprecated: Use DeleteTierShort instead.
+Deprecated: 2022-08-10 - Use DeleteTierShort instead.
 
   DeleteTier deletes a tier
 
@@ -275,7 +275,7 @@ func (a *Client) DeleteTierShort(params *DeleteTierParams, authInfo runtime.Clie
 }
 
 /*
-Deprecated: Use GrantUserExpShort instead.
+Deprecated: 2022-08-10 - Use GrantUserExpShort instead.
 
   GrantUserExp grants exp to user
 
@@ -374,7 +374,7 @@ func (a *Client) GrantUserExpShort(params *GrantUserExpParams, authInfo runtime.
 }
 
 /*
-Deprecated: Use GrantUserTierShort instead.
+Deprecated: 2022-08-10 - Use GrantUserTierShort instead.
 
   GrantUserTier grants tier to user
 
@@ -478,7 +478,7 @@ func (a *Client) GrantUserTierShort(params *GrantUserTierParams, authInfo runtim
 }
 
 /*
-Deprecated: Use QueryTiersShort instead.
+Deprecated: 2022-08-10 - Use QueryTiersShort instead.
 
   QueryTiers queries paginated tiers for a season
 
@@ -582,7 +582,7 @@ func (a *Client) QueryTiersShort(params *QueryTiersParams, authInfo runtime.Clie
 }
 
 /*
-Deprecated: Use ReorderTierShort instead.
+Deprecated: 2022-08-10 - Use ReorderTierShort instead.
 
   ReorderTier reorders a tier
 
@@ -696,7 +696,7 @@ func (a *Client) ReorderTierShort(params *ReorderTierParams, authInfo runtime.Cl
 }
 
 /*
-Deprecated: Use UpdateTierShort instead.
+Deprecated: 2022-08-10 - Use UpdateTierShort instead.
 
   UpdateTier updates a tier
 

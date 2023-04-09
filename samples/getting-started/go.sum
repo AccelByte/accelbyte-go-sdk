@@ -1,5 +1,5 @@
-github.com/AccelByte/accelbyte-go-sdk v0.40.0 h1:qiMeo1Ein0ixAaHJ5cQ5VcZ6reOEHxhvEWb+XyPdSO8=
-github.com/AccelByte/accelbyte-go-sdk v0.40.0/go.mod h1:yJGzVX2kr3yUjEXPFZJxf7S0rRTTpW4Rw+P+aVVG4KY=
+github.com/AccelByte/accelbyte-go-sdk v0.41.0 h1:pxqv5KcCZSbEmR8ZX50QvE+zUu9/s8Fpvm35UnZpQmM=
+github.com/AccelByte/accelbyte-go-sdk v0.41.0/go.mod h1:yJGzVX2kr3yUjEXPFZJxf7S0rRTTpW4Rw+P+aVVG4KY=
 github.com/BurntSushi/toml v0.3.1/go.mod h1:xHWCNGjB5oqiDr8zfno3MHue2Ht5sIBksp03qcyfWMU=
 github.com/PuerkitoBio/purell v1.1.0/go.mod h1:c11w/QuzBsJSee3cPx9rAFu61PvFxuPbtSwDGJws/X0=
 github.com/PuerkitoBio/purell v1.1.1 h1:WEQqlqaGbrPkxLJWfBwQmfEAE1Z7ONdDLqrN38tNFfI=

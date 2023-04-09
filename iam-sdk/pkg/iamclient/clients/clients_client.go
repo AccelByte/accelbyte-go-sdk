@@ -80,7 +80,7 @@ type ClientService interface {
 }
 
 /*
-Deprecated: Use AddClientPermissionShort instead.
+Deprecated: 2022-08-10 - Use AddClientPermissionShort instead.
 
   AddClientPermission adds client permission
 
@@ -204,7 +204,7 @@ func (a *Client) AddClientPermissionShort(params *AddClientPermissionParams, aut
 }
 
 /*
-Deprecated: Use AdminAddClientPermissionsV3Short instead.
+Deprecated: 2022-08-10 - Use AdminAddClientPermissionsV3Short instead.
 
   AdminAddClientPermissionsV3 adds client permissions
 
@@ -322,7 +322,7 @@ func (a *Client) AdminAddClientPermissionsV3Short(params *AdminAddClientPermissi
 }
 
 /*
-Deprecated: Use AdminCreateClientV3Short instead.
+Deprecated: 2022-08-10 - Use AdminCreateClientV3Short instead.
 
   AdminCreateClientV3 creates client
 
@@ -516,7 +516,7 @@ func (a *Client) AdminCreateClientV3Short(params *AdminCreateClientV3Params, aut
 }
 
 /*
-Deprecated: Use AdminDeleteClientPermissionV3Short instead.
+Deprecated: 2022-08-10 - Use AdminDeleteClientPermissionV3Short instead.
 
   AdminDeleteClientPermissionV3 deletes client permission
 
@@ -630,7 +630,7 @@ func (a *Client) AdminDeleteClientPermissionV3Short(params *AdminDeleteClientPer
 }
 
 /*
-Deprecated: Use AdminDeleteClientV3Short instead.
+Deprecated: 2022-08-10 - Use AdminDeleteClientV3Short instead.
 
   AdminDeleteClientV3 deletes client
 
@@ -749,7 +749,7 @@ func (a *Client) AdminDeleteClientV3Short(params *AdminDeleteClientV3Params, aut
 }
 
 /*
-Deprecated: Use AdminGetClientsByNamespaceV3Short instead.
+Deprecated: 2022-08-10 - Use AdminGetClientsByNamespaceV3Short instead.
 
   AdminGetClientsByNamespaceV3 gets clients by namespace
 
@@ -862,7 +862,7 @@ func (a *Client) AdminGetClientsByNamespaceV3Short(params *AdminGetClientsByName
 }
 
 /*
-Deprecated: Use AdminGetClientsbyNamespacebyIDV3Short instead.
+Deprecated: 2022-08-10 - Use AdminGetClientsbyNamespacebyIDV3Short instead.
 
   AdminGetClientsbyNamespacebyIDV3 gets clients by namespace and client id multi tenant mode allows admin portal client to be accessible regardless of namespace path
 
@@ -976,7 +976,7 @@ func (a *Client) AdminGetClientsbyNamespacebyIDV3Short(params *AdminGetClientsby
 }
 
 /*
-Deprecated: Use AdminUpdateClientPermissionV3Short instead.
+Deprecated: 2022-08-10 - Use AdminUpdateClientPermissionV3Short instead.
 
   AdminUpdateClientPermissionV3 updates client permissions
 
@@ -1094,7 +1094,7 @@ func (a *Client) AdminUpdateClientPermissionV3Short(params *AdminUpdateClientPer
 }
 
 /*
-Deprecated: Use AdminUpdateClientSecretV3Short instead.
+Deprecated: 2022-08-10 - Use AdminUpdateClientSecretV3Short instead.
 
   AdminUpdateClientSecretV3 updates client secret
 
@@ -1208,7 +1208,7 @@ func (a *Client) AdminUpdateClientSecretV3Short(params *AdminUpdateClientSecretV
 }
 
 /*
-Deprecated: Use AdminUpdateClientV3Short instead.
+Deprecated: 2022-08-10 - Use AdminUpdateClientV3Short instead.
 
   AdminUpdateClientV3 updates client
 
@@ -1380,7 +1380,7 @@ func (a *Client) AdminUpdateClientV3Short(params *AdminUpdateClientV3Params, aut
 }
 
 /*
-Deprecated: Use CreateClientShort instead.
+Deprecated: 2022-08-10 - Use CreateClientShort instead.
 
   CreateClient creates client
 
@@ -1504,7 +1504,7 @@ func (a *Client) CreateClientShort(params *CreateClientParams, authInfo runtime.
 }
 
 /*
-Deprecated: Use CreateClientByNamespaceShort instead.
+Deprecated: 2022-08-10 - Use CreateClientByNamespaceShort instead.
 
   CreateClientByNamespace creates client
 
@@ -1628,7 +1628,7 @@ func (a *Client) CreateClientByNamespaceShort(params *CreateClientByNamespacePar
 }
 
 /*
-Deprecated: Use DeleteClientShort instead.
+Deprecated: 2022-08-10 - Use DeleteClientShort instead.
 
   DeleteClient deletes client
 
@@ -1749,7 +1749,7 @@ func (a *Client) DeleteClientShort(params *DeleteClientParams, authInfo runtime.
 }
 
 /*
-Deprecated: Use DeleteClientByNamespaceShort instead.
+Deprecated: 2022-08-10 - Use DeleteClientByNamespaceShort instead.
 
   DeleteClientByNamespace deletes client
 
@@ -1868,7 +1868,7 @@ func (a *Client) DeleteClientByNamespaceShort(params *DeleteClientByNamespacePar
 }
 
 /*
-Deprecated: Use DeleteClientPermissionShort instead.
+Deprecated: 2022-08-10 - Use DeleteClientPermissionShort instead.
 
   DeleteClientPermission deletes client permission
 
@@ -1994,7 +1994,7 @@ func (a *Client) DeleteClientPermissionShort(params *DeleteClientPermissionParam
 }
 
 /*
-Deprecated: Use GetClientShort instead.
+Deprecated: 2022-08-10 - Use GetClientShort instead.
 
   GetClient gets client
 
@@ -2113,7 +2113,7 @@ func (a *Client) GetClientShort(params *GetClientParams, authInfo runtime.Client
 }
 
 /*
-Deprecated: Use GetClientsShort instead.
+Deprecated: 2022-08-10 - Use GetClientsShort instead.
 
   GetClients gets all clients
 
@@ -2227,7 +2227,7 @@ func (a *Client) GetClientsShort(params *GetClientsParams, authInfo runtime.Clie
 }
 
 /*
-Deprecated: Use GetClientsbyNamespaceShort instead.
+Deprecated: 2022-08-10 - Use GetClientsbyNamespaceShort instead.
 
   GetClientsbyNamespace gets clients by namespace
 
@@ -2343,7 +2343,7 @@ func (a *Client) GetClientsbyNamespaceShort(params *GetClientsbyNamespaceParams,
 }
 
 /*
-Deprecated: Use UpdateClientShort instead.
+Deprecated: 2022-08-10 - Use UpdateClientShort instead.
 
   UpdateClient updates client
 
@@ -2469,7 +2469,7 @@ func (a *Client) UpdateClientShort(params *UpdateClientParams, authInfo runtime.
 }
 
 /*
-Deprecated: Use UpdateClientPermissionShort instead.
+Deprecated: 2022-08-10 - Use UpdateClientPermissionShort instead.
 
   UpdateClientPermission updates client permissions
 
@@ -2593,7 +2593,7 @@ func (a *Client) UpdateClientPermissionShort(params *UpdateClientPermissionParam
 }
 
 /*
-Deprecated: Use UpdateClientSecretShort instead.
+Deprecated: 2022-08-10 - Use UpdateClientSecretShort instead.
 
   UpdateClientSecret updates client secret
 

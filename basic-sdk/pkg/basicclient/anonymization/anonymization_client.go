@@ -40,7 +40,7 @@ type ClientService interface {
 }
 
 /*
-Deprecated: Use AnonymizeUserProfileShort instead.
+Deprecated: 2022-08-10 - Use AnonymizeUserProfileShort instead.
 
   AnonymizeUserProfile anonymizes user profile
 

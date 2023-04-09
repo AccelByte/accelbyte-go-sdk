@@ -46,7 +46,7 @@ type ClientService interface {
 }
 
 /*
-Deprecated: Use AdminCreateTypeShort instead.
+Deprecated: 2022-08-10 - Use AdminCreateTypeShort instead.
 
   AdminCreateType creates types
 
@@ -162,7 +162,7 @@ func (a *Client) AdminCreateTypeShort(params *AdminCreateTypeParams, authInfo ru
 }
 
 /*
-Deprecated: Use AdminDeleteTypeShort instead.
+Deprecated: 2022-08-10 - Use AdminDeleteTypeShort instead.
 
   AdminDeleteType deletes types
 
@@ -271,7 +271,7 @@ func (a *Client) AdminDeleteTypeShort(params *AdminDeleteTypeParams, authInfo ru
 }
 
 /*
-Deprecated: Use AdminGetTypeShort instead.
+Deprecated: 2022-08-10 - Use AdminGetTypeShort instead.
 
   AdminGetType gets types
 
@@ -380,7 +380,7 @@ func (a *Client) AdminGetTypeShort(params *AdminGetTypeParams, authInfo runtime.
 }
 
 /*
-Deprecated: Use AdminUpdateTypeShort instead.
+Deprecated: 2022-08-10 - Use AdminUpdateTypeShort instead.
 
   AdminUpdateType updates types
 

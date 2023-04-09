@@ -348,7 +348,7 @@ type ClientService interface {
 }
 
 /*
-Deprecated: Use AddUserPermissionShort instead.
+Deprecated: 2022-08-10 - Use AddUserPermissionShort instead.
 
   AddUserPermission adds user permission
 
@@ -530,7 +530,7 @@ func (a *Client) AddUserPermissionShort(params *AddUserPermissionParams, authInf
 }
 
 /*
-Deprecated: Use AddUserRoleShort instead.
+Deprecated: 2022-08-10 - Use AddUserRoleShort instead.
 
   AddUserRole adds user role
 
@@ -661,7 +661,7 @@ func (a *Client) AddUserRoleShort(params *AddUserRoleParams, authInfo runtime.Cl
 }
 
 /*
-Deprecated: Use AdminAddUserPermissionsV3Short instead.
+Deprecated: 2022-08-10 - Use AdminAddUserPermissionsV3Short instead.
 
   AdminAddUserPermissionsV3 adds user permissions
 
@@ -829,7 +829,7 @@ func (a *Client) AdminAddUserPermissionsV3Short(params *AdminAddUserPermissionsV
 }
 
 /*
-Deprecated: Use AdminAddUserRoleV3Short instead.
+Deprecated: 2022-08-10 - Use AdminAddUserRoleV3Short instead.
 
   AdminAddUserRoleV3 adds user role
 
@@ -957,7 +957,7 @@ func (a *Client) AdminAddUserRoleV3Short(params *AdminAddUserRoleV3Params, authI
 }
 
 /*
-Deprecated: Use AdminBanUserV2Short instead.
+Deprecated: 2022-08-10 - Use AdminBanUserV2Short instead.
 
   AdminBanUserV2 bans a single user
 
@@ -1090,7 +1090,7 @@ func (a *Client) AdminBanUserV2Short(params *AdminBanUserV2Params, authInfo runt
 }
 
 /*
-Deprecated: Use AdminBanUserV3Short instead.
+Deprecated: 2022-08-10 - Use AdminBanUserV3Short instead.
 
   AdminBanUserV3 bans a single user
 
@@ -1215,7 +1215,7 @@ func (a *Client) AdminBanUserV3Short(params *AdminBanUserV3Params, authInfo runt
 }
 
 /*
-Deprecated: Use AdminCreateJusticeUserShort instead.
+Deprecated: 2022-08-10 - Use AdminCreateJusticeUserShort instead.
 
   AdminCreateJusticeUser creates justice user from publisher user
 
@@ -1340,7 +1340,7 @@ func (a *Client) AdminCreateJusticeUserShort(params *AdminCreateJusticeUserParam
 }
 
 /*
-Deprecated: Use AdminCreateUserRolesV2Short instead.
+Deprecated: 2022-08-10 - Use AdminCreateUserRolesV2Short instead.
 
   AdminCreateUserRolesV2 saves user roles
 
@@ -1473,7 +1473,7 @@ func (a *Client) AdminCreateUserRolesV2Short(params *AdminCreateUserRolesV2Param
 }
 
 /*
-Deprecated: Use AdminDeletePlatformLinkV2Short instead.
+Deprecated: 2022-08-10 - Use AdminDeletePlatformLinkV2Short instead.
 
   AdminDeletePlatformLinkV2 deletes the link of user s account with platform
 
@@ -1636,7 +1636,7 @@ func (a *Client) AdminDeletePlatformLinkV2Short(params *AdminDeletePlatformLinkV
 }
 
 /*
-Deprecated: Use AdminDeleteUserInformationV3Short instead.
+Deprecated: 2022-08-10 - Use AdminDeleteUserInformationV3Short instead.
 
   AdminDeleteUserInformationV3 deletes user s information
 
@@ -1745,7 +1745,7 @@ func (a *Client) AdminDeleteUserInformationV3Short(params *AdminDeleteUserInform
 }
 
 /*
-Deprecated: Use AdminDeleteUserPermissionBulkV3Short instead.
+Deprecated: 2022-08-10 - Use AdminDeleteUserPermissionBulkV3Short instead.
 
   AdminDeleteUserPermissionBulkV3 deletes user permission
 
@@ -1859,7 +1859,7 @@ func (a *Client) AdminDeleteUserPermissionBulkV3Short(params *AdminDeleteUserPer
 }
 
 /*
-Deprecated: Use AdminDeleteUserPermissionV3Short instead.
+Deprecated: 2022-08-10 - Use AdminDeleteUserPermissionV3Short instead.
 
   AdminDeleteUserPermissionV3 deletes user permission
 
@@ -1973,7 +1973,7 @@ func (a *Client) AdminDeleteUserPermissionV3Short(params *AdminDeleteUserPermiss
 }
 
 /*
-Deprecated: Use AdminDeleteUserRoleV3Short instead.
+Deprecated: 2022-08-10 - Use AdminDeleteUserRoleV3Short instead.
 
   AdminDeleteUserRoleV3 deletes user role
 
@@ -2096,7 +2096,7 @@ func (a *Client) AdminDeleteUserRoleV3Short(params *AdminDeleteUserRoleV3Params,
 }
 
 /*
-Deprecated: Use AdminDeleteUserRolesV3Short instead.
+Deprecated: 2022-08-10 - Use AdminDeleteUserRolesV3Short instead.
 
   AdminDeleteUserRolesV3 deletes user roles
 
@@ -2210,7 +2210,7 @@ func (a *Client) AdminDeleteUserRolesV3Short(params *AdminDeleteUserRolesV3Param
 }
 
 /*
-Deprecated: Use AdminDisableUserV2Short instead.
+Deprecated: 2022-08-10 - Use AdminDisableUserV2Short instead.
 
   AdminDisableUserV2 disables a user
 
@@ -2353,7 +2353,7 @@ func (a *Client) AdminDisableUserV2Short(params *AdminDisableUserV2Params, authI
 }
 
 /*
-Deprecated: Use AdminEnableUserV2Short instead.
+Deprecated: 2022-08-10 - Use AdminEnableUserV2Short instead.
 
   AdminEnableUserV2 enables a user
 
@@ -2481,7 +2481,7 @@ func (a *Client) AdminEnableUserV2Short(params *AdminEnableUserV2Params, authInf
 }
 
 /*
-Deprecated: Use AdminGetAgeRestrictionStatusV2Short instead.
+Deprecated: 2022-08-10 - Use AdminGetAgeRestrictionStatusV2Short instead.
 
   AdminGetAgeRestrictionStatusV2 gets age restriction status
 
@@ -2610,7 +2610,7 @@ func (a *Client) AdminGetAgeRestrictionStatusV2Short(params *AdminGetAgeRestrict
 }
 
 /*
-Deprecated: Use AdminGetAgeRestrictionStatusV3Short instead.
+Deprecated: 2022-08-10 - Use AdminGetAgeRestrictionStatusV3Short instead.
 
   AdminGetAgeRestrictionStatusV3 gets age restriction status
 
@@ -2729,7 +2729,7 @@ func (a *Client) AdminGetAgeRestrictionStatusV3Short(params *AdminGetAgeRestrict
 }
 
 /*
-Deprecated: Use AdminGetBulkUserByEmailAddressV3Short instead.
+Deprecated: 2022-08-10 - Use AdminGetBulkUserByEmailAddressV3Short instead.
 
   AdminGetBulkUserByEmailAddressV3 gets bulk user by email address
 
@@ -2852,7 +2852,7 @@ func (a *Client) AdminGetBulkUserByEmailAddressV3Short(params *AdminGetBulkUserB
 }
 
 /*
-Deprecated: Use AdminGetListCountryAgeRestrictionV3Short instead.
+Deprecated: 2022-08-10 - Use AdminGetListCountryAgeRestrictionV3Short instead.
 
   AdminGetListCountryAgeRestrictionV3 gets list country age restriction
 
@@ -2966,7 +2966,7 @@ func (a *Client) AdminGetListCountryAgeRestrictionV3Short(params *AdminGetListCo
 }
 
 /*
-Deprecated: Use AdminGetListJusticePlatformAccountsShort instead.
+Deprecated: 2022-08-10 - Use AdminGetListJusticePlatformAccountsShort instead.
 
   AdminGetListJusticePlatformAccounts gets user justice platform accounts
 
@@ -3085,7 +3085,7 @@ func (a *Client) AdminGetListJusticePlatformAccountsShort(params *AdminGetListJu
 }
 
 /*
-Deprecated: Use AdminGetMyUserV3Short instead.
+Deprecated: 2022-08-10 - Use AdminGetMyUserV3Short instead.
 
   AdminGetMyUserV3 gets my user
 
@@ -3189,7 +3189,7 @@ func (a *Client) AdminGetMyUserV3Short(params *AdminGetMyUserV3Params, authInfo 
 }
 
 /*
-Deprecated: Use AdminGetThirdPartyPlatformTokenLinkStatusV3Short instead.
+Deprecated: 2022-08-10 - Use AdminGetThirdPartyPlatformTokenLinkStatusV3Short instead.
 
   AdminGetThirdPartyPlatformTokenLinkStatusV3 admins get the link status of the third party platform token with user id
 
@@ -3374,7 +3374,7 @@ func (a *Client) AdminGetThirdPartyPlatformTokenLinkStatusV3Short(params *AdminG
 }
 
 /*
-Deprecated: Use AdminGetUserBanV2Short instead.
+Deprecated: 2022-08-10 - Use AdminGetUserBanV2Short instead.
 
   AdminGetUserBanV2 gets user s bans
 
@@ -3497,7 +3497,7 @@ func (a *Client) AdminGetUserBanV2Short(params *AdminGetUserBanV2Params, authInf
 }
 
 /*
-Deprecated: Use AdminGetUserBanV3Short instead.
+Deprecated: 2022-08-10 - Use AdminGetUserBanV3Short instead.
 
   AdminGetUserBanV3 gets user s bans
 
@@ -3622,7 +3622,7 @@ func (a *Client) AdminGetUserBanV3Short(params *AdminGetUserBanV3Params, authInf
 }
 
 /*
-Deprecated: Use AdminGetUserByEmailAddressV3Short instead.
+Deprecated: 2022-08-10 - Use AdminGetUserByEmailAddressV3Short instead.
 
   AdminGetUserByEmailAddressV3 gets user by email address
 
@@ -3745,7 +3745,7 @@ func (a *Client) AdminGetUserByEmailAddressV3Short(params *AdminGetUserByEmailAd
 }
 
 /*
-Deprecated: Use AdminGetUserByPlatformUserIDV3Short instead.
+Deprecated: 2022-08-10 - Use AdminGetUserByPlatformUserIDV3Short instead.
 
   AdminGetUserByPlatformUserIDV3 admins get user by platform user ID
 
@@ -3869,7 +3869,7 @@ func (a *Client) AdminGetUserByPlatformUserIDV3Short(params *AdminGetUserByPlatf
 }
 
 /*
-Deprecated: Use AdminGetUserByUserIDV2Short instead.
+Deprecated: 2022-08-10 - Use AdminGetUserByUserIDV2Short instead.
 
   AdminGetUserByUserIDV2 gets user by user Id
 
@@ -3985,7 +3985,7 @@ func (a *Client) AdminGetUserByUserIDV2Short(params *AdminGetUserByUserIDV2Param
 }
 
 /*
-Deprecated: Use AdminGetUserByUserIDV3Short instead.
+Deprecated: 2022-08-10 - Use AdminGetUserByUserIDV3Short instead.
 
   AdminGetUserByUserIDV3 admins get user by user Id
 
@@ -4104,7 +4104,7 @@ func (a *Client) AdminGetUserByUserIDV3Short(params *AdminGetUserByUserIDV3Param
 }
 
 /*
-Deprecated: Use AdminGetUserDeletionStatusV3Short instead.
+Deprecated: 2022-08-10 - Use AdminGetUserDeletionStatusV3Short instead.
 
   AdminGetUserDeletionStatusV3 gets user deletion status
 
@@ -4218,7 +4218,7 @@ func (a *Client) AdminGetUserDeletionStatusV3Short(params *AdminGetUserDeletionS
 }
 
 /*
-Deprecated: Use AdminGetUserLoginHistoriesV3Short instead.
+Deprecated: 2022-08-10 - Use AdminGetUserLoginHistoriesV3Short instead.
 
   AdminGetUserLoginHistoriesV3 gets user s login histories
 
@@ -4327,7 +4327,7 @@ func (a *Client) AdminGetUserLoginHistoriesV3Short(params *AdminGetUserLoginHist
 }
 
 /*
-Deprecated: Use AdminGetUserMappingShort instead.
+Deprecated: 2022-08-10 - Use AdminGetUserMappingShort instead.
 
   AdminGetUserMapping gets user mapping
 
@@ -4447,7 +4447,7 @@ func (a *Client) AdminGetUserMappingShort(params *AdminGetUserMappingParams, aut
 }
 
 /*
-Deprecated: Use AdminGetUserPlatformAccountsV3Short instead.
+Deprecated: 2022-08-10 - Use AdminGetUserPlatformAccountsV3Short instead.
 
   AdminGetUserPlatformAccountsV3 gets platform accounts linked to the user
 
@@ -4576,7 +4576,7 @@ func (a *Client) AdminGetUserPlatformAccountsV3Short(params *AdminGetUserPlatfor
 }
 
 /*
-Deprecated: Use AdminInviteUserV3Short instead.
+Deprecated: 2022-08-10 - Use AdminInviteUserV3Short instead.
 
   AdminInviteUserV3 invites user
 
@@ -4721,7 +4721,7 @@ func (a *Client) AdminInviteUserV3Short(params *AdminInviteUserV3Params, authInf
 }
 
 /*
-Deprecated: Use AdminLinkPlatformAccountShort instead.
+Deprecated: 2022-08-10 - Use AdminLinkPlatformAccountShort instead.
 
   AdminLinkPlatformAccount links a platform user account to user account
 
@@ -4839,7 +4839,7 @@ func (a *Client) AdminLinkPlatformAccountShort(params *AdminLinkPlatformAccountP
 }
 
 /*
-Deprecated: Use AdminListUserIDByUserIDsV3Short instead.
+Deprecated: 2022-08-10 - Use AdminListUserIDByUserIDsV3Short instead.
 
   AdminListUserIDByUserIDsV3 lists user by user ID
 
@@ -4959,7 +4959,7 @@ func (a *Client) AdminListUserIDByUserIDsV3Short(params *AdminListUserIDByUserID
 }
 
 /*
-Deprecated: Use AdminListUsersV3Short instead.
+Deprecated: 2022-08-10 - Use AdminListUsersV3Short instead.
 
   AdminListUsersV3 admins list users v3
 
@@ -5081,7 +5081,7 @@ func (a *Client) AdminListUsersV3Short(params *AdminListUsersV3Params, authInfo 
 }
 
 /*
-Deprecated: Use AdminPlatformLinkV3Short instead.
+Deprecated: 2022-08-10 - Use AdminPlatformLinkV3Short instead.
 
   AdminPlatformLinkV3 links user s account with platform
 
@@ -5241,7 +5241,7 @@ func (a *Client) AdminPlatformLinkV3Short(params *AdminPlatformLinkV3Params, aut
 }
 
 /*
-Deprecated: Use AdminPlatformUnlinkV3Short instead.
+Deprecated: 2022-08-10 - Use AdminPlatformUnlinkV3Short instead.
 
   AdminPlatformUnlinkV3 unlinks user s account from specific platform
 
@@ -5412,7 +5412,7 @@ func (a *Client) AdminPlatformUnlinkV3Short(params *AdminPlatformUnlinkV3Params,
 }
 
 /*
-Deprecated: Use AdminPutUserRolesV2Short instead.
+Deprecated: 2022-08-10 - Use AdminPutUserRolesV2Short instead.
 
   AdminPutUserRolesV2 updates user roles will replace all the existing roles
 
@@ -5540,7 +5540,7 @@ func (a *Client) AdminPutUserRolesV2Short(params *AdminPutUserRolesV2Params, aut
 }
 
 /*
-Deprecated: Use AdminQueryThirdPlatformLinkHistoryV3Short instead.
+Deprecated: 2022-08-10 - Use AdminQueryThirdPlatformLinkHistoryV3Short instead.
 
   AdminQueryThirdPlatformLinkHistoryV3 searches linking history of the query platform with platform user id
 
@@ -5658,7 +5658,7 @@ func (a *Client) AdminQueryThirdPlatformLinkHistoryV3Short(params *AdminQueryThi
 }
 
 /*
-Deprecated: Use AdminResetPasswordV2Short instead.
+Deprecated: 2022-08-10 - Use AdminResetPasswordV2Short instead.
 
   AdminResetPasswordV2 updates user password
 
@@ -5791,7 +5791,7 @@ func (a *Client) AdminResetPasswordV2Short(params *AdminResetPasswordV2Params, a
 }
 
 /*
-Deprecated: Use AdminResetPasswordV3Short instead.
+Deprecated: 2022-08-10 - Use AdminResetPasswordV3Short instead.
 
   AdminResetPasswordV3 updates user password
 
@@ -5910,7 +5910,7 @@ func (a *Client) AdminResetPasswordV3Short(params *AdminResetPasswordV3Params, a
 }
 
 /*
-Deprecated: Use AdminSaveUserRoleV3Short instead.
+Deprecated: 2022-08-10 - Use AdminSaveUserRoleV3Short instead.
 
   AdminSaveUserRoleV3 admins save user role v3
 
@@ -6042,7 +6042,7 @@ func (a *Client) AdminSaveUserRoleV3Short(params *AdminSaveUserRoleV3Params, aut
 }
 
 /*
-Deprecated: Use AdminSearchUserV3Short instead.
+Deprecated: 2022-08-10 - Use AdminSearchUserV3Short instead.
 
   AdminSearchUserV3 searches user
 
@@ -6196,7 +6196,7 @@ func (a *Client) AdminSearchUserV3Short(params *AdminSearchUserV3Params, authInf
 }
 
 /*
-Deprecated: Use AdminSearchUsersV2Short instead.
+Deprecated: 2022-08-10 - Use AdminSearchUsersV2Short instead.
 
   AdminSearchUsersV2 searches users
 
@@ -6319,7 +6319,7 @@ func (a *Client) AdminSearchUsersV2Short(params *AdminSearchUsersV2Params, authI
 }
 
 /*
-Deprecated: Use AdminSendVerificationCodeV3Short instead.
+Deprecated: 2022-08-10 - Use AdminSendVerificationCodeV3Short instead.
 
   AdminSendVerificationCodeV3 sends verification code to user
 
@@ -6477,7 +6477,7 @@ func (a *Client) AdminSendVerificationCodeV3Short(params *AdminSendVerificationC
 }
 
 /*
-Deprecated: Use AdminUpdateAgeRestrictionConfigV2Short instead.
+Deprecated: 2022-08-10 - Use AdminUpdateAgeRestrictionConfigV2Short instead.
 
   AdminUpdateAgeRestrictionConfigV2 updates age restriction config value
 
@@ -6605,7 +6605,7 @@ func (a *Client) AdminUpdateAgeRestrictionConfigV2Short(params *AdminUpdateAgeRe
 }
 
 /*
-Deprecated: Use AdminUpdateAgeRestrictionConfigV3Short instead.
+Deprecated: 2022-08-10 - Use AdminUpdateAgeRestrictionConfigV3Short instead.
 
   AdminUpdateAgeRestrictionConfigV3 updates age restriction config value
 
@@ -6719,7 +6719,7 @@ func (a *Client) AdminUpdateAgeRestrictionConfigV3Short(params *AdminUpdateAgeRe
 }
 
 /*
-Deprecated: Use AdminUpdateCountryAgeRestrictionV3Short instead.
+Deprecated: 2022-08-10 - Use AdminUpdateCountryAgeRestrictionV3Short instead.
 
   AdminUpdateCountryAgeRestrictionV3 updates country s age restriction
 
@@ -6838,7 +6838,7 @@ func (a *Client) AdminUpdateCountryAgeRestrictionV3Short(params *AdminUpdateCoun
 }
 
 /*
-Deprecated: Use AdminUpdateUserBanV3Short instead.
+Deprecated: 2022-08-10 - Use AdminUpdateUserBanV3Short instead.
 
   AdminUpdateUserBanV3 enables or disable ban for a single user
 
@@ -6965,7 +6965,7 @@ func (a *Client) AdminUpdateUserBanV3Short(params *AdminUpdateUserBanV3Params, a
 }
 
 /*
-Deprecated: Use AdminUpdateUserDeletionStatusV3Short instead.
+Deprecated: 2022-08-10 - Use AdminUpdateUserDeletionStatusV3Short instead.
 
   AdminUpdateUserDeletionStatusV3 updates user deletion status
 
@@ -7084,7 +7084,7 @@ func (a *Client) AdminUpdateUserDeletionStatusV3Short(params *AdminUpdateUserDel
 }
 
 /*
-Deprecated: Use AdminUpdateUserPermissionV3Short instead.
+Deprecated: 2022-08-10 - Use AdminUpdateUserPermissionV3Short instead.
 
   AdminUpdateUserPermissionV3 updates user permissions
 
@@ -7252,7 +7252,7 @@ func (a *Client) AdminUpdateUserPermissionV3Short(params *AdminUpdateUserPermiss
 }
 
 /*
-Deprecated: Use AdminUpdateUserStatusV3Short instead.
+Deprecated: 2022-08-10 - Use AdminUpdateUserStatusV3Short instead.
 
   AdminUpdateUserStatusV3 updates user status
 
@@ -7385,7 +7385,7 @@ func (a *Client) AdminUpdateUserStatusV3Short(params *AdminUpdateUserStatusV3Par
 }
 
 /*
-Deprecated: Use AdminUpdateUserV2Short instead.
+Deprecated: 2022-08-10 - Use AdminUpdateUserV2Short instead.
 
   AdminUpdateUserV2 updates user
 
@@ -7532,7 +7532,7 @@ func (a *Client) AdminUpdateUserV2Short(params *AdminUpdateUserV2Params, authInf
 }
 
 /*
-Deprecated: Use AdminUpdateUserV3Short instead.
+Deprecated: 2022-08-10 - Use AdminUpdateUserV3Short instead.
 
   AdminUpdateUserV3 updates user
 
@@ -7674,7 +7674,7 @@ func (a *Client) AdminUpdateUserV3Short(params *AdminUpdateUserV3Params, authInf
 }
 
 /*
-Deprecated: Use AdminUpgradeHeadlessAccountV3Short instead.
+Deprecated: 2022-08-10 - Use AdminUpgradeHeadlessAccountV3Short instead.
 
   AdminUpgradeHeadlessAccountV3 verifies or consume verification code
 
@@ -7824,7 +7824,7 @@ func (a *Client) AdminUpgradeHeadlessAccountV3Short(params *AdminUpgradeHeadless
 }
 
 /*
-Deprecated: Use AdminVerifyAccountV3Short instead.
+Deprecated: 2022-08-10 - Use AdminVerifyAccountV3Short instead.
 
   AdminVerifyAccountV3 verifies or consume verification code sent to user
 
@@ -7949,7 +7949,7 @@ func (a *Client) AdminVerifyAccountV3Short(params *AdminVerifyAccountV3Params, a
 }
 
 /*
-Deprecated: Use AdminVerifyUserWithoutVerificationCodeV3Short instead.
+Deprecated: 2022-08-10 - Use AdminVerifyUserWithoutVerificationCodeV3Short instead.
 
   AdminVerifyUserWithoutVerificationCodeV3 verifies user without verification code
 
@@ -8077,7 +8077,7 @@ func (a *Client) AdminVerifyUserWithoutVerificationCodeV3Short(params *AdminVeri
 }
 
 /*
-Deprecated: Use BanUserShort instead.
+Deprecated: 2022-08-10 - Use BanUserShort instead.
 
   BanUser bans a single user
 
@@ -8210,7 +8210,7 @@ func (a *Client) BanUserShort(params *BanUserParams, authInfo runtime.ClientAuth
 }
 
 /*
-Deprecated: Use CheckUserAvailabilityShort instead.
+Deprecated: 2022-08-10 - Use CheckUserAvailabilityShort instead.
 
   CheckUserAvailability checks user s account availability
 
@@ -8339,7 +8339,7 @@ func (a *Client) CheckUserAvailabilityShort(params *CheckUserAvailabilityParams,
 }
 
 /*
-Deprecated: Use CreateUserShort instead.
+Deprecated: 2022-08-10 - Use CreateUserShort instead.
 
   CreateUser creates user
 
@@ -8493,7 +8493,7 @@ func (a *Client) CreateUserShort(params *CreateUserParams, authInfo runtime.Clie
 }
 
 /*
-Deprecated: Use CreateUserFromInvitationV3Short instead.
+Deprecated: 2022-08-10 - Use CreateUserFromInvitationV3Short instead.
 
   CreateUserFromInvitationV3 creates user from invitation
 
@@ -8620,7 +8620,7 @@ func (a *Client) CreateUserFromInvitationV3Short(params *CreateUserFromInvitatio
 }
 
 /*
-Deprecated: Use DeleteUserShort instead.
+Deprecated: 2022-08-10 - Use DeleteUserShort instead.
 
   DeleteUser deletes user
 
@@ -8743,7 +8743,7 @@ func (a *Client) DeleteUserShort(params *DeleteUserParams, authInfo runtime.Clie
 }
 
 /*
-Deprecated: Use DeleteUserInformationShort instead.
+Deprecated: 2022-08-10 - Use DeleteUserInformationShort instead.
 
   DeleteUserInformation deletes user s information
 
@@ -8866,7 +8866,7 @@ func (a *Client) DeleteUserInformationShort(params *DeleteUserInformationParams,
 }
 
 /*
-Deprecated: Use DeleteUserPermissionShort instead.
+Deprecated: 2022-08-10 - Use DeleteUserPermissionShort instead.
 
   DeleteUserPermission deletes user permission
 
@@ -8992,7 +8992,7 @@ func (a *Client) DeleteUserPermissionShort(params *DeleteUserPermissionParams, a
 }
 
 /*
-Deprecated: Use DeleteUserRoleShort instead.
+Deprecated: 2022-08-10 - Use DeleteUserRoleShort instead.
 
   DeleteUserRole deletes user role
 
@@ -9120,7 +9120,7 @@ func (a *Client) DeleteUserRoleShort(params *DeleteUserRoleParams, authInfo runt
 }
 
 /*
-Deprecated: Use DisableUserShort instead.
+Deprecated: 2022-08-10 - Use DisableUserShort instead.
 
   DisableUser disables a user
 
@@ -9261,7 +9261,7 @@ func (a *Client) DisableUserShort(params *DisableUserParams, authInfo runtime.Cl
 }
 
 /*
-Deprecated: Use DisableUserBanShort instead.
+Deprecated: 2022-08-10 - Use DisableUserBanShort instead.
 
   DisableUserBan disables ban for a single user
 
@@ -9401,7 +9401,7 @@ func (a *Client) DisableUserBanShort(params *DisableUserBanParams, authInfo runt
 }
 
 /*
-Deprecated: Use EnableUserShort instead.
+Deprecated: 2022-08-10 - Use EnableUserShort instead.
 
   EnableUser enables a user
 
@@ -9527,7 +9527,7 @@ func (a *Client) EnableUserShort(params *EnableUserParams, authInfo runtime.Clie
 }
 
 /*
-Deprecated: Use EnableUserBanShort instead.
+Deprecated: 2022-08-10 - Use EnableUserBanShort instead.
 
   EnableUserBan enables ban for a single user
 
@@ -9653,7 +9653,7 @@ func (a *Client) EnableUserBanShort(params *EnableUserBanParams, authInfo runtim
 }
 
 /*
-Deprecated: Use ForgotPasswordShort instead.
+Deprecated: 2022-08-10 - Use ForgotPasswordShort instead.
 
   ForgotPassword requests password reset code
 
@@ -9783,7 +9783,7 @@ func (a *Client) ForgotPasswordShort(params *ForgotPasswordParams, authInfo runt
 }
 
 /*
-Deprecated: Use GetAdminInvitationV3Short instead.
+Deprecated: 2022-08-10 - Use GetAdminInvitationV3Short instead.
 
   GetAdminInvitationV3 gets user invitation
 
@@ -9889,7 +9889,7 @@ func (a *Client) GetAdminInvitationV3Short(params *GetAdminInvitationV3Params, a
 }
 
 /*
-Deprecated: Use GetAdminUsersByRoleIDShort instead.
+Deprecated: 2022-08-10 - Use GetAdminUsersByRoleIDShort instead.
 
   GetAdminUsersByRoleID gets admin users by role Id
 
@@ -10032,7 +10032,7 @@ func (a *Client) GetAdminUsersByRoleIDShort(params *GetAdminUsersByRoleIDParams,
 }
 
 /*
-Deprecated: Use GetAdminUsersByRoleIDV3Short instead.
+Deprecated: 2022-08-10 - Use GetAdminUsersByRoleIDV3Short instead.
 
   GetAdminUsersByRoleIDV3 gets admin users by role Id
 
@@ -10159,7 +10159,7 @@ func (a *Client) GetAdminUsersByRoleIDV3Short(params *GetAdminUsersByRoleIDV3Par
 }
 
 /*
-Deprecated: Use GetListCountryAgeRestrictionShort instead.
+Deprecated: 2022-08-10 - Use GetListCountryAgeRestrictionShort instead.
 
   GetListCountryAgeRestriction gets list country age restriction
 
@@ -10282,7 +10282,7 @@ func (a *Client) GetListCountryAgeRestrictionShort(params *GetListCountryAgeRest
 }
 
 /*
-Deprecated: Use GetListJusticePlatformAccountsShort instead.
+Deprecated: 2022-08-10 - Use GetListJusticePlatformAccountsShort instead.
 
   GetListJusticePlatformAccounts gets user justice platform accounts
 
@@ -10400,7 +10400,7 @@ func (a *Client) GetListJusticePlatformAccountsShort(params *GetListJusticePlatf
 }
 
 /*
-Deprecated: Use GetPublisherUserShort instead.
+Deprecated: 2022-08-10 - Use GetPublisherUserShort instead.
 
   GetPublisherUser gets publisher user
 
@@ -10530,7 +10530,7 @@ func (a *Client) GetPublisherUserShort(params *GetPublisherUserParams, authInfo 
 }
 
 /*
-Deprecated: Use GetUserBanHistoryShort instead.
+Deprecated: 2022-08-10 - Use GetUserBanHistoryShort instead.
 
   GetUserBanHistory gets user s bans history
 
@@ -10653,7 +10653,7 @@ func (a *Client) GetUserBanHistoryShort(params *GetUserBanHistoryParams, authInf
 }
 
 /*
-Deprecated: Use GetUserByLoginIDShort instead.
+Deprecated: 2022-08-10 - Use GetUserByLoginIDShort instead.
 
   GetUserByLoginID gets user by login Id
 
@@ -10774,7 +10774,7 @@ func (a *Client) GetUserByLoginIDShort(params *GetUserByLoginIDParams, authInfo 
 }
 
 /*
-Deprecated: Use GetUserByPlatformUserIDShort instead.
+Deprecated: 2022-08-10 - Use GetUserByPlatformUserIDShort instead.
 
   GetUserByPlatformUserID gets user by platform user ID
 
@@ -10908,7 +10908,7 @@ func (a *Client) GetUserByPlatformUserIDShort(params *GetUserByPlatformUserIDPar
 }
 
 /*
-Deprecated: Use GetUserByUserIDShort instead.
+Deprecated: 2022-08-10 - Use GetUserByUserIDShort instead.
 
   GetUserByUserID gets user by user Id
 
@@ -11032,7 +11032,7 @@ func (a *Client) GetUserByUserIDShort(params *GetUserByUserIDParams, authInfo ru
 }
 
 /*
-Deprecated: Use GetUserInformationShort instead.
+Deprecated: 2022-08-10 - Use GetUserInformationShort instead.
 
   GetUserInformation gets user s information
 
@@ -11155,7 +11155,7 @@ func (a *Client) GetUserInformationShort(params *GetUserInformationParams, authI
 }
 
 /*
-Deprecated: Use GetUserJusticePlatformAccountShort instead.
+Deprecated: 2022-08-10 - Use GetUserJusticePlatformAccountShort instead.
 
   GetUserJusticePlatformAccount gets the justice linked accounts on the designated namespace
 
@@ -11284,7 +11284,7 @@ func (a *Client) GetUserJusticePlatformAccountShort(params *GetUserJusticePlatfo
 }
 
 /*
-Deprecated: Use GetUserLoginHistoriesShort instead.
+Deprecated: 2022-08-10 - Use GetUserLoginHistoriesShort instead.
 
   GetUserLoginHistories gets user s login histories
 
@@ -11419,7 +11419,7 @@ func (a *Client) GetUserLoginHistoriesShort(params *GetUserLoginHistoriesParams,
 }
 
 /*
-Deprecated: Use GetUserMappingShort instead.
+Deprecated: 2022-08-10 - Use GetUserMappingShort instead.
 
   GetUserMapping gets user mapping
 
@@ -11553,7 +11553,7 @@ func (a *Client) GetUserMappingShort(params *GetUserMappingParams, authInfo runt
 }
 
 /*
-Deprecated: Use GetUserPlatformAccountsShort instead.
+Deprecated: 2022-08-10 - Use GetUserPlatformAccountsShort instead.
 
   GetUserPlatformAccounts gets platform accounts linked to the user
 
@@ -11684,7 +11684,7 @@ func (a *Client) GetUserPlatformAccountsShort(params *GetUserPlatformAccountsPar
 }
 
 /*
-Deprecated: Use GetUsersByLoginIdsShort instead.
+Deprecated: 2022-08-10 - Use GetUsersByLoginIdsShort instead.
 
   GetUsersByLoginIds gets a list of users by their login Id
 
@@ -11807,7 +11807,7 @@ func (a *Client) GetUsersByLoginIdsShort(params *GetUsersByLoginIdsParams, authI
 }
 
 /*
-Deprecated: Use LinkHeadlessAccountToMyAccountV3Short instead.
+Deprecated: 2022-08-10 - Use LinkHeadlessAccountToMyAccountV3Short instead.
 
   LinkHeadlessAccountToMyAccountV3 links headless account to current full account
 
@@ -11925,7 +11925,7 @@ func (a *Client) LinkHeadlessAccountToMyAccountV3Short(params *LinkHeadlessAccou
 }
 
 /*
-Deprecated: Use ListAdminsV3Short instead.
+Deprecated: 2022-08-10 - Use ListAdminsV3Short instead.
 
   ListAdminsV3 lists user admins
 
@@ -12046,7 +12046,7 @@ func (a *Client) ListAdminsV3Short(params *ListAdminsV3Params, authInfo runtime.
 }
 
 /*
-Deprecated: Use ListCrossNamespaceAccountLinkShort instead.
+Deprecated: 2022-08-10 - Use ListCrossNamespaceAccountLinkShort instead.
 
   ListCrossNamespaceAccountLink links existing account with another account in different namespace
 
@@ -12184,7 +12184,7 @@ func (a *Client) ListCrossNamespaceAccountLinkShort(params *ListCrossNamespaceAc
 }
 
 /*
-Deprecated: Use PlatformLinkShort instead.
+Deprecated: 2022-08-10 - Use PlatformLinkShort instead.
 
   PlatformLink links user s account with platform
 
@@ -12352,7 +12352,7 @@ func (a *Client) PlatformLinkShort(params *PlatformLinkParams, authInfo runtime.
 }
 
 /*
-Deprecated: Use PlatformUnlinkShort instead.
+Deprecated: 2022-08-10 - Use PlatformUnlinkShort instead.
 
   PlatformUnlink unlinks user s account with platform
 
@@ -12519,7 +12519,7 @@ func (a *Client) PlatformUnlinkShort(params *PlatformUnlinkParams, authInfo runt
 }
 
 /*
-Deprecated: Use PublicBulkGetUsersShort instead.
+Deprecated: 2022-08-10 - Use PublicBulkGetUsersShort instead.
 
   PublicBulkGetUsers bulks get users basic info by user Id
 
@@ -12635,7 +12635,7 @@ func (a *Client) PublicBulkGetUsersShort(params *PublicBulkGetUsersParams, authI
 }
 
 /*
-Deprecated: Use PublicCreateJusticeUserShort instead.
+Deprecated: 2022-08-10 - Use PublicCreateJusticeUserShort instead.
 
   PublicCreateJusticeUser creates justice user from publisher user
 
@@ -12756,7 +12756,7 @@ func (a *Client) PublicCreateJusticeUserShort(params *PublicCreateJusticeUserPar
 }
 
 /*
-Deprecated: Use PublicCreateUserV2Short instead.
+Deprecated: 2022-08-10 - Use PublicCreateUserV2Short instead.
 
   PublicCreateUserV2 creates user
 
@@ -12902,7 +12902,7 @@ func (a *Client) PublicCreateUserV2Short(params *PublicCreateUserV2Params, authI
 }
 
 /*
-Deprecated: Use PublicCreateUserV3Short instead.
+Deprecated: 2022-08-10 - Use PublicCreateUserV3Short instead.
 
   PublicCreateUserV3 creates user
 
@@ -13030,7 +13030,7 @@ func (a *Client) PublicCreateUserV3Short(params *PublicCreateUserV3Params, authI
 }
 
 /*
-Deprecated: Use PublicDeletePlatformLinkV2Short instead.
+Deprecated: 2022-08-10 - Use PublicDeletePlatformLinkV2Short instead.
 
   PublicDeletePlatformLinkV2 deletes the link of user s account with platform
 
@@ -13193,7 +13193,7 @@ func (a *Client) PublicDeletePlatformLinkV2Short(params *PublicDeletePlatformLin
 }
 
 /*
-Deprecated: Use PublicForceLinkPlatformWithProgressionShort instead.
+Deprecated: 2022-08-10 - Use PublicForceLinkPlatformWithProgressionShort instead.
 
   PublicForceLinkPlatformWithProgression forces link 3rd platform account and transfer progression
 
@@ -13313,7 +13313,7 @@ func (a *Client) PublicForceLinkPlatformWithProgressionShort(params *PublicForce
 }
 
 /*
-Deprecated: Use PublicForcePlatformLinkV3Short instead.
+Deprecated: 2022-08-10 - Use PublicForcePlatformLinkV3Short instead.
 
   PublicForcePlatformLinkV3 forces linking user s account with platform
 
@@ -13486,7 +13486,7 @@ func (a *Client) PublicForcePlatformLinkV3Short(params *PublicForcePlatformLinkV
 }
 
 /*
-Deprecated: Use PublicForgotPasswordV2Short instead.
+Deprecated: 2022-08-10 - Use PublicForgotPasswordV2Short instead.
 
   PublicForgotPasswordV2 requests password reset code
 
@@ -13614,7 +13614,7 @@ func (a *Client) PublicForgotPasswordV2Short(params *PublicForgotPasswordV2Param
 }
 
 /*
-Deprecated: Use PublicForgotPasswordV3Short instead.
+Deprecated: 2022-08-10 - Use PublicForgotPasswordV3Short instead.
 
   PublicForgotPasswordV3 requests password reset code
 
@@ -13733,7 +13733,7 @@ func (a *Client) PublicForgotPasswordV3Short(params *PublicForgotPasswordV3Param
 }
 
 /*
-Deprecated: Use PublicGetAsyncStatusShort instead.
+Deprecated: 2022-08-10 - Use PublicGetAsyncStatusShort instead.
 
   PublicGetAsyncStatus gets linking progress status
 
@@ -13842,7 +13842,7 @@ func (a *Client) PublicGetAsyncStatusShort(params *PublicGetAsyncStatusParams, a
 }
 
 /*
-Deprecated: Use PublicGetCountryAgeRestrictionShort instead.
+Deprecated: 2022-08-10 - Use PublicGetCountryAgeRestrictionShort instead.
 
   PublicGetCountryAgeRestriction publics get age restriction by country code
 
@@ -13960,7 +13960,7 @@ func (a *Client) PublicGetCountryAgeRestrictionShort(params *PublicGetCountryAge
 }
 
 /*
-Deprecated: Use PublicGetCountryAgeRestrictionV3Short instead.
+Deprecated: 2022-08-10 - Use PublicGetCountryAgeRestrictionV3Short instead.
 
   PublicGetCountryAgeRestrictionV3 publics get age restriction by country code
 
@@ -14064,7 +14064,7 @@ func (a *Client) PublicGetCountryAgeRestrictionV3Short(params *PublicGetCountryA
 }
 
 /*
-Deprecated: Use PublicGetLinkHeadlessAccountToMyAccountConflictV3Short instead.
+Deprecated: 2022-08-10 - Use PublicGetLinkHeadlessAccountToMyAccountConflictV3Short instead.
 
   PublicGetLinkHeadlessAccountToMyAccountConflictV3 gets conflict result when link headless account to current full account by one time code
 
@@ -14188,7 +14188,7 @@ func (a *Client) PublicGetLinkHeadlessAccountToMyAccountConflictV3Short(params *
 }
 
 /*
-Deprecated: Use PublicGetMyUserV3Short instead.
+Deprecated: 2022-08-10 - Use PublicGetMyUserV3Short instead.
 
   PublicGetMyUserV3 gets my user
 
@@ -14292,7 +14292,7 @@ func (a *Client) PublicGetMyUserV3Short(params *PublicGetMyUserV3Params, authInf
 }
 
 /*
-Deprecated: Use PublicGetPublisherUserV3Short instead.
+Deprecated: 2022-08-10 - Use PublicGetPublisherUserV3Short instead.
 
   PublicGetPublisherUserV3 gets publisher user
 
@@ -14410,7 +14410,7 @@ func (a *Client) PublicGetPublisherUserV3Short(params *PublicGetPublisherUserV3P
 }
 
 /*
-Deprecated: Use PublicGetUserBanShort instead.
+Deprecated: 2022-08-10 - Use PublicGetUserBanShort instead.
 
   PublicGetUserBan gets user s bans
 
@@ -14531,7 +14531,7 @@ func (a *Client) PublicGetUserBanShort(params *PublicGetUserBanParams, authInfo 
 }
 
 /*
-Deprecated: Use PublicGetUserBanHistoryV3Short instead.
+Deprecated: 2022-08-10 - Use PublicGetUserBanHistoryV3Short instead.
 
   PublicGetUserBanHistoryV3 gets user s bans
 
@@ -14662,7 +14662,7 @@ func (a *Client) PublicGetUserBanHistoryV3Short(params *PublicGetUserBanHistoryV
 }
 
 /*
-Deprecated: Use PublicGetUserByPlatformUserIDV3Short instead.
+Deprecated: 2022-08-10 - Use PublicGetUserByPlatformUserIDV3Short instead.
 
   PublicGetUserByPlatformUserIDV3 gets user by platform user ID
 
@@ -14786,7 +14786,7 @@ func (a *Client) PublicGetUserByPlatformUserIDV3Short(params *PublicGetUserByPla
 }
 
 /*
-Deprecated: Use PublicGetUserByUserIDV2Short instead.
+Deprecated: 2022-08-10 - Use PublicGetUserByUserIDV2Short instead.
 
   PublicGetUserByUserIDV2 gets user by user ID
 
@@ -14910,7 +14910,7 @@ func (a *Client) PublicGetUserByUserIDV2Short(params *PublicGetUserByUserIDV2Par
 }
 
 /*
-Deprecated: Use PublicGetUserByUserIDV3Short instead.
+Deprecated: 2022-08-10 - Use PublicGetUserByUserIDV3Short instead.
 
   PublicGetUserByUserIDV3 gets user by user ID
 
@@ -15019,7 +15019,7 @@ func (a *Client) PublicGetUserByUserIDV3Short(params *PublicGetUserByUserIDV3Par
 }
 
 /*
-Deprecated: Use PublicGetUserInformationV3Short instead.
+Deprecated: 2022-08-10 - Use PublicGetUserInformationV3Short instead.
 
   PublicGetUserInformationV3 gets user s information v3
 
@@ -15135,7 +15135,7 @@ func (a *Client) PublicGetUserInformationV3Short(params *PublicGetUserInformatio
 }
 
 /*
-Deprecated: Use PublicGetUserLoginHistoriesV3Short instead.
+Deprecated: 2022-08-10 - Use PublicGetUserLoginHistoriesV3Short instead.
 
   PublicGetUserLoginHistoriesV3 gets user s login histories
 
@@ -15244,7 +15244,7 @@ func (a *Client) PublicGetUserLoginHistoriesV3Short(params *PublicGetUserLoginHi
 }
 
 /*
-Deprecated: Use PublicGetUserPlatformAccountsV3Short instead.
+Deprecated: 2022-08-10 - Use PublicGetUserPlatformAccountsV3Short instead.
 
   PublicGetUserPlatformAccountsV3 gets platform accounts linked to the user
 
@@ -15365,7 +15365,7 @@ func (a *Client) PublicGetUserPlatformAccountsV3Short(params *PublicGetUserPlatf
 }
 
 /*
-Deprecated: Use PublicLinkPlatformAccountShort instead.
+Deprecated: 2022-08-10 - Use PublicLinkPlatformAccountShort instead.
 
   PublicLinkPlatformAccount links a platform user account to user account
 
@@ -15487,7 +15487,7 @@ func (a *Client) PublicLinkPlatformAccountShort(params *PublicLinkPlatformAccoun
 }
 
 /*
-Deprecated: Use PublicListJusticePlatformAccountsV3Short instead.
+Deprecated: 2022-08-10 - Use PublicListJusticePlatformAccountsV3Short instead.
 
   PublicListJusticePlatformAccountsV3 gets user justice platform accounts
 
@@ -15608,7 +15608,7 @@ func (a *Client) PublicListJusticePlatformAccountsV3Short(params *PublicListJust
 }
 
 /*
-Deprecated: Use PublicListUserAllPlatformAccountsDistinctV3Short instead.
+Deprecated: 2022-08-10 - Use PublicListUserAllPlatformAccountsDistinctV3Short instead.
 
   PublicListUserAllPlatformAccountsDistinctV3 gets distinct platform accounts linked to the user
 
@@ -15731,7 +15731,7 @@ func (a *Client) PublicListUserAllPlatformAccountsDistinctV3Short(params *Public
 }
 
 /*
-Deprecated: Use PublicListUserIDByPlatformUserIDsV3Short instead.
+Deprecated: 2022-08-10 - Use PublicListUserIDByPlatformUserIDsV3Short instead.
 
   PublicListUserIDByPlatformUserIDsV3 lists user ID by platform user ID
 
@@ -15855,7 +15855,7 @@ func (a *Client) PublicListUserIDByPlatformUserIDsV3Short(params *PublicListUser
 }
 
 /*
-Deprecated: Use PublicPartialUpdateUserV3Short instead.
+Deprecated: 2022-08-10 - Use PublicPartialUpdateUserV3Short instead.
 
   PublicPartialUpdateUserV3 updates user
 
@@ -15987,7 +15987,7 @@ func (a *Client) PublicPartialUpdateUserV3Short(params *PublicPartialUpdateUserV
 }
 
 /*
-Deprecated: Use PublicPlatformLinkV2Short instead.
+Deprecated: 2022-08-10 - Use PublicPlatformLinkV2Short instead.
 
   PublicPlatformLinkV2 links user s account with platform
 
@@ -16151,7 +16151,7 @@ func (a *Client) PublicPlatformLinkV2Short(params *PublicPlatformLinkV2Params, a
 }
 
 /*
-Deprecated: Use PublicPlatformLinkV3Short instead.
+Deprecated: 2022-08-10 - Use PublicPlatformLinkV3Short instead.
 
   PublicPlatformLinkV3 links user s account with platform
 
@@ -16314,7 +16314,7 @@ func (a *Client) PublicPlatformLinkV3Short(params *PublicPlatformLinkV3Params, a
 }
 
 /*
-Deprecated: Use PublicPlatformUnlinkAllV3Short instead.
+Deprecated: 2022-08-10 - Use PublicPlatformUnlinkAllV3Short instead.
 
   PublicPlatformUnlinkAllV3 unlinks user s account from specific platform
 
@@ -16430,7 +16430,7 @@ func (a *Client) PublicPlatformUnlinkAllV3Short(params *PublicPlatformUnlinkAllV
 }
 
 /*
-Deprecated: Use PublicPlatformUnlinkV3Short instead.
+Deprecated: 2022-08-10 - Use PublicPlatformUnlinkV3Short instead.
 
   PublicPlatformUnlinkV3 unlinks user s account from specific platform
 
@@ -16594,7 +16594,7 @@ func (a *Client) PublicPlatformUnlinkV3Short(params *PublicPlatformUnlinkV3Param
 }
 
 /*
-Deprecated: Use PublicResetPasswordV2Short instead.
+Deprecated: 2022-08-10 - Use PublicResetPasswordV2Short instead.
 
   PublicResetPasswordV2 resets user password
 
@@ -16720,7 +16720,7 @@ func (a *Client) PublicResetPasswordV2Short(params *PublicResetPasswordV2Params,
 }
 
 /*
-Deprecated: Use PublicSearchUserV3Short instead.
+Deprecated: 2022-08-10 - Use PublicSearchUserV3Short instead.
 
   PublicSearchUserV3 searches user
 
@@ -16840,7 +16840,7 @@ func (a *Client) PublicSearchUserV3Short(params *PublicSearchUserV3Params, authI
 }
 
 /*
-Deprecated: Use PublicSendRegistrationCodeShort instead.
+Deprecated: 2022-08-10 - Use PublicSendRegistrationCodeShort instead.
 
   PublicSendRegistrationCode sends verification code to new unregistered account s email address
 
@@ -16956,7 +16956,7 @@ func (a *Client) PublicSendRegistrationCodeShort(params *PublicSendRegistrationC
 }
 
 /*
-Deprecated: Use PublicSendVerificationCodeV3Short instead.
+Deprecated: 2022-08-10 - Use PublicSendVerificationCodeV3Short instead.
 
   PublicSendVerificationCodeV3 sends verification code to user
 
@@ -17113,7 +17113,7 @@ func (a *Client) PublicSendVerificationCodeV3Short(params *PublicSendVerificatio
 }
 
 /*
-Deprecated: Use PublicSendVerificationLinkV3Short instead.
+Deprecated: 2022-08-10 - Use PublicSendVerificationLinkV3Short instead.
 
   PublicSendVerificationLinkV3 sends verification link to user this link will point to iam v3 public users verify link verify
 
@@ -17233,7 +17233,7 @@ func (a *Client) PublicSendVerificationLinkV3Short(params *PublicSendVerificatio
 }
 
 /*
-Deprecated: Use PublicUpdatePasswordV2Short instead.
+Deprecated: 2022-08-10 - Use PublicUpdatePasswordV2Short instead.
 
   PublicUpdatePasswordV2 updates user password
 
@@ -17366,7 +17366,7 @@ func (a *Client) PublicUpdatePasswordV2Short(params *PublicUpdatePasswordV2Param
 }
 
 /*
-Deprecated: Use PublicUpdatePasswordV3Short instead.
+Deprecated: 2022-08-10 - Use PublicUpdatePasswordV3Short instead.
 
   PublicUpdatePasswordV3 updates user password
 
@@ -17475,7 +17475,7 @@ func (a *Client) PublicUpdatePasswordV3Short(params *PublicUpdatePasswordV3Param
 }
 
 /*
-Deprecated: Use PublicUpdateUserV2Short instead.
+Deprecated: 2022-08-10 - Use PublicUpdateUserV2Short instead.
 
   PublicUpdateUserV2 updates user
 
@@ -17620,7 +17620,7 @@ func (a *Client) PublicUpdateUserV2Short(params *PublicUpdateUserV2Params, authI
 }
 
 /*
-Deprecated: Use PublicUpgradeHeadlessAccountV3Short instead.
+Deprecated: 2022-08-10 - Use PublicUpgradeHeadlessAccountV3Short instead.
 
   PublicUpgradeHeadlessAccountV3 verifies or consume verification code
 
@@ -17770,7 +17770,7 @@ func (a *Client) PublicUpgradeHeadlessAccountV3Short(params *PublicUpgradeHeadle
 }
 
 /*
-Deprecated: Use PublicUserVerificationV3Short instead.
+Deprecated: 2022-08-10 - Use PublicUserVerificationV3Short instead.
 
   PublicUserVerificationV3 validates or consume verification code sent to user
 
@@ -17894,7 +17894,7 @@ func (a *Client) PublicUserVerificationV3Short(params *PublicUserVerificationV3P
 }
 
 /*
-Deprecated: Use PublicValidateUserByUserIDAndPasswordV3Short instead.
+Deprecated: 2022-08-10 - Use PublicValidateUserByUserIDAndPasswordV3Short instead.
 
   PublicValidateUserByUserIDAndPasswordV3 validates user password by user ID and password
 
@@ -18023,7 +18023,7 @@ func (a *Client) PublicValidateUserByUserIDAndPasswordV3Short(params *PublicVali
 }
 
 /*
-Deprecated: Use PublicVerifyHeadlessAccountV3Short instead.
+Deprecated: 2022-08-10 - Use PublicVerifyHeadlessAccountV3Short instead.
 
   PublicVerifyHeadlessAccountV3 upgrades user account to full account with email
 
@@ -18146,7 +18146,7 @@ func (a *Client) PublicVerifyHeadlessAccountV3Short(params *PublicVerifyHeadless
 }
 
 /*
-Deprecated: Use PublicVerifyRegistrationCodeShort instead.
+Deprecated: 2022-08-10 - Use PublicVerifyRegistrationCodeShort instead.
 
   PublicVerifyRegistrationCode verifies the registration code
 
@@ -18247,7 +18247,7 @@ func (a *Client) PublicVerifyRegistrationCodeShort(params *PublicVerifyRegistrat
 }
 
 /*
-Deprecated: Use PublicVerifyUserByLinkV3Short instead.
+Deprecated: 2022-08-10 - Use PublicVerifyUserByLinkV3Short instead.
 
   PublicVerifyUserByLinkV3 verifies user email by the verification link code
 */
@@ -18337,7 +18337,7 @@ func (a *Client) PublicVerifyUserByLinkV3Short(params *PublicVerifyUserByLinkV3P
 }
 
 /*
-Deprecated: Use PublicWebLinkPlatformShort instead.
+Deprecated: 2022-08-10 - Use PublicWebLinkPlatformShort instead.
 
   PublicWebLinkPlatform creates public web linking
 
@@ -18446,7 +18446,7 @@ func (a *Client) PublicWebLinkPlatformShort(params *PublicWebLinkPlatformParams,
 }
 
 /*
-Deprecated: Use PublicWebLinkPlatformEstablishShort instead.
+Deprecated: 2022-08-10 - Use PublicWebLinkPlatformEstablishShort instead.
 
   PublicWebLinkPlatformEstablish establishes link progress
 
@@ -18540,7 +18540,7 @@ func (a *Client) PublicWebLinkPlatformEstablishShort(params *PublicWebLinkPlatfo
 }
 
 /*
-Deprecated: Use ResetPasswordShort instead.
+Deprecated: 2022-08-10 - Use ResetPasswordShort instead.
 
   ResetPassword resets user password
 
@@ -18666,7 +18666,7 @@ func (a *Client) ResetPasswordShort(params *ResetPasswordParams, authInfo runtim
 }
 
 /*
-Deprecated: Use ResetPasswordV3Short instead.
+Deprecated: 2022-08-10 - Use ResetPasswordV3Short instead.
 
   ResetPasswordV3 resets user password
 
@@ -18775,7 +18775,7 @@ func (a *Client) ResetPasswordV3Short(params *ResetPasswordV3Params, authInfo ru
 }
 
 /*
-Deprecated: Use SaveUserPermissionShort instead.
+Deprecated: 2022-08-10 - Use SaveUserPermissionShort instead.
 
   SaveUserPermission saves user permissions
 
@@ -18957,7 +18957,7 @@ func (a *Client) SaveUserPermissionShort(params *SaveUserPermissionParams, authI
 }
 
 /*
-Deprecated: Use SaveUserRolesShort instead.
+Deprecated: 2022-08-10 - Use SaveUserRolesShort instead.
 
   SaveUserRoles saves user roles
 
@@ -19088,7 +19088,7 @@ func (a *Client) SaveUserRolesShort(params *SaveUserRolesParams, authInfo runtim
 }
 
 /*
-Deprecated: Use SearchUserShort instead.
+Deprecated: 2022-08-10 - Use SearchUserShort instead.
 
   SearchUser searches users
 
@@ -19213,7 +19213,7 @@ func (a *Client) SearchUserShort(params *SearchUserParams, authInfo runtime.Clie
 }
 
 /*
-Deprecated: Use SendVerificationCodeShort instead.
+Deprecated: 2022-08-10 - Use SendVerificationCodeShort instead.
 
   SendVerificationCode sends verification code to user
 
@@ -19370,7 +19370,7 @@ func (a *Client) SendVerificationCodeShort(params *SendVerificationCodeParams, a
 }
 
 /*
-Deprecated: Use UpdateCountryAgeRestrictionShort instead.
+Deprecated: 2022-08-10 - Use UpdateCountryAgeRestrictionShort instead.
 
   UpdateCountryAgeRestriction updates country s age restriction
 
@@ -19498,7 +19498,7 @@ func (a *Client) UpdateCountryAgeRestrictionShort(params *UpdateCountryAgeRestri
 }
 
 /*
-Deprecated: Use UpdatePasswordShort instead.
+Deprecated: 2022-08-10 - Use UpdatePasswordShort instead.
 
   UpdatePassword updates user password
 
@@ -19627,7 +19627,7 @@ func (a *Client) UpdatePasswordShort(params *UpdatePasswordParams, authInfo runt
 }
 
 /*
-Deprecated: Use UpdateUserShort instead.
+Deprecated: 2022-08-10 - Use UpdateUserShort instead.
 
   UpdateUser updates user
 
@@ -19784,7 +19784,7 @@ func (a *Client) UpdateUserShort(params *UpdateUserParams, authInfo runtime.Clie
 }
 
 /*
-Deprecated: Use UpdateUserV3Short instead.
+Deprecated: 2022-08-10 - Use UpdateUserV3Short instead.
 
   UpdateUserV3 updates user
 
@@ -19922,7 +19922,7 @@ func (a *Client) UpdateUserV3Short(params *UpdateUserV3Params, authInfo runtime.
 }
 
 /*
-Deprecated: Use UpgradeHeadlessAccountWithVerificationCodeShort instead.
+Deprecated: 2022-08-10 - Use UpgradeHeadlessAccountWithVerificationCodeShort instead.
 
   UpgradeHeadlessAccountWithVerificationCode upgrades headless account and automatically verified the email address if it is succeeded
 
@@ -20054,7 +20054,7 @@ func (a *Client) UpgradeHeadlessAccountWithVerificationCodeShort(params *Upgrade
 }
 
 /*
-Deprecated: Use UserVerificationShort instead.
+Deprecated: 2022-08-10 - Use UserVerificationShort instead.
 
   UserVerification redeems verification code sent to user
 
@@ -20191,7 +20191,7 @@ func (a *Client) UserVerificationShort(params *UserVerificationParams, authInfo 
 }
 
 /*
-Deprecated: Use GetUserVerificationCodeShort instead.
+Deprecated: 2022-08-10 - Use GetUserVerificationCodeShort instead.
 
   GetUserVerificationCode gets verification code sent to user
 
@@ -20311,7 +20311,7 @@ func (a *Client) GetUserVerificationCodeShort(params *GetUserVerificationCodePar
 }
 
 /*
-Deprecated: Use UpgradeHeadlessAccountShort instead.
+Deprecated: 2022-08-10 - Use UpgradeHeadlessAccountShort instead.
 
   UpgradeHeadlessAccount upgrades user account to full account with email
 

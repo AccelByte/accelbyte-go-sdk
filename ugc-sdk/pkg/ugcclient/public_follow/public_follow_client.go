@@ -48,7 +48,7 @@ type ClientService interface {
 }
 
 /*
-Deprecated: Use GetFollowedContentShort instead.
+Deprecated: 2022-08-10 - Use GetFollowedContentShort instead.
 
   GetFollowedContent gets contents from followed creators
 
@@ -157,7 +157,7 @@ func (a *Client) GetFollowedContentShort(params *GetFollowedContentParams, authI
 }
 
 /*
-Deprecated: Use GetFollowedUsersShort instead.
+Deprecated: 2022-08-10 - Use GetFollowedUsersShort instead.
 
   GetFollowedUsers gets followed creators
 
@@ -266,7 +266,7 @@ func (a *Client) GetFollowedUsersShort(params *GetFollowedUsersParams, authInfo 
 }
 
 /*
-Deprecated: Use GetPublicFollowersShort instead.
+Deprecated: 2022-08-10 - Use GetPublicFollowersShort instead.
 
   GetPublicFollowers gets list of followers
 */
@@ -371,7 +371,7 @@ func (a *Client) GetPublicFollowersShort(params *GetPublicFollowersParams, authI
 }
 
 /*
-Deprecated: Use GetPublicFollowingShort instead.
+Deprecated: 2022-08-10 - Use GetPublicFollowingShort instead.
 
   GetPublicFollowing gets list of following
 */
@@ -476,7 +476,7 @@ func (a *Client) GetPublicFollowingShort(params *GetPublicFollowingParams, authI
 }
 
 /*
-Deprecated: Use UpdateUserFollowStatusShort instead.
+Deprecated: 2022-08-10 - Use UpdateUserFollowStatusShort instead.
 
   UpdateUserFollowStatus updates follow unfollow status to a user
 

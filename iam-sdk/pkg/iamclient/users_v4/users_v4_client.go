@@ -64,6 +64,8 @@ type ClientService interface {
 	AdminGetMyBackupCodesV4Short(params *AdminGetMyBackupCodesV4Params, authInfo runtime.ClientAuthInfoWriter) (*AdminGetMyBackupCodesV4OK, error)
 	AdminGetMyEnabledFactorsV4(params *AdminGetMyEnabledFactorsV4Params, authInfo runtime.ClientAuthInfoWriter) (*AdminGetMyEnabledFactorsV4OK, *AdminGetMyEnabledFactorsV4BadRequest, *AdminGetMyEnabledFactorsV4Unauthorized, *AdminGetMyEnabledFactorsV4Forbidden, *AdminGetMyEnabledFactorsV4NotFound, *AdminGetMyEnabledFactorsV4InternalServerError, error)
 	AdminGetMyEnabledFactorsV4Short(params *AdminGetMyEnabledFactorsV4Params, authInfo runtime.ClientAuthInfoWriter) (*AdminGetMyEnabledFactorsV4OK, error)
+	AdminInviteUserNewV4(params *AdminInviteUserNewV4Params, authInfo runtime.ClientAuthInfoWriter) (*AdminInviteUserNewV4Created, *AdminInviteUserNewV4BadRequest, *AdminInviteUserNewV4Unauthorized, *AdminInviteUserNewV4Forbidden, *AdminInviteUserNewV4NotFound, *AdminInviteUserNewV4Conflict, *AdminInviteUserNewV4UnprocessableEntity, *AdminInviteUserNewV4InternalServerError, error)
+	AdminInviteUserNewV4Short(params *AdminInviteUserNewV4Params, authInfo runtime.ClientAuthInfoWriter) (*AdminInviteUserNewV4Created, error)
 	AdminInviteUserV4(params *AdminInviteUserV4Params, authInfo runtime.ClientAuthInfoWriter) (*AdminInviteUserV4Created, *AdminInviteUserV4BadRequest, *AdminInviteUserV4Unauthorized, *AdminInviteUserV4Forbidden, *AdminInviteUserV4NotFound, *AdminInviteUserV4Conflict, *AdminInviteUserV4UnprocessableEntity, *AdminInviteUserV4InternalServerError, error)
 	AdminInviteUserV4Short(params *AdminInviteUserV4Params, authInfo runtime.ClientAuthInfoWriter) (*AdminInviteUserV4Created, error)
 	AdminListUserRolesV4(params *AdminListUserRolesV4Params, authInfo runtime.ClientAuthInfoWriter) (*AdminListUserRolesV4OK, *AdminListUserRolesV4Unauthorized, *AdminListUserRolesV4Forbidden, *AdminListUserRolesV4NotFound, *AdminListUserRolesV4InternalServerError, error)
@@ -131,7 +133,7 @@ type ClientService interface {
 }
 
 /*
-Deprecated: Use AdminAddUserRoleV4Short instead.
+Deprecated: 2022-08-10 - Use AdminAddUserRoleV4Short instead.
 
   AdminAddUserRoleV4 admins add user s role v4
 
@@ -263,7 +265,7 @@ func (a *Client) AdminAddUserRoleV4Short(params *AdminAddUserRoleV4Params, authI
 }
 
 /*
-Deprecated: Use AdminBulkCheckValidUserIDV4Short instead.
+Deprecated: 2022-08-10 - Use AdminBulkCheckValidUserIDV4Short instead.
 
   AdminBulkCheckValidUserIDV4 admins check valid user ID
 
@@ -381,7 +383,7 @@ func (a *Client) AdminBulkCheckValidUserIDV4Short(params *AdminBulkCheckValidUse
 }
 
 /*
-Deprecated: Use AdminCreateTestUsersV4Short instead.
+Deprecated: 2022-08-10 - Use AdminCreateTestUsersV4Short instead.
 
   AdminCreateTestUsersV4 ts e s t f a c i l i t y o n l y create test users
 
@@ -494,7 +496,7 @@ func (a *Client) AdminCreateTestUsersV4Short(params *AdminCreateTestUsersV4Param
 }
 
 /*
-Deprecated: Use AdminDisableMyAuthenticatorV4Short instead.
+Deprecated: 2022-08-10 - Use AdminDisableMyAuthenticatorV4Short instead.
 
   AdminDisableMyAuthenticatorV4 disables 2FA authenticator
 
@@ -617,7 +619,7 @@ func (a *Client) AdminDisableMyAuthenticatorV4Short(params *AdminDisableMyAuthen
 }
 
 /*
-Deprecated: Use AdminDisableMyBackupCodesV4Short instead.
+Deprecated: 2022-08-10 - Use AdminDisableMyBackupCodesV4Short instead.
 
   AdminDisableMyBackupCodesV4 disables 2FA backup codes
 
@@ -740,7 +742,7 @@ func (a *Client) AdminDisableMyBackupCodesV4Short(params *AdminDisableMyBackupCo
 }
 
 /*
-Deprecated: Use AdminDisableMyEmailV4Short instead.
+Deprecated: 2022-08-10 - Use AdminDisableMyEmailV4Short instead.
 
   AdminDisableMyEmailV4 disables 2FA email
 
@@ -863,7 +865,7 @@ func (a *Client) AdminDisableMyEmailV4Short(params *AdminDisableMyEmailV4Params,
 }
 
 /*
-Deprecated: Use AdminDisableUserMFAV4Short instead.
+Deprecated: 2022-08-10 - Use AdminDisableUserMFAV4Short instead.
 
   AdminDisableUserMFAV4 disables user 2FA
 
@@ -984,7 +986,7 @@ func (a *Client) AdminDisableUserMFAV4Short(params *AdminDisableUserMFAV4Params,
 }
 
 /*
-Deprecated: Use AdminDownloadMyBackupCodesV4Short instead.
+Deprecated: 2022-08-10 - Use AdminDownloadMyBackupCodesV4Short instead.
 
   AdminDownloadMyBackupCodesV4 downloads user backup codes
 
@@ -1107,7 +1109,7 @@ func (a *Client) AdminDownloadMyBackupCodesV4Short(params *AdminDownloadMyBackup
 }
 
 /*
-Deprecated: Use AdminEnableMyAuthenticatorV4Short instead.
+Deprecated: 2022-08-10 - Use AdminEnableMyAuthenticatorV4Short instead.
 
   AdminEnableMyAuthenticatorV4 enables 2FA authenticator
 
@@ -1235,7 +1237,7 @@ func (a *Client) AdminEnableMyAuthenticatorV4Short(params *AdminEnableMyAuthenti
 }
 
 /*
-Deprecated: Use AdminEnableMyBackupCodesV4Short instead.
+Deprecated: 2022-08-10 - Use AdminEnableMyBackupCodesV4Short instead.
 
   AdminEnableMyBackupCodesV4 enables 2FA backup codes
 
@@ -1363,7 +1365,7 @@ func (a *Client) AdminEnableMyBackupCodesV4Short(params *AdminEnableMyBackupCode
 }
 
 /*
-Deprecated: Use AdminEnableMyEmailV4Short instead.
+Deprecated: 2022-08-10 - Use AdminEnableMyEmailV4Short instead.
 
   AdminEnableMyEmailV4 enables 2FA email
 
@@ -1491,7 +1493,7 @@ func (a *Client) AdminEnableMyEmailV4Short(params *AdminEnableMyEmailV4Params, a
 }
 
 /*
-Deprecated: Use AdminGenerateMyAuthenticatorKeyV4Short instead.
+Deprecated: 2022-08-10 - Use AdminGenerateMyAuthenticatorKeyV4Short instead.
 
   AdminGenerateMyAuthenticatorKeyV4 generates secret key for 3rd party authenticate app
 
@@ -1616,7 +1618,7 @@ func (a *Client) AdminGenerateMyAuthenticatorKeyV4Short(params *AdminGenerateMyA
 }
 
 /*
-Deprecated: Use AdminGenerateMyBackupCodesV4Short instead.
+Deprecated: 2022-08-10 - Use AdminGenerateMyBackupCodesV4Short instead.
 
   AdminGenerateMyBackupCodesV4 generates backup codes
 
@@ -1741,7 +1743,7 @@ func (a *Client) AdminGenerateMyBackupCodesV4Short(params *AdminGenerateMyBackup
 }
 
 /*
-Deprecated: Use AdminGetMyBackupCodesV4Short instead.
+Deprecated: 2022-08-10 - Use AdminGetMyBackupCodesV4Short instead.
 
   AdminGetMyBackupCodesV4 gets backup codes
 
@@ -1866,7 +1868,7 @@ func (a *Client) AdminGetMyBackupCodesV4Short(params *AdminGetMyBackupCodesV4Par
 }
 
 /*
-Deprecated: Use AdminGetMyEnabledFactorsV4Short instead.
+Deprecated: 2022-08-10 - Use AdminGetMyEnabledFactorsV4Short instead.
 
   AdminGetMyEnabledFactorsV4 gets user enabled factors
 
@@ -1989,7 +1991,166 @@ func (a *Client) AdminGetMyEnabledFactorsV4Short(params *AdminGetMyEnabledFactor
 }
 
 /*
-Deprecated: Use AdminInviteUserV4Short instead.
+Deprecated: 2022-08-10 - Use AdminInviteUserNewV4Short instead.
+
+  AdminInviteUserNewV4 admins invite user v4
+
+  Required permission &#39;ADMIN:USER:INVITE [CREATE]
+
+Use this endpoint to invite admin or non-admin user and assign role to them. The role must be scoped to namespace. An admin user can only
+assign role with namespaces that the admin user has required permission which is same as the required permission of endpoint: [AdminAddUserRoleV4].
+
+Detail request body :
+- Email Address is required, List of email addresses that will be invited
+- isAdmin is required, true if user is admin, false if user is not admin
+- Namespace is optional. Only works on multi tenant mode,
+	if not specified then it will be assigned Publisher namespace,
+	if specified, it will become that studio/publisher where user is invited to.
+- Role is optional, if not specified then it will only assign User role.
+- Assigned Namespaces is optional, List of namespaces which the Role will be assigned to the user, only works when Role is not empty.
+
+The invited admin will also assigned with &#34;User&#34; role by default.
+
+*/
+func (a *Client) AdminInviteUserNewV4(params *AdminInviteUserNewV4Params, authInfo runtime.ClientAuthInfoWriter) (*AdminInviteUserNewV4Created, *AdminInviteUserNewV4BadRequest, *AdminInviteUserNewV4Unauthorized, *AdminInviteUserNewV4Forbidden, *AdminInviteUserNewV4NotFound, *AdminInviteUserNewV4Conflict, *AdminInviteUserNewV4UnprocessableEntity, *AdminInviteUserNewV4InternalServerError, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewAdminInviteUserNewV4Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "AdminInviteUserNewV4",
+		Method:             "POST",
+		PathPattern:        "/iam/v4/admin/users/invite",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &AdminInviteUserNewV4Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, nil, nil, nil, nil, nil, nil, nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *AdminInviteUserNewV4Created:
+		return v, nil, nil, nil, nil, nil, nil, nil, nil
+
+	case *AdminInviteUserNewV4BadRequest:
+		return nil, v, nil, nil, nil, nil, nil, nil, nil
+
+	case *AdminInviteUserNewV4Unauthorized:
+		return nil, nil, v, nil, nil, nil, nil, nil, nil
+
+	case *AdminInviteUserNewV4Forbidden:
+		return nil, nil, nil, v, nil, nil, nil, nil, nil
+
+	case *AdminInviteUserNewV4NotFound:
+		return nil, nil, nil, nil, v, nil, nil, nil, nil
+
+	case *AdminInviteUserNewV4Conflict:
+		return nil, nil, nil, nil, nil, v, nil, nil, nil
+
+	case *AdminInviteUserNewV4UnprocessableEntity:
+		return nil, nil, nil, nil, nil, nil, v, nil, nil
+
+	case *AdminInviteUserNewV4InternalServerError:
+		return nil, nil, nil, nil, nil, nil, nil, v, nil
+
+	default:
+		return nil, nil, nil, nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+  AdminInviteUserNewV4Short admins invite user v4
+
+  Required permission &#39;ADMIN:USER:INVITE [CREATE]
+
+Use this endpoint to invite admin or non-admin user and assign role to them. The role must be scoped to namespace. An admin user can only
+assign role with namespaces that the admin user has required permission which is same as the required permission of endpoint: [AdminAddUserRoleV4].
+
+Detail request body :
+- Email Address is required, List of email addresses that will be invited
+- isAdmin is required, true if user is admin, false if user is not admin
+- Namespace is optional. Only works on multi tenant mode,
+	if not specified then it will be assigned Publisher namespace,
+	if specified, it will become that studio/publisher where user is invited to.
+- Role is optional, if not specified then it will only assign User role.
+- Assigned Namespaces is optional, List of namespaces which the Role will be assigned to the user, only works when Role is not empty.
+
+The invited admin will also assigned with &#34;User&#34; role by default.
+
+*/
+func (a *Client) AdminInviteUserNewV4Short(params *AdminInviteUserNewV4Params, authInfo runtime.ClientAuthInfoWriter) (*AdminInviteUserNewV4Created, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewAdminInviteUserNewV4Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "AdminInviteUserNewV4",
+		Method:             "POST",
+		PathPattern:        "/iam/v4/admin/users/invite",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &AdminInviteUserNewV4Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *AdminInviteUserNewV4Created:
+		return v, nil
+	case *AdminInviteUserNewV4BadRequest:
+		return nil, v
+	case *AdminInviteUserNewV4Unauthorized:
+		return nil, v
+	case *AdminInviteUserNewV4Forbidden:
+		return nil, v
+	case *AdminInviteUserNewV4NotFound:
+		return nil, v
+	case *AdminInviteUserNewV4Conflict:
+		return nil, v
+	case *AdminInviteUserNewV4UnprocessableEntity:
+		return nil, v
+	case *AdminInviteUserNewV4InternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+Deprecated: 2022-08-10 - Use AdminInviteUserV4Short instead.
 
   AdminInviteUserV4 admins invite user v4
 
@@ -1999,15 +2160,17 @@ Use this endpoint to invite admin or non-admin user and assign role to them. The
 assign role with namespaces that the admin user has required permission which is same as the required permission of endpoint: [AdminAddUserRoleV4].
 
 Detail request body :
-- Assigned Namespaces is required, List of namespaces that will be assigned to the user.
 - Email Address is required, List of email addresses that will be invited
 - isAdmin is required, true if user is admin, false if user is not admin
 - Namespace is optional. Only works on multi tenant mode,
 	if not specified then it will be assigned Publisher namespace,
 	if specified, it will become that studio/publisher where user is invited to.
 - Role is optional, if not specified then it will only assign User role.
+- Assigned Namespaces is optional, List of namespaces which the Role will be assigned to the user, only works when Role is not empty.
 
 The invited admin will also assigned with &#34;User&#34; role by default.
+
+Substitute endpoint: /iam/v4/admin/users/invite
 
 */
 func (a *Client) AdminInviteUserV4(params *AdminInviteUserV4Params, authInfo runtime.ClientAuthInfoWriter) (*AdminInviteUserV4Created, *AdminInviteUserV4BadRequest, *AdminInviteUserV4Unauthorized, *AdminInviteUserV4Forbidden, *AdminInviteUserV4NotFound, *AdminInviteUserV4Conflict, *AdminInviteUserV4UnprocessableEntity, *AdminInviteUserV4InternalServerError, error) {
@@ -2081,15 +2244,17 @@ Use this endpoint to invite admin or non-admin user and assign role to them. The
 assign role with namespaces that the admin user has required permission which is same as the required permission of endpoint: [AdminAddUserRoleV4].
 
 Detail request body :
-- Assigned Namespaces is required, List of namespaces that will be assigned to the user.
 - Email Address is required, List of email addresses that will be invited
 - isAdmin is required, true if user is admin, false if user is not admin
 - Namespace is optional. Only works on multi tenant mode,
 	if not specified then it will be assigned Publisher namespace,
 	if specified, it will become that studio/publisher where user is invited to.
 - Role is optional, if not specified then it will only assign User role.
+- Assigned Namespaces is optional, List of namespaces which the Role will be assigned to the user, only works when Role is not empty.
 
 The invited admin will also assigned with &#34;User&#34; role by default.
+
+Substitute endpoint: /iam/v4/admin/users/invite
 
 */
 func (a *Client) AdminInviteUserV4Short(params *AdminInviteUserV4Params, authInfo runtime.ClientAuthInfoWriter) (*AdminInviteUserV4Created, error) {
@@ -2148,7 +2313,7 @@ func (a *Client) AdminInviteUserV4Short(params *AdminInviteUserV4Params, authInf
 }
 
 /*
-Deprecated: Use AdminListUserRolesV4Short instead.
+Deprecated: 2022-08-10 - Use AdminListUserRolesV4Short instead.
 
   AdminListUserRolesV4 admins list user s roles v4
 
@@ -2268,7 +2433,7 @@ func (a *Client) AdminListUserRolesV4Short(params *AdminListUserRolesV4Params, a
 }
 
 /*
-Deprecated: Use AdminMakeFactorMyDefaultV4Short instead.
+Deprecated: 2022-08-10 - Use AdminMakeFactorMyDefaultV4Short instead.
 
   AdminMakeFactorMyDefaultV4 makes 2FA factor default
 
@@ -2391,7 +2556,7 @@ func (a *Client) AdminMakeFactorMyDefaultV4Short(params *AdminMakeFactorMyDefaul
 }
 
 /*
-Deprecated: Use AdminRemoveUserRoleV4Short instead.
+Deprecated: 2022-08-10 - Use AdminRemoveUserRoleV4Short instead.
 
   AdminRemoveUserRoleV4 admins remove user role v4
 
@@ -2521,7 +2686,7 @@ func (a *Client) AdminRemoveUserRoleV4Short(params *AdminRemoveUserRoleV4Params,
 }
 
 /*
-Deprecated: Use AdminSendMyMFAEmailCodeV4Short instead.
+Deprecated: 2022-08-10 - Use AdminSendMyMFAEmailCodeV4Short instead.
 
   AdminSendMyMFAEmailCodeV4 sends code for enabling email
 
@@ -2649,7 +2814,7 @@ func (a *Client) AdminSendMyMFAEmailCodeV4Short(params *AdminSendMyMFAEmailCodeV
 }
 
 /*
-Deprecated: Use AdminUpdateMyUserV4Short instead.
+Deprecated: 2022-08-10 - Use AdminUpdateMyUserV4Short instead.
 
   AdminUpdateMyUserV4 admins update my user
 
@@ -2773,7 +2938,7 @@ func (a *Client) AdminUpdateMyUserV4Short(params *AdminUpdateMyUserV4Params, aut
 }
 
 /*
-Deprecated: Use AdminUpdateUserEmailAddressV4Short instead.
+Deprecated: 2022-08-10 - Use AdminUpdateUserEmailAddressV4Short instead.
 
   AdminUpdateUserEmailAddressV4 updates a user email address
 
@@ -2900,7 +3065,7 @@ func (a *Client) AdminUpdateUserEmailAddressV4Short(params *AdminUpdateUserEmail
 }
 
 /*
-Deprecated: Use AdminUpdateUserRoleV4Short instead.
+Deprecated: 2022-08-10 - Use AdminUpdateUserRoleV4Short instead.
 
   AdminUpdateUserRoleV4 admins update user s role v4
 
@@ -3030,7 +3195,7 @@ func (a *Client) AdminUpdateUserRoleV4Short(params *AdminUpdateUserRoleV4Params,
 }
 
 /*
-Deprecated: Use AdminUpdateUserV4Short instead.
+Deprecated: 2022-08-10 - Use AdminUpdateUserV4Short instead.
 
   AdminUpdateUserV4 updates user
 
@@ -3166,7 +3331,7 @@ func (a *Client) AdminUpdateUserV4Short(params *AdminUpdateUserV4Params, authInf
 }
 
 /*
-Deprecated: Use CreateUserFromInvitationV4Short instead.
+Deprecated: 2022-08-10 - Use CreateUserFromInvitationV4Short instead.
 
   CreateUserFromInvitationV4 creates user from invitation
 
@@ -3309,7 +3474,7 @@ func (a *Client) CreateUserFromInvitationV4Short(params *CreateUserFromInvitatio
 }
 
 /*
-Deprecated: Use PublicCreateTestUserV4Short instead.
+Deprecated: 2022-08-10 - Use PublicCreateTestUserV4Short instead.
 
   PublicCreateTestUserV4 ts e s t f a c i l i t y o n l y create test user
 
@@ -3453,7 +3618,7 @@ func (a *Client) PublicCreateTestUserV4Short(params *PublicCreateTestUserV4Param
 }
 
 /*
-Deprecated: Use PublicCreateUserV4Short instead.
+Deprecated: 2022-08-10 - Use PublicCreateUserV4Short instead.
 
   PublicCreateUserV4 creates user
 
@@ -3595,7 +3760,7 @@ func (a *Client) PublicCreateUserV4Short(params *PublicCreateUserV4Params, authI
 }
 
 /*
-Deprecated: Use PublicDisableMyAuthenticatorV4Short instead.
+Deprecated: 2022-08-10 - Use PublicDisableMyAuthenticatorV4Short instead.
 
   PublicDisableMyAuthenticatorV4 disables 2FA authenticator
 
@@ -3718,7 +3883,7 @@ func (a *Client) PublicDisableMyAuthenticatorV4Short(params *PublicDisableMyAuth
 }
 
 /*
-Deprecated: Use PublicDisableMyBackupCodesV4Short instead.
+Deprecated: 2022-08-10 - Use PublicDisableMyBackupCodesV4Short instead.
 
   PublicDisableMyBackupCodesV4 disables 2FA backup codes
 
@@ -3841,7 +4006,7 @@ func (a *Client) PublicDisableMyBackupCodesV4Short(params *PublicDisableMyBackup
 }
 
 /*
-Deprecated: Use PublicDisableMyEmailV4Short instead.
+Deprecated: 2022-08-10 - Use PublicDisableMyEmailV4Short instead.
 
   PublicDisableMyEmailV4 disables 2FA email
 
@@ -3964,7 +4129,7 @@ func (a *Client) PublicDisableMyEmailV4Short(params *PublicDisableMyEmailV4Param
 }
 
 /*
-Deprecated: Use PublicDownloadMyBackupCodesV4Short instead.
+Deprecated: 2022-08-10 - Use PublicDownloadMyBackupCodesV4Short instead.
 
   PublicDownloadMyBackupCodesV4 downloads user backup codes
 
@@ -4087,7 +4252,7 @@ func (a *Client) PublicDownloadMyBackupCodesV4Short(params *PublicDownloadMyBack
 }
 
 /*
-Deprecated: Use PublicEnableMyAuthenticatorV4Short instead.
+Deprecated: 2022-08-10 - Use PublicEnableMyAuthenticatorV4Short instead.
 
   PublicEnableMyAuthenticatorV4 enables 2FA authenticator
 
@@ -4215,7 +4380,7 @@ func (a *Client) PublicEnableMyAuthenticatorV4Short(params *PublicEnableMyAuthen
 }
 
 /*
-Deprecated: Use PublicEnableMyBackupCodesV4Short instead.
+Deprecated: 2022-08-10 - Use PublicEnableMyBackupCodesV4Short instead.
 
   PublicEnableMyBackupCodesV4 enables 2FA backup codes
 
@@ -4343,7 +4508,7 @@ func (a *Client) PublicEnableMyBackupCodesV4Short(params *PublicEnableMyBackupCo
 }
 
 /*
-Deprecated: Use PublicEnableMyEmailV4Short instead.
+Deprecated: 2022-08-10 - Use PublicEnableMyEmailV4Short instead.
 
   PublicEnableMyEmailV4 enables 2FA email
 
@@ -4471,7 +4636,7 @@ func (a *Client) PublicEnableMyEmailV4Short(params *PublicEnableMyEmailV4Params,
 }
 
 /*
-Deprecated: Use PublicGenerateMyAuthenticatorKeyV4Short instead.
+Deprecated: 2022-08-10 - Use PublicGenerateMyAuthenticatorKeyV4Short instead.
 
   PublicGenerateMyAuthenticatorKeyV4 generates secret key for 3rd party authenticate app
 
@@ -4596,7 +4761,7 @@ func (a *Client) PublicGenerateMyAuthenticatorKeyV4Short(params *PublicGenerateM
 }
 
 /*
-Deprecated: Use PublicGenerateMyBackupCodesV4Short instead.
+Deprecated: 2022-08-10 - Use PublicGenerateMyBackupCodesV4Short instead.
 
   PublicGenerateMyBackupCodesV4 generates backup codes
 
@@ -4721,7 +4886,7 @@ func (a *Client) PublicGenerateMyBackupCodesV4Short(params *PublicGenerateMyBack
 }
 
 /*
-Deprecated: Use PublicGetMyBackupCodesV4Short instead.
+Deprecated: 2022-08-10 - Use PublicGetMyBackupCodesV4Short instead.
 
   PublicGetMyBackupCodesV4 gets backup codes
 
@@ -4846,7 +5011,7 @@ func (a *Client) PublicGetMyBackupCodesV4Short(params *PublicGetMyBackupCodesV4P
 }
 
 /*
-Deprecated: Use PublicGetMyEnabledFactorsV4Short instead.
+Deprecated: 2022-08-10 - Use PublicGetMyEnabledFactorsV4Short instead.
 
   PublicGetMyEnabledFactorsV4 gets user enabled factors
 
@@ -4969,7 +5134,7 @@ func (a *Client) PublicGetMyEnabledFactorsV4Short(params *PublicGetMyEnabledFact
 }
 
 /*
-Deprecated: Use PublicInviteUserV4Short instead.
+Deprecated: 2022-08-10 - Use PublicInviteUserV4Short instead.
 
   PublicInviteUserV4 publics invite admin user v4
 
@@ -5101,7 +5266,7 @@ func (a *Client) PublicInviteUserV4Short(params *PublicInviteUserV4Params, authI
 }
 
 /*
-Deprecated: Use PublicMakeFactorMyDefaultV4Short instead.
+Deprecated: 2022-08-10 - Use PublicMakeFactorMyDefaultV4Short instead.
 
   PublicMakeFactorMyDefaultV4 makes 2FA factor default
 
@@ -5224,7 +5389,7 @@ func (a *Client) PublicMakeFactorMyDefaultV4Short(params *PublicMakeFactorMyDefa
 }
 
 /*
-Deprecated: Use PublicRemoveTrustedDeviceV4Short instead.
+Deprecated: 2022-08-10 - Use PublicRemoveTrustedDeviceV4Short instead.
 
   PublicRemoveTrustedDeviceV4 removes trusted device
 
@@ -5349,7 +5514,7 @@ func (a *Client) PublicRemoveTrustedDeviceV4Short(params *PublicRemoveTrustedDev
 }
 
 /*
-Deprecated: Use PublicSendMyMFAEmailCodeV4Short instead.
+Deprecated: 2022-08-10 - Use PublicSendMyMFAEmailCodeV4Short instead.
 
   PublicSendMyMFAEmailCodeV4 sends code for enabling email
 
@@ -5477,7 +5642,7 @@ func (a *Client) PublicSendMyMFAEmailCodeV4Short(params *PublicSendMyMFAEmailCod
 }
 
 /*
-Deprecated: Use PublicUpdateUserEmailAddressV4Short instead.
+Deprecated: 2022-08-10 - Use PublicUpdateUserEmailAddressV4Short instead.
 
   PublicUpdateUserEmailAddressV4 updates my email address
 
@@ -5600,7 +5765,7 @@ func (a *Client) PublicUpdateUserEmailAddressV4Short(params *PublicUpdateUserEma
 }
 
 /*
-Deprecated: Use PublicUpdateUserV4Short instead.
+Deprecated: 2022-08-10 - Use PublicUpdateUserV4Short instead.
 
   PublicUpdateUserV4 updates user
 
@@ -5726,7 +5891,7 @@ func (a *Client) PublicUpdateUserV4Short(params *PublicUpdateUserV4Params, authI
 }
 
 /*
-Deprecated: Use PublicUpgradeHeadlessAccountV4Short instead.
+Deprecated: 2022-08-10 - Use PublicUpgradeHeadlessAccountV4Short instead.
 
   PublicUpgradeHeadlessAccountV4 upgrades user account to full account
 
@@ -5849,7 +6014,7 @@ func (a *Client) PublicUpgradeHeadlessAccountV4Short(params *PublicUpgradeHeadle
 }
 
 /*
-Deprecated: Use PublicUpgradeHeadlessAccountWithVerificationCodeV4Short instead.
+Deprecated: 2022-08-10 - Use PublicUpgradeHeadlessAccountWithVerificationCodeV4Short instead.
 
   PublicUpgradeHeadlessAccountWithVerificationCodeV4 upgrades headless account and automatically verified the email address if it is succeeded
 

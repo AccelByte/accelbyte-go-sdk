@@ -39,7 +39,7 @@ func (aaa *GameSessionService) GetAuthSession() auth.Session {
 	}
 }
 
-// deprecated(2022-01-10): please use AdminQueryGameSessionsShort instead.
+// Deprecated: 2022-01-10 - please use AdminQueryGameSessionsShort instead.
 func (aaa *GameSessionService) AdminQueryGameSessions(input *game_session.AdminQueryGameSessionsParams) (*sessionclientmodels.ApimodelsGameSessionQueryResponse, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -65,7 +65,33 @@ func (aaa *GameSessionService) AdminQueryGameSessions(input *game_session.AdminQ
 	return ok.GetPayload(), nil
 }
 
-// deprecated(2022-01-10): please use AdminUpdateGameSessionMemberShort instead.
+// Deprecated: 2022-01-10 - please use AdminDeleteBulkGameSessionsShort instead.
+func (aaa *GameSessionService) AdminDeleteBulkGameSessions(input *game_session.AdminDeleteBulkGameSessionsParams) (*sessionclientmodels.ApimodelsDeleteBulkGameSessionsAPIResponse, error) {
+	token, err := aaa.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, badRequest, unauthorized, forbidden, internalServerError, err := aaa.Client.GameSession.AdminDeleteBulkGameSessions(input, client.BearerToken(*token.AccessToken))
+	if badRequest != nil {
+		return nil, badRequest
+	}
+	if unauthorized != nil {
+		return nil, unauthorized
+	}
+	if forbidden != nil {
+		return nil, forbidden
+	}
+	if internalServerError != nil {
+		return nil, internalServerError
+	}
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
+// Deprecated: 2022-01-10 - please use AdminUpdateGameSessionMemberShort instead.
 func (aaa *GameSessionService) AdminUpdateGameSessionMember(input *game_session.AdminUpdateGameSessionMemberParams) (*sessionclientmodels.ApimodelsUpdateGameSessionMemberStatusResponse, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -94,7 +120,7 @@ func (aaa *GameSessionService) AdminUpdateGameSessionMember(input *game_session.
 	return ok.GetPayload(), nil
 }
 
-// deprecated(2022-01-10): please use CreateGameSessionShort instead.
+// Deprecated: 2022-01-10 - please use CreateGameSessionShort instead.
 func (aaa *GameSessionService) CreateGameSession(input *game_session.CreateGameSessionParams) (*sessionclientmodels.ApimodelsGameSessionResponse, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -120,7 +146,7 @@ func (aaa *GameSessionService) CreateGameSession(input *game_session.CreateGameS
 	return created.GetPayload(), nil
 }
 
-// deprecated(2022-01-10): please use PublicQueryGameSessionsShort instead.
+// Deprecated: 2022-01-10 - please use PublicQueryGameSessionsShort instead.
 func (aaa *GameSessionService) PublicQueryGameSessions(input *game_session.PublicQueryGameSessionsParams) (*sessionclientmodels.ApimodelsGameSessionQueryResponse, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -146,7 +172,7 @@ func (aaa *GameSessionService) PublicQueryGameSessions(input *game_session.Publi
 	return ok.GetPayload(), nil
 }
 
-// deprecated(2022-01-10): please use GetGameSessionByPodNameShort instead.
+// Deprecated: 2022-01-10 - please use GetGameSessionByPodNameShort instead.
 func (aaa *GameSessionService) GetGameSessionByPodName(input *game_session.GetGameSessionByPodNameParams) (*sessionclientmodels.ApimodelsGameSessionResponse, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -175,7 +201,7 @@ func (aaa *GameSessionService) GetGameSessionByPodName(input *game_session.GetGa
 	return ok.GetPayload(), nil
 }
 
-// deprecated(2022-01-10): please use GetGameSessionShort instead.
+// Deprecated: 2022-01-10 - please use GetGameSessionShort instead.
 func (aaa *GameSessionService) GetGameSession(input *game_session.GetGameSessionParams) (*sessionclientmodels.ApimodelsGameSessionResponse, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -204,7 +230,7 @@ func (aaa *GameSessionService) GetGameSession(input *game_session.GetGameSession
 	return ok.GetPayload(), nil
 }
 
-// deprecated(2022-01-10): please use UpdateGameSessionShort instead.
+// Deprecated: 2022-01-10 - please use UpdateGameSessionShort instead.
 func (aaa *GameSessionService) UpdateGameSession(input *game_session.UpdateGameSessionParams) (*sessionclientmodels.ApimodelsGameSessionResponse, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -233,7 +259,7 @@ func (aaa *GameSessionService) UpdateGameSession(input *game_session.UpdateGameS
 	return ok.GetPayload(), nil
 }
 
-// deprecated(2022-01-10): please use DeleteGameSessionShort instead.
+// Deprecated: 2022-01-10 - please use DeleteGameSessionShort instead.
 func (aaa *GameSessionService) DeleteGameSession(input *game_session.DeleteGameSessionParams) error {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -256,7 +282,7 @@ func (aaa *GameSessionService) DeleteGameSession(input *game_session.DeleteGameS
 	return nil
 }
 
-// deprecated(2022-01-10): please use PatchUpdateGameSessionShort instead.
+// Deprecated: 2022-01-10 - please use PatchUpdateGameSessionShort instead.
 func (aaa *GameSessionService) PatchUpdateGameSession(input *game_session.PatchUpdateGameSessionParams) (*sessionclientmodels.ApimodelsGameSessionResponse, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -285,7 +311,7 @@ func (aaa *GameSessionService) PatchUpdateGameSession(input *game_session.PatchU
 	return ok.GetPayload(), nil
 }
 
-// deprecated(2022-01-10): please use UpdateGameSessionBackfillTicketIDShort instead.
+// Deprecated: 2022-01-10 - please use UpdateGameSessionBackfillTicketIDShort instead.
 func (aaa *GameSessionService) UpdateGameSessionBackfillTicketID(input *game_session.UpdateGameSessionBackfillTicketIDParams) (*sessionclientmodels.ApimodelsGameSessionResponse, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -311,7 +337,7 @@ func (aaa *GameSessionService) UpdateGameSessionBackfillTicketID(input *game_ses
 	return ok.GetPayload(), nil
 }
 
-// deprecated(2022-01-10): please use PublicGameSessionInviteShort instead.
+// Deprecated: 2022-01-10 - please use PublicGameSessionInviteShort instead.
 func (aaa *GameSessionService) PublicGameSessionInvite(input *game_session.PublicGameSessionInviteParams) error {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -340,7 +366,7 @@ func (aaa *GameSessionService) PublicGameSessionInvite(input *game_session.Publi
 	return nil
 }
 
-// deprecated(2022-01-10): please use JoinGameSessionShort instead.
+// Deprecated: 2022-01-10 - please use JoinGameSessionShort instead.
 func (aaa *GameSessionService) JoinGameSession(input *game_session.JoinGameSessionParams) (*sessionclientmodels.ApimodelsGameSessionResponse, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -369,7 +395,7 @@ func (aaa *GameSessionService) JoinGameSession(input *game_session.JoinGameSessi
 	return ok.GetPayload(), nil
 }
 
-// deprecated(2022-01-10): please use LeaveGameSessionShort instead.
+// Deprecated: 2022-01-10 - please use LeaveGameSessionShort instead.
 func (aaa *GameSessionService) LeaveGameSession(input *game_session.LeaveGameSessionParams) error {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -398,7 +424,7 @@ func (aaa *GameSessionService) LeaveGameSession(input *game_session.LeaveGameSes
 	return nil
 }
 
-// deprecated(2022-01-10): please use PublicGameSessionRejectShort instead.
+// Deprecated: 2022-01-10 - please use PublicGameSessionRejectShort instead.
 func (aaa *GameSessionService) PublicGameSessionReject(input *game_session.PublicGameSessionRejectParams) error {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -427,7 +453,7 @@ func (aaa *GameSessionService) PublicGameSessionReject(input *game_session.Publi
 	return nil
 }
 
-// deprecated(2022-01-10): please use AppendTeamGameSessionShort instead.
+// Deprecated: 2022-01-10 - please use AppendTeamGameSessionShort instead.
 func (aaa *GameSessionService) AppendTeamGameSession(input *game_session.AppendTeamGameSessionParams) (*sessionclientmodels.ApimodelsGameSessionResponse, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -453,7 +479,7 @@ func (aaa *GameSessionService) AppendTeamGameSession(input *game_session.AppendT
 	return ok.GetPayload(), nil
 }
 
-// deprecated(2022-01-10): please use PublicQueryMyGameSessionsShort instead.
+// Deprecated: 2022-01-10 - please use PublicQueryMyGameSessionsShort instead.
 func (aaa *GameSessionService) PublicQueryMyGameSessions(input *game_session.PublicQueryMyGameSessionsParams) ([]*sessionclientmodels.ApimodelsGameSessionResponse, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -494,6 +520,31 @@ func (aaa *GameSessionService) AdminQueryGameSessionsShort(input *game_session.A
 	}
 
 	ok, err := aaa.Client.GameSession.AdminQueryGameSessionsShort(input, authInfoWriter)
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
+func (aaa *GameSessionService) AdminDeleteBulkGameSessionsShort(input *game_session.AdminDeleteBulkGameSessionsParams) (*sessionclientmodels.ApimodelsDeleteBulkGameSessionsAPIResponse, error) {
+	authInfoWriter := input.AuthInfoWriter
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
+	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  aaa.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
+	ok, err := aaa.Client.GameSession.AdminDeleteBulkGameSessionsShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}

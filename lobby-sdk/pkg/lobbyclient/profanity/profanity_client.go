@@ -64,7 +64,7 @@ type ClientService interface {
 }
 
 /*
-Deprecated: Use AdminAddProfanityFilterIntoListShort instead.
+Deprecated: 2022-08-10 - Use AdminAddProfanityFilterIntoListShort instead.
 
   AdminAddProfanityFilterIntoList adds a single filter into the list
 
@@ -185,7 +185,7 @@ func (a *Client) AdminAddProfanityFilterIntoListShort(params *AdminAddProfanityF
 }
 
 /*
-Deprecated: Use AdminAddProfanityFiltersShort instead.
+Deprecated: 2022-08-10 - Use AdminAddProfanityFiltersShort instead.
 
   AdminAddProfanityFilters adds multiple filters into the list
 
@@ -306,7 +306,7 @@ func (a *Client) AdminAddProfanityFiltersShort(params *AdminAddProfanityFiltersP
 }
 
 /*
-Deprecated: Use AdminCreateProfanityListShort instead.
+Deprecated: 2022-08-10 - Use AdminCreateProfanityListShort instead.
 
   AdminCreateProfanityList creates a new list
 
@@ -427,7 +427,7 @@ func (a *Client) AdminCreateProfanityListShort(params *AdminCreateProfanityListP
 }
 
 /*
-Deprecated: Use AdminDebugProfanityFiltersShort instead.
+Deprecated: 2022-08-10 - Use AdminDebugProfanityFiltersShort instead.
 
   AdminDebugProfanityFilters gets the list of filters that would modify the phrase
 
@@ -548,7 +548,7 @@ func (a *Client) AdminDebugProfanityFiltersShort(params *AdminDebugProfanityFilt
 }
 
 /*
-Deprecated: Use AdminDeleteProfanityFilterShort instead.
+Deprecated: 2022-08-10 - Use AdminDeleteProfanityFilterShort instead.
 
   AdminDeleteProfanityFilter deletes the filter from the list
 
@@ -669,7 +669,7 @@ func (a *Client) AdminDeleteProfanityFilterShort(params *AdminDeleteProfanityFil
 }
 
 /*
-Deprecated: Use AdminDeleteProfanityListShort instead.
+Deprecated: 2022-08-10 - Use AdminDeleteProfanityListShort instead.
 
   AdminDeleteProfanityList deletes a list include all filters inside of it
 
@@ -790,7 +790,7 @@ func (a *Client) AdminDeleteProfanityListShort(params *AdminDeleteProfanityListP
 }
 
 /*
-Deprecated: Use AdminGetProfanityListFiltersV1Short instead.
+Deprecated: 2022-08-10 - Use AdminGetProfanityListFiltersV1Short instead.
 
   AdminGetProfanityListFiltersV1 gets the list of filters inside the list
 
@@ -911,7 +911,7 @@ func (a *Client) AdminGetProfanityListFiltersV1Short(params *AdminGetProfanityLi
 }
 
 /*
-Deprecated: Use AdminGetProfanityListsShort instead.
+Deprecated: 2022-08-10 - Use AdminGetProfanityListsShort instead.
 
   AdminGetProfanityLists gets lists
 
@@ -1032,7 +1032,7 @@ func (a *Client) AdminGetProfanityListsShort(params *AdminGetProfanityListsParam
 }
 
 /*
-Deprecated: Use AdminGetProfanityRuleShort instead.
+Deprecated: 2022-08-10 - Use AdminGetProfanityRuleShort instead.
 
   AdminGetProfanityRule gets current profanity rule
 
@@ -1153,7 +1153,7 @@ func (a *Client) AdminGetProfanityRuleShort(params *AdminGetProfanityRuleParams,
 }
 
 /*
-Deprecated: Use AdminImportProfanityFiltersFromFileShort instead.
+Deprecated: 2022-08-10 - Use AdminImportProfanityFiltersFromFileShort instead.
 
   AdminImportProfanityFiltersFromFile imports a file with filters
 
@@ -1274,7 +1274,7 @@ func (a *Client) AdminImportProfanityFiltersFromFileShort(params *AdminImportPro
 }
 
 /*
-Deprecated: Use AdminSetProfanityRuleForNamespaceShort instead.
+Deprecated: 2022-08-10 - Use AdminSetProfanityRuleForNamespaceShort instead.
 
   AdminSetProfanityRuleForNamespace sets current profanity rule
 
@@ -1395,7 +1395,7 @@ func (a *Client) AdminSetProfanityRuleForNamespaceShort(params *AdminSetProfanit
 }
 
 /*
-Deprecated: Use AdminUpdateProfanityListShort instead.
+Deprecated: 2022-08-10 - Use AdminUpdateProfanityListShort instead.
 
   AdminUpdateProfanityList updates the list
 
@@ -1516,7 +1516,7 @@ func (a *Client) AdminUpdateProfanityListShort(params *AdminUpdateProfanityListP
 }
 
 /*
-Deprecated: Use AdminVerifyMessageProfanityResponseShort instead.
+Deprecated: 2022-08-10 - Use AdminVerifyMessageProfanityResponseShort instead.
 
   AdminVerifyMessageProfanityResponse verifies a message directly from the UI or other services
 

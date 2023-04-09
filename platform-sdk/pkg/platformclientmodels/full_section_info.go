@@ -80,12 +80,10 @@ type FullSectionInfo struct {
 	UpdatedAt strfmt.DateTime `json:"updatedAt"`
 
 	// view id
-	// Required: true
-	ViewID *string `json:"viewId"`
+	ViewID string `json:"viewId,omitempty"`
 
 	// view name
-	// Required: true
-	ViewName *string `json:"viewName"`
+	ViewName string `json:"viewName,omitempty"`
 }
 
 // Validate validates this full section info
@@ -141,14 +139,6 @@ func (m *FullSectionInfo) Validate(formats strfmt.Registry) error {
 	}
 
 	if err := m.validateUpdatedAt(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.validateViewID(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.validateViewName(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -372,24 +362,6 @@ func (m *FullSectionInfo) validateUpdatedAt(formats strfmt.Registry) error {
 	}
 
 	if err := validate.FormatOf("updatedAt", "body", "date-time", m.UpdatedAt.String(), formats); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *FullSectionInfo) validateViewID(formats strfmt.Registry) error {
-
-	if err := validate.Required("viewId", "body", m.ViewID); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *FullSectionInfo) validateViewName(formats strfmt.Registry) error {
-
-	if err := validate.Required("viewName", "body", m.ViewName); err != nil {
 		return err
 	}
 

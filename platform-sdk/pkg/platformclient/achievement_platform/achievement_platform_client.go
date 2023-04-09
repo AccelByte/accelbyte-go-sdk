@@ -44,7 +44,7 @@ type ClientService interface {
 }
 
 /*
-Deprecated: Use GetXblUserAchievementsShort instead.
+Deprecated: 2022-08-10 - Use GetXblUserAchievementsShort instead.
 
   GetXblUserAchievements gets xbox live user achievements
 
@@ -143,7 +143,7 @@ func (a *Client) GetXblUserAchievementsShort(params *GetXblUserAchievementsParam
 }
 
 /*
-Deprecated: Use UnlockSteamUserAchievementShort instead.
+Deprecated: 2022-08-10 - Use UnlockSteamUserAchievementShort instead.
 
   UnlockSteamUserAchievement unlocks steam achievement
 
@@ -247,7 +247,7 @@ func (a *Client) UnlockSteamUserAchievementShort(params *UnlockSteamUserAchievem
 }
 
 /*
-Deprecated: Use UpdateXblUserAchievementShort instead.
+Deprecated: 2022-08-10 - Use UpdateXblUserAchievementShort instead.
 
   UpdateXblUserAchievement updates xbox live achievements
 

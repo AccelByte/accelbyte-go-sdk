@@ -39,7 +39,7 @@ func (aaa *PublicReportsService) GetAuthSession() auth.Session {
 	}
 }
 
-// deprecated(2022-01-10): please use SubmitReportShort instead.
+// Deprecated: 2022-01-10 - please use SubmitReportShort instead.
 func (aaa *PublicReportsService) SubmitReport(input *public_reports.SubmitReportParams) (*reportingclientmodels.RestapiSubmitReportResponse, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {

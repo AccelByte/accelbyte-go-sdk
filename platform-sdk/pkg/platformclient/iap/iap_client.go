@@ -118,7 +118,7 @@ type ClientService interface {
 }
 
 /*
-Deprecated: Use DeleteAppleIAPConfigShort instead.
+Deprecated: 2022-08-10 - Use DeleteAppleIAPConfigShort instead.
 
   DeleteAppleIAPConfig deletes apple iap config
 
@@ -212,7 +212,7 @@ func (a *Client) DeleteAppleIAPConfigShort(params *DeleteAppleIAPConfigParams, a
 }
 
 /*
-Deprecated: Use DeleteEpicGamesIAPConfigShort instead.
+Deprecated: 2022-08-10 - Use DeleteEpicGamesIAPConfigShort instead.
 
   DeleteEpicGamesIAPConfig deletes epic games iap config
 
@@ -306,7 +306,7 @@ func (a *Client) DeleteEpicGamesIAPConfigShort(params *DeleteEpicGamesIAPConfigP
 }
 
 /*
-Deprecated: Use DeleteGoogleIAPConfigShort instead.
+Deprecated: 2022-08-10 - Use DeleteGoogleIAPConfigShort instead.
 
   DeleteGoogleIAPConfig deletes google iap config
 
@@ -400,7 +400,7 @@ func (a *Client) DeleteGoogleIAPConfigShort(params *DeleteGoogleIAPConfigParams,
 }
 
 /*
-Deprecated: Use DeleteIAPItemConfigShort instead.
+Deprecated: 2022-08-10 - Use DeleteIAPItemConfigShort instead.
 
   DeleteIAPItemConfig deletes a iap item config
 
@@ -494,7 +494,7 @@ func (a *Client) DeleteIAPItemConfigShort(params *DeleteIAPItemConfigParams, aut
 }
 
 /*
-Deprecated: Use DeletePlaystationIAPConfigShort instead.
+Deprecated: 2022-08-10 - Use DeletePlaystationIAPConfigShort instead.
 
   DeletePlaystationIAPConfig deletes playstation iap config
 
@@ -588,7 +588,7 @@ func (a *Client) DeletePlaystationIAPConfigShort(params *DeletePlaystationIAPCon
 }
 
 /*
-Deprecated: Use DeleteSteamIAPConfigShort instead.
+Deprecated: 2022-08-10 - Use DeleteSteamIAPConfigShort instead.
 
   DeleteSteamIAPConfig deletes steam iap config
 
@@ -682,7 +682,7 @@ func (a *Client) DeleteSteamIAPConfigShort(params *DeleteSteamIAPConfigParams, a
 }
 
 /*
-Deprecated: Use DeleteTwitchIAPConfigShort instead.
+Deprecated: 2022-08-10 - Use DeleteTwitchIAPConfigShort instead.
 
   DeleteTwitchIAPConfig deletes twitch iap config
 
@@ -776,7 +776,7 @@ func (a *Client) DeleteTwitchIAPConfigShort(params *DeleteTwitchIAPConfigParams,
 }
 
 /*
-Deprecated: Use DeleteXblAPConfigShort instead.
+Deprecated: 2022-08-10 - Use DeleteXblAPConfigShort instead.
 
   DeleteXblAPConfig deletes xbl iap config
 
@@ -870,7 +870,7 @@ func (a *Client) DeleteXblAPConfigShort(params *DeleteXblAPConfigParams, authInf
 }
 
 /*
-Deprecated: Use GetAppleIAPConfigShort instead.
+Deprecated: 2022-08-10 - Use GetAppleIAPConfigShort instead.
 
   GetAppleIAPConfig gets apple iap config
 
@@ -964,7 +964,7 @@ func (a *Client) GetAppleIAPConfigShort(params *GetAppleIAPConfigParams, authInf
 }
 
 /*
-Deprecated: Use GetEpicGamesIAPConfigShort instead.
+Deprecated: 2022-08-10 - Use GetEpicGamesIAPConfigShort instead.
 
   GetEpicGamesIAPConfig gets epicgames iap config
 
@@ -1058,7 +1058,7 @@ func (a *Client) GetEpicGamesIAPConfigShort(params *GetEpicGamesIAPConfigParams,
 }
 
 /*
-Deprecated: Use GetGoogleIAPConfigShort instead.
+Deprecated: 2022-08-10 - Use GetGoogleIAPConfigShort instead.
 
   GetGoogleIAPConfig gets google iap config
 
@@ -1152,7 +1152,7 @@ func (a *Client) GetGoogleIAPConfigShort(params *GetGoogleIAPConfigParams, authI
 }
 
 /*
-Deprecated: Use GetIAPItemConfigShort instead.
+Deprecated: 2022-08-10 - Use GetIAPItemConfigShort instead.
 
   GetIAPItemConfig gets iap item config
 
@@ -1251,7 +1251,7 @@ func (a *Client) GetIAPItemConfigShort(params *GetIAPItemConfigParams, authInfo 
 }
 
 /*
-Deprecated: Use GetIAPItemMappingShort instead.
+Deprecated: 2022-08-10 - Use GetIAPItemMappingShort instead.
 
   GetIAPItemMapping gets iap item mapping
 
@@ -1350,7 +1350,7 @@ func (a *Client) GetIAPItemMappingShort(params *GetIAPItemMappingParams, authInf
 }
 
 /*
-Deprecated: Use GetPlayStationIAPConfigShort instead.
+Deprecated: 2022-08-10 - Use GetPlayStationIAPConfigShort instead.
 
   GetPlayStationIAPConfig gets playstation iap config
 
@@ -1444,7 +1444,7 @@ func (a *Client) GetPlayStationIAPConfigShort(params *GetPlayStationIAPConfigPar
 }
 
 /*
-Deprecated: Use GetSteamIAPConfigShort instead.
+Deprecated: 2022-08-10 - Use GetSteamIAPConfigShort instead.
 
   GetSteamIAPConfig gets steam iap config
 
@@ -1538,7 +1538,7 @@ func (a *Client) GetSteamIAPConfigShort(params *GetSteamIAPConfigParams, authInf
 }
 
 /*
-Deprecated: Use GetTwitchIAPConfigShort instead.
+Deprecated: 2022-08-10 - Use GetTwitchIAPConfigShort instead.
 
   GetTwitchIAPConfig gets twitch iap config
 
@@ -1632,7 +1632,7 @@ func (a *Client) GetTwitchIAPConfigShort(params *GetTwitchIAPConfigParams, authI
 }
 
 /*
-Deprecated: Use GetXblIAPConfigShort instead.
+Deprecated: 2022-08-10 - Use GetXblIAPConfigShort instead.
 
   GetXblIAPConfig gets xbox iap config
 
@@ -1726,7 +1726,7 @@ func (a *Client) GetXblIAPConfigShort(params *GetXblIAPConfigParams, authInfo ru
 }
 
 /*
-Deprecated: Use MockFulfillIAPItemShort instead.
+Deprecated: 2022-08-10 - Use MockFulfillIAPItemShort instead.
 
   MockFulfillIAPItem mocks fulfill iap item
 
@@ -1835,7 +1835,7 @@ func (a *Client) MockFulfillIAPItemShort(params *MockFulfillIAPItemParams, authI
 }
 
 /*
-Deprecated: Use PublicFulfillAppleIAPItemShort instead.
+Deprecated: 2022-08-10 - Use PublicFulfillAppleIAPItemShort instead.
 
   PublicFulfillAppleIAPItem fulfills apple iap item
 
@@ -1944,7 +1944,7 @@ func (a *Client) PublicFulfillAppleIAPItemShort(params *PublicFulfillAppleIAPIte
 }
 
 /*
-Deprecated: Use PublicFulfillGoogleIAPItemShort instead.
+Deprecated: 2022-08-10 - Use PublicFulfillGoogleIAPItemShort instead.
 
   PublicFulfillGoogleIAPItem fulfills google iap item
 
@@ -2053,7 +2053,7 @@ func (a *Client) PublicFulfillGoogleIAPItemShort(params *PublicFulfillGoogleIAPI
 }
 
 /*
-Deprecated: Use PublicReconcilePlayStationStoreShort instead.
+Deprecated: 2022-08-10 - Use PublicReconcilePlayStationStoreShort instead.
 
   PublicReconcilePlayStationStore synchronizes with entitlements in p s n store
 
@@ -2152,7 +2152,7 @@ func (a *Client) PublicReconcilePlayStationStoreShort(params *PublicReconcilePla
 }
 
 /*
-Deprecated: Use PublicReconcilePlayStationStoreWithMultipleServiceLabelsShort instead.
+Deprecated: 2022-08-10 - Use PublicReconcilePlayStationStoreWithMultipleServiceLabelsShort instead.
 
   PublicReconcilePlayStationStoreWithMultipleServiceLabels synchronizes with entitlements in p s n store with multiple service labels
 
@@ -2251,7 +2251,7 @@ func (a *Client) PublicReconcilePlayStationStoreWithMultipleServiceLabelsShort(p
 }
 
 /*
-Deprecated: Use QueryAllUserIAPOrdersShort instead.
+Deprecated: 2022-08-10 - Use QueryAllUserIAPOrdersShort instead.
 
   QueryAllUserIAPOrders queries all user IAP orders
 
@@ -2345,7 +2345,7 @@ func (a *Client) QueryAllUserIAPOrdersShort(params *QueryAllUserIAPOrdersParams,
 }
 
 /*
-Deprecated: Use QueryUserIAPConsumeHistoryShort instead.
+Deprecated: 2022-08-10 - Use QueryUserIAPConsumeHistoryShort instead.
 
   QueryUserIAPConsumeHistory queries IAP consume history
 
@@ -2439,7 +2439,7 @@ func (a *Client) QueryUserIAPConsumeHistoryShort(params *QueryUserIAPConsumeHist
 }
 
 /*
-Deprecated: Use QueryUserIAPOrdersShort instead.
+Deprecated: 2022-08-10 - Use QueryUserIAPOrdersShort instead.
 
   QueryUserIAPOrders queries IAP orders
 
@@ -2533,7 +2533,7 @@ func (a *Client) QueryUserIAPOrdersShort(params *QueryUserIAPOrdersParams, authI
 }
 
 /*
-Deprecated: Use SyncEpicGamesInventoryShort instead.
+Deprecated: 2022-08-10 - Use SyncEpicGamesInventoryShort instead.
 
   SyncEpicGamesInventory syncs epic games inventory
 
@@ -2632,7 +2632,7 @@ func (a *Client) SyncEpicGamesInventoryShort(params *SyncEpicGamesInventoryParam
 }
 
 /*
-Deprecated: Use SyncSteamInventoryShort instead.
+Deprecated: 2022-08-10 - Use SyncSteamInventoryShort instead.
 
   SyncSteamInventory syncs steam inventory
 
@@ -2731,7 +2731,7 @@ func (a *Client) SyncSteamInventoryShort(params *SyncSteamInventoryParams, authI
 }
 
 /*
-Deprecated: Use SyncTwitchDropsEntitlementShort instead.
+Deprecated: 2022-08-10 - Use SyncTwitchDropsEntitlementShort instead.
 
   SyncTwitchDropsEntitlement syncs my game twitch drops entitlements
 
@@ -2830,7 +2830,7 @@ func (a *Client) SyncTwitchDropsEntitlementShort(params *SyncTwitchDropsEntitlem
 }
 
 /*
-Deprecated: Use SyncTwitchDropsEntitlement1Short instead.
+Deprecated: 2022-08-10 - Use SyncTwitchDropsEntitlement1Short instead.
 
   SyncTwitchDropsEntitlement1 syncs twitch drops entitlements
 
@@ -2929,7 +2929,7 @@ func (a *Client) SyncTwitchDropsEntitlement1Short(params *SyncTwitchDropsEntitle
 }
 
 /*
-Deprecated: Use SyncXboxInventoryShort instead.
+Deprecated: 2022-08-10 - Use SyncXboxInventoryShort instead.
 
   SyncXboxInventory syncs xbox inventory
 
@@ -3028,7 +3028,7 @@ func (a *Client) SyncXboxInventoryShort(params *SyncXboxInventoryParams, authInf
 }
 
 /*
-Deprecated: Use UpdateAppleIAPConfigShort instead.
+Deprecated: 2022-08-10 - Use UpdateAppleIAPConfigShort instead.
 
   UpdateAppleIAPConfig updates apple iap config
 
@@ -3122,7 +3122,7 @@ func (a *Client) UpdateAppleIAPConfigShort(params *UpdateAppleIAPConfigParams, a
 }
 
 /*
-Deprecated: Use UpdateEpicGamesIAPConfigShort instead.
+Deprecated: 2022-08-10 - Use UpdateEpicGamesIAPConfigShort instead.
 
   UpdateEpicGamesIAPConfig updates epic games iap config
 
@@ -3216,7 +3216,7 @@ func (a *Client) UpdateEpicGamesIAPConfigShort(params *UpdateEpicGamesIAPConfigP
 }
 
 /*
-Deprecated: Use UpdateGoogleIAPConfigShort instead.
+Deprecated: 2022-08-10 - Use UpdateGoogleIAPConfigShort instead.
 
   UpdateGoogleIAPConfig updates google iap config
 
@@ -3310,7 +3310,7 @@ func (a *Client) UpdateGoogleIAPConfigShort(params *UpdateGoogleIAPConfigParams,
 }
 
 /*
-Deprecated: Use UpdateGoogleP12FileShort instead.
+Deprecated: 2022-08-10 - Use UpdateGoogleP12FileShort instead.
 
   UpdateGoogleP12File uploads google play p12 file
 
@@ -3404,7 +3404,7 @@ func (a *Client) UpdateGoogleP12FileShort(params *UpdateGoogleP12FileParams, aut
 }
 
 /*
-Deprecated: Use UpdateIAPItemConfigShort instead.
+Deprecated: 2022-08-10 - Use UpdateIAPItemConfigShort instead.
 
   UpdateIAPItemConfig updates iap item config
 
@@ -3508,7 +3508,7 @@ func (a *Client) UpdateIAPItemConfigShort(params *UpdateIAPItemConfigParams, aut
 }
 
 /*
-Deprecated: Use UpdatePlaystationIAPConfigShort instead.
+Deprecated: 2022-08-10 - Use UpdatePlaystationIAPConfigShort instead.
 
   UpdatePlaystationIAPConfig updates playstation iap config
 
@@ -3602,7 +3602,7 @@ func (a *Client) UpdatePlaystationIAPConfigShort(params *UpdatePlaystationIAPCon
 }
 
 /*
-Deprecated: Use UpdateSteamIAPConfigShort instead.
+Deprecated: 2022-08-10 - Use UpdateSteamIAPConfigShort instead.
 
   UpdateSteamIAPConfig updates steam iap config
 
@@ -3696,7 +3696,7 @@ func (a *Client) UpdateSteamIAPConfigShort(params *UpdateSteamIAPConfigParams, a
 }
 
 /*
-Deprecated: Use UpdateTwitchIAPConfigShort instead.
+Deprecated: 2022-08-10 - Use UpdateTwitchIAPConfigShort instead.
 
   UpdateTwitchIAPConfig updates twitch iap config
 
@@ -3790,7 +3790,7 @@ func (a *Client) UpdateTwitchIAPConfigShort(params *UpdateTwitchIAPConfigParams,
 }
 
 /*
-Deprecated: Use UpdateXblBPCertFileShort instead.
+Deprecated: 2022-08-10 - Use UpdateXblBPCertFileShort instead.
 
   UpdateXblBPCertFile uploads xbl business partner cert file
 
@@ -3884,7 +3884,7 @@ func (a *Client) UpdateXblBPCertFileShort(params *UpdateXblBPCertFileParams, aut
 }
 
 /*
-Deprecated: Use UpdateXblIAPConfigShort instead.
+Deprecated: 2022-08-10 - Use UpdateXblIAPConfigShort instead.
 
   UpdateXblIAPConfig updates xbl iap config
 

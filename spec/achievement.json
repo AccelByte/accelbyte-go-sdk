@@ -8,6 +8,10 @@
   "schemes": [
     "https"
   ],
+  "externalDocs": {
+    "description": "API Docs",
+    "url": "https://stage.accelbyte.io/achievement/apidocs"
+  },
   "securityDefinitions": {
     "HasPermission": {
       "authorizationUrl": "https://dummy.oauth.net/auth",
@@ -3091,5 +3095,18 @@
         "replacedConfigs"
       ]
     }
+  },
+  "x-docs": {
+    "alias": "achievement",
+    "host": "https://stage.accelbyte.io",
+    "path": "/achievement/apidocs/api.json"
+  },
+  "x-version": {
+    "buildDate": "2023-03-28T01:40:18+00:00",
+    "gitHash": "b4964b9e85da02e3b610e4d52c28dc3e415af0bb",
+    "name": "justice-achievement-service",
+    "realm": "staging",
+    "version": "2.17.0",
+    "version-roles-seeding": "0.0.3"
   }
 }

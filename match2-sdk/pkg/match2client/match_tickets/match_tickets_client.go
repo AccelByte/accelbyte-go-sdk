@@ -44,7 +44,7 @@ type ClientService interface {
 }
 
 /*
-Deprecated: Use CreateMatchTicketShort instead.
+Deprecated: 2022-08-10 - Use CreateMatchTicketShort instead.
 
   CreateMatchTicket creates a matchmaking ticket
 
@@ -178,7 +178,7 @@ func (a *Client) CreateMatchTicketShort(params *CreateMatchTicketParams, authInf
 }
 
 /*
-Deprecated: Use DeleteMatchTicketShort instead.
+Deprecated: 2022-08-10 - Use DeleteMatchTicketShort instead.
 
   DeleteMatchTicket deletes a match ticket
 
@@ -302,7 +302,7 @@ func (a *Client) DeleteMatchTicketShort(params *DeleteMatchTicketParams, authInf
 }
 
 /*
-Deprecated: Use MatchTicketDetailsShort instead.
+Deprecated: 2022-08-10 - Use MatchTicketDetailsShort instead.
 
   MatchTicketDetails gets details for a specific match ticket
 

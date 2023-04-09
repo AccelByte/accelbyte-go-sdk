@@ -40,7 +40,7 @@ type ClientService interface {
 }
 
 /*
-Deprecated: Use CheckReadinessShort instead.
+Deprecated: 2022-08-10 - Use CheckReadinessShort instead.
 
   CheckReadiness checks legal data readiness
 

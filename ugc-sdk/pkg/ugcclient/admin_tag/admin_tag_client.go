@@ -46,7 +46,7 @@ type ClientService interface {
 }
 
 /*
-Deprecated: Use AdminCreateTagShort instead.
+Deprecated: 2022-08-10 - Use AdminCreateTagShort instead.
 
   AdminCreateTag creates tags
 
@@ -162,7 +162,7 @@ func (a *Client) AdminCreateTagShort(params *AdminCreateTagParams, authInfo runt
 }
 
 /*
-Deprecated: Use AdminDeleteTagShort instead.
+Deprecated: 2022-08-10 - Use AdminDeleteTagShort instead.
 
   AdminDeleteTag deletes tags
 
@@ -271,7 +271,7 @@ func (a *Client) AdminDeleteTagShort(params *AdminDeleteTagParams, authInfo runt
 }
 
 /*
-Deprecated: Use AdminGetTagShort instead.
+Deprecated: 2022-08-10 - Use AdminGetTagShort instead.
 
   AdminGetTag gets tags
 
@@ -380,7 +380,7 @@ func (a *Client) AdminGetTagShort(params *AdminGetTagParams, authInfo runtime.Cl
 }
 
 /*
-Deprecated: Use AdminUpdateTagShort instead.
+Deprecated: 2022-08-10 - Use AdminUpdateTagShort instead.
 
   AdminUpdateTag updates tag
 

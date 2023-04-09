@@ -39,7 +39,7 @@ func (aaa *ServerService) GetAuthSession() auth.Session {
 	}
 }
 
-// deprecated(2022-01-10): please use DeregisterLocalServerShort instead.
+// Deprecated: 2022-01-10 - please use DeregisterLocalServerShort instead.
 func (aaa *ServerService) DeregisterLocalServer(input *server.DeregisterLocalServerParams) error {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -62,7 +62,7 @@ func (aaa *ServerService) DeregisterLocalServer(input *server.DeregisterLocalSer
 	return nil
 }
 
-// deprecated(2022-01-10): please use RegisterLocalServerShort instead.
+// Deprecated: 2022-01-10 - please use RegisterLocalServerShort instead.
 func (aaa *ServerService) RegisterLocalServer(input *server.RegisterLocalServerParams) (*dsmcclientmodels.ModelsServer, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -88,7 +88,7 @@ func (aaa *ServerService) RegisterLocalServer(input *server.RegisterLocalServerP
 	return ok.GetPayload(), nil
 }
 
-// deprecated(2022-01-10): please use RegisterServerShort instead.
+// Deprecated: 2022-01-10 - please use RegisterServerShort instead.
 func (aaa *ServerService) RegisterServer(input *server.RegisterServerParams) (*dsmcclientmodels.ModelsServer, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -114,7 +114,7 @@ func (aaa *ServerService) RegisterServer(input *server.RegisterServerParams) (*d
 	return ok.GetPayload(), nil
 }
 
-// deprecated(2022-01-10): please use ShutdownServerShort instead.
+// Deprecated: 2022-01-10 - please use ShutdownServerShort instead.
 func (aaa *ServerService) ShutdownServer(input *server.ShutdownServerParams) error {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -140,7 +140,7 @@ func (aaa *ServerService) ShutdownServer(input *server.ShutdownServerParams) err
 	return nil
 }
 
-// deprecated(2022-01-10): please use GetServerSessionShort instead.
+// Deprecated: 2022-01-10 - please use GetServerSessionShort instead.
 func (aaa *ServerService) GetServerSession(input *server.GetServerSessionParams) (*dsmcclientmodels.ModelsServerSessionResponse, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {

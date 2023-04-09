@@ -27,6 +27,9 @@ type OauthmodelTokenResponse struct {
 	// Required: true
 	Bans []*AccountcommonJWTBanV3 `json:"bans"`
 
+	// will get from xbox dpi if it exists
+	DeviceID string `json:"device_id,omitempty"`
+
 	// display name
 	// Required: true
 	DisplayName *string `json:"display_name"`

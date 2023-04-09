@@ -39,7 +39,7 @@ func (aaa *PublicDownloadCountService) GetAuthSession() auth.Session {
 	}
 }
 
-// deprecated(2022-01-10): please use AddDownloadCountShort instead.
+// Deprecated: 2022-01-10 - please use AddDownloadCountShort instead.
 func (aaa *PublicDownloadCountService) AddDownloadCount(input *public_download_count.AddDownloadCountParams) (*ugcclientmodels.ModelsAddDownloadCountResponse, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {

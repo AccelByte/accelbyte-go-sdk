@@ -44,7 +44,7 @@ type ClientService interface {
 }
 
 /*
-Deprecated: Use DeleteServerShort instead.
+Deprecated: 2022-08-10 - Use DeleteServerShort instead.
 
   DeleteServer deletes a qo s service record
 
@@ -153,7 +153,7 @@ func (a *Client) DeleteServerShort(params *DeleteServerParams, authInfo runtime.
 }
 
 /*
-Deprecated: Use SetServerAliasShort instead.
+Deprecated: 2022-08-10 - Use SetServerAliasShort instead.
 
   SetServerAlias modifies a qo s service s region alias
 
@@ -272,7 +272,7 @@ func (a *Client) SetServerAliasShort(params *SetServerAliasParams, authInfo runt
 }
 
 /*
-Deprecated: Use UpdateServerConfigShort instead.
+Deprecated: 2022-08-10 - Use UpdateServerConfigShort instead.
 
   UpdateServerConfig updates qo s service configuration
 

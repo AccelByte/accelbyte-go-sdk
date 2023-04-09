@@ -70,7 +70,7 @@ type UpdateChannelParams struct {
 	/*RetryPolicy*/
 	RetryPolicy *utils.Retry
 	/*Body*/
-	Body *ugcclientmodels.ModelsChannelRequest
+	Body *ugcclientmodels.ModelsUpdateChannelRequest
 	/*ChannelID
 	  channelID
 
@@ -141,13 +141,13 @@ func (o *UpdateChannelParams) SetHTTPClientTransport(roundTripper http.RoundTrip
 }
 
 // WithBody adds the body to the update channel params
-func (o *UpdateChannelParams) WithBody(body *ugcclientmodels.ModelsChannelRequest) *UpdateChannelParams {
+func (o *UpdateChannelParams) WithBody(body *ugcclientmodels.ModelsUpdateChannelRequest) *UpdateChannelParams {
 	o.SetBody(body)
 	return o
 }
 
 // SetBody adds the body to the update channel params
-func (o *UpdateChannelParams) SetBody(body *ugcclientmodels.ModelsChannelRequest) {
+func (o *UpdateChannelParams) SetBody(body *ugcclientmodels.ModelsUpdateChannelRequest) {
 	o.Body = body
 }
 

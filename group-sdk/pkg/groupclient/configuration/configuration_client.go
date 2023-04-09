@@ -54,7 +54,7 @@ type ClientService interface {
 }
 
 /*
-Deprecated: Use CreateGroupConfigurationAdminV1Short instead.
+Deprecated: 2022-08-10 - Use CreateGroupConfigurationAdminV1Short instead.
 
   CreateGroupConfigurationAdminV1 creates new configuration
 
@@ -193,7 +193,7 @@ func (a *Client) CreateGroupConfigurationAdminV1Short(params *CreateGroupConfigu
 }
 
 /*
-Deprecated: Use DeleteGroupConfigurationGlobalRuleAdminV1Short instead.
+Deprecated: 2022-08-10 - Use DeleteGroupConfigurationGlobalRuleAdminV1Short instead.
 
   DeleteGroupConfigurationGlobalRuleAdminV1 deletes existing configuration global rule based on allowed action
 
@@ -318,7 +318,7 @@ func (a *Client) DeleteGroupConfigurationGlobalRuleAdminV1Short(params *DeleteGr
 }
 
 /*
-Deprecated: Use DeleteGroupConfigurationV1Short instead.
+Deprecated: 2022-08-10 - Use DeleteGroupConfigurationV1Short instead.
 
   DeleteGroupConfigurationV1 deletes group configuration
 
@@ -443,7 +443,7 @@ func (a *Client) DeleteGroupConfigurationV1Short(params *DeleteGroupConfiguratio
 }
 
 /*
-Deprecated: Use GetGroupConfigurationAdminV1Short instead.
+Deprecated: 2022-08-10 - Use GetGroupConfigurationAdminV1Short instead.
 
   GetGroupConfigurationAdminV1 gets existing configuration
 
@@ -568,7 +568,7 @@ func (a *Client) GetGroupConfigurationAdminV1Short(params *GetGroupConfiguration
 }
 
 /*
-Deprecated: Use InitiateGroupConfigurationAdminV1Short instead.
+Deprecated: 2022-08-10 - Use InitiateGroupConfigurationAdminV1Short instead.
 
   InitiateGroupConfigurationAdminV1 initiates configuration
 
@@ -702,7 +702,7 @@ func (a *Client) InitiateGroupConfigurationAdminV1Short(params *InitiateGroupCon
 }
 
 /*
-Deprecated: Use ListGroupConfigurationAdminV1Short instead.
+Deprecated: 2022-08-10 - Use ListGroupConfigurationAdminV1Short instead.
 
   ListGroupConfigurationAdminV1 lists group configuration
 
@@ -827,7 +827,7 @@ func (a *Client) ListGroupConfigurationAdminV1Short(params *ListGroupConfigurati
 }
 
 /*
-Deprecated: Use UpdateGroupConfigurationAdminV1Short instead.
+Deprecated: 2022-08-10 - Use UpdateGroupConfigurationAdminV1Short instead.
 
   UpdateGroupConfigurationAdminV1 updates existing configuration
 
@@ -952,7 +952,7 @@ func (a *Client) UpdateGroupConfigurationAdminV1Short(params *UpdateGroupConfigu
 }
 
 /*
-Deprecated: Use UpdateGroupConfigurationGlobalRuleAdminV1Short instead.
+Deprecated: 2022-08-10 - Use UpdateGroupConfigurationGlobalRuleAdminV1Short instead.
 
   UpdateGroupConfigurationGlobalRuleAdminV1 updates existing configuration global rule
 

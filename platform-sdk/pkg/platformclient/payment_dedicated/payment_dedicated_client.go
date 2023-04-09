@@ -44,7 +44,7 @@ type ClientService interface {
 }
 
 /*
-Deprecated: Use CreatePaymentOrderByDedicatedShort instead.
+Deprecated: 2022-08-10 - Use CreatePaymentOrderByDedicatedShort instead.
 
   CreatePaymentOrderByDedicated creates payment order by dedicated server
 
@@ -247,7 +247,7 @@ func (a *Client) CreatePaymentOrderByDedicatedShort(params *CreatePaymentOrderBy
 }
 
 /*
-Deprecated: Use RefundPaymentOrderByDedicatedShort instead.
+Deprecated: 2022-08-10 - Use RefundPaymentOrderByDedicatedShort instead.
 
   RefundPaymentOrderByDedicated refunds payment order by dedicated server
 
@@ -425,7 +425,7 @@ func (a *Client) RefundPaymentOrderByDedicatedShort(params *RefundPaymentOrderBy
 }
 
 /*
-Deprecated: Use SyncPaymentOrdersShort instead.
+Deprecated: 2022-08-10 - Use SyncPaymentOrdersShort instead.
 
   SyncPaymentOrders syncs payment orders
 

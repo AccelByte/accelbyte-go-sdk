@@ -58,7 +58,7 @@ type ClientService interface {
 }
 
 /*
-Deprecated: Use AddThirdPartyLoginPlatformCredentialV3Short instead.
+Deprecated: 2022-08-10 - Use AddThirdPartyLoginPlatformCredentialV3Short instead.
 
   AddThirdPartyLoginPlatformCredentialV3 adds third party platform credential
 
@@ -220,7 +220,7 @@ func (a *Client) AddThirdPartyLoginPlatformCredentialV3Short(params *AddThirdPar
 }
 
 /*
-Deprecated: Use DeleteThirdPartyLoginPlatformCredentialV3Short instead.
+Deprecated: 2022-08-10 - Use DeleteThirdPartyLoginPlatformCredentialV3Short instead.
 
   DeleteThirdPartyLoginPlatformCredentialV3 deletes third party platform credential
 
@@ -334,7 +334,7 @@ func (a *Client) DeleteThirdPartyLoginPlatformCredentialV3Short(params *DeleteTh
 }
 
 /*
-Deprecated: Use DeleteThirdPartyLoginPlatformDomainV3Short instead.
+Deprecated: 2022-08-10 - Use DeleteThirdPartyLoginPlatformDomainV3Short instead.
 
   DeleteThirdPartyLoginPlatformDomainV3 unregisters third party platform credential s domain
 
@@ -457,7 +457,7 @@ func (a *Client) DeleteThirdPartyLoginPlatformDomainV3Short(params *DeleteThirdP
 }
 
 /*
-Deprecated: Use RetrieveActiveOIDCClientsPublicV3Short instead.
+Deprecated: 2022-08-10 - Use RetrieveActiveOIDCClientsPublicV3Short instead.
 
   RetrieveActiveOIDCClientsPublicV3 gets active o ID c platform credential by client ID
 
@@ -561,7 +561,7 @@ func (a *Client) RetrieveActiveOIDCClientsPublicV3Short(params *RetrieveActiveOI
 }
 
 /*
-Deprecated: Use RetrieveAllActiveThirdPartyLoginPlatformCredentialPublicV3Short instead.
+Deprecated: 2022-08-10 - Use RetrieveAllActiveThirdPartyLoginPlatformCredentialPublicV3Short instead.
 
   RetrieveAllActiveThirdPartyLoginPlatformCredentialPublicV3 gets all active third party platform active credential for public usage
 
@@ -675,7 +675,7 @@ func (a *Client) RetrieveAllActiveThirdPartyLoginPlatformCredentialPublicV3Short
 }
 
 /*
-Deprecated: Use RetrieveAllActiveThirdPartyLoginPlatformCredentialV3Short instead.
+Deprecated: 2022-08-10 - Use RetrieveAllActiveThirdPartyLoginPlatformCredentialV3Short instead.
 
   RetrieveAllActiveThirdPartyLoginPlatformCredentialV3 gets all active third party platform active credential
 
@@ -789,7 +789,7 @@ func (a *Client) RetrieveAllActiveThirdPartyLoginPlatformCredentialV3Short(param
 }
 
 /*
-Deprecated: Use RetrieveAllThirdPartyLoginPlatformCredentialV3Short instead.
+Deprecated: 2022-08-10 - Use RetrieveAllThirdPartyLoginPlatformCredentialV3Short instead.
 
   RetrieveAllThirdPartyLoginPlatformCredentialV3 gets all third party platform credential
 
@@ -903,7 +903,7 @@ func (a *Client) RetrieveAllThirdPartyLoginPlatformCredentialV3Short(params *Ret
 }
 
 /*
-Deprecated: Use RetrieveThirdPartyLoginPlatformCredentialV3Short instead.
+Deprecated: 2022-08-10 - Use RetrieveThirdPartyLoginPlatformCredentialV3Short instead.
 
   RetrieveThirdPartyLoginPlatformCredentialV3 retrieves third party platform credential
 
@@ -1017,7 +1017,7 @@ func (a *Client) RetrieveThirdPartyLoginPlatformCredentialV3Short(params *Retrie
 }
 
 /*
-Deprecated: Use UpdateThirdPartyLoginPlatformCredentialV3Short instead.
+Deprecated: 2022-08-10 - Use UpdateThirdPartyLoginPlatformCredentialV3Short instead.
 
   UpdateThirdPartyLoginPlatformCredentialV3 updates third party platform credential
 
@@ -1184,7 +1184,7 @@ func (a *Client) UpdateThirdPartyLoginPlatformCredentialV3Short(params *UpdateTh
 }
 
 /*
-Deprecated: Use UpdateThirdPartyLoginPlatformDomainV3Short instead.
+Deprecated: 2022-08-10 - Use UpdateThirdPartyLoginPlatformDomainV3Short instead.
 
   UpdateThirdPartyLoginPlatformDomainV3 sets third party platform credential s domain
 

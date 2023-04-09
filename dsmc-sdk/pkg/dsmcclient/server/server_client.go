@@ -48,7 +48,7 @@ type ClientService interface {
 }
 
 /*
-Deprecated: Use DeregisterLocalServerShort instead.
+Deprecated: 2022-08-10 - Use DeregisterLocalServerShort instead.
 
   DeregisterLocalServer deregisters local d s
 
@@ -171,7 +171,7 @@ func (a *Client) DeregisterLocalServerShort(params *DeregisterLocalServerParams,
 }
 
 /*
-Deprecated: Use GetServerSessionShort instead.
+Deprecated: 2022-08-10 - Use GetServerSessionShort instead.
 
   GetServerSession gets session ID
 
@@ -299,7 +299,7 @@ func (a *Client) GetServerSessionShort(params *GetServerSessionParams, authInfo 
 }
 
 /*
-Deprecated: Use RegisterLocalServerShort instead.
+Deprecated: 2022-08-10 - Use RegisterLocalServerShort instead.
 
   RegisterLocalServer registers a local d s
 
@@ -435,7 +435,7 @@ func (a *Client) RegisterLocalServerShort(params *RegisterLocalServerParams, aut
 }
 
 /*
-Deprecated: Use RegisterServerShort instead.
+Deprecated: 2022-08-10 - Use RegisterServerShort instead.
 
   RegisterServer registers a d s
 
@@ -565,7 +565,7 @@ func (a *Client) RegisterServerShort(params *RegisterServerParams, authInfo runt
 }
 
 /*
-Deprecated: Use ShutdownServerShort instead.
+Deprecated: 2022-08-10 - Use ShutdownServerShort instead.
 
   ShutdownServer marks a d s is shutting down
 

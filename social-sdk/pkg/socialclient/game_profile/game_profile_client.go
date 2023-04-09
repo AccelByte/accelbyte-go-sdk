@@ -58,7 +58,7 @@ type ClientService interface {
 }
 
 /*
-Deprecated: Use GetProfileShort instead.
+Deprecated: 2022-08-10 - Use GetProfileShort instead.
 
   GetProfile returns profile for a user
 
@@ -157,7 +157,7 @@ func (a *Client) GetProfileShort(params *GetProfileParams, authInfo runtime.Clie
 }
 
 /*
-Deprecated: Use GetUserProfilesShort instead.
+Deprecated: 2022-08-10 - Use GetUserProfilesShort instead.
 
   GetUserProfiles returns all profiles header for a user
 
@@ -251,7 +251,7 @@ func (a *Client) GetUserProfilesShort(params *GetUserProfilesParams, authInfo ru
 }
 
 /*
-Deprecated: Use PublicCreateProfileShort instead.
+Deprecated: 2022-08-10 - Use PublicCreateProfileShort instead.
 
   PublicCreateProfile creates a new profile for user
 
@@ -350,7 +350,7 @@ func (a *Client) PublicCreateProfileShort(params *PublicCreateProfileParams, aut
 }
 
 /*
-Deprecated: Use PublicDeleteProfileShort instead.
+Deprecated: 2022-08-10 - Use PublicDeleteProfileShort instead.
 
   PublicDeleteProfile deletes game profile
 
@@ -449,7 +449,7 @@ func (a *Client) PublicDeleteProfileShort(params *PublicDeleteProfileParams, aut
 }
 
 /*
-Deprecated: Use PublicGetProfileShort instead.
+Deprecated: 2022-08-10 - Use PublicGetProfileShort instead.
 
   PublicGetProfile returns profile for a user
 
@@ -548,7 +548,7 @@ func (a *Client) PublicGetProfileShort(params *PublicGetProfileParams, authInfo 
 }
 
 /*
-Deprecated: Use PublicGetProfileAttributeShort instead.
+Deprecated: 2022-08-10 - Use PublicGetProfileAttributeShort instead.
 
   PublicGetProfileAttribute returns game profile attribute
 
@@ -647,7 +647,7 @@ func (a *Client) PublicGetProfileAttributeShort(params *PublicGetProfileAttribut
 }
 
 /*
-Deprecated: Use PublicGetUserGameProfilesShort instead.
+Deprecated: 2022-08-10 - Use PublicGetUserGameProfilesShort instead.
 
   PublicGetUserGameProfiles returns all profiles for specified users
 
@@ -748,7 +748,7 @@ func (a *Client) PublicGetUserGameProfilesShort(params *PublicGetUserGameProfile
 }
 
 /*
-Deprecated: Use PublicGetUserProfilesShort instead.
+Deprecated: 2022-08-10 - Use PublicGetUserProfilesShort instead.
 
   PublicGetUserProfiles returns all profiles header for a user
 
@@ -842,7 +842,7 @@ func (a *Client) PublicGetUserProfilesShort(params *PublicGetUserProfilesParams,
 }
 
 /*
-Deprecated: Use PublicUpdateAttributeShort instead.
+Deprecated: 2022-08-10 - Use PublicUpdateAttributeShort instead.
 
   PublicUpdateAttribute updates game profile attribute
 
@@ -946,7 +946,7 @@ func (a *Client) PublicUpdateAttributeShort(params *PublicUpdateAttributeParams,
 }
 
 /*
-Deprecated: Use PublicUpdateProfileShort instead.
+Deprecated: 2022-08-10 - Use PublicUpdateProfileShort instead.
 
   PublicUpdateProfile updates user game profile
 

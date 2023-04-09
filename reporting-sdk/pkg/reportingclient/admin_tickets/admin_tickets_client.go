@@ -50,7 +50,7 @@ type ClientService interface {
 }
 
 /*
-Deprecated: Use DeleteTicketShort instead.
+Deprecated: 2022-08-10 - Use DeleteTicketShort instead.
 
   DeleteTicket deletes single ticket
 
@@ -158,7 +158,7 @@ func (a *Client) DeleteTicketShort(params *DeleteTicketParams, authInfo runtime.
 }
 
 /*
-Deprecated: Use GetReportsByTicketShort instead.
+Deprecated: 2022-08-10 - Use GetReportsByTicketShort instead.
 
   GetReportsByTicket gets reports by ticket ID
 
@@ -259,7 +259,7 @@ func (a *Client) GetReportsByTicketShort(params *GetReportsByTicketParams, authI
 }
 
 /*
-Deprecated: Use GetTicketDetailShort instead.
+Deprecated: 2022-08-10 - Use GetTicketDetailShort instead.
 
   GetTicketDetail gets single ticket
 
@@ -363,7 +363,7 @@ func (a *Client) GetTicketDetailShort(params *GetTicketDetailParams, authInfo ru
 }
 
 /*
-Deprecated: Use ListTicketsShort instead.
+Deprecated: 2022-08-10 - Use ListTicketsShort instead.
 
   ListTickets lists report tickets
 
@@ -470,7 +470,7 @@ func (a *Client) ListTicketsShort(params *ListTicketsParams, authInfo runtime.Cl
 }
 
 /*
-Deprecated: Use TicketStatisticShort instead.
+Deprecated: 2022-08-10 - Use TicketStatisticShort instead.
 
   TicketStatistic tickets statistic
 
@@ -569,7 +569,7 @@ func (a *Client) TicketStatisticShort(params *TicketStatisticParams, authInfo ru
 }
 
 /*
-Deprecated: Use UpdateTicketResolutionsShort instead.
+Deprecated: 2022-08-10 - Use UpdateTicketResolutionsShort instead.
 
   UpdateTicketResolutions updates ticket resolution to a given status
 

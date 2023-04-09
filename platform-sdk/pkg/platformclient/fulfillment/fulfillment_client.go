@@ -48,7 +48,7 @@ type ClientService interface {
 }
 
 /*
-Deprecated: Use FulfillItemShort instead.
+Deprecated: 2022-08-10 - Use FulfillItemShort instead.
 
   FulfillItem fulfills item
 
@@ -157,7 +157,7 @@ func (a *Client) FulfillItemShort(params *FulfillItemParams, authInfo runtime.Cl
 }
 
 /*
-Deprecated: Use FulfillRewardsShort instead.
+Deprecated: 2022-08-10 - Use FulfillRewardsShort instead.
 
   FulfillRewards fulfills rewards
 
@@ -266,7 +266,7 @@ func (a *Client) FulfillRewardsShort(params *FulfillRewardsParams, authInfo runt
 }
 
 /*
-Deprecated: Use PublicRedeemCodeShort instead.
+Deprecated: 2022-08-10 - Use PublicRedeemCodeShort instead.
 
   PublicRedeemCode redeems campaign code
 
@@ -375,7 +375,7 @@ func (a *Client) PublicRedeemCodeShort(params *PublicRedeemCodeParams, authInfo 
 }
 
 /*
-Deprecated: Use QueryFulfillmentHistoriesShort instead.
+Deprecated: 2022-08-10 - Use QueryFulfillmentHistoriesShort instead.
 
   QueryFulfillmentHistories queries fulfillment histories
 
@@ -469,7 +469,7 @@ func (a *Client) QueryFulfillmentHistoriesShort(params *QueryFulfillmentHistorie
 }
 
 /*
-Deprecated: Use RedeemCodeShort instead.
+Deprecated: 2022-08-10 - Use RedeemCodeShort instead.
 
   RedeemCode redeems campaign code
 

@@ -54,7 +54,7 @@ type ClientService interface {
 }
 
 /*
-Deprecated: Use AdminBanUserBulkV3Short instead.
+Deprecated: 2022-08-10 - Use AdminBanUserBulkV3Short instead.
 
   AdminBanUserBulkV3 bulks ban user
 
@@ -179,7 +179,7 @@ func (a *Client) AdminBanUserBulkV3Short(params *AdminBanUserBulkV3Params, authI
 }
 
 /*
-Deprecated: Use AdminGetBannedUsersV3Short instead.
+Deprecated: 2022-08-10 - Use AdminGetBannedUsersV3Short instead.
 
   AdminGetBannedUsersV3 gets list of user filtered by ban types
 
@@ -290,7 +290,7 @@ func (a *Client) AdminGetBannedUsersV3Short(params *AdminGetBannedUsersV3Params,
 }
 
 /*
-Deprecated: Use AdminGetBansTypeV3Short instead.
+Deprecated: 2022-08-10 - Use AdminGetBansTypeV3Short instead.
 
   AdminGetBansTypeV3 gets list of ban types
 
@@ -401,7 +401,7 @@ func (a *Client) AdminGetBansTypeV3Short(params *AdminGetBansTypeV3Params, authI
 }
 
 /*
-Deprecated: Use AdminGetBansTypeWithNamespaceV3Short instead.
+Deprecated: 2022-08-10 - Use AdminGetBansTypeWithNamespaceV3Short instead.
 
   AdminGetBansTypeWithNamespaceV3 gets list of ban types
 
@@ -512,7 +512,7 @@ func (a *Client) AdminGetBansTypeWithNamespaceV3Short(params *AdminGetBansTypeWi
 }
 
 /*
-Deprecated: Use AdminGetListBanReasonV3Short instead.
+Deprecated: 2022-08-10 - Use AdminGetListBanReasonV3Short instead.
 
   AdminGetListBanReasonV3 gets list of ban reasons
 
@@ -625,7 +625,7 @@ func (a *Client) AdminGetListBanReasonV3Short(params *AdminGetListBanReasonV3Par
 }
 
 /*
-Deprecated: Use AdminUnbanUserBulkV3Short instead.
+Deprecated: 2022-08-10 - Use AdminUnbanUserBulkV3Short instead.
 
   AdminUnbanUserBulkV3 bulks unban user
 
@@ -750,7 +750,7 @@ func (a *Client) AdminUnbanUserBulkV3Short(params *AdminUnbanUserBulkV3Params, a
 }
 
 /*
-Deprecated: Use GetBansTypeShort instead.
+Deprecated: 2022-08-10 - Use GetBansTypeShort instead.
 
   GetBansType gets list of ban types
 
@@ -864,7 +864,7 @@ func (a *Client) GetBansTypeShort(params *GetBansTypeParams, authInfo runtime.Cl
 }
 
 /*
-Deprecated: Use GetListBanReasonShort instead.
+Deprecated: 2022-08-10 - Use GetListBanReasonShort instead.
 
   GetListBanReason gets list of ban reasons
 

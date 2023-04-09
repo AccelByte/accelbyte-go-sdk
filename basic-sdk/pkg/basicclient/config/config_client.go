@@ -48,7 +48,7 @@ type ClientService interface {
 }
 
 /*
-Deprecated: Use CreateConfigShort instead.
+Deprecated: 2022-08-10 - Use CreateConfigShort instead.
 
   CreateConfig creates a config
 
@@ -162,7 +162,7 @@ func (a *Client) CreateConfigShort(params *CreateConfigParams, authInfo runtime.
 }
 
 /*
-Deprecated: Use DeleteConfig1Short instead.
+Deprecated: 2022-08-10 - Use DeleteConfig1Short instead.
 
   DeleteConfig1 deletes a config
 
@@ -276,7 +276,7 @@ func (a *Client) DeleteConfig1Short(params *DeleteConfig1Params, authInfo runtim
 }
 
 /*
-Deprecated: Use GetConfig1Short instead.
+Deprecated: 2022-08-10 - Use GetConfig1Short instead.
 
   GetConfig1 gets a config
 
@@ -390,7 +390,7 @@ func (a *Client) GetConfig1Short(params *GetConfig1Params, authInfo runtime.Clie
 }
 
 /*
-Deprecated: Use GetPublisherConfigShort instead.
+Deprecated: 2022-08-10 - Use GetPublisherConfigShort instead.
 
   GetPublisherConfig gets a publisher config
 
@@ -504,7 +504,7 @@ func (a *Client) GetPublisherConfigShort(params *GetPublisherConfigParams, authI
 }
 
 /*
-Deprecated: Use UpdateConfig1Short instead.
+Deprecated: 2022-08-10 - Use UpdateConfig1Short instead.
 
   UpdateConfig1 updates a config
 

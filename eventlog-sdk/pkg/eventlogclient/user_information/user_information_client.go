@@ -44,7 +44,7 @@ type ClientService interface {
 }
 
 /*
-Deprecated: Use DeleteUserActivitiesHandlerShort instead.
+Deprecated: 2022-08-10 - Use DeleteUserActivitiesHandlerShort instead.
 
   DeleteUserActivitiesHandler deletes all user s activities
 
@@ -158,7 +158,7 @@ func (a *Client) DeleteUserActivitiesHandlerShort(params *DeleteUserActivitiesHa
 }
 
 /*
-Deprecated: Use GetUserActivitiesHandlerShort instead.
+Deprecated: 2022-08-10 - Use GetUserActivitiesHandlerShort instead.
 
   GetUserActivitiesHandler gets all user s activities
 
@@ -277,7 +277,7 @@ func (a *Client) GetUserActivitiesHandlerShort(params *GetUserActivitiesHandlerP
 }
 
 /*
-Deprecated: Use LastUserActivityTimeHandlerShort instead.
+Deprecated: 2022-08-10 - Use LastUserActivityTimeHandlerShort instead.
 
   LastUserActivityTimeHandler gets last activity time of a user in a namespace
 

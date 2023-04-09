@@ -41,7 +41,7 @@ func (aaa *AllTerminatedServersService) GetAuthSession() auth.Session {
 	}
 }
 
-// deprecated(2022-01-10): please use BatchDownloadServerLogsShort instead.
+// Deprecated: 2022-01-10 - please use BatchDownloadServerLogsShort instead.
 func (aaa *AllTerminatedServersService) BatchDownloadServerLogs(input *all_terminated_servers.BatchDownloadServerLogsParams, writer io.Writer) (io.Writer, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -61,7 +61,7 @@ func (aaa *AllTerminatedServersService) BatchDownloadServerLogs(input *all_termi
 	return ok.GetPayload(), nil
 }
 
-// deprecated(2022-01-10): please use ListAllTerminatedServersShort instead.
+// Deprecated: 2022-01-10 - please use ListAllTerminatedServersShort instead.
 func (aaa *AllTerminatedServersService) ListAllTerminatedServers(input *all_terminated_servers.ListAllTerminatedServersParams) (*dslogmanagerclientmodels.ModelsListTerminatedServersResponse, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {

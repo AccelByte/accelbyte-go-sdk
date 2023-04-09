@@ -39,7 +39,7 @@ func (aaa *StatCycleConfigurationService) GetAuthSession() auth.Session {
 	}
 }
 
-// deprecated(2022-01-10): please use GetStatCyclesShort instead.
+// Deprecated: 2022-01-10 - please use GetStatCyclesShort instead.
 func (aaa *StatCycleConfigurationService) GetStatCycles(input *stat_cycle_configuration.GetStatCyclesParams) (*socialclientmodels.StatCyclePagingSlicedResult, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -53,7 +53,7 @@ func (aaa *StatCycleConfigurationService) GetStatCycles(input *stat_cycle_config
 	return ok.GetPayload(), nil
 }
 
-// deprecated(2022-01-10): please use CreateStatCycleShort instead.
+// Deprecated: 2022-01-10 - please use CreateStatCycleShort instead.
 func (aaa *StatCycleConfigurationService) CreateStatCycle(input *stat_cycle_configuration.CreateStatCycleParams) (*socialclientmodels.StatCycleInfo, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -70,7 +70,7 @@ func (aaa *StatCycleConfigurationService) CreateStatCycle(input *stat_cycle_conf
 	return created.GetPayload(), nil
 }
 
-// deprecated(2022-01-10): please use GetStatCycleShort instead.
+// Deprecated: 2022-01-10 - please use GetStatCycleShort instead.
 func (aaa *StatCycleConfigurationService) GetStatCycle(input *stat_cycle_configuration.GetStatCycleParams) (*socialclientmodels.StatCycleInfo, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -87,7 +87,7 @@ func (aaa *StatCycleConfigurationService) GetStatCycle(input *stat_cycle_configu
 	return ok.GetPayload(), nil
 }
 
-// deprecated(2022-01-10): please use UpdateStatCycleShort instead.
+// Deprecated: 2022-01-10 - please use UpdateStatCycleShort instead.
 func (aaa *StatCycleConfigurationService) UpdateStatCycle(input *stat_cycle_configuration.UpdateStatCycleParams) (*socialclientmodels.StatCycleInfo, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -110,7 +110,7 @@ func (aaa *StatCycleConfigurationService) UpdateStatCycle(input *stat_cycle_conf
 	return ok.GetPayload(), nil
 }
 
-// deprecated(2022-01-10): please use DeleteStatCycleShort instead.
+// Deprecated: 2022-01-10 - please use DeleteStatCycleShort instead.
 func (aaa *StatCycleConfigurationService) DeleteStatCycle(input *stat_cycle_configuration.DeleteStatCycleParams) error {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -127,7 +127,7 @@ func (aaa *StatCycleConfigurationService) DeleteStatCycle(input *stat_cycle_conf
 	return nil
 }
 
-// deprecated(2022-01-10): please use BulkAddStatsShort instead.
+// Deprecated: 2022-01-10 - please use BulkAddStatsShort instead.
 func (aaa *StatCycleConfigurationService) BulkAddStats(input *stat_cycle_configuration.BulkAddStatsParams) ([]*socialclientmodels.BulkStatOperationResult, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -144,7 +144,7 @@ func (aaa *StatCycleConfigurationService) BulkAddStats(input *stat_cycle_configu
 	return ok.GetPayload(), nil
 }
 
-// deprecated(2022-01-10): please use StopStatCycleShort instead.
+// Deprecated: 2022-01-10 - please use StopStatCycleShort instead.
 func (aaa *StatCycleConfigurationService) StopStatCycle(input *stat_cycle_configuration.StopStatCycleParams) (*socialclientmodels.StatCycleInfo, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -164,7 +164,7 @@ func (aaa *StatCycleConfigurationService) StopStatCycle(input *stat_cycle_config
 	return ok.GetPayload(), nil
 }
 
-// deprecated(2022-01-10): please use GetStatCycles1Short instead.
+// Deprecated: 2022-01-10 - please use GetStatCycles1Short instead.
 func (aaa *StatCycleConfigurationService) GetStatCycles1(input *stat_cycle_configuration.GetStatCycles1Params) (*socialclientmodels.StatCyclePagingSlicedResult, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -178,7 +178,7 @@ func (aaa *StatCycleConfigurationService) GetStatCycles1(input *stat_cycle_confi
 	return ok.GetPayload(), nil
 }
 
-// deprecated(2022-01-10): please use GetStatCycle1Short instead.
+// Deprecated: 2022-01-10 - please use GetStatCycle1Short instead.
 func (aaa *StatCycleConfigurationService) GetStatCycle1(input *stat_cycle_configuration.GetStatCycle1Params) (*socialclientmodels.StatCycleInfo, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {

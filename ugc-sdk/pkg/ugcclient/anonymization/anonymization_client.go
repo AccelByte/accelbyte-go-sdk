@@ -54,7 +54,7 @@ type ClientService interface {
 }
 
 /*
-Deprecated: Use AdminDeleteAllUserChannelsShort instead.
+Deprecated: 2022-08-10 - Use AdminDeleteAllUserChannelsShort instead.
 
   AdminDeleteAllUserChannels deletes all user channel
 
@@ -163,7 +163,7 @@ func (a *Client) AdminDeleteAllUserChannelsShort(params *AdminDeleteAllUserChann
 }
 
 /*
-Deprecated: Use AdminDeleteAllUserContentsShort instead.
+Deprecated: 2022-08-10 - Use AdminDeleteAllUserContentsShort instead.
 
   AdminDeleteAllUserContents deletes all user content
 
@@ -272,7 +272,7 @@ func (a *Client) AdminDeleteAllUserContentsShort(params *AdminDeleteAllUserConte
 }
 
 /*
-Deprecated: Use AdminDeleteAllUserGroupShort instead.
+Deprecated: 2022-08-10 - Use AdminDeleteAllUserGroupShort instead.
 
   AdminDeleteAllUserGroup deletes all user group
 
@@ -381,7 +381,7 @@ func (a *Client) AdminDeleteAllUserGroupShort(params *AdminDeleteAllUserGroupPar
 }
 
 /*
-Deprecated: Use AdminDeleteAllUserStatesShort instead.
+Deprecated: 2022-08-10 - Use AdminDeleteAllUserStatesShort instead.
 
   AdminDeleteAllUserStates removes all user related state likes downloads followers following
 
@@ -490,7 +490,7 @@ func (a *Client) AdminDeleteAllUserStatesShort(params *AdminDeleteAllUserStatesP
 }
 
 /*
-Deprecated: Use DeleteAllUserChannelShort instead.
+Deprecated: 2022-08-10 - Use DeleteAllUserChannelShort instead.
 
   DeleteAllUserChannel deletes all user channel
 
@@ -599,7 +599,7 @@ func (a *Client) DeleteAllUserChannelShort(params *DeleteAllUserChannelParams, a
 }
 
 /*
-Deprecated: Use DeleteAllUserContentsShort instead.
+Deprecated: 2022-08-10 - Use DeleteAllUserContentsShort instead.
 
   DeleteAllUserContents deletes all user content
 
@@ -708,7 +708,7 @@ func (a *Client) DeleteAllUserContentsShort(params *DeleteAllUserContentsParams,
 }
 
 /*
-Deprecated: Use DeleteAllUserGroupShort instead.
+Deprecated: 2022-08-10 - Use DeleteAllUserGroupShort instead.
 
   DeleteAllUserGroup deletes all user group
 
@@ -817,7 +817,7 @@ func (a *Client) DeleteAllUserGroupShort(params *DeleteAllUserGroupParams, authI
 }
 
 /*
-Deprecated: Use DeleteAllUserStatesShort instead.
+Deprecated: 2022-08-10 - Use DeleteAllUserStatesShort instead.
 
   DeleteAllUserStates removes all user related state likes downloads followers following
 

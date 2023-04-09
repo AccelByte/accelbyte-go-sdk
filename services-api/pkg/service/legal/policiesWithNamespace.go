@@ -38,7 +38,7 @@ func (aaa *PoliciesWithNamespaceService) GetAuthSession() auth.Session {
 	}
 }
 
-// deprecated(2022-01-10): please use UpdatePolicy1Short instead.
+// Deprecated: 2022-01-10 - please use UpdatePolicy1Short instead.
 func (aaa *PoliciesWithNamespaceService) UpdatePolicy1(input *policies_with_namespace.UpdatePolicy1Params) error {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -55,7 +55,7 @@ func (aaa *PoliciesWithNamespaceService) UpdatePolicy1(input *policies_with_name
 	return nil
 }
 
-// deprecated(2022-01-10): please use SetDefaultPolicy3Short instead.
+// Deprecated: 2022-01-10 - please use SetDefaultPolicy3Short instead.
 func (aaa *PoliciesWithNamespaceService) SetDefaultPolicy3(input *policies_with_namespace.SetDefaultPolicy3Params) error {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {

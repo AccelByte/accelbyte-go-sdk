@@ -46,7 +46,7 @@ type ClientService interface {
 }
 
 /*
-Deprecated: Use AdminCreateThirdPartyConfigShort instead.
+Deprecated: 2022-08-10 - Use AdminCreateThirdPartyConfigShort instead.
 
   AdminCreateThirdPartyConfig creates third party steam config
 
@@ -167,7 +167,7 @@ func (a *Client) AdminCreateThirdPartyConfigShort(params *AdminCreateThirdPartyC
 }
 
 /*
-Deprecated: Use AdminDeleteThirdPartyConfigShort instead.
+Deprecated: 2022-08-10 - Use AdminDeleteThirdPartyConfigShort instead.
 
   AdminDeleteThirdPartyConfig deletes third party steam config
 
@@ -283,7 +283,7 @@ func (a *Client) AdminDeleteThirdPartyConfigShort(params *AdminDeleteThirdPartyC
 }
 
 /*
-Deprecated: Use AdminGetThirdPartyConfigShort instead.
+Deprecated: 2022-08-10 - Use AdminGetThirdPartyConfigShort instead.
 
   AdminGetThirdPartyConfig gets third party steam config
 
@@ -399,7 +399,7 @@ func (a *Client) AdminGetThirdPartyConfigShort(params *AdminGetThirdPartyConfigP
 }
 
 /*
-Deprecated: Use AdminUpdateThirdPartyConfigShort instead.
+Deprecated: 2022-08-10 - Use AdminUpdateThirdPartyConfigShort instead.
 
   AdminUpdateThirdPartyConfig updates third party steam config
 

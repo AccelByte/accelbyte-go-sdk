@@ -50,7 +50,7 @@ type ClientService interface {
 }
 
 /*
-Deprecated: Use GetRegisteredEventIDHandlerShort instead.
+Deprecated: 2022-08-10 - Use GetRegisteredEventIDHandlerShort instead.
 
   GetRegisteredEventIDHandler gets registered event ID data from the event registry
 
@@ -169,7 +169,7 @@ func (a *Client) GetRegisteredEventIDHandlerShort(params *GetRegisteredEventIDHa
 }
 
 /*
-Deprecated: Use GetRegisteredEventsByEventTypeHandlerShort instead.
+Deprecated: 2022-08-10 - Use GetRegisteredEventsByEventTypeHandlerShort instead.
 
   GetRegisteredEventsByEventTypeHandler gets registered event ID data from the event registry based on the event type
 
@@ -288,7 +288,7 @@ func (a *Client) GetRegisteredEventsByEventTypeHandlerShort(params *GetRegistere
 }
 
 /*
-Deprecated: Use GetRegisteredEventsHandlerShort instead.
+Deprecated: 2022-08-10 - Use GetRegisteredEventsHandlerShort instead.
 
   GetRegisteredEventsHandler gets registered events in the event registry
 
@@ -397,7 +397,7 @@ func (a *Client) GetRegisteredEventsHandlerShort(params *GetRegisteredEventsHand
 }
 
 /*
-Deprecated: Use RegisterEventHandlerShort instead.
+Deprecated: 2022-08-10 - Use RegisterEventHandlerShort instead.
 
   RegisterEventHandler registers an event ID to the event registry
 
@@ -516,7 +516,7 @@ func (a *Client) RegisterEventHandlerShort(params *RegisterEventHandlerParams, a
 }
 
 /*
-Deprecated: Use UnregisterEventIDHandlerShort instead.
+Deprecated: 2022-08-10 - Use UnregisterEventIDHandlerShort instead.
 
   UnregisterEventIDHandler unregisters event ID from the event registry
 
@@ -630,7 +630,7 @@ func (a *Client) UnregisterEventIDHandlerShort(params *UnregisterEventIDHandlerP
 }
 
 /*
-Deprecated: Use UpdateEventRegistryHandlerShort instead.
+Deprecated: 2022-08-10 - Use UpdateEventRegistryHandlerShort instead.
 
   UpdateEventRegistryHandler updates an event ID data in the event registry
 

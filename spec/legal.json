@@ -63,6 +63,10 @@
       "name": "Utility"
     }
   ],
+  "externalDocs": {
+    "description": "API Docs",
+    "url": "https://stage.accelbyte.io/agreement"
+  },
   "securityDefinitions": {
     "HasPermission": {
       "authorizationUrl": "https://dummy.oauth.net/auth",
@@ -251,10 +255,7 @@
           "200": {
             "description": "successful operation",
             "schema": {
-              "items": {
-                "$ref": "#/definitions/PagedRetrieveUserAcceptedAgreementResponse"
-              },
-              "type": "array"
+              "$ref": "#/definitions/PagedRetrieveUserAcceptedAgreementResponse"
             }
           },
           "404": {
@@ -5162,5 +5163,24 @@
       ],
       "type": "object"
     }
+  },
+  "x-docs": {
+    "alias": "agreement",
+    "host": "https://stage.accelbyte.io",
+    "path": "/agreement/swagger.json"
+  },
+  "x-version": {
+    "buildBy": "Gradle 6.9.1",
+    "buildDate": "2023-03-28T04:19:06+00:00",
+    "buildID": "1.28.1",
+    "buildJDK": "1.8.0_232 (Eclipse OpenJ9 openj9-0.17.0)",
+    "buildOS": "Linux amd64 5.13.0-1021-aws",
+    "gitBranchName": "release-candidate",
+    "gitHash": "1fe99dc865",
+    "gitTag": "1.25.3",
+    "name": "justice-legal-service",
+    "realm": "staging",
+    "version": "1.28.1",
+    "version-roles-seeding": "0.0.3"
   }
 }

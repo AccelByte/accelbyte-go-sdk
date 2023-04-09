@@ -39,7 +39,7 @@ func (aaa *GametelemetryOperationsService) GetAuthSession() auth.Session {
 	}
 }
 
-// deprecated(2022-01-10): please use ProtectedSaveEventsGameTelemetryV1ProtectedEventsPostShort instead.
+// Deprecated: 2022-01-10 - please use ProtectedSaveEventsGameTelemetryV1ProtectedEventsPostShort instead.
 func (aaa *GametelemetryOperationsService) ProtectedSaveEventsGameTelemetryV1ProtectedEventsPost(input *gametelemetry_operations.ProtectedSaveEventsGameTelemetryV1ProtectedEventsPostParams) error {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -56,7 +56,7 @@ func (aaa *GametelemetryOperationsService) ProtectedSaveEventsGameTelemetryV1Pro
 	return nil
 }
 
-// deprecated(2022-01-10): please use ProtectedGetPlaytimeGameTelemetryV1ProtectedSteamIdsSteamIDPlaytimeGetShort instead.
+// Deprecated: 2022-01-10 - please use ProtectedGetPlaytimeGameTelemetryV1ProtectedSteamIdsSteamIDPlaytimeGetShort instead.
 func (aaa *GametelemetryOperationsService) ProtectedGetPlaytimeGameTelemetryV1ProtectedSteamIdsSteamIDPlaytimeGet(input *gametelemetry_operations.ProtectedGetPlaytimeGameTelemetryV1ProtectedSteamIdsSteamIDPlaytimeGetParams) (interface{}, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -73,7 +73,7 @@ func (aaa *GametelemetryOperationsService) ProtectedGetPlaytimeGameTelemetryV1Pr
 	return ok.GetPayload(), nil
 }
 
-// deprecated(2022-01-10): please use ProtectedUpdatePlaytimeGameTelemetryV1ProtectedSteamIdsSteamIDPlaytimePlaytimePutShort instead.
+// Deprecated: 2022-01-10 - please use ProtectedUpdatePlaytimeGameTelemetryV1ProtectedSteamIdsSteamIDPlaytimePlaytimePutShort instead.
 func (aaa *GametelemetryOperationsService) ProtectedUpdatePlaytimeGameTelemetryV1ProtectedSteamIdsSteamIDPlaytimePlaytimePut(input *gametelemetry_operations.ProtectedUpdatePlaytimeGameTelemetryV1ProtectedSteamIdsSteamIDPlaytimePlaytimePutParams) error {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {

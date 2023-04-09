@@ -58,7 +58,7 @@ type ClientService interface {
 }
 
 /*
-Deprecated: Use CreateTemplateShort instead.
+Deprecated: 2022-08-10 - Use CreateTemplateShort instead.
 
   CreateTemplate creates new notification template
 
@@ -180,7 +180,7 @@ func (a *Client) CreateTemplateShort(params *CreateTemplateParams, authInfo runt
 }
 
 /*
-Deprecated: Use DeleteTemplateLocalizationShort instead.
+Deprecated: 2022-08-10 - Use DeleteTemplateLocalizationShort instead.
 
   DeleteTemplateLocalization deletes template localization
 
@@ -296,7 +296,7 @@ func (a *Client) DeleteTemplateLocalizationShort(params *DeleteTemplateLocalizat
 }
 
 /*
-Deprecated: Use DeleteTemplateSlugShort instead.
+Deprecated: 2022-08-10 - Use DeleteTemplateSlugShort instead.
 
   DeleteTemplateSlug deletes template localization
 
@@ -412,7 +412,7 @@ func (a *Client) DeleteTemplateSlugShort(params *DeleteTemplateSlugParams, authI
 }
 
 /*
-Deprecated: Use FreeFormNotificationShort instead.
+Deprecated: 2022-08-10 - Use FreeFormNotificationShort instead.
 
   FreeFormNotification sends freeform notification to a user
 
@@ -528,7 +528,7 @@ func (a *Client) FreeFormNotificationShort(params *FreeFormNotificationParams, a
 }
 
 /*
-Deprecated: Use GetGameTemplateShort instead.
+Deprecated: 2022-08-10 - Use GetGameTemplateShort instead.
 
   GetGameTemplate gets all notification template in a namespace
 
@@ -644,7 +644,7 @@ func (a *Client) GetGameTemplateShort(params *GetGameTemplateParams, authInfo ru
 }
 
 /*
-Deprecated: Use GetLocalizationTemplateShort instead.
+Deprecated: 2022-08-10 - Use GetLocalizationTemplateShort instead.
 
   GetLocalizationTemplate gets a template localization
 
@@ -760,7 +760,7 @@ func (a *Client) GetLocalizationTemplateShort(params *GetLocalizationTemplatePar
 }
 
 /*
-Deprecated: Use GetSlugTemplateShort instead.
+Deprecated: 2022-08-10 - Use GetSlugTemplateShort instead.
 
   GetSlugTemplate gets all notification template in a slug
 
@@ -876,7 +876,7 @@ func (a *Client) GetSlugTemplateShort(params *GetSlugTemplateParams, authInfo ru
 }
 
 /*
-Deprecated: Use NotificationWithTemplateShort instead.
+Deprecated: 2022-08-10 - Use NotificationWithTemplateShort instead.
 
   NotificationWithTemplate sends notification to a user with template
 
@@ -998,7 +998,7 @@ func (a *Client) NotificationWithTemplateShort(params *NotificationWithTemplateP
 }
 
 /*
-Deprecated: Use PublishTemplateShort instead.
+Deprecated: 2022-08-10 - Use PublishTemplateShort instead.
 
   PublishTemplate publishes draft template
 
@@ -1114,7 +1114,7 @@ func (a *Client) PublishTemplateShort(params *PublishTemplateParams, authInfo ru
 }
 
 /*
-Deprecated: Use UpdateLocalizationTemplateShort instead.
+Deprecated: 2022-08-10 - Use UpdateLocalizationTemplateShort instead.
 
   UpdateLocalizationTemplate updates template draft
 

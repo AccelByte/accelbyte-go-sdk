@@ -8,6 +8,10 @@
   "schemes": [
     "https"
   ],
+  "externalDocs": {
+    "description": "API Docs",
+    "url": "https://stage.accelbyte.io/matchmaking/apidocs"
+  },
   "securityDefinitions": {
     "HasPermission": {
       "authorizationUrl": "https://dummy.oauth.net/auth",
@@ -3725,5 +3729,16 @@
         "pagination"
       ]
     }
+  },
+  "x-docs": {
+    "alias": "matchmaking",
+    "host": "https://stage.accelbyte.io",
+    "path": "/matchmaking/apidocs/api.json"
+  },
+  "x-version": {
+    "buildDate": "2023-03-27T00:40:22+00:00",
+    "gitHash": "9dd6d0005cd64b98a4a552e21d38c89f502226bc",
+    "version": "2.22.0",
+    "version-roles-seeding": "0.0.3"
   }
 }

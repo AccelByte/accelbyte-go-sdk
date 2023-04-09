@@ -59,7 +59,7 @@ type ClientService interface {
 }
 
 /*
-Deprecated: Use AdminCreateNewAchievementShort instead.
+Deprecated: 2022-08-10 - Use AdminCreateNewAchievementShort instead.
 
   AdminCreateNewAchievement creates new achievement
 
@@ -199,7 +199,7 @@ func (a *Client) AdminCreateNewAchievementShort(params *AdminCreateNewAchievemen
 }
 
 /*
-Deprecated: Use AdminDeleteAchievementShort instead.
+Deprecated: 2022-08-10 - Use AdminDeleteAchievementShort instead.
 
   AdminDeleteAchievement deletes an achievement
 
@@ -315,7 +315,7 @@ func (a *Client) AdminDeleteAchievementShort(params *AdminDeleteAchievementParam
 }
 
 /*
-Deprecated: Use AdminGetAchievementShort instead.
+Deprecated: 2022-08-10 - Use AdminGetAchievementShort instead.
 
   AdminGetAchievement gets an achievement
 
@@ -431,7 +431,7 @@ func (a *Client) AdminGetAchievementShort(params *AdminGetAchievementParams, aut
 }
 
 /*
-Deprecated: Use AdminListAchievementsShort instead.
+Deprecated: 2022-08-10 - Use AdminListAchievementsShort instead.
 
   AdminListAchievements queries achievements
 
@@ -547,7 +547,7 @@ func (a *Client) AdminListAchievementsShort(params *AdminListAchievementsParams,
 }
 
 /*
-Deprecated: Use AdminUpdateAchievementShort instead.
+Deprecated: 2022-08-10 - Use AdminUpdateAchievementShort instead.
 
   AdminUpdateAchievement updates an achievement
 
@@ -663,7 +663,7 @@ func (a *Client) AdminUpdateAchievementShort(params *AdminUpdateAchievementParam
 }
 
 /*
-Deprecated: Use AdminUpdateAchievementListOrderShort instead.
+Deprecated: 2022-08-10 - Use AdminUpdateAchievementListOrderShort instead.
 
   AdminUpdateAchievementListOrder updates achievements list order
 
@@ -779,7 +779,7 @@ func (a *Client) AdminUpdateAchievementListOrderShort(params *AdminUpdateAchieve
 }
 
 /*
-Deprecated: Use ExportAchievementsShort instead.
+Deprecated: 2022-08-10 - Use ExportAchievementsShort instead.
 
   ExportAchievements exports achievements configuration into a json file
 
@@ -890,7 +890,7 @@ func (a *Client) ExportAchievementsShort(params *ExportAchievementsParams, authI
 }
 
 /*
-Deprecated: Use ImportAchievementsShort instead.
+Deprecated: 2022-08-10 - Use ImportAchievementsShort instead.
 
   ImportAchievements imports achievements from file
 
@@ -1022,7 +1022,7 @@ func (a *Client) ImportAchievementsShort(params *ImportAchievementsParams, authI
 }
 
 /*
-Deprecated: Use PublicGetAchievementShort instead.
+Deprecated: 2022-08-10 - Use PublicGetAchievementShort instead.
 
   PublicGetAchievement gets an achievement
 
@@ -1138,7 +1138,7 @@ func (a *Client) PublicGetAchievementShort(params *PublicGetAchievementParams, a
 }
 
 /*
-Deprecated: Use PublicListAchievementsShort instead.
+Deprecated: 2022-08-10 - Use PublicListAchievementsShort instead.
 
   PublicListAchievements queries achievements
 

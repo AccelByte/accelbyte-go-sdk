@@ -39,7 +39,7 @@ func (aaa *ConfigService) GetAuthSession() auth.Session {
 	}
 }
 
-// deprecated(2022-01-10): please use CreateConfigShort instead.
+// Deprecated: 2022-01-10 - please use CreateConfigShort instead.
 func (aaa *ConfigService) CreateConfig(input *config.CreateConfigParams) (*basicclientmodels.ConfigInfo, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -65,7 +65,7 @@ func (aaa *ConfigService) CreateConfig(input *config.CreateConfigParams) (*basic
 	return created.GetPayload(), nil
 }
 
-// deprecated(2022-01-10): please use GetConfig1Short instead.
+// Deprecated: 2022-01-10 - please use GetConfig1Short instead.
 func (aaa *ConfigService) GetConfig1(input *config.GetConfig1Params) (*basicclientmodels.ConfigInfo, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -91,7 +91,7 @@ func (aaa *ConfigService) GetConfig1(input *config.GetConfig1Params) (*basicclie
 	return ok.GetPayload(), nil
 }
 
-// deprecated(2022-01-10): please use DeleteConfig1Short instead.
+// Deprecated: 2022-01-10 - please use DeleteConfig1Short instead.
 func (aaa *ConfigService) DeleteConfig1(input *config.DeleteConfig1Params) error {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -117,7 +117,7 @@ func (aaa *ConfigService) DeleteConfig1(input *config.DeleteConfig1Params) error
 	return nil
 }
 
-// deprecated(2022-01-10): please use UpdateConfig1Short instead.
+// Deprecated: 2022-01-10 - please use UpdateConfig1Short instead.
 func (aaa *ConfigService) UpdateConfig1(input *config.UpdateConfig1Params) (*basicclientmodels.ConfigInfo, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -143,7 +143,7 @@ func (aaa *ConfigService) UpdateConfig1(input *config.UpdateConfig1Params) (*bas
 	return created.GetPayload(), nil
 }
 
-// deprecated(2022-01-10): please use GetPublisherConfigShort instead.
+// Deprecated: 2022-01-10 - please use GetPublisherConfigShort instead.
 func (aaa *ConfigService) GetPublisherConfig(input *config.GetPublisherConfigParams) (*basicclientmodels.ConfigInfo, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {

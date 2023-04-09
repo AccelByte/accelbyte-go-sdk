@@ -39,7 +39,7 @@ func (aaa *PaymentDedicatedService) GetAuthSession() auth.Session {
 	}
 }
 
-// deprecated(2022-01-10): please use CreatePaymentOrderByDedicatedShort instead.
+// Deprecated: 2022-01-10 - please use CreatePaymentOrderByDedicatedShort instead.
 func (aaa *PaymentDedicatedService) CreatePaymentOrderByDedicated(input *payment_dedicated.CreatePaymentOrderByDedicatedParams) (*platformclientmodels.PaymentOrderCreateResult, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -68,7 +68,7 @@ func (aaa *PaymentDedicatedService) CreatePaymentOrderByDedicated(input *payment
 	return created.GetPayload(), nil
 }
 
-// deprecated(2022-01-10): please use RefundPaymentOrderByDedicatedShort instead.
+// Deprecated: 2022-01-10 - please use RefundPaymentOrderByDedicatedShort instead.
 func (aaa *PaymentDedicatedService) RefundPaymentOrderByDedicated(input *payment_dedicated.RefundPaymentOrderByDedicatedParams) (*platformclientmodels.PaymentOrderRefundResult, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -94,7 +94,7 @@ func (aaa *PaymentDedicatedService) RefundPaymentOrderByDedicated(input *payment
 	return ok.GetPayload(), nil
 }
 
-// deprecated(2022-01-10): please use SyncPaymentOrdersShort instead.
+// Deprecated: 2022-01-10 - please use SyncPaymentOrdersShort instead.
 func (aaa *PaymentDedicatedService) SyncPaymentOrders(input *payment_dedicated.SyncPaymentOrdersParams) (*platformclientmodels.PaymentOrderSyncResult, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {

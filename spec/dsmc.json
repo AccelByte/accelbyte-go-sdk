@@ -3,11 +3,15 @@
   "info": {
     "description": "Justice DSM Controller Service",
     "title": "justice-dsm-controller-service",
-    "version": "6.2.2"
+    "version": "6.2.4"
   },
   "schemes": [
     "https"
   ],
+  "externalDocs": {
+    "description": "API Docs",
+    "url": "https://stage.accelbyte.io/dsmcontroller/apidocs"
+  },
   "securityDefinitions": {
     "HasPermission": {
       "authorizationUrl": "https://dummy.oauth.net/auth",
@@ -5228,7 +5232,7 @@
           "type": "string"
         },
         "imageSize": {
-          "format": "int32",
+          "format": "int64",
           "type": "integer"
         },
         "namespace": {
@@ -5268,7 +5272,7 @@
           "type": "string"
         },
         "imageSize": {
-          "format": "int32",
+          "format": "int64",
           "type": "integer"
         },
         "namespace": {
@@ -5783,7 +5787,7 @@
           "type": "string"
         },
         "imageSize": {
-          "format": "int32",
+          "format": "int64",
           "type": "integer"
         },
         "modifiedBy": {
@@ -6024,7 +6028,7 @@
           "type": "string"
         },
         "imageSize": {
-          "format": "int32",
+          "format": "int64",
           "type": "integer"
         },
         "modifiedBy": {
@@ -6702,5 +6706,18 @@
         "errorMessage"
       ]
     }
+  },
+  "x-docs": {
+    "alias": "dsmcontroller",
+    "host": "https://stage.accelbyte.io",
+    "path": "/dsmcontroller/apidocs/api.json"
+  },
+  "x-version": {
+    "buildDate": "unknown",
+    "gitHash": "48e5167bb28d0a9645a744905be3e2825c2e212d",
+    "name": "justice-dedicated-server-manager-controller-service",
+    "revisionID": "6.2.4",
+    "version": "6.2.4",
+    "version-roles-seeding": "0.0.3"
   }
 }

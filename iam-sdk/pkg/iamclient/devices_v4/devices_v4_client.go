@@ -62,7 +62,7 @@ type ClientService interface {
 }
 
 /*
-Deprecated: Use AdminBanDeviceV4Short instead.
+Deprecated: 2022-08-10 - Use AdminBanDeviceV4Short instead.
 
   AdminBanDeviceV4 admins ban a device
 
@@ -185,7 +185,7 @@ func (a *Client) AdminBanDeviceV4Short(params *AdminBanDeviceV4Params, authInfo 
 }
 
 /*
-Deprecated: Use AdminDecryptDeviceV4Short instead.
+Deprecated: 2022-08-10 - Use AdminDecryptDeviceV4Short instead.
 
   AdminDecryptDeviceV4 admins decrypt device id
 
@@ -303,7 +303,7 @@ func (a *Client) AdminDecryptDeviceV4Short(params *AdminDecryptDeviceV4Params, a
 }
 
 /*
-Deprecated: Use AdminGenerateReportV4Short instead.
+Deprecated: 2022-08-10 - Use AdminGenerateReportV4Short instead.
 
   AdminGenerateReportV4 admins generate device report
 
@@ -426,7 +426,7 @@ func (a *Client) AdminGenerateReportV4Short(params *AdminGenerateReportV4Params,
 }
 
 /*
-Deprecated: Use AdminGetBannedDevicesV4Short instead.
+Deprecated: 2022-08-10 - Use AdminGetBannedDevicesV4Short instead.
 
   AdminGetBannedDevicesV4 admins get banned devices
 
@@ -539,7 +539,7 @@ func (a *Client) AdminGetBannedDevicesV4Short(params *AdminGetBannedDevicesV4Par
 }
 
 /*
-Deprecated: Use AdminGetDeviceBanV4Short instead.
+Deprecated: 2022-08-10 - Use AdminGetDeviceBanV4Short instead.
 
   AdminGetDeviceBanV4 admins get device ban config
 
@@ -662,7 +662,7 @@ func (a *Client) AdminGetDeviceBanV4Short(params *AdminGetDeviceBanV4Params, aut
 }
 
 /*
-Deprecated: Use AdminGetDeviceBansV4Short instead.
+Deprecated: 2022-08-10 - Use AdminGetDeviceBansV4Short instead.
 
   AdminGetDeviceBansV4 admins get device ban list
 
@@ -780,7 +780,7 @@ func (a *Client) AdminGetDeviceBansV4Short(params *AdminGetDeviceBansV4Params, a
 }
 
 /*
-Deprecated: Use AdminGetDeviceTypesV4Short instead.
+Deprecated: 2022-08-10 - Use AdminGetDeviceTypesV4Short instead.
 
   AdminGetDeviceTypesV4 admins get device types
 
@@ -893,7 +893,7 @@ func (a *Client) AdminGetDeviceTypesV4Short(params *AdminGetDeviceTypesV4Params,
 }
 
 /*
-Deprecated: Use AdminGetDevicesByUserV4Short instead.
+Deprecated: 2022-08-10 - Use AdminGetDevicesByUserV4Short instead.
 
   AdminGetDevicesByUserV4 admins get devices by user id
 
@@ -1016,7 +1016,7 @@ func (a *Client) AdminGetDevicesByUserV4Short(params *AdminGetDevicesByUserV4Par
 }
 
 /*
-Deprecated: Use AdminGetUserDeviceBansV4Short instead.
+Deprecated: 2022-08-10 - Use AdminGetUserDeviceBansV4Short instead.
 
   AdminGetUserDeviceBansV4 admins get device bans of user
 
@@ -1134,7 +1134,7 @@ func (a *Client) AdminGetUserDeviceBansV4Short(params *AdminGetUserDeviceBansV4P
 }
 
 /*
-Deprecated: Use AdminGetUsersByDeviceV4Short instead.
+Deprecated: 2022-08-10 - Use AdminGetUsersByDeviceV4Short instead.
 
   AdminGetUsersByDeviceV4 admins get users by device id
 
@@ -1252,7 +1252,7 @@ func (a *Client) AdminGetUsersByDeviceV4Short(params *AdminGetUsersByDeviceV4Par
 }
 
 /*
-Deprecated: Use AdminUnbanDeviceV4Short instead.
+Deprecated: 2022-08-10 - Use AdminUnbanDeviceV4Short instead.
 
   AdminUnbanDeviceV4 admins unban device
 
@@ -1370,7 +1370,7 @@ func (a *Client) AdminUnbanDeviceV4Short(params *AdminUnbanDeviceV4Params, authI
 }
 
 /*
-Deprecated: Use AdminUpdateDeviceBanV4Short instead.
+Deprecated: 2022-08-10 - Use AdminUpdateDeviceBanV4Short instead.
 
   AdminUpdateDeviceBanV4 admins update device ban config
 

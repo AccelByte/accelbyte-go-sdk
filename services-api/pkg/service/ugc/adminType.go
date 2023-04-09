@@ -39,7 +39,7 @@ func (aaa *AdminTypeService) GetAuthSession() auth.Session {
 	}
 }
 
-// deprecated(2022-01-10): please use AdminGetTypeShort instead.
+// Deprecated: 2022-01-10 - please use AdminGetTypeShort instead.
 func (aaa *AdminTypeService) AdminGetType(input *admin_type.AdminGetTypeParams) (*ugcclientmodels.ModelsPaginatedGetTypeResponse, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -62,7 +62,7 @@ func (aaa *AdminTypeService) AdminGetType(input *admin_type.AdminGetTypeParams) 
 	return ok.GetPayload(), nil
 }
 
-// deprecated(2022-01-10): please use AdminCreateTypeShort instead.
+// Deprecated: 2022-01-10 - please use AdminCreateTypeShort instead.
 func (aaa *AdminTypeService) AdminCreateType(input *admin_type.AdminCreateTypeParams) (*ugcclientmodels.ModelsCreateTypeResponse, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -88,7 +88,7 @@ func (aaa *AdminTypeService) AdminCreateType(input *admin_type.AdminCreateTypePa
 	return created.GetPayload(), nil
 }
 
-// deprecated(2022-01-10): please use AdminUpdateTypeShort instead.
+// Deprecated: 2022-01-10 - please use AdminUpdateTypeShort instead.
 func (aaa *AdminTypeService) AdminUpdateType(input *admin_type.AdminUpdateTypeParams) (*ugcclientmodels.ModelsCreateTypeResponse, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -117,7 +117,7 @@ func (aaa *AdminTypeService) AdminUpdateType(input *admin_type.AdminUpdateTypePa
 	return ok.GetPayload(), nil
 }
 
-// deprecated(2022-01-10): please use AdminDeleteTypeShort instead.
+// Deprecated: 2022-01-10 - please use AdminDeleteTypeShort instead.
 func (aaa *AdminTypeService) AdminDeleteType(input *admin_type.AdminDeleteTypeParams) error {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {

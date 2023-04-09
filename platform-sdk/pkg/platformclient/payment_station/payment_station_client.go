@@ -59,7 +59,7 @@ type ClientService interface {
 }
 
 /*
-Deprecated: Use GetPaymentCustomizationShort instead.
+Deprecated: 2022-08-10 - Use GetPaymentCustomizationShort instead.
 
   GetPaymentCustomization gets payment provider customization
 
@@ -151,7 +151,7 @@ func (a *Client) GetPaymentCustomizationShort(params *GetPaymentCustomizationPar
 }
 
 /*
-Deprecated: Use GetPaymentPublicConfigShort instead.
+Deprecated: 2022-08-10 - Use GetPaymentPublicConfigShort instead.
 
   GetPaymentPublicConfig gets payment provider public config
 
@@ -243,7 +243,7 @@ func (a *Client) GetPaymentPublicConfigShort(params *GetPaymentPublicConfigParam
 }
 
 /*
-Deprecated: Use GetPaymentTaxValueShort instead.
+Deprecated: 2022-08-10 - Use GetPaymentTaxValueShort instead.
 
   GetPaymentTaxValue gets tax result of a payment order
 
@@ -345,7 +345,7 @@ func (a *Client) GetPaymentTaxValueShort(params *GetPaymentTaxValueParams) (*Get
 }
 
 /*
-Deprecated: Use PayShort instead.
+Deprecated: 2022-08-10 - Use PayShort instead.
 
   Pay dos payment
 
@@ -452,7 +452,7 @@ func (a *Client) PayShort(params *PayParams) (*PayOK, error) {
 }
 
 /*
-Deprecated: Use PublicCheckPaymentOrderPaidStatusShort instead.
+Deprecated: 2022-08-10 - Use PublicCheckPaymentOrderPaidStatusShort instead.
 
   PublicCheckPaymentOrderPaidStatus checks payment order paid status
 
@@ -549,7 +549,7 @@ func (a *Client) PublicCheckPaymentOrderPaidStatusShort(params *PublicCheckPayme
 }
 
 /*
-Deprecated: Use PublicGetPaymentMethodsShort instead.
+Deprecated: 2022-08-10 - Use PublicGetPaymentMethodsShort instead.
 
   PublicGetPaymentMethods gets payment methods
 
@@ -646,7 +646,7 @@ func (a *Client) PublicGetPaymentMethodsShort(params *PublicGetPaymentMethodsPar
 }
 
 /*
-Deprecated: Use PublicGetPaymentURLShort instead.
+Deprecated: 2022-08-10 - Use PublicGetPaymentURLShort instead.
 
   PublicGetPaymentURL gets payment url
 
@@ -753,7 +753,7 @@ func (a *Client) PublicGetPaymentURLShort(params *PublicGetPaymentURLParams) (*P
 }
 
 /*
-Deprecated: Use PublicGetQRCodeShort instead.
+Deprecated: 2022-08-10 - Use PublicGetQRCodeShort instead.
 
   PublicGetQRCode gets qrcode
 
@@ -845,7 +845,7 @@ func (a *Client) PublicGetQRCodeShort(params *PublicGetQRCodeParams, writer io.W
 }
 
 /*
-Deprecated: Use PublicGetUnpaidPaymentOrderShort instead.
+Deprecated: 2022-08-10 - Use PublicGetUnpaidPaymentOrderShort instead.
 
   PublicGetUnpaidPaymentOrder gets payment order info
 
@@ -947,7 +947,7 @@ func (a *Client) PublicGetUnpaidPaymentOrderShort(params *PublicGetUnpaidPayment
 }
 
 /*
-Deprecated: Use PublicNormalizePaymentReturnURLShort instead.
+Deprecated: 2022-08-10 - Use PublicNormalizePaymentReturnURLShort instead.
 
   PublicNormalizePaymentReturnURL normalizes payment return url
 

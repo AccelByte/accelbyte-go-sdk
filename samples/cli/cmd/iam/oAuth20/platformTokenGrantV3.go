@@ -32,12 +32,14 @@ var PlatformTokenGrantV3Cmd = &cobra.Command{
 		deviceId, _ := cmd.Flags().GetString("deviceId")
 		macAddress, _ := cmd.Flags().GetString("macAddress")
 		platformToken, _ := cmd.Flags().GetString("platformToken")
+		skipSetCookie, _ := cmd.Flags().GetBool("skipSetCookie")
 		input := &o_auth2_0.PlatformTokenGrantV3Params{
 			ClientID:       &clientId,
 			CreateHeadless: &createHeadless,
 			DeviceID:       &deviceId,
 			MacAddress:     &macAddress,
 			PlatformToken:  &platformToken,
+			SkipSetCookie:  &skipSetCookie,
 			PlatformID:     platformId,
 		}
 		ok, errOK := oAuth20Service.PlatformTokenGrantV3Short(input)
@@ -59,6 +61,7 @@ func init() {
 	PlatformTokenGrantV3Cmd.Flags().String("deviceId", "", "Device id")
 	PlatformTokenGrantV3Cmd.Flags().String("macAddress", "", "Mac address")
 	PlatformTokenGrantV3Cmd.Flags().String("platformToken", "", "Platform token")
+	PlatformTokenGrantV3Cmd.Flags().Bool("skipSetCookie", false, "Skip set cookie")
 	PlatformTokenGrantV3Cmd.Flags().String("platformId", "", "Platform id")
 	_ = PlatformTokenGrantV3Cmd.MarkFlagRequired("platformId")
 }

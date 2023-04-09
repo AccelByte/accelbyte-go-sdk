@@ -44,7 +44,7 @@ type ClientService interface {
 }
 
 /*
-Deprecated: Use ProtectedGetPlaytimeGameTelemetryV1ProtectedSteamIdsSteamIDPlaytimeGetShort instead.
+Deprecated: 2022-08-10 - Use ProtectedGetPlaytimeGameTelemetryV1ProtectedSteamIdsSteamIDPlaytimeGetShort instead.
 
   ProtectedGetPlaytimeGameTelemetryV1ProtectedSteamIdsSteamIDPlaytimeGet protecteds get playtime
 
@@ -153,7 +153,7 @@ func (a *Client) ProtectedGetPlaytimeGameTelemetryV1ProtectedSteamIdsSteamIDPlay
 }
 
 /*
-Deprecated: Use ProtectedSaveEventsGameTelemetryV1ProtectedEventsPostShort instead.
+Deprecated: 2022-08-10 - Use ProtectedSaveEventsGameTelemetryV1ProtectedEventsPostShort instead.
 
   ProtectedSaveEventsGameTelemetryV1ProtectedEventsPost protecteds save events
 
@@ -286,7 +286,7 @@ func (a *Client) ProtectedSaveEventsGameTelemetryV1ProtectedEventsPostShort(para
 }
 
 /*
-Deprecated: Use ProtectedUpdatePlaytimeGameTelemetryV1ProtectedSteamIdsSteamIDPlaytimePlaytimePutShort instead.
+Deprecated: 2022-08-10 - Use ProtectedUpdatePlaytimeGameTelemetryV1ProtectedSteamIdsSteamIDPlaytimePlaytimePutShort instead.
 
   ProtectedUpdatePlaytimeGameTelemetryV1ProtectedSteamIdsSteamIDPlaytimePlaytimePut protecteds update playtime
 

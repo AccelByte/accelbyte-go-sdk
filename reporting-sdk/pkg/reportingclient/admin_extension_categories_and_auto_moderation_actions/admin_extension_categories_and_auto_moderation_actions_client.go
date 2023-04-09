@@ -46,7 +46,7 @@ type ClientService interface {
 }
 
 /*
-Deprecated: Use AdminCreateExtensionCategoryShort instead.
+Deprecated: 2022-08-10 - Use AdminCreateExtensionCategoryShort instead.
 
   AdminCreateExtensionCategory creates extension category
 
@@ -152,7 +152,7 @@ func (a *Client) AdminCreateExtensionCategoryShort(params *AdminCreateExtensionC
 }
 
 /*
-Deprecated: Use AdminCreateModActionShort instead.
+Deprecated: 2022-08-10 - Use AdminCreateModActionShort instead.
 
   AdminCreateModAction creates auto moderation action data
 
@@ -258,7 +258,7 @@ func (a *Client) AdminCreateModActionShort(params *AdminCreateModActionParams, a
 }
 
 /*
-Deprecated: Use AdminFindActionListShort instead.
+Deprecated: 2022-08-10 - Use AdminFindActionListShort instead.
 
   AdminFindActionList finds auto moderation action list
 
@@ -364,7 +364,7 @@ func (a *Client) AdminFindActionListShort(params *AdminFindActionListParams, aut
 }
 
 /*
-Deprecated: Use AdminFindExtensionCategoryListShort instead.
+Deprecated: 2022-08-10 - Use AdminFindExtensionCategoryListShort instead.
 
   AdminFindExtensionCategoryList finds extension category list
 

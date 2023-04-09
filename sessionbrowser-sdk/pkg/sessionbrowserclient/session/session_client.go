@@ -78,7 +78,7 @@ type ClientService interface {
 }
 
 /*
-Deprecated: Use AddPlayerToSessionShort instead.
+Deprecated: 2022-08-10 - Use AddPlayerToSessionShort instead.
 
   AddPlayerToSession adds player to game session
 
@@ -195,7 +195,7 @@ func (a *Client) AddPlayerToSessionShort(params *AddPlayerToSessionParams, authI
 }
 
 /*
-Deprecated: Use AdminDeleteSessionShort instead.
+Deprecated: 2022-08-10 - Use AdminDeleteSessionShort instead.
 
   AdminDeleteSession admins delete specified session by session ID
 
@@ -312,7 +312,7 @@ func (a *Client) AdminDeleteSessionShort(params *AdminDeleteSessionParams, authI
 }
 
 /*
-Deprecated: Use AdminGetSessionShort instead.
+Deprecated: 2022-08-10 - Use AdminGetSessionShort instead.
 
   AdminGetSession admins get specified session by session ID
 
@@ -424,7 +424,7 @@ func (a *Client) AdminGetSessionShort(params *AdminGetSessionParams, authInfo ru
 }
 
 /*
-Deprecated: Use AdminQuerySessionShort instead.
+Deprecated: 2022-08-10 - Use AdminQuerySessionShort instead.
 
   AdminQuerySession queries to available game session
 
@@ -532,7 +532,7 @@ func (a *Client) AdminQuerySessionShort(params *AdminQuerySessionParams, authInf
 }
 
 /*
-Deprecated: Use AdminSearchSessionsV2Short instead.
+Deprecated: 2022-08-10 - Use AdminSearchSessionsV2Short instead.
 
   AdminSearchSessionsV2 searches sessions
 
@@ -656,7 +656,7 @@ func (a *Client) AdminSearchSessionsV2Short(params *AdminSearchSessionsV2Params,
 }
 
 /*
-Deprecated: Use CreateSessionShort instead.
+Deprecated: 2022-08-10 - Use CreateSessionShort instead.
 
   CreateSession registers a new game session
 
@@ -778,7 +778,7 @@ func (a *Client) CreateSessionShort(params *CreateSessionParams, authInfo runtim
 }
 
 /*
-Deprecated: Use DeleteSessionShort instead.
+Deprecated: 2022-08-10 - Use DeleteSessionShort instead.
 
   DeleteSession deletes specified p2p session by session ID
 
@@ -895,7 +895,7 @@ func (a *Client) DeleteSessionShort(params *DeleteSessionParams, authInfo runtim
 }
 
 /*
-Deprecated: Use DeleteSessionLocalDSShort instead.
+Deprecated: 2022-08-10 - Use DeleteSessionLocalDSShort instead.
 
   DeleteSessionLocalDS onlies use for local d s entry will error when calling non local d s entry
 
@@ -1012,7 +1012,7 @@ func (a *Client) DeleteSessionLocalDSShort(params *DeleteSessionLocalDSParams, a
 }
 
 /*
-Deprecated: Use GetActiveCustomGameSessionsShort instead.
+Deprecated: 2022-08-10 - Use GetActiveCustomGameSessionsShort instead.
 
   GetActiveCustomGameSessions gets all active session for custom game this return only dedicated session type
 
@@ -1120,7 +1120,7 @@ func (a *Client) GetActiveCustomGameSessionsShort(params *GetActiveCustomGameSes
 }
 
 /*
-Deprecated: Use GetActiveMatchmakingGameSessionsShort instead.
+Deprecated: 2022-08-10 - Use GetActiveMatchmakingGameSessionsShort instead.
 
   GetActiveMatchmakingGameSessions gets all active session for matchmaking game this return only dedicated session type
 
@@ -1228,7 +1228,7 @@ func (a *Client) GetActiveMatchmakingGameSessionsShort(params *GetActiveMatchmak
 }
 
 /*
-Deprecated: Use GetRecentPlayerShort instead.
+Deprecated: 2022-08-10 - Use GetRecentPlayerShort instead.
 
   GetRecentPlayer queries recent players with given user id
 
@@ -1340,7 +1340,7 @@ func (a *Client) GetRecentPlayerShort(params *GetRecentPlayerParams, authInfo ru
 }
 
 /*
-Deprecated: Use GetSessionShort instead.
+Deprecated: 2022-08-10 - Use GetSessionShort instead.
 
   GetSession gets specified session by session ID
 
@@ -1452,7 +1452,7 @@ func (a *Client) GetSessionShort(params *GetSessionParams, authInfo runtime.Clie
 }
 
 /*
-Deprecated: Use GetSessionByUserIDsShort instead.
+Deprecated: 2022-08-10 - Use GetSessionByUserIDsShort instead.
 
   GetSessionByUserIDs queries game sessions by comma separated user ids
 
@@ -1564,7 +1564,7 @@ func (a *Client) GetSessionByUserIDsShort(params *GetSessionByUserIDsParams, aut
 }
 
 /*
-Deprecated: Use GetSessionHistoryDetailedShort instead.
+Deprecated: 2022-08-10 - Use GetSessionHistoryDetailedShort instead.
 
   GetSessionHistoryDetailed gets session history detailed
 
@@ -1690,7 +1690,7 @@ func (a *Client) GetSessionHistoryDetailedShort(params *GetSessionHistoryDetaile
 }
 
 /*
-Deprecated: Use GetTotalActiveSessionShort instead.
+Deprecated: 2022-08-10 - Use GetTotalActiveSessionShort instead.
 
   GetTotalActiveSession gets all active session
 
@@ -1798,7 +1798,7 @@ func (a *Client) GetTotalActiveSessionShort(params *GetTotalActiveSessionParams,
 }
 
 /*
-Deprecated: Use JoinSessionShort instead.
+Deprecated: 2022-08-10 - Use JoinSessionShort instead.
 
   JoinSession joins specified session by session ID
 
@@ -1920,7 +1920,7 @@ func (a *Client) JoinSessionShort(params *JoinSessionParams, authInfo runtime.Cl
 }
 
 /*
-Deprecated: Use RemovePlayerFromSessionShort instead.
+Deprecated: 2022-08-10 - Use RemovePlayerFromSessionShort instead.
 
   RemovePlayerFromSession removes player from game session
 
@@ -2037,7 +2037,7 @@ func (a *Client) RemovePlayerFromSessionShort(params *RemovePlayerFromSessionPar
 }
 
 /*
-Deprecated: Use UpdateSessionShort instead.
+Deprecated: 2022-08-10 - Use UpdateSessionShort instead.
 
   UpdateSession updates session
 
@@ -2154,7 +2154,7 @@ func (a *Client) UpdateSessionShort(params *UpdateSessionParams, authInfo runtim
 }
 
 /*
-Deprecated: Use UpdateSettingsShort instead.
+Deprecated: 2022-08-10 - Use UpdateSettingsShort instead.
 
   UpdateSettings updates settings
 
@@ -2271,7 +2271,7 @@ func (a *Client) UpdateSettingsShort(params *UpdateSettingsParams, authInfo runt
 }
 
 /*
-Deprecated: Use UserQuerySessionShort instead.
+Deprecated: 2022-08-10 - Use UserQuerySessionShort instead.
 
   UserQuerySession queries to available game session
 

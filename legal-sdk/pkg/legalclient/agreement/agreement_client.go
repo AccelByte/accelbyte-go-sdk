@@ -56,7 +56,7 @@ type ClientService interface {
 }
 
 /*
-Deprecated: Use AcceptVersionedPolicyShort instead.
+Deprecated: 2022-08-10 - Use AcceptVersionedPolicyShort instead.
 
   AcceptVersionedPolicy accepts a policy version
 
@@ -155,7 +155,7 @@ func (a *Client) AcceptVersionedPolicyShort(params *AcceptVersionedPolicyParams,
 }
 
 /*
-Deprecated: Use BulkAcceptVersionedPolicyShort instead.
+Deprecated: 2022-08-10 - Use BulkAcceptVersionedPolicyShort instead.
 
   BulkAcceptVersionedPolicy bulks accept policy versions
 
@@ -254,7 +254,7 @@ func (a *Client) BulkAcceptVersionedPolicyShort(params *BulkAcceptVersionedPolic
 }
 
 /*
-Deprecated: Use ChangePreferenceConsentShort instead.
+Deprecated: 2022-08-10 - Use ChangePreferenceConsentShort instead.
 
   ChangePreferenceConsent changes preference consent
 
@@ -353,7 +353,7 @@ func (a *Client) ChangePreferenceConsentShort(params *ChangePreferenceConsentPar
 }
 
 /*
-Deprecated: Use ChangePreferenceConsent1Short instead.
+Deprecated: 2022-08-10 - Use ChangePreferenceConsent1Short instead.
 
   ChangePreferenceConsent1 accepts revoke marketing preference consent
 
@@ -452,7 +452,7 @@ func (a *Client) ChangePreferenceConsent1Short(params *ChangePreferenceConsent1P
 }
 
 /*
-Deprecated: Use IndirectBulkAcceptVersionedPolicyV2Short instead.
+Deprecated: 2022-08-10 - Use IndirectBulkAcceptVersionedPolicyV2Short instead.
 
   IndirectBulkAcceptVersionedPolicyV2 bulks accept policy versions indirect
 
@@ -546,7 +546,7 @@ func (a *Client) IndirectBulkAcceptVersionedPolicyV2Short(params *IndirectBulkAc
 }
 
 /*
-Deprecated: Use IndirectBulkAcceptVersionedPolicy1Short instead.
+Deprecated: 2022-08-10 - Use IndirectBulkAcceptVersionedPolicy1Short instead.
 
   IndirectBulkAcceptVersionedPolicy1 bulks accept policy versions indirect
 
@@ -645,7 +645,7 @@ func (a *Client) IndirectBulkAcceptVersionedPolicy1Short(params *IndirectBulkAcc
 }
 
 /*
-Deprecated: Use RetrieveAcceptedAgreementsShort instead.
+Deprecated: 2022-08-10 - Use RetrieveAcceptedAgreementsShort instead.
 
   RetrieveAcceptedAgreements retrieves accepted legal agreements
 
@@ -739,7 +739,7 @@ func (a *Client) RetrieveAcceptedAgreementsShort(params *RetrieveAcceptedAgreeme
 }
 
 /*
-Deprecated: Use RetrieveAgreementsPublicShort instead.
+Deprecated: 2022-08-10 - Use RetrieveAgreementsPublicShort instead.
 
   RetrieveAgreementsPublic retrieves the accepted legal agreements
 
@@ -838,7 +838,7 @@ func (a *Client) RetrieveAgreementsPublicShort(params *RetrieveAgreementsPublicP
 }
 
 /*
-Deprecated: Use RetrieveAllUsersByPolicyVersionShort instead.
+Deprecated: 2022-08-10 - Use RetrieveAllUsersByPolicyVersionShort instead.
 
   RetrieveAllUsersByPolicyVersion retrieves all users accepting legal agreements
 

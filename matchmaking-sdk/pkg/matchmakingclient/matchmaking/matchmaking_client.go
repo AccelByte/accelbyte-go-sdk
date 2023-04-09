@@ -87,7 +87,7 @@ type ClientService interface {
 }
 
 /*
-Deprecated: Use AddUserIntoSessionInChannelShort instead.
+Deprecated: 2022-08-10 - Use AddUserIntoSessionInChannelShort instead.
 
   AddUserIntoSessionInChannel adds user into the session in a channel
 
@@ -214,7 +214,7 @@ func (a *Client) AddUserIntoSessionInChannelShort(params *AddUserIntoSessionInCh
 }
 
 /*
-Deprecated: Use BulkGetSessionsShort instead.
+Deprecated: 2022-08-10 - Use BulkGetSessionsShort instead.
 
   BulkGetSessions bulks get sessions
 
@@ -341,7 +341,7 @@ func (a *Client) BulkGetSessionsShort(params *BulkGetSessionsParams, authInfo ru
 }
 
 /*
-Deprecated: Use CreateChannelHandlerShort instead.
+Deprecated: 2022-08-10 - Use CreateChannelHandlerShort instead.
 
   CreateChannelHandler creates a channel
 
@@ -496,7 +496,7 @@ func (a *Client) CreateChannelHandlerShort(params *CreateChannelHandlerParams, a
 }
 
 /*
-Deprecated: Use DeleteChannelHandlerShort instead.
+Deprecated: 2022-08-10 - Use DeleteChannelHandlerShort instead.
 
   DeleteChannelHandler deletes a channel
 
@@ -621,7 +621,7 @@ func (a *Client) DeleteChannelHandlerShort(params *DeleteChannelHandlerParams, a
 }
 
 /*
-Deprecated: Use DeleteSessionInChannelShort instead.
+Deprecated: 2022-08-10 - Use DeleteSessionInChannelShort instead.
 
   DeleteSessionInChannel deletes session in a channel
 
@@ -748,7 +748,7 @@ func (a *Client) DeleteSessionInChannelShort(params *DeleteSessionInChannelParam
 }
 
 /*
-Deprecated: Use DeleteUserFromSessionInChannelShort instead.
+Deprecated: 2022-08-10 - Use DeleteUserFromSessionInChannelShort instead.
 
   DeleteUserFromSessionInChannel deletes user from the session in a channel
 
@@ -880,7 +880,7 @@ func (a *Client) DeleteUserFromSessionInChannelShort(params *DeleteUserFromSessi
 }
 
 /*
-Deprecated: Use DequeueSessionHandlerShort instead.
+Deprecated: 2022-08-10 - Use DequeueSessionHandlerShort instead.
 
   DequeueSessionHandler dequeues joinable session
 
@@ -1015,7 +1015,7 @@ func (a *Client) DequeueSessionHandlerShort(params *DequeueSessionHandlerParams,
 }
 
 /*
-Deprecated: Use ExportChannelsShort instead.
+Deprecated: 2022-08-10 - Use ExportChannelsShort instead.
 
   ExportChannels exports channels
 
@@ -1136,7 +1136,7 @@ func (a *Client) ExportChannelsShort(params *ExportChannelsParams, authInfo runt
 }
 
 /*
-Deprecated: Use GetAllChannelsHandlerShort instead.
+Deprecated: 2022-08-10 - Use GetAllChannelsHandlerShort instead.
 
   GetAllChannelsHandler gets all channels
 
@@ -1265,7 +1265,7 @@ func (a *Client) GetAllChannelsHandlerShort(params *GetAllChannelsHandlerParams,
 }
 
 /*
-Deprecated: Use GetAllPartyInAllChannelShort instead.
+Deprecated: 2022-08-10 - Use GetAllPartyInAllChannelShort instead.
 
   GetAllPartyInAllChannel gets all party in all channels
 
@@ -1392,7 +1392,7 @@ func (a *Client) GetAllPartyInAllChannelShort(params *GetAllPartyInAllChannelPar
 }
 
 /*
-Deprecated: Use GetAllPartyInChannelShort instead.
+Deprecated: 2022-08-10 - Use GetAllPartyInChannelShort instead.
 
   GetAllPartyInChannel gets all party in a channel
 
@@ -1519,7 +1519,7 @@ func (a *Client) GetAllPartyInChannelShort(params *GetAllPartyInChannelParams, a
 }
 
 /*
-Deprecated: Use GetAllSessionsInChannelShort instead.
+Deprecated: 2022-08-10 - Use GetAllSessionsInChannelShort instead.
 
   GetAllSessionsInChannel gets all channel sessions
 
@@ -1650,7 +1650,7 @@ func (a *Client) GetAllSessionsInChannelShort(params *GetAllSessionsInChannelPar
 }
 
 /*
-Deprecated: Use GetSessionHistoryDetailedShort instead.
+Deprecated: 2022-08-10 - Use GetSessionHistoryDetailedShort instead.
 
   GetSessionHistoryDetailed gets session history detailed
 
@@ -1799,7 +1799,7 @@ func (a *Client) GetSessionHistoryDetailedShort(params *GetSessionHistoryDetaile
 }
 
 /*
-Deprecated: Use GetSingleMatchmakingChannelShort instead.
+Deprecated: 2022-08-10 - Use GetSingleMatchmakingChannelShort instead.
 
   GetSingleMatchmakingChannel gets single channel
 
@@ -1930,7 +1930,7 @@ func (a *Client) GetSingleMatchmakingChannelShort(params *GetSingleMatchmakingCh
 }
 
 /*
-Deprecated: Use ImportChannelsShort instead.
+Deprecated: 2022-08-10 - Use ImportChannelsShort instead.
 
   ImportChannels imports channels
 
@@ -2062,7 +2062,7 @@ func (a *Client) ImportChannelsShort(params *ImportChannelsParams, authInfo runt
 }
 
 /*
-Deprecated: Use PublicGetAllMatchmakingChannelShort instead.
+Deprecated: 2022-08-10 - Use PublicGetAllMatchmakingChannelShort instead.
 
   PublicGetAllMatchmakingChannel gets all channels
 
@@ -2183,7 +2183,7 @@ func (a *Client) PublicGetAllMatchmakingChannelShort(params *PublicGetAllMatchma
 }
 
 /*
-Deprecated: Use PublicGetSingleMatchmakingChannelShort instead.
+Deprecated: 2022-08-10 - Use PublicGetSingleMatchmakingChannelShort instead.
 
   PublicGetSingleMatchmakingChannel gets single channel
 
@@ -2304,7 +2304,7 @@ func (a *Client) PublicGetSingleMatchmakingChannelShort(params *PublicGetSingleM
 }
 
 /*
-Deprecated: Use QuerySessionHandlerShort instead.
+Deprecated: 2022-08-10 - Use QuerySessionHandlerShort instead.
 
   QuerySessionHandler queries joinable session status
 
@@ -2445,7 +2445,7 @@ func (a *Client) QuerySessionHandlerShort(params *QuerySessionHandlerParams, aut
 }
 
 /*
-Deprecated: Use QueueSessionHandlerShort instead.
+Deprecated: 2022-08-10 - Use QueueSessionHandlerShort instead.
 
   QueueSessionHandler queues joinable session
 
@@ -2589,7 +2589,7 @@ func (a *Client) QueueSessionHandlerShort(params *QueueSessionHandlerParams, aut
 }
 
 /*
-Deprecated: Use RebalanceShort instead.
+Deprecated: 2022-08-10 - Use RebalanceShort instead.
 
   Rebalance rebalances matchmaking based on m m r
 
@@ -2724,7 +2724,7 @@ func (a *Client) RebalanceShort(params *RebalanceParams, authInfo runtime.Client
 }
 
 /*
-Deprecated: Use SearchSessionsShort instead.
+Deprecated: 2022-08-10 - Use SearchSessionsShort instead.
 
   SearchSessions searches sessions
 
@@ -2869,7 +2869,7 @@ func (a *Client) SearchSessionsShort(params *SearchSessionsParams, authInfo runt
 }
 
 /*
-Deprecated: Use SearchSessionsV2Short instead.
+Deprecated: 2022-08-10 - Use SearchSessionsV2Short instead.
 
   SearchSessionsV2 searches sessions
 
@@ -3014,7 +3014,7 @@ func (a *Client) SearchSessionsV2Short(params *SearchSessionsV2Params, authInfo 
 }
 
 /*
-Deprecated: Use StoreMatchResultsShort instead.
+Deprecated: 2022-08-10 - Use StoreMatchResultsShort instead.
 
   StoreMatchResults stores match result
 
@@ -3142,7 +3142,7 @@ func (a *Client) StoreMatchResultsShort(params *StoreMatchResultsParams, authInf
 }
 
 /*
-Deprecated: Use UpdateMatchmakingChannelShort instead.
+Deprecated: 2022-08-10 - Use UpdateMatchmakingChannelShort instead.
 
   UpdateMatchmakingChannel updates a channel
 

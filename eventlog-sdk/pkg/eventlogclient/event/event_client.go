@@ -56,7 +56,7 @@ type ClientService interface {
 }
 
 /*
-Deprecated: Use GetEventByEventIDHandlerShort instead.
+Deprecated: 2022-08-10 - Use GetEventByEventIDHandlerShort instead.
 
   GetEventByEventIDHandler gets events from all users in a namespace with specific event ID
 
@@ -175,7 +175,7 @@ func (a *Client) GetEventByEventIDHandlerShort(params *GetEventByEventIDHandlerP
 }
 
 /*
-Deprecated: Use GetEventByEventTypeAndEventIDHandlerShort instead.
+Deprecated: 2022-08-10 - Use GetEventByEventTypeAndEventIDHandlerShort instead.
 
   GetEventByEventTypeAndEventIDHandler gets events from all users in a namespace with specific event ID and event type
 
@@ -294,7 +294,7 @@ func (a *Client) GetEventByEventTypeAndEventIDHandlerShort(params *GetEventByEve
 }
 
 /*
-Deprecated: Use GetEventByEventTypeHandlerShort instead.
+Deprecated: 2022-08-10 - Use GetEventByEventTypeHandlerShort instead.
 
   GetEventByEventTypeHandler gets events from all users in a namespace with specific event type
 
@@ -413,7 +413,7 @@ func (a *Client) GetEventByEventTypeHandlerShort(params *GetEventByEventTypeHand
 }
 
 /*
-Deprecated: Use GetEventByNamespaceHandlerShort instead.
+Deprecated: 2022-08-10 - Use GetEventByNamespaceHandlerShort instead.
 
   GetEventByNamespaceHandler gets events from all users in a namespace
 
@@ -532,7 +532,7 @@ func (a *Client) GetEventByNamespaceHandlerShort(params *GetEventByNamespaceHand
 }
 
 /*
-Deprecated: Use GetEventByUserEventIDAndEventTypeHandlerShort instead.
+Deprecated: 2022-08-10 - Use GetEventByUserEventIDAndEventTypeHandlerShort instead.
 
   GetEventByUserEventIDAndEventTypeHandler gets events from specific user with specific event ID and event type
 
@@ -651,7 +651,7 @@ func (a *Client) GetEventByUserEventIDAndEventTypeHandlerShort(params *GetEventB
 }
 
 /*
-Deprecated: Use GetEventByUserIDAndEventIDHandlerShort instead.
+Deprecated: 2022-08-10 - Use GetEventByUserIDAndEventIDHandlerShort instead.
 
   GetEventByUserIDAndEventIDHandler gets events from specific user with specific event ID
 
@@ -770,7 +770,7 @@ func (a *Client) GetEventByUserIDAndEventIDHandlerShort(params *GetEventByUserID
 }
 
 /*
-Deprecated: Use GetEventByUserIDAndEventTypeHandlerShort instead.
+Deprecated: 2022-08-10 - Use GetEventByUserIDAndEventTypeHandlerShort instead.
 
   GetEventByUserIDAndEventTypeHandler gets events from specific user with specific event type
 
@@ -889,7 +889,7 @@ func (a *Client) GetEventByUserIDAndEventTypeHandlerShort(params *GetEventByUser
 }
 
 /*
-Deprecated: Use GetEventByUserIDHandlerShort instead.
+Deprecated: 2022-08-10 - Use GetEventByUserIDHandlerShort instead.
 
   GetEventByUserIDHandler gets events from specific user
 
@@ -1008,7 +1008,7 @@ func (a *Client) GetEventByUserIDHandlerShort(params *GetEventByUserIDHandlerPar
 }
 
 /*
-Deprecated: Use PostEventHandlerShort instead.
+Deprecated: 2022-08-10 - Use PostEventHandlerShort instead.
 
   PostEventHandler posts an activity log
 

@@ -68,7 +68,7 @@ type ClientService interface {
 }
 
 /*
-Deprecated: Use AdminRetrieveUserThirdPartyPlatformTokenV3Short instead.
+Deprecated: 2022-08-10 - Use AdminRetrieveUserThirdPartyPlatformTokenV3Short instead.
 
   AdminRetrieveUserThirdPartyPlatformTokenV3 admins retrieve user third party platform token
 
@@ -211,7 +211,7 @@ func (a *Client) AdminRetrieveUserThirdPartyPlatformTokenV3Short(params *AdminRe
 }
 
 /*
-Deprecated: Use AuthCodeRequestV3Short instead.
+Deprecated: 2022-08-10 - Use AuthCodeRequestV3Short instead.
 
   AuthCodeRequestV3 generates url to request auth code from third party platform
 
@@ -353,7 +353,7 @@ func (a *Client) AuthCodeRequestV3Short(params *AuthCodeRequestV3Params, authInf
 }
 
 /*
-Deprecated: Use AuthorizeV3Short instead.
+Deprecated: 2022-08-10 - Use AuthorizeV3Short instead.
 
   AuthorizeV3 os auth2 authorize API
 
@@ -515,7 +515,7 @@ func (a *Client) AuthorizeV3Short(params *AuthorizeV3Params, authInfo runtime.Cl
 }
 
 /*
-Deprecated: Use Change2FAMethodShort instead.
+Deprecated: 2022-08-10 - Use Change2FAMethodShort instead.
 
   Change2FAMethod changes 2FA method
 
@@ -640,7 +640,7 @@ func (a *Client) Change2FAMethodShort(params *Change2FAMethodParams, authInfo ru
 }
 
 /*
-Deprecated: Use GetJWKSV3Short instead.
+Deprecated: 2022-08-10 - Use GetJWKSV3Short instead.
 
   GetJWKSV3 JSONs web key set for verifying j w t
 
@@ -748,7 +748,7 @@ func (a *Client) GetJWKSV3Short(params *GetJWKSV3Params, authInfo runtime.Client
 }
 
 /*
-Deprecated: Use GetRevocationListV3Short instead.
+Deprecated: 2022-08-10 - Use GetRevocationListV3Short instead.
 
   GetRevocationListV3 os auth2 revocation list API
 
@@ -853,7 +853,7 @@ func (a *Client) GetRevocationListV3Short(params *GetRevocationListV3Params, aut
 }
 
 /*
-Deprecated: Use PlatformTokenGrantV3Short instead.
+Deprecated: 2022-08-10 - Use PlatformTokenGrantV3Short instead.
 
   PlatformTokenGrantV3 os auth2 access token generation specific to platform
 
@@ -1137,7 +1137,7 @@ func (a *Client) PlatformTokenGrantV3Short(params *PlatformTokenGrantV3Params, a
 }
 
 /*
-Deprecated: Use RetrieveUserThirdPartyPlatformTokenV3Short instead.
+Deprecated: 2022-08-10 - Use RetrieveUserThirdPartyPlatformTokenV3Short instead.
 
   RetrieveUserThirdPartyPlatformTokenV3 retrieves user third party platform token
 
@@ -1274,7 +1274,7 @@ func (a *Client) RetrieveUserThirdPartyPlatformTokenV3Short(params *RetrieveUser
 }
 
 /*
-Deprecated: Use RevokeUserV3Short instead.
+Deprecated: 2022-08-10 - Use RevokeUserV3Short instead.
 
   RevokeUserV3 revokes user s tokens
 
@@ -1391,7 +1391,7 @@ func (a *Client) RevokeUserV3Short(params *RevokeUserV3Params, authInfo runtime.
 }
 
 /*
-Deprecated: Use SendMFAAuthenticationCodeShort instead.
+Deprecated: 2022-08-10 - Use SendMFAAuthenticationCodeShort instead.
 
   SendMFAAuthenticationCode sends 2FA code
 
@@ -1514,7 +1514,7 @@ func (a *Client) SendMFAAuthenticationCodeShort(params *SendMFAAuthenticationCod
 }
 
 /*
-Deprecated: Use TokenGrantV3Short instead.
+Deprecated: 2022-08-10 - Use TokenGrantV3Short instead.
 
   TokenGrantV3 os auth2 access token generation endpoint
 
@@ -1776,7 +1776,7 @@ func (a *Client) TokenGrantV3Short(params *TokenGrantV3Params, authInfo runtime.
 }
 
 /*
-Deprecated: Use TokenIntrospectionV3Short instead.
+Deprecated: 2022-08-10 - Use TokenIntrospectionV3Short instead.
 
   TokenIntrospectionV3 os auth2 token introspection API
 
@@ -1884,7 +1884,7 @@ func (a *Client) TokenIntrospectionV3Short(params *TokenIntrospectionV3Params, a
 }
 
 /*
-Deprecated: Use TokenRevocationV3Short instead.
+Deprecated: 2022-08-10 - Use TokenRevocationV3Short instead.
 
   TokenRevocationV3 os auth2 token revocation API
 
@@ -1990,7 +1990,7 @@ func (a *Client) TokenRevocationV3Short(params *TokenRevocationV3Params, authInf
 }
 
 /*
-Deprecated: Use Verify2FACodeShort instead.
+Deprecated: 2022-08-10 - Use Verify2FACodeShort instead.
 
   Verify2FACode verifies 2FA code
 
@@ -2097,7 +2097,7 @@ func (a *Client) Verify2FACodeShort(params *Verify2FACodeParams, authInfo runtim
 }
 
 /*
-Deprecated: Use VerifyTokenV3Short instead.
+Deprecated: 2022-08-10 - Use VerifyTokenV3Short instead.
 
   VerifyTokenV3 os auth2 token verification API
 

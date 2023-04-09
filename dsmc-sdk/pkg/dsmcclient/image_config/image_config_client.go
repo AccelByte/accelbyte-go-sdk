@@ -66,7 +66,7 @@ type ClientService interface {
 }
 
 /*
-Deprecated: Use CreateImageShort instead.
+Deprecated: 2022-08-10 - Use CreateImageShort instead.
 
   CreateImage creates image
 
@@ -206,7 +206,7 @@ func (a *Client) CreateImageShort(params *CreateImageParams, authInfo runtime.Cl
 }
 
 /*
-Deprecated: Use CreateImagePatchShort instead.
+Deprecated: 2022-08-10 - Use CreateImagePatchShort instead.
 
   CreateImagePatch creates image patch
 
@@ -348,7 +348,7 @@ func (a *Client) CreateImagePatchShort(params *CreateImagePatchParams, authInfo 
 }
 
 /*
-Deprecated: Use DeleteImageShort instead.
+Deprecated: 2022-08-10 - Use DeleteImageShort instead.
 
   DeleteImage deletes an image
 
@@ -479,7 +479,7 @@ func (a *Client) DeleteImageShort(params *DeleteImageParams, authInfo runtime.Cl
 }
 
 /*
-Deprecated: Use DeleteImagePatchShort instead.
+Deprecated: 2022-08-10 - Use DeleteImagePatchShort instead.
 
   DeleteImagePatch deletes an image patch
 
@@ -606,7 +606,7 @@ func (a *Client) DeleteImagePatchShort(params *DeleteImagePatchParams, authInfo 
 }
 
 /*
-Deprecated: Use ExportImagesShort instead.
+Deprecated: 2022-08-10 - Use ExportImagesShort instead.
 
   ExportImages exports d s m controller images for a namespace
 
@@ -730,7 +730,7 @@ func (a *Client) ExportImagesShort(params *ExportImagesParams, authInfo runtime.
 }
 
 /*
-Deprecated: Use GetImageDetailShort instead.
+Deprecated: 2022-08-10 - Use GetImageDetailShort instead.
 
   GetImageDetail ds s image detail
 
@@ -847,7 +847,7 @@ func (a *Client) GetImageDetailShort(params *GetImageDetailParams, authInfo runt
 }
 
 /*
-Deprecated: Use GetImageLimitShort instead.
+Deprecated: 2022-08-10 - Use GetImageLimitShort instead.
 
   GetImageLimit ds s image limit
 
@@ -964,7 +964,7 @@ func (a *Client) GetImageLimitShort(params *GetImageLimitParams, authInfo runtim
 }
 
 /*
-Deprecated: Use GetImagePatchDetailShort instead.
+Deprecated: 2022-08-10 - Use GetImagePatchDetailShort instead.
 
   GetImagePatchDetail ds s image patch detail
 
@@ -1081,7 +1081,7 @@ func (a *Client) GetImagePatchDetailShort(params *GetImagePatchDetailParams, aut
 }
 
 /*
-Deprecated: Use GetImagePatchesShort instead.
+Deprecated: 2022-08-10 - Use GetImagePatchesShort instead.
 
   GetImagePatches gets all image patches by version
 
@@ -1197,7 +1197,7 @@ func (a *Client) GetImagePatchesShort(params *GetImagePatchesParams, authInfo ru
 }
 
 /*
-Deprecated: Use ImageDetailClientShort instead.
+Deprecated: 2022-08-10 - Use ImageDetailClientShort instead.
 
   ImageDetailClient ds s image detail client
 
@@ -1314,7 +1314,7 @@ func (a *Client) ImageDetailClientShort(params *ImageDetailClientParams, authInf
 }
 
 /*
-Deprecated: Use ImageLimitClientShort instead.
+Deprecated: 2022-08-10 - Use ImageLimitClientShort instead.
 
   ImageLimitClient ds s image limit for client
 
@@ -1431,7 +1431,7 @@ func (a *Client) ImageLimitClientShort(params *ImageLimitClientParams, authInfo 
 }
 
 /*
-Deprecated: Use ImportImagesShort instead.
+Deprecated: 2022-08-10 - Use ImportImagesShort instead.
 
   ImportImages imports images for a namespace
 
@@ -1579,7 +1579,7 @@ func (a *Client) ImportImagesShort(params *ImportImagesParams, authInfo runtime.
 }
 
 /*
-Deprecated: Use ListImagesShort instead.
+Deprecated: 2022-08-10 - Use ListImagesShort instead.
 
   ListImages lists all d s images
 
@@ -1700,7 +1700,7 @@ func (a *Client) ListImagesShort(params *ListImagesParams, authInfo runtime.Clie
 }
 
 /*
-Deprecated: Use UpdateImageShort instead.
+Deprecated: 2022-08-10 - Use UpdateImageShort instead.
 
   UpdateImage updates image
 

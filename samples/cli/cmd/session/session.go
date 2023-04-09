@@ -34,6 +34,7 @@ func init() {
 	SessionCmd.AddCommand(configurationTemplate.AdminGetDSMCConfigurationCmd)
 	SessionCmd.AddCommand(configurationTemplate.AdminSyncDSMCConfigurationCmd)
 	SessionCmd.AddCommand(gameSession.AdminQueryGameSessionsCmd)
+	SessionCmd.AddCommand(gameSession.AdminDeleteBulkGameSessionsCmd)
 	SessionCmd.AddCommand(gameSession.AdminUpdateGameSessionMemberCmd)
 	SessionCmd.AddCommand(party.AdminQueryPartiesCmd)
 	SessionCmd.AddCommand(player.AdminQueryPlayerAttributesCmd)

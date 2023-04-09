@@ -40,7 +40,7 @@ type ClientService interface {
 }
 
 /*
-Deprecated: Use AdminAnonymizeUserAchievementShort instead.
+Deprecated: 2022-08-10 - Use AdminAnonymizeUserAchievementShort instead.
 
   AdminAnonymizeUserAchievement anonymizes user s achievement
 

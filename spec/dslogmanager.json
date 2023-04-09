@@ -13,6 +13,10 @@
   "schemes": [
     "https"
   ],
+  "externalDocs": {
+    "description": "API Docs",
+    "url": "https://stage.accelbyte.io/dslogmanager/apidocs"
+  },
   "securityDefinitions": {
     "HasPermission": {
       "authorizationUrl": "https://dummy.oauth.net/auth",
@@ -1037,5 +1041,18 @@
         "errorMessage"
       ]
     }
+  },
+  "x-docs": {
+    "alias": "dslogmanager",
+    "host": "https://stage.accelbyte.io",
+    "path": "/dslogmanager/apidocs/api.json"
+  },
+  "x-version": {
+    "buildDate": "2023-02-23T11:43:57+00:00",
+    "gitHash": "f1fcac43a2ad2f03c68d210a623af348c95103f5",
+    "name": "justice-ds-log-manager-service",
+    "revisionID": "3.2.0",
+    "version": "3.2.0",
+    "version-roles-seeding": "0.0.3"
   }
 }

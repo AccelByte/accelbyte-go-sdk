@@ -52,7 +52,7 @@ type ClientService interface {
 }
 
 /*
-Deprecated: Use CreateSectionShort instead.
+Deprecated: 2022-08-10 - Use CreateSectionShort instead.
 
   CreateSection creates a section
 
@@ -166,7 +166,7 @@ func (a *Client) CreateSectionShort(params *CreateSectionParams, authInfo runtim
 }
 
 /*
-Deprecated: Use DeleteSectionShort instead.
+Deprecated: 2022-08-10 - Use DeleteSectionShort instead.
 
   DeleteSection deletes a section
 
@@ -270,7 +270,7 @@ func (a *Client) DeleteSectionShort(params *DeleteSectionParams, authInfo runtim
 }
 
 /*
-Deprecated: Use GetSectionShort instead.
+Deprecated: 2022-08-10 - Use GetSectionShort instead.
 
   GetSection gets a section
 
@@ -369,7 +369,7 @@ func (a *Client) GetSectionShort(params *GetSectionParams, authInfo runtime.Clie
 }
 
 /*
-Deprecated: Use PublicListActiveSectionsShort instead.
+Deprecated: 2022-08-10 - Use PublicListActiveSectionsShort instead.
 
   PublicListActiveSections lists active section contents
 
@@ -468,7 +468,7 @@ func (a *Client) PublicListActiveSectionsShort(params *PublicListActiveSectionsP
 }
 
 /*
-Deprecated: Use PurgeExpiredSectionShort instead.
+Deprecated: 2022-08-10 - Use PurgeExpiredSectionShort instead.
 
   PurgeExpiredSection purges expired section
 
@@ -567,7 +567,7 @@ func (a *Client) PurgeExpiredSectionShort(params *PurgeExpiredSectionParams, aut
 }
 
 /*
-Deprecated: Use QuerySectionsShort instead.
+Deprecated: 2022-08-10 - Use QuerySectionsShort instead.
 
   QuerySections lists sections
 
@@ -671,7 +671,7 @@ func (a *Client) QuerySectionsShort(params *QuerySectionsParams, authInfo runtim
 }
 
 /*
-Deprecated: Use UpdateSectionShort instead.
+Deprecated: 2022-08-10 - Use UpdateSectionShort instead.
 
   UpdateSection updates s section
 

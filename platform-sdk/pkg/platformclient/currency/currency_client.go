@@ -52,7 +52,7 @@ type ClientService interface {
 }
 
 /*
-Deprecated: Use CreateCurrencyShort instead.
+Deprecated: 2022-08-10 - Use CreateCurrencyShort instead.
 
   CreateCurrency creates a currency
 
@@ -156,7 +156,7 @@ func (a *Client) CreateCurrencyShort(params *CreateCurrencyParams, authInfo runt
 }
 
 /*
-Deprecated: Use DeleteCurrencyShort instead.
+Deprecated: 2022-08-10 - Use DeleteCurrencyShort instead.
 
   DeleteCurrency deletes a currency
 
@@ -255,7 +255,7 @@ func (a *Client) DeleteCurrencyShort(params *DeleteCurrencyParams, authInfo runt
 }
 
 /*
-Deprecated: Use GetCurrencyConfigShort instead.
+Deprecated: 2022-08-10 - Use GetCurrencyConfigShort instead.
 
   GetCurrencyConfig gets currency config
 
@@ -354,7 +354,7 @@ func (a *Client) GetCurrencyConfigShort(params *GetCurrencyConfigParams, authInf
 }
 
 /*
-Deprecated: Use GetCurrencySummaryShort instead.
+Deprecated: 2022-08-10 - Use GetCurrencySummaryShort instead.
 
   GetCurrencySummary gets currency summary
 
@@ -453,7 +453,7 @@ func (a *Client) GetCurrencySummaryShort(params *GetCurrencySummaryParams, authI
 }
 
 /*
-Deprecated: Use ListCurrenciesShort instead.
+Deprecated: 2022-08-10 - Use ListCurrenciesShort instead.
 
   ListCurrencies lists currencies
 
@@ -547,7 +547,7 @@ func (a *Client) ListCurrenciesShort(params *ListCurrenciesParams, authInfo runt
 }
 
 /*
-Deprecated: Use PublicListCurrenciesShort instead.
+Deprecated: 2022-08-10 - Use PublicListCurrenciesShort instead.
 
   PublicListCurrencies lists currencies
 
@@ -639,7 +639,7 @@ func (a *Client) PublicListCurrenciesShort(params *PublicListCurrenciesParams) (
 }
 
 /*
-Deprecated: Use UpdateCurrencyShort instead.
+Deprecated: 2022-08-10 - Use UpdateCurrencyShort instead.
 
   UpdateCurrency updates a currency
 

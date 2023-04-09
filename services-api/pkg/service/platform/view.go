@@ -39,7 +39,7 @@ func (aaa *ViewService) GetAuthSession() auth.Session {
 	}
 }
 
-// deprecated(2022-01-10): please use ListViewsShort instead.
+// Deprecated: 2022-01-10 - please use ListViewsShort instead.
 func (aaa *ViewService) ListViews(input *view.ListViewsParams) ([]*platformclientmodels.ListViewInfo, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -59,7 +59,7 @@ func (aaa *ViewService) ListViews(input *view.ListViewsParams) ([]*platformclien
 	return ok.GetPayload(), nil
 }
 
-// deprecated(2022-01-10): please use CreateViewShort instead.
+// Deprecated: 2022-01-10 - please use CreateViewShort instead.
 func (aaa *ViewService) CreateView(input *view.CreateViewParams) (*platformclientmodels.FullViewInfo, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -85,7 +85,7 @@ func (aaa *ViewService) CreateView(input *view.CreateViewParams) (*platformclien
 	return created.GetPayload(), nil
 }
 
-// deprecated(2022-01-10): please use GetViewShort instead.
+// Deprecated: 2022-01-10 - please use GetViewShort instead.
 func (aaa *ViewService) GetView(input *view.GetViewParams) (*platformclientmodels.FullViewInfo, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -102,7 +102,7 @@ func (aaa *ViewService) GetView(input *view.GetViewParams) (*platformclientmodel
 	return ok.GetPayload(), nil
 }
 
-// deprecated(2022-01-10): please use UpdateViewShort instead.
+// Deprecated: 2022-01-10 - please use UpdateViewShort instead.
 func (aaa *ViewService) UpdateView(input *view.UpdateViewParams) (*platformclientmodels.FullViewInfo, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -128,7 +128,7 @@ func (aaa *ViewService) UpdateView(input *view.UpdateViewParams) (*platformclien
 	return ok.GetPayload(), nil
 }
 
-// deprecated(2022-01-10): please use DeleteViewShort instead.
+// Deprecated: 2022-01-10 - please use DeleteViewShort instead.
 func (aaa *ViewService) DeleteView(input *view.DeleteViewParams) error {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -148,7 +148,7 @@ func (aaa *ViewService) DeleteView(input *view.DeleteViewParams) error {
 	return nil
 }
 
-// deprecated(2022-01-10): please use PublicListViewsShort instead.
+// Deprecated: 2022-01-10 - please use PublicListViewsShort instead.
 func (aaa *ViewService) PublicListViews(input *view.PublicListViewsParams) ([]*platformclientmodels.ViewInfo, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {

@@ -46,7 +46,7 @@ type ClientService interface {
 }
 
 /*
-Deprecated: Use GeneratedUploadURLShort instead.
+Deprecated: 2022-08-10 - Use GeneratedUploadURLShort instead.
 
   GeneratedUploadURL generates upload URL
 
@@ -160,7 +160,7 @@ func (a *Client) GeneratedUploadURLShort(params *GeneratedUploadURLParams, authI
 }
 
 /*
-Deprecated: Use GeneratedUserUploadContentURLShort instead.
+Deprecated: 2022-08-10 - Use GeneratedUserUploadContentURLShort instead.
 
   GeneratedUserUploadContentURL generates upload URL for user content
 
@@ -279,7 +279,7 @@ func (a *Client) GeneratedUserUploadContentURLShort(params *GeneratedUserUploadC
 }
 
 /*
-Deprecated: Use PublicGeneratedUploadURLShort instead.
+Deprecated: 2022-08-10 - Use PublicGeneratedUploadURLShort instead.
 
   PublicGeneratedUploadURL generates upload URL
 
@@ -393,7 +393,7 @@ func (a *Client) PublicGeneratedUploadURLShort(params *PublicGeneratedUploadURLP
 }
 
 /*
-Deprecated: Use PublicGeneratedUserUploadContentURLShort instead.
+Deprecated: 2022-08-10 - Use PublicGeneratedUserUploadContentURLShort instead.
 
   PublicGeneratedUserUploadContentURL generates upload URL for user content
 

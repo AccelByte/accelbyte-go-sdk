@@ -48,7 +48,7 @@ type ClientService interface {
 }
 
 /*
-Deprecated: Use DeleteGameRecordHandlerV1Short instead.
+Deprecated: 2022-08-10 - Use DeleteGameRecordHandlerV1Short instead.
 
   DeleteGameRecordHandlerV1 deletes game record
 
@@ -183,7 +183,7 @@ func (a *Client) DeleteGameRecordHandlerV1Short(params *DeleteGameRecordHandlerV
 }
 
 /*
-Deprecated: Use GetGameRecordHandlerV1Short instead.
+Deprecated: 2022-08-10 - Use GetGameRecordHandlerV1Short instead.
 
   GetGameRecordHandlerV1 gets game record
 
@@ -316,7 +316,7 @@ func (a *Client) GetGameRecordHandlerV1Short(params *GetGameRecordHandlerV1Param
 }
 
 /*
-Deprecated: Use GetGameRecordsBulkShort instead.
+Deprecated: 2022-08-10 - Use GetGameRecordsBulkShort instead.
 
   GetGameRecordsBulk bulks get game records
 
@@ -454,7 +454,7 @@ func (a *Client) GetGameRecordsBulkShort(params *GetGameRecordsBulkParams, authI
 }
 
 /*
-Deprecated: Use PostGameRecordHandlerV1Short instead.
+Deprecated: 2022-08-10 - Use PostGameRecordHandlerV1Short instead.
 
   PostGameRecordHandlerV1 creates or append game record
 
@@ -642,7 +642,7 @@ func (a *Client) PostGameRecordHandlerV1Short(params *PostGameRecordHandlerV1Par
 }
 
 /*
-Deprecated: Use PutGameRecordHandlerV1Short instead.
+Deprecated: 2022-08-10 - Use PutGameRecordHandlerV1Short instead.
 
   PutGameRecordHandlerV1 creates or replace game record
 

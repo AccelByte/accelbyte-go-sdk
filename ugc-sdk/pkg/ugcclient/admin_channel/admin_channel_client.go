@@ -33,7 +33,7 @@ type Client struct {
 
 // ClientService is the interface for Client methods
 type ClientService interface {
-	AdminCreateChannel(params *AdminCreateChannelParams, authInfo runtime.ClientAuthInfoWriter) (*AdminCreateChannelCreated, *AdminCreateChannelBadRequest, *AdminCreateChannelUnauthorized, *AdminCreateChannelInternalServerError, error)
+	AdminCreateChannel(params *AdminCreateChannelParams, authInfo runtime.ClientAuthInfoWriter) (*AdminCreateChannelCreated, *AdminCreateChannelBadRequest, *AdminCreateChannelUnauthorized, *AdminCreateChannelConflict, *AdminCreateChannelInternalServerError, error)
 	AdminCreateChannelShort(params *AdminCreateChannelParams, authInfo runtime.ClientAuthInfoWriter) (*AdminCreateChannelCreated, error)
 	AdminDeleteChannel(params *AdminDeleteChannelParams, authInfo runtime.ClientAuthInfoWriter) (*AdminDeleteChannelNoContent, *AdminDeleteChannelUnauthorized, *AdminDeleteChannelNotFound, *AdminDeleteChannelInternalServerError, error)
 	AdminDeleteChannelShort(params *AdminDeleteChannelParams, authInfo runtime.ClientAuthInfoWriter) (*AdminDeleteChannelNoContent, error)
@@ -52,13 +52,13 @@ type ClientService interface {
 }
 
 /*
-Deprecated: Use AdminCreateChannelShort instead.
+Deprecated: 2022-08-10 - Use AdminCreateChannelShort instead.
 
   AdminCreateChannel creates channel
 
   Required permission &lt;b&gt;ADMIN:NAMESPACE:{namespace}:USER:{userId}:CHANNEL [CREATE]&lt;/b&gt;
 */
-func (a *Client) AdminCreateChannel(params *AdminCreateChannelParams, authInfo runtime.ClientAuthInfoWriter) (*AdminCreateChannelCreated, *AdminCreateChannelBadRequest, *AdminCreateChannelUnauthorized, *AdminCreateChannelInternalServerError, error) {
+func (a *Client) AdminCreateChannel(params *AdminCreateChannelParams, authInfo runtime.ClientAuthInfoWriter) (*AdminCreateChannelCreated, *AdminCreateChannelBadRequest, *AdminCreateChannelUnauthorized, *AdminCreateChannelConflict, *AdminCreateChannelInternalServerError, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewAdminCreateChannelParams()
@@ -86,25 +86,28 @@ func (a *Client) AdminCreateChannel(params *AdminCreateChannelParams, authInfo r
 		Client:             params.HTTPClient,
 	})
 	if err != nil {
-		return nil, nil, nil, nil, err
+		return nil, nil, nil, nil, nil, err
 	}
 
 	switch v := result.(type) {
 
 	case *AdminCreateChannelCreated:
-		return v, nil, nil, nil, nil
+		return v, nil, nil, nil, nil, nil
 
 	case *AdminCreateChannelBadRequest:
-		return nil, v, nil, nil, nil
+		return nil, v, nil, nil, nil, nil
 
 	case *AdminCreateChannelUnauthorized:
-		return nil, nil, v, nil, nil
+		return nil, nil, v, nil, nil, nil
+
+	case *AdminCreateChannelConflict:
+		return nil, nil, nil, v, nil, nil
 
 	case *AdminCreateChannelInternalServerError:
-		return nil, nil, nil, v, nil
+		return nil, nil, nil, nil, v, nil
 
 	default:
-		return nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+		return nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
@@ -152,6 +155,8 @@ func (a *Client) AdminCreateChannelShort(params *AdminCreateChannelParams, authI
 		return nil, v
 	case *AdminCreateChannelUnauthorized:
 		return nil, v
+	case *AdminCreateChannelConflict:
+		return nil, v
 	case *AdminCreateChannelInternalServerError:
 		return nil, v
 
@@ -161,7 +166,7 @@ func (a *Client) AdminCreateChannelShort(params *AdminCreateChannelParams, authI
 }
 
 /*
-Deprecated: Use AdminDeleteChannelShort instead.
+Deprecated: 2022-08-10 - Use AdminDeleteChannelShort instead.
 
   AdminDeleteChannel deletes channel
 
@@ -270,7 +275,7 @@ func (a *Client) AdminDeleteChannelShort(params *AdminDeleteChannelParams, authI
 }
 
 /*
-Deprecated: Use AdminGetChannelShort instead.
+Deprecated: 2022-08-10 - Use AdminGetChannelShort instead.
 
   AdminGetChannel gets channels
 
@@ -379,7 +384,7 @@ func (a *Client) AdminGetChannelShort(params *AdminGetChannelParams, authInfo ru
 }
 
 /*
-Deprecated: Use AdminUpdateChannelShort instead.
+Deprecated: 2022-08-10 - Use AdminUpdateChannelShort instead.
 
   AdminUpdateChannel updates channel
 
@@ -493,7 +498,7 @@ func (a *Client) AdminUpdateChannelShort(params *AdminUpdateChannelParams, authI
 }
 
 /*
-Deprecated: Use SingleAdminDeleteChannelShort instead.
+Deprecated: 2022-08-10 - Use SingleAdminDeleteChannelShort instead.
 
   SingleAdminDeleteChannel deletes channel
 
@@ -602,7 +607,7 @@ func (a *Client) SingleAdminDeleteChannelShort(params *SingleAdminDeleteChannelP
 }
 
 /*
-Deprecated: Use SingleAdminGetChannelShort instead.
+Deprecated: 2022-08-10 - Use SingleAdminGetChannelShort instead.
 
   SingleAdminGetChannel gets channels
 
@@ -711,7 +716,7 @@ func (a *Client) SingleAdminGetChannelShort(params *SingleAdminGetChannelParams,
 }
 
 /*
-Deprecated: Use SingleAdminUpdateChannelShort instead.
+Deprecated: 2022-08-10 - Use SingleAdminUpdateChannelShort instead.
 
   SingleAdminUpdateChannel updates channel
 

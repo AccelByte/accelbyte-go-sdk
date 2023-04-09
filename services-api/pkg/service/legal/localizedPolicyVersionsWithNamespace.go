@@ -39,7 +39,7 @@ func (aaa *LocalizedPolicyVersionsWithNamespaceService) GetAuthSession() auth.Se
 	}
 }
 
-// deprecated(2022-01-10): please use RetrieveLocalizedPolicyVersions1Short instead.
+// Deprecated: 2022-01-10 - please use RetrieveLocalizedPolicyVersions1Short instead.
 func (aaa *LocalizedPolicyVersionsWithNamespaceService) RetrieveLocalizedPolicyVersions1(input *localized_policy_versions_with_namespace.RetrieveLocalizedPolicyVersions1Params) ([]*legalclientmodels.RetrieveLocalizedPolicyVersionResponse, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -53,7 +53,7 @@ func (aaa *LocalizedPolicyVersionsWithNamespaceService) RetrieveLocalizedPolicyV
 	return ok.GetPayload(), nil
 }
 
-// deprecated(2022-01-10): please use CreateLocalizedPolicyVersion1Short instead.
+// Deprecated: 2022-01-10 - please use CreateLocalizedPolicyVersion1Short instead.
 func (aaa *LocalizedPolicyVersionsWithNamespaceService) CreateLocalizedPolicyVersion1(input *localized_policy_versions_with_namespace.CreateLocalizedPolicyVersion1Params) (*legalclientmodels.CreateLocalizedPolicyVersionResponse, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -73,7 +73,7 @@ func (aaa *LocalizedPolicyVersionsWithNamespaceService) CreateLocalizedPolicyVer
 	return created.GetPayload(), nil
 }
 
-// deprecated(2022-01-10): please use RetrieveSingleLocalizedPolicyVersion1Short instead.
+// Deprecated: 2022-01-10 - please use RetrieveSingleLocalizedPolicyVersion1Short instead.
 func (aaa *LocalizedPolicyVersionsWithNamespaceService) RetrieveSingleLocalizedPolicyVersion1(input *localized_policy_versions_with_namespace.RetrieveSingleLocalizedPolicyVersion1Params) (*legalclientmodels.RetrieveLocalizedPolicyVersionResponse, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -90,7 +90,7 @@ func (aaa *LocalizedPolicyVersionsWithNamespaceService) RetrieveSingleLocalizedP
 	return ok.GetPayload(), nil
 }
 
-// deprecated(2022-01-10): please use UpdateLocalizedPolicyVersion1Short instead.
+// Deprecated: 2022-01-10 - please use UpdateLocalizedPolicyVersion1Short instead.
 func (aaa *LocalizedPolicyVersionsWithNamespaceService) UpdateLocalizedPolicyVersion1(input *localized_policy_versions_with_namespace.UpdateLocalizedPolicyVersion1Params) (*legalclientmodels.UpdateLocalizedPolicyVersionResponse, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -107,7 +107,7 @@ func (aaa *LocalizedPolicyVersionsWithNamespaceService) UpdateLocalizedPolicyVer
 	return ok.GetPayload(), nil
 }
 
-// deprecated(2022-01-10): please use RequestPresignedURL1Short instead.
+// Deprecated: 2022-01-10 - please use RequestPresignedURL1Short instead.
 func (aaa *LocalizedPolicyVersionsWithNamespaceService) RequestPresignedURL1(input *localized_policy_versions_with_namespace.RequestPresignedURL1Params) (*legalclientmodels.UploadLocalizedPolicyVersionAttachmentResponse, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -124,7 +124,7 @@ func (aaa *LocalizedPolicyVersionsWithNamespaceService) RequestPresignedURL1(inp
 	return created.GetPayload(), nil
 }
 
-// deprecated(2022-01-10): please use SetDefaultPolicy1Short instead.
+// Deprecated: 2022-01-10 - please use SetDefaultPolicy1Short instead.
 func (aaa *LocalizedPolicyVersionsWithNamespaceService) SetDefaultPolicy1(input *localized_policy_versions_with_namespace.SetDefaultPolicy1Params) error {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -138,7 +138,7 @@ func (aaa *LocalizedPolicyVersionsWithNamespaceService) SetDefaultPolicy1(input 
 	return nil
 }
 
-// deprecated(2022-01-10): please use RetrieveSingleLocalizedPolicyVersion3Short instead.
+// Deprecated: 2022-01-10 - please use RetrieveSingleLocalizedPolicyVersion3Short instead.
 func (aaa *LocalizedPolicyVersionsWithNamespaceService) RetrieveSingleLocalizedPolicyVersion3(input *localized_policy_versions_with_namespace.RetrieveSingleLocalizedPolicyVersion3Params) (*legalclientmodels.RetrieveLocalizedPolicyVersionPublicResponse, error) {
 	ok, notFound, err := aaa.Client.LocalizedPolicyVersionsWithNamespace.RetrieveSingleLocalizedPolicyVersion3(input)
 	if notFound != nil {

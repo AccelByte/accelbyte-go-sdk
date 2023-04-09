@@ -60,7 +60,7 @@ type ClientService interface {
 }
 
 /*
-Deprecated: Use AuthenticationWithPlatformLinkV3Short instead.
+Deprecated: 2022-08-10 - Use AuthenticationWithPlatformLinkV3Short instead.
 
   AuthenticationWithPlatformLinkV3 authentications with platform link
 
@@ -185,7 +185,7 @@ func (a *Client) AuthenticationWithPlatformLinkV3Short(params *AuthenticationWit
 }
 
 /*
-Deprecated: Use GenerateTokenByNewHeadlessAccountV3Short instead.
+Deprecated: 2022-08-10 - Use GenerateTokenByNewHeadlessAccountV3Short instead.
 
   GenerateTokenByNewHeadlessAccountV3 creates headless account and response token
 
@@ -298,7 +298,7 @@ func (a *Client) GenerateTokenByNewHeadlessAccountV3Short(params *GenerateTokenB
 }
 
 /*
-Deprecated: Use GetCountryLocationV3Short instead.
+Deprecated: 2022-08-10 - Use GetCountryLocationV3Short instead.
 
   GetCountryLocationV3 gets country location
 
@@ -392,7 +392,7 @@ func (a *Client) GetCountryLocationV3Short(params *GetCountryLocationV3Params, a
 }
 
 /*
-Deprecated: Use LogoutShort instead.
+Deprecated: 2022-08-10 - Use LogoutShort instead.
 
   Logout logouts
 
@@ -496,7 +496,7 @@ func (a *Client) LogoutShort(params *LogoutParams, authInfo runtime.ClientAuthIn
 }
 
 /*
-Deprecated: Use PlatformAuthenticationV3Short instead.
+Deprecated: 2022-08-10 - Use PlatformAuthenticationV3Short instead.
 
   PlatformAuthenticationV3 platforms authentication API
 
@@ -640,7 +640,7 @@ func (a *Client) PlatformAuthenticationV3Short(params *PlatformAuthenticationV3P
 }
 
 /*
-Deprecated: Use RequestGameTokenCodeResponseV3Short instead.
+Deprecated: 2022-08-10 - Use RequestGameTokenCodeResponseV3Short instead.
 
   RequestGameTokenCodeResponseV3 requests code to get game token
 
@@ -744,7 +744,7 @@ func (a *Client) RequestGameTokenCodeResponseV3Short(params *RequestGameTokenCod
 }
 
 /*
-Deprecated: Use RequestGameTokenResponseV3Short instead.
+Deprecated: 2022-08-10 - Use RequestGameTokenResponseV3Short instead.
 
   RequestGameTokenResponseV3 generates game token by code
 
@@ -844,7 +844,7 @@ func (a *Client) RequestGameTokenResponseV3Short(params *RequestGameTokenRespons
 }
 
 /*
-Deprecated: Use RequestOneTimeLinkingCodeV3Short instead.
+Deprecated: 2022-08-10 - Use RequestOneTimeLinkingCodeV3Short instead.
 
   RequestOneTimeLinkingCodeV3 generates one time linking code
 
@@ -994,7 +994,7 @@ func (a *Client) RequestOneTimeLinkingCodeV3Short(params *RequestOneTimeLinkingC
 }
 
 /*
-Deprecated: Use RequestTokenByOneTimeLinkCodeResponseV3Short instead.
+Deprecated: 2022-08-10 - Use RequestTokenByOneTimeLinkCodeResponseV3Short instead.
 
   RequestTokenByOneTimeLinkCodeResponseV3 generates publisher token by headless account s one time link code
 
@@ -1092,7 +1092,7 @@ func (a *Client) RequestTokenByOneTimeLinkCodeResponseV3Short(params *RequestTok
 }
 
 /*
-Deprecated: Use UserAuthenticationV3Short instead.
+Deprecated: 2022-08-10 - Use UserAuthenticationV3Short instead.
 
   UserAuthenticationV3 authentications API
 
@@ -1206,7 +1206,7 @@ func (a *Client) UserAuthenticationV3Short(params *UserAuthenticationV3Params, a
 }
 
 /*
-Deprecated: Use ValidateOneTimeLinkingCodeV3Short instead.
+Deprecated: 2022-08-10 - Use ValidateOneTimeLinkingCodeV3Short instead.
 
   ValidateOneTimeLinkingCodeV3 validates one time linking code
 

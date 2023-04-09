@@ -62,7 +62,7 @@ type ClientService interface {
 }
 
 /*
-Deprecated: Use AdminGetAllReasonsShort instead.
+Deprecated: 2022-08-10 - Use AdminGetAllReasonsShort instead.
 
   AdminGetAllReasons gets all reasons
 
@@ -163,7 +163,7 @@ func (a *Client) AdminGetAllReasonsShort(params *AdminGetAllReasonsParams, authI
 }
 
 /*
-Deprecated: Use AdminGetReasonShort instead.
+Deprecated: 2022-08-10 - Use AdminGetReasonShort instead.
 
   AdminGetReason gets a single reason
 
@@ -267,7 +267,7 @@ func (a *Client) AdminGetReasonShort(params *AdminGetReasonParams, authInfo runt
 }
 
 /*
-Deprecated: Use AdminGetReasonsShort instead.
+Deprecated: 2022-08-10 - Use AdminGetReasonsShort instead.
 
   AdminGetReasons gets list of reasons
 */
@@ -367,7 +367,7 @@ func (a *Client) AdminGetReasonsShort(params *AdminGetReasonsParams, authInfo ru
 }
 
 /*
-Deprecated: Use AdminGetUnusedReasonsShort instead.
+Deprecated: 2022-08-10 - Use AdminGetUnusedReasonsShort instead.
 
   AdminGetUnusedReasons gets list of reasons that not used by moderation rules
 
@@ -473,7 +473,7 @@ func (a *Client) AdminGetUnusedReasonsShort(params *AdminGetUnusedReasonsParams,
 }
 
 /*
-Deprecated: Use AdminListReasonGroupsShort instead.
+Deprecated: 2022-08-10 - Use AdminListReasonGroupsShort instead.
 
   AdminListReasonGroups lists reason groups under a namespace
 
@@ -574,7 +574,7 @@ func (a *Client) AdminListReasonGroupsShort(params *AdminListReasonGroupsParams,
 }
 
 /*
-Deprecated: Use CreateReasonShort instead.
+Deprecated: 2022-08-10 - Use CreateReasonShort instead.
 
   CreateReason creates a report reason
 
@@ -683,7 +683,7 @@ func (a *Client) CreateReasonShort(params *CreateReasonParams, authInfo runtime.
 }
 
 /*
-Deprecated: Use CreateReasonGroupShort instead.
+Deprecated: 2022-08-10 - Use CreateReasonGroupShort instead.
 
   CreateReasonGroup creates a reason group
 
@@ -796,7 +796,7 @@ func (a *Client) CreateReasonGroupShort(params *CreateReasonGroupParams, authInf
 }
 
 /*
-Deprecated: Use DeleteReasonShort instead.
+Deprecated: 2022-08-10 - Use DeleteReasonShort instead.
 
   DeleteReason deletes a report reason
 
@@ -895,7 +895,7 @@ func (a *Client) DeleteReasonShort(params *DeleteReasonParams, authInfo runtime.
 }
 
 /*
-Deprecated: Use DeleteReasonGroupShort instead.
+Deprecated: 2022-08-10 - Use DeleteReasonGroupShort instead.
 
   DeleteReasonGroup deletes a reason group
 
@@ -994,7 +994,7 @@ func (a *Client) DeleteReasonGroupShort(params *DeleteReasonGroupParams, authInf
 }
 
 /*
-Deprecated: Use GetReasonGroupShort instead.
+Deprecated: 2022-08-10 - Use GetReasonGroupShort instead.
 
   GetReasonGroup gets reason group
 
@@ -1098,7 +1098,7 @@ func (a *Client) GetReasonGroupShort(params *GetReasonGroupParams, authInfo runt
 }
 
 /*
-Deprecated: Use UpdateReasonShort instead.
+Deprecated: 2022-08-10 - Use UpdateReasonShort instead.
 
   UpdateReason updates a report reason
 
@@ -1207,7 +1207,7 @@ func (a *Client) UpdateReasonShort(params *UpdateReasonParams, authInfo runtime.
 }
 
 /*
-Deprecated: Use UpdateReasonGroupShort instead.
+Deprecated: 2022-08-10 - Use UpdateReasonGroupShort instead.
 
   UpdateReasonGroup updates a reason group
 

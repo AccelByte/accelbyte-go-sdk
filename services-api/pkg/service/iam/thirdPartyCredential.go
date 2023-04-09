@@ -39,7 +39,7 @@ func (aaa *ThirdPartyCredentialService) GetAuthSession() auth.Session {
 	}
 }
 
-// deprecated(2022-01-10): please use RetrieveAllThirdPartyLoginPlatformCredentialV3Short instead.
+// Deprecated: 2022-01-10 - please use RetrieveAllThirdPartyLoginPlatformCredentialV3Short instead.
 func (aaa *ThirdPartyCredentialService) RetrieveAllThirdPartyLoginPlatformCredentialV3(input *third_party_credential.RetrieveAllThirdPartyLoginPlatformCredentialV3Params) ([]*iamclientmodels.ModelThirdPartyLoginPlatformCredentialResponse, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -65,7 +65,7 @@ func (aaa *ThirdPartyCredentialService) RetrieveAllThirdPartyLoginPlatformCreden
 	return ok.GetPayload(), nil
 }
 
-// deprecated(2022-01-10): please use RetrieveAllActiveThirdPartyLoginPlatformCredentialV3Short instead.
+// Deprecated: 2022-01-10 - please use RetrieveAllActiveThirdPartyLoginPlatformCredentialV3Short instead.
 func (aaa *ThirdPartyCredentialService) RetrieveAllActiveThirdPartyLoginPlatformCredentialV3(input *third_party_credential.RetrieveAllActiveThirdPartyLoginPlatformCredentialV3Params) ([]*iamclientmodels.ModelThirdPartyLoginPlatformCredentialResponse, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -91,7 +91,7 @@ func (aaa *ThirdPartyCredentialService) RetrieveAllActiveThirdPartyLoginPlatform
 	return ok.GetPayload(), nil
 }
 
-// deprecated(2022-01-10): please use RetrieveThirdPartyLoginPlatformCredentialV3Short instead.
+// Deprecated: 2022-01-10 - please use RetrieveThirdPartyLoginPlatformCredentialV3Short instead.
 func (aaa *ThirdPartyCredentialService) RetrieveThirdPartyLoginPlatformCredentialV3(input *third_party_credential.RetrieveThirdPartyLoginPlatformCredentialV3Params) (*iamclientmodels.ModelThirdPartyLoginPlatformCredentialResponse, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -117,7 +117,7 @@ func (aaa *ThirdPartyCredentialService) RetrieveThirdPartyLoginPlatformCredentia
 	return ok.GetPayload(), nil
 }
 
-// deprecated(2022-01-10): please use AddThirdPartyLoginPlatformCredentialV3Short instead.
+// Deprecated: 2022-01-10 - please use AddThirdPartyLoginPlatformCredentialV3Short instead.
 func (aaa *ThirdPartyCredentialService) AddThirdPartyLoginPlatformCredentialV3(input *third_party_credential.AddThirdPartyLoginPlatformCredentialV3Params) (*iamclientmodels.ModelThirdPartyLoginPlatformCredentialResponse, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -143,7 +143,7 @@ func (aaa *ThirdPartyCredentialService) AddThirdPartyLoginPlatformCredentialV3(i
 	return created.GetPayload(), nil
 }
 
-// deprecated(2022-01-10): please use DeleteThirdPartyLoginPlatformCredentialV3Short instead.
+// Deprecated: 2022-01-10 - please use DeleteThirdPartyLoginPlatformCredentialV3Short instead.
 func (aaa *ThirdPartyCredentialService) DeleteThirdPartyLoginPlatformCredentialV3(input *third_party_credential.DeleteThirdPartyLoginPlatformCredentialV3Params) error {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -169,7 +169,7 @@ func (aaa *ThirdPartyCredentialService) DeleteThirdPartyLoginPlatformCredentialV
 	return nil
 }
 
-// deprecated(2022-01-10): please use UpdateThirdPartyLoginPlatformCredentialV3Short instead.
+// Deprecated: 2022-01-10 - please use UpdateThirdPartyLoginPlatformCredentialV3Short instead.
 func (aaa *ThirdPartyCredentialService) UpdateThirdPartyLoginPlatformCredentialV3(input *third_party_credential.UpdateThirdPartyLoginPlatformCredentialV3Params) (*iamclientmodels.ModelThirdPartyLoginPlatformCredentialResponse, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -198,7 +198,7 @@ func (aaa *ThirdPartyCredentialService) UpdateThirdPartyLoginPlatformCredentialV
 	return ok.GetPayload(), nil
 }
 
-// deprecated(2022-01-10): please use UpdateThirdPartyLoginPlatformDomainV3Short instead.
+// Deprecated: 2022-01-10 - please use UpdateThirdPartyLoginPlatformDomainV3Short instead.
 func (aaa *ThirdPartyCredentialService) UpdateThirdPartyLoginPlatformDomainV3(input *third_party_credential.UpdateThirdPartyLoginPlatformDomainV3Params) (*iamclientmodels.ModelPlatformDomainResponse, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -227,7 +227,7 @@ func (aaa *ThirdPartyCredentialService) UpdateThirdPartyLoginPlatformDomainV3(in
 	return ok.GetPayload(), nil
 }
 
-// deprecated(2022-01-10): please use DeleteThirdPartyLoginPlatformDomainV3Short instead.
+// Deprecated: 2022-01-10 - please use DeleteThirdPartyLoginPlatformDomainV3Short instead.
 func (aaa *ThirdPartyCredentialService) DeleteThirdPartyLoginPlatformDomainV3(input *third_party_credential.DeleteThirdPartyLoginPlatformDomainV3Params) error {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -256,7 +256,7 @@ func (aaa *ThirdPartyCredentialService) DeleteThirdPartyLoginPlatformDomainV3(in
 	return nil
 }
 
-// deprecated(2022-01-10): please use RetrieveAllActiveThirdPartyLoginPlatformCredentialPublicV3Short instead.
+// Deprecated: 2022-01-10 - please use RetrieveAllActiveThirdPartyLoginPlatformCredentialPublicV3Short instead.
 func (aaa *ThirdPartyCredentialService) RetrieveAllActiveThirdPartyLoginPlatformCredentialPublicV3(input *third_party_credential.RetrieveAllActiveThirdPartyLoginPlatformCredentialPublicV3Params) ([]*iamclientmodels.ModelPublicThirdPartyPlatformInfo, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -282,7 +282,7 @@ func (aaa *ThirdPartyCredentialService) RetrieveAllActiveThirdPartyLoginPlatform
 	return ok.GetPayload(), nil
 }
 
-// deprecated(2022-01-10): please use RetrieveActiveOIDCClientsPublicV3Short instead.
+// Deprecated: 2022-01-10 - please use RetrieveActiveOIDCClientsPublicV3Short instead.
 func (aaa *ThirdPartyCredentialService) RetrieveActiveOIDCClientsPublicV3(input *third_party_credential.RetrieveActiveOIDCClientsPublicV3Params) ([]*iamclientmodels.ModelPublicThirdPartyPlatformInfo, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {

@@ -40,7 +40,7 @@ type ClientService interface {
 }
 
 /*
-Deprecated: Use PlatformAuthenticateSAMLV3HandlerShort instead.
+Deprecated: 2022-08-10 - Use PlatformAuthenticateSAMLV3HandlerShort instead.
 
   PlatformAuthenticateSAMLV3Handler SAMLs platform authentication API
 

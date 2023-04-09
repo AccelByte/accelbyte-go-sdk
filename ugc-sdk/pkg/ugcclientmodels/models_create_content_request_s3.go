@@ -37,6 +37,9 @@ type ModelsCreateContentRequestS3 struct {
 	// preview metadata
 	PreviewMetadata *ModelsPreviewMetadata `json:"previewMetadata,omitempty"`
 
+	// share code
+	ShareCode string `json:"shareCode,omitempty"`
+
 	// sub type
 	// Required: true
 	SubType *string `json:"subType"`

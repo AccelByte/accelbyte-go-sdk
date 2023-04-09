@@ -44,7 +44,7 @@ type ClientService interface {
 }
 
 /*
-Deprecated: Use GetDefaultProviderShort instead.
+Deprecated: 2022-08-10 - Use GetDefaultProviderShort instead.
 
   GetDefaultProvider gets default provider
 
@@ -138,7 +138,7 @@ func (a *Client) GetDefaultProviderShort(params *GetDefaultProviderParams, authI
 }
 
 /*
-Deprecated: Use ListProvidersShort instead.
+Deprecated: 2022-08-10 - Use ListProvidersShort instead.
 
   ListProviders lists all supported providers
 
@@ -232,7 +232,7 @@ func (a *Client) ListProvidersShort(params *ListProvidersParams, authInfo runtim
 }
 
 /*
-Deprecated: Use ListProvidersByRegionShort instead.
+Deprecated: 2022-08-10 - Use ListProvidersByRegionShort instead.
 
   ListProvidersByRegion lists providers by region
 

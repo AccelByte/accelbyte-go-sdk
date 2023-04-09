@@ -38,7 +38,7 @@ func (aaa *AnonymizationService) GetAuthSession() auth.Session {
 	}
 }
 
-// deprecated(2022-01-10): please use AdminAnonymizeUserAchievementShort instead.
+// Deprecated: 2022-01-10 - please use AdminAnonymizeUserAchievementShort instead.
 func (aaa *AnonymizationService) AdminAnonymizeUserAchievement(input *anonymization.AdminAnonymizeUserAchievementParams) error {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {

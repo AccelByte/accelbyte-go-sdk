@@ -52,7 +52,7 @@ type ClientService interface {
 }
 
 /*
-Deprecated: Use AdminCancelUserAccountDeletionRequestShort instead.
+Deprecated: 2022-08-10 - Use AdminCancelUserAccountDeletionRequestShort instead.
 
   AdminCancelUserAccountDeletionRequest cancels user s account deletion request
 
@@ -171,7 +171,7 @@ func (a *Client) AdminCancelUserAccountDeletionRequestShort(params *AdminCancelU
 }
 
 /*
-Deprecated: Use AdminGetListDeletionDataRequestShort instead.
+Deprecated: 2022-08-10 - Use AdminGetListDeletionDataRequestShort instead.
 
   AdminGetListDeletionDataRequest retrieves all user s account deletion requests in specified date
 
@@ -290,7 +290,7 @@ func (a *Client) AdminGetListDeletionDataRequestShort(params *AdminGetListDeleti
 }
 
 /*
-Deprecated: Use AdminGetUserAccountDeletionRequestShort instead.
+Deprecated: 2022-08-10 - Use AdminGetUserAccountDeletionRequestShort instead.
 
   AdminGetUserAccountDeletionRequest retrieves specific user s account deletion request
 
@@ -404,7 +404,7 @@ func (a *Client) AdminGetUserAccountDeletionRequestShort(params *AdminGetUserAcc
 }
 
 /*
-Deprecated: Use AdminSubmitUserAccountDeletionRequestShort instead.
+Deprecated: 2022-08-10 - Use AdminSubmitUserAccountDeletionRequestShort instead.
 
   AdminSubmitUserAccountDeletionRequest submits user s account deletion requests
 
@@ -523,7 +523,7 @@ func (a *Client) AdminSubmitUserAccountDeletionRequestShort(params *AdminSubmitU
 }
 
 /*
-Deprecated: Use PublicCancelUserAccountDeletionRequestShort instead.
+Deprecated: 2022-08-10 - Use PublicCancelUserAccountDeletionRequestShort instead.
 
   PublicCancelUserAccountDeletionRequest cancels user s account deletion request
 
@@ -637,7 +637,7 @@ func (a *Client) PublicCancelUserAccountDeletionRequestShort(params *PublicCance
 }
 
 /*
-Deprecated: Use PublicGetUserAccountDeletionStatusShort instead.
+Deprecated: 2022-08-10 - Use PublicGetUserAccountDeletionStatusShort instead.
 
   PublicGetUserAccountDeletionStatus retrieves specific user s account deletion status
 
@@ -746,7 +746,7 @@ func (a *Client) PublicGetUserAccountDeletionStatusShort(params *PublicGetUserAc
 }
 
 /*
-Deprecated: Use PublicSubmitUserAccountDeletionRequestShort instead.
+Deprecated: 2022-08-10 - Use PublicSubmitUserAccountDeletionRequestShort instead.
 
   PublicSubmitUserAccountDeletionRequest submits user s account deletion requests
 

@@ -42,7 +42,7 @@ type ClientService interface {
 }
 
 /*
-Deprecated: Use GetUserStatCycleItemsShort instead.
+Deprecated: 2022-08-10 - Use GetUserStatCycleItemsShort instead.
 
   GetUserStatCycleItems lists user s stat cycle items by stat cycle
 
@@ -141,7 +141,7 @@ func (a *Client) GetUserStatCycleItemsShort(params *GetUserStatCycleItemsParams,
 }
 
 /*
-Deprecated: Use GetUserStatCycleItems1Short instead.
+Deprecated: 2022-08-10 - Use GetUserStatCycleItems1Short instead.
 
   GetUserStatCycleItems1 lists user s stat cycle items by stat cycle
 

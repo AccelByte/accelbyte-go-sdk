@@ -39,7 +39,7 @@ func (aaa *UserInformationService) GetAuthSession() auth.Session {
 	}
 }
 
-// deprecated(2022-01-10): please use GetUserActivitiesHandlerShort instead.
+// Deprecated: 2022-01-10 - please use GetUserActivitiesHandlerShort instead.
 func (aaa *UserInformationService) GetUserActivitiesHandler(input *user_information.GetUserActivitiesHandlerParams) (*eventlogclientmodels.ModelsEventResponse, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -68,7 +68,7 @@ func (aaa *UserInformationService) GetUserActivitiesHandler(input *user_informat
 	return ok.GetPayload(), nil
 }
 
-// deprecated(2022-01-10): please use DeleteUserActivitiesHandlerShort instead.
+// Deprecated: 2022-01-10 - please use DeleteUserActivitiesHandlerShort instead.
 func (aaa *UserInformationService) DeleteUserActivitiesHandler(input *user_information.DeleteUserActivitiesHandlerParams) error {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -94,7 +94,7 @@ func (aaa *UserInformationService) DeleteUserActivitiesHandler(input *user_infor
 	return nil
 }
 
-// deprecated(2022-01-10): please use LastUserActivityTimeHandlerShort instead.
+// Deprecated: 2022-01-10 - please use LastUserActivityTimeHandlerShort instead.
 func (aaa *UserInformationService) LastUserActivityTimeHandler(input *user_information.LastUserActivityTimeHandlerParams) (*eventlogclientmodels.ModelsUserLastActivity, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {

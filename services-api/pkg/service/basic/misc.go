@@ -39,7 +39,7 @@ func (aaa *MiscService) GetAuthSession() auth.Session {
 	}
 }
 
-// deprecated(2022-01-10): please use GetCountriesShort instead.
+// Deprecated: 2022-01-10 - please use GetCountriesShort instead.
 func (aaa *MiscService) GetCountries(input *misc.GetCountriesParams) ([]*basicclientmodels.CountryObject, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -59,7 +59,7 @@ func (aaa *MiscService) GetCountries(input *misc.GetCountriesParams) ([]*basiccl
 	return ok.GetPayload(), nil
 }
 
-// deprecated(2022-01-10): please use GetCountryGroupsShort instead.
+// Deprecated: 2022-01-10 - please use GetCountryGroupsShort instead.
 func (aaa *MiscService) GetCountryGroups(input *misc.GetCountryGroupsParams) ([]*basicclientmodels.RetrieveCountryGroupResponse, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -85,7 +85,7 @@ func (aaa *MiscService) GetCountryGroups(input *misc.GetCountryGroupsParams) ([]
 	return ok.GetPayload(), nil
 }
 
-// deprecated(2022-01-10): please use AddCountryGroupShort instead.
+// Deprecated: 2022-01-10 - please use AddCountryGroupShort instead.
 func (aaa *MiscService) AddCountryGroup(input *misc.AddCountryGroupParams) (*basicclientmodels.AddCountryGroupResponse, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -111,7 +111,7 @@ func (aaa *MiscService) AddCountryGroup(input *misc.AddCountryGroupParams) (*bas
 	return created.GetPayload(), nil
 }
 
-// deprecated(2022-01-10): please use UpdateCountryGroupShort instead.
+// Deprecated: 2022-01-10 - please use UpdateCountryGroupShort instead.
 func (aaa *MiscService) UpdateCountryGroup(input *misc.UpdateCountryGroupParams) (*basicclientmodels.CountryGroupObject, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -137,7 +137,7 @@ func (aaa *MiscService) UpdateCountryGroup(input *misc.UpdateCountryGroupParams)
 	return ok.GetPayload(), nil
 }
 
-// deprecated(2022-01-10): please use DeleteCountryGroupShort instead.
+// Deprecated: 2022-01-10 - please use DeleteCountryGroupShort instead.
 func (aaa *MiscService) DeleteCountryGroup(input *misc.DeleteCountryGroupParams) error {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -163,7 +163,7 @@ func (aaa *MiscService) DeleteCountryGroup(input *misc.DeleteCountryGroupParams)
 	return nil
 }
 
-// deprecated(2022-01-10): please use GetLanguagesShort instead.
+// Deprecated: 2022-01-10 - please use GetLanguagesShort instead.
 func (aaa *MiscService) GetLanguages(input *misc.GetLanguagesParams) (map[string]interface{}, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -183,7 +183,7 @@ func (aaa *MiscService) GetLanguages(input *misc.GetLanguagesParams) (map[string
 	return ok.GetPayload(), nil
 }
 
-// deprecated(2022-01-10): please use GetTimeZonesShort instead.
+// Deprecated: 2022-01-10 - please use GetTimeZonesShort instead.
 func (aaa *MiscService) GetTimeZones(input *misc.GetTimeZonesParams) ([]string, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -203,7 +203,7 @@ func (aaa *MiscService) GetTimeZones(input *misc.GetTimeZonesParams) ([]string, 
 	return ok.GetPayload(), nil
 }
 
-// deprecated(2022-01-10): please use PublicGetTimeShort instead.
+// Deprecated: 2022-01-10 - please use PublicGetTimeShort instead.
 func (aaa *MiscService) PublicGetTime(input *misc.PublicGetTimeParams) (*basicclientmodels.RetrieveTimeResponse, error) {
 	ok, err := aaa.Client.Misc.PublicGetTime(input)
 	if err != nil {
@@ -213,7 +213,7 @@ func (aaa *MiscService) PublicGetTime(input *misc.PublicGetTimeParams) (*basiccl
 	return ok.GetPayload(), nil
 }
 
-// deprecated(2022-01-10): please use PublicGetCountriesShort instead.
+// Deprecated: 2022-01-10 - please use PublicGetCountriesShort instead.
 func (aaa *MiscService) PublicGetCountries(input *misc.PublicGetCountriesParams) ([]*basicclientmodels.CountryObject, error) {
 	ok, badRequest, err := aaa.Client.Misc.PublicGetCountries(input)
 	if badRequest != nil {
@@ -226,7 +226,7 @@ func (aaa *MiscService) PublicGetCountries(input *misc.PublicGetCountriesParams)
 	return ok.GetPayload(), nil
 }
 
-// deprecated(2022-01-10): please use PublicGetLanguagesShort instead.
+// Deprecated: 2022-01-10 - please use PublicGetLanguagesShort instead.
 func (aaa *MiscService) PublicGetLanguages(input *misc.PublicGetLanguagesParams) (map[string]interface{}, error) {
 	ok, badRequest, err := aaa.Client.Misc.PublicGetLanguages(input)
 	if badRequest != nil {
@@ -239,7 +239,7 @@ func (aaa *MiscService) PublicGetLanguages(input *misc.PublicGetLanguagesParams)
 	return ok.GetPayload(), nil
 }
 
-// deprecated(2022-01-10): please use PublicGetTimeZonesShort instead.
+// Deprecated: 2022-01-10 - please use PublicGetTimeZonesShort instead.
 func (aaa *MiscService) PublicGetTimeZones(input *misc.PublicGetTimeZonesParams) ([]string, error) {
 	ok, badRequest, err := aaa.Client.Misc.PublicGetTimeZones(input)
 	if badRequest != nil {

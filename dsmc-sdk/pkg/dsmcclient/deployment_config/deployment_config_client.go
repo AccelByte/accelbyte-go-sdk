@@ -66,7 +66,7 @@ type ClientService interface {
 }
 
 /*
-Deprecated: Use CreateDeploymentShort instead.
+Deprecated: 2022-08-10 - Use CreateDeploymentShort instead.
 
   CreateDeployment creates deployment
 
@@ -188,7 +188,7 @@ func (a *Client) CreateDeploymentShort(params *CreateDeploymentParams, authInfo 
 }
 
 /*
-Deprecated: Use CreateDeploymentOverrideShort instead.
+Deprecated: 2022-08-10 - Use CreateDeploymentOverrideShort instead.
 
   CreateDeploymentOverride creates deployment override
 
@@ -315,7 +315,7 @@ func (a *Client) CreateDeploymentOverrideShort(params *CreateDeploymentOverrideP
 }
 
 /*
-Deprecated: Use CreateOverrideRegionOverrideShort instead.
+Deprecated: 2022-08-10 - Use CreateOverrideRegionOverrideShort instead.
 
   CreateOverrideRegionOverride creates region override for deployment override
 
@@ -442,7 +442,7 @@ func (a *Client) CreateOverrideRegionOverrideShort(params *CreateOverrideRegionO
 }
 
 /*
-Deprecated: Use CreateRootRegionOverrideShort instead.
+Deprecated: 2022-08-10 - Use CreateRootRegionOverrideShort instead.
 
   CreateRootRegionOverride creates region override
 
@@ -569,7 +569,7 @@ func (a *Client) CreateRootRegionOverrideShort(params *CreateRootRegionOverrideP
 }
 
 /*
-Deprecated: Use DeleteDeploymentShort instead.
+Deprecated: 2022-08-10 - Use DeleteDeploymentShort instead.
 
   DeleteDeployment deletes deployment
 
@@ -691,7 +691,7 @@ func (a *Client) DeleteDeploymentShort(params *DeleteDeploymentParams, authInfo 
 }
 
 /*
-Deprecated: Use DeleteDeploymentOverrideShort instead.
+Deprecated: 2022-08-10 - Use DeleteDeploymentOverrideShort instead.
 
   DeleteDeploymentOverride deletes deployment override
 
@@ -813,7 +813,7 @@ func (a *Client) DeleteDeploymentOverrideShort(params *DeleteDeploymentOverrideP
 }
 
 /*
-Deprecated: Use DeleteOverrideRegionOverrideShort instead.
+Deprecated: 2022-08-10 - Use DeleteOverrideRegionOverrideShort instead.
 
   DeleteOverrideRegionOverride deletes region override for deployment override
 
@@ -935,7 +935,7 @@ func (a *Client) DeleteOverrideRegionOverrideShort(params *DeleteOverrideRegionO
 }
 
 /*
-Deprecated: Use DeleteRootRegionOverrideShort instead.
+Deprecated: 2022-08-10 - Use DeleteRootRegionOverrideShort instead.
 
   DeleteRootRegionOverride deletes region override
 
@@ -1057,7 +1057,7 @@ func (a *Client) DeleteRootRegionOverrideShort(params *DeleteRootRegionOverrideP
 }
 
 /*
-Deprecated: Use GetAllDeploymentShort instead.
+Deprecated: 2022-08-10 - Use GetAllDeploymentShort instead.
 
   GetAllDeployment gets all deployments
 
@@ -1178,7 +1178,7 @@ func (a *Client) GetAllDeploymentShort(params *GetAllDeploymentParams, authInfo 
 }
 
 /*
-Deprecated: Use GetDeploymentShort instead.
+Deprecated: 2022-08-10 - Use GetDeploymentShort instead.
 
   GetDeployment gets deployment
 
@@ -1300,7 +1300,7 @@ func (a *Client) GetDeploymentShort(params *GetDeploymentParams, authInfo runtim
 }
 
 /*
-Deprecated: Use UpdateDeploymentShort instead.
+Deprecated: 2022-08-10 - Use UpdateDeploymentShort instead.
 
   UpdateDeployment updates deployment
 
@@ -1422,7 +1422,7 @@ func (a *Client) UpdateDeploymentShort(params *UpdateDeploymentParams, authInfo 
 }
 
 /*
-Deprecated: Use UpdateDeploymentOverrideShort instead.
+Deprecated: 2022-08-10 - Use UpdateDeploymentOverrideShort instead.
 
   UpdateDeploymentOverride updates deployment override
 
@@ -1544,7 +1544,7 @@ func (a *Client) UpdateDeploymentOverrideShort(params *UpdateDeploymentOverrideP
 }
 
 /*
-Deprecated: Use UpdateOverrideRegionOverrideShort instead.
+Deprecated: 2022-08-10 - Use UpdateOverrideRegionOverrideShort instead.
 
   UpdateOverrideRegionOverride updates region override for deployment override
 
@@ -1666,7 +1666,7 @@ func (a *Client) UpdateOverrideRegionOverrideShort(params *UpdateOverrideRegionO
 }
 
 /*
-Deprecated: Use UpdateRootRegionOverrideShort instead.
+Deprecated: 2022-08-10 - Use UpdateRootRegionOverrideShort instead.
 
   UpdateRootRegionOverride updates region override
 

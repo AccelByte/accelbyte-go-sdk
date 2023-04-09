@@ -40,7 +40,7 @@ type ClientService interface {
 }
 
 /*
-Deprecated: Use GetEventsGameTelemetryV1AdminNamespacesNamespaceEventsGetShort instead.
+Deprecated: 2022-08-10 - Use GetEventsGameTelemetryV1AdminNamespacesNamespaceEventsGetShort instead.
 
   GetEventsGameTelemetryV1AdminNamespacesNamespaceEventsGet gets events
 */

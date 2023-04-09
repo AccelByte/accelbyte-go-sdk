@@ -44,7 +44,7 @@ type ClientService interface {
 }
 
 /*
-Deprecated: Use RetrieveAcceptedAgreementsForMultiUsersShort instead.
+Deprecated: 2022-08-10 - Use RetrieveAcceptedAgreementsForMultiUsersShort instead.
 
   RetrieveAcceptedAgreementsForMultiUsers retrieves accepted legal agreements for multi users
 
@@ -138,7 +138,7 @@ func (a *Client) RetrieveAcceptedAgreementsForMultiUsersShort(params *RetrieveAc
 }
 
 /*
-Deprecated: Use RetrieveAcceptedAgreements1Short instead.
+Deprecated: 2022-08-10 - Use RetrieveAcceptedAgreements1Short instead.
 
   RetrieveAcceptedAgreements1 retrieves accepted legal agreements
 
@@ -232,7 +232,7 @@ func (a *Client) RetrieveAcceptedAgreements1Short(params *RetrieveAcceptedAgreem
 }
 
 /*
-Deprecated: Use RetrieveAllUsersByPolicyVersion1Short instead.
+Deprecated: 2022-08-10 - Use RetrieveAllUsersByPolicyVersion1Short instead.
 
   RetrieveAllUsersByPolicyVersion1 retrieves all users accepting legal agreements
 

@@ -39,7 +39,7 @@ func (aaa *PublicReasonsService) GetAuthSession() auth.Session {
 	}
 }
 
-// deprecated(2022-01-10): please use PublicListReasonGroupsShort instead.
+// Deprecated: 2022-01-10 - please use PublicListReasonGroupsShort instead.
 func (aaa *PublicReasonsService) PublicListReasonGroups(input *public_reasons.PublicListReasonGroupsParams) (*reportingclientmodels.RestapiReasonGroupListResponse, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -56,7 +56,7 @@ func (aaa *PublicReasonsService) PublicListReasonGroups(input *public_reasons.Pu
 	return ok.GetPayload(), nil
 }
 
-// deprecated(2022-01-10): please use PublicGetReasonsShort instead.
+// Deprecated: 2022-01-10 - please use PublicGetReasonsShort instead.
 func (aaa *PublicReasonsService) PublicGetReasons(input *public_reasons.PublicGetReasonsParams) (*reportingclientmodels.RestapiPublicReasonListResponse, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {

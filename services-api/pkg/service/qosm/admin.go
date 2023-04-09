@@ -38,7 +38,7 @@ func (aaa *AdminService) GetAuthSession() auth.Session {
 	}
 }
 
-// deprecated(2022-01-10): please use UpdateServerConfigShort instead.
+// Deprecated: 2022-01-10 - please use UpdateServerConfigShort instead.
 func (aaa *AdminService) UpdateServerConfig(input *admin.UpdateServerConfigParams) error {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -61,7 +61,7 @@ func (aaa *AdminService) UpdateServerConfig(input *admin.UpdateServerConfigParam
 	return nil
 }
 
-// deprecated(2022-01-10): please use DeleteServerShort instead.
+// Deprecated: 2022-01-10 - please use DeleteServerShort instead.
 func (aaa *AdminService) DeleteServer(input *admin.DeleteServerParams) error {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -78,7 +78,7 @@ func (aaa *AdminService) DeleteServer(input *admin.DeleteServerParams) error {
 	return nil
 }
 
-// deprecated(2022-01-10): please use SetServerAliasShort instead.
+// Deprecated: 2022-01-10 - please use SetServerAliasShort instead.
 func (aaa *AdminService) SetServerAlias(input *admin.SetServerAliasParams) error {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {

@@ -58,7 +58,7 @@ type ClientService interface {
 }
 
 /*
-Deprecated: Use CountServerShort instead.
+Deprecated: 2022-08-10 - Use CountServerShort instead.
 
   CountServer counts all managed servers
 
@@ -170,7 +170,7 @@ func (a *Client) CountServerShort(params *CountServerParams, authInfo runtime.Cl
 }
 
 /*
-Deprecated: Use CountServerDetailedShort instead.
+Deprecated: 2022-08-10 - Use CountServerDetailedShort instead.
 
   CountServerDetailed gets detailed count of managed servers in a region
 
@@ -282,7 +282,7 @@ func (a *Client) CountServerDetailedShort(params *CountServerDetailedParams, aut
 }
 
 /*
-Deprecated: Use CountSessionShort instead.
+Deprecated: 2022-08-10 - Use CountSessionShort instead.
 
   CountSession counts all sessions
 
@@ -394,7 +394,7 @@ func (a *Client) CountSessionShort(params *CountSessionParams, authInfo runtime.
 }
 
 /*
-Deprecated: Use DeleteLocalServerShort instead.
+Deprecated: 2022-08-10 - Use DeleteLocalServerShort instead.
 
   DeleteLocalServer deletes a local server
 
@@ -508,7 +508,7 @@ func (a *Client) DeleteLocalServerShort(params *DeleteLocalServerParams, authInf
 }
 
 /*
-Deprecated: Use DeleteServerShort instead.
+Deprecated: 2022-08-10 - Use DeleteServerShort instead.
 
   DeleteServer deletes a server in a region
 
@@ -625,7 +625,7 @@ func (a *Client) DeleteServerShort(params *DeleteServerParams, authInfo runtime.
 }
 
 /*
-Deprecated: Use DeleteSessionShort instead.
+Deprecated: 2022-08-10 - Use DeleteSessionShort instead.
 
   DeleteSession deletes a session in a region
 
@@ -737,7 +737,7 @@ func (a *Client) DeleteSessionShort(params *DeleteSessionParams, authInfo runtim
 }
 
 /*
-Deprecated: Use GetServerShort instead.
+Deprecated: 2022-08-10 - Use GetServerShort instead.
 
   GetServer queries a server in a region
 
@@ -854,7 +854,7 @@ func (a *Client) GetServerShort(params *GetServerParams, authInfo runtime.Client
 }
 
 /*
-Deprecated: Use ListLocalServerShort instead.
+Deprecated: 2022-08-10 - Use ListLocalServerShort instead.
 
   ListLocalServer lists all managed local servers
 
@@ -966,7 +966,7 @@ func (a *Client) ListLocalServerShort(params *ListLocalServerParams, authInfo ru
 }
 
 /*
-Deprecated: Use ListServerShort instead.
+Deprecated: 2022-08-10 - Use ListServerShort instead.
 
   ListServer lists all managed servers in a region
 
@@ -1082,7 +1082,7 @@ func (a *Client) ListServerShort(params *ListServerParams, authInfo runtime.Clie
 }
 
 /*
-Deprecated: Use ListSessionShort instead.
+Deprecated: 2022-08-10 - Use ListSessionShort instead.
 
   ListSession lists all managed sessions in a region
 

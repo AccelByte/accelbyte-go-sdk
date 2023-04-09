@@ -57,7 +57,7 @@ func NewQueryChangesOK() *QueryChangesOK {
   successful operation
 */
 type QueryChangesOK struct {
-	Payload []*platformclientmodels.CatalogChangePagingSlicedResult
+	Payload *platformclientmodels.CatalogChangePagingSlicedResult
 }
 
 func (o *QueryChangesOK) Error() string {
@@ -79,7 +79,7 @@ func (o *QueryChangesOK) ToJSONString() string {
 	return fmt.Sprintf("%+v", string(b))
 }
 
-func (o *QueryChangesOK) GetPayload() []*platformclientmodels.CatalogChangePagingSlicedResult {
+func (o *QueryChangesOK) GetPayload() *platformclientmodels.CatalogChangePagingSlicedResult {
 	return o.Payload
 }
 
@@ -90,8 +90,10 @@ func (o *QueryChangesOK) readResponse(response runtime.ClientResponse, consumer 
 		consumer = runtime.ByteStreamConsumer()
 	}
 
+	o.Payload = new(platformclientmodels.CatalogChangePagingSlicedResult)
+
 	// response payload
-	if err := consumer.Consume(response.Body(), &o.Payload); err != nil && err != io.EOF {
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
 		return err
 	}
 

@@ -59,7 +59,7 @@ type ClientService interface {
 }
 
 /*
-Deprecated: Use CreateStatShort instead.
+Deprecated: 2022-08-10 - Use CreateStatShort instead.
 
   CreateStat creates stat
 
@@ -163,7 +163,7 @@ func (a *Client) CreateStatShort(params *CreateStatParams, authInfo runtime.Clie
 }
 
 /*
-Deprecated: Use CreateStat1Short instead.
+Deprecated: 2022-08-10 - Use CreateStat1Short instead.
 
   CreateStat1 creates stat
 
@@ -267,7 +267,7 @@ func (a *Client) CreateStat1Short(params *CreateStat1Params, authInfo runtime.Cl
 }
 
 /*
-Deprecated: Use DeleteStatShort instead.
+Deprecated: 2022-08-10 - Use DeleteStatShort instead.
 
   DeleteStat deletes stat
 
@@ -366,7 +366,7 @@ func (a *Client) DeleteStatShort(params *DeleteStatParams, authInfo runtime.Clie
 }
 
 /*
-Deprecated: Use DeleteTiedStatShort instead.
+Deprecated: 2022-08-10 - Use DeleteTiedStatShort instead.
 
   DeleteTiedStat deletes tied stat
 
@@ -465,7 +465,7 @@ func (a *Client) DeleteTiedStatShort(params *DeleteTiedStatParams, authInfo runt
 }
 
 /*
-Deprecated: Use ExportStatsShort instead.
+Deprecated: 2022-08-10 - Use ExportStatsShort instead.
 
   ExportStats exports all stat configurations
 
@@ -559,7 +559,7 @@ func (a *Client) ExportStatsShort(params *ExportStatsParams, authInfo runtime.Cl
 }
 
 /*
-Deprecated: Use GetStatShort instead.
+Deprecated: 2022-08-10 - Use GetStatShort instead.
 
   GetStat gets stat by stat code
 
@@ -658,7 +658,7 @@ func (a *Client) GetStatShort(params *GetStatParams, authInfo runtime.ClientAuth
 }
 
 /*
-Deprecated: Use GetStatsShort instead.
+Deprecated: 2022-08-10 - Use GetStatsShort instead.
 
   GetStats lists stats
 
@@ -752,7 +752,7 @@ func (a *Client) GetStatsShort(params *GetStatsParams, authInfo runtime.ClientAu
 }
 
 /*
-Deprecated: Use ImportStatsShort instead.
+Deprecated: 2022-08-10 - Use ImportStatsShort instead.
 
   ImportStats imports stat configurations
 
@@ -851,7 +851,7 @@ func (a *Client) ImportStatsShort(params *ImportStatsParams, authInfo runtime.Cl
 }
 
 /*
-Deprecated: Use QueryStatsShort instead.
+Deprecated: 2022-08-10 - Use QueryStatsShort instead.
 
   QueryStats queries stats by keyword
 
@@ -945,7 +945,7 @@ func (a *Client) QueryStatsShort(params *QueryStatsParams, authInfo runtime.Clie
 }
 
 /*
-Deprecated: Use UpdateStatShort instead.
+Deprecated: 2022-08-10 - Use UpdateStatShort instead.
 
   UpdateStat updates stat
 

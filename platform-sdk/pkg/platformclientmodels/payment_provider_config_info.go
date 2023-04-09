@@ -33,8 +33,7 @@ type PaymentProviderConfigInfo struct {
 	Namespace *string `json:"namespace"`
 
 	// paymentMerchantConfigId
-	// Required: true
-	PaymentMerchantConfigID *string `json:"paymentMerchantConfigId"`
+	PaymentMerchantConfigID string `json:"paymentMerchantConfigId,omitempty"`
 
 	// region
 	// Required: true
@@ -69,10 +68,6 @@ func (m *PaymentProviderConfigInfo) Validate(formats strfmt.Registry) error {
 	}
 
 	if err := m.validateNamespace(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.validatePaymentMerchantConfigID(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -145,15 +140,6 @@ func (m *PaymentProviderConfigInfo) validateID(formats strfmt.Registry) error {
 func (m *PaymentProviderConfigInfo) validateNamespace(formats strfmt.Registry) error {
 
 	if err := validate.Required("namespace", "body", m.Namespace); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *PaymentProviderConfigInfo) validatePaymentMerchantConfigID(formats strfmt.Registry) error {
-
-	if err := validate.Required("paymentMerchantConfigId", "body", m.PaymentMerchantConfigID); err != nil {
 		return err
 	}
 

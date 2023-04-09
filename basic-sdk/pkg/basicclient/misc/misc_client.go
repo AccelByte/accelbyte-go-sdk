@@ -60,7 +60,7 @@ type ClientService interface {
 }
 
 /*
-Deprecated: Use AddCountryGroupShort instead.
+Deprecated: 2022-08-10 - Use AddCountryGroupShort instead.
 
   AddCountryGroup adds a country group
 
@@ -174,7 +174,7 @@ func (a *Client) AddCountryGroupShort(params *AddCountryGroupParams, authInfo ru
 }
 
 /*
-Deprecated: Use DeleteCountryGroupShort instead.
+Deprecated: 2022-08-10 - Use DeleteCountryGroupShort instead.
 
   DeleteCountryGroup deletes a country group
 
@@ -288,7 +288,7 @@ func (a *Client) DeleteCountryGroupShort(params *DeleteCountryGroupParams, authI
 }
 
 /*
-Deprecated: Use GetCountriesShort instead.
+Deprecated: 2022-08-10 - Use GetCountriesShort instead.
 
   GetCountries lists countries
 
@@ -392,7 +392,7 @@ func (a *Client) GetCountriesShort(params *GetCountriesParams, authInfo runtime.
 }
 
 /*
-Deprecated: Use GetCountryGroupsShort instead.
+Deprecated: 2022-08-10 - Use GetCountryGroupsShort instead.
 
   GetCountryGroups lists country groups
 
@@ -506,7 +506,7 @@ func (a *Client) GetCountryGroupsShort(params *GetCountryGroupsParams, authInfo 
 }
 
 /*
-Deprecated: Use GetLanguagesShort instead.
+Deprecated: 2022-08-10 - Use GetLanguagesShort instead.
 
   GetLanguages lists languages
 
@@ -610,7 +610,7 @@ func (a *Client) GetLanguagesShort(params *GetLanguagesParams, authInfo runtime.
 }
 
 /*
-Deprecated: Use GetTimeZonesShort instead.
+Deprecated: 2022-08-10 - Use GetTimeZonesShort instead.
 
   GetTimeZones lists time zones
 
@@ -714,7 +714,7 @@ func (a *Client) GetTimeZonesShort(params *GetTimeZonesParams, authInfo runtime.
 }
 
 /*
-Deprecated: Use PublicGetCountriesShort instead.
+Deprecated: 2022-08-10 - Use PublicGetCountriesShort instead.
 
   PublicGetCountries lists countries
 
@@ -811,7 +811,7 @@ func (a *Client) PublicGetCountriesShort(params *PublicGetCountriesParams) (*Pub
 }
 
 /*
-Deprecated: Use PublicGetLanguagesShort instead.
+Deprecated: 2022-08-10 - Use PublicGetLanguagesShort instead.
 
   PublicGetLanguages lists languages
 
@@ -908,7 +908,7 @@ func (a *Client) PublicGetLanguagesShort(params *PublicGetLanguagesParams) (*Pub
 }
 
 /*
-Deprecated: Use PublicGetTimeShort instead.
+Deprecated: 2022-08-10 - Use PublicGetTimeShort instead.
 
   PublicGetTime gets server time
 
@@ -1000,7 +1000,7 @@ func (a *Client) PublicGetTimeShort(params *PublicGetTimeParams) (*PublicGetTime
 }
 
 /*
-Deprecated: Use PublicGetTimeZonesShort instead.
+Deprecated: 2022-08-10 - Use PublicGetTimeZonesShort instead.
 
   PublicGetTimeZones lists time zones
 
@@ -1097,7 +1097,7 @@ func (a *Client) PublicGetTimeZonesShort(params *PublicGetTimeZonesParams) (*Pub
 }
 
 /*
-Deprecated: Use UpdateCountryGroupShort instead.
+Deprecated: 2022-08-10 - Use UpdateCountryGroupShort instead.
 
   UpdateCountryGroup updates a country group
 

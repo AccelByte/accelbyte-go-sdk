@@ -40,7 +40,7 @@ type ClientService interface {
 }
 
 /*
-Deprecated: Use AdminAnonymizeUserLeaderboardAdminV1Short instead.
+Deprecated: 2022-08-10 - Use AdminAnonymizeUserLeaderboardAdminV1Short instead.
 
   AdminAnonymizeUserLeaderboardAdminV1 anonymizes user s leaderboard
 

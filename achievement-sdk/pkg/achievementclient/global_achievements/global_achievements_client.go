@@ -54,7 +54,7 @@ type ClientService interface {
 }
 
 /*
-Deprecated: Use AdminListGlobalAchievementContributorsShort instead.
+Deprecated: 2022-08-10 - Use AdminListGlobalAchievementContributorsShort instead.
 
   AdminListGlobalAchievementContributors admins list contributors of global achievement
 
@@ -165,7 +165,7 @@ func (a *Client) AdminListGlobalAchievementContributorsShort(params *AdminListGl
 }
 
 /*
-Deprecated: Use AdminListGlobalAchievementsShort instead.
+Deprecated: 2022-08-10 - Use AdminListGlobalAchievementsShort instead.
 
   AdminListGlobalAchievements admins query global achievements include achieved and in progress
 
@@ -280,7 +280,7 @@ func (a *Client) AdminListGlobalAchievementsShort(params *AdminListGlobalAchieve
 }
 
 /*
-Deprecated: Use AdminListUserContributionsShort instead.
+Deprecated: 2022-08-10 - Use AdminListUserContributionsShort instead.
 
   AdminListUserContributions admins list of global achievements that has been contributed by the user
 
@@ -391,7 +391,7 @@ func (a *Client) AdminListUserContributionsShort(params *AdminListUserContributi
 }
 
 /*
-Deprecated: Use ClaimGlobalAchievementRewardShort instead.
+Deprecated: 2022-08-10 - Use ClaimGlobalAchievementRewardShort instead.
 
   ClaimGlobalAchievementReward claims global achievement reward
 
@@ -506,7 +506,7 @@ func (a *Client) ClaimGlobalAchievementRewardShort(params *ClaimGlobalAchievemen
 }
 
 /*
-Deprecated: Use ListGlobalAchievementContributorsShort instead.
+Deprecated: 2022-08-10 - Use ListGlobalAchievementContributorsShort instead.
 
   ListGlobalAchievementContributors lists contributors of global achievement
 
@@ -617,7 +617,7 @@ func (a *Client) ListGlobalAchievementContributorsShort(params *ListGlobalAchiev
 }
 
 /*
-Deprecated: Use ListUserContributionsShort instead.
+Deprecated: 2022-08-10 - Use ListUserContributionsShort instead.
 
   ListUserContributions lists of global achievements that has been contributed by the user
 
@@ -728,7 +728,7 @@ func (a *Client) ListUserContributionsShort(params *ListUserContributionsParams,
 }
 
 /*
-Deprecated: Use PublicListGlobalAchievementsShort instead.
+Deprecated: 2022-08-10 - Use PublicListGlobalAchievementsShort instead.
 
   PublicListGlobalAchievements queries global achievements include achieved and in progress
 
@@ -843,7 +843,7 @@ func (a *Client) PublicListGlobalAchievementsShort(params *PublicListGlobalAchie
 }
 
 /*
-Deprecated: Use ResetGlobalAchievementShort instead.
+Deprecated: 2022-08-10 - Use ResetGlobalAchievementShort instead.
 
   ResetGlobalAchievement resets global achievement
 

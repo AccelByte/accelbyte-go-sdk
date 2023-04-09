@@ -48,7 +48,7 @@ type ClientService interface {
 }
 
 /*
-Deprecated: Use AcquireUserTicketShort instead.
+Deprecated: 2022-08-10 - Use AcquireUserTicketShort instead.
 
   AcquireUserTicket acquires ticket
 
@@ -157,7 +157,7 @@ func (a *Client) AcquireUserTicketShort(params *AcquireUserTicketParams, authInf
 }
 
 /*
-Deprecated: Use DecreaseTicketSaleShort instead.
+Deprecated: 2022-08-10 - Use DecreaseTicketSaleShort instead.
 
   DecreaseTicketSale decreases ticket sale
 
@@ -261,7 +261,7 @@ func (a *Client) DecreaseTicketSaleShort(params *DecreaseTicketSaleParams, authI
 }
 
 /*
-Deprecated: Use GetTicketBoothIDShort instead.
+Deprecated: 2022-08-10 - Use GetTicketBoothIDShort instead.
 
   GetTicketBoothID gets ticket booth ID
 
@@ -360,7 +360,7 @@ func (a *Client) GetTicketBoothIDShort(params *GetTicketBoothIDParams, authInfo 
 }
 
 /*
-Deprecated: Use GetTicketDynamicShort instead.
+Deprecated: 2022-08-10 - Use GetTicketDynamicShort instead.
 
   GetTicketDynamic gets ticket dynamic
 
@@ -459,7 +459,7 @@ func (a *Client) GetTicketDynamicShort(params *GetTicketDynamicParams, authInfo 
 }
 
 /*
-Deprecated: Use IncreaseTicketSaleShort instead.
+Deprecated: 2022-08-10 - Use IncreaseTicketSaleShort instead.
 
   IncreaseTicketSale increases ticket sale
 

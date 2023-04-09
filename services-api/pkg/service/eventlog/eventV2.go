@@ -39,7 +39,7 @@ func (aaa *EventV2Service) GetAuthSession() auth.Session {
 	}
 }
 
-// deprecated(2022-01-10): please use QueryEventStreamHandlerShort instead.
+// Deprecated: 2022-01-10 - please use QueryEventStreamHandlerShort instead.
 func (aaa *EventV2Service) QueryEventStreamHandler(input *event_v2.QueryEventStreamHandlerParams) (*eventlogclientmodels.ModelsEventResponseV2, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -71,7 +71,7 @@ func (aaa *EventV2Service) QueryEventStreamHandler(input *event_v2.QueryEventStr
 	return ok.GetPayload(), nil
 }
 
-// deprecated(2022-01-10): please use GetEventSpecificUserV2HandlerShort instead.
+// Deprecated: 2022-01-10 - please use GetEventSpecificUserV2HandlerShort instead.
 func (aaa *EventV2Service) GetEventSpecificUserV2Handler(input *event_v2.GetEventSpecificUserV2HandlerParams) (*eventlogclientmodels.ModelsEventResponseV2, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -103,7 +103,7 @@ func (aaa *EventV2Service) GetEventSpecificUserV2Handler(input *event_v2.GetEven
 	return ok.GetPayload(), nil
 }
 
-// deprecated(2022-01-10): please use GetPublicEditHistoryShort instead.
+// Deprecated: 2022-01-10 - please use GetPublicEditHistoryShort instead.
 func (aaa *EventV2Service) GetPublicEditHistory(input *event_v2.GetPublicEditHistoryParams) (*eventlogclientmodels.ModelsEventResponseV2, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -135,7 +135,7 @@ func (aaa *EventV2Service) GetPublicEditHistory(input *event_v2.GetPublicEditHis
 	return ok.GetPayload(), nil
 }
 
-// deprecated(2022-01-10): please use GetUserEventsV2PublicShort instead.
+// Deprecated: 2022-01-10 - please use GetUserEventsV2PublicShort instead.
 func (aaa *EventV2Service) GetUserEventsV2Public(input *event_v2.GetUserEventsV2PublicParams) (*eventlogclientmodels.ModelsEventResponseV2, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {

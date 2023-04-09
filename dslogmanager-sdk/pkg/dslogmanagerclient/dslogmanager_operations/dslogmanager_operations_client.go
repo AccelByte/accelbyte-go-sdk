@@ -40,7 +40,7 @@ type ClientService interface {
 }
 
 /*
-Deprecated: Use PublicGetMessagesShort instead.
+Deprecated: 2022-08-10 - Use PublicGetMessagesShort instead.
 
   PublicGetMessages gets service messages
 

@@ -50,7 +50,7 @@ type ClientService interface {
 }
 
 /*
-Deprecated: Use CreatePodConfigShort instead.
+Deprecated: 2022-08-10 - Use CreatePodConfigShort instead.
 
   CreatePodConfig creates pod config
 
@@ -172,7 +172,7 @@ func (a *Client) CreatePodConfigShort(params *CreatePodConfigParams, authInfo ru
 }
 
 /*
-Deprecated: Use DeletePodConfigShort instead.
+Deprecated: 2022-08-10 - Use DeletePodConfigShort instead.
 
   DeletePodConfig deletes pod config
 
@@ -299,7 +299,7 @@ func (a *Client) DeletePodConfigShort(params *DeletePodConfigParams, authInfo ru
 }
 
 /*
-Deprecated: Use GetAllPodConfigShort instead.
+Deprecated: 2022-08-10 - Use GetAllPodConfigShort instead.
 
   GetAllPodConfig gets all pod configs
 
@@ -420,7 +420,7 @@ func (a *Client) GetAllPodConfigShort(params *GetAllPodConfigParams, authInfo ru
 }
 
 /*
-Deprecated: Use GetLowestInstanceSpecShort instead.
+Deprecated: 2022-08-10 - Use GetLowestInstanceSpecShort instead.
 
   GetLowestInstanceSpec gets lowest instance spec
 
@@ -532,7 +532,7 @@ func (a *Client) GetLowestInstanceSpecShort(params *GetLowestInstanceSpecParams,
 }
 
 /*
-Deprecated: Use GetPodConfigShort instead.
+Deprecated: 2022-08-10 - Use GetPodConfigShort instead.
 
   GetPodConfig gets pod config
 
@@ -654,7 +654,7 @@ func (a *Client) GetPodConfigShort(params *GetPodConfigParams, authInfo runtime.
 }
 
 /*
-Deprecated: Use UpdatePodConfigShort instead.
+Deprecated: 2022-08-10 - Use UpdatePodConfigShort instead.
 
   UpdatePodConfig updates pod config
 

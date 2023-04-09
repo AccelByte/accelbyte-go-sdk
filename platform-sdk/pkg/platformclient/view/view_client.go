@@ -50,7 +50,7 @@ type ClientService interface {
 }
 
 /*
-Deprecated: Use CreateViewShort instead.
+Deprecated: 2022-08-10 - Use CreateViewShort instead.
 
   CreateView creates a view
 
@@ -164,7 +164,7 @@ func (a *Client) CreateViewShort(params *CreateViewParams, authInfo runtime.Clie
 }
 
 /*
-Deprecated: Use DeleteViewShort instead.
+Deprecated: 2022-08-10 - Use DeleteViewShort instead.
 
   DeleteView deletes a view
 
@@ -268,7 +268,7 @@ func (a *Client) DeleteViewShort(params *DeleteViewParams, authInfo runtime.Clie
 }
 
 /*
-Deprecated: Use GetViewShort instead.
+Deprecated: 2022-08-10 - Use GetViewShort instead.
 
   GetView gets a view
 
@@ -367,7 +367,7 @@ func (a *Client) GetViewShort(params *GetViewParams, authInfo runtime.ClientAuth
 }
 
 /*
-Deprecated: Use ListViewsShort instead.
+Deprecated: 2022-08-10 - Use ListViewsShort instead.
 
   ListViews lists all views
 
@@ -471,7 +471,7 @@ func (a *Client) ListViewsShort(params *ListViewsParams, authInfo runtime.Client
 }
 
 /*
-Deprecated: Use PublicListViewsShort instead.
+Deprecated: 2022-08-10 - Use PublicListViewsShort instead.
 
   PublicListViews gets all views
 
@@ -565,7 +565,7 @@ func (a *Client) PublicListViewsShort(params *PublicListViewsParams, authInfo ru
 }
 
 /*
-Deprecated: Use UpdateViewShort instead.
+Deprecated: 2022-08-10 - Use UpdateViewShort instead.
 
   UpdateView updates a view
 

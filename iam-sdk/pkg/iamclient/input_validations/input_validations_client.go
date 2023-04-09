@@ -46,7 +46,7 @@ type ClientService interface {
 }
 
 /*
-Deprecated: Use AdminGetInputValidationsShort instead.
+Deprecated: 2022-08-10 - Use AdminGetInputValidationsShort instead.
 
   AdminGetInputValidations admins get input validations
 
@@ -154,7 +154,7 @@ func (a *Client) AdminGetInputValidationsShort(params *AdminGetInputValidationsP
 }
 
 /*
-Deprecated: Use AdminResetInputValidationsShort instead.
+Deprecated: 2022-08-10 - Use AdminResetInputValidationsShort instead.
 
   AdminResetInputValidations admins reset input validations
 
@@ -263,7 +263,7 @@ func (a *Client) AdminResetInputValidationsShort(params *AdminResetInputValidati
 }
 
 /*
-Deprecated: Use AdminUpdateInputValidationsShort instead.
+Deprecated: 2022-08-10 - Use AdminUpdateInputValidationsShort instead.
 
   AdminUpdateInputValidations admins update input validations
 
@@ -428,7 +428,7 @@ func (a *Client) AdminUpdateInputValidationsShort(params *AdminUpdateInputValida
 }
 
 /*
-Deprecated: Use PublicGetInputValidationsShort instead.
+Deprecated: 2022-08-10 - Use PublicGetInputValidationsShort instead.
 
   PublicGetInputValidations publics get input validations
 

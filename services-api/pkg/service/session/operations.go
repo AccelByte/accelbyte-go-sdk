@@ -38,7 +38,7 @@ func (aaa *OperationsService) GetAuthSession() auth.Session {
 	}
 }
 
-// deprecated(2022-01-10): please use GetHealthcheckInfoShort instead.
+// Deprecated: 2022-01-10 - please use GetHealthcheckInfoShort instead.
 func (aaa *OperationsService) GetHealthcheckInfo(input *operations.GetHealthcheckInfoParams) error {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -52,7 +52,7 @@ func (aaa *OperationsService) GetHealthcheckInfo(input *operations.GetHealthchec
 	return nil
 }
 
-// deprecated(2022-01-10): please use GetHealthcheckInfoV1Short instead.
+// Deprecated: 2022-01-10 - please use GetHealthcheckInfoV1Short instead.
 func (aaa *OperationsService) GetHealthcheckInfoV1(input *operations.GetHealthcheckInfoV1Params) error {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {

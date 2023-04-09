@@ -48,7 +48,7 @@ type ClientService interface {
 }
 
 /*
-Deprecated: Use CreateRuleSetShort instead.
+Deprecated: 2022-08-10 - Use CreateRuleSetShort instead.
 
   CreateRuleSet creates a match rule set
 
@@ -187,7 +187,7 @@ func (a *Client) CreateRuleSetShort(params *CreateRuleSetParams, authInfo runtim
 }
 
 /*
-Deprecated: Use DeleteRuleSetShort instead.
+Deprecated: 2022-08-10 - Use DeleteRuleSetShort instead.
 
   DeleteRuleSet deletes a rule set
 
@@ -311,7 +311,7 @@ func (a *Client) DeleteRuleSetShort(params *DeleteRuleSetParams, authInfo runtim
 }
 
 /*
-Deprecated: Use RuleSetDetailsShort instead.
+Deprecated: 2022-08-10 - Use RuleSetDetailsShort instead.
 
   RuleSetDetails gets details for a specific rule set
 
@@ -430,7 +430,7 @@ func (a *Client) RuleSetDetailsShort(params *RuleSetDetailsParams, authInfo runt
 }
 
 /*
-Deprecated: Use RuleSetListShort instead.
+Deprecated: 2022-08-10 - Use RuleSetListShort instead.
 
   RuleSetList lists existing rule sets
 
@@ -549,7 +549,7 @@ func (a *Client) RuleSetListShort(params *RuleSetListParams, authInfo runtime.Cl
 }
 
 /*
-Deprecated: Use UpdateRuleSetShort instead.
+Deprecated: 2022-08-10 - Use UpdateRuleSetShort instead.
 
   UpdateRuleSet updates a match rule set
 

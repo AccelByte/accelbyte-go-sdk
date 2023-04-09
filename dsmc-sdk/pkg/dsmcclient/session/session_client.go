@@ -44,7 +44,7 @@ type ClientService interface {
 }
 
 /*
-Deprecated: Use ClaimServerShort instead.
+Deprecated: 2022-08-10 - Use ClaimServerShort instead.
 
   ClaimServer claims a d s for a game session
 
@@ -176,7 +176,7 @@ func (a *Client) ClaimServerShort(params *ClaimServerParams, authInfo runtime.Cl
 }
 
 /*
-Deprecated: Use CreateSessionShort instead.
+Deprecated: 2022-08-10 - Use CreateSessionShort instead.
 
   CreateSession registers a new game session
 
@@ -320,7 +320,7 @@ func (a *Client) CreateSessionShort(params *CreateSessionParams, authInfo runtim
 }
 
 /*
-Deprecated: Use GetSessionShort instead.
+Deprecated: 2022-08-10 - Use GetSessionShort instead.
 
   GetSession queries specified session
 

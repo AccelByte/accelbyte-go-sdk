@@ -8,6 +8,10 @@
   "schemes": [
     "https"
   ],
+  "externalDocs": {
+    "description": "API Docs",
+    "url": "https://stage.accelbyte.io/game-telemetry"
+  },
   "securityDefinitions": {
     "APIKeyCookie": {
       "in": "header",
@@ -44,7 +48,7 @@
         "operationId": "get_events_game_telemetry_v1_admin_namespaces__namespace__events_get",
         "parameters": [
           {
-            "default": "2023-03-13T03:00:30Z",
+            "default": "2023-03-27T02:21:39Z",
             "description": "Start time of data to be queried. Default: Current time in UTC minus 1 day.",
             "in": "query",
             "name": "startTime",
@@ -52,7 +56,7 @@
             "type": "string"
           },
           {
-            "default": "2023-03-14T03:00:30Z",
+            "default": "2023-03-28T02:21:39Z",
             "description": "End time of data to be queried. Default: Current time in UTC.",
             "in": "query",
             "name": "endTime",
@@ -385,5 +389,18 @@
       "title": "ValidationError",
       "type": "object"
     }
+  },
+  "x-docs": {
+    "alias": "game-telemetry",
+    "host": "https://stage.accelbyte.io",
+    "path": "/game-telemetry/openapi.json"
+  },
+  "x-version": {
+    "buildDate": "2023-03-28T02:01:38+00:00",
+    "gitHash": "8866133d7137bcd7518c5e9cfb1ae584e53d6616",
+    "name": "analytics-game-telemetry",
+    "realm": "staging",
+    "rolesSeedingVersion": "0.0.3",
+    "version": "1.17.1"
   }
 }

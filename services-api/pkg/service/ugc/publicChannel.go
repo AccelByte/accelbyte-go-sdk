@@ -39,7 +39,7 @@ func (aaa *PublicChannelService) GetAuthSession() auth.Session {
 	}
 }
 
-// deprecated(2022-01-10): please use GetChannelsShort instead.
+// Deprecated: 2022-01-10 - please use GetChannelsShort instead.
 func (aaa *PublicChannelService) GetChannels(input *public_channel.GetChannelsParams) (*ugcclientmodels.ModelsPaginatedGetChannelResponse, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -62,13 +62,13 @@ func (aaa *PublicChannelService) GetChannels(input *public_channel.GetChannelsPa
 	return ok.GetPayload(), nil
 }
 
-// deprecated(2022-01-10): please use CreateChannelShort instead.
-func (aaa *PublicChannelService) CreateChannel(input *public_channel.CreateChannelParams) (*ugcclientmodels.ModelsChannelResponse, error) {
+// Deprecated: 2022-01-10 - please use PublicCreateChannelShort instead.
+func (aaa *PublicChannelService) PublicCreateChannel(input *public_channel.PublicCreateChannelParams) (*ugcclientmodels.ModelsChannelResponse, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	created, badRequest, unauthorized, internalServerError, err := aaa.Client.PublicChannel.CreateChannel(input, client.BearerToken(*token.AccessToken))
+	created, badRequest, unauthorized, internalServerError, err := aaa.Client.PublicChannel.PublicCreateChannel(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -85,7 +85,7 @@ func (aaa *PublicChannelService) CreateChannel(input *public_channel.CreateChann
 	return created.GetPayload(), nil
 }
 
-// deprecated(2022-01-10): please use UpdateChannelShort instead.
+// Deprecated: 2022-01-10 - please use UpdateChannelShort instead.
 func (aaa *PublicChannelService) UpdateChannel(input *public_channel.UpdateChannelParams) (*ugcclientmodels.ModelsChannelResponse, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -111,7 +111,7 @@ func (aaa *PublicChannelService) UpdateChannel(input *public_channel.UpdateChann
 	return ok.GetPayload(), nil
 }
 
-// deprecated(2022-01-10): please use DeleteChannelShort instead.
+// Deprecated: 2022-01-10 - please use DeleteChannelShort instead.
 func (aaa *PublicChannelService) DeleteChannel(input *public_channel.DeleteChannelParams) error {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -159,7 +159,7 @@ func (aaa *PublicChannelService) GetChannelsShort(input *public_channel.GetChann
 	return ok.GetPayload(), nil
 }
 
-func (aaa *PublicChannelService) CreateChannelShort(input *public_channel.CreateChannelParams) (*ugcclientmodels.ModelsChannelResponse, error) {
+func (aaa *PublicChannelService) PublicCreateChannelShort(input *public_channel.PublicCreateChannelParams) (*ugcclientmodels.ModelsChannelResponse, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -176,7 +176,7 @@ func (aaa *PublicChannelService) CreateChannelShort(input *public_channel.Create
 		}
 	}
 
-	created, err := aaa.Client.PublicChannel.CreateChannelShort(input, authInfoWriter)
+	created, err := aaa.Client.PublicChannel.PublicCreateChannelShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}

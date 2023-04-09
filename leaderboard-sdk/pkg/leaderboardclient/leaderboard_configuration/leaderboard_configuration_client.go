@@ -49,6 +49,8 @@ type ClientService interface {
 	GetLeaderboardConfigurationsAdminV1Short(params *GetLeaderboardConfigurationsAdminV1Params, authInfo runtime.ClientAuthInfoWriter) (*GetLeaderboardConfigurationsAdminV1OK, error)
 	GetLeaderboardConfigurationsPublicV1(params *GetLeaderboardConfigurationsPublicV1Params, authInfo runtime.ClientAuthInfoWriter) (*GetLeaderboardConfigurationsPublicV1OK, *GetLeaderboardConfigurationsPublicV1BadRequest, *GetLeaderboardConfigurationsPublicV1Unauthorized, *GetLeaderboardConfigurationsPublicV1Forbidden, *GetLeaderboardConfigurationsPublicV1InternalServerError, error)
 	GetLeaderboardConfigurationsPublicV1Short(params *GetLeaderboardConfigurationsPublicV1Params, authInfo runtime.ClientAuthInfoWriter) (*GetLeaderboardConfigurationsPublicV1OK, error)
+	HardDeleteLeaderboardAdminV1(params *HardDeleteLeaderboardAdminV1Params, authInfo runtime.ClientAuthInfoWriter) (*HardDeleteLeaderboardAdminV1NoContent, *HardDeleteLeaderboardAdminV1BadRequest, *HardDeleteLeaderboardAdminV1Unauthorized, *HardDeleteLeaderboardAdminV1Forbidden, *HardDeleteLeaderboardAdminV1NotFound, *HardDeleteLeaderboardAdminV1InternalServerError, error)
+	HardDeleteLeaderboardAdminV1Short(params *HardDeleteLeaderboardAdminV1Params, authInfo runtime.ClientAuthInfoWriter) (*HardDeleteLeaderboardAdminV1NoContent, error)
 	UpdateLeaderboardConfigurationAdminV1(params *UpdateLeaderboardConfigurationAdminV1Params, authInfo runtime.ClientAuthInfoWriter) (*UpdateLeaderboardConfigurationAdminV1OK, *UpdateLeaderboardConfigurationAdminV1BadRequest, *UpdateLeaderboardConfigurationAdminV1Unauthorized, *UpdateLeaderboardConfigurationAdminV1Forbidden, *UpdateLeaderboardConfigurationAdminV1NotFound, *UpdateLeaderboardConfigurationAdminV1InternalServerError, error)
 	UpdateLeaderboardConfigurationAdminV1Short(params *UpdateLeaderboardConfigurationAdminV1Params, authInfo runtime.ClientAuthInfoWriter) (*UpdateLeaderboardConfigurationAdminV1OK, error)
 
@@ -56,7 +58,7 @@ type ClientService interface {
 }
 
 /*
-Deprecated: Use GetLeaderboardConfigurationsPublicV2Short instead.
+Deprecated: 2022-08-10 - Use GetLeaderboardConfigurationsPublicV2Short instead.
 
   GetLeaderboardConfigurationsPublicV2 lists all leaderboards by given namespace
 
@@ -170,7 +172,7 @@ func (a *Client) GetLeaderboardConfigurationsPublicV2Short(params *GetLeaderboar
 }
 
 /*
-Deprecated: Use CreateLeaderboardConfigurationAdminV1Short instead.
+Deprecated: 2022-08-10 - Use CreateLeaderboardConfigurationAdminV1Short instead.
 
   CreateLeaderboardConfigurationAdminV1 creates new leaderboard
 
@@ -313,7 +315,7 @@ func (a *Client) CreateLeaderboardConfigurationAdminV1Short(params *CreateLeader
 }
 
 /*
-Deprecated: Use CreateLeaderboardConfigurationPublicV1Short instead.
+Deprecated: 2022-08-10 - Use CreateLeaderboardConfigurationPublicV1Short instead.
 
   CreateLeaderboardConfigurationPublicV1 creates new leaderboard
 
@@ -460,7 +462,7 @@ func (a *Client) CreateLeaderboardConfigurationPublicV1Short(params *CreateLeade
 }
 
 /*
-Deprecated: Use DeleteBulkLeaderboardConfigurationAdminV1Short instead.
+Deprecated: 2022-08-10 - Use DeleteBulkLeaderboardConfigurationAdminV1Short instead.
 
   DeleteBulkLeaderboardConfigurationAdminV1 deletes bulk leaderboards response body will contains failed leaderboard with the reason why it s failed to delete
 
@@ -578,7 +580,7 @@ func (a *Client) DeleteBulkLeaderboardConfigurationAdminV1Short(params *DeleteBu
 }
 
 /*
-Deprecated: Use DeleteLeaderboardConfigurationAdminV1Short instead.
+Deprecated: 2022-08-10 - Use DeleteLeaderboardConfigurationAdminV1Short instead.
 
   DeleteLeaderboardConfigurationAdminV1 deletes leaderboard by leaderboard code
 
@@ -701,7 +703,7 @@ func (a *Client) DeleteLeaderboardConfigurationAdminV1Short(params *DeleteLeader
 }
 
 /*
-Deprecated: Use GetLeaderboardConfigurationAdminV1Short instead.
+Deprecated: 2022-08-10 - Use GetLeaderboardConfigurationAdminV1Short instead.
 
   GetLeaderboardConfigurationAdminV1 gets leaderboard by leaderboard code
 
@@ -824,7 +826,7 @@ func (a *Client) GetLeaderboardConfigurationAdminV1Short(params *GetLeaderboardC
 }
 
 /*
-Deprecated: Use GetLeaderboardConfigurationsAdminV1Short instead.
+Deprecated: 2022-08-10 - Use GetLeaderboardConfigurationsAdminV1Short instead.
 
   GetLeaderboardConfigurationsAdminV1 lists all leaderboards by given namespace
 
@@ -942,7 +944,7 @@ func (a *Client) GetLeaderboardConfigurationsAdminV1Short(params *GetLeaderboard
 }
 
 /*
-Deprecated: Use GetLeaderboardConfigurationsPublicV1Short instead.
+Deprecated: 2022-08-10 - Use GetLeaderboardConfigurationsPublicV1Short instead.
 
   GetLeaderboardConfigurationsPublicV1 lists all leaderboards by given namespace
 
@@ -1058,7 +1060,132 @@ func (a *Client) GetLeaderboardConfigurationsPublicV1Short(params *GetLeaderboar
 }
 
 /*
-Deprecated: Use UpdateLeaderboardConfigurationAdminV1Short instead.
+Deprecated: 2022-08-10 - Use HardDeleteLeaderboardAdminV1Short instead.
+
+  HardDeleteLeaderboardAdminV1 hards delete leaderboard config and data by leaderboard code
+
+  &lt;p&gt;&lt;b&gt;[Test Facility Only]&lt;/b&gt;&lt;/p&gt;
+			&lt;p&gt;Required permission &#39;ADMIN:NAMESPACE:{namespace}:LEADERBOARD [DELETE]&#39;&lt;/p&gt;
+			&lt;p&gt;This endpoint will delete leaderboard configuration and its data&lt;/p&gt;
+			&lt;p&gt;Note: this endpoint only works on development environment, you might want to use &lt;b&gt;archive endpoint&lt;/b&gt; instead hard delete.&lt;/p&gt;
+*/
+func (a *Client) HardDeleteLeaderboardAdminV1(params *HardDeleteLeaderboardAdminV1Params, authInfo runtime.ClientAuthInfoWriter) (*HardDeleteLeaderboardAdminV1NoContent, *HardDeleteLeaderboardAdminV1BadRequest, *HardDeleteLeaderboardAdminV1Unauthorized, *HardDeleteLeaderboardAdminV1Forbidden, *HardDeleteLeaderboardAdminV1NotFound, *HardDeleteLeaderboardAdminV1InternalServerError, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewHardDeleteLeaderboardAdminV1Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "hardDeleteLeaderboardAdminV1",
+		Method:             "DELETE",
+		PathPattern:        "/leaderboard/v1/admin/namespaces/{namespace}/leaderboards/{leaderboardCode}/hard",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &HardDeleteLeaderboardAdminV1Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, nil, nil, nil, nil, nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *HardDeleteLeaderboardAdminV1NoContent:
+		return v, nil, nil, nil, nil, nil, nil
+
+	case *HardDeleteLeaderboardAdminV1BadRequest:
+		return nil, v, nil, nil, nil, nil, nil
+
+	case *HardDeleteLeaderboardAdminV1Unauthorized:
+		return nil, nil, v, nil, nil, nil, nil
+
+	case *HardDeleteLeaderboardAdminV1Forbidden:
+		return nil, nil, nil, v, nil, nil, nil
+
+	case *HardDeleteLeaderboardAdminV1NotFound:
+		return nil, nil, nil, nil, v, nil, nil
+
+	case *HardDeleteLeaderboardAdminV1InternalServerError:
+		return nil, nil, nil, nil, nil, v, nil
+
+	default:
+		return nil, nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+  HardDeleteLeaderboardAdminV1Short hards delete leaderboard config and data by leaderboard code
+
+  &lt;p&gt;&lt;b&gt;[Test Facility Only]&lt;/b&gt;&lt;/p&gt;
+			&lt;p&gt;Required permission &#39;ADMIN:NAMESPACE:{namespace}:LEADERBOARD [DELETE]&#39;&lt;/p&gt;
+			&lt;p&gt;This endpoint will delete leaderboard configuration and its data&lt;/p&gt;
+			&lt;p&gt;Note: this endpoint only works on development environment, you might want to use &lt;b&gt;archive endpoint&lt;/b&gt; instead hard delete.&lt;/p&gt;
+*/
+func (a *Client) HardDeleteLeaderboardAdminV1Short(params *HardDeleteLeaderboardAdminV1Params, authInfo runtime.ClientAuthInfoWriter) (*HardDeleteLeaderboardAdminV1NoContent, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewHardDeleteLeaderboardAdminV1Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "hardDeleteLeaderboardAdminV1",
+		Method:             "DELETE",
+		PathPattern:        "/leaderboard/v1/admin/namespaces/{namespace}/leaderboards/{leaderboardCode}/hard",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &HardDeleteLeaderboardAdminV1Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *HardDeleteLeaderboardAdminV1NoContent:
+		return v, nil
+	case *HardDeleteLeaderboardAdminV1BadRequest:
+		return nil, v
+	case *HardDeleteLeaderboardAdminV1Unauthorized:
+		return nil, v
+	case *HardDeleteLeaderboardAdminV1Forbidden:
+		return nil, v
+	case *HardDeleteLeaderboardAdminV1NotFound:
+		return nil, v
+	case *HardDeleteLeaderboardAdminV1InternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+Deprecated: 2022-08-10 - Use UpdateLeaderboardConfigurationAdminV1Short instead.
 
   UpdateLeaderboardConfigurationAdminV1 updates leaderboard by leaderboard code
 

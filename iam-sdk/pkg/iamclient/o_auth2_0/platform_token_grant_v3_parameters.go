@@ -27,9 +27,11 @@ import (
 func NewPlatformTokenGrantV3Params() *PlatformTokenGrantV3Params {
 	var (
 		createHeadlessDefault = bool(true)
+		skipSetCookieDefault  = bool(false)
 	)
 	return &PlatformTokenGrantV3Params{
 		CreateHeadless: &createHeadlessDefault,
+		SkipSetCookie:  &skipSetCookieDefault,
 
 		timeout: cr.DefaultTimeout,
 	}
@@ -40,9 +42,11 @@ func NewPlatformTokenGrantV3Params() *PlatformTokenGrantV3Params {
 func NewPlatformTokenGrantV3ParamsWithTimeout(timeout time.Duration) *PlatformTokenGrantV3Params {
 	var (
 		createHeadlessDefault = bool(true)
+		skipSetCookieDefault  = bool(false)
 	)
 	return &PlatformTokenGrantV3Params{
 		CreateHeadless: &createHeadlessDefault,
+		SkipSetCookie:  &skipSetCookieDefault,
 
 		timeout: timeout,
 	}
@@ -53,9 +57,11 @@ func NewPlatformTokenGrantV3ParamsWithTimeout(timeout time.Duration) *PlatformTo
 func NewPlatformTokenGrantV3ParamsWithContext(ctx context.Context) *PlatformTokenGrantV3Params {
 	var (
 		createHeadlessDefault = bool(true)
+		skipSetCookieDefault  = bool(false)
 	)
 	return &PlatformTokenGrantV3Params{
 		CreateHeadless: &createHeadlessDefault,
+		SkipSetCookie:  &skipSetCookieDefault,
 
 		Context: ctx,
 	}
@@ -66,9 +72,11 @@ func NewPlatformTokenGrantV3ParamsWithContext(ctx context.Context) *PlatformToke
 func NewPlatformTokenGrantV3ParamsWithHTTPClient(client *http.Client) *PlatformTokenGrantV3Params {
 	var (
 		createHeadlessDefault = bool(true)
+		skipSetCookieDefault  = bool(false)
 	)
 	return &PlatformTokenGrantV3Params{
 		CreateHeadless: &createHeadlessDefault,
+		SkipSetCookie:  &skipSetCookieDefault,
 		HTTPClient:     client,
 	}
 }
@@ -110,6 +118,11 @@ type PlatformTokenGrantV3Params struct {
 
 	*/
 	PlatformToken *string
+	/*SkipSetCookie
+	  If need skip set cookie. Default is false
+
+	*/
+	SkipSetCookie *bool
 
 	timeout        time.Duration
 	AuthInfoWriter runtime.ClientAuthInfoWriter
@@ -230,6 +243,17 @@ func (o *PlatformTokenGrantV3Params) SetPlatformToken(platformToken *string) {
 	o.PlatformToken = platformToken
 }
 
+// WithSkipSetCookie adds the skipSetCookie to the platform token grant v3 params
+func (o *PlatformTokenGrantV3Params) WithSkipSetCookie(skipSetCookie *bool) *PlatformTokenGrantV3Params {
+	o.SetSkipSetCookie(skipSetCookie)
+	return o
+}
+
+// SetSkipSetCookie adds the skipSetCookie to the platform token grant v3 params
+func (o *PlatformTokenGrantV3Params) SetSkipSetCookie(skipSetCookie *bool) {
+	o.SkipSetCookie = skipSetCookie
+}
+
 // WriteToRequest writes these params to a swagger request
 func (o *PlatformTokenGrantV3Params) WriteToRequest(r runtime.ClientRequest, reg strfmt.Registry) error {
 
@@ -317,6 +341,22 @@ func (o *PlatformTokenGrantV3Params) WriteToRequest(r runtime.ClientRequest, reg
 		fPlatformToken := frPlatformToken
 		if fPlatformToken != "" {
 			if err := r.SetFormParam("platform_token", fPlatformToken); err != nil {
+				return err
+			}
+		}
+
+	}
+
+	if o.SkipSetCookie != nil {
+
+		// form param skipSetCookie
+		var frSkipSetCookie bool
+		if o.SkipSetCookie != nil {
+			frSkipSetCookie = *o.SkipSetCookie
+		}
+		fSkipSetCookie := swag.FormatBool(frSkipSetCookie)
+		if fSkipSetCookie != "" {
+			if err := r.SetFormParam("skipSetCookie", fSkipSetCookie); err != nil {
 				return err
 			}
 		}

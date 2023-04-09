@@ -50,7 +50,7 @@ type ClientService interface {
 }
 
 /*
-Deprecated: Use CreateGroupShort instead.
+Deprecated: 2022-08-10 - Use CreateGroupShort instead.
 
   CreateGroup creates groups
 
@@ -159,7 +159,7 @@ func (a *Client) CreateGroupShort(params *CreateGroupParams, authInfo runtime.Cl
 }
 
 /*
-Deprecated: Use DeleteGroupShort instead.
+Deprecated: 2022-08-10 - Use DeleteGroupShort instead.
 
   DeleteGroup deletes group
 
@@ -268,7 +268,7 @@ func (a *Client) DeleteGroupShort(params *DeleteGroupParams, authInfo runtime.Cl
 }
 
 /*
-Deprecated: Use GetGroupShort instead.
+Deprecated: 2022-08-10 - Use GetGroupShort instead.
 
   GetGroup gets user s groups
 
@@ -377,7 +377,7 @@ func (a *Client) GetGroupShort(params *GetGroupParams, authInfo runtime.ClientAu
 }
 
 /*
-Deprecated: Use GetGroupContentShort instead.
+Deprecated: 2022-08-10 - Use GetGroupContentShort instead.
 
   GetGroupContent gets contents belong to a group
 
@@ -486,7 +486,7 @@ func (a *Client) GetGroupContentShort(params *GetGroupContentParams, authInfo ru
 }
 
 /*
-Deprecated: Use GetGroupsShort instead.
+Deprecated: 2022-08-10 - Use GetGroupsShort instead.
 
   GetGroups gets all user groups
 
@@ -595,7 +595,7 @@ func (a *Client) GetGroupsShort(params *GetGroupsParams, authInfo runtime.Client
 }
 
 /*
-Deprecated: Use UpdateGroupShort instead.
+Deprecated: 2022-08-10 - Use UpdateGroupShort instead.
 
   UpdateGroup updates group
 

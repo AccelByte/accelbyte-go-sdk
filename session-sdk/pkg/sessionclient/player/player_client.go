@@ -48,7 +48,7 @@ type ClientService interface {
 }
 
 /*
-Deprecated: Use AdminGetPlayerAttributesShort instead.
+Deprecated: 2022-08-10 - Use AdminGetPlayerAttributesShort instead.
 
   AdminGetPlayerAttributes gets player attributes requires a d m i n n a m e s p a c e namespace s e s s i o n p l a y e r user Id r e a d
 
@@ -180,7 +180,7 @@ func (a *Client) AdminGetPlayerAttributesShort(params *AdminGetPlayerAttributesP
 }
 
 /*
-Deprecated: Use AdminQueryPlayerAttributesShort instead.
+Deprecated: 2022-08-10 - Use AdminQueryPlayerAttributesShort instead.
 
   AdminQueryPlayerAttributes queries player attributes requires a d m i n n a m e s p a c e namespace s e s s i o n p l a y e r user Id r e a d
 
@@ -312,7 +312,7 @@ func (a *Client) AdminQueryPlayerAttributesShort(params *AdminQueryPlayerAttribu
 }
 
 /*
-Deprecated: Use PublicDeletePlayerAttributesShort instead.
+Deprecated: 2022-08-10 - Use PublicDeletePlayerAttributesShort instead.
 
   PublicDeletePlayerAttributes removes player attributes requires n a m e s p a c e namespace s e s s i o n p l a y e r d e l e t e
 
@@ -426,7 +426,7 @@ func (a *Client) PublicDeletePlayerAttributesShort(params *PublicDeletePlayerAtt
 }
 
 /*
-Deprecated: Use PublicGetPlayerAttributesShort instead.
+Deprecated: 2022-08-10 - Use PublicGetPlayerAttributesShort instead.
 
   PublicGetPlayerAttributes gets player attributes requires n a m e s p a c e namespace s e s s i o n p l a y e r r e a d
 
@@ -558,7 +558,7 @@ func (a *Client) PublicGetPlayerAttributesShort(params *PublicGetPlayerAttribute
 }
 
 /*
-Deprecated: Use PublicStorePlayerAttributesShort instead.
+Deprecated: 2022-08-10 - Use PublicStorePlayerAttributesShort instead.
 
   PublicStorePlayerAttributes stores player attributes requires n a m e s p a c e namespace s e s s i o n p l a y e r c r e a t e
 

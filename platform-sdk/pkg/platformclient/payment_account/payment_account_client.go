@@ -42,7 +42,7 @@ type ClientService interface {
 }
 
 /*
-Deprecated: Use PublicDeletePaymentAccountShort instead.
+Deprecated: 2022-08-10 - Use PublicDeletePaymentAccountShort instead.
 
   PublicDeletePaymentAccount deletes payment account
 
@@ -136,7 +136,7 @@ func (a *Client) PublicDeletePaymentAccountShort(params *PublicDeletePaymentAcco
 }
 
 /*
-Deprecated: Use PublicGetPaymentAccountsShort instead.
+Deprecated: 2022-08-10 - Use PublicGetPaymentAccountsShort instead.
 
   PublicGetPaymentAccounts gets payment accounts
 

@@ -38,7 +38,7 @@ func (aaa *SSOService) GetAuthSession() auth.Session {
 	}
 }
 
-// deprecated(2022-01-10): please use LoginSSOClientShort instead.
+// Deprecated: 2022-01-10 - please use LoginSSOClientShort instead.
 func (aaa *SSOService) LoginSSOClient(input *sso.LoginSSOClientParams) error {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -52,7 +52,7 @@ func (aaa *SSOService) LoginSSOClient(input *sso.LoginSSOClientParams) error {
 	return nil
 }
 
-// deprecated(2022-01-10): please use LogoutSSOClientShort instead.
+// Deprecated: 2022-01-10 - please use LogoutSSOClientShort instead.
 func (aaa *SSOService) LogoutSSOClient(input *sso.LogoutSSOClientParams) error {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {

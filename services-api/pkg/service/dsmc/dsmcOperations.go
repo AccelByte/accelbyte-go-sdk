@@ -39,7 +39,7 @@ func (aaa *DsmcOperationsService) GetAuthSession() auth.Session {
 	}
 }
 
-// deprecated(2022-01-10): please use PublicGetMessagesShort instead.
+// Deprecated: 2022-01-10 - please use PublicGetMessagesShort instead.
 func (aaa *DsmcOperationsService) PublicGetMessages(input *dsmc_operations.PublicGetMessagesParams) ([]*dsmcclientmodels.LogAppMessageDeclaration, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {

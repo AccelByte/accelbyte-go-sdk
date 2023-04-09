@@ -18,8 +18,7 @@ import (
 type PlayStationIAPConfigInfo struct {
 
 	// environment
-	// Required: true
-	Environment *string `json:"environment"`
+	Environment string `json:"environment,omitempty"`
 
 	// namespace
 	// Required: true
@@ -30,10 +29,6 @@ type PlayStationIAPConfigInfo struct {
 func (m *PlayStationIAPConfigInfo) Validate(formats strfmt.Registry) error {
 	var res []error
 
-	if err := m.validateEnvironment(formats); err != nil {
-		res = append(res, err)
-	}
-
 	if err := m.validateNamespace(formats); err != nil {
 		res = append(res, err)
 	}
@@ -41,15 +36,6 @@ func (m *PlayStationIAPConfigInfo) Validate(formats strfmt.Registry) error {
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
-	return nil
-}
-
-func (m *PlayStationIAPConfigInfo) validateEnvironment(formats strfmt.Registry) error {
-
-	if err := validate.Required("environment", "body", m.Environment); err != nil {
-		return err
-	}
-
 	return nil
 }
 

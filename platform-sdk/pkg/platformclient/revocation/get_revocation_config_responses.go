@@ -22,22 +22,22 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclientmodels"
 )
 
-// GetPaymentCallbackConfig1Reader is a Reader for the GetPaymentCallbackConfig1 structure.
-type GetPaymentCallbackConfig1Reader struct {
+// GetRevocationConfigReader is a Reader for the GetRevocationConfig structure.
+type GetRevocationConfigReader struct {
 	formats strfmt.Registry
 }
 
 // ReadResponse reads a server response into the received o.
-func (o *GetPaymentCallbackConfig1Reader) ReadResponse(response runtime.ClientResponse, consumer runtime.Consumer) (interface{}, error) {
+func (o *GetRevocationConfigReader) ReadResponse(response runtime.ClientResponse, consumer runtime.Consumer) (interface{}, error) {
 	switch response.Code() {
 	case 200:
-		result := NewGetPaymentCallbackConfig1OK()
+		result := NewGetRevocationConfigOK()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return result, nil
 	case 404:
-		result := NewGetPaymentCallbackConfig1NotFound()
+		result := NewGetRevocationConfigNotFound()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
@@ -53,24 +53,24 @@ func (o *GetPaymentCallbackConfig1Reader) ReadResponse(response runtime.ClientRe
 	}
 }
 
-// NewGetPaymentCallbackConfig1OK creates a GetPaymentCallbackConfig1OK with default headers values
-func NewGetPaymentCallbackConfig1OK() *GetPaymentCallbackConfig1OK {
-	return &GetPaymentCallbackConfig1OK{}
+// NewGetRevocationConfigOK creates a GetRevocationConfigOK with default headers values
+func NewGetRevocationConfigOK() *GetRevocationConfigOK {
+	return &GetRevocationConfigOK{}
 }
 
-/*GetPaymentCallbackConfig1OK handles this case with default header values.
+/*GetRevocationConfigOK handles this case with default header values.
 
   successful operation
 */
-type GetPaymentCallbackConfig1OK struct {
+type GetRevocationConfigOK struct {
 	Payload *platformclientmodels.RevocationConfigInfo
 }
 
-func (o *GetPaymentCallbackConfig1OK) Error() string {
-	return fmt.Sprintf("[GET /platform/admin/namespaces/{namespace}/revocation/config][%d] getPaymentCallbackConfig1OK  %+v", 200, o.ToJSONString())
+func (o *GetRevocationConfigOK) Error() string {
+	return fmt.Sprintf("[GET /platform/admin/namespaces/{namespace}/revocation/config][%d] getRevocationConfigOK  %+v", 200, o.ToJSONString())
 }
 
-func (o *GetPaymentCallbackConfig1OK) ToJSONString() string {
+func (o *GetRevocationConfigOK) ToJSONString() string {
 	if o.Payload == nil {
 		return "{}"
 	}
@@ -85,11 +85,11 @@ func (o *GetPaymentCallbackConfig1OK) ToJSONString() string {
 	return fmt.Sprintf("%+v", string(b))
 }
 
-func (o *GetPaymentCallbackConfig1OK) GetPayload() *platformclientmodels.RevocationConfigInfo {
+func (o *GetRevocationConfigOK) GetPayload() *platformclientmodels.RevocationConfigInfo {
 	return o.Payload
 }
 
-func (o *GetPaymentCallbackConfig1OK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+func (o *GetRevocationConfigOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -106,24 +106,24 @@ func (o *GetPaymentCallbackConfig1OK) readResponse(response runtime.ClientRespon
 	return nil
 }
 
-// NewGetPaymentCallbackConfig1NotFound creates a GetPaymentCallbackConfig1NotFound with default headers values
-func NewGetPaymentCallbackConfig1NotFound() *GetPaymentCallbackConfig1NotFound {
-	return &GetPaymentCallbackConfig1NotFound{}
+// NewGetRevocationConfigNotFound creates a GetRevocationConfigNotFound with default headers values
+func NewGetRevocationConfigNotFound() *GetRevocationConfigNotFound {
+	return &GetRevocationConfigNotFound{}
 }
 
-/*GetPaymentCallbackConfig1NotFound handles this case with default header values.
+/*GetRevocationConfigNotFound handles this case with default header values.
 
   <table><tr><td>ErrorCode</td><td>ErrorMessage</td></tr><tr><td>33243</td><td>Payment callback config for [{namespace}] does not exist</td></tr></table>
 */
-type GetPaymentCallbackConfig1NotFound struct {
+type GetRevocationConfigNotFound struct {
 	Payload *platformclientmodels.ErrorEntity
 }
 
-func (o *GetPaymentCallbackConfig1NotFound) Error() string {
-	return fmt.Sprintf("[GET /platform/admin/namespaces/{namespace}/revocation/config][%d] getPaymentCallbackConfig1NotFound  %+v", 404, o.ToJSONString())
+func (o *GetRevocationConfigNotFound) Error() string {
+	return fmt.Sprintf("[GET /platform/admin/namespaces/{namespace}/revocation/config][%d] getRevocationConfigNotFound  %+v", 404, o.ToJSONString())
 }
 
-func (o *GetPaymentCallbackConfig1NotFound) ToJSONString() string {
+func (o *GetRevocationConfigNotFound) ToJSONString() string {
 	if o.Payload == nil {
 		return "{}"
 	}
@@ -138,11 +138,11 @@ func (o *GetPaymentCallbackConfig1NotFound) ToJSONString() string {
 	return fmt.Sprintf("%+v", string(b))
 }
 
-func (o *GetPaymentCallbackConfig1NotFound) GetPayload() *platformclientmodels.ErrorEntity {
+func (o *GetRevocationConfigNotFound) GetPayload() *platformclientmodels.ErrorEntity {
 	return o.Payload
 }
 
-func (o *GetPaymentCallbackConfig1NotFound) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+func (o *GetRevocationConfigNotFound) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {

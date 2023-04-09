@@ -8,6 +8,10 @@
   "schemes": [
     "https"
   ],
+  "externalDocs": {
+    "description": "API Docs",
+    "url": "https://stage.accelbyte.io/lobby/apidocs"
+  },
   "securityDefinitions": {
     "HasPermission": {
       "authorizationUrl": "https://dummy.oauth.net/auth",
@@ -8823,5 +8827,19 @@
         "errorMessage"
       ]
     }
+  },
+  "x-docs": {
+    "alias": "lobby",
+    "host": "https://stage.accelbyte.io",
+    "path": "/lobby/apidocs/api.json"
+  },
+  "x-version": {
+    "buildDate": "2023-03-27T03:25:20+00:00",
+    "gitHash": "00f676fefebe670aa4282f9e5308906d5a7df726",
+    "name": "justice-lobby-server",
+    "revisionID": "3.17.0",
+    "version": "3.17.0",
+    "version-justice": "3.45.0",
+    "version-roles-seeding": "0.0.3"
   }
 }

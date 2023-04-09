@@ -39,7 +39,7 @@ func (aaa *DLCService) GetAuthSession() auth.Session {
 	}
 }
 
-// deprecated(2022-01-10): please use GetDLCItemConfigShort instead.
+// Deprecated: 2022-01-10 - please use GetDLCItemConfigShort instead.
 func (aaa *DLCService) GetDLCItemConfig(input *dlc.GetDLCItemConfigParams) (*platformclientmodels.DLCItemConfigInfo, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -56,7 +56,7 @@ func (aaa *DLCService) GetDLCItemConfig(input *dlc.GetDLCItemConfigParams) (*pla
 	return ok.GetPayload(), nil
 }
 
-// deprecated(2022-01-10): please use UpdateDLCItemConfigShort instead.
+// Deprecated: 2022-01-10 - please use UpdateDLCItemConfigShort instead.
 func (aaa *DLCService) UpdateDLCItemConfig(input *dlc.UpdateDLCItemConfigParams) (*platformclientmodels.DLCItemConfigInfo, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -76,7 +76,7 @@ func (aaa *DLCService) UpdateDLCItemConfig(input *dlc.UpdateDLCItemConfigParams)
 	return ok.GetPayload(), nil
 }
 
-// deprecated(2022-01-10): please use DeleteDLCItemConfigShort instead.
+// Deprecated: 2022-01-10 - please use DeleteDLCItemConfigShort instead.
 func (aaa *DLCService) DeleteDLCItemConfig(input *dlc.DeleteDLCItemConfigParams) error {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -90,7 +90,7 @@ func (aaa *DLCService) DeleteDLCItemConfig(input *dlc.DeleteDLCItemConfigParams)
 	return nil
 }
 
-// deprecated(2022-01-10): please use GetPlatformDLCConfigShort instead.
+// Deprecated: 2022-01-10 - please use GetPlatformDLCConfigShort instead.
 func (aaa *DLCService) GetPlatformDLCConfig(input *dlc.GetPlatformDLCConfigParams) (*platformclientmodels.PlatformDLCConfigInfo, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -107,7 +107,7 @@ func (aaa *DLCService) GetPlatformDLCConfig(input *dlc.GetPlatformDLCConfigParam
 	return ok.GetPayload(), nil
 }
 
-// deprecated(2022-01-10): please use UpdatePlatformDLCConfigShort instead.
+// Deprecated: 2022-01-10 - please use UpdatePlatformDLCConfigShort instead.
 func (aaa *DLCService) UpdatePlatformDLCConfig(input *dlc.UpdatePlatformDLCConfigParams) (*platformclientmodels.PlatformDLCConfigInfo, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -124,7 +124,7 @@ func (aaa *DLCService) UpdatePlatformDLCConfig(input *dlc.UpdatePlatformDLCConfi
 	return ok.GetPayload(), nil
 }
 
-// deprecated(2022-01-10): please use DeletePlatformDLCConfigShort instead.
+// Deprecated: 2022-01-10 - please use DeletePlatformDLCConfigShort instead.
 func (aaa *DLCService) DeletePlatformDLCConfig(input *dlc.DeletePlatformDLCConfigParams) error {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -138,7 +138,7 @@ func (aaa *DLCService) DeletePlatformDLCConfig(input *dlc.DeletePlatformDLCConfi
 	return nil
 }
 
-// deprecated(2022-01-10): please use GetUserDLCShort instead.
+// Deprecated: 2022-01-10 - please use GetUserDLCShort instead.
 func (aaa *DLCService) GetUserDLC(input *dlc.GetUserDLCParams) (*platformclientmodels.UserDLC, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -152,7 +152,7 @@ func (aaa *DLCService) GetUserDLC(input *dlc.GetUserDLCParams) (*platformclientm
 	return ok.GetPayload(), nil
 }
 
-// deprecated(2022-01-10): please use SyncEpicGameDLCShort instead.
+// Deprecated: 2022-01-10 - please use SyncEpicGameDLCShort instead.
 func (aaa *DLCService) SyncEpicGameDLC(input *dlc.SyncEpicGameDLCParams) error {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -169,7 +169,7 @@ func (aaa *DLCService) SyncEpicGameDLC(input *dlc.SyncEpicGameDLCParams) error {
 	return nil
 }
 
-// deprecated(2022-01-10): please use PublicSyncPsnDLCInventoryShort instead.
+// Deprecated: 2022-01-10 - please use PublicSyncPsnDLCInventoryShort instead.
 func (aaa *DLCService) PublicSyncPsnDLCInventory(input *dlc.PublicSyncPsnDLCInventoryParams) error {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -186,7 +186,7 @@ func (aaa *DLCService) PublicSyncPsnDLCInventory(input *dlc.PublicSyncPsnDLCInve
 	return nil
 }
 
-// deprecated(2022-01-10): please use PublicSyncPsnDLCInventoryWithMultipleServiceLabelsShort instead.
+// Deprecated: 2022-01-10 - please use PublicSyncPsnDLCInventoryWithMultipleServiceLabelsShort instead.
 func (aaa *DLCService) PublicSyncPsnDLCInventoryWithMultipleServiceLabels(input *dlc.PublicSyncPsnDLCInventoryWithMultipleServiceLabelsParams) error {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -203,7 +203,7 @@ func (aaa *DLCService) PublicSyncPsnDLCInventoryWithMultipleServiceLabels(input 
 	return nil
 }
 
-// deprecated(2022-01-10): please use SyncSteamDLCShort instead.
+// Deprecated: 2022-01-10 - please use SyncSteamDLCShort instead.
 func (aaa *DLCService) SyncSteamDLC(input *dlc.SyncSteamDLCParams) error {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -220,7 +220,7 @@ func (aaa *DLCService) SyncSteamDLC(input *dlc.SyncSteamDLCParams) error {
 	return nil
 }
 
-// deprecated(2022-01-10): please use SyncXboxDLCShort instead.
+// Deprecated: 2022-01-10 - please use SyncXboxDLCShort instead.
 func (aaa *DLCService) SyncXboxDLC(input *dlc.SyncXboxDLCParams) error {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {

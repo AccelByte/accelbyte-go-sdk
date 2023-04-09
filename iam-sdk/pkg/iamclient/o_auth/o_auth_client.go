@@ -56,7 +56,7 @@ type ClientService interface {
 }
 
 /*
-Deprecated: Use AuthorizationShort instead.
+Deprecated: 2022-08-10 - Use AuthorizationShort instead.
 
   Authorization os auth2 authorize API
 
@@ -214,7 +214,7 @@ func (a *Client) AuthorizationShort(params *AuthorizationParams, authInfo runtim
 }
 
 /*
-Deprecated: Use GetJWKSShort instead.
+Deprecated: 2022-08-10 - Use GetJWKSShort instead.
 
   GetJWKS JSONs web key set for verifying j w t
 
@@ -330,7 +330,7 @@ func (a *Client) GetJWKSShort(params *GetJWKSParams, authInfo runtime.ClientAuth
 }
 
 /*
-Deprecated: Use GetRevocationListShort instead.
+Deprecated: 2022-08-10 - Use GetRevocationListShort instead.
 
   GetRevocationList os auth2 revocation list API
 
@@ -441,7 +441,7 @@ func (a *Client) GetRevocationListShort(params *GetRevocationListParams, authInf
 }
 
 /*
-Deprecated: Use PlatformTokenRequestHandlerShort instead.
+Deprecated: 2022-08-10 - Use PlatformTokenRequestHandlerShort instead.
 
   PlatformTokenRequestHandler os auth2 access token generation specific to platform
 
@@ -575,7 +575,7 @@ func (a *Client) PlatformTokenRequestHandlerShort(params *PlatformTokenRequestHa
 }
 
 /*
-Deprecated: Use RevokeAUserShort instead.
+Deprecated: 2022-08-10 - Use RevokeAUserShort instead.
 
   RevokeAUser os auth2 user revocation API
 
@@ -695,7 +695,7 @@ func (a *Client) RevokeAUserShort(params *RevokeAUserParams, authInfo runtime.Cl
 }
 
 /*
-Deprecated: Use RevokeTokenShort instead.
+Deprecated: 2022-08-10 - Use RevokeTokenShort instead.
 
   RevokeToken os auth2 token revocation API
 
@@ -811,7 +811,7 @@ func (a *Client) RevokeTokenShort(params *RevokeTokenParams, authInfo runtime.Cl
 }
 
 /*
-Deprecated: Use RevokeUserShort instead.
+Deprecated: 2022-08-10 - Use RevokeUserShort instead.
 
   RevokeUser revokes user s tokens
 
@@ -924,7 +924,7 @@ func (a *Client) RevokeUserShort(params *RevokeUserParams, authInfo runtime.Clie
 }
 
 /*
-Deprecated: Use TokenGrantShort instead.
+Deprecated: 2022-08-10 - Use TokenGrantShort instead.
 
   TokenGrant os auth2 access token generation endpoint
 
@@ -1202,7 +1202,7 @@ func (a *Client) TokenGrantShort(params *TokenGrantParams, authInfo runtime.Clie
 }
 
 /*
-Deprecated: Use VerifyTokenShort instead.
+Deprecated: 2022-08-10 - Use VerifyTokenShort instead.
 
   VerifyToken os auth2 token verification API
 

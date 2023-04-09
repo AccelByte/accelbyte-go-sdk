@@ -44,7 +44,7 @@ type ClientService interface {
 }
 
 /*
-Deprecated: Use GetUserInfoStatusShort instead.
+Deprecated: 2022-08-10 - Use GetUserInfoStatusShort instead.
 
   GetUserInfoStatus gets user info cache status
 
@@ -138,7 +138,7 @@ func (a *Client) GetUserInfoStatusShort(params *GetUserInfoStatusParams, authInf
 }
 
 /*
-Deprecated: Use InvalidateUserInfoCacheShort instead.
+Deprecated: 2022-08-10 - Use InvalidateUserInfoCacheShort instead.
 
   InvalidateUserInfoCache invalidates user info cache
 
@@ -232,7 +232,7 @@ func (a *Client) InvalidateUserInfoCacheShort(params *InvalidateUserInfoCachePar
 }
 
 /*
-Deprecated: Use SyncUserInfoShort instead.
+Deprecated: 2022-08-10 - Use SyncUserInfoShort instead.
 
   SyncUserInfo syncs user info with iam service
 

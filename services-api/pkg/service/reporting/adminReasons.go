@@ -39,7 +39,7 @@ func (aaa *AdminReasonsService) GetAuthSession() auth.Session {
 	}
 }
 
-// deprecated(2022-01-10): please use AdminListReasonGroupsShort instead.
+// Deprecated: 2022-01-10 - please use AdminListReasonGroupsShort instead.
 func (aaa *AdminReasonsService) AdminListReasonGroups(input *admin_reasons.AdminListReasonGroupsParams) (*reportingclientmodels.RestapiReasonGroupListResponse, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -56,7 +56,7 @@ func (aaa *AdminReasonsService) AdminListReasonGroups(input *admin_reasons.Admin
 	return ok.GetPayload(), nil
 }
 
-// deprecated(2022-01-10): please use CreateReasonGroupShort instead.
+// Deprecated: 2022-01-10 - please use CreateReasonGroupShort instead.
 func (aaa *AdminReasonsService) CreateReasonGroup(input *admin_reasons.CreateReasonGroupParams) (*reportingclientmodels.RestapiReasonGroupResponse, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -79,7 +79,7 @@ func (aaa *AdminReasonsService) CreateReasonGroup(input *admin_reasons.CreateRea
 	return created.GetPayload(), nil
 }
 
-// deprecated(2022-01-10): please use GetReasonGroupShort instead.
+// Deprecated: 2022-01-10 - please use GetReasonGroupShort instead.
 func (aaa *AdminReasonsService) GetReasonGroup(input *admin_reasons.GetReasonGroupParams) (*reportingclientmodels.RestapiReasonGroupResponse, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -99,7 +99,7 @@ func (aaa *AdminReasonsService) GetReasonGroup(input *admin_reasons.GetReasonGro
 	return ok.GetPayload(), nil
 }
 
-// deprecated(2022-01-10): please use DeleteReasonGroupShort instead.
+// Deprecated: 2022-01-10 - please use DeleteReasonGroupShort instead.
 func (aaa *AdminReasonsService) DeleteReasonGroup(input *admin_reasons.DeleteReasonGroupParams) error {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -116,7 +116,7 @@ func (aaa *AdminReasonsService) DeleteReasonGroup(input *admin_reasons.DeleteRea
 	return nil
 }
 
-// deprecated(2022-01-10): please use UpdateReasonGroupShort instead.
+// Deprecated: 2022-01-10 - please use UpdateReasonGroupShort instead.
 func (aaa *AdminReasonsService) UpdateReasonGroup(input *admin_reasons.UpdateReasonGroupParams) (*reportingclientmodels.RestapiReasonGroupResponse, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -139,7 +139,7 @@ func (aaa *AdminReasonsService) UpdateReasonGroup(input *admin_reasons.UpdateRea
 	return ok.GetPayload(), nil
 }
 
-// deprecated(2022-01-10): please use AdminGetReasonsShort instead.
+// Deprecated: 2022-01-10 - please use AdminGetReasonsShort instead.
 func (aaa *AdminReasonsService) AdminGetReasons(input *admin_reasons.AdminGetReasonsParams) (*reportingclientmodels.RestapiAdminReasonListResponse, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -159,7 +159,7 @@ func (aaa *AdminReasonsService) AdminGetReasons(input *admin_reasons.AdminGetRea
 	return ok.GetPayload(), nil
 }
 
-// deprecated(2022-01-10): please use CreateReasonShort instead.
+// Deprecated: 2022-01-10 - please use CreateReasonShort instead.
 func (aaa *AdminReasonsService) CreateReason(input *admin_reasons.CreateReasonParams) (*reportingclientmodels.RestapiAdminReasonResponse, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -182,7 +182,7 @@ func (aaa *AdminReasonsService) CreateReason(input *admin_reasons.CreateReasonPa
 	return created.GetPayload(), nil
 }
 
-// deprecated(2022-01-10): please use AdminGetAllReasonsShort instead.
+// Deprecated: 2022-01-10 - please use AdminGetAllReasonsShort instead.
 func (aaa *AdminReasonsService) AdminGetAllReasons(input *admin_reasons.AdminGetAllReasonsParams) (*reportingclientmodels.RestapiAdminAllReasonsResponse, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -199,7 +199,7 @@ func (aaa *AdminReasonsService) AdminGetAllReasons(input *admin_reasons.AdminGet
 	return ok.GetPayload(), nil
 }
 
-// deprecated(2022-01-10): please use AdminGetUnusedReasonsShort instead.
+// Deprecated: 2022-01-10 - please use AdminGetUnusedReasonsShort instead.
 func (aaa *AdminReasonsService) AdminGetUnusedReasons(input *admin_reasons.AdminGetUnusedReasonsParams) (*reportingclientmodels.RestapiUnusedReasonListResponse, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -219,7 +219,7 @@ func (aaa *AdminReasonsService) AdminGetUnusedReasons(input *admin_reasons.Admin
 	return ok.GetPayload(), nil
 }
 
-// deprecated(2022-01-10): please use AdminGetReasonShort instead.
+// Deprecated: 2022-01-10 - please use AdminGetReasonShort instead.
 func (aaa *AdminReasonsService) AdminGetReason(input *admin_reasons.AdminGetReasonParams) (*reportingclientmodels.RestapiAdminReasonResponse, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -239,7 +239,7 @@ func (aaa *AdminReasonsService) AdminGetReason(input *admin_reasons.AdminGetReas
 	return ok.GetPayload(), nil
 }
 
-// deprecated(2022-01-10): please use DeleteReasonShort instead.
+// Deprecated: 2022-01-10 - please use DeleteReasonShort instead.
 func (aaa *AdminReasonsService) DeleteReason(input *admin_reasons.DeleteReasonParams) error {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -256,7 +256,7 @@ func (aaa *AdminReasonsService) DeleteReason(input *admin_reasons.DeleteReasonPa
 	return nil
 }
 
-// deprecated(2022-01-10): please use UpdateReasonShort instead.
+// Deprecated: 2022-01-10 - please use UpdateReasonShort instead.
 func (aaa *AdminReasonsService) UpdateReason(input *admin_reasons.UpdateReasonParams) (*reportingclientmodels.RestapiAdminReasonResponse, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {

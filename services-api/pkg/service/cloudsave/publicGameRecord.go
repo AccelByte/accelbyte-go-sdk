@@ -39,7 +39,7 @@ func (aaa *PublicGameRecordService) GetAuthSession() auth.Session {
 	}
 }
 
-// deprecated(2022-01-10): please use GetGameRecordsBulkShort instead.
+// Deprecated: 2022-01-10 - please use GetGameRecordsBulkShort instead.
 func (aaa *PublicGameRecordService) GetGameRecordsBulk(input *public_game_record.GetGameRecordsBulkParams) (*cloudsaveclientmodels.ModelsBulkGetGameRecordResponse, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -65,7 +65,7 @@ func (aaa *PublicGameRecordService) GetGameRecordsBulk(input *public_game_record
 	return ok.GetPayload(), nil
 }
 
-// deprecated(2022-01-10): please use GetGameRecordHandlerV1Short instead.
+// Deprecated: 2022-01-10 - please use GetGameRecordHandlerV1Short instead.
 func (aaa *PublicGameRecordService) GetGameRecordHandlerV1(input *public_game_record.GetGameRecordHandlerV1Params) (*cloudsaveclientmodels.ModelsGameRecordResponse, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -88,7 +88,7 @@ func (aaa *PublicGameRecordService) GetGameRecordHandlerV1(input *public_game_re
 	return ok.GetPayload(), nil
 }
 
-// deprecated(2022-01-10): please use PutGameRecordHandlerV1Short instead.
+// Deprecated: 2022-01-10 - please use PutGameRecordHandlerV1Short instead.
 func (aaa *PublicGameRecordService) PutGameRecordHandlerV1(input *public_game_record.PutGameRecordHandlerV1Params) (*cloudsaveclientmodels.ModelsGameRecordResponse, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -108,7 +108,7 @@ func (aaa *PublicGameRecordService) PutGameRecordHandlerV1(input *public_game_re
 	return ok.GetPayload(), nil
 }
 
-// deprecated(2022-01-10): please use PostGameRecordHandlerV1Short instead.
+// Deprecated: 2022-01-10 - please use PostGameRecordHandlerV1Short instead.
 func (aaa *PublicGameRecordService) PostGameRecordHandlerV1(input *public_game_record.PostGameRecordHandlerV1Params) (*cloudsaveclientmodels.ModelsGameRecordResponse, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -128,7 +128,7 @@ func (aaa *PublicGameRecordService) PostGameRecordHandlerV1(input *public_game_r
 	return created.GetPayload(), nil
 }
 
-// deprecated(2022-01-10): please use DeleteGameRecordHandlerV1Short instead.
+// Deprecated: 2022-01-10 - please use DeleteGameRecordHandlerV1Short instead.
 func (aaa *PublicGameRecordService) DeleteGameRecordHandlerV1(input *public_game_record.DeleteGameRecordHandlerV1Params) error {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {

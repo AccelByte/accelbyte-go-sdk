@@ -56,7 +56,7 @@ type ClientService interface {
 }
 
 /*
-Deprecated: Use AdminBulkBlockPlayersV1Short instead.
+Deprecated: 2022-08-10 - Use AdminBulkBlockPlayersV1Short instead.
 
   AdminBulkBlockPlayersV1 admins bulk blocks player by list user id
 
@@ -172,7 +172,7 @@ func (a *Client) AdminBulkBlockPlayersV1Short(params *AdminBulkBlockPlayersV1Par
 }
 
 /*
-Deprecated: Use AdminGetAllPlayerSessionAttributeShort instead.
+Deprecated: 2022-08-10 - Use AdminGetAllPlayerSessionAttributeShort instead.
 
   AdminGetAllPlayerSessionAttribute admins get all player s session attribute
 
@@ -283,7 +283,7 @@ func (a *Client) AdminGetAllPlayerSessionAttributeShort(params *AdminGetAllPlaye
 }
 
 /*
-Deprecated: Use AdminGetLobbyCCUShort instead.
+Deprecated: 2022-08-10 - Use AdminGetLobbyCCUShort instead.
 
   AdminGetLobbyCCU admins get number of players currently connected to the lobby
 
@@ -404,7 +404,7 @@ func (a *Client) AdminGetLobbyCCUShort(params *AdminGetLobbyCCUParams, authInfo 
 }
 
 /*
-Deprecated: Use AdminGetPlayerBlockedByPlayersV1Short instead.
+Deprecated: 2022-08-10 - Use AdminGetPlayerBlockedByPlayersV1Short instead.
 
   AdminGetPlayerBlockedByPlayersV1 gets players who blocked this player by user id
 
@@ -525,7 +525,7 @@ func (a *Client) AdminGetPlayerBlockedByPlayersV1Short(params *AdminGetPlayerBlo
 }
 
 /*
-Deprecated: Use AdminGetPlayerBlockedPlayersV1Short instead.
+Deprecated: 2022-08-10 - Use AdminGetPlayerBlockedPlayersV1Short instead.
 
   AdminGetPlayerBlockedPlayersV1 admins get blocked players by user id
 
@@ -646,7 +646,7 @@ func (a *Client) AdminGetPlayerBlockedPlayersV1Short(params *AdminGetPlayerBlock
 }
 
 /*
-Deprecated: Use AdminGetPlayerSessionAttributeShort instead.
+Deprecated: 2022-08-10 - Use AdminGetPlayerSessionAttributeShort instead.
 
   AdminGetPlayerSessionAttribute admins get player s session attribute
 
@@ -767,7 +767,7 @@ func (a *Client) AdminGetPlayerSessionAttributeShort(params *AdminGetPlayerSessi
 }
 
 /*
-Deprecated: Use AdminSetPlayerSessionAttributeShort instead.
+Deprecated: 2022-08-10 - Use AdminSetPlayerSessionAttributeShort instead.
 
   AdminSetPlayerSessionAttribute admins set player s session attribute
 
@@ -888,7 +888,7 @@ func (a *Client) AdminSetPlayerSessionAttributeShort(params *AdminSetPlayerSessi
 }
 
 /*
-Deprecated: Use PublicGetPlayerBlockedByPlayersV1Short instead.
+Deprecated: 2022-08-10 - Use PublicGetPlayerBlockedByPlayersV1Short instead.
 
   PublicGetPlayerBlockedByPlayersV1 gets players who blocked this player by user id
 
@@ -1011,7 +1011,7 @@ func (a *Client) PublicGetPlayerBlockedByPlayersV1Short(params *PublicGetPlayerB
 }
 
 /*
-Deprecated: Use PublicGetPlayerBlockedPlayersV1Short instead.
+Deprecated: 2022-08-10 - Use PublicGetPlayerBlockedPlayersV1Short instead.
 
   PublicGetPlayerBlockedPlayersV1 gets blocked players by user id
 

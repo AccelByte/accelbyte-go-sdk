@@ -42,7 +42,7 @@ type ClientService interface {
 }
 
 /*
-Deprecated: Use RetrieveEligibilitiesPublicShort instead.
+Deprecated: 2022-08-10 - Use RetrieveEligibilitiesPublicShort instead.
 
   RetrieveEligibilitiesPublic checks user legal eligibility
 
@@ -146,7 +146,7 @@ func (a *Client) RetrieveEligibilitiesPublicShort(params *RetrieveEligibilitiesP
 }
 
 /*
-Deprecated: Use RetrieveEligibilitiesPublicIndirectShort instead.
+Deprecated: 2022-08-10 - Use RetrieveEligibilitiesPublicIndirectShort instead.
 
   RetrieveEligibilitiesPublicIndirect checks user legal eligibility
 

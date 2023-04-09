@@ -56,7 +56,7 @@ type ClientService interface {
 }
 
 /*
-Deprecated: Use AnonymizeCampaignShort instead.
+Deprecated: 2022-08-10 - Use AnonymizeCampaignShort instead.
 
   AnonymizeCampaign anonymizes campaign
 
@@ -150,7 +150,7 @@ func (a *Client) AnonymizeCampaignShort(params *AnonymizeCampaignParams, authInf
 }
 
 /*
-Deprecated: Use AnonymizeEntitlementShort instead.
+Deprecated: 2022-08-10 - Use AnonymizeEntitlementShort instead.
 
   AnonymizeEntitlement anonymizes entitlement
 
@@ -244,7 +244,7 @@ func (a *Client) AnonymizeEntitlementShort(params *AnonymizeEntitlementParams, a
 }
 
 /*
-Deprecated: Use AnonymizeFulfillmentShort instead.
+Deprecated: 2022-08-10 - Use AnonymizeFulfillmentShort instead.
 
   AnonymizeFulfillment anonymizes fulfillment
 
@@ -338,7 +338,7 @@ func (a *Client) AnonymizeFulfillmentShort(params *AnonymizeFulfillmentParams, a
 }
 
 /*
-Deprecated: Use AnonymizeIntegrationShort instead.
+Deprecated: 2022-08-10 - Use AnonymizeIntegrationShort instead.
 
   AnonymizeIntegration anonymizes integrations
 
@@ -432,7 +432,7 @@ func (a *Client) AnonymizeIntegrationShort(params *AnonymizeIntegrationParams, a
 }
 
 /*
-Deprecated: Use AnonymizeOrderShort instead.
+Deprecated: 2022-08-10 - Use AnonymizeOrderShort instead.
 
   AnonymizeOrder anonymizes order
 
@@ -526,7 +526,7 @@ func (a *Client) AnonymizeOrderShort(params *AnonymizeOrderParams, authInfo runt
 }
 
 /*
-Deprecated: Use AnonymizePaymentShort instead.
+Deprecated: 2022-08-10 - Use AnonymizePaymentShort instead.
 
   AnonymizePayment anonymizes payment
 
@@ -620,7 +620,7 @@ func (a *Client) AnonymizePaymentShort(params *AnonymizePaymentParams, authInfo 
 }
 
 /*
-Deprecated: Use AnonymizeRevocationShort instead.
+Deprecated: 2022-08-10 - Use AnonymizeRevocationShort instead.
 
   AnonymizeRevocation anonymizes revocation
 
@@ -714,7 +714,7 @@ func (a *Client) AnonymizeRevocationShort(params *AnonymizeRevocationParams, aut
 }
 
 /*
-Deprecated: Use AnonymizeSubscriptionShort instead.
+Deprecated: 2022-08-10 - Use AnonymizeSubscriptionShort instead.
 
   AnonymizeSubscription anonymizes subscription
 
@@ -808,7 +808,7 @@ func (a *Client) AnonymizeSubscriptionShort(params *AnonymizeSubscriptionParams,
 }
 
 /*
-Deprecated: Use AnonymizeWalletShort instead.
+Deprecated: 2022-08-10 - Use AnonymizeWalletShort instead.
 
   AnonymizeWallet anonymizes wallet
 

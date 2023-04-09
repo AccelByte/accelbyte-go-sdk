@@ -13,6 +13,10 @@
   "schemes": [
     "https"
   ],
+  "externalDocs": {
+    "description": "API Docs",
+    "url": "https://stage.accelbyte.io/iam/apidocs"
+  },
   "securityDefinitions": {
     "HasPermission": {
       "authorizationUrl": "https://dummy.oauth.net/auth",
@@ -15537,6 +15541,14 @@
             "in": "formData",
             "name": "platform_token",
             "type": "string"
+          },
+          {
+            "default": false,
+            "description": "If need skip set cookie. Default is false",
+            "in": "formData",
+            "name": "skipSetCookie",
+            "type": "boolean",
+            "x-omitempty": false
           }
         ],
         "produces": [
@@ -17993,6 +18005,7 @@
     },
     "/iam/v3/public/namespaces/{namespace}/users/{userId}": {
       "get": {
+        "deprecated": true,
         "description": "\u0026lt;p\u0026gt;This endpoint retrieve user attributes. action code: 10129\u0026lt;/p\u0026gt;",
         "operationId": "PublicGetUserByUserIdV3",
         "parameters": [
@@ -21786,6 +21799,90 @@
         ]
       }
     },
+    "/iam/v4/admin/users/invite": {
+      "post": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Required permission \u0026#39;ADMIN:USER:INVITE [CREATE]\n\nUse this endpoint to invite admin or non-admin user and assign role to them. The role must be scoped to namespace. An admin user can only\nassign role with namespaces that the admin user has required permission which is same as the required permission of endpoint: [AdminAddUserRoleV4].\n\nDetail request body :\n- Email Address is required, List of email addresses that will be invited\n- isAdmin is required, true if user is admin, false if user is not admin\n- Namespace is optional. Only works on multi tenant mode,\n\tif not specified then it will be assigned Publisher namespace, \n\tif specified, it will become that studio/publisher where user is invited to.\n- Role is optional, if not specified then it will only assign User role.\n- Assigned Namespaces is optional, List of namespaces which the Role will be assigned to the user, only works when Role is not empty.\n\nThe invited admin will also assigned with \u0026#34;User\u0026#34; role by default.\n",
+        "operationId": "AdminInviteUserNewV4",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/model.InviteUserRequestV4"
+            }
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "201": {
+            "description": "Created",
+            "schema": {
+              "$ref": "#/definitions/model.InviteUserResponseV3"
+            }
+          },
+          "400": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20019\u003c/td\u003e\u003ctd\u003eunable to parse request body\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20002\u003c/td\u003e\u003ctd\u003evalidation error\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/rest.ErrorResponse"
+            }
+          },
+          "401": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20001\u003c/td\u003e\u003ctd\u003eunauthorized access\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/rest.ErrorResponse"
+            }
+          },
+          "403": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20013\u003c/td\u003e\u003ctd\u003einsufficient permissions\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/rest.ErrorResponse"
+            }
+          },
+          "404": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e10154\u003c/td\u003e\u003ctd\u003ecountry not found\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/rest.ErrorResponse"
+            }
+          },
+          "409": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e10133\u003c/td\u003e\u003ctd\u003eemail already used\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/rest.ErrorResponse"
+            }
+          },
+          "422": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20002\u003c/td\u003e\u003ctd\u003evalidation error\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/rest.ErrorResponse"
+            }
+          },
+          "500": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20000\u003c/td\u003e\u003ctd\u003einternal server error\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/rest.ErrorResponse"
+            }
+          }
+        },
+        "security": [
+          {
+            "HasPermission": [
+              "ADMIN:USER:INVITE [CREATE]"
+            ],
+            "authorization": []
+          }
+        ],
+        "summary": "Admin invite User v4",
+        "tags": [
+          "Users V4"
+        ]
+      }
+    },
     "/iam/v4/admin/users/me": {
       "patch": {
         "consumes": [
@@ -22616,7 +22713,8 @@
         "consumes": [
           "application/json"
         ],
-        "description": "Required permission \u0026#39;ADMIN:USER:INVITE [CREATE]\n\nUse this endpoint to invite admin or non-admin user and assign role to them. The role must be scoped to namespace. An admin user can only\nassign role with namespaces that the admin user has required permission which is same as the required permission of endpoint: [AdminAddUserRoleV4].\n\nDetail request body :\n- Assigned Namespaces is required, List of namespaces that will be assigned to the user.\n- Email Address is required, List of email addresses that will be invited\n- isAdmin is required, true if user is admin, false if user is not admin\n- Namespace is optional. Only works on multi tenant mode,\n\tif not specified then it will be assigned Publisher namespace, \n\tif specified, it will become that studio/publisher where user is invited to.\n- Role is optional, if not specified then it will only assign User role.\n\nThe invited admin will also assigned with \u0026#34;User\u0026#34; role by default.\n",
+        "deprecated": true,
+        "description": "Required permission \u0026#39;ADMIN:USER:INVITE [CREATE]\n\nUse this endpoint to invite admin or non-admin user and assign role to them. The role must be scoped to namespace. An admin user can only\nassign role with namespaces that the admin user has required permission which is same as the required permission of endpoint: [AdminAddUserRoleV4].\n\nDetail request body :\n- Email Address is required, List of email addresses that will be invited\n- isAdmin is required, true if user is admin, false if user is not admin\n- Namespace is optional. Only works on multi tenant mode,\n\tif not specified then it will be assigned Publisher namespace, \n\tif specified, it will become that studio/publisher where user is invited to.\n- Role is optional, if not specified then it will only assign User role.\n- Assigned Namespaces is optional, List of namespaces which the Role will be assigned to the user, only works when Role is not empty.\n\nThe invited admin will also assigned with \u0026#34;User\u0026#34; role by default.\n\nSubstitute endpoint: /iam/v4/admin/users/invite\n",
         "operationId": "AdminInviteUserV4",
         "parameters": [
           {
@@ -27313,8 +27411,7 @@
       "required": [
         "assignedNamespaces",
         "emailAddresses",
-        "isAdmin",
-        "roleId"
+        "isAdmin"
       ]
     },
     "model.InviteUserResponseV3": {
@@ -30686,6 +30783,10 @@
           },
           "type": "array"
         },
+        "device_id": {
+          "description": "will get from xbox dpi if it exists",
+          "type": "string"
+        },
         "display_name": {
           "type": "string"
         },
@@ -31007,5 +31108,18 @@
         "errorMessage"
       ]
     }
+  },
+  "x-docs": {
+    "alias": "iam",
+    "host": "https://stage.accelbyte.io",
+    "path": "/iam/apidocs/api.json"
+  },
+  "x-version": {
+    "buildDate": "2023-04-04T14:39:23+00:00",
+    "gitHash": "aa4b3553c753abcb4556222e12fb85440e868c24",
+    "name": "justice-iam-service",
+    "realm": "staging",
+    "version": "5.31.0",
+    "version-roles-seeding": "0.0.3"
   }
 }

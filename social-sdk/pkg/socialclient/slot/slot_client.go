@@ -55,7 +55,7 @@ type ClientService interface {
 }
 
 /*
-Deprecated: Use GetSlotDataShort instead.
+Deprecated: 2022-08-10 - Use GetSlotDataShort instead.
 
   GetSlotData returns slot data
 
@@ -154,7 +154,7 @@ func (a *Client) GetSlotDataShort(params *GetSlotDataParams, authInfo runtime.Cl
 }
 
 /*
-Deprecated: Use GetUserNamespaceSlotsShort instead.
+Deprecated: 2022-08-10 - Use GetUserNamespaceSlotsShort instead.
 
   GetUserNamespaceSlots returns list of slots for given user
 
@@ -248,7 +248,7 @@ func (a *Client) GetUserNamespaceSlotsShort(params *GetUserNamespaceSlotsParams,
 }
 
 /*
-Deprecated: Use PublicCreateUserNamespaceSlotShort instead.
+Deprecated: 2022-08-10 - Use PublicCreateUserNamespaceSlotShort instead.
 
   PublicCreateUserNamespaceSlot creates a slot
 
@@ -352,7 +352,7 @@ func (a *Client) PublicCreateUserNamespaceSlotShort(params *PublicCreateUserName
 }
 
 /*
-Deprecated: Use PublicDeleteUserNamespaceSlotShort instead.
+Deprecated: 2022-08-10 - Use PublicDeleteUserNamespaceSlotShort instead.
 
   PublicDeleteUserNamespaceSlot deletes the slot
 
@@ -451,7 +451,7 @@ func (a *Client) PublicDeleteUserNamespaceSlotShort(params *PublicDeleteUserName
 }
 
 /*
-Deprecated: Use PublicGetSlotDataShort instead.
+Deprecated: 2022-08-10 - Use PublicGetSlotDataShort instead.
 
   PublicGetSlotData returns slot data
 
@@ -550,7 +550,7 @@ func (a *Client) PublicGetSlotDataShort(params *PublicGetSlotDataParams, authInf
 }
 
 /*
-Deprecated: Use PublicGetUserNamespaceSlotsShort instead.
+Deprecated: 2022-08-10 - Use PublicGetUserNamespaceSlotsShort instead.
 
   PublicGetUserNamespaceSlots returns slots for given user
 
@@ -644,7 +644,7 @@ func (a *Client) PublicGetUserNamespaceSlotsShort(params *PublicGetUserNamespace
 }
 
 /*
-Deprecated: Use PublicUpdateUserNamespaceSlotShort instead.
+Deprecated: 2022-08-10 - Use PublicUpdateUserNamespaceSlotShort instead.
 
   PublicUpdateUserNamespaceSlot updates a slot
 
@@ -748,7 +748,7 @@ func (a *Client) PublicUpdateUserNamespaceSlotShort(params *PublicUpdateUserName
 }
 
 /*
-Deprecated: Use PublicUpdateUserNamespaceSlotMetadataShort instead.
+Deprecated: 2022-08-10 - Use PublicUpdateUserNamespaceSlotMetadataShort instead.
 
   PublicUpdateUserNamespaceSlotMetadata updates the slot metadata
 

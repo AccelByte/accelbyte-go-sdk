@@ -116,7 +116,7 @@ type ClientService interface {
 }
 
 /*
-Deprecated: Use BulkCreateUserStatItemsShort instead.
+Deprecated: 2022-08-10 - Use BulkCreateUserStatItemsShort instead.
 
   BulkCreateUserStatItems bulks create user s stat items
 
@@ -215,7 +215,7 @@ func (a *Client) BulkCreateUserStatItemsShort(params *BulkCreateUserStatItemsPar
 }
 
 /*
-Deprecated: Use BulkFetchOrDefaultStatItemsShort instead.
+Deprecated: 2022-08-10 - Use BulkFetchOrDefaultStatItemsShort instead.
 
   BulkFetchOrDefaultStatItems bulks fetch user stat item values
 
@@ -325,7 +325,7 @@ func (a *Client) BulkFetchOrDefaultStatItemsShort(params *BulkFetchOrDefaultStat
 }
 
 /*
-Deprecated: Use BulkFetchOrDefaultStatItems1Short instead.
+Deprecated: 2022-08-10 - Use BulkFetchOrDefaultStatItems1Short instead.
 
   BulkFetchOrDefaultStatItems1 bulks fetch user stat item values
 
@@ -435,7 +435,7 @@ func (a *Client) BulkFetchOrDefaultStatItems1Short(params *BulkFetchOrDefaultSta
 }
 
 /*
-Deprecated: Use BulkFetchStatItemsShort instead.
+Deprecated: 2022-08-10 - Use BulkFetchStatItemsShort instead.
 
   BulkFetchStatItems bulks fetch statitems value
 
@@ -540,7 +540,7 @@ func (a *Client) BulkFetchStatItemsShort(params *BulkFetchStatItemsParams, authI
 }
 
 /*
-Deprecated: Use BulkFetchStatItems1Short instead.
+Deprecated: 2022-08-10 - Use BulkFetchStatItems1Short instead.
 
   BulkFetchStatItems1 publics bulk fetch statitems value
 
@@ -645,7 +645,7 @@ func (a *Client) BulkFetchStatItems1Short(params *BulkFetchStatItems1Params, aut
 }
 
 /*
-Deprecated: Use BulkIncUserStatItemShort instead.
+Deprecated: 2022-08-10 - Use BulkIncUserStatItemShort instead.
 
   BulkIncUserStatItem bulks update multiple user s statitems value
 
@@ -744,7 +744,7 @@ func (a *Client) BulkIncUserStatItemShort(params *BulkIncUserStatItemParams, aut
 }
 
 /*
-Deprecated: Use BulkIncUserStatItemValueShort instead.
+Deprecated: 2022-08-10 - Use BulkIncUserStatItemValueShort instead.
 
   BulkIncUserStatItemValue bulks update multiple user s statitems value
 
@@ -843,7 +843,7 @@ func (a *Client) BulkIncUserStatItemValueShort(params *BulkIncUserStatItemValueP
 }
 
 /*
-Deprecated: Use BulkIncUserStatItemValue1Short instead.
+Deprecated: 2022-08-10 - Use BulkIncUserStatItemValue1Short instead.
 
   BulkIncUserStatItemValue1 bulks update user s statitems value
 
@@ -942,7 +942,7 @@ func (a *Client) BulkIncUserStatItemValue1Short(params *BulkIncUserStatItemValue
 }
 
 /*
-Deprecated: Use BulkIncUserStatItemValue2Short instead.
+Deprecated: 2022-08-10 - Use BulkIncUserStatItemValue2Short instead.
 
   BulkIncUserStatItemValue2 publics bulk update user s statitems value
 
@@ -1041,7 +1041,7 @@ func (a *Client) BulkIncUserStatItemValue2Short(params *BulkIncUserStatItemValue
 }
 
 /*
-Deprecated: Use BulkIncUserStatItem1Short instead.
+Deprecated: 2022-08-10 - Use BulkIncUserStatItem1Short instead.
 
   BulkIncUserStatItem1 bulks update user s statitems value
 
@@ -1140,7 +1140,7 @@ func (a *Client) BulkIncUserStatItem1Short(params *BulkIncUserStatItem1Params, a
 }
 
 /*
-Deprecated: Use BulkResetUserStatItemShort instead.
+Deprecated: 2022-08-10 - Use BulkResetUserStatItemShort instead.
 
   BulkResetUserStatItem bulks reset multiple user s statitems value
 
@@ -1249,7 +1249,7 @@ func (a *Client) BulkResetUserStatItemShort(params *BulkResetUserStatItemParams,
 }
 
 /*
-Deprecated: Use BulkResetUserStatItemValuesShort instead.
+Deprecated: 2022-08-10 - Use BulkResetUserStatItemValuesShort instead.
 
   BulkResetUserStatItemValues bulks reset user s statitem values
 
@@ -1354,7 +1354,7 @@ func (a *Client) BulkResetUserStatItemValuesShort(params *BulkResetUserStatItemV
 }
 
 /*
-Deprecated: Use BulkResetUserStatItem1Short instead.
+Deprecated: 2022-08-10 - Use BulkResetUserStatItem1Short instead.
 
   BulkResetUserStatItem1 bulks reset user s statitems value
 
@@ -1459,7 +1459,7 @@ func (a *Client) BulkResetUserStatItem1Short(params *BulkResetUserStatItem1Param
 }
 
 /*
-Deprecated: Use BulkResetUserStatItem2Short instead.
+Deprecated: 2022-08-10 - Use BulkResetUserStatItem2Short instead.
 
   BulkResetUserStatItem2 publics bulk reset multiple user s statitems value
 
@@ -1568,7 +1568,7 @@ func (a *Client) BulkResetUserStatItem2Short(params *BulkResetUserStatItem2Param
 }
 
 /*
-Deprecated: Use BulkResetUserStatItem3Short instead.
+Deprecated: 2022-08-10 - Use BulkResetUserStatItem3Short instead.
 
   BulkResetUserStatItem3 publics bulk reset user s statitems value
 
@@ -1673,7 +1673,7 @@ func (a *Client) BulkResetUserStatItem3Short(params *BulkResetUserStatItem3Param
 }
 
 /*
-Deprecated: Use BulkUpdateUserStatItemShort instead.
+Deprecated: 2022-08-10 - Use BulkUpdateUserStatItemShort instead.
 
   BulkUpdateUserStatItem bulks update user s statitems value
 
@@ -1796,7 +1796,7 @@ func (a *Client) BulkUpdateUserStatItemShort(params *BulkUpdateUserStatItemParam
 }
 
 /*
-Deprecated: Use BulkUpdateUserStatItemV2Short instead.
+Deprecated: 2022-08-10 - Use BulkUpdateUserStatItemV2Short instead.
 
   BulkUpdateUserStatItemV2 bulks update multiple user s statitems value
 
@@ -1913,7 +1913,7 @@ func (a *Client) BulkUpdateUserStatItemV2Short(params *BulkUpdateUserStatItemV2P
 }
 
 /*
-Deprecated: Use BulkUpdateUserStatItem1Short instead.
+Deprecated: 2022-08-10 - Use BulkUpdateUserStatItem1Short instead.
 
   BulkUpdateUserStatItem1 publics bulk update multiple user s statitems value
 
@@ -2030,7 +2030,7 @@ func (a *Client) BulkUpdateUserStatItem1Short(params *BulkUpdateUserStatItem1Par
 }
 
 /*
-Deprecated: Use BulkUpdateUserStatItem2Short instead.
+Deprecated: 2022-08-10 - Use BulkUpdateUserStatItem2Short instead.
 
   BulkUpdateUserStatItem2 publics bulk update user s statitems value
 
@@ -2153,7 +2153,7 @@ func (a *Client) BulkUpdateUserStatItem2Short(params *BulkUpdateUserStatItem2Par
 }
 
 /*
-Deprecated: Use CreateUserStatItemShort instead.
+Deprecated: 2022-08-10 - Use CreateUserStatItemShort instead.
 
   CreateUserStatItem creates user s stat item
 
@@ -2257,7 +2257,7 @@ func (a *Client) CreateUserStatItemShort(params *CreateUserStatItemParams, authI
 }
 
 /*
-Deprecated: Use DeleteUserStatItemsShort instead.
+Deprecated: 2022-08-10 - Use DeleteUserStatItemsShort instead.
 
   DeleteUserStatItems deletes user s stat items
 
@@ -2366,7 +2366,7 @@ func (a *Client) DeleteUserStatItemsShort(params *DeleteUserStatItemsParams, aut
 }
 
 /*
-Deprecated: Use DeleteUserStatItems1Short instead.
+Deprecated: 2022-08-10 - Use DeleteUserStatItems1Short instead.
 
   DeleteUserStatItems1 deletes user s stat items
 
@@ -2475,7 +2475,7 @@ func (a *Client) DeleteUserStatItems1Short(params *DeleteUserStatItems1Params, a
 }
 
 /*
-Deprecated: Use DeleteUserStatItems2Short instead.
+Deprecated: 2022-08-10 - Use DeleteUserStatItems2Short instead.
 
   DeleteUserStatItems2 deletes user s stat items
 
@@ -2590,7 +2590,7 @@ func (a *Client) DeleteUserStatItems2Short(params *DeleteUserStatItems2Params, a
 }
 
 /*
-Deprecated: Use GetUserStatItemsShort instead.
+Deprecated: 2022-08-10 - Use GetUserStatItemsShort instead.
 
   GetUserStatItems lists user s stat items
 
@@ -2684,7 +2684,7 @@ func (a *Client) GetUserStatItemsShort(params *GetUserStatItemsParams, authInfo 
 }
 
 /*
-Deprecated: Use IncUserStatItemValueShort instead.
+Deprecated: 2022-08-10 - Use IncUserStatItemValueShort instead.
 
   IncUserStatItemValue updates user s statitem value
 
@@ -2793,7 +2793,7 @@ func (a *Client) IncUserStatItemValueShort(params *IncUserStatItemValueParams, a
 }
 
 /*
-Deprecated: Use PublicBulkCreateUserStatItemsShort instead.
+Deprecated: 2022-08-10 - Use PublicBulkCreateUserStatItemsShort instead.
 
   PublicBulkCreateUserStatItems bulks create user s stat items
 
@@ -2892,7 +2892,7 @@ func (a *Client) PublicBulkCreateUserStatItemsShort(params *PublicBulkCreateUser
 }
 
 /*
-Deprecated: Use PublicBulkIncUserStatItemShort instead.
+Deprecated: 2022-08-10 - Use PublicBulkIncUserStatItemShort instead.
 
   PublicBulkIncUserStatItem publics bulk update multiple user s statitems value
 
@@ -2991,7 +2991,7 @@ func (a *Client) PublicBulkIncUserStatItemShort(params *PublicBulkIncUserStatIte
 }
 
 /*
-Deprecated: Use PublicBulkIncUserStatItemValueShort instead.
+Deprecated: 2022-08-10 - Use PublicBulkIncUserStatItemValueShort instead.
 
   PublicBulkIncUserStatItemValue publics bulk update multiple user s statitems value
 
@@ -3090,7 +3090,7 @@ func (a *Client) PublicBulkIncUserStatItemValueShort(params *PublicBulkIncUserSt
 }
 
 /*
-Deprecated: Use PublicBulkIncUserStatItem1Short instead.
+Deprecated: 2022-08-10 - Use PublicBulkIncUserStatItem1Short instead.
 
   PublicBulkIncUserStatItem1 publics bulk update user s statitems value
 
@@ -3189,7 +3189,7 @@ func (a *Client) PublicBulkIncUserStatItem1Short(params *PublicBulkIncUserStatIt
 }
 
 /*
-Deprecated: Use PublicCreateUserStatItemShort instead.
+Deprecated: 2022-08-10 - Use PublicCreateUserStatItemShort instead.
 
   PublicCreateUserStatItem creates user s stat item
 
@@ -3293,7 +3293,7 @@ func (a *Client) PublicCreateUserStatItemShort(params *PublicCreateUserStatItemP
 }
 
 /*
-Deprecated: Use PublicIncUserStatItemShort instead.
+Deprecated: 2022-08-10 - Use PublicIncUserStatItemShort instead.
 
   PublicIncUserStatItem publics update user s statitem value
 
@@ -3402,7 +3402,7 @@ func (a *Client) PublicIncUserStatItemShort(params *PublicIncUserStatItemParams,
 }
 
 /*
-Deprecated: Use PublicIncUserStatItemValueShort instead.
+Deprecated: 2022-08-10 - Use PublicIncUserStatItemValueShort instead.
 
   PublicIncUserStatItemValue publics update user s statitem value
 
@@ -3511,7 +3511,7 @@ func (a *Client) PublicIncUserStatItemValueShort(params *PublicIncUserStatItemVa
 }
 
 /*
-Deprecated: Use PublicQueryUserStatItemsShort instead.
+Deprecated: 2022-08-10 - Use PublicQueryUserStatItemsShort instead.
 
   PublicQueryUserStatItems publics list user s stat items
 
@@ -3605,7 +3605,7 @@ func (a *Client) PublicQueryUserStatItemsShort(params *PublicQueryUserStatItemsP
 }
 
 /*
-Deprecated: Use PublicQueryUserStatItems1Short instead.
+Deprecated: 2022-08-10 - Use PublicQueryUserStatItems1Short instead.
 
   PublicQueryUserStatItems1 publics list user s stat items
 
@@ -3714,7 +3714,7 @@ func (a *Client) PublicQueryUserStatItems1Short(params *PublicQueryUserStatItems
 }
 
 /*
-Deprecated: Use PublicQueryUserStatItems2Short instead.
+Deprecated: 2022-08-10 - Use PublicQueryUserStatItems2Short instead.
 
   PublicQueryUserStatItems2 publics list user s stat items
 
@@ -3823,7 +3823,7 @@ func (a *Client) PublicQueryUserStatItems2Short(params *PublicQueryUserStatItems
 }
 
 /*
-Deprecated: Use ResetUserStatItemValueShort instead.
+Deprecated: 2022-08-10 - Use ResetUserStatItemValueShort instead.
 
   ResetUserStatItemValue resets user s statitem value
 
@@ -3937,7 +3937,7 @@ func (a *Client) ResetUserStatItemValueShort(params *ResetUserStatItemValueParam
 }
 
 /*
-Deprecated: Use ResetUserStatItemValue1Short instead.
+Deprecated: 2022-08-10 - Use ResetUserStatItemValue1Short instead.
 
   ResetUserStatItemValue1 publics reset user s statitem value
 
@@ -4051,7 +4051,7 @@ func (a *Client) ResetUserStatItemValue1Short(params *ResetUserStatItemValue1Par
 }
 
 /*
-Deprecated: Use UpdateUserStatItemValueShort instead.
+Deprecated: 2022-08-10 - Use UpdateUserStatItemValueShort instead.
 
   UpdateUserStatItemValue updates user s statitem value
 
@@ -4189,7 +4189,7 @@ func (a *Client) UpdateUserStatItemValueShort(params *UpdateUserStatItemValuePar
 }
 
 /*
-Deprecated: Use UpdateUserStatItemValue1Short instead.
+Deprecated: 2022-08-10 - Use UpdateUserStatItemValue1Short instead.
 
   UpdateUserStatItemValue1 publics update user s statitem value
 

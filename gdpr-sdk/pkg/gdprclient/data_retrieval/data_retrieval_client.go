@@ -64,7 +64,7 @@ type ClientService interface {
 }
 
 /*
-Deprecated: Use AdminCancelUserPersonalDataRequestShort instead.
+Deprecated: 2022-08-10 - Use AdminCancelUserPersonalDataRequestShort instead.
 
   AdminCancelUserPersonalDataRequest cancels user s personal data requests
 
@@ -178,7 +178,7 @@ func (a *Client) AdminCancelUserPersonalDataRequestShort(params *AdminCancelUser
 }
 
 /*
-Deprecated: Use AdminGeneratePersonalDataURLShort instead.
+Deprecated: 2022-08-10 - Use AdminGeneratePersonalDataURLShort instead.
 
   AdminGeneratePersonalDataURL generates personal data download url
 
@@ -292,7 +292,7 @@ func (a *Client) AdminGeneratePersonalDataURLShort(params *AdminGeneratePersonal
 }
 
 /*
-Deprecated: Use AdminGetListPersonalDataRequestShort instead.
+Deprecated: 2022-08-10 - Use AdminGetListPersonalDataRequestShort instead.
 
   AdminGetListPersonalDataRequest gets list personal data requests
 
@@ -411,7 +411,7 @@ func (a *Client) AdminGetListPersonalDataRequestShort(params *AdminGetListPerson
 }
 
 /*
-Deprecated: Use AdminGetUserPersonalDataRequestsShort instead.
+Deprecated: 2022-08-10 - Use AdminGetUserPersonalDataRequestsShort instead.
 
   AdminGetUserPersonalDataRequests gets user s personal data requests
 
@@ -520,7 +520,7 @@ func (a *Client) AdminGetUserPersonalDataRequestsShort(params *AdminGetUserPerso
 }
 
 /*
-Deprecated: Use AdminRequestDataRetrievalShort instead.
+Deprecated: 2022-08-10 - Use AdminRequestDataRetrievalShort instead.
 
   AdminRequestDataRetrieval submits user personal data retrieval request
 
@@ -631,7 +631,7 @@ func (a *Client) AdminRequestDataRetrievalShort(params *AdminRequestDataRetrieva
 }
 
 /*
-Deprecated: Use DeleteAdminEmailConfigurationShort instead.
+Deprecated: 2022-08-10 - Use DeleteAdminEmailConfigurationShort instead.
 
   DeleteAdminEmailConfiguration deletes admin emails configurations
 
@@ -752,7 +752,7 @@ func (a *Client) DeleteAdminEmailConfigurationShort(params *DeleteAdminEmailConf
 }
 
 /*
-Deprecated: Use GetAdminEmailConfigurationShort instead.
+Deprecated: 2022-08-10 - Use GetAdminEmailConfigurationShort instead.
 
   GetAdminEmailConfiguration gets admin email addresses configuration
 
@@ -858,7 +858,7 @@ func (a *Client) GetAdminEmailConfigurationShort(params *GetAdminEmailConfigurat
 }
 
 /*
-Deprecated: Use PublicCancelUserPersonalDataRequestShort instead.
+Deprecated: 2022-08-10 - Use PublicCancelUserPersonalDataRequestShort instead.
 
   PublicCancelUserPersonalDataRequest cancels user s personal data requests
 
@@ -972,7 +972,7 @@ func (a *Client) PublicCancelUserPersonalDataRequestShort(params *PublicCancelUs
 }
 
 /*
-Deprecated: Use PublicGeneratePersonalDataURLShort instead.
+Deprecated: 2022-08-10 - Use PublicGeneratePersonalDataURLShort instead.
 
   PublicGeneratePersonalDataURL generates personal data download url
 
@@ -1086,7 +1086,7 @@ func (a *Client) PublicGeneratePersonalDataURLShort(params *PublicGeneratePerson
 }
 
 /*
-Deprecated: Use PublicGetUserPersonalDataRequestsShort instead.
+Deprecated: 2022-08-10 - Use PublicGetUserPersonalDataRequestsShort instead.
 
   PublicGetUserPersonalDataRequests gets user s personal data requests
 
@@ -1195,7 +1195,7 @@ func (a *Client) PublicGetUserPersonalDataRequestsShort(params *PublicGetUserPer
 }
 
 /*
-Deprecated: Use PublicRequestDataRetrievalShort instead.
+Deprecated: 2022-08-10 - Use PublicRequestDataRetrievalShort instead.
 
   PublicRequestDataRetrieval submits personal data retrieval request
 
@@ -1304,7 +1304,7 @@ func (a *Client) PublicRequestDataRetrievalShort(params *PublicRequestDataRetrie
 }
 
 /*
-Deprecated: Use SaveAdminEmailConfigurationShort instead.
+Deprecated: 2022-08-10 - Use SaveAdminEmailConfigurationShort instead.
 
   SaveAdminEmailConfiguration adds admin email address configuration
 
@@ -1415,7 +1415,7 @@ func (a *Client) SaveAdminEmailConfigurationShort(params *SaveAdminEmailConfigur
 }
 
 /*
-Deprecated: Use UpdateAdminEmailConfigurationShort instead.
+Deprecated: 2022-08-10 - Use UpdateAdminEmailConfigurationShort instead.
 
   UpdateAdminEmailConfiguration updates admin email address configuration
 

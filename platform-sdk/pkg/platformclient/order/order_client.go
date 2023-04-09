@@ -79,7 +79,7 @@ type ClientService interface {
 }
 
 /*
-Deprecated: Use AdminCreateUserOrderShort instead.
+Deprecated: 2022-08-10 - Use AdminCreateUserOrderShort instead.
 
   AdminCreateUserOrder admins create an order
 
@@ -198,7 +198,7 @@ func (a *Client) AdminCreateUserOrderShort(params *AdminCreateUserOrderParams, a
 }
 
 /*
-Deprecated: Use CountOfPurchasedItemShort instead.
+Deprecated: 2022-08-10 - Use CountOfPurchasedItemShort instead.
 
   CountOfPurchasedItem gets the count of purchased item
 
@@ -292,7 +292,7 @@ func (a *Client) CountOfPurchasedItemShort(params *CountOfPurchasedItemParams, a
 }
 
 /*
-Deprecated: Use DownloadUserOrderReceiptShort instead.
+Deprecated: 2022-08-10 - Use DownloadUserOrderReceiptShort instead.
 
   DownloadUserOrderReceipt downloads user order receipt
 
@@ -396,7 +396,7 @@ func (a *Client) DownloadUserOrderReceiptShort(params *DownloadUserOrderReceiptP
 }
 
 /*
-Deprecated: Use FulfillUserOrderShort instead.
+Deprecated: 2022-08-10 - Use FulfillUserOrderShort instead.
 
   FulfillUserOrder fulfills an order
 
@@ -505,7 +505,7 @@ func (a *Client) FulfillUserOrderShort(params *FulfillUserOrderParams, authInfo 
 }
 
 /*
-Deprecated: Use GetOrderShort instead.
+Deprecated: 2022-08-10 - Use GetOrderShort instead.
 
   GetOrder gets order
 
@@ -604,7 +604,7 @@ func (a *Client) GetOrderShort(params *GetOrderParams, authInfo runtime.ClientAu
 }
 
 /*
-Deprecated: Use GetOrderStatisticsShort instead.
+Deprecated: 2022-08-10 - Use GetOrderStatisticsShort instead.
 
   GetOrderStatistics gets order statistics
 
@@ -698,7 +698,7 @@ func (a *Client) GetOrderStatisticsShort(params *GetOrderStatisticsParams, authI
 }
 
 /*
-Deprecated: Use GetUserOrderShort instead.
+Deprecated: 2022-08-10 - Use GetUserOrderShort instead.
 
   GetUserOrder gets an order
 
@@ -797,7 +797,7 @@ func (a *Client) GetUserOrderShort(params *GetUserOrderParams, authInfo runtime.
 }
 
 /*
-Deprecated: Use GetUserOrderGrantShort instead.
+Deprecated: 2022-08-10 - Use GetUserOrderGrantShort instead.
 
   GetUserOrderGrant gets user order grant
 
@@ -891,7 +891,7 @@ func (a *Client) GetUserOrderGrantShort(params *GetUserOrderGrantParams, authInf
 }
 
 /*
-Deprecated: Use GetUserOrderHistoriesShort instead.
+Deprecated: 2022-08-10 - Use GetUserOrderHistoriesShort instead.
 
   GetUserOrderHistories gets user order histories
 
@@ -985,7 +985,7 @@ func (a *Client) GetUserOrderHistoriesShort(params *GetUserOrderHistoriesParams,
 }
 
 /*
-Deprecated: Use ProcessUserOrderNotificationShort instead.
+Deprecated: 2022-08-10 - Use ProcessUserOrderNotificationShort instead.
 
   ProcessUserOrderNotification webs hook for payment notification
 
@@ -1084,7 +1084,7 @@ func (a *Client) ProcessUserOrderNotificationShort(params *ProcessUserOrderNotif
 }
 
 /*
-Deprecated: Use PublicCancelUserOrderShort instead.
+Deprecated: 2022-08-10 - Use PublicCancelUserOrderShort instead.
 
   PublicCancelUserOrder cancels user order
 
@@ -1188,7 +1188,7 @@ func (a *Client) PublicCancelUserOrderShort(params *PublicCancelUserOrderParams,
 }
 
 /*
-Deprecated: Use PublicCreateUserOrderShort instead.
+Deprecated: 2022-08-10 - Use PublicCreateUserOrderShort instead.
 
   PublicCreateUserOrder creates an order
 
@@ -1307,7 +1307,7 @@ func (a *Client) PublicCreateUserOrderShort(params *PublicCreateUserOrderParams,
 }
 
 /*
-Deprecated: Use PublicDownloadUserOrderReceiptShort instead.
+Deprecated: 2022-08-10 - Use PublicDownloadUserOrderReceiptShort instead.
 
   PublicDownloadUserOrderReceipt downloads user order receipt
 
@@ -1411,7 +1411,7 @@ func (a *Client) PublicDownloadUserOrderReceiptShort(params *PublicDownloadUserO
 }
 
 /*
-Deprecated: Use PublicGetUserOrderShort instead.
+Deprecated: 2022-08-10 - Use PublicGetUserOrderShort instead.
 
   PublicGetUserOrder gets user order
 
@@ -1510,7 +1510,7 @@ func (a *Client) PublicGetUserOrderShort(params *PublicGetUserOrderParams, authI
 }
 
 /*
-Deprecated: Use PublicGetUserOrderHistoriesShort instead.
+Deprecated: 2022-08-10 - Use PublicGetUserOrderHistoriesShort instead.
 
   PublicGetUserOrderHistories gets user order histories
 
@@ -1604,7 +1604,7 @@ func (a *Client) PublicGetUserOrderHistoriesShort(params *PublicGetUserOrderHist
 }
 
 /*
-Deprecated: Use PublicQueryUserOrdersShort instead.
+Deprecated: 2022-08-10 - Use PublicQueryUserOrdersShort instead.
 
   PublicQueryUserOrders queries user orders
 
@@ -1698,7 +1698,7 @@ func (a *Client) PublicQueryUserOrdersShort(params *PublicQueryUserOrdersParams,
 }
 
 /*
-Deprecated: Use QueryOrdersShort instead.
+Deprecated: 2022-08-10 - Use QueryOrdersShort instead.
 
   QueryOrders queries orders
 
@@ -1797,7 +1797,7 @@ func (a *Client) QueryOrdersShort(params *QueryOrdersParams, authInfo runtime.Cl
 }
 
 /*
-Deprecated: Use QueryUserOrdersShort instead.
+Deprecated: 2022-08-10 - Use QueryUserOrdersShort instead.
 
   QueryUserOrders queries user orders
 
@@ -1891,7 +1891,7 @@ func (a *Client) QueryUserOrdersShort(params *QueryUserOrdersParams, authInfo ru
 }
 
 /*
-Deprecated: Use RefundOrderShort instead.
+Deprecated: 2022-08-10 - Use RefundOrderShort instead.
 
   RefundOrder refunds order
 
@@ -2000,7 +2000,7 @@ func (a *Client) RefundOrderShort(params *RefundOrderParams, authInfo runtime.Cl
 }
 
 /*
-Deprecated: Use UpdateUserOrderStatusShort instead.
+Deprecated: 2022-08-10 - Use UpdateUserOrderStatusShort instead.
 
   UpdateUserOrderStatus updates order status
 

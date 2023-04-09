@@ -41,7 +41,7 @@ func (aaa *ConfigService) GetAuthSession() auth.Session {
 	}
 }
 
-// deprecated(2022-01-10): please use ListConfigShort instead.
+// Deprecated: 2022-01-10 - please use ListConfigShort instead.
 func (aaa *ConfigService) ListConfig(input *config.ListConfigParams) (*dsmcclientmodels.ModelsListConfigResponse, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -61,7 +61,7 @@ func (aaa *ConfigService) ListConfig(input *config.ListConfigParams) (*dsmcclien
 	return ok.GetPayload(), nil
 }
 
-// deprecated(2022-01-10): please use SaveConfigShort instead.
+// Deprecated: 2022-01-10 - please use SaveConfigShort instead.
 func (aaa *ConfigService) SaveConfig(input *config.SaveConfigParams) error {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -84,7 +84,7 @@ func (aaa *ConfigService) SaveConfig(input *config.SaveConfigParams) error {
 	return nil
 }
 
-// deprecated(2022-01-10): please use GetConfigShort instead.
+// Deprecated: 2022-01-10 - please use GetConfigShort instead.
 func (aaa *ConfigService) GetConfig(input *config.GetConfigParams) (*dsmcclientmodels.ModelsDSMConfigRecord, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -107,7 +107,7 @@ func (aaa *ConfigService) GetConfig(input *config.GetConfigParams) (*dsmcclientm
 	return ok.GetPayload(), nil
 }
 
-// deprecated(2022-01-10): please use CreateConfigShort instead.
+// Deprecated: 2022-01-10 - please use CreateConfigShort instead.
 func (aaa *ConfigService) CreateConfig(input *config.CreateConfigParams) (*dsmcclientmodels.ModelsDSMConfigRecord, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -133,7 +133,7 @@ func (aaa *ConfigService) CreateConfig(input *config.CreateConfigParams) (*dsmcc
 	return created.GetPayload(), nil
 }
 
-// deprecated(2022-01-10): please use DeleteConfigShort instead.
+// Deprecated: 2022-01-10 - please use DeleteConfigShort instead.
 func (aaa *ConfigService) DeleteConfig(input *config.DeleteConfigParams) error {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -159,7 +159,7 @@ func (aaa *ConfigService) DeleteConfig(input *config.DeleteConfigParams) error {
 	return nil
 }
 
-// deprecated(2022-01-10): please use UpdateConfigShort instead.
+// Deprecated: 2022-01-10 - please use UpdateConfigShort instead.
 func (aaa *ConfigService) UpdateConfig(input *config.UpdateConfigParams) (*dsmcclientmodels.ModelsDSMConfigRecord, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -185,7 +185,7 @@ func (aaa *ConfigService) UpdateConfig(input *config.UpdateConfigParams) (*dsmcc
 	return ok.GetPayload(), nil
 }
 
-// deprecated(2022-01-10): please use ClearCacheShort instead.
+// Deprecated: 2022-01-10 - please use ClearCacheShort instead.
 func (aaa *ConfigService) ClearCache(input *config.ClearCacheParams) error {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -205,7 +205,7 @@ func (aaa *ConfigService) ClearCache(input *config.ClearCacheParams) error {
 	return nil
 }
 
-// deprecated(2022-01-10): please use AddPortShort instead.
+// Deprecated: 2022-01-10 - please use AddPortShort instead.
 func (aaa *ConfigService) AddPort(input *config.AddPortParams) (*dsmcclientmodels.ModelsDSMConfigRecord, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -234,7 +234,7 @@ func (aaa *ConfigService) AddPort(input *config.AddPortParams) (*dsmcclientmodel
 	return created.GetPayload(), nil
 }
 
-// deprecated(2022-01-10): please use DeletePortShort instead.
+// Deprecated: 2022-01-10 - please use DeletePortShort instead.
 func (aaa *ConfigService) DeletePort(input *config.DeletePortParams) (*dsmcclientmodels.ModelsDSMConfigRecord, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -260,7 +260,7 @@ func (aaa *ConfigService) DeletePort(input *config.DeletePortParams) (*dsmcclien
 	return ok.GetPayload(), nil
 }
 
-// deprecated(2022-01-10): please use UpdatePortShort instead.
+// Deprecated: 2022-01-10 - please use UpdatePortShort instead.
 func (aaa *ConfigService) UpdatePort(input *config.UpdatePortParams) (*dsmcclientmodels.ModelsDSMConfigRecord, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -286,7 +286,7 @@ func (aaa *ConfigService) UpdatePort(input *config.UpdatePortParams) (*dsmcclien
 	return ok.GetPayload(), nil
 }
 
-// deprecated(2022-01-10): please use ExportConfigV1Short instead.
+// Deprecated: 2022-01-10 - please use ExportConfigV1Short instead.
 func (aaa *ConfigService) ExportConfigV1(input *config.ExportConfigV1Params, writer io.Writer) (io.Writer, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -312,7 +312,7 @@ func (aaa *ConfigService) ExportConfigV1(input *config.ExportConfigV1Params, wri
 	return ok.GetPayload(), nil
 }
 
-// deprecated(2022-01-10): please use ImportConfigV1Short instead.
+// Deprecated: 2022-01-10 - please use ImportConfigV1Short instead.
 func (aaa *ConfigService) ImportConfigV1(input *config.ImportConfigV1Params) (*dsmcclientmodels.ModelsImportResponse, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {

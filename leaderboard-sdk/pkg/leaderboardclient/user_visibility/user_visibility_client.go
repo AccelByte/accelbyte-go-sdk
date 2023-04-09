@@ -46,7 +46,7 @@ type ClientService interface {
 }
 
 /*
-Deprecated: Use GetHiddenUsersV2Short instead.
+Deprecated: 2022-08-10 - Use GetHiddenUsersV2Short instead.
 
   GetHiddenUsersV2 gets hidden users on a leaderboard
 
@@ -165,7 +165,7 @@ func (a *Client) GetHiddenUsersV2Short(params *GetHiddenUsersV2Params, authInfo 
 }
 
 /*
-Deprecated: Use GetUserVisibilityStatusV2Short instead.
+Deprecated: 2022-08-10 - Use GetUserVisibilityStatusV2Short instead.
 
   GetUserVisibilityStatusV2 gets user visibility status
 
@@ -284,7 +284,7 @@ func (a *Client) GetUserVisibilityStatusV2Short(params *GetUserVisibilityStatusV
 }
 
 /*
-Deprecated: Use SetUserLeaderboardVisibilityStatusV2Short instead.
+Deprecated: 2022-08-10 - Use SetUserLeaderboardVisibilityStatusV2Short instead.
 
   SetUserLeaderboardVisibilityStatusV2 sets user visibility status on a specific leaderboard code
 
@@ -403,7 +403,7 @@ func (a *Client) SetUserLeaderboardVisibilityStatusV2Short(params *SetUserLeader
 }
 
 /*
-Deprecated: Use SetUserVisibilityStatusV2Short instead.
+Deprecated: 2022-08-10 - Use SetUserVisibilityStatusV2Short instead.
 
   SetUserVisibilityStatusV2 sets user visibility status on a all current leaderboard
 

@@ -33,6 +33,8 @@ type Client struct {
 
 // ClientService is the interface for Client methods
 type ClientService interface {
+	AdminDeleteBulkGameSessions(params *AdminDeleteBulkGameSessionsParams, authInfo runtime.ClientAuthInfoWriter) (*AdminDeleteBulkGameSessionsOK, *AdminDeleteBulkGameSessionsBadRequest, *AdminDeleteBulkGameSessionsUnauthorized, *AdminDeleteBulkGameSessionsForbidden, *AdminDeleteBulkGameSessionsInternalServerError, error)
+	AdminDeleteBulkGameSessionsShort(params *AdminDeleteBulkGameSessionsParams, authInfo runtime.ClientAuthInfoWriter) (*AdminDeleteBulkGameSessionsOK, error)
 	AdminQueryGameSessions(params *AdminQueryGameSessionsParams, authInfo runtime.ClientAuthInfoWriter) (*AdminQueryGameSessionsOK, *AdminQueryGameSessionsBadRequest, *AdminQueryGameSessionsUnauthorized, *AdminQueryGameSessionsForbidden, *AdminQueryGameSessionsInternalServerError, error)
 	AdminQueryGameSessionsShort(params *AdminQueryGameSessionsParams, authInfo runtime.ClientAuthInfoWriter) (*AdminQueryGameSessionsOK, error)
 	AdminUpdateGameSessionMember(params *AdminUpdateGameSessionMemberParams, authInfo runtime.ClientAuthInfoWriter) (*AdminUpdateGameSessionMemberOK, *AdminUpdateGameSessionMemberBadRequest, *AdminUpdateGameSessionMemberUnauthorized, *AdminUpdateGameSessionMemberForbidden, *AdminUpdateGameSessionMemberNotFound, *AdminUpdateGameSessionMemberInternalServerError, error)
@@ -70,7 +72,121 @@ type ClientService interface {
 }
 
 /*
-Deprecated: Use AdminQueryGameSessionsShort instead.
+Deprecated: 2022-08-10 - Use AdminDeleteBulkGameSessionsShort instead.
+
+  AdminDeleteBulkGameSessions deletes bulk game sessions requires a d m i n n a m e s p a c e namespace s e s s i o n g a m e d e l e t e
+
+  Delete bulk game sessions.
+*/
+func (a *Client) AdminDeleteBulkGameSessions(params *AdminDeleteBulkGameSessionsParams, authInfo runtime.ClientAuthInfoWriter) (*AdminDeleteBulkGameSessionsOK, *AdminDeleteBulkGameSessionsBadRequest, *AdminDeleteBulkGameSessionsUnauthorized, *AdminDeleteBulkGameSessionsForbidden, *AdminDeleteBulkGameSessionsInternalServerError, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewAdminDeleteBulkGameSessionsParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "adminDeleteBulkGameSessions",
+		Method:             "DELETE",
+		PathPattern:        "/session/v1/admin/namespaces/{namespace}/gamesessions/bulk",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &AdminDeleteBulkGameSessionsReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, nil, nil, nil, nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *AdminDeleteBulkGameSessionsOK:
+		return v, nil, nil, nil, nil, nil
+
+	case *AdminDeleteBulkGameSessionsBadRequest:
+		return nil, v, nil, nil, nil, nil
+
+	case *AdminDeleteBulkGameSessionsUnauthorized:
+		return nil, nil, v, nil, nil, nil
+
+	case *AdminDeleteBulkGameSessionsForbidden:
+		return nil, nil, nil, v, nil, nil
+
+	case *AdminDeleteBulkGameSessionsInternalServerError:
+		return nil, nil, nil, nil, v, nil
+
+	default:
+		return nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+  AdminDeleteBulkGameSessionsShort deletes bulk game sessions requires a d m i n n a m e s p a c e namespace s e s s i o n g a m e d e l e t e
+
+  Delete bulk game sessions.
+*/
+func (a *Client) AdminDeleteBulkGameSessionsShort(params *AdminDeleteBulkGameSessionsParams, authInfo runtime.ClientAuthInfoWriter) (*AdminDeleteBulkGameSessionsOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewAdminDeleteBulkGameSessionsParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "adminDeleteBulkGameSessions",
+		Method:             "DELETE",
+		PathPattern:        "/session/v1/admin/namespaces/{namespace}/gamesessions/bulk",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &AdminDeleteBulkGameSessionsReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *AdminDeleteBulkGameSessionsOK:
+		return v, nil
+	case *AdminDeleteBulkGameSessionsBadRequest:
+		return nil, v
+	case *AdminDeleteBulkGameSessionsUnauthorized:
+		return nil, v
+	case *AdminDeleteBulkGameSessionsForbidden:
+		return nil, v
+	case *AdminDeleteBulkGameSessionsInternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+Deprecated: 2022-08-10 - Use AdminQueryGameSessionsShort instead.
 
   AdminQueryGameSessions gets all game sessions
 
@@ -184,7 +300,7 @@ func (a *Client) AdminQueryGameSessionsShort(params *AdminQueryGameSessionsParam
 }
 
 /*
-Deprecated: Use AdminUpdateGameSessionMemberShort instead.
+Deprecated: 2022-08-10 - Use AdminUpdateGameSessionMemberShort instead.
 
   AdminUpdateGameSessionMember updates status of a game session member requires a d m i n n a m e s p a c e namespace s e s s i o n g a m e u p d a t e
 
@@ -303,7 +419,7 @@ func (a *Client) AdminUpdateGameSessionMemberShort(params *AdminUpdateGameSessio
 }
 
 /*
-Deprecated: Use AppendTeamGameSessionShort instead.
+Deprecated: 2022-08-10 - Use AppendTeamGameSessionShort instead.
 
   AppendTeamGameSession appends new member or team to session requires n a m e s p a c e namespace s e s s i o n g a m e u p d a t e
 
@@ -417,7 +533,7 @@ func (a *Client) AppendTeamGameSessionShort(params *AppendTeamGameSessionParams,
 }
 
 /*
-Deprecated: Use CreateGameSessionShort instead.
+Deprecated: 2022-08-10 - Use CreateGameSessionShort instead.
 
   CreateGameSession creates a game session requires n a m e s p a c e namespace s e s s i o n g a m e c r e a t e
 
@@ -567,7 +683,7 @@ func (a *Client) CreateGameSessionShort(params *CreateGameSessionParams, authInf
 }
 
 /*
-Deprecated: Use DeleteGameSessionShort instead.
+Deprecated: 2022-08-10 - Use DeleteGameSessionShort instead.
 
   DeleteGameSession deletes a game session requires n a m e s p a c e namespace s e s s i o n g a m e d e l e t e
 
@@ -676,7 +792,7 @@ func (a *Client) DeleteGameSessionShort(params *DeleteGameSessionParams, authInf
 }
 
 /*
-Deprecated: Use GetGameSessionShort instead.
+Deprecated: 2022-08-10 - Use GetGameSessionShort instead.
 
   GetGameSession gets game session detail requires n a m e s p a c e namespace s e s s i o n g a m e r e a d
 
@@ -807,7 +923,7 @@ func (a *Client) GetGameSessionShort(params *GetGameSessionParams, authInfo runt
 }
 
 /*
-Deprecated: Use GetGameSessionByPodNameShort instead.
+Deprecated: 2022-08-10 - Use GetGameSessionByPodNameShort instead.
 
   GetGameSessionByPodName gets game session detail requires n a m e s p a c e namespace s e s s i o n g a m e r e a d
 
@@ -938,7 +1054,7 @@ func (a *Client) GetGameSessionByPodNameShort(params *GetGameSessionByPodNamePar
 }
 
 /*
-Deprecated: Use JoinGameSessionShort instead.
+Deprecated: 2022-08-10 - Use JoinGameSessionShort instead.
 
   JoinGameSession joins a game session requires n a m e s p a c e namespace s e s s i o n g a m e p l a y e r c r e a t e
 
@@ -1057,7 +1173,7 @@ func (a *Client) JoinGameSessionShort(params *JoinGameSessionParams, authInfo ru
 }
 
 /*
-Deprecated: Use LeaveGameSessionShort instead.
+Deprecated: 2022-08-10 - Use LeaveGameSessionShort instead.
 
   LeaveGameSession leaves a game session requires n a m e s p a c e namespace s e s s i o n g a m e p l a y e r d e l e t e
 
@@ -1176,7 +1292,7 @@ func (a *Client) LeaveGameSessionShort(params *LeaveGameSessionParams, authInfo 
 }
 
 /*
-Deprecated: Use PatchUpdateGameSessionShort instead.
+Deprecated: 2022-08-10 - Use PatchUpdateGameSessionShort instead.
 
   PatchUpdateGameSession patches update a game session requires n a m e s p a c e namespace s e s s i o n g a m e u p d a t e
 
@@ -1295,7 +1411,7 @@ func (a *Client) PatchUpdateGameSessionShort(params *PatchUpdateGameSessionParam
 }
 
 /*
-Deprecated: Use PublicGameSessionInviteShort instead.
+Deprecated: 2022-08-10 - Use PublicGameSessionInviteShort instead.
 
   PublicGameSessionInvite invites a user to a game session requires n a m e s p a c e namespace s e s s i o n g a m e p l a y e r c r e a t e
 
@@ -1414,7 +1530,7 @@ func (a *Client) PublicGameSessionInviteShort(params *PublicGameSessionInvitePar
 }
 
 /*
-Deprecated: Use PublicGameSessionRejectShort instead.
+Deprecated: 2022-08-10 - Use PublicGameSessionRejectShort instead.
 
   PublicGameSessionReject rejects a game session invitation requires n a m e s p a c e namespace s e s s i o n g a m e p l a y e r d e l e t e
 
@@ -1533,7 +1649,7 @@ func (a *Client) PublicGameSessionRejectShort(params *PublicGameSessionRejectPar
 }
 
 /*
-Deprecated: Use PublicQueryGameSessionsShort instead.
+Deprecated: 2022-08-10 - Use PublicQueryGameSessionsShort instead.
 
   PublicQueryGameSessions queries game sessions
 
@@ -1663,7 +1779,7 @@ func (a *Client) PublicQueryGameSessionsShort(params *PublicQueryGameSessionsPar
 }
 
 /*
-Deprecated: Use PublicQueryMyGameSessionsShort instead.
+Deprecated: 2022-08-10 - Use PublicQueryMyGameSessionsShort instead.
 
   PublicQueryMyGameSessions queries user s game sessions
 
@@ -1788,7 +1904,7 @@ func (a *Client) PublicQueryMyGameSessionsShort(params *PublicQueryMyGameSession
 }
 
 /*
-Deprecated: Use UpdateGameSessionShort instead.
+Deprecated: 2022-08-10 - Use UpdateGameSessionShort instead.
 
   UpdateGameSession updates a game session requires n a m e s p a c e namespace s e s s i o n g a m e u p d a t e
 
@@ -1919,7 +2035,7 @@ func (a *Client) UpdateGameSessionShort(params *UpdateGameSessionParams, authInf
 }
 
 /*
-Deprecated: Use UpdateGameSessionBackfillTicketIDShort instead.
+Deprecated: 2022-08-10 - Use UpdateGameSessionBackfillTicketIDShort instead.
 
   UpdateGameSessionBackfillTicketID updates game session backfill ticket id requires n a m e s p a c e namespace s e s s i o n g a m e u p d a t e
 

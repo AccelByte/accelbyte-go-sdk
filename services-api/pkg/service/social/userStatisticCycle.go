@@ -39,7 +39,7 @@ func (aaa *UserStatisticCycleService) GetAuthSession() auth.Session {
 	}
 }
 
-// deprecated(2022-01-10): please use GetUserStatCycleItemsShort instead.
+// Deprecated: 2022-01-10 - please use GetUserStatCycleItemsShort instead.
 func (aaa *UserStatisticCycleService) GetUserStatCycleItems(input *user_statistic_cycle.GetUserStatCycleItemsParams) (*socialclientmodels.UserStatCycleItemPagingSlicedResult, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -56,7 +56,7 @@ func (aaa *UserStatisticCycleService) GetUserStatCycleItems(input *user_statisti
 	return ok.GetPayload(), nil
 }
 
-// deprecated(2022-01-10): please use GetUserStatCycleItems1Short instead.
+// Deprecated: 2022-01-10 - please use GetUserStatCycleItems1Short instead.
 func (aaa *UserStatisticCycleService) GetUserStatCycleItems1(input *user_statistic_cycle.GetUserStatCycleItems1Params) (*socialclientmodels.UserStatCycleItemPagingSlicedResult, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {

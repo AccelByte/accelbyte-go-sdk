@@ -39,7 +39,7 @@ func (aaa *ServicePluginConfigService) GetAuthSession() auth.Session {
 	}
 }
 
-// deprecated(2022-01-10): please use GetServicePluginConfigShort instead.
+// Deprecated: 2022-01-10 - please use GetServicePluginConfigShort instead.
 func (aaa *ServicePluginConfigService) GetServicePluginConfig(input *service_plugin_config.GetServicePluginConfigParams) (*platformclientmodels.ServicePluginConfigInfo, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -53,7 +53,7 @@ func (aaa *ServicePluginConfigService) GetServicePluginConfig(input *service_plu
 	return ok.GetPayload(), nil
 }
 
-// deprecated(2022-01-10): please use UpdateServicePluginConfigShort instead.
+// Deprecated: 2022-01-10 - please use UpdateServicePluginConfigShort instead.
 func (aaa *ServicePluginConfigService) UpdateServicePluginConfig(input *service_plugin_config.UpdateServicePluginConfigParams) (*platformclientmodels.ServicePluginConfigInfo, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -70,7 +70,7 @@ func (aaa *ServicePluginConfigService) UpdateServicePluginConfig(input *service_
 	return ok.GetPayload(), nil
 }
 
-// deprecated(2022-01-10): please use DeleteServicePluginConfigShort instead.
+// Deprecated: 2022-01-10 - please use DeleteServicePluginConfigShort instead.
 func (aaa *ServicePluginConfigService) DeleteServicePluginConfig(input *service_plugin_config.DeleteServicePluginConfigParams) error {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {

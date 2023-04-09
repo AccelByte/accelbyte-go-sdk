@@ -45,7 +45,7 @@ type ClientService interface {
 }
 
 /*
-Deprecated: Use CheckServerLogsShort instead.
+Deprecated: 2022-08-10 - Use CheckServerLogsShort instead.
 
   CheckServerLogs checks dedicated server log files existence
 
@@ -157,7 +157,7 @@ func (a *Client) CheckServerLogsShort(params *CheckServerLogsParams, authInfo ru
 }
 
 /*
-Deprecated: Use DownloadServerLogsShort instead.
+Deprecated: 2022-08-10 - Use DownloadServerLogsShort instead.
 
   DownloadServerLogs downloads dedicated server log files
 
@@ -269,7 +269,7 @@ func (a *Client) DownloadServerLogsShort(params *DownloadServerLogsParams, authI
 }
 
 /*
-Deprecated: Use ListTerminatedServersShort instead.
+Deprecated: 2022-08-10 - Use ListTerminatedServersShort instead.
 
   ListTerminatedServers retrieves all terminated servers
 

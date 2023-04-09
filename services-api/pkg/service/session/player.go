@@ -39,7 +39,7 @@ func (aaa *PlayerService) GetAuthSession() auth.Session {
 	}
 }
 
-// deprecated(2022-01-10): please use AdminQueryPlayerAttributesShort instead.
+// Deprecated: 2022-01-10 - please use AdminQueryPlayerAttributesShort instead.
 func (aaa *PlayerService) AdminQueryPlayerAttributes(input *player.AdminQueryPlayerAttributesParams) ([]*sessionclientmodels.ApimodelsPlayerAttributesResponseBody, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -65,7 +65,7 @@ func (aaa *PlayerService) AdminQueryPlayerAttributes(input *player.AdminQueryPla
 	return ok.GetPayload(), nil
 }
 
-// deprecated(2022-01-10): please use AdminGetPlayerAttributesShort instead.
+// Deprecated: 2022-01-10 - please use AdminGetPlayerAttributesShort instead.
 func (aaa *PlayerService) AdminGetPlayerAttributes(input *player.AdminGetPlayerAttributesParams) (*sessionclientmodels.ApimodelsPlayerAttributesResponseBody, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -91,7 +91,7 @@ func (aaa *PlayerService) AdminGetPlayerAttributes(input *player.AdminGetPlayerA
 	return ok.GetPayload(), nil
 }
 
-// deprecated(2022-01-10): please use PublicGetPlayerAttributesShort instead.
+// Deprecated: 2022-01-10 - please use PublicGetPlayerAttributesShort instead.
 func (aaa *PlayerService) PublicGetPlayerAttributes(input *player.PublicGetPlayerAttributesParams) (*sessionclientmodels.ApimodelsPlayerAttributesResponseBody, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -117,7 +117,7 @@ func (aaa *PlayerService) PublicGetPlayerAttributes(input *player.PublicGetPlaye
 	return ok.GetPayload(), nil
 }
 
-// deprecated(2022-01-10): please use PublicStorePlayerAttributesShort instead.
+// Deprecated: 2022-01-10 - please use PublicStorePlayerAttributesShort instead.
 func (aaa *PlayerService) PublicStorePlayerAttributes(input *player.PublicStorePlayerAttributesParams) (*sessionclientmodels.ApimodelsPlayerAttributesResponseBody, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -140,7 +140,7 @@ func (aaa *PlayerService) PublicStorePlayerAttributes(input *player.PublicStoreP
 	return ok.GetPayload(), nil
 }
 
-// deprecated(2022-01-10): please use PublicDeletePlayerAttributesShort instead.
+// Deprecated: 2022-01-10 - please use PublicDeletePlayerAttributesShort instead.
 func (aaa *PlayerService) PublicDeletePlayerAttributes(input *player.PublicDeletePlayerAttributesParams) error {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {

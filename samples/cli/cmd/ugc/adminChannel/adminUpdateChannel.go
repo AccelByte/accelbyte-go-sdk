@@ -29,7 +29,7 @@ var AdminUpdateChannelCmd = &cobra.Command{
 			TokenRepository: &repository.TokenRepositoryImpl{},
 		}
 		bodyString := cmd.Flag("body").Value.String()
-		var body *ugcclientmodels.ModelsChannelRequest
+		var body *ugcclientmodels.ModelsUpdateChannelRequest
 		errBody := json.Unmarshal([]byte(bodyString), &body)
 		if errBody != nil {
 			return errBody

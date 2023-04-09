@@ -41,7 +41,7 @@ func (aaa *StatConfigurationService) GetAuthSession() auth.Session {
 	}
 }
 
-// deprecated(2022-01-10): please use GetStatsShort instead.
+// Deprecated: 2022-01-10 - please use GetStatsShort instead.
 func (aaa *StatConfigurationService) GetStats(input *stat_configuration.GetStatsParams) (*socialclientmodels.StatPagingSlicedResult, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -55,7 +55,7 @@ func (aaa *StatConfigurationService) GetStats(input *stat_configuration.GetStats
 	return ok.GetPayload(), nil
 }
 
-// deprecated(2022-01-10): please use CreateStatShort instead.
+// Deprecated: 2022-01-10 - please use CreateStatShort instead.
 func (aaa *StatConfigurationService) CreateStat(input *stat_configuration.CreateStatParams) (*socialclientmodels.StatInfo, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -75,7 +75,7 @@ func (aaa *StatConfigurationService) CreateStat(input *stat_configuration.Create
 	return created.GetPayload(), nil
 }
 
-// deprecated(2022-01-10): please use ExportStatsShort instead.
+// Deprecated: 2022-01-10 - please use ExportStatsShort instead.
 func (aaa *StatConfigurationService) ExportStats(input *stat_configuration.ExportStatsParams, writer io.Writer) (io.Writer, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -89,7 +89,7 @@ func (aaa *StatConfigurationService) ExportStats(input *stat_configuration.Expor
 	return ok.GetPayload(), nil
 }
 
-// deprecated(2022-01-10): please use ImportStatsShort instead.
+// Deprecated: 2022-01-10 - please use ImportStatsShort instead.
 func (aaa *StatConfigurationService) ImportStats(input *stat_configuration.ImportStatsParams) (*socialclientmodels.StatImportInfo, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -106,7 +106,7 @@ func (aaa *StatConfigurationService) ImportStats(input *stat_configuration.Impor
 	return created.GetPayload(), nil
 }
 
-// deprecated(2022-01-10): please use QueryStatsShort instead.
+// Deprecated: 2022-01-10 - please use QueryStatsShort instead.
 func (aaa *StatConfigurationService) QueryStats(input *stat_configuration.QueryStatsParams) (*socialclientmodels.StatPagingSlicedResult, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -120,7 +120,7 @@ func (aaa *StatConfigurationService) QueryStats(input *stat_configuration.QueryS
 	return ok.GetPayload(), nil
 }
 
-// deprecated(2022-01-10): please use GetStatShort instead.
+// Deprecated: 2022-01-10 - please use GetStatShort instead.
 func (aaa *StatConfigurationService) GetStat(input *stat_configuration.GetStatParams) (*socialclientmodels.StatInfo, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -137,7 +137,7 @@ func (aaa *StatConfigurationService) GetStat(input *stat_configuration.GetStatPa
 	return ok.GetPayload(), nil
 }
 
-// deprecated(2022-01-10): please use DeleteStatShort instead.
+// Deprecated: 2022-01-10 - please use DeleteStatShort instead.
 func (aaa *StatConfigurationService) DeleteStat(input *stat_configuration.DeleteStatParams) error {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -154,7 +154,7 @@ func (aaa *StatConfigurationService) DeleteStat(input *stat_configuration.Delete
 	return nil
 }
 
-// deprecated(2022-01-10): please use UpdateStatShort instead.
+// Deprecated: 2022-01-10 - please use UpdateStatShort instead.
 func (aaa *StatConfigurationService) UpdateStat(input *stat_configuration.UpdateStatParams) (*socialclientmodels.StatInfo, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -171,7 +171,7 @@ func (aaa *StatConfigurationService) UpdateStat(input *stat_configuration.Update
 	return ok.GetPayload(), nil
 }
 
-// deprecated(2022-01-10): please use DeleteTiedStatShort instead.
+// Deprecated: 2022-01-10 - please use DeleteTiedStatShort instead.
 func (aaa *StatConfigurationService) DeleteTiedStat(input *stat_configuration.DeleteTiedStatParams) error {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -188,7 +188,7 @@ func (aaa *StatConfigurationService) DeleteTiedStat(input *stat_configuration.De
 	return nil
 }
 
-// deprecated(2022-01-10): please use CreateStat1Short instead.
+// Deprecated: 2022-01-10 - please use CreateStat1Short instead.
 func (aaa *StatConfigurationService) CreateStat1(input *stat_configuration.CreateStat1Params) (*socialclientmodels.StatInfo, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {

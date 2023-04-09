@@ -40,7 +40,7 @@ type ClientService interface {
 }
 
 /*
-Deprecated: Use HeartbeatShort instead.
+Deprecated: 2022-08-10 - Use HeartbeatShort instead.
 
   Heartbeat sends heartbeat
 

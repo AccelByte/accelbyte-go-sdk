@@ -52,7 +52,7 @@ type ClientService interface {
 }
 
 /*
-Deprecated: Use CreateLocalizedPolicyVersion1Short instead.
+Deprecated: 2022-08-10 - Use CreateLocalizedPolicyVersion1Short instead.
 
   CreateLocalizedPolicyVersion1 creates a localized version from country specific policy
 
@@ -156,7 +156,7 @@ func (a *Client) CreateLocalizedPolicyVersion1Short(params *CreateLocalizedPolic
 }
 
 /*
-Deprecated: Use RequestPresignedURL1Short instead.
+Deprecated: 2022-08-10 - Use RequestPresignedURL1Short instead.
 
   RequestPresignedURL1 requests presigned URL for upload document
 
@@ -255,7 +255,7 @@ func (a *Client) RequestPresignedURL1Short(params *RequestPresignedURL1Params, a
 }
 
 /*
-Deprecated: Use RetrieveLocalizedPolicyVersions1Short instead.
+Deprecated: 2022-08-10 - Use RetrieveLocalizedPolicyVersions1Short instead.
 
   RetrieveLocalizedPolicyVersions1 retrieves versions from country specific policy
 
@@ -349,7 +349,7 @@ func (a *Client) RetrieveLocalizedPolicyVersions1Short(params *RetrieveLocalized
 }
 
 /*
-Deprecated: Use RetrieveSingleLocalizedPolicyVersion1Short instead.
+Deprecated: 2022-08-10 - Use RetrieveSingleLocalizedPolicyVersion1Short instead.
 
   RetrieveSingleLocalizedPolicyVersion1 retrieves a localized version from country specific policy
 
@@ -448,7 +448,7 @@ func (a *Client) RetrieveSingleLocalizedPolicyVersion1Short(params *RetrieveSing
 }
 
 /*
-Deprecated: Use RetrieveSingleLocalizedPolicyVersion3Short instead.
+Deprecated: 2022-08-10 - Use RetrieveSingleLocalizedPolicyVersion3Short instead.
 
   RetrieveSingleLocalizedPolicyVersion3 retrieves a localized version
 
@@ -545,7 +545,7 @@ func (a *Client) RetrieveSingleLocalizedPolicyVersion3Short(params *RetrieveSing
 }
 
 /*
-Deprecated: Use SetDefaultPolicy1Short instead.
+Deprecated: 2022-08-10 - Use SetDefaultPolicy1Short instead.
 
   SetDefaultPolicy1 sets default localized policy
 
@@ -639,7 +639,7 @@ func (a *Client) SetDefaultPolicy1Short(params *SetDefaultPolicy1Params, authInf
 }
 
 /*
-Deprecated: Use UpdateLocalizedPolicyVersion1Short instead.
+Deprecated: 2022-08-10 - Use UpdateLocalizedPolicyVersion1Short instead.
 
   UpdateLocalizedPolicyVersion1 updates a localized version from country specific policy
 

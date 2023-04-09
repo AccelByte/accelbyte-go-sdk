@@ -46,7 +46,7 @@ type ClientService interface {
 }
 
 /*
-Deprecated: Use GetEventSpecificUserV2HandlerShort instead.
+Deprecated: 2022-08-10 - Use GetEventSpecificUserV2HandlerShort instead.
 
   GetEventSpecificUserV2Handler gets events from a specific user
 
@@ -170,7 +170,7 @@ func (a *Client) GetEventSpecificUserV2HandlerShort(params *GetEventSpecificUser
 }
 
 /*
-Deprecated: Use GetPublicEditHistoryShort instead.
+Deprecated: 2022-08-10 - Use GetPublicEditHistoryShort instead.
 
   GetPublicEditHistory gets a user edit history based on the provided type
 
@@ -312,7 +312,7 @@ func (a *Client) GetPublicEditHistoryShort(params *GetPublicEditHistoryParams, a
 }
 
 /*
-Deprecated: Use GetUserEventsV2PublicShort instead.
+Deprecated: 2022-08-10 - Use GetUserEventsV2PublicShort instead.
 
   GetUserEventsV2Public gets events from a specific user
 
@@ -436,7 +436,7 @@ func (a *Client) GetUserEventsV2PublicShort(params *GetUserEventsV2PublicParams,
 }
 
 /*
-Deprecated: Use QueryEventStreamHandlerShort instead.
+Deprecated: 2022-08-10 - Use QueryEventStreamHandlerShort instead.
 
   QueryEventStreamHandler as generic query to get a set of events based on the provided filters
 

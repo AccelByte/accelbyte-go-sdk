@@ -39,7 +39,7 @@ func (aaa *PublicTypeService) GetAuthSession() auth.Session {
 	}
 }
 
-// deprecated(2022-01-10): please use GetTypeShort instead.
+// Deprecated: 2022-01-10 - please use GetTypeShort instead.
 func (aaa *PublicTypeService) GetType(input *public_type.GetTypeParams) (*ugcclientmodels.ModelsPaginatedGetTypeResponse, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {

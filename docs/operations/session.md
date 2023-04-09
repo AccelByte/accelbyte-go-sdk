@@ -30,6 +30,7 @@
 | Endpoint | Method | ID | Class | Wrapper | Example |
 |---|---|---|---|---|---|
 | `/session/v1/admin/namespaces/{namespace}/gamesessions` | GET | AdminQueryGameSessionsShort | [AdminQueryGameSessionsShort](../../session-sdk/pkg/sessionclient/game_session/game_session_client.go) | [AdminQueryGameSessionsShort](../../services-api/pkg/service/session/gameSession.go) | [AdminQueryGameSessionsShort](../../samples/cli/cmd/session/gameSession/adminQueryGameSessions.go) |
+| `/session/v1/admin/namespaces/{namespace}/gamesessions/bulk` | DELETE | AdminDeleteBulkGameSessionsShort | [AdminDeleteBulkGameSessionsShort](../../session-sdk/pkg/sessionclient/game_session/game_session_client.go) | [AdminDeleteBulkGameSessionsShort](../../services-api/pkg/service/session/gameSession.go) | [AdminDeleteBulkGameSessionsShort](../../samples/cli/cmd/session/gameSession/adminDeleteBulkGameSessions.go) |
 | `/session/v1/admin/namespaces/{namespace}/gamesessions/{sessionId}/members/{memberId}/status/{statusType}` | PUT | AdminUpdateGameSessionMemberShort | [AdminUpdateGameSessionMemberShort](../../session-sdk/pkg/sessionclient/game_session/game_session_client.go) | [AdminUpdateGameSessionMemberShort](../../services-api/pkg/service/session/gameSession.go) | [AdminUpdateGameSessionMemberShort](../../samples/cli/cmd/session/gameSession/adminUpdateGameSessionMember.go) |
 | `/session/v1/public/namespaces/{namespace}/gamesession` | POST | CreateGameSessionShort | [CreateGameSessionShort](../../session-sdk/pkg/sessionclient/game_session/game_session_client.go) | [CreateGameSessionShort](../../services-api/pkg/service/session/gameSession.go) | [CreateGameSessionShort](../../samples/cli/cmd/session/gameSession/createGameSession.go) |
 | `/session/v1/public/namespaces/{namespace}/gamesessions` | POST | PublicQueryGameSessionsShort | [PublicQueryGameSessionsShort](../../session-sdk/pkg/sessionclient/game_session/game_session_client.go) | [PublicQueryGameSessionsShort](../../services-api/pkg/service/session/gameSession.go) | [PublicQueryGameSessionsShort](../../samples/cli/cmd/session/gameSession/publicQueryGameSessions.go) |
@@ -88,6 +89,8 @@
 | `apimodels.CreateGameSessionRequest` | [ApimodelsCreateGameSessionRequest ](../../session-sdk/pkg/sessionclientmodels/apimodels_create_game_session_request.go) |
 | `apimodels.CreatePartyRequest` | [ApimodelsCreatePartyRequest ](../../session-sdk/pkg/sessionclientmodels/apimodels_create_party_request.go) |
 | `apimodels.DSInformationResponse` | [ApimodelsDSInformationResponse ](../../session-sdk/pkg/sessionclientmodels/apimodels_d_s_information_response.go) |
+| `apimodels.DeleteBulkGameSessionRequest` | [ApimodelsDeleteBulkGameSessionRequest ](../../session-sdk/pkg/sessionclientmodels/apimodels_delete_bulk_game_session_request.go) |
+| `apimodels.DeleteBulkGameSessionsAPIResponse` | [ApimodelsDeleteBulkGameSessionsAPIResponse ](../../session-sdk/pkg/sessionclientmodels/apimodels_delete_bulk_game_sessions_api_response.go) |
 | `apimodels.GameSessionQueryResponse` | [ApimodelsGameSessionQueryResponse ](../../session-sdk/pkg/sessionclientmodels/apimodels_game_session_query_response.go) |
 | `apimodels.GameSessionResponse` | [ApimodelsGameSessionResponse ](../../session-sdk/pkg/sessionclientmodels/apimodels_game_session_response.go) |
 | `apimodels.JoinByCodeRequest` | [ApimodelsJoinByCodeRequest ](../../session-sdk/pkg/sessionclientmodels/apimodels_join_by_code_request.go) |
@@ -100,6 +103,7 @@
 | `apimodels.PromoteLeaderRequest` | [ApimodelsPromoteLeaderRequest ](../../session-sdk/pkg/sessionclientmodels/apimodels_promote_leader_request.go) |
 | `apimodels.PublicConfiguration` | [ApimodelsPublicConfiguration ](../../session-sdk/pkg/sessionclientmodels/apimodels_public_configuration.go) |
 | `apimodels.RequestMember` | [ApimodelsRequestMember ](../../session-sdk/pkg/sessionclientmodels/apimodels_request_member.go) |
+| `apimodels.ResponseDeleteBulkGameSessions` | [ApimodelsResponseDeleteBulkGameSessions ](../../session-sdk/pkg/sessionclientmodels/apimodels_response_delete_bulk_game_sessions.go) |
 | `apimodels.SessionInviteRequest` | [ApimodelsSessionInviteRequest ](../../session-sdk/pkg/sessionclientmodels/apimodels_session_invite_request.go) |
 | `apimodels.UpdateConfigurationTemplateRequest` | [ApimodelsUpdateConfigurationTemplateRequest ](../../session-sdk/pkg/sessionclientmodels/apimodels_update_configuration_template_request.go) |
 | `apimodels.UpdateGameSessionBackfillRequest` | [ApimodelsUpdateGameSessionBackfillRequest ](../../session-sdk/pkg/sessionclientmodels/apimodels_update_game_session_backfill_request.go) |

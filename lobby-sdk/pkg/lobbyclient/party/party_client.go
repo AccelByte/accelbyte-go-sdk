@@ -48,7 +48,7 @@ type ClientService interface {
 }
 
 /*
-Deprecated: Use AdminGetPartyDataV1Short instead.
+Deprecated: 2022-08-10 - Use AdminGetPartyDataV1Short instead.
 
   AdminGetPartyDataV1 admins get party data
 
@@ -169,7 +169,7 @@ func (a *Client) AdminGetPartyDataV1Short(params *AdminGetPartyDataV1Params, aut
 }
 
 /*
-Deprecated: Use AdminGetUserPartyV1Short instead.
+Deprecated: 2022-08-10 - Use AdminGetUserPartyV1Short instead.
 
   AdminGetUserPartyV1 admins get user party data
 
@@ -290,7 +290,7 @@ func (a *Client) AdminGetUserPartyV1Short(params *AdminGetUserPartyV1Params, aut
 }
 
 /*
-Deprecated: Use PublicGetPartyDataV1Short instead.
+Deprecated: 2022-08-10 - Use PublicGetPartyDataV1Short instead.
 
   PublicGetPartyDataV1 gets party data by party id
 
@@ -413,7 +413,7 @@ func (a *Client) PublicGetPartyDataV1Short(params *PublicGetPartyDataV1Params, a
 }
 
 /*
-Deprecated: Use PublicSetPartyLimitV1Short instead.
+Deprecated: 2022-08-10 - Use PublicSetPartyLimitV1Short instead.
 
   PublicSetPartyLimitV1 sets party limit
 
@@ -534,7 +534,7 @@ func (a *Client) PublicSetPartyLimitV1Short(params *PublicSetPartyLimitV1Params,
 }
 
 /*
-Deprecated: Use PublicUpdatePartyAttributesV1Short instead.
+Deprecated: 2022-08-10 - Use PublicUpdatePartyAttributesV1Short instead.
 
   PublicUpdatePartyAttributesV1 updates party attributes
 

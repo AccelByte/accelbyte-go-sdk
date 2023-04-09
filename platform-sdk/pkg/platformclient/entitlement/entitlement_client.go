@@ -109,6 +109,10 @@ type ClientService interface {
 	QueryUserEntitlementsShort(params *QueryUserEntitlementsParams, authInfo runtime.ClientAuthInfoWriter) (*QueryUserEntitlementsOK, error)
 	QueryUserEntitlementsByAppType(params *QueryUserEntitlementsByAppTypeParams, authInfo runtime.ClientAuthInfoWriter) (*QueryUserEntitlementsByAppTypeOK, error)
 	QueryUserEntitlementsByAppTypeShort(params *QueryUserEntitlementsByAppTypeParams, authInfo runtime.ClientAuthInfoWriter) (*QueryUserEntitlementsByAppTypeOK, error)
+	RevokeAllEntitlements(params *RevokeAllEntitlementsParams, authInfo runtime.ClientAuthInfoWriter) (*RevokeAllEntitlementsOK, error)
+	RevokeAllEntitlementsShort(params *RevokeAllEntitlementsParams, authInfo runtime.ClientAuthInfoWriter) (*RevokeAllEntitlementsOK, error)
+	RevokeUseCount(params *RevokeUseCountParams, authInfo runtime.ClientAuthInfoWriter) (*RevokeUseCountOK, *RevokeUseCountNotFound, error)
+	RevokeUseCountShort(params *RevokeUseCountParams, authInfo runtime.ClientAuthInfoWriter) (*RevokeUseCountOK, error)
 	RevokeUserEntitlement(params *RevokeUserEntitlementParams, authInfo runtime.ClientAuthInfoWriter) (*RevokeUserEntitlementOK, *RevokeUserEntitlementNotFound, error)
 	RevokeUserEntitlementShort(params *RevokeUserEntitlementParams, authInfo runtime.ClientAuthInfoWriter) (*RevokeUserEntitlementOK, error)
 	RevokeUserEntitlements(params *RevokeUserEntitlementsParams, authInfo runtime.ClientAuthInfoWriter) (*RevokeUserEntitlementsOK, error)
@@ -122,7 +126,7 @@ type ClientService interface {
 }
 
 /*
-Deprecated: Use ConsumeUserEntitlementShort instead.
+Deprecated: 2022-08-10 - Use ConsumeUserEntitlementShort instead.
 
   ConsumeUserEntitlement consumes user entitlement
 
@@ -226,7 +230,7 @@ func (a *Client) ConsumeUserEntitlementShort(params *ConsumeUserEntitlementParam
 }
 
 /*
-Deprecated: Use DisableUserEntitlementShort instead.
+Deprecated: 2022-08-10 - Use DisableUserEntitlementShort instead.
 
   DisableUserEntitlement disables user entitlement
 
@@ -330,7 +334,7 @@ func (a *Client) DisableUserEntitlementShort(params *DisableUserEntitlementParam
 }
 
 /*
-Deprecated: Use EnableUserEntitlementShort instead.
+Deprecated: 2022-08-10 - Use EnableUserEntitlementShort instead.
 
   EnableUserEntitlement enables user entitlement
 
@@ -434,7 +438,7 @@ func (a *Client) EnableUserEntitlementShort(params *EnableUserEntitlementParams,
 }
 
 /*
-Deprecated: Use ExistsAnyUserActiveEntitlementShort instead.
+Deprecated: 2022-08-10 - Use ExistsAnyUserActiveEntitlementShort instead.
 
   ExistsAnyUserActiveEntitlement exists any user active entitlement
 
@@ -528,7 +532,7 @@ func (a *Client) ExistsAnyUserActiveEntitlementShort(params *ExistsAnyUserActive
 }
 
 /*
-Deprecated: Use ExistsAnyUserActiveEntitlementByItemIdsShort instead.
+Deprecated: 2022-08-10 - Use ExistsAnyUserActiveEntitlementByItemIdsShort instead.
 
   ExistsAnyUserActiveEntitlementByItemIds exists any user active entitlement
 
@@ -622,7 +626,7 @@ func (a *Client) ExistsAnyUserActiveEntitlementByItemIdsShort(params *ExistsAnyU
 }
 
 /*
-Deprecated: Use GetEntitlementShort instead.
+Deprecated: 2022-08-10 - Use GetEntitlementShort instead.
 
   GetEntitlement gets entitlement
 
@@ -721,7 +725,7 @@ func (a *Client) GetEntitlementShort(params *GetEntitlementParams, authInfo runt
 }
 
 /*
-Deprecated: Use GetUserActiveEntitlementsByItemIdsShort instead.
+Deprecated: 2022-08-10 - Use GetUserActiveEntitlementsByItemIdsShort instead.
 
   GetUserActiveEntitlementsByItemIds gets user entitlements by item ids
 
@@ -815,7 +819,7 @@ func (a *Client) GetUserActiveEntitlementsByItemIdsShort(params *GetUserActiveEn
 }
 
 /*
-Deprecated: Use GetUserAppEntitlementByAppIDShort instead.
+Deprecated: 2022-08-10 - Use GetUserAppEntitlementByAppIDShort instead.
 
   GetUserAppEntitlementByAppID gets user app entitlement by app Id
 
@@ -914,7 +918,7 @@ func (a *Client) GetUserAppEntitlementByAppIDShort(params *GetUserAppEntitlement
 }
 
 /*
-Deprecated: Use GetUserAppEntitlementOwnershipByAppIDShort instead.
+Deprecated: 2022-08-10 - Use GetUserAppEntitlementOwnershipByAppIDShort instead.
 
   GetUserAppEntitlementOwnershipByAppID gets user app entitlement ownership by app Id
 
@@ -1008,7 +1012,7 @@ func (a *Client) GetUserAppEntitlementOwnershipByAppIDShort(params *GetUserAppEn
 }
 
 /*
-Deprecated: Use GetUserEntitlementShort instead.
+Deprecated: 2022-08-10 - Use GetUserEntitlementShort instead.
 
   GetUserEntitlement gets user entitlement
 
@@ -1107,7 +1111,7 @@ func (a *Client) GetUserEntitlementShort(params *GetUserEntitlementParams, authI
 }
 
 /*
-Deprecated: Use GetUserEntitlementByItemIDShort instead.
+Deprecated: 2022-08-10 - Use GetUserEntitlementByItemIDShort instead.
 
   GetUserEntitlementByItemID gets user entitlement by item Id
 
@@ -1206,7 +1210,7 @@ func (a *Client) GetUserEntitlementByItemIDShort(params *GetUserEntitlementByIte
 }
 
 /*
-Deprecated: Use GetUserEntitlementBySkuShort instead.
+Deprecated: 2022-08-10 - Use GetUserEntitlementBySkuShort instead.
 
   GetUserEntitlementBySku gets user entitlement by sku
 
@@ -1305,7 +1309,7 @@ func (a *Client) GetUserEntitlementBySkuShort(params *GetUserEntitlementBySkuPar
 }
 
 /*
-Deprecated: Use GetUserEntitlementHistoriesShort instead.
+Deprecated: 2022-08-10 - Use GetUserEntitlementHistoriesShort instead.
 
   GetUserEntitlementHistories gets user entitlement history
 
@@ -1399,7 +1403,7 @@ func (a *Client) GetUserEntitlementHistoriesShort(params *GetUserEntitlementHist
 }
 
 /*
-Deprecated: Use GetUserEntitlementOwnershipByItemIDShort instead.
+Deprecated: 2022-08-10 - Use GetUserEntitlementOwnershipByItemIDShort instead.
 
   GetUserEntitlementOwnershipByItemID gets user entitlement ownership by item Id
 
@@ -1493,7 +1497,7 @@ func (a *Client) GetUserEntitlementOwnershipByItemIDShort(params *GetUserEntitle
 }
 
 /*
-Deprecated: Use GetUserEntitlementOwnershipByItemIdsShort instead.
+Deprecated: 2022-08-10 - Use GetUserEntitlementOwnershipByItemIdsShort instead.
 
   GetUserEntitlementOwnershipByItemIds gets user entitlement ownership by item ids
 
@@ -1587,7 +1591,7 @@ func (a *Client) GetUserEntitlementOwnershipByItemIdsShort(params *GetUserEntitl
 }
 
 /*
-Deprecated: Use GetUserEntitlementOwnershipBySkuShort instead.
+Deprecated: 2022-08-10 - Use GetUserEntitlementOwnershipBySkuShort instead.
 
   GetUserEntitlementOwnershipBySku gets user entitlement ownership by sku
 
@@ -1681,7 +1685,7 @@ func (a *Client) GetUserEntitlementOwnershipBySkuShort(params *GetUserEntitlemen
 }
 
 /*
-Deprecated: Use GrantUserEntitlementShort instead.
+Deprecated: 2022-08-10 - Use GrantUserEntitlementShort instead.
 
   GrantUserEntitlement grants user entitlement
 
@@ -1785,7 +1789,7 @@ func (a *Client) GrantUserEntitlementShort(params *GrantUserEntitlementParams, a
 }
 
 /*
-Deprecated: Use PublicConsumeUserEntitlementShort instead.
+Deprecated: 2022-08-10 - Use PublicConsumeUserEntitlementShort instead.
 
   PublicConsumeUserEntitlement consumes user entitlement
 
@@ -1894,7 +1898,7 @@ func (a *Client) PublicConsumeUserEntitlementShort(params *PublicConsumeUserEnti
 }
 
 /*
-Deprecated: Use PublicExistsAnyMyActiveEntitlementShort instead.
+Deprecated: 2022-08-10 - Use PublicExistsAnyMyActiveEntitlementShort instead.
 
   PublicExistsAnyMyActiveEntitlement exists any my active entitlement
 
@@ -1988,7 +1992,7 @@ func (a *Client) PublicExistsAnyMyActiveEntitlementShort(params *PublicExistsAny
 }
 
 /*
-Deprecated: Use PublicExistsAnyUserActiveEntitlementShort instead.
+Deprecated: 2022-08-10 - Use PublicExistsAnyUserActiveEntitlementShort instead.
 
   PublicExistsAnyUserActiveEntitlement exists any user active entitlement
 
@@ -2082,7 +2086,7 @@ func (a *Client) PublicExistsAnyUserActiveEntitlementShort(params *PublicExistsA
 }
 
 /*
-Deprecated: Use PublicGetEntitlementOwnershipTokenShort instead.
+Deprecated: 2022-08-10 - Use PublicGetEntitlementOwnershipTokenShort instead.
 
   PublicGetEntitlementOwnershipToken gets an entitlement ownership token
 
@@ -2234,7 +2238,7 @@ func (a *Client) PublicGetEntitlementOwnershipTokenShort(params *PublicGetEntitl
 }
 
 /*
-Deprecated: Use PublicGetMyAppEntitlementOwnershipByAppIDShort instead.
+Deprecated: 2022-08-10 - Use PublicGetMyAppEntitlementOwnershipByAppIDShort instead.
 
   PublicGetMyAppEntitlementOwnershipByAppID gets my app entitlement ownership by app Id
 
@@ -2328,7 +2332,7 @@ func (a *Client) PublicGetMyAppEntitlementOwnershipByAppIDShort(params *PublicGe
 }
 
 /*
-Deprecated: Use PublicGetMyEntitlementOwnershipByItemIDShort instead.
+Deprecated: 2022-08-10 - Use PublicGetMyEntitlementOwnershipByItemIDShort instead.
 
   PublicGetMyEntitlementOwnershipByItemID gets my entitlement ownership by item Id
 
@@ -2422,7 +2426,7 @@ func (a *Client) PublicGetMyEntitlementOwnershipByItemIDShort(params *PublicGetM
 }
 
 /*
-Deprecated: Use PublicGetMyEntitlementOwnershipBySkuShort instead.
+Deprecated: 2022-08-10 - Use PublicGetMyEntitlementOwnershipBySkuShort instead.
 
   PublicGetMyEntitlementOwnershipBySku gets my entitlement ownership by sku
 
@@ -2516,7 +2520,7 @@ func (a *Client) PublicGetMyEntitlementOwnershipBySkuShort(params *PublicGetMyEn
 }
 
 /*
-Deprecated: Use PublicGetUserAppEntitlementByAppIDShort instead.
+Deprecated: 2022-08-10 - Use PublicGetUserAppEntitlementByAppIDShort instead.
 
   PublicGetUserAppEntitlementByAppID gets user app entitlement by app Id
 
@@ -2615,7 +2619,7 @@ func (a *Client) PublicGetUserAppEntitlementByAppIDShort(params *PublicGetUserAp
 }
 
 /*
-Deprecated: Use PublicGetUserAppEntitlementOwnershipByAppIDShort instead.
+Deprecated: 2022-08-10 - Use PublicGetUserAppEntitlementOwnershipByAppIDShort instead.
 
   PublicGetUserAppEntitlementOwnershipByAppID gets user app entitlement ownership by app Id
 
@@ -2709,7 +2713,7 @@ func (a *Client) PublicGetUserAppEntitlementOwnershipByAppIDShort(params *Public
 }
 
 /*
-Deprecated: Use PublicGetUserEntitlementShort instead.
+Deprecated: 2022-08-10 - Use PublicGetUserEntitlementShort instead.
 
   PublicGetUserEntitlement gets user entitlement
 
@@ -2808,7 +2812,7 @@ func (a *Client) PublicGetUserEntitlementShort(params *PublicGetUserEntitlementP
 }
 
 /*
-Deprecated: Use PublicGetUserEntitlementByItemIDShort instead.
+Deprecated: 2022-08-10 - Use PublicGetUserEntitlementByItemIDShort instead.
 
   PublicGetUserEntitlementByItemID gets user entitlement by item Id
 
@@ -2907,7 +2911,7 @@ func (a *Client) PublicGetUserEntitlementByItemIDShort(params *PublicGetUserEnti
 }
 
 /*
-Deprecated: Use PublicGetUserEntitlementBySkuShort instead.
+Deprecated: 2022-08-10 - Use PublicGetUserEntitlementBySkuShort instead.
 
   PublicGetUserEntitlementBySku gets user entitlement by sku
 
@@ -3006,7 +3010,7 @@ func (a *Client) PublicGetUserEntitlementBySkuShort(params *PublicGetUserEntitle
 }
 
 /*
-Deprecated: Use PublicGetUserEntitlementOwnershipByItemIDShort instead.
+Deprecated: 2022-08-10 - Use PublicGetUserEntitlementOwnershipByItemIDShort instead.
 
   PublicGetUserEntitlementOwnershipByItemID gets user entitlement ownership by item Id
 
@@ -3100,7 +3104,7 @@ func (a *Client) PublicGetUserEntitlementOwnershipByItemIDShort(params *PublicGe
 }
 
 /*
-Deprecated: Use PublicGetUserEntitlementOwnershipByItemIdsShort instead.
+Deprecated: 2022-08-10 - Use PublicGetUserEntitlementOwnershipByItemIdsShort instead.
 
   PublicGetUserEntitlementOwnershipByItemIds gets user entitlement ownership by item ids
 
@@ -3194,7 +3198,7 @@ func (a *Client) PublicGetUserEntitlementOwnershipByItemIdsShort(params *PublicG
 }
 
 /*
-Deprecated: Use PublicGetUserEntitlementOwnershipBySkuShort instead.
+Deprecated: 2022-08-10 - Use PublicGetUserEntitlementOwnershipBySkuShort instead.
 
   PublicGetUserEntitlementOwnershipBySku gets user entitlement ownership by sku
 
@@ -3288,7 +3292,7 @@ func (a *Client) PublicGetUserEntitlementOwnershipBySkuShort(params *PublicGetUs
 }
 
 /*
-Deprecated: Use PublicQueryUserEntitlementsShort instead.
+Deprecated: 2022-08-10 - Use PublicQueryUserEntitlementsShort instead.
 
   PublicQueryUserEntitlements queries user entitlements
 
@@ -3382,7 +3386,7 @@ func (a *Client) PublicQueryUserEntitlementsShort(params *PublicQueryUserEntitle
 }
 
 /*
-Deprecated: Use PublicQueryUserEntitlementsByAppTypeShort instead.
+Deprecated: 2022-08-10 - Use PublicQueryUserEntitlementsByAppTypeShort instead.
 
   PublicQueryUserEntitlementsByAppType queries app entitlements by app type
 
@@ -3476,7 +3480,7 @@ func (a *Client) PublicQueryUserEntitlementsByAppTypeShort(params *PublicQueryUs
 }
 
 /*
-Deprecated: Use PublicSellUserEntitlementShort instead.
+Deprecated: 2022-08-10 - Use PublicSellUserEntitlementShort instead.
 
   PublicSellUserEntitlement sells user entitlement
 
@@ -3580,7 +3584,7 @@ func (a *Client) PublicSellUserEntitlementShort(params *PublicSellUserEntitlemen
 }
 
 /*
-Deprecated: Use QueryEntitlementsShort instead.
+Deprecated: 2022-08-10 - Use QueryEntitlementsShort instead.
 
   QueryEntitlements queries entitlements
 
@@ -3674,7 +3678,7 @@ func (a *Client) QueryEntitlementsShort(params *QueryEntitlementsParams, authInf
 }
 
 /*
-Deprecated: Use QueryUserEntitlementsShort instead.
+Deprecated: 2022-08-10 - Use QueryUserEntitlementsShort instead.
 
   QueryUserEntitlements queries user entitlements
 
@@ -3768,7 +3772,7 @@ func (a *Client) QueryUserEntitlementsShort(params *QueryUserEntitlementsParams,
 }
 
 /*
-Deprecated: Use QueryUserEntitlementsByAppTypeShort instead.
+Deprecated: 2022-08-10 - Use QueryUserEntitlementsByAppTypeShort instead.
 
   QueryUserEntitlementsByAppType queries app entitlements by app type
 
@@ -3862,7 +3866,200 @@ func (a *Client) QueryUserEntitlementsByAppTypeShort(params *QueryUserEntitlemen
 }
 
 /*
-Deprecated: Use RevokeUserEntitlementShort instead.
+Deprecated: 2022-08-10 - Use RevokeAllEntitlementsShort instead.
+
+  RevokeAllEntitlements revokes all entitlements of a user this API is for testing purpose only
+
+  Revoke all entitlements of a user (This API is for testing purpose only)&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:USER:{userId}:ENTITLEMENT&#34;, action=4 (UPDATE)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: revoked entitlements count&lt;/li&gt;&lt;/ul&gt;
+*/
+func (a *Client) RevokeAllEntitlements(params *RevokeAllEntitlementsParams, authInfo runtime.ClientAuthInfoWriter) (*RevokeAllEntitlementsOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewRevokeAllEntitlementsParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "revokeAllEntitlements",
+		Method:             "PUT",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/users/{userId}/entitlements/revoke",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &RevokeAllEntitlementsReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *RevokeAllEntitlementsOK:
+		return v, nil
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+  RevokeAllEntitlementsShort revokes all entitlements of a user this API is for testing purpose only
+
+  Revoke all entitlements of a user (This API is for testing purpose only)&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:USER:{userId}:ENTITLEMENT&#34;, action=4 (UPDATE)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: revoked entitlements count&lt;/li&gt;&lt;/ul&gt;
+*/
+func (a *Client) RevokeAllEntitlementsShort(params *RevokeAllEntitlementsParams, authInfo runtime.ClientAuthInfoWriter) (*RevokeAllEntitlementsOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewRevokeAllEntitlementsParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "revokeAllEntitlements",
+		Method:             "PUT",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/users/{userId}/entitlements/revoke",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &RevokeAllEntitlementsReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *RevokeAllEntitlementsOK:
+		return v, nil
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+Deprecated: 2022-08-10 - Use RevokeUseCountShort instead.
+
+  RevokeUseCount revokes specified use count of user entitlement
+
+  Revoke specified use count of user entitlement.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:USER:{userId}:ENTITLEMENT&#34;, action=4 (UPDATE)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: revoke entitlement&lt;/li&gt;&lt;/ul&gt;
+*/
+func (a *Client) RevokeUseCount(params *RevokeUseCountParams, authInfo runtime.ClientAuthInfoWriter) (*RevokeUseCountOK, *RevokeUseCountNotFound, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewRevokeUseCountParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "revokeUseCount",
+		Method:             "PUT",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/users/{userId}/entitlements/{entitlementId}/revokeByUseCount",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &RevokeUseCountReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *RevokeUseCountOK:
+		return v, nil, nil
+
+	case *RevokeUseCountNotFound:
+		return nil, v, nil
+
+	default:
+		return nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+  RevokeUseCountShort revokes specified use count of user entitlement
+
+  Revoke specified use count of user entitlement.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:USER:{userId}:ENTITLEMENT&#34;, action=4 (UPDATE)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: revoke entitlement&lt;/li&gt;&lt;/ul&gt;
+*/
+func (a *Client) RevokeUseCountShort(params *RevokeUseCountParams, authInfo runtime.ClientAuthInfoWriter) (*RevokeUseCountOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewRevokeUseCountParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "revokeUseCount",
+		Method:             "PUT",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/users/{userId}/entitlements/{entitlementId}/revokeByUseCount",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &RevokeUseCountReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *RevokeUseCountOK:
+		return v, nil
+	case *RevokeUseCountNotFound:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+Deprecated: 2022-08-10 - Use RevokeUserEntitlementShort instead.
 
   RevokeUserEntitlement revokes user entitlement
 
@@ -3961,7 +4158,7 @@ func (a *Client) RevokeUserEntitlementShort(params *RevokeUserEntitlementParams,
 }
 
 /*
-Deprecated: Use RevokeUserEntitlementsShort instead.
+Deprecated: 2022-08-10 - Use RevokeUserEntitlementsShort instead.
 
   RevokeUserEntitlements revokes user s entitlements by ids
 
@@ -4055,7 +4252,7 @@ func (a *Client) RevokeUserEntitlementsShort(params *RevokeUserEntitlementsParam
 }
 
 /*
-Deprecated: Use SellUserEntitlementShort instead.
+Deprecated: 2022-08-10 - Use SellUserEntitlementShort instead.
 
   SellUserEntitlement sells user entitlement
 
@@ -4159,7 +4356,7 @@ func (a *Client) SellUserEntitlementShort(params *SellUserEntitlementParams, aut
 }
 
 /*
-Deprecated: Use UpdateUserEntitlementShort instead.
+Deprecated: 2022-08-10 - Use UpdateUserEntitlementShort instead.
 
   UpdateUserEntitlement updates user entitlement
 

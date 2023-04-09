@@ -41,6 +41,7 @@ func init() {
 	Match2Cmd.AddCommand(matchPools.UpdateMatchPoolCmd)
 	Match2Cmd.AddCommand(matchPools.DeleteMatchPoolCmd)
 	Match2Cmd.AddCommand(matchPools.MatchPoolMetricCmd)
+	Match2Cmd.AddCommand(matchPools.GetPlayerMetricCmd)
 	Match2Cmd.AddCommand(matchTickets.CreateMatchTicketCmd)
 	Match2Cmd.AddCommand(matchTickets.MatchTicketDetailsCmd)
 	Match2Cmd.AddCommand(matchTickets.DeleteMatchTicketCmd)

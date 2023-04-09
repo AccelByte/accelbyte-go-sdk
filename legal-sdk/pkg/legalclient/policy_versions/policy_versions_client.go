@@ -46,7 +46,7 @@ type ClientService interface {
 }
 
 /*
-Deprecated: Use CreatePolicyVersionShort instead.
+Deprecated: 2022-08-10 - Use CreatePolicyVersionShort instead.
 
   CreatePolicyVersion creates a version from country specific policy
 
@@ -145,7 +145,7 @@ func (a *Client) CreatePolicyVersionShort(params *CreatePolicyVersionParams, aut
 }
 
 /*
-Deprecated: Use PublishPolicyVersionShort instead.
+Deprecated: 2022-08-10 - Use PublishPolicyVersionShort instead.
 
   PublishPolicyVersion manuallies publish a version from country specific policy
 
@@ -249,7 +249,7 @@ func (a *Client) PublishPolicyVersionShort(params *PublishPolicyVersionParams, a
 }
 
 /*
-Deprecated: Use RetrieveSinglePolicyVersionShort instead.
+Deprecated: 2022-08-10 - Use RetrieveSinglePolicyVersionShort instead.
 
   RetrieveSinglePolicyVersion retrieves a version from country specific policy
 
@@ -348,7 +348,7 @@ func (a *Client) RetrieveSinglePolicyVersionShort(params *RetrieveSinglePolicyVe
 }
 
 /*
-Deprecated: Use UpdatePolicyVersionShort instead.
+Deprecated: 2022-08-10 - Use UpdatePolicyVersionShort instead.
 
   UpdatePolicyVersion updates a version of policy
 

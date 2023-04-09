@@ -42,7 +42,7 @@ type ClientService interface {
 }
 
 /*
-Deprecated: Use GetHealthcheckInfoShort instead.
+Deprecated: 2022-08-10 - Use GetHealthcheckInfoShort instead.
 
   GetHealthcheckInfo get healthcheck info API
 */
@@ -132,7 +132,7 @@ func (a *Client) GetHealthcheckInfoShort(params *GetHealthcheckInfoParams, authI
 }
 
 /*
-Deprecated: Use GetHealthcheckInfoV1Short instead.
+Deprecated: 2022-08-10 - Use GetHealthcheckInfoV1Short instead.
 
   GetHealthcheckInfoV1 get healthcheck info v1 API
 */

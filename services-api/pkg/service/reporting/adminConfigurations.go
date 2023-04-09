@@ -39,7 +39,7 @@ func (aaa *AdminConfigurationsService) GetAuthSession() auth.Session {
 	}
 }
 
-// deprecated(2022-01-10): please use GetShort instead.
+// Deprecated: 2022-01-10 - please use GetShort instead.
 func (aaa *AdminConfigurationsService) Get(input *admin_configurations.GetParams) (*reportingclientmodels.RestapiConfigResponse, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -56,7 +56,7 @@ func (aaa *AdminConfigurationsService) Get(input *admin_configurations.GetParams
 	return ok.GetPayload(), nil
 }
 
-// deprecated(2022-01-10): please use UpsertShort instead.
+// Deprecated: 2022-01-10 - please use UpsertShort instead.
 func (aaa *AdminConfigurationsService) Upsert(input *admin_configurations.UpsertParams) (*reportingclientmodels.RestapiConfigResponse, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {

@@ -52,7 +52,7 @@ type ClientService interface {
 }
 
 /*
-Deprecated: Use BanUsersShort instead.
+Deprecated: 2022-08-10 - Use BanUsersShort instead.
 
   BanUsers bans user temporarily or permanently
 
@@ -166,7 +166,7 @@ func (a *Client) BanUsersShort(params *BanUsersParams, authInfo runtime.ClientAu
 }
 
 /*
-Deprecated: Use GetActionsShort instead.
+Deprecated: 2022-08-10 - Use GetActionsShort instead.
 
   GetActions gets configured actions
 
@@ -275,7 +275,7 @@ func (a *Client) GetActionsShort(params *GetActionsParams, authInfo runtime.Clie
 }
 
 /*
-Deprecated: Use GetBannedUsersShort instead.
+Deprecated: 2022-08-10 - Use GetBannedUsersShort instead.
 
   GetBannedUsers gets banned user
 
@@ -389,7 +389,7 @@ func (a *Client) GetBannedUsersShort(params *GetBannedUsersParams, authInfo runt
 }
 
 /*
-Deprecated: Use GetUserStatusShort instead.
+Deprecated: 2022-08-10 - Use GetUserStatusShort instead.
 
   GetUserStatus gets user status
 
@@ -503,7 +503,7 @@ func (a *Client) GetUserStatusShort(params *GetUserStatusParams, authInfo runtim
 }
 
 /*
-Deprecated: Use PublicReportUserShort instead.
+Deprecated: 2022-08-10 - Use PublicReportUserShort instead.
 
   PublicReportUser reports a game user
 
@@ -607,7 +607,7 @@ func (a *Client) PublicReportUserShort(params *PublicReportUserParams, authInfo 
 }
 
 /*
-Deprecated: Use ReportUserShort instead.
+Deprecated: 2022-08-10 - Use ReportUserShort instead.
 
   ReportUser reports a game player for game service
 
@@ -706,7 +706,7 @@ func (a *Client) ReportUserShort(params *ReportUserParams, authInfo runtime.Clie
 }
 
 /*
-Deprecated: Use UnBanUsersShort instead.
+Deprecated: 2022-08-10 - Use UnBanUsersShort instead.
 
   UnBanUsers unbans user
 

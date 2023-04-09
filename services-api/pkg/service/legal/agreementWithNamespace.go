@@ -39,7 +39,7 @@ func (aaa *AgreementWithNamespaceService) GetAuthSession() auth.Session {
 	}
 }
 
-// deprecated(2022-01-10): please use RetrieveAcceptedAgreementsForMultiUsersShort instead.
+// Deprecated: 2022-01-10 - please use RetrieveAcceptedAgreementsForMultiUsersShort instead.
 func (aaa *AgreementWithNamespaceService) RetrieveAcceptedAgreementsForMultiUsers(input *agreement_with_namespace.RetrieveAcceptedAgreementsForMultiUsersParams) ([]*legalclientmodels.UserAgreementsResponse, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -53,7 +53,7 @@ func (aaa *AgreementWithNamespaceService) RetrieveAcceptedAgreementsForMultiUser
 	return ok.GetPayload(), nil
 }
 
-// deprecated(2022-01-10): please use RetrieveAcceptedAgreements1Short instead.
+// Deprecated: 2022-01-10 - please use RetrieveAcceptedAgreements1Short instead.
 func (aaa *AgreementWithNamespaceService) RetrieveAcceptedAgreements1(input *agreement_with_namespace.RetrieveAcceptedAgreements1Params) ([]*legalclientmodels.RetrieveAcceptedAgreementResponse, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -67,7 +67,7 @@ func (aaa *AgreementWithNamespaceService) RetrieveAcceptedAgreements1(input *agr
 	return ok.GetPayload(), nil
 }
 
-// deprecated(2022-01-10): please use RetrieveAllUsersByPolicyVersion1Short instead.
+// Deprecated: 2022-01-10 - please use RetrieveAllUsersByPolicyVersion1Short instead.
 func (aaa *AgreementWithNamespaceService) RetrieveAllUsersByPolicyVersion1(input *agreement_with_namespace.RetrieveAllUsersByPolicyVersion1Params) ([]*legalclientmodels.PagedRetrieveUserAcceptedAgreementResponse, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {

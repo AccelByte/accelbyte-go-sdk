@@ -41,7 +41,7 @@ func (aaa *UsersV4Service) GetAuthSession() auth.Session {
 	}
 }
 
-// deprecated(2022-01-10): please use AdminCreateTestUsersV4Short instead.
+// Deprecated: 2022-01-10 - please use AdminCreateTestUsersV4Short instead.
 func (aaa *UsersV4Service) AdminCreateTestUsersV4(input *users_v4.AdminCreateTestUsersV4Params) (*iamclientmodels.AccountCreateTestUsersResponseV4, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -64,7 +64,7 @@ func (aaa *UsersV4Service) AdminCreateTestUsersV4(input *users_v4.AdminCreateTes
 	return created.GetPayload(), nil
 }
 
-// deprecated(2022-01-10): please use AdminBulkCheckValidUserIDV4Short instead.
+// Deprecated: 2022-01-10 - please use AdminBulkCheckValidUserIDV4Short instead.
 func (aaa *UsersV4Service) AdminBulkCheckValidUserIDV4(input *users_v4.AdminBulkCheckValidUserIDV4Params) (*iamclientmodels.ModelListValidUserIDResponseV4, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -90,7 +90,7 @@ func (aaa *UsersV4Service) AdminBulkCheckValidUserIDV4(input *users_v4.AdminBulk
 	return ok.GetPayload(), nil
 }
 
-// deprecated(2022-01-10): please use AdminUpdateUserV4Short instead.
+// Deprecated: 2022-01-10 - please use AdminUpdateUserV4Short instead.
 func (aaa *UsersV4Service) AdminUpdateUserV4(input *users_v4.AdminUpdateUserV4Params) (*iamclientmodels.ModelUserResponseV3, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -122,7 +122,7 @@ func (aaa *UsersV4Service) AdminUpdateUserV4(input *users_v4.AdminUpdateUserV4Pa
 	return ok.GetPayload(), nil
 }
 
-// deprecated(2022-01-10): please use AdminUpdateUserEmailAddressV4Short instead.
+// Deprecated: 2022-01-10 - please use AdminUpdateUserEmailAddressV4Short instead.
 func (aaa *UsersV4Service) AdminUpdateUserEmailAddressV4(input *users_v4.AdminUpdateUserEmailAddressV4Params) error {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -151,7 +151,7 @@ func (aaa *UsersV4Service) AdminUpdateUserEmailAddressV4(input *users_v4.AdminUp
 	return nil
 }
 
-// deprecated(2022-01-10): please use AdminDisableUserMFAV4Short instead.
+// Deprecated: 2022-01-10 - please use AdminDisableUserMFAV4Short instead.
 func (aaa *UsersV4Service) AdminDisableUserMFAV4(input *users_v4.AdminDisableUserMFAV4Params) error {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -180,7 +180,7 @@ func (aaa *UsersV4Service) AdminDisableUserMFAV4(input *users_v4.AdminDisableUse
 	return nil
 }
 
-// deprecated(2022-01-10): please use AdminListUserRolesV4Short instead.
+// Deprecated: 2022-01-10 - please use AdminListUserRolesV4Short instead.
 func (aaa *UsersV4Service) AdminListUserRolesV4(input *users_v4.AdminListUserRolesV4Params) (*iamclientmodels.ModelListUserRolesV4Response, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -206,7 +206,7 @@ func (aaa *UsersV4Service) AdminListUserRolesV4(input *users_v4.AdminListUserRol
 	return ok.GetPayload(), nil
 }
 
-// deprecated(2022-01-10): please use AdminUpdateUserRoleV4Short instead.
+// Deprecated: 2022-01-10 - please use AdminUpdateUserRoleV4Short instead.
 func (aaa *UsersV4Service) AdminUpdateUserRoleV4(input *users_v4.AdminUpdateUserRoleV4Params) (*iamclientmodels.ModelListUserRolesV4Response, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -238,7 +238,7 @@ func (aaa *UsersV4Service) AdminUpdateUserRoleV4(input *users_v4.AdminUpdateUser
 	return ok.GetPayload(), nil
 }
 
-// deprecated(2022-01-10): please use AdminAddUserRoleV4Short instead.
+// Deprecated: 2022-01-10 - please use AdminAddUserRoleV4Short instead.
 func (aaa *UsersV4Service) AdminAddUserRoleV4(input *users_v4.AdminAddUserRoleV4Params) (*iamclientmodels.ModelListUserRolesV4Response, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -270,7 +270,7 @@ func (aaa *UsersV4Service) AdminAddUserRoleV4(input *users_v4.AdminAddUserRoleV4
 	return ok.GetPayload(), nil
 }
 
-// deprecated(2022-01-10): please use AdminRemoveUserRoleV4Short instead.
+// Deprecated: 2022-01-10 - please use AdminRemoveUserRoleV4Short instead.
 func (aaa *UsersV4Service) AdminRemoveUserRoleV4(input *users_v4.AdminRemoveUserRoleV4Params) error {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -302,7 +302,42 @@ func (aaa *UsersV4Service) AdminRemoveUserRoleV4(input *users_v4.AdminRemoveUser
 	return nil
 }
 
-// deprecated(2022-01-10): please use AdminUpdateMyUserV4Short instead.
+// Deprecated: 2022-01-10 - please use AdminInviteUserNewV4Short instead.
+func (aaa *UsersV4Service) AdminInviteUserNewV4(input *users_v4.AdminInviteUserNewV4Params) (*iamclientmodels.ModelInviteUserResponseV3, error) {
+	token, err := aaa.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	created, badRequest, unauthorized, forbidden, notFound, conflict, unprocessableEntity, internalServerError, err := aaa.Client.UsersV4.AdminInviteUserNewV4(input, client.BearerToken(*token.AccessToken))
+	if badRequest != nil {
+		return nil, badRequest
+	}
+	if unauthorized != nil {
+		return nil, unauthorized
+	}
+	if forbidden != nil {
+		return nil, forbidden
+	}
+	if notFound != nil {
+		return nil, notFound
+	}
+	if conflict != nil {
+		return nil, conflict
+	}
+	if unprocessableEntity != nil {
+		return nil, unprocessableEntity
+	}
+	if internalServerError != nil {
+		return nil, internalServerError
+	}
+	if err != nil {
+		return nil, err
+	}
+
+	return created.GetPayload(), nil
+}
+
+// Deprecated: 2022-01-10 - please use AdminUpdateMyUserV4Short instead.
 func (aaa *UsersV4Service) AdminUpdateMyUserV4(input *users_v4.AdminUpdateMyUserV4Params) (*iamclientmodels.ModelUserResponseV3, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -328,7 +363,7 @@ func (aaa *UsersV4Service) AdminUpdateMyUserV4(input *users_v4.AdminUpdateMyUser
 	return ok.GetPayload(), nil
 }
 
-// deprecated(2022-01-10): please use AdminDisableMyAuthenticatorV4Short instead.
+// Deprecated: 2022-01-10 - please use AdminDisableMyAuthenticatorV4Short instead.
 func (aaa *UsersV4Service) AdminDisableMyAuthenticatorV4(input *users_v4.AdminDisableMyAuthenticatorV4Params) error {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -357,7 +392,7 @@ func (aaa *UsersV4Service) AdminDisableMyAuthenticatorV4(input *users_v4.AdminDi
 	return nil
 }
 
-// deprecated(2022-01-10): please use AdminEnableMyAuthenticatorV4Short instead.
+// Deprecated: 2022-01-10 - please use AdminEnableMyAuthenticatorV4Short instead.
 func (aaa *UsersV4Service) AdminEnableMyAuthenticatorV4(input *users_v4.AdminEnableMyAuthenticatorV4Params) error {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -389,7 +424,7 @@ func (aaa *UsersV4Service) AdminEnableMyAuthenticatorV4(input *users_v4.AdminEna
 	return nil
 }
 
-// deprecated(2022-01-10): please use AdminGenerateMyAuthenticatorKeyV4Short instead.
+// Deprecated: 2022-01-10 - please use AdminGenerateMyAuthenticatorKeyV4Short instead.
 func (aaa *UsersV4Service) AdminGenerateMyAuthenticatorKeyV4(input *users_v4.AdminGenerateMyAuthenticatorKeyV4Params) (*iamclientmodels.ModelAuthenticatorKeyResponseV4, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -418,7 +453,7 @@ func (aaa *UsersV4Service) AdminGenerateMyAuthenticatorKeyV4(input *users_v4.Adm
 	return ok.GetPayload(), nil
 }
 
-// deprecated(2022-01-10): please use AdminGetMyBackupCodesV4Short instead.
+// Deprecated: 2022-01-10 - please use AdminGetMyBackupCodesV4Short instead.
 func (aaa *UsersV4Service) AdminGetMyBackupCodesV4(input *users_v4.AdminGetMyBackupCodesV4Params) (*iamclientmodels.ModelBackupCodesResponseV4, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -447,7 +482,7 @@ func (aaa *UsersV4Service) AdminGetMyBackupCodesV4(input *users_v4.AdminGetMyBac
 	return ok.GetPayload(), nil
 }
 
-// deprecated(2022-01-10): please use AdminGenerateMyBackupCodesV4Short instead.
+// Deprecated: 2022-01-10 - please use AdminGenerateMyBackupCodesV4Short instead.
 func (aaa *UsersV4Service) AdminGenerateMyBackupCodesV4(input *users_v4.AdminGenerateMyBackupCodesV4Params) (*iamclientmodels.ModelBackupCodesResponseV4, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -476,7 +511,7 @@ func (aaa *UsersV4Service) AdminGenerateMyBackupCodesV4(input *users_v4.AdminGen
 	return ok.GetPayload(), nil
 }
 
-// deprecated(2022-01-10): please use AdminDisableMyBackupCodesV4Short instead.
+// Deprecated: 2022-01-10 - please use AdminDisableMyBackupCodesV4Short instead.
 func (aaa *UsersV4Service) AdminDisableMyBackupCodesV4(input *users_v4.AdminDisableMyBackupCodesV4Params) error {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -505,7 +540,7 @@ func (aaa *UsersV4Service) AdminDisableMyBackupCodesV4(input *users_v4.AdminDisa
 	return nil
 }
 
-// deprecated(2022-01-10): please use AdminDownloadMyBackupCodesV4Short instead.
+// Deprecated: 2022-01-10 - please use AdminDownloadMyBackupCodesV4Short instead.
 func (aaa *UsersV4Service) AdminDownloadMyBackupCodesV4(input *users_v4.AdminDownloadMyBackupCodesV4Params, writer io.Writer) (io.Writer, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -534,7 +569,7 @@ func (aaa *UsersV4Service) AdminDownloadMyBackupCodesV4(input *users_v4.AdminDow
 	return ok.GetPayload(), nil
 }
 
-// deprecated(2022-01-10): please use AdminEnableMyBackupCodesV4Short instead.
+// Deprecated: 2022-01-10 - please use AdminEnableMyBackupCodesV4Short instead.
 func (aaa *UsersV4Service) AdminEnableMyBackupCodesV4(input *users_v4.AdminEnableMyBackupCodesV4Params) (*iamclientmodels.ModelBackupCodesResponseV4, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -566,7 +601,7 @@ func (aaa *UsersV4Service) AdminEnableMyBackupCodesV4(input *users_v4.AdminEnabl
 	return ok.GetPayload(), nil
 }
 
-// deprecated(2022-01-10): please use AdminSendMyMFAEmailCodeV4Short instead.
+// Deprecated: 2022-01-10 - please use AdminSendMyMFAEmailCodeV4Short instead.
 func (aaa *UsersV4Service) AdminSendMyMFAEmailCodeV4(input *users_v4.AdminSendMyMFAEmailCodeV4Params) error {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -598,7 +633,7 @@ func (aaa *UsersV4Service) AdminSendMyMFAEmailCodeV4(input *users_v4.AdminSendMy
 	return nil
 }
 
-// deprecated(2022-01-10): please use AdminDisableMyEmailV4Short instead.
+// Deprecated: 2022-01-10 - please use AdminDisableMyEmailV4Short instead.
 func (aaa *UsersV4Service) AdminDisableMyEmailV4(input *users_v4.AdminDisableMyEmailV4Params) error {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -627,7 +662,7 @@ func (aaa *UsersV4Service) AdminDisableMyEmailV4(input *users_v4.AdminDisableMyE
 	return nil
 }
 
-// deprecated(2022-01-10): please use AdminEnableMyEmailV4Short instead.
+// Deprecated: 2022-01-10 - please use AdminEnableMyEmailV4Short instead.
 func (aaa *UsersV4Service) AdminEnableMyEmailV4(input *users_v4.AdminEnableMyEmailV4Params) error {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -659,7 +694,7 @@ func (aaa *UsersV4Service) AdminEnableMyEmailV4(input *users_v4.AdminEnableMyEma
 	return nil
 }
 
-// deprecated(2022-01-10): please use AdminGetMyEnabledFactorsV4Short instead.
+// Deprecated: 2022-01-10 - please use AdminGetMyEnabledFactorsV4Short instead.
 func (aaa *UsersV4Service) AdminGetMyEnabledFactorsV4(input *users_v4.AdminGetMyEnabledFactorsV4Params) (*iamclientmodels.ModelEnabledFactorsResponseV4, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -688,7 +723,7 @@ func (aaa *UsersV4Service) AdminGetMyEnabledFactorsV4(input *users_v4.AdminGetMy
 	return ok.GetPayload(), nil
 }
 
-// deprecated(2022-01-10): please use AdminMakeFactorMyDefaultV4Short instead.
+// Deprecated: 2022-01-10 - please use AdminMakeFactorMyDefaultV4Short instead.
 func (aaa *UsersV4Service) AdminMakeFactorMyDefaultV4(input *users_v4.AdminMakeFactorMyDefaultV4Params) error {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -717,7 +752,7 @@ func (aaa *UsersV4Service) AdminMakeFactorMyDefaultV4(input *users_v4.AdminMakeF
 	return nil
 }
 
-// deprecated(2022-01-10): please use AdminInviteUserV4Short instead.
+// Deprecated: 2022-01-10 - please use AdminInviteUserV4Short instead.
 func (aaa *UsersV4Service) AdminInviteUserV4(input *users_v4.AdminInviteUserV4Params) (*iamclientmodels.ModelInviteUserResponseV3, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -752,7 +787,7 @@ func (aaa *UsersV4Service) AdminInviteUserV4(input *users_v4.AdminInviteUserV4Pa
 	return created.GetPayload(), nil
 }
 
-// deprecated(2022-01-10): please use PublicCreateTestUserV4Short instead.
+// Deprecated: 2022-01-10 - please use PublicCreateTestUserV4Short instead.
 func (aaa *UsersV4Service) PublicCreateTestUserV4(input *users_v4.PublicCreateTestUserV4Params) (*iamclientmodels.AccountCreateUserResponseV4, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -778,7 +813,7 @@ func (aaa *UsersV4Service) PublicCreateTestUserV4(input *users_v4.PublicCreateTe
 	return created.GetPayload(), nil
 }
 
-// deprecated(2022-01-10): please use PublicCreateUserV4Short instead.
+// Deprecated: 2022-01-10 - please use PublicCreateUserV4Short instead.
 func (aaa *UsersV4Service) PublicCreateUserV4(input *users_v4.PublicCreateUserV4Params) (*iamclientmodels.AccountCreateUserResponseV4, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -804,7 +839,7 @@ func (aaa *UsersV4Service) PublicCreateUserV4(input *users_v4.PublicCreateUserV4
 	return created.GetPayload(), nil
 }
 
-// deprecated(2022-01-10): please use CreateUserFromInvitationV4Short instead.
+// Deprecated: 2022-01-10 - please use CreateUserFromInvitationV4Short instead.
 func (aaa *UsersV4Service) CreateUserFromInvitationV4(input *users_v4.CreateUserFromInvitationV4Params) (*iamclientmodels.AccountCreateUserResponseV4, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -827,7 +862,7 @@ func (aaa *UsersV4Service) CreateUserFromInvitationV4(input *users_v4.CreateUser
 	return created.GetPayload(), nil
 }
 
-// deprecated(2022-01-10): please use PublicUpdateUserV4Short instead.
+// Deprecated: 2022-01-10 - please use PublicUpdateUserV4Short instead.
 func (aaa *UsersV4Service) PublicUpdateUserV4(input *users_v4.PublicUpdateUserV4Params) (*iamclientmodels.ModelUserResponseV3, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -853,7 +888,7 @@ func (aaa *UsersV4Service) PublicUpdateUserV4(input *users_v4.PublicUpdateUserV4
 	return ok.GetPayload(), nil
 }
 
-// deprecated(2022-01-10): please use PublicUpdateUserEmailAddressV4Short instead.
+// Deprecated: 2022-01-10 - please use PublicUpdateUserEmailAddressV4Short instead.
 func (aaa *UsersV4Service) PublicUpdateUserEmailAddressV4(input *users_v4.PublicUpdateUserEmailAddressV4Params) error {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -882,7 +917,7 @@ func (aaa *UsersV4Service) PublicUpdateUserEmailAddressV4(input *users_v4.Public
 	return nil
 }
 
-// deprecated(2022-01-10): please use PublicUpgradeHeadlessAccountWithVerificationCodeV4Short instead.
+// Deprecated: 2022-01-10 - please use PublicUpgradeHeadlessAccountWithVerificationCodeV4Short instead.
 func (aaa *UsersV4Service) PublicUpgradeHeadlessAccountWithVerificationCodeV4(input *users_v4.PublicUpgradeHeadlessAccountWithVerificationCodeV4Params) (*iamclientmodels.AccountUserResponseV4, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -914,7 +949,7 @@ func (aaa *UsersV4Service) PublicUpgradeHeadlessAccountWithVerificationCodeV4(in
 	return ok.GetPayload(), nil
 }
 
-// deprecated(2022-01-10): please use PublicUpgradeHeadlessAccountV4Short instead.
+// Deprecated: 2022-01-10 - please use PublicUpgradeHeadlessAccountV4Short instead.
 func (aaa *UsersV4Service) PublicUpgradeHeadlessAccountV4(input *users_v4.PublicUpgradeHeadlessAccountV4Params) (*iamclientmodels.AccountUserResponseV4, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -943,7 +978,7 @@ func (aaa *UsersV4Service) PublicUpgradeHeadlessAccountV4(input *users_v4.Public
 	return ok.GetPayload(), nil
 }
 
-// deprecated(2022-01-10): please use PublicDisableMyAuthenticatorV4Short instead.
+// Deprecated: 2022-01-10 - please use PublicDisableMyAuthenticatorV4Short instead.
 func (aaa *UsersV4Service) PublicDisableMyAuthenticatorV4(input *users_v4.PublicDisableMyAuthenticatorV4Params) error {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -972,7 +1007,7 @@ func (aaa *UsersV4Service) PublicDisableMyAuthenticatorV4(input *users_v4.Public
 	return nil
 }
 
-// deprecated(2022-01-10): please use PublicEnableMyAuthenticatorV4Short instead.
+// Deprecated: 2022-01-10 - please use PublicEnableMyAuthenticatorV4Short instead.
 func (aaa *UsersV4Service) PublicEnableMyAuthenticatorV4(input *users_v4.PublicEnableMyAuthenticatorV4Params) error {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -1004,7 +1039,7 @@ func (aaa *UsersV4Service) PublicEnableMyAuthenticatorV4(input *users_v4.PublicE
 	return nil
 }
 
-// deprecated(2022-01-10): please use PublicGenerateMyAuthenticatorKeyV4Short instead.
+// Deprecated: 2022-01-10 - please use PublicGenerateMyAuthenticatorKeyV4Short instead.
 func (aaa *UsersV4Service) PublicGenerateMyAuthenticatorKeyV4(input *users_v4.PublicGenerateMyAuthenticatorKeyV4Params) (*iamclientmodels.ModelAuthenticatorKeyResponseV4, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -1033,7 +1068,7 @@ func (aaa *UsersV4Service) PublicGenerateMyAuthenticatorKeyV4(input *users_v4.Pu
 	return ok.GetPayload(), nil
 }
 
-// deprecated(2022-01-10): please use PublicGetMyBackupCodesV4Short instead.
+// Deprecated: 2022-01-10 - please use PublicGetMyBackupCodesV4Short instead.
 func (aaa *UsersV4Service) PublicGetMyBackupCodesV4(input *users_v4.PublicGetMyBackupCodesV4Params) (*iamclientmodels.ModelBackupCodesResponseV4, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -1062,7 +1097,7 @@ func (aaa *UsersV4Service) PublicGetMyBackupCodesV4(input *users_v4.PublicGetMyB
 	return ok.GetPayload(), nil
 }
 
-// deprecated(2022-01-10): please use PublicGenerateMyBackupCodesV4Short instead.
+// Deprecated: 2022-01-10 - please use PublicGenerateMyBackupCodesV4Short instead.
 func (aaa *UsersV4Service) PublicGenerateMyBackupCodesV4(input *users_v4.PublicGenerateMyBackupCodesV4Params) (*iamclientmodels.ModelBackupCodesResponseV4, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -1091,7 +1126,7 @@ func (aaa *UsersV4Service) PublicGenerateMyBackupCodesV4(input *users_v4.PublicG
 	return ok.GetPayload(), nil
 }
 
-// deprecated(2022-01-10): please use PublicDisableMyBackupCodesV4Short instead.
+// Deprecated: 2022-01-10 - please use PublicDisableMyBackupCodesV4Short instead.
 func (aaa *UsersV4Service) PublicDisableMyBackupCodesV4(input *users_v4.PublicDisableMyBackupCodesV4Params) error {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -1120,7 +1155,7 @@ func (aaa *UsersV4Service) PublicDisableMyBackupCodesV4(input *users_v4.PublicDi
 	return nil
 }
 
-// deprecated(2022-01-10): please use PublicDownloadMyBackupCodesV4Short instead.
+// Deprecated: 2022-01-10 - please use PublicDownloadMyBackupCodesV4Short instead.
 func (aaa *UsersV4Service) PublicDownloadMyBackupCodesV4(input *users_v4.PublicDownloadMyBackupCodesV4Params, writer io.Writer) (io.Writer, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -1149,7 +1184,7 @@ func (aaa *UsersV4Service) PublicDownloadMyBackupCodesV4(input *users_v4.PublicD
 	return ok.GetPayload(), nil
 }
 
-// deprecated(2022-01-10): please use PublicEnableMyBackupCodesV4Short instead.
+// Deprecated: 2022-01-10 - please use PublicEnableMyBackupCodesV4Short instead.
 func (aaa *UsersV4Service) PublicEnableMyBackupCodesV4(input *users_v4.PublicEnableMyBackupCodesV4Params) (*iamclientmodels.ModelBackupCodesResponseV4, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -1181,7 +1216,7 @@ func (aaa *UsersV4Service) PublicEnableMyBackupCodesV4(input *users_v4.PublicEna
 	return ok.GetPayload(), nil
 }
 
-// deprecated(2022-01-10): please use PublicRemoveTrustedDeviceV4Short instead.
+// Deprecated: 2022-01-10 - please use PublicRemoveTrustedDeviceV4Short instead.
 func (aaa *UsersV4Service) PublicRemoveTrustedDeviceV4(input *users_v4.PublicRemoveTrustedDeviceV4Params) error {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -1210,7 +1245,7 @@ func (aaa *UsersV4Service) PublicRemoveTrustedDeviceV4(input *users_v4.PublicRem
 	return nil
 }
 
-// deprecated(2022-01-10): please use PublicSendMyMFAEmailCodeV4Short instead.
+// Deprecated: 2022-01-10 - please use PublicSendMyMFAEmailCodeV4Short instead.
 func (aaa *UsersV4Service) PublicSendMyMFAEmailCodeV4(input *users_v4.PublicSendMyMFAEmailCodeV4Params) error {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -1242,7 +1277,7 @@ func (aaa *UsersV4Service) PublicSendMyMFAEmailCodeV4(input *users_v4.PublicSend
 	return nil
 }
 
-// deprecated(2022-01-10): please use PublicDisableMyEmailV4Short instead.
+// Deprecated: 2022-01-10 - please use PublicDisableMyEmailV4Short instead.
 func (aaa *UsersV4Service) PublicDisableMyEmailV4(input *users_v4.PublicDisableMyEmailV4Params) error {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -1271,7 +1306,7 @@ func (aaa *UsersV4Service) PublicDisableMyEmailV4(input *users_v4.PublicDisableM
 	return nil
 }
 
-// deprecated(2022-01-10): please use PublicEnableMyEmailV4Short instead.
+// Deprecated: 2022-01-10 - please use PublicEnableMyEmailV4Short instead.
 func (aaa *UsersV4Service) PublicEnableMyEmailV4(input *users_v4.PublicEnableMyEmailV4Params) error {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -1303,7 +1338,7 @@ func (aaa *UsersV4Service) PublicEnableMyEmailV4(input *users_v4.PublicEnableMyE
 	return nil
 }
 
-// deprecated(2022-01-10): please use PublicGetMyEnabledFactorsV4Short instead.
+// Deprecated: 2022-01-10 - please use PublicGetMyEnabledFactorsV4Short instead.
 func (aaa *UsersV4Service) PublicGetMyEnabledFactorsV4(input *users_v4.PublicGetMyEnabledFactorsV4Params) (*iamclientmodels.ModelEnabledFactorsResponseV4, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -1332,7 +1367,7 @@ func (aaa *UsersV4Service) PublicGetMyEnabledFactorsV4(input *users_v4.PublicGet
 	return ok.GetPayload(), nil
 }
 
-// deprecated(2022-01-10): please use PublicMakeFactorMyDefaultV4Short instead.
+// Deprecated: 2022-01-10 - please use PublicMakeFactorMyDefaultV4Short instead.
 func (aaa *UsersV4Service) PublicMakeFactorMyDefaultV4(input *users_v4.PublicMakeFactorMyDefaultV4Params) error {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -1361,7 +1396,7 @@ func (aaa *UsersV4Service) PublicMakeFactorMyDefaultV4(input *users_v4.PublicMak
 	return nil
 }
 
-// deprecated(2022-01-10): please use PublicInviteUserV4Short instead.
+// Deprecated: 2022-01-10 - please use PublicInviteUserV4Short instead.
 func (aaa *UsersV4Service) PublicInviteUserV4(input *users_v4.PublicInviteUserV4Params) (*iamclientmodels.ModelInviteUserResponseV3, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -1610,6 +1645,31 @@ func (aaa *UsersV4Service) AdminRemoveUserRoleV4Short(input *users_v4.AdminRemov
 	}
 
 	return nil
+}
+
+func (aaa *UsersV4Service) AdminInviteUserNewV4Short(input *users_v4.AdminInviteUserNewV4Params) (*iamclientmodels.ModelInviteUserResponseV3, error) {
+	authInfoWriter := input.AuthInfoWriter
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
+	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  aaa.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
+	created, err := aaa.Client.UsersV4.AdminInviteUserNewV4Short(input, authInfoWriter)
+	if err != nil {
+		return nil, err
+	}
+
+	return created.GetPayload(), nil
 }
 
 func (aaa *UsersV4Service) AdminUpdateMyUserV4Short(input *users_v4.AdminUpdateMyUserV4Params) (*iamclientmodels.ModelUserResponseV3, error) {

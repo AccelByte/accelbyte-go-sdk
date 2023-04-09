@@ -46,7 +46,7 @@ type ClientService interface {
 }
 
 /*
-Deprecated: Use GetHealthcheckInfoShort instead.
+Deprecated: 2022-08-10 - Use GetHealthcheckInfoShort instead.
 
   GetHealthcheckInfo get healthcheck info API
 */
@@ -136,7 +136,7 @@ func (a *Client) GetHealthcheckInfoShort(params *GetHealthcheckInfoParams, authI
 }
 
 /*
-Deprecated: Use HandlerV3HealthzShort instead.
+Deprecated: 2022-08-10 - Use HandlerV3HealthzShort instead.
 
   HandlerV3Healthz handler v3 healthz API
 */
@@ -226,7 +226,7 @@ func (a *Client) HandlerV3HealthzShort(params *HandlerV3HealthzParams, authInfo 
 }
 
 /*
-Deprecated: Use PublicGetMessagesShort instead.
+Deprecated: 2022-08-10 - Use PublicGetMessagesShort instead.
 
   PublicGetMessages gets service messages
 
@@ -325,7 +325,7 @@ func (a *Client) PublicGetMessagesShort(params *PublicGetMessagesParams, authInf
 }
 
 /*
-Deprecated: Use VersionCheckHandlerShort instead.
+Deprecated: 2022-08-10 - Use VersionCheckHandlerShort instead.
 
   VersionCheckHandler version check handler API
 */

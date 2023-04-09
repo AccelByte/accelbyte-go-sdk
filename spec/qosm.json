@@ -8,6 +8,10 @@
   "schemes": [
     "https"
   ],
+  "externalDocs": {
+    "description": "API Docs",
+    "url": "https://stage.accelbyte.io/qosm/apidocs"
+  },
   "securityDefinitions": {
     "HasPermission": {
       "authorizationUrl": "https://dummy.oauth.net/auth",
@@ -464,5 +468,18 @@
         "message"
       ]
     }
+  },
+  "x-docs": {
+    "alias": "qosm",
+    "host": "https://stage.accelbyte.io",
+    "path": "/qosm/apidocs/api.json"
+  },
+  "x-version": {
+    "buildDate": "2023-02-23T11:45:01+00:00",
+    "gitHash": "21f27d0a207a881e0dd59026520221e0b057fe8f",
+    "name": "Justice QoS Manager Service",
+    "revisionID": "1.18.0",
+    "version": "1.18.0",
+    "version-roles-seeding": "0.0.3"
   }
 }

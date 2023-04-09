@@ -39,7 +39,7 @@ func (aaa *BaseLegalPoliciesWithNamespaceService) GetAuthSession() auth.Session 
 	}
 }
 
-// deprecated(2022-01-10): please use RetrieveAllLegalPoliciesByNamespaceShort instead.
+// Deprecated: 2022-01-10 - please use RetrieveAllLegalPoliciesByNamespaceShort instead.
 func (aaa *BaseLegalPoliciesWithNamespaceService) RetrieveAllLegalPoliciesByNamespace(input *base_legal_policies_with_namespace.RetrieveAllLegalPoliciesByNamespaceParams) ([]*legalclientmodels.RetrieveBasePolicyResponse, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -53,7 +53,7 @@ func (aaa *BaseLegalPoliciesWithNamespaceService) RetrieveAllLegalPoliciesByName
 	return ok.GetPayload(), nil
 }
 
-// deprecated(2022-01-10): please use CreatePolicy1Short instead.
+// Deprecated: 2022-01-10 - please use CreatePolicy1Short instead.
 func (aaa *BaseLegalPoliciesWithNamespaceService) CreatePolicy1(input *base_legal_policies_with_namespace.CreatePolicy1Params) (*legalclientmodels.CreateBasePolicyResponse, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -76,7 +76,7 @@ func (aaa *BaseLegalPoliciesWithNamespaceService) CreatePolicy1(input *base_lega
 	return created.GetPayload(), nil
 }
 
-// deprecated(2022-01-10): please use RetrieveSinglePolicy1Short instead.
+// Deprecated: 2022-01-10 - please use RetrieveSinglePolicy1Short instead.
 func (aaa *BaseLegalPoliciesWithNamespaceService) RetrieveSinglePolicy1(input *base_legal_policies_with_namespace.RetrieveSinglePolicy1Params) (*legalclientmodels.RetrieveBasePolicyResponse, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -93,7 +93,7 @@ func (aaa *BaseLegalPoliciesWithNamespaceService) RetrieveSinglePolicy1(input *b
 	return ok.GetPayload(), nil
 }
 
-// deprecated(2022-01-10): please use PartialUpdatePolicy1Short instead.
+// Deprecated: 2022-01-10 - please use PartialUpdatePolicy1Short instead.
 func (aaa *BaseLegalPoliciesWithNamespaceService) PartialUpdatePolicy1(input *base_legal_policies_with_namespace.PartialUpdatePolicy1Params) (*legalclientmodels.UpdateBasePolicyResponse, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -110,7 +110,7 @@ func (aaa *BaseLegalPoliciesWithNamespaceService) PartialUpdatePolicy1(input *ba
 	return ok.GetPayload(), nil
 }
 
-// deprecated(2022-01-10): please use RetrievePolicyCountry1Short instead.
+// Deprecated: 2022-01-10 - please use RetrievePolicyCountry1Short instead.
 func (aaa *BaseLegalPoliciesWithNamespaceService) RetrievePolicyCountry1(input *base_legal_policies_with_namespace.RetrievePolicyCountry1Params) (*legalclientmodels.RetrievePolicyResponse, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -127,7 +127,7 @@ func (aaa *BaseLegalPoliciesWithNamespaceService) RetrievePolicyCountry1(input *
 	return ok.GetPayload(), nil
 }
 
-// deprecated(2022-01-10): please use RetrieveAllPolicyTypes1Short instead.
+// Deprecated: 2022-01-10 - please use RetrieveAllPolicyTypes1Short instead.
 func (aaa *BaseLegalPoliciesWithNamespaceService) RetrieveAllPolicyTypes1(input *base_legal_policies_with_namespace.RetrieveAllPolicyTypes1Params) ([]*legalclientmodels.RetrievePolicyTypeResponse, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {

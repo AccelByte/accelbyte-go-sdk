@@ -134,7 +134,7 @@ type ClientService interface {
 }
 
 /*
-Deprecated: Use AddRoleManagersShort instead.
+Deprecated: 2022-08-10 - Use AddRoleManagersShort instead.
 
   AddRoleManagers adds role managers
 
@@ -260,7 +260,7 @@ func (a *Client) AddRoleManagersShort(params *AddRoleManagersParams, authInfo ru
 }
 
 /*
-Deprecated: Use AddRoleMembersShort instead.
+Deprecated: 2022-08-10 - Use AddRoleMembersShort instead.
 
   AddRoleMembers adds role members
 
@@ -388,7 +388,7 @@ func (a *Client) AddRoleMembersShort(params *AddRoleMembersParams, authInfo runt
 }
 
 /*
-Deprecated: Use AddRolePermissionShort instead.
+Deprecated: 2022-08-10 - Use AddRolePermissionShort instead.
 
   AddRolePermission adds role permission
 
@@ -568,7 +568,7 @@ func (a *Client) AddRolePermissionShort(params *AddRolePermissionParams, authInf
 }
 
 /*
-Deprecated: Use AdminAddRoleManagersV3Short instead.
+Deprecated: 2022-08-10 - Use AdminAddRoleManagersV3Short instead.
 
   AdminAddRoleManagersV3 adds role managers
 
@@ -689,7 +689,7 @@ func (a *Client) AdminAddRoleManagersV3Short(params *AdminAddRoleManagersV3Param
 }
 
 /*
-Deprecated: Use AdminAddRoleMembersV3Short instead.
+Deprecated: 2022-08-10 - Use AdminAddRoleMembersV3Short instead.
 
   AdminAddRoleMembersV3 adds role members
 
@@ -817,7 +817,7 @@ func (a *Client) AdminAddRoleMembersV3Short(params *AdminAddRoleMembersV3Params,
 }
 
 /*
-Deprecated: Use AdminAddRolePermissionsV3Short instead.
+Deprecated: 2022-08-10 - Use AdminAddRolePermissionsV3Short instead.
 
   AdminAddRolePermissionsV3 adds role permissions
 
@@ -992,7 +992,7 @@ func (a *Client) AdminAddRolePermissionsV3Short(params *AdminAddRolePermissionsV
 }
 
 /*
-Deprecated: Use AdminAddRolePermissionsV4Short instead.
+Deprecated: 2022-08-10 - Use AdminAddRolePermissionsV4Short instead.
 
   AdminAddRolePermissionsV4 adds role permissions v4
 
@@ -1162,7 +1162,7 @@ func (a *Client) AdminAddRolePermissionsV4Short(params *AdminAddRolePermissionsV
 }
 
 /*
-Deprecated: Use AdminAssignUserToRoleV4Short instead.
+Deprecated: 2022-08-10 - Use AdminAssignUserToRoleV4Short instead.
 
   AdminAssignUserToRoleV4 assigns user to role
 
@@ -1300,7 +1300,7 @@ func (a *Client) AdminAssignUserToRoleV4Short(params *AdminAssignUserToRoleV4Par
 }
 
 /*
-Deprecated: Use AdminCreateRoleV3Short instead.
+Deprecated: 2022-08-10 - Use AdminCreateRoleV3Short instead.
 
   AdminCreateRoleV3 creates role
 
@@ -1436,7 +1436,7 @@ func (a *Client) AdminCreateRoleV3Short(params *AdminCreateRoleV3Params, authInf
 }
 
 /*
-Deprecated: Use AdminCreateRoleV4Short instead.
+Deprecated: 2022-08-10 - Use AdminCreateRoleV4Short instead.
 
   AdminCreateRoleV4 creates role
 
@@ -1566,7 +1566,7 @@ func (a *Client) AdminCreateRoleV4Short(params *AdminCreateRoleV4Params, authInf
 }
 
 /*
-Deprecated: Use AdminDeleteRolePermissionV3Short instead.
+Deprecated: 2022-08-10 - Use AdminDeleteRolePermissionV3Short instead.
 
   AdminDeleteRolePermissionV3 deletes role permission
 
@@ -1685,7 +1685,7 @@ func (a *Client) AdminDeleteRolePermissionV3Short(params *AdminDeleteRolePermiss
 }
 
 /*
-Deprecated: Use AdminDeleteRolePermissionsV3Short instead.
+Deprecated: 2022-08-10 - Use AdminDeleteRolePermissionsV3Short instead.
 
   AdminDeleteRolePermissionsV3 deletes role
 
@@ -1794,7 +1794,7 @@ func (a *Client) AdminDeleteRolePermissionsV3Short(params *AdminDeleteRolePermis
 }
 
 /*
-Deprecated: Use AdminDeleteRolePermissionsV4Short instead.
+Deprecated: 2022-08-10 - Use AdminDeleteRolePermissionsV4Short instead.
 
   AdminDeleteRolePermissionsV4 deletes role permission v4
 
@@ -1905,7 +1905,7 @@ func (a *Client) AdminDeleteRolePermissionsV4Short(params *AdminDeleteRolePermis
 }
 
 /*
-Deprecated: Use AdminDeleteRoleV3Short instead.
+Deprecated: 2022-08-10 - Use AdminDeleteRoleV3Short instead.
 
   AdminDeleteRoleV3 deletes role
 
@@ -2029,7 +2029,7 @@ func (a *Client) AdminDeleteRoleV3Short(params *AdminDeleteRoleV3Params, authInf
 }
 
 /*
-Deprecated: Use AdminDeleteRoleV4Short instead.
+Deprecated: 2022-08-10 - Use AdminDeleteRoleV4Short instead.
 
   AdminDeleteRoleV4 deletes role
 
@@ -2156,7 +2156,7 @@ func (a *Client) AdminDeleteRoleV4Short(params *AdminDeleteRoleV4Params, authInf
 }
 
 /*
-Deprecated: Use AdminGetRoleAdminStatusV3Short instead.
+Deprecated: 2022-08-10 - Use AdminGetRoleAdminStatusV3Short instead.
 
   AdminGetRoleAdminStatusV3 gets role admin status
 
@@ -2279,7 +2279,7 @@ func (a *Client) AdminGetRoleAdminStatusV3Short(params *AdminGetRoleAdminStatusV
 }
 
 /*
-Deprecated: Use AdminGetRoleManagersV3Short instead.
+Deprecated: 2022-08-10 - Use AdminGetRoleManagersV3Short instead.
 
   AdminGetRoleManagersV3 gets role managers
 
@@ -2402,7 +2402,7 @@ func (a *Client) AdminGetRoleManagersV3Short(params *AdminGetRoleManagersV3Param
 }
 
 /*
-Deprecated: Use AdminGetRoleMembersV3Short instead.
+Deprecated: 2022-08-10 - Use AdminGetRoleMembersV3Short instead.
 
   AdminGetRoleMembersV3 gets role members
 
@@ -2527,7 +2527,7 @@ func (a *Client) AdminGetRoleMembersV3Short(params *AdminGetRoleMembersV3Params,
 }
 
 /*
-Deprecated: Use AdminGetRoleV3Short instead.
+Deprecated: 2022-08-10 - Use AdminGetRoleV3Short instead.
 
   AdminGetRoleV3 gets role
 
@@ -2646,7 +2646,7 @@ func (a *Client) AdminGetRoleV3Short(params *AdminGetRoleV3Params, authInfo runt
 }
 
 /*
-Deprecated: Use AdminGetRoleV4Short instead.
+Deprecated: 2022-08-10 - Use AdminGetRoleV4Short instead.
 
   AdminGetRoleV4 gets role
 
@@ -2769,7 +2769,7 @@ func (a *Client) AdminGetRoleV4Short(params *AdminGetRoleV4Params, authInfo runt
 }
 
 /*
-Deprecated: Use AdminGetRolesV3Short instead.
+Deprecated: 2022-08-10 - Use AdminGetRolesV3Short instead.
 
   AdminGetRolesV3 gets roles
 
@@ -2883,7 +2883,7 @@ func (a *Client) AdminGetRolesV3Short(params *AdminGetRolesV3Params, authInfo ru
 }
 
 /*
-Deprecated: Use AdminGetRolesV4Short instead.
+Deprecated: 2022-08-10 - Use AdminGetRolesV4Short instead.
 
   AdminGetRolesV4 gets roles
 
@@ -3001,7 +3001,7 @@ func (a *Client) AdminGetRolesV4Short(params *AdminGetRolesV4Params, authInfo ru
 }
 
 /*
-Deprecated: Use AdminListAssignedUsersV4Short instead.
+Deprecated: 2022-08-10 - Use AdminListAssignedUsersV4Short instead.
 
   AdminListAssignedUsersV4 gets role s assigned users
 
@@ -3121,7 +3121,7 @@ func (a *Client) AdminListAssignedUsersV4Short(params *AdminListAssignedUsersV4P
 }
 
 /*
-Deprecated: Use AdminRemoveRoleAdminV3Short instead.
+Deprecated: 2022-08-10 - Use AdminRemoveRoleAdminV3Short instead.
 
   AdminRemoveRoleAdminV3 removes role admin status
 
@@ -3240,7 +3240,7 @@ func (a *Client) AdminRemoveRoleAdminV3Short(params *AdminRemoveRoleAdminV3Param
 }
 
 /*
-Deprecated: Use AdminRemoveRoleManagersV3Short instead.
+Deprecated: 2022-08-10 - Use AdminRemoveRoleManagersV3Short instead.
 
   AdminRemoveRoleManagersV3 removes role managers
 
@@ -3361,7 +3361,7 @@ func (a *Client) AdminRemoveRoleManagersV3Short(params *AdminRemoveRoleManagersV
 }
 
 /*
-Deprecated: Use AdminRemoveRoleMembersV3Short instead.
+Deprecated: 2022-08-10 - Use AdminRemoveRoleMembersV3Short instead.
 
   AdminRemoveRoleMembersV3 removes role members
 
@@ -3484,7 +3484,7 @@ func (a *Client) AdminRemoveRoleMembersV3Short(params *AdminRemoveRoleMembersV3P
 }
 
 /*
-Deprecated: Use AdminRevokeUserFromRoleV4Short instead.
+Deprecated: 2022-08-10 - Use AdminRevokeUserFromRoleV4Short instead.
 
   AdminRevokeUserFromRoleV4 revokes user from role
 
@@ -3614,7 +3614,7 @@ func (a *Client) AdminRevokeUserFromRoleV4Short(params *AdminRevokeUserFromRoleV
 }
 
 /*
-Deprecated: Use AdminUpdateAdminRoleStatusV3Short instead.
+Deprecated: 2022-08-10 - Use AdminUpdateAdminRoleStatusV3Short instead.
 
   AdminUpdateAdminRoleStatusV3 sets role as admin role
 
@@ -3739,7 +3739,7 @@ func (a *Client) AdminUpdateAdminRoleStatusV3Short(params *AdminUpdateAdminRoleS
 }
 
 /*
-Deprecated: Use AdminUpdateRolePermissionsV3Short instead.
+Deprecated: 2022-08-10 - Use AdminUpdateRolePermissionsV3Short instead.
 
   AdminUpdateRolePermissionsV3 updates role permissions
 
@@ -3914,7 +3914,7 @@ func (a *Client) AdminUpdateRolePermissionsV3Short(params *AdminUpdateRolePermis
 }
 
 /*
-Deprecated: Use AdminUpdateRolePermissionsV4Short instead.
+Deprecated: 2022-08-10 - Use AdminUpdateRolePermissionsV4Short instead.
 
   AdminUpdateRolePermissionsV4 updates role permissions
 
@@ -4084,7 +4084,7 @@ func (a *Client) AdminUpdateRolePermissionsV4Short(params *AdminUpdateRolePermis
 }
 
 /*
-Deprecated: Use AdminUpdateRoleV3Short instead.
+Deprecated: 2022-08-10 - Use AdminUpdateRoleV3Short instead.
 
   AdminUpdateRoleV3 updates role
 
@@ -4217,7 +4217,7 @@ func (a *Client) AdminUpdateRoleV3Short(params *AdminUpdateRoleV3Params, authInf
 }
 
 /*
-Deprecated: Use AdminUpdateRoleV4Short instead.
+Deprecated: 2022-08-10 - Use AdminUpdateRoleV4Short instead.
 
   AdminUpdateRoleV4 updates role
 
@@ -4347,7 +4347,7 @@ func (a *Client) AdminUpdateRoleV4Short(params *AdminUpdateRoleV4Params, authInf
 }
 
 /*
-Deprecated: Use CreateRoleShort instead.
+Deprecated: 2022-08-10 - Use CreateRoleShort instead.
 
   CreateRole creates role
 
@@ -4472,7 +4472,7 @@ func (a *Client) CreateRoleShort(params *CreateRoleParams, authInfo runtime.Clie
 }
 
 /*
-Deprecated: Use DeleteRoleShort instead.
+Deprecated: 2022-08-10 - Use DeleteRoleShort instead.
 
   DeleteRole deletes role
 
@@ -4591,7 +4591,7 @@ func (a *Client) DeleteRoleShort(params *DeleteRoleParams, authInfo runtime.Clie
 }
 
 /*
-Deprecated: Use DeleteRolePermissionShort instead.
+Deprecated: 2022-08-10 - Use DeleteRolePermissionShort instead.
 
   DeleteRolePermission deletes role permission
 
@@ -4717,7 +4717,7 @@ func (a *Client) DeleteRolePermissionShort(params *DeleteRolePermissionParams, a
 }
 
 /*
-Deprecated: Use GetRoleShort instead.
+Deprecated: 2022-08-10 - Use GetRoleShort instead.
 
   GetRole gets role
 
@@ -4836,7 +4836,7 @@ func (a *Client) GetRoleShort(params *GetRoleParams, authInfo runtime.ClientAuth
 }
 
 /*
-Deprecated: Use GetRoleAdminStatusShort instead.
+Deprecated: 2022-08-10 - Use GetRoleAdminStatusShort instead.
 
   GetRoleAdminStatus gets role admin status
 
@@ -4962,7 +4962,7 @@ func (a *Client) GetRoleAdminStatusShort(params *GetRoleAdminStatusParams, authI
 }
 
 /*
-Deprecated: Use GetRoleManagersShort instead.
+Deprecated: 2022-08-10 - Use GetRoleManagersShort instead.
 
   GetRoleManagers gets role managers
 
@@ -5088,7 +5088,7 @@ func (a *Client) GetRoleManagersShort(params *GetRoleManagersParams, authInfo ru
 }
 
 /*
-Deprecated: Use GetRoleMembersShort instead.
+Deprecated: 2022-08-10 - Use GetRoleMembersShort instead.
 
   GetRoleMembers gets role members
 
@@ -5212,7 +5212,7 @@ func (a *Client) GetRoleMembersShort(params *GetRoleMembersParams, authInfo runt
 }
 
 /*
-Deprecated: Use GetRolesShort instead.
+Deprecated: 2022-08-10 - Use GetRolesShort instead.
 
   GetRoles gets roles
 
@@ -5326,7 +5326,7 @@ func (a *Client) GetRolesShort(params *GetRolesParams, authInfo runtime.ClientAu
 }
 
 /*
-Deprecated: Use PublicGetRoleV3Short instead.
+Deprecated: 2022-08-10 - Use PublicGetRoleV3Short instead.
 
   PublicGetRoleV3 gets public role
 
@@ -5430,7 +5430,7 @@ func (a *Client) PublicGetRoleV3Short(params *PublicGetRoleV3Params, authInfo ru
 }
 
 /*
-Deprecated: Use PublicGetRolesV3Short instead.
+Deprecated: 2022-08-10 - Use PublicGetRolesV3Short instead.
 
   PublicGetRolesV3 gets roles
 
@@ -5529,7 +5529,7 @@ func (a *Client) PublicGetRolesV3Short(params *PublicGetRolesV3Params, authInfo 
 }
 
 /*
-Deprecated: Use RemoveRoleAdminShort instead.
+Deprecated: 2022-08-10 - Use RemoveRoleAdminShort instead.
 
   RemoveRoleAdmin removes role admin status
 
@@ -5653,7 +5653,7 @@ func (a *Client) RemoveRoleAdminShort(params *RemoveRoleAdminParams, authInfo ru
 }
 
 /*
-Deprecated: Use RemoveRoleManagersShort instead.
+Deprecated: 2022-08-10 - Use RemoveRoleManagersShort instead.
 
   RemoveRoleManagers removes role managers
 
@@ -5777,7 +5777,7 @@ func (a *Client) RemoveRoleManagersShort(params *RemoveRoleManagersParams, authI
 }
 
 /*
-Deprecated: Use RemoveRoleMembersShort instead.
+Deprecated: 2022-08-10 - Use RemoveRoleMembersShort instead.
 
   RemoveRoleMembers removes role members
 
@@ -5901,7 +5901,7 @@ func (a *Client) RemoveRoleMembersShort(params *RemoveRoleMembersParams, authInf
 }
 
 /*
-Deprecated: Use SetRoleAsAdminShort instead.
+Deprecated: 2022-08-10 - Use SetRoleAsAdminShort instead.
 
   SetRoleAsAdmin sets role as admin role
 
@@ -6029,7 +6029,7 @@ func (a *Client) SetRoleAsAdminShort(params *SetRoleAsAdminParams, authInfo runt
 }
 
 /*
-Deprecated: Use UpdateRoleShort instead.
+Deprecated: 2022-08-10 - Use UpdateRoleShort instead.
 
   UpdateRole updates role
 
@@ -6153,7 +6153,7 @@ func (a *Client) UpdateRoleShort(params *UpdateRoleParams, authInfo runtime.Clie
 }
 
 /*
-Deprecated: Use UpdateRolePermissionsShort instead.
+Deprecated: 2022-08-10 - Use UpdateRolePermissionsShort instead.
 
   UpdateRolePermissions updates role permissions
 

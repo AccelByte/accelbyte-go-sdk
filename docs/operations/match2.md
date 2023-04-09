@@ -38,6 +38,7 @@
 | `/match2/v1/namespaces/{namespace}/match-pools/{pool}` | PUT | UpdateMatchPoolShort | [UpdateMatchPoolShort](../../match2-sdk/pkg/match2client/match_pools/match_pools_client.go) | [UpdateMatchPoolShort](../../services-api/pkg/service/match2/matchPools.go) | [UpdateMatchPoolShort](../../samples/cli/cmd/match2/matchPools/updateMatchPool.go) |
 | `/match2/v1/namespaces/{namespace}/match-pools/{pool}` | DELETE | DeleteMatchPoolShort | [DeleteMatchPoolShort](../../match2-sdk/pkg/match2client/match_pools/match_pools_client.go) | [DeleteMatchPoolShort](../../services-api/pkg/service/match2/matchPools.go) | [DeleteMatchPoolShort](../../samples/cli/cmd/match2/matchPools/deleteMatchPool.go) |
 | `/match2/v1/namespaces/{namespace}/match-pools/{pool}/metrics` | GET | MatchPoolMetricShort | [MatchPoolMetricShort](../../match2-sdk/pkg/match2client/match_pools/match_pools_client.go) | [MatchPoolMetricShort](../../services-api/pkg/service/match2/matchPools.go) | [MatchPoolMetricShort](../../samples/cli/cmd/match2/matchPools/matchPoolMetric.go) |
+| `/match2/v1/namespaces/{namespace}/match-pools/{pool}/metrics/player` | GET | GetPlayerMetricShort | [GetPlayerMetricShort](../../match2-sdk/pkg/match2client/match_pools/match_pools_client.go) | [GetPlayerMetricShort](../../services-api/pkg/service/match2/matchPools.go) | [GetPlayerMetricShort](../../samples/cli/cmd/match2/matchPools/getPlayerMetric.go) |
 
 ### Match-Tickets Wrapper:  [MatchTickets](../../services-api/pkg/service/match2/matchTickets.go)
 | Endpoint | Method | ID | Class | Wrapper | Example |
@@ -82,6 +83,7 @@
 | `api.MatchTicketStatus` | [ApiMatchTicketStatus ](../../match2-sdk/pkg/match2clientmodels/api_match_ticket_status.go) |
 | `api.Party` | [ApiParty ](../../match2-sdk/pkg/match2clientmodels/api_party.go) |
 | `api.PlayerData` | [ApiPlayerData ](../../match2-sdk/pkg/match2clientmodels/api_player_data.go) |
+| `api.PlayerMetricRecord` | [ApiPlayerMetricRecord ](../../match2-sdk/pkg/match2clientmodels/api_player_metric_record.go) |
 | `api.ProposedProposal` | [ApiProposedProposal ](../../match2-sdk/pkg/match2clientmodels/api_proposed_proposal.go) |
 | `api.RuleSetPayload` | [ApiRuleSetPayload ](../../match2-sdk/pkg/match2clientmodels/api_rule_set_payload.go) |
 | `api.Team` | [ApiTeam ](../../match2-sdk/pkg/match2clientmodels/api_team.go) |

@@ -62,7 +62,7 @@ type ClientService interface {
 }
 
 /*
-Deprecated: Use DeleteDLCItemConfigShort instead.
+Deprecated: 2022-08-10 - Use DeleteDLCItemConfigShort instead.
 
   DeleteDLCItemConfig deletes a DLC item config
 
@@ -156,7 +156,7 @@ func (a *Client) DeleteDLCItemConfigShort(params *DeleteDLCItemConfigParams, aut
 }
 
 /*
-Deprecated: Use DeletePlatformDLCConfigShort instead.
+Deprecated: 2022-08-10 - Use DeletePlatformDLCConfigShort instead.
 
   DeletePlatformDLCConfig deletes a platform DLC config
 
@@ -250,7 +250,7 @@ func (a *Client) DeletePlatformDLCConfigShort(params *DeletePlatformDLCConfigPar
 }
 
 /*
-Deprecated: Use GetDLCItemConfigShort instead.
+Deprecated: 2022-08-10 - Use GetDLCItemConfigShort instead.
 
   GetDLCItemConfig gets DLC item config
 
@@ -349,7 +349,7 @@ func (a *Client) GetDLCItemConfigShort(params *GetDLCItemConfigParams, authInfo 
 }
 
 /*
-Deprecated: Use GetPlatformDLCConfigShort instead.
+Deprecated: 2022-08-10 - Use GetPlatformDLCConfigShort instead.
 
   GetPlatformDLCConfig gets platform DLC config
 
@@ -448,7 +448,7 @@ func (a *Client) GetPlatformDLCConfigShort(params *GetPlatformDLCConfigParams, a
 }
 
 /*
-Deprecated: Use GetUserDLCShort instead.
+Deprecated: 2022-08-10 - Use GetUserDLCShort instead.
 
   GetUserDLC gets user dlc by platform
 
@@ -542,7 +542,7 @@ func (a *Client) GetUserDLCShort(params *GetUserDLCParams, authInfo runtime.Clie
 }
 
 /*
-Deprecated: Use PublicSyncPsnDLCInventoryShort instead.
+Deprecated: 2022-08-10 - Use PublicSyncPsnDLCInventoryShort instead.
 
   PublicSyncPsnDLCInventory synchronizes with dlc entitlements in p s n store
 
@@ -641,7 +641,7 @@ func (a *Client) PublicSyncPsnDLCInventoryShort(params *PublicSyncPsnDLCInventor
 }
 
 /*
-Deprecated: Use PublicSyncPsnDLCInventoryWithMultipleServiceLabelsShort instead.
+Deprecated: 2022-08-10 - Use PublicSyncPsnDLCInventoryWithMultipleServiceLabelsShort instead.
 
   PublicSyncPsnDLCInventoryWithMultipleServiceLabels synchronizes with dlc entitlements in p s n store with multiple service labels
 
@@ -740,7 +740,7 @@ func (a *Client) PublicSyncPsnDLCInventoryWithMultipleServiceLabelsShort(params 
 }
 
 /*
-Deprecated: Use SyncEpicGameDLCShort instead.
+Deprecated: 2022-08-10 - Use SyncEpicGameDLCShort instead.
 
   SyncEpicGameDLC syncs epic games dlc items
 
@@ -839,7 +839,7 @@ func (a *Client) SyncEpicGameDLCShort(params *SyncEpicGameDLCParams, authInfo ru
 }
 
 /*
-Deprecated: Use SyncSteamDLCShort instead.
+Deprecated: 2022-08-10 - Use SyncSteamDLCShort instead.
 
   SyncSteamDLC syncs steam dlc
 
@@ -938,7 +938,7 @@ func (a *Client) SyncSteamDLCShort(params *SyncSteamDLCParams, authInfo runtime.
 }
 
 /*
-Deprecated: Use SyncXboxDLCShort instead.
+Deprecated: 2022-08-10 - Use SyncXboxDLCShort instead.
 
   SyncXboxDLC syncs xbox dlc items
 
@@ -1037,7 +1037,7 @@ func (a *Client) SyncXboxDLCShort(params *SyncXboxDLCParams, authInfo runtime.Cl
 }
 
 /*
-Deprecated: Use UpdateDLCItemConfigShort instead.
+Deprecated: 2022-08-10 - Use UpdateDLCItemConfigShort instead.
 
   UpdateDLCItemConfig updates DLC item config
 
@@ -1141,7 +1141,7 @@ func (a *Client) UpdateDLCItemConfigShort(params *UpdateDLCItemConfigParams, aut
 }
 
 /*
-Deprecated: Use UpdatePlatformDLCConfigShort instead.
+Deprecated: 2022-08-10 - Use UpdatePlatformDLCConfigShort instead.
 
   UpdatePlatformDLCConfig updates platform DLC config
 

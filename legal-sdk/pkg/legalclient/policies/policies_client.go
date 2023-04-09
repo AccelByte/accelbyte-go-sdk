@@ -50,7 +50,7 @@ type ClientService interface {
 }
 
 /*
-Deprecated: Use RetrieveLatestPoliciesShort instead.
+Deprecated: 2022-08-10 - Use RetrieveLatestPoliciesShort instead.
 
   RetrieveLatestPolicies retrieves latest policies by country
 
@@ -142,7 +142,7 @@ func (a *Client) RetrieveLatestPoliciesShort(params *RetrieveLatestPoliciesParam
 }
 
 /*
-Deprecated: Use RetrieveLatestPoliciesByNamespaceAndCountryPublicShort instead.
+Deprecated: 2022-08-10 - Use RetrieveLatestPoliciesByNamespaceAndCountryPublicShort instead.
 
   RetrieveLatestPoliciesByNamespaceAndCountryPublic retrieves latest policies by namespace and country
 
@@ -234,7 +234,7 @@ func (a *Client) RetrieveLatestPoliciesByNamespaceAndCountryPublicShort(params *
 }
 
 /*
-Deprecated: Use RetrieveLatestPoliciesPublicShort instead.
+Deprecated: 2022-08-10 - Use RetrieveLatestPoliciesPublicShort instead.
 
   RetrieveLatestPoliciesPublic retrieves latest policies by namespace and country
 
@@ -333,7 +333,7 @@ func (a *Client) RetrieveLatestPoliciesPublicShort(params *RetrieveLatestPolicie
 }
 
 /*
-Deprecated: Use RetrievePoliciesShort instead.
+Deprecated: 2022-08-10 - Use RetrievePoliciesShort instead.
 
   RetrievePolicies retrieves policies by country
 
@@ -427,7 +427,7 @@ func (a *Client) RetrievePoliciesShort(params *RetrievePoliciesParams, authInfo 
 }
 
 /*
-Deprecated: Use SetDefaultPolicy2Short instead.
+Deprecated: 2022-08-10 - Use SetDefaultPolicy2Short instead.
 
   SetDefaultPolicy2 sets default policy
 
@@ -526,7 +526,7 @@ func (a *Client) SetDefaultPolicy2Short(params *SetDefaultPolicy2Params, authInf
 }
 
 /*
-Deprecated: Use UpdatePolicyShort instead.
+Deprecated: 2022-08-10 - Use UpdatePolicyShort instead.
 
   UpdatePolicy updates country specific policy
 

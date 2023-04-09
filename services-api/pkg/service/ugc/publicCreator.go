@@ -39,7 +39,7 @@ func (aaa *PublicCreatorService) GetAuthSession() auth.Session {
 	}
 }
 
-// deprecated(2022-01-10): please use PublicSearchCreatorShort instead.
+// Deprecated: 2022-01-10 - please use PublicSearchCreatorShort instead.
 func (aaa *PublicCreatorService) PublicSearchCreator(input *public_creator.PublicSearchCreatorParams) (*ugcclientmodels.ModelsPaginatedCreatorOverviewResponse, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -62,7 +62,7 @@ func (aaa *PublicCreatorService) PublicSearchCreator(input *public_creator.Publi
 	return ok.GetPayload(), nil
 }
 
-// deprecated(2022-01-10): please use PublicGetCreatorShort instead.
+// Deprecated: 2022-01-10 - please use PublicGetCreatorShort instead.
 func (aaa *PublicCreatorService) PublicGetCreator(input *public_creator.PublicGetCreatorParams) (*ugcclientmodels.ModelsCreatorResponse, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {

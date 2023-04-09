@@ -42,7 +42,7 @@ type ClientService interface {
 }
 
 /*
-Deprecated: Use AdminListTagsShort instead.
+Deprecated: 2022-08-10 - Use AdminListTagsShort instead.
 
   AdminListTags queries tags
 
@@ -158,7 +158,7 @@ func (a *Client) AdminListTagsShort(params *AdminListTagsParams, authInfo runtim
 }
 
 /*
-Deprecated: Use PublicListTagsShort instead.
+Deprecated: 2022-08-10 - Use PublicListTagsShort instead.
 
   PublicListTags queries tags
 

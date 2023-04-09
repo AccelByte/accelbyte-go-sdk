@@ -23,7 +23,7 @@ type WalletRevocationConfig struct {
 	Enabled bool `json:"enabled"`
 
 	// wallet revocation strategy
-	// Enum: [ALWAYS_REVOKE REVOKE_OR_REPORT]
+	// Enum: [ALWAYS_REVOKE CUSTOM REVOKE_OR_REPORT]
 	Strategy string `json:"strategy,omitempty"`
 }
 
@@ -45,7 +45,7 @@ var walletRevocationConfigTypeStrategyPropEnum []interface{}
 
 func init() {
 	var res []string
-	if err := json.Unmarshal([]byte(`["ALWAYS_REVOKE","REVOKE_OR_REPORT"]`), &res); err != nil {
+	if err := json.Unmarshal([]byte(`["ALWAYS_REVOKE","CUSTOM","REVOKE_OR_REPORT"]`), &res); err != nil {
 		panic(err)
 	}
 	for _, v := range res {
@@ -57,6 +57,9 @@ const (
 
 	// WalletRevocationConfigStrategyALWAYSREVOKE captures enum value "ALWAYS_REVOKE"
 	WalletRevocationConfigStrategyALWAYSREVOKE string = "ALWAYS_REVOKE"
+
+	// WalletRevocationConfigStrategyCUSTOM captures enum value "CUSTOM"
+	WalletRevocationConfigStrategyCUSTOM string = "CUSTOM"
 
 	// WalletRevocationConfigStrategyREVOKEORREPORT captures enum value "REVOKE_OR_REPORT"
 	WalletRevocationConfigStrategyREVOKEORREPORT string = "REVOKE_OR_REPORT"

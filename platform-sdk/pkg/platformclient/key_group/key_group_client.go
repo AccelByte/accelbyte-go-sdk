@@ -54,7 +54,7 @@ type ClientService interface {
 }
 
 /*
-Deprecated: Use CreateKeyGroupShort instead.
+Deprecated: 2022-08-10 - Use CreateKeyGroupShort instead.
 
   CreateKeyGroup creates key group
 
@@ -158,7 +158,7 @@ func (a *Client) CreateKeyGroupShort(params *CreateKeyGroupParams, authInfo runt
 }
 
 /*
-Deprecated: Use GetKeyGroupShort instead.
+Deprecated: 2022-08-10 - Use GetKeyGroupShort instead.
 
   GetKeyGroup gets key group
 
@@ -257,7 +257,7 @@ func (a *Client) GetKeyGroupShort(params *GetKeyGroupParams, authInfo runtime.Cl
 }
 
 /*
-Deprecated: Use GetKeyGroupByBoothNameShort instead.
+Deprecated: 2022-08-10 - Use GetKeyGroupByBoothNameShort instead.
 
   GetKeyGroupByBoothName gets key group by booth name
 
@@ -356,7 +356,7 @@ func (a *Client) GetKeyGroupByBoothNameShort(params *GetKeyGroupByBoothNameParam
 }
 
 /*
-Deprecated: Use GetKeyGroupDynamicShort instead.
+Deprecated: 2022-08-10 - Use GetKeyGroupDynamicShort instead.
 
   GetKeyGroupDynamic gets key group dynamic
 
@@ -455,7 +455,7 @@ func (a *Client) GetKeyGroupDynamicShort(params *GetKeyGroupDynamicParams, authI
 }
 
 /*
-Deprecated: Use ListKeysShort instead.
+Deprecated: 2022-08-10 - Use ListKeysShort instead.
 
   ListKeys lists keys of a key group
 
@@ -549,7 +549,7 @@ func (a *Client) ListKeysShort(params *ListKeysParams, authInfo runtime.ClientAu
 }
 
 /*
-Deprecated: Use QueryKeyGroupsShort instead.
+Deprecated: 2022-08-10 - Use QueryKeyGroupsShort instead.
 
   QueryKeyGroups queries key groups
 
@@ -643,7 +643,7 @@ func (a *Client) QueryKeyGroupsShort(params *QueryKeyGroupsParams, authInfo runt
 }
 
 /*
-Deprecated: Use UpdateKeyGroupShort instead.
+Deprecated: 2022-08-10 - Use UpdateKeyGroupShort instead.
 
   UpdateKeyGroup updates key group
 
@@ -752,7 +752,7 @@ func (a *Client) UpdateKeyGroupShort(params *UpdateKeyGroupParams, authInfo runt
 }
 
 /*
-Deprecated: Use UploadKeysShort instead.
+Deprecated: 2022-08-10 - Use UploadKeysShort instead.
 
   UploadKeys uploads keys to key group
 

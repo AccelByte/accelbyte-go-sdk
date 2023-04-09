@@ -68,7 +68,7 @@ type ClientService interface {
 }
 
 /*
-Deprecated: Use CreateContentDirectShort instead.
+Deprecated: 2022-08-10 - Use CreateContentDirectShort instead.
 
   CreateContentDirect uploads content to a channel
 
@@ -181,7 +181,7 @@ func (a *Client) CreateContentDirectShort(params *CreateContentDirectParams, aut
 }
 
 /*
-Deprecated: Use CreateContentS3Short instead.
+Deprecated: 2022-08-10 - Use CreateContentS3Short instead.
 
   CreateContentS3 uploads content to s3 bucket
 
@@ -298,7 +298,7 @@ func (a *Client) CreateContentS3Short(params *CreateContentS3Params, authInfo ru
 }
 
 /*
-Deprecated: Use DeleteContentShort instead.
+Deprecated: 2022-08-10 - Use DeleteContentShort instead.
 
   DeleteContent deletes content
 
@@ -407,7 +407,7 @@ func (a *Client) DeleteContentShort(params *DeleteContentParams, authInfo runtim
 }
 
 /*
-Deprecated: Use DeleteContentScreenshotShort instead.
+Deprecated: 2022-08-10 - Use DeleteContentScreenshotShort instead.
 
   DeleteContentScreenshot deletes screenshots content
 
@@ -523,7 +523,7 @@ func (a *Client) DeleteContentScreenshotShort(params *DeleteContentScreenshotPar
 }
 
 /*
-Deprecated: Use PublicDownloadContentByContentIDShort instead.
+Deprecated: 2022-08-10 - Use PublicDownloadContentByContentIDShort instead.
 
   PublicDownloadContentByContentID gets user specific content
 
@@ -632,7 +632,7 @@ func (a *Client) PublicDownloadContentByContentIDShort(params *PublicDownloadCon
 }
 
 /*
-Deprecated: Use PublicDownloadContentByShareCodeShort instead.
+Deprecated: 2022-08-10 - Use PublicDownloadContentByShareCodeShort instead.
 
   PublicDownloadContentByShareCode gets content by sharecode
 
@@ -741,7 +741,7 @@ func (a *Client) PublicDownloadContentByShareCodeShort(params *PublicDownloadCon
 }
 
 /*
-Deprecated: Use PublicDownloadContentPreviewShort instead.
+Deprecated: 2022-08-10 - Use PublicDownloadContentPreviewShort instead.
 
   PublicDownloadContentPreview gets content preview
 
@@ -850,7 +850,7 @@ func (a *Client) PublicDownloadContentPreviewShort(params *PublicDownloadContent
 }
 
 /*
-Deprecated: Use PublicGetContentBulkShort instead.
+Deprecated: 2022-08-10 - Use PublicGetContentBulkShort instead.
 
   PublicGetContentBulk gets contents by content ids
 
@@ -961,7 +961,7 @@ func (a *Client) PublicGetContentBulkShort(params *PublicGetContentBulkParams, a
 }
 
 /*
-Deprecated: Use PublicGetUserContentShort instead.
+Deprecated: 2022-08-10 - Use PublicGetUserContentShort instead.
 
   PublicGetUserContent gets user s generated contents
 
@@ -1070,7 +1070,7 @@ func (a *Client) PublicGetUserContentShort(params *PublicGetUserContentParams, a
 }
 
 /*
-Deprecated: Use PublicSearchContentShort instead.
+Deprecated: 2022-08-10 - Use PublicSearchContentShort instead.
 
   PublicSearchContent searches contents
 
@@ -1219,7 +1219,7 @@ func (a *Client) PublicSearchContentShort(params *PublicSearchContentParams, aut
 }
 
 /*
-Deprecated: Use SearchChannelSpecificContentShort instead.
+Deprecated: 2022-08-10 - Use SearchChannelSpecificContentShort instead.
 
   SearchChannelSpecificContent searches contents specific to a channel
 
@@ -1368,7 +1368,7 @@ func (a *Client) SearchChannelSpecificContentShort(params *SearchChannelSpecific
 }
 
 /*
-Deprecated: Use UpdateContentDirectShort instead.
+Deprecated: 2022-08-10 - Use UpdateContentDirectShort instead.
 
   UpdateContentDirect updates content to a channel
 
@@ -1486,7 +1486,7 @@ func (a *Client) UpdateContentDirectShort(params *UpdateContentDirectParams, aut
 }
 
 /*
-Deprecated: Use UpdateContentS3Short instead.
+Deprecated: 2022-08-10 - Use UpdateContentS3Short instead.
 
   UpdateContentS3 updates content to s3 bucket
 
@@ -1610,7 +1610,7 @@ func (a *Client) UpdateContentS3Short(params *UpdateContentS3Params, authInfo ru
 }
 
 /*
-Deprecated: Use UpdateScreenshotsShort instead.
+Deprecated: 2022-08-10 - Use UpdateScreenshotsShort instead.
 
   UpdateScreenshots updates screenshot of content
 
@@ -1728,7 +1728,7 @@ func (a *Client) UpdateScreenshotsShort(params *UpdateScreenshotsParams, authInf
 }
 
 /*
-Deprecated: Use UploadContentScreenshotShort instead.
+Deprecated: 2022-08-10 - Use UploadContentScreenshotShort instead.
 
   UploadContentScreenshot uploads screenshots for content
 

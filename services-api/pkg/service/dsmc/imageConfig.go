@@ -39,7 +39,7 @@ func (aaa *ImageConfigService) GetAuthSession() auth.Session {
 	}
 }
 
-// deprecated(2022-01-10): please use UpdateImageShort instead.
+// Deprecated: 2022-01-10 - please use UpdateImageShort instead.
 func (aaa *ImageConfigService) UpdateImage(input *image_config.UpdateImageParams) error {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -62,7 +62,7 @@ func (aaa *ImageConfigService) UpdateImage(input *image_config.UpdateImageParams
 	return nil
 }
 
-// deprecated(2022-01-10): please use CreateImageShort instead.
+// Deprecated: 2022-01-10 - please use CreateImageShort instead.
 func (aaa *ImageConfigService) CreateImage(input *image_config.CreateImageParams) error {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -88,7 +88,7 @@ func (aaa *ImageConfigService) CreateImage(input *image_config.CreateImageParams
 	return nil
 }
 
-// deprecated(2022-01-10): please use ImportImagesShort instead.
+// Deprecated: 2022-01-10 - please use ImportImagesShort instead.
 func (aaa *ImageConfigService) ImportImages(input *image_config.ImportImagesParams) (*dsmcclientmodels.ModelsImportResponse, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -114,7 +114,7 @@ func (aaa *ImageConfigService) ImportImages(input *image_config.ImportImagesPara
 	return ok.GetPayload(), nil
 }
 
-// deprecated(2022-01-10): please use CreateImagePatchShort instead.
+// Deprecated: 2022-01-10 - please use CreateImagePatchShort instead.
 func (aaa *ImageConfigService) CreateImagePatch(input *image_config.CreateImagePatchParams) error {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -140,7 +140,7 @@ func (aaa *ImageConfigService) CreateImagePatch(input *image_config.CreateImageP
 	return nil
 }
 
-// deprecated(2022-01-10): please use ListImagesShort instead.
+// Deprecated: 2022-01-10 - please use ListImagesShort instead.
 func (aaa *ImageConfigService) ListImages(input *image_config.ListImagesParams) (*dsmcclientmodels.ModelsListImageResponse, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -163,7 +163,7 @@ func (aaa *ImageConfigService) ListImages(input *image_config.ListImagesParams) 
 	return ok.GetPayload(), nil
 }
 
-// deprecated(2022-01-10): please use DeleteImageShort instead.
+// Deprecated: 2022-01-10 - please use DeleteImageShort instead.
 func (aaa *ImageConfigService) DeleteImage(input *image_config.DeleteImageParams) error {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -192,7 +192,7 @@ func (aaa *ImageConfigService) DeleteImage(input *image_config.DeleteImageParams
 	return nil
 }
 
-// deprecated(2022-01-10): please use ExportImagesShort instead.
+// Deprecated: 2022-01-10 - please use ExportImagesShort instead.
 func (aaa *ImageConfigService) ExportImages(input *image_config.ExportImagesParams) ([]*dsmcclientmodels.ModelsImageRecord, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -218,7 +218,7 @@ func (aaa *ImageConfigService) ExportImages(input *image_config.ExportImagesPara
 	return ok.GetPayload(), nil
 }
 
-// deprecated(2022-01-10): please use GetImageLimitShort instead.
+// Deprecated: 2022-01-10 - please use GetImageLimitShort instead.
 func (aaa *ImageConfigService) GetImageLimit(input *image_config.GetImageLimitParams) (*dsmcclientmodels.ModelsGetImageLimitResponse, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -241,7 +241,7 @@ func (aaa *ImageConfigService) GetImageLimit(input *image_config.GetImageLimitPa
 	return ok.GetPayload(), nil
 }
 
-// deprecated(2022-01-10): please use DeleteImagePatchShort instead.
+// Deprecated: 2022-01-10 - please use DeleteImagePatchShort instead.
 func (aaa *ImageConfigService) DeleteImagePatch(input *image_config.DeleteImagePatchParams) error {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -270,7 +270,7 @@ func (aaa *ImageConfigService) DeleteImagePatch(input *image_config.DeleteImageP
 	return nil
 }
 
-// deprecated(2022-01-10): please use GetImageDetailShort instead.
+// Deprecated: 2022-01-10 - please use GetImageDetailShort instead.
 func (aaa *ImageConfigService) GetImageDetail(input *image_config.GetImageDetailParams) (*dsmcclientmodels.ModelsGetImageDetailResponse, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -293,7 +293,7 @@ func (aaa *ImageConfigService) GetImageDetail(input *image_config.GetImageDetail
 	return ok.GetPayload(), nil
 }
 
-// deprecated(2022-01-10): please use GetImagePatchesShort instead.
+// Deprecated: 2022-01-10 - please use GetImagePatchesShort instead.
 func (aaa *ImageConfigService) GetImagePatches(input *image_config.GetImagePatchesParams) (*dsmcclientmodels.ModelsListImagePatchesResponse, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -313,7 +313,7 @@ func (aaa *ImageConfigService) GetImagePatches(input *image_config.GetImagePatch
 	return ok.GetPayload(), nil
 }
 
-// deprecated(2022-01-10): please use GetImagePatchDetailShort instead.
+// Deprecated: 2022-01-10 - please use GetImagePatchDetailShort instead.
 func (aaa *ImageConfigService) GetImagePatchDetail(input *image_config.GetImagePatchDetailParams) (*dsmcclientmodels.ModelsGetImagePatchDetailResponse, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -336,7 +336,7 @@ func (aaa *ImageConfigService) GetImagePatchDetail(input *image_config.GetImageP
 	return ok.GetPayload(), nil
 }
 
-// deprecated(2022-01-10): please use ImageLimitClientShort instead.
+// Deprecated: 2022-01-10 - please use ImageLimitClientShort instead.
 func (aaa *ImageConfigService) ImageLimitClient(input *image_config.ImageLimitClientParams) (*dsmcclientmodels.ModelsGetImageLimitResponse, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -359,7 +359,7 @@ func (aaa *ImageConfigService) ImageLimitClient(input *image_config.ImageLimitCl
 	return ok.GetPayload(), nil
 }
 
-// deprecated(2022-01-10): please use ImageDetailClientShort instead.
+// Deprecated: 2022-01-10 - please use ImageDetailClientShort instead.
 func (aaa *ImageConfigService) ImageDetailClient(input *image_config.ImageDetailClientParams) (*dsmcclientmodels.ModelsGetImageDetailResponse, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {

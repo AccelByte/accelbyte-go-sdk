@@ -63,6 +63,8 @@ type ClientService interface {
 	GetTodayLeaderboardRankingPublicV1Short(params *GetTodayLeaderboardRankingPublicV1Params, authInfo runtime.ClientAuthInfoWriter) (*GetTodayLeaderboardRankingPublicV1OK, error)
 	DeleteUserRankingAdminV1(params *DeleteUserRankingAdminV1Params, authInfo runtime.ClientAuthInfoWriter) (*DeleteUserRankingAdminV1NoContent, *DeleteUserRankingAdminV1Unauthorized, *DeleteUserRankingAdminV1Forbidden, *DeleteUserRankingAdminV1NotFound, *DeleteUserRankingAdminV1InternalServerError, error)
 	DeleteUserRankingAdminV1Short(params *DeleteUserRankingAdminV1Params, authInfo runtime.ClientAuthInfoWriter) (*DeleteUserRankingAdminV1NoContent, error)
+	DeleteUserRankingByLeaderboardCodeAdminV1(params *DeleteUserRankingByLeaderboardCodeAdminV1Params, authInfo runtime.ClientAuthInfoWriter) (*DeleteUserRankingByLeaderboardCodeAdminV1NoContent, *DeleteUserRankingByLeaderboardCodeAdminV1Unauthorized, *DeleteUserRankingByLeaderboardCodeAdminV1Forbidden, *DeleteUserRankingByLeaderboardCodeAdminV1NotFound, *DeleteUserRankingByLeaderboardCodeAdminV1InternalServerError, error)
+	DeleteUserRankingByLeaderboardCodeAdminV1Short(params *DeleteUserRankingByLeaderboardCodeAdminV1Params, authInfo runtime.ClientAuthInfoWriter) (*DeleteUserRankingByLeaderboardCodeAdminV1NoContent, error)
 	DeleteUserRankingPublicV1(params *DeleteUserRankingPublicV1Params, authInfo runtime.ClientAuthInfoWriter) (*DeleteUserRankingPublicV1NoContent, *DeleteUserRankingPublicV1Unauthorized, *DeleteUserRankingPublicV1Forbidden, *DeleteUserRankingPublicV1NotFound, *DeleteUserRankingPublicV1InternalServerError, error)
 	DeleteUserRankingPublicV1Short(params *DeleteUserRankingPublicV1Params, authInfo runtime.ClientAuthInfoWriter) (*DeleteUserRankingPublicV1NoContent, error)
 	DeleteUserRankingsAdminV1(params *DeleteUserRankingsAdminV1Params, authInfo runtime.ClientAuthInfoWriter) (*DeleteUserRankingsAdminV1NoContent, *DeleteUserRankingsAdminV1Unauthorized, *DeleteUserRankingsAdminV1Forbidden, *DeleteUserRankingsAdminV1NotFound, *DeleteUserRankingsAdminV1InternalServerError, error)
@@ -78,7 +80,7 @@ type ClientService interface {
 }
 
 /*
-Deprecated: Use AdminGetArchivedLeaderboardRankingDataV1HandlerShort instead.
+Deprecated: 2022-08-10 - Use AdminGetArchivedLeaderboardRankingDataV1HandlerShort instead.
 
   AdminGetArchivedLeaderboardRankingDataV1Handler admins get signed url for archive all time leaderboard ranking data
 
@@ -199,7 +201,7 @@ func (a *Client) AdminGetArchivedLeaderboardRankingDataV1HandlerShort(params *Ad
 }
 
 /*
-Deprecated: Use CreateArchivedLeaderboardRankingDataV1HandlerShort instead.
+Deprecated: 2022-08-10 - Use CreateArchivedLeaderboardRankingDataV1HandlerShort instead.
 
   CreateArchivedLeaderboardRankingDataV1Handler archives a leadeboard data ranking
 
@@ -324,7 +326,7 @@ func (a *Client) CreateArchivedLeaderboardRankingDataV1HandlerShort(params *Crea
 }
 
 /*
-Deprecated: Use GetAllTimeLeaderboardRankingAdminV1Short instead.
+Deprecated: 2022-08-10 - Use GetAllTimeLeaderboardRankingAdminV1Short instead.
 
   GetAllTimeLeaderboardRankingAdminV1 gets all time leaderboard ranking data
 
@@ -447,7 +449,7 @@ func (a *Client) GetAllTimeLeaderboardRankingAdminV1Short(params *GetAllTimeLead
 }
 
 /*
-Deprecated: Use GetAllTimeLeaderboardRankingPublicV1Short instead.
+Deprecated: 2022-08-10 - Use GetAllTimeLeaderboardRankingPublicV1Short instead.
 
   GetAllTimeLeaderboardRankingPublicV1 gets all time leaderboard ranking data
 
@@ -558,7 +560,7 @@ func (a *Client) GetAllTimeLeaderboardRankingPublicV1Short(params *GetAllTimeLea
 }
 
 /*
-Deprecated: Use GetAllTimeLeaderboardRankingPublicV2Short instead.
+Deprecated: 2022-08-10 - Use GetAllTimeLeaderboardRankingPublicV2Short instead.
 
   GetAllTimeLeaderboardRankingPublicV2 gets all time leaderboard ranking data
 
@@ -677,7 +679,7 @@ func (a *Client) GetAllTimeLeaderboardRankingPublicV2Short(params *GetAllTimeLea
 }
 
 /*
-Deprecated: Use GetArchivedLeaderboardRankingDataV1HandlerShort instead.
+Deprecated: 2022-08-10 - Use GetArchivedLeaderboardRankingDataV1HandlerShort instead.
 
   GetArchivedLeaderboardRankingDataV1Handler gets signed url for archive all time leaderboard ranking data
 
@@ -798,7 +800,7 @@ func (a *Client) GetArchivedLeaderboardRankingDataV1HandlerShort(params *GetArch
 }
 
 /*
-Deprecated: Use GetCurrentMonthLeaderboardRankingAdminV1Short instead.
+Deprecated: 2022-08-10 - Use GetCurrentMonthLeaderboardRankingAdminV1Short instead.
 
   GetCurrentMonthLeaderboardRankingAdminV1 gets current month leaderboard ranking data
 
@@ -921,7 +923,7 @@ func (a *Client) GetCurrentMonthLeaderboardRankingAdminV1Short(params *GetCurren
 }
 
 /*
-Deprecated: Use GetCurrentMonthLeaderboardRankingPublicV1Short instead.
+Deprecated: 2022-08-10 - Use GetCurrentMonthLeaderboardRankingPublicV1Short instead.
 
   GetCurrentMonthLeaderboardRankingPublicV1 gets current month leaderboard ranking data
 
@@ -1030,7 +1032,7 @@ func (a *Client) GetCurrentMonthLeaderboardRankingPublicV1Short(params *GetCurre
 }
 
 /*
-Deprecated: Use GetCurrentSeasonLeaderboardRankingAdminV1Short instead.
+Deprecated: 2022-08-10 - Use GetCurrentSeasonLeaderboardRankingAdminV1Short instead.
 
   GetCurrentSeasonLeaderboardRankingAdminV1 gets current season leaderboard ranking data
 
@@ -1153,7 +1155,7 @@ func (a *Client) GetCurrentSeasonLeaderboardRankingAdminV1Short(params *GetCurre
 }
 
 /*
-Deprecated: Use GetCurrentSeasonLeaderboardRankingPublicV1Short instead.
+Deprecated: 2022-08-10 - Use GetCurrentSeasonLeaderboardRankingPublicV1Short instead.
 
   GetCurrentSeasonLeaderboardRankingPublicV1 gets current season leaderboard ranking data
 
@@ -1262,7 +1264,7 @@ func (a *Client) GetCurrentSeasonLeaderboardRankingPublicV1Short(params *GetCurr
 }
 
 /*
-Deprecated: Use GetCurrentWeekLeaderboardRankingAdminV1Short instead.
+Deprecated: 2022-08-10 - Use GetCurrentWeekLeaderboardRankingAdminV1Short instead.
 
   GetCurrentWeekLeaderboardRankingAdminV1 gets current week leaderboard ranking data
 
@@ -1385,7 +1387,7 @@ func (a *Client) GetCurrentWeekLeaderboardRankingAdminV1Short(params *GetCurrent
 }
 
 /*
-Deprecated: Use GetCurrentWeekLeaderboardRankingPublicV1Short instead.
+Deprecated: 2022-08-10 - Use GetCurrentWeekLeaderboardRankingPublicV1Short instead.
 
   GetCurrentWeekLeaderboardRankingPublicV1 gets current week leaderboard ranking data
 
@@ -1494,7 +1496,7 @@ func (a *Client) GetCurrentWeekLeaderboardRankingPublicV1Short(params *GetCurren
 }
 
 /*
-Deprecated: Use GetTodayLeaderboardRankingAdminV1Short instead.
+Deprecated: 2022-08-10 - Use GetTodayLeaderboardRankingAdminV1Short instead.
 
   GetTodayLeaderboardRankingAdminV1 gets today leaderboard ranking data
 
@@ -1617,7 +1619,7 @@ func (a *Client) GetTodayLeaderboardRankingAdminV1Short(params *GetTodayLeaderbo
 }
 
 /*
-Deprecated: Use GetTodayLeaderboardRankingPublicV1Short instead.
+Deprecated: 2022-08-10 - Use GetTodayLeaderboardRankingPublicV1Short instead.
 
   GetTodayLeaderboardRankingPublicV1 gets today leaderboard ranking data
 
@@ -1726,7 +1728,7 @@ func (a *Client) GetTodayLeaderboardRankingPublicV1Short(params *GetTodayLeaderb
 }
 
 /*
-Deprecated: Use DeleteUserRankingAdminV1Short instead.
+Deprecated: 2022-08-10 - Use DeleteUserRankingAdminV1Short instead.
 
   DeleteUserRankingAdminV1 deletes user ranking
 
@@ -1852,7 +1854,127 @@ func (a *Client) DeleteUserRankingAdminV1Short(params *DeleteUserRankingAdminV1P
 }
 
 /*
-Deprecated: Use DeleteUserRankingPublicV1Short instead.
+Deprecated: 2022-08-10 - Use DeleteUserRankingByLeaderboardCodeAdminV1Short instead.
+
+  DeleteUserRankingByLeaderboardCodeAdminV1 deletes all user ranking by leaderboard code
+
+  &lt;p&gt;&lt;b&gt;[Test Facility Only]&lt;/b&gt;&lt;/p&gt;
+			&lt;p&gt;Required permission &#39;ADMIN:NAMESPACE:{namespace}:LEADERBOARD [DELETE]&#39;&lt;/p&gt;
+			&lt;p&gt;This endpoint will delete user ranking by leaderboard code&lt;/p&gt;
+			&lt;p&gt;Note: this endpoint only works on development environment.&lt;/p&gt;
+*/
+func (a *Client) DeleteUserRankingByLeaderboardCodeAdminV1(params *DeleteUserRankingByLeaderboardCodeAdminV1Params, authInfo runtime.ClientAuthInfoWriter) (*DeleteUserRankingByLeaderboardCodeAdminV1NoContent, *DeleteUserRankingByLeaderboardCodeAdminV1Unauthorized, *DeleteUserRankingByLeaderboardCodeAdminV1Forbidden, *DeleteUserRankingByLeaderboardCodeAdminV1NotFound, *DeleteUserRankingByLeaderboardCodeAdminV1InternalServerError, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewDeleteUserRankingByLeaderboardCodeAdminV1Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "deleteUserRankingByLeaderboardCodeAdminV1",
+		Method:             "DELETE",
+		PathPattern:        "/leaderboard/v1/admin/namespaces/{namespace}/leaderboards/{leaderboardCode}/reset",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &DeleteUserRankingByLeaderboardCodeAdminV1Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, nil, nil, nil, nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *DeleteUserRankingByLeaderboardCodeAdminV1NoContent:
+		return v, nil, nil, nil, nil, nil
+
+	case *DeleteUserRankingByLeaderboardCodeAdminV1Unauthorized:
+		return nil, v, nil, nil, nil, nil
+
+	case *DeleteUserRankingByLeaderboardCodeAdminV1Forbidden:
+		return nil, nil, v, nil, nil, nil
+
+	case *DeleteUserRankingByLeaderboardCodeAdminV1NotFound:
+		return nil, nil, nil, v, nil, nil
+
+	case *DeleteUserRankingByLeaderboardCodeAdminV1InternalServerError:
+		return nil, nil, nil, nil, v, nil
+
+	default:
+		return nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+  DeleteUserRankingByLeaderboardCodeAdminV1Short deletes all user ranking by leaderboard code
+
+  &lt;p&gt;&lt;b&gt;[Test Facility Only]&lt;/b&gt;&lt;/p&gt;
+			&lt;p&gt;Required permission &#39;ADMIN:NAMESPACE:{namespace}:LEADERBOARD [DELETE]&#39;&lt;/p&gt;
+			&lt;p&gt;This endpoint will delete user ranking by leaderboard code&lt;/p&gt;
+			&lt;p&gt;Note: this endpoint only works on development environment.&lt;/p&gt;
+*/
+func (a *Client) DeleteUserRankingByLeaderboardCodeAdminV1Short(params *DeleteUserRankingByLeaderboardCodeAdminV1Params, authInfo runtime.ClientAuthInfoWriter) (*DeleteUserRankingByLeaderboardCodeAdminV1NoContent, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewDeleteUserRankingByLeaderboardCodeAdminV1Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "deleteUserRankingByLeaderboardCodeAdminV1",
+		Method:             "DELETE",
+		PathPattern:        "/leaderboard/v1/admin/namespaces/{namespace}/leaderboards/{leaderboardCode}/reset",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &DeleteUserRankingByLeaderboardCodeAdminV1Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *DeleteUserRankingByLeaderboardCodeAdminV1NoContent:
+		return v, nil
+	case *DeleteUserRankingByLeaderboardCodeAdminV1Unauthorized:
+		return nil, v
+	case *DeleteUserRankingByLeaderboardCodeAdminV1Forbidden:
+		return nil, v
+	case *DeleteUserRankingByLeaderboardCodeAdminV1NotFound:
+		return nil, v
+	case *DeleteUserRankingByLeaderboardCodeAdminV1InternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+Deprecated: 2022-08-10 - Use DeleteUserRankingPublicV1Short instead.
 
   DeleteUserRankingPublicV1 deletes user ranking
 
@@ -1978,7 +2100,7 @@ func (a *Client) DeleteUserRankingPublicV1Short(params *DeleteUserRankingPublicV
 }
 
 /*
-Deprecated: Use DeleteUserRankingsAdminV1Short instead.
+Deprecated: 2022-08-10 - Use DeleteUserRankingsAdminV1Short instead.
 
   DeleteUserRankingsAdminV1 deletes user ranking across leaderboard s
 
@@ -2104,7 +2226,7 @@ func (a *Client) DeleteUserRankingsAdminV1Short(params *DeleteUserRankingsAdminV
 }
 
 /*
-Deprecated: Use GetUserRankingAdminV1Short instead.
+Deprecated: 2022-08-10 - Use GetUserRankingAdminV1Short instead.
 
   GetUserRankingAdminV1 gets user ranking
 
@@ -2222,7 +2344,7 @@ func (a *Client) GetUserRankingAdminV1Short(params *GetUserRankingAdminV1Params,
 }
 
 /*
-Deprecated: Use GetUserRankingPublicV1Short instead.
+Deprecated: 2022-08-10 - Use GetUserRankingPublicV1Short instead.
 
   GetUserRankingPublicV1 gets user ranking
 
@@ -2336,7 +2458,7 @@ func (a *Client) GetUserRankingPublicV1Short(params *GetUserRankingPublicV1Param
 }
 
 /*
-Deprecated: Use UpdateUserPointAdminV1Short instead.
+Deprecated: 2022-08-10 - Use UpdateUserPointAdminV1Short instead.
 
   UpdateUserPointAdminV1 updates user point
 

@@ -46,7 +46,7 @@ type ClientService interface {
 }
 
 /*
-Deprecated: Use GetGlobalStatItemByStatCodeShort instead.
+Deprecated: 2022-08-10 - Use GetGlobalStatItemByStatCodeShort instead.
 
   GetGlobalStatItemByStatCode gets global stat item by stat code
 
@@ -145,7 +145,7 @@ func (a *Client) GetGlobalStatItemByStatCodeShort(params *GetGlobalStatItemBySta
 }
 
 /*
-Deprecated: Use GetGlobalStatItemByStatCode1Short instead.
+Deprecated: 2022-08-10 - Use GetGlobalStatItemByStatCode1Short instead.
 
   GetGlobalStatItemByStatCode1 gets global stat item by stat code
 
@@ -244,7 +244,7 @@ func (a *Client) GetGlobalStatItemByStatCode1Short(params *GetGlobalStatItemBySt
 }
 
 /*
-Deprecated: Use GetGlobalStatItemsShort instead.
+Deprecated: 2022-08-10 - Use GetGlobalStatItemsShort instead.
 
   GetGlobalStatItems lists global stat items
 
@@ -338,7 +338,7 @@ func (a *Client) GetGlobalStatItemsShort(params *GetGlobalStatItemsParams, authI
 }
 
 /*
-Deprecated: Use GetGlobalStatItems1Short instead.
+Deprecated: 2022-08-10 - Use GetGlobalStatItems1Short instead.
 
   GetGlobalStatItems1 lists global stat items
 

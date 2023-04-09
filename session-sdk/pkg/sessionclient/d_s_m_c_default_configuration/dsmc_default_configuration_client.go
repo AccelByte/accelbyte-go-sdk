@@ -40,7 +40,7 @@ type ClientService interface {
 }
 
 /*
-Deprecated: Use AdminGetDSMCConfigurationDefaultShort instead.
+Deprecated: 2022-08-10 - Use AdminGetDSMCConfigurationDefaultShort instead.
 
   AdminGetDSMCConfigurationDefault gets dsmc default configuration requires a d m i n n a m e s p a c e namespace s e s s i o n c o n f i g u r a t i o n r e a d
 

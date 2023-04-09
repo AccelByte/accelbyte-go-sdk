@@ -39,7 +39,7 @@ func (aaa *ChatService) GetAuthSession() auth.Session {
 	}
 }
 
-// deprecated(2022-01-10): please use PersonalChatHistoryShort instead.
+// Deprecated: 2022-01-10 - please use PersonalChatHistoryShort instead.
 func (aaa *ChatService) PersonalChatHistory(input *chat.PersonalChatHistoryParams) ([]*lobbyclientmodels.ModelChatMessageResponse, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -68,7 +68,7 @@ func (aaa *ChatService) PersonalChatHistory(input *chat.PersonalChatHistoryParam
 	return ok.GetPayload(), nil
 }
 
-// deprecated(2022-01-10): please use AdminChatHistoryShort instead.
+// Deprecated: 2022-01-10 - please use AdminChatHistoryShort instead.
 func (aaa *ChatService) AdminChatHistory(input *chat.AdminChatHistoryParams) ([]*lobbyclientmodels.ModelChatMessageResponse, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
@@ -97,7 +97,7 @@ func (aaa *ChatService) AdminChatHistory(input *chat.AdminChatHistoryParams) ([]
 	return ok.GetPayload(), nil
 }
 
-// deprecated(2022-01-10): please use GetPersonalChatHistoryV1PublicShort instead.
+// Deprecated: 2022-01-10 - please use GetPersonalChatHistoryV1PublicShort instead.
 func (aaa *ChatService) GetPersonalChatHistoryV1Public(input *chat.GetPersonalChatHistoryV1PublicParams) ([]*lobbyclientmodels.ModelChatMessageResponse, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {

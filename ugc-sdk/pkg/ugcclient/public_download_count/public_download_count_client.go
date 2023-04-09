@@ -40,7 +40,7 @@ type ClientService interface {
 }
 
 /*
-Deprecated: Use AddDownloadCountShort instead.
+Deprecated: 2022-08-10 - Use AddDownloadCountShort instead.
 
   AddDownloadCount adds unique download count to a content
 

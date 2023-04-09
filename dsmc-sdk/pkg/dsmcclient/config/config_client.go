@@ -63,7 +63,7 @@ type ClientService interface {
 }
 
 /*
-Deprecated: Use AddPortShort instead.
+Deprecated: 2022-08-10 - Use AddPortShort instead.
 
   AddPort creates port config
 
@@ -190,7 +190,7 @@ func (a *Client) AddPortShort(params *AddPortParams, authInfo runtime.ClientAuth
 }
 
 /*
-Deprecated: Use ClearCacheShort instead.
+Deprecated: 2022-08-10 - Use ClearCacheShort instead.
 
   ClearCache clears config cache
 
@@ -302,7 +302,7 @@ func (a *Client) ClearCacheShort(params *ClearCacheParams, authInfo runtime.Clie
 }
 
 /*
-Deprecated: Use CreateConfigShort instead.
+Deprecated: 2022-08-10 - Use CreateConfigShort instead.
 
   CreateConfig creates config
 
@@ -480,7 +480,7 @@ func (a *Client) CreateConfigShort(params *CreateConfigParams, authInfo runtime.
 }
 
 /*
-Deprecated: Use DeleteConfigShort instead.
+Deprecated: 2022-08-10 - Use DeleteConfigShort instead.
 
   DeleteConfig deletes config
 
@@ -606,7 +606,7 @@ func (a *Client) DeleteConfigShort(params *DeleteConfigParams, authInfo runtime.
 }
 
 /*
-Deprecated: Use DeletePortShort instead.
+Deprecated: 2022-08-10 - Use DeletePortShort instead.
 
   DeletePort deletes port config
 
@@ -728,7 +728,7 @@ func (a *Client) DeletePortShort(params *DeletePortParams, authInfo runtime.Clie
 }
 
 /*
-Deprecated: Use GetConfigShort instead.
+Deprecated: 2022-08-10 - Use GetConfigShort instead.
 
   GetConfig gets config for a namespace
 
@@ -845,7 +845,7 @@ func (a *Client) GetConfigShort(params *GetConfigParams, authInfo runtime.Client
 }
 
 /*
-Deprecated: Use ListConfigShort instead.
+Deprecated: 2022-08-10 - Use ListConfigShort instead.
 
   ListConfig lists all configs
 
@@ -957,7 +957,7 @@ func (a *Client) ListConfigShort(params *ListConfigParams, authInfo runtime.Clie
 }
 
 /*
-Deprecated: Use SaveConfigShort instead.
+Deprecated: 2022-08-10 - Use SaveConfigShort instead.
 
   SaveConfig saves config
 
@@ -1212,7 +1212,7 @@ func (a *Client) SaveConfigShort(params *SaveConfigParams, authInfo runtime.Clie
 }
 
 /*
-Deprecated: Use UpdateConfigShort instead.
+Deprecated: 2022-08-10 - Use UpdateConfigShort instead.
 
   UpdateConfig updates config
 
@@ -1392,7 +1392,7 @@ func (a *Client) UpdateConfigShort(params *UpdateConfigParams, authInfo runtime.
 }
 
 /*
-Deprecated: Use UpdatePortShort instead.
+Deprecated: 2022-08-10 - Use UpdatePortShort instead.
 
   UpdatePort updates port config
 
@@ -1514,7 +1514,7 @@ func (a *Client) UpdatePortShort(params *UpdatePortParams, authInfo runtime.Clie
 }
 
 /*
-Deprecated: Use ExportConfigV1Short instead.
+Deprecated: 2022-08-10 - Use ExportConfigV1Short instead.
 
   ExportConfigV1 exports d s m controller configuration for a namespace
 
@@ -1638,7 +1638,7 @@ func (a *Client) ExportConfigV1Short(params *ExportConfigV1Params, authInfo runt
 }
 
 /*
-Deprecated: Use ImportConfigV1Short instead.
+Deprecated: 2022-08-10 - Use ImportConfigV1Short instead.
 
   ImportConfigV1 imports config for a namespace
 

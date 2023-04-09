@@ -33,8 +33,7 @@ type ModelInviteUserRequestV4 struct {
 	Namespace string `json:"namespace,omitempty"`
 
 	// role Id
-	// Required: true
-	RoleID *string `json:"roleId"`
+	RoleID string `json:"roleId,omitempty"`
 }
 
 // Validate validates this model invite user request v4
@@ -50,10 +49,6 @@ func (m *ModelInviteUserRequestV4) Validate(formats strfmt.Registry) error {
 	}
 
 	if err := m.validateIsAdmin(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.validateRoleID(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -84,15 +79,6 @@ func (m *ModelInviteUserRequestV4) validateEmailAddresses(formats strfmt.Registr
 func (m *ModelInviteUserRequestV4) validateIsAdmin(formats strfmt.Registry) error {
 
 	if err := validate.Required("isAdmin", "body", m.IsAdmin); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *ModelInviteUserRequestV4) validateRoleID(formats strfmt.Registry) error {
-
-	if err := validate.Required("roleId", "body", m.RoleID); err != nil {
 		return err
 	}
 

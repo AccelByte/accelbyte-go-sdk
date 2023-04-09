@@ -42,6 +42,9 @@ type RevocationHistoryInfo struct {
 	// namespace
 	Namespace string `json:"namespace,omitempty"`
 
+	// revocation errors
+	RevocationErrors []*RevocationError `json:"revocationErrors"`
+
 	// revoke entries
 	RevokeEntries []*RevokeEntry `json:"revokeEntries"`
 
@@ -51,6 +54,9 @@ type RevocationHistoryInfo struct {
 	// status
 	// Enum: [FAIL SUCCESS]
 	Status string `json:"status,omitempty"`
+
+	// transactionId, Order No, DLC Order No.
+	TransactionID string `json:"transactionId,omitempty"`
 
 	// updated at
 	// Format: date-time
@@ -77,6 +83,10 @@ func (m *RevocationHistoryInfo) Validate(formats strfmt.Registry) error {
 	}
 
 	if err := m.validateItemRevocations(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateRevocationErrors(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -176,6 +186,31 @@ func (m *RevocationHistoryInfo) validateItemRevocations(formats strfmt.Registry)
 			if err := m.ItemRevocations[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("itemRevocations" + "." + strconv.Itoa(i))
+				}
+				return err
+			}
+		}
+
+	}
+
+	return nil
+}
+
+func (m *RevocationHistoryInfo) validateRevocationErrors(formats strfmt.Registry) error {
+
+	if swag.IsZero(m.RevocationErrors) { // not required
+		return nil
+	}
+
+	for i := 0; i < len(m.RevocationErrors); i++ {
+		if swag.IsZero(m.RevocationErrors[i]) { // not required
+			continue
+		}
+
+		if m.RevocationErrors[i] != nil {
+			if err := m.RevocationErrors[i].Validate(formats); err != nil {
+				if ve, ok := err.(*errors.Validation); ok {
+					return ve.ValidateName("revocationErrors" + "." + strconv.Itoa(i))
 				}
 				return err
 			}

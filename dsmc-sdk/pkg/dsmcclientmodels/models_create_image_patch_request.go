@@ -31,7 +31,7 @@ type ModelsCreateImagePatchRequest struct {
 
 	// image size
 	// Required: true
-	ImageSize *int32 `json:"imageSize"`
+	ImageSize *int64 `json:"imageSize"`
 
 	// namespace
 	// Required: true

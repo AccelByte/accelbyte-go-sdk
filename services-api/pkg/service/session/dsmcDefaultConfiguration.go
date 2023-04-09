@@ -39,7 +39,7 @@ func (aaa *DSMCDefaultConfigurationService) GetAuthSession() auth.Session {
 	}
 }
 
-// deprecated(2022-01-10): please use AdminGetDSMCConfigurationDefaultShort instead.
+// Deprecated: 2022-01-10 - please use AdminGetDSMCConfigurationDefaultShort instead.
 func (aaa *DSMCDefaultConfigurationService) AdminGetDSMCConfigurationDefault(input *d_s_m_c_default_configuration.AdminGetDSMCConfigurationDefaultParams) (*sessionclientmodels.ModelsDefaultDSMCConfig, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {

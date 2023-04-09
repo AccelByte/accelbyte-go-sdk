@@ -44,7 +44,7 @@ type ClientService interface {
 }
 
 /*
-Deprecated: Use AdminChatHistoryShort instead.
+Deprecated: 2022-08-10 - Use AdminChatHistoryShort instead.
 
   AdminChatHistory admins get chat history
 
@@ -165,7 +165,7 @@ func (a *Client) AdminChatHistoryShort(params *AdminChatHistoryParams, authInfo 
 }
 
 /*
-Deprecated: Use GetPersonalChatHistoryV1PublicShort instead.
+Deprecated: 2022-08-10 - Use GetPersonalChatHistoryV1PublicShort instead.
 
   GetPersonalChatHistoryV1Public loads personal chat history
 
@@ -288,7 +288,7 @@ func (a *Client) GetPersonalChatHistoryV1PublicShort(params *GetPersonalChatHist
 }
 
 /*
-Deprecated: Use PersonalChatHistoryShort instead.
+Deprecated: 2022-08-10 - Use PersonalChatHistoryShort instead.
 
   PersonalChatHistory loads personal chat history
 

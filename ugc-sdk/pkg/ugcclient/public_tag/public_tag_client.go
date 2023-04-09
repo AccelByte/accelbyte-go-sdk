@@ -40,7 +40,7 @@ type ClientService interface {
 }
 
 /*
-Deprecated: Use GetTagShort instead.
+Deprecated: 2022-08-10 - Use GetTagShort instead.
 
   GetTag gets tags
 

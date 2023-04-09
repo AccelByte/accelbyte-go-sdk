@@ -48,7 +48,7 @@ type ClientService interface {
 }
 
 /*
-Deprecated: Use AdminListUserAchievementsShort instead.
+Deprecated: 2022-08-10 - Use AdminListUserAchievementsShort instead.
 
   AdminListUserAchievements queries user achievements include achieved and in progress
 
@@ -170,7 +170,7 @@ func (a *Client) AdminListUserAchievementsShort(params *AdminListUserAchievement
 }
 
 /*
-Deprecated: Use AdminResetAchievementShort instead.
+Deprecated: 2022-08-10 - Use AdminResetAchievementShort instead.
 
   AdminResetAchievement resets an achievement
 
@@ -290,7 +290,7 @@ func (a *Client) AdminResetAchievementShort(params *AdminResetAchievementParams,
 }
 
 /*
-Deprecated: Use AdminUnlockAchievementShort instead.
+Deprecated: 2022-08-10 - Use AdminUnlockAchievementShort instead.
 
   AdminUnlockAchievement unlocks an achievement
 
@@ -406,7 +406,7 @@ func (a *Client) AdminUnlockAchievementShort(params *AdminUnlockAchievementParam
 }
 
 /*
-Deprecated: Use PublicListUserAchievementsShort instead.
+Deprecated: 2022-08-10 - Use PublicListUserAchievementsShort instead.
 
   PublicListUserAchievements queries user achievements include achieved and in progress
 
@@ -528,7 +528,7 @@ func (a *Client) PublicListUserAchievementsShort(params *PublicListUserAchieveme
 }
 
 /*
-Deprecated: Use PublicUnlockAchievementShort instead.
+Deprecated: 2022-08-10 - Use PublicUnlockAchievementShort instead.
 
   PublicUnlockAchievement unlocks an achievement
 

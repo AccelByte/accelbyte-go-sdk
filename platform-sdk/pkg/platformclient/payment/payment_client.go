@@ -56,7 +56,7 @@ type ClientService interface {
 }
 
 /*
-Deprecated: Use ChargePaymentOrderShort instead.
+Deprecated: 2022-08-10 - Use ChargePaymentOrderShort instead.
 
   ChargePaymentOrder charges payment order without payment flow
 
@@ -165,7 +165,7 @@ func (a *Client) ChargePaymentOrderShort(params *ChargePaymentOrderParams, authI
 }
 
 /*
-Deprecated: Use CreateUserPaymentOrderShort instead.
+Deprecated: 2022-08-10 - Use CreateUserPaymentOrderShort instead.
 
   CreateUserPaymentOrder creates payment order
 
@@ -284,7 +284,7 @@ func (a *Client) CreateUserPaymentOrderShort(params *CreateUserPaymentOrderParam
 }
 
 /*
-Deprecated: Use GetPaymentOrderShort instead.
+Deprecated: 2022-08-10 - Use GetPaymentOrderShort instead.
 
   GetPaymentOrder gets payment order
 
@@ -383,7 +383,7 @@ func (a *Client) GetPaymentOrderShort(params *GetPaymentOrderParams, authInfo ru
 }
 
 /*
-Deprecated: Use GetPaymentOrderChargeStatusShort instead.
+Deprecated: 2022-08-10 - Use GetPaymentOrderChargeStatusShort instead.
 
   GetPaymentOrderChargeStatus gets payment order charge status
 
@@ -482,7 +482,7 @@ func (a *Client) GetPaymentOrderChargeStatusShort(params *GetPaymentOrderChargeS
 }
 
 /*
-Deprecated: Use ListExtOrderNoByExtTxIDShort instead.
+Deprecated: 2022-08-10 - Use ListExtOrderNoByExtTxIDShort instead.
 
   ListExtOrderNoByExtTxID lists external order no by external transaction id
 
@@ -576,7 +576,7 @@ func (a *Client) ListExtOrderNoByExtTxIDShort(params *ListExtOrderNoByExtTxIDPar
 }
 
 /*
-Deprecated: Use QueryPaymentNotificationsShort instead.
+Deprecated: 2022-08-10 - Use QueryPaymentNotificationsShort instead.
 
   QueryPaymentNotifications queries payment notifications
 
@@ -670,7 +670,7 @@ func (a *Client) QueryPaymentNotificationsShort(params *QueryPaymentNotification
 }
 
 /*
-Deprecated: Use QueryPaymentOrdersShort instead.
+Deprecated: 2022-08-10 - Use QueryPaymentOrdersShort instead.
 
   QueryPaymentOrders queries payment orders
 
@@ -764,7 +764,7 @@ func (a *Client) QueryPaymentOrdersShort(params *QueryPaymentOrdersParams, authI
 }
 
 /*
-Deprecated: Use RefundUserPaymentOrderShort instead.
+Deprecated: 2022-08-10 - Use RefundUserPaymentOrderShort instead.
 
   RefundUserPaymentOrder refunds payment order
 
@@ -873,7 +873,7 @@ func (a *Client) RefundUserPaymentOrderShort(params *RefundUserPaymentOrderParam
 }
 
 /*
-Deprecated: Use SimulatePaymentOrderNotificationShort instead.
+Deprecated: 2022-08-10 - Use SimulatePaymentOrderNotificationShort instead.
 
   SimulatePaymentOrderNotification simulates payment notification
 

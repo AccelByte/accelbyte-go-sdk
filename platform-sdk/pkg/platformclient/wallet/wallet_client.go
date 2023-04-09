@@ -76,7 +76,7 @@ type ClientService interface {
 }
 
 /*
-Deprecated: Use CheckWalletShort instead.
+Deprecated: 2022-08-10 - Use CheckWalletShort instead.
 
   CheckWallet checks wallet by balance origin and currency code
 
@@ -185,7 +185,7 @@ func (a *Client) CheckWalletShort(params *CheckWalletParams, authInfo runtime.Cl
 }
 
 /*
-Deprecated: Use CreditUserWalletShort instead.
+Deprecated: 2022-08-10 - Use CreditUserWalletShort instead.
 
   CreditUserWallet credits a user wallet by currency code and balance origin
 
@@ -289,7 +289,7 @@ func (a *Client) CreditUserWalletShort(params *CreditUserWalletParams, authInfo 
 }
 
 /*
-Deprecated: Use DebitUserWalletShort instead.
+Deprecated: 2022-08-10 - Use DebitUserWalletShort instead.
 
   DebitUserWallet debits a user wallet
 
@@ -403,7 +403,7 @@ func (a *Client) DebitUserWalletShort(params *DebitUserWalletParams, authInfo ru
 }
 
 /*
-Deprecated: Use DebitUserWalletByCurrencyCodeShort instead.
+Deprecated: 2022-08-10 - Use DebitUserWalletByCurrencyCodeShort instead.
 
   DebitUserWalletByCurrencyCode debits a user wallet by currency code
 
@@ -512,7 +512,7 @@ func (a *Client) DebitUserWalletByCurrencyCodeShort(params *DebitUserWalletByCur
 }
 
 /*
-Deprecated: Use DisableUserWalletShort instead.
+Deprecated: 2022-08-10 - Use DisableUserWalletShort instead.
 
   DisableUserWallet disables a user wallet
 
@@ -616,7 +616,7 @@ func (a *Client) DisableUserWalletShort(params *DisableUserWalletParams, authInf
 }
 
 /*
-Deprecated: Use EnableUserWalletShort instead.
+Deprecated: 2022-08-10 - Use EnableUserWalletShort instead.
 
   EnableUserWallet enables a user wallet
 
@@ -720,7 +720,7 @@ func (a *Client) EnableUserWalletShort(params *EnableUserWalletParams, authInfo 
 }
 
 /*
-Deprecated: Use GetPlatformWalletConfigShort instead.
+Deprecated: 2022-08-10 - Use GetPlatformWalletConfigShort instead.
 
   GetPlatformWalletConfig gets platform wallet config list
 
@@ -814,7 +814,7 @@ func (a *Client) GetPlatformWalletConfigShort(params *GetPlatformWalletConfigPar
 }
 
 /*
-Deprecated: Use GetUserWalletShort instead.
+Deprecated: 2022-08-10 - Use GetUserWalletShort instead.
 
   GetUserWallet gets a user wallet
 
@@ -913,7 +913,7 @@ func (a *Client) GetUserWalletShort(params *GetUserWalletParams, authInfo runtim
 }
 
 /*
-Deprecated: Use GetWalletShort instead.
+Deprecated: 2022-08-10 - Use GetWalletShort instead.
 
   GetWallet gets a wallet by wallet id
 
@@ -1012,7 +1012,7 @@ func (a *Client) GetWalletShort(params *GetWalletParams, authInfo runtime.Client
 }
 
 /*
-Deprecated: Use ListUserCurrencyTransactionsShort instead.
+Deprecated: 2022-08-10 - Use ListUserCurrencyTransactionsShort instead.
 
   ListUserCurrencyTransactions lists user currency transactions
 
@@ -1111,7 +1111,7 @@ func (a *Client) ListUserCurrencyTransactionsShort(params *ListUserCurrencyTrans
 }
 
 /*
-Deprecated: Use ListUserWalletTransactionsShort instead.
+Deprecated: 2022-08-10 - Use ListUserWalletTransactionsShort instead.
 
   ListUserWalletTransactions lists user wallet transactions
 
@@ -1210,7 +1210,7 @@ func (a *Client) ListUserWalletTransactionsShort(params *ListUserWalletTransacti
 }
 
 /*
-Deprecated: Use PayWithUserWalletShort instead.
+Deprecated: 2022-08-10 - Use PayWithUserWalletShort instead.
 
   PayWithUserWallet pays with user wallet by currency code and client platform
 
@@ -1314,7 +1314,7 @@ func (a *Client) PayWithUserWalletShort(params *PayWithUserWalletParams, authInf
 }
 
 /*
-Deprecated: Use PublicGetMyWalletShort instead.
+Deprecated: 2022-08-10 - Use PublicGetMyWalletShort instead.
 
   PublicGetMyWallet gets my wallet by currency code and namespace
 
@@ -1408,7 +1408,7 @@ func (a *Client) PublicGetMyWalletShort(params *PublicGetMyWalletParams, authInf
 }
 
 /*
-Deprecated: Use PublicGetWalletShort instead.
+Deprecated: 2022-08-10 - Use PublicGetWalletShort instead.
 
   PublicGetWallet gets a wallet by currency code
 
@@ -1502,7 +1502,7 @@ func (a *Client) PublicGetWalletShort(params *PublicGetWalletParams, authInfo ru
 }
 
 /*
-Deprecated: Use PublicListUserWalletTransactionsShort instead.
+Deprecated: 2022-08-10 - Use PublicListUserWalletTransactionsShort instead.
 
   PublicListUserWalletTransactions lists wallet transactions by currency code
 
@@ -1596,7 +1596,7 @@ func (a *Client) PublicListUserWalletTransactionsShort(params *PublicListUserWal
 }
 
 /*
-Deprecated: Use QueryUserCurrencyWalletsShort instead.
+Deprecated: 2022-08-10 - Use QueryUserCurrencyWalletsShort instead.
 
   QueryUserCurrencyWallets gets user currency wallet summary
 
@@ -1690,7 +1690,7 @@ func (a *Client) QueryUserCurrencyWalletsShort(params *QueryUserCurrencyWalletsP
 }
 
 /*
-Deprecated: Use QueryWalletsShort instead.
+Deprecated: 2022-08-10 - Use QueryWalletsShort instead.
 
   QueryWallets queries wallets
 
@@ -1784,7 +1784,7 @@ func (a *Client) QueryWalletsShort(params *QueryWalletsParams, authInfo runtime.
 }
 
 /*
-Deprecated: Use ResetPlatformWalletConfigShort instead.
+Deprecated: 2022-08-10 - Use ResetPlatformWalletConfigShort instead.
 
   ResetPlatformWalletConfig resets platform wallet config
 
@@ -1878,7 +1878,7 @@ func (a *Client) ResetPlatformWalletConfigShort(params *ResetPlatformWalletConfi
 }
 
 /*
-Deprecated: Use UpdatePlatformWalletConfigShort instead.
+Deprecated: 2022-08-10 - Use UpdatePlatformWalletConfigShort instead.
 
   UpdatePlatformWalletConfig updates platform wallet config
 

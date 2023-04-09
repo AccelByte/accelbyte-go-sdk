@@ -42,7 +42,7 @@ type ClientService interface {
 }
 
 /*
-Deprecated: Use GetPaymentCallbackConfigShort instead.
+Deprecated: 2022-08-10 - Use GetPaymentCallbackConfigShort instead.
 
   GetPaymentCallbackConfig gets payment callback configuration
 
@@ -141,7 +141,7 @@ func (a *Client) GetPaymentCallbackConfigShort(params *GetPaymentCallbackConfigP
 }
 
 /*
-Deprecated: Use UpdatePaymentCallbackConfigShort instead.
+Deprecated: 2022-08-10 - Use UpdatePaymentCallbackConfigShort instead.
 
   UpdatePaymentCallbackConfig updates payment callback configuration
 

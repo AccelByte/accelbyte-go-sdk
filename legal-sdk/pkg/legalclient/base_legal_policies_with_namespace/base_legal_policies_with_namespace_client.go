@@ -50,7 +50,7 @@ type ClientService interface {
 }
 
 /*
-Deprecated: Use CreatePolicy1Short instead.
+Deprecated: 2022-08-10 - Use CreatePolicy1Short instead.
 
   CreatePolicy1 creates a base legal policy
 
@@ -159,7 +159,7 @@ func (a *Client) CreatePolicy1Short(params *CreatePolicy1Params, authInfo runtim
 }
 
 /*
-Deprecated: Use PartialUpdatePolicy1Short instead.
+Deprecated: 2022-08-10 - Use PartialUpdatePolicy1Short instead.
 
   PartialUpdatePolicy1 updates base legal policy
 
@@ -258,7 +258,7 @@ func (a *Client) PartialUpdatePolicy1Short(params *PartialUpdatePolicy1Params, a
 }
 
 /*
-Deprecated: Use RetrieveAllLegalPoliciesByNamespaceShort instead.
+Deprecated: 2022-08-10 - Use RetrieveAllLegalPoliciesByNamespaceShort instead.
 
   RetrieveAllLegalPoliciesByNamespace retrieves all base legal policy in the namespace
 
@@ -352,7 +352,7 @@ func (a *Client) RetrieveAllLegalPoliciesByNamespaceShort(params *RetrieveAllLeg
 }
 
 /*
-Deprecated: Use RetrieveAllPolicyTypes1Short instead.
+Deprecated: 2022-08-10 - Use RetrieveAllPolicyTypes1Short instead.
 
   RetrieveAllPolicyTypes1 retrieves all policy type
 
@@ -446,7 +446,7 @@ func (a *Client) RetrieveAllPolicyTypes1Short(params *RetrieveAllPolicyTypes1Par
 }
 
 /*
-Deprecated: Use RetrievePolicyCountry1Short instead.
+Deprecated: 2022-08-10 - Use RetrievePolicyCountry1Short instead.
 
   RetrievePolicyCountry1 retrieves a base legal policy based on a particular country
 
@@ -545,7 +545,7 @@ func (a *Client) RetrievePolicyCountry1Short(params *RetrievePolicyCountry1Param
 }
 
 /*
-Deprecated: Use RetrieveSinglePolicy1Short instead.
+Deprecated: 2022-08-10 - Use RetrieveSinglePolicy1Short instead.
 
   RetrieveSinglePolicy1 retrieves a base legal policy
 

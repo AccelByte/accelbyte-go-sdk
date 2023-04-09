@@ -40,7 +40,7 @@ type ClientService interface {
 }
 
 /*
-Deprecated: Use AdminRetrieveEligibilitiesShort instead.
+Deprecated: 2022-08-10 - Use AdminRetrieveEligibilitiesShort instead.
 
   AdminRetrieveEligibilities checks user legal eligibility
 

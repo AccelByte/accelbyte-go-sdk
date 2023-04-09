@@ -76,7 +76,7 @@ type ClientService interface {
 }
 
 /*
-Deprecated: Use CancelSubscriptionShort instead.
+Deprecated: 2022-08-10 - Use CancelSubscriptionShort instead.
 
   CancelSubscription cancels a subscription
 
@@ -180,7 +180,7 @@ func (a *Client) CancelSubscriptionShort(params *CancelSubscriptionParams, authI
 }
 
 /*
-Deprecated: Use CheckUserSubscriptionSubscribableByItemIDShort instead.
+Deprecated: 2022-08-10 - Use CheckUserSubscriptionSubscribableByItemIDShort instead.
 
   CheckUserSubscriptionSubscribableByItemID checks user subscription subscribable
 
@@ -274,7 +274,7 @@ func (a *Client) CheckUserSubscriptionSubscribableByItemIDShort(params *CheckUse
 }
 
 /*
-Deprecated: Use DeleteUserSubscriptionShort instead.
+Deprecated: 2022-08-10 - Use DeleteUserSubscriptionShort instead.
 
   DeleteUserSubscription deletes user subscription
 
@@ -368,7 +368,7 @@ func (a *Client) DeleteUserSubscriptionShort(params *DeleteUserSubscriptionParam
 }
 
 /*
-Deprecated: Use GetUserSubscriptionShort instead.
+Deprecated: 2022-08-10 - Use GetUserSubscriptionShort instead.
 
   GetUserSubscription gets user subscription
 
@@ -467,7 +467,7 @@ func (a *Client) GetUserSubscriptionShort(params *GetUserSubscriptionParams, aut
 }
 
 /*
-Deprecated: Use GetUserSubscriptionActivitiesShort instead.
+Deprecated: 2022-08-10 - Use GetUserSubscriptionActivitiesShort instead.
 
   GetUserSubscriptionActivities gets user subscription activity
 
@@ -561,7 +561,7 @@ func (a *Client) GetUserSubscriptionActivitiesShort(params *GetUserSubscriptionA
 }
 
 /*
-Deprecated: Use GetUserSubscriptionBillingHistoriesShort instead.
+Deprecated: 2022-08-10 - Use GetUserSubscriptionBillingHistoriesShort instead.
 
   GetUserSubscriptionBillingHistories gets user subscription billing histories
 
@@ -655,7 +655,7 @@ func (a *Client) GetUserSubscriptionBillingHistoriesShort(params *GetUserSubscri
 }
 
 /*
-Deprecated: Use GrantDaysToSubscriptionShort instead.
+Deprecated: 2022-08-10 - Use GrantDaysToSubscriptionShort instead.
 
   GrantDaysToSubscription grants days to a subscription
 
@@ -754,7 +754,7 @@ func (a *Client) GrantDaysToSubscriptionShort(params *GrantDaysToSubscriptionPar
 }
 
 /*
-Deprecated: Use PlatformSubscribeSubscriptionShort instead.
+Deprecated: 2022-08-10 - Use PlatformSubscribeSubscriptionShort instead.
 
   PlatformSubscribeSubscription frees subscribe by platform
 
@@ -868,7 +868,7 @@ func (a *Client) PlatformSubscribeSubscriptionShort(params *PlatformSubscribeSub
 }
 
 /*
-Deprecated: Use ProcessUserSubscriptionNotificationShort instead.
+Deprecated: 2022-08-10 - Use ProcessUserSubscriptionNotificationShort instead.
 
   ProcessUserSubscriptionNotification webs hook for payment notification
 
@@ -967,7 +967,7 @@ func (a *Client) ProcessUserSubscriptionNotificationShort(params *ProcessUserSub
 }
 
 /*
-Deprecated: Use PublicCancelSubscriptionShort instead.
+Deprecated: 2022-08-10 - Use PublicCancelSubscriptionShort instead.
 
   PublicCancelSubscription cancels a subscription
 
@@ -1071,7 +1071,7 @@ func (a *Client) PublicCancelSubscriptionShort(params *PublicCancelSubscriptionP
 }
 
 /*
-Deprecated: Use PublicChangeSubscriptionBillingAccountShort instead.
+Deprecated: 2022-08-10 - Use PublicChangeSubscriptionBillingAccountShort instead.
 
   PublicChangeSubscriptionBillingAccount requests to change a subscription billing account
 
@@ -1180,7 +1180,7 @@ func (a *Client) PublicChangeSubscriptionBillingAccountShort(params *PublicChang
 }
 
 /*
-Deprecated: Use PublicCheckUserSubscriptionSubscribableByItemIDShort instead.
+Deprecated: 2022-08-10 - Use PublicCheckUserSubscriptionSubscribableByItemIDShort instead.
 
   PublicCheckUserSubscriptionSubscribableByItemID checks user subscription subscribable
 
@@ -1274,7 +1274,7 @@ func (a *Client) PublicCheckUserSubscriptionSubscribableByItemIDShort(params *Pu
 }
 
 /*
-Deprecated: Use PublicGetUserSubscriptionShort instead.
+Deprecated: 2022-08-10 - Use PublicGetUserSubscriptionShort instead.
 
   PublicGetUserSubscription gets user subscription
 
@@ -1373,7 +1373,7 @@ func (a *Client) PublicGetUserSubscriptionShort(params *PublicGetUserSubscriptio
 }
 
 /*
-Deprecated: Use PublicGetUserSubscriptionBillingHistoriesShort instead.
+Deprecated: 2022-08-10 - Use PublicGetUserSubscriptionBillingHistoriesShort instead.
 
   PublicGetUserSubscriptionBillingHistories gets user subscription billing histories
 
@@ -1467,7 +1467,7 @@ func (a *Client) PublicGetUserSubscriptionBillingHistoriesShort(params *PublicGe
 }
 
 /*
-Deprecated: Use PublicQueryUserSubscriptionsShort instead.
+Deprecated: 2022-08-10 - Use PublicQueryUserSubscriptionsShort instead.
 
   PublicQueryUserSubscriptions queries user subscriptions
 
@@ -1561,7 +1561,7 @@ func (a *Client) PublicQueryUserSubscriptionsShort(params *PublicQueryUserSubscr
 }
 
 /*
-Deprecated: Use PublicSubscribeSubscriptionShort instead.
+Deprecated: 2022-08-10 - Use PublicSubscribeSubscriptionShort instead.
 
   PublicSubscribeSubscription subscribes a subscription
 
@@ -1680,7 +1680,7 @@ func (a *Client) PublicSubscribeSubscriptionShort(params *PublicSubscribeSubscri
 }
 
 /*
-Deprecated: Use QuerySubscriptionsShort instead.
+Deprecated: 2022-08-10 - Use QuerySubscriptionsShort instead.
 
   QuerySubscriptions queries subscriptions
 
@@ -1774,7 +1774,7 @@ func (a *Client) QuerySubscriptionsShort(params *QuerySubscriptionsParams, authI
 }
 
 /*
-Deprecated: Use QueryUserSubscriptionsShort instead.
+Deprecated: 2022-08-10 - Use QueryUserSubscriptionsShort instead.
 
   QueryUserSubscriptions queries user subscriptions
 
@@ -1868,7 +1868,7 @@ func (a *Client) QueryUserSubscriptionsShort(params *QueryUserSubscriptionsParam
 }
 
 /*
-Deprecated: Use RecurringChargeSubscriptionShort instead.
+Deprecated: 2022-08-10 - Use RecurringChargeSubscriptionShort instead.
 
   RecurringChargeSubscription recurrings charge subscription
 

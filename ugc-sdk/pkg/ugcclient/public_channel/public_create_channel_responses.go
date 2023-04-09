@@ -22,34 +22,34 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/ugc-sdk/pkg/ugcclientmodels"
 )
 
-// CreateChannelReader is a Reader for the CreateChannel structure.
-type CreateChannelReader struct {
+// PublicCreateChannelReader is a Reader for the PublicCreateChannel structure.
+type PublicCreateChannelReader struct {
 	formats strfmt.Registry
 }
 
 // ReadResponse reads a server response into the received o.
-func (o *CreateChannelReader) ReadResponse(response runtime.ClientResponse, consumer runtime.Consumer) (interface{}, error) {
+func (o *PublicCreateChannelReader) ReadResponse(response runtime.ClientResponse, consumer runtime.Consumer) (interface{}, error) {
 	switch response.Code() {
 	case 201:
-		result := NewCreateChannelCreated()
+		result := NewPublicCreateChannelCreated()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return result, nil
 	case 400:
-		result := NewCreateChannelBadRequest()
+		result := NewPublicCreateChannelBadRequest()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return result, nil
 	case 401:
-		result := NewCreateChannelUnauthorized()
+		result := NewPublicCreateChannelUnauthorized()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return result, nil
 	case 500:
-		result := NewCreateChannelInternalServerError()
+		result := NewPublicCreateChannelInternalServerError()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
@@ -65,24 +65,24 @@ func (o *CreateChannelReader) ReadResponse(response runtime.ClientResponse, cons
 	}
 }
 
-// NewCreateChannelCreated creates a CreateChannelCreated with default headers values
-func NewCreateChannelCreated() *CreateChannelCreated {
-	return &CreateChannelCreated{}
+// NewPublicCreateChannelCreated creates a PublicCreateChannelCreated with default headers values
+func NewPublicCreateChannelCreated() *PublicCreateChannelCreated {
+	return &PublicCreateChannelCreated{}
 }
 
-/*CreateChannelCreated handles this case with default header values.
+/*PublicCreateChannelCreated handles this case with default header values.
 
   Created
 */
-type CreateChannelCreated struct {
+type PublicCreateChannelCreated struct {
 	Payload *ugcclientmodels.ModelsChannelResponse
 }
 
-func (o *CreateChannelCreated) Error() string {
-	return fmt.Sprintf("[POST /ugc/v1/public/namespaces/{namespace}/users/{userId}/channels][%d] createChannelCreated  %+v", 201, o.ToJSONString())
+func (o *PublicCreateChannelCreated) Error() string {
+	return fmt.Sprintf("[POST /ugc/v1/public/namespaces/{namespace}/users/{userId}/channels][%d] publicCreateChannelCreated  %+v", 201, o.ToJSONString())
 }
 
-func (o *CreateChannelCreated) ToJSONString() string {
+func (o *PublicCreateChannelCreated) ToJSONString() string {
 	if o.Payload == nil {
 		return "{}"
 	}
@@ -97,11 +97,11 @@ func (o *CreateChannelCreated) ToJSONString() string {
 	return fmt.Sprintf("%+v", string(b))
 }
 
-func (o *CreateChannelCreated) GetPayload() *ugcclientmodels.ModelsChannelResponse {
+func (o *PublicCreateChannelCreated) GetPayload() *ugcclientmodels.ModelsChannelResponse {
 	return o.Payload
 }
 
-func (o *CreateChannelCreated) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+func (o *PublicCreateChannelCreated) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -118,24 +118,24 @@ func (o *CreateChannelCreated) readResponse(response runtime.ClientResponse, con
 	return nil
 }
 
-// NewCreateChannelBadRequest creates a CreateChannelBadRequest with default headers values
-func NewCreateChannelBadRequest() *CreateChannelBadRequest {
-	return &CreateChannelBadRequest{}
+// NewPublicCreateChannelBadRequest creates a PublicCreateChannelBadRequest with default headers values
+func NewPublicCreateChannelBadRequest() *PublicCreateChannelBadRequest {
+	return &PublicCreateChannelBadRequest{}
 }
 
-/*CreateChannelBadRequest handles this case with default header values.
+/*PublicCreateChannelBadRequest handles this case with default header values.
 
   Bad Request
 */
-type CreateChannelBadRequest struct {
+type PublicCreateChannelBadRequest struct {
 	Payload *ugcclientmodels.ResponseError
 }
 
-func (o *CreateChannelBadRequest) Error() string {
-	return fmt.Sprintf("[POST /ugc/v1/public/namespaces/{namespace}/users/{userId}/channels][%d] createChannelBadRequest  %+v", 400, o.ToJSONString())
+func (o *PublicCreateChannelBadRequest) Error() string {
+	return fmt.Sprintf("[POST /ugc/v1/public/namespaces/{namespace}/users/{userId}/channels][%d] publicCreateChannelBadRequest  %+v", 400, o.ToJSONString())
 }
 
-func (o *CreateChannelBadRequest) ToJSONString() string {
+func (o *PublicCreateChannelBadRequest) ToJSONString() string {
 	if o.Payload == nil {
 		return "{}"
 	}
@@ -150,11 +150,11 @@ func (o *CreateChannelBadRequest) ToJSONString() string {
 	return fmt.Sprintf("%+v", string(b))
 }
 
-func (o *CreateChannelBadRequest) GetPayload() *ugcclientmodels.ResponseError {
+func (o *PublicCreateChannelBadRequest) GetPayload() *ugcclientmodels.ResponseError {
 	return o.Payload
 }
 
-func (o *CreateChannelBadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+func (o *PublicCreateChannelBadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -171,24 +171,24 @@ func (o *CreateChannelBadRequest) readResponse(response runtime.ClientResponse, 
 	return nil
 }
 
-// NewCreateChannelUnauthorized creates a CreateChannelUnauthorized with default headers values
-func NewCreateChannelUnauthorized() *CreateChannelUnauthorized {
-	return &CreateChannelUnauthorized{}
+// NewPublicCreateChannelUnauthorized creates a PublicCreateChannelUnauthorized with default headers values
+func NewPublicCreateChannelUnauthorized() *PublicCreateChannelUnauthorized {
+	return &PublicCreateChannelUnauthorized{}
 }
 
-/*CreateChannelUnauthorized handles this case with default header values.
+/*PublicCreateChannelUnauthorized handles this case with default header values.
 
   Unauthorized
 */
-type CreateChannelUnauthorized struct {
+type PublicCreateChannelUnauthorized struct {
 	Payload *ugcclientmodels.ResponseError
 }
 
-func (o *CreateChannelUnauthorized) Error() string {
-	return fmt.Sprintf("[POST /ugc/v1/public/namespaces/{namespace}/users/{userId}/channels][%d] createChannelUnauthorized  %+v", 401, o.ToJSONString())
+func (o *PublicCreateChannelUnauthorized) Error() string {
+	return fmt.Sprintf("[POST /ugc/v1/public/namespaces/{namespace}/users/{userId}/channels][%d] publicCreateChannelUnauthorized  %+v", 401, o.ToJSONString())
 }
 
-func (o *CreateChannelUnauthorized) ToJSONString() string {
+func (o *PublicCreateChannelUnauthorized) ToJSONString() string {
 	if o.Payload == nil {
 		return "{}"
 	}
@@ -203,11 +203,11 @@ func (o *CreateChannelUnauthorized) ToJSONString() string {
 	return fmt.Sprintf("%+v", string(b))
 }
 
-func (o *CreateChannelUnauthorized) GetPayload() *ugcclientmodels.ResponseError {
+func (o *PublicCreateChannelUnauthorized) GetPayload() *ugcclientmodels.ResponseError {
 	return o.Payload
 }
 
-func (o *CreateChannelUnauthorized) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+func (o *PublicCreateChannelUnauthorized) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -224,24 +224,24 @@ func (o *CreateChannelUnauthorized) readResponse(response runtime.ClientResponse
 	return nil
 }
 
-// NewCreateChannelInternalServerError creates a CreateChannelInternalServerError with default headers values
-func NewCreateChannelInternalServerError() *CreateChannelInternalServerError {
-	return &CreateChannelInternalServerError{}
+// NewPublicCreateChannelInternalServerError creates a PublicCreateChannelInternalServerError with default headers values
+func NewPublicCreateChannelInternalServerError() *PublicCreateChannelInternalServerError {
+	return &PublicCreateChannelInternalServerError{}
 }
 
-/*CreateChannelInternalServerError handles this case with default header values.
+/*PublicCreateChannelInternalServerError handles this case with default header values.
 
   Internal Server Error
 */
-type CreateChannelInternalServerError struct {
+type PublicCreateChannelInternalServerError struct {
 	Payload *ugcclientmodels.ResponseError
 }
 
-func (o *CreateChannelInternalServerError) Error() string {
-	return fmt.Sprintf("[POST /ugc/v1/public/namespaces/{namespace}/users/{userId}/channels][%d] createChannelInternalServerError  %+v", 500, o.ToJSONString())
+func (o *PublicCreateChannelInternalServerError) Error() string {
+	return fmt.Sprintf("[POST /ugc/v1/public/namespaces/{namespace}/users/{userId}/channels][%d] publicCreateChannelInternalServerError  %+v", 500, o.ToJSONString())
 }
 
-func (o *CreateChannelInternalServerError) ToJSONString() string {
+func (o *PublicCreateChannelInternalServerError) ToJSONString() string {
 	if o.Payload == nil {
 		return "{}"
 	}
@@ -256,11 +256,11 @@ func (o *CreateChannelInternalServerError) ToJSONString() string {
 	return fmt.Sprintf("%+v", string(b))
 }
 
-func (o *CreateChannelInternalServerError) GetPayload() *ugcclientmodels.ResponseError {
+func (o *PublicCreateChannelInternalServerError) GetPayload() *ugcclientmodels.ResponseError {
 	return o.Payload
 }
 
-func (o *CreateChannelInternalServerError) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+func (o *PublicCreateChannelInternalServerError) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {

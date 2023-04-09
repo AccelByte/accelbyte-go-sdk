@@ -41,13 +41,19 @@ type EntitlementHistoryInfo struct {
 	// Required: true
 	Operator *string `json:"operator"`
 
+	// reason
+	Reason string `json:"reason,omitempty"`
+
 	// History update time
 	// Required: true
 	// Format: date-time
 	UpdatedAt strfmt.DateTime `json:"updatedAt"`
 
-	// The use count of a consumable entitlement.
+	// The reminder use count of a consumable entitlement.
 	UseCount int32 `json:"useCount,omitempty"`
+
+	// changed use count.
+	UseCountChange int32 `json:"useCountChange,omitempty"`
 
 	// The owner id of entitlement
 	// Required: true

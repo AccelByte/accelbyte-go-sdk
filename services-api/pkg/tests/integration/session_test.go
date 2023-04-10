@@ -8,6 +8,9 @@ import (
 	"fmt"
 	"testing"
 
+	"github.com/sirupsen/logrus"
+	"github.com/stretchr/testify/assert"
+
 	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclient/users"
 	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclient/users_v4"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
@@ -20,8 +23,6 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/session-sdk/pkg/sessionclient/operations"
 	partySession "github.com/AccelByte/accelbyte-go-sdk/session-sdk/pkg/sessionclient/party"
 	"github.com/AccelByte/accelbyte-go-sdk/session-sdk/pkg/sessionclientmodels"
-	"github.com/sirupsen/logrus"
-	"github.com/stretchr/testify/assert"
 )
 
 var (
@@ -361,7 +362,7 @@ func TestIntegrationParty(t *testing.T) {
 		Namespace: integration.NamespaceTest,
 		PartyID:   *joined.ID,
 	}
-	errLeave := partyServiceFor2ndPlayer.PublicPartyLeave(inputLeave)
+	errLeave := partyServiceFor2ndPlayer.PublicPartyLeaveShort(inputLeave)
 	if errLeave != nil {
 		assert.FailNow(t, errLeave.Error())
 

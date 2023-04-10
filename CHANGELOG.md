@@ -1,3 +1,13 @@
+<a name="v0.42.0"></a>
+## [v0.42.0] - 2023-04-10
+
+### Chore
+- add `GetHeaders()` func for forward compatibility with go-openapi/runtime client response
+
+### Ci
+- rename jenkins slack notif channel
+
+
 <a name="v0.41.0"></a>
 ## [v0.41.0] - 2023-03-28
 
@@ -1280,6 +1290,7 @@ The wrapper have been refactored and has breaking change, these are the list:
 ### Fix
 - delete go.mod ([#1](https://github.com/AccelByte/accelbyte-go-sdk/issues/1))
 
+[v0.42.0]: https://github.com/AccelByte/accelbyte-go-sdk/compare/v0.41.0...v0.42.0
 [v0.41.0]: https://github.com/AccelByte/accelbyte-go-sdk/compare/v0.40.0...v0.41.0
 [v0.40.0]: https://github.com/AccelByte/accelbyte-go-sdk/compare/v0.39.0...v0.40.0
 [v0.39.0]: https://github.com/AccelByte/accelbyte-go-sdk/compare/v0.38.0...v0.39.0

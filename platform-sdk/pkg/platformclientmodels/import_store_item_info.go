@@ -20,12 +20,10 @@ import (
 type ImportStoreItemInfo struct {
 
 	// Item category path
-	// Required: true
-	CategoryPath *string `json:"categoryPath"`
+	CategoryPath string `json:"categoryPath,omitempty"`
 
 	// Item id
-	// Required: true
-	ItemID *string `json:"itemId"`
+	ItemID string `json:"itemId,omitempty"`
 
 	// Item type
 	// Required: true
@@ -37,8 +35,7 @@ type ImportStoreItemInfo struct {
 	Localizations map[string]Localization `json:"localizations"`
 
 	// Name
-	// Required: true
-	Name *string `json:"name"`
+	Name string `json:"name,omitempty"`
 
 	// Sku
 	Sku string `json:"sku,omitempty"`
@@ -48,14 +45,6 @@ type ImportStoreItemInfo struct {
 func (m *ImportStoreItemInfo) Validate(formats strfmt.Registry) error {
 	var res []error
 
-	if err := m.validateCategoryPath(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.validateItemID(formats); err != nil {
-		res = append(res, err)
-	}
-
 	if err := m.validateItemType(formats); err != nil {
 		res = append(res, err)
 	}
@@ -64,31 +53,9 @@ func (m *ImportStoreItemInfo) Validate(formats strfmt.Registry) error {
 		res = append(res, err)
 	}
 
-	if err := m.validateName(formats); err != nil {
-		res = append(res, err)
-	}
-
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
-	return nil
-}
-
-func (m *ImportStoreItemInfo) validateCategoryPath(formats strfmt.Registry) error {
-
-	if err := validate.Required("categoryPath", "body", m.CategoryPath); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *ImportStoreItemInfo) validateItemID(formats strfmt.Registry) error {
-
-	if err := validate.Required("itemId", "body", m.ItemID); err != nil {
-		return err
-	}
-
 	return nil
 }
 
@@ -175,15 +142,6 @@ func (m *ImportStoreItemInfo) validateLocalizations(formats strfmt.Registry) err
 			}
 		}
 
-	}
-
-	return nil
-}
-
-func (m *ImportStoreItemInfo) validateName(formats strfmt.Registry) error {
-
-	if err := validate.Required("name", "body", m.Name); err != nil {
-		return err
 	}
 
 	return nil

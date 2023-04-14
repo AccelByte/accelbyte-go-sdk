@@ -4,10 +4,13 @@
 
 // Code generated. DO NOT EDIT.
 
-package dlc
+package wallet
 
 import (
-	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclient/dlc"
+	"encoding/json"
+
+	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclient/wallet"
+	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/platform"
 	"github.com/AccelByte/sample-apps/pkg/repository"
@@ -15,25 +18,28 @@ import (
 	"github.com/spf13/cobra"
 )
 
-// GetUserDLCCmd represents the GetUserDLC command
-var GetUserDLCCmd = &cobra.Command{
-	Use:   "getUserDLC",
-	Short: "Get user DLC",
-	Long:  `Get user DLC`,
+// BulkDebitCmd represents the BulkDebit command
+var BulkDebitCmd = &cobra.Command{
+	Use:   "bulkDebit",
+	Short: "Bulk debit",
+	Long:  `Bulk debit`,
 	RunE: func(cmd *cobra.Command, args []string) error {
-		dlcService := &platform.DLCService{
+		walletService := &platform.WalletService{
 			Client:          factory.NewPlatformClient(&repository.ConfigRepositoryImpl{}),
 			TokenRepository: &repository.TokenRepositoryImpl{},
 		}
 		namespace, _ := cmd.Flags().GetString("namespace")
-		userId, _ := cmd.Flags().GetString("userId")
-		type_, _ := cmd.Flags().GetString("type")
-		input := &dlc.GetUserDLCParams{
-			Namespace: namespace,
-			UserID:    userId,
-			Type:      &type_,
+		bodyString := cmd.Flag("body").Value.String()
+		var body []*platformclientmodels.BulkDebitRequest
+		errBody := json.Unmarshal([]byte(bodyString), &body)
+		if errBody != nil {
+			return errBody
 		}
-		ok, errOK := dlcService.GetUserDLCShort(input)
+		input := &wallet.BulkDebitParams{
+			Body:      body,
+			Namespace: namespace,
+		}
+		ok, errOK := walletService.BulkDebitShort(input)
 		if errOK != nil {
 			logrus.Error(errOK)
 
@@ -47,9 +53,7 @@ var GetUserDLCCmd = &cobra.Command{
 }
 
 func init() {
-	GetUserDLCCmd.Flags().String("namespace", "", "Namespace")
-	_ = GetUserDLCCmd.MarkFlagRequired("namespace")
-	GetUserDLCCmd.Flags().String("userId", "", "User id")
-	_ = GetUserDLCCmd.MarkFlagRequired("userId")
-	GetUserDLCCmd.Flags().String("type", "", "Type")
+	BulkDebitCmd.Flags().String("body", "", "Body")
+	BulkDebitCmd.Flags().String("namespace", "", "Namespace")
+	_ = BulkDebitCmd.MarkFlagRequired("namespace")
 }

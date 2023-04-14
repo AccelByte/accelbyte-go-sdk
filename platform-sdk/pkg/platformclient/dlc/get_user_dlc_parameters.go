@@ -78,7 +78,7 @@ type GetUserDLCParams struct {
 	/*Namespace*/
 	Namespace string
 	/*Type*/
-	Type string
+	Type *string
 	/*UserID*/
 	UserID string
 
@@ -147,13 +147,13 @@ func (o *GetUserDLCParams) SetNamespace(namespace string) {
 }
 
 // WithType adds the typeVar to the get user DLC params
-func (o *GetUserDLCParams) WithType(typeVar string) *GetUserDLCParams {
+func (o *GetUserDLCParams) WithType(typeVar *string) *GetUserDLCParams {
 	o.SetType(typeVar)
 	return o
 }
 
 // SetType adds the type to the get user DLC params
-func (o *GetUserDLCParams) SetType(typeVar string) {
+func (o *GetUserDLCParams) SetType(typeVar *string) {
 	o.Type = typeVar
 }
 
@@ -181,13 +181,20 @@ func (o *GetUserDLCParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.Re
 		return err
 	}
 
-	// query param type
-	qrType := o.Type
-	qType := qrType
-	if qType != "" {
-		if err := r.SetQueryParam("type", qType); err != nil {
-			return err
+	if o.Type != nil {
+
+		// query param type
+		var qrType string
+		if o.Type != nil {
+			qrType = *o.Type
 		}
+		qType := qrType
+		if qType != "" {
+			if err := r.SetQueryParam("type", qType); err != nil {
+				return err
+			}
+		}
+
 	}
 
 	// path param userId

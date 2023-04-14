@@ -96,7 +96,7 @@ type ItemUpdate struct {
 	Recurring *Recurring `json:"recurring,omitempty"`
 
 	// region data map, key is region, value is region data list
-	RegionData map[string][]RegionDataItem `json:"regionData,omitempty"`
+	RegionData map[string][]RegionDataItemDTO `json:"regionData,omitempty"`
 
 	// sale config, required if sellable is true
 	SaleConfig *SaleConfig `json:"saleConfig,omitempty"`
@@ -104,6 +104,9 @@ type ItemUpdate struct {
 	// seasonType
 	// Enum: [PASS TIER]
 	SeasonType string `json:"seasonType,omitempty"`
+
+	// Whether this item is sold in section only
+	SectionExclusive bool `json:"sectionExclusive"`
 
 	// sellable, whether allow to sell back to store
 	Sellable bool `json:"sellable"`

@@ -144,13 +144,14 @@ func getStoreTierItemID(storeID string) (*string, error) {
 	itemLocalization["en-US"] = platformclientmodels.Localization{
 		Title: &itemName,
 	}
-	itemRegionData := make(map[string][]platformclientmodels.RegionDataItem)
-	itemRegionData["US"] = []platformclientmodels.RegionDataItem{
+	price := int32(0)
+	itemRegionData := make(map[string][]platformclientmodels.RegionDataItemDTO)
+	itemRegionData["US"] = []platformclientmodels.RegionDataItemDTO{
 		{
 			CurrencyCode:      &accelbyteCurrencyCode,
 			CurrencyNamespace: &accelbyteNamespace,
 			CurrencyType:      &itemCurrencyType,
-			Price:             int32(0),
+			Price:             &price,
 		},
 	}
 	itemSeasonType := platformclientmodels.ItemCreateSeasonTypeTIER

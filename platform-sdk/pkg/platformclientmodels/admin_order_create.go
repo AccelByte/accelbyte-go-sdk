@@ -64,6 +64,9 @@ type AdminOrderCreate struct {
 
 	// sandbox
 	Sandbox bool `json:"sandbox"`
+
+	// section Id, required if order consists of section item
+	SectionID string `json:"sectionId,omitempty"`
 }
 
 // Validate validates this admin order create

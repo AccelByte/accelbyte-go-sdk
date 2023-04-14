@@ -49,6 +49,9 @@ type OrderCreate struct {
 
 	// custom return url for real payment, user will be redirected to this url once payment is finished
 	ReturnURL string `json:"returnUrl,omitempty"`
+
+	// section Id, required if order consists of section item
+	SectionID string `json:"sectionId,omitempty"`
 }
 
 // Validate validates this order create

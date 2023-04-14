@@ -129,6 +129,9 @@ type FullItemInfo struct {
 	// Enum: [PASS TIER]
 	SeasonType string `json:"seasonType,omitempty"`
 
+	// whether it is sold in section only
+	SectionExclusive bool `json:"sectionExclusive"`
+
 	// sellable
 	Sellable bool `json:"sellable"`
 

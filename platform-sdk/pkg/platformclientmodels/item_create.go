@@ -100,7 +100,7 @@ type ItemCreate struct {
 
 	// region data map, key is region, value is region data list
 	// Required: true
-	RegionData map[string][]RegionDataItem `json:"regionData"`
+	RegionData map[string][]RegionDataItemDTO `json:"regionData"`
 
 	// sale config, required if sellable is true
 	SaleConfig *SaleConfig `json:"saleConfig,omitempty"`
@@ -108,6 +108,9 @@ type ItemCreate struct {
 	// seasonType
 	// Enum: [PASS TIER]
 	SeasonType string `json:"seasonType,omitempty"`
+
+	// Whether this item is sold in section only
+	SectionExclusive bool `json:"sectionExclusive"`
 
 	// sellable, whether allow to sell back to store
 	Sellable bool `json:"sellable"`

@@ -312,6 +312,40 @@ func (aaa *WalletService) QueryWallets(input *wallet.QueryWalletsParams) (*platf
 	return ok.GetPayload(), nil
 }
 
+// Deprecated: 2022-01-10 - please use BulkCreditShort instead.
+func (aaa *WalletService) BulkCredit(input *wallet.BulkCreditParams) (*platformclientmodels.BulkCreditResult, error) {
+	token, err := aaa.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, unprocessableEntity, err := aaa.Client.Wallet.BulkCredit(input, client.BearerToken(*token.AccessToken))
+	if unprocessableEntity != nil {
+		return nil, unprocessableEntity
+	}
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
+// Deprecated: 2022-01-10 - please use BulkDebitShort instead.
+func (aaa *WalletService) BulkDebit(input *wallet.BulkDebitParams) (*platformclientmodels.BulkDebitResult, error) {
+	token, err := aaa.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, unprocessableEntity, err := aaa.Client.Wallet.BulkDebit(input, client.BearerToken(*token.AccessToken))
+	if unprocessableEntity != nil {
+		return nil, unprocessableEntity
+	}
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
 // Deprecated: 2022-01-10 - please use GetWalletShort instead.
 func (aaa *WalletService) GetWallet(input *wallet.GetWalletParams) (*platformclientmodels.WalletInfo, error) {
 	token, err := aaa.TokenRepository.GetToken()
@@ -739,6 +773,56 @@ func (aaa *WalletService) QueryWalletsShort(input *wallet.QueryWalletsParams) (*
 	}
 
 	ok, err := aaa.Client.Wallet.QueryWalletsShort(input, authInfoWriter)
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
+func (aaa *WalletService) BulkCreditShort(input *wallet.BulkCreditParams) (*platformclientmodels.BulkCreditResult, error) {
+	authInfoWriter := input.AuthInfoWriter
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
+	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  aaa.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
+	ok, err := aaa.Client.Wallet.BulkCreditShort(input, authInfoWriter)
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
+func (aaa *WalletService) BulkDebitShort(input *wallet.BulkDebitParams) (*platformclientmodels.BulkDebitResult, error) {
+	authInfoWriter := input.AuthInfoWriter
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
+	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  aaa.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
+	ok, err := aaa.Client.Wallet.BulkDebitShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}

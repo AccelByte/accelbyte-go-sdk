@@ -183,6 +183,8 @@ type QueryItems1Params struct {
 
 	*/
 	Region *string
+	/*SectionExclusive*/
+	SectionExclusive *bool
 	/*SortBy
 	  default is name:asc,displayOrder:asc, allow values: [name, name:asc, name:desc, createdAt, createdAt:asc, createdAt:desc, updatedAt, updatedAt:asc, updatedAt:desc, displayOrder, displayOrder:asc, displayOrder:desc],and support sort group, eg: sortBy=name:asc,createdAt:desc. Make sure to always use more than one sort if the first sort is not an unique valuefor example, if you wish to sort by displayOrder, make sure to include other sort such as name or createdAt after the first sort, eg: displayOrder:asc,name:asc
 
@@ -398,6 +400,17 @@ func (o *QueryItems1Params) WithRegion(region *string) *QueryItems1Params {
 // SetRegion adds the region to the query items 1 params
 func (o *QueryItems1Params) SetRegion(region *string) {
 	o.Region = region
+}
+
+// WithSectionExclusive adds the sectionExclusive to the query items 1 params
+func (o *QueryItems1Params) WithSectionExclusive(sectionExclusive *bool) *QueryItems1Params {
+	o.SetSectionExclusive(sectionExclusive)
+	return o
+}
+
+// SetSectionExclusive adds the sectionExclusive to the query items 1 params
+func (o *QueryItems1Params) SetSectionExclusive(sectionExclusive *bool) {
+	o.SectionExclusive = sectionExclusive
 }
 
 // WithSortBy adds the sortBy to the query items 1 params
@@ -643,6 +656,22 @@ func (o *QueryItems1Params) WriteToRequest(r runtime.ClientRequest, reg strfmt.R
 		qRegion := qrRegion
 		if qRegion != "" {
 			if err := r.SetQueryParam("region", qRegion); err != nil {
+				return err
+			}
+		}
+
+	}
+
+	if o.SectionExclusive != nil {
+
+		// query param sectionExclusive
+		var qrSectionExclusive bool
+		if o.SectionExclusive != nil {
+			qrSectionExclusive = *o.SectionExclusive
+		}
+		qSectionExclusive := swag.FormatBool(qrSectionExclusive)
+		if qSectionExclusive != "" {
+			if err := r.SetQueryParam("sectionExclusive", qSectionExclusive); err != nil {
 				return err
 			}
 		}

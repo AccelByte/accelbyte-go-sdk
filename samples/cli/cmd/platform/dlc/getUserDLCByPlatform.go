@@ -15,11 +15,11 @@ import (
 	"github.com/spf13/cobra"
 )
 
-// GetUserDLCCmd represents the GetUserDLC command
-var GetUserDLCCmd = &cobra.Command{
-	Use:   "getUserDLC",
-	Short: "Get user DLC",
-	Long:  `Get user DLC`,
+// GetUserDLCByPlatformCmd represents the GetUserDLCByPlatform command
+var GetUserDLCByPlatformCmd = &cobra.Command{
+	Use:   "getUserDLCByPlatform",
+	Short: "Get user DLC by platform",
+	Long:  `Get user DLC by platform`,
 	RunE: func(cmd *cobra.Command, args []string) error {
 		dlcService := &platform.DLCService{
 			Client:          factory.NewPlatformClient(&repository.ConfigRepositoryImpl{}),
@@ -28,12 +28,12 @@ var GetUserDLCCmd = &cobra.Command{
 		namespace, _ := cmd.Flags().GetString("namespace")
 		userId, _ := cmd.Flags().GetString("userId")
 		type_, _ := cmd.Flags().GetString("type")
-		input := &dlc.GetUserDLCParams{
+		input := &dlc.GetUserDLCByPlatformParams{
 			Namespace: namespace,
 			UserID:    userId,
-			Type:      &type_,
+			Type:      type_,
 		}
-		ok, errOK := dlcService.GetUserDLCShort(input)
+		ok, errOK := dlcService.GetUserDLCByPlatformShort(input)
 		if errOK != nil {
 			logrus.Error(errOK)
 
@@ -47,9 +47,10 @@ var GetUserDLCCmd = &cobra.Command{
 }
 
 func init() {
-	GetUserDLCCmd.Flags().String("namespace", "", "Namespace")
-	_ = GetUserDLCCmd.MarkFlagRequired("namespace")
-	GetUserDLCCmd.Flags().String("userId", "", "User id")
-	_ = GetUserDLCCmd.MarkFlagRequired("userId")
-	GetUserDLCCmd.Flags().String("type", "", "Type")
+	GetUserDLCByPlatformCmd.Flags().String("namespace", "", "Namespace")
+	_ = GetUserDLCByPlatformCmd.MarkFlagRequired("namespace")
+	GetUserDLCByPlatformCmd.Flags().String("userId", "", "User id")
+	_ = GetUserDLCByPlatformCmd.MarkFlagRequired("userId")
+	GetUserDLCByPlatformCmd.Flags().String("type", "", "Type")
+	_ = GetUserDLCByPlatformCmd.MarkFlagRequired("type")
 }

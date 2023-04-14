@@ -138,8 +138,22 @@ func (aaa *DLCService) DeletePlatformDLCConfig(input *dlc.DeletePlatformDLCConfi
 	return nil
 }
 
+// Deprecated: 2022-01-10 - please use GetUserDLCByPlatformShort instead.
+func (aaa *DLCService) GetUserDLCByPlatform(input *dlc.GetUserDLCByPlatformParams) (*platformclientmodels.UserDLC, error) {
+	token, err := aaa.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, err := aaa.Client.DLC.GetUserDLCByPlatform(input, client.BearerToken(*token.AccessToken))
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
 // Deprecated: 2022-01-10 - please use GetUserDLCShort instead.
-func (aaa *DLCService) GetUserDLC(input *dlc.GetUserDLCParams) (*platformclientmodels.UserDLC, error) {
+func (aaa *DLCService) GetUserDLC(input *dlc.GetUserDLCParams) ([]*platformclientmodels.UserDLCRecord, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
@@ -387,7 +401,32 @@ func (aaa *DLCService) DeletePlatformDLCConfigShort(input *dlc.DeletePlatformDLC
 	return nil
 }
 
-func (aaa *DLCService) GetUserDLCShort(input *dlc.GetUserDLCParams) (*platformclientmodels.UserDLC, error) {
+func (aaa *DLCService) GetUserDLCByPlatformShort(input *dlc.GetUserDLCByPlatformParams) (*platformclientmodels.UserDLC, error) {
+	authInfoWriter := input.AuthInfoWriter
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
+	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  aaa.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
+	ok, err := aaa.Client.DLC.GetUserDLCByPlatformShort(input, authInfoWriter)
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
+func (aaa *DLCService) GetUserDLCShort(input *dlc.GetUserDLCParams) ([]*platformclientmodels.UserDLCRecord, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{

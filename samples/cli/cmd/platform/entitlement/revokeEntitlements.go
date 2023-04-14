@@ -4,10 +4,12 @@
 
 // Code generated. DO NOT EDIT.
 
-package dlc
+package entitlement
 
 import (
-	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclient/dlc"
+	"encoding/json"
+
+	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclient/entitlement"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/platform"
 	"github.com/AccelByte/sample-apps/pkg/repository"
@@ -15,25 +17,28 @@ import (
 	"github.com/spf13/cobra"
 )
 
-// GetUserDLCCmd represents the GetUserDLC command
-var GetUserDLCCmd = &cobra.Command{
-	Use:   "getUserDLC",
-	Short: "Get user DLC",
-	Long:  `Get user DLC`,
+// RevokeEntitlementsCmd represents the RevokeEntitlements command
+var RevokeEntitlementsCmd = &cobra.Command{
+	Use:   "revokeEntitlements",
+	Short: "Revoke entitlements",
+	Long:  `Revoke entitlements`,
 	RunE: func(cmd *cobra.Command, args []string) error {
-		dlcService := &platform.DLCService{
+		entitlementService := &platform.EntitlementService{
 			Client:          factory.NewPlatformClient(&repository.ConfigRepositoryImpl{}),
 			TokenRepository: &repository.TokenRepositoryImpl{},
 		}
 		namespace, _ := cmd.Flags().GetString("namespace")
-		userId, _ := cmd.Flags().GetString("userId")
-		type_, _ := cmd.Flags().GetString("type")
-		input := &dlc.GetUserDLCParams{
-			Namespace: namespace,
-			UserID:    userId,
-			Type:      &type_,
+		bodyString := cmd.Flag("body").Value.String()
+		var body []string
+		errBody := json.Unmarshal([]byte(bodyString), &body)
+		if errBody != nil {
+			return errBody
 		}
-		ok, errOK := dlcService.GetUserDLCShort(input)
+		input := &entitlement.RevokeEntitlementsParams{
+			Body:      body,
+			Namespace: namespace,
+		}
+		ok, errOK := entitlementService.RevokeEntitlementsShort(input)
 		if errOK != nil {
 			logrus.Error(errOK)
 
@@ -47,9 +52,7 @@ var GetUserDLCCmd = &cobra.Command{
 }
 
 func init() {
-	GetUserDLCCmd.Flags().String("namespace", "", "Namespace")
-	_ = GetUserDLCCmd.MarkFlagRequired("namespace")
-	GetUserDLCCmd.Flags().String("userId", "", "User id")
-	_ = GetUserDLCCmd.MarkFlagRequired("userId")
-	GetUserDLCCmd.Flags().String("type", "", "Type")
+	RevokeEntitlementsCmd.Flags().String("body", "", "Body")
+	RevokeEntitlementsCmd.Flags().String("namespace", "", "Namespace")
+	_ = RevokeEntitlementsCmd.MarkFlagRequired("namespace")
 }

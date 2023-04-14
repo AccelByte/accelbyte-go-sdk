@@ -8,7 +8,7 @@
     },
     "description": "Justice Platform Service",
     "title": "justice-platform-service",
-    "version": "4.27.0"
+    "version": "4.28.0"
   },
   "schemes": [
     "https"
@@ -140,6 +140,7 @@
         "ADMIN:NAMESPACE:{namespace}:DLC:CONFIG [READ]": "ADMIN:NAMESPACE:{namespace}:DLC:CONFIG [READ]",
         "ADMIN:NAMESPACE:{namespace}:DLC:CONFIG [UPDATE]": "ADMIN:NAMESPACE:{namespace}:DLC:CONFIG [UPDATE]",
         "ADMIN:NAMESPACE:{namespace}:ENTITLEMENT [READ]": "ADMIN:NAMESPACE:{namespace}:ENTITLEMENT [READ]",
+        "ADMIN:NAMESPACE:{namespace}:ENTITLEMENT [UPDATE]": "ADMIN:NAMESPACE:{namespace}:ENTITLEMENT [UPDATE]",
         "ADMIN:NAMESPACE:{namespace}:FULFILLMENT [READ]": "ADMIN:NAMESPACE:{namespace}:FULFILLMENT [READ]",
         "ADMIN:NAMESPACE:{namespace}:IAP:CONFIG [DELETE]": "ADMIN:NAMESPACE:{namespace}:IAP:CONFIG [DELETE]",
         "ADMIN:NAMESPACE:{namespace}:IAP:CONFIG [READ]": "ADMIN:NAMESPACE:{namespace}:IAP:CONFIG [READ]",
@@ -193,6 +194,7 @@
         "ADMIN:NAMESPACE:{namespace}:USER:{userId}:WALLET [READ]": "ADMIN:NAMESPACE:{namespace}:USER:{userId}:WALLET [READ]",
         "ADMIN:NAMESPACE:{namespace}:USER:{userId}:WALLET [UPDATE]": "ADMIN:NAMESPACE:{namespace}:USER:{userId}:WALLET [UPDATE]",
         "ADMIN:NAMESPACE:{namespace}:WALLET [READ]": "ADMIN:NAMESPACE:{namespace}:WALLET [READ]",
+        "ADMIN:NAMESPACE:{namespace}:WALLET [UPDATE]": "ADMIN:NAMESPACE:{namespace}:WALLET [UPDATE]",
         "ADMIN:NAMESPACE:{namespace}:WALLET:CONFIG [READ]": "ADMIN:NAMESPACE:{namespace}:WALLET:CONFIG [READ]",
         "ADMIN:NAMESPACE:{namespace}:WALLET:CONFIG [UPDATE]": "ADMIN:NAMESPACE:{namespace}:WALLET:CONFIG [UPDATE]",
         "ADMIN:ORDER [READ]": "ADMIN:ORDER [READ]",
@@ -3235,6 +3237,209 @@
         ],
         "x-authorization": {
           "action": "2",
+          "resource": "ADMIN:NAMESPACE:{namespace}:ENTITLEMENT"
+        }
+      }
+    },
+    "/platform/admin/namespaces/{namespace}/entitlements/byItemIds": {
+      "get": {
+        "description": "Query entitlements by Item Ids.\u0026lt;p\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;ADMIN:NAMESPACE:{namespace}:ENTITLEMENT\u0026#34;, action=2 (READ)\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: entitlement list\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
+        "operationId": "queryEntitlements_1",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "default": true,
+            "in": "query",
+            "name": "activeOnly",
+            "required": false,
+            "type": "boolean",
+            "x-omitempty": false
+          },
+          {
+            "collectionFormat": "multi",
+            "in": "query",
+            "items": {
+              "type": "string"
+            },
+            "name": "itemIds",
+            "required": false,
+            "type": "array"
+          },
+          {
+            "default": 20,
+            "format": "int32",
+            "in": "query",
+            "name": "limit",
+            "required": false,
+            "type": "integer"
+          },
+          {
+            "default": 0,
+            "format": "int32",
+            "in": "query",
+            "name": "offset",
+            "required": false,
+            "type": "integer"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/EntitlementPagingSlicedResult"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          },
+          {
+            "HasPermission": [
+              "ADMIN:NAMESPACE:{namespace}:ENTITLEMENT [READ]"
+            ],
+            "authorization": []
+          }
+        ],
+        "summary": "Query entitlements by Item Ids",
+        "tags": [
+          "Entitlement"
+        ],
+        "x-authorization": {
+          "action": "2",
+          "resource": "ADMIN:NAMESPACE:{namespace}:ENTITLEMENT"
+        }
+      }
+    },
+    "/platform/admin/namespaces/{namespace}/entitlements/grant": {
+      "post": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Grant entitlements to multiple users, skipped granting will be treated as fail.\u0026lt;br\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;ADMIN:NAMESPACE:{namespace}:USER:{userId}:ENTITLEMENT\u0026#34;, action=4 (UPDATE)\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: bulk grant entitlements result\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
+        "operationId": "grantEntitlements",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "required": false,
+            "schema": {
+              "$ref": "#/definitions/BulkEntitlementGrantRequest"
+            }
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/BulkEntitlementGrantResult"
+            }
+          },
+          "422": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eErrorCode\u003c/td\u003e\u003ctd\u003eErrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20002\u003c/td\u003e\u003ctd\u003evalidation error\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/ValidationErrorEntity"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          },
+          {
+            "HasPermission": [
+              "ADMIN:NAMESPACE:{namespace}:USER:{userId}:ENTITLEMENT [UPDATE]"
+            ],
+            "authorization": []
+          }
+        ],
+        "summary": "Grant entitlements to different users",
+        "tags": [
+          "Entitlement"
+        ],
+        "x-authorization": {
+          "action": "4",
+          "resource": "ADMIN:NAMESPACE:{namespace}:ENTITLEMENT"
+        }
+      }
+    },
+    "/platform/admin/namespaces/{namespace}/entitlements/revoke": {
+      "post": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Revoke entitlements, skipped revocation will be treated as fail.\u0026lt;br\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;ADMIN:NAMESPACE:{namespace}:ENTITLEMENT\u0026#34;, action=4 (UPDATE)\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: bulk revoke entitlements result\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
+        "operationId": "revokeEntitlements",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "required": false,
+            "schema": {
+              "items": {
+                "type": "string"
+              },
+              "type": "array"
+            }
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/BulkEntitlementRevokeResult"
+            }
+          },
+          "422": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eErrorCode\u003c/td\u003e\u003ctd\u003eErrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20002\u003c/td\u003e\u003ctd\u003evalidation error\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/ValidationErrorEntity"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          },
+          {
+            "HasPermission": [
+              "ADMIN:NAMESPACE:{namespace}:ENTITLEMENT [UPDATE]"
+            ],
+            "authorization": []
+          }
+        ],
+        "summary": "Revoke entitlements by Ids",
+        "tags": [
+          "Entitlement"
+        ],
+        "x-authorization": {
+          "action": "4",
           "resource": "ADMIN:NAMESPACE:{namespace}:ENTITLEMENT"
         }
       }
@@ -12683,7 +12888,7 @@
     "/platform/admin/namespaces/{namespace}/users/{userId}/dlc": {
       "get": {
         "description": "Get user dlc by platform.\u0026lt;br\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;ADMIN:NAMESPACE:{namespace}:USER:{userId}:IAP\u0026#34;, action=2 (READ)\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: user dlc\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
-        "operationId": "getUserDLC",
+        "operationId": "getUserDLCByPlatform",
         "parameters": [
           {
             "in": "path",
@@ -12733,6 +12938,71 @@
           }
         ],
         "summary": "Get user dlc by platform",
+        "tags": [
+          "DLC"
+        ],
+        "x-authorization": {
+          "action": "2",
+          "resource": "ADMIN:NAMESPACE:{namespace}:USER:{userId}:IAP"
+        }
+      }
+    },
+    "/platform/admin/namespaces/{namespace}/users/{userId}/dlc/records": {
+      "get": {
+        "description": "Get user dlc records.\u0026lt;br\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;ADMIN:NAMESPACE:{namespace}:USER:{userId}:IAP\u0026#34;, action=2 (READ)\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: user dlc\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
+        "operationId": "getUserDLC",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "path",
+            "name": "userId",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "enum": [
+              "EPICGAMES",
+              "PSN",
+              "STEAM",
+              "XBOX"
+            ],
+            "in": "query",
+            "name": "type",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "items": {
+                "$ref": "#/definitions/UserDLCRecord"
+              },
+              "type": "array"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          },
+          {
+            "HasPermission": [
+              "ADMIN:NAMESPACE:{namespace}:USER:{userId}:IAP [READ]"
+            ],
+            "authorization": []
+          }
+        ],
+        "summary": "Get user dlc records",
         "tags": [
           "DLC"
         ],
@@ -15182,7 +15452,7 @@
             }
           },
           "400": {
-            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eErrorCode\u003c/td\u003e\u003ctd\u003eErrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e32121\u003c/td\u003e\u003ctd\u003eOrder price mismatch\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e32122\u003c/td\u003e\u003ctd\u003eItem type [{itemType}] does not support\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e32123\u003c/td\u003e\u003ctd\u003eItem is not purchasable\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e35123\u003c/td\u003e\u003ctd\u003eWallet [{walletId}] is inactive\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e35124\u003c/td\u003e\u003ctd\u003eWallet [{currencyCode}] has insufficient balance\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e38121\u003c/td\u003e\u003ctd\u003eDuplicate permanent item exists\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e32124\u003c/td\u003e\u003ctd\u003eInvalid currency namespace\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eErrorCode\u003c/td\u003e\u003ctd\u003eErrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e32121\u003c/td\u003e\u003ctd\u003eOrder price mismatch\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e32122\u003c/td\u003e\u003ctd\u003eItem type [{itemType}] does not support\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e32123\u003c/td\u003e\u003ctd\u003eItem is not purchasable\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e35123\u003c/td\u003e\u003ctd\u003eWallet [{walletId}] is inactive\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e35124\u003c/td\u003e\u003ctd\u003eWallet [{currencyCode}] has insufficient balance\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e32126\u003c/td\u003e\u003ctd\u003eSection ID is required for placing this order\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e38121\u003c/td\u003e\u003ctd\u003eDuplicate permanent item exists\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e32124\u003c/td\u003e\u003ctd\u003eInvalid currency namespace\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/ErrorEntity"
             }
@@ -18257,6 +18527,134 @@
         ],
         "x-authorization": {
           "action": "2",
+          "resource": "ADMIN:NAMESPACE:{namespace}:WALLET"
+        }
+      }
+    },
+    "/platform/admin/namespaces/{namespace}/wallets/credit": {
+      "post": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Credit different users\u0026#39; wallets.\u0026lt;br\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;ADMIN:NAMESPACE:{namespace}:WALLET\u0026#34;, action=4 (UPDATE)\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: bulk credit result\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
+        "operationId": "bulkCredit",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "required": false,
+            "schema": {
+              "items": {
+                "$ref": "#/definitions/BulkCreditRequest"
+              },
+              "type": "array"
+            }
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/BulkCreditResult"
+            }
+          },
+          "422": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eErrorCode\u003c/td\u003e\u003ctd\u003eErrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20002\u003c/td\u003e\u003ctd\u003evalidation error\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/ValidationErrorEntity"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          },
+          {
+            "HasPermission": [
+              "ADMIN:NAMESPACE:{namespace}:WALLET [UPDATE]"
+            ],
+            "authorization": []
+          }
+        ],
+        "summary": "Credit different users' wallets",
+        "tags": [
+          "Wallet"
+        ],
+        "x-authorization": {
+          "action": "4",
+          "resource": "ADMIN:NAMESPACE:{namespace}:WALLET"
+        }
+      }
+    },
+    "/platform/admin/namespaces/{namespace}/wallets/debit": {
+      "post": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Debit different users\u0026#39; wallets.\u0026lt;br\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;ADMIN:NAMESPACE:{namespace}:WALLET\u0026#34;, action=4 (UPDATE)\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: bulk credit result\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
+        "operationId": "bulkDebit",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "required": false,
+            "schema": {
+              "items": {
+                "$ref": "#/definitions/BulkDebitRequest"
+              },
+              "type": "array"
+            }
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/BulkDebitResult"
+            }
+          },
+          "422": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eErrorCode\u003c/td\u003e\u003ctd\u003eErrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20002\u003c/td\u003e\u003ctd\u003evalidation error\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/ValidationErrorEntity"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          },
+          {
+            "HasPermission": [
+              "ADMIN:NAMESPACE:{namespace}:WALLET [UPDATE]"
+            ],
+            "authorization": []
+          }
+        ],
+        "summary": "Debit different users' wallets",
+        "tags": [
+          "Wallet"
+        ],
+        "x-authorization": {
+          "action": "4",
           "resource": "ADMIN:NAMESPACE:{namespace}:WALLET"
         }
       }
@@ -24967,7 +25365,7 @@
             }
           },
           "400": {
-            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eErrorCode\u003c/td\u003e\u003ctd\u003eErrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e32121\u003c/td\u003e\u003ctd\u003eOrder price mismatch\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e32122\u003c/td\u003e\u003ctd\u003eItem type [{itemType}] does not support\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e32123\u003c/td\u003e\u003ctd\u003eItem is not purchasable\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e32125\u003c/td\u003e\u003ctd\u003eThe user does not meet the purchase conditions\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e35123\u003c/td\u003e\u003ctd\u003eWallet [{walletId}] is inactive\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e35124\u003c/td\u003e\u003ctd\u003eWallet [{currencyCode}] has insufficient balance\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e38121\u003c/td\u003e\u003ctd\u003eDuplicate permanent item exists\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eErrorCode\u003c/td\u003e\u003ctd\u003eErrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e32121\u003c/td\u003e\u003ctd\u003eOrder price mismatch\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e32122\u003c/td\u003e\u003ctd\u003eItem type [{itemType}] does not support\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e32123\u003c/td\u003e\u003ctd\u003eItem is not purchasable\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e32125\u003c/td\u003e\u003ctd\u003eThe user does not meet the purchase conditions\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e32126\u003c/td\u003e\u003ctd\u003eSection ID is required for placing this order\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e35123\u003c/td\u003e\u003ctd\u003eWallet [{walletId}] is inactive\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e35124\u003c/td\u003e\u003ctd\u003eWallet [{currencyCode}] has insufficient balance\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e38121\u003c/td\u003e\u003ctd\u003eDuplicate permanent item exists\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/ErrorEntity"
             }
@@ -26363,6 +26761,13 @@
             "type": "string"
           },
           {
+            "in": "query",
+            "name": "sectionExclusive",
+            "required": false,
+            "type": "boolean",
+            "x-omitempty": false
+          },
+          {
             "default": [
               "name:asc",
               "displayOrder:asc"
@@ -26717,6 +27122,10 @@
           "description": "sandbox",
           "type": "boolean",
           "x-omitempty": false
+        },
+        "sectionId": {
+          "description": "section Id, required if order consists of section item",
+          "type": "string"
         }
       },
       "required": [
@@ -27676,6 +28085,161 @@
       },
       "type": "object"
     },
+    "BulkCreditRequest": {
+      "properties": {
+        "creditRequest": {
+          "$ref": "#/definitions/CreditRequest"
+        },
+        "currencyCode": {
+          "type": "string"
+        },
+        "userIds": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array",
+          "uniqueItems": true
+        }
+      },
+      "type": "object"
+    },
+    "BulkCreditResult": {
+      "properties": {
+        "failList": {
+          "items": {
+            "$ref": "#/definitions/CreditResult"
+          },
+          "type": "array"
+        },
+        "status": {
+          "enum": [
+            "FAIL",
+            "PARTIAL_SUCCESS",
+            "SUCCESS"
+          ],
+          "type": "string"
+        },
+        "successList": {
+          "items": {
+            "$ref": "#/definitions/CreditResult"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "BulkDebitRequest": {
+      "properties": {
+        "currencyCode": {
+          "type": "string"
+        },
+        "request": {
+          "$ref": "#/definitions/DebitByCurrencyCodeRequest"
+        },
+        "userIds": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array",
+          "uniqueItems": true
+        }
+      },
+      "type": "object"
+    },
+    "BulkDebitResult": {
+      "properties": {
+        "failList": {
+          "items": {
+            "$ref": "#/definitions/DebitResult"
+          },
+          "type": "array"
+        },
+        "status": {
+          "enum": [
+            "FAIL",
+            "PARTIAL_SUCCESS",
+            "SUCCESS"
+          ],
+          "type": "string"
+        },
+        "successList": {
+          "items": {
+            "$ref": "#/definitions/DebitResult"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "BulkEntitlementGrantRequest": {
+      "description": "A DTO object for granting entitlement in bulk",
+      "properties": {
+        "entitlementGrantList": {
+          "items": {
+            "$ref": "#/definitions/EntitlementGrant"
+          },
+          "type": "array"
+        },
+        "userIds": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array",
+          "uniqueItems": true
+        }
+      },
+      "type": "object"
+    },
+    "BulkEntitlementGrantResult": {
+      "properties": {
+        "failList": {
+          "items": {
+            "$ref": "#/definitions/EntitlementGrantResult"
+          },
+          "type": "array"
+        },
+        "status": {
+          "enum": [
+            "FAIL",
+            "PARTIAL_SUCCESS",
+            "SUCCESS"
+          ],
+          "type": "string"
+        },
+        "successList": {
+          "items": {
+            "$ref": "#/definitions/EntitlementGrantResult"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "BulkEntitlementRevokeResult": {
+      "properties": {
+        "failList": {
+          "items": {
+            "$ref": "#/definitions/EntitlementRevokeResult"
+          },
+          "type": "array"
+        },
+        "status": {
+          "enum": [
+            "FAIL",
+            "PARTIAL_SUCCESS",
+            "SUCCESS"
+          ],
+          "type": "string"
+        },
+        "successList": {
+          "items": {
+            "$ref": "#/definitions/EntitlementRevokeResult"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
     "BulkOperationResult": {
       "properties": {
         "affected": {
@@ -27906,6 +28470,11 @@
             "TIER"
           ],
           "type": "string"
+        },
+        "sectionExclusive": {
+          "description": "whether it is sold in section only",
+          "type": "boolean",
+          "x-omitempty": false
         },
         "sellable": {
           "description": "whether allow to sell back to store",
@@ -28931,6 +29500,23 @@
       ],
       "type": "object"
     },
+    "CreditResult": {
+      "properties": {
+        "creditRequest": {
+          "$ref": "#/definitions/CreditRequest"
+        },
+        "currencyCode": {
+          "type": "string"
+        },
+        "reason": {
+          "type": "string"
+        },
+        "userId": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "CreditRevocation": {
       "properties": {
         "amount": {
@@ -29369,6 +29955,23 @@
       ],
       "type": "object"
     },
+    "DebitResult": {
+      "properties": {
+        "currencyCode": {
+          "type": "string"
+        },
+        "reason": {
+          "type": "string"
+        },
+        "request": {
+          "$ref": "#/definitions/DebitByCurrencyCodeRequest"
+        },
+        "userId": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "DeleteRewardConditionRequest": {
       "properties": {
         "conditionName": {
@@ -29760,6 +30363,20 @@
       ],
       "type": "object"
     },
+    "EntitlementGrantResult": {
+      "properties": {
+        "entitlementGrants": {
+          "$ref": "#/definitions/EntitlementGrant"
+        },
+        "reason": {
+          "type": "string"
+        },
+        "userId": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "EntitlementHistoryInfo": {
       "properties": {
         "action": {
@@ -30094,6 +30711,20 @@
         "durable": {
           "$ref": "#/definitions/DurableEntitlementRevocationConfig",
           "description": "durable entitlement revocation config"
+        }
+      },
+      "type": "object"
+    },
+    "EntitlementRevokeResult": {
+      "properties": {
+        "entitlementId": {
+          "type": "string"
+        },
+        "reason": {
+          "type": "string"
+        },
+        "userId": {
+          "type": "string"
         }
       },
       "type": "object"
@@ -31444,6 +32075,11 @@
           ],
           "type": "string"
         },
+        "sectionExclusive": {
+          "description": "whether it is sold in section only",
+          "type": "boolean",
+          "x-omitempty": false
+        },
         "sellable": {
           "description": "sellable",
           "type": "boolean",
@@ -32302,11 +32938,8 @@
         }
       },
       "required": [
-        "categoryPath",
-        "itemId",
         "itemType",
-        "localizations",
-        "name"
+        "localizations"
       ],
       "type": "object"
     },
@@ -32595,7 +33228,7 @@
         "regionData": {
           "additionalProperties": {
             "items": {
-              "$ref": "#/definitions/RegionDataItem"
+              "$ref": "#/definitions/RegionDataItemDTO"
             },
             "type": "array"
           },
@@ -32613,6 +33246,11 @@
             "TIER"
           ],
           "type": "string"
+        },
+        "sectionExclusive": {
+          "description": "Whether this item is sold in section only",
+          "type": "boolean",
+          "x-omitempty": false
         },
         "sellable": {
           "description": "sellable, whether allow to sell back to store",
@@ -32938,6 +33576,11 @@
             "TIER"
           ],
           "type": "string"
+        },
+        "sectionExclusive": {
+          "description": "whether it is sold in section only",
+          "type": "boolean",
+          "x-omitempty": false
         },
         "sellable": {
           "description": "whether allow to sell back to store",
@@ -33703,7 +34346,7 @@
         "regionData": {
           "additionalProperties": {
             "items": {
-              "$ref": "#/definitions/RegionDataItem"
+              "$ref": "#/definitions/RegionDataItemDTO"
             },
             "type": "array"
           },
@@ -33721,6 +34364,11 @@
             "TIER"
           ],
           "type": "string"
+        },
+        "sectionExclusive": {
+          "description": "Whether this item is sold in section only",
+          "type": "boolean",
+          "x-omitempty": false
         },
         "sellable": {
           "description": "sellable, whether allow to sell back to store",
@@ -34477,6 +35125,10 @@
         },
         "returnUrl": {
           "description": "custom return url for real payment, user will be redirected to this url once payment is finished",
+          "type": "string"
+        },
+        "sectionId": {
+          "description": "section Id, required if order consists of section item",
           "type": "string"
         }
       },
@@ -37203,6 +37855,11 @@
           ],
           "type": "string"
         },
+        "sectionExclusive": {
+          "description": "whether it is sold in section only",
+          "type": "boolean",
+          "x-omitempty": false
+        },
         "sellable": {
           "description": "whether allow to sell back to store",
           "type": "boolean",
@@ -37683,6 +38340,82 @@
         "currencyCode",
         "currencyNamespace",
         "currencyType"
+      ],
+      "type": "object"
+    },
+    "RegionDataItemDTO": {
+      "description": "Region data DTO Object, it's used when create/update item",
+      "properties": {
+        "currencyCode": {
+          "description": "currency code",
+          "example": "USD",
+          "type": "string"
+        },
+        "currencyNamespace": {
+          "description": "currency namespace",
+          "type": "string"
+        },
+        "currencyType": {
+          "description": "currency type",
+          "enum": [
+            "REAL",
+            "VIRTUAL"
+          ],
+          "type": "string"
+        },
+        "discountAmount": {
+          "description": "Discount amount, min is 0, max is price",
+          "format": "int32",
+          "minimum": 0,
+          "type": "integer"
+        },
+        "discountExpireAt": {
+          "description": "Discount expire date time",
+          "format": "date-time",
+          "type": "string",
+          "x-nullable": true
+        },
+        "discountPercentage": {
+          "description": "Discount percentage，default is 0, if this value is not 0, it will override the discountAmount",
+          "format": "int32",
+          "maximum": 100,
+          "minimum": 0,
+          "type": "integer"
+        },
+        "discountPurchaseAt": {
+          "description": "DiscountPurchaseAt",
+          "format": "date-time",
+          "type": "string",
+          "x-nullable": true
+        },
+        "expireAt": {
+          "description": "ExpireAt",
+          "format": "date-time",
+          "type": "string",
+          "x-nullable": true
+        },
+        "price": {
+          "description": "price value, set to 0 if it's free",
+          "format": "int32",
+          "type": "integer"
+        },
+        "purchaseAt": {
+          "description": "PurchaseAt",
+          "format": "date-time",
+          "type": "string",
+          "x-nullable": true
+        },
+        "trialPrice": {
+          "description": "trial price, required while fixedTrialCycles set, should \u003e=0 and \u003c= price, default same as trialPrice",
+          "format": "int32",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "currencyCode",
+        "currencyNamespace",
+        "currencyType",
+        "price"
       ],
       "type": "object"
     },
@@ -40455,6 +41188,79 @@
       },
       "type": "object"
     },
+    "UserDLCRecord": {
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "namespace": {
+          "description": "namespace",
+          "type": "string"
+        },
+        "obtainedAt": {
+          "format": "date-time",
+          "type": "string",
+          "x-nullable": true
+        },
+        "platform": {
+          "description": "platform",
+          "enum": [
+            "EPICGAMES",
+            "PSN",
+            "STEAM",
+            "XBOX"
+          ],
+          "type": "string"
+        },
+        "revocationResult": {
+          "$ref": "#/definitions/RevocationResult"
+        },
+        "revokeResults": {
+          "items": {
+            "$ref": "#/definitions/RevokeResult"
+          },
+          "type": "array"
+        },
+        "revokedAt": {
+          "format": "date-time",
+          "type": "string",
+          "x-nullable": true
+        },
+        "rewards": {
+          "items": {
+            "$ref": "#/definitions/PlatformReward"
+          },
+          "type": "array"
+        },
+        "sources": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array",
+          "uniqueItems": true
+        },
+        "status": {
+          "enum": [
+            "FULFILLED",
+            "REVOKED",
+            "REVOKE_FAILED"
+          ],
+          "type": "string"
+        },
+        "transactionId": {
+          "type": "string"
+        },
+        "userId": {
+          "description": "userId",
+          "type": "string"
+        },
+        "version": {
+          "format": "int32",
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
     "ValidationErrorEntity": {
       "properties": {
         "errorCode": {
@@ -41091,16 +41897,16 @@
   },
   "x-version": {
     "buildBy": "Gradle 6.9.1",
-    "buildDate": "2023-04-07T05:43:45+00:00",
-    "buildID": "4.27.0",
+    "buildDate": "2023-04-11T01:49:08+00:00",
+    "buildID": "4.28.0",
     "buildJDK": "1.8.0_232 (Eclipse OpenJ9 openj9-0.17.0)",
     "buildOS": "Linux amd64 5.13.0-1021-aws",
     "gitBranchName": "release-candidate",
-    "gitHash": "886bd0733c",
+    "gitHash": "14cfec589a",
     "gitTag": "3.31.0",
     "name": "justice-platform-service",
     "realm": "staging",
-    "version": "4.27.0",
-    "version-roles-seeding": "0.0.8"
+    "version": "4.28.0",
+    "version-roles-seeding": "0.0.21"
   }
 }

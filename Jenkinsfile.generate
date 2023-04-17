@@ -23,6 +23,7 @@ sdkGenPath = null
 sdkPath = null
 
 isBreakingChangeCheckPass = false
+outstandingDeprecationNotOkCount = "0"
 
 def timeStamp() {
   now = new Date()
@@ -108,6 +109,20 @@ pipeline {
         }
       }
     }
+
+    // -------------------------------------- Checks --------------------------------------
+    stage('Check Outstanding Deprecation') {
+      steps {
+        script {
+          dir(sdkRepoName) {
+            sh "make outstanding_deprecation || true"   // Ignore exit code, we just need the outstanding_deprecation.out file
+            if (fileExists('outstanding_deprecation.out')) {
+              outstandingDeprecationNotOkCount = sh(returnStdout: true, script: "grep -c '^not ok' outstanding_deprecation.out").trim()
+            }
+          }
+        }
+      }
+    }
     
     // -------------------------------------- Tests --------------------------------------
     stage('Core Tests') {
@@ -160,23 +175,28 @@ pipeline {
           bitbucket.setBuildStatus(bitbucketCredentialsHttps, bitbucketCommitHref, "SUCCESSFUL", env.JOB_NAME, "${env.JOB_NAME}-${env.BUILD_NUMBER}", "Jenkins", "${env.BUILD_URL}console")
         }
 
-        breakingChangeInfo = ""
+        additionalInfo = ""
+
         if (!isBreakingChangeCheckPass) {
-          breakingChangeInfo = """
-          |
-          | :warning: Possible Breaking Changes Detected: <${env.BUILD_URL}/flowGraphTable/|${env.JOB_NAME}-${env.BUILD_NUMBER}/flowGraphTable>
-          """
+          additionalInfo += """
+              | :warning: Possible Breaking Changes Detected: <${env.BUILD_URL}/flowGraphTable/#:~:text=Checking%20Breaking%20Changes%20on%20Samples|here>"""
         }
+
+        if (outstandingDeprecationNotOkCount != "0") {
+          additionalInfo += """
+              | :warning: Outstanding Deprecation Detected: <${env.BUILD_URL}/flowGraphTable/#:~:text=make%20outstanding_deprecation|${outstandingDeprecationNotOkCount}>"""
+        }
+
         specLink = "https://bitbucket.org/accelbyte/justice-codegen-sdk-spec/commits/${sdkSpecCommitHash}"
         sdkLink = "https://bitbucket.org/accelbyte/${sdkRepoName}/commits/${sdkCommitHash}"
         message = """
                   :white_check_mark: <${env.BUILD_URL}|${env.JOB_NAME}-${env.BUILD_NUMBER}> *Generate Go Extend SDK Successful :gopher:*
                 
-                  |*Source SDK Spec:* <${specLink}|${sdkSpecCommitHash}>
+                  |*OpenAPI Spec:* <${specLink}|${sdkSpecCommitHash}>
                   |*Generated SDK:* <${sdkLink}|${sdkCommitHash}>
 
                   |<https://bitbucket.org/accelbyte/${sdkRepoName}/pull-requests/new?source=${sdkNewBranchName}|Compare or Create Pull Request>
-                  ${breakingChangeInfo}
+                  ${additionalInfo}
                   |""".stripMargin()
         slackSend(channel: "#activity-justice-codegen-sdk", color: '#36B37E', message: message)
       }

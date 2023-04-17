@@ -93,3 +93,28 @@ version:
 			sed -i "s/UserAgentSDK = \"AccelByteGoSDK\/v[0-9]\+\.[0-9]\+\.[0-9]\+\"/UserAgentSDK = \"AccelByteGoSDK\/v$$VERSION_NEW\"/" services-api/pkg/utils/user_agent.go && \
 			sed -i "s/github.com\/AccelByte\/accelbyte-go-sdk v[0-9]\+\.[0-9]\+\.[0-9]\+/github.com\/AccelByte\/accelbyte-go-sdk v$$VERSION_OLD/" samples/getting-started/go.mod && \
 			docker run -t --rm -u $$(id -u):$$(id -g) -v $$(pwd):/data/ -w /data/ -e GOCACHE=/data/.cache/go-build $(GOLANG_DOCKER_IMAGE) sh -c "cd 'samples/getting-started' && go mod tidy"
+
+outstanding_deprecation:
+	find * -type f -iname '*.go' \
+		| xargs awk ' \
+				BEGIN { \
+					count_ok = 0; \
+					count_not_ok = 0; \
+					"date +%s -d \"6 months ago\"" | getline limit_epoch; \
+				} \
+				match($$0,/\/\/ *[Dd]eprecated: ([0-9]{4}-[0-9]{1,2}-[0-9]{1,2})/,since_date) { \
+					"date +%s -d " since_date[1] | getline since_epoch; \
+					if (limit_epoch < since_epoch) { \
+						count_ok += 1; \
+						print "ok - " FILENAME ":" $$0; \
+					} \
+					else { \
+						count_not_ok += 1; \
+						print "not ok - " FILENAME ":" $$0; \
+					} \
+				} \
+				END { \
+					exit (count_not_ok ? 1 : 0); \
+				}' \
+		| tee outstanding_deprecation.out
+	@echo 1..$$(grep -c '^\(not \)\?ok' outstanding_deprecation.out) 

@@ -115,10 +115,11 @@ pipeline {
       steps {
         script {
           dir(sdkRepoName) {
-            sh "make outstanding_deprecation || true"   // Ignore exit code, we just need the outstanding_deprecation.out file
-            if (fileExists('outstanding_deprecation.out')) {
-              outstandingDeprecationNotOkCount = sh(returnStdout: true, script: "grep -c '^not ok' outstanding_deprecation.out").trim()
+            sh "make outstanding_deprecation || true"   // Ignore exit code, just need the outstanding_deprecation.out file
+            if (!fileExists('outstanding_deprecation.out')) {
+              error("File 'outstanding_deprecation.out' is not found")
             }
+            outstandingDeprecationNotOkCount = sh(returnStdout: true, script: "grep -c '^not ok' outstanding_deprecation.out || true").trim()
           }
         }
       }

@@ -12,10 +12,10 @@ import (
 	"github.com/go-openapi/validate"
 )
 
-// ModelsCombinationAlliances models combination alliances
+// ModelsRole models role
 //
-// swagger:model models.Combination.alliances
-type ModelsCombinationAlliances struct {
+// swagger:model models.Role
+type ModelsRole struct {
 
 	// max
 	// Required: true
@@ -30,8 +30,8 @@ type ModelsCombinationAlliances struct {
 	Name *string `json:"name"`
 }
 
-// Validate validates this models combination alliances
-func (m *ModelsCombinationAlliances) Validate(formats strfmt.Registry) error {
+// Validate validates this models role
+func (m *ModelsRole) Validate(formats strfmt.Registry) error {
 	var res []error
 
 	if err := m.validateMax(formats); err != nil {
@@ -52,7 +52,7 @@ func (m *ModelsCombinationAlliances) Validate(formats strfmt.Registry) error {
 	return nil
 }
 
-func (m *ModelsCombinationAlliances) validateMax(formats strfmt.Registry) error {
+func (m *ModelsRole) validateMax(formats strfmt.Registry) error {
 
 	if err := validate.Required("max", "body", m.Max); err != nil {
 		return err
@@ -61,7 +61,7 @@ func (m *ModelsCombinationAlliances) validateMax(formats strfmt.Registry) error 
 	return nil
 }
 
-func (m *ModelsCombinationAlliances) validateMin(formats strfmt.Registry) error {
+func (m *ModelsRole) validateMin(formats strfmt.Registry) error {
 
 	if err := validate.Required("min", "body", m.Min); err != nil {
 		return err
@@ -70,7 +70,7 @@ func (m *ModelsCombinationAlliances) validateMin(formats strfmt.Registry) error 
 	return nil
 }
 
-func (m *ModelsCombinationAlliances) validateName(formats strfmt.Registry) error {
+func (m *ModelsRole) validateName(formats strfmt.Registry) error {
 
 	if err := validate.Required("name", "body", m.Name); err != nil {
 		return err
@@ -80,7 +80,7 @@ func (m *ModelsCombinationAlliances) validateName(formats strfmt.Registry) error
 }
 
 // MarshalBinary interface implementation
-func (m *ModelsCombinationAlliances) MarshalBinary() ([]byte, error) {
+func (m *ModelsRole) MarshalBinary() ([]byte, error) {
 	if m == nil {
 		return nil, nil
 	}
@@ -88,8 +88,8 @@ func (m *ModelsCombinationAlliances) MarshalBinary() ([]byte, error) {
 }
 
 // UnmarshalBinary interface implementation
-func (m *ModelsCombinationAlliances) UnmarshalBinary(b []byte) error {
-	var res ModelsCombinationAlliances
+func (m *ModelsRole) UnmarshalBinary(b []byte) error {
+	var res ModelsRole
 	if err := swag.ReadJSON(b, &res); err != nil {
 		return err
 	}

@@ -1416,6 +1416,12 @@ Deprecated: 2022-08-10 - Use PublicGameSessionInviteShort instead.
   PublicGameSessionInvite invites a user to a game session requires n a m e s p a c e namespace s e s s i o n g a m e p l a y e r c r e a t e
 
   Invite a user to a game session.
+platformID represents the native platform of the invitee. API will return the corresponding native platform&#39;s userID.
+supported platforms:
+	- STEAM
+	- XBOX
+	- PSN
+
 */
 func (a *Client) PublicGameSessionInvite(params *PublicGameSessionInviteParams, authInfo runtime.ClientAuthInfoWriter) (*PublicGameSessionInviteCreated, *PublicGameSessionInviteNoContent, *PublicGameSessionInviteBadRequest, *PublicGameSessionInviteUnauthorized, *PublicGameSessionInviteNotFound, *PublicGameSessionInviteInternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -1477,6 +1483,12 @@ func (a *Client) PublicGameSessionInvite(params *PublicGameSessionInviteParams, 
   PublicGameSessionInviteShort invites a user to a game session requires n a m e s p a c e namespace s e s s i o n g a m e p l a y e r c r e a t e
 
   Invite a user to a game session.
+platformID represents the native platform of the invitee. API will return the corresponding native platform&#39;s userID.
+supported platforms:
+	- STEAM
+	- XBOX
+	- PSN
+
 */
 func (a *Client) PublicGameSessionInviteShort(params *PublicGameSessionInviteParams, authInfo runtime.ClientAuthInfoWriter) (*PublicGameSessionInviteCreated, error) {
 	// TODO: Validate the params before sending

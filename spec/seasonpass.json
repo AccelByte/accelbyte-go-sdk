@@ -8,7 +8,7 @@
     },
     "description": "Justice SeasonPass Service",
     "title": "justice-seasonpass-service",
-    "version": "1.18.2"
+    "version": "1.18.3"
   },
   "schemes": [
     "https"
@@ -5090,16 +5090,16 @@
   },
   "x-version": {
     "buildBy": "Gradle 6.9.1",
-    "buildDate": "2023-03-28T04:15:17+00:00",
-    "buildID": "1.18.2",
+    "buildDate": "2023-04-11T02:11:46+00:00",
+    "buildID": "1.18.3",
     "buildJDK": "1.8.0_232 (Eclipse OpenJ9 openj9-0.17.0)",
     "buildOS": "Linux amd64 5.13.0-1021-aws",
     "gitBranchName": "release-candidate",
-    "gitHash": "4e0ee8f189",
+    "gitHash": "67e20359d0",
     "gitTag": "1.18.2",
     "name": "justice-seasonpass-service",
     "realm": "staging",
-    "version": "1.18.2",
+    "version": "1.18.3",
     "version-roles-seeding": "0.0.3"
   }
 }

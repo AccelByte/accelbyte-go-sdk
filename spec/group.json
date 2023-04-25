@@ -8,7 +8,7 @@
     },
     "description": "Justice Group Service",
     "title": "justice-group-service",
-    "version": "2.15.3"
+    "version": "2.15.4"
   },
   "schemes": [
     "https"
@@ -3651,6 +3651,82 @@
         ]
       }
     },
+    "/group/v2/admin/namespaces/{namespace}/users/{userId}/groups/{groupId}/status": {
+      "get": {
+        "description": "\u0026lt;p\u0026gt;Required Permission: \u0026#34;ADMIN:NAMESPACE:{namespace}:GROUP:MEMBER [READ]\u0026#34;\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;This endpoint is used to get user group status information.\u0026lt;/p\u0026gt;\n\t\t",
+        "operationId": "AdminGetUserGroupStatusInformationV2",
+        "parameters": [
+          {
+            "description": "Group ID",
+            "in": "path",
+            "name": "groupId",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "namespace",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "User ID",
+            "in": "path",
+            "name": "userId",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/models.GetUserGroupInformationResponseV1"
+            }
+          },
+          "401": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20001\u003c/td\u003e\u003ctd\u003eunauthorized access\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "403": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20022\u003c/td\u003e\u003ctd\u003etoken is not user token\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e73036\u003c/td\u003e\u003ctd\u003einsufficient member role permission\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "404": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e73433\u003c/td\u003e\u003ctd\u003emember group not found\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e73034\u003c/td\u003e\u003ctd\u003euser not belong to any group\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          }
+        },
+        "security": [
+          {
+            "HasPermission": [
+              "ADMIN:NAMESPACE:{namespace}:GROUP:MEMBER [READ]"
+            ],
+            "authorization": []
+          }
+        ],
+        "summary": "User Group Status Information",
+        "tags": [
+          "Group Member"
+        ]
+      }
+    },
     "/group/v2/public/namespaces/{namespace}/groups": {
       "post": {
         "consumes": [
@@ -6620,11 +6696,11 @@
     "path": "/group/apidocs/api.json"
   },
   "x-version": {
-    "buildDate": "2023-03-28T04:51:07+00:00",
-    "gitHash": "21457a2645917c5611bf6efce19f7f6f4877177a",
+    "buildDate": "2023-04-11T02:01:32+00:00",
+    "gitHash": "a5629eb35df4632ce94f39845915fa72c0dab69f",
     "name": "justice-group-service",
     "realm": "staging",
-    "version": "2.15.3",
+    "version": "2.15.4",
     "version-roles-seeding": "0.0.3"
   }
 }

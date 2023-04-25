@@ -11,7 +11,6 @@ import (
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
-	"github.com/go-openapi/validate"
 )
 
 // ModelsMatchOptionRule models match option rule
@@ -20,7 +19,6 @@ import (
 type ModelsMatchOptionRule struct {
 
 	// options
-	// Required: true
 	Options []*ModelsMatchOption `json:"options"`
 }
 
@@ -40,8 +38,8 @@ func (m *ModelsMatchOptionRule) Validate(formats strfmt.Registry) error {
 
 func (m *ModelsMatchOptionRule) validateOptions(formats strfmt.Registry) error {
 
-	if err := validate.Required("options", "body", m.Options); err != nil {
-		return err
+	if swag.IsZero(m.Options) { // not required
+		return nil
 	}
 
 	for i := 0; i < len(m.Options); i++ {

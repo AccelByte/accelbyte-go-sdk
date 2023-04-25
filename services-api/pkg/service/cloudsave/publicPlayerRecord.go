@@ -140,6 +140,55 @@ func (aaa *PublicPlayerRecordService) PublicDeletePlayerPublicRecordHandlerV1(in
 	return nil
 }
 
+// Deprecated: 2022-01-10 - please use GetOtherPlayerPublicRecordKeyHandlerV1Short instead.
+func (aaa *PublicPlayerRecordService) GetOtherPlayerPublicRecordKeyHandlerV1(input *public_player_record.GetOtherPlayerPublicRecordKeyHandlerV1Params) (*cloudsaveclientmodels.ModelsListPlayerRecordKeysResponse, error) {
+	token, err := aaa.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, badRequest, unauthorized, internalServerError, err := aaa.Client.PublicPlayerRecord.GetOtherPlayerPublicRecordKeyHandlerV1(input, client.BearerToken(*token.AccessToken))
+	if badRequest != nil {
+		return nil, badRequest
+	}
+	if unauthorized != nil {
+		return nil, unauthorized
+	}
+	if internalServerError != nil {
+		return nil, internalServerError
+	}
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
+// Deprecated: 2022-01-10 - please use GetOtherPlayerPublicRecordHandlerV1Short instead.
+func (aaa *PublicPlayerRecordService) GetOtherPlayerPublicRecordHandlerV1(input *public_player_record.GetOtherPlayerPublicRecordHandlerV1Params) (*cloudsaveclientmodels.ModelsBulkGetPlayerRecordResponse, error) {
+	token, err := aaa.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, badRequest, unauthorized, forbidden, internalServerError, err := aaa.Client.PublicPlayerRecord.GetOtherPlayerPublicRecordHandlerV1(input, client.BearerToken(*token.AccessToken))
+	if badRequest != nil {
+		return nil, badRequest
+	}
+	if unauthorized != nil {
+		return nil, unauthorized
+	}
+	if forbidden != nil {
+		return nil, forbidden
+	}
+	if internalServerError != nil {
+		return nil, internalServerError
+	}
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
 // Deprecated: 2022-01-10 - please use GetPlayerRecordHandlerV1Short instead.
 func (aaa *PublicPlayerRecordService) GetPlayerRecordHandlerV1(input *public_player_record.GetPlayerRecordHandlerV1Params) (*cloudsaveclientmodels.ModelsPlayerRecordResponse, error) {
 	token, err := aaa.TokenRepository.GetToken()
@@ -411,6 +460,56 @@ func (aaa *PublicPlayerRecordService) PublicDeletePlayerPublicRecordHandlerV1Sho
 	}
 
 	return nil
+}
+
+func (aaa *PublicPlayerRecordService) GetOtherPlayerPublicRecordKeyHandlerV1Short(input *public_player_record.GetOtherPlayerPublicRecordKeyHandlerV1Params) (*cloudsaveclientmodels.ModelsListPlayerRecordKeysResponse, error) {
+	authInfoWriter := input.AuthInfoWriter
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
+	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  aaa.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
+	ok, err := aaa.Client.PublicPlayerRecord.GetOtherPlayerPublicRecordKeyHandlerV1Short(input, authInfoWriter)
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
+func (aaa *PublicPlayerRecordService) GetOtherPlayerPublicRecordHandlerV1Short(input *public_player_record.GetOtherPlayerPublicRecordHandlerV1Params) (*cloudsaveclientmodels.ModelsBulkGetPlayerRecordResponse, error) {
+	authInfoWriter := input.AuthInfoWriter
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
+	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  aaa.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
+	ok, err := aaa.Client.PublicPlayerRecord.GetOtherPlayerPublicRecordHandlerV1Short(input, authInfoWriter)
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
 }
 
 func (aaa *PublicPlayerRecordService) GetPlayerRecordHandlerV1Short(input *public_player_record.GetPlayerRecordHandlerV1Params) (*cloudsaveclientmodels.ModelsPlayerRecordResponse, error) {

@@ -24,7 +24,6 @@ type ModelsRuleSet struct {
 	Alliance *ModelsAllianceRule `json:"alliance"`
 
 	// alliance flexing rule
-	// Required: true
 	AllianceFlexingRule []*ModelsAllianceFlexingRule `json:"alliance_flexing_rule"`
 
 	// flexing rule
@@ -44,8 +43,7 @@ type ModelsRuleSet struct {
 	RebalanceEnable *bool `json:"rebalance_enable"`
 
 	// sub game modes
-	// Required: true
-	SubGameModes map[string]ModelsSubGameMode `json:"sub_game_modes"`
+	SubGameModes map[string]ModelsSubGameMode `json:"sub_game_modes,omitempty"`
 }
 
 // Validate validates this models rule set
@@ -106,8 +104,8 @@ func (m *ModelsRuleSet) validateAlliance(formats strfmt.Registry) error {
 
 func (m *ModelsRuleSet) validateAllianceFlexingRule(formats strfmt.Registry) error {
 
-	if err := validate.Required("alliance_flexing_rule", "body", m.AllianceFlexingRule); err != nil {
-		return err
+	if swag.IsZero(m.AllianceFlexingRule) { // not required
+		return nil
 	}
 
 	for i := 0; i < len(m.AllianceFlexingRule); i++ {
@@ -207,6 +205,10 @@ func (m *ModelsRuleSet) validateRebalanceEnable(formats strfmt.Registry) error {
 }
 
 func (m *ModelsRuleSet) validateSubGameModes(formats strfmt.Registry) error {
+
+	if swag.IsZero(m.SubGameModes) { // not required
+		return nil
+	}
 
 	for k := range m.SubGameModes {
 

@@ -70,6 +70,20 @@ func (aaa *StatCycleConfigurationService) CreateStatCycle(input *stat_cycle_conf
 	return created.GetPayload(), nil
 }
 
+// Deprecated: 2022-01-10 - please use BulkGetStatCycleShort instead.
+func (aaa *StatCycleConfigurationService) BulkGetStatCycle(input *stat_cycle_configuration.BulkGetStatCycleParams) (*socialclientmodels.BulkStatCycleResult, error) {
+	token, err := aaa.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, err := aaa.Client.StatCycleConfiguration.BulkGetStatCycle(input, client.BearerToken(*token.AccessToken))
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
 // Deprecated: 2022-01-10 - please use GetStatCycleShort instead.
 func (aaa *StatCycleConfigurationService) GetStatCycle(input *stat_cycle_configuration.GetStatCycleParams) (*socialclientmodels.StatCycleInfo, error) {
 	token, err := aaa.TokenRepository.GetToken()
@@ -178,6 +192,20 @@ func (aaa *StatCycleConfigurationService) GetStatCycles1(input *stat_cycle_confi
 	return ok.GetPayload(), nil
 }
 
+// Deprecated: 2022-01-10 - please use BulkGetStatCycle1Short instead.
+func (aaa *StatCycleConfigurationService) BulkGetStatCycle1(input *stat_cycle_configuration.BulkGetStatCycle1Params) (*socialclientmodels.BulkStatCycleResult, error) {
+	token, err := aaa.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, err := aaa.Client.StatCycleConfiguration.BulkGetStatCycle1(input, client.BearerToken(*token.AccessToken))
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
 // Deprecated: 2022-01-10 - please use GetStatCycle1Short instead.
 func (aaa *StatCycleConfigurationService) GetStatCycle1(input *stat_cycle_configuration.GetStatCycle1Params) (*socialclientmodels.StatCycleInfo, error) {
 	token, err := aaa.TokenRepository.GetToken()
@@ -243,6 +271,31 @@ func (aaa *StatCycleConfigurationService) CreateStatCycleShort(input *stat_cycle
 	}
 
 	return created.GetPayload(), nil
+}
+
+func (aaa *StatCycleConfigurationService) BulkGetStatCycleShort(input *stat_cycle_configuration.BulkGetStatCycleParams) (*socialclientmodels.BulkStatCycleResult, error) {
+	authInfoWriter := input.AuthInfoWriter
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
+	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  aaa.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
+	ok, err := aaa.Client.StatCycleConfiguration.BulkGetStatCycleShort(input, authInfoWriter)
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
 }
 
 func (aaa *StatCycleConfigurationService) GetStatCycleShort(input *stat_cycle_configuration.GetStatCycleParams) (*socialclientmodels.StatCycleInfo, error) {
@@ -388,6 +441,31 @@ func (aaa *StatCycleConfigurationService) GetStatCycles1Short(input *stat_cycle_
 	}
 
 	ok, err := aaa.Client.StatCycleConfiguration.GetStatCycles1Short(input, authInfoWriter)
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
+func (aaa *StatCycleConfigurationService) BulkGetStatCycle1Short(input *stat_cycle_configuration.BulkGetStatCycle1Params) (*socialclientmodels.BulkStatCycleResult, error) {
+	authInfoWriter := input.AuthInfoWriter
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
+	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  aaa.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
+	ok, err := aaa.Client.StatCycleConfiguration.BulkGetStatCycle1Short(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}

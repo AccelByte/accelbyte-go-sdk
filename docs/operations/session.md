@@ -114,6 +114,7 @@
 | `models.DSMConfigRecord` | [ModelsDSMConfigRecord ](../../session-sdk/pkg/sessionclientmodels/models_d_s_m_config_record.go) |
 | `models.DefaultDSMCConfig` | [ModelsDefaultDSMCConfig ](../../session-sdk/pkg/sessionclientmodels/models_default_d_s_m_c_config.go) |
 | `models.GameServer` | [ModelsGameServer ](../../session-sdk/pkg/sessionclientmodels/models_game_server.go) |
+| `models.NativeSessionSetting` | [ModelsNativeSessionSetting ](../../session-sdk/pkg/sessionclientmodels/models_native_session_setting.go) |
 | `models.PartyMembers` | [ModelsPartyMembers ](../../session-sdk/pkg/sessionclientmodels/models_party_members.go) |
 | `models.Team` | [ModelsTeam ](../../session-sdk/pkg/sessionclientmodels/models_team.go) |
 | `models.UserPlatformInfo` | [ModelsUserPlatformInfo ](../../session-sdk/pkg/sessionclientmodels/models_user_platform_info.go) |

@@ -48,7 +48,6 @@
         "NAMESPACE:{namespace}:TOPIC [DELETE]": "NAMESPACE:{namespace}:TOPIC [DELETE]",
         "NAMESPACE:{namespace}:TOPIC [READ]": "NAMESPACE:{namespace}:TOPIC [READ]",
         "NAMESPACE:{namespace}:TOPIC [UPDATE]": "NAMESPACE:{namespace}:TOPIC [UPDATE]",
-        "NAMESPACE:{namespace}:USER:{userId}:CHAT [READ]": "NAMESPACE:{namespace}:USER:{userId}:CHAT [READ]",
         "NAMESPACE:{namespace}:USER:{userId}:FRIENDS [CREATE]": "NAMESPACE:{namespace}:USER:{userId}:FRIENDS [CREATE]",
         "NAMESPACE:{namespace}:USER:{userId}:FRIENDS [READ]": "NAMESPACE:{namespace}:USER:{userId}:FRIENDS [READ]",
         "NAMESPACE:{namespace}:USER:{userId}:NOTIFICATION [CREATE]": "NAMESPACE:{namespace}:USER:{userId}:NOTIFICATION [CREATE]"
@@ -947,189 +946,6 @@
         "tags": [
           "friends",
           "public"
-        ]
-      }
-    },
-    "/lobby/chat/namespaces/{namespace}/users/{userId}/friend/{friendId}": {
-      "get": {
-        "consumes": [
-          "application/json"
-        ],
-        "description": "Required permission : \u0026lt;code\u0026gt;NAMESPACE:{namespace}:USER:{userId}:CHAT [READ]\u0026lt;/code\u0026gt; with scope \u0026lt;code\u0026gt;social\u0026lt;/code\u0026gt;\n\t\t\t\u0026lt;br\u0026gt;load personal chat history in a namespace.",
-        "operationId": "personalChatHistory",
-        "parameters": [
-          {
-            "description": "user ID that receive the chat",
-            "in": "path",
-            "name": "friendId",
-            "required": true,
-            "type": "string"
-          },
-          {
-            "description": "namespace",
-            "in": "path",
-            "name": "namespace",
-            "required": true,
-            "type": "string"
-          },
-          {
-            "description": "user ID",
-            "in": "path",
-            "name": "userId",
-            "required": true,
-            "type": "string"
-          }
-        ],
-        "produces": [
-          "application/json"
-        ],
-        "responses": {
-          "200": {
-            "description": "OK",
-            "schema": {
-              "items": {
-                "$ref": "#/definitions/model.ChatMessageResponse"
-              },
-              "type": "array"
-            }
-          },
-          "400": {
-            "description": "Bad Request",
-            "schema": {
-              "$ref": "#/definitions/restapi.ErrorResponseBody"
-            }
-          },
-          "401": {
-            "description": "Unauthorized",
-            "schema": {
-              "$ref": "#/definitions/restapi.ErrorResponseBody"
-            }
-          },
-          "403": {
-            "description": "Forbidden",
-            "schema": {
-              "$ref": "#/definitions/restapi.ErrorResponseBody"
-            }
-          },
-          "404": {
-            "description": "Not Found",
-            "schema": {
-              "$ref": "#/definitions/restapi.ErrorResponseBody"
-            }
-          },
-          "500": {
-            "description": "Internal Server Error",
-            "schema": {
-              "$ref": "#/definitions/restapi.ErrorResponseBody"
-            }
-          }
-        },
-        "security": [
-          {
-            "HasPermission": [
-              "NAMESPACE:{namespace}:USER:{userId}:CHAT [READ]"
-            ],
-            "HasScope": [
-              "social"
-            ],
-            "authorization": []
-          }
-        ],
-        "summary": "load personal chat history",
-        "tags": [
-          "chat",
-          "public"
-        ]
-      }
-    },
-    "/lobby/v1/admin/chat/namespaces/{namespace}/users/{userId}/friends/{friendId}": {
-      "get": {
-        "consumes": [
-          "application/json"
-        ],
-        "description": "Required permission : \u0026lt;code\u0026gt;NAMESPACE:{namespace}:USER:{userId}:CHAT [READ]\u0026lt;/code\u0026gt; with scope \u0026lt;code\u0026gt;social\u0026lt;/code\u0026gt;\n\t\t\t\u0026lt;br\u0026gt;get chat history in a namespace.",
-        "operationId": "adminChatHistory",
-        "parameters": [
-          {
-            "description": "user ID that receive the chat",
-            "in": "path",
-            "name": "friendId",
-            "required": true,
-            "type": "string"
-          },
-          {
-            "description": "namespace",
-            "in": "path",
-            "name": "namespace",
-            "required": true,
-            "type": "string"
-          },
-          {
-            "description": "user ID",
-            "in": "path",
-            "name": "userId",
-            "required": true,
-            "type": "string"
-          }
-        ],
-        "produces": [
-          "application/json"
-        ],
-        "responses": {
-          "200": {
-            "description": "OK",
-            "schema": {
-              "items": {
-                "$ref": "#/definitions/model.ChatMessageResponse"
-              },
-              "type": "array"
-            }
-          },
-          "400": {
-            "description": "Bad Request",
-            "schema": {
-              "$ref": "#/definitions/restapi.ErrorResponseBody"
-            }
-          },
-          "401": {
-            "description": "Unauthorized",
-            "schema": {
-              "$ref": "#/definitions/restapi.ErrorResponseBody"
-            }
-          },
-          "403": {
-            "description": "Forbidden",
-            "schema": {
-              "$ref": "#/definitions/restapi.ErrorResponseBody"
-            }
-          },
-          "404": {
-            "description": "Not Found",
-            "schema": {
-              "$ref": "#/definitions/restapi.ErrorResponseBody"
-            }
-          },
-          "500": {
-            "description": "Internal Server Error",
-            "schema": {
-              "$ref": "#/definitions/restapi.ErrorResponseBody"
-            }
-          }
-        },
-        "security": [
-          {
-            "HasPermission": [
-              "NAMESPACE:{namespace}:USER:{userId}:CHAT [READ]"
-            ],
-            "HasScope": [
-              "social"
-            ],
-            "authorization": []
-          }
-        ],
-        "summary": "admin get chat history",
-        "tags": [
-          "chat"
         ]
       }
     },
@@ -5447,84 +5263,6 @@
         ]
       }
     },
-    "/lobby/v1/public/chat/namespaces/{namespace}/users/me/friends/{friendId}": {
-      "get": {
-        "consumes": [
-          "application/json"
-        ],
-        "description": "Required valid user authorization \u0026lt;br/\u0026gt;\n\t\t\t\u0026lt;br\u0026gt;load personal chat history in a namespace based on Friend User ID \u0026lt;br/\u0026gt;\n\t\t\tAction Code: 50101",
-        "operationId": "getPersonalChatHistoryV1Public",
-        "parameters": [
-          {
-            "description": "Friend User ID, should follow UUID version 4 without hyphen",
-            "in": "path",
-            "name": "friendId",
-            "required": true,
-            "type": "string"
-          },
-          {
-            "description": "namespace",
-            "in": "path",
-            "name": "namespace",
-            "required": true,
-            "type": "string"
-          }
-        ],
-        "produces": [
-          "application/json"
-        ],
-        "responses": {
-          "200": {
-            "description": "OK",
-            "schema": {
-              "items": {
-                "$ref": "#/definitions/model.ChatMessageResponse"
-              },
-              "type": "array"
-            }
-          },
-          "400": {
-            "description": "Bad Request",
-            "schema": {
-              "$ref": "#/definitions/restapi.ErrorResponseBody"
-            }
-          },
-          "401": {
-            "description": "Unauthorized",
-            "schema": {
-              "$ref": "#/definitions/restapi.ErrorResponseBody"
-            }
-          },
-          "403": {
-            "description": "Forbidden",
-            "schema": {
-              "$ref": "#/definitions/restapi.ErrorResponseBody"
-            }
-          },
-          "404": {
-            "description": "Not Found",
-            "schema": {
-              "$ref": "#/definitions/restapi.ErrorResponseBody"
-            }
-          },
-          "500": {
-            "description": "Internal Server Error",
-            "schema": {
-              "$ref": "#/definitions/restapi.ErrorResponseBody"
-            }
-          }
-        },
-        "security": [
-          {
-            "authorization": []
-          }
-        ],
-        "summary": "load personal chat history",
-        "tags": [
-          "chat"
-        ]
-      }
-    },
     "/lobby/v1/public/party/namespaces/{namespace}/parties/{partyId}": {
       "get": {
         "consumes": [
@@ -7449,33 +7187,6 @@
         "userIds"
       ]
     },
-    "model.ChatMessageResponse": {
-      "properties": {
-        "from": {
-          "type": "string"
-        },
-        "id": {
-          "type": "string"
-        },
-        "payload": {
-          "type": "string"
-        },
-        "receivedAt": {
-          "format": "int64",
-          "type": "integer"
-        },
-        "to": {
-          "type": "string"
-        }
-      },
-      "required": [
-        "from",
-        "id",
-        "payload",
-        "receivedAt",
-        "to"
-      ]
-    },
     "model.CreateTemplateRequest": {
       "properties": {
         "templateContent": {
@@ -8834,11 +8545,11 @@
     "path": "/lobby/apidocs/api.json"
   },
   "x-version": {
-    "buildDate": "2023-03-27T03:25:20+00:00",
-    "gitHash": "00f676fefebe670aa4282f9e5308906d5a7df726",
+    "buildDate": "2023-04-19T13:05:14+00:00",
+    "gitHash": "11e024062a599ed8fee6c96f60a89f22fe6ada78",
     "name": "justice-lobby-server",
-    "revisionID": "3.17.0",
-    "version": "3.17.0",
+    "revisionID": "3.19.0",
+    "version": "3.19.0",
     "version-justice": "3.45.0",
     "version-roles-seeding": "0.0.3"
   }

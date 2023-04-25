@@ -8,7 +8,7 @@
     },
     "description": "Justice IAM Service",
     "title": "justice-iam-service",
-    "version": "5.31.0"
+    "version": "5.32.0"
   },
   "schemes": [
     "https"
@@ -31115,11 +31115,11 @@
     "path": "/iam/apidocs/api.json"
   },
   "x-version": {
-    "buildDate": "2023-04-04T14:39:23+00:00",
-    "gitHash": "aa4b3553c753abcb4556222e12fb85440e868c24",
+    "buildDate": "2023-04-11T01:33:20+00:00",
+    "gitHash": "b1f663f83c477a6f57f709b7257b2dc47e2bbdf4",
     "name": "justice-iam-service",
     "realm": "staging",
-    "version": "5.31.0",
+    "version": "5.32.0",
     "version-roles-seeding": "0.0.3"
   }
 }

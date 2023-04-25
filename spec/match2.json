@@ -3,7 +3,7 @@
   "info": {
     "description": "Justice Matchmaking Service",
     "title": "Justice Match Service v2",
-    "version": "2.3.0"
+    "version": "2.3.1"
   },
   "schemes": [
     "https"
@@ -1444,7 +1444,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "Required Permission: NAMESPACE:{namespace}:MATCHMAKING:TICKET [CREATE]\n\nRequired Scope: social\n\nCreates a new request for matchmaking\n",
+        "description": "Required Permission: NAMESPACE:{namespace}:MATCHMAKING:TICKET [CREATE]\n\nRequired Scope: social\n\nCreates a new request for matchmaking.\n\nCross Platform: Allow player to play game with \u0026#34;any\u0026#34; registered plaftforms.\n1. Cross Platform can be enabled through session service or create match ticket. \n\ta. via ticket: specify several cross_platform on create match ticket attributes. \n\t   This value will override player attributes in session service. e.g. cross_platform:[xbox,psn,steam]\n\tb. via session service: set player/party cross_platform attributes.\n\tc. Enable match options ruleset with name cross_platform and type \u0026#34;any\u0026#34;.\n\t{\n\t\t\u0026#34;name\u0026#34;: \u0026#34;co-op\u0026#34;,\n\t\t\u0026#34;data\u0026#34;: {\n\t\t  \u0026#34;alliance\u0026#34;: {\n\t\t\t\u0026#34;min_number\u0026#34;: 1,\n\t\t\t\u0026#34;max_number\u0026#34;: 1,\n\t\t\t\u0026#34;player_min_number\u0026#34;: 1,\n\t\t\t\u0026#34;player_max_number\u0026#34;: 4\n\t\t  }, \n\t\t  \u0026#34;match_options\u0026#34;: {\n\t\t\t\u0026#34;options\u0026#34;: [\n\t\t\t  {“name”: “cross_platform”, “type”: “any”}\n\t\t\t]\n\t\t  }\n\t\t}\n\t}\n2. Cross Platform can be disabled with specify only ONE cross_platform. Current matchmaking use this behavior. e.g. cross_platform:[xbox] \n3. Matchmaking will consider Party leader cross_platform preference or Session attribute cross_platform preference.\n4. This behavior only works for Default Matchmaker. Custom matchmaker (custom gRPC matchmaker) need to consider this on its own implementation.\n",
         "operationId": "CreateMatchTicket",
         "parameters": [
           {
@@ -2667,9 +2667,9 @@
     "path": "/match2/apidocs/api.json"
   },
   "x-version": {
-    "buildDate": "2023-04-06T04:52:19+00:00",
-    "gitHash": "8abea129d348cfc7b8bffaf1749665142ec51e1c",
+    "buildDate": "2023-04-24T07:42:21+00:00",
+    "gitHash": "71d4d8387146cb7bc6060dd36d76e970cb6edf6d",
     "rolesSeedingVersion": "0.0.20",
-    "version": "2.3.0"
+    "version": "2.3.1"
   }
 }

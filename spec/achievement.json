@@ -3,7 +3,7 @@
   "info": {
     "description": "Justice Achievement Service",
     "title": "justice-achievement-service",
-    "version": "2.17.0"
+    "version": "2.17.1"
   },
   "schemes": [
     "https"
@@ -2370,6 +2370,9 @@
         "achievementCode": {
           "type": "string"
         },
+        "customAttributes": {
+          "type": "object"
+        },
         "defaultLanguage": {
           "type": "string"
         },
@@ -2446,6 +2449,9 @@
           "format": "date-time",
           "type": "string",
           "x-nullable": false
+        },
+        "customAttributes": {
+          "type": "object"
         },
         "defaultLanguage": {
           "type": "string"
@@ -2535,6 +2541,9 @@
     },
     "models.AchievementUpdateRequest": {
       "properties": {
+        "customAttributes": {
+          "type": "object"
+        },
         "defaultLanguage": {
           "type": "string"
         },
@@ -2855,6 +2864,9 @@
           "type": "string",
           "x-nullable": false
         },
+        "customAttributes": {
+          "type": "object"
+        },
         "description": {
           "type": "string"
         },
@@ -3102,11 +3114,11 @@
     "path": "/achievement/apidocs/api.json"
   },
   "x-version": {
-    "buildDate": "2023-03-28T01:40:18+00:00",
-    "gitHash": "b4964b9e85da02e3b610e4d52c28dc3e415af0bb",
+    "buildDate": "2023-04-11T02:00:40+00:00",
+    "gitHash": "bac68149af78016da34784f996d64202e63f8a05",
     "name": "justice-achievement-service",
     "realm": "staging",
-    "version": "2.17.0",
-    "version-roles-seeding": "0.0.3"
+    "version": "2.17.1",
+    "version-roles-seeding": "0.0.19"
   }
 }

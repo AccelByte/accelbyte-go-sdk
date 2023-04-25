@@ -61,6 +61,9 @@ type ApimodelsConfigurationTemplateResponse struct {
 	// Required: true
 	Namespace *string `json:"namespace"`
 
+	// native session setting
+	NativeSessionSetting *ModelsNativeSessionSetting `json:"nativeSessionSetting,omitempty"`
+
 	// persistent
 	// Required: true
 	Persistent *bool `json:"persistent"`
@@ -126,6 +129,10 @@ func (m *ApimodelsConfigurationTemplateResponse) Validate(formats strfmt.Registr
 	}
 
 	if err := m.validateNamespace(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateNativeSessionSetting(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -245,6 +252,24 @@ func (m *ApimodelsConfigurationTemplateResponse) validateNamespace(formats strfm
 
 	if err := validate.Required("namespace", "body", m.Namespace); err != nil {
 		return err
+	}
+
+	return nil
+}
+
+func (m *ApimodelsConfigurationTemplateResponse) validateNativeSessionSetting(formats strfmt.Registry) error {
+
+	if swag.IsZero(m.NativeSessionSetting) { // not required
+		return nil
+	}
+
+	if m.NativeSessionSetting != nil {
+		if err := m.NativeSessionSetting.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("nativeSessionSetting")
+			}
+			return err
+		}
 	}
 
 	return nil

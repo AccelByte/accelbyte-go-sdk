@@ -28,6 +28,9 @@ type ModelsAchievementResponse struct {
 	// Format: date-time
 	CreatedAt strfmt.DateTime `json:"createdAt"`
 
+	// custom attributes
+	CustomAttributes interface{} `json:"customAttributes,omitempty"`
+
 	// default language
 	// Required: true
 	DefaultLanguage *string `json:"defaultLanguage"`

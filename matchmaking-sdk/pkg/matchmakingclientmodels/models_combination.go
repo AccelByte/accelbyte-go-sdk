@@ -21,7 +21,7 @@ type ModelsCombination struct {
 
 	// alliances
 	// Required: true
-	Alliances []*ModelsCombinationAlliances `json:"alliances"`
+	Alliances [][]*ModelsRole `json:"alliances"`
 
 	// has combination
 	// Required: true
@@ -77,17 +77,21 @@ func (m *ModelsCombination) validateAlliances(formats strfmt.Registry) error {
 	}
 
 	for i := 0; i < len(m.Alliances); i++ {
-		if swag.IsZero(m.Alliances[i]) { // not required
-			continue
-		}
 
-		if m.Alliances[i] != nil {
-			if err := m.Alliances[i].Validate(formats); err != nil {
-				if ve, ok := err.(*errors.Validation); ok {
-					return ve.ValidateName("alliances" + "." + strconv.Itoa(i))
-				}
-				return err
+		for ii := 0; ii < len(m.Alliances[i]); ii++ {
+			if swag.IsZero(m.Alliances[i][ii]) { // not required
+				continue
 			}
+
+			if m.Alliances[i][ii] != nil {
+				if err := m.Alliances[i][ii].Validate(formats); err != nil {
+					if ve, ok := err.(*errors.Validation); ok {
+						return ve.ValidateName("alliances" + "." + strconv.Itoa(i) + "." + strconv.Itoa(ii))
+					}
+					return err
+				}
+			}
+
 		}
 
 	}

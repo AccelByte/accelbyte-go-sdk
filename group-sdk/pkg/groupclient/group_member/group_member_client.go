@@ -33,6 +33,8 @@ type Client struct {
 
 // ClientService is the interface for Client methods
 type ClientService interface {
+	AdminGetUserGroupStatusInformationV2(params *AdminGetUserGroupStatusInformationV2Params, authInfo runtime.ClientAuthInfoWriter) (*AdminGetUserGroupStatusInformationV2OK, *AdminGetUserGroupStatusInformationV2Unauthorized, *AdminGetUserGroupStatusInformationV2Forbidden, *AdminGetUserGroupStatusInformationV2NotFound, *AdminGetUserGroupStatusInformationV2InternalServerError, error)
+	AdminGetUserGroupStatusInformationV2Short(params *AdminGetUserGroupStatusInformationV2Params, authInfo runtime.ClientAuthInfoWriter) (*AdminGetUserGroupStatusInformationV2OK, error)
 	CancelGroupJoinRequestV1(params *CancelGroupJoinRequestV1Params, authInfo runtime.ClientAuthInfoWriter) (*CancelGroupJoinRequestV1OK, *CancelGroupJoinRequestV1BadRequest, *CancelGroupJoinRequestV1Unauthorized, *CancelGroupJoinRequestV1Forbidden, *CancelGroupJoinRequestV1NotFound, *CancelGroupJoinRequestV1InternalServerError, error)
 	CancelGroupJoinRequestV1Short(params *CancelGroupJoinRequestV1Params, authInfo runtime.ClientAuthInfoWriter) (*CancelGroupJoinRequestV1OK, error)
 	CancelInvitationGroupMemberV2(params *CancelInvitationGroupMemberV2Params, authInfo runtime.ClientAuthInfoWriter) (*CancelInvitationGroupMemberV2OK, *CancelInvitationGroupMemberV2BadRequest, *CancelInvitationGroupMemberV2Unauthorized, *CancelInvitationGroupMemberV2Forbidden, *CancelInvitationGroupMemberV2NotFound, *CancelInvitationGroupMemberV2InternalServerError, error)
@@ -83,6 +85,124 @@ type ClientService interface {
 	RejectGroupJoinRequestPublicV2Short(params *RejectGroupJoinRequestPublicV2Params, authInfo runtime.ClientAuthInfoWriter) (*RejectGroupJoinRequestPublicV2OK, error)
 
 	SetTransport(transport runtime.ClientTransport)
+}
+
+/*
+Deprecated: 2022-08-10 - Use AdminGetUserGroupStatusInformationV2Short instead.
+
+  AdminGetUserGroupStatusInformationV2 users group status information
+
+  &lt;p&gt;Required Permission: &#34;ADMIN:NAMESPACE:{namespace}:GROUP:MEMBER [READ]&#34;&lt;/p&gt;
+			&lt;p&gt;This endpoint is used to get user group status information.&lt;/p&gt;
+
+*/
+func (a *Client) AdminGetUserGroupStatusInformationV2(params *AdminGetUserGroupStatusInformationV2Params, authInfo runtime.ClientAuthInfoWriter) (*AdminGetUserGroupStatusInformationV2OK, *AdminGetUserGroupStatusInformationV2Unauthorized, *AdminGetUserGroupStatusInformationV2Forbidden, *AdminGetUserGroupStatusInformationV2NotFound, *AdminGetUserGroupStatusInformationV2InternalServerError, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewAdminGetUserGroupStatusInformationV2Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "AdminGetUserGroupStatusInformationV2",
+		Method:             "GET",
+		PathPattern:        "/group/v2/admin/namespaces/{namespace}/users/{userId}/groups/{groupId}/status",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &AdminGetUserGroupStatusInformationV2Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, nil, nil, nil, nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *AdminGetUserGroupStatusInformationV2OK:
+		return v, nil, nil, nil, nil, nil
+
+	case *AdminGetUserGroupStatusInformationV2Unauthorized:
+		return nil, v, nil, nil, nil, nil
+
+	case *AdminGetUserGroupStatusInformationV2Forbidden:
+		return nil, nil, v, nil, nil, nil
+
+	case *AdminGetUserGroupStatusInformationV2NotFound:
+		return nil, nil, nil, v, nil, nil
+
+	case *AdminGetUserGroupStatusInformationV2InternalServerError:
+		return nil, nil, nil, nil, v, nil
+
+	default:
+		return nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+  AdminGetUserGroupStatusInformationV2Short users group status information
+
+  &lt;p&gt;Required Permission: &#34;ADMIN:NAMESPACE:{namespace}:GROUP:MEMBER [READ]&#34;&lt;/p&gt;
+			&lt;p&gt;This endpoint is used to get user group status information.&lt;/p&gt;
+
+*/
+func (a *Client) AdminGetUserGroupStatusInformationV2Short(params *AdminGetUserGroupStatusInformationV2Params, authInfo runtime.ClientAuthInfoWriter) (*AdminGetUserGroupStatusInformationV2OK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewAdminGetUserGroupStatusInformationV2Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "AdminGetUserGroupStatusInformationV2",
+		Method:             "GET",
+		PathPattern:        "/group/v2/admin/namespaces/{namespace}/users/{userId}/groups/{groupId}/status",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &AdminGetUserGroupStatusInformationV2Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *AdminGetUserGroupStatusInformationV2OK:
+		return v, nil
+	case *AdminGetUserGroupStatusInformationV2Unauthorized:
+		return nil, v
+	case *AdminGetUserGroupStatusInformationV2Forbidden:
+		return nil, v
+	case *AdminGetUserGroupStatusInformationV2NotFound:
+		return nil, v
+	case *AdminGetUserGroupStatusInformationV2InternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
 }
 
 /*

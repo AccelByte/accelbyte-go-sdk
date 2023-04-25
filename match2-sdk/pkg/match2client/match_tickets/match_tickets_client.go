@@ -52,7 +52,33 @@ Deprecated: 2022-08-10 - Use CreateMatchTicketShort instead.
 
 Required Scope: social
 
-Creates a new request for matchmaking
+Creates a new request for matchmaking.
+
+Cross Platform: Allow player to play game with &#34;any&#34; registered plaftforms.
+1. Cross Platform can be enabled through session service or create match ticket.
+	a. via ticket: specify several cross_platform on create match ticket attributes.
+	   This value will override player attributes in session service. e.g. cross_platform:[xbox,psn,steam]
+	b. via session service: set player/party cross_platform attributes.
+	c. Enable match options ruleset with name cross_platform and type &#34;any&#34;.
+	{
+		&#34;name&#34;: &#34;co-op&#34;,
+		&#34;data&#34;: {
+		  &#34;alliance&#34;: {
+			&#34;min_number&#34;: 1,
+			&#34;max_number&#34;: 1,
+			&#34;player_min_number&#34;: 1,
+			&#34;player_max_number&#34;: 4
+		  },
+		  &#34;match_options&#34;: {
+			&#34;options&#34;: [
+			  {“name”: “cross_platform”, “type”: “any”}
+			]
+		  }
+		}
+	}
+2. Cross Platform can be disabled with specify only ONE cross_platform. Current matchmaking use this behavior. e.g. cross_platform:[xbox]
+3. Matchmaking will consider Party leader cross_platform preference or Session attribute cross_platform preference.
+4. This behavior only works for Default Matchmaker. Custom matchmaker (custom gRPC matchmaker) need to consider this on its own implementation.
 
 */
 func (a *Client) CreateMatchTicket(params *CreateMatchTicketParams, authInfo runtime.ClientAuthInfoWriter) (*CreateMatchTicketCreated, *CreateMatchTicketBadRequest, *CreateMatchTicketUnauthorized, *CreateMatchTicketForbidden, *CreateMatchTicketNotFound, *CreateMatchTicketConflict, *CreateMatchTicketInternalServerError, error) {
@@ -121,7 +147,33 @@ func (a *Client) CreateMatchTicket(params *CreateMatchTicketParams, authInfo run
 
 Required Scope: social
 
-Creates a new request for matchmaking
+Creates a new request for matchmaking.
+
+Cross Platform: Allow player to play game with &#34;any&#34; registered plaftforms.
+1. Cross Platform can be enabled through session service or create match ticket.
+	a. via ticket: specify several cross_platform on create match ticket attributes.
+	   This value will override player attributes in session service. e.g. cross_platform:[xbox,psn,steam]
+	b. via session service: set player/party cross_platform attributes.
+	c. Enable match options ruleset with name cross_platform and type &#34;any&#34;.
+	{
+		&#34;name&#34;: &#34;co-op&#34;,
+		&#34;data&#34;: {
+		  &#34;alliance&#34;: {
+			&#34;min_number&#34;: 1,
+			&#34;max_number&#34;: 1,
+			&#34;player_min_number&#34;: 1,
+			&#34;player_max_number&#34;: 4
+		  },
+		  &#34;match_options&#34;: {
+			&#34;options&#34;: [
+			  {“name”: “cross_platform”, “type”: “any”}
+			]
+		  }
+		}
+	}
+2. Cross Platform can be disabled with specify only ONE cross_platform. Current matchmaking use this behavior. e.g. cross_platform:[xbox]
+3. Matchmaking will consider Party leader cross_platform preference or Session attribute cross_platform preference.
+4. This behavior only works for Default Matchmaker. Custom matchmaker (custom gRPC matchmaker) need to consider this on its own implementation.
 
 */
 func (a *Client) CreateMatchTicketShort(params *CreateMatchTicketParams, authInfo runtime.ClientAuthInfoWriter) (*CreateMatchTicketCreated, error) {

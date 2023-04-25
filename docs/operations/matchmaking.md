@@ -60,7 +60,6 @@
 | `models.ChannelRequest` | [ModelsChannelRequest ](../../matchmaking-sdk/pkg/matchmakingclientmodels/models_channel_request.go) |
 | `models.ChannelV1` | [ModelsChannelV1 ](../../matchmaking-sdk/pkg/matchmakingclientmodels/models_channel_v1.go) |
 | `models.Combination` | [ModelsCombination ](../../matchmaking-sdk/pkg/matchmakingclientmodels/models_combination.go) |
-| `models.Combination.alliances` | [ModelsCombinationAlliances ](../../matchmaking-sdk/pkg/matchmakingclientmodels/models_combination_alliances.go) |
 | `models.CreateChannelResponse` | [ModelsCreateChannelResponse ](../../matchmaking-sdk/pkg/matchmakingclientmodels/models_create_channel_response.go) |
 | `models.DequeueRequest` | [ModelsDequeueRequest ](../../matchmaking-sdk/pkg/matchmakingclientmodels/models_dequeue_request.go) |
 | `models.FlexingRule` | [ModelsFlexingRule ](../../matchmaking-sdk/pkg/matchmakingclientmodels/models_flexing_rule.go) |
@@ -83,6 +82,7 @@
 | `models.RebalanceResponse` | [ModelsRebalanceResponse ](../../matchmaking-sdk/pkg/matchmakingclientmodels/models_rebalance_response.go) |
 | `models.ResultAttributeRequest` | [ModelsResultAttributeRequest ](../../matchmaking-sdk/pkg/matchmakingclientmodels/models_result_attribute_request.go) |
 | `models.ResultAttributeResponse` | [ModelsResultAttributeResponse ](../../matchmaking-sdk/pkg/matchmakingclientmodels/models_result_attribute_response.go) |
+| `models.Role` | [ModelsRole ](../../matchmaking-sdk/pkg/matchmakingclientmodels/models_role.go) |
 | `models.RuleSet` | [ModelsRuleSet ](../../matchmaking-sdk/pkg/matchmakingclientmodels/models_rule_set.go) |
 | `models.RuleSetV1` | [ModelsRuleSetV1 ](../../matchmaking-sdk/pkg/matchmakingclientmodels/models_rule_set_v1.go) |
 | `models.SubGameMode` | [ModelsSubGameMode ](../../matchmaking-sdk/pkg/matchmakingclientmodels/models_sub_game_mode.go) |

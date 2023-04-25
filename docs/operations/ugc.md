@@ -164,6 +164,7 @@
 |---|---|
 | `models.AddDownloadCountResponse` | [ModelsAddDownloadCountResponse ](../../ugc-sdk/pkg/ugcclientmodels/models_add_download_count_response.go) |
 | `models.AdminGetContentBulkRequest` | [ModelsAdminGetContentBulkRequest ](../../ugc-sdk/pkg/ugcclientmodels/models_admin_get_content_bulk_request.go) |
+| `models.AdminUpdateContentRequest` | [ModelsAdminUpdateContentRequest ](../../ugc-sdk/pkg/ugcclientmodels/models_admin_update_content_request.go) |
 | `models.ChannelRequest` | [ModelsChannelRequest ](../../ugc-sdk/pkg/ugcclientmodels/models_channel_request.go) |
 | `models.ChannelResponse` | [ModelsChannelResponse ](../../ugc-sdk/pkg/ugcclientmodels/models_channel_response.go) |
 | `models.ContentDownloadResponse` | [ModelsContentDownloadResponse ](../../ugc-sdk/pkg/ugcclientmodels/models_content_download_response.go) |

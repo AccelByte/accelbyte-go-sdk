@@ -54,6 +54,12 @@ func (o *AdminUpdateContentS3Reader) ReadResponse(response runtime.ClientRespons
 			return nil, err
 		}
 		return result, nil
+	case 409:
+		result := NewAdminUpdateContentS3Conflict()
+		if err := result.readResponse(response, consumer, o.formats); err != nil {
+			return nil, err
+		}
+		return result, nil
 	case 500:
 		result := NewAdminUpdateContentS3InternalServerError()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -267,6 +273,59 @@ func (o *AdminUpdateContentS3NotFound) GetPayload() *ugcclientmodels.ResponseErr
 }
 
 func (o *AdminUpdateContentS3NotFound) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+	// handle file responses
+	contentDisposition := response.GetHeader("Content-Disposition")
+	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
+		consumer = runtime.ByteStreamConsumer()
+	}
+
+	o.Payload = new(ugcclientmodels.ResponseError)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
+	}
+
+	return nil
+}
+
+// NewAdminUpdateContentS3Conflict creates a AdminUpdateContentS3Conflict with default headers values
+func NewAdminUpdateContentS3Conflict() *AdminUpdateContentS3Conflict {
+	return &AdminUpdateContentS3Conflict{}
+}
+
+/*AdminUpdateContentS3Conflict handles this case with default header values.
+
+  Conflict
+*/
+type AdminUpdateContentS3Conflict struct {
+	Payload *ugcclientmodels.ResponseError
+}
+
+func (o *AdminUpdateContentS3Conflict) Error() string {
+	return fmt.Sprintf("[PUT /ugc/v1/admin/namespaces/{namespace}/users/{userId}/channels/{channelId}/contents/s3/{contentId}][%d] adminUpdateContentS3Conflict  %+v", 409, o.ToJSONString())
+}
+
+func (o *AdminUpdateContentS3Conflict) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
+}
+
+func (o *AdminUpdateContentS3Conflict) GetPayload() *ugcclientmodels.ResponseError {
+	return o.Payload
+}
+
+func (o *AdminUpdateContentS3Conflict) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {

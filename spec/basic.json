@@ -8,7 +8,7 @@
     },
     "description": "Justice Basic Service",
     "title": "justice-basic-service",
-    "version": "2.8.0"
+    "version": "2.9.0"
   },
   "schemes": [
     "https"
@@ -5385,7 +5385,7 @@
     "UserProfileBulkRequest": {
       "properties": {
         "userIds": {
-          "description": "User IDs, list of User ID with limit max to 20 User ID",
+          "description": "User IDs, list of User ID with limit max to 100 User ID",
           "items": {
             "type": "string"
           },
@@ -5799,16 +5799,16 @@
   },
   "x-version": {
     "buildBy": "Gradle 6.9.1",
-    "buildDate": "2023-03-28T04:13:10+00:00",
-    "buildID": "2.8.0",
+    "buildDate": "2023-04-11T01:48:40+00:00",
+    "buildID": "2.9.0",
     "buildJDK": "1.8.0_232 (Eclipse OpenJ9 openj9-0.17.0)",
     "buildOS": "Linux amd64 5.13.0-1021-aws",
     "gitBranchName": "release-candidate",
-    "gitHash": "e7c0161d4f",
+    "gitHash": "8b90671380",
     "gitTag": "2.3.0",
     "name": "justice-basic-service",
     "realm": "staging",
-    "version": "2.8.0",
+    "version": "2.9.0",
     "version-roles-seeding": "0.0.10"
   }
 }

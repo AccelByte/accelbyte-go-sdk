@@ -8,7 +8,7 @@
     },
     "description": "Justice Reporting Service",
     "title": "justice-reporting-service",
-    "version": "0.1.25"
+    "version": "0.1.26"
   },
   "schemes": [
     "https"
@@ -3231,11 +3231,11 @@
     "path": "/reporting/apidocs/api.json"
   },
   "x-version": {
-    "buildDate": "2023-03-28T04:55:45+00:00",
-    "gitHash": "06473b617fa8c0fde8926ac1e93536e831646a09",
+    "buildDate": "2023-04-11T02:12:10+00:00",
+    "gitHash": "bb73834ba22bef2d834a71953c779bc52e046ecc",
     "name": "justice-reporting-service",
     "realm": "staging",
-    "version": "0.1.25",
+    "version": "0.1.26",
     "version-roles-seeding": "0.0.3"
   }
 }

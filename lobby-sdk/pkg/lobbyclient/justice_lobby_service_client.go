@@ -18,7 +18,6 @@ import (
 	"github.com/go-openapi/strfmt"
 
 	"github.com/AccelByte/accelbyte-go-sdk/lobby-sdk/pkg/lobbyclient/admin"
-	"github.com/AccelByte/accelbyte-go-sdk/lobby-sdk/pkg/lobbyclient/chat"
 	"github.com/AccelByte/accelbyte-go-sdk/lobby-sdk/pkg/lobbyclient/config"
 	"github.com/AccelByte/accelbyte-go-sdk/lobby-sdk/pkg/lobbyclient/friends"
 	"github.com/AccelByte/accelbyte-go-sdk/lobby-sdk/pkg/lobbyclient/lobby_operations"
@@ -79,7 +78,6 @@ func New(transport runtime.ClientTransport, runtime *httptransport.Runtime, form
 	cli.Transport = transport
 	cli.Runtime = runtime
 	cli.Admin = admin.New(transport, formats)
-	cli.Chat = chat.New(transport, formats)
 	cli.Config = config.New(transport, formats)
 	cli.Friends = friends.New(transport, formats)
 	cli.LobbyOperations = lobby_operations.New(transport, formats)
@@ -151,8 +149,6 @@ func (cfg *TransportConfig) WithSchemes(schemes []string) *TransportConfig {
 type JusticeLobbyService struct {
 	Admin admin.ClientService
 
-	Chat chat.ClientService
-
 	Config config.ClientService
 
 	Friends friends.ClientService
@@ -179,7 +175,6 @@ type JusticeLobbyService struct {
 func (c *JusticeLobbyService) SetTransport(transport runtime.ClientTransport) {
 	c.Transport = transport
 	c.Admin.SetTransport(transport)
-	c.Chat.SetTransport(transport)
 	c.Config.SetTransport(transport)
 	c.Friends.SetTransport(transport)
 	c.LobbyOperations.SetTransport(transport)

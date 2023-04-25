@@ -21,13 +21,6 @@
 | `/friends/namespaces/{namespace}/users/{userId}/add/bulk` | POST | AddFriendsWithoutConfirmationShort | [AddFriendsWithoutConfirmationShort](../../lobby-sdk/pkg/lobbyclient/friends/friends_client.go) | [AddFriendsWithoutConfirmationShort](../../services-api/pkg/service/lobby/friends.go) | [AddFriendsWithoutConfirmationShort](../../samples/cli/cmd/lobby/friends/addFriendsWithoutConfirmation.go) |
 | `/lobby/v1/admin/friend/namespaces/{namespace}/users/{userId}` | GET | GetListOfFriendsShort | [GetListOfFriendsShort](../../lobby-sdk/pkg/lobbyclient/friends/friends_client.go) | [GetListOfFriendsShort](../../services-api/pkg/service/lobby/friends.go) | [GetListOfFriendsShort](../../samples/cli/cmd/lobby/friends/getListOfFriends.go) |
 
-### chat Wrapper:  [Chat](../../services-api/pkg/service/lobby/chat.go)
-| Endpoint | Method | ID | Class | Wrapper | Example |
-|---|---|---|---|---|---|
-| `/lobby/chat/namespaces/{namespace}/users/{userId}/friend/{friendId}` | GET | PersonalChatHistoryShort | [PersonalChatHistoryShort](../../lobby-sdk/pkg/lobbyclient/chat/chat_client.go) | [PersonalChatHistoryShort](../../services-api/pkg/service/lobby/chat.go) | [PersonalChatHistoryShort](../../samples/cli/cmd/lobby/chat/personalChatHistory.go) |
-| `/lobby/v1/admin/chat/namespaces/{namespace}/users/{userId}/friends/{friendId}` | GET | AdminChatHistoryShort | [AdminChatHistoryShort](../../lobby-sdk/pkg/lobbyclient/chat/chat_client.go) | [AdminChatHistoryShort](../../services-api/pkg/service/lobby/chat.go) | [AdminChatHistoryShort](../../samples/cli/cmd/lobby/chat/adminChatHistory.go) |
-| `/lobby/v1/public/chat/namespaces/{namespace}/users/me/friends/{friendId}` | GET | GetPersonalChatHistoryV1PublicShort | [GetPersonalChatHistoryV1PublicShort](../../lobby-sdk/pkg/lobbyclient/chat/chat_client.go) | [GetPersonalChatHistoryV1PublicShort](../../services-api/pkg/service/lobby/chat.go) | [GetPersonalChatHistoryV1PublicShort](../../samples/cli/cmd/lobby/chat/getPersonalChatHistoryV1Public.go) |
-
 ### config Wrapper:  [Config](../../services-api/pkg/service/lobby/config.go)
 | Endpoint | Method | ID | Class | Wrapper | Example |
 |---|---|---|---|---|---|
@@ -153,7 +146,6 @@
 | `log.AppMessageDeclaration` | [LogAppMessageDeclaration ](../../lobby-sdk/pkg/lobbyclientmodels/log_app_message_declaration.go) |
 | `model.BulkAddFriendsRequest` | [ModelBulkAddFriendsRequest ](../../lobby-sdk/pkg/lobbyclientmodels/model_bulk_add_friends_request.go) |
 | `model.BulkUsersFreeFormNotificationRequestV1` | [ModelBulkUsersFreeFormNotificationRequestV1 ](../../lobby-sdk/pkg/lobbyclientmodels/model_bulk_users_free_form_notification_request_v1.go) |
-| `model.ChatMessageResponse` | [ModelChatMessageResponse ](../../lobby-sdk/pkg/lobbyclientmodels/model_chat_message_response.go) |
 | `model.CreateTemplateRequest` | [ModelCreateTemplateRequest ](../../lobby-sdk/pkg/lobbyclientmodels/model_create_template_request.go) |
 | `model.CreateTopicRequest` | [ModelCreateTopicRequest ](../../lobby-sdk/pkg/lobbyclientmodels/model_create_topic_request.go) |
 | `model.CreateTopicRequestV1` | [ModelCreateTopicRequestV1 ](../../lobby-sdk/pkg/lobbyclientmodels/model_create_topic_request_v1.go) |

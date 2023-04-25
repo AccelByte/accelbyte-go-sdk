@@ -78,6 +78,10 @@ func NewExportChannelsOK(writer io.Writer) *ExportChannelsOK {
   OK
 */
 type ExportChannelsOK struct {
+	/*Content-Disposition
+	 */
+	ContentDisposition string
+
 	Payload io.Writer
 }
 
@@ -110,6 +114,9 @@ func (o *ExportChannelsOK) readResponse(response runtime.ClientResponse, consume
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
 		consumer = runtime.ByteStreamConsumer()
 	}
+
+	// response header Content-Disposition
+	o.ContentDisposition = response.GetHeader("Content-Disposition")
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {

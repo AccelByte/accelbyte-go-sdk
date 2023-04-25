@@ -97,7 +97,7 @@ func (aaa *AdminContentService) SingleAdminUpdateContentS3(input *admin_content.
 	if err != nil {
 		return nil, err
 	}
-	ok, badRequest, unauthorized, notFound, internalServerError, err := aaa.Client.AdminContent.SingleAdminUpdateContentS3(input, client.BearerToken(*token.AccessToken))
+	ok, badRequest, unauthorized, notFound, conflict, internalServerError, err := aaa.Client.AdminContent.SingleAdminUpdateContentS3(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -106,6 +106,9 @@ func (aaa *AdminContentService) SingleAdminUpdateContentS3(input *admin_content.
 	}
 	if notFound != nil {
 		return nil, notFound
+	}
+	if conflict != nil {
+		return nil, conflict
 	}
 	if internalServerError != nil {
 		return nil, internalServerError
@@ -411,7 +414,7 @@ func (aaa *AdminContentService) AdminUpdateContentS3(input *admin_content.AdminU
 	if err != nil {
 		return nil, err
 	}
-	ok, badRequest, unauthorized, notFound, internalServerError, err := aaa.Client.AdminContent.AdminUpdateContentS3(input, client.BearerToken(*token.AccessToken))
+	ok, badRequest, unauthorized, notFound, conflict, internalServerError, err := aaa.Client.AdminContent.AdminUpdateContentS3(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -420,6 +423,9 @@ func (aaa *AdminContentService) AdminUpdateContentS3(input *admin_content.AdminU
 	}
 	if notFound != nil {
 		return nil, notFound
+	}
+	if conflict != nil {
+		return nil, conflict
 	}
 	if internalServerError != nil {
 		return nil, internalServerError

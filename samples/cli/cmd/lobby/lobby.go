@@ -8,7 +8,6 @@ package lobby
 
 import (
 	"github.com/AccelByte/sample-apps/cmd/lobby/admin"
-	"github.com/AccelByte/sample-apps/cmd/lobby/chat"
 	"github.com/AccelByte/sample-apps/cmd/lobby/config"
 	"github.com/AccelByte/sample-apps/cmd/lobby/friends"
 	"github.com/AccelByte/sample-apps/cmd/lobby/lobbyOperations"
@@ -40,8 +39,6 @@ func init() {
 	LobbyCmd.AddCommand(friends.UserGetFriendshipStatusCmd)
 	LobbyCmd.AddCommand(friends.UserUnfriendRequestCmd)
 	LobbyCmd.AddCommand(friends.AddFriendsWithoutConfirmationCmd)
-	LobbyCmd.AddCommand(chat.PersonalChatHistoryCmd)
-	LobbyCmd.AddCommand(chat.AdminChatHistoryCmd)
 	LobbyCmd.AddCommand(config.AdminGetAllConfigV1Cmd)
 	LobbyCmd.AddCommand(config.AdminGetConfigV1Cmd)
 	LobbyCmd.AddCommand(config.AdminUpdateConfigV1Cmd)
@@ -97,7 +94,6 @@ func init() {
 	LobbyCmd.AddCommand(thirdParty.AdminCreateThirdPartyConfigCmd)
 	LobbyCmd.AddCommand(thirdParty.AdminDeleteThirdPartyConfigCmd)
 	LobbyCmd.AddCommand(lobbyOperations.PublicGetMessagesCmd)
-	LobbyCmd.AddCommand(chat.GetPersonalChatHistoryV1PublicCmd)
 	LobbyCmd.AddCommand(party.PublicGetPartyDataV1Cmd)
 	LobbyCmd.AddCommand(party.PublicUpdatePartyAttributesV1Cmd)
 	LobbyCmd.AddCommand(party.PublicSetPartyLimitV1Cmd)

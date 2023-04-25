@@ -17,6 +17,9 @@ import (
 // swagger:model apimodels.UpdateConfigurationTemplateRequest
 type ApimodelsUpdateConfigurationTemplateRequest struct {
 
+	// native session setting
+	NativeSessionSetting *ModelsNativeSessionSetting `json:"NativeSessionSetting,omitempty"`
+
 	// client version
 	// Required: true
 	ClientVersion *string `json:"clientVersion"`
@@ -70,6 +73,10 @@ type ApimodelsUpdateConfigurationTemplateRequest struct {
 func (m *ApimodelsUpdateConfigurationTemplateRequest) Validate(formats strfmt.Registry) error {
 	var res []error
 
+	if err := m.validateNativeSessionSetting(formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.validateClientVersion(formats); err != nil {
 		res = append(res, err)
 	}
@@ -121,6 +128,24 @@ func (m *ApimodelsUpdateConfigurationTemplateRequest) Validate(formats strfmt.Re
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
+	return nil
+}
+
+func (m *ApimodelsUpdateConfigurationTemplateRequest) validateNativeSessionSetting(formats strfmt.Registry) error {
+
+	if swag.IsZero(m.NativeSessionSetting) { // not required
+		return nil
+	}
+
+	if m.NativeSessionSetting != nil {
+		if err := m.NativeSessionSetting.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("NativeSessionSetting")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 

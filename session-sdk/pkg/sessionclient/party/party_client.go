@@ -199,6 +199,14 @@ Default configuration name if empty:
 
 Supported platforms:
       1. STEAM
+2. PSN
+3. XBOX
+
+Reserved attributes key:
+1. preference: used to store preference of the leader and it is non-replaceable to keep the initial behavior of
+	the session regardless the leader changes.
+2. NATIVESESSIONTITLE: used for session sync, to define name of session displayed on PlayStation system UI.
+
 */
 func (a *Client) PublicCreateParty(params *PublicCreatePartyParams, authInfo runtime.ClientAuthInfoWriter) (*PublicCreatePartyOK, *PublicCreatePartyBadRequest, *PublicCreatePartyUnauthorized, *PublicCreatePartyInternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -271,6 +279,14 @@ Default configuration name if empty:
 
 Supported platforms:
       1. STEAM
+2. PSN
+3. XBOX
+
+Reserved attributes key:
+1. preference: used to store preference of the leader and it is non-replaceable to keep the initial behavior of
+	the session regardless the leader changes.
+2. NATIVESESSIONTITLE: used for session sync, to define name of session displayed on PlayStation system UI.
+
 */
 func (a *Client) PublicCreatePartyShort(params *PublicCreatePartyParams, authInfo runtime.ClientAuthInfoWriter) (*PublicCreatePartyOK, error) {
 	// TODO: Validate the params before sending
@@ -553,6 +569,12 @@ Deprecated: 2022-08-10 - Use PublicPartyInviteShort instead.
   PublicPartyInvite invites a user to a party requires n a m e s p a c e namespace s e s s i o n p a r t y p l a y e r c r e a t e
 
   Invite a user to a party.
+platformID represents the native platform of the invitee. API will return the corresponding native platform&#39;s userID.
+supported platforms:
+	- STEAM
+	- XBOX
+	- PSN
+
 */
 func (a *Client) PublicPartyInvite(params *PublicPartyInviteParams, authInfo runtime.ClientAuthInfoWriter) (*PublicPartyInviteCreated, *PublicPartyInviteNoContent, *PublicPartyInviteBadRequest, *PublicPartyInviteUnauthorized, *PublicPartyInviteNotFound, *PublicPartyInviteInternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -614,6 +636,12 @@ func (a *Client) PublicPartyInvite(params *PublicPartyInviteParams, authInfo run
   PublicPartyInviteShort invites a user to a party requires n a m e s p a c e namespace s e s s i o n p a r t y p l a y e r c r e a t e
 
   Invite a user to a party.
+platformID represents the native platform of the invitee. API will return the corresponding native platform&#39;s userID.
+supported platforms:
+	- STEAM
+	- XBOX
+	- PSN
+
 */
 func (a *Client) PublicPartyInviteShort(params *PublicPartyInviteParams, authInfo runtime.ClientAuthInfoWriter) (*PublicPartyInviteCreated, error) {
 	// TODO: Validate the params before sending
@@ -1257,6 +1285,12 @@ Deprecated: 2022-08-10 - Use PublicPatchUpdatePartyShort instead.
   PublicPatchUpdateParty patches update a party requires n a m e s p a c e namespace s e s s i o n p a r t y u p d a t e
 
   Update specified fields from party data. Note: Join type can only be updated by the party&#39;s leader.
+
+Reserved attributes key:
+1. preference: used to store preference of the leader and it is non-replaceable to keep the initial behavior of
+	the session regardless the leader changes.
+2. NATIVESESSIONTITLE: used for session sync, to define name of session displayed on PlayStation system UI.
+
 */
 func (a *Client) PublicPatchUpdateParty(params *PublicPatchUpdatePartyParams, authInfo runtime.ClientAuthInfoWriter) (*PublicPatchUpdatePartyOK, *PublicPatchUpdatePartyBadRequest, *PublicPatchUpdatePartyUnauthorized, *PublicPatchUpdatePartyForbidden, *PublicPatchUpdatePartyNotFound, *PublicPatchUpdatePartyInternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -1318,6 +1352,12 @@ func (a *Client) PublicPatchUpdateParty(params *PublicPatchUpdatePartyParams, au
   PublicPatchUpdatePartyShort patches update a party requires n a m e s p a c e namespace s e s s i o n p a r t y u p d a t e
 
   Update specified fields from party data. Note: Join type can only be updated by the party&#39;s leader.
+
+Reserved attributes key:
+1. preference: used to store preference of the leader and it is non-replaceable to keep the initial behavior of
+	the session regardless the leader changes.
+2. NATIVESESSIONTITLE: used for session sync, to define name of session displayed on PlayStation system UI.
+
 */
 func (a *Client) PublicPatchUpdatePartyShort(params *PublicPatchUpdatePartyParams, authInfo runtime.ClientAuthInfoWriter) (*PublicPatchUpdatePartyOK, error) {
 	// TODO: Validate the params before sending
@@ -1729,6 +1769,11 @@ To update only specified fields, please use following endpoint:
   method : PATCH
   API	 : /session/v1/public/namespaces/{namespace}/gamesessions/{sessionId}
 
+Reserved attributes key:
+1. preference: used to store preference of the leader and it is non-replaceable to keep the initial behavior of
+	the session regardless the leader changes.
+2. NATIVESESSIONTITLE: used for session sync, to define name of session displayed on PlayStation system UI.
+
 */
 func (a *Client) PublicUpdateParty(params *PublicUpdatePartyParams, authInfo runtime.ClientAuthInfoWriter) (*PublicUpdatePartyOK, *PublicUpdatePartyBadRequest, *PublicUpdatePartyUnauthorized, *PublicUpdatePartyForbidden, *PublicUpdatePartyNotFound, *PublicUpdatePartyInternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -1795,6 +1840,11 @@ Join type can only be updated by the party&#39;s leader.
 To update only specified fields, please use following endpoint:
   method : PATCH
   API	 : /session/v1/public/namespaces/{namespace}/gamesessions/{sessionId}
+
+Reserved attributes key:
+1. preference: used to store preference of the leader and it is non-replaceable to keep the initial behavior of
+	the session regardless the leader changes.
+2. NATIVESESSIONTITLE: used for session sync, to define name of session displayed on PlayStation system UI.
 
 */
 func (a *Client) PublicUpdatePartyShort(params *PublicUpdatePartyParams, authInfo runtime.ClientAuthInfoWriter) (*PublicUpdatePartyOK, error) {

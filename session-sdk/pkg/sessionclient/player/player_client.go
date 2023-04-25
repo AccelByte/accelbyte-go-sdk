@@ -58,9 +58,10 @@ Field descriptions:
 	- userID           : user who owns the attributes.
 	- crossplayEnabled : set to true if the player wants to enable crossplay to their session (default: false).
 	- platforms        : list of the player&#39;s 3rd party platform account information.
-		- name   : platform name. supported platforms: STEAM
+		- name   : platform name. supported platforms: STEAM, XBOX, PSN
 		- userID : platform userID
 	- data             : other data that the player wants to store.
+	- currentPlatform  : latest user game platform.
 
 */
 func (a *Client) AdminGetPlayerAttributes(params *AdminGetPlayerAttributesParams, authInfo runtime.ClientAuthInfoWriter) (*AdminGetPlayerAttributesOK, *AdminGetPlayerAttributesBadRequest, *AdminGetPlayerAttributesUnauthorized, *AdminGetPlayerAttributesNotFound, *AdminGetPlayerAttributesInternalServerError, error) {
@@ -125,9 +126,10 @@ Field descriptions:
 	- userID           : user who owns the attributes.
 	- crossplayEnabled : set to true if the player wants to enable crossplay to their session (default: false).
 	- platforms        : list of the player&#39;s 3rd party platform account information.
-		- name   : platform name. supported platforms: STEAM
+		- name   : platform name. supported platforms: STEAM, XBOX, PSN
 		- userID : platform userID
 	- data             : other data that the player wants to store.
+	- currentPlatform  : latest user game platform.
 
 */
 func (a *Client) AdminGetPlayerAttributesShort(params *AdminGetPlayerAttributesParams, authInfo runtime.ClientAuthInfoWriter) (*AdminGetPlayerAttributesOK, error) {
@@ -190,9 +192,10 @@ Field descriptions:
 	- userID           : user who owns the attributes.
 	- crossplayEnabled : set to true if the player wants to enable crossplay to their session (default: false).
 	- platforms        : list of the player&#39;s 3rd party platform account information.
-		- name   : platform name. supported platforms: STEAM
+		- name   : platform name. supported platforms: STEAM, XBOX, PSN
 		- userID : platform userID
 	- data             : other data that the player wants to store.
+	- currentPlatform  : latest user game platform.
 
 */
 func (a *Client) AdminQueryPlayerAttributes(params *AdminQueryPlayerAttributesParams, authInfo runtime.ClientAuthInfoWriter) (*AdminQueryPlayerAttributesOK, *AdminQueryPlayerAttributesBadRequest, *AdminQueryPlayerAttributesUnauthorized, *AdminQueryPlayerAttributesNotFound, *AdminQueryPlayerAttributesInternalServerError, error) {
@@ -257,9 +260,10 @@ Field descriptions:
 	- userID           : user who owns the attributes.
 	- crossplayEnabled : set to true if the player wants to enable crossplay to their session (default: false).
 	- platforms        : list of the player&#39;s 3rd party platform account information.
-		- name   : platform name. supported platforms: STEAM
+		- name   : platform name. supported platforms: STEAM, XBOX, PSN
 		- userID : platform userID
 	- data             : other data that the player wants to store.
+	- currentPlatform  : latest user game platform.
 
 */
 func (a *Client) AdminQueryPlayerAttributesShort(params *AdminQueryPlayerAttributesParams, authInfo runtime.ClientAuthInfoWriter) (*AdminQueryPlayerAttributesOK, error) {
@@ -436,9 +440,10 @@ Field descriptions:
 	- userID           : user who owns the attributes.
 	- crossplayEnabled : set to true if the player wants to enable crossplay to their session (default: false).
 	- platforms        : list of the player&#39;s 3rd party platform account information.
-		- name   : platform name. supported platforms: STEAM
+		- name   : platform name. supported platforms: STEAM, XBOX, PSN
 		- userID : platform userID
 	- data             : other data that the player wants to store.
+	- currentPlatform  : latest user game platform.
 
 */
 func (a *Client) PublicGetPlayerAttributes(params *PublicGetPlayerAttributesParams, authInfo runtime.ClientAuthInfoWriter) (*PublicGetPlayerAttributesOK, *PublicGetPlayerAttributesBadRequest, *PublicGetPlayerAttributesUnauthorized, *PublicGetPlayerAttributesNotFound, *PublicGetPlayerAttributesInternalServerError, error) {
@@ -503,9 +508,10 @@ Field descriptions:
 	- userID           : user who owns the attributes.
 	- crossplayEnabled : set to true if the player wants to enable crossplay to their session (default: false).
 	- platforms        : list of the player&#39;s 3rd party platform account information.
-		- name   : platform name. supported platforms: STEAM
+		- name   : platform name. supported platforms: STEAM, XBOX, PSN
 		- userID : platform userID
 	- data             : other data that the player wants to store.
+	- currentPlatform  : latest user game platform.
 
 */
 func (a *Client) PublicGetPlayerAttributesShort(params *PublicGetPlayerAttributesParams, authInfo runtime.ClientAuthInfoWriter) (*PublicGetPlayerAttributesOK, error) {
@@ -568,9 +574,10 @@ Field descriptions:
 	- userID           : user who owns the attributes.
 	- crossplayEnabled : set to true if the player wants to enable crossplay to their session (default: false).
 	- platforms        : list of the player&#39;s 3rd party platform account information.
-		- name   : platform name. supported platforms: STEAM
+		- name   : platform name. supported platforms: STEAM, XBOX, PSN
 		- userID : platform userID
 	- data             : other data that the player wants to store.
+	- currentPlatform  : latest user game platform.
 
 */
 func (a *Client) PublicStorePlayerAttributes(params *PublicStorePlayerAttributesParams, authInfo runtime.ClientAuthInfoWriter) (*PublicStorePlayerAttributesOK, *PublicStorePlayerAttributesBadRequest, *PublicStorePlayerAttributesUnauthorized, *PublicStorePlayerAttributesInternalServerError, error) {
@@ -632,9 +639,10 @@ Field descriptions:
 	- userID           : user who owns the attributes.
 	- crossplayEnabled : set to true if the player wants to enable crossplay to their session (default: false).
 	- platforms        : list of the player&#39;s 3rd party platform account information.
-		- name   : platform name. supported platforms: STEAM
+		- name   : platform name. supported platforms: STEAM, XBOX, PSN
 		- userID : platform userID
 	- data             : other data that the player wants to store.
+	- currentPlatform  : latest user game platform.
 
 */
 func (a *Client) PublicStorePlayerAttributesShort(params *PublicStorePlayerAttributesParams, authInfo runtime.ClientAuthInfoWriter) (*PublicStorePlayerAttributesOK, error) {

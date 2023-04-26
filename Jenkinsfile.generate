@@ -13,21 +13,21 @@ bitbucketCredentialsSsh = "bitbucket-build-extend-ssh"
 bitbucketCommitHref = null
 
 sdkRepoName="justice-codegen-go-sdk"
-sdkNewBranchName = "rc-nightly"
+sdkGenerateBranchName = "rc-nightly"
 
 sdkSpecCommitHash = null
 sdkCommitHash = null
 
 sdkSpecPath = null
-sdkGenPath = null
+sdkCodegenPath = null
 sdkPath = null
 
-isBreakingChangeCheckPass = false
-outstandingDeprecationNotOkCount = "0"
+breakingChangeCheckExitCode = 0
+outstandingDeprecationCount = 0
 
-def timeStamp() {
+def getTimestampUtc() {
   now = new Date()
-  return now.format("yyMMdd.HHmm", TimeZone.getTimeZone('UTC'))
+  return now.format("yyyy-MM-dd'T'HH:mm:ss+00:00", TimeZone.getTimeZone('UTC'))
 }
 
 pipeline {
@@ -40,17 +40,20 @@ pipeline {
     stage("Prepare") {
       steps {
         script {
-          sdkGenPath = "${env.WORKSPACE}/justice-codegen-sdk"
+          sdkCodegenPath = "${env.WORKSPACE}/justice-codegen-sdk"
           sdkSpecPath = "${env.WORKSPACE}/justice-codegen-sdk-spec"
           sdkPath = "${env.WORKSPACE}/${sdkRepoName}"
 
           sh "rm -rf justice-codegen-sdk"
           sh "rm -rf justice-codegen-sdk-spec"
           sshagent(credentials: [bitbucketCredentialsSsh]) {
-            sh "git clone --depth 1 git@bitbucket.org:accelbyte/justice-codegen-sdk.git ${sdkGenPath}"
-            sh "git clone --depth 1 git@bitbucket.org:accelbyte/justice-codegen-sdk-spec.git ${sdkSpecPath}"
+            sh "git clone --depth 1 git@bitbucket.org:accelbyte/justice-codegen-sdk.git ${sdkCodegenPath}"
+            sh "git clone --depth 10 git@bitbucket.org:accelbyte/justice-codegen-sdk-spec.git ${sdkSpecPath}"
           }
-          sdkSpecCommitHash = sh(returnStdout: true, script: "cd ${sdkSpecPath} && git rev-parse HEAD").trim()
+
+          dir(sdkSpecPath) {
+            sdkSpecCommitHash = sh(returnStdout: true, script: "git rev-list -1 HEAD spec/stage_main/TIMESTAMP").trim()
+          }
         }
       }
     }
@@ -58,68 +61,57 @@ pipeline {
     // -------------------------------------- Generate --------------------------------------
     stage("Generate SDK") {
       steps {
+        // Setup generate branch
         dir(sdkRepoName) {
-          sh "git branch ${sdkNewBranchName} && git checkout ${sdkNewBranchName}"
+          sh "git branch ${sdkGenerateBranchName}"
+          sh "git checkout ${sdkGenerateBranchName}"
         }
 
-        // replace openapi specs inside sdk from spec repository
-        sh script: """
-          rm -fv ${sdkPath}/spec/*;
-          find ${sdkSpecPath}/spec/stage_main/ -maxdepth 1 -type f -exec cp -v -t ${sdkPath}/spec/ {} \\;
-          cp -v ${sdkSpecPath}/docs/openapi-2.0-vendor-extensions.md ${sdkPath}/spec/;
-          """, label: "Prepare: Copy Latest SDK Specs"
-        
-        // regenerate extend sdk code
-        sh script: """
-          cd ${sdkGenPath};
-          make -f Makefile.sdk-go sdk_all SDK_PATH=${sdkPath};
-          """, label: "Generate Extend SDK"
+        // Copy latest OpenAPI spec from spec repository to SDK repository
+        sh "rm -fv ${sdkPath}/spec/*"
+        sh "find ${sdkSpecPath}/spec/stage_main/ -maxdepth 1 -type f -exec cp -v -t ${sdkPath}/spec/ {} \\;"
+        sh "cp -v ${sdkSpecPath}/docs/openapi-2.0-vendor-extensions.md ${sdkPath}/spec/"
 
-        // check code breaking changes, by compiling all samples against newly generated sdk code
-        catchError(buildResult: 'SUCCESS') {
-          sh script: """
-            cd ${sdkPath};
-            make samples;
-            """, label: "Checking Breaking Changes on Samples"
+        // Generate SDK only
+        dir(sdkCodegenPath) {
+          sh script: "make -f Makefile.sdk-go sdk_all SDK_PATH=${sdkPath}", label: "Generate SDK only"
+        }
+
+        // Check code-level breaking changes
+        dir(sdkPath) {
           script {
-            isBreakingChangeCheckPass = true
+            breakingChangeCheckExitCode = sh script: "make samples", returnStatus: true, label: "Check code-level breaking changes"
           }
         }
 
-        // regenerate sdk cli samples, test and docs
-        sh script: """
-          cd ${sdkGenPath};
-          make -f Makefile.sdk-go cli_all cli_test_all doc_operation_all beautify SDK_PATH=${sdkPath};
-          """, label: "Generate CLI & Docs"
+        // Generate the rest of the SDK
+        dir(sdkCodegenPath) {
+          sh script: "make -f Makefile.sdk-go cli_all cli_test_all doc_operation_all beautify SDK_PATH=${sdkPath}", label: "Generate the rest of SDK release"
+        }
 
+        // Bump SDK version and commit the generated code to generate branch (overwrite existing)
         dir(sdkRepoName) {
           sh "make version"
-
           sh "git add --all"
-          sh "git commit -m 'chore(sdk): generate go extend sdk (${timeStamp()})' -m '- generated from source sdk spec commit: ${sdkSpecCommitHash}'"
+          sh "git commit -m 'chore(sdk): generate go extend sdk (${getTimestampUtc()})' -m 'generated from openapi spec commit: ${sdkSpecCommitHash}'"
           sshagent(credentials: [bitbucketCredentialsSsh]) {
-            sh "git push --set-upstream origin +${sdkNewBranchName}:${sdkNewBranchName}"
+            sh "git push --set-upstream origin +${sdkGenerateBranchName}:${sdkGenerateBranchName}"
           }
-
           script {
             sdkCommitHash = git.getCommitHash()
             bitbucketCommitHref = "https://api.bitbucket.org/2.0/repositories/accelbyte/${sdkRepoName}/commit/${sdkCommitHash}"
             bitbucket.setBuildStatus(bitbucketCredentialsHttps, bitbucketCommitHref, "INPROGRESS", env.JOB_NAME, "${env.JOB_NAME}-${env.BUILD_NUMBER}", "Jenkins", "${env.BUILD_URL}console")
           }
         }
-      }
-    }
 
-    // -------------------------------------- Checks --------------------------------------
-    stage('Check Outstanding Deprecation') {
-      steps {
+        // Check outstanding deprecation
         script {
           dir(sdkRepoName) {
-            sh "make outstanding_deprecation || true"   // Ignore exit code, just need the outstanding_deprecation.out file
+            sh script: "make outstanding_deprecation || true", label: "Check outstanding deprecation"   // Ignore exit code, just need the outstanding_deprecation.out file
             if (!fileExists('outstanding_deprecation.out')) {
               error("File 'outstanding_deprecation.out' is not found")
             }
-            outstandingDeprecationNotOkCount = sh(returnStdout: true, script: "grep -c '^not ok' outstanding_deprecation.out || true").trim()
+            outstandingDeprecationCount = sh(returnStdout: true, script: "grep -c '^not ok' outstanding_deprecation.out || true").trim() as Integer
           }
         }
       }
@@ -129,40 +121,37 @@ pipeline {
     stage('Core Tests') {
       steps {
         dir(sdkRepoName) {
-          sh "make test_core SDK_MOCK_SERVER_PATH=${sdkGenPath}/mock-server"
+          sh "make test_core SDK_MOCK_SERVER_PATH=${sdkCodegenPath}/mock-server"
         }
       }
     }
-    stage("CLI/Integration Tests") {
-      parallel {
-        stage('CLI Tests') {
-          steps {
+
+    stage('CLI Tests') {
+      steps {
+        dir(sdkRepoName) {
+          sh "make test_cli SDK_MOCK_SERVER_PATH=${sdkCodegenPath}/mock-server"
+        }
+      }
+      post {
+        always {
+          script {
             dir(sdkRepoName) {
-              sh "make test_cli SDK_MOCK_SERVER_PATH=${sdkGenPath}/mock-server"
-            }
-          }
-          post {
-            always {
-              script {
-                dir(sdkRepoName) {
-                  archiveArtifacts artifacts: 'samples/cli/tests/*.tap'
-                  step([$class: "TapPublisher", testResults: "samples/cli/tests/*.tap"])
-                }
-              }
+              archiveArtifacts artifacts: 'samples/cli/tests/*.tap'
+              step([$class: "TapPublisher", testResults: "samples/cli/tests/*.tap"])
             }
           }
         }
-
-        stage('Integration Tests') {
-          options {
-            lock("justice-demo-serversdktest")
-          }
-          steps {
-            dir(sdkRepoName) {
-              withCredentials([file(credentialsId: 'justice-codegen-sdk-integration-test-env', variable: 'ENV_FILE_PATH')]) {
-                sh 'make test_integration ENV_FILE_PATH=$ENV_FILE_PATH'
-              }
-            }
+      }
+    }
+    
+    stage('Integration Tests') {
+      options {
+        lock("justice-demo-serversdktest")
+      }
+      steps {
+        dir(sdkRepoName) {
+          withCredentials([file(credentialsId: 'justice-codegen-sdk-integration-test-env', variable: 'ENV_FILE_PATH')]) {
+            sh 'make test_integration ENV_FILE_PATH=$ENV_FILE_PATH'
           }
         }
       }
@@ -178,14 +167,14 @@ pipeline {
 
         additionalInfo = ""
 
-        if (!isBreakingChangeCheckPass) {
+        if (breakingChangeCheckExitCode != 0) {
           additionalInfo += """
-              | :warning: Possible Breaking Changes Detected: <${env.BUILD_URL}/flowGraphTable/#:~:text=Checking%20Breaking%20Changes%20on%20Samples|here>"""
+              | :warning: Possible Breaking Changes Detected: <${env.BUILD_URL}/flowGraphTable/#:~:text=Check%20code%2Dlevel%20breaking%20changes|here>"""
         }
 
-        if (outstandingDeprecationNotOkCount != "0") {
+        if (outstandingDeprecationCount != 0) {
           additionalInfo += """
-              | :warning: Outstanding Deprecation Detected: <${env.BUILD_URL}/flowGraphTable/#:~:text=make%20outstanding_deprecation|${outstandingDeprecationNotOkCount}>"""
+              | :warning: Outstanding Deprecation Detected: <${env.BUILD_URL}/flowGraphTable/#:~:text=Check%20outstanding%20deprecation|${outstandingDeprecationCount}>"""
         }
 
         specLink = "https://bitbucket.org/accelbyte/justice-codegen-sdk-spec/commits/${sdkSpecCommitHash}"
@@ -196,7 +185,7 @@ pipeline {
                   |*OpenAPI Spec:* <${specLink}|${sdkSpecCommitHash}>
                   |*Generated SDK:* <${sdkLink}|${sdkCommitHash}>
 
-                  |<https://bitbucket.org/accelbyte/${sdkRepoName}/pull-requests/new?source=${sdkNewBranchName}|Compare or Create Pull Request>
+                  |<https://bitbucket.org/accelbyte/${sdkRepoName}/pull-requests/new?source=${sdkGenerateBranchName}|Compare or Create Pull Request>
                   ${additionalInfo}
                   |""".stripMargin()
         slackSend(channel: "#activity-justice-codegen-sdk", color: '#36B37E', message: message)

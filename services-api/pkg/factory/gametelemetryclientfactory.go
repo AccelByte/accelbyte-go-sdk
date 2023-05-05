@@ -13,23 +13,17 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/repository"
 )
 
-var gametelemetryClientInstance *gametelemetryclient.JusticeGametelemetryService
-
 func NewGametelemetryClient(configRepository repository.ConfigRepository) *gametelemetryclient.JusticeGametelemetryService {
-	if gametelemetryClientInstance == nil {
-		baseURL := configRepository.GetJusticeBaseUrl()
-		if len(baseURL) > 0 {
-			baseURLSplit := strings.Split(baseURL, "://")
-			httpClientConfig := &gametelemetryclient.TransportConfig{
-				Host:     baseURLSplit[1],
-				BasePath: "",
-				Schemes:  []string{baseURLSplit[0]},
-			}
-			gametelemetryClientInstance = gametelemetryclient.NewHTTPClientWithConfig(nil, httpClientConfig)
-		} else {
-			gametelemetryClientInstance = gametelemetryclient.NewHTTPClient(nil)
+	baseURL := configRepository.GetJusticeBaseUrl()
+	if len(baseURL) > 0 {
+		baseURLSplit := strings.Split(baseURL, "://")
+		httpClientConfig := &gametelemetryclient.TransportConfig{
+			Host:     baseURLSplit[1],
+			BasePath: "",
+			Schemes:  []string{baseURLSplit[0]},
 		}
+		return gametelemetryclient.NewHTTPClientWithConfig(nil, httpClientConfig)
+	} else {
+		return gametelemetryclient.NewHTTPClient(nil)
 	}
-
-	return gametelemetryClientInstance
 }

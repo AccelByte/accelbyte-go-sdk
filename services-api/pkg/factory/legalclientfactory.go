@@ -13,23 +13,17 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/repository"
 )
 
-var legalClientInstance *legalclient.JusticeLegalService
-
 func NewLegalClient(configRepository repository.ConfigRepository) *legalclient.JusticeLegalService {
-	if legalClientInstance == nil {
-		baseURL := configRepository.GetJusticeBaseUrl()
-		if len(baseURL) > 0 {
-			baseURLSplit := strings.Split(baseURL, "://")
-			httpClientConfig := &legalclient.TransportConfig{
-				Host:     baseURLSplit[1],
-				BasePath: "",
-				Schemes:  []string{baseURLSplit[0]},
-			}
-			legalClientInstance = legalclient.NewHTTPClientWithConfig(nil, httpClientConfig)
-		} else {
-			legalClientInstance = legalclient.NewHTTPClient(nil)
+	baseURL := configRepository.GetJusticeBaseUrl()
+	if len(baseURL) > 0 {
+		baseURLSplit := strings.Split(baseURL, "://")
+		httpClientConfig := &legalclient.TransportConfig{
+			Host:     baseURLSplit[1],
+			BasePath: "",
+			Schemes:  []string{baseURLSplit[0]},
 		}
+		return legalclient.NewHTTPClientWithConfig(nil, httpClientConfig)
+	} else {
+		return legalclient.NewHTTPClient(nil)
 	}
-
-	return legalClientInstance
 }

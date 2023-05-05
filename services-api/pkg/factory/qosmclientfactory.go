@@ -13,23 +13,17 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/repository"
 )
 
-var qosmClientInstance *qosmclient.JusticeQosmService
-
 func NewQosmClient(configRepository repository.ConfigRepository) *qosmclient.JusticeQosmService {
-	if qosmClientInstance == nil {
-		baseURL := configRepository.GetJusticeBaseUrl()
-		if len(baseURL) > 0 {
-			baseURLSplit := strings.Split(baseURL, "://")
-			httpClientConfig := &qosmclient.TransportConfig{
-				Host:     baseURLSplit[1],
-				BasePath: "",
-				Schemes:  []string{baseURLSplit[0]},
-			}
-			qosmClientInstance = qosmclient.NewHTTPClientWithConfig(nil, httpClientConfig)
-		} else {
-			qosmClientInstance = qosmclient.NewHTTPClient(nil)
+	baseURL := configRepository.GetJusticeBaseUrl()
+	if len(baseURL) > 0 {
+		baseURLSplit := strings.Split(baseURL, "://")
+		httpClientConfig := &qosmclient.TransportConfig{
+			Host:     baseURLSplit[1],
+			BasePath: "",
+			Schemes:  []string{baseURLSplit[0]},
 		}
+		return qosmclient.NewHTTPClientWithConfig(nil, httpClientConfig)
+	} else {
+		return qosmclient.NewHTTPClient(nil)
 	}
-
-	return qosmClientInstance
 }

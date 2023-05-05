@@ -13,23 +13,17 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/repository"
 )
 
-var seasonpassClientInstance *seasonpassclient.JusticeSeasonpassService
-
 func NewSeasonpassClient(configRepository repository.ConfigRepository) *seasonpassclient.JusticeSeasonpassService {
-	if seasonpassClientInstance == nil {
-		baseURL := configRepository.GetJusticeBaseUrl()
-		if len(baseURL) > 0 {
-			baseURLSplit := strings.Split(baseURL, "://")
-			httpClientConfig := &seasonpassclient.TransportConfig{
-				Host:     baseURLSplit[1],
-				BasePath: "",
-				Schemes:  []string{baseURLSplit[0]},
-			}
-			seasonpassClientInstance = seasonpassclient.NewHTTPClientWithConfig(nil, httpClientConfig)
-		} else {
-			seasonpassClientInstance = seasonpassclient.NewHTTPClient(nil)
+	baseURL := configRepository.GetJusticeBaseUrl()
+	if len(baseURL) > 0 {
+		baseURLSplit := strings.Split(baseURL, "://")
+		httpClientConfig := &seasonpassclient.TransportConfig{
+			Host:     baseURLSplit[1],
+			BasePath: "",
+			Schemes:  []string{baseURLSplit[0]},
 		}
+		return seasonpassclient.NewHTTPClientWithConfig(nil, httpClientConfig)
+	} else {
+		return seasonpassclient.NewHTTPClient(nil)
 	}
-
-	return seasonpassClientInstance
 }

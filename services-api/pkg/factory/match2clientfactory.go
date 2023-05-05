@@ -13,23 +13,17 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/repository"
 )
 
-var match2ClientInstance *match2client.JusticeMatch2Service
-
 func NewMatch2Client(configRepository repository.ConfigRepository) *match2client.JusticeMatch2Service {
-	if match2ClientInstance == nil {
-		baseURL := configRepository.GetJusticeBaseUrl()
-		if len(baseURL) > 0 {
-			baseURLSplit := strings.Split(baseURL, "://")
-			httpClientConfig := &match2client.TransportConfig{
-				Host:     baseURLSplit[1],
-				BasePath: "",
-				Schemes:  []string{baseURLSplit[0]},
-			}
-			match2ClientInstance = match2client.NewHTTPClientWithConfig(nil, httpClientConfig)
-		} else {
-			match2ClientInstance = match2client.NewHTTPClient(nil)
+	baseURL := configRepository.GetJusticeBaseUrl()
+	if len(baseURL) > 0 {
+		baseURLSplit := strings.Split(baseURL, "://")
+		httpClientConfig := &match2client.TransportConfig{
+			Host:     baseURLSplit[1],
+			BasePath: "",
+			Schemes:  []string{baseURLSplit[0]},
 		}
+		return match2client.NewHTTPClientWithConfig(nil, httpClientConfig)
+	} else {
+		return match2client.NewHTTPClient(nil)
 	}
-
-	return match2ClientInstance
 }

@@ -13,23 +13,17 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/repository"
 )
 
-var gdprClientInstance *gdprclient.JusticeGdprService
-
 func NewGdprClient(configRepository repository.ConfigRepository) *gdprclient.JusticeGdprService {
-	if gdprClientInstance == nil {
-		baseURL := configRepository.GetJusticeBaseUrl()
-		if len(baseURL) > 0 {
-			baseURLSplit := strings.Split(baseURL, "://")
-			httpClientConfig := &gdprclient.TransportConfig{
-				Host:     baseURLSplit[1],
-				BasePath: "",
-				Schemes:  []string{baseURLSplit[0]},
-			}
-			gdprClientInstance = gdprclient.NewHTTPClientWithConfig(nil, httpClientConfig)
-		} else {
-			gdprClientInstance = gdprclient.NewHTTPClient(nil)
+	baseURL := configRepository.GetJusticeBaseUrl()
+	if len(baseURL) > 0 {
+		baseURLSplit := strings.Split(baseURL, "://")
+		httpClientConfig := &gdprclient.TransportConfig{
+			Host:     baseURLSplit[1],
+			BasePath: "",
+			Schemes:  []string{baseURLSplit[0]},
 		}
+		return gdprclient.NewHTTPClientWithConfig(nil, httpClientConfig)
+	} else {
+		return gdprclient.NewHTTPClient(nil)
 	}
-
-	return gdprClientInstance
 }

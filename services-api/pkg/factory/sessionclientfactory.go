@@ -13,23 +13,17 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/session-sdk/pkg/sessionclient"
 )
 
-var sessionClientInstance *sessionclient.JusticeSessionService
-
 func NewSessionClient(configRepository repository.ConfigRepository) *sessionclient.JusticeSessionService {
-	if sessionClientInstance == nil {
-		baseURL := configRepository.GetJusticeBaseUrl()
-		if len(baseURL) > 0 {
-			baseURLSplit := strings.Split(baseURL, "://")
-			httpClientConfig := &sessionclient.TransportConfig{
-				Host:     baseURLSplit[1],
-				BasePath: "",
-				Schemes:  []string{baseURLSplit[0]},
-			}
-			sessionClientInstance = sessionclient.NewHTTPClientWithConfig(nil, httpClientConfig)
-		} else {
-			sessionClientInstance = sessionclient.NewHTTPClient(nil)
+	baseURL := configRepository.GetJusticeBaseUrl()
+	if len(baseURL) > 0 {
+		baseURLSplit := strings.Split(baseURL, "://")
+		httpClientConfig := &sessionclient.TransportConfig{
+			Host:     baseURLSplit[1],
+			BasePath: "",
+			Schemes:  []string{baseURLSplit[0]},
 		}
+		return sessionclient.NewHTTPClientWithConfig(nil, httpClientConfig)
+	} else {
+		return sessionclient.NewHTTPClient(nil)
 	}
-
-	return sessionClientInstance
 }

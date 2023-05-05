@@ -13,23 +13,17 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/repository"
 )
 
-var iamClientInstance *iamclient.JusticeIamService
-
 func NewIamClient(configRepository repository.ConfigRepository) *iamclient.JusticeIamService {
-	if iamClientInstance == nil {
-		baseURL := configRepository.GetJusticeBaseUrl()
-		if len(baseURL) > 0 {
-			baseURLSplit := strings.Split(baseURL, "://")
-			httpClientConfig := &iamclient.TransportConfig{
-				Host:     baseURLSplit[1],
-				BasePath: "",
-				Schemes:  []string{baseURLSplit[0]},
-			}
-			iamClientInstance = iamclient.NewHTTPClientWithConfig(nil, httpClientConfig)
-		} else {
-			iamClientInstance = iamclient.NewHTTPClient(nil)
+	baseURL := configRepository.GetJusticeBaseUrl()
+	if len(baseURL) > 0 {
+		baseURLSplit := strings.Split(baseURL, "://")
+		httpClientConfig := &iamclient.TransportConfig{
+			Host:     baseURLSplit[1],
+			BasePath: "",
+			Schemes:  []string{baseURLSplit[0]},
 		}
+		return iamclient.NewHTTPClientWithConfig(nil, httpClientConfig)
+	} else {
+		return iamclient.NewHTTPClient(nil)
 	}
-
-	return iamClientInstance
 }

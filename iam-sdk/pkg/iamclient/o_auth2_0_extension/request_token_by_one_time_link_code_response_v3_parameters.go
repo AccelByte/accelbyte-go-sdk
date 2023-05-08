@@ -16,13 +16,17 @@ import (
 	"github.com/go-openapi/runtime"
 	cr "github.com/go-openapi/runtime/client"
 	"github.com/go-openapi/strfmt"
+	"github.com/go-openapi/swag"
 )
 
 // NewRequestTokenByOneTimeLinkCodeResponseV3Params creates a new RequestTokenByOneTimeLinkCodeResponseV3Params object
 // with the default values initialized.
 func NewRequestTokenByOneTimeLinkCodeResponseV3Params() *RequestTokenByOneTimeLinkCodeResponseV3Params {
-	var ()
+	var (
+		isTransientDefault = bool(false)
+	)
 	return &RequestTokenByOneTimeLinkCodeResponseV3Params{
+		IsTransient: &isTransientDefault,
 
 		timeout: cr.DefaultTimeout,
 	}
@@ -31,8 +35,11 @@ func NewRequestTokenByOneTimeLinkCodeResponseV3Params() *RequestTokenByOneTimeLi
 // NewRequestTokenByOneTimeLinkCodeResponseV3ParamsWithTimeout creates a new RequestTokenByOneTimeLinkCodeResponseV3Params object
 // with the default values initialized, and the ability to set a timeout on a request
 func NewRequestTokenByOneTimeLinkCodeResponseV3ParamsWithTimeout(timeout time.Duration) *RequestTokenByOneTimeLinkCodeResponseV3Params {
-	var ()
+	var (
+		isTransientDefault = bool(false)
+	)
 	return &RequestTokenByOneTimeLinkCodeResponseV3Params{
+		IsTransient: &isTransientDefault,
 
 		timeout: timeout,
 	}
@@ -41,8 +48,11 @@ func NewRequestTokenByOneTimeLinkCodeResponseV3ParamsWithTimeout(timeout time.Du
 // NewRequestTokenByOneTimeLinkCodeResponseV3ParamsWithContext creates a new RequestTokenByOneTimeLinkCodeResponseV3Params object
 // with the default values initialized, and the ability to set a context for a request
 func NewRequestTokenByOneTimeLinkCodeResponseV3ParamsWithContext(ctx context.Context) *RequestTokenByOneTimeLinkCodeResponseV3Params {
-	var ()
+	var (
+		isTransientDefault = bool(false)
+	)
 	return &RequestTokenByOneTimeLinkCodeResponseV3Params{
+		IsTransient: &isTransientDefault,
 
 		Context: ctx,
 	}
@@ -51,9 +61,12 @@ func NewRequestTokenByOneTimeLinkCodeResponseV3ParamsWithContext(ctx context.Con
 // NewRequestTokenByOneTimeLinkCodeResponseV3ParamsWithHTTPClient creates a new RequestTokenByOneTimeLinkCodeResponseV3Params object
 // with the default values initialized, and the ability to set a custom HTTPClient for a request
 func NewRequestTokenByOneTimeLinkCodeResponseV3ParamsWithHTTPClient(client *http.Client) *RequestTokenByOneTimeLinkCodeResponseV3Params {
-	var ()
+	var (
+		isTransientDefault = bool(false)
+	)
 	return &RequestTokenByOneTimeLinkCodeResponseV3Params{
-		HTTPClient: client,
+		IsTransient: &isTransientDefault,
+		HTTPClient:  client,
 	}
 }
 
@@ -64,6 +77,11 @@ type RequestTokenByOneTimeLinkCodeResponseV3Params struct {
 
 	/*RetryPolicy*/
 	RetryPolicy *utils.Retry
+	/*IsTransient
+	  will produce transient token
+
+	*/
+	IsTransient *bool
 	/*ClientID
 	  publisher clientID
 
@@ -128,6 +146,17 @@ func (o *RequestTokenByOneTimeLinkCodeResponseV3Params) SetHTTPClientTransport(r
 	}
 }
 
+// WithIsTransient adds the isTransient to the request token by one time link code response v3 params
+func (o *RequestTokenByOneTimeLinkCodeResponseV3Params) WithIsTransient(isTransient *bool) *RequestTokenByOneTimeLinkCodeResponseV3Params {
+	o.SetIsTransient(isTransient)
+	return o
+}
+
+// SetIsTransient adds the isTransient to the request token by one time link code response v3 params
+func (o *RequestTokenByOneTimeLinkCodeResponseV3Params) SetIsTransient(isTransient *bool) {
+	o.IsTransient = isTransient
+}
+
 // WithClientID adds the clientID to the request token by one time link code response v3 params
 func (o *RequestTokenByOneTimeLinkCodeResponseV3Params) WithClientID(clientID string) *RequestTokenByOneTimeLinkCodeResponseV3Params {
 	o.SetClientID(clientID)
@@ -157,6 +186,22 @@ func (o *RequestTokenByOneTimeLinkCodeResponseV3Params) WriteToRequest(r runtime
 		return err
 	}
 	var res []error
+
+	if o.IsTransient != nil {
+
+		// form param isTransient
+		var frIsTransient bool
+		if o.IsTransient != nil {
+			frIsTransient = *o.IsTransient
+		}
+		fIsTransient := swag.FormatBool(frIsTransient)
+		if fIsTransient != "" {
+			if err := r.SetFormParam("isTransient", fIsTransient); err != nil {
+				return err
+			}
+		}
+
+	}
 
 	// form param client_id
 	frClientID := o.ClientID

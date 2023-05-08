@@ -70,6 +70,7 @@ Session configuration mandatory :
 - XboxServiceConfigID: the XBox service configuration ID.
 - PSNServiceLabel: the PSN service label.
 - SessionTitle: the session title. In PSN, this will be used to define name of the session thats displayed on PlayStation system UI.
+- ShouldSync: to define whether the service needs to do session sync with native platform(s). Default: false (disabled).
 */
 func (a *Client) AdminCreateConfigurationTemplateV1(params *AdminCreateConfigurationTemplateV1Params, authInfo runtime.ClientAuthInfoWriter) (*AdminCreateConfigurationTemplateV1Created, *AdminCreateConfigurationTemplateV1BadRequest, *AdminCreateConfigurationTemplateV1Unauthorized, *AdminCreateConfigurationTemplateV1Forbidden, *AdminCreateConfigurationTemplateV1Conflict, *AdminCreateConfigurationTemplateV1InternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -147,6 +148,7 @@ Session configuration mandatory :
 - XboxServiceConfigID: the XBox service configuration ID.
 - PSNServiceLabel: the PSN service label.
 - SessionTitle: the session title. In PSN, this will be used to define name of the session thats displayed on PlayStation system UI.
+- ShouldSync: to define whether the service needs to do session sync with native platform(s). Default: false (disabled).
 */
 func (a *Client) AdminCreateConfigurationTemplateV1Short(params *AdminCreateConfigurationTemplateV1Params, authInfo runtime.ClientAuthInfoWriter) (*AdminCreateConfigurationTemplateV1Created, error) {
 	// TODO: Validate the params before sending
@@ -450,6 +452,7 @@ Session configuration mandatory :
 - XboxServiceConfigID: the XBox service configuration ID.
 - PSNServiceLabel: the PSN service label.
 - SessionTitle: the session title. In PSN, this will be used to define name of the session thats displayed on PlayStation system UI.
+- ShouldSync: to define whether the service needs to do session sync with native platform(s). Default: false (disabled).
 */
 func (a *Client) AdminUpdateConfigurationTemplateV1(params *AdminUpdateConfigurationTemplateV1Params, authInfo runtime.ClientAuthInfoWriter) (*AdminUpdateConfigurationTemplateV1OK, *AdminUpdateConfigurationTemplateV1BadRequest, *AdminUpdateConfigurationTemplateV1Unauthorized, *AdminUpdateConfigurationTemplateV1Forbidden, *AdminUpdateConfigurationTemplateV1NotFound, *AdminUpdateConfigurationTemplateV1InternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -527,6 +530,7 @@ Session configuration mandatory :
 - XboxServiceConfigID: the XBox service configuration ID.
 - PSNServiceLabel: the PSN service label.
 - SessionTitle: the session title. In PSN, this will be used to define name of the session thats displayed on PlayStation system UI.
+- ShouldSync: to define whether the service needs to do session sync with native platform(s). Default: false (disabled).
 */
 func (a *Client) AdminUpdateConfigurationTemplateV1Short(params *AdminUpdateConfigurationTemplateV1Params, authInfo runtime.ClientAuthInfoWriter) (*AdminUpdateConfigurationTemplateV1OK, error) {
 	// TODO: Validate the params before sending

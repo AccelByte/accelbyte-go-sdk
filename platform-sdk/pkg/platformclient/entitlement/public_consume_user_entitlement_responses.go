@@ -122,7 +122,7 @@ func NewPublicConsumeUserEntitlementBadRequest() *PublicConsumeUserEntitlementBa
 
 /*PublicConsumeUserEntitlementBadRequest handles this case with default header values.
 
-  <table><tr><td>ErrorCode</td><td>ErrorMessage</td></tr><tr><td>31121</td><td>OptionBox entitlement [{entitlementId}] use count is not 1</td></tr><tr><td>31122</td><td>OptionBox entitlement [{entitlementId}] options size is not 1</td></tr></table>
+  <table><tr><td>ErrorCode</td><td>ErrorMessage</td></tr><tr><td>31121</td><td>OptionBox entitlement [{entitlementId}] use count is not 1</td></tr><tr><td>31122</td><td>OptionBox entitlement [{entitlementId}] options size is not 1</td></tr><tr><td>31123</td><td>Unable to acquire box item, box item [{itemId}] expired</td></tr></table>
 */
 type PublicConsumeUserEntitlementBadRequest struct {
 	Payload *platformclientmodels.ErrorEntity

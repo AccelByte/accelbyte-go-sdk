@@ -16,7 +16,9 @@ import (
 
 	"github.com/AccelByte/accelbyte-go-sdk/leaderboard-sdk/pkg/leaderboardclient/anonymization"
 	"github.com/AccelByte/accelbyte-go-sdk/leaderboard-sdk/pkg/leaderboardclient/leaderboard_configuration"
+	"github.com/AccelByte/accelbyte-go-sdk/leaderboard-sdk/pkg/leaderboardclient/leaderboard_configuration_v3"
 	"github.com/AccelByte/accelbyte-go-sdk/leaderboard-sdk/pkg/leaderboardclient/leaderboard_data"
+	"github.com/AccelByte/accelbyte-go-sdk/leaderboard-sdk/pkg/leaderboardclient/leaderboard_data_v3"
 	"github.com/AccelByte/accelbyte-go-sdk/leaderboard-sdk/pkg/leaderboardclient/user_data"
 	"github.com/AccelByte/accelbyte-go-sdk/leaderboard-sdk/pkg/leaderboardclient/user_visibility"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils"
@@ -71,7 +73,9 @@ func New(transport runtime.ClientTransport, runtime *httptransport.Runtime, form
 	cli.Runtime = runtime
 	cli.Anonymization = anonymization.New(transport, formats)
 	cli.LeaderboardConfiguration = leaderboard_configuration.New(transport, formats)
+	cli.LeaderboardConfigurationV3 = leaderboard_configuration_v3.New(transport, formats)
 	cli.LeaderboardData = leaderboard_data.New(transport, formats)
+	cli.LeaderboardDataV3 = leaderboard_data_v3.New(transport, formats)
 	cli.UserData = user_data.New(transport, formats)
 	cli.UserVisibility = user_visibility.New(transport, formats)
 
@@ -138,7 +142,11 @@ type JusticeLeaderboardService struct {
 
 	LeaderboardConfiguration leaderboard_configuration.ClientService
 
+	LeaderboardConfigurationV3 leaderboard_configuration_v3.ClientService
+
 	LeaderboardData leaderboard_data.ClientService
+
+	LeaderboardDataV3 leaderboard_data_v3.ClientService
 
 	UserData user_data.ClientService
 
@@ -153,7 +161,9 @@ func (c *JusticeLeaderboardService) SetTransport(transport runtime.ClientTranspo
 	c.Transport = transport
 	c.Anonymization.SetTransport(transport)
 	c.LeaderboardConfiguration.SetTransport(transport)
+	c.LeaderboardConfigurationV3.SetTransport(transport)
 	c.LeaderboardData.SetTransport(transport)
+	c.LeaderboardDataV3.SetTransport(transport)
 	c.UserData.SetTransport(transport)
 	c.UserVisibility.SetTransport(transport)
 }

@@ -33,6 +33,12 @@ func (o *UpdateRewardReader) ReadResponse(response runtime.ClientResponse, consu
 			return nil, err
 		}
 		return result, nil
+	case 400:
+		result := NewUpdateRewardBadRequest()
+		if err := result.readResponse(response, consumer, o.formats); err != nil {
+			return nil, err
+		}
+		return result, nil
 	case 404:
 		result := NewUpdateRewardNotFound()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -109,6 +115,59 @@ func (o *UpdateRewardOK) readResponse(response runtime.ClientResponse, consumer 
 	return nil
 }
 
+// NewUpdateRewardBadRequest creates a UpdateRewardBadRequest with default headers values
+func NewUpdateRewardBadRequest() *UpdateRewardBadRequest {
+	return &UpdateRewardBadRequest{}
+}
+
+/*UpdateRewardBadRequest handles this case with default header values.
+
+  <table><tr><td>ErrorCode</td><td>ErrorMessage</td></tr><tr><td>34023</td><td>Reward Item [{itemId}] with item type [{itemType}] is not supported for duration or endDate</td></tr></table>
+*/
+type UpdateRewardBadRequest struct {
+	Payload *platformclientmodels.ErrorEntity
+}
+
+func (o *UpdateRewardBadRequest) Error() string {
+	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/rewards/{rewardId}][%d] updateRewardBadRequest  %+v", 400, o.ToJSONString())
+}
+
+func (o *UpdateRewardBadRequest) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
+}
+
+func (o *UpdateRewardBadRequest) GetPayload() *platformclientmodels.ErrorEntity {
+	return o.Payload
+}
+
+func (o *UpdateRewardBadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+	// handle file responses
+	contentDisposition := response.GetHeader("Content-Disposition")
+	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
+		consumer = runtime.ByteStreamConsumer()
+	}
+
+	o.Payload = new(platformclientmodels.ErrorEntity)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
+	}
+
+	return nil
+}
+
 // NewUpdateRewardNotFound creates a UpdateRewardNotFound with default headers values
 func NewUpdateRewardNotFound() *UpdateRewardNotFound {
 	return &UpdateRewardNotFound{}
@@ -169,7 +228,7 @@ func NewUpdateRewardConflict() *UpdateRewardConflict {
 
 /*UpdateRewardConflict handles this case with default header values.
 
-  <table><tr><td>ErrorCode</td><td>ErrorMessage</td></tr><tr><td>34072</td><td>Duplicate reward condition [{rewardConditionName}] found in reward [{rewardCode}]</td></tr></table>
+  <table><tr><td>ErrorCode</td><td>ErrorMessage</td></tr><tr><td>34072</td><td>Duplicate reward condition [{rewardConditionName}] found in reward [{rewardCode}]</td></tr><tr><td>34074</td><td>Reward Item [{itemId}] duration and end date can’t be set at the same time</td></tr></table>
 */
 type UpdateRewardConflict struct {
 	Payload *platformclientmodels.ErrorEntity

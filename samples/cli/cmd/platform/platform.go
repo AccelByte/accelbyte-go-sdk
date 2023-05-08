@@ -33,6 +33,7 @@ import (
 	"github.com/AccelByte/sample-apps/cmd/platform/reward"
 	"github.com/AccelByte/sample-apps/cmd/platform/section"
 	"github.com/AccelByte/sample-apps/cmd/platform/servicePluginConfig"
+	"github.com/AccelByte/sample-apps/cmd/platform/sessionPlatform"
 	"github.com/AccelByte/sample-apps/cmd/platform/store"
 	"github.com/AccelByte/sample-apps/cmd/platform/subscription"
 	"github.com/AccelByte/sample-apps/cmd/platform/ticket"
@@ -290,6 +291,7 @@ func init() {
 	PlatformCmd.AddCommand(payment.RefundUserPaymentOrderCmd)
 	PlatformCmd.AddCommand(campaign.ApplyUserRedemptionCmd)
 	PlatformCmd.AddCommand(revocation.DoRevocationCmd)
+	PlatformCmd.AddCommand(sessionPlatform.RegisterXblSessionsCmd)
 	PlatformCmd.AddCommand(subscription.QueryUserSubscriptionsCmd)
 	PlatformCmd.AddCommand(subscription.GetUserSubscriptionActivitiesCmd)
 	PlatformCmd.AddCommand(subscription.PlatformSubscribeSubscriptionCmd)

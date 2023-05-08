@@ -48,10 +48,25 @@ type ModelsCreateChannelResponse struct {
 	// Required: true
 	Namespace *string `json:"namespace"`
 
+	// region_expansion_range_ms
+	// Required: true
+	// Format: int32
+	RegionExpansionRangeMs *int32 `json:"region_expansion_range_ms"`
+
 	// region_expansion_rate_ms
 	// Required: true
 	// Format: int32
 	RegionExpansionRateMs *int32 `json:"region_expansion_rate_ms"`
+
+	// region_latency_initial_range_ms
+	// Required: true
+	// Format: int32
+	RegionLatencyInitialRangeMs *int32 `json:"region_latency_initial_range_ms"`
+
+	// region_latency_max_ms
+	// Required: true
+	// Format: int32
+	RegionLatencyMaxMs *int32 `json:"region_latency_max_ms"`
 
 	// ruleset
 	// Required: true
@@ -104,7 +119,16 @@ func (m *ModelsCreateChannelResponse) Validate(formats strfmt.Registry) error {
 	if err := m.validateNamespace(formats); err != nil {
 		res = append(res, err)
 	}
+	if err := m.validateRegionExpansionRangeMs(formats); err != nil {
+		res = append(res, err)
+	}
 	if err := m.validateRegionExpansionRateMs(formats); err != nil {
+		res = append(res, err)
+	}
+	if err := m.validateRegionLatencyInitialRangeMs(formats); err != nil {
+		res = append(res, err)
+	}
+	if err := m.validateRegionLatencyMaxMs(formats); err != nil {
 		res = append(res, err)
 	}
 	if err := m.validateRuleset(formats); err != nil {
@@ -195,9 +219,36 @@ func (m *ModelsCreateChannelResponse) validateNamespace(formats strfmt.Registry)
 	return nil
 }
 
+func (m *ModelsCreateChannelResponse) validateRegionExpansionRangeMs(formats strfmt.Registry) error {
+
+	if err := validate.Required("region_expansion_range_ms", "body", m.RegionExpansionRangeMs); err != nil {
+		return err
+	}
+
+	return nil
+}
+
 func (m *ModelsCreateChannelResponse) validateRegionExpansionRateMs(formats strfmt.Registry) error {
 
 	if err := validate.Required("region_expansion_rate_ms", "body", m.RegionExpansionRateMs); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *ModelsCreateChannelResponse) validateRegionLatencyInitialRangeMs(formats strfmt.Registry) error {
+
+	if err := validate.Required("region_latency_initial_range_ms", "body", m.RegionLatencyInitialRangeMs); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *ModelsCreateChannelResponse) validateRegionLatencyMaxMs(formats strfmt.Registry) error {
+
+	if err := validate.Required("region_latency_max_ms", "body", m.RegionLatencyMaxMs); err != nil {
 		return err
 	}
 

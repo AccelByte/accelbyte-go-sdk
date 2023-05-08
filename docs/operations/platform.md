@@ -450,6 +450,11 @@
 | `/platform/admin/namespaces/{namespace}/users/{userId}/anonymization/subscriptions` | DELETE | AnonymizeSubscriptionShort | [AnonymizeSubscriptionShort](../../platform-sdk/pkg/platformclient/anonymization/anonymization_client.go) | [AnonymizeSubscriptionShort](../../services-api/pkg/service/platform/anonymization.go) | [AnonymizeSubscriptionShort](../../samples/cli/cmd/platform/anonymization/anonymizeSubscription.go) |
 | `/platform/admin/namespaces/{namespace}/users/{userId}/anonymization/wallets` | DELETE | AnonymizeWalletShort | [AnonymizeWalletShort](../../platform-sdk/pkg/platformclient/anonymization/anonymization_client.go) | [AnonymizeWalletShort](../../services-api/pkg/service/platform/anonymization.go) | [AnonymizeWalletShort](../../samples/cli/cmd/platform/anonymization/anonymizeWallet.go) |
 
+### Session(Platform) Wrapper:  [SessionPlatform](../../services-api/pkg/service/platform/sessionPlatform.go)
+| Endpoint | Method | ID | Class | Wrapper | Example |
+|---|---|---|---|---|---|
+| `/platform/admin/namespaces/{namespace}/users/{userId}/session/xbl` | PUT | RegisterXblSessionsShort | [RegisterXblSessionsShort](../../platform-sdk/pkg/platformclient/session_platform/session_platform_client.go) | [RegisterXblSessionsShort](../../services-api/pkg/service/platform/sessionPlatform.go) | [RegisterXblSessionsShort](../../samples/cli/cmd/platform/sessionPlatform/registerXblSessions.go) |
+
 ### View Wrapper:  [View](../../services-api/pkg/service/platform/view.go)
 | Endpoint | Method | ID | Class | Wrapper | Example |
 |---|---|---|---|---|---|
@@ -877,6 +882,7 @@
 | `XblReconcileRequest` | [XblReconcileRequest ](../../platform-sdk/pkg/platformclientmodels/xbl_reconcile_request.go) |
 | `XblReconcileResult` | [XblReconcileResult ](../../platform-sdk/pkg/platformclientmodels/xbl_reconcile_result.go) |
 | `XblUserAchievements` | [XblUserAchievements ](../../platform-sdk/pkg/platformclientmodels/xbl_user_achievements.go) |
+| `XblUserSessionRequest` | [XblUserSessionRequest ](../../platform-sdk/pkg/platformclientmodels/xbl_user_session_request.go) |
 | `XsollaConfig` | [XsollaConfig ](../../platform-sdk/pkg/platformclientmodels/xsolla_config.go) |
 | `XsollaPaywallConfig` | [XsollaPaywallConfig ](../../platform-sdk/pkg/platformclientmodels/xsolla_paywall_config.go) |
 | `XsollaPaywallConfigRequest` | [XsollaPaywallConfigRequest ](../../platform-sdk/pkg/platformclientmodels/xsolla_paywall_config_request.go) |

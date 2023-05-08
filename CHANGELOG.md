@@ -1,3 +1,15 @@
+<a name="v0.44.0"></a>
+## [v0.44.0]
+### ci
+- **generate:** refactor jenkinsfile.generate
+- **makefile:** happens when version is bumped but it is not released in github yet
+- **generate:** generate changelog also
+### fix
+- **sdk:** modify the singleton factory
+### chore
+- **sdk:** migration from goswagger to jinja
+
+
 <a name="v0.43.0"></a>
 ## [v0.43.0] - 2023-04-26
 

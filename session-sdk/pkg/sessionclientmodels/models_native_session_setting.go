@@ -27,6 +27,9 @@ type ModelsNativeSessionSetting struct {
 	// Required: true
 	SessionTitle *string `json:"SessionTitle"`
 
+	// shouldsync
+	ShouldSync bool `json:"ShouldSync"`
+
 	// xboxserviceconfigid
 	// Required: true
 	XboxServiceConfigID *string `json:"XboxServiceConfigID"`

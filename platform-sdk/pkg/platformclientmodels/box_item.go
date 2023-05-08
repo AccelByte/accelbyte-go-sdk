@@ -21,6 +21,14 @@ type BoxItem struct {
 	// Format: int32
 	Count int32 `json:"count,omitempty"`
 
+	// box item will be expired after this duration (in seconds). Only available for OptionBox. Supported item type(s): COINS
+	// Format: int32
+	Duration int32 `json:"duration,omitempty"`
+
+	// box item will be expired after this time. Only available for OptionBox. Supported item type(s): COINS
+	// Format: date-time
+	EndDate *strfmt.DateTime `json:"endDate,omitempty"`
+
 	// item id
 	ItemID string `json:"itemId,omitempty"`
 

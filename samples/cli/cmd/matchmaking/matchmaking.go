@@ -24,6 +24,7 @@ func init() {
 	MatchmakingCmd.AddCommand(matchmakingOperations.HandlerV3HealthzCmd)
 	MatchmakingCmd.AddCommand(matchmaking.GetAllChannelsHandlerCmd)
 	MatchmakingCmd.AddCommand(matchmaking.CreateChannelHandlerCmd)
+	MatchmakingCmd.AddCommand(matchmaking.GetMatchPoolMetricCmd)
 	MatchmakingCmd.AddCommand(matchmaking.DeleteChannelHandlerCmd)
 	MatchmakingCmd.AddCommand(matchmaking.StoreMatchResultsCmd)
 	MatchmakingCmd.AddCommand(matchmaking.RebalanceCmd)

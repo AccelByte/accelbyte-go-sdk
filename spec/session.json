@@ -3,7 +3,7 @@
   "info": {
     "description": "Justice Session Service",
     "title": "justice-session-service",
-    "version": "2.8.2"
+    "version": "2.12.0"
   },
   "schemes": [
     "https"
@@ -131,7 +131,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "Create template configuration to be applied across party and session.\nSession configuration mandatory :\n- name\n- joinability (example value : OPEN, CLOSED, INVITE_ONLY)\n- Type (example value : P2P, DS, NONE) if type empty, type will be assign to NONE\n- MinPlayers (must greather or equal 0)\n- MaxPlayers (must greather than 0)\n- InviteTimeout (must greather or equal 0) if InviteTimeout equal 0 will be use default DefaultTimeoutSecond (60s)\n- InactiveTimeout (must greather or equal 0) if InactiveTimeout equal 0 will be use default DefaultTimeoutSecond (60s)\n- Persistent Flag only can use with type DS (example value true or false)\n- If Persistent True the session always active even DS removing or terminate and Session will be request DS again until DS Ready or Busy.\n- To Stop Session Not request again to DS or want Delete Session can Delete Session using endpoint DELETE /session/v1/public/namespaces/{namespace}/gamesessions/{sessionId}\n- If Persistent False the session will be inactive if all member left and DS terminate or removing\n- nativeSessionSetting:\n\t- XboxSessionTemplateName: the XBox session template name that correspondent to the AB session template, and is needed to define XBox session\u0026#39;s joinRestriction and maxMembersCount when doing the session sync.\n\t- XboxServiceConfigID: the XBox service configuration ID. \n\t- PSNServiceLabel: the PSN service label.\n\t- SessionTitle: the session title. In PSN, this will be used to define name of the session thats displayed on PlayStation system UI.\n",
+        "description": "Create template configuration to be applied across party and session.\nSession configuration mandatory :\n- name\n- joinability (example value : OPEN, CLOSED, INVITE_ONLY)\n- Type (example value : P2P, DS, NONE) if type empty, type will be assign to NONE\n- MinPlayers (must greather or equal 0)\n- MaxPlayers (must greather than 0)\n- InviteTimeout (must greather or equal 0) if InviteTimeout equal 0 will be use default DefaultTimeoutSecond (60s)\n- InactiveTimeout (must greather or equal 0) if InactiveTimeout equal 0 will be use default DefaultTimeoutSecond (60s)\n- Persistent Flag only can use with type DS (example value true or false)\n- If Persistent True the session always active even DS removing or terminate and Session will be request DS again until DS Ready or Busy.\n- To Stop Session Not request again to DS or want Delete Session can Delete Session using endpoint DELETE /session/v1/public/namespaces/{namespace}/gamesessions/{sessionId}\n- If Persistent False the session will be inactive if all member left and DS terminate or removing\n- nativeSessionSetting:\n\t- XboxSessionTemplateName: the XBox session template name that correspondent to the AB session template, and is needed to define XBox session\u0026#39;s joinRestriction and maxMembersCount when doing the session sync.\n\t- XboxServiceConfigID: the XBox service configuration ID. \n\t- PSNServiceLabel: the PSN service label.\n\t- SessionTitle: the session title. In PSN, this will be used to define name of the session thats displayed on PlayStation system UI.\n\t- ShouldSync: to define whether the service needs to do session sync with native platform(s). Default: false (disabled).\n",
         "operationId": "adminCreateConfigurationTemplateV1",
         "parameters": [
           {
@@ -421,7 +421,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "Update template configuration\nSession configuration mandatory :\n- name\n- joinability (example value : OPEN, CLOSED, INVITE_ONLY)\n- Type (example value : P2P, DS, NONE) if type empty, type will be assign to NONE\n- MinPlayers (must greather or equal 0)\n- MaxPlayers (must greather than 0)\n- InviteTimeout (must greather or equal 0) if InviteTimeout equal 0 will be use default DefaultTimeoutSecond (60s)\n- InactiveTimeout (must greather or equal 0) if InactiveTimeout equal 0 will be use default DefaultTimeoutSecond (60s)\n- Persistent Flag only can use with type DS (example value true or false)\n- If Persistent True the session always active even DS removing or terminate and Session will be request DS again until DS Ready or Busy.\n- To Stop Session Not request again to DS or want Delete Session can Delete Session using endpoint DELETE /session/v1/public/namespaces/{namespace}/gamesessions/{sessionId}\n- If Persistent False the session will be inactive if all member left and DS terminate or removing\n- nativeSessionSetting:\n\t- XboxSessionTemplateName: the XBox session template name that correspondent to the AB session template, and is needed to define XBox session\u0026#39;s joinRestriction and maxMembersCount when doing the session sync.\n\t- XboxServiceConfigID: the XBox service configuration ID. \n\t- PSNServiceLabel: the PSN service label.\n\t- SessionTitle: the session title. In PSN, this will be used to define name of the session thats displayed on PlayStation system UI.\n",
+        "description": "Update template configuration\nSession configuration mandatory :\n- name\n- joinability (example value : OPEN, CLOSED, INVITE_ONLY)\n- Type (example value : P2P, DS, NONE) if type empty, type will be assign to NONE\n- MinPlayers (must greather or equal 0)\n- MaxPlayers (must greather than 0)\n- InviteTimeout (must greather or equal 0) if InviteTimeout equal 0 will be use default DefaultTimeoutSecond (60s)\n- InactiveTimeout (must greather or equal 0) if InactiveTimeout equal 0 will be use default DefaultTimeoutSecond (60s)\n- Persistent Flag only can use with type DS (example value true or false)\n- If Persistent True the session always active even DS removing or terminate and Session will be request DS again until DS Ready or Busy.\n- To Stop Session Not request again to DS or want Delete Session can Delete Session using endpoint DELETE /session/v1/public/namespaces/{namespace}/gamesessions/{sessionId}\n- If Persistent False the session will be inactive if all member left and DS terminate or removing\n- nativeSessionSetting:\n\t- XboxSessionTemplateName: the XBox session template name that correspondent to the AB session template, and is needed to define XBox session\u0026#39;s joinRestriction and maxMembersCount when doing the session sync.\n\t- XboxServiceConfigID: the XBox service configuration ID. \n\t- PSNServiceLabel: the PSN service label.\n\t- SessionTitle: the session title. In PSN, this will be used to define name of the session thats displayed on PlayStation system UI.\n\t- ShouldSync: to define whether the service needs to do session sync with native platform(s). Default: false (disabled).\n",
         "operationId": "adminUpdateConfigurationTemplateV1",
         "parameters": [
           {
@@ -4660,6 +4660,10 @@
         "SessionTitle": {
           "type": "string"
         },
+        "ShouldSync": {
+          "type": "boolean",
+          "x-omitempty": false
+        },
         "XboxServiceConfigID": {
           "type": "string"
         },
@@ -4761,9 +4765,9 @@
     "path": "/session/apidocs/api.json"
   },
   "x-version": {
-    "buildDate": "2023-04-25T16:42:25+00:00",
-    "gitHash": "92869c98eaf26e251940f353c3636bc82f443a39",
-    "rolesSeedingVersion": "0.0.3",
-    "version": "2.8.2"
+    "buildDate": "2023-05-05T02:09:08+00:00",
+    "gitHash": "a82e62425a24488818546ae7202a0ab7cbb6e5de",
+    "rolesSeedingVersion": "0.0.4",
+    "version": "2.12.0"
   }
 }

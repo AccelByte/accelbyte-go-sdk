@@ -31,17 +31,17 @@ type Client struct {
 
 // ClientService is the interface for Client methods
 type ClientService interface {
-	CreateReward(params *CreateRewardParams, authInfo runtime.ClientAuthInfoWriter) (*CreateRewardOK, *CreateRewardNotFound, *CreateRewardConflict, *CreateRewardUnprocessableEntity, error)
+	CreateReward(params *CreateRewardParams, authInfo runtime.ClientAuthInfoWriter) (*CreateRewardOK, *CreateRewardBadRequest, *CreateRewardNotFound, *CreateRewardConflict, *CreateRewardUnprocessableEntity, error)
 	CreateRewardShort(params *CreateRewardParams, authInfo runtime.ClientAuthInfoWriter) (*CreateRewardOK, error)
 	QueryRewards(params *QueryRewardsParams, authInfo runtime.ClientAuthInfoWriter) (*QueryRewardsOK, *QueryRewardsUnprocessableEntity, error)
 	QueryRewardsShort(params *QueryRewardsParams, authInfo runtime.ClientAuthInfoWriter) (*QueryRewardsOK, error)
 	ExportRewards(params *ExportRewardsParams, authInfo runtime.ClientAuthInfoWriter, writer io.Writer) (*ExportRewardsOK, error)
 	ExportRewardsShort(params *ExportRewardsParams, authInfo runtime.ClientAuthInfoWriter, writer io.Writer) (*ExportRewardsOK, error)
-	ImportRewards(params *ImportRewardsParams, authInfo runtime.ClientAuthInfoWriter) (*ImportRewardsOK, *ImportRewardsBadRequest, error)
+	ImportRewards(params *ImportRewardsParams, authInfo runtime.ClientAuthInfoWriter) (*ImportRewardsOK, *ImportRewardsBadRequest, *ImportRewardsConflict, error)
 	ImportRewardsShort(params *ImportRewardsParams, authInfo runtime.ClientAuthInfoWriter) (*ImportRewardsOK, error)
 	GetReward(params *GetRewardParams, authInfo runtime.ClientAuthInfoWriter) (*GetRewardOK, *GetRewardNotFound, error)
 	GetRewardShort(params *GetRewardParams, authInfo runtime.ClientAuthInfoWriter) (*GetRewardOK, error)
-	UpdateReward(params *UpdateRewardParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateRewardOK, *UpdateRewardNotFound, *UpdateRewardConflict, error)
+	UpdateReward(params *UpdateRewardParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateRewardOK, *UpdateRewardBadRequest, *UpdateRewardNotFound, *UpdateRewardConflict, error)
 	UpdateRewardShort(params *UpdateRewardParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateRewardOK, error)
 	DeleteReward(params *DeleteRewardParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteRewardOK, *DeleteRewardNotFound, error)
 	DeleteRewardShort(params *DeleteRewardParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteRewardOK, error)
@@ -69,7 +69,7 @@ Other detail info:
   * Required permission : resource="ADMIN:NAMESPACE:{namespace}:REWARD", action=1 (CREATE)
   *  Returns : created reward data
 */
-func (a *Client) CreateReward(params *CreateRewardParams, authInfo runtime.ClientAuthInfoWriter) (*CreateRewardOK, *CreateRewardNotFound, *CreateRewardConflict, *CreateRewardUnprocessableEntity, error) {
+func (a *Client) CreateReward(params *CreateRewardParams, authInfo runtime.ClientAuthInfoWriter) (*CreateRewardOK, *CreateRewardBadRequest, *CreateRewardNotFound, *CreateRewardConflict, *CreateRewardUnprocessableEntity, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewCreateRewardParams()
@@ -97,25 +97,28 @@ func (a *Client) CreateReward(params *CreateRewardParams, authInfo runtime.Clien
 		Client:             params.HTTPClient,
 	})
 	if err != nil {
-		return nil, nil, nil, nil, err
+		return nil, nil, nil, nil, nil, err
 	}
 
 	switch v := result.(type) {
 
 	case *CreateRewardOK:
-		return v, nil, nil, nil, nil
+		return v, nil, nil, nil, nil, nil
+
+	case *CreateRewardBadRequest:
+		return nil, v, nil, nil, nil, nil
 
 	case *CreateRewardNotFound:
-		return nil, v, nil, nil, nil
+		return nil, nil, v, nil, nil, nil
 
 	case *CreateRewardConflict:
-		return nil, nil, v, nil, nil
+		return nil, nil, nil, v, nil, nil
 
 	case *CreateRewardUnprocessableEntity:
-		return nil, nil, nil, v, nil
+		return nil, nil, nil, nil, v, nil
 
 	default:
-		return nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+		return nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
@@ -162,6 +165,8 @@ func (a *Client) CreateRewardShort(params *CreateRewardParams, authInfo runtime.
 
 	case *CreateRewardOK:
 		return v, nil
+	case *CreateRewardBadRequest:
+		return nil, v
 	case *CreateRewardNotFound:
 		return nil, v
 	case *CreateRewardConflict:
@@ -391,7 +396,7 @@ Other detail info:
 
   *  *Required permission*: resource="ADMIN:NAMESPACE:{namespace}:REWARD", action=1 (CREATE)
 */
-func (a *Client) ImportRewards(params *ImportRewardsParams, authInfo runtime.ClientAuthInfoWriter) (*ImportRewardsOK, *ImportRewardsBadRequest, error) {
+func (a *Client) ImportRewards(params *ImportRewardsParams, authInfo runtime.ClientAuthInfoWriter) (*ImportRewardsOK, *ImportRewardsBadRequest, *ImportRewardsConflict, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewImportRewardsParams()
@@ -419,19 +424,22 @@ func (a *Client) ImportRewards(params *ImportRewardsParams, authInfo runtime.Cli
 		Client:             params.HTTPClient,
 	})
 	if err != nil {
-		return nil, nil, err
+		return nil, nil, nil, err
 	}
 
 	switch v := result.(type) {
 
 	case *ImportRewardsOK:
-		return v, nil, nil
+		return v, nil, nil, nil
 
 	case *ImportRewardsBadRequest:
-		return nil, v, nil
+		return nil, v, nil, nil
+
+	case *ImportRewardsConflict:
+		return nil, nil, v, nil
 
 	default:
-		return nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+		return nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
@@ -479,6 +487,8 @@ func (a *Client) ImportRewardsShort(params *ImportRewardsParams, authInfo runtim
 	case *ImportRewardsOK:
 		return v, nil
 	case *ImportRewardsBadRequest:
+		return nil, v
+	case *ImportRewardsConflict:
 		return nil, v
 
 	default:
@@ -601,7 +611,7 @@ Other detail info:
   * Required permission : resource="ADMIN:NAMESPACE:{namespace}:REWARD", action=4 (UPDATE)
   *  Returns : reward instance
 */
-func (a *Client) UpdateReward(params *UpdateRewardParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateRewardOK, *UpdateRewardNotFound, *UpdateRewardConflict, error) {
+func (a *Client) UpdateReward(params *UpdateRewardParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateRewardOK, *UpdateRewardBadRequest, *UpdateRewardNotFound, *UpdateRewardConflict, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewUpdateRewardParams()
@@ -629,22 +639,25 @@ func (a *Client) UpdateReward(params *UpdateRewardParams, authInfo runtime.Clien
 		Client:             params.HTTPClient,
 	})
 	if err != nil {
-		return nil, nil, nil, err
+		return nil, nil, nil, nil, err
 	}
 
 	switch v := result.(type) {
 
 	case *UpdateRewardOK:
-		return v, nil, nil, nil
+		return v, nil, nil, nil, nil
+
+	case *UpdateRewardBadRequest:
+		return nil, v, nil, nil, nil
 
 	case *UpdateRewardNotFound:
-		return nil, v, nil, nil
+		return nil, nil, v, nil, nil
 
 	case *UpdateRewardConflict:
-		return nil, nil, v, nil
+		return nil, nil, nil, v, nil
 
 	default:
-		return nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+		return nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
@@ -691,6 +704,8 @@ func (a *Client) UpdateRewardShort(params *UpdateRewardParams, authInfo runtime.
 
 	case *UpdateRewardOK:
 		return v, nil
+	case *UpdateRewardBadRequest:
+		return nil, v
 	case *UpdateRewardNotFound:
 		return nil, v
 	case *UpdateRewardConflict:

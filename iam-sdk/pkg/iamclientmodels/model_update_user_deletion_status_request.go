@@ -18,6 +18,10 @@ import (
 // swagger:model Model update user deletion status request.
 type ModelUpdateUserDeletionStatusRequest struct {
 
+	// deletiondate
+	// Format: int64
+	DeletionDate int64 `json:"deletionDate,omitempty"`
+
 	// enabled
 	// Required: true
 	Enabled *bool `json:"enabled"`

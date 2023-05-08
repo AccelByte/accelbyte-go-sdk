@@ -39,6 +39,12 @@ func (o *ImportRewardsReader) ReadResponse(response runtime.ClientResponse, cons
 			return nil, err
 		}
 		return result, nil
+	case 409:
+		result := NewImportRewardsConflict()
+		if err := result.readResponse(response, consumer, o.formats); err != nil {
+			return nil, err
+		}
+		return result, nil
 
 	default:
 		data, err := ioutil.ReadAll(response.Body())
@@ -83,7 +89,7 @@ func NewImportRewardsBadRequest() *ImportRewardsBadRequest {
 
 /*ImportRewardsBadRequest handles this case with default header values.
 
-  <table><tr><td>ErrorCode</td><td>ErrorMessage</td></tr><tr><td>34021</td><td>Reward data for namespace [{namespace}] is invalid</td></tr></table>
+  <table><tr><td>ErrorCode</td><td>ErrorMessage</td></tr><tr><td>34021</td><td>Reward data for namespace [{namespace}] is invalid</td></tr><tr><td>34023</td><td>Reward Item [{itemId}] with item type [{itemType}] is not supported for duration or endDate</td></tr></table>
 */
 type ImportRewardsBadRequest struct {
 	Payload *platformclientmodels.ErrorEntity
@@ -113,6 +119,59 @@ func (o *ImportRewardsBadRequest) GetPayload() *platformclientmodels.ErrorEntity
 }
 
 func (o *ImportRewardsBadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+	// handle file responses
+	contentDisposition := response.GetHeader("Content-Disposition")
+	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
+		consumer = runtime.ByteStreamConsumer()
+	}
+
+	o.Payload = new(platformclientmodels.ErrorEntity)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
+	}
+
+	return nil
+}
+
+// NewImportRewardsConflict creates a ImportRewardsConflict with default headers values
+func NewImportRewardsConflict() *ImportRewardsConflict {
+	return &ImportRewardsConflict{}
+}
+
+/*ImportRewardsConflict handles this case with default header values.
+
+  <table><tr><td>ErrorCode</td><td>ErrorMessage</td></tr><tr><td>34074</td><td>Reward Item [{itemId}] duration and end date can’t be set at the same time</td></tr></table>
+*/
+type ImportRewardsConflict struct {
+	Payload *platformclientmodels.ErrorEntity
+}
+
+func (o *ImportRewardsConflict) Error() string {
+	return fmt.Sprintf("[POST /platform/admin/namespaces/{namespace}/rewards/import][%d] importRewardsConflict  %+v", 409, o.ToJSONString())
+}
+
+func (o *ImportRewardsConflict) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
+}
+
+func (o *ImportRewardsConflict) GetPayload() *platformclientmodels.ErrorEntity {
+	return o.Payload
+}
+
+func (o *ImportRewardsConflict) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {

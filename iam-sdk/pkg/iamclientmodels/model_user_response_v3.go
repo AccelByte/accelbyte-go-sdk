@@ -44,6 +44,9 @@ type ModelUserResponseV3 struct {
 	// Format: date-time
 	DateOfBirth *strfmt.DateTime `json:"dateOfBirth,omitempty"`
 
+	// deletiondate
+	DeletionDate string `json:"deletionDate,omitempty"`
+
 	// deletionstatus
 	// Required: true
 	DeletionStatus *bool `json:"deletionStatus"`

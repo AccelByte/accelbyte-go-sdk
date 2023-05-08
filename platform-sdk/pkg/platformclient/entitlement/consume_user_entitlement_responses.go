@@ -33,6 +33,12 @@ func (o *ConsumeUserEntitlementReader) ReadResponse(response runtime.ClientRespo
 			return nil, err
 		}
 		return result, nil
+	case 400:
+		result := NewConsumeUserEntitlementBadRequest()
+		if err := result.readResponse(response, consumer, o.formats); err != nil {
+			return nil, err
+		}
+		return result, nil
 	case 404:
 		result := NewConsumeUserEntitlementNotFound()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -109,6 +115,59 @@ func (o *ConsumeUserEntitlementOK) readResponse(response runtime.ClientResponse,
 	return nil
 }
 
+// NewConsumeUserEntitlementBadRequest creates a ConsumeUserEntitlementBadRequest with default headers values
+func NewConsumeUserEntitlementBadRequest() *ConsumeUserEntitlementBadRequest {
+	return &ConsumeUserEntitlementBadRequest{}
+}
+
+/*ConsumeUserEntitlementBadRequest handles this case with default header values.
+
+  <table><tr><td>ErrorCode</td><td>ErrorMessage</td></tr><tr><td>31123</td><td>Unable to acquire box item, box item [{itemId}] expired</td></tr></table>
+*/
+type ConsumeUserEntitlementBadRequest struct {
+	Payload *platformclientmodels.ErrorEntity
+}
+
+func (o *ConsumeUserEntitlementBadRequest) Error() string {
+	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/users/{userId}/entitlements/{entitlementId}/decrement][%d] consumeUserEntitlementBadRequest  %+v", 400, o.ToJSONString())
+}
+
+func (o *ConsumeUserEntitlementBadRequest) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
+}
+
+func (o *ConsumeUserEntitlementBadRequest) GetPayload() *platformclientmodels.ErrorEntity {
+	return o.Payload
+}
+
+func (o *ConsumeUserEntitlementBadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+	// handle file responses
+	contentDisposition := response.GetHeader("Content-Disposition")
+	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
+		consumer = runtime.ByteStreamConsumer()
+	}
+
+	o.Payload = new(platformclientmodels.ErrorEntity)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
+	}
+
+	return nil
+}
+
 // NewConsumeUserEntitlementNotFound creates a ConsumeUserEntitlementNotFound with default headers values
 func NewConsumeUserEntitlementNotFound() *ConsumeUserEntitlementNotFound {
 	return &ConsumeUserEntitlementNotFound{}
@@ -169,7 +228,7 @@ func NewConsumeUserEntitlementConflict() *ConsumeUserEntitlementConflict {
 
 /*ConsumeUserEntitlementConflict handles this case with default header values.
 
-  <table><tr><td>ErrorCode</td><td>ErrorMessage</td></tr><tr><td>31171</td><td>Entitlement [{entitlementId}] already revoked</td></tr><tr><td>31172</td><td>Entitlement [{entitlementId}] not active</td></tr><tr><td>31173</td><td>Entitlement [{entitlementId}] is not consumable</td></tr><tr><td>31174</td><td>Entitlement [{entitlementId}] already consumed</td></tr><tr><td>31176</td><td>Entitlement [{entitlementId}] use count is insufficient</td></tr><tr><td>31180</td><td>Duplicate request id: [{requestId}]</td></tr><tr><td>20006</td><td>optimistic lock</td></tr></table>
+  <table><tr><td>ErrorCode</td><td>ErrorMessage</td></tr><tr><td>31171</td><td>Entitlement [{entitlementId}] already revoked</td></tr><tr><td>31172</td><td>Entitlement [{entitlementId}] not active</td></tr><tr><td>31173</td><td>Entitlement [{entitlementId}] is not consumable</td></tr><tr><td>31174</td><td>Entitlement [{entitlementId}] already consumed</td></tr><tr><td>31176</td><td>Entitlement [{entitlementId}] use count is insufficient</td></tr><tr><td>31178</td><td>Entitlement [{entitlementId}] out of time range</td></tr><tr><td>31180</td><td>Duplicate request id: [{requestId}]</td></tr><tr><td>20006</td><td>optimistic lock</td></tr></table>
 */
 type ConsumeUserEntitlementConflict struct {
 	Payload *platformclientmodels.ErrorEntity

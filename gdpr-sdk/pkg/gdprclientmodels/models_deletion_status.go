@@ -18,6 +18,10 @@ import (
 // swagger:model Models deletion status.
 type ModelsDeletionStatus struct {
 
+	// deletiondate
+	// Required: true
+	DeletionDate *string `json:"DeletionDate"`
+
 	// deletionstatus
 	// Required: true
 	DeletionStatus *bool `json:"DeletionStatus"`
@@ -43,6 +47,9 @@ type ModelsDeletionStatus struct {
 func (m *ModelsDeletionStatus) Validate(formats strfmt.Registry) error {
 	var res []error
 
+	if err := m.validateDeletionDate(formats); err != nil {
+		res = append(res, err)
+	}
 	if err := m.validateDeletionStatus(formats); err != nil {
 		res = append(res, err)
 	}
@@ -59,6 +66,15 @@ func (m *ModelsDeletionStatus) Validate(formats strfmt.Registry) error {
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
+	return nil
+}
+
+func (m *ModelsDeletionStatus) validateDeletionDate(formats strfmt.Registry) error {
+
+	if err := validate.Required("DeletionDate", "body", m.DeletionDate); err != nil {
+		return err
+	}
+
 	return nil
 }
 

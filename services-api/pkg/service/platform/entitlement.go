@@ -389,7 +389,10 @@ func (aaa *EntitlementService) ConsumeUserEntitlement(input *entitlement.Consume
 	if err != nil {
 		return nil, err
 	}
-	ok, notFound, conflict, err := aaa.Client.Entitlement.ConsumeUserEntitlement(input, client.BearerToken(*token.AccessToken))
+	ok, badRequest, notFound, conflict, err := aaa.Client.Entitlement.ConsumeUserEntitlement(input, client.BearerToken(*token.AccessToken))
+	if badRequest != nil {
+		return nil, badRequest
+	}
 	if notFound != nil {
 		return nil, notFound
 	}

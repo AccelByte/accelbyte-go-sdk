@@ -35,6 +35,8 @@ type ClientService interface {
 	GetAllChannelsHandlerShort(params *GetAllChannelsHandlerParams, authInfo runtime.ClientAuthInfoWriter) (*GetAllChannelsHandlerOK, error)
 	CreateChannelHandler(params *CreateChannelHandlerParams, authInfo runtime.ClientAuthInfoWriter) (*CreateChannelHandlerCreated, *CreateChannelHandlerBadRequest, *CreateChannelHandlerUnauthorized, *CreateChannelHandlerForbidden, *CreateChannelHandlerConflict, *CreateChannelHandlerInternalServerError, error)
 	CreateChannelHandlerShort(params *CreateChannelHandlerParams, authInfo runtime.ClientAuthInfoWriter) (*CreateChannelHandlerCreated, error)
+	GetMatchPoolMetric(params *GetMatchPoolMetricParams, authInfo runtime.ClientAuthInfoWriter) (*GetMatchPoolMetricOK, *GetMatchPoolMetricUnauthorized, *GetMatchPoolMetricForbidden, *GetMatchPoolMetricNotFound, *GetMatchPoolMetricInternalServerError, error)
+	GetMatchPoolMetricShort(params *GetMatchPoolMetricParams, authInfo runtime.ClientAuthInfoWriter) (*GetMatchPoolMetricOK, error)
 	DeleteChannelHandler(params *DeleteChannelHandlerParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteChannelHandlerNoContent, *DeleteChannelHandlerUnauthorized, *DeleteChannelHandlerForbidden, *DeleteChannelHandlerInternalServerError, error)
 	DeleteChannelHandlerShort(params *DeleteChannelHandlerParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteChannelHandlerNoContent, error)
 	StoreMatchResults(params *StoreMatchResultsParams, authInfo runtime.ClientAuthInfoWriter) (*StoreMatchResultsOK, *StoreMatchResultsBadRequest, *StoreMatchResultsUnauthorized, *StoreMatchResultsForbidden, *StoreMatchResultsInternalServerError, error)
@@ -352,6 +354,130 @@ func (a *Client) CreateChannelHandlerShort(params *CreateChannelHandlerParams, a
 	case *CreateChannelHandlerConflict:
 		return nil, v
 	case *CreateChannelHandlerInternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+Deprecated: 2022-08-10 - Use GetMatchPoolMetricShort instead.
+
+GetMatchPoolMetric get metrics for a specific channel
+Required Permission: NAMESPACE:{namespace}:MATCHMAKING:CHANNEL:METRICS [READ]
+
+Required Scope: social
+
+Get metric for a specific match pool
+
+Result: queue_time in seconds
+*/
+func (a *Client) GetMatchPoolMetric(params *GetMatchPoolMetricParams, authInfo runtime.ClientAuthInfoWriter) (*GetMatchPoolMetricOK, *GetMatchPoolMetricUnauthorized, *GetMatchPoolMetricForbidden, *GetMatchPoolMetricNotFound, *GetMatchPoolMetricInternalServerError, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewGetMatchPoolMetricParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "GetMatchPoolMetric",
+		Method:             "GET",
+		PathPattern:        "/matchmaking/namespaces/{namespace}/channels/{channelName}/metrics",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &GetMatchPoolMetricReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, nil, nil, nil, nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *GetMatchPoolMetricOK:
+		return v, nil, nil, nil, nil, nil
+
+	case *GetMatchPoolMetricUnauthorized:
+		return nil, v, nil, nil, nil, nil
+
+	case *GetMatchPoolMetricForbidden:
+		return nil, nil, v, nil, nil, nil
+
+	case *GetMatchPoolMetricNotFound:
+		return nil, nil, nil, v, nil, nil
+
+	case *GetMatchPoolMetricInternalServerError:
+		return nil, nil, nil, nil, v, nil
+
+	default:
+		return nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+GetMatchPoolMetricShort get metrics for a specific channel
+Required Permission: NAMESPACE:{namespace}:MATCHMAKING:CHANNEL:METRICS [READ]
+
+Required Scope: social
+
+Get metric for a specific match pool
+
+Result: queue_time in seconds
+*/
+func (a *Client) GetMatchPoolMetricShort(params *GetMatchPoolMetricParams, authInfo runtime.ClientAuthInfoWriter) (*GetMatchPoolMetricOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewGetMatchPoolMetricParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "GetMatchPoolMetric",
+		Method:             "GET",
+		PathPattern:        "/matchmaking/namespaces/{namespace}/channels/{channelName}/metrics",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &GetMatchPoolMetricReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *GetMatchPoolMetricOK:
+		return v, nil
+	case *GetMatchPoolMetricUnauthorized:
+		return nil, v
+	case *GetMatchPoolMetricForbidden:
+		return nil, v
+	case *GetMatchPoolMetricNotFound:
+		return nil, v
+	case *GetMatchPoolMetricInternalServerError:
 		return nil, v
 
 	default:

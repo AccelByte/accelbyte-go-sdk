@@ -8545,7 +8545,7 @@
     "path": "/lobby/apidocs/api.json"
   },
   "x-version": {
-    "buildDate": "2023-04-19T13:05:14+00:00",
+    "buildDate": "2023-05-03T03:01:12+00:00",
     "gitHash": "11e024062a599ed8fee6c96f60a89f22fe6ada78",
     "name": "justice-lobby-server",
     "revisionID": "3.19.0",

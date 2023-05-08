@@ -33,6 +33,12 @@ func (o *CreateRewardReader) ReadResponse(response runtime.ClientResponse, consu
 			return nil, err
 		}
 		return result, nil
+	case 400:
+		result := NewCreateRewardBadRequest()
+		if err := result.readResponse(response, consumer, o.formats); err != nil {
+			return nil, err
+		}
+		return result, nil
 	case 404:
 		result := NewCreateRewardNotFound()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -115,6 +121,59 @@ func (o *CreateRewardOK) readResponse(response runtime.ClientResponse, consumer 
 	return nil
 }
 
+// NewCreateRewardBadRequest creates a CreateRewardBadRequest with default headers values
+func NewCreateRewardBadRequest() *CreateRewardBadRequest {
+	return &CreateRewardBadRequest{}
+}
+
+/*CreateRewardBadRequest handles this case with default header values.
+
+  <table><tr><td>ErrorCode</td><td>ErrorMessage</td></tr><tr><td>34023</td><td>Reward Item [{itemId}] with item type [{itemType}] is not supported for duration or endDate</td></tr></table>
+*/
+type CreateRewardBadRequest struct {
+	Payload *platformclientmodels.ErrorEntity
+}
+
+func (o *CreateRewardBadRequest) Error() string {
+	return fmt.Sprintf("[POST /platform/admin/namespaces/{namespace}/rewards][%d] createRewardBadRequest  %+v", 400, o.ToJSONString())
+}
+
+func (o *CreateRewardBadRequest) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
+}
+
+func (o *CreateRewardBadRequest) GetPayload() *platformclientmodels.ErrorEntity {
+	return o.Payload
+}
+
+func (o *CreateRewardBadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+	// handle file responses
+	contentDisposition := response.GetHeader("Content-Disposition")
+	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
+		consumer = runtime.ByteStreamConsumer()
+	}
+
+	o.Payload = new(platformclientmodels.ErrorEntity)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
+	}
+
+	return nil
+}
+
 // NewCreateRewardNotFound creates a CreateRewardNotFound with default headers values
 func NewCreateRewardNotFound() *CreateRewardNotFound {
 	return &CreateRewardNotFound{}
@@ -175,7 +234,7 @@ func NewCreateRewardConflict() *CreateRewardConflict {
 
 /*CreateRewardConflict handles this case with default header values.
 
-  <table><tr><td>ErrorCode</td><td>ErrorMessage</td></tr><tr><td>34071</td><td>Reward with code [{rewardCode}] already exists in namespace [{namespace}]</td></tr><tr><td>34072</td><td>Duplicate reward condition [{rewardConditionName}] found in reward [{rewardCode}]</td></tr></table>
+  <table><tr><td>ErrorCode</td><td>ErrorMessage</td></tr><tr><td>34071</td><td>Reward with code [{rewardCode}] already exists in namespace [{namespace}]</td></tr><tr><td>34072</td><td>Duplicate reward condition [{rewardConditionName}] found in reward [{rewardCode}]</td></tr><tr><td>34074</td><td>Reward Item [{itemId}] duration and end date can’t be set at the same time</td></tr></table>
 */
 type CreateRewardConflict struct {
 	Payload *platformclientmodels.ErrorEntity

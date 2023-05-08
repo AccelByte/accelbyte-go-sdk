@@ -74,7 +74,7 @@ type ClientService interface {
 	GetUserEntitlementShort(params *GetUserEntitlementParams, authInfo runtime.ClientAuthInfoWriter) (*GetUserEntitlementOK, error)
 	UpdateUserEntitlement(params *UpdateUserEntitlementParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateUserEntitlementOK, *UpdateUserEntitlementNotFound, *UpdateUserEntitlementConflict, *UpdateUserEntitlementUnprocessableEntity, error)
 	UpdateUserEntitlementShort(params *UpdateUserEntitlementParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateUserEntitlementOK, error)
-	ConsumeUserEntitlement(params *ConsumeUserEntitlementParams, authInfo runtime.ClientAuthInfoWriter) (*ConsumeUserEntitlementOK, *ConsumeUserEntitlementNotFound, *ConsumeUserEntitlementConflict, error)
+	ConsumeUserEntitlement(params *ConsumeUserEntitlementParams, authInfo runtime.ClientAuthInfoWriter) (*ConsumeUserEntitlementOK, *ConsumeUserEntitlementBadRequest, *ConsumeUserEntitlementNotFound, *ConsumeUserEntitlementConflict, error)
 	ConsumeUserEntitlementShort(params *ConsumeUserEntitlementParams, authInfo runtime.ClientAuthInfoWriter) (*ConsumeUserEntitlementOK, error)
 	DisableUserEntitlement(params *DisableUserEntitlementParams, authInfo runtime.ClientAuthInfoWriter) (*DisableUserEntitlementOK, *DisableUserEntitlementNotFound, *DisableUserEntitlementConflict, error)
 	DisableUserEntitlementShort(params *DisableUserEntitlementParams, authInfo runtime.ClientAuthInfoWriter) (*DisableUserEntitlementOK, error)
@@ -339,7 +339,7 @@ GrantEntitlements grant entitlements to different users
 Grant entitlements to multiple users, skipped granting will be treated as fail.
 Other detail info:
 
-  * Required permission : resource="ADMIN:NAMESPACE:{namespace}:USER:{userId}:ENTITLEMENT", action=4 (UPDATE)
+  * Required permission : resource="ADMIN:NAMESPACE:{namespace}:ENTITLEMENT", action=4 (UPDATE)
   *  Returns : bulk grant entitlements result
 */
 func (a *Client) GrantEntitlements(params *GrantEntitlementsParams, authInfo runtime.ClientAuthInfoWriter) (*GrantEntitlementsOK, *GrantEntitlementsUnprocessableEntity, error) {
@@ -391,7 +391,7 @@ GrantEntitlementsShort grant entitlements to different users
 Grant entitlements to multiple users, skipped granting will be treated as fail.
 Other detail info:
 
-  * Required permission : resource="ADMIN:NAMESPACE:{namespace}:USER:{userId}:ENTITLEMENT", action=4 (UPDATE)
+  * Required permission : resource="ADMIN:NAMESPACE:{namespace}:ENTITLEMENT", action=4 (UPDATE)
   *  Returns : bulk grant entitlements result
 */
 func (a *Client) GrantEntitlementsShort(params *GrantEntitlementsParams, authInfo runtime.ClientAuthInfoWriter) (*GrantEntitlementsOK, error) {
@@ -2410,7 +2410,7 @@ Other detail info:
   * Required permission : resource="ADMIN:NAMESPACE:{namespace}:USER:{userId}:ENTITLEMENT", action=4 (UPDATE)
   *  Returns : consumed entitlement
 */
-func (a *Client) ConsumeUserEntitlement(params *ConsumeUserEntitlementParams, authInfo runtime.ClientAuthInfoWriter) (*ConsumeUserEntitlementOK, *ConsumeUserEntitlementNotFound, *ConsumeUserEntitlementConflict, error) {
+func (a *Client) ConsumeUserEntitlement(params *ConsumeUserEntitlementParams, authInfo runtime.ClientAuthInfoWriter) (*ConsumeUserEntitlementOK, *ConsumeUserEntitlementBadRequest, *ConsumeUserEntitlementNotFound, *ConsumeUserEntitlementConflict, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewConsumeUserEntitlementParams()
@@ -2438,22 +2438,25 @@ func (a *Client) ConsumeUserEntitlement(params *ConsumeUserEntitlementParams, au
 		Client:             params.HTTPClient,
 	})
 	if err != nil {
-		return nil, nil, nil, err
+		return nil, nil, nil, nil, err
 	}
 
 	switch v := result.(type) {
 
 	case *ConsumeUserEntitlementOK:
-		return v, nil, nil, nil
+		return v, nil, nil, nil, nil
+
+	case *ConsumeUserEntitlementBadRequest:
+		return nil, v, nil, nil, nil
 
 	case *ConsumeUserEntitlementNotFound:
-		return nil, v, nil, nil
+		return nil, nil, v, nil, nil
 
 	case *ConsumeUserEntitlementConflict:
-		return nil, nil, v, nil
+		return nil, nil, nil, v, nil
 
 	default:
-		return nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+		return nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
@@ -2500,6 +2503,8 @@ func (a *Client) ConsumeUserEntitlementShort(params *ConsumeUserEntitlementParam
 
 	case *ConsumeUserEntitlementOK:
 		return v, nil
+	case *ConsumeUserEntitlementBadRequest:
+		return nil, v
 	case *ConsumeUserEntitlementNotFound:
 		return nil, v
 	case *ConsumeUserEntitlementConflict:

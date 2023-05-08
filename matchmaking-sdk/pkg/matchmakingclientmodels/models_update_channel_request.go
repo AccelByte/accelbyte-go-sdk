@@ -40,9 +40,21 @@ type ModelsUpdateChannelRequest struct {
 	// Format: int32
 	MaxDelayMs *int32 `json:"max_delay_ms"`
 
+	// region_expansion_range_ms
+	// Format: int32
+	RegionExpansionRangeMs int32 `json:"region_expansion_range_ms,omitempty"`
+
 	// region_expansion_rate_ms
 	// Format: int32
 	RegionExpansionRateMs int32 `json:"region_expansion_rate_ms,omitempty"`
+
+	// region_latency_initial_range_ms
+	// Format: int32
+	RegionLatencyInitialRangeMs int32 `json:"region_latency_initial_range_ms,omitempty"`
+
+	// region_latency_max_ms
+	// Format: int32
+	RegionLatencyMaxMs int32 `json:"region_latency_max_ms,omitempty"`
 
 	// ruleset
 	// Required: true

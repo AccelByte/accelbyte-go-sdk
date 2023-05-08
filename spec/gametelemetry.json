@@ -3,7 +3,7 @@
   "info": {
     "description": "This is analytics game telemetry to standardize avengers and justice telemetry",
     "title": "Analytics Game Telemetry",
-    "version": "1.17.1"
+    "version": "1.17.2"
   },
   "schemes": [
     "https"
@@ -48,7 +48,7 @@
         "operationId": "get_events_game_telemetry_v1_admin_namespaces__namespace__events_get",
         "parameters": [
           {
-            "default": "2023-04-10T02:50:07Z",
+            "default": "2023-04-26T02:15:59Z",
             "description": "Start time of data to be queried. Default: Current time in UTC minus 1 day.",
             "in": "query",
             "name": "startTime",
@@ -56,7 +56,7 @@
             "type": "string"
           },
           {
-            "default": "2023-04-11T02:50:07Z",
+            "default": "2023-04-27T02:15:59Z",
             "description": "End time of data to be queried. Default: Current time in UTC.",
             "in": "query",
             "name": "endTime",
@@ -396,11 +396,11 @@
     "path": "/game-telemetry/openapi.json"
   },
   "x-version": {
-    "buildDate": "2023-04-11T02:35:35+00:00",
-    "gitHash": "08c1217d2c866d0cf05d64e14711ce88210fe388",
+    "buildDate": "2023-04-27T02:01:18+00:00",
+    "gitHash": "52c251907adbae0d6d44fbe46e1d12f15a762c58",
     "name": "analytics-game-telemetry",
     "realm": "staging",
     "rolesSeedingVersion": "0.0.3",
-    "version": "1.17.1"
+    "version": "1.17.2"
   }
 }

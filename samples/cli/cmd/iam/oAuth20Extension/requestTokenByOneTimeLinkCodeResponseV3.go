@@ -27,7 +27,9 @@ var RequestTokenByOneTimeLinkCodeResponseV3Cmd = &cobra.Command{
 		}
 		clientId, _ := cmd.Flags().GetString("clientId")
 		oneTimeLinkCode, _ := cmd.Flags().GetString("oneTimeLinkCode")
+		isTransient, _ := cmd.Flags().GetBool("isTransient")
 		input := &o_auth2_0_extension.RequestTokenByOneTimeLinkCodeResponseV3Params{
+			IsTransient:     &isTransient,
 			ClientID:        clientId,
 			OneTimeLinkCode: oneTimeLinkCode,
 		}
@@ -45,6 +47,7 @@ var RequestTokenByOneTimeLinkCodeResponseV3Cmd = &cobra.Command{
 }
 
 func init() {
+	RequestTokenByOneTimeLinkCodeResponseV3Cmd.Flags().Bool("isTransient", false, "Is transient")
 	RequestTokenByOneTimeLinkCodeResponseV3Cmd.Flags().String("clientId", "", "Client id")
 	_ = RequestTokenByOneTimeLinkCodeResponseV3Cmd.MarkFlagRequired("client_id")
 	RequestTokenByOneTimeLinkCodeResponseV3Cmd.Flags().String("oneTimeLinkCode", "", "One time link code")

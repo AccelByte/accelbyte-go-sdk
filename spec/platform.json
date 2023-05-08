@@ -8,7 +8,7 @@
     },
     "description": "Justice Platform Service",
     "title": "justice-platform-service",
-    "version": "4.28.0"
+    "version": "4.30.0"
   },
   "schemes": [
     "https"
@@ -91,6 +91,9 @@
     },
     {
       "name": "ServicePluginConfig"
+    },
+    {
+      "name": "Session(Platform)"
     },
     {
       "name": "Store"
@@ -3324,7 +3327,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "Grant entitlements to multiple users, skipped granting will be treated as fail.\u0026lt;br\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;ADMIN:NAMESPACE:{namespace}:USER:{userId}:ENTITLEMENT\u0026#34;, action=4 (UPDATE)\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: bulk grant entitlements result\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
+        "description": "Grant entitlements to multiple users, skipped granting will be treated as fail.\u0026lt;br\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;ADMIN:NAMESPACE:{namespace}:ENTITLEMENT\u0026#34;, action=4 (UPDATE)\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: bulk grant entitlements result\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "grantEntitlements",
         "parameters": [
           {
@@ -3365,7 +3368,7 @@
           },
           {
             "HasPermission": [
-              "ADMIN:NAMESPACE:{namespace}:USER:{userId}:ENTITLEMENT [UPDATE]"
+              "ADMIN:NAMESPACE:{namespace}:ENTITLEMENT [UPDATE]"
             ],
             "authorization": []
           }
@@ -5020,7 +5023,7 @@
             }
           },
           "400": {
-            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eErrorCode\u003c/td\u003e\u003ctd\u003eErrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e30322\u003c/td\u003e\u003ctd\u003eBundle item [{itemId}] can't be bundled\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e30325\u003c/td\u003e\u003ctd\u003eCode item [{itemId}] can't be bundled\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e30326\u003c/td\u003e\u003ctd\u003eSubscription item [{itemId}] can't be bundled\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e30329\u003c/td\u003e\u003ctd\u003eInvalid bundled item [{itemId}] quantity\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e30021\u003c/td\u003e\u003ctd\u003eDefault language [{language}] required\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e30321\u003c/td\u003e\u003ctd\u003eInvalid item discount amount\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e30022\u003c/td\u003e\u003ctd\u003eDefault region [{region}] is required\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e30323\u003c/td\u003e\u003ctd\u003eTarget namespace is required\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e30327\u003c/td\u003e\u003ctd\u003eInvalid item trial price\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e30330\u003c/td\u003e\u003ctd\u003eInvalid item region price currency namespace [{namespace}]\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e30332\u003c/td\u003e\u003ctd\u003eInvalid option box item [{itemId}] quantity\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e30333\u003c/td\u003e\u003ctd\u003eItem [{itemId}] item type [{itemType}] can't be bundled into option box\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e30334\u003c/td\u003e\u003ctd\u003eOption box item [{itemId}] can't be bundled\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e30337\u003c/td\u003e\u003ctd\u003eInvalid loot box item [{itemId}] quantity\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e30338\u003c/td\u003e\u003ctd\u003eItem [{itemId}] item type [{itemType}] can't be bundled into loot box\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e30339\u003c/td\u003e\u003ctd\u003eLoot box item [{itemId}] can't be bundled\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eErrorCode\u003c/td\u003e\u003ctd\u003eErrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20024\u003c/td\u003e\u003ctd\u003eunsupported operation\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e30301\u003c/td\u003e\u003ctd\u003eUnsupported Item Type [{itemType}] for box item [{itemId}] with expiration\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e30322\u003c/td\u003e\u003ctd\u003eBundle item [{itemId}] can't be bundled\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e30325\u003c/td\u003e\u003ctd\u003eCode item [{itemId}] can't be bundled\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e30326\u003c/td\u003e\u003ctd\u003eSubscription item [{itemId}] can't be bundled\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e30329\u003c/td\u003e\u003ctd\u003eInvalid bundled item [{itemId}] quantity\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e30021\u003c/td\u003e\u003ctd\u003eDefault language [{language}] required\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e30321\u003c/td\u003e\u003ctd\u003eInvalid item discount amount\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e30022\u003c/td\u003e\u003ctd\u003eDefault region [{region}] is required\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e30323\u003c/td\u003e\u003ctd\u003eTarget namespace is required\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e30327\u003c/td\u003e\u003ctd\u003eInvalid item trial price\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e30330\u003c/td\u003e\u003ctd\u003eInvalid item region price currency namespace [{namespace}]\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e30332\u003c/td\u003e\u003ctd\u003eInvalid option box item [{itemId}] quantity\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e30333\u003c/td\u003e\u003ctd\u003eItem [{itemId}] item type [{itemType}] can't be bundled into option box\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e30334\u003c/td\u003e\u003ctd\u003eOption box item [{itemId}] can't be bundled\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e30337\u003c/td\u003e\u003ctd\u003eInvalid loot box item [{itemId}] quantity\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e30338\u003c/td\u003e\u003ctd\u003eItem [{itemId}] item type [{itemType}] can't be bundled into loot box\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e30339\u003c/td\u003e\u003ctd\u003eLoot box item [{itemId}] can't be bundled\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/ErrorEntity"
             }
@@ -5032,7 +5035,7 @@
             }
           },
           "409": {
-            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eErrorCode\u003c/td\u003e\u003ctd\u003eErrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e30173\u003c/td\u003e\u003ctd\u003ePublished store can't modify content\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e30373\u003c/td\u003e\u003ctd\u003eItemType [{itemType}] is not allowed in namespace [{namespace}]\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e30376\u003c/td\u003e\u003ctd\u003ePublisher namespace don’t allow sellback item\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e30377\u003c/td\u003e\u003ctd\u003eThis item type [{itemType}] don’t allow sellback\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e30378\u003c/td\u003e\u003ctd\u003eSale price don’t allow real currency [{currencyCode}]\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eErrorCode\u003c/td\u003e\u003ctd\u003eErrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e30173\u003c/td\u003e\u003ctd\u003ePublished store can't modify content\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e30373\u003c/td\u003e\u003ctd\u003eItemType [{itemType}] is not allowed in namespace [{namespace}]\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e30376\u003c/td\u003e\u003ctd\u003ePublisher namespace don’t allow sellback item\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e30377\u003c/td\u003e\u003ctd\u003eThis item type [{itemType}] don’t allow sellback\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e30378\u003c/td\u003e\u003ctd\u003eSale price don’t allow real currency [{currencyCode}]\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e30380\u003c/td\u003e\u003ctd\u003eBox item [{itemId}] duration and end date can’t be set at the same time\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/ErrorEntity"
             }
@@ -6497,7 +6500,7 @@
             }
           },
           "400": {
-            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eErrorCode\u003c/td\u003e\u003ctd\u003eErrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e30322\u003c/td\u003e\u003ctd\u003eBundle item [{itemId}] can't be bundled\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e30325\u003c/td\u003e\u003ctd\u003eCode item [{itemId}] can't be bundled\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e30326\u003c/td\u003e\u003ctd\u003eSubscription item [{itemId}] can't be bundled\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e30329\u003c/td\u003e\u003ctd\u003eInvalid bundled item [{itemId}] quantity\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e30021\u003c/td\u003e\u003ctd\u003eDefault language [{language}] required\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e30321\u003c/td\u003e\u003ctd\u003eInvalid item discount amount\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e30022\u003c/td\u003e\u003ctd\u003eDefault region [{region}] is required\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e30323\u003c/td\u003e\u003ctd\u003eTarget namespace is required\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e30327\u003c/td\u003e\u003ctd\u003eInvalid item trial price\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e30330\u003c/td\u003e\u003ctd\u003eInvalid item region price currency namespace [{namespace}]\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e30332\u003c/td\u003e\u003ctd\u003eInvalid option box item [{itemId}] quantity\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e30333\u003c/td\u003e\u003ctd\u003eItem [{itemId}] item type [{itemType}] can't be bundled into option box\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e30334\u003c/td\u003e\u003ctd\u003eOption box item [{itemId}] can't be bundled\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e30337\u003c/td\u003e\u003ctd\u003eInvalid loot box item [{itemId}] quantity\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e30338\u003c/td\u003e\u003ctd\u003eItem [{itemId}] item type [{itemType}] can't be bundled into loot box\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e30339\u003c/td\u003e\u003ctd\u003eLoot box item [{itemId}] can't be bundled\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eErrorCode\u003c/td\u003e\u003ctd\u003eErrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20024\u003c/td\u003e\u003ctd\u003eunsupported operation\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e30301\u003c/td\u003e\u003ctd\u003eUnsupported Item Type [{itemType}] for box item [{itemId}] with expiration\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e30322\u003c/td\u003e\u003ctd\u003eBundle item [{itemId}] can't be bundled\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e30325\u003c/td\u003e\u003ctd\u003eCode item [{itemId}] can't be bundled\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e30326\u003c/td\u003e\u003ctd\u003eSubscription item [{itemId}] can't be bundled\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e30329\u003c/td\u003e\u003ctd\u003eInvalid bundled item [{itemId}] quantity\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e30021\u003c/td\u003e\u003ctd\u003eDefault language [{language}] required\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e30321\u003c/td\u003e\u003ctd\u003eInvalid item discount amount\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e30022\u003c/td\u003e\u003ctd\u003eDefault region [{region}] is required\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e30323\u003c/td\u003e\u003ctd\u003eTarget namespace is required\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e30327\u003c/td\u003e\u003ctd\u003eInvalid item trial price\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e30330\u003c/td\u003e\u003ctd\u003eInvalid item region price currency namespace [{namespace}]\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e30332\u003c/td\u003e\u003ctd\u003eInvalid option box item [{itemId}] quantity\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e30333\u003c/td\u003e\u003ctd\u003eItem [{itemId}] item type [{itemType}] can't be bundled into option box\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e30334\u003c/td\u003e\u003ctd\u003eOption box item [{itemId}] can't be bundled\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e30337\u003c/td\u003e\u003ctd\u003eInvalid loot box item [{itemId}] quantity\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e30338\u003c/td\u003e\u003ctd\u003eItem [{itemId}] item type [{itemType}] can't be bundled into loot box\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e30339\u003c/td\u003e\u003ctd\u003eLoot box item [{itemId}] can't be bundled\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/ErrorEntity"
             }
@@ -6509,7 +6512,7 @@
             }
           },
           "409": {
-            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eErrorCode\u003c/td\u003e\u003ctd\u003eErrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e30371\u003c/td\u003e\u003ctd\u003eItem maxCount not allow reduce\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e30372\u003c/td\u003e\u003ctd\u003eItemType is not updatable\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e30173\u003c/td\u003e\u003ctd\u003ePublished store can't modify content\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e30374\u003c/td\u003e\u003ctd\u003eItem sku [{sku}] already exists in namespace [{namespace}]\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e30376\u003c/td\u003e\u003ctd\u003ePublisher namespace don’t allow sellback item\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e30377\u003c/td\u003e\u003ctd\u003eThis item type [{itemType}] don’t allow sellback\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e30378\u003c/td\u003e\u003ctd\u003eSale price don’t allow real currency [{currencyCode}]\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e30379\u003c/td\u003e\u003ctd\u003eItem sku is not updatable\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eErrorCode\u003c/td\u003e\u003ctd\u003eErrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e30371\u003c/td\u003e\u003ctd\u003eItem maxCount not allow reduce\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e30372\u003c/td\u003e\u003ctd\u003eItemType is not updatable\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e30173\u003c/td\u003e\u003ctd\u003ePublished store can't modify content\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e30374\u003c/td\u003e\u003ctd\u003eItem sku [{sku}] already exists in namespace [{namespace}]\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e30376\u003c/td\u003e\u003ctd\u003ePublisher namespace don’t allow sellback item\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e30377\u003c/td\u003e\u003ctd\u003eThis item type [{itemType}] don’t allow sellback\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e30378\u003c/td\u003e\u003ctd\u003eSale price don’t allow real currency [{currencyCode}]\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e30379\u003c/td\u003e\u003ctd\u003eItem sku is not updatable\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e30380\u003c/td\u003e\u003ctd\u003eBox item [{itemId}] duration and end date can’t be set at the same time\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/ErrorEntity"
             }
@@ -9449,6 +9452,12 @@
               "$ref": "#/definitions/RewardInfo"
             }
           },
+          "400": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eErrorCode\u003c/td\u003e\u003ctd\u003eErrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e34023\u003c/td\u003e\u003ctd\u003eReward Item [{itemId}] with item type [{itemType}] is not supported for duration or endDate\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/ErrorEntity"
+            }
+          },
           "404": {
             "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eErrorCode\u003c/td\u003e\u003ctd\u003eErrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e34042\u003c/td\u003e\u003ctd\u003eReward item [{itemId}] does not exist in namespace [{namespace}]\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
@@ -9456,7 +9465,7 @@
             }
           },
           "409": {
-            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eErrorCode\u003c/td\u003e\u003ctd\u003eErrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e34071\u003c/td\u003e\u003ctd\u003eReward with code [{rewardCode}] already exists in namespace [{namespace}]\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e34072\u003c/td\u003e\u003ctd\u003eDuplicate reward condition [{rewardConditionName}] found in reward [{rewardCode}]\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eErrorCode\u003c/td\u003e\u003ctd\u003eErrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e34071\u003c/td\u003e\u003ctd\u003eReward with code [{rewardCode}] already exists in namespace [{namespace}]\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e34072\u003c/td\u003e\u003ctd\u003eDuplicate reward condition [{rewardConditionName}] found in reward [{rewardCode}]\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e34074\u003c/td\u003e\u003ctd\u003eReward Item [{itemId}] duration and end date can’t be set at the same time\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/ErrorEntity"
             }
@@ -9669,7 +9678,13 @@
             "description": "successful import of reward configs"
           },
           "400": {
-            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eErrorCode\u003c/td\u003e\u003ctd\u003eErrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e34021\u003c/td\u003e\u003ctd\u003eReward data for namespace [{namespace}] is invalid\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eErrorCode\u003c/td\u003e\u003ctd\u003eErrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e34021\u003c/td\u003e\u003ctd\u003eReward data for namespace [{namespace}] is invalid\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e34023\u003c/td\u003e\u003ctd\u003eReward Item [{itemId}] with item type [{itemType}] is not supported for duration or endDate\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/ErrorEntity"
+            }
+          },
+          "409": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eErrorCode\u003c/td\u003e\u003ctd\u003eErrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e34074\u003c/td\u003e\u003ctd\u003eReward Item [{itemId}] duration and end date can’t be set at the same time\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/ErrorEntity"
             }
@@ -9844,6 +9859,12 @@
               "$ref": "#/definitions/RewardInfo"
             }
           },
+          "400": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eErrorCode\u003c/td\u003e\u003ctd\u003eErrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e34023\u003c/td\u003e\u003ctd\u003eReward Item [{itemId}] with item type [{itemType}] is not supported for duration or endDate\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/ErrorEntity"
+            }
+          },
           "404": {
             "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eErrorCode\u003c/td\u003e\u003ctd\u003eErrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e34041\u003c/td\u003e\u003ctd\u003eReward [{rewardId}] does not exist in namespace [{namespace}]\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e34042\u003c/td\u003e\u003ctd\u003eReward item [{itemId}] does not exist in namespace [{namespace}]\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
@@ -9851,7 +9872,7 @@
             }
           },
           "409": {
-            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eErrorCode\u003c/td\u003e\u003ctd\u003eErrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e34072\u003c/td\u003e\u003ctd\u003eDuplicate reward condition [{rewardConditionName}] found in reward [{rewardCode}]\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eErrorCode\u003c/td\u003e\u003ctd\u003eErrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e34072\u003c/td\u003e\u003ctd\u003eDuplicate reward condition [{rewardConditionName}] found in reward [{rewardCode}]\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e34074\u003c/td\u003e\u003ctd\u003eReward Item [{itemId}] duration and end date can’t be set at the same time\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/ErrorEntity"
             }
@@ -14303,6 +14324,12 @@
               "$ref": "#/definitions/EntitlementDecrementResult"
             }
           },
+          "400": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eErrorCode\u003c/td\u003e\u003ctd\u003eErrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e31123\u003c/td\u003e\u003ctd\u003eUnable to acquire box item, box item [{itemId}] expired\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/ErrorEntity"
+            }
+          },
           "404": {
             "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eErrorCode\u003c/td\u003e\u003ctd\u003eErrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e31141\u003c/td\u003e\u003ctd\u003eEntitlement [{entitlementId}] does not exist in namespace [{namespace}]\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
@@ -14310,7 +14337,7 @@
             }
           },
           "409": {
-            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eErrorCode\u003c/td\u003e\u003ctd\u003eErrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e31171\u003c/td\u003e\u003ctd\u003eEntitlement [{entitlementId}] already revoked\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e31172\u003c/td\u003e\u003ctd\u003eEntitlement [{entitlementId}] not active\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e31173\u003c/td\u003e\u003ctd\u003eEntitlement [{entitlementId}] is not consumable\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e31174\u003c/td\u003e\u003ctd\u003eEntitlement [{entitlementId}] already consumed\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e31176\u003c/td\u003e\u003ctd\u003eEntitlement [{entitlementId}] use count is insufficient\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e31180\u003c/td\u003e\u003ctd\u003eDuplicate request id: [{requestId}]\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20006\u003c/td\u003e\u003ctd\u003eoptimistic lock\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eErrorCode\u003c/td\u003e\u003ctd\u003eErrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e31171\u003c/td\u003e\u003ctd\u003eEntitlement [{entitlementId}] already revoked\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e31172\u003c/td\u003e\u003ctd\u003eEntitlement [{entitlementId}] not active\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e31173\u003c/td\u003e\u003ctd\u003eEntitlement [{entitlementId}] is not consumable\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e31174\u003c/td\u003e\u003ctd\u003eEntitlement [{entitlementId}] already consumed\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e31176\u003c/td\u003e\u003ctd\u003eEntitlement [{entitlementId}] use count is insufficient\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e31178\u003c/td\u003e\u003ctd\u003eEntitlement [{entitlementId}] out of time range\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e31180\u003c/td\u003e\u003ctd\u003eDuplicate request id: [{requestId}]\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20006\u003c/td\u003e\u003ctd\u003eoptimistic lock\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/ErrorEntity"
             }
@@ -16341,6 +16368,70 @@
         "x-authorization": {
           "action": "4",
           "resource": "ADMIN:NAMESPACE:{namespace}:USER:{userId}:REVOCATION"
+        }
+      }
+    },
+    "/platform/admin/namespaces/{namespace}/users/{userId}/session/xbl": {
+      "put": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "This API is used to register/update a session on xbox.\u0026lt;p\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=ADMIN:NAMESPACE:{namespace}:USER:{userId}:INTEGRATION, action=4 (UPDATE)\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
+        "operationId": "registerXblSessions",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "path",
+            "name": "userId",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "required": false,
+            "schema": {
+              "$ref": "#/definitions/XblUserSessionRequest"
+            }
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "additionalProperties": {
+                "type": "object"
+              },
+              "type": "object"
+            }
+          },
+          "400": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20002\u003c/td\u003e\u003ctd\u003evalidation error\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/ValidationErrorEntity"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "summary": "Register/Update a session",
+        "tags": [
+          "Session(Platform)"
+        ],
+        "x-authorization": {
+          "action": "4",
+          "resource": "ADMIN:NAMESPACE:{namespace}:USER:{userId}:INTEGRATION"
         }
       }
     },
@@ -24473,7 +24564,7 @@
             }
           },
           "400": {
-            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eErrorCode\u003c/td\u003e\u003ctd\u003eErrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e31121\u003c/td\u003e\u003ctd\u003eOptionBox entitlement [{entitlementId}] use count is not 1\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e31122\u003c/td\u003e\u003ctd\u003eOptionBox entitlement [{entitlementId}] options size is not 1\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eErrorCode\u003c/td\u003e\u003ctd\u003eErrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e31121\u003c/td\u003e\u003ctd\u003eOptionBox entitlement [{entitlementId}] use count is not 1\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e31122\u003c/td\u003e\u003ctd\u003eOptionBox entitlement [{entitlementId}] options size is not 1\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e31123\u003c/td\u003e\u003ctd\u003eUnable to acquire box item, box item [{itemId}] expired\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/ErrorEntity"
             }
@@ -28069,6 +28160,17 @@
           "description": "count",
           "format": "int32",
           "type": "integer"
+        },
+        "duration": {
+          "description": "box item will be expired after this duration (in seconds). Only available for OptionBox. Supported item type(s): COINS",
+          "format": "int32",
+          "type": "integer"
+        },
+        "endDate": {
+          "description": "box item will be expired after this time. Only available for OptionBox. Supported item type(s): COINS",
+          "format": "date-time",
+          "type": "string",
+          "x-nullable": true
         },
         "itemId": {
           "description": "item id",
@@ -34009,6 +34111,11 @@
           ],
           "type": "string"
         },
+        "sectionExclusive": {
+          "description": "whether it is sold in section only",
+          "type": "boolean",
+          "x-omitempty": false
+        },
         "sellable": {
           "description": "whether allow to sell back to store",
           "type": "boolean",
@@ -39015,6 +39122,11 @@
           "format": "int32",
           "type": "integer"
         },
+        "endDate": {
+          "format": "date-time",
+          "type": "string",
+          "x-nullable": true
+        },
         "itemId": {
           "type": "string"
         },
@@ -41783,6 +41895,34 @@
       },
       "type": "object"
     },
+    "XblUserSessionRequest": {
+      "description": "A DTO object for xbl user session",
+      "properties": {
+        "gameSessionId": {
+          "description": "game session id",
+          "type": "string"
+        },
+        "payload": {
+          "description": "session objects",
+          "type": "object"
+        },
+        "scid": {
+          "description": "service config id",
+          "type": "string"
+        },
+        "sessionTemplateName": {
+          "description": "session template name",
+          "type": "string"
+        }
+      },
+      "required": [
+        "gameSessionId",
+        "payload",
+        "scid",
+        "sessionTemplateName"
+      ],
+      "type": "object"
+    },
     "XsollaConfig": {
       "description": "A DTO object for updating xsolla config.",
       "properties": {
@@ -41897,16 +42037,16 @@
   },
   "x-version": {
     "buildBy": "Gradle 6.9.1",
-    "buildDate": "2023-04-11T01:49:08+00:00",
-    "buildID": "4.28.0",
+    "buildDate": "2023-05-08T01:08:19+00:00",
+    "buildID": "4.30.0",
     "buildJDK": "1.8.0_232 (Eclipse OpenJ9 openj9-0.17.0)",
     "buildOS": "Linux amd64 5.13.0-1021-aws",
     "gitBranchName": "release-candidate",
-    "gitHash": "14cfec589a",
-    "gitTag": "3.31.0",
+    "gitHash": "4b1a56f7c1",
+    "gitTag": "4.30.0",
     "name": "justice-platform-service",
     "realm": "staging",
-    "version": "4.28.0",
-    "version-roles-seeding": "0.0.21"
+    "version": "4.30.0",
+    "version-roles-seeding": "0.0.28"
   }
 }

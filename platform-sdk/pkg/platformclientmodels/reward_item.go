@@ -21,6 +21,10 @@ type RewardItem struct {
 	// Format: int32
 	Duration int32 `json:"duration,omitempty"`
 
+	// enddate
+	// Format: date-time
+	EndDate *strfmt.DateTime `json:"endDate,omitempty"`
+
 	// itemid
 	ItemID string `json:"itemId,omitempty"`
 

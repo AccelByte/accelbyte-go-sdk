@@ -8,7 +8,7 @@
     },
     "description": "Justice GDPR Service",
     "title": "justice-gdpr-service",
-    "version": "1.21.0"
+    "version": "1.23.0"
   },
   "schemes": [
     "https"
@@ -1623,6 +1623,9 @@
     },
     "models.DeletionStatus": {
       "properties": {
+        "DeletionDate": {
+          "type": "string"
+        },
         "DeletionStatus": {
           "type": "boolean",
           "x-omitempty": false
@@ -1643,6 +1646,7 @@
         }
       },
       "required": [
+        "DeletionDate",
         "DeletionStatus",
         "DisplayName",
         "Status",
@@ -1834,11 +1838,11 @@
     "path": "/gdpr/apidocs/api.json"
   },
   "x-version": {
-    "buildDate": "2023-04-11T01:38:37+00:00",
-    "gitHash": "08820bbde1a270587cad86542997a7d6dc573882",
+    "buildDate": "2023-05-08T01:07:42+00:00",
+    "gitHash": "f0cbc1adb15eeb92242072822b65c7b562ff48e0",
     "name": "justice-gdpr-service",
     "realm": "staging",
-    "version": "1.21.0",
+    "version": "1.23.0",
     "version-roles-seeding": "0.0.3"
   }
 }

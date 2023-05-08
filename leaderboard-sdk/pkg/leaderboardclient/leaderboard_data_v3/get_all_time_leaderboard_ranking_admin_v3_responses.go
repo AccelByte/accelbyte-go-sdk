@@ -1,0 +1,393 @@
+// Copyright (c) 2021 AccelByte Inc. All Rights Reserved.
+// This is licensed software from AccelByte Inc, for limitations
+// and restrictions contact your company contract manager.
+
+// Code generated; DO NOT EDIT.
+
+package leaderboard_data_v3
+
+import (
+	"encoding/json"
+	"fmt"
+	"io"
+	"io/ioutil"
+	"strings"
+
+	"github.com/go-openapi/runtime"
+	"github.com/go-openapi/strfmt"
+
+	"github.com/AccelByte/accelbyte-go-sdk/leaderboard-sdk/pkg/leaderboardclientmodels"
+)
+
+// GetAllTimeLeaderboardRankingAdminV3Reader is a Reader for the GetAllTimeLeaderboardRankingAdminV3 structure.
+type GetAllTimeLeaderboardRankingAdminV3Reader struct {
+	formats strfmt.Registry
+}
+
+// ReadResponse reads a server response into the received o.
+func (o *GetAllTimeLeaderboardRankingAdminV3Reader) ReadResponse(response runtime.ClientResponse, consumer runtime.Consumer) (interface{}, error) {
+	switch response.Code() {
+	case 200:
+		result := NewGetAllTimeLeaderboardRankingAdminV3OK()
+		if err := result.readResponse(response, consumer, o.formats); err != nil {
+			return nil, err
+		}
+		return result, nil
+	case 400:
+		result := NewGetAllTimeLeaderboardRankingAdminV3BadRequest()
+		if err := result.readResponse(response, consumer, o.formats); err != nil {
+			return nil, err
+		}
+		return result, nil
+	case 401:
+		result := NewGetAllTimeLeaderboardRankingAdminV3Unauthorized()
+		if err := result.readResponse(response, consumer, o.formats); err != nil {
+			return nil, err
+		}
+		return result, nil
+	case 403:
+		result := NewGetAllTimeLeaderboardRankingAdminV3Forbidden()
+		if err := result.readResponse(response, consumer, o.formats); err != nil {
+			return nil, err
+		}
+		return result, nil
+	case 404:
+		result := NewGetAllTimeLeaderboardRankingAdminV3NotFound()
+		if err := result.readResponse(response, consumer, o.formats); err != nil {
+			return nil, err
+		}
+		return result, nil
+	case 500:
+		result := NewGetAllTimeLeaderboardRankingAdminV3InternalServerError()
+		if err := result.readResponse(response, consumer, o.formats); err != nil {
+			return nil, err
+		}
+		return result, nil
+
+	default:
+		data, err := ioutil.ReadAll(response.Body())
+		if err != nil {
+			return nil, err
+		}
+
+		return nil, fmt.Errorf("Requested GET /leaderboard/v3/admin/namespaces/{namespace}/leaderboards/{leaderboardCode}/alltime returns an error %d: %s", response.Code(), string(data))
+	}
+}
+
+// NewGetAllTimeLeaderboardRankingAdminV3OK creates a GetAllTimeLeaderboardRankingAdminV3OK with default headers values
+func NewGetAllTimeLeaderboardRankingAdminV3OK() *GetAllTimeLeaderboardRankingAdminV3OK {
+	return &GetAllTimeLeaderboardRankingAdminV3OK{}
+}
+
+/*GetAllTimeLeaderboardRankingAdminV3OK handles this case with default header values.
+
+  OK
+*/
+type GetAllTimeLeaderboardRankingAdminV3OK struct {
+	Payload *leaderboardclientmodels.ModelsGetLeaderboardRankingResp
+}
+
+func (o *GetAllTimeLeaderboardRankingAdminV3OK) Error() string {
+	return fmt.Sprintf("[GET /leaderboard/v3/admin/namespaces/{namespace}/leaderboards/{leaderboardCode}/alltime][%d] getAllTimeLeaderboardRankingAdminV3OK  %+v", 200, o.ToJSONString())
+}
+
+func (o *GetAllTimeLeaderboardRankingAdminV3OK) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
+}
+
+func (o *GetAllTimeLeaderboardRankingAdminV3OK) GetPayload() *leaderboardclientmodels.ModelsGetLeaderboardRankingResp {
+	return o.Payload
+}
+
+func (o *GetAllTimeLeaderboardRankingAdminV3OK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+	// handle file responses
+	contentDisposition := response.GetHeader("Content-Disposition")
+	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
+		consumer = runtime.ByteStreamConsumer()
+	}
+
+	o.Payload = new(leaderboardclientmodels.ModelsGetLeaderboardRankingResp)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
+	}
+
+	return nil
+}
+
+// NewGetAllTimeLeaderboardRankingAdminV3BadRequest creates a GetAllTimeLeaderboardRankingAdminV3BadRequest with default headers values
+func NewGetAllTimeLeaderboardRankingAdminV3BadRequest() *GetAllTimeLeaderboardRankingAdminV3BadRequest {
+	return &GetAllTimeLeaderboardRankingAdminV3BadRequest{}
+}
+
+/*GetAllTimeLeaderboardRankingAdminV3BadRequest handles this case with default header values.
+
+  Bad Request
+*/
+type GetAllTimeLeaderboardRankingAdminV3BadRequest struct {
+	Payload *leaderboardclientmodels.ResponseErrorResponse
+}
+
+func (o *GetAllTimeLeaderboardRankingAdminV3BadRequest) Error() string {
+	return fmt.Sprintf("[GET /leaderboard/v3/admin/namespaces/{namespace}/leaderboards/{leaderboardCode}/alltime][%d] getAllTimeLeaderboardRankingAdminV3BadRequest  %+v", 400, o.ToJSONString())
+}
+
+func (o *GetAllTimeLeaderboardRankingAdminV3BadRequest) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
+}
+
+func (o *GetAllTimeLeaderboardRankingAdminV3BadRequest) GetPayload() *leaderboardclientmodels.ResponseErrorResponse {
+	return o.Payload
+}
+
+func (o *GetAllTimeLeaderboardRankingAdminV3BadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+	// handle file responses
+	contentDisposition := response.GetHeader("Content-Disposition")
+	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
+		consumer = runtime.ByteStreamConsumer()
+	}
+
+	o.Payload = new(leaderboardclientmodels.ResponseErrorResponse)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
+	}
+
+	return nil
+}
+
+// NewGetAllTimeLeaderboardRankingAdminV3Unauthorized creates a GetAllTimeLeaderboardRankingAdminV3Unauthorized with default headers values
+func NewGetAllTimeLeaderboardRankingAdminV3Unauthorized() *GetAllTimeLeaderboardRankingAdminV3Unauthorized {
+	return &GetAllTimeLeaderboardRankingAdminV3Unauthorized{}
+}
+
+/*GetAllTimeLeaderboardRankingAdminV3Unauthorized handles this case with default header values.
+
+  Unauthorized
+*/
+type GetAllTimeLeaderboardRankingAdminV3Unauthorized struct {
+	Payload *leaderboardclientmodels.ResponseErrorResponse
+}
+
+func (o *GetAllTimeLeaderboardRankingAdminV3Unauthorized) Error() string {
+	return fmt.Sprintf("[GET /leaderboard/v3/admin/namespaces/{namespace}/leaderboards/{leaderboardCode}/alltime][%d] getAllTimeLeaderboardRankingAdminV3Unauthorized  %+v", 401, o.ToJSONString())
+}
+
+func (o *GetAllTimeLeaderboardRankingAdminV3Unauthorized) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
+}
+
+func (o *GetAllTimeLeaderboardRankingAdminV3Unauthorized) GetPayload() *leaderboardclientmodels.ResponseErrorResponse {
+	return o.Payload
+}
+
+func (o *GetAllTimeLeaderboardRankingAdminV3Unauthorized) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+	// handle file responses
+	contentDisposition := response.GetHeader("Content-Disposition")
+	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
+		consumer = runtime.ByteStreamConsumer()
+	}
+
+	o.Payload = new(leaderboardclientmodels.ResponseErrorResponse)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
+	}
+
+	return nil
+}
+
+// NewGetAllTimeLeaderboardRankingAdminV3Forbidden creates a GetAllTimeLeaderboardRankingAdminV3Forbidden with default headers values
+func NewGetAllTimeLeaderboardRankingAdminV3Forbidden() *GetAllTimeLeaderboardRankingAdminV3Forbidden {
+	return &GetAllTimeLeaderboardRankingAdminV3Forbidden{}
+}
+
+/*GetAllTimeLeaderboardRankingAdminV3Forbidden handles this case with default header values.
+
+  Forbidden
+*/
+type GetAllTimeLeaderboardRankingAdminV3Forbidden struct {
+	Payload *leaderboardclientmodels.ResponseErrorResponse
+}
+
+func (o *GetAllTimeLeaderboardRankingAdminV3Forbidden) Error() string {
+	return fmt.Sprintf("[GET /leaderboard/v3/admin/namespaces/{namespace}/leaderboards/{leaderboardCode}/alltime][%d] getAllTimeLeaderboardRankingAdminV3Forbidden  %+v", 403, o.ToJSONString())
+}
+
+func (o *GetAllTimeLeaderboardRankingAdminV3Forbidden) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
+}
+
+func (o *GetAllTimeLeaderboardRankingAdminV3Forbidden) GetPayload() *leaderboardclientmodels.ResponseErrorResponse {
+	return o.Payload
+}
+
+func (o *GetAllTimeLeaderboardRankingAdminV3Forbidden) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+	// handle file responses
+	contentDisposition := response.GetHeader("Content-Disposition")
+	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
+		consumer = runtime.ByteStreamConsumer()
+	}
+
+	o.Payload = new(leaderboardclientmodels.ResponseErrorResponse)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
+	}
+
+	return nil
+}
+
+// NewGetAllTimeLeaderboardRankingAdminV3NotFound creates a GetAllTimeLeaderboardRankingAdminV3NotFound with default headers values
+func NewGetAllTimeLeaderboardRankingAdminV3NotFound() *GetAllTimeLeaderboardRankingAdminV3NotFound {
+	return &GetAllTimeLeaderboardRankingAdminV3NotFound{}
+}
+
+/*GetAllTimeLeaderboardRankingAdminV3NotFound handles this case with default header values.
+
+  Not Found
+*/
+type GetAllTimeLeaderboardRankingAdminV3NotFound struct {
+	Payload *leaderboardclientmodels.ResponseErrorResponse
+}
+
+func (o *GetAllTimeLeaderboardRankingAdminV3NotFound) Error() string {
+	return fmt.Sprintf("[GET /leaderboard/v3/admin/namespaces/{namespace}/leaderboards/{leaderboardCode}/alltime][%d] getAllTimeLeaderboardRankingAdminV3NotFound  %+v", 404, o.ToJSONString())
+}
+
+func (o *GetAllTimeLeaderboardRankingAdminV3NotFound) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
+}
+
+func (o *GetAllTimeLeaderboardRankingAdminV3NotFound) GetPayload() *leaderboardclientmodels.ResponseErrorResponse {
+	return o.Payload
+}
+
+func (o *GetAllTimeLeaderboardRankingAdminV3NotFound) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+	// handle file responses
+	contentDisposition := response.GetHeader("Content-Disposition")
+	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
+		consumer = runtime.ByteStreamConsumer()
+	}
+
+	o.Payload = new(leaderboardclientmodels.ResponseErrorResponse)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
+	}
+
+	return nil
+}
+
+// NewGetAllTimeLeaderboardRankingAdminV3InternalServerError creates a GetAllTimeLeaderboardRankingAdminV3InternalServerError with default headers values
+func NewGetAllTimeLeaderboardRankingAdminV3InternalServerError() *GetAllTimeLeaderboardRankingAdminV3InternalServerError {
+	return &GetAllTimeLeaderboardRankingAdminV3InternalServerError{}
+}
+
+/*GetAllTimeLeaderboardRankingAdminV3InternalServerError handles this case with default header values.
+
+  Internal Server Error
+*/
+type GetAllTimeLeaderboardRankingAdminV3InternalServerError struct {
+	Payload *leaderboardclientmodels.ResponseErrorResponse
+}
+
+func (o *GetAllTimeLeaderboardRankingAdminV3InternalServerError) Error() string {
+	return fmt.Sprintf("[GET /leaderboard/v3/admin/namespaces/{namespace}/leaderboards/{leaderboardCode}/alltime][%d] getAllTimeLeaderboardRankingAdminV3InternalServerError  %+v", 500, o.ToJSONString())
+}
+
+func (o *GetAllTimeLeaderboardRankingAdminV3InternalServerError) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
+}
+
+func (o *GetAllTimeLeaderboardRankingAdminV3InternalServerError) GetPayload() *leaderboardclientmodels.ResponseErrorResponse {
+	return o.Payload
+}
+
+func (o *GetAllTimeLeaderboardRankingAdminV3InternalServerError) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+	// handle file responses
+	contentDisposition := response.GetHeader("Content-Disposition")
+	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
+		consumer = runtime.ByteStreamConsumer()
+	}
+
+	o.Payload = new(leaderboardclientmodels.ResponseErrorResponse)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
+	}
+
+	return nil
+}

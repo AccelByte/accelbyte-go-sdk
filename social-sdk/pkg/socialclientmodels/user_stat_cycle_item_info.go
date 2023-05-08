@@ -18,6 +18,9 @@ import (
 // swagger:model User stat cycle item info.
 type UserStatCycleItemInfo struct {
 
+	// additionaldata
+	AdditionalData interface{} `json:"additionalData,omitempty"`
+
 	// createdat
 	// Required: true
 	// Format: date-time

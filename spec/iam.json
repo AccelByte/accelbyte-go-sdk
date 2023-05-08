@@ -8,7 +8,7 @@
     },
     "description": "Justice IAM Service",
     "title": "justice-iam-service",
-    "version": "5.32.0"
+    "version": "5.34.0"
   },
   "schemes": [
     "https"
@@ -14693,7 +14693,7 @@
         "consumes": [
           "application/x-www-form-urlencoded"
         ],
-        "description": "\u0026lt;p\u0026gt;This endpoint is being used to generate user\u0026#39;s token by one time link code.\u0026lt;br\u0026gt;\n\t\tIt require publisher ClientID\u0026lt;br\u0026gt;\n\t\tIt required a code which can be generated from \u0026lt;strong\u0026gt;/iam/v3/link/code/request\u0026lt;/strong\u0026gt;.\u0026lt;br\u0026gt;\n\t\t\u0026lt;/p\u0026gt;",
+        "description": "\u0026lt;p\u0026gt;This endpoint is being used to generate user\u0026#39;s token by one time link code.\u0026lt;br\u0026gt;\n\t\tIt require publisher ClientID\u0026lt;br\u0026gt;\n\t\tIt required a code which can be generated from \u0026lt;strong\u0026gt;/iam/v3/link/code/request\u0026lt;/strong\u0026gt;.\u0026lt;br\u0026gt;\n\t\t\u0026lt;/p\u0026gt;\n\t\t\u0026lt;p\u0026gt;This endpoint support creating transient token by utilizing \u0026lt;strong\u0026gt;isTransient\u0026lt;/strong\u0026gt; param:\n\t\t\u0026lt;br\u0026gt;\u0026lt;strong\u0026gt;isTransient=true\u0026lt;/strong\u0026gt; will generate a transient token with a short Time Expiration and without a refresh token\n\t\t\u0026lt;br\u0026gt;\u0026lt;strong\u0026gt;isTransient=false\u0026lt;/strong\u0026gt; will consume the one-time code and generate the access token with a refresh token.\u0026lt;/p\u0026gt;",
         "operationId": "RequestTokenByOneTimeLinkCodeResponseV3",
         "parameters": [
           {
@@ -14709,6 +14709,14 @@
             "name": "oneTimeLinkCode",
             "required": true,
             "type": "string"
+          },
+          {
+            "default": false,
+            "description": "will produce transient token ",
+            "in": "formData",
+            "name": "isTransient",
+            "type": "boolean",
+            "x-omitempty": false
           }
         ],
         "produces": [
@@ -29196,6 +29204,10 @@
     },
     "model.UpdateUserDeletionStatusRequest": {
       "properties": {
+        "deletionDate": {
+          "format": "int64",
+          "type": "integer"
+        },
         "enabled": {
           "type": "boolean",
           "x-omitempty": false
@@ -30087,6 +30099,9 @@
           "format": "date-time",
           "type": "string",
           "x-nullable": true
+        },
+        "deletionDate": {
+          "type": "string"
         },
         "deletionStatus": {
           "type": "boolean",
@@ -31115,11 +31130,11 @@
     "path": "/iam/apidocs/api.json"
   },
   "x-version": {
-    "buildDate": "2023-04-11T01:33:20+00:00",
-    "gitHash": "b1f663f83c477a6f57f709b7257b2dc47e2bbdf4",
+    "buildDate": "2023-05-08T01:04:00+00:00",
+    "gitHash": "ebcac68efa46f5944aa46bc5cbc73a3c7dc609e5",
     "name": "justice-iam-service",
     "realm": "staging",
-    "version": "5.32.0",
+    "version": "5.34.0",
     "version-roles-seeding": "0.0.3"
   }
 }

@@ -1,13 +1,19 @@
 <a name="v0.44.0"></a>
-## [v0.44.0]
-### ci
-- **generate:** refactor jenkinsfile.generate
-- **makefile:** happens when version is bumped but it is not released in github yet
-- **generate:** generate changelog also
-### fix
-- **sdk:** modify the singleton factory
-### chore
+## [v0.44.0] - 2023-05-09
+
+### Chore
+- **docs:** update changelog
+- **samples:** update getting started go sum
+- **sdk:** generate go extend sdk (2023-05-08T20:54:03+00:00)
 - **sdk:** migration from goswagger to jinja
+
+### Ci
+- **generate:** generate changelog also
+- **generate:** refactor jenkinsfile.generate
+- **makefile:** fix make version error
+
+### Fix
+- **sdk:** modify the singleton factory
 
 
 <a name="v0.43.0"></a>
@@ -299,7 +305,7 @@
 ### Feat
 - **cli:** add command for session and match2 service
 - **spec:** add session and match2
-- 
+-
 ### Fix
 - **docs:** broken link to release page
 - **docs:** recommend to use the latest version
@@ -1318,6 +1324,7 @@ The wrapper have been refactored and has breaking change, these are the list:
 ### Fix
 - delete go.mod ([#1](https://github.com/AccelByte/accelbyte-go-sdk/issues/1))
 
+[v0.44.0]: https://github.com/AccelByte/accelbyte-go-sdk/compare/v0.43.0...v0.44.0
 [v0.43.0]: https://github.com/AccelByte/accelbyte-go-sdk/compare/v0.42.0...v0.43.0
 [v0.42.0]: https://github.com/AccelByte/accelbyte-go-sdk/compare/v0.41.0...v0.42.0
 [v0.41.0]: https://github.com/AccelByte/accelbyte-go-sdk/compare/v0.40.0...v0.41.0

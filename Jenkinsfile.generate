@@ -52,7 +52,7 @@ pipeline {
           }
 
           dir(sdkSpecPath) {
-            sdkSpecCommitHash = sh(returnStdout: true, script: "git rev-list -1 HEAD spec/stage_main/TIMESTAMP").trim()
+            sdkSpecCommitHash = sh(returnStdout: true, script: "git rev-list -1 HEAD spec/stage_extend-sdk/TIMESTAMP").trim()
           }
         }
       }
@@ -69,7 +69,7 @@ pipeline {
 
         // Copy latest OpenAPI spec from spec repository to SDK repository
         sh "rm -fv ${sdkPath}/spec/*"
-        sh "find ${sdkSpecPath}/spec/stage_main/ -maxdepth 1 -type f -exec cp -v -t ${sdkPath}/spec/ {} \\;"
+        sh "find ${sdkSpecPath}/spec/stage_extend-sdk/ -maxdepth 1 -type f -exec cp -v -t ${sdkPath}/spec/ {} \\;"
         sh "cp -v ${sdkSpecPath}/docs/openapi-2.0-vendor-extensions.md ${sdkPath}/spec/"
 
         // Generate SDK only

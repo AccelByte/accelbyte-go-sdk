@@ -7107,6 +7107,9 @@
         "namespace": {
           "type": "string"
         },
+        "platform": {
+          "type": "string"
+        },
         "userID": {
           "type": "string"
         }
@@ -7116,6 +7119,7 @@
         "availability",
         "lastSeenAt",
         "namespace",
+        "platform",
         "userID"
       ]
     },
@@ -8545,8 +8549,8 @@
     "path": "/lobby/apidocs/api.json"
   },
   "x-version": {
-    "buildDate": "2023-05-03T03:01:12+00:00",
-    "gitHash": "11e024062a599ed8fee6c96f60a89f22fe6ada78",
+    "buildDate": "2023-05-09T13:54:57+00:00",
+    "gitHash": "136677829d15f573de47582252214116d245cd00",
     "name": "justice-lobby-server",
     "revisionID": "3.19.0",
     "version": "3.19.0",

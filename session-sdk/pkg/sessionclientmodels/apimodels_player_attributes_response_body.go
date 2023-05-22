@@ -36,6 +36,10 @@ type ApimodelsPlayerAttributesResponseBody struct {
 	// Required: true
 	Platforms []*ModelsUserPlatformInfo `json:"platforms"`
 
+	// roles
+	// Required: true
+	Roles []string `json:"roles"`
+
 	// userid
 	// Required: true
 	UserID *string `json:"userID"`
@@ -52,6 +56,9 @@ func (m *ApimodelsPlayerAttributesResponseBody) Validate(formats strfmt.Registry
 		res = append(res, err)
 	}
 	if err := m.validatePlatforms(formats); err != nil {
+		res = append(res, err)
+	}
+	if err := m.validateRoles(formats); err != nil {
 		res = append(res, err)
 	}
 	if err := m.validateUserID(formats); err != nil {
@@ -102,6 +109,15 @@ func (m *ApimodelsPlayerAttributesResponseBody) validatePlatforms(formats strfmt
 			}
 		}
 
+	}
+
+	return nil
+}
+
+func (m *ApimodelsPlayerAttributesResponseBody) validateRoles(formats strfmt.Registry) error {
+
+	if err := validate.Required("roles", "body", m.Roles); err != nil {
+		return err
 	}
 
 	return nil

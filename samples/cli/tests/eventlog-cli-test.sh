@@ -135,47 +135,47 @@ eval_tap 0 29 'GetRegisteredEventsByEventTypeHandler # SKIP deprecated' test.out
 #- 30 QueryEventStreamHandler
 samples/cli/sample-apps Eventlog queryEventStreamHandler \
     --namespace $AB_NAMESPACE \
-    --endDate '0hpUSVVybqVuDHyo' \
-    --offset '64' \
-    --pageSize '31' \
-    --startDate 'ykA9mfanKSYnGIRj' \
-    --body '{"clientId": "haHx6hoNliYcV36K", "eventName": "4Exh4CmcXmWjscRa", "payloadQuery": {"QBzUSdtSUF47JGoO": {}, "1MpCSxmXto9H45cg": {}, "dYMrWfdMOaQfWIGB": {}}, "sessionId": "WBdrcv1rqdC7fahW", "traceId": "gmJnEP87abvr5Syl", "userId": "HeRS2XsToiNN7gWh", "version": 20}' \
+    --endDate 'ZIZKSctR5d39gNRg' \
+    --offset '13' \
+    --pageSize '60' \
+    --startDate 'bLPPw15aoGo5ldSD' \
+    --body '{"clientId": "8wm6unkVePmVZb0W", "eventName": "HMjiZB1j7Tasf8aM", "payloadQuery": {"vaobBsHS8TQaqNzi": {}, "MkHA36yJMoenCmz4": {}, "QnYQy9cBjUEYbooP": {}}, "sessionId": "B8zxJKmXZYEiFifN", "traceId": "je645WOUU75rCsXC", "userId": "7yJdElsmHRkBge4Q", "version": 50}' \
     > test.out 2>&1
 eval_tap $? 30 'QueryEventStreamHandler' test.out
 
 #- 31 GetEventSpecificUserV2Handler
 samples/cli/sample-apps Eventlog getEventSpecificUserV2Handler \
     --namespace $AB_NAMESPACE \
-    --userId 'DjjntCIDFkZMEgPD' \
-    --endDate 'JDKVXjgqQsduw2Gh' \
-    --eventName '1ToFT7gGrSFqiItq' \
-    --offset '82' \
-    --pageSize '7' \
-    --startDate 'oc15u4tzRdgGHdmt' \
+    --userId 'XEgYcAs99L1iVkjT' \
+    --endDate 'geepLOgjhZcl5XLL' \
+    --eventName 'u8xOs5zWcyoek0j1' \
+    --offset '14' \
+    --pageSize '45' \
+    --startDate 'TTSlBBduRtIRBhRN' \
     > test.out 2>&1
 eval_tap $? 31 'GetEventSpecificUserV2Handler' test.out
 
 #- 32 GetPublicEditHistory
 samples/cli/sample-apps Eventlog getPublicEditHistory \
     --namespace $AB_NAMESPACE \
-    --userId 'ZmSgPKiwudFu4BRp' \
-    --endDate '3fdHk0cA9PdoBKZQ' \
-    --offset '29' \
-    --pageSize '75' \
-    --startDate 'V8nANQfJSLbqDVTE' \
-    --type 'ddIrWlMLoCie9AiX' \
+    --userId 'BpEHsTPvhFTLK5jD' \
+    --endDate 'fHjXQdrcXTdRpws9' \
+    --offset '75' \
+    --pageSize '7' \
+    --startDate 'nsdmsKrfXGdQQJ47' \
+    --type 'TzdhJIrUFkGYC2pz' \
     > test.out 2>&1
 eval_tap $? 32 'GetPublicEditHistory' test.out
 
 #- 33 GetUserEventsV2Public
 samples/cli/sample-apps Eventlog getUserEventsV2Public \
     --namespace $AB_NAMESPACE \
-    --userId 'RD0m810lqZqIDcqE' \
-    --endDate 'VmK8QMRVUgDmLqVb' \
-    --eventName 'BHTZDrxPYsHcMpuA' \
-    --offset '98' \
-    --pageSize '46' \
-    --startDate 'wkJkXsTeN5JLD3iJ' \
+    --userId 'MDtGiKPQtWQckQYl' \
+    --endDate 'UU1Kmva3Mewtd3UQ' \
+    --eventName 'mk0OkZMAUgKC11SS' \
+    --offset '18' \
+    --pageSize '17' \
+    --startDate 'kYqS37Vfjt4JMTFl' \
     > test.out 2>&1
 eval_tap $? 33 'GetUserEventsV2Public' test.out
 

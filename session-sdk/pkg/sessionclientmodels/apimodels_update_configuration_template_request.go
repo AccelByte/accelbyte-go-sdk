@@ -29,6 +29,12 @@ type ApimodelsUpdateConfigurationTemplateRequest struct {
 	// Required: true
 	Deployment *string `json:"deployment"`
 
+	// dssource
+	DsSource string `json:"dsSource,omitempty"`
+
+	// fallbackclaimkeys
+	FallbackClaimKeys []string `json:"fallbackClaimKeys,omitempty"`
+
 	// inactivetimeout
 	// Required: true
 	// Format: int32
@@ -60,6 +66,9 @@ type ApimodelsUpdateConfigurationTemplateRequest struct {
 	// persistent
 	// Required: true
 	Persistent *bool `json:"persistent"`
+
+	// preferredclaimkeys
+	PreferredClaimKeys []string `json:"preferredClaimKeys,omitempty"`
 
 	// requestedregions
 	// Required: true

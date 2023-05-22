@@ -51,34 +51,34 @@ touch "tmp.dat"
 #- 2 GetEventsGameTelemetryV1AdminNamespacesNamespaceEventsGet
 samples/cli/sample-apps Gametelemetry getEventsGameTelemetryV1AdminNamespacesNamespaceEventsGet \
     --namespace $AB_NAMESPACE \
-    --endTime 'OxmvtvxJBYlwMb2i' \
-    --eventId 'xSB1jk6W97FrEwyc' \
-    --eventName 'cUidkRo7LB6aSowJ' \
-    --eventPayload 'VLjqOgMvz3Pck33Q' \
-    --limit '55' \
-    --offset '57' \
-    --startTime 'syVsicvj1kKvKwcH' \
+    --endTime 'YNrp9mNvHiMW8BNf' \
+    --eventId 'HPVfYwM0KZNhKukD' \
+    --eventName 'MHKI9qPRRk5Z1Sph' \
+    --eventPayload 'mvS6tRqxhI10ySAz' \
+    --limit '40' \
+    --offset '16' \
+    --startTime 'WxgqGyjIly5VGaLO' \
     > test.out 2>&1
 eval_tap $? 2 'GetEventsGameTelemetryV1AdminNamespacesNamespaceEventsGet' test.out
 
 #- 3 ProtectedSaveEventsGameTelemetryV1ProtectedEventsPost
 samples/cli/sample-apps Gametelemetry protectedSaveEventsGameTelemetryV1ProtectedEventsPost \
     --cookie 'access_token=foo' \
-    --body '[{"EventId": "4gxWczGfg0QbbGTp", "EventName": "j0HD7KNIqsCoLOfg", "EventNamespace": "FUwKhfqFIbxQGCf2", "EventTimestamp": "1991-11-01T00:00:00Z", "Payload": {"Xkn5l0cSmLSbzur7": {}, "7YISrEMSuK9ZgFm9": {}, "tQrbhcckeh9zJiKD": {}}}, {"EventId": "XC3Mo3JsgitgwM3e", "EventName": "7FpGz5HMRr0iV2Cs", "EventNamespace": "3mHXMmb8v9tLN7eO", "EventTimestamp": "1973-01-25T00:00:00Z", "Payload": {"nibSqQ3huJv9hEMd": {}, "3bFW60K09RZmVPWZ": {}, "dA3d9lQgGcp2cEF1": {}}}, {"EventId": "N9w8pRLStvLZBo8c", "EventName": "hWseoqwhIUZXg8UJ", "EventNamespace": "IzOcyY5tvMSOw3ZA", "EventTimestamp": "1997-09-07T00:00:00Z", "Payload": {"u1r8dKlJEOzIQUdP": {}, "w3RRt2tNtbBVFiD2": {}, "ShFaYoQFz1pH2C00": {}}}]' \
+    --body '[{"EventId": "UF0A3cEZnUTuqDpA", "EventName": "EBO7Y8g11Z6dYRsq", "EventNamespace": "6DPBl06YSZftpbuJ", "EventTimestamp": "1992-08-29T00:00:00Z", "Payload": {"AHP121IiciaFrkEX": {}, "ZOTTY4YCeyCvfHRJ": {}, "LZPp0TbzyXfJ82rZ": {}}}, {"EventId": "kS81lu2It9i9L1TD", "EventName": "DfHzGUyw8pkm6pIc", "EventNamespace": "6Pztghv95dlmg8yx", "EventTimestamp": "1981-11-13T00:00:00Z", "Payload": {"dHPq1e95y0RKwJMg": {}, "1GrsyuiWQbPVcHAE": {}, "Ed56FPkqWjfMR4ZV": {}}}, {"EventId": "Lj5HcmQQ29K7QxCz", "EventName": "kO6EvF8nTnnSuNc4", "EventNamespace": "gzInOgmfjuurtu1L", "EventTimestamp": "1998-08-03T00:00:00Z", "Payload": {"63xOXo6YKswpzhSP": {}, "qlqLYImTt6MUrxRh": {}, "ypICapt4UT8vTld4": {}}}]' \
     > test.out 2>&1
 eval_tap $? 3 'ProtectedSaveEventsGameTelemetryV1ProtectedEventsPost' test.out
 
 #- 4 ProtectedGetPlaytimeGameTelemetryV1ProtectedSteamIdsSteamIdPlaytimeGet
 samples/cli/sample-apps Gametelemetry protectedGetPlaytimeGameTelemetryV1ProtectedSteamIdsSteamIdPlaytimeGet \
-    --steamId 'TesgKh5574phkwSb' \
+    --steamId 'W1S6Oy7Krpm2LDyK' \
     --cookie 'access_token=foo' \
     > test.out 2>&1
 eval_tap $? 4 'ProtectedGetPlaytimeGameTelemetryV1ProtectedSteamIdsSteamIdPlaytimeGet' test.out
 
 #- 5 ProtectedUpdatePlaytimeGameTelemetryV1ProtectedSteamIdsSteamIdPlaytimePlaytimePut
 samples/cli/sample-apps Gametelemetry protectedUpdatePlaytimeGameTelemetryV1ProtectedSteamIdsSteamIdPlaytimePlaytimePut \
-    --playtime 'PAK9P51qZ2JiKxqM' \
-    --steamId 'yjWAgj1DCk616Grf' \
+    --playtime '133mwMRUVJ1SAPZo' \
+    --steamId 'X541tJ2WLBU4u5aw' \
     --cookie 'access_token=foo' \
     > test.out 2>&1
 eval_tap $? 5 'ProtectedUpdatePlaytimeGameTelemetryV1ProtectedSteamIdsSteamIdPlaytimePlaytimePut' test.out

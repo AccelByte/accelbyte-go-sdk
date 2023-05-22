@@ -45,6 +45,12 @@ func (o *RegisterServerReader) ReadResponse(response runtime.ClientResponse, con
 			return nil, err
 		}
 		return result, nil
+	case 404:
+		result := NewRegisterServerNotFound()
+		if err := result.readResponse(response, consumer, o.formats); err != nil {
+			return nil, err
+		}
+		return result, nil
 	case 409:
 		result := NewRegisterServerConflict()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -211,6 +217,59 @@ func (o *RegisterServerUnauthorized) GetPayload() *dsmcclientmodels.ResponseErro
 }
 
 func (o *RegisterServerUnauthorized) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+	// handle file responses
+	contentDisposition := response.GetHeader("Content-Disposition")
+	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
+		consumer = runtime.ByteStreamConsumer()
+	}
+
+	o.Payload = new(dsmcclientmodels.ResponseError)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
+	}
+
+	return nil
+}
+
+// NewRegisterServerNotFound creates a RegisterServerNotFound with default headers values
+func NewRegisterServerNotFound() *RegisterServerNotFound {
+	return &RegisterServerNotFound{}
+}
+
+/*RegisterServerNotFound handles this case with default header values.
+
+  allocation not found
+*/
+type RegisterServerNotFound struct {
+	Payload *dsmcclientmodels.ResponseError
+}
+
+func (o *RegisterServerNotFound) Error() string {
+	return fmt.Sprintf("[POST /dsmcontroller/namespaces/{namespace}/servers/register][%d] registerServerNotFound  %+v", 404, o.ToJSONString())
+}
+
+func (o *RegisterServerNotFound) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
+}
+
+func (o *RegisterServerNotFound) GetPayload() *dsmcclientmodels.ResponseError {
+	return o.Payload
+}
+
+func (o *RegisterServerNotFound) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {

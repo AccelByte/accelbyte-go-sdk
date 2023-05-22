@@ -81,7 +81,7 @@ type ListSessionParams struct {
 	*/
 	WithServer *bool
 	/*Count
-	  how many items to return, default: 50
+	  how many items to return
 
 	*/
 	Count int64

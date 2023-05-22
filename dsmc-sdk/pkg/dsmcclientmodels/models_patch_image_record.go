@@ -7,6 +7,8 @@
 package dsmcclientmodels
 
 import (
+	"strconv"
+
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
@@ -61,6 +63,10 @@ type ModelsPatchImageRecord struct {
 	// Format: date-time
 	UpdatedAt strfmt.DateTime `json:"updatedAt"`
 
+	// uploaderflags
+	// Required: true
+	UploaderFlags []*ModelsUploaderFlag `json:"uploaderFlags"`
+
 	// version
 	// Required: true
 	Version *string `json:"version"`
@@ -98,6 +104,9 @@ func (m *ModelsPatchImageRecord) Validate(formats strfmt.Registry) error {
 		res = append(res, err)
 	}
 	if err := m.validateUpdatedAt(formats); err != nil {
+		res = append(res, err)
+	}
+	if err := m.validateUploaderFlags(formats); err != nil {
 		res = append(res, err)
 	}
 	if err := m.validateVersion(formats); err != nil {
@@ -203,6 +212,31 @@ func (m *ModelsPatchImageRecord) validateUpdatedAt(formats strfmt.Registry) erro
 
 	if err := validate.FormatOf("updatedAt", "body", "date-time", m.UpdatedAt.String(), formats); err != nil {
 		return err
+	}
+
+	return nil
+}
+
+func (m *ModelsPatchImageRecord) validateUploaderFlags(formats strfmt.Registry) error {
+
+	if err := validate.Required("uploaderFlags", "body", m.UploaderFlags); err != nil {
+		return err
+	}
+
+	for i := 0; i < len(m.UploaderFlags); i++ {
+		if swag.IsZero(m.UploaderFlags[i]) { // not required
+			continue
+		}
+
+		if m.UploaderFlags[i] != nil {
+			if err := m.UploaderFlags[i].Validate(formats); err != nil {
+				if ve, ok := err.(*errors.Validation); ok {
+					return ve.ValidateName("uploaderFlags" + "." + strconv.Itoa(i))
+				}
+				return err
+			}
+		}
+
 	}
 
 	return nil

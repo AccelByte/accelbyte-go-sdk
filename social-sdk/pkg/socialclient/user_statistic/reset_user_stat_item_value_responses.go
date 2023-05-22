@@ -45,6 +45,12 @@ func (o *ResetUserStatItemValueReader) ReadResponse(response runtime.ClientRespo
 			return nil, err
 		}
 		return result, nil
+	case 422:
+		result := NewResetUserStatItemValueUnprocessableEntity()
+		if err := result.readResponse(response, consumer, o.formats); err != nil {
+			return nil, err
+		}
+		return result, nil
 
 	default:
 		data, err := ioutil.ReadAll(response.Body())
@@ -206,6 +212,59 @@ func (o *ResetUserStatItemValueNotFound) readResponse(response runtime.ClientRes
 	}
 
 	o.Payload = new(socialclientmodels.ErrorEntity)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
+	}
+
+	return nil
+}
+
+// NewResetUserStatItemValueUnprocessableEntity creates a ResetUserStatItemValueUnprocessableEntity with default headers values
+func NewResetUserStatItemValueUnprocessableEntity() *ResetUserStatItemValueUnprocessableEntity {
+	return &ResetUserStatItemValueUnprocessableEntity{}
+}
+
+/*ResetUserStatItemValueUnprocessableEntity handles this case with default header values.
+
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20002</td><td>validation error</td></tr></table>
+*/
+type ResetUserStatItemValueUnprocessableEntity struct {
+	Payload *socialclientmodels.ValidationErrorEntity
+}
+
+func (o *ResetUserStatItemValueUnprocessableEntity) Error() string {
+	return fmt.Sprintf("[PUT /social/v1/admin/namespaces/{namespace}/users/{userId}/stats/{statCode}/statitems/value/reset][%d] resetUserStatItemValueUnprocessableEntity  %+v", 422, o.ToJSONString())
+}
+
+func (o *ResetUserStatItemValueUnprocessableEntity) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
+}
+
+func (o *ResetUserStatItemValueUnprocessableEntity) GetPayload() *socialclientmodels.ValidationErrorEntity {
+	return o.Payload
+}
+
+func (o *ResetUserStatItemValueUnprocessableEntity) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+	// handle file responses
+	contentDisposition := response.GetHeader("Content-Disposition")
+	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
+		consumer = runtime.ByteStreamConsumer()
+	}
+
+	o.Payload = new(socialclientmodels.ValidationErrorEntity)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {

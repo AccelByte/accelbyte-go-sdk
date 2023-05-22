@@ -34,6 +34,10 @@ type HandlersUserPresence struct {
 	// Required: true
 	Namespace *string `json:"namespace"`
 
+	// platform
+	// Required: true
+	Platform *string `json:"platform"`
+
 	// userid
 	// Required: true
 	UserID *string `json:"userID"`
@@ -53,6 +57,9 @@ func (m *HandlersUserPresence) Validate(formats strfmt.Registry) error {
 		res = append(res, err)
 	}
 	if err := m.validateNamespace(formats); err != nil {
+		res = append(res, err)
+	}
+	if err := m.validatePlatform(formats); err != nil {
 		res = append(res, err)
 	}
 	if err := m.validateUserID(formats); err != nil {
@@ -95,6 +102,15 @@ func (m *HandlersUserPresence) validateLastSeenAt(formats strfmt.Registry) error
 func (m *HandlersUserPresence) validateNamespace(formats strfmt.Registry) error {
 
 	if err := validate.Required("namespace", "body", m.Namespace); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *HandlersUserPresence) validatePlatform(formats strfmt.Registry) error {
+
+	if err := validate.Required("platform", "body", m.Platform); err != nil {
 		return err
 	}
 

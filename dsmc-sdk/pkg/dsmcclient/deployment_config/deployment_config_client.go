@@ -38,7 +38,7 @@ type ClientService interface {
 	CreateDeploymentShort(params *CreateDeploymentParams, authInfo runtime.ClientAuthInfoWriter) (*CreateDeploymentCreated, error)
 	DeleteDeployment(params *DeleteDeploymentParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteDeploymentNoContent, *DeleteDeploymentBadRequest, *DeleteDeploymentUnauthorized, *DeleteDeploymentNotFound, *DeleteDeploymentInternalServerError, error)
 	DeleteDeploymentShort(params *DeleteDeploymentParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteDeploymentNoContent, error)
-	UpdateDeployment(params *UpdateDeploymentParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateDeploymentOK, *UpdateDeploymentBadRequest, *UpdateDeploymentUnauthorized, *UpdateDeploymentNotFound, *UpdateDeploymentInternalServerError, error)
+	UpdateDeployment(params *UpdateDeploymentParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateDeploymentOK, *UpdateDeploymentBadRequest, *UpdateDeploymentUnauthorized, *UpdateDeploymentNotFound, *UpdateDeploymentUnprocessableEntity, *UpdateDeploymentInternalServerError, error)
 	UpdateDeploymentShort(params *UpdateDeploymentParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateDeploymentOK, error)
 	CreateRootRegionOverride(params *CreateRootRegionOverrideParams, authInfo runtime.ClientAuthInfoWriter) (*CreateRootRegionOverrideCreated, *CreateRootRegionOverrideBadRequest, *CreateRootRegionOverrideUnauthorized, *CreateRootRegionOverrideNotFound, *CreateRootRegionOverrideConflict, *CreateRootRegionOverrideInternalServerError, error)
 	CreateRootRegionOverrideShort(params *CreateRootRegionOverrideParams, authInfo runtime.ClientAuthInfoWriter) (*CreateRootRegionOverrideCreated, error)
@@ -58,6 +58,12 @@ type ClientService interface {
 	DeleteOverrideRegionOverrideShort(params *DeleteOverrideRegionOverrideParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteOverrideRegionOverrideOK, error)
 	UpdateOverrideRegionOverride(params *UpdateOverrideRegionOverrideParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateOverrideRegionOverrideOK, *UpdateOverrideRegionOverrideBadRequest, *UpdateOverrideRegionOverrideUnauthorized, *UpdateOverrideRegionOverrideNotFound, *UpdateOverrideRegionOverrideInternalServerError, error)
 	UpdateOverrideRegionOverrideShort(params *UpdateOverrideRegionOverrideParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateOverrideRegionOverrideOK, error)
+	GetAllDeploymentClient(params *GetAllDeploymentClientParams, authInfo runtime.ClientAuthInfoWriter) (*GetAllDeploymentClientOK, *GetAllDeploymentClientBadRequest, *GetAllDeploymentClientUnauthorized, *GetAllDeploymentClientInternalServerError, error)
+	GetAllDeploymentClientShort(params *GetAllDeploymentClientParams, authInfo runtime.ClientAuthInfoWriter) (*GetAllDeploymentClientOK, error)
+	CreateDeploymentClient(params *CreateDeploymentClientParams, authInfo runtime.ClientAuthInfoWriter) (*CreateDeploymentClientCreated, *CreateDeploymentClientBadRequest, *CreateDeploymentClientUnauthorized, *CreateDeploymentClientConflict, *CreateDeploymentClientInternalServerError, error)
+	CreateDeploymentClientShort(params *CreateDeploymentClientParams, authInfo runtime.ClientAuthInfoWriter) (*CreateDeploymentClientCreated, error)
+	DeleteDeploymentClient(params *DeleteDeploymentClientParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteDeploymentClientNoContent, *DeleteDeploymentClientBadRequest, *DeleteDeploymentClientUnauthorized, *DeleteDeploymentClientNotFound, *DeleteDeploymentClientInternalServerError, error)
+	DeleteDeploymentClientShort(params *DeleteDeploymentClientParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteDeploymentClientNoContent, error)
 
 	SetTransport(transport runtime.ClientTransport)
 }
@@ -425,7 +431,7 @@ func (a *Client) CreateDeploymentShort(params *CreateDeploymentParams, authInfo 
 Deprecated: 2022-08-10 - Use DeleteDeploymentShort instead.
 
 DeleteDeployment delete deployment
-Required permission: ADMIN:NAMESPACE:{namespace}:DSM:CONFIG [READ]
+Required permission: ADMIN:NAMESPACE:{namespace}:DSM:CONFIG [DELETE]
 
 Required scope: social
 
@@ -486,7 +492,7 @@ func (a *Client) DeleteDeployment(params *DeleteDeploymentParams, authInfo runti
 
 /*
 DeleteDeploymentShort delete deployment
-Required permission: ADMIN:NAMESPACE:{namespace}:DSM:CONFIG [READ]
+Required permission: ADMIN:NAMESPACE:{namespace}:DSM:CONFIG [DELETE]
 
 Required scope: social
 
@@ -551,7 +557,7 @@ Required scope: social
 
 This endpoint update a dedicated servers deployment in a namespace.
 */
-func (a *Client) UpdateDeployment(params *UpdateDeploymentParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateDeploymentOK, *UpdateDeploymentBadRequest, *UpdateDeploymentUnauthorized, *UpdateDeploymentNotFound, *UpdateDeploymentInternalServerError, error) {
+func (a *Client) UpdateDeployment(params *UpdateDeploymentParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateDeploymentOK, *UpdateDeploymentBadRequest, *UpdateDeploymentUnauthorized, *UpdateDeploymentNotFound, *UpdateDeploymentUnprocessableEntity, *UpdateDeploymentInternalServerError, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewUpdateDeploymentParams()
@@ -579,28 +585,31 @@ func (a *Client) UpdateDeployment(params *UpdateDeploymentParams, authInfo runti
 		Client:             params.HTTPClient,
 	})
 	if err != nil {
-		return nil, nil, nil, nil, nil, err
+		return nil, nil, nil, nil, nil, nil, err
 	}
 
 	switch v := result.(type) {
 
 	case *UpdateDeploymentOK:
-		return v, nil, nil, nil, nil, nil
+		return v, nil, nil, nil, nil, nil, nil
 
 	case *UpdateDeploymentBadRequest:
-		return nil, v, nil, nil, nil, nil
+		return nil, v, nil, nil, nil, nil, nil
 
 	case *UpdateDeploymentUnauthorized:
-		return nil, nil, v, nil, nil, nil
+		return nil, nil, v, nil, nil, nil, nil
 
 	case *UpdateDeploymentNotFound:
-		return nil, nil, nil, v, nil, nil
+		return nil, nil, nil, v, nil, nil, nil
+
+	case *UpdateDeploymentUnprocessableEntity:
+		return nil, nil, nil, nil, v, nil, nil
 
 	case *UpdateDeploymentInternalServerError:
-		return nil, nil, nil, nil, v, nil
+		return nil, nil, nil, nil, nil, v, nil
 
 	default:
-		return nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+		return nil, nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
@@ -652,6 +661,8 @@ func (a *Client) UpdateDeploymentShort(params *UpdateDeploymentParams, authInfo 
 	case *UpdateDeploymentUnauthorized:
 		return nil, v
 	case *UpdateDeploymentNotFound:
+		return nil, v
+	case *UpdateDeploymentUnprocessableEntity:
 		return nil, v
 	case *UpdateDeploymentInternalServerError:
 		return nil, v
@@ -1749,6 +1760,365 @@ func (a *Client) UpdateOverrideRegionOverrideShort(params *UpdateOverrideRegionO
 	case *UpdateOverrideRegionOverrideNotFound:
 		return nil, v
 	case *UpdateOverrideRegionOverrideInternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+Deprecated: 2022-08-10 - Use GetAllDeploymentClientShort instead.
+
+GetAllDeploymentClient get all deployments for client
+Required permission: NAMESPACE:{namespace}:DSM:CONFIG [READ]
+
+Required scope: social
+
+This endpoint get a all deployments in a namespace
+
+Parameter Offset and Count is Required
+*/
+func (a *Client) GetAllDeploymentClient(params *GetAllDeploymentClientParams, authInfo runtime.ClientAuthInfoWriter) (*GetAllDeploymentClientOK, *GetAllDeploymentClientBadRequest, *GetAllDeploymentClientUnauthorized, *GetAllDeploymentClientInternalServerError, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewGetAllDeploymentClientParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "GetAllDeploymentClient",
+		Method:             "GET",
+		PathPattern:        "/dsmcontroller/namespaces/{namespace}/configs/deployments",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &GetAllDeploymentClientReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, nil, nil, nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *GetAllDeploymentClientOK:
+		return v, nil, nil, nil, nil
+
+	case *GetAllDeploymentClientBadRequest:
+		return nil, v, nil, nil, nil
+
+	case *GetAllDeploymentClientUnauthorized:
+		return nil, nil, v, nil, nil
+
+	case *GetAllDeploymentClientInternalServerError:
+		return nil, nil, nil, v, nil
+
+	default:
+		return nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+GetAllDeploymentClientShort get all deployments for client
+Required permission: NAMESPACE:{namespace}:DSM:CONFIG [READ]
+
+Required scope: social
+
+This endpoint get a all deployments in a namespace
+
+Parameter Offset and Count is Required
+*/
+func (a *Client) GetAllDeploymentClientShort(params *GetAllDeploymentClientParams, authInfo runtime.ClientAuthInfoWriter) (*GetAllDeploymentClientOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewGetAllDeploymentClientParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "GetAllDeploymentClient",
+		Method:             "GET",
+		PathPattern:        "/dsmcontroller/namespaces/{namespace}/configs/deployments",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &GetAllDeploymentClientReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *GetAllDeploymentClientOK:
+		return v, nil
+	case *GetAllDeploymentClientBadRequest:
+		return nil, v
+	case *GetAllDeploymentClientUnauthorized:
+		return nil, v
+	case *GetAllDeploymentClientInternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+Deprecated: 2022-08-10 - Use CreateDeploymentClientShort instead.
+
+CreateDeploymentClient create deployment for client
+Required permission: NAMESPACE:{namespace}:DSM:CONFIG [CREATE]
+
+Required scope: social
+
+This endpoint create a dedicated servers deployment in a namespace.
+*/
+func (a *Client) CreateDeploymentClient(params *CreateDeploymentClientParams, authInfo runtime.ClientAuthInfoWriter) (*CreateDeploymentClientCreated, *CreateDeploymentClientBadRequest, *CreateDeploymentClientUnauthorized, *CreateDeploymentClientConflict, *CreateDeploymentClientInternalServerError, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewCreateDeploymentClientParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "CreateDeploymentClient",
+		Method:             "POST",
+		PathPattern:        "/dsmcontroller/namespaces/{namespace}/configs/deployments/{deployment}",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &CreateDeploymentClientReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, nil, nil, nil, nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *CreateDeploymentClientCreated:
+		return v, nil, nil, nil, nil, nil
+
+	case *CreateDeploymentClientBadRequest:
+		return nil, v, nil, nil, nil, nil
+
+	case *CreateDeploymentClientUnauthorized:
+		return nil, nil, v, nil, nil, nil
+
+	case *CreateDeploymentClientConflict:
+		return nil, nil, nil, v, nil, nil
+
+	case *CreateDeploymentClientInternalServerError:
+		return nil, nil, nil, nil, v, nil
+
+	default:
+		return nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+CreateDeploymentClientShort create deployment for client
+Required permission: NAMESPACE:{namespace}:DSM:CONFIG [CREATE]
+
+Required scope: social
+
+This endpoint create a dedicated servers deployment in a namespace.
+*/
+func (a *Client) CreateDeploymentClientShort(params *CreateDeploymentClientParams, authInfo runtime.ClientAuthInfoWriter) (*CreateDeploymentClientCreated, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewCreateDeploymentClientParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "CreateDeploymentClient",
+		Method:             "POST",
+		PathPattern:        "/dsmcontroller/namespaces/{namespace}/configs/deployments/{deployment}",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &CreateDeploymentClientReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *CreateDeploymentClientCreated:
+		return v, nil
+	case *CreateDeploymentClientBadRequest:
+		return nil, v
+	case *CreateDeploymentClientUnauthorized:
+		return nil, v
+	case *CreateDeploymentClientConflict:
+		return nil, v
+	case *CreateDeploymentClientInternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+Deprecated: 2022-08-10 - Use DeleteDeploymentClientShort instead.
+
+DeleteDeploymentClient delete deployment for client
+Required permission: NAMESPACE:{namespace}:DSM:CONFIG [DELETE]
+
+Required scope: social
+
+This endpoint delete a dedicated server deployment in a namespace
+*/
+func (a *Client) DeleteDeploymentClient(params *DeleteDeploymentClientParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteDeploymentClientNoContent, *DeleteDeploymentClientBadRequest, *DeleteDeploymentClientUnauthorized, *DeleteDeploymentClientNotFound, *DeleteDeploymentClientInternalServerError, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewDeleteDeploymentClientParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "DeleteDeploymentClient",
+		Method:             "DELETE",
+		PathPattern:        "/dsmcontroller/namespaces/{namespace}/configs/deployments/{deployment}",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &DeleteDeploymentClientReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, nil, nil, nil, nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *DeleteDeploymentClientNoContent:
+		return v, nil, nil, nil, nil, nil
+
+	case *DeleteDeploymentClientBadRequest:
+		return nil, v, nil, nil, nil, nil
+
+	case *DeleteDeploymentClientUnauthorized:
+		return nil, nil, v, nil, nil, nil
+
+	case *DeleteDeploymentClientNotFound:
+		return nil, nil, nil, v, nil, nil
+
+	case *DeleteDeploymentClientInternalServerError:
+		return nil, nil, nil, nil, v, nil
+
+	default:
+		return nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+DeleteDeploymentClientShort delete deployment for client
+Required permission: NAMESPACE:{namespace}:DSM:CONFIG [DELETE]
+
+Required scope: social
+
+This endpoint delete a dedicated server deployment in a namespace
+*/
+func (a *Client) DeleteDeploymentClientShort(params *DeleteDeploymentClientParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteDeploymentClientNoContent, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewDeleteDeploymentClientParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "DeleteDeploymentClient",
+		Method:             "DELETE",
+		PathPattern:        "/dsmcontroller/namespaces/{namespace}/configs/deployments/{deployment}",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &DeleteDeploymentClientReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *DeleteDeploymentClientNoContent:
+		return v, nil
+	case *DeleteDeploymentClientBadRequest:
+		return nil, v
+	case *DeleteDeploymentClientUnauthorized:
+		return nil, v
+	case *DeleteDeploymentClientNotFound:
+		return nil, v
+	case *DeleteDeploymentClientInternalServerError:
 		return nil, v
 
 	default:

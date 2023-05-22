@@ -36,6 +36,8 @@ type ClientService interface {
 	ClaimServerShort(params *ClaimServerParams, authInfo runtime.ClientAuthInfoWriter) (*ClaimServerNoContent, error)
 	GetSession(params *GetSessionParams, authInfo runtime.ClientAuthInfoWriter) (*GetSessionOK, *GetSessionUnauthorized, *GetSessionNotFound, *GetSessionInternalServerError, error)
 	GetSessionShort(params *GetSessionParams, authInfo runtime.ClientAuthInfoWriter) (*GetSessionOK, error)
+	CancelSession(params *CancelSessionParams, authInfo runtime.ClientAuthInfoWriter) (*CancelSessionNoContent, *CancelSessionUnauthorized, *CancelSessionNotFound, *CancelSessionUnprocessableEntity, *CancelSessionInternalServerError, error)
+	CancelSessionShort(params *CancelSessionParams, authInfo runtime.ClientAuthInfoWriter) (*CancelSessionNoContent, error)
 
 	SetTransport(transport runtime.ClientTransport)
 }
@@ -424,6 +426,126 @@ func (a *Client) GetSessionShort(params *GetSessionParams, authInfo runtime.Clie
 	case *GetSessionNotFound:
 		return nil, v
 	case *GetSessionInternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+Deprecated: 2022-08-10 - Use CancelSessionShort instead.
+
+CancelSession cancel session of a temporary ds
+Required permission: NAMESPACE:{namespace}:DSM:SESSION [DELETE]
+
+Required scope: social
+
+This endpoint is intended to be called by game session manager (matchmaker, lobby, etc.) to cancel a temporary dedicated server. The dedicated server cannot be canceled unless the status is CREATING
+*/
+func (a *Client) CancelSession(params *CancelSessionParams, authInfo runtime.ClientAuthInfoWriter) (*CancelSessionNoContent, *CancelSessionUnauthorized, *CancelSessionNotFound, *CancelSessionUnprocessableEntity, *CancelSessionInternalServerError, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewCancelSessionParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "CancelSession",
+		Method:             "DELETE",
+		PathPattern:        "/dsmcontroller/namespaces/{namespace}/sessions/{sessionID}/cancel",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &CancelSessionReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, nil, nil, nil, nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *CancelSessionNoContent:
+		return v, nil, nil, nil, nil, nil
+
+	case *CancelSessionUnauthorized:
+		return nil, v, nil, nil, nil, nil
+
+	case *CancelSessionNotFound:
+		return nil, nil, v, nil, nil, nil
+
+	case *CancelSessionUnprocessableEntity:
+		return nil, nil, nil, v, nil, nil
+
+	case *CancelSessionInternalServerError:
+		return nil, nil, nil, nil, v, nil
+
+	default:
+		return nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+CancelSessionShort cancel session of a temporary ds
+Required permission: NAMESPACE:{namespace}:DSM:SESSION [DELETE]
+
+Required scope: social
+
+This endpoint is intended to be called by game session manager (matchmaker, lobby, etc.) to cancel a temporary dedicated server. The dedicated server cannot be canceled unless the status is CREATING
+*/
+func (a *Client) CancelSessionShort(params *CancelSessionParams, authInfo runtime.ClientAuthInfoWriter) (*CancelSessionNoContent, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewCancelSessionParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "CancelSession",
+		Method:             "DELETE",
+		PathPattern:        "/dsmcontroller/namespaces/{namespace}/sessions/{sessionID}/cancel",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &CancelSessionReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *CancelSessionNoContent:
+		return v, nil
+	case *CancelSessionUnauthorized:
+		return nil, v
+	case *CancelSessionNotFound:
+		return nil, v
+	case *CancelSessionUnprocessableEntity:
+		return nil, v
+	case *CancelSessionInternalServerError:
 		return nil, v
 
 	default:

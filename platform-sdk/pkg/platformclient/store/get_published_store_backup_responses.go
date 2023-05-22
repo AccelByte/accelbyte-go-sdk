@@ -110,7 +110,7 @@ func NewGetPublishedStoreBackupNotFound() *GetPublishedStoreBackupNotFound {
 
 /*GetPublishedStoreBackupNotFound handles this case with default header values.
 
-  <table><tr><td>ErrorCode</td><td>ErrorMessage</td></tr><tr><td>30142</td><td>Published store does not exist in namespace [{namespace}]</td></tr><tr><td>30143</td><td>Published store [{storeId}] backup doest not exist in namespace [{namespace}]</td></tr></table>
+  <table><tr><td>ErrorCode</td><td>ErrorMessage</td></tr><tr><td>30142</td><td>Published store does not exist in namespace [{namespace}]</td></tr><tr><td>30143</td><td>Published store [{storeId}] backup does not exist in namespace [{namespace}]</td></tr></table>
 */
 type GetPublishedStoreBackupNotFound struct {
 	Payload *platformclientmodels.ErrorEntity

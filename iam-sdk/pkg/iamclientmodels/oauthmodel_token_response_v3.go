@@ -24,9 +24,8 @@ type OauthmodelTokenResponseV3 struct {
 	// Required: true
 	AccessToken *string `json:"access_token"`
 
-	// bans
-	// Required: true
-	Bans []*AccountcommonJWTBanV3 `json:"bans"`
+	// present if it is user token
+	Bans []*AccountcommonJWTBanV3 `json:"bans,omitempty"`
 
 	// display_name
 	DisplayName string `json:"display_name,omitempty"`
@@ -47,9 +46,8 @@ type OauthmodelTokenResponseV3 struct {
 	// Required: true
 	Namespace *string `json:"namespace"`
 
-	// namespace_roles
-	// Required: true
-	NamespaceRoles []*AccountcommonNamespaceRole `json:"namespace_roles"`
+	// present if it is user token
+	NamespaceRoles []*AccountcommonNamespaceRole `json:"namespace_roles,omitempty"`
 
 	// permissions
 	// Required: true
@@ -68,9 +66,8 @@ type OauthmodelTokenResponseV3 struct {
 	// present if it is user token
 	RefreshToken string `json:"refresh_token,omitempty"`
 
-	// roles
-	// Required: true
-	Roles []string `json:"roles"`
+	// present if it is user token
+	Roles []string `json:"roles,omitempty"`
 
 	// scope
 	// Required: true
@@ -94,22 +91,13 @@ func (m *OauthmodelTokenResponseV3) Validate(formats strfmt.Registry) error {
 	if err := m.validateAccessToken(formats); err != nil {
 		res = append(res, err)
 	}
-	if err := m.validateBans(formats); err != nil {
-		res = append(res, err)
-	}
 	if err := m.validateExpiresIn(formats); err != nil {
 		res = append(res, err)
 	}
 	if err := m.validateNamespace(formats); err != nil {
 		res = append(res, err)
 	}
-	if err := m.validateNamespaceRoles(formats); err != nil {
-		res = append(res, err)
-	}
 	if err := m.validatePermissions(formats); err != nil {
-		res = append(res, err)
-	}
-	if err := m.validateRoles(formats); err != nil {
 		res = append(res, err)
 	}
 	if err := m.validateScope(formats); err != nil {
@@ -134,31 +122,6 @@ func (m *OauthmodelTokenResponseV3) validateAccessToken(formats strfmt.Registry)
 	return nil
 }
 
-func (m *OauthmodelTokenResponseV3) validateBans(formats strfmt.Registry) error {
-
-	if err := validate.Required("bans", "body", m.Bans); err != nil {
-		return err
-	}
-
-	for i := 0; i < len(m.Bans); i++ {
-		if swag.IsZero(m.Bans[i]) { // not required
-			continue
-		}
-
-		if m.Bans[i] != nil {
-			if err := m.Bans[i].Validate(formats); err != nil {
-				if ve, ok := err.(*errors.Validation); ok {
-					return ve.ValidateName("bans" + "." + strconv.Itoa(i))
-				}
-				return err
-			}
-		}
-
-	}
-
-	return nil
-}
-
 func (m *OauthmodelTokenResponseV3) validateExpiresIn(formats strfmt.Registry) error {
 
 	if err := validate.Required("expires_in", "body", m.ExpiresIn); err != nil {
@@ -172,31 +135,6 @@ func (m *OauthmodelTokenResponseV3) validateNamespace(formats strfmt.Registry) e
 
 	if err := validate.Required("namespace", "body", m.Namespace); err != nil {
 		return err
-	}
-
-	return nil
-}
-
-func (m *OauthmodelTokenResponseV3) validateNamespaceRoles(formats strfmt.Registry) error {
-
-	if err := validate.Required("namespace_roles", "body", m.NamespaceRoles); err != nil {
-		return err
-	}
-
-	for i := 0; i < len(m.NamespaceRoles); i++ {
-		if swag.IsZero(m.NamespaceRoles[i]) { // not required
-			continue
-		}
-
-		if m.NamespaceRoles[i] != nil {
-			if err := m.NamespaceRoles[i].Validate(formats); err != nil {
-				if ve, ok := err.(*errors.Validation); ok {
-					return ve.ValidateName("namespace_roles" + "." + strconv.Itoa(i))
-				}
-				return err
-			}
-		}
-
 	}
 
 	return nil
@@ -222,15 +160,6 @@ func (m *OauthmodelTokenResponseV3) validatePermissions(formats strfmt.Registry)
 			}
 		}
 
-	}
-
-	return nil
-}
-
-func (m *OauthmodelTokenResponseV3) validateRoles(formats strfmt.Registry) error {
-
-	if err := validate.Required("roles", "body", m.Roles); err != nil {
-		return err
 	}
 
 	return nil

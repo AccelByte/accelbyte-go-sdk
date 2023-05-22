@@ -83,6 +83,10 @@ type ModelsGameServer struct {
 	// Required: true
 	SessionID *string `json:"session_id"`
 
+	// source
+	// Required: true
+	Source *string `json:"source"`
+
 	// status
 	// Required: true
 	Status *string `json:"status"`
@@ -132,6 +136,9 @@ func (m *ModelsGameServer) Validate(formats strfmt.Registry) error {
 		res = append(res, err)
 	}
 	if err := m.validateSessionID(formats); err != nil {
+		res = append(res, err)
+	}
+	if err := m.validateSource(formats); err != nil {
 		res = append(res, err)
 	}
 	if err := m.validateStatus(formats); err != nil {
@@ -268,6 +275,15 @@ func (m *ModelsGameServer) validateRegion(formats strfmt.Registry) error {
 func (m *ModelsGameServer) validateSessionID(formats strfmt.Registry) error {
 
 	if err := validate.Required("session_id", "body", m.SessionID); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *ModelsGameServer) validateSource(formats strfmt.Registry) error {
+
+	if err := validate.Required("source", "body", m.Source); err != nil {
 		return err
 	}
 

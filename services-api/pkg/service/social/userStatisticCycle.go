@@ -45,9 +45,12 @@ func (aaa *UserStatisticCycleService) GetUserStatCycleItems(input *user_statisti
 	if err != nil {
 		return nil, err
 	}
-	ok, notFound, err := aaa.Client.UserStatisticCycle.GetUserStatCycleItems(input, client.BearerToken(*token.AccessToken))
+	ok, notFound, unprocessableEntity, err := aaa.Client.UserStatisticCycle.GetUserStatCycleItems(input, client.BearerToken(*token.AccessToken))
 	if notFound != nil {
 		return nil, notFound
+	}
+	if unprocessableEntity != nil {
+		return nil, unprocessableEntity
 	}
 	if err != nil {
 		return nil, err
@@ -62,9 +65,12 @@ func (aaa *UserStatisticCycleService) GetUserStatCycleItems1(input *user_statist
 	if err != nil {
 		return nil, err
 	}
-	ok, notFound, err := aaa.Client.UserStatisticCycle.GetUserStatCycleItems1(input, client.BearerToken(*token.AccessToken))
+	ok, notFound, unprocessableEntity, err := aaa.Client.UserStatisticCycle.GetUserStatCycleItems1(input, client.BearerToken(*token.AccessToken))
 	if notFound != nil {
 		return nil, notFound
+	}
+	if unprocessableEntity != nil {
+		return nil, unprocessableEntity
 	}
 	if err != nil {
 		return nil, err

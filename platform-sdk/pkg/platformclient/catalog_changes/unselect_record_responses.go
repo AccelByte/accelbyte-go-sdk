@@ -89,7 +89,7 @@ func NewUnselectRecordNotFound() *UnselectRecordNotFound {
 
 /*UnselectRecordNotFound handles this case with default header values.
 
-  <table><tr><td>ErrorCode</td><td>ErrorMessage</td></tr><tr><td>30141</td><td>Store [{storeId}] does not exist in namespace [{namespace}]</td></tr><tr><td>30041</td><td>Changelog [{changelogId}] doest not exist in namespace [{namespace}]</td></tr></table>
+  <table><tr><td>ErrorCode</td><td>ErrorMessage</td></tr><tr><td>30141</td><td>Store [{storeId}] does not exist in namespace [{namespace}]</td></tr><tr><td>30041</td><td>Changelog [{changelogId}] does not exist in namespace [{namespace}]</td></tr></table>
 */
 type UnselectRecordNotFound struct {
 	Payload *platformclientmodels.ErrorEntity

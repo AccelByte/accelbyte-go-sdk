@@ -51,6 +51,12 @@ func (o *UpdateDeploymentReader) ReadResponse(response runtime.ClientResponse, c
 			return nil, err
 		}
 		return result, nil
+	case 422:
+		result := NewUpdateDeploymentUnprocessableEntity()
+		if err := result.readResponse(response, consumer, o.formats); err != nil {
+			return nil, err
+		}
+		return result, nil
 	case 500:
 		result := NewUpdateDeploymentInternalServerError()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -264,6 +270,59 @@ func (o *UpdateDeploymentNotFound) GetPayload() *dsmcclientmodels.ResponseError 
 }
 
 func (o *UpdateDeploymentNotFound) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+	// handle file responses
+	contentDisposition := response.GetHeader("Content-Disposition")
+	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
+		consumer = runtime.ByteStreamConsumer()
+	}
+
+	o.Payload = new(dsmcclientmodels.ResponseError)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
+	}
+
+	return nil
+}
+
+// NewUpdateDeploymentUnprocessableEntity creates a UpdateDeploymentUnprocessableEntity with default headers values
+func NewUpdateDeploymentUnprocessableEntity() *UpdateDeploymentUnprocessableEntity {
+	return &UpdateDeploymentUnprocessableEntity{}
+}
+
+/*UpdateDeploymentUnprocessableEntity handles this case with default header values.
+
+  invalid game version
+*/
+type UpdateDeploymentUnprocessableEntity struct {
+	Payload *dsmcclientmodels.ResponseError
+}
+
+func (o *UpdateDeploymentUnprocessableEntity) Error() string {
+	return fmt.Sprintf("[PATCH /dsmcontroller/admin/namespaces/{namespace}/configs/deployments/{deployment}][%d] updateDeploymentUnprocessableEntity  %+v", 422, o.ToJSONString())
+}
+
+func (o *UpdateDeploymentUnprocessableEntity) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
+}
+
+func (o *UpdateDeploymentUnprocessableEntity) GetPayload() *dsmcclientmodels.ResponseError {
+	return o.Payload
+}
+
+func (o *UpdateDeploymentUnprocessableEntity) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {

@@ -1,3 +1,9 @@
+<a name="v0.45.0"></a>
+## [v0.45.0]
+### chore
+- **jenkinsfile:** update generate spec target
+
+
 <a name="v0.44.0"></a>
 ## [v0.44.0] - 2023-05-09
 

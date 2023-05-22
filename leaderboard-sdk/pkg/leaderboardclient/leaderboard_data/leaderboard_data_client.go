@@ -1538,8 +1538,6 @@ Delete user ranking across leaderboard
 Required permission: ADMIN:NAMESPACE:{namespace}:LEADERBOARD:USER [DELETE]
 
 Remove entry with provided userId from leaderboard.
-If leaderboard with given leaderboard code not found, it will return http status not found (404).
-If the leaderboard is found and no entry found in it, it will still return success (204)
 */
 func (a *Client) DeleteUserRankingsAdminV1(params *DeleteUserRankingsAdminV1Params, authInfo runtime.ClientAuthInfoWriter) (*DeleteUserRankingsAdminV1NoContent, *DeleteUserRankingsAdminV1Unauthorized, *DeleteUserRankingsAdminV1Forbidden, *DeleteUserRankingsAdminV1NotFound, *DeleteUserRankingsAdminV1InternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -1600,8 +1598,6 @@ Delete user ranking across leaderboard
 Required permission: ADMIN:NAMESPACE:{namespace}:LEADERBOARD:USER [DELETE]
 
 Remove entry with provided userId from leaderboard.
-If leaderboard with given leaderboard code not found, it will return http status not found (404).
-If the leaderboard is found and no entry found in it, it will still return success (204)
 */
 func (a *Client) DeleteUserRankingsAdminV1Short(params *DeleteUserRankingsAdminV1Params, authInfo runtime.ClientAuthInfoWriter) (*DeleteUserRankingsAdminV1NoContent, error) {
 	// TODO: Validate the params before sending

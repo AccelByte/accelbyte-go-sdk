@@ -3,7 +3,7 @@
   "info": {
     "description": "Justice DSM Controller Service",
     "title": "justice-dsm-controller-service",
-    "version": "6.2.7"
+    "version": "6.3.0"
   },
   "schemes": [
     "https"
@@ -26,9 +26,13 @@
         "ADMIN:NAMESPACE:{namespace}:DSM:SERVER [READ]": "ADMIN:NAMESPACE:{namespace}:DSM:SERVER [READ]",
         "ADMIN:NAMESPACE:{namespace}:DSM:SESSION [DELETE]": "ADMIN:NAMESPACE:{namespace}:DSM:SESSION [DELETE]",
         "ADMIN:NAMESPACE:{namespace}:DSM:SESSION [READ]": "ADMIN:NAMESPACE:{namespace}:DSM:SESSION [READ]",
+        "NAMESPACE:{namespace}:DSM:CONFIG [CREATE]": "NAMESPACE:{namespace}:DSM:CONFIG [CREATE]",
+        "NAMESPACE:{namespace}:DSM:CONFIG [DELETE]": "NAMESPACE:{namespace}:DSM:CONFIG [DELETE]",
         "NAMESPACE:{namespace}:DSM:CONFIG [READ]": "NAMESPACE:{namespace}:DSM:CONFIG [READ]",
+        "NAMESPACE:{namespace}:DSM:SERVER [READ]": "NAMESPACE:{namespace}:DSM:SERVER [READ]",
         "NAMESPACE:{namespace}:DSM:SERVER [UPDATE]": "NAMESPACE:{namespace}:DSM:SERVER [UPDATE]",
         "NAMESPACE:{namespace}:DSM:SESSION [CREATE]": "NAMESPACE:{namespace}:DSM:SESSION [CREATE]",
+        "NAMESPACE:{namespace}:DSM:SESSION [DELETE]": "NAMESPACE:{namespace}:DSM:SESSION [DELETE]",
         "NAMESPACE:{namespace}:DSM:SESSION [READ]": "NAMESPACE:{namespace}:DSM:SESSION [READ]",
         "NAMESPACE:{namespace}:DSM:SESSION [UPDATE]": "NAMESPACE:{namespace}:DSM:SESSION [UPDATE]"
       },
@@ -876,7 +880,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "Required permission: ADMIN:NAMESPACE:{namespace}:DSM:CONFIG [READ]\n\nRequired scope: social\n\nThis endpoint delete a dedicated server deployment in a namespace",
+        "description": "Required permission: ADMIN:NAMESPACE:{namespace}:DSM:CONFIG [DELETE]\n\nRequired scope: social\n\nThis endpoint delete a dedicated server deployment in a namespace",
         "operationId": "DeleteDeployment",
         "parameters": [
           {
@@ -929,7 +933,7 @@
         "security": [
           {
             "HasPermission": [
-              "ADMIN:NAMESPACE:{namespace}:DSM:CONFIG [READ]"
+              "ADMIN:NAMESPACE:{namespace}:DSM:CONFIG [DELETE]"
             ],
             "HasScope": [
               "social"
@@ -1069,6 +1073,12 @@
           },
           "404": {
             "description": "config not found",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "422": {
+            "description": "invalid game version",
             "schema": {
               "$ref": "#/definitions/response.Error"
             }
@@ -3252,6 +3262,68 @@
         ]
       }
     },
+    "/dsmcontroller/admin/namespaces/{namespace}/repository": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Required permission: ADMIN:NAMESPACE:{namespace}:DSM:CONFIG [READ]\n\nRequired scope: social\n\nThis endpoint get a dedicated servers repository name in a namespace.",
+        "operationId": "GetRepository",
+        "parameters": [
+          {
+            "description": "namespace of the game",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "repository retrieved",
+            "schema": {
+              "$ref": "#/definitions/models.RepositoryRecord"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "404": {
+            "description": "repository not found",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          }
+        },
+        "security": [
+          {
+            "HasPermission": [
+              "ADMIN:NAMESPACE:{namespace}:DSM:CONFIG [READ]"
+            ],
+            "HasScope": [
+              "social"
+            ],
+            "authorization": []
+          }
+        ],
+        "summary": "Get repository for a namespace",
+        "tags": [
+          "Image Config"
+        ]
+      }
+    },
     "/dsmcontroller/admin/namespaces/{namespace}/servers": {
       "get": {
         "consumes": [
@@ -3268,7 +3340,7 @@
             "type": "string"
           },
           {
-            "description": "how many items to return, default: 50",
+            "description": "how many items to return",
             "in": "query",
             "name": "count",
             "required": true,
@@ -3711,7 +3783,7 @@
             "type": "string"
           },
           {
-            "description": "how many items to return, default: 50",
+            "description": "how many items to return",
             "in": "query",
             "name": "count",
             "required": true,
@@ -3900,6 +3972,66 @@
         ]
       }
     },
+    "/dsmcontroller/admin/repository": {
+      "post": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "```\nRequired permission: ADMIN:NAMESPACE:{namespace}:DSM:CONFIG [CREATE]\nRequired scope: social\n\nThis endpoint will create image repository.\n\nSample repository:\n{\n\t\u0026#34;namespace\u0026#34;:\u0026#34;testing\u0026#34;,\n\t\u0026#34;repository\u0026#34;:\u0026#34;ds-testing-924623\u0026#34;,\n}\n```",
+        "operationId": "CreateRepository",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/models.CreateRepositoryRequest"
+            }
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "204": {
+            "description": "repository created"
+          },
+          "400": {
+            "description": "malformed request",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          }
+        },
+        "security": [
+          {
+            "HasPermission": [
+              "ADMIN:NAMESPACE:{namespace}:DSM:CONFIG [CREATE]"
+            ],
+            "HasScope": [
+              "social"
+            ],
+            "authorization": []
+          }
+        ],
+        "summary": "Create repository",
+        "tags": [
+          "Image Config"
+        ]
+      }
+    },
     "/dsmcontroller/admin/v1/namespaces/{namespace}/configs/export": {
       "get": {
         "consumes": [
@@ -4048,6 +4180,476 @@
         ]
       }
     },
+    "/dsmcontroller/namespaces/{namespace}/configs/deployments": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Required permission: NAMESPACE:{namespace}:DSM:CONFIG [READ]\n\nRequired scope: social\n\nThis endpoint get a all deployments in a namespace\n\nParameter Offset and Count is Required",
+        "operationId": "GetAllDeploymentClient",
+        "parameters": [
+          {
+            "description": "namespace of the game",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "how many items to return",
+            "in": "query",
+            "name": "count",
+            "required": true,
+            "type": "integer"
+          },
+          {
+            "description": "offset from list to query from",
+            "in": "query",
+            "name": "offset",
+            "required": true,
+            "type": "integer"
+          },
+          {
+            "description": "name of the deployment",
+            "in": "query",
+            "name": "name",
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "ok",
+            "schema": {
+              "$ref": "#/definitions/models.ListDeploymentResponse"
+            }
+          },
+          "400": {
+            "description": "malformed request",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          }
+        },
+        "security": [
+          {
+            "HasPermission": [
+              "NAMESPACE:{namespace}:DSM:CONFIG [READ]"
+            ],
+            "HasScope": [
+              "social"
+            ],
+            "authorization": []
+          }
+        ],
+        "summary": "Get All Deployments for client",
+        "tags": [
+          "Deployment Config"
+        ]
+      }
+    },
+    "/dsmcontroller/namespaces/{namespace}/configs/deployments/{deployment}": {
+      "delete": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Required permission: NAMESPACE:{namespace}:DSM:CONFIG [DELETE]\n\nRequired scope: social\n\nThis endpoint delete a dedicated server deployment in a namespace",
+        "operationId": "DeleteDeploymentClient",
+        "parameters": [
+          {
+            "description": "deployment name",
+            "in": "path",
+            "name": "deployment",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "namespace of the game",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "204": {
+            "description": "ok"
+          },
+          "400": {
+            "description": "malformed request",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "404": {
+            "description": "deployment not found",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          }
+        },
+        "security": [
+          {
+            "HasPermission": [
+              "NAMESPACE:{namespace}:DSM:CONFIG [DELETE]"
+            ],
+            "HasScope": [
+              "social"
+            ],
+            "authorization": []
+          }
+        ],
+        "summary": "Delete Deployment for client",
+        "tags": [
+          "Deployment Config"
+        ]
+      },
+      "post": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Required permission: NAMESPACE:{namespace}:DSM:CONFIG [CREATE]\n\nRequired scope: social\n\nThis endpoint create a dedicated servers deployment in a namespace.",
+        "operationId": "CreateDeploymentClient",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/models.CreateDeploymentRequest"
+            }
+          },
+          {
+            "description": "deployment name",
+            "in": "path",
+            "name": "deployment",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "namespace of the game",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "201": {
+            "description": "deployment created",
+            "schema": {
+              "$ref": "#/definitions/models.DeploymentWithOverride"
+            }
+          },
+          "400": {
+            "description": "malformed request",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "409": {
+            "description": "deployment already exists",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          }
+        },
+        "security": [
+          {
+            "HasPermission": [
+              "NAMESPACE:{namespace}:DSM:CONFIG [CREATE]"
+            ],
+            "HasScope": [
+              "social"
+            ],
+            "authorization": []
+          }
+        ],
+        "summary": "Create deployment for client",
+        "tags": [
+          "Deployment Config"
+        ]
+      }
+    },
+    "/dsmcontroller/namespaces/{namespace}/configs/pods": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Required permission: NAMESPACE:{namespace}:DSM:CONFIG [READ]\n\nRequired scope: social\n\nThis endpoint get a all pod configs in a namespace\n\nParameter Offset and Count is Required",
+        "operationId": "GetAllPodConfigClient",
+        "parameters": [
+          {
+            "description": "namespace of the game",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "how many items to return",
+            "in": "query",
+            "name": "count",
+            "required": true,
+            "type": "integer"
+          },
+          {
+            "description": "offset from list to query from",
+            "in": "query",
+            "name": "offset",
+            "required": true,
+            "type": "integer"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "ok",
+            "schema": {
+              "$ref": "#/definitions/models.ListPodConfigResponse"
+            }
+          },
+          "400": {
+            "description": "malformed request",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          }
+        },
+        "security": [
+          {
+            "HasPermission": [
+              "NAMESPACE:{namespace}:DSM:CONFIG [READ]"
+            ],
+            "HasScope": [
+              "social"
+            ],
+            "authorization": []
+          }
+        ],
+        "summary": "Get all pod configs for client",
+        "tags": [
+          "Pod Config"
+        ]
+      }
+    },
+    "/dsmcontroller/namespaces/{namespace}/configs/pods/{name}": {
+      "delete": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Required permission: NAMESPACE:{namespace}:DSM:CONFIG [DELETE]\n\nRequired scope: social\n\nThis endpoint delete a dedicated server pod config in a namespace",
+        "operationId": "DeletePodConfigClient",
+        "parameters": [
+          {
+            "description": "pod name",
+            "in": "path",
+            "name": "name",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "namespace of the game",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "204": {
+            "description": "pod config deleted"
+          },
+          "400": {
+            "description": "malformed request",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "404": {
+            "description": "pod config not found",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "409": {
+            "description": "pod config in use",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          }
+        },
+        "security": [
+          {
+            "HasPermission": [
+              "NAMESPACE:{namespace}:DSM:CONFIG [DELETE]"
+            ],
+            "HasScope": [
+              "social"
+            ],
+            "authorization": []
+          }
+        ],
+        "summary": "Delete pod config for client",
+        "tags": [
+          "Pod Config"
+        ]
+      },
+      "post": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Required permission: NAMESPACE:{namespace}:DSM:CONFIG [CREATE]\n\nRequired scope: social\n\nThis endpoint create a dedicated servers pod config in a namespace.",
+        "operationId": "CreatePodConfigClient",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/models.CreatePodConfigRequest"
+            }
+          },
+          {
+            "description": "pod name",
+            "in": "path",
+            "name": "name",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "namespace of the game",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "201": {
+            "description": "pod config created",
+            "schema": {
+              "$ref": "#/definitions/models.PodConfigRecord"
+            }
+          },
+          "400": {
+            "description": "malformed request",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "409": {
+            "description": "pod config already exists",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          }
+        },
+        "security": [
+          {
+            "HasPermission": [
+              "NAMESPACE:{namespace}:DSM:CONFIG [CREATE]"
+            ],
+            "HasScope": [
+              "social"
+            ],
+            "authorization": []
+          }
+        ],
+        "summary": "Create pod config for client",
+        "tags": [
+          "Pod Config"
+        ]
+      }
+    },
     "/dsmcontroller/namespaces/{namespace}/images/limit": {
       "get": {
         "consumes": [
@@ -4176,6 +4778,155 @@
         "summary": "DS Image Detail Client",
         "tags": [
           "Image Config"
+        ]
+      }
+    },
+    "/dsmcontroller/namespaces/{namespace}/servers": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Required permission: NAMESPACE:{namespace}:DSM:SERVER [READ]\n\nRequired scope: social\n\nThis endpoint lists all of dedicated servers in a namespace managed by this service.\n\nParameter Offset and Count is Required",
+        "operationId": "ListServerClient",
+        "parameters": [
+          {
+            "description": "namespace of the game",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "how many items to return",
+            "in": "query",
+            "name": "count",
+            "required": true,
+            "type": "integer"
+          },
+          {
+            "description": "offset from list to query from",
+            "in": "query",
+            "name": "offset",
+            "required": true,
+            "type": "integer"
+          },
+          {
+            "description": "region where DS server is located. if not specified it will list all servers.",
+            "in": "query",
+            "name": "region",
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "servers listed",
+            "schema": {
+              "$ref": "#/definitions/models.ListServerResponse"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          }
+        },
+        "security": [
+          {
+            "HasPermission": [
+              "NAMESPACE:{namespace}:DSM:SERVER [READ]"
+            ],
+            "HasScope": [
+              "social"
+            ],
+            "authorization": []
+          }
+        ],
+        "summary": "List all managed servers in a region for client",
+        "tags": [
+          "Server"
+        ]
+      }
+    },
+    "/dsmcontroller/namespaces/{namespace}/servers/heartbeat": {
+      "put": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "```\nRequired permission: NAMESPACE:{namespace}:DSM:SERVER [UPDATE]\nRequired scope: social\n\nThis endpoint is intended to be called by dedicated server\nwhich already has claimed to extend its lifetime.\nDS should call this periodically after it claimed.\nThe timeframe between 2 heartbeat call should be smaller than\nthe session timout in the deployment configuration.\nIf the last heartbeat is longer than the session timout, the server.\nwill be considered as expired and will be terminated by DSMC.```",
+        "operationId": "ServerHeartbeat",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/models.DSHeartbeatRequest"
+            }
+          },
+          {
+            "description": "namespace of the game",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "202": {
+            "description": "heartbeat accepted"
+          },
+          "400": {
+            "description": "malformed request",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "404": {
+            "description": "server not found",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          }
+        },
+        "security": [
+          {
+            "HasPermission": [
+              "NAMESPACE:{namespace}:DSM:SERVER [UPDATE]"
+            ],
+            "HasScope": [
+              "social"
+            ],
+            "authorization": []
+          }
+        ],
+        "summary": "Server Heartbeat",
+        "tags": [
+          "Server"
         ]
       }
     },
@@ -4368,6 +5119,12 @@
               "$ref": "#/definitions/response.Error"
             }
           },
+          "404": {
+            "description": "allocation not found",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
           "409": {
             "description": "server with same name already registered",
             "schema": {
@@ -4466,6 +5223,81 @@
           }
         ],
         "summary": "Mark a DS is shutting down",
+        "tags": [
+          "Server"
+        ]
+      }
+    },
+    "/dsmcontroller/namespaces/{namespace}/servers/{podName}/config/sessiontimeout": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "```\nRequired permission: NAMESPACE:{namespace}:DSM:CONFIG [READ]\nRequired scope: social\n\nThis endpoint is intended to be called by dedicated server\nto get the session timeout that will be used for the DS.\nDS will use this session timeout to make sure it regularly make heartbeat\ncall to the DSMC, before the session timeout.```",
+        "operationId": "GetServerSessionTimeout",
+        "parameters": [
+          {
+            "description": "namespace of the game",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "DS name",
+            "in": "path",
+            "name": "podName",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "session timout successfully retrieved",
+            "schema": {
+              "$ref": "#/definitions/models.ServerDeploymentConfigSessionTimeoutResponse"
+            }
+          },
+          "400": {
+            "description": "malformed request",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "404": {
+            "description": "server not found",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          }
+        },
+        "security": [
+          {
+            "HasPermission": [
+              "NAMESPACE:{namespace}:DSM:CONFIG [READ]"
+            ],
+            "HasScope": [
+              "social"
+            ],
+            "authorization": []
+          }
+        ],
+        "summary": "Get the session timeout that will be used for the server",
         "tags": [
           "Server"
         ]
@@ -4788,6 +5620,78 @@
         ]
       }
     },
+    "/dsmcontroller/namespaces/{namespace}/sessions/{sessionID}/cancel": {
+      "delete": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Required permission: NAMESPACE:{namespace}:DSM:SESSION [DELETE]\n\nRequired scope: social\n\nThis endpoint is intended to be called by game session manager (matchmaker, lobby, etc.) to cancel a temporary dedicated server. The dedicated server cannot be canceled unless the status is CREATING",
+        "operationId": "CancelSession",
+        "parameters": [
+          {
+            "description": "namespace of the game",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "session ID",
+            "in": "path",
+            "name": "sessionID",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "204": {
+            "description": "DS creation successfully canceled"
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "404": {
+            "description": "session not found",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "422": {
+            "description": "session cannot be canceled",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          }
+        },
+        "security": [
+          {
+            "HasPermission": [
+              "NAMESPACE:{namespace}:DSM:SESSION [DELETE]"
+            ],
+            "HasScope": [
+              "social"
+            ],
+            "authorization": []
+          }
+        ],
+        "summary": "Cancel session of a Temporary DS",
+        "tags": [
+          "Session"
+        ]
+      }
+    },
     "/dsmcontroller/public/provider/default": {
       "get": {
         "consumes": [
@@ -5091,6 +5995,10 @@
           "type": "boolean",
           "x-omitempty": false
         },
+        "extendable_session": {
+          "type": "boolean",
+          "x-omitempty": false
+        },
         "game_version": {
           "type": "string"
         },
@@ -5159,6 +6067,10 @@
           "type": "string"
         },
         "enable_region_overrides": {
+          "type": "boolean",
+          "x-omitempty": false
+        },
+        "extendable_session": {
           "type": "boolean",
           "x-omitempty": false
         },
@@ -5245,6 +6157,12 @@
           "type": "boolean",
           "x-omitempty": false
         },
+        "uploaderFlags": {
+          "items": {
+            "$ref": "#/definitions/models.UploaderFlag"
+          },
+          "type": "array"
+        },
         "version": {
           "type": "string"
         }
@@ -5257,6 +6175,7 @@
         "namespace",
         "patchVersion",
         "persistent",
+        "uploaderFlags",
         "version"
       ]
     },
@@ -5363,6 +6282,20 @@
         "use_buffer_percent"
       ]
     },
+    "models.CreateRepositoryRequest": {
+      "properties": {
+        "namespace": {
+          "type": "string"
+        },
+        "repository": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "namespace",
+        "repository"
+      ]
+    },
     "models.CreateSessionRequest": {
       "properties": {
         "client_version": {
@@ -5409,6 +6342,16 @@
         "pod_name",
         "region",
         "session_id"
+      ]
+    },
+    "models.DSHeartbeatRequest": {
+      "properties": {
+        "podName": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "podName"
       ]
     },
     "models.DSMConfigRecord": {
@@ -5521,6 +6464,10 @@
           "type": "boolean",
           "x-omitempty": false
         },
+        "extendable_session": {
+          "type": "boolean",
+          "x-omitempty": false
+        },
         "game_version": {
           "type": "string"
         },
@@ -5598,6 +6545,10 @@
           "x-nullable": false
         },
         "enable_region_overrides": {
+          "type": "boolean",
+          "x-omitempty": false
+        },
+        "extendable_session": {
           "type": "boolean",
           "x-omitempty": false
         },
@@ -6049,6 +7000,12 @@
           "type": "string",
           "x-nullable": false
         },
+        "uploaderFlags": {
+          "items": {
+            "$ref": "#/definitions/models.UploaderFlag"
+          },
+          "type": "array"
+        },
         "version": {
           "type": "string"
         }
@@ -6064,6 +7021,7 @@
         "patchVersion",
         "persistent",
         "updatedAt",
+        "uploaderFlags",
         "version"
       ]
     },
@@ -6186,6 +7144,36 @@
       "required": [
         "custom_attribute",
         "pod_name"
+      ]
+    },
+    "models.RepositoryRecord": {
+      "properties": {
+        "createdAt": {
+          "format": "date-time",
+          "type": "string",
+          "x-nullable": false
+        },
+        "modifiedBy": {
+          "type": "string"
+        },
+        "namespace": {
+          "type": "string"
+        },
+        "repository": {
+          "type": "string"
+        },
+        "updatedAt": {
+          "format": "date-time",
+          "type": "string",
+          "x-nullable": false
+        }
+      },
+      "required": [
+        "createdAt",
+        "modifiedBy",
+        "namespace",
+        "repository",
+        "updatedAt"
       ]
     },
     "models.RequestMatchMember": {
@@ -6364,6 +7352,17 @@
         "status",
         "status_history",
         "termination_reason"
+      ]
+    },
+    "models.ServerDeploymentConfigSessionTimeoutResponse": {
+      "properties": {
+        "session_timeout": {
+          "format": "int32",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "session_timeout"
       ]
     },
     "models.ServerSessionResponse": {
@@ -6571,6 +7570,10 @@
           "type": "boolean",
           "x-omitempty": false
         },
+        "extendable_session": {
+          "type": "boolean",
+          "x-omitempty": false
+        },
         "game_version": {
           "type": "string"
         },
@@ -6691,6 +7694,24 @@
         "use_buffer_percent"
       ]
     },
+    "models.UploaderFlag": {
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "shorthand": {
+          "type": "string"
+        },
+        "value": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "name",
+        "shorthand",
+        "value"
+      ]
+    },
     "response.Error": {
       "properties": {
         "errorCode": {
@@ -6714,10 +7735,10 @@
   },
   "x-version": {
     "buildDate": "unknown",
-    "gitHash": "772f26310704d42486aaa070cd121581b19ec8b1",
+    "gitHash": "ed2295f5b70649a743d17a75ee3b9d03876cc57e",
     "name": "justice-dedicated-server-manager-controller-service",
-    "revisionID": "6.2.7",
-    "version": "6.2.7",
+    "revisionID": "6.3.0",
+    "version": "6.3.0",
     "version-roles-seeding": "0.0.3"
   }
 }

@@ -54,6 +54,10 @@ type ClientService interface {
 	GetImagePatchesShort(params *GetImagePatchesParams, authInfo runtime.ClientAuthInfoWriter) (*GetImagePatchesOK, error)
 	GetImagePatchDetail(params *GetImagePatchDetailParams, authInfo runtime.ClientAuthInfoWriter) (*GetImagePatchDetailOK, *GetImagePatchDetailUnauthorized, *GetImagePatchDetailNotFound, *GetImagePatchDetailInternalServerError, error)
 	GetImagePatchDetailShort(params *GetImagePatchDetailParams, authInfo runtime.ClientAuthInfoWriter) (*GetImagePatchDetailOK, error)
+	GetRepository(params *GetRepositoryParams, authInfo runtime.ClientAuthInfoWriter) (*GetRepositoryOK, *GetRepositoryUnauthorized, *GetRepositoryNotFound, *GetRepositoryInternalServerError, error)
+	GetRepositoryShort(params *GetRepositoryParams, authInfo runtime.ClientAuthInfoWriter) (*GetRepositoryOK, error)
+	CreateRepository(params *CreateRepositoryParams, authInfo runtime.ClientAuthInfoWriter) (*CreateRepositoryNoContent, *CreateRepositoryBadRequest, *CreateRepositoryUnauthorized, *CreateRepositoryInternalServerError, error)
+	CreateRepositoryShort(params *CreateRepositoryParams, authInfo runtime.ClientAuthInfoWriter) (*CreateRepositoryNoContent, error)
 	ImageLimitClient(params *ImageLimitClientParams, authInfo runtime.ClientAuthInfoWriter) (*ImageLimitClientOK, *ImageLimitClientBadRequest, *ImageLimitClientUnauthorized, *ImageLimitClientInternalServerError, error)
 	ImageLimitClientShort(params *ImageLimitClientParams, authInfo runtime.ClientAuthInfoWriter) (*ImageLimitClientOK, error)
 	ImageDetailClient(params *ImageDetailClientParams, authInfo runtime.ClientAuthInfoWriter) (*ImageDetailClientOK, *ImageDetailClientUnauthorized, *ImageDetailClientNotFound, *ImageDetailClientInternalServerError, error)
@@ -1562,6 +1566,250 @@ func (a *Client) GetImagePatchDetailShort(params *GetImagePatchDetailParams, aut
 	case *GetImagePatchDetailNotFound:
 		return nil, v
 	case *GetImagePatchDetailInternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+Deprecated: 2022-08-10 - Use GetRepositoryShort instead.
+
+GetRepository get repository for a namespace
+Required permission: ADMIN:NAMESPACE:{namespace}:DSM:CONFIG [READ]
+
+Required scope: social
+
+This endpoint get a dedicated servers repository name in a namespace.
+*/
+func (a *Client) GetRepository(params *GetRepositoryParams, authInfo runtime.ClientAuthInfoWriter) (*GetRepositoryOK, *GetRepositoryUnauthorized, *GetRepositoryNotFound, *GetRepositoryInternalServerError, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewGetRepositoryParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "GetRepository",
+		Method:             "GET",
+		PathPattern:        "/dsmcontroller/admin/namespaces/{namespace}/repository",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &GetRepositoryReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, nil, nil, nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *GetRepositoryOK:
+		return v, nil, nil, nil, nil
+
+	case *GetRepositoryUnauthorized:
+		return nil, v, nil, nil, nil
+
+	case *GetRepositoryNotFound:
+		return nil, nil, v, nil, nil
+
+	case *GetRepositoryInternalServerError:
+		return nil, nil, nil, v, nil
+
+	default:
+		return nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+GetRepositoryShort get repository for a namespace
+Required permission: ADMIN:NAMESPACE:{namespace}:DSM:CONFIG [READ]
+
+Required scope: social
+
+This endpoint get a dedicated servers repository name in a namespace.
+*/
+func (a *Client) GetRepositoryShort(params *GetRepositoryParams, authInfo runtime.ClientAuthInfoWriter) (*GetRepositoryOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewGetRepositoryParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "GetRepository",
+		Method:             "GET",
+		PathPattern:        "/dsmcontroller/admin/namespaces/{namespace}/repository",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &GetRepositoryReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *GetRepositoryOK:
+		return v, nil
+	case *GetRepositoryUnauthorized:
+		return nil, v
+	case *GetRepositoryNotFound:
+		return nil, v
+	case *GetRepositoryInternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+Deprecated: 2022-08-10 - Use CreateRepositoryShort instead.
+
+CreateRepository create repository
+```
+Required permission: ADMIN:NAMESPACE:{namespace}:DSM:CONFIG [CREATE]
+Required scope: social
+
+This endpoint will create image repository.
+
+Sample repository:
+{
+"namespace":"testing",
+"repository":"ds-testing-924623",
+}
+```
+*/
+func (a *Client) CreateRepository(params *CreateRepositoryParams, authInfo runtime.ClientAuthInfoWriter) (*CreateRepositoryNoContent, *CreateRepositoryBadRequest, *CreateRepositoryUnauthorized, *CreateRepositoryInternalServerError, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewCreateRepositoryParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "CreateRepository",
+		Method:             "POST",
+		PathPattern:        "/dsmcontroller/admin/repository",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &CreateRepositoryReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, nil, nil, nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *CreateRepositoryNoContent:
+		return v, nil, nil, nil, nil
+
+	case *CreateRepositoryBadRequest:
+		return nil, v, nil, nil, nil
+
+	case *CreateRepositoryUnauthorized:
+		return nil, nil, v, nil, nil
+
+	case *CreateRepositoryInternalServerError:
+		return nil, nil, nil, v, nil
+
+	default:
+		return nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+CreateRepositoryShort create repository
+```
+Required permission: ADMIN:NAMESPACE:{namespace}:DSM:CONFIG [CREATE]
+Required scope: social
+
+This endpoint will create image repository.
+
+Sample repository:
+{
+"namespace":"testing",
+"repository":"ds-testing-924623",
+}
+```
+*/
+func (a *Client) CreateRepositoryShort(params *CreateRepositoryParams, authInfo runtime.ClientAuthInfoWriter) (*CreateRepositoryNoContent, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewCreateRepositoryParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "CreateRepository",
+		Method:             "POST",
+		PathPattern:        "/dsmcontroller/admin/repository",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &CreateRepositoryReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *CreateRepositoryNoContent:
+		return v, nil
+	case *CreateRepositoryBadRequest:
+		return nil, v
+	case *CreateRepositoryUnauthorized:
+		return nil, v
+	case *CreateRepositoryInternalServerError:
 		return nil, v
 
 	default:

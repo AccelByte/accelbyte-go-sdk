@@ -42,6 +42,12 @@ type ClientService interface {
 	DeletePodConfigShort(params *DeletePodConfigParams, authInfo runtime.ClientAuthInfoWriter) (*DeletePodConfigNoContent, error)
 	UpdatePodConfig(params *UpdatePodConfigParams, authInfo runtime.ClientAuthInfoWriter) (*UpdatePodConfigOK, *UpdatePodConfigBadRequest, *UpdatePodConfigUnauthorized, *UpdatePodConfigNotFound, *UpdatePodConfigConflict, *UpdatePodConfigInternalServerError, error)
 	UpdatePodConfigShort(params *UpdatePodConfigParams, authInfo runtime.ClientAuthInfoWriter) (*UpdatePodConfigOK, error)
+	GetAllPodConfigClient(params *GetAllPodConfigClientParams, authInfo runtime.ClientAuthInfoWriter) (*GetAllPodConfigClientOK, *GetAllPodConfigClientBadRequest, *GetAllPodConfigClientUnauthorized, *GetAllPodConfigClientInternalServerError, error)
+	GetAllPodConfigClientShort(params *GetAllPodConfigClientParams, authInfo runtime.ClientAuthInfoWriter) (*GetAllPodConfigClientOK, error)
+	CreatePodConfigClient(params *CreatePodConfigClientParams, authInfo runtime.ClientAuthInfoWriter) (*CreatePodConfigClientCreated, *CreatePodConfigClientBadRequest, *CreatePodConfigClientUnauthorized, *CreatePodConfigClientConflict, *CreatePodConfigClientInternalServerError, error)
+	CreatePodConfigClientShort(params *CreatePodConfigClientParams, authInfo runtime.ClientAuthInfoWriter) (*CreatePodConfigClientCreated, error)
+	DeletePodConfigClient(params *DeletePodConfigClientParams, authInfo runtime.ClientAuthInfoWriter) (*DeletePodConfigClientNoContent, *DeletePodConfigClientBadRequest, *DeletePodConfigClientUnauthorized, *DeletePodConfigClientNotFound, *DeletePodConfigClientConflict, *DeletePodConfigClientInternalServerError, error)
+	DeletePodConfigClientShort(params *DeletePodConfigClientParams, authInfo runtime.ClientAuthInfoWriter) (*DeletePodConfigClientNoContent, error)
 
 	SetTransport(transport runtime.ClientTransport)
 }
@@ -758,6 +764,370 @@ func (a *Client) UpdatePodConfigShort(params *UpdatePodConfigParams, authInfo ru
 	case *UpdatePodConfigConflict:
 		return nil, v
 	case *UpdatePodConfigInternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+Deprecated: 2022-08-10 - Use GetAllPodConfigClientShort instead.
+
+GetAllPodConfigClient get all pod configs for client
+Required permission: NAMESPACE:{namespace}:DSM:CONFIG [READ]
+
+Required scope: social
+
+This endpoint get a all pod configs in a namespace
+
+Parameter Offset and Count is Required
+*/
+func (a *Client) GetAllPodConfigClient(params *GetAllPodConfigClientParams, authInfo runtime.ClientAuthInfoWriter) (*GetAllPodConfigClientOK, *GetAllPodConfigClientBadRequest, *GetAllPodConfigClientUnauthorized, *GetAllPodConfigClientInternalServerError, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewGetAllPodConfigClientParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "GetAllPodConfigClient",
+		Method:             "GET",
+		PathPattern:        "/dsmcontroller/namespaces/{namespace}/configs/pods",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &GetAllPodConfigClientReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, nil, nil, nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *GetAllPodConfigClientOK:
+		return v, nil, nil, nil, nil
+
+	case *GetAllPodConfigClientBadRequest:
+		return nil, v, nil, nil, nil
+
+	case *GetAllPodConfigClientUnauthorized:
+		return nil, nil, v, nil, nil
+
+	case *GetAllPodConfigClientInternalServerError:
+		return nil, nil, nil, v, nil
+
+	default:
+		return nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+GetAllPodConfigClientShort get all pod configs for client
+Required permission: NAMESPACE:{namespace}:DSM:CONFIG [READ]
+
+Required scope: social
+
+This endpoint get a all pod configs in a namespace
+
+Parameter Offset and Count is Required
+*/
+func (a *Client) GetAllPodConfigClientShort(params *GetAllPodConfigClientParams, authInfo runtime.ClientAuthInfoWriter) (*GetAllPodConfigClientOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewGetAllPodConfigClientParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "GetAllPodConfigClient",
+		Method:             "GET",
+		PathPattern:        "/dsmcontroller/namespaces/{namespace}/configs/pods",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &GetAllPodConfigClientReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *GetAllPodConfigClientOK:
+		return v, nil
+	case *GetAllPodConfigClientBadRequest:
+		return nil, v
+	case *GetAllPodConfigClientUnauthorized:
+		return nil, v
+	case *GetAllPodConfigClientInternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+Deprecated: 2022-08-10 - Use CreatePodConfigClientShort instead.
+
+CreatePodConfigClient create pod config for client
+Required permission: NAMESPACE:{namespace}:DSM:CONFIG [CREATE]
+
+Required scope: social
+
+This endpoint create a dedicated servers pod config in a namespace.
+*/
+func (a *Client) CreatePodConfigClient(params *CreatePodConfigClientParams, authInfo runtime.ClientAuthInfoWriter) (*CreatePodConfigClientCreated, *CreatePodConfigClientBadRequest, *CreatePodConfigClientUnauthorized, *CreatePodConfigClientConflict, *CreatePodConfigClientInternalServerError, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewCreatePodConfigClientParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "CreatePodConfigClient",
+		Method:             "POST",
+		PathPattern:        "/dsmcontroller/namespaces/{namespace}/configs/pods/{name}",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &CreatePodConfigClientReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, nil, nil, nil, nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *CreatePodConfigClientCreated:
+		return v, nil, nil, nil, nil, nil
+
+	case *CreatePodConfigClientBadRequest:
+		return nil, v, nil, nil, nil, nil
+
+	case *CreatePodConfigClientUnauthorized:
+		return nil, nil, v, nil, nil, nil
+
+	case *CreatePodConfigClientConflict:
+		return nil, nil, nil, v, nil, nil
+
+	case *CreatePodConfigClientInternalServerError:
+		return nil, nil, nil, nil, v, nil
+
+	default:
+		return nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+CreatePodConfigClientShort create pod config for client
+Required permission: NAMESPACE:{namespace}:DSM:CONFIG [CREATE]
+
+Required scope: social
+
+This endpoint create a dedicated servers pod config in a namespace.
+*/
+func (a *Client) CreatePodConfigClientShort(params *CreatePodConfigClientParams, authInfo runtime.ClientAuthInfoWriter) (*CreatePodConfigClientCreated, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewCreatePodConfigClientParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "CreatePodConfigClient",
+		Method:             "POST",
+		PathPattern:        "/dsmcontroller/namespaces/{namespace}/configs/pods/{name}",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &CreatePodConfigClientReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *CreatePodConfigClientCreated:
+		return v, nil
+	case *CreatePodConfigClientBadRequest:
+		return nil, v
+	case *CreatePodConfigClientUnauthorized:
+		return nil, v
+	case *CreatePodConfigClientConflict:
+		return nil, v
+	case *CreatePodConfigClientInternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+Deprecated: 2022-08-10 - Use DeletePodConfigClientShort instead.
+
+DeletePodConfigClient delete pod config for client
+Required permission: NAMESPACE:{namespace}:DSM:CONFIG [DELETE]
+
+Required scope: social
+
+This endpoint delete a dedicated server pod config in a namespace
+*/
+func (a *Client) DeletePodConfigClient(params *DeletePodConfigClientParams, authInfo runtime.ClientAuthInfoWriter) (*DeletePodConfigClientNoContent, *DeletePodConfigClientBadRequest, *DeletePodConfigClientUnauthorized, *DeletePodConfigClientNotFound, *DeletePodConfigClientConflict, *DeletePodConfigClientInternalServerError, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewDeletePodConfigClientParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "DeletePodConfigClient",
+		Method:             "DELETE",
+		PathPattern:        "/dsmcontroller/namespaces/{namespace}/configs/pods/{name}",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &DeletePodConfigClientReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, nil, nil, nil, nil, nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *DeletePodConfigClientNoContent:
+		return v, nil, nil, nil, nil, nil, nil
+
+	case *DeletePodConfigClientBadRequest:
+		return nil, v, nil, nil, nil, nil, nil
+
+	case *DeletePodConfigClientUnauthorized:
+		return nil, nil, v, nil, nil, nil, nil
+
+	case *DeletePodConfigClientNotFound:
+		return nil, nil, nil, v, nil, nil, nil
+
+	case *DeletePodConfigClientConflict:
+		return nil, nil, nil, nil, v, nil, nil
+
+	case *DeletePodConfigClientInternalServerError:
+		return nil, nil, nil, nil, nil, v, nil
+
+	default:
+		return nil, nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+DeletePodConfigClientShort delete pod config for client
+Required permission: NAMESPACE:{namespace}:DSM:CONFIG [DELETE]
+
+Required scope: social
+
+This endpoint delete a dedicated server pod config in a namespace
+*/
+func (a *Client) DeletePodConfigClientShort(params *DeletePodConfigClientParams, authInfo runtime.ClientAuthInfoWriter) (*DeletePodConfigClientNoContent, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewDeletePodConfigClientParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "DeletePodConfigClient",
+		Method:             "DELETE",
+		PathPattern:        "/dsmcontroller/namespaces/{namespace}/configs/pods/{name}",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &DeletePodConfigClientReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *DeletePodConfigClientNoContent:
+		return v, nil
+	case *DeletePodConfigClientBadRequest:
+		return nil, v
+	case *DeletePodConfigClientUnauthorized:
+		return nil, v
+	case *DeletePodConfigClientNotFound:
+		return nil, v
+	case *DeletePodConfigClientConflict:
+		return nil, v
+	case *DeletePodConfigClientInternalServerError:
 		return nil, v
 
 	default:

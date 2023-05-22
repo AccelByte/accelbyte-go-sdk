@@ -8332,7 +8332,7 @@
     "path": "/ugc/apidocs/api.json"
   },
   "x-version": {
-    "buildDate": "2023-05-08T01:14:30+00:00",
+    "buildDate": "2023-05-09T01:43:07+00:00",
     "gitHash": "daada171e7eb85ce7e3f5478f05d3c58c411ca29",
     "name": "justice-ugc-service",
     "realm": "staging",

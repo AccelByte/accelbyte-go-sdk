@@ -336,6 +336,52 @@ func (aaa *ImageConfigService) GetImagePatchDetail(input *image_config.GetImageP
 	return ok.GetPayload(), nil
 }
 
+// Deprecated: 2022-01-10 - please use GetRepositoryShort instead.
+func (aaa *ImageConfigService) GetRepository(input *image_config.GetRepositoryParams) (*dsmcclientmodels.ModelsRepositoryRecord, error) {
+	token, err := aaa.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, unauthorized, notFound, internalServerError, err := aaa.Client.ImageConfig.GetRepository(input, client.BearerToken(*token.AccessToken))
+	if unauthorized != nil {
+		return nil, unauthorized
+	}
+	if notFound != nil {
+		return nil, notFound
+	}
+	if internalServerError != nil {
+		return nil, internalServerError
+	}
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
+// Deprecated: 2022-01-10 - please use CreateRepositoryShort instead.
+func (aaa *ImageConfigService) CreateRepository(input *image_config.CreateRepositoryParams) error {
+	token, err := aaa.TokenRepository.GetToken()
+	if err != nil {
+		return err
+	}
+	_, badRequest, unauthorized, internalServerError, err := aaa.Client.ImageConfig.CreateRepository(input, client.BearerToken(*token.AccessToken))
+	if badRequest != nil {
+		return badRequest
+	}
+	if unauthorized != nil {
+		return unauthorized
+	}
+	if internalServerError != nil {
+		return internalServerError
+	}
+	if err != nil {
+		return err
+	}
+
+	return nil
+}
+
 // Deprecated: 2022-01-10 - please use ImageLimitClientShort instead.
 func (aaa *ImageConfigService) ImageLimitClient(input *image_config.ImageLimitClientParams) (*dsmcclientmodels.ModelsGetImageLimitResponse, error) {
 	token, err := aaa.TokenRepository.GetToken()
@@ -680,6 +726,56 @@ func (aaa *ImageConfigService) GetImagePatchDetailShort(input *image_config.GetI
 	}
 
 	return ok.GetPayload(), nil
+}
+
+func (aaa *ImageConfigService) GetRepositoryShort(input *image_config.GetRepositoryParams) (*dsmcclientmodels.ModelsRepositoryRecord, error) {
+	authInfoWriter := input.AuthInfoWriter
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
+	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  aaa.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
+	ok, err := aaa.Client.ImageConfig.GetRepositoryShort(input, authInfoWriter)
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
+func (aaa *ImageConfigService) CreateRepositoryShort(input *image_config.CreateRepositoryParams) error {
+	authInfoWriter := input.AuthInfoWriter
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
+	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  aaa.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
+	_, err := aaa.Client.ImageConfig.CreateRepositoryShort(input, authInfoWriter)
+	if err != nil {
+		return err
+	}
+
+	return nil
 }
 
 func (aaa *ImageConfigService) ImageLimitClientShort(input *image_config.ImageLimitClientParams) (*dsmcclientmodels.ModelsGetImageLimitResponse, error) {

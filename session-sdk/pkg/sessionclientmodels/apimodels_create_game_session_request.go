@@ -40,6 +40,12 @@ type ApimodelsCreateGameSessionRequest struct {
 	// Required: true
 	Deployment *string `json:"deployment"`
 
+	// dssource
+	DsSource string `json:"dsSource,omitempty"`
+
+	// fallbackclaimkeys
+	FallbackClaimKeys []string `json:"fallbackClaimKeys,omitempty"`
+
 	// inactivetimeout
 	// Required: true
 	// Format: int32
@@ -67,6 +73,9 @@ type ApimodelsCreateGameSessionRequest struct {
 	// Required: true
 	// Format: int32
 	MinPlayers *int32 `json:"minPlayers"`
+
+	// preferredclaimkeys
+	PreferredClaimKeys []string `json:"preferredClaimKeys,omitempty"`
 
 	// requestedregions
 	// Required: true

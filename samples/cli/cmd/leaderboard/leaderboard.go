@@ -14,6 +14,7 @@ import (
 	"github.com/AccelByte/sample-apps/cmd/leaderboard/leaderboardDataV3"
 	"github.com/AccelByte/sample-apps/cmd/leaderboard/userData"
 	"github.com/AccelByte/sample-apps/cmd/leaderboard/userVisibility"
+	"github.com/AccelByte/sample-apps/cmd/leaderboard/userVisibilityV3"
 	"github.com/spf13/cobra"
 )
 
@@ -71,9 +72,13 @@ func init() {
 	LeaderboardCmd.AddCommand(leaderboardDataV3.GetCurrentCycleLeaderboardRankingAdminV3Cmd)
 	LeaderboardCmd.AddCommand(leaderboardConfigurationV3.HardDeleteLeaderboardAdminV3Cmd)
 	LeaderboardCmd.AddCommand(leaderboardDataV3.DeleteUserRankingByLeaderboardCodeAdminV3Cmd)
+	LeaderboardCmd.AddCommand(userVisibilityV3.GetHiddenUsersV3Cmd)
 	LeaderboardCmd.AddCommand(leaderboardDataV3.GetUserRankingAdminV3Cmd)
 	LeaderboardCmd.AddCommand(leaderboardDataV3.DeleteUserRankingAdminV3Cmd)
+	LeaderboardCmd.AddCommand(userVisibilityV3.GetUserVisibilityStatusV3Cmd)
+	LeaderboardCmd.AddCommand(userVisibilityV3.SetUserLeaderboardVisibilityV3Cmd)
 	LeaderboardCmd.AddCommand(leaderboardDataV3.DeleteUserRankingsAdminV3Cmd)
+	LeaderboardCmd.AddCommand(userVisibilityV3.SetUserVisibilityV3Cmd)
 	LeaderboardCmd.AddCommand(leaderboardConfigurationV3.GetLeaderboardConfigurationsPublicV3Cmd)
 	LeaderboardCmd.AddCommand(leaderboardConfigurationV3.GetLeaderboardConfigurationPublicV3Cmd)
 	LeaderboardCmd.AddCommand(leaderboardDataV3.GetAllTimeLeaderboardRankingPublicV3Cmd)

@@ -41,6 +41,10 @@ type ModelsServer struct {
 	// Required: true
 	Deployment *string `json:"deployment"`
 
+	// deployment_override
+	// Required: true
+	DeploymentOverride *string `json:"deployment_override"`
+
 	// game_version
 	// Required: true
 	GameVersion *string `json:"game_version"`
@@ -142,6 +146,9 @@ func (m *ModelsServer) Validate(formats strfmt.Registry) error {
 		res = append(res, err)
 	}
 	if err := m.validateDeployment(formats); err != nil {
+		res = append(res, err)
+	}
+	if err := m.validateDeploymentOverride(formats); err != nil {
 		res = append(res, err)
 	}
 	if err := m.validateGameVersion(formats); err != nil {
@@ -263,6 +270,15 @@ func (m *ModelsServer) validateCPULimit(formats strfmt.Registry) error {
 func (m *ModelsServer) validateDeployment(formats strfmt.Registry) error {
 
 	if err := validate.Required("deployment", "body", m.Deployment); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *ModelsServer) validateDeploymentOverride(formats strfmt.Registry) error {
+
+	if err := validate.Required("deployment_override", "body", m.DeploymentOverride); err != nil {
 		return err
 	}
 

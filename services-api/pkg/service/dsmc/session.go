@@ -126,6 +126,32 @@ func (aaa *SessionService) GetSession(input *session.GetSessionParams) (*dsmccli
 	return ok.GetPayload(), nil
 }
 
+// Deprecated: 2022-01-10 - please use CancelSessionShort instead.
+func (aaa *SessionService) CancelSession(input *session.CancelSessionParams) error {
+	token, err := aaa.TokenRepository.GetToken()
+	if err != nil {
+		return err
+	}
+	_, unauthorized, notFound, unprocessableEntity, internalServerError, err := aaa.Client.Session.CancelSession(input, client.BearerToken(*token.AccessToken))
+	if unauthorized != nil {
+		return unauthorized
+	}
+	if notFound != nil {
+		return notFound
+	}
+	if unprocessableEntity != nil {
+		return unprocessableEntity
+	}
+	if internalServerError != nil {
+		return internalServerError
+	}
+	if err != nil {
+		return err
+	}
+
+	return nil
+}
+
 func (aaa *SessionService) CreateSessionShort(input *session.CreateSessionParams) (*dsmcclientmodels.ModelsSessionResponse, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
@@ -199,4 +225,29 @@ func (aaa *SessionService) GetSessionShort(input *session.GetSessionParams) (*ds
 	}
 
 	return ok.GetPayload(), nil
+}
+
+func (aaa *SessionService) CancelSessionShort(input *session.CancelSessionParams) error {
+	authInfoWriter := input.AuthInfoWriter
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
+	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  aaa.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
+	_, err := aaa.Client.Session.CancelSessionShort(input, authInfoWriter)
+	if err != nil {
+		return err
+	}
+
+	return nil
 }

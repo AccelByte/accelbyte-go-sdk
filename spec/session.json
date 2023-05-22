@@ -126,6 +126,287 @@
         ]
       }
     },
+    "/session/v1/admin/namespaces/{namespace}/alerts-configuration": {
+      "delete": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Delete configuration alert.",
+        "operationId": "adminDeleteConfigurationAlertV1",
+        "parameters": [
+          {
+            "description": "namespace of the game",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content"
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "summary": "Delete configuration alert Requires ADMIN:NAMESPACE:{namespace}:SESSION:CONFIGURATION [DELETE]",
+        "tags": [
+          "Configuration Template"
+        ]
+      },
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Get a configuration alert.",
+        "operationId": "adminGetConfigurationAlertV1",
+        "parameters": [
+          {
+            "description": "namespace of the game",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "Created",
+            "schema": {
+              "$ref": "#/definitions/apimodels.ConfigAlertResponse"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "summary": "Get configuration alert. Requires ADMIN:NAMESPACE:{namespace}:SESSION:CONFIGURATION [READ]",
+        "tags": [
+          "Configuration Template"
+        ]
+      },
+      "post": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Create configuration alert\nconfiguration alert mandatory :\n- namespace\n- durationDays must be greater than 0\n",
+        "operationId": "adminCreateConfigurationAlertV1",
+        "parameters": [
+          {
+            "description": "Create configuration alert request",
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/apimodels.ConfigAlertRequestCreate"
+            }
+          },
+          {
+            "description": "namespace of the game",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "201": {
+            "description": "Created",
+            "schema": {
+              "$ref": "#/definitions/apimodels.ConfigAlertResponse"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "409": {
+            "description": "Conflict",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "summary": "Create configuration alert. Requires ADMIN:NAMESPACE:{namespace}:SESSION:CONFIGURATION [UPDATE]",
+        "tags": [
+          "Configuration Template"
+        ]
+      },
+      "put": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Update configuration alert\nconfiguration alert mandatory :\n- namespace\n- durationDays must be greater than 0\n",
+        "operationId": "adminUpdateConfigurationAlertV1",
+        "parameters": [
+          {
+            "description": "Update configuration alert request",
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/apimodels.ConfigAlertRequestCreate"
+            }
+          },
+          {
+            "description": "namespace of the game",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/apimodels.ConfigAlertResponse"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "summary": "Update configuration alert. Requires ADMIN:NAMESPACE:{namespace}:SESSION:CONFIGURATION [UPDATE]",
+        "tags": [
+          "Configuration Template"
+        ]
+      }
+    },
     "/session/v1/admin/namespaces/{namespace}/configuration": {
       "post": {
         "consumes": [
@@ -1088,7 +1369,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "Admin get attributes of players.\n\nField descriptions:\n\t- userID           : user who owns the attributes.\n\t- crossplayEnabled : set to true if the player wants to enable crossplay to their session (default: false).\n\t- platforms        : list of the player\u0026#39;s 3rd party platform account information.\n\t\t- name   : platform name. supported platforms: STEAM, XBOX, PSN\n\t\t- userID : platform userID\n\t- data             : other data that the player wants to store.\n\t- currentPlatform  : latest user game platform.\n",
+        "description": "Admin get attributes of players.\n\nField descriptions:\n\t- userID           : user who owns the attributes.\n\t- crossplayEnabled : set to true if the player wants to enable crossplay to their session (default: false).\n\t- platforms        : list of the player\u0026#39;s 3rd party platform account information.\n\t\t- name   : platform name. supported platforms: STEAM, XBOX, PSN\n\t\t- userID : platform userID\n\t- data             : other data that the player wants to store.\n\t- currentPlatform  : latest user game platform.\n\t- roles\t\t\t   : user role for matchmaking role base support.\n",
         "operationId": "adminQueryPlayerAttributes",
         "parameters": [
           {
@@ -1159,7 +1440,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "Admin get attributes of a player.\n\nField descriptions:\n\t- userID           : user who owns the attributes.\n\t- crossplayEnabled : set to true if the player wants to enable crossplay to their session (default: false).\n\t- platforms        : list of the player\u0026#39;s 3rd party platform account information.\n\t\t- name   : platform name. supported platforms: STEAM, XBOX, PSN\n\t\t- userID : platform userID\n\t- data             : other data that the player wants to store.\n\t- currentPlatform  : latest user game platform.\n",
+        "description": "Admin get attributes of a player.\n\nField descriptions:\n\t- userID           : user who owns the attributes.\n\t- crossplayEnabled : set to true if the player wants to enable crossplay to their session (default: false).\n\t- platforms        : list of the player\u0026#39;s 3rd party platform account information.\n\t\t- name   : platform name. supported platforms: STEAM, XBOX, PSN\n\t\t- userID : platform userID\n\t- data             : other data that the player wants to store.\n\t- currentPlatform  : latest user game platform.\n\t- roles\t\t\t   : user role for matchmaking role base support.\n",
         "operationId": "adminGetPlayerAttributes",
         "parameters": [
           {
@@ -1228,7 +1509,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "Create a game session.\n      Session configuration name is mandatory, this API will refer following values from the session template if they\u0026#39;re not provided in the request:\n   - type\n   - joinability\n   - minPlayers\n   - maxPlayers\n   - inviteTimeout\n   - inactiveTimeout\n\n      When the session type is a DS, a DS creation request will be sent to DSMC if number of active players reaches session\u0026#39;s minPlayers.\n\nActive user is a user who present within the session, has status CONNECTED/JOINED.\n\n      Session service has several DSInformation status to track DS request to DSMC:\n   - NEED_TO_REQUEST: number of active players hasn\u0026#39;t reached session\u0026#39;s minPlayers therefore DS has not yet requested.\n   - REQUESTED: DS is being requested to DSMC.\n   - AVAILABLE: DS is ready to use. The DSMC status for this DS is either READY/BUSY.\n   - FAILED_TO_REQUEST: DSMC fails to create the DS.\n",
+        "description": "Create a game session.\n      Session configuration name is mandatory, this API will refer following values from the session template if they\u0026#39;re not provided in the request:\n   - type\n   - joinability\n   - minPlayers\n   - maxPlayers\n   - inviteTimeout\n   - inactiveTimeout\n   - dsSource\n\n      When the session type is a DS, a DS creation request will be sent if number of active players reaches session\u0026#39;s minPlayers.\n\nActive user is a user who present within the session, has status CONNECTED/JOINED.\n\n      Session service has several DSInformation status to track DS request to DSMC:\n   - NEED_TO_REQUEST: number of active players hasn\u0026#39;t reached session\u0026#39;s minPlayers therefore DS has not yet requested.\n   - REQUESTED: DS is being requested to DSMC.\n   - AVAILABLE: DS is ready to use. The DSMC status for this DS is either READY/BUSY.\n   - FAILED_TO_REQUEST: DSMC fails to create the DS.\n\n      By default, DS requests are sent to DSMC, but if dsSource is set to \u0026#34;AMS\u0026#34;:\n         - A DS will be requested from AMS instead of DSMC.  \n         - The server will be chosen based on a set of claim keys, in order of preference, to match with fleets.\n         - The claim key list is built build from the preferredClaimKeys, fallbackClaimKeys, and clientVersion as follows: \n           [preferredClaimKeys.., clientVersion, fallbackClaimKeys...]\n",
         "operationId": "createGameSession",
         "parameters": [
           {
@@ -3199,7 +3480,7 @@
         ]
       },
       "get": {
-        "description": "Get player attributes.\n\nField descriptions:\n\t- userID           : user who owns the attributes.\n\t- crossplayEnabled : set to true if the player wants to enable crossplay to their session (default: false).\n\t- platforms        : list of the player\u0026#39;s 3rd party platform account information.\n\t\t- name   : platform name. supported platforms: STEAM, XBOX, PSN\n\t\t- userID : platform userID\n\t- data             : other data that the player wants to store.\n\t- currentPlatform  : latest user game platform.\n",
+        "description": "Get player attributes.\n\nField descriptions:\n\t- userID           : user who owns the attributes.\n\t- crossplayEnabled : set to true if the player wants to enable crossplay to their session (default: false).\n\t- platforms        : list of the player\u0026#39;s 3rd party platform account information.\n\t\t- name   : platform name. supported platforms: STEAM, XBOX, PSN\n\t\t- userID : platform userID\n\t- data             : other data that the player wants to store.\n\t- currentPlatform  : latest user game platform.\n\t- roles\t\t\t   : user role for matchmaking role base support.\n",
         "operationId": "publicGetPlayerAttributes",
         "parameters": [
           {
@@ -3259,7 +3540,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "This API behaves to upsert player\u0026#39;s attributes.\n\nField descriptions:\n\t- userID           : user who owns the attributes.\n\t- crossplayEnabled : set to true if the player wants to enable crossplay to their session (default: false).\n\t- platforms        : list of the player\u0026#39;s 3rd party platform account information.\n\t\t- name   : platform name. supported platforms: STEAM, XBOX, PSN\n\t\t- userID : platform userID\n\t- data             : other data that the player wants to store.\n\t- currentPlatform  : latest user game platform.\n",
+        "description": "This API behaves to upsert player\u0026#39;s attributes.\n\nField descriptions:\n\t- userID           : user who owns the attributes.\n\t- crossplayEnabled : set to true if the player wants to enable crossplay to their session (default: false).\n\t- platforms        : list of the player\u0026#39;s 3rd party platform account information.\n\t\t- name   : platform name. supported platforms: STEAM, XBOX, PSN\n\t\t- userID : platform userID\n\t- data             : other data that the player wants to store.\n\t- currentPlatform  : latest user game platform.\n\t- roles\t\t\t   : user role for matchmaking role base support.\n",
         "operationId": "publicStorePlayerAttributes",
         "parameters": [
           {
@@ -3500,6 +3781,44 @@
         "version"
       ]
     },
+    "apimodels.ConfigAlertRequestCreate": {
+      "properties": {
+        "durationDays": {
+          "format": "int32",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "durationDays"
+      ]
+    },
+    "apimodels.ConfigAlertResponse": {
+      "properties": {
+        "createdAt": {
+          "format": "date-time",
+          "type": "string",
+          "x-nullable": false
+        },
+        "durationDays": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "namespace": {
+          "type": "string"
+        },
+        "updatedAt": {
+          "format": "date-time",
+          "type": "string",
+          "x-nullable": false
+        }
+      },
+      "required": [
+        "createdAt",
+        "durationDays",
+        "namespace",
+        "updatedAt"
+      ]
+    },
     "apimodels.ConfigurationTemplateResponse": {
       "properties": {
         "clientVersion": {
@@ -3510,6 +3829,15 @@
         },
         "deployment": {
           "type": "string"
+        },
+        "dsSource": {
+          "type": "string"
+        },
+        "fallbackClaimKeys": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
         },
         "inactiveTimeout": {
           "format": "int32",
@@ -3545,6 +3873,12 @@
         "persistent": {
           "type": "boolean",
           "x-omitempty": false
+        },
+        "preferredClaimKeys": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
         },
         "requestedRegions": {
           "items": {
@@ -3609,6 +3943,15 @@
         "deployment": {
           "type": "string"
         },
+        "dsSource": {
+          "type": "string"
+        },
+        "fallbackClaimKeys": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
         "inactiveTimeout": {
           "format": "int32",
           "type": "integer"
@@ -3634,6 +3977,12 @@
         "persistent": {
           "type": "boolean",
           "x-omitempty": false
+        },
+        "preferredClaimKeys": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
         },
         "requestedRegions": {
           "items": {
@@ -3681,6 +4030,15 @@
         "deployment": {
           "type": "string"
         },
+        "dsSource": {
+          "type": "string"
+        },
+        "fallbackClaimKeys": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
         "inactiveTimeout": {
           "format": "int32",
           "type": "integer"
@@ -3702,6 +4060,12 @@
         "minPlayers": {
           "format": "int32",
           "type": "integer"
+        },
+        "preferredClaimKeys": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
         },
         "requestedRegions": {
           "items": {
@@ -4115,6 +4479,12 @@
             "$ref": "#/definitions/models.UserPlatformInfo"
           },
           "type": "array"
+        },
+        "roles": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
         }
       },
       "required": [
@@ -4142,6 +4512,12 @@
           },
           "type": "array"
         },
+        "roles": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
         "userID": {
           "type": "string"
         }
@@ -4151,6 +4527,7 @@
         "currentPlatform",
         "data",
         "platforms",
+        "roles",
         "userID"
       ]
     },
@@ -4171,6 +4548,15 @@
         },
         "deployment": {
           "type": "string"
+        },
+        "dsSource": {
+          "type": "string"
+        },
+        "fallbackClaimKeys": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
         },
         "inactiveTimeout": {
           "format": "int32",
@@ -4197,6 +4583,12 @@
         "persistent": {
           "type": "boolean",
           "x-omitempty": false
+        },
+        "preferredClaimKeys": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
         },
         "requestedRegions": {
           "items": {
@@ -4283,6 +4675,15 @@
         "deployment": {
           "type": "string"
         },
+        "dsSource": {
+          "type": "string"
+        },
+        "fallbackClaimKeys": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
         "inactiveTimeout": {
           "format": "int32",
           "type": "integer"
@@ -4308,6 +4709,12 @@
         "persistent": {
           "type": "boolean",
           "x-omitempty": false
+        },
+        "preferredClaimKeys": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
         },
         "requestedRegions": {
           "items": {
@@ -4376,6 +4783,12 @@
         "deployment": {
           "type": "string"
         },
+        "fallbackClaimKeys": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
         "inactiveTimeout": {
           "format": "int32",
           "type": "integer"
@@ -4397,6 +4810,12 @@
         "minPlayers": {
           "format": "int32",
           "type": "integer"
+        },
+        "preferredClaimKeys": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
         },
         "requestedRegions": {
           "items": {
@@ -4628,6 +5047,9 @@
         "session_id": {
           "type": "string"
         },
+        "source": {
+          "type": "string"
+        },
         "status": {
           "type": "string"
         }
@@ -4648,6 +5070,7 @@
         "provider",
         "region",
         "session_id",
+        "source",
         "status"
       ]
     },
@@ -4765,9 +5188,9 @@
     "path": "/session/apidocs/api.json"
   },
   "x-version": {
-    "buildDate": "2023-05-05T02:09:08+00:00",
-    "gitHash": "a82e62425a24488818546ae7202a0ab7cbb6e5de",
-    "rolesSeedingVersion": "0.0.4",
+    "buildDate": "2023-05-16T02:04:11+00:00",
+    "gitHash": "a835410b7fe55ffa06aa2dfadd2e844e8faa6f3d",
+    "rolesSeedingVersion": "0.0.16",
     "version": "2.12.0"
   }
 }

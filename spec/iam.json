@@ -16207,6 +16207,14 @@
             "name": "platformId",
             "required": true,
             "type": "string"
+          },
+          {
+            "default": false,
+            "description": "if this is true, the platform user id in response will be raw id, if it is false, some platform user id will be encrypted, eg: xbox",
+            "in": "query",
+            "name": "rawPUID",
+            "type": "boolean",
+            "x-omitempty": false
           }
         ],
         "produces": [
@@ -30878,6 +30886,7 @@
           "type": "string"
         },
         "bans": {
+          "description": "present if it is user token",
           "items": {
             "$ref": "#/definitions/accountcommon.JWTBanV3"
           },
@@ -30902,6 +30911,7 @@
           "type": "string"
         },
         "namespace_roles": {
+          "description": "present if it is user token",
           "items": {
             "$ref": "#/definitions/accountcommon.NamespaceRole"
           },
@@ -30929,6 +30939,7 @@
           "type": "string"
         },
         "roles": {
+          "description": "present if it is user token",
           "items": {
             "type": "string"
           },
@@ -30950,12 +30961,9 @@
       },
       "required": [
         "access_token",
-        "bans",
         "expires_in",
         "namespace",
-        "namespace_roles",
         "permissions",
-        "roles",
         "scope",
         "token_type"
       ]
@@ -30983,6 +30991,7 @@
           "type": "string"
         },
         "bans": {
+          "description": "present if it is user token",
           "items": {
             "$ref": "#/definitions/accountcommon.JWTBanV3"
           },
@@ -31007,6 +31016,7 @@
           "type": "string"
         },
         "namespace_roles": {
+          "description": "present if it is user token",
           "items": {
             "$ref": "#/definitions/accountcommon.NamespaceRole"
           },
@@ -31034,6 +31044,7 @@
           "type": "string"
         },
         "roles": {
+          "description": "present if it is user token",
           "items": {
             "type": "string"
           },
@@ -31055,12 +31066,9 @@
       },
       "required": [
         "access_token",
-        "bans",
         "expires_in",
         "namespace",
-        "namespace_roles",
         "permissions",
-        "roles",
         "scope",
         "token_type"
       ]
@@ -31130,8 +31138,8 @@
     "path": "/iam/apidocs/api.json"
   },
   "x-version": {
-    "buildDate": "2023-05-08T01:04:00+00:00",
-    "gitHash": "ebcac68efa46f5944aa46bc5cbc73a3c7dc609e5",
+    "buildDate": "2023-05-09T01:23:30+00:00",
+    "gitHash": "694a9655e2325d2aacfdb0414dfe2a5ebc284bac",
     "name": "justice-iam-service",
     "realm": "staging",
     "version": "5.34.0",

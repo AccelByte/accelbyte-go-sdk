@@ -51,6 +51,12 @@ func (o *DeleteUserStatItemsReader) ReadResponse(response runtime.ClientResponse
 			return nil, err
 		}
 		return result, nil
+	case 422:
+		result := NewDeleteUserStatItemsUnprocessableEntity()
+		if err := result.readResponse(response, consumer, o.formats); err != nil {
+			return nil, err
+		}
+		return result, nil
 
 	default:
 		data, err := ioutil.ReadAll(response.Body())
@@ -238,6 +244,59 @@ func (o *DeleteUserStatItemsNotFound) readResponse(response runtime.ClientRespon
 	}
 
 	o.Payload = new(socialclientmodels.ErrorEntity)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
+	}
+
+	return nil
+}
+
+// NewDeleteUserStatItemsUnprocessableEntity creates a DeleteUserStatItemsUnprocessableEntity with default headers values
+func NewDeleteUserStatItemsUnprocessableEntity() *DeleteUserStatItemsUnprocessableEntity {
+	return &DeleteUserStatItemsUnprocessableEntity{}
+}
+
+/*DeleteUserStatItemsUnprocessableEntity handles this case with default header values.
+
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20002</td><td>validation error</td></tr></table>
+*/
+type DeleteUserStatItemsUnprocessableEntity struct {
+	Payload *socialclientmodels.ValidationErrorEntity
+}
+
+func (o *DeleteUserStatItemsUnprocessableEntity) Error() string {
+	return fmt.Sprintf("[DELETE /social/v1/admin/namespaces/{namespace}/users/{userId}/stats/{statCode}/statitems][%d] deleteUserStatItemsUnprocessableEntity  %+v", 422, o.ToJSONString())
+}
+
+func (o *DeleteUserStatItemsUnprocessableEntity) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
+}
+
+func (o *DeleteUserStatItemsUnprocessableEntity) GetPayload() *socialclientmodels.ValidationErrorEntity {
+	return o.Payload
+}
+
+func (o *DeleteUserStatItemsUnprocessableEntity) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+	// handle file responses
+	contentDisposition := response.GetHeader("Content-Disposition")
+	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
+		consumer = runtime.ByteStreamConsumer()
+	}
+
+	o.Payload = new(socialclientmodels.ValidationErrorEntity)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {

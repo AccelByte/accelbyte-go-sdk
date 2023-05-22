@@ -76,7 +76,7 @@ type ListServerParams struct {
 	*/
 	Region *string
 	/*Count
-	  how many items to return, default: 50
+	  how many items to return
 
 	*/
 	Count int64

@@ -58,6 +58,7 @@ Field descriptions:
 - userID : platform userID
 - data : other data that the player wants to store.
 - currentPlatform : latest user game platform.
+- roles : user role for matchmaking role base support.
 */
 func (a *Client) AdminQueryPlayerAttributes(params *AdminQueryPlayerAttributesParams, authInfo runtime.ClientAuthInfoWriter) (*AdminQueryPlayerAttributesOK, *AdminQueryPlayerAttributesBadRequest, *AdminQueryPlayerAttributesUnauthorized, *AdminQueryPlayerAttributesNotFound, *AdminQueryPlayerAttributesInternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -124,6 +125,7 @@ Field descriptions:
 - userID : platform userID
 - data : other data that the player wants to store.
 - currentPlatform : latest user game platform.
+- roles : user role for matchmaking role base support.
 */
 func (a *Client) AdminQueryPlayerAttributesShort(params *AdminQueryPlayerAttributesParams, authInfo runtime.ClientAuthInfoWriter) (*AdminQueryPlayerAttributesOK, error) {
 	// TODO: Validate the params before sending
@@ -188,6 +190,7 @@ Field descriptions:
 - userID : platform userID
 - data : other data that the player wants to store.
 - currentPlatform : latest user game platform.
+- roles : user role for matchmaking role base support.
 */
 func (a *Client) AdminGetPlayerAttributes(params *AdminGetPlayerAttributesParams, authInfo runtime.ClientAuthInfoWriter) (*AdminGetPlayerAttributesOK, *AdminGetPlayerAttributesBadRequest, *AdminGetPlayerAttributesUnauthorized, *AdminGetPlayerAttributesNotFound, *AdminGetPlayerAttributesInternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -254,6 +257,7 @@ Field descriptions:
 - userID : platform userID
 - data : other data that the player wants to store.
 - currentPlatform : latest user game platform.
+- roles : user role for matchmaking role base support.
 */
 func (a *Client) AdminGetPlayerAttributesShort(params *AdminGetPlayerAttributesParams, authInfo runtime.ClientAuthInfoWriter) (*AdminGetPlayerAttributesOK, error) {
 	// TODO: Validate the params before sending
@@ -318,6 +322,7 @@ Field descriptions:
 - userID : platform userID
 - data : other data that the player wants to store.
 - currentPlatform : latest user game platform.
+- roles : user role for matchmaking role base support.
 */
 func (a *Client) PublicGetPlayerAttributes(params *PublicGetPlayerAttributesParams, authInfo runtime.ClientAuthInfoWriter) (*PublicGetPlayerAttributesOK, *PublicGetPlayerAttributesBadRequest, *PublicGetPlayerAttributesUnauthorized, *PublicGetPlayerAttributesNotFound, *PublicGetPlayerAttributesInternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -384,6 +389,7 @@ Field descriptions:
 - userID : platform userID
 - data : other data that the player wants to store.
 - currentPlatform : latest user game platform.
+- roles : user role for matchmaking role base support.
 */
 func (a *Client) PublicGetPlayerAttributesShort(params *PublicGetPlayerAttributesParams, authInfo runtime.ClientAuthInfoWriter) (*PublicGetPlayerAttributesOK, error) {
 	// TODO: Validate the params before sending
@@ -448,6 +454,7 @@ Field descriptions:
 - userID : platform userID
 - data : other data that the player wants to store.
 - currentPlatform : latest user game platform.
+- roles : user role for matchmaking role base support.
 */
 func (a *Client) PublicStorePlayerAttributes(params *PublicStorePlayerAttributesParams, authInfo runtime.ClientAuthInfoWriter) (*PublicStorePlayerAttributesOK, *PublicStorePlayerAttributesBadRequest, *PublicStorePlayerAttributesUnauthorized, *PublicStorePlayerAttributesInternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -511,6 +518,7 @@ Field descriptions:
 - userID : platform userID
 - data : other data that the player wants to store.
 - currentPlatform : latest user game platform.
+- roles : user role for matchmaking role base support.
 */
 func (a *Client) PublicStorePlayerAttributesShort(params *PublicStorePlayerAttributesParams, authInfo runtime.ClientAuthInfoWriter) (*PublicStorePlayerAttributesOK, error) {
 	// TODO: Validate the params before sending

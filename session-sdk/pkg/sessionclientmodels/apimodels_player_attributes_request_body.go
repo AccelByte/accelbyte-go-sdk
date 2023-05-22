@@ -35,6 +35,9 @@ type ApimodelsPlayerAttributesRequestBody struct {
 	// platforms
 	// Required: true
 	Platforms []*ModelsUserPlatformInfo `json:"platforms"`
+
+	// roles
+	Roles []string `json:"roles,omitempty"`
 }
 
 // Validate validates this Apimodels player attributes request body

@@ -33,6 +33,12 @@ func (o *PublicQueryUserStatItemsReader) ReadResponse(response runtime.ClientRes
 			return nil, err
 		}
 		return result, nil
+	case 422:
+		result := NewPublicQueryUserStatItemsUnprocessableEntity()
+		if err := result.readResponse(response, consumer, o.formats); err != nil {
+			return nil, err
+		}
+		return result, nil
 
 	default:
 		data, err := ioutil.ReadAll(response.Body())
@@ -88,6 +94,59 @@ func (o *PublicQueryUserStatItemsOK) readResponse(response runtime.ClientRespons
 	}
 
 	o.Payload = new(socialclientmodels.UserStatItemPagingSlicedResult)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
+	}
+
+	return nil
+}
+
+// NewPublicQueryUserStatItemsUnprocessableEntity creates a PublicQueryUserStatItemsUnprocessableEntity with default headers values
+func NewPublicQueryUserStatItemsUnprocessableEntity() *PublicQueryUserStatItemsUnprocessableEntity {
+	return &PublicQueryUserStatItemsUnprocessableEntity{}
+}
+
+/*PublicQueryUserStatItemsUnprocessableEntity handles this case with default header values.
+
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20002</td><td>validation error</td></tr></table>
+*/
+type PublicQueryUserStatItemsUnprocessableEntity struct {
+	Payload *socialclientmodels.ValidationErrorEntity
+}
+
+func (o *PublicQueryUserStatItemsUnprocessableEntity) Error() string {
+	return fmt.Sprintf("[GET /social/v1/public/namespaces/{namespace}/users/{userId}/statitems][%d] publicQueryUserStatItemsUnprocessableEntity  %+v", 422, o.ToJSONString())
+}
+
+func (o *PublicQueryUserStatItemsUnprocessableEntity) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
+}
+
+func (o *PublicQueryUserStatItemsUnprocessableEntity) GetPayload() *socialclientmodels.ValidationErrorEntity {
+	return o.Payload
+}
+
+func (o *PublicQueryUserStatItemsUnprocessableEntity) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+	// handle file responses
+	contentDisposition := response.GetHeader("Content-Disposition")
+	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
+		consumer = runtime.ByteStreamConsumer()
+	}
+
+	o.Payload = new(socialclientmodels.ValidationErrorEntity)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {

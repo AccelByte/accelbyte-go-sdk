@@ -1487,7 +1487,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "Delete user ranking across leaderboard\nRequired permission: ADMIN:NAMESPACE:{namespace}:LEADERBOARD:USER [DELETE]\n\nRemove entry with provided userId from leaderboard. \nIf leaderboard with given leaderboard code not found, it will return http status not found (404).\nIf the leaderboard is found and no entry found in it, it will still return success (204) \n",
+        "description": "Delete user ranking across leaderboard\nRequired permission: ADMIN:NAMESPACE:{namespace}:LEADERBOARD:USER [DELETE]\n\nRemove entry with provided userId from leaderboard.\n",
         "operationId": "deleteUserRankingsAdminV1",
         "parameters": [
           {
@@ -3737,6 +3737,90 @@
         ]
       }
     },
+    "/leaderboard/v3/admin/namespaces/{namespace}/leaderboards/{leaderboardCode}/users/hidden": {
+      "get": {
+        "description": "Return hidden users on a leaderboard",
+        "operationId": "GetHiddenUsersV3",
+        "parameters": [
+          {
+            "description": "Leaderboard Code",
+            "in": "path",
+            "name": "leaderboardCode",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "namespace of the game",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "size of displayed data",
+            "in": "query",
+            "name": "limit",
+            "type": "integer"
+          },
+          {
+            "description": "The start position that points to query data",
+            "in": "query",
+            "name": "offset",
+            "type": "integer"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/models.GetHiddenUserResponse"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "summary": "Get hidden users on a leaderboard",
+        "tags": [
+          "UserVisibilityV3"
+        ]
+      }
+    },
     "/leaderboard/v3/admin/namespaces/{namespace}/leaderboards/{leaderboardCode}/users/{userId}": {
       "delete": {
         "consumes": [
@@ -3887,12 +3971,179 @@
         ]
       }
     },
+    "/leaderboard/v3/admin/namespaces/{namespace}/leaderboards/{leaderboardCode}/users/{userId}/visibility": {
+      "get": {
+        "description": "User with false visibility status will have \u0026lt;b\u0026gt;hidden\u0026lt;/b\u0026gt; attribute set to true on it\u0026#39;s leaderboard entry",
+        "operationId": "GetUserVisibilityStatusV3",
+        "parameters": [
+          {
+            "description": "Leaderboard Code",
+            "in": "path",
+            "name": "leaderboardCode",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "namespace of the game",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "User ID",
+            "in": "path",
+            "name": "userId",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/models.GetUserVisibilityResponse"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "summary": "Get user visibility status",
+        "tags": [
+          "UserVisibilityV3"
+        ]
+      },
+      "put": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "User with false visibility status will have \u0026lt;b\u0026gt;hidden\u0026lt;/b\u0026gt; attribute  set to true on it\u0026#39;s leaderboard entry",
+        "operationId": "SetUserLeaderboardVisibilityV3",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/models.SetUserVisibilityRequest"
+            }
+          },
+          {
+            "description": "Leaderboard Code",
+            "in": "path",
+            "name": "leaderboardCode",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "namespace of the game",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "User ID",
+            "in": "path",
+            "name": "userId",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/models.GetUserVisibilityResponse"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "summary": "Set user visibility status on a specific leaderboard code",
+        "tags": [
+          "UserVisibilityV3"
+        ]
+      }
+    },
     "/leaderboard/v3/admin/namespaces/{namespace}/users/{userId}": {
       "delete": {
         "consumes": [
           "application/json"
         ],
-        "description": "Delete user ranking across leaderboard\nRequired permission: ADMIN:NAMESPACE:{namespace}:LEADERBOARD:USER [DELETE]\n\nRemove entry with provided userId from leaderboard. \nIf leaderboard with given leaderboard code not found, it will return http status not found (404).\nIf the leaderboard is found and no entry found in it, it will still return success (204) \n",
+        "description": "Delete user ranking across leaderboard\nRequired permission: ADMIN:NAMESPACE:{namespace}:LEADERBOARD:USER [DELETE]\n\nRemove entry with provided userId from leaderboard.\n",
         "operationId": "deleteUserRankingsAdminV3",
         "parameters": [
           {
@@ -3964,6 +4215,89 @@
         "summary": "Delete user ranking across leaderboard(s)",
         "tags": [
           "LeaderboardDataV3"
+        ]
+      }
+    },
+    "/leaderboard/v3/admin/namespaces/{namespace}/users/{userId}/visibility": {
+      "put": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "User with false visibility status will have \u0026lt;b\u0026gt;hidden\u0026lt;/b\u0026gt; attribute  set to true on it\u0026#39;s leaderboard entry",
+        "operationId": "SetUserVisibilityV3",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/models.SetUserVisibilityRequest"
+            }
+          },
+          {
+            "description": "namespace of the game",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "User ID",
+            "in": "path",
+            "name": "userId",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/models.GetUserVisibilityResponse"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "summary": "Set user visibility status on a all current leaderboard",
+        "tags": [
+          "UserVisibilityV3"
         ]
       }
     },
@@ -5332,8 +5666,8 @@
     "path": "/leaderboard/apidocs/api.json"
   },
   "x-version": {
-    "buildDate": "2023-05-08T01:09:27+00:00",
-    "gitHash": "5fabe0b099484488ff8f36f1ac76e83cee1422a3",
+    "buildDate": "2023-05-12T07:50:30+00:00",
+    "gitHash": "e073f6d3909604c0c488fa929e1f2f799875d5d8",
     "name": "justice-leaderboard-service",
     "realm": "staging",
     "version": "2.21.0",

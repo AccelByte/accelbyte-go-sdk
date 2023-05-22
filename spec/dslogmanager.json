@@ -8,7 +8,7 @@
     },
     "description": "Justice DS Log Manager Service",
     "title": "justice-ds-log-manager-service",
-    "version": "3.2.0"
+    "version": "3.3.0"
   },
   "schemes": [
     "https"
@@ -896,6 +896,9 @@
         "deployment": {
           "type": "string"
         },
+        "deployment_override": {
+          "type": "string"
+        },
         "game_version": {
           "type": "string"
         },
@@ -974,6 +977,7 @@
         "alternate_ips",
         "cpu_limit",
         "deployment",
+        "deployment_override",
         "game_version",
         "image_version",
         "ip",
@@ -1048,11 +1052,11 @@
     "path": "/dslogmanager/apidocs/api.json"
   },
   "x-version": {
-    "buildDate": "2023-02-23T11:43:57+00:00",
-    "gitHash": "f1fcac43a2ad2f03c68d210a623af348c95103f5",
+    "buildDate": "2023-05-22T01:58:25+00:00",
+    "gitHash": "948e63e05e76e71d7658fa0d326425f09ace8764",
     "name": "justice-ds-log-manager-service",
-    "revisionID": "3.2.0",
-    "version": "3.2.0",
+    "revisionID": "3.3.0",
+    "version": "3.3.0",
     "version-roles-seeding": "0.0.3"
   }
 }

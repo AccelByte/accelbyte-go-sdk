@@ -45,6 +45,9 @@ type ModelsDeploymentWithOverride struct {
 	// Required: true
 	EnableRegionOverrides *bool `json:"enable_region_overrides"`
 
+	// extendable_session
+	ExtendableSession bool `json:"extendable_session"`
+
 	// game_version
 	// Required: true
 	GameVersion *string `json:"game_version"`

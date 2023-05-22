@@ -40,7 +40,7 @@ type ClientService interface {
 	BulkFetchOrDefaultStatItemsShort(params *BulkFetchOrDefaultStatItemsParams, authInfo runtime.ClientAuthInfoWriter) (*BulkFetchOrDefaultStatItemsOK, error)
 	BulkResetUserStatItem(params *BulkResetUserStatItemParams, authInfo runtime.ClientAuthInfoWriter) (*BulkResetUserStatItemOK, *BulkResetUserStatItemUnprocessableEntity, error)
 	BulkResetUserStatItemShort(params *BulkResetUserStatItemParams, authInfo runtime.ClientAuthInfoWriter) (*BulkResetUserStatItemOK, error)
-	GetUserStatItems(params *GetUserStatItemsParams, authInfo runtime.ClientAuthInfoWriter) (*GetUserStatItemsOK, error)
+	GetUserStatItems(params *GetUserStatItemsParams, authInfo runtime.ClientAuthInfoWriter) (*GetUserStatItemsOK, *GetUserStatItemsUnprocessableEntity, error)
 	GetUserStatItemsShort(params *GetUserStatItemsParams, authInfo runtime.ClientAuthInfoWriter) (*GetUserStatItemsOK, error)
 	BulkCreateUserStatItems(params *BulkCreateUserStatItemsParams, authInfo runtime.ClientAuthInfoWriter) (*BulkCreateUserStatItemsOK, *BulkCreateUserStatItemsUnprocessableEntity, error)
 	BulkCreateUserStatItemsShort(params *BulkCreateUserStatItemsParams, authInfo runtime.ClientAuthInfoWriter) (*BulkCreateUserStatItemsOK, error)
@@ -50,13 +50,13 @@ type ClientService interface {
 	BulkIncUserStatItemValue1Short(params *BulkIncUserStatItemValue1Params, authInfo runtime.ClientAuthInfoWriter) (*BulkIncUserStatItemValue1OK, error)
 	BulkResetUserStatItem1(params *BulkResetUserStatItem1Params, authInfo runtime.ClientAuthInfoWriter) (*BulkResetUserStatItem1OK, *BulkResetUserStatItem1UnprocessableEntity, error)
 	BulkResetUserStatItem1Short(params *BulkResetUserStatItem1Params, authInfo runtime.ClientAuthInfoWriter) (*BulkResetUserStatItem1OK, error)
-	CreateUserStatItem(params *CreateUserStatItemParams, authInfo runtime.ClientAuthInfoWriter) (*CreateUserStatItemCreated, *CreateUserStatItemNotFound, *CreateUserStatItemConflict, error)
+	CreateUserStatItem(params *CreateUserStatItemParams, authInfo runtime.ClientAuthInfoWriter) (*CreateUserStatItemCreated, *CreateUserStatItemNotFound, *CreateUserStatItemConflict, *CreateUserStatItemUnprocessableEntity, error)
 	CreateUserStatItemShort(params *CreateUserStatItemParams, authInfo runtime.ClientAuthInfoWriter) (*CreateUserStatItemCreated, error)
-	DeleteUserStatItems(params *DeleteUserStatItemsParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteUserStatItemsNoContent, *DeleteUserStatItemsUnauthorized, *DeleteUserStatItemsForbidden, *DeleteUserStatItemsNotFound, error)
+	DeleteUserStatItems(params *DeleteUserStatItemsParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteUserStatItemsNoContent, *DeleteUserStatItemsUnauthorized, *DeleteUserStatItemsForbidden, *DeleteUserStatItemsNotFound, *DeleteUserStatItemsUnprocessableEntity, error)
 	DeleteUserStatItemsShort(params *DeleteUserStatItemsParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteUserStatItemsNoContent, error)
-	IncUserStatItemValue(params *IncUserStatItemValueParams, authInfo runtime.ClientAuthInfoWriter) (*IncUserStatItemValueOK, *IncUserStatItemValueBadRequest, *IncUserStatItemValueNotFound, *IncUserStatItemValueConflict, error)
+	IncUserStatItemValue(params *IncUserStatItemValueParams, authInfo runtime.ClientAuthInfoWriter) (*IncUserStatItemValueOK, *IncUserStatItemValueBadRequest, *IncUserStatItemValueNotFound, *IncUserStatItemValueConflict, *IncUserStatItemValueUnprocessableEntity, error)
 	IncUserStatItemValueShort(params *IncUserStatItemValueParams, authInfo runtime.ClientAuthInfoWriter) (*IncUserStatItemValueOK, error)
-	ResetUserStatItemValue(params *ResetUserStatItemValueParams, authInfo runtime.ClientAuthInfoWriter) (*ResetUserStatItemValueOK, *ResetUserStatItemValueBadRequest, *ResetUserStatItemValueNotFound, error)
+	ResetUserStatItemValue(params *ResetUserStatItemValueParams, authInfo runtime.ClientAuthInfoWriter) (*ResetUserStatItemValueOK, *ResetUserStatItemValueBadRequest, *ResetUserStatItemValueNotFound, *ResetUserStatItemValueUnprocessableEntity, error)
 	ResetUserStatItemValueShort(params *ResetUserStatItemValueParams, authInfo runtime.ClientAuthInfoWriter) (*ResetUserStatItemValueOK, error)
 	BulkFetchStatItems1(params *BulkFetchStatItems1Params, authInfo runtime.ClientAuthInfoWriter) (*BulkFetchStatItems1OK, *BulkFetchStatItems1UnprocessableEntity, error)
 	BulkFetchStatItems1Short(params *BulkFetchStatItems1Params, authInfo runtime.ClientAuthInfoWriter) (*BulkFetchStatItems1OK, error)
@@ -66,7 +66,7 @@ type ClientService interface {
 	PublicBulkIncUserStatItemValueShort(params *PublicBulkIncUserStatItemValueParams, authInfo runtime.ClientAuthInfoWriter) (*PublicBulkIncUserStatItemValueOK, error)
 	BulkResetUserStatItem2(params *BulkResetUserStatItem2Params, authInfo runtime.ClientAuthInfoWriter) (*BulkResetUserStatItem2OK, *BulkResetUserStatItem2UnprocessableEntity, error)
 	BulkResetUserStatItem2Short(params *BulkResetUserStatItem2Params, authInfo runtime.ClientAuthInfoWriter) (*BulkResetUserStatItem2OK, error)
-	PublicQueryUserStatItems(params *PublicQueryUserStatItemsParams, authInfo runtime.ClientAuthInfoWriter) (*PublicQueryUserStatItemsOK, error)
+	PublicQueryUserStatItems(params *PublicQueryUserStatItemsParams, authInfo runtime.ClientAuthInfoWriter) (*PublicQueryUserStatItemsOK, *PublicQueryUserStatItemsUnprocessableEntity, error)
 	PublicQueryUserStatItemsShort(params *PublicQueryUserStatItemsParams, authInfo runtime.ClientAuthInfoWriter) (*PublicQueryUserStatItemsOK, error)
 	PublicBulkCreateUserStatItems(params *PublicBulkCreateUserStatItemsParams, authInfo runtime.ClientAuthInfoWriter) (*PublicBulkCreateUserStatItemsOK, *PublicBulkCreateUserStatItemsUnprocessableEntity, error)
 	PublicBulkCreateUserStatItemsShort(params *PublicBulkCreateUserStatItemsParams, authInfo runtime.ClientAuthInfoWriter) (*PublicBulkCreateUserStatItemsOK, error)
@@ -78,15 +78,15 @@ type ClientService interface {
 	BulkIncUserStatItemValue2Short(params *BulkIncUserStatItemValue2Params, authInfo runtime.ClientAuthInfoWriter) (*BulkIncUserStatItemValue2OK, error)
 	BulkResetUserStatItem3(params *BulkResetUserStatItem3Params, authInfo runtime.ClientAuthInfoWriter) (*BulkResetUserStatItem3OK, *BulkResetUserStatItem3UnprocessableEntity, error)
 	BulkResetUserStatItem3Short(params *BulkResetUserStatItem3Params, authInfo runtime.ClientAuthInfoWriter) (*BulkResetUserStatItem3OK, error)
-	PublicCreateUserStatItem(params *PublicCreateUserStatItemParams, authInfo runtime.ClientAuthInfoWriter) (*PublicCreateUserStatItemCreated, *PublicCreateUserStatItemNotFound, *PublicCreateUserStatItemConflict, error)
+	PublicCreateUserStatItem(params *PublicCreateUserStatItemParams, authInfo runtime.ClientAuthInfoWriter) (*PublicCreateUserStatItemCreated, *PublicCreateUserStatItemNotFound, *PublicCreateUserStatItemConflict, *PublicCreateUserStatItemUnprocessableEntity, error)
 	PublicCreateUserStatItemShort(params *PublicCreateUserStatItemParams, authInfo runtime.ClientAuthInfoWriter) (*PublicCreateUserStatItemCreated, error)
-	DeleteUserStatItems1(params *DeleteUserStatItems1Params, authInfo runtime.ClientAuthInfoWriter) (*DeleteUserStatItems1NoContent, *DeleteUserStatItems1Unauthorized, *DeleteUserStatItems1Forbidden, *DeleteUserStatItems1NotFound, error)
+	DeleteUserStatItems1(params *DeleteUserStatItems1Params, authInfo runtime.ClientAuthInfoWriter) (*DeleteUserStatItems1NoContent, *DeleteUserStatItems1Unauthorized, *DeleteUserStatItems1Forbidden, *DeleteUserStatItems1NotFound, *DeleteUserStatItems1UnprocessableEntity, error)
 	DeleteUserStatItems1Short(params *DeleteUserStatItems1Params, authInfo runtime.ClientAuthInfoWriter) (*DeleteUserStatItems1NoContent, error)
-	PublicIncUserStatItem(params *PublicIncUserStatItemParams, authInfo runtime.ClientAuthInfoWriter) (*PublicIncUserStatItemOK, *PublicIncUserStatItemBadRequest, *PublicIncUserStatItemNotFound, *PublicIncUserStatItemConflict, error)
+	PublicIncUserStatItem(params *PublicIncUserStatItemParams, authInfo runtime.ClientAuthInfoWriter) (*PublicIncUserStatItemOK, *PublicIncUserStatItemBadRequest, *PublicIncUserStatItemNotFound, *PublicIncUserStatItemConflict, *PublicIncUserStatItemUnprocessableEntity, error)
 	PublicIncUserStatItemShort(params *PublicIncUserStatItemParams, authInfo runtime.ClientAuthInfoWriter) (*PublicIncUserStatItemOK, error)
-	PublicIncUserStatItemValue(params *PublicIncUserStatItemValueParams, authInfo runtime.ClientAuthInfoWriter) (*PublicIncUserStatItemValueOK, *PublicIncUserStatItemValueBadRequest, *PublicIncUserStatItemValueNotFound, *PublicIncUserStatItemValueConflict, error)
+	PublicIncUserStatItemValue(params *PublicIncUserStatItemValueParams, authInfo runtime.ClientAuthInfoWriter) (*PublicIncUserStatItemValueOK, *PublicIncUserStatItemValueBadRequest, *PublicIncUserStatItemValueNotFound, *PublicIncUserStatItemValueConflict, *PublicIncUserStatItemValueUnprocessableEntity, error)
 	PublicIncUserStatItemValueShort(params *PublicIncUserStatItemValueParams, authInfo runtime.ClientAuthInfoWriter) (*PublicIncUserStatItemValueOK, error)
-	ResetUserStatItemValue1(params *ResetUserStatItemValue1Params, authInfo runtime.ClientAuthInfoWriter) (*ResetUserStatItemValue1OK, *ResetUserStatItemValue1BadRequest, *ResetUserStatItemValue1NotFound, error)
+	ResetUserStatItemValue1(params *ResetUserStatItemValue1Params, authInfo runtime.ClientAuthInfoWriter) (*ResetUserStatItemValue1OK, *ResetUserStatItemValue1BadRequest, *ResetUserStatItemValue1NotFound, *ResetUserStatItemValue1UnprocessableEntity, error)
 	ResetUserStatItemValue1Short(params *ResetUserStatItemValue1Params, authInfo runtime.ClientAuthInfoWriter) (*ResetUserStatItemValue1OK, error)
 	BulkUpdateUserStatItemV2(params *BulkUpdateUserStatItemV2Params, authInfo runtime.ClientAuthInfoWriter) (*BulkUpdateUserStatItemV2OK, *BulkUpdateUserStatItemV2UnprocessableEntity, error)
 	BulkUpdateUserStatItemV2Short(params *BulkUpdateUserStatItemV2Params, authInfo runtime.ClientAuthInfoWriter) (*BulkUpdateUserStatItemV2OK, error)
@@ -96,7 +96,7 @@ type ClientService interface {
 	BulkUpdateUserStatItemShort(params *BulkUpdateUserStatItemParams, authInfo runtime.ClientAuthInfoWriter) (*BulkUpdateUserStatItemOK, error)
 	BulkResetUserStatItemValues(params *BulkResetUserStatItemValuesParams, authInfo runtime.ClientAuthInfoWriter) (*BulkResetUserStatItemValuesOK, *BulkResetUserStatItemValuesUnprocessableEntity, error)
 	BulkResetUserStatItemValuesShort(params *BulkResetUserStatItemValuesParams, authInfo runtime.ClientAuthInfoWriter) (*BulkResetUserStatItemValuesOK, error)
-	DeleteUserStatItems2(params *DeleteUserStatItems2Params, authInfo runtime.ClientAuthInfoWriter) (*DeleteUserStatItems2NoContent, *DeleteUserStatItems2Unauthorized, *DeleteUserStatItems2Forbidden, *DeleteUserStatItems2NotFound, error)
+	DeleteUserStatItems2(params *DeleteUserStatItems2Params, authInfo runtime.ClientAuthInfoWriter) (*DeleteUserStatItems2NoContent, *DeleteUserStatItems2Unauthorized, *DeleteUserStatItems2Forbidden, *DeleteUserStatItems2NotFound, *DeleteUserStatItems2UnprocessableEntity, error)
 	DeleteUserStatItems2Short(params *DeleteUserStatItems2Params, authInfo runtime.ClientAuthInfoWriter) (*DeleteUserStatItems2NoContent, error)
 	UpdateUserStatItemValue(params *UpdateUserStatItemValueParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateUserStatItemValueOK, *UpdateUserStatItemValueBadRequest, *UpdateUserStatItemValueNotFound, *UpdateUserStatItemValueConflict, *UpdateUserStatItemValueUnprocessableEntity, error)
 	UpdateUserStatItemValueShort(params *UpdateUserStatItemValueParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateUserStatItemValueOK, error)
@@ -645,7 +645,7 @@ Other detail info:
               *  Required permission : resource="ADMIN:NAMESPACE:{namespace}:USER:{userId}:STATITEM", action=2 (READ)
               *  Returns : stat items
 */
-func (a *Client) GetUserStatItems(params *GetUserStatItemsParams, authInfo runtime.ClientAuthInfoWriter) (*GetUserStatItemsOK, error) {
+func (a *Client) GetUserStatItems(params *GetUserStatItemsParams, authInfo runtime.ClientAuthInfoWriter) (*GetUserStatItemsOK, *GetUserStatItemsUnprocessableEntity, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewGetUserStatItemsParams()
@@ -673,16 +673,19 @@ func (a *Client) GetUserStatItems(params *GetUserStatItemsParams, authInfo runti
 		Client:             params.HTTPClient,
 	})
 	if err != nil {
-		return nil, err
+		return nil, nil, err
 	}
 
 	switch v := result.(type) {
 
 	case *GetUserStatItemsOK:
-		return v, nil
+		return v, nil, nil
+
+	case *GetUserStatItemsUnprocessableEntity:
+		return nil, v, nil
 
 	default:
-		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+		return nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
@@ -728,6 +731,8 @@ func (a *Client) GetUserStatItemsShort(params *GetUserStatItemsParams, authInfo 
 
 	case *GetUserStatItemsOK:
 		return v, nil
+	case *GetUserStatItemsUnprocessableEntity:
+		return nil, v
 
 	default:
 		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
@@ -1155,7 +1160,7 @@ Other detail info:
                   *  Required permission : resource="ADMIN:NAMESPACE:{namespace}:USER:{userId}:STATITEM", action=1 (CREATE)
                   *  Returns : created user's statItem
 */
-func (a *Client) CreateUserStatItem(params *CreateUserStatItemParams, authInfo runtime.ClientAuthInfoWriter) (*CreateUserStatItemCreated, *CreateUserStatItemNotFound, *CreateUserStatItemConflict, error) {
+func (a *Client) CreateUserStatItem(params *CreateUserStatItemParams, authInfo runtime.ClientAuthInfoWriter) (*CreateUserStatItemCreated, *CreateUserStatItemNotFound, *CreateUserStatItemConflict, *CreateUserStatItemUnprocessableEntity, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewCreateUserStatItemParams()
@@ -1183,22 +1188,25 @@ func (a *Client) CreateUserStatItem(params *CreateUserStatItemParams, authInfo r
 		Client:             params.HTTPClient,
 	})
 	if err != nil {
-		return nil, nil, nil, err
+		return nil, nil, nil, nil, err
 	}
 
 	switch v := result.(type) {
 
 	case *CreateUserStatItemCreated:
-		return v, nil, nil, nil
+		return v, nil, nil, nil, nil
 
 	case *CreateUserStatItemNotFound:
-		return nil, v, nil, nil
+		return nil, v, nil, nil, nil
 
 	case *CreateUserStatItemConflict:
-		return nil, nil, v, nil
+		return nil, nil, v, nil, nil
+
+	case *CreateUserStatItemUnprocessableEntity:
+		return nil, nil, nil, v, nil
 
 	default:
-		return nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+		return nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
@@ -1248,6 +1256,8 @@ func (a *Client) CreateUserStatItemShort(params *CreateUserStatItemParams, authI
 		return nil, v
 	case *CreateUserStatItemConflict:
 		return nil, v
+	case *CreateUserStatItemUnprocessableEntity:
+		return nil, v
 
 	default:
 		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
@@ -1264,7 +1274,7 @@ Other detail info:
                   *  Required permission : resource="ADMIN:NAMESPACE:{namespace}:USER:{userId}:STATITEM", action=8 (DELETE)
                   *  Returns : no content
 */
-func (a *Client) DeleteUserStatItems(params *DeleteUserStatItemsParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteUserStatItemsNoContent, *DeleteUserStatItemsUnauthorized, *DeleteUserStatItemsForbidden, *DeleteUserStatItemsNotFound, error) {
+func (a *Client) DeleteUserStatItems(params *DeleteUserStatItemsParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteUserStatItemsNoContent, *DeleteUserStatItemsUnauthorized, *DeleteUserStatItemsForbidden, *DeleteUserStatItemsNotFound, *DeleteUserStatItemsUnprocessableEntity, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewDeleteUserStatItemsParams()
@@ -1292,25 +1302,28 @@ func (a *Client) DeleteUserStatItems(params *DeleteUserStatItemsParams, authInfo
 		Client:             params.HTTPClient,
 	})
 	if err != nil {
-		return nil, nil, nil, nil, err
+		return nil, nil, nil, nil, nil, err
 	}
 
 	switch v := result.(type) {
 
 	case *DeleteUserStatItemsNoContent:
-		return v, nil, nil, nil, nil
+		return v, nil, nil, nil, nil, nil
 
 	case *DeleteUserStatItemsUnauthorized:
-		return nil, v, nil, nil, nil
+		return nil, v, nil, nil, nil, nil
 
 	case *DeleteUserStatItemsForbidden:
-		return nil, nil, v, nil, nil
+		return nil, nil, v, nil, nil, nil
 
 	case *DeleteUserStatItemsNotFound:
-		return nil, nil, nil, v, nil
+		return nil, nil, nil, v, nil, nil
+
+	case *DeleteUserStatItemsUnprocessableEntity:
+		return nil, nil, nil, nil, v, nil
 
 	default:
-		return nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+		return nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
@@ -1363,6 +1376,8 @@ func (a *Client) DeleteUserStatItemsShort(params *DeleteUserStatItemsParams, aut
 		return nil, v
 	case *DeleteUserStatItemsNotFound:
 		return nil, v
+	case *DeleteUserStatItemsUnprocessableEntity:
+		return nil, v
 
 	default:
 		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
@@ -1378,7 +1393,7 @@ Other detail info:
                       *  Required permission : resource="ADMIN:NAMESPACE:{namespace}:USER:{userId}:STATITEM", action=4 (UPDATE)
                       *  Returns : updated user's statItem
 */
-func (a *Client) IncUserStatItemValue(params *IncUserStatItemValueParams, authInfo runtime.ClientAuthInfoWriter) (*IncUserStatItemValueOK, *IncUserStatItemValueBadRequest, *IncUserStatItemValueNotFound, *IncUserStatItemValueConflict, error) {
+func (a *Client) IncUserStatItemValue(params *IncUserStatItemValueParams, authInfo runtime.ClientAuthInfoWriter) (*IncUserStatItemValueOK, *IncUserStatItemValueBadRequest, *IncUserStatItemValueNotFound, *IncUserStatItemValueConflict, *IncUserStatItemValueUnprocessableEntity, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewIncUserStatItemValueParams()
@@ -1406,25 +1421,28 @@ func (a *Client) IncUserStatItemValue(params *IncUserStatItemValueParams, authIn
 		Client:             params.HTTPClient,
 	})
 	if err != nil {
-		return nil, nil, nil, nil, err
+		return nil, nil, nil, nil, nil, err
 	}
 
 	switch v := result.(type) {
 
 	case *IncUserStatItemValueOK:
-		return v, nil, nil, nil, nil
+		return v, nil, nil, nil, nil, nil
 
 	case *IncUserStatItemValueBadRequest:
-		return nil, v, nil, nil, nil
+		return nil, v, nil, nil, nil, nil
 
 	case *IncUserStatItemValueNotFound:
-		return nil, nil, v, nil, nil
+		return nil, nil, v, nil, nil, nil
 
 	case *IncUserStatItemValueConflict:
-		return nil, nil, nil, v, nil
+		return nil, nil, nil, v, nil, nil
+
+	case *IncUserStatItemValueUnprocessableEntity:
+		return nil, nil, nil, nil, v, nil
 
 	default:
-		return nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+		return nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
@@ -1476,6 +1494,8 @@ func (a *Client) IncUserStatItemValueShort(params *IncUserStatItemValueParams, a
 		return nil, v
 	case *IncUserStatItemValueConflict:
 		return nil, v
+	case *IncUserStatItemValueUnprocessableEntity:
+		return nil, v
 
 	default:
 		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
@@ -1493,7 +1513,7 @@ Other detail info:
 + *Required permission*: resource="ADMIN:NAMESPACE:{namespace}:USER:{userId}:STATITEM", action=4 (UPDATE)
 + *Returns*: updated user's statItem
 */
-func (a *Client) ResetUserStatItemValue(params *ResetUserStatItemValueParams, authInfo runtime.ClientAuthInfoWriter) (*ResetUserStatItemValueOK, *ResetUserStatItemValueBadRequest, *ResetUserStatItemValueNotFound, error) {
+func (a *Client) ResetUserStatItemValue(params *ResetUserStatItemValueParams, authInfo runtime.ClientAuthInfoWriter) (*ResetUserStatItemValueOK, *ResetUserStatItemValueBadRequest, *ResetUserStatItemValueNotFound, *ResetUserStatItemValueUnprocessableEntity, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewResetUserStatItemValueParams()
@@ -1521,22 +1541,25 @@ func (a *Client) ResetUserStatItemValue(params *ResetUserStatItemValueParams, au
 		Client:             params.HTTPClient,
 	})
 	if err != nil {
-		return nil, nil, nil, err
+		return nil, nil, nil, nil, err
 	}
 
 	switch v := result.(type) {
 
 	case *ResetUserStatItemValueOK:
-		return v, nil, nil, nil
+		return v, nil, nil, nil, nil
 
 	case *ResetUserStatItemValueBadRequest:
-		return nil, v, nil, nil
+		return nil, v, nil, nil, nil
 
 	case *ResetUserStatItemValueNotFound:
-		return nil, nil, v, nil
+		return nil, nil, v, nil, nil
+
+	case *ResetUserStatItemValueUnprocessableEntity:
+		return nil, nil, nil, v, nil
 
 	default:
-		return nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+		return nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
@@ -1587,6 +1610,8 @@ func (a *Client) ResetUserStatItemValueShort(params *ResetUserStatItemValueParam
 	case *ResetUserStatItemValueBadRequest:
 		return nil, v
 	case *ResetUserStatItemValueNotFound:
+		return nil, v
+	case *ResetUserStatItemValueUnprocessableEntity:
 		return nil, v
 
 	default:
@@ -2019,7 +2044,7 @@ Other detail info:
                       *  Required permission : resource="NAMESPACE:{namespace}:USER:{userId}:STATITEM", action=2 (READ)
                       *  Returns : stat items
 */
-func (a *Client) PublicQueryUserStatItems(params *PublicQueryUserStatItemsParams, authInfo runtime.ClientAuthInfoWriter) (*PublicQueryUserStatItemsOK, error) {
+func (a *Client) PublicQueryUserStatItems(params *PublicQueryUserStatItemsParams, authInfo runtime.ClientAuthInfoWriter) (*PublicQueryUserStatItemsOK, *PublicQueryUserStatItemsUnprocessableEntity, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewPublicQueryUserStatItemsParams()
@@ -2047,16 +2072,19 @@ func (a *Client) PublicQueryUserStatItems(params *PublicQueryUserStatItemsParams
 		Client:             params.HTTPClient,
 	})
 	if err != nil {
-		return nil, err
+		return nil, nil, err
 	}
 
 	switch v := result.(type) {
 
 	case *PublicQueryUserStatItemsOK:
-		return v, nil
+		return v, nil, nil
+
+	case *PublicQueryUserStatItemsUnprocessableEntity:
+		return nil, v, nil
 
 	default:
-		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+		return nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
@@ -2102,6 +2130,8 @@ func (a *Client) PublicQueryUserStatItemsShort(params *PublicQueryUserStatItemsP
 
 	case *PublicQueryUserStatItemsOK:
 		return v, nil
+	case *PublicQueryUserStatItemsUnprocessableEntity:
+		return nil, v
 
 	default:
 		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
@@ -2648,7 +2678,7 @@ Other detail info:
                       *  Required permission : resource="NAMESPACE:{namespace}:USER:{userId}:STATITEM", action=1 (CREATE)
                       *  Returns : created user's statItem
 */
-func (a *Client) PublicCreateUserStatItem(params *PublicCreateUserStatItemParams, authInfo runtime.ClientAuthInfoWriter) (*PublicCreateUserStatItemCreated, *PublicCreateUserStatItemNotFound, *PublicCreateUserStatItemConflict, error) {
+func (a *Client) PublicCreateUserStatItem(params *PublicCreateUserStatItemParams, authInfo runtime.ClientAuthInfoWriter) (*PublicCreateUserStatItemCreated, *PublicCreateUserStatItemNotFound, *PublicCreateUserStatItemConflict, *PublicCreateUserStatItemUnprocessableEntity, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewPublicCreateUserStatItemParams()
@@ -2676,22 +2706,25 @@ func (a *Client) PublicCreateUserStatItem(params *PublicCreateUserStatItemParams
 		Client:             params.HTTPClient,
 	})
 	if err != nil {
-		return nil, nil, nil, err
+		return nil, nil, nil, nil, err
 	}
 
 	switch v := result.(type) {
 
 	case *PublicCreateUserStatItemCreated:
-		return v, nil, nil, nil
+		return v, nil, nil, nil, nil
 
 	case *PublicCreateUserStatItemNotFound:
-		return nil, v, nil, nil
+		return nil, v, nil, nil, nil
 
 	case *PublicCreateUserStatItemConflict:
-		return nil, nil, v, nil
+		return nil, nil, v, nil, nil
+
+	case *PublicCreateUserStatItemUnprocessableEntity:
+		return nil, nil, nil, v, nil
 
 	default:
-		return nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+		return nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
@@ -2741,6 +2774,8 @@ func (a *Client) PublicCreateUserStatItemShort(params *PublicCreateUserStatItemP
 		return nil, v
 	case *PublicCreateUserStatItemConflict:
 		return nil, v
+	case *PublicCreateUserStatItemUnprocessableEntity:
+		return nil, v
 
 	default:
 		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
@@ -2756,7 +2791,7 @@ Other detail info:
                       *  Required permission : resource="NAMESPACE:{namespace}:USER:{userId}:STATITEM", action=8 (DELETE)
                       *  Returns : no content
 */
-func (a *Client) DeleteUserStatItems1(params *DeleteUserStatItems1Params, authInfo runtime.ClientAuthInfoWriter) (*DeleteUserStatItems1NoContent, *DeleteUserStatItems1Unauthorized, *DeleteUserStatItems1Forbidden, *DeleteUserStatItems1NotFound, error) {
+func (a *Client) DeleteUserStatItems1(params *DeleteUserStatItems1Params, authInfo runtime.ClientAuthInfoWriter) (*DeleteUserStatItems1NoContent, *DeleteUserStatItems1Unauthorized, *DeleteUserStatItems1Forbidden, *DeleteUserStatItems1NotFound, *DeleteUserStatItems1UnprocessableEntity, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewDeleteUserStatItems1Params()
@@ -2784,25 +2819,28 @@ func (a *Client) DeleteUserStatItems1(params *DeleteUserStatItems1Params, authIn
 		Client:             params.HTTPClient,
 	})
 	if err != nil {
-		return nil, nil, nil, nil, err
+		return nil, nil, nil, nil, nil, err
 	}
 
 	switch v := result.(type) {
 
 	case *DeleteUserStatItems1NoContent:
-		return v, nil, nil, nil, nil
+		return v, nil, nil, nil, nil, nil
 
 	case *DeleteUserStatItems1Unauthorized:
-		return nil, v, nil, nil, nil
+		return nil, v, nil, nil, nil, nil
 
 	case *DeleteUserStatItems1Forbidden:
-		return nil, nil, v, nil, nil
+		return nil, nil, v, nil, nil, nil
 
 	case *DeleteUserStatItems1NotFound:
-		return nil, nil, nil, v, nil
+		return nil, nil, nil, v, nil, nil
+
+	case *DeleteUserStatItems1UnprocessableEntity:
+		return nil, nil, nil, nil, v, nil
 
 	default:
-		return nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+		return nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
@@ -2854,6 +2892,8 @@ func (a *Client) DeleteUserStatItems1Short(params *DeleteUserStatItems1Params, a
 		return nil, v
 	case *DeleteUserStatItems1NotFound:
 		return nil, v
+	case *DeleteUserStatItems1UnprocessableEntity:
+		return nil, v
 
 	default:
 		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
@@ -2869,7 +2909,7 @@ Other detail info:
                           *  Required permission : resource="NAMESPACE:{namespace}:USER:{userId}:STATITEM", action=4 (UPDATE)
                           *  Returns : updated user's statItem
 */
-func (a *Client) PublicIncUserStatItem(params *PublicIncUserStatItemParams, authInfo runtime.ClientAuthInfoWriter) (*PublicIncUserStatItemOK, *PublicIncUserStatItemBadRequest, *PublicIncUserStatItemNotFound, *PublicIncUserStatItemConflict, error) {
+func (a *Client) PublicIncUserStatItem(params *PublicIncUserStatItemParams, authInfo runtime.ClientAuthInfoWriter) (*PublicIncUserStatItemOK, *PublicIncUserStatItemBadRequest, *PublicIncUserStatItemNotFound, *PublicIncUserStatItemConflict, *PublicIncUserStatItemUnprocessableEntity, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewPublicIncUserStatItemParams()
@@ -2897,25 +2937,28 @@ func (a *Client) PublicIncUserStatItem(params *PublicIncUserStatItemParams, auth
 		Client:             params.HTTPClient,
 	})
 	if err != nil {
-		return nil, nil, nil, nil, err
+		return nil, nil, nil, nil, nil, err
 	}
 
 	switch v := result.(type) {
 
 	case *PublicIncUserStatItemOK:
-		return v, nil, nil, nil, nil
+		return v, nil, nil, nil, nil, nil
 
 	case *PublicIncUserStatItemBadRequest:
-		return nil, v, nil, nil, nil
+		return nil, v, nil, nil, nil, nil
 
 	case *PublicIncUserStatItemNotFound:
-		return nil, nil, v, nil, nil
+		return nil, nil, v, nil, nil, nil
 
 	case *PublicIncUserStatItemConflict:
-		return nil, nil, nil, v, nil
+		return nil, nil, nil, v, nil, nil
+
+	case *PublicIncUserStatItemUnprocessableEntity:
+		return nil, nil, nil, nil, v, nil
 
 	default:
-		return nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+		return nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
@@ -2967,6 +3010,8 @@ func (a *Client) PublicIncUserStatItemShort(params *PublicIncUserStatItemParams,
 		return nil, v
 	case *PublicIncUserStatItemConflict:
 		return nil, v
+	case *PublicIncUserStatItemUnprocessableEntity:
+		return nil, v
 
 	default:
 		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
@@ -2982,7 +3027,7 @@ Other detail info:
                           *  Required permission : resource="NAMESPACE:{namespace}:USER:{userId}:STATITEM", action=4 (UPDATE)
                           *  Returns : updated user's statItem
 */
-func (a *Client) PublicIncUserStatItemValue(params *PublicIncUserStatItemValueParams, authInfo runtime.ClientAuthInfoWriter) (*PublicIncUserStatItemValueOK, *PublicIncUserStatItemValueBadRequest, *PublicIncUserStatItemValueNotFound, *PublicIncUserStatItemValueConflict, error) {
+func (a *Client) PublicIncUserStatItemValue(params *PublicIncUserStatItemValueParams, authInfo runtime.ClientAuthInfoWriter) (*PublicIncUserStatItemValueOK, *PublicIncUserStatItemValueBadRequest, *PublicIncUserStatItemValueNotFound, *PublicIncUserStatItemValueConflict, *PublicIncUserStatItemValueUnprocessableEntity, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewPublicIncUserStatItemValueParams()
@@ -3010,25 +3055,28 @@ func (a *Client) PublicIncUserStatItemValue(params *PublicIncUserStatItemValuePa
 		Client:             params.HTTPClient,
 	})
 	if err != nil {
-		return nil, nil, nil, nil, err
+		return nil, nil, nil, nil, nil, err
 	}
 
 	switch v := result.(type) {
 
 	case *PublicIncUserStatItemValueOK:
-		return v, nil, nil, nil, nil
+		return v, nil, nil, nil, nil, nil
 
 	case *PublicIncUserStatItemValueBadRequest:
-		return nil, v, nil, nil, nil
+		return nil, v, nil, nil, nil, nil
 
 	case *PublicIncUserStatItemValueNotFound:
-		return nil, nil, v, nil, nil
+		return nil, nil, v, nil, nil, nil
 
 	case *PublicIncUserStatItemValueConflict:
-		return nil, nil, nil, v, nil
+		return nil, nil, nil, v, nil, nil
+
+	case *PublicIncUserStatItemValueUnprocessableEntity:
+		return nil, nil, nil, nil, v, nil
 
 	default:
-		return nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+		return nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
@@ -3080,6 +3128,8 @@ func (a *Client) PublicIncUserStatItemValueShort(params *PublicIncUserStatItemVa
 		return nil, v
 	case *PublicIncUserStatItemValueConflict:
 		return nil, v
+	case *PublicIncUserStatItemValueUnprocessableEntity:
+		return nil, v
 
 	default:
 		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
@@ -3097,7 +3147,7 @@ Other detail info:
 + *Required permission*: resource="NAMESPACE:{namespace}:USER:{userId}:STATITEM", action=4 (UPDATE)
 + *Returns*: updated user's statItem
 */
-func (a *Client) ResetUserStatItemValue1(params *ResetUserStatItemValue1Params, authInfo runtime.ClientAuthInfoWriter) (*ResetUserStatItemValue1OK, *ResetUserStatItemValue1BadRequest, *ResetUserStatItemValue1NotFound, error) {
+func (a *Client) ResetUserStatItemValue1(params *ResetUserStatItemValue1Params, authInfo runtime.ClientAuthInfoWriter) (*ResetUserStatItemValue1OK, *ResetUserStatItemValue1BadRequest, *ResetUserStatItemValue1NotFound, *ResetUserStatItemValue1UnprocessableEntity, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewResetUserStatItemValue1Params()
@@ -3125,22 +3175,25 @@ func (a *Client) ResetUserStatItemValue1(params *ResetUserStatItemValue1Params, 
 		Client:             params.HTTPClient,
 	})
 	if err != nil {
-		return nil, nil, nil, err
+		return nil, nil, nil, nil, err
 	}
 
 	switch v := result.(type) {
 
 	case *ResetUserStatItemValue1OK:
-		return v, nil, nil, nil
+		return v, nil, nil, nil, nil
 
 	case *ResetUserStatItemValue1BadRequest:
-		return nil, v, nil, nil
+		return nil, v, nil, nil, nil
 
 	case *ResetUserStatItemValue1NotFound:
-		return nil, nil, v, nil
+		return nil, nil, v, nil, nil
+
+	case *ResetUserStatItemValue1UnprocessableEntity:
+		return nil, nil, nil, v, nil
 
 	default:
-		return nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+		return nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
@@ -3191,6 +3244,8 @@ func (a *Client) ResetUserStatItemValue1Short(params *ResetUserStatItemValue1Par
 	case *ResetUserStatItemValue1BadRequest:
 		return nil, v
 	case *ResetUserStatItemValue1NotFound:
+		return nil, v
+	case *ResetUserStatItemValue1UnprocessableEntity:
 		return nil, v
 
 	default:
@@ -3658,7 +3713,7 @@ Other detail info:
                           *  Required permission : resource="ADMIN:NAMESPACE:{namespace}:USER:{userId}:STATITEM", action=8 (DELETE)
                           *  Returns : no content
 */
-func (a *Client) DeleteUserStatItems2(params *DeleteUserStatItems2Params, authInfo runtime.ClientAuthInfoWriter) (*DeleteUserStatItems2NoContent, *DeleteUserStatItems2Unauthorized, *DeleteUserStatItems2Forbidden, *DeleteUserStatItems2NotFound, error) {
+func (a *Client) DeleteUserStatItems2(params *DeleteUserStatItems2Params, authInfo runtime.ClientAuthInfoWriter) (*DeleteUserStatItems2NoContent, *DeleteUserStatItems2Unauthorized, *DeleteUserStatItems2Forbidden, *DeleteUserStatItems2NotFound, *DeleteUserStatItems2UnprocessableEntity, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewDeleteUserStatItems2Params()
@@ -3686,25 +3741,28 @@ func (a *Client) DeleteUserStatItems2(params *DeleteUserStatItems2Params, authIn
 		Client:             params.HTTPClient,
 	})
 	if err != nil {
-		return nil, nil, nil, nil, err
+		return nil, nil, nil, nil, nil, err
 	}
 
 	switch v := result.(type) {
 
 	case *DeleteUserStatItems2NoContent:
-		return v, nil, nil, nil, nil
+		return v, nil, nil, nil, nil, nil
 
 	case *DeleteUserStatItems2Unauthorized:
-		return nil, v, nil, nil, nil
+		return nil, v, nil, nil, nil, nil
 
 	case *DeleteUserStatItems2Forbidden:
-		return nil, nil, v, nil, nil
+		return nil, nil, v, nil, nil, nil
 
 	case *DeleteUserStatItems2NotFound:
-		return nil, nil, nil, v, nil
+		return nil, nil, nil, v, nil, nil
+
+	case *DeleteUserStatItems2UnprocessableEntity:
+		return nil, nil, nil, nil, v, nil
 
 	default:
-		return nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+		return nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
@@ -3759,6 +3817,8 @@ func (a *Client) DeleteUserStatItems2Short(params *DeleteUserStatItems2Params, a
 	case *DeleteUserStatItems2Forbidden:
 		return nil, v
 	case *DeleteUserStatItems2NotFound:
+		return nil, v
+	case *DeleteUserStatItems2UnprocessableEntity:
 		return nil, v
 
 	default:

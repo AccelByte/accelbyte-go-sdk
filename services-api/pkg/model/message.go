@@ -180,7 +180,6 @@ const (
 	TypeSignalingP2PNotif              = "signalingP2PNotif"
 	TypeStartMatchmakingRequest        = "startMatchmakingRequest"
 	TypeStartMatchmakingResponse       = "startMatchmakingResponse"
-	TypeSystemComponentsStatus         = "systemComponentsStatus"
 	TypeUnblockPlayerNotif             = "unblockPlayerNotif"
 	TypeUnblockPlayerRequest           = "unblockPlayerRequest"
 	TypeUnblockPlayerResponse          = "unblockPlayerResponse"
@@ -825,16 +824,6 @@ type DSNotification struct {
 // Type implements Message interface
 func (DSNotification) Type() string {
 	return TypeDSNotif
-}
-
-// SystemComponentsStatus is the message of System Components Status
-type SystemComponentsStatus struct {
-	Components map[string]bool
-}
-
-// Type implements Message interface
-func (SystemComponentsStatus) Type() string {
-	return TypeSystemComponentsStatus
 }
 
 // BlockPlayerRequest is the message of BlockPlayerRequest

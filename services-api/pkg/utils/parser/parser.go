@@ -9,7 +9,6 @@ import (
 	"bytes"
 	"encoding/json"
 	"errors"
-	"fmt"
 	"io"
 	"strconv"
 	"strings"
@@ -102,7 +101,6 @@ func getResponseIdentifier(reader *bufio.Reader) (messageType string, err error)
 		model.TypeAcceptFriendsNotif,
 		model.TypeDSNotif,
 		model.TypePartyDataUpdateNotif,
-		model.TypeSystemComponentsStatus,
 		model.TypeJoinDefaultChannelResponse,
 		model.TypeSendChannelChatResponse,
 		model.TypeChannelChatNotif,
@@ -224,8 +222,6 @@ func unmarshalResponseContent(messageType string, reader *bufio.Reader) (model.M
 		return unmarshalGetFriendshipStatusResponse(reader)
 	case model.TypeDSNotif:
 		return unmarshalDSNotif(reader)
-	case model.TypeSystemComponentsStatus:
-		return unmarshalSystemComponentsStatus(reader)
 	case model.TypePartyDataUpdateNotif:
 		return unmarshalPartyDataUpdateNotif(reader)
 	case model.TypeJoinDefaultChannelResponse:
@@ -1186,40 +1182,6 @@ func unmarshalDSNotif(reader *bufio.Reader) (*model.DSNotification, error) {
 		},
 		Message: content["message"],
 		IsOK:    ok,
-	}
-
-	return response, nil
-}
-
-func unmarshalSystemComponentsStatus(reader *bufio.Reader) (*model.SystemComponentsStatus, error) {
-	content, err := readAll(reader)
-	if err != nil {
-		return nil, err
-	}
-
-	components := make(map[string]bool)
-	componentsPayload := strings.TrimPrefix(content["components"], "{")
-	componentsPayload = strings.TrimSuffix(componentsPayload, "}")
-
-	for _, componentStatus := range strings.Split(componentsPayload, ",") {
-		componentSlice := strings.Split(componentStatus, ":")
-		if len(componentSlice) != 2 {
-			return nil, fmt.Errorf("unable to parse %s, expected to have \"string\":bool", componentStatus)
-		}
-
-		component := strings.TrimSpace(componentSlice[0]) // component name
-		component = strings.Replace(component, "\"", "", -1)
-		statusStr := strings.TrimSpace(componentSlice[1]) // bool value
-
-		status, err := strconv.ParseBool(statusStr)
-		if err != nil {
-			return nil, err
-		}
-		components[component] = status
-	}
-
-	response := &model.SystemComponentsStatus{
-		Components: components,
 	}
 
 	return response, nil

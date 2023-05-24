@@ -1033,17 +1033,6 @@ func (lobbyService *LobbyServiceWebsocket) StartMatchmakingResponse(code int64, 
 	return nil
 }
 
-func (lobbyService *LobbyServiceWebsocket) SystemComponentsStatus(components string) error {
-	logrus.Debug("SystemComponentsStatus")
-	text := fmt.Sprintf("type: %s\n%s\ncomponents: %v", model.TypeSystemComponentsStatus, utils.GenerateMessageID(), components)
-	err := lobbyService.ConnectionManager.Get().Conn.WriteMessage(websocket.TextMessage, []byte(text))
-	if err != nil {
-		return err
-	}
-
-	return nil
-}
-
 func (lobbyService *LobbyServiceWebsocket) UnblockPlayerNotif(unblockedUserId string, userId string) error {
 	logrus.Debug("UnblockPlayerNotif")
 	text := fmt.Sprintf("type: %s\n%s\nunblockedUserId: %v\nuserId: %v", model.TypeUnblockPlayerNotif, utils.GenerateMessageID(), unblockedUserId, userId)

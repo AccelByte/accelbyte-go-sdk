@@ -1186,14 +1186,6 @@ definitions:
     x-pair: startMatchmakingRequest
     x-tag: Matchmaking
     x-type: response
-  systemComponentsStatus:
-    properties:
-      components:
-        type: object
-        additionalProperties:
-          type: boolean
-    type: object
-    x-tag: System Events
   unblockPlayerNotif:
     properties:
       unblockedUserId:

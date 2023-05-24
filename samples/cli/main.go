@@ -1825,18 +1825,6 @@ func serveStandalone() {
 
 			return
 		}
-	case model.TypeSystemComponentsStatus:
-		m := make(map[string]string)
-		if len(getArgs) >= 1 {
-			m = getParam(getArgs)
-		}
-		components := m["components"]
-		err := lobbyService.SystemComponentsStatus(components)
-		if err != nil {
-			logrus.Error(err)
-
-			return
-		}
 	case model.TypeUnblockPlayerNotif:
 		m := make(map[string]string)
 		if len(getArgs) >= 1 {

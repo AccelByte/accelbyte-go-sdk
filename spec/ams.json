@@ -1,0 +1,2353 @@
+{
+  "host": "demo.accelbyte.io",
+  "info": {
+    "description": "Manage AMS Fleets",
+    "title": "fleet-command",
+    "version": "0.1.0:15cdf3b8fa6708f0bae13b6f59cfa59ce96ecd4c - 2023-04-27T02:15:42+00:00"
+  },
+  "schemes": [
+    "https"
+  ],
+  "externalDocs": {
+    "description": "API Docs",
+    "url": "https://demo.accelbyte.io/ams/apidocs"
+  },
+  "securityDefinitions": {
+    "HasPermission": {
+      "authorizationUrl": "https://dummy.oauth.net/auth",
+      "flow": "accessCode",
+      "scopes": {
+        "ADMIN:NAMESPACE:{namespace}:ARMADA [READ]": "ADMIN:NAMESPACE:{namespace}:ARMADA [READ]",
+        "ADMIN:NAMESPACE:{namespace}:ARMADA:ACCOUNT [CREATE]": "ADMIN:NAMESPACE:{namespace}:ARMADA:ACCOUNT [CREATE]",
+        "ADMIN:NAMESPACE:{namespace}:ARMADA:ACCOUNT [READ]": "ADMIN:NAMESPACE:{namespace}:ARMADA:ACCOUNT [READ]",
+        "ADMIN:NAMESPACE:{namespace}:ARMADA:ACCOUNT [UPDATE]": "ADMIN:NAMESPACE:{namespace}:ARMADA:ACCOUNT [UPDATE]",
+        "ADMIN:NAMESPACE:{namespace}:ARMADA:FLEET [CREATE]": "ADMIN:NAMESPACE:{namespace}:ARMADA:FLEET [CREATE]",
+        "ADMIN:NAMESPACE:{namespace}:ARMADA:FLEET [DELETE]": "ADMIN:NAMESPACE:{namespace}:ARMADA:FLEET [DELETE]",
+        "ADMIN:NAMESPACE:{namespace}:ARMADA:FLEET [READ]": "ADMIN:NAMESPACE:{namespace}:ARMADA:FLEET [READ]",
+        "ADMIN:NAMESPACE:{namespace}:ARMADA:FLEET [UPDATE]": "ADMIN:NAMESPACE:{namespace}:ARMADA:FLEET [UPDATE]",
+        "NAMESPACE:{namespace}:ARMADA:FLEET [UPDATE]": "NAMESPACE:{namespace}:ARMADA:FLEET [UPDATE]",
+        "NAMESPACE:{namespace}:ARMADA:WATCHDOG [CREATE]": "NAMESPACE:{namespace}:ARMADA:WATCHDOG [CREATE]"
+      },
+      "tokenUrl": "https://dumy.oauth.net/token",
+      "type": "oauth2"
+    },
+    "HasScope": {
+      "authorizationUrl": "https://dummy.oauth.net/auth",
+      "flow": "accessCode",
+      "scopes": {},
+      "tokenUrl": "https://dumy.oauth.net/token",
+      "type": "oauth2"
+    },
+    "authorization": {
+      "in": "header",
+      "name": "Authorization",
+      "type": "apiKey"
+    }
+  },
+  "swagger": "2.0",
+  "paths": {
+    "/ams/v1/admin/namespaces/{namespace}/account": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Required Permission: ADMIN:NAMESPACE:{namespace}:ARMADA:ACCOUNT [READ]",
+        "operationId": "AccountGet",
+        "parameters": [
+          {
+            "description": "namespace of the game",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "success",
+            "schema": {
+              "$ref": "#/definitions/api.AccountResponse"
+            }
+          },
+          "401": {
+            "description": "no authorization provided",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "403": {
+            "description": "insufficient permissions",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "404": {
+            "description": "account not linked",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "500": {
+            "description": "internal server error",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          }
+        },
+        "security": [
+          {
+            "HasPermission": [
+              "ADMIN:NAMESPACE:{namespace}:ARMADA:ACCOUNT [READ]"
+            ],
+            "authorization": []
+          }
+        ],
+        "summary": "Get the account associated with the namespace.",
+        "tags": [
+          "Account"
+        ]
+      },
+      "post": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Required Permission: ADMIN:NAMESPACE:{namespace}:ARMADA:ACCOUNT [CREATE]",
+        "operationId": "AccountCreate",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/api.AccountCreateRequest"
+            }
+          },
+          {
+            "description": "namespace of the game",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "201": {
+            "description": "account Created",
+            "schema": {
+              "$ref": "#/definitions/api.AccountCreateResponse"
+            }
+          },
+          "401": {
+            "description": "no authorization provided",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "403": {
+            "description": "insufficient permissions",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "500": {
+            "description": "internal server error",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          }
+        },
+        "security": [
+          {
+            "HasPermission": [
+              "ADMIN:NAMESPACE:{namespace}:ARMADA:ACCOUNT [CREATE]"
+            ],
+            "authorization": []
+          }
+        ],
+        "summary": "Create a new AMS account",
+        "tags": [
+          "Account"
+        ]
+      }
+    },
+    "/ams/v1/admin/namespaces/{namespace}/account/link": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Required Permission: ADMIN:NAMESPACE:{namespace}:ARMADA:ACCOUNT [READ]",
+        "operationId": "AccountLinkTokenGet",
+        "parameters": [
+          {
+            "description": "namespace of the game",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "success",
+            "schema": {
+              "$ref": "#/definitions/api.AccountLinkTokenResponse"
+            }
+          },
+          "401": {
+            "description": "no authorization provided",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "403": {
+            "description": "insufficient permissions",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "404": {
+            "description": "account not linked",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "500": {
+            "description": "internal server error",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          }
+        },
+        "security": [
+          {
+            "HasPermission": [
+              "ADMIN:NAMESPACE:{namespace}:ARMADA:ACCOUNT [READ]"
+            ],
+            "authorization": []
+          }
+        ],
+        "summary": "Get a linking token for another namespace to use to link to the account to which this namespace is linked.  Fails if no account linked.",
+        "tags": [
+          "Account"
+        ]
+      },
+      "post": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Required Permission: ADMIN:NAMESPACE:{namespace}:ARMADA:ACCOUNT [CREATE]",
+        "operationId": "AccountLink",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/api.AccountLinkRequest"
+            }
+          },
+          {
+            "description": "namespace of the game",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "201": {
+            "description": "success",
+            "schema": {
+              "$ref": "#/definitions/api.AccountLinkResponse"
+            }
+          },
+          "401": {
+            "description": "no authorization provided",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "403": {
+            "description": "insufficient permissions",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "500": {
+            "description": "internal server error",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          }
+        },
+        "security": [
+          {
+            "HasPermission": [
+              "ADMIN:NAMESPACE:{namespace}:ARMADA:ACCOUNT [CREATE]"
+            ],
+            "authorization": []
+          }
+        ],
+        "summary": "Link an account to the namespace.  Will attempt to register the linkage in AMS shipyard.  Requires a valid link token for the account. Fails if an account is already linked",
+        "tags": [
+          "Account"
+        ]
+      }
+    },
+    "/ams/v1/admin/namespaces/{namespace}/fleets": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Required Permission: ADMIN:NAMESPACE:{namespace}:ARMADA:FLEET [READ]",
+        "operationId": "FleetList",
+        "parameters": [
+          {
+            "description": "namespace of the game",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "success",
+            "schema": {
+              "$ref": "#/definitions/api.FleetListResponse"
+            }
+          },
+          "500": {
+            "description": "internal server error",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          }
+        },
+        "security": [
+          {
+            "HasPermission": [
+              "ADMIN:NAMESPACE:{namespace}:ARMADA:FLEET [READ]"
+            ],
+            "authorization": []
+          }
+        ],
+        "summary": "get a list of all fleets in the namespace",
+        "tags": [
+          "Fleets"
+        ]
+      },
+      "post": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Required Permission: ADMIN:NAMESPACE:{namespace}:ARMADA:FLEET [CREATE]",
+        "operationId": "FleetCreate",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/api.FleetParameters"
+            }
+          },
+          {
+            "description": "namespace of the game",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "201": {
+            "description": "success",
+            "schema": {
+              "$ref": "#/definitions/api.FleetCreateResponse"
+            }
+          },
+          "400": {
+            "description": "bad request",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "401": {
+            "description": "no authorization provided",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "403": {
+            "description": "insufficient permissions",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "500": {
+            "description": "internal server error",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          }
+        },
+        "security": [
+          {
+            "HasPermission": [
+              "ADMIN:NAMESPACE:{namespace}:ARMADA:FLEET [CREATE]"
+            ],
+            "authorization": []
+          }
+        ],
+        "summary": "create fleet",
+        "tags": [
+          "Fleets"
+        ]
+      }
+    },
+    "/ams/v1/admin/namespaces/{namespace}/fleets/{fleetID}": {
+      "delete": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Required Permission: ADMIN:NAMESPACE:{namespace}:ARMADA:FLEET [DELETE]",
+        "operationId": "FleetDelete",
+        "parameters": [
+          {
+            "description": "the id of the fleet",
+            "in": "path",
+            "name": "fleetID",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "namespace of the game",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "204": {
+            "description": "no content"
+          },
+          "401": {
+            "description": "no authorization provided",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "403": {
+            "description": "insufficient permissions",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "404": {
+            "description": "fleet not found",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "500": {
+            "description": "internal server error",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          }
+        },
+        "security": [
+          {
+            "HasPermission": [
+              "ADMIN:NAMESPACE:{namespace}:ARMADA:FLEET [DELETE]"
+            ],
+            "authorization": []
+          }
+        ],
+        "summary": "delete a fleet",
+        "tags": [
+          "Fleets"
+        ]
+      },
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Required Permission: ADMIN:NAMESPACE:{namespace}:ARMADA:FLEET [READ]",
+        "operationId": "FleetGet",
+        "parameters": [
+          {
+            "description": "the id of the fleet",
+            "in": "path",
+            "name": "fleetID",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "namespace of the game",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "success",
+            "schema": {
+              "$ref": "#/definitions/api.FleetGetResponse"
+            }
+          },
+          "401": {
+            "description": "no authorization provided",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "403": {
+            "description": "insufficient permissions",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "404": {
+            "description": "fleet not found",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "500": {
+            "description": "internal server error",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          }
+        },
+        "security": [
+          {
+            "HasPermission": [
+              "ADMIN:NAMESPACE:{namespace}:ARMADA:FLEET [READ]"
+            ],
+            "authorization": []
+          }
+        ],
+        "summary": "get a fleet",
+        "tags": [
+          "Fleets"
+        ]
+      },
+      "put": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Required Permission: ADMIN:NAMESPACE:{namespace}:ARMADA:FLEET [UPDATE]",
+        "operationId": "FleetUpdate",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/api.FleetParameters"
+            }
+          },
+          {
+            "description": "the id of the fleet",
+            "in": "path",
+            "name": "fleetID",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "namespace of the game",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "204": {
+            "description": "no content"
+          },
+          "400": {
+            "description": "bad request",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "401": {
+            "description": "no authorization provided",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "403": {
+            "description": "insufficient permissions",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "404": {
+            "description": "fleet not found",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "500": {
+            "description": "internal server error",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          }
+        },
+        "security": [
+          {
+            "HasPermission": [
+              "ADMIN:NAMESPACE:{namespace}:ARMADA:FLEET [UPDATE]"
+            ],
+            "authorization": []
+          }
+        ],
+        "summary": "Update a fleet – overrides current data",
+        "tags": [
+          "Fleets"
+        ]
+      }
+    },
+    "/ams/v1/admin/namespaces/{namespace}/fleets/{fleetID}/servers": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Required Permission: ADMIN:NAMESPACE:{namespace}:ARMADA:FLEET [READ]",
+        "operationId": "FleetServers",
+        "parameters": [
+          {
+            "description": "the id of the fleet",
+            "in": "path",
+            "name": "fleetID",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "namespace of the game",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "success",
+            "schema": {
+              "$ref": "#/definitions/api.FleetServersResponse"
+            }
+          },
+          "401": {
+            "description": "no authorization provided",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "403": {
+            "description": "insufficient permissions",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "404": {
+            "description": "fleet not found",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "500": {
+            "description": "internal server error",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          }
+        },
+        "security": [
+          {
+            "HasPermission": [
+              "ADMIN:NAMESPACE:{namespace}:ARMADA:FLEET [READ]"
+            ],
+            "authorization": []
+          }
+        ],
+        "summary": "get server details and counts for a fleet",
+        "tags": [
+          "Fleets"
+        ]
+      }
+    },
+    "/ams/v1/admin/namespaces/{namespace}/fleets/{fleetID}/servers/history": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Required Permission: ADMIN:NAMESPACE:{namespace}:ARMADA:FLEET [READ]",
+        "operationId": "FleetServerHistory",
+        "parameters": [
+          {
+            "description": "the id of the fleet",
+            "in": "path",
+            "name": "fleetID",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "namespace of the game",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "success",
+            "schema": {
+              "$ref": "#/definitions/api.DSHistoryList"
+            }
+          },
+          "400": {
+            "description": "bad request",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "401": {
+            "description": "no authorization provided",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "403": {
+            "description": "insufficient permissions",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "500": {
+            "description": "internal server error",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          }
+        },
+        "security": [
+          {
+            "HasPermission": [
+              "ADMIN:NAMESPACE:{namespace}:ARMADA:FLEET [READ]"
+            ],
+            "authorization": []
+          }
+        ],
+        "summary": "get history records of a specific dedicated server for a fleet",
+        "tags": [
+          "Servers"
+        ]
+      }
+    },
+    "/ams/v1/admin/namespaces/{namespace}/images": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Required Permission: ADMIN:NAMESPACE:{namespace}:ARMADA:ACCOUNT [READ]",
+        "operationId": "ImageList",
+        "parameters": [
+          {
+            "description": "namespace of the game",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "success",
+            "schema": {
+              "$ref": "#/definitions/api.ImageList"
+            }
+          },
+          "401": {
+            "description": "no authorization provided",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "403": {
+            "description": "insufficient permissions",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "404": {
+            "description": "account not linked",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "500": {
+            "description": "internal server error",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          }
+        },
+        "security": [
+          {
+            "HasPermission": [
+              "ADMIN:NAMESPACE:{namespace}:ARMADA:ACCOUNT [READ]"
+            ],
+            "authorization": []
+          }
+        ],
+        "summary": "Get a list of images which exist (uploaded, uploading, or building) in the linked account.  Fails if no account is linked",
+        "tags": [
+          "Images"
+        ]
+      }
+    },
+    "/ams/v1/admin/namespaces/{namespace}/images/{imageID}": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Required Permission: ADMIN:NAMESPACE:{namespace}:ARMADA:ACCOUNT [READ]",
+        "operationId": "ImageGet",
+        "parameters": [
+          {
+            "description": "the id of the image",
+            "in": "path",
+            "name": "imageID",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "namespace of the game",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "success",
+            "schema": {
+              "$ref": "#/definitions/api.ImageDetails"
+            }
+          },
+          "401": {
+            "description": "no authorization provided",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "403": {
+            "description": "insufficient permissions",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "404": {
+            "description": "account not linked",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "500": {
+            "description": "internal server error",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          }
+        },
+        "security": [
+          {
+            "HasPermission": [
+              "ADMIN:NAMESPACE:{namespace}:ARMADA:ACCOUNT [READ]"
+            ],
+            "authorization": []
+          }
+        ],
+        "summary": "Get details about an image.",
+        "tags": [
+          "Images"
+        ]
+      },
+      "patch": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Required Permission: ADMIN:NAMESPACE:{namespace}:ARMADA:ACCOUNT [UPDATE]",
+        "operationId": "ImagePatch",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/api.ImageUpdate"
+            }
+          },
+          {
+            "description": "the id of the image",
+            "in": "path",
+            "name": "imageID",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "namespace of the game",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "success",
+            "schema": {
+              "$ref": "#/definitions/api.ImageDetails"
+            }
+          },
+          "401": {
+            "description": "no authorization provided",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "403": {
+            "description": "insufficient permissions",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "404": {
+            "description": "account not linked",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "500": {
+            "description": "internal server error",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          }
+        },
+        "security": [
+          {
+            "HasPermission": [
+              "ADMIN:NAMESPACE:{namespace}:ARMADA:ACCOUNT [UPDATE]"
+            ],
+            "authorization": []
+          }
+        ],
+        "summary": "Edit the image name, toggle IsProtected, or add/remove tags",
+        "tags": [
+          "Images"
+        ]
+      }
+    },
+    "/ams/v1/admin/namespaces/{namespace}/regions": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Required Permission: ADMIN:NAMESPACE:{namespace}:ARMADA [READ]",
+        "operationId": "InfoRegions",
+        "parameters": [
+          {
+            "description": "namespace of the game",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "success",
+            "schema": {
+              "$ref": "#/definitions/api.RegionsResponse"
+            }
+          },
+          "401": {
+            "description": "no authorization provided",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "403": {
+            "description": "insufficient permissions",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "500": {
+            "description": "internal server error",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          }
+        },
+        "security": [
+          {
+            "HasPermission": [
+              "ADMIN:NAMESPACE:{namespace}:ARMADA [READ]"
+            ],
+            "authorization": []
+          }
+        ],
+        "summary": "Get the list of available AMS regions.",
+        "tags": [
+          "AMS Info"
+        ]
+      }
+    },
+    "/ams/v1/admin/namespaces/{namespace}/servers/{serverID}": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Required Permission: ADMIN:NAMESPACE:{namespace}:ARMADA:FLEET [READ]",
+        "operationId": "FleetServerInfo",
+        "parameters": [
+          {
+            "description": "namespace of the game",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "the id of the dedicated server",
+            "in": "path",
+            "name": "serverID",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "success",
+            "schema": {
+              "$ref": "#/definitions/api.FleetServerInfoResponse"
+            }
+          },
+          "401": {
+            "description": "no authorization provided",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "403": {
+            "description": "insufficient permissions",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "404": {
+            "description": "dedicated server not found",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "500": {
+            "description": "internal server error",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          }
+        },
+        "security": [
+          {
+            "HasPermission": [
+              "ADMIN:NAMESPACE:{namespace}:ARMADA:FLEET [READ]"
+            ],
+            "authorization": []
+          }
+        ],
+        "summary": "get information about a specific dedicated server",
+        "tags": [
+          "Servers"
+        ]
+      }
+    },
+    "/ams/v1/admin/namespaces/{namespace}/servers/{serverID}/history": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Required Permission: ADMIN:NAMESPACE:{namespace}:ARMADA:FLEET [READ]",
+        "operationId": "ServerHistory",
+        "parameters": [
+          {
+            "description": "namespace of the game",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "the id of the dedicated server",
+            "in": "path",
+            "name": "serverID",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "success",
+            "schema": {
+              "$ref": "#/definitions/api.FleetServerHistoryResponse"
+            }
+          },
+          "400": {
+            "description": "bad request",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "401": {
+            "description": "no authorization provided",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "403": {
+            "description": "insufficient permissions",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "500": {
+            "description": "internal server error",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          }
+        },
+        "security": [
+          {
+            "HasPermission": [
+              "ADMIN:NAMESPACE:{namespace}:ARMADA:FLEET [READ]"
+            ],
+            "authorization": []
+          }
+        ],
+        "summary": "get history records of a specific dedicated server",
+        "tags": [
+          "Servers"
+        ]
+      }
+    },
+    "/ams/v1/admin/namespaces/{namespace}/supported-instances": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Required Permission: ADMIN:NAMESPACE:{namespace}:ARMADA [READ]",
+        "operationId": "InfoSupportedInstances",
+        "parameters": [
+          {
+            "description": "namespace of the game",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "success",
+            "schema": {
+              "$ref": "#/definitions/api.AvailableInstanceTypesResponse"
+            }
+          },
+          "401": {
+            "description": "no authorization provided",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "403": {
+            "description": "insufficient permissions",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "500": {
+            "description": "internal server error",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          }
+        },
+        "security": [
+          {
+            "HasPermission": [
+              "ADMIN:NAMESPACE:{namespace}:ARMADA [READ]"
+            ],
+            "authorization": []
+          }
+        ],
+        "summary": "Get a list of available VM configurations",
+        "tags": [
+          "AMS Info"
+        ]
+      }
+    },
+    "/ams/v1/namespaces/{namespace}/fleets/{fleetID}/claim": {
+      "put": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Required Permission: NAMESPACE:{namespace}:ARMADA:FLEET [UPDATE]",
+        "operationId": "FleetClaimByID",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/api.FleetClaimReq"
+            }
+          },
+          {
+            "description": "the id of the fleet",
+            "in": "path",
+            "name": "fleetID",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "namespace of the game",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "success",
+            "schema": {
+              "$ref": "#/definitions/api.FleetClaimResponse"
+            }
+          },
+          "400": {
+            "description": "bad request",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "401": {
+            "description": "no authorization provided",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "403": {
+            "description": "insufficient permissions",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "404": {
+            "description": "fleet not found",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "500": {
+            "description": "internal server error",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          }
+        },
+        "security": [
+          {
+            "HasPermission": [
+              "NAMESPACE:{namespace}:ARMADA:FLEET [UPDATE]"
+            ],
+            "authorization": []
+          }
+        ],
+        "summary": "claim a Dedicated Server from a specific fleet",
+        "tags": [
+          "Fleets"
+        ]
+      }
+    },
+    "/ams/v1/namespaces/{namespace}/servers/claim": {
+      "put": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Required Permission: NAMESPACE:{namespace}:ARMADA:FLEET [UPDATE]",
+        "operationId": "FleetClaimByKeys",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/api.FleetClaimReq"
+            }
+          },
+          {
+            "description": "namespace of the game",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "success",
+            "schema": {
+              "$ref": "#/definitions/api.FleetClaimResponse"
+            }
+          },
+          "400": {
+            "description": "bad request",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "401": {
+            "description": "no authorization provided",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "403": {
+            "description": "insufficient permissions",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "404": {
+            "description": "fleet not found",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "500": {
+            "description": "internal server error",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          }
+        },
+        "security": [
+          {
+            "HasPermission": [
+              "NAMESPACE:{namespace}:ARMADA:FLEET [UPDATE]"
+            ],
+            "authorization": []
+          }
+        ],
+        "summary": "claim a Dedicated Server from fleets with matching claim keys",
+        "tags": [
+          "Fleets"
+        ]
+      }
+    },
+    "/ams/v1/namespaces/{namespace}/watchdogs/{watchdogID}/connect": {
+      "get": {
+        "description": "Required Permission: NAMESPACE:{namespace}:ARMADA:WATCHDOG [CREATE]",
+        "operationId": "WatchdogConnect",
+        "parameters": [
+          {
+            "description": "namespace of the game",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "the id of the watchdog",
+            "in": "path",
+            "name": "watchdogID",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        },
+        "security": [
+          {
+            "HasPermission": [
+              "NAMESPACE:{namespace}:ARMADA:WATCHDOG [CREATE]"
+            ],
+            "authorization": []
+          }
+        ],
+        "summary": "connect a watchdog",
+        "tags": [
+          "Watchdogs"
+        ]
+      }
+    },
+    "/ams/version": {
+      "get": {
+        "operationId": "func1",
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "summary": "Version info"
+      }
+    },
+    "/healthz": {
+      "get": {
+        "operationId": "BasicHealthCheck",
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "summary": "health check"
+      }
+    }
+  },
+  "definitions": {
+    "api.AccountCreateRequest": {
+      "properties": {
+        "name": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "name"
+      ]
+    },
+    "api.AccountCreateResponse": {
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "namespaces": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "required": [
+        "id",
+        "name",
+        "namespaces"
+      ]
+    },
+    "api.AccountLinkRequest": {
+      "properties": {
+        "token": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "token"
+      ]
+    },
+    "api.AccountLinkResponse": {
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "namespaces": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "required": [
+        "id",
+        "name",
+        "namespaces"
+      ]
+    },
+    "api.AccountLinkTokenResponse": {
+      "properties": {
+        "token": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "token"
+      ]
+    },
+    "api.AccountResponse": {
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "namespaces": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "required": [
+        "id",
+        "name",
+        "namespaces"
+      ]
+    },
+    "api.AvailableInstanceTypesResponse": {
+      "properties": {
+        "availableInstanceTypes": {
+          "items": {
+            "$ref": "#/definitions/api.InstanceTypeDescriptionResponse"
+          },
+          "type": "array"
+        }
+      },
+      "required": [
+        "availableInstanceTypes"
+      ]
+    },
+    "api.DSHistoryEvent": {
+      "properties": {
+        "createdAt": {
+          "format": "date-time",
+          "type": "string",
+          "x-nullable": false
+        },
+        "exitCode": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "gameSession": {
+          "$ref": "#/definitions/tid.ID"
+        },
+        "ipAddress": {
+          "type": "string"
+        },
+        "reason": {
+          "type": "string"
+        },
+        "region": {
+          "type": "string"
+        },
+        "serverId": {
+          "$ref": "#/definitions/tid.ID"
+        },
+        "status": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "createdAt",
+        "exitCode",
+        "gameSession",
+        "ipAddress",
+        "reason",
+        "region",
+        "serverId",
+        "status"
+      ]
+    },
+    "api.DSHistoryList": {
+      "properties": {
+        "events": {
+          "items": {
+            "$ref": "#/definitions/api.DSHistoryEvent"
+          },
+          "type": "array"
+        }
+      },
+      "required": [
+        "events"
+      ]
+    },
+    "api.DSHostConfiguration": {
+      "properties": {
+        "instanceId": {
+          "type": "string"
+        },
+        "instanceType": {
+          "type": "string"
+        },
+        "serversPerVm": {
+          "format": "int32",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "instanceId",
+        "instanceType",
+        "serversPerVm"
+      ]
+    },
+    "api.FleetClaimReq": {
+      "properties": {
+        "region": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "region"
+      ]
+    },
+    "api.FleetClaimResponse": {
+      "properties": {
+        "ip": {
+          "type": "string"
+        },
+        "ports": {
+          "additionalProperties": {
+            "type": "integer"
+          },
+          "type": "object"
+        },
+        "serverId": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "ip",
+        "ports",
+        "serverId"
+      ]
+    },
+    "api.FleetCreateResponse": {
+      "properties": {
+        "id": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "id"
+      ]
+    },
+    "api.FleetGetResponse": {
+      "properties": {
+        "active": {
+          "type": "boolean",
+          "x-omitempty": false
+        },
+        "claimKeys": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "dsHostConfiguration": {
+          "$ref": "#/definitions/api.DSHostConfiguration"
+        },
+        "id": {
+          "type": "string"
+        },
+        "imageDeploymentProfile": {
+          "$ref": "#/definitions/api.ImageDeploymentProfile"
+        },
+        "name": {
+          "type": "string"
+        },
+        "regions": {
+          "items": {
+            "$ref": "#/definitions/api.RegionConfig"
+          },
+          "type": "array"
+        }
+      },
+      "required": [
+        "active",
+        "claimKeys",
+        "dsHostConfiguration",
+        "id",
+        "imageDeploymentProfile",
+        "name",
+        "regions"
+      ]
+    },
+    "api.FleetListItemResponse": {
+      "properties": {
+        "activeDs": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "claimedDs": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "counts": {
+          "items": {
+            "$ref": "#/definitions/api.FleetRegionalServerCounts"
+          },
+          "type": "array"
+        },
+        "id": {
+          "type": "string"
+        },
+        "image": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "regions": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "required": [
+        "activeDs",
+        "claimedDs",
+        "counts",
+        "id",
+        "image",
+        "name",
+        "regions"
+      ]
+    },
+    "api.FleetListResponse": {
+      "properties": {
+        "fleets": {
+          "items": {
+            "$ref": "#/definitions/api.FleetListItemResponse"
+          },
+          "type": "array"
+        }
+      },
+      "required": [
+        "fleets"
+      ]
+    },
+    "api.FleetParameters": {
+      "properties": {
+        "active": {
+          "type": "boolean",
+          "x-omitempty": false
+        },
+        "claimKeys": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "dsHostConfiguration": {
+          "$ref": "#/definitions/api.DSHostConfiguration"
+        },
+        "imageDeploymentProfile": {
+          "$ref": "#/definitions/api.ImageDeploymentProfile"
+        },
+        "name": {
+          "type": "string"
+        },
+        "regions": {
+          "items": {
+            "$ref": "#/definitions/api.RegionConfig"
+          },
+          "type": "array"
+        }
+      },
+      "required": [
+        "active",
+        "claimKeys",
+        "dsHostConfiguration",
+        "imageDeploymentProfile",
+        "name",
+        "regions"
+      ]
+    },
+    "api.FleetRegionalServerCounts": {
+      "properties": {
+        "claimedServerCount": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "readyServerCount": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "region": {
+          "type": "string"
+        },
+        "runningVmCount": {
+          "format": "int32",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "claimedServerCount",
+        "readyServerCount",
+        "region",
+        "runningVmCount"
+      ]
+    },
+    "api.FleetServerHistoryEventResponse": {
+      "properties": {
+        "createdAt": {
+          "format": "date-time",
+          "type": "string",
+          "x-nullable": false
+        },
+        "exitCode": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "fleetId": {
+          "$ref": "#/definitions/tid.ID"
+        },
+        "newState": {
+          "type": "string"
+        },
+        "oldState": {
+          "type": "string"
+        },
+        "reason": {
+          "type": "string"
+        },
+        "serverId": {
+          "$ref": "#/definitions/tid.ID"
+        }
+      },
+      "required": [
+        "createdAt",
+        "exitCode",
+        "fleetId",
+        "newState",
+        "oldState",
+        "reason",
+        "serverId"
+      ]
+    },
+    "api.FleetServerHistoryResponse": {
+      "properties": {
+        "events": {
+          "items": {
+            "$ref": "#/definitions/api.FleetServerHistoryEventResponse"
+          },
+          "type": "array"
+        }
+      },
+      "required": [
+        "events"
+      ]
+    },
+    "api.FleetServerInfoResponse": {
+      "properties": {
+        "createdAt": {
+          "format": "date-time",
+          "type": "string",
+          "x-nullable": false
+        },
+        "fleetId": {
+          "type": "string"
+        },
+        "fleetName": {
+          "type": "string"
+        },
+        "imageCmd": {
+          "type": "string"
+        },
+        "imageId": {
+          "type": "string"
+        },
+        "instanceType": {
+          "type": "string"
+        },
+        "ipAddress": {
+          "type": "string"
+        },
+        "portConfiguration": {
+          "items": {
+            "$ref": "#/definitions/api.PortConfiguration"
+          },
+          "type": "array"
+        },
+        "region": {
+          "type": "string"
+        },
+        "serverId": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "createdAt",
+        "fleetId",
+        "fleetName",
+        "imageCmd",
+        "imageId",
+        "instanceType",
+        "ipAddress",
+        "portConfiguration",
+        "region",
+        "serverId"
+      ]
+    },
+    "api.FleetServersResponse": {
+      "properties": {
+        "regions": {
+          "items": {
+            "$ref": "#/definitions/api.FleetRegionalServerCounts"
+          },
+          "type": "array"
+        },
+        "servers": {
+          "items": {
+            "$ref": "#/definitions/api.FleetServerInfoResponse"
+          },
+          "type": "array"
+        }
+      },
+      "required": [
+        "regions",
+        "servers"
+      ]
+    },
+    "api.ImageDeploymentProfile": {
+      "properties": {
+        "commandLine": {
+          "type": "string"
+        },
+        "imageId": {
+          "type": "string"
+        },
+        "portConfigurations": {
+          "items": {
+            "$ref": "#/definitions/api.PortConfiguration"
+          },
+          "type": "array"
+        },
+        "timeout": {
+          "$ref": "#/definitions/api.Timeout"
+        }
+      },
+      "required": [
+        "commandLine",
+        "imageId",
+        "portConfigurations",
+        "timeout"
+      ]
+    },
+    "api.ImageDetails": {
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "isProtected": {
+          "type": "boolean",
+          "x-omitempty": false
+        },
+        "name": {
+          "type": "string"
+        },
+        "referencingFleets": {
+          "items": {
+            "$ref": "#/definitions/api.ReferencingFleet"
+          },
+          "type": "array"
+        },
+        "sizeInByte": {
+          "format": "int64",
+          "type": "integer"
+        },
+        "status": {
+          "type": "string"
+        },
+        "tags": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "uploadedAt": {
+          "format": "date-time",
+          "type": "string",
+          "x-nullable": false
+        },
+        "uploadedBy": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "id",
+        "isProtected",
+        "name",
+        "referencingFleets",
+        "sizeInByte",
+        "status",
+        "tags",
+        "uploadedAt",
+        "uploadedBy"
+      ]
+    },
+    "api.ImageList": {
+      "properties": {
+        "images": {
+          "items": {
+            "$ref": "#/definitions/api.ImageListItem"
+          },
+          "type": "array"
+        }
+      },
+      "required": [
+        "images"
+      ]
+    },
+    "api.ImageListItem": {
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "isProtected": {
+          "type": "boolean",
+          "x-omitempty": false
+        },
+        "name": {
+          "type": "string"
+        },
+        "referencingFleets": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "sizeInByte": {
+          "format": "int64",
+          "type": "integer"
+        },
+        "status": {
+          "type": "string"
+        },
+        "tags": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "uploadedAt": {
+          "format": "date-time",
+          "type": "string",
+          "x-nullable": false
+        },
+        "uploadedBy": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "id",
+        "isProtected",
+        "name",
+        "referencingFleets",
+        "sizeInByte",
+        "status",
+        "tags",
+        "uploadedAt",
+        "uploadedBy"
+      ]
+    },
+    "api.ImageUpdate": {
+      "properties": {
+        "addedTags": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "isProtected": {
+          "type": "boolean",
+          "x-omitempty": false
+        },
+        "name": {
+          "type": "string"
+        },
+        "removedTags": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "required": [
+        "addedTags",
+        "isProtected",
+        "name",
+        "removedTags"
+      ]
+    },
+    "api.InstanceTypeDescriptionResponse": {
+      "properties": {
+        "description": {
+          "type": "string"
+        },
+        "id": {
+          "type": "string"
+        },
+        "memoryGiB": {
+          "format": "double",
+          "type": "number"
+        },
+        "minSpeed": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "virtualCpu": {
+          "format": "int32",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "description",
+        "id",
+        "memoryGiB",
+        "minSpeed",
+        "name",
+        "virtualCpu"
+      ]
+    },
+    "api.PortConfiguration": {
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "protocol": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "name",
+        "protocol"
+      ]
+    },
+    "api.ReferencingFleet": {
+      "properties": {
+        "environment": {
+          "type": "string"
+        },
+        "fleetId": {
+          "type": "string"
+        },
+        "namespace": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "environment",
+        "fleetId",
+        "namespace"
+      ]
+    },
+    "api.RegionConfig": {
+      "properties": {
+        "bufferSize": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "maxServerCount": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "minServerCount": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "region": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "bufferSize",
+        "maxServerCount",
+        "minServerCount",
+        "region"
+      ]
+    },
+    "api.RegionsResponse": {
+      "properties": {
+        "regions": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "required": [
+        "regions"
+      ]
+    },
+    "api.Timeout": {
+      "properties": {
+        "creation": {
+          "format": "int64",
+          "type": "integer"
+        },
+        "drain": {
+          "format": "int64",
+          "type": "integer"
+        },
+        "session": {
+          "format": "int64",
+          "type": "integer"
+        },
+        "unresponsive": {
+          "format": "int64",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "creation",
+        "drain",
+        "session",
+        "unresponsive"
+      ]
+    },
+    "response.ErrorResponse": {
+      "properties": {
+        "errorMessage": {
+          "type": "string"
+        },
+        "traceId": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "errorMessage",
+        "traceId"
+      ]
+    },
+    "tid.ID": {
+      "properties": {
+        "Type": {
+          "type": "string"
+        },
+        "UUID": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "Type",
+        "UUID"
+      ]
+    }
+  },
+  "x-docs": {
+    "alias": "ams",
+    "host": "https://demo.accelbyte.io",
+    "path": "/ams/apidocs/api.json"
+  },
+  "x-version": {
+    "buildDate": "2023-04-27T02:15:42+00:00",
+    "gitHash": "15cdf3b8fa6708f0bae13b6f59cfa59ce96ecd4c",
+    "name": "fleet-command",
+    "revisionId": "0.1.0",
+    "version": "0.1.0:15cdf3b8fa6708f0bae13b6f59cfa59ce96ecd4c - 2023-04-27T02:15:42+00:00",
+    "version-roles-seeding": "0.0.24"
+  }
+}

@@ -66,6 +66,113 @@ inputDelete := &achievements.AdminDeleteAchievementParams{
 errDelete := achievementsService.AdminDeleteAchievementShort(inputDelete)
 ```
 
+## Ams
+
+Source: [ams_test.go](../services-api/pkg/tests/integration/ams_test.go)
+
+### Basic Health check
+
+```go
+input := &operations.BasicHealthCheckParams{}
+err := operationAmsService.BasicHealthCheckShort(input)
+if err != nil {
+	assert.FailNow(t, err.Error())
+
+	return
+}
+```
+
+### Image List
+
+```go
+inputGet := &images.ImageListParams{
+	Namespace: integration.NamespaceTest,
+}
+get, errGet := imagesService.ImageListShort(inputGet)
+if errGet != nil {
+	assert.FailNow(t, errGet.Error())
+
+	return
+}
+```
+
+### Create Fleet
+
+```go
+inputCreate := &fleets.FleetCreateParams{
+	Body: &amsclientmodels.APIFleetParameters{
+		Active:    &defaultBool,
+		ClaimKeys: claimKeys,
+		ImageDeploymentProfile: &amsclientmodels.APIImageDeploymentProfile{
+			ImageID: &imageId,
+		},
+		Name:    &fleetName,
+		Regions: fleetRegions,
+	},
+	Namespace: integration.NamespaceTest,
+}
+created, errCreated := fleetService.FleetCreateShort(inputCreate)
+if errCreated != nil {
+	assert.FailNow(t, errCreated.Error())
+
+	return
+}
+```
+
+### Get Fleet
+
+```go
+inputGet := &fleets.FleetGetParams{
+	FleetID:   *created.ID,
+	Namespace: integration.NamespaceTest,
+}
+get, errGet := fleetService.FleetGetShort(inputGet)
+if errGet != nil {
+	assert.FailNow(t, errGet.Error())
+
+	return
+}
+```
+
+### Update Fleet
+
+```go
+inputUpdate := &fleets.FleetUpdateParams{
+	Body: &amsclientmodels.APIFleetParameters{
+		Active:    &defaultBool,
+		ClaimKeys: claimKeys,
+		ImageDeploymentProfile: &amsclientmodels.APIImageDeploymentProfile{
+			ImageID: &imageId,
+		},
+		Name:    &fleetNameUpdate,
+		Regions: fleetRegions,
+	},
+	FleetID:   *created.ID,
+	Namespace: integration.NamespaceTest,
+}
+errUpdated := fleetService.FleetUpdateShort(inputUpdate)
+if errUpdated != nil {
+	assert.FailNow(t, errUpdated.Error())
+
+	return
+}
+```
+
+### Delete Fleet
+
+```go
+inputDelete := &fleets.FleetDeleteParams{
+	FleetID:   *created.ID,
+	Namespace: integration.NamespaceTest,
+}
+errDelete := fleetService.FleetDeleteShort(inputDelete)
+if errDelete != nil {
+	assert.FailNow(t, errDelete.Error())
+
+	return
+}
+```
+
 ## Basic
 
 Source: [basic_test.go](../services-api/pkg/tests/integration/basic_test.go)
@@ -1412,7 +1519,7 @@ inputLeave := &partySession.PublicPartyLeaveParams{
 	Namespace: integration.NamespaceTest,
 	PartyID:   *joined.ID,
 }
-errLeave := partyServiceFor2ndPlayer.PublicPartyLeave(inputLeave)
+errLeave := partyServiceFor2ndPlayer.PublicPartyLeaveShort(inputLeave)
 if errLeave != nil {
 	assert.FailNow(t, errLeave.Error())
 

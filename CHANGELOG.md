@@ -1,3 +1,12 @@
+<a name="v0.45.1"></a>
+## [v0.45.1]
+### feat
+- **sdk**: on demand refresh token
+
+### docs
+- **sdk**: add on demand refresh token
+
+
 <a name="v0.45.0"></a>
 ## [v0.45.0]
 ### chore

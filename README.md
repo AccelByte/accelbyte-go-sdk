@@ -83,7 +83,7 @@ oAuth20Service = &iam.OAuth20Service{
 ```
 Use the `repository` to access all functions for refresh token.
 
-#### On-demand Refresh Token
+#### On-demand Refresh Token (Preview)
 
 The on-demand refresh token is intended to be used in environment where automatic refresh token cannot work properly e.g. AWS Lambda. The way to initialize it
 is similar to automatic refresh token except the `AutoRefresh` parameter must be set to `false`. After that, `LoginOrRefreshClient` or `LoginOrRefresh` for logging in using client token or username and password respectively can be used before calling any endpoints. These two functions are helper functions for developers to either login or refresh as required.

@@ -83,6 +83,29 @@ oAuth20Service = &iam.OAuth20Service{
 ```
 Use the `repository` to access all functions for refresh token.
 
+#### On-demand Refresh Token
+
+The on-demand refresh token is intended to be used in environment where automatic refresh token cannot work properly e.g. AWS Lambda. The way to initialize it
+is similar to automatic refresh token except the `AutoRefresh` parameter must be set to `false`. After that, `LoginOrRefreshClient` or `LoginOrRefresh` for logging in using client token or username and password respectively can be used before calling any endpoints. These two functions are helper functions for developers to either login or refresh as required.
+
+```go
+oAuth20Service = &iam.OAuth20Service{
+    Client:           factory.NewIamClient(auth.DefaultConfigRepositoryImpl()),
+    ConfigRepository: auth.DefaultConfigRepositoryImpl(),
+    TokenRepository:  auth.DefaultTokenRepositoryImpl(),
+    RefreshTokenRepository: &auth.RefreshTokenImpl{
+        RefreshRate: 0.5,
+        AutoRefresh: false, // must be set to false for on demand refresh token
+    },
+}
+...
+err := oauth.LoginOrRefreshClient("clientId", "clientSecret")   // use before calling endpoints, using client token
+...
+err := oauth.LoginOrRefresh("username", "password")     // use before calling endpoints, using username and password
+```
+
+Working example code for on-demand refresh token is available in [login-or-refresh-token](samples/login-or-refresh-token).
+
 #### Local Token Validation
 Local token validation is available since version 0.37.0. 
 To enable it, import the package

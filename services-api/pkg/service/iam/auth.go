@@ -241,7 +241,6 @@ func (o *OAuth20Service) Login(username, password string) error {
 }
 
 func (o *OAuth20Service) LoginOrRefresh(username, password string) error {
-
 	session := o.GetAuthSession()
 	getToken, err := session.Token.GetToken()
 	refreshRate := session.Refresh.GetRefreshRate()
@@ -268,7 +267,6 @@ func (o *OAuth20Service) LoginOrRefresh(username, password string) error {
 }
 
 func (o *OAuth20Service) LoginOrRefreshClient(clientId, clientSecret *string) error {
-
 	session := o.GetAuthSession()
 	getToken, err := session.Token.GetToken()
 	refreshRate := session.Refresh.GetRefreshRate()

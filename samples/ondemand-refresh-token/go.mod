@@ -1,4 +1,4 @@
-module login-or-refresh-token
+module ondemand-refresh-token
 
 go 1.18
 

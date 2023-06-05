@@ -9,6 +9,7 @@ package matchmaking
 import (
 	"github.com/AccelByte/sample-apps/cmd/matchmaking/matchmaking"
 	"github.com/AccelByte/sample-apps/cmd/matchmaking/matchmakingOperations"
+	"github.com/AccelByte/sample-apps/cmd/matchmaking/mockMatchmaking"
 	"github.com/AccelByte/sample-apps/cmd/matchmaking/socialMatchmaking"
 	"github.com/spf13/cobra"
 )
@@ -38,11 +39,19 @@ func init() {
 	MatchmakingCmd.AddCommand(matchmaking.ImportChannelsCmd)
 	MatchmakingCmd.AddCommand(matchmaking.GetSingleMatchmakingChannelCmd)
 	MatchmakingCmd.AddCommand(matchmaking.UpdateMatchmakingChannelCmd)
+	MatchmakingCmd.AddCommand(mockMatchmaking.CleanAllMocksCmd)
+	MatchmakingCmd.AddCommand(mockMatchmaking.GetAllMockMatchesCmd)
+	MatchmakingCmd.AddCommand(mockMatchmaking.GetMockMatchesByTimestampCmd)
+	MatchmakingCmd.AddCommand(mockMatchmaking.GetAllMockTicketsCmd)
+	MatchmakingCmd.AddCommand(mockMatchmaking.CreateMockTicketsCmd)
+	MatchmakingCmd.AddCommand(mockMatchmaking.BulkCreateMockTicketsCmd)
+	MatchmakingCmd.AddCommand(mockMatchmaking.GetMockTicketsByTimestampCmd)
 	MatchmakingCmd.AddCommand(matchmaking.GetAllPartyInChannelCmd)
 	MatchmakingCmd.AddCommand(matchmaking.GetAllSessionsInChannelCmd)
 	MatchmakingCmd.AddCommand(matchmaking.AddUserIntoSessionInChannelCmd)
 	MatchmakingCmd.AddCommand(matchmaking.DeleteSessionInChannelCmd)
 	MatchmakingCmd.AddCommand(matchmaking.DeleteUserFromSessionInChannelCmd)
+	MatchmakingCmd.AddCommand(matchmaking.GetStatDataCmd)
 	MatchmakingCmd.AddCommand(matchmaking.SearchSessionsCmd)
 	MatchmakingCmd.AddCommand(matchmaking.GetSessionHistoryDetailedCmd)
 	MatchmakingCmd.AddCommand(matchmakingOperations.PublicGetMessagesCmd)

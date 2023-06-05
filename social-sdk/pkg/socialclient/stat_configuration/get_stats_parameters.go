@@ -100,6 +100,11 @@ type GetStatsParams struct {
 
 	*/
 	IsGlobal *bool
+	/*IsPublic
+	  flag to filter public/private statcode
+
+	*/
+	IsPublic *bool
 	/*Limit*/
 	Limit *int32
 	/*Offset*/
@@ -191,6 +196,17 @@ func (o *GetStatsParams) SetIsGlobal(isGlobal *bool) {
 	o.IsGlobal = isGlobal
 }
 
+// WithIsPublic adds the isPublic to the get stats params
+func (o *GetStatsParams) WithIsPublic(isPublic *bool) *GetStatsParams {
+	o.SetIsPublic(isPublic)
+	return o
+}
+
+// SetIsPublic adds the isPublic to the get stats params
+func (o *GetStatsParams) SetIsPublic(isPublic *bool) {
+	o.IsPublic = isPublic
+}
+
 // WithLimit adds the limit to the get stats params
 func (o *GetStatsParams) WithLimit(limit *int32) *GetStatsParams {
 	o.SetLimit(limit)
@@ -252,6 +268,22 @@ func (o *GetStatsParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.Regi
 		qIsGlobal := swag.FormatBool(qrIsGlobal)
 		if qIsGlobal != "" {
 			if err := r.SetQueryParam("isGlobal", qIsGlobal); err != nil {
+				return err
+			}
+		}
+
+	}
+
+	if o.IsPublic != nil {
+
+		// query param isPublic
+		var qrIsPublic bool
+		if o.IsPublic != nil {
+			qrIsPublic = *o.IsPublic
+		}
+		qIsPublic := swag.FormatBool(qrIsPublic)
+		if qIsPublic != "" {
+			if err := r.SetQueryParam("isPublic", qIsPublic); err != nil {
 				return err
 			}
 		}

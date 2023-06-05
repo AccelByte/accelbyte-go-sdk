@@ -610,6 +610,24 @@ Other detail info:
   * sandbox default value is false
   * platform default value is Other
   *  Returns : created order
+
+
+
+## Restrictions for ext field
+
+
+1. Cannot use "." as the key name
+-
+
+
+    { "data.2": "value" }
+
+
+2. Cannot use "$" as the prefix in key names
+-
+
+
+    { "$data": "value" }
 */
 func (a *Client) AdminCreateUserOrder(params *AdminCreateUserOrderParams, authInfo runtime.ClientAuthInfoWriter) (*AdminCreateUserOrderCreated, *AdminCreateUserOrderBadRequest, *AdminCreateUserOrderForbidden, *AdminCreateUserOrderNotFound, *AdminCreateUserOrderConflict, *AdminCreateUserOrderUnprocessableEntity, error) {
 	// TODO: Validate the params before sending
@@ -677,6 +695,24 @@ Other detail info:
   * sandbox default value is false
   * platform default value is Other
   *  Returns : created order
+
+
+
+## Restrictions for ext field
+
+
+1. Cannot use "." as the key name
+-
+
+
+    { "data.2": "value" }
+
+
+2. Cannot use "$" as the prefix in key names
+-
+
+
+    { "$data": "value" }
 */
 func (a *Client) AdminCreateUserOrderShort(params *AdminCreateUserOrderParams, authInfo runtime.ClientAuthInfoWriter) (*AdminCreateUserOrderCreated, error) {
 	// TODO: Validate the params before sending
@@ -1690,6 +1726,24 @@ Other detail info:
   *  Optional permission(user with this permission will create sandbox order) : resource="SANDBOX", action=1 (CREATE)
   * It will be forbidden while the user is banned: ORDER_INITIATE or ORDER_AND_PAYMENT
   *  Returns : created order
+
+
+
+## Restrictions for ext field
+
+
+1. Cannot use "." as the key name
+-
+
+
+    { "data.2": "value" }
+
+
+2. Cannot use "$" as the prefix in key names
+-
+
+
+    { "$data": "value" }
 */
 func (a *Client) PublicCreateUserOrder(params *PublicCreateUserOrderParams, authInfo runtime.ClientAuthInfoWriter) (*PublicCreateUserOrderCreated, *PublicCreateUserOrderBadRequest, *PublicCreateUserOrderForbidden, *PublicCreateUserOrderNotFound, *PublicCreateUserOrderConflict, *PublicCreateUserOrderUnprocessableEntity, error) {
 	// TODO: Validate the params before sending
@@ -1756,6 +1810,24 @@ Other detail info:
   *  Optional permission(user with this permission will create sandbox order) : resource="SANDBOX", action=1 (CREATE)
   * It will be forbidden while the user is banned: ORDER_INITIATE or ORDER_AND_PAYMENT
   *  Returns : created order
+
+
+
+## Restrictions for ext field
+
+
+1. Cannot use "." as the key name
+-
+
+
+    { "data.2": "value" }
+
+
+2. Cannot use "$" as the prefix in key names
+-
+
+
+    { "$data": "value" }
 */
 func (a *Client) PublicCreateUserOrderShort(params *PublicCreateUserOrderParams, authInfo runtime.ClientAuthInfoWriter) (*PublicCreateUserOrderCreated, error) {
 	// TODO: Validate the params before sending

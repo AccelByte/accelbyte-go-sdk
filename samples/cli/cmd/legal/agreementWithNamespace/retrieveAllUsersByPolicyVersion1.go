@@ -27,15 +27,17 @@ var RetrieveAllUsersByPolicyVersion1Cmd = &cobra.Command{
 		}
 		namespace, _ := cmd.Flags().GetString("namespace")
 		policyVersionId, _ := cmd.Flags().GetString("policyVersionId")
+		convertGameUserId, _ := cmd.Flags().GetBool("convertGameUserId")
 		keyword, _ := cmd.Flags().GetString("keyword")
 		limit, _ := cmd.Flags().GetInt32("limit")
 		offset, _ := cmd.Flags().GetInt32("offset")
 		input := &agreement_with_namespace.RetrieveAllUsersByPolicyVersion1Params{
-			Namespace:       namespace,
-			Keyword:         &keyword,
-			Limit:           &limit,
-			Offset:          &offset,
-			PolicyVersionID: policyVersionId,
+			Namespace:         namespace,
+			ConvertGameUserID: &convertGameUserId,
+			Keyword:           &keyword,
+			Limit:             &limit,
+			Offset:            &offset,
+			PolicyVersionID:   policyVersionId,
 		}
 		ok, errOK := agreementWithNamespaceService.RetrieveAllUsersByPolicyVersion1Short(input)
 		if errOK != nil {
@@ -53,6 +55,7 @@ var RetrieveAllUsersByPolicyVersion1Cmd = &cobra.Command{
 func init() {
 	RetrieveAllUsersByPolicyVersion1Cmd.Flags().String("namespace", "", "Namespace")
 	_ = RetrieveAllUsersByPolicyVersion1Cmd.MarkFlagRequired("namespace")
+	RetrieveAllUsersByPolicyVersion1Cmd.Flags().Bool("convertGameUserId", false, "Convert game user id")
 	RetrieveAllUsersByPolicyVersion1Cmd.Flags().String("keyword", "", "Keyword")
 	RetrieveAllUsersByPolicyVersion1Cmd.Flags().Int32("limit", 20, "Limit")
 	RetrieveAllUsersByPolicyVersion1Cmd.Flags().Int32("offset", 0, "Offset")

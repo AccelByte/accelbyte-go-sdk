@@ -68,6 +68,35 @@ func (aaa *PlayerService) AdminGetLobbyCCU(input *player.AdminGetLobbyCCUParams)
 	return ok.GetPayload(), nil
 }
 
+// Deprecated: 2022-01-10 - please use AdminGetBulkPlayerBlockedPlayersV1Short instead.
+func (aaa *PlayerService) AdminGetBulkPlayerBlockedPlayersV1(input *player.AdminGetBulkPlayerBlockedPlayersV1Params) (*lobbyclientmodels.ModelsGetBulkAllPlayerBlockedUsersResponse, error) {
+	token, err := aaa.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, badRequest, unauthorized, forbidden, notFound, internalServerError, err := aaa.Client.Player.AdminGetBulkPlayerBlockedPlayersV1(input, client.BearerToken(*token.AccessToken))
+	if badRequest != nil {
+		return nil, badRequest
+	}
+	if unauthorized != nil {
+		return nil, unauthorized
+	}
+	if forbidden != nil {
+		return nil, forbidden
+	}
+	if notFound != nil {
+		return nil, notFound
+	}
+	if internalServerError != nil {
+		return nil, internalServerError
+	}
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
 // Deprecated: 2022-01-10 - please use AdminGetAllPlayerSessionAttributeShort instead.
 func (aaa *PlayerService) AdminGetAllPlayerSessionAttribute(input *player.AdminGetAllPlayerSessionAttributeParams) (*lobbyclientmodels.ModelsGetAllPlayerSessionAttributeResponse, error) {
 	token, err := aaa.TokenRepository.GetToken()
@@ -309,6 +338,31 @@ func (aaa *PlayerService) AdminGetLobbyCCUShort(input *player.AdminGetLobbyCCUPa
 	}
 
 	ok, err := aaa.Client.Player.AdminGetLobbyCCUShort(input, authInfoWriter)
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
+func (aaa *PlayerService) AdminGetBulkPlayerBlockedPlayersV1Short(input *player.AdminGetBulkPlayerBlockedPlayersV1Params) (*lobbyclientmodels.ModelsGetBulkAllPlayerBlockedUsersResponse, error) {
+	authInfoWriter := input.AuthInfoWriter
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
+	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  aaa.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
+	ok, err := aaa.Client.Player.AdminGetBulkPlayerBlockedPlayersV1Short(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}

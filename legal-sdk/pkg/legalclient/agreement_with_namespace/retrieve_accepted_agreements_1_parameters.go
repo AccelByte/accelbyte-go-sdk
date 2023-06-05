@@ -16,13 +16,17 @@ import (
 	"github.com/go-openapi/runtime"
 	cr "github.com/go-openapi/runtime/client"
 	"github.com/go-openapi/strfmt"
+	"github.com/go-openapi/swag"
 )
 
 // NewRetrieveAcceptedAgreements1Params creates a new RetrieveAcceptedAgreements1Params object
 // with the default values initialized.
 func NewRetrieveAcceptedAgreements1Params() *RetrieveAcceptedAgreements1Params {
-	var ()
+	var (
+		excludeOtherNamespacesPoliciesDefault = bool(false)
+	)
 	return &RetrieveAcceptedAgreements1Params{
+		ExcludeOtherNamespacesPolicies: &excludeOtherNamespacesPoliciesDefault,
 
 		timeout: cr.DefaultTimeout,
 	}
@@ -31,8 +35,11 @@ func NewRetrieveAcceptedAgreements1Params() *RetrieveAcceptedAgreements1Params {
 // NewRetrieveAcceptedAgreements1ParamsWithTimeout creates a new RetrieveAcceptedAgreements1Params object
 // with the default values initialized, and the ability to set a timeout on a request
 func NewRetrieveAcceptedAgreements1ParamsWithTimeout(timeout time.Duration) *RetrieveAcceptedAgreements1Params {
-	var ()
+	var (
+		excludeOtherNamespacesPoliciesDefault = bool(false)
+	)
 	return &RetrieveAcceptedAgreements1Params{
+		ExcludeOtherNamespacesPolicies: &excludeOtherNamespacesPoliciesDefault,
 
 		timeout: timeout,
 	}
@@ -41,8 +48,11 @@ func NewRetrieveAcceptedAgreements1ParamsWithTimeout(timeout time.Duration) *Ret
 // NewRetrieveAcceptedAgreements1ParamsWithContext creates a new RetrieveAcceptedAgreements1Params object
 // with the default values initialized, and the ability to set a context for a request
 func NewRetrieveAcceptedAgreements1ParamsWithContext(ctx context.Context) *RetrieveAcceptedAgreements1Params {
-	var ()
+	var (
+		excludeOtherNamespacesPoliciesDefault = bool(false)
+	)
 	return &RetrieveAcceptedAgreements1Params{
+		ExcludeOtherNamespacesPolicies: &excludeOtherNamespacesPoliciesDefault,
 
 		Context: ctx,
 	}
@@ -51,9 +61,12 @@ func NewRetrieveAcceptedAgreements1ParamsWithContext(ctx context.Context) *Retri
 // NewRetrieveAcceptedAgreements1ParamsWithHTTPClient creates a new RetrieveAcceptedAgreements1Params object
 // with the default values initialized, and the ability to set a custom HTTPClient for a request
 func NewRetrieveAcceptedAgreements1ParamsWithHTTPClient(client *http.Client) *RetrieveAcceptedAgreements1Params {
-	var ()
+	var (
+		excludeOtherNamespacesPoliciesDefault = bool(false)
+	)
 	return &RetrieveAcceptedAgreements1Params{
-		HTTPClient: client,
+		ExcludeOtherNamespacesPolicies: &excludeOtherNamespacesPoliciesDefault,
+		HTTPClient:                     client,
 	}
 }
 
@@ -74,6 +87,11 @@ type RetrieveAcceptedAgreements1Params struct {
 
 	*/
 	UserID string
+	/*ExcludeOtherNamespacesPolicies
+	  If it is true, API will only query the policy in this path namespace
+
+	*/
+	ExcludeOtherNamespacesPolicies *bool
 
 	timeout        time.Duration
 	AuthInfoWriter runtime.ClientAuthInfoWriter
@@ -150,6 +168,17 @@ func (o *RetrieveAcceptedAgreements1Params) SetUserID(userID string) {
 	o.UserID = userID
 }
 
+// WithExcludeOtherNamespacesPolicies adds the excludeOtherNamespacesPolicies to the retrieve accepted agreements 1 params
+func (o *RetrieveAcceptedAgreements1Params) WithExcludeOtherNamespacesPolicies(excludeOtherNamespacesPolicies *bool) *RetrieveAcceptedAgreements1Params {
+	o.SetExcludeOtherNamespacesPolicies(excludeOtherNamespacesPolicies)
+	return o
+}
+
+// SetExcludeOtherNamespacesPolicies adds the excludeOtherNamespacesPolicies to the retrieve accepted agreements 1 params
+func (o *RetrieveAcceptedAgreements1Params) SetExcludeOtherNamespacesPolicies(excludeOtherNamespacesPolicies *bool) {
+	o.ExcludeOtherNamespacesPolicies = excludeOtherNamespacesPolicies
+}
+
 // WriteToRequest writes these params to a swagger request
 func (o *RetrieveAcceptedAgreements1Params) WriteToRequest(r runtime.ClientRequest, reg strfmt.Registry) error {
 
@@ -166,6 +195,22 @@ func (o *RetrieveAcceptedAgreements1Params) WriteToRequest(r runtime.ClientReque
 	// path param userId
 	if err := r.SetPathParam("userId", o.UserID); err != nil {
 		return err
+	}
+
+	if o.ExcludeOtherNamespacesPolicies != nil {
+
+		// query param excludeOtherNamespacesPolicies
+		var qrExcludeOtherNamespacesPolicies bool
+		if o.ExcludeOtherNamespacesPolicies != nil {
+			qrExcludeOtherNamespacesPolicies = *o.ExcludeOtherNamespacesPolicies
+		}
+		qExcludeOtherNamespacesPolicies := swag.FormatBool(qrExcludeOtherNamespacesPolicies)
+		if qExcludeOtherNamespacesPolicies != "" {
+			if err := r.SetQueryParam("excludeOtherNamespacesPolicies", qExcludeOtherNamespacesPolicies); err != nil {
+				return err
+			}
+		}
+
 	}
 
 	// setting the default header value

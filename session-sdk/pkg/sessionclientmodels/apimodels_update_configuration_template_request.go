@@ -49,6 +49,10 @@ type ApimodelsUpdateConfigurationTemplateRequest struct {
 	// Required: true
 	Joinability *string `json:"joinability"`
 
+	// maxactivesessions
+	// Format: int32
+	MaxActiveSessions int32 `json:"maxActiveSessions,omitempty"`
+
 	// maxplayers
 	// Required: true
 	// Format: int32

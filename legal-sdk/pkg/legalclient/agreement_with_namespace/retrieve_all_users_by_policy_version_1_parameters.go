@@ -23,12 +23,14 @@ import (
 // with the default values initialized.
 func NewRetrieveAllUsersByPolicyVersion1Params() *RetrieveAllUsersByPolicyVersion1Params {
 	var (
-		limitDefault  = int32(20)
-		offsetDefault = int32(0)
+		convertGameUserIdDefault = bool(false)
+		limitDefault             = int32(20)
+		offsetDefault            = int32(0)
 	)
 	return &RetrieveAllUsersByPolicyVersion1Params{
-		Limit:  &limitDefault,
-		Offset: &offsetDefault,
+		ConvertGameUserID: &convertGameUserIdDefault,
+		Limit:             &limitDefault,
+		Offset:            &offsetDefault,
 
 		timeout: cr.DefaultTimeout,
 	}
@@ -38,12 +40,14 @@ func NewRetrieveAllUsersByPolicyVersion1Params() *RetrieveAllUsersByPolicyVersio
 // with the default values initialized, and the ability to set a timeout on a request
 func NewRetrieveAllUsersByPolicyVersion1ParamsWithTimeout(timeout time.Duration) *RetrieveAllUsersByPolicyVersion1Params {
 	var (
-		limitDefault  = int32(20)
-		offsetDefault = int32(0)
+		convertGameUserIdDefault = bool(false)
+		limitDefault             = int32(20)
+		offsetDefault            = int32(0)
 	)
 	return &RetrieveAllUsersByPolicyVersion1Params{
-		Limit:  &limitDefault,
-		Offset: &offsetDefault,
+		ConvertGameUserID: &convertGameUserIdDefault,
+		Limit:             &limitDefault,
+		Offset:            &offsetDefault,
 
 		timeout: timeout,
 	}
@@ -53,12 +57,14 @@ func NewRetrieveAllUsersByPolicyVersion1ParamsWithTimeout(timeout time.Duration)
 // with the default values initialized, and the ability to set a context for a request
 func NewRetrieveAllUsersByPolicyVersion1ParamsWithContext(ctx context.Context) *RetrieveAllUsersByPolicyVersion1Params {
 	var (
-		limitDefault  = int32(20)
-		offsetDefault = int32(0)
+		convertGameUserIdDefault = bool(false)
+		limitDefault             = int32(20)
+		offsetDefault            = int32(0)
 	)
 	return &RetrieveAllUsersByPolicyVersion1Params{
-		Limit:  &limitDefault,
-		Offset: &offsetDefault,
+		ConvertGameUserID: &convertGameUserIdDefault,
+		Limit:             &limitDefault,
+		Offset:            &offsetDefault,
 
 		Context: ctx,
 	}
@@ -68,13 +74,15 @@ func NewRetrieveAllUsersByPolicyVersion1ParamsWithContext(ctx context.Context) *
 // with the default values initialized, and the ability to set a custom HTTPClient for a request
 func NewRetrieveAllUsersByPolicyVersion1ParamsWithHTTPClient(client *http.Client) *RetrieveAllUsersByPolicyVersion1Params {
 	var (
-		limitDefault  = int32(20)
-		offsetDefault = int32(0)
+		convertGameUserIdDefault = bool(false)
+		limitDefault             = int32(20)
+		offsetDefault            = int32(0)
 	)
 	return &RetrieveAllUsersByPolicyVersion1Params{
-		Limit:      &limitDefault,
-		Offset:     &offsetDefault,
-		HTTPClient: client,
+		ConvertGameUserID: &convertGameUserIdDefault,
+		Limit:             &limitDefault,
+		Offset:            &offsetDefault,
+		HTTPClient:        client,
 	}
 }
 
@@ -90,6 +98,11 @@ type RetrieveAllUsersByPolicyVersion1Params struct {
 
 	*/
 	Namespace string
+	/*ConvertGameUserID
+	  [Only for publisher legal scenario] If it is true, when a game user accept this publisher legal, API will return publisher user id
+
+	*/
+	ConvertGameUserID *bool
 	/*Keyword
 	  display name or email or username
 
@@ -172,6 +185,17 @@ func (o *RetrieveAllUsersByPolicyVersion1Params) SetNamespace(namespace string) 
 	o.Namespace = namespace
 }
 
+// WithConvertGameUserID adds the convertGameUserID to the retrieve all users by policy version 1 params
+func (o *RetrieveAllUsersByPolicyVersion1Params) WithConvertGameUserID(convertGameUserID *bool) *RetrieveAllUsersByPolicyVersion1Params {
+	o.SetConvertGameUserID(convertGameUserID)
+	return o
+}
+
+// SetConvertGameUserID adds the convertGameUserId to the retrieve all users by policy version 1 params
+func (o *RetrieveAllUsersByPolicyVersion1Params) SetConvertGameUserID(convertGameUserID *bool) {
+	o.ConvertGameUserID = convertGameUserID
+}
+
 // WithKeyword adds the keyword to the retrieve all users by policy version 1 params
 func (o *RetrieveAllUsersByPolicyVersion1Params) WithKeyword(keyword *string) *RetrieveAllUsersByPolicyVersion1Params {
 	o.SetKeyword(keyword)
@@ -227,6 +251,22 @@ func (o *RetrieveAllUsersByPolicyVersion1Params) WriteToRequest(r runtime.Client
 	// path param namespace
 	if err := r.SetPathParam("namespace", o.Namespace); err != nil {
 		return err
+	}
+
+	if o.ConvertGameUserID != nil {
+
+		// query param convertGameUserId
+		var qrConvertGameUserID bool
+		if o.ConvertGameUserID != nil {
+			qrConvertGameUserID = *o.ConvertGameUserID
+		}
+		qConvertGameUserID := swag.FormatBool(qrConvertGameUserID)
+		if qConvertGameUserID != "" {
+			if err := r.SetQueryParam("convertGameUserId", qConvertGameUserID); err != nil {
+				return err
+			}
+		}
+
 	}
 
 	if o.Keyword != nil {

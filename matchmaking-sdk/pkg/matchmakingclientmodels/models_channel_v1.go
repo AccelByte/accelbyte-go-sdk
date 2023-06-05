@@ -85,6 +85,9 @@ type ModelsChannelV1 struct {
 	// Required: true
 	SocialMatchmaking *bool `json:"socialMatchmaking"`
 
+	// ticket_observability_enable
+	TicketObservabilityEnable bool `json:"ticket_observability_enable"`
+
 	// updatedat
 	// Required: true
 	UpdatedAt *string `json:"updatedAt"`

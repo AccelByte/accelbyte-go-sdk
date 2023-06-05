@@ -378,6 +378,46 @@ func (aaa *UserStatisticService) BulkResetUserStatItem2(input *user_statistic.Bu
 	return ok.GetPayload(), nil
 }
 
+// Deprecated: 2022-01-10 - please use PublicListMyStatItemsShort instead.
+func (aaa *UserStatisticService) PublicListMyStatItems(input *user_statistic.PublicListMyStatItemsParams) (*socialclientmodels.UserStatItemPagingSlicedResult, error) {
+	token, err := aaa.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, unprocessableEntity, err := aaa.Client.UserStatistic.PublicListMyStatItems(input, client.BearerToken(*token.AccessToken))
+	if unprocessableEntity != nil {
+		return nil, unprocessableEntity
+	}
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
+// Deprecated: 2022-01-10 - please use PublicListAllMyStatItemsShort instead.
+func (aaa *UserStatisticService) PublicListAllMyStatItems(input *user_statistic.PublicListAllMyStatItemsParams) ([]*socialclientmodels.ADTOObjectForUserStatItemValue, error) {
+	token, err := aaa.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, badRequest, notFound, unprocessableEntity, err := aaa.Client.UserStatistic.PublicListAllMyStatItems(input, client.BearerToken(*token.AccessToken))
+	if badRequest != nil {
+		return nil, badRequest
+	}
+	if notFound != nil {
+		return nil, notFound
+	}
+	if unprocessableEntity != nil {
+		return nil, unprocessableEntity
+	}
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
 // Deprecated: 2022-01-10 - please use PublicQueryUserStatItemsShort instead.
 func (aaa *UserStatisticService) PublicQueryUserStatItems(input *user_statistic.PublicQueryUserStatItemsParams) (*socialclientmodels.UserStatItemPagingSlicedResult, error) {
 	token, err := aaa.TokenRepository.GetToken()
@@ -1259,6 +1299,56 @@ func (aaa *UserStatisticService) BulkResetUserStatItem2Short(input *user_statist
 	}
 
 	ok, err := aaa.Client.UserStatistic.BulkResetUserStatItem2Short(input, authInfoWriter)
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
+func (aaa *UserStatisticService) PublicListMyStatItemsShort(input *user_statistic.PublicListMyStatItemsParams) (*socialclientmodels.UserStatItemPagingSlicedResult, error) {
+	authInfoWriter := input.AuthInfoWriter
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
+	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  aaa.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
+	ok, err := aaa.Client.UserStatistic.PublicListMyStatItemsShort(input, authInfoWriter)
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
+func (aaa *UserStatisticService) PublicListAllMyStatItemsShort(input *user_statistic.PublicListAllMyStatItemsParams) ([]*socialclientmodels.ADTOObjectForUserStatItemValue, error) {
+	authInfoWriter := input.AuthInfoWriter
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
+	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  aaa.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
+	ok, err := aaa.Client.UserStatistic.PublicListAllMyStatItemsShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}

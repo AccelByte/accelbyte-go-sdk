@@ -1,3 +1,18 @@
+<a name="v0.46.0"></a>
+## [v0.46.0]
+### chore
+- **sdk:** lobby - remove systemcomponentsstatus
+- **integration-test:** add initial support for ams service
+- **docs:** ams service common use cases
+- **samples:** rename ondemand-refresh-token
+- **sdk:** fix code style lint error
+### feat
+- **:** add initial support for ams service
+- **sdk:** on demand refresh token
+### docs
+- **readme:** add on demand refresh token
+
+
 <a name="v0.45.0"></a>
 ## [v0.45.0]
 ### chore

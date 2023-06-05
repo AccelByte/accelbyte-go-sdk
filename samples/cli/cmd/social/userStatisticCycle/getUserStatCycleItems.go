@@ -28,6 +28,7 @@ var GetUserStatCycleItemsCmd = &cobra.Command{
 		cycleId, _ := cmd.Flags().GetString("cycleId")
 		namespace, _ := cmd.Flags().GetString("namespace")
 		userId, _ := cmd.Flags().GetString("userId")
+		isPublic, _ := cmd.Flags().GetBool("isPublic")
 		limit, _ := cmd.Flags().GetInt32("limit")
 		offset, _ := cmd.Flags().GetInt32("offset")
 		sortBy, _ := cmd.Flags().GetString("sortBy")
@@ -36,6 +37,7 @@ var GetUserStatCycleItemsCmd = &cobra.Command{
 			CycleID:   cycleId,
 			Namespace: namespace,
 			UserID:    userId,
+			IsPublic:  &isPublic,
 			Limit:     &limit,
 			Offset:    &offset,
 			SortBy:    &sortBy,
@@ -61,6 +63,7 @@ func init() {
 	_ = GetUserStatCycleItemsCmd.MarkFlagRequired("namespace")
 	GetUserStatCycleItemsCmd.Flags().String("userId", "", "User id")
 	_ = GetUserStatCycleItemsCmd.MarkFlagRequired("userId")
+	GetUserStatCycleItemsCmd.Flags().Bool("isPublic", false, "Is public")
 	GetUserStatCycleItemsCmd.Flags().Int32("limit", 20, "Limit")
 	GetUserStatCycleItemsCmd.Flags().Int32("offset", 0, "Offset")
 	GetUserStatCycleItemsCmd.Flags().String("sortBy", "", "Sort by")

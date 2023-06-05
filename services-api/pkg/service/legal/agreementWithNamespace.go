@@ -68,7 +68,7 @@ func (aaa *AgreementWithNamespaceService) RetrieveAcceptedAgreements1(input *agr
 }
 
 // Deprecated: 2022-01-10 - please use RetrieveAllUsersByPolicyVersion1Short instead.
-func (aaa *AgreementWithNamespaceService) RetrieveAllUsersByPolicyVersion1(input *agreement_with_namespace.RetrieveAllUsersByPolicyVersion1Params) ([]*legalclientmodels.PagedRetrieveUserAcceptedAgreementResponse, error) {
+func (aaa *AgreementWithNamespaceService) RetrieveAllUsersByPolicyVersion1(input *agreement_with_namespace.RetrieveAllUsersByPolicyVersion1Params) (*legalclientmodels.PagedRetrieveUserAcceptedAgreementResponse, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
@@ -134,7 +134,7 @@ func (aaa *AgreementWithNamespaceService) RetrieveAcceptedAgreements1Short(input
 	return ok.GetPayload(), nil
 }
 
-func (aaa *AgreementWithNamespaceService) RetrieveAllUsersByPolicyVersion1Short(input *agreement_with_namespace.RetrieveAllUsersByPolicyVersion1Params) ([]*legalclientmodels.PagedRetrieveUserAcceptedAgreementResponse, error) {
+func (aaa *AgreementWithNamespaceService) RetrieveAllUsersByPolicyVersion1Short(input *agreement_with_namespace.RetrieveAllUsersByPolicyVersion1Params) (*legalclientmodels.PagedRetrieveUserAcceptedAgreementResponse, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{

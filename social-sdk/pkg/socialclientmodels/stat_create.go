@@ -32,8 +32,14 @@ type StatCreate struct {
 	// description
 	Description string `json:"description,omitempty"`
 
+	// ignoreadditionaldataonvaluerejected
+	IgnoreAdditionalDataOnValueRejected bool `json:"ignoreAdditionalDataOnValueRejected"`
+
 	// incrementonly
 	IncrementOnly bool `json:"incrementOnly"`
+
+	// ispublic
+	IsPublic bool `json:"isPublic"`
 
 	// default value is 1.7976931348623157e+308
 	// Format: double

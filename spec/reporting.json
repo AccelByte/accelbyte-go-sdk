@@ -3231,7 +3231,7 @@
     "path": "/reporting/apidocs/api.json"
   },
   "x-version": {
-    "buildDate": "2023-05-09T01:43:19+00:00",
+    "buildDate": "2023-05-23T02:15:12+00:00",
     "gitHash": "455759492da75cd326aceeacf29aa6dfda785376",
     "name": "justice-reporting-service",
     "realm": "staging",

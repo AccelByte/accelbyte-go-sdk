@@ -32,6 +32,8 @@ type Client struct {
 type ClientService interface {
 	AdminGetLobbyCCU(params *AdminGetLobbyCCUParams, authInfo runtime.ClientAuthInfoWriter) (*AdminGetLobbyCCUOK, *AdminGetLobbyCCUBadRequest, *AdminGetLobbyCCUUnauthorized, *AdminGetLobbyCCUForbidden, *AdminGetLobbyCCUNotFound, *AdminGetLobbyCCUInternalServerError, error)
 	AdminGetLobbyCCUShort(params *AdminGetLobbyCCUParams, authInfo runtime.ClientAuthInfoWriter) (*AdminGetLobbyCCUOK, error)
+	AdminGetBulkPlayerBlockedPlayersV1(params *AdminGetBulkPlayerBlockedPlayersV1Params, authInfo runtime.ClientAuthInfoWriter) (*AdminGetBulkPlayerBlockedPlayersV1OK, *AdminGetBulkPlayerBlockedPlayersV1BadRequest, *AdminGetBulkPlayerBlockedPlayersV1Unauthorized, *AdminGetBulkPlayerBlockedPlayersV1Forbidden, *AdminGetBulkPlayerBlockedPlayersV1NotFound, *AdminGetBulkPlayerBlockedPlayersV1InternalServerError, error)
+	AdminGetBulkPlayerBlockedPlayersV1Short(params *AdminGetBulkPlayerBlockedPlayersV1Params, authInfo runtime.ClientAuthInfoWriter) (*AdminGetBulkPlayerBlockedPlayersV1OK, error)
 	AdminGetAllPlayerSessionAttribute(params *AdminGetAllPlayerSessionAttributeParams, authInfo runtime.ClientAuthInfoWriter) (*AdminGetAllPlayerSessionAttributeOK, *AdminGetAllPlayerSessionAttributeUnauthorized, *AdminGetAllPlayerSessionAttributeForbidden, *AdminGetAllPlayerSessionAttributeInternalServerError, error)
 	AdminGetAllPlayerSessionAttributeShort(params *AdminGetAllPlayerSessionAttributeParams, authInfo runtime.ClientAuthInfoWriter) (*AdminGetAllPlayerSessionAttributeOK, error)
 	AdminSetPlayerSessionAttribute(params *AdminSetPlayerSessionAttributeParams, authInfo runtime.ClientAuthInfoWriter) (*AdminSetPlayerSessionAttributeNoContent, *AdminSetPlayerSessionAttributeBadRequest, *AdminSetPlayerSessionAttributeUnauthorized, *AdminSetPlayerSessionAttributeForbidden, *AdminSetPlayerSessionAttributeNotFound, *AdminSetPlayerSessionAttributeInternalServerError, error)
@@ -166,6 +168,127 @@ func (a *Client) AdminGetLobbyCCUShort(params *AdminGetLobbyCCUParams, authInfo 
 	case *AdminGetLobbyCCUNotFound:
 		return nil, v
 	case *AdminGetLobbyCCUInternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+Deprecated: 2022-08-10 - Use AdminGetBulkPlayerBlockedPlayersV1Short instead.
+
+AdminGetBulkPlayerBlockedPlayersV1 admin get blocked players by bulk user ids
+Required permission : `ADMIN:NAMESPACE:{namespace}:USER:{userId}:PLAYER:BLOCK [READ]` with scope `social`
+
+get blocked players data by bulk user ids in a namespace.
+*/
+func (a *Client) AdminGetBulkPlayerBlockedPlayersV1(params *AdminGetBulkPlayerBlockedPlayersV1Params, authInfo runtime.ClientAuthInfoWriter) (*AdminGetBulkPlayerBlockedPlayersV1OK, *AdminGetBulkPlayerBlockedPlayersV1BadRequest, *AdminGetBulkPlayerBlockedPlayersV1Unauthorized, *AdminGetBulkPlayerBlockedPlayersV1Forbidden, *AdminGetBulkPlayerBlockedPlayersV1NotFound, *AdminGetBulkPlayerBlockedPlayersV1InternalServerError, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewAdminGetBulkPlayerBlockedPlayersV1Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "adminGetBulkPlayerBlockedPlayersV1",
+		Method:             "POST",
+		PathPattern:        "/lobby/v1/admin/player/namespaces/{namespace}/users/bulk/blocked",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &AdminGetBulkPlayerBlockedPlayersV1Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, nil, nil, nil, nil, nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *AdminGetBulkPlayerBlockedPlayersV1OK:
+		return v, nil, nil, nil, nil, nil, nil
+
+	case *AdminGetBulkPlayerBlockedPlayersV1BadRequest:
+		return nil, v, nil, nil, nil, nil, nil
+
+	case *AdminGetBulkPlayerBlockedPlayersV1Unauthorized:
+		return nil, nil, v, nil, nil, nil, nil
+
+	case *AdminGetBulkPlayerBlockedPlayersV1Forbidden:
+		return nil, nil, nil, v, nil, nil, nil
+
+	case *AdminGetBulkPlayerBlockedPlayersV1NotFound:
+		return nil, nil, nil, nil, v, nil, nil
+
+	case *AdminGetBulkPlayerBlockedPlayersV1InternalServerError:
+		return nil, nil, nil, nil, nil, v, nil
+
+	default:
+		return nil, nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+AdminGetBulkPlayerBlockedPlayersV1Short admin get blocked players by bulk user ids
+Required permission : `ADMIN:NAMESPACE:{namespace}:USER:{userId}:PLAYER:BLOCK [READ]` with scope `social`
+
+get blocked players data by bulk user ids in a namespace.
+*/
+func (a *Client) AdminGetBulkPlayerBlockedPlayersV1Short(params *AdminGetBulkPlayerBlockedPlayersV1Params, authInfo runtime.ClientAuthInfoWriter) (*AdminGetBulkPlayerBlockedPlayersV1OK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewAdminGetBulkPlayerBlockedPlayersV1Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "adminGetBulkPlayerBlockedPlayersV1",
+		Method:             "POST",
+		PathPattern:        "/lobby/v1/admin/player/namespaces/{namespace}/users/bulk/blocked",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &AdminGetBulkPlayerBlockedPlayersV1Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *AdminGetBulkPlayerBlockedPlayersV1OK:
+		return v, nil
+	case *AdminGetBulkPlayerBlockedPlayersV1BadRequest:
+		return nil, v
+	case *AdminGetBulkPlayerBlockedPlayersV1Unauthorized:
+		return nil, v
+	case *AdminGetBulkPlayerBlockedPlayersV1Forbidden:
+		return nil, v
+	case *AdminGetBulkPlayerBlockedPlayersV1NotFound:
+		return nil, v
+	case *AdminGetBulkPlayerBlockedPlayersV1InternalServerError:
 		return nil, v
 
 	default:

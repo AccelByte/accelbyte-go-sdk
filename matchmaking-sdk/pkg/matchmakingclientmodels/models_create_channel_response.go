@@ -85,6 +85,9 @@ type ModelsCreateChannelResponse struct {
 	// Required: true
 	SocialMatchmaking *bool `json:"social_matchmaking"`
 
+	// ticket_observability_enable
+	TicketObservabilityEnable bool `json:"ticket_observability_enable"`
+
 	// updated_at
 	// Required: true
 	UpdatedAt *string `json:"updated_at"`

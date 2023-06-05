@@ -1114,6 +1114,24 @@ Other detail info:
 
   * Required permission : resource="ADMIN:NAMESPACE:{namespace}:ITEM", action=1 (CREATE)
   *  Returns : created item data
+
+
+
+## Restrictions for item extension and localization extension
+
+
+1. Cannot use "." as the key name
+-
+
+
+    { "data.2": "value" }
+
+
+2. Cannot use "$" as the prefix in key names
+-
+
+
+    { "$data": "value" }
 */
 func (a *Client) CreateItem(params *CreateItemParams, authInfo runtime.ClientAuthInfoWriter) (*CreateItemCreated, *CreateItemBadRequest, *CreateItemNotFound, *CreateItemConflict, *CreateItemUnprocessableEntity, error) {
 	// TODO: Validate the params before sending
@@ -1389,6 +1407,24 @@ Other detail info:
 
   * Required permission : resource="ADMIN:NAMESPACE:{namespace}:ITEM", action=1 (CREATE)
   *  Returns : created item data
+
+
+
+## Restrictions for item extension and localization extension
+
+
+1. Cannot use "." as the key name
+-
+
+
+    { "data.2": "value" }
+
+
+2. Cannot use "$" as the prefix in key names
+-
+
+
+    { "$data": "value" }
 */
 func (a *Client) CreateItemShort(params *CreateItemParams, authInfo runtime.ClientAuthInfoWriter) (*CreateItemCreated, error) {
 	// TODO: Validate the params before sending
@@ -3161,6 +3197,24 @@ Other detail info:
 
   * Required permission : resource="ADMIN:NAMESPACE:{namespace}:ITEM", action=4 (UPDATE)
   *  Returns : updated item data
+
+
+
+## Restrictions for item extension and localization extension
+
+
+1. Cannot use "." as the key name
+-
+
+
+    { "data.2": "value" }
+
+
+2. Cannot use "$" as the prefix in key names
+-
+
+
+    { "$data": "value" }
 */
 func (a *Client) UpdateItem(params *UpdateItemParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateItemOK, *UpdateItemBadRequest, *UpdateItemNotFound, *UpdateItemConflict, *UpdateItemUnprocessableEntity, error) {
 	// TODO: Validate the params before sending
@@ -3438,6 +3492,24 @@ Other detail info:
 
   * Required permission : resource="ADMIN:NAMESPACE:{namespace}:ITEM", action=4 (UPDATE)
   *  Returns : updated item data
+
+
+
+## Restrictions for item extension and localization extension
+
+
+1. Cannot use "." as the key name
+-
+
+
+    { "data.2": "value" }
+
+
+2. Cannot use "$" as the prefix in key names
+-
+
+
+    { "$data": "value" }
 */
 func (a *Client) UpdateItemShort(params *UpdateItemParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateItemOK, error) {
 	// TODO: Validate the params before sending

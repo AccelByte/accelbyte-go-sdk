@@ -40,7 +40,8 @@ type ClientService interface {
 Deprecated: 2022-08-10 - Use AdminRetrieveEligibilitiesShort instead.
 
 AdminRetrieveEligibilities check user legal eligibility
-Retrieve the active policies and its conformance status by userThis process only supports cross-namespace checking between game namespace and publisher namespace , that means if the active policy already accepted by the same user in publisher namespace, then it will also be considered as eligible in non-publisher namespace.
+Retrieve the active policies and its conformance status by user.
+This process only supports cross-namespace checking between game namespace and publisher namespace , that means if the active policy already accepted by the same user in publisher namespace, then it will also be considered as eligible in non-publisher namespace.
 
 Other detail info:
 
@@ -92,7 +93,8 @@ func (a *Client) AdminRetrieveEligibilities(params *AdminRetrieveEligibilitiesPa
 
 /*
 AdminRetrieveEligibilitiesShort check user legal eligibility
-Retrieve the active policies and its conformance status by userThis process only supports cross-namespace checking between game namespace and publisher namespace , that means if the active policy already accepted by the same user in publisher namespace, then it will also be considered as eligible in non-publisher namespace.
+Retrieve the active policies and its conformance status by user.
+This process only supports cross-namespace checking between game namespace and publisher namespace , that means if the active policy already accepted by the same user in publisher namespace, then it will also be considered as eligible in non-publisher namespace.
 
 Other detail info:
 

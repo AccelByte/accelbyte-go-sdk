@@ -20,6 +20,7 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/leaderboard-sdk/pkg/leaderboardclient/leaderboard_data"
 	"github.com/AccelByte/accelbyte-go-sdk/leaderboard-sdk/pkg/leaderboardclient/leaderboard_data_v3"
 	"github.com/AccelByte/accelbyte-go-sdk/leaderboard-sdk/pkg/leaderboardclient/user_data"
+	"github.com/AccelByte/accelbyte-go-sdk/leaderboard-sdk/pkg/leaderboardclient/user_data_v3"
 	"github.com/AccelByte/accelbyte-go-sdk/leaderboard-sdk/pkg/leaderboardclient/user_visibility"
 	"github.com/AccelByte/accelbyte-go-sdk/leaderboard-sdk/pkg/leaderboardclient/user_visibility_v3"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils"
@@ -78,6 +79,7 @@ func New(transport runtime.ClientTransport, runtime *httptransport.Runtime, form
 	cli.LeaderboardData = leaderboard_data.New(transport, formats)
 	cli.LeaderboardDataV3 = leaderboard_data_v3.New(transport, formats)
 	cli.UserData = user_data.New(transport, formats)
+	cli.UserDataV3 = user_data_v3.New(transport, formats)
 	cli.UserVisibility = user_visibility.New(transport, formats)
 	cli.UserVisibilityV3 = user_visibility_v3.New(transport, formats)
 
@@ -152,6 +154,8 @@ type JusticeLeaderboardService struct {
 
 	UserData user_data.ClientService
 
+	UserDataV3 user_data_v3.ClientService
+
 	UserVisibility user_visibility.ClientService
 
 	UserVisibilityV3 user_visibility_v3.ClientService
@@ -169,6 +173,7 @@ func (c *JusticeLeaderboardService) SetTransport(transport runtime.ClientTranspo
 	c.LeaderboardData.SetTransport(transport)
 	c.LeaderboardDataV3.SetTransport(transport)
 	c.UserData.SetTransport(transport)
+	c.UserDataV3.SetTransport(transport)
 	c.UserVisibility.SetTransport(transport)
 	c.UserVisibilityV3.SetTransport(transport)
 }

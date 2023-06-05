@@ -40,6 +40,8 @@ type ClientService interface {
 	CreateGameSessionShort(params *CreateGameSessionParams, authInfo runtime.ClientAuthInfoWriter) (*CreateGameSessionCreated, error)
 	PublicQueryGameSessions(params *PublicQueryGameSessionsParams, authInfo runtime.ClientAuthInfoWriter) (*PublicQueryGameSessionsOK, *PublicQueryGameSessionsBadRequest, *PublicQueryGameSessionsUnauthorized, *PublicQueryGameSessionsForbidden, *PublicQueryGameSessionsInternalServerError, error)
 	PublicQueryGameSessionsShort(params *PublicQueryGameSessionsParams, authInfo runtime.ClientAuthInfoWriter) (*PublicQueryGameSessionsOK, error)
+	PublicSessionJoinCode(params *PublicSessionJoinCodeParams, authInfo runtime.ClientAuthInfoWriter) (*PublicSessionJoinCodeOK, *PublicSessionJoinCodeBadRequest, *PublicSessionJoinCodeUnauthorized, *PublicSessionJoinCodeForbidden, *PublicSessionJoinCodeNotFound, *PublicSessionJoinCodeInternalServerError, error)
+	PublicSessionJoinCodeShort(params *PublicSessionJoinCodeParams, authInfo runtime.ClientAuthInfoWriter) (*PublicSessionJoinCodeOK, error)
 	GetGameSessionByPodName(params *GetGameSessionByPodNameParams, authInfo runtime.ClientAuthInfoWriter) (*GetGameSessionByPodNameOK, *GetGameSessionByPodNameBadRequest, *GetGameSessionByPodNameUnauthorized, *GetGameSessionByPodNameForbidden, *GetGameSessionByPodNameNotFound, *GetGameSessionByPodNameInternalServerError, error)
 	GetGameSessionByPodNameShort(params *GetGameSessionByPodNameParams, authInfo runtime.ClientAuthInfoWriter) (*GetGameSessionByPodNameOK, error)
 	GetGameSession(params *GetGameSessionParams, authInfo runtime.ClientAuthInfoWriter) (*GetGameSessionOK, *GetGameSessionBadRequest, *GetGameSessionUnauthorized, *GetGameSessionForbidden, *GetGameSessionNotFound, *GetGameSessionInternalServerError, error)
@@ -52,6 +54,10 @@ type ClientService interface {
 	PatchUpdateGameSessionShort(params *PatchUpdateGameSessionParams, authInfo runtime.ClientAuthInfoWriter) (*PatchUpdateGameSessionOK, error)
 	UpdateGameSessionBackfillTicketID(params *UpdateGameSessionBackfillTicketIDParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateGameSessionBackfillTicketIDOK, *UpdateGameSessionBackfillTicketIDUnauthorized, *UpdateGameSessionBackfillTicketIDForbidden, *UpdateGameSessionBackfillTicketIDNotFound, *UpdateGameSessionBackfillTicketIDInternalServerError, error)
 	UpdateGameSessionBackfillTicketIDShort(params *UpdateGameSessionBackfillTicketIDParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateGameSessionBackfillTicketIDOK, error)
+	GameSessionGenerateCode(params *GameSessionGenerateCodeParams, authInfo runtime.ClientAuthInfoWriter) (*GameSessionGenerateCodeOK, *GameSessionGenerateCodeBadRequest, *GameSessionGenerateCodeUnauthorized, *GameSessionGenerateCodeForbidden, *GameSessionGenerateCodeNotFound, *GameSessionGenerateCodeInternalServerError, error)
+	GameSessionGenerateCodeShort(params *GameSessionGenerateCodeParams, authInfo runtime.ClientAuthInfoWriter) (*GameSessionGenerateCodeOK, error)
+	PublicRevokeGameSessionCode(params *PublicRevokeGameSessionCodeParams, authInfo runtime.ClientAuthInfoWriter) (*PublicRevokeGameSessionCodeOK, *PublicRevokeGameSessionCodeBadRequest, *PublicRevokeGameSessionCodeUnauthorized, *PublicRevokeGameSessionCodeForbidden, *PublicRevokeGameSessionCodeNotFound, *PublicRevokeGameSessionCodeInternalServerError, error)
+	PublicRevokeGameSessionCodeShort(params *PublicRevokeGameSessionCodeParams, authInfo runtime.ClientAuthInfoWriter) (*PublicRevokeGameSessionCodeOK, error)
 	PublicGameSessionInvite(params *PublicGameSessionInviteParams, authInfo runtime.ClientAuthInfoWriter) (*PublicGameSessionInviteCreated, *PublicGameSessionInviteNoContent, *PublicGameSessionInviteBadRequest, *PublicGameSessionInviteUnauthorized, *PublicGameSessionInviteNotFound, *PublicGameSessionInviteInternalServerError, error)
 	PublicGameSessionInviteShort(params *PublicGameSessionInviteParams, authInfo runtime.ClientAuthInfoWriter) (*PublicGameSessionInviteCreated, error)
 	JoinGameSession(params *JoinGameSessionParams, authInfo runtime.ClientAuthInfoWriter) (*JoinGameSessionOK, *JoinGameSessionBadRequest, *JoinGameSessionUnauthorized, *JoinGameSessionForbidden, *JoinGameSessionNotFound, *JoinGameSessionInternalServerError, error)
@@ -688,6 +694,123 @@ func (a *Client) PublicQueryGameSessionsShort(params *PublicQueryGameSessionsPar
 	case *PublicQueryGameSessionsForbidden:
 		return nil, v
 	case *PublicQueryGameSessionsInternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+Deprecated: 2022-08-10 - Use PublicSessionJoinCodeShort instead.
+
+PublicSessionJoinCode join a session by code. requires namespace:{namespace}:session:game:player [create]
+Join a session by code. The user can join a session as long as the code is valid
+*/
+func (a *Client) PublicSessionJoinCode(params *PublicSessionJoinCodeParams, authInfo runtime.ClientAuthInfoWriter) (*PublicSessionJoinCodeOK, *PublicSessionJoinCodeBadRequest, *PublicSessionJoinCodeUnauthorized, *PublicSessionJoinCodeForbidden, *PublicSessionJoinCodeNotFound, *PublicSessionJoinCodeInternalServerError, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewPublicSessionJoinCodeParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "publicSessionJoinCode",
+		Method:             "POST",
+		PathPattern:        "/session/v1/public/namespaces/{namespace}/gamesessions/join/code",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &PublicSessionJoinCodeReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, nil, nil, nil, nil, nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *PublicSessionJoinCodeOK:
+		return v, nil, nil, nil, nil, nil, nil
+
+	case *PublicSessionJoinCodeBadRequest:
+		return nil, v, nil, nil, nil, nil, nil
+
+	case *PublicSessionJoinCodeUnauthorized:
+		return nil, nil, v, nil, nil, nil, nil
+
+	case *PublicSessionJoinCodeForbidden:
+		return nil, nil, nil, v, nil, nil, nil
+
+	case *PublicSessionJoinCodeNotFound:
+		return nil, nil, nil, nil, v, nil, nil
+
+	case *PublicSessionJoinCodeInternalServerError:
+		return nil, nil, nil, nil, nil, v, nil
+
+	default:
+		return nil, nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+PublicSessionJoinCodeShort join a session by code. requires namespace:{namespace}:session:game:player [create]
+Join a session by code. The user can join a session as long as the code is valid
+*/
+func (a *Client) PublicSessionJoinCodeShort(params *PublicSessionJoinCodeParams, authInfo runtime.ClientAuthInfoWriter) (*PublicSessionJoinCodeOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewPublicSessionJoinCodeParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "publicSessionJoinCode",
+		Method:             "POST",
+		PathPattern:        "/session/v1/public/namespaces/{namespace}/gamesessions/join/code",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &PublicSessionJoinCodeReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *PublicSessionJoinCodeOK:
+		return v, nil
+	case *PublicSessionJoinCodeBadRequest:
+		return nil, v
+	case *PublicSessionJoinCodeUnauthorized:
+		return nil, v
+	case *PublicSessionJoinCodeForbidden:
+		return nil, v
+	case *PublicSessionJoinCodeNotFound:
+		return nil, v
+	case *PublicSessionJoinCodeInternalServerError:
 		return nil, v
 
 	default:
@@ -1405,6 +1528,240 @@ func (a *Client) UpdateGameSessionBackfillTicketIDShort(params *UpdateGameSessio
 	case *UpdateGameSessionBackfillTicketIDNotFound:
 		return nil, v
 	case *UpdateGameSessionBackfillTicketIDInternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+Deprecated: 2022-08-10 - Use GameSessionGenerateCodeShort instead.
+
+GameSessionGenerateCode generate a game session code. requires namespace:{namespace}:session:game [update]
+Generate a new code for the game session. Only leader can generate a code.
+*/
+func (a *Client) GameSessionGenerateCode(params *GameSessionGenerateCodeParams, authInfo runtime.ClientAuthInfoWriter) (*GameSessionGenerateCodeOK, *GameSessionGenerateCodeBadRequest, *GameSessionGenerateCodeUnauthorized, *GameSessionGenerateCodeForbidden, *GameSessionGenerateCodeNotFound, *GameSessionGenerateCodeInternalServerError, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewGameSessionGenerateCodeParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "gameSessionGenerateCode",
+		Method:             "POST",
+		PathPattern:        "/session/v1/public/namespaces/{namespace}/gamesessions/{sessionId}/code",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &GameSessionGenerateCodeReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, nil, nil, nil, nil, nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *GameSessionGenerateCodeOK:
+		return v, nil, nil, nil, nil, nil, nil
+
+	case *GameSessionGenerateCodeBadRequest:
+		return nil, v, nil, nil, nil, nil, nil
+
+	case *GameSessionGenerateCodeUnauthorized:
+		return nil, nil, v, nil, nil, nil, nil
+
+	case *GameSessionGenerateCodeForbidden:
+		return nil, nil, nil, v, nil, nil, nil
+
+	case *GameSessionGenerateCodeNotFound:
+		return nil, nil, nil, nil, v, nil, nil
+
+	case *GameSessionGenerateCodeInternalServerError:
+		return nil, nil, nil, nil, nil, v, nil
+
+	default:
+		return nil, nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+GameSessionGenerateCodeShort generate a game session code. requires namespace:{namespace}:session:game [update]
+Generate a new code for the game session. Only leader can generate a code.
+*/
+func (a *Client) GameSessionGenerateCodeShort(params *GameSessionGenerateCodeParams, authInfo runtime.ClientAuthInfoWriter) (*GameSessionGenerateCodeOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewGameSessionGenerateCodeParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "gameSessionGenerateCode",
+		Method:             "POST",
+		PathPattern:        "/session/v1/public/namespaces/{namespace}/gamesessions/{sessionId}/code",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &GameSessionGenerateCodeReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *GameSessionGenerateCodeOK:
+		return v, nil
+	case *GameSessionGenerateCodeBadRequest:
+		return nil, v
+	case *GameSessionGenerateCodeUnauthorized:
+		return nil, v
+	case *GameSessionGenerateCodeForbidden:
+		return nil, v
+	case *GameSessionGenerateCodeNotFound:
+		return nil, v
+	case *GameSessionGenerateCodeInternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+Deprecated: 2022-08-10 - Use PublicRevokeGameSessionCodeShort instead.
+
+PublicRevokeGameSessionCode revoke game session code. requires namespace:{namespace}:session:game [update]
+Revoke code of the game session. Only leader can revoke a code.
+*/
+func (a *Client) PublicRevokeGameSessionCode(params *PublicRevokeGameSessionCodeParams, authInfo runtime.ClientAuthInfoWriter) (*PublicRevokeGameSessionCodeOK, *PublicRevokeGameSessionCodeBadRequest, *PublicRevokeGameSessionCodeUnauthorized, *PublicRevokeGameSessionCodeForbidden, *PublicRevokeGameSessionCodeNotFound, *PublicRevokeGameSessionCodeInternalServerError, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewPublicRevokeGameSessionCodeParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "publicRevokeGameSessionCode",
+		Method:             "DELETE",
+		PathPattern:        "/session/v1/public/namespaces/{namespace}/gamesessions/{sessionId}/code",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &PublicRevokeGameSessionCodeReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, nil, nil, nil, nil, nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *PublicRevokeGameSessionCodeOK:
+		return v, nil, nil, nil, nil, nil, nil
+
+	case *PublicRevokeGameSessionCodeBadRequest:
+		return nil, v, nil, nil, nil, nil, nil
+
+	case *PublicRevokeGameSessionCodeUnauthorized:
+		return nil, nil, v, nil, nil, nil, nil
+
+	case *PublicRevokeGameSessionCodeForbidden:
+		return nil, nil, nil, v, nil, nil, nil
+
+	case *PublicRevokeGameSessionCodeNotFound:
+		return nil, nil, nil, nil, v, nil, nil
+
+	case *PublicRevokeGameSessionCodeInternalServerError:
+		return nil, nil, nil, nil, nil, v, nil
+
+	default:
+		return nil, nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+PublicRevokeGameSessionCodeShort revoke game session code. requires namespace:{namespace}:session:game [update]
+Revoke code of the game session. Only leader can revoke a code.
+*/
+func (a *Client) PublicRevokeGameSessionCodeShort(params *PublicRevokeGameSessionCodeParams, authInfo runtime.ClientAuthInfoWriter) (*PublicRevokeGameSessionCodeOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewPublicRevokeGameSessionCodeParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "publicRevokeGameSessionCode",
+		Method:             "DELETE",
+		PathPattern:        "/session/v1/public/namespaces/{namespace}/gamesessions/{sessionId}/code",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &PublicRevokeGameSessionCodeReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *PublicRevokeGameSessionCodeOK:
+		return v, nil
+	case *PublicRevokeGameSessionCodeBadRequest:
+		return nil, v
+	case *PublicRevokeGameSessionCodeUnauthorized:
+		return nil, v
+	case *PublicRevokeGameSessionCodeForbidden:
+		return nil, v
+	case *PublicRevokeGameSessionCodeNotFound:
+		return nil, v
+	case *PublicRevokeGameSessionCodeInternalServerError:
 		return nil, v
 
 	default:

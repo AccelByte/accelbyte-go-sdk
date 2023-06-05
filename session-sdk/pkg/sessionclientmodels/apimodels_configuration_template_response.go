@@ -54,6 +54,10 @@ type ApimodelsConfigurationTemplateResponse struct {
 	// Required: true
 	Last *string `json:"last"`
 
+	// maxactivesessions
+	// Format: int32
+	MaxActiveSessions int32 `json:"maxActiveSessions,omitempty"`
+
 	// maxplayers
 	// Required: true
 	// Format: int32

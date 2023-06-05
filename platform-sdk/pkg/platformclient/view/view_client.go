@@ -168,6 +168,24 @@ Other detail info:
 
   * Required permission : resource="ADMIN:NAMESPACE:{namespace}:STORE", action=1 (CREATE)
   *  Returns : created a view
+
+
+
+## Restrictions for localization extension
+
+
+1. Cannot use "." as the key name
+-
+
+
+    { "data.2": "value" }
+
+
+2. Cannot use "$" as the prefix in key names
+-
+
+
+    { "$data": "value" }
 */
 func (a *Client) CreateView(params *CreateViewParams, authInfo runtime.ClientAuthInfoWriter) (*CreateViewCreated, *CreateViewBadRequest, *CreateViewNotFound, *CreateViewConflict, *CreateViewUnprocessableEntity, error) {
 	// TODO: Validate the params before sending
@@ -230,6 +248,24 @@ Other detail info:
 
   * Required permission : resource="ADMIN:NAMESPACE:{namespace}:STORE", action=1 (CREATE)
   *  Returns : created a view
+
+
+
+## Restrictions for localization extension
+
+
+1. Cannot use "." as the key name
+-
+
+
+    { "data.2": "value" }
+
+
+2. Cannot use "$" as the prefix in key names
+-
+
+
+    { "$data": "value" }
 */
 func (a *Client) CreateViewShort(params *CreateViewParams, authInfo runtime.ClientAuthInfoWriter) (*CreateViewCreated, error) {
 	// TODO: Validate the params before sending
@@ -397,6 +433,24 @@ Other detail info:
 
   * Required permission : resource="ADMIN:NAMESPACE:{namespace}:STORE", action=4 (UPDATE)
   *  Returns : updated view data
+
+
+
+## Restrictions for localization extension
+
+
+1. Cannot use "." as the key name
+-
+
+
+    { "data.2": "value" }
+
+
+2. Cannot use "$" as the prefix in key names
+-
+
+
+    { "$data": "value" }
 */
 func (a *Client) UpdateView(params *UpdateViewParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateViewOK, *UpdateViewBadRequest, *UpdateViewNotFound, *UpdateViewConflict, *UpdateViewUnprocessableEntity, error) {
 	// TODO: Validate the params before sending
@@ -459,6 +513,24 @@ Other detail info:
 
   * Required permission : resource="ADMIN:NAMESPACE:{namespace}:STORE", action=4 (UPDATE)
   *  Returns : updated view data
+
+
+
+## Restrictions for localization extension
+
+
+1. Cannot use "." as the key name
+-
+
+
+    { "data.2": "value" }
+
+
+2. Cannot use "$" as the prefix in key names
+-
+
+
+    { "$data": "value" }
 */
 func (a *Client) UpdateViewShort(params *UpdateViewParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateViewOK, error) {
 	// TODO: Validate the params before sending

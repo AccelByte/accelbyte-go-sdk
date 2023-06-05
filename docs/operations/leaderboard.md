@@ -95,6 +95,11 @@
 | `/leaderboard/v3/admin/namespaces/{namespace}/leaderboards/{leaderboardCode}/users/{userId}/visibility` | PUT | SetUserLeaderboardVisibilityV3Short | [SetUserLeaderboardVisibilityV3Short](../../leaderboard-sdk/pkg/leaderboardclient/user_visibility_v3/user_visibility_v3_client.go) | [SetUserLeaderboardVisibilityV3Short](../../services-api/pkg/service/leaderboard/userVisibilityV3.go) | [SetUserLeaderboardVisibilityV3Short](../../samples/cli/cmd/leaderboard/userVisibilityV3/setUserLeaderboardVisibilityV3.go) |
 | `/leaderboard/v3/admin/namespaces/{namespace}/users/{userId}/visibility` | PUT | SetUserVisibilityV3Short | [SetUserVisibilityV3Short](../../leaderboard-sdk/pkg/leaderboardclient/user_visibility_v3/user_visibility_v3_client.go) | [SetUserVisibilityV3Short](../../services-api/pkg/service/leaderboard/userVisibilityV3.go) | [SetUserVisibilityV3Short](../../samples/cli/cmd/leaderboard/userVisibilityV3/setUserVisibilityV3.go) |
 
+### UserDataV3 Wrapper:  [UserDataV3](../../services-api/pkg/service/leaderboard/userDataV3.go)
+| Endpoint | Method | ID | Class | Wrapper | Example |
+|---|---|---|---|---|---|
+| `/leaderboard/v3/admin/namespaces/{namespace}/users/{userId}/leaderboards` | GET | GetUserLeaderboardRankingsAdminV3Short | [GetUserLeaderboardRankingsAdminV3Short](../../leaderboard-sdk/pkg/leaderboardclient/user_data_v3/user_data_v3_client.go) | [GetUserLeaderboardRankingsAdminV3Short](../../services-api/pkg/service/leaderboard/userDataV3.go) | [GetUserLeaderboardRankingsAdminV3Short](../../samples/cli/cmd/leaderboard/userDataV3/getUserLeaderboardRankingsAdminV3.go) |
+
 
 &nbsp;  
 
@@ -113,6 +118,7 @@
 | `models.GetAllLeaderboardConfigsResp` | [ModelsGetAllLeaderboardConfigsResp ](../../leaderboard-sdk/pkg/leaderboardclientmodels/models_get_all_leaderboard_configs_resp.go) |
 | `models.GetAllLeaderboardConfigsRespV3` | [ModelsGetAllLeaderboardConfigsRespV3 ](../../leaderboard-sdk/pkg/leaderboardclientmodels/models_get_all_leaderboard_configs_resp_v3.go) |
 | `models.GetAllUserLeaderboardsResp` | [ModelsGetAllUserLeaderboardsResp ](../../leaderboard-sdk/pkg/leaderboardclientmodels/models_get_all_user_leaderboards_resp.go) |
+| `models.GetAllUserLeaderboardsRespV3` | [ModelsGetAllUserLeaderboardsRespV3 ](../../leaderboard-sdk/pkg/leaderboardclientmodels/models_get_all_user_leaderboards_resp_v3.go) |
 | `models.GetHiddenUserResponse` | [ModelsGetHiddenUserResponse ](../../leaderboard-sdk/pkg/leaderboardclientmodels/models_get_hidden_user_response.go) |
 | `models.GetLeaderboardConfigPublicResp` | [ModelsGetLeaderboardConfigPublicResp ](../../leaderboard-sdk/pkg/leaderboardclientmodels/models_get_leaderboard_config_public_resp.go) |
 | `models.GetLeaderboardConfigPublicRespV3` | [ModelsGetLeaderboardConfigPublicRespV3 ](../../leaderboard-sdk/pkg/leaderboardclientmodels/models_get_leaderboard_config_public_resp_v3.go) |
@@ -132,6 +138,7 @@
 | `models.UpdateUserPointAdminV1Response` | [ModelsUpdateUserPointAdminV1Response ](../../leaderboard-sdk/pkg/leaderboardclientmodels/models_update_user_point_admin_v1_response.go) |
 | `models.UserCycleRankingResponseDetail` | [ModelsUserCycleRankingResponseDetail ](../../leaderboard-sdk/pkg/leaderboardclientmodels/models_user_cycle_ranking_response_detail.go) |
 | `models.UserLeaderboardRanking` | [ModelsUserLeaderboardRanking ](../../leaderboard-sdk/pkg/leaderboardclientmodels/models_user_leaderboard_ranking.go) |
+| `models.UserLeaderboardRankingV3` | [ModelsUserLeaderboardRankingV3 ](../../leaderboard-sdk/pkg/leaderboardclientmodels/models_user_leaderboard_ranking_v3.go) |
 | `models.UserPoint` | [ModelsUserPoint ](../../leaderboard-sdk/pkg/leaderboardclientmodels/models_user_point.go) |
 | `models.UserRankingResponse` | [ModelsUserRankingResponse ](../../leaderboard-sdk/pkg/leaderboardclientmodels/models_user_ranking_response.go) |
 | `models.UserRankingResponseDetail` | [ModelsUserRankingResponseDetail ](../../leaderboard-sdk/pkg/leaderboardclientmodels/models_user_ranking_response_detail.go) |

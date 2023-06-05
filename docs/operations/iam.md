@@ -460,6 +460,7 @@
 | `accountcommon.Permissions` | [AccountcommonPermissions ](../../iam-sdk/pkg/iamclientmodels/accountcommon_permissions.go) |
 | `accountcommon.PermissionsV3` | [AccountcommonPermissionsV3 ](../../iam-sdk/pkg/iamclientmodels/accountcommon_permissions_v3.go) |
 | `accountcommon.PlatformAccount` | [AccountcommonPlatformAccount ](../../iam-sdk/pkg/iamclientmodels/accountcommon_platform_account.go) |
+| `accountcommon.PlatformLinkingHistory` | [AccountcommonPlatformLinkingHistory ](../../iam-sdk/pkg/iamclientmodels/accountcommon_platform_linking_history.go) |
 | `accountcommon.PlatformUserInformationV3` | [AccountcommonPlatformUserInformationV3 ](../../iam-sdk/pkg/iamclientmodels/accountcommon_platform_user_information_v3.go) |
 | `accountcommon.RegisteredDomain` | [AccountcommonRegisteredDomain ](../../iam-sdk/pkg/iamclientmodels/accountcommon_registered_domain.go) |
 | `accountcommon.Role` | [AccountcommonRole ](../../iam-sdk/pkg/iamclientmodels/accountcommon_role.go) |

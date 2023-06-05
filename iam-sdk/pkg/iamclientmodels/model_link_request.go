@@ -73,6 +73,9 @@ type ModelLinkRequest struct {
 	// status
 	// Required: true
 	Status *string `json:"status"`
+
+	// userid
+	UserID string `json:"userID,omitempty"`
 }
 
 // Validate validates this Model link request

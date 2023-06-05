@@ -18060,7 +18060,9 @@ func (a *Client) PublicGetUserByPlatformUserIDV3Short(params *PublicGetUserByPla
 Deprecated: 2022-08-10 - Use PublicGetAsyncStatusShort instead.
 
 PublicGetAsyncStatus get linking progress status
+
 This endpoint is used to get linking status.
+This API need logged user and user can only request its own linking status.'
 */
 func (a *Client) PublicGetAsyncStatus(params *PublicGetAsyncStatusParams, authInfo runtime.ClientAuthInfoWriter) (*PublicGetAsyncStatusOK, *PublicGetAsyncStatusUnauthorized, *PublicGetAsyncStatusForbidden, *PublicGetAsyncStatusInternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -18114,7 +18116,9 @@ func (a *Client) PublicGetAsyncStatus(params *PublicGetAsyncStatusParams, authIn
 
 /*
 PublicGetAsyncStatusShort get linking progress status
+
 This endpoint is used to get linking status.
+This API need logged user and user can only request its own linking status.'
 */
 func (a *Client) PublicGetAsyncStatusShort(params *PublicGetAsyncStatusParams, authInfo runtime.ClientAuthInfoWriter) (*PublicGetAsyncStatusOK, error) {
 	// TODO: Validate the params before sending

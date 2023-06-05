@@ -1354,6 +1354,603 @@
         ]
       }
     },
+    "/matchmaking/v1/admin/namespaces/{namespace}/channels/{channelName}/mocks": {
+      "delete": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "\tRequired Permission: ADMIN:NAMESPACE:{namespace}:MATCHMAKING:CHANNEL [Update]\n\t\n\tRequired Scope: social\n\t\n\tDelete all mock tickets and matches in a channel.\n\u0026#39;",
+        "operationId": "CleanAllMocks",
+        "parameters": [
+          {
+            "description": "channel name, accept snake_case, lowercase, and numeric",
+            "in": "path",
+            "name": "channelName",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "namespace of the game, only accept alphabet and numeric",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "204": {
+            "description": "Mocks cleaned up"
+          },
+          "400": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20002\u003c/td\u003e\u003ctd\u003evalidation error\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20019\u003c/td\u003e\u003ctd\u003eunable to parse request body\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorV1"
+            }
+          },
+          "401": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20001\u003c/td\u003e\u003ctd\u003eunauthorized access\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorV1"
+            }
+          },
+          "403": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20013\u003c/td\u003e\u003ctd\u003einsufficient permissions\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20014\u003c/td\u003e\u003ctd\u003einvalid audience\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20015\u003c/td\u003e\u003ctd\u003einsufficient scope\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorV1"
+            }
+          },
+          "404": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e510110\u003c/td\u003e\u003ctd\u003echannel not found\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorV1"
+            }
+          },
+          "500": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20000\u003c/td\u003e\u003ctd\u003einternal server error\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorV1"
+            }
+          }
+        },
+        "security": [
+          {
+            "HasPermission": [
+              "ADMIN:NAMESPACE:{namespace}:MATCHMAKING:CHANNEL [Update]"
+            ],
+            "HasScope": [
+              "social"
+            ],
+            "authorization": []
+          }
+        ],
+        "summary": "Delete all mock tickets and matches",
+        "tags": [
+          "Mock Matchmaking"
+        ]
+      }
+    },
+    "/matchmaking/v1/admin/namespaces/{namespace}/channels/{channelName}/mocks/matches": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "\tRequired Permission: ADMIN:NAMESPACE:{namespace}:MATCHMAKING:CHANNEL [Read]\n\t\n\tRequired Scope: social\n\t\n\tRead all mock matches in a channel resulted from matching mock tickets.\n\u0026#39;",
+        "operationId": "GetAllMockMatches",
+        "parameters": [
+          {
+            "description": "channel name, accept snake_case, lowercase, and numeric",
+            "in": "path",
+            "name": "channelName",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "namespace of the game, only accept alphabet and numeric",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "Mock matches queried",
+            "schema": {
+              "$ref": "#/definitions/models.GetMockMatchesResponse"
+            }
+          },
+          "400": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20002\u003c/td\u003e\u003ctd\u003evalidation error\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20019\u003c/td\u003e\u003ctd\u003eunable to parse request body\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorV1"
+            }
+          },
+          "401": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20001\u003c/td\u003e\u003ctd\u003eunauthorized access\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorV1"
+            }
+          },
+          "403": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20013\u003c/td\u003e\u003ctd\u003einsufficient permissions\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20014\u003c/td\u003e\u003ctd\u003einvalid audience\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20015\u003c/td\u003e\u003ctd\u003einsufficient scope\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorV1"
+            }
+          },
+          "404": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e510110\u003c/td\u003e\u003ctd\u003echannel not found\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorV1"
+            }
+          },
+          "500": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20000\u003c/td\u003e\u003ctd\u003einternal server error\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorV1"
+            }
+          }
+        },
+        "security": [
+          {
+            "HasPermission": [
+              "ADMIN:NAMESPACE:{namespace}:MATCHMAKING:CHANNEL [Read]"
+            ],
+            "HasScope": [
+              "social"
+            ],
+            "authorization": []
+          }
+        ],
+        "summary": "Get all mock matches",
+        "tags": [
+          "Mock Matchmaking"
+        ]
+      },
+      "post": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "\tRequired Permission: ADMIN:NAMESPACE:{namespace}:MATCHMAKING:CHANNEL [Read]\n\t\n\tRequired Scope: social\n\t\n\tRead mock matches that has timestamp older than specified timestamp in a channel resulted from matching mock tickets.\n\u0026#39;",
+        "operationId": "GetMockMatchesByTimestamp",
+        "parameters": [
+          {
+            "description": "timestamp of oldest match to get",
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/models.QueryMockBy"
+            }
+          },
+          {
+            "description": "channel name, accept snake_case, lowercase, and numeric",
+            "in": "path",
+            "name": "channelName",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "namespace of the game, only accept alphabet and numeric",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "Mock matches queried",
+            "schema": {
+              "$ref": "#/definitions/models.GetMockMatchesResponse"
+            }
+          },
+          "400": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20002\u003c/td\u003e\u003ctd\u003evalidation error\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20019\u003c/td\u003e\u003ctd\u003eunable to parse request body\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorV1"
+            }
+          },
+          "401": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20001\u003c/td\u003e\u003ctd\u003eunauthorized access\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorV1"
+            }
+          },
+          "403": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20013\u003c/td\u003e\u003ctd\u003einsufficient permissions\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20014\u003c/td\u003e\u003ctd\u003einvalid audience\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20015\u003c/td\u003e\u003ctd\u003einsufficient scope\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorV1"
+            }
+          },
+          "404": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e510110\u003c/td\u003e\u003ctd\u003echannel not found\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorV1"
+            }
+          },
+          "500": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20000\u003c/td\u003e\u003ctd\u003einternal server error\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorV1"
+            }
+          }
+        },
+        "security": [
+          {
+            "HasPermission": [
+              "ADMIN:NAMESPACE:{namespace}:MATCHMAKING:CHANNEL [Read]"
+            ],
+            "HasScope": [
+              "social"
+            ],
+            "authorization": []
+          }
+        ],
+        "summary": "Get mock matches after timestamp",
+        "tags": [
+          "Mock Matchmaking"
+        ]
+      }
+    },
+    "/matchmaking/v1/admin/namespaces/{namespace}/channels/{channelName}/mocks/tickets": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "\tRequired Permission: ADMIN:NAMESPACE:{namespace}:MATCHMAKING:CHANNEL [Read]\n\t\n\tRequired Scope: social\n\t\n\tRead all mock tickets in a channel.\n\u0026#39;",
+        "operationId": "GetAllMockTickets",
+        "parameters": [
+          {
+            "description": "channel name, accept snake_case, lowercase, and numeric",
+            "in": "path",
+            "name": "channelName",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "namespace of the game, only accept alphabet and numeric",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "Mock tickets queried",
+            "schema": {
+              "$ref": "#/definitions/models.GetMockTicketsResponse"
+            }
+          },
+          "400": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20002\u003c/td\u003e\u003ctd\u003evalidation error\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20019\u003c/td\u003e\u003ctd\u003eunable to parse request body\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorV1"
+            }
+          },
+          "401": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20001\u003c/td\u003e\u003ctd\u003eunauthorized access\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorV1"
+            }
+          },
+          "403": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20013\u003c/td\u003e\u003ctd\u003einsufficient permissions\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20014\u003c/td\u003e\u003ctd\u003einvalid audience\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20015\u003c/td\u003e\u003ctd\u003einsufficient scope\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorV1"
+            }
+          },
+          "404": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e510110\u003c/td\u003e\u003ctd\u003echannel not found\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorV1"
+            }
+          },
+          "500": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20000\u003c/td\u003e\u003ctd\u003einternal server error\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorV1"
+            }
+          }
+        },
+        "security": [
+          {
+            "HasPermission": [
+              "ADMIN:NAMESPACE:{namespace}:MATCHMAKING:CHANNEL [Read]"
+            ],
+            "HasScope": [
+              "social"
+            ],
+            "authorization": []
+          }
+        ],
+        "summary": "Get all mock tickets",
+        "tags": [
+          "Mock Matchmaking"
+        ]
+      },
+      "post": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "\tRequired Permission: ADMIN:NAMESPACE:{namespace}:MATCHMAKING:CHANNEL [Create]\n\t\n\tRequired Scope: social\n\t\n\tCreate and queue mock tickets into specified game mode\u0026#39;s pool. \n\tTicket\u0026#39;s MMRs will be randomized using Normal distribution according to the input mean and standard deviation.\n\tAll mock tickets and matches will be cleaned up automatically after 1 day.\n\u0026#39;",
+        "operationId": "CreateMockTickets",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/models.CreateMockTicket"
+            }
+          },
+          {
+            "description": "channel name, accept snake_case, lowercase, and numeric",
+            "in": "path",
+            "name": "channelName",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "namespace of the game, only accept alphabet and numeric",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "201": {
+            "description": "Mock tickets created",
+            "schema": {
+              "items": {
+                "$ref": "#/definitions/models.MockTicket"
+              },
+              "type": "array"
+            }
+          },
+          "400": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20002\u003c/td\u003e\u003ctd\u003evalidation error\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20019\u003c/td\u003e\u003ctd\u003eunable to parse request body\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorV1"
+            }
+          },
+          "401": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20001\u003c/td\u003e\u003ctd\u003eunauthorized access\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorV1"
+            }
+          },
+          "403": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20013\u003c/td\u003e\u003ctd\u003einsufficient permissions\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20014\u003c/td\u003e\u003ctd\u003einvalid audience\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20015\u003c/td\u003e\u003ctd\u003einsufficient scope\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorV1"
+            }
+          },
+          "404": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e510110\u003c/td\u003e\u003ctd\u003echannel not found\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorV1"
+            }
+          },
+          "500": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20000\u003c/td\u003e\u003ctd\u003einternal server error\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorV1"
+            }
+          }
+        },
+        "security": [
+          {
+            "HasPermission": [
+              "ADMIN:NAMESPACE:{namespace}:MATCHMAKING:CHANNEL [Create]"
+            ],
+            "HasScope": [
+              "social"
+            ],
+            "authorization": []
+          }
+        ],
+        "summary": "Create mock tickets",
+        "tags": [
+          "Mock Matchmaking"
+        ]
+      }
+    },
+    "/matchmaking/v1/admin/namespaces/{namespace}/channels/{channelName}/mocks/tickets/bulk": {
+      "post": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "\tRequired Permission: ADMIN:NAMESPACE:{namespace}:MATCHMAKING:CHANNEL [Create]\n\t\n\tRequired Scope: social\n\t\n\tCreate and queue mock tickets into specified game mode\u0026#39;s pool. \n\tThe tickets input will be used as is.\n\u0026#39;",
+        "operationId": "BulkCreateMockTickets",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "items": {
+                "$ref": "#/definitions/models.MatchingParty"
+              },
+              "type": "array"
+            }
+          },
+          {
+            "description": "channel name, accept snake_case, lowercase, and numeric",
+            "in": "path",
+            "name": "channelName",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "namespace of the game, only accept alphabet and numeric",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "201": {
+            "description": "Mock tickets created"
+          },
+          "400": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20002\u003c/td\u003e\u003ctd\u003evalidation error\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20019\u003c/td\u003e\u003ctd\u003eunable to parse request body\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorV1"
+            }
+          },
+          "401": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20001\u003c/td\u003e\u003ctd\u003eunauthorized access\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorV1"
+            }
+          },
+          "403": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20013\u003c/td\u003e\u003ctd\u003einsufficient permissions\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20014\u003c/td\u003e\u003ctd\u003einvalid audience\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20015\u003c/td\u003e\u003ctd\u003einsufficient scope\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorV1"
+            }
+          },
+          "404": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e510110\u003c/td\u003e\u003ctd\u003echannel not found\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorV1"
+            }
+          },
+          "500": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20000\u003c/td\u003e\u003ctd\u003einternal server error\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorV1"
+            }
+          }
+        },
+        "security": [
+          {
+            "HasPermission": [
+              "ADMIN:NAMESPACE:{namespace}:MATCHMAKING:CHANNEL [Create]"
+            ],
+            "HasScope": [
+              "social"
+            ],
+            "authorization": []
+          }
+        ],
+        "summary": "Bulk create mock tickets",
+        "tags": [
+          "Mock Matchmaking"
+        ]
+      }
+    },
+    "/matchmaking/v1/admin/namespaces/{namespace}/channels/{channelName}/mocks/tickets/query": {
+      "post": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "\tRequired Permission: ADMIN:NAMESPACE:{namespace}:MATCHMAKING:CHANNEL [Read]\n\t\n\tRequired Scope: social\n\t\n\tRead mock tickets after the specified timestamp in a channel.\n\u0026#39;",
+        "operationId": "GetMockTicketsByTimestamp",
+        "parameters": [
+          {
+            "description": "timestamp of oldest ticket to get",
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/models.QueryMockBy"
+            }
+          },
+          {
+            "description": "channel name, accept snake_case, lowercase, and numeric",
+            "in": "path",
+            "name": "channelName",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "namespace of the game, only accept alphabet and numeric",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "Mock tickets queried",
+            "schema": {
+              "$ref": "#/definitions/models.GetMockTicketsResponse"
+            }
+          },
+          "400": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20002\u003c/td\u003e\u003ctd\u003evalidation error\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20019\u003c/td\u003e\u003ctd\u003eunable to parse request body\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorV1"
+            }
+          },
+          "401": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20001\u003c/td\u003e\u003ctd\u003eunauthorized access\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorV1"
+            }
+          },
+          "403": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20013\u003c/td\u003e\u003ctd\u003einsufficient permissions\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20014\u003c/td\u003e\u003ctd\u003einvalid audience\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20015\u003c/td\u003e\u003ctd\u003einsufficient scope\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorV1"
+            }
+          },
+          "404": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e510110\u003c/td\u003e\u003ctd\u003echannel not found\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorV1"
+            }
+          },
+          "500": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20000\u003c/td\u003e\u003ctd\u003einternal server error\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorV1"
+            }
+          }
+        },
+        "security": [
+          {
+            "HasPermission": [
+              "ADMIN:NAMESPACE:{namespace}:MATCHMAKING:CHANNEL [Read]"
+            ],
+            "HasScope": [
+              "social"
+            ],
+            "authorization": []
+          }
+        ],
+        "summary": "Get mock tickets after timestamp",
+        "tags": [
+          "Mock Matchmaking"
+        ]
+      }
+    },
     "/matchmaking/v1/admin/namespaces/{namespace}/channels/{channelName}/parties": {
       "get": {
         "consumes": [
@@ -1788,6 +2385,87 @@
           }
         ],
         "summary": "Delete user from the session in a channel",
+        "tags": [
+          "Matchmaking"
+        ]
+      }
+    },
+    "/matchmaking/v1/admin/namespaces/{namespace}/channels/{channelName}/stats": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "\tRequired Permission: ADMIN:NAMESPACE:{namespace}:MATCHMAKING:CHANNEL [Read]\n\t\n\tRequired Scope: social\n\t\n\tGet a channel\u0026#39;s stat data (mean, stddev, min, max) according to the stats collected from statistics service.\n\u0026#39;",
+        "operationId": "GetStatData",
+        "parameters": [
+          {
+            "description": "channel name, accept snake_case, lowercase, and numeric",
+            "in": "path",
+            "name": "channelName",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "namespace of the game, only accept alphabet and numeric",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "Stats queried",
+            "schema": {
+              "$ref": "#/definitions/models.StatResumeResponse"
+            }
+          },
+          "400": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20002\u003c/td\u003e\u003ctd\u003evalidation error\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20019\u003c/td\u003e\u003ctd\u003eunable to parse request body\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorV1"
+            }
+          },
+          "401": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20001\u003c/td\u003e\u003ctd\u003eunauthorized access\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorV1"
+            }
+          },
+          "403": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20013\u003c/td\u003e\u003ctd\u003einsufficient permissions\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20014\u003c/td\u003e\u003ctd\u003einvalid audience\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20015\u003c/td\u003e\u003ctd\u003einsufficient scope\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorV1"
+            }
+          },
+          "404": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e510110\u003c/td\u003e\u003ctd\u003echannel not found\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorV1"
+            }
+          },
+          "500": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20000\u003c/td\u003e\u003ctd\u003einternal server error\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorV1"
+            }
+          }
+        },
+        "security": [
+          {
+            "HasPermission": [
+              "ADMIN:NAMESPACE:{namespace}:MATCHMAKING:CHANNEL [Read]"
+            ],
+            "HasScope": [
+              "social"
+            ],
+            "authorization": []
+          }
+        ],
+        "summary": "Get stats",
         "tags": [
           "Matchmaking"
         ]
@@ -2450,6 +3128,92 @@
         "playerMinNumber"
       ]
     },
+    "models.BucketMMRRule": {
+      "properties": {
+        "disable_authority": {
+          "type": "boolean",
+          "x-omitempty": false
+        },
+        "flex_authority_count": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "flex_flat_step_range": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "flex_immunity_count": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "flex_range_max": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "flex_rate_ms": {
+          "format": "int64",
+          "type": "integer"
+        },
+        "flex_step_max": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "force_authority_match": {
+          "type": "boolean",
+          "x-omitempty": false
+        },
+        "initial_step_range": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "mmr_max": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "mmr_mean": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "mmr_min": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "mmr_std_dev": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "override_mmr_data": {
+          "type": "boolean",
+          "x-omitempty": false
+        },
+        "use_bucket_mmr": {
+          "type": "boolean",
+          "x-omitempty": false
+        },
+        "use_flat_flex_step": {
+          "type": "boolean",
+          "x-omitempty": false
+        }
+      },
+      "required": [
+        "disable_authority",
+        "flex_authority_count",
+        "flex_flat_step_range",
+        "flex_immunity_count",
+        "flex_range_max",
+        "flex_rate_ms",
+        "flex_step_max",
+        "force_authority_match",
+        "initial_step_range",
+        "mmr_max",
+        "mmr_mean",
+        "mmr_min",
+        "mmr_std_dev",
+        "override_mmr_data",
+        "use_bucket_mmr",
+        "use_flat_flex_step"
+      ]
+    },
     "models.Channel": {
       "properties": {
         "deployment": {
@@ -2503,6 +3267,10 @@
           "type": "string"
         },
         "social_matchmaking": {
+          "type": "boolean",
+          "x-omitempty": false
+        },
+        "ticket_observability_enable": {
           "type": "boolean",
           "x-omitempty": false
         },
@@ -2593,6 +3361,10 @@
           "x-nullable": true,
           "x-omitempty": false
         },
+        "ticket_observability_enable": {
+          "type": "boolean",
+          "x-omitempty": false
+        },
         "use_sub_gamemode": {
           "type": "boolean",
           "x-nullable": true,
@@ -2662,6 +3434,10 @@
           "type": "string"
         },
         "socialMatchmaking": {
+          "type": "boolean",
+          "x-omitempty": false
+        },
+        "ticket_observability_enable": {
           "type": "boolean",
           "x-omitempty": false
         },
@@ -2785,6 +3561,10 @@
           "type": "boolean",
           "x-omitempty": false
         },
+        "ticket_observability_enable": {
+          "type": "boolean",
+          "x-omitempty": false
+        },
         "updated_at": {
           "type": "string"
         },
@@ -2811,6 +3591,41 @@
         "social_matchmaking",
         "updated_at",
         "use_sub_gamemode"
+      ]
+    },
+    "models.CreateMockTicket": {
+      "properties": {
+        "attribute_name": {
+          "type": "string"
+        },
+        "count": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "mmrMax": {
+          "format": "double",
+          "type": "number"
+        },
+        "mmrMean": {
+          "format": "double",
+          "type": "number"
+        },
+        "mmrMin": {
+          "format": "double",
+          "type": "number"
+        },
+        "mmrStdDev": {
+          "format": "double",
+          "type": "number"
+        }
+      },
+      "required": [
+        "attribute_name",
+        "count",
+        "mmrMax",
+        "mmrMean",
+        "mmrMin",
+        "mmrStdDev"
       ]
     },
     "models.DequeueRequest": {
@@ -2865,6 +3680,98 @@
       "required": [
         "data",
         "pagination"
+      ]
+    },
+    "models.GetMockMatchesResponse": {
+      "properties": {
+        "count": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "largest_mmr_distance": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "longest_time_to_match_seconds": {
+          "format": "int64",
+          "type": "integer"
+        },
+        "matches": {
+          "items": {
+            "$ref": "#/definitions/models.MockMatch"
+          },
+          "type": "array"
+        }
+      },
+      "required": [
+        "count",
+        "largest_mmr_distance",
+        "longest_time_to_match_seconds",
+        "matches"
+      ]
+    },
+    "models.GetMockTicketsResponse": {
+      "properties": {
+        "cancelled_count": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "highest_mmr": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "in_queue_count": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "lowest_mmr": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "matched_count": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "mmr_in_queue": {
+          "additionalProperties": {
+            "type": "integer"
+          },
+          "type": "object"
+        },
+        "mmr_matched": {
+          "additionalProperties": {
+            "type": "integer"
+          },
+          "type": "object"
+        },
+        "mmr_timeout": {
+          "additionalProperties": {
+            "type": "integer"
+          },
+          "type": "object"
+        },
+        "tickets": {
+          "items": {
+            "$ref": "#/definitions/models.MockTicket"
+          },
+          "type": "array"
+        },
+        "timeout_count": {
+          "format": "int32",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "cancelled_count",
+        "highest_mmr",
+        "in_queue_count",
+        "lowest_mmr",
+        "matched_count",
+        "mmr_in_queue",
+        "mmr_matched",
+        "mmr_timeout",
+        "tickets",
+        "timeout_count"
       ]
     },
     "models.ImportConfigResponse": {
@@ -3081,6 +3988,9 @@
           "type": "string",
           "x-nullable": false
         },
+        "is_mock": {
+          "type": "string"
+        },
         "joinable": {
           "type": "boolean",
           "x-nullable": true,
@@ -3141,6 +4051,7 @@
         "error_code",
         "error_message",
         "game_mode",
+        "is_mock",
         "match_id",
         "matching_allies",
         "namespace",
@@ -3151,6 +4062,210 @@
         "status",
         "ticket_id",
         "updated_at"
+      ]
+    },
+    "models.MockMatch": {
+      "properties": {
+        "channel": {
+          "type": "string",
+          "x-nullable": false
+        },
+        "client_version": {
+          "type": "string",
+          "x-nullable": false
+        },
+        "deployment": {
+          "type": "string",
+          "x-nullable": false
+        },
+        "error_code": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "error_message": {
+          "type": "string"
+        },
+        "game_mode": {
+          "type": "string",
+          "x-nullable": false
+        },
+        "is_mock": {
+          "type": "string"
+        },
+        "joinable": {
+          "type": "boolean",
+          "x-nullable": true,
+          "x-omitempty": false
+        },
+        "match_id": {
+          "type": "string",
+          "x-nullable": false
+        },
+        "matching_allies": {
+          "items": {
+            "$ref": "#/definitions/models.MatchingAlly"
+          },
+          "type": "array"
+        },
+        "mmr_distance": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "namespace": {
+          "type": "string",
+          "x-nullable": false
+        },
+        "party_attributes": {
+          "type": "object"
+        },
+        "party_id": {
+          "type": "string",
+          "x-nullable": true
+        },
+        "queued_at": {
+          "format": "int64",
+          "type": "integer",
+          "x-nullable": false
+        },
+        "region": {
+          "type": "string",
+          "x-nullable": false
+        },
+        "server_name": {
+          "type": "string",
+          "x-nullable": false
+        },
+        "status": {
+          "type": "string",
+          "x-nullable": false
+        },
+        "ticket_id": {
+          "type": "string",
+          "x-nullable": false
+        },
+        "time_to_match_seconds": {
+          "format": "int64",
+          "type": "integer"
+        },
+        "updated_at": {
+          "format": "date-time",
+          "type": "string",
+          "x-nullable": false
+        }
+      },
+      "required": [
+        "channel",
+        "client_version",
+        "deployment",
+        "error_code",
+        "error_message",
+        "game_mode",
+        "is_mock",
+        "match_id",
+        "matching_allies",
+        "mmr_distance",
+        "namespace",
+        "party_attributes",
+        "queued_at",
+        "region",
+        "server_name",
+        "status",
+        "ticket_id",
+        "time_to_match_seconds",
+        "updated_at"
+      ]
+    },
+    "models.MockTicket": {
+      "properties": {
+        "additional_criteria": {
+          "type": "object"
+        },
+        "channel": {
+          "type": "string"
+        },
+        "created_at": {
+          "format": "int64",
+          "type": "integer"
+        },
+        "first_ticket_created_at": {
+          "format": "int64",
+          "type": "integer"
+        },
+        "is_mock": {
+          "type": "string"
+        },
+        "is_sampled": {
+          "type": "boolean",
+          "x-omitempty": false
+        },
+        "latency_map": {
+          "additionalProperties": {
+            "type": "integer"
+          },
+          "type": "object"
+        },
+        "namespace": {
+          "type": "string"
+        },
+        "party_attributes": {
+          "type": "object"
+        },
+        "party_id": {
+          "type": "string"
+        },
+        "party_leader_id": {
+          "type": "string"
+        },
+        "party_members": {
+          "items": {
+            "$ref": "#/definitions/models.PartyMember"
+          },
+          "type": "array"
+        },
+        "priority": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "sampling_properties": {
+          "items": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array"
+          },
+          "type": "array"
+        },
+        "sorted_latency": {
+          "items": {
+            "$ref": "#/definitions/models.Region"
+          },
+          "type": "array"
+        },
+        "status": {
+          "type": "string"
+        },
+        "ticket_id": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "additional_criteria",
+        "channel",
+        "created_at",
+        "first_ticket_created_at",
+        "is_mock",
+        "is_sampled",
+        "latency_map",
+        "namespace",
+        "party_attributes",
+        "party_id",
+        "party_leader_id",
+        "party_members",
+        "priority",
+        "sampling_properties",
+        "sorted_latency",
+        "status",
+        "ticket_id"
       ]
     },
     "models.Pagination": {
@@ -3226,6 +4341,17 @@
         "user_id"
       ]
     },
+    "models.QueryMockBy": {
+      "properties": {
+        "timestamp_after": {
+          "format": "int64",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "timestamp_after"
+      ]
+    },
     "models.RebalanceRequest": {
       "properties": {
         "match_id": {
@@ -3253,6 +4379,21 @@
       "required": [
         "match_id",
         "matching_allies"
+      ]
+    },
+    "models.Region": {
+      "properties": {
+        "latency": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "region": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "latency",
+        "region"
       ]
     },
     "models.ResultAttributeRequest": {
@@ -3318,6 +4459,9 @@
           },
           "type": "array"
         },
+        "bucket_mmr_rule": {
+          "$ref": "#/definitions/models.BucketMMRRule"
+        },
         "flexing_rule": {
           "items": {
             "$ref": "#/definitions/models.FlexingRule"
@@ -3342,6 +4486,10 @@
             "$ref": "#/definitions/models.SubGameMode"
           },
           "type": "object"
+        },
+        "use_newest_ticket_for_flexing": {
+          "type": "boolean",
+          "x-omitempty": false
         }
       },
       "required": [
@@ -3363,6 +4511,9 @@
           },
           "type": "array"
         },
+        "bucket_mmr_rule": {
+          "$ref": "#/definitions/models.BucketMMRRule"
+        },
         "flexingRules": {
           "items": {
             "$ref": "#/definitions/models.FlexingRule"
@@ -3383,6 +4534,10 @@
             "$ref": "#/definitions/models.SubGameMode"
           },
           "type": "object"
+        },
+        "use_newest_ticket_for_flexing": {
+          "type": "boolean",
+          "x-omitempty": false
         }
       },
       "required": [
@@ -3392,6 +4547,46 @@
         "match_options",
         "matchingRules",
         "sub_game_modes"
+      ]
+    },
+    "models.StatResumeResponse": {
+      "properties": {
+        "max": {
+          "type": "string"
+        },
+        "mean": {
+          "type": "string"
+        },
+        "min": {
+          "type": "string"
+        },
+        "multiplier": {
+          "type": "string"
+        },
+        "stddev": {
+          "type": "string"
+        },
+        "valueShifts": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "type": "object"
+        },
+        "zscores": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "type": "object"
+        }
+      },
+      "required": [
+        "max",
+        "mean",
+        "min",
+        "multiplier",
+        "stddev",
+        "valueShifts",
+        "zscores"
       ]
     },
     "models.SubGameMode": {
@@ -3505,6 +4700,10 @@
           "x-nullable": true,
           "x-omitempty": false
         },
+        "ticket_observability_enable": {
+          "type": "boolean",
+          "x-omitempty": false
+        },
         "use_sub_gamemode": {
           "type": "boolean",
           "x-nullable": true,
@@ -3573,6 +4772,9 @@
           },
           "type": "array"
         },
+        "bucket_mmr_rule": {
+          "$ref": "#/definitions/models.BucketMMRRule"
+        },
         "flexingRules": {
           "items": {
             "$ref": "#/definitions/models.FlexingRule"
@@ -3590,6 +4792,10 @@
         },
         "sub_game_modes": {
           "$ref": "#/definitions/models.UpdateRuleset.sub_game_modes"
+        },
+        "use_newest_ticket_for_flexing": {
+          "type": "boolean",
+          "x-omitempty": false
         }
       },
       "required": [
@@ -3897,8 +5103,8 @@
     "path": "/matchmaking/apidocs/api.json"
   },
   "x-version": {
-    "buildDate": "2023-05-03T03:30:12+00:00",
-    "gitHash": "a3833be8b9bd673802c99dc6e473d3139a501fa2",
+    "buildDate": "2023-05-31T05:30:13+00:00",
+    "gitHash": "4885f429431cfd74edf5f377439142fd25a84a0b",
     "version": "2.24.1",
     "version-roles-seeding": "0.0.23"
   }

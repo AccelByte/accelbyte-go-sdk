@@ -37,9 +37,17 @@ type StatInfo struct {
 	// description
 	Description string `json:"description,omitempty"`
 
+	// ignoreadditionaldataonvaluerejected
+	// Required: true
+	IgnoreAdditionalDataOnValueRejected *bool `json:"ignoreAdditionalDataOnValueRejected"`
+
 	// incrementonly
 	// Required: true
 	IncrementOnly *bool `json:"incrementOnly"`
+
+	// ispublic
+	// Required: true
+	IsPublic *bool `json:"isPublic"`
 
 	// maximum
 	// Format: double
@@ -95,7 +103,13 @@ func (m *StatInfo) Validate(formats strfmt.Registry) error {
 	if err := m.validateDefaultValue(formats); err != nil {
 		res = append(res, err)
 	}
+	if err := m.validateIgnoreAdditionalDataOnValueRejected(formats); err != nil {
+		res = append(res, err)
+	}
 	if err := m.validateIncrementOnly(formats); err != nil {
+		res = append(res, err)
+	}
+	if err := m.validateIsPublic(formats); err != nil {
 		res = append(res, err)
 	}
 	if err := m.validateName(formats); err != nil {
@@ -148,9 +162,27 @@ func (m *StatInfo) validateDefaultValue(formats strfmt.Registry) error {
 	return nil
 }
 
+func (m *StatInfo) validateIgnoreAdditionalDataOnValueRejected(formats strfmt.Registry) error {
+
+	if err := validate.Required("ignoreAdditionalDataOnValueRejected", "body", m.IgnoreAdditionalDataOnValueRejected); err != nil {
+		return err
+	}
+
+	return nil
+}
+
 func (m *StatInfo) validateIncrementOnly(formats strfmt.Registry) error {
 
 	if err := validate.Required("incrementOnly", "body", m.IncrementOnly); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *StatInfo) validateIsPublic(formats strfmt.Registry) error {
+
+	if err := validate.Required("isPublic", "body", m.IsPublic); err != nil {
 		return err
 	}
 

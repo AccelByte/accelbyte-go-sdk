@@ -172,6 +172,35 @@ func (aaa *GameSessionService) PublicQueryGameSessions(input *game_session.Publi
 	return ok.GetPayload(), nil
 }
 
+// Deprecated: 2022-01-10 - please use PublicSessionJoinCodeShort instead.
+func (aaa *GameSessionService) PublicSessionJoinCode(input *game_session.PublicSessionJoinCodeParams) (*sessionclientmodels.ApimodelsGameSessionResponse, error) {
+	token, err := aaa.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, badRequest, unauthorized, forbidden, notFound, internalServerError, err := aaa.Client.GameSession.PublicSessionJoinCode(input, client.BearerToken(*token.AccessToken))
+	if badRequest != nil {
+		return nil, badRequest
+	}
+	if unauthorized != nil {
+		return nil, unauthorized
+	}
+	if forbidden != nil {
+		return nil, forbidden
+	}
+	if notFound != nil {
+		return nil, notFound
+	}
+	if internalServerError != nil {
+		return nil, internalServerError
+	}
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
 // Deprecated: 2022-01-10 - please use GetGameSessionByPodNameShort instead.
 func (aaa *GameSessionService) GetGameSessionByPodName(input *game_session.GetGameSessionByPodNameParams) (*sessionclientmodels.ApimodelsGameSessionResponse, error) {
 	token, err := aaa.TokenRepository.GetToken()
@@ -318,6 +347,64 @@ func (aaa *GameSessionService) UpdateGameSessionBackfillTicketID(input *game_ses
 		return nil, err
 	}
 	ok, unauthorized, forbidden, notFound, internalServerError, err := aaa.Client.GameSession.UpdateGameSessionBackfillTicketID(input, client.BearerToken(*token.AccessToken))
+	if unauthorized != nil {
+		return nil, unauthorized
+	}
+	if forbidden != nil {
+		return nil, forbidden
+	}
+	if notFound != nil {
+		return nil, notFound
+	}
+	if internalServerError != nil {
+		return nil, internalServerError
+	}
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
+// Deprecated: 2022-01-10 - please use GameSessionGenerateCodeShort instead.
+func (aaa *GameSessionService) GameSessionGenerateCode(input *game_session.GameSessionGenerateCodeParams) (*sessionclientmodels.ApimodelsGameSessionResponse, error) {
+	token, err := aaa.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, badRequest, unauthorized, forbidden, notFound, internalServerError, err := aaa.Client.GameSession.GameSessionGenerateCode(input, client.BearerToken(*token.AccessToken))
+	if badRequest != nil {
+		return nil, badRequest
+	}
+	if unauthorized != nil {
+		return nil, unauthorized
+	}
+	if forbidden != nil {
+		return nil, forbidden
+	}
+	if notFound != nil {
+		return nil, notFound
+	}
+	if internalServerError != nil {
+		return nil, internalServerError
+	}
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
+// Deprecated: 2022-01-10 - please use PublicRevokeGameSessionCodeShort instead.
+func (aaa *GameSessionService) PublicRevokeGameSessionCode(input *game_session.PublicRevokeGameSessionCodeParams) (*sessionclientmodels.ApimodelsGameSessionResponse, error) {
+	token, err := aaa.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, badRequest, unauthorized, forbidden, notFound, internalServerError, err := aaa.Client.GameSession.PublicRevokeGameSessionCode(input, client.BearerToken(*token.AccessToken))
+	if badRequest != nil {
+		return nil, badRequest
+	}
 	if unauthorized != nil {
 		return nil, unauthorized
 	}
@@ -627,6 +714,31 @@ func (aaa *GameSessionService) PublicQueryGameSessionsShort(input *game_session.
 	return ok.GetPayload(), nil
 }
 
+func (aaa *GameSessionService) PublicSessionJoinCodeShort(input *game_session.PublicSessionJoinCodeParams) (*sessionclientmodels.ApimodelsGameSessionResponse, error) {
+	authInfoWriter := input.AuthInfoWriter
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
+	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  aaa.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
+	ok, err := aaa.Client.GameSession.PublicSessionJoinCodeShort(input, authInfoWriter)
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
 func (aaa *GameSessionService) GetGameSessionByPodNameShort(input *game_session.GetGameSessionByPodNameParams) (*sessionclientmodels.ApimodelsGameSessionResponse, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
@@ -770,6 +882,56 @@ func (aaa *GameSessionService) UpdateGameSessionBackfillTicketIDShort(input *gam
 	}
 
 	ok, err := aaa.Client.GameSession.UpdateGameSessionBackfillTicketIDShort(input, authInfoWriter)
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
+func (aaa *GameSessionService) GameSessionGenerateCodeShort(input *game_session.GameSessionGenerateCodeParams) (*sessionclientmodels.ApimodelsGameSessionResponse, error) {
+	authInfoWriter := input.AuthInfoWriter
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
+	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  aaa.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
+	ok, err := aaa.Client.GameSession.GameSessionGenerateCodeShort(input, authInfoWriter)
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
+func (aaa *GameSessionService) PublicRevokeGameSessionCodeShort(input *game_session.PublicRevokeGameSessionCodeParams) (*sessionclientmodels.ApimodelsGameSessionResponse, error) {
+	authInfoWriter := input.AuthInfoWriter
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
+	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  aaa.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
+	ok, err := aaa.Client.GameSession.PublicRevokeGameSessionCodeShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}

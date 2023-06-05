@@ -100,6 +100,12 @@ type GetUserStatCycleItemsParams struct {
 
 	*/
 	UserID string
+	/*IsPublic
+	    flag to filter which data to show.
+	<ul> <li>Unfiltered will return all data</li><li>If set to false will return private user stat items only</li><li>If set to true will return public stat items only</li></ul>
+
+	*/
+	IsPublic *bool
 	/*Limit*/
 	Limit *int32
 	/*Offset*/
@@ -201,6 +207,17 @@ func (o *GetUserStatCycleItemsParams) SetUserID(userID string) {
 	o.UserID = userID
 }
 
+// WithIsPublic adds the isPublic to the get user stat cycle items params
+func (o *GetUserStatCycleItemsParams) WithIsPublic(isPublic *bool) *GetUserStatCycleItemsParams {
+	o.SetIsPublic(isPublic)
+	return o
+}
+
+// SetIsPublic adds the isPublic to the get user stat cycle items params
+func (o *GetUserStatCycleItemsParams) SetIsPublic(isPublic *bool) {
+	o.IsPublic = isPublic
+}
+
 // WithLimit adds the limit to the get user stat cycle items params
 func (o *GetUserStatCycleItemsParams) WithLimit(limit *int32) *GetUserStatCycleItemsParams {
 	o.SetLimit(limit)
@@ -266,6 +283,22 @@ func (o *GetUserStatCycleItemsParams) WriteToRequest(r runtime.ClientRequest, re
 	// path param userId
 	if err := r.SetPathParam("userId", o.UserID); err != nil {
 		return err
+	}
+
+	if o.IsPublic != nil {
+
+		// query param isPublic
+		var qrIsPublic bool
+		if o.IsPublic != nil {
+			qrIsPublic = *o.IsPublic
+		}
+		qIsPublic := swag.FormatBool(qrIsPublic)
+		if qIsPublic != "" {
+			if err := r.SetQueryParam("isPublic", qIsPublic); err != nil {
+				return err
+			}
+		}
+
 	}
 
 	if o.Limit != nil {

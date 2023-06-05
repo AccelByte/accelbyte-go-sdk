@@ -60,7 +60,7 @@ func NewRetrieveAllUsersByPolicyVersion1OK() *RetrieveAllUsersByPolicyVersion1OK
   successful operation
 */
 type RetrieveAllUsersByPolicyVersion1OK struct {
-	Payload []*legalclientmodels.PagedRetrieveUserAcceptedAgreementResponse
+	Payload *legalclientmodels.PagedRetrieveUserAcceptedAgreementResponse
 }
 
 func (o *RetrieveAllUsersByPolicyVersion1OK) Error() string {
@@ -82,7 +82,7 @@ func (o *RetrieveAllUsersByPolicyVersion1OK) ToJSONString() string {
 	return fmt.Sprintf("%+v", string(b))
 }
 
-func (o *RetrieveAllUsersByPolicyVersion1OK) GetPayload() []*legalclientmodels.PagedRetrieveUserAcceptedAgreementResponse {
+func (o *RetrieveAllUsersByPolicyVersion1OK) GetPayload() *legalclientmodels.PagedRetrieveUserAcceptedAgreementResponse {
 	return o.Payload
 }
 
@@ -93,8 +93,10 @@ func (o *RetrieveAllUsersByPolicyVersion1OK) readResponse(response runtime.Clien
 		consumer = runtime.ByteStreamConsumer()
 	}
 
+	o.Payload = new(legalclientmodels.PagedRetrieveUserAcceptedAgreementResponse)
+
 	// response payload
-	if err := consumer.Consume(response.Body(), &o.Payload); err != nil && err != io.EOF {
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
 		return err
 	}
 

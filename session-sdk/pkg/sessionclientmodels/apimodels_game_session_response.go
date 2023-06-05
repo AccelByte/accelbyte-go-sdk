@@ -31,6 +31,9 @@ type ApimodelsGameSessionResponse struct {
 	// Required: true
 	BackfillTicketID *string `json:"backfillTicketID"`
 
+	// code
+	Code string `json:"code,omitempty"`
+
 	// configuration
 	// Required: true
 	Configuration *ApimodelsPublicConfiguration `json:"configuration"`

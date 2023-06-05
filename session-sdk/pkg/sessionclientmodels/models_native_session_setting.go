@@ -23,6 +23,9 @@ type ModelsNativeSessionSetting struct {
 	// Format: int32
 	PSNServiceLabel *int32 `json:"PSNServiceLabel"`
 
+	// psnsupportedplatforms
+	PSNSupportedPlatforms []string `json:"PSNSupportedPlatforms,omitempty"`
+
 	// sessiontitle
 	// Required: true
 	SessionTitle *string `json:"SessionTitle"`

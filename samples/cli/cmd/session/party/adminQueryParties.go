@@ -35,6 +35,7 @@ var AdminQueryPartiesCmd = &cobra.Command{
 		offset, _ := cmd.Flags().GetInt64("offset")
 		order, _ := cmd.Flags().GetString("order")
 		orderBy, _ := cmd.Flags().GetString("orderBy")
+		partyID, _ := cmd.Flags().GetString("partyID")
 		value, _ := cmd.Flags().GetString("value")
 		input := &party.AdminQueryPartiesParams{
 			Namespace:    namespace,
@@ -47,6 +48,7 @@ var AdminQueryPartiesCmd = &cobra.Command{
 			Offset:       &offset,
 			Order:        &order,
 			OrderBy:      &orderBy,
+			PartyID:      &partyID,
 			Value:        &value,
 		}
 		ok, errOK := partyService.AdminQueryPartiesShort(input)
@@ -74,5 +76,6 @@ func init() {
 	AdminQueryPartiesCmd.Flags().Int64("offset", 0, "Offset")
 	AdminQueryPartiesCmd.Flags().String("order", "", "Order")
 	AdminQueryPartiesCmd.Flags().String("orderBy", "", "Order by")
+	AdminQueryPartiesCmd.Flags().String("partyID", "", "Party ID")
 	AdminQueryPartiesCmd.Flags().String("value", "", "Value")
 }

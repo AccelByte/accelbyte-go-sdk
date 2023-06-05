@@ -6696,8 +6696,8 @@
     "path": "/group/apidocs/api.json"
   },
   "x-version": {
-    "buildDate": "2023-05-22T01:12:12+00:00",
-    "gitHash": "33ef1138eccc226460d9d732b57f39a2090ac87d",
+    "buildDate": "2023-05-23T02:03:40+00:00",
+    "gitHash": "ad8bb540aa7e09d073135c2ec638d485c7f5c67c",
     "name": "justice-group-service",
     "realm": "staging",
     "version": "2.16.2",

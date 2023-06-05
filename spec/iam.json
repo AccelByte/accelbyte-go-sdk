@@ -8,7 +8,7 @@
     },
     "description": "Justice IAM Service",
     "title": "justice-iam-service",
-    "version": "5.34.0"
+    "version": "6.0.1"
   },
   "schemes": [
     "https"
@@ -16338,7 +16338,7 @@
     },
     "/iam/v3/public/namespaces/{namespace}/requests/{requestId}/async/status": {
       "get": {
-        "description": "This endpoint is used to get linking status.",
+        "description": "\n\t\tThis endpoint is used to get linking status.\u0026lt;/br\u0026gt;\n\t\tThis API need logged user and user can only request its own linking status.\u0026#39; \n\t\t",
         "operationId": "PublicGetAsyncStatus",
         "parameters": [
           {
@@ -25455,6 +25455,24 @@
         "platformUserId"
       ]
     },
+    "accountcommon.PlatformLinkingHistory": {
+      "properties": {
+        "platformDisplayName": {
+          "type": "string"
+        },
+        "platformID": {
+          "type": "string"
+        },
+        "platformUserID": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "platformDisplayName",
+        "platformID",
+        "platformUserID"
+      ]
+    },
     "accountcommon.PlatformUserInformationV3": {
       "properties": {
         "displayName": {
@@ -27546,6 +27564,9 @@
           "type": "string"
         },
         "status": {
+          "type": "string"
+        },
+        "userID": {
           "type": "string"
         }
       },
@@ -31124,6 +31145,10 @@
         },
         "messageVariables": {
           "$ref": "#/definitions/accountcommon.ConflictedUserPlatformAccounts"
+        },
+        "previousLinkedPlatformAccount": {
+          "$ref": "#/definitions/accountcommon.PlatformLinkingHistory",
+          "description": "User link a platform's different account is not allowed. This field contains the previous linked account details. Will have value only when in this case. (errorCode is 10200)"
         }
       },
       "required": [
@@ -31138,11 +31163,11 @@
     "path": "/iam/apidocs/api.json"
   },
   "x-version": {
-    "buildDate": "2023-05-09T01:23:30+00:00",
-    "gitHash": "694a9655e2325d2aacfdb0414dfe2a5ebc284bac",
+    "buildDate": "2023-06-05T01:07:35+00:00",
+    "gitHash": "d15259f9457d9a5b5188428f1f172ed8ba1f9366",
     "name": "justice-iam-service",
     "realm": "staging",
-    "version": "5.34.0",
+    "version": "6.0.1",
     "version-roles-seeding": "0.0.3"
   }
 }

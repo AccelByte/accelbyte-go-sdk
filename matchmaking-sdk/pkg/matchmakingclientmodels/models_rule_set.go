@@ -27,6 +27,9 @@ type ModelsRuleSet struct {
 	// alliance_flexing_rule
 	AllianceFlexingRule []*ModelsAllianceFlexingRule `json:"alliance_flexing_rule,omitempty"`
 
+	// bucket_mmr_rule
+	BucketMmrRule *ModelsBucketMMRRule `json:"bucket_mmr_rule,omitempty"`
+
 	// flexing_rule
 	// Required: true
 	FlexingRule []*ModelsFlexingRule `json:"flexing_rule"`
@@ -45,6 +48,9 @@ type ModelsRuleSet struct {
 
 	// sub_game_modes
 	SubGameModes map[string]ModelsSubGameMode `json:"sub_game_modes,omitempty"`
+
+	// use_newest_ticket_for_flexing
+	UseNewestTicketForFlexing bool `json:"use_newest_ticket_for_flexing"`
 }
 
 // Validate validates this Models rule set

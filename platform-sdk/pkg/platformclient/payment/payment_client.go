@@ -797,6 +797,24 @@ Other detail info:
   * Required permission : resource="ADMIN:NAMESPACE:{namespace}:USER:{userId}:PAYMENT", action=1 (CREATE)
   * It will be forbidden while the user is banned: PAYMENT_INITIATE or ORDER_AND_PAYMENT
   *  Returns : created order
+
+
+
+## Restrictions for custom parameters and meta data
+
+
+1. Cannot use "." as the key name
+-
+
+
+    { "data.2": "value" }
+
+
+2. Cannot use "$" as the prefix in key names
+-
+
+
+    { "$data": "value" }
 */
 func (a *Client) CreateUserPaymentOrder(params *CreateUserPaymentOrderParams, authInfo runtime.ClientAuthInfoWriter) (*CreateUserPaymentOrderCreated, *CreateUserPaymentOrderBadRequest, *CreateUserPaymentOrderForbidden, *CreateUserPaymentOrderNotFound, *CreateUserPaymentOrderConflict, *CreateUserPaymentOrderUnprocessableEntity, error) {
 	// TODO: Validate the params before sending
@@ -862,6 +880,24 @@ Other detail info:
   * Required permission : resource="ADMIN:NAMESPACE:{namespace}:USER:{userId}:PAYMENT", action=1 (CREATE)
   * It will be forbidden while the user is banned: PAYMENT_INITIATE or ORDER_AND_PAYMENT
   *  Returns : created order
+
+
+
+## Restrictions for custom parameters and meta data
+
+
+1. Cannot use "." as the key name
+-
+
+
+    { "data.2": "value" }
+
+
+2. Cannot use "$" as the prefix in key names
+-
+
+
+    { "$data": "value" }
 */
 func (a *Client) CreateUserPaymentOrderShort(params *CreateUserPaymentOrderParams, authInfo runtime.ClientAuthInfoWriter) (*CreateUserPaymentOrderCreated, error) {
 	// TODO: Validate the params before sending

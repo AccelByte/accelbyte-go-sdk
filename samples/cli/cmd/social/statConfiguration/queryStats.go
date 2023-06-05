@@ -28,11 +28,13 @@ var QueryStatsCmd = &cobra.Command{
 		namespace, _ := cmd.Flags().GetString("namespace")
 		keyword, _ := cmd.Flags().GetString("keyword")
 		isGlobal, _ := cmd.Flags().GetBool("isGlobal")
+		isPublic, _ := cmd.Flags().GetBool("isPublic")
 		limit, _ := cmd.Flags().GetInt32("limit")
 		offset, _ := cmd.Flags().GetInt32("offset")
 		input := &stat_configuration.QueryStatsParams{
 			Namespace: namespace,
 			IsGlobal:  &isGlobal,
+			IsPublic:  &isPublic,
 			Limit:     &limit,
 			Offset:    &offset,
 			Keyword:   keyword,
@@ -54,6 +56,7 @@ func init() {
 	QueryStatsCmd.Flags().String("namespace", "", "Namespace")
 	_ = QueryStatsCmd.MarkFlagRequired("namespace")
 	QueryStatsCmd.Flags().Bool("isGlobal", false, "Is global")
+	QueryStatsCmd.Flags().Bool("isPublic", false, "Is public")
 	QueryStatsCmd.Flags().Int32("limit", 20, "Limit")
 	QueryStatsCmd.Flags().Int32("offset", 0, "Offset")
 	QueryStatsCmd.Flags().String("keyword", "", "Keyword")

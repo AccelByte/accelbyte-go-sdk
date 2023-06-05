@@ -8,7 +8,7 @@
     },
     "description": "Justice Legal Service",
     "title": "justice-legal-service",
-    "version": "1.29.1"
+    "version": "1.29.2"
   },
   "schemes": [
     "https"
@@ -926,6 +926,15 @@
             "name": "userId",
             "required": true,
             "type": "string"
+          },
+          {
+            "default": false,
+            "description": "If it is true, API will only query the policy in this path namespace",
+            "in": "query",
+            "name": "excludeOtherNamespacesPolicies",
+            "required": false,
+            "type": "boolean",
+            "x-omitempty": false
           }
         ],
         "produces": [
@@ -978,6 +987,15 @@
             "type": "string"
           },
           {
+            "default": false,
+            "description": "[Only for publisher legal scenario] If it is true, when a game user accept this publisher legal, API will return publisher user id",
+            "in": "query",
+            "name": "convertGameUserId",
+            "required": false,
+            "type": "boolean",
+            "x-omitempty": false
+          },
+          {
             "description": "display name or email or username",
             "in": "query",
             "name": "keyword",
@@ -1010,10 +1028,7 @@
           "200": {
             "description": "successful operation",
             "schema": {
-              "items": {
-                "$ref": "#/definitions/PagedRetrieveUserAcceptedAgreementResponse"
-              },
-              "type": "array"
+              "$ref": "#/definitions/PagedRetrieveUserAcceptedAgreementResponse"
             }
           },
           "404": {
@@ -2199,7 +2214,7 @@
     },
     "/agreement/admin/namespaces/{namespace}/users/{userId}/eligibilities": {
       "get": {
-        "description": "Retrieve the active policies and its conformance status by userThis process only supports cross-namespace checking between game namespace and publisher namespace , that means if the active policy already accepted by the same user in publisher namespace, then it will also be considered as eligible in non-publisher namespace.\u0026lt;br/\u0026gt;\u0026lt;br/\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;ADMIN:NAMESPACE:{namespace}:USER:{userId}:LEGAL\u0026#34;, action=2 (READ)\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
+        "description": "Retrieve the active policies and its conformance status by user.\u0026lt;br\u0026gt;This process only supports cross-namespace checking between game namespace and publisher namespace , that means if the active policy already accepted by the same user in publisher namespace, then it will also be considered as eligible in non-publisher namespace.\u0026lt;br/\u0026gt;\u0026lt;br/\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;ADMIN:NAMESPACE:{namespace}:USER:{userId}:LEGAL\u0026#34;, action=2 (READ)\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "adminRetrieveEligibilities",
         "parameters": [
           {
@@ -3213,7 +3228,7 @@
     },
     "/agreement/public/eligibilities/namespaces/{namespace}/countries/{countryCode}/clients/{clientId}/users/{userId}": {
       "get": {
-        "description": "Retrieve the active policies and its conformance status by userThis process only supports cross-namespace checking between game namespace and publisher namespace , that means if the active policy already accepted by the same user in publisher namespace, then it will also be considered as eligible in non-publisher namespace.\u0026lt;br/\u0026gt;\u0026lt;br/\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: login user\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
+        "description": "Retrieve the active policies and its conformance status by user.\u0026lt;br\u0026gt;This process only supports cross-namespace checking between game namespace and publisher namespace , that means if the active policy already accepted by the same user in publisher namespace, then it will also be considered as eligible in non-publisher namespace.\u0026lt;br/\u0026gt;\u0026lt;br/\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: login user\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "retrieveEligibilitiesPublicIndirect",
         "parameters": [
           {
@@ -5171,16 +5186,16 @@
   },
   "x-version": {
     "buildBy": "Gradle 6.9.1",
-    "buildDate": "2023-05-09T10:39:45+00:00",
-    "buildID": "1.29.1",
+    "buildDate": "2023-06-05T01:10:37+00:00",
+    "buildID": "1.29.2",
     "buildJDK": "1.8.0_232 (Eclipse OpenJ9 openj9-0.17.0)",
     "buildOS": "Linux amd64 5.13.0-1021-aws",
     "gitBranchName": "release-candidate",
-    "gitHash": "bc80d09cc1",
-    "gitTag": "1.29.1",
+    "gitHash": "db915cfa84",
+    "gitTag": "1.29.2",
     "name": "justice-legal-service",
     "realm": "staging",
-    "version": "1.29.1",
+    "version": "1.29.2",
     "version-roles-seeding": "0.0.3"
   }
 }

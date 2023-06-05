@@ -27,6 +27,7 @@ var GetUserStatItemsCmd = &cobra.Command{
 		}
 		namespace, _ := cmd.Flags().GetString("namespace")
 		userId, _ := cmd.Flags().GetString("userId")
+		isPublic, _ := cmd.Flags().GetBool("isPublic")
 		limit, _ := cmd.Flags().GetInt32("limit")
 		offset, _ := cmd.Flags().GetInt32("offset")
 		sortBy, _ := cmd.Flags().GetString("sortBy")
@@ -35,6 +36,7 @@ var GetUserStatItemsCmd = &cobra.Command{
 		input := &user_statistic.GetUserStatItemsParams{
 			Namespace: namespace,
 			UserID:    userId,
+			IsPublic:  &isPublic,
 			Limit:     &limit,
 			Offset:    &offset,
 			SortBy:    &sortBy,
@@ -59,6 +61,7 @@ func init() {
 	_ = GetUserStatItemsCmd.MarkFlagRequired("namespace")
 	GetUserStatItemsCmd.Flags().String("userId", "", "User id")
 	_ = GetUserStatItemsCmd.MarkFlagRequired("userId")
+	GetUserStatItemsCmd.Flags().Bool("isPublic", false, "Is public")
 	GetUserStatItemsCmd.Flags().Int32("limit", 20, "Limit")
 	GetUserStatItemsCmd.Flags().Int32("offset", 0, "Offset")
 	GetUserStatItemsCmd.Flags().String("sortBy", "", "Sort by")

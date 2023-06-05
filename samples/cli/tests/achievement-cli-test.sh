@@ -52,24 +52,24 @@ touch "tmp.dat"
 samples/cli/sample-apps Achievement adminListAchievements \
     --namespace $AB_NAMESPACE \
     --global 'false' \
-    --limit '66' \
-    --offset '60' \
-    --sortBy 'createdAt:desc' \
-    --tags '["DeENIwHn8dT9ySCm", "ldLjyUU4yprJBTdV", "2wHMGlJScwTIVkkQ"]' \
+    --limit '57' \
+    --offset '50' \
+    --sortBy 'listOrder:asc' \
+    --tags '["Vd19QJokj3otjBaA", "peKVOqiVkqrLdCiB", "pFdQMrBgEz7kd2iI"]' \
     > test.out 2>&1
 eval_tap $? 2 'AdminListAchievements' test.out
 
 #- 3 AdminCreateNewAchievement
 samples/cli/sample-apps Achievement adminCreateNewAchievement \
     --namespace $AB_NAMESPACE \
-    --body '{"achievementCode": "csFojD1wVNCCy4Pj", "customAttributes": {"QdEKADuRTYVOIbYc": {}, "6X08ajS52Lsqxgs0": {}, "NiKtTGXbhRznjiXG": {}}, "defaultLanguage": "eX25d7ETq8aUqUdg", "description": {"VXGuUqngOgIbgwcw": "C6mUJs7m8pURUy9M", "yFIz3o30jOzicDD7": "giGoAj5FRZd9HwqB", "qMK315dJUsBN3Aey": "HQb39CwvxWIvgJtU"}, "global": false, "goalValue": 0.8753378240050534, "hidden": true, "incremental": false, "lockedIcons": [{"slug": "eqixCojqbePT71re", "url": "XqtEIFHswttTBYiF"}, {"slug": "FWei8qLLQXIOsMnO", "url": "3P5qhwY4lKE8m21Y"}, {"slug": "wurxGy5zfO15DvHM", "url": "c7qsm8vccabMkFCb"}], "name": {"gB1hgR2HpJD7MuQ1": "o0BCNUDlQf5rtQMB", "bnWzVvvWtk1mtZDB": "ulhmnDiLxBwTO9NS", "xvBIrIP8N9dciIlc": "OByJsUDyOfeIaP3J"}, "statCode": "9vGWeqKy3kEMg8KG", "tags": ["uF32QpjEOuIDWXlf", "IpxuZXkEEcVUjr1B", "ufgDfEKKG5kgdnXN"], "unlockedIcons": [{"slug": "cr7QTmtNyxNlIFs4", "url": "8JtuSQxRYxDeup22"}, {"slug": "zZLHirkz31Fth4HT", "url": "k2TXlsGh1SlaloUV"}, {"slug": "xl2TECgH0kBVd5fe", "url": "WVKVCPRzvG8OrPYb"}]}' \
+    --body '{"achievementCode": "39vVT5xGwyoZVAOD", "customAttributes": {"RaqJQkvS5D9ybWk3": {}, "WFglS20ADMLRT52R": {}, "GQs1bOHFXQ5kiDFo": {}}, "defaultLanguage": "Z8DNtfrugRdW4qpi", "description": {"PVgb6bGThPlunAJ4": "hW8aLQRXnhGIxi8B", "wUhpRdqSuYa9LZiB": "aOvuzzOuVU0gLmgZ", "PO3USXsniwuwImSm": "vTtJ5ioGgEOvC06P"}, "global": true, "goalValue": 0.10828062566283636, "hidden": false, "incremental": true, "lockedIcons": [{"slug": "nkBsLLkVrpriYH8P", "url": "i6dijaZbuZ02vi8j"}, {"slug": "ujThSjwmasTjFs3i", "url": "z11NSKZhfcXPdAUF"}, {"slug": "8dhSK8rdVp0cRBH5", "url": "SHvmRbANcNZyFU55"}], "name": {"AV7jWxcgpXlmtOlj": "X3BMVO6XQpEWI18Y", "QhoW0nIy5vX8Sznn": "2mgGEUioGIvlB2UG", "SZAhMwRfHu0le6PN": "a4SEz54UaGyz93ft"}, "statCode": "OMdiyCfEUEJZoMhY", "tags": ["N7IqZfBqOFCIJg0L", "6SHodo7GkRmFfwfm", "UwZHlB98jml9WIjb"], "unlockedIcons": [{"slug": "DubicGRR4yAdR1a7", "url": "ILUgVn26jVruAvVm"}, {"slug": "LZvakhTdekI2CpKl", "url": "yfX5TkuSff9SUl5e"}, {"slug": "dM8a71VHu2mMn07L", "url": "muNztwc97dkLbUpx"}]}' \
     > test.out 2>&1
 eval_tap $? 3 'AdminCreateNewAchievement' test.out
 
 #- 4 ExportAchievements
 samples/cli/sample-apps Achievement exportAchievements \
     --namespace $AB_NAMESPACE \
-    --tags '["3u7swCe8IPEtZMZu", "qvltteYbnBwXR4LQ", "6ZpZHisM6uQDQxH0"]' \
+    --tags '["iU5UwxQFeiWqIRfp", "5b0dZDthOD5cJf8E", "u0T5jsDvOT2HVtEK"]' \
     > test.out 2>&1
 eval_tap $? 4 'ExportAchievements' test.out
 
@@ -77,65 +77,65 @@ eval_tap $? 4 'ExportAchievements' test.out
 samples/cli/sample-apps Achievement importAchievements \
     --namespace $AB_NAMESPACE \
     --file 'tmp.dat' \
-    --strategy 'b35DPEQTUcexgHSh' \
+    --strategy 'jRrXfGUwBIQGu1J6' \
     > test.out 2>&1
 eval_tap $? 5 'ImportAchievements' test.out
 
 #- 6 AdminGetAchievement
 samples/cli/sample-apps Achievement adminGetAchievement \
-    --achievementCode 'RSTnud8d25qNC16c' \
+    --achievementCode 'aGTtcnFv1JyYnBf7' \
     --namespace $AB_NAMESPACE \
     > test.out 2>&1
 eval_tap $? 6 'AdminGetAchievement' test.out
 
 #- 7 AdminUpdateAchievement
 samples/cli/sample-apps Achievement adminUpdateAchievement \
-    --achievementCode 'Zs3UqfH9lIYhPIgr' \
+    --achievementCode 'ot7ujIpbKeF5MRZs' \
     --namespace $AB_NAMESPACE \
-    --body '{"customAttributes": {"Q5Xt5J5VNUpm9vtm": {}, "0vWHmZ5WbC3K7xAj": {}, "Ds3VP4qvXTdZSFZq": {}}, "defaultLanguage": "Ooc13xfI6fYMkHvK", "description": {"YE6cOw83x7YzqztR": "dIWqxt1TXpDN7fPv", "HXYFiQbsuYrYWgF8": "MpweA9BAPfcazUvp", "b4L308gIV7eWggRZ": "SZ3EYiZSjAxxgCNh"}, "global": false, "goalValue": 0.9061761927730771, "hidden": false, "incremental": true, "lockedIcons": [{"slug": "TP0mvlKl9CxBJbr2", "url": "2dNilKK3wqBDVvpt"}, {"slug": "jKWLObWGjtiI8eDh", "url": "aKQGntUulRZN2e3m"}, {"slug": "bBR2cyDZvSrzqFBW", "url": "brqiQjhLfZttCvOO"}], "name": {"9zwqw7V6TowVNEbZ": "GryOkrbilqlf6G6r", "uA4q89kDX0ICJBED": "iYgx3Onz7pI7JfCo", "UBCRTT7jN2DCl2Dn": "4FrDrGYacaLJT35s"}, "statCode": "mXIsEtREyw6Cxt0G", "tags": ["TwzAYQJ7gqVquOjV", "z6xdsxlRIc7o4fM3", "kd7VTmVrBOscgp18"], "unlockedIcons": [{"slug": "pXQP6dAeO5UNELIo", "url": "uXUbtPzpa1q0UY6q"}, {"slug": "LkC6M8zzsYXttJO2", "url": "j3g34WELmGmazbSu"}, {"slug": "o5txM0dWLXZLVZF4", "url": "aqZOFBHlzQLQ89v1"}]}' \
+    --body '{"customAttributes": {"xnDOmt04u53jAspF": {}, "3ipbcNzunSwI2mzt": {}, "gdkjoTP8S0BbQK2I": {}}, "defaultLanguage": "vGH7R90TacUGEJy1", "description": {"msJ3seSs2v6dscLJ": "LQPxG151B2bQ1nFr", "9JQY8Atvv4gdiBcy": "xCdIinK1zDjYEqTd", "7ftcrhu1IcT97KmT": "3OxdBUAnWztcUwJ4"}, "global": false, "goalValue": 0.35003378447529365, "hidden": true, "incremental": false, "lockedIcons": [{"slug": "JcFeEjwl70dHhsR3", "url": "23bDg1aeX6DnL5qe"}, {"slug": "LrsKyfEKlPSvt5wj", "url": "o89JtMRJEbBtc6ko"}, {"slug": "TEAoyA95qwmm8Jqx", "url": "IL0zEqrhV1dKCFam"}], "name": {"HEESpaqqXMpgFZFQ": "cGzu9lhRkD2te2xs", "MLP0tN4Ha7JUTkus": "oV6IOWFiI6ZbykxZ", "ZUojxTWRKxBJZu6W": "QFzAKRoJteDa7Boo"}, "statCode": "SwgE7SUkz1iPPiqT", "tags": ["CjQDV1ygMAgHG9Cx", "4VSebwu221PbLIF8", "bk5t3TbdyPNHHHRE"], "unlockedIcons": [{"slug": "dI3ugvSbitF0BA09", "url": "4FTMMhReKvMMJhrU"}, {"slug": "YGaBoamG5136GdFr", "url": "43USm77T7Sk1dvvh"}, {"slug": "EfSTKpGQ1TEDKZsC", "url": "2Vle8vTm7SgXlixK"}]}' \
     > test.out 2>&1
 eval_tap $? 7 'AdminUpdateAchievement' test.out
 
 #- 8 AdminDeleteAchievement
 samples/cli/sample-apps Achievement adminDeleteAchievement \
-    --achievementCode 'bsDbx1wcp4pdq7XP' \
+    --achievementCode 'jjD6skdSHkXkprYl' \
     --namespace $AB_NAMESPACE \
     > test.out 2>&1
 eval_tap $? 8 'AdminDeleteAchievement' test.out
 
 #- 9 AdminUpdateAchievementListOrder
 samples/cli/sample-apps Achievement adminUpdateAchievementListOrder \
-    --achievementCode '1uNV0iVenl7gQ57Q' \
+    --achievementCode 'qONJUPdS6yPqAqFv' \
     --namespace $AB_NAMESPACE \
-    --body '{"targetOrder": 45}' \
+    --body '{"targetOrder": 27}' \
     > test.out 2>&1
 eval_tap $? 9 'AdminUpdateAchievementListOrder' test.out
 
 #- 10 AdminListGlobalAchievements
 samples/cli/sample-apps Achievement adminListGlobalAchievements \
     --namespace $AB_NAMESPACE \
-    --achievementCodes 'm470ywkUvTaGmPDk' \
-    --limit '91' \
-    --offset '20' \
-    --sortBy 'mznnx6k6Widop6mF' \
-    --status 'nqVL43m7VuLqigWj' \
-    --tags '["JHXz28v7xlrY5YSA", "JrAzWNTBJWsUgupK", "OJ7Ffnca0kQGZZwH"]' \
+    --achievementCodes 'bN4DvEgXvT7SgN72' \
+    --limit '9' \
+    --offset '72' \
+    --sortBy 'JguokvHUXtZOIqPQ' \
+    --status 'E3qrjxPbqpXvo71L' \
+    --tags '["xNTbZCLShPuFVOqX", "EZEGZF5h8nyJeXNM", "1zT5eviPFZRtGmXY"]' \
     > test.out 2>&1
 eval_tap $? 10 'AdminListGlobalAchievements' test.out
 
 #- 11 AdminListGlobalAchievementContributors
 samples/cli/sample-apps Achievement adminListGlobalAchievementContributors \
-    --achievementCode 'dEoAyHJjrZpPdRDQ' \
+    --achievementCode 'WXTSsiCio6p919GF' \
     --namespace $AB_NAMESPACE \
-    --limit '48' \
-    --offset '2' \
-    --sortBy 'P1iOUDBVdBZsUyYe' \
+    --limit '31' \
+    --offset '7' \
+    --sortBy 'dxAfAPLLOOmIhB6j' \
     > test.out 2>&1
 eval_tap $? 11 'AdminListGlobalAchievementContributors' test.out
 
 #- 12 ResetGlobalAchievement
 samples/cli/sample-apps Achievement resetGlobalAchievement \
-    --achievementCode 'E8bZOdj7TKsZySNN' \
+    --achievementCode '7jZ17HGQpIdN85wi' \
     --namespace $AB_NAMESPACE \
     > test.out 2>&1
 eval_tap $? 12 'ResetGlobalAchievement' test.out
@@ -143,149 +143,149 @@ eval_tap $? 12 'ResetGlobalAchievement' test.out
 #- 13 AdminListTags
 samples/cli/sample-apps Achievement adminListTags \
     --namespace $AB_NAMESPACE \
-    --limit '66' \
-    --name 'eiAL35DBbhK02xqg' \
-    --offset '42' \
-    --sortBy 'i7awmSeNiCxrJYox' \
+    --limit '88' \
+    --name 'xDwpHEgYYphhCcwH' \
+    --offset '24' \
+    --sortBy 'iFfwUtZRnw8agfOo' \
     > test.out 2>&1
 eval_tap $? 13 'AdminListTags' test.out
 
 #- 14 AdminListUserAchievements
 samples/cli/sample-apps Achievement adminListUserAchievements \
     --namespace $AB_NAMESPACE \
-    --userId 'NcuNC9TyKKWIZk0B' \
-    --limit '68' \
-    --offset '79' \
-    --preferUnlocked 'false' \
-    --sortBy 'xXGhxVFkZjl0G1oV' \
-    --tags '["vzLjyIzBMFXWeQxh", "4FiQGVo7QGmuKciy", "RwWVshvXeWLbxwvl"]' \
+    --userId 'tlsAE7TyDoYOmb4E' \
+    --limit '23' \
+    --offset '4' \
+    --preferUnlocked 'true' \
+    --sortBy 'wp7u59XPXBqVuTQF' \
+    --tags '["ByABGvZqmwQcmPj8", "tUb0Ist1xmqn5E7z", "411OWQqZAapMiaAm"]' \
     > test.out 2>&1
 eval_tap $? 14 'AdminListUserAchievements' test.out
 
 #- 15 AdminResetAchievement
 samples/cli/sample-apps Achievement adminResetAchievement \
-    --achievementCode 'reg2iPZVjLuh0XLA' \
+    --achievementCode '3HIRif9CpcjbwFM1' \
     --namespace $AB_NAMESPACE \
-    --userId 'bjcF38pe8qEzql9O' \
+    --userId 'TZ8L79xEnVyAgT6E' \
     > test.out 2>&1
 eval_tap $? 15 'AdminResetAchievement' test.out
 
 #- 16 AdminUnlockAchievement
 samples/cli/sample-apps Achievement adminUnlockAchievement \
-    --achievementCode 'nVaRhewEl1lA1Ob0' \
+    --achievementCode 'srI1IE8ZUIdzts7h' \
     --namespace $AB_NAMESPACE \
-    --userId 'nbJGvvlUsS3SAIx2' \
+    --userId 'AESIR2Pz3NmXS4AR' \
     > test.out 2>&1
 eval_tap $? 16 'AdminUnlockAchievement' test.out
 
 #- 17 AdminAnonymizeUserAchievement
 samples/cli/sample-apps Achievement adminAnonymizeUserAchievement \
     --namespace $AB_NAMESPACE \
-    --userId 'mprrlgIsb3T84oG2' \
+    --userId 'Mo9VU2A88qTAvlrL' \
     > test.out 2>&1
 eval_tap $? 17 'AdminAnonymizeUserAchievement' test.out
 
 #- 18 AdminListUserContributions
 samples/cli/sample-apps Achievement adminListUserContributions \
     --namespace $AB_NAMESPACE \
-    --userId 'Yi7w8gb03Z2ddKSW' \
-    --achievementCodes 'KjfTcxd5acRD21qg' \
-    --limit '0' \
-    --offset '42' \
-    --sortBy 'Akpj7Ho1LwYH9aU7' \
-    --tags '["7rzqcX5ZUYSe8WUc", "fWwD39pvh5hd7aHA", "Iqh67JJmjMimR7JB"]' \
+    --userId 'YaD0fZ9zTzKNEbxf' \
+    --achievementCodes 'qoRUcVemJL3N42YA' \
+    --limit '63' \
+    --offset '19' \
+    --sortBy 'XzWTekxpz4udqGLd' \
+    --tags '["aVhPeU4pESKkySXG", "5Jqdg1bgPR4WMLTG", "E51oRM2Sw86xJ9lK"]' \
     > test.out 2>&1
 eval_tap $? 18 'AdminListUserContributions' test.out
 
 #- 19 PublicListAchievements
 samples/cli/sample-apps Achievement publicListAchievements \
     --namespace $AB_NAMESPACE \
-    --global 'true' \
-    --limit '64' \
-    --offset '26' \
-    --sortBy 'listOrder' \
-    --tags '["g7JkJLsBNYebpJyd", "pa4b0MrorWpFzEgx", "ULGJOYJM8Mdv7p5T"]' \
-    --language 'fkRZvWV4VN3QuBt3' \
+    --global 'false' \
+    --limit '42' \
+    --offset '60' \
+    --sortBy 'updatedAt' \
+    --tags '["HGzuQkNuRSOHVBBp", "pXpApMlUCyEknYD4", "PB894d9bQLmgprKB"]' \
+    --language 'Cv7OYAJlqe7IBJyv' \
     > test.out 2>&1
 eval_tap $? 19 'PublicListAchievements' test.out
 
 #- 20 PublicGetAchievement
 samples/cli/sample-apps Achievement publicGetAchievement \
-    --achievementCode 'vYkqEtjDhDcpPGdc' \
+    --achievementCode 'TKDe6LcdoX8ABB3t' \
     --namespace $AB_NAMESPACE \
-    --language 'jDk6xutOZZsPNIir' \
+    --language 'mMpHA5kpKrKgoo5d' \
     > test.out 2>&1
 eval_tap $? 20 'PublicGetAchievement' test.out
 
 #- 21 PublicListGlobalAchievements
 samples/cli/sample-apps Achievement publicListGlobalAchievements \
     --namespace $AB_NAMESPACE \
-    --achievementCodes 'Pc3naFfCHhj92l1X' \
-    --limit '42' \
-    --offset '13' \
-    --sortBy 'kITb6FIzIqmD5UzC' \
-    --status 'QwtzVqIe1EBRP1io' \
-    --tags '["bRh27dWJiAK640sv", "gTmBVpGsVQEL5WZ7", "WyWW6WVrgE4mPdQQ"]' \
+    --achievementCodes '0F1Y3Sx7iYp8mbe0' \
+    --limit '24' \
+    --offset '32' \
+    --sortBy 'Ut796uIJHfhXh90N' \
+    --status 'qCurqqkFnLnWEqXf' \
+    --tags '["lEuIw8pRZopedc9L", "uIAhQXMTpPWmiXEB", "MJjutxErrH1LWlZz"]' \
     > test.out 2>&1
 eval_tap $? 21 'PublicListGlobalAchievements' test.out
 
 #- 22 ListGlobalAchievementContributors
 samples/cli/sample-apps Achievement listGlobalAchievementContributors \
-    --achievementCode 'fUIr3Zsa9kY2CMtY' \
+    --achievementCode '4SgRxmqpXoHoPeMr' \
     --namespace $AB_NAMESPACE \
-    --limit '29' \
-    --offset '1' \
-    --sortBy 'iyF3WNhoV9e3Xzjm' \
+    --limit '85' \
+    --offset '100' \
+    --sortBy 'px0xIiS6iyqVp1ZH' \
     > test.out 2>&1
 eval_tap $? 22 'ListGlobalAchievementContributors' test.out
 
 #- 23 PublicListTags
 samples/cli/sample-apps Achievement publicListTags \
     --namespace $AB_NAMESPACE \
-    --limit '62' \
-    --name '0SFItAHPc7cuhJFJ' \
-    --offset '6' \
-    --sortBy 'IrcKZ62vEUCs1iFU' \
+    --limit '10' \
+    --name 'DvZuMoctIsmwk9ic' \
+    --offset '19' \
+    --sortBy 'tGUai5voigz3407q' \
     > test.out 2>&1
 eval_tap $? 23 'PublicListTags' test.out
 
 #- 24 PublicListUserAchievements
 samples/cli/sample-apps Achievement publicListUserAchievements \
     --namespace $AB_NAMESPACE \
-    --userId 'NPFaRkxtqunD1dRB' \
-    --limit '54' \
-    --offset '55' \
-    --preferUnlocked 'true' \
-    --sortBy 'Q5OIWXl0RJPsznk2' \
-    --tags '["V2ejUzz0BGvwiAI9", "sxaJ7X0puI57Oqsc", "wv9R1dDFMiiYks45"]' \
+    --userId 'nT63d582OrtXy5yF' \
+    --limit '72' \
+    --offset '66' \
+    --preferUnlocked 'false' \
+    --sortBy 'YDYw0DEU2UazoUAp' \
+    --tags '["zBsFs5n4whI6Szfl", "Zvyu1ghpwmZO6pAT", "LopqklDebXtt5lTF"]' \
     > test.out 2>&1
 eval_tap $? 24 'PublicListUserAchievements' test.out
 
 #- 25 PublicUnlockAchievement
 samples/cli/sample-apps Achievement publicUnlockAchievement \
-    --achievementCode 'aLnCr8gfzMFfcEbi' \
+    --achievementCode 'G4Ttig4QLIWRxtDL' \
     --namespace $AB_NAMESPACE \
-    --userId 'zyeZx65rRqyhkEBY' \
+    --userId '1CeXJhpTugwGf77w' \
     > test.out 2>&1
 eval_tap $? 25 'PublicUnlockAchievement' test.out
 
 #- 26 ListUserContributions
 samples/cli/sample-apps Achievement listUserContributions \
     --namespace $AB_NAMESPACE \
-    --userId 'NdAMyv6LZwifQNDp' \
-    --achievementCodes 'yMBQklOFLSr1imgQ' \
-    --limit '70' \
-    --offset '45' \
-    --sortBy 'e888qvyNg2dgbQyk' \
-    --tags '["5yxViPZbjq7GZcYW", "3OI3CbNTfk3DuyPR", "xxCej16d7offKGyh"]' \
+    --userId 'CF5aSgrgkFOAcCwz' \
+    --achievementCodes 'REwZyZniey8IfTYL' \
+    --limit '52' \
+    --offset '50' \
+    --sortBy '5DIh9qYzlv5XhadN' \
+    --tags '["t1fZpp8gRB7YttWt", "aKVQYsGSnaSasxtp", "fqY3f7W182EYrKih"]' \
     > test.out 2>&1
 eval_tap $? 26 'ListUserContributions' test.out
 
 #- 27 ClaimGlobalAchievementReward
 samples/cli/sample-apps Achievement claimGlobalAchievementReward \
-    --achievementCode 'DEzD7d7QO7uPjRdt' \
+    --achievementCode '3spK2F35tpjr5N1f' \
     --namespace $AB_NAMESPACE \
-    --userId 'SpI8Kk5t3iyMMuS4' \
+    --userId 'eAYg2FceAN4kgLh4' \
     > test.out 2>&1
 eval_tap $? 27 'ClaimGlobalAchievementReward' test.out
 

@@ -32,6 +32,8 @@ type Client struct {
 type ClientService interface {
 	GetUserStatCycleItems(params *GetUserStatCycleItemsParams, authInfo runtime.ClientAuthInfoWriter) (*GetUserStatCycleItemsOK, *GetUserStatCycleItemsNotFound, *GetUserStatCycleItemsUnprocessableEntity, error)
 	GetUserStatCycleItemsShort(params *GetUserStatCycleItemsParams, authInfo runtime.ClientAuthInfoWriter) (*GetUserStatCycleItemsOK, error)
+	PublicListMyStatCycleItems(params *PublicListMyStatCycleItemsParams, authInfo runtime.ClientAuthInfoWriter) (*PublicListMyStatCycleItemsOK, *PublicListMyStatCycleItemsNotFound, *PublicListMyStatCycleItemsUnprocessableEntity, error)
+	PublicListMyStatCycleItemsShort(params *PublicListMyStatCycleItemsParams, authInfo runtime.ClientAuthInfoWriter) (*PublicListMyStatCycleItemsOK, error)
 	GetUserStatCycleItems1(params *GetUserStatCycleItems1Params, authInfo runtime.ClientAuthInfoWriter) (*GetUserStatCycleItems1OK, *GetUserStatCycleItems1NotFound, *GetUserStatCycleItems1UnprocessableEntity, error)
 	GetUserStatCycleItems1Short(params *GetUserStatCycleItems1Params, authInfo runtime.ClientAuthInfoWriter) (*GetUserStatCycleItems1OK, error)
 
@@ -44,8 +46,8 @@ Deprecated: 2022-08-10 - Use GetUserStatCycleItemsShort instead.
 GetUserStatCycleItems list user's statcycleitems by statcycle
 List user's statCycleItems by statCycle.
 Other detail info:
-                          *  Required permission : resource="ADMIN:NAMESPACE:{namespace}:USER:{userId}:STATITEM", action=2 (READ)
-                          *  Returns : stat cycle items
+                      *  Required permission : resource="ADMIN:NAMESPACE:{namespace}:USER:{userId}:STATITEM", action=2 (READ)
+                      *  Returns : stat cycle items
 */
 func (a *Client) GetUserStatCycleItems(params *GetUserStatCycleItemsParams, authInfo runtime.ClientAuthInfoWriter) (*GetUserStatCycleItemsOK, *GetUserStatCycleItemsNotFound, *GetUserStatCycleItemsUnprocessableEntity, error) {
 	// TODO: Validate the params before sending
@@ -98,8 +100,8 @@ func (a *Client) GetUserStatCycleItems(params *GetUserStatCycleItemsParams, auth
 GetUserStatCycleItemsShort list user's statcycleitems by statcycle
 List user's statCycleItems by statCycle.
 Other detail info:
-                          *  Required permission : resource="ADMIN:NAMESPACE:{namespace}:USER:{userId}:STATITEM", action=2 (READ)
-                          *  Returns : stat cycle items
+                      *  Required permission : resource="ADMIN:NAMESPACE:{namespace}:USER:{userId}:STATITEM", action=2 (READ)
+                      *  Returns : stat cycle items
 */
 func (a *Client) GetUserStatCycleItemsShort(params *GetUserStatCycleItemsParams, authInfo runtime.ClientAuthInfoWriter) (*GetUserStatCycleItemsOK, error) {
 	// TODO: Validate the params before sending
@@ -147,13 +149,121 @@ func (a *Client) GetUserStatCycleItemsShort(params *GetUserStatCycleItemsParams,
 }
 
 /*
+Deprecated: 2022-08-10 - Use PublicListMyStatCycleItemsShort instead.
+
+PublicListMyStatCycleItems list user's statcycleitems by statcycle
+List user's statCycleItems by statCycle.
+Other detail info:
+                      *  Required permission : resource="NAMESPACE:{namespace}:USER:{userId}:STATITEM", action=2 (READ)
+                      *  Returns : stat cycle items
+*/
+func (a *Client) PublicListMyStatCycleItems(params *PublicListMyStatCycleItemsParams, authInfo runtime.ClientAuthInfoWriter) (*PublicListMyStatCycleItemsOK, *PublicListMyStatCycleItemsNotFound, *PublicListMyStatCycleItemsUnprocessableEntity, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewPublicListMyStatCycleItemsParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "publicListMyStatCycleItems",
+		Method:             "GET",
+		PathPattern:        "/social/v1/public/namespaces/{namespace}/users/me/statCycles/{cycleId}/statCycleitems",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &PublicListMyStatCycleItemsReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, nil, nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *PublicListMyStatCycleItemsOK:
+		return v, nil, nil, nil
+
+	case *PublicListMyStatCycleItemsNotFound:
+		return nil, v, nil, nil
+
+	case *PublicListMyStatCycleItemsUnprocessableEntity:
+		return nil, nil, v, nil
+
+	default:
+		return nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+PublicListMyStatCycleItemsShort list user's statcycleitems by statcycle
+List user's statCycleItems by statCycle.
+Other detail info:
+                      *  Required permission : resource="NAMESPACE:{namespace}:USER:{userId}:STATITEM", action=2 (READ)
+                      *  Returns : stat cycle items
+*/
+func (a *Client) PublicListMyStatCycleItemsShort(params *PublicListMyStatCycleItemsParams, authInfo runtime.ClientAuthInfoWriter) (*PublicListMyStatCycleItemsOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewPublicListMyStatCycleItemsParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "publicListMyStatCycleItems",
+		Method:             "GET",
+		PathPattern:        "/social/v1/public/namespaces/{namespace}/users/me/statCycles/{cycleId}/statCycleitems",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &PublicListMyStatCycleItemsReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *PublicListMyStatCycleItemsOK:
+		return v, nil
+	case *PublicListMyStatCycleItemsNotFound:
+		return nil, v
+	case *PublicListMyStatCycleItemsUnprocessableEntity:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
 Deprecated: 2022-08-10 - Use GetUserStatCycleItems1Short instead.
 
 GetUserStatCycleItems1 list user's statcycleitems by statcycle
 List user's statCycleItems by statCycle.
 Other detail info:
-                          *  Required permission : resource="NAMESPACE:{namespace}:USER:{userId}:STATITEM", action=2 (READ)
-                          *  Returns : stat cycle items
+                      *  Required permission : resource="NAMESPACE:{namespace}:USER:{userId}:STATITEM", action=2 (READ)
+                      *  Returns : stat cycle items
 */
 func (a *Client) GetUserStatCycleItems1(params *GetUserStatCycleItems1Params, authInfo runtime.ClientAuthInfoWriter) (*GetUserStatCycleItems1OK, *GetUserStatCycleItems1NotFound, *GetUserStatCycleItems1UnprocessableEntity, error) {
 	// TODO: Validate the params before sending
@@ -206,8 +316,8 @@ func (a *Client) GetUserStatCycleItems1(params *GetUserStatCycleItems1Params, au
 GetUserStatCycleItems1Short list user's statcycleitems by statcycle
 List user's statCycleItems by statCycle.
 Other detail info:
-                          *  Required permission : resource="NAMESPACE:{namespace}:USER:{userId}:STATITEM", action=2 (READ)
-                          *  Returns : stat cycle items
+                      *  Required permission : resource="NAMESPACE:{namespace}:USER:{userId}:STATITEM", action=2 (READ)
+                      *  Returns : stat cycle items
 */
 func (a *Client) GetUserStatCycleItems1Short(params *GetUserStatCycleItems1Params, authInfo runtime.ClientAuthInfoWriter) (*GetUserStatCycleItems1OK, error) {
 	// TODO: Validate the params before sending

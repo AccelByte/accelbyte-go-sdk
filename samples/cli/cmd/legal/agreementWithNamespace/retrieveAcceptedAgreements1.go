@@ -27,9 +27,11 @@ var RetrieveAcceptedAgreements1Cmd = &cobra.Command{
 		}
 		namespace, _ := cmd.Flags().GetString("namespace")
 		userId, _ := cmd.Flags().GetString("userId")
+		excludeOtherNamespacesPolicies, _ := cmd.Flags().GetBool("excludeOtherNamespacesPolicies")
 		input := &agreement_with_namespace.RetrieveAcceptedAgreements1Params{
-			Namespace: namespace,
-			UserID:    userId,
+			Namespace:                      namespace,
+			UserID:                         userId,
+			ExcludeOtherNamespacesPolicies: &excludeOtherNamespacesPolicies,
 		}
 		ok, errOK := agreementWithNamespaceService.RetrieveAcceptedAgreements1Short(input)
 		if errOK != nil {
@@ -49,4 +51,5 @@ func init() {
 	_ = RetrieveAcceptedAgreements1Cmd.MarkFlagRequired("namespace")
 	RetrieveAcceptedAgreements1Cmd.Flags().String("userId", "", "User id")
 	_ = RetrieveAcceptedAgreements1Cmd.MarkFlagRequired("userId")
+	RetrieveAcceptedAgreements1Cmd.Flags().Bool("excludeOtherNamespacesPolicies", false, "Exclude other namespaces policies")
 }

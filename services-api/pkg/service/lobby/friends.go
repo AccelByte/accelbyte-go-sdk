@@ -184,6 +184,35 @@ func (aaa *FriendsService) GetUserOutgoingFriendsWithTime(input *friends.GetUser
 	return ok.GetPayload(), nil
 }
 
+// Deprecated: 2022-01-10 - please use GetUserFriendsWithPlatformShort instead.
+func (aaa *FriendsService) GetUserFriendsWithPlatform(input *friends.GetUserFriendsWithPlatformParams) (*lobbyclientmodels.ModelListBulkUserPlatformsResponse, error) {
+	token, err := aaa.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, badRequest, unauthorized, forbidden, notFound, internalServerError, err := aaa.Client.Friends.GetUserFriendsWithPlatform(input, client.BearerToken(*token.AccessToken))
+	if badRequest != nil {
+		return nil, badRequest
+	}
+	if unauthorized != nil {
+		return nil, unauthorized
+	}
+	if forbidden != nil {
+		return nil, forbidden
+	}
+	if notFound != nil {
+		return nil, notFound
+	}
+	if internalServerError != nil {
+		return nil, internalServerError
+	}
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
 // Deprecated: 2022-01-10 - please use UserRequestFriendShort instead.
 func (aaa *FriendsService) UserRequestFriend(input *friends.UserRequestFriendParams) error {
 	token, err := aaa.TokenRepository.GetToken()
@@ -410,6 +439,58 @@ func (aaa *FriendsService) GetListOfFriends(input *friends.GetListOfFriendsParam
 	return ok.GetPayload(), nil
 }
 
+// Deprecated: 2022-01-10 - please use GetIncomingFriendRequestsShort instead.
+func (aaa *FriendsService) GetIncomingFriendRequests(input *friends.GetIncomingFriendRequestsParams) (*lobbyclientmodels.ModelLoadIncomingFriendsWithTimeResponse, error) {
+	token, err := aaa.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, badRequest, unauthorized, forbidden, internalServerError, err := aaa.Client.Friends.GetIncomingFriendRequests(input, client.BearerToken(*token.AccessToken))
+	if badRequest != nil {
+		return nil, badRequest
+	}
+	if unauthorized != nil {
+		return nil, unauthorized
+	}
+	if forbidden != nil {
+		return nil, forbidden
+	}
+	if internalServerError != nil {
+		return nil, internalServerError
+	}
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
+// Deprecated: 2022-01-10 - please use GetOutgoingFriendRequestsShort instead.
+func (aaa *FriendsService) GetOutgoingFriendRequests(input *friends.GetOutgoingFriendRequestsParams) (*lobbyclientmodels.ModelLoadOutgoingFriendsWithTimeResponse, error) {
+	token, err := aaa.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, badRequest, unauthorized, forbidden, internalServerError, err := aaa.Client.Friends.GetOutgoingFriendRequests(input, client.BearerToken(*token.AccessToken))
+	if badRequest != nil {
+		return nil, badRequest
+	}
+	if unauthorized != nil {
+		return nil, unauthorized
+	}
+	if forbidden != nil {
+		return nil, forbidden
+	}
+	if internalServerError != nil {
+		return nil, internalServerError
+	}
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
 func (aaa *FriendsService) GetUserFriendsUpdatedShort(input *friends.GetUserFriendsUpdatedParams) ([]*lobbyclientmodels.ModelGetUserFriendsResponse, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
@@ -528,6 +609,31 @@ func (aaa *FriendsService) GetUserOutgoingFriendsWithTimeShort(input *friends.Ge
 	}
 
 	ok, err := aaa.Client.Friends.GetUserOutgoingFriendsWithTimeShort(input, authInfoWriter)
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
+func (aaa *FriendsService) GetUserFriendsWithPlatformShort(input *friends.GetUserFriendsWithPlatformParams) (*lobbyclientmodels.ModelListBulkUserPlatformsResponse, error) {
+	authInfoWriter := input.AuthInfoWriter
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
+	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  aaa.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
+	ok, err := aaa.Client.Friends.GetUserFriendsWithPlatformShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -728,6 +834,56 @@ func (aaa *FriendsService) GetListOfFriendsShort(input *friends.GetListOfFriends
 	}
 
 	ok, err := aaa.Client.Friends.GetListOfFriendsShort(input, authInfoWriter)
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
+func (aaa *FriendsService) GetIncomingFriendRequestsShort(input *friends.GetIncomingFriendRequestsParams) (*lobbyclientmodels.ModelLoadIncomingFriendsWithTimeResponse, error) {
+	authInfoWriter := input.AuthInfoWriter
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
+	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  aaa.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
+	ok, err := aaa.Client.Friends.GetIncomingFriendRequestsShort(input, authInfoWriter)
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
+func (aaa *FriendsService) GetOutgoingFriendRequestsShort(input *friends.GetOutgoingFriendRequestsParams) (*lobbyclientmodels.ModelLoadOutgoingFriendsWithTimeResponse, error) {
+	authInfoWriter := input.AuthInfoWriter
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
+	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  aaa.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
+	ok, err := aaa.Client.Friends.GetOutgoingFriendRequestsShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}

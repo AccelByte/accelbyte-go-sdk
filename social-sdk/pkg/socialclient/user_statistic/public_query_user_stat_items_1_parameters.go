@@ -75,6 +75,11 @@ type PublicQueryUserStatItems1Params struct {
 
 	*/
 	UserID string
+	/*AdditionalKey
+	  additional key
+
+	*/
+	AdditionalKey *string
 	/*StatCodes
 	  stat codes
 
@@ -161,6 +166,17 @@ func (o *PublicQueryUserStatItems1Params) SetUserID(userID string) {
 	o.UserID = userID
 }
 
+// WithAdditionalKey adds the additionalKey to the public query user stat items 1 params
+func (o *PublicQueryUserStatItems1Params) WithAdditionalKey(additionalKey *string) *PublicQueryUserStatItems1Params {
+	o.SetAdditionalKey(additionalKey)
+	return o
+}
+
+// SetAdditionalKey adds the additionalKey to the public query user stat items 1 params
+func (o *PublicQueryUserStatItems1Params) SetAdditionalKey(additionalKey *string) {
+	o.AdditionalKey = additionalKey
+}
+
 // WithStatCodes adds the statCodes to the public query user stat items 1 params
 func (o *PublicQueryUserStatItems1Params) WithStatCodes(statCodes []string) *PublicQueryUserStatItems1Params {
 	o.SetStatCodes(statCodes)
@@ -199,6 +215,22 @@ func (o *PublicQueryUserStatItems1Params) WriteToRequest(r runtime.ClientRequest
 	// path param userId
 	if err := r.SetPathParam("userId", o.UserID); err != nil {
 		return err
+	}
+
+	if o.AdditionalKey != nil {
+
+		// query param additionalKey
+		var qrAdditionalKey string
+		if o.AdditionalKey != nil {
+			qrAdditionalKey = *o.AdditionalKey
+		}
+		qAdditionalKey := qrAdditionalKey
+		if qAdditionalKey != "" {
+			if err := r.SetQueryParam("additionalKey", qAdditionalKey); err != nil {
+				return err
+			}
+		}
+
 	}
 
 	valuesStatCodes := o.StatCodes

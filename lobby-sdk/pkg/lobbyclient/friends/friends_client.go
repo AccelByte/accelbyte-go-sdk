@@ -40,6 +40,8 @@ type ClientService interface {
 	GetUserOutgoingFriendsShort(params *GetUserOutgoingFriendsParams, authInfo runtime.ClientAuthInfoWriter) (*GetUserOutgoingFriendsOK, error)
 	GetUserOutgoingFriendsWithTime(params *GetUserOutgoingFriendsWithTimeParams, authInfo runtime.ClientAuthInfoWriter) (*GetUserOutgoingFriendsWithTimeOK, *GetUserOutgoingFriendsWithTimeBadRequest, *GetUserOutgoingFriendsWithTimeUnauthorized, *GetUserOutgoingFriendsWithTimeForbidden, *GetUserOutgoingFriendsWithTimeNotFound, *GetUserOutgoingFriendsWithTimeInternalServerError, error)
 	GetUserOutgoingFriendsWithTimeShort(params *GetUserOutgoingFriendsWithTimeParams, authInfo runtime.ClientAuthInfoWriter) (*GetUserOutgoingFriendsWithTimeOK, error)
+	GetUserFriendsWithPlatform(params *GetUserFriendsWithPlatformParams, authInfo runtime.ClientAuthInfoWriter) (*GetUserFriendsWithPlatformOK, *GetUserFriendsWithPlatformBadRequest, *GetUserFriendsWithPlatformUnauthorized, *GetUserFriendsWithPlatformForbidden, *GetUserFriendsWithPlatformNotFound, *GetUserFriendsWithPlatformInternalServerError, error)
+	GetUserFriendsWithPlatformShort(params *GetUserFriendsWithPlatformParams, authInfo runtime.ClientAuthInfoWriter) (*GetUserFriendsWithPlatformOK, error)
 	UserRequestFriend(params *UserRequestFriendParams, authInfo runtime.ClientAuthInfoWriter) (*UserRequestFriendCreated, *UserRequestFriendBadRequest, *UserRequestFriendUnauthorized, *UserRequestFriendForbidden, *UserRequestFriendNotFound, *UserRequestFriendUnprocessableEntity, *UserRequestFriendInternalServerError, error)
 	UserRequestFriendShort(params *UserRequestFriendParams, authInfo runtime.ClientAuthInfoWriter) (*UserRequestFriendCreated, error)
 	UserAcceptFriendRequest(params *UserAcceptFriendRequestParams, authInfo runtime.ClientAuthInfoWriter) (*UserAcceptFriendRequestNoContent, *UserAcceptFriendRequestBadRequest, *UserAcceptFriendRequestUnauthorized, *UserAcceptFriendRequestForbidden, *UserAcceptFriendRequestNotFound, *UserAcceptFriendRequestInternalServerError, error)
@@ -56,6 +58,10 @@ type ClientService interface {
 	AddFriendsWithoutConfirmationShort(params *AddFriendsWithoutConfirmationParams, authInfo runtime.ClientAuthInfoWriter) (*AddFriendsWithoutConfirmationNoContent, error)
 	GetListOfFriends(params *GetListOfFriendsParams, authInfo runtime.ClientAuthInfoWriter) (*GetListOfFriendsOK, *GetListOfFriendsBadRequest, *GetListOfFriendsUnauthorized, *GetListOfFriendsForbidden, *GetListOfFriendsInternalServerError, error)
 	GetListOfFriendsShort(params *GetListOfFriendsParams, authInfo runtime.ClientAuthInfoWriter) (*GetListOfFriendsOK, error)
+	GetIncomingFriendRequests(params *GetIncomingFriendRequestsParams, authInfo runtime.ClientAuthInfoWriter) (*GetIncomingFriendRequestsOK, *GetIncomingFriendRequestsBadRequest, *GetIncomingFriendRequestsUnauthorized, *GetIncomingFriendRequestsForbidden, *GetIncomingFriendRequestsInternalServerError, error)
+	GetIncomingFriendRequestsShort(params *GetIncomingFriendRequestsParams, authInfo runtime.ClientAuthInfoWriter) (*GetIncomingFriendRequestsOK, error)
+	GetOutgoingFriendRequests(params *GetOutgoingFriendRequestsParams, authInfo runtime.ClientAuthInfoWriter) (*GetOutgoingFriendRequestsOK, *GetOutgoingFriendRequestsBadRequest, *GetOutgoingFriendRequestsUnauthorized, *GetOutgoingFriendRequestsForbidden, *GetOutgoingFriendRequestsInternalServerError, error)
+	GetOutgoingFriendRequestsShort(params *GetOutgoingFriendRequestsParams, authInfo runtime.ClientAuthInfoWriter) (*GetOutgoingFriendRequestsOK, error)
 
 	SetTransport(transport runtime.ClientTransport)
 }
@@ -628,6 +634,121 @@ func (a *Client) GetUserOutgoingFriendsWithTimeShort(params *GetUserOutgoingFrie
 	case *GetUserOutgoingFriendsWithTimeNotFound:
 		return nil, v
 	case *GetUserOutgoingFriendsWithTimeInternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+Deprecated: 2022-08-10 - Use GetUserFriendsWithPlatformShort instead.
+
+GetUserFriendsWithPlatform get list of friends with platform data
+*/
+func (a *Client) GetUserFriendsWithPlatform(params *GetUserFriendsWithPlatformParams, authInfo runtime.ClientAuthInfoWriter) (*GetUserFriendsWithPlatformOK, *GetUserFriendsWithPlatformBadRequest, *GetUserFriendsWithPlatformUnauthorized, *GetUserFriendsWithPlatformForbidden, *GetUserFriendsWithPlatformNotFound, *GetUserFriendsWithPlatformInternalServerError, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewGetUserFriendsWithPlatformParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "getUserFriendsWithPlatform",
+		Method:             "GET",
+		PathPattern:        "/friends/namespaces/{namespace}/me/platforms",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &GetUserFriendsWithPlatformReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, nil, nil, nil, nil, nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *GetUserFriendsWithPlatformOK:
+		return v, nil, nil, nil, nil, nil, nil
+
+	case *GetUserFriendsWithPlatformBadRequest:
+		return nil, v, nil, nil, nil, nil, nil
+
+	case *GetUserFriendsWithPlatformUnauthorized:
+		return nil, nil, v, nil, nil, nil, nil
+
+	case *GetUserFriendsWithPlatformForbidden:
+		return nil, nil, nil, v, nil, nil, nil
+
+	case *GetUserFriendsWithPlatformNotFound:
+		return nil, nil, nil, nil, v, nil, nil
+
+	case *GetUserFriendsWithPlatformInternalServerError:
+		return nil, nil, nil, nil, nil, v, nil
+
+	default:
+		return nil, nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+GetUserFriendsWithPlatformShort get list of friends with platform data
+*/
+func (a *Client) GetUserFriendsWithPlatformShort(params *GetUserFriendsWithPlatformParams, authInfo runtime.ClientAuthInfoWriter) (*GetUserFriendsWithPlatformOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewGetUserFriendsWithPlatformParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "getUserFriendsWithPlatform",
+		Method:             "GET",
+		PathPattern:        "/friends/namespaces/{namespace}/me/platforms",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &GetUserFriendsWithPlatformReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *GetUserFriendsWithPlatformOK:
+		return v, nil
+	case *GetUserFriendsWithPlatformBadRequest:
+		return nil, v
+	case *GetUserFriendsWithPlatformUnauthorized:
+		return nil, v
+	case *GetUserFriendsWithPlatformForbidden:
+		return nil, v
+	case *GetUserFriendsWithPlatformNotFound:
+		return nil, v
+	case *GetUserFriendsWithPlatformInternalServerError:
 		return nil, v
 
 	default:
@@ -1552,6 +1673,238 @@ func (a *Client) GetListOfFriendsShort(params *GetListOfFriendsParams, authInfo 
 	case *GetListOfFriendsForbidden:
 		return nil, v
 	case *GetListOfFriendsInternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+Deprecated: 2022-08-10 - Use GetIncomingFriendRequestsShort instead.
+
+GetIncomingFriendRequests get incoming friend requests
+Required permission : `NAMESPACE:{namespace}:USER:{userId}:FRIENDS [READ]` with scope `social`
+
+get list of incoming friend requests.
+*/
+func (a *Client) GetIncomingFriendRequests(params *GetIncomingFriendRequestsParams, authInfo runtime.ClientAuthInfoWriter) (*GetIncomingFriendRequestsOK, *GetIncomingFriendRequestsBadRequest, *GetIncomingFriendRequestsUnauthorized, *GetIncomingFriendRequestsForbidden, *GetIncomingFriendRequestsInternalServerError, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewGetIncomingFriendRequestsParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "get incoming friend requests",
+		Method:             "GET",
+		PathPattern:        "/lobby/v1/admin/friend/namespaces/{namespace}/users/{userId}/incoming",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &GetIncomingFriendRequestsReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, nil, nil, nil, nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *GetIncomingFriendRequestsOK:
+		return v, nil, nil, nil, nil, nil
+
+	case *GetIncomingFriendRequestsBadRequest:
+		return nil, v, nil, nil, nil, nil
+
+	case *GetIncomingFriendRequestsUnauthorized:
+		return nil, nil, v, nil, nil, nil
+
+	case *GetIncomingFriendRequestsForbidden:
+		return nil, nil, nil, v, nil, nil
+
+	case *GetIncomingFriendRequestsInternalServerError:
+		return nil, nil, nil, nil, v, nil
+
+	default:
+		return nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+GetIncomingFriendRequestsShort get incoming friend requests
+Required permission : `NAMESPACE:{namespace}:USER:{userId}:FRIENDS [READ]` with scope `social`
+
+get list of incoming friend requests.
+*/
+func (a *Client) GetIncomingFriendRequestsShort(params *GetIncomingFriendRequestsParams, authInfo runtime.ClientAuthInfoWriter) (*GetIncomingFriendRequestsOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewGetIncomingFriendRequestsParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "get incoming friend requests",
+		Method:             "GET",
+		PathPattern:        "/lobby/v1/admin/friend/namespaces/{namespace}/users/{userId}/incoming",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &GetIncomingFriendRequestsReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *GetIncomingFriendRequestsOK:
+		return v, nil
+	case *GetIncomingFriendRequestsBadRequest:
+		return nil, v
+	case *GetIncomingFriendRequestsUnauthorized:
+		return nil, v
+	case *GetIncomingFriendRequestsForbidden:
+		return nil, v
+	case *GetIncomingFriendRequestsInternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+Deprecated: 2022-08-10 - Use GetOutgoingFriendRequestsShort instead.
+
+GetOutgoingFriendRequests get list of outgoing friend requests
+Required permission : `NAMESPACE:{namespace}:USER:{userId}:FRIENDS [READ]` with scope `social`
+
+get list of outgoing friend requests in a namespace.
+*/
+func (a *Client) GetOutgoingFriendRequests(params *GetOutgoingFriendRequestsParams, authInfo runtime.ClientAuthInfoWriter) (*GetOutgoingFriendRequestsOK, *GetOutgoingFriendRequestsBadRequest, *GetOutgoingFriendRequestsUnauthorized, *GetOutgoingFriendRequestsForbidden, *GetOutgoingFriendRequestsInternalServerError, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewGetOutgoingFriendRequestsParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "get outgoing friend requests",
+		Method:             "GET",
+		PathPattern:        "/lobby/v1/admin/friend/namespaces/{namespace}/users/{userId}/outgoing",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &GetOutgoingFriendRequestsReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, nil, nil, nil, nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *GetOutgoingFriendRequestsOK:
+		return v, nil, nil, nil, nil, nil
+
+	case *GetOutgoingFriendRequestsBadRequest:
+		return nil, v, nil, nil, nil, nil
+
+	case *GetOutgoingFriendRequestsUnauthorized:
+		return nil, nil, v, nil, nil, nil
+
+	case *GetOutgoingFriendRequestsForbidden:
+		return nil, nil, nil, v, nil, nil
+
+	case *GetOutgoingFriendRequestsInternalServerError:
+		return nil, nil, nil, nil, v, nil
+
+	default:
+		return nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+GetOutgoingFriendRequestsShort get list of outgoing friend requests
+Required permission : `NAMESPACE:{namespace}:USER:{userId}:FRIENDS [READ]` with scope `social`
+
+get list of outgoing friend requests in a namespace.
+*/
+func (a *Client) GetOutgoingFriendRequestsShort(params *GetOutgoingFriendRequestsParams, authInfo runtime.ClientAuthInfoWriter) (*GetOutgoingFriendRequestsOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewGetOutgoingFriendRequestsParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "get outgoing friend requests",
+		Method:             "GET",
+		PathPattern:        "/lobby/v1/admin/friend/namespaces/{namespace}/users/{userId}/outgoing",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &GetOutgoingFriendRequestsReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *GetOutgoingFriendRequestsOK:
+		return v, nil
+	case *GetOutgoingFriendRequestsBadRequest:
+		return nil, v
+	case *GetOutgoingFriendRequestsUnauthorized:
+		return nil, v
+	case *GetOutgoingFriendRequestsForbidden:
+		return nil, v
+	case *GetOutgoingFriendRequestsInternalServerError:
 		return nil, v
 
 	default:

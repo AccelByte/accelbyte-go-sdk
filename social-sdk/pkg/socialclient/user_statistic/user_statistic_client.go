@@ -66,6 +66,10 @@ type ClientService interface {
 	PublicBulkIncUserStatItemValueShort(params *PublicBulkIncUserStatItemValueParams, authInfo runtime.ClientAuthInfoWriter) (*PublicBulkIncUserStatItemValueOK, error)
 	BulkResetUserStatItem2(params *BulkResetUserStatItem2Params, authInfo runtime.ClientAuthInfoWriter) (*BulkResetUserStatItem2OK, *BulkResetUserStatItem2UnprocessableEntity, error)
 	BulkResetUserStatItem2Short(params *BulkResetUserStatItem2Params, authInfo runtime.ClientAuthInfoWriter) (*BulkResetUserStatItem2OK, error)
+	PublicListMyStatItems(params *PublicListMyStatItemsParams, authInfo runtime.ClientAuthInfoWriter) (*PublicListMyStatItemsOK, *PublicListMyStatItemsUnprocessableEntity, error)
+	PublicListMyStatItemsShort(params *PublicListMyStatItemsParams, authInfo runtime.ClientAuthInfoWriter) (*PublicListMyStatItemsOK, error)
+	PublicListAllMyStatItems(params *PublicListAllMyStatItemsParams, authInfo runtime.ClientAuthInfoWriter) (*PublicListAllMyStatItemsOK, *PublicListAllMyStatItemsBadRequest, *PublicListAllMyStatItemsNotFound, *PublicListAllMyStatItemsUnprocessableEntity, error)
+	PublicListAllMyStatItemsShort(params *PublicListAllMyStatItemsParams, authInfo runtime.ClientAuthInfoWriter) (*PublicListAllMyStatItemsOK, error)
 	PublicQueryUserStatItems(params *PublicQueryUserStatItemsParams, authInfo runtime.ClientAuthInfoWriter) (*PublicQueryUserStatItemsOK, *PublicQueryUserStatItemsUnprocessableEntity, error)
 	PublicQueryUserStatItemsShort(params *PublicQueryUserStatItemsParams, authInfo runtime.ClientAuthInfoWriter) (*PublicQueryUserStatItemsOK, error)
 	PublicBulkCreateUserStatItems(params *PublicBulkCreateUserStatItemsParams, authInfo runtime.ClientAuthInfoWriter) (*PublicBulkCreateUserStatItemsOK, *PublicBulkCreateUserStatItemsUnprocessableEntity, error)
@@ -2036,13 +2040,235 @@ func (a *Client) BulkResetUserStatItem2Short(params *BulkResetUserStatItem2Param
 }
 
 /*
+Deprecated: 2022-08-10 - Use PublicListMyStatItemsShort instead.
+
+PublicListMyStatItems public list user's statitems
+Public list all statItems by pagination.
+Other detail info:
+                      *  Required permission : resource="NAMESPACE:{namespace}:USER:{userId}:STATITEM", action=2 (READ)
+                      *  Returns : stat items
+*/
+func (a *Client) PublicListMyStatItems(params *PublicListMyStatItemsParams, authInfo runtime.ClientAuthInfoWriter) (*PublicListMyStatItemsOK, *PublicListMyStatItemsUnprocessableEntity, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewPublicListMyStatItemsParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "publicListMyStatItems",
+		Method:             "GET",
+		PathPattern:        "/social/v1/public/namespaces/{namespace}/users/me/statitems",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &PublicListMyStatItemsReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *PublicListMyStatItemsOK:
+		return v, nil, nil
+
+	case *PublicListMyStatItemsUnprocessableEntity:
+		return nil, v, nil
+
+	default:
+		return nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+PublicListMyStatItemsShort public list user's statitems
+Public list all statItems by pagination.
+Other detail info:
+                      *  Required permission : resource="NAMESPACE:{namespace}:USER:{userId}:STATITEM", action=2 (READ)
+                      *  Returns : stat items
+*/
+func (a *Client) PublicListMyStatItemsShort(params *PublicListMyStatItemsParams, authInfo runtime.ClientAuthInfoWriter) (*PublicListMyStatItemsOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewPublicListMyStatItemsParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "publicListMyStatItems",
+		Method:             "GET",
+		PathPattern:        "/social/v1/public/namespaces/{namespace}/users/me/statitems",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &PublicListMyStatItemsReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *PublicListMyStatItemsOK:
+		return v, nil
+	case *PublicListMyStatItemsUnprocessableEntity:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+Deprecated: 2022-08-10 - Use PublicListAllMyStatItemsShort instead.
+
+PublicListAllMyStatItems public list user's statitems
+Public list all statItems of user.
+NOTE:
+                    * If stat code does not exist, will ignore this stat code.
+                    * If stat item does not exist, will return default value
+Other detail info:
+                    *  Required permission : resource="NAMESPACE:{namespace}:USER:{userId}:STATITEM", action=2 (READ)
+                    *  Returns : stat items
+*/
+func (a *Client) PublicListAllMyStatItems(params *PublicListAllMyStatItemsParams, authInfo runtime.ClientAuthInfoWriter) (*PublicListAllMyStatItemsOK, *PublicListAllMyStatItemsBadRequest, *PublicListAllMyStatItemsNotFound, *PublicListAllMyStatItemsUnprocessableEntity, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewPublicListAllMyStatItemsParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "publicListAllMyStatItems",
+		Method:             "GET",
+		PathPattern:        "/social/v1/public/namespaces/{namespace}/users/me/statitems/value/bulk",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &PublicListAllMyStatItemsReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, nil, nil, nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *PublicListAllMyStatItemsOK:
+		return v, nil, nil, nil, nil
+
+	case *PublicListAllMyStatItemsBadRequest:
+		return nil, v, nil, nil, nil
+
+	case *PublicListAllMyStatItemsNotFound:
+		return nil, nil, v, nil, nil
+
+	case *PublicListAllMyStatItemsUnprocessableEntity:
+		return nil, nil, nil, v, nil
+
+	default:
+		return nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+PublicListAllMyStatItemsShort public list user's statitems
+Public list all statItems of user.
+NOTE:
+                  * If stat code does not exist, will ignore this stat code.
+                  * If stat item does not exist, will return default value
+Other detail info:
+                  *  Required permission : resource="NAMESPACE:{namespace}:USER:{userId}:STATITEM", action=2 (READ)
+                  *  Returns : stat items
+*/
+func (a *Client) PublicListAllMyStatItemsShort(params *PublicListAllMyStatItemsParams, authInfo runtime.ClientAuthInfoWriter) (*PublicListAllMyStatItemsOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewPublicListAllMyStatItemsParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "publicListAllMyStatItems",
+		Method:             "GET",
+		PathPattern:        "/social/v1/public/namespaces/{namespace}/users/me/statitems/value/bulk",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &PublicListAllMyStatItemsReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *PublicListAllMyStatItemsOK:
+		return v, nil
+	case *PublicListAllMyStatItemsBadRequest:
+		return nil, v
+	case *PublicListAllMyStatItemsNotFound:
+		return nil, v
+	case *PublicListAllMyStatItemsUnprocessableEntity:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
 Deprecated: 2022-08-10 - Use PublicQueryUserStatItemsShort instead.
 
 PublicQueryUserStatItems public list user's statitems
 Public list all statItems by pagination.
 Other detail info:
-                      *  Required permission : resource="NAMESPACE:{namespace}:USER:{userId}:STATITEM", action=2 (READ)
-                      *  Returns : stat items
+                  *  Required permission : resource="NAMESPACE:{namespace}:USER:{userId}:STATITEM", action=2 (READ)
+                  *  Returns : stat items
 */
 func (a *Client) PublicQueryUserStatItems(params *PublicQueryUserStatItemsParams, authInfo runtime.ClientAuthInfoWriter) (*PublicQueryUserStatItemsOK, *PublicQueryUserStatItemsUnprocessableEntity, error) {
 	// TODO: Validate the params before sending
@@ -2092,8 +2318,8 @@ func (a *Client) PublicQueryUserStatItems(params *PublicQueryUserStatItemsParams
 PublicQueryUserStatItemsShort public list user's statitems
 Public list all statItems by pagination.
 Other detail info:
-                      *  Required permission : resource="NAMESPACE:{namespace}:USER:{userId}:STATITEM", action=2 (READ)
-                      *  Returns : stat items
+                  *  Required permission : resource="NAMESPACE:{namespace}:USER:{userId}:STATITEM", action=2 (READ)
+                  *  Returns : stat items
 */
 func (a *Client) PublicQueryUserStatItemsShort(params *PublicQueryUserStatItemsParams, authInfo runtime.ClientAuthInfoWriter) (*PublicQueryUserStatItemsOK, error) {
 	// TODO: Validate the params before sending
@@ -2144,8 +2370,8 @@ Deprecated: 2022-08-10 - Use PublicBulkCreateUserStatItemsShort instead.
 PublicBulkCreateUserStatItems bulk create user's statitems
 Bulk create statItems.
 Other detail info:
-                      *  Required permission : resource="NAMESPACE:{namespace}:USER:{userId}:STATITEM", action=1 (CREATE)
-                      *  Returns : bulk created result
+                  *  Required permission : resource="NAMESPACE:{namespace}:USER:{userId}:STATITEM", action=1 (CREATE)
+                  *  Returns : bulk created result
 */
 func (a *Client) PublicBulkCreateUserStatItems(params *PublicBulkCreateUserStatItemsParams, authInfo runtime.ClientAuthInfoWriter) (*PublicBulkCreateUserStatItemsOK, *PublicBulkCreateUserStatItemsUnprocessableEntity, error) {
 	// TODO: Validate the params before sending
@@ -2195,8 +2421,8 @@ func (a *Client) PublicBulkCreateUserStatItems(params *PublicBulkCreateUserStatI
 PublicBulkCreateUserStatItemsShort bulk create user's statitems
 Bulk create statItems.
 Other detail info:
-                      *  Required permission : resource="NAMESPACE:{namespace}:USER:{userId}:STATITEM", action=1 (CREATE)
-                      *  Returns : bulk created result
+                  *  Required permission : resource="NAMESPACE:{namespace}:USER:{userId}:STATITEM", action=1 (CREATE)
+                  *  Returns : bulk created result
 */
 func (a *Client) PublicBulkCreateUserStatItemsShort(params *PublicBulkCreateUserStatItemsParams, authInfo runtime.ClientAuthInfoWriter) (*PublicBulkCreateUserStatItemsOK, error) {
 	// TODO: Validate the params before sending
@@ -2247,11 +2473,11 @@ Deprecated: 2022-08-10 - Use PublicQueryUserStatItems1Short instead.
 PublicQueryUserStatItems1 public list user's statitems
 Public list all statItems of user.
 NOTE:
-                    * If stat code does not exist, will ignore this stat code.
-                    * If stat item does not exist, will return default value
+                * If stat code does not exist, will ignore this stat code.
+                * If stat item does not exist, will return default value
 Other detail info:
-                    *  Required permission : resource="NAMESPACE:{namespace}:USER:{userId}:STATITEM", action=2 (READ)
-                    *  Returns : stat items
+                *  Required permission : resource="NAMESPACE:{namespace}:USER:{userId}:STATITEM", action=2 (READ)
+                *  Returns : stat items
 */
 func (a *Client) PublicQueryUserStatItems1(params *PublicQueryUserStatItems1Params, authInfo runtime.ClientAuthInfoWriter) (*PublicQueryUserStatItems1OK, *PublicQueryUserStatItems1BadRequest, *PublicQueryUserStatItems1NotFound, *PublicQueryUserStatItems1UnprocessableEntity, error) {
 	// TODO: Validate the params before sending
@@ -2307,11 +2533,11 @@ func (a *Client) PublicQueryUserStatItems1(params *PublicQueryUserStatItems1Para
 PublicQueryUserStatItems1Short public list user's statitems
 Public list all statItems of user.
 NOTE:
-                  * If stat code does not exist, will ignore this stat code.
-                  * If stat item does not exist, will return default value
+              * If stat code does not exist, will ignore this stat code.
+              * If stat item does not exist, will return default value
 Other detail info:
-                  *  Required permission : resource="NAMESPACE:{namespace}:USER:{userId}:STATITEM", action=2 (READ)
-                  *  Returns : stat items
+              *  Required permission : resource="NAMESPACE:{namespace}:USER:{userId}:STATITEM", action=2 (READ)
+              *  Returns : stat items
 */
 func (a *Client) PublicQueryUserStatItems1Short(params *PublicQueryUserStatItems1Params, authInfo runtime.ClientAuthInfoWriter) (*PublicQueryUserStatItems1OK, error) {
 	// TODO: Validate the params before sending
@@ -2366,8 +2592,8 @@ Deprecated: 2022-08-10 - Use PublicBulkIncUserStatItem1Short instead.
 PublicBulkIncUserStatItem1 public bulk update user's statitems value
 Public bulk update user's statitems value.
 Other detail info:
-                  *  Required permission : resource="NAMESPACE:{namespace}:USER:{userId}:STATITEM", action=4 (UPDATE)
-                  *  Returns : bulk updated result
+              *  Required permission : resource="NAMESPACE:{namespace}:USER:{userId}:STATITEM", action=4 (UPDATE)
+              *  Returns : bulk updated result
 */
 func (a *Client) PublicBulkIncUserStatItem1(params *PublicBulkIncUserStatItem1Params, authInfo runtime.ClientAuthInfoWriter) (*PublicBulkIncUserStatItem1OK, *PublicBulkIncUserStatItem1UnprocessableEntity, error) {
 	// TODO: Validate the params before sending
@@ -2417,8 +2643,8 @@ func (a *Client) PublicBulkIncUserStatItem1(params *PublicBulkIncUserStatItem1Pa
 PublicBulkIncUserStatItem1Short public bulk update user's statitems value
 Public bulk update user's statitems value.
 Other detail info:
-                  *  Required permission : resource="NAMESPACE:{namespace}:USER:{userId}:STATITEM", action=4 (UPDATE)
-                  *  Returns : bulk updated result
+              *  Required permission : resource="NAMESPACE:{namespace}:USER:{userId}:STATITEM", action=4 (UPDATE)
+              *  Returns : bulk updated result
 */
 func (a *Client) PublicBulkIncUserStatItem1Short(params *PublicBulkIncUserStatItem1Params, authInfo runtime.ClientAuthInfoWriter) (*PublicBulkIncUserStatItem1OK, error) {
 	// TODO: Validate the params before sending
@@ -2469,8 +2695,8 @@ Deprecated: 2022-08-10 - Use BulkIncUserStatItemValue2Short instead.
 BulkIncUserStatItemValue2 public bulk update user's statitems value
 Public bulk update user's statitems value.
 Other detail info:
-                  *  Required permission : resource="NAMESPACE:{namespace}:USER:{userId}:STATITEM", action=4 (UPDATE)
-                  *  Returns : bulk updated result
+              *  Required permission : resource="NAMESPACE:{namespace}:USER:{userId}:STATITEM", action=4 (UPDATE)
+              *  Returns : bulk updated result
 */
 func (a *Client) BulkIncUserStatItemValue2(params *BulkIncUserStatItemValue2Params, authInfo runtime.ClientAuthInfoWriter) (*BulkIncUserStatItemValue2OK, *BulkIncUserStatItemValue2UnprocessableEntity, error) {
 	// TODO: Validate the params before sending
@@ -2520,8 +2746,8 @@ func (a *Client) BulkIncUserStatItemValue2(params *BulkIncUserStatItemValue2Para
 BulkIncUserStatItemValue2Short public bulk update user's statitems value
 Public bulk update user's statitems value.
 Other detail info:
-                    *  Required permission : resource="NAMESPACE:{namespace}:USER:{userId}:STATITEM", action=4 (UPDATE)
-                    *  Returns : bulk updated result
+                *  Required permission : resource="NAMESPACE:{namespace}:USER:{userId}:STATITEM", action=4 (UPDATE)
+                *  Returns : bulk updated result
 */
 func (a *Client) BulkIncUserStatItemValue2Short(params *BulkIncUserStatItemValue2Params, authInfo runtime.ClientAuthInfoWriter) (*BulkIncUserStatItemValue2OK, error) {
 	// TODO: Validate the params before sending
@@ -2675,8 +2901,8 @@ Deprecated: 2022-08-10 - Use PublicCreateUserStatItemShort instead.
 PublicCreateUserStatItem create user's statitem
 Create user's statItem.
 Other detail info:
-                      *  Required permission : resource="NAMESPACE:{namespace}:USER:{userId}:STATITEM", action=1 (CREATE)
-                      *  Returns : created user's statItem
+                  *  Required permission : resource="NAMESPACE:{namespace}:USER:{userId}:STATITEM", action=1 (CREATE)
+                  *  Returns : created user's statItem
 */
 func (a *Client) PublicCreateUserStatItem(params *PublicCreateUserStatItemParams, authInfo runtime.ClientAuthInfoWriter) (*PublicCreateUserStatItemCreated, *PublicCreateUserStatItemNotFound, *PublicCreateUserStatItemConflict, *PublicCreateUserStatItemUnprocessableEntity, error) {
 	// TODO: Validate the params before sending
@@ -2732,8 +2958,8 @@ func (a *Client) PublicCreateUserStatItem(params *PublicCreateUserStatItemParams
 PublicCreateUserStatItemShort create user's statitem
 Create user's statItem.
 Other detail info:
-                      *  Required permission : resource="NAMESPACE:{namespace}:USER:{userId}:STATITEM", action=1 (CREATE)
-                      *  Returns : created user's statItem
+                  *  Required permission : resource="NAMESPACE:{namespace}:USER:{userId}:STATITEM", action=1 (CREATE)
+                  *  Returns : created user's statItem
 */
 func (a *Client) PublicCreateUserStatItemShort(params *PublicCreateUserStatItemParams, authInfo runtime.ClientAuthInfoWriter) (*PublicCreateUserStatItemCreated, error) {
 	// TODO: Validate the params before sending
@@ -2788,8 +3014,8 @@ Deprecated: 2022-08-10 - Use DeleteUserStatItems1Short instead.
 DeleteUserStatItems1 delete user's statitems
 Delete user's statItems given stat code.
 Other detail info:
-                      *  Required permission : resource="NAMESPACE:{namespace}:USER:{userId}:STATITEM", action=8 (DELETE)
-                      *  Returns : no content
+                  *  Required permission : resource="NAMESPACE:{namespace}:USER:{userId}:STATITEM", action=8 (DELETE)
+                  *  Returns : no content
 */
 func (a *Client) DeleteUserStatItems1(params *DeleteUserStatItems1Params, authInfo runtime.ClientAuthInfoWriter) (*DeleteUserStatItems1NoContent, *DeleteUserStatItems1Unauthorized, *DeleteUserStatItems1Forbidden, *DeleteUserStatItems1NotFound, *DeleteUserStatItems1UnprocessableEntity, error) {
 	// TODO: Validate the params before sending
@@ -2848,8 +3074,8 @@ func (a *Client) DeleteUserStatItems1(params *DeleteUserStatItems1Params, authIn
 DeleteUserStatItems1Short delete user's statitems
 Delete user's statItems given stat code.
 Other detail info:
-                        *  Required permission : resource="NAMESPACE:{namespace}:USER:{userId}:STATITEM", action=8 (DELETE)
-                        *  Returns : no content
+                    *  Required permission : resource="NAMESPACE:{namespace}:USER:{userId}:STATITEM", action=8 (DELETE)
+                    *  Returns : no content
 */
 func (a *Client) DeleteUserStatItems1Short(params *DeleteUserStatItems1Params, authInfo runtime.ClientAuthInfoWriter) (*DeleteUserStatItems1NoContent, error) {
 	// TODO: Validate the params before sending
@@ -2906,8 +3132,8 @@ Deprecated: 2022-08-10 - Use PublicIncUserStatItemShort instead.
 PublicIncUserStatItem public update user's statitem value
 Public update user's statitem value.
 Other detail info:
-                          *  Required permission : resource="NAMESPACE:{namespace}:USER:{userId}:STATITEM", action=4 (UPDATE)
-                          *  Returns : updated user's statItem
+                      *  Required permission : resource="NAMESPACE:{namespace}:USER:{userId}:STATITEM", action=4 (UPDATE)
+                      *  Returns : updated user's statItem
 */
 func (a *Client) PublicIncUserStatItem(params *PublicIncUserStatItemParams, authInfo runtime.ClientAuthInfoWriter) (*PublicIncUserStatItemOK, *PublicIncUserStatItemBadRequest, *PublicIncUserStatItemNotFound, *PublicIncUserStatItemConflict, *PublicIncUserStatItemUnprocessableEntity, error) {
 	// TODO: Validate the params before sending
@@ -2966,8 +3192,8 @@ func (a *Client) PublicIncUserStatItem(params *PublicIncUserStatItemParams, auth
 PublicIncUserStatItemShort public update user's statitem value
 Public update user's statitem value.
 Other detail info:
-                          *  Required permission : resource="NAMESPACE:{namespace}:USER:{userId}:STATITEM", action=4 (UPDATE)
-                          *  Returns : updated user's statItem
+                      *  Required permission : resource="NAMESPACE:{namespace}:USER:{userId}:STATITEM", action=4 (UPDATE)
+                      *  Returns : updated user's statItem
 */
 func (a *Client) PublicIncUserStatItemShort(params *PublicIncUserStatItemParams, authInfo runtime.ClientAuthInfoWriter) (*PublicIncUserStatItemOK, error) {
 	// TODO: Validate the params before sending
@@ -3024,8 +3250,8 @@ Deprecated: 2022-08-10 - Use PublicIncUserStatItemValueShort instead.
 PublicIncUserStatItemValue public update user's statitem value
 Public update user's statitem value.
 Other detail info:
-                          *  Required permission : resource="NAMESPACE:{namespace}:USER:{userId}:STATITEM", action=4 (UPDATE)
-                          *  Returns : updated user's statItem
+                      *  Required permission : resource="NAMESPACE:{namespace}:USER:{userId}:STATITEM", action=4 (UPDATE)
+                      *  Returns : updated user's statItem
 */
 func (a *Client) PublicIncUserStatItemValue(params *PublicIncUserStatItemValueParams, authInfo runtime.ClientAuthInfoWriter) (*PublicIncUserStatItemValueOK, *PublicIncUserStatItemValueBadRequest, *PublicIncUserStatItemValueNotFound, *PublicIncUserStatItemValueConflict, *PublicIncUserStatItemValueUnprocessableEntity, error) {
 	// TODO: Validate the params before sending
@@ -3084,8 +3310,8 @@ func (a *Client) PublicIncUserStatItemValue(params *PublicIncUserStatItemValuePa
 PublicIncUserStatItemValueShort public update user's statitem value
 Public update user's statitem value.
 Other detail info:
-                          *  Required permission : resource="NAMESPACE:{namespace}:USER:{userId}:STATITEM", action=4 (UPDATE)
-                          *  Returns : updated user's statItem
+                      *  Required permission : resource="NAMESPACE:{namespace}:USER:{userId}:STATITEM", action=4 (UPDATE)
+                      *  Returns : updated user's statItem
 */
 func (a *Client) PublicIncUserStatItemValueShort(params *PublicIncUserStatItemValueParams, authInfo runtime.ClientAuthInfoWriter) (*PublicIncUserStatItemValueOK, error) {
 	// TODO: Validate the params before sending
@@ -3710,8 +3936,8 @@ Otherwise, it will delete all stat items related to the user Id.
 
 Delete user's statItems given stat code.
 Other detail info:
-                          *  Required permission : resource="ADMIN:NAMESPACE:{namespace}:USER:{userId}:STATITEM", action=8 (DELETE)
-                          *  Returns : no content
+                      *  Required permission : resource="ADMIN:NAMESPACE:{namespace}:USER:{userId}:STATITEM", action=8 (DELETE)
+                      *  Returns : no content
 */
 func (a *Client) DeleteUserStatItems2(params *DeleteUserStatItems2Params, authInfo runtime.ClientAuthInfoWriter) (*DeleteUserStatItems2NoContent, *DeleteUserStatItems2Unauthorized, *DeleteUserStatItems2Forbidden, *DeleteUserStatItems2NotFound, *DeleteUserStatItems2UnprocessableEntity, error) {
 	// TODO: Validate the params before sending
@@ -3774,8 +4000,8 @@ Otherwise, it will delete all stat items related to the user Id.
 
 Delete user's statItems given stat code.
 Other detail info:
-                            *  Required permission : resource="ADMIN:NAMESPACE:{namespace}:USER:{userId}:STATITEM", action=8 (DELETE)
-                            *  Returns : no content
+                        *  Required permission : resource="ADMIN:NAMESPACE:{namespace}:USER:{userId}:STATITEM", action=8 (DELETE)
+                        *  Returns : no content
 */
 func (a *Client) DeleteUserStatItems2Short(params *DeleteUserStatItems2Params, authInfo runtime.ClientAuthInfoWriter) (*DeleteUserStatItems2NoContent, error) {
 	// TODO: Validate the params before sending
@@ -4083,11 +4309,11 @@ Deprecated: 2022-08-10 - Use PublicQueryUserStatItems2Short instead.
 PublicQueryUserStatItems2 public list user's statitems
 Public list all statItems of user.
 NOTE:
-                            * If stat code does not exist, will ignore this stat code.
-                            * If stat item does not exist, will return default value
+                        * If stat code does not exist, will ignore this stat code.
+                        * If stat item does not exist, will return default value
 Other detail info:
-                            *  Required permission : resource="NAMESPACE:{namespace}:USER:{userId}:STATITEM", action=2 (READ)
-                            *  Returns : stat items
+                        *  Required permission : resource="NAMESPACE:{namespace}:USER:{userId}:STATITEM", action=2 (READ)
+                        *  Returns : stat items
 */
 func (a *Client) PublicQueryUserStatItems2(params *PublicQueryUserStatItems2Params, authInfo runtime.ClientAuthInfoWriter) (*PublicQueryUserStatItems2OK, *PublicQueryUserStatItems2BadRequest, *PublicQueryUserStatItems2NotFound, *PublicQueryUserStatItems2UnprocessableEntity, error) {
 	// TODO: Validate the params before sending
@@ -4143,11 +4369,11 @@ func (a *Client) PublicQueryUserStatItems2(params *PublicQueryUserStatItems2Para
 PublicQueryUserStatItems2Short public list user's statitems
 Public list all statItems of user.
 NOTE:
-                          * If stat code does not exist, will ignore this stat code.
-                          * If stat item does not exist, will return default value
+                      * If stat code does not exist, will ignore this stat code.
+                      * If stat item does not exist, will return default value
 Other detail info:
-                          *  Required permission : resource="NAMESPACE:{namespace}:USER:{userId}:STATITEM", action=2 (READ)
-                          *  Returns : stat items
+                      *  Required permission : resource="NAMESPACE:{namespace}:USER:{userId}:STATITEM", action=2 (READ)
+                      *  Returns : stat items
 */
 func (a *Client) PublicQueryUserStatItems2Short(params *PublicQueryUserStatItems2Params, authInfo runtime.ClientAuthInfoWriter) (*PublicQueryUserStatItems2OK, error) {
 	// TODO: Validate the params before sending

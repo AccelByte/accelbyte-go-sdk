@@ -170,6 +170,24 @@ Other detail info:
 
   * Required permission : resource="ADMIN:NAMESPACE:{namespace}:STORE", action=1 (CREATE)
   *  Returns : created a section
+
+
+
+## Restrictions for section extension and localization extension
+
+
+1. Cannot use "." as the key name
+-
+
+
+    { "data.2": "value" }
+
+
+2. Cannot use "$" as the prefix in key names
+-
+
+
+    { "$data": "value" }
 */
 func (a *Client) CreateSection(params *CreateSectionParams, authInfo runtime.ClientAuthInfoWriter) (*CreateSectionCreated, *CreateSectionBadRequest, *CreateSectionNotFound, *CreateSectionConflict, *CreateSectionUnprocessableEntity, error) {
 	// TODO: Validate the params before sending
@@ -232,6 +250,24 @@ Other detail info:
 
   * Required permission : resource="ADMIN:NAMESPACE:{namespace}:STORE", action=1 (CREATE)
   *  Returns : created a section
+
+
+
+## Restrictions for section extension and localization extension
+
+
+1. Cannot use "." as the key name
+-
+
+
+    { "data.2": "value" }
+
+
+2. Cannot use "$" as the prefix in key names
+-
+
+
+    { "$data": "value" }
 */
 func (a *Client) CreateSectionShort(params *CreateSectionParams, authInfo runtime.ClientAuthInfoWriter) (*CreateSectionCreated, error) {
 	// TODO: Validate the params before sending
@@ -504,6 +540,24 @@ Other detail info:
 
   * Required permission : resource="ADMIN:NAMESPACE:{namespace}:STORE", action=4 (UPDATE)
   *  Returns : updated section data
+
+
+
+## Restrictions for section extension and localization extension
+
+
+1. Cannot use "." as the key name
+-
+
+
+    { "data.2": "value" }
+
+
+2. Cannot use "$" as the prefix in key names
+-
+
+
+    { "$data": "value" }
 */
 func (a *Client) UpdateSection(params *UpdateSectionParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateSectionOK, *UpdateSectionBadRequest, *UpdateSectionNotFound, *UpdateSectionConflict, *UpdateSectionUnprocessableEntity, error) {
 	// TODO: Validate the params before sending
@@ -566,6 +620,24 @@ Other detail info:
 
   * Required permission : resource="ADMIN:NAMESPACE:{namespace}:STORE", action=4 (UPDATE)
   *  Returns : updated section data
+
+
+
+## Restrictions for section extension and localization extension
+
+
+1. Cannot use "." as the key name
+-
+
+
+    { "data.2": "value" }
+
+
+2. Cannot use "$" as the prefix in key names
+-
+
+
+    { "$data": "value" }
 */
 func (a *Client) UpdateSectionShort(params *UpdateSectionParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateSectionOK, error) {
 	// TODO: Validate the params before sending

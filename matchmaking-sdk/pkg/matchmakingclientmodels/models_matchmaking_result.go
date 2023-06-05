@@ -45,6 +45,10 @@ type ModelsMatchmakingResult struct {
 	// Required: true
 	GameMode string `json:"game_mode"`
 
+	// is_mock
+	// Required: true
+	IsMock *string `json:"is_mock"`
+
 	// joinable
 	Joinable *bool `json:"joinable"`
 
@@ -114,6 +118,9 @@ func (m *ModelsMatchmakingResult) Validate(formats strfmt.Registry) error {
 		res = append(res, err)
 	}
 	if err := m.validateGameMode(formats); err != nil {
+		res = append(res, err)
+	}
+	if err := m.validateIsMock(formats); err != nil {
 		res = append(res, err)
 	}
 	if err := m.validateMatchID(formats); err != nil {
@@ -198,6 +205,15 @@ func (m *ModelsMatchmakingResult) validateErrorMessage(formats strfmt.Registry) 
 func (m *ModelsMatchmakingResult) validateGameMode(formats strfmt.Registry) error {
 
 	if err := validate.Required("game_mode", "body", m.GameMode); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *ModelsMatchmakingResult) validateIsMock(formats strfmt.Registry) error {
+
+	if err := validate.Required("is_mock", "body", m.IsMock); err != nil {
 		return err
 	}
 

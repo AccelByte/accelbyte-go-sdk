@@ -477,6 +477,24 @@ UpdatePlatformDLCConfig update platform dlc config
 Update Platform DLC config. Other detail info:
   * Required permission : resource="ADMIN:NAMESPACE:{namespace}:DLC:CONFIG", action=4 (UPDATE)
   *  Returns : updated Platform DLC config
+
+
+
+## Restrictions for platform dlc map
+
+
+1. Cannot use "." as the key name
+-
+
+
+    { "data.2": "value" }
+
+
+2. Cannot use "$" as the prefix in key names
+-
+
+
+    { "$data": "value" }
 */
 func (a *Client) UpdatePlatformDLCConfig(params *UpdatePlatformDLCConfigParams, authInfo runtime.ClientAuthInfoWriter) (*UpdatePlatformDLCConfigOK, *UpdatePlatformDLCConfigUnprocessableEntity, error) {
 	// TODO: Validate the params before sending
@@ -525,8 +543,27 @@ func (a *Client) UpdatePlatformDLCConfig(params *UpdatePlatformDLCConfigParams, 
 /*
 UpdatePlatformDLCConfigShort update platform dlc config
 Update Platform DLC config. Other detail info:
+
   * Required permission : resource="ADMIN:NAMESPACE:{namespace}:DLC:CONFIG", action=4 (UPDATE)
   *  Returns : updated Platform DLC config
+
+
+
+## Restrictions for platform dlc map
+
+
+1. Cannot use "." as the key name
+-
+
+
+    { "data.2": "value" }
+
+
+2. Cannot use "$" as the prefix in key names
+-
+
+
+    { "$data": "value" }
 */
 func (a *Client) UpdatePlatformDLCConfigShort(params *UpdatePlatformDLCConfigParams, authInfo runtime.ClientAuthInfoWriter) (*UpdatePlatformDLCConfigOK, error) {
 	// TODO: Validate the params before sending

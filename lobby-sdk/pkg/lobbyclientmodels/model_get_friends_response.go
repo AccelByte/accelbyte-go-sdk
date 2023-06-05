@@ -22,6 +22,10 @@ type ModelGetFriendsResponse struct {
 	// Required: true
 	FriendIDs []string `json:"friendIDs"`
 
+	// friendssincetimes
+	// Required: true
+	FriendsSinceTimes []string `json:"friendsSinceTimes"`
+
 	// paging
 	// Required: true
 	Paging *ModelPagination `json:"paging"`
@@ -32,6 +36,9 @@ func (m *ModelGetFriendsResponse) Validate(formats strfmt.Registry) error {
 	var res []error
 
 	if err := m.validateFriendIDs(formats); err != nil {
+		res = append(res, err)
+	}
+	if err := m.validateFriendsSinceTimes(formats); err != nil {
 		res = append(res, err)
 	}
 	if err := m.validatePaging(formats); err != nil {
@@ -47,6 +54,15 @@ func (m *ModelGetFriendsResponse) Validate(formats strfmt.Registry) error {
 func (m *ModelGetFriendsResponse) validateFriendIDs(formats strfmt.Registry) error {
 
 	if err := validate.Required("friendIDs", "body", m.FriendIDs); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *ModelGetFriendsResponse) validateFriendsSinceTimes(formats strfmt.Registry) error {
+
+	if err := validate.Required("friendsSinceTimes", "body", m.FriendsSinceTimes); err != nil {
 		return err
 	}
 

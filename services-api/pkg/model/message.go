@@ -826,6 +826,11 @@ func (DSNotification) Type() string {
 	return TypeDSNotif
 }
 
+// SystemComponentsStatus is the message of System Components Status
+type SystemComponentsStatus struct {
+	Components map[string]bool
+}
+
 // BlockPlayerRequest is the message of BlockPlayerRequest
 type BlockPlayerRequest struct {
 	*BaseRequest

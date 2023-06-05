@@ -8,7 +8,7 @@
     },
     "description": "Justice Leaderboard Service",
     "title": "justice-leaderboard-service",
-    "version": "2.21.0"
+    "version": "2.23.0"
   },
   "schemes": [
     "https"
@@ -4218,6 +4218,87 @@
         ]
       }
     },
+    "/leaderboard/v3/admin/namespaces/{namespace}/users/{userId}/leaderboards": {
+      "get": {
+        "description": "\u0026lt;p\u0026gt;Required permission \u0026#39;ADMIN:NAMESPACE:{namespace}:LEADERBOARD [READ]\u0026#39;\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;Get user leaderboard rankings\u0026lt;/p\u0026gt;\n\t\t\t",
+        "operationId": "getUserLeaderboardRankingsAdminV3",
+        "parameters": [
+          {
+            "description": "namespace of the game",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "User ID",
+            "in": "path",
+            "name": "userId",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "size of displayed data",
+            "in": "query",
+            "name": "limit",
+            "type": "integer"
+          },
+          {
+            "description": "The start position that points to query data",
+            "in": "query",
+            "name": "offset",
+            "type": "integer"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/models.GetAllUserLeaderboardsRespV3"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          }
+        },
+        "security": [
+          {
+            "HasPermission": [
+              "ADMIN:NAMESPACE:{namespace}:LEADERBOARD [READ]"
+            ],
+            "authorization": []
+          }
+        ],
+        "summary": "Get user rankings",
+        "tags": [
+          "UserDataV3"
+        ]
+      }
+    },
     "/leaderboard/v3/admin/namespaces/{namespace}/users/{userId}/visibility": {
       "put": {
         "consumes": [
@@ -4848,6 +4929,23 @@
         "paging"
       ]
     },
+    "models.GetAllUserLeaderboardsRespV3": {
+      "properties": {
+        "data": {
+          "items": {
+            "$ref": "#/definitions/models.UserLeaderboardRankingV3"
+          },
+          "type": "array"
+        },
+        "paging": {
+          "$ref": "#/definitions/models.PaginationV3"
+        }
+      },
+      "required": [
+        "data",
+        "paging"
+      ]
+    },
     "models.GetHiddenUserResponse": {
       "properties": {
         "data": {
@@ -5413,6 +5511,34 @@
         "weekly"
       ]
     },
+    "models.UserLeaderboardRankingV3": {
+      "properties": {
+        "allTime": {
+          "$ref": "#/definitions/models.UserRankingResponseDetailV3"
+        },
+        "cycles": {
+          "items": {
+            "$ref": "#/definitions/models.UserCycleRankingResponseDetail"
+          },
+          "type": "array"
+        },
+        "leaderboardCode": {
+          "type": "string"
+        },
+        "leaderboardName": {
+          "type": "string"
+        },
+        "userId": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "cycles",
+        "leaderboardCode",
+        "leaderboardName",
+        "userId"
+      ]
+    },
     "models.UserPoint": {
       "properties": {
         "additionalData": {
@@ -5666,11 +5792,11 @@
     "path": "/leaderboard/apidocs/api.json"
   },
   "x-version": {
-    "buildDate": "2023-05-12T07:50:30+00:00",
-    "gitHash": "e073f6d3909604c0c488fa929e1f2f799875d5d8",
+    "buildDate": "2023-06-05T01:12:09+00:00",
+    "gitHash": "cee4cd6bc60cc60bdbc85272dd0f430a7bfb8362",
     "name": "justice-leaderboard-service",
     "realm": "staging",
-    "version": "2.21.0",
+    "version": "2.23.0",
     "version-roles-seeding": "0.0.3"
   }
 }

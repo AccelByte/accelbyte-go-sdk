@@ -29,6 +29,9 @@ type RestErrorResponseWithConflictedUserPlatformAccounts struct {
 
 	// messagevariables
 	MessageVariables *AccountcommonConflictedUserPlatformAccounts `json:"messageVariables,omitempty"`
+
+	// User link a platform's different account is not allowed. This field contains the previous linked account details. Will have value only when in this case. (errorCode is 10200)
+	PreviousLinkedPlatformAccount *AccountcommonPlatformLinkingHistory `json:"previousLinkedPlatformAccount,omitempty"`
 }
 
 // Validate validates this Rest error response with conflicted user platform accounts

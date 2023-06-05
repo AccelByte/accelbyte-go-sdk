@@ -71,6 +71,8 @@ type ClientService interface {
 	DeleteSessionInChannelShort(params *DeleteSessionInChannelParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteSessionInChannelNoContent, error)
 	DeleteUserFromSessionInChannel(params *DeleteUserFromSessionInChannelParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteUserFromSessionInChannelOK, *DeleteUserFromSessionInChannelNoContent, *DeleteUserFromSessionInChannelBadRequest, *DeleteUserFromSessionInChannelUnauthorized, *DeleteUserFromSessionInChannelForbidden, *DeleteUserFromSessionInChannelNotFound, *DeleteUserFromSessionInChannelInternalServerError, error)
 	DeleteUserFromSessionInChannelShort(params *DeleteUserFromSessionInChannelParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteUserFromSessionInChannelOK, error)
+	GetStatData(params *GetStatDataParams, authInfo runtime.ClientAuthInfoWriter) (*GetStatDataOK, *GetStatDataBadRequest, *GetStatDataUnauthorized, *GetStatDataForbidden, *GetStatDataNotFound, *GetStatDataInternalServerError, error)
+	GetStatDataShort(params *GetStatDataParams, authInfo runtime.ClientAuthInfoWriter) (*GetStatDataOK, error)
 	SearchSessions(params *SearchSessionsParams, authInfo runtime.ClientAuthInfoWriter) (*SearchSessionsOK, *SearchSessionsBadRequest, *SearchSessionsUnauthorized, *SearchSessionsForbidden, *SearchSessionsNotFound, *SearchSessionsInternalServerError, error)
 	SearchSessionsShort(params *SearchSessionsParams, authInfo runtime.ClientAuthInfoWriter) (*SearchSessionsOK, error)
 	GetSessionHistoryDetailed(params *GetSessionHistoryDetailedParams, authInfo runtime.ClientAuthInfoWriter) (*GetSessionHistoryDetailedOK, *GetSessionHistoryDetailedBadRequest, *GetSessionHistoryDetailedUnauthorized, *GetSessionHistoryDetailedForbidden, *GetSessionHistoryDetailedNotFound, *GetSessionHistoryDetailedInternalServerError, error)
@@ -2655,6 +2657,133 @@ func (a *Client) DeleteUserFromSessionInChannelShort(params *DeleteUserFromSessi
 	case *DeleteUserFromSessionInChannelNotFound:
 		return nil, v
 	case *DeleteUserFromSessionInChannelInternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+Deprecated: 2022-08-10 - Use GetStatDataShort instead.
+
+GetStatData get stats
+Required Permission: ADMIN:NAMESPACE:{namespace}:MATCHMAKING:CHANNEL [Read]
+
+Required Scope: social
+
+Get a channel's stat data (mean, stddev, min, max) according to the stats collected from statistics service.
+'
+*/
+func (a *Client) GetStatData(params *GetStatDataParams, authInfo runtime.ClientAuthInfoWriter) (*GetStatDataOK, *GetStatDataBadRequest, *GetStatDataUnauthorized, *GetStatDataForbidden, *GetStatDataNotFound, *GetStatDataInternalServerError, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewGetStatDataParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "GetStatData",
+		Method:             "GET",
+		PathPattern:        "/matchmaking/v1/admin/namespaces/{namespace}/channels/{channelName}/stats",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &GetStatDataReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, nil, nil, nil, nil, nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *GetStatDataOK:
+		return v, nil, nil, nil, nil, nil, nil
+
+	case *GetStatDataBadRequest:
+		return nil, v, nil, nil, nil, nil, nil
+
+	case *GetStatDataUnauthorized:
+		return nil, nil, v, nil, nil, nil, nil
+
+	case *GetStatDataForbidden:
+		return nil, nil, nil, v, nil, nil, nil
+
+	case *GetStatDataNotFound:
+		return nil, nil, nil, nil, v, nil, nil
+
+	case *GetStatDataInternalServerError:
+		return nil, nil, nil, nil, nil, v, nil
+
+	default:
+		return nil, nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+GetStatDataShort get stats
+Required Permission: ADMIN:NAMESPACE:{namespace}:MATCHMAKING:CHANNEL [Read]
+
+Required Scope: social
+
+Get a channel's stat data (mean, stddev, min, max) according to the stats collected from statistics service.
+'
+*/
+func (a *Client) GetStatDataShort(params *GetStatDataParams, authInfo runtime.ClientAuthInfoWriter) (*GetStatDataOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewGetStatDataParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "GetStatData",
+		Method:             "GET",
+		PathPattern:        "/matchmaking/v1/admin/namespaces/{namespace}/channels/{channelName}/stats",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &GetStatDataReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *GetStatDataOK:
+		return v, nil
+	case *GetStatDataBadRequest:
+		return nil, v
+	case *GetStatDataUnauthorized:
+		return nil, v
+	case *GetStatDataForbidden:
+		return nil, v
+	case *GetStatDataNotFound:
+		return nil, v
+	case *GetStatDataInternalServerError:
 		return nil, v
 
 	default:

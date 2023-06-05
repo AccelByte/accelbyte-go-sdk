@@ -91,6 +91,32 @@ func (aaa *PlayerService) AdminGetPlayerAttributes(input *player.AdminGetPlayerA
 	return ok.GetPayload(), nil
 }
 
+// Deprecated: 2022-01-10 - please use PublicGetBulkPlayerCurrentPlatformShort instead.
+func (aaa *PlayerService) PublicGetBulkPlayerCurrentPlatform(input *player.PublicGetBulkPlayerCurrentPlatformParams) (*sessionclientmodels.ApimodelsPlayersCurrentPlatformResponse, error) {
+	token, err := aaa.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, badRequest, unauthorized, notFound, internalServerError, err := aaa.Client.Player.PublicGetBulkPlayerCurrentPlatform(input, client.BearerToken(*token.AccessToken))
+	if badRequest != nil {
+		return nil, badRequest
+	}
+	if unauthorized != nil {
+		return nil, unauthorized
+	}
+	if notFound != nil {
+		return nil, notFound
+	}
+	if internalServerError != nil {
+		return nil, internalServerError
+	}
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
 // Deprecated: 2022-01-10 - please use PublicGetPlayerAttributesShort instead.
 func (aaa *PlayerService) PublicGetPlayerAttributes(input *player.PublicGetPlayerAttributesParams) (*sessionclientmodels.ApimodelsPlayerAttributesResponseBody, error) {
 	token, err := aaa.TokenRepository.GetToken()
@@ -209,6 +235,31 @@ func (aaa *PlayerService) AdminGetPlayerAttributesShort(input *player.AdminGetPl
 	}
 
 	ok, err := aaa.Client.Player.AdminGetPlayerAttributesShort(input, authInfoWriter)
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
+func (aaa *PlayerService) PublicGetBulkPlayerCurrentPlatformShort(input *player.PublicGetBulkPlayerCurrentPlatformParams) (*sessionclientmodels.ApimodelsPlayersCurrentPlatformResponse, error) {
+	authInfoWriter := input.AuthInfoWriter
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
+	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  aaa.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
+	ok, err := aaa.Client.Player.PublicGetBulkPlayerCurrentPlatformShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}

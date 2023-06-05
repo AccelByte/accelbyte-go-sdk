@@ -69,6 +69,9 @@ type ModelsUpdateChannelRequest struct {
 	// Required: true
 	SocialMatchmaking *bool `json:"socialMatchmaking"`
 
+	// ticket_observability_enable
+	TicketObservabilityEnable bool `json:"ticket_observability_enable"`
+
 	// use_sub_gamemode
 	// Required: true
 	UseSubGamemode *bool `json:"use_sub_gamemode"`

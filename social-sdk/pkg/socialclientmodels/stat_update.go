@@ -28,6 +28,12 @@ type StatUpdate struct {
 	// description
 	Description string `json:"description,omitempty"`
 
+	// ignoreadditionaldataonvaluerejected
+	IgnoreAdditionalDataOnValueRejected bool `json:"ignoreAdditionalDataOnValueRejected"`
+
+	// ispublic
+	IsPublic bool `json:"isPublic"`
+
 	// name
 	Name string `json:"name,omitempty"`
 

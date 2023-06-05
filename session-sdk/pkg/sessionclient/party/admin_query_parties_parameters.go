@@ -135,6 +135,11 @@ type AdminQueryPartiesParams struct {
 
 	*/
 	OrderBy *string
+	/*PartyID
+	  Party ID
+
+	*/
+	PartyID *string
 	/*Value
 	  Attribute value
 
@@ -304,6 +309,17 @@ func (o *AdminQueryPartiesParams) SetOrderBy(orderBy *string) {
 	o.OrderBy = orderBy
 }
 
+// WithPartyID adds the partyID to the admin query parties params
+func (o *AdminQueryPartiesParams) WithPartyID(partyID *string) *AdminQueryPartiesParams {
+	o.SetPartyID(partyID)
+	return o
+}
+
+// SetPartyID adds the partyId to the admin query parties params
+func (o *AdminQueryPartiesParams) SetPartyID(partyID *string) {
+	o.PartyID = partyID
+}
+
 // WithValue adds the value to the admin query parties params
 func (o *AdminQueryPartiesParams) WithValue(value *string) *AdminQueryPartiesParams {
 	o.SetValue(value)
@@ -466,6 +482,22 @@ func (o *AdminQueryPartiesParams) WriteToRequest(r runtime.ClientRequest, reg st
 		qOrderBy := qrOrderBy
 		if qOrderBy != "" {
 			if err := r.SetQueryParam("orderBy", qOrderBy); err != nil {
+				return err
+			}
+		}
+
+	}
+
+	if o.PartyID != nil {
+
+		// query param partyID
+		var qrPartyID string
+		if o.PartyID != nil {
+			qrPartyID = *o.PartyID
+		}
+		qPartyID := qrPartyID
+		if qPartyID != "" {
+			if err := r.SetQueryParam("partyID", qPartyID); err != nil {
 				return err
 			}
 		}

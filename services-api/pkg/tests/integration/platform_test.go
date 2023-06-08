@@ -130,6 +130,7 @@ func TestIntegrationExportImportStore(t *testing.T) {
 	// Login User - Arrange
 	Init()
 
+	checkStore()
 	storeId := createStore()
 	publishedStoreId := publishStore(storeId)
 	defer func() {
@@ -283,4 +284,27 @@ func deletePublishStore(storeId string) error {
 	}
 
 	return nil
+}
+
+func checkStore() {
+	get, errGet := storeService.ListStoresShort(&store.ListStoresParams{
+		Namespace: integration.NamespaceTest,
+	})
+	if errGet != nil {
+		logrus.Errorf("failed to get the store. %s", errGet.Error())
+	}
+
+	if get != nil {
+		logrus.Infof("found an existing store in the namespace.")
+		del, errDelete := storeService.DeletePublishedStoreShort(&store.DeletePublishedStoreParams{
+			Namespace: integration.NamespaceTest,
+		})
+		if errDelete != nil {
+			logrus.Errorf("failed to delete the store. %s", errGet.Error())
+		}
+
+		logrus.Infof("deleting existing store %s", *del.StoreID)
+
+		return
+	}
 }

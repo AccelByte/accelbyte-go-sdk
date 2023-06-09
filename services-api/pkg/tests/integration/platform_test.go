@@ -287,23 +287,36 @@ func deletePublishStore(storeId string) error {
 }
 
 func checkStore() {
-	get, errGet := storeService.ListStoresShort(&store.ListStoresParams{
+	listStores, err := storeService.ListStoresShort(&store.ListStoresParams{
 		Namespace: integration.NamespaceTest,
 	})
-	if errGet != nil {
-		logrus.Errorf("failed to get the store. %s", errGet.Error())
+	if err != nil {
+		logrus.Errorf("failed to get the store. %s", err.Error())
 	}
 
-	if get != nil {
+	if len(listStores) > 0 {
 		logrus.Infof("found an existing store in the namespace.")
-		del, errDelete := storeService.DeletePublishedStoreShort(&store.DeletePublishedStoreParams{
-			Namespace: integration.NamespaceTest,
-		})
-		if errDelete != nil {
-			logrus.Errorf("failed to delete the store. %s", errGet.Error())
-		}
 
-		logrus.Infof("deleting existing store %s", *del.StoreID)
+		for _, s := range listStores {
+			if *s.Published {
+				del, errDelete := storeService.DeletePublishedStoreShort(&store.DeletePublishedStoreParams{
+					Namespace: integration.NamespaceTest,
+				})
+				if errDelete != nil {
+					logrus.Errorf("failed to delete the store. %s", errDelete.Error())
+				}
+				logrus.Infof("deleting existing store with id: %s, title: %s", *del.StoreID, *del.Title)
+			} else {
+				del, errDelete := storeService.DeleteStoreShort(&store.DeleteStoreParams{
+					Namespace: integration.NamespaceTest,
+					StoreID:   *s.StoreID,
+				})
+				if errDelete != nil {
+					logrus.Errorf("failed to delete the store. %s", errDelete.Error())
+				}
+				logrus.Infof("deleting existing store with id: %s, title: %s", *del.StoreID, *del.Title)
+			}
+		}
 
 		return
 	}

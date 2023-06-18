@@ -6215,6 +6215,100 @@
       }
     },
     "/social/v2/admin/namespaces/{namespace}/users/{userId}/statitems/value/bulk": {
+      "get": {
+        "description": "Admin list all statItems of user\u0026lt;br\u0026gt;NOTE: \u0026lt;li\u0026gt;If stat code does not exist, will ignore this stat code.\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;If stat item does not exist, will return default value\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;Other detail info:\u0026lt;ul\u0026gt;+ *Required permission*: resource=ADMIN:NAMESPACE:{namespace}:STATITEM, action=2 (READ)\n\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: stat items\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
+        "operationId": "AdminListUsersStatItems",
+        "parameters": [
+          {
+            "description": "namespace",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "user id",
+            "in": "path",
+            "name": "userId",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "additional key",
+            "in": "query",
+            "name": "additionalKey",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "collectionFormat": "multi",
+            "description": "stat codes",
+            "in": "query",
+            "items": {
+              "type": "string"
+            },
+            "name": "statCodes",
+            "required": false,
+            "type": "array"
+          },
+          {
+            "collectionFormat": "multi",
+            "description": "tags",
+            "in": "query",
+            "items": {
+              "type": "string"
+            },
+            "name": "tags",
+            "required": false,
+            "type": "array"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "items": {
+                "$ref": "#/definitions/A DTO object for user stat item value"
+              },
+              "type": "array"
+            }
+          },
+          "400": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eErrorCode\u003c/td\u003e\u003ctd\u003eErrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e12223\u003c/td\u003e\u003ctd\u003eInvalid stat codes in namespace [{namespace}]: [{statCodes}]\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/ErrorEntity"
+            }
+          },
+          "404": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eErrorCode\u003c/td\u003e\u003ctd\u003eErrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e12243\u003c/td\u003e\u003ctd\u003eStats cannot be found in namespace [{namespace}]\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/ErrorEntity"
+            }
+          },
+          "422": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eErrorCode\u003c/td\u003e\u003ctd\u003eErrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20002\u003c/td\u003e\u003ctd\u003evalidation error\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/ValidationErrorEntity"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "summary": "Admin list user's statItems",
+        "tags": [
+          "UserStatistic"
+        ],
+        "x-authorization": {
+          "action": "2",
+          "resource": "ADMIN:NAMESPACE:{namespace}:STATITEM"
+        }
+      },
       "put": {
         "consumes": [
           "application/json"
@@ -8315,13 +8409,13 @@
   },
   "x-version": {
     "buildBy": "Gradle 6.9.1",
-    "buildDate": "2023-06-05T01:15:53+00:00",
+    "buildDate": "2023-06-06T02:42:18+00:00",
     "buildID": "2.8.0",
     "buildJDK": "1.8.0_232 (Eclipse OpenJ9 openj9-0.17.0)",
     "buildOS": "Linux amd64 5.13.0-1021-aws",
     "gitBranchName": "release-candidate",
-    "gitHash": "f308eee63d",
-    "gitTag": "2.8.0",
+    "gitHash": "2a28c59376",
+    "gitTag": "1.31.2",
     "name": "justice-social-service",
     "realm": "staging",
     "version": "2.8.0",

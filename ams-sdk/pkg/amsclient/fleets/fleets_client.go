@@ -716,7 +716,7 @@ func (a *Client) FleetServersShort(params *FleetServersParams, authInfo runtime.
 Deprecated: 2022-08-10 - Use FleetClaimByIDShort instead.
 
 FleetClaimByID claim a dedicated server from a specific fleet
-Required Permission: NAMESPACE:{namespace}:ARMADA:FLEET [UPDATE]
+Required Permission: NAMESPACE:{namespace}:AMS:SERVER:CLAIM [UPDATE]
 */
 func (a *Client) FleetClaimByID(params *FleetClaimByIDParams, authInfo runtime.ClientAuthInfoWriter) (*FleetClaimByIDOK, *FleetClaimByIDBadRequest, *FleetClaimByIDUnauthorized, *FleetClaimByIDForbidden, *FleetClaimByIDNotFound, *FleetClaimByIDInternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -776,7 +776,7 @@ func (a *Client) FleetClaimByID(params *FleetClaimByIDParams, authInfo runtime.C
 
 /*
 FleetClaimByIDShort claim a dedicated server from a specific fleet
-Required Permission: NAMESPACE:{namespace}:ARMADA:FLEET [UPDATE]
+Required Permission: NAMESPACE:{namespace}:AMS:SERVER:CLAIM [UPDATE]
 */
 func (a *Client) FleetClaimByIDShort(params *FleetClaimByIDParams, authInfo runtime.ClientAuthInfoWriter) (*FleetClaimByIDOK, error) {
 	// TODO: Validate the params before sending
@@ -833,7 +833,7 @@ func (a *Client) FleetClaimByIDShort(params *FleetClaimByIDParams, authInfo runt
 Deprecated: 2022-08-10 - Use FleetClaimByKeysShort instead.
 
 FleetClaimByKeys claim a dedicated server from fleets with matching claim keys
-Required Permission: NAMESPACE:{namespace}:ARMADA:FLEET [UPDATE]
+Required Permission: NAMESPACE:{namespace}:AMS:SERVER:CLAIM [UPDATE]
 */
 func (a *Client) FleetClaimByKeys(params *FleetClaimByKeysParams, authInfo runtime.ClientAuthInfoWriter) (*FleetClaimByKeysOK, *FleetClaimByKeysBadRequest, *FleetClaimByKeysUnauthorized, *FleetClaimByKeysForbidden, *FleetClaimByKeysNotFound, *FleetClaimByKeysInternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -893,7 +893,7 @@ func (a *Client) FleetClaimByKeys(params *FleetClaimByKeysParams, authInfo runti
 
 /*
 FleetClaimByKeysShort claim a dedicated server from fleets with matching claim keys
-Required Permission: NAMESPACE:{namespace}:ARMADA:FLEET [UPDATE]
+Required Permission: NAMESPACE:{namespace}:AMS:SERVER:CLAIM [UPDATE]
 */
 func (a *Client) FleetClaimByKeysShort(params *FleetClaimByKeysParams, authInfo runtime.ClientAuthInfoWriter) (*FleetClaimByKeysOK, error) {
 	// TODO: Validate the params before sending

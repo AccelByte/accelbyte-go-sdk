@@ -74,6 +74,11 @@ type PublicWebLinkPlatformEstablishParams struct {
 
 	*/
 	PlatformID string
+	/*Code
+	  authorization code from third party
+
+	*/
+	Code *string
 	/*State
 	  state from third party redirect
 
@@ -155,6 +160,17 @@ func (o *PublicWebLinkPlatformEstablishParams) SetPlatformID(platformID string) 
 	o.PlatformID = platformID
 }
 
+// WithCode adds the code to the public web link platform establish params
+func (o *PublicWebLinkPlatformEstablishParams) WithCode(code *string) *PublicWebLinkPlatformEstablishParams {
+	o.SetCode(code)
+	return o
+}
+
+// SetCode adds the code to the public web link platform establish params
+func (o *PublicWebLinkPlatformEstablishParams) SetCode(code *string) {
+	o.Code = code
+}
+
 // WithState adds the state to the public web link platform establish params
 func (o *PublicWebLinkPlatformEstablishParams) WithState(state string) *PublicWebLinkPlatformEstablishParams {
 	o.SetState(state)
@@ -182,6 +198,22 @@ func (o *PublicWebLinkPlatformEstablishParams) WriteToRequest(r runtime.ClientRe
 	// path param platformId
 	if err := r.SetPathParam("platformId", o.PlatformID); err != nil {
 		return err
+	}
+
+	if o.Code != nil {
+
+		// query param code
+		var qrCode string
+		if o.Code != nil {
+			qrCode = *o.Code
+		}
+		qCode := qrCode
+		if qCode != "" {
+			if err := r.SetQueryParam("code", qCode); err != nil {
+				return err
+			}
+		}
+
 	}
 
 	// query param state

@@ -247,6 +247,32 @@ func (aaa *LeaderboardDataV3Service) GetCurrentCycleLeaderboardRankingPublicV3(i
 	return ok.GetPayload(), nil
 }
 
+// Deprecated: 2022-01-10 - please use BulkGetUsersRankingPublicV3Short instead.
+func (aaa *LeaderboardDataV3Service) BulkGetUsersRankingPublicV3(input *leaderboard_data_v3.BulkGetUsersRankingPublicV3Params) (*leaderboardclientmodels.ModelsBulkUserRankingResponseV3, error) {
+	token, err := aaa.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, unauthorized, forbidden, notFound, internalServerError, err := aaa.Client.LeaderboardDataV3.BulkGetUsersRankingPublicV3(input, client.BearerToken(*token.AccessToken))
+	if unauthorized != nil {
+		return nil, unauthorized
+	}
+	if forbidden != nil {
+		return nil, forbidden
+	}
+	if notFound != nil {
+		return nil, notFound
+	}
+	if internalServerError != nil {
+		return nil, internalServerError
+	}
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
 // Deprecated: 2022-01-10 - please use GetUserRankingPublicV3Short instead.
 func (aaa *LeaderboardDataV3Service) GetUserRankingPublicV3(input *leaderboard_data_v3.GetUserRankingPublicV3Params) (*leaderboardclientmodels.ModelsUserRankingResponseV3, error) {
 	token, err := aaa.TokenRepository.GetToken()
@@ -466,6 +492,31 @@ func (aaa *LeaderboardDataV3Service) GetCurrentCycleLeaderboardRankingPublicV3Sh
 	}
 
 	ok, err := aaa.Client.LeaderboardDataV3.GetCurrentCycleLeaderboardRankingPublicV3Short(input, authInfoWriter)
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
+func (aaa *LeaderboardDataV3Service) BulkGetUsersRankingPublicV3Short(input *leaderboard_data_v3.BulkGetUsersRankingPublicV3Params) (*leaderboardclientmodels.ModelsBulkUserRankingResponseV3, error) {
+	authInfoWriter := input.AuthInfoWriter
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
+	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  aaa.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
+	ok, err := aaa.Client.LeaderboardDataV3.BulkGetUsersRankingPublicV3Short(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}

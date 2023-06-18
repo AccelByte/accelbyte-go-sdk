@@ -40,6 +40,9 @@ type Validation struct {
 	// Required: true
 	AllowUnicode *bool `json:"allowUnicode"`
 
+	// if this config has valid value, will prefer to use and ignore other validation
+	AvatarConfig *AccountcommonAvatarConfig `json:"avatarConfig,omitempty"`
+
 	// blockedword
 	// Required: true
 	BlockedWord []string `json:"blockedWord"`

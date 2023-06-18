@@ -2707,6 +2707,12 @@
             "type": "integer"
           },
           {
+            "description": "likes filter by channel name",
+            "in": "query",
+            "name": "name",
+            "type": "string"
+          },
+          {
             "default": 0,
             "description": "the offset number to retrieve",
             "in": "query",
@@ -5228,6 +5234,12 @@
             "in": "query",
             "name": "limit",
             "type": "integer"
+          },
+          {
+            "description": "likes filter by channel name",
+            "in": "query",
+            "name": "name",
+            "type": "string"
           },
           {
             "default": 0,
@@ -8332,8 +8344,8 @@
     "path": "/ugc/apidocs/api.json"
   },
   "x-version": {
-    "buildDate": "2023-06-05T01:18:30+00:00",
-    "gitHash": "2dca123f50e1a5aca3d0fbdbe7001daf2e0c6d94",
+    "buildDate": "2023-06-06T02:43:08+00:00",
+    "gitHash": "bbacffe64234cacca0b0e541438fa2303cafeb47",
     "name": "justice-ugc-service",
     "realm": "staging",
     "version": "2.11.1",

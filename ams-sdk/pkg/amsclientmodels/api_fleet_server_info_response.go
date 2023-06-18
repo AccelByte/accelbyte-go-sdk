@@ -60,6 +60,10 @@ type APIFleetServerInfoResponse struct {
 	// serverid
 	// Required: true
 	ServerID *string `json:"serverId"`
+
+	// status
+	// Required: true
+	Status *string `json:"status"`
 }
 
 // Validate validates this Api fleet server info response
@@ -94,6 +98,9 @@ func (m *APIFleetServerInfoResponse) Validate(formats strfmt.Registry) error {
 		res = append(res, err)
 	}
 	if err := m.validateServerID(formats); err != nil {
+		res = append(res, err)
+	}
+	if err := m.validateStatus(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -207,6 +214,15 @@ func (m *APIFleetServerInfoResponse) validateRegion(formats strfmt.Registry) err
 func (m *APIFleetServerInfoResponse) validateServerID(formats strfmt.Registry) error {
 
 	if err := validate.Required("serverId", "body", m.ServerID); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *APIFleetServerInfoResponse) validateStatus(formats strfmt.Registry) error {
+
+	if err := validate.Required("status", "body", m.Status); err != nil {
 		return err
 	}
 

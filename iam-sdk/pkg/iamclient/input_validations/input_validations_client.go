@@ -38,6 +38,8 @@ type ClientService interface {
 	AdminResetInputValidationsShort(params *AdminResetInputValidationsParams, authInfo runtime.ClientAuthInfoWriter) (*AdminResetInputValidationsNoContent, error)
 	PublicGetInputValidations(params *PublicGetInputValidationsParams, authInfo runtime.ClientAuthInfoWriter) (*PublicGetInputValidationsOK, *PublicGetInputValidationsNotFound, *PublicGetInputValidationsInternalServerError, error)
 	PublicGetInputValidationsShort(params *PublicGetInputValidationsParams, authInfo runtime.ClientAuthInfoWriter) (*PublicGetInputValidationsOK, error)
+	PublicGetInputValidationByField(params *PublicGetInputValidationByFieldParams, authInfo runtime.ClientAuthInfoWriter) (*PublicGetInputValidationByFieldOK, *PublicGetInputValidationByFieldNotFound, *PublicGetInputValidationByFieldInternalServerError, error)
+	PublicGetInputValidationByFieldShort(params *PublicGetInputValidationByFieldParams, authInfo runtime.ClientAuthInfoWriter) (*PublicGetInputValidationByFieldOK, error)
 
 	SetTransport(transport runtime.ClientTransport)
 }
@@ -198,6 +200,9 @@ Supported `field`:
                                               * email
 
 
+                                              * avatar
+
+
 
 
 If `isCustomRegex` is set to true, `regex` parameter will be used as input validation and the other parameters will be ignored. Otherwise, `regex` parameter will be ignored and regex for input validation will be generated based on the combination of the other parameters.
@@ -254,6 +259,11 @@ If `specialCharacters` is empty, `specialCharacterLocation` and `maxRepeatingSpe
 
 
 If `blockedWord` is set by admin, any input from user which contain kind of blocked word(s) will be blocked for create/upgrade/update account
+
+
+
+
+If `avatarConfig` is set, will use this config and skip all the other validation conditions
 */
 func (a *Client) AdminUpdateInputValidations(params *AdminUpdateInputValidationsParams, authInfo runtime.ClientAuthInfoWriter) (*AdminUpdateInputValidationsNoContent, *AdminUpdateInputValidationsUnauthorized, *AdminUpdateInputValidationsForbidden, *AdminUpdateInputValidationsNotFound, error) {
 	// TODO: Validate the params before sending
@@ -333,6 +343,9 @@ Supported `field`:
                                               * email
 
 
+                                              * avatar
+
+
 
 
 If `isCustomRegex` is set to true, `regex` parameter will be used as input validation and the other parameters will be ignored. Otherwise, `regex` parameter will be ignored and regex for input validation will be generated based on the combination of the other parameters.
@@ -389,6 +402,11 @@ If `specialCharacters` is empty, `specialCharacterLocation` and `maxRepeatingSpe
 
 
 If `blockedWord` is set by admin, any input from user which contain kind of blocked word(s) will be blocked for create/upgrade/update account
+
+
+
+
+If `avatarConfig` is set, will use this config and skip all the other validation conditions
 */
 func (a *Client) AdminUpdateInputValidationsShort(params *AdminUpdateInputValidationsParams, authInfo runtime.ClientAuthInfoWriter) (*AdminUpdateInputValidationsNoContent, error) {
 	// TODO: Validate the params before sending
@@ -671,6 +689,112 @@ func (a *Client) PublicGetInputValidationsShort(params *PublicGetInputValidation
 	case *PublicGetInputValidationsNotFound:
 		return nil, v
 	case *PublicGetInputValidationsInternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+Deprecated: 2022-08-10 - Use PublicGetInputValidationByFieldShort instead.
+
+PublicGetInputValidationByField public get input validation by field
+
+
+This endpoint is to get input validation configuration by field.
+*/
+func (a *Client) PublicGetInputValidationByField(params *PublicGetInputValidationByFieldParams, authInfo runtime.ClientAuthInfoWriter) (*PublicGetInputValidationByFieldOK, *PublicGetInputValidationByFieldNotFound, *PublicGetInputValidationByFieldInternalServerError, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewPublicGetInputValidationByFieldParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "PublicGetInputValidationByField",
+		Method:             "GET",
+		PathPattern:        "/iam/v3/public/inputValidations/{field}",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &PublicGetInputValidationByFieldReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, nil, nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *PublicGetInputValidationByFieldOK:
+		return v, nil, nil, nil
+
+	case *PublicGetInputValidationByFieldNotFound:
+		return nil, v, nil, nil
+
+	case *PublicGetInputValidationByFieldInternalServerError:
+		return nil, nil, v, nil
+
+	default:
+		return nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+PublicGetInputValidationByFieldShort public get input validation by field
+
+
+This endpoint is to get input validation configuration by field.
+*/
+func (a *Client) PublicGetInputValidationByFieldShort(params *PublicGetInputValidationByFieldParams, authInfo runtime.ClientAuthInfoWriter) (*PublicGetInputValidationByFieldOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewPublicGetInputValidationByFieldParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "PublicGetInputValidationByField",
+		Method:             "GET",
+		PathPattern:        "/iam/v3/public/inputValidations/{field}",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &PublicGetInputValidationByFieldReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *PublicGetInputValidationByFieldOK:
+		return v, nil
+	case *PublicGetInputValidationByFieldNotFound:
+		return nil, v
+	case *PublicGetInputValidationByFieldInternalServerError:
 		return nil, v
 
 	default:

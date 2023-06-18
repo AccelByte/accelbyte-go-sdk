@@ -67,7 +67,7 @@ type FleetClaimByKeysParams struct {
 	/*RetryPolicy*/
 	RetryPolicy *utils.Retry
 	/*Body*/
-	Body *amsclientmodels.APIFleetClaimReq
+	Body *amsclientmodels.APIFleetClaimByKeysReq
 	/*Namespace
 	  namespace of the game
 
@@ -128,13 +128,13 @@ func (o *FleetClaimByKeysParams) SetHTTPClientTransport(roundTripper http.RoundT
 }
 
 // WithBody adds the body to the fleet claim by keys params
-func (o *FleetClaimByKeysParams) WithBody(body *amsclientmodels.APIFleetClaimReq) *FleetClaimByKeysParams {
+func (o *FleetClaimByKeysParams) WithBody(body *amsclientmodels.APIFleetClaimByKeysReq) *FleetClaimByKeysParams {
 	o.SetBody(body)
 	return o
 }
 
 // SetBody adds the body to the fleet claim by keys params
-func (o *FleetClaimByKeysParams) SetBody(body *amsclientmodels.APIFleetClaimReq) {
+func (o *FleetClaimByKeysParams) SetBody(body *amsclientmodels.APIFleetClaimByKeysReq) {
 	o.Body = body
 }
 

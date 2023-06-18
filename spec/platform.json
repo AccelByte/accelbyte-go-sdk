@@ -29706,7 +29706,7 @@
       "description": "A DTO for creating currency",
       "properties": {
         "currencyCode": {
-          "description": "currency code, alphabet uppercase",
+          "description": "currency code, accept alphabet uppercase and number, must start with alphabet uppercase",
           "type": "string"
         },
         "currencySymbol": {
@@ -29747,7 +29747,7 @@
           "x-nullable": false
         },
         "currencyCode": {
-          "description": "currency code, alphabet uppercase",
+          "description": "currency code, accept alphabet uppercase and number, must start with alphabet uppercase",
           "type": "string"
         },
         "currencySymbol": {
@@ -29799,7 +29799,7 @@
     "CurrencySummary": {
       "properties": {
         "currencyCode": {
-          "description": "currency code, alphabet uppercase",
+          "description": "currency code, accept alphabet uppercase and number, must start with alphabet uppercase",
           "type": "string"
         },
         "currencySymbol": {
@@ -42037,13 +42037,13 @@
   },
   "x-version": {
     "buildBy": "Gradle 6.9.1",
-    "buildDate": "2023-06-05T01:11:14+00:00",
+    "buildDate": "2023-06-06T02:30:47+00:00",
     "buildID": "4.30.2",
     "buildJDK": "1.8.0_232 (Eclipse OpenJ9 openj9-0.17.0)",
     "buildOS": "Linux amd64 5.13.0-1021-aws",
     "gitBranchName": "release-candidate",
-    "gitHash": "5e4825e33f",
-    "gitTag": "4.30.2",
+    "gitHash": "bf69f65cdf",
+    "gitTag": "3.31.0",
     "name": "justice-platform-service",
     "realm": "staging",
     "version": "4.30.2",

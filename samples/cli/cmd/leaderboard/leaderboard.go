@@ -85,5 +85,6 @@ func init() {
 	LeaderboardCmd.AddCommand(leaderboardConfigurationV3.GetLeaderboardConfigurationPublicV3Cmd)
 	LeaderboardCmd.AddCommand(leaderboardDataV3.GetAllTimeLeaderboardRankingPublicV3Cmd)
 	LeaderboardCmd.AddCommand(leaderboardDataV3.GetCurrentCycleLeaderboardRankingPublicV3Cmd)
+	LeaderboardCmd.AddCommand(leaderboardDataV3.BulkGetUsersRankingPublicV3Cmd)
 	LeaderboardCmd.AddCommand(leaderboardDataV3.GetUserRankingPublicV3Cmd)
 }

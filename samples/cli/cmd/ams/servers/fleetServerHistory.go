@@ -27,9 +27,13 @@ var FleetServerHistoryCmd = &cobra.Command{
 		}
 		fleetID, _ := cmd.Flags().GetString("fleetID")
 		namespace, _ := cmd.Flags().GetString("namespace")
+		limit, _ := cmd.Flags().GetInt64("limit")
+		offset, _ := cmd.Flags().GetInt64("offset")
 		input := &servers.FleetServerHistoryParams{
 			FleetID:   fleetID,
 			Namespace: namespace,
+			Limit:     &limit,
+			Offset:    &offset,
 		}
 		ok, errOK := serversService.FleetServerHistoryShort(input)
 		if errOK != nil {
@@ -49,4 +53,6 @@ func init() {
 	_ = FleetServerHistoryCmd.MarkFlagRequired("fleetID")
 	FleetServerHistoryCmd.Flags().String("namespace", "", "Namespace")
 	_ = FleetServerHistoryCmd.MarkFlagRequired("namespace")
+	FleetServerHistoryCmd.Flags().Int64("limit", 20, "Limit")
+	FleetServerHistoryCmd.Flags().Int64("offset", 0, "Offset")
 }

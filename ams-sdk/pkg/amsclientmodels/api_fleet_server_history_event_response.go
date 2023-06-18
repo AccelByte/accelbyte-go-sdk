@@ -30,7 +30,7 @@ type APIFleetServerHistoryEventResponse struct {
 
 	// fleetid
 	// Required: true
-	FleetID *TidID `json:"fleetId"`
+	FleetID *string `json:"fleetId"`
 
 	// newstate
 	// Required: true
@@ -46,7 +46,7 @@ type APIFleetServerHistoryEventResponse struct {
 
 	// serverid
 	// Required: true
-	ServerID *TidID `json:"serverId"`
+	ServerID *string `json:"serverId"`
 }
 
 // Validate validates this Api fleet server history event response
@@ -109,15 +109,6 @@ func (m *APIFleetServerHistoryEventResponse) validateFleetID(formats strfmt.Regi
 		return err
 	}
 
-	if m.FleetID != nil {
-		if err := m.FleetID.Validate(formats); err != nil {
-			if ve, ok := err.(*errors.Validation); ok {
-				return ve.ValidateName("fleetId")
-			}
-			return err
-		}
-	}
-
 	return nil
 }
 
@@ -152,15 +143,6 @@ func (m *APIFleetServerHistoryEventResponse) validateServerID(formats strfmt.Reg
 
 	if err := validate.Required("serverId", "body", m.ServerID); err != nil {
 		return err
-	}
-
-	if m.ServerID != nil {
-		if err := m.ServerID.Validate(formats); err != nil {
-			if ve, ok := err.(*errors.Validation); ok {
-				return ve.ValidateName("serverId")
-			}
-			return err
-		}
 	}
 
 	return nil

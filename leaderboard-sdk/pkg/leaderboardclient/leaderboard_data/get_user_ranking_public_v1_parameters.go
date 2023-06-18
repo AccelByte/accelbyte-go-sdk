@@ -16,6 +16,7 @@ import (
 	"github.com/go-openapi/runtime"
 	cr "github.com/go-openapi/runtime/client"
 	"github.com/go-openapi/strfmt"
+	"github.com/go-openapi/swag"
 )
 
 // NewGetUserRankingPublicV1Params creates a new GetUserRankingPublicV1Params object
@@ -79,6 +80,11 @@ type GetUserRankingPublicV1Params struct {
 
 	*/
 	UserID string
+	/*PreviousVersion
+	  Specify specific version of leaderboard data, < 0 will be archived/history leaderboard data. Currently only support 1 previous version, default value will be 0 (active leaderboard)
+
+	*/
+	PreviousVersion *int64
 
 	timeout        time.Duration
 	AuthInfoWriter runtime.ClientAuthInfoWriter
@@ -166,6 +172,17 @@ func (o *GetUserRankingPublicV1Params) SetUserID(userID string) {
 	o.UserID = userID
 }
 
+// WithPreviousVersion adds the previousVersion to the get user ranking public v1 params
+func (o *GetUserRankingPublicV1Params) WithPreviousVersion(previousVersion *int64) *GetUserRankingPublicV1Params {
+	o.SetPreviousVersion(previousVersion)
+	return o
+}
+
+// SetPreviousVersion adds the previousVersion to the get user ranking public v1 params
+func (o *GetUserRankingPublicV1Params) SetPreviousVersion(previousVersion *int64) {
+	o.PreviousVersion = previousVersion
+}
+
 // WriteToRequest writes these params to a swagger request
 func (o *GetUserRankingPublicV1Params) WriteToRequest(r runtime.ClientRequest, reg strfmt.Registry) error {
 
@@ -187,6 +204,22 @@ func (o *GetUserRankingPublicV1Params) WriteToRequest(r runtime.ClientRequest, r
 	// path param userId
 	if err := r.SetPathParam("userId", o.UserID); err != nil {
 		return err
+	}
+
+	if o.PreviousVersion != nil {
+
+		// query param previousVersion
+		var qrPreviousVersion int64
+		if o.PreviousVersion != nil {
+			qrPreviousVersion = *o.PreviousVersion
+		}
+		qPreviousVersion := swag.FormatInt64(qrPreviousVersion)
+		if qPreviousVersion != "" {
+			if err := r.SetQueryParam("previousVersion", qPreviousVersion); err != nil {
+				return err
+			}
+		}
+
 	}
 
 	// setting the default header value

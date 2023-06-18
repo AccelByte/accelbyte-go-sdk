@@ -100,6 +100,11 @@ type AdminGetChannelParams struct {
 
 	*/
 	Limit *int64
+	/*Name
+	  likes filter by channel name
+
+	*/
+	Name *string
 	/*Offset
 	  the offset number to retrieve
 
@@ -192,6 +197,17 @@ func (o *AdminGetChannelParams) SetLimit(limit *int64) {
 	o.Limit = limit
 }
 
+// WithName adds the name to the admin get channel params
+func (o *AdminGetChannelParams) WithName(name *string) *AdminGetChannelParams {
+	o.SetName(name)
+	return o
+}
+
+// SetName adds the name to the admin get channel params
+func (o *AdminGetChannelParams) SetName(name *string) {
+	o.Name = name
+}
+
 // WithOffset adds the offset to the admin get channel params
 func (o *AdminGetChannelParams) WithOffset(offset *int64) *AdminGetChannelParams {
 	o.SetOffset(offset)
@@ -231,6 +247,22 @@ func (o *AdminGetChannelParams) WriteToRequest(r runtime.ClientRequest, reg strf
 		qLimit := swag.FormatInt64(qrLimit)
 		if qLimit != "" {
 			if err := r.SetQueryParam("limit", qLimit); err != nil {
+				return err
+			}
+		}
+
+	}
+
+	if o.Name != nil {
+
+		// query param name
+		var qrName string
+		if o.Name != nil {
+			qrName = *o.Name
+		}
+		qName := qrName
+		if qName != "" {
+			if err := r.SetQueryParam("name", qName); err != nil {
 				return err
 			}
 		}

@@ -257,6 +257,7 @@ func init() {
 	IamCmd.AddCommand(oAuth20.VerifyTokenV3Cmd)
 	IamCmd.AddCommand(oAuth20Extension.PlatformAuthenticationV3Cmd)
 	IamCmd.AddCommand(inputValidations.PublicGetInputValidationsCmd)
+	IamCmd.AddCommand(inputValidations.PublicGetInputValidationByFieldCmd)
 	IamCmd.AddCommand(users.PublicGetCountryAgeRestrictionV3Cmd)
 	IamCmd.AddCommand(thirdPartyCredential.RetrieveAllActiveThirdPartyLoginPlatformCredentialPublicV3Cmd)
 	IamCmd.AddCommand(thirdPartyCredential.RetrieveActiveOIDCClientsPublicV3Cmd)

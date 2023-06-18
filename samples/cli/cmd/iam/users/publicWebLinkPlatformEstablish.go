@@ -30,6 +30,7 @@ var PublicWebLinkPlatformEstablishCmd = &cobra.Command{
 		namespace, _ := cmd.Flags().GetString("namespace")
 		platformId, _ := cmd.Flags().GetString("platformId")
 		state, _ := cmd.Flags().GetString("state")
+		code, _ := cmd.Flags().GetString("code")
 		httpClient := &http.Client{
 			CheckRedirect: func(req *http.Request, via []*http.Request) error {
 				return http.ErrUseLastResponse
@@ -38,6 +39,7 @@ var PublicWebLinkPlatformEstablishCmd = &cobra.Command{
 		input := &users.PublicWebLinkPlatformEstablishParams{
 			Namespace:  namespace,
 			PlatformID: platformId,
+			Code:       &code,
 			State:      state,
 			HTTPClient: httpClient,
 		}
@@ -59,6 +61,7 @@ func init() {
 	_ = PublicWebLinkPlatformEstablishCmd.MarkFlagRequired("namespace")
 	PublicWebLinkPlatformEstablishCmd.Flags().String("platformId", "", "Platform id")
 	_ = PublicWebLinkPlatformEstablishCmd.MarkFlagRequired("platformId")
+	PublicWebLinkPlatformEstablishCmd.Flags().String("code", "", "Code")
 	PublicWebLinkPlatformEstablishCmd.Flags().String("state", "", "State")
 	_ = PublicWebLinkPlatformEstablishCmd.MarkFlagRequired("state")
 }

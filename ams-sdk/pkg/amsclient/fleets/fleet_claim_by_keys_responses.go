@@ -293,7 +293,7 @@ func NewFleetClaimByKeysNotFound() *FleetClaimByKeysNotFound {
 
 /*FleetClaimByKeysNotFound handles this case with default header values.
 
-  fleet not found
+  no matching DS available
 */
 type FleetClaimByKeysNotFound struct {
 	Payload *amsclientmodels.ResponseErrorResponse

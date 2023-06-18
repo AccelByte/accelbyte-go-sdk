@@ -28,11 +28,13 @@ var GetChannelsCmd = &cobra.Command{
 		namespace, _ := cmd.Flags().GetString("namespace")
 		userId, _ := cmd.Flags().GetString("userId")
 		limit, _ := cmd.Flags().GetInt64("limit")
+		name, _ := cmd.Flags().GetString("name")
 		offset, _ := cmd.Flags().GetInt64("offset")
 		input := &public_channel.GetChannelsParams{
 			Namespace: namespace,
 			UserID:    userId,
 			Limit:     &limit,
+			Name:      &name,
 			Offset:    &offset,
 		}
 		ok, errOK := publicChannelService.GetChannelsShort(input)
@@ -54,5 +56,6 @@ func init() {
 	GetChannelsCmd.Flags().String("userId", "", "User id")
 	_ = GetChannelsCmd.MarkFlagRequired("userId")
 	GetChannelsCmd.Flags().Int64("limit", 20, "Limit")
+	GetChannelsCmd.Flags().String("name", "", "Name")
 	GetChannelsCmd.Flags().Int64("offset", 0, "Offset")
 }

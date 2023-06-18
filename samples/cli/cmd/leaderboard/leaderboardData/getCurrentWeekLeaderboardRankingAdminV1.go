@@ -29,11 +29,13 @@ var GetCurrentWeekLeaderboardRankingAdminV1Cmd = &cobra.Command{
 		namespace, _ := cmd.Flags().GetString("namespace")
 		limit, _ := cmd.Flags().GetInt64("limit")
 		offset, _ := cmd.Flags().GetInt64("offset")
+		previousVersion, _ := cmd.Flags().GetInt64("previousVersion")
 		input := &leaderboard_data.GetCurrentWeekLeaderboardRankingAdminV1Params{
 			LeaderboardCode: leaderboardCode,
 			Namespace:       namespace,
 			Limit:           &limit,
 			Offset:          &offset,
+			PreviousVersion: &previousVersion,
 		}
 		ok, errOK := leaderboardDataService.GetCurrentWeekLeaderboardRankingAdminV1Short(input)
 		if errOK != nil {
@@ -55,4 +57,5 @@ func init() {
 	_ = GetCurrentWeekLeaderboardRankingAdminV1Cmd.MarkFlagRequired("namespace")
 	GetCurrentWeekLeaderboardRankingAdminV1Cmd.Flags().Int64("limit", 20, "Limit")
 	GetCurrentWeekLeaderboardRankingAdminV1Cmd.Flags().Int64("offset", 0, "Offset")
+	GetCurrentWeekLeaderboardRankingAdminV1Cmd.Flags().Int64("previousVersion", 0, "Previous version")
 }

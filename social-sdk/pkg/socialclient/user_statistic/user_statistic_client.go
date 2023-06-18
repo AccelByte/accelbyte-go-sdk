@@ -96,6 +96,8 @@ type ClientService interface {
 	BulkUpdateUserStatItemV2Short(params *BulkUpdateUserStatItemV2Params, authInfo runtime.ClientAuthInfoWriter) (*BulkUpdateUserStatItemV2OK, error)
 	BulkFetchOrDefaultStatItems1(params *BulkFetchOrDefaultStatItems1Params, authInfo runtime.ClientAuthInfoWriter) (*BulkFetchOrDefaultStatItems1OK, *BulkFetchOrDefaultStatItems1NotFound, *BulkFetchOrDefaultStatItems1UnprocessableEntity, error)
 	BulkFetchOrDefaultStatItems1Short(params *BulkFetchOrDefaultStatItems1Params, authInfo runtime.ClientAuthInfoWriter) (*BulkFetchOrDefaultStatItems1OK, error)
+	AdminListUsersStatItems(params *AdminListUsersStatItemsParams, authInfo runtime.ClientAuthInfoWriter) (*AdminListUsersStatItemsOK, *AdminListUsersStatItemsBadRequest, *AdminListUsersStatItemsNotFound, *AdminListUsersStatItemsUnprocessableEntity, error)
+	AdminListUsersStatItemsShort(params *AdminListUsersStatItemsParams, authInfo runtime.ClientAuthInfoWriter) (*AdminListUsersStatItemsOK, error)
 	BulkUpdateUserStatItem(params *BulkUpdateUserStatItemParams, authInfo runtime.ClientAuthInfoWriter) (*BulkUpdateUserStatItemOK, *BulkUpdateUserStatItemUnprocessableEntity, error)
 	BulkUpdateUserStatItemShort(params *BulkUpdateUserStatItemParams, authInfo runtime.ClientAuthInfoWriter) (*BulkUpdateUserStatItemOK, error)
 	BulkResetUserStatItemValues(params *BulkResetUserStatItemValuesParams, authInfo runtime.ClientAuthInfoWriter) (*BulkResetUserStatItemValuesOK, *BulkResetUserStatItemValuesUnprocessableEntity, error)
@@ -3703,6 +3705,125 @@ func (a *Client) BulkFetchOrDefaultStatItems1Short(params *BulkFetchOrDefaultSta
 }
 
 /*
+Deprecated: 2022-08-10 - Use AdminListUsersStatItemsShort instead.
+
+AdminListUsersStatItems admin list user's statitems
+Admin list all statItems of user
+NOTE:
+                    * If stat code does not exist, will ignore this stat code.
+                    * If stat item does not exist, will return default value
+Other detail info:+ *Required permission*: resource=ADMIN:NAMESPACE:{namespace}:STATITEM, action=2 (READ)
+
+                    *  Returns : stat items
+*/
+func (a *Client) AdminListUsersStatItems(params *AdminListUsersStatItemsParams, authInfo runtime.ClientAuthInfoWriter) (*AdminListUsersStatItemsOK, *AdminListUsersStatItemsBadRequest, *AdminListUsersStatItemsNotFound, *AdminListUsersStatItemsUnprocessableEntity, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewAdminListUsersStatItemsParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "AdminListUsersStatItems",
+		Method:             "GET",
+		PathPattern:        "/social/v2/admin/namespaces/{namespace}/users/{userId}/statitems/value/bulk",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &AdminListUsersStatItemsReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, nil, nil, nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *AdminListUsersStatItemsOK:
+		return v, nil, nil, nil, nil
+
+	case *AdminListUsersStatItemsBadRequest:
+		return nil, v, nil, nil, nil
+
+	case *AdminListUsersStatItemsNotFound:
+		return nil, nil, v, nil, nil
+
+	case *AdminListUsersStatItemsUnprocessableEntity:
+		return nil, nil, nil, v, nil
+
+	default:
+		return nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+AdminListUsersStatItemsShort admin list user's statitems
+Admin list all statItems of user
+NOTE:
+                  * If stat code does not exist, will ignore this stat code.
+                  * If stat item does not exist, will return default value
+Other detail info:+ *Required permission*: resource=ADMIN:NAMESPACE:{namespace}:STATITEM, action=2 (READ)
+
+                  *  Returns : stat items
+*/
+func (a *Client) AdminListUsersStatItemsShort(params *AdminListUsersStatItemsParams, authInfo runtime.ClientAuthInfoWriter) (*AdminListUsersStatItemsOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewAdminListUsersStatItemsParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "AdminListUsersStatItems",
+		Method:             "GET",
+		PathPattern:        "/social/v2/admin/namespaces/{namespace}/users/{userId}/statitems/value/bulk",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &AdminListUsersStatItemsReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *AdminListUsersStatItemsOK:
+		return v, nil
+	case *AdminListUsersStatItemsBadRequest:
+		return nil, v
+	case *AdminListUsersStatItemsNotFound:
+		return nil, v
+	case *AdminListUsersStatItemsUnprocessableEntity:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
 Deprecated: 2022-08-10 - Use BulkUpdateUserStatItemShort instead.
 
 BulkUpdateUserStatItem bulk update user's statitems value
@@ -3936,8 +4057,8 @@ Otherwise, it will delete all stat items related to the user Id.
 
 Delete user's statItems given stat code.
 Other detail info:
-                      *  Required permission : resource="ADMIN:NAMESPACE:{namespace}:USER:{userId}:STATITEM", action=8 (DELETE)
-                      *  Returns : no content
+                  *  Required permission : resource="ADMIN:NAMESPACE:{namespace}:USER:{userId}:STATITEM", action=8 (DELETE)
+                  *  Returns : no content
 */
 func (a *Client) DeleteUserStatItems2(params *DeleteUserStatItems2Params, authInfo runtime.ClientAuthInfoWriter) (*DeleteUserStatItems2NoContent, *DeleteUserStatItems2Unauthorized, *DeleteUserStatItems2Forbidden, *DeleteUserStatItems2NotFound, *DeleteUserStatItems2UnprocessableEntity, error) {
 	// TODO: Validate the params before sending
@@ -4000,8 +4121,8 @@ Otherwise, it will delete all stat items related to the user Id.
 
 Delete user's statItems given stat code.
 Other detail info:
-                        *  Required permission : resource="ADMIN:NAMESPACE:{namespace}:USER:{userId}:STATITEM", action=8 (DELETE)
-                        *  Returns : no content
+                    *  Required permission : resource="ADMIN:NAMESPACE:{namespace}:USER:{userId}:STATITEM", action=8 (DELETE)
+                    *  Returns : no content
 */
 func (a *Client) DeleteUserStatItems2Short(params *DeleteUserStatItems2Params, authInfo runtime.ClientAuthInfoWriter) (*DeleteUserStatItems2NoContent, error) {
 	// TODO: Validate the params before sending
@@ -4309,11 +4430,11 @@ Deprecated: 2022-08-10 - Use PublicQueryUserStatItems2Short instead.
 PublicQueryUserStatItems2 public list user's statitems
 Public list all statItems of user.
 NOTE:
-                        * If stat code does not exist, will ignore this stat code.
-                        * If stat item does not exist, will return default value
+                    * If stat code does not exist, will ignore this stat code.
+                    * If stat item does not exist, will return default value
 Other detail info:
-                        *  Required permission : resource="NAMESPACE:{namespace}:USER:{userId}:STATITEM", action=2 (READ)
-                        *  Returns : stat items
+                    *  Required permission : resource="NAMESPACE:{namespace}:USER:{userId}:STATITEM", action=2 (READ)
+                    *  Returns : stat items
 */
 func (a *Client) PublicQueryUserStatItems2(params *PublicQueryUserStatItems2Params, authInfo runtime.ClientAuthInfoWriter) (*PublicQueryUserStatItems2OK, *PublicQueryUserStatItems2BadRequest, *PublicQueryUserStatItems2NotFound, *PublicQueryUserStatItems2UnprocessableEntity, error) {
 	// TODO: Validate the params before sending
@@ -4369,11 +4490,11 @@ func (a *Client) PublicQueryUserStatItems2(params *PublicQueryUserStatItems2Para
 PublicQueryUserStatItems2Short public list user's statitems
 Public list all statItems of user.
 NOTE:
-                      * If stat code does not exist, will ignore this stat code.
-                      * If stat item does not exist, will return default value
+                  * If stat code does not exist, will ignore this stat code.
+                  * If stat item does not exist, will return default value
 Other detail info:
-                      *  Required permission : resource="NAMESPACE:{namespace}:USER:{userId}:STATITEM", action=2 (READ)
-                      *  Returns : stat items
+                  *  Required permission : resource="NAMESPACE:{namespace}:USER:{userId}:STATITEM", action=2 (READ)
+                  *  Returns : stat items
 */
 func (a *Client) PublicQueryUserStatItems2Short(params *PublicQueryUserStatItems2Params, authInfo runtime.ClientAuthInfoWriter) (*PublicQueryUserStatItems2OK, error) {
 	// TODO: Validate the params before sending

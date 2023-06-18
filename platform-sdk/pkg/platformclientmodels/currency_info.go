@@ -25,7 +25,7 @@ type CurrencyInfo struct {
 	// Format: date-time
 	CreatedAt strfmt.DateTime `json:"createdAt"`
 
-	// currency code, alphabet uppercase
+	// currency code, accept alphabet uppercase and number, must start with alphabet uppercase
 	// Required: true
 	CurrencyCode *string `json:"currencyCode"`
 

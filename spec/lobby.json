@@ -3376,9 +3376,6 @@
     },
     "/lobby/v1/admin/party/namespaces/{namespace}/parties/{partyId}/join/{userId}": {
       "post": {
-        "consumes": [
-          "application/json"
-        ],
         "description": "Required permission : \u0026lt;code\u0026gt;ADMIN:NAMESPACE:{namespace}:PARTY:STORAGE [UPDATE]\u0026lt;/code\u0026gt; with scope \u0026lt;code\u0026gt;social\u0026lt;/code\u0026gt;\n\t\t\t\u0026lt;br\u0026gt;admin join a player into a party.",
         "operationId": "adminJoinPartyV1",
         "parameters": [
@@ -8966,11 +8963,11 @@
     "path": "/lobby/apidocs/api.json"
   },
   "x-version": {
-    "buildDate": "2023-05-31T06:02:04+00:00",
-    "gitHash": "d84bca5dfaccfc88fec1b44c2233dfbf76c0c908",
+    "buildDate": "2023-06-12T05:29:15+00:00",
+    "gitHash": "d7bcf95d5b031f0fce04c80fb2a787cab61b39c5",
     "name": "justice-lobby-server",
-    "revisionID": "3.21.0",
-    "version": "3.21.0",
+    "revisionID": "3.22.0",
+    "version": "3.22.0",
     "version-justice": "3.45.0",
     "version-roles-seeding": "0.0.29"
   }

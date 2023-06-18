@@ -29,11 +29,13 @@ var GetUserLeaderboardRankingsAdminV1Cmd = &cobra.Command{
 		userId, _ := cmd.Flags().GetString("userId")
 		limit, _ := cmd.Flags().GetInt64("limit")
 		offset, _ := cmd.Flags().GetInt64("offset")
+		previousVersion, _ := cmd.Flags().GetInt64("previousVersion")
 		input := &user_data.GetUserLeaderboardRankingsAdminV1Params{
-			Namespace: namespace,
-			UserID:    userId,
-			Limit:     &limit,
-			Offset:    &offset,
+			Namespace:       namespace,
+			UserID:          userId,
+			Limit:           &limit,
+			Offset:          &offset,
+			PreviousVersion: &previousVersion,
 		}
 		ok, errOK := userDataService.GetUserLeaderboardRankingsAdminV1Short(input)
 		if errOK != nil {
@@ -55,4 +57,5 @@ func init() {
 	_ = GetUserLeaderboardRankingsAdminV1Cmd.MarkFlagRequired("userId")
 	GetUserLeaderboardRankingsAdminV1Cmd.Flags().Int64("limit", 20, "Limit")
 	GetUserLeaderboardRankingsAdminV1Cmd.Flags().Int64("offset", 0, "Offset")
+	GetUserLeaderboardRankingsAdminV1Cmd.Flags().Int64("previousVersion", 0, "Previous version")
 }

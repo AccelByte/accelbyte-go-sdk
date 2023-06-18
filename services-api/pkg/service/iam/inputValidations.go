@@ -125,6 +125,26 @@ func (aaa *InputValidationsService) PublicGetInputValidations(input *input_valid
 	return ok.GetPayload(), nil
 }
 
+// Deprecated: 2022-01-10 - please use PublicGetInputValidationByFieldShort instead.
+func (aaa *InputValidationsService) PublicGetInputValidationByField(input *input_validations.PublicGetInputValidationByFieldParams) (*iamclientmodels.ModelInputValidationConfigVersion, error) {
+	token, err := aaa.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, notFound, internalServerError, err := aaa.Client.InputValidations.PublicGetInputValidationByField(input, client.BearerToken(*token.AccessToken))
+	if notFound != nil {
+		return nil, notFound
+	}
+	if internalServerError != nil {
+		return nil, internalServerError
+	}
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
 func (aaa *InputValidationsService) AdminGetInputValidationsShort(input *input_validations.AdminGetInputValidationsParams) (*iamclientmodels.ModelInputValidationsResponse, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
@@ -218,6 +238,31 @@ func (aaa *InputValidationsService) PublicGetInputValidationsShort(input *input_
 	}
 
 	ok, err := aaa.Client.InputValidations.PublicGetInputValidationsShort(input, authInfoWriter)
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
+func (aaa *InputValidationsService) PublicGetInputValidationByFieldShort(input *input_validations.PublicGetInputValidationByFieldParams) (*iamclientmodels.ModelInputValidationConfigVersion, error) {
+	authInfoWriter := input.AuthInfoWriter
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
+	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  aaa.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
+	ok, err := aaa.Client.InputValidations.PublicGetInputValidationByFieldShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}

@@ -3,7 +3,7 @@
   "info": {
     "description": "Manage AMS Fleets",
     "title": "fleet-command",
-    "version": "0.1.0:15cdf3b8fa6708f0bae13b6f59cfa59ce96ecd4c - 2023-04-27T02:15:42+00:00"
+    "version": "0.1.0:2d4e9f4a2b83c482b0b2858ae7a6702f22bf0558 - 2023-06-06T01:48:34+00:00"
   },
   "schemes": [
     "https"
@@ -25,7 +25,7 @@
         "ADMIN:NAMESPACE:{namespace}:ARMADA:FLEET [DELETE]": "ADMIN:NAMESPACE:{namespace}:ARMADA:FLEET [DELETE]",
         "ADMIN:NAMESPACE:{namespace}:ARMADA:FLEET [READ]": "ADMIN:NAMESPACE:{namespace}:ARMADA:FLEET [READ]",
         "ADMIN:NAMESPACE:{namespace}:ARMADA:FLEET [UPDATE]": "ADMIN:NAMESPACE:{namespace}:ARMADA:FLEET [UPDATE]",
-        "NAMESPACE:{namespace}:ARMADA:FLEET [UPDATE]": "NAMESPACE:{namespace}:ARMADA:FLEET [UPDATE]",
+        "NAMESPACE:{namespace}:AMS:SERVER:CLAIM [UPDATE]": "NAMESPACE:{namespace}:AMS:SERVER:CLAIM [UPDATE]",
         "NAMESPACE:{namespace}:ARMADA:WATCHDOG [CREATE]": "NAMESPACE:{namespace}:ARMADA:WATCHDOG [CREATE]"
       },
       "tokenUrl": "https://dumy.oauth.net/token",
@@ -737,6 +737,18 @@
             "name": "namespace",
             "required": true,
             "type": "string"
+          },
+          {
+            "description": "the limit for the number of records",
+            "in": "query",
+            "name": "limit",
+            "type": "integer"
+          },
+          {
+            "description": "the offset for pagination",
+            "in": "query",
+            "name": "offset",
+            "type": "integer"
           }
         ],
         "produces": [
@@ -1270,7 +1282,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "Required Permission: NAMESPACE:{namespace}:ARMADA:FLEET [UPDATE]",
+        "description": "Required Permission: NAMESPACE:{namespace}:AMS:SERVER:CLAIM [UPDATE]",
         "operationId": "FleetClaimByID",
         "parameters": [
           {
@@ -1340,7 +1352,7 @@
         "security": [
           {
             "HasPermission": [
-              "NAMESPACE:{namespace}:ARMADA:FLEET [UPDATE]"
+              "NAMESPACE:{namespace}:AMS:SERVER:CLAIM [UPDATE]"
             ],
             "authorization": []
           }
@@ -1356,7 +1368,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "Required Permission: NAMESPACE:{namespace}:ARMADA:FLEET [UPDATE]",
+        "description": "Required Permission: NAMESPACE:{namespace}:AMS:SERVER:CLAIM [UPDATE]",
         "operationId": "FleetClaimByKeys",
         "parameters": [
           {
@@ -1364,7 +1376,7 @@
             "name": "body",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/api.FleetClaimReq"
+              "$ref": "#/definitions/api.FleetClaimByKeysReq"
             }
           },
           {
@@ -1404,7 +1416,7 @@
             }
           },
           "404": {
-            "description": "fleet not found",
+            "description": "no matching DS available",
             "schema": {
               "$ref": "#/definitions/response.ErrorResponse"
             }
@@ -1419,7 +1431,7 @@
         "security": [
           {
             "HasPermission": [
-              "NAMESPACE:{namespace}:ARMADA:FLEET [UPDATE]"
+              "NAMESPACE:{namespace}:AMS:SERVER:CLAIM [UPDATE]"
             ],
             "authorization": []
           }
@@ -1630,7 +1642,7 @@
           "type": "integer"
         },
         "gameSession": {
-          "$ref": "#/definitions/tid.ID"
+          "type": "string"
         },
         "ipAddress": {
           "type": "string"
@@ -1642,7 +1654,7 @@
           "type": "string"
         },
         "serverId": {
-          "$ref": "#/definitions/tid.ID"
+          "type": "string"
         },
         "status": {
           "type": "string"
@@ -1691,6 +1703,26 @@
         "serversPerVm"
       ]
     },
+    "api.FleetClaimByKeysReq": {
+      "properties": {
+        "claimKeys": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "regions": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "required": [
+        "claimKeys",
+        "regions"
+      ]
+    },
     "api.FleetClaimReq": {
       "properties": {
         "region": {
@@ -1712,6 +1744,9 @@
           },
           "type": "object"
         },
+        "region": {
+          "type": "string"
+        },
         "serverId": {
           "type": "string"
         }
@@ -1719,6 +1754,7 @@
       "required": [
         "ip",
         "ports",
+        "region",
         "serverId"
       ]
     },
@@ -1881,13 +1917,23 @@
         "runningVmCount": {
           "format": "int32",
           "type": "integer"
+        },
+        "targetDsCount": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "targetVmCount": {
+          "format": "int32",
+          "type": "integer"
         }
       },
       "required": [
         "claimedServerCount",
         "readyServerCount",
         "region",
-        "runningVmCount"
+        "runningVmCount",
+        "targetDsCount",
+        "targetVmCount"
       ]
     },
     "api.FleetServerHistoryEventResponse": {
@@ -1902,7 +1948,7 @@
           "type": "integer"
         },
         "fleetId": {
-          "$ref": "#/definitions/tid.ID"
+          "type": "string"
         },
         "newState": {
           "type": "string"
@@ -1914,7 +1960,7 @@
           "type": "string"
         },
         "serverId": {
-          "$ref": "#/definitions/tid.ID"
+          "type": "string"
         }
       },
       "required": [
@@ -1976,6 +2022,9 @@
         },
         "serverId": {
           "type": "string"
+        },
+        "status": {
+          "type": "string"
         }
       },
       "required": [
@@ -1988,7 +2037,8 @@
         "ipAddress",
         "portConfiguration",
         "region",
-        "serverId"
+        "serverId",
+        "status"
       ]
     },
     "api.FleetServersResponse": {
@@ -2321,20 +2371,6 @@
         "errorMessage",
         "traceId"
       ]
-    },
-    "tid.ID": {
-      "properties": {
-        "Type": {
-          "type": "string"
-        },
-        "UUID": {
-          "type": "string"
-        }
-      },
-      "required": [
-        "Type",
-        "UUID"
-      ]
     }
   },
   "x-docs": {
@@ -2343,11 +2379,11 @@
     "path": "/ams/apidocs/api.json"
   },
   "x-version": {
-    "buildDate": "2023-04-27T02:15:42+00:00",
-    "gitHash": "15cdf3b8fa6708f0bae13b6f59cfa59ce96ecd4c",
+    "buildDate": "2023-06-06T01:48:34+00:00",
+    "gitHash": "2d4e9f4a2b83c482b0b2858ae7a6702f22bf0558",
     "name": "fleet-command",
     "revisionId": "0.1.0",
-    "version": "0.1.0:15cdf3b8fa6708f0bae13b6f59cfa59ce96ecd4c - 2023-04-27T02:15:42+00:00",
+    "version": "0.1.0:2d4e9f4a2b83c482b0b2858ae7a6702f22bf0558 - 2023-06-06T01:48:34+00:00",
     "version-roles-seeding": "0.0.24"
   }
 }

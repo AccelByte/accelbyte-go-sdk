@@ -20,7 +20,7 @@ import (
 // swagger:model Currency summary.
 type CurrencySummary struct {
 
-	// currency code, alphabet uppercase
+	// currency code, accept alphabet uppercase and number, must start with alphabet uppercase
 	// Required: true
 	CurrencyCode *string `json:"currencyCode"`
 

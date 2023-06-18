@@ -30,7 +30,7 @@ type APIDSHistoryEvent struct {
 
 	// gamesession
 	// Required: true
-	GameSession *TidID `json:"gameSession"`
+	GameSession *string `json:"gameSession"`
 
 	// ipaddress
 	// Required: true
@@ -46,7 +46,7 @@ type APIDSHistoryEvent struct {
 
 	// serverid
 	// Required: true
-	ServerID *TidID `json:"serverId"`
+	ServerID *string `json:"serverId"`
 
 	// status
 	// Required: true
@@ -116,15 +116,6 @@ func (m *APIDSHistoryEvent) validateGameSession(formats strfmt.Registry) error {
 		return err
 	}
 
-	if m.GameSession != nil {
-		if err := m.GameSession.Validate(formats); err != nil {
-			if ve, ok := err.(*errors.Validation); ok {
-				return ve.ValidateName("gameSession")
-			}
-			return err
-		}
-	}
-
 	return nil
 }
 
@@ -159,15 +150,6 @@ func (m *APIDSHistoryEvent) validateServerID(formats strfmt.Registry) error {
 
 	if err := validate.Required("serverId", "body", m.ServerID); err != nil {
 		return err
-	}
-
-	if m.ServerID != nil {
-		if err := m.ServerID.Validate(formats); err != nil {
-			if ve, ok := err.(*errors.Validation); ok {
-				return ve.ValidateName("serverId")
-			}
-			return err
-		}
 	}
 
 	return nil

@@ -16,6 +16,7 @@ import (
 	"github.com/go-openapi/runtime"
 	cr "github.com/go-openapi/runtime/client"
 	"github.com/go-openapi/strfmt"
+	"github.com/go-openapi/swag"
 )
 
 // NewFleetServerHistoryParams creates a new FleetServerHistoryParams object
@@ -74,6 +75,16 @@ type FleetServerHistoryParams struct {
 
 	*/
 	Namespace string
+	/*Limit
+	  the limit for the number of records
+
+	*/
+	Limit *int64
+	/*Offset
+	  the offset for pagination
+
+	*/
+	Offset *int64
 
 	timeout        time.Duration
 	AuthInfoWriter runtime.ClientAuthInfoWriter
@@ -150,6 +161,28 @@ func (o *FleetServerHistoryParams) SetNamespace(namespace string) {
 	o.Namespace = namespace
 }
 
+// WithLimit adds the limit to the fleet server history params
+func (o *FleetServerHistoryParams) WithLimit(limit *int64) *FleetServerHistoryParams {
+	o.SetLimit(limit)
+	return o
+}
+
+// SetLimit adds the limit to the fleet server history params
+func (o *FleetServerHistoryParams) SetLimit(limit *int64) {
+	o.Limit = limit
+}
+
+// WithOffset adds the offset to the fleet server history params
+func (o *FleetServerHistoryParams) WithOffset(offset *int64) *FleetServerHistoryParams {
+	o.SetOffset(offset)
+	return o
+}
+
+// SetOffset adds the offset to the fleet server history params
+func (o *FleetServerHistoryParams) SetOffset(offset *int64) {
+	o.Offset = offset
+}
+
 // WriteToRequest writes these params to a swagger request
 func (o *FleetServerHistoryParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.Registry) error {
 
@@ -166,6 +199,38 @@ func (o *FleetServerHistoryParams) WriteToRequest(r runtime.ClientRequest, reg s
 	// path param namespace
 	if err := r.SetPathParam("namespace", o.Namespace); err != nil {
 		return err
+	}
+
+	if o.Limit != nil {
+
+		// query param limit
+		var qrLimit int64
+		if o.Limit != nil {
+			qrLimit = *o.Limit
+		}
+		qLimit := swag.FormatInt64(qrLimit)
+		if qLimit != "" {
+			if err := r.SetQueryParam("limit", qLimit); err != nil {
+				return err
+			}
+		}
+
+	}
+
+	if o.Offset != nil {
+
+		// query param offset
+		var qrOffset int64
+		if o.Offset != nil {
+			qrOffset = *o.Offset
+		}
+		qOffset := swag.FormatInt64(qrOffset)
+		if qOffset != "" {
+			if err := r.SetQueryParam("offset", qOffset); err != nil {
+				return err
+			}
+		}
+
 	}
 
 	// setting the default header value

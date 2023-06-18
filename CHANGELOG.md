@@ -1,3 +1,10 @@
+<a name="v0.47.0"></a>
+## [v0.47.0]
+### chore
+- **integration-test:** add store checking
+- **integration-test:** specify length for published/draft store
+
+
 <a name="v0.46.0"></a>
 ## [v0.46.0]
 ### chore

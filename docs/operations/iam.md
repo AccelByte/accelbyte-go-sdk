@@ -272,6 +272,7 @@
 | `/iam/v3/admin/inputValidations` | PUT | AdminUpdateInputValidationsShort | [AdminUpdateInputValidationsShort](../../iam-sdk/pkg/iamclient/input_validations/input_validations_client.go) | [AdminUpdateInputValidationsShort](../../services-api/pkg/service/iam/inputValidations.go) | [AdminUpdateInputValidationsShort](../../samples/cli/cmd/iam/inputValidations/adminUpdateInputValidations.go) |
 | `/iam/v3/admin/inputValidations/{field}` | DELETE | AdminResetInputValidationsShort | [AdminResetInputValidationsShort](../../iam-sdk/pkg/iamclient/input_validations/input_validations_client.go) | [AdminResetInputValidationsShort](../../services-api/pkg/service/iam/inputValidations.go) | [AdminResetInputValidationsShort](../../samples/cli/cmd/iam/inputValidations/adminResetInputValidations.go) |
 | `/iam/v3/public/inputValidations` | GET | PublicGetInputValidationsShort | [PublicGetInputValidationsShort](../../iam-sdk/pkg/iamclient/input_validations/input_validations_client.go) | [PublicGetInputValidationsShort](../../services-api/pkg/service/iam/inputValidations.go) | [PublicGetInputValidationsShort](../../samples/cli/cmd/iam/inputValidations/publicGetInputValidations.go) |
+| `/iam/v3/public/inputValidations/{field}` | GET | PublicGetInputValidationByFieldShort | [PublicGetInputValidationByFieldShort](../../iam-sdk/pkg/iamclient/input_validations/input_validations_client.go) | [PublicGetInputValidationByFieldShort](../../services-api/pkg/service/iam/inputValidations.go) | [PublicGetInputValidationByFieldShort](../../samples/cli/cmd/iam/inputValidations/publicGetInputValidationByField.go) |
 
 ### Third Party Credential Wrapper:  [ThirdPartyCredential](../../services-api/pkg/service/iam/thirdPartyCredential.go)
 | Endpoint | Method | ID | Class | Wrapper | Example |
@@ -429,6 +430,7 @@
 | `account.createUserResponseV4` | [AccountCreateUserResponseV4 ](../../iam-sdk/pkg/iamclientmodels/account_create_user_response_v4.go) |
 | `account.upgradeHeadlessAccountRequestV4` | [AccountUpgradeHeadlessAccountRequestV4 ](../../iam-sdk/pkg/iamclientmodels/account_upgrade_headless_account_request_v4.go) |
 | `account.upgradeHeadlessAccountWithVerificationCodeRequestV4` | [AccountUpgradeHeadlessAccountWithVerificationCodeRequestV4 ](../../iam-sdk/pkg/iamclientmodels/account_upgrade_headless_account_with_verification_code_request_v4.go) |
+| `accountcommon.AvatarConfig` | [AccountcommonAvatarConfig ](../../iam-sdk/pkg/iamclientmodels/accountcommon_avatar_config.go) |
 | `accountcommon.Ban` | [AccountcommonBan ](../../iam-sdk/pkg/iamclientmodels/accountcommon_ban.go) |
 | `accountcommon.BanReason` | [AccountcommonBanReason ](../../iam-sdk/pkg/iamclientmodels/accountcommon_ban_reason.go) |
 | `accountcommon.BanReasonV3` | [AccountcommonBanReasonV3 ](../../iam-sdk/pkg/iamclientmodels/accountcommon_ban_reason_v3.go) |
@@ -538,6 +540,7 @@
 | `model.GetUserMapping` | [ModelGetUserMapping ](../../iam-sdk/pkg/iamclientmodels/model_get_user_mapping.go) |
 | `model.GetUserMappingV3` | [ModelGetUserMappingV3 ](../../iam-sdk/pkg/iamclientmodels/model_get_user_mapping_v3.go) |
 | `model.GetUsersResponseWithPaginationV3` | [ModelGetUsersResponseWithPaginationV3 ](../../iam-sdk/pkg/iamclientmodels/model_get_users_response_with_pagination_v3.go) |
+| `model.InputValidationConfigVersion` | [ModelInputValidationConfigVersion ](../../iam-sdk/pkg/iamclientmodels/model_input_validation_config_version.go) |
 | `model.InputValidationData` | [ModelInputValidationData ](../../iam-sdk/pkg/iamclientmodels/model_input_validation_data.go) |
 | `model.InputValidationDataPublic` | [ModelInputValidationDataPublic ](../../iam-sdk/pkg/iamclientmodels/model_input_validation_data_public.go) |
 | `model.InputValidationUpdatePayload` | [ModelInputValidationUpdatePayload ](../../iam-sdk/pkg/iamclientmodels/model_input_validation_update_payload.go) |

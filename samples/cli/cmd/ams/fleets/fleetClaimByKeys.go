@@ -29,7 +29,7 @@ var FleetClaimByKeysCmd = &cobra.Command{
 			TokenRepository: &repository.TokenRepositoryImpl{},
 		}
 		bodyString := cmd.Flag("body").Value.String()
-		var body *amsclientmodels.APIFleetClaimReq
+		var body *amsclientmodels.APIFleetClaimByKeysReq
 		errBody := json.Unmarshal([]byte(bodyString), &body)
 		if errBody != nil {
 			return errBody

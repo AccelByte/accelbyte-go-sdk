@@ -46,6 +46,8 @@ type ClientService interface {
 	GetAllTimeLeaderboardRankingPublicV3Short(params *GetAllTimeLeaderboardRankingPublicV3Params, authInfo runtime.ClientAuthInfoWriter) (*GetAllTimeLeaderboardRankingPublicV3OK, error)
 	GetCurrentCycleLeaderboardRankingPublicV3(params *GetCurrentCycleLeaderboardRankingPublicV3Params, authInfo runtime.ClientAuthInfoWriter) (*GetCurrentCycleLeaderboardRankingPublicV3OK, *GetCurrentCycleLeaderboardRankingPublicV3BadRequest, *GetCurrentCycleLeaderboardRankingPublicV3NotFound, *GetCurrentCycleLeaderboardRankingPublicV3InternalServerError, error)
 	GetCurrentCycleLeaderboardRankingPublicV3Short(params *GetCurrentCycleLeaderboardRankingPublicV3Params, authInfo runtime.ClientAuthInfoWriter) (*GetCurrentCycleLeaderboardRankingPublicV3OK, error)
+	BulkGetUsersRankingPublicV3(params *BulkGetUsersRankingPublicV3Params, authInfo runtime.ClientAuthInfoWriter) (*BulkGetUsersRankingPublicV3OK, *BulkGetUsersRankingPublicV3Unauthorized, *BulkGetUsersRankingPublicV3Forbidden, *BulkGetUsersRankingPublicV3NotFound, *BulkGetUsersRankingPublicV3InternalServerError, error)
+	BulkGetUsersRankingPublicV3Short(params *BulkGetUsersRankingPublicV3Params, authInfo runtime.ClientAuthInfoWriter) (*BulkGetUsersRankingPublicV3OK, error)
 	GetUserRankingPublicV3(params *GetUserRankingPublicV3Params, authInfo runtime.ClientAuthInfoWriter) (*GetUserRankingPublicV3OK, *GetUserRankingPublicV3Unauthorized, *GetUserRankingPublicV3Forbidden, *GetUserRankingPublicV3NotFound, *GetUserRankingPublicV3InternalServerError, error)
 	GetUserRankingPublicV3Short(params *GetUserRankingPublicV3Params, authInfo runtime.ClientAuthInfoWriter) (*GetUserRankingPublicV3OK, error)
 
@@ -1041,6 +1043,122 @@ func (a *Client) GetCurrentCycleLeaderboardRankingPublicV3Short(params *GetCurre
 	case *GetCurrentCycleLeaderboardRankingPublicV3NotFound:
 		return nil, v
 	case *GetCurrentCycleLeaderboardRankingPublicV3InternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+Deprecated: 2022-08-10 - Use BulkGetUsersRankingPublicV3Short instead.
+
+BulkGetUsersRankingPublicV3 bulk get users ranking
+
+
+Bulk get users ranking in leaderboard, max allowed 20 userIDs at a time.
+*/
+func (a *Client) BulkGetUsersRankingPublicV3(params *BulkGetUsersRankingPublicV3Params, authInfo runtime.ClientAuthInfoWriter) (*BulkGetUsersRankingPublicV3OK, *BulkGetUsersRankingPublicV3Unauthorized, *BulkGetUsersRankingPublicV3Forbidden, *BulkGetUsersRankingPublicV3NotFound, *BulkGetUsersRankingPublicV3InternalServerError, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewBulkGetUsersRankingPublicV3Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "bulkGetUsersRankingPublicV3",
+		Method:             "POST",
+		PathPattern:        "/leaderboard/v3/public/namespaces/{namespace}/leaderboards/{leaderboardCode}/users/bulk",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &BulkGetUsersRankingPublicV3Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, nil, nil, nil, nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *BulkGetUsersRankingPublicV3OK:
+		return v, nil, nil, nil, nil, nil
+
+	case *BulkGetUsersRankingPublicV3Unauthorized:
+		return nil, v, nil, nil, nil, nil
+
+	case *BulkGetUsersRankingPublicV3Forbidden:
+		return nil, nil, v, nil, nil, nil
+
+	case *BulkGetUsersRankingPublicV3NotFound:
+		return nil, nil, nil, v, nil, nil
+
+	case *BulkGetUsersRankingPublicV3InternalServerError:
+		return nil, nil, nil, nil, v, nil
+
+	default:
+		return nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+BulkGetUsersRankingPublicV3Short bulk get users ranking
+
+
+Bulk get users ranking in leaderboard, max allowed 20 userIDs at a time.
+*/
+func (a *Client) BulkGetUsersRankingPublicV3Short(params *BulkGetUsersRankingPublicV3Params, authInfo runtime.ClientAuthInfoWriter) (*BulkGetUsersRankingPublicV3OK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewBulkGetUsersRankingPublicV3Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "bulkGetUsersRankingPublicV3",
+		Method:             "POST",
+		PathPattern:        "/leaderboard/v3/public/namespaces/{namespace}/leaderboards/{leaderboardCode}/users/bulk",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &BulkGetUsersRankingPublicV3Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *BulkGetUsersRankingPublicV3OK:
+		return v, nil
+	case *BulkGetUsersRankingPublicV3Unauthorized:
+		return nil, v
+	case *BulkGetUsersRankingPublicV3Forbidden:
+		return nil, v
+	case *BulkGetUsersRankingPublicV3NotFound:
+		return nil, v
+	case *BulkGetUsersRankingPublicV3InternalServerError:
 		return nil, v
 
 	default:

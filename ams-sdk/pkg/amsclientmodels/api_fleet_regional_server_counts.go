@@ -36,6 +36,16 @@ type APIFleetRegionalServerCounts struct {
 	// Required: true
 	// Format: int32
 	RunningVMCount *int32 `json:"runningVmCount"`
+
+	// targetdscount
+	// Required: true
+	// Format: int32
+	TargetDsCount *int32 `json:"targetDsCount"`
+
+	// targetvmcount
+	// Required: true
+	// Format: int32
+	TargetVMCount *int32 `json:"targetVmCount"`
 }
 
 // Validate validates this Api fleet regional server counts
@@ -52,6 +62,12 @@ func (m *APIFleetRegionalServerCounts) Validate(formats strfmt.Registry) error {
 		res = append(res, err)
 	}
 	if err := m.validateRunningVMCount(formats); err != nil {
+		res = append(res, err)
+	}
+	if err := m.validateTargetDsCount(formats); err != nil {
+		res = append(res, err)
+	}
+	if err := m.validateTargetVMCount(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -91,6 +107,24 @@ func (m *APIFleetRegionalServerCounts) validateRegion(formats strfmt.Registry) e
 func (m *APIFleetRegionalServerCounts) validateRunningVMCount(formats strfmt.Registry) error {
 
 	if err := validate.Required("runningVmCount", "body", m.RunningVMCount); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *APIFleetRegionalServerCounts) validateTargetDsCount(formats strfmt.Registry) error {
+
+	if err := validate.Required("targetDsCount", "body", m.TargetDsCount); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *APIFleetRegionalServerCounts) validateTargetVMCount(formats strfmt.Registry) error {
+
+	if err := validate.Required("targetVmCount", "body", m.TargetVMCount); err != nil {
 		return err
 	}
 

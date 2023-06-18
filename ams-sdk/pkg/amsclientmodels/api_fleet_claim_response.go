@@ -26,6 +26,10 @@ type APIFleetClaimResponse struct {
 	// Required: true
 	Ports map[string]int64 `json:"ports"`
 
+	// region
+	// Required: true
+	Region *string `json:"region"`
+
 	// serverid
 	// Required: true
 	ServerID *string `json:"serverId"`
@@ -36,6 +40,9 @@ func (m *APIFleetClaimResponse) Validate(formats strfmt.Registry) error {
 	var res []error
 
 	if err := m.validateIP(formats); err != nil {
+		res = append(res, err)
+	}
+	if err := m.validateRegion(formats); err != nil {
 		res = append(res, err)
 	}
 	if err := m.validateServerID(formats); err != nil {
@@ -51,6 +58,15 @@ func (m *APIFleetClaimResponse) Validate(formats strfmt.Registry) error {
 func (m *APIFleetClaimResponse) validateIP(formats strfmt.Registry) error {
 
 	if err := validate.Required("ip", "body", m.IP); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *APIFleetClaimResponse) validateRegion(formats strfmt.Registry) error {
+
+	if err := validate.Required("region", "body", m.Region); err != nil {
 		return err
 	}
 

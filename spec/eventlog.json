@@ -2481,8 +2481,8 @@
     "path": "/event/apidocs/api.json"
   },
   "x-version": {
-    "buildDate": "2023-04-27T01:37:53+00:00",
-    "gitHash": "89fe404cf31775652711a54b75bce82c16b5a232",
+    "buildDate": "2023-06-06T02:23:36+00:00",
+    "gitHash": "71c16d36dccb906ac88479e4551d801a7ff60ea0",
     "name": "justice-event-log-service",
     "realm": "staging",
     "version": "2.0.2",

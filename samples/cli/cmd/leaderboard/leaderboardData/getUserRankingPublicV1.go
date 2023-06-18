@@ -28,10 +28,12 @@ var GetUserRankingPublicV1Cmd = &cobra.Command{
 		leaderboardCode, _ := cmd.Flags().GetString("leaderboardCode")
 		namespace, _ := cmd.Flags().GetString("namespace")
 		userId, _ := cmd.Flags().GetString("userId")
+		previousVersion, _ := cmd.Flags().GetInt64("previousVersion")
 		input := &leaderboard_data.GetUserRankingPublicV1Params{
 			LeaderboardCode: leaderboardCode,
 			Namespace:       namespace,
 			UserID:          userId,
+			PreviousVersion: &previousVersion,
 		}
 		ok, errOK := leaderboardDataService.GetUserRankingPublicV1Short(input)
 		if errOK != nil {
@@ -53,4 +55,5 @@ func init() {
 	_ = GetUserRankingPublicV1Cmd.MarkFlagRequired("namespace")
 	GetUserRankingPublicV1Cmd.Flags().String("userId", "", "User id")
 	_ = GetUserRankingPublicV1Cmd.MarkFlagRequired("userId")
+	GetUserRankingPublicV1Cmd.Flags().Int64("previousVersion", 0, "Previous version")
 }

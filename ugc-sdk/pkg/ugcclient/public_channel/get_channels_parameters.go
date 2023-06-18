@@ -100,6 +100,11 @@ type GetChannelsParams struct {
 
 	*/
 	Limit *int64
+	/*Name
+	  likes filter by channel name
+
+	*/
+	Name *string
 	/*Offset
 	  the offset number to retrieve
 
@@ -192,6 +197,17 @@ func (o *GetChannelsParams) SetLimit(limit *int64) {
 	o.Limit = limit
 }
 
+// WithName adds the name to the get channels params
+func (o *GetChannelsParams) WithName(name *string) *GetChannelsParams {
+	o.SetName(name)
+	return o
+}
+
+// SetName adds the name to the get channels params
+func (o *GetChannelsParams) SetName(name *string) {
+	o.Name = name
+}
+
 // WithOffset adds the offset to the get channels params
 func (o *GetChannelsParams) WithOffset(offset *int64) *GetChannelsParams {
 	o.SetOffset(offset)
@@ -231,6 +247,22 @@ func (o *GetChannelsParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.R
 		qLimit := swag.FormatInt64(qrLimit)
 		if qLimit != "" {
 			if err := r.SetQueryParam("limit", qLimit); err != nil {
+				return err
+			}
+		}
+
+	}
+
+	if o.Name != nil {
+
+		// query param name
+		var qrName string
+		if o.Name != nil {
+			qrName = *o.Name
+		}
+		qName := qrName
+		if qName != "" {
+			if err := r.SetQueryParam("name", qName); err != nil {
 				return err
 			}
 		}

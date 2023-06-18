@@ -85,6 +85,11 @@ type GetCurrentWeekLeaderboardRankingPublicV1Params struct {
 
 	*/
 	Offset *int64
+	/*PreviousVersion
+	  Specify specific version of leaderboard data, < 0 will be archived/history leaderboard data. Currently only support 1 previous version, default value will be 0 (active leaderboard)
+
+	*/
+	PreviousVersion *int64
 
 	timeout        time.Duration
 	AuthInfoWriter runtime.ClientAuthInfoWriter
@@ -183,6 +188,17 @@ func (o *GetCurrentWeekLeaderboardRankingPublicV1Params) SetOffset(offset *int64
 	o.Offset = offset
 }
 
+// WithPreviousVersion adds the previousVersion to the get current week leaderboard ranking public v1 params
+func (o *GetCurrentWeekLeaderboardRankingPublicV1Params) WithPreviousVersion(previousVersion *int64) *GetCurrentWeekLeaderboardRankingPublicV1Params {
+	o.SetPreviousVersion(previousVersion)
+	return o
+}
+
+// SetPreviousVersion adds the previousVersion to the get current week leaderboard ranking public v1 params
+func (o *GetCurrentWeekLeaderboardRankingPublicV1Params) SetPreviousVersion(previousVersion *int64) {
+	o.PreviousVersion = previousVersion
+}
+
 // WriteToRequest writes these params to a swagger request
 func (o *GetCurrentWeekLeaderboardRankingPublicV1Params) WriteToRequest(r runtime.ClientRequest, reg strfmt.Registry) error {
 
@@ -227,6 +243,22 @@ func (o *GetCurrentWeekLeaderboardRankingPublicV1Params) WriteToRequest(r runtim
 		qOffset := swag.FormatInt64(qrOffset)
 		if qOffset != "" {
 			if err := r.SetQueryParam("offset", qOffset); err != nil {
+				return err
+			}
+		}
+
+	}
+
+	if o.PreviousVersion != nil {
+
+		// query param previousVersion
+		var qrPreviousVersion int64
+		if o.PreviousVersion != nil {
+			qrPreviousVersion = *o.PreviousVersion
+		}
+		qPreviousVersion := swag.FormatInt64(qrPreviousVersion)
+		if qPreviousVersion != "" {
+			if err := r.SetQueryParam("previousVersion", qPreviousVersion); err != nil {
 				return err
 			}
 		}

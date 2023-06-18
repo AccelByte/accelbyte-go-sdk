@@ -687,6 +687,29 @@ func (aaa *UserStatisticService) BulkFetchOrDefaultStatItems1(input *user_statis
 	return ok.GetPayload(), nil
 }
 
+// Deprecated: 2022-01-10 - please use AdminListUsersStatItemsShort instead.
+func (aaa *UserStatisticService) AdminListUsersStatItems(input *user_statistic.AdminListUsersStatItemsParams) ([]*socialclientmodels.ADTOObjectForUserStatItemValue, error) {
+	token, err := aaa.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, badRequest, notFound, unprocessableEntity, err := aaa.Client.UserStatistic.AdminListUsersStatItems(input, client.BearerToken(*token.AccessToken))
+	if badRequest != nil {
+		return nil, badRequest
+	}
+	if notFound != nil {
+		return nil, notFound
+	}
+	if unprocessableEntity != nil {
+		return nil, unprocessableEntity
+	}
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
 // Deprecated: 2022-01-10 - please use BulkUpdateUserStatItemShort instead.
 func (aaa *UserStatisticService) BulkUpdateUserStatItem(input *user_statistic.BulkUpdateUserStatItemParams) ([]*socialclientmodels.BulkStatOperationResult, error) {
 	token, err := aaa.TokenRepository.GetToken()
@@ -1674,6 +1697,31 @@ func (aaa *UserStatisticService) BulkFetchOrDefaultStatItems1Short(input *user_s
 	}
 
 	ok, err := aaa.Client.UserStatistic.BulkFetchOrDefaultStatItems1Short(input, authInfoWriter)
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
+func (aaa *UserStatisticService) AdminListUsersStatItemsShort(input *user_statistic.AdminListUsersStatItemsParams) ([]*socialclientmodels.ADTOObjectForUserStatItemValue, error) {
+	authInfoWriter := input.AuthInfoWriter
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
+	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  aaa.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
+	ok, err := aaa.Client.UserStatistic.AdminListUsersStatItemsShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}

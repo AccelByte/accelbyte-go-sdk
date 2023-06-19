@@ -1,6 +1,8 @@
 <a name="v0.47.0"></a>
 ## [v0.47.0]
 ### chore
+- update CHANGELOG.md
+- update getting started module sum
 - **integration-test:** add store checking
 - **integration-test:** specify length for published/draft store
 

@@ -48,7 +48,7 @@ pipeline {
           sh "rm -rf justice-codegen-sdk-spec"
           sshagent(credentials: [bitbucketCredentialsSsh]) {
             sh "git clone --depth 1 git@bitbucket.org:accelbyte/justice-codegen-sdk.git ${sdkCodegenPath}"
-            sh "git clone --depth 10 git@bitbucket.org:accelbyte/justice-codegen-sdk-spec.git ${sdkSpecPath}"
+            sh "git clone --depth 50 git@bitbucket.org:accelbyte/justice-codegen-sdk-spec.git ${sdkSpecPath}"
           }
 
           dir(sdkSpecPath) {

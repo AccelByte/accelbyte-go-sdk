@@ -8,7 +8,7 @@
     },
     "description": "Justice GDPR Service",
     "title": "justice-gdpr-service",
-    "version": "2.0.1"
+    "version": "2.1.0"
   },
   "schemes": [
     "https"
@@ -1574,6 +1574,176 @@
           "Data Retrieval"
         ]
       }
+    },
+    "/gdpr/public/users/me/deletions": {
+      "delete": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "\u0026lt;p\u0026gt;Requires valid user access token\u0026lt;/p\u0026gt;",
+        "operationId": "PublicCancelMyAccountDeletionRequest",
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content"
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "summary": "Cancel my account deletion request",
+        "tags": [
+          "Data Deletion"
+        ]
+      },
+      "post": {
+        "consumes": [
+          "application/x-www-form-urlencoded"
+        ],
+        "description": "\u0026lt;p\u0026gt;Requires valid user access token\u0026lt;br\u0026gt;\n\t\tThis is for in-game only and require a valid platformId and platform token. If a full account is not logged by 3rd platform, then please use \u0026lt;a href=\u0026#39;#operations-Data_Deletion-PublicSubmitUserAccountDeletionRequest\u0026#39;\u0026gt;/gdpr/public/namespaces/{namespace}/users/{userId}/deletions\u0026lt;/a\u0026gt;\t\n\t\t",
+        "operationId": "PublicSubmitMyAccountDeletionRequest",
+        "parameters": [
+          {
+            "description": "Platform ID which used to generate current token",
+            "in": "formData",
+            "name": "platformId",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "Platform token of current logged platform",
+            "in": "formData",
+            "name": "platformToken",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "201": {
+            "description": "Created",
+            "schema": {
+              "$ref": "#/definitions/models.RequestDeleteResponse"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "summary": "Submit my account deletion requests.",
+        "tags": [
+          "Data Deletion"
+        ]
+      }
+    },
+    "/gdpr/public/users/me/deletions/status": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "\u0026lt;p\u0026gt;Requires valid user access token\u0026lt;/p\u0026gt;",
+        "operationId": "PublicGetMyAccountDeletionStatus",
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/models.DeletionStatus"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "summary": "Retrieve my account deletion status",
+        "tags": [
+          "Data Deletion"
+        ]
+      }
     }
   },
   "definitions": {
@@ -1838,11 +2008,11 @@
     "path": "/gdpr/apidocs/api.json"
   },
   "x-version": {
-    "buildDate": "2023-06-06T02:23:53+00:00",
-    "gitHash": "f2747e661c481d70ef55573869f67913f6655e40",
+    "buildDate": "2023-06-20T01:35:32+00:00",
+    "gitHash": "bcf6d75336d3a5ffd71eb599cc51161b3a579aef",
     "name": "justice-gdpr-service",
     "realm": "staging",
-    "version": "2.0.1",
+    "version": "2.1.0",
     "version-roles-seeding": "0.0.3"
   }
 }

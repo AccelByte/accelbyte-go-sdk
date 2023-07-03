@@ -18,6 +18,9 @@ import (
 // swagger:model Apimodels public configuration.
 type ApimodelsPublicConfiguration struct {
 
+	// psnbaseurl
+	PSNBaseURL string `json:"PSNBaseUrl,omitempty"`
+
 	// clientversion
 	// Required: true
 	ClientVersion *string `json:"clientVersion"`
@@ -59,6 +62,9 @@ type ApimodelsPublicConfiguration struct {
 	// name
 	// Required: true
 	Name *string `json:"name"`
+
+	// native_session_setting
+	NativeSessionSetting *ModelsNativeSessionSetting `json:"native_session_setting,omitempty"`
 
 	// persistent
 	// Required: true

@@ -49,10 +49,14 @@
 |---|---|---|---|---|---|
 | `/ams/v1/namespaces/{namespace}/watchdogs/{watchdogID}/connect` | GET | WatchdogConnectShort | [WatchdogConnectShort](../../ams-sdk/pkg/amsclient/watchdogs/watchdogs_client.go) | [WatchdogConnectShort](../../services-api/pkg/service/ams/watchdogs.go) | [WatchdogConnectShort](../../samples/cli/cmd/ams/watchdogs/watchdogConnect.go) |
 
+### Fleet Commander Wrapper:  [FleetCommander](../../services-api/pkg/service/ams/fleetCommander.go)
+| Endpoint | Method | ID | Class | Wrapper | Example |
+|---|---|---|---|---|---|
+| `/ams/version` | GET | Func1Short | [Func1Short](../../ams-sdk/pkg/amsclient/fleet_commander/fleet_commander_client.go) | [Func1Short](../../services-api/pkg/service/ams/fleetCommander.go) | [Func1Short](../../samples/cli/cmd/ams/fleetCommander/func1.go) |
+
 ### Operations Wrapper:  [Operations](../../services-api/pkg/service/ams/operations.go)
 | Endpoint | Method | ID | Class | Wrapper | Example |
 |---|---|---|---|---|---|
-| `/ams/version` | GET | Func1Short | [Func1Short](../../ams-sdk/pkg/amsclient/operations/operations_client.go) | [Func1Short](../../services-api/pkg/service/ams/operations.go) | [Func1Short](../../samples/cli/cmd/ams/operations/func1.go) |
 | `/healthz` | GET | BasicHealthCheckShort | [BasicHealthCheckShort](../../ams-sdk/pkg/amsclient/operations/operations_client.go) | [BasicHealthCheckShort](../../services-api/pkg/service/ams/operations.go) | [BasicHealthCheckShort](../../samples/cli/cmd/ams/operations/basicHealthCheck.go) |
 
 
@@ -91,6 +95,7 @@
 | `api.ImageListItem` | [ApiImageListItem ](../../ams-sdk/pkg/amsclientmodels/api_image_list_item.go) |
 | `api.ImageUpdate` | [ApiImageUpdate ](../../ams-sdk/pkg/amsclientmodels/api_image_update.go) |
 | `api.InstanceTypeDescriptionResponse` | [ApiInstanceTypeDescriptionResponse ](../../ams-sdk/pkg/amsclientmodels/api_instance_type_description_response.go) |
+| `api.PagingInfo` | [ApiPagingInfo ](../../ams-sdk/pkg/amsclientmodels/api_paging_info.go) |
 | `api.PortConfiguration` | [ApiPortConfiguration ](../../ams-sdk/pkg/amsclientmodels/api_port_configuration.go) |
 | `api.ReferencingFleet` | [ApiReferencingFleet ](../../ams-sdk/pkg/amsclientmodels/api_referencing_fleet.go) |
 | `api.RegionConfig` | [ApiRegionConfig ](../../ams-sdk/pkg/amsclientmodels/api_region_config.go) |

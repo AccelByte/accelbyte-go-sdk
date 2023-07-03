@@ -5103,7 +5103,7 @@
     "path": "/matchmaking/apidocs/api.json"
   },
   "x-version": {
-    "buildDate": "2023-06-12T05:29:23+00:00",
+    "buildDate": "2023-06-19T05:06:57+00:00",
     "gitHash": "bce91711936cf4b8fa9866c1829149f14368207a",
     "version": "2.25.1",
     "version-roles-seeding": "0.0.23"

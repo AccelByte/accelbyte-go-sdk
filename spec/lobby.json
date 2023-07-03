@@ -8963,8 +8963,8 @@
     "path": "/lobby/apidocs/api.json"
   },
   "x-version": {
-    "buildDate": "2023-06-12T05:29:15+00:00",
-    "gitHash": "d7bcf95d5b031f0fce04c80fb2a787cab61b39c5",
+    "buildDate": "2023-06-19T05:06:25+00:00",
+    "gitHash": "c8ad4302ffb7fa5e78b886a6474f009ee78f1f86",
     "name": "justice-lobby-server",
     "revisionID": "3.22.0",
     "version": "3.22.0",

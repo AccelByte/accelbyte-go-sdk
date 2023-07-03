@@ -25,8 +25,7 @@ type APIFleetParameters struct {
 	Active *bool `json:"active"`
 
 	// claimkeys
-	// Required: true
-	ClaimKeys []string `json:"claimKeys"`
+	ClaimKeys []string `json:"claimKeys,omitempty"`
 
 	// dshostconfiguration
 	// Required: true
@@ -52,9 +51,6 @@ func (m *APIFleetParameters) Validate(formats strfmt.Registry) error {
 	if err := m.validateActive(formats); err != nil {
 		res = append(res, err)
 	}
-	if err := m.validateClaimKeys(formats); err != nil {
-		res = append(res, err)
-	}
 	if err := m.validateDsHostConfiguration(formats); err != nil {
 		res = append(res, err)
 	}
@@ -77,15 +73,6 @@ func (m *APIFleetParameters) Validate(formats strfmt.Registry) error {
 func (m *APIFleetParameters) validateActive(formats strfmt.Registry) error {
 
 	if err := validate.Required("active", "body", m.Active); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *APIFleetParameters) validateClaimKeys(formats strfmt.Registry) error {
-
-	if err := validate.Required("claimKeys", "body", m.ClaimKeys); err != nil {
 		return err
 	}
 

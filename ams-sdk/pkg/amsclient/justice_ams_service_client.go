@@ -16,6 +16,7 @@ import (
 
 	"github.com/AccelByte/accelbyte-go-sdk/ams-sdk/pkg/amsclient/a_m_s_info"
 	"github.com/AccelByte/accelbyte-go-sdk/ams-sdk/pkg/amsclient/account"
+	"github.com/AccelByte/accelbyte-go-sdk/ams-sdk/pkg/amsclient/fleet_commander"
 	"github.com/AccelByte/accelbyte-go-sdk/ams-sdk/pkg/amsclient/fleets"
 	"github.com/AccelByte/accelbyte-go-sdk/ams-sdk/pkg/amsclient/images"
 	"github.com/AccelByte/accelbyte-go-sdk/ams-sdk/pkg/amsclient/operations"
@@ -73,6 +74,7 @@ func New(transport runtime.ClientTransport, runtime *httptransport.Runtime, form
 	cli.Runtime = runtime
 	cli.AmsInfo = a_m_s_info.New(transport, formats)
 	cli.Account = account.New(transport, formats)
+	cli.FleetCommander = fleet_commander.New(transport, formats)
 	cli.Fleets = fleets.New(transport, formats)
 	cli.Images = images.New(transport, formats)
 	cli.Servers = servers.New(transport, formats)
@@ -142,6 +144,8 @@ type JusticeAmsService struct {
 
 	Account account.ClientService
 
+	FleetCommander fleet_commander.ClientService
+
 	Fleets fleets.ClientService
 
 	Images images.ClientService
@@ -161,6 +165,7 @@ func (c *JusticeAmsService) SetTransport(transport runtime.ClientTransport) {
 	c.Transport = transport
 	c.AmsInfo.SetTransport(transport)
 	c.Account.SetTransport(transport)
+	c.FleetCommander.SetTransport(transport)
 	c.Fleets.SetTransport(transport)
 	c.Images.SetTransport(transport)
 	c.Servers.SetTransport(transport)

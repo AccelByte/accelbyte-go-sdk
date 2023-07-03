@@ -16,13 +16,17 @@ import (
 	"github.com/go-openapi/runtime"
 	cr "github.com/go-openapi/runtime/client"
 	"github.com/go-openapi/strfmt"
+	"github.com/go-openapi/swag"
 )
 
 // NewImportStore1Params creates a new ImportStore1Params object
 // with the default values initialized.
 func NewImportStore1Params() *ImportStore1Params {
-	var ()
+	var (
+		strictModeDefault = bool(true)
+	)
 	return &ImportStore1Params{
+		StrictMode: &strictModeDefault,
 
 		timeout: cr.DefaultTimeout,
 	}
@@ -31,8 +35,11 @@ func NewImportStore1Params() *ImportStore1Params {
 // NewImportStore1ParamsWithTimeout creates a new ImportStore1Params object
 // with the default values initialized, and the ability to set a timeout on a request
 func NewImportStore1ParamsWithTimeout(timeout time.Duration) *ImportStore1Params {
-	var ()
+	var (
+		strictModeDefault = bool(true)
+	)
 	return &ImportStore1Params{
+		StrictMode: &strictModeDefault,
 
 		timeout: timeout,
 	}
@@ -41,8 +48,11 @@ func NewImportStore1ParamsWithTimeout(timeout time.Duration) *ImportStore1Params
 // NewImportStore1ParamsWithContext creates a new ImportStore1Params object
 // with the default values initialized, and the ability to set a context for a request
 func NewImportStore1ParamsWithContext(ctx context.Context) *ImportStore1Params {
-	var ()
+	var (
+		strictModeDefault = bool(true)
+	)
 	return &ImportStore1Params{
+		StrictMode: &strictModeDefault,
 
 		Context: ctx,
 	}
@@ -51,8 +61,11 @@ func NewImportStore1ParamsWithContext(ctx context.Context) *ImportStore1Params {
 // NewImportStore1ParamsWithHTTPClient creates a new ImportStore1Params object
 // with the default values initialized, and the ability to set a custom HTTPClient for a request
 func NewImportStore1ParamsWithHTTPClient(client *http.Client) *ImportStore1Params {
-	var ()
+	var (
+		strictModeDefault = bool(true)
+	)
 	return &ImportStore1Params{
+		StrictMode: &strictModeDefault,
 		HTTPClient: client,
 	}
 }
@@ -73,6 +86,11 @@ type ImportStore1Params struct {
 
 	*/
 	StoreID *string
+	/*StrictMode
+	  default strict mode is false
+
+	*/
+	StrictMode *bool
 
 	timeout        time.Duration
 	AuthInfoWriter runtime.ClientAuthInfoWriter
@@ -160,6 +178,17 @@ func (o *ImportStore1Params) SetStoreID(storeID *string) {
 	o.StoreID = storeID
 }
 
+// WithStrictMode adds the strictMode to the import store 1 params
+func (o *ImportStore1Params) WithStrictMode(strictMode *bool) *ImportStore1Params {
+	o.SetStrictMode(strictMode)
+	return o
+}
+
+// SetStrictMode adds the strictMode to the import store 1 params
+func (o *ImportStore1Params) SetStrictMode(strictMode *bool) {
+	o.StrictMode = strictMode
+}
+
 // WriteToRequest writes these params to a swagger request
 func (o *ImportStore1Params) WriteToRequest(r runtime.ClientRequest, reg strfmt.Registry) error {
 
@@ -196,6 +225,22 @@ func (o *ImportStore1Params) WriteToRequest(r runtime.ClientRequest, reg strfmt.
 		qStoreID := qrStoreID
 		if qStoreID != "" {
 			if err := r.SetQueryParam("storeId", qStoreID); err != nil {
+				return err
+			}
+		}
+
+	}
+
+	if o.StrictMode != nil {
+
+		// query param strictMode
+		var qrStrictMode bool
+		if o.StrictMode != nil {
+			qrStrictMode = *o.StrictMode
+		}
+		qStrictMode := swag.FormatBool(qrStrictMode)
+		if qStrictMode != "" {
+			if err := r.SetQueryParam("strictMode", qStrictMode); err != nil {
 				return err
 			}
 		}

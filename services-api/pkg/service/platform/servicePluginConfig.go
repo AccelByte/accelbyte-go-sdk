@@ -39,6 +39,144 @@ func (aaa *ServicePluginConfigService) GetAuthSession() auth.Session {
 	}
 }
 
+// Deprecated: 2022-01-10 - please use GetLootBoxPluginConfigShort instead.
+func (aaa *ServicePluginConfigService) GetLootBoxPluginConfig(input *service_plugin_config.GetLootBoxPluginConfigParams) (*platformclientmodels.LootBoxPluginConfigInfo, error) {
+	token, err := aaa.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, err := aaa.Client.ServicePluginConfig.GetLootBoxPluginConfig(input, client.BearerToken(*token.AccessToken))
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
+// Deprecated: 2022-01-10 - please use UpdateLootBoxPluginConfigShort instead.
+func (aaa *ServicePluginConfigService) UpdateLootBoxPluginConfig(input *service_plugin_config.UpdateLootBoxPluginConfigParams) (*platformclientmodels.LootBoxPluginConfigInfo, error) {
+	token, err := aaa.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, unprocessableEntity, err := aaa.Client.ServicePluginConfig.UpdateLootBoxPluginConfig(input, client.BearerToken(*token.AccessToken))
+	if unprocessableEntity != nil {
+		return nil, unprocessableEntity
+	}
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
+// Deprecated: 2022-01-10 - please use DeleteLootBoxPluginConfigShort instead.
+func (aaa *ServicePluginConfigService) DeleteLootBoxPluginConfig(input *service_plugin_config.DeleteLootBoxPluginConfigParams) error {
+	token, err := aaa.TokenRepository.GetToken()
+	if err != nil {
+		return err
+	}
+	_, err = aaa.Client.ServicePluginConfig.DeleteLootBoxPluginConfig(input, client.BearerToken(*token.AccessToken))
+	if err != nil {
+		return err
+	}
+
+	return nil
+}
+
+// Deprecated: 2022-01-10 - please use UplodLootBoxPluginConfigCertShort instead.
+func (aaa *ServicePluginConfigService) UplodLootBoxPluginConfigCert(input *service_plugin_config.UplodLootBoxPluginConfigCertParams) (*platformclientmodels.LootBoxPluginConfigInfo, error) {
+	token, err := aaa.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, unprocessableEntity, err := aaa.Client.ServicePluginConfig.UplodLootBoxPluginConfigCert(input, client.BearerToken(*token.AccessToken))
+	if unprocessableEntity != nil {
+		return nil, unprocessableEntity
+	}
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
+// Deprecated: 2022-01-10 - please use GetLootBoxGrpcInfoShort instead.
+func (aaa *ServicePluginConfigService) GetLootBoxGrpcInfo(input *service_plugin_config.GetLootBoxGrpcInfoParams) (*platformclientmodels.GrpcServerInfo, error) {
+	token, err := aaa.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, err := aaa.Client.ServicePluginConfig.GetLootBoxGrpcInfo(input, client.BearerToken(*token.AccessToken))
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
+// Deprecated: 2022-01-10 - please use GetSectionPluginConfigShort instead.
+func (aaa *ServicePluginConfigService) GetSectionPluginConfig(input *service_plugin_config.GetSectionPluginConfigParams) (*platformclientmodels.SectionPluginConfigInfo, error) {
+	token, err := aaa.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, err := aaa.Client.ServicePluginConfig.GetSectionPluginConfig(input, client.BearerToken(*token.AccessToken))
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
+// Deprecated: 2022-01-10 - please use UpdateSectionPluginConfigShort instead.
+func (aaa *ServicePluginConfigService) UpdateSectionPluginConfig(input *service_plugin_config.UpdateSectionPluginConfigParams) (*platformclientmodels.SectionPluginConfigInfo, error) {
+	token, err := aaa.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, unprocessableEntity, err := aaa.Client.ServicePluginConfig.UpdateSectionPluginConfig(input, client.BearerToken(*token.AccessToken))
+	if unprocessableEntity != nil {
+		return nil, unprocessableEntity
+	}
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
+// Deprecated: 2022-01-10 - please use DeleteSectionPluginConfigShort instead.
+func (aaa *ServicePluginConfigService) DeleteSectionPluginConfig(input *service_plugin_config.DeleteSectionPluginConfigParams) error {
+	token, err := aaa.TokenRepository.GetToken()
+	if err != nil {
+		return err
+	}
+	_, err = aaa.Client.ServicePluginConfig.DeleteSectionPluginConfig(input, client.BearerToken(*token.AccessToken))
+	if err != nil {
+		return err
+	}
+
+	return nil
+}
+
+// Deprecated: 2022-01-10 - please use UploadSectionPluginConfigCertShort instead.
+func (aaa *ServicePluginConfigService) UploadSectionPluginConfigCert(input *service_plugin_config.UploadSectionPluginConfigCertParams) (*platformclientmodels.SectionPluginConfigInfo, error) {
+	token, err := aaa.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, unprocessableEntity, err := aaa.Client.ServicePluginConfig.UploadSectionPluginConfigCert(input, client.BearerToken(*token.AccessToken))
+	if unprocessableEntity != nil {
+		return nil, unprocessableEntity
+	}
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
 // Deprecated: 2022-01-10 - please use GetServicePluginConfigShort instead.
 func (aaa *ServicePluginConfigService) GetServicePluginConfig(input *service_plugin_config.GetServicePluginConfigParams) (*platformclientmodels.ServicePluginConfigInfo, error) {
 	token, err := aaa.TokenRepository.GetToken()
@@ -82,6 +220,293 @@ func (aaa *ServicePluginConfigService) DeleteServicePluginConfig(input *service_
 	}
 
 	return nil
+}
+
+// Deprecated: 2022-01-10 - please use GetLootBoxPluginConfig1Short instead.
+func (aaa *ServicePluginConfigService) GetLootBoxPluginConfig1(input *service_plugin_config.GetLootBoxPluginConfig1Params) (*platformclientmodels.RevocationPluginConfigInfo, error) {
+	token, err := aaa.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, err := aaa.Client.ServicePluginConfig.GetLootBoxPluginConfig1(input, client.BearerToken(*token.AccessToken))
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
+// Deprecated: 2022-01-10 - please use UpdateLootBoxPluginConfig1Short instead.
+func (aaa *ServicePluginConfigService) UpdateLootBoxPluginConfig1(input *service_plugin_config.UpdateLootBoxPluginConfig1Params) (*platformclientmodels.RevocationPluginConfigInfo, error) {
+	token, err := aaa.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, unprocessableEntity, err := aaa.Client.ServicePluginConfig.UpdateLootBoxPluginConfig1(input, client.BearerToken(*token.AccessToken))
+	if unprocessableEntity != nil {
+		return nil, unprocessableEntity
+	}
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
+// Deprecated: 2022-01-10 - please use DeleteLootBoxPluginConfig1Short instead.
+func (aaa *ServicePluginConfigService) DeleteLootBoxPluginConfig1(input *service_plugin_config.DeleteLootBoxPluginConfig1Params) error {
+	token, err := aaa.TokenRepository.GetToken()
+	if err != nil {
+		return err
+	}
+	_, err = aaa.Client.ServicePluginConfig.DeleteLootBoxPluginConfig1(input, client.BearerToken(*token.AccessToken))
+	if err != nil {
+		return err
+	}
+
+	return nil
+}
+
+// Deprecated: 2022-01-10 - please use UploadRevocationPluginConfigCertShort instead.
+func (aaa *ServicePluginConfigService) UploadRevocationPluginConfigCert(input *service_plugin_config.UploadRevocationPluginConfigCertParams) (*platformclientmodels.RevocationPluginConfigInfo, error) {
+	token, err := aaa.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, unprocessableEntity, err := aaa.Client.ServicePluginConfig.UploadRevocationPluginConfigCert(input, client.BearerToken(*token.AccessToken))
+	if unprocessableEntity != nil {
+		return nil, unprocessableEntity
+	}
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
+func (aaa *ServicePluginConfigService) GetLootBoxPluginConfigShort(input *service_plugin_config.GetLootBoxPluginConfigParams) (*platformclientmodels.LootBoxPluginConfigInfo, error) {
+	authInfoWriter := input.AuthInfoWriter
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
+	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  aaa.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
+	ok, err := aaa.Client.ServicePluginConfig.GetLootBoxPluginConfigShort(input, authInfoWriter)
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
+func (aaa *ServicePluginConfigService) UpdateLootBoxPluginConfigShort(input *service_plugin_config.UpdateLootBoxPluginConfigParams) (*platformclientmodels.LootBoxPluginConfigInfo, error) {
+	authInfoWriter := input.AuthInfoWriter
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
+	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  aaa.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
+	ok, err := aaa.Client.ServicePluginConfig.UpdateLootBoxPluginConfigShort(input, authInfoWriter)
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
+func (aaa *ServicePluginConfigService) DeleteLootBoxPluginConfigShort(input *service_plugin_config.DeleteLootBoxPluginConfigParams) error {
+	authInfoWriter := input.AuthInfoWriter
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
+	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  aaa.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
+	_, err := aaa.Client.ServicePluginConfig.DeleteLootBoxPluginConfigShort(input, authInfoWriter)
+	if err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (aaa *ServicePluginConfigService) UplodLootBoxPluginConfigCertShort(input *service_plugin_config.UplodLootBoxPluginConfigCertParams) (*platformclientmodels.LootBoxPluginConfigInfo, error) {
+	authInfoWriter := input.AuthInfoWriter
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
+	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  aaa.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
+	ok, err := aaa.Client.ServicePluginConfig.UplodLootBoxPluginConfigCertShort(input, authInfoWriter)
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
+func (aaa *ServicePluginConfigService) GetLootBoxGrpcInfoShort(input *service_plugin_config.GetLootBoxGrpcInfoParams) (*platformclientmodels.GrpcServerInfo, error) {
+	authInfoWriter := input.AuthInfoWriter
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
+	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  aaa.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
+	ok, err := aaa.Client.ServicePluginConfig.GetLootBoxGrpcInfoShort(input, authInfoWriter)
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
+func (aaa *ServicePluginConfigService) GetSectionPluginConfigShort(input *service_plugin_config.GetSectionPluginConfigParams) (*platformclientmodels.SectionPluginConfigInfo, error) {
+	authInfoWriter := input.AuthInfoWriter
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
+	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  aaa.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
+	ok, err := aaa.Client.ServicePluginConfig.GetSectionPluginConfigShort(input, authInfoWriter)
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
+func (aaa *ServicePluginConfigService) UpdateSectionPluginConfigShort(input *service_plugin_config.UpdateSectionPluginConfigParams) (*platformclientmodels.SectionPluginConfigInfo, error) {
+	authInfoWriter := input.AuthInfoWriter
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
+	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  aaa.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
+	ok, err := aaa.Client.ServicePluginConfig.UpdateSectionPluginConfigShort(input, authInfoWriter)
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
+func (aaa *ServicePluginConfigService) DeleteSectionPluginConfigShort(input *service_plugin_config.DeleteSectionPluginConfigParams) error {
+	authInfoWriter := input.AuthInfoWriter
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
+	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  aaa.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
+	_, err := aaa.Client.ServicePluginConfig.DeleteSectionPluginConfigShort(input, authInfoWriter)
+	if err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (aaa *ServicePluginConfigService) UploadSectionPluginConfigCertShort(input *service_plugin_config.UploadSectionPluginConfigCertParams) (*platformclientmodels.SectionPluginConfigInfo, error) {
+	authInfoWriter := input.AuthInfoWriter
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
+	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  aaa.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
+	ok, err := aaa.Client.ServicePluginConfig.UploadSectionPluginConfigCertShort(input, authInfoWriter)
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
 }
 
 func (aaa *ServicePluginConfigService) GetServicePluginConfigShort(input *service_plugin_config.GetServicePluginConfigParams) (*platformclientmodels.ServicePluginConfigInfo, error) {
@@ -157,4 +582,104 @@ func (aaa *ServicePluginConfigService) DeleteServicePluginConfigShort(input *ser
 	}
 
 	return nil
+}
+
+func (aaa *ServicePluginConfigService) GetLootBoxPluginConfig1Short(input *service_plugin_config.GetLootBoxPluginConfig1Params) (*platformclientmodels.RevocationPluginConfigInfo, error) {
+	authInfoWriter := input.AuthInfoWriter
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
+	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  aaa.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
+	ok, err := aaa.Client.ServicePluginConfig.GetLootBoxPluginConfig1Short(input, authInfoWriter)
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
+func (aaa *ServicePluginConfigService) UpdateLootBoxPluginConfig1Short(input *service_plugin_config.UpdateLootBoxPluginConfig1Params) (*platformclientmodels.RevocationPluginConfigInfo, error) {
+	authInfoWriter := input.AuthInfoWriter
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
+	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  aaa.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
+	ok, err := aaa.Client.ServicePluginConfig.UpdateLootBoxPluginConfig1Short(input, authInfoWriter)
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
+func (aaa *ServicePluginConfigService) DeleteLootBoxPluginConfig1Short(input *service_plugin_config.DeleteLootBoxPluginConfig1Params) error {
+	authInfoWriter := input.AuthInfoWriter
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
+	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  aaa.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
+	_, err := aaa.Client.ServicePluginConfig.DeleteLootBoxPluginConfig1Short(input, authInfoWriter)
+	if err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (aaa *ServicePluginConfigService) UploadRevocationPluginConfigCertShort(input *service_plugin_config.UploadRevocationPluginConfigCertParams) (*platformclientmodels.RevocationPluginConfigInfo, error) {
+	authInfoWriter := input.AuthInfoWriter
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
+	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  aaa.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
+	ok, err := aaa.Client.ServicePluginConfig.UploadRevocationPluginConfigCertShort(input, authInfoWriter)
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
 }

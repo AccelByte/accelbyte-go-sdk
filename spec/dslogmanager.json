@@ -8,7 +8,7 @@
     },
     "description": "Justice DS Log Manager Service",
     "title": "justice-ds-log-manager-service",
-    "version": "3.3.0"
+    "version": "3.3.1"
   },
   "schemes": [
     "https"
@@ -1052,11 +1052,11 @@
     "path": "/dslogmanager/apidocs/api.json"
   },
   "x-version": {
-    "buildDate": "2023-05-22T01:58:25+00:00",
-    "gitHash": "948e63e05e76e71d7658fa0d326425f09ace8764",
+    "buildDate": "2023-06-27T09:16:17+00:00",
+    "gitHash": "5e454291e6fdd76451631c0300c4c2e3c96b3dcf",
     "name": "justice-ds-log-manager-service",
-    "revisionID": "3.3.0",
-    "version": "3.3.0",
+    "revisionID": "3.3.1",
+    "version": "3.3.1",
     "version-roles-seeding": "0.0.3"
   }
 }

@@ -26,8 +26,10 @@ var RequestGameTokenResponseV3Cmd = &cobra.Command{
 			TokenRepository: &repository.TokenRepositoryImpl{},
 		}
 		code, _ := cmd.Flags().GetString("code")
+		additionalData, _ := cmd.Flags().GetString("additionalData")
 		input := &o_auth2_0_extension.RequestGameTokenResponseV3Params{
-			Code: code,
+			AdditionalData: &additionalData,
+			Code:           code,
 		}
 		ok, errOK := oAuth20ExtensionService.RequestGameTokenResponseV3Short(input)
 		if errOK != nil {
@@ -43,6 +45,7 @@ var RequestGameTokenResponseV3Cmd = &cobra.Command{
 }
 
 func init() {
+	RequestGameTokenResponseV3Cmd.Flags().String("additionalData", "", "Additional data")
 	RequestGameTokenResponseV3Cmd.Flags().String("code", "", "Code")
 	_ = RequestGameTokenResponseV3Cmd.MarkFlagRequired("code")
 }

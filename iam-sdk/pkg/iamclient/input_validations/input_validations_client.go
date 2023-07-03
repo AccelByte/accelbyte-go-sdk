@@ -36,8 +36,8 @@ type ClientService interface {
 	AdminUpdateInputValidationsShort(params *AdminUpdateInputValidationsParams, authInfo runtime.ClientAuthInfoWriter) (*AdminUpdateInputValidationsNoContent, error)
 	AdminResetInputValidations(params *AdminResetInputValidationsParams, authInfo runtime.ClientAuthInfoWriter) (*AdminResetInputValidationsNoContent, *AdminResetInputValidationsUnauthorized, *AdminResetInputValidationsForbidden, *AdminResetInputValidationsNotFound, error)
 	AdminResetInputValidationsShort(params *AdminResetInputValidationsParams, authInfo runtime.ClientAuthInfoWriter) (*AdminResetInputValidationsNoContent, error)
-	PublicGetInputValidations(params *PublicGetInputValidationsParams, authInfo runtime.ClientAuthInfoWriter) (*PublicGetInputValidationsOK, *PublicGetInputValidationsNotFound, *PublicGetInputValidationsInternalServerError, error)
-	PublicGetInputValidationsShort(params *PublicGetInputValidationsParams, authInfo runtime.ClientAuthInfoWriter) (*PublicGetInputValidationsOK, error)
+	PublicGetInputValidations(params *PublicGetInputValidationsParams) (*PublicGetInputValidationsOK, *PublicGetInputValidationsNotFound, *PublicGetInputValidationsInternalServerError, error)
+	PublicGetInputValidationsShort(params *PublicGetInputValidationsParams) (*PublicGetInputValidationsOK, error)
 	PublicGetInputValidationByField(params *PublicGetInputValidationByFieldParams, authInfo runtime.ClientAuthInfoWriter) (*PublicGetInputValidationByFieldOK, *PublicGetInputValidationByFieldNotFound, *PublicGetInputValidationByFieldInternalServerError, error)
 	PublicGetInputValidationByFieldShort(params *PublicGetInputValidationByFieldParams, authInfo runtime.ClientAuthInfoWriter) (*PublicGetInputValidationByFieldOK, error)
 
@@ -588,7 +588,7 @@ This endpoint is to get list of input validation configuration.
 
 `regex` parameter will be returned if `isCustomRegex` is true. Otherwise, it will be empty.
 */
-func (a *Client) PublicGetInputValidations(params *PublicGetInputValidationsParams, authInfo runtime.ClientAuthInfoWriter) (*PublicGetInputValidationsOK, *PublicGetInputValidationsNotFound, *PublicGetInputValidationsInternalServerError, error) {
+func (a *Client) PublicGetInputValidations(params *PublicGetInputValidationsParams) (*PublicGetInputValidationsOK, *PublicGetInputValidationsNotFound, *PublicGetInputValidationsInternalServerError, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewPublicGetInputValidationsParams()
@@ -611,7 +611,6 @@ func (a *Client) PublicGetInputValidations(params *PublicGetInputValidationsPara
 		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &PublicGetInputValidationsReader{formats: a.formats},
-		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
 	})
@@ -651,7 +650,7 @@ This endpoint is to get list of input validation configuration.
 
 `regex` parameter will be returned if `isCustomRegex` is true. Otherwise, it will be empty.
 */
-func (a *Client) PublicGetInputValidationsShort(params *PublicGetInputValidationsParams, authInfo runtime.ClientAuthInfoWriter) (*PublicGetInputValidationsOK, error) {
+func (a *Client) PublicGetInputValidationsShort(params *PublicGetInputValidationsParams) (*PublicGetInputValidationsOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewPublicGetInputValidationsParams()
@@ -674,7 +673,6 @@ func (a *Client) PublicGetInputValidationsShort(params *PublicGetInputValidation
 		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &PublicGetInputValidationsReader{formats: a.formats},
-		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
 	})

@@ -21,6 +21,12 @@ type ModelTokenThirdPartyLinkStatusResponse struct {
 	// linked
 	// Required: true
 	Linked *bool `json:"linked"`
+
+	// platformtoken
+	PlatformToken string `json:"platformToken,omitempty"`
+
+	// sandboxid
+	SandboxID string `json:"sandboxId,omitempty"`
 }
 
 // Validate validates this Model token third party link status response

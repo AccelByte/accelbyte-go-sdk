@@ -65,6 +65,11 @@ type GenerateTokenByNewHeadlessAccountV3Params struct {
 
 	/*RetryPolicy*/
 	RetryPolicy *utils.Retry
+	/*AdditionalData
+	  Additional info, it will be passed to login success event.
+
+	*/
+	AdditionalData *string
 	/*ExtendExp
 	  Extend expiration date of refresh token
 
@@ -129,6 +134,17 @@ func (o *GenerateTokenByNewHeadlessAccountV3Params) SetHTTPClientTransport(round
 	}
 }
 
+// WithAdditionalData adds the additionalData to the generate token by new headless account v3 params
+func (o *GenerateTokenByNewHeadlessAccountV3Params) WithAdditionalData(additionalData *string) *GenerateTokenByNewHeadlessAccountV3Params {
+	o.SetAdditionalData(additionalData)
+	return o
+}
+
+// SetAdditionalData adds the additionalData to the generate token by new headless account v3 params
+func (o *GenerateTokenByNewHeadlessAccountV3Params) SetAdditionalData(additionalData *string) {
+	o.AdditionalData = additionalData
+}
+
 // WithExtendExp adds the extendExp to the generate token by new headless account v3 params
 func (o *GenerateTokenByNewHeadlessAccountV3Params) WithExtendExp(extendExp *bool) *GenerateTokenByNewHeadlessAccountV3Params {
 	o.SetExtendExp(extendExp)
@@ -158,6 +174,22 @@ func (o *GenerateTokenByNewHeadlessAccountV3Params) WriteToRequest(r runtime.Cli
 		return err
 	}
 	var res []error
+
+	if o.AdditionalData != nil {
+
+		// form param additionalData
+		var frAdditionalData string
+		if o.AdditionalData != nil {
+			frAdditionalData = *o.AdditionalData
+		}
+		fAdditionalData := frAdditionalData
+		if fAdditionalData != "" {
+			if err := r.SetFormParam("additionalData", fAdditionalData); err != nil {
+				return err
+			}
+		}
+
+	}
 
 	if o.ExtendExp != nil {
 

@@ -20,8 +20,7 @@ type APIFleetServerHistoryEventResponse struct {
 
 	// createdat
 	// Required: true
-	// Format: date-time
-	CreatedAt strfmt.DateTime `json:"createdAt"`
+	CreatedAt *string `json:"createdAt"`
 
 	// exitcode
 	// Required: true
@@ -83,11 +82,7 @@ func (m *APIFleetServerHistoryEventResponse) Validate(formats strfmt.Registry) e
 
 func (m *APIFleetServerHistoryEventResponse) validateCreatedAt(formats strfmt.Registry) error {
 
-	if err := validate.Required("createdAt", "body", strfmt.DateTime(m.CreatedAt)); err != nil {
-		return err
-	}
-
-	if err := validate.FormatOf("createdAt", "body", "date-time", m.CreatedAt.String(), formats); err != nil {
+	if err := validate.Required("createdAt", "body", m.CreatedAt); err != nil {
 		return err
 	}
 

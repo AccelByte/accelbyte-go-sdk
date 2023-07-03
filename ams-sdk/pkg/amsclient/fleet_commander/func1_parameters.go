@@ -4,7 +4,7 @@
 
 // Code generated; DO NOT EDIT.
 
-package operations
+package fleet_commander
 
 import (
 	"context"

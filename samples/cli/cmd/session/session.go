@@ -12,6 +12,7 @@ import (
 	"github.com/AccelByte/sample-apps/cmd/session/gameSession"
 	"github.com/AccelByte/sample-apps/cmd/session/operations"
 	"github.com/AccelByte/sample-apps/cmd/session/party"
+	"github.com/AccelByte/sample-apps/cmd/session/platformCredential"
 	"github.com/AccelByte/sample-apps/cmd/session/player"
 	"github.com/spf13/cobra"
 )
@@ -41,6 +42,7 @@ func init() {
 	SessionCmd.AddCommand(gameSession.AdminDeleteBulkGameSessionsCmd)
 	SessionCmd.AddCommand(gameSession.AdminUpdateGameSessionMemberCmd)
 	SessionCmd.AddCommand(party.AdminQueryPartiesCmd)
+	SessionCmd.AddCommand(platformCredential.AdminUpdatePlatformCredentialsCmd)
 	SessionCmd.AddCommand(player.AdminQueryPlayerAttributesCmd)
 	SessionCmd.AddCommand(player.AdminGetPlayerAttributesCmd)
 	SessionCmd.AddCommand(gameSession.CreateGameSessionCmd)
@@ -56,6 +58,7 @@ func init() {
 	SessionCmd.AddCommand(gameSession.PublicRevokeGameSessionCodeCmd)
 	SessionCmd.AddCommand(gameSession.PublicGameSessionInviteCmd)
 	SessionCmd.AddCommand(gameSession.JoinGameSessionCmd)
+	SessionCmd.AddCommand(gameSession.PublicPromoteGameSessionLeaderCmd)
 	SessionCmd.AddCommand(gameSession.LeaveGameSessionCmd)
 	SessionCmd.AddCommand(gameSession.PublicGameSessionRejectCmd)
 	SessionCmd.AddCommand(gameSession.AppendTeamGameSessionCmd)

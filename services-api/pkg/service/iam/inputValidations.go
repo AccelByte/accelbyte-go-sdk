@@ -107,11 +107,7 @@ func (aaa *InputValidationsService) AdminResetInputValidations(input *input_vali
 
 // Deprecated: 2022-01-10 - please use PublicGetInputValidationsShort instead.
 func (aaa *InputValidationsService) PublicGetInputValidations(input *input_validations.PublicGetInputValidationsParams) (*iamclientmodels.ModelInputValidationsPublicResponse, error) {
-	token, err := aaa.TokenRepository.GetToken()
-	if err != nil {
-		return nil, err
-	}
-	ok, notFound, internalServerError, err := aaa.Client.InputValidations.PublicGetInputValidations(input, client.BearerToken(*token.AccessToken))
+	ok, notFound, internalServerError, err := aaa.Client.InputValidations.PublicGetInputValidations(input)
 	if notFound != nil {
 		return nil, notFound
 	}
@@ -221,13 +217,6 @@ func (aaa *InputValidationsService) AdminResetInputValidationsShort(input *input
 }
 
 func (aaa *InputValidationsService) PublicGetInputValidationsShort(input *input_validations.PublicGetInputValidationsParams) (*iamclientmodels.ModelInputValidationsPublicResponse, error) {
-	authInfoWriter := input.AuthInfoWriter
-	if authInfoWriter == nil {
-		security := [][]string{
-			{"bearer"},
-		}
-		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
-	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
@@ -237,7 +226,7 @@ func (aaa *InputValidationsService) PublicGetInputValidationsShort(input *input_
 		}
 	}
 
-	ok, err := aaa.Client.InputValidations.PublicGetInputValidationsShort(input, authInfoWriter)
+	ok, err := aaa.Client.InputValidations.PublicGetInputValidationsShort(input)
 	if err != nil {
 		return nil, err
 	}

@@ -18,6 +18,9 @@ import (
 // swagger:model Apimodels configuration template response.
 type ApimodelsConfigurationTemplateResponse struct {
 
+	// psnbaseurl
+	PSNBaseURL string `json:"PSNBaseUrl,omitempty"`
+
 	// clientversion
 	// Required: true
 	ClientVersion *string `json:"clientVersion"`

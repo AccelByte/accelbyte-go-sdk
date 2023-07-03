@@ -21,6 +21,9 @@ type ApimodelsCreateConfigurationTemplateRequest struct {
 	// nativesessionsetting
 	NativeSessionSetting *ModelsNativeSessionSetting `json:"NativeSessionSetting,omitempty"`
 
+	// psnbaseurl
+	PSNBaseURL string `json:"PSNBaseUrl,omitempty"`
+
 	// clientversion
 	// Required: true
 	ClientVersion *string `json:"clientVersion"`

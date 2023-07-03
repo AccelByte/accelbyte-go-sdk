@@ -27,6 +27,7 @@ var PlatformTokenGrantV3Cmd = &cobra.Command{
 			TokenRepository:  &repository.TokenRepositoryImpl{},
 		}
 		platformId, _ := cmd.Flags().GetString("platformId")
+		additionalData, _ := cmd.Flags().GetString("additionalData")
 		clientId, _ := cmd.Flags().GetString("clientId")
 		createHeadless, _ := cmd.Flags().GetBool("createHeadless")
 		deviceId, _ := cmd.Flags().GetString("deviceId")
@@ -34,6 +35,7 @@ var PlatformTokenGrantV3Cmd = &cobra.Command{
 		platformToken, _ := cmd.Flags().GetString("platformToken")
 		skipSetCookie, _ := cmd.Flags().GetBool("skipSetCookie")
 		input := &o_auth2_0.PlatformTokenGrantV3Params{
+			AdditionalData: &additionalData,
 			ClientID:       &clientId,
 			CreateHeadless: &createHeadless,
 			DeviceID:       &deviceId,
@@ -56,6 +58,7 @@ var PlatformTokenGrantV3Cmd = &cobra.Command{
 }
 
 func init() {
+	PlatformTokenGrantV3Cmd.Flags().String("additionalData", "", "Additional data")
 	PlatformTokenGrantV3Cmd.Flags().String("clientId", "", "Client id")
 	PlatformTokenGrantV3Cmd.Flags().Bool("createHeadless", false, "Create headless")
 	PlatformTokenGrantV3Cmd.Flags().String("deviceId", "", "Device id")

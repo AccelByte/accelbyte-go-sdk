@@ -38,20 +38,6 @@ func (aaa *OperationsService) GetAuthSession() auth.Session {
 	}
 }
 
-// Deprecated: 2022-01-10 - please use Func1Short instead.
-func (aaa *OperationsService) Func1(input *operations.Func1Params) error {
-	token, err := aaa.TokenRepository.GetToken()
-	if err != nil {
-		return err
-	}
-	_, err = aaa.Client.Operations.Func1(input, client.BearerToken(*token.AccessToken))
-	if err != nil {
-		return err
-	}
-
-	return nil
-}
-
 // Deprecated: 2022-01-10 - please use BasicHealthCheckShort instead.
 func (aaa *OperationsService) BasicHealthCheck(input *operations.BasicHealthCheckParams) error {
 	token, err := aaa.TokenRepository.GetToken()
@@ -59,31 +45,6 @@ func (aaa *OperationsService) BasicHealthCheck(input *operations.BasicHealthChec
 		return err
 	}
 	_, err = aaa.Client.Operations.BasicHealthCheck(input, client.BearerToken(*token.AccessToken))
-	if err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (aaa *OperationsService) Func1Short(input *operations.Func1Params) error {
-	authInfoWriter := input.AuthInfoWriter
-	if authInfoWriter == nil {
-		security := [][]string{
-			{"bearer"},
-		}
-		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
-	}
-	if input.RetryPolicy == nil {
-		input.RetryPolicy = &utils.Retry{
-			MaxTries:   utils.MaxTries,
-			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  aaa.Client.Runtime.Transport,
-			RetryCodes: utils.RetryCodes,
-		}
-	}
-
-	_, err := aaa.Client.Operations.Func1Short(input, authInfoWriter)
 	if err != nil {
 		return err
 	}

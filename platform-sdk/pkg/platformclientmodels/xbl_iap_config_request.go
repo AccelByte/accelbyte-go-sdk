@@ -18,7 +18,7 @@ import (
 // swagger:model Xbl IAP config request.
 type XblIAPConfigRequest struct {
 
-	// relyingPartyCert
+	// deprecated - relyingPartyCert
 	// Required: true
 	RelyingPartyCert *string `json:"relyingPartyCert"`
 }

@@ -95,6 +95,11 @@ type TokenGrantV3Params struct {
 
 	*/
 	DeviceID *string
+	/*AdditionalData
+	  Additional info, it will be passed to login success event.
+
+	*/
+	AdditionalData *string
 	/*ClientID
 	  client_id (used with grant type 'authorization_code')
 
@@ -214,6 +219,17 @@ func (o *TokenGrantV3Params) WithDeviceID(deviceID *string) *TokenGrantV3Params 
 // SetDeviceID adds the deviceId to the token grant v3 params
 func (o *TokenGrantV3Params) SetDeviceID(deviceID *string) {
 	o.DeviceID = deviceID
+}
+
+// WithAdditionalData adds the additionalData to the token grant v3 params
+func (o *TokenGrantV3Params) WithAdditionalData(additionalData *string) *TokenGrantV3Params {
+	o.SetAdditionalData(additionalData)
+	return o
+}
+
+// SetAdditionalData adds the additionalData to the token grant v3 params
+func (o *TokenGrantV3Params) SetAdditionalData(additionalData *string) {
+	o.AdditionalData = additionalData
 }
 
 // WithClientID adds the clientID to the token grant v3 params
@@ -336,6 +352,22 @@ func (o *TokenGrantV3Params) WriteToRequest(r runtime.ClientRequest, reg strfmt.
 		// header param device_id
 		if err := r.SetHeaderParam("device_id", *o.DeviceID); err != nil {
 			return err
+		}
+
+	}
+
+	if o.AdditionalData != nil {
+
+		// form param additionalData
+		var frAdditionalData string
+		if o.AdditionalData != nil {
+			frAdditionalData = *o.AdditionalData
+		}
+		fAdditionalData := frAdditionalData
+		if fAdditionalData != "" {
+			if err := r.SetFormParam("additionalData", fAdditionalData); err != nil {
+				return err
+			}
 		}
 
 	}

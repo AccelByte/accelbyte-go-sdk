@@ -1,3 +1,9 @@
+<a name="v0.48.0"></a>
+## [v0.48.0]
+### ci
+- **generate:** wrong spec commit hash if no recent changes enough in stage_extend-sdk
+
+
 <a name="v0.47.0"></a>
 ## [v0.47.0]
 ### chore

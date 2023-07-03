@@ -40,6 +40,9 @@ type ModelsNativeSessionSetting struct {
 	// xboxsessiontemplatename
 	// Required: true
 	XboxSessionTemplateName *string `json:"XboxSessionTemplateName"`
+
+	// localizedsessionname
+	LocalizedSessionName interface{} `json:"localizedSessionName,omitempty"`
 }
 
 // Validate validates this Models native session setting

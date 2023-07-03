@@ -64,6 +64,11 @@ type RequestGameTokenResponseV3Params struct {
 
 	/*RetryPolicy*/
 	RetryPolicy *utils.Retry
+	/*AdditionalData
+	  Additional info, it will be passed to login success event.
+
+	*/
+	AdditionalData *string
 	/*Code
 	  code from request game token
 
@@ -123,6 +128,17 @@ func (o *RequestGameTokenResponseV3Params) SetHTTPClientTransport(roundTripper h
 	}
 }
 
+// WithAdditionalData adds the additionalData to the request game token response v3 params
+func (o *RequestGameTokenResponseV3Params) WithAdditionalData(additionalData *string) *RequestGameTokenResponseV3Params {
+	o.SetAdditionalData(additionalData)
+	return o
+}
+
+// SetAdditionalData adds the additionalData to the request game token response v3 params
+func (o *RequestGameTokenResponseV3Params) SetAdditionalData(additionalData *string) {
+	o.AdditionalData = additionalData
+}
+
 // WithCode adds the code to the request game token response v3 params
 func (o *RequestGameTokenResponseV3Params) WithCode(code string) *RequestGameTokenResponseV3Params {
 	o.SetCode(code)
@@ -141,6 +157,22 @@ func (o *RequestGameTokenResponseV3Params) WriteToRequest(r runtime.ClientReques
 		return err
 	}
 	var res []error
+
+	if o.AdditionalData != nil {
+
+		// form param additionalData
+		var frAdditionalData string
+		if o.AdditionalData != nil {
+			frAdditionalData = *o.AdditionalData
+		}
+		fAdditionalData := frAdditionalData
+		if fAdditionalData != "" {
+			if err := r.SetFormParam("additionalData", fAdditionalData); err != nil {
+				return err
+			}
+		}
+
+	}
 
 	// form param code
 	frCode := o.Code

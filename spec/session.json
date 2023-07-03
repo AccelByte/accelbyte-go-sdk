@@ -3,7 +3,7 @@
   "info": {
     "description": "Justice Session Service",
     "title": "justice-session-service",
-    "version": "2.15.4"
+    "version": "2.18.3"
   },
   "schemes": [
     "https"
@@ -17,7 +17,8 @@
       "authorizationUrl": "https://dummy.oauth.net/auth",
       "flow": "accessCode",
       "scopes": {
-        "ADMIN:NAMESPACE:{namespace}:SESSION:GAME [READ]": "ADMIN:NAMESPACE:{namespace}:SESSION:GAME [READ]"
+        "ADMIN:NAMESPACE:{namespace}:SESSION:GAME [READ]": "ADMIN:NAMESPACE:{namespace}:SESSION:GAME [READ]",
+        "NAMESPACE:{namespace}:SESSION:GAME [UPDATE]": "NAMESPACE:{namespace}:SESSION:GAME [UPDATE]"
       },
       "tokenUrl": "https://dumy.oauth.net/token",
       "type": "oauth2"
@@ -412,7 +413,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "Create template configuration to be applied across party and session.\nSession configuration mandatory :\n- name\n- joinability (example value : OPEN, CLOSED, INVITE_ONLY)\n- Type (example value : P2P, DS, NONE) if type empty, type will be assign to NONE\n- MinPlayers (must greather or equal 0)\n- MaxPlayers (must greather than 0)\n- InviteTimeout (must greather or equal 0) if InviteTimeout equal 0 will be use default DefaultTimeoutSecond (60s)\n- InactiveTimeout (must greather or equal 0) if InactiveTimeout equal 0 will be use default DefaultTimeoutSecond (60s)\n- Persistent Flag only can use with type DS (example value true or false)\n- If Persistent True the session always active even DS removing or terminate and Session will be request DS again until DS Ready or Busy.\n- To Stop Session Not request again to DS or want Delete Session can Delete Session using endpoint DELETE /session/v1/public/namespaces/{namespace}/gamesessions/{sessionId}\n- If Persistent False the session will be inactive if all member left and DS terminate or removing\n- nativeSessionSetting:\n\t- XboxSessionTemplateName: the XBox session template name that correspondent to the AB session template, and is needed to define XBox session\u0026#39;s joinRestriction and maxMembersCount when doing the session sync.\n\t- XboxServiceConfigID: the XBox service configuration ID. \n\t- PSNServiceLabel: the PSN service label.\n\t- SessionTitle: the session title. In PSN, this will be used to define name of the session thats displayed on PlayStation system UI.\n\t- ShouldSync: to define whether the service needs to do session sync with native platform(s). Default: false (disabled).\n\t- PSNSupportedPlatforms: the PSN supported platforms. In PSN, if ShouldSync true and PSNSupportedPlatforms is empty, then PS5 will be set as default value.\n",
+        "description": "Create template configuration to be applied across party and session.\nSession configuration mandatory :\n- name\n- joinability (example value : OPEN, CLOSED, INVITE_ONLY)\n- Type (example value : P2P, DS, NONE) if type empty, type will be assign to NONE\n- MinPlayers (must greather or equal 0)\n- MaxPlayers (must greather than 0)\n- InviteTimeout (must greather or equal 0) if InviteTimeout equal 0 will be use default DefaultTimeoutSecond (60s)\n- InactiveTimeout (must greather or equal 0) if InactiveTimeout equal 0 will be use default DefaultTimeoutSecond (60s)\n- Persistent Flag only can use with type DS (example value true or false)\n- If Persistent True the session always active even DS removing or terminate and Session will be request DS again until DS Ready or Busy.\n- To Stop Session Not request again to DS or want Delete Session can Delete Session using endpoint DELETE /session/v1/public/namespaces/{namespace}/gamesessions/{sessionId}\n- If Persistent False the session will be inactive if all member left and DS terminate or removing\n- nativeSessionSetting:\n\t- XboxSessionTemplateName: the XBox session template name that correspondent to the AB session template, and is needed to define XBox session\u0026#39;s joinRestriction and maxMembersCount when doing the session sync.\n\t- XboxServiceConfigID: the XBox service configuration ID.\n\t- PSNServiceLabel: the PSN service label.\n\t- SessionTitle: the session title. In PSN, this will be used to define name of the session thats displayed on PlayStation system UI.\n\t- ShouldSync: to define whether the service needs to do session sync with native platform(s). Default: false (disabled).\n\t- PSNSupportedPlatforms: the PSN supported platforms. In PSN, if ShouldSync true and PSNSupportedPlatforms is empty, then PS5 will be set as default value.\n- PSNBaseUrl this is for base URL PSN if not set will be default value https://s2s.sp-int.playstation.net. In a single namespace only 1 PSN Env that can be used. Multiple session template should refers to the same PSN Env as we have in IAM Service.\n    - https://s2s.sp-int.playstation.net (DEV, need IP Whitelist)\n    - https://s2s.prod-qa.playstation.net (QA Environment/PSN Certification)\n    - https://s2s.np.playstation.net (Production)\n    - localizedSessionName : for localized name and default language\n\t\texample payload : \n\t\t\u0026#34;localizedSessionName\u0026#34;:{\n\t\t\t\u0026#34;defaultLanguage\u0026#34; : \u0026#34;en-US\u0026#34;\n\t\t\t\u0026#34;localizedText\u0026#34; :{\n\t\t\t\t\u0026#34;en-US\u0026#34; : \u0026#34;title\u0026#34;\n\t\t\t}\n\t\t}\n",
         "operationId": "adminCreateConfigurationTemplateV1",
         "parameters": [
           {
@@ -702,7 +703,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "Update template configuration\nSession configuration mandatory :\n- name\n- joinability (example value : OPEN, CLOSED, INVITE_ONLY)\n- Type (example value : P2P, DS, NONE) if type empty, type will be assign to NONE\n- MinPlayers (must greather or equal 0)\n- MaxPlayers (must greather than 0)\n- InviteTimeout (must greather or equal 0) if InviteTimeout equal 0 will be use default DefaultTimeoutSecond (60s)\n- InactiveTimeout (must greather or equal 0) if InactiveTimeout equal 0 will be use default DefaultTimeoutSecond (60s)\n- Persistent Flag only can use with type DS (example value true or false)\n- If Persistent True the session always active even DS removing or terminate and Session will be request DS again until DS Ready or Busy.\n- To Stop Session Not request again to DS or want Delete Session can Delete Session using endpoint DELETE /session/v1/public/namespaces/{namespace}/gamesessions/{sessionId}\n- If Persistent False the session will be inactive if all member left and DS terminate or removing\n- nativeSessionSetting:\n\t- XboxSessionTemplateName: the XBox session template name that correspondent to the AB session template, and is needed to define XBox session\u0026#39;s joinRestriction and maxMembersCount when doing the session sync.\n\t- XboxServiceConfigID: the XBox service configuration ID. \n\t- PSNServiceLabel: the PSN service label.\n\t- SessionTitle: the session title. In PSN, this will be used to define name of the session thats displayed on PlayStation system UI.\n\t- ShouldSync: to define whether the service needs to do session sync with native platform(s). Default: false (disabled).\n\t- PSNSupportedPlatforms: the PSN supported platforms. In PSN, if ShouldSync true and PSNSupportedPlatforms is empty, then PS5 will be set as default value.\n",
+        "description": "Update template configuration\nSession configuration mandatory :\n- name\n- joinability (example value : OPEN, CLOSED, INVITE_ONLY)\n- Type (example value : P2P, DS, NONE) if type empty, type will be assign to NONE\n- MinPlayers (must greather or equal 0)\n- MaxPlayers (must greather than 0)\n- InviteTimeout (must greather or equal 0) if InviteTimeout equal 0 will be use default DefaultTimeoutSecond (60s)\n- InactiveTimeout (must greather or equal 0) if InactiveTimeout equal 0 will be use default DefaultTimeoutSecond (60s)\n- Persistent Flag only can use with type DS (example value true or false)\n- If Persistent True the session always active even DS removing or terminate and Session will be request DS again until DS Ready or Busy.\n- To Stop Session Not request again to DS or want Delete Session can Delete Session using endpoint DELETE /session/v1/public/namespaces/{namespace}/gamesessions/{sessionId}\n- If Persistent False the session will be inactive if all member left and DS terminate or removing\n- nativeSessionSetting:\n\t- XboxSessionTemplateName: the XBox session template name that correspondent to the AB session template, and is needed to define XBox session\u0026#39;s joinRestriction and maxMembersCount when doing the session sync.\n\t- XboxServiceConfigID: the XBox service configuration ID.\n\t- PSNServiceLabel: the PSN service label.\n\t- SessionTitle: the session title. In PSN, this will be used to define name of the session thats displayed on PlayStation system UI.\n\t- ShouldSync: to define whether the service needs to do session sync with native platform(s). Default: false (disabled).\n\t- PSNSupportedPlatforms: the PSN supported platforms. In PSN, if ShouldSync true and PSNSupportedPlatforms is empty, then PS5 will be set as default value.\n- PSNBaseUrl this is for base URL PSN if not set will be default value https://s2s.sp-int.playstation.net. In a single namespace only 1 PSN Env that can be used. Multiple session template should refers to the same PSN Env as we have in IAM Service.\n    - https://s2s.sp-int.playstation.net (DEV, need IP Whitelist)\n    - https://s2s.prod-qa.playstation.net (QA Environment/PSN Certification)\n    - https://s2s.np.playstation.net (Production)\n    - localizedSessionName : for localized name and default language\n\t\texample payload : \n\t\t\u0026#34;localizedSessionName\u0026#34;:{\n\t\t\t\u0026#34;defaultLanguage\u0026#34; : \u0026#34;en-US\u0026#34;\n\t\t\t\u0026#34;localizedText\u0026#34; :{\n\t\t\t\t\u0026#34;en-US\u0026#34; : \u0026#34;title\u0026#34;\n\t\t\t}\n\t\t}\n",
         "operationId": "adminUpdateConfigurationTemplateV1",
         "parameters": [
           {
@@ -1370,6 +1371,83 @@
         ]
       }
     },
+    "/session/v1/admin/namespaces/{namespace}/platform-credentials": {
+      "put": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Update platform credentials.",
+        "operationId": "adminUpdatePlatformCredentials",
+        "parameters": [
+          {
+            "description": "Platform credentials",
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/apimodels.PutPlatformCredentialsRequest"
+            }
+          },
+          {
+            "description": "namespace of the game",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "string"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "summary": "Update platform credentials. Currently only used to sync PSN sessions. Requires ADMIN:NAMESPACE:{namespace}:SESSION:CONFIGURATION [UPDATE]",
+        "tags": [
+          "Platform Credential"
+        ]
+      }
+    },
     "/session/v1/admin/namespaces/{namespace}/users/attributes": {
       "get": {
         "consumes": [
@@ -1515,7 +1593,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "Create a game session.\n      Session configuration name is mandatory, this API will refer following values from the session template if they\u0026#39;re not provided in the request:\n   - type\n   - joinability\n   - minPlayers\n   - maxPlayers\n   - inviteTimeout\n   - inactiveTimeout\n   - dsSource\n\n      When the session type is a DS, a DS creation request will be sent if number of active players reaches session\u0026#39;s minPlayers.\n\nActive user is a user who present within the session, has status CONNECTED/JOINED.\n\n      Session service has several DSInformation status to track DS request to DSMC:\n   - NEED_TO_REQUEST: number of active players hasn\u0026#39;t reached session\u0026#39;s minPlayers therefore DS has not yet requested.\n   - REQUESTED: DS is being requested to DSMC.\n   - AVAILABLE: DS is ready to use. The DSMC status for this DS is either READY/BUSY.\n   - FAILED_TO_REQUEST: DSMC fails to create the DS.\n\n      By default, DS requests are sent to DSMC, but if dsSource is set to \u0026#34;AMS\u0026#34;:\n         - A DS will be requested from AMS instead of DSMC.  \n         - The server will be chosen based on a set of claim keys, in order of preference, to match with fleets.\n         - The claim key list is built build from the preferredClaimKeys, fallbackClaimKeys, and clientVersion as follows: \n           [preferredClaimKeys.., clientVersion, fallbackClaimKeys...]\n",
+        "description": "Create a game session.\n      Session configuration name is mandatory, this API will refer following values from the session template if they\u0026#39;re not provided in the request:\n   - type\n   - joinability\n   - minPlayers\n   - maxPlayers\n   - inviteTimeout\n   - inactiveTimeout\n   - dsSource\n\n      When the session type is a DS, a DS creation request will be sent if number of active players reaches session\u0026#39;s minPlayers.\n\nActive user is a user who present within the session, has status CONNECTED/JOINED.\n\n      Session service has several DSInformation status to track DS request to DSMC:\n   - NEED_TO_REQUEST: number of active players hasn\u0026#39;t reached session\u0026#39;s minPlayers therefore DS has not yet requested.\n   - REQUESTED: DS is being requested to DSMC.\n   - AVAILABLE: DS is ready to use. The DSMC status for this DS is either READY/BUSY.\n   - FAILED_TO_REQUEST: DSMC fails to create the DS.\n\n      By default, DS requests are sent to DSMC, but if dsSource is set to \u0026#34;AMS\u0026#34;:\n         - A DS will be requested from AMS instead of DSMC.\n         - The server will be chosen based on a set of claim keys, in order of preference, to match with fleets.\n         - The claim key list is built build from the preferredClaimKeys, fallbackClaimKeys, and clientVersion as follows:\n           [preferredClaimKeys.., clientVersion, fallbackClaimKeys...]\n",
         "operationId": "createGameSession",
         "parameters": [
           {
@@ -1586,7 +1664,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "Query game sessions. \n\nBy default, API will return a list of available game sessions (joinability: open).\nSession service has several DSInformation status to track DS request to DSMC:\n   - NEED_TO_REQUEST: number of active players hasn\u0026#39;t reached session\u0026#39;s minPlayers therefore DS has not yet requested.\n   - REQUESTED: DS is being requested to DSMC.\n   - AVAILABLE: DS is ready to use. The DSMC status for this DS is either READY/BUSY.\n   - FAILED_TO_REQUEST: DSMC fails to create the DS.\n",
+        "description": "Query game sessions.\n\nBy default, API will return a list of available game sessions (joinability: open).\nSession service has several DSInformation status to track DS request to DSMC:\n   - NEED_TO_REQUEST: number of active players hasn\u0026#39;t reached session\u0026#39;s minPlayers therefore DS has not yet requested.\n   - REQUESTED: DS is being requested to DSMC.\n   - AVAILABLE: DS is ready to use. The DSMC status for this DS is either READY/BUSY.\n   - FAILED_TO_REQUEST: DSMC fails to create the DS.\n\nquery parameter \\\u0026#34;availability\\\u0026#34; to filter sessions\u0026#39; availabillity:\nall: return all sessions regardless it\u0026#39;s full\nfull: only return active sessions\ndefault behavior (unset or else): return only available sessions (not full)\n",
         "operationId": "publicQueryGameSessions",
         "parameters": [
           {
@@ -2022,7 +2100,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "Updates a game session, this endpoint will override stored gamesession data.\n      To update only specified fields, please use following endpoint: \n  method : PATCH\n  API\t : /session/v1/public/namespaces/{namespace}/gamesessions/{sessionId}\n\nTo update DS attributes (clientVersion, deployment, requestedRegions) it will only be applied only as long as no DS has been requested, otherwise ignored.\n      ",
+        "description": "Updates a game session, this endpoint will override stored gamesession data.\n      To update only specified fields, please use following endpoint:\n  method : PATCH\n  API\t : /session/v1/public/namespaces/{namespace}/gamesessions/{sessionId}\n\nTo update DS attributes (clientVersion, deployment, requestedRegions) it will only be applied only as long as no DS has been requested, otherwise ignored.\n      ",
         "operationId": "updateGameSession",
         "parameters": [
           {
@@ -2474,6 +2552,93 @@
         ]
       }
     },
+    "/session/v1/public/namespaces/{namespace}/gamesessions/{sessionId}/leader": {
+      "post": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Promote game session member to become the new game session leader.\n\nThis API requires the NAMESPACE:{namespace}:SESSION:GAME [UPDATE] permission.\n\nThis API can be operated by:\n- User (game session member) who is the current leader of the game session\n- Game Client\n- Dedicated Server (DS)\n\nThis API will promote game session leader candidate with the following criteria:\n- Leader candidate is a member of the game session\n- Leader candidate has a \u0026#34;CONNECTED\u0026#34; or \u0026#34;JOINED\u0026#34; status\n- If the leader candidate is the current leader, then no promotion process is carried out\n",
+        "operationId": "publicPromoteGameSessionLeader",
+        "parameters": [
+          {
+            "description": "Promote leader request",
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/apimodels.PromoteLeaderRequest"
+            }
+          },
+          {
+            "description": "Namespace",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "session ID",
+            "in": "path",
+            "name": "sessionId",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/apimodels.GameSessionResponse"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          }
+        },
+        "security": [
+          {
+            "HasPermission": [
+              "NAMESPACE:{namespace}:SESSION:GAME [UPDATE]"
+            ],
+            "authorization": []
+          }
+        ],
+        "summary": "Promote new game session leader. Requires NAMESPACE:{namespace}:SESSION:GAME [UPDATE]",
+        "tags": [
+          "Game Session"
+        ]
+      }
+    },
     "/session/v1/public/namespaces/{namespace}/gamesessions/{sessionId}/leave": {
       "delete": {
         "description": "Leave a game session.",
@@ -2836,7 +3001,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "Update specified fields from party data. Note: Join type can only be updated by the party\u0026#39;s leader.\n\t\t\t\nReserved attributes key:\n1. preference: used to store preference of the leader and it is non-replaceable to keep the initial behavior of \n\tthe session regardless the leader changes.\n2. NATIVESESSIONTITLE: used for session sync, to define name of session displayed on PlayStation system UI.\n",
+        "description": "Update specified fields from party data. Note: Join type can only be updated by the party\u0026#39;s leader.\n\nReserved attributes key:\n1. preference: used to store preference of the leader and it is non-replaceable to keep the initial behavior of\n\tthe session regardless the leader changes.\n2. NATIVESESSIONTITLE: used for session sync, to define name of session displayed on PlayStation system UI.\n",
         "operationId": "publicPatchUpdateParty",
         "parameters": [
           {
@@ -2918,7 +3083,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "Updates party blob, this endpoint will override stored party data. \n\nJoin type can only be updated by the party\u0026#39;s leader.\nTo update only specified fields, please use following endpoint: \n  method : PATCH\n  API\t : /session/v1/public/namespaces/{namespace}/gamesessions/{sessionId}\n\nReserved attributes key:\n1. preference: used to store preference of the leader and it is non-replaceable to keep the initial behavior of \n\tthe session regardless the leader changes.\n2. NATIVESESSIONTITLE: used for session sync, to define name of session displayed on PlayStation system UI.\n",
+        "description": "Updates party blob, this endpoint will override stored party data.\n\nJoin type can only be updated by the party\u0026#39;s leader.\nTo update only specified fields, please use following endpoint:\n  method : PATCH\n  API\t : /session/v1/public/namespaces/{namespace}/gamesessions/{sessionId}\n\nReserved attributes key:\n1. preference: used to store preference of the leader and it is non-replaceable to keep the initial behavior of\n\tthe session regardless the leader changes.\n2. NATIVESESSIONTITLE: used for session sync, to define name of session displayed on PlayStation system UI.\n",
         "operationId": "publicUpdateParty",
         "parameters": [
           {
@@ -3592,7 +3757,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "A join code will be autogenerated if the party is joinable. \nCreator will be removed from previous party (if any) and automatically join into the created party as a leader.\nParty members will be sent invitation to join the party.\n      Session configuration name is optional.\nDefault configuration name if empty:\n{\n\t\u0026#34;name\u0026#34;: \u0026#34;default\u0026#34;,\n\t\u0026#34;type\u0026#34;: \u0026#34;NONE\u0026#34;,\n\t\u0026#34;joinability\u0026#34;: \u0026#34;OPEN\u0026#34;,\n\t\u0026#34;minPlayers\u0026#34;: 1,\n\t\u0026#34;maxPlayers\u0026#34;: 8,\n\t\u0026#34;inviteTimeout\u0026#34;: 60,\n\t\u0026#34;inactiveTimeout\u0026#34;: 60,\n\t\u0026#34;textChat\u0026#34;: false\n}\n\nSupported platforms:\n      1. STEAM\n2. PSN\n3. XBOX\n\nReserved attributes key:\n1. preference: used to store preference of the leader and it is non-replaceable to keep the initial behavior of \n\tthe session regardless the leader changes.\n2. NATIVESESSIONTITLE: used for session sync, to define name of session displayed on PlayStation system UI.\n",
+        "description": "A join code will be autogenerated if the party is joinable.\nCreator will be removed from previous party (if any) and automatically join into the created party as a leader.\nParty members will be sent invitation to join the party.\n      Session configuration name is optional.\nDefault configuration name if empty:\n{\n\t\u0026#34;name\u0026#34;: \u0026#34;default\u0026#34;,\n\t\u0026#34;type\u0026#34;: \u0026#34;NONE\u0026#34;,\n\t\u0026#34;joinability\u0026#34;: \u0026#34;OPEN\u0026#34;,\n\t\u0026#34;minPlayers\u0026#34;: 1,\n\t\u0026#34;maxPlayers\u0026#34;: 8,\n\t\u0026#34;inviteTimeout\u0026#34;: 60,\n\t\u0026#34;inactiveTimeout\u0026#34;: 60,\n\t\u0026#34;textChat\u0026#34;: false\n}\n\nSupported platforms:\n      1. STEAM\n2. PSN\n3. XBOX\n\nReserved attributes key:\n1. preference: used to store preference of the leader and it is non-replaceable to keep the initial behavior of\n\tthe session regardless the leader changes.\n2. NATIVESESSIONTITLE: used for session sync, to define name of session displayed on PlayStation system UI.\n",
         "operationId": "publicCreateParty",
         "parameters": [
           {
@@ -4120,6 +4285,9 @@
     },
     "apimodels.ConfigurationTemplateResponse": {
       "properties": {
+        "PSNBaseUrl": {
+          "type": "string"
+        },
         "clientVersion": {
           "type": "string"
         },
@@ -4239,6 +4407,9 @@
       "properties": {
         "NativeSessionSetting": {
           "$ref": "#/definitions/models.NativeSessionSetting"
+        },
+        "PSNBaseUrl": {
+          "type": "string"
         },
         "clientVersion": {
           "type": "string"
@@ -4893,6 +5064,9 @@
     },
     "apimodels.PublicConfiguration": {
       "properties": {
+        "PSNBaseUrl": {
+          "type": "string"
+        },
         "clientVersion": {
           "type": "string"
         },
@@ -4930,6 +5104,9 @@
         "name": {
           "type": "string"
         },
+        "native_session_setting": {
+          "$ref": "#/definitions/models.NativeSessionSetting"
+        },
         "persistent": {
           "type": "boolean",
           "x-omitempty": false
@@ -4966,6 +5143,16 @@
         "persistent",
         "textChat",
         "type"
+      ]
+    },
+    "apimodels.PutPlatformCredentialsRequest": {
+      "properties": {
+        "psn": {
+          "$ref": "#/definitions/models.PSNAppServerCredentials"
+        }
+      },
+      "required": [
+        "psn"
       ]
     },
     "apimodels.RequestMember": {
@@ -5018,6 +5205,9 @@
       "properties": {
         "NativeSessionSetting": {
           "$ref": "#/definitions/models.NativeSessionSetting"
+        },
+        "PSNBaseUrl": {
+          "type": "string"
         },
         "clientVersion": {
           "type": "string"
@@ -5452,6 +5642,9 @@
         },
         "XboxSessionTemplateName": {
           "type": "string"
+        },
+        "localizedSessionName": {
+          "type": "object"
         }
       },
       "required": [
@@ -5459,6 +5652,24 @@
         "SessionTitle",
         "XboxServiceConfigID",
         "XboxSessionTemplateName"
+      ]
+    },
+    "models.PSNAppServerCredentials": {
+      "properties": {
+        "clientId": {
+          "type": "string"
+        },
+        "clientSecret": {
+          "type": "string"
+        },
+        "scope": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "clientId",
+        "clientSecret",
+        "scope"
       ]
     },
     "models.PartyMembers": {
@@ -5548,9 +5759,9 @@
     "path": "/session/apidocs/api.json"
   },
   "x-version": {
-    "buildDate": "2023-06-09T00:06:57+00:00",
-    "gitHash": "2bb099f850bc82edf884a72326f67bef2ead8962",
-    "version": "2.15.4",
+    "buildDate": "2023-07-01T03:48:42+00:00",
+    "gitHash": "c4394f9fc11b4ab9d4f7f7255d803b1820d789b4",
+    "version": "2.18.3",
     "version-roles-seeding": "0.0.16"
   }
 }

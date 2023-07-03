@@ -3,7 +3,7 @@
   "info": {
     "description": "Justice Achievement Service",
     "title": "justice-achievement-service",
-    "version": "2.20.0"
+    "version": "2.20.1"
   },
   "schemes": [
     "https"
@@ -3114,11 +3114,11 @@
     "path": "/achievement/apidocs/api.json"
   },
   "x-version": {
-    "buildDate": "2023-06-06T02:31:53+00:00",
-    "gitHash": "8680c76307149b40f5dc9624ff8ee95e65e504f2",
+    "buildDate": "2023-06-20T01:57:14+00:00",
+    "gitHash": "43b63ddeee24c4da325ad5f40d3df410655cd1b8",
     "name": "justice-achievement-service",
     "realm": "staging",
-    "version": "2.20.0",
+    "version": "2.20.1",
     "version-roles-seeding": "0.0.19"
   }
 }

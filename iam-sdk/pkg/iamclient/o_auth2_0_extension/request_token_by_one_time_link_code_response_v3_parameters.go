@@ -77,6 +77,11 @@ type RequestTokenByOneTimeLinkCodeResponseV3Params struct {
 
 	/*RetryPolicy*/
 	RetryPolicy *utils.Retry
+	/*AdditionalData
+	  Additional info, it will be passed to login success event.
+
+	*/
+	AdditionalData *string
 	/*IsTransient
 	  will produce transient token
 
@@ -146,6 +151,17 @@ func (o *RequestTokenByOneTimeLinkCodeResponseV3Params) SetHTTPClientTransport(r
 	}
 }
 
+// WithAdditionalData adds the additionalData to the request token by one time link code response v3 params
+func (o *RequestTokenByOneTimeLinkCodeResponseV3Params) WithAdditionalData(additionalData *string) *RequestTokenByOneTimeLinkCodeResponseV3Params {
+	o.SetAdditionalData(additionalData)
+	return o
+}
+
+// SetAdditionalData adds the additionalData to the request token by one time link code response v3 params
+func (o *RequestTokenByOneTimeLinkCodeResponseV3Params) SetAdditionalData(additionalData *string) {
+	o.AdditionalData = additionalData
+}
+
 // WithIsTransient adds the isTransient to the request token by one time link code response v3 params
 func (o *RequestTokenByOneTimeLinkCodeResponseV3Params) WithIsTransient(isTransient *bool) *RequestTokenByOneTimeLinkCodeResponseV3Params {
 	o.SetIsTransient(isTransient)
@@ -186,6 +202,22 @@ func (o *RequestTokenByOneTimeLinkCodeResponseV3Params) WriteToRequest(r runtime
 		return err
 	}
 	var res []error
+
+	if o.AdditionalData != nil {
+
+		// form param additionalData
+		var frAdditionalData string
+		if o.AdditionalData != nil {
+			frAdditionalData = *o.AdditionalData
+		}
+		fAdditionalData := frAdditionalData
+		if fAdditionalData != "" {
+			if err := r.SetFormParam("additionalData", fAdditionalData); err != nil {
+				return err
+			}
+		}
+
+	}
 
 	if o.IsTransient != nil {
 

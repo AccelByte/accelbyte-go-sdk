@@ -8,7 +8,7 @@
     },
     "description": "Justice Platform Service",
     "title": "justice-platform-service",
-    "version": "4.30.2"
+    "version": "4.30.3"
   },
   "schemes": [
     "https"
@@ -1185,6 +1185,396 @@
         }
       }
     },
+    "/platform/admin/namespaces/{namespace}/catalog/plugins/lootbox": {
+      "delete": {
+        "description": "Delete service plugin config.\u0026lt;br\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=ADMIN:NAMESPACE:{namespace}:PLUGIN:CATALOG, action=8 (DELETE)\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
+        "operationId": "deleteLootBoxPluginConfig",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "204": {
+            "description": "Delete successfully"
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "summary": "Delete lootbox plugin config",
+        "tags": [
+          "ServicePluginConfig"
+        ],
+        "x-authorization": {
+          "action": "8",
+          "resource": "ADMIN:NAMESPACE:{namespace}:PLUGIN:CATALOG"
+        }
+      },
+      "get": {
+        "description": "Get lootbox plugin config.\u0026lt;br\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026lt;b\u0026gt;ADMIN:NAMESPACE:{namespace}:PLUGIN:CATALOG\u0026lt;/b\u0026gt;, action=2 \u0026lt;b\u0026gt;(READ)\u0026lt;/b\u0026gt;\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
+        "operationId": "getLootBoxPluginConfig",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/LootBoxPluginConfigInfo"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "summary": "Get lootbox plugin config",
+        "tags": [
+          "ServicePluginConfig"
+        ],
+        "x-authorization": {
+          "action": "2",
+          "resource": "ADMIN:NAMESPACE:{namespace}:PLUGIN:CATALOG"
+        }
+      },
+      "put": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Update lootbox plugin config. Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=ADMIN:NAMESPACE:{namespace}:PLUGIN:CATALOG, action=4 (UPDATE)\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: updated service plugin config\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
+        "operationId": "updateLootBoxPluginConfig",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "required": false,
+            "schema": {
+              "$ref": "#/definitions/LootBoxPluginConfigUpdate"
+            }
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/LootBoxPluginConfigInfo"
+            }
+          },
+          "422": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eErrorCode\u003c/td\u003e\u003ctd\u003eErrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20002\u003c/td\u003e\u003ctd\u003evalidation error\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/ValidationErrorEntity"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "summary": "Update lootbox plugin config",
+        "tags": [
+          "ServicePluginConfig"
+        ],
+        "x-authorization": {
+          "action": "4",
+          "resource": "ADMIN:NAMESPACE:{namespace}:PLUGIN:CATALOG"
+        }
+      }
+    },
+    "/platform/admin/namespaces/{namespace}/catalog/plugins/lootbox/customConfig/cert": {
+      "put": {
+        "consumes": [
+          "multipart/form-data"
+        ],
+        "description": "Upload lootbox plugin custom config tls cert.Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=ADMIN:NAMESPACE:{namespace}:PLUGIN:CATALOG, action=4 (UPDATE)\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: updated service plugin config\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
+        "operationId": "uplodLootBoxPluginConfigCert",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "formData",
+            "name": "file",
+            "required": false,
+            "type": "file"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/LootBoxPluginConfigInfo"
+            }
+          },
+          "422": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eErrorCode\u003c/td\u003e\u003ctd\u003eErrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20002\u003c/td\u003e\u003ctd\u003evalidation error\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/ValidationErrorEntity"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "summary": "Upload lootbox plugin custom config tls cert",
+        "tags": [
+          "ServicePluginConfig"
+        ],
+        "x-authorization": {
+          "action": "4",
+          "resource": "ADMIN:NAMESPACE:{namespace}:PLUGIN:CATALOG"
+        }
+      }
+    },
+    "/platform/admin/namespaces/{namespace}/catalog/plugins/lootbox/grpcInfo": {
+      "get": {
+        "description": "Get lootbox plugin gRPC info.\u0026lt;br\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026lt;b\u0026gt;ADMIN:NAMESPACE:{namespace}:PLUGIN:CATALOG\u0026lt;/b\u0026gt;, action=2 \u0026lt;b\u0026gt;(READ)\u0026lt;/b\u0026gt;\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
+        "operationId": "getLootBoxGrpcInfo",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "force",
+            "required": false,
+            "type": "boolean",
+            "x-omitempty": false
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/GrpcServerInfo"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "summary": "Get lootbox plugin gRPC info",
+        "tags": [
+          "ServicePluginConfig"
+        ],
+        "x-authorization": {
+          "action": "2",
+          "resource": "ADMIN:NAMESPACE:{namespace}:PLUGIN:CATALOG"
+        }
+      }
+    },
+    "/platform/admin/namespaces/{namespace}/catalog/plugins/section": {
+      "delete": {
+        "description": "Delete section plugin config.\u0026lt;br\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=ADMIN:NAMESPACE:{namespace}:PLUGIN:CATALOG, action=8 (DELETE)\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
+        "operationId": "deleteSectionPluginConfig",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "204": {
+            "description": "Delete successfully"
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "summary": "Delete section plugin config",
+        "tags": [
+          "ServicePluginConfig"
+        ],
+        "x-authorization": {
+          "action": "8",
+          "resource": "ADMIN:NAMESPACE:{namespace}:PLUGIN:CATALOG"
+        }
+      },
+      "get": {
+        "description": "Get section plugin config.\u0026lt;br\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026lt;b\u0026gt;ADMIN:NAMESPACE:{namespace}:PLUGIN:CATALOG\u0026lt;/b\u0026gt;, action=2 \u0026lt;b\u0026gt;(READ)\u0026lt;/b\u0026gt;\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
+        "operationId": "getSectionPluginConfig",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/SectionPluginConfigInfo"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "summary": "Get section plugin config",
+        "tags": [
+          "ServicePluginConfig"
+        ],
+        "x-authorization": {
+          "action": "2",
+          "resource": "ADMIN:NAMESPACE:{namespace}:PLUGIN:CATALOG"
+        }
+      },
+      "put": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Update section config. Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=ADMIN:NAMESPACE:{namespace}:PLUGIN:CATALOG, action=4 (UPDATE)\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: updated service plugin config\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
+        "operationId": "updateSectionPluginConfig",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "required": false,
+            "schema": {
+              "$ref": "#/definitions/SectionPluginConfigUpdate"
+            }
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/SectionPluginConfigInfo"
+            }
+          },
+          "422": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eErrorCode\u003c/td\u003e\u003ctd\u003eErrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20002\u003c/td\u003e\u003ctd\u003evalidation error\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/ValidationErrorEntity"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "summary": "Update section plugin config",
+        "tags": [
+          "ServicePluginConfig"
+        ],
+        "x-authorization": {
+          "action": "4",
+          "resource": "ADMIN:NAMESPACE:{namespace}:PLUGIN:CATALOG"
+        }
+      }
+    },
+    "/platform/admin/namespaces/{namespace}/catalog/plugins/section/customConfig/cert": {
+      "put": {
+        "consumes": [
+          "multipart/form-data"
+        ],
+        "description": "Upload section plugin custom config tls cert.Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=ADMIN:NAMESPACE:{namespace}:PLUGIN:CATALOG, action=4 (UPDATE)\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: updated service plugin config\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
+        "operationId": "uploadSectionPluginConfigCert",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "formData",
+            "name": "file",
+            "required": false,
+            "type": "file"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/SectionPluginConfigInfo"
+            }
+          },
+          "422": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eErrorCode\u003c/td\u003e\u003ctd\u003eErrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20002\u003c/td\u003e\u003ctd\u003evalidation error\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/ValidationErrorEntity"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "summary": "Upload section plugin custom config tls cert",
+        "tags": [
+          "ServicePluginConfig"
+        ],
+        "x-authorization": {
+          "action": "4",
+          "resource": "ADMIN:NAMESPACE:{namespace}:PLUGIN:CATALOG"
+        }
+      }
+    },
     "/platform/admin/namespaces/{namespace}/categories": {
       "get": {
         "description": "This API is used to get root categories.\u0026lt;p\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;ADMIN:NAMESPACE:{namespace}:CATEGORY\u0026#34;, action=2 (READ)\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: root category data\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
@@ -2324,6 +2714,7 @@
     },
     "/platform/admin/namespaces/{namespace}/configs/servicePlugin": {
       "delete": {
+        "deprecated": true,
         "description": "Delete service plugin config.\u0026lt;br\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=ADMIN:NAMESPACE:{namespace}:CONFIG:SERVICEPLUGIN, action=8 (DELETE)\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "deleteServicePluginConfig",
         "parameters": [
@@ -2357,6 +2748,7 @@
         }
       },
       "get": {
+        "deprecated": true,
         "description": "Get service plugin config.\u0026lt;br\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026lt;b\u0026gt;ADMIN:NAMESPACE:{namespace}:CONFIG:SERVICEPLUGIN\u0026lt;/b\u0026gt;, action=2 \u0026lt;b\u0026gt;(READ)\u0026lt;/b\u0026gt;\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "getServicePluginConfig",
         "parameters": [
@@ -2393,6 +2785,7 @@
         "consumes": [
           "application/json"
         ],
+        "deprecated": true,
         "description": "Update catalog config. Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=ADMIN:NAMESPACE:{namespace}:CONFIG:SERVICEPLUGIN, action=4 (UPDATE)\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: updated service plugin config\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "updateServicePluginConfig",
         "parameters": [
@@ -5071,7 +5464,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "This API is used to sync an in game item in game namespace to publisher namespace, at current BUNDLE can\u0026#39;t be synced.\u0026lt;p\u0026gt;The synced item has an additional field targetItemId besides targetNamespace, mostly this item should not modified manually again. \u0026lt;p\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;ADMIN:NAMESPACE:{namespace}:ITEM\u0026#34;, action=4 (UPDATE)\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: item data\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
+        "description": "This API is used to sync an in game item in game namespace to publisher namespace, only INGAMEITEM, CODE, COINS and SEASON are supported\u0026lt;p\u0026gt;The synced item has an additional field targetItemId besides targetNamespace, mostly this item should not modified manually again. \u0026lt;p\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;ADMIN:NAMESPACE:{namespace}:ITEM\u0026#34;, action=4 (UPDATE)\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: item data\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "syncInGameItem",
         "parameters": [
           {
@@ -9416,6 +9809,180 @@
         "x-authorization": {
           "action": "2",
           "resource": "ADMIN:NAMESPACE:{namespace}:REVOCATION"
+        }
+      }
+    },
+    "/platform/admin/namespaces/{namespace}/revocation/plugins/revocation": {
+      "delete": {
+        "description": "Delete service plugin config.\u0026lt;br\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=ADMIN:NAMESPACE:{namespace}:PLUGIN:REVOCATION, action=8 (DELETE)\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
+        "operationId": "deleteLootBoxPluginConfig_1",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "204": {
+            "description": "Delete successfully"
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "summary": "Delete revocation plugin config",
+        "tags": [
+          "ServicePluginConfig"
+        ],
+        "x-authorization": {
+          "action": "8",
+          "resource": "ADMIN:NAMESPACE:{namespace}:PLUGIN:REVOCATION"
+        }
+      },
+      "get": {
+        "description": "Get revocation plugin config.\u0026lt;br\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026lt;b\u0026gt;ADMIN:NAMESPACE:{namespace}:PLUGIN:REVOCATION\u0026lt;/b\u0026gt;, action=2 \u0026lt;b\u0026gt;(READ)\u0026lt;/b\u0026gt;\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
+        "operationId": "getLootBoxPluginConfig_1",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/RevocationPluginConfigInfo"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "summary": "Get revocation plugin config",
+        "tags": [
+          "ServicePluginConfig"
+        ],
+        "x-authorization": {
+          "action": "2",
+          "resource": "ADMIN:NAMESPACE:{namespace}:PLUGIN:REVOCATION"
+        }
+      },
+      "put": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Update revocation plugin config. Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=ADMIN:NAMESPACE:{namespace}:PLUGIN:REVOCATION, action=4 (UPDATE)\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: updated service plugin config\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
+        "operationId": "updateLootBoxPluginConfig_1",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "required": false,
+            "schema": {
+              "$ref": "#/definitions/RevocationPluginConfigUpdate"
+            }
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/RevocationPluginConfigInfo"
+            }
+          },
+          "422": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eErrorCode\u003c/td\u003e\u003ctd\u003eErrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20002\u003c/td\u003e\u003ctd\u003evalidation error\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/ValidationErrorEntity"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "summary": "Update revocation plugin config",
+        "tags": [
+          "ServicePluginConfig"
+        ],
+        "x-authorization": {
+          "action": "4",
+          "resource": "ADMIN:NAMESPACE:{namespace}:PLUGIN:REVOCATION"
+        }
+      }
+    },
+    "/platform/admin/namespaces/{namespace}/revocation/plugins/revocation/revocation/customConfig/cert": {
+      "put": {
+        "consumes": [
+          "multipart/form-data"
+        ],
+        "description": "Upload revocation plugin custom config tls cert.Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=ADMIN:NAMESPACE:{namespace}:PLUGIN:REVOCATION, action=4 (UPDATE)\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: updated service plugin config\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
+        "operationId": "uploadRevocationPluginConfigCert",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "formData",
+            "name": "file",
+            "required": false,
+            "type": "file"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/RevocationPluginConfigInfo"
+            }
+          },
+          "422": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eErrorCode\u003c/td\u003e\u003ctd\u003eErrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20002\u003c/td\u003e\u003ctd\u003evalidation error\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/ValidationErrorEntity"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "summary": "Upload revocation plugin custom config tls cert",
+        "tags": [
+          "ServicePluginConfig"
+        ],
+        "x-authorization": {
+          "action": "4",
+          "resource": "ADMIN:NAMESPACE:{namespace}:PLUGIN:REVOCATION"
         }
       }
     },
@@ -26979,6 +27546,15 @@
             "name": "storeId",
             "required": false,
             "type": "string"
+          },
+          {
+            "default": true,
+            "description": "default strict mode is false",
+            "in": "query",
+            "name": "strictMode",
+            "required": false,
+            "type": "boolean",
+            "x-omitempty": false
           }
         ],
         "produces": [
@@ -27315,6 +27891,18 @@
           "type": "string"
         }
       },
+      "type": "object"
+    },
+    "AppConfig": {
+      "properties": {
+        "appName": {
+          "description": "extend app name",
+          "type": "string"
+        }
+      },
+      "required": [
+        "appName"
+      ],
       "type": "object"
     },
     "AppEntitlementInfo": {
@@ -27804,6 +28392,36 @@
             "Number",
             "String"
           ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "BaseCustomConfig": {
+      "properties": {
+        "connectionType": {
+          "description": "connect type: INSECURE, TLS, default is INSECURE",
+          "enum": [
+            "INSECURE",
+            "TLS"
+          ],
+          "type": "string"
+        },
+        "grpcServerAddress": {
+          "description": "plugin grpc server address: \u003chost\u003e:\u003cport\u003e",
+          "type": "string"
+        }
+      },
+      "required": [
+        "connectionType",
+        "grpcServerAddress"
+      ],
+      "type": "object"
+    },
+    "BaseTLSConfig": {
+      "properties": {
+        "rootCertFileName": {
+          "description": "root cert file name",
           "type": "string"
         }
       },
@@ -32549,6 +33167,27 @@
       ],
       "type": "object"
     },
+    "GrpcServerInfo": {
+      "properties": {
+        "address": {
+          "type": "string"
+        },
+        "connectionTypeEnum": {
+          "enum": [
+            "INSECURE",
+            "TLS"
+          ],
+          "type": "string"
+        },
+        "status": {
+          "type": "string"
+        },
+        "tlsConfig": {
+          "$ref": "#/definitions/TLSConfig"
+        }
+      },
+      "type": "object"
+    },
     "HierarchicalCategoryInfo": {
       "properties": {
         "categoryPath": {
@@ -34871,6 +35510,58 @@
           "type": "string"
         }
       },
+      "type": "object"
+    },
+    "LootBoxPluginConfigInfo": {
+      "properties": {
+        "appConfig": {
+          "$ref": "#/definitions/AppConfig",
+          "description": "app config"
+        },
+        "customConfig": {
+          "$ref": "#/definitions/PublicCustomConfigInfo",
+          "description": "custom config"
+        },
+        "extendType": {
+          "description": "extend type",
+          "enum": [
+            "APP",
+            "CUSTOM"
+          ],
+          "type": "string"
+        },
+        "namespace": {
+          "description": "namespace",
+          "type": "string"
+        }
+      },
+      "required": [
+        "namespace"
+      ],
+      "type": "object"
+    },
+    "LootBoxPluginConfigUpdate": {
+      "properties": {
+        "appConfig": {
+          "$ref": "#/definitions/AppConfig",
+          "description": "app config"
+        },
+        "customConfig": {
+          "$ref": "#/definitions/BaseCustomConfig",
+          "description": "custom config"
+        },
+        "extendType": {
+          "description": "extend type",
+          "enum": [
+            "APP",
+            "CUSTOM"
+          ],
+          "type": "string"
+        }
+      },
+      "required": [
+        "extendType"
+      ],
       "type": "object"
     },
     "LootBoxReward": {
@@ -38123,6 +38814,30 @@
       },
       "type": "object"
     },
+    "PublicCustomConfigInfo": {
+      "properties": {
+        "connectionType": {
+          "description": "connect type: INSECURE, TLS, default is INSECURE",
+          "enum": [
+            "INSECURE",
+            "TLS"
+          ],
+          "type": "string"
+        },
+        "grpcServerAddress": {
+          "description": "plugin grpc server address: \u003chost\u003e:\u003cport\u003e",
+          "type": "string"
+        },
+        "tlsConfig": {
+          "$ref": "#/definitions/BaseTLSConfig"
+        }
+      },
+      "required": [
+        "connectionType",
+        "grpcServerAddress"
+      ],
+      "type": "object"
+    },
     "PurchaseCondition": {
       "properties": {
         "conditionGroups": {
@@ -38748,6 +39463,58 @@
       },
       "required": [
         "data"
+      ],
+      "type": "object"
+    },
+    "RevocationPluginConfigInfo": {
+      "properties": {
+        "appConfig": {
+          "$ref": "#/definitions/AppConfig",
+          "description": "app config"
+        },
+        "customConfig": {
+          "$ref": "#/definitions/PublicCustomConfigInfo",
+          "description": "custom config"
+        },
+        "extendType": {
+          "description": "extend type",
+          "enum": [
+            "APP",
+            "CUSTOM"
+          ],
+          "type": "string"
+        },
+        "namespace": {
+          "description": "namespace",
+          "type": "string"
+        }
+      },
+      "required": [
+        "namespace"
+      ],
+      "type": "object"
+    },
+    "RevocationPluginConfigUpdate": {
+      "properties": {
+        "appConfig": {
+          "$ref": "#/definitions/AppConfig",
+          "description": "app config"
+        },
+        "customConfig": {
+          "$ref": "#/definitions/BaseCustomConfig",
+          "description": "custom config"
+        },
+        "extendType": {
+          "description": "extend type",
+          "enum": [
+            "APP",
+            "CUSTOM"
+          ],
+          "type": "string"
+        }
+      },
+      "required": [
+        "extendType"
       ],
       "type": "object"
     },
@@ -39479,6 +40246,58 @@
       },
       "required": [
         "data"
+      ],
+      "type": "object"
+    },
+    "SectionPluginConfigInfo": {
+      "properties": {
+        "appConfig": {
+          "$ref": "#/definitions/AppConfig",
+          "description": "app config"
+        },
+        "customConfig": {
+          "$ref": "#/definitions/PublicCustomConfigInfo",
+          "description": "custom config"
+        },
+        "extendType": {
+          "description": "extend type",
+          "enum": [
+            "APP",
+            "CUSTOM"
+          ],
+          "type": "string"
+        },
+        "namespace": {
+          "description": "namespace",
+          "type": "string"
+        }
+      },
+      "required": [
+        "namespace"
+      ],
+      "type": "object"
+    },
+    "SectionPluginConfigUpdate": {
+      "properties": {
+        "appConfig": {
+          "$ref": "#/definitions/AppConfig",
+          "description": "app config"
+        },
+        "customConfig": {
+          "$ref": "#/definitions/BaseCustomConfig",
+          "description": "custom config"
+        },
+        "extendType": {
+          "description": "extend type",
+          "enum": [
+            "APP",
+            "CUSTOM"
+          ],
+          "type": "string"
+        }
+      },
+      "required": [
+        "extendType"
       ],
       "type": "object"
     },
@@ -40635,6 +41454,23 @@
         "status",
         "userId"
       ],
+      "type": "object"
+    },
+    "TLSConfig": {
+      "properties": {
+        "rootCertFileBytes": {
+          "description": "root cert file bytes",
+          "items": {
+            "format": "byte",
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "rootCertFileName": {
+          "description": "root cert file name",
+          "type": "string"
+        }
+      },
       "type": "object"
     },
     "TaxResult": {
@@ -41814,7 +42650,7 @@
           "type": "string"
         },
         "relyingPartyCert": {
-          "description": "relyingPartyCert",
+          "description": "deprecated - relyingPartyCert",
           "type": "string"
         }
       },
@@ -41826,7 +42662,7 @@
     "XblIAPConfigRequest": {
       "properties": {
         "relyingPartyCert": {
-          "description": "relyingPartyCert",
+          "description": "deprecated - relyingPartyCert",
           "type": "string"
         }
       },
@@ -42037,16 +42873,16 @@
   },
   "x-version": {
     "buildBy": "Gradle 6.9.1",
-    "buildDate": "2023-06-06T02:30:47+00:00",
-    "buildID": "4.30.2",
+    "buildDate": "2023-06-20T01:46:21+00:00",
+    "buildID": "4.30.3",
     "buildJDK": "1.8.0_232 (Eclipse OpenJ9 openj9-0.17.0)",
     "buildOS": "Linux amd64 5.13.0-1021-aws",
     "gitBranchName": "release-candidate",
-    "gitHash": "bf69f65cdf",
+    "gitHash": "91cea6599d",
     "gitTag": "3.31.0",
     "name": "justice-platform-service",
     "realm": "staging",
-    "version": "4.30.2",
-    "version-roles-seeding": "0.0.28"
+    "version": "4.30.3",
+    "version-roles-seeding": "0.0.32"
   }
 }

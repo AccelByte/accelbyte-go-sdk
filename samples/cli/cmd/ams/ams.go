@@ -9,6 +9,7 @@ package ams
 import (
 	"github.com/AccelByte/sample-apps/cmd/ams/account"
 	"github.com/AccelByte/sample-apps/cmd/ams/amsInfo"
+	"github.com/AccelByte/sample-apps/cmd/ams/fleetCommander"
 	"github.com/AccelByte/sample-apps/cmd/ams/fleets"
 	"github.com/AccelByte/sample-apps/cmd/ams/images"
 	"github.com/AccelByte/sample-apps/cmd/ams/operations"
@@ -45,6 +46,6 @@ func init() {
 	AmsCmd.AddCommand(fleets.FleetClaimByIDCmd)
 	AmsCmd.AddCommand(fleets.FleetClaimByKeysCmd)
 	AmsCmd.AddCommand(watchdogs.WatchdogConnectCmd)
-	AmsCmd.AddCommand(operations.Func1Cmd)
+	AmsCmd.AddCommand(fleetCommander.Func1Cmd)
 	AmsCmd.AddCommand(operations.BasicHealthCheckCmd)
 }

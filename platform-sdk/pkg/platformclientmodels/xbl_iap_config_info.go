@@ -28,7 +28,7 @@ type XblIAPConfigInfo struct {
 	// password
 	Password string `json:"password,omitempty"`
 
-	// relyingPartyCert
+	// deprecated - relyingPartyCert
 	RelyingPartyCert string `json:"relyingPartyCert,omitempty"`
 }
 

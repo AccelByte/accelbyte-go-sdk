@@ -85,6 +85,11 @@ type PlatformTokenGrantV3Params struct {
 
 	/*RetryPolicy*/
 	RetryPolicy *utils.Retry
+	/*AdditionalData
+	  Additional info, it will be passed to login success event.
+
+	*/
+	AdditionalData *string
 	/*ClientID
 	  Client ID, only accept UUID version 4 without hyphen
 
@@ -174,6 +179,17 @@ func (o *PlatformTokenGrantV3Params) SetHTTPClientTransport(roundTripper http.Ro
 	}
 }
 
+// WithAdditionalData adds the additionalData to the platform token grant v3 params
+func (o *PlatformTokenGrantV3Params) WithAdditionalData(additionalData *string) *PlatformTokenGrantV3Params {
+	o.SetAdditionalData(additionalData)
+	return o
+}
+
+// SetAdditionalData adds the additionalData to the platform token grant v3 params
+func (o *PlatformTokenGrantV3Params) SetAdditionalData(additionalData *string) {
+	o.AdditionalData = additionalData
+}
+
 // WithClientID adds the clientID to the platform token grant v3 params
 func (o *PlatformTokenGrantV3Params) WithClientID(clientID *string) *PlatformTokenGrantV3Params {
 	o.SetClientID(clientID)
@@ -258,6 +274,22 @@ func (o *PlatformTokenGrantV3Params) WriteToRequest(r runtime.ClientRequest, reg
 		return err
 	}
 	var res []error
+
+	if o.AdditionalData != nil {
+
+		// form param additionalData
+		var frAdditionalData string
+		if o.AdditionalData != nil {
+			frAdditionalData = *o.AdditionalData
+		}
+		fAdditionalData := frAdditionalData
+		if fAdditionalData != "" {
+			if err := r.SetFormParam("additionalData", fAdditionalData); err != nil {
+				return err
+			}
+		}
+
+	}
 
 	if o.ClientID != nil {
 

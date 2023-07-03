@@ -35,10 +35,12 @@ var ImportStore1Cmd = &cobra.Command{
 			return err
 		}
 		storeId, _ := cmd.Flags().GetString("storeId")
+		strictMode, _ := cmd.Flags().GetBool("strictMode")
 		input := &store.ImportStore1Params{
-			File:      file,
-			Namespace: namespace,
-			StoreID:   &storeId,
+			File:       file,
+			Namespace:  namespace,
+			StoreID:    &storeId,
+			StrictMode: &strictMode,
 		}
 		ok, errOK := storeService.ImportStore1Short(input)
 		if errOK != nil {
@@ -58,4 +60,5 @@ func init() {
 	ImportStore1Cmd.Flags().String("namespace", "", "Namespace")
 	_ = ImportStore1Cmd.MarkFlagRequired("namespace")
 	ImportStore1Cmd.Flags().String("storeId", "", "Store id")
+	ImportStore1Cmd.Flags().Bool("strictMode", false, "Strict mode")
 }

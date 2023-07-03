@@ -75,13 +75,13 @@ type FleetServerHistoryParams struct {
 
 	*/
 	Namespace string
-	/*Limit
-	  the limit for the number of records
+	/*Count
+	  Defines the maximum number of records returned in one page. Default is 1000 when not provided.
 
 	*/
-	Limit *int64
+	Count *int64
 	/*Offset
-	  the offset for pagination
+	  Specifies the start index for the records returned. Useful for implementing pagination. Default is 0 when not provided.
 
 	*/
 	Offset *int64
@@ -161,15 +161,15 @@ func (o *FleetServerHistoryParams) SetNamespace(namespace string) {
 	o.Namespace = namespace
 }
 
-// WithLimit adds the limit to the fleet server history params
-func (o *FleetServerHistoryParams) WithLimit(limit *int64) *FleetServerHistoryParams {
-	o.SetLimit(limit)
+// WithCount adds the count to the fleet server history params
+func (o *FleetServerHistoryParams) WithCount(count *int64) *FleetServerHistoryParams {
+	o.SetCount(count)
 	return o
 }
 
-// SetLimit adds the limit to the fleet server history params
-func (o *FleetServerHistoryParams) SetLimit(limit *int64) {
-	o.Limit = limit
+// SetCount adds the count to the fleet server history params
+func (o *FleetServerHistoryParams) SetCount(count *int64) {
+	o.Count = count
 }
 
 // WithOffset adds the offset to the fleet server history params
@@ -201,16 +201,16 @@ func (o *FleetServerHistoryParams) WriteToRequest(r runtime.ClientRequest, reg s
 		return err
 	}
 
-	if o.Limit != nil {
+	if o.Count != nil {
 
-		// query param limit
-		var qrLimit int64
-		if o.Limit != nil {
-			qrLimit = *o.Limit
+		// query param count
+		var qrCount int64
+		if o.Count != nil {
+			qrCount = *o.Count
 		}
-		qLimit := swag.FormatInt64(qrLimit)
-		if qLimit != "" {
-			if err := r.SetQueryParam("limit", qLimit); err != nil {
+		qCount := swag.FormatInt64(qrCount)
+		if qCount != "" {
+			if err := r.SetQueryParam("count", qCount); err != nil {
 				return err
 			}
 		}

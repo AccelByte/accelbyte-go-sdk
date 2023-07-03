@@ -30,14 +30,934 @@ type Client struct {
 
 // ClientService is the interface for Client methods
 type ClientService interface {
+	GetLootBoxPluginConfig(params *GetLootBoxPluginConfigParams, authInfo runtime.ClientAuthInfoWriter) (*GetLootBoxPluginConfigOK, error)
+	GetLootBoxPluginConfigShort(params *GetLootBoxPluginConfigParams, authInfo runtime.ClientAuthInfoWriter) (*GetLootBoxPluginConfigOK, error)
+	UpdateLootBoxPluginConfig(params *UpdateLootBoxPluginConfigParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateLootBoxPluginConfigOK, *UpdateLootBoxPluginConfigUnprocessableEntity, error)
+	UpdateLootBoxPluginConfigShort(params *UpdateLootBoxPluginConfigParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateLootBoxPluginConfigOK, error)
+	DeleteLootBoxPluginConfig(params *DeleteLootBoxPluginConfigParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteLootBoxPluginConfigNoContent, error)
+	DeleteLootBoxPluginConfigShort(params *DeleteLootBoxPluginConfigParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteLootBoxPluginConfigNoContent, error)
+	UplodLootBoxPluginConfigCert(params *UplodLootBoxPluginConfigCertParams, authInfo runtime.ClientAuthInfoWriter) (*UplodLootBoxPluginConfigCertOK, *UplodLootBoxPluginConfigCertUnprocessableEntity, error)
+	UplodLootBoxPluginConfigCertShort(params *UplodLootBoxPluginConfigCertParams, authInfo runtime.ClientAuthInfoWriter) (*UplodLootBoxPluginConfigCertOK, error)
+	GetLootBoxGrpcInfo(params *GetLootBoxGrpcInfoParams, authInfo runtime.ClientAuthInfoWriter) (*GetLootBoxGrpcInfoOK, error)
+	GetLootBoxGrpcInfoShort(params *GetLootBoxGrpcInfoParams, authInfo runtime.ClientAuthInfoWriter) (*GetLootBoxGrpcInfoOK, error)
+	GetSectionPluginConfig(params *GetSectionPluginConfigParams, authInfo runtime.ClientAuthInfoWriter) (*GetSectionPluginConfigOK, error)
+	GetSectionPluginConfigShort(params *GetSectionPluginConfigParams, authInfo runtime.ClientAuthInfoWriter) (*GetSectionPluginConfigOK, error)
+	UpdateSectionPluginConfig(params *UpdateSectionPluginConfigParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateSectionPluginConfigOK, *UpdateSectionPluginConfigUnprocessableEntity, error)
+	UpdateSectionPluginConfigShort(params *UpdateSectionPluginConfigParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateSectionPluginConfigOK, error)
+	DeleteSectionPluginConfig(params *DeleteSectionPluginConfigParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteSectionPluginConfigNoContent, error)
+	DeleteSectionPluginConfigShort(params *DeleteSectionPluginConfigParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteSectionPluginConfigNoContent, error)
+	UploadSectionPluginConfigCert(params *UploadSectionPluginConfigCertParams, authInfo runtime.ClientAuthInfoWriter) (*UploadSectionPluginConfigCertOK, *UploadSectionPluginConfigCertUnprocessableEntity, error)
+	UploadSectionPluginConfigCertShort(params *UploadSectionPluginConfigCertParams, authInfo runtime.ClientAuthInfoWriter) (*UploadSectionPluginConfigCertOK, error)
 	GetServicePluginConfig(params *GetServicePluginConfigParams, authInfo runtime.ClientAuthInfoWriter) (*GetServicePluginConfigOK, error)
 	GetServicePluginConfigShort(params *GetServicePluginConfigParams, authInfo runtime.ClientAuthInfoWriter) (*GetServicePluginConfigOK, error)
 	UpdateServicePluginConfig(params *UpdateServicePluginConfigParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateServicePluginConfigOK, *UpdateServicePluginConfigUnprocessableEntity, error)
 	UpdateServicePluginConfigShort(params *UpdateServicePluginConfigParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateServicePluginConfigOK, error)
 	DeleteServicePluginConfig(params *DeleteServicePluginConfigParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteServicePluginConfigNoContent, error)
 	DeleteServicePluginConfigShort(params *DeleteServicePluginConfigParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteServicePluginConfigNoContent, error)
+	GetLootBoxPluginConfig1(params *GetLootBoxPluginConfig1Params, authInfo runtime.ClientAuthInfoWriter) (*GetLootBoxPluginConfig1OK, error)
+	GetLootBoxPluginConfig1Short(params *GetLootBoxPluginConfig1Params, authInfo runtime.ClientAuthInfoWriter) (*GetLootBoxPluginConfig1OK, error)
+	UpdateLootBoxPluginConfig1(params *UpdateLootBoxPluginConfig1Params, authInfo runtime.ClientAuthInfoWriter) (*UpdateLootBoxPluginConfig1OK, *UpdateLootBoxPluginConfig1UnprocessableEntity, error)
+	UpdateLootBoxPluginConfig1Short(params *UpdateLootBoxPluginConfig1Params, authInfo runtime.ClientAuthInfoWriter) (*UpdateLootBoxPluginConfig1OK, error)
+	DeleteLootBoxPluginConfig1(params *DeleteLootBoxPluginConfig1Params, authInfo runtime.ClientAuthInfoWriter) (*DeleteLootBoxPluginConfig1NoContent, error)
+	DeleteLootBoxPluginConfig1Short(params *DeleteLootBoxPluginConfig1Params, authInfo runtime.ClientAuthInfoWriter) (*DeleteLootBoxPluginConfig1NoContent, error)
+	UploadRevocationPluginConfigCert(params *UploadRevocationPluginConfigCertParams, authInfo runtime.ClientAuthInfoWriter) (*UploadRevocationPluginConfigCertOK, *UploadRevocationPluginConfigCertUnprocessableEntity, error)
+	UploadRevocationPluginConfigCertShort(params *UploadRevocationPluginConfigCertParams, authInfo runtime.ClientAuthInfoWriter) (*UploadRevocationPluginConfigCertOK, error)
 
 	SetTransport(transport runtime.ClientTransport)
+}
+
+/*
+Deprecated: 2022-08-10 - Use GetLootBoxPluginConfigShort instead.
+
+GetLootBoxPluginConfig get lootbox plugin config
+Get lootbox plugin config.
+Other detail info:
+
+  * Required permission : resource= ADMIN:NAMESPACE:{namespace}:PLUGIN:CATALOG , action=2 (READ)
+*/
+func (a *Client) GetLootBoxPluginConfig(params *GetLootBoxPluginConfigParams, authInfo runtime.ClientAuthInfoWriter) (*GetLootBoxPluginConfigOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewGetLootBoxPluginConfigParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "getLootBoxPluginConfig",
+		Method:             "GET",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/catalog/plugins/lootbox",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &GetLootBoxPluginConfigReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *GetLootBoxPluginConfigOK:
+		return v, nil
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+GetLootBoxPluginConfigShort get lootbox plugin config
+Get lootbox plugin config.
+Other detail info:
+
+  * Required permission : resource= ADMIN:NAMESPACE:{namespace}:PLUGIN:CATALOG , action=2 (READ)
+*/
+func (a *Client) GetLootBoxPluginConfigShort(params *GetLootBoxPluginConfigParams, authInfo runtime.ClientAuthInfoWriter) (*GetLootBoxPluginConfigOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewGetLootBoxPluginConfigParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "getLootBoxPluginConfig",
+		Method:             "GET",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/catalog/plugins/lootbox",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &GetLootBoxPluginConfigReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *GetLootBoxPluginConfigOK:
+		return v, nil
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+Deprecated: 2022-08-10 - Use UpdateLootBoxPluginConfigShort instead.
+
+UpdateLootBoxPluginConfig update lootbox plugin config
+Update lootbox plugin config. Other detail info:
+  * Required permission : resource=ADMIN:NAMESPACE:{namespace}:PLUGIN:CATALOG, action=4 (UPDATE)
+  *  Returns : updated service plugin config
+*/
+func (a *Client) UpdateLootBoxPluginConfig(params *UpdateLootBoxPluginConfigParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateLootBoxPluginConfigOK, *UpdateLootBoxPluginConfigUnprocessableEntity, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewUpdateLootBoxPluginConfigParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "updateLootBoxPluginConfig",
+		Method:             "PUT",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/catalog/plugins/lootbox",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &UpdateLootBoxPluginConfigReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *UpdateLootBoxPluginConfigOK:
+		return v, nil, nil
+
+	case *UpdateLootBoxPluginConfigUnprocessableEntity:
+		return nil, v, nil
+
+	default:
+		return nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+UpdateLootBoxPluginConfigShort update lootbox plugin config
+Update lootbox plugin config. Other detail info:
+  * Required permission : resource=ADMIN:NAMESPACE:{namespace}:PLUGIN:CATALOG, action=4 (UPDATE)
+  *  Returns : updated service plugin config
+*/
+func (a *Client) UpdateLootBoxPluginConfigShort(params *UpdateLootBoxPluginConfigParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateLootBoxPluginConfigOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewUpdateLootBoxPluginConfigParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "updateLootBoxPluginConfig",
+		Method:             "PUT",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/catalog/plugins/lootbox",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &UpdateLootBoxPluginConfigReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *UpdateLootBoxPluginConfigOK:
+		return v, nil
+	case *UpdateLootBoxPluginConfigUnprocessableEntity:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+Deprecated: 2022-08-10 - Use DeleteLootBoxPluginConfigShort instead.
+
+DeleteLootBoxPluginConfig delete lootbox plugin config
+Delete service plugin config.
+Other detail info:
+
+  * Required permission : resource=ADMIN:NAMESPACE:{namespace}:PLUGIN:CATALOG, action=8 (DELETE)
+*/
+func (a *Client) DeleteLootBoxPluginConfig(params *DeleteLootBoxPluginConfigParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteLootBoxPluginConfigNoContent, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewDeleteLootBoxPluginConfigParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "deleteLootBoxPluginConfig",
+		Method:             "DELETE",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/catalog/plugins/lootbox",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &DeleteLootBoxPluginConfigReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *DeleteLootBoxPluginConfigNoContent:
+		return v, nil
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+DeleteLootBoxPluginConfigShort delete lootbox plugin config
+Delete service plugin config.
+Other detail info:
+
+  * Required permission : resource=ADMIN:NAMESPACE:{namespace}:PLUGIN:CATALOG, action=8 (DELETE)
+*/
+func (a *Client) DeleteLootBoxPluginConfigShort(params *DeleteLootBoxPluginConfigParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteLootBoxPluginConfigNoContent, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewDeleteLootBoxPluginConfigParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "deleteLootBoxPluginConfig",
+		Method:             "DELETE",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/catalog/plugins/lootbox",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &DeleteLootBoxPluginConfigReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *DeleteLootBoxPluginConfigNoContent:
+		return v, nil
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+Deprecated: 2022-08-10 - Use UplodLootBoxPluginConfigCertShort instead.
+
+UplodLootBoxPluginConfigCert upload lootbox plugin custom config tls cert
+Upload lootbox plugin custom config tls cert.Other detail info:
+  * Required permission : resource=ADMIN:NAMESPACE:{namespace}:PLUGIN:CATALOG, action=4 (UPDATE)
+  *  Returns : updated service plugin config
+*/
+func (a *Client) UplodLootBoxPluginConfigCert(params *UplodLootBoxPluginConfigCertParams, authInfo runtime.ClientAuthInfoWriter) (*UplodLootBoxPluginConfigCertOK, *UplodLootBoxPluginConfigCertUnprocessableEntity, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewUplodLootBoxPluginConfigCertParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "uplodLootBoxPluginConfigCert",
+		Method:             "PUT",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/catalog/plugins/lootbox/customConfig/cert",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"multipart/form-data"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &UplodLootBoxPluginConfigCertReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *UplodLootBoxPluginConfigCertOK:
+		return v, nil, nil
+
+	case *UplodLootBoxPluginConfigCertUnprocessableEntity:
+		return nil, v, nil
+
+	default:
+		return nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+UplodLootBoxPluginConfigCertShort upload lootbox plugin custom config tls cert
+Upload lootbox plugin custom config tls cert.Other detail info:
+  * Required permission : resource=ADMIN:NAMESPACE:{namespace}:PLUGIN:CATALOG, action=4 (UPDATE)
+  *  Returns : updated service plugin config
+*/
+func (a *Client) UplodLootBoxPluginConfigCertShort(params *UplodLootBoxPluginConfigCertParams, authInfo runtime.ClientAuthInfoWriter) (*UplodLootBoxPluginConfigCertOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewUplodLootBoxPluginConfigCertParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "uplodLootBoxPluginConfigCert",
+		Method:             "PUT",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/catalog/plugins/lootbox/customConfig/cert",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"multipart/form-data"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &UplodLootBoxPluginConfigCertReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *UplodLootBoxPluginConfigCertOK:
+		return v, nil
+	case *UplodLootBoxPluginConfigCertUnprocessableEntity:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+Deprecated: 2022-08-10 - Use GetLootBoxGrpcInfoShort instead.
+
+GetLootBoxGrpcInfo get lootbox plugin grpc info
+Get lootbox plugin gRPC info.
+Other detail info:
+
+  * Required permission : resource= ADMIN:NAMESPACE:{namespace}:PLUGIN:CATALOG , action=2 (READ)
+*/
+func (a *Client) GetLootBoxGrpcInfo(params *GetLootBoxGrpcInfoParams, authInfo runtime.ClientAuthInfoWriter) (*GetLootBoxGrpcInfoOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewGetLootBoxGrpcInfoParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "getLootBoxGrpcInfo",
+		Method:             "GET",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/catalog/plugins/lootbox/grpcInfo",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &GetLootBoxGrpcInfoReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *GetLootBoxGrpcInfoOK:
+		return v, nil
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+GetLootBoxGrpcInfoShort get lootbox plugin grpc info
+Get lootbox plugin gRPC info.
+Other detail info:
+
+  * Required permission : resource= ADMIN:NAMESPACE:{namespace}:PLUGIN:CATALOG , action=2 (READ)
+*/
+func (a *Client) GetLootBoxGrpcInfoShort(params *GetLootBoxGrpcInfoParams, authInfo runtime.ClientAuthInfoWriter) (*GetLootBoxGrpcInfoOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewGetLootBoxGrpcInfoParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "getLootBoxGrpcInfo",
+		Method:             "GET",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/catalog/plugins/lootbox/grpcInfo",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &GetLootBoxGrpcInfoReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *GetLootBoxGrpcInfoOK:
+		return v, nil
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+Deprecated: 2022-08-10 - Use GetSectionPluginConfigShort instead.
+
+GetSectionPluginConfig get section plugin config
+Get section plugin config.
+Other detail info:
+
+  * Required permission : resource= ADMIN:NAMESPACE:{namespace}:PLUGIN:CATALOG , action=2 (READ)
+*/
+func (a *Client) GetSectionPluginConfig(params *GetSectionPluginConfigParams, authInfo runtime.ClientAuthInfoWriter) (*GetSectionPluginConfigOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewGetSectionPluginConfigParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "getSectionPluginConfig",
+		Method:             "GET",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/catalog/plugins/section",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &GetSectionPluginConfigReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *GetSectionPluginConfigOK:
+		return v, nil
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+GetSectionPluginConfigShort get section plugin config
+Get section plugin config.
+Other detail info:
+
+  * Required permission : resource= ADMIN:NAMESPACE:{namespace}:PLUGIN:CATALOG , action=2 (READ)
+*/
+func (a *Client) GetSectionPluginConfigShort(params *GetSectionPluginConfigParams, authInfo runtime.ClientAuthInfoWriter) (*GetSectionPluginConfigOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewGetSectionPluginConfigParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "getSectionPluginConfig",
+		Method:             "GET",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/catalog/plugins/section",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &GetSectionPluginConfigReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *GetSectionPluginConfigOK:
+		return v, nil
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+Deprecated: 2022-08-10 - Use UpdateSectionPluginConfigShort instead.
+
+UpdateSectionPluginConfig update section plugin config
+Update section config. Other detail info:
+  * Required permission : resource=ADMIN:NAMESPACE:{namespace}:PLUGIN:CATALOG, action=4 (UPDATE)
+  *  Returns : updated service plugin config
+*/
+func (a *Client) UpdateSectionPluginConfig(params *UpdateSectionPluginConfigParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateSectionPluginConfigOK, *UpdateSectionPluginConfigUnprocessableEntity, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewUpdateSectionPluginConfigParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "updateSectionPluginConfig",
+		Method:             "PUT",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/catalog/plugins/section",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &UpdateSectionPluginConfigReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *UpdateSectionPluginConfigOK:
+		return v, nil, nil
+
+	case *UpdateSectionPluginConfigUnprocessableEntity:
+		return nil, v, nil
+
+	default:
+		return nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+UpdateSectionPluginConfigShort update section plugin config
+Update section config. Other detail info:
+  * Required permission : resource=ADMIN:NAMESPACE:{namespace}:PLUGIN:CATALOG, action=4 (UPDATE)
+  *  Returns : updated service plugin config
+*/
+func (a *Client) UpdateSectionPluginConfigShort(params *UpdateSectionPluginConfigParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateSectionPluginConfigOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewUpdateSectionPluginConfigParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "updateSectionPluginConfig",
+		Method:             "PUT",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/catalog/plugins/section",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &UpdateSectionPluginConfigReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *UpdateSectionPluginConfigOK:
+		return v, nil
+	case *UpdateSectionPluginConfigUnprocessableEntity:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+Deprecated: 2022-08-10 - Use DeleteSectionPluginConfigShort instead.
+
+DeleteSectionPluginConfig delete section plugin config
+Delete section plugin config.
+Other detail info:
+
+  * Required permission : resource=ADMIN:NAMESPACE:{namespace}:PLUGIN:CATALOG, action=8 (DELETE)
+*/
+func (a *Client) DeleteSectionPluginConfig(params *DeleteSectionPluginConfigParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteSectionPluginConfigNoContent, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewDeleteSectionPluginConfigParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "deleteSectionPluginConfig",
+		Method:             "DELETE",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/catalog/plugins/section",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &DeleteSectionPluginConfigReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *DeleteSectionPluginConfigNoContent:
+		return v, nil
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+DeleteSectionPluginConfigShort delete section plugin config
+Delete section plugin config.
+Other detail info:
+
+  * Required permission : resource=ADMIN:NAMESPACE:{namespace}:PLUGIN:CATALOG, action=8 (DELETE)
+*/
+func (a *Client) DeleteSectionPluginConfigShort(params *DeleteSectionPluginConfigParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteSectionPluginConfigNoContent, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewDeleteSectionPluginConfigParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "deleteSectionPluginConfig",
+		Method:             "DELETE",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/catalog/plugins/section",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &DeleteSectionPluginConfigReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *DeleteSectionPluginConfigNoContent:
+		return v, nil
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+Deprecated: 2022-08-10 - Use UploadSectionPluginConfigCertShort instead.
+
+UploadSectionPluginConfigCert upload section plugin custom config tls cert
+Upload section plugin custom config tls cert.Other detail info:
+  * Required permission : resource=ADMIN:NAMESPACE:{namespace}:PLUGIN:CATALOG, action=4 (UPDATE)
+  *  Returns : updated service plugin config
+*/
+func (a *Client) UploadSectionPluginConfigCert(params *UploadSectionPluginConfigCertParams, authInfo runtime.ClientAuthInfoWriter) (*UploadSectionPluginConfigCertOK, *UploadSectionPluginConfigCertUnprocessableEntity, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewUploadSectionPluginConfigCertParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "uploadSectionPluginConfigCert",
+		Method:             "PUT",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/catalog/plugins/section/customConfig/cert",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"multipart/form-data"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &UploadSectionPluginConfigCertReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *UploadSectionPluginConfigCertOK:
+		return v, nil, nil
+
+	case *UploadSectionPluginConfigCertUnprocessableEntity:
+		return nil, v, nil
+
+	default:
+		return nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+UploadSectionPluginConfigCertShort upload section plugin custom config tls cert
+Upload section plugin custom config tls cert.Other detail info:
+  * Required permission : resource=ADMIN:NAMESPACE:{namespace}:PLUGIN:CATALOG, action=4 (UPDATE)
+  *  Returns : updated service plugin config
+*/
+func (a *Client) UploadSectionPluginConfigCertShort(params *UploadSectionPluginConfigCertParams, authInfo runtime.ClientAuthInfoWriter) (*UploadSectionPluginConfigCertOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewUploadSectionPluginConfigCertParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "uploadSectionPluginConfigCert",
+		Method:             "PUT",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/catalog/plugins/section/customConfig/cert",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"multipart/form-data"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &UploadSectionPluginConfigCertReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *UploadSectionPluginConfigCertOK:
+		return v, nil
+	case *UploadSectionPluginConfigCertUnprocessableEntity:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
 }
 
 /*
@@ -331,6 +1251,404 @@ func (a *Client) DeleteServicePluginConfigShort(params *DeleteServicePluginConfi
 
 	case *DeleteServicePluginConfigNoContent:
 		return v, nil
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+Deprecated: 2022-08-10 - Use GetLootBoxPluginConfig1Short instead.
+
+GetLootBoxPluginConfig1 get revocation plugin config
+Get revocation plugin config.
+Other detail info:
+
+  * Required permission : resource= ADMIN:NAMESPACE:{namespace}:PLUGIN:REVOCATION , action=2 (READ)
+*/
+func (a *Client) GetLootBoxPluginConfig1(params *GetLootBoxPluginConfig1Params, authInfo runtime.ClientAuthInfoWriter) (*GetLootBoxPluginConfig1OK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewGetLootBoxPluginConfig1Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "getLootBoxPluginConfig_1",
+		Method:             "GET",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/revocation/plugins/revocation",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &GetLootBoxPluginConfig1Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *GetLootBoxPluginConfig1OK:
+		return v, nil
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+GetLootBoxPluginConfig1Short get revocation plugin config
+Get revocation plugin config.
+Other detail info:
+
+  * Required permission : resource= ADMIN:NAMESPACE:{namespace}:PLUGIN:REVOCATION , action=2 (READ)
+*/
+func (a *Client) GetLootBoxPluginConfig1Short(params *GetLootBoxPluginConfig1Params, authInfo runtime.ClientAuthInfoWriter) (*GetLootBoxPluginConfig1OK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewGetLootBoxPluginConfig1Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "getLootBoxPluginConfig_1",
+		Method:             "GET",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/revocation/plugins/revocation",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &GetLootBoxPluginConfig1Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *GetLootBoxPluginConfig1OK:
+		return v, nil
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+Deprecated: 2022-08-10 - Use UpdateLootBoxPluginConfig1Short instead.
+
+UpdateLootBoxPluginConfig1 update revocation plugin config
+Update revocation plugin config. Other detail info:
+  * Required permission : resource=ADMIN:NAMESPACE:{namespace}:PLUGIN:REVOCATION, action=4 (UPDATE)
+  *  Returns : updated service plugin config
+*/
+func (a *Client) UpdateLootBoxPluginConfig1(params *UpdateLootBoxPluginConfig1Params, authInfo runtime.ClientAuthInfoWriter) (*UpdateLootBoxPluginConfig1OK, *UpdateLootBoxPluginConfig1UnprocessableEntity, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewUpdateLootBoxPluginConfig1Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "updateLootBoxPluginConfig_1",
+		Method:             "PUT",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/revocation/plugins/revocation",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &UpdateLootBoxPluginConfig1Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *UpdateLootBoxPluginConfig1OK:
+		return v, nil, nil
+
+	case *UpdateLootBoxPluginConfig1UnprocessableEntity:
+		return nil, v, nil
+
+	default:
+		return nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+UpdateLootBoxPluginConfig1Short update revocation plugin config
+Update revocation plugin config. Other detail info:
+  * Required permission : resource=ADMIN:NAMESPACE:{namespace}:PLUGIN:REVOCATION, action=4 (UPDATE)
+  *  Returns : updated service plugin config
+*/
+func (a *Client) UpdateLootBoxPluginConfig1Short(params *UpdateLootBoxPluginConfig1Params, authInfo runtime.ClientAuthInfoWriter) (*UpdateLootBoxPluginConfig1OK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewUpdateLootBoxPluginConfig1Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "updateLootBoxPluginConfig_1",
+		Method:             "PUT",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/revocation/plugins/revocation",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &UpdateLootBoxPluginConfig1Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *UpdateLootBoxPluginConfig1OK:
+		return v, nil
+	case *UpdateLootBoxPluginConfig1UnprocessableEntity:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+Deprecated: 2022-08-10 - Use DeleteLootBoxPluginConfig1Short instead.
+
+DeleteLootBoxPluginConfig1 delete revocation plugin config
+Delete service plugin config.
+Other detail info:
+
+  * Required permission : resource=ADMIN:NAMESPACE:{namespace}:PLUGIN:REVOCATION, action=8 (DELETE)
+*/
+func (a *Client) DeleteLootBoxPluginConfig1(params *DeleteLootBoxPluginConfig1Params, authInfo runtime.ClientAuthInfoWriter) (*DeleteLootBoxPluginConfig1NoContent, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewDeleteLootBoxPluginConfig1Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "deleteLootBoxPluginConfig_1",
+		Method:             "DELETE",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/revocation/plugins/revocation",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &DeleteLootBoxPluginConfig1Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *DeleteLootBoxPluginConfig1NoContent:
+		return v, nil
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+DeleteLootBoxPluginConfig1Short delete revocation plugin config
+Delete service plugin config.
+Other detail info:
+
+  * Required permission : resource=ADMIN:NAMESPACE:{namespace}:PLUGIN:REVOCATION, action=8 (DELETE)
+*/
+func (a *Client) DeleteLootBoxPluginConfig1Short(params *DeleteLootBoxPluginConfig1Params, authInfo runtime.ClientAuthInfoWriter) (*DeleteLootBoxPluginConfig1NoContent, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewDeleteLootBoxPluginConfig1Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "deleteLootBoxPluginConfig_1",
+		Method:             "DELETE",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/revocation/plugins/revocation",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &DeleteLootBoxPluginConfig1Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *DeleteLootBoxPluginConfig1NoContent:
+		return v, nil
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+Deprecated: 2022-08-10 - Use UploadRevocationPluginConfigCertShort instead.
+
+UploadRevocationPluginConfigCert upload revocation plugin custom config tls cert
+Upload revocation plugin custom config tls cert.Other detail info:
+  * Required permission : resource=ADMIN:NAMESPACE:{namespace}:PLUGIN:REVOCATION, action=4 (UPDATE)
+  *  Returns : updated service plugin config
+*/
+func (a *Client) UploadRevocationPluginConfigCert(params *UploadRevocationPluginConfigCertParams, authInfo runtime.ClientAuthInfoWriter) (*UploadRevocationPluginConfigCertOK, *UploadRevocationPluginConfigCertUnprocessableEntity, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewUploadRevocationPluginConfigCertParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "uploadRevocationPluginConfigCert",
+		Method:             "PUT",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/revocation/plugins/revocation/revocation/customConfig/cert",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"multipart/form-data"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &UploadRevocationPluginConfigCertReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *UploadRevocationPluginConfigCertOK:
+		return v, nil, nil
+
+	case *UploadRevocationPluginConfigCertUnprocessableEntity:
+		return nil, v, nil
+
+	default:
+		return nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+UploadRevocationPluginConfigCertShort upload revocation plugin custom config tls cert
+Upload revocation plugin custom config tls cert.Other detail info:
+  * Required permission : resource=ADMIN:NAMESPACE:{namespace}:PLUGIN:REVOCATION, action=4 (UPDATE)
+  *  Returns : updated service plugin config
+*/
+func (a *Client) UploadRevocationPluginConfigCertShort(params *UploadRevocationPluginConfigCertParams, authInfo runtime.ClientAuthInfoWriter) (*UploadRevocationPluginConfigCertOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewUploadRevocationPluginConfigCertParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "uploadRevocationPluginConfigCert",
+		Method:             "PUT",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/revocation/plugins/revocation/revocation/customConfig/cert",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"multipart/form-data"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &UploadRevocationPluginConfigCertReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *UploadRevocationPluginConfigCertOK:
+		return v, nil
+	case *UploadRevocationPluginConfigCertUnprocessableEntity:
+		return nil, v
 
 	default:
 		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))

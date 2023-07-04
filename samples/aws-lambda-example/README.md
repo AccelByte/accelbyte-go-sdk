@@ -1,8 +1,8 @@
-# aws-lambda-example-update
+# aws-lambda-example
 
-This is an update of example form a Lambda service which interacts with AccelByte services 
+This is an example of a Lambda service which interacts with AccelByte services 
 in [DEMO environment](https://demo.accelbyte.io) using AccelByte Go SDK.
-This update is using lambda function url and token validation inside.
+This app is using lambda function url, token validation, and a token refresh inside the code.
 
 ## Prerequisites
 

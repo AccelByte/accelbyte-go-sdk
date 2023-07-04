@@ -196,7 +196,6 @@ modules.xml
 
 # Output from "make samples"
 /samples/aws-lambda-example/*/main
-/samples/aws-lambda-example-update/*/main
 /samples/cli/sample-apps
 /samples/getting-started/golang-application
 /samples/oidc-web/oidc-web

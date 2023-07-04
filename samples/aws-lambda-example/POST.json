@@ -1,0 +1,31 @@
+{
+    "comment1": "For POST local test, use command: sam local invoke UserStatsFunction --event ./POST.json",
+    
+    "version": "2.0",
+    "routeKey": "$default",
+    "rawPath": "/",
+    "rawQueryString": "",
+    "cookies": [],
+    "headers": {
+        "Content-Type": "application/json",
+        "authorization": "Bearer xxxxxxxxxxxxxxxxxx"
+    },
+    "queryStringParameters": {
+        "namespace": "xxxxxxxxxxxxxxxxxx",
+        "userId": "xxxxxxxxxxxxxxxxxx",
+        "statCode": "xxxxxxxxxxxxxxxxxx"
+    },
+    "requestContext": {
+        "timeEpoch": 1234567890,
+        "http": {
+        "method": "POST",
+        "path": "/",
+        "protocol": "HTTP/1.1",
+        "sourceIp": "127.0.0.1",
+        "userAgent": "curl/7.64.1"
+        }
+    },
+    "body": "",
+    "isBase64Encoded": false
+    }
+      

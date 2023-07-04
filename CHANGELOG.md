@@ -1,5 +1,8 @@
 <a name="v0.48.0"></a>
 ## [v0.48.0]
+### chore
+- update getting started module sum and CHANGELOG.md
+
 ### ci
 - **generate:** wrong spec commit hash if no recent changes enough in stage_extend-sdk
 

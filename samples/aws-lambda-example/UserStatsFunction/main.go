@@ -12,6 +12,7 @@ import (
 	"time"
 
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
+	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/repository"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/iam"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/social"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils/auth"
@@ -24,13 +25,15 @@ import (
 
 var (
 	// use the default config and token implementation
-	configRepo = *auth.DefaultConfigRepositoryImpl()
-	tokenRepo  = *auth.DefaultTokenRepositoryImpl()
+	configRepo                                    = *auth.DefaultConfigRepositoryImpl()
+	tokenRepo                                     = *auth.DefaultTokenRepositoryImpl()
+	refreshRepo repository.RefreshTokenRepository = &auth.RefreshTokenImpl{AutoRefresh: false, RefreshRate: 0.01} // Force refresh with shorter time span
 
 	oAuth20Service = iam.OAuth20Service{
-		Client:           factory.NewIamClient(&configRepo),
-		ConfigRepository: &configRepo,
-		TokenRepository:  &tokenRepo,
+		Client:                 factory.NewIamClient(&configRepo),
+		ConfigRepository:       &configRepo,
+		TokenRepository:        &tokenRepo,
+		RefreshTokenRepository: refreshRepo,
 	}
 	userStatisticService = &social.UserStatisticService{
 		Client:          factory.NewSocialClient(&configRepo),
@@ -56,7 +59,7 @@ func Handler(ctx context.Context, evt events.LambdaFunctionURLRequest) (events.L
 	// login client
 	clientId := oAuth20Service.ConfigRepository.GetClientId()
 	clientSecret := oAuth20Service.ConfigRepository.GetClientSecret()
-	errLogin := oAuth20Service.LoginClient(&clientId, &clientSecret)
+	errLogin := oAuth20Service.LoginOrRefreshClient(&clientId, &clientSecret)
 	if errLogin != nil {
 		errString := fmt.Errorf("failed to login client. %s", errLogin.Error())
 		logrus.Error(errString)
@@ -133,7 +136,7 @@ func deleteRequest(evt events.LambdaFunctionURLRequest) (events.LambdaFunctionUR
 		StatCode:  evt.QueryStringParameters["statCode"],
 		UserID:    evt.QueryStringParameters["userId"],
 	}
-	errDeleteUserStatItems := userStatisticService.DeleteUserStatItems(inputDeleteUserStatItem)
+	errDeleteUserStatItems := userStatisticService.DeleteUserStatItemsShort(inputDeleteUserStatItem)
 	if errDeleteUserStatItems != nil {
 		errString := fmt.Errorf("failed to delete user stat code. %s", errDeleteUserStatItems.Error())
 		logrus.Error(errString)

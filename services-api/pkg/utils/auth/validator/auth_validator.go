@@ -29,27 +29,27 @@ type AuthTokenValidator interface {
 	Validate(token string, permission *Permission, namespace *string, userId *string) error
 }
 
-type authTokenValidator struct {
-	authService     iam.OAuth20Service
-	refreshInterval time.Duration
+type TokenValidator struct {
+	AuthService     iam.OAuth20Service
+	RefreshInterval time.Duration
 
-	filter                *bloom.Filter
-	jwkSet                *iamclientmodels.OauthcommonJWKSet
-	jwtClaims             JWTClaims
-	jwtEncoding           base64.Encoding
-	localValidationActive bool
-	publicKeys            map[string]*rsa.PublicKey
-	revokedUsers          map[string]time.Time
-	roles                 map[string]*iamclientmodels.ModelRoleResponseV3
+	Filter                *bloom.Filter
+	JwkSet                *iamclientmodels.OauthcommonJWKSet
+	JwtClaims             JWTClaims
+	JwtEncoding           base64.Encoding
+	LocalValidationActive bool
+	PublicKeys            map[string]*rsa.PublicKey
+	RevokedUsers          map[string]time.Time
+	Roles                 map[string]*iamclientmodels.ModelRoleResponseV3
 }
 
-func (v *authTokenValidator) Initialize() {
+func (v *TokenValidator) Initialize() {
 	if err := v.fetchAll(); err != nil {
 		panic(err)
 	}
 	go func() {
 		for {
-			time.Sleep(v.refreshInterval)
+			time.Sleep(v.RefreshInterval)
 			if err := v.fetchClientToken(); err != nil {
 				panic(err)
 			}
@@ -58,7 +58,7 @@ func (v *authTokenValidator) Initialize() {
 
 	go func() {
 		for {
-			time.Sleep(v.refreshInterval)
+			time.Sleep(v.RefreshInterval)
 			if err := v.fetchJWKSet(); err != nil {
 				panic(err)
 			}
@@ -67,7 +67,7 @@ func (v *authTokenValidator) Initialize() {
 
 	go func() {
 		for {
-			time.Sleep(v.refreshInterval)
+			time.Sleep(v.RefreshInterval)
 			if err := v.fetchRevocationList(); err != nil {
 				panic(err)
 			}
@@ -75,7 +75,7 @@ func (v *authTokenValidator) Initialize() {
 	}()
 }
 
-func (v *authTokenValidator) Validate(token string, permission *Permission, namespace *string, userId *string) error {
+func (v *TokenValidator) Validate(token string, permission *Permission, namespace *string, userId *string) error {
 	jsonWebToken, err := jwt.ParseSigned(token)
 	if err != nil {
 		return err
@@ -90,30 +90,30 @@ func (v *authTokenValidator) Validate(token string, permission *Permission, name
 		return errors.New("'kid' header not found")
 	}
 
-	publicKey := v.publicKeys[kid]
-	err = jsonWebToken.Claims(publicKey, &v.jwtClaims)
+	publicKey := v.PublicKeys[kid]
+	err = jsonWebToken.Claims(publicKey, &v.JwtClaims)
 	if err != nil {
 		return err
 	}
 
-	if !v.localValidationActive {
+	if !v.LocalValidationActive {
 		input := &o_auth2_0.VerifyTokenV3Params{
 			Token: token,
 		}
-		_, errVerify := v.authService.VerifyTokenV3Short(input)
+		_, errVerify := v.AuthService.VerifyTokenV3Short(input)
 		if errVerify != nil {
 			return errVerify
 		}
 		fmt.Print("token verified")
 
-		if !v.hasValidPermissions(v.jwtClaims, permission, namespace, userId) {
+		if !v.hasValidPermissions(v.JwtClaims, permission, namespace, userId) {
 			return errors.New("insufficient permissions")
 		}
 
 		return nil
 	}
 
-	err = v.jwtClaims.Validate()
+	err = v.JwtClaims.Validate()
 	if err != nil {
 		return err
 	}
@@ -122,19 +122,19 @@ func (v *authTokenValidator) Validate(token string, permission *Permission, name
 		return errors.New("token was revoked")
 	}
 
-	if v.isUserRevoked(v.jwtClaims.Subject, int64(v.jwtClaims.IssuedAt)) {
+	if v.isUserRevoked(v.JwtClaims.Subject, int64(v.JwtClaims.IssuedAt)) {
 		return errors.New("user was revoked")
 	}
 
-	if !v.hasValidPermissions(v.jwtClaims, permission, namespace, userId) {
+	if !v.hasValidPermissions(v.JwtClaims, permission, namespace, userId) {
 		return errors.New("insufficient permissions")
 	}
 
 	return nil
 }
 
-func (v *authTokenValidator) convertExponent(e string) (int, error) {
-	decodedE, err := v.jwtEncoding.DecodeString(e)
+func (v *TokenValidator) convertExponent(e string) (int, error) {
+	decodedE, err := v.JwtEncoding.DecodeString(e)
 	if err != nil {
 		return 0, err
 	}
@@ -158,8 +158,8 @@ func (v *authTokenValidator) convertExponent(e string) (int, error) {
 	return int(uint64E), nil
 }
 
-func (v *authTokenValidator) convertModulus(n string) (*big.Int, error) {
-	decodedN, err := v.jwtEncoding.DecodeString(n)
+func (v *TokenValidator) convertModulus(n string) (*big.Int, error) {
+	decodedN, err := v.JwtEncoding.DecodeString(n)
 	if err != nil {
 		return nil, err
 	}
@@ -170,7 +170,7 @@ func (v *authTokenValidator) convertModulus(n string) (*big.Int, error) {
 	return bigN, nil
 }
 
-func (v *authTokenValidator) convertToPermission(permission iamclientmodels.AccountcommonPermissionV3) Permission {
+func (v *TokenValidator) convertToPermission(permission iamclientmodels.AccountcommonPermissionV3) Permission {
 	resource := ""
 	action := 0
 
@@ -190,7 +190,7 @@ func (v *authTokenValidator) convertToPermission(permission iamclientmodels.Acco
 	}
 }
 
-func (v *authTokenValidator) convertToPublicKey(jwkKey *iamclientmodels.OauthcommonJWKKey) (*rsa.PublicKey, error) {
+func (v *TokenValidator) convertToPublicKey(jwkKey *iamclientmodels.OauthcommonJWKKey) (*rsa.PublicKey, error) {
 	n, err := v.convertModulus(jwkKey.N)
 	if err != nil {
 		return nil, err
@@ -204,7 +204,7 @@ func (v *authTokenValidator) convertToPublicKey(jwkKey *iamclientmodels.Oauthcom
 	return &rsa.PublicKey{N: n, E: e}, nil
 }
 
-func (v *authTokenValidator) fetchAll() error {
+func (v *TokenValidator) fetchAll() error {
 	err := v.fetchClientToken()
 	if err != nil {
 		return err
@@ -223,15 +223,15 @@ func (v *authTokenValidator) fetchAll() error {
 	return nil
 }
 
-func (v *authTokenValidator) fetchClientToken() error {
-	clientId := v.authService.ConfigRepository.GetClientId()
-	clientSecret := v.authService.ConfigRepository.GetClientSecret()
+func (v *TokenValidator) fetchClientToken() error {
+	clientId := v.AuthService.ConfigRepository.GetClientId()
+	clientSecret := v.AuthService.ConfigRepository.GetClientSecret()
 
-	return v.authService.LoginClient(&clientId, &clientSecret)
+	return v.AuthService.LoginClient(&clientId, &clientSecret)
 }
 
-func (v *authTokenValidator) fetchJWKSet() error {
-	jwkSet, err := v.authService.GetJWKSV3Short(&o_auth2_0.GetJWKSV3Params{})
+func (v *TokenValidator) fetchJWKSet() error {
+	jwkSet, err := v.AuthService.GetJWKSV3Short(&o_auth2_0.GetJWKSV3Params{})
 	if err != nil {
 		return err
 	}
@@ -242,50 +242,50 @@ func (v *authTokenValidator) fetchJWKSet() error {
 			return err
 		}
 
-		v.publicKeys[key.Kid] = publicKey
+		v.PublicKeys[key.Kid] = publicKey
 	}
 
 	return nil
 }
 
-func (v *authTokenValidator) fetchRevocationList() error {
-	revocationList, err := v.authService.GetRevocationListV3Short(&o_auth2_0.GetRevocationListV3Params{})
+func (v *TokenValidator) fetchRevocationList() error {
+	revocationList, err := v.AuthService.GetRevocationListV3Short(&o_auth2_0.GetRevocationListV3Params{})
 	if err != nil {
 		return err
 	}
 
-	v.filter = bloom.From(revocationList.RevokedTokens.Bits, uint(*revocationList.RevokedTokens.K))
+	v.Filter = bloom.From(revocationList.RevokedTokens.Bits, uint(*revocationList.RevokedTokens.K))
 
 	for _, revokedUser := range revocationList.RevokedUsers {
-		v.revokedUsers[*revokedUser.ID] = time.Time(revokedUser.RevokedAt)
+		v.RevokedUsers[*revokedUser.ID] = time.Time(revokedUser.RevokedAt)
 	}
 
 	return nil
 }
 
-func (v *authTokenValidator) getRole(roleId string, forceFetch bool) (*iamclientmodels.ModelRoleResponseV3, error) {
+func (v *TokenValidator) getRole(roleId string, forceFetch bool) (*iamclientmodels.ModelRoleResponseV3, error) {
 	if !forceFetch {
-		if role, found := v.roles[roleId]; found {
+		if role, found := v.Roles[roleId]; found {
 			return role, nil
 		}
 	}
 
 	roleService := iam.RolesService{
-		Client:           v.authService.Client,
-		ConfigRepository: v.authService.ConfigRepository,
-		TokenRepository:  v.authService.TokenRepository,
+		Client:           v.AuthService.Client,
+		ConfigRepository: v.AuthService.ConfigRepository,
+		TokenRepository:  v.AuthService.TokenRepository,
 	}
 	role, err := roleService.AdminGetRoleV3Short(&roles.AdminGetRoleV3Params{RoleID: roleId})
 	if err != nil {
 		return nil, err
 	}
 
-	v.roles[roleId] = role
+	v.Roles[roleId] = role
 
 	return role, nil
 }
 
-func (v *authTokenValidator) getRolePermissions(roleId string, forceFetch bool) ([]Permission, error) {
+func (v *TokenValidator) getRolePermissions(roleId string, forceFetch bool) ([]Permission, error) {
 	role, err := v.getRole(roleId, forceFetch)
 	if err != nil {
 		return nil, err
@@ -299,7 +299,7 @@ func (v *authTokenValidator) getRolePermissions(roleId string, forceFetch bool) 
 	return permissions, nil
 }
 
-func (v *authTokenValidator) getRolePermissions2(roleId string, namespace string, userId *string, forceFetch bool) ([]Permission, error) {
+func (v *TokenValidator) getRolePermissions2(roleId string, namespace string, userId *string, forceFetch bool) ([]Permission, error) {
 	permissions, err := v.getRolePermissions(roleId, forceFetch)
 	if err != nil {
 		return nil, err
@@ -317,11 +317,11 @@ func (v *authTokenValidator) getRolePermissions2(roleId string, namespace string
 	return modifiedPermissions, nil
 }
 
-func (v *authTokenValidator) getRolePermissions3(namespaceRole NamespaceRole, userId *string, forceFetch bool) ([]Permission, error) {
+func (v *TokenValidator) getRolePermissions3(namespaceRole NamespaceRole, userId *string, forceFetch bool) ([]Permission, error) {
 	return v.getRolePermissions2(namespaceRole.RoleID, namespaceRole.Namespace, userId, forceFetch)
 }
 
-func (v *authTokenValidator) hasValidPermissions(claims JWTClaims, permission *Permission, namespace *string, userId *string) bool {
+func (v *TokenValidator) hasValidPermissions(claims JWTClaims, permission *Permission, namespace *string, userId *string) bool {
 	if permission == nil {
 		return true
 	}
@@ -384,19 +384,19 @@ func (v *authTokenValidator) hasValidPermissions(claims JWTClaims, permission *P
 	return false
 }
 
-func (v *authTokenValidator) isTokenRevoked(token string) bool {
-	return v.filter.MightContain([]byte(token))
+func (v *TokenValidator) isTokenRevoked(token string) bool {
+	return v.Filter.MightContain([]byte(token))
 }
 
-func (v *authTokenValidator) isUserRevoked(userId string, issuedAt int64) bool {
-	if revokedAt, found := v.revokedUsers[userId]; found {
+func (v *TokenValidator) isUserRevoked(userId string, issuedAt int64) bool {
+	if revokedAt, found := v.RevokedUsers[userId]; found {
 		return revokedAt.Unix() >= issuedAt
 	}
 
 	return false
 }
 
-func (v *authTokenValidator) replaceResource(resource string, namespace *string, tokenNamespace *string, publisherNamespace *string, userId *string, crossAllowed bool) string {
+func (v *TokenValidator) replaceResource(resource string, namespace *string, tokenNamespace *string, publisherNamespace *string, userId *string, crossAllowed bool) string {
 	modifiedResource := resource
 
 	if crossAllowed && tokenNamespace != nil && (publisherNamespace == tokenNamespace || publisherNamespace == namespace) {
@@ -414,7 +414,7 @@ func (v *authTokenValidator) replaceResource(resource string, namespace *string,
 	return modifiedResource
 }
 
-func (v *authTokenValidator) validatePermissions(permissions []Permission, resource string, action int) bool {
+func (v *TokenValidator) validatePermissions(permissions []Permission, resource string, action int) bool {
 	if len(permissions) > 0 {
 		requiredResourceItems := strings.Split(resource, ":")
 		for _, permission := range permissions {
@@ -478,18 +478,18 @@ func (v *authTokenValidator) validatePermissions(permissions []Permission, resou
 }
 
 func NewTokenValidator(authService iam.OAuth20Service, refreshInterval time.Duration) AuthTokenValidator {
-	return &authTokenValidator{
-		authService:     authService,
-		refreshInterval: refreshInterval,
+	return &TokenValidator{
+		AuthService:     authService,
+		RefreshInterval: refreshInterval,
 
-		filter:                nil,
-		jwkSet:                nil,
-		jwtClaims:             JWTClaims{},
-		jwtEncoding:           *base64.URLEncoding.WithPadding(base64.NoPadding),
-		publicKeys:            make(map[string]*rsa.PublicKey),
-		localValidationActive: false,
-		revokedUsers:          make(map[string]time.Time),
-		roles:                 make(map[string]*iamclientmodels.ModelRoleResponseV3),
+		Filter:                nil,
+		JwkSet:                nil,
+		JwtClaims:             JWTClaims{},
+		JwtEncoding:           *base64.URLEncoding.WithPadding(base64.NoPadding),
+		PublicKeys:            make(map[string]*rsa.PublicKey),
+		LocalValidationActive: false,
+		RevokedUsers:          make(map[string]time.Time),
+		Roles:                 make(map[string]*iamclientmodels.ModelRoleResponseV3),
 	}
 }
 

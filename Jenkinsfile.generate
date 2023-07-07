@@ -20,6 +20,7 @@ sdkCommitHash = null
 
 sdkSpecPath = null
 sdkCodegenPath = null
+mockServerPath = null
 sdkPath = null
 
 breakingChangeCheckExitCode = 0
@@ -41,13 +42,16 @@ pipeline {
       steps {
         script {
           sdkCodegenPath = "${env.WORKSPACE}/justice-codegen-sdk"
+          mockServerPath = "${env.WORKSPACE}/justice-codegen-sdk-mock-server"
           sdkSpecPath = "${env.WORKSPACE}/justice-codegen-sdk-spec"
           sdkPath = "${env.WORKSPACE}/${sdkRepoName}"
 
           sh "rm -rf justice-codegen-sdk"
+          sh "rm -rf justice-codegen-sdk-mock-server"
           sh "rm -rf justice-codegen-sdk-spec"
           sshagent(credentials: [bitbucketCredentialsSsh]) {
             sh "git clone --depth 1 git@bitbucket.org:accelbyte/justice-codegen-sdk.git ${sdkCodegenPath}"
+            sh "git clone --depth 1 git@bitbucket.org:accelbyte/justice-codegen-sdk-mock-server.git ${mockServerPath}"
             sh "git clone --depth 50 git@bitbucket.org:accelbyte/justice-codegen-sdk-spec.git ${sdkSpecPath}"
           }
 
@@ -121,7 +125,7 @@ pipeline {
     stage('Core Tests') {
       steps {
         dir(sdkRepoName) {
-          sh "make test_core SDK_MOCK_SERVER_PATH=${sdkCodegenPath}/mock-server"
+          sh "make test_core SDK_MOCK_SERVER_PATH=${mockServerPath}"
         }
       }
     }
@@ -129,7 +133,7 @@ pipeline {
     stage('CLI Tests') {
       steps {
         dir(sdkRepoName) {
-          sh "make test_cli SDK_MOCK_SERVER_PATH=${sdkCodegenPath}/mock-server"
+          sh "make test_cli SDK_MOCK_SERVER_PATH=${mockServerPath}"
         }
       }
       post {

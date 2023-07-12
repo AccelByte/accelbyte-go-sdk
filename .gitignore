@@ -203,6 +203,7 @@ modules.xml
 /samples/tic-tac-toe/client/client
 /samples/title-matchmaking/aws-lambda/aws-lambda
 /samples/title-matchmaking/client/sample-apps
+/samples/ondemand-refresh-token/ondemand-refresh-token
 
 # MacOS
 .DS_Store

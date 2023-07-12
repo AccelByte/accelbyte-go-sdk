@@ -11,6 +11,7 @@ import (
 	"net/http"
 	"os"
 	"testing"
+	"time"
 
 	"github.com/sirupsen/logrus"
 	"github.com/stretchr/testify/assert"
@@ -340,4 +341,111 @@ func TestIntegrationLoginClient(t *testing.T) {
 	assert.NoError(t, err)
 	assert.NotNil(t, country)
 	t.Logf("Country name: %s", *country.CountryName)
+}
+
+func TestIntegration_LoginOrRefreshClient_shouldReuseValidToken(t *testing.T) {
+	oAuth20Service := &iam.OAuth20Service{
+		Client:                 factory.NewIamClient(auth.DefaultConfigRepositoryImpl()),
+		ConfigRepository:       auth.DefaultConfigRepositoryImpl(),
+		TokenRepository:        auth.DefaultTokenRepositoryImpl(),
+		RefreshTokenRepository: &auth.RefreshTokenImpl{AutoRefresh: false, RefreshRate: 1},
+	}
+	clientId := oAuth20Service.ConfigRepository.GetClientId()
+	clientSecret := oAuth20Service.ConfigRepository.GetClientSecret()
+
+	for i := 0; i < 5; i++ {
+		// first time auth
+		err := oAuth20Service.LoginOrRefreshClient(&clientId, &clientSecret)
+		if err != nil {
+			t.Fatal(err)
+		}
+		firstToken, err := oAuth20Service.TokenRepository.GetToken()
+		if err != nil {
+			t.Fatal(err)
+		}
+		assert.NotEmpty(t, *firstToken)
+
+		time.Sleep(time.Second * 5)
+		// second time auth
+		err = oAuth20Service.LoginOrRefreshClient(&clientId, &clientSecret)
+		if err != nil {
+			t.Fatal(err)
+		}
+		secondToken, err := oAuth20Service.TokenRepository.GetToken()
+		if err != nil {
+			t.Fatal(err)
+		}
+		assert.NotEmpty(t, *secondToken)
+		assert.Equal(t, *secondToken, *firstToken)
+	}
+}
+
+func TestIntegration_LoginOrRefreshClient_shouldReAuthenticate(t *testing.T) {
+	oAuth20Service := &iam.OAuth20Service{
+		Client:                 factory.NewIamClient(auth.DefaultConfigRepositoryImpl()),
+		ConfigRepository:       auth.DefaultConfigRepositoryImpl(),
+		TokenRepository:        auth.DefaultTokenRepositoryImpl(),
+		RefreshTokenRepository: &auth.RefreshTokenImpl{AutoRefresh: false, RefreshRate: 0.001}, // very small numbers to make token expire sooner
+	}
+	clientId := oAuth20Service.ConfigRepository.GetClientId()
+	clientSecret := oAuth20Service.ConfigRepository.GetClientSecret()
+
+	// first time auth
+	err := oAuth20Service.LoginOrRefreshClient(&clientId, &clientSecret)
+	if err != nil {
+		t.Fatal(err)
+	}
+	firstToken, err := oAuth20Service.TokenRepository.GetToken()
+	if err != nil {
+		t.Fatal(err)
+	}
+	assert.NotEmpty(t, *firstToken)
+
+	time.Sleep(time.Second * 10) // just to be sure it expires
+	// second time auth
+	err = oAuth20Service.LoginOrRefreshClient(&clientId, &clientSecret)
+	if err != nil {
+		t.Fatal(err)
+	}
+	secondToken, err := oAuth20Service.TokenRepository.GetToken()
+	if err != nil {
+		t.Fatal(err)
+	}
+	assert.NotEmpty(t, *secondToken)
+	assert.NotEqual(t, *secondToken, *firstToken)
+}
+
+func TestIntegration_LoginOrRefresh_shouldReAuthenticate(t *testing.T) {
+	username := os.Getenv("AB_USERNAME")
+	password := os.Getenv("AB_PASSWORD")
+	oAuth20Service := &iam.OAuth20Service{
+		Client:                 factory.NewIamClient(auth.DefaultConfigRepositoryImpl()),
+		ConfigRepository:       auth.DefaultConfigRepositoryImpl(),
+		TokenRepository:        auth.DefaultTokenRepositoryImpl(),
+		RefreshTokenRepository: &auth.RefreshTokenImpl{AutoRefresh: false, RefreshRate: 0.001}, // very small numbers to make token expire sooner
+	}
+
+	// first time auth
+	err := oAuth20Service.LoginOrRefresh(username, password)
+	if err != nil {
+		t.Fatal(err)
+	}
+	firstToken, err := oAuth20Service.TokenRepository.GetToken()
+	if err != nil {
+		t.Fatal(err)
+	}
+	assert.NotEmpty(t, *firstToken)
+
+	time.Sleep(time.Second * 10) // just to be sure it expires
+	// second time auth
+	err = oAuth20Service.LoginOrRefresh(username, password)
+	if err != nil {
+		t.Fatal(err)
+	}
+	secondToken, err := oAuth20Service.TokenRepository.GetToken()
+	if err != nil {
+		t.Fatal(err)
+	}
+	assert.NotEmpty(t, *secondToken)
+	assert.NotEqual(t, *secondToken, *firstToken)
 }

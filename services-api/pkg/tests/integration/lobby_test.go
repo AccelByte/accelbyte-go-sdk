@@ -94,10 +94,9 @@ func TestIntegrationLobbyFreeFormNotification(t *testing.T) {
 	oAuth20Service := integration.LoginUser(t)
 
 	lobbyAdminSvc := &lobby.AdminService{
-		Client:                 factory.NewLobbyClient(oAuth20Service.ConfigRepository),
-		ConfigRepository:       oAuth20Service.ConfigRepository,
-		TokenRepository:        oAuth20Service.TokenRepository,
-		RefreshTokenRepository: oAuth20Service.RefreshTokenRepository,
+		Client:           factory.NewLobbyClient(oAuth20Service.ConfigRepository),
+		ConfigRepository: oAuth20Service.ConfigRepository,
+		TokenRepository:  oAuth20Service.TokenRepository,
 	}
 
 	topic := "go_server_sdk_integration_test"
@@ -119,10 +118,9 @@ func TestIntegrationLobbyNotificationTopics(t *testing.T) {
 	// prepare
 	oauthSvc := integration.LoginUser(t)
 	lobbyNotifSvc := &lobby.NotificationService{
-		Client:                 factory.NewLobbyClient(oauthSvc.ConfigRepository),
-		ConfigRepository:       oauthSvc.ConfigRepository,
-		TokenRepository:        oauthSvc.TokenRepository,
-		RefreshTokenRepository: oauthSvc.RefreshTokenRepository,
+		Client:           factory.NewLobbyClient(oauthSvc.ConfigRepository),
+		ConfigRepository: oauthSvc.ConfigRepository,
+		TokenRepository:  oauthSvc.TokenRepository,
 	}
 	desc := "go lobby notification topics integration test"
 	topic := "GOINTEGRATIONTESTTOPIC"
@@ -181,10 +179,9 @@ func TestIntegrationLobbyNotificationTemplates(t *testing.T) {
 	// prepare
 	oauthSvc := integration.LoginUser(t)
 	lobbyNotifSvc := &lobby.NotificationService{
-		Client:                 factory.NewLobbyClient(oauthSvc.ConfigRepository),
-		ConfigRepository:       oauthSvc.ConfigRepository,
-		TokenRepository:        oauthSvc.TokenRepository,
-		RefreshTokenRepository: oauthSvc.RefreshTokenRepository,
+		Client:           factory.NewLobbyClient(oauthSvc.ConfigRepository),
+		ConfigRepository: oauthSvc.ConfigRepository,
+		TokenRepository:  oauthSvc.TokenRepository,
 	}
 	templSlug := "GoIntegrationTestTemplate"
 	templLang := "en"

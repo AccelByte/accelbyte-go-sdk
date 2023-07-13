@@ -344,22 +344,22 @@ func TestIntegrationLoginClient(t *testing.T) {
 }
 
 func TestIntegration_LoginOrRefreshClient_shouldReuseValidToken(t *testing.T) {
-	oAuth20Service := &iam.OAuth20Service{
+	oauthSvc := &iam.OAuth20Service{
 		Client:                 factory.NewIamClient(auth.DefaultConfigRepositoryImpl()),
 		ConfigRepository:       auth.DefaultConfigRepositoryImpl(),
 		TokenRepository:        auth.DefaultTokenRepositoryImpl(),
 		RefreshTokenRepository: &auth.RefreshTokenImpl{AutoRefresh: false, RefreshRate: 1},
 	}
-	clientId := oAuth20Service.ConfigRepository.GetClientId()
-	clientSecret := oAuth20Service.ConfigRepository.GetClientSecret()
+	clientId := oauthSvc.ConfigRepository.GetClientId()
+	clientSecret := oauthSvc.ConfigRepository.GetClientSecret()
 
 	for i := 0; i < 5; i++ {
 		// first time auth
-		err := oAuth20Service.LoginOrRefreshClient(&clientId, &clientSecret)
+		err := oauthSvc.LoginOrRefreshClient(&clientId, &clientSecret)
 		if err != nil {
 			t.Fatal(err)
 		}
-		firstToken, err := oAuth20Service.TokenRepository.GetToken()
+		firstToken, err := oauthSvc.TokenRepository.GetToken()
 		if err != nil {
 			t.Fatal(err)
 		}
@@ -367,11 +367,11 @@ func TestIntegration_LoginOrRefreshClient_shouldReuseValidToken(t *testing.T) {
 
 		time.Sleep(time.Second * 5)
 		// second time auth
-		err = oAuth20Service.LoginOrRefreshClient(&clientId, &clientSecret)
+		err = oauthSvc.LoginOrRefreshClient(&clientId, &clientSecret)
 		if err != nil {
 			t.Fatal(err)
 		}
-		secondToken, err := oAuth20Service.TokenRepository.GetToken()
+		secondToken, err := oauthSvc.TokenRepository.GetToken()
 		if err != nil {
 			t.Fatal(err)
 		}
@@ -381,21 +381,21 @@ func TestIntegration_LoginOrRefreshClient_shouldReuseValidToken(t *testing.T) {
 }
 
 func TestIntegration_LoginOrRefreshClient_shouldReAuthenticate(t *testing.T) {
-	oAuth20Service := &iam.OAuth20Service{
+	oauthSvc := &iam.OAuth20Service{
 		Client:                 factory.NewIamClient(auth.DefaultConfigRepositoryImpl()),
 		ConfigRepository:       auth.DefaultConfigRepositoryImpl(),
 		TokenRepository:        auth.DefaultTokenRepositoryImpl(),
 		RefreshTokenRepository: &auth.RefreshTokenImpl{AutoRefresh: false, RefreshRate: 0.001}, // very small numbers to make token expire sooner
 	}
-	clientId := oAuth20Service.ConfigRepository.GetClientId()
-	clientSecret := oAuth20Service.ConfigRepository.GetClientSecret()
+	clientId := oauthSvc.ConfigRepository.GetClientId()
+	clientSecret := oauthSvc.ConfigRepository.GetClientSecret()
 
 	// first time auth
-	err := oAuth20Service.LoginOrRefreshClient(&clientId, &clientSecret)
+	err := oauthSvc.LoginOrRefreshClient(&clientId, &clientSecret)
 	if err != nil {
 		t.Fatal(err)
 	}
-	firstToken, err := oAuth20Service.TokenRepository.GetToken()
+	firstToken, err := oauthSvc.TokenRepository.GetToken()
 	if err != nil {
 		t.Fatal(err)
 	}
@@ -403,11 +403,11 @@ func TestIntegration_LoginOrRefreshClient_shouldReAuthenticate(t *testing.T) {
 
 	time.Sleep(time.Second * 10) // just to be sure it expires
 	// second time auth
-	err = oAuth20Service.LoginOrRefreshClient(&clientId, &clientSecret)
+	err = oauthSvc.LoginOrRefreshClient(&clientId, &clientSecret)
 	if err != nil {
 		t.Fatal(err)
 	}
-	secondToken, err := oAuth20Service.TokenRepository.GetToken()
+	secondToken, err := oauthSvc.TokenRepository.GetToken()
 	if err != nil {
 		t.Fatal(err)
 	}
@@ -418,7 +418,7 @@ func TestIntegration_LoginOrRefreshClient_shouldReAuthenticate(t *testing.T) {
 func TestIntegration_LoginOrRefresh_shouldReAuthenticate(t *testing.T) {
 	username := os.Getenv("AB_USERNAME")
 	password := os.Getenv("AB_PASSWORD")
-	oAuth20Service := &iam.OAuth20Service{
+	oauthSvc := &iam.OAuth20Service{
 		Client:                 factory.NewIamClient(auth.DefaultConfigRepositoryImpl()),
 		ConfigRepository:       auth.DefaultConfigRepositoryImpl(),
 		TokenRepository:        auth.DefaultTokenRepositoryImpl(),
@@ -426,11 +426,11 @@ func TestIntegration_LoginOrRefresh_shouldReAuthenticate(t *testing.T) {
 	}
 
 	// first time auth
-	err := oAuth20Service.LoginOrRefresh(username, password)
+	err := oauthSvc.LoginOrRefresh(username, password)
 	if err != nil {
 		t.Fatal(err)
 	}
-	firstToken, err := oAuth20Service.TokenRepository.GetToken()
+	firstToken, err := oauthSvc.TokenRepository.GetToken()
 	if err != nil {
 		t.Fatal(err)
 	}
@@ -438,11 +438,11 @@ func TestIntegration_LoginOrRefresh_shouldReAuthenticate(t *testing.T) {
 
 	time.Sleep(time.Second * 10) // just to be sure it expires
 	// second time auth
-	err = oAuth20Service.LoginOrRefresh(username, password)
+	err = oauthSvc.LoginOrRefresh(username, password)
 	if err != nil {
 		t.Fatal(err)
 	}
-	secondToken, err := oAuth20Service.TokenRepository.GetToken()
+	secondToken, err := oauthSvc.TokenRepository.GetToken()
 	if err != nil {
 		t.Fatal(err)
 	}

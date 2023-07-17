@@ -138,7 +138,7 @@ if err != nil {
 ### Login Using OAuth Client (Public or Private)
 
 ```go
-err := oAuth20Service.GrantTokenCredentials("", "")
+err := oAuth20Service.LoginClient(clientId, clientSecret)
 if err != nil {
     return err
 }

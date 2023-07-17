@@ -51,29 +51,29 @@ touch "tmp.dat"
 #- 2 SingleAdminGetChannel
 samples/cli/sample-apps Ugc singleAdminGetChannel \
     --namespace $AB_NAMESPACE \
-    --limit '67' \
-    --offset '58' \
+    --limit '39' \
+    --offset '83' \
     > test.out 2>&1
 eval_tap $? 2 'SingleAdminGetChannel' test.out
 
 #- 3 AdminCreateChannel
 samples/cli/sample-apps Ugc adminCreateChannel \
     --namespace $AB_NAMESPACE \
-    --body '{"id": "SpamOErlf58l4H5P", "name": "X3xUAInXNJyFoVsz"}' \
+    --body '{"id": "XRmpOc1BwtJso5pS", "name": "w0SUBP77wtpFT2PB"}' \
     > test.out 2>&1
 eval_tap $? 3 'AdminCreateChannel' test.out
 
 #- 4 SingleAdminUpdateChannel
 samples/cli/sample-apps Ugc singleAdminUpdateChannel \
-    --channelId 'Qqx6VzvyhcPfGnsM' \
+    --channelId 'CGajllHel8ODiyor' \
     --namespace $AB_NAMESPACE \
-    --body '{"name": "AkrvHisDoAk8ixuc"}' \
+    --body '{"name": "W5mjWGWlT973MGN1"}' \
     > test.out 2>&1
 eval_tap $? 4 'SingleAdminUpdateChannel' test.out
 
 #- 5 SingleAdminDeleteChannel
 samples/cli/sample-apps Ugc singleAdminDeleteChannel \
-    --channelId 'cHqbZyJTqVgxbwan' \
+    --channelId 'UbqSSu6s4gLsxnZ4' \
     --namespace $AB_NAMESPACE \
     > test.out 2>&1
 eval_tap $? 5 'SingleAdminDeleteChannel' test.out
@@ -83,36 +83,36 @@ eval_tap 0 6 'AdminUploadContentDirect # SKIP deprecated' test.out
 
 #- 7 AdminUploadContentS3
 samples/cli/sample-apps Ugc adminUploadContentS3 \
-    --channelId 'AvRbB5cASUJArRlg' \
+    --channelId '6myQzMR7HIhYLoVK' \
     --namespace $AB_NAMESPACE \
-    --body '{"contentType": "RVLnbwGIlhRAUAC3", "customAttributes": {"7uNBUqz4rKNalPzr": {}, "L1JbjCyGyhQxOXX3": {}, "0aH5qJ34yiUk5fxO": {}}, "fileExtension": "6XklizZCGi1SyuWY", "name": "8SbzzZTvc2wOxyM2", "preview": "GIHk1sBjrzexofyp", "previewMetadata": {"previewContentType": "GYHTwZPJLf9f8fbB", "previewFileExtension": "3GMkMxMbVQjWCM20"}, "shareCode": "r8dQvEZCTsRAhMHy", "subType": "DxvddLxLVnRQKITA", "tags": ["mcmFCjBhYqgJ4bdM", "dGT2rghV0DmmDWnL", "jmgMk4se2Jgcwy6x"], "type": "JfISujKqA54WZaII"}' \
+    --body '{"contentType": "HHLtjEWWjg5CoSxK", "customAttributes": {"R1NgeH5kS4IBCdEp": {}, "yxRUWUsaBzMItJp5": {}, "MQ1NghTK89rRpAos": {}}, "fileExtension": "it2PCQTvvWMXEh7X", "name": "AuS4W199SmIjnykx", "preview": "iJbrXQtVAKpgv1VI", "previewMetadata": {"previewContentType": "UKNS2UAlNzuAmyKz", "previewFileExtension": "eDMnOeubmIAZsIP6"}, "shareCode": "tfhRmHlTnT6Jy762", "subType": "URGpNYsevW7roxdr", "tags": ["k9XiabU01zaYVaDr", "0sW0HQzkfYuIo2nS", "XnLBSneRUzJAxuBQ"], "type": "lXYEjycqBpTVX75H"}' \
     > test.out 2>&1
 eval_tap $? 7 'AdminUploadContentS3' test.out
 
 #- 8 SingleAdminUpdateContentS3
 samples/cli/sample-apps Ugc singleAdminUpdateContentS3 \
-    --channelId 'ildelN0fIUp8GVuh' \
-    --contentId 'cPLN72xL0WUrKqml' \
+    --channelId 'cnDmQYkOJrbe426l' \
+    --contentId 'Kbi1hs8SpUXNaaR0' \
     --namespace $AB_NAMESPACE \
-    --body '{"contentType": "320pRNV61aTPSEVi", "customAttributes": {"22sZxZlpohEh3qez": {}, "8k48RMfzG2QcGZ9G": {}, "SCzIQ4biPnPuicpS": {}}, "fileExtension": "kQeUQiysxQjRO9gH", "name": "EiwoKLR7q3FwB9zW", "payload": "v6fDk8Vc1e0m0dKi", "preview": "n0MsaGJZqBeAlpFH", "previewMetadata": {"previewContentType": "cJuo3RdZMSwBdZsU", "previewFileExtension": "tlfy8raimDjuYiMZ"}, "shareCode": "0n553kEAtlDa90Jd", "subType": "cIpmPWG2yVVVt1QX", "tags": ["QEKTJ2AQZ9lN0QE7", "FWneE2tmLyMil6Nj", "7PGz9BLlUqE9VUOk"], "type": "j3c2BYxtsoOaxTWe", "updateContentFile": true}' \
+    --body '{"contentType": "Oz8b38W4531k7LYy", "customAttributes": {"FzRUJL8Y7x1W0FZu": {}, "UOLT1DyOrKbxl3yC": {}, "0NU0M1DBhmq5UFwm": {}}, "fileExtension": "wbpSbSS2w1SqnGSg", "name": "R931KuI5SW5os64p", "payload": "OXKLSnh5FzRekHae", "preview": "3UlSzhS76DFbNujn", "previewMetadata": {"previewContentType": "5hlpCWQLz3vE7eBe", "previewFileExtension": "jHeLFxd7LMBThprc"}, "shareCode": "b6zaYfB5wIf121iV", "subType": "GI4C2GF6Lg1oPrNo", "tags": ["VtRCgtR24CEuKm2e", "ArsYWDwSjiH6k9nN", "H4AAsu4qwTZ8pDIi"], "type": "OvLXHnS22M4izffa", "updateContentFile": false}' \
     > test.out 2>&1
 eval_tap $? 8 'SingleAdminUpdateContentS3' test.out
 
 #- 9 AdminSearchChannelSpecificContent
 samples/cli/sample-apps Ugc adminSearchChannelSpecificContent \
-    --channelId 'w1L4tyO375nhCas7' \
+    --channelId 'RsFFPpZYLRvPYHSt' \
     --namespace $AB_NAMESPACE \
-    --creator 'qw09HvOq1o3hfksN' \
-    --isofficial '1bnavjUl5r2iFHPk' \
-    --limit '67' \
-    --name 'fBrSksUC01HhpFcE' \
-    --offset '29' \
-    --orderby '2pJXFgU8gZaCWPLf' \
-    --sortby 'OBZL8fl2Ho8jf0WN' \
-    --subtype 'onSXLdMtFvTkt7Ny' \
-    --tags '["Wsgc6PZ6AVD3qq7a", "QNaQn6KYrJEjGvJD", "9PfD0FpTbcowakFu"]' \
-    --type 'jYG2USX0WUzlKaMM' \
-    --userId 'gCXT4tZJgYSJRckW' \
+    --creator 'n5UsLMjx4Mx8BFGS' \
+    --isofficial 'Ufk7qnVFILwRYLNh' \
+    --limit '70' \
+    --name 'TDCGGYAMgpjRl5XJ' \
+    --offset '18' \
+    --orderby '9eEyFtrPJ1xz8kEO' \
+    --sortby 'OyFlTKP1CACRjV7f' \
+    --subtype 'OG3WeUe2B22YM6Zu' \
+    --tags '["nIMkLrIrh7vYg43e", "k4M3n8hiyGOuA1Sj", "j0a0GLXuaV08Et8b"]' \
+    --type 'QTnIJ6xCyfxXG3CF' \
+    --userId '1uyVHd7XnojeBe8O' \
     > test.out 2>&1
 eval_tap $? 9 'AdminSearchChannelSpecificContent' test.out
 
@@ -121,8 +121,8 @@ eval_tap 0 10 'SingleAdminUpdateContentDirect # SKIP deprecated' test.out
 
 #- 11 SingleAdminDeleteContent
 samples/cli/sample-apps Ugc singleAdminDeleteContent \
-    --channelId 'vSOVds1kfTwbihwC' \
-    --contentId 'Xp1kCJD9hbyKIzLm' \
+    --channelId 'SXG8E7v7Dl8wSu92' \
+    --contentId 'QwtkyoK5M0A5ltcz' \
     --namespace $AB_NAMESPACE \
     > test.out 2>&1
 eval_tap $? 11 'SingleAdminDeleteContent' test.out
@@ -130,227 +130,227 @@ eval_tap $? 11 'SingleAdminDeleteContent' test.out
 #- 12 SingleAdminGetContent
 samples/cli/sample-apps Ugc singleAdminGetContent \
     --namespace $AB_NAMESPACE \
-    --limit '62' \
-    --offset '7' \
+    --limit '92' \
+    --offset '29' \
     > test.out 2>&1
 eval_tap $? 12 'SingleAdminGetContent' test.out
 
 #- 13 AdminGetContentBulk
 samples/cli/sample-apps Ugc adminGetContentBulk \
     --namespace $AB_NAMESPACE \
-    --body '{"contentIds": ["OLhi2niFRo0NEomV", "UcrkyCdESFflDzYS", "WRbgl6sfU1ySCgfx"]}' \
+    --body '{"contentIds": ["PHbYInnOxA1MQcRw", "CKsSL7VUBTnS3WXc", "1Jg2rS7dHhPAO5hn"]}' \
     > test.out 2>&1
 eval_tap $? 13 'AdminGetContentBulk' test.out
 
 #- 14 AdminSearchContent
 samples/cli/sample-apps Ugc adminSearchContent \
     --namespace $AB_NAMESPACE \
-    --creator '4hx3d0NL6zxXVcDD' \
-    --isofficial 'fayUMAVE0hgWHT0S' \
-    --limit '45' \
-    --name '4wMVYP2sd1BTGGaP' \
-    --offset '80' \
-    --orderby 'ojiRP8Eg9f5yYQ0o' \
-    --sortby '2H7uT2xEYxyD8U4A' \
-    --subtype 'XROcLlmisQtv8iYC' \
-    --tags '["vbH0hdhhDiS35Q15", "FBWnhjSassGbPinK", "1AQst0TXyj49KbI0"]' \
-    --type 'i245dTP6CzMWap1z' \
-    --userId 'YXVBgHHa5txoJbjp' \
+    --creator '1PEEfeqy01Ep8HRW' \
+    --isofficial 'CNCsFgL1zKTqIffX' \
+    --limit '88' \
+    --name 'mZbhePfDD0XBhvZq' \
+    --offset '55' \
+    --orderby 'Etd2u9fAkFrt7Jx0' \
+    --sortby 'VrAvz7fblOwf0LN7' \
+    --subtype 'BCiPzDrnAh7mntOK' \
+    --tags '["dl9lMN6TWQ1J8YpV", "l5RJ3aGAaPlO8Wvu", "F6FKhjomixS5nW6d"]' \
+    --type 'd8fiRhNFe8cptz30' \
+    --userId 'kAc1qgaOdyEe7nGi' \
     > test.out 2>&1
 eval_tap $? 14 'AdminSearchContent' test.out
 
 #- 15 AdminGetUserContentByShareCode
 samples/cli/sample-apps Ugc adminGetUserContentByShareCode \
     --namespace $AB_NAMESPACE \
-    --shareCode 'ya6VBTBVA5A8bC9Q' \
+    --shareCode 'HI3F4i4vd4EIgkHA' \
     > test.out 2>&1
 eval_tap $? 15 'AdminGetUserContentByShareCode' test.out
 
 #- 16 AdminGetSpecificContent
 samples/cli/sample-apps Ugc adminGetSpecificContent \
-    --contentId 'lT4CPPsG0Jevk42A' \
+    --contentId '7RBk6GqSv4j4KWff' \
     --namespace $AB_NAMESPACE \
     > test.out 2>&1
 eval_tap $? 16 'AdminGetSpecificContent' test.out
 
 #- 17 AdminDownloadContentPreview
 samples/cli/sample-apps Ugc adminDownloadContentPreview \
-    --contentId 'qoeYO8YJe0qVK5MS' \
+    --contentId 'tysop0tjmjAkuT5g' \
     --namespace $AB_NAMESPACE \
     > test.out 2>&1
 eval_tap $? 17 'AdminDownloadContentPreview' test.out
 
 #- 18 AdminUpdateScreenshots
 samples/cli/sample-apps Ugc adminUpdateScreenshots \
-    --contentId '6qmVO8CBWvMPYP6H' \
+    --contentId 'z89HLvM1Mr6pjHvi' \
     --namespace $AB_NAMESPACE \
-    --body '{"screenshots": [{"description": "aK7jnD9LC32HvLJL", "screenshotId": "96Ktd1ld6W9e61nG"}, {"description": "0OkLPIMLjkVopB7W", "screenshotId": "7VAp7ByWnnrlul5E"}, {"description": "A9MKcNbFwrQQkbYz", "screenshotId": "6zwsMAWIEvdMBT8H"}]}' \
+    --body '{"screenshots": [{"description": "ngu6rGWX3oMNlKTc", "screenshotId": "tzsWaewTKRCXBBsQ"}, {"description": "zhg51zYzj9JZH6bX", "screenshotId": "5xnuOaHlIzqNfBjR"}, {"description": "Yj1rlwbQbKJJhcMH", "screenshotId": "gZKE3wPEA3Wmn0Tp"}]}' \
     > test.out 2>&1
 eval_tap $? 18 'AdminUpdateScreenshots' test.out
 
 #- 19 AdminUploadContentScreenshot
 samples/cli/sample-apps Ugc adminUploadContentScreenshot \
-    --contentId 'hipNUOF4KnCEoJpz' \
+    --contentId 'QkdzIVatjUuySIAh' \
     --namespace $AB_NAMESPACE \
-    --body '{"screenshots": [{"contentType": "8n0ZB25H33Q9s3ny", "description": "BxnlPUijizOP46z2", "fileExtension": "jpeg"}, {"contentType": "tKZ58tdyFSMPQE6O", "description": "wknzHvFCXEl1RXNT", "fileExtension": "pjp"}, {"contentType": "8f2qzZe300UBx2u5", "description": "b24lMjBcCnNKKkPc", "fileExtension": "jfif"}]}' \
+    --body '{"screenshots": [{"contentType": "cT3Yc1OJ0wUabHMw", "description": "QzJ5PCOzTfljLEwG", "fileExtension": "jpeg"}, {"contentType": "6fGZa5WPJrfGmtOj", "description": "7N289xO64Gx8GyD9", "fileExtension": "bmp"}, {"contentType": "hQSLQz7sDu3OdW4u", "description": "hMfXESowkXZU1ajs", "fileExtension": "bmp"}]}' \
     > test.out 2>&1
 eval_tap $? 19 'AdminUploadContentScreenshot' test.out
 
 #- 20 AdminDeleteContentScreenshot
 samples/cli/sample-apps Ugc adminDeleteContentScreenshot \
-    --contentId 'MfZPFPYYilaoDwZ6' \
+    --contentId 'OVaYYDVZ9nmBygtR' \
     --namespace $AB_NAMESPACE \
-    --screenshotId '5VlXp46wDR9RiaMf' \
+    --screenshotId 'SkUYa4ZOn1yL4BXV' \
     > test.out 2>&1
 eval_tap $? 20 'AdminDeleteContentScreenshot' test.out
 
 #- 21 SingleAdminGetAllGroups
 samples/cli/sample-apps Ugc singleAdminGetAllGroups \
     --namespace $AB_NAMESPACE \
-    --limit '94' \
-    --offset '82' \
+    --limit '42' \
+    --offset '40' \
     > test.out 2>&1
 eval_tap $? 21 'SingleAdminGetAllGroups' test.out
 
 #- 22 AdminCreateGroup
 samples/cli/sample-apps Ugc adminCreateGroup \
     --namespace $AB_NAMESPACE \
-    --body '{"contents": ["cZS5Oaps4a15zeGj", "6ixc9mveoIV6yyar", "9ASASa71hEkvXlTV"], "name": "iIdQUNfeiHVsPA5b"}' \
+    --body '{"contents": ["S4UdYGM27NIC0t8V", "ACr6TUaljFICZMdW", "oVm2XkmoYfpqlGMk"], "name": "7PtrZyQfSFP6lbfY"}' \
     > test.out 2>&1
 eval_tap $? 22 'AdminCreateGroup' test.out
 
 #- 23 SingleAdminGetGroup
 samples/cli/sample-apps Ugc singleAdminGetGroup \
-    --groupId '5ixO5s2OQARMRi5I' \
+    --groupId 'xV80it6TgzllALYn' \
     --namespace $AB_NAMESPACE \
     > test.out 2>&1
 eval_tap $? 23 'SingleAdminGetGroup' test.out
 
 #- 24 SingleAdminUpdateGroup
 samples/cli/sample-apps Ugc singleAdminUpdateGroup \
-    --groupId '7TRvotzpny34z5Nz' \
+    --groupId 'qLIhPxmsT1RMNiOA' \
     --namespace $AB_NAMESPACE \
-    --body '{"contents": ["mS4wrNTfiUuRQLfx", "HkvL5O8Jc4GeIdkI", "qDcyYO2PVEC9VrFL"], "name": "hoUaErLDBJZQ1pv5"}' \
+    --body '{"contents": ["2PwifeJEMXwWJtRw", "uTZhRZwwGxycpn0j", "scCqWHa7CVsRR5T6"], "name": "79OwqUU9gTfHlPDI"}' \
     > test.out 2>&1
 eval_tap $? 24 'SingleAdminUpdateGroup' test.out
 
 #- 25 SingleAdminDeleteGroup
 samples/cli/sample-apps Ugc singleAdminDeleteGroup \
-    --groupId '4QavfXBFsZOkbB7G' \
+    --groupId 're5LlEih6zB6hLD8' \
     --namespace $AB_NAMESPACE \
     > test.out 2>&1
 eval_tap $? 25 'SingleAdminDeleteGroup' test.out
 
 #- 26 SingleAdminGetGroupContents
 samples/cli/sample-apps Ugc singleAdminGetGroupContents \
-    --groupId 'eJjDf6tEJwHQKrv3' \
+    --groupId 'r9u3btFyRI1UiBGn' \
     --namespace $AB_NAMESPACE \
-    --limit '4' \
-    --offset '10' \
+    --limit '37' \
+    --offset '86' \
     > test.out 2>&1
 eval_tap $? 26 'SingleAdminGetGroupContents' test.out
 
 #- 27 AdminGetTag
 samples/cli/sample-apps Ugc adminGetTag \
     --namespace $AB_NAMESPACE \
-    --limit '6' \
-    --offset '87' \
+    --limit '83' \
+    --offset '23' \
     > test.out 2>&1
 eval_tap $? 27 'AdminGetTag' test.out
 
 #- 28 AdminCreateTag
 samples/cli/sample-apps Ugc adminCreateTag \
     --namespace $AB_NAMESPACE \
-    --body '{"tag": "F7TiTX5rHzPdNZ1g"}' \
+    --body '{"tag": "QqTmu5078sHZ3ULf"}' \
     > test.out 2>&1
 eval_tap $? 28 'AdminCreateTag' test.out
 
 #- 29 AdminUpdateTag
 samples/cli/sample-apps Ugc adminUpdateTag \
     --namespace $AB_NAMESPACE \
-    --tagId 'i8r0R3BijtqO3jHP' \
-    --body '{"tag": "3XUBusZcZGabcNHm"}' \
+    --tagId '4YtqEPlH0bnVvMQm' \
+    --body '{"tag": "kP1BoppDzH6dk8bj"}' \
     > test.out 2>&1
 eval_tap $? 29 'AdminUpdateTag' test.out
 
 #- 30 AdminDeleteTag
 samples/cli/sample-apps Ugc adminDeleteTag \
     --namespace $AB_NAMESPACE \
-    --tagId 'FnMZMmWusq86c9QL' \
+    --tagId 'lsnQoUUxqPyN9eMS' \
     > test.out 2>&1
 eval_tap $? 30 'AdminDeleteTag' test.out
 
 #- 31 AdminGetType
 samples/cli/sample-apps Ugc adminGetType \
     --namespace $AB_NAMESPACE \
-    --limit '98' \
-    --offset '78' \
+    --limit '32' \
+    --offset '73' \
     > test.out 2>&1
 eval_tap $? 31 'AdminGetType' test.out
 
 #- 32 AdminCreateType
 samples/cli/sample-apps Ugc adminCreateType \
     --namespace $AB_NAMESPACE \
-    --body '{"subtype": ["PhMsEJcpYvqfBA91", "QGaHif9Ub2JBParq", "y8aQivamXJAvpTG5"], "type": "vCGymrNDCJok9y3c"}' \
+    --body '{"subtype": ["nuY87FTLzKoK1M3I", "Vnpoz42fyOPDwyjJ", "3btcIA7VmgtGM09z"], "type": "C0Q1NOKftuU1HlxJ"}' \
     > test.out 2>&1
 eval_tap $? 32 'AdminCreateType' test.out
 
 #- 33 AdminUpdateType
 samples/cli/sample-apps Ugc adminUpdateType \
     --namespace $AB_NAMESPACE \
-    --typeId 'LKnufwXsEn0rs406' \
-    --body '{"subtype": ["HNUuCk3e2X7siAZf", "yNiKwVoghmaUAwGI", "lM2W5jpiHuEn0Vvk"], "type": "QG3rZuFRwOO6c3Im"}' \
+    --typeId 'P1Nw65LCET8X01Ua' \
+    --body '{"subtype": ["gBJMritYpI0J9rfc", "0nmHUsY38iXK6QO1", "eJhCKmMfrmulYiKa"], "type": "5pHEcXf0CcPCGDS3"}' \
     > test.out 2>&1
 eval_tap $? 33 'AdminUpdateType' test.out
 
 #- 34 AdminDeleteType
 samples/cli/sample-apps Ugc adminDeleteType \
     --namespace $AB_NAMESPACE \
-    --typeId 'qNF6ngvQvvpcY3kB' \
+    --typeId '3q6KBzhrZezXGlbg' \
     > test.out 2>&1
 eval_tap $? 34 'AdminDeleteType' test.out
 
 #- 35 AdminGetChannel
 samples/cli/sample-apps Ugc adminGetChannel \
     --namespace $AB_NAMESPACE \
-    --userId 'UFZG3MgMM8zcqqaN' \
-    --limit '84' \
-    --name 'jvw3rpzbCDvlrimq' \
-    --offset '14' \
+    --userId '7DiwekgaUemxNdxr' \
+    --limit '64' \
+    --name 'nU8VByjPu9U6iRZs' \
+    --offset '38' \
     > test.out 2>&1
 eval_tap $? 35 'AdminGetChannel' test.out
 
 #- 36 AdminDeleteAllUserChannels
 samples/cli/sample-apps Ugc adminDeleteAllUserChannels \
     --namespace $AB_NAMESPACE \
-    --userId 'zvKSvtLBSTRxqpPl' \
+    --userId 'qOSoIZS6TvZaC56j' \
     > test.out 2>&1
 eval_tap $? 36 'AdminDeleteAllUserChannels' test.out
 
 #- 37 AdminUpdateChannel
 samples/cli/sample-apps Ugc adminUpdateChannel \
-    --channelId 'iz2xhfobqeDt4FHb' \
+    --channelId 'HFOoR3n90hfJBfjO' \
     --namespace $AB_NAMESPACE \
-    --userId 'cZk0kdTX4L9ADuTK' \
-    --body '{"name": "z3zhdR2Hm9O66gNg"}' \
+    --userId 'GSPwCF4jIiuX7btA' \
+    --body '{"name": "AFMsaFegtCxP5UzP"}' \
     > test.out 2>&1
 eval_tap $? 37 'AdminUpdateChannel' test.out
 
 #- 38 AdminDeleteChannel
 samples/cli/sample-apps Ugc adminDeleteChannel \
-    --channelId 'X45jLs1uxut4iP94' \
+    --channelId 'NzBxvZhCCuPxLjJF' \
     --namespace $AB_NAMESPACE \
-    --userId 'p9WrHuf7qHui1trf' \
+    --userId '5LckD8xC3bT0e90A' \
     > test.out 2>&1
 eval_tap $? 38 'AdminDeleteChannel' test.out
 
 #- 39 AdminUpdateContentS3
 samples/cli/sample-apps Ugc adminUpdateContentS3 \
-    --channelId 'R9VrYCF9rRzV5evp' \
-    --contentId 'JK8VOkj5bDaKtXWy' \
+    --channelId 'xO3He6Luk8zoc7iO' \
+    --contentId 'LR0szCdOFvJqZQ4b' \
     --namespace $AB_NAMESPACE \
-    --userId '2vdJ7Ct1oILzCRAO' \
-    --body '{"contentType": "WTuqx4ZQfjTi9kt4", "customAttributes": {"gPdzQWCzhCxkihGS": {}, "9au95OAYoJQ3OiMs": {}, "4hQKQNRzIICXDOyL": {}}, "fileExtension": "7hhHlJbAiHiy1CK7", "name": "4HS0tvevpkg2YEeF", "payload": "TdsKhUu03sprHhLI", "preview": "b6Zlmxhm6V6tOjF0", "previewMetadata": {"previewContentType": "bFUHw8d7a2hLKFb2", "previewFileExtension": "lATyoQS8nWhG3P2l"}, "shareCode": "KIiLFZqRpBRi50tp", "subType": "YqNHBDiUSEQhqoMJ", "tags": ["0Wlsjj3KMHpK98fe", "dAV1dCiXNcAaAW2S", "gGUr2bsUHL8dct6B"], "type": "C6Ajbtr5SvJDcYH4", "updateContentFile": true}' \
+    --userId 'JZ9TNpBDnQ0GlpYt' \
+    --body '{"contentType": "7jfbUhyWu87sbxnq", "customAttributes": {"Q9pS10C37iAxfVTL": {}, "cFTEkWqkq60AA2yO": {}, "wr1YjngEYiLXfJPR": {}}, "fileExtension": "uA7JhSlgjpiphePO", "name": "vqowOx0du8z10TRu", "payload": "1R4jODn5ESZHRP4p", "preview": "5iA59uJRVACvHEdf", "previewMetadata": {"previewContentType": "yTajJEitNCJgJEmX", "previewFileExtension": "qHjHpdh48D7AYpyV"}, "shareCode": "yBAlMqEG5T81NBzn", "subType": "6cpzbDkKrxjlXEsP", "tags": ["NLePC030Th7wNece", "XZXoJuGqqalkx7MN", "lYsL3owN0Xo2NNaT"], "type": "GwJqGTCacLaJApCl", "updateContentFile": true}' \
     > test.out 2>&1
 eval_tap $? 39 'AdminUpdateContentS3' test.out
 
@@ -359,34 +359,34 @@ eval_tap 0 40 'AdminUpdateContentDirect # SKIP deprecated' test.out
 
 #- 41 AdminDeleteContent
 samples/cli/sample-apps Ugc adminDeleteContent \
-    --channelId 'oNJJkvMG2ZZMuZ6x' \
-    --contentId 'cW8PzGxcEI7IIapK' \
+    --channelId 'KW5z8tqUWnrjjzx6' \
+    --contentId 'FiBhpWMZrTU3gcTo' \
     --namespace $AB_NAMESPACE \
-    --userId 'zxkifgy51baoyijB' \
+    --userId 'Q4aRyEAgru7kDDLW' \
     > test.out 2>&1
 eval_tap $? 41 'AdminDeleteContent' test.out
 
 #- 42 AdminGetContent
 samples/cli/sample-apps Ugc adminGetContent \
     --namespace $AB_NAMESPACE \
-    --userId 'Cpkdj7PxycTPfKGV' \
-    --limit '64' \
-    --offset '35' \
+    --userId 'kHc7DtizjK5dthed' \
+    --limit '9' \
+    --offset '62' \
     > test.out 2>&1
 eval_tap $? 42 'AdminGetContent' test.out
 
 #- 43 AdminDeleteAllUserContents
 samples/cli/sample-apps Ugc adminDeleteAllUserContents \
     --namespace $AB_NAMESPACE \
-    --userId 'GY761q0kInNX6WuD' \
+    --userId '8Gi7DD67PDPEiXVl' \
     > test.out 2>&1
 eval_tap $? 43 'AdminDeleteAllUserContents' test.out
 
 #- 44 AdminHideUserContent
 samples/cli/sample-apps Ugc adminHideUserContent \
-    --contentId 'W5dNVICttI6KMmC9' \
+    --contentId 'e3DeIu6q8hWHlatJ' \
     --namespace $AB_NAMESPACE \
-    --userId 'u6Rby0tbrpCF8RJh' \
+    --userId 'noaHDPLbT3uqwxtP' \
     --body '{"isHidden": false}' \
     > test.out 2>&1
 eval_tap $? 44 'AdminHideUserContent' test.out
@@ -394,50 +394,50 @@ eval_tap $? 44 'AdminHideUserContent' test.out
 #- 45 AdminGetAllGroups
 samples/cli/sample-apps Ugc adminGetAllGroups \
     --namespace $AB_NAMESPACE \
-    --userId 'c98PKwLVso5XTyTx' \
-    --limit '43' \
-    --offset '6' \
+    --userId 'u2qzBP3fnha9z1tP' \
+    --limit '23' \
+    --offset '32' \
     > test.out 2>&1
 eval_tap $? 45 'AdminGetAllGroups' test.out
 
 #- 46 AdminDeleteAllUserGroup
 samples/cli/sample-apps Ugc adminDeleteAllUserGroup \
     --namespace $AB_NAMESPACE \
-    --userId 'BsRkYu76zoaPkxXW' \
+    --userId 'C3SLEkCSVg4k0mld' \
     > test.out 2>&1
 eval_tap $? 46 'AdminDeleteAllUserGroup' test.out
 
 #- 47 AdminGetGroup
 samples/cli/sample-apps Ugc adminGetGroup \
-    --groupId '2D4vqne3WYftxrjv' \
+    --groupId 'aHr8JzgPr1uBweXC' \
     --namespace $AB_NAMESPACE \
-    --userId '6hozQheaLMX8hiws' \
+    --userId 'ZHuwlmWDyyZXqSS4' \
     > test.out 2>&1
 eval_tap $? 47 'AdminGetGroup' test.out
 
 #- 48 AdminUpdateGroup
 samples/cli/sample-apps Ugc adminUpdateGroup \
-    --groupId 'XPLJD3iX6zy77ph8' \
+    --groupId 'XrHURDnQbphPGEwZ' \
     --namespace $AB_NAMESPACE \
-    --userId '4o3sHXOYdTbDBmDl' \
-    --body '{"contents": ["rQCWr6T6eJtPu6TN", "nxA7FUVEdkeRTj2n", "3fveqQCxbCg0T90r"], "name": "19smxHrshNE1pJdr"}' \
+    --userId 'c3P9cEggYuubb9q9' \
+    --body '{"contents": ["AZahAXCa2CeDaRCD", "ITZo02gqiAejIcu4", "tajbctmiFVXACMjF"], "name": "lEyuHHUS58w95UQD"}' \
     > test.out 2>&1
 eval_tap $? 48 'AdminUpdateGroup' test.out
 
 #- 49 AdminDeleteGroup
 samples/cli/sample-apps Ugc adminDeleteGroup \
-    --groupId 'RyjiD8WJsb1KAVAx' \
+    --groupId 'bUVfY0AqsQ5w4Xg6' \
     --namespace $AB_NAMESPACE \
-    --userId 'xWRhb7olUSe9TZZx' \
+    --userId 'zwXT7DY8gjfkVZef' \
     > test.out 2>&1
 eval_tap $? 49 'AdminDeleteGroup' test.out
 
 #- 50 AdminGetGroupContents
 samples/cli/sample-apps Ugc adminGetGroupContents \
-    --groupId 'b5Gkfz02WRs8I4Uq' \
+    --groupId 'gDvbPLdehhj636pQ' \
     --namespace $AB_NAMESPACE \
-    --userId 'WrokMYqtlQIrbDOe' \
-    --limit '51' \
+    --userId 'YqbWv6Gq9MBgY8Vo' \
+    --limit '23' \
     --offset '79' \
     > test.out 2>&1
 eval_tap $? 50 'AdminGetGroupContents' test.out
@@ -445,49 +445,49 @@ eval_tap $? 50 'AdminGetGroupContents' test.out
 #- 51 AdminDeleteAllUserStates
 samples/cli/sample-apps Ugc adminDeleteAllUserStates \
     --namespace $AB_NAMESPACE \
-    --userId 'v6TmwIhj17fU1p6g' \
+    --userId 'LYKQDZsmAaqeEVIw' \
     > test.out 2>&1
 eval_tap $? 51 'AdminDeleteAllUserStates' test.out
 
 #- 52 SearchChannelSpecificContent
 samples/cli/sample-apps Ugc searchChannelSpecificContent \
-    --channelId 'hAjJ1M7SzLSEm19d' \
+    --channelId 'SvdzyOpKGvE9ZDjj' \
     --namespace $AB_NAMESPACE \
-    --creator 'u2E67B7uwpW1V0UD' \
-    --isofficial 'vz6AeYgk5Jd4RjIm' \
-    --limit '79' \
-    --name 'c7BtTtVipa6SXckN' \
-    --offset '75' \
-    --orderby 'EgBIzk621ZosWRXl' \
-    --sortby 'FkhNQG1sUgZHo1FD' \
-    --subtype '2VjgJjsCyqobnZIT' \
-    --tags '["rUj0l6mpGeKHh0vQ", "gh2oX4ECZZJszgiI", "8dMyJqAyXyZJMHUT"]' \
-    --type '3A6j7TTLcVCZCI3L' \
-    --userId 'kBDHxWlZVIMPk1Yt' \
+    --creator 'qJBdFxBvUZavLEOO' \
+    --isofficial 'uHolfYGCTaWRCB9u' \
+    --limit '44' \
+    --name 'W9wSxjKNoWFWZGyj' \
+    --offset '19' \
+    --orderby 'JYmUWBBxbl95hwt8' \
+    --sortby 'vnxXAR5G8QZQEA4W' \
+    --subtype 'C54pCwCUw0rRdWTx' \
+    --tags '["bSAucXinj4TUrSIO", "cIzMGHbwEoVLYIxQ", "RE3jmwOQ5mBWkkFS"]' \
+    --type 'YsiY0rlhzqGTCHdJ' \
+    --userId 'yQ4iwuyRoUDiyLlP' \
     > test.out 2>&1
 eval_tap $? 52 'SearchChannelSpecificContent' test.out
 
 #- 53 PublicSearchContent
 samples/cli/sample-apps Ugc publicSearchContent \
     --namespace $AB_NAMESPACE \
-    --creator 'HiWrrQBxE2ruDRAO' \
-    --isofficial 'YDWx2qrFI4gQUupq' \
-    --limit '49' \
-    --name '2pgunkS9EtJGJrmu' \
-    --offset '96' \
-    --orderby 'zFWqSYAq3VENI9vc' \
-    --sortby 'fzKiZnHaIHlrIYdZ' \
-    --subtype 'XRALr5A6xBLxT2Zb' \
-    --tags '["l8fp1FgqZO8qw5qq", "ZmMjDNEYMMyxlW5s", "bVowmRPDnFbqmytU"]' \
-    --type '5DKE4iCpwHUuHbQp' \
-    --userId 'Z2nUhYXZNEQsyR4s' \
+    --creator 'oR5hWY0BaBzJhVZd' \
+    --isofficial 'vhANSIutwXeCInsj' \
+    --limit '29' \
+    --name '8Z7cFqru0J8Zygku' \
+    --offset '26' \
+    --orderby 'uY1YiCT5XwsfULaW' \
+    --sortby 'snMlteiZOg6rCmdi' \
+    --subtype 'CdZX3FDLe54hQd4n' \
+    --tags '["JXWW4PfLh0IxXCfw", "tdfSuWzDlJXEPnQU", "Jk4fo0lJ6hZjxUuD"]' \
+    --type '3tTnNGsAbVskbezm' \
+    --userId 'IQ7z1SJ8MUEuaxlr' \
     > test.out 2>&1
 eval_tap $? 53 'PublicSearchContent' test.out
 
 #- 54 PublicGetContentBulk
 samples/cli/sample-apps Ugc publicGetContentBulk \
     --namespace $AB_NAMESPACE \
-    --body '{"contentIds": ["Ei3MrveXs1dSJ2HS", "gBS6e9a88rf8h8rt", "v66b2QPk9fK7R1yi"]}' \
+    --body '{"contentIds": ["S1JYovW467DHT0Gl", "3CYbBLqSJgq9eAeA", "6jCNNReho3advdAN"]}' \
     > test.out 2>&1
 eval_tap $? 54 'PublicGetContentBulk' test.out
 
@@ -495,7 +495,7 @@ eval_tap $? 54 'PublicGetContentBulk' test.out
 samples/cli/sample-apps Ugc getFollowedContent \
     --namespace $AB_NAMESPACE \
     --limit '9' \
-    --offset '8' \
+    --offset '94' \
     > test.out 2>&1
 eval_tap $? 55 'GetFollowedContent' test.out
 
@@ -503,41 +503,41 @@ eval_tap $? 55 'GetFollowedContent' test.out
 samples/cli/sample-apps Ugc getLikedContent \
     --namespace $AB_NAMESPACE \
     --isofficial 'false' \
-    --limit '45' \
-    --name 'GVe0uHcr44F5TmvD' \
-    --offset '29' \
-    --orderby 'CyQmvJXOOD3JsabK' \
-    --sortby '9gStgKFu23Gp9xXO' \
-    --subtype 'TIJgbFOiO9xAlP3X' \
-    --tags '["mHhBgpdzmntPDqb9", "Jksr3fnTy0hMiCSp", "Qpc4ybeo2PpyYThm"]' \
-    --type 'c9yD2Q53q96UnNZU' \
+    --limit '71' \
+    --name 'Q6l53BtMTWbZc2mc' \
+    --offset '48' \
+    --orderby 'uXaJ7pJDyViROlG4' \
+    --sortby 'Lo74kHmwwcxBK0wg' \
+    --subtype 'CUQ1uXdqTG9pOV7n' \
+    --tags '["GGuIg5ccyzBspgAD", "7YdZ66TNuVAicBW2", "F1PdcRvzfLt6B7PZ"]' \
+    --type 'hrJDoUhSinutmYBK' \
     > test.out 2>&1
 eval_tap $? 56 'GetLikedContent' test.out
 
 #- 57 PublicDownloadContentByShareCode
 samples/cli/sample-apps Ugc publicDownloadContentByShareCode \
     --namespace $AB_NAMESPACE \
-    --shareCode 'nduYXgJY0TPfqLhm' \
+    --shareCode 'vPHgXlRWxfFP6SRM' \
     > test.out 2>&1
 eval_tap $? 57 'PublicDownloadContentByShareCode' test.out
 
 #- 58 PublicDownloadContentByContentID
 samples/cli/sample-apps Ugc publicDownloadContentByContentID \
-    --contentId '3QHAv4KmuZOyCTb7' \
+    --contentId '7nzDQDE2zoCicR1t' \
     --namespace $AB_NAMESPACE \
     > test.out 2>&1
 eval_tap $? 58 'PublicDownloadContentByContentID' test.out
 
 #- 59 AddDownloadCount
 samples/cli/sample-apps Ugc addDownloadCount \
-    --contentId 'krp26QaFwYDMMbYc' \
+    --contentId 'IyGfOT9N5cNuSEmE' \
     --namespace $AB_NAMESPACE \
     > test.out 2>&1
 eval_tap $? 59 'AddDownloadCount' test.out
 
 #- 60 UpdateContentLikeStatus
 samples/cli/sample-apps Ugc updateContentLikeStatus \
-    --contentId '6lvhlV8IjiyzhrIq' \
+    --contentId '0xmye7akEZVGDDEt' \
     --namespace $AB_NAMESPACE \
     --body '{"likeStatus": true}' \
     > test.out 2>&1
@@ -545,7 +545,7 @@ eval_tap $? 60 'UpdateContentLikeStatus' test.out
 
 #- 61 PublicDownloadContentPreview
 samples/cli/sample-apps Ugc publicDownloadContentPreview \
-    --contentId 'TesGwccME6CK1sC1' \
+    --contentId 'm2nbEA5DhI3Mn6PF' \
     --namespace $AB_NAMESPACE \
     > test.out 2>&1
 eval_tap $? 61 'PublicDownloadContentPreview' test.out
@@ -553,50 +553,50 @@ eval_tap $? 61 'PublicDownloadContentPreview' test.out
 #- 62 GetTag
 samples/cli/sample-apps Ugc getTag \
     --namespace $AB_NAMESPACE \
-    --limit '63' \
-    --offset '83' \
+    --limit '7' \
+    --offset '50' \
     > test.out 2>&1
 eval_tap $? 62 'GetTag' test.out
 
 #- 63 GetType
 samples/cli/sample-apps Ugc getType \
     --namespace $AB_NAMESPACE \
-    --limit '17' \
-    --offset '84' \
+    --limit '44' \
+    --offset '78' \
     > test.out 2>&1
 eval_tap $? 63 'GetType' test.out
 
 #- 64 PublicSearchCreator
 samples/cli/sample-apps Ugc publicSearchCreator \
     --namespace $AB_NAMESPACE \
-    --limit '49' \
+    --limit '84' \
     --offset '93' \
-    --orderby 'gCHiORV5GVaZBJhY' \
-    --sortby 'rCtGSWlSgCloO2QT' \
+    --orderby 'my85v6MuKztAnjm5' \
+    --sortby 'Gyy4A27epwaaCvOP' \
     > test.out 2>&1
 eval_tap $? 64 'PublicSearchCreator' test.out
 
 #- 65 GetFollowedUsers
 samples/cli/sample-apps Ugc getFollowedUsers \
     --namespace $AB_NAMESPACE \
-    --limit '92' \
-    --offset '31' \
+    --limit '41' \
+    --offset '72' \
     > test.out 2>&1
 eval_tap $? 65 'GetFollowedUsers' test.out
 
 #- 66 PublicGetCreator
 samples/cli/sample-apps Ugc publicGetCreator \
     --namespace $AB_NAMESPACE \
-    --userId 'QPAxnYteJFsDRK3V' \
+    --userId 'uvDgVmFK9wBnFRq1' \
     > test.out 2>&1
 eval_tap $? 66 'PublicGetCreator' test.out
 
 #- 67 GetChannels
 samples/cli/sample-apps Ugc getChannels \
     --namespace $AB_NAMESPACE \
-    --userId '4mURk38ketrgYPZN' \
-    --limit '0' \
-    --name 'LQh5LiZb8l4me0w4' \
+    --userId 'jEihZ5iNBRikjLdY' \
+    --limit '33' \
+    --name 'f8is9MBsax0yLonH' \
     --offset '62' \
     > test.out 2>&1
 eval_tap $? 67 'GetChannels' test.out
@@ -604,32 +604,32 @@ eval_tap $? 67 'GetChannels' test.out
 #- 68 PublicCreateChannel
 samples/cli/sample-apps Ugc publicCreateChannel \
     --namespace $AB_NAMESPACE \
-    --userId 'rEqVjkIVbeR37K52' \
-    --body '{"name": "458B249mHBHhGGPR"}' \
+    --userId '1MYmfNQdwfJmZomS' \
+    --body '{"name": "BPteDgPjHDINhPcu"}' \
     > test.out 2>&1
 eval_tap $? 68 'PublicCreateChannel' test.out
 
 #- 69 DeleteAllUserChannel
 samples/cli/sample-apps Ugc deleteAllUserChannel \
     --namespace $AB_NAMESPACE \
-    --userId 'NyfR5AxCQyvNpDVR' \
+    --userId '8c0RykimVk7iujML' \
     > test.out 2>&1
 eval_tap $? 69 'DeleteAllUserChannel' test.out
 
 #- 70 UpdateChannel
 samples/cli/sample-apps Ugc updateChannel \
-    --channelId 'YuDaSdbvsl8iYzpH' \
+    --channelId 'AfJpoeY9VfnhtYy4' \
     --namespace $AB_NAMESPACE \
-    --userId 'XRPy5lHNp2XG3WqH' \
-    --body '{"name": "GLVfrCRgeJt06mG5"}' \
+    --userId '5YFLkfxj2OJuhNdB' \
+    --body '{"name": "u9sBSlPoK5m8N9yg"}' \
     > test.out 2>&1
 eval_tap $? 70 'UpdateChannel' test.out
 
 #- 71 DeleteChannel
 samples/cli/sample-apps Ugc deleteChannel \
-    --channelId 'tCaQWt8gOL1Uv6gp' \
+    --channelId 'qyPyxqLlCH3ZRD4j' \
     --namespace $AB_NAMESPACE \
-    --userId 'WDraKZNMgpGjPTqW' \
+    --userId 'HJnL04FyF13mpZ39' \
     > test.out 2>&1
 eval_tap $? 71 'DeleteChannel' test.out
 
@@ -638,20 +638,20 @@ eval_tap 0 72 'CreateContentDirect # SKIP deprecated' test.out
 
 #- 73 CreateContentS3
 samples/cli/sample-apps Ugc createContentS3 \
-    --channelId 'rzRsGz7E69Q5JZU5' \
+    --channelId '2cFwslogBWX04b0u' \
     --namespace $AB_NAMESPACE \
-    --userId 'Q3SvIxH1IIiDxqH2' \
-    --body '{"contentType": "moWYiys5ec7TekaB", "customAttributes": {"sv9hMBx0TtnfGv78": {}, "wJFuht4atPOx8gU9": {}, "fSz7ZgPNcm4LQn0F": {}}, "fileExtension": "IJcHQytU9FX7JuV6", "name": "4x86i0hd7KeDVlWP", "preview": "QAMeU4ieCdNSNUzx", "previewMetadata": {"previewContentType": "GZLqoy5JZBXcix6Z", "previewFileExtension": "z3qpuyS8Jkfb5vrp"}, "subType": "quNn5ZRng2cVoR5U", "tags": ["mICAMi8aih7epB7D", "3cbDCkqf4Wzf82HH", "4xOGgmfBdnufvGVA"], "type": "vcAJrtwkbzH1kkNU"}' \
+    --userId 'IY8JOUupnf8NJWpp' \
+    --body '{"contentType": "9UwZlsf3r3zX2B7z", "customAttributes": {"uo8Zm5JYlreyuK5O": {}, "fKdtQYbxNSGyjrLd": {}, "uPlmqfR9dlgXVGNC": {}}, "fileExtension": "STaFa4T6xxIsHIrZ", "name": "gxoUDNyIaHql1jqU", "preview": "QkOIf8ucCAuXX7SU", "previewMetadata": {"previewContentType": "qeNMcd5FbkDrQgrd", "previewFileExtension": "St1hb7TH6GoAuPk3"}, "subType": "N0GBoWH7iSNpcfgk", "tags": ["Q2vdBxbrAUChAQ6v", "EnEaeKTGdl5lptHY", "NYzIou3wxaXIiD1R"], "type": "dOHB5Ak0ud4aYieg"}' \
     > test.out 2>&1
 eval_tap $? 73 'CreateContentS3' test.out
 
 #- 74 UpdateContentS3
 samples/cli/sample-apps Ugc updateContentS3 \
-    --channelId 'BKYctW3SvOWc9laN' \
-    --contentId 'A1rBRbEDyYIeorEl' \
+    --channelId 'mvTucXXXo9mwTq7w' \
+    --contentId 'ukbK7JqoJy5tJb9G' \
     --namespace $AB_NAMESPACE \
-    --userId 'GXZplG9ccYwZoSgG' \
-    --body '{"contentType": "ACGcA3ne0FMKw2wz", "customAttributes": {"RhzWfQACM4l2NNw8": {}, "bwUMQ96RKgULDSO7": {}, "Q0MVyLrLHCBLhtNA": {}}, "fileExtension": "raeFhy5zuoGyPRLX", "name": "lfut4J14jgztla1c", "payload": "1FqMODJ5Ot91VlhO", "preview": "RDappn6m3GM3qp9A", "previewMetadata": {"previewContentType": "jGZYraf2n98I7dEd", "previewFileExtension": "N78kG27J2g2l0pAA"}, "subType": "VCVjPUUbpVkdEatJ", "tags": ["uvmK1B0lxN4XvGXs", "RTkg8U6qVJg8um24", "y1LwtLXIukxOo7wY"], "type": "RNBKebClVoA7bFdv", "updateContentFile": false}' \
+    --userId '414TBGEMfb1MqUH0' \
+    --body '{"contentType": "ezBrWYk68nmozC8t", "customAttributes": {"PzF4gJL33DSbls64": {}, "uWrnnWLGxsGB77aT": {}, "Kh6wK90S2y7QwJLv": {}}, "fileExtension": "uIE1kcIqXch51crf", "name": "XNwLmmNfuQIntqMl", "payload": "Xtf0kvZogblEL4tg", "preview": "zd9pxhAcVllvMSeY", "previewMetadata": {"previewContentType": "auHVvrj4l7cqylx3", "previewFileExtension": "6e1z5KTwOYutyKig"}, "subType": "uZfF0CRkILMbbU08", "tags": ["UrQIQfdgw1qIybAd", "CWZhTcXDn0wPuGXV", "peJLyhNSRVWcXEwG"], "type": "K3u81NPD9Gpte8dV", "updateContentFile": false}' \
     > test.out 2>&1
 eval_tap $? 74 'UpdateContentS3' test.out
 
@@ -660,145 +660,145 @@ eval_tap 0 75 'UpdateContentDirect # SKIP deprecated' test.out
 
 #- 76 DeleteContent
 samples/cli/sample-apps Ugc deleteContent \
-    --channelId 'gHK5wozWnx10xCSW' \
-    --contentId 'JADRfoxzJx9b9ivh' \
+    --channelId 'LAYso8lf8kQndZ9n' \
+    --contentId 'gzDG1rkhXSKTGlEb' \
     --namespace $AB_NAMESPACE \
-    --userId 'GqEDNE2sqG34hwcI' \
+    --userId '1UWUHEf6o2d1byh3' \
     > test.out 2>&1
 eval_tap $? 76 'DeleteContent' test.out
 
 #- 77 PublicGetUserContent
 samples/cli/sample-apps Ugc publicGetUserContent \
     --namespace $AB_NAMESPACE \
-    --userId 'HeTkolNkpfefMn15' \
-    --limit '44' \
-    --offset '78' \
+    --userId 'uzVenZILx44cmOsv' \
+    --limit '23' \
+    --offset '43' \
     > test.out 2>&1
 eval_tap $? 77 'PublicGetUserContent' test.out
 
 #- 78 DeleteAllUserContents
 samples/cli/sample-apps Ugc deleteAllUserContents \
     --namespace $AB_NAMESPACE \
-    --userId 'VOgmgYlKUgEnHugO' \
+    --userId '3Jn7N6Ph7lDknki9' \
     > test.out 2>&1
 eval_tap $? 78 'DeleteAllUserContents' test.out
 
 #- 79 UpdateScreenshots
 samples/cli/sample-apps Ugc updateScreenshots \
-    --contentId 'pwNmrFopHSsFfnZU' \
+    --contentId 'ljuSpNLqtKipKiHE' \
     --namespace $AB_NAMESPACE \
-    --userId 'pyAfsPQ7lokIeR9u' \
-    --body '{"screenshots": [{"description": "MH87mhdtSuzzilgz", "screenshotId": "APfLW52D1HpJMsFf"}, {"description": "aOiUghvFdrjF6saL", "screenshotId": "Es8BeE39D2Wzg4Vw"}, {"description": "4nAr0Ub6HltDu8nj", "screenshotId": "K0eQp2c0J2XfU5gv"}]}' \
+    --userId 'n7yUjyzoN5lR502m' \
+    --body '{"screenshots": [{"description": "z2USEm8VsmfFhCpr", "screenshotId": "2IQThhfKAZl5cv4j"}, {"description": "jOcym8ldP0by6zWi", "screenshotId": "NDwqvf60OPXmyg6z"}, {"description": "AXiIRZ6KHuokCoIK", "screenshotId": "ctNRm7ktkldasn4U"}]}' \
     > test.out 2>&1
 eval_tap $? 79 'UpdateScreenshots' test.out
 
 #- 80 UploadContentScreenshot
 samples/cli/sample-apps Ugc uploadContentScreenshot \
-    --contentId '5txIp41iri8RU2LK' \
+    --contentId 'c1E3b4ACMBBDxDJh' \
     --namespace $AB_NAMESPACE \
-    --userId 'pCsMO1YJ4qZ80V3k' \
-    --body '{"screenshots": [{"contentType": "ozgRZJ72mpYHPRRO", "description": "AV9EoGVqpigp11AA", "fileExtension": "jpeg"}, {"contentType": "hOZzWzJfL66Yqm12", "description": "mxRxTKF3lhcYWYKD", "fileExtension": "jpg"}, {"contentType": "CwoLTlESJlCnywVr", "description": "KRIRecFhg29P4qqk", "fileExtension": "jfif"}]}' \
+    --userId 'zxL5N2sIhGLk16br' \
+    --body '{"screenshots": [{"contentType": "CXw2aZCWaBjrxdVM", "description": "epWlLPgVg4PxmErt", "fileExtension": "jpeg"}, {"contentType": "xiD1wJVZ2oArRx9l", "description": "cjAFYpmpfOujAEmt", "fileExtension": "jpeg"}, {"contentType": "yY1AtPyTVKM5YnhY", "description": "EszZDqo9sLeZWx2U", "fileExtension": "pjp"}]}' \
     > test.out 2>&1
 eval_tap $? 80 'UploadContentScreenshot' test.out
 
 #- 81 DeleteContentScreenshot
 samples/cli/sample-apps Ugc deleteContentScreenshot \
-    --contentId 'GzjvW69Pv2Tdf28s' \
+    --contentId 'ySFlEzvs5gZdMybi' \
     --namespace $AB_NAMESPACE \
-    --screenshotId 'kjx9OHO1eKXUJnJx' \
-    --userId 'IrKD6esDICkRd4Cn' \
+    --screenshotId 'sGorfrDUWhY959oN' \
+    --userId 'VlfiWalqK5UbxjoA' \
     > test.out 2>&1
 eval_tap $? 81 'DeleteContentScreenshot' test.out
 
 #- 82 UpdateUserFollowStatus
 samples/cli/sample-apps Ugc updateUserFollowStatus \
     --namespace $AB_NAMESPACE \
-    --userId '1M6rJda2UNixbTYg' \
-    --body '{"followStatus": false}' \
+    --userId 'rFevRJXg7FaHHrcH' \
+    --body '{"followStatus": true}' \
     > test.out 2>&1
 eval_tap $? 82 'UpdateUserFollowStatus' test.out
 
 #- 83 GetPublicFollowers
 samples/cli/sample-apps Ugc getPublicFollowers \
     --namespace $AB_NAMESPACE \
-    --userId '9DSK4Y0wK9ty2CEd' \
-    --limit '76' \
-    --offset '94' \
+    --userId 'M6QUfxXdatFPvRRz' \
+    --limit '27' \
+    --offset '96' \
     > test.out 2>&1
 eval_tap $? 83 'GetPublicFollowers' test.out
 
 #- 84 GetPublicFollowing
 samples/cli/sample-apps Ugc getPublicFollowing \
     --namespace $AB_NAMESPACE \
-    --userId '2PEP6iSzYqrxbam1' \
-    --limit '77' \
-    --offset '76' \
+    --userId 'YGaJTsHdQ8k1tu4V' \
+    --limit '27' \
+    --offset '75' \
     > test.out 2>&1
 eval_tap $? 84 'GetPublicFollowing' test.out
 
 #- 85 GetGroups
 samples/cli/sample-apps Ugc getGroups \
     --namespace $AB_NAMESPACE \
-    --userId 'UoVvFgGfDx1VFzZ5' \
-    --limit '65' \
-    --offset '59' \
+    --userId 'pUWEJiwdOtPAJPWZ' \
+    --limit '81' \
+    --offset '14' \
     > test.out 2>&1
 eval_tap $? 85 'GetGroups' test.out
 
 #- 86 CreateGroup
 samples/cli/sample-apps Ugc createGroup \
     --namespace $AB_NAMESPACE \
-    --userId 'Wz7OJPTqUlrUmwpV' \
-    --body '{"contents": ["1R67rsOKOoBe7bB5", "8C2jE9JNTKzFI0xq", "oLQz8UVbWa5yHSIG"], "name": "DX3NjPZ4PxppWdfC"}' \
+    --userId 'FMLB7QpOStFD6AfA' \
+    --body '{"contents": ["HeTEvCnoMbw56Obo", "fb4W8W2HIi0JSL9o", "6OQUhLbI4RlXhi3p"], "name": "UxHVd5RVSxozMO8y"}' \
     > test.out 2>&1
 eval_tap $? 86 'CreateGroup' test.out
 
 #- 87 DeleteAllUserGroup
 samples/cli/sample-apps Ugc deleteAllUserGroup \
     --namespace $AB_NAMESPACE \
-    --userId 's8J3UJQOLXD9oOZF' \
+    --userId 'D8EEPpw3xRUCYpQ4' \
     > test.out 2>&1
 eval_tap $? 87 'DeleteAllUserGroup' test.out
 
 #- 88 GetGroup
 samples/cli/sample-apps Ugc getGroup \
-    --groupId 'xcCr7rwXI73y0usx' \
+    --groupId 'f80tJignfrPcWAWm' \
     --namespace $AB_NAMESPACE \
-    --userId 'VjCfyK4Ekn8I8OyA' \
+    --userId 'LE2ZEhiSd7Rk5HF8' \
     > test.out 2>&1
 eval_tap $? 88 'GetGroup' test.out
 
 #- 89 UpdateGroup
 samples/cli/sample-apps Ugc updateGroup \
-    --groupId 'uyaQCAH2p5lYku1z' \
+    --groupId '0CddISicdOe2z7a7' \
     --namespace $AB_NAMESPACE \
-    --userId 'vwgD2OvojgPdFqFZ' \
-    --body '{"contents": ["nknKiPPFPbPyiNAx", "EDfqs0Oz7nkl5BWd", "IzRjqwB70Ml0cT6t"], "name": "lWTyF8xyskYXBaOJ"}' \
+    --userId 'DhVz2garl18C0ufC' \
+    --body '{"contents": ["1B6xGTu7FLErKv8d", "glZpF6WjW48YxaZg", "smKX7iSn0dcOF88X"], "name": "TS43UM4j505UGdKA"}' \
     > test.out 2>&1
 eval_tap $? 89 'UpdateGroup' test.out
 
 #- 90 DeleteGroup
 samples/cli/sample-apps Ugc deleteGroup \
-    --groupId 'FNSJb5PkkViXsq1D' \
+    --groupId 'nRkkoBXppxxcf2oW' \
     --namespace $AB_NAMESPACE \
-    --userId 'rgQLrip5lhWtZjp6' \
+    --userId 'BDHdZJ1FBMa5GX16' \
     > test.out 2>&1
 eval_tap $? 90 'DeleteGroup' test.out
 
 #- 91 GetGroupContent
 samples/cli/sample-apps Ugc getGroupContent \
-    --groupId 'RKcvtc1erfo5yHqt' \
+    --groupId '5wKGNqmVmIbmjnem' \
     --namespace $AB_NAMESPACE \
-    --userId 'kQ0VagcTY8ZzQ9W7' \
-    --limit '71' \
-    --offset '61' \
+    --userId 'hWb7VVcBj9wbXD1H' \
+    --limit '13' \
+    --offset '97' \
     > test.out 2>&1
 eval_tap $? 91 'GetGroupContent' test.out
 
 #- 92 DeleteAllUserStates
 samples/cli/sample-apps Ugc deleteAllUserStates \
     --namespace $AB_NAMESPACE \
-    --userId '6loTc2xcux5jzqIE' \
+    --userId 'GdGnCd68rNTCmM6c' \
     > test.out 2>&1
 eval_tap $? 92 'DeleteAllUserStates' test.out
 

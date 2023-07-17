@@ -46,8 +46,7 @@ type ListUserSeasonInfo struct {
 	Namespace *string `json:"namespace"`
 
 	// season summary
-	// Required: true
-	Season *SeasonSummary `json:"season"`
+	Season *SeasonSummary `json:"season,omitempty"`
 
 	// season id
 	// Required: true
@@ -78,9 +77,6 @@ func (m *ListUserSeasonInfo) Validate(formats strfmt.Registry) error {
 		res = append(res, err)
 	}
 	if err := m.validateNamespace(formats); err != nil {
-		res = append(res, err)
-	}
-	if err := m.validateSeason(formats); err != nil {
 		res = append(res, err)
 	}
 	if err := m.validateSeasonID(formats); err != nil {
@@ -149,24 +145,6 @@ func (m *ListUserSeasonInfo) validateNamespace(formats strfmt.Registry) error {
 
 	if err := validate.Required("namespace", "body", m.Namespace); err != nil {
 		return err
-	}
-
-	return nil
-}
-
-func (m *ListUserSeasonInfo) validateSeason(formats strfmt.Registry) error {
-
-	if err := validate.Required("season", "body", m.Season); err != nil {
-		return err
-	}
-
-	if m.Season != nil {
-		if err := m.Season.Validate(formats); err != nil {
-			if ve, ok := err.(*errors.Validation); ok {
-				return ve.ValidateName("season")
-			}
-			return err
-		}
 	}
 
 	return nil

@@ -24,6 +24,9 @@ type ApimodelsCreateGameSessionRequest struct {
 	// Required: true
 	Attributes interface{} `json:"attributes"`
 
+	// autojoin
+	AutoJoin bool `json:"autoJoin"`
+
 	// backfillticketid
 	// Required: true
 	BackfillTicketID *string `json:"backfillTicketID"`
@@ -96,6 +99,9 @@ type ApimodelsCreateGameSessionRequest struct {
 	// ticketids
 	// Required: true
 	TicketIDs []string `json:"ticketIDs"`
+
+	// tieteamssessionlifetime
+	TieTeamsSessionLifetime bool `json:"tieTeamsSessionLifetime"`
 
 	// type
 	// Required: true

@@ -51,292 +51,292 @@ touch "tmp.dat"
 #- 2 GetLeaderboardConfigurationsAdminV1
 samples/cli/sample-apps Leaderboard getLeaderboardConfigurationsAdminV1 \
     --namespace $AB_NAMESPACE \
-    --isArchived 'false' \
+    --isArchived 'true' \
     --isDeleted 'false' \
-    --limit '71' \
-    --offset '90' \
+    --limit '94' \
+    --offset '19' \
     > test.out 2>&1
 eval_tap $? 2 'GetLeaderboardConfigurationsAdminV1' test.out
 
 #- 3 CreateLeaderboardConfigurationAdminV1
 samples/cli/sample-apps Leaderboard createLeaderboardConfigurationAdminV1 \
     --namespace $AB_NAMESPACE \
-    --body '{"daily": {"resetTime": "0oPGUNmZUX13EJmZ"}, "descending": false, "iconURL": "iShutnxBx4NoHwCO", "leaderboardCode": "nL5IbTbJX5BwRSMl", "monthly": {"resetDate": 37, "resetTime": "FQXydRSGR4JCTUKi"}, "name": "us5yxdztC83yLAXP", "seasonPeriod": 100, "startTime": "VPVgoqmHJN9OFNsG", "statCode": "J1Ppift7ofSqkUwr", "weekly": {"resetDay": 22, "resetTime": "Ee3QK9v2q9G3FtOy"}}' \
+    --body '{"daily": {"resetTime": "FGCvWSMhCv3lAjiC"}, "descending": true, "iconURL": "IAEwmLlJOGVbm9wM", "leaderboardCode": "GH4DzQ3oQlfQwaZJ", "monthly": {"resetDate": 74, "resetTime": "yEsbfAwEslqWmadc"}, "name": "Bwnk3tumuIVCmOmu", "seasonPeriod": 31, "startTime": "8AVIZYzRTA3OP7vh", "statCode": "F509793ssPxcJYm3", "weekly": {"resetDay": 2, "resetTime": "L3w5O4Wd98KygAfc"}}' \
     > test.out 2>&1
 eval_tap $? 3 'CreateLeaderboardConfigurationAdminV1' test.out
 
 #- 4 AdminGetArchivedLeaderboardRankingDataV1Handler
 samples/cli/sample-apps Leaderboard adminGetArchivedLeaderboardRankingDataV1Handler \
     --namespace $AB_NAMESPACE \
-    --slug '7M5ySvOzpAgCM68J' \
-    --leaderboardCodes 'YTQBnVLXcGHKzP25' \
+    --slug 'h04wG716tRcPsYK9' \
+    --leaderboardCodes 'pbq7Zr5Kxcmnl8Hy' \
     > test.out 2>&1
 eval_tap $? 4 'AdminGetArchivedLeaderboardRankingDataV1Handler' test.out
 
 #- 5 CreateArchivedLeaderboardRankingDataV1Handler
 samples/cli/sample-apps Leaderboard createArchivedLeaderboardRankingDataV1Handler \
     --namespace $AB_NAMESPACE \
-    --body '{"leaderboardCodes": ["Hghm3Jytlcx3f4gL", "VKlnnuQqNorpqjou", "F6rQI6tZKRtwite3"], "limit": 77, "slug": "FK23bU8jpfDCi7N6"}' \
+    --body '{"leaderboardCodes": ["xpuvmpn7dWY6d8X3", "DxD6nxUQlAGgEg0g", "D5Gdmgemni89z7lN"], "limit": 41, "slug": "gwEpr4G5EEQwNMOL"}' \
     > test.out 2>&1
 eval_tap $? 5 'CreateArchivedLeaderboardRankingDataV1Handler' test.out
 
 #- 6 DeleteBulkLeaderboardConfigurationAdminV1
 samples/cli/sample-apps Leaderboard deleteBulkLeaderboardConfigurationAdminV1 \
     --namespace $AB_NAMESPACE \
-    --body '{"leaderboardCodes": ["P3nRYxArZYD67K8C", "pR2lvEyVKSlWVTeV", "EVpVaqT2Zne5bK7U"]}' \
+    --body '{"leaderboardCodes": ["cz6zEqIH2CHGip8J", "LCNjFTPTXc9oKGIr", "3vanVb616wePLpfh"]}' \
     > test.out 2>&1
 eval_tap $? 6 'DeleteBulkLeaderboardConfigurationAdminV1' test.out
 
 #- 7 GetLeaderboardConfigurationAdminV1
 samples/cli/sample-apps Leaderboard getLeaderboardConfigurationAdminV1 \
-    --leaderboardCode 'ck9JcvomlXupb6nA' \
+    --leaderboardCode 'EvtnR99aPvyNnAjA' \
     --namespace $AB_NAMESPACE \
     > test.out 2>&1
 eval_tap $? 7 'GetLeaderboardConfigurationAdminV1' test.out
 
 #- 8 UpdateLeaderboardConfigurationAdminV1
 samples/cli/sample-apps Leaderboard updateLeaderboardConfigurationAdminV1 \
-    --leaderboardCode 'kFqYx8vElGI9eGwM' \
+    --leaderboardCode 'LVAxgfV3WTcOzRRS' \
     --namespace $AB_NAMESPACE \
-    --body '{"daily": {"resetTime": "ninLJEICXqtBKGCV"}, "descending": true, "iconURL": "2bQmaQpNoKk2iF4Q", "monthly": {"resetDate": 22, "resetTime": "7whvkt2CDgiWpNWC"}, "name": "FikfE7zjISaBlmKl", "seasonPeriod": 83, "startTime": "dfh7Ip7QMZNE1Od0", "statCode": "cYtf5RGP7AP3ZKjl", "weekly": {"resetDay": 72, "resetTime": "1zLQ69r2Zb33CvKv"}}' \
+    --body '{"daily": {"resetTime": "vpfTy5enTYhulDeF"}, "descending": false, "iconURL": "FXP2B6GwsgB1HVZ1", "monthly": {"resetDate": 88, "resetTime": "TFsShdsc8CbWPRt2"}, "name": "jGrYKLeoamfIXDdB", "seasonPeriod": 54, "startTime": "7ZjJlItaxjJNYZTS", "statCode": "ypJc6FXOzqI0eHuV", "weekly": {"resetDay": 71, "resetTime": "GHkB8bulLGNqsHmB"}}' \
     > test.out 2>&1
 eval_tap $? 8 'UpdateLeaderboardConfigurationAdminV1' test.out
 
 #- 9 DeleteLeaderboardConfigurationAdminV1
 samples/cli/sample-apps Leaderboard deleteLeaderboardConfigurationAdminV1 \
-    --leaderboardCode 'rzkf7AkDJbGpurz7' \
+    --leaderboardCode 'TC9BglX24MxBIEX9' \
     --namespace $AB_NAMESPACE \
     > test.out 2>&1
 eval_tap $? 9 'DeleteLeaderboardConfigurationAdminV1' test.out
 
 #- 10 GetAllTimeLeaderboardRankingAdminV1
 samples/cli/sample-apps Leaderboard getAllTimeLeaderboardRankingAdminV1 \
-    --leaderboardCode '6mhxUKETYRV11TqG' \
+    --leaderboardCode 'FeKNBLgWJMe0sHQe' \
     --namespace $AB_NAMESPACE \
-    --limit '79' \
-    --offset '20' \
+    --limit '63' \
+    --offset '5' \
     > test.out 2>&1
 eval_tap $? 10 'GetAllTimeLeaderboardRankingAdminV1' test.out
 
 #- 11 HardDeleteLeaderboardAdminV1
 samples/cli/sample-apps Leaderboard hardDeleteLeaderboardAdminV1 \
-    --leaderboardCode 'zaBtfNUOSsVJJ47z' \
+    --leaderboardCode 'vAUzVayVSM0AGe1E' \
     --namespace $AB_NAMESPACE \
     > test.out 2>&1
 eval_tap $? 11 'HardDeleteLeaderboardAdminV1' test.out
 
 #- 12 GetCurrentMonthLeaderboardRankingAdminV1
 samples/cli/sample-apps Leaderboard getCurrentMonthLeaderboardRankingAdminV1 \
-    --leaderboardCode 'Tvx5fFRenVUvyEeR' \
+    --leaderboardCode 'cGMkSCNmV67cMZcx' \
     --namespace $AB_NAMESPACE \
-    --limit '79' \
-    --offset '96' \
-    --previousVersion '99' \
+    --limit '57' \
+    --offset '74' \
+    --previousVersion '38' \
     > test.out 2>&1
 eval_tap $? 12 'GetCurrentMonthLeaderboardRankingAdminV1' test.out
 
 #- 13 DeleteUserRankingByLeaderboardCodeAdminV1
 samples/cli/sample-apps Leaderboard deleteUserRankingByLeaderboardCodeAdminV1 \
-    --leaderboardCode 'fYLXV3P4PUwZljoH' \
+    --leaderboardCode 'BstjEZ4NWxniNhBS' \
     --namespace $AB_NAMESPACE \
     > test.out 2>&1
 eval_tap $? 13 'DeleteUserRankingByLeaderboardCodeAdminV1' test.out
 
 #- 14 GetCurrentSeasonLeaderboardRankingAdminV1
 samples/cli/sample-apps Leaderboard getCurrentSeasonLeaderboardRankingAdminV1 \
-    --leaderboardCode 'aWd2IRGaOAvETEzY' \
+    --leaderboardCode 'bSVACXL0M6WiQqiW' \
     --namespace $AB_NAMESPACE \
-    --limit '98' \
-    --offset '98' \
-    --previousVersion '82' \
+    --limit '88' \
+    --offset '39' \
+    --previousVersion '58' \
     > test.out 2>&1
 eval_tap $? 14 'GetCurrentSeasonLeaderboardRankingAdminV1' test.out
 
 #- 15 GetTodayLeaderboardRankingAdminV1
 samples/cli/sample-apps Leaderboard getTodayLeaderboardRankingAdminV1 \
-    --leaderboardCode 'PDqDpXlvXelE30T7' \
+    --leaderboardCode 'Ee3peIXw2BM9btrK' \
     --namespace $AB_NAMESPACE \
-    --limit '10' \
-    --offset '37' \
-    --previousVersion '20' \
+    --limit '5' \
+    --offset '9' \
+    --previousVersion '51' \
     > test.out 2>&1
 eval_tap $? 15 'GetTodayLeaderboardRankingAdminV1' test.out
 
 #- 16 GetUserRankingAdminV1
 samples/cli/sample-apps Leaderboard getUserRankingAdminV1 \
-    --leaderboardCode '4ZxMxFWOmCq6Wohe' \
+    --leaderboardCode 'XCfi8BDvvGhwQ0gF' \
     --namespace $AB_NAMESPACE \
-    --userId '3jy9EXpRrdx5vVGk' \
-    --previousVersion '98' \
+    --userId 'PO9MtrGO7Wn98hnh' \
+    --previousVersion '4' \
     > test.out 2>&1
 eval_tap $? 16 'GetUserRankingAdminV1' test.out
 
 #- 17 UpdateUserPointAdminV1
 samples/cli/sample-apps Leaderboard updateUserPointAdminV1 \
-    --leaderboardCode 'gNyeFVbUGdH2pUV8' \
+    --leaderboardCode 'PrulC9cJ5kGlLmy0' \
     --namespace $AB_NAMESPACE \
-    --userId 'xfzRTMR6TbnOAcNR' \
-    --body '{"inc": 0.9506177787678187, "latestValue": 0.948884366113986}' \
+    --userId 'Pw2PTMXd0OItfn17' \
+    --body '{"inc": 0.3054651825987983, "latestValue": 0.4768937821889361}' \
     > test.out 2>&1
 eval_tap $? 17 'UpdateUserPointAdminV1' test.out
 
 #- 18 DeleteUserRankingAdminV1
 samples/cli/sample-apps Leaderboard deleteUserRankingAdminV1 \
-    --leaderboardCode 'nsqCZ25Oc0iV3czn' \
+    --leaderboardCode 'k3vjQ4B9HKKAJOqN' \
     --namespace $AB_NAMESPACE \
-    --userId 'KSX6IJx0c0nXElZM' \
+    --userId 'wkyDWOUD3iO3zEir' \
     > test.out 2>&1
 eval_tap $? 18 'DeleteUserRankingAdminV1' test.out
 
 #- 19 GetCurrentWeekLeaderboardRankingAdminV1
 samples/cli/sample-apps Leaderboard getCurrentWeekLeaderboardRankingAdminV1 \
-    --leaderboardCode 'zCg37FNRTOGTM008' \
+    --leaderboardCode 'K5K3EA64MXU7BUiE' \
     --namespace $AB_NAMESPACE \
-    --limit '23' \
-    --offset '31' \
-    --previousVersion '94' \
+    --limit '19' \
+    --offset '81' \
+    --previousVersion '78' \
     > test.out 2>&1
 eval_tap $? 19 'GetCurrentWeekLeaderboardRankingAdminV1' test.out
 
 #- 20 DeleteUserRankingsAdminV1
 samples/cli/sample-apps Leaderboard deleteUserRankingsAdminV1 \
     --namespace $AB_NAMESPACE \
-    --userId 'Dx136dP9KuzkGaof' \
-    --leaderboardCode '["2FFupYL0uML9wMKS", "KtoeQ1UDYYCx5Iic", "6s8RZEyxjL8Ex81w"]' \
+    --userId 'yyLiFawoZq8FAaXY' \
+    --leaderboardCode '["KrVjMzgf9uLwFq8k", "R1h9IoI6UM0tjArM", "HubmXPmtyaZgFF7C"]' \
     > test.out 2>&1
 eval_tap $? 20 'DeleteUserRankingsAdminV1' test.out
 
 #- 21 AdminAnonymizeUserLeaderboardAdminV1
 samples/cli/sample-apps Leaderboard adminAnonymizeUserLeaderboardAdminV1 \
     --namespace $AB_NAMESPACE \
-    --userId 'BbNH3M45o7uZmHO5' \
+    --userId 'S1HRZxgBiJkj8jFN' \
     > test.out 2>&1
 eval_tap $? 21 'AdminAnonymizeUserLeaderboardAdminV1' test.out
 
 #- 22 GetUserLeaderboardRankingsAdminV1
 samples/cli/sample-apps Leaderboard getUserLeaderboardRankingsAdminV1 \
     --namespace $AB_NAMESPACE \
-    --userId 'C6ZemsoGIJr9uOl5' \
-    --limit '70' \
-    --offset '59' \
-    --previousVersion '23' \
+    --userId '7ygzhLcH1gNbXiWn' \
+    --limit '61' \
+    --offset '52' \
+    --previousVersion '73' \
     > test.out 2>&1
 eval_tap $? 22 'GetUserLeaderboardRankingsAdminV1' test.out
 
 #- 23 GetLeaderboardConfigurationsPublicV1
 samples/cli/sample-apps Leaderboard getLeaderboardConfigurationsPublicV1 \
     --namespace $AB_NAMESPACE \
-    --isArchived 'true' \
+    --isArchived 'false' \
     --isDeleted 'true' \
-    --limit '28' \
-    --offset '29' \
+    --limit '6' \
+    --offset '44' \
     > test.out 2>&1
 eval_tap $? 23 'GetLeaderboardConfigurationsPublicV1' test.out
 
 #- 24 CreateLeaderboardConfigurationPublicV1
 samples/cli/sample-apps Leaderboard createLeaderboardConfigurationPublicV1 \
     --namespace $AB_NAMESPACE \
-    --body '{"daily": {"resetTime": "FJQQ2CWVgxgcPS8j"}, "descending": false, "iconURL": "d9ZjAmPAXl3nzXq9", "leaderboardCode": "K7sRH8tIekwH8FLR", "monthly": {"resetDate": 41, "resetTime": "wzGhqijYgZdF2G1v"}, "name": "GmA3iRG5rvmeS9Kw", "seasonPeriod": 66, "startTime": "OqASKY8J02E8Wchu", "statCode": "eNIto4G2bQWgFIrk", "weekly": {"resetDay": 15, "resetTime": "EPWL9Z5wA5Ta2d5f"}}' \
+    --body '{"daily": {"resetTime": "hlcHu8Vdq5WskEXv"}, "descending": false, "iconURL": "igz8ocdJIyzN9Cq5", "leaderboardCode": "fJ6jDAgbfExfkKOw", "monthly": {"resetDate": 90, "resetTime": "qHJV2Pg1XC6W3rXe"}, "name": "0EkeFcMn4fFaQKpd", "seasonPeriod": 0, "startTime": "fbmDhJ4VHB1l9SNN", "statCode": "tLvw02phffQCgP88", "weekly": {"resetDay": 80, "resetTime": "TsdpdNq8ol2REbWG"}}' \
     > test.out 2>&1
 eval_tap $? 24 'CreateLeaderboardConfigurationPublicV1' test.out
 
 #- 25 GetAllTimeLeaderboardRankingPublicV1
 samples/cli/sample-apps Leaderboard getAllTimeLeaderboardRankingPublicV1 \
-    --leaderboardCode 'Vs6NcGIkwTWrRizJ' \
+    --leaderboardCode 'H2TzhQGTPMpnfwca' \
     --namespace $AB_NAMESPACE \
-    --limit '60' \
-    --offset '50' \
+    --limit '1' \
+    --offset '21' \
     > test.out 2>&1
 eval_tap $? 25 'GetAllTimeLeaderboardRankingPublicV1' test.out
 
 #- 26 GetArchivedLeaderboardRankingDataV1Handler
 samples/cli/sample-apps Leaderboard getArchivedLeaderboardRankingDataV1Handler \
-    --leaderboardCode '7Vo4bfXrr9VCUb50' \
+    --leaderboardCode 'P6m6Y7bCm9YesUWJ' \
     --namespace $AB_NAMESPACE \
-    --slug 's5KupvAVFo3SqaVw' \
-    --leaderboardCodes 'X2qdpCjujHlVRm92' \
+    --slug 'dCcmgdM2xMDXj6Aa' \
+    --leaderboardCodes '9FkwUAxrtLaolUrn' \
     > test.out 2>&1
 eval_tap $? 26 'GetArchivedLeaderboardRankingDataV1Handler' test.out
 
 #- 27 GetCurrentMonthLeaderboardRankingPublicV1
 samples/cli/sample-apps Leaderboard getCurrentMonthLeaderboardRankingPublicV1 \
-    --leaderboardCode 'OpSEh88XeTiHtNvy' \
+    --leaderboardCode 'fTUxwL5wU4Zq77JL' \
     --namespace $AB_NAMESPACE \
-    --limit '42' \
-    --offset '78' \
-    --previousVersion '74' \
+    --limit '97' \
+    --offset '18' \
+    --previousVersion '36' \
     > test.out 2>&1
 eval_tap $? 27 'GetCurrentMonthLeaderboardRankingPublicV1' test.out
 
 #- 28 GetCurrentSeasonLeaderboardRankingPublicV1
 samples/cli/sample-apps Leaderboard getCurrentSeasonLeaderboardRankingPublicV1 \
-    --leaderboardCode 'KTINkAd22L0fthzJ' \
+    --leaderboardCode 'jMY8WZQQmtUXXMZH' \
     --namespace $AB_NAMESPACE \
-    --limit '50' \
-    --offset '23' \
-    --previousVersion '71' \
+    --limit '25' \
+    --offset '47' \
+    --previousVersion '11' \
     > test.out 2>&1
 eval_tap $? 28 'GetCurrentSeasonLeaderboardRankingPublicV1' test.out
 
 #- 29 GetTodayLeaderboardRankingPublicV1
 samples/cli/sample-apps Leaderboard getTodayLeaderboardRankingPublicV1 \
-    --leaderboardCode '5MV2DJhzh5M6GqE7' \
+    --leaderboardCode '4wYS5Xq0CWtQaSfO' \
     --namespace $AB_NAMESPACE \
-    --limit '14' \
-    --offset '66' \
-    --previousVersion '89' \
+    --limit '91' \
+    --offset '78' \
+    --previousVersion '4' \
     > test.out 2>&1
 eval_tap $? 29 'GetTodayLeaderboardRankingPublicV1' test.out
 
 #- 30 GetUserRankingPublicV1
 samples/cli/sample-apps Leaderboard getUserRankingPublicV1 \
-    --leaderboardCode 'DkzYKfpehvmlqnmD' \
+    --leaderboardCode 'lQChfArq3okaJmtE' \
     --namespace $AB_NAMESPACE \
-    --userId '6PGUgb6awlZ0qoZL' \
-    --previousVersion '71' \
+    --userId 'fcAYzdoCXkKhsQ8P' \
+    --previousVersion '80' \
     > test.out 2>&1
 eval_tap $? 30 'GetUserRankingPublicV1' test.out
 
 #- 31 DeleteUserRankingPublicV1
 samples/cli/sample-apps Leaderboard deleteUserRankingPublicV1 \
-    --leaderboardCode 'P3rHVKK1wkqMSS7f' \
+    --leaderboardCode 'stNypo6Ha3zqcU0B' \
     --namespace $AB_NAMESPACE \
-    --userId 'bZNwxI2rw5SLxsxg' \
+    --userId 'G5NUNB8aSeD5yNY9' \
     > test.out 2>&1
 eval_tap $? 31 'DeleteUserRankingPublicV1' test.out
 
 #- 32 GetCurrentWeekLeaderboardRankingPublicV1
 samples/cli/sample-apps Leaderboard getCurrentWeekLeaderboardRankingPublicV1 \
-    --leaderboardCode 'dR8yUxSyYkN85lOo' \
+    --leaderboardCode 'Yo2NNfIf9q9Xb09p' \
     --namespace $AB_NAMESPACE \
-    --limit '75' \
-    --offset '28' \
-    --previousVersion '5' \
+    --limit '44' \
+    --offset '29' \
+    --previousVersion '18' \
     > test.out 2>&1
 eval_tap $? 32 'GetCurrentWeekLeaderboardRankingPublicV1' test.out
 
 #- 33 GetHiddenUsersV2
 samples/cli/sample-apps Leaderboard getHiddenUsersV2 \
-    --leaderboardCode 'Ke2mF3U0zQWyQPPV' \
+    --leaderboardCode 'wlImklP14tIYJp5T' \
     --namespace $AB_NAMESPACE \
-    --limit '12' \
-    --offset '89' \
+    --limit '8' \
+    --offset '75' \
     > test.out 2>&1
 eval_tap $? 33 'GetHiddenUsersV2' test.out
 
 #- 34 GetUserVisibilityStatusV2
 samples/cli/sample-apps Leaderboard getUserVisibilityStatusV2 \
-    --leaderboardCode 'eesYpONfcXnCOtp0' \
+    --leaderboardCode 'AOOUrVN6WM064Wns' \
     --namespace $AB_NAMESPACE \
-    --userId 'F9lpJ9tryMEIyZ6J' \
+    --userId 'T05ULnTz5pqIjqVP' \
     > test.out 2>&1
 eval_tap $? 34 'GetUserVisibilityStatusV2' test.out
 
 #- 35 SetUserLeaderboardVisibilityStatusV2
 samples/cli/sample-apps Leaderboard setUserLeaderboardVisibilityStatusV2 \
-    --leaderboardCode 'QcPyGE1d01gHBpLA' \
+    --leaderboardCode 'iN9Id6wXqOtUVc1P' \
     --namespace $AB_NAMESPACE \
-    --userId 'rFcFp2w6y9KQtWZ2' \
+    --userId '0E1jeEQN1a8nC32m' \
     --body '{"visibility": false}' \
     > test.out 2>&1
 eval_tap $? 35 'SetUserLeaderboardVisibilityStatusV2' test.out
@@ -344,7 +344,7 @@ eval_tap $? 35 'SetUserLeaderboardVisibilityStatusV2' test.out
 #- 36 SetUserVisibilityStatusV2
 samples/cli/sample-apps Leaderboard setUserVisibilityStatusV2 \
     --namespace $AB_NAMESPACE \
-    --userId 'UYpqAAq8yac48jVf' \
+    --userId 'AWgZdDVQOv6XucCG' \
     --body '{"visibility": true}' \
     > test.out 2>&1
 eval_tap $? 36 'SetUserVisibilityStatusV2' test.out
@@ -352,17 +352,17 @@ eval_tap $? 36 'SetUserVisibilityStatusV2' test.out
 #- 37 GetLeaderboardConfigurationsPublicV2
 samples/cli/sample-apps Leaderboard getLeaderboardConfigurationsPublicV2 \
     --namespace $AB_NAMESPACE \
-    --limit '47' \
-    --offset '32' \
+    --limit '51' \
+    --offset '80' \
     > test.out 2>&1
 eval_tap $? 37 'GetLeaderboardConfigurationsPublicV2' test.out
 
 #- 38 GetAllTimeLeaderboardRankingPublicV2
 samples/cli/sample-apps Leaderboard getAllTimeLeaderboardRankingPublicV2 \
-    --leaderboardCode 'lnyBlgfD9Qp68aUV' \
+    --leaderboardCode 'Yb0rsKE0vBkDH7NQ' \
     --namespace $AB_NAMESPACE \
-    --limit '3' \
-    --offset '17' \
+    --limit '76' \
+    --offset '59' \
     > test.out 2>&1
 eval_tap $? 38 'GetAllTimeLeaderboardRankingPublicV2' test.out
 
@@ -370,118 +370,118 @@ eval_tap $? 38 'GetAllTimeLeaderboardRankingPublicV2' test.out
 samples/cli/sample-apps Leaderboard getLeaderboardConfigurationsAdminV3 \
     --namespace $AB_NAMESPACE \
     --isDeleted 'false' \
-    --limit '62' \
-    --offset '46' \
+    --limit '15' \
+    --offset '3' \
     > test.out 2>&1
 eval_tap $? 39 'GetLeaderboardConfigurationsAdminV3' test.out
 
 #- 40 CreateLeaderboardConfigurationAdminV3
 samples/cli/sample-apps Leaderboard createLeaderboardConfigurationAdminV3 \
     --namespace $AB_NAMESPACE \
-    --body '{"allTime": true, "cycleIds": ["kyLHg9CHtyTOALJS", "ClHWNXudNblXRgLr", "lm9qTT6lrnWxWCEy"], "descending": false, "description": "2VyKlcL59s7lktq3", "iconURL": "6i2YVDLGqR4vEmAG", "leaderboardCode": "LX4ykOwz2HOtQiUX", "name": "WrWuc7kmWH79Mhh1", "statCode": "ugqxVRXJ1CfeMjAJ"}' \
+    --body '{"allTime": true, "cycleIds": ["RfuXtAALELsXxMat", "n3E1tsqSD2D2myF7", "ccmIM1nP2kj4IXRy"], "descending": true, "description": "NzccoPwojwldSffS", "iconURL": "f3a4iWJLcJQUDM6Z", "leaderboardCode": "wVljkGHfGR008IdK", "name": "DrkmMCXwiDxZEZ8E", "statCode": "fxHGEu2VJLi544mr"}' \
     > test.out 2>&1
 eval_tap $? 40 'CreateLeaderboardConfigurationAdminV3' test.out
 
 #- 41 DeleteBulkLeaderboardConfigurationAdminV3
 samples/cli/sample-apps Leaderboard deleteBulkLeaderboardConfigurationAdminV3 \
     --namespace $AB_NAMESPACE \
-    --body '{"leaderboardCodes": ["7k0IbOGDYCYTI4dD", "OFYrBXzpUi1wM82e", "l4Unv0Na2WVV8L8B"]}' \
+    --body '{"leaderboardCodes": ["LpMFhuwmaLiTtgeV", "ikX67p3tuA8DWxwf", "PkdRk5ImABInnXUL"]}' \
     > test.out 2>&1
 eval_tap $? 41 'DeleteBulkLeaderboardConfigurationAdminV3' test.out
 
 #- 42 GetLeaderboardConfigurationAdminV3
 samples/cli/sample-apps Leaderboard getLeaderboardConfigurationAdminV3 \
-    --leaderboardCode 'KFhGYWN1DcY7Nog8' \
+    --leaderboardCode 'lNvGMOpMo6sk7uPJ' \
     --namespace $AB_NAMESPACE \
     > test.out 2>&1
 eval_tap $? 42 'GetLeaderboardConfigurationAdminV3' test.out
 
 #- 43 UpdateLeaderboardConfigurationAdminV3
 samples/cli/sample-apps Leaderboard updateLeaderboardConfigurationAdminV3 \
-    --leaderboardCode 'ymjVCZrZuezrCG1J' \
+    --leaderboardCode 'NFC9GElqbX1NE2C9' \
     --namespace $AB_NAMESPACE \
-    --body '{"allTime": false, "cycleIds": ["WQeLc91oPlDa5nby", "J399PDj2aOBQKF5d", "GNNZctXIHgyGzpYj"], "descending": true, "description": "30m4nWWJVCX3vxf9", "iconURL": "tXoP0OoqXQAbCGBM", "name": "IN9Md7Yy9FoCKjRF"}' \
+    --body '{"allTime": false, "cycleIds": ["VMQeCLB6uOO9jpbT", "ELwL3mMuE4MqQ0AX", "GTZmpGxVZyuqMviq"], "descending": false, "description": "I2ai60mmEvNSbO2L", "iconURL": "OfrzbalDxM0lYPOX", "name": "Zsfq8ay9PrmoQR2J"}' \
     > test.out 2>&1
 eval_tap $? 43 'UpdateLeaderboardConfigurationAdminV3' test.out
 
 #- 44 DeleteLeaderboardConfigurationAdminV3
 samples/cli/sample-apps Leaderboard deleteLeaderboardConfigurationAdminV3 \
-    --leaderboardCode 'yNCwKQd7xB8gEXPu' \
+    --leaderboardCode 'xLRtHuPFyZaqlyNx' \
     --namespace $AB_NAMESPACE \
     > test.out 2>&1
 eval_tap $? 44 'DeleteLeaderboardConfigurationAdminV3' test.out
 
 #- 45 GetAllTimeLeaderboardRankingAdminV3
 samples/cli/sample-apps Leaderboard getAllTimeLeaderboardRankingAdminV3 \
-    --leaderboardCode '0c00VVwnBw38Ce5w' \
+    --leaderboardCode 'huTnKDlusKUDPB1M' \
     --namespace $AB_NAMESPACE \
-    --limit '40' \
-    --offset '1' \
+    --limit '23' \
+    --offset '57' \
     > test.out 2>&1
 eval_tap $? 45 'GetAllTimeLeaderboardRankingAdminV3' test.out
 
 #- 46 GetCurrentCycleLeaderboardRankingAdminV3
 samples/cli/sample-apps Leaderboard getCurrentCycleLeaderboardRankingAdminV3 \
-    --cycleId 'zkmtfKZ0GsRele99' \
-    --leaderboardCode '8K65quXLtl4Ereoo' \
+    --cycleId 'SdeGFcMafaXkWHzr' \
+    --leaderboardCode 'wXn3M3oa7nhvVg2a' \
     --namespace $AB_NAMESPACE \
-    --limit '63' \
-    --offset '13' \
+    --limit '29' \
+    --offset '54' \
     > test.out 2>&1
 eval_tap $? 46 'GetCurrentCycleLeaderboardRankingAdminV3' test.out
 
 #- 47 HardDeleteLeaderboardAdminV3
 samples/cli/sample-apps Leaderboard hardDeleteLeaderboardAdminV3 \
-    --leaderboardCode 'pJG8YCNEztuaLYZy' \
+    --leaderboardCode '6MedAgDJ6ixtnQ5t' \
     --namespace $AB_NAMESPACE \
     > test.out 2>&1
 eval_tap $? 47 'HardDeleteLeaderboardAdminV3' test.out
 
 #- 48 DeleteUserRankingByLeaderboardCodeAdminV3
 samples/cli/sample-apps Leaderboard deleteUserRankingByLeaderboardCodeAdminV3 \
-    --leaderboardCode 'UCez2sQiReR3X8UN' \
+    --leaderboardCode 'lXbqfgg4L8djwu6l' \
     --namespace $AB_NAMESPACE \
     > test.out 2>&1
 eval_tap $? 48 'DeleteUserRankingByLeaderboardCodeAdminV3' test.out
 
 #- 49 GetHiddenUsersV3
 samples/cli/sample-apps Leaderboard getHiddenUsersV3 \
-    --leaderboardCode 's3g1aaNquproQIk0' \
+    --leaderboardCode 'Y8zw5vDF72v6eTLW' \
     --namespace $AB_NAMESPACE \
-    --limit '99' \
-    --offset '31' \
+    --limit '50' \
+    --offset '49' \
     > test.out 2>&1
 eval_tap $? 49 'GetHiddenUsersV3' test.out
 
 #- 50 GetUserRankingAdminV3
 samples/cli/sample-apps Leaderboard getUserRankingAdminV3 \
-    --leaderboardCode '5olaZcO1adE9HIco' \
+    --leaderboardCode 'SeCHDB1c9CCxgtkP' \
     --namespace $AB_NAMESPACE \
-    --userId 'PLy6OhvSwHSk6qNf' \
+    --userId 'aEU5sZFoF86sYicx' \
     > test.out 2>&1
 eval_tap $? 50 'GetUserRankingAdminV3' test.out
 
 #- 51 DeleteUserRankingAdminV3
 samples/cli/sample-apps Leaderboard deleteUserRankingAdminV3 \
-    --leaderboardCode 'OTOMj8VZGtzB9sxc' \
+    --leaderboardCode 'DLUdZ7Rx1LiRTvMR' \
     --namespace $AB_NAMESPACE \
-    --userId 'EHKyRiSZWyA9N0x3' \
+    --userId 'ShqaYJ1qVn05U0SL' \
     > test.out 2>&1
 eval_tap $? 51 'DeleteUserRankingAdminV3' test.out
 
 #- 52 GetUserVisibilityStatusV3
 samples/cli/sample-apps Leaderboard getUserVisibilityStatusV3 \
-    --leaderboardCode 'WotE3QZ1CM5bK8DR' \
+    --leaderboardCode 'KZrviNb40RXiOVKZ' \
     --namespace $AB_NAMESPACE \
-    --userId 'biFbH3G2ewkkbnFn' \
+    --userId 'oWZzrkJ7byzQLMCc' \
     > test.out 2>&1
 eval_tap $? 52 'GetUserVisibilityStatusV3' test.out
 
 #- 53 SetUserLeaderboardVisibilityV3
 samples/cli/sample-apps Leaderboard setUserLeaderboardVisibilityV3 \
-    --leaderboardCode 'sgq3cgPRl8PnMCbi' \
+    --leaderboardCode 'ZVsskMWTfRj3NNUw' \
     --namespace $AB_NAMESPACE \
-    --userId 'KiCqLNkXdIGZDf6X' \
+    --userId '3FpXth3FIMfnO2je' \
     --body '{"visibility": false}' \
     > test.out 2>&1
 eval_tap $? 53 'SetUserLeaderboardVisibilityV3' test.out
@@ -489,24 +489,24 @@ eval_tap $? 53 'SetUserLeaderboardVisibilityV3' test.out
 #- 54 DeleteUserRankingsAdminV3
 samples/cli/sample-apps Leaderboard deleteUserRankingsAdminV3 \
     --namespace $AB_NAMESPACE \
-    --userId 'EcW6lNE6iXSDthdo' \
-    --leaderboardCode '["FNFaHEJ6RMhqXA0c", "mn0jgEBUuuUMix4N", "DDXh0y0eY0LpLA0e"]' \
+    --userId 'zf4PNq1QCFF8SThq' \
+    --leaderboardCode '["SyrWgGcTG0vh6t1j", "SSw4XIBQpTEA0RQI", "ri47Go2E2OTtIFqv"]' \
     > test.out 2>&1
 eval_tap $? 54 'DeleteUserRankingsAdminV3' test.out
 
 #- 55 GetUserLeaderboardRankingsAdminV3
 samples/cli/sample-apps Leaderboard getUserLeaderboardRankingsAdminV3 \
     --namespace $AB_NAMESPACE \
-    --userId 'g4Xxh5n20esF50t4' \
-    --limit '13' \
-    --offset '9' \
+    --userId 'epNMhyUxeJl8AJtO' \
+    --limit '63' \
+    --offset '79' \
     > test.out 2>&1
 eval_tap $? 55 'GetUserLeaderboardRankingsAdminV3' test.out
 
 #- 56 SetUserVisibilityV3
 samples/cli/sample-apps Leaderboard setUserVisibilityV3 \
     --namespace $AB_NAMESPACE \
-    --userId 'BZwIVWHoP2fvq3r9' \
+    --userId 'U0hmHjc7uxjXf9Nn' \
     --body '{"visibility": false}' \
     > test.out 2>&1
 eval_tap $? 56 'SetUserVisibilityV3' test.out
@@ -515,50 +515,50 @@ eval_tap $? 56 'SetUserVisibilityV3' test.out
 samples/cli/sample-apps Leaderboard getLeaderboardConfigurationsPublicV3 \
     --namespace $AB_NAMESPACE \
     --isDeleted 'true' \
-    --limit '31' \
-    --offset '93' \
+    --limit '99' \
+    --offset '21' \
     > test.out 2>&1
 eval_tap $? 57 'GetLeaderboardConfigurationsPublicV3' test.out
 
 #- 58 GetLeaderboardConfigurationPublicV3
 samples/cli/sample-apps Leaderboard getLeaderboardConfigurationPublicV3 \
-    --leaderboardCode 'kZr4eEvNbkrODTSU' \
+    --leaderboardCode 'mjYkieYKJLE9jAil' \
     --namespace $AB_NAMESPACE \
     > test.out 2>&1
 eval_tap $? 58 'GetLeaderboardConfigurationPublicV3' test.out
 
 #- 59 GetAllTimeLeaderboardRankingPublicV3
 samples/cli/sample-apps Leaderboard getAllTimeLeaderboardRankingPublicV3 \
-    --leaderboardCode 'KAEMWEDzrxCupcA8' \
+    --leaderboardCode '90XdQp915DcfcVES' \
     --namespace $AB_NAMESPACE \
-    --limit '0' \
-    --offset '7' \
+    --limit '63' \
+    --offset '38' \
     > test.out 2>&1
 eval_tap $? 59 'GetAllTimeLeaderboardRankingPublicV3' test.out
 
 #- 60 GetCurrentCycleLeaderboardRankingPublicV3
 samples/cli/sample-apps Leaderboard getCurrentCycleLeaderboardRankingPublicV3 \
-    --cycleId 'Mv1SMOgcPePDP0uY' \
-    --leaderboardCode 'yKe5GxRn6Bb30Lm3' \
+    --cycleId 'tGPt8wQmQfBt9yqT' \
+    --leaderboardCode 'gbRk6TXRP9HWnq90' \
     --namespace $AB_NAMESPACE \
-    --limit '31' \
-    --offset '70' \
+    --limit '1' \
+    --offset '49' \
     > test.out 2>&1
 eval_tap $? 60 'GetCurrentCycleLeaderboardRankingPublicV3' test.out
 
 #- 61 BulkGetUsersRankingPublicV3
 samples/cli/sample-apps Leaderboard bulkGetUsersRankingPublicV3 \
-    --leaderboardCode 'ixlp3U6GneLZMtvB' \
+    --leaderboardCode 'uAPtT4nIapUOfWqE' \
     --namespace $AB_NAMESPACE \
-    --body '{"userIds": ["s9scdZgS937LYoWB", "RhcsdheFSfZtunnm", "zpMvrZDuidRz4KWs"]}' \
+    --body '{"userIds": ["8zmb1YqyhMlkM579", "fWvw5kDYoPu43oB9", "YAonoCoNUdR0NYkD"]}' \
     > test.out 2>&1
 eval_tap $? 61 'BulkGetUsersRankingPublicV3' test.out
 
 #- 62 GetUserRankingPublicV3
 samples/cli/sample-apps Leaderboard getUserRankingPublicV3 \
-    --leaderboardCode 'Qm2JH9Mn7ggs8G3U' \
+    --leaderboardCode 'nJhOBF36lpRxc6EM' \
     --namespace $AB_NAMESPACE \
-    --userId 'Mm8ivZMkRGaOtcTL' \
+    --userId 'ajOEC7nLLU80UIBS' \
     > test.out 2>&1
 eval_tap $? 62 'GetUserRankingPublicV3' test.out
 

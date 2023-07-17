@@ -82,6 +82,9 @@ type ApimodelsUpdateGameSessionRequest struct {
 	// Required: true
 	TicketIDs []string `json:"ticketIDs"`
 
+	// tieteamssessionlifetime
+	TieTeamsSessionLifetime bool `json:"tieTeamsSessionLifetime"`
+
 	// type
 	// Required: true
 	Type *string `json:"type"`

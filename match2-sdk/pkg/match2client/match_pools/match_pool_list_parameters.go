@@ -95,6 +95,11 @@ type MatchPoolListParams struct {
 
 	*/
 	Limit *int64
+	/*Name
+	  Match Pool name
+
+	*/
+	Name *string
 	/*Offset
 	  Pagination offset
 
@@ -176,6 +181,17 @@ func (o *MatchPoolListParams) SetLimit(limit *int64) {
 	o.Limit = limit
 }
 
+// WithName adds the name to the match pool list params
+func (o *MatchPoolListParams) WithName(name *string) *MatchPoolListParams {
+	o.SetName(name)
+	return o
+}
+
+// SetName adds the name to the match pool list params
+func (o *MatchPoolListParams) SetName(name *string) {
+	o.Name = name
+}
+
 // WithOffset adds the offset to the match pool list params
 func (o *MatchPoolListParams) WithOffset(offset *int64) *MatchPoolListParams {
 	o.SetOffset(offset)
@@ -210,6 +226,22 @@ func (o *MatchPoolListParams) WriteToRequest(r runtime.ClientRequest, reg strfmt
 		qLimit := swag.FormatInt64(qrLimit)
 		if qLimit != "" {
 			if err := r.SetQueryParam("limit", qLimit); err != nil {
+				return err
+			}
+		}
+
+	}
+
+	if o.Name != nil {
+
+		// query param name
+		var qrName string
+		if o.Name != nil {
+			qrName = *o.Name
+		}
+		qName := qrName
+		if qName != "" {
+			if err := r.SetQueryParam("name", qName); err != nil {
 				return err
 			}
 		}

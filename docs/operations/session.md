@@ -77,7 +77,9 @@
 ### Platform Credential Wrapper:  [PlatformCredential](../../services-api/pkg/service/session/platformCredential.go)
 | Endpoint | Method | ID | Class | Wrapper | Example |
 |---|---|---|---|---|---|
+| `/session/v1/admin/namespaces/{namespace}/platform-credentials` | GET | AdminGetPlatformCredentialsShort | [AdminGetPlatformCredentialsShort](../../session-sdk/pkg/sessionclient/platform_credential/platform_credential_client.go) | [AdminGetPlatformCredentialsShort](../../services-api/pkg/service/session/platformCredential.go) | [AdminGetPlatformCredentialsShort](../../samples/cli/cmd/session/platformCredential/adminGetPlatformCredentials.go) |
 | `/session/v1/admin/namespaces/{namespace}/platform-credentials` | PUT | AdminUpdatePlatformCredentialsShort | [AdminUpdatePlatformCredentialsShort](../../session-sdk/pkg/sessionclient/platform_credential/platform_credential_client.go) | [AdminUpdatePlatformCredentialsShort](../../services-api/pkg/service/session/platformCredential.go) | [AdminUpdatePlatformCredentialsShort](../../samples/cli/cmd/session/platformCredential/adminUpdatePlatformCredentials.go) |
+| `/session/v1/admin/namespaces/{namespace}/platform-credentials` | DELETE | AdminDeletePlatformCredentialsShort | [AdminDeletePlatformCredentialsShort](../../session-sdk/pkg/sessionclient/platform_credential/platform_credential_client.go) | [AdminDeletePlatformCredentialsShort](../../services-api/pkg/service/session/platformCredential.go) | [AdminDeletePlatformCredentialsShort](../../samples/cli/cmd/session/platformCredential/adminDeletePlatformCredentials.go) |
 
 ### Player Wrapper:  [Player](../../services-api/pkg/service/session/player.go)
 | Endpoint | Method | ID | Class | Wrapper | Example |
@@ -137,6 +139,7 @@
 | `models.NativeSessionSetting` | [ModelsNativeSessionSetting ](../../session-sdk/pkg/sessionclientmodels/models_native_session_setting.go) |
 | `models.PSNAppServerCredentials` | [ModelsPSNAppServerCredentials ](../../session-sdk/pkg/sessionclientmodels/models_p_s_n_app_server_credentials.go) |
 | `models.PartyMembers` | [ModelsPartyMembers ](../../session-sdk/pkg/sessionclientmodels/models_party_members.go) |
+| `models.PlatformCredentials` | [ModelsPlatformCredentials ](../../session-sdk/pkg/sessionclientmodels/models_platform_credentials.go) |
 | `models.Team` | [ModelsTeam ](../../session-sdk/pkg/sessionclientmodels/models_team.go) |
 | `models.UserPlatformInfo` | [ModelsUserPlatformInfo ](../../session-sdk/pkg/sessionclientmodels/models_user_platform_info.go) |
 | `response.Error` | [ResponseError ](../../session-sdk/pkg/sessionclientmodels/response_error.go) |

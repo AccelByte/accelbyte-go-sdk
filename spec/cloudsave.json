@@ -8,7 +8,7 @@
     },
     "description": "Justice Cloudsave Service",
     "title": "justice-cloudsave-service",
-    "version": "3.8.2"
+    "version": "3.9.0"
   },
   "schemes": [
     "https"
@@ -70,6 +70,509 @@
   },
   "swagger": "2.0",
   "paths": {
+    "/cloudsave/v1/admin/namespaces/{namespace}/adminrecords": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Required permission: \u0026lt;code\u0026gt;ADMIN:NAMESPACE:{namespace}:CLOUDSAVE:RECORD [READ]\u0026lt;/code\u0026gt;\n\nRequired scope: \u0026lt;code\u0026gt;social\u0026lt;/code\u0026gt;\n\nRetrieve list of records key by namespace",
+        "operationId": "adminListAdminGameRecordV1",
+        "parameters": [
+          {
+            "description": "namespace of the game",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "default": 25,
+            "description": "limit. default value: 25",
+            "in": "query",
+            "name": "limit",
+            "type": "integer"
+          },
+          {
+            "default": 0,
+            "description": "offset. default value: 0",
+            "in": "query",
+            "name": "offset",
+            "type": "integer"
+          },
+          {
+            "description": "key",
+            "in": "query",
+            "name": "query",
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "Retrieve list of records key by namespace",
+            "schema": {
+              "$ref": "#/definitions/models.ListAdminGameRecordKeysResponse"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/models.ResponseError"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/models.ResponseError"
+            }
+          }
+        },
+        "security": [
+          {
+            "HasPermission": [
+              "ADMIN:NAMESPACE:{namespace}:CLOUDSAVE:RECORD [READ]"
+            ],
+            "HasScope": [
+              "social"
+            ],
+            "authorization": []
+          }
+        ],
+        "summary": "List key of admin game record",
+        "tags": [
+          "AdminRecord"
+        ]
+      }
+    },
+    "/cloudsave/v1/admin/namespaces/{namespace}/adminrecords/bulk": {
+      "post": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "\u0026lt;table\u0026gt;\n\t\u0026lt;tr\u0026gt;\n\t\t\u0026lt;td\u0026gt;Required Permission\u0026lt;/td\u0026gt;\n\t\t\u0026lt;td\u0026gt;\u0026lt;code\u0026gt;ADMIN:NAMESPACE:{namespace}:CLOUDSAVE:RECORD [READ]\u0026lt;/code\u0026gt;\u0026lt;/td\u0026gt;\n\t\u0026lt;/tr\u0026gt;\n\t\u0026lt;tr\u0026gt;\n\t\t\u0026lt;td\u0026gt;Required Scope\u0026lt;/td\u0026gt;\n\t\t\u0026lt;td\u0026gt;\u0026lt;code\u0026gt;social\u0026lt;/code\u0026gt;\u0026lt;/td\u0026gt;\n\t\u0026lt;/tr\u0026gt;\n\u0026lt;/table\u0026gt;\n\u0026lt;br/\u0026gt;\n\nBulk get admin game records. Maximum key per request 20.",
+        "operationId": "adminBulkGetAdminGameRecordV1",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/models.BulkGetAdminGameRecordRequest"
+            }
+          },
+          {
+            "description": "namespace of the game",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/models.BulkGetAdminGameRecordResponse"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/models.ResponseError"
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "schema": {
+              "$ref": "#/definitions/models.ResponseError"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/models.ResponseError"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/models.ResponseError"
+            }
+          }
+        },
+        "security": [
+          {
+            "HasPermission": [
+              "ADMIN:NAMESPACE:{namespace}:CLOUDSAVE:RECORD [READ]"
+            ],
+            "HasScope": [
+              "social"
+            ],
+            "authorization": []
+          }
+        ],
+        "summary": "Bulk get admin game records",
+        "tags": [
+          "AdminRecord"
+        ]
+      }
+    },
+    "/cloudsave/v1/admin/namespaces/{namespace}/adminrecords/{key}": {
+      "delete": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Required permission: \u0026lt;code\u0026gt;ADMIN:NAMESPACE:{namespace}:CLOUDSAVE:RECORD [DELETE]\u0026lt;/code\u0026gt;\n\nRequired scope: \u0026lt;code\u0026gt;social\u0026lt;/code\u0026gt;\n\nThis endpoints delete game record in namespace-level",
+        "operationId": "adminDeleteAdminGameRecordV1",
+        "parameters": [
+          {
+            "description": "key of record",
+            "in": "path",
+            "name": "key",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "namespace of the game",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "204": {
+            "description": "Record deleted"
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/models.ResponseError"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/models.ResponseError"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/models.ResponseError"
+            }
+          }
+        },
+        "security": [
+          {
+            "HasPermission": [
+              "ADMIN:NAMESPACE:{namespace}:CLOUDSAVE:RECORD [DELETE]"
+            ],
+            "HasScope": [
+              "social"
+            ],
+            "authorization": []
+          }
+        ],
+        "summary": "Delete admin game record",
+        "tags": [
+          "AdminRecord"
+        ]
+      },
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Required permission: \u0026lt;code\u0026gt;ADMIN:NAMESPACE:{namespace}:CLOUDSAVE:RECORD [READ]\u0026lt;/code\u0026gt;\n\nRequired scope: \u0026lt;code\u0026gt;social\u0026lt;/code\u0026gt;\n\nGet a record by its key in namespace-level.",
+        "operationId": "adminGetAdminGameRecordV1",
+        "parameters": [
+          {
+            "description": "key of record",
+            "in": "path",
+            "name": "key",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "namespace of the game",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "Record in namespace-level retrieved",
+            "schema": {
+              "$ref": "#/definitions/models.AdminGameRecordResponse"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/models.ResponseError"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/models.ResponseError"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/models.ResponseError"
+            }
+          }
+        },
+        "security": [
+          {
+            "HasPermission": [
+              "ADMIN:NAMESPACE:{namespace}:CLOUDSAVE:RECORD [READ]"
+            ],
+            "HasScope": [
+              "social"
+            ],
+            "authorization": []
+          }
+        ],
+        "summary": "Get admin game record",
+        "tags": [
+          "AdminRecord"
+        ]
+      },
+      "post": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Required permission: \u0026lt;code\u0026gt;ADMIN:NAMESPACE:{namespace}:CLOUDSAVE:RECORD [CREATE]\u0026lt;/code\u0026gt;\nRequired scope: \u0026lt;code\u0026gt;social\u0026lt;/code\u0026gt;\n\n\u0026lt;h2\u0026gt;Description\u0026lt;/h2\u0026gt;\n\nThis endpoints will create new admin game record or append the existing admin game record.\n\n\u0026lt;b\u0026gt;Append example:\u0026lt;/b\u0026gt;\n\nExample 1\n- \tExisting JSON:\n\t\u0026lt;pre\u0026gt;{ \u0026#34;data1\u0026#34;: \u0026#34;value\u0026#34; }\u0026lt;/pre\u0026gt;\n- \tNew JSON:\n\t\u0026lt;pre\u0026gt;{ \u0026#34;data2\u0026#34;: \u0026#34;new value\u0026#34; }\u0026lt;/pre\u0026gt;\n-\tResult:\n\t\u0026lt;pre\u0026gt;{ \u0026#34;data1\u0026#34;: \u0026#34;value\u0026#34;, \u0026#34;data2\u0026#34;: \u0026#34;new value\u0026#34; }\u0026lt;/pre\u0026gt;\n\nExample 2\n-\tExisting JSON:\n\t\u0026lt;pre\u0026gt;{ \u0026#34;data1\u0026#34;: { \u0026#34;data2\u0026#34;: \u0026#34;value\u0026#34; }\u0026lt;/pre\u0026gt;\n-\tNew JSON:\n\t\u0026lt;pre\u0026gt;{ \u0026#34;data1\u0026#34;: { \u0026#34;data3\u0026#34;: \u0026#34;new value\u0026#34; }\u0026lt;/pre\u0026gt;\n-\tResult:\n\t\u0026lt;pre\u0026gt;{ \u0026#34;data1\u0026#34;: { \u0026#34;data2\u0026#34;: \u0026#34;value\u0026#34;, \u0026#34;data3\u0026#34;: \u0026#34;new value\u0026#34; }\u0026lt;/pre\u0026gt;\n\n\n\u0026lt;h2\u0026gt;Restriction \u0026lt;/h2\u0026gt;\nThis is the restriction of Key Naming for the record:\n1. Cannot use \u0026lt;b\u0026gt;\u0026#34;.\u0026#34;\u0026lt;/b\u0026gt; as the key name\n-\t\u0026lt;pre\u0026gt;{ \u0026#34;data.2\u0026#34;: \u0026#34;value\u0026#34; }\u0026lt;/pre\u0026gt;\n2. Cannot use \u0026lt;b\u0026gt;\u0026#34;$\u0026#34;\u0026lt;/b\u0026gt; as the prefix in key names\n-\t\u0026lt;pre\u0026gt;{ \u0026#34;$data\u0026#34;: \u0026#34;value\u0026#34; }\u0026lt;/pre\u0026gt;\n3. Cannot use empty string in key names\n-\t\u0026lt;pre\u0026gt;{ \u0026#34;\u0026#34;: \u0026#34;value\u0026#34; }\u0026lt;/pre\u0026gt;\n",
+        "operationId": "adminPostAdminGameRecordV1",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/models.AdminGameRecordRequest"
+            }
+          },
+          {
+            "description": "key of record",
+            "in": "path",
+            "name": "key",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "namespace of the game",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "201": {
+            "description": "Record in namespace-level saved",
+            "schema": {
+              "$ref": "#/definitions/models.AdminGameRecordResponse"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/models.ResponseError"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/models.ResponseError"
+            }
+          }
+        },
+        "security": [
+          {
+            "HasPermission": [
+              "ADMIN:NAMESPACE:{namespace}:CLOUDSAVE:RECORD [CREATE]"
+            ],
+            "HasScope": [
+              "social"
+            ],
+            "authorization": []
+          }
+        ],
+        "summary": "Create or append admin game record",
+        "tags": [
+          "AdminRecord"
+        ]
+      },
+      "put": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Required permission: \u0026lt;code\u0026gt;ADMIN:NAMESPACE:{namespace}:CLOUDSAVE:RECORD [UPDATE]\u0026lt;/code\u0026gt;\nRequired scope: \u0026lt;code\u0026gt;social\u0026lt;/code\u0026gt;\n\n\u0026lt;h2\u0026gt;Description\u0026lt;/h2\u0026gt;\n\nThis endpoints will create new admin game record or replace the existing admin game record.\n\n\u0026lt;b\u0026gt;Append example:\u0026lt;/b\u0026gt;\n\nExample\n- \tExisting JSON:\n\t\u0026lt;pre\u0026gt;{ \u0026#34;data1\u0026#34;: \u0026#34;value\u0026#34; }\u0026lt;/pre\u0026gt;\n- \tNew JSON:\n\t\u0026lt;pre\u0026gt;{ \u0026#34;data2\u0026#34;: \u0026#34;new value\u0026#34; }\u0026lt;/pre\u0026gt;\n-\tResult:\n\t\u0026lt;pre\u0026gt;{ \u0026#34;data2\u0026#34;: \u0026#34;new value\u0026#34; }\u0026lt;/pre\u0026gt;\n\n\n\u0026lt;h2\u0026gt;Restriction \u0026lt;/h2\u0026gt;\nThis is the restriction of Key Naming for the record:\n1. Cannot use \u0026lt;b\u0026gt;\u0026#34;.\u0026#34;\u0026lt;/b\u0026gt; as the key name\n-\t\u0026lt;pre\u0026gt;{ \u0026#34;data.2\u0026#34;: \u0026#34;value\u0026#34; }\u0026lt;/pre\u0026gt;\n2. Cannot use \u0026lt;b\u0026gt;\u0026#34;$\u0026#34;\u0026lt;/b\u0026gt; as the prefix in key names\n-\t\u0026lt;pre\u0026gt;{ \u0026#34;$data\u0026#34;: \u0026#34;value\u0026#34; }\u0026lt;/pre\u0026gt;\n3. Cannot use empty string in key names\n-\t\u0026lt;pre\u0026gt;{ \u0026#34;\u0026#34;: \u0026#34;value\u0026#34; }\u0026lt;/pre\u0026gt;\n",
+        "operationId": "adminPutAdminGameRecordV1",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/models.AdminGameRecordRequest"
+            }
+          },
+          {
+            "description": "key of record",
+            "in": "path",
+            "name": "key",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "namespace of the game",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "Record saved",
+            "schema": {
+              "$ref": "#/definitions/models.AdminGameRecordResponse"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/models.ResponseError"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/models.ResponseError"
+            }
+          }
+        },
+        "security": [
+          {
+            "HasPermission": [
+              "ADMIN:NAMESPACE:{namespace}:CLOUDSAVE:RECORD [UPDATE]"
+            ],
+            "HasScope": [
+              "social"
+            ],
+            "authorization": []
+          }
+        ],
+        "summary": "Create or replace admin game record",
+        "tags": [
+          "AdminRecord"
+        ]
+      }
+    },
+    "/cloudsave/v1/admin/namespaces/{namespace}/concurrent/adminrecords/{key}": {
+      "put": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "\u0026lt;table\u0026gt;\n\t\u0026lt;tr\u0026gt;\n\t\t\u0026lt;td\u0026gt;Required Permission\u0026lt;/td\u0026gt;\n\t\t\u0026lt;td\u0026gt;\u0026lt;code\u0026gt;ADMIN:NAMESPACE:{namespace}:CLOUDSAVE:RECORD [UPDATE]\u0026lt;/code\u0026gt;\u0026lt;/td\u0026gt;\n\t\u0026lt;/tr\u0026gt;\n\t\u0026lt;tr\u0026gt;\n\t\t\u0026lt;td\u0026gt;Required Scope\u0026lt;/td\u0026gt;\n\t\t\u0026lt;td\u0026gt;\u0026lt;code\u0026gt;social\u0026lt;/code\u0026gt;\u0026lt;/td\u0026gt;\n\t\u0026lt;/tr\u0026gt;\n\u0026lt;/table\u0026gt;\n\u0026lt;br/\u0026gt;\n\n\n\u0026lt;h2\u0026gt;Description\u0026lt;/h2\u0026gt;\n\nThis endpoints will create new game record or replace the existing game record.\n\n\u0026lt;b\u0026gt;Replace behaviour:\u0026lt;/b\u0026gt;\nThe existing value will be replaced completely with the new value.\n\nExample\n- \tExisting JSON:\n\t\u0026lt;pre\u0026gt;{ \u0026#34;data1\u0026#34;: \u0026#34;value\u0026#34; }\u0026lt;/pre\u0026gt;\n- \tNew JSON:\n\t\u0026lt;pre\u0026gt;{ \u0026#34;data2\u0026#34;: \u0026#34;new value\u0026#34; }\u0026lt;/pre\u0026gt;\n-\tResult:\n\t\u0026lt;pre\u0026gt;{ \u0026#34;data2\u0026#34;: \u0026#34;new value\u0026#34; }\u0026lt;/pre\u0026gt;\n\n\n\u0026lt;h2\u0026gt;Restriction \u0026lt;/h2\u0026gt;\nThis is the restriction of Key Naming for the record:\n1. Cannot use \u0026lt;b\u0026gt;\u0026#34;.\u0026#34;\u0026lt;/b\u0026gt; as the key name\n-\t\u0026lt;pre\u0026gt;{ \u0026#34;data.2\u0026#34;: \u0026#34;value\u0026#34; }\u0026lt;/pre\u0026gt;\n2. Cannot use \u0026lt;b\u0026gt;\u0026#34;$\u0026#34;\u0026lt;/b\u0026gt; as the prefix in key names\n-\t\u0026lt;pre\u0026gt;{ \u0026#34;$data\u0026#34;: \u0026#34;value\u0026#34; }\u0026lt;/pre\u0026gt;\n3. Cannot use empty string in key names\n-\t\u0026lt;pre\u0026gt;{ \u0026#34;\u0026#34;: \u0026#34;value\u0026#34; }\u0026lt;/pre\u0026gt;\n\t\n\n\u0026lt;h2\u0026gt;Reserved Word\u0026lt;/h2\u0026gt;\n\nReserved Word List: \u0026lt;b\u0026gt;__META\u0026lt;/b\u0026gt;\n\nThe reserved word cannot be used as a field in record value, \nIf still defining the field when creating or updating the record, it will be ignored.\n\n\n\u0026lt;h2\u0026gt;Parameters Notes \u0026lt;/h2\u0026gt;\n1. updatedAt (required: true)\n               Time format style: RFC3339\n2. value\n               Json\n\u0026lt;b\u0026gt;Request Body Example:\u0026lt;/b\u0026gt;\n\u0026lt;pre\u0026gt;\n\t{\n\t\t\u0026#34;value\u0026#34;: {},\n\t\t\u0026#34;updatedAt\u0026#34;: \u0026#34;2022-03-17T10:42:15.444Z\u0026#34;\n\t}\n\u0026lt;/pre\u0026gt;\n\n\u0026lt;h2\u0026gt;Optimistic Concurrency Control\u0026lt;/h2\u0026gt;\n\nThis endpoint implement optimistic concurrency control to avoid race condition.\nIf the record has been updated since the client fetch it, the server will return HTTP status code 412 (precondition failed)\nand client need to redo the operation (fetch data and do update).\nOtherwise, the server will process the request.\n",
+        "operationId": "adminPutAdminGameRecordConcurrentHandlerV1",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/models.AdminGameConcurrentRecordRequest"
+            }
+          },
+          {
+            "description": "key of record",
+            "in": "path",
+            "name": "key",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "namespace of the game",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "204": {
+            "description": "Record saved"
+          },
+          "400": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e18201\u003c/td\u003e\u003ctd\u003einvalid record operator, expect [%s] but actual [%s]\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/models.ResponseError"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/models.ResponseError"
+            }
+          },
+          "412": {
+            "description": "Precondition Failed",
+            "schema": {
+              "$ref": "#/definitions/models.ResponseError"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/models.ResponseError"
+            }
+          }
+        },
+        "security": [
+          {
+            "HasPermission": [
+              "ADMIN:NAMESPACE:{namespace}:CLOUDSAVE:RECORD [UPDATE]"
+            ],
+            "HasScope": [
+              "social"
+            ],
+            "authorization": []
+          }
+        ],
+        "summary": "Create or replace admin game record",
+        "tags": [
+          "AdminConcurrentRecord"
+        ]
+      }
+    },
     "/cloudsave/v1/admin/namespaces/{namespace}/concurrent/records/{key}": {
       "put": {
         "consumes": [
@@ -494,6 +997,89 @@
         ]
       }
     },
+    "/cloudsave/v1/admin/namespaces/{namespace}/users/adminrecords/{key}/bulk": {
+      "post": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "\u0026lt;table\u0026gt;\n\t\u0026lt;tr\u0026gt;\n\t\t\u0026lt;td\u0026gt;Required Permission\u0026lt;/td\u0026gt;\n\t\t\u0026lt;td\u0026gt;\u0026lt;code\u0026gt;ADMIN:NAMESPACE:{namespace}:CLOUDSAVE:RECORD [READ]\u0026lt;/code\u0026gt;\u0026lt;/td\u0026gt;\n\t\u0026lt;/tr\u0026gt;\n\t\u0026lt;tr\u0026gt;\n\t\t\u0026lt;td\u0026gt;Required Scope\u0026lt;/td\u0026gt;\n\t\t\u0026lt;td\u0026gt;\u0026lt;code\u0026gt;social\u0026lt;/code\u0026gt;\u0026lt;/td\u0026gt;\n\t\u0026lt;/tr\u0026gt;\n\u0026lt;/table\u0026gt;\n\u0026lt;br/\u0026gt;\n\nBulk get admin player record by userIds, max allowed 20 at a time.",
+        "operationId": "bulkGetAdminPlayerRecordByUserIdsV1",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/models.BulkUserIDsRequest"
+            }
+          },
+          {
+            "description": "key of admin record",
+            "in": "path",
+            "name": "key",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "namespace of the game",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/models.BulkGetAdminPlayerRecordResponse"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/models.ResponseError"
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "schema": {
+              "$ref": "#/definitions/models.ResponseError"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/models.ResponseError"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/models.ResponseError"
+            }
+          }
+        },
+        "security": [
+          {
+            "HasPermission": [
+              "ADMIN:NAMESPACE:{namespace}:CLOUDSAVE:RECORD [READ]"
+            ],
+            "HasScope": [
+              "social"
+            ],
+            "authorization": []
+          }
+        ],
+        "summary": "Bulk get admin player record by multiple user ID",
+        "tags": [
+          "AdminRecord"
+        ]
+      }
+    },
     "/cloudsave/v1/admin/namespaces/{namespace}/users/bulk/records/size": {
       "post": {
         "consumes": [
@@ -648,6 +1234,558 @@
         "summary": "Retrieve list of public player records",
         "tags": [
           "AdminPlayerRecord"
+        ]
+      }
+    },
+    "/cloudsave/v1/admin/namespaces/{namespace}/users/{userId}/adminrecords": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Required permission: \u0026lt;code\u0026gt;ADMIN:NAMESPACE:{namespace}:USER:{userId}:CLOUDSAVE:RECORD [READ]\u0026lt;/code\u0026gt;\n\nRequired scope: \u0026lt;code\u0026gt;social\u0026lt;/code\u0026gt;\n\nRetrieve list of admin player records key and userID under given namespace.",
+        "operationId": "adminListAdminUserRecordsV1",
+        "parameters": [
+          {
+            "description": "namespace of the game",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "user ID who own the record",
+            "in": "path",
+            "name": "userId",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "default": 25,
+            "description": "limit. default value: 25",
+            "in": "query",
+            "name": "limit",
+            "type": "integer"
+          },
+          {
+            "default": 0,
+            "description": "offset. default value: 0",
+            "in": "query",
+            "name": "offset",
+            "type": "integer"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "schema": {
+              "$ref": "#/definitions/models.ListAdminPlayerRecordKeysResponse"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/models.ResponseError"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/models.ResponseError"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/models.ResponseError"
+            }
+          }
+        },
+        "security": [
+          {
+            "HasPermission": [
+              "ADMIN:NAMESPACE:{namespace}:USER:{userId}:CLOUDSAVE:RECORD [READ]"
+            ],
+            "HasScope": [
+              "social"
+            ],
+            "authorization": []
+          }
+        ],
+        "summary": "List key of admin player record",
+        "tags": [
+          "AdminRecord"
+        ]
+      }
+    },
+    "/cloudsave/v1/admin/namespaces/{namespace}/users/{userId}/adminrecords/bulk": {
+      "post": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "\u0026lt;table\u0026gt;\n\t\u0026lt;tr\u0026gt;\n\t\t\u0026lt;td\u0026gt;Required Permission\u0026lt;/td\u0026gt;\n\t\t\u0026lt;td\u0026gt;\u0026lt;code\u0026gt;ADMIN:NAMESPACE:{namespace}:USER:{userId}:CLOUDSAVE:RECORD [READ]\u0026lt;/code\u0026gt;\u0026lt;/td\u0026gt;\n\t\u0026lt;/tr\u0026gt;\n\t\u0026lt;tr\u0026gt;\n\t\t\u0026lt;td\u0026gt;Required Scope\u0026lt;/td\u0026gt;\n\t\t\u0026lt;td\u0026gt;\u0026lt;code\u0026gt;social\u0026lt;/code\u0026gt;\u0026lt;/td\u0026gt;\n\t\u0026lt;/tr\u0026gt;\n\u0026lt;/table\u0026gt;\n\u0026lt;br/\u0026gt;\n\nBulk get admin player records. Maximum key per request 20.",
+        "operationId": "adminBulkGetAdminPlayerRecordV1",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/models.BulkGetAdminPlayerRecordRequest"
+            }
+          },
+          {
+            "description": "namespace of the game",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "user ID who own the record",
+            "in": "path",
+            "name": "userId",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/models.BulkGetAdminPlayerRecordResponse"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/models.ResponseError"
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "schema": {
+              "$ref": "#/definitions/models.ResponseError"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/models.ResponseError"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/models.ResponseError"
+            }
+          }
+        },
+        "security": [
+          {
+            "HasPermission": [
+              "ADMIN:NAMESPACE:{namespace}:USER:{userId}:CLOUDSAVE:RECORD [READ]"
+            ],
+            "HasScope": [
+              "social"
+            ],
+            "authorization": []
+          }
+        ],
+        "summary": "Bulk get admin player records",
+        "tags": [
+          "AdminRecord"
+        ]
+      }
+    },
+    "/cloudsave/v1/admin/namespaces/{namespace}/users/{userId}/adminrecords/{key}": {
+      "delete": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Required permission: \u0026lt;code\u0026gt;ADMIN:NAMESPACE:{namespace}:USER:{userId}:CLOUDSAVE:RECORD [DELETE]\u0026lt;/code\u0026gt;\n\nRequired scope: \u0026lt;code\u0026gt;social\u0026lt;/code\u0026gt;\n\nDelete a record (arbitrary JSON data) in user-level with given key.",
+        "operationId": "adminDeleteAdminPlayerRecordV1",
+        "parameters": [
+          {
+            "description": "key of record",
+            "in": "path",
+            "name": "key",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "namespace of the game",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "user ID who own the record",
+            "in": "path",
+            "name": "userId",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "204": {
+            "description": "Record in user-level saved"
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/models.ResponseError"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/models.ResponseError"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/models.ResponseError"
+            }
+          }
+        },
+        "security": [
+          {
+            "HasPermission": [
+              "ADMIN:NAMESPACE:{namespace}:USER:{userId}:CLOUDSAVE:RECORD [DELETE]"
+            ],
+            "HasScope": [
+              "social"
+            ],
+            "authorization": []
+          }
+        ],
+        "summary": "Delete admin player record",
+        "tags": [
+          "AdminRecord"
+        ]
+      },
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Required permission: \u0026lt;code\u0026gt;ADMIN:NAMESPACE:{namespace}:USER:{userId}:CLOUDSAVE:RECORD [READ]\u0026lt;/code\u0026gt;\n\nRequired scope: \u0026lt;code\u0026gt;social\u0026lt;/code\u0026gt;\n\nGet a admin record in user-level (arbitrary JSON data) by its key.",
+        "operationId": "adminGetAdminPlayerRecordV1",
+        "parameters": [
+          {
+            "description": "key of record",
+            "in": "path",
+            "name": "key",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "namespace of the game",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "user ID who own the record",
+            "in": "path",
+            "name": "userId",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "Record in user-level retrieved",
+            "schema": {
+              "$ref": "#/definitions/models.AdminPlayerRecordResponse"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/models.ResponseError"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/models.ResponseError"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/models.ResponseError"
+            }
+          }
+        },
+        "security": [
+          {
+            "HasPermission": [
+              "ADMIN:NAMESPACE:{namespace}:USER:{userId}:CLOUDSAVE:RECORD [READ]"
+            ],
+            "HasScope": [
+              "social"
+            ],
+            "authorization": []
+          }
+        ],
+        "summary": "Get admin player record",
+        "tags": [
+          "AdminRecord"
+        ]
+      },
+      "post": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Required permission: \u0026lt;code\u0026gt;ADMIN:NAMESPACE:{namespace}:USER:{userId}:CLOUDSAVE:RECORD [CREATE]\u0026lt;/code\u0026gt;\nRequired scope: \u0026lt;code\u0026gt;social\u0026lt;/code\u0026gt;\n\n\u0026lt;h2\u0026gt;Description\u0026lt;/h2\u0026gt;\n\nThis endpoints will create new admin player record or append the existing admin game record.\n\n\u0026lt;b\u0026gt;Append example:\u0026lt;/b\u0026gt;\n\nExample 1\n- \tExisting JSON:\n\t\u0026lt;pre\u0026gt;{ \u0026#34;data1\u0026#34;: \u0026#34;value\u0026#34; }\u0026lt;/pre\u0026gt;\n- \tNew JSON:\n\t\u0026lt;pre\u0026gt;{ \u0026#34;data2\u0026#34;: \u0026#34;new value\u0026#34; }\u0026lt;/pre\u0026gt;\n-\tResult:\n\t\u0026lt;pre\u0026gt;{ \u0026#34;data1\u0026#34;: \u0026#34;value\u0026#34;, \u0026#34;data2\u0026#34;: \u0026#34;new value\u0026#34; }\u0026lt;/pre\u0026gt;\n\nExample 2\n-\tExisting JSON:\n\t\u0026lt;pre\u0026gt;{ \u0026#34;data1\u0026#34;: { \u0026#34;data2\u0026#34;: \u0026#34;value\u0026#34; }\u0026lt;/pre\u0026gt;\n-\tNew JSON:\n\t\u0026lt;pre\u0026gt;{ \u0026#34;data1\u0026#34;: { \u0026#34;data3\u0026#34;: \u0026#34;new value\u0026#34; }\u0026lt;/pre\u0026gt;\n-\tResult:\n\t\u0026lt;pre\u0026gt;{ \u0026#34;data1\u0026#34;: { \u0026#34;data2\u0026#34;: \u0026#34;value\u0026#34;, \u0026#34;data3\u0026#34;: \u0026#34;new value\u0026#34; }\u0026lt;/pre\u0026gt;\n\n\n\u0026lt;h2\u0026gt;Restriction \u0026lt;/h2\u0026gt;\nThis is the restriction of Key Naming for the record:\n1. Cannot use \u0026lt;b\u0026gt;\u0026#34;.\u0026#34;\u0026lt;/b\u0026gt; as the key name\n-\t\u0026lt;pre\u0026gt;{ \u0026#34;data.2\u0026#34;: \u0026#34;value\u0026#34; }\u0026lt;/pre\u0026gt;\n2. Cannot use \u0026lt;b\u0026gt;\u0026#34;$\u0026#34;\u0026lt;/b\u0026gt; as the prefix in key names\n-\t\u0026lt;pre\u0026gt;{ \u0026#34;$data\u0026#34;: \u0026#34;value\u0026#34; }\u0026lt;/pre\u0026gt;\n3. Cannot use empty string in key names\n-\t\u0026lt;pre\u0026gt;{ \u0026#34;\u0026#34;: \u0026#34;value\u0026#34; }\u0026lt;/pre\u0026gt;\n",
+        "operationId": "adminPostPlayerAdminRecordV1",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/models.AdminPlayerRecordRequest"
+            }
+          },
+          {
+            "description": "key of record",
+            "in": "path",
+            "name": "key",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "namespace of the game",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "user ID who own the record",
+            "in": "path",
+            "name": "userId",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "201": {
+            "description": "Record in user-level saved",
+            "schema": {
+              "$ref": "#/definitions/models.AdminPlayerRecordResponse"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/models.ResponseError"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/models.ResponseError"
+            }
+          }
+        },
+        "security": [
+          {
+            "HasPermission": [
+              "ADMIN:NAMESPACE:{namespace}:USER:{userId}:CLOUDSAVE:RECORD [CREATE]"
+            ],
+            "HasScope": [
+              "social"
+            ],
+            "authorization": []
+          }
+        ],
+        "summary": "Create or append admin player record",
+        "tags": [
+          "AdminRecord"
+        ]
+      },
+      "put": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Required permission: \u0026lt;code\u0026gt;ADMIN:NAMESPACE:{namespace}:USER:{userId}:CLOUDSAVE:RECORD [UPDATE]\u0026lt;/code\u0026gt;\nRequired scope: \u0026lt;code\u0026gt;social\u0026lt;/code\u0026gt;\n\n\u0026lt;h2\u0026gt;Description\u0026lt;/h2\u0026gt;\n\nThis endpoints will create new admin player record or replace the existing admin player record.\n\n\u0026lt;b\u0026gt;Replace behaviour:\u0026lt;/b\u0026gt;\nThe existing value will be replaced completely with the new value.\n\nExample\n- \tExisting JSON:\n\t\u0026lt;pre\u0026gt;{ \u0026#34;data1\u0026#34;: \u0026#34;value\u0026#34; }\u0026lt;/pre\u0026gt;\n- \tNew JSON:\n\t\u0026lt;pre\u0026gt;{ \u0026#34;data2\u0026#34;: \u0026#34;new value\u0026#34; }\u0026lt;/pre\u0026gt;\n-\tResult:\n\t\u0026lt;pre\u0026gt;{ \u0026#34;data2\u0026#34;: \u0026#34;new value\u0026#34; }\u0026lt;/pre\u0026gt;\n\n\n\u0026lt;h2\u0026gt;Restriction \u0026lt;/h2\u0026gt;\nThis is the restriction of Key Naming for the record:\n1. Cannot use \u0026lt;b\u0026gt;\u0026#34;.\u0026#34;\u0026lt;/b\u0026gt; as the key name\n-\t\u0026lt;pre\u0026gt;{ \u0026#34;data.2\u0026#34;: \u0026#34;value\u0026#34; }\u0026lt;/pre\u0026gt;\n2. Cannot use \u0026lt;b\u0026gt;\u0026#34;$\u0026#34;\u0026lt;/b\u0026gt; as the prefix in key names\n-\t\u0026lt;pre\u0026gt;{ \u0026#34;$data\u0026#34;: \u0026#34;value\u0026#34; }\u0026lt;/pre\u0026gt;\n3. Cannot use empty string in key names\n-\t\u0026lt;pre\u0026gt;{ \u0026#34;\u0026#34;: \u0026#34;value\u0026#34; }\u0026lt;/pre\u0026gt;\n",
+        "operationId": "adminPutAdminPlayerRecordV1",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/models.AdminPlayerRecordRequest"
+            }
+          },
+          {
+            "description": "key of record",
+            "in": "path",
+            "name": "key",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "namespace of the game",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "user ID who own the record",
+            "in": "path",
+            "name": "userId",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "Record in user-level saved",
+            "schema": {
+              "$ref": "#/definitions/models.AdminPlayerRecordResponse"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/models.ResponseError"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/models.ResponseError"
+            }
+          }
+        },
+        "security": [
+          {
+            "HasPermission": [
+              "ADMIN:NAMESPACE:{namespace}:USER:{userId}:CLOUDSAVE:RECORD [UPDATE]"
+            ],
+            "HasScope": [
+              "social"
+            ],
+            "authorization": []
+          }
+        ],
+        "summary": "Create or replace admin player record",
+        "tags": [
+          "AdminRecord"
+        ]
+      }
+    },
+    "/cloudsave/v1/admin/namespaces/{namespace}/users/{userId}/concurrent/adminrecords/{key}": {
+      "put": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "\u0026lt;table\u0026gt;\n\t\u0026lt;tr\u0026gt;\n\t\t\u0026lt;td\u0026gt;Required Permission\u0026lt;/td\u0026gt;\n\t\t\u0026lt;td\u0026gt;\u0026lt;code\u0026gt;ADMIN:NAMESPACE:{namespace}:USER:{userId}:CLOUDSAVE:RECORD [UPDATE]\u0026lt;/code\u0026gt;\u0026lt;/td\u0026gt;\n\t\u0026lt;/tr\u0026gt;\n\t\u0026lt;tr\u0026gt;\n\t\t\u0026lt;td\u0026gt;Required Scope\u0026lt;/td\u0026gt;\n\t\t\u0026lt;td\u0026gt;\u0026lt;code\u0026gt;social\u0026lt;/code\u0026gt;\u0026lt;/td\u0026gt;\n\t\u0026lt;/tr\u0026gt;\n\u0026lt;/table\u0026gt;\n\u0026lt;br/\u0026gt;\n\n\n\u0026lt;h2\u0026gt;Description\u0026lt;/h2\u0026gt;\n\nThis endpoints will create new admin player record or replace the existing admin player record.\n\n\u0026lt;b\u0026gt;Replace behaviour:\u0026lt;/b\u0026gt;\nThe existing value will be replaced completely with the new value.\n\nExample\n- \tExisting JSON:\n\t\u0026lt;pre\u0026gt;{ \u0026#34;data1\u0026#34;: \u0026#34;value\u0026#34; }\u0026lt;/pre\u0026gt;\n- \tNew JSON:\n\t\u0026lt;pre\u0026gt;{ \u0026#34;data2\u0026#34;: \u0026#34;new value\u0026#34; }\u0026lt;/pre\u0026gt;\n-\tResult:\n\t\u0026lt;pre\u0026gt;{ \u0026#34;data2\u0026#34;: \u0026#34;new value\u0026#34; }\u0026lt;/pre\u0026gt;\n\n\n\u0026lt;h2\u0026gt;Restriction \u0026lt;/h2\u0026gt;\nThis is the restriction of Key Naming for the record:\n1. Cannot use \u0026lt;b\u0026gt;\u0026#34;.\u0026#34;\u0026lt;/b\u0026gt; as the key name\n-\t\u0026lt;pre\u0026gt;{ \u0026#34;data.2\u0026#34;: \u0026#34;value\u0026#34; }\u0026lt;/pre\u0026gt;\n2. Cannot use \u0026lt;b\u0026gt;\u0026#34;$\u0026#34;\u0026lt;/b\u0026gt; as the prefix in key names\n-\t\u0026lt;pre\u0026gt;{ \u0026#34;$data\u0026#34;: \u0026#34;value\u0026#34; }\u0026lt;/pre\u0026gt;\n3. Cannot use empty string in key names\n-\t\u0026lt;pre\u0026gt;{ \u0026#34;\u0026#34;: \u0026#34;value\u0026#34; }\u0026lt;/pre\u0026gt;\n\t\n\n\u0026lt;h2\u0026gt;Reserved Word\u0026lt;/h2\u0026gt;\n\nReserved Word List: \u0026lt;b\u0026gt;__META\u0026lt;/b\u0026gt;\n\nThe reserved word cannot be used as a field in record value, \nIf still defining the field when creating or updating the record, it will be ignored.\n\n\n\u0026lt;h2\u0026gt;Parameters Notes \u0026lt;/h2\u0026gt;\n1. updatedAt (required: true)\n               Time format style: RFC3339\n2. value\n               Json\n\u0026lt;b\u0026gt;Request Body Example:\u0026lt;/b\u0026gt;\n\u0026lt;pre\u0026gt;\n\t{\n\t\t\u0026#34;value\u0026#34;: {},\n\t\t\u0026#34;updatedAt\u0026#34;: \u0026#34;2022-03-17T10:42:15.444Z\u0026#34;\n\t}\n\u0026lt;/pre\u0026gt;\n\n\n\u0026lt;h2\u0026gt;Optimistic Concurrency Control\u0026lt;/h2\u0026gt;\n\nThis endpoint implement optimistic concurrency control to avoid race condition.\nIf the record has been updated since the client fetch it, the server will return HTTP status code 412 (precondition failed)\nand client need to redo the operation (fetch data and do update).\nOtherwise, the server will process the request.\n",
+        "operationId": "adminPutAdminPlayerRecordConcurrentHandlerV1",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/models.AdminPlayerConcurrentRecordRequest"
+            }
+          },
+          {
+            "description": "key of record",
+            "in": "path",
+            "name": "key",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "namespace of the game",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "user ID who own the record",
+            "in": "path",
+            "name": "userId",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "204": {
+            "description": "Record saved"
+          },
+          "400": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e18201\u003c/td\u003e\u003ctd\u003einvalid record operator, expect [%s] but actual [%s]\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/models.ResponseError"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/models.ResponseError"
+            }
+          },
+          "412": {
+            "description": "Precondition Failed",
+            "schema": {
+              "$ref": "#/definitions/models.ResponseError"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/models.ResponseError"
+            }
+          }
+        },
+        "security": [
+          {
+            "HasPermission": [
+              "ADMIN:NAMESPACE:{namespace}:USER:{userId}:CLOUDSAVE:RECORD [UPDATE]"
+            ],
+            "HasScope": [
+              "social"
+            ],
+            "authorization": []
+          }
+        ],
+        "summary": "Create or replace admin player record",
+        "tags": [
+          "AdminConcurrentRecord"
         ]
       }
     },
@@ -3249,6 +4387,170 @@
         "value"
       ]
     },
+    "models.AdminGameConcurrentRecordRequest": {
+      "properties": {
+        "updatedAt": {
+          "type": "string"
+        },
+        "value": {
+          "type": "object"
+        }
+      },
+      "required": [
+        "updatedAt",
+        "value"
+      ]
+    },
+    "models.AdminGameRecordRequest": {
+      "type": "object"
+    },
+    "models.AdminGameRecordResponse": {
+      "properties": {
+        "created_at": {
+          "format": "date-time",
+          "type": "string",
+          "x-nullable": false
+        },
+        "key": {
+          "type": "string"
+        },
+        "namespace": {
+          "type": "string"
+        },
+        "updated_at": {
+          "format": "date-time",
+          "type": "string",
+          "x-nullable": false
+        },
+        "value": {
+          "type": "object"
+        }
+      },
+      "required": [
+        "created_at",
+        "key",
+        "namespace",
+        "updated_at",
+        "value"
+      ]
+    },
+    "models.AdminPlayerConcurrentRecordRequest": {
+      "properties": {
+        "updatedAt": {
+          "type": "string"
+        },
+        "value": {
+          "type": "object"
+        }
+      },
+      "required": [
+        "updatedAt",
+        "value"
+      ]
+    },
+    "models.AdminPlayerRecordKeyInfo": {
+      "properties": {
+        "key": {
+          "type": "string"
+        },
+        "user_id": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "key",
+        "user_id"
+      ]
+    },
+    "models.AdminPlayerRecordRequest": {
+      "type": "object"
+    },
+    "models.AdminPlayerRecordResponse": {
+      "properties": {
+        "created_at": {
+          "format": "date-time",
+          "type": "string",
+          "x-nullable": false
+        },
+        "key": {
+          "type": "string"
+        },
+        "namespace": {
+          "type": "string"
+        },
+        "updated_at": {
+          "format": "date-time",
+          "type": "string",
+          "x-nullable": false
+        },
+        "user_id": {
+          "type": "string"
+        },
+        "value": {
+          "type": "object"
+        }
+      },
+      "required": [
+        "created_at",
+        "key",
+        "namespace",
+        "updated_at",
+        "user_id",
+        "value"
+      ]
+    },
+    "models.BulkGetAdminGameRecordRequest": {
+      "properties": {
+        "keys": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "required": [
+        "keys"
+      ]
+    },
+    "models.BulkGetAdminGameRecordResponse": {
+      "properties": {
+        "data": {
+          "items": {
+            "$ref": "#/definitions/models.AdminGameRecordResponse"
+          },
+          "type": "array"
+        }
+      },
+      "required": [
+        "data"
+      ]
+    },
+    "models.BulkGetAdminPlayerRecordRequest": {
+      "properties": {
+        "keys": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "required": [
+        "keys"
+      ]
+    },
+    "models.BulkGetAdminPlayerRecordResponse": {
+      "properties": {
+        "data": {
+          "items": {
+            "$ref": "#/definitions/models.AdminPlayerRecordResponse"
+          },
+          "type": "array"
+        }
+      },
+      "required": [
+        "data"
+      ]
+    },
     "models.BulkGetGameRecordRequest": {
       "properties": {
         "keys": {
@@ -3390,6 +4692,40 @@
         "namespace",
         "updated_at",
         "value"
+      ]
+    },
+    "models.ListAdminGameRecordKeysResponse": {
+      "properties": {
+        "data": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "paging": {
+          "$ref": "#/definitions/models.Pagination"
+        }
+      },
+      "required": [
+        "data",
+        "paging"
+      ]
+    },
+    "models.ListAdminPlayerRecordKeysResponse": {
+      "properties": {
+        "data": {
+          "items": {
+            "$ref": "#/definitions/models.AdminPlayerRecordKeyInfo"
+          },
+          "type": "array"
+        },
+        "paging": {
+          "$ref": "#/definitions/models.Pagination"
+        }
+      },
+      "required": [
+        "data",
+        "paging"
       ]
     },
     "models.ListGameRecordKeysResponse": {
@@ -3578,11 +4914,11 @@
     "path": "/cloudsave/apidocs/api.json"
   },
   "x-version": {
-    "buildDate": "2023-06-20T01:59:30+00:00",
-    "gitHash": "c4226ac5ecc4661f575cf8878cca388959f7ab9d",
+    "buildDate": "2023-07-17T01:12:35+00:00",
+    "gitHash": "bd994eca0b3b76c74f8a60d0f2ea0f1926e02557",
     "name": "justice-cloudsave-service",
-    "revisionID": "3.8.2",
-    "version": "3.8.2",
+    "revisionID": "3.9.0",
+    "version": "3.9.0",
     "version-roles-seeding": "0.0.3"
   }
 }

@@ -10,7 +10,6 @@ import (
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
-	"github.com/go-openapi/validate"
 )
 
 // ModelsConfigReq Models config req
@@ -73,6 +72,10 @@ type ModelsConfigReq struct {
 	// Format: integer
 	MaxDSWaitTime int64 `json:"maxDSWaitTime,omitempty"`
 
+	// maxfriendslimit
+	// Format: int32
+	MaxFriendsLimit int32 `json:"maxFriendsLimit,omitempty"`
+
 	// maxpartymember
 	// Format: int32
 	MaxPartyMember int32 `json:"maxPartyMember,omitempty"`
@@ -85,31 +88,17 @@ type ModelsConfigReq struct {
 	ReadyConsentTimeout int64 `json:"readyConsentTimeout,omitempty"`
 
 	// unregisterdelay
-	// Required: true
 	// Format: integer
-	UnregisterDelay *int64 `json:"unregisterDelay"`
+	UnregisterDelay int64 `json:"unregisterDelay,omitempty"`
 }
 
 // Validate validates this Models config req
 func (m *ModelsConfigReq) Validate(formats strfmt.Registry) error {
 	var res []error
 
-	if err := m.validateUnregisterDelay(formats); err != nil {
-		res = append(res, err)
-	}
-
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
-	return nil
-}
-
-func (m *ModelsConfigReq) validateUnregisterDelay(formats strfmt.Registry) error {
-
-	if err := validate.Required("unregisterDelay", "body", m.UnregisterDelay); err != nil {
-		return err
-	}
-
 	return nil
 }
 

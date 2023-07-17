@@ -27,10 +27,12 @@ var MatchPoolListCmd = &cobra.Command{
 		}
 		namespace, _ := cmd.Flags().GetString("namespace")
 		limit, _ := cmd.Flags().GetInt64("limit")
+		name, _ := cmd.Flags().GetString("name")
 		offset, _ := cmd.Flags().GetInt64("offset")
 		input := &match_pools.MatchPoolListParams{
 			Namespace: namespace,
 			Limit:     &limit,
+			Name:      &name,
 			Offset:    &offset,
 		}
 		ok, errOK := matchPoolsService.MatchPoolListShort(input)
@@ -50,5 +52,6 @@ func init() {
 	MatchPoolListCmd.Flags().String("namespace", "", "Namespace")
 	_ = MatchPoolListCmd.MarkFlagRequired("namespace")
 	MatchPoolListCmd.Flags().Int64("limit", 20, "Limit")
+	MatchPoolListCmd.Flags().String("name", "", "Name")
 	MatchPoolListCmd.Flags().Int64("offset", 0, "Offset")
 }

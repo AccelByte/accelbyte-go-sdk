@@ -69,7 +69,7 @@ type AcceptBackfillParams struct {
 	/*Body*/
 	Body *match2clientmodels.APIBackFillAcceptRequest
 	/*BackfillID
-	  backfill id
+	  backfill Ticket ID
 
 	*/
 	BackfillID string

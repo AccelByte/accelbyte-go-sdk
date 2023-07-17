@@ -21,7 +21,7 @@ import (
 type PaymentProviderConfigInfo struct {
 
 	// aggregate payment provider, allow empty value
-	// Enum: ['ADYEN', 'XSOLLA']
+	// Enum: ['ADYEN', 'CHECKOUT', 'STRIPE', 'XSOLLA']
 	Aggregate string `json:"aggregate,omitempty"`
 
 	// id
@@ -80,7 +80,7 @@ var paymentProviderConfigInfoTypeAggregatePropEnum []interface{}
 
 func init() {
 	var res []string
-	if err := json.Unmarshal([]byte(`["ADYEN", "XSOLLA"]`), &res); err != nil {
+	if err := json.Unmarshal([]byte(`["ADYEN", "CHECKOUT", "STRIPE", "XSOLLA"]`), &res); err != nil {
 		panic(err)
 	}
 	for _, v := range res {
@@ -92,6 +92,12 @@ const (
 
 	// PaymentProviderConfigInfoAggregateADYEN captures enum value "ADYEN"
 	PaymentProviderConfigInfoAggregateADYEN string = "ADYEN"
+
+	// PaymentProviderConfigInfoAggregateCHECKOUT captures enum value "CHECKOUT"
+	PaymentProviderConfigInfoAggregateCHECKOUT string = "CHECKOUT"
+
+	// PaymentProviderConfigInfoAggregateSTRIPE captures enum value "STRIPE"
+	PaymentProviderConfigInfoAggregateSTRIPE string = "STRIPE"
 
 	// PaymentProviderConfigInfoAggregateXSOLLA captures enum value "XSOLLA"
 	PaymentProviderConfigInfoAggregateXSOLLA string = "XSOLLA"

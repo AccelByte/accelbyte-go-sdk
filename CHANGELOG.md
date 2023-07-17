@@ -1,3 +1,20 @@
+<a name="v0.49.0"></a>
+## [v0.49.0]
+### fix
+- **:** expose authTokenValidator values
+### chore
+- **samples:** rename aws-lambda-example-update
+- **samples:** remove outdated aws-lambda-example
+- **samples:** - lint fix deprecated wrapper
+- **:** remove refresh implementation but in iam auth20
+### feat
+- **mock-server:** change jenkins for new mock-server path
+### test
+- **refresh-token:** fix wrong variable name
+### docs
+- **readme:** make login client example more accurate
+
+
 <a name="v0.48.0"></a>
 ## [v0.48.0]
 ### chore

@@ -55,8 +55,7 @@ type BillingHistoryInfo struct {
 	Namespace *string `json:"namespace"`
 
 	// payment order No
-	// Required: true
-	PaymentOrderNo *string `json:"paymentOrderNo"`
+	PaymentOrderNo string `json:"paymentOrderNo,omitempty"`
 
 	// Recurring order No for this billing
 	// Required: true
@@ -132,9 +131,6 @@ func (m *BillingHistoryInfo) Validate(formats strfmt.Registry) error {
 		res = append(res, err)
 	}
 	if err := m.validateNamespace(formats); err != nil {
-		res = append(res, err)
-	}
-	if err := m.validatePaymentOrderNo(formats); err != nil {
 		res = append(res, err)
 	}
 	if err := m.validateRecurringOrderNo(formats); err != nil {
@@ -217,15 +213,6 @@ func (m *BillingHistoryInfo) validateItemID(formats strfmt.Registry) error {
 func (m *BillingHistoryInfo) validateNamespace(formats strfmt.Registry) error {
 
 	if err := validate.Required("namespace", "body", m.Namespace); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *BillingHistoryInfo) validatePaymentOrderNo(formats strfmt.Registry) error {
-
-	if err := validate.Required("paymentOrderNo", "body", m.PaymentOrderNo); err != nil {
 		return err
 	}
 

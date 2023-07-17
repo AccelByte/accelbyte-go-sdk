@@ -3,7 +3,7 @@
   "info": {
     "description": "Justice Matchmaking Service",
     "title": "Justice Match Service v2",
-    "version": "2.6.0"
+    "version": "2.7.1"
   },
   "schemes": [
     "https"
@@ -430,16 +430,16 @@
             }
           },
           {
-            "description": "namespace of the game",
+            "description": "backfill Ticket ID",
             "in": "path",
-            "name": "namespace",
+            "name": "backfillID",
             "required": true,
             "type": "string"
           },
           {
-            "description": "backfill id",
+            "description": "namespace of the game",
             "in": "path",
-            "name": "backfillID",
+            "name": "namespace",
             "required": true,
             "type": "string"
           }
@@ -517,16 +517,16 @@
             }
           },
           {
-            "description": "namespace of the game",
+            "description": "backfill Ticket ID",
             "in": "path",
-            "name": "namespace",
+            "name": "backfillID",
             "required": true,
             "type": "string"
           },
           {
-            "description": "backfill id",
+            "description": "namespace of the game",
             "in": "path",
-            "name": "backfillID",
+            "name": "namespace",
             "required": true,
             "type": "string"
           }
@@ -924,6 +924,12 @@
             "in": "query",
             "name": "limit",
             "type": "integer"
+          },
+          {
+            "description": "Match Pool name",
+            "in": "query",
+            "name": "name",
+            "type": "string"
           },
           {
             "default": 0,
@@ -1698,6 +1704,12 @@
             "type": "integer"
           },
           {
+            "description": "Rule Set name",
+            "in": "query",
+            "name": "name",
+            "type": "string"
+          },
+          {
             "default": 0,
             "description": "Pagination offset",
             "in": "query",
@@ -2276,7 +2288,6 @@
       },
       "required": [
         "match_function",
-        "serviceAppName",
         "url"
       ]
     },
@@ -2322,7 +2333,6 @@
       },
       "required": [
         "match_function",
-        "serviceAppName",
         "url"
       ]
     },
@@ -2675,9 +2685,9 @@
     "path": "/match2/apidocs/api.json"
   },
   "x-version": {
-    "buildDate": "2023-06-19T07:10:43+00:00",
-    "gitHash": "bdbd0dea2dbec552e66da37085749e7536355741",
-    "version": "2.6.0",
-    "version-roles-seeding": "0.0.20"
+    "buildDate": "2023-07-14T08:52:19+00:00",
+    "gitHash": "715c1061c7abd12e81333494ed4172de0680f59f",
+    "version": "2.7.1",
+    "version-roles-seeding": "0.0.35"
   }
 }

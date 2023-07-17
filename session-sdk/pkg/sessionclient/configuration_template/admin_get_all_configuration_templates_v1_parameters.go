@@ -95,6 +95,11 @@ type AdminGetAllConfigurationTemplatesV1Params struct {
 
 	*/
 	Limit *int64
+	/*Name
+	  configuration name
+
+	*/
+	Name *string
 	/*Offset
 	  Pagination offset
 
@@ -176,6 +181,17 @@ func (o *AdminGetAllConfigurationTemplatesV1Params) SetLimit(limit *int64) {
 	o.Limit = limit
 }
 
+// WithName adds the name to the admin get all configuration templates v1 params
+func (o *AdminGetAllConfigurationTemplatesV1Params) WithName(name *string) *AdminGetAllConfigurationTemplatesV1Params {
+	o.SetName(name)
+	return o
+}
+
+// SetName adds the name to the admin get all configuration templates v1 params
+func (o *AdminGetAllConfigurationTemplatesV1Params) SetName(name *string) {
+	o.Name = name
+}
+
 // WithOffset adds the offset to the admin get all configuration templates v1 params
 func (o *AdminGetAllConfigurationTemplatesV1Params) WithOffset(offset *int64) *AdminGetAllConfigurationTemplatesV1Params {
 	o.SetOffset(offset)
@@ -210,6 +226,22 @@ func (o *AdminGetAllConfigurationTemplatesV1Params) WriteToRequest(r runtime.Cli
 		qLimit := swag.FormatInt64(qrLimit)
 		if qLimit != "" {
 			if err := r.SetQueryParam("limit", qLimit); err != nil {
+				return err
+			}
+		}
+
+	}
+
+	if o.Name != nil {
+
+		// query param name
+		var qrName string
+		if o.Name != nil {
+			qrName = *o.Name
+		}
+		qName := qrName
+		if qName != "" {
+			if err := r.SetQueryParam("name", qName); err != nil {
 				return err
 			}
 		}

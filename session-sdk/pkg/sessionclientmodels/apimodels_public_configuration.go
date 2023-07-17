@@ -19,7 +19,11 @@ import (
 type ApimodelsPublicConfiguration struct {
 
 	// psnbaseurl
-	PSNBaseURL string `json:"PSNBaseUrl,omitempty"`
+	PSNBaseURL string `json:"PSNBaseURL,omitempty"`
+
+	// autojoin
+	// Required: true
+	AutoJoin *bool `json:"autoJoin"`
 
 	// clientversion
 	// Required: true
@@ -80,6 +84,9 @@ type ApimodelsPublicConfiguration struct {
 	// Required: true
 	TextChat *bool `json:"textChat"`
 
+	// tieteamssessionlifetime
+	TieTeamsSessionLifetime bool `json:"tieTeamsSessionLifetime"`
+
 	// type
 	// Required: true
 	Type *string `json:"type"`
@@ -89,6 +96,9 @@ type ApimodelsPublicConfiguration struct {
 func (m *ApimodelsPublicConfiguration) Validate(formats strfmt.Registry) error {
 	var res []error
 
+	if err := m.validateAutoJoin(formats); err != nil {
+		res = append(res, err)
+	}
 	if err := m.validateClientVersion(formats); err != nil {
 		res = append(res, err)
 	}
@@ -126,6 +136,15 @@ func (m *ApimodelsPublicConfiguration) Validate(formats strfmt.Registry) error {
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
+	return nil
+}
+
+func (m *ApimodelsPublicConfiguration) validateAutoJoin(formats strfmt.Registry) error {
+
+	if err := validate.Required("autoJoin", "body", m.AutoJoin); err != nil {
+		return err
+	}
+
 	return nil
 }
 

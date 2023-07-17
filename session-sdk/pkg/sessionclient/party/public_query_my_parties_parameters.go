@@ -80,7 +80,7 @@ type PublicQueryMyPartiesParams struct {
 	*/
 	OrderBy *string
 	/*Status
-	  user status to filter. supported status: INVITED,JOINED,CONNECTED
+	  user status to filter. supported status: INVITED,JOINED,CONNECTED,DISCONNECT
 
 	*/
 	Status *string

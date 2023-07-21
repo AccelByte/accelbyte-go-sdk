@@ -39,8 +39,7 @@ type FullItemInfo struct {
 	BoundItemIds []string `json:"boundItemIds"`
 
 	// Item category path
-	// Required: true
-	CategoryPath *string `json:"categoryPath"`
+	CategoryPath string `json:"categoryPath,omitempty"`
 
 	// customized item clazz
 	Clazz string `json:"clazz,omitempty"`
@@ -180,9 +179,6 @@ type FullItemInfo struct {
 func (m *FullItemInfo) Validate(formats strfmt.Registry) error {
 	var res []error
 
-	if err := m.validateCategoryPath(formats); err != nil {
-		res = append(res, err)
-	}
 	if err := m.validateCreatedAt(formats); err != nil {
 		res = append(res, err)
 	}
@@ -249,15 +245,6 @@ func (m *FullItemInfo) validateAppTypeEnum(path, location string, value string) 
 	if err := validate.EnumCase(path, location, value, fullItemInfoTypeAppTypePropEnum, true); err != nil {
 		return err
 	}
-	return nil
-}
-
-func (m *FullItemInfo) validateCategoryPath(formats strfmt.Registry) error {
-
-	if err := validate.Required("categoryPath", "body", m.CategoryPath); err != nil {
-		return err
-	}
-
 	return nil
 }
 

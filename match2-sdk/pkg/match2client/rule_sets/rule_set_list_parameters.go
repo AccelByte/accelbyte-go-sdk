@@ -95,6 +95,11 @@ type RuleSetListParams struct {
 
 	*/
 	Limit *int64
+	/*Name
+	  Rule Set name
+
+	*/
+	Name *string
 	/*Offset
 	  Pagination offset
 
@@ -176,6 +181,17 @@ func (o *RuleSetListParams) SetLimit(limit *int64) {
 	o.Limit = limit
 }
 
+// WithName adds the name to the rule set list params
+func (o *RuleSetListParams) WithName(name *string) *RuleSetListParams {
+	o.SetName(name)
+	return o
+}
+
+// SetName adds the name to the rule set list params
+func (o *RuleSetListParams) SetName(name *string) {
+	o.Name = name
+}
+
 // WithOffset adds the offset to the rule set list params
 func (o *RuleSetListParams) WithOffset(offset *int64) *RuleSetListParams {
 	o.SetOffset(offset)
@@ -210,6 +226,22 @@ func (o *RuleSetListParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.R
 		qLimit := swag.FormatInt64(qrLimit)
 		if qLimit != "" {
 			if err := r.SetQueryParam("limit", qLimit); err != nil {
+				return err
+			}
+		}
+
+	}
+
+	if o.Name != nil {
+
+		// query param name
+		var qrName string
+		if o.Name != nil {
+			qrName = *o.Name
+		}
+		qName := qrName
+		if qName != "" {
+			if err := r.SetQueryParam("name", qName); err != nil {
 				return err
 			}
 		}

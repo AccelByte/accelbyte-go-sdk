@@ -69,7 +69,7 @@ type RejectBackfillParams struct {
 	/*Body*/
 	Body *match2clientmodels.APIBackFillRejectRequest
 	/*BackfillID
-	  backfill id
+	  backfill Ticket ID
 
 	*/
 	BackfillID string

@@ -29,6 +29,32 @@ func (aaa *AdminConcurrentRecordService) GetAuthSession() auth.Session {
 	}
 }
 
+// Deprecated: 2022-01-10 - please use AdminPutAdminGameRecordConcurrentHandlerV1Short instead.
+func (aaa *AdminConcurrentRecordService) AdminPutAdminGameRecordConcurrentHandlerV1(input *admin_concurrent_record.AdminPutAdminGameRecordConcurrentHandlerV1Params) error {
+	token, err := aaa.TokenRepository.GetToken()
+	if err != nil {
+		return err
+	}
+	_, badRequest, unauthorized, preconditionFailed, internalServerError, err := aaa.Client.AdminConcurrentRecord.AdminPutAdminGameRecordConcurrentHandlerV1(input, client.BearerToken(*token.AccessToken))
+	if badRequest != nil {
+		return badRequest
+	}
+	if unauthorized != nil {
+		return unauthorized
+	}
+	if preconditionFailed != nil {
+		return preconditionFailed
+	}
+	if internalServerError != nil {
+		return internalServerError
+	}
+	if err != nil {
+		return err
+	}
+
+	return nil
+}
+
 // Deprecated: 2022-01-10 - please use AdminPutGameRecordConcurrentHandlerV1Short instead.
 func (aaa *AdminConcurrentRecordService) AdminPutGameRecordConcurrentHandlerV1(input *admin_concurrent_record.AdminPutGameRecordConcurrentHandlerV1Params) error {
 	token, err := aaa.TokenRepository.GetToken()
@@ -36,6 +62,32 @@ func (aaa *AdminConcurrentRecordService) AdminPutGameRecordConcurrentHandlerV1(i
 		return err
 	}
 	_, badRequest, unauthorized, preconditionFailed, internalServerError, err := aaa.Client.AdminConcurrentRecord.AdminPutGameRecordConcurrentHandlerV1(input, client.BearerToken(*token.AccessToken))
+	if badRequest != nil {
+		return badRequest
+	}
+	if unauthorized != nil {
+		return unauthorized
+	}
+	if preconditionFailed != nil {
+		return preconditionFailed
+	}
+	if internalServerError != nil {
+		return internalServerError
+	}
+	if err != nil {
+		return err
+	}
+
+	return nil
+}
+
+// Deprecated: 2022-01-10 - please use AdminPutAdminPlayerRecordConcurrentHandlerV1Short instead.
+func (aaa *AdminConcurrentRecordService) AdminPutAdminPlayerRecordConcurrentHandlerV1(input *admin_concurrent_record.AdminPutAdminPlayerRecordConcurrentHandlerV1Params) error {
+	token, err := aaa.TokenRepository.GetToken()
+	if err != nil {
+		return err
+	}
+	_, badRequest, unauthorized, preconditionFailed, internalServerError, err := aaa.Client.AdminConcurrentRecord.AdminPutAdminPlayerRecordConcurrentHandlerV1(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return badRequest
 	}
@@ -107,6 +159,31 @@ func (aaa *AdminConcurrentRecordService) AdminPutPlayerPublicRecordConcurrentHan
 	return nil
 }
 
+func (aaa *AdminConcurrentRecordService) AdminPutAdminGameRecordConcurrentHandlerV1Short(input *admin_concurrent_record.AdminPutAdminGameRecordConcurrentHandlerV1Params) error {
+	authInfoWriter := input.AuthInfoWriter
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
+	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  aaa.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
+	_, err := aaa.Client.AdminConcurrentRecord.AdminPutAdminGameRecordConcurrentHandlerV1Short(input, authInfoWriter)
+	if err != nil {
+		return err
+	}
+
+	return nil
+}
+
 func (aaa *AdminConcurrentRecordService) AdminPutGameRecordConcurrentHandlerV1Short(input *admin_concurrent_record.AdminPutGameRecordConcurrentHandlerV1Params) error {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
@@ -125,6 +202,31 @@ func (aaa *AdminConcurrentRecordService) AdminPutGameRecordConcurrentHandlerV1Sh
 	}
 
 	_, err := aaa.Client.AdminConcurrentRecord.AdminPutGameRecordConcurrentHandlerV1Short(input, authInfoWriter)
+	if err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (aaa *AdminConcurrentRecordService) AdminPutAdminPlayerRecordConcurrentHandlerV1Short(input *admin_concurrent_record.AdminPutAdminPlayerRecordConcurrentHandlerV1Params) error {
+	authInfoWriter := input.AuthInfoWriter
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
+	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  aaa.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
+	_, err := aaa.Client.AdminConcurrentRecord.AdminPutAdminPlayerRecordConcurrentHandlerV1Short(input, authInfoWriter)
 	if err != nil {
 		return err
 	}

@@ -8,7 +8,7 @@
     },
     "description": "Justice Platform Service",
     "title": "justice-platform-service",
-    "version": "4.30.3"
+    "version": "4.31.1"
   },
   "schemes": [
     "https"
@@ -28742,7 +28742,6 @@
         "currency",
         "itemId",
         "namespace",
-        "paymentOrderNo",
         "recurringOrderNo",
         "sandbox",
         "status",
@@ -32859,7 +32858,6 @@
         }
       },
       "required": [
-        "categoryPath",
         "createdAt",
         "entitlementType",
         "itemId",
@@ -37795,6 +37793,8 @@
           "description": "aggregate payment provider, allow empty value",
           "enum": [
             "ADYEN",
+            "CHECKOUT",
+            "STRIPE",
             "XSOLLA"
           ],
           "type": "string"
@@ -42873,16 +42873,16 @@
   },
   "x-version": {
     "buildBy": "Gradle 6.9.1",
-    "buildDate": "2023-06-20T01:46:21+00:00",
-    "buildID": "4.30.3",
+    "buildDate": "2023-07-17T01:08:04+00:00",
+    "buildID": "4.31.1",
     "buildJDK": "1.8.0_232 (Eclipse OpenJ9 openj9-0.17.0)",
     "buildOS": "Linux amd64 5.13.0-1021-aws",
     "gitBranchName": "release-candidate",
-    "gitHash": "91cea6599d",
-    "gitTag": "3.31.0",
+    "gitHash": "9bd2cf474e",
+    "gitTag": "4.31.1",
     "name": "justice-platform-service",
     "realm": "staging",
-    "version": "4.30.3",
+    "version": "4.31.1",
     "version-roles-seeding": "0.0.32"
   }
 }

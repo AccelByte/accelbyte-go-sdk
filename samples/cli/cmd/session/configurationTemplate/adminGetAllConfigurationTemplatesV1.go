@@ -27,10 +27,12 @@ var AdminGetAllConfigurationTemplatesV1Cmd = &cobra.Command{
 		}
 		namespace, _ := cmd.Flags().GetString("namespace")
 		limit, _ := cmd.Flags().GetInt64("limit")
+		name, _ := cmd.Flags().GetString("name")
 		offset, _ := cmd.Flags().GetInt64("offset")
 		input := &configuration_template.AdminGetAllConfigurationTemplatesV1Params{
 			Namespace: namespace,
 			Limit:     &limit,
+			Name:      &name,
 			Offset:    &offset,
 		}
 		ok, errOK := configurationTemplateService.AdminGetAllConfigurationTemplatesV1Short(input)
@@ -50,5 +52,6 @@ func init() {
 	AdminGetAllConfigurationTemplatesV1Cmd.Flags().String("namespace", "", "Namespace")
 	_ = AdminGetAllConfigurationTemplatesV1Cmd.MarkFlagRequired("namespace")
 	AdminGetAllConfigurationTemplatesV1Cmd.Flags().Int64("limit", 20, "Limit")
+	AdminGetAllConfigurationTemplatesV1Cmd.Flags().String("name", "", "Name")
 	AdminGetAllConfigurationTemplatesV1Cmd.Flags().Int64("offset", 0, "Offset")
 }

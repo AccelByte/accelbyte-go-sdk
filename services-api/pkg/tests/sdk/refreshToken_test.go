@@ -14,13 +14,13 @@ import (
 )
 
 var (
-	ConstClientId     = "admin"
-	ConstClientSecret = "admin"
+	ConstUsername = "admin"
+	ConstPassword = "admin"
 )
 
 func TestAuthInfoWriterRefresh_withMockServer(t *testing.T) {
 	// 1. request with valid Token
-	err := oAuth20Service.LoginUser(ConstClientId, ConstClientSecret)
+	err := oAuth20Service.LoginUser(ConstUsername, ConstPassword)
 	if err != nil {
 		assert.FailNow(t, err.Error())
 	}
@@ -77,7 +77,7 @@ func TestAuthInfoWriterRefresh_withMockServer(t *testing.T) {
 
 func TestAuthInfoWriterRefreshAsync_withMockServer(t *testing.T) {
 	// 1. request with valid Token
-	err := oAuth20Service.LoginUser(ConstClientId, ConstClientSecret)
+	err := oAuth20Service.LoginUser(ConstUsername, ConstPassword)
 	if err != nil {
 		assert.FailNow(t, err.Error())
 	}

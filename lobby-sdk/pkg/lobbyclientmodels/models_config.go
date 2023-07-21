@@ -74,6 +74,10 @@ type ModelsConfig struct {
 	// Format: integer
 	MaxDSWaitTime *int64 `json:"maxDSWaitTime"`
 
+	// maxfriendslimit
+	// Format: int32
+	MaxFriendsLimit int32 `json:"maxFriendsLimit,omitempty"`
+
 	// maxpartymember
 	// Format: int32
 	MaxPartyMember int32 `json:"maxPartyMember,omitempty"`

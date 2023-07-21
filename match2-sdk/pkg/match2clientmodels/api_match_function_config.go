@@ -23,8 +23,7 @@ type APIMatchFunctionConfig struct {
 	MatchFunction *string `json:"match_function"`
 
 	// serviceappname
-	// Required: true
-	ServiceAppName *string `json:"serviceAppName"`
+	ServiceAppName string `json:"serviceAppName,omitempty"`
 
 	// url
 	// Required: true
@@ -36,9 +35,6 @@ func (m *APIMatchFunctionConfig) Validate(formats strfmt.Registry) error {
 	var res []error
 
 	if err := m.validateMatchFunction(formats); err != nil {
-		res = append(res, err)
-	}
-	if err := m.validateServiceAppName(formats); err != nil {
 		res = append(res, err)
 	}
 	if err := m.validateURL(formats); err != nil {
@@ -54,15 +50,6 @@ func (m *APIMatchFunctionConfig) Validate(formats strfmt.Registry) error {
 func (m *APIMatchFunctionConfig) validateMatchFunction(formats strfmt.Registry) error {
 
 	if err := validate.Required("match_function", "body", m.MatchFunction); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *APIMatchFunctionConfig) validateServiceAppName(formats strfmt.Registry) error {
-
-	if err := validate.Required("serviceAppName", "body", m.ServiceAppName); err != nil {
 		return err
 	}
 

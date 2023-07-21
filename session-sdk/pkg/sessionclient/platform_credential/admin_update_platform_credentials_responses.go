@@ -84,7 +84,7 @@ func NewAdminUpdatePlatformCredentialsOK() *AdminUpdatePlatformCredentialsOK {
   OK
 */
 type AdminUpdatePlatformCredentialsOK struct {
-	Payload string
+	Payload *sessionclientmodels.ModelsPlatformCredentials
 }
 
 func (o *AdminUpdatePlatformCredentialsOK) Error() string {
@@ -92,7 +92,7 @@ func (o *AdminUpdatePlatformCredentialsOK) Error() string {
 }
 
 func (o *AdminUpdatePlatformCredentialsOK) ToJSONString() string {
-	if o.Payload == "" {
+	if o.Payload == nil {
 		return "{}"
 	}
 
@@ -106,7 +106,7 @@ func (o *AdminUpdatePlatformCredentialsOK) ToJSONString() string {
 	return fmt.Sprintf("%+v", string(b))
 }
 
-func (o *AdminUpdatePlatformCredentialsOK) GetPayload() string {
+func (o *AdminUpdatePlatformCredentialsOK) GetPayload() *sessionclientmodels.ModelsPlatformCredentials {
 	return o.Payload
 }
 
@@ -117,8 +117,10 @@ func (o *AdminUpdatePlatformCredentialsOK) readResponse(response runtime.ClientR
 		consumer = runtime.ByteStreamConsumer()
 	}
 
+	o.Payload = new(sessionclientmodels.ModelsPlatformCredentials)
+
 	// response payload
-	if err := consumer.Consume(response.Body(), &o.Payload); err != nil && err != io.EOF {
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
 		return err
 	}
 

@@ -8,7 +8,7 @@
     },
     "description": "Justice IAM Service",
     "title": "justice-iam-service",
-    "version": "6.0.2"
+    "version": "6.1.0"
   },
   "schemes": [
     "https"
@@ -8121,7 +8121,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "Add a new OAuth 2.0 client. Protected by the permission: ADMIN:NAMESPACE:{namespace}:CLIENT [CREATE]\u0026lt;br\u0026gt;\n\t\tA new client automatically granted with these scopes: commerce, account, analytics, publishing, social.\u0026lt;br\u0026gt;\n\t\tIn multi tenant mode, new confidential client will have default client role assigned to it. The role will have all \n\t\t\tpermissions to access all APIs that\u0026#39;s supported by game server SDK and DS uploader. \u0026lt;br\u0026gt;\n\t\taction code: 10301\u0026lt;br\u0026gt;\n\t\t\u0026lt;p\u0026gt;\u0026lt;strong\u0026gt;Fields Description:\u0026lt;/strong\u0026gt;\n\t\t\u0026lt;ul\u0026gt;\n\t\t\u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;clientId\u0026lt;/strong\u0026gt; : The client ID. e.g f815e5c44f364993961be3b3f26a7bf4\u0026lt;/li\u0026gt;\n\t\t\u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;clientName\u0026lt;/strong\u0026gt; : The client name. e.g E-commerce\u0026lt;/li\u0026gt;\n\t\t\u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;secret\u0026lt;/strong\u0026gt; : The client\u0026#39;s secret. It\u0026#39;s empty if the client\u0026#39;s type is a public client. Otherwise, the client secret is required\u0026lt;/li\u0026gt;\n\t\t\u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;namespace\u0026lt;/strong\u0026gt; : The namespace where the client lives. e.g sample-game\u0026lt;/li\u0026gt;\n\t\t\u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;redirectUri\u0026lt;/strong\u0026gt; : Contains the redirect URI used in OAuth callback. e.g https://example.net/platform\u0026lt;/li\u0026gt;\n\t\t\u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;oauthClientType\u0026lt;/strong\u0026gt; : The OAuth 2.0 client type. The client type determines whether the authorization needs Proof Of Key Exchange or not. \n\t\t\t\t\tA public client type doesn\u0026#39;t have a client secret and should use PKCE flow. \n\t\t\t\t\tA confidential client type has a client secret and don\u0026#39;t use PKCE flow\n\t\t\t\u0026lt;ul\u0026gt;Supported oAuthClientType :\n\t\t\t\t\u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;Public\u0026lt;/strong\u0026gt;\u0026lt;/li\u0026gt;\n\t\t\t\t\u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;Confidential\u0026lt;/strong\u0026gt;\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;\u0026lt;/li\u0026gt;\n\t\t\u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;audiences\u0026lt;/strong\u0026gt; : List of target client IDs who is intended to receive the token. e.g [\u0026#34;eaaa65618fe24293b00a61454182b435\u0026#34;, \u0026#34;40073ee9bc3446d3a051a71b48509a5d\u0026#34;]\u0026lt;/li\u0026gt;\n\t\t\u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;baseUri\u0026lt;/strong\u0026gt; : A base URI of the application. It is used for making sure the token is intended to be used by the client. e.g https://example.net/platform\u0026lt;/li\u0026gt;\n\t\t\u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;clientPermissions\u0026lt;/strong\u0026gt; : Contains the client\u0026#39;s permissions\u0026lt;/li\u0026gt;\n\t\t\u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;deletable\u0026lt;/strong\u0026gt; : The flag to identify whether client is deletable (optional). default value: true\u0026lt;/li\u0026gt;\n\t\t\u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;clientPlatform\u0026lt;/strong\u0026gt;: available client platform (optional). default value: \u0026#34;\u0026#34;\n  \t\t\t\u0026lt;ul\u0026gt;\n\t\t\t\t\u0026lt;li\u0026gt;Playstation\u0026lt;/li\u0026gt;\n\t\t\t\t\u0026lt;li\u0026gt;Xbox\u0026lt;/li\u0026gt;\n\t\t\t\t\u0026lt;li\u0026gt;Steam\u0026lt;/li\u0026gt;\n\t\t\t\t\u0026lt;li\u0026gt;Epic\u0026lt;/li\u0026gt;\n\t\t\t\t\u0026lt;li\u0026gt;IOS\u0026lt;/li\u0026gt;\n\t\t\t\t\u0026lt;li\u0026gt;GooglePlay\u0026lt;/li\u0026gt;\n\t\t\t\t\u0026lt;li\u0026gt;Nintendo\u0026lt;/li\u0026gt;\n\t\t\t\u0026lt;/ul\u0026gt;\n\t\t\u0026lt;/li\u0026gt;\n        \u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;twoFactorEnabled\u0026lt;/strong\u0026gt;: The flag to indicate whether 2FA validation is enable for this client. default value: false\u0026lt;/li\u0026gt;\n\t\t\u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;oauthAccessTokenExpiration\u0026lt;/strong\u0026gt;: a configurable expiration time for \u0026lt;strong\u0026gt;access_token\u0026lt;/strong\u0026gt;, default value: 0 (mean fetch value from environment variable) \u0026lt;/li\u0026gt;\n\t\t\u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;oauthRefreshTokenExpiration\u0026lt;/strong\u0026gt;: a configurable expiration time for \u0026lt;strong\u0026gt;refresh_token\u0026lt;/strong\u0026gt;, default value: 0 (mean fetch value from environment variable)\u0026lt;/li\u0026gt;\n\t\t\u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;oauthAccessTokenExpirationTimeUnit\u0026lt;/strong\u0026gt;: a configurable expiration time unit for \u0026lt;strong\u0026gt;access_token\u0026lt;/strong\u0026gt;, default value: SECONDS\u0026lt;/li\u0026gt;\n\t\t\u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;oauthRefreshTokenExpirationTimeUnit\u0026lt;/strong\u0026gt;: a configurable expiration time unit for \u0026lt;strong\u0026gt;refresh_token\u0026lt;/strong\u0026gt;, default value: SECONDS\u0026lt;/li\u0026gt;\n\t\t\u0026lt;/ul\u0026gt;\n\t\t\u0026lt;/p\u0026gt;\n\t\t",
+        "description": "Add a new OAuth 2.0 client. Protected by the permission: ADMIN:NAMESPACE:{namespace}:CLIENT [CREATE]\u0026lt;br\u0026gt;\n\t\tA new client automatically granted with these scopes: commerce, account, analytics, publishing, social.\u0026lt;br\u0026gt;\n\t\tIn multi tenant mode, new confidential client will have default client role assigned to it. The role will have all \n\t\t\tpermissions to access all APIs that\u0026#39;s supported by game server SDK and DS uploader. \u0026lt;br\u0026gt;\n\t\taction code: 10301\u0026lt;br\u0026gt;\n\t\t\u0026lt;p\u0026gt;\u0026lt;strong\u0026gt;Fields Description:\u0026lt;/strong\u0026gt;\n\t\t\u0026lt;ul\u0026gt;\n\t\t\u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;clientId\u0026lt;/strong\u0026gt; : The client ID. e.g f815e5c44f364993961be3b3f26a7bf4\u0026lt;/li\u0026gt;\n\t\t\u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;clientName\u0026lt;/strong\u0026gt; : The client name. e.g E-commerce\u0026lt;/li\u0026gt;\n\t\t\u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;secret\u0026lt;/strong\u0026gt; : The client\u0026#39;s secret. It\u0026#39;s empty if the client\u0026#39;s type is a public client. Otherwise, the client secret is required\u0026lt;/li\u0026gt;\n\t\t\u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;namespace\u0026lt;/strong\u0026gt; : The namespace where the client lives. e.g sample-game\u0026lt;/li\u0026gt;\n\t\t\u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;redirectUri\u0026lt;/strong\u0026gt; : Contains the redirect URI used in OAuth callback. e.g https://example.net/platform\u0026lt;/li\u0026gt;\n\t\t\u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;oauthClientType\u0026lt;/strong\u0026gt; : The OAuth 2.0 client type. The client type determines whether the authorization needs Proof Of Key Exchange or not. \n\t\t\t\t\tA public client type doesn\u0026#39;t have a client secret and should use PKCE flow. \n\t\t\t\t\tA confidential client type has a client secret and don\u0026#39;t use PKCE flow\n\t\t\t\u0026lt;ul\u0026gt;Supported oAuthClientType :\n\t\t\t\t\u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;Public\u0026lt;/strong\u0026gt;\u0026lt;/li\u0026gt;\n\t\t\t\t\u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;Confidential\u0026lt;/strong\u0026gt;\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;\u0026lt;/li\u0026gt;\n\t\t\u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;audiences\u0026lt;/strong\u0026gt; : List of target client IDs who is intended to receive the token. e.g [\u0026#34;eaaa65618fe24293b00a61454182b435\u0026#34;, \u0026#34;40073ee9bc3446d3a051a71b48509a5d\u0026#34;]\u0026lt;/li\u0026gt;\n\t\t\u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;baseUri\u0026lt;/strong\u0026gt; : A base URI of the application. It is used for making sure the token is intended to be used by the client. e.g https://example.net/platform\u0026lt;/li\u0026gt;\n\t\t\u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;clientPermissions\u0026lt;/strong\u0026gt; : Contains the client\u0026#39;s permissions\u0026lt;/li\u0026gt;\n\t\t\u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;deletable\u0026lt;/strong\u0026gt; : The flag to identify whether client is deletable (optional). default value: true\u0026lt;/li\u0026gt;\n\t\t\u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;clientPlatform\u0026lt;/strong\u0026gt;: available client platform (optional). default value: \u0026#34;\u0026#34;\n  \t\t\t\u0026lt;ul\u0026gt;\n\t\t\t\t\u0026lt;li\u0026gt;Playstation\u0026lt;/li\u0026gt;\n\t\t\t\t\u0026lt;li\u0026gt;Xbox\u0026lt;/li\u0026gt;\n\t\t\t\t\u0026lt;li\u0026gt;Steam\u0026lt;/li\u0026gt;\n\t\t\t\t\u0026lt;li\u0026gt;Epic\u0026lt;/li\u0026gt;\n\t\t\t\t\u0026lt;li\u0026gt;IOS\u0026lt;/li\u0026gt;\n\t\t\t\t\u0026lt;li\u0026gt;GooglePlay\u0026lt;/li\u0026gt;\n\t\t\t\t\u0026lt;li\u0026gt;Nintendo\u0026lt;/li\u0026gt;\n\t\t\t\t\u0026lt;li\u0026gt;Oculus\u0026lt;/li\u0026gt;\n\t\t\t\u0026lt;/ul\u0026gt;\n\t\t\u0026lt;/li\u0026gt;\n        \u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;twoFactorEnabled\u0026lt;/strong\u0026gt;: The flag to indicate whether 2FA validation is enable for this client. default value: false\u0026lt;/li\u0026gt;\n\t\t\u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;oauthAccessTokenExpiration\u0026lt;/strong\u0026gt;: a configurable expiration time for \u0026lt;strong\u0026gt;access_token\u0026lt;/strong\u0026gt;, default value: 0 (mean fetch value from environment variable) \u0026lt;/li\u0026gt;\n\t\t\u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;oauthRefreshTokenExpiration\u0026lt;/strong\u0026gt;: a configurable expiration time for \u0026lt;strong\u0026gt;refresh_token\u0026lt;/strong\u0026gt;, default value: 0 (mean fetch value from environment variable)\u0026lt;/li\u0026gt;\n\t\t\u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;oauthAccessTokenExpirationTimeUnit\u0026lt;/strong\u0026gt;: a configurable expiration time unit for \u0026lt;strong\u0026gt;access_token\u0026lt;/strong\u0026gt;, default value: SECONDS\u0026lt;/li\u0026gt;\n\t\t\u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;oauthRefreshTokenExpirationTimeUnit\u0026lt;/strong\u0026gt;: a configurable expiration time unit for \u0026lt;strong\u0026gt;refresh_token\u0026lt;/strong\u0026gt;, default value: SECONDS\u0026lt;/li\u0026gt;\n\t\t\u0026lt;/ul\u0026gt;\n\t\t\u0026lt;/p\u0026gt;\n\t\t",
         "operationId": "AdminCreateClientV3",
         "parameters": [
           {
@@ -8331,7 +8331,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "Updates an OAuth 2.0 client. Protected by the permission: ADMIN:NAMESPACE:{namespace}:CLIENT [UPDATE].\n\t\t\t\tSpecify only the fields you want to update in the request payload, e.g. {\u0026#34;ClientName\u0026#34;:\u0026#34;E-commerce\u0026#34;, \u0026#34;BaseUri\u0026#34;:\u0026#34;https://example.net\u0026#34;}\n\t\t\u0026lt;br\u0026gt; action code: 10302\u0026lt;br\u0026gt;\n\t\t\u0026lt;p\u0026gt;\u0026lt;strong\u0026gt;Fields Description:\u0026lt;/strong\u0026gt;\n\t\t\u0026lt;ul\u0026gt;\n\t\t\u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;clientName\u0026lt;/strong\u0026gt; : The client name. It should not be empty if the field exists in the body. e.g E-commerce\u0026lt;/li\u0026gt;\n\t\t\u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;namespace\u0026lt;/strong\u0026gt; : The namespace where the client lives. e.g sample-game\u0026lt;/li\u0026gt;\n\t\t\u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;redirectUri\u0026lt;/strong\u0026gt; : Contains the redirect URI used in OAuth callback. It should not be empty if the field exists in the body.  e.g https://example.net/platform\u0026lt;/li\u0026gt;\n\t\t\u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;audiences\u0026lt;/strong\u0026gt; : List of target client IDs who is intended to receive the token. e.g [\u0026#34;eaaa65618fe24293b00a61454182b435\u0026#34;, \u0026#34;40073ee9bc3446d3a051a71b48509a5d\u0026#34;]\u0026lt;/li\u0026gt;\n\t\t\u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;baseUri\u0026lt;/strong\u0026gt; : A base URI of the application. It is used in the audience checking for making sure the token is used by the right resource server. Required if the application type is a server. e.g https://example.net/platform\u0026lt;/li\u0026gt;\n\t\t\u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;clientPermissions\u0026lt;/strong\u0026gt; : Contains the client\u0026#39;s permissions\u0026lt;/li\u0026gt;\n\t\t\u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;deletable\u0026lt;/strong\u0026gt; : The flag to identify whether client is deletable (optional). e.g. true\u0026lt;/li\u0026gt;\n\t\t\u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;clientPlatform\u0026lt;/strong\u0026gt; : available client platform (optional). default value: \u0026#34;\u0026#34;.\n  \t\t\t\u0026lt;ul\u0026gt;\n\t\t\t\t\u0026lt;li\u0026gt;Playstation\u0026lt;/li\u0026gt;\n\t\t\t\t\u0026lt;li\u0026gt;Xbox\u0026lt;/li\u0026gt;\n\t\t\t\t\u0026lt;li\u0026gt;Steam\u0026lt;/li\u0026gt;\n\t\t\t\t\u0026lt;li\u0026gt;Epic\u0026lt;/li\u0026gt;\n\t\t\t\t\u0026lt;li\u0026gt;IOS\u0026lt;/li\u0026gt;\n\t\t\t\t\u0026lt;li\u0026gt;GooglePlay\u0026lt;/li\u0026gt;\n\t\t\t\t\u0026lt;li\u0026gt;Nintendo\u0026lt;/li\u0026gt;\n\t\t\t\u0026lt;/ul\u0026gt;\n\t\t\u0026lt;/li\u0026gt;\n        \u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;twoFactorEnabled\u0026lt;/strong\u0026gt;: The flag to indicate whether 2FA validation is enable for this client. default value: false\u0026lt;/li\u0026gt;\n\t\t\u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;oauthAccessTokenExpiration\u0026lt;/strong\u0026gt;: a configurable expiration time for \u0026lt;strong\u0026gt;access_token\u0026lt;/strong\u0026gt;, default value: 0 (mean fetch value from environment variable)\u0026lt;/li\u0026gt;\n\t\t\u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;oauthRefreshTokenExpiration\u0026lt;/strong\u0026gt;: a configurable expiration time for \u0026lt;strong\u0026gt;refresh_token\u0026lt;/strong\u0026gt;, default value: 0 (mean fetch value from environment variable)\u0026lt;/li\u0026gt;\n\t\t\u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;oauthAccessTokenExpirationTimeUnit\u0026lt;/strong\u0026gt;: a configurable expiration time unit for \u0026lt;strong\u0026gt;access_token\u0026lt;/strong\u0026gt;, will use previous value if not specified\u0026lt;/li\u0026gt;\n\t\t\u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;oauthRefreshTokenExpirationTimeUnit\u0026lt;/strong\u0026gt;: a configurable expiration time unit for \u0026lt;strong\u0026gt;refresh_token\u0026lt;/strong\u0026gt;, will use previous value if not specified\u0026lt;/li\u0026gt;\n\t\t\u0026lt;/ul\u0026gt;\n\t\t\u0026lt;/p\u0026gt;",
+        "description": "Updates an OAuth 2.0 client. Protected by the permission: ADMIN:NAMESPACE:{namespace}:CLIENT [UPDATE].\n\t\t\t\tSpecify only the fields you want to update in the request payload, e.g. {\u0026#34;ClientName\u0026#34;:\u0026#34;E-commerce\u0026#34;, \u0026#34;BaseUri\u0026#34;:\u0026#34;https://example.net\u0026#34;}\n\t\t\u0026lt;br\u0026gt; action code: 10302\u0026lt;br\u0026gt;\n\t\t\u0026lt;p\u0026gt;\u0026lt;strong\u0026gt;Fields Description:\u0026lt;/strong\u0026gt;\n\t\t\u0026lt;ul\u0026gt;\n\t\t\u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;clientName\u0026lt;/strong\u0026gt; : The client name. It should not be empty if the field exists in the body. e.g E-commerce\u0026lt;/li\u0026gt;\n\t\t\u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;namespace\u0026lt;/strong\u0026gt; : The namespace where the client lives. e.g sample-game\u0026lt;/li\u0026gt;\n\t\t\u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;redirectUri\u0026lt;/strong\u0026gt; : Contains the redirect URI used in OAuth callback. It should not be empty if the field exists in the body.  e.g https://example.net/platform\u0026lt;/li\u0026gt;\n\t\t\u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;audiences\u0026lt;/strong\u0026gt; : List of target client IDs who is intended to receive the token. e.g [\u0026#34;eaaa65618fe24293b00a61454182b435\u0026#34;, \u0026#34;40073ee9bc3446d3a051a71b48509a5d\u0026#34;]\u0026lt;/li\u0026gt;\n\t\t\u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;baseUri\u0026lt;/strong\u0026gt; : A base URI of the application. It is used in the audience checking for making sure the token is used by the right resource server. Required if the application type is a server. e.g https://example.net/platform\u0026lt;/li\u0026gt;\n\t\t\u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;clientPermissions\u0026lt;/strong\u0026gt; : Contains the client\u0026#39;s permissions\u0026lt;/li\u0026gt;\n\t\t\u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;deletable\u0026lt;/strong\u0026gt; : The flag to identify whether client is deletable (optional). e.g. true\u0026lt;/li\u0026gt;\n\t\t\u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;clientPlatform\u0026lt;/strong\u0026gt; : available client platform (optional). default value: \u0026#34;\u0026#34;.\n  \t\t\t\u0026lt;ul\u0026gt;\n\t\t\t\t\u0026lt;li\u0026gt;Playstation\u0026lt;/li\u0026gt;\n\t\t\t\t\u0026lt;li\u0026gt;Xbox\u0026lt;/li\u0026gt;\n\t\t\t\t\u0026lt;li\u0026gt;Steam\u0026lt;/li\u0026gt;\n\t\t\t\t\u0026lt;li\u0026gt;Epic\u0026lt;/li\u0026gt;\n\t\t\t\t\u0026lt;li\u0026gt;IOS\u0026lt;/li\u0026gt;\n\t\t\t\t\u0026lt;li\u0026gt;GooglePlay\u0026lt;/li\u0026gt;\n\t\t\t\t\u0026lt;li\u0026gt;Nintendo\u0026lt;/li\u0026gt;\n\t\t\t\t\u0026lt;li\u0026gt;Oculus\u0026lt;/li\u0026gt;\n\t\t\t\u0026lt;/ul\u0026gt;\n\t\t\u0026lt;/li\u0026gt;\n        \u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;twoFactorEnabled\u0026lt;/strong\u0026gt;: The flag to indicate whether 2FA validation is enable for this client. default value: false\u0026lt;/li\u0026gt;\n\t\t\u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;oauthAccessTokenExpiration\u0026lt;/strong\u0026gt;: a configurable expiration time for \u0026lt;strong\u0026gt;access_token\u0026lt;/strong\u0026gt;, default value: 0 (mean fetch value from environment variable)\u0026lt;/li\u0026gt;\n\t\t\u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;oauthRefreshTokenExpiration\u0026lt;/strong\u0026gt;: a configurable expiration time for \u0026lt;strong\u0026gt;refresh_token\u0026lt;/strong\u0026gt;, default value: 0 (mean fetch value from environment variable)\u0026lt;/li\u0026gt;\n\t\t\u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;oauthAccessTokenExpirationTimeUnit\u0026lt;/strong\u0026gt;: a configurable expiration time unit for \u0026lt;strong\u0026gt;access_token\u0026lt;/strong\u0026gt;, will use previous value if not specified\u0026lt;/li\u0026gt;\n\t\t\u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;oauthRefreshTokenExpirationTimeUnit\u0026lt;/strong\u0026gt;: a configurable expiration time unit for \u0026lt;strong\u0026gt;refresh_token\u0026lt;/strong\u0026gt;, will use previous value if not specified\u0026lt;/li\u0026gt;\n\t\t\u0026lt;/ul\u0026gt;\n\t\t\u0026lt;/p\u0026gt;",
         "operationId": "AdminUpdateClientV3",
         "parameters": [
           {
@@ -11905,7 +11905,7 @@
     },
     "/iam/v3/admin/namespaces/{namespace}/users/{userId}/platforms/justice": {
       "get": {
-        "description": "This endpoint gets list justice platform account by providing publisher namespace and publisher userID.",
+        "description": "This endpoint gets list justice platform account by providing publisher namespace and publisher userID.\u0026lt;br/\u0026gt;\nRequired permission: ADMIN:NAMESPACE:{namespace}:USER:{userId} [READ]",
         "operationId": "AdminGetListJusticePlatformAccounts",
         "parameters": [
           {
@@ -11969,6 +11969,9 @@
         },
         "security": [
           {
+            "HasPermission": [
+              "ADMIN:NAMESPACE:{namespace}:USER:{userId} [READ]"
+            ],
             "authorization": []
           }
         ],
@@ -12471,6 +12474,88 @@
           }
         ],
         "summary": "Admin get the link status of the third party platform token with user id.",
+        "tags": [
+          "Users"
+        ]
+      }
+    },
+    "/iam/v3/admin/namespaces/{namespace}/users/{userId}/platforms/{platformId}/metadata": {
+      "get": {
+        "description": "This endpoint gets user single platform account metadata.\u0026lt;br\u0026gt;\nSupported platforms are same with the supported login platforms.\u0026lt;br\u0026gt;\nRequired permission: ADMIN:NAMESPACE:{namespace}:USER:{userId} [READ]\n",
+        "operationId": "AdminGetUserSinglePlatformAccount",
+        "parameters": [
+          {
+            "description": "Namespace, only accept alphabet and numeric",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "Platform ID",
+            "in": "path",
+            "name": "platformId",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "Publisher or game User ID",
+            "in": "path",
+            "name": "userId",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/model.UserPlatformMetadata"
+            }
+          },
+          "400": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20002\u003c/td\u003e\u003ctd\u003evalidation error\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/rest.ErrorResponse"
+            }
+          },
+          "401": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20001\u003c/td\u003e\u003ctd\u003eunauthorized access\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/rest.ErrorResponse"
+            }
+          },
+          "403": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20013\u003c/td\u003e\u003ctd\u003einsufficient permissions\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/rest.ErrorResponse"
+            }
+          },
+          "404": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20008\u003c/td\u003e\u003ctd\u003euser not found\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e10139\u003c/td\u003e\u003ctd\u003eplatform account not found\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/rest.ErrorResponse"
+            }
+          },
+          "500": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20000\u003c/td\u003e\u003ctd\u003einternal server error\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/rest.ErrorResponse"
+            }
+          }
+        },
+        "security": [
+          {
+            "HasPermission": [
+              "ADMIN:NAMESPACE:{namespace}:USER:{userId} [READ]"
+            ],
+            "authorization": []
+          }
+        ],
+        "summary": "Admin get user single platform account metadata",
         "tags": [
           "Users"
         ]
@@ -30179,6 +30264,28 @@
         "resource"
       ]
     },
+    "model.UserPlatformMetadata": {
+      "properties": {
+        "metadata": {
+          "type": "object"
+        },
+        "namespace": {
+          "type": "string"
+        },
+        "platformUserId": {
+          "type": "string"
+        },
+        "userId": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "metadata",
+        "namespace",
+        "platformUserId",
+        "userId"
+      ]
+    },
     "model.UserResponse": {
       "properties": {
         "AuthType": {
@@ -31378,11 +31485,11 @@
     "path": "/iam/apidocs/api.json"
   },
   "x-version": {
-    "buildDate": "2023-06-30T05:54:13+00:00",
-    "gitHash": "dc624159a3610e5cdb245506f7a76445a3bfd109",
+    "buildDate": "2023-07-17T01:03:55+00:00",
+    "gitHash": "733582c1aa438194f1b42ab1f9d5c8997d996c86",
     "name": "justice-iam-service",
     "realm": "staging",
-    "version": "6.0.2",
+    "version": "6.1.0",
     "version-roles-seeding": "0.0.3"
   }
 }

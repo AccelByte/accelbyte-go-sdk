@@ -8344,7 +8344,7 @@
     "path": "/ugc/apidocs/api.json"
   },
   "x-version": {
-    "buildDate": "2023-06-20T01:58:48+00:00",
+    "buildDate": "2023-07-05T02:15:13+00:00",
     "gitHash": "49e73f3537e72984ac4b6eedf799536bc1d25c3f",
     "name": "justice-ugc-service",
     "realm": "staging",

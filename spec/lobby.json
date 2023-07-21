@@ -1242,7 +1242,7 @@
     },
     "/lobby/v1/admin/config/namespaces/{namespace}/export": {
       "get": {
-        "description": "\n\t\t\t\tRequired permission ADMIN:NAMESPACE:{namespace}:LOBBY:CONFIG [READ]\n\n\t\t\t\tRequired Scope: social\n\n\t\t\t\tExport lobby configuration to a json file. The file can then be imported from the /import endpoint. \n\t\t\t\nJSON Schema of the exported file:\n{\u0026#34;required\u0026#34;:[\u0026#34;namespace\u0026#34;,\u0026#34;entitlementItemID\u0026#34;,\u0026#34;chatRateLimitDuration\u0026#34;,\u0026#34;unregisterDelay\u0026#34;,\u0026#34;generalRateLimitDuration\u0026#34;,\u0026#34;autoKickOnDisconnectDelay\u0026#34;,\u0026#34;chatRateLimitBurst\u0026#34;,\u0026#34;generalRateLimitBurst\u0026#34;,\u0026#34;maxPartyMember\u0026#34;,\u0026#34;autoKickOnDisconnect\u0026#34;,\u0026#34;profanityFilter\u0026#34;,\u0026#34;enableChat\u0026#34;,\u0026#34;entitlementCheck\u0026#34;,\u0026#34;cancelTicketOnDisconnect\u0026#34;,\u0026#34;concurrentUsersLimit\u0026#34;,\u0026#34;readyConsentTimeout\u0026#34;,\u0026#34;disableInvitationOnJoinParty\u0026#34;,\u0026#34;allowJoinPartyDuringMatchmaking\u0026#34;,\u0026#34;allowInviteNonConnectedUser\u0026#34;,\u0026#34;keepPresenceActivityOnDisconnect\u0026#34;,\u0026#34;maxDSWaitTime\u0026#34;],\u0026#34;properties\u0026#34;:{\u0026#34;allowInviteNonConnectedUser\u0026#34;:{\u0026#34;type\u0026#34;:\u0026#34;boolean\u0026#34;},\u0026#34;allowJoinPartyDuringMatchmaking\u0026#34;:{\u0026#34;type\u0026#34;:\u0026#34;boolean\u0026#34;},\u0026#34;autoKickOnDisconnect\u0026#34;:{\u0026#34;type\u0026#34;:\u0026#34;boolean\u0026#34;},\u0026#34;autoKickOnDisconnectDelay\u0026#34;:{\u0026#34;type\u0026#34;:\u0026#34;integer\u0026#34;,\u0026#34;format\u0026#34;:\u0026#34;integer\u0026#34;},\u0026#34;cancelTicketOnDisconnect\u0026#34;:{\u0026#34;type\u0026#34;:\u0026#34;boolean\u0026#34;},\u0026#34;chatRateLimitBurst\u0026#34;:{\u0026#34;type\u0026#34;:\u0026#34;integer\u0026#34;,\u0026#34;format\u0026#34;:\u0026#34;int32\u0026#34;},\u0026#34;chatRateLimitDuration\u0026#34;:{\u0026#34;type\u0026#34;:\u0026#34;integer\u0026#34;,\u0026#34;format\u0026#34;:\u0026#34;integer\u0026#34;},\u0026#34;concurrentUsersLimit\u0026#34;:{\u0026#34;type\u0026#34;:\u0026#34;integer\u0026#34;,\u0026#34;format\u0026#34;:\u0026#34;int32\u0026#34;},\u0026#34;disableInvitationOnJoinParty\u0026#34;:{\u0026#34;type\u0026#34;:\u0026#34;boolean\u0026#34;},\u0026#34;enableChat\u0026#34;:{\u0026#34;type\u0026#34;:\u0026#34;boolean\u0026#34;},\u0026#34;entitlementCheck\u0026#34;:{\u0026#34;type\u0026#34;:\u0026#34;boolean\u0026#34;},\u0026#34;entitlementItemID\u0026#34;:{\u0026#34;type\u0026#34;:\u0026#34;string\u0026#34;},\u0026#34;generalRateLimitBurst\u0026#34;:{\u0026#34;type\u0026#34;:\u0026#34;integer\u0026#34;,\u0026#34;format\u0026#34;:\u0026#34;int32\u0026#34;},\u0026#34;generalRateLimitDuration\u0026#34;:{\u0026#34;type\u0026#34;:\u0026#34;integer\u0026#34;,\u0026#34;format\u0026#34;:\u0026#34;integer\u0026#34;},\u0026#34;keepPresenceActivityOnDisconnect\u0026#34;:{\u0026#34;type\u0026#34;:\u0026#34;boolean\u0026#34;},\u0026#34;maxDSWaitTime\u0026#34;:{\u0026#34;type\u0026#34;:\u0026#34;integer\u0026#34;,\u0026#34;format\u0026#34;:\u0026#34;integer\u0026#34;},\u0026#34;maxPartyMember\u0026#34;:{\u0026#34;type\u0026#34;:\u0026#34;integer\u0026#34;,\u0026#34;format\u0026#34;:\u0026#34;int32\u0026#34;},\u0026#34;namespace\u0026#34;:{\u0026#34;type\u0026#34;:\u0026#34;string\u0026#34;},\u0026#34;profanityFilter\u0026#34;:{\u0026#34;type\u0026#34;:\u0026#34;boolean\u0026#34;},\u0026#34;readyConsentTimeout\u0026#34;:{\u0026#34;type\u0026#34;:\u0026#34;integer\u0026#34;,\u0026#34;format\u0026#34;:\u0026#34;integer\u0026#34;},\u0026#34;unregisterDelay\u0026#34;:{\u0026#34;type\u0026#34;:\u0026#34;integer\u0026#34;,\u0026#34;format\u0026#34;:\u0026#34;integer\u0026#34;}}}",
+        "description": "\n\t\t\t\tRequired permission ADMIN:NAMESPACE:{namespace}:LOBBY:CONFIG [READ]\n\n\t\t\t\tRequired Scope: social\n\n\t\t\t\tExport lobby configuration to a json file. The file can then be imported from the /import endpoint. \n\t\t\t\nJSON Schema of the exported file:\n{\u0026#34;required\u0026#34;:[\u0026#34;namespace\u0026#34;,\u0026#34;entitlementItemID\u0026#34;,\u0026#34;chatRateLimitDuration\u0026#34;,\u0026#34;unregisterDelay\u0026#34;,\u0026#34;generalRateLimitDuration\u0026#34;,\u0026#34;autoKickOnDisconnectDelay\u0026#34;,\u0026#34;chatRateLimitBurst\u0026#34;,\u0026#34;generalRateLimitBurst\u0026#34;,\u0026#34;maxPartyMember\u0026#34;,\u0026#34;autoKickOnDisconnect\u0026#34;,\u0026#34;profanityFilter\u0026#34;,\u0026#34;enableChat\u0026#34;,\u0026#34;entitlementCheck\u0026#34;,\u0026#34;cancelTicketOnDisconnect\u0026#34;,\u0026#34;concurrentUsersLimit\u0026#34;,\u0026#34;readyConsentTimeout\u0026#34;,\u0026#34;disableInvitationOnJoinParty\u0026#34;,\u0026#34;allowJoinPartyDuringMatchmaking\u0026#34;,\u0026#34;allowInviteNonConnectedUser\u0026#34;,\u0026#34;keepPresenceActivityOnDisconnect\u0026#34;,\u0026#34;maxDSWaitTime\u0026#34;,\u0026#34;maxFriendsLimit\u0026#34;],\u0026#34;properties\u0026#34;:{\u0026#34;allowInviteNonConnectedUser\u0026#34;:{\u0026#34;type\u0026#34;:\u0026#34;boolean\u0026#34;},\u0026#34;allowJoinPartyDuringMatchmaking\u0026#34;:{\u0026#34;type\u0026#34;:\u0026#34;boolean\u0026#34;},\u0026#34;autoKickOnDisconnect\u0026#34;:{\u0026#34;type\u0026#34;:\u0026#34;boolean\u0026#34;},\u0026#34;autoKickOnDisconnectDelay\u0026#34;:{\u0026#34;type\u0026#34;:\u0026#34;integer\u0026#34;,\u0026#34;format\u0026#34;:\u0026#34;integer\u0026#34;},\u0026#34;cancelTicketOnDisconnect\u0026#34;:{\u0026#34;type\u0026#34;:\u0026#34;boolean\u0026#34;},\u0026#34;chatRateLimitBurst\u0026#34;:{\u0026#34;type\u0026#34;:\u0026#34;integer\u0026#34;,\u0026#34;format\u0026#34;:\u0026#34;int32\u0026#34;},\u0026#34;chatRateLimitDuration\u0026#34;:{\u0026#34;type\u0026#34;:\u0026#34;integer\u0026#34;,\u0026#34;format\u0026#34;:\u0026#34;integer\u0026#34;},\u0026#34;concurrentUsersLimit\u0026#34;:{\u0026#34;type\u0026#34;:\u0026#34;integer\u0026#34;,\u0026#34;format\u0026#34;:\u0026#34;int32\u0026#34;},\u0026#34;disableInvitationOnJoinParty\u0026#34;:{\u0026#34;type\u0026#34;:\u0026#34;boolean\u0026#34;},\u0026#34;enableChat\u0026#34;:{\u0026#34;type\u0026#34;:\u0026#34;boolean\u0026#34;},\u0026#34;entitlementCheck\u0026#34;:{\u0026#34;type\u0026#34;:\u0026#34;boolean\u0026#34;},\u0026#34;entitlementItemID\u0026#34;:{\u0026#34;type\u0026#34;:\u0026#34;string\u0026#34;},\u0026#34;generalRateLimitBurst\u0026#34;:{\u0026#34;type\u0026#34;:\u0026#34;integer\u0026#34;,\u0026#34;format\u0026#34;:\u0026#34;int32\u0026#34;},\u0026#34;generalRateLimitDuration\u0026#34;:{\u0026#34;type\u0026#34;:\u0026#34;integer\u0026#34;,\u0026#34;format\u0026#34;:\u0026#34;integer\u0026#34;},\u0026#34;keepPresenceActivityOnDisconnect\u0026#34;:{\u0026#34;type\u0026#34;:\u0026#34;boolean\u0026#34;},\u0026#34;maxDSWaitTime\u0026#34;:{\u0026#34;type\u0026#34;:\u0026#34;integer\u0026#34;,\u0026#34;format\u0026#34;:\u0026#34;integer\u0026#34;},\u0026#34;maxFriendsLimit\u0026#34;:{\u0026#34;type\u0026#34;:\u0026#34;integer\u0026#34;,\u0026#34;format\u0026#34;:\u0026#34;int32\u0026#34;},\u0026#34;maxPartyMember\u0026#34;:{\u0026#34;type\u0026#34;:\u0026#34;integer\u0026#34;,\u0026#34;format\u0026#34;:\u0026#34;int32\u0026#34;},\u0026#34;namespace\u0026#34;:{\u0026#34;type\u0026#34;:\u0026#34;string\u0026#34;},\u0026#34;profanityFilter\u0026#34;:{\u0026#34;type\u0026#34;:\u0026#34;boolean\u0026#34;},\u0026#34;readyConsentTimeout\u0026#34;:{\u0026#34;type\u0026#34;:\u0026#34;integer\u0026#34;,\u0026#34;format\u0026#34;:\u0026#34;integer\u0026#34;},\u0026#34;unregisterDelay\u0026#34;:{\u0026#34;type\u0026#34;:\u0026#34;integer\u0026#34;,\u0026#34;format\u0026#34;:\u0026#34;integer\u0026#34;}}}",
         "operationId": "adminExportConfigV1",
         "parameters": [
           {
@@ -1258,7 +1258,7 @@
         ],
         "responses": {
           "200": {
-            "description": "OK\nJSON Schema of the exported file:\n{\"required\":[\"namespace\",\"entitlementItemID\",\"chatRateLimitDuration\",\"unregisterDelay\",\"generalRateLimitDuration\",\"autoKickOnDisconnectDelay\",\"chatRateLimitBurst\",\"generalRateLimitBurst\",\"maxPartyMember\",\"autoKickOnDisconnect\",\"profanityFilter\",\"enableChat\",\"entitlementCheck\",\"cancelTicketOnDisconnect\",\"concurrentUsersLimit\",\"readyConsentTimeout\",\"disableInvitationOnJoinParty\",\"allowJoinPartyDuringMatchmaking\",\"allowInviteNonConnectedUser\",\"keepPresenceActivityOnDisconnect\",\"maxDSWaitTime\"],\"properties\":{\"allowInviteNonConnectedUser\":{\"type\":\"boolean\"},\"allowJoinPartyDuringMatchmaking\":{\"type\":\"boolean\"},\"autoKickOnDisconnect\":{\"type\":\"boolean\"},\"autoKickOnDisconnectDelay\":{\"type\":\"integer\",\"format\":\"integer\"},\"cancelTicketOnDisconnect\":{\"type\":\"boolean\"},\"chatRateLimitBurst\":{\"type\":\"integer\",\"format\":\"int32\"},\"chatRateLimitDuration\":{\"type\":\"integer\",\"format\":\"integer\"},\"concurrentUsersLimit\":{\"type\":\"integer\",\"format\":\"int32\"},\"disableInvitationOnJoinParty\":{\"type\":\"boolean\"},\"enableChat\":{\"type\":\"boolean\"},\"entitlementCheck\":{\"type\":\"boolean\"},\"entitlementItemID\":{\"type\":\"string\"},\"generalRateLimitBurst\":{\"type\":\"integer\",\"format\":\"int32\"},\"generalRateLimitDuration\":{\"type\":\"integer\",\"format\":\"integer\"},\"keepPresenceActivityOnDisconnect\":{\"type\":\"boolean\"},\"maxDSWaitTime\":{\"type\":\"integer\",\"format\":\"integer\"},\"maxPartyMember\":{\"type\":\"integer\",\"format\":\"int32\"},\"namespace\":{\"type\":\"string\"},\"profanityFilter\":{\"type\":\"boolean\"},\"readyConsentTimeout\":{\"type\":\"integer\",\"format\":\"integer\"},\"unregisterDelay\":{\"type\":\"integer\",\"format\":\"integer\"}}}",
+            "description": "OK\nJSON Schema of the exported file:\n{\"required\":[\"namespace\",\"entitlementItemID\",\"chatRateLimitDuration\",\"unregisterDelay\",\"generalRateLimitDuration\",\"autoKickOnDisconnectDelay\",\"chatRateLimitBurst\",\"generalRateLimitBurst\",\"maxPartyMember\",\"autoKickOnDisconnect\",\"profanityFilter\",\"enableChat\",\"entitlementCheck\",\"cancelTicketOnDisconnect\",\"concurrentUsersLimit\",\"readyConsentTimeout\",\"disableInvitationOnJoinParty\",\"allowJoinPartyDuringMatchmaking\",\"allowInviteNonConnectedUser\",\"keepPresenceActivityOnDisconnect\",\"maxDSWaitTime\",\"maxFriendsLimit\"],\"properties\":{\"allowInviteNonConnectedUser\":{\"type\":\"boolean\"},\"allowJoinPartyDuringMatchmaking\":{\"type\":\"boolean\"},\"autoKickOnDisconnect\":{\"type\":\"boolean\"},\"autoKickOnDisconnectDelay\":{\"type\":\"integer\",\"format\":\"integer\"},\"cancelTicketOnDisconnect\":{\"type\":\"boolean\"},\"chatRateLimitBurst\":{\"type\":\"integer\",\"format\":\"int32\"},\"chatRateLimitDuration\":{\"type\":\"integer\",\"format\":\"integer\"},\"concurrentUsersLimit\":{\"type\":\"integer\",\"format\":\"int32\"},\"disableInvitationOnJoinParty\":{\"type\":\"boolean\"},\"enableChat\":{\"type\":\"boolean\"},\"entitlementCheck\":{\"type\":\"boolean\"},\"entitlementItemID\":{\"type\":\"string\"},\"generalRateLimitBurst\":{\"type\":\"integer\",\"format\":\"int32\"},\"generalRateLimitDuration\":{\"type\":\"integer\",\"format\":\"integer\"},\"keepPresenceActivityOnDisconnect\":{\"type\":\"boolean\"},\"maxDSWaitTime\":{\"type\":\"integer\",\"format\":\"integer\"},\"maxFriendsLimit\":{\"type\":\"integer\",\"format\":\"int32\"},\"maxPartyMember\":{\"type\":\"integer\",\"format\":\"int32\"},\"namespace\":{\"type\":\"string\"},\"profanityFilter\":{\"type\":\"boolean\"},\"readyConsentTimeout\":{\"type\":\"integer\",\"format\":\"integer\"},\"unregisterDelay\":{\"type\":\"integer\",\"format\":\"integer\"}}}",
             "schema": {
               "type": "file"
             }
@@ -8459,6 +8459,10 @@
           "format": "integer",
           "type": "integer"
         },
+        "maxFriendsLimit": {
+          "format": "int32",
+          "type": "integer"
+        },
         "maxPartyMember": {
           "format": "int32",
           "type": "integer"
@@ -8562,6 +8566,10 @@
           "format": "integer",
           "type": "integer"
         },
+        "maxFriendsLimit": {
+          "format": "int32",
+          "type": "integer"
+        },
         "maxPartyMember": {
           "format": "int32",
           "type": "integer"
@@ -8578,10 +8586,7 @@
           "format": "integer",
           "type": "integer"
         }
-      },
-      "required": [
-        "unregisterDelay"
-      ]
+      }
     },
     "models.CreateConfigRequest": {
       "properties": {
@@ -8963,11 +8968,11 @@
     "path": "/lobby/apidocs/api.json"
   },
   "x-version": {
-    "buildDate": "2023-06-19T05:06:25+00:00",
-    "gitHash": "c8ad4302ffb7fa5e78b886a6474f009ee78f1f86",
+    "buildDate": "2023-07-05T14:39:25+00:00",
+    "gitHash": "9117c099d6de227d74740e94b4b2a1f32e6e4f63",
     "name": "justice-lobby-server",
-    "revisionID": "3.22.0",
-    "version": "3.22.0",
+    "revisionID": "3.23.0",
+    "version": "3.23.0",
     "version-justice": "3.45.0",
     "version-roles-seeding": "0.0.29"
   }

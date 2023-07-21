@@ -33,7 +33,7 @@ type CurrencyCreate struct {
 
 	// decimals, commonly set 2 if real currency or 0 if virtual currency
 	// Format: int32
-	Decimals int32 `json:"decimals,omitempty"`
+	Decimals int32 `json:"decimals"`
 
 	// Description, key is language, value is description max length is 255
 	LocalizationDescriptions map[string]string `json:"localizationDescriptions,omitempty"`

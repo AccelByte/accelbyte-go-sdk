@@ -30340,7 +30340,8 @@
         "decimals": {
           "description": "decimals, commonly set 2 if real currency or 0 if virtual currency",
           "format": "int32",
-          "type": "integer"
+          "type": "integer",
+          "x-omitempty": false
         },
         "localizationDescriptions": {
           "additionalProperties": {

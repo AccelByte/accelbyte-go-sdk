@@ -204,6 +204,7 @@ modules.xml
 /samples/title-matchmaking/aws-lambda/aws-lambda
 /samples/title-matchmaking/client/sample-apps
 /samples/ondemand-refresh-token/ondemand-refresh-token
+/samples/custom-operation/custom-operation
 
 # MacOS
 .DS_Store

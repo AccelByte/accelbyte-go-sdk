@@ -1,3 +1,12 @@
+<a name="v0.49.1"></a>
+## [v0.49.1]
+### fix
+- add x-omitempty for decimal field in currencyCreate platform
+### chore
+- update CHANGELOG.md
+- update getting started module sum
+
+
 <a name="v0.49.0"></a>
 ## [v0.49.0]
 ### fix

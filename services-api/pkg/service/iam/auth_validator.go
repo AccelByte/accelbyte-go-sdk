@@ -234,6 +234,7 @@ func (v *TokenValidator) fetchJWKSet() error {
 		return err
 	}
 
+	v.JwkSet = jwkSet
 	for _, key := range jwkSet.Keys {
 		publicKey, err := v.convertToPublicKey(key)
 		if err != nil {

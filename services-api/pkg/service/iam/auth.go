@@ -11,7 +11,6 @@ import (
 	"errors"
 	"fmt"
 	"log"
-	"math/big"
 	"net/http"
 	"net/url"
 	"sync/atomic"
@@ -452,52 +451,9 @@ func (o *OAuth20Service) ParseAccessToken(accessToken string, validate bool) (*i
 		return nil, fmt.Errorf("failed to parse. %w", err)
 	}
 
-	// Fetch the JWKS and parse it
-	jwks, err := o.GetJWKSV3Short(&o_auth2_0.GetJWKSV3Params{})
-	if err != nil {
-		return nil, fmt.Errorf("failed to get jwks. %w", err)
-	}
-
-	// Get the public key from the JWKS based on the Key ID (kid) from the token's header
-	headers := parsedToken.Headers
-	if len(headers) == 0 {
-		return nil, fmt.Errorf("no headers found in the token. %w", err)
-	}
-	kid := headers[0].KeyID
-
-	var publicKey *rsa.PublicKey
-	for _, key := range jwks.Keys {
-		if key.Kid == kid {
-			publicKey, err = convertJWKToRSAPublicKey(key)
-			if err != nil {
-				return nil, fmt.Errorf("failed to convert public key. %w", err)
-			}
-
-			break
-		}
-	}
-
-	if publicKey == nil {
-		return nil, fmt.Errorf("public key with kid %s not found in JWKS", kid)
-	}
-
-	// Verify and decode the token claims
-	claims := struct {
-		*iamclientmodels.OauthmodelTokenResponseV3
-		Sub string `json:"sub"`
-	}{}
-	err = parsedToken.Claims(publicKey, &claims)
-	if err != nil {
-		return nil, fmt.Errorf("failed to claims. %w", err)
-	}
-
-	var tokenResponseV3 = claims.OauthmodelTokenResponseV3
-	tokenResponseV3.AccessToken = &accessToken
-	tokenResponseV3.UserID = claims.Sub
-
-	// Validate the token if required
-	if validate {
-		tokenValidator := &TokenValidator{
+	// Check if token validation is already exist
+	if o.tokenValidation == nil {
+		o.tokenValidation = &TokenValidator{
 			AuthService:     *o,
 			RefreshInterval: time.Hour,
 
@@ -511,6 +467,46 @@ func (o *OAuth20Service) ParseAccessToken(accessToken string, validate bool) (*i
 			Roles:                 make(map[string]*iamclientmodels.ModelRoleResponseV3),
 		}
 
+		// Initiate
+		o.tokenValidation.Initialize()
+	}
+
+	// Get the public key from the JWKS based on the Key ID (kid) from the token's header
+	headers := parsedToken.Headers
+	if len(headers) == 0 {
+		return nil, fmt.Errorf("no headers found in the token. %w", err)
+	}
+	kid := headers[0].KeyID
+
+	if o.tokenValidation.PublicKeys == nil {
+		err = o.tokenValidation.fetchJWKSet()
+		if err != nil {
+			return nil, fmt.Errorf("failed to fetch jwks key. %w", err)
+		}
+	}
+
+	publicKey, ok := o.tokenValidation.PublicKeys[kid]
+	if !ok {
+		return nil, fmt.Errorf("unable to find public key with kid %s", kid)
+	}
+
+	// Verify and decode the token claims
+	claims := struct {
+		*iamclientmodels.OauthmodelTokenResponseV3
+		Sub string `json:"sub"`
+	}{}
+
+	err = parsedToken.Claims(publicKey, &claims)
+	if err != nil {
+		return nil, fmt.Errorf("failed to claims. %w", err)
+	}
+
+	var tokenResponseV3 = claims.OauthmodelTokenResponseV3
+	tokenResponseV3.AccessToken = &accessToken
+	tokenResponseV3.UserID = claims.Sub
+
+	// Validate the token if required
+	if validate {
 		var perm *Permission
 		if len(tokenResponseV3.Permissions) > 0 {
 			permission := tokenResponseV3.Permissions[0]
@@ -521,33 +517,12 @@ func (o *OAuth20Service) ParseAccessToken(accessToken string, validate bool) (*i
 				CronSchedule:    permission.SchedCron,
 				RangeSchedule:   permission.SchedRange,
 			}
-
-			errValidate := tokenValidator.Validate(accessToken, perm, tokenResponseV3.Namespace, nil)
-			if errValidate != nil {
-				log.Fatalf("token validation failed: %s", errValidate.Error())
-			}
+		}
+		errValidate := o.tokenValidation.Validate(accessToken, perm, tokenResponseV3.Namespace, nil)
+		if errValidate != nil {
+			log.Fatalf("token validation failed: %s", errValidate.Error())
 		}
 	}
 
 	return tokenResponseV3, nil
-}
-
-// Function to convert a JWK to an RSA public key
-func convertJWKToRSAPublicKey(jwkKey *iamclientmodels.OauthcommonJWKKey) (*rsa.PublicKey, error) {
-	modulus, err := base64.RawURLEncoding.DecodeString(jwkKey.N)
-	if err != nil {
-		return nil, fmt.Errorf("failed to decode jwk modulus. %w", err)
-	}
-
-	exponent, err := base64.RawURLEncoding.DecodeString(jwkKey.E)
-	if err != nil {
-		return nil, fmt.Errorf("failed to decode jwk exponent. %w", err)
-	}
-
-	rsaPublicKey := &rsa.PublicKey{
-		N: new(big.Int).SetBytes(modulus),
-		E: int(new(big.Int).SetBytes(exponent).Int64()),
-	}
-
-	return rsaPublicKey, nil
 }

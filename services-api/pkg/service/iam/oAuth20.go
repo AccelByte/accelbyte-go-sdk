@@ -24,6 +24,8 @@ type OAuth20Service struct {
 	ConfigRepository       repository.ConfigRepository
 	TokenRepository        repository.TokenRepository
 	RefreshTokenRepository repository.RefreshTokenRepository
+
+	tokenValidation *TokenValidator
 }
 
 func (aaa *OAuth20Service) GetAuthSession() auth.Session {

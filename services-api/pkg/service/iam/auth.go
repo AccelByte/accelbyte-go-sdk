@@ -5,11 +5,17 @@
 package iam
 
 import (
+	"crypto/rsa"
+	"encoding/base64"
 	"encoding/json"
 	"errors"
+	"fmt"
+	"log"
+	"math/big"
 	"net/http"
 	"net/url"
 	"sync/atomic"
+	"time"
 
 	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclient/o_auth2_0"
 	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclient/o_auth2_0_extension"
@@ -17,6 +23,7 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/repository"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils/auth"
+	"github.com/AccelByte/go-jose/jwt"
 	"github.com/go-openapi/runtime/client"
 	"github.com/sirupsen/logrus"
 )
@@ -436,4 +443,111 @@ func (o *OAuth20Service) Logout() error {
 	}
 
 	return nil
+}
+
+func (o *OAuth20Service) ParseAccessToken(accessToken string, validate bool) (*iamclientmodels.OauthmodelTokenResponseV3, error) {
+	// Parse the JWT token
+	parsedToken, err := jwt.ParseSigned(accessToken)
+	if err != nil {
+		return nil, fmt.Errorf("failed to parse. %w", err)
+	}
+
+	// Fetch the JWKS and parse it
+	jwks, err := o.GetJWKSV3Short(&o_auth2_0.GetJWKSV3Params{})
+	if err != nil {
+		return nil, fmt.Errorf("failed to get jwks. %w", err)
+	}
+
+	// Get the public key from the JWKS based on the Key ID (kid) from the token's header
+	headers := parsedToken.Headers
+	if len(headers) == 0 {
+		return nil, fmt.Errorf("no headers found in the token. %w", err)
+	}
+	kid := headers[0].KeyID
+
+	var publicKey *rsa.PublicKey
+	for _, key := range jwks.Keys {
+		if key.Kid == kid {
+			publicKey, err = convertJWKToRSAPublicKey(key)
+			if err != nil {
+				return nil, fmt.Errorf("failed to convert public key. %w", err)
+			}
+
+			break
+		}
+	}
+
+	if publicKey == nil {
+		return nil, fmt.Errorf("public key with kid %s not found in JWKS", kid)
+	}
+
+	// Verify and decode the token claims
+	claims := struct {
+		*iamclientmodels.OauthmodelTokenResponseV3
+		Sub string `json:"sub"`
+	}{}
+	err = parsedToken.Claims(publicKey, &claims)
+	if err != nil {
+		return nil, fmt.Errorf("failed to claims. %w", err)
+	}
+
+	var tokenResponseV3 = claims.OauthmodelTokenResponseV3
+	tokenResponseV3.AccessToken = &accessToken
+	tokenResponseV3.UserID = claims.Sub
+
+	// Validate the token if required
+	if validate {
+		tokenValidator := &TokenValidator{
+			AuthService:     *o,
+			RefreshInterval: time.Hour,
+
+			Filter:                nil,
+			JwkSet:                nil,
+			JwtClaims:             JWTClaims{},
+			JwtEncoding:           *base64.URLEncoding.WithPadding(base64.NoPadding),
+			PublicKeys:            make(map[string]*rsa.PublicKey),
+			LocalValidationActive: true,
+			RevokedUsers:          make(map[string]time.Time),
+			Roles:                 make(map[string]*iamclientmodels.ModelRoleResponseV3),
+		}
+
+		var perm *Permission
+		if len(tokenResponseV3.Permissions) > 0 {
+			permission := tokenResponseV3.Permissions[0]
+			perm = &Permission{
+				Resource:        *permission.Resource,
+				Action:          int(*permission.Action),
+				ScheduledAction: int(permission.SchedAction),
+				CronSchedule:    permission.SchedCron,
+				RangeSchedule:   permission.SchedRange,
+			}
+
+			errValidate := tokenValidator.Validate(accessToken, perm, tokenResponseV3.Namespace, nil)
+			if errValidate != nil {
+				log.Fatalf("token validation failed: %s", errValidate.Error())
+			}
+		}
+	}
+
+	return tokenResponseV3, nil
+}
+
+// Function to convert a JWK to an RSA public key
+func convertJWKToRSAPublicKey(jwkKey *iamclientmodels.OauthcommonJWKKey) (*rsa.PublicKey, error) {
+	modulus, err := base64.RawURLEncoding.DecodeString(jwkKey.N)
+	if err != nil {
+		return nil, fmt.Errorf("failed to decode jwk modulus. %w", err)
+	}
+
+	exponent, err := base64.RawURLEncoding.DecodeString(jwkKey.E)
+	if err != nil {
+		return nil, fmt.Errorf("failed to decode jwk exponent. %w", err)
+	}
+
+	rsaPublicKey := &rsa.PublicKey{
+		N: new(big.Int).SetBytes(modulus),
+		E: int(new(big.Int).SetBytes(exponent).Int64()),
+	}
+
+	return rsaPublicKey, nil
 }

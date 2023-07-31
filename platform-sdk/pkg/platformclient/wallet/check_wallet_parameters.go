@@ -24,6 +24,7 @@ const (
 	CheckWalletGooglePlayConstant  = "GooglePlay"
 	CheckWalletIOSConstant         = "IOS"
 	CheckWalletNintendoConstant    = "Nintendo"
+	CheckWalletOculusConstant      = "Oculus"
 	CheckWalletOtherConstant       = "Other"
 	CheckWalletPlaystationConstant = "Playstation"
 	CheckWalletSteamConstant       = "Steam"

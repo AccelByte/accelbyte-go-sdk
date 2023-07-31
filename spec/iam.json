@@ -30,6 +30,7 @@
         "ADMIN:NAMESPACE:{namespace}:AGERESTRICTION [UPDATE]": "ADMIN:NAMESPACE:{namespace}:AGERESTRICTION [UPDATE]",
         "ADMIN:NAMESPACE:{namespace}:BAN [CREATE]": "ADMIN:NAMESPACE:{namespace}:BAN [CREATE]",
         "ADMIN:NAMESPACE:{namespace}:BAN [UPDATE]": "ADMIN:NAMESPACE:{namespace}:BAN [UPDATE]",
+        "ADMIN:NAMESPACE:{namespace}:BAN:USER [READ]": "ADMIN:NAMESPACE:{namespace}:BAN:USER [READ]",
         "ADMIN:NAMESPACE:{namespace}:BAN:USER:{userId} [CREATE]": "ADMIN:NAMESPACE:{namespace}:BAN:USER:{userId} [CREATE]",
         "ADMIN:NAMESPACE:{namespace}:BAN:USER:{userId} [READ]": "ADMIN:NAMESPACE:{namespace}:BAN:USER:{userId} [READ]",
         "ADMIN:NAMESPACE:{namespace}:BAN:USER:{userId} [UPDATE]": "ADMIN:NAMESPACE:{namespace}:BAN:USER:{userId} [UPDATE]",
@@ -9854,6 +9855,98 @@
         ]
       }
     },
+    "/iam/v3/admin/namespaces/{namespace}/users/bans": {
+      "post": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "\u0026lt;p\u0026gt;Required permission \u0026#39;ADMIN:NAMESPACE:{namespace}:BAN:USER [READ]\u0026#39;\u0026lt;/p\u0026gt;\n\u0026lt;p\u0026gt;This endpoint returns user bans of userIDs specified in the payload\u0026lt;/p\u0026gt;\n\u0026lt;p\u0026gt;action code : 10127\u0026lt;/p\u0026gt;\n",
+        "operationId": "AdminGetBulkUserBanV3",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/model.GetBulkUserBansRequest"
+            }
+          },
+          {
+            "description": "Namespace, only accept alphabet and numeric",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "Filter ban based on the ban status. If you set this, only active ban returned",
+            "in": "query",
+            "name": "activeOnly",
+            "type": "boolean",
+            "x-omitempty": false
+          },
+          {
+            "description": "Filter ban based on the ban type. You can see list of ban from GET /iam/v3/admin/bans",
+            "in": "query",
+            "name": "banType",
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/model.GetUserBanV3Response"
+            }
+          },
+          "400": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20002\u003c/td\u003e\u003ctd\u003evalidation error\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/rest.ErrorResponse"
+            }
+          },
+          "401": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20001\u003c/td\u003e\u003ctd\u003eunauthorized access\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/rest.ErrorResponse"
+            }
+          },
+          "403": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20013\u003c/td\u003e\u003ctd\u003einsufficient permissions\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/rest.ErrorResponse"
+            }
+          },
+          "404": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20008\u003c/td\u003e\u003ctd\u003euser not found\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e10139\u003c/td\u003e\u003ctd\u003eplatform account not found\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/rest.ErrorResponse"
+            }
+          },
+          "500": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20000\u003c/td\u003e\u003ctd\u003einternal server error\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/rest.ErrorResponse"
+            }
+          }
+        },
+        "security": [
+          {
+            "HasPermission": [
+              "ADMIN:NAMESPACE:{namespace}:BAN:USER [READ]"
+            ],
+            "authorization": []
+          }
+        ],
+        "summary": "Get bulk user bans",
+        "tags": [
+          "Users"
+        ]
+      }
+    },
     "/iam/v3/admin/namespaces/{namespace}/users/bulk": {
       "post": {
         "consumes": [
@@ -15028,13 +15121,21 @@
             "name": "userId",
             "required": true,
             "type": "string"
+          },
+          {
+            "default": false,
+            "description": "\u003cp\u003eThis queryParameter only works when utilizing userID and namespace publisher.\u003c/p\u003e \u003cp\u003eIf true, the system will revoke all game account under the publisher account.\u003c/p\u003e",
+            "in": "query",
+            "name": "includeGameNamespace",
+            "type": "boolean",
+            "x-omitempty": false
           }
         ],
         "produces": [
           "application/json"
         ],
         "responses": {
-          "200": {
+          "204": {
             "description": "user revoked"
           },
           "400": {
@@ -27364,6 +27465,19 @@
         "Paging"
       ]
     },
+    "model.GetBulkUserBansRequest": {
+      "properties": {
+        "bulkUserId": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "required": [
+        "bulkUserId"
+      ]
+    },
     "model.GetLinkHeadlessAccountConflictResponse": {
       "properties": {
         "currentAccount": {
@@ -31485,8 +31599,8 @@
     "path": "/iam/apidocs/api.json"
   },
   "x-version": {
-    "buildDate": "2023-07-17T01:03:55+00:00",
-    "gitHash": "733582c1aa438194f1b42ab1f9d5c8997d996c86",
+    "buildDate": "2023-07-20T02:21:08+00:00",
+    "gitHash": "017148d6983a3e688efa79103f891af0330e9aa6",
     "name": "justice-iam-service",
     "realm": "staging",
     "version": "6.1.0",

@@ -26,7 +26,7 @@ type PaymentRequest struct {
 	Amount *int64 `json:"amount"`
 
 	// wallet platform, base on platform wallet rule to payment wallet
-	// Enum: ['Epic', 'GooglePlay', 'IOS', 'Nintendo', 'Other', 'Playstation', 'Steam', 'Xbox']
+	// Enum: ['Epic', 'GooglePlay', 'IOS', 'Nintendo', 'Oculus', 'Other', 'Playstation', 'Steam', 'Xbox']
 	WalletPlatform string `json:"walletPlatform,omitempty"`
 }
 
@@ -57,7 +57,7 @@ var paymentRequestTypeWalletPlatformPropEnum []interface{}
 
 func init() {
 	var res []string
-	if err := json.Unmarshal([]byte(`["EPIC", "GOOGLEPLAY", "IOS", "NINTENDO", "OTHER", "PLAYSTATION", "STEAM", "XBOX"]`), &res); err != nil {
+	if err := json.Unmarshal([]byte(`["EPIC", "GOOGLEPLAY", "IOS", "NINTENDO", "OCULUS", "OTHER", "PLAYSTATION", "STEAM", "XBOX"]`), &res); err != nil {
 		panic(err)
 	}
 	for _, v := range res {
@@ -78,6 +78,9 @@ const (
 
 	// PaymentRequestWalletPlatformNINTENDO captures enum value "NINTENDO"
 	PaymentRequestWalletPlatformNINTENDO string = "NINTENDO"
+
+	// PaymentRequestWalletPlatformOCULUS captures enum value "OCULUS"
+	PaymentRequestWalletPlatformOCULUS string = "OCULUS"
 
 	// PaymentRequestWalletPlatformOTHER captures enum value "OTHER"
 	PaymentRequestWalletPlatformOTHER string = "OTHER"

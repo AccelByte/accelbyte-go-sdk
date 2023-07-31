@@ -23,7 +23,7 @@ import (
 // with the default values initialized.
 func NewAdminSearchContentParams() *AdminSearchContentParams {
 	var (
-		limitDefault  = int64(1000)
+		limitDefault  = int64(20)
 		offsetDefault = int64(0)
 	)
 	return &AdminSearchContentParams{
@@ -38,7 +38,7 @@ func NewAdminSearchContentParams() *AdminSearchContentParams {
 // with the default values initialized, and the ability to set a timeout on a request
 func NewAdminSearchContentParamsWithTimeout(timeout time.Duration) *AdminSearchContentParams {
 	var (
-		limitDefault  = int64(1000)
+		limitDefault  = int64(20)
 		offsetDefault = int64(0)
 	)
 	return &AdminSearchContentParams{
@@ -53,7 +53,7 @@ func NewAdminSearchContentParamsWithTimeout(timeout time.Duration) *AdminSearchC
 // with the default values initialized, and the ability to set a context for a request
 func NewAdminSearchContentParamsWithContext(ctx context.Context) *AdminSearchContentParams {
 	var (
-		limitDefault  = int64(1000)
+		limitDefault  = int64(20)
 		offsetDefault = int64(0)
 	)
 	return &AdminSearchContentParams{
@@ -68,7 +68,7 @@ func NewAdminSearchContentParamsWithContext(ctx context.Context) *AdminSearchCon
 // with the default values initialized, and the ability to set a custom HTTPClient for a request
 func NewAdminSearchContentParamsWithHTTPClient(client *http.Client) *AdminSearchContentParams {
 	var (
-		limitDefault  = int64(1000)
+		limitDefault  = int64(20)
 		offsetDefault = int64(0)
 	)
 	return &AdminSearchContentParams{

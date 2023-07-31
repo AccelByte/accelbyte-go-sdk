@@ -31,7 +31,7 @@ type UserDLCRecord struct {
 	ObtainedAt *strfmt.DateTime `json:"obtainedAt,omitempty"`
 
 	// platform
-	// Enum: ['EPICGAMES', 'PSN', 'STEAM', 'XBOX']
+	// Enum: ['EPICGAMES', 'OCULUS', 'PSN', 'STEAM', 'XBOX']
 	Platform string `json:"platform,omitempty"`
 
 	// revocationresult
@@ -80,7 +80,7 @@ var userDlcRecordTypePlatformPropEnum []interface{}
 
 func init() {
 	var res []string
-	if err := json.Unmarshal([]byte(`["EPICGAMES", "PSN", "STEAM", "XBOX"]`), &res); err != nil {
+	if err := json.Unmarshal([]byte(`["EPICGAMES", "OCULUS", "PSN", "STEAM", "XBOX"]`), &res); err != nil {
 		panic(err)
 	}
 	for _, v := range res {
@@ -92,6 +92,9 @@ const (
 
 	// UserDLCRecordPlatformEPICGAMES captures enum value "EPICGAMES"
 	UserDLCRecordPlatformEPICGAMES string = "EPICGAMES"
+
+	// UserDLCRecordPlatformOCULUS captures enum value "OCULUS"
+	UserDLCRecordPlatformOCULUS string = "OCULUS"
 
 	// UserDLCRecordPlatformPSN captures enum value "PSN"
 	UserDLCRecordPlatformPSN string = "PSN"

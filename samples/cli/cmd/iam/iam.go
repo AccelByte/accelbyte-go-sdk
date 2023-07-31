@@ -173,6 +173,7 @@ func init() {
 	IamCmd.AddCommand(users.AdminGetUserByPlatformUserIDV3Cmd)
 	IamCmd.AddCommand(users.GetAdminUsersByRoleIdV3Cmd)
 	IamCmd.AddCommand(users.AdminGetUserByEmailAddressV3Cmd)
+	IamCmd.AddCommand(users.AdminGetBulkUserBanV3Cmd)
 	IamCmd.AddCommand(users.AdminListUserIDByUserIDsV3Cmd)
 	IamCmd.AddCommand(users.AdminInviteUserV3Cmd)
 	IamCmd.AddCommand(users.AdminQueryThirdPlatformLinkHistoryV3Cmd)

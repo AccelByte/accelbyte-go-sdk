@@ -12,10 +12,10 @@ import (
 	"github.com/go-openapi/swag"
 )
 
-// Achievement Achievement
+// SteamAchievement Steam achievement
 //
-// swagger:model Achievement.
-type Achievement struct {
+// swagger:model Steam achievement.
+type SteamAchievement struct {
 
 	// id
 	ID string `json:"id,omitempty"`
@@ -25,8 +25,8 @@ type Achievement struct {
 	Value int64 `json:"value,omitempty"`
 }
 
-// Validate validates this Achievement
-func (m *Achievement) Validate(formats strfmt.Registry) error {
+// Validate validates this Steam achievement
+func (m *SteamAchievement) Validate(formats strfmt.Registry) error {
 	var res []error
 
 	if len(res) > 0 {
@@ -36,7 +36,7 @@ func (m *Achievement) Validate(formats strfmt.Registry) error {
 }
 
 // MarshalBinary interface implementation
-func (m *Achievement) MarshalBinary() ([]byte, error) {
+func (m *SteamAchievement) MarshalBinary() ([]byte, error) {
 	if m == nil {
 		return nil, nil
 	}
@@ -44,8 +44,8 @@ func (m *Achievement) MarshalBinary() ([]byte, error) {
 }
 
 // UnmarshalBinary interface implementation
-func (m *Achievement) UnmarshalBinary(b []byte) error {
-	var res Achievement
+func (m *SteamAchievement) UnmarshalBinary(b []byte) error {
+	var res SteamAchievement
 	if err := swag.ReadJSON(b, &res); err != nil {
 		return err
 	}

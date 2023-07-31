@@ -35,7 +35,7 @@ type MockIAPReceipt struct {
 	Region string `json:"region,omitempty"`
 
 	// The IAP type.
-	// Enum: ['APPLE', 'EPICGAMES', 'GOOGLE', 'PLAYSTATION', 'STADIA', 'STEAM', 'TWITCH', 'XBOX']
+	// Enum: ['APPLE', 'EPICGAMES', 'GOOGLE', 'OCULUS', 'PLAYSTATION', 'STADIA', 'STEAM', 'TWITCH', 'XBOX']
 	// Required: true
 	Type *string `json:"type"`
 }
@@ -99,7 +99,7 @@ var mockIapReceiptTypeTypePropEnum []interface{}
 
 func init() {
 	var res []string
-	if err := json.Unmarshal([]byte(`["APPLE", "EPICGAMES", "GOOGLE", "PLAYSTATION", "STADIA", "STEAM", "TWITCH", "XBOX"]`), &res); err != nil {
+	if err := json.Unmarshal([]byte(`["APPLE", "EPICGAMES", "GOOGLE", "OCULUS", "PLAYSTATION", "STADIA", "STEAM", "TWITCH", "XBOX"]`), &res); err != nil {
 		panic(err)
 	}
 	for _, v := range res {
@@ -117,6 +117,9 @@ const (
 
 	// MockIAPReceiptTypeGOOGLE captures enum value "GOOGLE"
 	MockIAPReceiptTypeGOOGLE string = "GOOGLE"
+
+	// MockIAPReceiptTypeOCULUS captures enum value "OCULUS"
+	MockIAPReceiptTypeOCULUS string = "OCULUS"
 
 	// MockIAPReceiptTypePLAYSTATION captures enum value "PLAYSTATION"
 	MockIAPReceiptTypePLAYSTATION string = "PLAYSTATION"

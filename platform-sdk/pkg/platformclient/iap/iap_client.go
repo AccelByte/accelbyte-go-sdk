@@ -56,6 +56,12 @@ type ClientService interface {
 	UpdateIAPItemConfigShort(params *UpdateIAPItemConfigParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateIAPItemConfigOK, error)
 	DeleteIAPItemConfig(params *DeleteIAPItemConfigParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteIAPItemConfigNoContent, error)
 	DeleteIAPItemConfigShort(params *DeleteIAPItemConfigParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteIAPItemConfigNoContent, error)
+	GetOculusIAPConfig(params *GetOculusIAPConfigParams, authInfo runtime.ClientAuthInfoWriter) (*GetOculusIAPConfigOK, error)
+	GetOculusIAPConfigShort(params *GetOculusIAPConfigParams, authInfo runtime.ClientAuthInfoWriter) (*GetOculusIAPConfigOK, error)
+	UpdateOculusIAPConfig(params *UpdateOculusIAPConfigParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateOculusIAPConfigOK, error)
+	UpdateOculusIAPConfigShort(params *UpdateOculusIAPConfigParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateOculusIAPConfigOK, error)
+	DeleteOculusIAPConfig(params *DeleteOculusIAPConfigParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteOculusIAPConfigNoContent, error)
+	DeleteOculusIAPConfigShort(params *DeleteOculusIAPConfigParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteOculusIAPConfigNoContent, error)
 	GetPlayStationIAPConfig(params *GetPlayStationIAPConfigParams, authInfo runtime.ClientAuthInfoWriter) (*GetPlayStationIAPConfigOK, error)
 	GetPlayStationIAPConfigShort(params *GetPlayStationIAPConfigParams, authInfo runtime.ClientAuthInfoWriter) (*GetPlayStationIAPConfigOK, error)
 	UpdatePlaystationIAPConfig(params *UpdatePlaystationIAPConfigParams, authInfo runtime.ClientAuthInfoWriter) (*UpdatePlaystationIAPConfigOK, error)
@@ -64,7 +70,7 @@ type ClientService interface {
 	DeletePlaystationIAPConfigShort(params *DeletePlaystationIAPConfigParams, authInfo runtime.ClientAuthInfoWriter) (*DeletePlaystationIAPConfigNoContent, error)
 	GetSteamIAPConfig(params *GetSteamIAPConfigParams, authInfo runtime.ClientAuthInfoWriter) (*GetSteamIAPConfigOK, error)
 	GetSteamIAPConfigShort(params *GetSteamIAPConfigParams, authInfo runtime.ClientAuthInfoWriter) (*GetSteamIAPConfigOK, error)
-	UpdateSteamIAPConfig(params *UpdateSteamIAPConfigParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateSteamIAPConfigOK, error)
+	UpdateSteamIAPConfig(params *UpdateSteamIAPConfigParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateSteamIAPConfigOK, *UpdateSteamIAPConfigBadRequest, error)
 	UpdateSteamIAPConfigShort(params *UpdateSteamIAPConfigParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateSteamIAPConfigOK, error)
 	DeleteSteamIAPConfig(params *DeleteSteamIAPConfigParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteSteamIAPConfigNoContent, error)
 	DeleteSteamIAPConfigShort(params *DeleteSteamIAPConfigParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteSteamIAPConfigNoContent, error)
@@ -100,6 +106,8 @@ type ClientService interface {
 	SyncEpicGamesInventoryShort(params *SyncEpicGamesInventoryParams, authInfo runtime.ClientAuthInfoWriter) (*SyncEpicGamesInventoryOK, error)
 	PublicFulfillGoogleIAPItem(params *PublicFulfillGoogleIAPItemParams, authInfo runtime.ClientAuthInfoWriter) (*PublicFulfillGoogleIAPItemOK, *PublicFulfillGoogleIAPItemBadRequest, *PublicFulfillGoogleIAPItemNotFound, *PublicFulfillGoogleIAPItemConflict, error)
 	PublicFulfillGoogleIAPItemShort(params *PublicFulfillGoogleIAPItemParams, authInfo runtime.ClientAuthInfoWriter) (*PublicFulfillGoogleIAPItemOK, error)
+	SyncOculusConsumableEntitlements(params *SyncOculusConsumableEntitlementsParams, authInfo runtime.ClientAuthInfoWriter) (*SyncOculusConsumableEntitlementsOK, *SyncOculusConsumableEntitlementsBadRequest, error)
+	SyncOculusConsumableEntitlementsShort(params *SyncOculusConsumableEntitlementsParams, authInfo runtime.ClientAuthInfoWriter) (*SyncOculusConsumableEntitlementsOK, error)
 	PublicReconcilePlayStationStore(params *PublicReconcilePlayStationStoreParams, authInfo runtime.ClientAuthInfoWriter) (*PublicReconcilePlayStationStoreOK, *PublicReconcilePlayStationStoreBadRequest, error)
 	PublicReconcilePlayStationStoreShort(params *PublicReconcilePlayStationStoreParams, authInfo runtime.ClientAuthInfoWriter) (*PublicReconcilePlayStationStoreOK, error)
 	PublicReconcilePlayStationStoreWithMultipleServiceLabels(params *PublicReconcilePlayStationStoreWithMultipleServiceLabelsParams, authInfo runtime.ClientAuthInfoWriter) (*PublicReconcilePlayStationStoreWithMultipleServiceLabelsOK, *PublicReconcilePlayStationStoreWithMultipleServiceLabelsBadRequest, error)
@@ -1404,6 +1412,300 @@ func (a *Client) DeleteIAPItemConfigShort(params *DeleteIAPItemConfigParams, aut
 }
 
 /*
+Deprecated: 2022-08-10 - Use GetOculusIAPConfigShort instead.
+
+GetOculusIAPConfig get oculus iap config
+Get oculus iap config.
+Other detail info:
+
+  * Required permission : resource="ADMIN:NAMESPACE:{namespace}:IAP:CONFIG", action=2 (READ)
+  *  Returns : steam iap config
+*/
+func (a *Client) GetOculusIAPConfig(params *GetOculusIAPConfigParams, authInfo runtime.ClientAuthInfoWriter) (*GetOculusIAPConfigOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewGetOculusIAPConfigParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "getOculusIAPConfig",
+		Method:             "GET",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/iap/config/oculus",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &GetOculusIAPConfigReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *GetOculusIAPConfigOK:
+		return v, nil
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+GetOculusIAPConfigShort get oculus iap config
+Get oculus iap config.
+Other detail info:
+
+  * Required permission : resource="ADMIN:NAMESPACE:{namespace}:IAP:CONFIG", action=2 (READ)
+  *  Returns : steam iap config
+*/
+func (a *Client) GetOculusIAPConfigShort(params *GetOculusIAPConfigParams, authInfo runtime.ClientAuthInfoWriter) (*GetOculusIAPConfigOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewGetOculusIAPConfigParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "getOculusIAPConfig",
+		Method:             "GET",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/iap/config/oculus",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &GetOculusIAPConfigReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *GetOculusIAPConfigOK:
+		return v, nil
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+Deprecated: 2022-08-10 - Use UpdateOculusIAPConfigShort instead.
+
+UpdateOculusIAPConfig update oculus iap config
+Update oculus iap config. Other detail info:
+  * Required permission : resource="ADMIN:NAMESPACE:{namespace}:IAP:CONFIG", action=4 (UPDATE)
+  *  Returns : updated steam iap config
+*/
+func (a *Client) UpdateOculusIAPConfig(params *UpdateOculusIAPConfigParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateOculusIAPConfigOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewUpdateOculusIAPConfigParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "updateOculusIAPConfig",
+		Method:             "PUT",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/iap/config/oculus",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &UpdateOculusIAPConfigReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *UpdateOculusIAPConfigOK:
+		return v, nil
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+UpdateOculusIAPConfigShort update oculus iap config
+Update oculus iap config. Other detail info:
+  * Required permission : resource="ADMIN:NAMESPACE:{namespace}:IAP:CONFIG", action=4 (UPDATE)
+  *  Returns : updated steam iap config
+*/
+func (a *Client) UpdateOculusIAPConfigShort(params *UpdateOculusIAPConfigParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateOculusIAPConfigOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewUpdateOculusIAPConfigParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "updateOculusIAPConfig",
+		Method:             "PUT",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/iap/config/oculus",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &UpdateOculusIAPConfigReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *UpdateOculusIAPConfigOK:
+		return v, nil
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+Deprecated: 2022-08-10 - Use DeleteOculusIAPConfigShort instead.
+
+DeleteOculusIAPConfig delete oculus iap config
+Delete oculus iap config.
+Other detail info:
+
+  * Required permission : resource="ADMIN:NAMESPACE:{namespace}:IAP:CONFIG", action=8 (DELETE)
+*/
+func (a *Client) DeleteOculusIAPConfig(params *DeleteOculusIAPConfigParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteOculusIAPConfigNoContent, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewDeleteOculusIAPConfigParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "deleteOculusIAPConfig",
+		Method:             "DELETE",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/iap/config/oculus",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &DeleteOculusIAPConfigReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *DeleteOculusIAPConfigNoContent:
+		return v, nil
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+DeleteOculusIAPConfigShort delete oculus iap config
+Delete oculus iap config.
+Other detail info:
+
+  * Required permission : resource="ADMIN:NAMESPACE:{namespace}:IAP:CONFIG", action=8 (DELETE)
+*/
+func (a *Client) DeleteOculusIAPConfigShort(params *DeleteOculusIAPConfigParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteOculusIAPConfigNoContent, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewDeleteOculusIAPConfigParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "deleteOculusIAPConfig",
+		Method:             "DELETE",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/iap/config/oculus",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &DeleteOculusIAPConfigReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *DeleteOculusIAPConfigNoContent:
+		return v, nil
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
 Deprecated: 2022-08-10 - Use GetPlayStationIAPConfigShort instead.
 
 GetPlayStationIAPConfig get playstation iap config
@@ -1805,7 +2107,7 @@ Update steam iap config. Other detail info:
   * Required permission : resource="ADMIN:NAMESPACE:{namespace}:IAP:CONFIG", action=4 (UPDATE)
   *  Returns : updated steam iap config
 */
-func (a *Client) UpdateSteamIAPConfig(params *UpdateSteamIAPConfigParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateSteamIAPConfigOK, error) {
+func (a *Client) UpdateSteamIAPConfig(params *UpdateSteamIAPConfigParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateSteamIAPConfigOK, *UpdateSteamIAPConfigBadRequest, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewUpdateSteamIAPConfigParams()
@@ -1833,16 +2135,19 @@ func (a *Client) UpdateSteamIAPConfig(params *UpdateSteamIAPConfigParams, authIn
 		Client:             params.HTTPClient,
 	})
 	if err != nil {
-		return nil, err
+		return nil, nil, err
 	}
 
 	switch v := result.(type) {
 
 	case *UpdateSteamIAPConfigOK:
-		return v, nil
+		return v, nil, nil
+
+	case *UpdateSteamIAPConfigBadRequest:
+		return nil, v, nil
 
 	default:
-		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+		return nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
@@ -1887,6 +2192,8 @@ func (a *Client) UpdateSteamIAPConfigShort(params *UpdateSteamIAPConfigParams, a
 
 	case *UpdateSteamIAPConfigOK:
 		return v, nil
+	case *UpdateSteamIAPConfigBadRequest:
+		return nil, v
 
 	default:
 		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
@@ -3636,6 +3943,113 @@ func (a *Client) PublicFulfillGoogleIAPItemShort(params *PublicFulfillGoogleIAPI
 	case *PublicFulfillGoogleIAPItemNotFound:
 		return nil, v
 	case *PublicFulfillGoogleIAPItemConflict:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+Deprecated: 2022-08-10 - Use SyncOculusConsumableEntitlementsShort instead.
+
+SyncOculusConsumableEntitlements sync oculus entitlements.
+Sync Oculus entitlements.
+
+Other detail info:
+
+  * Required permission : resource="NAMESPACE:{namespace}:USER:{userId}:IAP", action=4 (UPDATE)
+  *  Returns :
+*/
+func (a *Client) SyncOculusConsumableEntitlements(params *SyncOculusConsumableEntitlementsParams, authInfo runtime.ClientAuthInfoWriter) (*SyncOculusConsumableEntitlementsOK, *SyncOculusConsumableEntitlementsBadRequest, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewSyncOculusConsumableEntitlementsParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "syncOculusConsumableEntitlements",
+		Method:             "PUT",
+		PathPattern:        "/platform/public/namespaces/{namespace}/users/{userId}/iap/oculus/sync",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &SyncOculusConsumableEntitlementsReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *SyncOculusConsumableEntitlementsOK:
+		return v, nil, nil
+
+	case *SyncOculusConsumableEntitlementsBadRequest:
+		return nil, v, nil
+
+	default:
+		return nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+SyncOculusConsumableEntitlementsShort sync oculus entitlements.
+Sync Oculus entitlements.
+
+Other detail info:
+
+  * Required permission : resource="NAMESPACE:{namespace}:USER:{userId}:IAP", action=4 (UPDATE)
+  *  Returns :
+*/
+func (a *Client) SyncOculusConsumableEntitlementsShort(params *SyncOculusConsumableEntitlementsParams, authInfo runtime.ClientAuthInfoWriter) (*SyncOculusConsumableEntitlementsOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewSyncOculusConsumableEntitlementsParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "syncOculusConsumableEntitlements",
+		Method:             "PUT",
+		PathPattern:        "/platform/public/namespaces/{namespace}/users/{userId}/iap/oculus/sync",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &SyncOculusConsumableEntitlementsReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *SyncOculusConsumableEntitlementsOK:
+		return v, nil
+	case *SyncOculusConsumableEntitlementsBadRequest:
 		return nil, v
 
 	default:

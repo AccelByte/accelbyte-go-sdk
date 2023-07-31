@@ -31,6 +31,7 @@ const (
 	QueryUserIAPConsumeHistoryAPPLEConstant       = "APPLE"
 	QueryUserIAPConsumeHistoryEPICGAMESConstant   = "EPICGAMES"
 	QueryUserIAPConsumeHistoryGOOGLEConstant      = "GOOGLE"
+	QueryUserIAPConsumeHistoryOCULUSConstant      = "OCULUS"
 	QueryUserIAPConsumeHistoryPLAYSTATIONConstant = "PLAYSTATION"
 	QueryUserIAPConsumeHistorySTADIAConstant      = "STADIA"
 	QueryUserIAPConsumeHistorySTEAMConstant       = "STEAM"

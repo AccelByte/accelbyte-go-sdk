@@ -23,7 +23,7 @@ import (
 // with the default values initialized.
 func NewAdminGetContentParams() *AdminGetContentParams {
 	var (
-		limitDefault  = int64(1000)
+		limitDefault  = int64(20)
 		offsetDefault = int64(0)
 	)
 	return &AdminGetContentParams{
@@ -38,7 +38,7 @@ func NewAdminGetContentParams() *AdminGetContentParams {
 // with the default values initialized, and the ability to set a timeout on a request
 func NewAdminGetContentParamsWithTimeout(timeout time.Duration) *AdminGetContentParams {
 	var (
-		limitDefault  = int64(1000)
+		limitDefault  = int64(20)
 		offsetDefault = int64(0)
 	)
 	return &AdminGetContentParams{
@@ -53,7 +53,7 @@ func NewAdminGetContentParamsWithTimeout(timeout time.Duration) *AdminGetContent
 // with the default values initialized, and the ability to set a context for a request
 func NewAdminGetContentParamsWithContext(ctx context.Context) *AdminGetContentParams {
 	var (
-		limitDefault  = int64(1000)
+		limitDefault  = int64(20)
 		offsetDefault = int64(0)
 	)
 	return &AdminGetContentParams{
@@ -68,7 +68,7 @@ func NewAdminGetContentParamsWithContext(ctx context.Context) *AdminGetContentPa
 // with the default values initialized, and the ability to set a custom HTTPClient for a request
 func NewAdminGetContentParamsWithHTTPClient(client *http.Client) *AdminGetContentParams {
 	var (
-		limitDefault  = int64(1000)
+		limitDefault  = int64(20)
 		offsetDefault = int64(0)
 	)
 	return &AdminGetContentParams{

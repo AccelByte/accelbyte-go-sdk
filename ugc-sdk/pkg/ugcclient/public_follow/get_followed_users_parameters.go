@@ -23,7 +23,7 @@ import (
 // with the default values initialized.
 func NewGetFollowedUsersParams() *GetFollowedUsersParams {
 	var (
-		limitDefault  = int64(1000)
+		limitDefault  = int64(20)
 		offsetDefault = int64(0)
 	)
 	return &GetFollowedUsersParams{
@@ -38,7 +38,7 @@ func NewGetFollowedUsersParams() *GetFollowedUsersParams {
 // with the default values initialized, and the ability to set a timeout on a request
 func NewGetFollowedUsersParamsWithTimeout(timeout time.Duration) *GetFollowedUsersParams {
 	var (
-		limitDefault  = int64(1000)
+		limitDefault  = int64(20)
 		offsetDefault = int64(0)
 	)
 	return &GetFollowedUsersParams{
@@ -53,7 +53,7 @@ func NewGetFollowedUsersParamsWithTimeout(timeout time.Duration) *GetFollowedUse
 // with the default values initialized, and the ability to set a context for a request
 func NewGetFollowedUsersParamsWithContext(ctx context.Context) *GetFollowedUsersParams {
 	var (
-		limitDefault  = int64(1000)
+		limitDefault  = int64(20)
 		offsetDefault = int64(0)
 	)
 	return &GetFollowedUsersParams{
@@ -68,7 +68,7 @@ func NewGetFollowedUsersParamsWithContext(ctx context.Context) *GetFollowedUsers
 // with the default values initialized, and the ability to set a custom HTTPClient for a request
 func NewGetFollowedUsersParamsWithHTTPClient(client *http.Client) *GetFollowedUsersParams {
 	var (
-		limitDefault  = int64(1000)
+		limitDefault  = int64(20)
 		offsetDefault = int64(0)
 	)
 	return &GetFollowedUsersParams{

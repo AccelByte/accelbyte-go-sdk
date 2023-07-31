@@ -27,8 +27,8 @@ type RevokeUserV3Reader struct {
 // ReadResponse reads a server response into the received o.
 func (o *RevokeUserV3Reader) ReadResponse(response runtime.ClientResponse, consumer runtime.Consumer) (interface{}, error) {
 	switch response.Code() {
-	case 200:
-		result := NewRevokeUserV3OK()
+	case 204:
+		result := NewRevokeUserV3NoContent()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
@@ -62,23 +62,23 @@ func (o *RevokeUserV3Reader) ReadResponse(response runtime.ClientResponse, consu
 	}
 }
 
-// NewRevokeUserV3OK creates a RevokeUserV3OK with default headers values
-func NewRevokeUserV3OK() *RevokeUserV3OK {
-	return &RevokeUserV3OK{}
+// NewRevokeUserV3NoContent creates a RevokeUserV3NoContent with default headers values
+func NewRevokeUserV3NoContent() *RevokeUserV3NoContent {
+	return &RevokeUserV3NoContent{}
 }
 
-/*RevokeUserV3OK handles this case with default header values.
+/*RevokeUserV3NoContent handles this case with default header values.
 
   user revoked
 */
-type RevokeUserV3OK struct {
+type RevokeUserV3NoContent struct {
 }
 
-func (o *RevokeUserV3OK) Error() string {
-	return fmt.Sprintf("[POST /iam/v3/oauth/admin/namespaces/{namespace}/users/{userId}/revoke][%d] revokeUserV3OK ", 200)
+func (o *RevokeUserV3NoContent) Error() string {
+	return fmt.Sprintf("[POST /iam/v3/oauth/admin/namespaces/{namespace}/users/{userId}/revoke][%d] revokeUserV3NoContent ", 204)
 }
 
-func (o *RevokeUserV3OK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+func (o *RevokeUserV3NoContent) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {

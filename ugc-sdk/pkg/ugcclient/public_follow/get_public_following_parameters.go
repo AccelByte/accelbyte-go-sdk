@@ -23,7 +23,7 @@ import (
 // with the default values initialized.
 func NewGetPublicFollowingParams() *GetPublicFollowingParams {
 	var (
-		limitDefault  = int64(1000)
+		limitDefault  = int64(20)
 		offsetDefault = int64(0)
 	)
 	return &GetPublicFollowingParams{
@@ -38,7 +38,7 @@ func NewGetPublicFollowingParams() *GetPublicFollowingParams {
 // with the default values initialized, and the ability to set a timeout on a request
 func NewGetPublicFollowingParamsWithTimeout(timeout time.Duration) *GetPublicFollowingParams {
 	var (
-		limitDefault  = int64(1000)
+		limitDefault  = int64(20)
 		offsetDefault = int64(0)
 	)
 	return &GetPublicFollowingParams{
@@ -53,7 +53,7 @@ func NewGetPublicFollowingParamsWithTimeout(timeout time.Duration) *GetPublicFol
 // with the default values initialized, and the ability to set a context for a request
 func NewGetPublicFollowingParamsWithContext(ctx context.Context) *GetPublicFollowingParams {
 	var (
-		limitDefault  = int64(1000)
+		limitDefault  = int64(20)
 		offsetDefault = int64(0)
 	)
 	return &GetPublicFollowingParams{
@@ -68,7 +68,7 @@ func NewGetPublicFollowingParamsWithContext(ctx context.Context) *GetPublicFollo
 // with the default values initialized, and the ability to set a custom HTTPClient for a request
 func NewGetPublicFollowingParamsWithHTTPClient(client *http.Client) *GetPublicFollowingParams {
 	var (
-		limitDefault  = int64(1000)
+		limitDefault  = int64(20)
 		offsetDefault = int64(0)
 	)
 	return &GetPublicFollowingParams{

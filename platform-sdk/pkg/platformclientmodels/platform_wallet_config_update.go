@@ -21,7 +21,7 @@ import (
 type PlatformWalletConfigUpdate struct {
 
 	// allowedbalanceorigins
-	// Enum: ['Epic', 'GooglePlay', 'IOS', 'Nintendo', 'Other', 'Playstation', 'Steam', 'System', 'Twitch', 'Xbox']
+	// Enum: ['Epic', 'GooglePlay', 'IOS', 'Nintendo', 'Oculus', 'Other', 'Playstation', 'Steam', 'System', 'Twitch', 'Xbox']
 	AllowedBalanceOrigins []string `json:"allowedBalanceOrigins,omitempty"`
 }
 
@@ -39,7 +39,7 @@ var platformWalletConfigUpdateTypeAllowedBalanceOriginsItemsEnum []interface{}
 
 func init() {
 	var res []string
-	if err := json.Unmarshal([]byte(`["EPIC", "GOOGLEPLAY", "IOS", "NINTENDO", "OTHER", "PLAYSTATION", "STEAM", "SYSTEM", "TWITCH", "XBOX"]`), &res); err != nil {
+	if err := json.Unmarshal([]byte(`["EPIC", "GOOGLEPLAY", "IOS", "NINTENDO", "OCULUS", "OTHER", "PLAYSTATION", "STEAM", "SYSTEM", "TWITCH", "XBOX"]`), &res); err != nil {
 		panic(err)
 	}
 	for _, v := range res {
@@ -60,6 +60,9 @@ const (
 
 	// PlatformWalletConfigUpdateAllowedBalanceOriginsNINTENDO captures enum value "NINTENDO"
 	PlatformWalletConfigUpdateAllowedBalanceOriginsNINTENDO string = "NINTENDO"
+
+	// PlatformWalletConfigUpdateAllowedBalanceOriginsOCULUS captures enum value "OCULUS"
+	PlatformWalletConfigUpdateAllowedBalanceOriginsOCULUS string = "OCULUS"
 
 	// PlatformWalletConfigUpdateAllowedBalanceOriginsOTHER captures enum value "OTHER"
 	PlatformWalletConfigUpdateAllowedBalanceOriginsOTHER string = "OTHER"

@@ -51,28 +51,28 @@ touch "tmp.dat"
 #- 2 UpdateServerConfig
 samples/cli/sample-apps Qosm updateServerConfig \
     --namespace $AB_NAMESPACE \
-    --region 'iZ081wOa7BBfv372' \
-    --body '{"status": "laBPYfwcAzeoGXGB"}' \
+    --region 'GVxtuVUERCzVLCD6' \
+    --body '{"status": "b2fTR3mgfCkHdoms"}' \
     > test.out 2>&1
 eval_tap $? 2 'UpdateServerConfig' test.out
 
 #- 3 DeleteServer
 samples/cli/sample-apps Qosm deleteServer \
-    --region 'fkzTRGCfxSZgLl0K' \
+    --region 'B5mqd1JRy3er0lOk' \
     > test.out 2>&1
 eval_tap $? 3 'DeleteServer' test.out
 
 #- 4 SetServerAlias
 samples/cli/sample-apps Qosm setServerAlias \
-    --region '6zDjuxfbiPLEkpRw' \
-    --body '{"alias": "L9LIZCPjL2xEkZoT"}' \
+    --region 'qJC7IypSmdd747Ik' \
+    --body '{"alias": "wNZlndQoZhhMyOzN"}' \
     > test.out 2>&1
 eval_tap $? 4 'SetServerAlias' test.out
 
 #- 5 ListServerPerNamespace
 samples/cli/sample-apps Qosm listServerPerNamespace \
     --namespace $AB_NAMESPACE \
-    --status 'sGloE1wmQu2oEZqj' \
+    --status 'AjTCmvLO3EXMJLLR' \
     > test.out 2>&1
 eval_tap $? 5 'ListServerPerNamespace' test.out
 
@@ -83,7 +83,7 @@ eval_tap $? 6 'ListServer' test.out
 
 #- 7 Heartbeat
 samples/cli/sample-apps Qosm heartbeat \
-    --body '{"ip": "Uyg9GWP3L1kSIjWR", "port": 5, "region": "Rl8q8BrORmpScpqH"}' \
+    --body '{"ip": "NdDRpitC46RD4QXK", "port": 97, "region": "TARIbSOJCJ4XrJWN"}' \
     > test.out 2>&1
 eval_tap $? 7 'Heartbeat' test.out
 

@@ -27,15 +27,17 @@ var RevokeUserV3Cmd = &cobra.Command{
 		}
 		namespace, _ := cmd.Flags().GetString("namespace")
 		userId, _ := cmd.Flags().GetString("userId")
+		includeGameNamespace, _ := cmd.Flags().GetBool("includeGameNamespace")
 		input := &o_auth2_0.RevokeUserV3Params{
-			Namespace: namespace,
-			UserID:    userId,
+			Namespace:            namespace,
+			UserID:               userId,
+			IncludeGameNamespace: &includeGameNamespace,
 		}
-		errOK := oAuth20Service.RevokeUserV3Short(input)
-		if errOK != nil {
-			logrus.Error(errOK)
+		errNoContent := oAuth20Service.RevokeUserV3Short(input)
+		if errNoContent != nil {
+			logrus.Error(errNoContent)
 
-			return errOK
+			return errNoContent
 		}
 
 		logrus.Infof("Response CLI success.")
@@ -49,4 +51,5 @@ func init() {
 	_ = RevokeUserV3Cmd.MarkFlagRequired("namespace")
 	RevokeUserV3Cmd.Flags().String("userId", "", "User id")
 	_ = RevokeUserV3Cmd.MarkFlagRequired("userId")
+	RevokeUserV3Cmd.Flags().Bool("includeGameNamespace", false, "Include game namespace")
 }

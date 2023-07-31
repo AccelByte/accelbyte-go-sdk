@@ -1904,6 +1904,35 @@ func (aaa *UsersService) AdminGetUserByEmailAddressV3(input *users.AdminGetUserB
 	return ok.GetPayload(), nil
 }
 
+// Deprecated: 2022-01-10 - please use AdminGetBulkUserBanV3Short instead.
+func (aaa *UsersService) AdminGetBulkUserBanV3(input *users.AdminGetBulkUserBanV3Params) (*iamclientmodels.ModelGetUserBanV3Response, error) {
+	token, err := aaa.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, badRequest, unauthorized, forbidden, notFound, internalServerError, err := aaa.Client.Users.AdminGetBulkUserBanV3(input, client.BearerToken(*token.AccessToken))
+	if badRequest != nil {
+		return nil, badRequest
+	}
+	if unauthorized != nil {
+		return nil, unauthorized
+	}
+	if forbidden != nil {
+		return nil, forbidden
+	}
+	if notFound != nil {
+		return nil, notFound
+	}
+	if internalServerError != nil {
+		return nil, internalServerError
+	}
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
 // Deprecated: 2022-01-10 - please use AdminListUserIDByUserIDsV3Short instead.
 func (aaa *UsersService) AdminListUserIDByUserIDsV3(input *users.AdminListUserIDByUserIDsV3Params) (*iamclientmodels.ModelListUserInformationResult, error) {
 	token, err := aaa.TokenRepository.GetToken()
@@ -5916,6 +5945,31 @@ func (aaa *UsersService) AdminGetUserByEmailAddressV3Short(input *users.AdminGet
 	}
 
 	ok, err := aaa.Client.Users.AdminGetUserByEmailAddressV3Short(input, authInfoWriter)
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
+func (aaa *UsersService) AdminGetBulkUserBanV3Short(input *users.AdminGetBulkUserBanV3Params) (*iamclientmodels.ModelGetUserBanV3Response, error) {
+	authInfoWriter := input.AuthInfoWriter
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
+	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  aaa.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
+	ok, err := aaa.Client.Users.AdminGetBulkUserBanV3Short(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}

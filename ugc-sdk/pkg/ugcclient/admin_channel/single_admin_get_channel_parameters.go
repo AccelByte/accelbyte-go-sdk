@@ -23,7 +23,7 @@ import (
 // with the default values initialized.
 func NewSingleAdminGetChannelParams() *SingleAdminGetChannelParams {
 	var (
-		limitDefault  = int64(1000)
+		limitDefault  = int64(20)
 		offsetDefault = int64(0)
 	)
 	return &SingleAdminGetChannelParams{
@@ -38,7 +38,7 @@ func NewSingleAdminGetChannelParams() *SingleAdminGetChannelParams {
 // with the default values initialized, and the ability to set a timeout on a request
 func NewSingleAdminGetChannelParamsWithTimeout(timeout time.Duration) *SingleAdminGetChannelParams {
 	var (
-		limitDefault  = int64(1000)
+		limitDefault  = int64(20)
 		offsetDefault = int64(0)
 	)
 	return &SingleAdminGetChannelParams{
@@ -53,7 +53,7 @@ func NewSingleAdminGetChannelParamsWithTimeout(timeout time.Duration) *SingleAdm
 // with the default values initialized, and the ability to set a context for a request
 func NewSingleAdminGetChannelParamsWithContext(ctx context.Context) *SingleAdminGetChannelParams {
 	var (
-		limitDefault  = int64(1000)
+		limitDefault  = int64(20)
 		offsetDefault = int64(0)
 	)
 	return &SingleAdminGetChannelParams{
@@ -68,7 +68,7 @@ func NewSingleAdminGetChannelParamsWithContext(ctx context.Context) *SingleAdmin
 // with the default values initialized, and the ability to set a custom HTTPClient for a request
 func NewSingleAdminGetChannelParamsWithHTTPClient(client *http.Client) *SingleAdminGetChannelParams {
 	var (
-		limitDefault  = int64(1000)
+		limitDefault  = int64(20)
 		offsetDefault = int64(0)
 	)
 	return &SingleAdminGetChannelParams{

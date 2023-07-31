@@ -18,7 +18,7 @@ import (
 type XblAchievementUpdateRequest struct {
 
 	// achievements to be updated
-	Achievements []*Achievement `json:"achievements,omitempty"`
+	Achievements []*XboxAchievement `json:"achievements,omitempty"`
 
 	// serviceconfigid
 	ServiceConfigID string `json:"serviceConfigId,omitempty"`

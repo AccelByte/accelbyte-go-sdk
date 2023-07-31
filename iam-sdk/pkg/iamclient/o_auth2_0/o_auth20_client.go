@@ -32,8 +32,8 @@ type Client struct {
 type ClientService interface {
 	AdminRetrieveUserThirdPartyPlatformTokenV3(params *AdminRetrieveUserThirdPartyPlatformTokenV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminRetrieveUserThirdPartyPlatformTokenV3OK, *AdminRetrieveUserThirdPartyPlatformTokenV3Unauthorized, *AdminRetrieveUserThirdPartyPlatformTokenV3Forbidden, *AdminRetrieveUserThirdPartyPlatformTokenV3NotFound, error)
 	AdminRetrieveUserThirdPartyPlatformTokenV3Short(params *AdminRetrieveUserThirdPartyPlatformTokenV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminRetrieveUserThirdPartyPlatformTokenV3OK, error)
-	RevokeUserV3(params *RevokeUserV3Params, authInfo runtime.ClientAuthInfoWriter) (*RevokeUserV3OK, *RevokeUserV3BadRequest, *RevokeUserV3Unauthorized, *RevokeUserV3Forbidden, error)
-	RevokeUserV3Short(params *RevokeUserV3Params, authInfo runtime.ClientAuthInfoWriter) (*RevokeUserV3OK, error)
+	RevokeUserV3(params *RevokeUserV3Params, authInfo runtime.ClientAuthInfoWriter) (*RevokeUserV3NoContent, *RevokeUserV3BadRequest, *RevokeUserV3Unauthorized, *RevokeUserV3Forbidden, error)
+	RevokeUserV3Short(params *RevokeUserV3Params, authInfo runtime.ClientAuthInfoWriter) (*RevokeUserV3NoContent, error)
 	AuthorizeV3(params *AuthorizeV3Params, authInfo runtime.ClientAuthInfoWriter) (*AuthorizeV3Found, error)
 	AuthorizeV3Short(params *AuthorizeV3Params, authInfo runtime.ClientAuthInfoWriter) (*AuthorizeV3Found, error)
 	TokenIntrospectionV3(params *TokenIntrospectionV3Params, authInfo runtime.ClientAuthInfoWriter) (*TokenIntrospectionV3OK, *TokenIntrospectionV3BadRequest, *TokenIntrospectionV3Unauthorized, error)
@@ -279,7 +279,7 @@ It is a convenient feature for the developer (or admin) who wanted to revokes al
 
 action code : 10707
 */
-func (a *Client) RevokeUserV3(params *RevokeUserV3Params, authInfo runtime.ClientAuthInfoWriter) (*RevokeUserV3OK, *RevokeUserV3BadRequest, *RevokeUserV3Unauthorized, *RevokeUserV3Forbidden, error) {
+func (a *Client) RevokeUserV3(params *RevokeUserV3Params, authInfo runtime.ClientAuthInfoWriter) (*RevokeUserV3NoContent, *RevokeUserV3BadRequest, *RevokeUserV3Unauthorized, *RevokeUserV3Forbidden, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewRevokeUserV3Params()
@@ -312,7 +312,7 @@ func (a *Client) RevokeUserV3(params *RevokeUserV3Params, authInfo runtime.Clien
 
 	switch v := result.(type) {
 
-	case *RevokeUserV3OK:
+	case *RevokeUserV3NoContent:
 		return v, nil, nil, nil, nil
 
 	case *RevokeUserV3BadRequest:
@@ -355,7 +355,7 @@ It is a convenient feature for the developer (or admin) who wanted to revokes al
 
 action code : 10707
 */
-func (a *Client) RevokeUserV3Short(params *RevokeUserV3Params, authInfo runtime.ClientAuthInfoWriter) (*RevokeUserV3OK, error) {
+func (a *Client) RevokeUserV3Short(params *RevokeUserV3Params, authInfo runtime.ClientAuthInfoWriter) (*RevokeUserV3NoContent, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewRevokeUserV3Params()
@@ -388,7 +388,7 @@ func (a *Client) RevokeUserV3Short(params *RevokeUserV3Params, authInfo runtime.
 
 	switch v := result.(type) {
 
-	case *RevokeUserV3OK:
+	case *RevokeUserV3NoContent:
 		return v, nil
 	case *RevokeUserV3BadRequest:
 		return nil, v

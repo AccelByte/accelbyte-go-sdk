@@ -23,6 +23,7 @@ const (
 	GetIAPItemMappingAPPLEConstant       = "APPLE"
 	GetIAPItemMappingEPICGAMESConstant   = "EPICGAMES"
 	GetIAPItemMappingGOOGLEConstant      = "GOOGLE"
+	GetIAPItemMappingOCULUSConstant      = "OCULUS"
 	GetIAPItemMappingPLAYSTATIONConstant = "PLAYSTATION"
 	GetIAPItemMappingSTADIAConstant      = "STADIA"
 	GetIAPItemMappingSTEAMConstant       = "STEAM"

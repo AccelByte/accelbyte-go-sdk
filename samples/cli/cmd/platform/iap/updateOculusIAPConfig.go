@@ -4,12 +4,12 @@
 
 // Code generated. DO NOT EDIT.
 
-package servicePluginConfig
+package iap
 
 import (
 	"encoding/json"
 
-	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclient/service_plugin_config"
+	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclient/iap"
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/platform"
@@ -18,28 +18,28 @@ import (
 	"github.com/spf13/cobra"
 )
 
-// UpdateLootBoxPluginConfig1Cmd represents the UpdateLootBoxPluginConfig1 command
-var UpdateLootBoxPluginConfig1Cmd = &cobra.Command{
-	Use:   "updateLootBoxPluginConfig1",
-	Short: "Update loot box plugin config 1",
-	Long:  `Update loot box plugin config 1`,
+// UpdateOculusIAPConfigCmd represents the UpdateOculusIAPConfig command
+var UpdateOculusIAPConfigCmd = &cobra.Command{
+	Use:   "updateOculusIAPConfig",
+	Short: "Update oculus IAP config",
+	Long:  `Update oculus IAP config`,
 	RunE: func(cmd *cobra.Command, args []string) error {
-		servicePluginConfigService := &platform.ServicePluginConfigService{
+		iapService := &platform.IAPService{
 			Client:          factory.NewPlatformClient(&repository.ConfigRepositoryImpl{}),
 			TokenRepository: &repository.TokenRepositoryImpl{},
 		}
 		namespace, _ := cmd.Flags().GetString("namespace")
 		bodyString := cmd.Flag("body").Value.String()
-		var body *platformclientmodels.RevocationPluginConfigUpdate
+		var body *platformclientmodels.OculusIAPConfigRequest
 		errBody := json.Unmarshal([]byte(bodyString), &body)
 		if errBody != nil {
 			return errBody
 		}
-		input := &service_plugin_config.UpdateLootBoxPluginConfig1Params{
+		input := &iap.UpdateOculusIAPConfigParams{
 			Body:      body,
 			Namespace: namespace,
 		}
-		ok, errOK := servicePluginConfigService.UpdateLootBoxPluginConfig1Short(input)
+		ok, errOK := iapService.UpdateOculusIAPConfigShort(input)
 		if errOK != nil {
 			logrus.Error(errOK)
 
@@ -53,7 +53,7 @@ var UpdateLootBoxPluginConfig1Cmd = &cobra.Command{
 }
 
 func init() {
-	UpdateLootBoxPluginConfig1Cmd.Flags().String("body", "", "Body")
-	UpdateLootBoxPluginConfig1Cmd.Flags().String("namespace", "", "Namespace")
-	_ = UpdateLootBoxPluginConfig1Cmd.MarkFlagRequired("namespace")
+	UpdateOculusIAPConfigCmd.Flags().String("body", "", "Body")
+	UpdateOculusIAPConfigCmd.Flags().String("namespace", "", "Namespace")
+	_ = UpdateOculusIAPConfigCmd.MarkFlagRequired("namespace")
 }

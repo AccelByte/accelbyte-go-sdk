@@ -174,6 +174,23 @@ func (aaa *DLCService) SyncEpicGameDLC(input *dlc.SyncEpicGameDLCParams) error {
 	return nil
 }
 
+// Deprecated: 2022-01-10 - please use SyncOculusDLCShort instead.
+func (aaa *DLCService) SyncOculusDLC(input *dlc.SyncOculusDLCParams) error {
+	token, err := aaa.TokenRepository.GetToken()
+	if err != nil {
+		return err
+	}
+	_, badRequest, err := aaa.Client.DLC.SyncOculusDLC(input, client.BearerToken(*token.AccessToken))
+	if badRequest != nil {
+		return badRequest
+	}
+	if err != nil {
+		return err
+	}
+
+	return nil
+}
+
 // Deprecated: 2022-01-10 - please use PublicSyncPsnDLCInventoryShort instead.
 func (aaa *DLCService) PublicSyncPsnDLCInventory(input *dlc.PublicSyncPsnDLCInventoryParams) error {
 	token, err := aaa.TokenRepository.GetToken()
@@ -460,6 +477,31 @@ func (aaa *DLCService) SyncEpicGameDLCShort(input *dlc.SyncEpicGameDLCParams) er
 	}
 
 	_, err := aaa.Client.DLC.SyncEpicGameDLCShort(input, authInfoWriter)
+	if err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (aaa *DLCService) SyncOculusDLCShort(input *dlc.SyncOculusDLCParams) error {
+	authInfoWriter := input.AuthInfoWriter
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
+	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  aaa.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
+	_, err := aaa.Client.DLC.SyncOculusDLCShort(input, authInfoWriter)
 	if err != nil {
 		return err
 	}

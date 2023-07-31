@@ -48,6 +48,8 @@ type ClientService interface {
 	GetUserDLCShort(params *GetUserDLCParams, authInfo runtime.ClientAuthInfoWriter) (*GetUserDLCOK, error)
 	SyncEpicGameDLC(params *SyncEpicGameDLCParams, authInfo runtime.ClientAuthInfoWriter) (*SyncEpicGameDLCNoContent, *SyncEpicGameDLCBadRequest, error)
 	SyncEpicGameDLCShort(params *SyncEpicGameDLCParams, authInfo runtime.ClientAuthInfoWriter) (*SyncEpicGameDLCNoContent, error)
+	SyncOculusDLC(params *SyncOculusDLCParams, authInfo runtime.ClientAuthInfoWriter) (*SyncOculusDLCNoContent, *SyncOculusDLCBadRequest, error)
+	SyncOculusDLCShort(params *SyncOculusDLCParams, authInfo runtime.ClientAuthInfoWriter) (*SyncOculusDLCNoContent, error)
 	PublicSyncPsnDLCInventory(params *PublicSyncPsnDLCInventoryParams, authInfo runtime.ClientAuthInfoWriter) (*PublicSyncPsnDLCInventoryNoContent, *PublicSyncPsnDLCInventoryBadRequest, error)
 	PublicSyncPsnDLCInventoryShort(params *PublicSyncPsnDLCInventoryParams, authInfo runtime.ClientAuthInfoWriter) (*PublicSyncPsnDLCInventoryNoContent, error)
 	PublicSyncPsnDLCInventoryWithMultipleServiceLabels(params *PublicSyncPsnDLCInventoryWithMultipleServiceLabelsParams, authInfo runtime.ClientAuthInfoWriter) (*PublicSyncPsnDLCInventoryWithMultipleServiceLabelsNoContent, *PublicSyncPsnDLCInventoryWithMultipleServiceLabelsBadRequest, error)
@@ -1006,6 +1008,113 @@ func (a *Client) SyncEpicGameDLCShort(params *SyncEpicGameDLCParams, authInfo ru
 	case *SyncEpicGameDLCNoContent:
 		return v, nil
 	case *SyncEpicGameDLCBadRequest:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+Deprecated: 2022-08-10 - Use SyncOculusDLCShort instead.
+
+SyncOculusDLC sync oculus dlc.
+Sync oculus dlc.
+
+Other detail info:
+
+  * Required permission : resource=NAMESPACE:{namespace}:USER:{userId}:DLC, action=4 (UPDATE)
+  *  Returns :
+*/
+func (a *Client) SyncOculusDLC(params *SyncOculusDLCParams, authInfo runtime.ClientAuthInfoWriter) (*SyncOculusDLCNoContent, *SyncOculusDLCBadRequest, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewSyncOculusDLCParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "syncOculusDLC",
+		Method:             "PUT",
+		PathPattern:        "/platform/public/namespaces/{namespace}/users/{userId}/dlc/oculus/sync",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &SyncOculusDLCReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *SyncOculusDLCNoContent:
+		return v, nil, nil
+
+	case *SyncOculusDLCBadRequest:
+		return nil, v, nil
+
+	default:
+		return nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+SyncOculusDLCShort sync oculus dlc.
+Sync oculus dlc.
+
+Other detail info:
+
+  * Required permission : resource=NAMESPACE:{namespace}:USER:{userId}:DLC, action=4 (UPDATE)
+  *  Returns :
+*/
+func (a *Client) SyncOculusDLCShort(params *SyncOculusDLCParams, authInfo runtime.ClientAuthInfoWriter) (*SyncOculusDLCNoContent, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewSyncOculusDLCParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "syncOculusDLC",
+		Method:             "PUT",
+		PathPattern:        "/platform/public/namespaces/{namespace}/users/{userId}/dlc/oculus/sync",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &SyncOculusDLCReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *SyncOculusDLCNoContent:
+		return v, nil
+	case *SyncOculusDLCBadRequest:
 		return nil, v
 
 	default:

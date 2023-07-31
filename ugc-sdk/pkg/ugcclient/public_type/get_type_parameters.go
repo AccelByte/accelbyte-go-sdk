@@ -23,7 +23,7 @@ import (
 // with the default values initialized.
 func NewGetTypeParams() *GetTypeParams {
 	var (
-		limitDefault  = int64(1000)
+		limitDefault  = int64(20)
 		offsetDefault = int64(0)
 	)
 	return &GetTypeParams{
@@ -38,7 +38,7 @@ func NewGetTypeParams() *GetTypeParams {
 // with the default values initialized, and the ability to set a timeout on a request
 func NewGetTypeParamsWithTimeout(timeout time.Duration) *GetTypeParams {
 	var (
-		limitDefault  = int64(1000)
+		limitDefault  = int64(20)
 		offsetDefault = int64(0)
 	)
 	return &GetTypeParams{
@@ -53,7 +53,7 @@ func NewGetTypeParamsWithTimeout(timeout time.Duration) *GetTypeParams {
 // with the default values initialized, and the ability to set a context for a request
 func NewGetTypeParamsWithContext(ctx context.Context) *GetTypeParams {
 	var (
-		limitDefault  = int64(1000)
+		limitDefault  = int64(20)
 		offsetDefault = int64(0)
 	)
 	return &GetTypeParams{
@@ -68,7 +68,7 @@ func NewGetTypeParamsWithContext(ctx context.Context) *GetTypeParams {
 // with the default values initialized, and the ability to set a custom HTTPClient for a request
 func NewGetTypeParamsWithHTTPClient(client *http.Client) *GetTypeParams {
 	var (
-		limitDefault  = int64(1000)
+		limitDefault  = int64(20)
 		offsetDefault = int64(0)
 	)
 	return &GetTypeParams{

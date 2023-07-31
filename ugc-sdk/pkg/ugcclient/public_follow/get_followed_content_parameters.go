@@ -23,7 +23,7 @@ import (
 // with the default values initialized.
 func NewGetFollowedContentParams() *GetFollowedContentParams {
 	var (
-		limitDefault  = int64(1000)
+		limitDefault  = int64(20)
 		offsetDefault = int64(0)
 	)
 	return &GetFollowedContentParams{
@@ -38,7 +38,7 @@ func NewGetFollowedContentParams() *GetFollowedContentParams {
 // with the default values initialized, and the ability to set a timeout on a request
 func NewGetFollowedContentParamsWithTimeout(timeout time.Duration) *GetFollowedContentParams {
 	var (
-		limitDefault  = int64(1000)
+		limitDefault  = int64(20)
 		offsetDefault = int64(0)
 	)
 	return &GetFollowedContentParams{
@@ -53,7 +53,7 @@ func NewGetFollowedContentParamsWithTimeout(timeout time.Duration) *GetFollowedC
 // with the default values initialized, and the ability to set a context for a request
 func NewGetFollowedContentParamsWithContext(ctx context.Context) *GetFollowedContentParams {
 	var (
-		limitDefault  = int64(1000)
+		limitDefault  = int64(20)
 		offsetDefault = int64(0)
 	)
 	return &GetFollowedContentParams{
@@ -68,7 +68,7 @@ func NewGetFollowedContentParamsWithContext(ctx context.Context) *GetFollowedCon
 // with the default values initialized, and the ability to set a custom HTTPClient for a request
 func NewGetFollowedContentParamsWithHTTPClient(client *http.Client) *GetFollowedContentParams {
 	var (
-		limitDefault  = int64(1000)
+		limitDefault  = int64(20)
 		offsetDefault = int64(0)
 	)
 	return &GetFollowedContentParams{

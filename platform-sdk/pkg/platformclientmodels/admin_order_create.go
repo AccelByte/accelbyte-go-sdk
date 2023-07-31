@@ -46,7 +46,7 @@ type AdminOrderCreate struct {
 	Options *OrderCreationOptions `json:"options,omitempty"`
 
 	// platform
-	// Enum: ['Epic', 'GooglePlay', 'IOS', 'Nintendo', 'Other', 'Playstation', 'Steam', 'Xbox']
+	// Enum: ['Epic', 'GooglePlay', 'IOS', 'Nintendo', 'Oculus', 'Other', 'Playstation', 'Steam', 'Xbox']
 	Platform string `json:"platform,omitempty"`
 
 	// Price of order, should match (item_price * quantity)
@@ -133,7 +133,7 @@ var adminOrderCreateTypePlatformPropEnum []interface{}
 
 func init() {
 	var res []string
-	if err := json.Unmarshal([]byte(`["EPIC", "GOOGLEPLAY", "IOS", "NINTENDO", "OTHER", "PLAYSTATION", "STEAM", "XBOX"]`), &res); err != nil {
+	if err := json.Unmarshal([]byte(`["EPIC", "GOOGLEPLAY", "IOS", "NINTENDO", "OCULUS", "OTHER", "PLAYSTATION", "STEAM", "XBOX"]`), &res); err != nil {
 		panic(err)
 	}
 	for _, v := range res {
@@ -154,6 +154,9 @@ const (
 
 	// AdminOrderCreatePlatformNINTENDO captures enum value "NINTENDO"
 	AdminOrderCreatePlatformNINTENDO string = "NINTENDO"
+
+	// AdminOrderCreatePlatformOCULUS captures enum value "OCULUS"
+	AdminOrderCreatePlatformOCULUS string = "OCULUS"
 
 	// AdminOrderCreatePlatformOTHER captures enum value "OTHER"
 	AdminOrderCreatePlatformOTHER string = "OTHER"

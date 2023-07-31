@@ -21,6 +21,7 @@ import (
 // Get the enum in GetUserDLCByPlatformParams
 const (
 	GetUserDLCByPlatformEPICGAMESConstant = "EPICGAMES"
+	GetUserDLCByPlatformOCULUSConstant    = "OCULUS"
 	GetUserDLCByPlatformPSNConstant       = "PSN"
 	GetUserDLCByPlatformSTEAMConstant     = "STEAM"
 	GetUserDLCByPlatformXBOXConstant      = "XBOX"

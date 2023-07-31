@@ -2,7 +2,7 @@ module golang-application
 
 go 1.18
 
-require github.com/AccelByte/accelbyte-go-sdk v0.48.0 // Use the latest version when starting a new project
+require github.com/AccelByte/accelbyte-go-sdk v0.49.0 // Use the latest version when starting a new project
 
 require (
 	github.com/PuerkitoBio/purell v1.1.1 // indirect

@@ -1,3 +1,16 @@
+<a name="v0.50.0"></a>
+## [v0.50.0]
+### fix
+- **:** add x-omitempty for decimal field in currencyCreate platform
+- **test:** change session type to dedicated
+### chore
+- **:** update getting started module sum
+- **samples:** update go mod samples and add go mod tidy command in makefile
+- **:** simplify the function and assign existing jwks key
+### feat
+- **:** add token parser function, test, readme
+
+
 <a name="v0.49.0"></a>
 ## [v0.49.0]
 ### fix

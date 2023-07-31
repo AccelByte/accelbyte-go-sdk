@@ -28,7 +28,7 @@ type IAPItemFlatEntry struct {
 	ItemIdentityType string `json:"itemIdentityType,omitempty"`
 
 	// iap platform
-	// Enum: ['APPLE', 'EPICGAMES', 'GOOGLE', 'PLAYSTATION', 'STADIA', 'STEAM', 'TWITCH', 'XBOX']
+	// Enum: ['APPLE', 'EPICGAMES', 'GOOGLE', 'OCULUS', 'PLAYSTATION', 'STADIA', 'STEAM', 'TWITCH', 'XBOX']
 	Platform string `json:"platform,omitempty"`
 
 	// IAP Platform production id related item id
@@ -78,7 +78,7 @@ var iapItemFlatEntryTypePlatformPropEnum []interface{}
 
 func init() {
 	var res []string
-	if err := json.Unmarshal([]byte(`["APPLE", "EPICGAMES", "GOOGLE", "PLAYSTATION", "STADIA", "STEAM", "TWITCH", "XBOX"]`), &res); err != nil {
+	if err := json.Unmarshal([]byte(`["APPLE", "EPICGAMES", "GOOGLE", "OCULUS", "PLAYSTATION", "STADIA", "STEAM", "TWITCH", "XBOX"]`), &res); err != nil {
 		panic(err)
 	}
 	for _, v := range res {
@@ -96,6 +96,9 @@ const (
 
 	// IAPItemFlatEntryPlatformGOOGLE captures enum value "GOOGLE"
 	IAPItemFlatEntryPlatformGOOGLE string = "GOOGLE"
+
+	// IAPItemFlatEntryPlatformOCULUS captures enum value "OCULUS"
+	IAPItemFlatEntryPlatformOCULUS string = "OCULUS"
 
 	// IAPItemFlatEntryPlatformPLAYSTATION captures enum value "PLAYSTATION"
 	IAPItemFlatEntryPlatformPLAYSTATION string = "PLAYSTATION"

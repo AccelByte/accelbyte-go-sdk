@@ -2008,8 +2008,8 @@
     "path": "/gdpr/apidocs/api.json"
   },
   "x-version": {
-    "buildDate": "2023-07-04T01:34:07+00:00",
-    "gitHash": "bd15ca06868770ccab638800585543f06e826fdf",
+    "buildDate": "2023-07-18T07:49:52+00:00",
+    "gitHash": "4d0fc2680bbb0edeadb7b8c8daad866f6f6f759a",
     "name": "justice-gdpr-service",
     "realm": "staging",
     "version": "2.1.1",

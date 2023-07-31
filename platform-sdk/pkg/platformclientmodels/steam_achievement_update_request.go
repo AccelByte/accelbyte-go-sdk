@@ -18,7 +18,7 @@ import (
 type SteamAchievementUpdateRequest struct {
 
 	// achievements to be updated
-	Achievements []*Achievement `json:"achievements,omitempty"`
+	Achievements []*SteamAchievement `json:"achievements,omitempty"`
 
 	// steam user id
 	SteamUserID string `json:"steamUserId,omitempty"`

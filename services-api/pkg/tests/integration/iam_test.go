@@ -354,6 +354,32 @@ func TestIntegrationParseAccessTokenAndValidateLocally(t *testing.T) {
 		assert.FailNow(t, err.Error())
 	}
 
+	oAuth20Service.SetLocalValidation(true)
+	parsedToken, err := oAuth20Service.ParseAccessToken(accessToken, true)
+	if err != nil {
+		assert.FailNow(t, err.Error())
+	}
+
+	// assert
+	assert.Nil(t, err, "err should be nil")
+	empJSON, err := json.MarshalIndent(parsedToken, "", "  ")
+	if err != nil {
+		log.Fatalf(err.Error())
+	}
+	t.Logf("token: %s", string(empJSON))
+	assert.NotNil(t, parsedToken, "get token from token repository should not be nil")
+}
+
+func TestIntegrationParseAccessTokenAndValidateRemotely(t *testing.T) {
+	t.Parallel()
+	// Login User - Arrange
+	Init()
+
+	accessToken, err := oAuth20Service.GetToken()
+	if err != nil {
+		assert.FailNow(t, err.Error())
+	}
+
 	parsedToken, err := oAuth20Service.ParseAccessToken(accessToken, true)
 	if err != nil {
 		assert.FailNow(t, err.Error())

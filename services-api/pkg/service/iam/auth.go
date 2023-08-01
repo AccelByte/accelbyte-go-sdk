@@ -453,22 +453,7 @@ func (o *OAuth20Service) ParseAccessToken(accessToken string, validate bool) (*i
 
 	// Check if token validation is already exist
 	if o.tokenValidation == nil {
-		o.tokenValidation = &TokenValidator{
-			AuthService:     *o,
-			RefreshInterval: time.Hour,
-
-			Filter:                nil,
-			JwkSet:                nil,
-			JwtClaims:             JWTClaims{},
-			JwtEncoding:           *base64.URLEncoding.WithPadding(base64.NoPadding),
-			PublicKeys:            make(map[string]*rsa.PublicKey),
-			LocalValidationActive: true,
-			RevokedUsers:          make(map[string]time.Time),
-			Roles:                 make(map[string]*iamclientmodels.ModelRoleResponseV3),
-		}
-
-		// Initiate
-		o.tokenValidation.Initialize()
+		o.initTokenValidator(false)
 	}
 
 	// Get the public key from the JWKS based on the Key ID (kid) from the token's header
@@ -518,6 +503,7 @@ func (o *OAuth20Service) ParseAccessToken(accessToken string, validate bool) (*i
 				RangeSchedule:   permission.SchedRange,
 			}
 		}
+
 		errValidate := o.tokenValidation.Validate(accessToken, perm, tokenResponseV3.Namespace, nil)
 		if errValidate != nil {
 			log.Fatalf("token validation failed: %s", errValidate.Error())
@@ -525,4 +511,31 @@ func (o *OAuth20Service) ParseAccessToken(accessToken string, validate bool) (*i
 	}
 
 	return tokenResponseV3, nil
+}
+
+func (o *OAuth20Service) SetLocalValidation(value bool) {
+	if o.tokenValidation == nil {
+		o.initTokenValidator(value)
+	}
+
+	o.tokenValidation.LocalValidationActive = value
+}
+
+func (o *OAuth20Service) initTokenValidator(value bool) {
+	o.tokenValidation = &TokenValidator{
+		AuthService:     *o,
+		RefreshInterval: time.Hour,
+
+		Filter:                nil,
+		JwkSet:                nil,
+		JwtClaims:             JWTClaims{},
+		JwtEncoding:           *base64.URLEncoding.WithPadding(base64.NoPadding),
+		PublicKeys:            make(map[string]*rsa.PublicKey),
+		LocalValidationActive: value,
+		RevokedUsers:          make(map[string]time.Time),
+		Roles:                 make(map[string]*iamclientmodels.ModelRoleResponseV3),
+	}
+
+	// Initiate
+	o.tokenValidation.Initialize()
 }

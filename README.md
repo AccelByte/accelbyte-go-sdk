@@ -175,7 +175,7 @@ import (
     ...
 )
 ```
-Get the token, and use `ParseAccessToken` function. Set the second parameter as `true` if it wants to activate the local validation/
+Get the token, and use `ParseAccessToken` function. Set the second parameter as `true` if it wants to validate before parse the access token
 ```go
 // get the access token string
 accessToken, err := oAuth20Service.GetToken()
@@ -184,9 +184,21 @@ if err != nil {
 }
 
 // parse the token
-parsedToken, err := oAuth20Service.ParseAccessToken(accessToken, true) // set true here to activate the local validation for the token
+parsedToken, err := oAuth20Service.ParseAccessToken(accessToken, true) // set true here to validate before parse the access token
 if err != nil {
     // fail here
+}
+```
+- if the boolean is `false`, it will not validate the token at all. 
+- if the boolean is `true`, it will validate remotely (call `VerifyTokenV3` endpoint). 
+- if the boolean is `true` and call `SetLocalValidation` before `ParseAccessToken`, it will validate locally.
+```go
+oAuth20Service.SetLocalValidation(true) // call this also to activate local validation
+
+// parse the token
+parsedToken, err := oAuth20Service.ParseAccessToken(accessToken, true) // set true here to validate before parsing the access token
+if err != nil {
+// fail here
 }
 ```
 

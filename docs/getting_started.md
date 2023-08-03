@@ -6,7 +6,7 @@ This guide will show you how to create an application which uses Golang Extend S
 
 * AccelByte Gaming Services (demo environment):
     * Use https://demo.accelbyte.io for `AB_BASE_URL` environment variable.
-    * [Create an Oauth Client](https://docs.accelbyte.io/guides/access/iam-client.html#create-a-client) with client type `Confidential`.
+    * [Create an Oauth Client](https://docs-old.accelbyte.io/guides/access/iam-client.html#create-a-client) with client type `Confidential`.
         * Use `Client ID` value for `AB_CLIENT_ID` environment variable.
         * Use `Client Secret` value for `AB_CLIENT_SECRET` environment variable.
 * Golang 1.16 or newer

@@ -113,6 +113,7 @@ inputCreate := &fleets.FleetCreateParams{
 }
 created, errCreated := fleetService.FleetCreateShort(inputCreate)
 if errCreated != nil {
+	t.Skip("not using the real image Id")
 	assert.FailNow(t, errCreated.Error())
 
 	return
@@ -1443,11 +1444,12 @@ if errLeave != nil {
 ### Delete Game Session
 
 ```go
-inputDelete := &game_session.DeleteGameSessionParams{
+ids := []string{*created.ID}
+inputDelete := &game_session.AdminDeleteBulkGameSessionsParams{
+	Body:      &sessionclientmodels.ApimodelsDeleteBulkGameSessionRequest{Ids: ids},
 	Namespace: integration.NamespaceTest,
-	SessionID: *created.ID,
 }
-errDeleted := gameSessionService.DeleteGameSessionShort(inputDelete)
+deleted, errDeleted := gameSessionService.AdminDeleteBulkGameSessionsShort(inputDelete)
 if errDeleted != nil {
 	assert.FailNow(t, errDeleted.Error())
 
@@ -1579,12 +1581,12 @@ if errUpdate != nil {
 ### Delete a session
 
 ```go
-inputDelete := &session.DeleteSessionParams{
+inputDelete := &session.AdminDeleteSessionParams{
 	Namespace: integration.NamespaceTest,
 	SessionID: sessionBrowserID,
 }
 
-deleted, errDelete := sessionService.DeleteSessionShort(inputDelete)
+deleted, errDelete := sessionService.AdminDeleteSessionShort(inputDelete)
 if errDelete != nil {
 	assert.FailNow(t, errDelete.Error())
 }

@@ -250,11 +250,12 @@ func TestIntegrationGameSession(t *testing.T) {
 	assert.Nil(t, errLeave, "err should be nil")
 
 	// CASE Delete Game Session
-	inputDelete := &game_session.DeleteGameSessionParams{
+	ids := []string{*created.ID}
+	inputDelete := &game_session.AdminDeleteBulkGameSessionsParams{
+		Body:      &sessionclientmodels.ApimodelsDeleteBulkGameSessionRequest{Ids: ids},
 		Namespace: integration.NamespaceTest,
-		SessionID: *created.ID,
 	}
-	errDeleted := gameSessionService.DeleteGameSessionShort(inputDelete)
+	deleted, errDeleted := gameSessionService.AdminDeleteBulkGameSessionsShort(inputDelete)
 	if errDeleted != nil {
 		assert.FailNow(t, errDeleted.Error())
 
@@ -264,6 +265,7 @@ func TestIntegrationGameSession(t *testing.T) {
 
 	// Assert
 	assert.Nil(t, errDeleted, "err should be nil")
+	assert.NotNil(t, deleted, "should not be nil")
 	t.Logf("successfully delete/clean session id: %s", *created.ID)
 }
 

@@ -62,7 +62,10 @@ func (aaa *PublicGameRecordService) GetGameRecordHandlerV1(input *public_game_re
 	if err != nil {
 		return nil, err
 	}
-	ok, unauthorized, notFound, internalServerError, err := aaa.Client.PublicGameRecord.GetGameRecordHandlerV1(input, client.BearerToken(*token.AccessToken))
+	ok, badRequest, unauthorized, notFound, internalServerError, err := aaa.Client.PublicGameRecord.GetGameRecordHandlerV1(input, client.BearerToken(*token.AccessToken))
+	if badRequest != nil {
+		return nil, badRequest
+	}
 	if unauthorized != nil {
 		return nil, unauthorized
 	}

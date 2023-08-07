@@ -33,6 +33,12 @@ func (o *GetGameRecordHandlerV1Reader) ReadResponse(response runtime.ClientRespo
 			return nil, err
 		}
 		return result, nil
+	case 400:
+		result := NewGetGameRecordHandlerV1BadRequest()
+		if err := result.readResponse(response, consumer, o.formats); err != nil {
+			return nil, err
+		}
+		return result, nil
 	case 401:
 		result := NewGetGameRecordHandlerV1Unauthorized()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -106,6 +112,59 @@ func (o *GetGameRecordHandlerV1OK) readResponse(response runtime.ClientResponse,
 	}
 
 	o.Payload = new(cloudsaveclientmodels.ModelsGameRecordResponse)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
+	}
+
+	return nil
+}
+
+// NewGetGameRecordHandlerV1BadRequest creates a GetGameRecordHandlerV1BadRequest with default headers values
+func NewGetGameRecordHandlerV1BadRequest() *GetGameRecordHandlerV1BadRequest {
+	return &GetGameRecordHandlerV1BadRequest{}
+}
+
+/*GetGameRecordHandlerV1BadRequest handles this case with default header values.
+
+  Bad Request
+*/
+type GetGameRecordHandlerV1BadRequest struct {
+	Payload *cloudsaveclientmodels.ModelsResponseError
+}
+
+func (o *GetGameRecordHandlerV1BadRequest) Error() string {
+	return fmt.Sprintf("[GET /cloudsave/v1/namespaces/{namespace}/records/{key}][%d] getGameRecordHandlerV1BadRequest  %+v", 400, o.ToJSONString())
+}
+
+func (o *GetGameRecordHandlerV1BadRequest) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
+}
+
+func (o *GetGameRecordHandlerV1BadRequest) GetPayload() *cloudsaveclientmodels.ModelsResponseError {
+	return o.Payload
+}
+
+func (o *GetGameRecordHandlerV1BadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+	// handle file responses
+	contentDisposition := response.GetHeader("Content-Disposition")
+	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
+		consumer = runtime.ByteStreamConsumer()
+	}
+
+	o.Payload = new(cloudsaveclientmodels.ModelsResponseError)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {

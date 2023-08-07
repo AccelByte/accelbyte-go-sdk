@@ -12,6 +12,7 @@ import (
 	"github.com/AccelByte/sample-apps/cmd/cloudsave/adminPlayerRecord"
 	"github.com/AccelByte/sample-apps/cmd/cloudsave/adminRecord"
 	"github.com/AccelByte/sample-apps/cmd/cloudsave/concurrentRecord"
+	"github.com/AccelByte/sample-apps/cmd/cloudsave/pluginConfig"
 	"github.com/AccelByte/sample-apps/cmd/cloudsave/publicGameRecord"
 	"github.com/AccelByte/sample-apps/cmd/cloudsave/publicPlayerRecord"
 	"github.com/spf13/cobra"
@@ -32,6 +33,10 @@ func init() {
 	CloudsaveCmd.AddCommand(adminRecord.AdminDeleteAdminGameRecordV1Cmd)
 	CloudsaveCmd.AddCommand(adminConcurrentRecord.AdminPutAdminGameRecordConcurrentHandlerV1Cmd)
 	CloudsaveCmd.AddCommand(adminConcurrentRecord.AdminPutGameRecordConcurrentHandlerV1Cmd)
+	CloudsaveCmd.AddCommand(pluginConfig.GetPluginConfigCmd)
+	CloudsaveCmd.AddCommand(pluginConfig.CreatePluginConfigCmd)
+	CloudsaveCmd.AddCommand(pluginConfig.DeletePluginConfigCmd)
+	CloudsaveCmd.AddCommand(pluginConfig.UpdatePluginConfigCmd)
 	CloudsaveCmd.AddCommand(adminGameRecord.ListGameRecordsHandlerV1Cmd)
 	CloudsaveCmd.AddCommand(adminGameRecord.AdminGetGameRecordHandlerV1Cmd)
 	CloudsaveCmd.AddCommand(adminGameRecord.AdminPutGameRecordHandlerV1Cmd)

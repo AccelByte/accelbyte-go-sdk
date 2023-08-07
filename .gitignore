@@ -201,10 +201,13 @@ modules.xml
 /samples/oidc-web/oidc-web
 /samples/tic-tac-toe/aws-lambda/tic-tac-toe
 /samples/tic-tac-toe/client/client
+/samples/custom-operation
+/samples/ondemand-refresh-token
 /samples/title-matchmaking/aws-lambda/aws-lambda
 /samples/title-matchmaking/client/sample-apps
 /samples/ondemand-refresh-token/ondemand-refresh-token
 /samples/custom-operation/custom-operation
+/samples/**/bin
 
 # MacOS
 .DS_Store

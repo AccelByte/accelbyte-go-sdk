@@ -21,7 +21,7 @@ import (
 type RevokeCurrency struct {
 
 	// balance origin
-	// Enum: ['Epic', 'GooglePlay', 'IOS', 'Nintendo', 'Other', 'Playstation', 'Steam', 'System', 'Twitch', 'Xbox']
+	// Enum: ['Epic', 'GooglePlay', 'IOS', 'Nintendo', 'Oculus', 'Other', 'Playstation', 'Steam', 'System', 'Twitch', 'Xbox']
 	BalanceOrigin string `json:"balanceOrigin,omitempty"`
 
 	// currency code
@@ -45,7 +45,7 @@ var revokeCurrencyTypeBalanceOriginPropEnum []interface{}
 
 func init() {
 	var res []string
-	if err := json.Unmarshal([]byte(`["EPIC", "GOOGLEPLAY", "IOS", "NINTENDO", "OTHER", "PLAYSTATION", "STEAM", "SYSTEM", "TWITCH", "XBOX"]`), &res); err != nil {
+	if err := json.Unmarshal([]byte(`["EPIC", "GOOGLEPLAY", "IOS", "NINTENDO", "OCULUS", "OTHER", "PLAYSTATION", "STEAM", "SYSTEM", "TWITCH", "XBOX"]`), &res); err != nil {
 		panic(err)
 	}
 	for _, v := range res {
@@ -66,6 +66,9 @@ const (
 
 	// RevokeCurrencyBalanceOriginNINTENDO captures enum value "NINTENDO"
 	RevokeCurrencyBalanceOriginNINTENDO string = "NINTENDO"
+
+	// RevokeCurrencyBalanceOriginOCULUS captures enum value "OCULUS"
+	RevokeCurrencyBalanceOriginOCULUS string = "OCULUS"
 
 	// RevokeCurrencyBalanceOriginOTHER captures enum value "OTHER"
 	RevokeCurrencyBalanceOriginOTHER string = "OTHER"

@@ -99,7 +99,10 @@ func (aaa *AdminGameRecordService) AdminPostGameRecordHandlerV1(input *admin_gam
 	if err != nil {
 		return nil, err
 	}
-	created, unauthorized, internalServerError, err := aaa.Client.AdminGameRecord.AdminPostGameRecordHandlerV1(input, client.BearerToken(*token.AccessToken))
+	created, badRequest, unauthorized, internalServerError, err := aaa.Client.AdminGameRecord.AdminPostGameRecordHandlerV1(input, client.BearerToken(*token.AccessToken))
+	if badRequest != nil {
+		return nil, badRequest
+	}
 	if unauthorized != nil {
 		return nil, unauthorized
 	}

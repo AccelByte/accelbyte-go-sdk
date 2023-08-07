@@ -31,6 +31,7 @@ const (
 	QueryUserIAPOrdersAPPLEConstant       = "APPLE"
 	QueryUserIAPOrdersEPICGAMESConstant   = "EPICGAMES"
 	QueryUserIAPOrdersGOOGLEConstant      = "GOOGLE"
+	QueryUserIAPOrdersOCULUSConstant      = "OCULUS"
 	QueryUserIAPOrdersPLAYSTATIONConstant = "PLAYSTATION"
 	QueryUserIAPOrdersSTADIAConstant      = "STADIA"
 	QueryUserIAPOrdersSTEAMConstant       = "STEAM"

@@ -88,7 +88,7 @@
             "type": "string"
           },
           {
-            "default": 1000,
+            "default": 20,
             "description": "number of content per page",
             "in": "query",
             "name": "limit",
@@ -646,7 +646,7 @@
             "type": "string"
           },
           {
-            "default": 1000,
+            "default": 20,
             "description": "number of content per page",
             "in": "query",
             "name": "limit",
@@ -921,7 +921,7 @@
             "type": "string"
           },
           {
-            "default": 1000,
+            "default": 20,
             "description": "number of content per page",
             "in": "query",
             "name": "limit",
@@ -1076,7 +1076,7 @@
             "type": "string"
           },
           {
-            "default": 1000,
+            "default": 20,
             "description": "number of content per page",
             "in": "query",
             "name": "limit",
@@ -1627,7 +1627,7 @@
             "type": "string"
           },
           {
-            "default": 1000,
+            "default": 20,
             "description": "number of content per page",
             "in": "query",
             "name": "limit",
@@ -1977,7 +1977,7 @@
             "type": "string"
           },
           {
-            "default": 1000,
+            "default": 20,
             "description": "number of content per page",
             "in": "query",
             "name": "limit",
@@ -2050,7 +2050,7 @@
             "type": "string"
           },
           {
-            "default": 1000,
+            "default": 20,
             "description": "number of content per page",
             "in": "query",
             "name": "limit",
@@ -2341,7 +2341,7 @@
             "type": "string"
           },
           {
-            "default": 1000,
+            "default": 20,
             "description": "number of content per page",
             "in": "query",
             "name": "limit",
@@ -2700,7 +2700,7 @@
             "type": "string"
           },
           {
-            "default": 1000,
+            "default": 20,
             "description": "number of content per page",
             "in": "query",
             "name": "limit",
@@ -3272,7 +3272,7 @@
             "type": "string"
           },
           {
-            "default": 1000,
+            "default": 20,
             "description": "number of content per page",
             "in": "query",
             "name": "limit",
@@ -3494,7 +3494,7 @@
             "type": "string"
           },
           {
-            "default": 1000,
+            "default": 20,
             "description": "number of content per page",
             "in": "query",
             "name": "limit",
@@ -3807,7 +3807,7 @@
             "type": "string"
           },
           {
-            "default": 1000,
+            "default": 20,
             "description": "number of content per page",
             "in": "query",
             "name": "limit",
@@ -3963,7 +3963,7 @@
             "type": "string"
           },
           {
-            "default": 1000,
+            "default": 20,
             "description": "number of content per page",
             "in": "query",
             "name": "limit",
@@ -4092,7 +4092,7 @@
             "type": "string"
           },
           {
-            "default": 1000,
+            "default": 20,
             "description": "number of content per page",
             "in": "query",
             "name": "limit",
@@ -4277,7 +4277,7 @@
             "type": "string"
           },
           {
-            "default": 1000,
+            "default": 20,
             "description": "number of content per page",
             "in": "query",
             "name": "limit",
@@ -4355,7 +4355,7 @@
             "x-omitempty": false
           },
           {
-            "default": 1000,
+            "default": 20,
             "description": "number of content per page",
             "in": "query",
             "name": "limit",
@@ -4800,7 +4800,7 @@
             "type": "string"
           },
           {
-            "default": 1000,
+            "default": 20,
             "description": "number of content per page",
             "in": "query",
             "name": "limit",
@@ -4871,7 +4871,7 @@
             "type": "string"
           },
           {
-            "default": 1000,
+            "default": 20,
             "description": "number of content per page",
             "in": "query",
             "name": "limit",
@@ -4942,7 +4942,7 @@
             "type": "string"
           },
           {
-            "default": 1000,
+            "default": 20,
             "description": "number of content per page",
             "in": "query",
             "name": "limit",
@@ -5025,7 +5025,7 @@
             "type": "string"
           },
           {
-            "default": 1000,
+            "default": 20,
             "description": "number of user per page",
             "in": "query",
             "name": "limit",
@@ -5229,7 +5229,7 @@
             "type": "string"
           },
           {
-            "default": 1000,
+            "default": 20,
             "description": "number of content per page",
             "in": "query",
             "name": "limit",
@@ -6040,7 +6040,7 @@
             "type": "string"
           },
           {
-            "default": 1000,
+            "default": 20,
             "description": "number of content per page",
             "in": "query",
             "name": "limit",
@@ -6450,7 +6450,7 @@
             "type": "string"
           },
           {
-            "default": 1000,
+            "default": 20,
             "description": "number of user per page",
             "in": "query",
             "name": "limit",
@@ -6527,7 +6527,7 @@
             "type": "string"
           },
           {
-            "default": 1000,
+            "default": 20,
             "description": "number of user per page",
             "in": "query",
             "name": "limit",
@@ -6667,7 +6667,7 @@
             "type": "string"
           },
           {
-            "default": 1000,
+            "default": 20,
             "description": "number of content per page",
             "in": "query",
             "name": "limit",
@@ -7057,7 +7057,7 @@
             "type": "string"
           },
           {
-            "default": 1000,
+            "default": 20,
             "description": "number of content per page",
             "in": "query",
             "name": "limit",
@@ -8344,8 +8344,8 @@
     "path": "/ugc/apidocs/api.json"
   },
   "x-version": {
-    "buildDate": "2023-07-05T02:15:13+00:00",
-    "gitHash": "49e73f3537e72984ac4b6eedf799536bc1d25c3f",
+    "buildDate": "2023-07-18T02:10:54+00:00",
+    "gitHash": "2b7676daae78f39130762976f1764004d439ead2",
     "name": "justice-ugc-service",
     "realm": "staging",
     "version": "2.11.2",

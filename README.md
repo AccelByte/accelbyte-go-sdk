@@ -124,6 +124,27 @@ tokenValidator.Initialize()
 err = tokenValidator.Validate(accessToken, &requiredPermission, &namespace, nil)
 ```
 
+if want to set `localValidationActive` is true, use a `TokenValidator` directly and do this:
+```
+tokenValidator := &validator.TokenValidator{
+		AuthService:     *oAuth20Service,
+		RefreshInterval: time.Hour,
+
+		Filter:                nil,
+		JwkSet:                nil,
+		JwtClaims:             validator.JWTClaims{},
+		JwtEncoding:           *base64.URLEncoding.WithPadding(base64.NoPadding),
+		PublicKeys:            make(map[string]*rsa.PublicKey),
+		LocalValidationActive: true, // set here to true
+		RevokedUsers:          make(map[string]time.Time),
+		Roles:                 make(map[string]*iamclientmodels.ModelRoleResponseV3),
+	}
+	
+tokenValidator.Initialize()
+
+err = tokenValidator.Validate(accessToken, &requiredPermission, &namespace, nil)
+```
+
 ## Login
 
 ### Login Using Username and Password
@@ -141,6 +162,43 @@ if err != nil {
 err := oAuth20Service.LoginClient(clientId, clientSecret)
 if err != nil {
     return err
+}
+```
+
+## Parse Access Token
+Functionality to parse the access token is available in `v0.50.0`.
+The function exist alongside the Login functionality in `OAuth20Service`. To use it, import the package
+```go
+import (
+    ...
+    "github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/iam"
+    ...
+)
+```
+Get the token, and use `ParseAccessToken` function. Set the second parameter as `true` if it wants to validate before parse the access token
+```go
+// get the access token string
+accessToken, err := oAuth20Service.GetToken()
+if err != nil {
+    // fail here
+}
+
+// parse the token
+parsedToken, err := oAuth20Service.ParseAccessToken(accessToken, true) // set true here to validate before parse the access token
+if err != nil {
+    // fail here
+}
+```
+- if the boolean is `false`, it will not validate the token at all. 
+- if the boolean is `true`, it will validate remotely (call `VerifyTokenV3` endpoint). 
+- if the boolean is `true` and call `SetLocalValidation` before `ParseAccessToken`, it will validate locally.
+```go
+oAuth20Service.SetLocalValidation(true) // call this also to activate local validation
+
+// parse the token
+parsedToken, err := oAuth20Service.ParseAccessToken(accessToken, true) // set true here to validate before parsing the access token
+if err != nil {
+// fail here
 }
 ```
 
@@ -216,4 +274,4 @@ Reference about AccelByte service endpoints and their corresponding SDK API is a
 
 Sample app documentations are available in the [docs/samples](docs/samples/) directory.
 
-For more information on how to use AccelByte services and SDKs, see [docs.accelbyte.io](https://docs.accelbyte.io/).
+For more information on how to use AccelByte services and SDKs, see [docs.accelbyte.io](https://docs-old.accelbyte.io/).

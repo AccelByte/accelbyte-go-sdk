@@ -16,13 +16,17 @@ import (
 	"github.com/go-openapi/runtime"
 	cr "github.com/go-openapi/runtime/client"
 	"github.com/go-openapi/strfmt"
+	"github.com/go-openapi/swag"
 )
 
 // NewRevokeUserV3Params creates a new RevokeUserV3Params object
 // with the default values initialized.
 func NewRevokeUserV3Params() *RevokeUserV3Params {
-	var ()
+	var (
+		includeGameNamespaceDefault = bool(false)
+	)
 	return &RevokeUserV3Params{
+		IncludeGameNamespace: &includeGameNamespaceDefault,
 
 		timeout: cr.DefaultTimeout,
 	}
@@ -31,8 +35,11 @@ func NewRevokeUserV3Params() *RevokeUserV3Params {
 // NewRevokeUserV3ParamsWithTimeout creates a new RevokeUserV3Params object
 // with the default values initialized, and the ability to set a timeout on a request
 func NewRevokeUserV3ParamsWithTimeout(timeout time.Duration) *RevokeUserV3Params {
-	var ()
+	var (
+		includeGameNamespaceDefault = bool(false)
+	)
 	return &RevokeUserV3Params{
+		IncludeGameNamespace: &includeGameNamespaceDefault,
 
 		timeout: timeout,
 	}
@@ -41,8 +48,11 @@ func NewRevokeUserV3ParamsWithTimeout(timeout time.Duration) *RevokeUserV3Params
 // NewRevokeUserV3ParamsWithContext creates a new RevokeUserV3Params object
 // with the default values initialized, and the ability to set a context for a request
 func NewRevokeUserV3ParamsWithContext(ctx context.Context) *RevokeUserV3Params {
-	var ()
+	var (
+		includeGameNamespaceDefault = bool(false)
+	)
 	return &RevokeUserV3Params{
+		IncludeGameNamespace: &includeGameNamespaceDefault,
 
 		Context: ctx,
 	}
@@ -51,9 +61,12 @@ func NewRevokeUserV3ParamsWithContext(ctx context.Context) *RevokeUserV3Params {
 // NewRevokeUserV3ParamsWithHTTPClient creates a new RevokeUserV3Params object
 // with the default values initialized, and the ability to set a custom HTTPClient for a request
 func NewRevokeUserV3ParamsWithHTTPClient(client *http.Client) *RevokeUserV3Params {
-	var ()
+	var (
+		includeGameNamespaceDefault = bool(false)
+	)
 	return &RevokeUserV3Params{
-		HTTPClient: client,
+		IncludeGameNamespace: &includeGameNamespaceDefault,
+		HTTPClient:           client,
 	}
 }
 
@@ -74,6 +87,11 @@ type RevokeUserV3Params struct {
 
 	*/
 	UserID string
+	/*IncludeGameNamespace
+	  <p>This queryParameter only works when utilizing userID and namespace publisher.</p> <p>If true, the system will revoke all game account under the publisher account.</p>
+
+	*/
+	IncludeGameNamespace *bool
 
 	timeout        time.Duration
 	AuthInfoWriter runtime.ClientAuthInfoWriter
@@ -150,6 +168,17 @@ func (o *RevokeUserV3Params) SetUserID(userID string) {
 	o.UserID = userID
 }
 
+// WithIncludeGameNamespace adds the includeGameNamespace to the revoke user v3 params
+func (o *RevokeUserV3Params) WithIncludeGameNamespace(includeGameNamespace *bool) *RevokeUserV3Params {
+	o.SetIncludeGameNamespace(includeGameNamespace)
+	return o
+}
+
+// SetIncludeGameNamespace adds the includeGameNamespace to the revoke user v3 params
+func (o *RevokeUserV3Params) SetIncludeGameNamespace(includeGameNamespace *bool) {
+	o.IncludeGameNamespace = includeGameNamespace
+}
+
 // WriteToRequest writes these params to a swagger request
 func (o *RevokeUserV3Params) WriteToRequest(r runtime.ClientRequest, reg strfmt.Registry) error {
 
@@ -166,6 +195,22 @@ func (o *RevokeUserV3Params) WriteToRequest(r runtime.ClientRequest, reg strfmt.
 	// path param userId
 	if err := r.SetPathParam("userId", o.UserID); err != nil {
 		return err
+	}
+
+	if o.IncludeGameNamespace != nil {
+
+		// query param includeGameNamespace
+		var qrIncludeGameNamespace bool
+		if o.IncludeGameNamespace != nil {
+			qrIncludeGameNamespace = *o.IncludeGameNamespace
+		}
+		qIncludeGameNamespace := swag.FormatBool(qrIncludeGameNamespace)
+		if qIncludeGameNamespace != "" {
+			if err := r.SetQueryParam("includeGameNamespace", qIncludeGameNamespace); err != nil {
+				return err
+			}
+		}
+
 	}
 
 	// setting the default header value

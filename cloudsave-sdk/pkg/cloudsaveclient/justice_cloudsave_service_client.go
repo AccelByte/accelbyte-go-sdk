@@ -19,6 +19,7 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/cloudsave-sdk/pkg/cloudsaveclient/admin_player_record"
 	"github.com/AccelByte/accelbyte-go-sdk/cloudsave-sdk/pkg/cloudsaveclient/admin_record"
 	"github.com/AccelByte/accelbyte-go-sdk/cloudsave-sdk/pkg/cloudsaveclient/concurrent_record"
+	"github.com/AccelByte/accelbyte-go-sdk/cloudsave-sdk/pkg/cloudsaveclient/plugin_config"
 	"github.com/AccelByte/accelbyte-go-sdk/cloudsave-sdk/pkg/cloudsaveclient/public_game_record"
 	"github.com/AccelByte/accelbyte-go-sdk/cloudsave-sdk/pkg/cloudsaveclient/public_player_record"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils"
@@ -76,6 +77,7 @@ func New(transport runtime.ClientTransport, runtime *httptransport.Runtime, form
 	cli.AdminPlayerRecord = admin_player_record.New(transport, formats)
 	cli.AdminRecord = admin_record.New(transport, formats)
 	cli.ConcurrentRecord = concurrent_record.New(transport, formats)
+	cli.PluginConfig = plugin_config.New(transport, formats)
 	cli.PublicGameRecord = public_game_record.New(transport, formats)
 	cli.PublicPlayerRecord = public_player_record.New(transport, formats)
 
@@ -148,6 +150,8 @@ type JusticeCloudsaveService struct {
 
 	ConcurrentRecord concurrent_record.ClientService
 
+	PluginConfig plugin_config.ClientService
+
 	PublicGameRecord public_game_record.ClientService
 
 	PublicPlayerRecord public_player_record.ClientService
@@ -164,6 +168,7 @@ func (c *JusticeCloudsaveService) SetTransport(transport runtime.ClientTransport
 	c.AdminPlayerRecord.SetTransport(transport)
 	c.AdminRecord.SetTransport(transport)
 	c.ConcurrentRecord.SetTransport(transport)
+	c.PluginConfig.SetTransport(transport)
 	c.PublicGameRecord.SetTransport(transport)
 	c.PublicPlayerRecord.SetTransport(transport)
 }

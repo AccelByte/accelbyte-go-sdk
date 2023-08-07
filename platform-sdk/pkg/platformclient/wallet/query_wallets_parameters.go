@@ -25,6 +25,7 @@ const (
 	QueryWalletsGooglePlayConstant  = "GooglePlay"
 	QueryWalletsIOSConstant         = "IOS"
 	QueryWalletsNintendoConstant    = "Nintendo"
+	QueryWalletsOculusConstant      = "Oculus"
 	QueryWalletsOtherConstant       = "Other"
 	QueryWalletsPlaystationConstant = "Playstation"
 	QueryWalletsSteamConstant       = "Steam"

@@ -4,12 +4,12 @@
 This tutorial will explain on how to use AccelByte Go Extend SDK to create simple Tic Tac Toe backend service and game client. This tutorial also will explain on how to configure and run the provided local server sample as well as AWS Lambda sample.
 
 ## Prerequisites
-- [Create a Game Namespace](https://docs.accelbyte.io/esg/uam/namespaces.html#tutorials) if you don't have one yet. Be sure to keep the namespace's **ID** as you will need it later.
-- [Create and OAuth Client](https://docs.accelbyte.io/esg/uam/iam-client.html#managing-clients-in-the-admin-portal) with a **confidential** client type. Keep the **Client ID** and the **Client Secret** somewhere safe as you will be using them in this tutorial. Make sure you add these permissions for the oauth client.
+- [Create a Game Namespace](https://docs-old.accelbyte.io/esg/uam/namespaces.html#tutorials) if you don't have one yet. Be sure to keep the namespace's **ID** as you will need it later.
+- [Create and OAuth Client](https://docs-old.accelbyte.io/esg/uam/iam-client.html#managing-clients-in-the-admin-portal) with a **confidential** client type. Keep the **Client ID** and the **Client Secret** somewhere safe as you will be using them in this tutorial. Make sure you add these permissions for the oauth client.
 	- `NAMESPACE:<namespace>:USER:*:NOTIFICATION` CREATE, UPDATE
 	- `NAMESPACE:<namespace>:USER` READ
 - Download the latest [Go SDK](https://github.com/AccelByte/accelbyte-go-sdk)
-- Read [Go SDK Getting Started Guide](https://docs.accelbyte.io/guides/customization/golang-sdk-guide.html) on how to integrate SDK into your project.
+- Read [Go SDK Getting Started Guide](https://docs-old.accelbyte.io/guides/customization/golang-sdk-guide.html) on how to integrate SDK into your project.
 - AWS account with enough permission to deploy Lambda function (optional).
 - At least two username registered in AccelByte Gaming Services for testing purpose.
 

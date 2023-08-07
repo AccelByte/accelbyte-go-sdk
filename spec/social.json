@@ -21,10 +21,10 @@
       "name": "GlobalStatistic"
     },
     {
-      "name": "Slot"
+      "name": "Slot (Deprecated)"
     },
     {
-      "name": "SlotConfig"
+      "name": "SlotConfig (Deprecated)"
     },
     {
       "name": "StatConfiguration"
@@ -104,7 +104,8 @@
   "paths": {
     "/social/admin/namespaces/{namespace}/config": {
       "delete": {
-        "description": "Deletes a namespace slot configuration, the configuration will be default after delete.\u0026lt;br\u0026gt;Other detail info:\u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;ADMIN:NAMESPACE:{namespace}:SLOTCONFIG\u0026#34;, action=8 (DELETE)\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
+        "deprecated": true,
+        "description": "\u0026lt;h2\u0026gt;The endpoint is going to be deprecated\u0026lt;/h2\u0026gt;\u0026lt;br\u0026gt;Deletes a namespace slot configuration, the configuration will be default after delete.\u0026lt;br\u0026gt;Other detail info:\u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;ADMIN:NAMESPACE:{namespace}:SLOTCONFIG\u0026#34;, action=8 (DELETE)\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "deleteNamespaceSlotConfig",
         "parameters": [
           {
@@ -141,7 +142,8 @@
         }
       },
       "get": {
-        "description": "Get slot configuration for a given namespace. In case slot configuration is not set, the default will be returned.\u0026lt;br\u0026gt;Other detail info:\u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;ADMIN:NAMESPACE:{namespace}:SLOTCONFIG\u0026#34;, action=2 (READ)\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: namespace slot config info\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
+        "deprecated": true,
+        "description": "\u0026lt;h2\u0026gt;The endpoint is going to be deprecated\u0026lt;/h2\u0026gt;\u0026lt;br\u0026gt;Get slot configuration for a given namespace. In case slot configuration is not set, the default will be returned.\u0026lt;br\u0026gt;Other detail info:\u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;ADMIN:NAMESPACE:{namespace}:SLOTCONFIG\u0026#34;, action=2 (READ)\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: namespace slot config info\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "getNamespaceSlotConfig",
         "parameters": [
           {
@@ -187,7 +189,8 @@
         "consumes": [
           "application/json"
         ],
-        "description": "Update a slot namespace configuration.\u0026lt;br\u0026gt;Other detail info:\u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;ADMIN:NAMESPACE:{namespace}:SLOTCONFIG\u0026#34;, action=4 (UPDATE)\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: updated namespace slot config\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
+        "deprecated": true,
+        "description": "\u0026lt;h2\u0026gt;The endpoint is going to be deprecated\u0026lt;/h2\u0026gt;\u0026lt;br\u0026gt;Update a slot namespace configuration.\u0026lt;br\u0026gt;Other detail info:\u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;ADMIN:NAMESPACE:{namespace}:SLOTCONFIG\u0026#34;, action=4 (UPDATE)\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: updated namespace slot config\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "updateNamespaceSlotConfig",
         "parameters": [
           {
@@ -240,7 +243,8 @@
     },
     "/social/admin/namespaces/{namespace}/users/{userId}/config": {
       "delete": {
-        "description": "Deletes a user slot configuration in given namespace, the namespace slot configuration will be returned after delete.\u0026lt;br\u0026gt;Other detail info:\u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;ADMIN:NAMESPACE:{namespace}:USER:{userId}:SLOTCONFIG\u0026#34;, action=8 (DELETE)\u0026lt;/li\u0026gt;\u0026lt;/li\u0026gt;",
+        "deprecated": true,
+        "description": "\u0026lt;h2\u0026gt;The endpoint is going to be deprecated\u0026lt;/h2\u0026gt;\u0026lt;br\u0026gt;Deletes a user slot configuration in given namespace, the namespace slot configuration will be returned after delete.\u0026lt;br\u0026gt;Other detail info:\u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;ADMIN:NAMESPACE:{namespace}:USER:{userId}:SLOTCONFIG\u0026#34;, action=8 (DELETE)\u0026lt;/li\u0026gt;\u0026lt;/li\u0026gt;",
         "operationId": "deleteUserSlotConfig",
         "parameters": [
           {
@@ -284,7 +288,8 @@
         }
       },
       "get": {
-        "description": "Get a user slot configuration in given namespace. In case the user slot configuration is not set, the namespace configuration will be returned.\u0026lt;br\u0026gt;Other detail info:\u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;ADMIN:NAMESPACE:{namespace}:USER:{userId}:SLOTCONFIG\u0026#34;, action=2 (READ)\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;Returns\u0026lt;/i\u0026gt;: slot config info\u0026lt;/li\u0026gt;",
+        "deprecated": true,
+        "description": "\u0026lt;h2\u0026gt;The endpoint is going to be deprecated\u0026lt;/h2\u0026gt;\u0026lt;br\u0026gt;Get a user slot configuration in given namespace. In case the user slot configuration is not set, the namespace configuration will be returned.\u0026lt;br\u0026gt;Other detail info:\u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;ADMIN:NAMESPACE:{namespace}:USER:{userId}:SLOTCONFIG\u0026#34;, action=2 (READ)\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;Returns\u0026lt;/i\u0026gt;: slot config info\u0026lt;/li\u0026gt;",
         "operationId": "getUserSlotConfig",
         "parameters": [
           {
@@ -337,7 +342,8 @@
         "consumes": [
           "application/json"
         ],
-        "description": "Update a user slot configuration in given namespace.\u0026lt;br\u0026gt;Other detail info:\u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;ADMIN:NAMESPACE:{namespace}:USER:{userId}:SLOTCONFIG\u0026#34;, action=4 (UPDATE)\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: updated slot config\u0026lt;/li\u0026gt;",
+        "deprecated": true,
+        "description": "\u0026lt;h2\u0026gt;The endpoint is going to be deprecated\u0026lt;/h2\u0026gt;\u0026lt;br\u0026gt;Update a user slot configuration in given namespace.\u0026lt;br\u0026gt;Other detail info:\u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;ADMIN:NAMESPACE:{namespace}:USER:{userId}:SLOTCONFIG\u0026#34;, action=4 (UPDATE)\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: updated slot config\u0026lt;/li\u0026gt;",
         "operationId": "updateUserSlotConfig",
         "parameters": [
           {
@@ -517,7 +523,8 @@
     },
     "/social/admin/namespaces/{namespace}/users/{userId}/slots": {
       "get": {
-        "description": "Get slots for a given user.\u0026lt;br\u0026gt;Other detail info:\u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;ADMIN:NAMESPACE:{namespace}:USER:{userId}:SLOTDATA\u0026#34;, action=2 (READ)\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: list of slots\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
+        "deprecated": true,
+        "description": "\u0026lt;h2\u0026gt;The endpoint is going to be deprecated\u0026lt;/h2\u0026gt;\u0026lt;br\u0026gt;Get slots for a given user.\u0026lt;br\u0026gt;Other detail info:\u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;ADMIN:NAMESPACE:{namespace}:USER:{userId}:SLOTDATA\u0026#34;, action=2 (READ)\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: list of slots\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "getUserNamespaceSlots",
         "parameters": [
           {
@@ -572,7 +579,8 @@
     },
     "/social/admin/namespaces/{namespace}/users/{userId}/slots/{slotId}": {
       "get": {
-        "description": "Get slot data.\u0026lt;br\u0026gt;Other detail info:\u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;ADMIN:NAMESPACE:{namespace}:USER:{userId}:SLOTDATA\u0026#34;, action=2 (READ)\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: slot data\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
+        "deprecated": true,
+        "description": "\u0026lt;h2\u0026gt;The endpoint is going to be deprecated\u0026lt;/h2\u0026gt;\u0026lt;br\u0026gt;Get slot data.\u0026lt;br\u0026gt;Other detail info:\u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;ADMIN:NAMESPACE:{namespace}:USER:{userId}:SLOTDATA\u0026#34;, action=2 (READ)\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: slot data\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "getSlotData",
         "parameters": [
           {
@@ -1183,7 +1191,8 @@
     },
     "/social/public/namespaces/{namespace}/users/{userId}/slots": {
       "get": {
-        "description": "Get list of slots for a given user in namespace.\u0026lt;br\u0026gt;Other detail info:\u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;NAMESPACE:{namespace}:USER:{userId}:SLOTDATA\u0026#34;, action=2 (READ)\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: list of slots\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
+        "deprecated": true,
+        "description": "\u0026lt;h2\u0026gt;The endpoint is going to be deprecated\u0026lt;/h2\u0026gt;\u0026lt;br\u0026gt;Get list of slots for a given user in namespace.\u0026lt;br\u0026gt;Other detail info:\u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;NAMESPACE:{namespace}:USER:{userId}:SLOTDATA\u0026#34;, action=2 (READ)\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: list of slots\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "publicGetUserNamespaceSlots",
         "parameters": [
           {
@@ -1239,7 +1248,8 @@
         "consumes": [
           "multipart/form-data"
         ],
-        "description": "Creates a slot.\u0026lt;br\u0026gt;Other detail info:\u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;NAMESPACE:{namespace}:USER:{userId}:SLOTDATA\u0026#34;, action=1 (CREATE)\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: created slot info\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
+        "deprecated": true,
+        "description": "\u0026lt;h2\u0026gt;The endpoint is going to be deprecated\u0026lt;/h2\u0026gt;\u0026lt;br\u0026gt;Creates a slot.\u0026lt;br\u0026gt;Other detail info:\u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;NAMESPACE:{namespace}:USER:{userId}:SLOTDATA\u0026#34;, action=1 (CREATE)\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: created slot info\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "publicCreateUserNamespaceSlot",
         "parameters": [
           {
@@ -1338,7 +1348,8 @@
     },
     "/social/public/namespaces/{namespace}/users/{userId}/slots/{slotId}": {
       "delete": {
-        "description": "Deletes the slot.\u0026lt;br\u0026gt;Other detail info:\u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;NAMESPACE:{namespace}:USER:{userId}:SLOTDATA\u0026#34;, action=8 (DELETE)\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
+        "deprecated": true,
+        "description": "\u0026lt;h2\u0026gt;The endpoint is going to be deprecated\u0026lt;/h2\u0026gt;\u0026lt;br\u0026gt;Deletes the slot.\u0026lt;br\u0026gt;Other detail info:\u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;NAMESPACE:{namespace}:USER:{userId}:SLOTDATA\u0026#34;, action=8 (DELETE)\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "publicDeleteUserNamespaceSlot",
         "parameters": [
           {
@@ -1398,7 +1409,8 @@
         }
       },
       "get": {
-        "description": "Get slot data.\u0026lt;br\u0026gt;Other detail info:\u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;NAMESPACE:{namespace}:USER:{userId}:SLOTDATA\u0026#34;, action=2 (READ)\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: slot data\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
+        "deprecated": true,
+        "description": "\u0026lt;h2\u0026gt;The endpoint is going to be deprecated\u0026lt;/h2\u0026gt;\u0026lt;br\u0026gt;Get slot data.\u0026lt;br\u0026gt;Other detail info:\u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;NAMESPACE:{namespace}:USER:{userId}:SLOTDATA\u0026#34;, action=2 (READ)\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: slot data\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "publicGetSlotData",
         "parameters": [
           {
@@ -1465,7 +1477,8 @@
         "consumes": [
           "multipart/form-data"
         ],
-        "description": "Updates a slot.\u0026lt;br\u0026gt;Other detail info:\u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;NAMESPACE:{namespace}:USER:{userId}:SLOTDATA\u0026#34;, action=4 (UPDATE)\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: updated slot\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
+        "deprecated": true,
+        "description": "\u0026lt;h2\u0026gt;The endpoint is going to be deprecated\u0026lt;/h2\u0026gt;\u0026lt;br\u0026gt;Updates a slot.\u0026lt;br\u0026gt;Other detail info:\u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;NAMESPACE:{namespace}:USER:{userId}:SLOTDATA\u0026#34;, action=4 (UPDATE)\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: updated slot\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "publicUpdateUserNamespaceSlot",
         "parameters": [
           {
@@ -1577,7 +1590,8 @@
         "consumes": [
           "application/json"
         ],
-        "description": "Updates the slot metadata.\u0026lt;br\u0026gt;Other detail info:\u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;NAMESPACE:{namespace}:USER:{userId}:SLOTDATA\u0026#34;, action=4 (UPDATE)\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: updated slot\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
+        "deprecated": true,
+        "description": "\u0026lt;h2\u0026gt;The endpoint is going to be deprecated\u0026lt;/h2\u0026gt;\u0026lt;br\u0026gt;Updates the slot metadata.\u0026lt;br\u0026gt;Other detail info:\u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;NAMESPACE:{namespace}:USER:{userId}:SLOTDATA\u0026#34;, action=4 (UPDATE)\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: updated slot\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "publicUpdateUserNamespaceSlotMetadata",
         "parameters": [
           {
@@ -8409,12 +8423,12 @@
   },
   "x-version": {
     "buildBy": "Gradle 6.9.1",
-    "buildDate": "2023-07-04T01:37:13+00:00",
+    "buildDate": "2023-07-18T09:28:19+00:00",
     "buildID": "2.9.0",
     "buildJDK": "1.8.0_232 (Eclipse OpenJ9 openj9-0.17.0)",
     "buildOS": "Linux amd64 5.13.0-1021-aws",
     "gitBranchName": "release-candidate",
-    "gitHash": "9d2df30e2d",
+    "gitHash": "4ee5a0d153",
     "gitTag": "2.9.0",
     "name": "justice-social-service",
     "realm": "staging",

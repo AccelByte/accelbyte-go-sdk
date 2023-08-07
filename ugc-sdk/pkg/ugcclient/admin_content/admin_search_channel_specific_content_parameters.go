@@ -23,7 +23,7 @@ import (
 // with the default values initialized.
 func NewAdminSearchChannelSpecificContentParams() *AdminSearchChannelSpecificContentParams {
 	var (
-		limitDefault  = int64(1000)
+		limitDefault  = int64(20)
 		offsetDefault = int64(0)
 	)
 	return &AdminSearchChannelSpecificContentParams{
@@ -38,7 +38,7 @@ func NewAdminSearchChannelSpecificContentParams() *AdminSearchChannelSpecificCon
 // with the default values initialized, and the ability to set a timeout on a request
 func NewAdminSearchChannelSpecificContentParamsWithTimeout(timeout time.Duration) *AdminSearchChannelSpecificContentParams {
 	var (
-		limitDefault  = int64(1000)
+		limitDefault  = int64(20)
 		offsetDefault = int64(0)
 	)
 	return &AdminSearchChannelSpecificContentParams{
@@ -53,7 +53,7 @@ func NewAdminSearchChannelSpecificContentParamsWithTimeout(timeout time.Duration
 // with the default values initialized, and the ability to set a context for a request
 func NewAdminSearchChannelSpecificContentParamsWithContext(ctx context.Context) *AdminSearchChannelSpecificContentParams {
 	var (
-		limitDefault  = int64(1000)
+		limitDefault  = int64(20)
 		offsetDefault = int64(0)
 	)
 	return &AdminSearchChannelSpecificContentParams{
@@ -68,7 +68,7 @@ func NewAdminSearchChannelSpecificContentParamsWithContext(ctx context.Context) 
 // with the default values initialized, and the ability to set a custom HTTPClient for a request
 func NewAdminSearchChannelSpecificContentParamsWithHTTPClient(client *http.Client) *AdminSearchChannelSpecificContentParams {
 	var (
-		limitDefault  = int64(1000)
+		limitDefault  = int64(20)
 		offsetDefault = int64(0)
 	)
 	return &AdminSearchChannelSpecificContentParams{

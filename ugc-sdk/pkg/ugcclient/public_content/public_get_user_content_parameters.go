@@ -23,7 +23,7 @@ import (
 // with the default values initialized.
 func NewPublicGetUserContentParams() *PublicGetUserContentParams {
 	var (
-		limitDefault  = int64(1000)
+		limitDefault  = int64(20)
 		offsetDefault = int64(0)
 	)
 	return &PublicGetUserContentParams{
@@ -38,7 +38,7 @@ func NewPublicGetUserContentParams() *PublicGetUserContentParams {
 // with the default values initialized, and the ability to set a timeout on a request
 func NewPublicGetUserContentParamsWithTimeout(timeout time.Duration) *PublicGetUserContentParams {
 	var (
-		limitDefault  = int64(1000)
+		limitDefault  = int64(20)
 		offsetDefault = int64(0)
 	)
 	return &PublicGetUserContentParams{
@@ -53,7 +53,7 @@ func NewPublicGetUserContentParamsWithTimeout(timeout time.Duration) *PublicGetU
 // with the default values initialized, and the ability to set a context for a request
 func NewPublicGetUserContentParamsWithContext(ctx context.Context) *PublicGetUserContentParams {
 	var (
-		limitDefault  = int64(1000)
+		limitDefault  = int64(20)
 		offsetDefault = int64(0)
 	)
 	return &PublicGetUserContentParams{
@@ -68,7 +68,7 @@ func NewPublicGetUserContentParamsWithContext(ctx context.Context) *PublicGetUse
 // with the default values initialized, and the ability to set a custom HTTPClient for a request
 func NewPublicGetUserContentParamsWithHTTPClient(client *http.Client) *PublicGetUserContentParams {
 	var (
-		limitDefault  = int64(1000)
+		limitDefault  = int64(20)
 		offsetDefault = int64(0)
 	)
 	return &PublicGetUserContentParams{

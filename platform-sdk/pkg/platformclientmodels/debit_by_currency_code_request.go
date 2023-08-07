@@ -29,7 +29,7 @@ type DebitByCurrencyCodeRequest struct {
 	Amount *int64 `json:"amount"`
 
 	// balance origin
-	// Enum: ['Epic', 'GooglePlay', 'IOS', 'Nintendo', 'Other', 'Playstation', 'Steam', 'System', 'Twitch', 'Xbox']
+	// Enum: ['Epic', 'GooglePlay', 'IOS', 'Nintendo', 'Oculus', 'Other', 'Playstation', 'Steam', 'System', 'Twitch', 'Xbox']
 	BalanceOrigin string `json:"balanceOrigin,omitempty"`
 
 	// reason
@@ -63,7 +63,7 @@ var debitByCurrencyCodeRequestTypeBalanceOriginPropEnum []interface{}
 
 func init() {
 	var res []string
-	if err := json.Unmarshal([]byte(`["EPIC", "GOOGLEPLAY", "IOS", "NINTENDO", "OTHER", "PLAYSTATION", "STEAM", "SYSTEM", "TWITCH", "XBOX"]`), &res); err != nil {
+	if err := json.Unmarshal([]byte(`["EPIC", "GOOGLEPLAY", "IOS", "NINTENDO", "OCULUS", "OTHER", "PLAYSTATION", "STEAM", "SYSTEM", "TWITCH", "XBOX"]`), &res); err != nil {
 		panic(err)
 	}
 	for _, v := range res {
@@ -84,6 +84,9 @@ const (
 
 	// DebitByCurrencyCodeRequestBalanceOriginNINTENDO captures enum value "NINTENDO"
 	DebitByCurrencyCodeRequestBalanceOriginNINTENDO string = "NINTENDO"
+
+	// DebitByCurrencyCodeRequestBalanceOriginOCULUS captures enum value "OCULUS"
+	DebitByCurrencyCodeRequestBalanceOriginOCULUS string = "OCULUS"
 
 	// DebitByCurrencyCodeRequestBalanceOriginOTHER captures enum value "OTHER"
 	DebitByCurrencyCodeRequestBalanceOriginOTHER string = "OTHER"

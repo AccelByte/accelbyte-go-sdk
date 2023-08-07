@@ -227,13 +227,13 @@ func (aaa *ServicePluginConfigService) GetLootBoxPluginConfig1(input *service_pl
 	return ok.GetPayload(), nil
 }
 
-// Deprecated: 2022-01-10 - please use UpdateLootBoxPluginConfig1Short instead.
-func (aaa *ServicePluginConfigService) UpdateLootBoxPluginConfig1(input *service_plugin_config.UpdateLootBoxPluginConfig1Params) (*platformclientmodels.RevocationPluginConfigInfo, error) {
+// Deprecated: 2022-01-10 - please use UpdateRevocationPluginConfigShort instead.
+func (aaa *ServicePluginConfigService) UpdateRevocationPluginConfig(input *service_plugin_config.UpdateRevocationPluginConfigParams) (*platformclientmodels.RevocationPluginConfigInfo, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, unprocessableEntity, err := aaa.Client.ServicePluginConfig.UpdateLootBoxPluginConfig1(input, client.BearerToken(*token.AccessToken))
+	ok, unprocessableEntity, err := aaa.Client.ServicePluginConfig.UpdateRevocationPluginConfig(input, client.BearerToken(*token.AccessToken))
 	if unprocessableEntity != nil {
 		return nil, unprocessableEntity
 	}
@@ -600,7 +600,7 @@ func (aaa *ServicePluginConfigService) GetLootBoxPluginConfig1Short(input *servi
 	return ok.GetPayload(), nil
 }
 
-func (aaa *ServicePluginConfigService) UpdateLootBoxPluginConfig1Short(input *service_plugin_config.UpdateLootBoxPluginConfig1Params) (*platformclientmodels.RevocationPluginConfigInfo, error) {
+func (aaa *ServicePluginConfigService) UpdateRevocationPluginConfigShort(input *service_plugin_config.UpdateRevocationPluginConfigParams) (*platformclientmodels.RevocationPluginConfigInfo, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -617,7 +617,7 @@ func (aaa *ServicePluginConfigService) UpdateLootBoxPluginConfig1Short(input *se
 		}
 	}
 
-	ok, err := aaa.Client.ServicePluginConfig.UpdateLootBoxPluginConfig1Short(input, authInfoWriter)
+	ok, err := aaa.Client.ServicePluginConfig.UpdateRevocationPluginConfigShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}

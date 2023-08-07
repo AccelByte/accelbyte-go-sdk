@@ -26,6 +26,7 @@ const (
 	UpdatePlatformWalletConfigGooglePlayConstant  = "GooglePlay"
 	UpdatePlatformWalletConfigIOSConstant         = "IOS"
 	UpdatePlatformWalletConfigNintendoConstant    = "Nintendo"
+	UpdatePlatformWalletConfigOculusConstant      = "Oculus"
 	UpdatePlatformWalletConfigOtherConstant       = "Other"
 	UpdatePlatformWalletConfigPlaystationConstant = "Playstation"
 	UpdatePlatformWalletConfigSteamConstant       = "Steam"

@@ -221,6 +221,48 @@ func (aaa *IAPService) DeleteIAPItemConfig(input *iap.DeleteIAPItemConfigParams)
 	return nil
 }
 
+// Deprecated: 2022-01-10 - please use GetOculusIAPConfigShort instead.
+func (aaa *IAPService) GetOculusIAPConfig(input *iap.GetOculusIAPConfigParams) (*platformclientmodels.OculusIAPConfigInfo, error) {
+	token, err := aaa.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, err := aaa.Client.IAP.GetOculusIAPConfig(input, client.BearerToken(*token.AccessToken))
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
+// Deprecated: 2022-01-10 - please use UpdateOculusIAPConfigShort instead.
+func (aaa *IAPService) UpdateOculusIAPConfig(input *iap.UpdateOculusIAPConfigParams) (*platformclientmodels.OculusIAPConfigInfo, error) {
+	token, err := aaa.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, err := aaa.Client.IAP.UpdateOculusIAPConfig(input, client.BearerToken(*token.AccessToken))
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
+// Deprecated: 2022-01-10 - please use DeleteOculusIAPConfigShort instead.
+func (aaa *IAPService) DeleteOculusIAPConfig(input *iap.DeleteOculusIAPConfigParams) error {
+	token, err := aaa.TokenRepository.GetToken()
+	if err != nil {
+		return err
+	}
+	_, err = aaa.Client.IAP.DeleteOculusIAPConfig(input, client.BearerToken(*token.AccessToken))
+	if err != nil {
+		return err
+	}
+
+	return nil
+}
+
 // Deprecated: 2022-01-10 - please use GetPlayStationIAPConfigShort instead.
 func (aaa *IAPService) GetPlayStationIAPConfig(input *iap.GetPlayStationIAPConfigParams) (*platformclientmodels.PlayStationIAPConfigInfo, error) {
 	token, err := aaa.TokenRepository.GetToken()
@@ -283,7 +325,10 @@ func (aaa *IAPService) UpdateSteamIAPConfig(input *iap.UpdateSteamIAPConfigParam
 	if err != nil {
 		return nil, err
 	}
-	ok, err := aaa.Client.IAP.UpdateSteamIAPConfig(input, client.BearerToken(*token.AccessToken))
+	ok, badRequest, err := aaa.Client.IAP.UpdateSteamIAPConfig(input, client.BearerToken(*token.AccessToken))
+	if badRequest != nil {
+		return nil, badRequest
+	}
 	if err != nil {
 		return nil, err
 	}
@@ -557,6 +602,23 @@ func (aaa *IAPService) PublicFulfillGoogleIAPItem(input *iap.PublicFulfillGoogle
 	}
 	if conflict != nil {
 		return nil, conflict
+	}
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
+// Deprecated: 2022-01-10 - please use SyncOculusConsumableEntitlementsShort instead.
+func (aaa *IAPService) SyncOculusConsumableEntitlements(input *iap.SyncOculusConsumableEntitlementsParams) ([]*platformclientmodels.OculusReconcileResult, error) {
+	token, err := aaa.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, badRequest, err := aaa.Client.IAP.SyncOculusConsumableEntitlements(input, client.BearerToken(*token.AccessToken))
+	if badRequest != nil {
+		return nil, badRequest
 	}
 	if err != nil {
 		return nil, err
@@ -968,6 +1030,81 @@ func (aaa *IAPService) DeleteIAPItemConfigShort(input *iap.DeleteIAPItemConfigPa
 	}
 
 	_, err := aaa.Client.IAP.DeleteIAPItemConfigShort(input, authInfoWriter)
+	if err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (aaa *IAPService) GetOculusIAPConfigShort(input *iap.GetOculusIAPConfigParams) (*platformclientmodels.OculusIAPConfigInfo, error) {
+	authInfoWriter := input.AuthInfoWriter
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
+	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  aaa.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
+	ok, err := aaa.Client.IAP.GetOculusIAPConfigShort(input, authInfoWriter)
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
+func (aaa *IAPService) UpdateOculusIAPConfigShort(input *iap.UpdateOculusIAPConfigParams) (*platformclientmodels.OculusIAPConfigInfo, error) {
+	authInfoWriter := input.AuthInfoWriter
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
+	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  aaa.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
+	ok, err := aaa.Client.IAP.UpdateOculusIAPConfigShort(input, authInfoWriter)
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
+func (aaa *IAPService) DeleteOculusIAPConfigShort(input *iap.DeleteOculusIAPConfigParams) error {
+	authInfoWriter := input.AuthInfoWriter
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
+	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  aaa.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
+	_, err := aaa.Client.IAP.DeleteOculusIAPConfigShort(input, authInfoWriter)
 	if err != nil {
 		return err
 	}
@@ -1518,6 +1655,31 @@ func (aaa *IAPService) PublicFulfillGoogleIAPItemShort(input *iap.PublicFulfillG
 	}
 
 	ok, err := aaa.Client.IAP.PublicFulfillGoogleIAPItemShort(input, authInfoWriter)
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
+func (aaa *IAPService) SyncOculusConsumableEntitlementsShort(input *iap.SyncOculusConsumableEntitlementsParams) ([]*platformclientmodels.OculusReconcileResult, error) {
+	authInfoWriter := input.AuthInfoWriter
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
+	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  aaa.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
+	ok, err := aaa.Client.IAP.SyncOculusConsumableEntitlementsShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}

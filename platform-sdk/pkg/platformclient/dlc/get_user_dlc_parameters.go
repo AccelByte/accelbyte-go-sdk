@@ -21,6 +21,7 @@ import (
 // Get the enum in GetUserDLCParams
 const (
 	GetUserDLCEPICGAMESConstant = "EPICGAMES"
+	GetUserDLCOCULUSConstant    = "OCULUS"
 	GetUserDLCPSNConstant       = "PSN"
 	GetUserDLCSTEAMConstant     = "STEAM"
 	GetUserDLCXBOXConstant      = "XBOX"

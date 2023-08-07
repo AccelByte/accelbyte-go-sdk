@@ -23,7 +23,7 @@ import (
 // with the default values initialized.
 func NewPublicSearchContentParams() *PublicSearchContentParams {
 	var (
-		limitDefault  = int64(1000)
+		limitDefault  = int64(20)
 		offsetDefault = int64(0)
 	)
 	return &PublicSearchContentParams{
@@ -38,7 +38,7 @@ func NewPublicSearchContentParams() *PublicSearchContentParams {
 // with the default values initialized, and the ability to set a timeout on a request
 func NewPublicSearchContentParamsWithTimeout(timeout time.Duration) *PublicSearchContentParams {
 	var (
-		limitDefault  = int64(1000)
+		limitDefault  = int64(20)
 		offsetDefault = int64(0)
 	)
 	return &PublicSearchContentParams{
@@ -53,7 +53,7 @@ func NewPublicSearchContentParamsWithTimeout(timeout time.Duration) *PublicSearc
 // with the default values initialized, and the ability to set a context for a request
 func NewPublicSearchContentParamsWithContext(ctx context.Context) *PublicSearchContentParams {
 	var (
-		limitDefault  = int64(1000)
+		limitDefault  = int64(20)
 		offsetDefault = int64(0)
 	)
 	return &PublicSearchContentParams{
@@ -68,7 +68,7 @@ func NewPublicSearchContentParamsWithContext(ctx context.Context) *PublicSearchC
 // with the default values initialized, and the ability to set a custom HTTPClient for a request
 func NewPublicSearchContentParamsWithHTTPClient(client *http.Client) *PublicSearchContentParams {
 	var (
-		limitDefault  = int64(1000)
+		limitDefault  = int64(20)
 		offsetDefault = int64(0)
 	)
 	return &PublicSearchContentParams{

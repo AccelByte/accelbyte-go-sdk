@@ -23,7 +23,7 @@ import (
 // with the default values initialized.
 func NewGetLikedContentParams() *GetLikedContentParams {
 	var (
-		limitDefault  = int64(1000)
+		limitDefault  = int64(20)
 		offsetDefault = int64(0)
 	)
 	return &GetLikedContentParams{
@@ -38,7 +38,7 @@ func NewGetLikedContentParams() *GetLikedContentParams {
 // with the default values initialized, and the ability to set a timeout on a request
 func NewGetLikedContentParamsWithTimeout(timeout time.Duration) *GetLikedContentParams {
 	var (
-		limitDefault  = int64(1000)
+		limitDefault  = int64(20)
 		offsetDefault = int64(0)
 	)
 	return &GetLikedContentParams{
@@ -53,7 +53,7 @@ func NewGetLikedContentParamsWithTimeout(timeout time.Duration) *GetLikedContent
 // with the default values initialized, and the ability to set a context for a request
 func NewGetLikedContentParamsWithContext(ctx context.Context) *GetLikedContentParams {
 	var (
-		limitDefault  = int64(1000)
+		limitDefault  = int64(20)
 		offsetDefault = int64(0)
 	)
 	return &GetLikedContentParams{
@@ -68,7 +68,7 @@ func NewGetLikedContentParamsWithContext(ctx context.Context) *GetLikedContentPa
 // with the default values initialized, and the ability to set a custom HTTPClient for a request
 func NewGetLikedContentParamsWithHTTPClient(client *http.Client) *GetLikedContentParams {
 	var (
-		limitDefault  = int64(1000)
+		limitDefault  = int64(20)
 		offsetDefault = int64(0)
 	)
 	return &GetLikedContentParams{

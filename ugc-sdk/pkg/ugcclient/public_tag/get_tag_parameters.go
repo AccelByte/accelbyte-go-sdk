@@ -23,7 +23,7 @@ import (
 // with the default values initialized.
 func NewGetTagParams() *GetTagParams {
 	var (
-		limitDefault  = int64(1000)
+		limitDefault  = int64(20)
 		offsetDefault = int64(0)
 	)
 	return &GetTagParams{
@@ -38,7 +38,7 @@ func NewGetTagParams() *GetTagParams {
 // with the default values initialized, and the ability to set a timeout on a request
 func NewGetTagParamsWithTimeout(timeout time.Duration) *GetTagParams {
 	var (
-		limitDefault  = int64(1000)
+		limitDefault  = int64(20)
 		offsetDefault = int64(0)
 	)
 	return &GetTagParams{
@@ -53,7 +53,7 @@ func NewGetTagParamsWithTimeout(timeout time.Duration) *GetTagParams {
 // with the default values initialized, and the ability to set a context for a request
 func NewGetTagParamsWithContext(ctx context.Context) *GetTagParams {
 	var (
-		limitDefault  = int64(1000)
+		limitDefault  = int64(20)
 		offsetDefault = int64(0)
 	)
 	return &GetTagParams{
@@ -68,7 +68,7 @@ func NewGetTagParamsWithContext(ctx context.Context) *GetTagParams {
 // with the default values initialized, and the ability to set a custom HTTPClient for a request
 func NewGetTagParamsWithHTTPClient(client *http.Client) *GetTagParams {
 	var (
-		limitDefault  = int64(1000)
+		limitDefault  = int64(20)
 		offsetDefault = int64(0)
 	)
 	return &GetTagParams{

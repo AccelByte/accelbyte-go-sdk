@@ -23,7 +23,7 @@ import (
 // with the default values initialized.
 func NewAdminGetTagParams() *AdminGetTagParams {
 	var (
-		limitDefault  = int64(1000)
+		limitDefault  = int64(20)
 		offsetDefault = int64(0)
 	)
 	return &AdminGetTagParams{
@@ -38,7 +38,7 @@ func NewAdminGetTagParams() *AdminGetTagParams {
 // with the default values initialized, and the ability to set a timeout on a request
 func NewAdminGetTagParamsWithTimeout(timeout time.Duration) *AdminGetTagParams {
 	var (
-		limitDefault  = int64(1000)
+		limitDefault  = int64(20)
 		offsetDefault = int64(0)
 	)
 	return &AdminGetTagParams{
@@ -53,7 +53,7 @@ func NewAdminGetTagParamsWithTimeout(timeout time.Duration) *AdminGetTagParams {
 // with the default values initialized, and the ability to set a context for a request
 func NewAdminGetTagParamsWithContext(ctx context.Context) *AdminGetTagParams {
 	var (
-		limitDefault  = int64(1000)
+		limitDefault  = int64(20)
 		offsetDefault = int64(0)
 	)
 	return &AdminGetTagParams{
@@ -68,7 +68,7 @@ func NewAdminGetTagParamsWithContext(ctx context.Context) *AdminGetTagParams {
 // with the default values initialized, and the ability to set a custom HTTPClient for a request
 func NewAdminGetTagParamsWithHTTPClient(client *http.Client) *AdminGetTagParams {
 	var (
-		limitDefault  = int64(1000)
+		limitDefault  = int64(20)
 		offsetDefault = int64(0)
 	)
 	return &AdminGetTagParams{

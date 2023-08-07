@@ -22,6 +22,10 @@
       "authorizationUrl": "https://dummy.oauth.net/auth",
       "flow": "accessCode",
       "scopes": {
+        "ADMIN:NAMESPACE:{namespace}:CLOUDSAVE:PLUGINS [CREATE]": "ADMIN:NAMESPACE:{namespace}:CLOUDSAVE:PLUGINS [CREATE]",
+        "ADMIN:NAMESPACE:{namespace}:CLOUDSAVE:PLUGINS [DELETE]": "ADMIN:NAMESPACE:{namespace}:CLOUDSAVE:PLUGINS [DELETE]",
+        "ADMIN:NAMESPACE:{namespace}:CLOUDSAVE:PLUGINS [READ]": "ADMIN:NAMESPACE:{namespace}:CLOUDSAVE:PLUGINS [READ]",
+        "ADMIN:NAMESPACE:{namespace}:CLOUDSAVE:PLUGINS [UPDATE]": "ADMIN:NAMESPACE:{namespace}:CLOUDSAVE:PLUGINS [UPDATE]",
         "ADMIN:NAMESPACE:{namespace}:CLOUDSAVE:RECORD [CREATE]": "ADMIN:NAMESPACE:{namespace}:CLOUDSAVE:RECORD [CREATE]",
         "ADMIN:NAMESPACE:{namespace}:CLOUDSAVE:RECORD [DELETE]": "ADMIN:NAMESPACE:{namespace}:CLOUDSAVE:RECORD [DELETE]",
         "ADMIN:NAMESPACE:{namespace}:CLOUDSAVE:RECORD [READ]": "ADMIN:NAMESPACE:{namespace}:CLOUDSAVE:RECORD [READ]",
@@ -654,6 +658,297 @@
         ]
       }
     },
+    "/cloudsave/v1/admin/namespaces/{namespace}/plugins": {
+      "delete": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Required permission: \u0026lt;code\u0026gt;ADMIN:NAMESPACE:{namespace}:CLOUDSAVE:PLUGINS [DELETE]\u0026lt;/code\u0026gt;\nRequired scope: \u0026lt;code\u0026gt;social\u0026lt;/code\u0026gt;\n\n\u0026lt;h2\u0026gt;Description\u0026lt;/h2\u0026gt;\n\nThis endpoints will delete grpc plugins configuration",
+        "operationId": "deletePluginConfig",
+        "parameters": [
+          {
+            "description": "namespace of the game",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "204": {
+            "description": "OK"
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/models.ResponseError"
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "schema": {
+              "$ref": "#/definitions/models.ResponseError"
+            }
+          },
+          "404": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e18306\u003c/td\u003e\u003ctd\u003eplugins config not found\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/models.ResponseError"
+            }
+          },
+          "500": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20000\u003c/td\u003e\u003ctd\u003einternal server error\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/models.ResponseError"
+            }
+          }
+        },
+        "security": [
+          {
+            "HasPermission": [
+              "ADMIN:NAMESPACE:{namespace}:CLOUDSAVE:PLUGINS [DELETE]"
+            ],
+            "HasScope": [
+              "social"
+            ],
+            "authorization": []
+          }
+        ],
+        "summary": "Delete plugin configuration",
+        "tags": [
+          "PluginConfig"
+        ]
+      },
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Required permission: \u0026lt;code\u0026gt;ADMIN:NAMESPACE:{namespace}:CLOUDSAVE:PLUGINS [READ]\u0026lt;/code\u0026gt;\nRequired scope: \u0026lt;code\u0026gt;social\u0026lt;/code\u0026gt;\n\n\u0026lt;h2\u0026gt;Description\u0026lt;/h2\u0026gt;\n\nThis endpoints will get grpc plugins configuration",
+        "operationId": "getPluginConfig",
+        "parameters": [
+          {
+            "description": "namespace of the game",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/models.PluginResponse"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/models.ResponseError"
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "schema": {
+              "$ref": "#/definitions/models.ResponseError"
+            }
+          },
+          "404": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e18304\u003c/td\u003e\u003ctd\u003eplugins not found\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/models.ResponseError"
+            }
+          },
+          "500": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20000\u003c/td\u003e\u003ctd\u003einternal server error\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/models.ResponseError"
+            }
+          }
+        },
+        "security": [
+          {
+            "HasPermission": [
+              "ADMIN:NAMESPACE:{namespace}:CLOUDSAVE:PLUGINS [READ]"
+            ],
+            "HasScope": [
+              "social"
+            ],
+            "authorization": []
+          }
+        ],
+        "summary": "Get plugin configuration",
+        "tags": [
+          "PluginConfig"
+        ]
+      },
+      "patch": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Required permission: \u0026lt;code\u0026gt;ADMIN:NAMESPACE:{namespace}:CLOUDSAVE:PLUGINS [UPDATE]\u0026lt;/code\u0026gt;\nRequired scope: \u0026lt;code\u0026gt;social\u0026lt;/code\u0026gt;\n\n\u0026lt;h2\u0026gt;Description\u0026lt;/h2\u0026gt;\n\nThis endpoints will update grpc plugins configuration",
+        "operationId": "updatePluginConfig",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/models.PluginRequest"
+            }
+          },
+          {
+            "description": "namespace of the game",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/models.PluginResponse"
+            }
+          },
+          "400": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e18308\u003c/td\u003e\u003ctd\u003einvalid request body\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20002\u003c/td\u003e\u003ctd\u003evalidation error\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/models.ResponseError"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/models.ResponseError"
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "schema": {
+              "$ref": "#/definitions/models.ResponseError"
+            }
+          },
+          "404": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e18309\u003c/td\u003e\u003ctd\u003eplugins config not found\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/models.ResponseError"
+            }
+          },
+          "500": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20000\u003c/td\u003e\u003ctd\u003einternal server error\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/models.ResponseError"
+            }
+          }
+        },
+        "security": [
+          {
+            "HasPermission": [
+              "ADMIN:NAMESPACE:{namespace}:CLOUDSAVE:PLUGINS [UPDATE]"
+            ],
+            "HasScope": [
+              "social"
+            ],
+            "authorization": []
+          }
+        ],
+        "summary": "Update plugin configuration",
+        "tags": [
+          "PluginConfig"
+        ]
+      },
+      "post": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Required permission: \u0026lt;code\u0026gt;ADMIN:NAMESPACE:{namespace}:CLOUDSAVE:PLUGINS [CREATE]\u0026lt;/code\u0026gt;\nRequired scope: \u0026lt;code\u0026gt;social\u0026lt;/code\u0026gt;\n\n\u0026lt;h2\u0026gt;Description\u0026lt;/h2\u0026gt;\n\nThis endpoints will create new grpc plugins configuration per namespace",
+        "operationId": "createPluginConfig",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/models.PluginRequest"
+            }
+          },
+          {
+            "description": "namespace of the game",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "201": {
+            "description": "Created",
+            "schema": {
+              "$ref": "#/definitions/models.PluginResponse"
+            }
+          },
+          "400": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e18301\u003c/td\u003e\u003ctd\u003einvalid request body\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20002\u003c/td\u003e\u003ctd\u003evalidation error\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/models.ResponseError"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/models.ResponseError"
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "schema": {
+              "$ref": "#/definitions/models.ResponseError"
+            }
+          },
+          "409": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e18302\u003c/td\u003e\u003ctd\u003eplugins already configured\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/models.ResponseError"
+            }
+          },
+          "500": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20000\u003c/td\u003e\u003ctd\u003einternal server error\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/models.ResponseError"
+            }
+          }
+        },
+        "security": [
+          {
+            "HasPermission": [
+              "ADMIN:NAMESPACE:{namespace}:CLOUDSAVE:PLUGINS [CREATE]"
+            ],
+            "HasScope": [
+              "social"
+            ],
+            "authorization": []
+          }
+        ],
+        "summary": "Create plugin configuration",
+        "tags": [
+          "PluginConfig"
+        ]
+      }
+    },
     "/cloudsave/v1/admin/namespaces/{namespace}/records": {
       "get": {
         "consumes": [
@@ -894,6 +1189,12 @@
             "description": "Record in namespace-level saved",
             "schema": {
               "$ref": "#/definitions/models.GameRecordResponse"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/models.ResponseError"
             }
           },
           "401": {
@@ -2981,6 +3282,12 @@
               "$ref": "#/definitions/models.GameRecordResponse"
             }
           },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/models.ResponseError"
+            }
+          },
           "401": {
             "description": "Unauthorized",
             "schema": {
@@ -4499,6 +4806,17 @@
         "value"
       ]
     },
+    "models.AppConfig": {
+      "properties": {
+        "appName": {
+          "description": "Extend app name",
+          "type": "string"
+        }
+      },
+      "required": [
+        "appName"
+      ]
+    },
     "models.BulkGetAdminGameRecordRequest": {
       "properties": {
         "keys": {
@@ -4654,6 +4972,94 @@
       "required": [
         "updatedAt",
         "value"
+      ]
+    },
+    "models.CustomConfig": {
+      "properties": {
+        "GRPCAddress": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "GRPCAddress"
+      ]
+    },
+    "models.CustomFunction": {
+      "properties": {
+        "afterBulkReadAdminGameRecord": {
+          "description": "enable/disable after bulk read admin game record custom validation",
+          "type": "boolean",
+          "x-omitempty": false
+        },
+        "afterBulkReadAdminPlayerRecord": {
+          "description": "enable/disable after bulk read admin player record custom validation",
+          "type": "boolean",
+          "x-omitempty": false
+        },
+        "afterBulkReadGameRecord": {
+          "description": "enable/disable after bulk read game record custom validation",
+          "type": "boolean",
+          "x-omitempty": false
+        },
+        "afterBulkReadPlayerRecord": {
+          "description": "enable/disable after bulk read player record custom validation",
+          "type": "boolean",
+          "x-omitempty": false
+        },
+        "afterReadAdminGameRecord": {
+          "description": "enable/disable after read admin game record custom validation",
+          "type": "boolean",
+          "x-omitempty": false
+        },
+        "afterReadAdminPlayerRecord": {
+          "description": "enable/disable after read admin player record custom validation",
+          "type": "boolean",
+          "x-omitempty": false
+        },
+        "afterReadGameRecord": {
+          "description": "enable/disable after read game record custom validation",
+          "type": "boolean",
+          "x-omitempty": false
+        },
+        "afterReadPlayerRecord": {
+          "description": "enable/disable after read player record custom validation",
+          "type": "boolean",
+          "x-omitempty": false
+        },
+        "beforeWriteAdminGameRecord": {
+          "description": "enable/disable before write admin game record custom validation",
+          "type": "boolean",
+          "x-omitempty": false
+        },
+        "beforeWriteAdminPlayerRecord": {
+          "description": "enable/disable before write admin player record custom validation",
+          "type": "boolean",
+          "x-omitempty": false
+        },
+        "beforeWriteGameRecord": {
+          "description": "enable/disable before write game record custom validation",
+          "type": "boolean",
+          "x-omitempty": false
+        },
+        "beforeWritePlayerRecord": {
+          "description": "enable/disable before write player record custom validation",
+          "type": "boolean",
+          "x-omitempty": false
+        }
+      },
+      "required": [
+        "afterBulkReadAdminGameRecord",
+        "afterBulkReadAdminPlayerRecord",
+        "afterBulkReadGameRecord",
+        "afterBulkReadPlayerRecord",
+        "afterReadAdminGameRecord",
+        "afterReadAdminPlayerRecord",
+        "afterReadGameRecord",
+        "afterReadPlayerRecord",
+        "beforeWriteAdminGameRecord",
+        "beforeWriteAdminPlayerRecord",
+        "beforeWriteGameRecord",
+        "beforeWritePlayerRecord"
       ]
     },
     "models.GameRecordRequest": {
@@ -4875,6 +5281,55 @@
         "user_id"
       ]
     },
+    "models.PluginRequest": {
+      "properties": {
+        "appConfig": {
+          "$ref": "#/definitions/models.AppConfig"
+        },
+        "customConfig": {
+          "$ref": "#/definitions/models.CustomConfig"
+        },
+        "customFunction": {
+          "$ref": "#/definitions/models.CustomFunction"
+        },
+        "extendType": {
+          "description": "available value: APP, CUSTOM",
+          "enum": [
+            "APP",
+            "CUSTOM"
+          ],
+          "type": "string"
+        }
+      },
+      "required": [
+        "customFunction",
+        "extendType"
+      ]
+    },
+    "models.PluginResponse": {
+      "properties": {
+        "appConfig": {
+          "$ref": "#/definitions/models.AppConfig"
+        },
+        "customConfig": {
+          "$ref": "#/definitions/models.CustomConfig"
+        },
+        "customFunction": {
+          "$ref": "#/definitions/models.CustomFunction"
+        },
+        "extendType": {
+          "type": "string"
+        },
+        "namespace": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "customFunction",
+        "extendType",
+        "namespace"
+      ]
+    },
     "models.ResponseError": {
       "properties": {
         "errorCode": {
@@ -4914,11 +5369,11 @@
     "path": "/cloudsave/apidocs/api.json"
   },
   "x-version": {
-    "buildDate": "2023-07-17T01:12:35+00:00",
-    "gitHash": "bd994eca0b3b76c74f8a60d0f2ea0f1926e02557",
+    "buildDate": "2023-07-18T02:10:16+00:00",
+    "gitHash": "820907d83892793d6426a0338eb65869742168b4",
     "name": "justice-cloudsave-service",
     "revisionID": "3.9.0",
     "version": "3.9.0",
-    "version-roles-seeding": "0.0.3"
+    "version-roles-seeding": "0.0.37"
   }
 }

@@ -28,7 +28,7 @@ type RevokeItem struct {
 	ItemIdentityType string `json:"itemIdentityType,omitempty"`
 
 	// balance origin, it is used to debit the wallet of the specified balance origin, only available in COINS item
-	// Enum: ['Epic', 'GooglePlay', 'IOS', 'Nintendo', 'Other', 'Playstation', 'Steam', 'System', 'Twitch', 'Xbox']
+	// Enum: ['Epic', 'GooglePlay', 'IOS', 'Nintendo', 'Oculus', 'Other', 'Playstation', 'Steam', 'System', 'Twitch', 'Xbox']
 	Origin string `json:"origin,omitempty"`
 }
 
@@ -75,7 +75,7 @@ var revokeItemTypeOriginPropEnum []interface{}
 
 func init() {
 	var res []string
-	if err := json.Unmarshal([]byte(`["EPIC", "GOOGLEPLAY", "IOS", "NINTENDO", "OTHER", "PLAYSTATION", "STEAM", "SYSTEM", "TWITCH", "XBOX"]`), &res); err != nil {
+	if err := json.Unmarshal([]byte(`["EPIC", "GOOGLEPLAY", "IOS", "NINTENDO", "OCULUS", "OTHER", "PLAYSTATION", "STEAM", "SYSTEM", "TWITCH", "XBOX"]`), &res); err != nil {
 		panic(err)
 	}
 	for _, v := range res {
@@ -96,6 +96,9 @@ const (
 
 	// RevokeItemOriginNINTENDO captures enum value "NINTENDO"
 	RevokeItemOriginNINTENDO string = "NINTENDO"
+
+	// RevokeItemOriginOCULUS captures enum value "OCULUS"
+	RevokeItemOriginOCULUS string = "OCULUS"
 
 	// RevokeItemOriginOTHER captures enum value "OTHER"
 	RevokeItemOriginOTHER string = "OTHER"

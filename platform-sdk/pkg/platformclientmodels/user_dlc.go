@@ -34,7 +34,7 @@ type UserDLC struct {
 	Namespace string `json:"namespace,omitempty"`
 
 	// platform
-	// Enum: ['EPICGAMES', 'PSN', 'STEAM', 'XBOX']
+	// Enum: ['EPICGAMES', 'OCULUS', 'PSN', 'STEAM', 'XBOX']
 	Platform string `json:"platform,omitempty"`
 
 	// rvn
@@ -63,7 +63,7 @@ var userDlcTypePlatformPropEnum []interface{}
 
 func init() {
 	var res []string
-	if err := json.Unmarshal([]byte(`["EPICGAMES", "PSN", "STEAM", "XBOX"]`), &res); err != nil {
+	if err := json.Unmarshal([]byte(`["EPICGAMES", "OCULUS", "PSN", "STEAM", "XBOX"]`), &res); err != nil {
 		panic(err)
 	}
 	for _, v := range res {
@@ -75,6 +75,9 @@ const (
 
 	// UserDLCPlatformEPICGAMES captures enum value "EPICGAMES"
 	UserDLCPlatformEPICGAMES string = "EPICGAMES"
+
+	// UserDLCPlatformOCULUS captures enum value "OCULUS"
+	UserDLCPlatformOCULUS string = "OCULUS"
 
 	// UserDLCPlatformPSN captures enum value "PSN"
 	UserDLCPlatformPSN string = "PSN"

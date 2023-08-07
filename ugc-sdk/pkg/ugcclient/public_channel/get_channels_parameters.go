@@ -23,7 +23,7 @@ import (
 // with the default values initialized.
 func NewGetChannelsParams() *GetChannelsParams {
 	var (
-		limitDefault  = int64(1000)
+		limitDefault  = int64(20)
 		offsetDefault = int64(0)
 	)
 	return &GetChannelsParams{
@@ -38,7 +38,7 @@ func NewGetChannelsParams() *GetChannelsParams {
 // with the default values initialized, and the ability to set a timeout on a request
 func NewGetChannelsParamsWithTimeout(timeout time.Duration) *GetChannelsParams {
 	var (
-		limitDefault  = int64(1000)
+		limitDefault  = int64(20)
 		offsetDefault = int64(0)
 	)
 	return &GetChannelsParams{
@@ -53,7 +53,7 @@ func NewGetChannelsParamsWithTimeout(timeout time.Duration) *GetChannelsParams {
 // with the default values initialized, and the ability to set a context for a request
 func NewGetChannelsParamsWithContext(ctx context.Context) *GetChannelsParams {
 	var (
-		limitDefault  = int64(1000)
+		limitDefault  = int64(20)
 		offsetDefault = int64(0)
 	)
 	return &GetChannelsParams{
@@ -68,7 +68,7 @@ func NewGetChannelsParamsWithContext(ctx context.Context) *GetChannelsParams {
 // with the default values initialized, and the ability to set a custom HTTPClient for a request
 func NewGetChannelsParamsWithHTTPClient(client *http.Client) *GetChannelsParams {
 	var (
-		limitDefault  = int64(1000)
+		limitDefault  = int64(20)
 		offsetDefault = int64(0)
 	)
 	return &GetChannelsParams{

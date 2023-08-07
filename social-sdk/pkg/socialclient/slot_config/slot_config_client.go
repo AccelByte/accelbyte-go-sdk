@@ -50,6 +50,9 @@ type ClientService interface {
 Deprecated: 2022-08-10 - Use GetNamespaceSlotConfigShort instead.
 
 GetNamespaceSlotConfig returns a namespace slot configuration
+## The endpoint is going to be deprecated
+
+
 Get slot configuration for a given namespace. In case slot configuration is not set, the default will be returned.
 Other detail info:
 
@@ -99,6 +102,11 @@ func (a *Client) GetNamespaceSlotConfig(params *GetNamespaceSlotConfigParams, au
 
 /*
 GetNamespaceSlotConfigShort returns a namespace slot configuration
+
+
+## The endpoint is going to be deprecated
+
+
 Get slot configuration for a given namespace. In case slot configuration is not set, the default will be returned.
 Other detail info:
 
@@ -150,6 +158,11 @@ func (a *Client) GetNamespaceSlotConfigShort(params *GetNamespaceSlotConfigParam
 Deprecated: 2022-08-10 - Use UpdateNamespaceSlotConfigShort instead.
 
 UpdateNamespaceSlotConfig update a namespace slot configuration
+
+
+## The endpoint is going to be deprecated
+
+
 Update a slot namespace configuration.
 Other detail info:
 
@@ -199,6 +212,11 @@ func (a *Client) UpdateNamespaceSlotConfig(params *UpdateNamespaceSlotConfigPara
 
 /*
 UpdateNamespaceSlotConfigShort update a namespace slot configuration
+
+
+## The endpoint is going to be deprecated
+
+
 Update a slot namespace configuration.
 Other detail info:
 
@@ -250,6 +268,11 @@ func (a *Client) UpdateNamespaceSlotConfigShort(params *UpdateNamespaceSlotConfi
 Deprecated: 2022-08-10 - Use DeleteNamespaceSlotConfigShort instead.
 
 DeleteNamespaceSlotConfig deletes a namespace slot configuration
+
+
+## The endpoint is going to be deprecated
+
+
 Deletes a namespace slot configuration, the configuration will be default after delete.
 Other detail info:
 
@@ -298,6 +321,11 @@ func (a *Client) DeleteNamespaceSlotConfig(params *DeleteNamespaceSlotConfigPara
 
 /*
 DeleteNamespaceSlotConfigShort deletes a namespace slot configuration
+
+
+## The endpoint is going to be deprecated
+
+
 Deletes a namespace slot configuration, the configuration will be default after delete.
 Other detail info:
 
@@ -348,7 +376,12 @@ func (a *Client) DeleteNamespaceSlotConfigShort(params *DeleteNamespaceSlotConfi
 Deprecated: 2022-08-10 - Use GetUserSlotConfigShort instead.
 
 GetUserSlotConfig returns a user slot configuration
-GetÂ a user slot configuration in given namespace. In case the user slot configuration is not set, the namespace configuration will be returned.
+
+
+## The endpoint is going to be deprecated
+
+
+Get a user slot configuration in given namespace. In case the user slot configuration is not set, the namespace configuration will be returned.
 Other detail info:
 
   * Required permission: resource="ADMIN:NAMESPACE:{namespace}:USER:{userId}:SLOTCONFIG", action=2 (READ)
@@ -397,7 +430,12 @@ func (a *Client) GetUserSlotConfig(params *GetUserSlotConfigParams, authInfo run
 
 /*
 GetUserSlotConfigShort returns a user slot configuration
-GetÂ a user slot configuration in given namespace. In case the user slot configuration is not set, the namespace configuration will be returned.
+
+
+## The endpoint is going to be deprecated
+
+
+Get a user slot configuration in given namespace. In case the user slot configuration is not set, the namespace configuration will be returned.
 Other detail info:
     * Required permission: resource="ADMIN:NAMESPACE:{namespace}:USER:{userId}:SLOTCONFIG", action=2 (READ)
     * Returns: slot config info
@@ -447,6 +485,11 @@ func (a *Client) GetUserSlotConfigShort(params *GetUserSlotConfigParams, authInf
 Deprecated: 2022-08-10 - Use UpdateUserSlotConfigShort instead.
 
 UpdateUserSlotConfig update a user slot configuration
+
+
+## The endpoint is going to be deprecated
+
+
 Update a user slot configuration in given namespace.
 Other detail info:
       *  Required permission : resource="ADMIN:NAMESPACE:{namespace}:USER:{userId}:SLOTCONFIG", action=4 (UPDATE)
@@ -495,6 +538,11 @@ func (a *Client) UpdateUserSlotConfig(params *UpdateUserSlotConfigParams, authIn
 
 /*
 UpdateUserSlotConfigShort update a user slot configuration
+
+
+## The endpoint is going to be deprecated
+
+
 Update a user slot configuration in given namespace.
 Other detail info:
         *  Required permission : resource="ADMIN:NAMESPACE:{namespace}:USER:{userId}:SLOTCONFIG", action=4 (UPDATE)
@@ -545,6 +593,11 @@ func (a *Client) UpdateUserSlotConfigShort(params *UpdateUserSlotConfigParams, a
 Deprecated: 2022-08-10 - Use DeleteUserSlotConfigShort instead.
 
 DeleteUserSlotConfig deletes a user slot configuration
+
+
+## The endpoint is going to be deprecated
+
+
 Deletes a user slot configuration in given namespace, the namespace slot configuration will be returned after delete.
 Other detail info:
           *  Required permission : resource="ADMIN:NAMESPACE:{namespace}:USER:{userId}:SLOTCONFIG", action=8 (DELETE)
@@ -592,6 +645,11 @@ func (a *Client) DeleteUserSlotConfig(params *DeleteUserSlotConfigParams, authIn
 
 /*
 DeleteUserSlotConfigShort deletes a user slot configuration
+
+
+## The endpoint is going to be deprecated
+
+
 Deletes a user slot configuration in given namespace, the namespace slot configuration will be returned after delete.
 Other detail info:
             *  Required permission : resource="ADMIN:NAMESPACE:{namespace}:USER:{userId}:SLOTCONFIG", action=8 (DELETE)

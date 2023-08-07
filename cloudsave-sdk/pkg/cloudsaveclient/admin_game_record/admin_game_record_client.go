@@ -36,7 +36,7 @@ type ClientService interface {
 	AdminGetGameRecordHandlerV1Short(params *AdminGetGameRecordHandlerV1Params, authInfo runtime.ClientAuthInfoWriter) (*AdminGetGameRecordHandlerV1OK, error)
 	AdminPutGameRecordHandlerV1(params *AdminPutGameRecordHandlerV1Params, authInfo runtime.ClientAuthInfoWriter) (*AdminPutGameRecordHandlerV1OK, *AdminPutGameRecordHandlerV1Unauthorized, *AdminPutGameRecordHandlerV1InternalServerError, error)
 	AdminPutGameRecordHandlerV1Short(params *AdminPutGameRecordHandlerV1Params, authInfo runtime.ClientAuthInfoWriter) (*AdminPutGameRecordHandlerV1OK, error)
-	AdminPostGameRecordHandlerV1(params *AdminPostGameRecordHandlerV1Params, authInfo runtime.ClientAuthInfoWriter) (*AdminPostGameRecordHandlerV1Created, *AdminPostGameRecordHandlerV1Unauthorized, *AdminPostGameRecordHandlerV1InternalServerError, error)
+	AdminPostGameRecordHandlerV1(params *AdminPostGameRecordHandlerV1Params, authInfo runtime.ClientAuthInfoWriter) (*AdminPostGameRecordHandlerV1Created, *AdminPostGameRecordHandlerV1BadRequest, *AdminPostGameRecordHandlerV1Unauthorized, *AdminPostGameRecordHandlerV1InternalServerError, error)
 	AdminPostGameRecordHandlerV1Short(params *AdminPostGameRecordHandlerV1Params, authInfo runtime.ClientAuthInfoWriter) (*AdminPostGameRecordHandlerV1Created, error)
 	AdminDeleteGameRecordHandlerV1(params *AdminDeleteGameRecordHandlerV1Params, authInfo runtime.ClientAuthInfoWriter) (*AdminDeleteGameRecordHandlerV1NoContent, *AdminDeleteGameRecordHandlerV1Unauthorized, *AdminDeleteGameRecordHandlerV1InternalServerError, error)
 	AdminDeleteGameRecordHandlerV1Short(params *AdminDeleteGameRecordHandlerV1Params, authInfo runtime.ClientAuthInfoWriter) (*AdminDeleteGameRecordHandlerV1NoContent, error)
@@ -681,7 +681,7 @@ CLIENT: record can be modified by client and server.
             ...
         }
 */
-func (a *Client) AdminPostGameRecordHandlerV1(params *AdminPostGameRecordHandlerV1Params, authInfo runtime.ClientAuthInfoWriter) (*AdminPostGameRecordHandlerV1Created, *AdminPostGameRecordHandlerV1Unauthorized, *AdminPostGameRecordHandlerV1InternalServerError, error) {
+func (a *Client) AdminPostGameRecordHandlerV1(params *AdminPostGameRecordHandlerV1Params, authInfo runtime.ClientAuthInfoWriter) (*AdminPostGameRecordHandlerV1Created, *AdminPostGameRecordHandlerV1BadRequest, *AdminPostGameRecordHandlerV1Unauthorized, *AdminPostGameRecordHandlerV1InternalServerError, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewAdminPostGameRecordHandlerV1Params()
@@ -709,22 +709,25 @@ func (a *Client) AdminPostGameRecordHandlerV1(params *AdminPostGameRecordHandler
 		Client:             params.HTTPClient,
 	})
 	if err != nil {
-		return nil, nil, nil, err
+		return nil, nil, nil, nil, err
 	}
 
 	switch v := result.(type) {
 
 	case *AdminPostGameRecordHandlerV1Created:
-		return v, nil, nil, nil
+		return v, nil, nil, nil, nil
+
+	case *AdminPostGameRecordHandlerV1BadRequest:
+		return nil, v, nil, nil, nil
 
 	case *AdminPostGameRecordHandlerV1Unauthorized:
-		return nil, v, nil, nil
+		return nil, nil, v, nil, nil
 
 	case *AdminPostGameRecordHandlerV1InternalServerError:
-		return nil, nil, v, nil
+		return nil, nil, nil, v, nil
 
 	default:
-		return nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+		return nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
@@ -883,6 +886,8 @@ func (a *Client) AdminPostGameRecordHandlerV1Short(params *AdminPostGameRecordHa
 
 	case *AdminPostGameRecordHandlerV1Created:
 		return v, nil
+	case *AdminPostGameRecordHandlerV1BadRequest:
+		return nil, v
 	case *AdminPostGameRecordHandlerV1Unauthorized:
 		return nil, v
 	case *AdminPostGameRecordHandlerV1InternalServerError:

@@ -55,7 +55,12 @@ type ClientService interface {
 Deprecated: 2022-08-10 - Use GetUserNamespaceSlotsShort instead.
 
 GetUserNamespaceSlots returns list of slots for given user
-GetÂ slots for a given user.
+
+
+## The endpoint is going to be deprecated
+
+
+Get slots for a given user.
 Other detail info:
               *  Required permission : resource="ADMIN:NAMESPACE:{namespace}:USER:{userId}:SLOTDATA", action=2 (READ)
               *  Returns : list of slots
@@ -103,7 +108,12 @@ func (a *Client) GetUserNamespaceSlots(params *GetUserNamespaceSlotsParams, auth
 
 /*
 GetUserNamespaceSlotsShort returns list of slots for given user
-GetÂ slots for a given user.
+
+
+## The endpoint is going to be deprecated
+
+
+Get slots for a given user.
 Other detail info:
               *  Required permission : resource="ADMIN:NAMESPACE:{namespace}:USER:{userId}:SLOTDATA", action=2 (READ)
               *  Returns : list of slots
@@ -153,6 +163,11 @@ func (a *Client) GetUserNamespaceSlotsShort(params *GetUserNamespaceSlotsParams,
 Deprecated: 2022-08-10 - Use GetSlotDataShort instead.
 
 GetSlotData returns slot data
+
+
+## The endpoint is going to be deprecated
+
+
 Get slot data.
 Other detail info:
               *  Required permission : resource="ADMIN:NAMESPACE:{namespace}:USER:{userId}:SLOTDATA", action=2 (READ)
@@ -204,6 +219,11 @@ func (a *Client) GetSlotData(params *GetSlotDataParams, authInfo runtime.ClientA
 
 /*
 GetSlotDataShort returns slot data
+
+
+## The endpoint is going to be deprecated
+
+
 Get slot data.
 Other detail info:
               *  Required permission : resource="ADMIN:NAMESPACE:{namespace}:USER:{userId}:SLOTDATA", action=2 (READ)
@@ -256,7 +276,12 @@ func (a *Client) GetSlotDataShort(params *GetSlotDataParams, authInfo runtime.Cl
 Deprecated: 2022-08-10 - Use PublicGetUserNamespaceSlotsShort instead.
 
 PublicGetUserNamespaceSlots returns slots for given user
-GetÂ list of slots for a given user in namespace.
+
+
+## The endpoint is going to be deprecated
+
+
+Get list of slots for a given user in namespace.
 Other detail info:
               *  Required permission : resource="NAMESPACE:{namespace}:USER:{userId}:SLOTDATA", action=2 (READ)
               *  Returns : list of slots
@@ -304,7 +329,12 @@ func (a *Client) PublicGetUserNamespaceSlots(params *PublicGetUserNamespaceSlots
 
 /*
 PublicGetUserNamespaceSlotsShort returns slots for given user
-GetÂ list of slots for a given user in namespace.
+
+
+## The endpoint is going to be deprecated
+
+
+Get list of slots for a given user in namespace.
 Other detail info:
               *  Required permission : resource="NAMESPACE:{namespace}:USER:{userId}:SLOTDATA", action=2 (READ)
               *  Returns : list of slots
@@ -354,6 +384,11 @@ func (a *Client) PublicGetUserNamespaceSlotsShort(params *PublicGetUserNamespace
 Deprecated: 2022-08-10 - Use PublicCreateUserNamespaceSlotShort instead.
 
 PublicCreateUserNamespaceSlot creates a slot
+
+
+## The endpoint is going to be deprecated
+
+
 Creates a slot.
 Other detail info:
               *  Required permission : resource="NAMESPACE:{namespace}:USER:{userId}:SLOTDATA", action=1 (CREATE)
@@ -408,6 +443,11 @@ func (a *Client) PublicCreateUserNamespaceSlot(params *PublicCreateUserNamespace
 
 /*
 PublicCreateUserNamespaceSlotShort creates a slot
+
+
+## The endpoint is going to be deprecated
+
+
 Creates a slot.
 Other detail info:
               *  Required permission : resource="NAMESPACE:{namespace}:USER:{userId}:SLOTDATA", action=1 (CREATE)
@@ -462,6 +502,11 @@ func (a *Client) PublicCreateUserNamespaceSlotShort(params *PublicCreateUserName
 Deprecated: 2022-08-10 - Use PublicGetSlotDataShort instead.
 
 PublicGetSlotData returns slot data
+
+
+## The endpoint is going to be deprecated
+
+
 Get slot data.
 Other detail info:
               *  Required permission : resource="NAMESPACE:{namespace}:USER:{userId}:SLOTDATA", action=2 (READ)
@@ -513,6 +558,11 @@ func (a *Client) PublicGetSlotData(params *PublicGetSlotDataParams, authInfo run
 
 /*
 PublicGetSlotDataShort returns slot data
+
+
+## The endpoint is going to be deprecated
+
+
 Get slot data.
 Other detail info:
               *  Required permission : resource="NAMESPACE:{namespace}:USER:{userId}:SLOTDATA", action=2 (READ)
@@ -565,6 +615,11 @@ func (a *Client) PublicGetSlotDataShort(params *PublicGetSlotDataParams, authInf
 Deprecated: 2022-08-10 - Use PublicUpdateUserNamespaceSlotShort instead.
 
 PublicUpdateUserNamespaceSlot updates a slot
+
+
+## The endpoint is going to be deprecated
+
+
 Updates a slot.
 Other detail info:
               *  Required permission : resource="NAMESPACE:{namespace}:USER:{userId}:SLOTDATA", action=4 (UPDATE)
@@ -619,6 +674,11 @@ func (a *Client) PublicUpdateUserNamespaceSlot(params *PublicUpdateUserNamespace
 
 /*
 PublicUpdateUserNamespaceSlotShort updates a slot
+
+
+## The endpoint is going to be deprecated
+
+
 Updates a slot.
 Other detail info:
               *  Required permission : resource="NAMESPACE:{namespace}:USER:{userId}:SLOTDATA", action=4 (UPDATE)
@@ -673,6 +733,11 @@ func (a *Client) PublicUpdateUserNamespaceSlotShort(params *PublicUpdateUserName
 Deprecated: 2022-08-10 - Use PublicDeleteUserNamespaceSlotShort instead.
 
 PublicDeleteUserNamespaceSlot deletes the slot
+
+
+## The endpoint is going to be deprecated
+
+
 Deletes the slot.
 Other detail info:
               *  Required permission : resource="NAMESPACE:{namespace}:USER:{userId}:SLOTDATA", action=8 (DELETE)
@@ -723,6 +788,11 @@ func (a *Client) PublicDeleteUserNamespaceSlot(params *PublicDeleteUserNamespace
 
 /*
 PublicDeleteUserNamespaceSlotShort deletes the slot
+
+
+## The endpoint is going to be deprecated
+
+
 Deletes the slot.
 Other detail info:
               *  Required permission : resource="NAMESPACE:{namespace}:USER:{userId}:SLOTDATA", action=8 (DELETE)
@@ -774,6 +844,11 @@ func (a *Client) PublicDeleteUserNamespaceSlotShort(params *PublicDeleteUserName
 Deprecated: 2022-08-10 - Use PublicUpdateUserNamespaceSlotMetadataShort instead.
 
 PublicUpdateUserNamespaceSlotMetadata updates the slot metadata
+
+
+## The endpoint is going to be deprecated
+
+
 Updates the slot metadata.
 Other detail info:
               *  Required permission : resource="NAMESPACE:{namespace}:USER:{userId}:SLOTDATA", action=4 (UPDATE)
@@ -825,6 +900,11 @@ func (a *Client) PublicUpdateUserNamespaceSlotMetadata(params *PublicUpdateUserN
 
 /*
 PublicUpdateUserNamespaceSlotMetadataShort updates the slot metadata
+
+
+## The endpoint is going to be deprecated
+
+
 Updates the slot metadata.
 Other detail info:
               *  Required permission : resource="NAMESPACE:{namespace}:USER:{userId}:SLOTDATA", action=4 (UPDATE)

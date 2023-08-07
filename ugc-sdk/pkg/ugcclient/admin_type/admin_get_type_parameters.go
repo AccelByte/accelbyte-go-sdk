@@ -23,7 +23,7 @@ import (
 // with the default values initialized.
 func NewAdminGetTypeParams() *AdminGetTypeParams {
 	var (
-		limitDefault  = int64(1000)
+		limitDefault  = int64(20)
 		offsetDefault = int64(0)
 	)
 	return &AdminGetTypeParams{
@@ -38,7 +38,7 @@ func NewAdminGetTypeParams() *AdminGetTypeParams {
 // with the default values initialized, and the ability to set a timeout on a request
 func NewAdminGetTypeParamsWithTimeout(timeout time.Duration) *AdminGetTypeParams {
 	var (
-		limitDefault  = int64(1000)
+		limitDefault  = int64(20)
 		offsetDefault = int64(0)
 	)
 	return &AdminGetTypeParams{
@@ -53,7 +53,7 @@ func NewAdminGetTypeParamsWithTimeout(timeout time.Duration) *AdminGetTypeParams
 // with the default values initialized, and the ability to set a context for a request
 func NewAdminGetTypeParamsWithContext(ctx context.Context) *AdminGetTypeParams {
 	var (
-		limitDefault  = int64(1000)
+		limitDefault  = int64(20)
 		offsetDefault = int64(0)
 	)
 	return &AdminGetTypeParams{
@@ -68,7 +68,7 @@ func NewAdminGetTypeParamsWithContext(ctx context.Context) *AdminGetTypeParams {
 // with the default values initialized, and the ability to set a custom HTTPClient for a request
 func NewAdminGetTypeParamsWithHTTPClient(client *http.Client) *AdminGetTypeParams {
 	var (
-		limitDefault  = int64(1000)
+		limitDefault  = int64(20)
 		offsetDefault = int64(0)
 	)
 	return &AdminGetTypeParams{

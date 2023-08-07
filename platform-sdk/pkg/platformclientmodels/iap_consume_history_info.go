@@ -27,7 +27,7 @@ type IAPConsumeHistoryInfo struct {
 	ConsumeItems []*ConsumeItem `json:"consumeItems,omitempty"`
 
 	// iaptype
-	// Enum: ['APPLE', 'EPICGAMES', 'GOOGLE', 'PLAYSTATION', 'STADIA', 'STEAM', 'TWITCH', 'XBOX']
+	// Enum: ['APPLE', 'EPICGAMES', 'GOOGLE', 'OCULUS', 'PLAYSTATION', 'STADIA', 'STEAM', 'TWITCH', 'XBOX']
 	IAPType string `json:"iapType,omitempty"`
 
 	// id
@@ -67,7 +67,7 @@ var iapConsumeHistoryInfoTypeIAPTypePropEnum []interface{}
 
 func init() {
 	var res []string
-	if err := json.Unmarshal([]byte(`["APPLE", "EPICGAMES", "GOOGLE", "PLAYSTATION", "STADIA", "STEAM", "TWITCH", "XBOX"]`), &res); err != nil {
+	if err := json.Unmarshal([]byte(`["APPLE", "EPICGAMES", "GOOGLE", "OCULUS", "PLAYSTATION", "STADIA", "STEAM", "TWITCH", "XBOX"]`), &res); err != nil {
 		panic(err)
 	}
 	for _, v := range res {
@@ -85,6 +85,9 @@ const (
 
 	// IAPConsumeHistoryInfoIAPTypeGOOGLE captures enum value "GOOGLE"
 	IAPConsumeHistoryInfoIAPTypeGOOGLE string = "GOOGLE"
+
+	// IAPConsumeHistoryInfoIAPTypeOCULUS captures enum value "OCULUS"
+	IAPConsumeHistoryInfoIAPTypeOCULUS string = "OCULUS"
 
 	// IAPConsumeHistoryInfoIAPTypePLAYSTATION captures enum value "PLAYSTATION"
 	IAPConsumeHistoryInfoIAPTypePLAYSTATION string = "PLAYSTATION"

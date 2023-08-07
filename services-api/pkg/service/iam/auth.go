@@ -5,11 +5,16 @@
 package iam
 
 import (
+	"crypto/rsa"
+	"encoding/base64"
 	"encoding/json"
 	"errors"
+	"fmt"
+	"log"
 	"net/http"
 	"net/url"
 	"sync/atomic"
+	"time"
 
 	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclient/o_auth2_0"
 	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclient/o_auth2_0_extension"
@@ -17,6 +22,7 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/repository"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils/auth"
+	"github.com/AccelByte/go-jose/jwt"
 	"github.com/go-openapi/runtime/client"
 	"github.com/sirupsen/logrus"
 )
@@ -436,4 +442,100 @@ func (o *OAuth20Service) Logout() error {
 	}
 
 	return nil
+}
+
+func (o *OAuth20Service) ParseAccessToken(accessToken string, validate bool) (*iamclientmodels.OauthmodelTokenResponseV3, error) {
+	// Parse the JWT token
+	parsedToken, err := jwt.ParseSigned(accessToken)
+	if err != nil {
+		return nil, fmt.Errorf("failed to parse. %w", err)
+	}
+
+	// Check if token validation is already exist
+	if o.tokenValidation == nil {
+		o.initTokenValidator(false)
+	}
+
+	// Get the public key from the JWKS based on the Key ID (kid) from the token's header
+	headers := parsedToken.Headers
+	if len(headers) == 0 {
+		return nil, fmt.Errorf("no headers found in the token. %w", err)
+	}
+	kid := headers[0].KeyID
+
+	if o.tokenValidation.PublicKeys == nil {
+		err = o.tokenValidation.fetchJWKSet()
+		if err != nil {
+			return nil, fmt.Errorf("failed to fetch jwks key. %w", err)
+		}
+	}
+
+	publicKey, ok := o.tokenValidation.PublicKeys[kid]
+	if !ok {
+		return nil, fmt.Errorf("unable to find public key with kid %s", kid)
+	}
+
+	// Verify and decode the token claims
+	claims := struct {
+		*iamclientmodels.OauthmodelTokenResponseV3
+		Sub string `json:"sub"`
+	}{}
+
+	err = parsedToken.Claims(publicKey, &claims)
+	if err != nil {
+		return nil, fmt.Errorf("failed to claims. %w", err)
+	}
+
+	var tokenResponseV3 = claims.OauthmodelTokenResponseV3
+	tokenResponseV3.AccessToken = &accessToken
+	tokenResponseV3.UserID = claims.Sub
+
+	// Validate the token if required
+	if validate {
+		var perm *Permission
+		if len(tokenResponseV3.Permissions) > 0 {
+			permission := tokenResponseV3.Permissions[0]
+			perm = &Permission{
+				Resource:        *permission.Resource,
+				Action:          int(*permission.Action),
+				ScheduledAction: int(permission.SchedAction),
+				CronSchedule:    permission.SchedCron,
+				RangeSchedule:   permission.SchedRange,
+			}
+		}
+
+		errValidate := o.tokenValidation.Validate(accessToken, perm, tokenResponseV3.Namespace, nil)
+		if errValidate != nil {
+			log.Fatalf("token validation failed: %s", errValidate.Error())
+		}
+	}
+
+	return tokenResponseV3, nil
+}
+
+func (o *OAuth20Service) SetLocalValidation(value bool) {
+	if o.tokenValidation == nil {
+		o.initTokenValidator(value)
+	}
+
+	o.tokenValidation.LocalValidationActive = value
+}
+
+func (o *OAuth20Service) initTokenValidator(value bool) {
+	o.tokenValidation = &TokenValidator{
+		AuthService:     *o,
+		RefreshInterval: time.Hour,
+
+		Filter:                nil,
+		JwkSet:                nil,
+		JwtClaims:             JWTClaims{},
+		JwtEncoding:           *base64.URLEncoding.WithPadding(base64.NoPadding),
+		PublicKeys:            make(map[string]*rsa.PublicKey),
+		LocalValidationActive: value,
+		RevokedUsers:          make(map[string]time.Time),
+		Roles:                 make(map[string]*iamclientmodels.ModelRoleResponseV3),
+	}
+
+	// Initiate
+	o.tokenValidation.Initialize()
 }

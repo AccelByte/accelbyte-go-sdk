@@ -5961,8 +5961,8 @@
     "path": "/leaderboard/apidocs/api.json"
   },
   "x-version": {
-    "buildDate": "2023-07-04T01:36:07+00:00",
-    "gitHash": "640e09e6cc8a892977037e5561fd9591523cd4a3",
+    "buildDate": "2023-07-18T02:03:31+00:00",
+    "gitHash": "266d6365a864f631d26604eff03a1ebf70b02f74",
     "name": "justice-leaderboard-service",
     "realm": "staging",
     "version": "2.25.0",

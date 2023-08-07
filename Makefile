@@ -28,12 +28,21 @@ lint-mod-outdated:
 	done
 	[ ! -f lint-mod-outdated.err ] || (rm lint-mod-outdated.err && exit 1)
 
+lint-mod-tidy:
+	rm -f lint-mod-tidy.err
+	find -type f -iname go.mod -not -path "*/.justice-codegen-sdk/*" -exec dirname {} \; | while read DIRECTORY; do \
+		echo "# $$DIRECTORY"; \
+		docker run -t --rm -u $$(id -u):$$(id -g) -v $$(pwd):/data/ -w /data/ -e GOCACHE=/data/.cache/go-build $(GOLANG_DOCKER_IMAGE) \
+				sh -c "cd $$DIRECTORY && go mod tidy || touch /data/lint.err"; \
+	done
+	[ ! -f lint-mod-tidy.err ] || (rm lint-mod-tidy.err && exit 1)
+
 samples:
 	rm -f samples.err
 	find ./samples -type f -name main.go -exec dirname {} \; | while read DIRECTORY; do \
 		echo "# $$DIRECTORY"; \
 		docker run -t --rm -u $$(id -u):$$(id -g) -v $$(pwd):/data/ -w /data/ -e GOCACHE=/data/.cache/go-build $(GOLANG_DOCKER_IMAGE) \
-				sh -c "cd '$$DIRECTORY' && go build" || touch samples.err; \
+				sh -c "cd '$$DIRECTORY' && go build -o bin/" || touch samples.err; \
 	done
 	[ ! -f samples.err ]
 
@@ -82,7 +91,7 @@ test_broken_link:
 	(for FILE in $$(find docs -type f); do \
 			(set -o pipefail; DOCKER_SKIP_BUILD=1 bash "$(SDK_MD_CRAWLER_PATH)/md-crawler.sh" -i $$FILE) || touch test.err; \
 	done)
-	DOCKER_SKIP_BUILD=1 bash "$(SDK_MD_CRAWLER_PATH)/md-crawler.sh" -i "https://docs.accelbyte.io/guides/customization/golang-sdk-guide.html"
+	DOCKER_SKIP_BUILD=1 bash "$(SDK_MD_CRAWLER_PATH)/md-crawler.sh" -i "https://docs-old.accelbyte.io/guides/customization/golang-sdk-guide.html"
 	[ ! -f test.err ]
 
 version:

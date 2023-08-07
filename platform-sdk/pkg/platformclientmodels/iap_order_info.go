@@ -85,7 +85,7 @@ type IAPOrderInfo struct {
 	TransactionID string `json:"transactionId,omitempty"`
 
 	// IAP type
-	// Enum: ['APPLE', 'EPICGAMES', 'GOOGLE', 'PLAYSTATION', 'STADIA', 'STEAM', 'TWITCH', 'XBOX']
+	// Enum: ['APPLE', 'EPICGAMES', 'GOOGLE', 'OCULUS', 'PLAYSTATION', 'STADIA', 'STEAM', 'TWITCH', 'XBOX']
 	// Required: true
 	Type *string `json:"type"`
 
@@ -212,7 +212,7 @@ var iapOrderInfoTypeTypePropEnum []interface{}
 
 func init() {
 	var res []string
-	if err := json.Unmarshal([]byte(`["APPLE", "EPICGAMES", "GOOGLE", "PLAYSTATION", "STADIA", "STEAM", "TWITCH", "XBOX"]`), &res); err != nil {
+	if err := json.Unmarshal([]byte(`["APPLE", "EPICGAMES", "GOOGLE", "OCULUS", "PLAYSTATION", "STADIA", "STEAM", "TWITCH", "XBOX"]`), &res); err != nil {
 		panic(err)
 	}
 	for _, v := range res {
@@ -230,6 +230,9 @@ const (
 
 	// IAPOrderInfoTypeGOOGLE captures enum value "GOOGLE"
 	IAPOrderInfoTypeGOOGLE string = "GOOGLE"
+
+	// IAPOrderInfoTypeOCULUS captures enum value "OCULUS"
+	IAPOrderInfoTypeOCULUS string = "OCULUS"
 
 	// IAPOrderInfoTypePLAYSTATION captures enum value "PLAYSTATION"
 	IAPOrderInfoTypePLAYSTATION string = "PLAYSTATION"

@@ -23,7 +23,7 @@ import (
 // with the default values initialized.
 func NewGetGroupContentParams() *GetGroupContentParams {
 	var (
-		limitDefault  = int64(1000)
+		limitDefault  = int64(20)
 		offsetDefault = int64(0)
 	)
 	return &GetGroupContentParams{
@@ -38,7 +38,7 @@ func NewGetGroupContentParams() *GetGroupContentParams {
 // with the default values initialized, and the ability to set a timeout on a request
 func NewGetGroupContentParamsWithTimeout(timeout time.Duration) *GetGroupContentParams {
 	var (
-		limitDefault  = int64(1000)
+		limitDefault  = int64(20)
 		offsetDefault = int64(0)
 	)
 	return &GetGroupContentParams{
@@ -53,7 +53,7 @@ func NewGetGroupContentParamsWithTimeout(timeout time.Duration) *GetGroupContent
 // with the default values initialized, and the ability to set a context for a request
 func NewGetGroupContentParamsWithContext(ctx context.Context) *GetGroupContentParams {
 	var (
-		limitDefault  = int64(1000)
+		limitDefault  = int64(20)
 		offsetDefault = int64(0)
 	)
 	return &GetGroupContentParams{
@@ -68,7 +68,7 @@ func NewGetGroupContentParamsWithContext(ctx context.Context) *GetGroupContentPa
 // with the default values initialized, and the ability to set a custom HTTPClient for a request
 func NewGetGroupContentParamsWithHTTPClient(client *http.Client) *GetGroupContentParams {
 	var (
-		limitDefault  = int64(1000)
+		limitDefault  = int64(20)
 		offsetDefault = int64(0)
 	)
 	return &GetGroupContentParams{

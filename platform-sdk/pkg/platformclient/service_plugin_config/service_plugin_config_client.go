@@ -56,8 +56,8 @@ type ClientService interface {
 	DeleteServicePluginConfigShort(params *DeleteServicePluginConfigParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteServicePluginConfigNoContent, error)
 	GetLootBoxPluginConfig1(params *GetLootBoxPluginConfig1Params, authInfo runtime.ClientAuthInfoWriter) (*GetLootBoxPluginConfig1OK, error)
 	GetLootBoxPluginConfig1Short(params *GetLootBoxPluginConfig1Params, authInfo runtime.ClientAuthInfoWriter) (*GetLootBoxPluginConfig1OK, error)
-	UpdateLootBoxPluginConfig1(params *UpdateLootBoxPluginConfig1Params, authInfo runtime.ClientAuthInfoWriter) (*UpdateLootBoxPluginConfig1OK, *UpdateLootBoxPluginConfig1UnprocessableEntity, error)
-	UpdateLootBoxPluginConfig1Short(params *UpdateLootBoxPluginConfig1Params, authInfo runtime.ClientAuthInfoWriter) (*UpdateLootBoxPluginConfig1OK, error)
+	UpdateRevocationPluginConfig(params *UpdateRevocationPluginConfigParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateRevocationPluginConfigOK, *UpdateRevocationPluginConfigUnprocessableEntity, error)
+	UpdateRevocationPluginConfigShort(params *UpdateRevocationPluginConfigParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateRevocationPluginConfigOK, error)
 	DeleteLootBoxPluginConfig1(params *DeleteLootBoxPluginConfig1Params, authInfo runtime.ClientAuthInfoWriter) (*DeleteLootBoxPluginConfig1NoContent, error)
 	DeleteLootBoxPluginConfig1Short(params *DeleteLootBoxPluginConfig1Params, authInfo runtime.ClientAuthInfoWriter) (*DeleteLootBoxPluginConfig1NoContent, error)
 	UploadRevocationPluginConfigCert(params *UploadRevocationPluginConfigCertParams, authInfo runtime.ClientAuthInfoWriter) (*UploadRevocationPluginConfigCertOK, *UploadRevocationPluginConfigCertUnprocessableEntity, error)
@@ -1356,17 +1356,17 @@ func (a *Client) GetLootBoxPluginConfig1Short(params *GetLootBoxPluginConfig1Par
 }
 
 /*
-Deprecated: 2022-08-10 - Use UpdateLootBoxPluginConfig1Short instead.
+Deprecated: 2022-08-10 - Use UpdateRevocationPluginConfigShort instead.
 
-UpdateLootBoxPluginConfig1 update revocation plugin config
+UpdateRevocationPluginConfig update revocation plugin config
 Update revocation plugin config. Other detail info:
   * Required permission : resource=ADMIN:NAMESPACE:{namespace}:PLUGIN:REVOCATION, action=4 (UPDATE)
   *  Returns : updated service plugin config
 */
-func (a *Client) UpdateLootBoxPluginConfig1(params *UpdateLootBoxPluginConfig1Params, authInfo runtime.ClientAuthInfoWriter) (*UpdateLootBoxPluginConfig1OK, *UpdateLootBoxPluginConfig1UnprocessableEntity, error) {
+func (a *Client) UpdateRevocationPluginConfig(params *UpdateRevocationPluginConfigParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateRevocationPluginConfigOK, *UpdateRevocationPluginConfigUnprocessableEntity, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
-		params = NewUpdateLootBoxPluginConfig1Params()
+		params = NewUpdateRevocationPluginConfigParams()
 	}
 
 	if params.Context == nil {
@@ -1378,14 +1378,14 @@ func (a *Client) UpdateLootBoxPluginConfig1(params *UpdateLootBoxPluginConfig1Pa
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
-		ID:                 "updateLootBoxPluginConfig_1",
+		ID:                 "updateRevocationPluginConfig",
 		Method:             "PUT",
 		PathPattern:        "/platform/admin/namespaces/{namespace}/revocation/plugins/revocation",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
 		Params:             params,
-		Reader:             &UpdateLootBoxPluginConfig1Reader{formats: a.formats},
+		Reader:             &UpdateRevocationPluginConfigReader{formats: a.formats},
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
@@ -1396,10 +1396,10 @@ func (a *Client) UpdateLootBoxPluginConfig1(params *UpdateLootBoxPluginConfig1Pa
 
 	switch v := result.(type) {
 
-	case *UpdateLootBoxPluginConfig1OK:
+	case *UpdateRevocationPluginConfigOK:
 		return v, nil, nil
 
-	case *UpdateLootBoxPluginConfig1UnprocessableEntity:
+	case *UpdateRevocationPluginConfigUnprocessableEntity:
 		return nil, v, nil
 
 	default:
@@ -1408,15 +1408,15 @@ func (a *Client) UpdateLootBoxPluginConfig1(params *UpdateLootBoxPluginConfig1Pa
 }
 
 /*
-UpdateLootBoxPluginConfig1Short update revocation plugin config
+UpdateRevocationPluginConfigShort update revocation plugin config
 Update revocation plugin config. Other detail info:
   * Required permission : resource=ADMIN:NAMESPACE:{namespace}:PLUGIN:REVOCATION, action=4 (UPDATE)
   *  Returns : updated service plugin config
 */
-func (a *Client) UpdateLootBoxPluginConfig1Short(params *UpdateLootBoxPluginConfig1Params, authInfo runtime.ClientAuthInfoWriter) (*UpdateLootBoxPluginConfig1OK, error) {
+func (a *Client) UpdateRevocationPluginConfigShort(params *UpdateRevocationPluginConfigParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateRevocationPluginConfigOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
-		params = NewUpdateLootBoxPluginConfig1Params()
+		params = NewUpdateRevocationPluginConfigParams()
 	}
 
 	if params.Context == nil {
@@ -1428,14 +1428,14 @@ func (a *Client) UpdateLootBoxPluginConfig1Short(params *UpdateLootBoxPluginConf
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
-		ID:                 "updateLootBoxPluginConfig_1",
+		ID:                 "updateRevocationPluginConfig",
 		Method:             "PUT",
 		PathPattern:        "/platform/admin/namespaces/{namespace}/revocation/plugins/revocation",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
 		Params:             params,
-		Reader:             &UpdateLootBoxPluginConfig1Reader{formats: a.formats},
+		Reader:             &UpdateRevocationPluginConfigReader{formats: a.formats},
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
@@ -1446,9 +1446,9 @@ func (a *Client) UpdateLootBoxPluginConfig1Short(params *UpdateLootBoxPluginConf
 
 	switch v := result.(type) {
 
-	case *UpdateLootBoxPluginConfig1OK:
+	case *UpdateRevocationPluginConfigOK:
 		return v, nil
-	case *UpdateLootBoxPluginConfig1UnprocessableEntity:
+	case *UpdateRevocationPluginConfigUnprocessableEntity:
 		return nil, v
 
 	default:

@@ -587,7 +587,7 @@ func (aaa *GameSessionService) AppendTeamGameSession(input *game_session.AppendT
 }
 
 // Deprecated: 2022-01-10 - please use PublicQueryMyGameSessionsShort instead.
-func (aaa *GameSessionService) PublicQueryMyGameSessions(input *game_session.PublicQueryMyGameSessionsParams) ([]*sessionclientmodels.ApimodelsGameSessionResponse, error) {
+func (aaa *GameSessionService) PublicQueryMyGameSessions(input *game_session.PublicQueryMyGameSessionsParams) (*sessionclientmodels.ApimodelsGameSessionQueryResponse, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
@@ -1109,7 +1109,7 @@ func (aaa *GameSessionService) AppendTeamGameSessionShort(input *game_session.Ap
 	return ok.GetPayload(), nil
 }
 
-func (aaa *GameSessionService) PublicQueryMyGameSessionsShort(input *game_session.PublicQueryMyGameSessionsParams) ([]*sessionclientmodels.ApimodelsGameSessionResponse, error) {
+func (aaa *GameSessionService) PublicQueryMyGameSessionsShort(input *game_session.PublicQueryMyGameSessionsParams) (*sessionclientmodels.ApimodelsGameSessionQueryResponse, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{

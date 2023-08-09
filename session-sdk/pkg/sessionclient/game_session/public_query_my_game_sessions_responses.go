@@ -72,7 +72,7 @@ func NewPublicQueryMyGameSessionsOK() *PublicQueryMyGameSessionsOK {
   OK
 */
 type PublicQueryMyGameSessionsOK struct {
-	Payload []*sessionclientmodels.ApimodelsGameSessionResponse
+	Payload *sessionclientmodels.ApimodelsGameSessionQueryResponse
 }
 
 func (o *PublicQueryMyGameSessionsOK) Error() string {
@@ -94,7 +94,7 @@ func (o *PublicQueryMyGameSessionsOK) ToJSONString() string {
 	return fmt.Sprintf("%+v", string(b))
 }
 
-func (o *PublicQueryMyGameSessionsOK) GetPayload() []*sessionclientmodels.ApimodelsGameSessionResponse {
+func (o *PublicQueryMyGameSessionsOK) GetPayload() *sessionclientmodels.ApimodelsGameSessionQueryResponse {
 	return o.Payload
 }
 
@@ -105,8 +105,10 @@ func (o *PublicQueryMyGameSessionsOK) readResponse(response runtime.ClientRespon
 		consumer = runtime.ByteStreamConsumer()
 	}
 
+	o.Payload = new(sessionclientmodels.ApimodelsGameSessionQueryResponse)
+
 	// response payload
-	if err := consumer.Consume(response.Body(), &o.Payload); err != nil && err != io.EOF {
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
 		return err
 	}
 

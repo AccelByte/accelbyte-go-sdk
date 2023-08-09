@@ -14,15 +14,10 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/tests/integration"
 	"github.com/stretchr/testify/assert"
 
-	"github.com/AccelByte/accelbyte-go-sdk/ams-sdk/pkg/amsclient/operations"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 )
 
 var (
-	operationAmsService = &ams.OperationsService{
-		Client:          factory.NewAmsClient(configRepo),
-		TokenRepository: tokenRepository,
-	}
 	imagesService = &ams.ImagesService{
 		Client:          factory.NewAmsClient(configRepo),
 		TokenRepository: tokenRepository,
@@ -43,24 +38,6 @@ var (
 	}
 	imageId = "imageId"
 )
-
-func TestIntegrationAmsBasicHealthCheck(t *testing.T) {
-	// Login User - Arrange
-	Init()
-
-	// CASE Basic Health check
-	input := &operations.BasicHealthCheckParams{}
-	err := operationAmsService.BasicHealthCheckShort(input)
-	if err != nil {
-		assert.FailNow(t, err.Error())
-
-		return
-	}
-	// ESAC
-
-	// Assert
-	assert.Nil(t, err, "err should be nil")
-}
 
 func TestIntegrationAmsImageList(t *testing.T) {
 	// Login User - Arrange

@@ -70,18 +70,6 @@ errDelete := achievementsService.AdminDeleteAchievementShort(inputDelete)
 
 Source: [ams_test.go](../services-api/pkg/tests/integration/ams_test.go)
 
-### Basic Health check
-
-```go
-input := &operations.BasicHealthCheckParams{}
-err := operationAmsService.BasicHealthCheckShort(input)
-if err != nil {
-	assert.FailNow(t, err.Error())
-
-	return
-}
-```
-
 ### Image List
 
 ```go

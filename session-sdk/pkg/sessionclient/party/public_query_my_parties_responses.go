@@ -72,7 +72,7 @@ func NewPublicQueryMyPartiesOK() *PublicQueryMyPartiesOK {
   OK
 */
 type PublicQueryMyPartiesOK struct {
-	Payload []*sessionclientmodels.ApimodelsPartySessionResponse
+	Payload *sessionclientmodels.ApimodelsPartyQueryResponse
 }
 
 func (o *PublicQueryMyPartiesOK) Error() string {
@@ -94,7 +94,7 @@ func (o *PublicQueryMyPartiesOK) ToJSONString() string {
 	return fmt.Sprintf("%+v", string(b))
 }
 
-func (o *PublicQueryMyPartiesOK) GetPayload() []*sessionclientmodels.ApimodelsPartySessionResponse {
+func (o *PublicQueryMyPartiesOK) GetPayload() *sessionclientmodels.ApimodelsPartyQueryResponse {
 	return o.Payload
 }
 
@@ -105,8 +105,10 @@ func (o *PublicQueryMyPartiesOK) readResponse(response runtime.ClientResponse, c
 		consumer = runtime.ByteStreamConsumer()
 	}
 
+	o.Payload = new(sessionclientmodels.ApimodelsPartyQueryResponse)
+
 	// response payload
-	if err := consumer.Consume(response.Body(), &o.Payload); err != nil && err != io.EOF {
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
 		return err
 	}
 

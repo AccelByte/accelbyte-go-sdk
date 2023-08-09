@@ -4255,10 +4255,7 @@
           "200": {
             "description": "OK",
             "schema": {
-              "items": {
-                "$ref": "#/definitions/apimodels.GameSessionResponse"
-              },
-              "type": "array"
+              "$ref": "#/definitions/apimodels.GameSessionQueryResponse"
             }
           },
           "400": {
@@ -4332,10 +4329,7 @@
           "200": {
             "description": "OK",
             "schema": {
-              "items": {
-                "$ref": "#/definitions/apimodels.PartySessionResponse"
-              },
-              "type": "array"
+              "$ref": "#/definitions/apimodels.PartyQueryResponse"
             }
           },
           "400": {

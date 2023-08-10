@@ -372,7 +372,6 @@ func TestIntegrationParseAccessTokenAndValidateLocally(t *testing.T) {
 }
 
 func TestIntegrationParseAccessTokenAndValidateRemotely(t *testing.T) {
-	t.Parallel()
 	// Login User - Arrange
 	Init()
 

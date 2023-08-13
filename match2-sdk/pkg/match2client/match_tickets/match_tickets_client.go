@@ -32,6 +32,8 @@ type Client struct {
 type ClientService interface {
 	CreateMatchTicket(params *CreateMatchTicketParams, authInfo runtime.ClientAuthInfoWriter) (*CreateMatchTicketCreated, *CreateMatchTicketBadRequest, *CreateMatchTicketUnauthorized, *CreateMatchTicketForbidden, *CreateMatchTicketNotFound, *CreateMatchTicketConflict, *CreateMatchTicketInternalServerError, error)
 	CreateMatchTicketShort(params *CreateMatchTicketParams, authInfo runtime.ClientAuthInfoWriter) (*CreateMatchTicketCreated, error)
+	GetMyMatchTickets(params *GetMyMatchTicketsParams, authInfo runtime.ClientAuthInfoWriter) (*GetMyMatchTicketsOK, *GetMyMatchTicketsUnauthorized, *GetMyMatchTicketsForbidden, *GetMyMatchTicketsInternalServerError, error)
+	GetMyMatchTicketsShort(params *GetMyMatchTicketsParams, authInfo runtime.ClientAuthInfoWriter) (*GetMyMatchTicketsOK, error)
 	MatchTicketDetails(params *MatchTicketDetailsParams, authInfo runtime.ClientAuthInfoWriter) (*MatchTicketDetailsOK, *MatchTicketDetailsUnauthorized, *MatchTicketDetailsForbidden, *MatchTicketDetailsNotFound, *MatchTicketDetailsInternalServerError, error)
 	MatchTicketDetailsShort(params *MatchTicketDetailsParams, authInfo runtime.ClientAuthInfoWriter) (*MatchTicketDetailsOK, error)
 	DeleteMatchTicket(params *DeleteMatchTicketParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteMatchTicketNoContent, *DeleteMatchTicketUnauthorized, *DeleteMatchTicketForbidden, *DeleteMatchTicketNotFound, *DeleteMatchTicketInternalServerError, error)
@@ -215,6 +217,121 @@ func (a *Client) CreateMatchTicketShort(params *CreateMatchTicketParams, authInf
 	case *CreateMatchTicketConflict:
 		return nil, v
 	case *CreateMatchTicketInternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+Deprecated: 2022-08-10 - Use GetMyMatchTicketsShort instead.
+
+GetMyMatchTickets get my match tickets
+Required Permission: NAMESPACE:{namespace}:MATCHMAKING:TICKET [READ]
+
+Required Scope: social
+
+Get my match tickets.
+*/
+func (a *Client) GetMyMatchTickets(params *GetMyMatchTicketsParams, authInfo runtime.ClientAuthInfoWriter) (*GetMyMatchTicketsOK, *GetMyMatchTicketsUnauthorized, *GetMyMatchTicketsForbidden, *GetMyMatchTicketsInternalServerError, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewGetMyMatchTicketsParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "GetMyMatchTickets",
+		Method:             "GET",
+		PathPattern:        "/match2/v1/namespaces/{namespace}/match-tickets/me",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &GetMyMatchTicketsReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, nil, nil, nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *GetMyMatchTicketsOK:
+		return v, nil, nil, nil, nil
+
+	case *GetMyMatchTicketsUnauthorized:
+		return nil, v, nil, nil, nil
+
+	case *GetMyMatchTicketsForbidden:
+		return nil, nil, v, nil, nil
+
+	case *GetMyMatchTicketsInternalServerError:
+		return nil, nil, nil, v, nil
+
+	default:
+		return nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+GetMyMatchTicketsShort get my match tickets
+Required Permission: NAMESPACE:{namespace}:MATCHMAKING:TICKET [READ]
+
+Required Scope: social
+
+Get my match tickets.
+*/
+func (a *Client) GetMyMatchTicketsShort(params *GetMyMatchTicketsParams, authInfo runtime.ClientAuthInfoWriter) (*GetMyMatchTicketsOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewGetMyMatchTicketsParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "GetMyMatchTickets",
+		Method:             "GET",
+		PathPattern:        "/match2/v1/namespaces/{namespace}/match-tickets/me",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &GetMyMatchTicketsReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *GetMyMatchTicketsOK:
+		return v, nil
+	case *GetMyMatchTicketsUnauthorized:
+		return nil, v
+	case *GetMyMatchTicketsForbidden:
+		return nil, v
+	case *GetMyMatchTicketsInternalServerError:
 		return nil, v
 
 	default:

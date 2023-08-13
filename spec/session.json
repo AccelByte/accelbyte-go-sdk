@@ -3,7 +3,7 @@
   "info": {
     "description": "Justice Session Service",
     "title": "justice-session-service",
-    "version": "2.20.0"
+    "version": "2.22.2"
   },
   "schemes": [
     "https"
@@ -128,6 +128,47 @@
         "summary": "Get dsmc default configuration . Requires ADMIN:NAMESPACE:{namespace}:SESSION:CONFIGURATION [READ]",
         "tags": [
           "DSMC Default Configuration"
+        ]
+      }
+    },
+    "/session/v1/admin/environment-variables": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "List of environment variables.",
+        "operationId": "adminListEnvironmentVariables",
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/apimodels.EnvironmentVariableListResponse"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "summary": "List of environment variables. Requires ADMIN:SESSION:CONFIGURATION:ENVIRONMENTVARIABLE [READ]",
+        "tags": [
+          "Environment Variable"
         ]
       }
     },
@@ -512,7 +553,7 @@
             "type": "integer"
           },
           {
-            "description": "configuration name",
+            "description": "Configuration name",
             "in": "query",
             "name": "name",
             "type": "string"
@@ -523,6 +564,18 @@
             "in": "query",
             "name": "offset",
             "type": "integer"
+          },
+          {
+            "description": "Order of the result. Supported: desc (default), asc",
+            "in": "query",
+            "name": "order",
+            "type": "string"
+          },
+          {
+            "description": "Order result by specific attribute. Supported: createdAt (default), updatedAt",
+            "in": "query",
+            "name": "orderBy",
+            "type": "string"
           }
         ],
         "produces": [
@@ -2095,7 +2148,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "Get game session detail.\nSession service has several DSInformation status to track DS request to DSMC:\n   - NEED_TO_REQUEST: number of active players hasn\u0026#39;t reached session\u0026#39;s minPlayers therefore DS has not yet requested.\n   - REQUESTED: DS is being requested to DSMC.\n   - AVAILABLE: DS is ready to use. The DSMC status for this DS is either READY/BUSY.\n   - FAILED_TO_REQUEST: DSMC fails to create the DS.\n",
+        "description": "Get game session detail.\nSession will only be accessible from active players in the session, and client with the permission, except the joinability is set to OPEN.\nSession service has several DSInformation status to track DS request to DSMC:\n   - NEED_TO_REQUEST: number of active players hasn\u0026#39;t reached session\u0026#39;s minPlayers therefore DS has not yet requested.\n   - REQUESTED: DS is being requested to DSMC.\n   - AVAILABLE: DS is ready to use. The DSMC status for this DS is either READY/BUSY.\n   - FAILED_TO_REQUEST: DSMC fails to create the DS.\n",
         "operationId": "getGameSession",
         "parameters": [
           {
@@ -4870,6 +4923,38 @@
         "success"
       ]
     },
+    "apimodels.EnvironmentVariableListResponse": {
+      "properties": {
+        "data": {
+          "items": {
+            "$ref": "#/definitions/apimodels.EnvironmentVariableResponse"
+          },
+          "type": "array"
+        }
+      },
+      "required": [
+        "data"
+      ]
+    },
+    "apimodels.EnvironmentVariableResponse": {
+      "properties": {
+        "actualValue": {
+          "type": "string"
+        },
+        "defaultValue": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "name"
+      ]
+    },
     "apimodels.GameSessionQueryResponse": {
       "properties": {
         "data": {
@@ -5265,6 +5350,10 @@
         "joinability": {
           "type": "string"
         },
+        "maxActiveSession": {
+          "format": "int32",
+          "type": "integer"
+        },
         "maxPlayers": {
           "format": "int32",
           "type": "integer"
@@ -5276,7 +5365,7 @@
         "name": {
           "type": "string"
         },
-        "native_session_setting": {
+        "nativeSessionSetting": {
           "$ref": "#/definitions/models.NativeSessionSetting"
         },
         "persistent": {
@@ -5962,9 +6051,9 @@
     "path": "/session/apidocs/api.json"
   },
   "x-version": {
-    "buildDate": "2023-07-14T07:48:50+00:00",
-    "gitHash": "d5d66101e180b833ad3775e31e9e71c87ed0b34d",
-    "version": "2.20.0",
-    "version-roles-seeding": "0.0.36"
+    "buildDate": "2023-08-04T23:42:21+00:00",
+    "gitHash": "ad7c7c1cd39c9165d69372daf01bf9c4da4611d8",
+    "version": "2.22.2",
+    "version-roles-seeding": "0.0.38"
   }
 }

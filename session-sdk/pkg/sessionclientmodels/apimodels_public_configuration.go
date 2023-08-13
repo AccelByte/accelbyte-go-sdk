@@ -53,6 +53,10 @@ type ApimodelsPublicConfiguration struct {
 	// Required: true
 	Joinability *string `json:"joinability"`
 
+	// maxactivesession
+	// Format: int32
+	MaxActiveSession int32 `json:"maxActiveSession,omitempty"`
+
 	// maxplayers
 	// Required: true
 	// Format: int32
@@ -67,8 +71,8 @@ type ApimodelsPublicConfiguration struct {
 	// Required: true
 	Name *string `json:"name"`
 
-	// native_session_setting
-	NativeSessionSetting *ModelsNativeSessionSetting `json:"native_session_setting,omitempty"`
+	// nativesessionsetting
+	NativeSessionSetting *ModelsNativeSessionSetting `json:"nativeSessionSetting,omitempty"`
 
 	// persistent
 	// Required: true

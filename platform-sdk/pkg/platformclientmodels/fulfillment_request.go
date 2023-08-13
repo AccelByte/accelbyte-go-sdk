@@ -37,6 +37,9 @@ type FulfillmentRequest struct {
 	// language
 	Language string `json:"language,omitempty"`
 
+	// metadata
+	Metadata interface{} `json:"metadata,omitempty"`
+
 	// order summary for fulfillment scripts
 	Order *OrderSummary `json:"order,omitempty"`
 
@@ -56,7 +59,7 @@ type FulfillmentRequest struct {
 	Region string `json:"region,omitempty"`
 
 	// source
-	// Enum: ['ACHIEVEMENT', 'DLC', 'GIFT', 'IAP', 'OTHER', 'PROMOTION', 'PURCHASE', 'REDEEM_CODE', 'REFERRAL_BONUS', 'REWARD']
+	// Enum: ['ACHIEVEMENT', 'CONSUME_ENTITLEMENT', 'DLC', 'DLC_REVOCATION', 'EXPIRATION', 'GIFT', 'IAP', 'ORDER_REVOCATION', 'OTHER', 'PAYMENT', 'PROMOTION', 'PURCHASE', 'REDEEM_CODE', 'REFERRAL_BONUS', 'REWARD', 'SELL_BACK']
 	Source string `json:"source,omitempty"`
 
 	// start date time
@@ -150,7 +153,7 @@ var fulfillmentRequestTypeSourcePropEnum []interface{}
 
 func init() {
 	var res []string
-	if err := json.Unmarshal([]byte(`["ACHIEVEMENT", "DLC", "GIFT", "IAP", "OTHER", "PROMOTION", "PURCHASE", "REDEEM_CODE", "REFERRAL_BONUS", "REWARD"]`), &res); err != nil {
+	if err := json.Unmarshal([]byte(`["ACHIEVEMENT", "CONSUME_ENTITLEMENT", "DLC", "DLC_REVOCATION", "EXPIRATION", "GIFT", "IAP", "ORDER_REVOCATION", "OTHER", "PAYMENT", "PROMOTION", "PURCHASE", "REDEEM_CODE", "REFERRAL_BONUS", "REWARD", "SELL_BACK"]`), &res); err != nil {
 		panic(err)
 	}
 	for _, v := range res {
@@ -163,8 +166,17 @@ const (
 	// FulfillmentRequestSourceACHIEVEMENT captures enum value "ACHIEVEMENT"
 	FulfillmentRequestSourceACHIEVEMENT string = "ACHIEVEMENT"
 
+	// FulfillmentRequestSourceCONSUMEENTITLEMENT captures enum value "CONSUME_ENTITLEMENT"
+	FulfillmentRequestSourceCONSUMEENTITLEMENT string = "CONSUME_ENTITLEMENT"
+
 	// FulfillmentRequestSourceDLC captures enum value "DLC"
 	FulfillmentRequestSourceDLC string = "DLC"
+
+	// FulfillmentRequestSourceDLCREVOCATION captures enum value "DLC_REVOCATION"
+	FulfillmentRequestSourceDLCREVOCATION string = "DLC_REVOCATION"
+
+	// FulfillmentRequestSourceEXPIRATION captures enum value "EXPIRATION"
+	FulfillmentRequestSourceEXPIRATION string = "EXPIRATION"
 
 	// FulfillmentRequestSourceGIFT captures enum value "GIFT"
 	FulfillmentRequestSourceGIFT string = "GIFT"
@@ -172,8 +184,14 @@ const (
 	// FulfillmentRequestSourceIAP captures enum value "IAP"
 	FulfillmentRequestSourceIAP string = "IAP"
 
+	// FulfillmentRequestSourceORDERREVOCATION captures enum value "ORDER_REVOCATION"
+	FulfillmentRequestSourceORDERREVOCATION string = "ORDER_REVOCATION"
+
 	// FulfillmentRequestSourceOTHER captures enum value "OTHER"
 	FulfillmentRequestSourceOTHER string = "OTHER"
+
+	// FulfillmentRequestSourcePAYMENT captures enum value "PAYMENT"
+	FulfillmentRequestSourcePAYMENT string = "PAYMENT"
 
 	// FulfillmentRequestSourcePROMOTION captures enum value "PROMOTION"
 	FulfillmentRequestSourcePROMOTION string = "PROMOTION"
@@ -189,6 +207,9 @@ const (
 
 	// FulfillmentRequestSourceREWARD captures enum value "REWARD"
 	FulfillmentRequestSourceREWARD string = "REWARD"
+
+	// FulfillmentRequestSourceSELLBACK captures enum value "SELL_BACK"
+	FulfillmentRequestSourceSELLBACK string = "SELL_BACK"
 )
 
 // prop value enum

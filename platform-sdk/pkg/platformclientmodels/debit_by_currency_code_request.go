@@ -32,6 +32,13 @@ type DebitByCurrencyCodeRequest struct {
 	// Enum: ['Epic', 'GooglePlay', 'IOS', 'Nintendo', 'Oculus', 'Other', 'Playstation', 'Steam', 'System', 'Twitch', 'Xbox']
 	BalanceOrigin string `json:"balanceOrigin,omitempty"`
 
+	// balance source, default is OTHER
+	// Enum: ['DLC_REVOCATION', 'EXPIRATION', 'ORDER_REVOCATION', 'OTHER', 'PAYMENT']
+	BalanceSource string `json:"balanceSource,omitempty"`
+
+	// metadata for additional wallet transaction detail
+	Metadata interface{} `json:"metadata,omitempty"`
+
 	// reason
 	Reason string `json:"reason,omitempty"`
 }
@@ -110,6 +117,44 @@ const (
 // prop value enum
 func (m *DebitByCurrencyCodeRequest) validateBalanceOriginEnum(path, location string, value string) error {
 	if err := validate.EnumCase(path, location, value, debitByCurrencyCodeRequestTypeBalanceOriginPropEnum, true); err != nil {
+		return err
+	}
+	return nil
+}
+
+var debitByCurrencyCodeRequestTypeBalanceSourcePropEnum []interface{}
+
+func init() {
+	var res []string
+	if err := json.Unmarshal([]byte(`["DLC_REVOCATION", "EXPIRATION", "ORDER_REVOCATION", "OTHER", "PAYMENT"]`), &res); err != nil {
+		panic(err)
+	}
+	for _, v := range res {
+		debitByCurrencyCodeRequestTypeBalanceSourcePropEnum = append(debitByCurrencyCodeRequestTypeBalanceSourcePropEnum, v)
+	}
+}
+
+const (
+
+	// DebitByCurrencyCodeRequestBalanceSourceDLCREVOCATION captures enum value "DLC_REVOCATION"
+	DebitByCurrencyCodeRequestBalanceSourceDLCREVOCATION string = "DLC_REVOCATION"
+
+	// DebitByCurrencyCodeRequestBalanceSourceEXPIRATION captures enum value "EXPIRATION"
+	DebitByCurrencyCodeRequestBalanceSourceEXPIRATION string = "EXPIRATION"
+
+	// DebitByCurrencyCodeRequestBalanceSourceORDERREVOCATION captures enum value "ORDER_REVOCATION"
+	DebitByCurrencyCodeRequestBalanceSourceORDERREVOCATION string = "ORDER_REVOCATION"
+
+	// DebitByCurrencyCodeRequestBalanceSourceOTHER captures enum value "OTHER"
+	DebitByCurrencyCodeRequestBalanceSourceOTHER string = "OTHER"
+
+	// DebitByCurrencyCodeRequestBalanceSourcePAYMENT captures enum value "PAYMENT"
+	DebitByCurrencyCodeRequestBalanceSourcePAYMENT string = "PAYMENT"
+)
+
+// prop value enum
+func (m *DebitByCurrencyCodeRequest) validateBalanceSourceEnum(path, location string, value string) error {
+	if err := validate.EnumCase(path, location, value, debitByCurrencyCodeRequestTypeBalanceSourcePropEnum, true); err != nil {
 		return err
 	}
 	return nil

@@ -3,7 +3,7 @@
   "info": {
     "description": "Manage AMS Fleets",
     "title": "fleet-commander",
-    "version": "0.2.0"
+    "version": "0.2.1"
   },
   "schemes": [
     "https"
@@ -46,6 +46,25 @@
   },
   "swagger": "2.0",
   "paths": {
+    "/ams/healthz": {
+      "get": {
+        "operationId": "func2",
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "summary": "health check"
+      }
+    },
     "/ams/v1/admin/namespaces/{namespace}/account": {
       "get": {
         "consumes": [
@@ -725,7 +744,7 @@
         "operationId": "FleetServerHistory",
         "parameters": [
           {
-            "description": "the id of the fleet",
+            "description": "ID of the fleet",
             "in": "path",
             "name": "fleetID",
             "required": true,
@@ -749,6 +768,36 @@
             "in": "query",
             "name": "offset",
             "type": "integer"
+          },
+          {
+            "description": "Exit reason",
+            "in": "query",
+            "name": "reason",
+            "type": "string"
+          },
+          {
+            "description": "Region",
+            "in": "query",
+            "name": "region",
+            "type": "string"
+          },
+          {
+            "description": "Dedicated server ID",
+            "in": "query",
+            "name": "serverId",
+            "type": "string"
+          },
+          {
+            "description": "The direction of the sort on the 'createdAt' column, 'asc' for ascending and 'desc' for descending. Defaults to 'asc' when not provided.",
+            "in": "query",
+            "name": "sortDirection",
+            "type": "string"
+          },
+          {
+            "description": "Status of the dedicated server",
+            "in": "query",
+            "name": "status",
+            "type": "string"
           }
         ],
         "produces": [
@@ -1486,7 +1535,7 @@
     },
     "/ams/version": {
       "get": {
-        "operationId": "func1",
+        "operationId": "func3",
         "produces": [
           "application/json"
         ],
@@ -1508,7 +1557,7 @@
     },
     "/healthz": {
       "get": {
-        "operationId": "BasicHealthCheck",
+        "operationId": "PortalHealthCheck",
         "produces": [
           "application/json"
         ],
@@ -2088,6 +2137,9 @@
     },
     "api.ImageDetails": {
       "properties": {
+        "createdAt": {
+          "$ref": "#/definitions/time.Time"
+        },
         "id": {
           "type": "string"
         },
@@ -2118,15 +2170,14 @@
           "type": "array"
         },
         "uploadedAt": {
-          "format": "date-time",
-          "type": "string",
-          "x-nullable": false
+          "$ref": "#/definitions/time.Time"
         },
         "uploadedBy": {
           "type": "string"
         }
       },
       "required": [
+        "createdAt",
         "id",
         "isProtected",
         "name",
@@ -2153,6 +2204,9 @@
     },
     "api.ImageListItem": {
       "properties": {
+        "createdAt": {
+          "$ref": "#/definitions/time.Time"
+        },
         "id": {
           "type": "string"
         },
@@ -2181,15 +2235,14 @@
           "type": "array"
         },
         "uploadedAt": {
-          "format": "date-time",
-          "type": "string",
-          "x-nullable": false
+          "$ref": "#/definitions/time.Time"
         },
         "uploadedBy": {
           "type": "string"
         }
       },
       "required": [
+        "createdAt",
         "id",
         "isProtected",
         "name",
@@ -2430,10 +2483,10 @@
     "path": "/ams/apidocs/api.json"
   },
   "x-version": {
-    "buildDate": "2023-06-30T15:17:47+00:00",
-    "gitHash": "29d45eaade1fffbf813b974d48518bf57b7257f4",
+    "buildDate": "2023-07-31T20:02:11+00:00",
+    "gitHash": "4adc872830d0167fa81153519d07c75737383419",
     "name": "fleet-commander",
-    "version": "0.2.0",
+    "version": "0.2.1",
     "version-roles-seeding": "0.0.24"
   }
 }

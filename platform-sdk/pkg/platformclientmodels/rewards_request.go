@@ -21,6 +21,9 @@ import (
 // swagger:model Rewards request.
 type RewardsRequest struct {
 
+	// additional fulfillment information
+	Metadata interface{} `json:"metadata,omitempty"`
+
 	// origin, if rewards contains item icon, it will credit into related origin wallet. if not set, it will be credit into System wallet
 	// Enum: ['Epic', 'GooglePlay', 'IOS', 'Nintendo', 'Oculus', 'Other', 'Playstation', 'Steam', 'System', 'Twitch', 'Xbox']
 	Origin string `json:"origin,omitempty"`
@@ -30,7 +33,7 @@ type RewardsRequest struct {
 	Rewards []*PlatformReward `json:"rewards"`
 
 	// source
-	// Enum: ['ACHIEVEMENT', 'DLC', 'GIFT', 'IAP', 'OTHER', 'PROMOTION', 'PURCHASE', 'REDEEM_CODE', 'REFERRAL_BONUS', 'REWARD']
+	// Enum: ['ACHIEVEMENT', 'CONSUME_ENTITLEMENT', 'DLC', 'DLC_REVOCATION', 'EXPIRATION', 'GIFT', 'IAP', 'ORDER_REVOCATION', 'OTHER', 'PAYMENT', 'PROMOTION', 'PURCHASE', 'REDEEM_CODE', 'REFERRAL_BONUS', 'REWARD', 'SELL_BACK']
 	Source string `json:"source,omitempty"`
 }
 
@@ -133,7 +136,7 @@ var rewardsRequestTypeSourcePropEnum []interface{}
 
 func init() {
 	var res []string
-	if err := json.Unmarshal([]byte(`["ACHIEVEMENT", "DLC", "GIFT", "IAP", "OTHER", "PROMOTION", "PURCHASE", "REDEEM_CODE", "REFERRAL_BONUS", "REWARD"]`), &res); err != nil {
+	if err := json.Unmarshal([]byte(`["ACHIEVEMENT", "CONSUME_ENTITLEMENT", "DLC", "DLC_REVOCATION", "EXPIRATION", "GIFT", "IAP", "ORDER_REVOCATION", "OTHER", "PAYMENT", "PROMOTION", "PURCHASE", "REDEEM_CODE", "REFERRAL_BONUS", "REWARD", "SELL_BACK"]`), &res); err != nil {
 		panic(err)
 	}
 	for _, v := range res {
@@ -146,8 +149,17 @@ const (
 	// RewardsRequestSourceACHIEVEMENT captures enum value "ACHIEVEMENT"
 	RewardsRequestSourceACHIEVEMENT string = "ACHIEVEMENT"
 
+	// RewardsRequestSourceCONSUMEENTITLEMENT captures enum value "CONSUME_ENTITLEMENT"
+	RewardsRequestSourceCONSUMEENTITLEMENT string = "CONSUME_ENTITLEMENT"
+
 	// RewardsRequestSourceDLC captures enum value "DLC"
 	RewardsRequestSourceDLC string = "DLC"
+
+	// RewardsRequestSourceDLCREVOCATION captures enum value "DLC_REVOCATION"
+	RewardsRequestSourceDLCREVOCATION string = "DLC_REVOCATION"
+
+	// RewardsRequestSourceEXPIRATION captures enum value "EXPIRATION"
+	RewardsRequestSourceEXPIRATION string = "EXPIRATION"
 
 	// RewardsRequestSourceGIFT captures enum value "GIFT"
 	RewardsRequestSourceGIFT string = "GIFT"
@@ -155,8 +167,14 @@ const (
 	// RewardsRequestSourceIAP captures enum value "IAP"
 	RewardsRequestSourceIAP string = "IAP"
 
+	// RewardsRequestSourceORDERREVOCATION captures enum value "ORDER_REVOCATION"
+	RewardsRequestSourceORDERREVOCATION string = "ORDER_REVOCATION"
+
 	// RewardsRequestSourceOTHER captures enum value "OTHER"
 	RewardsRequestSourceOTHER string = "OTHER"
+
+	// RewardsRequestSourcePAYMENT captures enum value "PAYMENT"
+	RewardsRequestSourcePAYMENT string = "PAYMENT"
 
 	// RewardsRequestSourcePROMOTION captures enum value "PROMOTION"
 	RewardsRequestSourcePROMOTION string = "PROMOTION"
@@ -172,6 +190,9 @@ const (
 
 	// RewardsRequestSourceREWARD captures enum value "REWARD"
 	RewardsRequestSourceREWARD string = "REWARD"
+
+	// RewardsRequestSourceSELLBACK captures enum value "SELL_BACK"
+	RewardsRequestSourceSELLBACK string = "SELL_BACK"
 )
 
 // prop value enum

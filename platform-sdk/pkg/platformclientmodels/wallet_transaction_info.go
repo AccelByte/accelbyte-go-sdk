@@ -37,6 +37,9 @@ type WalletTransactionInfo struct {
 	// Required: true
 	CurrencyCode *string `json:"currencyCode"`
 
+	// wallet transaction metadata
+	Metadata interface{} `json:"metadata,omitempty"`
+
 	// Wallet namespace
 	// Required: true
 	Namespace *string `json:"namespace"`

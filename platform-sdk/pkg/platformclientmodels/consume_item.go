@@ -20,13 +20,16 @@ import (
 // swagger:model Consume item.
 type ConsumeItem struct {
 
-	// extitemid
+	// third party item sku or def
+	ExtItemDefID string `json:"extItemDefId,omitempty"`
+
+	// third party item/entitlement id
 	ExtItemID string `json:"extItemId,omitempty"`
 
-	// itemidentity
+	// AB item identity
 	ItemIdentity string `json:"itemIdentity,omitempty"`
 
-	// itemidentitytype
+	// AB item identity type
 	// Enum: ['ITEM_ID', 'ITEM_SKU']
 	ItemIdentityType string `json:"itemIdentityType,omitempty"`
 }

@@ -15,6 +15,7 @@ import (
 	"github.com/go-openapi/strfmt"
 
 	"github.com/AccelByte/accelbyte-go-sdk/match2-sdk/pkg/match2client/backfill"
+	"github.com/AccelByte/accelbyte-go-sdk/match2-sdk/pkg/match2client/environment_variables"
 	"github.com/AccelByte/accelbyte-go-sdk/match2-sdk/pkg/match2client/match_functions"
 	"github.com/AccelByte/accelbyte-go-sdk/match2-sdk/pkg/match2client/match_pools"
 	"github.com/AccelByte/accelbyte-go-sdk/match2-sdk/pkg/match2client/match_tickets"
@@ -71,6 +72,7 @@ func New(transport runtime.ClientTransport, runtime *httptransport.Runtime, form
 	cli.Transport = transport
 	cli.Runtime = runtime
 	cli.Backfill = backfill.New(transport, formats)
+	cli.EnvironmentVariables = environment_variables.New(transport, formats)
 	cli.MatchFunctions = match_functions.New(transport, formats)
 	cli.MatchPools = match_pools.New(transport, formats)
 	cli.MatchTickets = match_tickets.New(transport, formats)
@@ -138,6 +140,8 @@ func (cfg *TransportConfig) WithSchemes(schemes []string) *TransportConfig {
 type JusticeMatch2Service struct {
 	Backfill backfill.ClientService
 
+	EnvironmentVariables environment_variables.ClientService
+
 	MatchFunctions match_functions.ClientService
 
 	MatchPools match_pools.ClientService
@@ -156,6 +160,7 @@ type JusticeMatch2Service struct {
 func (c *JusticeMatch2Service) SetTransport(transport runtime.ClientTransport) {
 	c.Transport = transport
 	c.Backfill.SetTransport(transport)
+	c.EnvironmentVariables.SetTransport(transport)
 	c.MatchFunctions.SetTransport(transport)
 	c.MatchPools.SetTransport(transport)
 	c.MatchTickets.SetTransport(transport)

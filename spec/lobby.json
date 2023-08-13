@@ -8968,11 +8968,11 @@
     "path": "/lobby/apidocs/api.json"
   },
   "x-version": {
-    "buildDate": "2023-07-05T14:39:25+00:00",
-    "gitHash": "9117c099d6de227d74740e94b4b2a1f32e6e4f63",
+    "buildDate": "2023-07-31T14:26:08+00:00",
+    "gitHash": "6b7d94b1863a27fcdc5ded64b45001fb32484f90",
     "name": "justice-lobby-server",
-    "revisionID": "3.23.0",
-    "version": "3.23.0",
+    "revisionID": "3.24.1",
+    "version": "3.24.1",
     "version-justice": "3.45.0",
     "version-roles-seeding": "0.0.29"
   }

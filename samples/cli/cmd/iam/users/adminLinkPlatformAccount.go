@@ -36,10 +36,12 @@ var AdminLinkPlatformAccountCmd = &cobra.Command{
 		}
 		namespace, _ := cmd.Flags().GetString("namespace")
 		userId, _ := cmd.Flags().GetString("userId")
+		skipConflict, _ := cmd.Flags().GetBool("skipConflict")
 		input := &users.AdminLinkPlatformAccountParams{
-			Body:      body,
-			Namespace: namespace,
-			UserID:    userId,
+			Body:         body,
+			Namespace:    namespace,
+			UserID:       userId,
+			SkipConflict: &skipConflict,
 		}
 		errNoContent := usersService.AdminLinkPlatformAccountShort(input)
 		if errNoContent != nil {
@@ -61,4 +63,5 @@ func init() {
 	_ = AdminLinkPlatformAccountCmd.MarkFlagRequired("namespace")
 	AdminLinkPlatformAccountCmd.Flags().String("userId", "", "User id")
 	_ = AdminLinkPlatformAccountCmd.MarkFlagRequired("userId")
+	AdminLinkPlatformAccountCmd.Flags().Bool("skipConflict", false, "Skip conflict")
 }

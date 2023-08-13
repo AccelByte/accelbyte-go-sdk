@@ -29,6 +29,9 @@ type CreditRequest struct {
 	// Format: date-time
 	ExpireAt *strfmt.DateTime `json:"expireAt,omitempty"`
 
+	// metadata for additional information
+	Metadata interface{} `json:"metadata,omitempty"`
+
 	// origin, balance origin decided on the type of wallet, default is System
 	// Enum: ['Epic', 'GooglePlay', 'IOS', 'Nintendo', 'Oculus', 'Other', 'Playstation', 'Steam', 'System', 'Twitch', 'Xbox']
 	Origin string `json:"origin,omitempty"`
@@ -36,8 +39,8 @@ type CreditRequest struct {
 	// reason, max length is 127
 	Reason string `json:"reason,omitempty"`
 
-	// source, purchase for default
-	// Enum: ['ACHIEVEMENT', 'DLC', 'GIFT', 'IAP', 'OTHER', 'PROMOTION', 'PURCHASE', 'REDEEM_CODE', 'REFERRAL_BONUS', 'REFUND', 'REWARD', 'SELL_BACK']
+	// source, default is OTHER
+	// Enum: ['ACHIEVEMENT', 'CONSUME_ENTITLEMENT', 'DLC', 'GIFT', 'IAP', 'OTHER', 'PROMOTION', 'PURCHASE', 'REDEEM_CODE', 'REFERRAL_BONUS', 'REFUND', 'REWARD', 'SELL_BACK']
 	Source string `json:"source,omitempty"`
 }
 
@@ -124,7 +127,7 @@ var creditRequestTypeSourcePropEnum []interface{}
 
 func init() {
 	var res []string
-	if err := json.Unmarshal([]byte(`["ACHIEVEMENT", "DLC", "GIFT", "IAP", "OTHER", "PROMOTION", "PURCHASE", "REDEEM_CODE", "REFERRAL_BONUS", "REFUND", "REWARD", "SELL_BACK"]`), &res); err != nil {
+	if err := json.Unmarshal([]byte(`["ACHIEVEMENT", "CONSUME_ENTITLEMENT", "DLC", "GIFT", "IAP", "OTHER", "PROMOTION", "PURCHASE", "REDEEM_CODE", "REFERRAL_BONUS", "REFUND", "REWARD", "SELL_BACK"]`), &res); err != nil {
 		panic(err)
 	}
 	for _, v := range res {
@@ -136,6 +139,9 @@ const (
 
 	// CreditRequestSourceACHIEVEMENT captures enum value "ACHIEVEMENT"
 	CreditRequestSourceACHIEVEMENT string = "ACHIEVEMENT"
+
+	// CreditRequestSourceCONSUMEENTITLEMENT captures enum value "CONSUME_ENTITLEMENT"
+	CreditRequestSourceCONSUMEENTITLEMENT string = "CONSUME_ENTITLEMENT"
 
 	// CreditRequestSourceDLC captures enum value "DLC"
 	CreditRequestSourceDLC string = "DLC"

@@ -15,6 +15,11 @@
 |---|---|---|---|---|---|
 | `/session/v1/admin/dsconfigs/default` | GET | AdminGetDSMCConfigurationDefaultShort | [AdminGetDSMCConfigurationDefaultShort](../../session-sdk/pkg/sessionclient/d_s_m_c_default_configuration/dsmc_default_configuration_client.go) | [AdminGetDSMCConfigurationDefaultShort](../../services-api/pkg/service/session/dsmcDefaultConfiguration.go) | [AdminGetDSMCConfigurationDefaultShort](../../samples/cli/cmd/session/dsmcDefaultConfiguration/adminGetDSMCConfigurationDefault.go) |
 
+### Environment Variable Wrapper:  [EnvironmentVariable](../../services-api/pkg/service/session/environmentVariable.go)
+| Endpoint | Method | ID | Class | Wrapper | Example |
+|---|---|---|---|---|---|
+| `/session/v1/admin/environment-variables` | GET | AdminListEnvironmentVariablesShort | [AdminListEnvironmentVariablesShort](../../session-sdk/pkg/sessionclient/environment_variable/environment_variable_client.go) | [AdminListEnvironmentVariablesShort](../../services-api/pkg/service/session/environmentVariable.go) | [AdminListEnvironmentVariablesShort](../../samples/cli/cmd/session/environmentVariable/adminListEnvironmentVariables.go) |
+
 ### Configuration Template Wrapper:  [ConfigurationTemplate](../../services-api/pkg/service/session/configurationTemplate.go)
 | Endpoint | Method | ID | Class | Wrapper | Example |
 |---|---|---|---|---|---|
@@ -109,6 +114,8 @@
 | `apimodels.DSInformationResponse` | [ApimodelsDSInformationResponse ](../../session-sdk/pkg/sessionclientmodels/apimodels_d_s_information_response.go) |
 | `apimodels.DeleteBulkGameSessionRequest` | [ApimodelsDeleteBulkGameSessionRequest ](../../session-sdk/pkg/sessionclientmodels/apimodels_delete_bulk_game_session_request.go) |
 | `apimodels.DeleteBulkGameSessionsAPIResponse` | [ApimodelsDeleteBulkGameSessionsAPIResponse ](../../session-sdk/pkg/sessionclientmodels/apimodels_delete_bulk_game_sessions_api_response.go) |
+| `apimodels.EnvironmentVariableListResponse` | [ApimodelsEnvironmentVariableListResponse ](../../session-sdk/pkg/sessionclientmodels/apimodels_environment_variable_list_response.go) |
+| `apimodels.EnvironmentVariableResponse` | [ApimodelsEnvironmentVariableResponse ](../../session-sdk/pkg/sessionclientmodels/apimodels_environment_variable_response.go) |
 | `apimodels.GameSessionQueryResponse` | [ApimodelsGameSessionQueryResponse ](../../session-sdk/pkg/sessionclientmodels/apimodels_game_session_query_response.go) |
 | `apimodels.GameSessionResponse` | [ApimodelsGameSessionResponse ](../../session-sdk/pkg/sessionclientmodels/apimodels_game_session_response.go) |
 | `apimodels.JoinByCodeRequest` | [ApimodelsJoinByCodeRequest ](../../session-sdk/pkg/sessionclientmodels/apimodels_join_by_code_request.go) |

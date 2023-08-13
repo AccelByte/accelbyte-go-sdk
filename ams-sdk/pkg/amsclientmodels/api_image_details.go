@@ -20,6 +20,10 @@ import (
 // swagger:model Api image details.
 type APIImageDetails struct {
 
+	// createdat
+	// Required: true
+	CreatedAt *string `json:"createdAt"`
+
 	// id
 	// Required: true
 	ID *string `json:"id"`
@@ -51,8 +55,7 @@ type APIImageDetails struct {
 
 	// uploadedat
 	// Required: true
-	// Format: date-time
-	UploadedAt strfmt.DateTime `json:"uploadedAt"`
+	UploadedAt *string `json:"uploadedAt"`
 
 	// uploadedby
 	// Required: true
@@ -63,6 +66,9 @@ type APIImageDetails struct {
 func (m *APIImageDetails) Validate(formats strfmt.Registry) error {
 	var res []error
 
+	if err := m.validateCreatedAt(formats); err != nil {
+		res = append(res, err)
+	}
 	if err := m.validateID(formats); err != nil {
 		res = append(res, err)
 	}
@@ -94,6 +100,15 @@ func (m *APIImageDetails) Validate(formats strfmt.Registry) error {
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
+	return nil
+}
+
+func (m *APIImageDetails) validateCreatedAt(formats strfmt.Registry) error {
+
+	if err := validate.Required("createdAt", "body", m.CreatedAt); err != nil {
+		return err
+	}
+
 	return nil
 }
 
@@ -178,11 +193,7 @@ func (m *APIImageDetails) validateTags(formats strfmt.Registry) error {
 
 func (m *APIImageDetails) validateUploadedAt(formats strfmt.Registry) error {
 
-	if err := validate.Required("uploadedAt", "body", strfmt.DateTime(m.UploadedAt)); err != nil {
-		return err
-	}
-
-	if err := validate.FormatOf("uploadedAt", "body", "date-time", m.UploadedAt.String(), formats); err != nil {
+	if err := validate.Required("uploadedAt", "body", m.UploadedAt); err != nil {
 		return err
 	}
 

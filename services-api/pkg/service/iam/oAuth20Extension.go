@@ -204,6 +204,32 @@ func (aaa *OAuth20ExtensionService) RequestGameTokenResponseV3(input *o_auth2_0_
 	return ok.GetPayload(), nil
 }
 
+// Deprecated: 2022-01-10 - please use PlatformTokenRefreshV3Short instead.
+func (aaa *OAuth20ExtensionService) PlatformTokenRefreshV3(input *o_auth2_0_extension.PlatformTokenRefreshV3Params) (*iamclientmodels.OauthmodelPlatformTokenRefreshResponseV3, error) {
+	token, err := aaa.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, badRequest, unauthorized, forbidden, serviceUnavailable, err := aaa.Client.OAuth20Extension.PlatformTokenRefreshV3(input, client.BearerToken(*token.AccessToken))
+	if badRequest != nil {
+		return nil, badRequest
+	}
+	if unauthorized != nil {
+		return nil, unauthorized
+	}
+	if forbidden != nil {
+		return nil, forbidden
+	}
+	if serviceUnavailable != nil {
+		return nil, serviceUnavailable
+	}
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
 func (aaa *OAuth20ExtensionService) UserAuthenticationV3Short(input *o_auth2_0_extension.UserAuthenticationV3Params) (string, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
@@ -468,6 +494,31 @@ func (aaa *OAuth20ExtensionService) RequestGameTokenResponseV3Short(input *o_aut
 	}
 
 	ok, err := aaa.Client.OAuth20Extension.RequestGameTokenResponseV3Short(input, authInfoWriter)
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
+func (aaa *OAuth20ExtensionService) PlatformTokenRefreshV3Short(input *o_auth2_0_extension.PlatformTokenRefreshV3Params) (*iamclientmodels.OauthmodelPlatformTokenRefreshResponseV3, error) {
+	authInfoWriter := input.AuthInfoWriter
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
+	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  aaa.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
+	ok, err := aaa.Client.OAuth20Extension.PlatformTokenRefreshV3Short(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}

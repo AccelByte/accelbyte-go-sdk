@@ -126,7 +126,7 @@ type SearchChannelSpecificContentParams struct {
 	*/
 	Orderby *string
 	/*Sortby
-	  sorting criteria: name,download,like,date. default=date
+	  sorting criteria: name,download,like,date,updatedTime. default=date
 
 	*/
 	Sortby *string

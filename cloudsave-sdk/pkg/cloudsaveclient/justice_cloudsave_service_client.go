@@ -15,12 +15,16 @@ import (
 	"github.com/go-openapi/strfmt"
 
 	"github.com/AccelByte/accelbyte-go-sdk/cloudsave-sdk/pkg/cloudsaveclient/admin_concurrent_record"
+	"github.com/AccelByte/accelbyte-go-sdk/cloudsave-sdk/pkg/cloudsaveclient/admin_game_binary_record"
 	"github.com/AccelByte/accelbyte-go-sdk/cloudsave-sdk/pkg/cloudsaveclient/admin_game_record"
+	"github.com/AccelByte/accelbyte-go-sdk/cloudsave-sdk/pkg/cloudsaveclient/admin_player_binary_record"
 	"github.com/AccelByte/accelbyte-go-sdk/cloudsave-sdk/pkg/cloudsaveclient/admin_player_record"
 	"github.com/AccelByte/accelbyte-go-sdk/cloudsave-sdk/pkg/cloudsaveclient/admin_record"
 	"github.com/AccelByte/accelbyte-go-sdk/cloudsave-sdk/pkg/cloudsaveclient/concurrent_record"
 	"github.com/AccelByte/accelbyte-go-sdk/cloudsave-sdk/pkg/cloudsaveclient/plugin_config"
+	"github.com/AccelByte/accelbyte-go-sdk/cloudsave-sdk/pkg/cloudsaveclient/public_game_binary_record"
 	"github.com/AccelByte/accelbyte-go-sdk/cloudsave-sdk/pkg/cloudsaveclient/public_game_record"
+	"github.com/AccelByte/accelbyte-go-sdk/cloudsave-sdk/pkg/cloudsaveclient/public_player_binary_record"
 	"github.com/AccelByte/accelbyte-go-sdk/cloudsave-sdk/pkg/cloudsaveclient/public_player_record"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils"
 )
@@ -73,12 +77,16 @@ func New(transport runtime.ClientTransport, runtime *httptransport.Runtime, form
 	cli.Transport = transport
 	cli.Runtime = runtime
 	cli.AdminConcurrentRecord = admin_concurrent_record.New(transport, formats)
+	cli.AdminGameBinaryRecord = admin_game_binary_record.New(transport, formats)
 	cli.AdminGameRecord = admin_game_record.New(transport, formats)
+	cli.AdminPlayerBinaryRecord = admin_player_binary_record.New(transport, formats)
 	cli.AdminPlayerRecord = admin_player_record.New(transport, formats)
 	cli.AdminRecord = admin_record.New(transport, formats)
 	cli.ConcurrentRecord = concurrent_record.New(transport, formats)
 	cli.PluginConfig = plugin_config.New(transport, formats)
+	cli.PublicGameBinaryRecord = public_game_binary_record.New(transport, formats)
 	cli.PublicGameRecord = public_game_record.New(transport, formats)
+	cli.PublicPlayerBinaryRecord = public_player_binary_record.New(transport, formats)
 	cli.PublicPlayerRecord = public_player_record.New(transport, formats)
 
 	return cli
@@ -142,7 +150,11 @@ func (cfg *TransportConfig) WithSchemes(schemes []string) *TransportConfig {
 type JusticeCloudsaveService struct {
 	AdminConcurrentRecord admin_concurrent_record.ClientService
 
+	AdminGameBinaryRecord admin_game_binary_record.ClientService
+
 	AdminGameRecord admin_game_record.ClientService
+
+	AdminPlayerBinaryRecord admin_player_binary_record.ClientService
 
 	AdminPlayerRecord admin_player_record.ClientService
 
@@ -152,7 +164,11 @@ type JusticeCloudsaveService struct {
 
 	PluginConfig plugin_config.ClientService
 
+	PublicGameBinaryRecord public_game_binary_record.ClientService
+
 	PublicGameRecord public_game_record.ClientService
+
+	PublicPlayerBinaryRecord public_player_binary_record.ClientService
 
 	PublicPlayerRecord public_player_record.ClientService
 
@@ -164,11 +180,15 @@ type JusticeCloudsaveService struct {
 func (c *JusticeCloudsaveService) SetTransport(transport runtime.ClientTransport) {
 	c.Transport = transport
 	c.AdminConcurrentRecord.SetTransport(transport)
+	c.AdminGameBinaryRecord.SetTransport(transport)
 	c.AdminGameRecord.SetTransport(transport)
+	c.AdminPlayerBinaryRecord.SetTransport(transport)
 	c.AdminPlayerRecord.SetTransport(transport)
 	c.AdminRecord.SetTransport(transport)
 	c.ConcurrentRecord.SetTransport(transport)
 	c.PluginConfig.SetTransport(transport)
+	c.PublicGameBinaryRecord.SetTransport(transport)
 	c.PublicGameRecord.SetTransport(transport)
+	c.PublicPlayerBinaryRecord.SetTransport(transport)
 	c.PublicPlayerRecord.SetTransport(transport)
 }

@@ -8,7 +8,7 @@
     },
     "description": "Justice Legal Service",
     "title": "justice-legal-service",
-    "version": "1.30.1"
+    "version": "1.31.1"
   },
   "schemes": [
     "https"
@@ -2721,7 +2721,8 @@
     },
     "/agreement/admin/userInfo": {
       "delete": {
-        "description": "\u0026lt;b\u0026gt;Important: GOING TO DEPRECATE\u0026lt;/b\u0026gt;\u0026lt;br/\u0026gt;\u0026lt;br/\u0026gt;Invalidate user info cache in agreement service.\u0026lt;br\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;ADMIN:NAMESPACE:*:LEGAL\u0026#34;, action=8 (DELETE)\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
+        "deprecated": true,
+        "description": "Invalidate user info cache in agreement service.\u0026lt;br\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;ADMIN:NAMESPACE:*:LEGAL\u0026#34;, action=8 (DELETE)\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "invalidateUserInfoCache",
         "parameters": [
           {
@@ -2798,7 +2799,8 @@
         ]
       },
       "put": {
-        "description": "\u0026lt;b\u0026gt;Important: GOING TO DEPRECATE\u0026lt;/b\u0026gt;\u0026lt;br/\u0026gt;\u0026lt;br/\u0026gt;Sync user info cache in agreement service with iam service.\u0026lt;br\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;ADMIN:NAMESPACE:*:LEGAL\u0026#34;, action=4 (UPDATE)\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
+        "deprecated": true,
+        "description": "Sync user info cache in agreement service with iam service.\u0026lt;br\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;ADMIN:NAMESPACE:*:LEGAL\u0026#34;, action=4 (UPDATE)\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "syncUserInfo",
         "parameters": [
           {
@@ -3050,7 +3052,8 @@
         "consumes": [
           "application/json"
         ],
-        "description": "\u0026lt;b\u0026gt;IMPORTANT: GOING TO DEPRECATE\u0026lt;/b\u0026gt;\u0026lt;br/\u0026gt;\u0026lt;br/\u0026gt;Accepts many legal policy versions all at once. Supply with localized version policy id, version policy id, policy id, userId, namespace, country code and client id to accept an agreement. This endpoint used by APIGateway during new user registration.\u0026lt;br\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;NAMESPACE:{namespace}:LEGAL\u0026#34;, action=1 (CREATE)\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
+        "deprecated": true,
+        "description": "Accepts many legal policy versions all at once. Supply with localized version policy id, version policy id, policy id, userId, namespace, country code and client id to accept an agreement. This endpoint used by APIGateway during new user registration.\u0026lt;br\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;NAMESPACE:{namespace}:LEGAL\u0026#34;, action=1 (CREATE)\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "indirectBulkAcceptVersionedPolicyV2",
         "parameters": [
           {
@@ -3126,7 +3129,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "Accepts many legal policy versions all at once. Supply with localized version policy id and userId to accept an agreement. This endpoint used by Authentication Service during new user registration.\u0026lt;br\u0026gt;\u0026lt;br/\u0026gt;Available Extra Information to return: \u0026lt;br/\u0026gt;\u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;b\u0026gt;userIds\u0026lt;/b\u0026gt; : List of userId mapping (\u0026lt;b\u0026gt;IMPORTANT: GOING TO DEPRECATE\u0026lt;/b\u0026gt;)\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: login user\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
+        "description": "Accepts many legal policy versions all at once. Supply with localized version policy id and userId to accept an agreement. This endpoint used by Authentication Service during new user registration.\u0026lt;br\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: login user\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "indirectBulkAcceptVersionedPolicy_1",
         "parameters": [
           {
@@ -3647,13 +3650,6 @@
           "description": "Eligibility Status after Accept Agreement",
           "type": "boolean",
           "x-omitempty": false
-        },
-        "ext": {
-          "additionalProperties": {
-            "type": "object"
-          },
-          "description": "extra information",
-          "type": "object"
         },
         "proceed": {
           "description": "DEPRECATED the name is not clear, changed with comply",
@@ -5186,16 +5182,16 @@
   },
   "x-version": {
     "buildBy": "Gradle 6.9.1",
-    "buildDate": "2023-07-18T09:32:53+00:00",
-    "buildID": "1.30.1",
+    "buildDate": "2023-08-01T01:38:40+00:00",
+    "buildID": "1.31.1",
     "buildJDK": "1.8.0_232 (Eclipse OpenJ9 openj9-0.17.0)",
     "buildOS": "Linux amd64 5.13.0-1021-aws",
     "gitBranchName": "release-candidate",
-    "gitHash": "5f21845d4f",
+    "gitHash": "3d4bdae4ad",
     "gitTag": "1.29.2",
     "name": "justice-legal-service",
     "realm": "staging",
-    "version": "1.30.1",
+    "version": "1.31.1",
     "version-roles-seeding": "0.0.3"
   }
 }

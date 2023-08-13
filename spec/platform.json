@@ -8,7 +8,7 @@
     },
     "description": "Justice Platform Service",
     "title": "justice-platform-service",
-    "version": "4.31.1"
+    "version": "4.32.1"
   },
   "schemes": [
     "https"
@@ -9960,7 +9960,7 @@
     "/platform/admin/namespaces/{namespace}/revocation/plugins/revocation": {
       "delete": {
         "description": "Delete service plugin config.\u0026lt;br\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=ADMIN:NAMESPACE:{namespace}:PLUGIN:REVOCATION, action=8 (DELETE)\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
-        "operationId": "deleteLootBoxPluginConfig_1",
+        "operationId": "deleteRevocationPluginConfig",
         "parameters": [
           {
             "in": "path",
@@ -9993,7 +9993,7 @@
       },
       "get": {
         "description": "Get revocation plugin config.\u0026lt;br\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026lt;b\u0026gt;ADMIN:NAMESPACE:{namespace}:PLUGIN:REVOCATION\u0026lt;/b\u0026gt;, action=2 \u0026lt;b\u0026gt;(READ)\u0026lt;/b\u0026gt;\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
-        "operationId": "getLootBoxPluginConfig_1",
+        "operationId": "getRevocationPluginConfig",
         "parameters": [
           {
             "in": "path",
@@ -30390,13 +30390,20 @@
     },
     "ConsumeItem": {
       "properties": {
+        "extItemDefId": {
+          "description": "third party item sku or def",
+          "type": "string"
+        },
         "extItemId": {
+          "description": "third party item/entitlement id",
           "type": "string"
         },
         "itemIdentity": {
+          "description": "AB item identity",
           "type": "string"
         },
         "itemIdentityType": {
+          "description": "AB item identity type",
           "enum": [
             "ITEM_ID",
             "ITEM_SKU"
@@ -30421,6 +30428,13 @@
           "type": "string",
           "x-nullable": true
         },
+        "metadata": {
+          "additionalProperties": {
+            "type": "object"
+          },
+          "description": "metadata for additional information",
+          "type": "object"
+        },
         "origin": {
           "description": "origin, balance origin decided on the type of wallet, default is System",
           "enum": [
@@ -30443,9 +30457,10 @@
           "type": "string"
         },
         "source": {
-          "description": "source, purchase for default",
+          "description": "source, default is OTHER",
           "enum": [
             "ACHIEVEMENT",
+            "CONSUME_ENTITLEMENT",
             "DLC",
             "GIFT",
             "IAP",
@@ -30813,6 +30828,12 @@
         "id": {
           "type": "string"
         },
+        "metadata": {
+          "additionalProperties": {
+            "type": "object"
+          },
+          "type": "object"
+        },
         "obtainedAt": {
           "format": "date-time",
           "type": "string",
@@ -30894,6 +30915,24 @@
           ],
           "type": "string"
         },
+        "balanceSource": {
+          "description": "balance source, default is OTHER",
+          "enum": [
+            "DLC_REVOCATION",
+            "EXPIRATION",
+            "ORDER_REVOCATION",
+            "OTHER",
+            "PAYMENT"
+          ],
+          "type": "string"
+        },
+        "metadata": {
+          "additionalProperties": {
+            "type": "object"
+          },
+          "description": "metadata for additional wallet transaction detail",
+          "type": "object"
+        },
         "reason": {
           "description": "reason",
           "type": "string"
@@ -30912,6 +30951,24 @@
           "format": "int64",
           "minimum": 1,
           "type": "integer"
+        },
+        "balanceSource": {
+          "description": "balance source, default is OTHER",
+          "enum": [
+            "DLC_REVOCATION",
+            "EXPIRATION",
+            "ORDER_REVOCATION",
+            "OTHER",
+            "PAYMENT"
+          ],
+          "type": "string"
+        },
+        "metadata": {
+          "additionalProperties": {
+            "type": "object"
+          },
+          "description": "metadata for additional wallet transaction detail",
+          "type": "object"
         },
         "reason": {
           "description": "reason",
@@ -32468,6 +32525,13 @@
           "description": "language",
           "type": "string"
         },
+        "metadata": {
+          "additionalProperties": {
+            "type": "object"
+          },
+          "description": "metadata",
+          "type": "object"
+        },
         "order": {
           "$ref": "#/definitions/OrderSummary",
           "description": "order summary for fulfillment scripts"
@@ -32506,15 +32570,21 @@
           "description": "source",
           "enum": [
             "ACHIEVEMENT",
+            "CONSUME_ENTITLEMENT",
             "DLC",
+            "DLC_REVOCATION",
+            "EXPIRATION",
             "GIFT",
             "IAP",
+            "ORDER_REVOCATION",
             "OTHER",
+            "PAYMENT",
             "PROMOTION",
             "PURCHASE",
             "REDEEM_CODE",
             "REFERRAL_BONUS",
-            "REWARD"
+            "REWARD",
+            "SELL_BACK"
           ],
           "type": "string"
         },
@@ -32590,15 +32660,21 @@
           "description": "fulfillment source, default PURCHASE",
           "enum": [
             "ACHIEVEMENT",
+            "CONSUME_ENTITLEMENT",
             "DLC",
+            "DLC_REVOCATION",
+            "EXPIRATION",
             "GIFT",
             "IAP",
+            "ORDER_REVOCATION",
             "OTHER",
+            "PAYMENT",
             "PROMOTION",
             "PURCHASE",
             "REDEEM_CODE",
             "REFERRAL_BONUS",
-            "REWARD"
+            "REWARD",
+            "SELL_BACK"
           ],
           "type": "string"
         }
@@ -38209,6 +38285,13 @@
           "minimum": 0,
           "type": "integer"
         },
+        "metadata": {
+          "additionalProperties": {
+            "type": "object"
+          },
+          "description": "additional fulfillment information",
+          "type": "object"
+        },
         "walletPlatform": {
           "description": "wallet platform, base on platform wallet rule to payment wallet",
           "enum": [
@@ -40300,6 +40383,13 @@
     "RewardsRequest": {
       "description": "A DTO object for rewards request API call.",
       "properties": {
+        "metadata": {
+          "additionalProperties": {
+            "type": "object"
+          },
+          "description": "additional fulfillment information",
+          "type": "object"
+        },
         "origin": {
           "description": "origin, if rewards contains item icon, it will credit into related origin wallet. if not set, it will be credit into System wallet",
           "enum": [
@@ -40328,15 +40418,21 @@
           "description": "source",
           "enum": [
             "ACHIEVEMENT",
+            "CONSUME_ENTITLEMENT",
             "DLC",
+            "DLC_REVOCATION",
+            "EXPIRATION",
             "GIFT",
             "IAP",
+            "ORDER_REVOCATION",
             "OTHER",
+            "PAYMENT",
             "PROMOTION",
             "PURCHASE",
             "REDEEM_CODE",
             "REFERRAL_BONUS",
-            "REWARD"
+            "REWARD",
+            "SELL_BACK"
           ],
           "type": "string"
         }
@@ -42472,6 +42568,12 @@
         "id": {
           "type": "string"
         },
+        "metadata": {
+          "additionalProperties": {
+            "type": "object"
+          },
+          "type": "object"
+        },
         "namespace": {
           "description": "namespace",
           "type": "string"
@@ -42818,6 +42920,13 @@
         "currencyCode": {
           "description": "Transaction currency code",
           "type": "string"
+        },
+        "metadata": {
+          "additionalProperties": {
+            "type": "object"
+          },
+          "description": "wallet transaction metadata",
+          "type": "object"
         },
         "namespace": {
           "description": "Wallet namespace",
@@ -43233,16 +43342,16 @@
   },
   "x-version": {
     "buildBy": "Gradle 6.9.1",
-    "buildDate": "2023-07-18T09:24:00+00:00",
-    "buildID": "4.31.1",
+    "buildDate": "2023-08-07T09:34:38+00:00",
+    "buildID": "4.32.1",
     "buildJDK": "1.8.0_232 (Eclipse OpenJ9 openj9-0.17.0)",
     "buildOS": "Linux amd64 5.13.0-1021-aws",
     "gitBranchName": "release-candidate",
-    "gitHash": "ce0e8832e1",
+    "gitHash": "ac8761be91",
     "gitTag": "3.31.0",
     "name": "justice-platform-service",
     "realm": "staging",
-    "version": "4.31.1",
+    "version": "4.32.1",
     "version-roles-seeding": "0.0.32"
   }
 }

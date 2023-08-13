@@ -232,7 +232,7 @@ type ClientService interface {
 	AdminGetUserMappingShort(params *AdminGetUserMappingParams, authInfo runtime.ClientAuthInfoWriter) (*AdminGetUserMappingOK, error)
 	AdminCreateJusticeUser(params *AdminCreateJusticeUserParams, authInfo runtime.ClientAuthInfoWriter) (*AdminCreateJusticeUserCreated, *AdminCreateJusticeUserBadRequest, *AdminCreateJusticeUserUnauthorized, *AdminCreateJusticeUserForbidden, *AdminCreateJusticeUserNotFound, *AdminCreateJusticeUserInternalServerError, error)
 	AdminCreateJusticeUserShort(params *AdminCreateJusticeUserParams, authInfo runtime.ClientAuthInfoWriter) (*AdminCreateJusticeUserCreated, error)
-	AdminLinkPlatformAccount(params *AdminLinkPlatformAccountParams, authInfo runtime.ClientAuthInfoWriter) (*AdminLinkPlatformAccountNoContent, *AdminLinkPlatformAccountBadRequest, *AdminLinkPlatformAccountUnauthorized, *AdminLinkPlatformAccountForbidden, *AdminLinkPlatformAccountInternalServerError, error)
+	AdminLinkPlatformAccount(params *AdminLinkPlatformAccountParams, authInfo runtime.ClientAuthInfoWriter) (*AdminLinkPlatformAccountNoContent, *AdminLinkPlatformAccountBadRequest, *AdminLinkPlatformAccountUnauthorized, *AdminLinkPlatformAccountForbidden, *AdminLinkPlatformAccountConflict, *AdminLinkPlatformAccountInternalServerError, error)
 	AdminLinkPlatformAccountShort(params *AdminLinkPlatformAccountParams, authInfo runtime.ClientAuthInfoWriter) (*AdminLinkPlatformAccountNoContent, error)
 	AdminPlatformUnlinkV3(params *AdminPlatformUnlinkV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminPlatformUnlinkV3NoContent, *AdminPlatformUnlinkV3BadRequest, *AdminPlatformUnlinkV3Unauthorized, *AdminPlatformUnlinkV3Forbidden, *AdminPlatformUnlinkV3NotFound, *AdminPlatformUnlinkV3InternalServerError, error)
 	AdminPlatformUnlinkV3Short(params *AdminPlatformUnlinkV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminPlatformUnlinkV3NoContent, error)
@@ -16055,8 +16055,15 @@ Required permission 'ADMIN:NAMESPACE:{namespace}:USER:{userId} [UPDATE]'
 
 
 Force linking platform account to user User Account. This endpoint intended for admin to forcefully link account to user.
+By default, these cases are not allowed
+
+
+                              * The platform account current is linked by another account
+
+
+                              * The target account ever linked this platform's another account
 */
-func (a *Client) AdminLinkPlatformAccount(params *AdminLinkPlatformAccountParams, authInfo runtime.ClientAuthInfoWriter) (*AdminLinkPlatformAccountNoContent, *AdminLinkPlatformAccountBadRequest, *AdminLinkPlatformAccountUnauthorized, *AdminLinkPlatformAccountForbidden, *AdminLinkPlatformAccountInternalServerError, error) {
+func (a *Client) AdminLinkPlatformAccount(params *AdminLinkPlatformAccountParams, authInfo runtime.ClientAuthInfoWriter) (*AdminLinkPlatformAccountNoContent, *AdminLinkPlatformAccountBadRequest, *AdminLinkPlatformAccountUnauthorized, *AdminLinkPlatformAccountForbidden, *AdminLinkPlatformAccountConflict, *AdminLinkPlatformAccountInternalServerError, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewAdminLinkPlatformAccountParams()
@@ -16084,28 +16091,31 @@ func (a *Client) AdminLinkPlatformAccount(params *AdminLinkPlatformAccountParams
 		Client:             params.HTTPClient,
 	})
 	if err != nil {
-		return nil, nil, nil, nil, nil, err
+		return nil, nil, nil, nil, nil, nil, err
 	}
 
 	switch v := result.(type) {
 
 	case *AdminLinkPlatformAccountNoContent:
-		return v, nil, nil, nil, nil, nil
+		return v, nil, nil, nil, nil, nil, nil
 
 	case *AdminLinkPlatformAccountBadRequest:
-		return nil, v, nil, nil, nil, nil
+		return nil, v, nil, nil, nil, nil, nil
 
 	case *AdminLinkPlatformAccountUnauthorized:
-		return nil, nil, v, nil, nil, nil
+		return nil, nil, v, nil, nil, nil, nil
 
 	case *AdminLinkPlatformAccountForbidden:
-		return nil, nil, nil, v, nil, nil
+		return nil, nil, nil, v, nil, nil, nil
+
+	case *AdminLinkPlatformAccountConflict:
+		return nil, nil, nil, nil, v, nil, nil
 
 	case *AdminLinkPlatformAccountInternalServerError:
-		return nil, nil, nil, nil, v, nil
+		return nil, nil, nil, nil, nil, v, nil
 
 	default:
-		return nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+		return nil, nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
@@ -16117,6 +16127,13 @@ Required permission 'ADMIN:NAMESPACE:{namespace}:USER:{userId} [UPDATE]'
 
 
 Force linking platform account to user User Account. This endpoint intended for admin to forcefully link account to user.
+By default, these cases are not allowed
+
+
+                              * The platform account current is linked by another account
+
+
+                              * The target account ever linked this platform's another account
 */
 func (a *Client) AdminLinkPlatformAccountShort(params *AdminLinkPlatformAccountParams, authInfo runtime.ClientAuthInfoWriter) (*AdminLinkPlatformAccountNoContent, error) {
 	// TODO: Validate the params before sending
@@ -16158,6 +16175,8 @@ func (a *Client) AdminLinkPlatformAccountShort(params *AdminLinkPlatformAccountP
 	case *AdminLinkPlatformAccountUnauthorized:
 		return nil, v
 	case *AdminLinkPlatformAccountForbidden:
+		return nil, v
+	case *AdminLinkPlatformAccountConflict:
 		return nil, v
 	case *AdminLinkPlatformAccountInternalServerError:
 		return nil, v

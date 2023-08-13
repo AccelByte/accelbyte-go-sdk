@@ -16,6 +16,7 @@ import (
 	"github.com/go-openapi/runtime"
 	cr "github.com/go-openapi/runtime/client"
 	"github.com/go-openapi/strfmt"
+	"github.com/go-openapi/swag"
 
 	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclientmodels"
 )
@@ -23,8 +24,11 @@ import (
 // NewAdminLinkPlatformAccountParams creates a new AdminLinkPlatformAccountParams object
 // with the default values initialized.
 func NewAdminLinkPlatformAccountParams() *AdminLinkPlatformAccountParams {
-	var ()
+	var (
+		skipConflictDefault = bool(true)
+	)
 	return &AdminLinkPlatformAccountParams{
+		SkipConflict: &skipConflictDefault,
 
 		timeout: cr.DefaultTimeout,
 	}
@@ -33,8 +37,11 @@ func NewAdminLinkPlatformAccountParams() *AdminLinkPlatformAccountParams {
 // NewAdminLinkPlatformAccountParamsWithTimeout creates a new AdminLinkPlatformAccountParams object
 // with the default values initialized, and the ability to set a timeout on a request
 func NewAdminLinkPlatformAccountParamsWithTimeout(timeout time.Duration) *AdminLinkPlatformAccountParams {
-	var ()
+	var (
+		skipConflictDefault = bool(true)
+	)
 	return &AdminLinkPlatformAccountParams{
+		SkipConflict: &skipConflictDefault,
 
 		timeout: timeout,
 	}
@@ -43,8 +50,11 @@ func NewAdminLinkPlatformAccountParamsWithTimeout(timeout time.Duration) *AdminL
 // NewAdminLinkPlatformAccountParamsWithContext creates a new AdminLinkPlatformAccountParams object
 // with the default values initialized, and the ability to set a context for a request
 func NewAdminLinkPlatformAccountParamsWithContext(ctx context.Context) *AdminLinkPlatformAccountParams {
-	var ()
+	var (
+		skipConflictDefault = bool(true)
+	)
 	return &AdminLinkPlatformAccountParams{
+		SkipConflict: &skipConflictDefault,
 
 		Context: ctx,
 	}
@@ -53,9 +63,12 @@ func NewAdminLinkPlatformAccountParamsWithContext(ctx context.Context) *AdminLin
 // NewAdminLinkPlatformAccountParamsWithHTTPClient creates a new AdminLinkPlatformAccountParams object
 // with the default values initialized, and the ability to set a custom HTTPClient for a request
 func NewAdminLinkPlatformAccountParamsWithHTTPClient(client *http.Client) *AdminLinkPlatformAccountParams {
-	var ()
+	var (
+		skipConflictDefault = bool(true)
+	)
 	return &AdminLinkPlatformAccountParams{
-		HTTPClient: client,
+		SkipConflict: &skipConflictDefault,
+		HTTPClient:   client,
 	}
 }
 
@@ -78,6 +91,17 @@ type AdminLinkPlatformAccountParams struct {
 
 	*/
 	UserID string
+	/*SkipConflict
+	    this query is for this case: if target platform account current is linked with another account
+	<ul>
+		<li>true: will unlink from other account and force link to current target ASG account.</li>
+	            	<li>false: will link failed and response conflict details</li>
+	            	<li>empty: default is true</li>
+	<ul>
+
+
+	*/
+	SkipConflict *bool
 
 	timeout        time.Duration
 	AuthInfoWriter runtime.ClientAuthInfoWriter
@@ -165,6 +189,17 @@ func (o *AdminLinkPlatformAccountParams) SetUserID(userID string) {
 	o.UserID = userID
 }
 
+// WithSkipConflict adds the skipConflict to the admin link platform account params
+func (o *AdminLinkPlatformAccountParams) WithSkipConflict(skipConflict *bool) *AdminLinkPlatformAccountParams {
+	o.SetSkipConflict(skipConflict)
+	return o
+}
+
+// SetSkipConflict adds the skipConflict to the admin link platform account params
+func (o *AdminLinkPlatformAccountParams) SetSkipConflict(skipConflict *bool) {
+	o.SkipConflict = skipConflict
+}
+
 // WriteToRequest writes these params to a swagger request
 func (o *AdminLinkPlatformAccountParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.Registry) error {
 
@@ -187,6 +222,22 @@ func (o *AdminLinkPlatformAccountParams) WriteToRequest(r runtime.ClientRequest,
 	// path param userId
 	if err := r.SetPathParam("userId", o.UserID); err != nil {
 		return err
+	}
+
+	if o.SkipConflict != nil {
+
+		// query param skipConflict
+		var qrSkipConflict bool
+		if o.SkipConflict != nil {
+			qrSkipConflict = *o.SkipConflict
+		}
+		qSkipConflict := swag.FormatBool(qrSkipConflict)
+		if qSkipConflict != "" {
+			if err := r.SetQueryParam("skipConflict", qSkipConflict); err != nil {
+				return err
+			}
+		}
+
 	}
 
 	// setting the default header value

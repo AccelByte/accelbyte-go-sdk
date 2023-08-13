@@ -29,13 +29,13 @@ func (aaa *FleetCommanderService) GetAuthSession() auth.Session {
 	}
 }
 
-// Deprecated: 2022-01-10 - please use Func1Short instead.
-func (aaa *FleetCommanderService) Func1(input *fleet_commander.Func1Params) error {
+// Deprecated: 2022-01-10 - please use Func3Short instead.
+func (aaa *FleetCommanderService) Func3(input *fleet_commander.Func3Params) error {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	_, err = aaa.Client.FleetCommander.Func1(input, client.BearerToken(*token.AccessToken))
+	_, err = aaa.Client.FleetCommander.Func3(input, client.BearerToken(*token.AccessToken))
 	if err != nil {
 		return err
 	}
@@ -43,7 +43,7 @@ func (aaa *FleetCommanderService) Func1(input *fleet_commander.Func1Params) erro
 	return nil
 }
 
-func (aaa *FleetCommanderService) Func1Short(input *fleet_commander.Func1Params) error {
+func (aaa *FleetCommanderService) Func3Short(input *fleet_commander.Func3Params) error {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -60,7 +60,7 @@ func (aaa *FleetCommanderService) Func1Short(input *fleet_commander.Func1Params)
 		}
 	}
 
-	_, err := aaa.Client.FleetCommander.Func1Short(input, authInfoWriter)
+	_, err := aaa.Client.FleetCommander.Func3Short(input, authInfoWriter)
 	if err != nil {
 		return err
 	}

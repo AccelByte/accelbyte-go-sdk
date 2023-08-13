@@ -90,6 +90,10 @@ Example: player_killed, mission_accomplished
 
 
 Default maximum payload size is 1MB
+
+
+
+- **ClientTimestamp (optional)**: Timestamp of the event captured by the client SDK.
 */
 func (a *Client) ProtectedSaveEventsGameTelemetryV1ProtectedEventsPost(params *ProtectedSaveEventsGameTelemetryV1ProtectedEventsPostParams, authInfo runtime.ClientAuthInfoWriter) (*ProtectedSaveEventsGameTelemetryV1ProtectedEventsPostNoContent, *ProtectedSaveEventsGameTelemetryV1ProtectedEventsPostUnprocessableEntity, error) {
 	// TODO: Validate the params before sending
@@ -183,6 +187,10 @@ Example: player_killed, mission_accomplished
 
 
 Default maximum payload size is 1MB
+
+
+
+- **ClientTimestamp (optional)**: Timestamp of the event captured by the client SDK.
 */
 func (a *Client) ProtectedSaveEventsGameTelemetryV1ProtectedEventsPostShort(params *ProtectedSaveEventsGameTelemetryV1ProtectedEventsPostParams, authInfo runtime.ClientAuthInfoWriter) (*ProtectedSaveEventsGameTelemetryV1ProtectedEventsPostNoContent, error) {
 	// TODO: Validate the params before sending

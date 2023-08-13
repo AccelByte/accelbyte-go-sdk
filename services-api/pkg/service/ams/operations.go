@@ -29,13 +29,13 @@ func (aaa *OperationsService) GetAuthSession() auth.Session {
 	}
 }
 
-// Deprecated: 2022-01-10 - please use BasicHealthCheckShort instead.
-func (aaa *OperationsService) BasicHealthCheck(input *operations.BasicHealthCheckParams) error {
+// Deprecated: 2022-01-10 - please use Func2Short instead.
+func (aaa *OperationsService) Func2(input *operations.Func2Params) error {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	_, err = aaa.Client.Operations.BasicHealthCheck(input, client.BearerToken(*token.AccessToken))
+	_, err = aaa.Client.Operations.Func2(input, client.BearerToken(*token.AccessToken))
 	if err != nil {
 		return err
 	}
@@ -43,7 +43,21 @@ func (aaa *OperationsService) BasicHealthCheck(input *operations.BasicHealthChec
 	return nil
 }
 
-func (aaa *OperationsService) BasicHealthCheckShort(input *operations.BasicHealthCheckParams) error {
+// Deprecated: 2022-01-10 - please use PortalHealthCheckShort instead.
+func (aaa *OperationsService) PortalHealthCheck(input *operations.PortalHealthCheckParams) error {
+	token, err := aaa.TokenRepository.GetToken()
+	if err != nil {
+		return err
+	}
+	_, err = aaa.Client.Operations.PortalHealthCheck(input, client.BearerToken(*token.AccessToken))
+	if err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (aaa *OperationsService) Func2Short(input *operations.Func2Params) error {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -60,7 +74,32 @@ func (aaa *OperationsService) BasicHealthCheckShort(input *operations.BasicHealt
 		}
 	}
 
-	_, err := aaa.Client.Operations.BasicHealthCheckShort(input, authInfoWriter)
+	_, err := aaa.Client.Operations.Func2Short(input, authInfoWriter)
+	if err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (aaa *OperationsService) PortalHealthCheckShort(input *operations.PortalHealthCheckParams) error {
+	authInfoWriter := input.AuthInfoWriter
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
+	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  aaa.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
+	_, err := aaa.Client.Operations.PortalHealthCheckShort(input, authInfoWriter)
 	if err != nil {
 		return err
 	}

@@ -54,12 +54,12 @@ type ClientService interface {
 	UpdateServicePluginConfigShort(params *UpdateServicePluginConfigParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateServicePluginConfigOK, error)
 	DeleteServicePluginConfig(params *DeleteServicePluginConfigParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteServicePluginConfigNoContent, error)
 	DeleteServicePluginConfigShort(params *DeleteServicePluginConfigParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteServicePluginConfigNoContent, error)
-	GetLootBoxPluginConfig1(params *GetLootBoxPluginConfig1Params, authInfo runtime.ClientAuthInfoWriter) (*GetLootBoxPluginConfig1OK, error)
-	GetLootBoxPluginConfig1Short(params *GetLootBoxPluginConfig1Params, authInfo runtime.ClientAuthInfoWriter) (*GetLootBoxPluginConfig1OK, error)
+	GetRevocationPluginConfig(params *GetRevocationPluginConfigParams, authInfo runtime.ClientAuthInfoWriter) (*GetRevocationPluginConfigOK, error)
+	GetRevocationPluginConfigShort(params *GetRevocationPluginConfigParams, authInfo runtime.ClientAuthInfoWriter) (*GetRevocationPluginConfigOK, error)
 	UpdateRevocationPluginConfig(params *UpdateRevocationPluginConfigParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateRevocationPluginConfigOK, *UpdateRevocationPluginConfigUnprocessableEntity, error)
 	UpdateRevocationPluginConfigShort(params *UpdateRevocationPluginConfigParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateRevocationPluginConfigOK, error)
-	DeleteLootBoxPluginConfig1(params *DeleteLootBoxPluginConfig1Params, authInfo runtime.ClientAuthInfoWriter) (*DeleteLootBoxPluginConfig1NoContent, error)
-	DeleteLootBoxPluginConfig1Short(params *DeleteLootBoxPluginConfig1Params, authInfo runtime.ClientAuthInfoWriter) (*DeleteLootBoxPluginConfig1NoContent, error)
+	DeleteRevocationPluginConfig(params *DeleteRevocationPluginConfigParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteRevocationPluginConfigNoContent, error)
+	DeleteRevocationPluginConfigShort(params *DeleteRevocationPluginConfigParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteRevocationPluginConfigNoContent, error)
 	UploadRevocationPluginConfigCert(params *UploadRevocationPluginConfigCertParams, authInfo runtime.ClientAuthInfoWriter) (*UploadRevocationPluginConfigCertOK, *UploadRevocationPluginConfigCertUnprocessableEntity, error)
 	UploadRevocationPluginConfigCertShort(params *UploadRevocationPluginConfigCertParams, authInfo runtime.ClientAuthInfoWriter) (*UploadRevocationPluginConfigCertOK, error)
 
@@ -1258,18 +1258,18 @@ func (a *Client) DeleteServicePluginConfigShort(params *DeleteServicePluginConfi
 }
 
 /*
-Deprecated: 2022-08-10 - Use GetLootBoxPluginConfig1Short instead.
+Deprecated: 2022-08-10 - Use GetRevocationPluginConfigShort instead.
 
-GetLootBoxPluginConfig1 get revocation plugin config
+GetRevocationPluginConfig get revocation plugin config
 Get revocation plugin config.
 Other detail info:
 
   * Required permission : resource= ADMIN:NAMESPACE:{namespace}:PLUGIN:REVOCATION , action=2 (READ)
 */
-func (a *Client) GetLootBoxPluginConfig1(params *GetLootBoxPluginConfig1Params, authInfo runtime.ClientAuthInfoWriter) (*GetLootBoxPluginConfig1OK, error) {
+func (a *Client) GetRevocationPluginConfig(params *GetRevocationPluginConfigParams, authInfo runtime.ClientAuthInfoWriter) (*GetRevocationPluginConfigOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
-		params = NewGetLootBoxPluginConfig1Params()
+		params = NewGetRevocationPluginConfigParams()
 	}
 
 	if params.Context == nil {
@@ -1281,14 +1281,14 @@ func (a *Client) GetLootBoxPluginConfig1(params *GetLootBoxPluginConfig1Params, 
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
-		ID:                 "getLootBoxPluginConfig_1",
+		ID:                 "getRevocationPluginConfig",
 		Method:             "GET",
 		PathPattern:        "/platform/admin/namespaces/{namespace}/revocation/plugins/revocation",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
 		Params:             params,
-		Reader:             &GetLootBoxPluginConfig1Reader{formats: a.formats},
+		Reader:             &GetRevocationPluginConfigReader{formats: a.formats},
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
@@ -1299,7 +1299,7 @@ func (a *Client) GetLootBoxPluginConfig1(params *GetLootBoxPluginConfig1Params, 
 
 	switch v := result.(type) {
 
-	case *GetLootBoxPluginConfig1OK:
+	case *GetRevocationPluginConfigOK:
 		return v, nil
 
 	default:
@@ -1308,16 +1308,16 @@ func (a *Client) GetLootBoxPluginConfig1(params *GetLootBoxPluginConfig1Params, 
 }
 
 /*
-GetLootBoxPluginConfig1Short get revocation plugin config
+GetRevocationPluginConfigShort get revocation plugin config
 Get revocation plugin config.
 Other detail info:
 
   * Required permission : resource= ADMIN:NAMESPACE:{namespace}:PLUGIN:REVOCATION , action=2 (READ)
 */
-func (a *Client) GetLootBoxPluginConfig1Short(params *GetLootBoxPluginConfig1Params, authInfo runtime.ClientAuthInfoWriter) (*GetLootBoxPluginConfig1OK, error) {
+func (a *Client) GetRevocationPluginConfigShort(params *GetRevocationPluginConfigParams, authInfo runtime.ClientAuthInfoWriter) (*GetRevocationPluginConfigOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
-		params = NewGetLootBoxPluginConfig1Params()
+		params = NewGetRevocationPluginConfigParams()
 	}
 
 	if params.Context == nil {
@@ -1329,14 +1329,14 @@ func (a *Client) GetLootBoxPluginConfig1Short(params *GetLootBoxPluginConfig1Par
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
-		ID:                 "getLootBoxPluginConfig_1",
+		ID:                 "getRevocationPluginConfig",
 		Method:             "GET",
 		PathPattern:        "/platform/admin/namespaces/{namespace}/revocation/plugins/revocation",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
 		Params:             params,
-		Reader:             &GetLootBoxPluginConfig1Reader{formats: a.formats},
+		Reader:             &GetRevocationPluginConfigReader{formats: a.formats},
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
@@ -1347,7 +1347,7 @@ func (a *Client) GetLootBoxPluginConfig1Short(params *GetLootBoxPluginConfig1Par
 
 	switch v := result.(type) {
 
-	case *GetLootBoxPluginConfig1OK:
+	case *GetRevocationPluginConfigOK:
 		return v, nil
 
 	default:
@@ -1457,18 +1457,18 @@ func (a *Client) UpdateRevocationPluginConfigShort(params *UpdateRevocationPlugi
 }
 
 /*
-Deprecated: 2022-08-10 - Use DeleteLootBoxPluginConfig1Short instead.
+Deprecated: 2022-08-10 - Use DeleteRevocationPluginConfigShort instead.
 
-DeleteLootBoxPluginConfig1 delete revocation plugin config
+DeleteRevocationPluginConfig delete revocation plugin config
 Delete service plugin config.
 Other detail info:
 
   * Required permission : resource=ADMIN:NAMESPACE:{namespace}:PLUGIN:REVOCATION, action=8 (DELETE)
 */
-func (a *Client) DeleteLootBoxPluginConfig1(params *DeleteLootBoxPluginConfig1Params, authInfo runtime.ClientAuthInfoWriter) (*DeleteLootBoxPluginConfig1NoContent, error) {
+func (a *Client) DeleteRevocationPluginConfig(params *DeleteRevocationPluginConfigParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteRevocationPluginConfigNoContent, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
-		params = NewDeleteLootBoxPluginConfig1Params()
+		params = NewDeleteRevocationPluginConfigParams()
 	}
 
 	if params.Context == nil {
@@ -1480,14 +1480,14 @@ func (a *Client) DeleteLootBoxPluginConfig1(params *DeleteLootBoxPluginConfig1Pa
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
-		ID:                 "deleteLootBoxPluginConfig_1",
+		ID:                 "deleteRevocationPluginConfig",
 		Method:             "DELETE",
 		PathPattern:        "/platform/admin/namespaces/{namespace}/revocation/plugins/revocation",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
 		Params:             params,
-		Reader:             &DeleteLootBoxPluginConfig1Reader{formats: a.formats},
+		Reader:             &DeleteRevocationPluginConfigReader{formats: a.formats},
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
@@ -1498,7 +1498,7 @@ func (a *Client) DeleteLootBoxPluginConfig1(params *DeleteLootBoxPluginConfig1Pa
 
 	switch v := result.(type) {
 
-	case *DeleteLootBoxPluginConfig1NoContent:
+	case *DeleteRevocationPluginConfigNoContent:
 		return v, nil
 
 	default:
@@ -1507,16 +1507,16 @@ func (a *Client) DeleteLootBoxPluginConfig1(params *DeleteLootBoxPluginConfig1Pa
 }
 
 /*
-DeleteLootBoxPluginConfig1Short delete revocation plugin config
+DeleteRevocationPluginConfigShort delete revocation plugin config
 Delete service plugin config.
 Other detail info:
 
   * Required permission : resource=ADMIN:NAMESPACE:{namespace}:PLUGIN:REVOCATION, action=8 (DELETE)
 */
-func (a *Client) DeleteLootBoxPluginConfig1Short(params *DeleteLootBoxPluginConfig1Params, authInfo runtime.ClientAuthInfoWriter) (*DeleteLootBoxPluginConfig1NoContent, error) {
+func (a *Client) DeleteRevocationPluginConfigShort(params *DeleteRevocationPluginConfigParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteRevocationPluginConfigNoContent, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
-		params = NewDeleteLootBoxPluginConfig1Params()
+		params = NewDeleteRevocationPluginConfigParams()
 	}
 
 	if params.Context == nil {
@@ -1528,14 +1528,14 @@ func (a *Client) DeleteLootBoxPluginConfig1Short(params *DeleteLootBoxPluginConf
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
-		ID:                 "deleteLootBoxPluginConfig_1",
+		ID:                 "deleteRevocationPluginConfig",
 		Method:             "DELETE",
 		PathPattern:        "/platform/admin/namespaces/{namespace}/revocation/plugins/revocation",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
 		Params:             params,
-		Reader:             &DeleteLootBoxPluginConfig1Reader{formats: a.formats},
+		Reader:             &DeleteRevocationPluginConfigReader{formats: a.formats},
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
@@ -1546,7 +1546,7 @@ func (a *Client) DeleteLootBoxPluginConfig1Short(params *DeleteLootBoxPluginConf
 
 	switch v := result.(type) {
 
-	case *DeleteLootBoxPluginConfig1NoContent:
+	case *DeleteRevocationPluginConfigNoContent:
 		return v, nil
 
 	default:

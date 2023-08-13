@@ -8,12 +8,16 @@ package cloudsave
 
 import (
 	"github.com/AccelByte/sample-apps/cmd/cloudsave/adminConcurrentRecord"
+	"github.com/AccelByte/sample-apps/cmd/cloudsave/adminGameBinaryRecord"
 	"github.com/AccelByte/sample-apps/cmd/cloudsave/adminGameRecord"
+	"github.com/AccelByte/sample-apps/cmd/cloudsave/adminPlayerBinaryRecord"
 	"github.com/AccelByte/sample-apps/cmd/cloudsave/adminPlayerRecord"
 	"github.com/AccelByte/sample-apps/cmd/cloudsave/adminRecord"
 	"github.com/AccelByte/sample-apps/cmd/cloudsave/concurrentRecord"
 	"github.com/AccelByte/sample-apps/cmd/cloudsave/pluginConfig"
+	"github.com/AccelByte/sample-apps/cmd/cloudsave/publicGameBinaryRecord"
 	"github.com/AccelByte/sample-apps/cmd/cloudsave/publicGameRecord"
+	"github.com/AccelByte/sample-apps/cmd/cloudsave/publicPlayerBinaryRecord"
 	"github.com/AccelByte/sample-apps/cmd/cloudsave/publicPlayerRecord"
 	"github.com/spf13/cobra"
 )
@@ -31,6 +35,13 @@ func init() {
 	CloudsaveCmd.AddCommand(adminRecord.AdminPutAdminGameRecordV1Cmd)
 	CloudsaveCmd.AddCommand(adminRecord.AdminPostAdminGameRecordV1Cmd)
 	CloudsaveCmd.AddCommand(adminRecord.AdminDeleteAdminGameRecordV1Cmd)
+	CloudsaveCmd.AddCommand(adminGameBinaryRecord.AdminListGameBinaryRecordsV1Cmd)
+	CloudsaveCmd.AddCommand(adminGameBinaryRecord.AdminPostGameBinaryRecordV1Cmd)
+	CloudsaveCmd.AddCommand(adminGameBinaryRecord.AdminGetGameBinaryRecordV1Cmd)
+	CloudsaveCmd.AddCommand(adminGameBinaryRecord.AdminPutGameBinaryRecordV1Cmd)
+	CloudsaveCmd.AddCommand(adminGameBinaryRecord.AdminDeleteGameBinaryRecordV1Cmd)
+	CloudsaveCmd.AddCommand(adminGameBinaryRecord.AdminPutGameBinaryRecorMetadataV1Cmd)
+	CloudsaveCmd.AddCommand(adminGameBinaryRecord.AdminPostGameBinaryPresignedURLV1Cmd)
 	CloudsaveCmd.AddCommand(adminConcurrentRecord.AdminPutAdminGameRecordConcurrentHandlerV1Cmd)
 	CloudsaveCmd.AddCommand(adminConcurrentRecord.AdminPutGameRecordConcurrentHandlerV1Cmd)
 	CloudsaveCmd.AddCommand(pluginConfig.GetPluginConfigCmd)
@@ -51,6 +62,13 @@ func init() {
 	CloudsaveCmd.AddCommand(adminRecord.AdminPutAdminPlayerRecordV1Cmd)
 	CloudsaveCmd.AddCommand(adminRecord.AdminPostPlayerAdminRecordV1Cmd)
 	CloudsaveCmd.AddCommand(adminRecord.AdminDeleteAdminPlayerRecordV1Cmd)
+	CloudsaveCmd.AddCommand(adminPlayerBinaryRecord.AdminListPlayerBinaryRecordsV1Cmd)
+	CloudsaveCmd.AddCommand(adminPlayerBinaryRecord.AdminPostPlayerBinaryRecordV1Cmd)
+	CloudsaveCmd.AddCommand(adminPlayerBinaryRecord.AdminGetPlayerBinaryRecordV1Cmd)
+	CloudsaveCmd.AddCommand(adminPlayerBinaryRecord.AdminPutPlayerBinaryRecordV1Cmd)
+	CloudsaveCmd.AddCommand(adminPlayerBinaryRecord.AdminDeletePlayerBinaryRecordV1Cmd)
+	CloudsaveCmd.AddCommand(adminPlayerBinaryRecord.AdminPutPlayerBinaryRecorMetadataV1Cmd)
+	CloudsaveCmd.AddCommand(adminPlayerBinaryRecord.AdminPostPlayerBinaryPresignedURLV1Cmd)
 	CloudsaveCmd.AddCommand(adminConcurrentRecord.AdminPutAdminPlayerRecordConcurrentHandlerV1Cmd)
 	CloudsaveCmd.AddCommand(adminConcurrentRecord.AdminPutPlayerRecordConcurrentHandlerV1Cmd)
 	CloudsaveCmd.AddCommand(adminConcurrentRecord.AdminPutPlayerPublicRecordConcurrentHandlerV1Cmd)
@@ -64,16 +82,35 @@ func init() {
 	CloudsaveCmd.AddCommand(adminPlayerRecord.AdminPostPlayerPublicRecordHandlerV1Cmd)
 	CloudsaveCmd.AddCommand(adminPlayerRecord.AdminDeletePlayerPublicRecordHandlerV1Cmd)
 	CloudsaveCmd.AddCommand(adminPlayerRecord.AdminGetPlayerRecordSizeHandlerV1Cmd)
+	CloudsaveCmd.AddCommand(publicGameBinaryRecord.ListGameBinaryRecordsV1Cmd)
+	CloudsaveCmd.AddCommand(publicGameBinaryRecord.PostGameBinaryRecordV1Cmd)
+	CloudsaveCmd.AddCommand(publicGameBinaryRecord.BulkGetGameBinaryRecordV1Cmd)
+	CloudsaveCmd.AddCommand(publicGameBinaryRecord.GetGameBinaryRecordV1Cmd)
+	CloudsaveCmd.AddCommand(publicGameBinaryRecord.PutGameBinaryRecordV1Cmd)
+	CloudsaveCmd.AddCommand(publicGameBinaryRecord.DeleteGameBinaryRecordV1Cmd)
+	CloudsaveCmd.AddCommand(publicGameBinaryRecord.PostGameBinaryPresignedURLV1Cmd)
 	CloudsaveCmd.AddCommand(concurrentRecord.PutGameRecordConcurrentHandlerV1Cmd)
 	CloudsaveCmd.AddCommand(publicGameRecord.GetGameRecordsBulkCmd)
 	CloudsaveCmd.AddCommand(publicGameRecord.GetGameRecordHandlerV1Cmd)
 	CloudsaveCmd.AddCommand(publicGameRecord.PutGameRecordHandlerV1Cmd)
 	CloudsaveCmd.AddCommand(publicGameRecord.PostGameRecordHandlerV1Cmd)
 	CloudsaveCmd.AddCommand(publicGameRecord.DeleteGameRecordHandlerV1Cmd)
+	CloudsaveCmd.AddCommand(publicPlayerBinaryRecord.BulkGetPlayerPublicBinaryRecordsV1Cmd)
 	CloudsaveCmd.AddCommand(publicPlayerRecord.BulkGetPlayerPublicRecordHandlerV1Cmd)
+	CloudsaveCmd.AddCommand(publicPlayerBinaryRecord.ListMyBinaryRecordsV1Cmd)
+	CloudsaveCmd.AddCommand(publicPlayerBinaryRecord.BulkGetMyBinaryRecordV1Cmd)
 	CloudsaveCmd.AddCommand(publicPlayerRecord.RetrievePlayerRecordsCmd)
 	CloudsaveCmd.AddCommand(publicPlayerRecord.GetPlayerRecordsBulkHandlerV1Cmd)
 	CloudsaveCmd.AddCommand(publicPlayerRecord.PublicDeletePlayerPublicRecordHandlerV1Cmd)
+	CloudsaveCmd.AddCommand(publicPlayerBinaryRecord.PostPlayerBinaryRecordV1Cmd)
+	CloudsaveCmd.AddCommand(publicPlayerBinaryRecord.ListOtherPlayerPublicBinaryRecordsV1Cmd)
+	CloudsaveCmd.AddCommand(publicPlayerBinaryRecord.BulkGetOtherPlayerPublicBinaryRecordsV1Cmd)
+	CloudsaveCmd.AddCommand(publicPlayerBinaryRecord.GetPlayerBinaryRecordV1Cmd)
+	CloudsaveCmd.AddCommand(publicPlayerBinaryRecord.PutPlayerBinaryRecordV1Cmd)
+	CloudsaveCmd.AddCommand(publicPlayerBinaryRecord.DeletePlayerBinaryRecordV1Cmd)
+	CloudsaveCmd.AddCommand(publicPlayerBinaryRecord.PutPlayerBinaryRecorMetadataV1Cmd)
+	CloudsaveCmd.AddCommand(publicPlayerBinaryRecord.PostPlayerBinaryPresignedURLV1Cmd)
+	CloudsaveCmd.AddCommand(publicPlayerBinaryRecord.GetPlayerPublicBinaryRecordsV1Cmd)
 	CloudsaveCmd.AddCommand(concurrentRecord.PutPlayerRecordConcurrentHandlerV1Cmd)
 	CloudsaveCmd.AddCommand(concurrentRecord.PutPlayerPublicRecordConcurrentHandlerV1Cmd)
 	CloudsaveCmd.AddCommand(publicPlayerRecord.GetOtherPlayerPublicRecordKeyHandlerV1Cmd)

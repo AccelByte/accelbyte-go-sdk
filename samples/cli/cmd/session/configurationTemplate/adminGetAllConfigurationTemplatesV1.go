@@ -29,11 +29,15 @@ var AdminGetAllConfigurationTemplatesV1Cmd = &cobra.Command{
 		limit, _ := cmd.Flags().GetInt64("limit")
 		name, _ := cmd.Flags().GetString("name")
 		offset, _ := cmd.Flags().GetInt64("offset")
+		order, _ := cmd.Flags().GetString("order")
+		orderBy, _ := cmd.Flags().GetString("orderBy")
 		input := &configuration_template.AdminGetAllConfigurationTemplatesV1Params{
 			Namespace: namespace,
 			Limit:     &limit,
 			Name:      &name,
 			Offset:    &offset,
+			Order:     &order,
+			OrderBy:   &orderBy,
 		}
 		ok, errOK := configurationTemplateService.AdminGetAllConfigurationTemplatesV1Short(input)
 		if errOK != nil {
@@ -54,4 +58,6 @@ func init() {
 	AdminGetAllConfigurationTemplatesV1Cmd.Flags().Int64("limit", 20, "Limit")
 	AdminGetAllConfigurationTemplatesV1Cmd.Flags().String("name", "", "Name")
 	AdminGetAllConfigurationTemplatesV1Cmd.Flags().Int64("offset", 0, "Offset")
+	AdminGetAllConfigurationTemplatesV1Cmd.Flags().String("order", "", "Order")
+	AdminGetAllConfigurationTemplatesV1Cmd.Flags().String("orderBy", "", "Order by")
 }

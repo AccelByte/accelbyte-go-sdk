@@ -32,7 +32,7 @@ type FulfillmentScriptContext struct {
 	Order *OrderSummary `json:"order,omitempty"`
 
 	// fulfillment source, default PURCHASE
-	// Enum: ['ACHIEVEMENT', 'DLC', 'GIFT', 'IAP', 'OTHER', 'PROMOTION', 'PURCHASE', 'REDEEM_CODE', 'REFERRAL_BONUS', 'REWARD']
+	// Enum: ['ACHIEVEMENT', 'CONSUME_ENTITLEMENT', 'DLC', 'DLC_REVOCATION', 'EXPIRATION', 'GIFT', 'IAP', 'ORDER_REVOCATION', 'OTHER', 'PAYMENT', 'PROMOTION', 'PURCHASE', 'REDEEM_CODE', 'REFERRAL_BONUS', 'REWARD', 'SELL_BACK']
 	// Required: true
 	Source *string `json:"source"`
 }
@@ -88,7 +88,7 @@ var fulfillmentScriptContextTypeSourcePropEnum []interface{}
 
 func init() {
 	var res []string
-	if err := json.Unmarshal([]byte(`["ACHIEVEMENT", "DLC", "GIFT", "IAP", "OTHER", "PROMOTION", "PURCHASE", "REDEEM_CODE", "REFERRAL_BONUS", "REWARD"]`), &res); err != nil {
+	if err := json.Unmarshal([]byte(`["ACHIEVEMENT", "CONSUME_ENTITLEMENT", "DLC", "DLC_REVOCATION", "EXPIRATION", "GIFT", "IAP", "ORDER_REVOCATION", "OTHER", "PAYMENT", "PROMOTION", "PURCHASE", "REDEEM_CODE", "REFERRAL_BONUS", "REWARD", "SELL_BACK"]`), &res); err != nil {
 		panic(err)
 	}
 	for _, v := range res {
@@ -101,8 +101,17 @@ const (
 	// FulfillmentScriptContextSourceACHIEVEMENT captures enum value "ACHIEVEMENT"
 	FulfillmentScriptContextSourceACHIEVEMENT string = "ACHIEVEMENT"
 
+	// FulfillmentScriptContextSourceCONSUMEENTITLEMENT captures enum value "CONSUME_ENTITLEMENT"
+	FulfillmentScriptContextSourceCONSUMEENTITLEMENT string = "CONSUME_ENTITLEMENT"
+
 	// FulfillmentScriptContextSourceDLC captures enum value "DLC"
 	FulfillmentScriptContextSourceDLC string = "DLC"
+
+	// FulfillmentScriptContextSourceDLCREVOCATION captures enum value "DLC_REVOCATION"
+	FulfillmentScriptContextSourceDLCREVOCATION string = "DLC_REVOCATION"
+
+	// FulfillmentScriptContextSourceEXPIRATION captures enum value "EXPIRATION"
+	FulfillmentScriptContextSourceEXPIRATION string = "EXPIRATION"
 
 	// FulfillmentScriptContextSourceGIFT captures enum value "GIFT"
 	FulfillmentScriptContextSourceGIFT string = "GIFT"
@@ -110,8 +119,14 @@ const (
 	// FulfillmentScriptContextSourceIAP captures enum value "IAP"
 	FulfillmentScriptContextSourceIAP string = "IAP"
 
+	// FulfillmentScriptContextSourceORDERREVOCATION captures enum value "ORDER_REVOCATION"
+	FulfillmentScriptContextSourceORDERREVOCATION string = "ORDER_REVOCATION"
+
 	// FulfillmentScriptContextSourceOTHER captures enum value "OTHER"
 	FulfillmentScriptContextSourceOTHER string = "OTHER"
+
+	// FulfillmentScriptContextSourcePAYMENT captures enum value "PAYMENT"
+	FulfillmentScriptContextSourcePAYMENT string = "PAYMENT"
 
 	// FulfillmentScriptContextSourcePROMOTION captures enum value "PROMOTION"
 	FulfillmentScriptContextSourcePROMOTION string = "PROMOTION"
@@ -127,6 +142,9 @@ const (
 
 	// FulfillmentScriptContextSourceREWARD captures enum value "REWARD"
 	FulfillmentScriptContextSourceREWARD string = "REWARD"
+
+	// FulfillmentScriptContextSourceSELLBACK captures enum value "SELL_BACK"
+	FulfillmentScriptContextSourceSELLBACK string = "SELL_BACK"
 )
 
 // prop value enum

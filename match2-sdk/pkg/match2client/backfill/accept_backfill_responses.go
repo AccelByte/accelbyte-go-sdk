@@ -84,10 +84,30 @@ func NewAcceptBackfillOK() *AcceptBackfillOK {
   OK
 */
 type AcceptBackfillOK struct {
+	Payload *match2clientmodels.ModelsGameSession
 }
 
 func (o *AcceptBackfillOK) Error() string {
-	return fmt.Sprintf("[PUT /match2/v1/namespaces/{namespace}/backfill/{backfillID}/proposal/accept][%d] acceptBackfillOK ", 200)
+	return fmt.Sprintf("[PUT /match2/v1/namespaces/{namespace}/backfill/{backfillID}/proposal/accept][%d] acceptBackfillOK  %+v", 200, o.ToJSONString())
+}
+
+func (o *AcceptBackfillOK) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
+}
+
+func (o *AcceptBackfillOK) GetPayload() *match2clientmodels.ModelsGameSession {
+	return o.Payload
 }
 
 func (o *AcceptBackfillOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -95,6 +115,13 @@ func (o *AcceptBackfillOK) readResponse(response runtime.ClientResponse, consume
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
 		consumer = runtime.ByteStreamConsumer()
+	}
+
+	o.Payload = new(match2clientmodels.ModelsGameSession)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
 	}
 
 	return nil

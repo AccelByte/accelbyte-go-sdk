@@ -51,6 +51,12 @@ func (o *AdminLinkPlatformAccountReader) ReadResponse(response runtime.ClientRes
 			return nil, err
 		}
 		return result, nil
+	case 409:
+		result := NewAdminLinkPlatformAccountConflict()
+		if err := result.readResponse(response, consumer, o.formats); err != nil {
+			return nil, err
+		}
+		return result, nil
 	case 500:
 		result := NewAdminLinkPlatformAccountInternalServerError()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -237,6 +243,59 @@ func (o *AdminLinkPlatformAccountForbidden) GetPayload() *iamclientmodels.RestEr
 }
 
 func (o *AdminLinkPlatformAccountForbidden) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+	// handle file responses
+	contentDisposition := response.GetHeader("Content-Disposition")
+	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
+		consumer = runtime.ByteStreamConsumer()
+	}
+
+	o.Payload = new(iamclientmodels.RestErrorResponse)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
+	}
+
+	return nil
+}
+
+// NewAdminLinkPlatformAccountConflict creates a AdminLinkPlatformAccountConflict with default headers values
+func NewAdminLinkPlatformAccountConflict() *AdminLinkPlatformAccountConflict {
+	return &AdminLinkPlatformAccountConflict{}
+}
+
+/*AdminLinkPlatformAccountConflict handles this case with default header values.
+
+
+ */
+type AdminLinkPlatformAccountConflict struct {
+	Payload *iamclientmodels.RestErrorResponse
+}
+
+func (o *AdminLinkPlatformAccountConflict) Error() string {
+	return fmt.Sprintf("[POST /iam/v3/admin/namespaces/{namespace}/users/{userId}/platforms/link][%d] adminLinkPlatformAccountConflict  %+v", 409, o.ToJSONString())
+}
+
+func (o *AdminLinkPlatformAccountConflict) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
+}
+
+func (o *AdminLinkPlatformAccountConflict) GetPayload() *iamclientmodels.RestErrorResponse {
+	return o.Payload
+}
+
+func (o *AdminLinkPlatformAccountConflict) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {

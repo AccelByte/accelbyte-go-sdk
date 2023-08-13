@@ -25,6 +25,7 @@ var AmsCmd = &cobra.Command{
 }
 
 func init() {
+	AmsCmd.AddCommand(operations.Func2Cmd)
 	AmsCmd.AddCommand(account.AccountGetCmd)
 	AmsCmd.AddCommand(account.AccountCreateCmd)
 	AmsCmd.AddCommand(account.AccountLinkTokenGetCmd)
@@ -46,6 +47,6 @@ func init() {
 	AmsCmd.AddCommand(fleets.FleetClaimByIDCmd)
 	AmsCmd.AddCommand(fleets.FleetClaimByKeysCmd)
 	AmsCmd.AddCommand(watchdogs.WatchdogConnectCmd)
-	AmsCmd.AddCommand(fleetCommander.Func1Cmd)
-	AmsCmd.AddCommand(operations.BasicHealthCheckCmd)
+	AmsCmd.AddCommand(fleetCommander.Func3Cmd)
+	AmsCmd.AddCommand(operations.PortalHealthCheckCmd)
 }

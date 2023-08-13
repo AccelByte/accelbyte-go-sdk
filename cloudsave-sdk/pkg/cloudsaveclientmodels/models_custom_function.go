@@ -18,14 +18,6 @@ import (
 // swagger:model Models custom function.
 type ModelsCustomFunction struct {
 
-	// enable/disable after bulk read admin game record custom validation
-	// Required: true
-	AfterBulkReadAdminGameRecord *bool `json:"afterBulkReadAdminGameRecord"`
-
-	// enable/disable after bulk read admin player record custom validation
-	// Required: true
-	AfterBulkReadAdminPlayerRecord *bool `json:"afterBulkReadAdminPlayerRecord"`
-
 	// enable/disable after bulk read game record custom validation
 	// Required: true
 	AfterBulkReadGameRecord *bool `json:"afterBulkReadGameRecord"`
@@ -33,14 +25,6 @@ type ModelsCustomFunction struct {
 	// enable/disable after bulk read player record custom validation
 	// Required: true
 	AfterBulkReadPlayerRecord *bool `json:"afterBulkReadPlayerRecord"`
-
-	// enable/disable after read admin game record custom validation
-	// Required: true
-	AfterReadAdminGameRecord *bool `json:"afterReadAdminGameRecord"`
-
-	// enable/disable after read admin player record custom validation
-	// Required: true
-	AfterReadAdminPlayerRecord *bool `json:"afterReadAdminPlayerRecord"`
 
 	// enable/disable after read game record custom validation
 	// Required: true
@@ -71,22 +55,10 @@ type ModelsCustomFunction struct {
 func (m *ModelsCustomFunction) Validate(formats strfmt.Registry) error {
 	var res []error
 
-	if err := m.validateAfterBulkReadAdminGameRecord(formats); err != nil {
-		res = append(res, err)
-	}
-	if err := m.validateAfterBulkReadAdminPlayerRecord(formats); err != nil {
-		res = append(res, err)
-	}
 	if err := m.validateAfterBulkReadGameRecord(formats); err != nil {
 		res = append(res, err)
 	}
 	if err := m.validateAfterBulkReadPlayerRecord(formats); err != nil {
-		res = append(res, err)
-	}
-	if err := m.validateAfterReadAdminGameRecord(formats); err != nil {
-		res = append(res, err)
-	}
-	if err := m.validateAfterReadAdminPlayerRecord(formats); err != nil {
 		res = append(res, err)
 	}
 	if err := m.validateAfterReadGameRecord(formats); err != nil {
@@ -114,24 +86,6 @@ func (m *ModelsCustomFunction) Validate(formats strfmt.Registry) error {
 	return nil
 }
 
-func (m *ModelsCustomFunction) validateAfterBulkReadAdminGameRecord(formats strfmt.Registry) error {
-
-	if err := validate.Required("afterBulkReadAdminGameRecord", "body", m.AfterBulkReadAdminGameRecord); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *ModelsCustomFunction) validateAfterBulkReadAdminPlayerRecord(formats strfmt.Registry) error {
-
-	if err := validate.Required("afterBulkReadAdminPlayerRecord", "body", m.AfterBulkReadAdminPlayerRecord); err != nil {
-		return err
-	}
-
-	return nil
-}
-
 func (m *ModelsCustomFunction) validateAfterBulkReadGameRecord(formats strfmt.Registry) error {
 
 	if err := validate.Required("afterBulkReadGameRecord", "body", m.AfterBulkReadGameRecord); err != nil {
@@ -144,24 +98,6 @@ func (m *ModelsCustomFunction) validateAfterBulkReadGameRecord(formats strfmt.Re
 func (m *ModelsCustomFunction) validateAfterBulkReadPlayerRecord(formats strfmt.Registry) error {
 
 	if err := validate.Required("afterBulkReadPlayerRecord", "body", m.AfterBulkReadPlayerRecord); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *ModelsCustomFunction) validateAfterReadAdminGameRecord(formats strfmt.Registry) error {
-
-	if err := validate.Required("afterReadAdminGameRecord", "body", m.AfterReadAdminGameRecord); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *ModelsCustomFunction) validateAfterReadAdminPlayerRecord(formats strfmt.Registry) error {
-
-	if err := validate.Required("afterReadAdminPlayerRecord", "body", m.AfterReadAdminPlayerRecord); err != nil {
 		return err
 	}
 

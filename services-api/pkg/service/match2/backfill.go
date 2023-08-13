@@ -147,32 +147,32 @@ func (aaa *BackfillService) DeleteBackfill(input *backfill.DeleteBackfillParams)
 }
 
 // Deprecated: 2022-01-10 - please use AcceptBackfillShort instead.
-func (aaa *BackfillService) AcceptBackfill(input *backfill.AcceptBackfillParams) error {
+func (aaa *BackfillService) AcceptBackfill(input *backfill.AcceptBackfillParams) (*match2clientmodels.ModelsGameSession, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
-		return err
+		return nil, err
 	}
-	_, badRequest, unauthorized, forbidden, notFound, internalServerError, err := aaa.Client.Backfill.AcceptBackfill(input, client.BearerToken(*token.AccessToken))
+	ok, badRequest, unauthorized, forbidden, notFound, internalServerError, err := aaa.Client.Backfill.AcceptBackfill(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
-		return badRequest
+		return nil, badRequest
 	}
 	if unauthorized != nil {
-		return unauthorized
+		return nil, unauthorized
 	}
 	if forbidden != nil {
-		return forbidden
+		return nil, forbidden
 	}
 	if notFound != nil {
-		return notFound
+		return nil, notFound
 	}
 	if internalServerError != nil {
-		return internalServerError
+		return nil, internalServerError
 	}
 	if err != nil {
-		return err
+		return nil, err
 	}
 
-	return nil
+	return ok.GetPayload(), nil
 }
 
 // Deprecated: 2022-01-10 - please use RejectBackfillShort instead.
@@ -304,7 +304,7 @@ func (aaa *BackfillService) DeleteBackfillShort(input *backfill.DeleteBackfillPa
 	return nil
 }
 
-func (aaa *BackfillService) AcceptBackfillShort(input *backfill.AcceptBackfillParams) error {
+func (aaa *BackfillService) AcceptBackfillShort(input *backfill.AcceptBackfillParams) (*match2clientmodels.ModelsGameSession, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -321,12 +321,12 @@ func (aaa *BackfillService) AcceptBackfillShort(input *backfill.AcceptBackfillPa
 		}
 	}
 
-	_, err := aaa.Client.Backfill.AcceptBackfillShort(input, authInfoWriter)
+	ok, err := aaa.Client.Backfill.AcceptBackfillShort(input, authInfoWriter)
 	if err != nil {
-		return err
+		return nil, err
 	}
 
-	return nil
+	return ok.GetPayload(), nil
 }
 
 func (aaa *BackfillService) RejectBackfillShort(input *backfill.RejectBackfillParams) error {

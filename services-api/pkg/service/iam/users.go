@@ -2721,7 +2721,7 @@ func (aaa *UsersService) AdminLinkPlatformAccount(input *users.AdminLinkPlatform
 	if err != nil {
 		return err
 	}
-	_, badRequest, unauthorized, forbidden, internalServerError, err := aaa.Client.Users.AdminLinkPlatformAccount(input, client.BearerToken(*token.AccessToken))
+	_, badRequest, unauthorized, forbidden, conflict, internalServerError, err := aaa.Client.Users.AdminLinkPlatformAccount(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return badRequest
 	}
@@ -2730,6 +2730,9 @@ func (aaa *UsersService) AdminLinkPlatformAccount(input *users.AdminLinkPlatform
 	}
 	if forbidden != nil {
 		return forbidden
+	}
+	if conflict != nil {
+		return conflict
 	}
 	if internalServerError != nil {
 		return internalServerError

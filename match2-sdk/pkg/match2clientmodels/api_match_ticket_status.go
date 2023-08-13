@@ -22,6 +22,12 @@ type APIMatchTicketStatus struct {
 	// Required: true
 	MatchFound *bool `json:"matchFound"`
 
+	// matchpool
+	MatchPool string `json:"matchPool,omitempty"`
+
+	// matchticketid
+	MatchTicketID string `json:"matchTicketID,omitempty"`
+
 	// proposedproposal
 	ProposedProposal *APIProposedProposal `json:"proposedProposal,omitempty"`
 

@@ -761,8 +761,6 @@ func (a *Client) BulkAcceptVersionedPolicyShort(params *BulkAcceptVersionedPolic
 Deprecated: 2022-08-10 - Use IndirectBulkAcceptVersionedPolicyV2Short instead.
 
 IndirectBulkAcceptVersionedPolicyV2 bulk accept policy versions (indirect)
- IMPORTANT: GOING TO DEPRECATE
-
 Accepts many legal policy versions all at once. Supply with localized version policy id, version policy id, policy id, userId, namespace, country code and client id to accept an agreement. This endpoint used by APIGateway during new user registration.
 Other detail info:
 
@@ -811,8 +809,6 @@ func (a *Client) IndirectBulkAcceptVersionedPolicyV2(params *IndirectBulkAcceptV
 
 /*
 IndirectBulkAcceptVersionedPolicyV2Short bulk accept policy versions (indirect)
- IMPORTANT: GOING TO DEPRECATE
-
 Accepts many legal policy versions all at once. Supply with localized version policy id, version policy id, policy id, userId, namespace, country code and client id to accept an agreement. This endpoint used by APIGateway during new user registration.
 Other detail info:
 
@@ -864,13 +860,8 @@ Deprecated: 2022-08-10 - Use IndirectBulkAcceptVersionedPolicy1Short instead.
 
 IndirectBulkAcceptVersionedPolicy1 bulk accept policy versions (indirect)
 Accepts many legal policy versions all at once. Supply with localized version policy id and userId to accept an agreement. This endpoint used by Authentication Service during new user registration.
-
-Available Extra Information to return:
-
-
-  * userIds : List of userId mapping ( IMPORTANT: GOING TO DEPRECATE )
-
 Other detail info:
+
   * Required permission : login user
 */
 func (a *Client) IndirectBulkAcceptVersionedPolicy1(params *IndirectBulkAcceptVersionedPolicy1Params, authInfo runtime.ClientAuthInfoWriter) (*IndirectBulkAcceptVersionedPolicy1Created, *IndirectBulkAcceptVersionedPolicy1NotFound, error) {
@@ -920,13 +911,8 @@ func (a *Client) IndirectBulkAcceptVersionedPolicy1(params *IndirectBulkAcceptVe
 /*
 IndirectBulkAcceptVersionedPolicy1Short bulk accept policy versions (indirect)
 Accepts many legal policy versions all at once. Supply with localized version policy id and userId to accept an agreement. This endpoint used by Authentication Service during new user registration.
-
-Available Extra Information to return:
-
-
-  * userIds : List of userId mapping ( IMPORTANT: GOING TO DEPRECATE )
-
 Other detail info:
+
   * Required permission : login user
 */
 func (a *Client) IndirectBulkAcceptVersionedPolicy1Short(params *IndirectBulkAcceptVersionedPolicy1Params, authInfo runtime.ClientAuthInfoWriter) (*IndirectBulkAcceptVersionedPolicy1Created, error) {

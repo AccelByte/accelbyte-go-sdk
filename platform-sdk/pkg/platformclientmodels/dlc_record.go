@@ -23,6 +23,9 @@ type DLCRecord struct {
 	// id
 	ID string `json:"id,omitempty"`
 
+	// metadata
+	Metadata interface{} `json:"metadata,omitempty"`
+
 	// obtainedat
 	// Format: date-time
 	ObtainedAt *strfmt.DateTime `json:"obtainedAt,omitempty"`

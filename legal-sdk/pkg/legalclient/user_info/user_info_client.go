@@ -144,8 +144,6 @@ func (a *Client) GetUserInfoStatusShort(params *GetUserInfoStatusParams, authInf
 Deprecated: 2022-08-10 - Use SyncUserInfoShort instead.
 
 SyncUserInfo sync user info with iam service
- Important: GOING TO DEPRECATE
-
 Sync user info cache in agreement service with iam service.
 Other detail info:
       * Required permission : resource="ADMIN:NAMESPACE:*:LEGAL", action=4 (UPDATE)
@@ -193,8 +191,6 @@ func (a *Client) SyncUserInfo(params *SyncUserInfoParams, authInfo runtime.Clien
 
 /*
 SyncUserInfoShort sync user info with iam service
- Important: GOING TO DEPRECATE
-
 Sync user info cache in agreement service with iam service.
 Other detail info:
       * Required permission : resource="ADMIN:NAMESPACE:*:LEGAL", action=4 (UPDATE)
@@ -244,8 +240,6 @@ func (a *Client) SyncUserInfoShort(params *SyncUserInfoParams, authInfo runtime.
 Deprecated: 2022-08-10 - Use InvalidateUserInfoCacheShort instead.
 
 InvalidateUserInfoCache invalidate user info cache
- Important: GOING TO DEPRECATE
-
 Invalidate user info cache in agreement service.
 Other detail info:
       * Required permission : resource="ADMIN:NAMESPACE:*:LEGAL", action=8 (DELETE)
@@ -293,8 +287,6 @@ func (a *Client) InvalidateUserInfoCache(params *InvalidateUserInfoCacheParams, 
 
 /*
 InvalidateUserInfoCacheShort invalidate user info cache
- Important: GOING TO DEPRECATE
-
 Invalidate user info cache in agreement service.
 Other detail info:
       * Required permission : resource="ADMIN:NAMESPACE:*:LEGAL", action=8 (DELETE)

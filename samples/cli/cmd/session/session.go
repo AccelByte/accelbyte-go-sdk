@@ -9,6 +9,7 @@ package session
 import (
 	"github.com/AccelByte/sample-apps/cmd/session/configurationTemplate"
 	"github.com/AccelByte/sample-apps/cmd/session/dsmcDefaultConfiguration"
+	"github.com/AccelByte/sample-apps/cmd/session/environmentVariable"
 	"github.com/AccelByte/sample-apps/cmd/session/gameSession"
 	"github.com/AccelByte/sample-apps/cmd/session/operations"
 	"github.com/AccelByte/sample-apps/cmd/session/party"
@@ -27,6 +28,7 @@ func init() {
 	SessionCmd.AddCommand(operations.GetHealthcheckInfoCmd)
 	SessionCmd.AddCommand(operations.GetHealthcheckInfoV1Cmd)
 	SessionCmd.AddCommand(dsmcDefaultConfiguration.AdminGetDSMCConfigurationDefaultCmd)
+	SessionCmd.AddCommand(environmentVariable.AdminListEnvironmentVariablesCmd)
 	SessionCmd.AddCommand(configurationTemplate.AdminGetConfigurationAlertV1Cmd)
 	SessionCmd.AddCommand(configurationTemplate.AdminUpdateConfigurationAlertV1Cmd)
 	SessionCmd.AddCommand(configurationTemplate.AdminCreateConfigurationAlertV1Cmd)

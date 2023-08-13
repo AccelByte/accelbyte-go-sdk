@@ -7,6 +7,8 @@
 package platformclientmodels
 
 import (
+	"encoding/json"
+
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
@@ -22,6 +24,13 @@ type DebitRequest struct {
 	// Required: true
 	// Format: int64
 	Amount *int64 `json:"amount"`
+
+	// balance source, default is OTHER
+	// Enum: ['DLC_REVOCATION', 'EXPIRATION', 'ORDER_REVOCATION', 'OTHER', 'PAYMENT']
+	BalanceSource string `json:"balanceSource,omitempty"`
+
+	// metadata for additional wallet transaction detail
+	Metadata interface{} `json:"metadata,omitempty"`
 
 	// reason
 	Reason string `json:"reason,omitempty"`
@@ -47,6 +56,44 @@ func (m *DebitRequest) validateAmount(formats strfmt.Registry) error {
 		return err
 	}
 
+	return nil
+}
+
+var debitRequestTypeBalanceSourcePropEnum []interface{}
+
+func init() {
+	var res []string
+	if err := json.Unmarshal([]byte(`["DLC_REVOCATION", "EXPIRATION", "ORDER_REVOCATION", "OTHER", "PAYMENT"]`), &res); err != nil {
+		panic(err)
+	}
+	for _, v := range res {
+		debitRequestTypeBalanceSourcePropEnum = append(debitRequestTypeBalanceSourcePropEnum, v)
+	}
+}
+
+const (
+
+	// DebitRequestBalanceSourceDLCREVOCATION captures enum value "DLC_REVOCATION"
+	DebitRequestBalanceSourceDLCREVOCATION string = "DLC_REVOCATION"
+
+	// DebitRequestBalanceSourceEXPIRATION captures enum value "EXPIRATION"
+	DebitRequestBalanceSourceEXPIRATION string = "EXPIRATION"
+
+	// DebitRequestBalanceSourceORDERREVOCATION captures enum value "ORDER_REVOCATION"
+	DebitRequestBalanceSourceORDERREVOCATION string = "ORDER_REVOCATION"
+
+	// DebitRequestBalanceSourceOTHER captures enum value "OTHER"
+	DebitRequestBalanceSourceOTHER string = "OTHER"
+
+	// DebitRequestBalanceSourcePAYMENT captures enum value "PAYMENT"
+	DebitRequestBalanceSourcePAYMENT string = "PAYMENT"
+)
+
+// prop value enum
+func (m *DebitRequest) validateBalanceSourceEnum(path, location string, value string) error {
+	if err := validate.EnumCase(path, location, value, debitRequestTypeBalanceSourcePropEnum, true); err != nil {
+		return err
+	}
 	return nil
 }
 

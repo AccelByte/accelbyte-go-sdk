@@ -1,3 +1,19 @@
+<a name="v0.51.0"></a>
+## [v0.51.0]
+### chore
+- **samples:** delete binary files
+- **:** change default validate behaviour dynamically
+- **:** ignore binary output of sample app build
+- **:** disable health check ams integration test
+- **integration-test:** remove tag parallel for validate access token
+### docs
+- **:** use docs-old for now for some docs
+### fix
+- **integration-test:** use admin endpoint to delete session
+### ci
+- **md_crawler:** point to new getting started docs
+
+
 <a name="v0.50.0"></a>
 ## [v0.50.0]
 ### fix

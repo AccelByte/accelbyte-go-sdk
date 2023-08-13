@@ -3,7 +3,7 @@
   "info": {
     "description": "Justice Matchmaking Service",
     "title": "Justice Match Service v2",
-    "version": "2.7.1"
+    "version": "2.8.4"
   },
   "schemes": [
     "https"
@@ -17,6 +17,7 @@
       "authorizationUrl": "https://dummy.oauth.net/auth",
       "flow": "accessCode",
       "scopes": {
+        "ADMIN:MATCHMAKING:CONFIGURATION:ENVIRONMENTVARIABLE [READ]": "ADMIN:MATCHMAKING:CONFIGURATION:ENVIRONMENTVARIABLE [READ]",
         "ADMIN:NAMESPACE:{namespace}:MATCHMAKING:POOL:METRICS [READ]": "ADMIN:NAMESPACE:{namespace}:MATCHMAKING:POOL:METRICS [READ]",
         "NAMESPACE:{namespace}:MATCHMAKING:BACKFILL [CREATE]": "NAMESPACE:{namespace}:MATCHMAKING:BACKFILL [CREATE]",
         "NAMESPACE:{namespace}:MATCHMAKING:BACKFILL [DELETE]": "NAMESPACE:{namespace}:MATCHMAKING:BACKFILL [DELETE]",
@@ -86,6 +87,54 @@
           {
             "authorization": []
           }
+        ]
+      }
+    },
+    "/match2/v1/environment-variables": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Required Permission: ADMIN:MATCHMAKING:CONFIGURATION:ENVIRONMENTVARIABLE [READ]\n\nRequired Scope: social\n\nList environment variables.\n",
+        "operationId": "EnvironmentVariableList",
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "Created",
+            "schema": {
+              "$ref": "#/definitions/api.ListEnvironmentVariablesResponse"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          }
+        },
+        "security": [
+          {
+            "HasPermission": [
+              "ADMIN:MATCHMAKING:CONFIGURATION:ENVIRONMENTVARIABLE [READ]"
+            ],
+            "HasScope": [
+              "social"
+            ],
+            "authorization": []
+          }
+        ],
+        "summary": "List environment variables",
+        "tags": [
+          "Environment-Variables",
+          "admin"
         ]
       }
     },
@@ -449,7 +498,10 @@
         ],
         "responses": {
           "200": {
-            "description": "OK"
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/models.GameSession"
+            }
           },
           "400": {
             "description": "Bad Request",
@@ -1534,6 +1586,87 @@
         ]
       }
     },
+    "/match2/v1/namespaces/{namespace}/match-tickets/me": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Required Permission: NAMESPACE:{namespace}:MATCHMAKING:TICKET [READ]\n\nRequired Scope: social\n\nGet my match tickets.\n",
+        "operationId": "GetMyMatchTickets",
+        "parameters": [
+          {
+            "description": "namespace of the game",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "limit of the returned data",
+            "in": "query",
+            "name": "limit",
+            "type": "integer"
+          },
+          {
+            "description": "ticket match pool",
+            "in": "query",
+            "name": "matchPool",
+            "type": "string"
+          },
+          {
+            "description": "offset of the data",
+            "in": "query",
+            "name": "offset",
+            "type": "integer"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/api.MatchTicketStatuses"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          }
+        },
+        "security": [
+          {
+            "HasPermission": [
+              "NAMESPACE:{namespace}:MATCHMAKING:TICKET [READ]"
+            ],
+            "HasScope": [
+              "social"
+            ],
+            "authorization": []
+          }
+        ],
+        "summary": "Get my match tickets",
+        "tags": [
+          "Match-Tickets",
+          "public"
+        ]
+      }
+    },
     "/match2/v1/namespaces/{namespace}/match-tickets/{ticketid}": {
       "delete": {
         "consumes": [
@@ -2181,6 +2314,19 @@
         }
       }
     },
+    "api.ListEnvironmentVariablesResponse": {
+      "properties": {
+        "data": {
+          "items": {
+            "$ref": "#/definitions/config.EnvironmentVariable"
+          },
+          "type": "array"
+        }
+      },
+      "required": [
+        "data"
+      ]
+    },
     "api.ListMatchFunctionsResponse": {
       "properties": {
         "configs": {
@@ -2480,6 +2626,12 @@
           "type": "boolean",
           "x-omitempty": false
         },
+        "matchPool": {
+          "type": "string"
+        },
+        "matchTicketID": {
+          "type": "string"
+        },
         "proposedProposal": {
           "$ref": "#/definitions/api.ProposedProposal"
         },
@@ -2490,6 +2642,22 @@
       "required": [
         "matchFound",
         "sessionID"
+      ]
+    },
+    "api.MatchTicketStatuses": {
+      "properties": {
+        "data": {
+          "items": {
+            "$ref": "#/definitions/api.MatchTicketStatus"
+          },
+          "type": "array"
+        },
+        "pagination": {
+          "$ref": "#/definitions/models.Pagination"
+        }
+      },
+      "required": [
+        "data"
       ]
     },
     "api.Party": {
@@ -2639,6 +2807,222 @@
         "stop"
       ]
     },
+    "config.EnvironmentVariable": {
+      "properties": {
+        "actualValue": {
+          "type": "string"
+        },
+        "defaultValue": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "name"
+      ]
+    },
+    "matchmaker.Party": {
+      "properties": {
+        "partyID": {
+          "type": "string"
+        },
+        "userIDs": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "required": [
+        "partyID",
+        "userIDs"
+      ]
+    },
+    "matchmaker.Team": {
+      "properties": {
+        "Parties": {
+          "items": {
+            "$ref": "#/definitions/matchmaker.Party"
+          },
+          "type": "array"
+        },
+        "UserIDs": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "required": [
+        "Parties",
+        "UserIDs"
+      ]
+    },
+    "models.Configuration": {
+      "properties": {
+        "clientVersion": {
+          "type": "string"
+        },
+        "deployment": {
+          "type": "string"
+        },
+        "inactiveTimeout": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "inviteTimeout": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "joinability": {
+          "type": "string"
+        },
+        "maxPlayers": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "minPlayers": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "name": {
+          "type": "string"
+        },
+        "requestedRegions": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "type": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "clientVersion",
+        "deployment",
+        "inactiveTimeout",
+        "inviteTimeout",
+        "joinability",
+        "maxPlayers",
+        "minPlayers",
+        "name",
+        "requestedRegions",
+        "type"
+      ]
+    },
+    "models.DSInformation": {
+      "properties": {
+        "MinPlayers": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "RequestedAt": {
+          "type": "string"
+        },
+        "RequestedRegions": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "Server": {
+          "$ref": "#/definitions/models.Server"
+        },
+        "Status": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "MinPlayers",
+        "RequestedAt",
+        "RequestedRegions",
+        "Server",
+        "Status"
+      ]
+    },
+    "models.GameSession": {
+      "properties": {
+        "DSInformation": {
+          "$ref": "#/definitions/models.DSInformation"
+        },
+        "GameMode": {
+          "type": "string"
+        },
+        "JoinType": {
+          "type": "string"
+        },
+        "Members": {
+          "items": {
+            "$ref": "#/definitions/models.User"
+          },
+          "type": "array"
+        },
+        "attributes": {
+          "type": "object"
+        },
+        "backfillTicketID": {
+          "type": "string"
+        },
+        "configuration": {
+          "$ref": "#/definitions/models.Configuration"
+        },
+        "createdAt": {
+          "format": "date-time",
+          "type": "string",
+          "x-nullable": false
+        },
+        "id": {
+          "type": "string"
+        },
+        "leaderID": {
+          "type": "string"
+        },
+        "matchPool": {
+          "type": "string"
+        },
+        "namespace": {
+          "type": "string"
+        },
+        "teams": {
+          "items": {
+            "$ref": "#/definitions/matchmaker.Team"
+          },
+          "type": "array"
+        },
+        "updatedAt": {
+          "format": "date-time",
+          "type": "string",
+          "x-nullable": false
+        },
+        "version": {
+          "format": "int32",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "DSInformation",
+        "GameMode",
+        "JoinType",
+        "Members",
+        "attributes",
+        "backfillTicketID",
+        "configuration",
+        "createdAt",
+        "id",
+        "leaderID",
+        "matchPool",
+        "namespace",
+        "teams",
+        "updatedAt",
+        "version"
+      ]
+    },
     "models.Pagination": {
       "properties": {
         "first": {
@@ -2659,6 +3043,118 @@
         "last",
         "next",
         "previous"
+      ]
+    },
+    "models.Server": {
+      "properties": {
+        "alternate_ips": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "custom_attribute": {
+          "type": "string"
+        },
+        "deployment": {
+          "type": "string"
+        },
+        "game_version": {
+          "type": "string"
+        },
+        "image_version": {
+          "type": "string"
+        },
+        "ip": {
+          "type": "string"
+        },
+        "is_override_game_version": {
+          "type": "boolean",
+          "x-omitempty": false
+        },
+        "last_update": {
+          "format": "date-time",
+          "type": "string",
+          "x-nullable": false
+        },
+        "namespace": {
+          "type": "string"
+        },
+        "pod_name": {
+          "type": "string"
+        },
+        "port": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "ports": {
+          "additionalProperties": {
+            "type": "integer"
+          },
+          "type": "object"
+        },
+        "protocol": {
+          "type": "string"
+        },
+        "provider": {
+          "type": "string"
+        },
+        "region": {
+          "type": "string"
+        },
+        "session_id": {
+          "type": "string"
+        },
+        "status": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "alternate_ips",
+        "custom_attribute",
+        "deployment",
+        "game_version",
+        "image_version",
+        "ip",
+        "is_override_game_version",
+        "last_update",
+        "namespace",
+        "pod_name",
+        "port",
+        "ports",
+        "protocol",
+        "provider",
+        "region",
+        "session_id",
+        "status"
+      ]
+    },
+    "models.User": {
+      "properties": {
+        "ID": {
+          "type": "string"
+        },
+        "PlatformID": {
+          "type": "string"
+        },
+        "PlatformUserID": {
+          "type": "string"
+        },
+        "Status": {
+          "type": "string"
+        },
+        "UpdatedAt": {
+          "format": "date-time",
+          "type": "string",
+          "x-nullable": false
+        }
+      },
+      "required": [
+        "ID",
+        "PlatformID",
+        "PlatformUserID",
+        "Status",
+        "UpdatedAt"
       ]
     },
     "response.Error": {
@@ -2685,9 +3181,9 @@
     "path": "/match2/apidocs/api.json"
   },
   "x-version": {
-    "buildDate": "2023-07-14T08:52:19+00:00",
-    "gitHash": "715c1061c7abd12e81333494ed4172de0680f59f",
-    "version": "2.7.1",
-    "version-roles-seeding": "0.0.35"
+    "buildDate": "2023-08-04T08:10:07+00:00",
+    "gitHash": "6af509f2ffcd4b64ae903381078611eacf5c507d",
+    "version": "2.8.4",
+    "version-roles-seeding": "0.0.38"
   }
 }

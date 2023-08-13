@@ -30,21 +30,21 @@ type Client struct {
 
 // ClientService is the interface for Client methods
 type ClientService interface {
-	Func1(params *Func1Params, authInfo runtime.ClientAuthInfoWriter) (*Func1OK, error)
-	Func1Short(params *Func1Params, authInfo runtime.ClientAuthInfoWriter) (*Func1OK, error)
+	Func3(params *Func3Params, authInfo runtime.ClientAuthInfoWriter) (*Func3OK, error)
+	Func3Short(params *Func3Params, authInfo runtime.ClientAuthInfoWriter) (*Func3OK, error)
 
 	SetTransport(transport runtime.ClientTransport)
 }
 
 /*
-Deprecated: 2022-08-10 - Use Func1Short instead.
+Deprecated: 2022-08-10 - Use Func3Short instead.
 
-Func1 version info
+Func3 version info
 */
-func (a *Client) Func1(params *Func1Params, authInfo runtime.ClientAuthInfoWriter) (*Func1OK, error) {
+func (a *Client) Func3(params *Func3Params, authInfo runtime.ClientAuthInfoWriter) (*Func3OK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
-		params = NewFunc1Params()
+		params = NewFunc3Params()
 	}
 
 	if params.Context == nil {
@@ -56,14 +56,14 @@ func (a *Client) Func1(params *Func1Params, authInfo runtime.ClientAuthInfoWrite
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
-		ID:                 "func1",
+		ID:                 "func3",
 		Method:             "GET",
 		PathPattern:        "/ams/version",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
 		Params:             params,
-		Reader:             &Func1Reader{formats: a.formats},
+		Reader:             &Func3Reader{formats: a.formats},
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
@@ -74,7 +74,7 @@ func (a *Client) Func1(params *Func1Params, authInfo runtime.ClientAuthInfoWrite
 
 	switch v := result.(type) {
 
-	case *Func1OK:
+	case *Func3OK:
 		return v, nil
 
 	default:
@@ -83,12 +83,12 @@ func (a *Client) Func1(params *Func1Params, authInfo runtime.ClientAuthInfoWrite
 }
 
 /*
-Func1Short version info
+Func3Short version info
 */
-func (a *Client) Func1Short(params *Func1Params, authInfo runtime.ClientAuthInfoWriter) (*Func1OK, error) {
+func (a *Client) Func3Short(params *Func3Params, authInfo runtime.ClientAuthInfoWriter) (*Func3OK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
-		params = NewFunc1Params()
+		params = NewFunc3Params()
 	}
 
 	if params.Context == nil {
@@ -100,14 +100,14 @@ func (a *Client) Func1Short(params *Func1Params, authInfo runtime.ClientAuthInfo
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
-		ID:                 "func1",
+		ID:                 "func3",
 		Method:             "GET",
 		PathPattern:        "/ams/version",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
 		Params:             params,
-		Reader:             &Func1Reader{formats: a.formats},
+		Reader:             &Func3Reader{formats: a.formats},
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
@@ -118,7 +118,7 @@ func (a *Client) Func1Short(params *Func1Params, authInfo runtime.ClientAuthInfo
 
 	switch v := result.(type) {
 
-	case *Func1OK:
+	case *Func3OK:
 		return v, nil
 
 	default:

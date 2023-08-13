@@ -23,6 +23,9 @@ type UserDLCRecord struct {
 	// id
 	ID string `json:"id,omitempty"`
 
+	// metadata
+	Metadata interface{} `json:"metadata,omitempty"`
+
 	// namespace
 	Namespace string `json:"namespace,omitempty"`
 

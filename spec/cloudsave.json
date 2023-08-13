@@ -8,7 +8,7 @@
     },
     "description": "Justice Cloudsave Service",
     "title": "justice-cloudsave-service",
-    "version": "3.9.0"
+    "version": "3.10.1"
   },
   "schemes": [
     "https"
@@ -494,6 +494,486 @@
         "summary": "Create or replace admin game record",
         "tags": [
           "AdminRecord"
+        ]
+      }
+    },
+    "/cloudsave/v1/admin/namespaces/{namespace}/binaries": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Required permission: \u0026lt;code\u0026gt;ADMIN:NAMESPACE:{namespace}:CLOUDSAVE:RECORD [READ]\u0026lt;/code\u0026gt;\nRequired scope: \u0026lt;code\u0026gt;social\u0026lt;/code\u0026gt;\n\nRetrieve list of binary records by namespace.",
+        "operationId": "adminListGameBinaryRecordsV1",
+        "parameters": [
+          {
+            "description": "namespace of the game",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "limit",
+            "in": "query",
+            "name": "limit",
+            "type": "integer"
+          },
+          {
+            "description": "offset",
+            "in": "query",
+            "name": "offset",
+            "type": "integer"
+          },
+          {
+            "description": "key",
+            "in": "query",
+            "name": "query",
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "Retrieve list of records by namespace",
+            "schema": {
+              "$ref": "#/definitions/models.ListGameBinaryRecordsResponse"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/models.ResponseError"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/models.ResponseError"
+            }
+          }
+        },
+        "security": [
+          {
+            "HasPermission": [
+              "ADMIN:NAMESPACE:{namespace}:CLOUDSAVE:RECORD [READ]"
+            ],
+            "HasScope": [
+              "social"
+            ],
+            "authorization": []
+          }
+        ],
+        "summary": "Query game binary records",
+        "tags": [
+          "AdminGameBinaryRecord"
+        ]
+      },
+      "post": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Required permission: \u0026lt;code\u0026gt;ADMIN:NAMESPACE:{namespace}:CLOUDSAVE:RECORD [CREATE]\u0026lt;/code\u0026gt;\nRequired scope: \u0026lt;code\u0026gt;social\u0026lt;/code\u0026gt;\n\nCreate a game binary record.\n\u0026lt;p\u0026gt;Other detail info:\u0026lt;/p\u0026gt;\n\n\u0026lt;code\u0026gt;key\u0026lt;/code\u0026gt; should follow these rules:\n1. support uppercase and lowercase letters, numbers, and separators \u0026lt;b\u0026gt;\u0026#34;-\u0026#34;\u0026lt;/b\u0026gt;, \u0026lt;b\u0026gt;\u0026#34;_\u0026#34;\u0026lt;/b\u0026gt;, \u0026lt;b\u0026gt;\u0026#34;.\u0026#34;\u0026lt;/b\u0026gt; are allowed  \n2. begin and end with letters or numbers\n3. spaces are not allowed\n4. separators must not appears twice in a row\n\t\n\nSupported file types: jpeg, jpg, png, bmp, gif, mp3, webp, and bin.\n",
+        "operationId": "adminPostGameBinaryRecordV1",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/models.GameBinaryRecordCreate"
+            }
+          },
+          {
+            "description": "namespace of the game",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "201": {
+            "description": "Record in namespace-level created",
+            "schema": {
+              "$ref": "#/definitions/models.UploadBinaryRecordResponse"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/models.ResponseError"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/models.ResponseError"
+            }
+          }
+        },
+        "security": [
+          {
+            "HasPermission": [
+              "ADMIN:NAMESPACE:{namespace}:CLOUDSAVE:RECORD [CREATE]"
+            ],
+            "HasScope": [
+              "social"
+            ],
+            "authorization": []
+          }
+        ],
+        "summary": "Create game binary record",
+        "tags": [
+          "AdminGameBinaryRecord"
+        ]
+      }
+    },
+    "/cloudsave/v1/admin/namespaces/{namespace}/binaries/{key}": {
+      "delete": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Required permission: \u0026lt;code\u0026gt;ADMIN:NAMESPACE:{namespace}:CLOUDSAVE:RECORD [DELETE]\u0026lt;/code\u0026gt;\nRequired scope: \u0026lt;code\u0026gt;social\u0026lt;/code\u0026gt;\n\nDelete a game binary record.",
+        "operationId": "adminDeleteGameBinaryRecordV1",
+        "parameters": [
+          {
+            "description": "key of record",
+            "in": "path",
+            "name": "key",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "namespace of the game",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "204": {
+            "description": "Record deleted"
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/models.ResponseError"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/models.ResponseError"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/models.ResponseError"
+            }
+          }
+        },
+        "security": [
+          {
+            "HasPermission": [
+              "ADMIN:NAMESPACE:{namespace}:CLOUDSAVE:RECORD [DELETE]"
+            ],
+            "HasScope": [
+              "social"
+            ],
+            "authorization": []
+          }
+        ],
+        "summary": "Delete game binary record",
+        "tags": [
+          "AdminGameBinaryRecord"
+        ]
+      },
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Required permission: \u0026lt;code\u0026gt;ADMIN:NAMESPACE:{namespace}:CLOUDSAVE:RECORD [READ]\u0026lt;/code\u0026gt;\nRequired scope: \u0026lt;code\u0026gt;social\u0026lt;/code\u0026gt;\n\nGet a game binary record by its key.",
+        "operationId": "adminGetGameBinaryRecordV1",
+        "parameters": [
+          {
+            "description": "key of record",
+            "in": "path",
+            "name": "key",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "namespace of the game",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "Record in namespace-level retrieved",
+            "schema": {
+              "$ref": "#/definitions/models.GameBinaryRecordResponse"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/models.ResponseError"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/models.ResponseError"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/models.ResponseError"
+            }
+          }
+        },
+        "security": [
+          {
+            "HasPermission": [
+              "ADMIN:NAMESPACE:{namespace}:CLOUDSAVE:RECORD [READ]"
+            ],
+            "HasScope": [
+              "social"
+            ],
+            "authorization": []
+          }
+        ],
+        "summary": "Get game binary record",
+        "tags": [
+          "AdminGameBinaryRecord"
+        ]
+      },
+      "put": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Required permission: \u0026lt;code\u0026gt;ADMIN:NAMESPACE:{namespace}:CLOUDSAVE:RECORD [UPDATE]\u0026lt;/code\u0026gt;\nRequired scope: \u0026lt;code\u0026gt;social\u0026lt;/code\u0026gt;\n\nUpdate a game binary record file by its key",
+        "operationId": "adminPutGameBinaryRecordV1",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/models.BinaryRecordRequest"
+            }
+          },
+          {
+            "description": "key of record",
+            "in": "path",
+            "name": "key",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "namespace of the game",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "Record saved",
+            "schema": {
+              "$ref": "#/definitions/models.GameBinaryRecordResponse"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/models.ResponseError"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/models.ResponseError"
+            }
+          }
+        },
+        "security": [
+          {
+            "HasPermission": [
+              "ADMIN:NAMESPACE:{namespace}:CLOUDSAVE:RECORD [UPDATE]"
+            ],
+            "HasScope": [
+              "social"
+            ],
+            "authorization": []
+          }
+        ],
+        "summary": "Update game binary record file",
+        "tags": [
+          "AdminGameBinaryRecord"
+        ]
+      }
+    },
+    "/cloudsave/v1/admin/namespaces/{namespace}/binaries/{key}/metadata": {
+      "put": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Required permission: \u0026lt;code\u0026gt;ADMIN:NAMESPACE:{namespace}:CLOUDSAVE:RECORD [UPDATE]\u0026lt;/code\u0026gt;\nRequired scope: \u0026lt;code\u0026gt;social\u0026lt;/code\u0026gt;\n\nUpdate a game binary record metadata by its key",
+        "operationId": "adminPutGameBinaryRecorMetadataV1",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/models.GameBinaryRecordMetadataRequest"
+            }
+          },
+          {
+            "description": "key of record",
+            "in": "path",
+            "name": "key",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "namespace of the game",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "Record saved",
+            "schema": {
+              "$ref": "#/definitions/models.GameBinaryRecordResponse"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/models.ResponseError"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/models.ResponseError"
+            }
+          }
+        },
+        "security": [
+          {
+            "HasPermission": [
+              "ADMIN:NAMESPACE:{namespace}:CLOUDSAVE:RECORD [UPDATE]"
+            ],
+            "HasScope": [
+              "social"
+            ],
+            "authorization": []
+          }
+        ],
+        "summary": "Update game binary record metadata",
+        "tags": [
+          "AdminGameBinaryRecord"
+        ]
+      }
+    },
+    "/cloudsave/v1/admin/namespaces/{namespace}/binaries/{key}/presigned": {
+      "post": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Required permission: \u0026lt;code\u0026gt;ADMIN:NAMESPACE:{namespace}:CLOUDSAVE:RECORD [CREATE]\u0026lt;/code\u0026gt;\nRequired scope: \u0026lt;code\u0026gt;social\u0026lt;/code\u0026gt;\n\nRequest presigned URL to upload the binary record to s3.\n\u0026lt;p\u0026gt;Other detail info:\u0026lt;/p\u0026gt;\n\nSupported file types: jpeg, jpg, png, bmp, gif, mp3, webp, and bin.\n",
+        "operationId": "adminPostGameBinaryPresignedURLV1",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/models.UploadBinaryRecordRequest"
+            }
+          },
+          {
+            "description": "key of record",
+            "in": "path",
+            "name": "key",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "namespace of the game",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "201": {
+            "description": "Successful Operation",
+            "schema": {
+              "$ref": "#/definitions/models.UploadBinaryRecordResponse"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/models.ResponseError"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/models.ResponseError"
+            }
+          }
+        },
+        "security": [
+          {
+            "HasPermission": [
+              "ADMIN:NAMESPACE:{namespace}:CLOUDSAVE:RECORD [CREATE]"
+            ],
+            "HasScope": [
+              "social"
+            ],
+            "authorization": []
+          }
+        ],
+        "summary": "Request presigned URL for upload game binary records",
+        "tags": [
+          "AdminGameBinaryRecord"
         ]
       }
     },
@@ -2003,6 +2483,535 @@
         ]
       }
     },
+    "/cloudsave/v1/admin/namespaces/{namespace}/users/{userId}/binaries": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Required permission: \u0026lt;code\u0026gt;ADMIN:NAMESPACE:{namespace}:USER:{userId}:CLOUDSAVE:RECORD [READ]\u0026lt;/code\u0026gt;\nRequired scope: \u0026lt;code\u0026gt;social\u0026lt;/code\u0026gt;\n\nRetrieve list of player binary records by namespace.",
+        "operationId": "adminListPlayerBinaryRecordsV1",
+        "parameters": [
+          {
+            "description": "namespace of the game",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "user ID who own the record",
+            "in": "path",
+            "name": "userId",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "limit",
+            "in": "query",
+            "name": "limit",
+            "type": "integer"
+          },
+          {
+            "description": "offset",
+            "in": "query",
+            "name": "offset",
+            "type": "integer"
+          },
+          {
+            "description": "key",
+            "in": "query",
+            "name": "query",
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "Retrieve list of player records by namespace",
+            "schema": {
+              "$ref": "#/definitions/models.ListPlayerBinaryRecordsResponse"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/models.ResponseError"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/models.ResponseError"
+            }
+          }
+        },
+        "security": [
+          {
+            "HasPermission": [
+              "ADMIN:NAMESPACE:{namespace}:USER:{userId}:CLOUDSAVE:RECORD [READ]"
+            ],
+            "HasScope": [
+              "social"
+            ],
+            "authorization": []
+          }
+        ],
+        "summary": "Query player binary records",
+        "tags": [
+          "AdminPlayerBinaryRecord"
+        ]
+      },
+      "post": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Required permission: \u0026lt;code\u0026gt;ADMIN:NAMESPACE:{namespace}:USER:{userId}:CLOUDSAVE:RECORD [CREATE]\u0026lt;/code\u0026gt;\nRequired scope: \u0026lt;code\u0026gt;social\u0026lt;/code\u0026gt;\n\nCreate a player binary record.\n\u0026lt;p\u0026gt;Other detail info:\u0026lt;/p\u0026gt;\n\n\u0026lt;code\u0026gt;key\u0026lt;/code\u0026gt; should follow these rules:\n1. support uppercase and lowercase letters, numbers, and separators \u0026lt;b\u0026gt;\u0026#34;-\u0026#34;\u0026lt;/b\u0026gt;, \u0026lt;b\u0026gt;\u0026#34;_\u0026#34;\u0026lt;/b\u0026gt;, \u0026lt;b\u0026gt;\u0026#34;.\u0026#34;\u0026lt;/b\u0026gt; are allowed  \n2. begin and end with letters or numbers\n3. spaces are not allowed\n4. separators must not appears twice in a row\n\t\n\nSupported file types: jpeg, jpg, png, bmp, gif, mp3, webp, and bin.\n",
+        "operationId": "adminPostPlayerBinaryRecordV1",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/models.PlayerBinaryRecordCreate"
+            }
+          },
+          {
+            "description": "namespace of the game",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "user ID who own the record",
+            "in": "path",
+            "name": "userId",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "201": {
+            "description": "Record in user-level created",
+            "schema": {
+              "$ref": "#/definitions/models.UploadBinaryRecordResponse"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/models.ResponseError"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/models.ResponseError"
+            }
+          }
+        },
+        "security": [
+          {
+            "HasPermission": [
+              "ADMIN:NAMESPACE:{namespace}:USER:{userId}:CLOUDSAVE:RECORD [CREATE]"
+            ],
+            "HasScope": [
+              "social"
+            ],
+            "authorization": []
+          }
+        ],
+        "summary": "Create player binary record",
+        "tags": [
+          "AdminPlayerBinaryRecord"
+        ]
+      }
+    },
+    "/cloudsave/v1/admin/namespaces/{namespace}/users/{userId}/binaries/{key}": {
+      "delete": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Required permission: \u0026lt;code\u0026gt;ADMIN:NAMESPACE:{namespace}:USER:{userId}:CLOUDSAVE:RECORD [DELETE]\u0026lt;/code\u0026gt;\nRequired scope: \u0026lt;code\u0026gt;social\u0026lt;/code\u0026gt;\n\nDelete a player binary record.",
+        "operationId": "adminDeletePlayerBinaryRecordV1",
+        "parameters": [
+          {
+            "description": "key of record",
+            "in": "path",
+            "name": "key",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "namespace of the game",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "user ID who own the record",
+            "in": "path",
+            "name": "userId",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "204": {
+            "description": "Record deleted"
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/models.ResponseError"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/models.ResponseError"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/models.ResponseError"
+            }
+          }
+        },
+        "security": [
+          {
+            "HasPermission": [
+              "ADMIN:NAMESPACE:{namespace}:USER:{userId}:CLOUDSAVE:RECORD [DELETE]"
+            ],
+            "HasScope": [
+              "social"
+            ],
+            "authorization": []
+          }
+        ],
+        "summary": "Delete player binary record",
+        "tags": [
+          "AdminPlayerBinaryRecord"
+        ]
+      },
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Required permission: \u0026lt;code\u0026gt;ADMIN:NAMESPACE:{namespace}:USER:{userId}:CLOUDSAVE:RECORD [READ]\u0026lt;/code\u0026gt;\nRequired scope: \u0026lt;code\u0026gt;social\u0026lt;/code\u0026gt;\nGet a player binary record by its key.",
+        "operationId": "adminGetPlayerBinaryRecordV1",
+        "parameters": [
+          {
+            "description": "key of record",
+            "in": "path",
+            "name": "key",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "namespace of the game",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "user ID who own the record",
+            "in": "path",
+            "name": "userId",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "Record in user-level retrieved",
+            "schema": {
+              "$ref": "#/definitions/models.PlayerBinaryRecordResponse"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/models.ResponseError"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/models.ResponseError"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/models.ResponseError"
+            }
+          }
+        },
+        "security": [
+          {
+            "HasPermission": [
+              "ADMIN:NAMESPACE:{namespace}:USER:{userId}:CLOUDSAVE:RECORD [READ]"
+            ],
+            "HasScope": [
+              "social"
+            ],
+            "authorization": []
+          }
+        ],
+        "summary": "Get player binary record",
+        "tags": [
+          "AdminPlayerBinaryRecord"
+        ]
+      },
+      "put": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Required permission: \u0026lt;code\u0026gt;ADMIN:NAMESPACE:{namespace}:USER:{userId}:CLOUDSAVE:RECORD [UPDATE]\u0026lt;/code\u0026gt;\nRequired scope: \u0026lt;code\u0026gt;social\u0026lt;/code\u0026gt;\n\nUpdate a player binary record file by its key",
+        "operationId": "adminPutPlayerBinaryRecordV1",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/models.BinaryRecordRequest"
+            }
+          },
+          {
+            "description": "key of record",
+            "in": "path",
+            "name": "key",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "namespace of the game",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "user ID who own the record",
+            "in": "path",
+            "name": "userId",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "Record saved",
+            "schema": {
+              "$ref": "#/definitions/models.PlayerBinaryRecordResponse"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/models.ResponseError"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/models.ResponseError"
+            }
+          }
+        },
+        "security": [
+          {
+            "HasPermission": [
+              "ADMIN:NAMESPACE:{namespace}:USER:{userId}:CLOUDSAVE:RECORD [UPDATE]"
+            ],
+            "HasScope": [
+              "social"
+            ],
+            "authorization": []
+          }
+        ],
+        "summary": "Update player binary record file",
+        "tags": [
+          "AdminPlayerBinaryRecord"
+        ]
+      }
+    },
+    "/cloudsave/v1/admin/namespaces/{namespace}/users/{userId}/binaries/{key}/metadata": {
+      "put": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Required permission: \u0026lt;code\u0026gt;ADMIN:NAMESPACE:{namespace}:USER:{userId}:CLOUDSAVE:RECORD [UPDATE]\u0026lt;/code\u0026gt;\nRequired scope: \u0026lt;code\u0026gt;social\u0026lt;/code\u0026gt;\n\nUpdate a player binary record metadata by its key",
+        "operationId": "adminPutPlayerBinaryRecorMetadataV1",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/models.PlayerBinaryRecordMetadataRequest"
+            }
+          },
+          {
+            "description": "key of record",
+            "in": "path",
+            "name": "key",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "namespace of the game",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "user ID who own the record",
+            "in": "path",
+            "name": "userId",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "Record saved",
+            "schema": {
+              "$ref": "#/definitions/models.PlayerBinaryRecordResponse"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/models.ResponseError"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/models.ResponseError"
+            }
+          }
+        },
+        "security": [
+          {
+            "HasPermission": [
+              "ADMIN:NAMESPACE:{namespace}:USER:{userId}:CLOUDSAVE:RECORD [UPDATE]"
+            ],
+            "HasScope": [
+              "social"
+            ],
+            "authorization": []
+          }
+        ],
+        "summary": "Update player binary record metadata",
+        "tags": [
+          "AdminPlayerBinaryRecord"
+        ]
+      }
+    },
+    "/cloudsave/v1/admin/namespaces/{namespace}/users/{userId}/binaries/{key}/presigned": {
+      "post": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Required permission: \u0026lt;code\u0026gt;ADMIN:NAMESPACE:{namespace}:USER:{userId}:CLOUDSAVE:RECORD [CREATE]\u0026lt;/code\u0026gt;\nRequired scope: \u0026lt;code\u0026gt;social\u0026lt;/code\u0026gt;\n\nRequest presigned URL to upload the binary record to s3.\n\u0026lt;p\u0026gt;Other detail info:\u0026lt;/p\u0026gt;\n\nSupported file types: jpeg, jpg, png, bmp, gif, mp3, webp, and bin.\n",
+        "operationId": "adminPostPlayerBinaryPresignedURLV1",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/models.UploadBinaryRecordRequest"
+            }
+          },
+          {
+            "description": "key of record",
+            "in": "path",
+            "name": "key",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "namespace of the game",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "user ID who own the record",
+            "in": "path",
+            "name": "userId",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "201": {
+            "description": "Successful Operation",
+            "schema": {
+              "$ref": "#/definitions/models.UploadBinaryRecordResponse"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/models.ResponseError"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/models.ResponseError"
+            }
+          }
+        },
+        "security": [
+          {
+            "HasPermission": [
+              "ADMIN:NAMESPACE:{namespace}:USER:{userId}:CLOUDSAVE:RECORD [CREATE]"
+            ],
+            "HasScope": [
+              "social"
+            ],
+            "authorization": []
+          }
+        ],
+        "summary": "Request presigned URL for upload player binary records",
+        "tags": [
+          "AdminPlayerBinaryRecord"
+        ]
+      }
+    },
     "/cloudsave/v1/admin/namespaces/{namespace}/users/{userId}/concurrent/adminrecords/{key}": {
       "put": {
         "consumes": [
@@ -3029,6 +4038,489 @@
         ]
       }
     },
+    "/cloudsave/v1/namespaces/{namespace}/binaries": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Required permission: \u0026lt;code\u0026gt;NAMESPACE:{namespace}:CLOUDSAVE:RECORD [READ]\u0026lt;/code\u0026gt;\nRequired scope: \u0026lt;code\u0026gt;social\u0026lt;/code\u0026gt;\n\nRetrieve list of binary records by namespace.",
+        "operationId": "listGameBinaryRecordsV1",
+        "parameters": [
+          {
+            "description": "namespace of the game",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "limit",
+            "in": "query",
+            "name": "limit",
+            "type": "integer"
+          },
+          {
+            "description": "offset",
+            "in": "query",
+            "name": "offset",
+            "type": "integer"
+          },
+          {
+            "description": "key",
+            "in": "query",
+            "name": "query",
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "Retrieve list of records by namespace",
+            "schema": {
+              "$ref": "#/definitions/models.ListGameBinaryRecordsResponse"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/models.ResponseError"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/models.ResponseError"
+            }
+          }
+        },
+        "security": [
+          {
+            "HasPermission": [
+              "NAMESPACE:{namespace}:CLOUDSAVE:RECORD [READ]"
+            ],
+            "HasScope": [
+              "social"
+            ],
+            "authorization": []
+          }
+        ],
+        "summary": "Query game binary records",
+        "tags": [
+          "PublicGameBinaryRecord"
+        ]
+      },
+      "post": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Required permission: \u0026lt;code\u0026gt;NAMESPACE:{namespace}:CLOUDSAVE:RECORD [CREATE]\u0026lt;/code\u0026gt;\nRequired scope: \u0026lt;code\u0026gt;social\u0026lt;/code\u0026gt;\n\nCreate a game binary record.\n\u0026lt;p\u0026gt;Other detail info:\u0026lt;/p\u0026gt;\n\n\u0026lt;code\u0026gt;key\u0026lt;/code\u0026gt; should follow these rules:\n1. support uppercase and lowercase letters, numbers, and separators \u0026lt;b\u0026gt;\u0026#34;-\u0026#34;\u0026lt;/b\u0026gt;, \u0026lt;b\u0026gt;\u0026#34;_\u0026#34;\u0026lt;/b\u0026gt;, \u0026lt;b\u0026gt;\u0026#34;.\u0026#34;\u0026lt;/b\u0026gt; are allowed  \n2. begin and end with letters or numbers\n3. spaces are not allowed\n4. separators must not appears twice in a row\n\t\n\nSupported file types: jpeg, jpg, png, bmp, gif, mp3, webp, and bin.\n",
+        "operationId": "postGameBinaryRecordV1",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/models.PublicGameBinaryRecordCreate"
+            }
+          },
+          {
+            "description": "namespace of the game",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "201": {
+            "description": "Record in namespace-level created",
+            "schema": {
+              "$ref": "#/definitions/models.UploadBinaryRecordResponse"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/models.ResponseError"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/models.ResponseError"
+            }
+          }
+        },
+        "security": [
+          {
+            "HasPermission": [
+              "NAMESPACE:{namespace}:CLOUDSAVE:RECORD [CREATE]"
+            ],
+            "HasScope": [
+              "social"
+            ],
+            "authorization": []
+          }
+        ],
+        "summary": "Create game binary record",
+        "tags": [
+          "PublicGameBinaryRecord"
+        ]
+      }
+    },
+    "/cloudsave/v1/namespaces/{namespace}/binaries/bulk": {
+      "post": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Required valid user token\nRequired scope: \u0026lt;code\u0026gt;social\u0026lt;/code\u0026gt;\n\nBulk get game binary records. Maximum key per request 20.",
+        "operationId": "bulkGetGameBinaryRecordV1",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/models.BulkGetGameRecordRequest"
+            }
+          },
+          {
+            "description": "namespace of the game",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "schema": {
+              "$ref": "#/definitions/models.BulkGetGameBinaryRecordResponse"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/models.ResponseError"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/models.ResponseError"
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "schema": {
+              "$ref": "#/definitions/models.ResponseError"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/models.ResponseError"
+            }
+          }
+        },
+        "security": [
+          {
+            "HasPermission": [],
+            "HasScope": [
+              "social"
+            ],
+            "authorization": []
+          }
+        ],
+        "summary": "Bulk get game binary records",
+        "tags": [
+          "PublicGameBinaryRecord"
+        ]
+      }
+    },
+    "/cloudsave/v1/namespaces/{namespace}/binaries/{key}": {
+      "delete": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Required permission: \u0026lt;code\u0026gt;NAMESPACE:{namespace}:CLOUDSAVE:RECORD [DELETE]\u0026lt;/code\u0026gt;\nRequired scope: \u0026lt;code\u0026gt;social\u0026lt;/code\u0026gt;\n\nDelete a game binary record.",
+        "operationId": "deleteGameBinaryRecordV1",
+        "parameters": [
+          {
+            "description": "key of record",
+            "in": "path",
+            "name": "key",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "namespace of the game",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "204": {
+            "description": "Record deleted"
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/models.ResponseError"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/models.ResponseError"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/models.ResponseError"
+            }
+          }
+        },
+        "security": [
+          {
+            "HasPermission": [
+              "NAMESPACE:{namespace}:CLOUDSAVE:RECORD [DELETE]"
+            ],
+            "HasScope": [
+              "social"
+            ],
+            "authorization": []
+          }
+        ],
+        "summary": "Delete game binary record",
+        "tags": [
+          "PublicGameBinaryRecord"
+        ]
+      },
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Required permission: \u0026lt;code\u0026gt;NAMESPACE:{namespace}:CLOUDSAVE:RECORD [READ]\u0026lt;/code\u0026gt;\nRequired scope: \u0026lt;code\u0026gt;social\u0026lt;/code\u0026gt;\n\nGet a game binary record by its key.",
+        "operationId": "getGameBinaryRecordV1",
+        "parameters": [
+          {
+            "description": "key of record",
+            "in": "path",
+            "name": "key",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "namespace of the game",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "Record in namespace-level retrieved",
+            "schema": {
+              "$ref": "#/definitions/models.GameBinaryRecordResponse"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/models.ResponseError"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/models.ResponseError"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/models.ResponseError"
+            }
+          }
+        },
+        "security": [
+          {
+            "HasPermission": [
+              "NAMESPACE:{namespace}:CLOUDSAVE:RECORD [READ]"
+            ],
+            "HasScope": [
+              "social"
+            ],
+            "authorization": []
+          }
+        ],
+        "summary": "Get game binary record",
+        "tags": [
+          "PublicGameBinaryRecord"
+        ]
+      },
+      "put": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Required permission: \u0026lt;code\u0026gt;NAMESPACE:{namespace}:CLOUDSAVE:RECORD [UPDATE]\u0026lt;/code\u0026gt;\nRequired scope: \u0026lt;code\u0026gt;social\u0026lt;/code\u0026gt;\n\nUpdate a game binary record file by its key",
+        "operationId": "putGameBinaryRecordV1",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/models.BinaryRecordRequest"
+            }
+          },
+          {
+            "description": "key of record",
+            "in": "path",
+            "name": "key",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "namespace of the game",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "Record saved",
+            "schema": {
+              "$ref": "#/definitions/models.GameBinaryRecordResponse"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/models.ResponseError"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/models.ResponseError"
+            }
+          }
+        },
+        "security": [
+          {
+            "HasPermission": [
+              "NAMESPACE:{namespace}:CLOUDSAVE:RECORD [UPDATE]"
+            ],
+            "HasScope": [
+              "social"
+            ],
+            "authorization": []
+          }
+        ],
+        "summary": "Update game binary record file",
+        "tags": [
+          "PublicGameBinaryRecord"
+        ]
+      }
+    },
+    "/cloudsave/v1/namespaces/{namespace}/binaries/{key}/presigned": {
+      "post": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Required permission: \u0026lt;code\u0026gt;NAMESPACE:{namespace}:CLOUDSAVE:RECORD [CREATE]\u0026lt;/code\u0026gt;\nRequired scope: \u0026lt;code\u0026gt;social\u0026lt;/code\u0026gt;\n\nRequest presigned URL to upload the binary record to s3.\n\u0026lt;p\u0026gt;Other detail info:\u0026lt;/p\u0026gt;\n\nSupported file types: jpeg, jpg, png, bmp, gif, mp3, webp, and bin.\n",
+        "operationId": "postGameBinaryPresignedURLV1",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/models.UploadBinaryRecordRequest"
+            }
+          },
+          {
+            "description": "key of record",
+            "in": "path",
+            "name": "key",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "namespace of the game",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "201": {
+            "description": "Successful Operation",
+            "schema": {
+              "$ref": "#/definitions/models.UploadBinaryRecordResponse"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/models.ResponseError"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/models.ResponseError"
+            }
+          }
+        },
+        "security": [
+          {
+            "HasPermission": [
+              "NAMESPACE:{namespace}:CLOUDSAVE:RECORD [CREATE]"
+            ],
+            "HasScope": [
+              "social"
+            ],
+            "authorization": []
+          }
+        ],
+        "summary": "Request presigned URL for upload game binary records",
+        "tags": [
+          "PublicGameBinaryRecord"
+        ]
+      }
+    },
     "/cloudsave/v1/namespaces/{namespace}/concurrent/records/{key}": {
       "put": {
         "consumes": [
@@ -3462,6 +4954,89 @@
         ]
       }
     },
+    "/cloudsave/v1/namespaces/{namespace}/users/bulk/binaries/{key}/public": {
+      "post": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Required Permission: \u0026lt;code\u0026gt;NAMESPACE:{namespace}:USER:{userId}:PUBLIC:CLOUDSAVE:RECORD [READ]\u0026lt;/code\u0026gt;\nRequired Scope: \u0026lt;code\u0026gt;social\u0026lt;/code\u0026gt;\n\nBulk get other player\u0026#39;s public binary record by userIds, max allowed 20 at a time. Only record with \u0026lt;code\u0026gt;isPublic=true\u0026lt;/code\u0026gt; can be\nretrieved using this endpoint.",
+        "operationId": "bulkGetPlayerPublicBinaryRecordsV1",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/models.BulkUserIDsRequest"
+            }
+          },
+          {
+            "description": "key of record",
+            "in": "path",
+            "name": "key",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "namespace of the game",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "Record retrieved",
+            "schema": {
+              "$ref": "#/definitions/models.BulkGetPlayerBinaryRecordResponse"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/models.ResponseError"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/models.ResponseError"
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "schema": {
+              "$ref": "#/definitions/models.ResponseError"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/models.ResponseError"
+            }
+          }
+        },
+        "security": [
+          {
+            "HasPermission": [
+              "NAMESPACE:{namespace}:USER:{userId}:PUBLIC:CLOUDSAVE:RECORD [READ]"
+            ],
+            "HasScope": [
+              "social"
+            ],
+            "authorization": []
+          }
+        ],
+        "summary": "Bulk get player public records",
+        "tags": [
+          "PublicPlayerBinaryRecord"
+        ]
+      }
+    },
     "/cloudsave/v1/namespaces/{namespace}/users/bulk/records/{key}/public": {
       "post": {
         "consumes": [
@@ -3542,6 +5117,152 @@
         "summary": "Bulk get player public records",
         "tags": [
           "PublicPlayerRecord"
+        ]
+      }
+    },
+    "/cloudsave/v1/namespaces/{namespace}/users/me/binaries": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Required valid user token\nRequired scope: \u0026lt;code\u0026gt;social\u0026lt;/code\u0026gt;\n\nRetrieve list of my binary records by namespace.",
+        "operationId": "listMyBinaryRecordsV1",
+        "parameters": [
+          {
+            "description": "namespace of the game",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "limit",
+            "in": "query",
+            "name": "limit",
+            "type": "integer"
+          },
+          {
+            "description": "offset",
+            "in": "query",
+            "name": "offset",
+            "type": "integer"
+          },
+          {
+            "description": "key",
+            "in": "query",
+            "name": "query",
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "Retrieve list of player records by namespace",
+            "schema": {
+              "$ref": "#/definitions/models.ListPlayerBinaryRecordsResponse"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/models.ResponseError"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/models.ResponseError"
+            }
+          }
+        },
+        "security": [
+          {
+            "HasPermission": [],
+            "HasScope": [
+              "social"
+            ],
+            "authorization": []
+          }
+        ],
+        "summary": "Query my binary records",
+        "tags": [
+          "PublicPlayerBinaryRecord"
+        ]
+      }
+    },
+    "/cloudsave/v1/namespaces/{namespace}/users/me/binaries/bulk": {
+      "post": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Required valid user token\nRequired scope: \u0026lt;code\u0026gt;social\u0026lt;/code\u0026gt;\n\nRetrieve player record key and payload in bulk under given namespace.\nMaximum bulk key limit per request 20",
+        "operationId": "bulkGetMyBinaryRecordV1",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/models.BulkGetPlayerRecordsRequest"
+            }
+          },
+          {
+            "description": "namespace of the game",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "schema": {
+              "$ref": "#/definitions/models.BulkGetPlayerBinaryRecordResponse"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/models.ResponseError"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/models.ResponseError"
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "schema": {
+              "$ref": "#/definitions/models.ResponseError"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/models.ResponseError"
+            }
+          }
+        },
+        "security": [
+          {
+            "HasPermission": [],
+            "HasScope": [
+              "social"
+            ],
+            "authorization": []
+          }
+        ],
+        "summary": "Get player records bulk",
+        "tags": [
+          "PublicPlayerBinaryRecord"
         ]
       }
     },
@@ -3758,6 +5479,696 @@
         "summary": "Delete player public record",
         "tags": [
           "PublicPlayerRecord"
+        ]
+      }
+    },
+    "/cloudsave/v1/namespaces/{namespace}/users/{userId}/binaries": {
+      "post": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Required permission: \u0026lt;code\u0026gt;NAMESPACE:{namespace}:USER:{userId}:CLOUDSAVE:RECORD [CREATE]\u0026lt;/code\u0026gt;\nRequired scope: \u0026lt;code\u0026gt;social\u0026lt;/code\u0026gt;\n\nCreate a player binary record.\n\u0026lt;p\u0026gt;Other detail info:\u0026lt;/p\u0026gt;\n\n\u0026lt;code\u0026gt;key\u0026lt;/code\u0026gt; should follow these rules:\n1. support uppercase and lowercase letters, numbers, and separators \u0026lt;b\u0026gt;\u0026#34;-\u0026#34;\u0026lt;/b\u0026gt;, \u0026lt;b\u0026gt;\u0026#34;_\u0026#34;\u0026lt;/b\u0026gt;, \u0026lt;b\u0026gt;\u0026#34;.\u0026#34;\u0026lt;/b\u0026gt; are allowed  \n2. begin and end with letters or numbers\n3. spaces are not allowed\n4. separators must not appears twice in a row\n\t\n\nSupported file types: jpeg, jpg, png, bmp, gif, mp3, webp, and bin.\n",
+        "operationId": "postPlayerBinaryRecordV1",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/models.PublicPlayerBinaryRecordCreate"
+            }
+          },
+          {
+            "description": "namespace of the game",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "user ID who own the record",
+            "in": "path",
+            "name": "userId",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "201": {
+            "description": "Record in user-level created",
+            "schema": {
+              "$ref": "#/definitions/models.UploadBinaryRecordResponse"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/models.ResponseError"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/models.ResponseError"
+            }
+          }
+        },
+        "security": [
+          {
+            "HasPermission": [
+              "NAMESPACE:{namespace}:USER:{userId}:CLOUDSAVE:RECORD [CREATE]"
+            ],
+            "HasScope": [
+              "social"
+            ],
+            "authorization": []
+          }
+        ],
+        "summary": "Create player binary record",
+        "tags": [
+          "PublicPlayerBinaryRecord"
+        ]
+      }
+    },
+    "/cloudsave/v1/namespaces/{namespace}/users/{userId}/binaries/public": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Required Permission: \u0026lt;code\u0026gt;NAMESPACE:{namespace}:USER:{userId}:PUBLIC:CLOUDSAVE:RECORD [READ]\u0026lt;/code\u0026gt;\nRequired Scope: \u0026lt;code\u0026gt;social\u0026lt;/code\u0026gt;\n\t\nRetrieve list of other player public binary records under given namespace.",
+        "operationId": "listOtherPlayerPublicBinaryRecordsV1",
+        "parameters": [
+          {
+            "description": "namespace of the game",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "user ID",
+            "in": "path",
+            "name": "userId",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "limit",
+            "in": "query",
+            "name": "limit",
+            "type": "integer"
+          },
+          {
+            "description": "offset",
+            "in": "query",
+            "name": "offset",
+            "type": "integer"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "schema": {
+              "$ref": "#/definitions/models.ListPlayerBinaryRecordsResponse"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/models.ResponseError"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/models.ResponseError"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/models.ResponseError"
+            }
+          }
+        },
+        "security": [
+          {
+            "HasPermission": [
+              "NAMESPACE:{namespace}:USER:{userId}:PUBLIC:CLOUDSAVE:RECORD [READ]"
+            ],
+            "HasScope": [
+              "social"
+            ],
+            "authorization": []
+          }
+        ],
+        "summary": "Query other player public binary record",
+        "tags": [
+          "PublicPlayerBinaryRecord"
+        ]
+      }
+    },
+    "/cloudsave/v1/namespaces/{namespace}/users/{userId}/binaries/public/bulk": {
+      "post": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Required Permission: \u0026lt;code\u0026gt;NAMESPACE:{namespace}:USER:{userId}:PUBLIC:CLOUDSAVE:RECORD [READ]\u0026lt;/code\u0026gt;\nRequired Scope: \u0026lt;code\u0026gt;social\u0026lt;/code\u0026gt;\n\nRetrieve other player public binary record in bulk under given namespace.\nMaximum bulk key limit per request 20",
+        "operationId": "bulkGetOtherPlayerPublicBinaryRecordsV1",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/models.BulkGetPlayerRecordsRequest"
+            }
+          },
+          {
+            "description": "namespace of the game",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "user ID",
+            "in": "path",
+            "name": "userId",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "schema": {
+              "$ref": "#/definitions/models.BulkGetPlayerBinaryRecordResponse"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/models.ResponseError"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/models.ResponseError"
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "schema": {
+              "$ref": "#/definitions/models.ResponseError"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/models.ResponseError"
+            }
+          }
+        },
+        "security": [
+          {
+            "HasPermission": [
+              "NAMESPACE:{namespace}:USER:{userId}:PUBLIC:CLOUDSAVE:RECORD [READ]"
+            ],
+            "HasScope": [
+              "social"
+            ],
+            "authorization": []
+          }
+        ],
+        "summary": "Bulk get other player public binary record",
+        "tags": [
+          "PublicPlayerBinaryRecord"
+        ]
+      }
+    },
+    "/cloudsave/v1/namespaces/{namespace}/users/{userId}/binaries/{key}": {
+      "delete": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Required permission: \u0026lt;code\u0026gt;NAMESPACE:{namespace}:USER:{userId}:CLOUDSAVE:RECORD [DELETE]\u0026lt;/code\u0026gt;\nRequired scope: \u0026lt;code\u0026gt;social\u0026lt;/code\u0026gt;\n\nDelete a player binary record. Only player who own the record can delete it",
+        "operationId": "deletePlayerBinaryRecordV1",
+        "parameters": [
+          {
+            "description": "key of record",
+            "in": "path",
+            "name": "key",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "namespace of the game",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "user ID who own the record",
+            "in": "path",
+            "name": "userId",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "204": {
+            "description": "Record deleted"
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/models.ResponseError"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/models.ResponseError"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/models.ResponseError"
+            }
+          }
+        },
+        "security": [
+          {
+            "HasPermission": [
+              "NAMESPACE:{namespace}:USER:{userId}:CLOUDSAVE:RECORD [DELETE]"
+            ],
+            "HasScope": [
+              "social"
+            ],
+            "authorization": []
+          }
+        ],
+        "summary": "Delete player binary record",
+        "tags": [
+          "PublicPlayerBinaryRecord"
+        ]
+      },
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Required permission: \u0026lt;code\u0026gt;NAMESPACE:{namespace}:USER:{userId}:CLOUDSAVE:RECORD [READ]\u0026lt;/code\u0026gt;\nRequired scope: \u0026lt;code\u0026gt;social\u0026lt;/code\u0026gt;\nGet a player binary record by its key.\nPrivate Record: Only user who own the record could retrieve it.",
+        "operationId": "getPlayerBinaryRecordV1",
+        "parameters": [
+          {
+            "description": "key of record",
+            "in": "path",
+            "name": "key",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "namespace of the game",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "user ID who own the record",
+            "in": "path",
+            "name": "userId",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "Record in user-level retrieved",
+            "schema": {
+              "$ref": "#/definitions/models.PlayerBinaryRecordResponse"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/models.ResponseError"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/models.ResponseError"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/models.ResponseError"
+            }
+          }
+        },
+        "security": [
+          {
+            "HasPermission": [
+              "NAMESPACE:{namespace}:USER:{userId}:CLOUDSAVE:RECORD [READ]"
+            ],
+            "HasScope": [
+              "social"
+            ],
+            "authorization": []
+          }
+        ],
+        "summary": "Get player binary record",
+        "tags": [
+          "PublicPlayerBinaryRecord"
+        ]
+      },
+      "put": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Required permission: \u0026lt;code\u0026gt;NAMESPACE:{namespace}:USER:{userId}:CLOUDSAVE:RECORD [UPDATE]\u0026lt;/code\u0026gt;\nRequired scope: \u0026lt;code\u0026gt;social\u0026lt;/code\u0026gt;\n\nUpdate a player binary record file by its key",
+        "operationId": "putPlayerBinaryRecordV1",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/models.BinaryRecordRequest"
+            }
+          },
+          {
+            "description": "key of record",
+            "in": "path",
+            "name": "key",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "namespace of the game",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "user ID who own the record",
+            "in": "path",
+            "name": "userId",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "Record saved",
+            "schema": {
+              "$ref": "#/definitions/models.PlayerBinaryRecordResponse"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/models.ResponseError"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/models.ResponseError"
+            }
+          }
+        },
+        "security": [
+          {
+            "HasPermission": [
+              "NAMESPACE:{namespace}:USER:{userId}:CLOUDSAVE:RECORD [UPDATE]"
+            ],
+            "HasScope": [
+              "social"
+            ],
+            "authorization": []
+          }
+        ],
+        "summary": "Update player binary record file",
+        "tags": [
+          "PublicPlayerBinaryRecord"
+        ]
+      }
+    },
+    "/cloudsave/v1/namespaces/{namespace}/users/{userId}/binaries/{key}/metadata": {
+      "put": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Required permission: \u0026lt;code\u0026gt;NAMESPACE:{namespace}:USER:{userId}:CLOUDSAVE:RECORD [UPDATE]\u0026lt;/code\u0026gt;\nRequired scope: \u0026lt;code\u0026gt;social\u0026lt;/code\u0026gt;\n\nUpdate a player binary record metadata by its key",
+        "operationId": "putPlayerBinaryRecorMetadataV1",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/models.PlayerBinaryRecordMetadataPublicRequest"
+            }
+          },
+          {
+            "description": "key of record",
+            "in": "path",
+            "name": "key",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "namespace of the game",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "user ID who own the record",
+            "in": "path",
+            "name": "userId",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "Record saved",
+            "schema": {
+              "$ref": "#/definitions/models.PlayerBinaryRecordResponse"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/models.ResponseError"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/models.ResponseError"
+            }
+          }
+        },
+        "security": [
+          {
+            "HasPermission": [
+              "NAMESPACE:{namespace}:USER:{userId}:CLOUDSAVE:RECORD [UPDATE]"
+            ],
+            "HasScope": [
+              "social"
+            ],
+            "authorization": []
+          }
+        ],
+        "summary": "Update player binary record metadata",
+        "tags": [
+          "PublicPlayerBinaryRecord"
+        ]
+      }
+    },
+    "/cloudsave/v1/namespaces/{namespace}/users/{userId}/binaries/{key}/presigned": {
+      "post": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Required permission: \u0026lt;code\u0026gt;NAMESPACE:{namespace}:USER:{userId}:CLOUDSAVE:RECORD [CREATE]\u0026lt;/code\u0026gt;\nRequired scope: \u0026lt;code\u0026gt;social\u0026lt;/code\u0026gt;\n\nRequest presigned URL to upload the binary record to s3.\n\u0026lt;p\u0026gt;Other detail info:\u0026lt;/p\u0026gt;\n\nSupported file types: jpeg, jpg, png, bmp, gif, mp3, webp, and bin.\n",
+        "operationId": "postPlayerBinaryPresignedURLV1",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/models.UploadBinaryRecordRequest"
+            }
+          },
+          {
+            "description": "key of record",
+            "in": "path",
+            "name": "key",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "namespace of the game",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "user ID who own the record",
+            "in": "path",
+            "name": "userId",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "201": {
+            "description": "Successful Operation",
+            "schema": {
+              "$ref": "#/definitions/models.UploadBinaryRecordResponse"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/models.ResponseError"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/models.ResponseError"
+            }
+          }
+        },
+        "security": [
+          {
+            "HasPermission": [
+              "NAMESPACE:{namespace}:USER:{userId}:CLOUDSAVE:RECORD [CREATE]"
+            ],
+            "HasScope": [
+              "social"
+            ],
+            "authorization": []
+          }
+        ],
+        "summary": "Request presigned URL for upload player binary records",
+        "tags": [
+          "PublicPlayerBinaryRecord"
+        ]
+      }
+    },
+    "/cloudsave/v1/namespaces/{namespace}/users/{userId}/binaries/{key}/public": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Required Permission: \u0026lt;code\u0026gt;NAMESPACE:{namespace}:USER:{userId}:PUBLIC:CLOUDSAVE:RECORD [READ]\u0026lt;/code\u0026gt;\nRequired Scope: \u0026lt;code\u0026gt;social\u0026lt;/code\u0026gt;\n\nGet other player\u0026#39;s public binary record. Only record with \u0026lt;code\u0026gt;isPublic=true\u0026lt;/code\u0026gt; can be\nretrieved using this endpoint.",
+        "operationId": "getPlayerPublicBinaryRecordsV1",
+        "parameters": [
+          {
+            "description": "key of record",
+            "in": "path",
+            "name": "key",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "namespace of the game",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "user ID of record owner",
+            "in": "path",
+            "name": "userId",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "Record retrieved",
+            "schema": {
+              "$ref": "#/definitions/models.PlayerBinaryRecordResponse"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/models.ResponseError"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/models.ResponseError"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/models.ResponseError"
+            }
+          }
+        },
+        "security": [
+          {
+            "HasPermission": [
+              "NAMESPACE:{namespace}:USER:{userId}:PUBLIC:CLOUDSAVE:RECORD [READ]"
+            ],
+            "HasScope": [
+              "social"
+            ],
+            "authorization": []
+          }
+        ],
+        "summary": "Get player public binary record",
+        "tags": [
+          "PublicPlayerBinaryRecord"
         ]
       }
     },
@@ -4817,6 +7228,54 @@
         "appName"
       ]
     },
+    "models.BinaryInfoResponse": {
+      "properties": {
+        "content_type": {
+          "type": "string"
+        },
+        "created_at": {
+          "format": "date-time",
+          "type": "string",
+          "x-nullable": false
+        },
+        "file_location": {
+          "type": "string"
+        },
+        "updated_at": {
+          "format": "date-time",
+          "type": "string",
+          "x-nullable": false
+        },
+        "url": {
+          "type": "string"
+        },
+        "version": {
+          "format": "int32",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "content_type",
+        "created_at",
+        "file_location",
+        "updated_at",
+        "version"
+      ]
+    },
+    "models.BinaryRecordRequest": {
+      "properties": {
+        "content_type": {
+          "type": "string"
+        },
+        "file_location": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "content_type",
+        "file_location"
+      ]
+    },
     "models.BulkGetAdminGameRecordRequest": {
       "properties": {
         "keys": {
@@ -4869,6 +7328,19 @@
         "data"
       ]
     },
+    "models.BulkGetGameBinaryRecordResponse": {
+      "properties": {
+        "data": {
+          "items": {
+            "$ref": "#/definitions/models.GameBinaryRecordResponse"
+          },
+          "type": "array"
+        }
+      },
+      "required": [
+        "data"
+      ]
+    },
     "models.BulkGetGameRecordRequest": {
       "properties": {
         "keys": {
@@ -4887,6 +7359,19 @@
         "data": {
           "items": {
             "$ref": "#/definitions/models.GameRecordResponse"
+          },
+          "type": "array"
+        }
+      },
+      "required": [
+        "data"
+      ]
+    },
+    "models.BulkGetPlayerBinaryRecordResponse": {
+      "properties": {
+        "data": {
+          "items": {
+            "$ref": "#/definitions/models.PlayerBinaryRecordResponse"
           },
           "type": "array"
         }
@@ -4986,16 +7471,6 @@
     },
     "models.CustomFunction": {
       "properties": {
-        "afterBulkReadAdminGameRecord": {
-          "description": "enable/disable after bulk read admin game record custom validation",
-          "type": "boolean",
-          "x-omitempty": false
-        },
-        "afterBulkReadAdminPlayerRecord": {
-          "description": "enable/disable after bulk read admin player record custom validation",
-          "type": "boolean",
-          "x-omitempty": false
-        },
         "afterBulkReadGameRecord": {
           "description": "enable/disable after bulk read game record custom validation",
           "type": "boolean",
@@ -5003,16 +7478,6 @@
         },
         "afterBulkReadPlayerRecord": {
           "description": "enable/disable after bulk read player record custom validation",
-          "type": "boolean",
-          "x-omitempty": false
-        },
-        "afterReadAdminGameRecord": {
-          "description": "enable/disable after read admin game record custom validation",
-          "type": "boolean",
-          "x-omitempty": false
-        },
-        "afterReadAdminPlayerRecord": {
-          "description": "enable/disable after read admin player record custom validation",
           "type": "boolean",
           "x-omitempty": false
         },
@@ -5048,18 +7513,77 @@
         }
       },
       "required": [
-        "afterBulkReadAdminGameRecord",
-        "afterBulkReadAdminPlayerRecord",
         "afterBulkReadGameRecord",
         "afterBulkReadPlayerRecord",
-        "afterReadAdminGameRecord",
-        "afterReadAdminPlayerRecord",
         "afterReadGameRecord",
         "afterReadPlayerRecord",
         "beforeWriteAdminGameRecord",
         "beforeWriteAdminPlayerRecord",
         "beforeWriteGameRecord",
         "beforeWritePlayerRecord"
+      ]
+    },
+    "models.GameBinaryRecordCreate": {
+      "properties": {
+        "file_type": {
+          "type": "string"
+        },
+        "key": {
+          "type": "string"
+        },
+        "set_by": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "file_type",
+        "key",
+        "set_by"
+      ]
+    },
+    "models.GameBinaryRecordMetadataRequest": {
+      "properties": {
+        "set_by": {
+          "description": "Indicate which party that could modify the record",
+          "type": "string"
+        }
+      },
+      "required": [
+        "set_by"
+      ]
+    },
+    "models.GameBinaryRecordResponse": {
+      "properties": {
+        "binary_info": {
+          "$ref": "#/definitions/models.BinaryInfoResponse"
+        },
+        "created_at": {
+          "format": "date-time",
+          "type": "string",
+          "x-nullable": false
+        },
+        "key": {
+          "type": "string"
+        },
+        "namespace": {
+          "type": "string"
+        },
+        "set_by": {
+          "default": "CLIENT",
+          "description": "Indicate which party that could modify the record",
+          "type": "string"
+        },
+        "updated_at": {
+          "format": "date-time",
+          "type": "string",
+          "x-nullable": false
+        }
+      },
+      "required": [
+        "created_at",
+        "key",
+        "namespace",
+        "updated_at"
       ]
     },
     "models.GameRecordRequest": {
@@ -5134,11 +7658,45 @@
         "paging"
       ]
     },
+    "models.ListGameBinaryRecordsResponse": {
+      "properties": {
+        "data": {
+          "items": {
+            "$ref": "#/definitions/models.GameBinaryRecordResponse"
+          },
+          "type": "array"
+        },
+        "paging": {
+          "$ref": "#/definitions/models.Pagination"
+        }
+      },
+      "required": [
+        "data",
+        "paging"
+      ]
+    },
     "models.ListGameRecordKeysResponse": {
       "properties": {
         "data": {
           "items": {
             "type": "string"
+          },
+          "type": "array"
+        },
+        "paging": {
+          "$ref": "#/definitions/models.Pagination"
+        }
+      },
+      "required": [
+        "data",
+        "paging"
+      ]
+    },
+    "models.ListPlayerBinaryRecordsResponse": {
+      "properties": {
+        "data": {
+          "items": {
+            "$ref": "#/definitions/models.PlayerBinaryRecordResponse"
           },
           "type": "array"
         },
@@ -5188,6 +7746,93 @@
         "last",
         "next",
         "previous"
+      ]
+    },
+    "models.PlayerBinaryRecordCreate": {
+      "properties": {
+        "file_type": {
+          "type": "string"
+        },
+        "is_public": {
+          "type": "boolean",
+          "x-omitempty": false
+        },
+        "key": {
+          "type": "string"
+        },
+        "set_by": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "file_type",
+        "key",
+        "set_by"
+      ]
+    },
+    "models.PlayerBinaryRecordMetadataPublicRequest": {
+      "properties": {
+        "is_public": {
+          "type": "boolean",
+          "x-omitempty": false
+        }
+      }
+    },
+    "models.PlayerBinaryRecordMetadataRequest": {
+      "properties": {
+        "is_public": {
+          "type": "boolean",
+          "x-omitempty": false
+        },
+        "set_by": {
+          "description": "Indicate which party that could modify the record",
+          "type": "string"
+        }
+      }
+    },
+    "models.PlayerBinaryRecordResponse": {
+      "properties": {
+        "binary_info": {
+          "$ref": "#/definitions/models.BinaryInfoResponse"
+        },
+        "created_at": {
+          "format": "date-time",
+          "type": "string",
+          "x-nullable": false
+        },
+        "is_public": {
+          "default": false,
+          "description": "Indicate whether the player record is public or not",
+          "type": "boolean",
+          "x-omitempty": false
+        },
+        "key": {
+          "type": "string"
+        },
+        "namespace": {
+          "type": "string"
+        },
+        "set_by": {
+          "default": "CLIENT",
+          "description": "Indicate which party that could modify the record",
+          "type": "string"
+        },
+        "updated_at": {
+          "format": "date-time",
+          "type": "string",
+          "x-nullable": false
+        },
+        "user_id": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "created_at",
+        "is_public",
+        "key",
+        "namespace",
+        "updated_at",
+        "user_id"
       ]
     },
     "models.PlayerRecordKeyInfo": {
@@ -5318,6 +7963,11 @@
           "$ref": "#/definitions/models.CustomFunction"
         },
         "extendType": {
+          "description": "available value: APP, CUSTOM",
+          "enum": [
+            "APP",
+            "CUSTOM"
+          ],
           "type": "string"
         },
         "namespace": {
@@ -5328,6 +7978,38 @@
         "customFunction",
         "extendType",
         "namespace"
+      ]
+    },
+    "models.PublicGameBinaryRecordCreate": {
+      "properties": {
+        "file_type": {
+          "type": "string"
+        },
+        "key": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "file_type",
+        "key"
+      ]
+    },
+    "models.PublicPlayerBinaryRecordCreate": {
+      "properties": {
+        "file_type": {
+          "type": "string"
+        },
+        "is_public": {
+          "type": "boolean",
+          "x-omitempty": false
+        },
+        "key": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "file_type",
+        "key"
       ]
     },
     "models.ResponseError": {
@@ -5343,6 +8025,39 @@
       "required": [
         "errorCode",
         "errorMessage"
+      ]
+    },
+    "models.UploadBinaryRecordRequest": {
+      "properties": {
+        "file_type": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "file_type"
+      ]
+    },
+    "models.UploadBinaryRecordResponse": {
+      "properties": {
+        "content_type": {
+          "type": "string"
+        },
+        "file_location": {
+          "type": "string"
+        },
+        "url": {
+          "type": "string"
+        },
+        "version": {
+          "format": "int32",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "content_type",
+        "file_location",
+        "url",
+        "version"
       ]
     },
     "models.UserKeyRequest": {
@@ -5369,11 +8084,11 @@
     "path": "/cloudsave/apidocs/api.json"
   },
   "x-version": {
-    "buildDate": "2023-07-18T02:10:16+00:00",
-    "gitHash": "820907d83892793d6426a0338eb65869742168b4",
+    "buildDate": "2023-08-10T03:28:53+00:00",
+    "gitHash": "6ea0771ce5cd4e6900c6ccc955c3fe95f4d56db9",
     "name": "justice-cloudsave-service",
-    "revisionID": "3.9.0",
-    "version": "3.9.0",
+    "revisionID": "3.10.1",
+    "version": "3.10.1",
     "version-roles-seeding": "0.0.37"
   }
 }

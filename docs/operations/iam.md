@@ -313,6 +313,7 @@
 | `/iam/v3/namespace/{namespace}/token/request` | POST | RequestGameTokenCodeResponseV3Short | [RequestGameTokenCodeResponseV3Short](../../iam-sdk/pkg/iamclient/o_auth2_0_extension/o_auth20_extension_client.go) | [RequestGameTokenCodeResponseV3Short](../../services-api/pkg/service/iam/oAuth20Extension.go) | [RequestGameTokenCodeResponseV3Short](../../samples/cli/cmd/iam/oAuth20Extension/requestGameTokenCodeResponseV3.go) |
 | `/iam/v3/platforms/{platformId}/authenticate` | GET | PlatformAuthenticationV3Short | [PlatformAuthenticationV3Short](../../iam-sdk/pkg/iamclient/o_auth2_0_extension/o_auth20_extension_client.go) | [PlatformAuthenticationV3Short](../../services-api/pkg/service/iam/oAuth20Extension.go) | [PlatformAuthenticationV3Short](../../samples/cli/cmd/iam/oAuth20Extension/platformAuthenticationV3.go) |
 | `/iam/v3/token/exchange` | POST | RequestGameTokenResponseV3Short | [RequestGameTokenResponseV3Short](../../iam-sdk/pkg/iamclient/o_auth2_0_extension/o_auth20_extension_client.go) | [RequestGameTokenResponseV3Short](../../services-api/pkg/service/iam/oAuth20Extension.go) | [RequestGameTokenResponseV3Short](../../samples/cli/cmd/iam/oAuth20Extension/requestGameTokenResponseV3.go) |
+| `/iam/v3/v3/platforms/{platformId}/token/verify` | POST | PlatformTokenRefreshV3Short | [PlatformTokenRefreshV3Short](../../iam-sdk/pkg/iamclient/o_auth2_0_extension/o_auth20_extension_client.go) | [PlatformTokenRefreshV3Short](../../services-api/pkg/service/iam/oAuth20Extension.go) | [PlatformTokenRefreshV3Short](../../samples/cli/cmd/iam/oAuth20Extension/platformTokenRefreshV3.go) |
 
 ### OAuth2.0 Wrapper:  [OAuth20](../../services-api/pkg/service/iam/oAuth20.go)
 | Endpoint | Method | ID | Class | Wrapper | Example |
@@ -671,6 +672,7 @@
 | `oauthmodel.GameTokenCodeResponse` | [OauthmodelGameTokenCodeResponse ](../../iam-sdk/pkg/iamclientmodels/oauthmodel_game_token_code_response.go) |
 | `oauthmodel.OneTimeLinkingCodeResponse` | [OauthmodelOneTimeLinkingCodeResponse ](../../iam-sdk/pkg/iamclientmodels/oauthmodel_one_time_linking_code_response.go) |
 | `oauthmodel.OneTimeLinkingCodeValidationResponse` | [OauthmodelOneTimeLinkingCodeValidationResponse ](../../iam-sdk/pkg/iamclientmodels/oauthmodel_one_time_linking_code_validation_response.go) |
+| `oauthmodel.PlatformTokenRefreshResponseV3` | [OauthmodelPlatformTokenRefreshResponseV3 ](../../iam-sdk/pkg/iamclientmodels/oauthmodel_platform_token_refresh_response_v3.go) |
 | `oauthmodel.TokenIntrospectResponse` | [OauthmodelTokenIntrospectResponse ](../../iam-sdk/pkg/iamclientmodels/oauthmodel_token_introspect_response.go) |
 | `oauthmodel.TokenResponse` | [OauthmodelTokenResponse ](../../iam-sdk/pkg/iamclientmodels/oauthmodel_token_response.go) |
 | `oauthmodel.TokenResponseV3` | [OauthmodelTokenResponseV3 ](../../iam-sdk/pkg/iamclientmodels/oauthmodel_token_response_v3.go) |

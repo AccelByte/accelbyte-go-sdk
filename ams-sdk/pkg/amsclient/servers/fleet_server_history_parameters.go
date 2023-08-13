@@ -66,7 +66,7 @@ type FleetServerHistoryParams struct {
 	/*RetryPolicy*/
 	RetryPolicy *utils.Retry
 	/*FleetID
-	  the id of the fleet
+	  ID of the fleet
 
 	*/
 	FleetID string
@@ -85,6 +85,31 @@ type FleetServerHistoryParams struct {
 
 	*/
 	Offset *int64
+	/*Reason
+	  Exit reason
+
+	*/
+	Reason *string
+	/*Region
+	  Region
+
+	*/
+	Region *string
+	/*ServerID
+	  Dedicated server ID
+
+	*/
+	ServerID *string
+	/*SortDirection
+	  The direction of the sort on the 'createdAt' column, 'asc' for ascending and 'desc' for descending. Defaults to 'asc' when not provided.
+
+	*/
+	SortDirection *string
+	/*Status
+	  Status of the dedicated server
+
+	*/
+	Status *string
 
 	timeout        time.Duration
 	AuthInfoWriter runtime.ClientAuthInfoWriter
@@ -183,6 +208,61 @@ func (o *FleetServerHistoryParams) SetOffset(offset *int64) {
 	o.Offset = offset
 }
 
+// WithReason adds the reason to the fleet server history params
+func (o *FleetServerHistoryParams) WithReason(reason *string) *FleetServerHistoryParams {
+	o.SetReason(reason)
+	return o
+}
+
+// SetReason adds the reason to the fleet server history params
+func (o *FleetServerHistoryParams) SetReason(reason *string) {
+	o.Reason = reason
+}
+
+// WithRegion adds the region to the fleet server history params
+func (o *FleetServerHistoryParams) WithRegion(region *string) *FleetServerHistoryParams {
+	o.SetRegion(region)
+	return o
+}
+
+// SetRegion adds the region to the fleet server history params
+func (o *FleetServerHistoryParams) SetRegion(region *string) {
+	o.Region = region
+}
+
+// WithServerID adds the serverID to the fleet server history params
+func (o *FleetServerHistoryParams) WithServerID(serverID *string) *FleetServerHistoryParams {
+	o.SetServerID(serverID)
+	return o
+}
+
+// SetServerID adds the serverId to the fleet server history params
+func (o *FleetServerHistoryParams) SetServerID(serverID *string) {
+	o.ServerID = serverID
+}
+
+// WithSortDirection adds the sortDirection to the fleet server history params
+func (o *FleetServerHistoryParams) WithSortDirection(sortDirection *string) *FleetServerHistoryParams {
+	o.SetSortDirection(sortDirection)
+	return o
+}
+
+// SetSortDirection adds the sortDirection to the fleet server history params
+func (o *FleetServerHistoryParams) SetSortDirection(sortDirection *string) {
+	o.SortDirection = sortDirection
+}
+
+// WithStatus adds the status to the fleet server history params
+func (o *FleetServerHistoryParams) WithStatus(status *string) *FleetServerHistoryParams {
+	o.SetStatus(status)
+	return o
+}
+
+// SetStatus adds the status to the fleet server history params
+func (o *FleetServerHistoryParams) SetStatus(status *string) {
+	o.Status = status
+}
+
 // WriteToRequest writes these params to a swagger request
 func (o *FleetServerHistoryParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.Registry) error {
 
@@ -227,6 +307,86 @@ func (o *FleetServerHistoryParams) WriteToRequest(r runtime.ClientRequest, reg s
 		qOffset := swag.FormatInt64(qrOffset)
 		if qOffset != "" {
 			if err := r.SetQueryParam("offset", qOffset); err != nil {
+				return err
+			}
+		}
+
+	}
+
+	if o.Reason != nil {
+
+		// query param reason
+		var qrReason string
+		if o.Reason != nil {
+			qrReason = *o.Reason
+		}
+		qReason := qrReason
+		if qReason != "" {
+			if err := r.SetQueryParam("reason", qReason); err != nil {
+				return err
+			}
+		}
+
+	}
+
+	if o.Region != nil {
+
+		// query param region
+		var qrRegion string
+		if o.Region != nil {
+			qrRegion = *o.Region
+		}
+		qRegion := qrRegion
+		if qRegion != "" {
+			if err := r.SetQueryParam("region", qRegion); err != nil {
+				return err
+			}
+		}
+
+	}
+
+	if o.ServerID != nil {
+
+		// query param serverId
+		var qrServerID string
+		if o.ServerID != nil {
+			qrServerID = *o.ServerID
+		}
+		qServerID := qrServerID
+		if qServerID != "" {
+			if err := r.SetQueryParam("serverId", qServerID); err != nil {
+				return err
+			}
+		}
+
+	}
+
+	if o.SortDirection != nil {
+
+		// query param sortDirection
+		var qrSortDirection string
+		if o.SortDirection != nil {
+			qrSortDirection = *o.SortDirection
+		}
+		qSortDirection := qrSortDirection
+		if qSortDirection != "" {
+			if err := r.SetQueryParam("sortDirection", qSortDirection); err != nil {
+				return err
+			}
+		}
+
+	}
+
+	if o.Status != nil {
+
+		// query param status
+		var qrStatus string
+		if o.Status != nil {
+			qrStatus = *o.Status
+		}
+		qStatus := qrStatus
+		if qStatus != "" {
+			if err := r.SetQueryParam("status", qStatus); err != nil {
 				return err
 			}
 		}

@@ -7,6 +7,8 @@
 package cloudsaveclientmodels
 
 import (
+	"encoding/json"
+
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
@@ -28,7 +30,8 @@ type ModelsPluginResponse struct {
 	// Required: true
 	CustomFunction *ModelsCustomFunction `json:"customFunction"`
 
-	// extendtype
+	// available value: APP, CUSTOM
+	// Enum: ['APP', 'CUSTOM']
 	// Required: true
 	ExtendType *string `json:"extendType"`
 
@@ -75,9 +78,43 @@ func (m *ModelsPluginResponse) validateCustomFunction(formats strfmt.Registry) e
 	return nil
 }
 
+var modelsPluginResponseTypeExtendTypePropEnum []interface{}
+
+func init() {
+	var res []string
+	if err := json.Unmarshal([]byte(`["APP", "CUSTOM"]`), &res); err != nil {
+		panic(err)
+	}
+	for _, v := range res {
+		modelsPluginResponseTypeExtendTypePropEnum = append(modelsPluginResponseTypeExtendTypePropEnum, v)
+	}
+}
+
+const (
+
+	// ModelsPluginResponseExtendTypeAPP captures enum value "APP"
+	ModelsPluginResponseExtendTypeAPP string = "APP"
+
+	// ModelsPluginResponseExtendTypeCUSTOM captures enum value "CUSTOM"
+	ModelsPluginResponseExtendTypeCUSTOM string = "CUSTOM"
+)
+
+// prop value enum
+func (m *ModelsPluginResponse) validateExtendTypeEnum(path, location string, value string) error {
+	if err := validate.EnumCase(path, location, value, modelsPluginResponseTypeExtendTypePropEnum, true); err != nil {
+		return err
+	}
+	return nil
+}
+
 func (m *ModelsPluginResponse) validateExtendType(formats strfmt.Registry) error {
 
 	if err := validate.Required("extendType", "body", m.ExtendType); err != nil {
+		return err
+	}
+
+	// value enum
+	if err := m.validateExtendTypeEnum("extendType", "body", *m.ExtendType); err != nil {
 		return err
 	}
 

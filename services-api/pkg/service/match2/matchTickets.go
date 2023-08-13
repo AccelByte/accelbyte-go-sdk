@@ -62,6 +62,29 @@ func (aaa *MatchTicketsService) CreateMatchTicket(input *match_tickets.CreateMat
 	return created.GetPayload(), nil
 }
 
+// Deprecated: 2022-01-10 - please use GetMyMatchTicketsShort instead.
+func (aaa *MatchTicketsService) GetMyMatchTickets(input *match_tickets.GetMyMatchTicketsParams) (*match2clientmodels.APIMatchTicketStatuses, error) {
+	token, err := aaa.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, unauthorized, forbidden, internalServerError, err := aaa.Client.MatchTickets.GetMyMatchTickets(input, client.BearerToken(*token.AccessToken))
+	if unauthorized != nil {
+		return nil, unauthorized
+	}
+	if forbidden != nil {
+		return nil, forbidden
+	}
+	if internalServerError != nil {
+		return nil, internalServerError
+	}
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
 // Deprecated: 2022-01-10 - please use MatchTicketDetailsShort instead.
 func (aaa *MatchTicketsService) MatchTicketDetails(input *match_tickets.MatchTicketDetailsParams) (*match2clientmodels.APIMatchTicketStatus, error) {
 	token, err := aaa.TokenRepository.GetToken()
@@ -137,6 +160,31 @@ func (aaa *MatchTicketsService) CreateMatchTicketShort(input *match_tickets.Crea
 	}
 
 	return created.GetPayload(), nil
+}
+
+func (aaa *MatchTicketsService) GetMyMatchTicketsShort(input *match_tickets.GetMyMatchTicketsParams) (*match2clientmodels.APIMatchTicketStatuses, error) {
+	authInfoWriter := input.AuthInfoWriter
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
+	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  aaa.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
+	ok, err := aaa.Client.MatchTickets.GetMyMatchTicketsShort(input, authInfoWriter)
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
 }
 
 func (aaa *MatchTicketsService) MatchTicketDetailsShort(input *match_tickets.MatchTicketDetailsParams) (*match2clientmodels.APIMatchTicketStatus, error) {

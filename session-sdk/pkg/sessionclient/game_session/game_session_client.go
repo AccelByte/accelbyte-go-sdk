@@ -972,6 +972,7 @@ Deprecated: 2022-08-10 - Use GetGameSessionShort instead.
 
 GetGameSession get game session detail. requires namespace:{namespace}:session:game [read]
 Get game session detail.
+Session will only be accessible from active players in the session, and client with the permission, except the joinability is set to OPEN.
 Session service has several DSInformation status to track DS request to DSMC:
 - NEED_TO_REQUEST: number of active players hasn't reached session's minPlayers therefore DS has not yet requested.
 - REQUESTED: DS is being requested to DSMC.
@@ -1037,6 +1038,7 @@ func (a *Client) GetGameSession(params *GetGameSessionParams, authInfo runtime.C
 /*
 GetGameSessionShort get game session detail. requires namespace:{namespace}:session:game [read]
 Get game session detail.
+Session will only be accessible from active players in the session, and client with the permission, except the joinability is set to OPEN.
 Session service has several DSInformation status to track DS request to DSMC:
 - NEED_TO_REQUEST: number of active players hasn't reached session's minPlayers therefore DS has not yet requested.
 - REQUESTED: DS is being requested to DSMC.

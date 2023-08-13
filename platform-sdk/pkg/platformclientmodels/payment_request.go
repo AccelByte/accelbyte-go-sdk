@@ -25,6 +25,9 @@ type PaymentRequest struct {
 	// Format: int64
 	Amount *int64 `json:"amount"`
 
+	// additional fulfillment information
+	Metadata interface{} `json:"metadata,omitempty"`
+
 	// wallet platform, base on platform wallet rule to payment wallet
 	// Enum: ['Epic', 'GooglePlay', 'IOS', 'Nintendo', 'Oculus', 'Other', 'Playstation', 'Steam', 'Xbox']
 	WalletPlatform string `json:"walletPlatform,omitempty"`

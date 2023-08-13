@@ -22,6 +22,10 @@ type OauthmodelTokenThirdPartyResponse struct {
 	// Required: true
 	PlatformToken *string `json:"platform_token"`
 
+	// platform_token_expires_at
+	// Format: int64
+	PlatformTokenExpiresAt int64 `json:"platform_token_expires_at,omitempty"`
+
 	// sand_box_id
 	SandBoxID string `json:"sand_box_id,omitempty"`
 }

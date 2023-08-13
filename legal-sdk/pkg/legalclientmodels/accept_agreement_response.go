@@ -22,9 +22,6 @@ type AcceptAgreementResponse struct {
 	// Required: true
 	Comply *bool `json:"comply"`
 
-	// extra information
-	Ext interface{} `json:"ext,omitempty"`
-
 	// DEPRECATED the name is not clear, changed with comply
 	// Required: true
 	Proceed *bool `json:"proceed"`

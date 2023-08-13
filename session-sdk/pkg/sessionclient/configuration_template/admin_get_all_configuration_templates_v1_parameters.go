@@ -96,7 +96,7 @@ type AdminGetAllConfigurationTemplatesV1Params struct {
 	*/
 	Limit *int64
 	/*Name
-	  configuration name
+	  Configuration name
 
 	*/
 	Name *string
@@ -105,6 +105,16 @@ type AdminGetAllConfigurationTemplatesV1Params struct {
 
 	*/
 	Offset *int64
+	/*Order
+	  Order of the result. Supported: desc (default), asc
+
+	*/
+	Order *string
+	/*OrderBy
+	  Order result by specific attribute. Supported: createdAt (default), updatedAt
+
+	*/
+	OrderBy *string
 
 	timeout        time.Duration
 	AuthInfoWriter runtime.ClientAuthInfoWriter
@@ -203,6 +213,28 @@ func (o *AdminGetAllConfigurationTemplatesV1Params) SetOffset(offset *int64) {
 	o.Offset = offset
 }
 
+// WithOrder adds the order to the admin get all configuration templates v1 params
+func (o *AdminGetAllConfigurationTemplatesV1Params) WithOrder(order *string) *AdminGetAllConfigurationTemplatesV1Params {
+	o.SetOrder(order)
+	return o
+}
+
+// SetOrder adds the order to the admin get all configuration templates v1 params
+func (o *AdminGetAllConfigurationTemplatesV1Params) SetOrder(order *string) {
+	o.Order = order
+}
+
+// WithOrderBy adds the orderBy to the admin get all configuration templates v1 params
+func (o *AdminGetAllConfigurationTemplatesV1Params) WithOrderBy(orderBy *string) *AdminGetAllConfigurationTemplatesV1Params {
+	o.SetOrderBy(orderBy)
+	return o
+}
+
+// SetOrderBy adds the orderBy to the admin get all configuration templates v1 params
+func (o *AdminGetAllConfigurationTemplatesV1Params) SetOrderBy(orderBy *string) {
+	o.OrderBy = orderBy
+}
+
 // WriteToRequest writes these params to a swagger request
 func (o *AdminGetAllConfigurationTemplatesV1Params) WriteToRequest(r runtime.ClientRequest, reg strfmt.Registry) error {
 
@@ -258,6 +290,38 @@ func (o *AdminGetAllConfigurationTemplatesV1Params) WriteToRequest(r runtime.Cli
 		qOffset := swag.FormatInt64(qrOffset)
 		if qOffset != "" {
 			if err := r.SetQueryParam("offset", qOffset); err != nil {
+				return err
+			}
+		}
+
+	}
+
+	if o.Order != nil {
+
+		// query param order
+		var qrOrder string
+		if o.Order != nil {
+			qrOrder = *o.Order
+		}
+		qOrder := qrOrder
+		if qOrder != "" {
+			if err := r.SetQueryParam("order", qOrder); err != nil {
+				return err
+			}
+		}
+
+	}
+
+	if o.OrderBy != nil {
+
+		// query param orderBy
+		var qrOrderBy string
+		if o.OrderBy != nil {
+			qrOrderBy = *o.OrderBy
+		}
+		qOrderBy := qrOrderBy
+		if qOrderBy != "" {
+			if err := r.SetQueryParam("orderBy", qOrderBy); err != nil {
 				return err
 			}
 		}

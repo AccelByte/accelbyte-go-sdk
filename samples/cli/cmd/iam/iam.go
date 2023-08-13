@@ -312,6 +312,7 @@ func init() {
 	IamCmd.AddCommand(sso.LoginSSOClientCmd)
 	IamCmd.AddCommand(sso.LogoutSSOClientCmd)
 	IamCmd.AddCommand(oAuth20Extension.RequestGameTokenResponseV3Cmd)
+	IamCmd.AddCommand(oAuth20Extension.PlatformTokenRefreshV3Cmd)
 	IamCmd.AddCommand(devicesV4.AdminGetDevicesByUserV4Cmd)
 	IamCmd.AddCommand(devicesV4.AdminGetBannedDevicesV4Cmd)
 	IamCmd.AddCommand(devicesV4.AdminGetUserDeviceBansV4Cmd)

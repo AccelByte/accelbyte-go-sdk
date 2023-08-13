@@ -30,21 +30,23 @@ type Client struct {
 
 // ClientService is the interface for Client methods
 type ClientService interface {
-	BasicHealthCheck(params *BasicHealthCheckParams, authInfo runtime.ClientAuthInfoWriter) (*BasicHealthCheckOK, error)
-	BasicHealthCheckShort(params *BasicHealthCheckParams, authInfo runtime.ClientAuthInfoWriter) (*BasicHealthCheckOK, error)
+	Func2(params *Func2Params, authInfo runtime.ClientAuthInfoWriter) (*Func2OK, error)
+	Func2Short(params *Func2Params, authInfo runtime.ClientAuthInfoWriter) (*Func2OK, error)
+	PortalHealthCheck(params *PortalHealthCheckParams, authInfo runtime.ClientAuthInfoWriter) (*PortalHealthCheckOK, error)
+	PortalHealthCheckShort(params *PortalHealthCheckParams, authInfo runtime.ClientAuthInfoWriter) (*PortalHealthCheckOK, error)
 
 	SetTransport(transport runtime.ClientTransport)
 }
 
 /*
-Deprecated: 2022-08-10 - Use BasicHealthCheckShort instead.
+Deprecated: 2022-08-10 - Use Func2Short instead.
 
-BasicHealthCheck health check
+Func2 health check
 */
-func (a *Client) BasicHealthCheck(params *BasicHealthCheckParams, authInfo runtime.ClientAuthInfoWriter) (*BasicHealthCheckOK, error) {
+func (a *Client) Func2(params *Func2Params, authInfo runtime.ClientAuthInfoWriter) (*Func2OK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
-		params = NewBasicHealthCheckParams()
+		params = NewFunc2Params()
 	}
 
 	if params.Context == nil {
@@ -56,14 +58,14 @@ func (a *Client) BasicHealthCheck(params *BasicHealthCheckParams, authInfo runti
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
-		ID:                 "BasicHealthCheck",
+		ID:                 "func2",
 		Method:             "GET",
-		PathPattern:        "/healthz",
+		PathPattern:        "/ams/healthz",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
 		Params:             params,
-		Reader:             &BasicHealthCheckReader{formats: a.formats},
+		Reader:             &Func2Reader{formats: a.formats},
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
@@ -74,7 +76,7 @@ func (a *Client) BasicHealthCheck(params *BasicHealthCheckParams, authInfo runti
 
 	switch v := result.(type) {
 
-	case *BasicHealthCheckOK:
+	case *Func2OK:
 		return v, nil
 
 	default:
@@ -83,12 +85,12 @@ func (a *Client) BasicHealthCheck(params *BasicHealthCheckParams, authInfo runti
 }
 
 /*
-BasicHealthCheckShort health check
+Func2Short health check
 */
-func (a *Client) BasicHealthCheckShort(params *BasicHealthCheckParams, authInfo runtime.ClientAuthInfoWriter) (*BasicHealthCheckOK, error) {
+func (a *Client) Func2Short(params *Func2Params, authInfo runtime.ClientAuthInfoWriter) (*Func2OK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
-		params = NewBasicHealthCheckParams()
+		params = NewFunc2Params()
 	}
 
 	if params.Context == nil {
@@ -100,14 +102,14 @@ func (a *Client) BasicHealthCheckShort(params *BasicHealthCheckParams, authInfo 
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
-		ID:                 "BasicHealthCheck",
+		ID:                 "func2",
 		Method:             "GET",
-		PathPattern:        "/healthz",
+		PathPattern:        "/ams/healthz",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
 		Params:             params,
-		Reader:             &BasicHealthCheckReader{formats: a.formats},
+		Reader:             &Func2Reader{formats: a.formats},
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
@@ -118,7 +120,97 @@ func (a *Client) BasicHealthCheckShort(params *BasicHealthCheckParams, authInfo 
 
 	switch v := result.(type) {
 
-	case *BasicHealthCheckOK:
+	case *Func2OK:
+		return v, nil
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+Deprecated: 2022-08-10 - Use PortalHealthCheckShort instead.
+
+PortalHealthCheck health check
+*/
+func (a *Client) PortalHealthCheck(params *PortalHealthCheckParams, authInfo runtime.ClientAuthInfoWriter) (*PortalHealthCheckOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewPortalHealthCheckParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "PortalHealthCheck",
+		Method:             "GET",
+		PathPattern:        "/healthz",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &PortalHealthCheckReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *PortalHealthCheckOK:
+		return v, nil
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+PortalHealthCheckShort health check
+*/
+func (a *Client) PortalHealthCheckShort(params *PortalHealthCheckParams, authInfo runtime.ClientAuthInfoWriter) (*PortalHealthCheckOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewPortalHealthCheckParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "PortalHealthCheck",
+		Method:             "GET",
+		PathPattern:        "/healthz",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &PortalHealthCheckReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *PortalHealthCheckOK:
 		return v, nil
 
 	default:

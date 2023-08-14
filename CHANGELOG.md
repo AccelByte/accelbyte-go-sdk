@@ -6,10 +6,13 @@
 - **:** ignore binary output of sample app build
 - **:** disable health check ams integration test
 - **integration-test:** remove tag parallel for validate access token
+- **sdk:** regenerate session service
 ### docs
 - **:** use docs-old for now for some docs
+- **:** update CHANGELOG.md
 ### fix
 - **integration-test:** use admin endpoint to delete session
+- **spec:** change response model in session service
 ### ci
 - **md_crawler:** point to new getting started docs
 

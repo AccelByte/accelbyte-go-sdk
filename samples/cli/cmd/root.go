@@ -25,6 +25,7 @@ import (
 	"github.com/AccelByte/sample-apps/cmd/gdpr"
 	"github.com/AccelByte/sample-apps/cmd/group"
 	"github.com/AccelByte/sample-apps/cmd/iam"
+	"github.com/AccelByte/sample-apps/cmd/inventory"
 	"github.com/AccelByte/sample-apps/cmd/leaderboard"
 	"github.com/AccelByte/sample-apps/cmd/legal"
 	"github.com/AccelByte/sample-apps/cmd/lobby"
@@ -103,6 +104,7 @@ func init() {
 	RootCmd.AddCommand(ugc.UgcCmd)
 	RootCmd.AddCommand(reporting.ReportingCmd)
 	RootCmd.AddCommand(ams.AmsCmd)
+	RootCmd.AddCommand(inventory.InventoryCmd)
 }
 
 // initConfig reads in config file and ENV variables if set.

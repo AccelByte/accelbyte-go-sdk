@@ -63,7 +63,7 @@ func init() {
 	_ = AdminListItemsCmd.MarkFlagRequired("namespace")
 	AdminListItemsCmd.Flags().Int64("limit", 20, "Limit")
 	AdminListItemsCmd.Flags().Int64("offset", 0, "Offset")
-	AdminListItemsCmd.Flags().Int64("qtyGte", "", "Qty gte")
+	AdminListItemsCmd.Flags().Int64("qtyGte", 1, "Qty gte")
 	AdminListItemsCmd.Flags().String("sortBy", "", "Sort by")
 	AdminListItemsCmd.Flags().String("sourceItemId", "", "Source item id")
 	AdminListItemsCmd.Flags().String("tags", "", "Tags")

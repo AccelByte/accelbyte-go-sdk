@@ -63,7 +63,7 @@ func init() {
 	_ = PublicListItemsCmd.MarkFlagRequired("namespace")
 	PublicListItemsCmd.Flags().Int64("limit", 20, "Limit")
 	PublicListItemsCmd.Flags().Int64("offset", 0, "Offset")
-	PublicListItemsCmd.Flags().Int64("qtyGte", "", "Qty gte")
+	PublicListItemsCmd.Flags().Int64("qtyGte", 1, "Qty gte")
 	PublicListItemsCmd.Flags().String("sortBy", "", "Sort by")
 	PublicListItemsCmd.Flags().String("sourceItemId", "", "Source item id")
 	PublicListItemsCmd.Flags().String("tags", "", "Tags")

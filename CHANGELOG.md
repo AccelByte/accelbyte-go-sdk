@@ -1,7 +1,13 @@
 <a name="v0.52.0"></a>
 ## [v0.52.0]
+### chore
+- **:** update CHANGELOG.md and go sum getting started
+- **cli:** add inventory root command and default value
+- **sdk:** generate go server sdk (2023-08-29T05:01:56+00:00)
 ### ci
 - **docs:** update go extend sdk docs url
+### docs
+- **:** add migration-guide-v0.51-to-v0.52.md
 
 
 <a name="v0.51.0"></a>

@@ -25,6 +25,9 @@ type BulkStatOperationResult struct {
 
 	// success
 	Success bool `json:"success"`
+
+	// userid
+	UserID string `json:"userId,omitempty"`
 }
 
 // Validate validates this Bulk stat operation result

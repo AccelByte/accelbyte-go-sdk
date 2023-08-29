@@ -67,7 +67,7 @@ type AddFriendsWithoutConfirmationParams struct {
 	/*RetryPolicy*/
 	RetryPolicy *utils.Retry
 	/*Body*/
-	Body *lobbyclientmodels.ModelBulkAddFriendsRequest
+	Body *lobbyclientmodels.ModelBulkFriendsRequest
 	/*Namespace
 	  namespace
 
@@ -133,13 +133,13 @@ func (o *AddFriendsWithoutConfirmationParams) SetHTTPClientTransport(roundTrippe
 }
 
 // WithBody adds the body to the add friends without confirmation params
-func (o *AddFriendsWithoutConfirmationParams) WithBody(body *lobbyclientmodels.ModelBulkAddFriendsRequest) *AddFriendsWithoutConfirmationParams {
+func (o *AddFriendsWithoutConfirmationParams) WithBody(body *lobbyclientmodels.ModelBulkFriendsRequest) *AddFriendsWithoutConfirmationParams {
 	o.SetBody(body)
 	return o
 }
 
 // SetBody adds the body to the add friends without confirmation params
-func (o *AddFriendsWithoutConfirmationParams) SetBody(body *lobbyclientmodels.ModelBulkAddFriendsRequest) {
+func (o *AddFriendsWithoutConfirmationParams) SetBody(body *lobbyclientmodels.ModelBulkFriendsRequest) {
 	o.Body = body
 }
 

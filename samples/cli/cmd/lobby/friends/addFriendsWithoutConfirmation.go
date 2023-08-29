@@ -29,7 +29,7 @@ var AddFriendsWithoutConfirmationCmd = &cobra.Command{
 			TokenRepository: &repository.TokenRepositoryImpl{},
 		}
 		bodyString := cmd.Flag("body").Value.String()
-		var body *lobbyclientmodels.ModelBulkAddFriendsRequest
+		var body *lobbyclientmodels.ModelBulkFriendsRequest
 		errBody := json.Unmarshal([]byte(bodyString), &body)
 		if errBody != nil {
 			return errBody

@@ -90,6 +90,10 @@ type ModelsMockTicket struct {
 	// ticket_id
 	// Required: true
 	TicketID *string `json:"ticket_id"`
+
+	// ticket_ids
+	// Required: true
+	TicketIds []string `json:"ticket_ids"`
 }
 
 // Validate validates this Models mock ticket
@@ -136,6 +140,9 @@ func (m *ModelsMockTicket) Validate(formats strfmt.Registry) error {
 		res = append(res, err)
 	}
 	if err := m.validateTicketID(formats); err != nil {
+		res = append(res, err)
+	}
+	if err := m.validateTicketIds(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -297,6 +304,15 @@ func (m *ModelsMockTicket) validateStatus(formats strfmt.Registry) error {
 func (m *ModelsMockTicket) validateTicketID(formats strfmt.Registry) error {
 
 	if err := validate.Required("ticket_id", "body", m.TicketID); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *ModelsMockTicket) validateTicketIds(formats strfmt.Registry) error {
+
+	if err := validate.Required("ticket_ids", "body", m.TicketIds); err != nil {
 		return err
 	}
 

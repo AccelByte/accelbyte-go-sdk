@@ -18,6 +18,10 @@ import (
 // swagger:model Model web linking response.
 type ModelWebLinkingResponse struct {
 
+	// state
+	// Required: true
+	State *string `json:"state"`
+
 	// third_party_url
 	// Required: true
 	ThirdPartyURL *string `json:"third_party_url"`
@@ -27,6 +31,9 @@ type ModelWebLinkingResponse struct {
 func (m *ModelWebLinkingResponse) Validate(formats strfmt.Registry) error {
 	var res []error
 
+	if err := m.validateState(formats); err != nil {
+		res = append(res, err)
+	}
 	if err := m.validateThirdPartyURL(formats); err != nil {
 		res = append(res, err)
 	}
@@ -34,6 +41,15 @@ func (m *ModelWebLinkingResponse) Validate(formats strfmt.Registry) error {
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
+	return nil
+}
+
+func (m *ModelWebLinkingResponse) validateState(formats strfmt.Registry) error {
+
+	if err := validate.Required("state", "body", m.State); err != nil {
+		return err
+	}
+
 	return nil
 }
 

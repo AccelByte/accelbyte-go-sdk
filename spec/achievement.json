@@ -3114,7 +3114,7 @@
     "path": "/achievement/apidocs/api.json"
   },
   "x-version": {
-    "buildDate": "2023-08-01T01:39:12+00:00",
+    "buildDate": "2023-08-15T01:37:07+00:00",
     "gitHash": "c6ccbbd3c41d3f1a7e63491b386f0b4f8b3d9755",
     "name": "justice-achievement-service",
     "realm": "staging",

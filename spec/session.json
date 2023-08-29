@@ -3,7 +3,7 @@
   "info": {
     "description": "Justice Session Service",
     "title": "justice-session-service",
-    "version": "2.22.2"
+    "version": "3.1.0"
   },
   "schemes": [
     "https"
@@ -1651,6 +1651,221 @@
         ]
       }
     },
+    "/session/v1/admin/namespaces/{namespace}/sessions/{sessionId}/storage": {
+      "delete": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "\n\t\t\tDelete Session Storage.\n",
+        "operationId": "adminDeleteUserSessionStorage",
+        "parameters": [
+          {
+            "description": "namespace of the game",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "sessionID",
+            "in": "path",
+            "name": "sessionId",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content"
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "summary": "Delete Session Storage. Requires ADMIN:NAMESPACE:{namespace}:SESSION:STORAGE [DELETE]",
+        "tags": [
+          "Session Storage"
+        ]
+      },
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "\n\t\t\tRead Session Storage.\n",
+        "operationId": "adminReadSessionStorage",
+        "parameters": [
+          {
+            "description": "namespace of the game",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "sessionID",
+            "in": "path",
+            "name": "sessionId",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "additionalProperties": {
+                "type": "object"
+              },
+              "type": "object"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "summary": "Read Session Storage . Requires ADMIN:NAMESPACE:{namespace}:SESSION:STORAGE [READ]",
+        "tags": [
+          "Session Storage"
+        ]
+      }
+    },
+    "/session/v1/admin/namespaces/{namespace}/sessions/{sessionId}/storage/users/{userId}": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "\n\t\t\tRead Session Storage User.\n",
+        "operationId": "adminReadUserSessionStorage",
+        "parameters": [
+          {
+            "description": "namespace of the game",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "sessionID",
+            "in": "path",
+            "name": "sessionId",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "userID",
+            "in": "path",
+            "name": "userId",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "additionalProperties": {
+                "type": "object"
+              },
+              "type": "object"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "summary": "Read Session Storage User. Requires ADMIN:NAMESPACE:{namespace}:SESSION:STORAGE [READ]",
+        "tags": [
+          "Session Storage"
+        ]
+      }
+    },
     "/session/v1/admin/namespaces/{namespace}/users/attributes": {
       "get": {
         "consumes": [
@@ -1876,6 +2091,9 @@
             "name": "body",
             "required": true,
             "schema": {
+              "additionalProperties": {
+                "type": "object"
+              },
               "type": "object"
             }
           },
@@ -4020,6 +4238,191 @@
         ]
       }
     },
+    "/session/v1/public/namespaces/{namespace}/sessions/{sessionId}/storage/leader": {
+      "patch": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "\n\t\t\tUpdate Insert Session Storage Leader. only Leader can update or insert user session storage data Leader.\n\t\t\tcan store generic json\n\t\t\texample json can store : \n\t\t\t{\n\t\t\t\t\u0026#34;leader\u0026#34;: {\n\t\t\t\t\t\u0026#34;leader\u0026#34;: 1\n\t\t\t\t},\n\t\t\t\t\u0026#34;data\u0026#34;: 123\n\t\t\t}\n",
+        "operationId": "publicUpdateInsertSessionStorageLeader",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "additionalProperties": {
+                "type": "object"
+              },
+              "type": "object"
+            }
+          },
+          {
+            "description": "Namespace",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "sessionID",
+            "in": "path",
+            "name": "sessionId",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "additionalProperties": {
+                "type": "object"
+              },
+              "type": "object"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "summary": "Update Insert Session Storage Leader . Requires NAMESPACE:{namespace}:SESSION:STORAGE [CREATE]",
+        "tags": [
+          "Session Storage"
+        ]
+      }
+    },
+    "/session/v1/public/namespaces/{namespace}/sessions/{sessionId}/storage/users/{userId}": {
+      "patch": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "\n\t\t\tUpdate Insert Session Storage User. user can only update or insert user session storage data itself.\n\t\t\tcan store generic json\n\t\t\texample json can store : \n\t\t\t{\n\t\t\t\t\u0026#34;storage\u0026#34;: {\n\t\t\t\t\t\u0026#34;storage\u0026#34;: 1\n\t\t\t\t},\n\t\t\t\t\u0026#34;data\u0026#34;: 123\n\t\t\t}\n",
+        "operationId": "publicUpdateInsertSessionStorage",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "additionalProperties": {
+                "type": "object"
+              },
+              "type": "object"
+            }
+          },
+          {
+            "description": "Namespace",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "sessionID",
+            "in": "path",
+            "name": "sessionId",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "userID",
+            "in": "path",
+            "name": "userId",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "additionalProperties": {
+                "type": "object"
+              },
+              "type": "object"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "summary": "Update Insert Session Storage User . Requires NAMESPACE:{namespace}:SESSION:STORAGE [CREATE]",
+        "tags": [
+          "Session Storage"
+        ]
+      }
+    },
     "/session/v1/public/namespaces/{namespace}/users/bulk/platform": {
       "post": {
         "consumes": [
@@ -4507,6 +4910,10 @@
           },
           "type": "array"
         },
+        "immutableStorage": {
+          "type": "boolean",
+          "x-omitempty": false
+        },
         "inactiveTimeout": {
           "format": "int32",
           "type": "integer"
@@ -4634,6 +5041,10 @@
             "type": "string"
           },
           "type": "array"
+        },
+        "immutableStorage": {
+          "type": "boolean",
+          "x-omitempty": false
         },
         "inactiveTimeout": {
           "format": "int32",
@@ -5024,6 +5435,9 @@
         "namespace": {
           "type": "string"
         },
+        "storage": {
+          "type": "object"
+        },
         "teams": {
           "items": {
             "$ref": "#/definitions/models.Team"
@@ -5173,6 +5587,9 @@
         },
         "namespace": {
           "type": "string"
+        },
+        "storage": {
+          "type": "object"
         },
         "updatedAt": {
           "type": "string"
@@ -5339,6 +5756,10 @@
           },
           "type": "array"
         },
+        "immutableStorage": {
+          "type": "boolean",
+          "x-omitempty": false
+        },
         "inactiveTimeout": {
           "format": "int32",
           "type": "integer"
@@ -5493,6 +5914,10 @@
             "type": "string"
           },
           "type": "array"
+        },
+        "immutableStorage": {
+          "type": "boolean",
+          "x-omitempty": false
         },
         "inactiveTimeout": {
           "format": "int32",
@@ -6051,9 +6476,9 @@
     "path": "/session/apidocs/api.json"
   },
   "x-version": {
-    "buildDate": "2023-08-04T23:42:21+00:00",
-    "gitHash": "ad7c7c1cd39c9165d69372daf01bf9c4da4611d8",
-    "version": "2.22.2",
-    "version-roles-seeding": "0.0.38"
+    "buildDate": "2023-08-28T05:46:26+00:00",
+    "gitHash": "62b990761150576d8335961c48fb0d749a2b8067",
+    "version": "3.1.0",
+    "version-roles-seeding": "0.0.40"
   }
 }

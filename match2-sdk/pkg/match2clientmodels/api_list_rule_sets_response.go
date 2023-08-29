@@ -25,8 +25,7 @@ type APIListRuleSetsResponse struct {
 	Data []*APIMatchRuleSetNameData `json:"data"`
 
 	// pagination
-	// Required: true
-	Pagination *ModelsPagination `json:"pagination"`
+	Pagination *ModelsPagination `json:"pagination,omitempty"`
 }
 
 // Validate validates this Api list rule sets response
@@ -34,9 +33,6 @@ func (m *APIListRuleSetsResponse) Validate(formats strfmt.Registry) error {
 	var res []error
 
 	if err := m.validateData(formats); err != nil {
-		res = append(res, err)
-	}
-	if err := m.validatePagination(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -66,24 +62,6 @@ func (m *APIListRuleSetsResponse) validateData(formats strfmt.Registry) error {
 			}
 		}
 
-	}
-
-	return nil
-}
-
-func (m *APIListRuleSetsResponse) validatePagination(formats strfmt.Registry) error {
-
-	if err := validate.Required("pagination", "body", m.Pagination); err != nil {
-		return err
-	}
-
-	if m.Pagination != nil {
-		if err := m.Pagination.Validate(formats); err != nil {
-			if ve, ok := err.(*errors.Validation); ok {
-				return ve.ValidateName("pagination")
-			}
-			return err
-		}
 	}
 
 	return nil

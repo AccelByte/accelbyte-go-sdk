@@ -3,7 +3,7 @@
   "info": {
     "description": "Justice Lobby Server",
     "title": "justice-lobby-server",
-    "version": "staging"
+    "version": "3.25.0"
   },
   "schemes": [
     "https"
@@ -49,6 +49,7 @@
         "NAMESPACE:{namespace}:TOPIC [READ]": "NAMESPACE:{namespace}:TOPIC [READ]",
         "NAMESPACE:{namespace}:TOPIC [UPDATE]": "NAMESPACE:{namespace}:TOPIC [UPDATE]",
         "NAMESPACE:{namespace}:USER:{userId}:FRIENDS [CREATE]": "NAMESPACE:{namespace}:USER:{userId}:FRIENDS [CREATE]",
+        "NAMESPACE:{namespace}:USER:{userId}:FRIENDS [DELETE]": "NAMESPACE:{namespace}:USER:{userId}:FRIENDS [DELETE]",
         "NAMESPACE:{namespace}:USER:{userId}:FRIENDS [READ]": "NAMESPACE:{namespace}:USER:{userId}:FRIENDS [READ]",
         "NAMESPACE:{namespace}:USER:{userId}:NOTIFICATION [CREATE]": "NAMESPACE:{namespace}:USER:{userId}:NOTIFICATION [CREATE]"
       },
@@ -162,6 +163,18 @@
             "name": "namespace",
             "required": true,
             "type": "string"
+          },
+          {
+            "description": "maximum number of data",
+            "in": "query",
+            "name": "limit",
+            "type": "integer"
+          },
+          {
+            "description": "numbers of row to skip within the result",
+            "in": "query",
+            "name": "offset",
+            "type": "integer"
           }
         ],
         "produces": [
@@ -230,6 +243,18 @@
             "name": "namespace",
             "required": true,
             "type": "string"
+          },
+          {
+            "description": "maximum number of data",
+            "in": "query",
+            "name": "limit",
+            "type": "integer"
+          },
+          {
+            "description": "numbers of row to skip within the result",
+            "in": "query",
+            "name": "offset",
+            "type": "integer"
           }
         ],
         "produces": [
@@ -298,6 +323,18 @@
             "name": "namespace",
             "required": true,
             "type": "string"
+          },
+          {
+            "description": "maximum number of data",
+            "in": "query",
+            "name": "limit",
+            "type": "integer"
+          },
+          {
+            "description": "numbers of row to skip within the result",
+            "in": "query",
+            "name": "offset",
+            "type": "integer"
           }
         ],
         "produces": [
@@ -366,6 +403,18 @@
             "name": "namespace",
             "required": true,
             "type": "string"
+          },
+          {
+            "description": "maximum number of data",
+            "in": "query",
+            "name": "limit",
+            "type": "integer"
+          },
+          {
+            "description": "numbers of row to skip within the result",
+            "in": "query",
+            "name": "offset",
+            "type": "integer"
           }
         ],
         "produces": [
@@ -434,6 +483,18 @@
             "name": "namespace",
             "required": true,
             "type": "string"
+          },
+          {
+            "description": "maximum number of data",
+            "in": "query",
+            "name": "limit",
+            "type": "integer"
+          },
+          {
+            "description": "numbers of row to skip within the result",
+            "in": "query",
+            "name": "offset",
+            "type": "integer"
           }
         ],
         "produces": [
@@ -946,7 +1007,7 @@
             "name": "body",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/model.BulkAddFriendsRequest"
+              "$ref": "#/definitions/model.BulkFriendsRequest"
             }
           },
           {
@@ -1008,6 +1069,91 @@
           }
         ],
         "summary": "Add friends without confirmation",
+        "tags": [
+          "friends",
+          "public"
+        ]
+      }
+    },
+    "/friends/namespaces/{namespace}/users/{userId}/delete/bulk": {
+      "post": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Required permission : \u0026lt;code\u0026gt;NAMESPACE:{namespace}:USER:{userId}:FRIENDS [DELETE]\u0026lt;/code\u0026gt; with scope \u0026lt;code\u0026gt;social\u0026lt;/code\u0026gt;\n\t\t\t\u0026lt;br\u0026gt;friends request in a namespace.",
+        "operationId": "bulkDeleteFriends",
+        "parameters": [
+          {
+            "description": "list of friend userIDs",
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/model.BulkFriendsRequest"
+            }
+          },
+          {
+            "description": "namespace",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "user ID",
+            "in": "path",
+            "name": "userId",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "number of deleted items (one friendship consists of 2 items)",
+            "schema": {
+              "$ref": "#/definitions/model.BulkFriendsResponse"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/restapi.ErrorResponseV1"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/restapi.ErrorResponseV1"
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "schema": {
+              "$ref": "#/definitions/restapi.ErrorResponseV1"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/model.BulkFriendsResponse"
+            }
+          }
+        },
+        "security": [
+          {
+            "HasPermission": [
+              "NAMESPACE:{namespace}:USER:{userId}:FRIENDS [DELETE]"
+            ],
+            "HasScope": [
+              "social"
+            ],
+            "authorization": []
+          }
+        ],
+        "summary": "Delete friends, and incoming/outgoing friend requests",
         "tags": [
           "friends",
           "public"
@@ -1390,6 +1536,12 @@
             "type": "string"
           },
           {
+            "description": "friend userId",
+            "in": "query",
+            "name": "friendId",
+            "type": "string"
+          },
+          {
             "description": "maximum number of data",
             "in": "query",
             "name": "limit",
@@ -1474,6 +1626,12 @@
             "in": "path",
             "name": "userId",
             "required": true,
+            "type": "string"
+          },
+          {
+            "description": "friend userId",
+            "in": "query",
+            "name": "friendId",
             "type": "string"
           },
           {
@@ -7475,7 +7633,7 @@
         "Text"
       ]
     },
-    "model.BulkAddFriendsRequest": {
+    "model.BulkFriendsRequest": {
       "properties": {
         "friendIds": {
           "items": {
@@ -7486,6 +7644,17 @@
       },
       "required": [
         "friendIds"
+      ]
+    },
+    "model.BulkFriendsResponse": {
+      "properties": {
+        "rowsAffected": {
+          "format": "int32",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "rowsAffected"
       ]
     },
     "model.BulkUsersFreeFormNotificationRequestV1": {
@@ -8968,11 +9137,11 @@
     "path": "/lobby/apidocs/api.json"
   },
   "x-version": {
-    "buildDate": "2023-07-31T14:26:08+00:00",
-    "gitHash": "6b7d94b1863a27fcdc5ded64b45001fb32484f90",
+    "buildDate": "2023-08-25T14:15:00+00:00",
+    "gitHash": "a87dbe3f5ac23ee3beb73280d3bfab4c61310e5f",
     "name": "justice-lobby-server",
-    "revisionID": "3.24.1",
-    "version": "3.24.1",
+    "revisionID": "3.25.0",
+    "version": "3.25.0",
     "version-justice": "3.45.0",
     "version-roles-seeding": "0.0.29"
   }

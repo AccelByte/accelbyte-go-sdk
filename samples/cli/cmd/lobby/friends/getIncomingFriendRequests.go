@@ -27,11 +27,13 @@ var GetIncomingFriendRequestsCmd = &cobra.Command{
 		}
 		namespace, _ := cmd.Flags().GetString("namespace")
 		userId, _ := cmd.Flags().GetString("userId")
+		friendId, _ := cmd.Flags().GetString("friendId")
 		limit, _ := cmd.Flags().GetInt64("limit")
 		offset, _ := cmd.Flags().GetInt64("offset")
 		input := &friends.GetIncomingFriendRequestsParams{
 			Namespace: namespace,
 			UserID:    userId,
+			FriendID:  &friendId,
 			Limit:     &limit,
 			Offset:    &offset,
 		}
@@ -53,6 +55,7 @@ func init() {
 	_ = GetIncomingFriendRequestsCmd.MarkFlagRequired("namespace")
 	GetIncomingFriendRequestsCmd.Flags().String("userId", "", "User id")
 	_ = GetIncomingFriendRequestsCmd.MarkFlagRequired("userId")
+	GetIncomingFriendRequestsCmd.Flags().String("friendId", "", "Friend id")
 	GetIncomingFriendRequestsCmd.Flags().Int64("limit", 20, "Limit")
 	GetIncomingFriendRequestsCmd.Flags().Int64("offset", 0, "Offset")
 }

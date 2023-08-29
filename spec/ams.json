@@ -3,7 +3,7 @@
   "info": {
     "description": "Manage AMS Fleets",
     "title": "fleet-commander",
-    "version": "0.2.1"
+    "version": "1.0.1"
   },
   "schemes": [
     "https"
@@ -46,9 +46,52 @@
   },
   "swagger": "2.0",
   "paths": {
+    "/ams/auth": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "operationId": "AuthCheck",
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "success"
+          },
+          "401": {
+            "description": "unauthorized",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "403": {
+            "description": "forbidden",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "500": {
+            "description": "internal server error",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "summary": "Check if fleet commander is authorized to talk to AMS with this IAM",
+        "tags": [
+          "Auth"
+        ]
+      }
+    },
     "/ams/healthz": {
       "get": {
-        "operationId": "func2",
+        "operationId": "PortalHealthCheck",
         "produces": [
           "application/json"
         ],
@@ -62,7 +105,10 @@
             "authorization": []
           }
         ],
-        "summary": "health check"
+        "summary": "Health check",
+        "tags": [
+          "Fleet Commander"
+        ]
       }
     },
     "/ams/v1/admin/namespaces/{namespace}/account": {
@@ -1535,7 +1581,7 @@
     },
     "/ams/version": {
       "get": {
-        "operationId": "func3",
+        "operationId": "func1",
         "produces": [
           "application/json"
         ],
@@ -1557,7 +1603,7 @@
     },
     "/healthz": {
       "get": {
-        "operationId": "PortalHealthCheck",
+        "operationId": "BasicHealthCheck",
         "produces": [
           "application/json"
         ],
@@ -1571,7 +1617,10 @@
             "authorization": []
           }
         ],
-        "summary": "health check"
+        "summary": "Health check",
+        "tags": [
+          "Fleet Commander"
+        ]
       }
     }
   },
@@ -2066,6 +2115,12 @@
           },
           "type": "array"
         },
+        "ports": {
+          "additionalProperties": {
+            "type": "integer"
+          },
+          "type": "object"
+        },
         "region": {
           "type": "string"
         },
@@ -2085,6 +2140,7 @@
         "instanceType",
         "ipAddress",
         "portConfiguration",
+        "ports",
         "region",
         "serverId",
         "status"
@@ -2483,10 +2539,10 @@
     "path": "/ams/apidocs/api.json"
   },
   "x-version": {
-    "buildDate": "2023-07-31T20:02:11+00:00",
-    "gitHash": "4adc872830d0167fa81153519d07c75737383419",
+    "buildDate": "2023-08-28T06:05:32+00:00",
+    "gitHash": "097af1d16471601b6da5fd4ac58c2d705836651e",
     "name": "fleet-commander",
-    "version": "0.2.1",
+    "version": "1.0.1",
     "version-roles-seeding": "0.0.24"
   }
 }

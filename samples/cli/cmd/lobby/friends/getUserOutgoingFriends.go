@@ -26,8 +26,12 @@ var GetUserOutgoingFriendsCmd = &cobra.Command{
 			TokenRepository: &repository.TokenRepositoryImpl{},
 		}
 		namespace, _ := cmd.Flags().GetString("namespace")
+		limit, _ := cmd.Flags().GetInt64("limit")
+		offset, _ := cmd.Flags().GetInt64("offset")
 		input := &friends.GetUserOutgoingFriendsParams{
 			Namespace: namespace,
+			Limit:     &limit,
+			Offset:    &offset,
 		}
 		ok, errOK := friendsService.GetUserOutgoingFriendsShort(input)
 		if errOK != nil {
@@ -45,4 +49,6 @@ var GetUserOutgoingFriendsCmd = &cobra.Command{
 func init() {
 	GetUserOutgoingFriendsCmd.Flags().String("namespace", "", "Namespace")
 	_ = GetUserOutgoingFriendsCmd.MarkFlagRequired("namespace")
+	GetUserOutgoingFriendsCmd.Flags().Int64("limit", 20, "Limit")
+	GetUserOutgoingFriendsCmd.Flags().Int64("offset", 0, "Offset")
 }

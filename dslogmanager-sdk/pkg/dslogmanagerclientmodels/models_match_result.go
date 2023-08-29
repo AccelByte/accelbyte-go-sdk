@@ -7,8 +7,6 @@
 package dslogmanagerclientmodels
 
 import (
-	"strconv"
-
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
@@ -25,8 +23,7 @@ type ModelsMatchResult struct {
 	GameMode *string `json:"game_mode"`
 
 	// matching_allies
-	// Required: true
-	MatchingAllies []*ModelsRequestMatchingAlly `json:"matching_allies"`
+	MatchingAllies []*ModelsRequestMatchingAlly `json:"matching_allies,omitempty"`
 
 	// namespace
 	// Required: true
@@ -42,9 +39,6 @@ func (m *ModelsMatchResult) Validate(formats strfmt.Registry) error {
 	var res []error
 
 	if err := m.validateGameMode(formats); err != nil {
-		res = append(res, err)
-	}
-	if err := m.validateMatchingAllies(formats); err != nil {
 		res = append(res, err)
 	}
 	if err := m.validateNamespace(formats); err != nil {
@@ -64,31 +58,6 @@ func (m *ModelsMatchResult) validateGameMode(formats strfmt.Registry) error {
 
 	if err := validate.Required("game_mode", "body", m.GameMode); err != nil {
 		return err
-	}
-
-	return nil
-}
-
-func (m *ModelsMatchResult) validateMatchingAllies(formats strfmt.Registry) error {
-
-	if err := validate.Required("matching_allies", "body", m.MatchingAllies); err != nil {
-		return err
-	}
-
-	for i := 0; i < len(m.MatchingAllies); i++ {
-		if swag.IsZero(m.MatchingAllies[i]) { // not required
-			continue
-		}
-
-		if m.MatchingAllies[i] != nil {
-			if err := m.MatchingAllies[i].Validate(formats); err != nil {
-				if ve, ok := err.(*errors.Validation); ok {
-					return ve.ValidateName("matching_allies" + "." + strconv.Itoa(i))
-				}
-				return err
-			}
-		}
-
 	}
 
 	return nil

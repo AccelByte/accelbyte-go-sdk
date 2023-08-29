@@ -75,6 +75,11 @@ type GetIncomingFriendRequestsParams struct {
 
 	*/
 	UserID string
+	/*FriendID
+	  friend userId
+
+	*/
+	FriendID *string
 	/*Limit
 	  maximum number of data
 
@@ -161,6 +166,17 @@ func (o *GetIncomingFriendRequestsParams) SetUserID(userID string) {
 	o.UserID = userID
 }
 
+// WithFriendID adds the friendID to the get incoming friend requests params
+func (o *GetIncomingFriendRequestsParams) WithFriendID(friendID *string) *GetIncomingFriendRequestsParams {
+	o.SetFriendID(friendID)
+	return o
+}
+
+// SetFriendID adds the friendId to the get incoming friend requests params
+func (o *GetIncomingFriendRequestsParams) SetFriendID(friendID *string) {
+	o.FriendID = friendID
+}
+
 // WithLimit adds the limit to the get incoming friend requests params
 func (o *GetIncomingFriendRequestsParams) WithLimit(limit *int64) *GetIncomingFriendRequestsParams {
 	o.SetLimit(limit)
@@ -199,6 +215,22 @@ func (o *GetIncomingFriendRequestsParams) WriteToRequest(r runtime.ClientRequest
 	// path param userId
 	if err := r.SetPathParam("userId", o.UserID); err != nil {
 		return err
+	}
+
+	if o.FriendID != nil {
+
+		// query param friendId
+		var qrFriendID string
+		if o.FriendID != nil {
+			qrFriendID = *o.FriendID
+		}
+		qFriendID := qrFriendID
+		if qFriendID != "" {
+			if err := r.SetQueryParam("friendId", qFriendID); err != nil {
+				return err
+			}
+		}
+
 	}
 
 	if o.Limit != nil {

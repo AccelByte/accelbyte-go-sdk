@@ -41,6 +41,9 @@ type ApimodelsCreateConfigurationTemplateRequest struct {
 	// fallbackclaimkeys
 	FallbackClaimKeys []string `json:"fallbackClaimKeys,omitempty"`
 
+	// immutablestorage
+	ImmutableStorage bool `json:"immutableStorage"`
+
 	// inactivetimeout
 	// Required: true
 	// Format: int32

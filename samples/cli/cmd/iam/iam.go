@@ -289,6 +289,7 @@ func init() {
 	IamCmd.AddCommand(users.PublicForcePlatformLinkV3Cmd)
 	IamCmd.AddCommand(users.PublicWebLinkPlatformCmd)
 	IamCmd.AddCommand(users.PublicWebLinkPlatformEstablishCmd)
+	IamCmd.AddCommand(users.PublicProcessWebLinkPlatformV3Cmd)
 	IamCmd.AddCommand(users.ResetPasswordV3Cmd)
 	IamCmd.AddCommand(users.PublicGetUserByUserIdV3Cmd)
 	IamCmd.AddCommand(users.PublicGetUserBanHistoryV3Cmd)
@@ -382,5 +383,6 @@ func init() {
 	IamCmd.AddCommand(usersV4.PublicEnableMyEmailV4Cmd)
 	IamCmd.AddCommand(usersV4.PublicGetMyEnabledFactorsV4Cmd)
 	IamCmd.AddCommand(usersV4.PublicMakeFactorMyDefaultV4Cmd)
+	IamCmd.AddCommand(usersV4.PublicGetUserPublicInfoByUserIdV4Cmd)
 	IamCmd.AddCommand(usersV4.PublicInviteUserV4Cmd)
 }

@@ -26,8 +26,12 @@ var GetUserIncomingFriendsWithTimeCmd = &cobra.Command{
 			TokenRepository: &repository.TokenRepositoryImpl{},
 		}
 		namespace, _ := cmd.Flags().GetString("namespace")
+		limit, _ := cmd.Flags().GetInt64("limit")
+		offset, _ := cmd.Flags().GetInt64("offset")
 		input := &friends.GetUserIncomingFriendsWithTimeParams{
 			Namespace: namespace,
+			Limit:     &limit,
+			Offset:    &offset,
 		}
 		ok, errOK := friendsService.GetUserIncomingFriendsWithTimeShort(input)
 		if errOK != nil {
@@ -45,4 +49,6 @@ var GetUserIncomingFriendsWithTimeCmd = &cobra.Command{
 func init() {
 	GetUserIncomingFriendsWithTimeCmd.Flags().String("namespace", "", "Namespace")
 	_ = GetUserIncomingFriendsWithTimeCmd.MarkFlagRequired("namespace")
+	GetUserIncomingFriendsWithTimeCmd.Flags().Int64("limit", 20, "Limit")
+	GetUserIncomingFriendsWithTimeCmd.Flags().Int64("offset", 0, "Offset")
 }

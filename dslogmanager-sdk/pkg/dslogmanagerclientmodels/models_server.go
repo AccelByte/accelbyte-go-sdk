@@ -7,8 +7,6 @@
 package dslogmanagerclientmodels
 
 import (
-	"strconv"
-
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
@@ -21,16 +19,14 @@ import (
 type ModelsServer struct {
 
 	// allocation_events
-	// Required: true
-	AllocationEvents []*ModelsAllocationEvent `json:"allocation_events"`
+	AllocationEvents []*ModelsAllocationEvent `json:"allocation_events,omitempty"`
 
 	// allocation_id
 	// Required: true
 	AllocationID *string `json:"allocation_id"`
 
 	// alternate_ips
-	// Required: true
-	AlternateIps []string `json:"alternate_ips"`
+	AlternateIps []string `json:"alternate_ips,omitempty"`
 
 	// cpu_limit
 	// Required: true
@@ -97,8 +93,7 @@ type ModelsServer struct {
 	Port *int32 `json:"port"`
 
 	// ports
-	// Required: true
-	Ports map[string]int64 `json:"ports"`
+	Ports map[string]int64 `json:"ports,omitempty"`
 
 	// protocol
 	// Required: true
@@ -121,8 +116,7 @@ type ModelsServer struct {
 	Status *string `json:"status"`
 
 	// status_history
-	// Required: true
-	StatusHistory []*ModelsStatusHistory `json:"status_history"`
+	StatusHistory []*ModelsStatusHistory `json:"status_history,omitempty"`
 
 	// termination_reason
 	// Required: true
@@ -133,13 +127,7 @@ type ModelsServer struct {
 func (m *ModelsServer) Validate(formats strfmt.Registry) error {
 	var res []error
 
-	if err := m.validateAllocationEvents(formats); err != nil {
-		res = append(res, err)
-	}
 	if err := m.validateAllocationID(formats); err != nil {
-		res = append(res, err)
-	}
-	if err := m.validateAlternateIps(formats); err != nil {
 		res = append(res, err)
 	}
 	if err := m.validateCPULimit(formats); err != nil {
@@ -202,9 +190,6 @@ func (m *ModelsServer) Validate(formats strfmt.Registry) error {
 	if err := m.validateStatus(formats); err != nil {
 		res = append(res, err)
 	}
-	if err := m.validateStatusHistory(formats); err != nil {
-		res = append(res, err)
-	}
 	if err := m.validateTerminationReason(formats); err != nil {
 		res = append(res, err)
 	}
@@ -215,43 +200,9 @@ func (m *ModelsServer) Validate(formats strfmt.Registry) error {
 	return nil
 }
 
-func (m *ModelsServer) validateAllocationEvents(formats strfmt.Registry) error {
-
-	if err := validate.Required("allocation_events", "body", m.AllocationEvents); err != nil {
-		return err
-	}
-
-	for i := 0; i < len(m.AllocationEvents); i++ {
-		if swag.IsZero(m.AllocationEvents[i]) { // not required
-			continue
-		}
-
-		if m.AllocationEvents[i] != nil {
-			if err := m.AllocationEvents[i].Validate(formats); err != nil {
-				if ve, ok := err.(*errors.Validation); ok {
-					return ve.ValidateName("allocation_events" + "." + strconv.Itoa(i))
-				}
-				return err
-			}
-		}
-
-	}
-
-	return nil
-}
-
 func (m *ModelsServer) validateAllocationID(formats strfmt.Registry) error {
 
 	if err := validate.Required("allocation_id", "body", m.AllocationID); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *ModelsServer) validateAlternateIps(formats strfmt.Registry) error {
-
-	if err := validate.Required("alternate_ips", "body", m.AlternateIps); err != nil {
 		return err
 	}
 
@@ -437,31 +388,6 @@ func (m *ModelsServer) validateStatus(formats strfmt.Registry) error {
 
 	if err := validate.Required("status", "body", m.Status); err != nil {
 		return err
-	}
-
-	return nil
-}
-
-func (m *ModelsServer) validateStatusHistory(formats strfmt.Registry) error {
-
-	if err := validate.Required("status_history", "body", m.StatusHistory); err != nil {
-		return err
-	}
-
-	for i := 0; i < len(m.StatusHistory); i++ {
-		if swag.IsZero(m.StatusHistory[i]) { // not required
-			continue
-		}
-
-		if m.StatusHistory[i] != nil {
-			if err := m.StatusHistory[i].Validate(formats); err != nil {
-				if ve, ok := err.(*errors.Validation); ok {
-					return ve.ValidateName("status_history" + "." + strconv.Itoa(i))
-				}
-				return err
-			}
-		}
-
 	}
 
 	return nil

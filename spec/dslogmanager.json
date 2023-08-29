@@ -8,7 +8,7 @@
     },
     "description": "Justice DS Log Manager Service",
     "title": "justice-ds-log-manager-service",
-    "version": "3.3.1"
+    "version": "3.3.2"
   },
   "schemes": [
     "https"
@@ -147,7 +147,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "```\nRequired permission: ADMIN:NAMESPACE:{namespace}:DSLM:SERVER [READ]\n\nThis endpoint used to retrieve terminated servers in a namespace\n```",
+        "description": "```\nRequired permission: ADMIN:NAMESPACE:{namespace}:DSLM:SERVER [READ]\n\nThis endpoint used to retrieve terminated servers in a namespace\n\nThe namespace filter is will give result exact namespace response\n```",
         "operationId": "listTerminatedServers",
         "parameters": [
           {
@@ -787,7 +787,6 @@
       },
       "required": [
         "game_mode",
-        "matching_allies",
         "namespace",
         "session_id"
       ]
@@ -972,9 +971,7 @@
         }
       },
       "required": [
-        "allocation_events",
         "allocation_id",
-        "alternate_ips",
         "cpu_limit",
         "deployment",
         "deployment_override",
@@ -990,13 +987,11 @@
         "params",
         "pod_name",
         "port",
-        "ports",
         "protocol",
         "provider",
         "region",
         "session_id",
         "status",
-        "status_history",
         "termination_reason"
       ]
     },
@@ -1052,11 +1047,11 @@
     "path": "/dslogmanager/apidocs/api.json"
   },
   "x-version": {
-    "buildDate": "2023-06-27T09:16:17+00:00",
-    "gitHash": "5e454291e6fdd76451631c0300c4c2e3c96b3dcf",
+    "buildDate": "2023-08-25T08:15:31+00:00",
+    "gitHash": "162721630e54b67be4938a6317f16284afd0cc3a",
     "name": "justice-ds-log-manager-service",
-    "revisionID": "3.3.1",
-    "version": "3.3.1",
+    "revisionID": "3.3.2",
+    "version": "3.3.2",
     "version-roles-seeding": "0.0.3"
   }
 }

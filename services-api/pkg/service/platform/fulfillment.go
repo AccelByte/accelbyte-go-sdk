@@ -136,6 +136,29 @@ func (aaa *FulfillmentService) PublicRedeemCode(input *fulfillment.PublicRedeemC
 	return ok.GetPayload(), nil
 }
 
+// Deprecated: 2022-01-10 - please use FulfillRewardsV2Short instead.
+func (aaa *FulfillmentService) FulfillRewardsV2(input *fulfillment.FulfillRewardsV2Params) (*platformclientmodels.FulfillmentResult, error) {
+	token, err := aaa.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, badRequest, notFound, conflict, err := aaa.Client.Fulfillment.FulfillRewardsV2(input, client.BearerToken(*token.AccessToken))
+	if badRequest != nil {
+		return nil, badRequest
+	}
+	if notFound != nil {
+		return nil, notFound
+	}
+	if conflict != nil {
+		return nil, conflict
+	}
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
 func (aaa *FulfillmentService) QueryFulfillmentHistoriesShort(input *fulfillment.QueryFulfillmentHistoriesParams) (*platformclientmodels.FulfillmentHistoryPagingSlicedResult, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
@@ -254,6 +277,31 @@ func (aaa *FulfillmentService) PublicRedeemCodeShort(input *fulfillment.PublicRe
 	}
 
 	ok, err := aaa.Client.Fulfillment.PublicRedeemCodeShort(input, authInfoWriter)
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
+func (aaa *FulfillmentService) FulfillRewardsV2Short(input *fulfillment.FulfillRewardsV2Params) (*platformclientmodels.FulfillmentResult, error) {
+	authInfoWriter := input.AuthInfoWriter
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
+	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  aaa.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
+	ok, err := aaa.Client.Fulfillment.FulfillRewardsV2Short(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}

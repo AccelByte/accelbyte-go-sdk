@@ -1,3 +1,9 @@
+<a name="v0.52.0"></a>
+## [v0.52.0]
+### ci
+- **docs:** update go extend sdk docs url
+
+
 <a name="v0.51.0"></a>
 ## [v0.51.0]
 ### chore

@@ -49,6 +49,8 @@ ListTerminatedServers retrieve all terminated servers
 Required permission: ADMIN:NAMESPACE:{namespace}:DSLM:SERVER [READ]
 
 This endpoint used to retrieve terminated servers in a namespace
+
+The namespace filter is will give result exact namespace response
 ```
 */
 func (a *Client) ListTerminatedServers(params *ListTerminatedServersParams, authInfo runtime.ClientAuthInfoWriter) (*ListTerminatedServersOK, *ListTerminatedServersBadRequest, *ListTerminatedServersUnauthorized, *ListTerminatedServersInternalServerError, error) {
@@ -107,6 +109,8 @@ ListTerminatedServersShort retrieve all terminated servers
 Required permission: ADMIN:NAMESPACE:{namespace}:DSLM:SERVER [READ]
 
 This endpoint used to retrieve terminated servers in a namespace
+
+The namespace filter is will give result exact namespace response
 ```
 */
 func (a *Client) ListTerminatedServersShort(params *ListTerminatedServersParams, authInfo runtime.ClientAuthInfoWriter) (*ListTerminatedServersOK, error) {

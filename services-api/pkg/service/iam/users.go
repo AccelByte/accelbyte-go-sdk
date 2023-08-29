@@ -3723,6 +3723,23 @@ func (aaa *UsersService) PublicWebLinkPlatformEstablish(input *users.PublicWebLi
 	return found.Location, nil
 }
 
+// Deprecated: 2022-01-10 - please use PublicProcessWebLinkPlatformV3Short instead.
+func (aaa *UsersService) PublicProcessWebLinkPlatformV3(input *users.PublicProcessWebLinkPlatformV3Params) (*iamclientmodels.ModelLinkRequest, error) {
+	token, err := aaa.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, badRequest, err := aaa.Client.Users.PublicProcessWebLinkPlatformV3(input, client.BearerToken(*token.AccessToken))
+	if badRequest != nil {
+		return nil, badRequest
+	}
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
 // Deprecated: 2022-01-10 - please use ResetPasswordV3Short instead.
 func (aaa *UsersService) ResetPasswordV3(input *users.ResetPasswordV3Params) error {
 	token, err := aaa.TokenRepository.GetToken()
@@ -7653,6 +7670,31 @@ func (aaa *UsersService) PublicWebLinkPlatformEstablishShort(input *users.Public
 	}
 
 	return found.Location, nil
+}
+
+func (aaa *UsersService) PublicProcessWebLinkPlatformV3Short(input *users.PublicProcessWebLinkPlatformV3Params) (*iamclientmodels.ModelLinkRequest, error) {
+	authInfoWriter := input.AuthInfoWriter
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
+	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  aaa.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
+	ok, err := aaa.Client.Users.PublicProcessWebLinkPlatformV3Short(input, authInfoWriter)
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
 }
 
 func (aaa *UsersService) ResetPasswordV3Short(input *users.ResetPasswordV3Params) error {

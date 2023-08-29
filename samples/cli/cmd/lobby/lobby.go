@@ -40,6 +40,7 @@ func init() {
 	LobbyCmd.AddCommand(friends.UserGetFriendshipStatusCmd)
 	LobbyCmd.AddCommand(friends.UserUnfriendRequestCmd)
 	LobbyCmd.AddCommand(friends.AddFriendsWithoutConfirmationCmd)
+	LobbyCmd.AddCommand(friends.BulkDeleteFriendsCmd)
 	LobbyCmd.AddCommand(config.AdminGetAllConfigV1Cmd)
 	LobbyCmd.AddCommand(config.AdminGetConfigV1Cmd)
 	LobbyCmd.AddCommand(config.AdminUpdateConfigV1Cmd)

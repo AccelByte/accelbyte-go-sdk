@@ -133,7 +133,7 @@ func (aaa *StatCycleConfigurationService) DeleteStatCycle(input *stat_cycle_conf
 }
 
 // Deprecated: 2022-01-10 - please use BulkAddStatsShort instead.
-func (aaa *StatCycleConfigurationService) BulkAddStats(input *stat_cycle_configuration.BulkAddStatsParams) ([]*socialclientmodels.BulkStatOperationResult, error) {
+func (aaa *StatCycleConfigurationService) BulkAddStats(input *stat_cycle_configuration.BulkAddStatsParams) ([]*socialclientmodels.BulkStatCycleOperationResult, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
@@ -364,7 +364,7 @@ func (aaa *StatCycleConfigurationService) DeleteStatCycleShort(input *stat_cycle
 	return nil
 }
 
-func (aaa *StatCycleConfigurationService) BulkAddStatsShort(input *stat_cycle_configuration.BulkAddStatsParams) ([]*socialclientmodels.BulkStatOperationResult, error) {
+func (aaa *StatCycleConfigurationService) BulkAddStatsShort(input *stat_cycle_configuration.BulkAddStatsParams) ([]*socialclientmodels.BulkStatCycleOperationResult, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{

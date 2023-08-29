@@ -4038,6 +4038,13 @@
           "type": "string",
           "x-nullable": false
         },
+        "ticket_ids": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array",
+          "x-nullable": true
+        },
         "updated_at": {
           "format": "date-time",
           "type": "string",
@@ -4143,6 +4150,13 @@
           "type": "string",
           "x-nullable": false
         },
+        "ticket_ids": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array",
+          "x-nullable": true
+        },
         "time_to_match_seconds": {
           "format": "int64",
           "type": "integer"
@@ -4246,6 +4260,12 @@
         },
         "ticket_id": {
           "type": "string"
+        },
+        "ticket_ids": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
         }
       },
       "required": [
@@ -4265,7 +4285,8 @@
         "sampling_properties",
         "sorted_latency",
         "status",
-        "ticket_id"
+        "ticket_id",
+        "ticket_ids"
       ]
     },
     "models.Pagination": {
@@ -5103,8 +5124,8 @@
     "path": "/matchmaking/apidocs/api.json"
   },
   "x-version": {
-    "buildDate": "2023-08-09T08:10:39+00:00",
-    "gitHash": "d779c2de6feed0e1c84c7b87750ab2b0547eff69",
+    "buildDate": "2023-08-28T05:44:41+00:00",
+    "gitHash": "2358e8b7e0bff06b9aa3f173b042c283f608b7bc",
     "version": "2.25.7",
     "version-roles-seeding": "0.0.23"
   }

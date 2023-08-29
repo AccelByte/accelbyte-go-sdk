@@ -77,6 +77,9 @@ type ApimodelsGameSessionResponse struct {
 	// Required: true
 	Namespace *string `json:"namespace"`
 
+	// storage
+	Storage interface{} `json:"storage,omitempty"`
+
 	// teams
 	Teams []*ModelsTeam `json:"teams,omitempty"`
 

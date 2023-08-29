@@ -18,12 +18,27 @@ import (
 // swagger:model Play station IAP config info.
 type PlayStationIAPConfigInfo struct {
 
+	// back office server clientId
+	BackOfficeServerClientID string `json:"backOfficeServerClientId,omitempty"`
+
+	// back office server client secret
+	BackOfficeServerClientSecret string `json:"backOfficeServerClientSecret,omitempty"`
+
+	// enable PSN stream event job, will enable stream event job to sync PSN refund charge back etc event if it's true
+	EnableStreamJob bool `json:"enableStreamJob"`
+
 	// environment
 	Environment string `json:"environment,omitempty"`
 
 	// namespace
 	// Required: true
 	Namespace *string `json:"namespace"`
+
+	// stream name
+	StreamName string `json:"streamName,omitempty"`
+
+	// stream partner name
+	StreamPartnerName string `json:"streamPartnerName,omitempty"`
 }
 
 // Validate validates this Play station IAP config info

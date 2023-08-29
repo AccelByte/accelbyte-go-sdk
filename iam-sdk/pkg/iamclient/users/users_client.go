@@ -310,6 +310,8 @@ type ClientService interface {
 	PublicWebLinkPlatformShort(params *PublicWebLinkPlatformParams, authInfo runtime.ClientAuthInfoWriter) (*PublicWebLinkPlatformOK, error)
 	PublicWebLinkPlatformEstablish(params *PublicWebLinkPlatformEstablishParams, authInfo runtime.ClientAuthInfoWriter) (*PublicWebLinkPlatformEstablishFound, error)
 	PublicWebLinkPlatformEstablishShort(params *PublicWebLinkPlatformEstablishParams, authInfo runtime.ClientAuthInfoWriter) (*PublicWebLinkPlatformEstablishFound, error)
+	PublicProcessWebLinkPlatformV3(params *PublicProcessWebLinkPlatformV3Params, authInfo runtime.ClientAuthInfoWriter) (*PublicProcessWebLinkPlatformV3OK, *PublicProcessWebLinkPlatformV3BadRequest, error)
+	PublicProcessWebLinkPlatformV3Short(params *PublicProcessWebLinkPlatformV3Params, authInfo runtime.ClientAuthInfoWriter) (*PublicProcessWebLinkPlatformV3OK, error)
 	ResetPasswordV3(params *ResetPasswordV3Params, authInfo runtime.ClientAuthInfoWriter) (*ResetPasswordV3NoContent, *ResetPasswordV3BadRequest, *ResetPasswordV3Forbidden, *ResetPasswordV3NotFound, error)
 	ResetPasswordV3Short(params *ResetPasswordV3Params, authInfo runtime.ClientAuthInfoWriter) (*ResetPasswordV3NoContent, error)
 	PublicGetUserByUserIDV3(params *PublicGetUserByUserIDV3Params, authInfo runtime.ClientAuthInfoWriter) (*PublicGetUserByUserIDV3OK, *PublicGetUserByUserIDV3BadRequest, *PublicGetUserByUserIDV3NotFound, *PublicGetUserByUserIDV3InternalServerError, error)
@@ -22014,6 +22016,107 @@ func (a *Client) PublicWebLinkPlatformEstablishShort(params *PublicWebLinkPlatfo
 }
 
 /*
+Deprecated: 2022-08-10 - Use PublicProcessWebLinkPlatformV3Short instead.
+
+PublicProcessWebLinkPlatformV3 process link progress
+This endpoint is used to process third party account link, this endpoint will return the link status directly instead of redirecting to the original page.
+
+The param state comes from the response of /users/me/platforms/{platformId}/web/link
+*/
+func (a *Client) PublicProcessWebLinkPlatformV3(params *PublicProcessWebLinkPlatformV3Params, authInfo runtime.ClientAuthInfoWriter) (*PublicProcessWebLinkPlatformV3OK, *PublicProcessWebLinkPlatformV3BadRequest, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewPublicProcessWebLinkPlatformV3Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "PublicProcessWebLinkPlatformV3",
+		Method:             "POST",
+		PathPattern:        "/iam/v3/public/namespaces/{namespace}/users/me/platforms/{platformId}/web/link/process",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/x-www-form-urlencoded"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &PublicProcessWebLinkPlatformV3Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *PublicProcessWebLinkPlatformV3OK:
+		return v, nil, nil
+
+	case *PublicProcessWebLinkPlatformV3BadRequest:
+		return nil, v, nil
+
+	default:
+		return nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+PublicProcessWebLinkPlatformV3Short process link progress
+This endpoint is used to process third party account link, this endpoint will return the link status directly instead of redirecting to the original page.
+
+The param state comes from the response of /users/me/platforms/{platformId}/web/link
+*/
+func (a *Client) PublicProcessWebLinkPlatformV3Short(params *PublicProcessWebLinkPlatformV3Params, authInfo runtime.ClientAuthInfoWriter) (*PublicProcessWebLinkPlatformV3OK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewPublicProcessWebLinkPlatformV3Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "PublicProcessWebLinkPlatformV3",
+		Method:             "POST",
+		PathPattern:        "/iam/v3/public/namespaces/{namespace}/users/me/platforms/{platformId}/web/link/process",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/x-www-form-urlencoded"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &PublicProcessWebLinkPlatformV3Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *PublicProcessWebLinkPlatformV3OK:
+		return v, nil
+	case *PublicProcessWebLinkPlatformV3BadRequest:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
 Deprecated: 2022-08-10 - Use ResetPasswordV3Short instead.
 
 ResetPasswordV3 reset user password
@@ -22131,6 +22234,10 @@ PublicGetUserByUserIDV3 get user by user id
 
 
 This endpoint retrieve user attributes. action code: 10129
+
+
+
+Substitute endpoint: /v4/public/namespaces/{namespace}/users/{userId} [READ]
 */
 func (a *Client) PublicGetUserByUserIDV3(params *PublicGetUserByUserIDV3Params, authInfo runtime.ClientAuthInfoWriter) (*PublicGetUserByUserIDV3OK, *PublicGetUserByUserIDV3BadRequest, *PublicGetUserByUserIDV3NotFound, *PublicGetUserByUserIDV3InternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -22187,6 +22294,10 @@ PublicGetUserByUserIDV3Short get user by user id
 
 
 This endpoint retrieve user attributes. action code: 10129
+
+
+
+Substitute endpoint: /v4/public/namespaces/{namespace}/users/{userId} [READ]
 */
 func (a *Client) PublicGetUserByUserIDV3Short(params *PublicGetUserByUserIDV3Params, authInfo runtime.ClientAuthInfoWriter) (*PublicGetUserByUserIDV3OK, error) {
 	// TODO: Validate the params before sending

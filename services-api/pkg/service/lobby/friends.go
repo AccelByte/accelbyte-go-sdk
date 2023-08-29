@@ -404,6 +404,32 @@ func (aaa *FriendsService) AddFriendsWithoutConfirmation(input *friends.AddFrien
 	return nil
 }
 
+// Deprecated: 2022-01-10 - please use BulkDeleteFriendsShort instead.
+func (aaa *FriendsService) BulkDeleteFriends(input *friends.BulkDeleteFriendsParams) (*lobbyclientmodels.ModelBulkFriendsResponse, error) {
+	token, err := aaa.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, badRequest, unauthorized, forbidden, internalServerError, err := aaa.Client.Friends.BulkDeleteFriends(input, client.BearerToken(*token.AccessToken))
+	if badRequest != nil {
+		return nil, badRequest
+	}
+	if unauthorized != nil {
+		return nil, unauthorized
+	}
+	if forbidden != nil {
+		return nil, forbidden
+	}
+	if internalServerError != nil {
+		return nil, internalServerError
+	}
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
 // Deprecated: 2022-01-10 - please use GetListOfFriendsShort instead.
 func (aaa *FriendsService) GetListOfFriends(input *friends.GetListOfFriendsParams) (*lobbyclientmodels.ModelGetFriendsResponse, error) {
 	token, err := aaa.TokenRepository.GetToken()
@@ -805,6 +831,31 @@ func (aaa *FriendsService) AddFriendsWithoutConfirmationShort(input *friends.Add
 	}
 
 	return nil
+}
+
+func (aaa *FriendsService) BulkDeleteFriendsShort(input *friends.BulkDeleteFriendsParams) (*lobbyclientmodels.ModelBulkFriendsResponse, error) {
+	authInfoWriter := input.AuthInfoWriter
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
+	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  aaa.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
+	ok, err := aaa.Client.Friends.BulkDeleteFriendsShort(input, authInfoWriter)
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
 }
 
 func (aaa *FriendsService) GetListOfFriendsShort(input *friends.GetListOfFriendsParams) (*lobbyclientmodels.ModelGetFriendsResponse, error) {

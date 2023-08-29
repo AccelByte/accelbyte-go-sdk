@@ -23,6 +23,7 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/session-sdk/pkg/sessionclient/party"
 	"github.com/AccelByte/accelbyte-go-sdk/session-sdk/pkg/sessionclient/platform_credential"
 	"github.com/AccelByte/accelbyte-go-sdk/session-sdk/pkg/sessionclient/player"
+	"github.com/AccelByte/accelbyte-go-sdk/session-sdk/pkg/sessionclient/session_storage"
 )
 
 // Default justice session service HTTP client.
@@ -79,6 +80,7 @@ func New(transport runtime.ClientTransport, runtime *httptransport.Runtime, form
 	cli.Party = party.New(transport, formats)
 	cli.PlatformCredential = platform_credential.New(transport, formats)
 	cli.Player = player.New(transport, formats)
+	cli.SessionStorage = session_storage.New(transport, formats)
 	cli.Operations = operations.New(transport, formats)
 
 	return cli
@@ -154,6 +156,8 @@ type JusticeSessionService struct {
 
 	Player player.ClientService
 
+	SessionStorage session_storage.ClientService
+
 	Operations operations.ClientService
 
 	Runtime   *httptransport.Runtime
@@ -170,5 +174,6 @@ func (c *JusticeSessionService) SetTransport(transport runtime.ClientTransport) 
 	c.Party.SetTransport(transport)
 	c.PlatformCredential.SetTransport(transport)
 	c.Player.SetTransport(transport)
+	c.SessionStorage.SetTransport(transport)
 	c.Operations.SetTransport(transport)
 }

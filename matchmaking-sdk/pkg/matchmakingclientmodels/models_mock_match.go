@@ -97,6 +97,9 @@ type ModelsMockMatch struct {
 	// Required: true
 	TicketID string `json:"ticket_id"`
 
+	// ticket_ids
+	TicketIds []string `json:"ticket_ids,omitempty"`
+
 	// time_to_match_seconds
 	// Required: true
 	// Format: int64

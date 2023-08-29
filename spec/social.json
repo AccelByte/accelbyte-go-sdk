@@ -8,7 +8,7 @@
     },
     "description": "Justice Social Service",
     "title": "justice-social-service",
-    "version": "2.9.2"
+    "version": "2.9.4"
   },
   "schemes": [
     "https"
@@ -2229,7 +2229,7 @@
             "description": "successful operation",
             "schema": {
               "items": {
-                "$ref": "#/definitions/BulkStatOperationResult"
+                "$ref": "#/definitions/BulkStatCycleOperationResult"
               },
               "type": "array"
             }
@@ -7089,6 +7089,24 @@
       ],
       "type": "object"
     },
+    "BulkStatCycleOperationResult": {
+      "properties": {
+        "cycleId": {
+          "type": "string"
+        },
+        "details": {
+          "type": "object"
+        },
+        "statCode": {
+          "type": "string"
+        },
+        "success": {
+          "type": "boolean",
+          "x-omitempty": false
+        }
+      },
+      "type": "object"
+    },
     "BulkStatCycleRequest": {
       "properties": {
         "cycleIds": {
@@ -7199,6 +7217,9 @@
         "success": {
           "type": "boolean",
           "x-omitempty": false
+        },
+        "userId": {
+          "type": "string"
         }
       },
       "type": "object"
@@ -8423,16 +8444,16 @@
   },
   "x-version": {
     "buildBy": "Gradle 6.9.1",
-    "buildDate": "2023-08-01T01:39:30+00:00",
-    "buildID": "2.9.2",
+    "buildDate": "2023-08-28T01:19:56+00:00",
+    "buildID": "2.9.4",
     "buildJDK": "1.8.0_232 (Eclipse OpenJ9 openj9-0.17.0)",
     "buildOS": "Linux amd64 5.13.0-1021-aws",
     "gitBranchName": "release-candidate",
-    "gitHash": "44b96facc8",
-    "gitTag": "2.9.0",
+    "gitHash": "7d5a9046b6",
+    "gitTag": "2.9.4",
     "name": "justice-social-service",
     "realm": "staging",
-    "version": "2.9.2",
+    "version": "2.9.4",
     "version-roles-seeding": "0.0.12"
   }
 }

@@ -1549,6 +1549,9 @@ authenticate endpoint after successfully authenticating discord user.
                                               * amazon
 This endpoint redirects to amazon login page, then redirect back to platform
 authenticate endpoint after successfully authenticating amazon user.
+
+                                              * oculusweb
+This endpoint redirects to oculus login page, then redirect back to Login Website page after successfully authenticating oculus user.
 action code : 10702'
 */
 func (a *Client) AuthCodeRequestV3(params *AuthCodeRequestV3Params, authInfo runtime.ClientAuthInfoWriter) (*AuthCodeRequestV3Found, error) {
@@ -1645,6 +1648,9 @@ authenticate endpoint after successfully authenticating discord user.
                                               * amazon
 This endpoint redirects to amazon login page, then redirect back to platform
 authenticate endpoint after successfully authenticating amazon user.
+
+                                              * oculusweb
+This endpoint redirects to oculus login page, then redirect back to Login Website page after successfully authenticating oculus user.
 action code : 10702'
 */
 func (a *Client) AuthCodeRequestV3Short(params *AuthCodeRequestV3Params, authInfo runtime.ClientAuthInfoWriter) (*AuthCodeRequestV3Found, error) {

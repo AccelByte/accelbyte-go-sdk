@@ -65,6 +65,9 @@ type ApimodelsPartySessionResponse struct {
 	// Required: true
 	Namespace *string `json:"namespace"`
 
+	// storage
+	Storage interface{} `json:"storage,omitempty"`
+
 	// updatedat
 	// Required: true
 	UpdatedAt *string `json:"updatedAt"`

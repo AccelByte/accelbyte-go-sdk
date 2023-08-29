@@ -141,6 +141,7 @@
 | `A DTO object for user stat item value` | [ADTOObjectForUserStatItemValue ](../../social-sdk/pkg/socialclientmodels/a_dto_object_for_user_stat_item_value.go) |
 | `Attribute` | [Attribute ](../../social-sdk/pkg/socialclientmodels/attribute.go) |
 | `BulkCycleStatsAdd` | [BulkCycleStatsAdd ](../../social-sdk/pkg/socialclientmodels/bulk_cycle_stats_add.go) |
+| `BulkStatCycleOperationResult` | [BulkStatCycleOperationResult ](../../social-sdk/pkg/socialclientmodels/bulk_stat_cycle_operation_result.go) |
 | `BulkStatCycleRequest` | [BulkStatCycleRequest ](../../social-sdk/pkg/socialclientmodels/bulk_stat_cycle_request.go) |
 | `BulkStatCycleResult` | [BulkStatCycleResult ](../../social-sdk/pkg/socialclientmodels/bulk_stat_cycle_result.go) |
 | `BulkStatItemCreate` | [BulkStatItemCreate ](../../social-sdk/pkg/socialclientmodels/bulk_stat_item_create.go) |

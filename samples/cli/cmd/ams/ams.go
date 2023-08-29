@@ -9,10 +9,10 @@ package ams
 import (
 	"github.com/AccelByte/sample-apps/cmd/ams/account"
 	"github.com/AccelByte/sample-apps/cmd/ams/amsInfo"
+	"github.com/AccelByte/sample-apps/cmd/ams/auth"
 	"github.com/AccelByte/sample-apps/cmd/ams/fleetCommander"
 	"github.com/AccelByte/sample-apps/cmd/ams/fleets"
 	"github.com/AccelByte/sample-apps/cmd/ams/images"
-	"github.com/AccelByte/sample-apps/cmd/ams/operations"
 	"github.com/AccelByte/sample-apps/cmd/ams/servers"
 	"github.com/AccelByte/sample-apps/cmd/ams/watchdogs"
 	"github.com/spf13/cobra"
@@ -25,7 +25,8 @@ var AmsCmd = &cobra.Command{
 }
 
 func init() {
-	AmsCmd.AddCommand(operations.Func2Cmd)
+	AmsCmd.AddCommand(auth.AuthCheckCmd)
+	AmsCmd.AddCommand(fleetCommander.PortalHealthCheckCmd)
 	AmsCmd.AddCommand(account.AccountGetCmd)
 	AmsCmd.AddCommand(account.AccountCreateCmd)
 	AmsCmd.AddCommand(account.AccountLinkTokenGetCmd)
@@ -47,6 +48,6 @@ func init() {
 	AmsCmd.AddCommand(fleets.FleetClaimByIDCmd)
 	AmsCmd.AddCommand(fleets.FleetClaimByKeysCmd)
 	AmsCmd.AddCommand(watchdogs.WatchdogConnectCmd)
-	AmsCmd.AddCommand(fleetCommander.Func3Cmd)
-	AmsCmd.AddCommand(operations.PortalHealthCheckCmd)
+	AmsCmd.AddCommand(fleetCommander.Func1Cmd)
+	AmsCmd.AddCommand(fleetCommander.BasicHealthCheckCmd)
 }

@@ -52,6 +52,10 @@ type APIFleetServerInfoResponse struct {
 	// Required: true
 	PortConfiguration []*APIPortConfiguration `json:"portConfiguration"`
 
+	// ports
+	// Required: true
+	Ports map[string]int64 `json:"ports"`
+
 	// region
 	// Required: true
 	Region *string `json:"region"`

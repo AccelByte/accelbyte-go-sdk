@@ -92,6 +92,9 @@ type ModelsMatchmakingResult struct {
 	// Required: true
 	TicketID string `json:"ticket_id"`
 
+	// ticket_ids
+	TicketIds []string `json:"ticket_ids,omitempty"`
+
 	// updated_at
 	// Required: true
 	// Format: date-time

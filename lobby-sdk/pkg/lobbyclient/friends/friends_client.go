@@ -56,6 +56,8 @@ type ClientService interface {
 	UserUnfriendRequestShort(params *UserUnfriendRequestParams, authInfo runtime.ClientAuthInfoWriter) (*UserUnfriendRequestNoContent, error)
 	AddFriendsWithoutConfirmation(params *AddFriendsWithoutConfirmationParams, authInfo runtime.ClientAuthInfoWriter) (*AddFriendsWithoutConfirmationNoContent, *AddFriendsWithoutConfirmationBadRequest, *AddFriendsWithoutConfirmationUnauthorized, *AddFriendsWithoutConfirmationForbidden, *AddFriendsWithoutConfirmationInternalServerError, error)
 	AddFriendsWithoutConfirmationShort(params *AddFriendsWithoutConfirmationParams, authInfo runtime.ClientAuthInfoWriter) (*AddFriendsWithoutConfirmationNoContent, error)
+	BulkDeleteFriends(params *BulkDeleteFriendsParams, authInfo runtime.ClientAuthInfoWriter) (*BulkDeleteFriendsOK, *BulkDeleteFriendsBadRequest, *BulkDeleteFriendsUnauthorized, *BulkDeleteFriendsForbidden, *BulkDeleteFriendsInternalServerError, error)
+	BulkDeleteFriendsShort(params *BulkDeleteFriendsParams, authInfo runtime.ClientAuthInfoWriter) (*BulkDeleteFriendsOK, error)
 	GetListOfFriends(params *GetListOfFriendsParams, authInfo runtime.ClientAuthInfoWriter) (*GetListOfFriendsOK, *GetListOfFriendsBadRequest, *GetListOfFriendsUnauthorized, *GetListOfFriendsForbidden, *GetListOfFriendsInternalServerError, error)
 	GetListOfFriendsShort(params *GetListOfFriendsParams, authInfo runtime.ClientAuthInfoWriter) (*GetListOfFriendsOK, error)
 	GetIncomingFriendRequests(params *GetIncomingFriendRequestsParams, authInfo runtime.ClientAuthInfoWriter) (*GetIncomingFriendRequestsOK, *GetIncomingFriendRequestsBadRequest, *GetIncomingFriendRequestsUnauthorized, *GetIncomingFriendRequestsForbidden, *GetIncomingFriendRequestsInternalServerError, error)
@@ -1557,6 +1559,122 @@ func (a *Client) AddFriendsWithoutConfirmationShort(params *AddFriendsWithoutCon
 	case *AddFriendsWithoutConfirmationForbidden:
 		return nil, v
 	case *AddFriendsWithoutConfirmationInternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+Deprecated: 2022-08-10 - Use BulkDeleteFriendsShort instead.
+
+BulkDeleteFriends delete friends, and incoming/outgoing friend requests
+Required permission : `NAMESPACE:{namespace}:USER:{userId}:FRIENDS [DELETE]` with scope `social`
+
+friends request in a namespace.
+*/
+func (a *Client) BulkDeleteFriends(params *BulkDeleteFriendsParams, authInfo runtime.ClientAuthInfoWriter) (*BulkDeleteFriendsOK, *BulkDeleteFriendsBadRequest, *BulkDeleteFriendsUnauthorized, *BulkDeleteFriendsForbidden, *BulkDeleteFriendsInternalServerError, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewBulkDeleteFriendsParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "bulkDeleteFriends",
+		Method:             "POST",
+		PathPattern:        "/friends/namespaces/{namespace}/users/{userId}/delete/bulk",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &BulkDeleteFriendsReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, nil, nil, nil, nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *BulkDeleteFriendsOK:
+		return v, nil, nil, nil, nil, nil
+
+	case *BulkDeleteFriendsBadRequest:
+		return nil, v, nil, nil, nil, nil
+
+	case *BulkDeleteFriendsUnauthorized:
+		return nil, nil, v, nil, nil, nil
+
+	case *BulkDeleteFriendsForbidden:
+		return nil, nil, nil, v, nil, nil
+
+	case *BulkDeleteFriendsInternalServerError:
+		return nil, nil, nil, nil, v, nil
+
+	default:
+		return nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+BulkDeleteFriendsShort delete friends, and incoming/outgoing friend requests
+Required permission : `NAMESPACE:{namespace}:USER:{userId}:FRIENDS [DELETE]` with scope `social`
+
+friends request in a namespace.
+*/
+func (a *Client) BulkDeleteFriendsShort(params *BulkDeleteFriendsParams, authInfo runtime.ClientAuthInfoWriter) (*BulkDeleteFriendsOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewBulkDeleteFriendsParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "bulkDeleteFriends",
+		Method:             "POST",
+		PathPattern:        "/friends/namespaces/{namespace}/users/{userId}/delete/bulk",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &BulkDeleteFriendsReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *BulkDeleteFriendsOK:
+		return v, nil
+	case *BulkDeleteFriendsBadRequest:
+		return nil, v
+	case *BulkDeleteFriendsUnauthorized:
+		return nil, v
+	case *BulkDeleteFriendsForbidden:
+		return nil, v
+	case *BulkDeleteFriendsInternalServerError:
 		return nil, v
 
 	default:
